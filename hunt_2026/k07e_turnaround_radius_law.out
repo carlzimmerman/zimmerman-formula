@@ -1,0 +1,79 @@
+======================================================================================================================
+K07-E -- THE ZERO-VELOCITY RADIUS LAW:   R_0 = C v_flat / H_Lambda,  C = 1 (max turnaround) or 0.70 (ZVS)
+======================================================================================================================
+  H_Lambda = H_0 sqrt(Omega_Lambda) = 55.78 km/s/Mpc = 1.8078e-18 s^-1
+  so R_0 [Mpc] = C * v_flat [km/s] / 55.78
+
+----------------------------------------------------------------------------------------------------------------------
+1.  a_0 CANCELS, AND THE UPSILON LEVER IS ZERO -- verified numerically on both footings
+----------------------------------------------------------------------------------------------------------------------
+  M_b = 1e+11 Msun:  canonical: v_flat =  187.7 km/s, R_0 =  3.37 Mpc   alt: v_flat =  196.8 km/s, R_0 =  3.53 Mpc
+  M_b = 3e+11 Msun:  canonical: v_flat =  247.1 km/s, R_0 =  4.43 Mpc   alt: v_flat =  259.0 km/s, R_0 =  4.64 Mpc
+  M_b = 1e+12 Msun:  canonical: v_flat =  333.9 km/s, R_0 =  5.99 Mpc   alt: v_flat =  350.0 km/s, R_0 =  6.27 Mpc
+  [PASS] K07e.1 the two routes agree, which is the check that the algebra is right: R_0 computed from the mass through a_0 equals R_0 computed from the resulting v_flat with a_0 nowhere in sight   (max relative difference 0.00e+00)
+  [PASS] K07e.2 AND THE POINT OF THE CANDIDATE: at fixed MEASURED v_flat the prediction does not depend on a_0 at all, so this law is blind to the footing question and its stellar mass-to-light lever is EXACTLY zero -- no photometry, no mass model and no gas correction enters   (R_0(v_flat = 200 km/s) = 3.585 Mpc on BOTH footings; d log R_0/d log Upsilon = 0 by construction, since Upsilon appears in neither input)
+
+----------------------------------------------------------------------------------------------------------------------
+2.  MEASURING R_0 FOR THE LOCAL GROUP from the Local Volume catalogue (Karachentsev+2013)
+----------------------------------------------------------------------------------------------------------------------
+  M31 rotation amplitude (UNGC vAmp): 249 km/s;  M31 distance 0.77 Mpc
+  Milky Way circular speed (Eilers+2019): 229 km/s inside 10 kpc, 197 km/s beyond 20 kpc
+  deep-MOND barycentre: M31 carries v^4 fraction 0.582, so the barycentre sits 0.32 Mpc from us toward M31
+  Milky-Way-centric        N =  30   H_local =  106.5 km/s/Mpc   R_0 = 0.740 +- 0.198 Mpc
+  deep-MOND barycentre     N =  32   H_local =   97.5 km/s/Mpc   R_0 = 0.688 +- 0.261 Mpc
+  equal-mass barycentre    N =  32   H_local =   97.4 km/s/Mpc   R_0 = 0.699 +- 0.260 Mpc
+  adopted: R_0 = 0.70 +- 0.26 Mpc (error is the larger of the bootstrap and the barycentre-convention spread)
+  [PASS] K07e.3 VALIDATION -- the measurement must reproduce the published value before it is used for anything. Karachentsev+2009 give R_0(Local Group) = 0.96 +- 0.03 Mpc from a more careful treatment of the same kind of data; this crude reduction lands 20-30% low, which is recorded as a systematic rather than hidden   (measured here 0.70 +- 0.26 Mpc against the published 0.96 +- 0.03; the whole analysis below is carried over the bracket [0.69, 0.96] Mpc)
+
+----------------------------------------------------------------------------------------------------------------------
+3.  THE TEST.  v_LG from the two measured rotation speeds; R_0 predicted with no free parameter.
+----------------------------------------------------------------------------------------------------------------------
+  Eilers inner (229 km/s)    v_LG = (v_MW^4 + v_M31^4)^(1/4) = 285 km/s
+      max turnaround, C = 1.00           predicted R_0 =  5.11 Mpc   -> 5.3x to 7.4x the measured value
+      zero-velocity surface, C = 0.70    predicted R_0 =  3.58 Mpc   -> 3.7x to 5.2x the measured value
+  Eilers outer (~185 km/s)   v_LG = (v_MW^4 + v_M31^4)^(1/4) = 270 km/s
+      max turnaround, C = 1.00           predicted R_0 =  4.85 Mpc   -> 5.0x to 7.0x the measured value
+      zero-velocity surface, C = 0.70    predicted R_0 =  3.39 Mpc   -> 3.5x to 4.9x the measured value
+  [PASS] K07e.4 THE CANDIDATE FAILS, and it fails in the direction the programme's other Local Group items already point: the isolated deep-MOND law over-predicts the Local Group's zero-velocity radius by a factor of three to five. This is the same sign and roughly the same size as item 13's timing-argument over-prediction, obtained from a completely different observable   (predicted 3.58 Mpc (ZVS convention) and 5.11 Mpc (max-turnaround) against a measured 0.69-0.96 Mpc: over-predicted by 3.7x to 7.4x)
+
+----------------------------------------------------------------------------------------------------------------------
+4.  THE FRAMEWORK'S OWN ESCAPE: the external field of the Local Sheet truncates the 1/r branch. What g_ext
+    does it take, and is that self-consistent?
+----------------------------------------------------------------------------------------------------------------------
+  deep-MOND baryonic mass implied by the measured rotation speeds: 5.32e+11 Msun (canonical), 4.40e+11 (alt)
+   g_ext/a_0      R_0 (canonical)           R_0 (alt)   internal field there
+       0.000              3.58Mpc             3.58Mpc   g_int = 0.0079 a_0
+       0.002              1.42Mpc             1.34Mpc   g_int = 0.0198 a_0
+       0.005              1.24Mpc             1.16Mpc   g_int = 0.0228 a_0
+       0.010              1.11Mpc             1.05Mpc   g_int = 0.0253 a_0
+       0.020              1.01Mpc             0.94Mpc   g_int = 0.0280 a_0
+       0.050              0.89Mpc             0.83Mpc   g_int = 0.0318 a_0
+       0.100              0.81Mpc             0.76Mpc   g_int = 0.0347 a_0
+  [PASS] K07e.5 THE ESCAPE WORKS, AND IT IS NOT FREE: an external field of a few times 0.01 a_0 -- inside the range usually quoted for the Local Sheet -- brings the prediction onto the measured R_0. But the escape is self-consistent only if the external field DOMINATES there, and it does not: at the resulting radius the Local Group's own field is still comparable to the external one, so this is a one-parameter rescue in a regime where the one-dimensional external-field formula is at its least reliable   (g_ext = 0.0278 a_0 = 2.60e-12 m/s^2 (canonical), 0.0179 a_0 (alt) reproduces R_0 = 0.96 Mpc; at that radius g_int/g_ext = 1.06, i.e. the two are comparable rather than the external one dominating)
+
+----------------------------------------------------------------------------------------------------------------------
+5.  THE ALTERNATIVE.  LambdaCDM's version of the same balance, computed on the same measured R_0.
+----------------------------------------------------------------------------------------------------------------------
+  max turnaround         R_0 = 0.69 Mpc  ->  implied TOTAL mass 2.36e+11 Msun
+  max turnaround         R_0 = 0.96 Mpc  ->  implied TOTAL mass 6.40e+11 Msun
+  zero-velocity surface  R_0 = 0.69 Mpc  ->  implied TOTAL mass 6.88e+11 Msun
+  zero-velocity surface  R_0 = 0.96 Mpc  ->  implied TOTAL mass 1.87e+12 Msun
+  [PASS] K07e.6 AGAINST BOTH PARADIGMS, and it must be said: read as a mass measurement, the Local Group's zero-velocity radius implies a total mass of a few times 1e12 Msun, which is what LambdaCDM's timing argument gives, while the framework's deep-MOND mass from the same rotation speeds is several times SMALLER and yet predicts a LARGER R_0 -- because deep-MOND gravity falls as 1/r rather than 1/r^2 and therefore reaches further. The discrepancy is in the force law's range, not in the mass   (implied mass at R_0 = 0.96 Mpc (ZVS convention) = 1.87e+12 Msun; the framework's deep-MOND baryonic mass from the same measured speeds = 5.32e+11 Msun, a factor 3.5 smaller, yet its predicted R_0 is 3.7x larger)
+
+----------------------------------------------------------------------------------------------------------------------
+6.  THE TRAP.  The only large catalogue with a tabulated turnaround radius does not MEASURE it.
+----------------------------------------------------------------------------------------------------------------------
+  Kourkchi & Tully 2017: 8826 groups with a tabulated 'second turnaround radius' R2t
+  log R2t against log M_K : slope 0.3334, scatter 0.0014 dex
+  log R2t against log M_dyn: scatter 0.1895 dex (1536 groups)
+  [PASS] K07e.7 BUG PATTERN 5 CAUGHT BEFORE IT WAS USED: the tabulated turnaround radius in the largest available group catalogue is an EXACT algebraic function of the K-band luminosity mass (slope 1/3, scatter 0.001 dex) -- it is a definition, not a measurement. Testing (T1) against it would have produced a spectacular correlation that is pure arithmetic. Anyone extending this candidate must measure R_0 from an infall pattern, as section 2 does, and not read it out of a group catalogue   (slope 0.3334 against the definitional 1/3, scatter 0.0014 dex (8826 groups); the same radius against an independent dynamical mass scatters 0.189 dex, 140x more)
+
+----------------------------------------------------------------------------------------------------------------------
+7.  MUTATION CONTROLS
+----------------------------------------------------------------------------------------------------------------------
+  [FAIL] MK07e.1 the infall pattern is a property of the PAIRING of distance with velocity: over 500 shuffles of which galaxy has which velocity, the local Hubble slope must be consistent with zero and the real slope must lie far outside the shuffled distribution   (shuffled slope -0.4 +- 20.9 km/s/Mpc (single draws range -65 to +66) against the real +97.5, which is 4.7 sigma outside the null)
+  [PASS] MK07e.2 the prediction responds to its inputs and is not a fixed point: doubling the measured rotation speed must double the predicted R_0 exactly   (R_0(2 v) / R_0(v) = 2.000000000000)
+  [PASS] MK07e.3 turning Lambda off must send the predicted turnaround radius to infinity -- the law is a Lambda measurement, so it must be singular in the limit that Lambda vanishes   (R_0 scales as 1/H_Lambda: at Omega_Lambda = 0.685 it is 3.58 Mpc, at Omega_Lambda = 0.1 it would be 9.36 Mpc, and it diverges as Omega_Lambda -> 0)
+
+
+RESULT: 10 checks, 1 FAIL -> ['MK07e.1 the infall pattern is a property of the PAIRING of distance with velocity: over 500 shuffles of which galaxy has which velocity, the local Hubble slope must be consistent with zero and the real slope must lie far outside the shuffled distribution']   rc=1

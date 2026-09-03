@@ -1,0 +1,160 @@
+======================================================================================================================
+k01 -- ANGLE 5: the acceleration census.  Which system classes have g_int crossing a_0, and what
+      external field are they sitting in?  a_0 canonical 9.36e-11 / alt 1.13e-10 m/s^2.
+======================================================================================================================
+
+Sanity: a_0 = (c/2) sqrt(G rho_DE).  Sigma_M = a_0/(2 pi G) = 106.9 (canonical) / 129.0 (alt) Msun/pc^2
+        the Sun's MOND radius r_M = sqrt(GM_sun/a_0) = 7961 / 7245 AU
+
+----------------------------------------------------------------------------------------------------------------------
+A.  SOLAR-SYSTEM-SCALE SYSTEMS  (external field = the Milky Way at R_sun)
+----------------------------------------------------------------------------------------------------------------------
+  Milky Way field at the Sun: g_ext = 2.166e-10 m/s^2 = 2.314 a_0 (canonical) / 1.917 a_0 (alt)
+  => Newtonian-equivalent e = 1.6815 (canonical) / 1.3055 (alt);   nu(e) = 1.3763, L(e) = -0.2440
+  => the EFE-saturation boost M_dyn/M_bar = nu(e)[1+L/3] = 1.2644 (canonical) / 1.3374 (alt)
+  cross-check: the frozen Gaia DR4 wide-binary band gamma_v = 1.1614-1.1814 canonical means a FORCE boost gamma_v^2 = 1.3488-1.3957; alt 1.1917-1.2267 -> 1.4201-1.5048
+  RECONCILIATION: the frozen registration adopts x_ext = 1.89929 a_0 (= 1.778e-10 m/s^2,
+    i.e. V_c = 211 km/s at R_0 = 8.122 kpc).  With it,
+    e = 1.28903, nu(e) = 1.47342 (registration quotes nu(y_extN) = 1.47342 -- matches),
+    B = nu(e)[1+L/3] = 1.3414 canonical / 1.4314 alt.
+  [PASS] the e-inversion reproduces the registration's own nu(y_extN) = 1.47342 at x_ext = 1.89929  [CAN FAIL]   (nu(e) = 1.473422)
+    AGAINST INTEREST: B (the g_int -> 0 asymptote) sits -2.25% from the midpoint of the frozen
+    wide-binary band gamma_v^2 = 1.3488-1.3957.  It is inside the band's lower edge but not at its centre,
+    because the registered band comes from a full nonlinear TWO-BODY AQUAL solve at finite internal field,
+    not from the point-mass asymptote.  2.2% is therefore the irreducible mismatch between
+    the two rungs' own definitions, and it is a floor on how well this law can ever be tested.
+    => NORMALISATION SYSTEMATIC on the law: B(R_sun) = 1.341 (registered field) to 1.264 (V_c = 233 km/s), canonical; 1.431 to 1.337, alt.
+  protoplanetary disc @ 100 AU     g_int/a_0 =        6337 (canon)        5249 (alt)   g_int/g_ext =      2738
+  Neptune                          g_int/a_0 =   7.009e+04 (canon)   5.805e+04 (alt)   g_int/g_ext = 3.028e+04
+  Kuiper belt @ 50 AU              g_int/a_0 =   2.535e+04 (canon)     2.1e+04 (alt)   g_int/g_ext = 1.095e+04
+  Sedna aphelion (937 AU)          g_int/a_0 =       72.18 (canon)       59.79 (alt)   g_int/g_ext =     31.19
+  inner Oort cloud @ 3000 AU       g_int/a_0 =       7.041 (canon)       5.832 (alt)   g_int/g_ext =     3.043
+  Sun's r_M (7960 AU)              g_int/a_0 =           1 (canon)      0.8283 (alt)   g_int/g_ext =    0.4321
+  outer Oort cloud @ 50 kAU        g_int/a_0 =     0.02535 (canon)       0.021 (alt)   g_int/g_ext =   0.01095
+  wide binary @ 5 kAU              g_int/a_0 =       2.535 (canon)         2.1 (alt)   g_int/g_ext =     1.095
+  wide binary @ 30 kAU             g_int/a_0 =     0.07041 (canon)     0.05832 (alt)   g_int/g_ext =   0.03043
+
+----------------------------------------------------------------------------------------------------------------------
+B.  STAR CLUSTERS  (Baumgardt & Hilker N-body-fit catalogue, ON DISK; g_int at the half-mass radius)
+----------------------------------------------------------------------------------------------------------------------
+  157 clusters.  g_int(r_h)/a_0 canonical: min 0.003734, median 4.94, max 128.4   -> 4.5 decades
+  35 clusters below a_0 internally, 48 above 10 a_0, 83 with g_int < g_ext (EFE-saturated)
+  [PASS] GCs straddle a_0 from both sides with >= 20 systems each side  [CAN FAIL]   (35 below a_0, 48 above 10 a_0)
+  open cluster (Hyades-like)       (M = 400 Msun, r_h = 4.0 pc)  g_int/a_0 = 0.01862 (canon), g_int/g_ext = 0.008045
+  open cluster (Pleiades-like)     (M = 800 Msun, r_h = 4.0 pc)  g_int/a_0 = 0.03724 (canon), g_int/g_ext = 0.01609
+  young massive cluster            (M = 10000 Msun, r_h = 1.5 pc)  g_int/a_0 = 3.31 (canon), g_int/g_ext = 1.43
+
+----------------------------------------------------------------------------------------------------------------------
+C.  MOLECULAR CLOUDS  (Miville-Deschenes+2017, 8107 CO clouds; fetched this session)
+----------------------------------------------------------------------------------------------------------------------
+  8107 clouds.  g_int/a_0 canonical: 1st pct 0.00871, median 0.08955, 99th 1.013
+  fraction with g_int < g_ext (EFE-saturated): 100.0%
+  median surface density 16.5 Msun/pc^2;  Sigma_M = a_0/(2 pi G) = 107 / 129
+  [PASS] molecular clouds are internally sub-a_0 but EFE-saturated: >90% have g_int < g_ext  [CAN FAIL]   (100.0% of 8107 clouds)
+
+----------------------------------------------------------------------------------------------------------------------
+D.  GALACTIC AND EXTRAGALACTIC
+----------------------------------------------------------------------------------------------------------------------
+  Local Group dwarf spheroidals (41): g_int/a_0 median 0.003824 [0.0004, 0.404];  host field/a_0 median 0.0406
+  SPARC disc galaxies (147): innermost g_bar/a_0 median 0.294, outermost median 0.06246  -- every disc crosses a_0
+  elliptical at R_e                      g_int/a_0 ~ 30   (literature scalar) -- FP tilt: framework cannot be it (item 52)
+  galaxy group at R500                   g_int/a_0 ~ 0.4   (literature scalar) -- eta = 1.8-2.1, item 7
+  galaxy cluster at R500                 g_int/a_0 ~ 0.35   (literature scalar) -- eta ~ 2 unexplained, items 18/55/56
+  intracluster light @ 100 kpc           g_int/a_0 ~ 3   (literature scalar) -- UNTESTED HERE
+  SMBH sphere of influence, outer edge   g_int/a_0 ~ 1e+06   (literature scalar) -- stars dominate long before a_0
+  cosmic void wall (R ~ 15 Mpc)          g_int/a_0 ~ 0.003   (literature scalar) -- framework's linear regime is Newtonian (item 85)
+
+======================================================================================================================
+THE CENSUS, sorted by internal acceleration.  ISOLATED = g_int > g_ext (the RAR's regime);
+SATURATED = g_int < g_ext (the external-field regime, where the boost is nu(e)[1+L/3] and does NOT
+depend on g_int at all -- the corner the BTFR cannot reach).
+======================================================================================================================
+  system class                                 g_int/a0   g_ext/a0     regime  note
+  SMBH sphere of influence, outer edge            1e+06         30   isolated  stars dominate long before a_0
+  Neptune                                     7.009e+04      2.314   isolated  solar neighbourhood
+  Kuiper belt @ 50 AU                         2.535e+04      2.314   isolated  solar neighbourhood
+  protoplanetary disc @ 100 AU                     6337      2.314   isolated  solar neighbourhood
+  Sedna aphelion (937 AU)                         72.18      2.314   isolated  solar neighbourhood
+  elliptical at R_e                                  30       0.01   isolated  FP tilt: framework cannot be it (item 52)
+  inner Oort cloud @ 3000 AU                      7.041      2.314   isolated  solar neighbourhood
+  globular clusters (157)                         4.942      3.759   isolated  M/L_V,dyn measured -- k02
+  young massive cluster                            3.31      2.314   isolated  literature scalar
+  intracluster light @ 100 kpc                        3       0.01   isolated  UNTESTED HERE
+  wide binary @ 5 kAU                             2.535      2.314   isolated  solar neighbourhood
+  Sun's r_M (7960 AU)                                 1      2.314  SATURATED  solar neighbourhood
+  galaxy group at R500                              0.4       0.01   isolated  eta = 1.8-2.1, item 7
+  galaxy cluster at R500                           0.35      0.005   isolated  eta ~ 2 unexplained, items 18/55/56
+  molecular clouds (8107)                       0.08955      2.433  SATURATED  alpha_vir measured -- k03
+  wide binary @ 30 kAU                          0.07041      2.314  SATURATED  solar neighbourhood
+  disc galaxies, outer (SPARC)                  0.06246       0.02   isolated  the RAR itself
+  open cluster (Pleiades-like)                  0.03724      2.314  SATURATED  literature scalar
+  outer Oort cloud @ 50 kAU                     0.02535      2.314  SATURATED  solar neighbourhood
+  open cluster (Hyades-like)                    0.01862      2.314  SATURATED  literature scalar
+  Local Group dSph                             0.003824    0.04057  SATURATED  LIABILITY item 8/43/44
+  cosmic void wall (R ~ 15 Mpc)                   0.003          0   isolated  framework's linear regime is Newtonian (item 85)
+  [PASS] the census finds at least six EFE-SATURATED classes (a corner the RAR literature does not test) [CAN FAIL]   (7 saturated classes of 22)
+
+======================================================================================================================
+THE CANDIDATE LAW THAT THE CENSUS POINTS AT
+======================================================================================================================
+  M_dyn/M_bar = nu(e)[1 + L(e)/3],   nu(e) e = g_ext/a_0,   g_ext = V_c^2/R,   a_0 = (c/2) sqrt(G rho_DE)
+  for every self-gravitating system with g_int << g_ext inside a galaxy.  ONE number per Galactocentric
+  radius, the same for a wide binary and a molecular cloud -- 15 decades of mass, no free parameter.
+
+   R_gal (kpc)  g_ext/a0 (c)    e (c)  B canonical    B alt
+          2.00         9.398    8.925       1.0253   1.0376
+          4.00         4.699    4.075       1.0938   1.1263
+          6.00         3.133    2.485       1.1743   1.2267
+          8.12         2.314    1.682       1.2644   1.3374
+         10.00         1.880    1.271       1.3459   1.4369
+         12.00         1.566    0.986       1.4337   1.5436
+         16.00         1.175    0.650       1.6107   1.7580
+         20.00         0.940    0.464       1.7885   1.9729
+         25.00         0.752    0.328       2.0110   2.2416
+  [PASS] the law has a real Galactocentric lever: B rises by >= 25% from R = 4 to R = 20 kpc  [CAN FAIL]   (B(20)/B(4) - 1 = 0.635)
+
+  RESTATEMENT TEST (computed, not asserted).  What does v^4 = G M_b a_0 predict for the same systems?
+  The isolated deep-MOND boost is sqrt(a_0/g_int).  The saturation law says nu(e)[1+L/3].  If these
+  agree the candidate is a restatement of the BTFR; if they differ the candidate is new content.
+  class                               g_int/a0  BTFR boost  saturation B    ratio
+  wide binary @ 30 kAU                 0.07041       3.769         1.264     2.98
+  open cluster (Hyades-like)           0.01862       7.329         1.264     5.80
+  globular cluster Pal 3                 0.018       7.454         5.264     1.42
+  molecular cloud (median)             0.08955       3.342         1.247     2.68
+  [PASS] the derivation from v^4 = G M_b a_0 DOES NOT CLOSE: the BTFR boost and the saturation boost differ by >= 3x in at least one class, so the candidate is NOT a restatement  [CAN FAIL]   (worst ratio 5.8x)
+
+  MUTATION CONTROL: multiply a_0 by 10 and by 1/10 and re-classify.
+    a_0 x   0.1:  GCs below a_0 =   17 (true 35),  clouds below a_0 =  4293/8107,  B(R_sun) = 1.0016 (true 1.2644)
+    a_0 x  10.0:  GCs below a_0 =  109 (true 35),  clouds below a_0 =  8107/8107,  B(R_sun) = 4.5102 (true 1.2644)
+  [PASS] mutation control bites: a wrong a_0 by x10 moves the predicted boost B(R_sun) by > 15%  [CAN FAIL]   (B = 1.0016 / 1.2644 / 4.5102 for a_0 x0.1 / x1 / x10)
+
+======================================================================================================================
+THE LAW RUN BACKWARDS -- the Milky Way's baryonic mass from a stellar velocity ratio alone
+======================================================================================================================
+  B is monotone in e, so a MEASURED boost inverts:  e = B^-1(B_hat),  M_b,MW = e a_0 R_0^2 / G.
+  With B_hat = gamma_v^2 from Gaia DR4 wide binaries this measures the Galactic baryonic mass with
+  NO photometry, NO stellar M/L and NO rotation curve -- only a velocity ratio and Lambda.
+
+    gamma_v  B = gamma_v^2        e   M_b,MW canonical     M_b,MW alt
+     1.1000         1.2100   2.0997          9.299e+10      1.123e+11
+     1.1614         1.3488   1.2593          5.577e+10      6.733e+10
+     1.1814         1.3957   1.0953          4.851e+10      5.856e+10
+     1.1917         1.4201   1.0230          4.531e+10      5.470e+10
+     1.2000         1.4400   0.9698          4.295e+10      5.186e+10
+     1.2267         1.5048   0.8239          3.649e+10      4.405e+10
+     1.2500         1.5625   0.7213          3.195e+10      3.857e+10
+
+  SENSITIVITY: d log M_b / d log B = -4.21, i.e. d log M_b / d log gamma_v = -8.4.
+  A 2% measurement of gamma_v therefore gives M_b,MW to 17%.
+  The published Galactic baryon census is 6.2-6.7e10 Msun.  If December returns gamma_v in the frozen
+  band, the canonical footing infers 4.9-5.6e10 (10-25% LOW) and the alt footing 5.9-6.7e10 (on the
+  census).  That is a FOOTING DISCRIMINATOR that costs nothing extra -- but it is only non-circular
+  once gamma_v is MEASURED, because the frozen band was itself computed from an assumed local field.
+  [PASS] the backward inversion is well-posed: B is strictly monotone decreasing in e  [CAN FAIL]   (B(0.3) = 2.074 > B(1) = 1.429 > B(3) = 1.140 > B(10) = 1.020)
+
+  UPSILON LEVER of the census itself: zero.  Every acceleration above is computed from a catalogued
+  mass and radius, and the two classes the census promotes (globular clusters via M/L_V,dyn, molecular
+  clouds via alpha_vir) carry dynamical masses, not photometric ones.  The stellar M/L enters only the
+  GC rung's ABSOLUTE normalisation (lever -1), never the shape tests, and not at all for the clouds.
+
+RESULT: 8 checks, 0 FAIL   rc=0

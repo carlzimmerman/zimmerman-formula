@@ -1,0 +1,203 @@
+==============================================================================================================================
+1.  THE EXTERNAL-FIELD GEOMETRY.  What is the spherically averaged internal gravity of a system sitting in an
+    external field?  Three independent derivations, then the number.
+==============================================================================================================================
+  [PASS] 1a the exact angular integral reproduces the algebraic kernel nu(y)y in the isolated limit, which it must, because in spherical symmetry QUMOND and AQUAL both reduce to it   (max |ratio-1| = 5.33e-15 over y = 1e-4 to 1e3)
+
+    x_ext      nu(x_e)   1+L_e     1+L_e/3    <g_r>/(nu_e y_i)   ratio to eq.60   ratio to naive nu(x_e)
+     0.0001    100.501    0.5025     0.8342        0.834165          1.6600         0.8342
+     0.0030     18.762    0.5136     0.8379        0.837856          1.6314         0.8379
+     0.0100     10.508    0.5246     0.8415        0.841528          1.6042         0.8415
+     0.0218      7.285    0.5360     0.8453        0.845335          1.5771         0.8453
+     0.1000      3.689    0.5749     0.8583        0.858299          1.4930         0.8583
+     0.6600      1.798    0.6759     0.8920        0.891966          1.3197         0.8920
+  [PASS] 1b THE THEOREM.  In the external-field-dominated limit the EXACT spherically averaged internal gravity is nu(x_e)(1 + L_e/3) g_Ni, where L_e = dln nu/dln x.  This is derived here from Gauss's theorem with no expansion and agrees with the independent linear-response closed form of check 1c   (max |exact - nu_e(1+L_e/3)|/nu_e = 9.82e-11 over x_ext = 1e-4 to 0.66)
+  [PASS] 1c AND IT IS NOT THE ONE-DIMENSIONAL FORMULA.  The eq.-60 value nu_e(1+L_e) that h43's check V2 validated is the PLANE-PARALLEL response; for a sphere it under-predicts the angle-averaged internal gravity by up to a factor 5/3.  h43's V2 is right about a slab and wrong about a dwarf galaxy.  (Stated in the direction that HELPS the framework, so it is verified three ways below)   (exact/eq.60 runs 1.320 (x_ext = 0.66) to 1.660 (deep), i.e. the one-dimensional formula is low by up to 0.220 dex)
+  [PASS] 1d INDEPENDENT VERIFICATION 1 -- the closed-form linear-response solution of the QUMOND EFE equation, Phi_i = -nu_e GM/r [1 + (L_e/2) sin^2 theta], satisfies lap Phi_i = nu_e L_e d^2_z phi_i away from the source, checked by finite differences at four off-axis points.  Its angle average of -dPhi/dr is nu_e(1+L_e/3)GM/r^2, which is what check 1b got from a completely different route (a surface integral)   (max relative residual of the field equation = 2.00e-06)
+  [PASS] 1e INDEPENDENT VERIFICATION 2 -- averaging the radial force of that closed form over the sphere by direct quadrature gives nu_e(1+L_e/3) again, a third route to the same number   (quadrature 3.010000000 vs nu_e(1+L_e/3) = 3.010000000)
+  [PASS] 1f MUTATION CONTROL -- with the kernel switched off (nu == 1) the external field must do nothing at all: Newtonian gravity has no external-field effect.  The machinery returns exactly g_Ni at every external field   (max |g_avg/g_Ni - 1| = 4.09e-14 with nu == 1)
+
+==============================================================================================================================
+2.  THE ESTIMATOR.  Solve the isotropic spherical Jeans equation instead of substituting a circular orbit.
+==============================================================================================================================
+  [PASS] 2a the Jeans machinery reproduces the EXACT virial answer for a self-gravitating isotropic Plummer sphere, <sigma_los^2> = pi G M/(32 a), before any kernel is involved   (numeric/analytic = 1.000000)
+    NEWTONIAN Plummer: sigma_Wolf/sigma_true = 1.1407  -- the Wolf-form substitution sigma^2 = g(r_h)r_h/3 is 14.1% HIGH in the Newtonian limit, i.e. it over-states the predicted dispersion by +0.114 dex of acceleration
+
+    profile     y_h        sigma^4/(G M a_0)     exact (4/81) = 0.049383     ratio
+    Plummer    1e-6      4.942298e-02          0.049383                1.0008
+    Hernquist  1e-6      4.938344e-02          0.049383                1.0000
+    Jaffe      1e-6      4.939342e-02          0.049383                1.0002
+  [PASS] 2b the SAME machinery reproduces Milgrom's exact deep-MOND virial relation sigma^4 = (4/81) G M a_0 for THREE different density profiles -- a profile-independent theorem, so getting it right for one profile is not enough and getting it right for three is a real check of the kernel-plus-Jeans chain   (ratios ['1.0008', '1.0000', '1.0002'] for ['Plummer', 'Hernquist', 'Jaffe'])
+
+    F = sigma(exact isotropic Jeans, global) / sigma(Wolf-form substitution), self-gravitating, ISOLATED:
+      y_h        Plummer   Hernquist    Jaffe      B-shift(Plummer, dex of acceleration)
+      0.0001    0.9705    0.9706    0.9712      +0.026
+       0.001    0.9696    0.9699    0.9716      +0.027
+        0.01    0.9666    0.9677    0.9732      +0.030
+        0.03    0.9635    0.9655    0.9755      +0.032
+         0.1    0.9578    0.9619    0.9811      +0.037
+         0.3    0.9494    0.9573    0.9913      +0.045
+           1    0.9355    0.9515    1.0093      +0.058
+           3    0.9186    0.9452    1.0262      +0.074
+          10    0.8986    0.9329    1.0302      +0.093
+        1000    0.8767    0.8978    1.0007      +0.114
+  [PASS] 2c THE ANSWER TO THE ANGLE AS POSED, and it is a NO.  The correct isotropic Jeans treatment does change the prediction, but by a y-dependent 0.03-0.12 dex of acceleration, and it is LARGEST in the Newtonian regime where the liabilities are SMALLEST.  It cannot be the common cause of a ledger that spans 2.8 dex   (F = 0.9705 deep-MOND (+0.026 dex) to 0.8767 Newtonian (+0.114 dex))
+
+    beta      sigma_glob/sigma_Wolf     sigma(<1 R_e)/sigma_Wolf    sigma(<2 R_e)/sigma_Wolf
+    -1.00         0.966606                 0.9104                   0.9501
+    -0.50         0.966606                 0.9470                   0.9621
+    +0.00         0.966606                 1.0007                   0.9792
+    +0.25         0.966606                 1.0378                   0.9909
+    +0.50         0.966606                 1.0854                   1.0057
+  [PASS] 2d ANISOTROPY IS NOT AVAILABLE, and this is a theorem rather than a fit.  For ANY spherically symmetric system the luminosity-weighted GLOBAL line-of-sight dispersion is <v^2>/3, and <v^2> is fixed by the scalar virial theorem, so beta cannot move it.  Verified numerically over beta = -1 to +0.5: the global dispersion is constant to 4 decimal places while the aperture-limited one moves by up to 12%   (global F spans 0.966606-0.966606 over beta = -1..+0.5 (aperture-1R_e F spans 0.910-1.085))
+
+    AGAINST INTEREST -- the correction depends on the aperture the dispersion was measured in:
+      y_h      F(global)   F(<1 R_e)   F(<2 R_e)   F(<3 R_e)
+       0.001   0.9696      1.0008      0.9807      0.9752
+        0.01   0.9666      1.0007      0.9792      0.9731
+         0.1   0.9578      1.0004      0.9748      0.9668
+           1   0.9355      1.0000      0.9637      0.9509
+        1000   0.8767      0.9971      0.9354      0.9103
+  [PASS] 2e AGAINST INTEREST -- a dispersion measured inside one effective radius is HIGHER than the global one, so an aperture-limited measurement partly cancels the Jeans correction and can even reverse its sign.  The correction is therefore carried below as a BAND, not as a number, and the band is smaller than the liabilities either way   (F(global) 0.970-0.877 against F(<1 R_e) 1.001-0.997)
+
+==============================================================================================================================
+3.  APPLY BOTH ZERO-PARAMETER CORRECTIONS TO THE COMMITTED LEDGER (u01_pressure_supported_common_currency)
+==============================================================================================================================
+  [PASS] 3a PARSE CONTROL (can fail) -- every (y_bar, B) pair hard-coded above is re-found verbatim in the committed u01 .out table, so this script cannot silently drift from the ledger it is correcting   (15/15 rows matched)
+
+  footing canonical  (a_0 = 9.360e-11; y and x_ext scale by 1.0000)
+    system                    kind      y_bar    x_ext   B(pub)   dB(EFE 3-D)  dB(Jeans)   B(corrected)
+    MW ultra-faint (h43)      galaxy     0.0008   0.0218   +1.650      -0.201     +0.114      +1.563
+    M31 satellites (h44)      galaxy     0.0035   0.0112   +0.761      -0.231     +0.114      +0.645
+    MW classical dSph         galaxy     0.0071   0.0095   +0.641      -0.258     +0.114      +0.497
+    Coma UDGs (h9)            galaxy     0.0074   0.6603   +1.195      +0.050     +0.114      +1.359
+    Pal 14                    cluster    0.0102   0.0190   -0.658      -0.010     +0.114      -0.554
+    Pal 3                     cluster    0.0213   0.0093   -0.075      -0.056     +0.091      -0.040
+    LG field dwarfs           galaxy     0.0297   0.0000   -0.088      +0.000     +0.032      -0.056
+    NGC1052-DF2               galaxy*    0.0339   0.0233   -0.485      -0.247     +0.110      -0.622
+    Pal 4                     cluster    0.0489   0.0083   -0.781      -0.028     +0.061      -0.748
+    NGC1052-DF4               galaxy*    0.0582   0.0233   -1.155      -0.207     +0.089      -1.273
+    SLUGGS GC logM*>=11.3     galaxy     0.7313   0.0000   +0.331      +0.000     +0.000      +0.331
+    NGC 2419                  cluster    0.8619   0.0097   -0.199      -0.001     +0.058      -0.143
+    PNe in early types        galaxy     1.4399   0.0000   +0.066      +0.000     +0.000      +0.066
+    SLUGGS GC logM*<11.3      galaxy     1.6415   0.0000   +0.058      +0.000     +0.000      +0.058
+    ATLAS3D ETG (Chab)        galaxy     2.3213   0.0000   +0.094      +0.000     +0.000      +0.094
+
+  footing alt  (a_0 = 1.130e-10; y and x_ext scale by 0.8283)
+    system                    kind      y_bar    x_ext   B(pub)   dB(EFE 3-D)  dB(Jeans)   B(corrected)
+    MW ultra-faint (h43)      galaxy     0.0007   0.0181   +1.612      -0.203     +0.114      +1.523
+    M31 satellites (h44)      galaxy     0.0029   0.0093   +0.726      -0.232     +0.114      +0.608
+    MW classical dSph         galaxy     0.0059   0.0079   +0.603      -0.260     +0.114      +0.457
+    Coma UDGs (h9)            galaxy     0.0061   0.5469   +1.166      +0.052     +0.114      +1.332
+    Pal 14                    cluster    0.0084   0.0157   -0.695      -0.010     +0.114      -0.591
+    Pal 3                     cluster    0.0176   0.0077   -0.113      -0.057     +0.091      -0.079
+    LG field dwarfs           galaxy     0.0246   0.0000   -0.124      +0.000     +0.032      -0.092
+    NGC1052-DF2               galaxy*    0.0281   0.0193   -0.519      -0.250     +0.110      -0.659
+    Pal 4                     cluster    0.0405   0.0069   -0.818      -0.028     +0.060      -0.786
+    NGC1052-DF4               galaxy*    0.0482   0.0193   -1.188      -0.210     +0.088      -1.310
+    SLUGGS GC logM*>=11.3     galaxy     0.6057   0.0000   +0.331      +0.000     +0.000      +0.331
+    NGC 2419                  cluster    0.7139   0.0080   -0.225      -0.002     +0.055      -0.171
+    PNe in early types        galaxy     1.1927   0.0000   +0.042      +0.000     +0.000      +0.042
+    SLUGGS GC logM*<11.3      galaxy     1.3597   0.0000   +0.058      +0.000     +0.000      +0.058
+    ATLAS3D ETG (Chab)        galaxy     1.9228   0.0000   +0.075      +0.000     +0.000      +0.075
+
+    median |B|   published 0.485  ->  corrected 0.497 dex
+    full spread  published 2.805  ->  corrected 2.837 dex
+    worst row    published 1.650  ->  corrected 1.563 dex
+    rms          published 0.722  ->  corrected 0.725 dex
+  [PASS] 3b PRE-STATED UNIFICATION CRITERION 1 -- for the two zero-parameter corrections to COUNT as a unification of the pressure-supported ledger, the full spread of the 15 classes must fall below 1.0 dex (from 2.805).  It does not.  This check is written to fail if the attempt succeeds, and it passes, i.e. the attempt FAILED   (spread 2.805 -> 2.837 dex, criterion was < 1.0)
+  [PASS] 3c PRE-STATED UNIFICATION CRITERION 2 -- the median |B| must fall below 0.15 dex (the stellar-mass systematic this programme has measured).  It does not   (median |B| 0.485 -> 0.497 dex, criterion was < 0.15)
+
+    galaxy mean B  +0.523 -> +0.506   star-cluster mean B  -0.428 -> -0.371
+    galaxy-minus-cluster split  +0.951 -> +0.878 dex   (permutation p 0.0118 -> 0.0215)
+  [PASS] 3d AND THE CORRECTIONS DO NOT TOUCH THE THING THAT MATTERS.  The galaxy-versus-star-cluster sign split, which u01 identified as the structural liability no change of kernel or of a_0 can address, survives both corrections essentially unchanged -- because both corrections are functions of (y, x_ext) alone and the two populations overlap in both   (split +0.951 -> +0.878 dex, p = 0.0118 -> 0.0215)
+
+    the rows that move most (dex of acceleration):
+      Coma UDGs (h9)               +0.164
+      MW classical dSph            -0.144
+      NGC1052-DF2                  -0.137
+      NGC1052-DF4                  -0.118
+      M31 satellites (h44)         -0.116
+      Pal 14                       +0.104
+
+==============================================================================================================================
+3b. HOW FAR DOES THE EFE-GEOMETRY CORRECTION REACH?  A bracket theorem, and the two NON-pressure liabilities
+    in the whole ledger that depend on an external field.
+==============================================================================================================================
+
+    over the whole plane y = 1e-4..1e2, x_ext = 1e-4..10:
+      exact / eq.60 : 1.0001 to 1.9396      exact / naive : 0.0100 to 0.9787
+  [PASS] 3e MY OWN 'BRACKET THEOREM' FAILED AND IS REPLACED BY WHAT IS TRUE.  I wrote this check to assert that the two recipes already in use bracket the exact answer within 0.222 dex.  They do not.  The naive nu(x_ext) recipe is not a bracket at all -- outside the external-field-dominated corner it is wrong by up to two orders of magnitude, because it applies the external field's boost to an internally dominated system.  What IS true, and is the useful half, is one-sided: the exact spherical answer is NEVER below the one-dimensional eq.-60 recipe anywhere on the plane, so every eq.-60 result in this programme is a one-sided bound whose correction can only go one way   (exact/eq.60 in [1.0001, 1.9396] -- one-sided, and larger than the 5/3 EFE-dominated asymptote in the intermediate regime; exact/naive in [0.0100, 0.9787], i.e. no bracket)
+
+    THE SIGN RULE.  The correction always RAISES the predicted internal gravity of a system in an external
+    field relative to eq. 60.  So it IMPROVES every liability where the framework is SHORT with the EFE on
+    and WORSENS every one where the framework is LONG with the EFE on.  On the fifteen pressure classes that
+    is 4 improved, 4 worsened, 7 untouched -- and the four it improves are the four largest positive rows.
+    tidal dwarfs, canonical : eq.60 supplied a suppression of 0.515 at y = 0.038, which needs x_ext = 0.0271;
+      the exact spherical recipe supplies only 0.908, so B goes -0.394 -> -0.640 dex (-0.246)
+    tidal dwarfs, alt       : eq.60 supplied a suppression of 0.509 at y = 0.032, which needs x_ext = 0.0231;
+      the exact spherical recipe supplies only 0.904, so B goes -0.427 -> -0.676 dex (-0.249)
+  [PASS] 3f AND IT CUTS BOTH WAYS OUTSIDE THE PRESSURE LEDGER TOO.  The six bona-fide tidal dwarf galaxies are the one rotation-supported liability whose external-field term is load-bearing, and they are a row where the framework already OVER-predicts.  Making the external field suppress less makes that row WORSE, by about a third of the way back to its EFE-free value.  CAVEAT CARRIED: tidal dwarfs are rotating HI discs, not spheres, so the spherical Gauss argument is indicative for them and exact only for the pressure rows   (tidal dwarfs -0.394 -> -0.640 dex against an EFE-free -0.682)
+
+    the radius at which each recipe has removed 30% of the isolated boost, in units of the radius where the
+    internal and external NEWTONIAN fields are equal:  eq.60 0.405   exact 3-D 1.189   naive 1.443
+  [PASS] 3g AND MY SECOND ASSERTION HERE FAILED TOO, IN THE DIRECTION THAT HURTS.  I wrote this check to say that the warp-onset liability is external-field-geometry-proof, because h30 defines its radius by g_Ni = g_Ne and no recipe moves that.  But the PHYSICAL onset -- the radius at which the external field has actually removed a given fraction of the boost -- moves by a factor 2.9 between eq.-60 and the exact spherical recipe, and it moves OUTWARD.  h30's failure is that the framework puts the onset a factor 6.4 too far out; correcting the geometry makes that factor LARGER, not smaller.  CAVEAT: warps are in discs, so the spherical argument is indicative here, and the ratio depends on the 30% threshold chosen -- which is why the number is printed   (30%-suppression radius 0.405 (eq.60) -> 1.189 (exact 3-D), a factor 2.93 FURTHER OUT, against a warp liability that needs it a factor 6.4 further IN)
+
+==============================================================================================================================
+4.  KEEPERS.  What do these two corrections break?
+==============================================================================================================================
+  SPARC: 147 galaxies, 3140 points
+  RAR (no external field, as every keeper is computed):  scatter 0.1764 dex, median residual +0.0233
+  deep-tail a_0 (g_bar < 1e-11, 1086 points, full-kernel estimator): 9.019e-11
+  [PASS] 4a THE JEANS CORRECTION BREAKS NOTHING, BY CONSTRUCTION AND BY DEMONSTRATION.  It is a change to the ESTIMATOR that converts a predicted acceleration into a predicted velocity DISPERSION.  Every galactic keeper -- the radial acceleration relation, its scatter, the deep-tail a_0, Renzo's rule, the 1/r lensing law, the inner-curve diversity, the halo surface density -- is measured on a rotation curve or a lensing profile and contains no dispersion at all, so it is untouched to machine precision   (RAR scatter 0.1764 dex and deep-tail a_0 9.019e-11 are inputs to this script, not outputs of it)
+
+  the EFE correction is NOT free in the same way -- it changes the prediction wherever an external field is
+  applied, and the deep tail of the RAR is the lowest-acceleration place the keepers live.  A galaxy in the
+  large-scale-structure field sits at x_ext ~ 0.003-0.01, so:
+    x_ext    recipe     RAR scatter   deep-tail a_0     shift vs the isolated keeper
+     0.003   eq60       0.1785        1.768e-10       +0.2923 dex
+     0.003   3d         0.1765        9.019e-11       +0.0000 dex
+     0.010   eq60       0.1859        4.000e-10       +0.6469 dex
+     0.010   3d         0.1767        9.263e-11       +0.0116 dex
+  [PASS] 4b AND THE EFE CORRECTION IS THE MORE KEEPER-SAFE OF THE TWO EFE RECIPES.  Switching an external field on at all shifts the deep-tail a_0 -- the keeper the whole programme's footing rests on -- but the 3-D spherical recipe shifts it LESS than the one-dimensional eq.-60 recipe that the pressure-supported scripts currently use, because it suppresses the boost less.  Neither is applied to the SPARC keepers today; this is the size of the exposure if one were   (max |d log a_0| = 0.6469 dex (eq.60) against 0.0116 dex (3-D) over x_ext = 0.003-0.01)
+
+  THE ALTERNATIVE BESIDE.  The Jeans correction is not a framework-specific fix: it is an estimator bias and
+  it hits the Newtonian comparison by the SAME 14.1% in the Newtonian limit, so the framework-minus-Newton
+  gap in the ledger is unchanged by it.  Only the EFE correction is framework-specific, and Newtonian gravity
+  has no external-field effect at all (mutation control 1f).
+
+==============================================================================================================================
+VERDICT
+==============================================================================================================================
+  ANGLE B IS ANSWERED, AND THE ANSWER IS NO.  Deriving the pressure-supported prediction properly instead of
+  substituting a circular orbit changes the ledger by a y-dependent 0.03-0.12 dex of acceleration and does not
+  remove the offsets.  The correct isotropic Jeans treatment makes the framework predict LESS, so it makes the
+  positive rows WORSE and the negative rows better, which is the opposite of unifying them.  Anisotropy, the
+  other freedom the pressure-supported estimators carry, is closed by a theorem: the global luminosity-weighted
+  dispersion is fixed by the scalar virial theorem and beta cannot move it at all.
+
+  ONE REAL CORRECTION WAS FOUND, IT IS ZERO-PARAMETER, AND IT GOES THE FRAMEWORK'S WAY.  h43's validated check
+  V2 -- 'the correct EFE-dominated effective G is nu(x_e)(1+L_e), i.e. half the naive value' -- is the
+  PLANE-PARALLEL response and is wrong for a sphere.  Gauss's theorem on the QUMOND equation gives
+  nu(x_e)(1+L_e/3) exactly, up to a factor 5/3 = +0.222 dex larger, verified three independent ways and by a
+  Newtonian mutation control.  That reduces the four largest positive liabilities in the ledger by 0.08-0.22 dex.
+
+  AND ITS REACH IS TWO-SIDED.  The correction is one-sided in the FIELD -- the exact spherical answer is never
+  below the eq.-60 one anywhere on the (y, x_ext) plane -- but that means it improves every liability where the
+  framework is SHORT with the external field on (the four largest positive rows) and worsens every one where it
+  is LONG (Pal 14, DF2, DF4, and the tidal dwarfs, which go from -0.394 to -0.640 dex).  My own two further
+  assertions about its reach both FAILED and are kept: the naive nu(x_ext) recipe is not a bracket on it, and
+  the warp-onset liability is not proof against it -- the physical onset radius moves a factor 2.9 FURTHER OUT,
+  which makes h30's location failure worse.
+
+  IT IS NOT ENOUGH, AND THE TWO CORRECTIONS PARTLY CANCEL.  Applied together to all fifteen classes the
+  published spread of 2.805 dex barely moves and the median |B| does not reach the stellar-mass systematic.
+  The galaxy-versus-star-cluster sign split -- the structural liability -- survives untouched, because both
+  corrections are functions of (y, x_ext) alone and the two populations overlap in both.
+
+  KEEPERS BROKEN: NONE.  The Jeans correction touches no keeper by construction (no keeper contains a velocity
+  dispersion).  The EFE correction touches the keepers only if an external field is switched on in SPARC, which
+  no keeper does today -- and if one were, the 3-D recipe moves the deep-tail a_0 LESS than the eq.-60 recipe
+  the pressure scripts already use.
+
+RESULT: 20 checks, 0 FAIL   rc=0

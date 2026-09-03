@@ -1,0 +1,209 @@
+======================================================================================================================
+k02 -- the EXTERNAL-FIELD SATURATION LAW on 157 Galactic globular clusters
+       (M/L_V)_dyn = Upsilon_V x nu(e)[1 + L(e)/3],  e = G M_b,MW/(R_GC^2 a_0)
+======================================================================================================================
+
+Building the QUMOND boost table B(y, e) from the repository's own solver ...
+  [PASS] the interpolated boost table reproduces the analytic g_int -> 0 limit nu(e)[1+L/3] to 3%  [CAN FAIL]   (max relative error 0.0035 over e = 0.05-5)
+  [PASS] with the external field switched off the table returns the ISOLATED law B = nu(y)  [CAN FAIL]   (max relative error 0.0016)
+
+======================================================================================================================
+FOOTING: canonical   a_0 = 9.360e-11 m/s^2
+======================================================================================================================
+  Milky Way baryonic point mass calibrated to the registered x_ext = 1.89929:  M_b,MW = 5.709e+10 Msun  (a plausible Galactic baryon budget -- this is a CHECK, not a fit)
+  [PASS] [canonical] the calibrated Milky Way baryonic mass lands in the observed range 4-8e10 Msun  [CAN FAIL]   (M_b,MW = 5.709e+10 Msun)
+  157 clusters with a tabulated M/L_V.  84 are EFE-saturated (y_int < e_ext); 73 are not.
+  predicted boost B: median 1.039, range 1.000-9.500
+
+  [ALL clusters]  N = 157;  B_pred lever: 1.000 to 9.500, i.e. 0.98 dex of predicted signal
+    log10(M/L_V) = +0.303 + (-0.221 +- 0.064) log10(B_pred)    [framework: slope 1, Newton: slope 0]
+    -> framework favoured by 3.4 sigma over Newton if slope=1; slope is 19.0 sigma from the framework's 1 and 3.4 sigma from Newton's 0
+    scatter of log10(M/L_V):            0.167 dex   [Newton's residual]
+    scatter of log10(M/L_V / B_pred):   0.295 dex   [framework's residual]
+    implied Upsilon_V = median(M/L_V / B_pred) = 1.669 (stellar populations: 1.3-2.2)
+
+  [N_RV >= 20 (mass really dynamical)]  N = 126;  B_pred lever: 1.000 to 9.500, i.e. 0.98 dex of predicted signal
+    log10(M/L_V) = +0.286 + (-0.146 +- 0.059) log10(B_pred)    [framework: slope 1, Newton: slope 0]
+    -> framework favoured by 2.5 sigma over Newton if slope=1; slope is 19.4 sigma from the framework's 1 and 2.5 sigma from Newton's 0
+    scatter of log10(M/L_V):            0.121 dex   [Newton's residual]
+    scatter of log10(M/L_V / B_pred):   0.237 dex   [framework's residual]
+    implied Upsilon_V = median(M/L_V / B_pred) = 1.667 (stellar populations: 1.3-2.2)
+
+  [N_RV >= 20 and |b| > 15 deg (extinction-safe)]  N = 56;  B_pred lever: 1.000 to 9.500, i.e. 0.98 dex of predicted signal
+    log10(M/L_V) = +0.267 + (-0.127 +- 0.054) log10(B_pred)    [framework: slope 1, Newton: slope 0]
+    -> framework favoured by 2.4 sigma over Newton if slope=1; slope is 21.0 sigma from the framework's 1 and 2.4 sigma from Newton's 0
+    scatter of log10(M/L_V):            0.096 dex   [Newton's residual]
+    scatter of log10(M/L_V / B_pred):   0.276 dex   [framework's residual]
+    implied Upsilon_V = median(M/L_V / B_pred) = 1.463 (stellar populations: 1.3-2.2)
+
+  [N_RV >= 100]  N = 63;  B_pred lever: 1.000 to 1.668, i.e. 0.22 dex of predicted signal
+    log10(M/L_V) = +0.275 + (-0.124 +- 0.285) log10(B_pred)    [framework: slope 1, Newton: slope 0]
+    -> framework favoured by 0.4 sigma over Newton if slope=1; slope is 3.9 sigma from the framework's 1 and 0.4 sigma from Newton's 0
+    scatter of log10(M/L_V):            0.097 dex   [Newton's residual]
+    scatter of log10(M/L_V / B_pred):   0.109 dex   [framework's residual]
+    implied Upsilon_V = median(M/L_V / B_pred) = 1.729 (stellar populations: 1.3-2.2)
+
+  [SATURATED SUBSET, N_RV >= 20]  N = 60   -- here B_pred is a function of R_GC only, so the
+     mass-sharing degeneracy of bug pattern 5 is absent entirely.
+     log10(M/L_V) = +0.280 + (-0.036 +- 0.109) log10(B_pred)
+     framework needs +1.000; Newton needs 0.000.  Measured is 9.5 sigma from the framework and 0.3 sigma from Newton.
+
+  [ISOLATED branch (y_int > e_ext, B > 1.5): tests nu(g_int), i.e. the RAR extended to star clusters -- the RESTATEMENT branch]
+     N = 7;  median B_pred = 1.84, median M/L_V = 1.61, implied Upsilon_V = 0.965
+     -> the law needs Upsilon_V in 1.3-2.2; it gets 0.965, short by a factor 1.3-2.3
+
+  [SATURATED branch (y_int <= e_ext, B > 1.5): tests nu(e)[1+L/3], the NEW content that no BTFR algebra gives]
+     N = 13;  median B_pred = 2.17, median M/L_V = 1.89, implied Upsilon_V = 0.666
+     -> the law needs Upsilon_V in 1.3-2.2; it gets 0.666, short by a factor 2.0-3.3
+
+  [TWO-GROUP CONTRAST]  unboosted (B < 1.10, N = 87): median M/L_V = 1.870
+                        boosted   (B > 1.60, N = 18): median M/L_V = 1.725
+     observed ratio 0.922   vs   predicted 2.249   (Newton predicts 1.000)
+
+  [THE CLUSTERS THAT CARRY THE TEST]  the 14 with the largest predicted boost
+  cluster                        M    r_h    R_GC    y_int    e_ext  B_pred  M/L_obs  Ups implied  N_RV
+  Crater                  1.21e+04   27.6   147.0   0.0118   0.0039   9.500     1.29        0.136    33
+  Pal 3                   1.85e+04   27.6    98.2   0.0181   0.0088   7.572     1.45        0.191    22
+  Eridanus                9.29e+03   18.8    89.8   0.0195   0.0106   7.220     0.74        0.102    14
+  Pal 14                  1.91e+04   37.7    68.5   0.0100   0.0181   6.663     1.70        0.255    16
+  Pal 4                   1.53e+04   21.1   104.0   0.0255   0.0079   6.648     0.81        0.122    23
+  Sagittarius II          3.05e+04   39.4    59.5   0.0146   0.0240   5.851     2.43        0.415    23
+  AM 1                    1.96e+04   20.3   120.3   0.0354   0.0059   5.813     0.83        0.143     2
+  Pyxis                   3.22e+04   23.5    38.6   0.0433   0.0570   3.961     2.41        0.608    43
+  Pal 15                  5.25e+04   27.0    37.3   0.0536   0.0612   3.819     3.62        0.948     5
+  Whiting 1               1.37e+03   16.5    35.1   0.0037   0.0688   3.708     0.34        0.092     3
+  AM 4                    7.46e+02   11.3    24.6   0.0044   0.1407   2.766     3.59        1.298    14
+  Pal 13                  2.78e+03   15.7    24.6   0.0084   0.1409   2.764     1.79        0.648    20
+  NGC 7492                1.97e+04   10.6    23.6   0.1308   0.1531   2.623     1.02        0.389    25
+  Arp 2                   3.87e+04   19.3    21.4   0.0771   0.1859   2.470     1.89        0.765    49
+     'Ups implied' is what the stellar population would have to be for the law to hold;
+     stellar populations give 1.3-2.2 for old metal-poor globulars.
+
+  [IS THE MASS REALLY DYNAMICAL?]  A transparent Wolf-style estimator 4 sigma_0^2 r_h/G
+     built from the SAME table's central dispersion, compared with the N-body mass:
+     median ratio 0.853, scatter 0.051 dex, N = 126
+     d log(M_Wolf/M_Nbody)/d log B = -0.062 +- 0.025
+     -> a ratio flat in B means the N-body masses ARE tracking the kinematics for the
+        boosted clusters too, so the kill cannot be blamed on photometric masses.
+  [PASS] the N-body masses do not drift systematically against a transparent kinematic estimator as the predicted boost grows (so the kill is not an artefact of photometric masses)  [CAN FAIL]   (slope -0.062 +- 0.025)
+
+  [RANGE OF VALIDITY -- the most important caveat]  The clusters that carry the exclusion
+     are the ones with a large predicted boost, and those all sit at LOW external field:
+       B > 1.60 subset: e_ext = 0.004-0.407, R_GC = 14.4-147 kpc
+     The frozen Gaia DR4 wide-binary prediction sits at e = 1.289 (the solar circle), where
+     B = 1.34 and NO globular cluster is saturated (they are all internally denser than the
+     local Galactic field).  So this kill excludes the SMALL-e end of B(e) and leaves the
+     solar-neighbourhood end for December.  Saying otherwise would over-claim.
+
+  [CONTROLLED REGRESSION, N = 126]  log10(M/L_V) ~ 1 + log B + MFSlope + log N_RV
+     log B      -0.242 +- 0.066   (framework 1, Newton 0)
+     MFSlope    -0.055 +- 0.018   (dynamical-evolution control)
+     log N_RV   -0.028 +- 0.014   (measurement-quality control)
+
+  [FOIL] log R_GC alone: slope -0.074 +- 0.021; r(log B, log M/L) = -0.216 vs r(log R_GC, log M/L) = -0.298
+  [REDDENING FOIL] log10(M/L_V) on log|b|: slope -0.101 +- 0.023  (a large negative slope would mean the M/L_V column is not dereddened; un-dereddened light would INFLATE low-|b| = low-B clusters and bias the test AGAINST the law)
+  [CONSPIRACY BUDGET] to hide the predicted contrast the true Upsilon_V of the boosted clusters would have to be 0.387 dex BELOW the unboosted ones.
+     Metallicity does push that way -- outer-halo clusters are metal-poor and stellar
+     populations give Upsilon_V ~ 2.0 at [Fe/H] = -0.5 and ~1.5 at -2.0, i.e. at most 0.12 dex.
+     Shortfall that metallicity cannot cover: 0.267 dex.
+
+======================================================================================================================
+FOOTING: alt   a_0 = 1.130e-10 m/s^2
+======================================================================================================================
+  Milky Way baryonic point mass calibrated to the registered x_ext = 1.89929:  M_b,MW = 5.709e+10 Msun  (a plausible Galactic baryon budget -- this is a CHECK, not a fit)
+  [PASS] [alt] the calibrated Milky Way baryonic mass lands in the observed range 4-8e10 Msun  [CAN FAIL]   (M_b,MW = 5.709e+10 Msun)
+  157 clusters with a tabulated M/L_V.  84 are EFE-saturated (y_int < e_ext); 73 are not.
+  predicted boost B: median 1.053, range 1.000-10.382
+
+  [ALL clusters]  N = 157;  B_pred lever: 1.000 to 10.382, i.e. 1.02 dex of predicted signal
+    log10(M/L_V) = +0.304 + (-0.210 +- 0.061) log10(B_pred)    [framework: slope 1, Newton: slope 0]
+    -> framework favoured by 3.4 sigma over Newton if slope=1; slope is 19.8 sigma from the framework's 1 and 3.4 sigma from Newton's 0
+    scatter of log10(M/L_V):            0.167 dex   [Newton's residual]
+    scatter of log10(M/L_V / B_pred):   0.303 dex   [framework's residual]
+    implied Upsilon_V = median(M/L_V / B_pred) = 1.638 (stellar populations: 1.3-2.2)
+
+  [N_RV >= 20 (mass really dynamical)]  N = 126;  B_pred lever: 1.000 to 10.382, i.e. 1.02 dex of predicted signal
+    log10(M/L_V) = +0.286 + (-0.139 +- 0.056) log10(B_pred)    [framework: slope 1, Newton: slope 0]
+    -> framework favoured by 2.5 sigma over Newton if slope=1; slope is 20.3 sigma from the framework's 1 and 2.5 sigma from Newton's 0
+    scatter of log10(M/L_V):            0.121 dex   [Newton's residual]
+    scatter of log10(M/L_V / B_pred):   0.245 dex   [framework's residual]
+    implied Upsilon_V = median(M/L_V / B_pred) = 1.637 (stellar populations: 1.3-2.2)
+
+  [N_RV >= 20 and |b| > 15 deg (extinction-safe)]  N = 56;  B_pred lever: 1.000 to 10.382, i.e. 1.02 dex of predicted signal
+    log10(M/L_V) = +0.268 + (-0.119 +- 0.051) log10(B_pred)    [framework: slope 1, Newton: slope 0]
+    -> framework favoured by 2.3 sigma over Newton if slope=1; slope is 21.8 sigma from the framework's 1 and 2.3 sigma from Newton's 0
+    scatter of log10(M/L_V):            0.096 dex   [Newton's residual]
+    scatter of log10(M/L_V / B_pred):   0.285 dex   [framework's residual]
+    implied Upsilon_V = median(M/L_V / B_pred) = 1.437 (stellar populations: 1.3-2.2)
+
+  [N_RV >= 100]  N = 63;  B_pred lever: 1.000 to 1.771, i.e. 0.25 dex of predicted signal
+    log10(M/L_V) = +0.275 + (-0.124 +- 0.250) log10(B_pred)    [framework: slope 1, Newton: slope 0]
+    -> framework favoured by 0.5 sigma over Newton if slope=1; slope is 4.5 sigma from the framework's 1 and 0.5 sigma from Newton's 0
+    scatter of log10(M/L_V):            0.097 dex   [Newton's residual]
+    scatter of log10(M/L_V / B_pred):   0.112 dex   [framework's residual]
+    implied Upsilon_V = median(M/L_V / B_pred) = 1.703 (stellar populations: 1.3-2.2)
+
+  [SATURATED SUBSET, N_RV >= 20]  N = 60   -- here B_pred is a function of R_GC only, so the
+     mass-sharing degeneracy of bug pattern 5 is absent entirely.
+     log10(M/L_V) = +0.280 + (-0.036 +- 0.102) log10(B_pred)
+     framework needs +1.000; Newton needs 0.000.  Measured is 10.1 sigma from the framework and 0.4 sigma from Newton.
+
+  [ISOLATED branch (y_int > e_ext, B > 1.5): tests nu(g_int), i.e. the RAR extended to star clusters -- the RESTATEMENT branch]
+     N = 7;  median B_pred = 1.96, median M/L_V = 1.61, implied Upsilon_V = 0.909
+     -> the law needs Upsilon_V in 1.3-2.2; it gets 0.909, short by a factor 1.4-2.4
+
+  [SATURATED branch (y_int <= e_ext, B > 1.5): tests nu(e)[1+L/3], the NEW content that no BTFR algebra gives]
+     N = 13;  median B_pred = 2.32, median M/L_V = 1.89, implied Upsilon_V = 0.623
+     -> the law needs Upsilon_V in 1.3-2.2; it gets 0.623, short by a factor 2.1-3.5
+
+  [TWO-GROUP CONTRAST]  unboosted (B < 1.10, N = 80): median M/L_V = 1.875
+                        boosted   (B > 1.60, N = 19): median M/L_V = 1.790
+     observed ratio 0.955   vs   predicted 2.293   (Newton predicts 1.000)
+
+  [RANGE OF VALIDITY -- the most important caveat]  The clusters that carry the exclusion
+     are the ones with a large predicted boost, and those all sit at LOW external field:
+       B > 1.60 subset: e_ext = 0.003-0.472, R_GC = 12.2-147 kpc
+     The frozen Gaia DR4 wide-binary prediction sits at e = 1.289 (the solar circle), where
+     B = 1.34 and NO globular cluster is saturated (they are all internally denser than the
+     local Galactic field).  So this kill excludes the SMALL-e end of B(e) and leaves the
+     solar-neighbourhood end for December.  Saying otherwise would over-claim.
+
+  [CONTROLLED REGRESSION, N = 126]  log10(M/L_V) ~ 1 + log B + MFSlope + log N_RV
+     log B      -0.233 +- 0.062   (framework 1, Newton 0)
+     MFSlope    -0.056 +- 0.018   (dynamical-evolution control)
+     log N_RV   -0.028 +- 0.014   (measurement-quality control)
+
+  [FOIL] log R_GC alone: slope -0.074 +- 0.021; r(log B, log M/L) = -0.217 vs r(log R_GC, log M/L) = -0.298
+  [REDDENING FOIL] log10(M/L_V) on log|b|: slope -0.101 +- 0.023  (a large negative slope would mean the M/L_V column is not dereddened; un-dereddened light would INFLATE low-|b| = low-B clusters and bias the test AGAINST the law)
+
+======================================================================================================================
+VERDICT
+======================================================================================================================
+  canonical : slope -0.127 +- 0.054  (framework 1.000, Newton 0.000);  Newtonian scatter 0.096 dex, framework scatter 0.276 dex;  implied Upsilon_V = 1.46
+  alt       : slope -0.119 +- 0.051  (framework 1.000, Newton 0.000);  Newtonian scatter 0.096 dex, framework scatter 0.285 dex;  implied Upsilon_V = 1.44
+  [LAW FAILS ] dividing M/L_V by the predicted boost TIGHTENS its distribution rather than loosening it   (framework 0.276 dex vs Newton 0.096 dex)
+  [LAW FAILS ] the measured slope of log M/L_V on log B is within 3 sigma of the predicted +1   (slope -0.127 +- 0.054, 21.0 sigma from 1)
+  [LAW FAILS ] the measured slope is more than 3 sigma from Newton's 0   (2.4 sigma from 0)
+  [LAW FAILS ] in the SATURATED subset -- where B depends on R_GC alone and no degeneracy can help -- the slope is within 3 sigma of +1   (slope -0.036 +- 0.109, 9.5 sigma from 1, 0.3 sigma from Newton's 0)
+  [LAW PASSES] the implied stellar-population Upsilon_V lands inside the 1.3-2.2 range for old metal-poor globulars   (Upsilon_V = 1.46)
+
+  >>> 1 of 5 law tests pass.  THE EXTERNAL-FIELD SATURATION LAW IS EXCLUDED IN GLOBULAR CLUSTERS.
+  [PASS] the law test suite is decisive one way or the other (it did not merely return no-information: the predicted signal spans at least 0.3 dex and the slope error bar is below 0.3)  [CAN FAIL]   (sigma(slope) = 0.054)
+
+  MUTATION CONTROLS
+    a_0 x 10        : slope -0.095 +- 0.036,  framework scatter 0.340 dex (Newton 0.121)
+    a_0 x 0.1       : slope -0.320 +- 0.133,  framework scatter 0.158 dex (Newton 0.121)
+    a_0 x 1 (truth) : slope -0.146 +- 0.059,  framework scatter 0.237 dex (Newton 0.121)
+  [PASS] mutation control bites: a_0 x 10 changes the framework's residual scatter measurably  [CAN FAIL]   (0.237 -> 0.340 dex)
+  [PASS] the nu = 1 foil is what 'Newton' means here and is already computed as the slope-0 hypothesis   (Newtonian scatter 0.121 dex)
+
+  UPSILON LEVER, numerically.
+    The tested quantity is B_hat = (M/L_V)_dyn / Upsilon_V.  M/L_V is measured (dynamical mass over
+    observed light) and carries NO stellar M/L assumption; Upsilon_V enters only as the denominator
+    of the amplitude.  So:
+      d log B_hat / d log Upsilon_V   =  -1.000  (exactly, by construction) -- the AMPLITUDE test
+      d (slope of log M/L_V on log B) / d log Upsilon_V  =  0.000 -- the SHAPE test is Upsilon-free
+    A 0.1 dex error in Upsilon_V moves the amplitude by 0.1 dex and the slope not at all.  The shape
+    test is therefore the load-bearing one, and it is the one reported as the verdict.
+
+RESULT: 8 checks, 0 FAIL   rc=0

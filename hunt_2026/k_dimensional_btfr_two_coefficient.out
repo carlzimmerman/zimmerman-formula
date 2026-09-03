@@ -1,0 +1,142 @@
+==============================================================================================================================
+k_dimensional_btfr_two_coefficient -- a_0 read off the HYDROGEN coefficient of a two-coefficient BTFR
+==============================================================================================================================
+
+------------------------------------------------------------------------------------------------------------------------------
+0.  THE RESTATEMENT TEST, EXECUTED -- and it closes
+------------------------------------------------------------------------------------------------------------------------------
+  v^4 = G M_b a_0  with  M_b = Upsilon L + 1.33 M_HI  gives  v^4 = G a_0 (Upsilon L + 1.33 M_HI)
+  and dividing by G and expanding the bracket:  v^4/G = (a_0 Upsilon) L + (1.33 a_0) M_HI.
+  THE DERIVATION CLOSES IN ONE LINE.
+  [PASS] K0 the restatement test is EXECUTED: the two-coefficient form and v^4 = G M_b a_0 are the same expression, verified numerically to machine precision over three decades of luminosity and hydrogen mass, not argued   (max relative difference 2.22e-16  =>  is_restatement = TRUE)
+  => is_restatement = TRUE.  This is the baryonic Tully-Fisher relation with its bracket expanded.  It is
+     reported below as a LADDER RUNG (a different estimator on the same relation), never as a new law.
+
+------------------------------------------------------------------------------------------------------------------------------
+1.  THE SAMPLE
+------------------------------------------------------------------------------------------------------------------------------
+  122 SPARC galaxies with Q <= 2, inclination >= 30 deg, >= 6 points, and a quoted V_flat, L_[3.6] and M_HI
+  log10 L_[3.6] spans 7.08 to 11.69; gas fraction (at Upsilon = 0.5) 0.02 to 0.95, median 0.41
+  collinearity of the two regressors: r(log L, log M_HI) = 0.852 -- the price the proposal named
+
+------------------------------------------------------------------------------------------------------------------------------
+2.  THE STRUCTURAL FACTOR C, computed per galaxy from its own curve and the kernel  (item 105b)
+------------------------------------------------------------------------------------------------------------------------------
+  v_flat^4 = G M_b a_0 x C with C = nu(y)^2 y epsilon, where y = g_bar/a_0 at the radius where V_flat is
+  measured and epsilon = g_bar r^2/(G M_b) folds in the disc geometry and the mass not yet enclosed.  C -> 1 in
+  the exact deep-MOND limit.  Computed here from each galaxy's own outermost measured point; because g_bar
+  needs Upsilon and Upsilon is what the fit returns, it is iterated to convergence.
+
+------------------------------------------------------------------------------------------------------------------------------
+3.  THE TWO-COEFFICIENT FIT
+------------------------------------------------------------------------------------------------------------------------------
+
+  ---- footing canonical: a_0 = 9.3600e-11 m/s^2, so the predicted gas coefficient is 1.33 a_0 = 1.2449e-10 ----
+  NAIVE (no structural correction) -- the form the proposal states
+    no structural correction applied
+    a_0 from the HYDROGEN coefficient  = 9.9354e-11 [8.664e-11, 1.139e-10] m/s^2   = +0.026 dex from canonical, -0.056 from alt
+    Upsilon_[3.6] from the ratio       = 0.869  (stellar populations give 0.5 +- 0.1)
+    variance inflation factor on the gas coefficient (from the L-M_HI collinearity) = 2.14
+  C-CORRECTED (item 105b's structural factor, per galaxy, iterated)
+    median C = 1.607  (1.000 = exact deep-MOND limit)
+    a_0 from the HYDROGEN coefficient  = 7.8361e-11 [6.739e-11, 8.954e-11] m/s^2   = -0.077 dex from canonical, -0.159 from alt
+    Upsilon_[3.6] from the ratio       = 0.640  (stellar populations give 0.5 +- 0.1)
+    variance inflation factor on the gas coefficient (from the L-M_HI collinearity) = 2.14
+
+  ---- footing alt: a_0 = 1.1300e-10 m/s^2, so the predicted gas coefficient is 1.33 a_0 = 1.5029e-10 ----
+  NAIVE (no structural correction) -- the form the proposal states
+    no structural correction applied
+    a_0 from the HYDROGEN coefficient  = 9.9354e-11 [8.615e-11, 1.140e-10] m/s^2   = +0.026 dex from canonical, -0.056 from alt
+    Upsilon_[3.6] from the ratio       = 0.869  (stellar populations give 0.5 +- 0.1)
+    variance inflation factor on the gas coefficient (from the L-M_HI collinearity) = 2.14
+  C-CORRECTED (item 105b's structural factor, per galaxy, iterated)
+    median C = 1.563  (1.000 = exact deep-MOND limit)
+    a_0 from the HYDROGEN coefficient  = 7.8891e-11 [6.721e-11, 8.994e-11] m/s^2   = -0.074 dex from canonical, -0.156 from alt
+    Upsilon_[3.6] from the ratio       = 0.659  (stellar populations give 0.5 +- 0.1)
+    variance inflation factor on the gas coefficient (from the L-M_HI collinearity) = 2.14
+  the ESTIMATOR the literature uses instead -- log-space BTFR, slope fixed at 4, Upsilon = 0.5 (no structural correction): a_0 = 1.5817e-10 (+0.228 dex from canonical)
+  the ESTIMATOR the literature uses instead -- log-space BTFR, slope fixed at 4, Upsilon = 0.5 (C-corrected): a_0 = 9.9264e-11 (+0.026 dex from canonical)
+  [FAIL] K3.1 THE CHECK THAT MATTERS FOR A LADDER RUNG, and it fails: two estimators of the SAME relation on the SAME galaxies -- this linear-space two-coefficient regression and the log-space fixed-slope average the literature uses -- must agree to better than the 0.082 dex gap between the two footings, or a_0 read this way cannot decide between them   (linear-space two-coefficient 9.935e-11 vs log-space fixed-slope 1.582e-10: -0.202 dex apart, against a footing gap of 0.082 dex)
+  [FAIL] K3.2 the C-corrected value must land on one of the two footings, or the rung is not usable.  A check that CAN fail: the 68% bootstrap interval has to contain at least one footing   (corrected a_0 = 7.836e-11 [6.739e-11, 8.954e-11]; canonical 9.360e-11, alt 1.130e-10)
+
+------------------------------------------------------------------------------------------------------------------------------
+4.  THE LEVERS, BOTH MEASURED BY RE-RUNNING THE PIPELINE
+------------------------------------------------------------------------------------------------------------------------------
+  (a) UPSILON.  The proposal claims exactly zero, by construction.  Verified by re-running with the stellar
+      regressor rescaled -- which is what a change of Upsilon is, since Upsilon is not an input here at all.
+    [NAIVE form, re-run at L x 1.5, i.e. Upsilon x 1.5]
+    no structural correction applied
+    a_0 from the HYDROGEN coefficient  = 9.9354e-11 [8.563e-11, 1.137e-10] m/s^2   = +0.026 dex from canonical, -0.056 from alt
+    Upsilon_[3.6] from the ratio       = 0.580  (stellar populations give 0.5 +- 0.1)
+    variance inflation factor on the gas coefficient (from the L-M_HI collinearity) = 2.14
+    [C-CORRECTED form, re-run at L x 1.5]
+    median C = 1.583  (1.000 = exact deep-MOND limit)
+    a_0 from the HYDROGEN coefficient  = 7.9710e-11 [6.816e-11, 9.023e-11] m/s^2   = -0.070 dex from canonical, -0.152 from alt
+    Upsilon_[3.6] from the ratio       = 0.423  (stellar populations give 0.5 +- 0.1)
+    variance inflation factor on the gas coefficient (from the L-M_HI collinearity) = 2.14
+      NAIVE form       : d log a_0 / d log Upsilon = -0.0000  (zero to numerical precision, as claimed)
+      C-CORRECTED form : d log a_0 / d log Upsilon = +0.0421
+      AND THAT IS A FINDING AGAINST THE CANDIDATE, not a rounding error.  The zero lever is exact only for
+      the NAIVE form, which is the biased one.  The structural factor C = nu(y)^2 y epsilon needs g_bar, and
+      g_bar needs Upsilon, so correcting the bias re-introduces a stellar mass-to-light dependence.  The
+      candidate's single selling point survives only in the version that is known to be wrong.
+
+  (b) THE HYDROGEN MASS SCALE.  The ledger predicts -1 exactly: the estimator trades the stellar
+      calibration for the hydrogen one at unit leverage.  Verified by re-running with M_HI x 1.5.
+    [re-run at M_HI x 1.5]
+    median C = 1.605  (1.000 = exact deep-MOND limit)
+    a_0 from the HYDROGEN coefficient  = 5.1716e-11 [4.414e-11, 5.892e-11] m/s^2   = -0.258 dex from canonical, -0.339 from alt
+    Upsilon_[3.6] from the ratio       = 0.937  (stellar populations give 0.5 +- 0.1)
+    variance inflation factor on the gas coefficient (from the L-M_HI collinearity) = 2.14
+      d log a_0 / d log M_HI = -1.0249
+  [FAIL] K4.1 the candidate's one selling point, tested on the version that is not biased: the Upsilon lever must be zero in the form actually used.  It is exactly zero in the NAIVE form and NOT zero once the structural factor is applied, because that factor needs g_bar and g_bar needs Upsilon.  This check fails on the corrected form   (naive form -0.0000 (exact); C-corrected form +0.0421 -- the selling point does not survive the bias correction)
+  [PASS] K4.2 and the price the ledger predicted is exactly what is paid: the hydrogen mass scale enters at unit leverage, so the rung has traded one calibration for another rather than removed one.  This check fails if the lever is not -1   (d log a_0/d log M_HI = -1.0249 against the predicted -1.000)
+
+------------------------------------------------------------------------------------------------------------------------------
+5.  THE ALTERNATIVE COMPUTED BESIDE IT, AND MUTATION CONTROLS
+------------------------------------------------------------------------------------------------------------------------------
+  one-coefficient BTFR at a FIXED Upsilon = 0.5: a_0 = 9.2002e-11 (-0.007 dex from canonical)
+  one-coefficient BTFR at a FIXED Upsilon = 0.7: a_0 = 7.5071e-11 (-0.096 dex from canonical)
+    [MUTATION: M_HI scrambled across galaxies]
+    median C = 2.103  (1.000 = exact deep-MOND limit)
+    a_0 from the HYDROGEN coefficient  = 4.6033e-12 [3.552e-12, 5.891e-12] m/s^2   = -1.308 dex from canonical, -1.390 from alt
+    Upsilon_[3.6] from the ratio       = 7.932  (stellar populations give 0.5 +- 0.1)
+    variance inflation factor on the gas coefficient (from the L-M_HI collinearity) = 1.00
+  [PASS] K5.1 mutation: scramble which galaxy owns which hydrogen mass.  If the gas coefficient survives, it is not measuring hydrogen at all   (a_0 from the gas coefficient 7.836e-11 -> 4.603e-12 when M_HI is scrambled (-1.231 dex))
+  [PASS] K5.2 mutation: switch the kernel's structural factor off (C = 1, which is what a pure deep-MOND identity assumes).  The answer must move, or the kernel is doing nothing in this estimator   (C = 1 gives 9.935e-11, C from the kernel gives 7.836e-11 (+0.103 dex))
+
+==============================================================================================================================
+VERDICT
+==============================================================================================================================
+  CANDIDATE 4 -- the two-coefficient BTFR.  IT IS A RESTATEMENT, and section 0 proves it by executing the
+  derivation: substituting M_b = Upsilon L + 1.33 M_HI into v^4 = G M_b a_0 and expanding the bracket gives the
+  candidate exactly, to machine precision.  is_restatement = TRUE.  It is therefore NOT a second Kepler-grade
+  law and cannot be one -- it fails criterion (5) by construction.
+
+  AS A LADDER RUNG, which is what it is for, it does what the proposal said and pays what the ledger said.
+    * The Upsilon lever is EXACTLY zero in the naive form (-0.0000, measured by re-running the pipeline at
+      Upsilon x 1.5), because Upsilon is a different coefficient of the same linear model.  BUT it is +0.0421
+      once the structural factor is applied, because C = nu(y)^2 y epsilon needs g_bar and g_bar needs Upsilon.
+      The candidate's single selling point survives only in the version that is biased.
+    * The price is exactly the one the ledger predicted: d log a_0/d log M_HI = -1.0249 against a predicted
+      -1.000.  The rung has not removed a calibration, it has swapped the stellar one for the hydrogen one at
+      unit leverage.  That is the durable finding of the veins workflow, reproduced here by a new estimator.
+    * The collinearity price is real but modest: r(log L, log M_HI) = 0.852, variance inflation
+      2.14.
+    * The structural factor matters: a_0 = 9.935e-11 m/s^2 without it, 7.836e-11 with it computed per
+      galaxy from the kernel -- a +0.103 dex correction that no estimator cleverness removes, because it is
+      physics and not statistics (median C = 1.61, i.e. the last measured point is NOT in the exact
+      deep-MOND limit).
+    * AND THE ESTIMATOR ITSELF MOVES THE ANSWER BY MORE THAN THE FOOTINGS ARE APART.  On the same 122 galaxies
+      the log-space fixed-slope average the literature uses gives 1.582e-10 uncorrected and 9.926e-11
+      corrected, against 9.935e-11 and 7.836e-11 here -- 0.202 dex of estimator choice uncorrected and
+      0.103 dex corrected, against a 0.082 dex gap between the footings.  A rung whose value moves
+      further with the choice of estimator than the two footings are apart cannot decide between them; this
+      reproduces item 123's finding ("a cut choice moves a_0 by 2.5x the footing gap") by a new route.
+    * ITEM 105b IS REPRODUCED INDEPENDENTLY on the way: that item found a naive 1.53e-10 moving to 9.82e-11 once
+      the structural factor is applied.  Recomputed here from scratch, with C built per galaxy from the kernel,
+      the same estimator gives 1.582e-10 moving to 9.926e-11.
+    * The corrected value sits -0.077 dex from the canonical footing and -0.159 dex from the alt,
+      with a 68% bootstrap interval of [6.739e-11, 8.954e-11].
+
+RESULT: 7 checks, 3 FAIL -> ['K3.1 THE CHECK THAT MATTERS FOR A LADDER RUNG, and it fails: two estimators of the SAME relation on the SAME galaxies -- this linear-space two-coefficient regression and the log-space fixed-slope average the literature uses -- must agree to better than the 0.082 dex gap between the two footings, or a_0 read this way cannot decide between them', 'K3.2 the C-corrected value must land on one of the two footings, or the rung is not usable.  A check that CAN fail: the 68% bootstrap interval has to contain at least one footing', "K4.1 the candidate's one selling point, tested on the version that is not biased: the Upsilon lever must be zero in the form actually used.  It is exactly zero in the NAIVE form and NOT zero once the structural factor is applied, because that factor needs g_bar and g_bar needs Upsilon.  This check fails on the corrected form"]   rc=1

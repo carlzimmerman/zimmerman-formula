@@ -1,0 +1,92 @@
+========================================================================================================================
+k03 -- TWO SHAPE LAWS FOR PRESSURE-SUPPORTED DWARFS: sigma versus SIZE and versus EXTERNAL FIELD, both at fixed stellar mass
+========================================================================================================================
+  Local Volume Database dwarfs with a measured (not upper-limit) dispersion, a half-light radius and an absolute magnitude: N = 91  (45 MW satellites, 33 M31 satellites, 13 isolated/field)
+
+------------------------------------------------------------------------------------------------------------------------
+FOOTING canonical   a_0 = 9.360e-11   (Upsilon_V = 2.0 for the headline; swept below)
+------------------------------------------------------------------------------------------------------------------------
+    external field spans g_e/a_0 = 0.010 to 4.876, median 0.097   <-- unlike the Local Volume discs of k02, this is O(1)
+    internal field spans g_in,N/a_0 = 0.0001 to 39.538, median 0.0029
+    ZERO POINT (a known liability, restated not re-litigated): mean log(sigma_obs/sigma_pred) = +0.393 dex, sd 0.356
+  
+    LAW A   d log sigma / d log r_half at fixed log M_*:
+        observed   -0.230 +- 0.080
+        framework  -0.324   (0 if every dwarf were isolated and deep-MOND; -1/2 if Newtonian)
+        Newton on the same baryons: -0.500 exactly;  LambdaCDM with cuspy halos: about 0 to +0.5
+  
+    LAW B   d log sigma / d log(g_e/a_0) at fixed log M_*:
+        observed   +0.108 +- 0.065
+        framework  -0.151   |   GR + cold dark matter (strong equivalence): 0.000 EXACTLY
+
+------------------------------------------------------------------------------------------------------------------------
+FOOTING alt   a_0 = 1.130e-10   (Upsilon_V = 2.0 for the headline; swept below)
+------------------------------------------------------------------------------------------------------------------------
+    external field spans g_e/a_0 = 0.009 to 4.163, median 0.088   <-- unlike the Local Volume discs of k02, this is O(1)
+    internal field spans g_in,N/a_0 = 0.0001 to 32.750, median 0.0024
+    ZERO POINT (a known liability, restated not re-litigated): mean log(sigma_obs/sigma_pred) = +0.374 dex, sd 0.355
+  
+    LAW A   d log sigma / d log r_half at fixed log M_*:
+        observed   -0.230 +- 0.080
+        framework  -0.320   (0 if every dwarf were isolated and deep-MOND; -1/2 if Newtonian)
+        Newton on the same baryons: -0.500 exactly;  LambdaCDM with cuspy halos: about 0 to +0.5
+  
+    LAW B   d log sigma / d log(g_e/a_0) at fixed log M_*:
+        observed   +0.108 +- 0.065
+        framework  -0.157   |   GR + cold dark matter (strong equivalence): 0.000 EXACTLY
+
+========================================================================================================================
+CHECKS
+========================================================================================================================
+  [PASS] k03-1 the machinery reproduces the closed form it must reduce to: for the least-disturbed dwarfs the Wolf-estimator prediction and Milgrom's isolated deep-MOND sigma^4 = (4/81) G M a_0 must agree to better than 0.1 dex, or my EFE prescription is doing something the limit forbids   (N = 23 with g_e < 0.05 a_0, mean log(sigma_Wolf/sigma_closed-form) = +0.007 dex)
+  [PASS] k03-2 POWER, asked before the answer: the framework's OWN predicted size-slope must differ from both 0 and -1/2 by more than the measurement error, or LAW A cannot be tested here   (framework predicts -0.324; measurement error 0.080; distance to 0 is 0.324, to -1/2 is 0.176)
+  [PASS] k03-3 POWER for LAW B: the framework's own predicted external-field slope must be separated from LambdaCDM's exact zero by more than the measurement error   (framework predicts -0.151; measurement error 0.065)
+  [PASS] k03-4 MUTATION on the measurement: shuffling which dwarf feels which external field must destroy the OBSERVED law-B slope.  If the shuffled slope is as large as the real one, the trend is an artefact of the sample's marginal distributions and not a real dependence on environment   (real +0.108 vs shuffled +0.002 +- 0.045 -> +2.4 sigma)
+
+  LAW B split by host, because tidal heating (in EITHER theory) would concentrate in the best-studied, closest satellites:
+     Milky Way    N =  45:  observed +0.027 +- 0.071   framework -0.328   GR+CDM 0.000
+     M31          N =  33:  observed +0.244 +- 0.148   framework -0.049   GR+CDM 0.000
+     Local Group  N =  13:  observed +0.032 +- 0.183   framework -0.031   GR+CDM 0.000
+  [PASS] k03-5 MUTATION: a four-times-wrong a_0 must change the framework's predicted size-slope, or the prediction does not know about a_0 at all and the item is not testing the framework   (a_0 -> 4 a_0 moves the predicted size-slope -0.324 -> -0.295)
+  [PASS] k03-6 MUTATION: with the kernel off the predicted size-slope must be exactly -1/2, the Newtonian value -- this verifies the estimator rather than the physics   (Newtonian predicted size-slope = -0.5000 against the analytic -0.5)
+
+  UPSILON LEVER, measured:
+     Upsilon_V = 1.0:  LAW A obs -0.230 (pred -0.343)   LAW B obs +0.108 (pred -0.190)   zero point +0.518 dex
+     Upsilon_V = 2.0:  LAW A obs -0.230 (pred -0.324)   LAW B obs +0.108 (pred -0.151)   zero point +0.393 dex
+     Upsilon_V = 5.0:  LAW A obs -0.230 (pred -0.299)   LAW B obs +0.108 (pred -0.097)   zero point +0.232 dex
+     d(zero point)/d log Upsilon_V   = -0.410 dex per dex     <-- the known liability's own lever
+     d(LAW A observed)/d log Upsilon = +0.0000 per dex   d(LAW A predicted)/d log Ups = +0.0631
+     d(LAW B observed)/d log Upsilon = -0.0000 per dex   d(LAW B predicted)/d log Ups = +0.1319
+  [PASS] k03-7 UPSILON LEVER: the OBSERVED slopes must be essentially blind to Upsilon (they use only measured sigma, r_half and luminosity, so a constant Upsilon is absorbed in the intercept).  This check verifies that claim numerically instead of asserting it   (|d LAW A/d log Ups| = 0.00000, |d LAW B/d log Ups| = 0.00000 per dex, against a zero-point lever of 0.410 dex per dex)
+
+RESULT: 7 checks, 0 FAIL   rc=0
+
+========================================================================================================================
+VERDICT -- k03
+========================================================================================================================
+  canonical:
+    LAW A  size-slope at fixed M_*   observed -0.230 +- 0.080 | framework -0.324 (1.2 sigma) | Newton -0.500 (3.4 sigma)
+    LAW B  field-slope at fixed M_*  observed +0.108 +- 0.065 | framework -0.151 (4.0 sigma) | GR+CDM 0.000 (1.7 sigma)
+  alt:
+    LAW A  size-slope at fixed M_*   observed -0.230 +- 0.080 | framework -0.320 (1.1 sigma) | Newton -0.500 (3.4 sigma)
+    LAW B  field-slope at fixed M_*  observed +0.108 +- 0.065 | framework -0.157 (4.1 sigma) | GR+CDM 0.000 (1.7 sigma)
+
+  LAW A -- a modest PASS.  The framework's mixed-regime prediction sits 1.2 sigma from the data while
+  pure Newton on the same baryons (-1/2) is 3.4 sigma away and a cuspy dark halo (0 to +1/2) is further
+  still.  The size-slope is the one thing in the pressure-supported channel that works.
+
+  LAW B -- a 4 sigma FAILURE, and it is the framework's own distinctive content that fails.  The
+  external-field effect predicts satellites in stronger host fields to have LOWER dispersions at fixed
+  stellar mass; the data show the opposite sign, and around the Milky Way alone -- where the field is
+  strongest and best measured -- the gap is 5 sigma.  GR + cold dark matter's exact zero is 1.7 sigma away.
+  THE CAVEAT, STATED BOTH WAYS: tidal heating and disruption inflate the dispersions of close satellites
+  in EITHER theory, and that confound pushes the measured slope POSITIVE -- i.e. against the framework.
+  So this is a liability recorded at face value, not a clean kill; a tidally-cleaned sample could move it.
+  It points the same way as items 8, 43, 44 (dwarfs need Upsilon_V of 20-109) and item 9 (the Coma
+  ultra-diffuse kill, whose offset also TRACKED the external field).  Four independent Local Group and
+  cluster-dwarf tests now say the same thing about the external-field effect.
+
+  The observed slopes here use ONLY measured quantities -- a spectroscopic dispersion, a photometric
+  half-light radius, an absolute magnitude and a host distance -- and are blind to the stellar
+  mass-to-light ratio by construction (check k03-7).  That is what makes them worth quoting even though
+  the zero point of the same relation is a standing liability of this framework.

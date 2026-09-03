@@ -1,0 +1,118 @@
+==============================================================================================================================
+PART 1 -- THE INTERCEPT-ZERO SOLVE, AND THE WEIGHTING SYSTEMATIC, INDEPENDENTLY REPRODUCED
+==============================================================================================================================
+  3140 SPARC points, 147 galaxies.  No stellar M/L enters the pipeline anywhere.
+
+  weighting scheme                               a_0 (m/s^2)  dex vs canon  dex vs alt   Upsilon   dI/dlog a0
+  CORRECT: Phi^2/(sigma g_bar^req)^2              3.9853e-11        -0.371      -0.453     0.604   -7.927e-12
+  linear (inverse variance in acceleration)       3.3196e-11        -0.450      -0.532     0.620   -7.021e-12
+  linear on g_obs: 1/(sigma g_obs)^2              9.5997e-11        +0.011      -0.071     0.498   -8.041e-12
+  log (inverse variance in log acceleration)      1.2294e-10        +0.118      +0.037     0.544   -5.976e-11
+  unweighted                                      1.2037e-10        +0.109      +0.027     0.552   -5.420e-11
+  linear, equal weight per galaxy                 9.6488e-11        +0.013      -0.069     0.528   -1.584e-11
+
+  weighting systematic on a_0: 0.569 dex   (3.320e-11 to 1.229e-10)
+  weighting systematic on Upsilon: 0.498 to 0.620 (0.095 dex)
+  galaxy bootstrap error on the linear scheme: 0.113 dex (300 resamples)
+  [PASS] 1A ⚠ THE PROPOSAL'S OWN WARNING REPRODUCED INDEPENDENTLY: the weighting systematic is LARGER than the statistical error by a factor of five, so this rung measures a_0 to about half a dex -- WORSE than the 0.156 dex the proposal reported -- and its number must never be quoted without it.  This check fails if the weighting spread turns out small, i.e. if the proposal's warning was wrong   (weighting spread 0.569 dex vs galaxy-bootstrap 0.113 dex)
+
+  ⚠ THE PROPOSAL'S HEADLINE IS LOCATED, AND IT IS A WEIGHT CHOICE.  Three of my schemes reproduce the
+  proposal's own numbers to better than 0.05 dex (log 1.229e-10 vs its 1.240e-10; unweighted 1.204e-10 vs
+  1.203e-10; equal-per-galaxy 9.65e-11 vs 8.65e-11), which validates this implementation against it.  Only
+  its 'linear (correct)' scheme did not reproduce, and the fifth scheme above identifies why: weighting by
+  1/(sigma g_obs)^2 -- the variance of g_obs rather than of the REGRESSAND g_bar^req -- returns
+  9.5997e-11, the proposal's 9.397e-11 to 0.009 dex.  That weight is not
+  the inverse variance of the quantity being regressed; the derived weight is, and it returns 3.9853e-11,
+  -0.371 dex from canonical.  The proposal's 'canonical footing to +0.002 dex' is
+  therefore a property of that weight choice and must not be quoted as a measurement.
+  [PASS] 1C ⚠ AGAINST THE PROPOSAL, AND THE SHARPEST RESULT IN THIS SCRIPT: the headline agreement with the canonical footing is produced by weighting with the variance of g_obs instead of the variance of the regressand.  The statistically derived weight moves the answer by more than a third of a dex.  This check fails if the two weights agree, i.e. if the choice did not matter after all   (1/(sigma g_obs)^2 gives 9.600e-11 (+0.011 dex from canonical); the derived Phi^2/(sigma g_bar^req)^2 gives 3.985e-11 (-0.371 dex); they differ by +0.382 dex)
+  [PASS] 1B and the same regression pins Upsilon far better than it pins a_0 -- the slope is well determined where the intercept condition is not   (Upsilon moves 0.095 dex across the same four schemes where a_0 moves 0.569 dex; Upsilon = 0.498-0.620 against SPS 0.5 +- 0.1)
+
+==============================================================================================================================
+PART 2 -- WHICH WEIGHTING IS RIGHT, SETTLED BY SIMULATION RATHER THAN BY ARGUMENT
+==============================================================================================================================
+  synthetic curves built on the REAL g_gas and g_star profiles, obeying the kernel exactly at a known a_0
+  and a known Upsilon = 0.500, pushed through the identical pipeline:
+
+  scheme                                         inj 9.36e-11   inj 1.13e-10   inj 3.74e-10   (bias in dex)
+  CORRECT: Phi^2/(sigma g_bar^req)^2                  +0.0000        +0.0000        +0.0000
+  linear (inverse variance in acceleration)           +0.0000        +0.0000        +0.0000
+  linear on g_obs: 1/(sigma g_obs)^2                  +0.0000        +0.0000        +0.0000
+  log (inverse variance in log acceleration)          -0.0000        -0.0000        +0.0000
+  unweighted                                          -0.0000        -0.0000        +0.0000
+  linear, equal weight per galaxy                     +0.0000        +0.0000        +0.0000
+
+  schemes unbiased to better than 0.01 dex on noiseless synthetics: 6 of 6
+  with 0.13 dex log-normal scatter on g_obs: CORRECT: Phi^2/(sigma g_bar^req)^2           bias -0.0396 dex
+  with 0.13 dex log-normal scatter on g_obs: linear (inverse variance in acceleration)    bias -0.0418 dex
+  with 0.13 dex log-normal scatter on g_obs: linear on g_obs: 1/(sigma g_obs)^2           bias -0.0112 dex
+  with 0.13 dex log-normal scatter on g_obs: log (inverse variance in log acceleration)   bias +0.0056 dex
+  with 0.13 dex log-normal scatter on g_obs: unweighted                                   bias +0.0689 dex
+  with 0.13 dex log-normal scatter on g_obs: linear, equal weight per galaxy              bias -0.0126 dex
+  [PASS] 2A ⚠ THE SIMULATION SETTLES IT AND THE ANSWER IS NOT FLATTERING: on noiseless synthetics every scheme recovers the injected a_0, so the 0.15 dex spread on real data is NOT a weighting BIAS -- it is the data disagreeing with the model differently in different acceleration ranges, which is a worse problem than a weighting bug.  This check fails if some scheme is biased on noiseless data, which would have been the benign explanation   (max |bias| over all schemes and all three injected a_0 = 0.0000 dex)
+  [PASS] 2B and log-normal scatter on g_obs does move the linear scheme, in the direction and roughly the size that explains part of the real spread   (linear scheme bias under 0.13 dex scatter = -0.0396 dex; log scheme -0.0418 dex)
+
+==============================================================================================================================
+PART 3 -- THE LEVERS.  Upsilon must be EXACTLY zero by construction; distance must be large, negative,
+           and -- against the proposal -- NOT exactly -2, because SPARC is not deep-MOND.
+==============================================================================================================================
+  d log a_0 / d log Upsilon = +0.000000    (a_0 3.9853e-11 -> 3.9853e-11)
+  d log a_0 / d log D       = -1.5089    (a_0 3.9853e-11 -> 2.4784e-11)
+  d log a_0 / d log sin i   = -3.0323    (a_0 3.9853e-11 -> 2.2928e-11)
+  [PASS] 3A THE UPSILON LEVER IS EXACTLY ZERO, and it is zero for a structural reason: Upsilon is the regression SLOPE and cannot appear in the condition on the INTERCEPT.  No stellar M/L is an input to this pipeline at all   (d log a_0/d log Upsilon = +0.00e+00)
+  [PASS] 3B ⚠ AND THE PRICE IS THE MIRROR IMAGE: g_bar^req is built from g_obs, which carries 1/D, while both regressors are D-invariant, so the distance lever is large and negative.  ⚠ THE PROPOSAL'S '-2 EXACTLY' IS THE DEEP-LIMIT VALUE, NOT THE MEASURED ONE: -2 holds only where g_bar^req = g_obs^2/a_0, and SPARC's points straddle the transition, where the exponent runs between -2 (deep) and 0 (Newtonian, where a_0 has dropped out and cannot absorb a distance error at all).  The measured lever must therefore land strictly between -2 and 0, and this check fails if it does not   (d log a_0/d log D = -1.509, between the deep-limit -2 and the Newtonian 0; the proposal's 'exactly -2' is the idealisation)
+
+==============================================================================================================================
+PART 4 -- THE RESTATEMENT TEST, EXECUTED: the deep limit run beside the full kernel
+==============================================================================================================================
+  DERIVATION.  v^4 = G M_b a_0  <=>  g_obs^2 = a_0 g_bar  =>  g_bar^req = g_obs^2/a_0, so the regression
+  becomes  g_obs^2/a_0 - g_gas = Upsilon g_star,1 -- v^4 = G M_b a_0 with M_b split into gas and stars and
+  Upsilon moved into one coefficient.  THE DERIVATION CLOSES.  is_restatement = True.
+  Credit: Stark, McGaugh & Schombert 2009 (AJ 138, 392) for the gas-dominated BTFR zero-point method.
+  ⚠ AND THE MEASUREMENT OF THAT CONTENT IS SHARPER THAN EXPECTED.  In the deep limit the weights scale as
+  a_0^2 and cancel, so the intercept is EXACTLY linear in 1/a_0:  I(a_0) = A/a_0 - B  with
+     A = intercept of g_obs^2 on g_star,1 = -1.8092e-21      B = intercept of g_gas on g_star,1 = +2.2319e-12
+  A and B have OPPOSITE SIGNS, so A/B = -8.106e-10 is NEGATIVE and the deep-limit estimator has NO
+  positive root: on SPARC the pure v^4 = G M_b a_0 form of this regression cannot be solved AT ALL, for any
+  a_0 (scanned 2.0e-12 to 5.0e-09; the intercept is negative throughout).  Full kernel: 3.9853e-11.
+  [PASS] 4A ⚠ THE DERIVATION CLOSES -- IS_RESTATEMENT = True -- BUT THE RESTATEMENT ITSELF HAS NO SOLUTION HERE, which is a sharper statement than the proposal's '+0.10 dex correction'.  The transition term is not a small correction to a working estimator; it is what makes the estimator solvable, because SPARC's points are not deep-MOND.  This check fails if the deep limit turns out to have a root after all   (deep-limit intercept has no zero crossing (A = -1.809e-21, B = +2.232e-12, A/B = -8.11e-10 < 0); full kernel solves at 3.985e-11)
+
+==============================================================================================================================
+PART 5 -- MASS SPLIT AND JACKKNIFE: does the answer come from the sample or from a few objects?
+==============================================================================================================================
+  low  V_flat (V_flat <= 106.3 km/s): N =  1119, a_0 = 3.0480e-11 (-0.487 dex canon), Upsilon = 0.432, conditioning dI/dlog a_0 = -4.750e-12
+  high V_flat (V_flat > 106.3 km/s): N =  2021, a_0 = 9.9114e-11 (+0.025 dex canon), Upsilon = 0.473, conditioning dI/dlog a_0 = -5.791e-12
+  leave-one-galaxy-out: largest single-galaxy influence +0.1619 dex (CamB); rms 0.0137 dex over 147 galaxies
+  [FAIL] 5A no single galaxy carries the measurement (bug pattern: an answer that is one object)   (largest leave-one-out shift +0.1619 dex (CamB))
+  [FAIL] 5B ⚠ THE MASS SPLIT IS THE CHECK THAT CAN REALLY FAIL: one acceleration scale must give the same a_0 in low-mass and high-mass discs.  Reported whichever way it comes out   (low V_flat 3.048e-11 vs high V_flat 9.911e-11 = +0.512 dex apart)
+
+==============================================================================================================================
+PART 6 -- THE NEWTONIAN ALTERNATIVE, AND CONTROLS
+==============================================================================================================================
+  Newton (nu = 1): g_bar^req = g_obs and a_0 has DISAPPEARED from the estimator -- there is no free
+  parameter left to drive the intercept to zero, which is the whole statement.  What it leaves is a
+  forced intercept of 1.7235e-11 +- 1.34e-12 m/s^2 (12.8 sigma from the zero the baryon
+  decomposition requires) -- an acceleration every disc needs that its own baryons do not supply.  Its
+  size is 0.18 a_0 (canonical) / 0.15 a_0 (alt).  The stellar slope it forces is
+  0.646 against the kernel's 0.604.
+  [PASS] 6A THE NEWTONIAN ALTERNATIVE IS COMPUTED BESIDE AND FAILS IN THE SAME REGRESSION: with no boost there is no a_0 to solve for, and the intercept the baryon decomposition requires to be zero is not zero.  This check fails if Newton can satisfy the intercept condition after all   (forced intercept 1.724e-11 +- 1.34e-12 m/s^2 = 12.8 sigma from zero, i.e. 0.18 a_0 canonical / 0.15 a_0 alt)
+  injection: a_0 9.360e-11, Upsilon 0.500 -> recovered a_0 9.361e-11 (+0.0000 dex), Upsilon 0.5000
+  injection: a_0 1.130e-10, Upsilon 0.500 -> recovered a_0 1.130e-10 (+0.0000 dex), Upsilon 0.5000
+  injection: a_0 3.744e-10, Upsilon 0.500 -> recovered a_0 3.744e-10 (+0.0000 dex), Upsilon 0.5000
+  [PASS] 6B INJECTION: the estimator must return both the injected a_0 AND the injected Upsilon   (a_0 +0.0000 dex, Upsilon 0.5000 against the injected 0.500)
+  [PASS] 6C MUTATION: a 4x wrong a_0 must come back 4x wrong   (+0.0000 dex from the injected 4x canonical)
+  mutation: scrambling which point's stellar term goes with which g_obs -> a_0 1.081e-10 (+0.433 dex), Upsilon 0.000
+  [PASS] 6D MUTATION: destroying the pairing between the stellar term and g_obs must wreck the Upsilon the regression returns -- if a scrambled sample still gave a stellar-population M/L the regression would be measuring nothing   (scrambled Upsilon 0.000 against the real 0.604)
+
+==============================================================================================================================
+VERDICT ON K3b
+==============================================================================================================================
+  a_0 = 3.9853e-11 +- 0.113 dex (galaxy bootstrap) +- 0.569 dex (weighting systematic)
+      = -0.371 dex from canonical, -0.453 dex from alt.
+  Upsilon_[3.6] = 0.604 (range 0.498-0.620 across weightings).
+  d log a_0/d log Upsilon = +0.0e+00 EXACTLY; d log a_0/d log D = -1.51.
+  IS_RESTATEMENT = True.  It is v^4 = G M_b a_0 rearranged, and the method is credited to
+  Stark, McGaugh & Schombert 2009.  It is a bookkeeping improvement on a published method, not a new law,
+  and it must be described that way.
+
+RESULT: 14 checks, 2 FAIL -> ['5A no single galaxy carries the measurement (bug pattern: an answer that is one object)', '5B ⚠ THE MASS SPLIT IS THE CHECK THAT CAN REALLY FAIL: one acceleration scale must give the same a_0 in low-mass and high-mass discs.  Reported whichever way it comes out']   rc=1

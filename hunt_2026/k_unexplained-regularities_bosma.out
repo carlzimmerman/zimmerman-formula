@@ -1,0 +1,136 @@
+======================================================================================================================
+k_unexplained-regularities_bosma -- INDEPENDENT VERIFICATION of K01, 'the Bosma factor is a_0's'
+======================================================================================================================
+
+  THE REGULARITY (Bosma 1981; Hoekstra, van Albada & Sancisi 2001; Swaters, Sancisi & van der Hulst 2012;
+  Frank, de Blok & Walter 2016): scale a disc's HI surface density by ONE constant f ~ 7-10 and you reproduce the
+  whole 'dark' part of its rotation curve, with roughly the same f galaxy after galaxy.  Universally described as
+  unexplained.  THE CANDIDATE: f = 1.33 sqrt(a_0/g_bar), so a_0 supplies its value and the universal outer HI
+  surface density supplies its small scatter.
+
+
+  46 SPARC discs have >= 4 radii where the HI supplies more than 50% of g_bar.
+
+----------------------------------------------------------------------------------------------------------------------
+V2 -- THE SELECTION AUDIT: f_obs is undefined where v_obs^2 < v_bar^2, and dropping those points biases f UP
+----------------------------------------------------------------------------------------------------------------------
+  1 of 457 HI-dominated radii (0.2%) have v_obs^2 < v_bar^2 and are
+  DISCARDED by the median estimator.  The least-squares estimator keeps them.
+  measured f, median-of-ratios (positives only) :   7.43   scatter 0.210 dex   N = 46
+  measured f, least squares over ALL radii      :   7.38   scatter 0.208 dex   N = 46
+  the two differ by +0.003 dex -- the size of the selection bias in the published estimator.
+  [PASS] V2 the selection bias in the median-of-positive-ratios estimator must be smaller than the 0.15 dex gap between the framework's two footings, or the measured Bosma factor is an artefact of the cut   (bias +0.003 dex)
+
+----------------------------------------------------------------------------------------------------------------------
+THE MEASURED BOSMA FACTOR AND THE FRAMEWORK'S, BOTH FOOTINGS, BOTH ESTIMATORS
+----------------------------------------------------------------------------------------------------------------------
+  footing      estimator     N   median f_obs  scatter   median f_fw  scatter   log(f_fw/f_obs)
+  canonical  med          46         7.43    0.210         7.74    0.108     +0.018
+  canonical  lsq          46         7.38    0.208         7.69    0.104     +0.018
+  alt        med          46         7.43    0.210         8.60    0.108     +0.063
+  alt        lsq          46         7.38    0.208         8.55    0.103     +0.063
+
+  (f is Hoekstra/van Albada/Sancisi 2001's HI-only convention: v_dark^2 = f v_HI^2 with V_HI the hydrogen
+   alone.  Their published range for 24 galaxies is f = 7-10; Bosma's original ~ 8.)
+  [PASS] H1 the framework's own Bosma factor, fitted exactly as an observer fits it with zero free parameters, must land on the measured one in the median to 0.1 dex on at least one footing   (best = canonical, +0.018 dex)
+  [PASS] H2 the MEASURED factor must itself sit in the published 7-10 window, or this sample is not measuring what the literature calls the Bosma effect   (median f_obs = 7.43)
+
+======================================================================================================================
+V1 -- THE RESTATEMENT PROOF, EXECUTED RATHER THAN ARGUED
+======================================================================================================================
+  Definitions only, no physics:  D = g_obs/g_bar,  f_obs = HE (D-1) g_bar/g_HI,  f_fw = HE (nu(y)-1) g_bar/g_HI.
+  The gas share g_HI/g_bar cancels in the ratio, so
+
+        log10(f_fw/f_obs)  ==  log10[ (nu(y)-1)/(D-1) ]   with   D = nu(y) * 10^(-RAR residual).
+
+  i.e. the Bosma residual is a DETERMINISTIC, one-to-one function of (y, RAR residual).  It contains no new
+  information.  Reconstructing it from the RAR residual alone and comparing point by point:
+
+  456 HI-dominated radii with D > 1.  max |Bosma residual - (its reconstruction from the RAR residual)| = 2.776e-16 dex
+  [PASS] V1 THE RESTATEMENT TEST.  If the Bosma residual can be rebuilt EXACTLY from the RAR residual and y alone, the candidate carries no information beyond the RAR and IS a restatement.  A PASS here means the candidate is DEMOTED, not promoted -- this check is written so that the framework's friend loses   (max difference 2.776e-16 dex -- IT IS A RESTATEMENT)
+
+  correlation of the two residuals: r = +0.9655 (Spearman-equivalent, they are related by a monotone map at fixed y)
+
+----------------------------------------------------------------------------------------------------------------------
+V3 -- THE AMPLIFICATION FACTOR, which explains the proposal's FAILED spread check
+----------------------------------------------------------------------------------------------------------------------
+  d log f / d log D = D/(D-1) >= 1 identically.  The Bosma statistic is the RAR residual AMPLIFIED by that
+  factor, so its scatter CANNOT equal the RAR's, and the framework's predicted spread is amplified by the
+  same factor only if D is predicted exactly -- which it is not, since the observed D carries the RAR scatter.
+  amplification over the HI-dominated radii: median 1.245, 16-84% [1.140, 1.453]
+  measured RAR residual scatter on these radii : 0.152 dex
+  measured Bosma residual scatter               : 0.218 dex
+  predicted from amplification alone            : 0.189 dex
+  [PASS] V3 the Bosma residual scatter must equal the RAR residual scatter times the amplification factor to 30%, which would show the extra Bosma scatter is not new physics but the same scatter magnified   (0.218 vs 0.189 dex)
+
+----------------------------------------------------------------------------------------------------------------------
+THE CLOSED FORM WITH NO ROTATION CURVE: f = HE sqrt(a_0 / (2 pi G HE Sigma_HI)) -- a_0 and a surface density
+----------------------------------------------------------------------------------------------------------------------
+  (thin-sheet limit, stated as such: BUG PATTERN 2 is a spherical formula on a disc; this is the DISC one.)
+  canonical  Sigma_HI =  1.0 Msun/pc^2 -> g_bar = 1.165e-12 = 0.0124 a_0 -> f = 11.27
+  canonical  Sigma_HI =  3.0 Msun/pc^2 -> g_bar = 3.495e-12 = 0.0373 a_0 -> f =  6.24
+  canonical  Sigma_HI =  3.8 Msun/pc^2 -> g_bar = 4.427e-12 = 0.0473 a_0 -> f =  5.47
+  canonical  Sigma_HI =  5.0 Msun/pc^2 -> g_bar = 5.825e-12 = 0.0622 a_0 -> f =  4.69
+  alt        Sigma_HI =  1.0 Msun/pc^2 -> g_bar = 1.165e-12 = 0.0103 a_0 -> f = 12.44
+  alt        Sigma_HI =  3.0 Msun/pc^2 -> g_bar = 3.495e-12 = 0.0309 a_0 -> f =  6.92
+  alt        Sigma_HI =  3.8 Msun/pc^2 -> g_bar = 4.427e-12 = 0.0392 a_0 -> f =  6.08
+  alt        Sigma_HI =  5.0 Msun/pc^2 -> g_bar = 5.825e-12 = 0.0516 a_0 -> f =  5.22
+  [FAIL] H3 the closed form, fed only a_0 and the universal mean HI surface density inside R_HI (3.8 Msun/pc^2, Wang+2016), must land inside the published Bosma window 7-10 on at least one footing   (canonical 5.47, alt 6.08 against 7-10)
+
+----------------------------------------------------------------------------------------------------------------------
+THE UPSILON LEVER, measured by re-running the WHOLE pipeline at Upsilon x 1.5
+----------------------------------------------------------------------------------------------------------------------
+  Upsilon_disc = 0.500:  N =  46   median f_obs =   7.43   median f_fw =   7.74   log(f_fw/f_obs) = +0.018
+  Upsilon_disc = 0.750:  N =  36   median f_obs =   6.91   median f_fw =   7.80   log(f_fw/f_obs) = +0.052
+
+  d log f_obs / d log Upsilon        = -0.179
+  d log f_fw  / d log Upsilon        = +0.018
+  d log (f_fw/f_obs) / d log Upsilon = +0.196   <-- the lever on the TEST STATISTIC
+  [PASS] UPS the agreement between the framework's factor and the measured one must move by less than 0.30 dex per dex of Upsilon, or the comparison is an Upsilon measurement wearing a_0's clothes   (+0.196 dex/dex)
+
+----------------------------------------------------------------------------------------------------------------------
+MUTATION CONTROLS
+----------------------------------------------------------------------------------------------------------------------
+  a_0 x 4 : median f_fw 7.74 -> 16.33, shift +0.324 dex (deep-MOND prediction +0.301)
+  [PASS] M1 quadrupling a_0 must move the predicted factor by close to +0.301 dex, since a_0 sits under a square root in the deep limit -- anything else means the estimator is not measuring what it claims   (+0.324 against +0.301)
+  nu = 1 (kernel off): v_dark^2 = (nu-1) v_bar^2 = 0 identically, so f_fw = 0 for every galaxy and the measured 7-10 is left wholly unexplained.
+  [PASS] M2 with the kernel off the framework must predict f = 0 exactly   (analytic, f_fw = 0)
+  shuffle control: r(measured, predicted) = +0.653; 2000 shuffles give -0.001 +- 0.151, p = 0.0000
+  [PASS] M3 the framework must know WHICH galaxy carries the large factor, not merely the population median   (r = +0.653, p = 0.0000)
+
+----------------------------------------------------------------------------------------------------------------------
+THE NEWTONIAN / LambdaCDM ALTERNATIVE, COMPUTED BESIDE
+----------------------------------------------------------------------------------------------------------------------
+  Newtonian, no dark matter: v_dark^2 = 0, so f = 0 -- excluded by every galaxy in the sample.
+  LambdaCDM: a collisionless halo knows nothing about the HI, so there is NO predicted f at all.  The fair
+  comparison is fit quality: one free scale on the HI curve vs one free scale on a fixed-shape NFW halo.
+  one-parameter scaled-HI (Bosma)   : median fractional rms 0.177  (N = 46)
+  one-parameter NFW (c = 10 fixed)  : median fractional rms 0.077
+  the framework, ZERO parameters    : median fractional rms 0.302
+
+  ⚠ CORRECTION TO THE PROPOSING SCRIPT (k01_bosma_factor.py, its LambdaCDM/NFW block).  That script reports the
+  framework's zero-parameter fractional rms as 0.105.  That number is `bosma_fit(vdark2_fw, vhi2)`'s residual --
+  the rms of the framework's OWN predicted dark curve about a FITTED scaled-HI curve.  It never touches the
+  observed v_dark^2, so it measures how well the framework's prediction is itself described by a scaled HI
+  profile, not how well it matches the data.  Computed against the DATA, as here, it is 0.302, which makes
+  the framework's zero-parameter curve the WORST of the three on these radii, not the second best.  Recorded
+  against interest.  (Caveat both ways: v_dark^2 = v_obs^2 - v_bar^2 is a small difference of large numbers in
+  the outskirts, so this statistic flatters any estimator with a free scale and punishes one without.)
+  [FAIL] ALT AGAINST INTEREST: report whether the scaled-HI description is actually BETTER than a one-parameter NFW halo on the same curves.  If NFW does as well, the Bosma effect is not the discriminator it is advertised to be, whatever explains its coefficient   (Bosma 0.177 vs NFW 0.077 -- NFW wins or ties)
+
+======================================================================================================================
+VERDICT
+======================================================================================================================
+  RESTATEMENT: PROVED, not argued.  The Bosma residual is reconstructed from the RAR residual and y alone to
+  2.8e-16 dex -- an exact identity, because the gas share cancels.  The candidate carries ZERO information
+  beyond the radial acceleration relation.  It is the RAR wearing 1981 clothes.
+
+  It is worth recording as an EXPLANATION of a 45-year-old coincidence, with three caveats the proposal should
+  carry: (i) the published median-of-positive-ratios estimator is biased by +0.003 dex relative to a least-squares fit
+  that keeps the radii where v_obs^2 < v_bar^2; (ii) the framework's spread cannot match the measured spread
+  because the Bosma statistic AMPLIFIES the RAR residual by a median factor 1.24; (iii) a one-parameter
+  NFW halo describes the same curves better than the one-parameter scaled-HI curve does.
+
+  NOT Kepler-grade: criterion (5) fails outright.
+
+RESULT: 11 checks, 2 FAIL -> ['H3 the closed form, fed only a_0 and the universal mean HI surface density inside R_HI (3.8 Msun/pc^2, Wang+2016), must land inside the published Bosma window 7-10 on at least one footing', 'ALT AGAINST INTEREST: report whether the scaled-HI description is actually BETTER than a one-parameter NFW halo on the same curves.  If NFW does as well, the Bosma effect is not the discriminator it is advertised to be, whatever explains its coefficient']   rc=1

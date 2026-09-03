@@ -1,0 +1,57 @@
+========================================================================================================================
+k04 -- d log a_0 / d log Upsilon FOR THE CLOSED-FORM INVERSION  a_0 = (1-f_DM) g_obs / [ln(1/f_DM)]^2
+========================================================================================================================
+
+    f_DM :    0.10    0.20    0.30    0.40    0.50    0.60    0.70    0.80    0.90    0.95
+    lever:   19.98    9.96    6.61    4.92    3.89    3.18    2.66    2.24    1.87    1.67     (analytic, 1 + 2/ln(1/f_bar))
+    check:   20.03    9.97    6.61    4.92    3.89    3.18    2.66    2.24    1.87    1.67     (finite difference of the estimator)
+  [PASS] k04-1 the analytic lever must reproduce a finite difference of the estimator itself to 1%   (max relative difference 2.41e-03)
+  [PASS] k04-2 the lever must EXCEED 2 wherever the system is more than half baryonic -- i.e. the estimator amplifies a mass-to-light error rather than damping it, in exactly the regime the high-redshift rotation-curve surveys occupy   (f_DM = 0.5 -> lever 3.89; f_DM = 0.2 -> 9.96; f_DM = 0.1 -> 19.98)
+  [PASS] k04-3 and it must FALL toward order unity in the deep-MOND, dark-dominated regime, where the estimator is safe   (f_DM = 0.90 -> lever 1.87; f_DM = 0.95 -> 1.67; asymptote as f_DM -> 1 is 1.00)
+
+========================================================================================================================
+WHAT IT COSTS THE HUNT'S OWN STRONGEST RESULT (item 16), ON ITS OWN TABLE
+========================================================================================================================
+  RC100, N = 100: median f_DM(<R_e) = 0.290  ->  median Upsilon lever = 6.85
+     z = 0.5-1.2:  N =  32   median f_DM = 0.395   median lever = 4.99
+     z = 1.2-1.8:  N =  27   median f_DM = 0.270   median lever = 7.36
+     z = 1.8-2.6:  N =  41   median f_DM = 0.260   median lever = 7.64
+  
+  THE LEVER ITSELF RISES WITH REDSHIFT: d(lever)/dz = +1.91 per unit z, because RC100's
+  galaxies get more baryon-dominated with redshift -- which is the very trend item 16 is reading.
+  Consequence, and it is the sharp one: a CONSTANT stellar mass-to-light error does NOT cancel out of
+  the slope, because it is amplified by a different factor at each redshift.  A Upsilon offset of
+  delta dex propagates into d log a_0/dz as delta x +1.91, so:
+     a constant Upsilon offset of 0.02 dex -> spurious d log a_0/dz = +0.038   (against item 16's quoted -0.112 +- 0.063)
+     a constant Upsilon offset of 0.03 dex -> spurious d log a_0/dz = +0.057   (against item 16's quoted -0.112 +- 0.063)
+     a constant Upsilon offset of 0.05 dex -> spurious d log a_0/dz = +0.096   (against item 16's quoted -0.112 +- 0.063)
+     a constant Upsilon offset of 0.10 dex -> spurious d log a_0/dz = +0.191   (against item 16's quoted -0.112 +- 0.063)
+  
+  A 0.03 dex constant offset in Upsilon -- well inside stellar-population uncertainty -- reproduces
+  the whole of item 16's statistical error bar, and a 0.06 dex offset reproduces its entire signal.
+  REPORTED AGAINST THE HUNT'S OWN INTEREST: item 16's d log a_0/dz = -0.112 +- 0.063 carries an
+  unquantified systematic of at least the size of its statistical error, and its '3.9 sigma against
+  the LambdaCDM-native rise' must be requoted with that systematic attached.  The sign of the effect
+  is not settled by this item: a younger (lower-Upsilon) high-z population raises f_DM and lowers the
+  inferred a_0, which pushes the SAME way as the measurement, so the conclusion may survive -- but it
+  is no longer a systematics-free number.
+  [PASS] k04-4 the amplification is redshift-DEPENDENT on RC100's own table, so a constant mass-to-light error does not cancel out of the slope the item quotes.  This check fails the naive claim that a slope is systematics-free   (d(lever)/dz = +1.91 per unit z; a 0.03 dex constant Upsilon offset -> +0.057 spurious d log a_0/dz against a quoted -0.112 +- 0.063)
+
+========================================================================================================================
+BOTH FOOTINGS
+========================================================================================================================
+  The lever is a pure function of f_DM and contains neither a_0 nor g_obs, so it is IDENTICAL on both
+     canonical : a_0 = 9.360e-11; the estimator's lever at f_DM = 0.30 is 6.607 on this footing as on the other
+     alt       : a_0 = 1.130e-10; the estimator's lever at f_DM = 0.30 is 6.607 on this footing as on the other
+
+RESULT: 4 checks, 0 FAIL   rc=0
+
+========================================================================================================================
+VERDICT -- k04
+========================================================================================================================
+  d log a_0 / d log Upsilon = 1 + 2/ln(1/f_bar) for the closed-form inversion: 1.9 in the deep-MOND,
+  dark-dominated regime where it was designed, but 4.9 at f_DM = 0.3 and 10.0 at f_DM = 0.2.
+  The inversion is Upsilon-SAFE only where the dark-matter fraction is large.  Applied to baryon-
+  dominated systems -- high-redshift discs, early-type galaxies inside R_e -- it is a mass-to-light
+  meter with a_0's units.  This is a correction to the hunt's own vein A, found by differentiating
+  its estimator, and it should be carried on every future use of the inversion.

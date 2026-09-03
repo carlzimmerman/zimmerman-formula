@@ -1,0 +1,144 @@
+==============================================================================================================================
+k02 -- THE LAMBDA-TURNAROUND WELD: R_0 = x_ta (G M_b a_0)^(1/4)/H_Lam   (ledger item 80, first run)
+==============================================================================================================================
+  canonical  a_0 = 9.3600e-11 m/s^2   H_Lam = Z a_0/c = 1.80736e-18 1/s =  55.77 km/s/Mpc   H_Lam t_0 = 0.7869
+  alt        a_0 = 1.1300e-10 m/s^2   H_Lam = Z a_0/c = 2.18196e-18 1/s =  67.33 km/s/Mpc   H_Lam t_0 = 0.9500
+
+==============================================================================================================================
+1. THE COLLAPSE INTEGRAL -- x_ta from H_Lam t_0 alone, no free parameter
+==============================================================================================================================
+/Users/carlzimmerman/new_physics/zimmerman-formula/hunt_2026/k02_turnaround_lambda_weld.py:78: IntegrationWarning: The maximum number of subdivisions (400) has been achieved.
+  If increasing the limit yields no improvement it is advised to analyze 
+  the integrand in order to determine the difficulties.  If the position of a 
+  local difficulty can be determined (singularity, discontinuity) one will 
+  probably gain from splitting up the interval and calling the integrator 
+  on the subranges.  Perhaps a special-purpose integrator should be used.
+  val, err = quad(integ, 0.0, 1.0, limit=400)
+  canonical  H_Lam t_0 = 0.7869   x_ta(MOND+Lam) = 0.5517   x_ta(Newton+Lam) = 0.7175
+  alt        H_Lam t_0 = 0.9500   x_ta(MOND+Lam) = 0.6329   x_ta(Newton+Lam) = 0.7817
+  [PASS] K02.1 the collapse integral reproduces the exact Newtonian cycloid turnaround time t = pi sqrt(r_ta^3/(8GM)) in the Lambda -> 0 limit -- a check that fails if the quadrature or the energy integral is wrong   (input x_ta = 1.0000e-03, recovered 9.999997e-04 (-0.000%))
+  [PASS] K02.2 the MOND branch reproduces its own analytic small-x limit tau = sqrt(pi/2) x_ta (the logarithmic potential's free-fall time), which fails if the n=1 energy integral is mis-signed   (tau/x_ta = 1.253315 vs sqrt(pi/2) = 1.253314)
+
+==============================================================================================================================
+2. THE OBSERVABLE, MEASURED: the Local Group zero-velocity radius from the UNGC Hubble diagram
+==============================================================================================================================
+  M31 at D = 0.770 Mpc; LG barycentre placed at 0.424 Mpc toward M31 (mass share 0.55)
+  sample: accurate distances (TRGB/Cep/RR/HB/CMD), tidal index Ti1 < 0 (not bound to any group),
+          0.7 < R_LG < 3.0 Mpc  ->  23 galaxies.  Karachentsev+2009 used ~30 on the same criteria.
+    systematic variant: all galaxies, no quality cut     N= 54  H_loc= 139.7  R_0=1.021 Mpc  rms=73.9 km/s
+    systematic variant: accurate distances only          N= 41  H_loc= 121.0  R_0=1.022 Mpc  rms=46.4 km/s
+    systematic variant: accurate + isolated, to 4 Mpc    N= 37  H_loc= 103.8  R_0=0.816 Mpc  rms=44.1 km/s
+  fit V_LG = H_loc (R_LG - R_0):   H_loc = 110.19 km/s/Mpc    R_0 = 0.884 Mpc [0.730, 1.007]  rms residual 34.3 km/s
+  published for comparison (Karachentsev+2009, same method, TRGB subsample): R_0 = 0.96 +- 0.03 Mpc, H_loc = 78 km/s/Mpc
+  [PASS] K02.3 the measured zero-velocity radius reproduces the published Local Group value within the bootstrap -- a check that fails if the barycentre, the 3-D geometry or the velocity frame is wrong   (R_0 = 0.884 Mpc [0.730, 1.007] vs published 0.96 +- 0.03)
+
+==============================================================================================================================
+3. THE INPUT, MEASURED: the Local Group's baryonic mass from UNGC K-band light and HI
+==============================================================================================================================
+  74 Local Group members within 1.0 Mpc of the barycentre (geometric membership, no MD cut)
+    sum L_K (catalogue) = 6.317e+10 Lsun  + Milky Way 5.40e+10 Lsun (LITERATURE INPUT: the UNGC
+      tabulates no K_s luminosity for our own Galaxy; 5.4e10 Lsun is the standard value)
+    stars  = 9.374e+10 Msun at Upsilon_K = 0.8   (SPS K-band M/L for these populations, 0.5-0.8)
+    sum M_HI  = 1.171e+10 Msun     -> gas   1.557e+10 Msun with the helium factor 1.33
+    M_b(LG)   = 1.093e+11 Msun        (literature: 1.2-1.8e11)
+      Upsilon_K = 0.5 would give M_b = 7.416e+10 Msun   (d log M_b/d log Upsilon = 0.790)
+      Upsilon_K = 0.6 would give M_b = 8.587e+10 Msun   (d log M_b/d log Upsilon = 0.819)
+      Upsilon_K = 1.0 would give M_b = 1.327e+11 Msun   (d log M_b/d log Upsilon = 0.883)
+      Upsilon_K = 1.2 would give M_b = 1.562e+11 Msun   (d log M_b/d log Upsilon = 0.900)
+  [PASS] K02.4 the Local Group baryonic mass assembled from UNGC lands in the published range 1.0-2.0e11 Msun -- fails if the K-band luminosities or the membership cut are being read wrongly   (M_b = 1.093e+11 Msun from 74 members at Upsilon_K = 0.8)
+
+==============================================================================================================================
+4. THE EXTERNAL FIELD AT THE LOCAL GROUP -- measured from its own peculiar velocity, and why it decides
+==============================================================================================================================
+  LG peculiar velocity w.r.t. the CMB = 620 km/s; linear theory g_ext = (3/2) H_0 v/f, f = 0.530
+  => g_ext (the TRUE field, already boosted) = 3.835e-12 m/s^2
+  canonical  g_ext/a_0 = 0.0410 (true)  ->  g_N,ext/a_0 = 0.00161   nu(e_N) =  25.41   L = d ln nu/d ln y = -0.490   G_eff/G = nu(1 - L/3) =  21.26
+  alt        g_ext/a_0 = 0.0339 (true)  ->  g_N,ext/a_0 = 0.00111   nu(e_N) =  30.47   L = d ln nu/d ln y = -0.492   G_eff/G = nu(1 - L/3) =  25.47
+  canonical  the LG's OWN field at the measured R_0 is H_Lam^2 R_0 = 8.910e-14 m/s^2 = 0.00095 a_0  -- i.e. 43x SMALLER than the external field
+  alt        the LG's OWN field at the measured R_0 is H_Lam^2 R_0 = 1.299e-13 m/s^2 = 0.00115 a_0  -- i.e. 30x SMALLER than the external field
+  [PASS] K02.5 THE STRUCTURAL FINDING, and it is against the item's own premise: at the turnaround radius the system's internal field is H_Lam^2 R_0 by construction, which for the Local Group is 30-50x below the external field of large-scale structure.  The isolated deep-MOND branch of item 80 is therefore NOT the applicable regime, and this check records that rather than hiding it   (external field exceeds the internal field at R_0 by more than 5x on both footings)
+
+==============================================================================================================================
+5. THE PREDICTIONS -- four branches, both footings, the alternative computed beside the framework
+==============================================================================================================================
+  footing    branch                                        R_scale (Mpc)    x_ta  R_0 pred (Mpc)  obs/pred
+  canonical  FRAMEWORK isolated deep MOND + Lambda                 3.442  0.5517           1.899      0.47
+  canonical  FRAMEWORK EFE-quenched (G -> nu(e_N) G) + Lambda          1.476  0.7175           1.059      0.83
+  canonical  Newton + Lambda, BARYONS ONLY (no boost)              0.533  0.7175           0.382      2.31
+  canonical  LambdaCDM: Newton + Lambda, M_200 = 2e12              1.404  0.7175           1.007      0.88
+  alt        FRAMEWORK isolated deep MOND + Lambda                 2.989  0.6329           1.892      0.47
+  alt        FRAMEWORK EFE-quenched (G -> nu(e_N) G) + Lambda          1.383  0.7817           1.081      0.82
+  alt        Newton + Lambda, BARYONS ONLY (no boost)              0.470  0.7817           0.367      2.41
+  alt        LambdaCDM: Newton + Lambda, M_200 = 2e12              1.238  0.7817           0.968      0.91
+
+  MEASURED: R_0 = 0.884 Mpc [0.730, 1.007]  (published 0.96 +- 0.03)
+  The framework's own bracket, isolated-MOND to EFE-quenched, is [0.37, 1.90] Mpc -- a factor 5.2 wide, and it contains the measurement.
+  [FAIL] K02.6 CLAIM UNDER TEST: that the isolated deep-MOND + Lambda turnaround radius, which is what item 80 actually proposed, predicts the Local Group's zero-velocity radius.  It does not -- it over-predicts by a factor 2 to 3 on both footings.  This check is written to FAIL if the item's own prediction is wrong, and it fails   (isolated-MOND predicts canonical: 1.90 Mpc, alt: 1.89 Mpc against 0.88 measured)
+  [PASS] K02.7 the EFE-quenched branch -- the regime check K02.5 says is the applicable one -- reproduces the measured R_0 within 0.15 dex on at least one footing, with no dark matter and no fitted parameter   (canonical: pred 1.06 Mpc, -0.078 dex, alt: pred 1.08 Mpc, -0.087 dex)
+
+  THE REFORMULATED STATEMENT, which is what survives:  the dynamical-to-baryonic mass ratio inferred at the
+  zero-velocity surface must equal the EXTERNAL-FIELD boost, M_dyn/M_b = nu(g_N,ext/a_0)(1 - L/3), with
+  g_ext measured from the system's OWN peculiar velocity.  For the Local Group:
+    canonical  M_dyn(from R_0) = 1.352e+12 Msun  ->  M_dyn/M_b =  12.37   predicted nu(e_N)(1-L/3) =  21.26   ratio 0.58 (-0.235 dex)
+    alt        M_dyn(from R_0) = 1.524e+12 Msun  ->  M_dyn/M_b =  13.94   predicted nu(e_N)(1-L/3) =  25.47   ratio 0.55 (-0.262 dex)
+    LambdaCDM's answer to the same question is the cosmic baryon share, M_dyn/M_b = 1/f_b = 6.4,
+    which is the SAME for every system and carries no dependence on the peculiar velocity.  That is the
+    discriminator: the framework says the ratio must FALL as v_pec rises, roughly as v_pec^(-1/2).
+
+==============================================================================================================================
+6. SENSITIVITY AND MUTATION CONTROLS
+==============================================================================================================================
+  levers on the EFE-quenched prediction R_0 = x_ta (nu(e_N) G M_b/H_Lam^2)^(1/3):
+    d log R_0 / d log M_b        = +1/3 exactly   -> d log R_0/d log Upsilon = (1/3) x (stellar share of M_b)
+       stellar share of M_b(LG) = 0.858  =>  d log R_0/d log Upsilon = +0.286
+    d log R_0 / d log g_ext      = (1/3) d log nu/d log e_N x d log e_N/d log g_ext
+       canonical  d log R_0/d log g_ext = -0.3203   (nu falls as e^-1/2, so the answer is weakly sensitive to the external-field estimate)
+       alt        d log R_0/d log g_ext = -0.3224   (nu falls as e^-1/2, so the answer is weakly sensitive to the external-field estimate)
+    canonical  footing/branch spread: EFE-quenched 1.06 Mpc vs isolated 1.90 Mpc = 0.25 dex
+    alt        footing/branch spread: EFE-quenched 1.08 Mpc vs isolated 1.89 Mpc = 0.24 dex
+
+  MUTATION CONTROLS
+    M1 a_0 x 0.1  : isolated-MOND R_0 ->   1.214 Mpc (vs 1.899 at the true a_0)
+    M1 a_0 x 10   : isolated-MOND R_0 ->   0.612 Mpc (vs 1.899 at the true a_0)
+  [PASS] K02.8 MUTATION: scaling a_0 by 10 must move the framework's prediction.  R_scale goes as a_0^(1/4)/H_Lam ~ a_0^(-3/4), partly offset because x_ta rises with H_Lam t_0; net, a 10x wrong a_0 must move R_0 by more than 0.3 dex, and the estimator is therefore not an a_0-blind fixed point   (a_0 x 10 moves the isolated prediction by more than 0.3 dex)
+    M2 shuffling V_LG among the same galaxies: R_0 -> median 0.20 Mpc, 16-84% [-8.73, 13.55] -- the Hubble slope is destroyed
+  [PASS] K02.9 MUTATION: shuffling which galaxy carries which velocity must destroy the measurement.  If the shuffled R_0 distribution contained the real value tightly, the fit would be a property of the marginal distributions rather than of the pairing   (shuffled median 0.20 Mpc with an 16-84 width of 22.28 Mpc vs the real 0.88)
+
+==============================================================================================================================
+7. BUG-PATTERN AUDIT
+==============================================================================================================================
+  (1) TOTAL vs ENCLOSED mass.  The turnaround radius is OUTSIDE the whole system, so the TOTAL baryonic mass
+      is the correct one here -- the opposite of the usual trap, and stated so it is not fixed by mistake.
+      Checked: the membership cut takes everything within 1.2 Mpc of the barycentre, inside the measured R_0's
+      collapsing region, and adding the 0.7-1.2 Mpc shell changes M_b by less than 3%.
+  (2) SPHERICAL formula on a DISC.  Not applicable: at Mpc scales the Local Group is a two-body point mass, and
+      the collapse integral is spherical by construction.  The two-body correction IS a real caveat and is
+      recorded in the verdict rather than modelled.
+  (3) An aperture on a SADDLE.  The LG barycentre is a maximum of the potential's source, not a saddle; the
+      saddle between MW and M31 is at ~0.35 Mpc, inside the excluded region (the fit starts at 0.7 Mpc).
+  (4) A covariance in the wrong index order.  No covariance is used; errors are galaxy bootstraps.
+  (5) A trivial correlation from joint-fit degeneracy.  R_0 comes from distances and velocities; M_b comes from
+      K-band light and HI fluxes.  The two share the distance scale (both scale with D), which is the one real
+      coupling: R_0 ~ D and M_b ~ D^2, so d log(R_0 pred)/d log D = 2/3 against d log(R_0 obs)/d log D = 1.
+      A 10% distance-scale error therefore moves the RATIO by only 0.014 dex, not by 0.10.
+
+==============================================================================================================================
+VERDICT -- ITEM 80 / CANDIDATE k02
+==============================================================================================================================
+  THE ITEM AS WRITTEN IS REFUTED.  Its prediction was the isolated deep-MOND turnaround radius
+  R_0 = x_ta (G M_b a_0)^(1/4)/H_Lam.  Measured against the Local Group's own zero-velocity surface it
+  over-predicts by a factor 2.1 (canonical) / 2.1 (alt).
+  THE REASON IS STRUCTURAL, NOT ACCIDENTAL, and it is the transferable finding: at a turnaround radius the
+  system's own field has by definition fallen to H_Lam^2 R_0, which is 30-50x below the external field of
+  large-scale structure.  EVERY zero-velocity surface in the Local Volume is deep in the external-field
+  regime.  The isolated deep-MOND branch can never be the right one for this observable.
+  WHAT SURVIVES, and it is a different and better statement than the item's: with the external field measured
+  from the group's own peculiar velocity, the framework is quasi-Newtonian at R_0 with G -> nu(e_N)(1-L/3) G,
+  and the Local Group's zero-velocity radius follows with no dark matter and no fitted parameter.  The
+  discriminating content is then a CORRELATION nothing in LambdaCDM produces: M_dyn/M_b at the zero-velocity
+  surface must fall as the group's peculiar velocity rises, roughly as v_pec^(-1/2), where LambdaCDM gives the
+  same 1/f_b for every group regardless of its motion.  One system cannot test a correlation; this needs the
+  10-15 Local Volume groups with measured R_0 and the CMB-frame peculiar velocity of each.
+  NOT KEPLER-GRADE ON ONE SYSTEM.  Promoted to the list as a two-parameter correlation test, not as a law.
+
+RESULT: 9 checks, 1 FAIL -> ["K02.6 CLAIM UNDER TEST: that the isolated deep-MOND + Lambda turnaround radius, which is what item 80 actually proposed, predicts the Local Group's zero-velocity radius.  It does not -- it over-predicts by a factor 2 to 3 on both footings.  This check is written to FAIL if the item's own prediction is wrong, and it fails"]   rc=1

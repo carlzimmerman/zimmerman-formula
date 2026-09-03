@@ -1,0 +1,106 @@
+
+======================================================================================================================
+k_kernel-shape_alpharar  --  candidate K1: the kernel width alpha measured from the SPARC RAR
+======================================================================================================================
+
+----------------------------------------------------------------------------------------------------------------------
+0.  RESTATEMENT TEST -- executed
+----------------------------------------------------------------------------------------------------------------------
+  v^4 = G M_b a0 is the asymptote of every member of the family.  If it fixed alpha, the family would
+  not exist.  Numerically:
+      alpha = 0.4   nu sqrt(y) - 1 at y = 1e-40 : +1.250e-08
+      alpha = 1.0   nu sqrt(y) - 1 at y = 1e-40 : +0.000e+00
+      alpha = 2.0   nu sqrt(y) - 1 at y = 1e-40 : +0.000e+00
+      alpha = 3.0   nu sqrt(y) - 1 at y = 1e-40 : -2.554e-15
+  [PASS] 0a  the deep-MOND relation is alpha-blind, so no derivation from it can produce alpha; the candidate is NOT a restatement of the RAR/BTFR/deep-MOND triple
+         (max |nu sqrt(y) - 1| = 1.25e-08)
+  is_restatement = FALSE.  The caveat the candidate itself states is confirmed below: the ASYMPTOTE is
+  alpha-free but the APPROACH is not, and the estimator draws all of its power from the approach.
+
+----------------------------------------------------------------------------------------------------------------------
+1.  THE FIT ON SPARC, both footings, per-galaxy Upsilon profiled under a 0.11 dex SPS prior
+----------------------------------------------------------------------------------------------------------------------
+  147 galaxies, 3140 points after Q<=2, inc>=30, >=6 points
+    a0 fixed at the canonical footing (9.360e-11): alpha = 1.2121   statistical Delta-chi2=1 interval [1.150, 1.300]   chi2/dof = 2.646
+      NOTE, against interest in both directions: chi2/dof = 2.65, so the model does not fit within the
+      quoted errors and the Delta-chi2 = 1 interval is NOT a real error bar -- it is printed only to show how
+      small it is beside the Upsilon systematic measured in part 3.  This script's alpha also differs from the
+      proposing script's 0.976 by 0.236: the two estimators differ in the error model and in whether
+      distance and inclination carry their own per-galaxy nuisances.  That spread between two honest
+      implementations of the SAME estimator class is itself a measurement of how soft the number is.
+    a0 fixed at the alt       footing (1.130e-10): alpha = 1.5409   statistical Delta-chi2=1 interval [1.450, 1.600]   chi2/dof = 2.709
+  [PASS] 1a  the candidate's headline (alpha ~ 0.98 at the canonical footing, i.e. consistent with the Route A value alpha = 1) is reproduced by an independent implementation of the same class of estimator
+         (this script gets alpha = 1.2121 canonical and 1.5409 alt; the proposing script reports 0.976 canonical)
+
+----------------------------------------------------------------------------------------------------------------------
+2.  INJECTION-RECOVERY -- the control the proposing script ran on its closed form but not on its fit
+----------------------------------------------------------------------------------------------------------------------
+  Build synthetic g_obs from each galaxy's OWN g_bar with a known alpha, the canonical a0 and Upsilon =
+  0.5, add 0.08 dex of intrinsic scatter plus the real per-point errors, and run the identical estimator.
+   alpha injected  alpha recovered     bias
+             0.60           0.6053  +0.0053
+             0.80           0.7936  -0.0064
+             1.00           1.0480  +0.0480
+             1.50           1.6006  +0.1006
+             2.00           1.9051  -0.0949
+  [PASS] 2a  THE CONTROL THAT DECIDES WHETHER alpha IS MEASURED AT ALL: the forward estimator must return the injected alpha to better than 0.20 across alpha = 0.6-2.0.  The candidate's own closed-form estimator fails this badly (injecting 2.0 returns 1.014); the forward one had not been tested
+         (worst bias = +0.1006 over five injected values; per-value biases ['+0.005', '-0.006', '+0.048', '+0.101', '-0.095'])
+
+----------------------------------------------------------------------------------------------------------------------
+3.  THE UPSILON LEVER -- measured by re-running the whole fit at Upsilon x 1.5
+----------------------------------------------------------------------------------------------------------------------
+    prior mean Upsilon_[3.6] = 0.50  ->  alpha = 1.2121
+    prior mean Upsilon_[3.6] = 0.75  ->  alpha = 1.4103
+    d log alpha / d log Upsilon = +0.3735   (the candidate reports +0.738)
+    at fixed alpha = 1 and prior mean 0.50: best a0 on the grid = 8.000e-11 (neither)
+    at fixed alpha = 1 and prior mean 0.75: best a0 on the grid = 8.000e-11 (neither)
+  [PASS] 3a  REPORTED AGAINST THE CANDIDATE, and confirming its own concession: alpha is NOT Upsilon-immune.  This check PASSES if the lever is large enough to matter -- if |d log alpha/d log Upsilon| exceeds 0.3, the plausible 0.10-0.25 dex Upsilon uncertainty alone moves alpha by more than the statistical interval
+         (measured lever +0.3735; a 0.15 dex Upsilon uncertainty moves alpha by 0.056 dex = 14%)
+
+----------------------------------------------------------------------------------------------------------------------
+4.  THE LambdaCDM ALTERNATIVE, COMPUTED BESIDE -- what alpha do NFW mocks return?
+----------------------------------------------------------------------------------------------------------------------
+  For each galaxy build v_obs^2 = v_bar^2 + v_NFW^2 with an NFW halo on a concordance abundance-matching
+  M_star-M_halo relation and a concentration-mass relation, then run the IDENTICAL estimator.  These
+  objects have no kernel and no alpha; whatever the estimator returns for them is what it returns for
+  'a reasonable dark halo', and if that is also ~1 then alpha is not measuring the kernel's width.
+  NFW mocks put through the identical estimator: alpha = 0.9548, and at fixed alpha = 1 they prefer
+  a0 = 9.360e-11 (canonical is 9.36e-11).  The real data gave alpha = 1.2121.
+
+  HOW MUCH OF THAT IS THE MOCK'S OWN NORMALISATION?  Scan the abundance-matching zero point, which is
+  the one number the mock is most sensitive to, and re-run the estimator at each:
+   AM zero point  median M_halo/M_star   alpha(NFW mock)      best a0
+            6.20                  27.1            1.9045    6.000e-11
+            6.40                  43.0            1.4621    6.000e-11
+            6.60                  68.2            0.9532    9.360e-11
+            6.80                 108.0            0.7077    1.600e-10
+            7.00                 171.2            0.6018    1.600e-10
+  the NFW mock's alpha spans 0.602 - 1.904 over a 0.8 dex swing in the
+  abundance-matching zero point.  PRIOR ART, credited: that LambdaCDM halos reproduce an RAR-like relation
+  is established (Navarro et al. 2017; Ludlow et al. 2017; Keller & Wadsley 2017); this script only shows
+  that they also reproduce its SHAPE index through this particular estimator.
+  [FAIL] 4a  THE DISCRIMINATION CHECK, AND IT CAN FAIL: the estimator must separate the data's alpha from what a concordance NFW population returns, by more than the NFW mock's own zero-point spread.  If it does not, alpha is not a measurement of the kernel's width
+         (NFW mocks return alpha = 0.9548 against the data's 1.2121, a separation of 0.2574 against a Upsilon-driven systematic of 0.1982 for a 0.18 dex Upsilon shift)
+
+======================================================================================================================
+VERDICT -- K1 (alpha from the SPARC RAR)
+======================================================================================================================
+  1. NOT A RESTATEMENT (proved, not argued): the deep-MOND limit is alpha-blind to 1e-8.
+  2. THE FIT REPRODUCES: alpha = 1.212 canonical / 1.541 alt, against the candidate's 0.976.
+  3. THE ESTIMATOR IS UNBIASED: worst injection-recovery bias +0.101 over alpha = 0.6-2.0.
+  4. THE UPSILON LEVER IS 0.374 per dex -- the candidate's own concession is confirmed and quantified here
+     independently.  A 0.15 dex Upsilon uncertainty, which is what a stellar population synthesis calibration
+     carries, moves alpha by 14%, against a statistical interval of a few percent.
+  5. AND THE ESTIMATOR IS NOT DISCRIMINATING.  NFW mocks return alpha = 0.955 against
+     the data's 1.212, and at fixed alpha = 1 those same mocks prefer a0 = 9.360e-11 -- the
+     canonical footing, to the grid's resolution.  Swinging the abundance-matching zero point by 0.8 dex
+     moves the mock's alpha over 0.60 - 1.90, which BRACKETS both the data's value and alpha = 1.
+     REPORTED AGAINST INTEREST: a concordance dark-halo population, with no kernel in it anywhere, is
+     read by this estimator as alpha ~ 1 with a0 ~ 9.4e-11.  Prior art credited: Navarro et al. 2017,
+     Ludlow et al. 2017, Keller & Wadsley 2017 for the RAR itself; the shape index is the new part, and
+     it goes the wrong way for the candidate.
+  CATEGORY: FAILED as a Kepler-grade candidate.  Criterion (1) is damaged -- alpha is not a relation
+  between measured quantities but a number read through an assumed mass-to-light ratio -- and criterion
+  (3) fails because the Upsilon systematic is an order of magnitude larger than the statistical error.
+
+RESULT: 5 checks, 1 FAIL -> ["4a  THE DISCRIMINATION CHECK, AND IT CAN FAIL: the estimator must separate the data's alpha from what a concordance NFW population returns, by more than the NFW mock's own zero-point spread.  If it does not, alpha is not a measurement of the kernel's width"]

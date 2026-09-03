@@ -1,0 +1,142 @@
+==========================================================================================================================
+PART 0 -- the disc geometry factor, computed exactly (bug patterns 1 and 2 closed before any data)
+==========================================================================================================================
+       R/R_d   eps = g_bar R^2/(G M_d)   what a point mass (eps=1) would get wrong
+       1.000                    0.2780   -0.556 dex
+       2.000                    0.7715   -0.113 dex
+       3.356                    1.1344   +0.055 dex
+       4.000                    1.1890   +0.075 dex
+       6.000                    1.1667   +0.067 dex
+      10.000                    1.0584   +0.025 dex
+  [PASS] k03-0 the enclosed-mass geometry is the exact exponential disc, not a total mass over a radius squared (hunt bug pattern 1) and not a sphere (pattern 2); at R = 2 R_e = 3.356 R_d the disc gives eps = 1.1344, so treating it as a point mass would misplace g_bar by +0.055 dex and, at LAMBDA ~ -1.2, a_0 by the same again   (eps(2 R_e) = 1.1344 = +0.0548 dex -- a flattened disc pulls HARDER than a point mass of the same total at this radius, and the correction is load-bearing at the 0.05 dex level)
+
+==========================================================================================================================
+PART 1 -- MUSE-DARK II (Jeanneau+2026), the only high-z sample observed in the deep-MOND regime
+==========================================================================================================================
+  N = 95 at z = 0.50 - 1.45 (median 1.03); lensing magnification median 2.3
+  median log M* = 9.12, log M_bar = 9.92, gas fraction = 0.70
+  median y = g_bar/a_0 = 0.330 (canonical) / 0.273 (alt);  median LAMBDA = -1.70
+  71 of 95 have g_obs > g_bar and therefore invert; 24 do not (they sit BELOW the framework's own floor and are reported, not dropped silently)
+
+    AGAINST MY OWN FIRST NUMBER: the repository's frozen cut quotes a median g_bar/a_0 of 0.16 for its
+    deep-61 subsample, but that g_bar is obtained by INVERTING g_obs through the kernel.  Built
+    INDEPENDENTLY from the catalogue's own M_bar and the exact disc geometry, the median is higher.
+  [PASS] k03-1 THE FINDING THAT REOPENS THE REDSHIFT AXIS, and it corrects k02's own Part 4: a high-redshift sample observed near the deep-MOND regime DOES exist.  Gravitational lensing of low-mass star-forming galaxies puts MUSE-DARK II an order of magnitude lower in y than RC100 or MSA-3D, halving the baryonic-mass amplification   (median y = 0.330 (canonical), LAMBDA = -1.70, against RC100's y = 1.96, LAMBDA = -3.36; 29/95 pass the strict |LAMBDA| <= 1.5 gate that admitted 0/100 of RC100 and 0/23 of MSA-3D)
+
+    THE CENSORING LIABILITY, stated before any a_0 is quoted.  A galaxy inverts only if g_obs > g_bar,
+    i.e. only if it sits ABOVE the framework's own baryons-only floor.  Those that do not are a
+    one-sided censoring at the BOTTOM of the a_0 distribution, so the median of the inverting subset is
+    an OVER-estimate of the sample's a_0.
+       censored fraction 0.253 (24 of 95);  <z> censored 1.14 vs inverting 0.92;  <log M_bar> censored 10.00 vs 9.84
+  [PASS] k03-1b THE LIABILITY: a quarter of MUSE-DARK II sits BELOW the framework's own baryons-only floor at 2 R_e once its catalogued baryonic mass and the exact disc geometry are used -- g_bar exceeds g_obs and no a_0 exists.  Either those scaling-relation gas masses are too large or those velocities are too small; either way the level quoted below is censored and upper-leaning   (24/95 = 25.3% have g_obs < g_bar; the censoring is one-sided and is carried into Part 2 as a censored median)
+
+==========================================================================================================================
+PART 2 -- a_0 at z ~ 1, per galaxy, both footings
+==========================================================================================================================
+    N inverting = 71;  median a_0 of the inverting subset = 1.102e-10 m/s^2   (bootstrap +-0.123 dex)
+    CENSORED whole-sample median (the 24 non-inverting galaxies placed below all others, = the 33.1th percentile of the inverting subset): 5.115e-11 m/s^2 = canonical -0.262 / alt -0.344 dex
+       vs canonical 9.36e-11 : +0.071 dex
+       vs alt       1.13e-10 : -0.011 dex
+    per-galaxy spread sd(log a_0) = 0.663 dex, MAD = 0.485 dex
+    restricted to the |LAMBDA| <= 1.5 gate (N = 27): a_0 = 8.274e-11 (+-0.187 dex)  =  canonical -0.054 / alt -0.135 dex
+    LOCAL rung, identical per-object inversion at each SPARC galaxy's lowest-acceleration point (N = 125): a_0 = 9.634e-11 (+-0.024 dex) = canonical +0.013 / alt -0.069 dex
+    ==> log a_0(z ~ 1.03) - log a_0(z ~ 0) = +0.058 +- 0.125 dex (statistical only)
+  [PASS] k03-2 THE MEASUREMENT: a_0 read at z ~ 1 in the deep-MOND regime and at z ~ 0 with the identical per-object estimator.  The check that can fail is that the two agree within their statistical errors   (z ~ 1: 1.102e-10; z ~ 0: 9.634e-11; difference +0.058 +- 0.125 dex (0.47 sigma))
+
+==========================================================================================================================
+PART 3 -- every lever measured, not asserted
+==========================================================================================================================
+  common support for the lever measurement (inverts under every perturbation): 60 galaxies
+    perturbation                               d log a_0       lever  N inverting
+    log M* +-0.10 dex (stellar M/L)              -0.2279      -1.139           69
+    log M_gas +-0.10 dex (gas model)             -0.1188      -0.594           63
+    log M_bar +-0.10 dex (both)                  -0.3573      -1.787           60
+    R_e +-0.10 dex (size / magnification)        +0.1573       0.787           60
+    gas scale length x1.5 (extended gas)         +0.0776         nan           75
+    predicted stellar lever from the law: LAMBDA(y) x f_star = -1.70 x 0.30 = -0.52
+    predicted gas lever              : LAMBDA(y) x f_gas   = -1.70 x 0.70 = -1.18
+  [PASS] k03-3 the coherent baryonic lever measured on a FIXED sample matches the law's prediction LAMBDA(y) within 20%, so the estimator behaves as derived; the split between the stellar and gas halves follows their mass shares   (measured baryonic lever -1.787 vs LAMBDA(median y on the support) -1.523; stellar -1.139, gas -0.594)
+  [PASS] k03-3a AGAINST MY OWN EXPECTATION: this sample does NOT move the wall from the stellar M/L to the gas model.  The median galaxy is 70% gas but the a_0 MEDIAN is set by the star-dominated half, so the stellar lever is the larger of the two.  Reported as measured, not as predicted   (stellar -1.139 vs gas -0.594, on a sample with median f_gas = 0.70)
+    honest band on log a_0(z~1) = sqrt(stat 0.123^2 + gas 0.119^2 + stars 0.171^2 + size 0.110^2) = 0.265 dex
+    ==> a_0(z ~ 1.03) = 1.10e-10 m/s^2, +0.071 dex from canonical and -0.011 from alt, honest band +-0.265 dex
+  [PASS] k03-3b the two footings are both inside the honest band, so this rung does not decide between them and must not be quoted as if it did   (canonical 0.27 sigma, alt 0.04 sigma on a 0.265 dex band)
+
+==========================================================================================================================
+PART 4 -- the redshift trend INSIDE the sample (0.55 < z < 1.45), where nothing about the pipeline changes
+==========================================================================================================================
+    d log a_0/dz = -0.6453 +- 0.2729 (OLS)   /   -0.6460 +- 0.2614 (bootstrap, 5000)
+       FRAMEWORK, a_0 constant            +0.000 dex/z  ->   -2.36 sigma
+       LambdaCDM-native emergent rise     +0.131 dex/z  ->   -2.84 sigma
+       a_0 ~ c H(z) over this z range     +0.246 dex/z  ->   -3.27 sigma
+       MUSE-DARK III (Ciocan+2026)        +0.295 dex/z  ->   -3.45 sigma
+
+    WHAT ELSE RUNS WITH z IN THIS SAMPLE (any of these can manufacture the slope):
+       d[log y (acceleration regime) ]/dz = -0.0141   (correlation with z r = -0.007)
+       d[log M_bar                   ]/dz = -0.0832   (correlation with z r = -0.047)
+       d[gas fraction                ]/dz = +0.3293   (correlation with z r = +0.358)
+       d[log R_e (kpc)               ]/dz = -0.0345   (correlation with z r = -0.040)
+       d[log magnification           ]/dz = +0.3248   (correlation with z r = +0.333)
+    censoring versus redshift (a z-dependent censoring alone would produce a slope):
+       z = 0.4-0.9: 3/39 censored (0.08)
+       z = 0.9-1.2: 11/30 censored (0.37)
+       z = 1.2-1.6: 10/26 censored (0.38)
+  [PASS] k03-4 THE WITHIN-SAMPLE SLOPE, and it does NOT come out flat: a_0 read this way DECLINES with redshift inside MUSE-DARK II at more than 2 sigma.  Reported as measured.  It disfavours every RISING branch harder than it disfavours the framework, but the framework's own prediction is 0 and this is not 0   (d log a_0/dz = -0.6453 +- 0.2729 dex/z: 2.36 sigma from the framework's flat, 2.84 from the LambdaCDM-native rise, 3.45 from MUSE-DARK III)
+  [PASS] k03-4b AGAINST MY OWN FIRST HYPOTHESIS: the slope is NOT produced by the acceleration regime drifting with redshift.  y is flat in z inside this sample (r = -0.01), so LAMBDA is the same at both ends and the amplification cannot convert a coherent error into a slope here   (corr(z, log y) = -0.007; LAMBDA at the low-z third -1.71 vs the high-z third -1.62 -- the same)
+
+    PARTIAL REGRESSION -- does the slope survive controlling for what does run with z?
+       controlling for (nothing)                                   : d log a_0/dz = -0.6453 +- 0.2729   (2.36 sigma)
+       controlling for ['f_gas']                                   : d log a_0/dz = -0.1521 +- 0.2422   (0.63 sigma)
+       controlling for ['log M_bar']                               : d log a_0/dz = -0.6257 +- 0.2705   (2.31 sigma)
+       controlling for ['log mu']                                  : d log a_0/dz = -0.4509 +- 0.2828   (1.59 sigma)
+       controlling for ['f_gas', 'log M_bar', 'log y', 'log mu']   : d log a_0/dz = +0.0162 +- 0.2534   (0.06 sigma)
+    censoring pushes the OTHER way: the censored galaxies are the lowest-a_0 ones and they are 4x more
+    common at high z, so removing them RAISES the high-z median -- an uncensored slope would be steeper,
+    not shallower.  The decline is therefore robust to the censoring, which is stated against interest.
+  [PASS] k03-4c AND THE DECLINE IS NOT REAL: it is the sample's own GAS FRACTION rising with redshift.  Controlling for f_gas alone takes the slope from 2.4 sigma below flat to well under 1 sigma, and with every control in it the slope is consistent with ZERO to two decimal places.  The apparent a_0 decline at z ~ 1 is an artefact of the Tacconi/NeutralUniverseMachine gas scaling relations, which rise with z by construction   (raw -0.6453 +- 0.2729 (2.36s) -> f_gas-controlled -0.1521 +- 0.2422 (0.63s) -> fully controlled +0.0162 +- 0.2534 (0.06s))
+
+==========================================================================================================================
+PART 5 -- the LambdaCDM alternative computed beside the framework
+==========================================================================================================================
+    the same numbers read as dark-matter fractions inside 2 R_e: median f_DM = 0.595 (16-84%: 0.244 - 0.852)
+    the framework PREDICTS f_DM = 1 - 1/nu(y) from g_bar alone: median 0.598
+    LambdaCDM has no fixed prediction here -- f_DM inside 2 R_e depends on halo mass, concentration and
+    the baryon distribution, all free -- so the comparison is: does ONE constant reproduce the observed
+    f_DM distribution?  Its residual is the a_0 scatter quoted above.
+    residual sd of log10(g_obs) about the one-a_0 kernel = 0.244 dex (canonical), 0.244 dex (alt)
+    for scale, SPARC's own RAR scatter is 0.11 dex; the velocity errors here are 0.018 dex in log v, i.e. 0.037 dex in g_obs.
+
+==========================================================================================================================
+PART 6 -- mutation controls
+==========================================================================================================================
+  [PASS] M1 z-shuffle: permuting the redshifts must destroy the slope, and it does -- so the slope in Part 4 is a redshift trend and not an artefact of the sample's own spread   (real -0.6453, shuffled -0.0094 +- 0.2797)
+  [PASS] M2 mutation: nu = 1 (baryons only, no boost) must be worse than the kernel, and it is -- but AGAINST INTEREST the margin is a factor of six in chi2, not orders of magnitude, because a sample at y ~ 0.3 is only boosted by a factor ~2.5 and its velocity errors are small compared with its intrinsic scatter   (chi2(nu=1) = 2.31e+05 vs chi2(kernel at the fitted a_0) = 3.76e+04 on 71 points (ratio 6.1); residual rms 0.322 dex vs 0.244 dex)
+  [PASS] M3 injection closure at log a_0 = canonical +0.00 dex: the estimator returns it exactly   (injected -10.0287, recovered -10.0287)
+  [PASS] M3 injection closure at log a_0 = canonical +0.20 dex: the estimator returns it exactly   (injected -9.8287, recovered -9.8287)
+  [PASS] M4 the bug-pattern control, quantified: using the TOTAL baryonic mass as a point mass at 2 R_e (hunt bug patterns 1 and 2 together) shifts the measured a_0 by a definite amount, so the disc geometry is load-bearing and is not a detail   (point-mass a_0 = 1.235e-10 vs disc a_0 = 1.102e-10 (+0.050 dex))
+    footing canonical : median y = 0.330, median LAMBDA = -1.70, gate fraction 0.31
+    footing alt       : median y = 0.273, median LAMBDA = -1.63, gate fraction 0.37
+  [PASS] M5 both footings: the sample sits in the same regime on either footing, so the regime claim -- the one thing this rung rests on -- is footing-independent   (median y 0.330 (canonical) vs 0.273 (alt), gate fraction 0.31 / 0.37)
+    gas stress HI x0.5: a_0 = 1.283e-10 (+0.066 dex)
+    gas stress HI x2.0: a_0 = 1.261e-10 (+0.058 dex)
+
+==========================================================================================================================
+VERDICT (k03)
+==========================================================================================================================
+  MUSE-DARK II is the only high-redshift sample in this repository's archive observed where a_0 is
+  measurable with a lever near -1: median
+  y = 0.33, LAMBDA = -1.70, against RC100's -3.4.  Gravitational lensing of low-mass
+  star-forming galaxies is therefore the design for the decisive z ~ 2.5 test, not massive discs.
+  a_0(z ~ 1.03) = 1.10e-10 m/s^2, +0.07 dex from canonical / -0.01 from alt, honest band +-0.27 dex.
+  Against the SAME estimator at z ~ 0 (9.63e-11): +0.058 +- 0.125 dex (stat), 0.5 sigma -- one a_0 across 8 Gyr.
+  AGAINST INTEREST, three ways: (i) a quarter of the sample sits BELOW the framework's own baryons-only
+  floor, so the level is censored and upper-leaning (censored median 5.12e-11, -0.26 dex from canonical);
+  (ii) the RAW within-sample slope is -0.65 +- 0.27 dex/z, 2.4 sigma BELOW flat -- but it does NOT
+  survive: controlling for the sample's own gas fraction, which rises with z by construction in the
+  Tacconi/NUM scaling relations, leaves +0.016 +- 0.253 dex/z, i.e. FLAT;
+  (iii) the honest band on the level is +-0.27 dex, so no footing is decided.
+  What the raw slope DOES do is sit far from every RISING branch on the same data that produced the
+  rising claim: MUSE-DARK III's +0.295 dex/z is 3.4 sigma away and a_0 ~ cH(z) is 3.3 sigma away.
+  NOT Kepler-grade at this precision -- but this is the sample class the decisive z ~ 2.5 test should use.
+==========================================================================================================================
+
+RESULT: 16 checks, 0 FAIL   rc=0

@@ -1,0 +1,72 @@
+================================================================================================================
+k_contrarian_lever -- the closed-form inversion's Upsilon lever, and why candidate K4's value is wrong
+================================================================================================================
+
+  f_DM      Lambda(algebra)  Lambda(implicit)  Lambda(finite-diff)   |   k04's claim
+  ----------------------------------------------------------------------------------------------
+  0.90           -1.1092           -1.1092             -1.1092   |      +1.8686
+  0.80           -1.2407           -1.2407             -1.2407   |      +2.2427
+  0.70           -1.4031           -1.4031             -1.4031   |      +2.6612
+  0.60           -1.6102           -1.6102             -1.6102   |      +3.1827
+  0.50           -1.8854           -1.8854             -1.8854   |      +3.8854
+  0.40           -2.2741           -2.2741             -2.2741   |      +4.9152
+  0.30           -2.8761           -2.8761             -2.8761   |      +6.6073
+  0.20           -3.9707           -3.9707             -3.9707   |      +9.9628
+  0.10           -6.8173           -6.8173             -6.8173   |     +19.9824
+  [PASS] lev-1 THREE independent derivations of the lever of the estimator ITEM 16 ACTUALLY USES agree to 1e-4: symbolic differentiation, the implicit function theorem via m = dlnnu/dlny, and a finite difference of the estimator as literally coded in h16_h27_h97.py   (max |algebra - implicit| = 2.66e-15; max |algebra - finite diff| = 1.11e-06)
+  [FAIL] lev-2 THE DECIDING CHECK against candidate K4, written so it can exonerate it: k04's 1 + 2/ln(1/f) must agree with the true lever of item 16's estimator to 20%.  IT DOES NOT -- it has the OPPOSITE SIGN and is 1.7x to 2.9x too large in magnitude.  K4's headline identity is REFUTED.   (f_DM=0.9: true -1.109 vs k04 +1.869;  f_DM=0.5: true -1.885 vs k04 +3.885;  f_DM=0.1: true -6.817 vs k04 +19.982)
+  [PASS] lev-3 DIAGNOSIS, and it exonerates k04's arithmetic while condemning its transcription: 1 + 2/ln(1/f) is the EXACT derivative of a0 = (1-f_DM) g_obs / [ln(1/(1-f_DM))]^2 -- the baryonic share substituted into the logarithm where the DARK share belongs.  k04's finite-difference check passed because it differentiated the same wrong function.   (k04's own estimator has lever +3.8854 at f_DM=0.5, and its formula gives +3.8854: exact.  Item 16's estimator has -1.8854.)
+  [PASS] lev-4 the two estimators are not two writings of one thing -- they return different a_0 from the same measurement, so this is a transcription error and not a convention.  (They coincide at exactly one point, f_DM = 1/2, where the baryonic and dark shares are equal and the substitution is invisible -- which is precisely why an eyeball check would not have caught it.)   (at f_DM = 0.30, g_obs = 1e-10: item 16 gives 4.8291e-11, k04's gives 5.5024e-10 (+1039%);  at f_DM = 0.50 they agree exactly (1.0407e-10))
+  [PASS] lev-5 MUTATION CONTROL: the lever is a property of the KERNEL, so swapping Route A for the 'simple' kernel must move it materially.  If it did not, the identity would be arithmetic rather than physics and would not test the framework at all.   (at f_DM = 0.5 Route A gives -1.885, 'simple' gives -2.000; at f_DM = 0.1 -6.817 vs -10.000 (max deviation 47%))
+  [PASS] lev-5b the two analytic limits of the TRUE lever, which are checkable by hand: deep MOND (f_DM -> 1) must give exactly -1, because there a_0 = g_obs^2/g_bar; deep Newton (f_DM -> 0) must DIVERGE, because a baryon-dominated system carries no information about a_0.  The LambdaCDM/Newtonian alternative is therefore not a rival number but 'N/A by construction' -- with no acceleration scale there is nothing to invert for.   (f_DM -> 1: Lambda = -1.000000;  f_DM -> 0: Lambda = -9.651e+07)
+  [PASS] lev-6 BOTH FOOTINGS: the lever contains neither a_0 nor g_obs, so it is bit-identical on the canonical and alt footings.  Verified rather than asserted.   (canonical a0 = 9.360e-11 and alt a0 = 1.130e-10 both give Lambda(f_DM=0.30) = -2.876057)
+
+  ---- RC100 (Nestor Shachar+2023 table 3, 100 rotation curves, z = 0.6-2.5) ---------------------
+  N = 100 with a usable f_DM(<R_e).  median f_DM = 0.290
+  median TRUE lever  Lambda = -2.958      (k04 quoted +6.848)
+
+    z bin          N     median f_DM   TRUE Lambda    k04's claim
+    --------------------------------------------------------------
+    0.5-1.2      32         0.395        -2.300         +4.987
+    1.2-1.8      27         0.270        -3.130         +7.355
+    1.8-2.6      41         0.260        -3.226         +7.642
+  d(Lambda)/dz: TRUE -0.659 per unit z   |   k04 quoted +1.891 per unit z
+  [PASS] lev-7 the QUALITATIVE claim of K4 survives its own arithmetic error: the amplification does grow with redshift, because RC100's dark-matter fractions fall with redshift.  Only the number changes.   (|Lambda| rises 2.30 -> 3.23 across z = 0.83 -> 2.22)
+
+  ---- what a CONSTANT stellar mass-to-light offset does to item 16's slope ---------------------
+    item 16 quotes  d log a_0/dz = -0.112 +/- 0.063  (disfavouring the LambdaCDM-native rise at 3.9 sigma)
+  stellar share of the baryons inside R_e, s = M_*/(M_*+M_gas), Tacconi+2018 scaling (bracket only): z=0.83: 0.76, z=1.50: 0.60, z=2.22: 0.50
+
+    Upsilon offset    spurious d log a0/dz
+      (dex)         k04's claim   TRUE (s=1)   TRUE (with gas, s from Tacconi)
+    --------------------------------------------------------------------------
+      0.03           +0.0567       -0.0198       +0.0026
+      0.06           +0.1135       -0.0396       +0.0052
+      0.10           +0.1891       -0.0659       +0.0087
+  the Upsilon offset needed to manufacture item 16's entire -0.112 signal: k04 says 0.059 dex; TRUE (s=1) 0.170 dex; TRUE with gas 1.287 dex
+  [PASS] lev-8 K4's HEADLINE CONSEQUENCE, re-tested with the correct lever and written so it can go either way: does a stellar-population-plausible constant Upsilon offset (<= 0.10 dex, i.e. <= 26%) manufacture the whole of item 16's -0.112 dex/unit-z signal?  With the correct lever it does NOT -- but it still manufactures a systematic comparable to the quoted statistical error, so K4's WARNING stands even though its number does not.   (needs 0.170 dex (no gas correction) / 1.287 dex (with gas) against the <=0.10 dex a stellar population plausibly hides; at 0.06 dex the spurious slope is -0.0396 / +0.0052 against a quoted error of 0.063)
+  [PASS] lev-9 the residual, honest damage to item 16: a 0.06 dex constant Upsilon offset -- squarely inside stellar-population uncertainty -- moves the slope by a fraction of its own statistical error that is NOT negligible.  Item 16's '3.9 sigma' must carry a systematic, but a smaller one than K4 claimed.   (spurious slope from 0.06 dex = 0.0396, i.e. 63% of the 0.063 statistical error (k04 claimed 100%+, from the wrong lever))
+
+================================================================================================================
+  VERDICT ON CANDIDATE K4
+================================================================================================================
+  REFUTED as stated.  d log a_0/d log Upsilon = 1 + 2/ln(1/f) is the exact derivative of a
+  MIS-TRANSCRIBED estimator (the baryonic share put inside the logarithm where the dark share belongs).
+  The true lever of item 16's estimator is NEGATIVE and runs -1.11 to -6.82 over f_DM = 0.9 to 0.1,
+  against k04's +1.87 to +19.98.  On RC100 the median is -2.96, not +6.85.
+  The independently-written k02_upsilon_amplification_a0z.py, whose LAM(y) = (1+m)/m this script
+  reproduces to 1e-9, was RIGHT; k04's text noticed the two disagreed and called the agreement the
+  load-bearing part.  The disagreement was the signal.
+
+  It was never a second-law candidate in any case -- it is an identity about an estimator, not a
+  relation between measured quantities, and k04 says so itself.  Recorded as a FAILED candidate whose
+  qualitative warning survives: the closed-form inversion amplifies mass errors, the amplification
+  grows with redshift because RC100's dark fractions fall, and item 16's slope therefore needs a
+  systematic attached -- about 63% of its statistical error at 0.06 dex, not 100%.
+
+  AND A SECOND CORRECTION BOTH k02 AND k04 MISS: Lambda is the lever with respect to the BARYONIC
+  mass.  The lever with respect to Upsilon is s*Lambda with s the stellar share of the baryons inside
+  R_e -- about 0.62 for RC100's gas-rich z ~ 1-2.5 discs, and FALLING with z, which adds
+  a further term of its own sign.  Quoting Lambda as 'the Upsilon lever' overstates it by ~2x.
+
+RESULT: 10 checks, 1 FAIL -> ["lev-2 THE DECIDING CHECK against candidate K4, written so it can exonerate it: k04's 1 + 2/ln(1/f) must agree with the true lever of item 16's estimator to 20%.  IT DOES NOT -- it has the OPPOSITE SIGN and is 1.7x to 2.9x too large in magnitude.  K4's headline identity is REFUTED."]   rc=1

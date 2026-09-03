@@ -1,0 +1,106 @@
+======================================================================================================================
+CANDIDATE K1 -- the outer-curve shape law:  2 dlnv/dlnr = 1 + (1 + L(y)) dln g_bar/dln r
+======================================================================================================================
+  [PASS] L(y) closed form at s=0.05   (numeric -0.487604162 vs closed -0.487604162)
+  [PASS] L(y) closed form at s=0.3   (numeric -0.428744387 vs closed -0.428744387)
+  [PASS] L(y) closed form at s=1.0   (numeric -0.290988353 vs closed -0.290988353)
+  [PASS] L(y) closed form at s=2.5   (numeric -0.111781862 vs closed -0.111781862)
+  [PASS] L(y) closed form at s=6.0   (numeric -0.007454735 vs closed -0.007454735)
+  [PASS] L -> -1/2 deep   (-0.499999750)
+  [PASS] L -> 0 Newtonian   (-8.497e-17)
+  [PASS] x(s) = y nu(y)
+
+  the parameter-free curve sigma = F(x) for a point mass (s_bar = -2):
+   g_obs/a_0  y=g_bar/a_0         L  sigma=dlnv/dlnr  Newtonian sigma
+       0.221        0.040   -0.4517          -0.0483          -0.5000
+       0.485        0.160   -0.4066          -0.0934          -0.5000
+       0.973        0.490   -0.3453          -0.1547          -0.5000
+       1.582        1.000   -0.2910          -0.2090          -0.5000
+       2.896        2.250   -0.2154          -0.2846          -0.5000
+       4.626        4.000   -0.1565          -0.3435          -0.5000
+       9.472        9.000   -0.0786          -0.4214          -0.5000
+      25.170       25.000   -0.0170          -0.4830          -0.5000
+
+  SPARC: 131 galaxies with Q<=2, i>=30 deg, >=8 points
+/Users/carlzimmerman/new_physics/zimmerman-formula/hunt_2026/k01_outer_shape_law.py:95: RuntimeWarning: divide by zero encountered in matmul
+  try: cov = np.linalg.inv(A.T @ W @ A)
+/Users/carlzimmerman/new_physics/zimmerman-formula/hunt_2026/k01_outer_shape_law.py:95: RuntimeWarning: overflow encountered in matmul
+  try: cov = np.linalg.inv(A.T @ W @ A)
+/Users/carlzimmerman/new_physics/zimmerman-formula/hunt_2026/k01_outer_shape_law.py:95: RuntimeWarning: invalid value encountered in matmul
+  try: cov = np.linalg.inv(A.T @ W @ A)
+/Users/carlzimmerman/new_physics/zimmerman-formula/hunt_2026/k01_outer_shape_law.py:97: RuntimeWarning: divide by zero encountered in matmul
+  beta = cov @ (A.T @ W @ np.log(V))
+/Users/carlzimmerman/new_physics/zimmerman-formula/hunt_2026/k01_outer_shape_law.py:97: RuntimeWarning: overflow encountered in matmul
+  beta = cov @ (A.T @ W @ np.log(V))
+/Users/carlzimmerman/new_physics/zimmerman-formula/hunt_2026/k01_outer_shape_law.py:97: RuntimeWarning: invalid value encountered in matmul
+  beta = cov @ (A.T @ W @ np.log(V))
+  outer-window slope measurable in 131 galaxies (outer 50% of points, >=5 points, r range >=1.25x)
+  baryonic shape slope s_bar over the window: median -1.35, 16-84% -1.85 to -0.31
+  (point mass would be exactly -2.00; a razor-thin exponential disc is steeper than -2 inside ~4 R_d)
+
+  THE TEST -- observed outer slope vs the prediction of (*), no baryonic amplitude used:
+  Route A, canonical a_0 = 9.360e-11           N=131  median resid -0.0343  rms 0.1656  r=+0.729  regression 0.732  chi2/N    14.62
+  Route A, alt a_0 = 1.130e-10                 N=131  median resid -0.0485  rms 0.1639  r=+0.728  regression 0.750  chi2/N    13.26
+  NEWTONIAN alternative (nu = 1)               N=131  median resid +0.2311  rms 0.2533  r=+0.715  regression 0.448  chi2/N   213.00
+  MUTATION: alpha=1 kernel nu=sqrt(1+1/y)      N=131  median resid -0.0350  rms 0.1686  r=+0.726  regression 0.712  chi2/N    23.49
+  MUTATION: a_0 x 3                            N=131  median resid -0.0860  rms 0.1594  r=+0.724  regression 0.822  chi2/N    16.99
+  MUTATION: a_0 / 3                            N=131  median resid +0.0432  rms 0.1830  r=+0.735  regression 0.622  chi2/N    49.25
+/Users/carlzimmerman/new_physics/zimmerman-formula/hunt_2026/k01_outer_shape_law.py:50: RuntimeWarning: overflow encountered in expm1
+  def L_of_s(s):  return -(s/2.0)/np.expm1(s)
+  MUTATION: a_0 -> 0 (pure deep MOND, L=-1/2)  N=131  median resid +0.2311  rms 0.2533  r=+0.715  regression 0.448  chi2/N   213.00
+
+  [PASS] Route A beats the Newtonian alternative in rms   (0.1656 vs 0.2533)
+  [FAIL] Route A beats a_0 x 3 in rms   (0.1656 vs 0.1594)
+  [PASS] Route A beats a_0 / 3 in rms   (0.1656 vs 0.1830)
+  [PASS] Route A beats pure deep MOND in rms   (0.1656 vs 0.2533)
+  [FAIL] law scatter <= 0.10 in d ln v/d ln r   (rms 0.1656)
+  [FAIL] regression of observed on predicted within 20% of 1   (0.732)
+
+  a_0 MEASURED FROM ROTATION-CURVE SHAPE ALONE (no baryonic amplitude, no M/L):
+    log10 a_0 = -9.8981 +- 0.0833   ->   a_0 = 1.264e-10  [1.04e-10, 1.53e-10] m/s^2
+    canonical 9.36e-11 is +1.57 sigma away; alt 1.13e-10 is +0.59 sigma away
+  [PASS] shape-only a_0 is within 0.3 dex of a footing   (nearest footing 0.049 dex)
+
+  THE UPSILON LEVER (the thing that killed three earlier candidates):
+    Upsilon_disk = 0.30   ->   log10 a_0 = -9.9662   (a_0 = 1.081e-10)
+    Upsilon_disk = 0.40   ->   log10 a_0 = -9.9277   (a_0 = 1.181e-10)
+    Upsilon_disk = 0.50   ->   log10 a_0 = -9.8981   (a_0 = 1.264e-10)
+    Upsilon_disk = 0.60   ->   log10 a_0 = -9.8747   (a_0 = 1.335e-10)
+    Upsilon_disk = 0.70   ->   log10 a_0 = -9.8555   (a_0 = 1.395e-10)
+    d log a_0 / d log Upsilon = +0.3013      (deep-tail rung: -0.647; KiDS dwarf lens stack: -1.046)
+  [FAIL] Upsilon lever |d log a_0/d log Upsilon| < 0.15   (+0.3013)
+
+  window robustness (fraction of each curve used as the 'outer' window):
+    outer 35% of points  ->  log10 a_0 = -9.8540   (N = 131)
+    outer 50% of points  ->  log10 a_0 = -9.8981   (N = 131)
+    outer 65% of points  ->  log10 a_0 = -9.9551   (N = 131)
+
+  IS THERE INFORMATION BEYOND 'the outer curve is flat'?  (the restatement guard)
+  v^4 = G M_b a_0 predicts sigma = 0 identically.  Compare that null with the law:
+    sigma = 0 (deep-MOND/BTFR limit):        rms 0.2254, median +0.0719
+    Route A shape law, canonical:            rms 0.1656, median -0.0343
+    Newtonian shape law (nu = 1):            rms 0.2533, median +0.2311
+  [PASS] the shape law beats sigma = 0 (so it is NOT the BTFR restated)   (0.1656 vs 0.2254)
+
+  THE FULLY BARYON-FREE FORM: galaxies whose outer window really is point-mass-like (s_bar in [-2.25,-1.75])
+    N = 36;  observed sigma range -0.289 to +0.338;  predicted -0.264 to -0.033
+    rms(obs - pred) = 0.1364;  r = +0.115;  regression 0.317
+    a_0 from this fully baryon-free subsample: 4.301e-10 m/s^2   (log10 -9.3664)
+    d log a_0/d log Upsilon here is EXACTLY 0 -- no baryonic quantity of any kind enters
+  [PASS] baryon-free subsample has >= 8 galaxies   (N=36)
+
+  ANATOMY OF THE RESIDUAL (is it measurement noise, or does the law genuinely fail?)
+    rms residual 0.1656 against a median slope error of 0.0611  ->  chi2/N = 14.6
+    so the residual is 2.7x the formal slope errors: the scatter is REAL, not noise
+    split by baryonic shape slope s_bar (how close the window is to the point-mass regime):
+      s_bar in [-3.00,-1.75)  N= 36  median resid +0.0110  rms 0.1199
+      s_bar in [-1.75,-1.25)  N= 34  median resid -0.0104  rms 0.0967
+      s_bar in [-1.25,-0.75)  N= 25  median resid -0.0589  rms 0.2011
+      s_bar in [-0.75,+0.50)  N= 34  median resid -0.1439  rms 0.1929
+    split by gas fraction (Upsilon matters least where gas dominates):
+      f_gas in [0.0,0.3)   N= 51  median resid +0.0022  rms 0.1303
+      f_gas in [0.3,0.6)   N= 34  median resid -0.0788  rms 0.1267
+      f_gas in [0.6,2.0)   N= 46  median resid -0.1037  rms 0.2051
+
+
+RESULT: 18 checks, 4 FAIL -> ['Route A beats a_0 x 3 in rms', 'law scatter <= 0.10 in d ln v/d ln r', 'regression of observed on predicted within 20% of 1', 'Upsilon lever |d log a_0/d log Upsilon| < 0.15']   rc=1

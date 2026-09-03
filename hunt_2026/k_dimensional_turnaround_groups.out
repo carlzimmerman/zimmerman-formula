@@ -1,0 +1,278 @@
+==============================================================================================================================
+k_dimensional_turnaround_groups -- the Lambda-turnaround weld across SEVEN Local Volume groups
+==============================================================================================================================
+  canonical  a_0 = 9.3600e-11   H_Lam = Z a_0/c = 1.80736e-18 1/s =  55.77 km/s/Mpc   H_Lam t_0 = 0.7869
+  alt        a_0 = 1.1300e-10   H_Lam = Z a_0/c = 2.18196e-18 1/s =  67.33 km/s/Mpc   H_Lam t_0 = 0.9500
+
+------------------------------------------------------------------------------------------------------------------------------
+0.  THE RESTATEMENT TEST, EXECUTED
+------------------------------------------------------------------------------------------------------------------------------
+  Derive R_0 from v^4 = G M_b a_0 plus algebra.
+    The BTFR gives one velocity, v_flat = (G M_b a_0)^(1/4).  The turnaround radius needs a SECOND force -- the
+    cosmological repulsion g_Lam = H_Lam^2 r -- which is not in the BTFR at all, and it needs the collapse
+    history, which fixes x_ta from H_Lam t_0.  Executed check: the two closed forms have DIFFERENT mass
+    exponents, so no algebraic rearrangement of one gives the other.
+      deep-MOND weld  R_A = (G M_b a_0)^(1/4)/H_Lam    -> d log R/d log M_b = 1/4
+      quenched weld   R_0 = x_ta (nu G M_b/H_Lam^2)^(1/3) -> d log R/d log M_b = 1/3
+    A relation derivable from v^4 = G M_b a_0 by algebra alone cannot contain H_Lam, because H_Lam is not a
+    function of (G, M_b, a_0): it is a_0 divided by c, and c does not appear in the BTFR.  DOES NOT CLOSE.
+  => is_restatement = False.
+  [PASS] K0 the restatement test is executed rather than asserted: the candidate's two closed forms have mass exponents 1/4 and 1/3 and both contain c through H_Lam = Z a_0/c, which the BTFR does not contain, so no algebraic rearrangement of v^4 = G M_b a_0 produces either   (BTFR exponent 1/4 on v^4; turnaround exponent 1/3 on a length, and it carries c -- derivation does not close)
+
+------------------------------------------------------------------------------------------------------------------------------
+1.  THE COLLAPSE INTEGRAL -- x_ta from H_Lam t_0 alone, no free parameter
+------------------------------------------------------------------------------------------------------------------------------
+/Users/carlzimmerman/new_physics/zimmerman-formula/hunt_2026/k_dimensional_turnaround_groups.py:95: IntegrationWarning: The maximum number of subdivisions (400) has been achieved.
+  If increasing the limit yields no improvement it is advised to analyze 
+  the integrand in order to determine the difficulties.  If the position of a 
+  local difficulty can be determined (singularity, discontinuity) one will 
+  probably gain from splitting up the interval and calling the integrator 
+  on the subranges.  Perhaps a special-purpose integrator should be used.
+  return quad(integ, 0.0, 1.0, limit=400)[0]
+  canonical  H_Lam t_0 = 0.7869  ->  x_ta (Newtonian-form force law, which is what the external-field-quenched regime gives) = 0.7175
+  alt        H_Lam t_0 = 0.9500  ->  x_ta (Newtonian-form force law, which is what the external-field-quenched regime gives) = 0.7817
+  [PASS] K1 the collapse integral reproduces the exact Newtonian cycloid turnaround time t = pi sqrt(r_ta^3/(8GM)) in the Lambda -> 0 limit -- fails if the quadrature or the energy integral is wrong   (input 1.0e-03, recovered 1.0000e-03)
+
+------------------------------------------------------------------------------------------------------------------------------
+2.  THE DATA, AND THE GROUPS
+------------------------------------------------------------------------------------------------------------------------------
+  869 UNGC galaxies; 314 with TRGB/Cepheid/RR/HB/CMD distances
+
+------------------------------------------------------------------------------------------------------------------------------
+3.  R_0 MEASURED, ONE UNIFORM METHOD FOR ALL SEVEN GROUPS
+------------------------------------------------------------------------------------------------------------------------------
+  For every UNGC galaxy with an accurate distance: r_vec = D_g u_g - D_c u_c, R = |r_vec|, and the
+  group-centric radial velocity is deprojected properly, V_gc = (Vlg_g - Vlg_c)/(rhat . u_g) -- a galaxy in
+  FRONT of the group has rhat . u_g < 0 and its raw velocity difference has the wrong sign.  Galaxies whose
+  geometry makes the deprojection ill-conditioned (|rhat . u_g| < 0.5) are dropped, as are galaxies bound to a
+  DIFFERENT group (Ti1 > 0 with another main disturber).  Fit V_gc = H_loc (R - R_0) over 0.7 < R < 3.5 Mpc.
+  group          N   H_loc    rms  R_0 [Mpc]          [16,84]  R_0(2.5) R_0(mu>.7)  M_b [Msun]  M_vir proj
+  Local Group   34   111.5   41.2      0.906  [  0.78,  1.02]     0.860      0.906   1.093e+11         nan   STABLE
+  MESSIER081    29   102.7  118.7     -0.082  [ -0.73,  0.35]     0.013     -0.340   7.223e+10    9.03e+12   UNSTABLE
+  NGC5128       19     2.4   81.8    -15.723  [ -2.33,  6.06]   -26.974      3.812   6.541e+10    1.34e+13   UNSTABLE
+  NGC5236       18    35.0   71.9      0.528  [ -0.37,  1.16]    -0.321      0.399   7.287e+10    2.12e+12   UNSTABLE
+  NGC4736       21    71.0  128.1      0.299  [ -0.71,  1.13]     3.624      0.303   3.310e+10    6.17e+12   UNSTABLE
+  NGC0253       14    73.3   82.4      0.106  [ -0.67,  0.54]     0.527      0.519   8.960e+10    2.81e+12   UNSTABLE
+  IC0342        16    26.0  128.5      0.933  [ -0.43,  3.63]       nan        nan   1.300e+11    3.30e+12   UNSTABLE
+  [PASS] K3.1 the Local Group's zero-velocity radius, measured by this uniform pipeline, reproduces the published value (Karachentsev+2009, R_0 = 0.96 +- 0.03 Mpc from the same catalogue by the same method) -- fails if the barycentre, the deprojection or the velocity frame is wrong   (R_0(LG) = 0.906 Mpc against a published 0.96 +- 0.03)
+  [FAIL] K3.2 THE CHECK THAT DECIDES WHETHER THE CANDIDATE CAN BE TESTED AT ALL, and it fails: R_0 must be stable against the analysis choices (outer radius cut 3.5 -> 2.5 Mpc, geometry cut |rhat.u| > 0.5 -> 0.7) to within its own bootstrap error.  It is not, for any group but the one we sit inside   (1 of 7 groups return a stable R_0: Local Group)
+
+  WHY, quantified rather than asserted -- an end-to-end Monte Carlo of the measurement itself.
+  For the Local Group we sit AT the centre, so R is one galaxy's own distance.  For an external group R is a
+  DIFFERENCE of two distances of comparable size, and a 5% TRGB error on each becomes an absolute error that
+  is a large fraction of R_0 itself.  Inject a known flow around each group's real sky sample and recover it:
+    group         D_centre  sigma(R) [Mpc]     rms_V   recovered (R_0,true=1)  dex scatter
+    Local Group       0.42           0.116      41.2     0.97 [  0.82,  1.09]        0.065
+    MESSIER081        3.63           0.321     118.7     0.95 [  0.62,  1.20]        0.186
+    NGC5128           3.75           0.324      81.8     1.08 [ -0.37,  1.97]        0.357
+    NGC5236           4.92           0.399      71.9     0.98 [  0.17,  1.53]        0.306
+    NGC4736           4.66           0.403     128.1     0.83 [ -0.65,  1.39]        0.285
+    NGC0253           3.94           0.358      82.4     0.95 [  0.43,  1.31]        0.258
+    IC0342            3.28           0.323     128.5     1.23 [ -1.18,  2.25]        0.360
+  [FAIL] K3.3 the Monte Carlo asks the decisive question directly: injecting a KNOWN R_0 into each group's own sampling, with its own measured velocity scatter, its own fitted flow rate and its own distance-error geometry, can R_0 be recovered to the 0.1 dex the Kepler criterion asks?  This check fails if it cannot -- for any system, the Local Group included   (recovery scatter: Local Group 0.066 dex; external groups 0.219-0.369 dex (bar = 0.100))
+
+  the same Monte Carlo with the velocity scatter forced to the Local Group's 41 km/s, distances unchanged:
+    MESSIER081   recovered 0.96 [0.86,1.06], scatter 0.049 dex  -- so the distances alone would suffice; the flow does not.
+    NGC5128      recovered 0.99 [0.14,1.47], scatter 0.288 dex  -- so the distances alone would suffice; the flow does not.
+
+  READ BACKWARD: the Local Volume flow around external groups would have to be measured to about 41 km/s rms, as it is around us, before R_0 could be read to 0.1 dex.  The observed 102 km/s is what a filamentary Local Sheet, unknown group peculiar velocities and
+  contamination from neighbouring groups produce, and none of it is a sample-size problem.
+
+------------------------------------------------------------------------------------------------------------------------------
+4.  THE EXTERNAL FIELD, AND WHY THE TURNAROUND RADIUS ALWAYS SITS INSIDE IT
+------------------------------------------------------------------------------------------------------------------------------
+  2M++ Newtonian external field e_N over 175 lines of sight: no-cluster median 3.823e-04, max-cluster median 3.270e-03
+  nu(e_N) = 51.65 (no-cluster) to 17.99 (max-cluster) -- a factor 2.87, i.e. 0.153 dex on R_0
+  evaluated at the PREDICTED R_0 rather than the noisy measured one, so the diagnosis does not inherit the
+  measurement failure of section 3:
+    Local Group  predicted R_0 = 1.42 Mpc; own NEWTONIAN field there = 8.04e-05 a_0, against an external 3.82e-04 to 3.27e-03 a_0  ->  ratio 0.210
+    MESSIER081   predicted R_0 = 1.24 Mpc; own NEWTONIAN field there = 7.00e-05 a_0, against an external 3.82e-04 to 3.27e-03 a_0  ->  ratio 0.183
+    NGC5128      predicted R_0 = 1.20 Mpc; own NEWTONIAN field there = 6.77e-05 a_0, against an external 3.82e-04 to 3.27e-03 a_0  ->  ratio 0.177
+    NGC5236      predicted R_0 = 1.24 Mpc; own NEWTONIAN field there = 7.02e-05 a_0, against an external 3.82e-04 to 3.27e-03 a_0  ->  ratio 0.184
+    NGC4736      predicted R_0 = 0.96 Mpc; own NEWTONIAN field there = 5.40e-05 a_0, against an external 3.82e-04 to 3.27e-03 a_0  ->  ratio 0.141
+    NGC0253      predicted R_0 = 1.33 Mpc; own NEWTONIAN field there = 7.52e-05 a_0, against an external 3.82e-04 to 3.27e-03 a_0  ->  ratio 0.197
+    IC0342       predicted R_0 = 1.51 Mpc; own NEWTONIAN field there = 8.51e-05 a_0, against an external 3.82e-04 to 3.27e-03 a_0  ->  ratio 0.223
+  [PASS] K4 the regime is identified rather than assumed, and it is against the candidate's sharpness: at every group's zero-velocity radius the system's OWN Newtonian field is far below the external field of large-scale structure, so the framework there is quasi-Newtonian with G -> nu(e_N) G and the predicted coefficient is a BRACKET set by an estimated e_N, not a predicted number   (every group: g_N,internal(R_0,predicted) < e_N a_0 (no-cluster), so the deep-MOND weld never applies)
+
+------------------------------------------------------------------------------------------------------------------------------
+5.  THE LAW, TESTED ON THE SYSTEMS WHOSE R_0 SURVIVES THE STABILITY CRITERION
+------------------------------------------------------------------------------------------------------------------------------
+  systems used: 5 of 7  (Local Group, NGC5236, NGC4736, NGC0253, IC0342)
+  NOTE: fewer than three groups passed the stability criterion, so the table below is shown for every
+  group with a positive R_0 ONLY to expose how badly the unstable radii scatter.  It is NOT a
+  measurement of the law, and the scatter quoted below is a measurement error, not a physical one.
+
+  FRAMEWORK, nu(e_N) at the 2M++ no-cluster median  [canonical footing, x_ta = 0.7175]
+    group         M_b [Msun]   R_0 obs  R_0 pred     dex    M_T/M_b obs
+    Local Group    1.093e+11     0.906     1.423  -0.196          13.32
+    NGC5236        7.287e+10     0.528     1.243  -0.372           3.96
+    NGC4736        3.310e+10     0.299     0.956  -0.504           1.59
+    NGC0253        8.960e+10     0.106     1.332  -1.099           0.03
+    IC0342         1.300e+11     0.933     1.508  -0.209          12.23
+    mean offset -0.476 dex,  scatter 0.371 dex  (RAR-class needs <= 0.100)
+
+  FRAMEWORK, nu(e_N) at the 2M++ max-cluster median  [canonical footing, x_ta = 0.7175]
+    group         M_b [Msun]   R_0 obs  R_0 pred     dex    M_T/M_b obs
+    Local Group    1.093e+11     0.906     1.001  -0.044          13.32
+    NGC5236        7.287e+10     0.528     0.875  -0.219           3.96
+    NGC4736        3.310e+10     0.299     0.673  -0.351           1.59
+    NGC0253        8.960e+10     0.106     0.937  -0.946           0.03
+    IC0342         1.300e+11     0.933     1.061  -0.056          12.23
+    mean offset -0.323 dex,  scatter 0.371 dex  (RAR-class needs <= 0.100)
+
+  NEWTON, baryons only, no boost (boost = 1)  [canonical footing, x_ta = 0.7175]
+    group         M_b [Msun]   R_0 obs  R_0 pred     dex    M_T/M_b obs
+    Local Group    1.093e+11     0.906     0.382  +0.375          13.32
+    NGC5236        7.287e+10     0.528     0.334  +0.199           3.96
+    NGC4736        3.310e+10     0.299     0.257  +0.067           1.59
+    NGC0253        8.960e+10     0.106     0.358  -0.528           0.03
+    IC0342         1.300e+11     0.933     0.405  +0.362          12.23
+    mean offset +0.095 dex,  scatter 0.371 dex  (RAR-class needs <= 0.100)
+
+  LambdaCDM, baryons scaled to the cosmic baryon fraction (boost = 1/f_b)  [canonical footing, x_ta = 0.7175]
+    group         M_b [Msun]   R_0 obs  R_0 pred     dex    M_T/M_b obs
+    Local Group    1.093e+11     0.906     0.709  +0.106          13.32
+    NGC5236        7.287e+10     0.528     0.620  -0.069           3.96
+    NGC4736        3.310e+10     0.299     0.476  -0.202           1.59
+    NGC0253        8.960e+10     0.106     0.664  -0.796           0.03
+    IC0342         1.300e+11     0.933     0.751  +0.094          12.23
+    mean offset -0.173 dex,  scatter 0.371 dex  (RAR-class needs <= 0.100)
+
+  FRAMEWORK, nu(e_N) at the 2M++ no-cluster median  [alt footing, x_ta = 0.7817]
+    group         M_b [Msun]   R_0 obs  R_0 pred     dex    M_T/M_b obs
+    Local Group    1.093e+11     0.906     1.368  -0.179          15.01
+    NGC5236        7.287e+10     0.528     1.195  -0.354           4.47
+    NGC4736        3.310e+10     0.299     0.918  -0.487           1.79
+    NGC0253        8.960e+10     0.106     1.280  -1.082           0.03
+    IC0342         1.300e+11     0.933     1.449  -0.191          13.78
+    mean offset -0.459 dex,  scatter 0.371 dex  (RAR-class needs <= 0.100)
+
+  FRAMEWORK, nu(e_N) at the 2M++ max-cluster median  [alt footing, x_ta = 0.7817]
+    group         M_b [Msun]   R_0 obs  R_0 pred     dex    M_T/M_b obs
+    Local Group    1.093e+11     0.906     0.962  -0.026          15.01
+    NGC5236        7.287e+10     0.528     0.841  -0.202           4.47
+    NGC4736        3.310e+10     0.299     0.646  -0.334           1.79
+    NGC0253        8.960e+10     0.106     0.901  -0.929           0.03
+    IC0342         1.300e+11     0.933     1.020  -0.039          13.78
+    mean offset -0.306 dex,  scatter 0.371 dex  (RAR-class needs <= 0.100)
+
+  NEWTON, baryons only, no boost (boost = 1)  [alt footing, x_ta = 0.7817]
+    group         M_b [Msun]   R_0 obs  R_0 pred     dex    M_T/M_b obs
+    Local Group    1.093e+11     0.906     0.367  +0.392          15.01
+    NGC5236        7.287e+10     0.528     0.321  +0.217           4.47
+    NGC4736        3.310e+10     0.299     0.247  +0.084           1.79
+    NGC0253        8.960e+10     0.106     0.344  -0.511           0.03
+    IC0342         1.300e+11     0.933     0.389  +0.380          13.78
+    mean offset +0.112 dex,  scatter 0.371 dex  (RAR-class needs <= 0.100)
+
+  LambdaCDM, baryons scaled to the cosmic baryon fraction (boost = 1/f_b)  [alt footing, x_ta = 0.7817]
+    group         M_b [Msun]   R_0 obs  R_0 pred     dex    M_T/M_b obs
+    Local Group    1.093e+11     0.906     0.681  +0.124          15.01
+    NGC5236        7.287e+10     0.528     0.595  -0.052           4.47
+    NGC4736        3.310e+10     0.299     0.458  -0.184           1.79
+    NGC0253        8.960e+10     0.106     0.638  -0.779           0.03
+    IC0342         1.300e+11     0.933     0.722  +0.111          13.78
+    mean offset -0.156 dex,  scatter 0.371 dex  (RAR-class needs <= 0.100)
+  [FAIL] K5.1 THE CANDIDATE'S OWN CRITERION (3): the relation must hold across the systems with RAR-class scatter, <= 0.1 dex.  This check fails if the scatter is larger   (scatter 0.371 dex across 7 groups (mean offset -0.476 dex))
+  [FAIL] K5.2 the framework must beat the two alternatives computed beside it, or the agreement is not evidence for it.  Fails if bare Newtonian baryons or the cosmic-baryon-fraction scaling centre the residuals better   (mean |offset| dex: framework 0.476, Newton 0.095, LambdaCDM 0.173)
+
+  THE SCALING TEST (independent of any boost, because a constant boost cannot change the SLOPE):
+    measured d log R_0 / d log M_b = +0.662 +- 1.293 against the predicted 1/3 = +0.333, residual scatter 0.363 dex
+  [PASS] K5.3 the mass scaling is the part of the candidate that carries NO external-field freedom, since a common boost shifts the intercept and not the slope: the measured exponent must be 1/3.  Fails if it is not   (slope +0.662 +- 1.293, 0.3 sigma from 1/3)
+
+  READ BACKWARD (canonical): the boost each group's turnaround radius requires, M_T/M_b:
+    Local=13.3  NGC5236=4.0  NGC4736=1.6  NGC0253=0.0  IC0342=12.2
+    geometric mean 1.9, spread 1.112 dex; framework predicts nu(e_N) = 51.6 to 18.0, LambdaCDM 1/f_b = 6.4, Newton 1.0
+
+  READ BACKWARD (alt): the boost each group's turnaround radius requires, M_T/M_b:
+    Local=15.0  NGC5236=4.5  NGC4736=1.8  NGC0253=0.0  IC0342=13.8
+    geometric mean 2.2, spread 1.112 dex; framework predicts nu(e_N) = 51.6 to 18.0, LambdaCDM 1/f_b = 6.4, Newton 1.0
+
+  THE LOCAL GROUP'S OWN EXTERNAL FIELD, measured rather than modelled -- the branch k02 used:
+    canonical  g_ext(LG) = 3.835e-12 m/s^2 = 0.0410 a_0  ->  e_N = 1.613e-03, nu = 25.4;  R_0 pred = 1.124 Mpc vs measured 0.906  (-0.094 dex)
+    alt        g_ext(LG) = 3.835e-12 m/s^2 = 0.0339 a_0  ->  e_N = 1.114e-03, nu = 30.5;  R_0 pred = 1.147 Mpc vs measured 0.906  (-0.102 dex)
+    This is the framework's best case: the ONE system whose external field is measured from its own CMB-frame
+    motion, and it lands within 0.1 dex.  It is also ONE system, which is what stops it being a law.
+
+------------------------------------------------------------------------------------------------------------------------------
+6.  MUTATION CONTROLS
+------------------------------------------------------------------------------------------------------------------------------
+
+  MUTATION: kernel off (nu = 1) -- must break the agreement  [canonical footing, x_ta = 0.7175]
+    group         M_b [Msun]   R_0 obs  R_0 pred     dex    M_T/M_b obs
+    Local Group    1.093e+11     0.906     0.382  +0.375          13.32
+    NGC5236        7.287e+10     0.528     0.334  +0.199           3.96
+    NGC4736        3.310e+10     0.299     0.257  +0.067           1.59
+    NGC0253        8.960e+10     0.106     0.358  -0.528           0.03
+    IC0342         1.300e+11     0.933     0.405  +0.362          12.23
+    mean offset +0.095 dex,  scatter 0.371 dex  (RAR-class needs <= 0.100)
+  [PASS] K6.1 mutation: with the kernel switched off the prediction is wrong by the boost itself, so the agreement is carried by nu(e_N) and not by the geometry   (mean offset moves -0.476 -> +0.095 dex)
+
+  the SENSITIVITY of the prediction to the first law, computed as a derivative rather than assumed:
+    d log R_0,pred / d log a_0 = -0.182, NOT the naive -2/3.  Raising a_0 raises H_Lam, which shrinks
+    the length scale (G M/H_Lam^2)^(1/3) as a_0^(-2/3), but it also raises H_Lam t_0, which pushes the
+    turnaround shell x_ta OUTWARD (x_ta = 0.7175 -> 0.9219 at a_0 x 2).  The two effects
+    largely cancel, so the turnaround radius is a WEAK probe of a_0 -- against the candidate's interest.
+  [FAIL] K6.2 mutation, restated around what it actually measures: for the candidate to be a test OF a_0, the prediction must be sensitive to a_0.  This check fails if |d log R_0/d log a_0| is far below the naive 2/3, because then a_0 barely appears in the relation at all   (d log R_0,pred/d log a_0 = -0.182 against a naive -0.667; a_0 x 2 moves the mean offset only -0.476 -> -0.384 dex)
+  [FAIL] K6.3 mutation: scramble the pairing between each group's radius and its mass.  If the scatter does not grow, the 'law' is only saying that all Local Volume groups are about the same size (bug pattern 5)   (scatter 0.371 dex correctly paired vs 0.324 dex scrambled)
+
+------------------------------------------------------------------------------------------------------------------------------
+7.  WHAT THE CANDIDATE COSTS: the error budget on the coefficient
+------------------------------------------------------------------------------------------------------------------------------
+    external field nu(e_N), no-cluster vs max-cluster : 0.153 dex on R_0
+    footing, a_0 canonical vs alt (enters as H_Lam^-2/3): 0.055 dex
+    Upsilon_K to 25%                                   : 0.028 dex
+    R_0 measurement, mean bootstrap width              : 1.353 dex
+    => the systematic floor on the COEFFICIENT alone is 0.164 dex, which already exceeds the 0.100 dex the criterion asks of the whole relation.
+
+------------------------------------------------------------------------------------------------------------------------------
+8.  THE UPSILON LEVER, MEASURED BY RE-RUNNING AT UPSILON_K x 1.5
+------------------------------------------------------------------------------------------------------------------------------
+    stellar share of M_b, mean over the seven groups: 0.891
+    mean residual -0.4759 -> -0.5292 dex at Upsilon_K x 1.5
+    d log(R_0,obs/R_0,pred)/d log Upsilon = -0.3027   (expected -(1/3) x stellar share = -0.2971)
+    scatter 0.371 -> 0.374 dex (a common Upsilon cannot change the scatter much, only the offset)
+  [PASS] K8 the Upsilon lever is measured by re-running the pipeline, not argued: it is the predicted -(1/3) x stellar share, so a 25% error in the stellar mass-to-light ratio moves the coefficient by only 0.029 dex -- this candidate is NOT an Upsilon measurement in disguise   (measured -0.3027 against the predicted -0.2971)
+
+==============================================================================================================================
+VERDICT
+==============================================================================================================================
+  CANDIDATE 3 -- the Lambda-turnaround weld, R_0 = x_ta [nu(e_N) G M_b/H_Lam^2]^(1/3), taken from the one
+  system k02 ran it on to every Local Volume group with enough accurate distances.
+
+  NOT A RESTATEMENT (section 0): the BTFR contains no H_Lam and no collapse history, and the mass exponents
+  differ (1/4 against 1/3).  is_restatement = False.
+
+  IT CANNOT BE TESTED AS A LAW ON PRESENT DATA, and that is the result.  Of 7 groups, 1 returns a zero-velocity
+  radius that survives the stability criterion -- the Local Group, the one we sit inside.  Every external group's
+  R_0 moves by more than its own bootstrap error when the outer radius cut or the geometry cut is changed, and
+  two of the seven return a negative R_0 (no zero crossing at all).  The end-to-end Monte Carlo names the
+  culprit: injecting a known R_0 = 1 Mpc into each group's own sampling recovers it to 0.066 dex around the Local
+  Group and to 0.219-0.369 dex around the others, and forcing the external groups' velocity scatter down to the
+  Local Group's 41 km/s repairs it.  It is the FLOW, not the distances and not the sample size: 41 km/s rms
+  around us against 102 km/s around groups at 3-5 Mpc, which is what a filamentary Local Sheet,
+  unknown group peculiar velocities and contamination from neighbouring groups produce.
+
+  THREE FURTHER THINGS AGAINST IT, each independent of the measurement failure.
+  (1) THE COEFFICIENT IS NOT PREDICTED.  At every group's predicted turnaround radius the system's own Newtonian
+      field is 0.14-0.22 of the external field of large-scale structure, so the regime is
+      quasi-Newtonian with G -> nu(e_N) G and nu(e_N) is an ESTIMATE spanning 18 to 52 -- 0.153 dex on R_0
+      before any measurement error.  That fails criterion (2) outright.
+  (2) a_0 BARELY APPEARS.  d log R_0/d log a_0 = -0.182, not the naive -2/3, because raising a_0 shrinks the
+      length scale and pushes the turnaround shell outward at the same time and the two nearly cancel.
+  (3) THE SCRAMBLING CONTROL FIRES.  Pairing each group's radius with another group's mass does not increase the
+      scatter (0.371 dex paired against 0.324 dex scrambled), so on these data the relation is not detecting the
+      mass dependence at all -- bug pattern 5, caught by its own control.
+
+  WHAT SURVIVES.  For the Local Group alone -- the only system with both a stable R_0 and an external field
+  measured rather than modelled, from its own 620 km/s CMB-frame motion -- the framework predicts R_0 within
+  0.1 dex with no dark matter, which reproduces k02 and is worth exactly what one system is worth.  Its measured
+  turnaround mass is M_T/M_b = 13.3; bare Newtonian baryons (1.0) are excluded, LambdaCDM's 1/f_b = 6.4 is
+  0.32 dex away, and the framework's nu(e_N) bracket (18-52 at the 2M++ fields, 25 at the
+  Local Group's own measured field) brackets it.  A consistency on one system, not a law.
+
+  VERDICT: NOT a second Kepler-grade law.  Fails criterion (2) (the coefficient is a bracket, not a prediction),
+  criterion (3) (the relation cannot be measured to 0.1 dex on any external system), and is one system short of
+  being testable at all.
+
+RESULT: 13 checks, 6 FAIL -> ['K3.2 THE CHECK THAT DECIDES WHETHER THE CANDIDATE CAN BE TESTED AT ALL, and it fails: R_0 must be stable against the analysis choices (outer radius cut 3.5 -> 2.5 Mpc, geometry cut |rhat.u| > 0.5 -> 0.7) to within its own bootstrap error.  It is not, for any group but the one we sit inside', "K3.3 the Monte Carlo asks the decisive question directly: injecting a KNOWN R_0 into each group's own sampling, with its own measured velocity scatter, its own fitted flow rate and its own distance-error geometry, can R_0 be recovered to the 0.1 dex the Kepler criterion asks?  This check fails if it cannot -- for any system, the Local Group included", "K5.1 THE CANDIDATE'S OWN CRITERION (3): the relation must hold across the systems with RAR-class scatter, <= 0.1 dex.  This check fails if the scatter is larger", 'K5.2 the framework must beat the two alternatives computed beside it, or the agreement is not evidence for it.  Fails if bare Newtonian baryons or the cosmic-baryon-fraction scaling centre the residuals better', 'K6.2 mutation, restated around what it actually measures: for the candidate to be a test OF a_0, the prediction must be sensitive to a_0.  This check fails if |d log R_0/d log a_0| is far below the naive 2/3, because then a_0 barely appears in the relation at all', "K6.3 mutation: scramble the pairing between each group's radius and its mass.  If the scatter does not grow, the 'law' is only saying that all Local Volume groups are about the same size (bug pattern 5)"]   rc=1

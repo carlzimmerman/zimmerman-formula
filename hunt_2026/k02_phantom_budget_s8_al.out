@@ -1,0 +1,139 @@
+======================================================================================================================
+k02 -- the framework's own dark matter: Omega_phantom, added up over the universe, and what it does to the
+       S8 tension and to Planck's lensing amplitude A_L
+======================================================================================================================
+  a_0 footings: canonical 9.360e-11, alt 1.130e-10 m/s^2
+  Planck-anchored budget: Omega_b = 0.0492, Omega_dm = 0.2642, Omega_m = 0.3134 (h = 0.674)
+  baryons IN GALAXIES: Omega_* = 0.00186 (Driver+2022), Omega_gas = 0.00069 (Jones+2018 HI + H2, x1.33 for helium) -> Omega_bar,gal = 0.00255
+  [PASS] 0a sanity: the baryons locked into galaxies are a small minority of all baryons, which is the well-known missing-baryon accounting and is what makes the phantom budget small before any a_0 enters   (Omega_bar,gal/Omega_b = 0.052 (5% of all baryons; the literature range is 7-10%))
+
+======================================================================================================================
+PART 1 -- the closed form, and a cross-check against the committed item-84 script
+======================================================================================================================
+       e_N   nu(e_N)   M_ph/M_b  r_EFE/r_M   r_EFE [kpc] for M_b = 1e10
+     0.003     18.76      17.76      18.26                         70.5
+     0.010     10.51       9.51      10.00                         38.6
+     0.030      6.29       5.29       5.77                         22.3
+     0.100      3.69       2.69       3.16                         12.2
+  [PASS] 1a CROSS-CHECK against the committed h84_eg_1to5Mpc.py, which tabulated the same two quantities independently: at e_N = 0.01 it printed nu = 10.51 and r_EFE = 38.6 kpc for a 10^10 Msun galaxy   (here nu(0.01) = 10.51, r_EFE = 38.6 kpc)
+  [PASS] 1b the phantom SATURATES -- this is the whole reason the budget is finite.  Beyond r_EFE the dynamics are quasi-Newtonian with G_eff = G nu(e_N), so the enclosed dynamical mass stops growing.  Without the external field the phantom would grow as r forever and no cosmic budget would exist at all   (an isolated galaxy at e_N = 1e-6 would carry 1000 times its baryonic mass; at the real e_N ~ 0.01 it carries 9.5)
+
+======================================================================================================================
+PART 2 -- the external field, MEASURED: 175 reconstructed g_ext values for the SPARC galaxies
+======================================================================================================================
+  loaded 175 reconstructed external-field vectors (2M++-based estimator, committed at gext_vectors_2026/); the file stores e_N against a_0 = 1.20e-10, so g_ext is recovered and re-divided by each footing here
+     g_ext without cluster attribution: median 4.587e-14 m/s^2 (10-90% 1.89e-14 - 8.51e-14)
+     g_ext with maximal cluster attribution: median 3.924e-13 m/s^2 (10-90% 1.69e-13 - 6.99e-13)
+  [PASS] 2a the two brackets differ by nearly an order of magnitude in the field, so they are carried separately everywhere below rather than averaged   (median ratio 8.6)
+     matched 175 of 175 to SPARC photometry; correlation of log(M_ph/M_b) with log M_b = -0.014
+     <M_ph/M_b>: unweighted 48.42 / mass-weighted 47.61 (no cluster); 16.08 / 15.57 (max cluster)
+  [PASS] 2b BUG-PATTERN CHECK, and it did NOT bite: a cosmic budget is a mass-weighted quantity and computing it with a galaxy-weighted mean would be wrong.  In this sample the boost is uncorrelated with baryonic mass, so the two weightings agree; the mass-weighted one is used regardless   (correlation of log(M_ph/M_b) with log M_b = -0.014; mass weighting moves <M_ph/M_b> by -1.7% (no cluster), -3.2% (max cluster))
+
+======================================================================================================================
+PART 3 -- Omega_phantom, both footings, both brackets
+======================================================================================================================
+     footing      bracket   <M_ph/M_b>   Omega_ph  /Omega_dm  /Omega_m
+   canonical   no cluster        47.61     0.1216      0.460     0.388
+   canonical  max cluster        15.57     0.0398      0.151     0.127
+         alt   no cluster        52.36     0.1337      0.506     0.427
+         alt  max cluster        17.15     0.0438      0.166     0.140
+  [PASS] 3a THE ANSWER: the framework's phantom is a real but MINORITY component of the dark matter -- it does not close the budget and it does not over-close it either.  Both statements matter: if it were >= Omega_dm the framework would double-count and over-lens; if it were negligible it could not be relevant to any lensing anomaly   (Omega_phantom = 0.0398 to 0.1337 across both footings and both external-field brackets, i.e. 15-51% of Omega_dm and 13-43% of Omega_m)
+  [PASS] 3b AGAINST MY OWN EXPECTATION, THE NUMBER IS BIG.  I expected a per-cent-level budget; the measured external fields are weaker than the 0.01-0.03 the MOND literature usually assumes, and nu goes as e_N^(-1/2), so at the weakest bracket the phantom reaches half the dark-matter density.  It still does not EQUAL it -- there is no order-unity coincidence to be tempted by -- but it is nowhere near negligible   (Omega_dm/Omega_phantom = 2.0 (weakest field, alt footing) to 6.6 (strongest field, canonical); median measured e_N = 4.9e-04 (no cluster) to 4.2e-03 (max cluster), against the 0.01-0.03 usually assumed)
+
+======================================================================================================================
+PART 4 -- where that mass lives, which is what decides whether any lensing statistic can see it
+======================================================================================================================
+    M_b [Msun]  r_M [kpc]     r_EFE [kpc] (no clu / max clu)  r_EFE [Mpc] max
+         1e+09        1.2               55 /             19            0.055
+         1e+10        3.9              174 /             60            0.174
+         1e+11       12.2              551 /            188            0.551
+         3e+11       21.1              955 /            326            0.955
+  [PASS] 4a the phantom is a SMALL-SCALE component: even the most massive discs carry it out to at most a few hundred kiloparsecs, so it lives entirely in the one-halo regime   (largest r_EFE in the table = 0.95 Mpc (a 3e11 Msun disc in the weakest measured field))
+  [PASS] 4b and that fixes the wavenumbers at which it can appear at all.  CMB lensing peaks near L ~ 40, which is sourced by k ~ 0.01-0.1 h/Mpc at z ~ 2; cosmic-shear S8 is measured at k ~ 0.1-1.  The phantom starts at k > 2pi/r_EFE, far above both   (the phantom only contributes above k ~ 7 h/Mpc, against k ~ 0.03 (CMB lensing) and k ~ 0.1-1 (S8))
+
+  THE SHARPEST USE OF THE SAME CLOSED FORM, and it is a test rather than a budget: for a single galaxy the
+  framework PREDICTS the total dynamical mass, M_dyn = nu(g_ext/a_0) M_bar, with nothing fitted.  For an L*
+  disc that number can be compared with the halo mass the stellar-to-halo-mass relation measures.
+       bracket    footing   nu(e_N)   M_dyn predicted   M_h measured (SHMR)   ratio
+    no cluster  canonical      45.7          2.74e+12              1.50e+12    1.83
+    no cluster        alt      50.1          3.01e+12              1.50e+12    2.01
+   max cluster  canonical      16.0          9.57e+11              1.50e+12    0.64
+   max cluster        alt      17.5          1.05e+12              1.50e+12    0.70
+  [PASS] 4c AND THE MEASURED HALO MASS OF AN L* GALAXY SITS INSIDE THE TWO BRACKETS -- which is a real, if blunt, pass for a zero-parameter prediction, and simultaneously says that the external field, not a_0, is what needs measuring next   (M_dyn(predicted)/M_h(measured) = 0.64 (strongest field) to 2.01 (weakest field); the measurement is bracketed, and pinning g_ext to 0.3 dex would turn this into a test)
+
+======================================================================================================================
+PART 5 -- the two anomalies, answered with numbers rather than with adjectives
+======================================================================================================================
+     Planck 2018 lensing amplitude A_L = 1.180 +- 0.065 (TT,TE,EE+lowE), i.e. an 18% excess to explain.
+     The ABSOLUTE UPPER BOUND the framework can supply is the whole phantom treated as if it lensed the CMB
+     as efficiently as smooth matter: delta A_L <= 2 x Omega_ph/Omega_m = 0.853.
+     The real number is far smaller, because A_L is sourced at k ~ 0.03 h/Mpc where the phantom is absent.
+  [PASS] 5a REPORTED AGAINST MY OWN FIRST DRAFT: the crude MASS bound does NOT dispose of the A_L anomaly -- the phantom carries enough mass in principle.  What disposes of it is the SCALE, and only the scale: the CMB lensing power at L ~ 40 is sourced near k ~ 0.03 h/Mpc, while the phantom lives above k ~ 7 h/Mpc, more than two decades away, where the CMB lensing kernel has essentially no weight.  A proper calculation is a halo-model integral this script does not do, and saying so is part of the result   (mass bound delta A_L <= 0.85 (larger than the 0.18 excess, so uninformative); scale separation k_phantom/k_A_L = 219, which is what actually settles it)
+  
+     S8: weak lensing measures S8 ~ 0.76, the CMB predicts 0.83 -- lensing sees LESS structure than expected.
+     The framework ADDS mass (43% of Omega_m at most, on sub-Mpc scales), so it moves the
+     lensing amplitude UP.  Its sign is therefore wrong for the S8 tension: it makes it worse, not better.
+  [PASS] 5b THE S8 TENSION IS THE WRONG SIGN FOR THE FRAMEWORK, and that is a liability rather than a hit.  The phantom is extra mass on top of a dark sector the CMB has already fixed, so any lensing statistic it touches moves AWAY from the low weak-lensing amplitude   (the framework adds up to 42.7% to Omega_m as seen by small-scale lensing, and the S8 tension needs a REDUCTION of about 8% in the amplitude)
+  
+     The one place the number is useful is the framework's OWN double-counting fork (items 84, 73): if the
+     dark sector also virialises into halos, the framework has Omega_dm halos PLUS this phantom on top.
+     The phantom alone is 51% of Omega_dm, so that branch over-predicts small-scale
+     galaxy-galaxy lensing by that much -- a testable, non-negligible cost of the virialising branch.
+
+======================================================================================================================
+PART 6 -- mutation control and the Upsilon lever, computed rather than asserted
+======================================================================================================================
+  [PASS] 6a MUTATION: with a_0 driven to zero, e_N = g_ext/a_0 diverges, the kernel becomes the identity and the phantom must vanish exactly.  (The first version of this check divided by a HUGE a_0 instead of a tiny one and drove nu the wrong way -- it returned 2.6e3 rather than 0, and the check caught it.)   (Omega_phantom(a_0 -> 0) = 0.000e+00)
+  [PASS] 6b THE UPSILON LEVER, and it is large: the stellar mass density is an SED-fitted quantity, so three quarters of Omega_bar,gal moves with the assumed stellar mass-to-light ratio.  The phantom fraction nu(e_N) - 1 does NOT move with Upsilon, so the whole lever comes through the baryon budget   (d log Omega_phantom / d log Upsilon = +0.729 (Omega_* is 73% of the galactic baryons); a 0.1 dex error in Upsilon is 0.073 dex in Omega_phantom)
+  [PASS] 6c AND THE BIGGER LEVER IS THE EXTERNAL FIELD, not Upsilon: halving or doubling g_ext moves the budget by more, because nu goes as e_N^(-1/2) in the deep regime.  That is why both brackets are carried   (d log Omega_phantom / d log g_ext = -0.506 (deep-MOND value -1/2))
+
+======================================================================================================================
+VERDICT -- k02
+======================================================================================================================
+
+  THE NUMBER, AND IT IS BIGGER THAN I EXPECTED.  Adding up the framework's own phantom over the whole galaxy
+  population, with a_0 from Planck's rho_Lambda and the external field taken from the committed 2M++
+  reconstruction rather than assumed:
+
+      Omega_phantom = 0.0398 to 0.1337   (15-51% of Omega_dm,
+                                             13-43% of Omega_m)
+
+  spanning both footings and both external-field brackets.  The spread is the external field, not a_0: the
+  measured median e_N is 4.9e-04 to
+  4.2e-03, well BELOW the 0.01-0.03 the MOND literature usually assumes,
+  and nu goes as e_N^(-1/2).  All of it sits inside r_EFE = r_M/sqrt(e_N), at most 0.95 Mpc.
+
+  IT IS NOT THE DARK MATTER, and there is no order-unity coincidence to be tempted by: Omega_dm is
+  2.0 to 6.6 times larger.  But at the weak-field end it is HALF of it, which is far
+  from negligible and is a number the ledger did not have.
+
+  THE TWO ANOMALIES.  Neither is the framework's.
+    * A_L: the mass bound is uninformative (the phantom has enough mass in principle).  What settles it is the
+      SCALE: the phantom starts above k ~ 7 h/Mpc while Planck's lensing amplitude is sourced near
+      k ~ 0.03, a factor 219 away.  A halo-model integral would put a number on the residual; this
+      script does not do one, and that limitation is stated rather than hidden.
+    * S8: the framework's sign is WRONG.  It adds lensing mass on sub-Mpc scales where the tension needs about
+      8% LESS amplitude.  A liability, not a hit.
+
+  WHAT THE CALCULATION IS ACTUALLY GOOD FOR -- two things, and both are new.
+    (1) IT PRICES THE FRAMEWORK'S OWN FORK.  If the dark sector virialises into halos, the framework carries
+        LambdaCDM's one-halo term AND this phantom on top: an over-prediction of small-scale galaxy-galaxy
+        lensing by 15-51% of the dark-matter mass.  That is a measurable
+        cost of the virialising branch and the first number attached to it.
+    (2) IT TURNS INTO A SINGLE-GALAXY TEST.  M_dyn = nu(g_ext/a_0) M_bar predicts the TOTAL mass of an L* disc
+        with nothing fitted, and the measured halo mass sits INSIDE the two external-field brackets
+        (predicted/measured = 0.64 to 2.01).  Pinning g_ext to 0.3 dex --
+        which a better reconstruction can do -- converts this into a real test of a_0 at 10^12 Msun, on a
+        quantity (a galaxy's total mass) that no rotation curve reaches.
+
+  LEVERS, NUMERICALLY.  d log Omega_phantom/d log Upsilon = +0.729, through Omega_*, which is
+  73% of the galactic baryons.  d log Omega_phantom/d log g_ext =
+  -0.506.  The external field dominates, and the
+  brackets span 0.9 dex in it -- so this candidate is an EXTERNAL-FIELD measurement wearing a_0's clothes until
+  someone measures g_ext better, which is the same failure mode the hunt has hit before with Upsilon.
+
+  CAVEAT THAT WOULD LOWER IT.  The 175 external fields are SPARC's -- nearby, comparatively isolated.  The cosmic
+  mass-weighted environment is denser, so the true Omega_phantom is nearer the 'max cluster' end.
+
+
+RESULT: 15 checks, 0 FAIL   rc=0

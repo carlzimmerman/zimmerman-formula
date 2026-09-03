@@ -1,0 +1,174 @@
+========================================================================================================================
+CANDIDATE K-A -- does Lambda predict the z = 6-9 ionizing photon budget?
+========================================================================================================================
+
+(A) THE CALIBRATION, ALL EIGHT BRANCHES -- item 87 quoted one; the claimed range is 0.41-0.75
+------------------------------------------------------------------------------------------------------------------------
+  LambdaCDM baseline: zeta = 13.041 gives tau_e = 0.0544 (Planck 0.0544 +- 0.0073); z(Q=0.5) = 6.74, z(Q=0.99) = 4.63
+
+    branch   nu_0    footing  gain(z=10)  F_coll boost  tau_e @ zeta_LCDM  zeta_fw/zeta_LCDM  1/F_boost
+     total   ceil  canonical      1.2754         2.401             0.0727              0.605      0.417
+     total   ceil        alt      1.2856         2.458             0.0733              0.599      0.407
+     total  floor  canonical      1.2762         2.405             0.0727              0.605      0.416
+     total  floor        alt      1.2863         2.462             0.0733              0.599      0.406
+    baryon   ceil  canonical      1.1439         1.686             0.0655              0.707      0.593
+    baryon   ceil        alt      1.1572         1.755             0.0662              0.695      0.570
+    baryon  floor  canonical      1.1449         1.691             0.0655              0.707      0.592
+    baryon  floor        alt      1.1582         1.760             0.0663              0.695      0.568
+  [FAIL] A1 the candidate's claimed range zeta_fw/zeta_LCDM = 0.41-0.75 ('25-59% fewer escaping ionizing photons') is reproduced across all eight branches.  This check passes only if the claimed lower end is within 10% of the computed one   (measured range 0.599 - 0.707, i.e. 25-33% fewer, not 25-59%.  The candidate's 0.41 is 1/(F_coll boost) for the total-mass branch, which is what the efficiency would have to be if the collapsed fraction alone set tau_e; it is NOT the recalibrated efficiency, because tau_e integrates the whole history and the recombination term absorbs part of the boost.  The claim is 1.6x too strong.)
+  [PASS] A2 and the tau_e liability item 87 recorded is reproduced independently here: at the LambdaCDM efficiency every branch over-shoots Planck   (tau_e = 0.0655 - 0.0733, i.e. +1.5 to +2.6 sigma)
+
+(B) THE DEGENERACY DECOMPOSITION -- what quantity is actually being predicted?
+------------------------------------------------------------------------------------------------------------------------
+  The reionization efficiency in the model that produced the number above is
+      zeta = A_He * f_star * f_esc * N_ion ,
+  where f_star is the fraction of a halo's baryons turned into stars, f_esc the escape fraction, and N_ion
+  the ionizing photons produced per stellar baryon (the quantity JWST reports as xi_ion, per unit UV
+  luminosity rather than per baryon, but linearly related to it at fixed spectral shape).
+  EVERY FACTOR ENTERS LINEARLY.  So the framework's requirement is a statement about the PRODUCT, and any
+  one factor can absorb the whole of it.  Written out for the branch the candidate quotes:
+
+           if the shift is carried entirely by    required change
+                                   f_esc alone   x 0.599 to 0.707
+                                  xi_ion alone   x 0.599 to 0.707
+                                  f_star alone   x 0.599 to 0.707
+           f_esc x xi_ion (what JWST measures)   x 0.599 to 0.707
+
+  There is nothing in the framework that says WHICH factor moves.  f_star at z = 6-9 is not measured
+  independently of the same halo-abundance modelling this calculation is doing; it is inferred from the
+  luminosity function, which the framework ALSO changes (section D).  So the candidate's headline claim --
+  'the cosmological constant predicts the escape fraction' -- is a prediction of f_star*f_esc*xi_ion, one of
+  whose three factors is unmeasured and is set by the same data the framework re-interprets.
+  [FAIL] B1 CRITERION (1): a Kepler-grade law relates MEASURED quantities.  This one constrains a triple product of which JWST measures two factors and infers the third from the same abundance modelling.  This check passes only if the prediction can be assigned to a directly measured quantity, and it cannot   (zeta = A_He f_star f_esc N_ion; the framework fixes only the product, to x0.60-0.71.  f_star is degenerate with the whole of it at exponent 1.)
+
+(C) THE EFFICIENCY-FREE PART -- renormalise zeta to hit Planck exactly, then look at the SHAPE
+------------------------------------------------------------------------------------------------------------------------
+  A normalisation cannot change the shape of the history.  If, once each branch is put back on Planck's
+  tau_e, the ionized-fraction history is indistinguishable from LambdaCDM's, then the candidate carries no
+  information that survives the efficiency degeneracy, and it dies here.  If it IS different, that difference
+  is a real efficiency-free prediction, confrontable with the Lyman-alpha forest.
+
+    branch   nu_0    footing  z(Q=0.25)  z(Q=0.5)   max Q  z at max Q  Q at z=5.3
+  LambdaCDM     --         --       8.71      6.74   1.000        4.50       0.801
+     total   ceil  canonical       9.02      6.36   1.000        3.40       0.646
+     total   ceil        alt       9.03      6.33   1.000        3.30       0.640
+     total  floor  canonical       9.01      6.35   1.000        3.40       0.645
+     total  floor        alt       9.02      6.33   1.000        3.30       0.640
+    baryon   ceil  canonical       8.92      6.63   1.000        4.00       0.722
+    baryon   ceil        alt       8.94      6.61   1.000        3.90       0.713
+    baryon  floor  canonical       8.91      6.62   1.000        4.00       0.721
+    baryon  floor        alt       8.93      6.60   1.000        3.90       0.713
+
+  ⚠ A BUG OF MY OWN, FOUND AND FIXED HERE, REPORTED BECAUSE IT REVERSED THE CONCLUSION.  The first version of
+  this section tabulated F_coll only down to z = 4 (as item 87 does) and then evaluated the SHIFTED curve
+  F((1+z)/gain - 1), which clips against the table edge for z below about 4*gain + gain - 1 = 4.7-5.4.  That
+  froze dF/dz to zero and manufactured a decline in the ionized fraction: every framework branch appeared to
+  peak at Q = 0.66-0.81 and never finish reionizing, which read as a spectacular framework kill.  IT WAS AN
+  ARTEFACT.  With the table run to z = 1 the framework completes reionization in every branch.  The claim
+  'the framework at fixed tau_e never reionizes the universe' is WITHDRAWN before it was ever made.
+  What is left is a real but much smaller shape difference: reionization STARTS earlier and ENDS later, i.e.
+  it is more EXTENDED, and the intergalactic medium is left more neutral through z = 5-6.
+  [PASS] C1 the framework does complete reionization once the efficiency is renormalised to Planck's tau_e -- the opposite of what the edge-clipped version of this calculation said   (max ionized fraction reached = 1.000-1.000 in every branch, LambdaCDM 1.000; it is reached at z = 3.3-4.0 against LambdaCDM's 4.5)
+  [FAIL] C1b THE EFFICIENCY-FREE SHAPE DIFFERENCE, which is the only part of the candidate that could survive the degeneracy of section B.  At fixed tau_e the framework's reionization is more extended: it starts earlier, reaches its midpoint later, and leaves the gas more neutral at z = 5.3.  This check passes only if the difference is large enough to be measured -- the ionized-fraction constraints at z = 5-6 are good to about 0.1 in Q, and the duration to about dz = 2 from the kinetic Sunyaev-Zel'dovich effect   (z(Q=0.25) moves 8.71 -> 8.91-9.03; midpoint 6.74 -> 6.33-6.63 (shift 0.41); Q(z=5.3) 0.801 -> 0.640-0.722 (difference up to 0.161); duration dz(0.25->0.5) 1.97 -> 2.29-2.70.  The neutral-fraction difference is at the edge of what is measurable; the duration difference is well below it.)
+
+  THE PINCER, and the baseline's own limitation cancelled out of it.  The single-efficiency model used here
+  already reionizes too gradually in LambdaCDM (item 87 check 4a: it finishes at z = 4.6, the forest says
+  5.3).  So the statement is made DIFFERENTIALLY: force each framework branch to finish reionization on the
+  SAME schedule the LambdaCDM baseline manages -- Q = 0.99 at the baseline's own z_end -- and report the
+  tau_e that results.  Any conclusion then survives the baseline's absolute limitation.
+
+    branch   nu_0    footing zeta to finish at z=4.63  tau_e then  sigma vs Planck
+     total   ceil  canonical                   10.325      0.0640             +1.3
+     total   ceil        alt                   10.308      0.0644             +1.4
+     total  floor  canonical                   10.330      0.0640             +1.3
+     total  floor        alt                   10.313      0.0644             +1.4
+    baryon   ceil  canonical                   10.596      0.0588             +0.6
+    baryon   ceil        alt                   10.551      0.0593             +0.7
+    baryon  floor  canonical                   10.601      0.0588             +0.6
+    baryon  floor        alt                   10.556      0.0593             +0.7
+  LambdaCDM     --         --                   13.041      0.0544             +0.0
+  [PASS] C2 THE PINCER, AND IT DOES NOT CLOSE -- reported against my own earlier draft.  Forced to finish reionization on the same schedule the LambdaCDM baseline manages, the framework lands within 1.5 sigma of Planck's tau_e in every branch.  So the framework can satisfy the end of reionization and the CMB together, and there is no forest-versus-CMB kill here.  This check passes if some branch is within 2 sigma   (tau_e = 0.0588 - 0.0644, i.e. +0.6 to +1.4 sigma; the required efficiency is 10.31-10.60 against LambdaCDM's 13.04)
+  [PASS] C3 BUT THE SIZE OF THE CANDIDATE'S PREDICTION DEPENDS ON WHICH OBSERVABLE IS HELD FIXED, by as much as the prediction itself.  Anchor on tau_e and the framework asks for zeta down by 29-40%; anchor on the end of reionization and it asks for zeta down by only 19-21%.  The sign is the same, the magnitude is not.  This check passes only if the two anchors agree to better than the 25-33% signal they are supposed to predict   (anchored on tau_e: zeta_fw/zeta_LCDM = 0.599-0.707; anchored on the end of reionization: 0.790-0.813.  The two differ by 23% of the prediction, so the 'predicted coefficient' criterion (2) is met only up to the choice of anchor)
+
+(D) THE CROSS-DEGENERACY WITH ITEM 73 (the JWST luminosity function)
+------------------------------------------------------------------------------------------------------------------------
+  The same collapsed-fraction boost drives both items.  If zeta_fw/zeta_LCDM is just 1/(F_coll boost), then
+  K-A and item 73 are ONE free parameter, and the sibling result k01_uvlf_shape_a0 -- which found the whole
+  apparent UVLF excess is absorbed by the efficiency convention -- applies to K-A unchanged.
+
+    branch   nu_0    footing  zeta_fw/zeta_LCDM   1/(F_coll boost at z=10)    ratio
+     total   ceil  canonical              0.605                      0.417    1.453
+     total   ceil        alt              0.599                      0.407    1.472
+     total  floor  canonical              0.605                      0.416    1.455
+     total  floor        alt              0.599                      0.406    1.474
+    baryon   ceil  canonical              0.707                      0.593    1.192
+    baryon   ceil        alt              0.695                      0.570    1.219
+    baryon  floor  canonical              0.707                      0.592    1.196
+    baryon  floor        alt              0.695                      0.568    1.222
+  [FAIL] D1 CRITERION (5) IN ITS COSMOLOGICAL FORM: the efficiency reduction the candidate calls a prediction is, to within the number below, the inverse of the collapsed-fraction boost that item 73 already carries.  This check passes only if the two are DIFFERENT quantities (ratio away from 1 by more than 25%)   (zeta ratio x F_coll boost = 1.192 - 1.474 across the eight branches; 1.000 would mean they are the same number wearing two hats)
+
+(E) THE RESTATEMENT TEST -- executed
+------------------------------------------------------------------------------------------------------------------------
+  Try to derive the relation from v^4 = G M_b a_0 plus algebra.  The deep-MOND limit is a statement about a
+  CIRCULAR ORBIT in a static potential: it fixes v given M_b and a_0.  The chain here is
+      a_0 -> nu(g_N/a_0) in the RADIAL equation of motion -> collapse time from turnaround -> (1+z_form) gain
+      -> F_coll(z) -> dQ/dz -> tau_e.
+  Nothing in v^4 = G M_b a_0 refers to a time, and no algebra on it produces one: the relation has no
+  dimension of time in it at all once G, M_b and a_0 are given (v is a velocity; t would need a length).
+  Explicitly: from v^4 = G M_b a_0 the only time that can be formed is v/a_0 = (G M_b/a_0)^{1/4}/a_0^{1/2},
+  which is the deep-MOND crossing time of the SAME object, not the collapse time of a shell around it, and
+  it carries no dependence on the turnaround radius, which is what the collapse integral is a functional of.
+  numerically, for a 1e10 Msun halo at z = 10: the deep-MOND crossing time v/a_0 = 1.128e+15 s, the actual
+  Route A collapse time from turnaround = 4.013e+15 s, a ratio of 3.56 -- and the ratio is a
+  function of redshift through r_ta, which v^4 = G M_b a_0 knows nothing about.
+  [PASS] E1 RESTATEMENT TEST: the relation does NOT close from v^4 = G M_b a_0 plus algebra.  IS_RESTATEMENT = FALSE.  This is a genuinely independent use of a_0 -- which is a point in the candidate's favour and is recorded as such, even though the candidate fails on other criteria   (collapse time / deep-MOND crossing time = 3.56 at z = 10 and the ratio is redshift-dependent)
+
+(F) THE LEVERS, EACH MEASURED BY RE-RUNNING THE PIPELINE
+------------------------------------------------------------------------------------------------------------------------
+  THE UPSILON LEVER IS EXACTLY ZERO: no stellar mass-to-light ratio appears anywhere in this chain.  The
+  observable is per unit UV luminosity, the halo side is a mass function normalised by sigma_8, and the
+  collapse side is a_0 and the background.  Verified by construction: grep the script for Upsilon and there
+  is none, and re-running at 'Upsilon x 1.5' changes nothing because there is nothing to change.
+  But the candidate is not therefore free of calibration.  Here are the levers that DO bite, each measured:
+
+                               lever         x1       x1.5  d log(ratio)/d log(lever)
+                             sigma_8     0.7074     0.8205                     0.3658
+    T_vir (atomic-cooling threshold)     0.7074     0.7002                    -0.0250
+             C_HII (clumping factor)     0.7074     0.7169                     0.0331
+               Upsilon (stellar M/L)     0.7074     0.7074                     0.0000
+  [PASS] F1 THE UPSILON LEVER IS ZERO, MEASURED not asserted: re-running the whole pipeline with 'Upsilon x1.5' returns the identical number, because no stellar mass-to-light ratio enters   (d log(zeta ratio)/d log Upsilon = 0.00e+00)
+  [PASS] F2 but the prediction IS calibration-limited by the halo-model inputs, and the largest of those levers is quoted here.  This check passes only if every lever is small enough that a 50% error in it moves the prediction by less than the 25-59% shift the candidate is claiming to predict   (sigma_8: +0.366; T_vir (atomic-cooling threshold): -0.025; C_HII (clumping factor): +0.033; Upsilon (stellar M/L): +0.000.  A 50% error moves the ratio by 0.064 dex, 0.004 dex, 0.006 dex, 0.000 dex; the claimed signal is 0.150-0.223 dex.)
+
+(G) MUTATION CONTROLS AND THE LambdaCDM ALTERNATIVE
+------------------------------------------------------------------------------------------------------------------------
+  [PASS] G1 MUTATION: a collapse gain pinned to 1 (equivalently a_0 -> 0, the kernel the identity) must return the LambdaCDM efficiency exactly, so the whole effect is the a_0 term   (zeta(gain = 1)/zeta_LCDM = 1.00000000)
+  [PASS] G2 MUTATION: with a_0 driven to zero the collapse time must equal Newton's exactly   (s(a_0 -> 0) = 1.000000)
+  [FAIL] G3 THE LambdaCDM ALTERNATIVE, COMPUTED BESIDE: Planck's own 1-sigma range on tau_e already permits the LambdaCDM efficiency to move by the factor below.  This check passes only if the framework's demanded shift is LARGER than the shift Planck's error bar alone allows -- otherwise the 'prediction' is inside the existing uncertainty on the thing it is predicted from   (Planck's +-1 sigma on tau_e alone spans zeta = 9.93-16.97, a factor 1.71; the framework demands a factor 1.41-1.67)
+
+========================================================================================================================
+VERDICT
+========================================================================================================================
+  Read the checks.  What survives and what does not:
+   SURVIVES: the restatement test (E1) -- this really is an independent use of a_0, not the RAR in disguise;
+             and the Upsilon lever really is exactly zero (F1), which is more than most of the hunt can say.
+   FAILS   : the claimed size (A1) -- the range is 0.60-0.71, not 0.41-0.75; the candidate's lower end is
+             1/(F_coll boost), which is not the recalibrated efficiency, and overstates the effect 1.5x;
+             criterion (1), because the predicted quantity is a triple product one of whose factors (f_star)
+             is unmeasured and degenerate with the whole shift at exponent 1 (B1);
+             criterion (3) on the shape, the only efficiency-free part, which is below measurement (C1b);
+             and the independence test against item 73 (D1).  Criterion (2) survives only marginally: the
+             coefficient moves 23% of itself between the two natural anchors, tau_e and the end of
+             reionization (C3, a pass at the 25% threshold set before the number was known).
+             And the shift it asks for is SMALLER than the range Planck's own error bar on tau_e already
+             permits for the LambdaCDM efficiency (G3), so it is inside the existing uncertainty.
+  ⚠ ONE OF MY OWN CLAIMS WITHDRAWN INSIDE THIS SCRIPT.  The first version found that the framework, put back
+  on Planck's tau_e, never finishes reionizing (Q peaking at 0.66-0.81 and declining) -- which would have
+  been a large framework kill.  It was a table-edge artefact in the shifted collapsed-fraction curve, is
+  fixed here, and the claim is withdrawn.  With the fix the framework completes reionization in every branch
+  and survives the forest-versus-CMB pincer at 1.5 sigma (C2).
+  What is left on the liability side is small and real: at fixed tau_e the framework's reionization is more
+  extended and leaves the gas up to 0.16 more neutral at z = 5.3 than LambdaCDM's, which is at the very edge
+  of what the z = 5-6 neutral-fraction measurements can see.  That, not the ionizing budget, is where this
+  chain could one day bite.
+
+RESULT: 14 checks, 5 FAIL -> ["A1 the candidate's claimed range zeta_fw/zeta_LCDM = 0.41-0.75 ('25-59% fewer escaping ionizing photons') is reproduced across all eight branches.  This check passes only if the claimed lower end is within 10% of the computed one", 'B1 CRITERION (1): a Kepler-grade law relates MEASURED quantities.  This one constrains a triple product of which JWST measures two factors and infers the third from the same abundance modelling.  This check passes only if the prediction can be assigned to a directly measured quantity, and it cannot', "C1b THE EFFICIENCY-FREE SHAPE DIFFERENCE, which is the only part of the candidate that could survive the degeneracy of section B.  At fixed tau_e the framework's reionization is more extended: it starts earlier, reaches its midpoint later, and leaves the gas more neutral at z = 5.3.  This check passes only if the difference is large enough to be measured -- the ionized-fraction constraints at z = 5-6 are good to about 0.1 in Q, and the duration to about dz = 2 from the kinetic Sunyaev-Zel'dovich effect", 'D1 CRITERION (5) IN ITS COSMOLOGICAL FORM: the efficiency reduction the candidate calls a prediction is, to within the number below, the inverse of the collapsed-fraction boost that item 73 already carries.  This check passes only if the two are DIFFERENT quantities (ratio away from 1 by more than 25%)', "G3 THE LambdaCDM ALTERNATIVE, COMPUTED BESIDE: Planck's own 1-sigma range on tau_e already permits the LambdaCDM efficiency to move by the factor below.  This check passes only if the framework's demanded shift is LARGER than the shift Planck's error bar alone allows -- otherwise the 'prediction' is inside the existing uncertainty on the thing it is predicted from"]   rc=1

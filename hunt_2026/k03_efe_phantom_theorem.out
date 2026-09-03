@@ -1,0 +1,97 @@
+======================================================================================================================
+CANDIDATE K3 -- the external-field phantom-mass theorem:  M_dyn/M_b = nu_e (1 + L_e/3)
+======================================================================================================================
+  (A) EXACT VERIFICATION.  Integrate the QUMOND flux over a sphere with NO expansion in eps/G_e,
+      and watch it converge to the theorem as the sphere grows.  Units: a_0 = 1, G M_b = 1.
+   y_e = G_e/a_0      nu_e       L_e  theorem nu_e(1+L_e/3)                  exact flux at R = 3,10,30,100
+            0.01   10.5083   -0.4754               8.843053    3.522732   8.591692   8.840486   8.843033
+  [PASS] flux -> theorem as R grows (y_e=0.01)   (R=100 gives 8.843033 vs 8.843053 (-2.37e-06))
+             0.1    3.6886   -0.4251               3.165910    3.057722   3.165273   3.165902   3.165910
+  [PASS] flux -> theorem as R grows (y_e=0.1)   (R=100 gives 3.165910 vs 3.165910 (-4.07e-08))
+               1    1.5820   -0.2910               1.428531    1.428354   1.428530   1.428531   1.428531
+  [PASS] flux -> theorem as R grows (y_e=1.0)   (R=100 gives 1.428531 vs 1.428531 (-1.35e-08))
+              10    1.0442   -0.0699               1.019875    1.019875   1.019875   1.019875   1.019875
+  [PASS] flux -> theorem as R grows (y_e=10.0)   (R=100 gives 1.019875 vs 1.019875 (-2.98e-09))
+
+  [PASS] deep external field limit is (5/6) nu_e   (0.8333333417)
+  [PASS] Newtonian external field limit is 1   (1.00000000)
+  the law, tabulated (this is the whole prediction -- one curve, no free parameter):
+   g_ext/a_0  M_dyn/M_b    (dex)     g_ext/a_0  M_dyn/M_b    (dex)
+        0.03     5.3281    0.727          0.10     3.1659    0.500
+        0.30     2.0744    0.317          1.00     1.4285    0.155
+        3.00     1.1396    0.057         10.00     1.0199    0.009
+
+  (B) THE COMPANION STATEMENT.  The same expansion makes the effective Poisson operator anisotropic,
+      nu_e (delta_ij + L_e n_i n_j), so the phantom halo is squeezed along the external field with
+      axis ratio sqrt(1 + L_e).  Deep external field: sqrt(1/2) = 0.7071.  This is what item 83 would test.
+      g_ext =   0.01 a_0  ->  L_e = -0.4754,  phantom axis ratio = 0.7243
+      g_ext =   0.10 a_0  ->  L_e = -0.4251,  phantom axis ratio = 0.7582
+      g_ext =   1.00 a_0  ->  L_e = -0.2910,  phantom axis ratio = 0.8420
+      g_ext =  10.00 a_0  ->  L_e = -0.0699,  phantom axis ratio = 0.9644
+
+  (C1) COMA UDGs (Freundlich+2022, on disk).  The file tabulates log g_bar and log g_obs at R_e directly,
+       so the mass discrepancy is a MEASURED quantity.  External field from a singular isothermal sphere
+       with sigma_Coma = 1000 km/s: g_ext,N = 2 sigma^2/r, then y_e = |g_ext|/a_0 with the MOND boost applied.
+       11 UDGs read
+       --- footing canonical (a_0 = 9.360e-11) ---
+       name                    r3D kpc g_ext,N/a_0  y_e tot  predicted   observed  resid dex
+       DF44                       2336       0.296    0.706      1.572     24.547     +1.193
+       DFX1                       1995       0.347    0.780      1.528     23.988     +1.196
+       J125848.94+281037.1        1129       0.613    1.129      1.385     17.783     +1.109
+       J125904.06+281422.4        1139       0.608    1.123      1.387     25.119     +1.258
+       ALL 11: median residual +1.196 dex, scatter 0.209 dex, 19.0 sigma from zero
+       SHAPE TEST  d log(M_dyn/M_b)/d log g_bar,own :  observed -0.187   EFE law predicts -0.021   isolated RAR would give -0.478
+  [PASS] Coma UDG discrepancy is independent of the UDG's own g_bar (|slope| < 0.25)   (-0.187)
+  [FAIL] Coma UDG amplitude matches the EFE theorem within 0.3 dex   (+1.196 dex)
+       --- footing alt (a_0 = 1.130e-10) ---
+       name                    r3D kpc g_ext,N/a_0  y_e tot  predicted   observed  resid dex
+       DF44                       2336       0.246    0.628      1.627     24.547     +1.179
+       DFX1                       1995       0.288    0.693      1.581     23.988     +1.181
+       J125848.94+281037.1        1129       0.508    0.997      1.430     17.783     +1.095
+       J125904.06+281422.4        1139       0.504    0.991      1.432     25.119     +1.244
+       ALL 11: median residual +1.181 dex, scatter 0.209 dex, 18.7 sigma from zero
+       SHAPE TEST  d log(M_dyn/M_b)/d log g_bar,own :  observed -0.187   EFE law predicts -0.022   isolated RAR would give -0.480
+
+  (C2) LOCAL GROUP dwarfs (McConnachie 2012, on disk).  Newtonian dynamical mass from the Wolf estimator
+       M_1/2 = 3 sigma^2 r_1/2 / G (an ENCLOSED-mass estimator -- the half-light mass, not the total: this
+       is the bug item 8 hit), against the enclosed baryonic mass Upsilon_V L_V/2 + M_HI/2.
+       41 MW+M31 dwarfs with sigma and half-light radius
+       canonical  Upsilon_V=2.0: N=34  median residual +1.084 dex, scatter 0.834 dex
+                  SHAPE: d log(M_dyn/M_b)/d log M_b,own = -0.509 (law says 0.000);  d log(M_dyn/M_b)/d log g_ext = +0.695 (law says -0.419)
+  [FAIL] LG dwarf discrepancy independent of the dwarf's own baryonic mass (|slope| < 0.25)   (-0.509)
+  [FAIL] LG dwarf discrepancy tracks the external field with the predicted slope (within 0.25)   (observed +0.695 vs predicted -0.419)
+  [FAIL] LG dwarf amplitude matches the EFE theorem within 0.3 dex   (+1.084)
+       alt        Upsilon_V=2.0: N=34  median residual +1.066 dex, scatter 0.835 dex
+                  SHAPE: d log(M_dyn/M_b)/d log M_b,own = -0.509 (law says 0.000);  d log(M_dyn/M_b)/d log g_ext = +0.697 (law says -0.423)
+
+  (C3) STRUCTURAL CONFOUNDS IN THE LOCAL GROUP TEST -- checked BEFORE the verdict is quoted (bug pattern 5).
+       (i) M_dyn/M_b plotted against M_b shares its denominator with the abscissa, so ANY scatter in M_b
+           induces a negative slope.  (ii) The dwarf's distance from its host sets g_ext (~D^-2) AND enters
+           M_dyn ~ sigma^2 r_h ~ D and M_b ~ L ~ D^2, so M_dyn/M_b ~ 1/D: a pure distance error produces
+           d log(ratio)/d log g_ext = (-1)/(-2) = +0.500 with no physics in it at all.
+       measured own-mass slope was -0.509; the induced-by-construction value for a ratio against its
+       own denominator with the observed spread is at least -0.3 to -1.0 depending on the M_b error.
+       measured g_ext slope was +0.695; the distance-induced artefact alone is +0.500.
+       VERDICT ON (C2): both Local-Group shape tests are structurally confounded and CANNOT decide the law.
+       Only the Coma test is clean on this axis -- there g_obs and g_bar are tabulated independently and the
+       distance is the cluster's, common to every object, so neither confound operates.
+
+       selection control: the 'EFE-dominated only' cut (g_int < g_ext) removes compact/massive dwarfs.
+         cut=ON   N= 34  median resid +1.084 dex  own-mass slope -0.509  g_ext slope +0.695
+         cut=OFF  N= 41  median resid +0.806 dex  own-mass slope -0.502  g_ext slope +0.958
+
+  MUTATION: with nu = 1 (Newtonian) the law predicts M_dyn/M_b = 1 exactly for every system, everywhere.
+  The Coma UDGs measure a median discrepancy of 24.5, so the Newtonian alternative is excluded outright;
+  the question this candidate asks is whether the EFE theorem's SHAPE -- environment only, own mass irrelevant --
+  is what the data show.
+
+  THE UPSILON LEVER.  M_dyn/M_b scales as 1/Upsilon, so d log(ratio)/d log Upsilon = -1 exactly for the
+  AMPLITUDE test.  The SHAPE tests above (slope in the system's own mass, slope in the external field) are
+  Upsilon-INVARIANT if Upsilon is common to the sample: a global Upsilon shift moves every point vertically
+  by the same amount and cannot change either slope.  Demonstrated:
+    Upsilon_V =  1.0: N= 36  median residual +1.275 dex   own-mass slope -0.513
+    Upsilon_V =  2.0: N= 34  median residual +1.084 dex   own-mass slope -0.509
+    Upsilon_V =  4.0: N= 29  median residual +0.902 dex   own-mass slope -0.499
+
+
+RESULT: 11 checks, 4 FAIL -> ['Coma UDG amplitude matches the EFE theorem within 0.3 dex', "LG dwarf discrepancy independent of the dwarf's own baryonic mass (|slope| < 0.25)", 'LG dwarf discrepancy tracks the external field with the predicted slope (within 0.25)', 'LG dwarf amplitude matches the EFE theorem within 0.3 dex']   rc=1

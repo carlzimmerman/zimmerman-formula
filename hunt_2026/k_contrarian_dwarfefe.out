@@ -1,0 +1,76 @@
+================================================================================================================
+k_contrarian_dwarfefe -- the dwarf external-field slope, with and without the size confound
+================================================================================================================
+  N = 92 dwarfs with a MEASURED dispersion, a half-light radius and M_V (45 MW, 34 M31, 13 field)
+
+  ---- canonical footing, a0 = 9.360e-11 ------------------------------------------------------
+  external field g_e/a0 spans 0.0070 to 4.876, median 0.0931
+    (A) control log M_* only          observed +0.1144 +/- 0.0582   framework -0.1001   LambdaCDM 0.0000   ->  3.68 sigma from framework, 1.96 from LambdaCDM
+    (B) control log M_* AND log r_h   observed +0.1013 +/- 0.0409   framework -0.1206   LambdaCDM 0.0000   ->  5.43 sigma from framework, 2.48 from LambdaCDM
+    (C) + quadratic (M_*, r_h) surface  observed +0.0800 +/- 0.0467   framework -0.1006   LambdaCDM 0.0000   ->  3.87 sigma from framework, 1.71 from LambdaCDM
+
+  ---- alt footing, a0 = 1.130e-10 ------------------------------------------------------
+  external field g_e/a0 spans 0.0064 to 4.163, median 0.0844
+    (A) control log M_* only          observed +0.1146 +/- 0.0584   framework -0.1045   LambdaCDM 0.0000   ->  3.75 sigma from framework, 1.96 from LambdaCDM
+    (B) control log M_* AND log r_h   observed +0.1017 +/- 0.0411   framework -0.1244   LambdaCDM 0.0000   ->  5.51 sigma from framework, 2.48 from LambdaCDM
+    (C) + quadratic (M_*, r_h) surface  observed +0.0803 +/- 0.0469   framework -0.1026   LambdaCDM 0.0000   ->  3.90 sigma from framework, 1.71 from LambdaCDM
+  [PASS] dw-1 THE CONFOUND EXISTS: at fixed stellar mass the half-light radius is strongly anti-correlated with the external field -- close satellites are compact.  Since sigma^2 ~ M/r_half in EVERY theory, leaving r_half free injects a POSITIVE slope that has nothing to do with the equivalence principle.   (d log r_half/d log(g_e/a0) at fixed log M_* = -0.0644; raw corr(log r_h, log g_e) = -0.256)
+  [FAIL] dw-2 MY OWN OBJECTION, TESTED AND REFUTED -- this check is written so that a PASS condemns the proposal and a FAIL condemns me, and it FAILS.  Adding log r_half to the design matrix was supposed to move the observed slope by more than a bootstrap sigma.  It moves it by a fifth of one.  The size confound is real (dw-1) but far too weak to explain the proposal's result: K3b's measured slope SURVIVES the control I raised against it.   ((A) +0.1144 +/- 0.0582  ->  (B) +0.1013 +/- 0.0409  ->  (C) +0.0800 +/- 0.0467   (A->B shift +0.0131 = 0.2 sigma))
+  [FAIL] dw-3 RESTATEMENT TEST, executed, AND a leakage diagnostic in the same breath: switch the external field off and the model becomes sigma^4 = (4/81) G M_b a_0 -- v^4 = G M_b a_0 with a virial coefficient -- which carries no information about a neighbour's field.  Its fitted g_e coefficient must therefore be zero.  On the LINEAR design it is not, because log sigma is a curved function of (M_*, r_h) and the curvature leaks into g_e; on the QUADRATIC design the leak collapses.  So statistic C is the honest one, and the candidate is NOT a restatement.   (isolated-law leakage: linear design +0.0490, quadratic design +0.0143)
+  [PASS] dw-4 MUTATION CONTROL 1: nu == 1 (Newton/GR, strong equivalence principle intact) must give a predicted slope of exactly zero -- the LambdaCDM alternative, computed rather than asserted   (predicted slope with nu == 1: +5.245e-16)
+  [PASS] dw-5 MUTATION CONTROL 2: shuffling the external field among the dwarfs must destroy the measured slope. If the shuffled slopes did not centre on zero the regression itself would be manufacturing signal.   (shuffled slope = +0.0004 +/- 0.0390 against the real +0.0800)
+  [PASS] dw-6 MUTATION CONTROL 3: shrink a_0 by 100x so every dwarf sits deep in the Newtonian regime; the predicted external-field slope must collapse toward zero   (predicted slope at a0/100 = -0.00916 vs -0.10062 at the canonical footing)
+  [PASS] dw-7 UPSILON LEVER measured by re-running the WHOLE pipeline at Upsilon_V x1.5.  The OBSERVED slope is very nearly Upsilon-blind: a constant Upsilon shifts log M_* by a constant that the intercept absorbs, and the only residue is the handful of dwarfs carrying a measured HI mass, for which M_b = Upsilon L_V + 1.33 M_HI is not proportional to Upsilon.  The PREDICTED slope moves more, and that is a reportable systematic on the prediction rather than on the measurement.   (observed +0.08004 -> +0.07322 (moves 0.0068 = 0.15 bootstrap sigma); predicted -0.10062 -> -0.08542 (moves 0.0152 = 0.33 bootstrap sigma))
+
+  ---- subsample stability of statistic (C), canonical footing --------------------------------
+    subsample                                  N    observed        framework    sigma(fw)  sigma(LCDM)
+    --------------------------------------------------------------------------------------------------
+    all                                         92  +0.0800+/-0.0470   -0.1006       3.85       1.70
+    MW satellites only                          45  +0.0103+/-0.0997   -0.3228       3.34       0.10
+    M31 satellites only                         34  +0.0337+/-0.1673   -0.1637       1.18       0.20
+    MW + M31 (drop ambiguous field hosts)       79  +0.0697+/-0.0785   -0.2150       3.63       0.89
+    drop the 10 nearest to their host           82  +0.1188+/-0.0505   -0.0771       3.88       2.35
+    brighter than M_V = -6 (drop ultra-faints)  62  +0.0871+/-0.0496   -0.0691       3.15       1.75
+  [FAIL] dw-8 STABILITY: the verdict must not flip between subsamples.  Reported whichever way it comes out.   (worst for the framework: drop the 10 nearest to their host at 3.9 sigma; best: M31 satellites only at 1.2 sigma)
+  [FAIL] dw-9 THE DECIDING CHECK, on the leakage-free statistic (C): for K3b to be a candidate second law the framework's predicted slope must match the measured one within 3 sigma.  Written so it can go either way.   (canonical 3.87 sigma, alt 3.90 sigma; LambdaCDM (slope 0) sits at 1.71 sigma)
+
+================================================================================================================
+  VERDICT ON CANDIDATE K3b
+================================================================================================================
+  The proposal's statistic (A), controlling only for stellar mass, reproduces: observed +0.114 +/- 0.058
+  against a predicted -0.100 -- 3.7 sigma and of the opposite sign, as k03 reported.
+
+  MY OWN OBJECTION FAILED, and that is the first result here.  I argued the statistic is contaminated
+  because sigma^2 ~ M/r_half in every theory and r_half runs with distance from the host.  The
+  correlation is real (d log r_h/d log g_e = -0.064 at fixed mass) but far too weak: adding
+  log r_half to the design moves the observed slope only from +0.1144 to +0.1013,
+  0.2 bootstrap sigma.  Adding a full quadratic surface in (log M_*, log r_h) leaves
+  it at +0.0800 +/- 0.0467.  K3b's measurement survives the control I raised.
+
+  WHAT DID CHANGE is the framework's own predicted number.  On the linear design the isolated law
+  alone leaks +0.0490 into the g_e coefficient purely from curvature in (M_*, r_h); on the
+  quadratic design that leak falls to +0.0143.  So the leakage-free comparison is:
+     observed +0.0800 +/- 0.0467   framework -0.1006   LambdaCDM 0.0000
+     -> 3.9 sigma from the framework, 1.7 sigma from LambdaCDM (canonical);
+        3.9 sigma from the framework on the alt footing.
+  The tension is LARGER than k03's 4.0 sigma, not smaller.  Reported against my own hypothesis.
+
+  NOT a second Kepler-grade law, on two criteria:
+   (4) 'nobody has stated it' is weak -- MOND predictions for Local Group dwarf dispersions with the
+       external-field effect are Angus 2008 and McGaugh & Milgrom 2013.  Only the partial-slope
+       FRAMING is new, and a statistic is not a law.
+   (3) the scatter is nowhere near RAR-class.
+   (1),(2),(5) pass: measured quantities, a predicted coefficient, and NOT a restatement (dw-3).
+   residual scatter of log sigma about the framework's prediction (zero point free): 0.347 dex, against the <= 0.1 dex a Kepler-grade relation needs.
+
+  STABILITY, reported whichever way it falls: the MW satellites alone give +0.0103 +/- 0.0997 against a predicted -0.3228, which is LambdaCDM's answer to
+  a fraction of a sigma and the framework's to several.  The M31 satellites alone are the framework's
+  best subsample at 1.2 sigma, so the verdict is not uniform across the sample and must not be
+  quoted as if it were.
+
+  CAVEAT BOTH WAYS, unchanged from the proposal and not resolvable with this data: tidal heating
+  inflates the dispersions of close satellites in EITHER theory and biases the measured slope
+  POSITIVE, i.e. against the framework.  Dropping the ten nearest satellites does not remove it
+  (the slope is unchanged), but a properly tidally-cleaned sample could still move this.
+
+RESULT: 9 checks, 4 FAIL -> ["dw-2 MY OWN OBJECTION, TESTED AND REFUTED -- this check is written so that a PASS condemns the proposal and a FAIL condemns me, and it FAILS.  Adding log r_half to the design matrix was supposed to move the observed slope by more than a bootstrap sigma.  It moves it by a fifth of one.  The size confound is real (dw-1) but far too weak to explain the proposal's result: K3b's measured slope SURVIVES the control I raised against it.", "dw-3 RESTATEMENT TEST, executed, AND a leakage diagnostic in the same breath: switch the external field off and the model becomes sigma^4 = (4/81) G M_b a_0 -- v^4 = G M_b a_0 with a virial coefficient -- which carries no information about a neighbour's field.  Its fitted g_e coefficient must therefore be zero.  On the LINEAR design it is not, because log sigma is a curved function of (M_*, r_h) and the curvature leaks into g_e; on the QUADRATIC design the leak collapses.  So statistic C is the honest one, and the candidate is NOT a restatement.", 'dw-8 STABILITY: the verdict must not flip between subsamples.  Reported whichever way it comes out.', "dw-9 THE DECIDING CHECK, on the leakage-free statistic (C): for K3b to be a candidate second law the framework's predicted slope must match the measured one within 3 sigma.  Written so it can go either way."]   rc=1

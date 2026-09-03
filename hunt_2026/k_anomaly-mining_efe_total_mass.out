@@ -1,0 +1,147 @@
+========================================================================================================================
+CANDIDATE K-B -- the external-field monopole: M_dyn,total / M_bar = nu(g_ext/a_0)?
+========================================================================================================================
+
+(A) THE COEFFICIENT -- what QUMOND actually gives for the monopole, by exact flux quadrature
+------------------------------------------------------------------------------------------------------------------------
+  QUMOND:  div(grad Phi) = div[ nu(|grad Phi_N|/a_0) grad Phi_N ].  Gauss over a sphere of radius r around a
+  point baryonic mass M_b sitting in a uniform external Newtonian field g_ext:
+      M_dyn(r) = (r^2 / 2G) * INT_{-1}^{+1} nu(|g|/a_0) (e + E mu) dmu ,
+      e = G M_b/r^2,  E = g_ext,  |g| = sqrt(E^2 + 2 E e mu + e^2),  mu = cos(angle to the external field).
+  This is a ONE-DIMENSIONAL quadrature of the exact field -- nothing is expanded.
+
+   e_N = g_ext/a_0  CANDIDATE nu(e_N)   QUMOND flux (r -> inf)   nu_e(1+L_e/3)  candidate error (dex)
+            0.0001           100.5008                  83.8343         83.8343                 0.0787
+             0.001            32.1254                  26.8554         26.8554                 0.0778
+            0.0033            17.9126                  15.0121         15.0121                 0.0767
+              0.01            10.5083                   8.8431          8.8431                 0.0749
+               0.1             3.6886                   3.1659          3.1659                 0.0664
+                 1             1.5820                   1.4285          1.4285                 0.0443
+                10             1.0442                   1.0199          1.0199                 0.0102
+  [PASS] A1 the flux quadrature reproduces the analytic monopole coefficient nu_e(1 + L_e/3) to 0.2% at every e_N (an independent second implementation of hunt_2026/k03's theorem)   (max |flux/theory - 1| = 1.02e-09)
+  [FAIL] A2 AGAINST THE CANDIDATE: the proposed coefficient nu(e_N) is NOT the QUMOND monopole coefficient.  The flux carries an extra factor (1 + L_e/3), which tends to 5/6 in a deep external field, so the candidate as written over-states the total dynamical mass by up to 0.079 dex   (max |log10 nu(e_N)/QUMOND| = 0.0787 dex over e_N = 1e-4..10; deep-limit factor 5/6 = 0.0792 dex.  THIS CHECK IS EXPECTED TO FAIL and its failure is the result.)
+  [PASS] A3 the deep-external-field limit of the flux coefficient is exactly 5/6   (flux/nu_e -> 0.834165 (5/6 = 0.833333))
+
+(B) THE RESTATEMENT TEST -- can this be derived from v^4 = G M_b a_0 plus algebra?
+------------------------------------------------------------------------------------------------------------------------
+  Step 1.  Deep-MOND limit:  g(r) = sqrt(G M_b a_0)/r  <=>  v^4 = G M_b a_0.  This alone says NOTHING about
+           where the flat part ends, so M_dyn = v^2 r/G is undetermined -- the candidate is right about that.
+  Step 2.  Add ONE more ingredient, the EFE truncation radius, itself pure algebra: the isolated internal
+           field g_N = G M_b/r^2 equals the external field g_ext at r_EFE, i.e.
+               r_EFE = sqrt(G M_b / g_ext) = sqrt(G M_b/a_0)/sqrt(e_N) = r_M / sqrt(e_N).
+  Step 3.  M_dyn = g(r_EFE) r_EFE^2 / G = [sqrt(G M_b a_0)/r_EFE] r_EFE^2/G = sqrt(G M_b a_0) r_EFE / G
+               = sqrt(G M_b a_0) * sqrt(G M_b/a_0) / (G sqrt(e_N)) = M_b / sqrt(e_N).
+  Step 4.  And the deep limit of the kernel is nu(e_N) -> 1/sqrt(e_N).  SO THE TWO ARE THE SAME EXPRESSION.
+  => The relation closes from the deep-MOND limit plus the definition of the EFE radius.  Nothing beyond
+     v^4 = G M_b a_0 and dimensional algebra is used.  Verified numerically over the measured e_N range:
+
+         e_N   nu(e_N) [kernel]   1/sqrt(e_N) [pure algebra]      ratio
+      0.0001           100.5008                     100.0000    1.00501
+     0.00038            51.8005                      51.2989    1.00978
+       0.001            32.1254                      31.6228    1.01589
+      0.0033            17.9126                      17.4078    1.02900
+        0.01            10.5083                      10.0000    1.05083
+  [PASS] B1 RESTATEMENT: over the whole range of external field the reconstruction actually measures (e_N = 1e-4 to 1e-2), the kernel form nu(e_N) and the pure-algebra form 1/sqrt(e_N) agree to better than 6%, so the candidate carries no information beyond v^4 = G M_b a_0 plus the EFE radius.  IS_RESTATEMENT = TRUE   (max |nu(e_N) sqrt(e_N) - 1| = 0.0508 over e_N = 1e-4..1e-2; the kernel's interpolation only differs at e_N ~ 1, which the measured fields never reach (max reconstructed e_N = 3.9e-2))
+
+(C) THE MEASURED EXTERNAL FIELDS -- 175 reconstructed 2M++ vectors on disk
+------------------------------------------------------------------------------------------------------------------------
+  175 galaxies.  Two brackets (clusters excluded / clusters at maximum):
+      no-cluster: e_N median 3.823e-04, 16-84% [1.73e-04, 6.29e-04], range [9.80e-05, 4.82e-03]
+     max-cluster: e_N median 3.270e-03, 16-84% [1.56e-03, 5.24e-03], range [8.11e-04, 3.88e-02]
+  [PASS] C1 the two brackets differ by about 0.9 dex in e_N, so the prediction of M_dyn/M_b carries +-0.45 dex from the external field alone before any measurement error   (bracket width 0.93 dex in e_N -> 0.47 dex in M_dyn/M_b (slope -1/2))
+
+       bracket   median e_N   QUMOND M_dyn/M_b   candidate nu(e_N)  (dex apart)
+    no-cluster    3.823e-04              43.12               51.65       0.0783
+   max-cluster    3.270e-03              15.08               17.99       0.0767
+  [PASS] C2 d log(M_dyn/M_b)/d log g_ext = -1/2 (the deep-MOND value), so a 0.9 dex uncertainty in g_ext is a 0.45 dex uncertainty in the prediction -- which is 4.5x the RAR's own scatter and 4.5x the 0.1 dex a Kepler-grade law is allowed   (measured slope -0.4942)
+
+(D) THE OBSERVATIONAL TEST -- does the KiDS-1000 lensing signal show the predicted mass saturation?
+------------------------------------------------------------------------------------------------------------------------
+  [PASS] D0a BUG PATTERN 4: the 60x60 covariance is positive definite in the (m,i,n,j) ordering (a plain reshape is not, and gives negative chi2)   (min eigenvalue 1.259e-02)
+  15 radial bins x 4 stellar-mass bins, R = 0.035 - 2.60 Mpc (h70)
+
+  projection validation on the one case with a closed form (rho = A/r^2, for which ESD = pi A/R exactly):
+    R = 0.10 Mpc:  numeric ESD =   20.4837   closed form =   20.4801   ratio 1.00018
+    R = 0.30 Mpc:  numeric ESD =    6.8280   closed form =    6.8267   ratio 1.00019
+    R = 1.00 Mpc:  numeric ESD =    2.0484   closed form =    2.0480   ratio 1.00020
+  [PASS] D0b the exact spherical projection reproduces the closed-form excess surface density to 0.1%, so the quadrature that will be used for the EFE case is validated independently of the kernel   (max |ratio - 1| = 1.96e-04)
+  and here is how far the FULL Route A profile sits from that deep asymptote -- this is physics, not error:
+    R = 0.10 Mpc (  8.2 r_M):  full kernel   18.9296  deep asymptote   20.4801   ratio 0.9243
+    R = 0.30 Mpc ( 24.6 r_M):  full kernel    6.6525  deep asymptote    6.8267   ratio 0.9745
+    R = 1.00 Mpc ( 81.9 r_M):  full kernel    2.0325  deep asymptote    2.0480   ratio 0.9924
+  [PASS] D0c the full kernel profile is BELOW its own deep-MOND asymptote at every measured radius, by 7% at 0.1 Mpc falling to 1% at 1 Mpc -- the finite-y correction, which the analysis carries exactly rather than assuming the deep limit (this is the same +0.095 dex estimator bias that the hunt's item 103 found)   (ratios 0.9243, 0.9745, 0.9924)
+
+  fitting 13 of 15 radial bins per mass bin (R > 0.05 Mpc), amplitude FREE per bin
+  (a free amplitude absorbs the baryon budget, so the SHAPE test below is independent of Upsilon)
+
+  --- footing canonical (a_0 = 9.360e-11 m/s^2) ---
+    baryonic masses used for r_EFE: bin1 1.50e+10, bin2 3.66e+10, bin3 6.01e+10, bin4 9.13e+10
+                     model    chi2 (60 pts, 4 amps)   Delta chi2 vs isolated
+       framework, isolated                    102.3                      0.0
+                 efe_noclu                    245.9                   +143.5    e_N = 3.82e-04, r_EFE = 0.24/0.38/0.48/0.60 Mpc
+                efe_maxclu                    609.6                   +507.2    e_N = 3.27e-03, r_EFE = 0.08/0.13/0.17/0.20 Mpc
+         Newtonian baryons                   1164.2                  +1061.9
+
+  --- footing alt (a_0 = 1.130e-10 m/s^2) ---
+    baryonic masses used for r_EFE: bin1 1.50e+10, bin2 3.66e+10, bin3 6.01e+10, bin4 9.13e+10
+                     model    chi2 (60 pts, 4 amps)   Delta chi2 vs isolated
+       framework, isolated                    103.7                      0.0
+                 efe_noclu                    272.9                   +169.2    e_N = 3.82e-04, r_EFE = 0.22/0.34/0.44/0.54 Mpc
+                efe_maxclu                    652.4                   +548.8    e_N = 3.27e-03, r_EFE = 0.08/0.12/0.15/0.19 Mpc
+         Newtonian baryons                   1164.2                  +1060.6
+  [FAIL] D1 THE TEST.  The candidate says the dynamical mass saturates at r_EFE, which for these lenses at the reconstructed external fields is 0.2-0.7 Mpc -- well inside the KiDS reach of 2.6 Mpc.  If the data show that saturation, the EFE model must fit BETTER than the isolated one.  This check passes only if it does (Delta chi2 < 0 in at least one bracket, both footings)   (canonical: Delta chi2 = +143.5 (no-cluster e_N), +507.2 (max-cluster e_N); alt: +169.2, +548.8.  Positive = the EFE truncation is DISFAVOURED by the data.)
+  [FAIL] D2 the 3-sigma upper limit on a common external field from the KiDS lensing shape alone, with the amplitude free in every bin: e_N must be below the value quoted.  Compare with the reconstruction's median of 3.8e-4 (no-cluster) to 3.3e-3 (max-cluster) -- this check passes only if the lensing limit is ABOVE the reconstructed median, i.e. only if the two are compatible   (KiDS 3-sigma limit e_N < 6.81e-05; reconstruction medians 3.8e-4 / 3.3e-3)
+  [PASS] D3 MUTATION CONTROL: Newtonian baryons (nu = 1) must be excluded outright by the same data and the same amplitude freedom, or the test has no power at all   (Delta chi2 (Newtonian - framework isolated) = +1061.9)
+
+  THE CONFOUND THIS TEST MUST SURVIVE.  The mass that generates g_ext is real mass a few Mpc away, and it is
+  correlated with the lens, so it contributes its own lensing signal at large R (the 'two-halo' term).  An EFE
+  deficit in the lens's own profile could in principle be refilled by it.  So the test is repeated with a FREE
+  correlated-structure component added to every model -- shape ESD ~ R^-0.8 over 0.1-3 Mpc, the projected
+  linear correlation function's slope -- with its own free amplitude in each mass bin (8 parameters, not 4).
+    + free two-halo, isolated framework            :  chi2 =     97.8   two-halo amplitudes = -0.402, -0.375, +0.822, -0.386
+    + free two-halo, EFE at  no-cluster e_N = 3.82e-04:  chi2 =     87.5   Delta chi2 vs isolated =    -10.3   two-halo amplitudes = +0.770, +1.209, +2.009, +1.793
+    + free two-halo, EFE at max-cluster e_N = 3.27e-03:  chi2 =    114.9   Delta chi2 vs isolated =    +17.1   two-halo amplitudes = +0.904, +1.769, +2.430, +2.552
+  [FAIL] D5 AGAINST MY OWN RESULT ABOVE: the D1 exclusion is NOT robust to a correlated-structure term.  Allow four extra free parameters with the two-halo shape and the weak-field (no-cluster) EFE truncation stops being excluded and becomes mildly PREFERRED, because a rising two-halo term and a falling EFE deficit are nearly the same degree of freedom (bug pattern 5).  This check passes only if the EFE model stays excluded (Delta chi2 > 9) in BOTH brackets even with that freedom   (no-cluster: Delta chi2 = -10.3; max-cluster: Delta chi2 = +17.1.  So the honest statement is: KiDS excludes the truncation at the strong-field bracket (+17.1) and cannot decide it at the weak-field one (-10.3) once the neighbours that GENERATE g_ext are allowed to lens as well.  Note the required two-halo amplitudes are physical (positive) in the EFE fits.)
+
+  the LambdaCDM alternative, computed beside the framework: NFW halo, M200 from a stellar-to-halo-mass
+  relation, concentration from Dutton & Maccio 2014, amplitude free in each bin exactly as above.
+    NFW (LambdaCDM):  chi2 = 270.9   amplitudes = 1.71, 1.04, 0.74, 0.61
+    framework isolated (canonical): chi2 = 102.3   amplitudes = 1.32, 1.53, 1.52, 1.53
+  [PASS] D4 REPORTED BOTH WAYS: which of the two shapes the KiDS profile prefers, with one free amplitude each   (NFW chi2 = 270.9 vs framework-isolated chi2 = 102.3 on 60 points with 4 amplitudes each; difference +168.6)
+
+(E) THE UPSILON LEVER -- the whole pipeline re-run at Upsilon x 1.5
+------------------------------------------------------------------------------------------------------------------------
+                            quantity     Upsilon x1   Upsilon x1.5  d log / d log Upsilon
+                  r_EFE, bin 4 [Mpc]          0.597          0.715                  0.445
+         Delta chi2 (EFE - isolated)          143.5          101.4                     --
+    M_dyn(1 Mpc)/M_b, mean of 4 bins          259.2          187.9                 -0.815
+  [PASS] E1 THE UPSILON LEVER, MEASURED: the amplitude form of the candidate (M_dyn/M_b) moves with Upsilon at the exponent quoted, while the shape form (does the profile break at r_EFE) is nearly Upsilon-free because the amplitude is fitted out   (d log(M_dyn/M_b)/d log Upsilon = -0.815 (the candidate's proposer estimated -0.73); d log r_EFE/d log Upsilon = +0.445; the shape test's Delta chi2 moves +143.5 -> +101.4)
+  [FAIL] E2 CRITERION (3) -- RAR-CLASS SCATTER.  The candidate's own input, g_ext, spans the width below across the two reconstruction brackets and their 16-84 percentiles; at d log/d log g_ext = -1/2 that is the irreducible scatter of the prediction.  This check passes only if it is inside the 0.1 dex a Kepler-grade law is allowed   (g_ext spread 1.48 dex -> prediction scatter 0.74 dex, against the 0.10 dex criterion; by comparison a 50% Upsilon error moves it only 0.144 dex)
+
+(F) MUTATION CONTROLS
+------------------------------------------------------------------------------------------------------------------------
+  [PASS] F1 a_0 x 10 must change the fit: if it does not, the amplitude freedom has eaten the entire a_0 dependence and nothing here measures a_0   (chi2(a_0 x10) = 114.5 vs chi2(a_0) = 102.3, difference +12.1)
+  F2 kernel mutation: nu -> 1 in the same quadrature gives M_dyn/M_b = 1.00000000, 1.00000000, 1.00000000, 1.00000000
+  [PASS] F2 with the kernel replaced by the identity the monopole law collapses to M_dyn = M_b at every external field, so every number in section A is the kernel and not an artefact of the quadrature   (max |M_dyn/M_b - 1| = 4.86e-11)
+
+========================================================================================================================
+VERDICT
+========================================================================================================================
+  Read the checks.  Four things decide this candidate, and none of them favour it:
+   (i)   the coefficient it states, nu(e_N), is not the QUMOND monopole coefficient -- that is nu_e(1+L_e/3),
+         which is 5/6 nu_e in a deep external field, a 0.079 dex error built into the statement (A2);
+   (ii)  the relation closes algebraically from v^4 = G M_b a_0 plus the definition of the EFE radius, so it
+         IS A RESTATEMENT of the deep-MOND limit and the external-field effect together (B1), exactly as the
+         proposer half-conceded -- and criterion (5) of the hunt says a restatement must be labelled one;
+   (iii) it fails criterion (3): its own input g_ext is known to 1.5 dex across the two brackets and their
+         percentiles, which at slope -1/2 is 0.74 dex of irreducible scatter against the 0.10 dex allowed (E2);
+   (iv)  and on the data it has, the predicted mass saturation is not seen: with a free amplitude per mass bin
+         the KiDS-1000 profiles disfavour the truncation by Delta chi2 = +144 (weak field) to +507 (strong
+         field), both footings (D1), and the shape alone caps e_N at 6.8e-5, 5.6x below even the no-cluster
+         reconstruction median (D2).  BUT THAT EXCLUSION IS NOT ROBUST: allow the neighbours that generate
+         g_ext to lens as well and the weak-field truncation is no longer excluded (D5).  So the observational
+         verdict is 'excluded at the strong-field bracket, undecided at the weak-field one', not a clean kill.
+  The Upsilon lever is -0.815 measured on the amplitude form and +0.445 on r_EFE; but Upsilon is NOT the
+  blocker here.  g_ext is, at 5x the size.  Same failure mode as the nine Upsilon items, different quantity.
+
+RESULT: 18 checks, 5 FAIL -> ['A2 AGAINST THE CANDIDATE: the proposed coefficient nu(e_N) is NOT the QUMOND monopole coefficient.  The flux carries an extra factor (1 + L_e/3), which tends to 5/6 in a deep external field, so the candidate as written over-states the total dynamical mass by up to 0.079 dex', 'D1 THE TEST.  The candidate says the dynamical mass saturates at r_EFE, which for these lenses at the reconstructed external fields is 0.2-0.7 Mpc -- well inside the KiDS reach of 2.6 Mpc.  If the data show that saturation, the EFE model must fit BETTER than the isolated one.  This check passes only if it does (Delta chi2 < 0 in at least one bracket, both footings)', "D2 the 3-sigma upper limit on a common external field from the KiDS lensing shape alone, with the amplitude free in every bin: e_N must be below the value quoted.  Compare with the reconstruction's median of 3.8e-4 (no-cluster) to 3.3e-3 (max-cluster) -- this check passes only if the lensing limit is ABOVE the reconstructed median, i.e. only if the two are compatible", 'D5 AGAINST MY OWN RESULT ABOVE: the D1 exclusion is NOT robust to a correlated-structure term.  Allow four extra free parameters with the two-halo shape and the weak-field (no-cluster) EFE truncation stops being excluded and becomes mildly PREFERRED, because a rising two-halo term and a falling EFE deficit are nearly the same degree of freedom (bug pattern 5).  This check passes only if the EFE model stays excluded (Delta chi2 > 9) in BOTH brackets even with that freedom', "E2 CRITERION (3) -- RAR-CLASS SCATTER.  The candidate's own input, g_ext, spans the width below across the two reconstruction brackets and their 16-84 percentiles; at d log/d log g_ext = -1/2 that is the irreducible scatter of the prediction.  This check passes only if it is inside the 0.1 dex a Kepler-grade law is allowed"]   rc=1

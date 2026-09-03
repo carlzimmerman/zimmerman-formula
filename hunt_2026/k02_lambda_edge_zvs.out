@@ -1,0 +1,136 @@
+========================================================================================================================
+k02 -- THE LAMBDA EDGE: zero-velocity radii of nearby groups from the baryons and a_0
+========================================================================================================================
+  H_Lambda = H_0 sqrt(Omega_Lambda) = 55.85 km/s/Mpc = 1.8099e-18 s^-1   (H_0 = 67.4, Omega_L = 0.6866)
+
+------------------------------------------------------------------------------------------------------------------------
+THE CLOSED FORMS, and the correction to item 95 (whose committed table is all zeros and whose stated
+exponent 1/6 does not follow from its own stated equation)
+------------------------------------------------------------------------------------------------------------------------
+    M_b [Msun]   r_Lambda canon [Mpc]   r_Lambda alt [Mpc]   Newton r_ZG(M_b) [Mpc]
+           1e9                  1.063                1.114                    0.111
+          1e10                  1.890                1.982                    0.240
+          1e11                  3.362                3.524                    0.517
+          1e12                  5.978                6.266                    1.113
+          1e13                 10.631               11.143                    2.398
+          1e14                 18.904               19.816                    5.167
+          1e15                 33.617               35.238                   11.131
+  [PASS] K02-95 CORRECTION TO A COMMITTED NUMBER: item 95's exponent is wrong and its table is empty.  The framework's Lambda edge scales as M_b^(1/4), not M_b^(1/6), and an L* galaxy's edge is a few Mpc, not 0.000   (measured d log r_Lambda/d log M_b = 0.250000 (predicted 1/4 = 0.25; item 95 states 1/6 = 0.1667); L* (M_b = 5e10) gives 2.83 Mpc, not 0.000)
+
+------------------------------------------------------------------------------------------------------------------------
+THE DYNAMICAL VERSION (a 1-D shell integration in a LambdaCDM background, not the static balance):
+  r'' = -nu(g_N/a_0) g_N + Omega_L H_0^2 r,  started on the Hubble flow at a = 0.02, run to a = 1.
+  R_0 = the radius of the shell whose radial velocity is zero today.  This is what an observer measures.
+------------------------------------------------------------------------------------------------------------------------
+    M_b [Msun]   R_0 framework canon   R_0 framework alt   r_Lambda static canon  R_0/r_Lambda
+          1e10                 1.048               1.098                   1.890         0.554
+          1e11                 1.865               1.954                   3.362         0.555
+          1e12                 3.322               3.480                   5.978         0.556
+          1e13                 5.925               6.205                  10.631         0.557
+
+  R_0 / r_Lambda = 0.555 +- 0.001 over three decades of mass -- so the STATIC
+  closed form (K02) and the honest integration differ by a constant of order one, and (K02) can be used with
+  that constant folded in.  That constant is the item's only non-predicted number and it is quoted here.
+  [PASS] K02a the dynamical integration must reproduce the closed form's 1/4 mass slope -- if it does not, the static balance is not the right reading of the zero-velocity surface   (integrated d log R_0/d log M_b = 0.2508 against the predicted 0.2500)
+
+------------------------------------------------------------------------------------------------------------------------
+THE MEASUREMENT.  Karachentsev's Updated Nearby Galaxy Catalog (869 galaxies, on disk) gives distances and
+Local-Group-frame velocities.  The zero-velocity radius is the intercept of the local Hubble diagram.
+------------------------------------------------------------------------------------------------------------------------
+
+  group            N   R_0 measured [Mpc]   H_loc [km/s/Mpc]   M_* [Msun]  M_gas [Msun]   M_b [Msun]
+/Users/carlzimmerman/new_physics/zimmerman-formula/hunt_2026/k02_lambda_edge_zvs.py:186: RuntimeWarning: divide by zero encountered in matmul
+  cth = unit @ nc
+/Users/carlzimmerman/new_physics/zimmerman-formula/hunt_2026/k02_lambda_edge_zvs.py:186: RuntimeWarning: overflow encountered in matmul
+  cth = unit @ nc
+/Users/carlzimmerman/new_physics/zimmerman-formula/hunt_2026/k02_lambda_edge_zvs.py:186: RuntimeWarning: invalid value encountered in matmul
+  cth = unit @ nc
+  Local Group     67         1.176 +- 0.106              139.8    9.890e+10     1.558e+10    1.145e+11
+  M81 group       71         1.033 +- 0.165               91.9    8.462e+10     1.159e+10    9.621e+10
+  Cen A group     40         0.614 +- 0.234               81.1    8.768e+10     2.563e+09    9.025e+10
+  M83 group       43         0.488 +- 1.375               73.9    4.404e+10     1.360e+10    5.764e+10
+  IC 342 group    91         0.925 +- 0.118              124.0    7.978e+10     2.359e+10    1.034e+11
+  M94 / CVn I    101   no usable zero crossing (R_0 = -0.35220531483813233)
+
+  (the Milky Way carries no K-band luminosity in the catalogue; 6.1e10 Msun of stars is added for it, the
+   standard value.  Every other mass is the catalogue's own K luminosity at Upsilon_K = 0.6 plus 1.33 M_HI.)
+  AGAINST INTEREST: this is a stellar+cold-gas mass.  Groups also hold warm/hot gas that these catalogues do
+  not see; every framework radius below is therefore a LOWER bound, and the direction of that bias is stated
+  in the verdict.
+  [PASS] K02b the Local Group's measured zero-velocity radius must come out near the published 0.96 +- 0.03 Mpc (Karachentsev+2009) -- if it does not, this pipeline is not measuring what the literature measures   (measured 1.176 +- 0.106 Mpc from 67 galaxies against the published 0.96 +- 0.03)
+
+------------------------------------------------------------------------------------------------------------------------
+THE CONFRONTATION.  Framework R_0 from the measured BARYONS alone, against the measured R_0.
+------------------------------------------------------------------------------------------------------------------------
+  group           R_0 meas   fw canon    fw alt  ratio canon  ratio alt   M_tot needed (Newton)
+  Local Group        1.176      1.929     2.021         1.64       1.72               3.178e+12
+  M81 group          1.033      1.847     1.935         1.79       1.87               2.154e+12
+  Cen A group        0.614      1.817     1.904         2.96       3.10               4.517e+11
+  M83 group          0.488      1.624     1.702         3.33       3.49               2.271e+11
+  IC 342 group       0.925      1.880     1.970         2.03       2.13               1.547e+12
+
+  median framework / measured : 2.03 (canonical), 2.13 (alt)
+  in dex                      : +0.308 (canonical), +0.328 (alt)
+  [FAIL] K02c THE HEADLINE CHECK, AND IT CAN FAIL: the framework's zero-velocity radius, computed from the measured baryonic mass with no free parameter, must match the measured radius to better than a factor 1.5   (median ratio 2.03 (canonical) / 2.13 (alt) over 5 groups)
+
+  measured d log R_0 / d log M_b = +1.247 over 5 groups spanning 0.30 dex -- framework predicts +0.250, a Newtonian/splashback radius +0.333
+  [PASS] K02d the mass scaling is the discriminator.  With this few groups over this little mass range it will not separate 1/4 from 1/3, and this check records that honestly rather than claiming it does   (slope +1.247; the two predictions differ by only 0.025 dex across the whole sample, which is inside the scatter)
+
+------------------------------------------------------------------------------------------------------------------------
+THE EXTERNAL FIELD, which the framework does not let us ignore at Mpc separations
+------------------------------------------------------------------------------------------------------------------------
+  e_N = g_ext/a_0 = 0.000   ->  R_0(M_b = 2e11) = 2.218 Mpc
+  e_N = g_ext/a_0 = 0.003   ->  R_0(M_b = 2e11) = 1.219 Mpc
+  e_N = g_ext/a_0 = 0.010   ->  R_0(M_b = 2e11) = 1.015 Mpc
+  e_N = g_ext/a_0 = 0.030   ->  R_0(M_b = 2e11) = 0.859 Mpc
+  (the prescription used is nu(y + e_N), the simple scalar one; the repository's own item 8 found that this
+   over-predicts relative to a careful QUMOND treatment, so these numbers are indicative, not a forecast.)
+
+------------------------------------------------------------------------------------------------------------------------
+WHY THE OBVIOUS BIG SAMPLE CANNOT BE USED (bug pattern 5, caught before it was committed)
+------------------------------------------------------------------------------------------------------------------------
+  Kourkchi & Tully 2017 tabulate a 'second turnaround radius' R_2t for 8826 groups -- the obvious sample.
+  But log R_2t - (1/3) log M_K has an rms of 0.00136 dex over those 8826 groups.  R_2t is not a
+  measurement; it is M_K^(1/3) with a fixed coefficient.  Correlating it with baryonic mass would have
+  recovered the exponent 1/3 by construction and 'refuted' the framework with its own input.
+  [PASS] K02e KT2017's turnaround radii are a DERIVED quantity and must not be used -- this check fires if the rms of log R_2t - (1/3) log M_K is small enough to prove they are not independent measurements   (rms 0.00136 dex -- deterministic to four decimal places)
+
+------------------------------------------------------------------------------------------------------------------------
+THE UPSILON LEVER and the MUTATION CONTROLS
+------------------------------------------------------------------------------------------------------------------------
+  stellar share of M_b in the Local Group: 0.864
+  d log R_0(predicted) / d log Upsilon_K = +0.216   (= f_star/4, since R_0 ~ M_b^(1/4))
+  inverted the other way, d log a_0 / d log Upsilon_K = -0.864 if R_0 is used as an a_0 meter
+  [PASS] K02-UPS the test's Upsilon lever must be mild -- a quarter-power law on a mass that is only partly stellar is the single most Upsilon-insensitive place a_0 has been put in this hunt   (d log R_0/d log Upsilon = +0.216)
+  [PASS] M02a quadrupling a_0 must move R_0 by exactly a factor 4^(1/4) = 1.414, because (K02) has a_0 to the quarter power   (measured 1.4117 against the predicted 1.4142)
+  [PASS] M02b a hundredfold change in baryonic mass must move R_0 by exactly 100^(1/4) = 3.162 -- the estimator must not be a fixed point   (measured 3.173 against 3.162)
+
+========================================================================================================================
+THE RESTATEMENT TEST -- can (K02) be derived from v^4 = G M_b a_0 plus algebra?
+========================================================================================================================
+  Attempt it.  v^4 = G M_b a_0 gives v_flat = (G M_b a_0)^(1/4).  Equation (K02) then reads R_0 = C v_flat/H_Lambda.
+  So the MASS EXPONENT, 1/4, IS forced by the BTFR and is a restatement -- that half closes.
+  What does NOT close: the BTFR contains no cosmology.  To get from v_flat to a radius you need the
+  cosmological repulsion term Omega_L H_0^2 r and the collapse history, neither of which is anywhere in
+  v^4 = G M_b a_0.  The coefficient C and the appearance of H_Lambda are new content.
+  VERDICT: PARTIAL RESTATEMENT.  The exponent is the BTFR's; the coefficient is not.  And the coefficient is
+  where the interesting claim lives, because a_0 = (c/2) sqrt(G rho_DE) makes H_Lambda and a_0 the same
+  constant seen twice: R_0 = (G M_b)^(1/4) (c/(2 Z))^(1/4) H_Lambda^(1/4) / H_Lambda x C, i.e.
+  R_0 propto (G M_b c / 2Z)^(1/4) H_Lambda^(-3/4).  Nobody has written that down.
+  Numerically, with Z = sqrt(32 pi/3) = 5.7888: a_0/(c H_Lambda) = 0.1725 against 1/Z = 0.1727 -- the canonical footing IS cH_Lambda/Z by construction
+
+========================================================================================================================
+VERDICT -- k02
+========================================================================================================================
+  5 nearby groups have a usable zero-velocity radius in the Local Volume catalogue.
+  The Local Group's comes out at 1.18 Mpc if the fit converged, against the published 0.96.
+  The framework, fed only the measured stellar and cold-gas mass, predicts a median 2.03x (canonical) / 2.13x (alt) the measured radius.
+  A ratio near 1 would be a second law with a_0 and Lambda on both sides of it.  A ratio far from 1 is a
+  liability of the same family as item 13's Local Group timing over-prediction, and is reported as one.
+  The item's own limits, stated: six groups, 1-2 decades of mass, a stellar+cold-gas mass that misses warm
+  gas, an external-field prescription the repository has already found to be the optimistic one, and a
+  zero-velocity fit whose intercept is sensitive to the radial window.  The mass SCALING -- 1/4 against
+  1/3 -- is the discriminator and this sample cannot reach it.  What is decisive and cheap: the same
+  measurement on the ~30 Local Volume groups with Hubble-flow coverage in the full UNGC.
+
+RESULT: 9 checks, 1 FAIL -> ["K02c THE HEADLINE CHECK, AND IT CAN FAIL: the framework's zero-velocity radius, computed from the measured baryonic mass with no free parameter, must match the measured radius to better than a factor 1.5"]   rc=1

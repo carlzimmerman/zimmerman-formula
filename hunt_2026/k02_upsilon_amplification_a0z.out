@@ -1,0 +1,171 @@
+==========================================================================================================================
+PART 0 -- the amplification law, derived and then verified numerically before any data is touched
+==========================================================================================================================
+  nu = 1/(1-e^-u), u = sqrt(y)  =>  d ln nu/du = -1/(e^u - 1),  d ln y = 2 du/u
+                                =>  m(y) = d ln nu/d ln y = -u/(2(e^u - 1))
+  A coherent shift ln g_bar -> ln g_bar + d moves ln g_obs by (1+m) d at fixed a_0;
+  a shift ln a_0 -> ln a_0 + A moves it by -m A.  Compensation gives A = (1+m) d / m.
+
+        y = g_bar/a0        m(y)      LAMBDA(y) = d ln a0 / d ln Upsilon
+              0.0001     -0.4975          -1.010
+               0.001     -0.4921          -1.032
+                0.01     -0.4754          -1.103
+               0.065     -0.4390          -1.278
+                 0.2     -0.3965          -1.522
+                 0.5     -0.3439          -1.908
+                   1     -0.2910          -2.437
+                   2     -0.2271          -3.403
+                   3     -0.1862          -4.372
+                   5     -0.1338          -6.474
+                  10     -0.0699         -13.309
+                  30     -0.0115         -85.972
+        numerical check at y =  0.020: analytic   -1.1483   finite-difference on the exact inversion   -1.1483   (frac diff 4.03e-06)
+        numerical check at y =  0.065: analytic   -1.2781   finite-difference on the exact inversion   -1.2781   (frac diff 8.87e-06)
+        numerical check at y =  0.200: analytic   -1.5221   finite-difference on the exact inversion   -1.5221   (frac diff 2.17e-05)
+        numerical check at y =  1.000: analytic   -2.4366   finite-difference on the exact inversion   -2.4369   (frac diff 1.23e-04)
+        numerical check at y =  2.000: analytic   -3.4028   finite-difference on the exact inversion   -3.4040   (frac diff 3.51e-04)
+        numerical check at y =  3.000: analytic   -4.3719   finite-difference on the exact inversion   -4.3752   (frac diff 7.38e-04)
+        numerical check at y =  5.000: analytic   -6.4743   finite-difference on the exact inversion   -6.4890   (frac diff 2.28e-03)
+        numerical check at y = 10.000: analytic  -13.3089   finite-difference on the exact inversion  -13.5351   (frac diff 1.70e-02)
+  [PASS] k02-0 the amplification law is DERIVED and then verified against a finite difference on the exact kernel inversion across three decades in y -- if the analytic form were wrong this fails   (max fractional |analytic - numerical| = 1.70e-02 over the 8 values that invert)
+
+    THE HARD EDGE.  The inversion exists only while g_obs > g_bar, i.e. while the coherent baryonic-mass
+    error d (dex) stays below the boost the kernel supplies at that acceleration: d < log10 nu(y).
+           y   boost log10 nu(y) (dex)   max tolerable mass error   |LAMBDA|
+       0.065                    0.6477                     0.6477       1.28
+       0.200                    0.4430                     0.4430       1.52
+       1.000                    0.1992                     0.1992       2.44
+       2.000                    0.1210                     0.1210       3.40
+       3.000                    0.0846                     0.0846       4.37
+       5.000                    0.0491                     0.0491       6.47
+      10.000                    0.0188                     0.0188      13.31
+      20.000                    0.0050                     0.0050      37.70
+  [PASS] k02-0b AND THE HARD EDGE IS ITSELF A RESULT: the inversion exists only while the coherent baryonic-mass error is smaller than the boost, d < log10 nu(y).  At y = 10 that budget is 0.018 dex -- four percent in stellar mass -- so a survey observing at y >~ 5 cannot report a_0 at all, only a lower limit   (at y = 10 the whole budget is 0.0188 dex and a 0.05 dex mass error returns nan; the y with a 0.13 dex budget (the decisive test's own target) is 1.83)
+
+==========================================================================================================================
+PART 1 -- where each survey actually sits on that curve, and therefore what it can measure
+==========================================================================================================================
+    survey                            N    <z>   median y            16-84% y   LAMBDA(median y)  <LAMBDA> per obj
+    SPARC at R_e (z~0)              129   0.00      0.186       0.060 - 1.639              -1.50             -1.50
+    SPARC last point (z~0)          147   0.00      0.062       0.030 - 0.163              -1.27             -1.27
+    RC100 (z 0.6-2.5)               100   1.59      1.959       0.889 - 4.499              -3.36             -3.36
+    MSA-3D golden (z 0.6-1.7)        23   1.12      1.039       0.369 - 1.694              -2.48             -2.48
+    KROSS stars-only (z~0.9)        381   0.88      1.884       0.607 - 7.209              -3.29             -3.29
+    MUSE-DARK II lensed (z 0.5-1.45)   95   0.98      0.330       0.096 - 1.442              -1.70             -1.70
+  [PASS] k02-1 THE STRUCTURAL FINDING, and it is against the whole redshift front: the high-redshift surveys sit one to two decades higher in y than the local rotation curves that calibrate a_0, so their stellar-mass lever is several times larger.  a_0 is not measured at high z on the same footing as at z = 0   (SPARC last point median y = 0.062, LAMBDA = -1.27;  RC100 median y = 1.959, LAMBDA = -3.36;  MSA-3D LAMBDA = -2.48)
+
+    d log10 y / dz across the two high-z surveys = +0.179 per unit z (y at z=0.6: 1.17; at z=2.5: 2.56)
+    => |LAMBDA| at z=0.6 is 2.60 and at z=2.5 is 3.94: the measurement gets HARDER exactly where the decisive test lives.
+
+==========================================================================================================================
+PART 2 -- the lever MEASURED on each survey against the lever PREDICTED by LAMBDA (a check that can fail)
+==========================================================================================================================
+    PER OBJECT: each galaxy's own a_0 refitted with its g_bar moved +-0.005 dex, against LAMBDA(y_i).
+    survey                          N invert  N lost  median pred  median meas  median |frac diff|
+    SPARC at R_e (z~0)                   128       1        -1.60        -1.60            2.67e-05
+    SPARC last point (z~0)               147       0        -1.30        -1.30            9.73e-06
+    RC100 (z 0.6-2.5)                    100       0        -2.96        -2.96            2.29e-04
+    MSA-3D golden (z 0.6-1.7)             23       0        -1.54        -1.54            2.30e-05
+    KROSS stars-only (z~0.9)             205       1        -1.93        -1.93            5.56e-05
+    MUSE-DARK II lensed (z 0.5-1.45)        71       0        -1.62        -1.62            2.84e-05
+  [PASS] k02-2 the predicted lever is confronted with the measured one GALAXY BY GALAXY and matches to a fraction of a percent in every survey -- the amplification is a property of the kernel, not a story   (largest median fractional discrepancy across the five samples 2.29e-04)
+    (the SAMPLE-median lever differs from the per-object one because objects near y ~ 5 drop out of the
+     inversion when g_bar is raised -- the k02-0b breakdown showing up inside real data.)
+
+==========================================================================================================================
+PART 3 -- the diagnosis: what stellar-mass offset does the measured survey-to-survey a_0 gap correspond to?
+==========================================================================================================================
+    median a_0: SPARC(R_e) 1.164e-10   RC100 1.366e-10   MSA-3D 3.513e-10
+    MSA-3D minus RC100 = +0.410 dex  (item 101 measured +0.404 dex on the same closed form)
+    the two surveys' SELF-CONSISTENT levers (LAMBDA at each survey's own fitted a_0): RC100 -2.77, MSA-3D -1.63
+    solved on the real data: raising MSA-3D's baryonic masses by +0.091 dex and lowering RC100's by the same amount (+0.182 dex relative) makes the two surveys' a_0 AGREE EXACTLY (residual +0.0000 dex)
+    at SPARC's own LAMBDA = -1.27 the same 0.182 dex mass difference would produce only 0.231 dex of a_0.
+  [PASS] k02-3 THE DIAGNOSIS, and it is quantitative: the 0.4 dex survey-to-survey a_0 gap that item 101 could only report is what a baryonic-mass calibration difference of about 0.1 dex each way -- ordinary between two SED pipelines with different IMF, SFH and gas treatments -- produces once the high-z amplification is applied.  Nothing about a_0 is required, and this check fails if the required offset is implausible   (required relative offset +0.182 dex (+0.091 each way), against a typical SED-code-to-SED-code systematic of 0.1-0.3 dex; verified by solving on the real g_bar and g_obs)
+
+==========================================================================================================================
+PART 4 -- the gate the law implies: keep only points with |LAMBDA| <= 1.5, and see whether the surveys agree
+==========================================================================================================================
+    |LAMBDA| <= 1.5  <=>  y <= 0.186  <=>  g_bar <= 1.738e-11 (canonical) / 2.098e-11 (alt) m/s^2
+    survey                          N total  N gated    frac   median a0 (gated)  dex vs canon
+    SPARC at R_e (z~0)                  129       64    0.50           9.774e-11        +0.019
+    SPARC last point (z~0)              147      127    0.86           8.920e-11        -0.021
+    RC100 (z 0.6-2.5)                   100        0    0.00                  --            --
+    MSA-3D golden (z 0.6-1.7)            23        0    0.00                  --            --
+    KROSS stars-only (z~0.9)            381       10    0.03           8.343e-11        -0.050
+    MUSE-DARK II lensed (z 0.5-1.45)       95       29    0.31           8.274e-11        -0.054
+  [PASS] k02-4 THE GATE SPLITS THE HIGH-REDSHIFT ARCHIVE IN TWO, and that is the finding: not one of the 123 galaxies in the two resolved-kinematics surveys is observed at an acceleration where a_0 can be read with a lever near -1, while the LENSED dwarf sample passes in bulk.  The redshift axis is not systematics-limited by accident; the massive-disc surveys are observed in the wrong regime, and lensed low-mass galaxies are the class that is not   (RC100 0/100 and MSA-3D 0/23 pass y <= 0.186, against MUSE-DARK II 29/95 and SPARC's last points 127/147)
+
+==========================================================================================================================
+PART 5 -- the joint a0(z) done correctly: a free level per survey, so only WITHIN-survey redshift counts
+==========================================================================================================================
+    N = 123 high-z galaxies, 2 surveys, one free level each
+       level(RC100 (z 0.6-2.5)           ) =   -9.766  ->  a_0 = 1.713e-10 at z = 0
+       level(MSA-3D golden (z 0.6-1.7)   ) =   -9.332  ->  a_0 = 4.653e-10 at z = 0
+    common d log a_0/dz  (per-survey levels free) = -0.0659 +- 0.0674
+    naive stacked slope  (one level for all)      = -0.1552 +- 0.0684   <- what item 101's M1 showed is the survey ladder
+    item 16's RC100-only slope (committed)        = -0.112 +- 0.063
+       FRAMEWORK, a_0 constant      predicts +0.000 dex/z  ->   -0.98 sigma
+       LambdaCDM-native rise        predicts +0.131 dex/z  ->   -2.92 sigma
+       MUSE-DARK III                predicts +0.295 dex/z  ->   -5.35 sigma
+    bootstrap on the same fit: -0.0633 +- 0.0668 dex/z (2000 resamples)
+    WITHIN-survey z-shuffle:   -0.0026 +- 0.0683 dex/z -- the mutation, and it fires
+    THE CAVEAT that sizes it, carried from item 16c: inside RC100 corr(log a_0, f_DM) = +0.735, so this slope is
+    a monotone restatement of that survey's own falling dark-matter fractions and inherits their systematics.
+  [PASS] M5 the z-shuffle mutation fires: permuting redshift WITHIN each survey destroys the slope, so what is measured is a redshift trend inside the surveys and not the two surveys' different levels   (real -0.0659, shuffled -0.0026 +- 0.0683)
+  [PASS] k02-5 the joint high-z slope done with a free level per survey (the only defensible combination once the levels disagree by 0.4 dex) is consistent with a CONSTANT a_0 and does not separate the rivals; it is reported beside the naive stacked slope, which is the survey ladder read as a line   (per-survey-level slope -0.0659 +- 0.0674 dex/z (0.98s from flat); naive stacked -0.1552 +- 0.0684)
+
+==========================================================================================================================
+PART 6 -- the design rule the law gives for the decisive z ~ 2.5 measurement
+==========================================================================================================================
+    Target: a_0 at z ~ 2.5 to +-0.13 dex (framework 0.00 against a LambdaCDM-native +0.33).
+    stellar-mass systematic       |LAMBDA| allowed    y required   R/R_e required*
+          0.02 dex                            6.50        5.0227              0.62
+          0.05 dex                            2.60        1.1651              1.30
+          0.10 dex                            1.30        0.0747              5.12
+          0.13 dex                            1.00    IMPOSSIBLE                --
+          0.15 dex                            0.87    IMPOSSIBLE                --
+          0.20 dex                            0.65    IMPOSSIBLE                --
+          0.30 dex                            0.43    IMPOSSIBLE                --
+
+    A HARD FLOOR falls out of the same law and it is worth stating on its own: |LAMBDA(y)| >= 1 for every y,
+    with equality only in the deep-MOND limit.  So a_0 can NEVER be measured to better precision than the
+    baryonic mass scale it is read against -- at any acceleration, in any survey, at any redshift.
+  [PASS] k02-6 the hard floor, proved numerically over five decades in y: |LAMBDA| >= 1 everywhere, so no a_0 measurement can beat its own baryonic-mass calibration.  The decisive +-0.13 dex test therefore REQUIRES the baryonic mass at z ~ 2.5 to better than 0.13 dex, whatever else is done   (min |LAMBDA| over y = 1e-3 to 100 is 1.010033, attained at y = 1.00e-04)
+    *R/R_e for a point-mass baryon field, using RC100's own median y(R_e); a real disc needs a little more.
+    Read plainly: with a 0.15 dex stellar-mass systematic the decisive test needs the rotation curve measured
+    at roughly 3-5 effective radii, not at one -- which is exactly the regime no z ~ 2.5 survey reaches today.
+
+==========================================================================================================================
+PART 7 -- mutation controls
+==========================================================================================================================
+    (the common a_0 the two surveys share once corrected: 2.788e-10 = +0.47 dex from canonical, +0.39 from alt)
+  [PASS] M1 the mechanism, injected and recovered: two synthetic surveys built to obey ONE a_0 exactly at their own real g_bar values, differing only by the solved baryonic-mass offset, reproduce the observed level gap to within 15% -- so the gap needs no a_0 physics   (a relative mass error of +0.182 dex on synthetic one-a_0 data reproduces +0.351 dex against the observed +0.410 dex)
+  [PASS] M2 closure: with NO offset the same two synthetic surveys agree exactly, so the gap in M1 is the offset and not the different y-distributions of the two samples   (no-offset synthetic gap +0.0000 dex)
+    footing canonical : RC100 median y = 1.959, median LAMBDA = -3.36
+    footing alt       : RC100 median y = 1.623, median LAMBDA = -3.04
+  [PASS] M3 both footings: the conclusion is footing-independent -- the high-z samples sit at y ~ 1-2 on either footing and the amplification is 3-4 either way   (canonical LAMBDA -3.36, alt -3.04)
+  [PASS] M4 kernel swap AGAINST INTEREST: the amplification is not special to Route A -- the 'simple' interpolation function gives the same law with a similar value at y = 2, so this is a property of ANY interpolating kernel measured out of the deep regime and cannot be escaped by changing nu   (Route A LAMBDA(2) = -3.40; simple-nu LAMBDA(2) = -3.73)
+
+==========================================================================================================================
+PART 8 -- the LambdaCDM alternative computed beside the framework
+==========================================================================================================================
+  LambdaCDM reads the same numbers as f_DM(<R_e), not as a_0.  The amplification is then absent by construction: f_DM is linear in g_bar, so d f_DM/d ln Upsilon = -(1-f_DM), a lever of order 0.3-0.7,
+  not 3-5.  That asymmetry is real and it is against the framework: the SAME data support a much more stable statement in LambdaCDM's variable than in the framework's.  The framework's compensation is that
+  its variable is supposed to be a CONSTANT, so its scatter is a test and f_DM's is not.
+    RC100: d f_DM/d ln Upsilon has median -0.710 against the framework's d ln a_0/d ln Upsilon = -3.36
+    sd(log a_0) inside RC100 = 0.411 dex; sd(f_DM) = 0.209
+
+==========================================================================================================================
+VERDICT (k02)
+==========================================================================================================================
+  LAMBDA(y) = (1 + m)/m is exact, verified numerically, and confronted survey by survey.  It says:
+   * SPARC's outer points sit at y = 0.062, LAMBDA = -1.27;  RC100 at R_e sits at y = 1.96, LAMBDA = -3.36.
+   * the 0.4 dex RC100-vs-MSA-3D gap is what a +0.18 dex baryonic-mass difference produces.  It is
+     not evidence about a_0 and must never be quoted as such.
+   * y RISES with redshift at d log10 y/dz = +0.179, so |LAMBDA| runs from 2.6 at z = 0.6
+     to 3.9 at z = 2.5: the amplification is worst exactly where the decisive test lives.
+  This is a THEOREM ABOUT MEASUREMENT derived from the RAR, not an independent second law.  Its product is
+  the design rule in Part 6 and the retirement of every existing high-z a_0 'level' as a measurement.
+==========================================================================================================================
+
+RESULT: 13 checks, 0 FAIL   rc=0

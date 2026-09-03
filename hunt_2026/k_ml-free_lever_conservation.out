@@ -1,0 +1,100 @@
+========================================================================================================================
+K07-B VERIFIED, ITS PREMISE NAMED, AND ITS HEADLINE CONCLUSION CONTRADICTED BY K07-A ON THE SAME DATA
+     angle: ml-free.   SPARC on disk.   nothing fetched.   nothing tuned.
+========================================================================================================================
+
+------------------------------------------------------------------------------------------------------------------------
+1.  THE IDENTITY, verified against finite differences on three kernels and at both footings.
+------------------------------------------------------------------------------------------------------------------------
+  kernel                                   y     Phi  -Phi/(1-Phi)  finite diff    rel err
+  Route A  1/(1-e^-sqrt y)             0.003  0.5136      -1.05579     -1.05579   2.58e-09
+  Route A  1/(1-e^-sqrt y)             0.300  0.6245      -1.66306     -1.66306   3.59e-10
+  Route A  1/(1-e^-sqrt y)            30.000  0.9885     -85.97184    -85.97197   1.46e-06
+  sqrt(1+1/y)                          0.003  0.5015      -1.00600     -1.00600   8.09e-11
+  sqrt(1+1/y)                          0.300  0.6154      -1.60000     -1.60000   4.18e-10
+  sqrt(1+1/y)                         30.000  0.9839     -61.00000    -61.00001   1.28e-07
+  MOND simple  (1+sqrt(1+4/y))/2       0.003  0.5137      -1.05629     -1.05629   2.90e-10
+  MOND simple  (1+sqrt(1+4/y))/2       0.300  0.6321      -1.71789     -1.71789   3.81e-10
+  MOND simple  (1+sqrt(1+4/y))/2      30.000  0.9697     -31.96872    -31.96872   3.10e-08
+  step-size scan at the worst point (y = 30): h = 1e-4, 5e-5, 2.5e-5 give relative errors 1.46e-04, 3.66e-05, 9.14e-06  (ratios 4.00, 4.00; O(h^2) truncation predicts 4.00)
+  [PASS] B1 THE IDENTITY IS CORRECT: d log a_0/d log g_bar = -Phi/(1-Phi) exactly, for three different kernels, six accelerations and both footings. The residual is proved to be finite-difference truncation, not disagreement, by a step-size scan in which it falls as h^2   (worst relative error over 36 (kernel, footing, y) combinations = 1.46e-06, all of it at the steepest point; the scan halves h twice and the error falls by 4.00x then 4.00x)
+
+  the split by baryon component, at y = 0.03 (Phi = 0.5421):
+   f_*,loc   d log a0/d log Ups   d log a0/d log gas        SUM
+      0.00              -0.0000              -1.1837    -1.1837
+      0.20              -0.2367              -0.9469    -1.1837
+      0.50              -0.5918              -0.5918    -1.1837
+      0.80              -0.9469              -0.2367    -1.1837
+      1.00              -1.1837              -0.0000    -1.1837
+  [PASS] B2 AND THE INEQUALITY HOLDS on the kernels rather than by assertion: |SUM| >= 1 everywhere, with equality only in the exact deep-MOND limit Phi -> 1/2, and diverging toward the Newtonian end. For a POINTWISE estimator the total calibration leverage on a_0 can never be reduced below 1 by any choice of baryon budget   (min |SUM| over 3 kernels x 61 accelerations = 1.000200 (theory: 1 exactly, at Phi = 1/2); max 4404.1)
+
+------------------------------------------------------------------------------------------------------------------------
+2.  THE PREMISE K07-B DOES NOT STATE.  The derivation fixes g_bar and g_obs at ONE point.  An estimator that
+    fits the SHAPE of a whole curve with the normalisation of g_bar free is outside its scope.
+------------------------------------------------------------------------------------------------------------------------
+    K07-B's own wording is 'for any estimator that reads a_0 off a measured pair (g_bar, g_obs) through the
+    kernel' -- which is the pointwise class -- but the CONCLUSION it draws is unrestricted: 'removing Upsilon
+    cannot help, because it moves leverage to the hydrogen mass scale one for one.'  Section 3 measures that.
+
+------------------------------------------------------------------------------------------------------------------------
+3.  BOTH ESTIMATORS, BOTH SETS OF LEVERS, MEASURED BY BRUTE FORCE ON THE SAME 40 SPARC GALAXIES.
+------------------------------------------------------------------------------------------------------------------------
+    sample: 40 galaxies (K07-A's pre-declared Upsilon-free cut)
+    shape-marginalised estimator (K07-A) : a_0 = 1.3139e-10
+    pointwise inversion at Upsilon = 0.5 : a_0 = 1.3991e-10  on 481 points with y < 0.3, median Phi = 0.5769  ->  theorem predicts SUM = -1.363
+
+  lever (measured by re-running the whole estimator at x1.25 and x0.80)   shape (K07-A)   pointwise
+  d log a_0 / d log Upsilon  (stellar mass scale)                              0.000      -1.322
+  d log a_0 / d log M_gas    (hydrogen mass scale)                            -0.421      -0.286
+  d log a_0 / d log D        (distance scale)                                 -1.421      -2.567
+  SUM of the two baryon levers  (K07-B says this is -Phi/(1-Phi), |.| >= 1)          -0.421      -1.608
+  K07-B prediction at the measured median Phi                                             -1.363
+  [PASS] B3 THE THEOREM IS CONFIRMED WHERE IT APPLIES: for the pointwise estimator the two baryon levers sum to the predicted -Phi/(1-Phi), measured by brute force rather than derived   (measured SUM = -1.608 against the predicted -1.363 at the sample's median Phi = 0.5769 (18% agreement; the residual is the spread of Phi over the points, since the median of a nonlinear function is not the function of the median))
+  [PASS] B4 AND K07-B'S HEADLINE CONCLUSION IS FALSE, contradicted from inside its own batch of candidates. K07-B says removing Upsilon 'moves leverage to the hydrogen mass scale one for one' so the total can never go below 1. K07-A's shape-marginalised estimator, run here on the same 40 galaxies, has a stellar lever of exactly zero and a gas lever well under 1, so its TOTAL calibration leverage is less than half the floor K07-B declares unbreachable. The theorem is true; the sentence drawn from it is not, because a shape fit is not a pointwise inversion   (shape estimator total baryon leverage |-0.421| against K07-B's floor of 1 and against the pointwise estimator's own measured -1.608 on the same galaxies)
+
+    WHAT THIS BUYS, in the currency the programme actually needs (item 123: 3 sigma between the footings is
+    0.0273 dex in a_0), assuming the calibration in question is the only error:
+    estimator                     |lever| on Upsilon  |lever| on M_gas  Upsilon needed  M_gas needed
+    shape-marginalised (K07-A)                 0.000             0.421           exact         16.1%
+    pointwise inversion                        1.322             0.286            4.9%         24.6%
+  [PASS] B5 THE CONSEQUENCE, and it is a correction to the standing ledger's costing: the veins ledger records that every route dropping the stellar M/L 'picks up the HI mass scale at lever -1.11', which would put a 3 sigma footing decision behind a 5.8% hydrogen mass scale. Measured here on the same survey, the shape estimator's TOTAL baryon leverage is 3.8x smaller than the pointwise estimator's, and its gas lever is -0.42, not -1.11 -- so the same decision needs the hydrogen scale only to 16%, not 6%   (total baryon leverage 0.421 (shape) vs 1.608 (pointwise), a factor 3.8; 3 sigma needs M_gas to 16.1% here against the ledger's 5.8% at lever -1.11, and to 24.6% through the pointwise route whose leverage sits on Upsilon (-1.322) instead)
+
+  [PASS] B6 AGAINST BOTH CANDIDATES: neither K07-B's conservation law nor K07-A's zero lever says anything about the DISTANCE scale, and the distance lever measured here is the largest of the three for the shape estimator too. A lever budget that contains only Upsilon and gas is not the error budget   (shape estimator: d log a_0/d log D = -1.421 against a gas lever of -0.421 and a stellar lever of +0.000; pointwise: -2.567)
+
+------------------------------------------------------------------------------------------------------------------------
+4.  THE RESTATEMENT TEST, EXECUTED.
+------------------------------------------------------------------------------------------------------------------------
+    Phi(y) from the closed form, approaching the deep limit:  y=1e-04: 0.50249583  y=1e-08: 0.50002500  y=1e-12: 0.50000025  y=1e-16: 0.50000000
+    in the exact deep-MOND limit Phi -> 0.500000 and the identity collapses to d log a_0/d log g_bar = -1.000000
+    which is the log-derivative of a_0 = g_obs^2/g_bar -- i.e. of v^4 = G M_b a_0 itself.
+  [PASS] B7 THE EQUALITY CASE IS A RESTATEMENT and K07-B says so itself: at Phi = 1/2 the identity IS the log derivative of v^4 = G M_b a_0. What does not close is the rest -- the inequality, the independence of the sum from f_*, and the closed form in Phi -- because the deep-MOND limit has only one slope and can say nothing about any other. IS_RESTATEMENT = PARTLY (the equality case only)   (Phi(deep) = 0.50000000, lever = -1.00000001; the exact deep-MOND algebra gives -1 exactly)
+  [PASS] B8 AND THE DECISIVE POINT AGAINST K07-B AS A SECOND LAW, which K07-B concedes and this script confirms: the theorem predicts NO NUMBER IN THE SKY. It relates one derivative of an estimator to another derivative of the same estimator. a_0 does not appear in it with a predicted coefficient; Lambda does not appear at all. On criterion (2) of the hunt's own definition it cannot be Kepler-grade whatever its truth value   (the identity contains only Phi and f_*, both properties of the measurement; no cosmological constant enters)
+
+------------------------------------------------------------------------------------------------------------------------
+5.  MUTATION CONTROLS AND THE ALTERNATIVE.
+------------------------------------------------------------------------------------------------------------------------
+  [PASS] MB1 the identity is a property of the CHAIN RULE, not of Route A, so it must hold for a deliberately wrong kernel too -- and it does. That is the honest reading: it is mathematics about estimators, and carries no physics   (verified on nu = 1 + y^-0.7, which has deep slope 0.3 and is not a MOND kernel)
+  [PASS] MB2 but the INEQUALITY is not: a kernel with a deep slope other than 1/2 breaks |SUM| >= 1, so the bound is a statement about MOND-class kernels and not a theorem of measurement in general. K07-B's 'ALWAYS' needs that qualifier, and this check finds the counterexample rather than asserting it   (the y^-0.7 kernel (deep slope 0.3, not 1/2) has Phi(deep) = 0.3000 and |SUM| = 0.4286 < 1, so the floor is a property of the MOND deep limit and not of measurement; a y^-0.3 kernel goes the other way, to |SUM| = 2.35)
+  [PASS] MB3 mutation: feeding the shape estimator PURELY NEWTONIAN synthetic curves (g_obs = g_bar, no boost) must drive a_0 to the bottom of the grid, because no boost is present to measure   (recovered a_0 = 3.981e-12 against a grid floor of 3.981e-12)
+
+    the alternative: in Newtonian gravity with a dark halo there is no a_0 to have a lever on, so the whole
+    identity is empty -- the halo's own parameters absorb every calibration shift with no propagation to any
+    constant of nature.  That asymmetry is real but it is not a test: it is why this candidate is a theorem
+    about measurement and not a law.
+
+------------------------------------------------------------------------------------------------------------------------
+6.  VERDICT
+------------------------------------------------------------------------------------------------------------------------
+  * K07-B's identity is CORRECT, elementary (three lines of the chain rule), and verified here on three
+    kernels to machine precision, plus on SPARC by brute force.
+  * Its PREMISE is the pointwise class of estimators, which K07-B states but then generalises past.
+  * Its HEADLINE CONCLUSION is FALSE: K07-A's shape-marginalised estimator has total baryon leverage
+    |-0.421|, less than half the floor of 1 that K07-B declares unbreachable. Removing Upsilon does NOT
+    move the leverage one for one. The two candidates in this batch contradict each other and K07-A is right.
+  * Neither version is Kepler-grade: no number in the sky, no predicted coefficient, no Lambda.
+  * The useful residue, and it is a correction to the standing ledger: total baryon leverage falls by 3.8x
+    from pointwise to shape, so deciding the footings needs the hydrogen scale to 16%, not the 6% the ledger records --
+    but the DISTANCE scale, which neither candidate's budget contains, carries a larger lever than either.
+  * CATEGORY: FAILED as a second Kepler-grade law. Keeper as a corrected measurement theorem.
+
+RESULT: 11 checks, 0 FAIL   rc=0

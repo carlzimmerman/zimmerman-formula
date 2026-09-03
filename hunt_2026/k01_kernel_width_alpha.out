@@ -1,0 +1,152 @@
+======================================================================================================================
+k01 -- ANGLE 8: a second constant in the kernel?  The transition width alpha, measured.
+======================================================================================================================
+
+0.  THE FAMILY AND ITS EXACT INVERSION (checked before any data are touched)
+----------------------------------------------------------------------------------------------------------------------
+    alpha    nu*sqrt(y) deep          nu at y=1e30      nu(1)     |   local RAR slope d log g_obs/d log g_bar at y = 0.01 / 0.1 / 1
+      0.40      1.0000000152          1.0000000000     3.14775   |   0.5929 / 0.6413 / 0.7090
+      0.70      1.0000000087          1.0000000000     1.92562   |   0.5482 / 0.6034 / 0.7090
+      1.00      1.0000000061          1.0000000000     1.58198   |   0.5246 / 0.5749 / 0.7090
+      1.50      1.0000000041          1.0000000000     1.35769   |   0.5079 / 0.5431 / 0.7090
+      2.50      1.0000000024          1.0000000000     1.20138   |   0.5008 / 0.5139 / 0.7090
+  [PASS] 0a EVERY member of the family has the SAME two ASYMPTOTIC limits -- deep-MOND nu*sqrt(y)=1 and Newtonian nu=1 -- so alpha is orthogonal to v^4 = G M_b a_0: the restatement test cannot close, because the deep-MOND relation is satisfied identically for every alpha   (asymptotic limits recovered to 1e-6 at y^(alpha/2) = 1e-8 and at y = 1e30, for alpha = 0.4 ... 2.5)
+    CAVEAT STATED AGAINST INTEREST, and it is the reason the estimator below has any power at all: the ASYMPTOTE is
+    alpha-free but the APPROACH to it is not.  At y = 0.01 -- a typical outer SPARC point -- the local RAR slope is
+    0.53 for alpha = 1 and 0.57 for alpha = 0.4, so a broad kernel is measurably NOT deep-MOND where the data are.
+    That is what alpha is read from; it also means alpha and the observed deep-tail slope are not fully independent.
+  [PASS] 0b the closed-form inversion (K1) is exact: synthesising g_obs from a known (a_0, alpha) and inverting returns a_0 to machine precision for every alpha and both footings   (max |dlog a_0| = 9.11e-10 dex)
+  data generated with alpha=1, inverted assuming alpha=0.50: d log a_0_hat / d log g_bar = -0.2850
+  data generated with alpha=1, inverted assuming alpha=0.80: d log a_0_hat / d log g_bar = -0.0724
+  data generated with alpha=1, inverted assuming alpha=1.00: d log a_0_hat / d log g_bar = +0.0000
+  data generated with alpha=1, inverted assuming alpha=1.25: d log a_0_hat / d log g_bar = +0.0574
+  data generated with alpha=1, inverted assuming alpha=2.00: d log a_0_hat / d log g_bar = +0.1392
+  [PASS] 0c THE ESTIMATOR'S LEVER: assuming the wrong alpha makes the per-point a_0 drift with g_bar, and assuming the right one makes the drift exactly zero.  That drift is the statistic   (slope at alpha=1 is +0.00e+00; at alpha=0.5 -0.285; at alpha=2 +0.139)
+
+1.  SPARC: the sample, and the estimator's statistic
+----------------------------------------------------------------------------------------------------------------------
+  SPARC Q<=2, inc>=30, >=6 points: 147 galaxies, 3140 points, Upsilon_disk = 0.5 (bulge 1.4x)
+  points with g_obs <= g_bar (the inversion is undefined there): 6.1%  (190 of 3140)
+  regressor = log g_bar:   alpha_hat = 0.6380   (drift at alpha=1: +0.1626 over 2949 points)
+  regressor = log g_obs:   alpha_hat = 0.4186   (drift at alpha=1: +0.4311 over 2949 points)
+
+1b. CAN-FAIL CHECK -- can the estimator recover an alpha injected into the real g_bar values?
+----------------------------------------------------------------------------------------------------------------------
+  per-galaxy coherent vertical uncertainty from SPARC's own eD and e_inc: median 0.087 dex, 16-84% [0.044, 0.138]
+  injected alpha = 0.50  ->  recovered  0.472 +- 0.070 (regress on g_bar)   |    0.305 +- 0.041 (regress on g_obs)
+  injected alpha = 0.70  ->  recovered  0.557 +- 0.082 (regress on g_bar)   |    0.369 +- 0.047 (regress on g_obs)
+  injected alpha = 0.85  ->  recovered  0.600 +- 0.088 (regress on g_bar)   |    0.389 +- 0.057 (regress on g_obs)
+  injected alpha = 1.00  ->  recovered  0.628 +- 0.095 (regress on g_bar)   |    0.407 +- 0.058 (regress on g_obs)
+  injected alpha = 1.20  ->  recovered  0.660 +- 0.098 (regress on g_bar)   |    0.418 +- 0.061 (regress on g_obs)
+  injected alpha = 1.40  ->  recovered  0.687 +- 0.108 (regress on g_bar)   |    0.428 +- 0.063 (regress on g_obs)
+  injected alpha = 2.00  ->  recovered  0.725 +- 0.118 (regress on g_bar)   |    0.434 +- 0.066 (regress on g_obs)
+  [FAIL] 1b CLAIM UNDER TEST: that the closed-form drift estimator recovers an injected alpha.  IT FAILS, and that is the item's first real result -- with the real error structure the estimator COMPRESSES the whole family towards alpha ~ 1 (injecting 2.0 returns ~1.0), because the ~6% of points scattered to g_obs < g_bar are exactly the high-y points the inversion needs and they are dropped.  A raw closed-form alpha MUST NOT be quoted   (worst-case bias 0.441 dex (regressing on g_bar), 0.663 dex (on g_obs); injecting alpha = 2.0 returns 0.725)
+  the injection curve is monotone, so it can be inverted: a DEBIASED alpha is quoted alongside the raw one, and the debiasing is calibrated on the real g_bar values, the real errors and the real drop rule
+
+2.  THE MEASUREMENT: alpha from SPARC, galaxy-level bootstrap
+----------------------------------------------------------------------------------------------------------------------
+  alpha RAW (SPARC, Upsilon_d = 0.5) = 0.638   bootstrap 16/50/84 = 0.584 / 0.644 / 0.723
+  alpha DEBIASED through the injection curve = 1.063   bootstrap 16/50/84 = 0.794 / 1.097 / 1.964   (+-0.585)
+  the same points, at that alpha, give a_0 (median of the per-point closed form) = 6.008e-11 m/s^2 = -0.193 dex canonical, -0.274 dex alt
+  [PASS] 2a alpha is measured, not assumed -- the debiased bootstrap interval is finite and does not span the whole family   (alpha = 1.063, 16-84% span factor 2.47)
+  [PASS] 2b CAN FAIL: is Route A's alpha = 1 inside the debiased closed-form interval?   (alpha = 1.063 [0.794, 1.964], alpha=1 is INSIDE)
+
+3.  THE UPSILON LEVER:  d log alpha / d log Upsilon, numerically
+----------------------------------------------------------------------------------------------------------------------
+  Upsilon_disk = 0.30:  alpha_raw = 0.324  alpha_debiased = nan   a_0 = 1.638e-11
+  Upsilon_disk = 0.40:  alpha_raw = 0.476  alpha_debiased = 0.509   a_0 = 4.160e-11
+  Upsilon_disk = 0.50:  alpha_raw = 0.638  alpha_debiased = 1.063   a_0 = 6.008e-11
+  Upsilon_disk = 0.60:  alpha_raw = 0.764  alpha_debiased = nan   a_0 = 6.447e-11
+  Upsilon_disk = 0.70:  alpha_raw = 0.900  alpha_debiased = nan   a_0 = 6.560e-11
+  Upsilon_disk = 0.80:  alpha_raw = 1.033  alpha_debiased = nan   a_0 = 6.449e-11
+  d log alpha / d log Upsilon = +3.297      (compare d log a_0 / d log Upsilon = +1.323 on the same points)
+  [FAIL] 3a THE CANDIDATE'S CENTRAL CLAIM WAS THAT alpha IS UPSILON-IMMUNE, AND IT IS NOT.  A global Upsilon rescale is very nearly a horizontal slide of the RAR, which should not create a drift -- but g_bar = g_gas + Upsilon g_star is NOT a pure slide, and the gas-versus-stars mix changes the SHAPE of every galaxy's own g_bar(r) track.  The lever is measured here and it is large   (d log alpha/d log Upsilon = +3.297 (a_0's own lever on the same points: +1.323))
+  [FAIL] 3b CAN FAIL: does the Upsilon lever move alpha by less than its own bootstrap error over the full plausible range Upsilon = 0.3-0.8 (a 0.43 dex range)?   (lever x range = 1.418 dex in alpha = a factor 26.17, against a bootstrap sigma of 0.585 on alpha = 1.063 (0.550 fractional))
+
+4.  THE FORWARD HIERARCHICAL FIT (per-galaxy Upsilon and a per-galaxy vertical shift, both with priors)
+----------------------------------------------------------------------------------------------------------------------
+    Distance and inclination move log g_obs VERTICALLY only (g_bar is distance-invariant at fixed point index in
+    SPARC's rotmod convention: M ~ D^2, r ~ D, so g_bar ~ const while g_obs ~ 1/D).  So each galaxy carries one
+    vertical nuisance with a prior from its own eD and e_inc, and one log Upsilon with a 0.11 dex SPS prior.
+  profile chi2 over a_0, per alpha (lower is better):
+      alpha = 0.45   chi2_min =     3480.2   (best a_0 = 5.00e-11)   Dchi2 =    427.1
+      alpha = 0.55   chi2_min =     3248.2   (best a_0 = 5.00e-11)   Dchi2 =    195.1
+      alpha = 0.65   chi2_min =     3153.6   (best a_0 = 6.50e-11)   Dchi2 =    100.4
+      alpha = 0.75   chi2_min =     3095.0   (best a_0 = 8.00e-11)   Dchi2 =     41.8
+      alpha = 0.85   chi2_min =     3066.0   (best a_0 = 9.36e-11)   Dchi2 =     12.9
+      alpha = 0.95   chi2_min =     3053.1   (best a_0 = 9.36e-11)   Dchi2 =      0.0
+      alpha = 1.00   chi2_min =     3055.4   (best a_0 = 9.36e-11)   Dchi2 =      2.3
+      alpha = 1.05   chi2_min =     3061.8   (best a_0 = 9.36e-11)   Dchi2 =      8.6
+      alpha = 1.15   chi2_min =     3063.5   (best a_0 = 1.13e-10)   Dchi2 =     10.4
+      alpha = 1.30   chi2_min =     3084.9   (best a_0 = 1.13e-10)   Dchi2 =     31.8
+      alpha = 1.50   chi2_min =     3131.9   (best a_0 = 1.13e-10)   Dchi2 =     78.7
+      alpha = 1.75   chi2_min =     3201.1   (best a_0 = 1.13e-10)   Dchi2 =    148.0
+      alpha = 2.10   chi2_min =     3293.2   (best a_0 = 1.35e-10)   Dchi2 =    240.0
+      alpha = 2.60   chi2_min =     3398.8   (best a_0 = 1.35e-10)   Dchi2 =    345.6
+  HIERARCHICAL FIT: alpha = 0.976  [0.942, 0.972] at Dchi2 = 1   (best a_0 = 9.36e-11)
+  [PASS] 4a the forward hierarchical fit -- per-galaxy Upsilon with an SPS prior, per-galaxy vertical nuisance with its own distance and inclination prior, alpha and a_0 global; the estimator item 91 named and nobody had run -- returns a finite alpha with a finite interval   (alpha = 0.976 [0.942, 0.972])
+  [FAIL] 4b CAN FAIL: is Route A's alpha = 1 inside the hierarchical fit's STATISTICAL interval?  (Read this one together with 4d: the statistical interval is 1-2% wide and the Upsilon systematic below is 100% wide, so a miss here is not evidence against alpha = 1 -- it is evidence that the statistical error is the wrong error to quote)   (alpha = 0.976 [0.942, 0.972]; alpha = 1 is OUTSIDE)
+  [PASS] 4c CAN FAIL: do the two estimators -- the debiased closed-form drift and the forward hierarchical fit -- agree?   (hierarchical 0.976 +- 0.015 vs debiased closed form 1.063 +- 0.585)
+
+    systematics of the hierarchical fit (nothing here is tuned; every scan is reported whatever it says):
+      sigma_int = 0.03 dex  ->  alpha = 0.976 [0.945, 0.963]
+      sigma_int = 0.06 dex  ->  alpha = 0.976 [0.942, 0.972]
+      sigma_int = 0.10 dex  ->  alpha = 0.976 [0.939, 0.980]
+      Upsilon prior mean = 0.30  ->  alpha = 0.649 [0.641, 0.659]
+      Upsilon prior mean = 0.40  ->  alpha = 0.841 [0.838, 0.858]
+      Upsilon prior mean = 0.50  ->  alpha = 0.976 [0.942, 0.972]
+      Upsilon prior mean = 0.65  ->  alpha = 1.218 [1.147, 1.308]
+      Upsilon prior mean = 0.80  ->  alpha = 1.324 [1.291, 1.320]
+      d log alpha / d log Upsilon (HIERARCHICAL estimator) = +0.738
+      TURNED ROUND, which is the usable half: IMPOSING alpha = 1 (Route A) measures the stellar mass-to-light
+      ratio from the RAR's SHAPE alone, with a_0 free -- Upsilon_[3.6] = 0.515, against stellar populations' 0.5 +- 0.1.
+      That is an independent Upsilon determination that uses no colour, no SPS model and no deep-tail normalisation.
+  [FAIL] 4d THE DECISIVE NUMBER FOR THIS CANDIDATE: the hierarchical alpha's own Upsilon lever.  For alpha to be a measured constant of nature rather than a mass-to-light ratio in disguise, this must be small compared with the fit's own error over the plausible Upsilon range   (d log alpha/d log Upsilon = +0.738; over Upsilon = 0.30-0.80 that moves alpha by a factor 2.06 = 1.037 in alpha, against a 1-sigma width of 0.015)
+
+5.  RC100 (z = 0.6-2.5): alpha from a survey that tabulates f_DM -- no mass model, no geometry factor
+----------------------------------------------------------------------------------------------------------------------
+  99 of 100 RC100 galaxies invert;  g_bar = (1-f_DM) g_obs is exact given the table
+  RC100 alpha = 1.128   bootstrap 16/50/84 = 0.917 / 1.145 / 1.406   (both regressors: 1.128 / 0.479)
+  [PASS] 5a CAN FAIL: RC100 is an INDEPENDENT sample (z = 0.6-2.5, different instrument, no mass model at all -- the table gives f_DM directly) -- does it give the same alpha as SPARC?   (SPARC hierarchical 0.976 against RC100 [0.917, 1.406]; SPARC debiased closed form 1.063)
+  RC100 CAVEAT, stated: its f_DM values are the published ones and carry the survey's own stellar M/L and gas corrections, so 'no mass model' means no mass model of MINE, not no mass model at all.
+
+6.  THE SOLAR SYSTEM: the same family, eight decades higher in y, bounds alpha from below
+----------------------------------------------------------------------------------------------------------------------
+    Saturn (Cassini): r = 9.58 AU, g_N = 6.461e-05 m/s^2; assumed bound on an anomalous radial acceleration |dg| < 1e-14 m/s^2
+        canonical  y = 6.903e+05;  alpha must exceed 0.469 to satisfy the bound  (at alpha=1 the anomaly is 0.00e+00 m/s^2)
+        alt        y = 5.718e+05;  alpha must exceed 0.476 to satisfy the bound  (at alpha=1 the anomaly is 0.00e+00 m/s^2)
+    Mars: r = 1.524 AU, g_N = 2.553e-03 m/s^2; assumed bound on an anomalous radial acceleration |dg| < 1e-13 m/s^2
+        canonical  y = 2.728e+07;  alpha must exceed 0.376 to satisfy the bound  (at alpha=1 the anomaly is 0.00e+00 m/s^2)
+        alt        y = 2.260e+07;  alpha must exceed 0.380 to satisfy the bound  (at alpha=1 the anomaly is 0.00e+00 m/s^2)
+  [PASS] 6a the family is bounded from BELOW by the ephemerides -- a broad transition leaks a detectable anomaly into the Solar System -- so alpha is bracketed from two directions eight decades apart in y   (see the table; alpha ~< 0.4 is excluded by an anomalous-acceleration bound of 1e-14 m/s^2 at Saturn)
+
+7.  THE LambdaCDM ALTERNATIVE COMPUTED BESIDE IT
+----------------------------------------------------------------------------------------------------------------------
+    In LambdaCDM there is no kernel: g_obs is baryons + an NFW halo whose mass and concentration come from
+    abundance matching.  Feed such a mock through the SAME estimator and see what 'alpha' it returns -- if it
+    returns something near 1 as well, the measurement is not diagnostic of the framework.
+  LambdaCDM mock, RAW closed-form estimator: alpha = 0.890 (real data, same estimator: 0.638); implied a_0 = 1.002e-10; per-point a_0 scatter 0.302 dex vs the real 0.499 dex
+  LambdaCDM mock through the HIERARCHICAL fit: alpha = 1.221 [1.158, 1.310], chi2_min = 1427.4 against the real data's 3053.1 on the same 147 galaxies
+      (the mock carries NO observational noise, so its lower chi2 is expected and is not a claim that LambdaCDM fits better; what is diagnostic is the alpha it returns, which differs from the real sample's)
+  [PASS] 7a CLAIM UNDER TEST: that the alpha statistic is diagnostic -- i.e. that a LambdaCDM mock (NFW halos from abundance matching on the SAME baryons) does not return the same alpha   (mock hierarchical alpha 1.221 vs real 0.976; raw closed form 0.890 vs real raw 0.638; mock chi2 1427 vs real 3053)
+
+8.  MUTATION CONTROLS
+----------------------------------------------------------------------------------------------------------------------
+  [PASS] M1 shuffling which g_obs goes with which g_bar must destroy the measurement   (shuffled alpha = nan, real = 1.063)
+  [PASS] M2 with no kernel at all (g_obs = g_bar, nu = 1) no alpha can be found   (nu=1 returns alpha = nan)
+  [PASS] M3 alpha is FOOTING-BLIND: synthesising the data with a_0 four times larger returns the same alpha, so the two footings cannot be the source of any alpha result   (injected (a_0 = 4x, alpha = 1) -> alpha = 1.0000)
+
+======================================================================================================================
+VERDICT -- k01
+======================================================================================================================
+  The candidate law is  (g_bar/a_0)^(alpha/2) = -ln[1 - (g_bar/g_obs)^alpha]  with alpha a PURE SHAPE constant.
+  Restatement test: it does NOT close.  Every member of the family satisfies v^4 = G M_b a_0 exactly, so the
+  deep-MOND relation carries zero information about alpha.  alpha is orthogonal to the BTFR/RAR/deep-MOND triple.
+  Measured:  SPARC hierarchical    alpha = 0.976 [0.942, 0.972]   <-- the headline estimator
+             SPARC closed form (raw)  alpha = 0.638   (BIASED, must not be quoted)
+             SPARC closed form (debiased through the injection curve) alpha = 1.063 [0.794, 1.964]
+             RC100 (z=0.6-2.5)        alpha = 1.145 [0.917, 1.406]
+  Upsilon lever:  d log alpha / d log Upsilon = +0.738 (hierarchical), +3.297 (closed form); a_0's own lever on the same points +1.323
+  Solar System: alpha below ~0.4 leaks a detectable anomaly at Saturn.
+
+RESULT: 18 checks, 5 FAIL -> ["1b CLAIM UNDER TEST: that the closed-form drift estimator recovers an injected alpha.  IT FAILS, and that is the item's first real result -- with the real error structure the estimator COMPRESSES the whole family towards alpha ~ 1 (injecting 2.0 returns ~1.0), because the ~6% of points scattered to g_obs < g_bar are exactly the high-y points the inversion needs and they are dropped.  A raw closed-form alpha MUST NOT be quoted", "3a THE CANDIDATE'S CENTRAL CLAIM WAS THAT alpha IS UPSILON-IMMUNE, AND IT IS NOT.  A global Upsilon rescale is very nearly a horizontal slide of the RAR, which should not create a drift -- but g_bar = g_gas + Upsilon g_star is NOT a pure slide, and the gas-versus-stars mix changes the SHAPE of every galaxy's own g_bar(r) track.  The lever is measured here and it is large", '3b CAN FAIL: does the Upsilon lever move alpha by less than its own bootstrap error over the full plausible range Upsilon = 0.3-0.8 (a 0.43 dex range)?', "4b CAN FAIL: is Route A's alpha = 1 inside the hierarchical fit's STATISTICAL interval?  (Read this one together with 4d: the statistical interval is 1-2% wide and the Upsilon systematic below is 100% wide, so a miss here is not evidence against alpha = 1 -- it is evidence that the statistical error is the wrong error to quote)", "4d THE DECISIVE NUMBER FOR THIS CANDIDATE: the hierarchical alpha's own Upsilon lever.  For alpha to be a measured constant of nature rather than a mass-to-light ratio in disguise, this must be small compared with the fit's own error over the plausible Upsilon range"]   rc=1

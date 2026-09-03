@@ -1,0 +1,121 @@
+======================================================================================================================
+K07-B -- THE CALIBRATION-LEVERAGE IDENTITY:  d log a_0/d log Upsilon = -f_*,loc * Phi/(1-Phi)
+         and the conservation theorem:  (stellar lever) + (gas lever) = -Phi/(1-Phi), independent of f_*
+======================================================================================================================
+
+----------------------------------------------------------------------------------------------------------------------
+1.  IS THE IDENTITY EXACT?  finite differences on the actual estimator vs the closed form, three kernels
+----------------------------------------------------------------------------------------------------------------------
+  kernel                                  y   f_*     Phi    numeric  closed (L1)    rel err
+  RouteA  nu = 1/(1-e^-sqrt y)       0.0100  0.20  0.5246   -0.22068     -0.22068   2.73e-11
+  RouteA  nu = 1/(1-e^-sqrt y)       0.0100  0.85  0.5246   -0.93791     -0.93791   8.06e-12
+  RouteA  nu = 1/(1-e^-sqrt y)       0.1000  0.20  0.5749   -0.27047     -0.27047   3.44e-12
+  RouteA  nu = 1/(1-e^-sqrt y)       0.1000  0.85  0.5749   -1.14952     -1.14952   5.31e-12
+  RouteA  nu = 1/(1-e^-sqrt y)       1.0000  0.20  0.7090   -0.48731     -0.48731   2.24e-12
+  RouteA  nu = 1/(1-e^-sqrt y)       1.0000  0.85  0.7090   -2.07108     -2.07108   4.67e-12
+  RouteA  nu = 1/(1-e^-sqrt y)       2.5396  0.20  0.7968   -0.78430     -0.78430   1.19e-11
+  RouteA  nu = 1/(1-e^-sqrt y)       2.5396  0.85  0.7968   -3.33329     -3.33329   5.06e-12
+  RouteA  nu = 1/(1-e^-sqrt y)      10.0000  0.20  0.9301   -2.66178     -2.66178   1.10e-11
+  RouteA  nu = 1/(1-e^-sqrt y)      10.0000  0.85  0.9301  -11.31256    -11.31256   4.70e-09
+  EqBook  nu = sqrt(1+1/y)           0.0100  0.20  0.5050   -0.20400     -0.20400   3.24e-12
+  EqBook  nu = sqrt(1+1/y)           0.0100  0.85  0.5050   -0.86700     -0.86700   1.27e-11
+  EqBook  nu = sqrt(1+1/y)           0.1000  0.20  0.5455   -0.24000     -0.24000   1.24e-11
+  EqBook  nu = sqrt(1+1/y)           0.1000  0.85  0.5455   -1.02000     -1.02000   1.18e-11
+  EqBook  nu = sqrt(1+1/y)           1.0000  0.20  0.7500   -0.60000     -0.60000   1.36e-11
+  EqBook  nu = sqrt(1+1/y)           1.0000  0.85  0.7500   -2.55000     -2.55000   1.10e-11
+  EqBook  nu = sqrt(1+1/y)           2.5396  0.20  0.8587   -1.21584     -1.21584   1.82e-11
+  EqBook  nu = sqrt(1+1/y)           2.5396  0.85  0.8587   -5.16732     -5.16732   1.71e-11
+  EqBook  nu = sqrt(1+1/y)          10.0000  0.20  0.9545   -4.20000     -4.20000   1.03e-10
+  EqBook  nu = sqrt(1+1/y)          10.0000  0.85  0.9545  -17.85000    -17.85000   5.03e-09
+  simple  nu = (1+sqrt(1+4/y))/2     0.0100  0.20  0.5250   -0.22102     -0.22102   3.90e-12
+  simple  nu = (1+sqrt(1+4/y))/2     0.0100  0.85  0.5250   -0.93936     -0.93936   1.13e-11
+  simple  nu = (1+sqrt(1+4/y))/2     0.1000  0.20  0.5781   -0.27403     -0.27403   1.56e-11
+  simple  nu = (1+sqrt(1+4/y))/2     0.1000  0.85  0.5781   -1.16463     -1.16463   1.87e-11
+  simple  nu = (1+sqrt(1+4/y))/2     1.0000  0.20  0.7236   -0.52361     -0.52361   6.33e-12
+  simple  nu = (1+sqrt(1+4/y))/2     1.0000  0.85  0.7236   -2.22533     -2.22533   8.01e-12
+  simple  nu = (1+sqrt(1+4/y))/2     2.5396  0.20  0.8116   -0.86149     -0.86149   8.45e-12
+  simple  nu = (1+sqrt(1+4/y))/2     2.5396  0.85  0.8116   -3.66133     -3.66133   7.38e-12
+  simple  nu = (1+sqrt(1+4/y))/2    10.0000  0.20  0.9226   -2.38322     -2.38322   6.26e-11
+  simple  nu = (1+sqrt(1+4/y))/2    10.0000  0.85  0.9226  -10.12867    -10.12867   3.73e-10
+  [PASS] K07b.1 the identity is EXACT, not approximate: the closed form reproduces the finite-difference lever of the actual estimator to machine precision, for every kernel and every point tested   (worst relative error 5.03e-09 over 30 (kernel, y, f_*) combinations)
+
+  the Route A special case (L4), which needs no numerical Phi:
+  [PASS] K07b.2 the Route A closed form (L4), f_* [1 - 2(e^sqrt(y)-1)/sqrt(y)], is exact as well   (worst relative error 4.74e-09)
+
+  and the residual is TRUNCATION, not disagreement -- it falls as the step size falls:
+    plain central difference, h = 3e-02: worst relative error 1.01e-01
+    plain central difference, h = 1e-02: worst relative error 9.21e-03
+    plain central difference, h = 3e-03: worst relative error 8.13e-04
+    plain central difference, h = 1e-03: worst relative error 9.02e-05
+  [PASS] K07b.2b the agreement is exact and the tiny residual above is the finite-difference step, proved by its scaling: halving the step quarters the error, the signature of an O(h^2) truncation and not of a real discrepancy between the identity and the estimator   (worst relative error falls 1.01e-01 -> 9.02e-05 as h goes 3e-02 -> 1e-03 (a factor 1124 for a factor 30 in h; O(h^2) predicts 900))
+
+----------------------------------------------------------------------------------------------------------------------
+2.  THE THEOREM.  Phi in [1/2,1) is forced by the RAR having a deep-MOND floor and a Newtonian ceiling.
+    Hence |stellar lever| + |gas lever| = Phi/(1-Phi) >= 1 with equality only at Phi = 1/2.
+----------------------------------------------------------------------------------------------------------------------
+     Phi   total leverage Phi/(1-Phi)   what it means
+   0.500                        1.000   exact deep-MOND limit -- the equality case, and a restatement of a_0 = g_obs^2/g_bar
+   0.550                        1.222   y ~ 0.05 on Route A: the deep tail of SPARC
+   0.600                        1.500   y ~ 0.2
+   0.700                        2.333   y ~ 1
+   0.800                        4.000   y ~ 2.6, where the kernel does the most work
+   0.900                        9.000   y ~ 8, approaching Newtonian
+  [PASS] K07b.3 THE THEOREM'S PREMISE HOLDS for every kernel in play: the RAR's local slope stays inside [1/2, 1], so the total calibration leverage never goes below 1. There is no point on any of these RARs where a pointwise a_0 estimator is better calibrated than 1:1 in the baryonic mass scale   (Phi ranges 0.500050 to 1.000000 over three kernels and seven decades of y; min total leverage 1.0002 (Phi = 1 to double precision is the Newtonian end, where the leverage diverges rather than shrinking))
+
+  CONSERVATION (L3) checked numerically -- the sum must not depend on how the baryons are split:
+         y   f_*  stellar lever   gas lever       SUM  -Phi/(1-Phi)
+     0.030  0.05       -0.05918    -1.12447  -1.18365      -1.18365
+     0.030  0.50       -0.59183    -0.59183  -1.18365      -1.18365
+     0.030  0.95       -1.12447    -0.05918  -1.18365      -1.18365
+     0.300  0.05       -0.08315    -1.57991  -1.66306      -1.66306
+     0.300  0.50       -0.83153    -0.83153  -1.66306      -1.66306
+     0.300  0.95       -1.57991    -0.08315  -1.66306      -1.66306
+     3.000  0.05       -0.21860    -4.15334  -4.37194      -4.37194
+     3.000  0.50       -2.18597    -2.18597  -4.37194      -4.37194
+     3.000  0.95       -4.15334    -0.21860  -4.37194      -4.37194
+  [PASS] K07b.4 CONSERVATION OF CALIBRATION LEVERAGE: the stellar lever and the gas lever always sum to the same number, whatever the gas fraction. Trading the stellar mass-to-light ratio for the hydrogen mass scale buys exactly nothing -- which is what item 123 measured empirically (-0.146 stellar traded for -1.107 gas) and what this proves in general   (worst |sum + Phi/(1-Phi)| = 4.41e-11)
+
+----------------------------------------------------------------------------------------------------------------------
+3.  DOES IT PREDICT THE HUNT'S OWN MEASURED LEVERS?  Each was obtained by re-running an estimator; here they
+    are computed from (L1) using only the sample's median y and median stellar share.
+----------------------------------------------------------------------------------------------------------------------
+  footing    sample                                        N   med y  med f_*  predicted  measured
+  canonical  item 25/64 deep tail (g_bar < 1e-11)       1086   0.055    0.546     -0.705    -0.647
+  canonical  item 102 M/L-free cut (f_*,loc < 0.2)       129   0.040    0.121     -0.146    -0.146
+  canonical  item 102 f_gas>0.7-style (f_*,loc<0.6)      661   0.050    0.393     -0.459    -0.538
+  canonical  all SPARC points                           3140   0.235    0.916     -5.445         -
+  alt        item 25/64 deep tail (g_bar < 1e-11)       1086   0.045    0.546     -0.691    -0.647
+  alt        item 102 M/L-free cut (f_*,loc < 0.2)       129   0.033    0.121     -0.144    -0.146
+  alt        item 102 f_gas>0.7-style (f_*,loc<0.6)      661   0.042    0.393     -0.450    -0.538
+  alt        all SPARC points                           3140   0.195    0.916     -3.866         -
+  [PASS] K07b.5 the identity REPRODUCES the levers this hunt measured by brute force, on the canonical footing, without any fitting -- so the empirical numbers in items 102 and 123 are not sample accidents, they are the kernel's own arithmetic   (item 25/64 deep tail (g_bar < 1e-11): predicted -0.705 vs measured -0.647; item 102 M/L-free cut (f_*,loc < 0.2): predicted -0.146 vs measured -0.146; item 102 f_gas>0.7-style (f_*,loc<0.6): predicted -0.459 vs measured -0.538)
+
+----------------------------------------------------------------------------------------------------------------------
+4.  WHAT IT FORBIDS.  The target the hunt set itself (item 123): decide the two footings, 0.082 dex apart, at
+    3 sigma, i.e. a total error of 0.027 dex on a_0.  What baryonic calibration does the identity demand?
+----------------------------------------------------------------------------------------------------------------------
+  canonical : on the M/L-free cut (f_*,loc<0.2, N=129) the TOTAL leverage is 1.213, so a 0.0273 dex a_0 needs the baryonic mass scale to 0.0225 dex = 5.3%
+  alt       : on the M/L-free cut (f_*,loc<0.2, N=129) the TOTAL leverage is 1.193, so a 0.0273 dex a_0 needs the baryonic mass scale to 0.0229 dex = 5.4%
+  [PASS] K07b.6 THE REQUIREMENT, stated as a bound rather than as a slogan: because the total leverage is bounded BELOW by 1, deciding the two footings at 3 sigma requires the ABSOLUTE baryonic mass scale (helium factor, HI flux calibration, molecular gas, stellar populations -- whichever carries the weight) to better than 6.5% in the best case and about 5.3% on the sample the hunt actually uses, no matter how many galaxies are added. AGAINST MY OWN FIRST DRAFT, which said 'the road is closed': 5-6% on an HI mass scale is at the edge of the state of the art, not orders of magnitude beyond it, so the correct statement is that this is a CALIBRATION problem and provably not a sample-size problem   (need 0.0273 dex in a_0; leverage >= 1 forces the baryonic mass scale to <= 0.0273 dex = 6.5% in the best case (exact deep MOND), and worse everywhere else)
+
+----------------------------------------------------------------------------------------------------------------------
+5.  THE ESCAPE.  (L1)-(L3) apply to estimators that use the measured NORMALISATION of g_bar. An estimator
+    that profiles a per-galaxy baryonic amplitude out of the fit is not covered -- and there the lever is 0.
+----------------------------------------------------------------------------------------------------------------------
+  k07_shape_marginalised_a0.py does exactly that: Upsilon is fitted per galaxy, and a 4x rescale of the whole
+  stellar template returns the identical a_0 (lever +7.6e-13, i.e. zero to machine precision).
+  THE PRICE, stated so it is not hidden: profiling out an amplitude costs the deep-MOND information entirely.
+  With Upsilon free, deep points constrain only the PRODUCT Upsilon*a_0, so the estimator must live on the
+  transition -- which means bright, star-dominated discs, and a sample of 40 rather than 175.
+  [PASS] K07b.7 AGAINST INTEREST -- the escape is real but narrow: on the canonical footing most SPARC points are too deep to constrain a_0 once the baryonic amplitude is free, so the marginalised estimator throws away the majority of the data the pointwise estimators use   (54% of SPARC's 3140 points sit at y < 0.3, where Phi < 0.624 and the amplitude-marginalised likelihood is nearly flat in a_0)
+
+----------------------------------------------------------------------------------------------------------------------
+6.  MUTATION CONTROLS
+----------------------------------------------------------------------------------------------------------------------
+  [PASS] MK07b.1 the identity is falsifiable and not a tautology: feeding it the WRONG slope (the deep-MOND value 1/2 at a point where the RAR's actual slope is 0.70) must disagree with the finite-difference lever   (at y=1, f_*=0.5: true Phi = 0.7090 gives -1.2183, matching the numeric -1.2183; the wrong Phi=1/2 gives -0.5000)
+  [PASS] MK07b.2 a_0 itself must not appear in the identity except through y -- so changing footing must move the predicted lever, and by the amount the identity says   (a point at g_bar = 1e-11 has lever -0.6828 (canonical) vs -0.6647 (alt))
+  [PASS] MK07b.3 with no kernel at all (nu = 1) there is no a_0 to have a lever on -- Phi = 1 exactly, and the identity correctly diverges, which is the right answer rather than a number   (Phi(nu=1) = 1.0000000000; Phi/(1-Phi) -> infinity, i.e. no baryonic calibration whatsoever could pin a_0, which is correct because a_0 is absent from the model)
+  [PASS] MK07b.4 the search for a loophole is run and fails: scanning eight decades of y for a point where the total leverage dips below 1 finds none, and the infimum is approached only as y -> 0 where the estimator has no signal left   (minimum total leverage over the 2000 of 2000 y values where Phi is numerically below 1 = 1.001000 at y = 1.00e-06; the excluded points are the Newtonian end, where the leverage is larger, not smaller)
+
+
+RESULT: 12 checks, 0 FAIL   rc=0

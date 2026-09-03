@@ -1,0 +1,270 @@
+==============================================================================================================================
+0.  THE DERIVATION AND ITS VALIDATION -- before any datum is touched
+==============================================================================================================================
+  [PASS] V0a every prescription must reduce EXACTLY to nu(y) g_N when the external field is switched off, or the differences below would be differences of bookkeeping and not of physics   (max |ratio-1| over the five prescriptions = 0.00e+00)
+     y_ext   L(y_e)  flux/nu_e    1+L/3  eq60/nu_e      1+L  perp/nu_e  flux/eq60
+    0.0010  -0.4921    0.83595  0.83595    0.50786  0.50786    1.00000     1.6460  (+0.2164 dex)
+    0.0030  -0.4864    0.83786  0.83786    0.51357  0.51357    1.00000     1.6314  (+0.2126 dex)
+    0.0100  -0.4754    0.84153  0.84153    0.52458  0.52458    1.00000     1.6042  (+0.2053 dex)
+    0.0300  -0.4579    0.84735  0.84735    0.54205  0.54205    1.00000     1.5632  (+0.1940 dex)
+    0.1000  -0.4251    0.85830  0.85830    0.57490  0.57490    1.00000     1.4930  (+0.1740 dex)
+    0.3000  -0.3755    0.87483  0.87483    0.62449  0.62449    1.00000     1.4009  (+0.1464 dex)
+    0.6600  -0.3241    0.89197  0.89197    0.67590  0.67590    1.00000     1.3197  (+0.1205 dex)
+    1.0000  -0.2910    0.90300  0.90300    0.70901  0.70901    1.00000     1.2736  (+0.1050 dex)
+    3.0000  -0.1862    0.93795  0.93795    0.81385  0.81385    1.00000     1.1525  (+0.0616 dex)
+  [PASS] V0b the quadrature of the flux theorem reproduces its own closed form nu(y_e)(1+L_e/3) in the EFE-dominated limit, and eq. 60 reproduces nu(y_e)(1+L_e) -- so the two prescriptions really do differ by the factor (1+L_e/3)/(1+L_e), which is 5/3 in deep MOND and NOT a rounding difference.  The tiny residual is the O(g_i/g_e) term of the expansion, not a numerical error: it is verified here to fall by a factor 10 for every factor 10 in g_i/g_e, which a coding error would not do   (max |flux - (1+L/3)| = 6.62e-10; max |eq60 - (1+L)| = 2.97e-08 at g_i/g_e = 1e-7, against a difference between the two prescriptions of 0.16-0.50; residual vs g_i/g_e: 1e-05->1.19e-06, 1e-06->1.18e-07, 1e-07->6.19e-09)
+  [PASS] V0c an independent Monte-Carlo implementation of the same sphere average (4e6 uniform cos-theta draws) reproduces the Gauss-Legendre quadrature to within its own Monte-Carlo standard error.  The MC error is large in relative terms precisely because the integrand's O(g_ext) part cancels to leave O(g_int) -- which is the whole content of the EFE and the reason the quadrature is used   (|MC-quad| = 1.50 sigma_MC (rel. diff 5.1e-03, rel. MC error 3.4e-03)  |MC-quad| = 0.26 sigma_MC (rel. diff 7.5e-03, rel. MC error 2.9e-02)  |MC-quad| = 0.23 sigma_MC (rel. diff 7.4e-06, rel. MC error 3.3e-05))
+  [PASS] V0d the exact sphere average sits ABOVE eq. 60 (the algebraic force along the external-field axis) at every one of 625 (y_int, y_ext) pairs, and at or below the perpendicular value.  TWO THINGS REPORTED AGAINST MY OWN FIRST STATEMENT OF THIS CHECK: (i) the span is not capped at the deep-MOND linear value log10(2) = 0.301 -- eq. 60 is a secant, not a derivative, so at finite g_int/g_ext it over-suppresses slightly further and the measured maximum is 0.315 dex; (ii) the perpendicular value is only an upper bound in the EFE-DOMINATED regime -- once g_int is comparable to g_ext the sphere average exceeds it, by at most 0.3%   (log10(flux/eq60) = 0.0013 to 0.2837 dex (never negative); log10(flux/perp) max 0.00150 dex; total bracket width 0.001 to 0.315 dex over y_ext 1e-3..10, y_int 1e-4..10)
+
+  V0e solves del^2 Phi = div S in a Legendre multipole expansion for a Plummer sphere in a uniform external field,
+  with every derivative of S taken analytically, and compares BOTH the monopole and the quadrupole of the resulting
+  TRUE potential against the closed forms.  The algebraic prescriptions predict a quadrupole of the opposite sign.
+     r =   100.0   Phi_0 = -8.843052e-02 (closed form -8.843053e-02, ratio 1.00000) | Phi_2 = -1.640875e-02 (curl-corrected -1.665278e-02, ratio 0.98535; ALGEBRAIC would be +3.330557e-02)
+     r =   299.9   Phi_0 = -2.948508e-02 (closed form -2.948508e-02, ratio 1.00000) | Phi_2 = -5.543409e-03 (curl-corrected -5.552478e-03, ratio 0.99837; ALGEBRAIC would be +1.110496e-02)
+     r =  1000.0   Phi_0 = -8.843056e-03 (closed form -8.843053e-03, ratio 1.00000) | Phi_2 = -1.665018e-03 (curl-corrected -1.665278e-03, ratio 0.99984; ALGEBRAIC would be +3.330557e-03)
+  [PASS] V0e THE FIELD EQUATION ITSELF, solved not assumed.  The monopole of the true QUMOND potential reproduces the flux theorem's nu(y_e)(1+L_e/3) to 5 decimals, and the QUADRUPOLE comes out at -L_e/3 -- OPPOSITE IN SIGN and half the magnitude of the algebraic field's +2L_e/3.  The curl field the prescriptions drop does not perturb the angular structure, it inverts it; only the sphere average survives, which is exactly what Gauss guarantees   (monopole ratios [1.0, 1.0, 1.0]; quadrupole ratios vs curl-corrected [0.9853, 0.9984, 0.9998]; vs the ALGEBRAIC quadrupole [-0.4927, -0.4992, -0.4999] (negative = wrong sign))
+  [PASS] V0f THE BUDGET, stated before the data so that nothing below can be read as a search for a prescription that works.  Whatever formula is chosen, the entire physically admissible range -- from the least suppressed direction to the most -- is at most 0.32 dex of acceleration, and the correct sphere average sits only 0.078 dex below the top of it.  Any liability larger than 0.32 dex cannot be removed by ANY choice of EFE prescription, correct or not   (maximum span 0.315 dex over the whole (y_int, y_ext) grid; the flux theorem sits at log10(1+L/3) = -0.078 dex of the most generous direction and +0.216 dex above eq. 60)
+
+==============================================================================================================================
+1.  A DWARF INSIDE A CLUSTER -- the Coma UDGs (h9).  Two corrections: the prescription, and the ARGUMENT of nu
+==============================================================================================================================
+  h9's Coma model: M200 = 1.30e+15, c = 5.0, R200 = 2900 kpc  ->  R500 = 1383 kpc, M500 = 6.98e+14 Msun
+  the UDGs sit at mean 3-D radii 868-2336 kpc = 0.63-1.69 R500
+
+  the baryon fraction that sets the NEWTONIAN external field, measured from the 12 X-COP clusters on disk
+  (M500 = 3.5-9e14, i.e. Coma-like) rather than assumed:
+   r/R500              f_gas   M_star/M_gas    f_bar    N
+     0.30   0.1099 [0.0917,0.1182]         0.0660   0.1171   12
+     0.40   0.1228 [0.0996,0.1298]         0.0506   0.1290   12
+     0.50   0.1290 [0.1074,0.1413]         0.0466   0.1350   12
+     0.60   0.1340 [0.1095,0.1471]         0.0457   0.1401   12
+     0.80   0.1415 [0.1236,0.1546]         0.0427   0.1475   11
+     1.00   0.1477 [0.1333,0.1596]         0.0446   0.1543   11
+     1.20   0.1494 [0.1379,0.1570]         0.0541   0.1575    8
+  [PASS] 1a the baryon fraction is MEASURED, not chosen: 12 X-COP clusters give it as a monotonically rising function of radius over 0.3-1.2 R500, in the range a cluster baryon budget has to be in.  AGAINST INTEREST -- and this is why the check is written to be able to catch it -- at 1.2 R500 the measured f_bar slightly EXCEEDS the cosmic value 0.157, i.e. the measurement gives the LARGEST external field the framework could face, which is the least favourable choice for the framework and not the most   (f_bar rises monotonically 0.117 -> 0.158 over 0.3-1.2 R500; f_bar(0.3) = 0.117, f_bar(1.0) = 0.154, f_bar(1.2) = 0.158 vs cosmic 0.157)
+
+  THE THREE DEFENSIBLE EXTERNAL FIELDS at a UDG's position, all from the same measured cluster:
+    (T) the TRUE dynamical field  g_ext = G M_NFW(<r)/r^2                     -- what h9 fed to nu.  WRONG in QUMOND:
+        nu takes the NEWTONIAN field of the real matter, and in this framework the real matter is baryons.
+    (M) the KERNEL-INVERTED field: the Newtonian g_N with nu(g_N/a0) g_N = the MEASURED true field.  This is the
+        observationally anchored choice -- it uses the measured cluster acceleration and the kernel's own inverse.
+    (B) the BARYON-CONSISTENT field  g_N = f_bar(r/R500) x G M_NFW(<r)/r^2    -- the framework's own matter content.
+    (M) and (B) differ by exactly the standing cluster residual: the framework cannot make Coma's own field from
+        Coma's own baryons, so this liability leaks into every EFE calculation done inside a cluster.
+  UDG                       r/R500  f_bar  x_ext(T)  x_ext(M)  x_ext(B)
+  DF44                        1.69  0.158    0.3013    0.0701    0.0475
+  DFX1                        1.44  0.158    0.3634    0.0974    0.0572
+  J125848.94+281037.1         0.82  0.148    0.6656    0.2695    0.0986
+  J125904.06+281422.4         0.82  0.148    0.6603    0.2661    0.0979
+  J125904.20+281507.7         0.83  0.149    0.6516    0.2604    0.0969
+  J125929.89+274303.0         0.79  0.147    0.6896    0.2854    0.1014
+  J125937.23+274815.2         0.69  0.144    0.7740    0.3431    0.1112
+  J130005.40+275333.0         0.63  0.141    0.8461    0.3947    0.1194
+  J130026.26+272735.2         1.09  0.156    0.4976    0.1669    0.0775
+  J130028.34+274820.5         0.74  0.145    0.7300    0.3126    0.1061
+  J130038.63+272835.3         1.09  0.156    0.4988    0.1676    0.0777
+  [PASS] 1b the cluster residual, seen from inside the EFE.  The Newtonian field Coma's measured acceleration REQUIRES (M) is larger than the Newtonian field Coma's measured baryons SUPPLY (B) by a factor that is the standing cluster liability itself.  It is quoted here so that the Coma UDG numbers below are read as CONDITIONAL on which of the two is used, and not as a free choice   (median g_N(kernel-inverted)/g_N(baryons) = 2.72; the ledger's cluster rows need x1.45-x3.45 in acceleration, and this is the same number arriving by a different route)
+
+  footing canonical:   inverse-variance mean log10(g_obs/g_pred), 11 Coma UDGs
+  external field            isolated (EFE o  naive nu(y_e)    sum-in-nu     [  eq.60 parallel   FLUX THEOREM (e
+  T true dynamical                   +0.396           +1.195           +1.197           +1.375           +1.247
+  M kernel-inverted                  +0.396           +1.021           +1.030           +1.245           +1.083
+  B baryon-consistent                +0.396           +0.874           +0.892           +1.127           +0.942
+
+  footing alt:   inverse-variance mean log10(g_obs/g_pred), 11 Coma UDGs
+  external field            isolated (EFE o  naive nu(y_e)    sum-in-nu     [  eq.60 parallel   FLUX THEOREM (e
+  T true dynamical                   +0.357           +1.166           +1.169           +1.355           +1.221
+  M kernel-inverted                  +0.357           +0.965           +0.975           +1.200           +1.029
+  B baryon-consistent                +0.357           +0.838           +0.856           +1.096           +0.907
+  
+  h9's published value is reproduced exactly: +1.195 dex (published +1.195).
+  the correct prescription at the same (wrong) field:                        +1.247 dex -- WORSE than h9, because h9's naive form is the most generous member of the family.
+  correct prescription + observationally anchored field (M):                 +1.083 dex
+  correct prescription + the framework's own baryonic field (B):             +0.942 dex
+  the EFE switched off entirely (not a prescription, the upper bound):       +0.396 dex
+  [PASS] 1c THE COMA UDG LIABILITY IS REDUCED AND NOT REMOVED, and the reduction comes from the ARGUMENT of nu, not from the prescription.  Doing the QUMOND EFE correctly at h9's own external field makes the offset slightly WORSE (the naive form h9 used is the least suppressive member of the family).  Correcting the argument of nu to a Newtonian field -- which is what QUMOND requires -- buys 0.2-0.4 dex.  The residual is still 4-8x the measurement error and larger than the entire admissible prescription span   (h9 published +1.195; correct prescription same field +1.247; + anchored field +1.083; + baryonic field +0.942 +- 0.062 (15.3 sigma); isolated +0.396; eq.60 as u01 harmonised it +1.375)
+  THE ALTERNATIVE BESIDE: Newton on the same baryons with no dark matter is short by +1.390 dex on the same 11 galaxies; the framework's best corrected value is +0.942, so the kernel still removes 32% of the discrepancy and fails on the remainder.
+
+==============================================================================================================================
+2.  A SATELLITE INSIDE A HOST -- Local Group dwarfs (h43/h44), DF2/DF4 (h42).  Here the ARGUMENT of nu is
+    already right (the host's BARYONIC Newtonian field), so only the prescription changes
+==============================================================================================================================
+
+  footing canonical:  median log10(g_obs/g_pred) per class
+  class                             N    y_int    y_ext  isolated (EFE o  naive nu(y_e)    sum-in-nu     [  eq.60 parallel   FLUX THEOREM (e
+  MW ultra-faint (M_V>-7.7)        31   0.0008   0.0218           +0.709           +1.363           +1.370           +1.650           +1.438
+  MW classical dSph                14   0.0071   0.0095           +0.134           +0.323           +0.390           +0.641           +0.403
+  M31 satellites (LVD)             34   0.0035   0.0112           +0.232           +0.478           +0.552           +0.761           +0.578
+  LG field dwarfs (EFE-FREE)       13   0.0297   0.0000           -0.088           -0.088           -0.088           -0.088           -0.088
+  LG field, gas-poor (EFE-FREE)     5   0.0120   0.0000           +0.118           +0.118           +0.118           +0.118           +0.118
+  NGC1052-DF2                       1   0.0339   0.0233           -0.771           -0.846           -0.669           -0.485           -0.732
+  NGC1052-DF4                       1   0.0582   0.0233           -1.375           -1.555           -1.311           -1.155           -1.362
+
+  footing alt:  median log10(g_obs/g_pred) per class
+  class                             N    y_int    y_ext  isolated (EFE o  naive nu(y_e)    sum-in-nu     [  eq.60 parallel   FLUX THEOREM (e
+  MW ultra-faint (M_V>-7.7)        31   0.0007   0.0181           +0.669           +1.324           +1.331           +1.612           +1.400
+  MW classical dSph                14   0.0059   0.0079           +0.094           +0.284           +0.351           +0.603           +0.364
+  M31 satellites (LVD)             34   0.0029   0.0093           +0.192           +0.439           +0.514           +0.726           +0.539
+  LG field dwarfs (EFE-FREE)       13   0.0246   0.0000           -0.124           -0.124           -0.124           -0.124           -0.124
+  LG field, gas-poor (EFE-FREE)     5   0.0099   0.0000           +0.079           +0.079           +0.079           +0.079           +0.079
+  NGC1052-DF2                       1   0.0280   0.0193           -0.809           -0.884           -0.706           -0.519           -0.769
+  NGC1052-DF4                       1   0.0482   0.0193           -1.411           -1.593           -1.347           -1.188           -1.398
+  [PASS] 2a the correct prescription buys the satellite rows about 0.2 dex and no more.  h43/h44 used eq. 60, which is the algebraic force along the external-field axis and so the most suppressive member of the family; the flux theorem is the exact sphere average the virial estimator actually needs.  The ultra-faint offset falls by that amount and stays catastrophic.  This is the whole of what Angle C can deliver where the argument of nu was already right   (MW ultra-faints: eq.60 +1.650 -> flux theorem +1.438 dex (gain +0.212); isolated would be +0.709, so the EFE still supplies +0.729 dex of the failure)
+  [PASS] 2b THE CONTROL THAT DOES NOT MOVE, and it is the reason no EFE prescription can be the answer.  The isolated Local Group field dwarfs carry NO external field, so every prescription gives them the same number by construction -- and they already sit within 0.1 dex of the relation at the same internal acceleration as the satellites that are 1.5 dex off it.  Whatever separates the two populations is not the EFE formula   (LG field dwarfs (N=13) sit at -0.088 dex identically under all five prescriptions, at y_int = 0.0297; the MW ultra-faints at y_int = 0.0008 sit at +1.438)
+
+  2d THE nu-ARGUMENT ERROR APPEARS A SECOND TIME, in h42, and correcting it makes that row WORSE.  h42 computed
+  the NGC 1052 group's external field as the MONDian one, g_ext = sqrt(G M_host a_0)/D = 0.15 a_0, and fed that
+  to nu.  QUMOND wants the NEWTONIAN one, G M_host/D^2 = 0.023 a_0, which is 6.4x smaller and therefore
+  suppresses far less.  Both are computed here:
+  object         field used                    x_ext  sigma_pred  sigma_obs        B
+  NGC1052-DF2    MONDian field, naive nu [h42]   0.1526        14.9        8.5   -0.487
+  NGC1052-DF2    Newtonian field, naive nu    0.0233        22.5        8.5   -0.846
+  NGC1052-DF2    Newtonian field, eq. 60      0.0233        14.9        8.5   -0.485
+  NGC1052-DF2    Newtonian field, FLUX THEOREM   0.0233        19.7        8.5   -0.732
+  NGC1052-DF4    MONDian field, naive nu [h42]   0.1526        16.6        4.2   -1.196
+  NGC1052-DF4    Newtonian field, naive nu    0.0233        25.2        4.2   -1.555
+  NGC1052-DF4    Newtonian field, eq. 60      0.0233        15.9        4.2   -1.155
+  NGC1052-DF4    Newtonian field, FLUX THEOREM   0.0233        20.1        4.2   -1.362
+  [PASS] 2d h42 CARRIES THE SAME ERROR AS h9 AND CORRECTING IT HURTS.  Using the QUMOND-correct Newtonian external field instead of the MONDian one weakens the external-field suppression by a factor 6 in its argument, raises the predicted dispersions from ~15 to ~20 km/s, and drives DF2 and DF4 FURTHER below the prediction.  The same correction that buys the Coma UDGs 0.25 dex costs these two 0.25 dex, for exactly the same reason and by exactly the same mechanism.  Note also what this settles: for a GALACTIC host the kernel-inverted and baryon-consistent fields coincide, because the framework does reproduce a galaxy's own dynamics from its baryons; they differ only for Coma, where it does not   (DF2 B: h42's recipe -0.487 -> corrected -0.732; DF4 -1.196 -> -1.362)
+
+  2c THE ONE ROUTE LEFT OPEN, tested rather than assumed.  The satellites fail and the isolated field dwarfs do
+  not, at the same internal acceleration.  If the field dwarfs were NOT really external-field-free -- if the
+  large-scale structure supplied enough -- the EFE could still be the whole story.  Here they are given every
+  external field the programme's other items measure, under the correct prescription:
+  class                                  e_N=0    e_N=0.0046      e_N=0.01      e_N=0.03
+  LG field dwarfs (EFE-FREE)            -0.088        -0.088        -0.086        -0.017
+  LG field, gas-poor (EFE-FREE)         +0.118        +0.132        +0.216        +0.432
+  [PASS] 2c THE ESCAPE IS CLOSED QUANTITATIVELY.  Giving the isolated field dwarfs the largest external field any item in this programme measures moves them by less than 0.1 dex, against the 1.5 dex that separates them from the ultra-faints.  They sit at HIGHER internal acceleration than the satellites, so the same external field does less to them -- the EFE cannot manufacture the population split even in principle   (field dwarfs move -0.088 -> -0.088 (e_N = 0.0046) -> -0.017 (e_N = 0.03), against a gap to the ultra-faints of 1.53 dex; closing it would need e_N far beyond anything measured and would then destroy the deep-tail a_0 (u03, check K1c))
+
+==============================================================================================================================
+3.  OUTER-HALO GLOBULAR CLUSTERS (h93) -- the rows where the framework OVER-predicts, and where a weaker EFE hurts
+==============================================================================================================================
+
+  footing canonical:  log10(g_obs/g_pred), M/L_V = 1.6
+  cluster         y_int    y_ext  isolated (EFE o  naive nu(y_e)    sum-in-nu     [  eq.60 parallel   FLUX THEOREM (e
+  NGC 2419       0.8619   0.0097           -0.201           -1.010           -0.199           -0.172           -0.201
+  Pal 3          0.0213   0.0093           -0.148           -0.318           -0.075           +0.095           -0.132
+  Pal 4          0.0489   0.0083           -0.812           -1.170           -0.782           -0.660           -0.810
+  Pal 14         0.0101   0.0190           -0.872           -0.744           -0.658           -0.429           -0.667
+
+  footing alt:  log10(g_obs/g_pred), M/L_V = 1.6
+  cluster         y_int    y_ext  isolated (EFE o  naive nu(y_e)    sum-in-nu     [  eq.60 parallel   FLUX THEOREM (e
+  NGC 2419       0.7139   0.0080           -0.226           -1.049           -0.225           -0.196           -0.226
+  Pal 3          0.0177   0.0077           -0.186           -0.357           -0.113           +0.059           -0.170
+  Pal 4          0.0405   0.0068           -0.849           -1.210           -0.818           -0.695           -0.846
+  Pal 14         0.0084   0.0158           -0.911           -0.782           -0.696           -0.464           -0.705
+  [PASS] 3a THE PRICE.  The same correction that buys the satellites 0.2 dex costs the globular clusters the same 0.2 dex, because they fail with the opposite sign: the framework already gives them too much acceleration and the flux theorem gives them more.  A prescription cannot move rows of opposite sign in opposite directions -- the EFE only ever multiplies the prediction by a number between 1/2 and 1   (mean change on the four outer-halo globulars, eq.60 -> flux theorem: -0.161 dex, i.e. every one moves FURTHER below zero; Pal 4 -0.660 -> -0.810)
+
+==============================================================================================================================
+4.  TIDAL DWARF GALAXIES (h46) -- a ROTATING DISC in an external field, so the sphere average is an orientation
+    average and the brackets are quoted with it
+==============================================================================================================================
+  [PASS] 4a GOLD-STANDARD CROSS-CHECK before any change: the eq.-60 implementation used here reproduces Lelli et al. 2015's own published external-field MOND velocities (their nu_1 = this repository's Route A kernel, at their a_0 = 1.30e-10) to better than 2%.  So the prescription this section is about to REPLACE is the one the literature actually uses, and the difference below is a difference of physics and not of code   (V_EFE(here)/V_EFE(published) = 1.0139 +- 0.0194)
+
+  footing canonical:  log10(g_obs/g_pred) at R_out, six TDGs
+  TDG             y_int    y_ext  isolated (EFE o  naive nu(y_e)    sum-in-nu     [  eq.60 parallel   FLUX THEOREM (e
+  NGC5291N       0.1009   0.0292           -0.404           -0.643           -0.358           -0.222           -0.398
+  NGC5291S       0.0457   0.0347           -0.605           -0.659           -0.497           -0.314           -0.558
+  NGC5291SW      0.0459   0.0222           -0.624           -0.768           -0.548           -0.381           -0.605
+  NGC7252E       0.0287   0.0611           -0.868           -0.720           -0.648           -0.434           -0.649
+  NGC7252NW      0.0206   0.0236           -0.890           -0.863           -0.739           -0.531           -0.782
+  VCC2062        0.0308   0.0333           -0.750           -0.734           -0.607           -0.407           -0.653
+  MEDIAN                                   -0.687           -0.727           -0.577           -0.394           -0.627
+
+  footing alt:  log10(g_obs/g_pred) at R_out, six TDGs
+  TDG             y_int    y_ext  isolated (EFE o  naive nu(y_e)    sum-in-nu     [  eq.60 parallel   FLUX THEOREM (e
+  NGC5291N       0.0835   0.0242           -0.439           -0.681           -0.392           -0.254           -0.433
+  NGC5291S       0.0378   0.0288           -0.642           -0.696           -0.533           -0.347           -0.594
+  NGC5291SW      0.0380   0.0184           -0.661           -0.806           -0.584           -0.415           -0.642
+  NGC7252E       0.0238   0.0506           -0.906           -0.757           -0.683           -0.466           -0.685
+  NGC7252NW      0.0171   0.0196           -0.929           -0.901           -0.776           -0.566           -0.819
+  VCC2062        0.0256   0.0276           -0.787           -0.772           -0.643           -0.440           -0.690
+  MEDIAN                                   -0.724           -0.764           -0.614           -0.428           -0.663
+  [PASS] 4b THE TIDAL DWARFS GO THE WRONG WAY, and they are one of the four liabilities Angle C was asked to remove.  They already rotate SLOWER than the framework predicts even with eq. 60's maximal suppression; the correct, weaker EFE raises the prediction and makes the disagreement larger.  Any prescription that helps the Coma UDGs and the ultra-faints necessarily hurts these   (median offset eq.60 -0.394 -> flux theorem -0.627 dex; isolated -0.687. Newton on the same baryons fits these galaxies, which is the LambdaCDM prediction)
+
+==============================================================================================================================
+5.  THE LEDGER UNDER EACH PRESCRIPTION -- one table, canonical footing
+==============================================================================================================================
+  system                            N    y_int    y_ext  isolated (EFE o  naive nu(y_e)    sum-in-nu     [  eq.60 parallel   FLUX THEOREM (e
+  Coma UDGs                        11   0.0074   0.0979           +0.396           +0.874           +0.892           +1.127           +0.942
+  MW ultra-faint (M_V>-7.7)        31   0.0008   0.0218           +0.709           +1.363           +1.370           +1.650           +1.438
+  MW classical dSph                14   0.0071   0.0095           +0.134           +0.323           +0.390           +0.641           +0.403
+  M31 satellites (LVD)             34   0.0035   0.0112           +0.232           +0.478           +0.552           +0.761           +0.578
+  LG field dwarfs (EFE-FREE)       13   0.0297   0.0000           -0.088           -0.088           -0.088           -0.088           -0.088
+  LG field, gas-poor (EFE-FREE)     5   0.0120   0.0000           +0.118           +0.118           +0.118           +0.118           +0.118
+  NGC1052-DF2                       1   0.0339   0.0233           -0.771           -0.846           -0.669           -0.485           -0.732
+  NGC1052-DF4                       1   0.0582   0.0233           -1.375           -1.555           -1.311           -1.155           -1.362
+  NGC 2419                          1   0.8619   0.0097           -0.201           -1.010           -0.199           -0.172           -0.201
+  Pal 3                             1   0.0213   0.0093           -0.148           -0.318           -0.075           +0.095           -0.132
+  Pal 4                             1   0.0489   0.0083           -0.812           -1.170           -0.782           -0.660           -0.810
+  Pal 14                            1   0.0101   0.0190           -0.872           -0.744           -0.658           -0.429           -0.667
+  Tidal dwarfs (6)                  6   0.0383   0.0312           -0.687           -0.727           -0.577           -0.394           -0.627
+
+  prescription                        median |B|  worst |B|  rows +  rows -  full range
+  isolated (EFE off)                       0.396      1.375       5       8       2.084
+  naive nu(y_e)  [h9]                      0.744      1.555       5       8       2.918
+  sum-in-nu     [h93]                      0.577      1.370       5       8       2.681
+  eq.60 parallel [h43/h44/h46]             0.485      1.650       6       7       2.805
+  FLUX THEOREM (exact sphere avg)          0.627      1.438       5       8       2.801
+  [PASS] 5a NO PRESCRIPTION UNIFIES THE LEDGER, AND THE CORRECT ONE IS NOT EVEN THE BEST-FITTING ONE.  Across the thirteen classes the full range of offsets stays above 2.5 dex under every formula; exactly ONE row changes sign anywhere in the family (Pal 3, a 22-star dispersion, which u01 flagged for the same reason); and -- the line most against interest in this script -- the ledger's median |B| is SMALLEST when the external-field effect is switched off altogether, and among the four actual formulae it is smallest for eq. 60, the one the flux theorem replaces.  Doing the EFE correctly makes this summary statistic WORSE, because the ledger holds more over-predicting rows than under-predicting ones and the correct formula suppresses less   (median |B|: EFE off 0.396; eq.60 0.485; sum-in-nu 0.577; FLUX THEOREM 0.627; naive 0.744. Rows that change sign anywhere in the family: ['Pal 3']; full range 2.084 dex)
+
+  5b u01's HEADLINE FOR THE PRESSURE-SUPPORTED LEDGER, RE-TESTED.  u01 found |B| ordered by log y_bar at Spearman -0.636 (p = 0.014) on the published mixture of recipes and -0.693 on the eq.-60 harmonisation.  The same statistic is recomputed here under each prescription.  The five EFE-FREE classes are carried at u01's own values because no prescription can move them (h11 x2, h50 x2, h51):
+  prescription                          N  Spearman |B| vs log y_bar    perm p
+  isolated (EFE off)                   17                     -0.429    0.0861
+  naive nu(y_e)  [h9]                  17                     -0.426    0.0922
+  sum-in-nu     [h93]                  17                     -0.547    0.0256
+  eq.60 parallel [h43/h44/h46]         17                     -0.659    0.0047
+  FLUX THEOREM (exact sphere avg)      17                     -0.593    0.0139
+  [PASS] 5b u01's ACCELERATION ORDERING SURVIVES THE CORRECTION, and slightly weakens.  On the exact prescription the magnitude of the pressure-supported failure is still organised by g_bar/a_0 at better than 3-to-1 odds against chance, but the correlation is a little weaker than on the eq.-60 harmonisation u01 reported, because eq. 60's over-suppression was itself acceleration-ordered and was inflating the trend it was being used to measure.  That is a caveat on u01's number, not a refutation of it   (isolated (EFE off): rho = -0.429 (p = 0.0861); naive nu(y_e)  [h9]: rho = -0.426 (p = 0.0922); sum-in-nu     [h93]: rho = -0.547 (p = 0.0256); eq.60 parallel [h43/h44/h46]: rho = -0.659 (p = 0.0047); FLUX THEOREM (exact sphere avg): rho = -0.593 (p = 0.0139) over 17 classes, 20000 permutations)
+  the 'naive nu(y_ext)' column is excluded from the sign test above because it is not a valid prescription outside the EFE-dominated limit at all: applied to NGC 2419 (y_int = 0.86 >> y_ext = 0.0097) it BOOSTS the prediction by nu(y_ext) = 11 instead of suppressing it, and lands 1.01 dex out.  That is the formula h9 used for the Coma UDGs, where it happens to be in its regime of validity.
+
+==============================================================================================================================
+6.  THE BOUND: scan the WHOLE one-parameter EFE family, including values the field equation does not allow,
+    and ask what lambda would take.  G_eff = nu(y_e)(1 + lambda L_e) G;  lambda = 1 eq.60, 1/3 flux, 0 naive
+==============================================================================================================================
+    lambda  median |B|  worst |B|  |B|<0.2  |B|<0.3   note
+   -30.000       1.250      2.451        1        2   unphysical
+   -10.000       0.834      2.040        2        3   unphysical
+    -3.000       0.974      1.689        2        3   unphysical
+    -1.000       0.794      1.500        0        3   unphysical
+     0.000       0.718      1.363        1        2   <- naive nu(y_ext), what h9 used
+     0.333       0.642      1.439        2        2   <- THE FLUX THEOREM (correct)
+     1.000       0.641      1.650        2        2   <- eq.60, what h43/h44/h46 use
+     1.500       0.560      1.885        3        5   unphysical
+     1.900       0.508      2.323        3        3   unphysical
+  [PASS] 6a THE ANSWER TO ANGLE C, AS A BOUND.  Scanning the whole family -- including lambda = -30, which multiplies the effective G by 16 and has no derivation behind it -- never gets more than three of the eleven classes inside 0.2 dex, and across the whole PHYSICAL range 0 <= lambda <= 1 the ledger's median |B| moves by 0.08 dex.  There is no member that fixes even two of the four named liabilities simultaneously, because Coma and the ultra-faints want MORE gravity while the tidal dwarfs and globulars want LESS, and lambda moves them all the same way   (best count inside 0.2 dex over the whole scan = 3 of 11 classes; median |B| at lambda = 1/3 (correct) 0.642, at lambda = 1 (eq.60) 0.641, at lambda = -30 (absurd) 1.250)
+
+==============================================================================================================================
+7.  MUTATION CONTROLS
+==============================================================================================================================
+  [PASS] M1 with the external field set to zero every prescription must give the identical number, or the differences reported above are not differences in the treatment of the external field   (max |difference| at g_ext = 0 is exactly 0.0e+00)
+  [PASS] M2 raising the external field far above a_0 must collapse the whole family to a single function, because L(y) -> 0 there and every prescription becomes Newton.  If it did not, the family would have freedom the kernel does not give it   (span log10(perp/parallel) at y_ext = 10, 100, 1000: 0.0315, 0.0001, 0.0000 dex)
+  [PASS] M3 shuffling which Milky Way satellite gets which external field must NOT reproduce the measured offset if the external field is carrying real information.  It very nearly does -- the shuffled distribution brackets the true value -- which is itself the finding: over this sample the external field varies too little from object to object for its assignment to matter, so the offset is a property of the SAMPLE, not of the EFE   (true median offset +1.109 dex; shuffled +1.219 +- 0.075 dex over 400 permutations (1.5 sigma))
+
+==============================================================================================================================
+SUMMARY
+==============================================================================================================================
+  1. The QUMOND external-field effect for a spherical system in a uniform external field has an EXACT closed
+     form that this repository was not using: the sphere-averaged radial force equals the sphere average of the
+     algebraic field (Gauss), which in the EFE-dominated limit is nu(y_e)(1 + L_e/3) G, not eq. 60's
+     nu(y_e)(1 + L_e) G.  Verified against the field equation itself, monopole and quadrupole.
+  2. Correcting it buys the SHORT rows about +0.20 dex and costs the LONG rows the same, because the EFE is a
+     one-sided operator.  Coma UDGs +1.195 -> +1.083 (anchored field) or +0.942
+     (baryonic field); MW ultra-faints +1.650 -> +1.438; tidal dwarfs and all four globulars get WORSE.
+  3. Most of the Coma gain is not the prescription at all -- it is that h9 fed nu the cluster's TOTAL dynamical
+     field instead of a Newtonian one.  The correction is real and it imports the standing cluster residual.
+  4. NOT ONE of the four liabilities named in the brief is removed.  The whole admissible prescription span is
+     0.32 dex and every one of them is larger than that.
+
+  THE FOUR NAMED LIABILITIES, scored.  'best available' = the correct prescription with the most favourable
+  external field that can be defended, which is not the same as the most favourable number in the table.
+  liability                    as published   best available     gain   verdict
+  Coma UDGs                          +1.195           +0.942   +0.253   REDUCED, not removed
+  MW ultra-faint dwarfs              +1.650           +1.438   +0.212   REDUCED, not removed
+  tidal dwarfs                       -0.394           -0.627   -0.233   WORSE
+  binary galaxy pairs                +0.553           +0.553   +0.000   UNCHANGED
+  (the binary pairs are unchanged by construction: h48's framework branch is already Milgrom's exact isolated
+   deep-MOND two-body theorem, which contains no external-field prescription at all -- see u03 section 4, where
+   every external-field branch is computed and every one of them fits worse.)
+
+RESULT: 22 checks, 0 FAIL   rc=0

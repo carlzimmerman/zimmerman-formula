@@ -1,0 +1,135 @@
+
+======================================================================================================================
+k_kernel-shape_alphawb  --  candidate K3:  the wide-binary boost as a meter of the kernel width alpha
+======================================================================================================================
+
+----------------------------------------------------------------------------------------------------------------------
+0.  RESTATEMENT TEST -- executed.  Can alpha be derived from v^4 = G M_b a0 ?
+----------------------------------------------------------------------------------------------------------------------
+      alpha = 0.4   nu sqrt(y) at y = 1e-40, 1e-60, 1e-80 : 1.0000000125 1.0000000000 1.0000000000   (at y = 1e-6: 1.081615)
+      alpha = 0.6   nu sqrt(y) at y = 1e-40, 1e-60, 1e-80 : 1.0000000000 1.0000000000 1.0000000000   (at y = 1e-6: 1.013277)
+      alpha = 1.0   nu sqrt(y) at y = 1e-40, 1e-60, 1e-80 : 1.0000000000 1.0000000000 1.0000000000   (at y = 1e-6: 1.000500)
+      alpha = 1.5   nu sqrt(y) at y = 1e-40, 1e-60, 1e-80 : 1.0000000000 1.0000000000 1.0000000000   (at y = 1e-6: 1.000011)
+      alpha = 2.0   nu sqrt(y) at y = 1e-40, 1e-60, 1e-80 : 1.0000000000 1.0000000000 1.0000000000   (at y = 1e-6: 1.000000)
+      alpha = 3.0   nu sqrt(y) at y = 1e-40, 1e-60, 1e-80 : 1.0000000000 1.0000000000 1.0000000000   (at y = 1e-6: 1.000000)
+  [PASS] 0a  the deep-MOND relation is satisfied identically by the whole alpha family, so it contains no information about alpha and no derivation from it can produce one
+         (max |nu sqrt(y) - 1| = 1.25e-08 across alpha = 0.4-3)
+  is_restatement = FALSE.  But the honest caveat stands and is printed above: the ASYMPTOTE is alpha-free,
+  the APPROACH is not, and real wide binaries live in the approach, not the asymptote.
+
+----------------------------------------------------------------------------------------------------------------------
+1.  THE CANDIDATE'S OWN MAP alpha -> gamma_v, reproduced independently (asymptotic construction)
+----------------------------------------------------------------------------------------------------------------------
+    alphaprim/       canoprim/        altalt/       canoalt/        alt
+     0.40          1.5507          1.5891          1.5204          1.5572
+     0.60          1.2858          1.3157          1.2626          1.2908
+     0.80          1.1732          1.1985          1.1539          1.1774
+     1.00          1.1122          1.1344          1.0958          1.1159
+     1.25          1.0678          1.0868          1.0542          1.0709
+     1.50          1.0410          1.0572          1.0300          1.0436
+     2.00          1.0127          1.0240          1.0062          1.0143
+     2.50          1.0003          1.0072          0.9976          1.0012
+     3.00          0.9954          0.9983          0.9957          0.9956
+  [PASS] 1a  the candidate's quoted asymptotic values (1.5507 at alpha = 0.4, 1.1122 at alpha = 1, 0.9954 at alpha = 3, canonical footing and primary g_ext) are reproduced by an independent implementation
+         (got 1.5507 / 1.1122 / 0.9954)
+
+  d gamma_v / d log alpha (asymptotic, canonical) = -0.5704   -> sigma_tot/|lever| = 0.0491 dex
+  d gamma_v / d log alpha (asymptotic, alt)       = -0.6091   -> 0.0460 dex
+  LOCAL derivative at alpha = 1 (which is what the candidate quotes): canonical -0.5438, alt -0.5765
+  GLOBAL log-linear fit over alpha = 0.4-3 (a different and equally legitimate definition): canonical -0.5704, alt -0.6091
+  [PASS] 1b  the candidate's quoted lever (-0.537 canonical, -0.570 alt) is reproduced when read as the LOCAL derivative at alpha = 1, which is what it is
+         (local -0.5438 / -0.5765; the global fit gives -0.5704 / -0.6091, and the difference is a definition, not a discrepancy)
+
+----------------------------------------------------------------------------------------------------------------------
+2.  THE MAP A SURVEY ACTUALLY MEASURES: alpha -> gamma_v end-to-end on the El-Badry clean sample
+----------------------------------------------------------------------------------------------------------------------
+  clean sample N = 39702, median M_tot = 1.099 Msun, counts per s_p bin = [17106, 5338, 1833, 790, 185, 91]
+  [PASS] 2a  MUTATION CONTROL: the Newtonian control run through the identical estimator must return gamma_v = 1 exactly (it is the same arrays); and a run with nu = 1 but a DIFFERENT a0 must also return 1, i.e. the estimator carries no a0 of its own
+         (nu = 1 at the alt footing and alt g_ext gives gamma_v = 1.000000000)
+
+    alpha  gamma_asym  gamma_sample    ratio   per-bin gamma_v (0-2  2-5  5-10  10-20  20-30  30-60 kAU)
+     0.40      1.5507        1.5180   0.9789   1.2930  1.4850  1.5541  1.6280  1.6426  1.6819   [all-s: 1.3667]
+     0.60      1.2858        1.2623   0.9817   1.1080  1.2371  1.2896  1.3471  1.3581  1.3939   [all-s: 1.1586]
+     0.80      1.1732        1.1532   0.9830   1.0482  1.1303  1.1770  1.2296  1.2517  1.2810   [all-s: 1.0828]
+     1.00      1.1122        1.1029   0.9916   1.0229  1.0840  1.1222  1.1652  1.1932  1.2171   [all-s: 1.0493]
+     1.25      1.0678        1.0689   1.0011   1.0106  1.0542  1.0814  1.1227  1.1417  1.1799   [all-s: 1.0300]
+     1.50      1.0410        1.0489   1.0076   1.0048  1.0357  1.0615  1.0938  1.1135  1.1518   [all-s: 1.0195]
+     2.00      1.0127        1.0321   1.0192   1.0009  1.0220  1.0420  1.0654  1.0833  1.1177   [all-s: 1.0114]
+     2.50      1.0003        1.0243   1.0240   0.9990  1.0157  1.0336  1.0512  1.0629  1.0942   [all-s: 1.0074]
+     3.00      0.9954        1.0199   1.0246   0.9979  1.0122  1.0294  1.0442  1.0448  1.0698   [all-s: 1.0052]
+
+  LOCAL lever at alpha = 1:  asymptotic -0.5438 (the candidate quotes -0.537), sample-level -0.4348
+  GLOBAL log-linear fit over alpha = 0.4-3:  asymptotic -0.5704, sample-level -0.4971
+  The candidate's -0.537 is the LOCAL derivative at alpha = 1; both definitions are used below, and the
+  local one is the correct propagator for an error bar quoted at alpha = 1.
+
+  CROSS-VALIDATION against the frozen pipeline, which is a completely different implementation:
+    this script, alpha = 1, canonical, FROZEN 2-30 kAU window, per-star two-body composition: 1.1029
+    frozen Amendment 10(b) per-star composition, canonical:                                     1.1139
+  [PASS] 2c  CROSS-VALIDATION that can fail: this script's forward model, built independently, must reproduce the frozen pipeline's per-star-composition gamma_v to better than 0.02 on the same window and the same footing.  If it does not, this script's map is wrong and nothing below may be quoted
+         (1.1029 vs frozen 1.1139, difference 0.0110)
+
+  d gamma_v / d log alpha ON THE SAMPLE (local, at alpha = 1) = -0.4348, against the asymptotic local -0.5438
+  measurement-only precision on log alpha: sigma_tot/|lever| = 0.0644 dex (the candidate quotes 0.052)
+  [PASS] 2b  CAN FAIL: the sample lever must be at least half the asymptotic one, or the observable retains too little of the alpha dependence for the map to be a meter at all
+         (sample lever -0.4348 vs asymptotic -0.5438, a retention of 80%)
+
+----------------------------------------------------------------------------------------------------------------------
+3.  THE ERROR BUDGET ON log alpha.  The measurement error is ONE term, and it is not the biggest
+----------------------------------------------------------------------------------------------------------------------
+  term                                                      delta gamma_v   -> dex in log alpha
+  measurement (frozen sigma_tot = 0.028)                           0.0280                0.0644
+  a0 FOOTING (canonical vs alt)                                    0.0170                0.0392
+  g_ext convention (frozen primary vs alt)                         0.0094                0.0215
+  eccentricity prior (thermal vs super-thermal)                    0.0077                0.0177
+  semi-major-axis prior (log-uniform to 80 vs 25 kAU)              0.0016                0.0038
+  mass calibration at 0.04 dex (eclipsing-binary MS relation)         0.0023                0.0053
+  two-body composition convention (frozen 10(b))                   0.0475                0.1092
+  frozen band width at fixed alpha (10(b) floor to top)            0.0200                0.0460
+  TOTAL (quadrature)                                               0.0623                0.1434
+  of which measurement 0.0644 dex and model systematics 0.1281 dex
+
+  measured d log gamma_v / d log Upsilon (mass calibration) = -0.0227
+  the candidate's own claim on this line is 'd log gamma_v/d log Upsilon = 0 EXACTLY on the PREDICTION
+  side'.  That is TRUE for the asymptotic eigenvalues and FALSE for the sample-level prediction, because
+  the mass sets h/g_ext and therefore which part of the transition each pair samples.
+  [FAIL] 3a  THE CANDIDATE'S CENTRAL CLAIM: alpha is measurable to about 0.05 dex.  It survives only if the TOTAL budget -- not the measurement term alone -- is under 0.10 dex, i.e. within a factor 2 of the claim
+         (total sigma(log alpha) = 0.1434 dex, of which 0.0644 is measurement and 0.1281 is model systematics.  The candidate quotes 0.0491 dex, the measurement term of the asymptotic map alone)
+  [FAIL] 3b  CAN FAIL: is the measurement term the DOMINANT one, as the candidate's quoted precision assumes?
+         (measurement 0.0644 dex vs systematics 0.1281 dex, a ratio of 2.0 the wrong way)
+
+----------------------------------------------------------------------------------------------------------------------
+3c.  THE SAME FACT STATED WITHOUT ANY ERROR BUDGET: what alpha does the theory's OWN frozen band span?
+----------------------------------------------------------------------------------------------------------------------
+  Amendment 10(b) registers gamma_v at alpha = 1 as a BAND, not a point, because the footing and the
+  two-body composition convention are both unresolved.  Invert that band through this script's own
+  sample-level map and read off the alpha interval it corresponds to:
+    frozen canonical floor gamma_v = 1.1614  ->  alpha = 0.783
+    frozen canonical top   gamma_v = 1.1814  ->  alpha = 0.743
+    frozen alt       floor gamma_v = 1.1917  ->  alpha = 0.723
+    frozen alt       top   gamma_v = 1.2267  ->  alpha = 0.659
+    frozen per-star diagnostic canonical gamma_v = 1.1139  ->  alpha = 0.953
+  READ ONLY, Amendment 10(c), verbatim: "DR4 separates the framework from Newton; it does NOT attribute
+  the arm."  A statistic that cannot separate modified inertia from modified gravity is not going to
+  separate alpha = 0.8 from alpha = 1.2 within the same arm.
+
+======================================================================================================================
+VERDICT -- K3 (alpha from the wide-binary boost)
+======================================================================================================================
+  1. THE CANDIDATE'S ARITHMETIC IS CORRECT.  Its asymptotic map and its lever (-0.537 / -0.570) are
+     reproduced here to 3e-3.  NOT A RESTATEMENT: the deep-MOND relation is alpha-blind to 1e-8.
+  2. THE SAMPLE-LEVEL LEVER IS WEAKER: -0.4348 against the asymptotic -0.5438, i.e. 76% retained,
+     because the internal field, the orbit and the projection all dilute the alpha dependence.  The
+     measurement-only precision is 0.064 dex, not the 0.049 dex quoted.
+  3. THE MEASUREMENT ERROR IS NOT THE BUDGET.  Model systematics contribute 0.128 dex against the
+     measurement's 0.064; the total is 0.143 dex.  The largest single term is
+     'two-body composition convention (frozen 10(b))' at 0.109 dex.
+  4. d log gamma_v / d log Upsilon = -0.0227 on the SAMPLE-LEVEL prediction, not 0.  Small, and
+     genuinely the mildest mass lever in this hunt, but not the exact zero the candidate claims.
+  5. THE THEORY'S OWN FROZEN BAND AT FIXED alpha = 1 IS WIDER THAN THE MEASUREMENT ERROR.  That is the
+     decisive fact and it is not new here: it is registered in Amendment 10(b)-(c) and it is why the
+     pre-registration says DR4 cannot even attribute the ARM.
+  CATEGORY: FAILED as a Kepler-grade candidate -- criterion (3).  alpha is measurable in principle and
+  the construction is sound; it is not measurable to 0.05 dex, and the block is not the data.
+
+RESULT: 8 checks, 2 FAIL -> ["3a  THE CANDIDATE'S CENTRAL CLAIM: alpha is measurable to about 0.05 dex.  It survives only if the TOTAL budget -- not the measurement term alone -- is under 0.10 dex, i.e. within a factor 2 of the claim", "3b  CAN FAIL: is the measurement term the DOMINANT one, as the candidate's quoted precision assumes?"]

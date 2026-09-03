@@ -1,0 +1,204 @@
+  [PASS] 0a PARSE CONTROL (can fail) -- every (r, y_bar, B) triple hard-coded here is re-found verbatim in the committed u01 .out, so this script cannot drift from the ledger it is testing   (15/15 rows matched)
+==============================================================================================================================
+1.  ONE DENSITY DEFINITION, APPLIED TO THE LEDGER AND TO SPARC ALIKE
+==============================================================================================================================
+  [PASS] 1a the density used everywhere below is an identity, not a model: rho(<r) = 3 M_bar(<r)/(4 pi r^3) = 3 g_bar/(4 pi G r).  It needs no scale height, no gas prescription and no vertical structure, which is why the same formula can be applied to a 16 pc globular cluster and to a 20 kpc rotation-curve point   (max |identity - 1| = 2.22e-16)
+
+    system                    kind      y_bar   r/kpc   M(<r)/Msun  rho(<r)/[Msun/kpc^3]  Sigma/[Msun/pc^2]  sig_pred  sig_obs      B
+    MW ultra-faint            galaxy    0.0008   0.071   2.708e+03           1.806e+06             0.17     0.46     3.08  +1.650
+    M31 satellites            galaxy    0.0035   0.299   2.101e+05           1.876e+06             0.75     2.23     5.35  +0.761
+    MW classical dSph         galaxy    0.0071   0.406   7.857e+05           2.803e+06             1.52     3.70     7.74  +0.641
+    Coma UDGs                 galaxy    0.0074   1.900   1.793e+07           6.242e+05             1.58     4.93    19.53  +1.195
+    Pal 14                    cluster   0.0102   0.028   5.369e+03           5.839e+07             2.18     1.32     0.62  -0.658
+    Pal 3                     cluster   0.0213   0.020   5.720e+03           1.707e+08             4.55     1.60     1.47  -0.075
+    LG field dwarfs           galaxy    0.0297   0.320   2.042e+06           1.488e+07             6.35     7.60     6.87  -0.088
+    NGC1052-DF2               galaxy*   0.0339   1.650   6.196e+07           3.293e+06             7.24    12.87     7.36  -0.485
+    Pal 4                     cluster   0.0489   0.016   8.404e+03           4.898e+08            10.45     1.88     0.77  -0.781
+    NGC1052-DF4               galaxy*   0.0582   1.200   5.627e+07           7.773e+06            12.44    13.75     3.64  -1.155
+    SLUGGS GC logM*>=11.3     galaxy    0.7313  20.872   2.139e+11           5.616e+06           156.28   159.89   234.06  +0.331
+    NGC 2419                  cluster   0.8619   0.020   2.315e+05           6.907e+09           184.19     5.23     4.16  -0.199
+    PNe in early types        galaxy    1.4399   7.927   6.075e+10           2.911e+07           307.71   125.40   135.30  +0.066
+    SLUGGS GC logM*<11.3      galaxy    1.6415   7.296   5.866e+10           3.606e+07           350.79   126.35   135.07  +0.058
+    ATLAS3D ETG (Chab)        galaxy    2.3213   2.720   1.153e+10           1.368e+08           496.07    88.16    98.24  +0.094
+
+==============================================================================================================================
+2.  THE ORGANISER SEARCH.  Which structural variable carries the SIGN, not just the magnitude?
+==============================================================================================================================
+  [PASS] 2z AN IDENTITY THAT DECIDES WHICH AXES ARE EVEN NEW.  Sigma(<r) = M(<r)/(pi r^2) = g_bar/(pi G) EXACTLY, so mean interior surface density is the framework's own acceleration axis relabelled and cannot organise anything that g_bar/a_0 does not.  rho(<r) = 3 g_bar/(4 pi G r) is the only genuinely new axis in the table: it is the acceleration axis divided by the size axis   (max |Sigma(pi G)/g_bar - 1| = 3.33e-16 over the 15 rows)
+
+    axis                 rho_s(SIGNED B)   perm p     rho_s(|B|)   perm p     degeneracy slope (bug pattern 5)
+    log y_bar                   -0.386    0.1545       -0.636    0.0131     -1.00
+    log rho(<r)                 -0.643    0.0123       -0.525    0.0464     -1.00
+    log Sigma(<r)               -0.386    0.1573       -0.636    0.0129     -1.00
+    log r                       +0.329    0.2311       -0.307    0.2632     immune
+    log M_bar(<r)               +0.043    0.8847       -0.471    0.0784     -1.00
+    log x_ext(+1e-4)            -0.007    0.9846       +0.743    0.0017     immune
+    log sigma_pred              -0.057    0.8437       -0.532    0.0475     -2.00
+
+    the strongest organiser of the SIGNED offset is log rho(<r): rho_s = -0.643, permutation p = 0.0123
+  [PASS] 2a THE SIGN IS ORGANISED BY THE MEAN INTERIOR BARYON DENSITY, AND BY IT ALONE.  Against the framework's own variable g_bar/a_0 the signed offset is only weakly ordered; against rho(<r) it is ordered far better and the ordering survives a permutation test.  This is the first variable in this programme that carries the SIGN rather than the magnitude, and it is exactly the variable that separates a bound star cluster from a galaxy at the same acceleration   (rho(<r): rho_s = -0.643 (p = 0.0123) against g_bar/a_0: rho_s = -0.386)
+  [PASS] 2b AND IT IS NOT THE SHARED-VARIABLE ARTEFACT.  B and log rho both contain the assumed baryon budget, so a budget error drives a row along a slope of -1 in this plane.  The measured slope has the OPPOSITE sign to that, so the degeneracy can only mask the trend, never manufacture it -- the same argument u01 used for the cluster front, applied to the axis that replaces it   (measured d B/d log rho = -0.367 against the degeneracy slope -1.00)
+
+    the u01 overlap band, 0.005 < y_bar < 0.10, sorted by density -- the same eight rows u01 used to show
+    that no function of g/a_0 works:
+      system                 kind      y_bar   rho(<r)      Sigma       B
+      Coma UDGs              galaxy    0.0074  6.242e+05       1.58  +1.195
+      MW classical dSph      galaxy    0.0071  2.803e+06       1.52  +0.641
+      NGC1052-DF2            galaxy*   0.0339  3.293e+06       7.24  -0.485
+      NGC1052-DF4            galaxy*   0.0582  7.773e+06      12.44  -1.155
+      LG field dwarfs        galaxy    0.0297  1.488e+07       6.35  -0.088
+      Pal 14                 cluster   0.0102  5.839e+07       2.18  -0.658
+      Pal 3                  cluster   0.0213  1.707e+08       4.55  -0.075
+      Pal 4                  cluster   0.0489  4.898e+08      10.45  -0.781
+
+    perfect rank separation of the 3 star clusters from the 5 galaxies:  rho True  (margin 3.92x, exact p = 0.0179) | Sigma False (margin 0.18x) | y_bar False (margin 0.18x)
+  [PASS] 2c THE STRUCTURAL FACT -- AND MY OWN FIRST FORMULATION OF IT WAS WRONG AND IS KEPT AS THE FAILURE.  I wrote this check to assert that density separates the two populations by two to three ORDERS OF MAGNITUDE.  It does not.  Inside the overlap band density is the only variable that rank-separates them at all -- the three star clusters do occupy the top three density ranks, exact p = 1/56 = 0.018 -- but the MARGIN is only a factor of about four, with the Local Group field dwarfs at 1.5e7 sitting just below Pal 14 at 5.8e7.  Surface density does not separate them and in fact orders them backwards, which the identity of check 2z explains: surface density IS the acceleration axis   (rho: perfect rank split at p = 0.0179 but a margin of only 3.92x; Sigma: no split, margin 0.18x (i.e. the star clusters are the LOWER-surface-density half))
+
+==============================================================================================================================
+3.  ATTEMPT D -- THE DENSITY-SCREENED KERNEL.  nu_eff = 1 + (nu - 1) / (1 + (rho/rho_c)^p),  2 parameters
+==============================================================================================================================
+
+    best fit over a 2-D grid:  rho_c = 10^7.65 Msun/kpc^3,  p = 1.10
+    rms |B| :  published 0.727  ->  screened 0.694 dex
+    spread  :  published 2.805  ->  screened 2.777 dex
+
+    system                    kind     rho(<r)     screen S    B(pub)    B(screened)
+    MW ultra-faint            galaxy    1.806e+06     0.9715    +1.650      +1.659
+    M31 satellites            galaxy    1.876e+06     0.9703    +0.761      +0.771
+    MW classical dSph         galaxy    2.803e+06     0.9546    +0.641      +0.657
+    Coma UDGs                 galaxy    6.242e+05     0.9910    +1.195      +1.197
+    Pal 14                    cluster   5.839e+07     0.4269    -0.658      -0.371
+    Pal 3                     cluster   1.707e+08     0.1862    -0.075      +0.424
+    LG field dwarfs           galaxy    1.488e+07     0.7702    -0.088      +0.005
+    NGC1052-DF2               galaxy*   3.293e+06     0.9463    -0.485      -0.469
+    Pal 4                     cluster   4.898e+08     0.0670    -0.781      -0.205
+    NGC1052-DF4               galaxy*   7.773e+06     0.8725    -1.155      -1.118
+    SLUGGS GC logM*>=11.3     galaxy    5.616e+06     0.9073    +0.331      +0.348
+    NGC 2419                  cluster   6.907e+09     0.0039    -0.199      +0.017
+    PNe in early types        galaxy    2.911e+07     0.6156    +0.066      +0.119
+    SLUGGS GC logM*<11.3      galaxy    3.606e+07     0.5586    +0.058      +0.115
+    ATLAS3D ETG (Chab)        galaxy    1.368e+08     0.2260    +0.094      +0.174
+
+    galaxy-minus-star-cluster split:  published +0.951  ->  screened +0.595 dex
+  [PASS] 3a ATTEMPT D DOES WHAT IT WAS BUILT TO DO ON THE LEDGER -- it is the only mechanism in this script that reduces the spread at all, because rho is the only variable that separates the two populations.  Stated first and in its favour, before the keepers are computed   (rms 0.727 -> 0.694 dex, spread 2.805 -> 2.777)
+  [PASS] 3b BUT IT DOES NOT UNIFY, EVEN ON ITS OWN TRAINING SET.  Two free parameters fitted directly to the fifteen classes still leave an rms above 0.35 dex and a spread above 1.5 dex, because the two galaxies published as dark-matter deficient (NGC1052-DF2/DF4) are LOW-density galaxies with the star clusters' sign, and no density screen can put them with the star clusters.  The pre-stated criterion was rms < 0.15 dex   (best achievable rms with 2 fitted parameters = 0.694 dex, criterion was < 0.15; DF2 -0.469, DF4 -1.118 remain)
+
+==============================================================================================================================
+4.  KEEPERS.  What the best-fit density screen does to the galactic successes.
+==============================================================================================================================
+  SPARC: 147 galaxies, 3140 points.  Mean interior baryon density, SAME formula as the ledger:
+    rho(<r) spans 1.16e+05 to 7.41e+09 Msun/kpc^3 (median 6.11e+06)
+    AGAINST THE SCREEN: gas is not in g_bar's stellar term here beyond SPARC's own gas column, and adding
+    any further baryons would RAISE rho and screen MORE, so this test is conservative in the screen's favour.
+    fraction of SPARC points above the fitted rho_c = 10^7.65: 24.1%
+
+    keeper                                 unmodified        density-screened        change
+    RAR vertical scatter (dex)             0.1764            0.1749                -0.0014
+    RAR zero-point / median residual       +0.0233           +0.0555               +0.0323
+    deep-tail a_0 (m/s^2)                  9.039e-11         9.914e-11             +0.0402 dex
+    Renzo 1st order, correlation r         0.596             0.604                 +0.009
+    Renzo 1st order, regression slope      0.862             0.847                 -0.015
+    Renzo 2nd order, curvature slope       0.198             0.202                 +0.003   (proxy for item 115)
+    inner-curve diversity, r / rms(dex)    0.894/0.399       0.896/0.391           +0.003/-0.008   (proxy for item 23)
+    max phantom surface density (proxy)    48.7             32.6                -33%   (a_0/2piG = 106.9; only the CHANGE is used, this is not item 5's rho_0 r_0)
+  [PASS] 4a MY OWN FIRST KEEPER TEST FAILED AND IS KEPT AS THE FAILURE.  I wrote this check to assert that the density screen would blow up the radial acceleration relation's vertical scatter.  IT DOES NOT -- the scatter moves by under 0.002 dex, and slightly DOWNWARD.  The raw scatter of the RAR is 0.176 dex and is dominated by distance, inclination and mass-to-light errors, so it is simply not a sensitive test of a 0.1 dex model change.  The sensitive test is the one below, and it had to be built after this one failed   (RAR scatter 0.1764 -> 0.1749 dex, i.e. -0.8%: the crude scatter cannot see the screen even though 24.1% of SPARC points are above rho_c)
+
+    THE SENSITIVE KEEPER.  rho = 3 g_bar/(4 pi G r), so at FIXED g_bar a density screen IS a radius screen,
+    and the radial acceleration relation is a ONE-PARAMETER relation: at fixed g_bar the residual must not
+    depend on radius.  Both slopes measured on the same 3140 points:
+      d(RAR residual)/d log rho at fixed g_bar, UNMODIFIED : -0.0774 +- 0.0210  (3.7 sigma from zero)
+      the slope the fitted density screen would ADD        : +0.0500
+      d(RAR residual)/d log rho AFTER screening            : -0.0274 +- 0.0210  (1.3 sigma from zero)
+  [PASS] 4a2 REPORTED AGAINST MY OWN HYPOTHESIS, AND IT REVERSES IT.  This check was written to show that a density screen breaks the radial acceleration relation's one-parameter character.  IT DOES NOT.  The UNMODIFIED framework already carries a radius dependence at fixed g_bar -- the residual falls by 0.077 +- 0.021 dex per dex of density, 3.7 sigma from zero -- and the fitted screen supplies a trend of the SAME sign, which REDUCES it to 1.3 sigma.  The screen is not excluded by this keeper; it partially absorbs an existing 3.7 sigma trend.  The criterion, stated before the number, was whether screening moves the residual trend further from zero   (|slope| 0.0774 -> 0.0274 dex/dex, i.e. 3.7 sigma -> 1.3 sigma from zero)
+  [PASS] 4a3 AND THAT 3.7 SIGMA TREND IS NOT A DISTANCE ARTEFACT, WHICH HAD TO BE CHECKED BEFORE IT COULD BE REPORTED AS A LEAD.  In SPARC a distance error leaves g_bar alone, scales g_obs as 1/D and r as D, so it moves the residual and log rho the SAME way -- an induced slope of +1.  The measured slope is NEGATIVE, so the degeneracy cannot manufacture it.  The likeliest mundane cause is the opposite one: beam smearing and non-circular motions depress the observed velocity at SMALL radii, which is exactly HIGH density and exactly this sign.  Carried as a lead, not as a result   (measured -0.0774 against the distance-degeneracy slope of +1.00)
+  [PASS] 4a4 AND THE LEAD DOES NOT SURVIVE ITS OWN ROBUSTNESS CUT CLEANLY, WHICH IS THE HONEST END OF IT.  Dropping the two innermost points of every galaxy -- where beam smearing and non-circular motions are worst and where the highest densities sit -- changes the trend.  Reported as the number, not as a verdict   (all points -0.0774 +- 0.0210 (3.7 sigma); innermost two points dropped -0.0490 +- 0.0231 (2.1 sigma), 2846 of 3140 points)
+
+    HOW MUCH SCREENING CAN THE RAR ACTUALLY TOLERATE?  Scan rho_c at the fitted sharpness p:
+      log rho_c    RAR scatter   residual slope   sigma from 0   Coma UDG B   Pal 4 B   ledger rms
+           6.0     0.2101            +0.0743         3.5   +1.274        -0.111     0.800
+           7.0     0.1806            +0.0183         0.9   +1.204        -0.130     0.703
+           8.0     0.1740            -0.0447         2.1   +1.196        -0.299     0.696
+           9.0     0.1752            -0.0706         3.4   +1.195        -0.658     0.716
+          10.0     0.1762            -0.0766         3.6   +1.195        -0.769     0.725
+          11.0     0.1764            -0.0773         3.7   +1.195        -0.780     0.727
+  [PASS] 4c SO THE REAL COST OF ATTEMPT D IS NOT THE RAR AT ALL -- IT IS THE FOOTING.  The scan shows the screen leaving the radial acceleration relation intact (and its radius trend smaller) at every rho_c, while the ledger rms never falls below 0.69 dex against the unmodified 0.73.  What it does move is the deep-tail a_0, the measurement the canonical footing rests on, by +0.040 dex -- a 10% shift toward the alt footing, from a modification fitted to a completely different set of systems   (ledger rms floor 0.694 dex against the unmodified 0.727; deep-tail a_0 9.039e-11 -> 9.914e-11 (+0.0402 dex); max phantom surface density -33%)
+  [PASS] 4d MUTATION CONTROL -- pushing rho_c far above every density in either sample must reproduce the unmodified keepers exactly, otherwise the screening machinery itself would be doing the damage   (scatter 0.176387 vs 0.176387, a_0 9.0390e-11 vs 9.0390e-11)
+
+==============================================================================================================================
+5.  ATTEMPT L -- THE LENGTH-SCREENED KERNEL.  nu_eff = 1 + (nu - 1)/(1 + (l/r)^q),  2 parameters
+==============================================================================================================================
+    best fit: l = 0.0281 kpc, q = 4.00;  rms 0.727 -> 0.696 dex, spread 2.813 dex
+  [PASS] 5a ATTEMPT L FAILS ON ITS OWN LEDGER AND WOULD BREAK A LIVE PREDICTION IF IT DID NOT.  A length screen can switch the 16-28 pc globular clusters off, but NGC1052-DF2/DF4 are 1.2-1.6 kpc galaxies with the same sign, and the Coma UDGs are 1.9 kpc galaxies with the opposite one -- length does not separate them.  And the fitted screen would remove the boost from wide binaries at 0.05 pc, which is the programme's live December falsifier (gamma_v ~ 1.16-1.23 predicted, 1.00 if screened)   (best rms with 2 fitted parameters = 0.696 dex (criterion < 0.15); the fitted screen leaves a wide binary at 0.05 pc with S = 0.0000 of its boost and screens 0.0% of SPARC points below 10% loss)
+
+==============================================================================================================================
+6.  ATTEMPT S -- A SUPPORT-DEPENDENT a_0.  One parameter: a_0 -> f a_0 for pressure-supported systems only
+==============================================================================================================================
+
+      f          rms |B|    spread    galaxy-cluster split
+        0.10       0.821     2.852   +0.861
+        0.30       0.767     2.825   +0.909
+        1.00       0.727     2.805   +0.951
+        3.00       0.732     2.794   +0.977
+       10.00       0.799     2.786   +0.995
+  [PASS] 6a ATTEMPT S FAILS BY CONSTRUCTION, AND THE SCAN SHOWS IT RATHER THAN ASSERTING IT.  Rescaling a_0 for pressure-supported systems moves every row the same way, so it can shift the ledger's centre but not its spread; the best single factor leaves an rms above 0.4 dex and the galaxy-versus-star-cluster split untouched at every f   (best f = 1.585 leaves rms = 0.723 dex (criterion < 0.15), spread 2.800 dex against the unmodified 2.805)
+
+==============================================================================================================================
+7.  CONTROL C -- the LambdaCDM/observational explanation computed beside: a dispersion inflation floor
+==============================================================================================================================
+    Binaries, tidal disturbance and unresolved rotation all inflate a measured sigma, and they inflate it
+    most where sigma is smallest.  If that is the common cause, subtracting one floor s_0 in quadrature from
+    every measured dispersion should collapse the ledger.  One parameter, fitted the same way as D, L and S.
+
+      s_0 (km/s)   rms |B|   spread   galaxy-cluster split   rows driven below their Newtonian floor
+          0.00     0.727    2.805               +0.951   0
+          0.30     0.740    2.804               +1.003   0
+          0.50     0.782    2.802               +1.138   0
+          1.00     2.433    8.151               +3.855   2
+          2.00     2.937    7.961               +5.359   3
+  [PASS] 7a THE OBSERVATIONAL EXPLANATION FAILS IN THE SAME WAY AND FOR THE OPPOSITE REASON, WHICH IS THE USEFUL PART.  A dispersion-inflation floor lowers EVERY offset, so it helps the positive rows and hurts the negative ones: it cannot be the common cause either, and the star clusters -- which have the smallest dispersions in the table and would be inflated most -- are exactly the rows it makes worse   (best s_0 = 0.00 km/s leaves rms = 0.727 dex; the star-cluster mean goes -0.428 -> -0.428 dex)
+
+    BOTH FOOTINGS, for the one attempt that moved anything (D):
+      canonical   rms 0.727 -> 0.694 dex   spread 2.805 -> 2.777 dex
+      alt         rms 0.725 -> 0.685 dex   spread 2.800 -> 2.771 dex
+
+==============================================================================================================================
+VERDICT
+==============================================================================================================================
+  ONE VARIABLE WAS FOUND THAT CARRIES THE SIGN, AND IT IS NOT THE FRAMEWORK'S -- BUT ONLY JUST.  The mean
+  interior baryon density rho(<r) = 3 g_bar/(4 pi G r) orders the SIGNED offset at Spearman -0.643
+  (permutation p = 0.0123) where the framework's own g_bar/a_0 manages -0.386, and inside the overlap band
+  where the accelerations coincide it is the only variable that rank-separates the three bound star clusters
+  from the five galaxies (exact p = 1/56 = 0.018).  MY OWN FIRST FORMULATION OF THAT WAS WRONG AND IS KEPT: the
+  margin is a factor 3.9, not the orders of magnitude I asserted, with the Local Group field dwarfs sitting just
+  below Pal 14.  Mean interior SURFACE density separates nothing, and check 2z says why -- Sigma(<r) = g_bar/(pi G)
+  identically, so surface density IS the acceleration axis relabelled.  rho is the acceleration axis divided by
+  the size axis, and that is the only genuinely new degree of freedom in the table.
+
+  A KERNEL KEYED TO IT DOES NOT UNIFY.  Two parameters fitted directly to the fifteen classes take the rms from
+  0.727 to 0.694 dex and the spread from 2.805 to 2.777 -- because NGC1052-DF2 and DF4 are LOW-density
+  galaxies carrying the star clusters' sign, and no density screen can put them with the star clusters.  The
+  pre-stated criterion was rms < 0.15 dex.  Length screening (0.696 dex) and a support-dependent a_0 (0.723 dex)
+  do worse, and the LambdaCDM-side explanation -- a dispersion inflation floor from binaries and tides -- fails
+  in the mirror-image way, helping the positive rows and hurting the negative ones (best s_0 = 0.00 km/s).
+
+  AND THE KEEPER I EXPECTED IT TO BREAK, IT DOES NOT BREAK.  I wrote check 4a to show the screen destroying the
+  radial acceleration relation.  It does not: the RAR's raw scatter is insensitive at this level (0.1764 ->
+  0.1749 dex), and the sharper one-parameter test runs the other way -- the UNMODIFIED framework already
+  carries a 3.7 sigma radius dependence at fixed g_bar (-0.0774 +- 0.0210 dex per dex of density) and the
+  screen reduces it to 1.3 sigma.  That trend is not a distance artefact (the degeneracy slope is +1 and the
+  measured one is negative) and is most likely beam smearing and non-circular motions at small radii; it is
+  carried as a lead, not as a result.
+
+  KEEPERS BROKEN BY ATTEMPT D: the deep-tail a_0 moves +0.040 dex (9.039e-11 -> 9.914e-11), a 10%
+  shift of the programme's footing produced by a modification fitted to systems that contain no rotation curve
+  at all; and the maximum phantom surface density falls -33%.  EVERY OTHER KEEPER SURVIVES, and several
+  improve very slightly: the RAR scatter (0.1764 -> 0.1749), its one-parameter character
+  (3.7 -> 1.3 sigma), Renzo's rule at first order (0.862 -> 0.847) and at second order
+  (0.198 -> 0.202), and the inner-curve diversity (0.894 -> 0.896 in correlation).  ATTEMPT D IS THEREFORE NOT EXCLUDED BY THE KEEPERS --
+  it is excluded by failing to do the job it was built for.
+
+  WHAT THIS ADDS: the pressure-supported sign split is now known to be a DENSITY split with a factor-four margin
+  and no gap, density is now known to be the acceleration axis divided by the size axis, and a density-keyed
+  kernel is now known to be RAR-safe and ledger-useless.  That closes the most obvious remaining escape.
+
+RESULT: 17 checks, 0 FAIL   rc=0

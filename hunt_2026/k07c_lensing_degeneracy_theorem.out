@@ -1,0 +1,98 @@
+======================================================================================================================
+K07-C -- THE UNIVERSAL LENSING CURVE, AND WHY THE LENSING RUNG CANNOT BE MADE MASS-TO-LIGHT-FREE
+======================================================================================================================
+  the surface-density unit of the theory: a_0/G = 1.4025 kg/m^2 = 671.4 Msun/pc^2 (canonical), 810.5 (alt)
+  for comparison, the halo surface-density constant of item 5 is a_0/(2 pi G) = 106.9 Msun/pc^2 (canonical)
+
+----------------------------------------------------------------------------------------------------------------------
+1.  THE UNIVERSAL CURVE f(S), and the two limits it must reproduce
+----------------------------------------------------------------------------------------------------------------------
+     S=R/r_M         f(S)   1/(4S) deep  1/(pi S^2) Newt   which limit
+       0.030  3.53677e+02   8.33333e+00      3.53678e+02   Newtonian
+       0.100  3.18158e+01   2.50000e+00      3.18310e+01   Newtonian
+       0.300  3.55440e+00   8.33333e-01      3.53678e+00   Newtonian
+       1.000  4.39837e-01   2.50000e-01      3.18310e-01   transition
+       3.000  1.02179e-01   8.33333e-02      3.53678e-02   transition
+      10.000  2.66235e-02   2.50000e-02      3.18310e-03   deep MOND
+      30.000  8.51140e-03   8.33333e-03      3.53678e-04   deep MOND
+     100.000  2.51595e-03   2.50000e-03      3.18310e-05   deep MOND
+    1000.000  2.50159e-04   2.50000e-04      3.18310e-07   deep MOND
+  [PASS] K07c.1 the universal profile reproduces BOTH asymptotes it must: the Newtonian point mass inside r_M and the deep-MOND 1/R outside it, with no fitting anywhere   (f(0.03)*pi*S^2 = 1.00000 (Newtonian limit 1); f(1000)*4S = 1.00064 (deep limit 1))
+  [PASS] K07c.2 and the outer branch is the 1/R law item 1 measured in these same KiDS data, tying this machinery to an independently verified result rather than standing alone   (log-log slope of f over S = 20-2000 is -1.0052 (prediction -1.000))
+
+----------------------------------------------------------------------------------------------------------------------
+2.  THE DEGENERACY.  (M_b, a_0) -> (lambda M_b, a_0/lambda) must leave the profile unchanged if (C1) holds.
+    Here is by how much it actually changes across the radii KiDS measures.
+----------------------------------------------------------------------------------------------------------------------
+   log M_b  lambda    0.035Mpc     0.100Mpc     0.300Mpc     1.000Mpc     2.600Mpc
+       9.0    0.25      -1.64%       -0.58%       -0.19%       -0.06%       -0.02%
+       9.0    4.00       6.74%        2.34%        0.78%        0.23%        0.09%
+      10.0    0.25      -5.05%       -1.82%       -0.61%       -0.18%       -0.07%
+      10.0    4.00      21.77%        7.47%        2.47%        0.74%        0.28%
+      11.0    0.25     -14.61%       -5.56%       -1.91%       -0.58%       -0.22%
+      11.0    4.00      71.51%       24.17%        7.87%        2.34%        0.90%
+
+  RETRACTION OF MY OWN FIRST DRAFT: I wrote that the degeneracy is exact everywhere KiDS measures. It is not.
+  It is exact in the deep branch (2.5% at R > 0.1 Mpc for lenses below 1e10 Msun) and it BREAKS
+  at the inner edge of the most massive bin (72%), because there R_inner/r_M is only 2.9.
+  [PASS] K07c.3 the corrected, two-sided statement: the (M_b, a_0) degeneracy is EXACT in the deep branch and BREAKS only where the data reach inside the transition radius. Both halves are asserted, so the check fails if either the deep branch is not degenerate or the inner edge is   (compensating factor-4 rescale changes Delta Sigma by 2.5% at R > 0.1 Mpc for M_b <= 1e10 (degenerate) but by 72% at R = 35 kpc for M_b = 1e11 (not degenerate); my blanket 'a few per cent everywhere' is withdrawn)
+
+----------------------------------------------------------------------------------------------------------------------
+3.  ON THE REAL DATA.  Four KiDS-1000 stellar-mass bins, masses free, a_0 profiled.
+----------------------------------------------------------------------------------------------------------------------
+  4 bins (log M_* >= 8.50, 10.30, 10.60, 10.80) x 15 radii = 60 points
+  covariance minimum eigenvalue: PLAIN reshape -6.4208e+01   TRANSPOSED reshape 1.2592e-02
+  [PASS] K07c.4 CONFIRMING h113-A INDEPENDENTLY (credit to it, not claimed here): the ESD covariance has the same (m,n,i,j) storage order as the RAR covariance that voided an earlier claim in this programme, so hunt_lib.load_cov_esd's plain reshape is wrong on this binned file. h1_h66_h2_h65_lensing.py line 26 still calls it. Caught by positive-definiteness, not by the diagonal, which passes either way   (plain reshape min eigenvalue -6.421e+01 vs transposed 1.259e-02; the diagonals are identical to 1.0e+00 relative, so a diagonal-only check would have missed it)
+
+          a_0  a_0/a_0(canon)   chi2 (masses refitted)   fitted log10 M_b per bin
+    1.463e-12          0.0156                   909.42    11.27  11.48  11.56  11.66
+    5.850e-12          0.0625                   587.99    11.17  11.45  11.55  11.66
+    2.340e-11          0.2500                   289.54    10.86  11.25  11.40  11.54
+    9.360e-11          1.0000                   161.82    10.35  10.82  11.02  11.19
+    1.130e-10          1.2073                   154.44    10.29  10.76  10.95  11.11
+    3.744e-10          4.0000                   130.93     9.77  10.27  10.47  10.65
+    1.498e-09         16.0000                   124.00     9.19   9.68   9.89  10.07
+    5.990e-09         64.0000                   212.23     8.60   9.14   9.32   9.48
+  bin minimum stellar masses (the SELECTION boundary, log10 M_*):   8.50  10.30  10.60  10.80
+  best unbounded fit is a_0 = 1.498e-09 (16x canonical) with fitted log M_b =   9.19   9.68   9.89  10.07
+  [PASS] K07c.5 AGAINST MY OWN CLAIM AND AGAINST THE FRAMEWORK, BOTH: (a) a_0 is NOT unconstrained here -- with the four lens masses completely free the 3 sigma region still spans only about half a decade, so a genuinely M/L-free lensing a_0 does exist, which is more than I expected; but (b) the unbounded best fit runs to many times the canonical value and gets there by driving the lens masses BELOW the minimum STELLAR mass that defines their own bins, which is impossible since M_b = M_* + M_gas >= M_*   (3 sigma span 0.60 decades; unbounded best fit 16x canonical needs log M_b below the bin's own log M_* floor in 3 of 4 bins (by up to 0.73 dex))
+
+  with the physical one-sided bound log M_b >= log M_*,min (a SELECTION boundary, not an assumed Upsilon):
+  all radii (35 kpc - 2.6 Mpc)   best a_0 = 2.512e-10   chi2/dof =  2.47   3 sigma formal [1.58e-10, 3.16e-10]   3 sigma inflated [1.26e-10, 3.16e-10]
+  R > 0.1 Mpc only               best a_0 = 3.162e-10   chi2/dof =  2.04   3 sigma formal [3.98e-11, 3.16e-10]   3 sigma inflated [2.00e-11, 3.98e-10]
+  [PASS] K07c.5b AGAINST INTEREST AND AGAINST MY OWN EXPECTATION: with the mass floor imposed, the KiDS profiles at face value prefer an a_0 several times the canonical value and would EXCLUDE both footings on formal errors -- but the verdict does not survive the two choices any careful analysis has to make (inflating the errors for a chi2/dof near 3, and dropping the innermost points where miscentring and the lens's own extent live). The check therefore asserts that the verdict FLIPS, which is the honest reading and the reason no footing conclusion can be drawn from lensing   (all radii (35 kpc - 2.6 Mpc): best 2.51e-10, inflated 3 sigma [1.26e-10, 3.16e-10], footings OUTSIDE; R > 0.1 Mpc only: best 3.16e-10, inflated 3 sigma [2.00e-11, 3.98e-10], footings inside; h113-D2 got 6.31e-11 [5.4e-11, 7.5e-11] from the same file by a different route and flagged the same inner-radius sensitivity)
+  [PASS] K07c.6 (C2) VERIFIED ON THE DATA rather than in the algebra: doubling the assumed baryonic mass of every lens halves the a_0 the same data return. The lever is -1, so item 123's measured -1.046 for this rung is the theorem's own number and not an estimator flaw that a better estimator could remove   (d log a_0/d log M_b measured on the KiDS ESD profiles = -1.163 (prediction: exactly -1))
+
+----------------------------------------------------------------------------------------------------------------------
+4.  WHAT WOULD BREAK THE DEGENERACY: data inside the transition radius r_M = sqrt(G M_b/a_0).
+----------------------------------------------------------------------------------------------------------------------
+   log M_b    r_M (canonical)         r_M (alt)  R_inner/r_M
+         8           0.39kpc          0.35kpc        91.70
+         9           1.22kpc          1.11kpc        29.00
+        10           3.86kpc          3.51kpc         9.17
+        11          12.20kpc         11.11kpc         2.90
+        12          38.59kpc         35.13kpc         0.92
+        13         122.04kpc        111.08kpc         0.29
+        14         385.94kpc        351.25kpc         0.09
+        15        1220.45kpc       1110.75kpc         0.03
+  [PASS] K07c.7 THE PRESCRIPTION, and it is a hard one: for a galaxy-mass lens r_M is a few kpc, one to two orders of magnitude inside the smallest radius galaxy-galaxy weak lensing reaches. The first lens mass whose transition radius clears the KiDS inner radius is 1e12 Msun -- cluster scale, and clusters are exactly where this framework already fails by factors of 2-3 (items 7, 18, 55, 56, 57). The one lens class that could break the degeneracy is the one class whose lensing the framework does not reproduce   (KiDS inner radius 35 kpc; r_M = 3.9 kpc at 1e10 Msun, 12.2 kpc at 1e11; crossover at 1e12 Msun)
+
+----------------------------------------------------------------------------------------------------------------------
+5.  THE ALTERNATIVE.  LambdaCDM has no analogue of this degeneracy, and the asymmetry is worth stating.
+----------------------------------------------------------------------------------------------------------------------
+  An NFW fit to the same ESD measures M_200 from the amplitude; the stellar mass enters only as an additive
+  point-mass term at small R, so the two are not multiplicatively entangled. The degeneracy proved here is a
+  specific liability of an ACCELERATION-SCALE theory: its single constant multiplies the lens mass everywhere
+  weak lensing can see, and only the transition -- which lies inside the data -- separates them.
+  [PASS] K07c.8 the baryonic point-mass term carries the SAME message as the degeneracy: it is negligible in the deep branch and non-negligible at the inner edge of the massive bins -- the two statements are the same statement, since both are controlled by R/r_M   (baryonic share of Delta Sigma: at most 5.0% for R > 0.1 Mpc, but 36% at R = 35 kpc for a 1e11 Msun lens)
+
+----------------------------------------------------------------------------------------------------------------------
+6.  MUTATION CONTROLS
+----------------------------------------------------------------------------------------------------------------------
+  [PASS] MK07c.1 the profile is not insensitive to everything: raising M_b alone, without the compensating a_0 change, must double the signal -- so the degeneracy above is a real direction and not a dead estimator   (Delta Sigma(4 M_b)/Delta Sigma(M_b) = 2.016 (deep-MOND prediction: exactly 2))
+  [PASS] MK07c.2 raising a_0 by 100 at fixed M_b must raise the signal by 10 -- the other half of the same square root   (Delta Sigma(100 a_0)/Delta Sigma(a_0) = 9.927 (prediction: exactly 10))
+  [PASS] MK07c.3 permuting which radius carries which measured Delta Sigma must ruin the fit -- the profile shape is doing real work even though its amplitude cannot separate M_b from a_0   (shuffled chi2 124958 vs real 162 on 60 points)
+  [PASS] MK07c.4 turning the boost off (a_0 -> 0, i.e. Newtonian point-mass baryons only) must be far worse than the framework at any baryonic mass -- otherwise the data would not be testing the kernel at all   (Newtonian-only best chi2 1877 vs framework 162 on 60 points)
+
+
+RESULT: 13 checks, 0 FAIL   rc=0

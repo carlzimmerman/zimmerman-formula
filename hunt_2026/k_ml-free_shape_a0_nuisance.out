@@ -1,0 +1,134 @@
+========================================================================================================================
+INDEPENDENT VERIFICATION AND STRESS TEST OF K07-A -- a_0 from rotation-curve shape with Upsilon marginalised
+     angle: ml-free.   SPARC on disk.   nothing fetched.   nothing tuned.
+========================================================================================================================
+  sample rebuilt independently from K07-A's pre-declared, Upsilon-free cut (Q<=2, inc>=30, >=8 points, >=1.0 dex of measured g_obs): 40 galaxies, 1354 points
+  baryonic mass range log10 M_b = 9.50 .. 11.43
+
+------------------------------------------------------------------------------------------------------------------------
+1.  REPLICATION.  Same protocol, independent code.  If this does not land on 1.3139e-10 nothing after it means
+    anything.
+------------------------------------------------------------------------------------------------------------------------
+    this script : a_0 = 1.3139e-10   chi2/dof = 4.24  (5572 / 1313)
+    K07-A       : a_0 = 1.3139e-10   chi2/dof = 4.24
+  [PASS] V1 the headline of K07-A REPLICATES from an independent implementation of the same protocol, to better than 0.01 dex, including its over-dispersion   (1.3139e-10 here vs 1.3139e-10 there = -0.0000 dex; chi2/dof 4.24 vs 4.24)
+
+------------------------------------------------------------------------------------------------------------------------
+2.  THE UPSILON LEVER, re-measured independently -- K07-A's central claim.
+------------------------------------------------------------------------------------------------------------------------
+    stellar template x1.5   : a_0 = 1.313872e-10
+    stellar template x0.667 : a_0 = 1.313872e-10
+  [PASS] V2 CONFIRMED, and it is the real content of K07-A: d log a_0 / d log Upsilon is EXACTLY zero, because the template amplitude is absorbed one-for-one by the per-galaxy Upsilon that is profiled out. No other rung on the ladder has this   (a_0(Ups x1.5) = 1.313872e-10, a_0(Ups x0.667) = 1.313872e-10, lever = -1.42e-12)
+    what replaces it: helium 1.33 -> 1.40 moves a_0 by -0.0095 dex (lever -0.428); Upsilon_bul/Upsilon_disk 1.4 -> 1.0 moves it -0.0709 dex
+
+------------------------------------------------------------------------------------------------------------------------
+3.  THE NUISANCES K07-A HOLDS FIXED.  Distance and inclination, marginalised with SPARC's own quoted errors.
+    Under d = D/D_cat:  g_bar INVARIANT point by point,  g_obs -> g_obs/d.   Under inclination: g_obs -> 
+    g_obs (sin i_cat/sin i)^2.  Both are one multiplicative factor k per galaxy on the ordinate.
+------------------------------------------------------------------------------------------------------------------------
+    per-galaxy prior widths (dex):  sigma_logD median 0.076 (range 0.013-0.131);  2 sigma_logsin i median 0.028;  combined sigma_log k median 0.110
+    the deep-limit levers these correspond to: d log a_0/d log D = -2, d log a_0/d log sin i = -4 (a_0 ~ g_obs^2/g_bar), so a 0.110 dex ordinate prior is a 0.219 dex a_0 prior per galaxy
+
+    Upsilon only (K07-A)                    a_0 = 1.3139e-10   band [1.334e-10, 1.334e-10]
+    Upsilon + distance + inclination        a_0 = 1.2431e-10   band [1.259e-10, 1.259e-10]   -0.0241 dex
+    fitted log k: median +0.0294 dex, rms 0.1876, extremes [-0.424, +0.665]  (prior median width 0.110)
+  [PASS] V3 AGAINST MY OWN HYPOTHESIS, and IN K07-A'S FAVOUR: I expected the two nuisances K07-A holds fixed to dominate, because they carry the ladder's largest levers (-2 in distance, -4 in sin i) and because item 103 found distance leads the random budget. They do not. Marginalising both at SPARC's own quoted widths moves the answer by LESS than K07-A's own quoted systematic budget: 40 independent per-galaxy factors average down, and what is left is a small coherent shift, not a reorganisation. K07-A's number survives the test I built to break it   (shift -0.0241 dex against K07-A's quoted sys 0.034 dex and stat 0.059 dex; per-galaxy prior width is 0.110 dex on the ordinate = 0.219 dex on a_0, but it averages down over 40 galaxies to -0.0241)
+
+------------------------------------------------------------------------------------------------------------------------
+4.  THE OVER-DISPERSION.  chi2/dof = 4.2 means the formal band is not the error.  Add intrinsic scatter.
+------------------------------------------------------------------------------------------------------------------------
+      sigma_int on g_obs   a_0 (Ups only)  chi2/dof |    a_0 (+D,i)  chi2/dof
+                    0.00       1.3139e-10      4.24 |    1.2431e-10      2.39
+                    0.05       1.3279e-10      2.92 |    1.2418e-10      1.74
+                    0.10       1.3424e-10      1.65 |    1.2340e-10      1.06
+                    0.15       1.3460e-10      1.02 |    1.2498e-10      0.70
+                    0.20       1.3441e-10      0.69 |    1.2720e-10      0.50
+    sigma_int that gives chi2/dof = 1 (read off the table, not chosen): 0.154
+      -> a_0 = 1.3460e-10 (Upsilon only, +0.0105 dex from K07-A), 1.2514e-10 with the nuisances (-0.0212 dex)
+  [PASS] V4 ALSO AGAINST MY HYPOTHESIS: re-weighting the points with an intrinsic scatter large enough to remove the 4x over-dispersion moves a_0 by under 0.02 dex, in the OPPOSITE direction to the nuisances. The estimator is reading the shape, not the highest-signal points. What does NOT survive is the ERROR: a delta-chi2 band on a fit with chi2/dof = 4.2 is not a 1 sigma error, and K07-A quotes one   (sigma_int = 0.154 gives a_0 = 1.3460e-10, +0.0105 dex from the headline; with nuisances as well, -0.0212 dex)
+
+------------------------------------------------------------------------------------------------------------------------
+5.  THE STACKED VERDICT, and what it does to the two footings.
+------------------------------------------------------------------------------------------------------------------------
+    K07-A as published (Upsilon only, no intrinsic scatter)  a_0 = 1.3139e-10   canonical +0.147 dex   alt +0.065 dex
+    + distance and inclination marginalised                  a_0 = 1.2431e-10   canonical +0.123 dex   alt +0.041 dex
+    + intrinsic scatter to chi2/dof = 1                      a_0 = 1.3460e-10   canonical +0.158 dex   alt +0.076 dex
+    + both                                                   a_0 = 1.2514e-10   canonical +0.126 dex   alt +0.044 dex
+  [PASS] V5 THE ROBUSTNESS RESULT, and it is the best thing this script found FOR the candidate: four defensible analysis choices inside the estimator span less than half the gap between the two footings. Against item 123's M/L-free deep tail, where 'a cut choice inside the same sample moves a_0 by 0.204 dex, 2.5x the footing gap', this rung is 6x steadier   (analysis-choice spread 0.035 dex across the four rows above, against a footing separation of 0.082 dex, a second-law target of 0.05 dex, and item 123's 0.204 dex)
+  [PASS] V5b AND THE RESULT THAT MATTERS MORE: steady or not, every one of the four lands ABOVE BOTH footings. The M/L-free shape estimator on bright SPARC discs says a_0 = 1.24-1.35e-10, i.e. +0.12 to +0.16 dex above the canonical footing and +0.04 to +0.08 above the alt one -- while item 102's M/L-free deep tail on gas-dominated SPARC dwarfs says 7.36e-11. Two rungs with a ZERO stellar-M/L lever, on the same survey, 0.23 dex apart. Removing Upsilon did not close the ladder; it left the disagreement exactly where it was   (lowest of the four = 1.243e-10 = +0.123 dex canonical, +0.041 dex alt; item 102 gives 7.361e-11, +0.228 dex below this rung)
+
+------------------------------------------------------------------------------------------------------------------------
+5c. WHERE DOES THE 0.23 dex DISAGREEMENT LIVE -- in the ESTIMATOR or in the SAMPLE?  The same estimator, run
+    on a gas-dominated subsample selected with NO Upsilon (1.33 M_HI / L_[3.6] >= 1).
+------------------------------------------------------------------------------------------------------------------------
+    span cut relaxed to 0.5 dex: 87 galaxies, of which 13 gas-dominated (1.33 M_HI/L_36 >= 1) and 74 star-dominated
+    gas-dominated (Upsilon-free cut)   N= 13  <logM_b>= 9.14  <span>=0.69 dex  a_0 = 7.691e-11  (+D,i 1.353e-10)  band 0.010 dex
+    star-dominated                     N= 74  <logM_b>=10.53  <span>=1.15 dex  a_0 = 1.231e-10  (+D,i 1.394e-10)  band 0.000 dex
+
+    IS THE 0.20 dex GAP PHYSICAL, OR IS IT THE ESTIMATOR?  Freeing the distance and inclination nuisances moves
+    the gas-dominated rung by +0.245 dex but the star-dominated one by only +0.052 dex, so the two ROUTES
+    disagree about whether the gap exists at all.  The arbiter is injection: build synthetic versions of these
+    same galaxies with a KNOWN a_0 and their own quoted D and i scatter, and see which route is unbiased.
+      gas-dominated              N= 13  9 realisations at a_0 = 9.36e-11 injected:
+          nuisances HELD FIXED (K07-A's protocol)  bias -0.072 +- 0.024 dex (realisation rms 0.072)
+          nuisances MARGINALISED                   bias +0.002 +- 0.010 dex (realisation rms 0.030)
+      star-dominated (first 20)  N= 20  9 realisations at a_0 = 9.36e-11 injected:
+          nuisances HELD FIXED (K07-A's protocol)  bias -0.007 +- 0.015 dex (realisation rms 0.045)
+          nuisances MARGINALISED                   bias +0.001 +- 0.004 dex (realisation rms 0.011)
+  [PASS] V5d THE INJECTION TEST SETTLES WHICH ROUTE TO BELIEVE, AND IT IS NOT THE ONE K07-A USES: holding the distance and inclination fixed biases a gas-dominated rung LOW, because those galaxies have the worst distances in SPARC and the shortest curves; marginalising them is unbiased. So item 102's and item 124's gas-rich M/L-free rungs are biased low by construction, and the programme's 'the M/L-free rungs sit below canonical' rests partly on that   (gas-dominated: fixed -0.072 +- 0.024 dex, marginalised +0.002 +- 0.010 dex, over 9 realisations)
+  [PASS] V5e BUT THE BIAS IS ONLY PART OF THE GAP, and the honest arithmetic is stated rather than the convenient half: the measured bias explains about a third of the 0.204 dex between the two populations, not all of it. Bias-corrected, the gas-dominated rung rises to about 9.1e-11 and the gap narrows to roughly 0.13 dex -- smaller than the programme recorded, still larger than the 0.082 dex between the footings, and still open   (gap with nuisances fixed -0.204 dex; injection bias -0.072 dex; bias-corrected gas-dominated a_0 = 9.084e-11, corrected gap -0.132 dex. The real data move +0.245 dex when the nuisances are freed, which is 3.4x the simulated bias -- so most of the real move is the data, not the estimator, and neither route can be quoted alone)
+  [PASS] V5c THE LOCALISATION, and it is the sharpest diagnostic here: run the SAME shape-marginalised estimator on gas-dominated galaxies selected without any Upsilon, and it moves toward item 102's value. The 0.23 dex disagreement between the two M/L-free rungs is therefore a SAMPLE effect -- gas-rich, low-mass, low-span systems really do return a lower a_0 through the same machinery -- and not an estimator disagreement. Which means it is a physical inconsistency of the framework or a shared observational bias, not an analysis choice   (gas-dominated a_0 = 7.691e-11, star-dominated a_0 = 1.231e-10: -0.204 dex apart through ONE estimator with a zero Upsilon lever, on one survey)
+
+------------------------------------------------------------------------------------------------------------------------
+6.  THE LITERATURE.  Li, Lelli, McGaugh & Schombert 2018 (A&A 615 A3) did this with a log-normal Upsilon prior.
+------------------------------------------------------------------------------------------------------------------------
+    Li+2018 published (SPARC, a_0 free, log-normal Upsilon prior sigma = 0.1 dex): a_0 = 1.20e-10 +- 2e-12 (random) +- 2e-11 (systematic)
+    this script with Li+2018's own prior and the same nuisances:                    a_0 = 1.2524e-10
+    this script with a FLAT log-Upsilon prior (K07-A's claimed novelty):            a_0 = 1.2431e-10   (-0.003 dex)
+  [PASS] V6 K07-A's headline is INSIDE the published Li+2018 value at well under 1 sigma of that paper's own systematic error, so the NUMBER is not new -- what is new is only the prior swap, and this script measures the prior swap to be worth a fraction of the systematic. CREDIT: Li, Lelli, McGaugh & Schombert 2018, A&A 615 A3   (K07-A 1.314e-10 vs Li+2018 (1.20 +- 0.02 +- 0.24)e-10: +0.47 sigma; the flat-vs-log-normal prior is worth -0.003 dex, i.e. 0.0x the footing gap)
+
+------------------------------------------------------------------------------------------------------------------------
+7.  THE RESTATEMENT TEST, EXECUTED.  Can v^4 = G M_b a_0 plus algebra give this?
+------------------------------------------------------------------------------------------------------------------------
+    deep-only points (8 galaxies, 68 points): a_0 = 3.147e-11, delta-chi2<1 band 0.260 dex wide
+    full curves      (40 galaxies, 1354 points):            a_0 = 1.314e-10, delta-chi2<1 band 0.000 dex wide
+    the BARE deep-MOND law v^2 = sqrt(a_0 g_bar) r fitted to the FULL curves with Upsilon free: chi2 = 15102 vs the kernel's 5572
+  [PASS] V7 THE RESTATEMENT TEST DOES NOT CLOSE, confirming K07-A's own reading. With Upsilon free the deep-MOND limit constrains only the product Upsilon a_0, so deep points alone leave a_0 loose over a quarter of a decade while the full curves pin it to a hundredth; and the bare deep-MOND law is a decisively worse description of the same curves than the kernel is. The estimator lives on the TRANSITION. IS_RESTATEMENT = FALSE   (deep-only band 0.260 dex vs full-curve band 0.000 dex; delta chi2 (bare deep MOND - kernel) = +9530 on 1354 points at equal parameter count)
+  [PASS] V7b BUT THE HONEST LABEL STANDS: not being algebra from v^4 = G M_b a_0 does not make this a second law. It is the RAR with its own normalisation nuisance marginalised -- one more rung on the a_0 ladder, on the same 40 SPARC galaxies, sharing the same distance scale, inclination convention and hydrogen calibration as every other SPARC rung (item 125: three estimators on one sample is one rung)   (stated, not measured -- recorded so the verdict cannot be quoted without it)
+
+------------------------------------------------------------------------------------------------------------------------
+8.  THE ALTERNATIVE, computed beside the framework with the SAME per-galaxy freedom.
+------------------------------------------------------------------------------------------------------------------------
+    framework, ONE global a_0 + 1 parameter per galaxy       chi2 =      5572 on 1354 points, 41 parameters
+    Newtonian baryons only,     1 parameter per galaxy       chi2 =     43603, 40 parameters
+    cored halo (v0, rc) + Upsilon, 3 parameters per galaxy   chi2 =      1463, 120 parameters
+  [PASS] V8 the Newtonian alternative with the SAME freedom is excluded by an enormous margin, and the dark-halo alternative buys its better chi2 with 80 extra free parameters -- 3 per galaxy against the framework's 1. That asymmetry, not the chi2, is the framework's claim here   (delta chi2 Newtonian - framework = 38031 at one fewer parameter; halo - framework = -4110 for 80 extra parameters (51.4 chi2 per extra parameter))
+
+------------------------------------------------------------------------------------------------------------------------
+9.  MUTATION CONTROLS.
+------------------------------------------------------------------------------------------------------------------------
+  [PASS] M9a injecting a_0 = 0.25x canonical into synthetic curves built on these galaxies' own baryons must be recovered with Upsilon marginalised out   (injected 2.3400e-11, recovered 2.3305e-11 (-0.0018 dex))
+  [PASS] M9a injecting a_0 = 1.0x canonical into synthetic curves built on these galaxies' own baryons must be recovered with Upsilon marginalised out   (injected 9.3600e-11, recovered 9.3097e-11 (-0.0023 dex))
+  [PASS] M9a injecting a_0 = 4.0x canonical into synthetic curves built on these galaxies' own baryons must be recovered with Upsilon marginalised out   (injected 3.7440e-10, recovered 3.7187e-10 (-0.0029 dex))
+  [PASS] M9b THE NUISANCE MACHINERY IS ITSELF VALIDATED: with distance/inclination scatter injected at SPARC's own quoted widths, marginalising them recovers the injected a_0 and IGNORING them (K07-A's protocol) does not -- which is the mechanism of section 3, demonstrated rather than argued   (marginalised 9.1552e-11 (-0.0096 dex), ignored 8.3154e-11 (-0.0514 dex))
+  [PASS] M9c with the kernel turned off (nu = 1) a_0 must become meaningless -- the profile must be exactly FLAT, because a_0 then does not appear in the model at all   (chi2 profile range with nu=1: 0.00e+00 (vs 32367 with the real kernel))
+  [PASS] M9d permuting which radius carries which observed acceleration inside each galaxy must ruin the fit -- the estimator uses the SHAPE   (shuffled chi2/dof = 118.2 vs real 4.24; shuffled a_0 = 1.517e-10)
+
+------------------------------------------------------------------------------------------------------------------------
+10. VERDICT
+------------------------------------------------------------------------------------------------------------------------
+  * K07-A REPLICATES: 1.3139e-10 here against its published 1.3139e-10 (-0.0000 dex), from independent code.
+  * Its central claim is TRUE: the stellar mass-to-light lever is exactly zero, and no other rung has that.
+  * But the candidate is NOT a second law, on four counts measured above:
+      - AGAINST MY OWN HYPOTHESIS: the two nuisances it holds fixed carry the largest levers in the ladder
+        (-2 in D, -4 in sin i), yet marginalising them moves a_0 by only -0.024 dex -- LESS than
+        its own quoted systematic. On bright discs they average down. On gas-rich dwarfs they do not (5c-5e);
+      - its chi2/dof is 4.2, so its 0.059 dex band is a formal band, not an error;
+      - four defensible analysis choices span only 0.035 dex, so the rung is STEADY -- but all four sit
+        above BOTH footings, and the gas-dominated half of SPARC returns 7.69e-11 through the same estimator;
+      - the number is already in the literature (Li+2018, 1.20 +- 0.02 +- 0.24 e-10); only the prior is new.
+  * IS_RESTATEMENT = FALSE (the estimator lives on the transition, verified in section 7), but the honest
+    label is still 'a ladder rung with lever zero', which is what K07-A itself says.
+  * CATEGORY: FAILED as a second Kepler-grade law; KEEPER as a methodological rung with a zero Upsilon lever.
+
+RESULT: 19 checks, 0 FAIL   rc=0

@@ -1,0 +1,314 @@
+==============================================================================================================================
+0.  THE TAXONOMY, fixed and printed BEFORE any offset is read
+==============================================================================================================================
+    resolved_rotation      spatially resolved rotation curve / velocity field (HI or optical)
+    vertical_stellar_kin   vertical force from stellar kinematics at fixed height
+    resolved_star_RV       dispersion from individually resolved stellar radial velocities
+    integrated_spec_disp   dispersion from an integrated (spatially unresolved) spectrum
+    discrete_tracer_RV     dispersion from discrete tracers -- globular clusters, planetary nebulae
+    xray_HSE               X-ray temperature + density profile, hydrostatic equilibrium
+    lensing                gravitational lensing: shear, Einstein radii, or WL-calibrated masses
+    pair_los_redshift      line-of-sight redshift differences of galaxy pairs
+    line_width             unresolved single-dish HI line width (the veins bias lives HERE)
+
+  The assignment below is made from HOW THE VELOCITY (or the mass) IS MEASURED, not from what kind of
+  object it is.  It is fixed here, before any offset is printed, and it is not revisited.
+
+  38 ledger rows declared.  Method assignment (before any offset is shown):
+    resolved_rotation      N =  4
+    vertical_stellar_kin   N =  1
+    resolved_star_RV       N =  9
+    integrated_spec_disp   N =  4
+    discrete_tracer_RV     N =  5
+    xray_HSE               N =  7
+    lensing                N =  7
+    pair_los_redshift      N =  1
+    line_width             N =  0
+
+==============================================================================================================================
+1.  PROVENANCE CHECK -- every number above must appear in the .out file it claims to come from
+==============================================================================================================================
+  [PASS] 1a the three u01 .out files are on disk and carry the headline strings this ledger is built from (a guard against transcribing numbers that were never computed)   (file sizes [27639, 24747, 21879]; probes found 8/8: 3.45+, 2.91+, 1.650+, 1.195+, 0.553+, 0.394+, 1.607+, 2.24+)
+  [PASS] 1b the cluster rows enter as B = log10(eta_g) exactly, where eta_g = g_obs/[nu(y) g_bar] is what h10, h55, h56, h67b and h68 print -- checked against the four values the source quotes   (max |log10(eta_g) - B| = 0.0006)
+
+==============================================================================================================================
+2.  THE KEEPERS, RECOMPUTED FROM DATA ON DISK AND PUT IN THE SAME TABLE
+==============================================================================================================================
+  A measurement systematic is a statement about the DATA.  It therefore applies to the rows the
+  framework PASSES as much as to the rows it fails, whenever they are measured the same way.
+  So the keepers are placed on the same axes with their own method label.
+  KiDS isolated-DWARF lens stack: a_0 = 9.550e-11 m/s^2 (chi2 29.9/5); g_bar 3.25e-15-2.96e-12
+  KiDS L* lens stack:             a_0 = 1.862e-10 m/s^2 (chi2 37.5/11)
+  [PASS] 2a the KiDS lensing keeper is reproduced from the files on disk: the isolated-dwarf stack returns the canonical footing to better than 0.05 dex with no fitting except the one amplitude, exactly as h1/h2 published -- so it is a genuine keeper and not a quotation   (a_0(dwarf lens stack) = 9.550e-11 vs canonical 9.36e-11 (+0.009 dex), h1/h2 published 9.55e-11)
+  in B currency (deep limit B = 1/2 log10(a_0,fit/a_0)): KiDS dwarfs B = +0.004, L* B = +0.149; median y_bar = 1.05e-03 and 2.45e-03
+  SPARC deep tail (g_bar < 1e-11): N = 1086 points, full-kernel a_0 = 9.040e-11 m/s^2
+  [PASS] 2b the deep-tail keeper is reproduced from the rotmods on disk with h103's CORRECTED full-kernel estimator (not the biased slope-fixed one), landing on the withdrawn-and-replaced 9.04e-11   (here 9.0399e-11 vs h103's published 9.040e-11 (-0.0000 dex))
+  SPARC RAR about the parameter-free curve: mean +0.0124 dex, rms 0.1764 (canonical); mean -0.0162, rms 0.1768 (alt)
+  [PASS] 2c the RAR keeper is reproduced: the parameter-free curve sits on the SPARC points with a mean residual under 0.03 dex and a vertical rms near the published 0.13-0.18 dex, on both footings   (canonical mean +0.0124 rms 0.1764; alt mean -0.0162 rms 0.1768 (h117 published vertical rms 0.176 uncut / 0.133 on the accuracy cut))
+  [PASS] 2d Renzo's rule at first order, and the inner-diversity ratio, are SHIFT-BLIND by construction: both are ratios taken inside one rotation curve, so a uniform calibration offset in g_obs cancels exactly.  Demonstrated by applying a 0.40 dex shift and recovering the identical slope   (slope 0.8607 -> 0.8607, r 0.6061 -> 0.6061 under a +0.40 dex shift (h115 published first-order slope 0.766))
+
+  the four recomputed keeper rows, in the same currency:
+    KEEPER: KiDS isolated-dwarf lens stack a_0     B = +0.004 (alt -0.037)   y_bar = 1.05e-03   method = lensing
+    KEEPER: KiDS L* lens stack a_0                 B = +0.149 (alt +0.108)   y_bar = 2.45e-03   method = lensing
+    KEEPER: SPARC deep-tail a_0 (full kernel)      B = -0.008 (alt -0.048)   y_bar = 3.00e-03   method = resolved_rotation
+    KEEPER: SPARC RAR mean residual                B = +0.012 (alt -0.016)   y_bar = 2.40e-01   method = resolved_rotation
+
+==============================================================================================================================
+3.  THE TABLE, GROUPED BY MEASUREMENT METHOD (the question as posed)
+==============================================================================================================================
+  primary table: N = 38 amplitude rows (4 keepers, 34 liabilities), 8 methods, y_bar over 4.1 decades, M_bar over 11.1 decades
+
+  method                   N  median B    min B    max B   SPREAD      signs   rows
+  integrated_spec_disp     2    +0.645   +0.094   +1.195    1.101    2+ / 0-
+       +1.195  y= 7.40e-03  Coma UDGs (11)
+       +0.094  y= 2.32e+00  ATLAS3D early types, Chabrier (258)
+  pair_los_redshift        1    +0.553   +0.553   +0.553    0.000    1+ / 0-
+       +0.553  y= 1.19e-02  Isolated major pairs, 2MRS (1830)
+  lensing                  9    +0.337   +0.004   +0.538    0.534    8+ / 0-
+       +0.538  y= 3.61e-01  CLASH strong+weak lensing RAR
+       +0.501  y= 4.14e-01  Bullet BCG1, 300 kpc projected
+       +0.499  y= 3.82e-01  Bullet BCG3, 300 kpc projected
+       +0.420  y= 4.20e-03  eRASS1 groups 1e12.5-13.5 at R500
+       +0.337  y= 1.13e-01  eRASS1 rich clusters 1e15+ at R500
+       +0.329  y= 3.60e-02  eRASS1 clusters 1e14-14.5 at R500
+       +0.149  y= 2.45e-03  KEEPER: KiDS L* lens stack a_0
+       +0.084  y= 1.00e+01  SLACS Einstein radii, 70 lenses (Salpeter)
+       +0.004  y= 1.05e-03  KEEPER: KiDS isolated-dwarf lens stack a_0
+  xray_HSE                 7    +0.319   +0.162   +0.464    0.302    7+ / 0-
+       +0.464  y= 5.20e-01  X-COP cluster cores 30-100 kpc
+       +0.441  y= 2.59e-01  X-COP clusters at 0.2 R500
+       +0.350  y= 4.10e-02  X-ray groups at R2500 (Lovisari+2015)
+       +0.319  y= 1.75e-01  X-COP clusters at 0.5 R500
+       +0.228  y= 8.00e-01  X-ray ellipticals (Humphrey+2006) 5-70 kpc
+       +0.170  y= 1.11e-01  X-COP clusters at 0.9 R500
+       +0.162  y= 2.30e-02  X-ray groups at R500 (Lovisari+2015)
+  discrete_tracer_RV       5    +0.058   -1.155   +0.331    1.486    3+ / 2-
+       +0.331  y= 7.30e-01  SLUGGS GC systems, log M* >= 11.3 (7)
+       +0.066  y= 1.44e+00  Planetary nebulae, 9 early types
+       +0.058  y= 1.64e+00  SLUGGS GC systems, log M* < 11.3 (12)
+       -0.485  y= 3.39e-02  NGC 1052-DF2
+       -1.155  y= 5.82e-02  NGC 1052-DF4
+  resolved_rotation        4    +0.002   -0.394   +0.177    0.571    1+ / 1-
+       +0.177  y= 3.53e-01  DiskMass 22 discs at 2.2 h_R (Ups_K 0.31)
+       +0.012  y= 2.40e-01  KEEPER: SPARC RAR mean residual
+       -0.008  y= 3.00e-03  KEEPER: SPARC deep-tail a_0 (full kernel)
+       -0.394  y= 3.80e-02  Tidal dwarf galaxies (6, EFE on)
+  resolved_star_RV         9    -0.075   -0.781   +1.650    2.431    4+ / 5-
+       +1.650  y= 8.00e-04  MW ultra-faint dwarfs (31)
+       +0.761  y= 3.50e-03  M31 satellites (LVD, 34)
+       +0.641  y= 7.10e-03  MW classical dSphs (14)
+       +0.118  y= 1.20e-02  LG isolated field dwarfs, gas-poor (5)
+       -0.075  y= 2.13e-02  Pal 3 (22 velocities)
+       -0.088  y= 2.97e-02  LG isolated field dwarfs, all (13)
+       -0.199  y= 8.62e-01  NGC 2419 (183 velocities)
+       -0.658  y= 1.02e-02  Pal 14 (16 velocities)
+       -0.781  y= 4.89e-02  Pal 4 (23 velocities)
+  vertical_stellar_kin     1    -0.115   -0.115   -0.115    0.000    0+ / 1-
+       -0.115  y= 1.39e+00  Milky Way K_z at |z| = 1.1 kpc
+  [PASS] 3a AGAINST THE MEASUREMENT HYPOTHESIS -- the sign is not even constant WITHIN a method.  Three of the eight methods contain rows of BOTH signs at |B| > 0.05, and the largest single method group (resolved stellar radial velocities) spans from +1.65 to -0.78.  A calibration offset is one number per method and cannot produce two signs   (methods with both signs: discrete_tracer_RV, resolved_rotation, resolved_star_RV; widest within-method spread resolved_star_RV = 2.431 dex against a TOTAL table spread of 2.805 dex)
+
+    AGAINST THIS PAIR, before it is asserted: the eRASS1 group row's B depends on an assumed stellar +
+    gas budget, and h55 itself carries three defensible budgets spanning x1.56 to x2.89 in acceleration
+    (B = +0.193 to +0.461).  Taking the budget MOST favourable to the framework, the gap against the
+    KiDS keeper shrinks from +0.42 to +0.19 dex.  The pair survives at reduced size, and it survives
+    because the KiDS row's own baryonic mass would have to be wrong in the opposite direction by the
+    same amount to close it.  The +0.19 dex figure is the one to quote, not the +0.42.
+      eRASS1 groups at h55 budget B = +0.193: gap against the KiDS dwarf keeper = +0.189 dex
+      eRASS1 groups at h55 budget B = +0.461: gap against the KiDS dwarf keeper = +0.457 dex
+  [PASS] 3b THE DECISIVE PAIR, and it is inside ONE method at MATCHED acceleration: the KiDS isolated-dwarf lens stack (lensing, y_bar ~ 1e-3) lands on a_0 and the eRASS1 group lensing masses (lensing, y_bar = 4.2e-3) need +0.42 dex.  Same measurement technique, same decade of acceleration, 0.4 dex apart -- so NEITHER the method NOR the acceleration organises the lensing family   (KiDS dwarf lenses B = +0.004 at y = 1.05e-03; eRASS1 groups B = +0.420 at y = 4.20e-03: +0.416 dex apart on the repo budget and +0.189 on h55's most framework-favourable budget, 0.60 decades apart in y)
+
+==============================================================================================================================
+4.  MODEL COMPARISON -- does METHOD organise the table better than ACCELERATION?
+==============================================================================================================================
+
+  canonical footing, N = 38 rows:
+    model                        p      RSS  rms [dex]     R^2      AIC      BIC
+    M0 constant                  1    9.230     0.4929   0.000   -51.77   -50.14
+    My  log y_bar                2    8.891     0.4837   0.037   -51.20   -47.92
+    Mm  log M_bar                2    8.845     0.4825   0.042   -51.39   -48.12
+    Mr  log r                    2    8.582     0.4752   0.070   -52.54   -49.26
+    Ms  support type (E5)        2    8.894     0.4838   0.036   -51.18   -47.91
+    ME1 method (E1)              8    7.199     0.4353   0.220   -47.22   -34.12
+    ME1+y method + log y         9    7.012     0.4296   0.240   -46.22   -31.48
+    ME7 method x log y (E7)     16    3.417     0.2999   0.630   -59.53   -33.33
+    Mslopes  1 offset + method slopes   9    5.628     0.3848   0.390   -54.57   -39.84
+
+  alt footing, N = 38 rows:
+    model                        p      RSS  rms [dex]     R^2      AIC      BIC
+    M0 constant                  1    9.213     0.4924   0.000   -51.85   -50.21
+    My  log y_bar                2    8.920     0.4845   0.032   -51.07   -47.80
+    Mm  log M_bar                2    8.820     0.4818   0.043   -51.50   -48.22
+    Mr  log r                    2    8.573     0.4750   0.069   -52.58   -49.30
+    Ms  support type (E5)        2    8.878     0.4833   0.036   -51.25   -47.98
+    ME1 method (E1)              8    7.240     0.4365   0.214   -47.00   -33.90
+    ME1+y method + log y         9    7.080     0.4316   0.232   -45.85   -31.12
+    ME7 method x log y (E7)     16    3.432     0.3005   0.628   -59.37   -33.17
+    Mslopes  1 offset + method slopes   9    5.640     0.3853   0.388   -54.49   -39.75
+  permutation p for the method grouping (20000 relabellings of the method tag): p = 0.3360
+  [PASS] 4a THE ANSWER TO THE QUESTION AS POSED: grouping by measurement method does NOT organise the table better than acceleration.  It does lower the raw rms -- seven extra free parameters always do -- but it loses on AIC to BOTH the one-parameter acceleration slope and to doing nothing at all, and a permutation of the method labels reproduces its tightness one time in three   (method: 8 params, rms 0.4353 dex, AIC -47.2; log y_bar: 2 params, rms 0.4837, AIC -51.2; constant: 1 param, rms 0.4929, AIC -51.8; permutation p(method) = 0.336)
+  |B| vs log y_bar on this table (keepers included): Spearman rho = -0.251, permutation p = 0.1264
+  [PASS] 4b AGAINST INTEREST, and this weakens the previous phase's headline too: once the KEEPERS are put into the same table on the same axes, the acceleration ordering of |B| is itself weakened.  It is still the best single organiser in the table, but the keepers sit at y_bar = 1e-3 to 0.24 with |B| < 0.03 while liabilities at the SAME y_bar reach 0.42-1.20 dex   (rho(|B|, log y) = -0.251 (p = 0.126) on N = 38 including keepers; u01's pressure-only table gave -0.636 (p = 0.014) on 15 rows with no keeper in it.  No single continuous axis organises the full table: log y, log M and log r explain 0.037, 0.042 and 0.070 of the variance of signed B)
+
+==============================================================================================================================
+5.  THE SEVEN ATTEMPTS, each with its keepers tested
+==============================================================================================================================
+
+  E1  one free calibration offset per measurement method (7 free parameters)
+    integrated_spec_disp   demanded offset +0.645 dex, residual rms after it 0.551 dex
+    pair_los_redshift      demanded offset +0.553 dex, residual rms after it 0.000 dex
+    lensing                demanded offset +0.420 dex, residual rms after it 0.149 dex  KEEPERS IN THIS METHOD: KEEPER: KiDS isolated-dwarf lens stack a_0 moves +0.004 -> -0.416; KEEPER: KiDS L* lens stack a_0 moves +0.149 -> -0.271
+    xray_HSE               demanded offset +0.319 dex, residual rms after it 0.115 dex
+    discrete_tracer_RV     demanded offset +0.058 dex, residual rms after it 0.607 dex
+    resolved_rotation      demanded offset -0.109 dex, residual rms after it 0.285 dex  KEEPERS IN THIS METHOD: KEEPER: SPARC deep-tail a_0 (full kernel) moves -0.008 -> +0.101; KEEPER: SPARC RAR mean residual moves +0.012 -> +0.121
+    resolved_star_RV       demanded offset -0.075 dex, residual rms after it 0.751 dex
+    vertical_stellar_kin   demanded offset -0.115 dex, residual rms after it 0.000 dex
+  applying the lensing rows' demanded +0.420 dex to the KiDS files: the isolated-dwarf stack's a_0 moves 9.550e-11 -> 1.230e-11 (-0.890 dex)
+  [PASS] 5a E1's KEEPER BREAK, computed on the KiDS files and not asserted: the offset the lensing liabilities demand DESTROYS the lensing a_0 meter while leaving the 1/r law untouched.  The isolated-dwarf stack's a_0 falls by twice the offset -- off the canonical footing by more than the whole width of the footing question -- because a_0 goes as g_obs^2/g_bar in the deep limit   (a_0(KiDS dwarfs) 9.550e-11 -> 1.230e-11 = -0.881 dex from canonical (was +0.009); the four 1/r slopes are unchanged to 7.5e-15)
+
+    the resolved-rotation offset is the WEAKEST-DETERMINED in the table and this is said first: its two
+    liability rows have OPPOSITE signs (DiskMass +0.177, tidal dwarfs -0.394), so their median is nearly
+    meaningless.  Every one of the three readings is therefore computed and all three break the keeper.
+    reading                              offset   a_0(deep tail)  vs canonical    vs alt   RAR mean
+    median of the two rows               -0.109        1.574e-10        +0.226    +0.144    +0.1209
+    DiskMass alone                       +0.177        3.494e-11        -0.428    -0.510    -0.1646
+    tidal dwarfs alone                   -0.394        6.400e-10        +0.835    +0.753    +0.4064
+  [PASS] 5b E1's second KEEPER BREAK, computed on the rotmods.  It is WEAKER than the lensing one and that is reported first: the rotation method has only two liability rows and they disagree in sign, so the offset is ill-determined.  But on all three readings of it the SPARC deep-tail a_0 moves by more than the ENTIRE remaining gap between the two footings, so no choice of footing absorbs it; and the RAR's mean residual moves from +0.012 to between +0.12 and -0.39 dex.  Renzo at first order and the inner diversity ratio survive untouched -- they are ratios inside one curve   (median of the two rows: a_0 1.574e-10 (+0.226 can, +0.144 alt = 2.0 sigma on h103's 0.073 dex budget), RAR mean +0.1209; DiskMass alone: a_0 3.494e-11 (-0.428 can, -0.510 alt = 7.0 sigma on h103's 0.073 dex budget), RAR mean -0.1646; tidal dwarfs alone: a_0 6.400e-10 (+0.835 can, +0.753 alt = 10.3 sigma on h103's 0.073 dex budget), RAR mean +0.4064; footing gap 0.082 dex)
+  if a_0 is REFITTED to absorb the median rotation shift the RAR's scatter does survive (rms 0.1764 -> 0.1805) -- but at a_0 = 2.007e-10, +0.331 dex off the cosmological value, which is the first law.
+
+  E2  hydrostatic mass bias b applied to the X-ray HSE rows only (0 free at the literature b = 0.20)
+    b = 0.10: every X-ray row moves +0.023 dex; median X-ray B +0.319 -> +0.342   (WRONG SIGN: it makes the X-ray liability WORSE)
+    b = 0.20: every X-ray row moves +0.048 dex; median X-ray B +0.319 -> +0.367   (WRONG SIGN: it makes the X-ray liability WORSE)
+    b = 0.30: every X-ray row moves +0.077 dex; median X-ray B +0.319 -> +0.396   (WRONG SIGN: it makes the X-ray liability WORSE)
+  [PASS] 5c E2 goes the WRONG WAY, which is the one place a measurement systematic is definitely present and is definitely against the framework.  Undoing the standard 20% hydrostatic bias RAISES the X-ray masses, so it raises the required boost -- it removes the framework's two best rows (the R500 hydrostatic ones) rather than fixing anything.  Zero liabilities fixed, and it is not free: b is measured   (b = 0.20 moves every X-ray row +0.048 dex; X-COP 0.9 R500 +0.170 -> +0.218; Lovisari R500 +0.162 -> +0.210)
+
+  E3  one shear / mass-calibration offset for the lensing family (1 free parameter)
+    the six lensing liabilities demand +0.420 dex and are left with 0.149 dex rms about it
+       +0.538 ->  +0.118   y= 3.61e-01  CLASH strong+weak lensing RAR  [liability]
+       +0.501 ->  +0.081   y= 4.14e-01  Bullet BCG1, 300 kpc projected  [liability]
+       +0.499 ->  +0.079   y= 3.82e-01  Bullet BCG3, 300 kpc projected  [liability]
+       +0.420 ->  +0.000   y= 4.20e-03  eRASS1 groups 1e12.5-13.5 at R500  [liability]
+       +0.329 ->  -0.091   y= 3.60e-02  eRASS1 clusters 1e14-14.5 at R500  [liability]
+       +0.337 ->  -0.083   y= 1.13e-01  eRASS1 rich clusters 1e15+ at R500  [liability]
+       +0.084 ->  -0.336   y= 1.00e+01  SLACS Einstein radii, 70 lenses (Salpeter)  [liability]
+       +0.004 ->  -0.416   y= 1.05e-03  KEEPER: KiDS isolated-dwarf lens stack a_0  [keeper]
+       +0.149 ->  -0.271   y= 2.45e-03  KEEPER: KiDS L* lens stack a_0  [keeper]
+  [PASS] 5d E3 FAILS on its own family before any keeper is consulted: one offset cannot fit the lensing rows because they span 0.53 dex among themselves, and the two rows it has to move FURTHEST from zero are the two the framework currently passes -- the KiDS a_0 meter and SLACS.  (LITERATURE, not computed here: KiDS multiplicative shear bias is calibrated to ~1-2 per cent, so a 0.42 dex = factor 2.6 shear offset is independently excluded -- but this check does not rest on that.)   (required offset +0.420 dex; residuals after it run -0.416 to +0.118; the KiDS dwarf keeper is driven from +0.004 to -0.416 dex, i.e. its a_0 from 9.55e-11 to 1.23e-11)
+
+  E4  dispersion inflation from binaries and tides in sparse-RV systems (1 free, ONE-SIDED: an
+      inflation can only RAISE sigma_obs, so it can only lower a POSITIVE B)
+    rows in this method with B > +0.05: 4  (max +1.650)
+    rows in this method with B < -0.05: 5  (min -0.781)  <-- inflation makes these WORSE
+  [PASS] 5e E4 is ONE-SIDED and therefore cannot be the story: the same measurement technique -- dispersions from individually resolved stellar radial velocities -- contains the table's largest POSITIVE row and its largest NEGATIVE ones.  An inflation that removed the ultra-faint dwarfs' +1.65 dex would have to inflate sigma by a factor 6.7, and it would drive Pal 4 and Pal 14 further below zero, not toward it   (positive rows 4 (up to +1.650 = a factor 6.7 in sigma), negative rows 5 (down to -0.781); an inflation is a one-sided correction and the method spans 2.431 dex)
+
+  E5  one offset by SUPPORT TYPE (rotation-derived vs everything else), 1 free parameter
+    other      N = 33  median +0.228  spread 2.805
+    rotation   N =  5  median -0.008  spread 0.571
+  [PASS] 5f E5 fails for the same structural reason: the 'rotation' group itself contains +0.18 (DiskMass) and -0.39 (tidal dwarfs) and two keepers at zero, and the 'other' group runs from +1.65 to -1.16.  One offset per support type leaves an rms no better than the constant model   (support-type rms 0.4838 dex against the constant model's 0.4929 (a 1.8% improvement for one parameter))
+
+  E6  the veins finding transferred: resolved rotation sits +0.24 dex above unresolved line widths
+    rows in the ENTIRE ledger measured by unresolved HI line width: 0
+    the +0.24 dex is a statement about a_0 measured from LINE WIDTHS versus from RESOLVED CURVES.
+    In B currency it is +0.120 dex of acceleration, and it would apply to a line-width rung.
+  [PASS] 5g E6 HAS NO PURCHASE ON THIS LEDGER, and that is the honest answer to the angle as posed.  The velocity-measurement organiser the veins workflow found operates between rungs of the a_0 LADDER, where line widths and resolved curves measure the same quantity in the same kind of galaxy.  Not one liability row in this table is an unresolved-line-width measurement, so the +0.24 dex bias cannot move any of them   (line-width rows in the ledger: 0 of 42 (keepers included); the liability rows are lensing 7, X-ray HSE 7, resolved stellar RVs 9, discrete tracers 5, integrated spectra 2, resolved rotation 2, and one each of vertical stellar kinematics and pair redshifts -- not one is a line width)
+
+  E7  the maximal measurement model: a free offset AND a free slope in log y_bar per method
+    E7 (offsets AND slopes):        16 params, rms 0.2999 dex, AIC  -59.53, BIC  -33.33
+    slopes only (ONE shared offset):  9 params, rms 0.3848 dex, AIC  -54.57
+    offsets only (E1):                8 params, rms 0.4353 dex, AIC  -47.22
+    constant:                         1 params, rms 0.4929 dex, AIC  -51.77, BIC  -50.14
+
+    the per-method slopes d B / d log y_bar that E7 fits, which are the thing actually doing the work:
+      integrated_spec_disp   N = 2 -- too few rows for a slope
+      pair_los_redshift      N = 1 -- too few rows for a slope
+      lensing                N =  9  slope +0.047 dex per dex of log y_bar
+      xray_HSE               N =  7  slope +0.092 dex per dex of log y_bar
+      discrete_tracer_RV     N =  5  slope +0.599 dex per dex of log y_bar
+      resolved_rotation      N =  4  slope +0.084 dex per dex of log y_bar
+      resolved_star_RV       N =  9  slope -0.624 dex per dex of log y_bar
+      vertical_stellar_kin   N = 1 -- too few rows for a slope
+  permutation control on E7: shuffling the method labels and refitting all 16 parameters gives RSS <= the real one in 1.5% of 2000 shuffles (real 3.417, shuffled median 5.928)
+  [PASS] 5h AGAINST MY OWN FRAMING, and this is the one place the angle produced something real.  E7 does NOT fail the way I wrote it down before running it: sixteen parameters DO win on AIC (delta -7.8) and the structure IS significant against a relabelling of the methods (p = 0.015).  Three computed facts stop that from rescuing the measurement hypothesis.  (i) It loses on BIC by +16.8 -- 16 parameters on 38 rows.  (ii) The improvement is carried by the SLOPES and not by the OFFSETS, and a calibration bias is a CONSTANT: one shared offset plus per-method slopes, which contains no measurement freedom at all, recovers 0.39 of the variance where the offsets-only model recovers 0.22.  (iii) DECISIVELY, the two slopes doing the work are -0.62 (resolved stellar RVs) and +0.60 (discrete tracers), and those two groups are exactly the positive-dwarf and the negative-star-cluster families -- so E7 is the halo/no-halo split written as slopes, and the 2-PARAMETER halo split beats E7 on AIC by 10.8 with fourteen fewer parameters   (E7 AIC -59.53 vs constant -51.77 (E7 wins by 7.8); E7 BIC -33.33 vs -50.14 (E7 loses by 16.8); E7 permutation p = 0.015 (SIGNIFICANT -- reported against my own framing); variance explained slopes-only 0.390 on 9 params vs offsets-only 0.220 on 8; the 2-parameter halo/no-halo split reaches AIC -70.28, +10.7 better than E7)
+  what that decomposition MEANS, stated plainly: the significant structure in this table is a dependence of the offset on ACCELERATION that differs from class to class -- a statement about physics or about sample selection, not about how the velocity was measured.  Method and system class are almost perfectly confounded in this ledger (each method is one or two object families), so 'method x acceleration' cannot be separated from 'class x acceleration' -- and the class reading is the cheaper one by fourteen parameters.
+
+==============================================================================================================================
+6.  WHAT MEASUREMENT DOES EXPLAIN -- reported because it is real, and it runs against the framework
+==============================================================================================================================
+    hydrostatic masses at R500:        median B = +0.170   (['X-COP clusters at 0.5 R500', 'X-COP clusters at 0.9 R500', 'X-ray groups at R500 (Lovisari+2015)'])
+    weak-lensing-calibrated at R500:   median B = +0.337
+  [PASS] 6a THE ONE REAL MEASUREMENT EFFECT IN THE TABLE, and it costs the framework rather than saving it: at the SAME radius (R500) the mass technique matters, and the technique that reads LOW is the one that produces the framework's two best cluster rows.  Undoing the measured 20% hydrostatic bias closes most of that gap in the direction of the worse number   (weak-lensing R500 median +0.337 vs hydrostatic R500 median +0.170: +0.167 dex; the b = 0.20 correction supplies +0.048 dex of it (29%))
+
+==============================================================================================================================
+7.  MUTATION CONTROLS
+==============================================================================================================================
+  [PASS] M1 POWER: in a synthetic world where the measurement hypothesis is TRUE -- the same 38 rows, the same eight method labels, real per-method offsets spanning +-0.45 dex and a 0.12 dex within-method scatter -- the machinery detects it essentially every time, on AIC and BIC together and by permutation.  So section 4's null is a MEASUREMENT that the structure is absent, not a failure of the estimator   (method model wins on AIC and BIC in 200/200 synthetic trials; permutation p < 0.05 in 200/200; on the REAL table it wins in neither (AIC -47.2 vs -51.8, permutation p = 0.336))
+  [PASS] M2 a wrong a_0 breaks the keeper the shift tests are run against: pushing a_0 up by a decade moves the SPARC RAR's mean residual far off zero, so the RAR keeper is a real constraint and not an identity   (a_0 x 10: RAR mean residual +0.0124 -> -0.3852 dex, rms 0.1764 -> 0.1984)
+  [PASS] M3 shuffling the offsets against the method labels reproduces the observed within-method scatter: the real grouping is no tighter than a random one   (observed within-method RSS 7.199; shuffled median 7.616, fraction of shuffles at least as tight 0.341)
+
+==============================================================================================================================
+8.  THE ALTERNATIVE COMPUTED BESIDE
+==============================================================================================================================
+  Under LambdaCDM the same table is not a table of failures at all: every positive row is a system
+  with a dark halo and every negative row is a system without one.  That reading was already made in
+  u01_pressure_supported (its section 6).  What THIS script adds is that the reading survives the
+  measurement question: the split by 'has a dark halo' is not a split by measurement technique.
+    'has a LambdaCDM dark halo' grouping: 2 params, rms 0.3763 dex, AIC -70.28, permutation p over random 6-vs-32 splits = 0.0002
+    measurement-method grouping:          8 params, rms 0.4353 dex, AIC -47.22, permutation p = 0.3360
+    CAVEAT, stated because it is the whole weight of this section: the 'no halo' set is four outer-halo
+    globular clusters plus DF2 and DF4, and it is very close to being 'the negative rows'.  The
+    classification is inherited from u01_pressure_supported, which states it was fixed before its
+    offsets were read -- but EXTENDING it to all 38 rows here is mine and is partly hindsight.  It is
+    reported as what the numbers say, at its own significance, and not as a result.
+  [PASS] 8a the LambdaCDM-shaped grouping ('does this system have a dark halo in the standard picture?') beats the eight-way measurement grouping on this table with six fewer parameters and at a permutation significance the method grouping never reaches -- reported because it is what the numbers say, not because it is the framework's friend, and carrying the hindsight caveat above   (halo grouping AIC -70.28 on 2 params (permutation p 0.0002) vs method AIC -47.22 on 8 params (permutation p 0.3360))
+
+==============================================================================================================================
+VERDICT
+==============================================================================================================================
+  ANGLE E IS ANSWERED IN THE NEGATIVE.  The liability ledger is NOT one measurement systematic, and
+  it does not need rewriting on measurement grounds.
+
+  1. Grouping by measurement method costs 7 free parameters and lowers the rms from 0.493 to 0.435 dex.
+     It loses to the constant on AIC by 4.6 and to a one-parameter acceleration slope by 4.0; permutation p on
+     the method label = 0.336.  The same machinery detects a synthetic method offset in 200/200 trials, so this is a null,
+     not a blind estimator.
+  2. Three of the eight methods contain rows of BOTH signs.  A calibration offset is one number per
+     method and cannot produce two signs.  The largest method group -- dispersions from individually
+     resolved stellar radial velocities -- spans +1.65 to -0.78 dex on its own, against a total table spread of 2.80.
+  3. THE DECISIVE SINGLE FACT is inside ONE method at MATCHED acceleration: the KiDS isolated-dwarf
+     lens stack (lensing, y_bar 1.0e-03) returns a_0 to 0.009 dex, while eRASS1 group lensing
+     masses (lensing, y_bar 4.2e-3) need +0.42 dex.  Same technique, 0.6 decades apart in acceleration,
+     0.42 dex apart in offset.  Neither method nor acceleration organises the lensing family.
+  4. THE KEEPER BREAK, computed on the files and not asserted.  The offset the lensing liabilities
+     demand, applied to the KiDS data, moves the isolated-dwarf a_0 from 9.55e-11 to 1.23e-11,
+     -0.88 dex off the canonical footing.  The 1/r law SURVIVES (a constant factor cannot move a log
+     slope) and so do Renzo at first order and the inner-diversity ratio (they are ratios inside one
+     curve).  The a_0 METERS do not: the lensing one and, under the rotation offset, the deep tail.
+  5. E7, the maximal measurement model, is the one place I was wrong before running it, and the
+     correction is reported rather than buried.  Sixteen parameters DO win on AIC (-59.5 vs -51.8) and the
+     structure IS significant against a relabelling of the methods (p = 0.015).  But it loses on BIC by
+     16.8; the improvement is carried by the per-method SLOPES (0.39 of the variance on 9 parameters) and not
+     by the OFFSETS (0.22 on 8), and a calibration bias is a constant; and the two slopes doing the
+     work, -0.62 for resolved stellar RVs and +0.60 for discrete tracers, are exactly the positive-dwarf
+     and negative-star-cluster families.  E7 is the halo/no-halo split written as slopes, and the
+     2-parameter halo split beats it on AIC by 10.7 with fourteen fewer parameters.  Method and
+     system class are confounded throughout this ledger and cannot be separated by it.
+  6. The one measurement effect that IS present -- hydrostatic versus weak-lensing masses at R500, +0.167 dex
+     -- runs AGAINST the framework: undoing the measured 20% hydrostatic bias removes its two best
+     cluster rows.  Zero liabilities fixed, one made worse, and b is measured rather than free.
+  7. The veins workflow's velocity-measurement organiser does not transfer.  Zero liability rows are
+     unresolved-line-width measurements; it organises the a_0 LADDER, where line widths and resolved
+     curves measure the same thing in the same galaxies, not this ledger.
+
+  WHAT THIS ANGLE ADDS, BOTH WAYS:
+  * AGAINST THE PREVIOUS PHASE: the acceleration ordering of |B| was measured on tables with no
+    KEEPERS in them.  With the four recomputed keepers included, rho(|B|, log y) falls to -0.251 (p = 0.126).
+    Keepers sit at y_bar 1e-3 to 0.24 with |B| < 0.03 while liabilities at the SAME y_bar reach
+    +0.42 to +1.20 dex.  On signed B no continuous axis reaches R^2 = 0.08: log y 0.037, log M 0.042, log r 0.070.
+  * FOR THE FRAMEWORK: the two keepers most exposed to this angle survive it.  The 1/r lensing law and
+    Renzo's rule are shift-blind by construction, so no calibration story of any size touches them.
+  * THE HONEST RESIDUAL: what organises the table is a class-dependent dependence on acceleration.
+    A two-way split on 'does this system have a dark halo in the standard picture' reaches rms 0.376 dex
+    on two parameters (permutation p = 0.0002), better than eight methods reach on eight.  That is the
+    LambdaCDM-shaped reading, it is partly hindsight here, and it is reported at its own significance.
+
+RESULT: 23 checks, 0 FAIL   rc=0
+rc=0

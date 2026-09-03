@@ -1,0 +1,97 @@
+================================================================================================================
+k_contrarian_clusterbtfr -- the external-field BTFR zero point in clusters (candidate K5, computed)
+================================================================================================================
+  ALFALFA alpha.100 x ALFALFA-SDSS: 12168 galaxies with a solid HI detection, S/N > 6.5, inclination > 45 deg, b/a and a stellar mass
+  PSZ2 clusters usable at 0.005 < z < 0.065: 104
+  cluster members within 5 R_500 and 3 sigma_v: N = 314
+  [PASS] cb-0 the cross-match yields a usable sample   (N = 314 cluster members)
+
+  ---- canonical footing, a0 = 9.360e-11 -----------------------------------------------------
+  external field on the members: g_e/a0 = 0.046 to 0.36, median 0.090
+  median internal Newtonian field g_Nint/a0 = 0.0336; median TRUE external g_e/a0 = 0.0897; median NEWTONIAN-EQUIVALENT external g_Ne/a0 = 0.0074
+  predicted deficit at the median fields: -0.020 dex in log V
+    d Delta / d log(g_e/a0)  at fixed log M_b:
+       OBSERVED   +0.0033 +/- 0.0304
+       FRAMEWORK  -0.1348      (external field OFF: +0.0003) 
+       LambdaCDM  -0.0000      (nu == 1; strong equivalence principle gives 0 exactly)
+       ->  4.54 sigma from the framework,  0.11 sigma from LambdaCDM
+
+  ---- alt footing, a0 = 1.130e-10 -----------------------------------------------------
+  external field on the members: g_e/a0 = 0.038 to 0.30, median 0.074
+  median internal Newtonian field g_Nint/a0 = 0.0278; median TRUE external g_e/a0 = 0.0743; median NEWTONIAN-EQUIVALENT external g_Ne/a0 = 0.0051
+  predicted deficit at the median fields: -0.017 dex in log V
+    d Delta / d log(g_e/a0)  at fixed log M_b:
+       OBSERVED   +0.0033 +/- 0.0304
+       FRAMEWORK  -0.1290      (external field OFF: +0.0003) 
+       LambdaCDM  +0.0000      (nu == 1; strong equivalence principle gives 0 exactly)
+       ->  4.34 sigma from the framework,  0.11 sigma from LambdaCDM
+  [PASS] cb-1 THE TEST MUST HAVE A LEVER: the predicted deficit across the sample's own external-field range must exceed the bootstrap error on the measured slope, or the test is underpowered by construction and no verdict may be drawn from it   (predicted slope -0.1348 against a bootstrap error of 0.0304 (4.4 sigma of lever) over 0.89 dex of external field)
+  [PASS] cb-2 RESTATEMENT TEST, executed: with the external field switched OFF the prediction must carry NO slope in g_e, because it is then exactly v^4 = G M_b a_0 (plus the Wang R_HI relation, which does not know where the cluster is).  The residual is the sample's own M_b - g_e covariance, and it is small.  So K5 is NOT a restatement of the BTFR: the content is the departure.   (predicted slope with g_e = 0: +0.00031 vs -0.13483 with it on)
+  [PASS] cb-3 the LambdaCDM/Newtonian alternative computed rather than asserted: nu == 1 removes the external-field effect entirely and the predicted slope goes to zero   (nu == 1 gives -1.065e-16)
+  [PASS] cb-4 MUTATION CONTROL: randomising which cluster field each galaxy feels must destroy the measured slope.  If it did not, the regression would be manufacturing signal (bug pattern 5).   (shuffled -0.0024 +/- 0.0313 against the real +0.0033)
+  BTFR zero point of the NON-member (field) sample: median Delta = +0.044 dex, scatter 0.156 dex -- a diagnostic, not a result: W50 carries turbulent and instrumental broadening this script does not correct, which shifts the zero point but not the member-minus-field difference
+  [PASS] cb-5 the ZERO-POINT version of the same test, done as a joint regression of Delta on [log M_b, log M_HI, member-indicator] so members and non-members are compared at MATCHED mass rather than by differencing two medians.  The framework predicts members sit BELOW the field BTFR; LambdaCDM predicts no difference.  Written so it can go either way.   (members - field = -0.0119 +/- 0.0092 dex (N = 300 vs 9983); framework predicts -0.0336; LambdaCDM predicts 0.0000 -> 2.4 sigma from the framework, 1.3 from LambdaCDM)
+  [PASS] cb-6 UPSILON LEVER measured by re-running the WHOLE pipeline at Upsilon x1.5: the observed slope must move by less than half a bootstrap sigma, because M_b enters the statistic only through the control column and the (1/4) log M_b term, both of which a constant Upsilon shifts almost uniformly.  The predicted slope's movement is reported as a systematic on the prediction.   (observed +0.00325 -> +0.00375 (moves 0.0005 = 0.02 bootstrap sigma); predicted -0.13483 -> -0.12517 (moves 0.0097 = 0.32 sigma))
+
+  ---- robustness of the observed slope (canonical footing) -----------------------------------
+    variant                                       N     observed          framework    sigma(fw)
+    ----------------------------------------------------------------------------------------
+    baseline: R<5 R500, 3 sigma_v, R_proj, scalar sum 314  +0.0033+/-0.0296   -0.1348       4.66
+    tighter: R<2 R500                               52  -0.0212+/-0.0743   -0.2329       2.85
+    narrower velocity cut: 2 sigma_v               263  -0.0112+/-0.0338   -0.1291       3.49
+    deprojected r = 1.3 R_proj (median for a sphere) 314  +0.0023+/-0.0281   -0.1022       3.71
+    QUADRATURE combination of internal and external field 314  +0.0033+/-0.0296   -0.1148       3.98
+  [FAIL] cb-7 the verdict must not flip between reasonable membership and deprojection choices   (sigma from framework spans 2.8 to 4.7)
+  [FAIL] cb-8 THE DECIDING CHECK: for K5 to be a candidate second law the framework's predicted external-field slope must match the measured one within 3 sigma.  Written so it can go either way.   (canonical 4.54 sigma, alt 4.34 sigma; LambdaCDM (slope 0) sits at 0.11 sigma)
+
+================================================================================================================
+  VERDICT ON CANDIDATE K5
+================================================================================================================
+  The test IS runnable on data already in the repository -- 314 inclined, S/N > 6.5 ALFALFA
+  spirals inside 5 R_500 of 104 PSZ2 clusters, spanning g_e/a_0 = 0.05 to 0.4.
+  The proposing agent recorded it as needing a fetch; it did not.
+
+  A BUG OF MY OWN, FOUND AND FIXED IN THE MAKING, recorded rather than quietly corrected: the first
+  run fed the cluster's TRUE field g_e = G M(<r)/r^2 straight into nu, where nu's argument is the
+  NEWTONIAN field.  In a deep-MOND cluster outskirt those differ by an order of magnitude
+  (here g_e/a_0 = 0.090 against g_Ne/a_0 = 0.0074 at the median), and the error inflated the predicted
+  deficit about threefold: the uncorrected run reported 5.1 sigma on the slope and 12.5 sigma on the
+  zero point.  Corrected, both shrink.  Same species as bug pattern 1 -- a quantity used in a slot
+  that belongs to a different one.
+
+  MEASURED   d[log V - (1/4)log(G M_b a_0)] / d log(g_e/a_0) = +0.0033 +/- 0.0304
+  FRAMEWORK  -0.1348 (canonical) / -0.1290 (alt)
+  LambdaCDM  0.0000 exactly (strong equivalence principle)
+  -> 4.5 sigma from the framework (canonical), 4.3 sigma (alt); 0.1 sigma from LambdaCDM.
+
+  The ZERO-POINT version of the same test (check cb-5) points the same way but far more weakly:
+  members sit -0.0119 +/- 0.0092 dex from the field BTFR at matched M_b and M_HI, against a
+  predicted -0.0336 -- 2.4 sigma from the framework and 1.3 from LambdaCDM.  The SLOPE
+  carries the weight, not the offset, because the offset averages over a range of external fields
+  most of which are weak.
+
+  NOT a second Kepler-grade law.  It fails criterion (2) in the only way that matters: the predicted
+  coefficient is not the measured one.  The candidate is a LIABILITY for the framework, not a law --
+  and it is the same liability the hunt already carries from item 9 (Coma ultra-diffuse galaxies
+  +1.195 dex above the external-field prediction), item 63 (the environment sign at 2 sigma), and
+  item 48/69 (binary galaxies 26 sigma above the external-field branch).  This is a fourth
+  independent measurement of the same thing: where the external-field effect should bite, it does
+  not.  Reported as such.
+
+  HONEST LIMITS OF THIS RUN, stated before any reading is taken from it:
+   * W50 is a global line width, not a resolved rotation curve; hunt item 124 measured a +0.25 dex
+     per dex width-selection bias across three decades of mass, and any of it that correlates with
+     cluster membership propagates straight into this slope.
+   * R_HI comes from the Wang+2016 scaling relation, not from a map.  It sets where the external
+     field is compared with the internal one, so its 0.06 dex scatter is a floor on the prediction.
+   * the projected radius is a LOWER bound on the 3-D radius, so g_e is an UPPER bound -- the
+     direction that favours a detection.  The deprojected variant is in the robustness table.
+   * the external field is combined with the internal one as a SCALAR SUM, the maximal-EFE
+     orientation; the repository's own ledger records that this prescription over-predicts DF2 by
+     2x against a careful published calculation, so the predicted deficit here is an upper bound.
+   * ram pressure and starvation remove HI in clusters in EITHER theory.  M_HI is measured, so it is
+     in M_b, but a galaxy stripped of its outer HI has a SMALLER R_HI than the relation gives and
+     its W50 samples a different part of the curve.  This is the confound that would have to be
+     controlled with resolved data before any positive result here could be believed.
+
+RESULT: 9 checks, 2 FAIL -> ['cb-7 the verdict must not flip between reasonable membership and deprojection choices', "cb-8 THE DECIDING CHECK: for K5 to be a candidate second law the framework's predicted external-field slope must match the measured one within 3 sigma.  Written so it can go either way."]   rc=1

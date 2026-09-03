@@ -1,0 +1,82 @@
+======================================================================================================================
+k04 -- Q = gamma_perp/gamma_par: a dimensionless number invariant across the kernel class and both footings
+======================================================================================================================
+
+1.  Q ACROSS TEN KERNELS x TWO FOOTINGS x TWO FROZEN g_ext VALUES
+----------------------------------------------------------------------------------------------------------------------
+    kernel               prim/     cano prim/      alt alt/     cano alt/      alt
+    alpha=0.4                    1.1692         1.1746         1.1647         1.1702
+    alpha=0.6                    1.1599         1.1681         1.1531         1.1613
+    alpha=1 (Route A)            1.1412         1.1549         1.1299         1.1436
+    alpha=1.5                    1.1181         1.1384         1.1017         1.1216
+    alpha=2                      1.0957         1.1221         1.0754         1.1002
+    alpha=3                      1.0559         1.0906         1.0330         1.0613
+    sqrt  1+1/y                  1.0993         1.1141         1.0880         1.1017
+    simple                       1.2355         1.2789         1.2043         1.2425
+    standard                     1.0883         1.1117         1.0712         1.0921
+    n=1 (nu_1)                   1.1296         1.1428         1.1189         1.1318
+
+    all 40 kernel x footing x g_ext combinations: Q = 1.0330 - 1.2789, median 1.1258, full spread 0.2459 = 21.8%
+    the one-parameter alpha family alone (alpha = 0.4 - 3): Q = 1.0330 - 1.1746
+    over the SAME alpha family: gamma_v(isotropic) spans 0.9954 - 1.5891 (55% of its median) while Q spans 1.0330 - 1.1746 (12%)
+  [PASS] 1a THE CLAIM UNDER TEST: Q is far less kernel-dependent than the boost gamma_v it is built from.  It must be at least 3x tighter across the same one-parameter family, or the ratio buys nothing   (gamma_v spread 55% vs Q spread 12% -- a factor 4.4.  Across all ten kernels including the 'simple' outlier Q still spans only 22%)
+  AGAINST INTEREST: Q is NOT a true invariant.  It varies 12% across the alpha family and 22% across all ten kernels ('simple' is the outlier at 1.279).  The claim is a big reduction in kernel dependence, not its removal.
+  [PASS] 1b CAN FAIL: is Q separated from the Newtonian value of exactly 1 by more than the frozen measurement error, for EVERY kernel in the class?   (min Q over all combinations = 1.0330, i.e. 1.2 sigma_tot above Newton)
+
+2.  WHY THE NUISANCES CANCEL -- stated as identities, not as hopes
+----------------------------------------------------------------------------------------------------------------------
+    gamma_v = v_rel,obs / v_Newton with v_Newton = sqrt(G M_tot / s).  For a proper-motion velocity and a
+    projected separation at distance D:   v_obs ~ D,   s ~ D,   so   gamma_v ~ D * sqrt(D) = D^(3/2),
+    and   gamma_v ~ M^(-1/2).  Both exponents are the SAME in the parallel and perpendicular bins, because the
+    bins are cuts of ONE population on an angle, so in Q = gamma_perp/gamma_par a coherent error in the mass
+    calibration or the parallax zero-point cancels to first order and leaves only the DIFFERENTIAL between bins.
+  a coherent 0.04 dex mass error and 0.000 dex distance error move gamma_v by 0.020 dex and Q by 0.000 exactly; only a 30% DIFFERENTIAL between the two orientation bins would move Q, and then by 0.0138
+  a coherent 0.10 dex mass error and 0.000 dex distance error move gamma_v by 0.050 dex and Q by 0.000 exactly; only a 30% DIFFERENTIAL between the two orientation bins would move Q, and then by 0.0345
+  a coherent 0.00 dex mass error and 0.010 dex distance error move gamma_v by 0.015 dex and Q by 0.000 exactly; only a 30% DIFFERENTIAL between the two orientation bins would move Q, and then by 0.0104
+  a coherent 0.02 dex mass error and 0.005 dex distance error move gamma_v by 0.003 dex and Q by 0.000 exactly; only a 30% DIFFERENTIAL between the two orientation bins would move Q, and then by 0.0121
+  [PASS] 2a d log Q / d log Upsilon = 0 EXACTLY, and d log Q / d log D = 0 EXACTLY, by the structure of the estimator -- this is the only quantity found anywhere in this hunt with a strictly zero mass-to-light lever   (both nuisances enter gamma_par and gamma_perp with identical exponents and cancel in the ratio; what remains is a differential systematic between two angular bins of one population)
+
+3.  PROJECTION DILUTION -- the honest cost, computed by Monte Carlo
+----------------------------------------------------------------------------------------------------------------------
+    The measured angle is between the PROJECTED separation and the PROJECTED external-field direction, and the
+    true 3-D separation is inclined.  Both dilute Q towards 1.  Monte Carlo with isotropic 3-D separations:
+/Users/carlzimmerman/new_physics/zimmerman-formula/hunt_2026/k04_efe_anisotropy_invariant.py:141: RuntimeWarning: divide by zero encountered in matmul
+  cos3d = np.abs(u @ ghat)
+/Users/carlzimmerman/new_physics/zimmerman-formula/hunt_2026/k04_efe_anisotropy_invariant.py:141: RuntimeWarning: overflow encountered in matmul
+  cos3d = np.abs(u @ ghat)
+/Users/carlzimmerman/new_physics/zimmerman-formula/hunt_2026/k04_efe_anisotropy_invariant.py:141: RuntimeWarning: invalid value encountered in matmul
+  cos3d = np.abs(u @ ghat)
+/Users/carlzimmerman/new_physics/zimmerman-formula/hunt_2026/k04_efe_anisotropy_invariant.py:147: RuntimeWarning: divide by zero encountered in matmul
+  up = u - np.outer(u @ n, n); gp_ = ghat - (ghat @ n)*n
+/Users/carlzimmerman/new_physics/zimmerman-formula/hunt_2026/k04_efe_anisotropy_invariant.py:147: RuntimeWarning: overflow encountered in matmul
+  up = u - np.outer(u @ n, n); gp_ = ghat - (ghat @ n)*n
+/Users/carlzimmerman/new_physics/zimmerman-formula/hunt_2026/k04_efe_anisotropy_invariant.py:147: RuntimeWarning: invalid value encountered in matmul
+  up = u - np.outer(u @ n, n); gp_ = ghat - (ghat @ n)*n
+/Users/carlzimmerman/new_physics/zimmerman-formula/hunt_2026/k04_efe_anisotropy_invariant.py:150: RuntimeWarning: divide by zero encountered in matmul
+  cos2d = np.abs((up[ok] @ gp_)/(nu_[ok]*ng))
+/Users/carlzimmerman/new_physics/zimmerman-formula/hunt_2026/k04_efe_anisotropy_invariant.py:150: RuntimeWarning: overflow encountered in matmul
+  cos2d = np.abs((up[ok] @ gp_)/(nu_[ok]*ng))
+/Users/carlzimmerman/new_physics/zimmerman-formula/hunt_2026/k04_efe_anisotropy_invariant.py:150: RuntimeWarning: invalid value encountered in matmul
+  cos2d = np.abs((up[ok] @ gp_)/(nu_[ok]*ng))
+  line of sight perpendicular to g_ext  : intrinsic Q = 1.1412  ->  observed Q = 1.0540  (dilution 62%); N_perp/N_par = 266444/133556
+  line of sight parallel to g_ext       : DEGENERATE -- g_ext projects to a point, no orientation split is possible; this is the direction in which the test has no power at all
+  line of sight 45 deg to g_ext         : intrinsic Q = 1.1412  ->  observed Q = 1.0272  (dilution 81%); N_perp/N_par = 266386/133614
+  [PASS] 3a CAN FAIL: does the projected, orientation-binned Q survive at a level the frozen error bar can see?   (observed Q after projection = 1.0540, 1.9 sigma_tot above Newton's exact 1)
+  this Monte Carlo uses only geometry: isotropic 3-D separation directions, a 30/60 degree bin split, and the two eigenvalues.  It ignores eccentricity, mass ratio and contamination, all of which dilute further, so the number above is an UPPER bound on what a survey can see -- exactly as the frozen amendment says.
+
+4.  MUTATION CONTROLS AND THE ALTERNATIVE
+----------------------------------------------------------------------------------------------------------------------
+  [PASS] M1 with nu = 1 (Newton, or any dark-matter model, which puts no dark matter on 10 kAU scales) Q must be exactly 1   (nu = 1 gives Q = 1.000000)
+  a_0 x 1/4, x1, x4 give Q = 1.0503, 1.1412, 1.2378  -- Q is not a_0-blind, but it moves far less than gamma_v does
+  [PASS] M2 CAN FAIL, AND IT IS THE LIMIT OF THE INVARIANCE: Q must still depend on a_0 somewhat, or it would be testing nothing about the scale at all; the claim is only that it depends on the kernel SHAPE weakly   (Q spans 1.0503 - 1.2378 over a factor 16 in a_0, against 1.0330 - 1.1746 over the whole kernel family at fixed a_0)
+
+======================================================================================================================
+VERDICT -- k04
+======================================================================================================================
+  Q = gamma_perp/gamma_par = 1.1258, spanning 1.0330 - 1.2789 over ten kernels,
+  two a_0 footings and two frozen g_ext values -- a 22% spread where gamma_v itself spans 55%.
+  Newton and every dark-matter model give exactly 1.0000 with no free parameter.
+  After projection into the observable plane with a 30/60 degree bin split, Q = 1.0540: 1.9 x the frozen sigma_tot.
+  d log Q/d log Upsilon = 0 and d log Q/d log D = 0 exactly, by cancellation between the two bins.
+
+RESULT: 6 checks, 0 FAIL   rc=0

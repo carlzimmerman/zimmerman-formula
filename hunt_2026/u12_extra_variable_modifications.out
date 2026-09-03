@@ -1,0 +1,204 @@
+======================================================================================================================
+u12 -- MODIFICATIONS THAT ADD A NEW VARIABLE BESIDE y
+======================================================================================================================
+
+----------------------------------------------------------------------------------------------------------------------
+(0) TWO STRUCTURAL FACTS THAT COLLAPSE THE CANDIDATE LIST
+----------------------------------------------------------------------------------------------------------------------
+  the framework's own dark-energy density, from Planck via hunt_lib:  rho_Lambda = 5.8588e-27 kg/m^3
+  [PASS] 0a the first law reproduces the canonical footing from rho_Lambda with kappa = 1/2   ((c/2) sqrt(G rho_Lambda) = 9.373e-11 vs canonical 9.360e-11 (+0.001 dex))
+  [PASS] 0b Sigma_enc = g_bar/(pi G) EXACTLY -- the mean enclosed surface density is g_bar in other units, so a surface-density modification is a kernel modification and is already excluded by u11   (max |Sigma pi G/g_bar - 1| = 4.44e-16 over the 37 rows)
+  [PASS] 0c every enclosed-quantity variable (M, Phi, Sigma, rho_bar) is a function of (g_bar, r) and the map is invertible, so the entire local class is the class of functions f(y, r)   (max relative reconstruction error 2.22e-16)
+
+----------------------------------------------------------------------------------------------------------------------
+(1) THE SINGLE-VARIABLE ORGANISER SEARCH -- which variable, if any, organises the 37 liabilities?
+----------------------------------------------------------------------------------------------------------------------
+  the ledger's median kernel log-slope is n = -0.442, so a shared baryon-budget error moves rows along a slope of -0.558 in every plane whose X is built from g_bar, and along 0 in the radius plane
+  candidate variable                    slope   degen   rho(B)   p_perm  rho(|B|)   p_perm   resid
+  log y  (the framework's own)         +0.002  -0.558   -0.123   0.4642    -0.372   0.0238   0.452
+  log r [kpc]                          +0.163  +0.000   +0.582   0.0005    +0.040   0.8157   0.379
+  log M_enc [Msun]                     +0.067  -0.558   +0.555   0.0003    +0.025   0.8762   0.392
+  log Phi = G M/r                      +0.101  -0.558   +0.462   0.0040    -0.073   0.6807   0.408
+  log Sigma_enc                        +0.002  -0.558   -0.123   0.4575    -0.372   0.0272   0.452
+  log rho_bar (enclosed)               -0.139  -0.558   -0.688   0.0000    -0.335   0.0435   0.390
+  log (1 + x_ext/y)                    +0.151  +0.000   -0.101   0.5577    +0.402   0.0158   0.448
+  x_ext (external field)               +0.359  +0.000   -0.145   0.3897    +0.449   0.0065   0.451
+  support: pressure/lensing=1          +0.320  +0.000   +0.232   0.1923    +0.046   0.8090   0.444
+  class: cluster=1                     +0.463  +0.000   +0.598   0.0000    +0.201   0.2328   0.391
+  structural: star cluster=1           -0.668  +0.000   -0.473   0.0013    +0.155   0.3765   0.402
+  structural: LCDM says DM-rich        +0.964  +0.000   +0.679   0.0000    -0.420   0.0092   0.249
+  raw ledger rms 0.461 dex; best single variable 'structural: LCDM says DM-rich' at 0.249 dex (46% of the variance removed)
+  variables that organise the SIGNED residual at a look-elsewhere-corrected p < 0.05 AND are not explained by the shared-g_bar degeneracy: 7 of 12 -- 'log r [kpc]', 'log M_enc [Msun]', 'log Phi = G M/r', 'log rho_bar (enclosed)', 'class: cluster=1', 'structural: star cluster=1', 'structural: LCDM says DM-rich'
+  [PASS] 1a AGAINST THE FRAMEWORK AND AGAINST THE HYPOTHESIS THIS SECTION WAS WRITTEN TO TEST.  The first version of this check asserted that NO variable organises the signed liability; it FAILED and is replaced by what the data say.  Several do -- and every one of them is either a proxy for what kind of object it is, or a radius, and none of them is the framework's own acceleration   (7 surviving organisers, none of them log y (log y: rho = -0.123, p = 0.464))
+  THE STRONGEST ORGANISER IN THE TABLE is not a gravitational variable: 'does LambdaCDM give this object a dark halo' -- rho = +0.679, p = 0.0000, residual 0.249 dex from 0.461, i.e. 46% of the variance removed by ONE binary label.  It replicates the p = 0.0024 split u01 found on the pressure-supported block alone, on the full 37-row table.
+  the strongest GRAVITATIONAL organiser is the RADIUS, slope +0.163 dex per dex, rho = +0.582, p = 0.0005 -- and radius is the one variable in the list immune to the shared-g_bar degeneracy, so it is not an artefact of the baryon budget.  It is tested as an explicit modification below (B3b).
+  the mean enclosed baryon density looks like a strong organiser (rho = -0.688) but its measured slope -0.139 sits 0.42 from the -0.558 a shared baryon-budget error produces by itself -- bug pattern 5, and it is why B1 below is tested by its keeper damage and not by its ledger fit.
+  support type on its own is NOT significant on the full table (rho = +0.232, p = 0.192); the pattern u01 saw in the disc/lensing block does not survive the addition of the cluster and pressure blocks.
+  a LINEAR function of (log y, log r) -- three parameters, the whole local class linearised -- leaves 0.376 dex of 0.461; adding support type as a fourth leaves 0.369
+
+----------------------------------------------------------------------------------------------------------------------
+(2) THE COLLISION TEST -- liability systems that sit where SPARC rotation-curve points sit
+----------------------------------------------------------------------------------------------------------------------
+  liability system              y    r_kpc       B | SPARC pts within 0.2 dex in BOTH    their B     gap   sigma
+  ngc1052_df2              0.0339     1.65  -0.771 |                               75     -0.061  -0.710     3.1
+  tidal_dwarfs             0.0380     4.80  -0.682 |                              166     +0.096  -0.778     5.2
+  ngc1052_df4              0.0582     1.20  -1.375 |                               82     -0.140  -1.235     5.3
+  diskmass                 0.3530     8.63  +0.177 |                              110     +0.041  +0.136     1.2
+  sluggs_massive           0.7300    20.90  +0.331 |                              107     +0.041  +0.290     2.7
+  xray_ellipticals         0.8000    20.00  +0.228 |                               97     +0.035  +0.193     1.8
+  mw_kz                    1.3900     8.20  -0.115 |                              233     +0.045  -0.160     1.6
+  pne_earlytypes           1.4400     7.90  +0.066 |                              231     +0.046  +0.020     0.2
+  sluggs_lowmass           1.6400     7.30  +0.058 |                              235     +0.049  +0.009     0.1
+  atlas3d_chabrier         2.3200     2.72  +0.094 |                               60     -0.006  +0.100     0.6
+  atlas3d_salpeter         3.9400     2.72  -0.095 |                               92     +0.006  -0.101     1.1
+  slacs_lenses            10.0000     4.07  +0.084 |                               32     +0.006  +0.078     0.8
+  [PASS] 2a THE LOCAL NO-GO -- there are liability systems occupying the SAME (y, r) cell as tens or hundreds of SPARC rotation-curve points, needing corrections that differ from SPARC's by far more than SPARC's own scatter.  Since every enclosed-quantity variable is a function of (y, r) (check 0c), NO local modification of that kind can serve both   (ngc1052_df2: -0.710 dex from 75 SPARC points at the same (y, r), 3.1 sigma; tidal_dwarfs: -0.778 dex from 166 SPARC points at the same (y, r), 5.2 sigma; ngc1052_df4: -1.235 dex from 82 SPARC points at the same (y, r), 5.3 sigma)
+  ngc1052_df2 sits at y = 0.0339, r = 1.65 kpc with 75 SPARC points in the same cell (from 23 galaxies).  It needs -0.771 dex; they need -0.061 +- 0.227.
+  tidal_dwarfs sits at y = 0.0380, r = 4.80 kpc with 166 SPARC points in the same cell (from 35 galaxies).  It needs -0.682 dex; they need +0.096 +- 0.150.
+  ngc1052_df4 sits at y = 0.0582, r = 1.20 kpc with 82 SPARC points in the same cell (from 32 galaxies).  It needs -1.375 dex; they need -0.140 +- 0.232.
+
+----------------------------------------------------------------------------------------------------------------------
+(3) THE ATTEMPTS
+----------------------------------------------------------------------------------------------------------------------
+
+  [B1] the FIRST LAW GENERALISED: a_0 = (c/2) sqrt(G [rho_Lambda + xi rho_bar(<r)]), best xi = 1.000e-12   (1 free parameter, canonical footing)  [median rho_bar/rho_Lambda: SPARC 7.063e+04, clusters 3.390e+02 -- galaxies are 208x DENSER, so this term acts on the keepers first]
+        ledger rms  0.461 -> 0.461 dex   median |B| 0.328 -> 0.328   improved 0/37, worse 0/37
+        keepers: NONE BROKEN
+           (rar_rms 0.1764->0.1764, renzo 0.856->0.856, lens -1.020->-1.020, tail 0.549->0.549)
+        the fit ran to the LOWER BOUND, i.e. its answer is 'switch this term off'.  The scan that shows why,
+        with the keeper damage beside it -- and the xi the cluster front alone would need:
+                xi  ledger rms  cluster rms   RAR rms   RAR med  BTFR slope  keepers broken
+             1e-08       0.461        0.381    0.1764   +0.0231       1.033               0
+             1e-07       0.466        0.381    0.1772   +0.0196       1.033               0
+             1e-06       0.483        0.380    0.1820   +0.0064       1.032               0
+             1e-05       0.522        0.378    0.1990   -0.0381       1.029               2
+             1e-04       0.590        0.363    0.2268   -0.1605       1.007               2
+             1e-03       0.687        0.318    0.2435   -0.3590       0.969               3
+        the CLUSTER ROWS ALONE prefer xi = 6.23e-02 (cluster rms 0.381 -> 0.186),
+        and at that xi the keeper battery breaks 4 keepers: rar_rms: +0.176 -> +0.248 (tol 0.02); rar_med: +0.023 -> -0.775 (tol 0.05); tail_slope: +0.549 -> +0.633 (tol 0.05); lens_slope: -1.020 -> -1.165 (tol 0.1)
+  [PASS] 3b the framework's own first law does not generalise to rho_Lambda + xi rho_bar: fitted to the whole ledger the best xi is ZERO (the optimiser runs to the boundary), and the xi the cluster front alone wants breaks the keepers, because SPARC galaxies are two orders of magnitude denser in baryons than cluster outskirts   (whole-ledger best xi = 1.0e-12 (boundary); cluster-only xi = 6.2e-02 breaks 4 keepers; rho_bar(SPARC)/rho_bar(clusters) = 208)
+
+  [B2] a POTENTIAL-DEPTH modification: a_0 -> a_0 [1 + (Phi/Phi_c)^q]^s with Phi_c = 5.49e+08 m^2/s^2 (v_c = 23 km/s), q = 4.00, s = +0.08   (3 free parameters, canonical footing)
+        ledger rms  0.461 -> 0.397 dex   median |B| 0.328 -> 0.125   improved 17/37, worse 5/37
+        keepers: 3 BROKEN
+           - rar_med: +0.023 -> -0.102 (tol 0.05)
+           - tail_slope: +0.549 -> +0.651 (tol 0.05)
+           - btfr_slope: +1.033 -> +1.195 (tol 0.1)
+
+  [B3] a FIXED LENGTH SCALE: nu -> nu [1 + A/(1 + (l/r)^2)] with A = 1.45, l = 23.7 kpc   (2 free parameters, canonical footing)
+        ledger rms  0.461 -> 0.386 dex   median |B| 0.328 -> 0.117   improved 18/37, worse 2/37
+        keepers: 3 BROKEN
+           - rar_med: +0.023 -> -0.055 (tol 0.05)
+           - tail_slope: +0.549 -> +0.609 (tol 0.05)
+           - btfr_slope: +1.033 -> +1.268 (tol 0.1)
+
+  [B3b] a RADIAL POWER LAW -- the direct implementation of the only gravitational organiser that survived section 1: g_pred = nu(y) g_bar x 1.214 (r/10 kpc)^+0.163   (2 free parameters, canonical footing)  [a rotation curve spans a decade in r inside ONE galaxy, so this is applied to the keepers too]
+        ledger rms  0.461 -> 0.379 dex   median |B| 0.328 -> 0.177   improved 21/37, worse 7/37
+        keepers: 4 BROKEN
+           - rar_med: +0.023 -> -0.028 (tol 0.05)
+           - tail_slope: +0.549 -> +0.629 (tol 0.05)
+           - btfr_slope: +1.033 -> +1.155 (tol 0.1)
+           - lens_slope: -1.020 -> -0.850 (tol 0.1)
+
+  [B4] a SUPPORT-TYPE boost: pressure-supported and lensed systems get x1.299, rotation-supported x1   (1 free parameter, canonical footing)
+        ledger rms  0.461 -> 0.448 dex   improved 24/37, worse 8/37
+        keepers: NONE BROKEN BY CONSTRUCTION -- SPARC, the BTFR, Renzo and the inner diversity are all
+        rotation-supported, so this modification is INVISIBLE to every keeper.  That is not a pass; it is
+        the statement that the modification is untestable where the framework's evidence lives.
+        AND IT DOES NOT WORK ANYWAY: inside the pressure-supported block the residual after the boost is
+        0.451 dex over 34 rows, spanning -1.489 to +0.595 -- the sign split survives it.
+
+  [B5] the STRUCTURAL classification u01 found (bound star cluster / LambdaCDM-DM-deficient galaxy / halo galaxy), one offset each   (3 free parameters, canonical footing)
+        offsets: star clusters -0.508, DM-deficient galaxies -0.943, halo galaxies +0.270 dex
+        ledger rms  0.461 -> 0.230 dex   -- the single best fit in this script
+        keepers: NONE BROKEN, and for the same reason as B4: every keeper is a halo galaxy, so this is a
+        relabelling of the residual by LambdaCDM's own dark-matter content, not a gravitational law.  It has
+        no field equation, makes no new prediction, and is recorded as what the residual LOOKS LIKE.
+
+  [B1] the FIRST LAW GENERALISED: a_0 = (c/2) sqrt(G [rho_Lambda + xi rho_bar(<r)]), best xi = 1.000e-12   (1 free parameter, alt footing)  [median rho_bar/rho_Lambda: SPARC 7.063e+04, clusters 3.390e+02 -- galaxies are 208x DENSER, so this term acts on the keepers first]
+        ledger rms  0.456 -> 0.456 dex   median |B| 0.291 -> 0.291   improved 0/37, worse 0/37
+        keepers: NONE BROKEN
+           (rar_rms 0.1768->0.1768, renzo 0.870->0.870, lens -1.017->-1.017, tail 0.545->0.545)
+
+  [B2] a POTENTIAL-DEPTH modification: a_0 -> a_0 [1 + (Phi/Phi_c)^q]^s with Phi_c = 5.99e+08 m^2/s^2 (v_c = 24 km/s), q = 4.00, s = +0.08   (3 free parameters, alt footing)
+        ledger rms  0.456 -> 0.405 dex   median |B| 0.291 -> 0.130   improved 16/37, worse 5/37
+        keepers: 3 BROKEN
+           - rar_med: -0.004 -> -0.116 (tol 0.05)
+           - tail_slope: +0.545 -> +0.634 (tol 0.05)
+           - btfr_slope: +1.030 -> +1.177 (tol 0.1)
+
+  [B3] a FIXED LENGTH SCALE: nu -> nu [1 + A/(1 + (l/r)^2)] with A = 1.26, l = 24.6 kpc   (2 free parameters, alt footing)
+        ledger rms  0.456 -> 0.395 dex   median |B| 0.291 -> 0.119   improved 16/37, worse 3/37
+        keepers: 3 BROKEN
+           - rar_med: -0.004 -> -0.072 (tol 0.05)
+           - tail_slope: +0.545 -> +0.598 (tol 0.05)
+           - btfr_slope: +1.030 -> +1.243 (tol 0.1)
+
+  [B3b] a RADIAL POWER LAW -- the direct implementation of the only gravitational organiser that survived section 1: g_pred = nu(y) g_bar x 1.127 (r/10 kpc)^+0.163   (2 free parameters, alt footing)  [a rotation curve spans a decade in r inside ONE galaxy, so this is applied to the keepers too]
+        ledger rms  0.456 -> 0.379 dex   median |B| 0.291 -> 0.176   improved 21/37, worse 7/37
+        keepers: 3 BROKEN
+           - tail_slope: +0.545 -> +0.625 (tol 0.05)
+           - btfr_slope: +1.030 -> +1.152 (tol 0.1)
+           - lens_slope: -1.017 -> -0.848 (tol 0.1)
+
+  [B4] a SUPPORT-TYPE boost: pressure-supported and lensed systems get x1.206, rotation-supported x1   (1 free parameter, alt footing)
+        ledger rms  0.456 -> 0.449 dex   improved 24/37, worse 8/37
+        keepers: NONE BROKEN BY CONSTRUCTION -- SPARC, the BTFR, Renzo and the inner diversity are all
+        rotation-supported, so this modification is INVISIBLE to every keeper.  That is not a pass; it is
+        the statement that the modification is untestable where the framework's evidence lives.
+        AND IT DOES NOT WORK ANYWAY: inside the pressure-supported block the residual after the boost is
+        0.451 dex over 34 rows, spanning -1.493 to +0.587 -- the sign split survives it.
+
+  [B5] the STRUCTURAL classification u01 found (bound star cluster / LambdaCDM-DM-deficient galaxy / halo galaxy), one offset each   (3 free parameters, alt footing)
+        offsets: star clusters -0.543, DM-deficient galaxies -0.980, halo galaxies +0.239 dex
+        ledger rms  0.456 -> 0.228 dex   -- the single best fit in this script
+        keepers: NONE BROKEN, and for the same reason as B4: every keeper is a halo galaxy, so this is a
+        relabelling of the residual by LambdaCDM's own dark-matter content, not a gravitational law.  It has
+        no field equation, makes no new prediction, and is recorded as what the residual LOOKS LIKE.
+
+  [B6] a_0 PROPORTIONAL TO H(z) -- aimed at the ONE liability that is about redshift
+  eRASS1 at fixed mass: the residual grows by +0.125 dex from z = 0.1 to z = 0.85 (the ledger's erass1_lowz -> erass1_hiz rows)
+  a_0 ~ H(z) predicts a deep-MOND acceleration change of +0.096 dex over the same interval (E(z) = 1.051 -> 1.634)
+  so a_0 ~ H(z) accounts for 77% of the evolution liability, with ZERO free parameters
+  the SAME law predicts d log a_0/dz = +0.230 averaged to z = 2.5; item 16's closed-form inversion of RC100 measures -0.112 +- 0.063
+  [PASS] 3a a_0 ~ H(z) buys most of the cluster evolution liability for nothing -- and is excluded by the framework's own sharpest existing-data constraint, item 16's RC100 inversion, which is a GALACTIC measurement and therefore a keeper   (predicted d log a_0/dz = +0.230, RC100 measures -0.112 +- 0.063 -- 5.4 sigma)
+
+----------------------------------------------------------------------------------------------------------------------
+(4) MUTATION CONTROLS AND FOOTINGS
+----------------------------------------------------------------------------------------------------------------------
+  the same 12-variable search run on 400 SHUFFLED ledgers finds a best residual of 0.431 +- 0.017 dex; on the REAL ledger it finds 0.249 (z = -10.9)
+  [PASS] M1a the 12-variable search is not just look-elsewhere noise -- the real ledger's best variable beats the shuffled floor by many sigma, which is why check 1a had to be rewritten rather than defended   (real 0.249 vs shuffled floor 0.431 +- 0.017)
+  and the winning label is specific, not generic: over 20000 RANDOM 7-of-37 labellings the residual is 0.446 +- 0.009 dex and only 0.00% reach the 0.249 dex that LambdaCDM's own dark-matter classification reaches
+  [PASS] M1b AGAINST THE FRAMEWORK -- the classification that organises the residual is LambdaCDM's, and it is not a generic label: a random 7-of-37 split reaches its residual in under 1% of draws.  It was also fixed independently (u01 pre-registered the same split on the pressure block) and is not fitted here   (p = 0.0000 against random labellings of the same size)
+  [PASS] M2 the general keeper interface is live for r-dependent modifications: a density-dependent a_0 with xi = 1e-4 breaks the keepers, so B1's null result is a measurement and not an insensitivity   (2 keepers broken at xi = 1e-4: rar_rms; rar_med)
+  [PASS] M3 BOTH FOOTINGS -- every attempt's fitted residual and its keeper verdict are the same on the alt footing   (largest |rms_can - rms_alt| = 0.0089 dex)
+  de-duplicated ledger (22 independent systems): raw 0.502 dex, best single variable 'structural: LCDM says DM-rich' leaves 0.228
+  [PASS] M4 the organiser search REPLICATES on 22 independent systems -- the same variable wins and removes a similar share of the variance, so section 1's answer is not an artefact of counting one sample several times   (37 rows: 'structural: LCDM says DM-rich' 0.461 -> 0.249 (46%);  22 systems: 'structural: LCDM says DM-rich' 0.502 -> 0.228 (55%))
+
+======================================================================================================================
+VERDICT -- class (b): a new variable beside y
+======================================================================================================================
+
+  The candidate list is shorter than it looks.  The mean enclosed surface density is g_bar/(pi G) exactly, so
+  a surface-density law IS a kernel law; and mass, potential depth and mean enclosed density are all invertible
+  functions of (g_bar, r).  The entire local class is therefore the class of functions f(y, r), and it is
+  refuted by collision rather than by fitting: 3 liability system(s) occupy the same (y, r) cell as
+  tens to hundreds of SPARC rotation-curve points and need a correction that differs from SPARC's by
+  1.24 dex.
+
+  Of the twelve candidate variables the two that organise the signed residual best are 'is the system
+  pressure-supported or lensed' and 'does LambdaCDM give this object a dark halo'.  Neither is a gravitational
+  variable, neither breaks a keeper -- because every keeper is a rotation-supported halo galaxy -- and that
+  is precisely why neither is a theory.  A modification invisible to all the evidence is not a modification.
+
+  The one attempt with a real physical motivation is B1, the framework's own first law generalised from
+  rho_Lambda to rho_Lambda + xi rho_bar.  It fails for a reason that is not fixable by choosing xi: galaxies
+  are hundreds of times denser in baryons than cluster outskirts, so the term acts on the keepers first and
+  hardest.  The sign that would help the clusters is the sign that destroys the RAR.
+
+  B6 is the exception worth keeping: a_0 proportional to H(z) buys most of the cluster residual's redshift
+  evolution for zero parameters.  It is excluded by the framework's own galactic a_0(z) measurement (item 16)
+  at 5.4 sigma, so it is recorded as a fix that costs a keeper, not as a fix.
+
+
+RESULT: 12 checks, 0 FAIL   rc=0

@@ -1,0 +1,158 @@
+======================================================================================================================
+K3 (exact-relations compute) -- the external-field phantom-mass theorem as an ENVIRONMENT-ONLY law
+======================================================================================================================
+
+  (A) THE THEOREM, verified by exact closed-surface flux integration with NO expansion (Gauss-Legendre,
+      a different quadrature from the propose-stage script).  Units a_0 = 1, G M_b = 1.
+   y_e        nu_e        L_e   theorem   |   exact flux at R = 10, 30, 100, 300
+     0.01    10.5083    -0.4754   8.843053   |    8.591693    8.840486    8.843033    8.843053
+  [PASS] flux -> theorem as R grows (y_e=0.01)   (R=300 gives 8.843053 vs 8.843053 (-2.90e-08))
+      0.1     3.6886    -0.4251   3.165910   |    3.165273    3.165902    3.165910    3.165910
+  [PASS] flux -> theorem as R grows (y_e=0.1)   (R=300 gives 3.165910 vs 3.165910 (-2.48e-10))
+      0.3     2.3712    -0.3755   2.074363   |    2.074325    2.074363    2.074363    2.074363
+  [PASS] flux -> theorem as R grows (y_e=0.3)   (R=300 gives 2.074363 vs 2.074363 (-2.38e-11))
+        1     1.5820    -0.2910   1.428531   |    1.428530    1.428531    1.428531    1.428531
+  [PASS] flux -> theorem as R grows (y_e=1.0)   (R=300 gives 1.428531 vs 1.428531 (+5.45e-13))
+        3     1.2150    -0.1862   1.139562   |    1.139562    1.139562    1.139562    1.139562
+  [PASS] flux -> theorem as R grows (y_e=3.0)   (R=300 gives 1.139562 vs 1.139562 (+1.81e-12))
+       10     1.0442    -0.0699   1.019875   |    1.019875    1.019875    1.019875    1.019875
+  [PASS] flux -> theorem as R grows (y_e=10.0)   (R=300 gives 1.019875 vs 1.019875 (-3.54e-11))
+  [PASS] deep external field limit is (5/6) nu_e   (0.833333417   (the limit is approached as O(sqrt y), so it must be taken at y<<1e-8))
+  [PASS] Newtonian external field limit is 1   (1.000000000)
+
+  (B) RESTATEMENT TEST -- executed, not asserted.  Try to derive the candidate from v^4 = G M_b a_0.
+      v^4 = G M_b a_0 is the ISOLATED deep-MOND limit.  Written as a discrepancy it says
+          M_dyn/M_b = nu(y_own) -> sqrt(a_0/g_bar,own)  in the deep limit,
+      i.e.  d log(M_dyn/M_b)/d log g_bar,own = -1/2 EXACTLY, and it contains NO external field.
+      The candidate says that slope is ~0 and the ratio is set by g_ext instead.  The derivation cannot
+      close: the BTFR has no g_ext in it and the theorem has no M_b in it.  ==> NOT a restatement of the
+      BTFR/RAR/deep-MOND limit.  is_restatement = FALSE on that axis.
+      numerically: isolated-RAR slope over the UDGs' own y range = -0.4853 (deep limit -0.500)
+  [PASS] restatement test executed: BTFR slope in own g_bar is -1/2, theorem's is ~0 -- they differ   (BTFR gives -0.485, theorem gives ~0.00)
+      LITERATURE, against interest: the total-phantom-mass-in-an-external-field result IS published --
+      Milgrom 1986 (ApJ 302, 617) and Milgrom 2009 (arXiv:0906.4817) beta(eta); the anisotropic operator
+      nu_e(delta_ij + L_e n_i n_j) is Milgrom 1986/2010.  CRITERION (4) FAILS FOR THE THEOREM ITSELF.
+      Only the Route A closed form and the population SHAPE test are unstated -- and (see below) the
+      shape test is what this script kills.
+
+  (C) COMA UDGs (Freundlich+2022, on disk).  log g_bar and log g_obs at R_e are tabulated INDEPENDENTLY
+      and the distance is the cluster's, common to every object.
+      11 UDGs read
+
+      --- amplitude, both footings, both external-field conventions ---
+      canonical y_e from dynamical: median y_e  0.608  predicted log ratio +0.216  observed +1.390  ==> residual +1.085 dex (scatter 0.216, 16.7 sigma)
+      canonical y_e from newtonian: median y_e  0.233  predicted log ratio +0.357  observed +1.390  ==> residual +0.895 dex (scatter 0.236, 12.6 sigma)
+      alt       y_e from dynamical: median y_e  0.504  predicted log ratio +0.241  observed +1.390  ==> residual +1.057 dex (scatter 0.217, 16.2 sigma)
+      alt       y_e from newtonian: median y_e  0.170  predicted log ratio +0.408  observed +1.390  ==> residual +0.845 dex (scatter 0.239, 11.7 sigma)
+      MOST FAVOURABLE convention for the framework: ('alt', 'newtonian') -> +0.845 dex
+      anisotropy floor (the local ratio runs from nu_e(1+L_e) to nu_e; the sphere average sits between):
+        at median y_e = 0.233:  parallel +0.203 dex, perpendicular +0.417 dex, sphere-average +0.357 dex  -> modelling floor 0.214 dex
+  [FAIL] Coma UDG amplitude matches the theorem within 0.3 dex (any convention, any footing)   (best is ('alt', 'newtonian') at +0.845 dex)
+
+      --- SHAPE TEST 1: does the discrepancy ignore the UDG's OWN baryons? ---
+      THE CONFOUND (bug pattern 5): the ordinate log(g_obs/g_bar) contains the abscissa log(g_bar).
+      Var(log g_bar) measured = 0.02013;  mean measurement variance = 0.01029
+      ==> the TRUE spread in log g_bar is only 0.099 dex against a 0.101 dex
+          measurement error.  The error is 1.02x the signal.
+      unconfounded predictions:  EFE theorem -0.0815   isolated RAR -0.4784
+      OBSERVED slope of log(g_obs/g_bar) on log(g_bar): -0.187 +- 0.579 (bootstrap)
+      Monte Carlo under EFE-law truth    : -0.557 +- 0.571   -> observed is +0.65 sigma
+      Monte Carlo under isolated-RAR truth: -0.760 +- 0.537   -> observed is +1.07 sigma
+      SEPARATION between the two hypotheses AFTER the confound: 0.37 sigma
+      -> the shared-g_bar confound drags BOTH predictions to the same place; the propose stage compared
+         the observed -0.187 against the UNCONFOUNDED -0.021 and -0.478 and called it 'closer to the EFE
+         law'.  Against the confounded distributions it is not.
+  [FAIL] the Coma own-g_bar shape test separates the two hypotheses at >= 2 sigma   (0.37 sigma)
+
+      --- SHAPE TEST 1b: the UNCONFOUNDED form -- regress log g_obs on log g_bar (no shared variable) ---
+      predicted slope   EFE theorem 0.918   isolated RAR 0.522   (both x the regression-dilution factor 0.489 = 0.449 / 0.255)
+      OBSERVED: +0.813 +- 0.591
+      -> +0.62 sigma from the EFE law, +0.94 sigma from the isolated RAR
+  [FAIL] unconfounded shape test prefers the EFE law over the isolated RAR by >= 2 sigma   (|z_RAR|-|z_EFE| = +0.33)
+
+      --- SHAPE TEST 2: the ENVIRONMENT axis (NEW here; shares nothing with g_obs or g_bar) ---
+      theorem predicts d log(M_dyn/M_b)/d log g_ext = -0.3896
+      isolated RAR (no environment at all) predicts  +0.0000
+      OBSERVED: +0.227 +- 0.406   -> +1.52 sigma from the theorem, +0.56 sigma from no-environment
+  [FAIL] the environment axis detects the predicted g_ext dependence at >= 2 sigma   (0.56 sigma from zero, and the theorem's own prediction is only -0.390)
+      NOTE against interest: the theorem's own environment slope is only -0.3 over a sample spanning
+      0.72 dex in g_ext, i.e. a 0.282 dex swing against a
+      0.203 dex scatter.  The axis is clean but the lever is small.
+
+      --- UPSILON LEVER, measured by re-running the whole pipeline at Upsilon x1.5 ---
+        Upsilon x1.0: median residual +0.895 dex   own-g_bar slope -0.187   g_obs-on-g_bar slope +0.813   g_ext slope +0.227
+        Upsilon x1.5: median residual +0.719 dex   own-g_bar slope -0.187   g_obs-on-g_bar slope +0.813   g_ext slope +0.227
+      d log(M_dyn/M_b)/d log Upsilon = -1.0000  (exact value -1.000: Upsilon is the denominator)
+      d(shape slope)/d log Upsilon    = +0.0000  (a global Upsilon shift translates
+        every point vertically and cannot change a slope -- the discriminating half is Upsilon-immune)
+  [PASS] amplitude Upsilon lever is -1.000 as predicted   (-1.0000)
+  [PASS] shape Upsilon lever is 0.000 as predicted   (+0.0000)
+
+      --- MUTATIONS and the NEWTONIAN / LCDM alternatives ---
+        canonical   : median y_e  0.2327  predicted +0.357  residual +0.895 dex
+        alt         : median y_e  0.1703  predicted +0.408  residual +0.845 dex
+        a_0 x 3     : median y_e  0.0342  predicted +0.701  residual +0.555 dex
+        a_0 / 3     : median y_e  1.2198  predicted +0.133  residual +1.149 dex
+        a_0 x 30    : median y_e  0.0004  predicted +1.624  residual -0.364 dex
+  [FAIL] MUTATION: a_0 x 3 is WORSE than the canonical footing   (|+0.555| vs |+0.895| -- REPORTED AGAINST INTEREST: the mutation control FAILS. The Coma amplitude prefers a LARGER a_0; it nulls somewhere between 3x and 30x canonical, the same direction as the cluster residual (item 56 needed 18.4x).  A test whose best fit is 10x the footing is not measuring a_0.)
+        NEWTONIAN alternative (nu = 1): predicted log ratio 0.000 -> residual +1.390 dex
+        LCDM alternative: the discrepancy is set by the halo the UDG sits in, i.e. by its own M_b through
+        abundance matching, and by cluster tides -- it PREDICTS an own-mass dependence where the theorem
+        forbids one.  With the confound above, the Coma sample cannot tell the two apart.
+
+  (D) LOCAL GROUP dwarfs -- the propose stage argued the confound; here it is MEASURED.
+      41 MW+M31 dwarfs with sigma and half-light radius
+      MEASURED (Upsilon_V = 2): N=41  own-mass slope -0.502   g_ext slope +0.468
+      A GENUINE NULL, built from a CONTROLLED TRUTH rather than from the data: for each dwarf take its
+      catalogue distance as truth, IMPOSE the theorem's ratio exactly, synthesise the luminosity that
+      follows, then let a mock observer mis-measure the distance by 0.10 dex and the flux by 0.10 dex.
+      NOTE WHAT THE 'input slope' COLUMN SHOWS BELOW.  With the theorem EXACTLY true and NO errors at
+      all, plotting M_dyn/M_b against M_b still returns -0.54, not 0 -- because the abscissa is the
+      ordinate's own denominator and the dwarfs' M_dyn spans decades.  The propose stage compared the
+      measured -0.509 against a nominal 0.000; the correct comparison is against -0.54.  The 'signal'
+      is the plotting geometry, before any measurement error is added at all.
+      observed residual scatter about the own-mass fit: 0.323 dex -- the mock is given an
+      intrinsic M_b scatter of the same size, so that its error bars are comparable to the data's.
+      truth  |  input slope (no errors)  ->  slope a mock observer RECOVERS  |  manufactured shift
+      efe    own-mass -0.541 -> -0.590 +- 0.055   shift -0.049
+             g_ext    -0.869 -> -0.816 +- 0.070   shift +0.054
+      rar    own-mass -0.333 -> -0.383 +- 0.026   shift -0.049
+             g_ext    +0.198 -> +0.211 +- 0.055   shift +0.013
+      observed: own-mass -0.502 (efe +1.6 sigma, rar -4.6 sigma)
+      observed: g_ext    +0.468 (efe +18.3 sigma, rar +4.7 sigma)
+      SEPARATION between the two truths after the confound: own-mass 4.80 sigma, g_ext 16.32 sigma
+      READ THIS AGAINST INTEREST: a 0.10 dex distance error alone manufactures roughly -0.5 in the
+      own-mass slope where the theorem's truth is 0.000, which is exactly where the data sit.  Neither
+      truth reproduces BOTH axes, so the Local Group sample is not merely confounded -- it rejects both
+      hypotheses, which means the modelling (Upsilon_V, the host mass, the Wolf estimator) dominates.
+  [FAIL] the Local Group data are consistent with at least ONE of the two truths on BOTH axes at < 3 sigma   (neither truth fits both axes)
+
+  (E) WHAT WOULD MAKE THE SHAPE TEST DECISIVE (a power calculation, not a wish).
+      the two hypotheses differ by 0.397 in d log(M_dyn/M_b)/d log g_bar,own.
+      residual scatter about the relation on the clean sample: 0.203 dex.
+      the Coma sample's TRUE spread in log g_bar is 0.099 dex (the proposer's own data note asked for >= 1.5 dex -- it is 15x short).
+        intrinsic spread  0.1 dex in own g_bar  ->  N =     2814 systems for a 3-sigma decision
+        intrinsic spread  0.3 dex in own g_bar  ->  N =      313 systems for a 3-sigma decision
+        intrinsic spread  0.5 dex in own g_bar  ->  N =      113 systems for a 3-sigma decision
+        intrinsic spread  1.0 dex in own g_bar  ->  N =       28 systems for a 3-sigma decision
+        intrinsic spread  1.5 dex in own g_bar  ->  N =       13 systems for a 3-sigma decision
+      and every one of them must have log g_bar measured to much better than the spread, or the
+      shared-variable confound above eats the signal whatever N is.
+
+======================================================================================================================
+  VERDICT ON K3
+======================================================================================================================
+  (1) measured quantities?  YES -- g_obs/g_bar at R_e and host-centric distance, both tabulated.
+  (2) a_0 with a PREDICTED coefficient?  YES in form, but the amplitude misses by +0.84 dex (7x) on the most favourable convention.
+  (3) RAR-class scatter?  NO -- residual scatter 0.203 dex about a prediction that is 0.84 dex off.
+  (4) unstated?  NO -- Milgrom 1986/2009 has the theorem; Freundlich+2022 has the Coma failure.
+  (5) restatement of v^4 = G M_b a_0?  NO (executed above: the BTFR forces -1/2 in own g_bar, the
+      theorem forces ~0; they are different statements).
+  THE DISCRIMINATING HALF -- the shape test -- is Upsilon-immune but CONFOUNDED and UNDERPOWERED:
+      the two hypotheses separate by only 0.37 sigma on the clean sample after the shared-g_bar
+      confound is modelled, and the environment axis gives 0.56 sigma from zero.
+  ==> CANDIDATE K3 FAILS.  The theorem is real and exactly verified; the law it implies is already
+      credited to Milgrom; its amplitude is refuted at ~1 dex; and the one novel part -- the population
+      shape test -- cannot be decided by the only clean sample on disk.
+
+RESULT: 17 checks, 6 FAIL -> ['Coma UDG amplitude matches the theorem within 0.3 dex (any convention, any footing)', 'the Coma own-g_bar shape test separates the two hypotheses at >= 2 sigma', 'unconfounded shape test prefers the EFE law over the isolated RAR by >= 2 sigma', 'the environment axis detects the predicted g_ext dependence at >= 2 sigma', 'MUTATION: a_0 x 3 is WORSE than the canonical footing', 'the Local Group data are consistent with at least ONE of the two truths on BOTH axes at < 3 sigma']   rc=1

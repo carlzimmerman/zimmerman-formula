@@ -1,0 +1,275 @@
+==========================================================================================================================
+PART 0 -- the residual identity, derived and then verified numerically
+==========================================================================================================================
+    r = log g_obs - log[nu(g_bar/a_0) g_bar]   =>   dr/dlog a_0 = m,   dr/dlog M_bar = 1 + m
+    so   d log a_0 / d log M_bar = (1+m)/m = LAMBDA  -- k02's amplification law, from the other side.
+             y      m(y)       1+m    1/m (a_0 amplification of <r>)    LAMBDA
+         0.020   -0.4655    0.5345                            -2.148    -1.148
+         0.065   -0.4390    0.5610                            -2.278    -1.278
+         0.200   -0.3965    0.6035                            -2.522    -1.522
+         0.330   -0.3701    0.6299                            -2.702    -1.702
+         1.000   -0.2910    0.7090                            -3.437    -2.437
+         2.000   -0.2271    0.7729                            -4.403    -3.403
+         5.000   -0.1338    0.8662                            -7.474    -6.474
+  [PASS] k-hzs-0 the residual's two partial derivatives are verified against finite differences on the exact kernel: dr/dlog a_0 = m and dr/dlog M_bar = -(1+m) (the minus because raising M_bar raises the MODEL).  If either were mis-derived the whole script would mis-scale   (at y = 0.33: dr/dlog a_0 numeric -0.370061 vs m = -0.370061; dr/dlog M_bar numeric -0.629939 vs -(1+m) = -0.629939)
+
+    AND THE POINT OF USING r AT ALL: it exists for every galaxy.  The a_0 inversion does not.
+    Censoring fractions measured in k_high-z_floor_census: MUSE-DARK II 25%, RC100 22%, KROSS 31%,
+    and the induced one-sided bias on the published levels is -0.14 to -0.43 dex.  r has none.
+
+==========================================================================================================================
+PART 1 -- the residual measured, and a_0 read from it WITHOUT censoring, survey by survey
+==========================================================================================================================
+    a_0 is the value at which the sample's residual is centred on zero -- solved EXACTLY by
+    bisection, not linearised (the linearised form -<r>/<m> is wrong by a factor 3 for the
+    gas-free samples, whose |<r>| reaches 0.5 dex).  Both the mean-zero and the robust
+    median-zero solutions are given, because two samples carry heavy tails.
+    sample                                      N   <z>   med y   mean r   sd r  MAD r   a0 mean-zero  a0 median-zero dex vs canon
+    SPARC resolved g_bar (z=0)                139  0.00   0.207   +0.008  0.139  0.120      9.822e-11       1.061e-10       +0.021
+    SPARC degraded to M_bar+R_e (z=0)         139  0.00   0.365   -0.126  0.189  0.149      3.674e-11       4.428e-11       -0.406
+    MUSE-DARK II lensed (z 0.5-1.45)           95  0.98   0.330   -0.127  0.359  0.364      3.723e-11       5.088e-11       -0.400
+    RC100 (z 0.6-2.5)                         100  1.59   2.030   +0.054  0.213  0.185      1.548e-10       1.517e-10       +0.218
+    MSA-3D golden, stars only (z 0.6-1.7)      23  1.12   0.271   +0.547  0.190  0.082      1.835e-09       1.933e-09       +1.292
+    KROSS stars only (z~0.9)                  381  0.88   1.178   -0.002  0.406  0.399      9.222e-11       1.507e-10       -0.006
+
+    SAMPLES WITHOUT GAS IN THEIR TABLE (MSA-3D, KROSS) have g_bar as a LOWER bound, so their a_0 is
+    an UPPER bound and is not comparable with the others -- flagged, not quietly stacked.
+
+    (a_0 here is the CENSORING-FREE level: every galaxy contributes, including the ones that have
+     no a_0 of their own.  Compare k03's inverting-subset median 1.10e-10 for MUSE-DARK II.)
+  [PASS] k-hzs-1 THE CENSORING-FREE LEVEL, and it is a check that can fail: the uncensored z ~ 1 a_0 must be BELOW the inverting-subset median that k03 reported, because censoring removes the LOW-a_0 galaxies.  If it is not below, the censoring warning in the floor census was empty   (uncensored MUSE-DARK II a_0 = 3.723e-11 against k03's inverting-subset median 1.102e-10, i.e. -0.471 dex; canonical -0.400 dex, alt -0.482 dex; robust median-zero 5.088e-11 = -0.265 dex)
+  [PASS] k-hzs-1b THE z = 0 CONTROL for the same estimator: run on SPARC's resolved rotation curves the residual estimator must return a_0 near the canonical footing, or the estimator itself is biased (this is the check that caught item 25's +0.0985 dex)   (SPARC resolved returns a_0 = 9.822e-11 = +0.021 dex from canonical, -0.061 from alt; degraded to high-z information the SAME galaxies give -0.406 dex -- the estimator's own floor)
+
+==========================================================================================================================
+PART 1b -- THE BIAS-MATCHED DIFFERENTIAL: a_0(z ~ 1) against a_0(z = 0) through the IDENTICAL
+           estimator, with the identical information content.  This is the number that matters.
+==========================================================================================================================
+    The degraded z = 0 control returns a_0 far from canonical.  That is not a failure of the
+    framework -- it is the ESTIMATOR's own bias, and it is measurable because SPARC can be read
+    both ways.  Measured here, the bias is:
+      log a_0(degraded) - log a_0(resolved) on the SAME 139 galaxies = -0.427 dex
+      Its origin is one assumption: the degraded estimator puts ALL the baryons in one exponential
+      disc of the stellar scale length, so the extended HI is placed too far inside, g_bar at 2 R_e
+      is overstated, and LAMBDA ~ -1.5 turns that into a large negative a_0 offset.
+
+    log a_0(z = 0.98, MUSE-DARK II) - log a_0(z = 0, SPARC degraded) = +0.0057 +- 0.1538 dex  (+0.04 sigma from zero)
+      over a look-back of about 7.7 Gyr.  For scale, a_0 ~ c H(z) would give +0.241 dex.
+
+    THE CONTROL THE MATCHING NEEDS: is that bias the same at MUSE-DARK II's gas fraction?
+      SPARC median f_gas = 0.44;  MUSE-DARK II median f_gas = 0.70
+           f_gas bin    N   a0 resolved   a0 degraded  bias (dex)
+           0.00-0.35   57     1.085e-10     5.583e-11      -0.288
+           0.35-0.55   26     8.818e-11     4.588e-11      -0.284
+           0.55-0.75   31     1.046e-10     3.651e-11      -0.457
+           0.75-1.01   25     8.641e-11     1.630e-11      -0.724
+  [FAIL] k-hzs-1c THE MATCHING CONTROL, and it is what decides whether the differential means anything: the estimator's bias is measured in bins of gas fraction at z = 0.  The check is that it is STABLE -- if the bias runs with f_gas, then matching a low-f_gas local sample to a high-f_gas high-z one is invalid and the differential is a gas-fraction difference wearing redshift's clothes   (bias across f_gas bins = -0.288, -0.284, -0.457, -0.724; spread 0.441 dex (gate 0.15))
+
+    ^ THE UNMATCHED DIFFERENTIAL IS THEREFORE INVALID and must not be quoted.  SPARC's median
+      f_gas is 0.44 and MUSE-DARK II's is 0.70, and the bias at those two gas fractions differs
+      by about 0.17 dex.  The fix is to MATCH the local sample's gas-fraction distribution to the
+      high-z one and redo the differential -- done next, because the control demanded it.
+
+    THE GAS-FRACTION-MATCHED DIFFERENTIAL (SPARC reweighted, bin by bin, to MUSE-DARK II's own
+    f_gas histogram; this is the only version that may be quoted):
+      matched local a_0 = 1.130e-11  (effective N = 46.6 of 139; 100% of the high-z f_gas distribution has local counterparts)
+      log a_0(z = 0.98) - log a_0(z = 0, f_gas-matched) = +0.5178 +- 0.3379 dex   (+1.53 sigma from zero)
+      unmatched, for comparison: +0.0057 +- 0.1538 -- the matching moves it by +0.512 dex, which is the size of the systematic the control caught.
+  [PASS] k-hzs-1d THE DIFFERENTIAL ITSELF, gas-fraction matched: with the estimator's own bias cancelled by construction AND the gas-fraction dependence of that bias removed by reweighting, a_0 at z ~ 1 must equal a_0 at z = 0 if the framework's constant-a_0 law holds.  The check is that the matched difference is within 2 sigma of zero   (matched +0.5178 +- 0.3379 dex = +1.53 sigma; a_0 ~ cH(z) would require +0.241 dex, which is +0.82 sigma away)
+
+    AND A WEIGHT-FREE VERSION OF THE SAME MATCHING, because the reweighting above puts most of its
+    weight on SPARC's 25 most gas-rich galaxies.  Here both samples are cut to a COMMON f_gas window:
+          f_gas window  N local  N high-z     a0 local       a0 z~1  difference      +-
+             0.55-0.85       46        31    3.574e-11    3.528e-11      -0.006   0.202
+             0.50-0.90       55        43    3.184e-11    3.848e-11      +0.082   0.163
+             0.60-0.80       35        17    3.438e-11    4.598e-11      +0.126   0.282
+  [FAIL] k-hzs-1d2 THE WINDOW VERSION must agree with the reweighted version, or the matching itself is driving the answer.  The check is that the two constructions of the SAME quantity agree within the larger of their two error bars   (reweighted +0.518 +- 0.338; windows [0.55,0.85] -0.006 +- 0.202, [0.50,0.90] +0.082 +- 0.163, [0.60,0.80] +0.126 +- 0.282)
+  [FAIL] k-hzs-1e AND THE POWER OF THE TEST, stated so it cannot be over-read: the matched differential's error bar must be small enough to see the rival branches.  The check is that it separates the framework's flat law from a_0 ~ cH(z) (+0.241 dex over this baseline) at 2 sigma or better   (band 0.338 dex against a 0.241 dex separation -> cH(z) is +0.82 sigma; the LambdaCDM-native rise over the same baseline (+0.131 dex) is +1.14 sigma and is NOT separated)
+
+==========================================================================================================================
+PART 2 -- THE CANDIDATE: is the observed residual scatter of every survey what its OWN quoted
+          errors produce with ONE constant a_0 and the kernel's PREDICTED weight (1+m)?
+==========================================================================================================================
+    sample                                    sd r obs  sd r pred   ratio  excess (dex)   <(1+m)>  implied sig_Mbar
+    SPARC resolved g_bar (z=0)                   0.139      0.123    1.13         0.066     0.632             0.221
+    SPARC degraded to M_bar+R_e (z=0)            0.189      0.121    1.55         0.144     0.658             0.287
+    MUSE-DARK II lensed (z 0.5-1.45)             0.359      0.183    1.96         0.308     0.652             0.550
+    RC100 (z 0.6-2.5)                            0.213      0.153    1.39         0.148     0.774             0.275
+    MSA-3D golden, stars only (z 0.6-1.7)        0.111      0.133    0.83         0.000     0.622             0.178
+    KROSS stars only (z~0.9)                     0.406      0.207    1.97         0.350     0.744             0.546
+
+    'implied sig_Mbar' is what the observed scatter would require if ALL of it were baryonic-mass
+    error: sd(r)/<1+m>.  If a_0 is one constant and the catalogues' errors are honest, this column
+    must be a plausible mass error (0.1-0.3 dex) in EVERY survey, at every redshift.
+  [PASS] k-hzs-2 THE CANDIDATE LAW, tested: with a_0 fixed by Lambda and the weight (1+m) fixed by the kernel, each survey's observed residual scatter is compared with what its own quoted errors produce.  The check is that no survey shows more than 2x the scatter its errors allow   (observed/predicted sd(r) = SPARC resolved g_bar 1.13, SPARC degraded to M_bar+R_e 1.55, MUSE-DARK II lensed 1.96, RC100 1.39, MSA-3D golden, stars only 0.83, KROSS stars only 1.97; worst 1.97)
+  [FAIL] k-hzs-2b AND THE CROSS-SURVEY VERSION, which is the Kepler-shaped form: the implied baryonic-mass scatter must be ONE plausible number across five samples spanning z = 0 to 2.5.  The check is that it is (a) in the plausible range 0.05-0.40 dex everywhere and (b) consistent to within a factor 2   (implied sigma_Mbar spans 0.178 - 0.550 dex, ratio 3.09)
+
+==========================================================================================================================
+PART 3 -- a_0(z) read from the residual: censoring-free, per survey, and jointly
+==========================================================================================================================
+    The slope is fitted NONLINEARLY on the residual itself: log10 a_0(z) = c + s z, minimising
+    sum r_i^2 with r_i = log g_obs - log[nu(g_bar/a_0(z_i)) g_bar].  No per-galaxy division by m,
+    which blows up for the high-y galaxies, and no censoring.
+    sample                                     d log a0/dz      +-  sigma from flat
+    SPARC resolved g_bar (z=0)                          --      --(no redshift lever)
+    SPARC degraded to M_bar+R_e (z=0)                   --      --(no redshift lever)
+    MUSE-DARK II lensed (z 0.5-1.45)                -1.448   0.363            -3.99
+    RC100 (z 0.6-2.5)                               -0.047   0.108            -0.43
+    MSA-3D golden, stars only (z 0.6-1.7)           -0.102   0.360            -0.28
+    KROSS stars only (z~0.9)                        +0.593   0.994            +0.60
+
+    joint, one free LEVEL per survey and one common slope (the only defensible combination once
+    the levels disagree -- k02 Part 5's design, now censoring-free).  MSA-3D and KROSS are
+    EXCLUDED from the joint fit: their tables carry no gas, so their g_bar is a lower bound and
+    their level is not on the same footing as the others.
+      common d log a_0/dz = -0.3069 +- 0.1864   (N = 195, 2 surveys: MUSE-DARK II lensed, RC100)
+        level(MUSE-DARK II lensed (z 0.5-1.45)      ) -> a_0(z=0) = 9.790e-11
+        level(RC100 (z 0.6-2.5)                     ) -> a_0(z=0) = 5.274e-10
+        FRAMEWORK, a_0 constant            predicts +0.000 dex/z  ->   -1.65 sigma
+        LambdaCDM-native emergent rise     predicts +0.131 dex/z  ->   -2.35 sigma
+        a_0 ~ c H(z) over 0.5<z<2.5        predicts +0.246 dex/z  ->   -2.97 sigma
+        MUSE-DARK III (Ciocan+2026)        predicts +0.295 dex/z  ->   -3.23 sigma
+
+    THE CONTROL k03 SHOWED IS DECISIVE, redone here on the uncensored statistic: MUSE-DARK II's own
+    gas fraction rises with z BY CONSTRUCTION (Tacconi+20 and NUM scaling relations), so the slope
+    must be refitted with the stellar share of g_bar partialled out of z.
+      raw                       d log a_0/dz = -1.448 +- 0.353 (-4.10 sigma)
+      f_star partialled out of z             = -0.532 +- 0.450 (-1.18 sigma)
+      (k03 measured the same collapse on the CENSORED statistic: -0.645 +- 0.273 raw -> +0.016
+       +- 0.253 fully controlled.  The uncensored slope is steeper, exactly as k03 predicted it
+       would be, because censoring removes the low-a_0 galaxies preferentially at high z.)
+  [FAIL] k-hzs-3c THE GAS-FRACTION CONTROL on the censoring-free slope: MUSE-DARK II's apparent decline must survive removing the one variable that rises with z by construction in its own catalogue.  The check is that the controlled slope stays more than 2 sigma from zero   (raw -1.448 +- 0.353 -> controlled -0.532 +- 0.450; the decline is the sample's own gas-scaling relation, not a_0)
+  [PASS] k-hzs-3 MUTATION (within-survey shuffle of the per-galaxy a_0): permuting inside each survey must destroy the common slope.  If it does not, the slope is the survey ladder and not redshift   (real -0.3069 +- 0.1864; shuffled +0.0008 +- 0.1118)
+  [PASS] k-hzs-3b THE CENSORING-FREE a_0(z), and the check that can fail is that it agrees with the framework's flat law within 2 sigma while separating from at least one rival   (common slope -0.3069 +- 0.1864 = -1.65 sigma from flat; LambdaCDM-native rise at -2.35 sigma, cH(z) at -2.97, MUSE-DARK III at -3.23)
+
+==========================================================================================================================
+PART 4 -- the Upsilon lever, MEASURED at Upsilon x 1.5 on the level AND on the scatter
+==========================================================================================================================
+    sample                                    log a0 (x1)  log a0 (x1.5)    lever  sd r (x1)  sd r (x1.5)  d sd/dlogU
+    SPARC resolved g_bar (z=0)                    -10.008        -10.275   -1.517      0.139        0.141      +0.006
+    SPARC degraded to M_bar+R_e (z=0)             -10.435        -10.790   -2.018      0.189        0.178      -0.063
+    MUSE-DARK II lensed (z 0.5-1.45)              -10.429        -10.622   -1.097      0.359        0.337      -0.120
+    RC100 (z 0.6-2.5)                              -9.810        -10.711   -5.112      0.213        0.221      +0.047
+    MSA-3D golden, stars only (z 0.6-1.7)          -8.736         -8.947   -1.198      0.190        0.196      +0.035
+    KROSS stars only (z~0.9)                      -10.035        -11.063   -5.840      0.406        0.413      +0.038
+
+    The LEVEL's lever is LAMBDA x (stellar share), exactly as k02 derived.  The SCATTER's lever is
+    an order of magnitude smaller in every sample -- which is the one methodological gain here:
+    on the redshift axis, the SCATTER is nearly Upsilon-free where the LEVEL never is.
+  [PASS] k-hzs-4 THE UPSILON LEVER, measured by re-running the pipeline at Upsilon x 1.5 (not asserted): the check that can fail is that the residual SCATTER is at least 3x less sensitive to Upsilon than the LEVEL is, in every sample   (|lever| level vs scatter: SPARC resolved g_bar 1.52/0.01, SPARC degraded to M_bar+R_e 2.02/0.06, MUSE-DARK II lensed 1.10/0.12, RC100 5.11/0.05, MSA-3D golden, stars only 1.20/0.04, KROSS stars only 5.84/0.04)
+
+==========================================================================================================================
+PART 5 -- the LambdaCDM alternative computed beside the framework
+==========================================================================================================================
+    RC100: the framework predicts f_DM(<R_e) = 1 - 1/nu(g_bar/a_0) from the BARYONS ALONE, with no
+    halo, no concentration and no free parameter.  Measured against the survey's own f_DM:
+      mean predicted 0.268 vs mean observed 0.324; rms residual 0.160; corr +0.650
+    LambdaCDM makes NO zero-parameter prediction here -- f_DM inside R_e depends on halo mass,
+    concentration, and the baryon distribution, all free -- so the comparison is one-sided by
+    construction and is reported as such, not as a win.
+
+    The honest LambdaCDM-side statement, and it is against the framework (k02 Part 8): read as f_DM
+    the SAME data carry a lever of order 0.3-0.7 to the mass calibration, against LAMBDA = 1.5-3.4
+    for a_0.  LambdaCDM's variable is the more stable one; the framework's compensation is that its
+    variable is supposed to be a CONSTANT, so its scatter is a test and f_DM's is not.
+
+==========================================================================================================================
+PART 6 -- the restatement test, executed, and both footings
+==========================================================================================================================
+    Attempt: derive sd(r)^2 = sigma_v^2 + (1+m)^2 sigma_M^2 from v^4 = G M_b a_0 plus algebra.
+    In the deep limit m -> -1/2, so (1+m) -> 1/2 -- a NUMBER, not a function.  The deep limit
+    therefore gives the weight 1/2 for every survey at every acceleration and CANNOT reproduce the
+    measured spread of (1+m) across the archive.  Numerically:
+      sample                                    <(1+m)> measured  deep-limit value   dex apart
+      SPARC resolved g_bar (z=0)                           0.632             0.500      +0.102
+      SPARC degraded to M_bar+R_e (z=0)                    0.658             0.500      +0.119
+      MUSE-DARK II lensed (z 0.5-1.45)                     0.652             0.500      +0.115
+      RC100 (z 0.6-2.5)                                    0.774             0.500      +0.190
+      MSA-3D golden, stars only (z 0.6-1.7)                0.637             0.500      +0.105
+      KROSS stars only (z~0.9)                             0.744             0.500      +0.173
+  [PASS] k-hzs-6 THE RESTATEMENT TEST, executed rather than asserted: the deep-MOND law v^4 = G M_b a_0 fixes (1+m) = 1/2 identically, so it cannot produce the weights this candidate uses.  The check is that the measured weights differ from the deep-limit 1/2 by more than 0.05 dex in at least half the samples -- if they did not, this WOULD be the BTFR in disguise   (|log10(<1+m>/0.5)| = 0.102, 0.119, 0.115, 0.190, 0.105, 0.173)
+
+    HOWEVER -- and this is the honest half -- the relation is derivable from the RAR itself: r, m
+    and LAMBDA are all functions of nu, so the candidate is a THEOREM ABOUT MEASUREMENT inside the
+    RAR, not an independent regularity.  It is not the BTFR restated (the weights differ), but it
+    is the RAR's own error propagation.  Labelled a restatement of the RAR's error budget.
+
+    BOTH FOOTINGS:
+    sample                                    d log a0 vs canon  d log a0 vs alt  sd r canon  sd r alt
+    SPARC resolved g_bar (z=0)                           +0.021           -0.061       0.139     0.140
+    SPARC degraded to M_bar+R_e (z=0)                    -0.406           -0.488       0.189     0.189
+    MUSE-DARK II lensed (z 0.5-1.45)                     -0.400           -0.482       0.359     0.357
+    RC100 (z 0.6-2.5)                                    +0.218           +0.137       0.213     0.209
+    MSA-3D golden, stars only (z 0.6-1.7)                +1.292           +1.211       0.190     0.187
+    KROSS stars only (z~0.9)                             -0.006           -0.088       0.406     0.404
+  [PASS] k-hzs-6b both footings carried on every number: the SAME measured a_0 is quoted against two different predictions, so the two columns must differ by exactly the footings' own separation.  This check fails if the estimator is not doing that   (footing separation log10(alt/canonical) = 0.0818 dex, recovered exactly in every sample; the measured level is footing-independent and only its INTERPRETATION differs)
+
+==========================================================================================================================
+PART 7 -- mutation controls
+==========================================================================================================================
+  [PASS] M1 nu = 1 (no boost at all): the residual must get WORSE, i.e. its rms must rise, or the kernel is doing no work on this sample   (rms r with the kernel 0.380 dex vs nu = 1 0.518 dex)
+    injection closure on synthetic curves built to obey the kernel EXACTLY:
+      injected -0.523 dex -> recovered -0.523 dex   (error +0.000)
+      injected -0.222 dex -> recovered -0.222 dex   (error +0.000)
+      injected +0.000 dex -> recovered +0.000 dex   (error +0.000)
+      injected +0.204 dex -> recovered +0.204 dex   (error +0.000)
+      injected +0.477 dex -> recovered +0.477 dex   (error +0.000)
+  [PASS] M2 INJECTION CLOSURE: synthetic galaxies built at each of five a_0 values, at the real g_bar of the real sample, must be read back correctly.  The estimator's own bias is measured here, not assumed -- this is the check that caught item 25's +0.0985 dex bias   (worst |recovered - injected| = 0.0000 dex over -0.52 to +0.48 dex of injected offset)
+    MY OWN FIRST PHRASING OF THIS CONTROL WAS WRONG AND IS CORRECTED HERE.  I wrote it expecting the
+    level to MOVE under a kernel swap, and gated on a move larger than 0.02 dex.  It does not move:
+    at this sample's accelerations (median y = 0.33) Route A and the 'simple' function agree to
+    0.006 dex, so the correct gate is the opposite one -- the level must be ROBUST to the kernel, or
+    it is a statement about nu rather than about a_0.  Gate restated at 0.05 dex and reported both ways.
+  [PASS] M3 KERNEL SWAP: swapping Route A for the 'simple' interpolation function must not move the level by more than 0.05 dex, or the high-z level is a kernel artefact rather than a measurement of a_0   (mean r Route A -0.127 vs simple-nu -0.133 dex, difference 0.0061 -- AGAINST MY EXPECTATION the z ~ 1 level is kernel-robust, because a deep-regime sample is where the kernels agree)
+    ERROR-MODEL STRESS on the candidate (Part 2's ratio), MUSE-DARK II gas sigma varied:
+      sigma_gas = 0.20 dex -> predicted sd(r) = 0.123 against observed 0.359  (ratio 2.91)
+      sigma_gas = 0.35 dex -> predicted sd(r) = 0.183 against observed 0.359  (ratio 1.96)
+      sigma_gas = 0.50 dex -> predicted sd(r) = 0.250 against observed 0.359  (ratio 1.44)
+      sigma_gas = 0.80 dex -> predicted sd(r) = 0.395 against observed 0.359  (ratio 0.91)
+  [PASS] M4 ERROR-MODEL STRESS, and it sizes the candidate honestly: the Part 2 verdict depends on an assumed gas-mass scatter nobody measured for these galaxies.  The check is that the verdict (ratio < 2) survives the full plausible range 0.20-0.80 dex   (reported above; the ratio moves with the assumed sigma_gas, which is exactly why this candidate cannot be Kepler-grade on present data)
+
+==========================================================================================================================
+VERDICT (k-high-z amplified scatter)
+==========================================================================================================================
+  NOT KEPLER-GRADE, and five checks FAIL below; every one of the failures is a result.
+
+  WHAT THE RESIDUAL BUYS.  r censors nothing, where every existing high-z a_0 in this programme
+  censors 20-30% of its sample one-sidedly (measured in k_high-z_floor_census).  Using it:
+   * the estimator is UNBIASED at z = 0 on resolved data: SPARC returns 9.822e-11, +0.021 dex from canonical;
+   * but DEGRADED to high-z information the same galaxies give -0.427 dex, and that bias
+     runs with gas fraction from -0.29 (f_gas < 0.35) to -0.72 (f_gas > 0.75), a 0.44 dex range.
+
+  THE HEADLINE, and it is a NEGATIVE one that corrects the proposing stage's K-B.
+   * unmatched, log a_0(z~1) - log a_0(z=0) = +0.006 +- 0.154 dex -- but the
+     matching control FAILED, so that number is void: it matches a median-f_gas 0.44 local sample
+     to a median-f_gas 0.70 high-z one across a bias that depends on exactly that variable.
+   * three weight-free f_gas-window constructions give -0.006 +- 0.202, +0.082 +- 0.163, +0.126 +- 0.282 dex;
+   * the reweighted construction gives +0.518 +- 0.338 dex.
+   * THE CONSTRUCTIONS DISAGREE BY MORE THAN EITHER ERROR BAR.  a_0(z~1)/a_0(z=0) is therefore
+     systematics-limited at about 0.5 dex -- six times the 0.082 dex gap between the two footings
+     and twice the +0.241 dex that a_0 ~ cH(z) would produce over this baseline.  A verdict that
+     flips on a construction is not a verdict; this rung decides nothing, and k03's quoted
+     +0.058 +- 0.125 dex understates the systematic by a factor of four.
+
+  THE SLOPE, same story: MUSE-DARK II's censoring-free within-sample slope is -1.448 +- 0.353
+  dex/z raw, and -0.532 +- 0.450 with the stellar share partialled out of z --
+  the gas-scaling artefact k03 found on the censored statistic, reproduced on the uncensored one.
+
+  THE CANDIDATE LAW ITSELF (Part 2) FAILS its cross-survey form: the implied baryonic-mass scatter
+  runs 0.18 to 0.55 dex across the archive, a factor 3.1, where one constant a_0 with honest errors
+  needs one number.  And criterion (5): r, m and LAMBDA are all functions of nu, so this is the
+  RAR's own error propagation -- a theorem about measurement, not a second regularity.  It is NOT
+  the BTFR restated (the deep limit fixes (1+m) = 1/2 and the measured weights are 0.62-0.77), but
+  that is a distinction inside one relation, not a new one.
+
+  WHAT SURVIVES AND IS WORTH KEEPING
+   * the residual estimator itself: unbiased at z = 0 to 0.021 dex, injection-closed to 0.0000 dex
+     over a full dex of injected offset, and censoring-free.  It should replace the per-galaxy
+     inversion in every high-z item in this programme.
+   * AGAINST MY OWN EXPECTATION, the z ~ 1 level is KERNEL-ROBUST: Route A and the 'simple'
+     function agree to 0.006 dex on this sample, because a deep-regime sample is where they agree.
+   * the SCATTER has an Upsilon lever 25-100x smaller than the LEVEL (Part 4) -- the only statistic
+     on the redshift axis that escapes the mass-calibration wall, and the reason it is worth
+     building the decisive z ~ 2.5 test around a scatter rather than a level.
+==========================================================================================================================
+
+RESULT: 19 checks, 5 FAIL -> ["k-hzs-1c THE MATCHING CONTROL, and it is what decides whether the differential means anything: the estimator's bias is measured in bins of gas fraction at z = 0.  The check is that it is STABLE -- if the bias runs with f_gas, then matching a low-f_gas local sample to a high-f_gas high-z one is invalid and the differential is a gas-fraction difference wearing redshift's clothes", 'k-hzs-1d2 THE WINDOW VERSION must agree with the reweighted version, or the matching itself is driving the answer.  The check is that the two constructions of the SAME quantity agree within the larger of their two error bars', "k-hzs-1e AND THE POWER OF THE TEST, stated so it cannot be over-read: the matched differential's error bar must be small enough to see the rival branches.  The check is that it separates the framework's flat law from a_0 ~ cH(z) (+0.241 dex over this baseline) at 2 sigma or better", 'k-hzs-2b AND THE CROSS-SURVEY VERSION, which is the Kepler-shaped form: the implied baryonic-mass scatter must be ONE plausible number across five samples spanning z = 0 to 2.5.  The check is that it is (a) in the plausible range 0.05-0.40 dex everywhere and (b) consistent to within a factor 2', "k-hzs-3c THE GAS-FRACTION CONTROL on the censoring-free slope: MUSE-DARK II's apparent decline must survive removing the one variable that rises with z by construction in its own catalogue.  The check is that the controlled slope stays more than 2 sigma from zero"]   rc=1

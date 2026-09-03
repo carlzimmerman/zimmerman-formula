@@ -1,0 +1,221 @@
+==============================================================================================================================
+k_dimensional_efe_break -- the EFE break radius, and the environment split, on the KiDS-1000 lensing RAR
+==============================================================================================================================
+
+------------------------------------------------------------------------------------------------------------------------------
+0.  THE RESTATEMENT TEST, EXECUTED
+------------------------------------------------------------------------------------------------------------------------------
+  Try to derive the candidate from v^4 = G M_b a_0 plus algebra.
+    v^4 = G M_b a_0  gives  v_flat = (G M_b a_0)^(1/4).  That is a NUMBER attached to a galaxy.  To get a RADIUS
+    out of it one needs a second acceleration to compare the galaxy's own field with.  The BTFR supplies none:
+    it is a statement about the asymptote of one isolated system and is blind to everything outside it.
+    Formally: the deep-MOND limit is invariant under adding any constant to the potential's source-free part, so
+    every function of (M_b, a_0) alone has dimensions built from G M_b and a_0 only, and the ONE length that can
+    be formed is r_M = sqrt(G M_b/a_0), the MOND radius -- which is where g_bar = a_0, not where the boost ends.
+    r_break = v_flat^2/g_ext = r_M/sqrt(e_N) carries a SECOND dimensionless argument e_N that no rearrangement of
+    v^4 = G M_b a_0 can produce.  THE DERIVATION DOES NOT CLOSE.
+  => candidate 1 is NOT a restatement of the BTFR/RAR/deep-MOND limit.  is_restatement = False.
+  Candidate 2 is the same statement differenced between two samples at fixed M_b, so the BTFR predicts
+    IDENTICALLY ZERO for it -- it cannot even begin.  NOT a restatement either.  is_restatement = False.
+  [PASS] K0 the restatement test is executed, not asserted: the deep-MOND limit g_obs = sqrt(g_bar a_0) is a function of g_bar and a_0 ALONE, so it predicts the same RAR in every environment and cannot contain a break radius; the candidate's extra content is the second argument e_N   (derivation does not close for either candidate; is_restatement = False for both)
+
+------------------------------------------------------------------------------------------------------------------------------
+1.  DATA, AND THE COVARIANCES IN THE ONE INDEX ORDER THAT IS POSITIVE DEFINITE  (bug pattern 4)
+------------------------------------------------------------------------------------------------------------------------------
+  [PASS] K1.1 both 60x60 covariances load positive definite in the (m,n,i,j) order, and the plain reshape that voided an earlier number in this repository is exhibited as indefinite rather than hidden   (correct order min eig +9.959e-03; plain reshape min eig -8.889e+01)
+  [PASS] K1.2 the covariance diagonal reproduces the quoted per-point errors in both files (a check that fails if the bias column, the ordering or the file pairing is wrong)   (max |sqrt(diag)/err - 1| = 0.0001)
+  g_bar range 1.382e-15 to 3.917e-12 m/s^2  (15 bins x 4 stellar-mass bins)
+  stellar-mass bin edges log10(M*/Msun) = 8.5 / 10.3 / 10.6 / 10.8 / 11.0  (identical in both files)
+
+  2M++ external fields, 175 lines of sight, NEWTONIAN e_N = g_N,ext/a_0:
+    no-cluster : median 3.823e-04   16th pct 1.728e-04   minimum over 175 sightlines 9.796e-05
+    max-cluster: median 3.270e-03
+    (the MONDian field is nu(e_N) e_N a_0 = 0.0197 a_0 at the no-cluster median --
+     that 0.0197 a_0 is the same number in the other convention, not a different field)
+  => the framework's OWN predicted break sits at g_bar = e_N a_0 = 3.578e-14 m/s^2 (canonical),
+     which is inside the measured range, between bin 5 (1.34e-14) and bin 6 (2.36e-14).
+  => PRE-SPECIFIED deep window for the slope test: the 6 bins below that predicted break.  No threshold is tuned anywhere in this script; the window is fixed by 2M++ before any fit.
+
+------------------------------------------------------------------------------------------------------------------------------
+2.  THE UNIVERSAL PROFILE D(X ; e_N), COMPUTED FROM THE KERNEL AND VALIDATED THREE WAYS
+------------------------------------------------------------------------------------------------------------------------------
+  [PASS] K2.1 the profile reproduces its own ANALYTIC deep-MOND limit including the baryonic point mass: an isothermal phantom gives Delta_Sigma = g/(4G) (exactly B21's eq. 7) and the central baryon adds M_b/(pi R^2), so 4 D X -> 1 + 4/(pi X).  Fails if the projection, the point mass or the kernel derivative is wrong   (X=299: 1.00269 vs 1.00426  X=1000: 1.00119 vs 1.00127  X=2985: 1.00077 vs 1.00043)
+  [PASS] K2.2(0.01) the QUENCHED limit is exact: with the external field dominating, the lens is a point mass of nu(e_N) M_b and D -> nu(e_N)/(pi X^2).  Fails if the saturation is mis-implemented   (D/(nu(e)/pi X^2) = 0.99927 at X = 300, nu = 10.508)
+  [PASS] K2.2(1) the QUENCHED limit is exact: with the external field dominating, the lens is a point mass of nu(e_N) M_b and D -> nu(e_N)/(pi X^2).  Fails if the saturation is mis-implemented   (D/(nu(e)/pi X^2) = 0.99994 at X = 300, nu = 1.582)
+      brute force X=   3.0 e=0e+00:  table 1.022330e-01   independent 1.021720e-01   ratio 0.99940
+      brute force X=  30.0 e=0e+00:  table 8.517019e-03   independent 8.511330e-03   ratio 0.99933
+      brute force X=  30.0 e=1e-03:  table 7.134145e-03   independent 7.133562e-03   ratio 0.99992
+  [PASS] K2.3 an independent brute-force recomputation (different quadrature, numerical rather than analytic kernel derivative, different radial sampling) agrees with the table the fits use   (max |ratio-1| = 0.0007)
+
+------------------------------------------------------------------------------------------------------------------------------
+3.  THE DISJOINT ENVIRONMENT SPLIT: the NON-ISOLATED stack built exactly from the released lensing weights
+------------------------------------------------------------------------------------------------------------------------------
+  isolated weight share w = wk2_iso/wk2_all: min 0.241  median 0.335  max 0.414
+  Delta_Sigma_all = w Delta_Sigma_iso + (1-w) Delta_Sigma_non is an IDENTITY of the weighted stack, so the
+  non-isolated stack is recovered exactly and is statistically DISJOINT from the isolated one.
+  [PASS] K3.1 the decomposition is an identity: recombining the isolated and the reconstructed non-isolated stacks returns the all-lens stack to machine precision   (max |recon/all - 1| = 2.22e-16)
+  [PASS] K3.2 the implied covariance of the disjoint non-isolated stack is positive definite -- a check that CAN fail, and would if the nesting assumption or the weight identification were wrong   (min eigenvalue +1.7108e-02)
+  [PASS] K3.3 the weight-based w agrees with the w implied independently by the error ratio (shape noise scales as 1/sqrt(weight)): a cross-check on the nesting that fails if the two files are not the same lenses   (median |w*(sig_iso/sig_all)^2 - 1| = 0.016)
+
+  the split, at the deepest measured acceleration g_bar = 1.38e-15 m/s^2 (R ~ 3 Mpc):
+    mass bin 1: isolated  0.970 +- 0.250   NON-isolated  2.293 +- 0.160   ratio  2.36
+    mass bin 2: isolated  0.849 +- 0.207   NON-isolated  2.877 +- 0.161   ratio  3.39
+    mass bin 3: isolated  0.785 +- 0.176   NON-isolated  2.625 +- 0.156   ratio  3.34
+    mass bin 4: isolated  0.627 +- 0.147   NON-isolated  2.800 +- 0.149   ratio  4.47
+
+------------------------------------------------------------------------------------------------------------------------------
+4.  MODEL-FREE, CONVERSION-FREE, UPSILON-FREE: the deep-end slope of each stack
+------------------------------------------------------------------------------------------------------------------------------
+  d log Delta_Sigma / d log g_bar is identical to d log g_obs / d log g_bar (B21's conversion is a constant),
+  and a rigid recalibration of the abscissa by Upsilon cannot change a slope.  Predicted 1/2 unquenched, 1
+  fully quenched.  Fitted jointly across the four mass bins with one shared slope and four amplitudes, using
+  the full covariance restricted to the pre-specified deep window.
+
+  PRE-SPECIFIED window (below the 2M++ break): 6 deepest g_bar bins x 4 mass bins = 24 points
+    ISOLATED     slope = +0.551 +- 0.040   chi2 =   34.5/19
+    NON-ISOLATED slope = +0.284 +- 0.020   chi2 =   31.4/19
+    all lenses   slope = +0.342 +- 0.020   chi2 =   48.8/19
+    DIFFERENCE (disjoint samples, errors add in quadrature): -0.267 +- 0.045
+
+  variant: 7 bins: 7 deepest g_bar bins x 4 mass bins = 28 points
+    ISOLATED     slope = +0.569 +- 0.040   chi2 =   44.4/23
+    NON-ISOLATED slope = +0.273 +- 0.020   chi2 =   35.5/23
+    all lenses   slope = +0.341 +- 0.020   chi2 =   55.9/23
+    DIFFERENCE (disjoint samples, errors add in quadrature): -0.296 +- 0.045
+
+  variant: all 15 bins: 15 deepest g_bar bins x 4 mass bins = 60 points
+    ISOLATED     slope = +0.476 +- 0.010   chi2 =  101.9/55
+    NON-ISOLATED slope = +0.312 +- 0.010   chi2 =  115.8/55
+    all lenses   slope = +0.364 +- 0.010   chi2 =  147.0/55
+    DIFFERENCE (disjoint samples, errors add in quadrature): -0.164 +- 0.014
+
+  the framework's OWN predicted slope in the pre-specified window at no external field (e_N = 1.00e-09): +0.503
+
+  the framework's OWN predicted slope in the pre-specified window at 2M++ no-cluster median (e_N = 3.82e-04): +0.898
+
+  the framework's OWN predicted slope in the pre-specified window at 2M++ max-cluster median (e_N = 3.27e-03): +0.985
+  [FAIL] K4.1 CANDIDATE 1, the direct form: in the pre-specified deep window -- entirely BELOW the break the framework's own 2M++ external field predicts -- the isolated stack's slope must be near 1 (quenched), not 1/2.  This check fails if it is not   (slope = +0.551 +- 0.040: 11.2 sigma from the quenched 1, 1.3 sigma from the unquenched 1/2)
+  [FAIL] K4.2 CANDIDATE 2, the sign test: the framework's EFE requires the higher-external-field (non-isolated) stack to have the STEEPER deep-end slope, d(slope)/d log g_ext > 0.  LambdaCDM's host/two-halo term requires the opposite sign.  This check fails if the difference is not positive   (slope(non-isolated) - slope(isolated) = -0.267 +- 0.045 (6.0 sigma, sign LambdaCDM-like))
+
+------------------------------------------------------------------------------------------------------------------------------
+5.  THE FRAMEWORK FIT: profile the external field, four mass calibrations free, both footings
+------------------------------------------------------------------------------------------------------------------------------
+
+  ---- footing canonical: a_0 = 9.360e-11 m/s^2 ----
+    isolated      chi2(no external field) =  131.8/55   best chi2 =  131.8 at e_N = 1.00e-07
+                  95% upper limit e_N < 2.61e-05      2M++ no-cluster median e_N = 3.82e-04 costs delta chi2 =  +107.7
+                                                      2M++ max-cluster median  = 3.27e-03 costs delta chi2 =  +359.1
+    non-isolated  chi2(no external field) =  812.7/55   best chi2 =  812.8 at e_N = 1.00e-07
+                  95% upper limit e_N < 2.53e-06      2M++ no-cluster median e_N = 3.82e-04 costs delta chi2 =  +499.0
+                                                      2M++ max-cluster median  = 3.27e-03 costs delta chi2 = +1052.4
+
+  ---- footing alt: a_0 = 1.130e-10 m/s^2 ----
+    isolated      chi2(no external field) =  127.4/55   best chi2 =  127.4 at e_N = 3.16e-06
+                  95% upper limit e_N < 2.01e-05      2M++ no-cluster median e_N = 3.82e-04 costs delta chi2 =  +135.1
+                                                      2M++ max-cluster median  = 3.27e-03 costs delta chi2 =  +405.6
+    non-isolated  chi2(no external field) =  794.2/55   best chi2 =  794.3 at e_N = 1.00e-07
+                  95% upper limit e_N < 1.79e-06      2M++ no-cluster median e_N = 3.82e-04 costs delta chi2 =  +586.7
+                                                      2M++ max-cluster median  = 3.27e-03 costs delta chi2 = +1144.7
+  [FAIL] K5.1 CANDIDATE 1 read backward, as the new measurement it claims to be: the KiDS isolated stack measures the external field on its own lenses.  The check that CAN fail is whether that measurement agrees with the framework's own 2M++ external field, and it does not   (lensing 95% bound e_N < 2.61e-05 against 2M++ median 3.82e-04 (+1.17 dex over), delta chi2 = +107.7)
+  [FAIL] K5.2 CANDIDATE 2 in the model fit: the framework requires the non-isolated stack to carry the LARGER external field.  Fails if the fitted bound goes the other way   (95% bounds: isolated e_N < 2.61e-05, non-isolated e_N < 2.53e-06)
+
+------------------------------------------------------------------------------------------------------------------------------
+6.  THE CANDIDATE STATED AS A NUMBER: r_break = v_flat^2/g_ext, both footings
+------------------------------------------------------------------------------------------------------------------------------
+  For each stellar-mass bin, using B21's own baryonic masses, r_break = sqrt(G M_b/(a_0 e_N)) = r_M/sqrt(e_N).
+    canonical  predicted r_break at the 2M++ field  [Mpc]:  0.254   0.372   0.479   0.589
+               r_break the lensing data require (95%) [Mpc]:  0.973   1.423   1.833   2.255
+    alt        predicted r_break at the 2M++ field  [Mpc]:  0.231   0.338   0.436   0.536
+               r_break the lensing data require (95%) [Mpc]:  0.885   1.295   1.668   2.052
+  the deepest bin probes R = sqrt(G M_b/g_bar) = 1.29 to 3.00 Mpc, so the predicted break is well inside reach.
+
+------------------------------------------------------------------------------------------------------------------------------
+7.  THE ALTERNATIVE COMPUTED BESIDE IT: NFW + stars, and the additive-term theorem
+------------------------------------------------------------------------------------------------------------------------------
+  [PASS] K7.0 the analytic NFW Delta_Sigma used for the LambdaCDM alternative is validated against an independent numerical projection of the same density profile -- the alternative has to be right for the comparison to mean anything   (R=0.1: 59.192 vs 59.186  R=0.5: 12.444 vs 12.445  R=2.0: 1.719 vs 1.720)
+  isolated      LambdaCDM NFW+stars, c(M) fixed  (4 par): chi2 =   239.6/60   logM200 = 11.86 12.24 12.39 12.54
+                LambdaCDM NFW+stars, c free      (5 par): chi2 =    91.1/60   logM200 = 11.99 12.35 12.50 12.61   c x 0.41
+                framework (canonical, 4 calibrations + e_N): chi2 =   131.8/60
+  non-isolated  LambdaCDM NFW+stars, c(M) fixed  (4 par): chi2 =  1345.3/60   logM200 = 11.81 12.21 12.39 12.62
+                LambdaCDM NFW+stars, c free      (5 par): chi2 =   285.1/60   logM200 = 12.14 12.49 12.61 12.77   c x 0.10
+                framework (canonical, 4 calibrations + e_N): chi2 =   812.7/60
+
+  THE THEOREM the environment split was supposed to rest on, stated and then tested:
+    any ADDITIVE positive term with a shallower fall-off than the lens's own profile makes the log-log slope
+    SHALLOWER, and any MULTIPLICATIVE quench that acts only at low g_bar makes it STEEPER.  LambdaCDM's host and
+    two-halo terms are of the first kind, the framework's EFE is of the second, so the SIGN of the difference
+    between two environments was claimed to separate them.  Section 8 shows why that claim fails.
+
+------------------------------------------------------------------------------------------------------------------------------
+8.  WHY CANDIDATE 2's SIGN IS NOT DEFINITE -- against the candidate, on the framework's OWN physics
+------------------------------------------------------------------------------------------------------------------------------
+  The deepest bins are at R = 1.29-3.00 Mpc.  A non-isolated lens has a neighbour INSIDE
+  that aperture by construction, and in the framework that neighbour carries its own phantom halo, which
+  contributes POSITIVELY to Delta_Sigma exactly there.  The framework therefore predicts BOTH a multiplicative
+  quench of the lens's own halo AND an additive neighbour term, of opposite signs, and does not predict which
+  wins without a model of the neighbour distribution.  Quantitatively:
+    mass bin 1: own-halo quench factor at the deepest bin = sqrt(g_bar/(e_N a_0)) = 0.197, i.e. the
+                lens's own signal must fall to 19.7% -- yet the measured non-isolated stack is 2.36x the isolated one.
+  To produce the measured non-isolated Delta_Sigma = 2.29 Msun/pc^2 at R = 1.29 Mpc the
+  neighbour term alone must supply a projected excess mass of 1.21e+13 Msun inside that aperture.
+  In the framework a neighbouring GROUP of M_b = 1e13 Msun at 1 Mpc carries a phantom of nu x M_b = 8.70e+13 Msun -- ample.  The escape is open,
+  and it is the same escape that candidate 1 named.  CANDIDATE 2's SIGN-DEFINITENESS IS WITHDRAWN.
+
+  ESCAPE QUANTIFIED for candidate 1: refit the ISOLATED stack with a free additive correlated-structure term
+  (amplitude free, shape Delta_Sigma ~ R^0.45 as linear theory gives over 0.3-2.6 Mpc) and see how much the
+  bound on e_N degrades.
+    canonical: with the neighbour term marginalised, 95% bound e_N < 1.04e-04 (was 2.61e-05); the 2M++ median still costs delta chi2 = +28.5
+  [FAIL] K8 the escape is quantified rather than asserted: marginalising a free additive correlated-structure term of the shape linear theory gives does NOT rescue the framework's own external field on the isolated stack.  This check fails if the tension survives marginalisation   (delta chi2 at the 2M++ median = +28.5 with the neighbour term free (bound moves +0.60 dex))
+
+------------------------------------------------------------------------------------------------------------------------------
+9.  MUTATION CONTROLS
+------------------------------------------------------------------------------------------------------------------------------
+    injected e_N = 3.82e-04  ->  recovered median 3.16e-04 [2.15e-04, 6.81e-04] over 12 mocks
+  [PASS] K9.1 mutation: mocks drawn from the released covariance with the 2M++ external field INJECTED are recovered at that value, so the null result of section 5 is a measurement and not a blind spot   (injected -3.42, recovered -3.50 dex)
+    injected e_N = 1.00e-05  ->  recovered median 1.00e-05 [1.00e-07, 2.15e-05] over 12 mocks
+  [PASS] K9.2 mutation: switch the kernel off.  Four free Newtonian point masses cannot fit the isolated stack, so the kernel's SHAPE and not the four free calibrations is doing the work   (Newton chi2 = 1130.5 vs framework 131.8 (delta +998.7))
+
+------------------------------------------------------------------------------------------------------------------------------
+10.  THE UPSILON LEVER, MEASURED BY RE-RUNNING THE PIPELINE AT UPSILON x 1.5
+------------------------------------------------------------------------------------------------------------------------------
+  Upsilon x 1.5 at a stellar share of 0.85 multiplies every baryonic mass by 1.425, i.e. shifts
+  log g_bar by +0.1538 dex.  Re-running everything on the shifted abscissa:
+    deep-end slope, isolated      : +0.5512 -> +0.5512   d(slope)/d log Upsilon = +0.0000
+    slope difference (candidate 2): -0.2671 -> -0.2671   d(diff)/d log Upsilon = -0.0000
+    95% bound on e_N (candidate 1): -4.583 -> -4.583 dex   d log e_N/d log Upsilon = +0.001
+
+  AND THE REASON IT IS ZERO, which is the strongest thing in this script: a rigid rescaling of the abscissa,
+  g_bar -> lambda g_bar, is EXACTLY absorbed by the four free mass calibrations f_m -> f_m/lambda.  The external
+  field is therefore inferred from the SHAPE of the lensing RAR alone -- from where it bends relative to its own
+  deep-MOND amplitude -- and not from any absolute mass.  The lever is not small; it is identically zero, and
+  the numerical re-run above is the verification of that, not an estimate of it.
+  [PASS] K10 the Upsilon lever is MEASURED by re-running the pipeline, and it is exactly zero: the four free mass calibrations absorb any rigid rescaling of the baryonic mass, so both the slope and the inferred external field are invariant.  This check fails if the re-run moves either of them   (d(slope)/d log Upsilon = +0.0000, d(slope difference)/d log Upsilon = -0.0000, d log e_N/d log Upsilon = +0.0008; the +1.17 dex gap to the 2M++ field therefore cannot be an Upsilon error at all)
+
+==============================================================================================================================
+VERDICT
+==============================================================================================================================
+  CANDIDATE 1 -- the EFE break radius r_break = v_flat^2/g_ext.  NOT A RESTATEMENT (section 0), and it does
+  make a sharp, mass-to-light-free, parameter-free prediction: the lensing RAR must bend from slope 1/2 to slope
+  1 at g_bar = e_N a_0.  IT IS REFUTED BY THE DATA IT PREDICTS FOR.  In the pre-specified window entirely below
+  the break the framework's own 2M++ field predicts, the isolated KiDS stack has slope +0.551 +- 0.040 --
+  1.3 sigma from the unquenched 1/2 and 11.2 sigma from the quenched 1.  The framework's OWN
+  predicted slope there, computed from its own kernel at its own 2M++ field, is +0.898 (no-cluster) to +0.985
+  (max-cluster), which the measurement excludes at 8.7 and 10.8 sigma.  Read as the new measurement it
+  claims to be, the stack measures e_N < 2.6e-05 (95%) against a 2M++ no-cluster median of 3.8e-04, a
+  +1.17 dex gap that survives marginalising a free correlated-structure term and that no credible
+  Upsilon error can close (lever +0.00).  This CORROBORATES the repository's item 113, reached there by a
+  different route (Fig-3 radial profiles, full profile fit); the new content here is that it is also true
+  model-free, in the slope alone, where no mass-to-light ratio can enter.
+
+  CANDIDATE 2 -- the environment-split sign test.  ITS PREMISE IS FALSE, and the data agree.  Measured on two
+  exactly DISJOINT stacks at the same stellar mass, the deep-end slope difference is -0.267 +- 0.045 --
+  the sign the additive host term gives, not the sign the EFE gives.  But the claim that this separates the two
+  theories does not survive contact with the framework's own physics: at R = 1.3-3.0 Mpc the neighbour
+  that fails the isolation cut is INSIDE the aperture and carries its own phantom, so the framework predicts an
+  additive positive term too, of undetermined size.  The split is NOT sign-definite.  Reported against interest:
+  the candidate as proposed is withdrawn, and what remains is a consistency, not a discriminator.
+
+  NEITHER CANDIDATE IS A SECOND KEPLER-GRADE LAW.  Candidate 1 fails criterion (3) -- it does not hold; candidate
+  2 fails criterion (1)/(2) -- there is no predicted coefficient once the neighbour term is admitted.
+
+RESULT: 19 checks, 5 FAIL -> ["K4.1 CANDIDATE 1, the direct form: in the pre-specified deep window -- entirely BELOW the break the framework's own 2M++ external field predicts -- the isolated stack's slope must be near 1 (quenched), not 1/2.  This check fails if it is not", "K4.2 CANDIDATE 2, the sign test: the framework's EFE requires the higher-external-field (non-isolated) stack to have the STEEPER deep-end slope, d(slope)/d log g_ext > 0.  LambdaCDM's host/two-halo term requires the opposite sign.  This check fails if the difference is not positive", "K5.1 CANDIDATE 1 read backward, as the new measurement it claims to be: the KiDS isolated stack measures the external field on its own lenses.  The check that CAN fail is whether that measurement agrees with the framework's own 2M++ external field, and it does not", 'K5.2 CANDIDATE 2 in the model fit: the framework requires the non-isolated stack to carry the LARGER external field.  Fails if the fitted bound goes the other way', "K8 the escape is quantified rather than asserted: marginalising a free additive correlated-structure term of the shape linear theory gives does NOT rescue the framework's own external field on the isolated stack.  This check fails if the tension survives marginalisation"]   rc=1

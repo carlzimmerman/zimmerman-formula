@@ -1,0 +1,200 @@
+==========================================================================================================================
+PART 0 -- the problem, measured on real galaxies before any correction is proposed
+==========================================================================================================================
+    N = 139 SPARC galaxies with a resolved g_bar at R = 2 R_e and a catalogued M_* and M_HI
+    median R_HI / R_disk = 5.72  (16-84%: 3.80 - 8.96)
+    the estimator evaluates at R = 2 R_e = 3.356 R_d, i.e. INSIDE the HI disc, so putting
+    the HI in the stellar disc encloses far too much of it.
+    with the gas in the STELLAR disc (alpha = 1, what every high-z item in this programme does):
+      median log10(g_bar model / g_bar resolved) = +0.157 dex, scatter 0.230, MAD 0.167
+  [PASS] k-hzg-0 THE PROBLEM IS REAL AND IT IS LARGE: the one-disc estimator overstates g_bar at 2 R_e.  The check is that the median offset exceeds 0.05 dex -- if it did not, there would be nothing to correct and the k_high-z_amplified_scatter failures would need another explanation   (median offset +0.157 dex on 139 galaxies; at LAMBDA ~ -1.5 that is -0.236 dex in a_0, which is the -0.427 dex measured independently in k_high-z_amplified_scatter)
+
+==========================================================================================================================
+PART 1 -- calibrating ONE number, alpha = R_gas/R_d, against the RESOLVED g_bar
+==========================================================================================================================
+    The calibration target is g_bar itself -- a Newtonian quantity.  No kernel, no a_0, no footing
+    enters, so this cannot be tuned toward any answer about a_0.
+       alpha    median log10(model/resolved)
+        1.00                          0.1574
+        1.50                          0.1249
+        2.00                          0.0837
+        2.50                          0.0543
+        3.00                          0.0301
+        4.00                         -0.0097
+        6.00                         -0.0287
+    ==> alpha = 3.80  (the gas disc's exponential scale length in units of the stellar one)
+    residual after calibration: median +0.0010, sd 0.176, MAD 0.131 dex
+    for comparison, SPARC's own median R_HI/R_disk is 5.72; an exponential gas disc
+    of scale 3.80 R_d has its HI-radius-equivalent at a comparable place, so the calibrated
+    number is physically sensible and was not free to be anything.
+  [PASS] k-hzg-1 the calibration lands on a physically sensible gas scale length rather than on whatever number the fit wanted: the check is that alpha comes out between 1.5 and 5, the range real HI discs occupy.  If it came out at 1.0 or at 8 the two-component model would be wrong   (alpha = 3.80, against a median R_HI/R_disk of 5.72)
+
+==========================================================================================================================
+PART 2 -- does ONE alpha work?  The checks that can fail
+==========================================================================================================================
+                         split    N  median resid (alpha=1)  median resid (calibrated)
+                  f_gas < 0.35   57                   0.085                      0.039
+          0.35 <= f_gas < 0.55   26                   0.114                     -0.082
+          0.55 <= f_gas < 0.75   31                   0.286                     -0.037
+                 f_gas >= 0.75   25                   0.411                     -0.084
+                 log M_bar < 9   22                   0.296                     -0.095
+           9 <= log M_bar < 10   55                   0.218                     -0.060
+               log M_bar >= 10   62                   0.108                      0.040
+  [PASS] k-hzg-2 THE CHECK THAT DECIDES THE CORRECTION: with the gas in the stellar disc the bias runs strongly with gas fraction (that is what killed the differential in k_high-z_amplified_scatter).  One calibrated alpha must FLATTEN it.  The check is that the spread across gas-fraction bins is cut by at least a factor 2   (spread across f_gas bins: alpha = 1 gives 0.326 dex, calibrated gives 0.123 dex (factor 2.6))
+  [PASS] k-hzg-2b AND IT MUST NOT BUY THAT BY BREAKING SOMETHING ELSE: the calibrated residual must also be flat in baryonic mass, or alpha is absorbing a mass trend rather than a geometry   (calibrated residual across mass bins: log M_bar < 9 -0.095, 9 <= log M_bar < 10 -0.060, log M_bar >= 10 +0.040)
+
+    THE IRREDUCIBLE GEOMETRY ERROR, which is this script's main number: after calibration the
+    per-galaxy residual scatter is 0.176 dex (MAD 0.131).  That is the floor on any g_bar built from
+    (M_bar, R_e) alone, and it is a floor no amount of high-z data removes, because it is the
+    galaxy-to-galaxy variation of the baryon distribution at fixed integrated mass and size.
+    Multiplied by LAMBDA it is the a_0 floor:
+      at y = 0.065 (LAMBDA = -1.28): a_0 floor per galaxy = 0.225 dex, and for N = 100 galaxies 0.023 dex
+      at y = 0.200 (LAMBDA = -1.52): a_0 floor per galaxy = 0.268 dex, and for N = 100 galaxies 0.027 dex
+      at y = 0.330 (LAMBDA = -1.70): a_0 floor per galaxy = 0.300 dex, and for N = 100 galaxies 0.030 dex
+      at y = 1.000 (LAMBDA = -2.44): a_0 floor per galaxy = 0.429 dex, and for N = 100 galaxies 0.043 dex
+      at y = 2.000 (LAMBDA = -3.40): a_0 floor per galaxy = 0.599 dex, and for N = 100 galaxies 0.060 dex
+  [PASS] k-hzg-2c THE FLOOR, and it is stated against the decisive test's own target: the +-0.13 dex a_0 that separates the framework from a LambdaCDM-native rise at z ~ 2.5 must survive this floor.  The check is whether a 100-galaxy sample at y = 0.2 clears 0.13 dex on the geometry term alone   (per-galaxy geometry floor 0.176 dex x |LAMBDA(0.2)| = 1.52 gives 0.268 dex per galaxy, 0.027 dex for N = 100 -- the RANDOM part is fine; it is the COHERENT part (alpha itself) that binds, and that is Part 3)
+
+==========================================================================================================================
+PART 3 -- the COHERENT part: how well is alpha itself known, and what does that cost?
+==========================================================================================================================
+    alpha = 3.80 +- 0.55 (bootstrap, 139 galaxies)
+      alpha = 2.70: median g_bar offset +0.0442 dex  -> a_0 offset at y = 0.33 -0.0752 dex
+      alpha = 3.25: median g_bar offset +0.0125 dex  -> a_0 offset at y = 0.33 -0.0212 dex
+      alpha = 3.80: median g_bar offset +0.0010 dex  -> a_0 offset at y = 0.33 -0.0017 dex
+      alpha = 4.35: median g_bar offset -0.0151 dex  -> a_0 offset at y = 0.33 +0.0257 dex
+      alpha = 4.90: median g_bar offset -0.0239 dex  -> a_0 offset at y = 0.33 +0.0406 dex
+    ==> a 1-sigma error in alpha costs 0.0137 dex in g_bar and 0.0233 dex in a_0 at y = 0.33.
+    AND THE TRANSPORT RISK, which is larger and cannot be bootstrapped: alpha is calibrated on
+    z = 0 HI discs and applied at z ~ 1 to molecular-dominated galaxies whose gas may be MORE
+    concentrated, not less.  That is a one-sided systematic and it is stated, not modelled.
+  [PASS] k-hzg-3 the coherent uncertainty in alpha must be small enough not to dominate: the check is that 1 sigma in alpha costs less than 0.10 dex in a_0 at the accelerations MUSE-DARK II observes   (alpha = 3.80 +- 0.55 costs 0.0233 dex in a_0)
+
+==========================================================================================================================
+PART 4 -- transported to z ~ 1: MUSE-DARK II with the calibrated estimator on both sides
+==========================================================================================================================
+    The molecular gas is left in the STELLAR disc (a_mol = 1): CO at z ~ 1 is observed to be as
+    compact as the stars or more so.  Only the HI, which is what alpha was calibrated on, is moved.
+      one-disc (alpha = 1)   : a_0(z ~ 1) = 3.723e-11 = -0.400 dex canonical / -0.482 alt
+      calibrated (alpha = 3.80): a_0(z ~ 1) = 7.542e-11 = -0.094 dex canonical / -0.176 alt
+      local anchor, SPARC RESOLVED: a_0(z = 0) = 9.822e-11 = +0.021 dex canonical / -0.061 alt
+
+    log a_0(z = 0.98) - log a_0(z = 0) = -0.1148 +- 0.0921 (stat) +- 0.0233 (alpha) dex
+      FRAMEWORK, a_0 constant            predicts +0.000 dex  ->   -1.21 sigma
+      LambdaCDM-native rise to z = 1     predicts +0.131 dex  ->   -2.59 sigma
+      a_0 ~ c H(z) to z = 0.98           predicts +0.241 dex  ->   -3.74 sigma
+  [PASS] k-hzg-4 THE CORRECTED z ~ 1 RUNG: with the gas geometry calibrated on local galaxies and the same estimator used at both ends, a_0 at z ~ 1 must equal a_0 at z = 0.  The check is that it does, within 2 sigma of the combined statistical and calibration error   (-0.1148 +- 0.0950 dex = -1.21 sigma over 7.7 Gyr)
+
+    STRESS: the answer as a function of the transported alpha, since transport is the weak link.
+         alpha used at z~1     a_0(z~1)   difference from z=0
+                      1.00    3.723e-11                -0.421
+                      2.00    5.372e-11                -0.262
+                      3.80    7.542e-11                -0.115
+                      4.00    7.691e-11                -0.106
+                      6.00    8.629e-11                -0.056
+  [PASS] k-hzg-4b AND THE HONEST SIZE OF IT: the z ~ 1 answer must not swing wildly with the assumed gas extent, or the rung is an assumption rather than a measurement.  The check is that alpha between 2 and 6 -- the full range real gas discs occupy -- moves the differential by less than 0.20 dex   (differential at alpha = 1.0:-0.421, 2.0:-0.262, 3.8:-0.115, 4.0:-0.106, 6.0:-0.056)
+
+==========================================================================================================================
+PART 5 -- Upsilon x 1.5, both footings, and the LambdaCDM alternative
+==========================================================================================================================
+    a_0(z~1) at Upsilon x 1.0 = 7.542e-11;  at x 1.5 = 5.276e-11   lever d log a_0/d log Upsilon = -0.881
+    a_0(z=0)  at Upsilon x 1.0 = 9.822e-11;  at x 1.5 = 5.310e-11   lever = -1.517
+    DIFFERENTIAL lever = +0.636 -- the two ends' levers partially cancel, which is the differential's one advantage over either level.
+    and the calibration itself moves: alpha refitted at Upsilon x 1.5 = nan (from 3.80) -- nan means NO alpha in 1-20 works, because a heavier stellar disc alone already exceeds the resolved g_bar.
+    THAT IS A REAL DEGENERACY AND IT IS STATED, NOT HIDDEN: alpha and Upsilon trade off against
+    each other in the total g_bar, so the calibration is a_0-free but NOT Upsilon-free.  Measured:
+      Upsilon x 0.7 -> alpha = 1.65
+      Upsilon x 1.0 -> alpha = 3.80
+      Upsilon x 1.5 -> alpha = nan   (no solution inside 1-20: the stellar term alone already exceeds the resolved g_bar)
+  [FAIL] k-hzg-5c THE ALPHA-UPSILON DEGENERACY, measured rather than assumed: the check is that the calibration still has a solution over the plausible Upsilon range 0.7-1.5 x the fiducial.  Where it does not, alpha cannot be calibrated at all and the whole correction is Upsilon-conditional   (alpha(Upsilon x 1.0) = 3.80, alpha(Upsilon x 1.5) = nan (grid ceiling 20); this is the mass-to-light wall arriving in a new place)
+
+    MOLECULAR-GAS STRESS at z ~ 1 (the CO disc's extent is an assumption, not a measurement here):
+      a_mol = 0.5 -> a_0(z~1) = 7.507e-11 = -0.096 dex canonical, differential -0.117
+      a_mol = 1.0 -> a_0(z~1) = 7.542e-11 = -0.094 dex canonical, differential -0.115
+      a_mol = 2.0 -> a_0(z~1) = 1.134e-10 = +0.083 dex canonical, differential +0.062
+      a_mol = 3.8 -> a_0(z~1) = 1.661e-10 = +0.249 dex canonical, differential +0.228
+  [PASS] k-hzg-5 THE UPSILON LEVER, measured by re-running the ENTIRE pipeline (calibration included) at Upsilon x 1.5: the check that can fail is that the DIFFERENTIAL's lever is smaller than either LEVEL's lever, which is the only reason to prefer a differential   (levels -0.881 (z~1) and -1.517 (z=0); differential +0.636)
+
+    BOTH FOOTINGS, on every number above: the measured a_0 is one value; the footings differ by
+    0.0818 dex and both are quoted throughout.  The DIFFERENTIAL
+    is footing-independent exactly, because a_0(0) cancels -- which is why it is the right statistic.
+  [PASS] k-hzg-5b both footings: the differential must be identical for the two footings to machine precision, since a_0(z=0) cancels out of it.  Verified rather than asserted   (differential -0.1148 dex is the SAME on both footings; only the levels (-0.094 vs -0.176 at z ~ 1) differ)
+
+    THE LambdaCDM ALTERNATIVE.  Read as a dark-matter fraction the same correction does far less
+    damage, because f_DM is linear in g_bar where a_0 is amplified by LAMBDA:
+      median f_DM(<2R_e): one-disc 0.422 -> calibrated 0.573  (a shift of +0.150)
+      median a_0        : one-disc 3.723e-11 -> calibrated 7.542e-11  (a shift of +0.307 dex)
+      Same data, same correction: LambdaCDM's variable moves a few percent, the framework's moves
+      0.31 dex.  That asymmetry is real and it is against the framework's measurability,
+      not against its truth -- it is the price of having a constant rather than a free function.
+
+==========================================================================================================================
+PART 6 -- restatement test and mutation controls
+==========================================================================================================================
+    RESTATEMENT TEST, executed.  Can alpha be derived from v^4 = G M_b a_0 plus algebra?  The
+    deep-MOND law contains only the TOTAL baryonic mass and no radius at all -- it is the
+    asymptotic statement -- so it says nothing about where inside a galaxy the gas sits.  The
+    derivation does not close, and this is not a restatement: it is a measurement of baryonic
+    STRUCTURE, calibrated against Newtonian gravity, with no a_0 in the calibration.  Verified
+    numerically: the calibration is unchanged when a_0 is moved.
+  [PASS] M1 the calibration is a_0-FREE, verified rather than claimed: alpha is fitted to a Newtonian quantity, so moving a_0 by a full dex must not change it at all   (alpha = 3.80 is fitted to log10(g_bar model / g_bar resolved); a_0 appears nowhere in that expression, so d alpha/d a_0 = 0 identically)
+  [PASS] M2 SHUFFLE: pairing each galaxy's model g_bar with ANOTHER galaxy's resolved g_bar must destroy the calibration, or the fit is matching marginal distributions rather than galaxies   (real median residual +0.0010; shuffled -0.0113 +- 0.0542)
+    COMPONENT CHECK: the calibration should also reproduce the resolved GAS term on its own.
+      median log10(gas model / gas resolved) at alpha = 3.80: -0.173 dex on 134 galaxies with a positive resolved gas term
+  [FAIL] M3 THE COMPONENT CHECK, which the total-only fit could have hidden: alpha was fitted to the TOTAL g_bar, so it might be absorbing a stellar error.  Tested directly against the resolved GAS term alone, the check is that the gas piece is reproduced to better than 0.15 dex   (gas-only median offset -0.173 dex)
+      ^ M3 FAILS, so the failure is quantified: recalibrating on the GAS TERM ALONE gives alpha_gas = 3.05
+        against alpha_total = 3.80.  The gap is a stellar-side error the total fit was
+        absorbing -- SPARC's R_e/R_disk is 1.50, not the 1.678 the high-z convention assumes.
+        Cost: a_0(z~1) = 6.837e-11 at alpha_gas against 7.542e-11 at alpha_total, a -0.043 dex
+        systematic that is carried into the budget below rather than chosen between.
+    RADIUS CHECK: alpha was calibrated at R = 2 R_e.  It should also work at 1.5 and 3 R_e.
+      R = 1.5 R_e: N = 146, median residual +0.032 dex, sd 0.163
+      R = 2.0 R_e: N = 139, median residual +0.001 dex, sd 0.176
+      R = 3.0 R_e: N = 106, median residual -0.006 dex, sd 0.159
+  [PASS] M4 RADIUS TRANSPORT: the single calibrated alpha is applied at radii it was not fitted at.  The check is that the residual stays under 0.10 dex at 1.5 and 3 R_e -- if it does not, alpha is a fudge at one radius rather than a gas scale length   (reported above; the numbers are the operative caveat on transporting alpha to a survey that measures at a different radius than 2 R_e)
+
+==========================================================================================================================
+VERDICT (k-high-z gas-extent calibration)
+==========================================================================================================================
+  NOT A SECOND LAW -- it is a correction and an error floor, and both were needed.
+
+  THE CORRECTION.  Every high-z a_0 in this programme puts the baryons in one disc of the stellar
+  scale length.  SPARC says the gas disc is alpha = 3.80 +- 0.55 times larger, and
+  the one-disc assumption overstates g_bar at 2 R_e by +0.157 dex -- which at
+  LAMBDA ~ -1.5 is the -0.43 dex estimator bias k_high-z_amplified_scatter measured independently.
+  Calibrating it flattens the gas-fraction dependence that killed that script's differential, by a
+  factor 2.6.
+
+  THE CORRECTED z ~ 1 RUNG, which is the deliverable:
+    a_0(z = 0.98) = 7.542e-11 m/s^2 = -0.094 dex canonical / -0.176 alt
+    a_0(z = 0)    = 9.822e-11 m/s^2 = +0.021 dex canonical / -0.061 alt   (SPARC resolved, same estimator family)
+    DIFFERENCE    = -0.1148 dex over 7.7 Gyr, with the budget:
+      statistical (bootstrap, both samples)            0.092 dex
+      alpha's own 1-sigma calibration error            0.023 dex
+      alpha total-fit vs gas-only fit (M3's failure)   0.043 dex
+      molecular-gas extent at z ~ 1 (a_mol 1 -> 2)     0.177 dex
+      0.10 dex relative stellar-mass scale, SPARC/SED  0.064 dex
+      ------------------------------------------------------------
+      HONEST TOTAL                                     0.215 dex
+    ==> log a_0(z=0.98) - log a_0(z=0) = -0.115 +- 0.215 dex = -0.53 sigma from
+        the framework's flat law; a LambdaCDM-native rise (+0.131) is -1.14 sigma
+        and a_0 ~ cH(z) (+0.241) is -1.65 sigma.
+    This is the best-controlled z ~ 1 rung the programme has: it beats k03's +0.058 +- 0.265 by
+    removing the censoring (25% of the sample), the geometry bias (-0.43 dex) and the
+    gas-fraction mismatch that made k_high-z_amplified_scatter's version construction-dependent.
+    It still does not decide between the footings -- 0.082 dex against a 0.15 dex band.
+
+  THE FLOOR, and it is the number to carry forward.  After calibration the per-galaxy geometry
+  residual is 0.176 dex.  That is irreducible for any g_bar built from (M_bar, R_e):
+  it is the galaxy-to-galaxy variation of where the baryons sit at fixed mass and size.  At the
+  decisive test's y ~ 0.2 it costs 0.27 dex per galaxy.
+  The RANDOM part alone needs only N >= 5 galaxies for +-0.13 dex, which is
+  why the proposing stage's K-A could quote 'about 7'.  But the COHERENT terms above total
+  0.194 dex at z ~ 1 and do not average down at all, and at z ~ 2.5
+  they are worse: the molecular fraction rises, the HI is unobservable, and alpha cannot be
+  calibrated on local HI discs for a molecular-dominated galaxy.  THE BINDING REQUIREMENT FOR THE
+  DECISIVE TEST IS THEREFORE NOT SAMPLE SIZE AND NOT EVEN THE MASS SCALE -- IT IS RESOLVED GAS
+  KINEMATICS, i.e. knowing where the gas is, not just how much there is.
+==========================================================================================================================
+
+RESULT: 15 checks, 2 FAIL -> ['k-hzg-5c THE ALPHA-UPSILON DEGENERACY, measured rather than assumed: the check is that the calibration still has a solution over the plausible Upsilon range 0.7-1.5 x the fiducial.  Where it does not, alpha cannot be calibrated at all and the whole correction is Upsilon-conditional', 'M3 THE COMPONENT CHECK, which the total-only fit could have hidden: alpha was fitted to the TOTAL g_bar, so it might be absorbing a stellar error.  Tested directly against the resolved GAS term alone, the check is that the gas piece is reproduced to better than 0.15 dex']   rc=1

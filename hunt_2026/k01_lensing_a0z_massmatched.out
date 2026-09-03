@@ -1,0 +1,114 @@
+==========================================================================================================================
+PART 0 -- the accumulator, and the mass mismatch this run exists to remove
+==========================================================================================================================
+  accumulator (50, 540, 15) = (patches, cells, g_bar bins); 181,477 isolated KiDS-bright lenses
+  g_bar bin centres (m/s^2): 1.3e-15, 2.3e-15, 4.1e-15, 7.3e-15, 1.3e-14, 2.3e-14, 4.0e-14, 7.1e-14, 1.2e-13, 2.2e-13, 3.9e-13, 6.9e-13, 1.2e-12, 2.1e-12, 3.8e-12
+  REL cut g_bar > 1e-13: 7 pts;  EXT > 1e-14: 11 pts
+
+    m5     N_lo     N_hi   <logM>lo  <logM>hi    dlogM     <z>lo   <z>hi     dz
+     0     29126     3475     9.6014   9.7949   +0.1935    0.2059 0.3474  0.1415
+     1     32540    16573    10.3137  10.3766   +0.0629    0.2402 0.3566  0.1164
+     2      8484     8973    10.5795  10.5858   +0.0063    0.2554 0.3632  0.1078
+     3     14273    29259    10.7181  10.7329   +0.0148    0.2604 0.3705  0.1101
+     4      6315    32459    10.8949  10.9066   +0.0117    0.2674 0.3872  0.1198
+    ALL    90738    90739    10.2140  10.6795   +0.4655    0.2357 0.3723  0.1367
+  matched-weight mix over bins [1, 2, 3, 4]: [0.186 0.12  0.378 0.316]
+  residual d<logM> after matching = +0.0218 dex  (unmatched +0.4655 dex, 21.4x larger)
+  effective <z>: 0.2582 -> 0.3723   (dz = 0.1141); unmatched 0.2357 -> 0.3723 (dz = 0.1367)
+  [PASS] k01-0 the premise: matching on absolute stellar-mass bin removes most of the z-correlated mass mismatch the banked note names as what kills its discriminating power   (+0.4655 dex -> +0.0218 dex)
+
+==========================================================================================================================
+PART 1 -- reproduction gate on the UNMATCHED 2-bin a0(z), the banked note's own kernel and cut
+==========================================================================================================================
+  fw      UNMATCHED: a0(lo) = 2.1870e-10  a0(hi) = 2.8635e-10  ratio = 1.3093 +- 0.2073   d ln a0/dz = +1.9721 +- 1.1586
+  routeA  UNMATCHED: a0(lo) = 2.0710e-10  a0(hi) = 2.7615e-10  ratio = 1.3334 +- 0.2179   d ln a0/dz = +2.1055 +- 1.1958
+  the committed 2026-07 note: a0(lo) = 2.187e-10, a0(hi) = 2.864e-10, ratio 1.309, d ln a0/dz = +1.972 +- 1.159 (stat)
+  [PASS] k01-1 REPRODUCTION GATE -- the light path reproduces the banked unmatched lensing a0(z) to better than 1% in both bins.  If this fails nothing downstream can be believed   (low 2.1870e-10 (+0.0000 dex), high 2.8635e-10 (-0.0001 dex), ratio 1.3093 vs 1.309)
+
+==========================================================================================================================
+PART 2 -- THE MASS-MATCHED CONTRAST
+==========================================================================================================================
+   routeA  REL  npts= 7   a0(lo) = 2.2999e-10  a0(hi) = 2.5053e-10   ln ratio = +0.0855 +- 0.2367   ratio = 1.0893 +- 0.2578
+                 chi2 = 6.59 / 14.41 on 6 dof   d ln a0/dz = +0.7497 +- 2.0752 /z (stat)
+   routeA  EXT  npts=11   a0(lo) = 2.4938e-10  a0(hi) = 3.4500e-10   ln ratio = +0.3246 +- 0.1786   ratio = 1.3834 +- 0.2471
+                 chi2 = 13.23 / 25.37 on 10 dof   d ln a0/dz = +2.8453 +- 1.5658 /z (stat)
+   fw      REL  npts= 7   a0(lo) = 2.4328e-10  a0(hi) = 2.5938e-10   ln ratio = +0.0641 +- 0.2295   ratio = 1.0662 +- 0.2447
+                 chi2 = 6.50 / 12.49 on 6 dof   d ln a0/dz = +0.5616 +- 2.0119 /z (stat)
+   fw      EXT  npts=11   a0(lo) = 2.5897e-10  a0(hi) = 3.5147e-10   ln ratio = +0.3054 +- 0.1731   ratio = 1.3572 +- 0.2349
+                 chi2 = 12.29 / 22.91 on 10 dof   d ln a0/dz = +2.6774 +- 1.5171 /z (stat)
+  [PASS] k01-2 THE MEASUREMENT: a mass-matched lensing a0(z) exists, is finite, and both it and the unmatched number on the same data and the same jackknife are printed side by side   (matched 1.089 +- 0.258 vs unmatched 1.333 +- 0.218)
+
+   per-mass-bin breakdown (each pair is internally matched to <0.07 dex; individually noisy)
+      m5    N_lo/N_hi     a0(lo)        a0(hi)      ln ratio      dz     d ln a0/dz
+       1   32540/ 16573  1.950e-10  2.372e-10    +0.1962   0.1164     +1.685   (6 pts)
+       2    8484/  8973  3.840e-10  1.628e-10    -0.8581   0.1078     -7.959   (7 pts)
+       3   14273/ 29259  3.554e-10  2.752e-10    -0.2557   0.1101     -2.322   (7 pts)
+       4    6315/ 32459  2.088e-10  3.307e-10    +0.4599   0.1198     +3.840   (7 pts)
+
+   RADIAL FORK -- where in radius the apparent rise lives (the cut is load-bearing and this says why)
+      window                                 R range (L* lens)   a0(lo)      a0(hi)     ln ratio    +-
+      inner 7  (REL, g_bar > 1e-13)            43 -   237 kpc   2.300e-10  2.505e-10   +0.0855  0.2367   (7 pts, +0.36s)
+      outer 4  (1e-14 < g_bar < 1e-13)        314 -   737 kpc   2.576e-10  4.133e-10   +0.4730  0.1802   (4 pts, +2.63s)
+      all 11   (EXT, g_bar > 1e-14)            43 -   737 kpc   2.494e-10  3.450e-10   +0.3246  0.1786   (11 pts, +1.82s)
+  [PASS] k01-2b THE CUT IS LOAD-BEARING, and it is reported rather than chosen: the apparent rise lives entirely in the OUTER bins (0.4-1.4 Mpc for an L* lens), where the two-halo term and the isolation systematic live and where item 113 already found the KiDS signal falling faster than 1/r; the isolation-clean inner bins show no rise.  The two windows differ, and neither is quoted alone   (inner +0.0855 +- 0.2367 (+0.36s); outer +0.4730 +- 0.1802 (+2.63s); difference +0.3875 +- 0.2975 (+1.30s))
+
+==========================================================================================================================
+PART 3 -- the differential-baryon systematic, recomputed on the RESIDUAL mismatch
+==========================================================================================================================
+  banked model: a cold-gas/CGM term differing between the halves because they differ in M*; calibration
+  d logM = 0.465 dex -> 0.108 dex of log10 g_bar, i.e. s = 0.2323 dex per dex, 50% amplitude uncertainty.
+  In the deep-MOND limit a0_hat = g_obs^2/g_bar exactly, so a coherent d(log10 g_bar) moves ln a0 by -ln10*d.
+    UNMATCHED:  stat 1.196/z   differential-baryon syst 0.911/z   total 1.503/z   (the note quotes 1.159 stat, 0.906 syst, 1.471 total)
+    MATCHED  :  stat 2.075/z   differential-baryon syst 0.051/z   total 2.076/z
+  [PASS] k01-3 the systematic this run was built to remove IS removed, by the factor the mass mismatch shrinks   (0.911/z -> 0.051/z (17.9x smaller))
+  [PASS] k01-4 AGAINST INTEREST, and this is the real finding of the run: removing that systematic does NOT buy discriminating power, because matching costs statistics almost exactly what it saves in systematics -- the total error on d ln a0/dz does not improve by even a factor of two   (unmatched total 1.503/z -> matched total 2.076/z (0.72x))
+
+==========================================================================================================================
+PART 4 -- confrontation
+==========================================================================================================================
+    measured (mass-matched, Route A, REL cut): d ln a0/dz = +0.750 +- 2.076 /z   [ = +0.326 +- 0.902 dex/z ]
+
+      branch                                                   pred /z   (meas-pred)/sigma
+      FRAMEWORK  a0 constant (rho_DE, w = -1)                  +0.000      +0.36
+      LambdaCDM-native emergent RAR scale, +0.131 dex/z        +0.302      +0.22
+      MUSE-DARK III (Ciocan+2026), +0.295 dex/z                +0.679      +0.03
+      a0 ~ c H(z)  (Verlinde / rho_total footing)              +0.580      +0.08
+      LambdaCDM SHMR at fixed M*, d logM_h/dz = -0.10          -0.307      +0.51
+      LambdaCDM SHMR at fixed M*, d logM_h/dz = -0.15          -0.461      +0.58
+  [PASS] k01-5 THE VERDICT, and it is a null: with the dominant systematic removed the mass-matched KiDS lensing a0(z) separates nothing -- every branch from a flat a0 to a0 ~ cH(z), and the LambdaCDM SHMR band with the OPPOSITE sign, all sit inside 2 sigma.  The z-lever (dz ~ 0.11) is too short   (0.36s; 0.22s; 0.03s; 0.08s; 0.51s; 0.58s)
+
+==========================================================================================================================
+PART 5 -- absolute levels, both footings, and the Upsilon lever measured
+==========================================================================================================================
+   routeA   a0(lo) = 2.300e-10 = canon +0.390 dex / alt +0.309 dex   |   a0(hi) = 2.505e-10 = canon +0.428 / alt +0.346
+   fw       a0(lo) = 2.433e-10 = canon +0.415 dex / alt +0.333 dex   |   a0(hi) = 2.594e-10 = canon +0.443 / alt +0.361
+  the KiDS points used sit at y = g_bar/a0 = 0.0013 - 0.0402: deep MOND throughout
+  d log a0 / d log Upsilon, MEASURED by refitting with g_bar shifted +-0.1 dex: -1.062
+  On the RATIO only the DIFFERENTIAL survives: d ln(ratio)/dz = -ln10 * d log Upsilon/dz, which at matched
+  stellar mass is the residual z-evolution of the SED pipeline's own M/L, not the full M/L budget.
+  [PASS] k01-6 the Upsilon lever is measured, not asserted, and it is the deep-MOND -1 (matching the -1.046 the veins sweep measured for the KiDS dwarf stack) -- so every ABSOLUTE a0 here is a stellar-mass measurement in a0's clothing and must not be quoted as a footing test   (measured -1.062 against the deep-MOND -1.000)
+
+==========================================================================================================================
+PART 6 -- mutation controls
+==========================================================================================================================
+  [PASS] M1 closure: replacing the high-z stack by the low-z one must give ln ratio exactly 0 with zero jackknife error   (ln ratio 0.000e+00 +- 0.000e+00)
+  [PASS] M2 the mechanism control, demonstrated rather than argued: pairing a LOW stellar-mass bin at low z against a HIGH one at high z produces a large spurious a0 ratio in the direction the deep-MOND -1 lever predicts   (deliberate mismatch d logM = +0.593 dex gives ln ratio +0.5541 +- 0.2799, predicted by the lever alone -0.3171 to -1.3653; matched +0.0855)
+  [PASS] M3 mutation: nu = 1 (baryons only, no boost) must be destroyed by these data   (chi2(nu=1) = 3.2e+03 / 2.63e+03 on 6 dof, against chi2(Route A) = 6.59 / 14.41)
+  [PASS] M4 injection closure at an injected a0 ratio of 1.00: the pipeline recovers it without bias   (injected ln +0.0000, recovered -0.0072 +- 0.0101 (per-realisation sd 0.1755))
+  [PASS] M4 injection closure at an injected a0 ratio of 1.30: the pipeline recovers it without bias   (injected ln +0.2624, recovered +0.2636 +- 0.0091 (per-realisation sd 0.1579))
+  [PASS] M5 robustness AGAINST INTEREST: the extended cut must be reported beside the primary and the two must agree   (EXT +0.3246 +- 0.1786 (+2.845/z) vs REL +0.0855 +- 0.2367 (+0.750/z))
+  [PASS] M6 kernel swap: at these accelerations (y < 0.05) Route A and nu = sqrt(1+1/y) are both in their deep-MOND limit, so the RATIO must be kernel-independent -- if it were not, the result would be a kernel artefact   (Route A +0.0855 vs fw +0.0641 (difference 0.0215); the ABSOLUTE levels differ by -0.024 dex, which is the kernel's normalisation)
+
+==========================================================================================================================
+VERDICT (k01)
+==========================================================================================================================
+  The first MASS-MATCHED lensing a0(z).  Route A, REL cut, four absolute stellar-mass bins matched bin by bin
+  in every g_bar bin by frozen harmonic weights; 50-patch patch-consistent jackknife.
+     ln[a0(z=0.372)/a0(z=0.258)] = +0.0855 +- 0.2367  ->  ratio 1.089 +- 0.258
+     d ln a0/dz = +0.750 +- 2.076 /z   [= +0.326 +- 0.902 dex/z]
+  Unmatched, same data, same jackknife: ratio 1.333 +- 0.218, d ln a0/dz = +2.106 +- 1.503/z.
+  The mass matching removes the systematic the banked note called decisive, and the answer does not become
+  decisive: the statistics lost to matching cancel the systematics gained.  NOT Kepler-grade.
+==========================================================================================================================
+
+RESULT: 15 checks, 0 FAIL   rc=0

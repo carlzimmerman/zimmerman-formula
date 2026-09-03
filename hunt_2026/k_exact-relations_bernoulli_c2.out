@@ -1,0 +1,177 @@
+======================================================================================================================
+K2 (exact-relations compute) -- the deep-MOND expansion as a Bernoulli series; is c2 = 1/2 measurable?
+======================================================================================================================
+
+  (A) THE SERIES.  s/(1-e^{-s}) = sum B_n^+ s^n/n!  (Bernoulli numbers, B_1 = +1/2).
+      n :  0      1      2      3      4      5      6
+      B_n^+/n! : +1.000000  +0.500000  +0.083333  +0.000000  -0.001389  +0.000000  +0.000033
+      so  g_obs/a_0 = s + 0.500000 s^2 + 0.083333 s^3 + 0.000000 s^4 + -0.001389 s^5 + ...
+  [PASS] c2 (the g_bar coefficient) is exactly 1/2   (0.5)
+  [PASS] c3 (the g_bar^{3/2} coefficient) is exactly 1/12   (0.08333333333333333)
+  [PASS] c4 (the g_bar^2 coefficient) is exactly 0   (0.0)
+  [PASS] c5 is exactly -1/720   (-0.001388888888888889)
+  [PASS] series to s^9 matches the kernel at s=0.05 to its own truncation bound   (error -2.22e-16, truncation bound 2.04e-21)
+  [PASS] series to s^9 matches the kernel at s=0.2 to its own truncation bound   (error -2.00e-15, truncation bound 2.14e-15)
+  [PASS] series to s^9 matches the kernel at s=0.5 to its own truncation bound   (error -2.03e-11, truncation bound 2.05e-11)
+  [PASS] series to s^9 matches the kernel at s=1.0 to its own truncation bound   (error -2.04e-08, truncation bound 2.14e-08)
+  [PASS] series to s^9 matches the kernel at s=2.0 to its own truncation bound   (error -1.94e-05, truncation bound 2.35e-05)
+
+      the same expansion for four interpolating functions -- c2 is the family discriminator:
+        Route A   1/(1-exp(-sqrt y))           c2 =  0.5000   c3 =  0.0833
+        MOND 'simple'  (1+sqrt(1+4/y))/2       c2 =  0.5000   c3 =  0.1250
+        MOND 'standard'                        c2 = -0.0000   c3 =  0.2500
+        alpha=1  sqrt(1+1/y)   (E0/E3)         c2 =  0.0000   c3 =  0.5000
+      -> c2 = 1/2 for the sqrt(y)-expansion family (Route A, simple); c2 = 0 for the integer-y family
+         (standard, alpha=1).  CREDIT, against interest: this split is the published 'simple beats
+         standard' result -- Famaey & Binney 2005 (MNRAS 363, 603), Zhao & Famaey 2006 -- decided the
+         same way from the Milky Way terminal curve.  The Bernoulli identification is new; the
+         empirical content of c2 != 0 is not.
+
+  (B) RESTATEMENT TEST -- executed.  Derive the candidate from v^4 = G M_b a_0 plus algebra.
+      v^4 = G M_b a_0  <=>  g_obs^2 = a_0 g_bar  <=>  g_obs/a_0 = s, EXACTLY and with no further terms.
+      So the LEADING term IS the BTFR -- that half is a restatement and is labelled one.  The BTFR
+      predicts a pure power law, i.e. c2 = c3 = 0; every coefficient beyond the first is content it
+      does not have.  The candidate's content is therefore exactly the residual g_obs - sqrt(a_0 g_bar).
+      Corollary the proposer flagged and which is worth recording: eliminating a_0 between two radii,
+        ln f_DM(r1)/ln f_DM(r2) = sqrt(g_bar(r1)/g_bar(r2)),
+      is a_0-FREE, so it fails criterion (2) by construction.  Verified numerically:
+        a_0 = 7.000e-11:  ln f1/ln f2 = 3.162278   sqrt(g1/g2) = 3.162278   (identical, a_0 cancelled)
+        a_0 = 9.360e-11:  ln f1/ln f2 = 3.162278   sqrt(g1/g2) = 3.162278   (identical, a_0 cancelled)
+        a_0 = 1.130e-10:  ln f1/ln f2 = 3.162278   sqrt(g1/g2) = 3.162278   (identical, a_0 cancelled)
+        a_0 = 3.000e-10:  ln f1/ln f2 = 3.162278   sqrt(g1/g2) = 3.162278   (identical, a_0 cancelled)
+  [PASS] the a_0-free corollary is genuinely a_0-free (holds at every a_0)   (the ratio does not move when a_0 moves by 4x)
+  [PASS] is_restatement of v^4 = G M_b a_0 for the LEADING term (labelled, not hidden)   (TRUE for the s^1 term; FALSE for c2, which the BTFR sets to 0)
+
+  (C) SPARC.  c2 is read four ways, because the answer depends on how it is read.
+      A  the propose-stage design: Y = g_obs/a_0 - s regressed on [s^2, s^3], UNWEIGHTED
+      B  the ratio design:  r = g_obs/sqrt(a_0 g_bar) = 1 + c2 s + c3 s^2, UNWEIGHTED
+      C  the ratio design, WEIGHTED by velocity errors PLUS an intrinsic scatter set so chi2/dof = 1
+      D  design C with a fixed 3-sigma clip applied twice (declared in advance, not tuned)
+      All four are the SAME statement about the SAME points.  Any spread between them is estimator
+      systematic and must be carried on the number.
+
+      --- c0 FIXED at 1 (a_0 imposed).  c2 with GALAXY-bootstrap errors ---
+      footing    ymax  design      N     c2      +-      c3    chi2/dof  sig_int
+      canonical  0.25   A     1604   0.879   0.349   0.079       0.02    0.000
+      canonical  0.25   B     1604   0.844   0.466   0.170       0.22    0.000
+      canonical  0.25   C     1604  -2.880   1.241   7.746       0.97    0.447
+      canonical  0.25   D     1585  -1.166   0.654   3.749       0.56    0.447
+      canonical  0.50   A     1979   0.840   0.343   0.135       0.04    0.000
+      canonical  0.50   B     1979   0.864   0.300   0.091       0.27    0.000
+      canonical  0.50   C     1979  -1.637   0.827   3.487       0.99    0.447
+      canonical  0.50   D     1956  -0.540   0.374   1.719       0.55    0.447
+      alt        0.25   A     1703   0.362   0.363   0.797       0.02    0.000
+      alt        0.25   B     1703   0.220   0.389   1.167       0.22    0.000
+      alt        0.25   C     1703  -2.954   1.061   7.177       0.96    0.469
+      alt        0.25   D     1682  -1.574   0.591   4.234       0.52    0.469
+      alt        0.50   A     2073   0.568   0.207   0.258       0.03    0.000
+      alt        0.50   B     2073   0.414   0.262   0.544       0.22    0.000
+      alt        0.50   C     2073  -2.038   0.797   4.067       0.99    0.447
+      alt        0.50   D     2048  -0.968   0.350   2.260       0.54    0.447
+
+      THE ESTIMATOR SYSTEMATIC (canonical, y<0.5): c2 spans -1.637 to +0.864 across the four designs -- a range of 2.501, against a bootstrap error of 0.827 and a claimed signal (1/2 - 0) of 0.500.
+  [FAIL] the four designs agree on c2 to better than the 1/2-vs-0 signal they are meant to decide   (design spread 2.501 vs signal 0.500)
+      design A: canonical c2 = +0.840 +- 0.343  -> 1.0 sigma from 1/2, 2.4 sigma from 0
+      design B: canonical c2 = +0.864 +- 0.300  -> 1.2 sigma from 1/2, 2.9 sigma from 0
+      design C: canonical c2 = -1.637 +- 0.827  -> 2.6 sigma from 1/2, 2.0 sigma from 0
+      design D: canonical c2 = -0.540 +- 0.374  -> 2.8 sigma from 1/2, 1.4 sigma from 0
+  [FAIL] every design excludes the c2 = 0 family (standard / alpha=1) at > 3 sigma   (A:2.4, B:2.9, C:2.0, D:1.4)
+  [PASS] every design is consistent with c2 = 1/2 at < 3 sigma   (A:1.0, B:1.2, C:2.6, D:2.8)
+
+      --- c0 FREE: the identifiability test the propose stage did not run ---
+      c0 = sqrt(a_0,true/a_0,assumed), so (c0, c2) = (1, 1/2) is the whole candidate.
+      footing    design     c0      c2      c3   corr(c0,c2)   boot corr   a_0 implied
+      canonical   A     1.040   0.656   0.327      -0.975      -0.971     1.012e-10
+                    bootstrap: c0 +-0.203   c2 +-1.089   c3 +-1.364
+      canonical   B     1.064   0.516   0.498      -0.969      -0.960     1.059e-10
+                    bootstrap: c0 +-0.192   c2 +-1.029   c3 +-1.316
+      canonical   C     0.338   2.229  -1.243      -0.973      -0.835     1.069e-11
+                    bootstrap: c0 +-0.230   c2 +-0.923   c3 +-1.105
+      canonical   D     0.549   2.013  -1.331      -0.970      -0.970     2.820e-11
+                    bootstrap: c0 +-0.250   c2 +-1.218   c3 +-1.394
+      alt         A     0.826   1.383  -0.603      -0.972      -0.965     7.701e-11
+                    bootstrap: c0 +-0.161   c2 +-0.767   c3 +-0.829
+      alt         B     0.923   0.852   0.020      -0.965      -0.959     9.618e-11
+                    bootstrap: c0 +-0.152   c2 +-0.786   c3 +-0.956
+      alt         C     0.330   2.058  -1.082      -0.969      -0.883     1.229e-11
+                    bootstrap: c0 +-0.219   c2 +-0.920   c3 +-0.998
+      alt         D     0.522   1.837  -1.172      -0.967      -0.964     3.084e-11
+                    bootstrap: c0 +-0.195   c2 +-0.958   c3 +-1.073
+  [FAIL] c0 and c2 are separable (|bootstrap corr| < 0.9) -- c2 is a measurement, not an a_0 statement   (worst |corr(c0,c2)| = 0.971)
+      with c0 free, canonical c2 spans +0.516 to +2.229 across designs.
+  [FAIL] with c0 free, every design still excludes c2 = 0 at > 3 sigma   (A:0.6, B:0.5, C:2.4, D:1.7)
+
+  (D) MOCK CONTROL (shared-variable check, bug pattern 5).  r ~ g_bar^{-1/2} and s ~ g_bar^{+1/2}:
+      an error in g_bar drives them in OPPOSITE directions, so it must bias c2 LOW.  Measured:
+      noiseless mock (kernel obeyed exactly at 9.36e-11):  A:0.5003   B:0.5002   C:0.5002   D:0.5002
+  [PASS] every design recovers c2 = 1/2 on a noiseless mock   (A:0.5003, B:0.5002, C:0.5002, D:0.5002)
+      realistic mock (0.10 dex M/L, 5% velocity), 10 draws -- design: mean c2 (bias):
+        A: +0.5211 +- 0.1350   bias +0.0211
+        B: +0.5386 +- 0.1062   bias +0.0386
+        C: +0.2264 +- 0.1008   bias -0.2736
+        D: +0.2360 +- 0.1010   bias -0.2640
+  [FAIL] the estimator bias with realistic errors is < 0.15 in c2 for every design   (A:+0.021, B:+0.039, C:-0.274, D:-0.264)
+
+  (E) THE UPSILON LEVER, measured by re-running the pipeline (x1.5 is the mandated step).
+      Upsilon_disk    c2 (A)   c2 (B)   c2 (C)   c2 (D)    a_0 implied (design C, c0 free)
+           0.3333    1.976    1.854   -1.264   -0.087         1.289e-11
+           0.4000    1.507    1.404   -1.454   -0.306         1.179e-11
+           0.5000    0.840    0.864   -1.637   -0.540         1.069e-11
+           0.6000    0.612    0.574   -1.775   -0.693         7.068e-12
+           0.7500    0.327    0.210   -2.102   -0.916         1.274e-11
+           0.7000    0.546    0.376   -1.984   -0.844         9.871e-12
+      d log c2/d log Upsilon (design A) = -2.324   (x1.5 moves c2 from 0.840 to 0.327)
+      d log c2/d log Upsilon (design B) = -3.490   (x1.5 moves c2 from 0.864 to 0.210)
+      d log c2/d log Upsilon (design C) = UNDEFINED -- c2 changes sign between Upsilon 0.50 (-1.637) and 0.75 (-2.102).  A quantity that changes SIGN under a x1.5 M/L shift is not a measurement of anything.
+      d log c2/d log Upsilon (design D) = UNDEFINED -- c2 changes sign between Upsilon 0.50 (-0.540) and 0.75 (-0.916).  A quantity that changes SIGN under a x1.5 M/L shift is not a measurement of anything.
+      d log a_0/d log Upsilon (design C, c0 free) = +0.432
+  [FAIL] the Upsilon lever on c2 is |d log c2/d log Upsilon| < 0.5 for every design   (A:2.32, B:3.49, C:inf, D:inf)
+
+  (F) MUTATIONS and the alternatives, computed beside the framework.
+      a_0 mutation     c2 (A)   c2 (B)   c2 (C)   c2 (D)
+      x 1 (canonical)    0.840    0.864   -1.637   -0.540
+      x 3               -0.970   -1.804   -3.936   -3.086
+      / 3                3.841    4.086   -0.191    1.653
+      x 10              -2.559   -4.467   -7.399   -6.277
+  [PASS] MUTATION: a_0 x 3 moves c2 away from 1/2 in every design   (A:-0.970, B:-1.804, C:-3.936, D:-3.086)
+      rms of r about the framework's own series (1 + s/2 + s^2/12) : 0.5340
+      rms about the pure BTFR / deep-MOND limit  (r = 1)           : 0.6191
+      rms about the alpha=1 kernel               (r = 1 + s^2/2)   : 0.5749
+      rms about MOND 'standard'                  (r = 1 + s^2/4)   : 0.5956
+      rms about the NEWTONIAN alternative        (r = s)           : 1.0966
+  [PASS] the framework's series beats the pure BTFR (so c2 carries content the BTFR does not)   (0.5340 vs 0.6191)
+  [PASS] the framework's series beats the Newtonian alternative   (0.5340 vs 1.0966)
+  [PASS] the framework's series beats the alpha=1 kernel   (0.5340 vs 0.5749)
+  [PASS] the framework's series beats MOND 'standard'   (0.5340 vs 0.5956)
+
+  (G) GAS-DOMINATED subsample (gas supplies > 70% of the LOCAL g_bar; Upsilon nearly irrelevant).
+      canonical design A: N=  225 Ngal= 37  c2 = +1.232 +- 1.137  (0.6 sigma from 1/2, 1.1 from 0)
+      canonical design B: N=  225 Ngal= 37  c2 = +1.785 +- 0.896  (1.4 sigma from 1/2, 2.0 from 0)
+      canonical design C: N=  225 Ngal= 37  c2 = -0.303 +- 1.072  (0.7 sigma from 1/2, 0.3 from 0)
+      canonical design D: N=  224 Ngal= 37  c2 = -0.159 +- 1.071  (0.6 sigma from 1/2, 0.1 from 0)
+      alt       design A: N=  225 Ngal= 37  c2 = +0.452 +- 1.116  (0.0 sigma from 1/2, 0.4 from 0)
+      alt       design B: N=  225 Ngal= 37  c2 = +0.896 +- 1.081  (0.4 sigma from 1/2, 0.8 from 0)
+      alt       design C: N=  225 Ngal= 37  c2 = -1.122 +- 0.876  (1.9 sigma from 1/2, 1.3 from 0)
+      alt       design D: N=  224 Ngal= 37  c2 = -0.977 +- 1.141  (1.3 sigma from 1/2, 0.9 from 0)
+
+======================================================================================================================
+  VERDICT ON K2
+======================================================================================================================
+  (1) measured quantities?  YES -- g_obs and g_bar, per point.
+  (2) a_0 with a PREDICTED coefficient?  NO.  c2 = 1/2 is a pure number with no a_0 in it; a_0 enters
+      only as the variable the expansion is taken in.  The sharp claim fails criterion (2).
+  (3) RAR-class scatter?  the estimator systematic alone spans 2.501 in c2 across
+      four fits of the same statement to the same points -- comparable to the 0.5 signal.
+  (4) unstated?  the Bernoulli identification is new; the empirical content (c2 != 0, i.e. the
+      sqrt(y)-expansion family beats the integer-y family) is Famaey & Binney 2005 / Zhao & Famaey 2006.
+  (5) restatement?  the LEADING term IS v^4 = G M_b a_0 -- labelled TRUE for that half.  c2 is not.
+  CORRECTION TO THE PROPOSE-STAGE HEADLINE, stated explicitly:  its design (A here) gives the same
+  central value, c2 = +0.840, but its quoted +-0.117 was a POINT-level error on 1979 points that
+  cluster into 141 galaxies.  Resampling GALAXIES gives +-0.343.  So '2.9 sigma from 1/2 and 7.2 sigma
+  from 0' becomes 1.0 sigma from 1/2 and 2.4 sigma from 0 -- the kernel-family
+  discrimination the candidate rests on does not reach 3 sigma once the errors are honest.
+  ==> CANDIDATE K2 IS NOT A SECOND LAW.  It is a correct and pretty rewriting of the Route A kernel.
+      Its one empirical statement is already decided in the literature, it carries no a_0 coefficient,
+      and the measurement is limited by Upsilon and by the choice of estimator rather than by the data.
+
+RESULT: 24 checks, 6 FAIL -> ['the four designs agree on c2 to better than the 1/2-vs-0 signal they are meant to decide', 'every design excludes the c2 = 0 family (standard / alpha=1) at > 3 sigma', 'c0 and c2 are separable (|bootstrap corr| < 0.9) -- c2 is a measurement, not an a_0 statement', 'with c0 free, every design still excludes c2 = 0 at > 3 sigma', 'the estimator bias with realistic errors is < 0.15 in c2 for every design', 'the Upsilon lever on c2 is |d log c2/d log Upsilon| < 0.5 for every design']   rc=1

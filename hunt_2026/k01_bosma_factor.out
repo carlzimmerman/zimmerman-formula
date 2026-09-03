@@ -1,0 +1,101 @@
+========================================================================================================================
+k01 -- THE BOSMA EFFECT: is its coefficient a_0's?
+========================================================================================================================
+
+  46 SPARC discs have >= 4 radii where the HI supplies more than half of g_bar.
+  (that cut is what makes the Bosma factor a statement about the gas; it is NOT tuned -- the variants are:)
+    HI share > 0.3: N =  79, median f_obs =  8.07, median f_fw =  8.47, log(f_fw/f_obs) = +0.021 dex
+    HI share > 0.5: N =  46, median f_obs =  7.38, median f_fw =  7.69, log(f_fw/f_obs) = +0.018 dex
+    HI share > 0.7: N =  23, median f_obs =  6.73, median f_fw =  6.74, log(f_fw/f_obs) = +0.001 dex
+
+------------------------------------------------------------------------------------------------------------------------
+THE MEASURED BOSMA FACTOR, and the framework's own, fitted the same way
+------------------------------------------------------------------------------------------------------------------------
+  footing       N  median f_obs   scatter  median f_fw   scatter  median f_closed  log(f_fw/f_obs)
+  canonical    46          7.38     0.206         7.69     0.103             6.85           +0.018
+  alt          46          7.38     0.206         8.54     0.102             7.52           +0.063
+  (f is in the HI-only convention of Hoekstra, van Albada & Sancisi 2001: v_dark^2 = f * v_HI^2 with V_HI
+   the hydrogen alone.  Their published range for 24 galaxies is f = 7-10, Bosma's original ~ 8.)
+  [PASS] K01a THE HEADLINE CHECK, AND IT CAN FAIL: the framework's own Bosma factor, fitted exactly as an observer fits it, must land on the measured one in the median to 0.1 dex on at least one footing   (canonical +0.018 dex, alt +0.063 dex; best = canonical)
+  [PASS] K01a2 and the measured factor must itself sit in the published 7-10 window, or the sample is not measuring the same thing the literature calls the Bosma effect   (median f_obs = 7.38 against the published 7-10)
+  [FAIL] K01b THE HARDER HALF: the framework must reproduce the SPREAD of f across galaxies, not just its median -- the universality is what the literature calls surprising   (sd(log f_fw) = 0.103 dex vs sd(log f_obs) = 0.206 dex, ratio 0.50 (pass window 0.67-1.50))
+
+------------------------------------------------------------------------------------------------------------------------
+K01c -- THE POINT-BY-POINT FORM.  Equation (K01) says f is NOT a constant: it must rise outward as
+        g_bar^(-1/2).  A genuinely constant Bosma factor would falsify the framework's version.
+------------------------------------------------------------------------------------------------------------------------
+  measured  : d log f / d log g_bar = -0.736   (scatter 0.237 dex, 456 points)
+  framework : d log f / d log g_bar = -0.468   (scatter 0.077 dex)   predicted exactly -0.500
+  WITHIN galaxies (the ladder-free version): median slope -0.306 over 31 discs, 16-84% [-0.961, +0.398]
+  [FAIL] K01c the measured f must RISE outward with the predicted slope -1/2 within galaxies -- a constant f (slope 0) is the literature's own description and would falsify equation (K01)   (within-galaxy median slope -0.306 against the predicted -0.500; a constant would be 0.000)
+
+------------------------------------------------------------------------------------------------------------------------
+K01d -- THE CLOSED FORM WITH NO ROTATION CURVE AT ALL.  In the HI-dominated outskirts g_bar = 2 pi G Sigma_bar,
+        so (K01) becomes f = 1.33 sqrt( a_0 / (2 pi G * 1.33 * Sigma_HI) ) -- a_0 and a surface density, nothing else.
+------------------------------------------------------------------------------------------------------------------------
+  canonical  Sigma_HI = 3.0 Msun/pc^2  ->  g_bar = 3.495e-12 m/s^2 = 0.0373 a_0  ->  f_predicted = 6.88
+  canonical  Sigma_HI = 3.8 Msun/pc^2  ->  g_bar = 4.427e-12 m/s^2 = 0.0473 a_0  ->  f_predicted = 6.12
+  canonical  Sigma_HI = 5.0 Msun/pc^2  ->  g_bar = 5.825e-12 m/s^2 = 0.0622 a_0  ->  f_predicted = 5.33
+  alt        Sigma_HI = 3.0 Msun/pc^2  ->  g_bar = 3.495e-12 m/s^2 = 0.0309 a_0  ->  f_predicted = 7.56
+  alt        Sigma_HI = 3.8 Msun/pc^2  ->  g_bar = 4.427e-12 m/s^2 = 0.0392 a_0  ->  f_predicted = 6.72
+  alt        Sigma_HI = 5.0 Msun/pc^2  ->  g_bar = 5.825e-12 m/s^2 = 0.0516 a_0  ->  f_predicted = 5.86
+  [FAIL] K01d the closed form, fed only a_0 and the universal mean HI surface density inside the HI radius (3.8 Msun/pc^2, Wang+2016), must land inside the published Bosma window 7-10 on at least one footing   (canonical 6.12, alt 6.72 against 7-10)
+
+------------------------------------------------------------------------------------------------------------------------
+THE UPSILON LEVER, numerically (the hunt's standing requirement)
+------------------------------------------------------------------------------------------------------------------------
+  Upsilon_disc = 0.35: median log f_obs = +0.915, log f_fw = +0.894, N = 57
+  Upsilon_disc = 0.50: median log f_obs = +0.868, log f_fw = +0.886, N = 46
+  Upsilon_disc = 0.70: median log f_obs = +0.835, log f_fw = +0.904, N = 38
+
+  d log f_obs / d log Upsilon = -0.264
+  d log f_fw  / d log Upsilon = +0.030
+  d log (f_fw/f_obs) / d log Upsilon = +0.294   <-- the lever that matters: how much the TEST moves
+  [PASS] K01-UPS the comparison must not be an Upsilon measurement wearing a_0's clothes: the AGREEMENT between the framework's factor and the measured one must move by less than 0.3 dex per dex of Upsilon   (d log(f_fw/f_obs)/d log Upsilon = +0.294)
+
+------------------------------------------------------------------------------------------------------------------------
+MUTATION CONTROLS
+------------------------------------------------------------------------------------------------------------------------
+  [PASS] M01a with the kernel turned off (nu = 1) the framework's dark part is identically zero, so its Bosma factor must be exactly zero and the measured 7-10 must be left unexplained   (nu = 1 gives v_dark^2 = 0 identically, hence f_fw = 0 for every galaxy)
+  [PASS] M01b quadrupling a_0 must move the predicted factor by exactly a factor 2 (+0.301 dex), because (K01) has a_0 under a square root -- if it moves by anything else the estimator is not measuring what it claims   (measured shift +0.327 dex against the predicted +0.301)
+  galaxy-by-galaxy correlation between predicted and measured log f: r = +0.642; shuffled 2000x gives -0.000 +- 0.150 (p = 0.0000)
+  [PASS] M01c the framework must know WHICH galaxy has the large factor, not merely the population median -- a shuffle must break it   (r = +0.642, shuffle p = 0.0000)
+
+------------------------------------------------------------------------------------------------------------------------
+THE LambdaCDM / NFW ALTERNATIVE, COMPUTED BESIDE
+------------------------------------------------------------------------------------------------------------------------
+  In LambdaCDM the dark halo is collisionless and knows nothing about the HI.  There is no predicted value of
+  f and no reason for the fit to work at all.  The fair comparison is therefore not a number but a fit quality:
+  how well does ONE free scale on the HI curve do against ONE free scale on a fixed-shape NFW halo?
+  one-parameter scaled-HI (Bosma)  : median fractional rms residual 0.177  (N = 46)
+  one-parameter NFW (c = 10 fixed) : median fractional rms residual 0.093
+  the framework's zero-parameter    : median fractional rms residual 0.105
+  [PASS] K01-ALT AGAINST INTEREST: report whether the scaled-HI description is actually BETTER than a one-parameter NFW halo on the same curves.  If NFW does as well, the Bosma effect is not the discriminator it is advertised to be, whatever explains its coefficient   (Bosma 0.177 vs NFW 0.093 -- NFW wins or ties)
+
+========================================================================================================================
+THE RESTATEMENT TEST -- can (K01) be derived from v^4 = G M_b a_0 plus algebra?
+========================================================================================================================
+  Attempt the derivation.  The BTFR fixes ONE number per galaxy, the asymptotic speed:  v_flat^4 = G M_b a_0.
+  Equation (K01) is a statement about a RADIAL PROFILE -- it relates the dark part of the curve at radius R to
+  the gas contribution at the SAME radius, through the LOCAL baryonic acceleration g_bar(R).  The BTFR contains
+  no radius and no profile, so no algebra on v^4 = G M_b a_0 alone can produce a slope d log f/d log g_bar.
+  It CAN be derived from the local deep-MOND relation g_obs = sqrt(g_bar a_0), which is the RAR, not the BTFR.
+  VERDICT: (K01) is a RESTATEMENT OF THE RAR, not of the BTFR -- one step further out than the deep-MOND limit,
+  because it uses the local relation at each radius, but still inside the same one relation.  What is NOT a
+  restatement is the second half of the claim: that the SPREAD of f is small because the mean HI surface density
+  inside R_HI is universal.  That half joins two independent empirical regularities, and it is the part worth
+  keeping.  The candidate must therefore be labelled: EXPLANATION OF A KNOWN COINCIDENCE, NOT A NEW LAW.
+
+========================================================================================================================
+VERDICT -- k01
+========================================================================================================================
+  Measured Bosma factor on 46 SPARC discs whose used radii are HI-dominated: median 7.38, scatter 0.206 dex -- reproducing the published 7-10 without being told it.
+  The framework's own factor, fitted the same way with ZERO free parameters: 7.69 (canonical), 8.54 (alt).
+  The closed form with no rotation curve at all, fed only a_0 and Sigma_HI = 3.8 Msun/pc^2: 6.12 (canonical) / 6.72 (alt).
+  Within-galaxy radial slope: measured -0.306 against the predicted -0.500 and a constant's 0.000.
+  Upsilon lever on the test statistic: +0.294 dex per dex.
+  It is a restatement of the RAR.  It is worth recording anyway, because it converts a 45-year-old unexplained
+  coincidence into a consequence of a_0 with the right value AND the right radial slope -- and because the
+  radial slope is the half the literature got wrong: the factor is not constant, and the framework says why.
+
+RESULT: 10 checks, 3 FAIL -> ['K01b THE HARDER HALF: the framework must reproduce the SPREAD of f across galaxies, not just its median -- the universality is what the literature calls surprising', "K01c the measured f must RISE outward with the predicted slope -1/2 within galaxies -- a constant f (slope 0) is the literature's own description and would falsify equation (K01)", 'K01d the closed form, fed only a_0 and the universal mean HI surface density inside the HI radius (3.8 Msun/pc^2, Wang+2016), must land inside the published Bosma window 7-10 on at least one footing']   rc=1

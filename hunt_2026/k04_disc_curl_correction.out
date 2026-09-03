@@ -1,0 +1,52 @@
+======================================================================================================================
+CANDIDATE K4 -- the disc correction to the algebraic relation, in closed form (Biot-Savart)
+======================================================================================================================
+  [PASS] thin-sheet vertical field at the centre = -2 pi G Sigma(0)   (-0.999750 vs -1)
+  [PASS] in-plane Newtonian g_R matches Freeman's formula   (max rel dev 1.98e-05)
+  [PASS] loop on-axis B_z (Rp=1.0, z=0.0)   (0.50000000 vs 0.50000000)
+  [PASS] loop on-axis B_z (Rp=1.0, z=2.0)   (0.04472136 vs 0.04472136)
+  [PASS] loop on-axis B_z (Rp=3.0, z=-1.0)   (0.14230249 vs 0.14230249)
+
+  the correction, computed for an exponential disc at four places in the acceleration ladder.
+  y0 = g_bar/a_0 at R = 2 R_d (a bright spiral sits near y0 ~ 1-3; a dwarf near y0 ~ 0.1).
+      y0   R/R_d   algebraic nu g_N   true g (with h)  delta (dex)  delta (%)
+    0.10     1.0           0.456234          0.457422       0.0011       0.26
+    0.10     2.0           0.368859          0.364112      -0.0056      -1.29
+    0.10     4.0           0.216178          0.210624      -0.0113      -2.57
+    0.10     8.0           0.098887          0.097323      -0.0069      -1.58
+    0.10    16.0           0.046473          0.046281      -0.0018      -0.41
+    0.30     1.0           0.897230          0.899152       0.0009       0.21
+    0.30     2.0           0.711348          0.703221      -0.0050      -1.14
+    0.30     4.0           0.401034          0.391467      -0.0105      -2.39
+    0.30     8.0           0.177164          0.174461      -0.0067      -1.53
+    0.30    16.0           0.081829          0.081497      -0.0018      -0.41
+    1.00     1.0           2.061898          2.064623       0.0006       0.13
+    1.00     2.0           1.581977          1.567731      -0.0039      -0.90
+    1.00     4.0           0.833146          0.816010      -0.0090      -2.06
+    1.00     8.0           0.345140          0.340238      -0.0062      -1.42
+    1.00    16.0           0.154239          0.153635      -0.0017      -0.39
+    3.00     1.0           4.941246          4.943133       0.0002       0.04
+    3.00     2.0           3.644852          3.622797      -0.0026      -0.61
+    3.00     4.0           1.754619          1.726504      -0.0070      -1.60
+    3.00     8.0           0.661879          0.653551      -0.0055      -1.26
+    3.00    16.0           0.281091          0.280053      -0.0016      -0.37
+
+  VALIDATION -- the corrected field must be curl-free (this is the whole content of the construction):
+    curl of the ALGEBRAIC field nu g_N at (R,z)=(2.0,0.8):  -8.591063e-03
+    curl of the CORRECTED field nu g_N - h at the same point: -3.107886e-04
+    reduction factor: 27.6x
+  [PASS] the correction removes most of the algebraic field's curl   (0.036 of the original)
+
+  SPHERICAL CONTROL -- for a spherical mass grad nu is parallel to g_N, so C must vanish identically:
+    max |C_phi| for a spherical mass (analytic, grad nu || g_N): 0.000e+00   -- identically zero
+  [PASS] C vanishes identically for a spherical mass   (analytic)
+
+  HOW BIG IS IT AGAINST THE DATA?  SPARC's RAR orthogonal scatter is 0.057 dex; its known systematic budget
+  (distance + inclination + Upsilon) is 0.05-0.07 dex.  The correction computed above is:
+    y0 = 0.10:  -0.0113 to +0.0011 dex across R = 1-16 R_d (max |delta| = 2.57%)
+    y0 = 0.30:  -0.0105 to +0.0009 dex across R = 1-16 R_d (max |delta| = 2.39%)
+    y0 = 1.00:  -0.0090 to +0.0006 dex across R = 1-16 R_d (max |delta| = 2.06%)
+    y0 = 3.00:  -0.0070 to +0.0002 dex across R = 1-16 R_d (max |delta| = 1.60%)
+
+
+RESULT: 7 checks, 0 FAIL   rc=0

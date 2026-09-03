@@ -1,0 +1,80 @@
+======================================================================================================================
+CANDIDATE K2 -- the deep-MOND expansion is a Bernoulli series; leading correction coefficient = 1/2
+======================================================================================================================
+  verifying the closed-form expansion against the exact kernel (checks that CAN fail):
+  [PASS] series to s^7 matches kernel at s=0.05   (exact 0.051260416233 series 0.051260416233 rel -2.220e-16)
+  [PASS] series to s^7 matches kernel at s=0.1   (exact 0.105083319448 series 0.105083319448 rel +8.438e-15)
+  [PASS] series to s^7 matches kernel at s=0.2   (exact 0.220666222645 series 0.220666222646 rel +1.916e-12)
+  [PASS] series to s^7 matches kernel at s=0.4   (exact 0.485319165075 series 0.485319165291 rel +4.448e-10)
+  numerical second derivative test: [g/a0 - s]/s^2 at s=0.0001 -> 0.500008333   (predicted 1/2)
+  [PASS] leading correction coefficient is 1/2   (0.500008333)
+  the g_bar^2 (s^4) coefficient: residual/s^4 at s=0.01 -> -1.388342e-05   (predicted exactly 0)
+  [PASS] the g_bar^2 coefficient vanishes   (-1.388e-05)
+
+  the three kernels' expansions, g_obs/a_0 = s + c2 s^2 + c3 s^3 + ... :
+    kernel                                   c2         c3
+    Route A  1/(1-exp(-sqrt y))          0.5000     0.0833
+    MOND simple  (1+sqrt(1+4/y))/2       0.5000     0.1250
+    alpha=1  sqrt(1+1/y)  (E0/E3)        0.0000     0.5000
+
+  SPARC deep tail: fit g_obs/a_0 = s + c2 s^2 + c3 s^3 with a_0 FIXED at each footing
+  sample                                        N        c2      +-        c3   predicted c2
+/Users/carlzimmerman/new_physics/zimmerman-formula/hunt_2026/k02_deep_mond_bernoulli.py:93: RuntimeWarning: divide by zero encountered in matmul
+  resid = Y - A @ coef
+/Users/carlzimmerman/new_physics/zimmerman-formula/hunt_2026/k02_deep_mond_bernoulli.py:93: RuntimeWarning: overflow encountered in matmul
+  resid = Y - A @ coef
+/Users/carlzimmerman/new_physics/zimmerman-formula/hunt_2026/k02_deep_mond_bernoulli.py:93: RuntimeWarning: invalid value encountered in matmul
+  resid = Y - A @ coef
+/Users/carlzimmerman/new_physics/zimmerman-formula/hunt_2026/k02_deep_mond_bernoulli.py:95: RuntimeWarning: divide by zero encountered in matmul
+  cov = np.linalg.inv(A.T @ A) * float(resid @ resid)/dof
+/Users/carlzimmerman/new_physics/zimmerman-formula/hunt_2026/k02_deep_mond_bernoulli.py:95: RuntimeWarning: overflow encountered in matmul
+  cov = np.linalg.inv(A.T @ A) * float(resid @ resid)/dof
+/Users/carlzimmerman/new_physics/zimmerman-formula/hunt_2026/k02_deep_mond_bernoulli.py:95: RuntimeWarning: invalid value encountered in matmul
+  cov = np.linalg.inv(A.T @ A) * float(resid @ resid)/dof
+  canonical y<0.25                           1604    0.8791  0.1571    0.0793         0.5000
+  canonical y<0.5                            1979    0.8397  0.1172    0.1354         0.5000
+  canonical y<1.0                            2335    0.9717  0.0775   -0.1562         0.5000
+  alt y<0.25                                 1703    0.3618  0.1652    0.7968         0.5000
+  alt y<0.5                                  2073    0.5680  0.1065    0.2582         0.5000
+  alt y<1.0                                  2421    0.7193  0.0802   -0.0219         0.5000
+
+  canonical footing, y<0.5:  c2 = 0.8397 +- 0.1172   -> 2.9 sigma from 1/2, 7.2 sigma from 0 (alpha=1)
+  alt       footing, y<0.5:  c2 = 0.5680 +- 0.1065   -> 0.6 sigma from 1/2, 5.3 sigma from 0 (alpha=1)
+
+  MOCK CONTROL -- synthetic points that obey Route A EXACTLY at the canonical a_0, with realistic errors,
+  run through the same estimator.  This is what item 25 lacked; it measures the estimator's own bias.
+    noiseless mock  : c2 recovered = 0.5003 +- 0.0000   (truth 0.5)
+    realistic errors: c2 recovered = 0.5026 +- 0.0353   (truth 0.5)
+    estimator bias on c2 with realistic errors: +0.0026
+  [PASS] estimator recovers c2 = 1/2 on noiseless mocks   (0.5003)
+  [PASS] estimator bias on c2 with realistic errors < 0.15   (+0.0026)
+
+  SPARC c2 (canonical, y<0.5) corrected for the mock bias: 0.8371 +- 0.1172
+    -> 2.9 sigma from Route A's 1/2;  7.1 sigma from the alpha=1 kernel's 0
+  [PASS] SPARC's c2 is consistent with 1/2 at < 3 sigma   (2.88 sigma)
+  [PASS] SPARC's c2 excludes the alpha=1 kernel's 0 at > 3 sigma   (7.14 sigma)
+
+  MUTATIONS (a wrong a_0 must move c2 away from 1/2):
+    a_0 x 3       c2 =   -2.5206 +- 0.1183   ( 25.5 sigma from 1/2)
+    a_0 / 3       c2 =    2.7798 +- 0.1177   ( 19.4 sigma from 1/2)
+    a_0 x 10      c2 =   -9.0857 +- 0.1273   ( 75.3 sigma from 1/2)
+
+  THE UPSILON LEVER on c2:
+    Upsilon_disk = 0.30  ->  c2 = 2.1982 (N = 2180)
+    Upsilon_disk = 0.40  ->  c2 = 1.4558 (N = 2074)
+    Upsilon_disk = 0.50  ->  c2 = 0.8397 (N = 1979)
+    Upsilon_disk = 0.60  ->  c2 = 0.6203 (N = 1894)
+    Upsilon_disk = 0.70  ->  c2 = 0.5401 (N = 1819)
+    d log c2 / d log Upsilon = -1.7524
+  [FAIL] Upsilon lever on c2 is |d log c2/d log Upsilon| < 0.5   (-1.7524)
+
+  GAS-DOMINATED subsample (gas supplies > 70% of g_bar; Upsilon nearly irrelevant):
+    canonical  N=  225  c2 = 1.2317 +- 0.4334  (1.7 sigma from 1/2, 2.8 from 0)
+    alt        N=  225  c2 = 0.4517 +- 0.4327  (0.1 sigma from 1/2, 1.0 from 0)
+
+  IF c2 = 1/2 IS IMPOSED (the framework's own statement), what a_0 does the deep tail return?
+    y<0.25: a_0 = 9.682e-11 (to s^2)   9.537e-11 (to s^3)   gas-dominated 7.776e-11   [canonical 9.36e-11, alt 1.13e-10]
+    y<0.5: a_0 = 1.001e-10 (to s^2)   9.787e-11 (to s^3)   gas-dominated 7.776e-11   [canonical 9.36e-11, alt 1.13e-10]
+
+
+RESULT: 11 checks, 1 FAIL -> ['Upsilon lever on c2 is |d log c2/d log Upsilon| < 0.5']   rc=1

@@ -1,0 +1,209 @@
+========================================================================================================================
+P1 -- THE UNIVERSAL LENSING COLLAPSE, TESTED ON SIXTEEN KiDS-1000 / GAMA STACKS
+     angle: ml-free.   data ON DISK (Brouwer et al. 2021).   nothing fetched, nothing fitted unless said so.
+========================================================================================================================
+  stacks read: 16   (1xFig-4-5-C1_RAR-KiDS-is, 1xFig-4-C1_RAR-GAMA-isol, 1xFig-4_RAR-KiDS-isolate, 1xFig-10_RAR-KiDS-isolat, 4xFig-9_RAR-KiDS-isolate, 4xFig-A4_RAR-KiDS-all_Ma, 2xFig-8_RAR-KiDS-isolate, 2xFig-8_RAR-KiDS-isolate)
+
+------------------------------------------------------------------------------------------------------------------------
+0.  THE PREDICTED NORMALISATION -- and a factor 2 pi in the proposal that has to be corrected first
+------------------------------------------------------------------------------------------------------------------------
+    canonical  a_0 = 9.360e-11 m/s^2 :  a_0/G = 1.4025 kg/m^2 =    671.4 Msun/pc^2 |  a_0/(2 pi G) =  106.9 Msun/pc^2
+    alt        a_0 = 1.130e-10 m/s^2 :  a_0/G = 1.6931 kg/m^2 =    810.5 Msun/pc^2 |  a_0/(2 pi G) =  129.0 Msun/pc^2
+  [PASS] P1.0 THE PROPOSAL'S PREDICTED NORMALISATION IS WRONG BY 2 pi, and the correction is verified here: the numbers 107 / 129 Msun/pc^2 that P1 calls 'a_0/G' are a_0/(2 pi G), the item-5 halo surface-density constant itself. The vertical unit of the collapse is a_0/G = 671 / 811 Msun/pc^2   (a_0/G = 671.4 / 810.5; a_0/(2 pi G) = 106.9 / 129.0; ratio to the quoted 107 is 6.2745 = 2 pi)
+
+------------------------------------------------------------------------------------------------------------------------
+1.  THE RESTATEMENT TEST, EXECUTED.  Two parts: the coordinate identity, and the derivation from v^4 = G M_b a_0.
+------------------------------------------------------------------------------------------------------------------------
+  [PASS] P1.1a the collapse abscissa is an exact relabelling of the measured baryonic acceleration: S = R/r_M is IDENTICALLY (g_bar/a_0)^(-1/2) for every mass and radius, so the (S, Delta Sigma G/a_0) plane and the (g_bar, Delta Sigma) plane carry the same information -- the 'universal collapse' IS the lensing radial acceleration relation of Brouwer et al. 2021 (A&A 650 A113, Figs. 9 and A.4). CREDITED, NOT CLAIMED   (worst |S/(g_bar/a_0)^(-1/2) - 1| over 5 radii x 5 masses x 2 footings = 2.22e-16)
+       S      f(S) full kernel     1/(4S) from v^4=G M_b a_0     departure
+       5.0      5.661675e-02          5.000000e-02             +13.23%
+      10.0      2.662316e-02          2.500000e-02              +6.49%
+      30.0      8.511345e-03          8.333333e-03              +2.14%
+     100.0      2.515949e-03          2.500000e-03              +0.64%
+     300.0      8.351032e-04          8.333333e-04              +0.21%
+
+------------------------------------------------------------------------------------------------------------------------
+2.  HOW MUCH TRANSITION IS ACTUALLY IN THESE DATA?  P1 says the non-restatement content lives at S <~ 3.
+------------------------------------------------------------------------------------------------------------------------
+    canonical : released g_bar spans 1.382e-15 .. 3.917e-12 m/s^2  ->  y = g_bar/a_0 in [1.48e-05, 0.042],  S in [4.89, 260.2]
+                 largest departure of f(S) from its deep-MOND asymptote anywhere in the data: +13.55%  (at y = 0.042)
+    alt       : released g_bar spans 1.382e-15 .. 3.917e-12 m/s^2  ->  y = g_bar/a_0 in [1.22e-05, 0.035],  S in [5.37, 285.9]
+                 largest departure of f(S) from its deep-MOND asymptote anywhere in the data: +12.29%  (at y = 0.035)
+  [PASS] P1.2a AGAINST THE PROPOSAL: the released KiDS lensing RAR never reaches the regime P1 named. P1 said its non-restatement content is the collapse THROUGH the transition, at S <~ 3; the innermost point of the deepest stack sits at S = 4.9, and 14 of the 15 acceleration bins are at S > 8   (S_min over all 16 stacks = 4.89 (y_max = 0.0418); P1 asked for S <~ 3. The largest kernel-over-deep-MOND correction anywhere in the data is 13.5%, at that one bin)
+
+    full Route A kernel, a_0 free : a_0 = 1.852e-10  chi2_min =   125.71  on 60 points
+    bare deep MOND  v^4=GM a_0    : a_0 = 1.962e-10  chi2_min =   114.21
+  [PASS] P1.2b THE RESTATEMENT TEST IN ITS DECISIVE FORM, and it says RESTATEMENT for every purpose P1 claims: the a_0 these data return is the same to 0.03 dex whether it is read through the full Route A kernel or through the bare deep-MOND algebra v^4 = G M_b a_0. Nothing P1 measures is separable from the deep-MOND law. IS_RESTATEMENT = TRUE   (a_0(full kernel) = 1.852e-10, a_0(bare deep MOND) = 1.962e-10: 0.025 dex apart, against a 0.082 dex footing separation and a 0.05 dex second-law target)
+    delta chi2 (deep - full)      = -11.50 on 60 points at equal parameter count (-5.40 after inflating errors to chi2/dof = 1)
+    same, dropping the 3 innermost (highest g_bar) bins = -0.86 on 48 points
+  [PASS] P1.2c AGAINST INTEREST: the one place the kernel's transition is visible in these data, it points the wrong way. With the same number of free parameters the BARE deep-MOND asymptote fits better than the full Route A kernel, and the preference lives entirely in the three innermost acceleration bins -- exactly where miscentring and the lens's own baryonic extent live (h113 flagged the same radii). Reported, not banked either way   (deep favoured by 11.5 on all 60 points (5.4 inflated), but only 0.9 once the 3 innermost bins are dropped)
+
+------------------------------------------------------------------------------------------------------------------------
+3.  THE ACTUAL TEST: the ZERO-PARAMETER prediction Delta Sigma = (a_0/G) f(sqrt(a_0/g_bar)) on 16 stacks.
+    Nothing is fitted here.  g_bar is Brouwer's measurement; a_0 is Planck's rho_DE through the first law.
+------------------------------------------------------------------------------------------------------------------------
+  covariance ordering audit (the bug pattern that voided an earlier claim in this programme):
+    Fig-4-5-C1_RAR-KiDS-isolated_covmatrix.txt            transposed min-eig +8.9188e-03   plain-reshape min-eig +8.9188e-03
+    Fig-4-C1_RAR-GAMA-isolated_covmatrix.txt              transposed min-eig +1.3240e-01   plain-reshape min-eig +1.3240e-01
+    Fig-4_RAR-KiDS-isolated_hotgas_covmatrix.txt          transposed min-eig +1.8312e-03   plain-reshape min-eig +1.8312e-03
+    Fig-10_RAR-KiDS-isolated-dwarfs_covmatrix.txt         transposed min-eig +7.2410e-02   plain-reshape min-eig +7.2410e-02
+    Fig-9_RAR-KiDS-isolated_Massbins_covmatrix.txt        transposed min-eig +2.1523e-02   plain-reshape min-eig -8.8891e+01
+    Fig-A4_RAR-KiDS-all_Massbins_covmatrix.txt            transposed min-eig +9.9591e-03   plain-reshape min-eig -2.1522e+01
+    Fig-8_RAR-KiDS-isolated_Colorbins_covmatrix.txt       transposed min-eig +2.0549e-02   plain-reshape min-eig -2.6230e+01
+    Fig-8_RAR-KiDS-isolated_Sersicbins_covmatrix.txt      transposed min-eig +2.2233e-02   plain-reshape min-eig -2.5808e+01
+  [PASS] P1.3a every covariance used here is symmetric positive definite in the (m,n,i,j) transposed ordering, and the plain reshape is NOT positive definite on every multi-bin file -- checked by eigenvalue, not by the diagonal   (16 stacks; transposed all PD = True; plain reshape fails on 4 of 8 files (the 4 multi-bin ones))
+
+  stack                        n ndet |   canonical 9.36e-11         |   alt 1.13e-10
+                                      |  <dex offset>  rms   chi2/n  |  <dex offset>  rms   chi2/n
+  KiDS isolated (all)         15   15 |    +0.146  0.076   12.71  |    +0.106  0.075    8.74
+  GAMA isolated               15    7 |    +0.227  0.111    1.40  |    +0.188  0.111    1.25
+  KiDS isolated + hot gas     15   15 |    -0.032  0.243   22.91  |    -0.072  0.243   26.30
+  KiDS isolated dwarfs         5    4 |    +0.078  0.166    6.12  |    +0.037  0.166    6.26
+  KiDS iso M* 8.5-10.3        15   14 |    +0.101  0.148    3.26  |    +0.062  0.147    3.01
+  KiDS iso M* 10.3-10.6       15   15 |    +0.150  0.121    4.64  |    +0.110  0.120    3.69
+  KiDS iso M* 10.6-10.8       15   15 |    +0.154  0.086    4.66  |    +0.115  0.085    3.38
+  KiDS iso M* 10.8-11.0       15   15 |    +0.147  0.083    6.31  |    +0.107  0.082    4.47
+  KiDS all M* 8.5-10.3        15   14 |    +0.156  0.187   20.10  |    +0.116  0.186   18.59
+  KiDS all M* 10.3-10.6       15   15 |    +0.223  0.183   32.31  |    +0.183  0.182   28.20
+  KiDS all M* 10.6-10.8       15   15 |    +0.228  0.167   35.84  |    +0.189  0.166   30.77
+  KiDS all M* 10.8-11.0       15   15 |    +0.260  0.127   46.23  |    +0.221  0.126   38.65
+  KiDS iso blue (u-r low)     15   15 |    -0.026  0.115    1.50  |    -0.066  0.114    1.80
+  KiDS iso red (u-r high)     15   15 |    +0.234  0.084   15.33  |    +0.195  0.082   12.09
+  KiDS iso Sersic low         15   15 |    +0.021  0.081    0.97  |    -0.018  0.081    0.93
+  KiDS iso Sersic high        15   15 |    +0.206  0.088   11.50  |    +0.167  0.087    8.87
+    canonical : 16-stack mean offset +0.142 dex, stack-to-stack rms 0.089 dex, full range 0.292 dex
+    alt       : 16-stack mean offset +0.102 dex, stack-to-stack rms 0.089 dex, full range 0.292 dex
+
+  the same offsets decomposed by PARTITION -- within a partition the stacks are disjoint, between partitions
+  they are the same lenses cut a different way, so only the within-partition numbers are scatters:
+    Fig-9 isolated, 4 disjoint stellar-mass bins n=4  mean +0.138 dex, rms 0.025 dex, range 0.053 dex
+    Fig-A4 all lenses, 4 disjoint mass bins      n=4  mean +0.217 dex, rms 0.044 dex, range 0.104 dex
+    Fig-8 colour, 2 disjoint u-r bins            n=2  mean +0.104 dex, rms 0.184 dex, range 0.261 dex
+    Fig-8 Sersic, 2 disjoint n bins              n=2  mean +0.114 dex, rms 0.131 dex, range 0.185 dex
+  [PASS] P1.3d THE DECOMPOSITION IS MORE INFORMATIVE THAN THE POOLED NUMBER, and it reproduces items 65/66 independently: cut the SAME lenses by stellar mass and the collapse is extraordinarily tight, cut them by COLOUR and it breaks by an order of magnitude more. A collapse that is tight in mass and broken by colour is a stellar-population statement, not an a_0 statement   (within-partition rms across 4 disjoint mass bins = 0.025 dex; red-minus-blue = 0.261 dex, 11x larger, on the same lenses and the same shear)
+  [PASS] P1.3b THE COLLAPSE ITSELF PASSES AT RAR CLASS: the sixteen independent stacks lie on the single Lambda-normalised curve with a stack-to-stack scatter under 0.10 dex, with NO parameter fitted anywhere -- the abscissa is Brouwer's measured g_bar and the ordinate is a_0/G with a_0 from Planck's rho_DE   (stack-to-stack rms of the mean offset = 0.089 dex (canonical), 0.089 dex (alt); pre-declared bar 0.10 dex)
+  [FAIL] P1.3c AND THE ZERO-PARAMETER NORMALISATION LANDS ON THE DATA rather than beside them: the mean offset of the sixteen stacks from the predicted amplitude is under 0.10 dex at one of the two footings   (mean offset canonical +0.142 dex, alt +0.102 dex (Delta Sigma ~ sqrt(a_0), so a 0.082 dex footing gap is only 0.041 dex here))
+
+------------------------------------------------------------------------------------------------------------------------
+4.  READ AS A MEASUREMENT: the a_0 each stack returns, profiled with the full covariance of its own file.
+    Delta Sigma ~ sqrt(a_0) in the deep branch, so a_0 is the SQUARE of the amplitude -- errors double in dex.
+------------------------------------------------------------------------------------------------------------------------
+  stack                         a_0 [m/s^2]     dchi2<1 band        dex vs canon   dex vs alt   chi2/n
+  KiDS isolated (all)           1.852e-10   [1.78e-10, 1.96e-10]     +0.296     +0.215      3.29
+  GAMA isolated                 1.529e-10   [1.24e-10, 1.89e-10]     +0.213     +0.131      1.13
+  KiDS isolated + hot gas       7.517e-11   [7.23e-11, 7.81e-11]     -0.095     -0.177     21.69
+  KiDS isolated dwarfs          9.463e-11   [7.37e-11, 1.15e-10]     +0.005     -0.077      6.12
+  KiDS iso M* 8.5-10.3          1.389e-10   [1.19e-10, 1.59e-10]     +0.171     +0.090      2.91
+  KiDS iso M* 10.3-10.6         2.000e-10   [1.82e-10, 2.20e-10]     +0.330     +0.248      2.15
+  KiDS iso M* 10.6-10.8         1.962e-10   [1.82e-10, 2.12e-10]     +0.321     +0.240      1.40
+  KiDS iso M* 10.8-11.0         1.962e-10   [1.82e-10, 2.08e-10]     +0.321     +0.240      1.65
+  KiDS all M* 8.5-10.3          1.619e-10   [1.53e-10, 1.75e-10]     +0.238     +0.156     17.22
+  KiDS all M* 10.3-10.6         2.567e-10   [2.47e-10, 2.72e-10]     +0.438     +0.356     17.40
+  KiDS all M* 10.6-10.8         2.616e-10   [2.52e-10, 2.72e-10]     +0.446     +0.365     17.04
+  KiDS all M* 10.8-11.0         2.992e-10   [2.88e-10, 3.11e-10]     +0.505     +0.423     13.99
+  KiDS iso blue (u-r low)       8.764e-11   [7.96e-11, 9.83e-11]     -0.029     -0.110      1.48
+  KiDS iso red (u-r high)       2.771e-10   [2.67e-10, 2.94e-10]     +0.471     +0.390      2.52
+  KiDS iso Sersic low           1.042e-10   [9.46e-11, 1.17e-10]     +0.046     -0.035      0.91
+  KiDS iso Sersic high          2.518e-10   [2.38e-10, 2.67e-10]     +0.430     +0.348      2.32
+    median a_0 = 1.906e-10  (+0.309 dex canonical, +0.227 dex alt);  stack-to-stack spread 0.184 dex, full range 0.600 dex
+  [PASS] P1.4 AGAINST INTEREST: read as an a_0 meter rather than as a collapse, the same sixteen stacks are NOT one number -- they span more than the 0.05 dex a second law would need and more than the 0.082 dex between the two footings. The collapse looks tight only because Delta Sigma goes as sqrt(a_0), which halves every disagreement in the ordinate; the disagreement is real and is inherited from the stellar masses in g_bar (items 2, 65, 66)   (per-stack a_0 spread 0.184 dex (range 0.600); the ordinate spread of section 3 is 0.089 dex = half of it, as sqrt(a_0) requires)
+    colour split  red/blue      : +0.500 dex in a_0  (3.16x)
+    Sersic split  high/low n    : +0.383 dex in a_0  (2.42x)
+    baryon-budget split         : -0.392 dex in a_0  (0.41x)   -- SAME LENSES, SAME SHEAR,
+        the only difference is whether B21's hot-gas term is included in M_bar.  a_0 = 1.852e-10 without it, 7.517e-11 with it.
+  [PASS] P1.4b THE SHARPEST NUMBER IN THIS SCRIPT, and it is against the candidate: one and the same set of lenses and one and the same shear measurement return a_0 values 0.39 dex apart depending only on how much gas is put in the baryon budget -- 4.8x the 0.082 dex between the two footings and 8x the 0.05 dex a second law would need. Every collapse-based a_0 is a baryon-budget measurement wearing a_0's clothes   (-0.392 dex = 0.41x, from B21's own hot-gas-in / hot-gas-out pair of files; the framework's own footing separation is 0.082 dex)
+
+------------------------------------------------------------------------------------------------------------------------
+5.  THE ALTERNATIVE, COMPUTED BESIDE THE FRAMEWORK.
+------------------------------------------------------------------------------------------------------------------------
+    framework, a_0 canonical, ZERO parameters : chi2 =     3325.8 on 230 points
+    framework, a_0 alt,       ZERO parameters : chi2 =     2892.7
+    Newtonian point-mass baryons (no boost)   : chi2 =    14973.8   [also zero parameters: Delta Sigma = g_bar/(pi G)]
+  [PASS] P1.5a the Newtonian alternative is available in exactly the same zero-parameter form in these coordinates (Delta Sigma = g_bar/(pi G), no mass needed) and it is excluded decisively -- so the comparison is like for like and the boost is doing the work   (delta chi2 = 12081 on 230 points, both sides parameter-free (ratio only 5.2x, which is why the ratio is the wrong statistic))
+  [PASS] P1.5c AGAINST INTEREST, and it is the thing the collapse plot hides: the zero-parameter prediction is NOT a good fit to these profiles in absolute terms. chi2/dof is far from 1 for the framework as well as for every alternative, so 'sixteen stacks on one curve to 0.089 dex' is a statement about the eye, not about chi2. Either B21's errors are optimistic for this use or the shape is wrong; on the hunt's rules the collapse is a consistency and cannot be quoted as a fit   (framework chi2/dof = 14.5 (canonical) / 12.6 (alt), parameter-free, on 230 points; the four non-isolated 'KiDS all' stacks alone contribute 2017)
+
+    audit of B21 eq 7 (g_obs = 4 G Delta Sigma), which the whole published lensing RAR rests on:
+      the exact ratio implied by the kernel is g/(4 G Delta Sigma) = nu(y) y / (4 f(S)),  S = y^(-1/2)
+       y = g_bar/a_0        S   g/(4G dSigma)
+             0.00001   316.23          0.9996
+             0.00010   100.00          0.9986
+             0.00100    31.62          0.9957
+             0.01000    10.00          0.9868
+             0.04200     4.88          0.9738   <- deepest released bin
+             0.30000     1.83          0.9370
+             1.00000     1.00          0.8993
+             3.00000     0.58          0.8567
+  [PASS] P1.5d B21's constant-4G conversion is exact to better than 3% everywhere the released data live, so the published lensing RAR is not distorted by it -- a possible systematic checked and cleared, not a finding   (worst |g/(4 G Delta Sigma) - 1| over y <= 0.042 is 2.62%; it only reaches 10% at y = 1, which these data never reach)
+
+    LambdaCDM, zero free parameters too: Moster+2013 M*-M200 abundance matching + Duffy+2008 c(M200),
+    NFW projected by the same routine, plus the stellar point mass.  R recovered from R = sqrt(G M_b/g_bar).
+    stack                       logM*  logM200  c200 |  chi2 NFW  chi2 fw(can)  chi2 fw(alt)
+    KiDS iso M* 8.5-10.3        10.10    11.57  6.81 |      81.4          48.9          45.2
+    KiDS iso M* 10.3-10.6       10.45    11.88  6.40 |     127.6          69.6          55.4
+    KiDS iso M* 10.6-10.8       10.70    12.30  5.90 |      92.9          69.9          50.7
+    KiDS iso M* 10.8-11.0       10.90    12.78  5.38 |     140.5          94.7          67.1
+    TOTAL (4 isolated mass bins, 60 points)                       |     442.3         283.2
+  [PASS] P1.5b BOTH pictures reproduce these profiles with zero free parameters and neither is excluded by them -- which is Brouwer et al. 2021's own published conclusion, reached here independently. The collapse is therefore NOT a discriminant; it is a consistency   (chi2 NFW 442.3 vs framework 283.2 on 60 points, both parameter-free (the LambdaCDM side does carry the abundance-matching calibration, which is not free but is external))
+
+------------------------------------------------------------------------------------------------------------------------
+6.  THE UPSILON LEVER, MEASURED by re-running the whole pipeline at Upsilon x 1.5 (and x 0.667).
+------------------------------------------------------------------------------------------------------------------------
+    g_bar = G(M_* + M_gas)/R^2, so scaling Upsilon scales the abscissa by lambda = 1 + f_*(Upsilon_ratio - 1).
+  stack                         a_0 base  a_0 (Ups x1.5)  a_0 (Ups x0.667)   d log a_0/d log Ups
+  KiDS isolated (all)          1.852e-10       1.214e-10         2.880e-10                -1.065
+  GAMA isolated                1.529e-10       1.002e-10         2.332e-10                -1.041
+  KiDS isolated + hot gas      7.517e-11       4.835e-11         1.146e-10                -1.065
+  KiDS isolated dwarfs         9.463e-11       5.971e-11         1.443e-10                -1.088
+  KiDS iso M* 8.5-10.3         1.389e-10       8.934e-11         2.119e-10                -1.065
+  KiDS iso M* 10.3-10.6        2.000e-10       1.311e-10         3.050e-10                -1.041
+  KiDS iso M* 10.6-10.8        1.962e-10       1.262e-10         2.992e-10                -1.065
+  KiDS iso M* 10.8-11.0        1.962e-10       1.262e-10         2.992e-10                -1.065
+  KiDS all M* 8.5-10.3         1.619e-10       1.062e-10         2.470e-10                -1.041
+  KiDS all M* 10.3-10.6        2.567e-10       1.683e-10         3.915e-10                -1.041
+  KiDS all M* 10.6-10.8        2.616e-10       1.715e-10         3.991e-10                -1.041
+  KiDS all M* 10.8-11.0        2.992e-10       1.962e-10         4.564e-10                -1.041
+  KiDS iso blue (u-r low)      8.764e-11       5.637e-11         1.363e-10                -1.088
+  KiDS iso red (u-r high)      2.771e-10       1.817e-10         4.227e-10                -1.041
+  KiDS iso Sersic low          1.042e-10       6.699e-11         1.619e-10                -1.088
+  KiDS iso Sersic high         2.518e-10       1.619e-10         3.840e-10                -1.065
+    median lever -1.065   mean -1.059   (K07-C's theorem: exactly -f_*, and f_* ~ 0.85-1.0 for these lens samples)
+  [PASS] P1.6 THE UPSILON LEVER OF THE VERTICAL AXIS IS ZERO BUT THE LEVER OF THE ANSWER IS NOT. P1's own claim that the normalisation contains no stellar mass is true and useless: the abscissa g_bar is where Upsilon lives, and the a_0 the collapse returns moves with lever close to -1, exactly as K07-C's degeneracy theorem forces. This candidate is NOT M/L-free   (median d log a_0/d log Upsilon = -1.065, prediction -f_* ~ -0.9; a 0.1 dex Upsilon error moves a_0 by 0.106 dex, larger than the 0.082 dex between the two footings)
+
+    end-to-end systematic variants (each re-profiles a_0 on the 4 Fig-9 isolated mass bins jointly):
+      baseline (file values as physical)     a_0 = 1.852e-10   +0.000 dex
+      h70 = 0.9629 on g_bar only             a_0 = 1.925e-10   +0.017 dex
+      h70 = 0.9629 on Delta Sigma only       a_0 = 1.715e-10   -0.033 dex
+      cold gas +15% in M_bar                 a_0 = 1.619e-10   -0.058 dex
+      cold gas +30% in M_bar                 a_0 = 1.416e-10   -0.117 dex
+      drop 3 lowest g_bar (outermost R)      a_0 = 1.888e-10   +0.008 dex
+      drop 3 highest g_bar (innermost R)     a_0 = 2.119e-10   +0.058 dex
+
+------------------------------------------------------------------------------------------------------------------------
+7.  MUTATION CONTROLS -- each must FAIL if the estimator is doing nothing.
+------------------------------------------------------------------------------------------------------------------------
+  [PASS] MP1.a a_0 x 0.25 must be visibly worse than a_0 canonical on the same zero-parameter prediction   (chi2 7647.9 vs 3325.8 (delta +4322.2 on 230 points))
+  [PASS] MP1.a a_0 x 4.0 must be visibly worse than a_0 canonical on the same zero-parameter prediction   (chi2 5367.3 vs 3325.8 (delta +2041.5 on 230 points))
+  [PASS] MP1.b permuting which g_bar carries which measured Delta Sigma inside each stack must ruin the fit -- the prediction uses the SHAPE, so destroying the pairing has to be visible   (shuffled chi2 422462.7 vs real 3325.8)
+
+  [PASS] MP1.c injecting a_0 = 0.25x canonical into synthetic profiles built on these stacks' own covariance must be recovered   (injected 2.3400e-11, median of 24 recoveries 2.2875e-11 (-0.0099 dex))
+  [PASS] MP1.c injecting a_0 = 1.0x canonical into synthetic profiles built on these stacks' own covariance must be recovered   (injected 9.3600e-11, median of 24 recoveries 9.3731e-11 (+0.0006 dex))
+  [PASS] MP1.c injecting a_0 = 4.0x canonical into synthetic profiles built on these stacks' own covariance must be recovered   (injected 3.7440e-10, median of 24 recoveries 3.7315e-10 (-0.0015 dex))
+
+------------------------------------------------------------------------------------------------------------------------
+8.  VERDICT
+------------------------------------------------------------------------------------------------------------------------
+  * P1's collapse is REAL and it is TIGHT: sixteen lens stacks (NOT sixteen independent samples -- see 3d)
+    lie on one Lambda-normalised curve
+    with 0.089 dex of stack-to-stack scatter and no parameter fitted.  Reported as a consistency.
+  * P1 is a RESTATEMENT.  Two proofs, both executed above: the collapse abscissa R/r_M is IDENTICALLY
+    (g_bar/a_0)^(-1/2), so the collapse plane is the lensing RAR plane -- Brouwer et al. 2021's own published
+    result -- and the ordinate follows from v^4 = G M_b a_0 by projection, to 0.6% at the median released bin
+    and 13.5% at the single deepest one.  The 'transition' that P1 offered as the non-restatement content is not in these data at all: the
+    deepest point sits at y = 0.042 (S = 4.9, where P1 asked for S <~ 3), and with a_0 free under each
+    form the bare deep-MOND algebra fits as well as the full kernel to delta chi2 = -11.5 on 60 points.
+  * P1 is NOT M/L-free.  The vertical unit a_0/G contains no stellar mass, but the abscissa does, and the a_0
+    the collapse returns carries d log a_0/d log Upsilon = -1.06.
+  * The proposal's predicted normalisation was out by 2 pi (107 -> 671 Msun/pc^2 canonical); corrected here.
+  * CATEGORY: RESTATEMENT.  Not a second Kepler-grade law.
+
+RESULT: 22 checks, 1 FAIL -> ['P1.3c AND THE ZERO-PARAMETER NORMALISATION LANDS ON THE DATA rather than beside them: the mean offset of the sixteen stacks from the predicted amplitude is under 0.10 dex at one of the two footings']   rc=1

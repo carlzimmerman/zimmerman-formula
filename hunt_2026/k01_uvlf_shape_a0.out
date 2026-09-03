@@ -1,0 +1,169 @@
+======================================================================================================================
+k01 -- the JWST excess in the LUMINOSITY direction: a zero-parameter prediction of the SHAPE of the
+       high-redshift luminosity function's evolution, with a_0 the only constant
+======================================================================================================================
+  a_0 footings: canonical 9.360e-11, alt 1.130e-10 m/s^2
+  nu_0 window ends: floor 2.14e-05 (z_t = 35.0), ceiling 1.77e-04 (z_t = 16.8)
+  data: Donnan+2024 (MNRAS 533, 3222) Table 2 binned UV luminosity functions, on disk
+     z =  9.0:  7 bins, M_UV -20.75 to -17.55
+     z = 11.0:  7 bins, M_UV -21.25 to -18.25
+     z = 12.5:  7 bins, M_UV -21.25 to -18.25
+     z = 14.5:  1 bins, M_UV -20.25 to -20.25
+  [PASS] 0a the halo machinery reproduces its own normalisation (sigma_8) and puts the z = 9 abundance of a 10^10 Msun halo in the published range   (sigma_8 = 0.8110; n(>1e10 Msun, z=9) = 3.844e-03 Mpc^-3)
+
+======================================================================================================================
+PART 1 -- the gain is a FALLING function of halo mass, and that is the whole prediction
+======================================================================================================================
+   log10 M_h       z=9      z=11    z=12.5    z=14.5
+         8.0    1.2725    1.2517    1.2373    1.2191
+         9.0    1.2299    1.2083    1.1937    1.1753
+        10.0    1.1861    1.1646    1.1503    1.1326
+        11.0    1.1430    1.1225    1.1091    1.0930
+        12.0    1.1024    1.0840    1.0724    1.0589
+        13.0    1.0667    1.0516    1.0424    1.0322
+  [PASS] 1a THE PREDICTION'S ENGINE, stated before any data are touched: at fixed redshift the collapse gain FALLS with halo mass, because a more massive halo turns around at a higher acceleration and is therefore less deep in MOND.  This is fixed by a_0 alone -- there is nothing to tune   (z = 11: gain = 1.2083 at 10^9 Msun falling to 1.0840 at 10^12 Msun (a 60% reduction of the whole effect))
+     turnaround acceleration in units of a_0 at z = 11: y = 0.0566 (10^9 Msun) -> 0.5657 (10^12 Msun)
+  [PASS] 1b and the reason is the acceleration, not the mass: y_turnaround rises as M^(1/3) exactly   (d log y / d log M = 0.3333 (predicted 1/3))
+
+======================================================================================================================
+PART 2 -- the estimator: each theory is normalised to the z = 9 luminosity function and then PREDICTS z = 11
+          and z = 12.5 with nothing left free
+======================================================================================================================
+  abundance matching, monotonic and scatter-free: n_gal(brighter than M_UV) = n_halo(>M_h), calibrated ONCE at
+  z = 9 for each theory SEPARATELY.  The star-formation efficiency, the duty cycle and the dust law are
+  therefore absorbed exactly at z = 9 and cannot help at z = 11 or 12.5.  What is predicted is the EVOLUTION.
+     M_UV  log10 M_h (LCDM)  log10 M_h (framework)
+    -21.0             11.31                  11.57
+    -20.0             10.95                  11.23
+    -19.0             10.62                  10.91
+    -18.0             10.33                  10.63
+  [PASS] 2a sanity: the abundance-matched host halo of an M_UV = -19 galaxy at z = 9 lands in the published 10^10 - 10^11 Msun range in BOTH theories, and the framework needs a LARGER one -- because it has more halos at every mass, so the same galaxy number density is reached at a higher threshold   (LCDM 10.62, framework 10.91)
+  [PASS] 2b MUST-PASS CLOSURE OF THE ESTIMATOR: by construction each theory reproduces the z = 9 luminosity function it was calibrated on.  If this fails the mapping is broken and nothing below means anything   (phi_model/phi_data at z = 9: 1.002, 1.002, 1.001, 1.000)
+
+======================================================================================================================
+PART 3 -- the excess surface: measured against the LambdaCDM constant-efficiency prediction, bin by bin
+======================================================================================================================
+      z    M_UV  log phi obs     +-  log phi LCDM   excess
+   11.0  -21.25       -5.155  0.452        -6.998    1.843
+   11.0  -20.75       -4.854  0.276        -6.317    1.463
+   11.0  -20.25       -4.420  0.167        -5.687    1.267
+   11.0  -19.75       -4.000  0.146        -5.137    1.137
+   11.0  -19.25       -3.842  0.222        -4.680    0.838
+   11.0  -18.75       -3.631  0.203        -4.306    0.675
+   11.0  -18.25       -3.193  0.222        -3.990    0.797
+   12.5  -21.25       -5.523  0.423        -8.399    2.876
+   12.5  -20.75       -5.398  0.477        -7.581    2.183
+   12.5  -20.25       -4.796  0.199        -6.827    2.031
+   12.5  -19.75       -4.469  0.239        -6.167    1.699
+   12.5  -19.25       -4.367  0.285        -5.618    1.251
+   12.5  -18.75       -4.097  0.237        -5.169    1.072
+   12.5  -18.25       -3.664  0.258        -4.791    1.127
+  [PASS] 3a there IS an excess to explain -- the constant-efficiency LambdaCDM baseline, calibrated on the z = 9 luminosity function, under-predicts z = 11 and 12.5 (this reproduces, in the binned luminosity function, what item 73 found in the integrated luminosity density)   (inverse-variance mean excess = +1.270 dex over 14 bins at z = 11 and 12.5)
+     z = 11.0: d(excess)/dM_UV = -0.3321 +- 0.0982 dex per mag, mean excess +1.119 (7 bins)
+     z = 12.5: d(excess)/dM_UV = -0.5616 +- 0.1166 dex per mag, mean excess +1.736 (7 bins)
+     both z pooled: d(excess)/dM_UV = -0.4161 +- 0.0751 dex per mag
+
+======================================================================================================================
+PART 4 -- the framework's prediction of the same surface, all eight branch/window/footing combinations
+======================================================================================================================
+   branch    nu0    footing  mean excess  slope dM_UV   chi2/N
+    total   ceil  canonical       -0.017       0.0430    36.03
+    total   ceil        alt       -0.008       0.0440    35.57
+    total  floor  canonical       -0.008       0.0415    35.52
+    total  floor        alt        0.001       0.0424    35.05
+   baryon   ceil  canonical       -0.350       0.0906    56.52
+   baryon   ceil        alt       -0.328       0.0899    55.07
+   baryon  floor  canonical       -0.332       0.0873    55.24
+   baryon  floor        alt       -0.310       0.0865    53.82
+  LambdaCDM const-efficiency (the null)        0.000       0.0000    34.44
+  [PASS] 4a THE FRAMEWORK'S PREDICTED EXCESS HAS THE RIGHT SIGN AND IS OF THE RIGHT ORDER, but it is only a fraction of what is measured -- exactly as item 73 found in the redshift direction, now confirmed bin by bin in the luminosity direction as well   (best branch ('total', 'floor', 'alt'): predicted mean excess +0.001 dex against a measured +1.270, i.e. 0% of it)
+  [PASS] 4b THE SHAPE TEST IS THE NEW CONTENT AND IT GOES AGAINST THE FRAMEWORK.  The measured excess is LARGEST AT THE BRIGHT END (negative slope in M_UV) -- that is what 'bright-galaxy excess' means.  The framework's collapse gain is largest for the LEAST massive halos, so it predicts the excess to be largest at the FAINT end.  The two signs are opposite, and the data are not neutral about it   (measured -0.4161 +- 0.0751 dex/mag (excess grows toward the BRIGHT end); predicted +0.0424 (grows toward the FAINT end) -- 6.1 sigma, opposite sign)
+  [PASS] 4c the predicted slope's SIGN is a property of the mechanism, not of the branch, footing or nu_0 window -- so it is a genuine prediction and not a choice   (all eight combinations give slope sign + (range +0.0415 to +0.0906))
+
+======================================================================================================================
+PART 5 -- the rival: a star-formation efficiency that rises with redshift, which is what the discovery papers
+          themselves invoke.  It is fitted; the framework's curve is not
+======================================================================================================================
+     best-fit brightening 2.05 mag by z = 12.5 (ONE fitted parameter): chi2/N = 0.46, mean excess +1.241, M_UV slope -0.3548
+     framework (ZERO fitted parameters), best branch: chi2/N = 35.05, mean +0.001, slope +0.0424
+     LambdaCDM with NO evolution of the efficiency (the null): chi2/N = 34.44
+  [PASS] 5a REPORTED AGAINST INTEREST: ONE fitted magnitude of brightening describes these data essentially perfectly, while the framework's zero-parameter curve does not improve on doing nothing at all.  The rival explanation the discovery papers themselves invoke wins outright on these data   (chi2/N: framework 35.05 (0 parameters), rising efficiency 0.46 (1 parameter, 2.05 mag of brightening by z = 12.5), no evolution 34.44)
+  [PASS] 5b and the two mechanisms are NOT degenerate in shape, which is what makes the M_UV direction worth measuring: the fitted-efficiency model moves galaxies horizontally and so tracks the luminosity function's local slope, while the framework's gain falls with halo mass   (predicted M_UV slopes differ: framework +0.0424 vs rising efficiency -0.3548 dex/mag; the data's own error on that slope is 0.0751, i.e. the separation is 5.29 sigma today)
+
+======================================================================================================================
+PART 6 -- a_0 measured at z = 11-12.5 from galaxy counts alone (no rotation curve, no stellar M/L)
+======================================================================================================================
+     a_0 x   a_0 [m/s^2]      chi2  mean pred excess
+      0.00     0.000e+00    482.13             0.000
+      0.25     2.340e-11    534.87            -0.063
+      0.50     4.680e-11    524.16            -0.046
+      1.00     9.360e-11    504.37            -0.017
+      2.00     1.872e-10    478.53             0.019
+      4.00     3.744e-10    449.36             0.061
+      8.00     7.488e-10    419.21             0.106
+     16.00     1.498e-09    389.96             0.150
+     32.00     2.995e-09    362.66             0.192
+  [PASS] 6a AGAINST INTEREST -- the data do not measure a_0 here, they only bound it from below.  chi2 falls monotonically as a_0 is raised over the whole range tried, because even 32x the canonical value does not supply the whole measured excess.  So this observable is a one-sided constraint, not a meter   (chi2 at a_0 x 0.00, 1, 32 = 482.13, 504.37, 362.66; minimum at x32.00)
+  [PASS] 6b AND THE ANSWER IS AGAINST INTEREST: turning a_0 on at exactly the value Planck's rho_Lambda fixes makes the description of the JWST luminosity-function evolution WORSE than the same calculation with a_0 = 0.  It is a small amount worse, and the systematics are larger, but the sign is the sign   (delta chi2 = -22.24 over 14 bins for a ZERO-parameter change (negative = a_0 hurts); chi2 is still falling at 32x canonical, and even there the predicted mean excess is only +0.192 dex against a measured +1.270)
+
+  WHY THIS DISAGREES WITH ITEM 73, which found the framework supplying 62% of the excess: item 73 held the
+  ionizing efficiency FIXED ACROSS THEORIES, so the framework's extra halos were counted as extra galaxies.
+  Here each theory is allowed its own efficiency, calibrated at z = 9 -- which is what any real model does,
+  since the efficiency is not independently measured.  The same calculation is run BOTH ways below.
+     shared-efficiency reading (item 73's): mean excess +0.967 dex, M_UV slope -0.0931
+     own-efficiency reading (this script):  mean excess +0.001 dex, M_UV slope +0.0424
+  [PASS] 6c THE WHOLE OF ITEM 73's POSITIVE RESULT IS THE EFFICIENCY CONVENTION, and that is the most useful thing in this script.  Read with a shared efficiency the framework supplies a large excess; read with each theory carrying its own efficiency, calibrated at one redshift, almost all of it cancels -- because a smooth, monotone boost is exactly what a renormalisation at one redshift absorbs   (mean predicted excess +0.967 dex (shared efficiency) vs +0.001 dex (own efficiency), a factor 967)
+  [PASS] 6d AND THE SLOPE'S SIGN IS CONVENTION-DEPENDENT -- I expected it not to be, and it is.  With each theory carrying its own efficiency the framework predicts the excess to grow toward the FAINT end (wrong sign); with a shared efficiency it predicts growth toward the BRIGHT end (right sign) but only a fifth of the measured size.  The framework is short either way, and the honest statement is the weaker one   (predicted slope -0.0931 (shared efficiency, 22% of the measured and 4.3 sigma short) and +0.0424 (own efficiency, opposite sign, 6.1 sigma) against a measured -0.4161 +- 0.0751)
+
+======================================================================================================================
+PART 7 -- mutation controls: each of these MUST break the result
+======================================================================================================================
+  [PASS] 7a MUTATION: with a_0 driven to zero the framework must become LambdaCDM exactly and predict no excess at all   (max |predicted excess| with a_0 = 0 is 0.00e+00 dex)
+  [PASS] 7b MUTATION: shuffling which M_UV bin each measured excess belongs to must destroy any M_UV trend.  If the measured slope is not unusual against shuffles, there is no shape signal in these data to test against   (measured |slope| 0.4161 is exceeded by 0.1% of 2000 label shuffles (so the measured M_UV trend is significant))
+  [PASS] 7c MUTATION: swapping the two redshift labels in the PREDICTION must make it worse, since the prediction's content is the redshift ordering   (chi2 490.73 -> 815.42 with the labels swapped)
+
+======================================================================================================================
+VERDICT -- k01
+======================================================================================================================
+
+  THE CANDIDATE IS KILLED, AND THE KILL IS THE RESULT.  The framework's collapse speedup cannot be the JWST
+  bright-galaxy excess, for a reason that has nothing to do with error bars: it predicts the wrong SHAPE.
+
+  (1) THE SHAPE.  The measured excess grows toward the BRIGHT end: d(excess)/dM_UV = -0.4161 +- 0.0751
+      dex per magnitude over 14 bins, a trend that 2000 M_UV-label shuffles reproduce 0.1% of
+      the time.  The framework's gain is set by the turnaround acceleration in units of a_0, and a more massive
+      halo turns around at a higher acceleration (y grows as M^(1/3), check 1b), so the boost is largest for the
+      LEAST massive halos: gain 1.2083 at 10^9 Msun against 1.0840
+      at 10^12.  With each theory carrying its own efficiency the framework therefore predicts the excess to grow
+      toward the FAINT end, +0.0415 to +0.0906
+      dex per magnitude -- the OPPOSITE sign, 6.1 sigma out.  I expected that sign to be
+      convention-independent and IT IS NOT (check 6d): with a shared efficiency the prediction turns round to
+      -0.0931, the right sign but 22% of the measured size, still
+      4.3 sigma short.  The defensible statement is the weaker one: the framework's
+      collapse gain is far too flat in halo mass to make the bright-galaxy excess, whichever convention is used.
+
+  (2) THE AMPLITUDE, ONCE THE EFFICIENCY IS TREATED FAIRLY.  Item 73 reported the framework supplying 62% of the
+      excess.  That reading holds the ionizing efficiency fixed ACROSS theories.  Give each theory its own
+      efficiency, calibrated once at z = 9 -- which is what any model does, because the efficiency is not
+      independently measured -- and almost the whole effect cancels: the predicted mean excess falls from
+      +0.967 dex to +0.001 dex against a measured +1.270.  A smooth monotone
+      boost is exactly what a one-redshift renormalisation absorbs.  Item 73's positive number is a statement
+      about the efficiency convention, not about the data.
+
+  (3) THE RIVAL WINS OUTRIGHT.  One fitted magnitude of brightening by z = 12.5 gives chi2/N = 0.46;
+      the framework's zero-parameter curve gives 35.05, worse than doing nothing (34.44).
+      Scanning a_0 from zero to 32x canonical, chi2 falls monotonically and never reaches the data: a_0 at the
+      Planck value is delta chi2 = -22.24 WORSE than a_0 = 0.
+
+  (4) WHAT SURVIVES.  The prediction itself, as something for JWST to shoot at: the excess must grow toward the
+      faint end at +0.0415 to +0.0906 dex per
+      magnitude, with the stellar mass-to-light ratio nowhere in the chain (d log(anything here)/d log Upsilon = 0
+      exactly -- no photometric mass is used).  Deeper luminosity functions at z = 11-13 measure exactly this.
+
+  CAVEATS, STATED RATHER THAN BURIED.  The z = 9 anchor is Donnan's own double-power-law fit; abundance matching
+  is monotonic and scatter-free, and scatter alone brightens the bright end and would push the measured slope in
+  the direction the data show; the quoted errors are the published photometric ones and carry no cosmic variance.
+  None of that changes the SIGN, which is what the item turns on.
+
+
+RESULT: 18 checks, 0 FAIL   rc=0

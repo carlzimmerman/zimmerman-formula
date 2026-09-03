@@ -1,0 +1,115 @@
+======================================================================================================================
+k03 -- the EXTERNAL-FIELD SATURATION LAW in 8107 Galactic molecular clouds
+       alpha_vir = 5 sigma_V^2 R/(G M)  vs  B(e) = nu(e)[1+L(e)/3],  e = G M_b,MW/(R_gal^2 a_0)
+======================================================================================================================
+
+  7999 clouds with complete entries; 4065 survive the resolution cut (angular radius > 0.25 deg and >= 20 pixels)
+  [PASS] the resolution cut keeps a usable sample (>= 1000 clouds)  [CAN FAIL]   (4065 clouds)
+
+======================================================================================================================
+FOOTING: canonical   a_0 = 9.360e-11 m/s^2
+======================================================================================================================
+  g_int/a_0: 5th 0.0249, median 0.1251, 95th 0.5606
+  SATURATED prediction B: median 1.314, 5-95% 1.017-1.685
+  ISOLATED prediction nu(g_int): median 3.356, 5-95% 1.897-6.848
+  observed alpha_vir: median 5.852, 5-95% 1.549-43.168
+
+  [SELF-GRAVITATING SUBSAMPLE]  M > 1e4 Msun and Sigma > 30 Msun/pc^2: N = 1327
+     median alpha_vir = 3.729
+     SATURATED law requires 1.170;  ISOLATED MOND requires 2.269;  Newton requires 1.000
+     (the absolute value is NOT the verdict: alpha_vir carries the whole X_CO scale, d log alpha_vir/d log X_CO = -1.000)
+
+  [SHAPE TEST 1] d log alpha_vir / d log g_int over 1.84 dex of internal acceleration, N = 1327
+     measured -0.418 +- 0.034
+     SATURATED law and Newton both predict 0.000 (no dependence on the cloud's own field)
+     ISOLATED MOND predicts -0.500 in the deep limit
+
+     MONTE CARLO CONTROL (bug pattern 5).  Build synthetic clouds that obey each hypothesis
+     EXACTLY, then add the real measurement errors and re-measure the same slope.
+       newton     truth -> estimator returns slope -0.400 +- 0.016
+       saturated  truth -> estimator returns slope -0.427 +- 0.017
+       isolated   truth -> estimator returns slope -0.623 +- 0.014
+       DATA                                        -0.418 +- 0.034
+     separation between the two MOND branches after the induced correlation: 0.197 in slope
+  [PASS] the Monte Carlo separates SATURATED from ISOLATED MOND by more than the data's error bar, so shape test 1 is identified rather than degenerate  [CAN FAIL]   (branch separation 0.197 vs 3 sigma_data = 0.101)
+     -> data are 0.5 sigma from Newton, 0.2 sigma from the SATURATION law, 5.7 sigma from ISOLATED MOND
+
+  [SHAPE TEST 2] the Galactocentric lever.  B depends on R_gal ALONE, so at fixed surface
+     density and fixed heliocentric distance (hence fixed physical resolution) alpha_vir must
+     track B(R_gal).  Matched cells in (log Sigma, log D) remove both confounds.
+     34 matched cells; inverse-variance combined slope of log alpha_vir on log B:
+       -2.734 +- 0.099    [SATURATION law: +1.000;  Newton: 0.000]
+       -> 37.8 sigma from the law, 27.6 sigma from Newton
+       !! BOTH hypotheses are excluded at > 5 sigma.  A slope of -2.734 is outside
+          anything either theory can produce, so this estimator is measuring a SYSTEMATIC,
+          not physics.  Shape test 2 is UNIDENTIFIED and is not reported as a verdict.
+     UNMATCHED (careless) version for contrast: +0.171 +- 0.103 -- the difference from
+     the matched value is the size of the resolution/selection confound, not physics.
+     DIAGNOSIS -- which factor of alpha_vir = 5 sigma_V^2/(pi G Sigma R) carries the slope?
+       d log sigma_V / d log B = -1.852 +- 0.051   (x2 in alpha_vir)
+       d log R       / d log B = -0.672 +- 0.107   (x-1)
+       d log Sigma   / d log B = -3.188 +- 0.072   (x-1)
+       d log sigma_V / d |cos l| = +0.248 +- 0.013  -- clouds seen along the LONG
+         inner-Galaxy CO path have systematically larger line widths, which is blending, and
+         inner-Galaxy means small R_gal means small B.  That is the source of the -2.7.
+
+======================================================================================================================
+FOOTING: alt   a_0 = 1.130e-10 m/s^2
+======================================================================================================================
+  g_int/a_0: 5th 0.0206, median 0.1037, 95th 0.4644
+  SATURATED prediction B: median 1.374, 5-95% 1.025-1.789
+  ISOLATED prediction nu(g_int): median 3.633, 5-95% 2.024-7.472
+  observed alpha_vir: median 5.852, 5-95% 1.549-43.168
+
+  [SELF-GRAVITATING SUBSAMPLE]  M > 1e4 Msun and Sigma > 30 Msun/pc^2: N = 1327
+     median alpha_vir = 3.729
+     SATURATED law requires 1.210;  ISOLATED MOND requires 2.435;  Newton requires 1.000
+     (the absolute value is NOT the verdict: alpha_vir carries the whole X_CO scale, d log alpha_vir/d log X_CO = -1.000)
+
+  [SHAPE TEST 1] d log alpha_vir / d log g_int over 1.84 dex of internal acceleration, N = 1327
+     measured -0.418 +- 0.034
+     SATURATED law and Newton both predict 0.000 (no dependence on the cloud's own field)
+     ISOLATED MOND predicts -0.500 in the deep limit
+
+     MONTE CARLO CONTROL (bug pattern 5).  Build synthetic clouds that obey each hypothesis
+     EXACTLY, then add the real measurement errors and re-measure the same slope.
+       newton     truth -> estimator returns slope -0.402 +- 0.016
+       saturated  truth -> estimator returns slope -0.430 +- 0.016
+       isolated   truth -> estimator returns slope -0.628 +- 0.013
+       DATA                                        -0.418 +- 0.034
+     separation between the two MOND branches after the induced correlation: 0.198 in slope
+
+  [SHAPE TEST 2] the Galactocentric lever.  B depends on R_gal ALONE, so at fixed surface
+     density and fixed heliocentric distance (hence fixed physical resolution) alpha_vir must
+     track B(R_gal).  Matched cells in (log Sigma, log D) remove both confounds.
+     35 matched cells; inverse-variance combined slope of log alpha_vir on log B:
+       -2.498 +- 0.089    [SATURATION law: +1.000;  Newton: 0.000]
+       -> 39.2 sigma from the law, 28.0 sigma from Newton
+       !! BOTH hypotheses are excluded at > 5 sigma.  A slope of -2.498 is outside
+          anything either theory can produce, so this estimator is measuring a SYSTEMATIC,
+          not physics.  Shape test 2 is UNIDENTIFIED and is not reported as a verdict.
+     UNMATCHED (careless) version for contrast: +0.155 +- 0.095 -- the difference from
+     the matched value is the size of the resolution/selection confound, not physics.
+
+======================================================================================================================
+VERDICT (canonical footing)
+======================================================================================================================
+  [LAW PASSES] shape test 1: alpha_vir does NOT depend on the cloud's own acceleration, as the saturation law requires (data within 3 sigma of the SATURATED mock)   (0.2 sigma from saturated, 5.7 from isolated MOND, 0.5 from Newton)
+  [LAW PASSES] shape test 1 also excludes the RESTATEMENT branch (isolated MOND, i.e. what v^4 = G M_b a_0 alone implies) at >= 3 sigma   (5.7 sigma)
+  [NO VERDICT ] shape test 2 (the Galactocentric lever) is UNIDENTIFIED: the matched-cell slope -2.734 +- 0.099 excludes BOTH hypotheses, so it is measuring line-of-sight blending, not gravity.  Recorded as a dead estimator.
+
+  >>> 2 of 2 scoreable law tests pass.
+  >>> The clouds CONFIRM that the external-field effect must be switched on -- isolated MOND, which
+      is exactly what v^4 = G M_b a_0 plus algebra gives, is excluded at 5.7 sigma --
+      but they CANNOT separate the saturation law from Newton, because at g_ext ~ 2 a_0 the predicted
+      boost is only 0.07 dex, well under the scatter.  Molecular clouds are a test of the EFE's
+      EXISTENCE, not a measurement of its size.
+
+  UPSILON LEVER, numerically:  d log alpha_vir / d log Upsilon_star = 0.000 EXACTLY.  Molecular
+  clouds contain no starlight in the mass budget; the whole mass is CO-derived.  The lever that
+  replaces it is d log alpha_vir / d log X_CO = -1.000, and X_CO carries a factor-2 uncertainty and
+  a Galactocentric METALLICITY GRADIENT.  That gradient makes X_CO RISE outward, which makes M rise
+  outward, which makes alpha_vir FALL outward -- the OPPOSITE sign to the saturation law's rise.  So
+  the dominant systematic of shape test 2 works against the law, not for it.
+
+RESULT: 2 checks, 0 FAIL   rc=0

@@ -1,0 +1,143 @@
+======================================================================================================================
+k_unexplained-regularities_hisize -- the HI size-mass relation: does a_0 own the tightest scaling relation?
+======================================================================================================================
+
+----------------------------------------------------------------------------------------------------------------------
+STEP 0 -- reproduce the published regularity on SPARC, so that what follows is anchored to a known number
+----------------------------------------------------------------------------------------------------------------------
+  N = 171 SPARC galaxies with both R_HI and M_HI.
+  log D_HI = 0.5239 log M_HI + -3.447,  scatter 0.0696 dex
+     Wang+2016 (562 galaxies, 5 decades)     : 0.506 +- 0.003, -3.293, scatter 0.06 dex
+  <Sigma_HI> = M_HI/(pi R_HI^2) : median 3.805 Msun/pc^2, scatter 0.143 dex
+     Wang+2016 equivalent                    : 3.8 Msun/pc^2
+  [PASS] S0 SPARC must reproduce the published HI size-mass relation -- slope within 0.05 of 0.506 and mean surface density within 0.05 dex of 3.8 Msun/pc^2 -- or this sample is not measuring the regularity in question   (slope 0.5239, <Sigma> 3.805 (+0.001 dex from 3.8))
+
+======================================================================================================================
+Q1 -- DOES a_0 SET <Sigma_HI>?  (the question whose YES would be a second law)
+======================================================================================================================
+  canonical  a_0/(2 pi G) =  106.85 Msun/pc^2   ->  <Sigma_HI>/[a_0/(2 pi G)] = 0.03561 = 1/28.08
+  alt        a_0/(2 pi G) =  129.00 Msun/pc^2   ->  <Sigma_HI>/[a_0/(2 pi G)] = 0.02950 = 1/33.90
+  canonical  closest simple coefficient: 1/(8pi)    = 0.03979   off by -4.8% in log10 (10.5% linear)
+  alt        closest simple coefficient: 1/32       = 0.03125   off by -2.5% in log10 (5.6% linear)
+  [FAIL] Q1 THE ONE THAT WOULD MATTER.  If <Sigma_HI> were a simple coefficient times a_0/(2 pi G) to better than 2%, the tightest unexplained scaling relation in galaxy astronomy would belong to a_0.  This check is written to PASS only if that is true; it is expected and intended to FAIL   (no simple coefficient within 2% on either footing)
+
+  AGAINST INTEREST, PLAINLY: the framework predicts NOTHING about <Sigma_HI>, and therefore nothing about the HI
+  size-mass relation.  The relation is a statement about hydrogen, ionization and self-shielding, not about
+  gravity, and neither a_0 nor Lambda appears anywhere in it.  The tightest regularity in the field is not ours.
+
+======================================================================================================================
+Q2 -- THE DERIVED CLOSED FORM (U2): V_flat = [1.33 pi G a_0 <Sigma_HI>]^(1/4) R_HI^(1/2)
+======================================================================================================================
+  Bars fixed before running: slope within 0.10 of 1/2; zero point within 0.05 dex in log V on at least one
+  footing; scatter no more than 1.5x the value propagated from the size-mass scatter.
+
+  gas cut   N   measured slope       scatter  logR range |   predicted log V - measured, can / alt  | Newtonian
+    0.5    45   +0.433 +- 0.044   0.078    1.38    |  -0.021  -0.000   |  -0.414
+    0.7    20   +0.357 +- 0.069   0.076    1.04    |  -0.006  +0.015   |  -0.400
+    0.8    11   +0.289 +- 0.079   0.052    1.04    |  -0.010  +0.010   |  -0.421
+  (Newtonian column = log10[ sqrt(G M_b/R_HI) / V_flat ], the no-dark-matter prediction at the HI radius.)
+  slope errors are 2000-sample bootstraps over galaxies; logR range is the lever arm the slope is fitted over.
+
+  (U2) predicts slope = 1/2 only if <Sigma_HI> is exactly universal.  The slope it actually implies inside
+  each subsample is (d log M_b / d log R_HI)/4, computed from the SAME galaxies:
+    gas cut 0.5: (U2)-implied slope +0.467  vs measured +0.433 +- 0.044  -> 0.8 sigma
+    gas cut 0.7: (U2)-implied slope +0.443  vs measured +0.357 +- 0.069  -> 1.3 sigma
+    gas cut 0.8: (U2)-implied slope +0.447  vs measured +0.289 +- 0.079  -> 2.0 sigma
+
+  ⚠ DISCLOSURE, because the rules forbid tuning a threshold to make a check pass.  The bar written before running
+  was 'slope within 0.10 of 1/2'.  After seeing the result I judged that target WRONG -- (U2) gives exactly 1/2
+  only if <Sigma_HI> is exactly universal, and the measured size-mass slope is 0.524, not 0.500, so the slope
+  (U2) actually implies is (d log M_b/d log R_HI)/4 computed on the same galaxies.  BOTH checks are therefore
+  kept and both are reported.  The pre-registered one FAILS.
+  [FAIL] Q2a-preset [THE PRE-REGISTERED BAR, KEPT] the measured V_flat-R_HI slope must be 1/2 to within 0.10   (measured +0.357 +- 0.069 at gas cut 0.7, 2.1 sigma from 1/2)
+  [PASS] Q2a-implied [THE REVISED BAR, DISCLOSED AS REVISED] the measured slope must agree with the slope (U2) implies inside the same subsample to 2 sigma   (measured +0.357 +- 0.069 vs implied +0.443 (1.3 sigma))
+  [PASS] Q2b the ZERO POINT, built from a_0 and one measured surface density with no free parameter, must land on the measured relation to 0.05 dex in log V on at least one footing   (canonical -0.006, alt +0.015 dex (best canonical))
+
+  scatter propagated from the size-mass relation alone: 0.0696/0.506/4 = 0.0344 dex in log V
+  measured scatter about the V-R_HI relation           : 0.0759 dex
+  [FAIL] Q2c the scatter of the V_flat-R_HI relation must be no more than 1.5x what the size-mass scatter alone propagates to, or something other than the HI structure is driving it   (0.0759 vs 1.5 x 0.0344 = 0.0516 dex)
+
+----------------------------------------------------------------------------------------------------------------------
+Q2 RESTATEMENT TEST -- EXECUTED, NOT ASSERTED
+----------------------------------------------------------------------------------------------------------------------
+  Claim to test: (U2) follows from v^4 = G M_b a_0 plus algebra on measured inputs.
+  Derivation: <Sigma_HI> := M_HI/(pi R_HI^2) is a DEFINITION, so pi R_HI^2 <Sigma_HI> = M_HI identically.  Put
+  M_b = 1.33 M_HI into v^4 = G M_b a_0 and (U2) drops out with no further content.  Verified numerically below by
+  computing V two ways for every galaxy and differencing.
+
+  max |log10( V from (U2) / V from the BTFR )| over 121 galaxies = 9.643e-17 dex
+  [PASS] Q2-RESTATE (U2) must be checked for whether it closes against v^4 = G M_b a_0.  A PASS here means the candidate IS A RESTATEMENT and is DEMOTED -- the check is written so that the framework's friend loses   (max difference 9.643e-17 dex -- (U2) IS A RESTATEMENT of the BTFR given one empirical input)
+
+  What (U2) is, honestly: the BTFR with the baryonic mass replaced by the HI size through an empirical relation
+  the framework does not predict (Q1).  It is a corollary with a predicted coefficient, not a second law.  Its
+  one genuine virtue is that it pairs two quantities measured by DIFFERENT instruments -- an HI map and a
+  rotation curve -- with no stellar mass-to-light ratio in the gas-dominated limit.
+
+======================================================================================================================
+Q3 -- THE MASS DISCREPANCY AT EVERY GALAXY'S OWN HI EDGE
+======================================================================================================================
+  R_HI is defined by a fixed surface density, so g_bar(R_HI) should be nearly universal, and the framework
+  then predicts a nearly universal mass discrepancy D = g_obs/g_bar there.  Measured by interpolating SPARC's own
+  disc solutions at R = R_HI (LOCAL enclosed-mass speeds, never a total mass).
+
+  71 SPARC discs whose rotation curve reaches R_HI.
+  thin-sheet reference from the DEFINITION alone (Sigma_HI = 1 Msun/pc^2, x1.33): g = 1.165e-12 m/s^2
+  measured g_bar(R_HI) : median 6.894e-12 m/s^2, scatter 0.410 dex (5.92x the reference -- the excess is the stars)
+  measured g_obs(R_HI) : median 3.155e-11 m/s^2, scatter 0.297 dex
+  measured D(R_HI)     : median   4.24,          scatter 0.200 dex
+  canonical  framework nu(g_bar(R_HI)/a_0): median   4.21, scatter 0.167 dex,  log(pred/meas) = -0.021 dex
+  alt        framework nu(g_bar(R_HI)/a_0): median   4.57, scatter 0.170 dex,  log(pred/meas) = +0.015 dex
+  [FAIL] Q3a the total acceleration at the HI edge must be universal to RAR-class scatter (<= 0.15 dex) for the 'same acceleration at every HI edge' statement to be a regularity at all   (scatter 0.297 dex)
+
+  RESTATEMENT: Q3 is the RAR evaluated at one particular radius.  It closes against g_obs = nu(g_bar/a_0) by construction and is a restatement; recorded for the number, not as a law.
+  [PASS] Q3b the framework's predicted discrepancy at R_HI must match the measured one in the median to 0.05 dex on at least one footing   (best alt: +0.015 dex)
+
+----------------------------------------------------------------------------------------------------------------------
+THE UPSILON LEVER, measured by re-running the WHOLE pipeline at Upsilon x 1.5
+----------------------------------------------------------------------------------------------------------------------
+  Upsilon_disc = 0.500:  Q2 zero-point offset -0.0058 dex (N=20);  Q3 offset -0.0206 dex
+  Upsilon_disc = 0.750:  Q2 zero-point offset -0.0003 dex (N=16);  Q3 offset +0.0514 dex
+
+  d [Q2 zero-point offset] / d log Upsilon = +0.032 dex per dex   <-- (U2) on gas-rich discs
+  d [Q3 offset]            / d log Upsilon = +0.409 dex per dex
+  [PASS] UPS the (U2) zero-point test must move by less than 0.10 dex per dex of Upsilon -- it is a test in log V, where a quarter-power already divides the mass lever by four, so the bar is tighter than the hunt's usual 0.3   (+0.032 dex/dex)
+
+----------------------------------------------------------------------------------------------------------------------
+MUTATION CONTROLS
+----------------------------------------------------------------------------------------------------------------------
+  a_0 x 4 : (U2) zero point moves -0.0058 -> +0.1447, shift +0.1505 dex (predicted exactly +0.1505, since a_0 enters at the 1/4 power)
+  [PASS] M1 quadrupling a_0 must move the (U2) zero point by log10(4)/4 = +0.1505 dex to within 0.005   (+0.1505 against +0.1505)
+  <Sigma_HI> x 4 : zero point moves -0.0058 -> +0.1350, shift +0.1408 dex -- the SAME lever as a_0, so the two are perfectly degenerate in (U2)
+  [PASS] M2 AGAINST INTEREST: a_0 and <Sigma_HI> must enter (U2) with the SAME power, which means the zero-point agreement is as much a measurement of the HI surface density as of a_0.  This check PASSES when the degeneracy is total -- i.e. when the candidate is weakest   (a_0 lever +0.1505, Sigma lever +0.1408 -- perfectly degenerate)
+  nu = 1 (kernel off): (U2) has no deep-MOND limit to stand on, V_flat is not even defined without a boost, and Q3 predicts D = 1 exactly against a measured 4.24.
+  [PASS] M3 with the kernel off the framework must predict D(R_HI) = 1 exactly, which the data reject outright   (measured median D(R_HI) = 4.24 against nu=1's 1.00)
+
+----------------------------------------------------------------------------------------------------------------------
+THE NEWTONIAN AND LambdaCDM ALTERNATIVES, COMPUTED BESIDE
+----------------------------------------------------------------------------------------------------------------------
+  Newtonian, no dark matter, at gas cut 0.7: median log10(V_newt/V_flat) = -0.400 dex -- short by a factor 2.51.
+  Also Newtonian: D(R_HI) = 1 exactly against a measured median 4.24.
+  LambdaCDM: there is no predicted zero point for (U2) at all.  The relation would have to emerge from the
+  halo mass-concentration relation crossed with the stellar-to-halo-mass relation crossed with whatever sets the
+  HI extent -- three fitted ingredients.  What LambdaCDM CAN say is that the V-R_HI slope should not be exactly
+  1/2 and should drift with mass; measured drift is reported above through the three gas cuts.
+  measured V-R_HI slope across the three gas cuts: ['0.433', '0.357', '0.289'] (spread 0.144)
+
+======================================================================================================================
+VERDICT
+======================================================================================================================
+  Q1  NO.  <Sigma_HI> = 3.81 Msun/pc^2 is 1/28.1 of a_0/(2 pi G) on the canonical footing and
+      matches no simple coefficient to 2%.  The framework predicts nothing about the tightest scaling relation
+      in galaxy astronomy.  Reported against interest.
+  Q2  (U2) reproduces the measured V_flat-R_HI relation: slope +0.357 +- 0.069 against the +0.443 it implies
+      inside the same subsample (the naive 1/2 is the wrong target), zero point
+      -0.006 (canonical) / +0.015 (alt) dex, scatter 0.076 dex.  But it is a PROVED RESTATEMENT of the
+      BTFR (max difference 9.6e-17 dex), and a_0 and <Sigma_HI> are perfectly degenerate inside it, so the
+      zero-point agreement measures their PRODUCT and not a_0.
+  Q3  The mass discrepancy at the HI edge is 4.24 with 0.200 dex scatter; the framework's nu(y) at the
+      measured g_bar(R_HI) gives 4.57 on the alt footing.  Also a restatement -- the RAR at one radius.
+
+  NOT Kepler-grade.  Criterion (2) fails for Q2 (the coefficient is a_0 x <Sigma_HI>, and <Sigma_HI> is fitted
+  from the same data), and criterion (5) fails for Q2 and Q3 by proof.
+
+RESULT: 13 checks, 4 FAIL -> ['Q1 THE ONE THAT WOULD MATTER.  If <Sigma_HI> were a simple coefficient times a_0/(2 pi G) to better than 2%, the tightest unexplained scaling relation in galaxy astronomy would belong to a_0.  This check is written to PASS only if that is true; it is expected and intended to FAIL', 'Q2a-preset [THE PRE-REGISTERED BAR, KEPT] the measured V_flat-R_HI slope must be 1/2 to within 0.10', 'Q2c the scatter of the V_flat-R_HI relation must be no more than 1.5x what the size-mass scatter alone propagates to, or something other than the HI structure is driving it', "Q3a the total acceleration at the HI edge must be universal to RAR-class scatter (<= 0.15 dex) for the 'same acceleration at every HI edge' statement to be a regularity at all"]   rc=1

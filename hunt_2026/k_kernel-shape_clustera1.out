@@ -1,0 +1,114 @@
+
+======================================================================================================================
+k_kernel-shape_clustera1  --  candidate K2a: is the cluster residual a SECOND acceleration constant?
+======================================================================================================================
+
+----------------------------------------------------------------------------------------------------------------------
+0.  RESTATEMENT TEST -- executed on the FORMULA, symbolically and then numerically
+----------------------------------------------------------------------------------------------------------------------
+  Start from the kernel, which is the RAR:      g_obs = nu(g_bar/a1) g_bar,  nu(y) = 1/(1 - exp(-sqrt(y)))
+  Divide:                                       g_bar/g_obs = 1 - exp(-sqrt(g_bar/a1))
+  Rearrange:                                    sqrt(g_bar/a1) = -ln(1 - g_bar/g_obs)
+  Solve:                                        a1 = g_bar [ -ln(1 - g_bar/g_obs) ]^(-2)      QED, 3 lines.
+  The derivation CLOSES.  The formula is the RAR solved for its own constant and contains no new physics.
+    numerical closure, canonical footing: a1 recovered = 9.360000e-11, 9.360000e-11, 9.360000e-11, 9.360000e-11   (injected 9.360e-11)
+    numerical closure, alt       footing: a1 recovered = 1.130000e-10, 1.130000e-10, 1.130000e-10, 1.130000e-10   (injected 1.130e-10)
+  [PASS] 0a  the closed form is EXACTLY the kernel inverted -- injecting a0 and reading a1 back must return a0 to machine precision.  This is what makes the FORMULA a restatement
+         (max |a1/a0 - 1| = 8.88e-16 over four accelerations and both footings)
+  is_restatement: TRUE for the closed form; the two-point DISAGREEMENT below is a measurement, not a
+  restatement, and the two must never be quoted as one result.
+
+----------------------------------------------------------------------------------------------------------------------
+1.  THE MEASUREMENT -- a1 at Delta = 2500 and Delta = 500 on the Lovisari+2015 groups
+----------------------------------------------------------------------------------------------------------------------
+  loaded 20 groups
+  name                  kT      M500  fgas500  fgas2500   a1(2500)    a1(500)   ratio   /a0can   /a0alt
+  NGC4936             0.85      2.07    0.082     0.053  4.732e-10  1.468e-10   3.223     5.06     4.19
+  S0753               1.51      4.67    0.076     0.047  5.838e-10  2.061e-10   2.833     6.24     5.17
+  HCG62               1.05      2.39    0.084     0.042  6.063e-10  1.503e-10   4.033     6.48     5.37
+  S0805               1.01      2.22    0.077     0.032  5.600e-10  1.581e-10   3.542     5.98     4.96
+  NGC3402             0.96      2.95    0.046     0.037  6.890e-10  2.646e-10   2.604     7.36     6.10
+  A194                1.37      2.83    0.096     0.043  5.814e-10  1.403e-10   4.145     6.21     5.15
+  RXCJ1840.6-7709     1.17      3.31    0.052     0.036  7.363e-10  2.511e-10   2.932     7.87     6.52
+  WBL154              1.19      3.53    0.077     0.035  7.535e-10  1.782e-10   4.229     8.05     6.67
+  S0301               1.35      3.49    0.088     0.053  5.827e-10  1.634e-10   3.566     6.23     5.16
+  NGC1132             1.08      3.35    0.074     0.049  5.746e-10  1.882e-10   3.053     6.14     5.09
+  IC1633              2.80     14.40    0.080     0.046  8.059e-10  2.852e-10   2.826     8.61     7.13
+  NGC4325             1.00      2.34    0.072     0.051  5.313e-10  1.698e-10   3.128     5.68     4.70
+  RXCJ2315.7-0222     1.39      4.78    0.079     0.050  6.703e-10  1.986e-10   3.375     7.16     5.93
+  NGC6338             1.97      8.59    0.074     0.054  7.389e-10  2.572e-10   2.873     7.89     6.54
+  IIIZw054            2.17      9.51    0.095     0.059  7.104e-10  2.116e-10   3.358     7.59     6.29
+  IC1262              1.87      6.96    0.077     0.048  5.617e-10  2.322e-10   2.419     6.00     4.97
+  AWM4                2.45     10.80    0.060     0.052  7.943e-10  3.297e-10   2.409     8.49     7.03
+  A3390               1.58      4.37    0.044     0.023  1.077e-09  3.003e-10   3.586    11.51     9.53
+  CID28               2.01      8.00    0.078     0.048  7.994e-10  2.385e-10   3.352     8.54     7.07
+  UGC03957            2.66     12.10    0.068     0.047  9.838e-10  3.121e-10   3.152    10.51     8.71
+
+  N = 20 groups with both points invertible
+  a1(2500)/a1(500) = 3.188, 16-84% [2.827, 3.585], scatter 0.068 dex, 20/20 above 1
+    in units of a0 (canonical): a1(2500) = 5.06 - 11.51, a1(500) = 1.50 - 3.52
+    in units of a0 (alt): a1(2500) = 4.19 - 9.53, a1(500) = 1.24 - 2.92
+  [PASS] 1a  the proposing script's headline is reproduced independently: ratio ~ 2.96 with ~0.11 dex scatter and every group the same sign
+         (median ratio 3.188 (proposed 2.96), scatter 0.068 dex (proposed 0.109), 20/20 the same sign)
+
+----------------------------------------------------------------------------------------------------------------------
+2.  MUTATION CONTROL -- objects BUILT to have one acceleration scale must come back with ratio 1
+----------------------------------------------------------------------------------------------------------------------
+    injected a1 = a0 (canonical) at BOTH radii, using each group's own measured baryons: recovered ratio = 1.000000 (spread 8.88e-16)
+    injected a1 = a0 (alt) at BOTH radii, using each group's own measured baryons: recovered ratio = 1.000000 (spread 8.47e-16)
+  [PASS] 2a  MUTATION CONTROL: the estimator has no ratio of its own -- objects with a single acceleration scale return 1.000000 exactly, so the measured 2.96 cannot be an artefact of the geometry or of the two radii
+         (recovered ratio = 1.000000 on both footings, using the real groups' own baryon distributions)
+
+----------------------------------------------------------------------------------------------------------------------
+3.  THE LambdaCDM ALTERNATIVE, COMPUTED BESIDE -- does an NFW halo give the same ratio?
+----------------------------------------------------------------------------------------------------------------------
+  Build, for each group, an NFW halo of the SAME M500 with a concordance concentration; take R2500 and
+  M2500 from the NFW itself; feed it the group's OWN measured gas masses; run the identical estimator.
+  If the NFW mock reproduces the measured ratio, the two-point contradiction is a restatement of the
+  known cluster problem and not a new fact.
+    c500  median R2500/R500  median M2500/M500  median a1 ratio     data
+     2.0              0.409              0.342            2.419    3.188
+     2.5              0.427              0.390            2.802    3.188
+     3.0              0.441              0.430            3.103    3.188
+     3.5              0.452              0.463            3.365    3.188
+     4.0              0.461              0.490            3.583    3.188
+     5.0              0.475              0.534            3.925    3.188
+  the DATA's own median R2500/R500 = 0.448 and M2500/M500 = 0.448
+  [FAIL] 3a  THE DECISIVE CONTROL, AND IT CAN FAIL: does a concordance NFW halo -- an object with dark matter and no second acceleration scale of any kind -- reproduce the measured two-point ratio?  If it does, the 'kill' is a restatement of the known cluster problem in a new estimator
+         (the NFW family spans a1 ratios 2.42 - 3.92 over c500 = 2-5, and the measured 3.19 sits INSIDE that range (closest at c500 = 3.0))
+
+----------------------------------------------------------------------------------------------------------------------
+4.  THE UPSILON LEVER -- the only assumed number in the whole test is the stellar fraction
+----------------------------------------------------------------------------------------------------------------------
+    f_star   median ratio  scatter dex   a1(2500)/a0 can
+     0.005          3.412        0.081              9.40
+     0.010          3.324        0.076              8.62
+     0.020          3.188        0.068              7.26
+     0.030          3.085        0.063              6.20
+     0.050          2.937        0.056              4.76
+     0.080          2.804        0.051              3.46
+     0.120          2.705        0.047              2.46
+
+  d log[a1(2500)/a1(500)] / d log f_star = -0.0754
+  to drive the measured 3.19 to 1 would need f_star wrong by 6.67 dex, a factor 4726967 -- which would put the stars above the total mass.
+  [PASS] 4a  the test is nearly free of the mass-to-light wall that blocks every galactic candidate in this hunt: the stellar fraction would have to be wrong by more than 1 dex to remove the effect
+         (lever -0.0754; f_star would have to move 6.67 dex)
+
+======================================================================================================================
+VERDICT -- K2a (no single second acceleration in clusters)
+======================================================================================================================
+  1. THE MEASUREMENT REPRODUCES.  a1(2500)/a1(500) = 3.188, [2.83, 3.59], 0.068 dex, 20/20
+     the same sign, on both footings, with a mutation control that returns 1.000000 exactly.
+  2. THE FORMULA IS A RESTATEMENT and this script proves it in three lines plus a 1e-12 numerical closure.
+     Only the two-point DISAGREEMENT is a measurement.
+  3. AND THE DISAGREEMENT IS NOT DIAGNOSTIC.  A concordance NFW halo -- no second scale anywhere in it --
+     run through the identical estimator gives a1 ratios 2.42 - 3.92 over c500 = 2-5, which
+     BRACKETS the measured 3.19.  The estimator is measuring how NFW-like the mass profile is, which is
+     the known cluster problem (Sanders 1999; The & White 1988; Angus+2008) wearing a new estimator.
+  4. UPSILON LEVER: d log(ratio)/d log f_star = -0.0754; f_star would have to be wrong by 6.67 dex.
+     This part of the candidate's claim stands and is worth keeping: unlike every galactic candidate in
+     this hunt, the cluster two-point test is not blocked by the stellar mass-to-light ratio.
+  CATEGORY: NOT Kepler-grade.  It is a correct negative result, its formula is a restatement, and its
+  content is a known fact restated.  Criterion (4) fails: this has been stated before, in other clothes.
+
+RESULT: 5 checks, 1 FAIL -> ["3a  THE DECISIVE CONTROL, AND IT CAN FAIL: does a concordance NFW halo -- an object with dark matter and no second acceleration scale of any kind -- reproduce the measured two-point ratio?  If it does, the 'kill' is a restatement of the known cluster problem in a new estimator"]

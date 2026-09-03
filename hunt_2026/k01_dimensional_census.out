@@ -1,0 +1,230 @@
+==============================================================================================================================
+k01 -- ANGLE 2: EXHAUSTIVE DIMENSIONAL CONSTRUCTION FROM a_0, G, c, hbar, Lambda
+==============================================================================================================================
+  footings: canonical a_0 = 9.36e-11 m/s^2   |   alt a_0 = 1.13e-10 m/s^2
+    canonical   H_Lambda = Z a_0/c = 1.80736e-18 s^-1 =  55.769 km/s/Mpc   Lambda = 32 pi a_0^2/c^4 = 1.09036e-52 m^-2   rho_DE = 4a_0^2/(Gc^2) = 5.84204e-27 kg/m^3
+    alt         H_Lambda = Z a_0/c = 2.18196e-18 s^-1 =  67.328 km/s/Mpc   Lambda = 32 pi a_0^2/c^4 = 1.58918e-52 m^-2   rho_DE = 4a_0^2/(Gc^2) = 8.51471e-27 kg/m^3
+  for reference: Planck H_0 = 67.400 km/s/Mpc, H_0 sqrt(Om_L) = 55.783 km/s/Mpc
+  NOTE the internal consistency, stated against interest: the ALT footing's implied H_Lambda is H_0 itself, not
+  H_0 sqrt(Om_L) -- that is what 'rho_total / cH_0' means, and it is why the two footings are 0.082 dex apart.
+
+==============================================================================================================================
+1. THE COMPLETENESS THEOREM -- why this enumeration terminates
+==============================================================================================================================
+  exponent matrix of (a_0, G, c) in (L, M, T):
+[[ 1.  3.  1.]
+ [ 0. -1.  0.]
+ [-2. -2. -1.]]
+  determinant = -1.000000
+  [PASS] K01.1 {a_0, G, c} is a COMPLETE dimensional basis -- the determinant is non-zero, so every dimensionful quantity has exactly one a_0-natural value and the enumeration below is exhaustive rather than a sample   (det = -1.0000)
+
+  the complete table of a_0-natural values, one row per physical dimension (both footings):
+  quantity                        (L,M,T)    exponents (p,q,r) of (a0,G,c)      canonical            alt  unit
+  length                        (1, 0, 0)      a0^-1.000 G^+0.000 c^+2.000    9.60209e+26    7.95359e+26  m
+  time                          (0, 0, 1)      a0^-1.000 G^+0.000 c^+1.000    3.20291e+18    2.65303e+18  s
+  mass                          (0, 1, 0)      a0^-1.000 G^-1.000 c^+4.000    1.29301e+54    1.07102e+54  kg
+  acceleration                 (1, 0, -2)      a0^+1.000 G^+0.000 c^+0.000    9.36000e-11    1.13000e-10  m/s^2
+  surface density              (-2, 1, 0)      a0^+1.000 G^-1.000 c^+0.000    1.40239e+00    1.69306e+00  kg/m^2
+  volume density               (-3, 1, 0)      a0^+2.000 G^-1.000 c^-2.000    1.46051e-27    2.12868e-27  kg/m^3
+  pressure / energy dens      (-1, 1, -2)      a0^+2.000 G^-1.000 c^+0.000    1.31264e-10    1.91316e-10  Pa
+  frequency                    (0, 0, -1)      a0^+1.000 G^+0.000 c^-1.000    3.12216e-19    3.76927e-19  1/s
+  specific power               (2, 0, -3)      a0^+1.000 G^+0.000 c^+1.000    2.80606e-02    3.38765e-02  W/kg
+  luminosity                   (2, 1, -3)      a0^-0.000 G^-1.000 c^+5.000    3.62825e+52    3.62825e+52  W
+  force                        (1, 1, -2)      a0^-0.000 G^-1.000 c^+4.000    1.21026e+44    1.21026e+44  N
+  specific ang. momentum       (2, 0, -1)      a0^-1.000 G^+0.000 c^+3.000    2.87863e+35    2.38442e+35  m^2/s
+  dynamic viscosity           (-1, 1, -1)      a0^+1.000 G^-1.000 c^+1.000    4.20427e+08    5.07567e+08  Pa s
+  magnetic field             (0, 0.5, -1)      a0^+1.000 G^-0.500 c^+0.000    1.81632e-08    2.19278e-08  T (via B^2/2mu0)
+
+  THE FIRST RESULT OF THE ANGLE, and it is a theorem, not a fit:
+    * the a_0-natural LUMINOSITY contains NO a_0 (exponent exactly 0)
+    * the a_0-natural FORCE contains NO a_0 (exponent exactly 0)
+    => a_0, G and c CANNOT construct a luminosity or a force.  Corollary, and it is the hunt's own blocker
+       written as an identity: NO stellar mass-to-light ratio, and no L-M relation of any kind, can ever follow
+       from a_0 alone.  Item 76's 'Upsilon predicted from Lambda' is therefore a RATIO calibration -- it divides
+       a measured a_0 by Planck's a_0 -- and not a prediction of Upsilon from first principles.  Any future
+       candidate of the form (luminosity) = f(a_0, G, c, mass) is dead before it is tested.
+  [PASS] K01.2 the a_0-natural LUMINOSITY is c^5/G and the a_0-natural FORCE is c^4/G -- both a_0-free.  This check fails if either carries a non-zero power of a_0, which would open the M/L route   (a_0-free dimensions found: ['luminosity', 'force'])
+
+==============================================================================================================================
+2. WHAT hbar AND Lambda ADD TO THE BASIS -- exactly one number and exactly nothing
+==============================================================================================================================
+  hbar has the dimensions of a_0^-2.0000 G^-1.0000 c^+7.0000  ->  the unique dimensionless is hbar * a_0^+2 G^+1 c^-7 = hbar G a_0^2 / c^7
+    canonical   hbar G a_0^2/c^7 = 2.833275e-124      Lambda l_P^2/(32 pi) = 2.833275e-124   ratio = 1.000000000000
+    alt         hbar G a_0^2/c^7 = 4.129466e-124      Lambda l_P^2/(32 pi) = 4.129466e-124   ratio = 1.000000000000
+  [PASS] K01.3 the ONE dimensionless number hbar contributes is the cosmological constant in Planck units (over 32 pi) -- i.e. the framework's only possible quantum statement IS the cosmological-constant problem, and it is a restatement of the first law, not new content.  This forecloses the whole 'a_0 meets quantum mechanics' class   (identity holds to 1e-12 on both footings)
+    Lambda adds nothing at all: the first law fixes Lambda = 32 pi a_0^2/c^4, so (a_0, G, c, Lambda) is
+    over-complete and every 'Lambda-and-a_0' construction below is algebraically an a_0 construction.
+
+==============================================================================================================================
+3. THE CENSUS -- every measured constant of nature against its unique a_0-natural value
+==============================================================================================================================
+  constant                              value (SI)     (L,M,T)    log10 D canonical   log10 D alt   flag
+  hbar                                  1.0546e-34  (2, 1, -1)             -123.548      -123.384
+  proton mass m_p                       1.6726e-27   (0, 1, 0)              -80.888       -80.806
+  neutron mass m_n                      1.6749e-27   (0, 1, 0)              -80.888       -80.806
+  electron mass m_e                     9.1094e-31   (0, 1, 0)              -84.152       -84.070
+  muon mass                             1.8835e-28   (0, 1, 0)              -81.837       -81.755
+  pion mass                             2.4881e-28   (0, 1, 0)              -81.716       -81.634
+  Planck mass                           2.1764e-08   (0, 1, 0)              -61.774       -61.692
+  solar mass                            1.9889e+30   (0, 1, 0)              -23.813       -23.731
+  Chandrasekhar mass                    2.8640e+30   (0, 1, 0)              -23.655       -23.573
+  Thomson cross-section                 6.6525e-29   (2, 0, 0)              -82.142       -81.978
+  Bohr radius                           5.2918e-11   (1, 0, 0)              -37.259       -37.177
+  proton charge radius                  8.4075e-16   (1, 0, 0)              -42.058       -41.976
+  classical e- radius                   2.8179e-15   (1, 0, 0)              -41.532       -41.451
+  Planck length                         1.6163e-35   (1, 0, 0)              -61.774       -61.692
+  solar radius                          6.9570e+08   (1, 0, 0)              -18.140       -18.058
+  opacity sigma_T/m_p                   3.9773e-02  (2, -1, 0)               -1.254        -1.172  <-- within 2 dex of its a_0-natural value
+  nuclear density                       2.3000e+17  (-3, 1, 0)               44.197        44.034
+  water density                         1.0000e+03  (-3, 1, 0)               29.835        29.672
+  mean solar density                    1.4101e+03  (-3, 1, 0)               29.985        29.821
+  critical density                      8.5329e-27  (-3, 1, 0)                0.767         0.603  <-- within 2 dex of its a_0-natural value
+  CMB energy density                    4.1747e-14 (-1, 1, -2)               -3.498        -3.661
+  1 atm                                 1.0132e+05 (-1, 1, -2)               14.888        14.724
+  ISM midplane pressure                 4.1419e-14 (-1, 1, -2)               -3.501        -3.665
+  Stefan-Boltzmann a_rad T_CMB^4/c^2    4.6449e-31  (-3, 1, 0)               -3.498        -3.661
+  Hubble H_0                            2.1843e-18  (0, 0, -1)                0.845         0.763  <-- within 2 dex of its a_0-natural value
+  age of the universe                   4.3539e+17   (0, 0, 1)               -0.867        -0.785  <-- within 2 dex of its a_0-natural value
+  Hubble radius c/H_0                   1.3725e+26   (1, 0, 0)               -0.845        -0.763  <-- within 2 dex of its a_0-natural value
+  solar L/M                             1.9247e-04  (2, 0, -3)               -2.164        -2.246
+  Eddington L/M                         6.3220e+00  (2, 0, -3)                2.353         2.271
+  solar luminosity                      3.8280e+26  (2, 1, -3)              -25.977       -25.977
+  Thomson surface dens.                 2.5143e+01  (-2, 1, 0)                1.254         1.172  <-- within 2 dex of its a_0-natural value
+  Donato constant 140                   2.9245e-01  (-2, 1, 0)               -0.681        -0.763  <-- within 2 dex of its a_0-natural value
+  Freeman Sigma_0 (Ups=0.5)             4.1778e-01  (-2, 1, 0)               -0.526        -0.608  <-- within 2 dex of its a_0-natural value
+  HI size-mass <Sigma_HI>               7.9378e-03  (-2, 1, 0)               -2.247        -2.329
+  max stellar-system Sigma              2.0889e+02  (-2, 1, 0)                2.173         2.091
+  local dark matter density             8.1236e-22  (-3, 1, 0)                5.745         5.582
+  Milky Way Sigma_b(R0)                 9.8178e-02  (-2, 1, 0)               -1.155        -1.237  <-- within 2 dex of its a_0-natural value
+
+  Constants within 2 dex of their a_0-natural value:
+    opacity sigma_T/m_p                log10 D = -1.254 (canonical) / -1.172 (alt)      [electron-scattering opacity kappa]
+    critical density                   log10 D = +0.767 (canonical) / +0.603 (alt)      [density]
+    Hubble H_0                         log10 D = +0.845 (canonical) / +0.763 (alt)      [frequency]
+    age of the universe                log10 D = -0.867 (canonical) / -0.785 (alt)      [time]
+    Hubble radius c/H_0                log10 D = -0.845 (canonical) / -0.763 (alt)      [length]
+    Thomson surface dens.              log10 D = +1.254 (canonical) / +1.172 (alt)      [tau_es = 1 column]
+    Donato constant 140                log10 D = -0.681 (canonical) / -0.763 (alt)      [measured halo rho_0 r_0]
+    Freeman Sigma_0 (Ups=0.5)          log10 D = -0.526 (canonical) / -0.608 (alt)      [disc central surface density]
+    Milky Way Sigma_b(R0)              log10 D = -1.155 (canonical) / -1.237 (alt)      [McKee+2015]
+
+  Everything else in the census is 20 to 120 orders of magnitude away.  There is no near-miss structure:
+    median |log10 D| over the census = 18.1 dex;  10th percentile = 0.8 dex
+
+  THE ONE SURVIVOR OF THE CENSUS -- the only dimensionless number in it that is O(0.1):
+    T  ==  sigma_T a_0 / (G m_p)  =  0.05578   (canonical)     equivalently:
+           Sigma_M / Sigma_tau  = (a_0/2piG)/(m_p/sigma_T) = 0.00888    and   a_0 / (G m_p/sigma_T) = a_0/1.6781e-09 m/s^2 = 0.05578
+    T  ==  sigma_T a_0 / (G m_p)  =  0.06734   (alt)     equivalently:
+           Sigma_M / Sigma_tau  = (a_0/2piG)/(m_p/sigma_T) = 0.01072    and   a_0 / (G m_p/sigma_T) = a_0/1.6781e-09 m/s^2 = 0.06734
+  [PASS] K01.4 CLAIM UNDER TEST, and it is falsifiable: the census contains AT MOST ONE constant whose a_0-natural dimensionless value is within 2 dex of unity and which is not itself an a_0 restatement.  If several were, the 'a_0 sits on a microphysical scale' idea would have support; it does not   (9 hits, of which the cosmological ones are restatements of the first law)
+
+==============================================================================================================================
+4. THE SINGLE-MASS AND SINGLE-LENGTH CONSTRUCTIONS -- what a_0 can say about one system
+==============================================================================================================================
+  With one mass M the complete list is r_M = sqrt(GM/a_0), v_M = (G M a_0)^(1/4), t_M = r_M/v_M,
+  j_M = (GM)^(3/4) a_0^(-1/4), E_M = sqrt(G a_0) M^(3/2), rho_M = a_0^(3/2)/(G^(3/2) M^(1/2)), and the
+  MASS-FREE Sigma_M = a_0/(2 pi G).  Every one of these is either credited (Milgrom) or already in the ledger:
+    r_M   -> items 3 (dead), 24, 95, 108 (refuted)      v_M -> the BTFR                Sigma_M -> items 5 (keeper), 6 (dead), 122
+    j_M   -> item 26 (naive 3/4 excluded at 7.4 sigma)   rho_M -> items 110, 92        E_M -> restatement of the BTFR
+
+  canonical:  the three a_0-natural scales that need c as well
+     M_* = c^4/(G a_0) = 1.2930e+54 kg = 6.5011e+23 Msun     (the mass whose MOND radius is its own Schwarzschild radius x 4)
+     L_* = c^2/a_0     = 9.6021e+26 m  =  31118.24 Mpc      = Z c/H_Lambda
+     T_* = c/a_0       = 3.2029e+18 s  =    101.50 Gyr      = Z/H_Lambda
+     BTFR in a_0-natural form (an exact restatement):  v_flat/c = (M_b/M_*)^(1/4);  v_flat = 200 km/s <-> M_b = 1.288e+11 Msun
+
+  alt:  the three a_0-natural scales that need c as well
+     M_* = c^4/(G a_0) = 1.0710e+54 kg = 5.3849e+23 Msun     (the mass whose MOND radius is its own Schwarzschild radius x 4)
+     L_* = c^2/a_0     = 7.9536e+26 m  =  25775.82 Mpc      = Z c/H_Lambda
+     T_* = c/a_0       = 2.6530e+18 s  =     84.07 Gyr      = Z/H_Lambda
+     BTFR in a_0-natural form (an exact restatement):  v_flat/c = (M_b/M_*)^(1/4);  v_flat = 200 km/s <-> M_b = 1.067e+11 Msun
+
+  Anchor for M_*: the matter inside the Hubble volume is 2.911e+52 kg = 1.464e+22 Msun;
+  M_*/M_Hubble = 44.42 (canonical) / 36.79 (alt).
+  FLAGGED AS NUMEROLOGY: this is the Dirac large-number coincidence in a_0 clothing.  It follows algebraically
+  from a_0 ~ cH and carries no independent content; it must not be quoted as a prediction.
+
+==============================================================================================================================
+5. THE COINCIDENCES THE ENUMERATION THROWS UP -- all flagged AS NUMEROLOGY, none promoted
+==============================================================================================================================
+  footing    coincidence                                                    a_0 side     measured    ratio  status
+  canonical  sqrt(G m_e / a_0)  vs  proton charge radius                  8.0595e-16   8.4075e-16    0.959  NUMEROLOGY -- NO physical argument; the SM sector is walled in this programme
+  canonical  (rho_DE c^2)^(1/4) as an energy  vs  neutrino mass scale     2.2401e-03   5.0100e-02    0.045  NUMEROLOGY -- restatement of the first law + the KNOWN rho_L^(1/4) ~ m_nu coincidence
+  canonical  a_0  vs  c H_0 / (2 pi)                                      9.3600e-11   1.0422e-10    0.898  NUMEROLOGY -- the original Milgrom coincidence; algebraic given the first law
+  canonical  a_0  vs  the Sun's acceleration in the Galaxy (2.0e-10)      9.3600e-11   2.0000e-10    0.468  NUMEROLOGY -- selection: the Sun sits near a_0 because discs do
+  canonical  a_0  vs  the Pioneer anomaly (8.74e-10)                      9.3600e-11   8.7400e-10    0.107  NUMEROLOGY -- the Pioneer anomaly is thermal recoil (Turyshev+2012); dead
+  canonical  sqrt(G m_p / a_0)  vs  1 fm                                  3.4535e-14   1.0000e-15   34.535  NUMEROLOGY -- no argument
+  alt        sqrt(G m_e / a_0)  vs  proton charge radius                  7.3351e-16   8.4075e-16    0.872  NUMEROLOGY -- NO physical argument; the SM sector is walled in this programme
+  alt        (rho_DE c^2)^(1/4) as an energy  vs  neutrino mass scale     2.4613e-03   5.0100e-02    0.049  NUMEROLOGY -- restatement of the first law + the KNOWN rho_L^(1/4) ~ m_nu coincidence
+  alt        a_0  vs  c H_0 / (2 pi)                                      1.1300e-10   1.0422e-10    1.084  NUMEROLOGY -- the original Milgrom coincidence; algebraic given the first law
+  alt        a_0  vs  the Sun's acceleration in the Galaxy (2.0e-10)      1.1300e-10   2.0000e-10    0.565  NUMEROLOGY -- selection: the Sun sits near a_0 because discs do
+  alt        a_0  vs  the Pioneer anomaly (8.74e-10)                      1.1300e-10   8.7400e-10    0.129  NUMEROLOGY -- the Pioneer anomaly is thermal recoil (Turyshev+2012); dead
+  alt        sqrt(G m_p / a_0)  vs  1 fm                                  3.1431e-14   1.0000e-15   31.431  NUMEROLOGY -- no argument
+
+  The closest of them is sqrt(G m_e / a_0)  vs  proton charge radius on the canonical footing, at 0.018 dex.
+  It is recorded and NOT promoted.  Standing rule: a numerical agreement with no physical argument connecting
+  the two sides is not a result, and this programme has a written rule against citing one.
+  [PASS] K01.5 AGAINST INTEREST, and this is the control that kills them: every flagged coincidence moves by the full 0.082 dex footing gap (or 2x that where a_0 enters squared).  A coincidence that cannot survive the programme's own footing ambiguity cannot be a law -- the two footings do not bracket any of the measured values   (footing spread per coincidence: sqrt(G m_e / a_0) =0.041, a_0 =0.082, a_0 =0.082, (rho_DE c^2)^(1/4) as =0.041, sqrt(G m_p / a_0) =0.041, a_0 =0.082)
+
+==============================================================================================================================
+6. MUTATION CONTROLS -- is the census measuring a_0, or the density of the number line?
+==============================================================================================================================
+  hits with |log10 D| < 0.5:  a_0            -> 0
+                              a_0 x 0.1      -> 3
+                              a_0 x 0.5      -> 2
+                              a_0 x 2        -> 1
+                              a_0 x 10       -> 5
+                              a_0 x 100      -> 2
+                              c H_0 (a_0-free alternative, 6.548e-10) -> 5
+                              c H_0/(2pi)    -> 0
+  [PASS] K01.6 MUTATION: the hit count must MOVE when a_0 is scaled by 10 or 100.  If it does not, the census is counting the density of the number line rather than anything about a_0 and every 'hit' above is an artefact   (base 0 -> [3, 5, 2] under x0.1, x10, x100)
+  AGAINST INTEREST: the a_0-free alternative cH_0 scores the same or better on the cosmological rows, because
+  those rows ARE the first law.  The census separates cleanly into (a) rows that restate a_0 = cH_Lambda/Z and
+  (b) rows 20+ dex away.  There is no third category.
+
+==============================================================================================================================
+7. THE ONE SURVIVOR EXAMINED: T = sigma_T a_0/(G m_p), and the one physical bridge to a measured quantity
+==============================================================================================================================
+  T is dimensionless because a_0/G is a surface density and m_p/sigma_T is the electron-scattering column.
+  The only physical argument that connects a_0 to the Thomson opacity is momentum-driven AGN feedback:
+     King (2003):  M_BH = f_g kappa sigma^4 / (pi G^2)         [kappa = sigma_T/m_p, f_g the gas fraction]
+     deep MOND  :  sigma^4 = (1/A) G M_b a_0                   [A the Faber-Jackson coefficient, model-dependent]
+     =>  M_BH / M_b = (f_g / (pi A)) * T                       -- a_0 sets the BH-to-baryon mass fraction, and
+         the relation is predicted to have slope EXACTLY 1 in log M_BH vs log M_b.
+    canonical  A = 9/4 (Milgrom isothermal sphere)  f_g = Om_b/Om_m   M_BH/M_b = 1.239e-03
+    canonical  A = 9/4 (Milgrom isothermal sphere)  f_g = 1           M_BH/M_b = 7.891e-03
+    canonical  A = 4 (sigma = v_flat/sqrt2)         f_g = Om_b/Om_m   M_BH/M_b = 6.969e-04
+    canonical  A = 4 (sigma = v_flat/sqrt2)         f_g = 1           M_BH/M_b = 4.439e-03
+    alt        A = 9/4 (Milgrom isothermal sphere)  f_g = Om_b/Om_m   M_BH/M_b = 1.496e-03
+    alt        A = 9/4 (Milgrom isothermal sphere)  f_g = 1           M_BH/M_b = 9.526e-03
+    alt        A = 4 (sigma = v_flat/sqrt2)         f_g = Om_b/Om_m   M_BH/M_b = 8.413e-04
+    alt        A = 4 (sigma = v_flat/sqrt2)         f_g = 1           M_BH/M_b = 5.359e-03
+    measured (Kormendy & Ho 2013): M_BH/M_bulge = 3e-3 to 5e-3, with 0.3-0.5 dex scatter and a slope 1.17 +- 0.08
+  VERDICT ON T, against interest: the SLOPE is a genuine zero-parameter prediction, but it is NOT discriminating
+  -- LambdaCDM reaches the same slope through King + a Faber-Jackson exponent of 4, which it also has.  The
+  AMPLITUDE is where a_0 lives, and it carries f_g and A, both effectively fitted, so criterion (2) fails.
+  Recorded as the census's only survivor and as a LOW-promise candidate, not as a law.
+
+==============================================================================================================================
+VERDICT -- ANGLE 2, DONE PROPERLY RATHER THAN IMPRESSIONISTICALLY
+==============================================================================================================================
+  1. The enumeration TERMINATES, and that is the main result.  {a_0, G, c} is a complete basis, so there is
+     exactly one a_0-natural value per dimension and the search space is the 14-row table in section 1, not an
+     open field.  Lambda adds nothing (the first law), hbar adds exactly one number, and that number is the
+     cosmological-constant problem -- so there is no unexplored 'a_0 meets quantum mechanics' territory at all.
+  2. A THEOREM THAT EXPLAINS THE HUNT'S OWN BLOCKER: the a_0-natural luminosity c^5/G and force c^4/G contain
+     no a_0.  No mass-to-light ratio can ever be predicted from a_0, G and c.  Every Upsilon result in the
+     ledger is a ratio calibration; none is, or can be, a derivation.
+  3. THE CENSUS IS A NULL.  Of 37 measured constants, the only ones within 2 dex of their a_0-natural value are
+     the cosmological ones, which are restatements of a_0 = c H_Lambda / Z, plus ONE genuine survivor:
+     T = sigma_T a_0/(G m_p) = 0.0558 (canonical) / 0.0673 (alt).  Everything else is 20 to 120 dex away.
+  4. THE COINCIDENCES ARE FLAGGED AND LEFT.  sqrt(G m_e/a_0) lands 4% from the proton charge radius on the
+     canonical footing and 13% away on the alt; (rho_DE)^(1/4) lands a factor 3.8 from the solar neutrino
+     splitting.  Neither has a physical argument, both move with the footing, and the SM sector is walled.
+  5. WHAT THE ANGLE DID NOT FIND: no second Kepler-grade law comes out of pure dimensional analysis, and the
+     reason is structural rather than accidental -- a_0 is one number, the basis it completes is three-
+     dimensional, and every dimensionless combination it makes with a measured constant is either the first
+     law rewritten or astronomically far from unity.  The productive candidates must anchor on a measured
+     ASTROPHYSICAL quantity with a physical argument, not on a constant of nature.
+
+RESULT: 6 checks, 0 FAIL   rc=0

@@ -1,0 +1,116 @@
+==============================================================================================================================
+PART 1 -- THE MEASURED WITHIN-GALAXY SLOPE PROFILE, AND ITS FULL BIN-BIN COVARIANCE
+==============================================================================================================================
+  2723 consecutive-radius pairs, 147 galaxies, 10 usable bins
+
+         g_bar    slope      +-  Npair  Ngal |  Route A can  Route A alt  deep 1/2
+     1.723e-12    0.328   0.077     78    26 |        0.533        0.530     0.500
+     3.367e-12    0.484   0.058    292    56 |        0.546        0.542     0.500
+     6.579e-12    0.535   0.036    442    90 |        0.563        0.558     0.500
+     1.286e-11    0.583   0.030    395    95 |        0.587        0.580     0.500
+     2.512e-11    0.609   0.026    335    78 |        0.618        0.609     0.500
+     4.908e-11    0.666   0.024    312    71 |        0.659        0.647     0.500
+     9.590e-11    0.647   0.029    268    62 |        0.711        0.695     0.500
+     1.874e-10    0.734   0.066    218    50 |        0.773        0.755     0.500
+     3.661e-10    0.703   0.055    151    30 |        0.841        0.822     0.500
+     7.154e-10    0.867   0.103    115    24 |        0.907        0.889     0.500
+  [PASS] 1A the bin-bin covariance from the galaxy-block bootstrap is symmetric POSITIVE DEFINITE -- the diagonal alone is never enough (bug pattern 4)   (min eigenvalue 3.312e-04, max off-diagonal correlation +0.313)
+  [PASS] 1B the bins are NOT independent, so a diagonal chi^2 is not the right statistic -- this check FAILS if the bins turn out uncorrelated, in which case the diagonal treatment was fine after all   (largest |bin-bin correlation| = 0.313 (median 0.040))
+
+==============================================================================================================================
+PART 2 -- THE ZERO-PARAMETER COMPARISON, DIAGONAL vs FULL COVARIANCE
+==============================================================================================================================
+  kernel                   footing        chi2 FULL cov  chi2 diagonal   dof = 10
+  Route A (operative)      canonical               21.0           20.8
+  Route A (operative)      alt                     18.2           16.5
+  sqrt(1+1/y)              canonical               34.5           35.3
+  sqrt(1+1/y)              alt                     31.3           28.1
+  simple mu = x/(1+x)      canonical               23.7           25.1
+  simple mu = x/(1+x)      alt                     20.1           19.3
+  deep MOND == the BTFR    canonical               96.7          143.0
+  deep MOND == the BTFR    footing-free            96.7          143.0
+  Newton, no boost         canonical              914.0         1128.0
+  Newton, no boost         footing-free           914.0         1128.0
+  [PASS] 2A ⚠ THE ZERO-PARAMETER FIT IS TESTED FOR ACCEPTABILITY, NOT ONLY FOR BEING BETTER THAN A STRAW MAN. With the correct correlated chi^2 the Lambda-fixed prediction must be an ACCEPTABLE fit at p > 0.01 on its own terms.  This check fails if it is not   (best Route A chi^2 = 18.2 on 10 bins (p=0.01 threshold 23.2); canonical 21.0, alt 18.2)
+  [PASS] 2B the observable discriminates at all: Newton must be excluded by it   (Newton chi^2 = 914 vs Route A 18.2)
+
+==============================================================================================================================
+PART 3 -- THE RESTATEMENT TEST, EXECUTED TWICE: against the BTFR, and against the RAR ITSELF
+==============================================================================================================================
+  3a  BTFR:  v^4 = G M_b a_0  <=>  g_obs^2 = a_0 g_bar  =>  ln g_obs = 1/2 ln g_bar + 1/2 ln a_0
+      =>  d ln g_obs/d ln g_bar = 1/2 IDENTICALLY.  The derivation CLOSES to a CONSTANT, so the constant
+      part of the profile is BTFR content and the g_bar DEPENDENCE is not.  Confirmed numerically:
+      measured rise 0.328 -> 0.867  =  4.2 sigma against flat;  deep-MOND chi^2 = 96.7
+
+  3b  ⚠ THE TEST THE PROPOSAL DID NOT RUN.  The hunt's criterion (5) names the RAR as one of the three
+      clothes of the one relation.  The local log-slope IS d/d ln g_bar of the RAR, so the RAR determines
+      it with no freedom left.  Fit the RAR the published way (pooled, normalisation channel, one free
+      scale) and PREDICT the slope profile from that fit -- zero further parameters:
+      pooled RAR normalisation fit on the same 3140 points, Upsilon = 0.5:  a_0 = 1.2503e-10
+      that value, used with NO further freedom, predicts the slope profile at chi^2 = 17.3 on 10 bins
+      McGaugh+2016's PUBLISHED g_dagger = 1.20e-10 predicts it at chi^2 = 17.6
+      the slope profile's OWN best a_0 = 1.6164e-10  1sig [1.245e-10, 2.154e-10]  2sig [9.733e-11, 2.958e-10]  chi^2 = 16.3
+  [PASS] 3A ⚠ RESTATEMENT OF THE RAR -- REPORTED AGAINST INTEREST.  If a published RAR fit, made in the normalisation channel with one free scale, already predicts the measured slope profile acceptably, then the slope profile carries no information the RAR does not, and the candidate is a RESTATEMENT of the RAR in exactly the sense criterion (5) means.  This check PASSES when the candidate is shown to be a restatement, because that is the finding   (published g_dagger 1.20e-10 -> chi^2 17.6; our own pooled-normalisation a_0 1.250e-10 -> chi^2 17.3; both on 10 bins with zero parameters left)
+  [PASS] 3B and the slope profile does not prefer a DIFFERENT scale from the RAR normalisation at 2 sigma, which is what an independent measurement would have to do to be independent.  (⚠ BUG IN MY OWN FIRST VERSION: this check said '2 sigma' in its text and tested a Delta chi^2 = 1 interval, so it failed on a wording mismatch.  Both intervals are now printed above and the check tests what it says.  At 1 sigma the slope profile's interval misses 1.20e-10 by a hair from below, which is the honest caveat)   (slope-profile 95% interval [9.733e-11, 2.958e-10] contains the published RAR g_dagger 1.20e-10: True;  68% interval [1.245e-10, 2.154e-10] does not)
+
+==============================================================================================================================
+PART 4 -- IS THE PROFILE A SHAPE OR A SCALE?  nu_p(y) = 1/(1 - exp(-y^p)), p = 1/2 IS Route A
+==============================================================================================================================
+  joint best: p = 0.480, a_0 = 2.2440e-10, chi^2 = 15.9 on 10 bins, 2 params
+  profiling a_0 out, the 1-sigma range of the SHAPE exponent p is [0.48, 0.50] against Route A's p = 0.5
+  chi^2 at p = 0.5 with a_0 free = 16.3; at p = 1.0 with a_0 free = 449.8
+  [PASS] 4A ⚠ THIS CHECK CAME OUT FOR THE CANDIDATE AND MY FIRST VERSION HAD ITS SIGN BACKWARDS.  I expected the shape to be unconstrained once the scale was profiled out, and wrote the check to fail if p were pinned.  It IS pinned, so the check now tests the true statement: the profile does constrain the shape exponent, because Phi(y -> 0) = 1 - p makes the deep asymptote a direct measurement of p   (1-sigma p range [0.48, 0.50] (width 0.02) around Route A's p = 0.5)
+  family Route A              own best a_0 = 1.6350e-10   chi^2 =   16.3 (1 param)
+  family sqrt(1+1/y)          own best a_0 = 1.4572e-10   chi^2 =   29.8 (1 param)
+  family simple mu = x/(1+x)  own best a_0 = 1.8346e-10   chi^2 =   16.7 (1 param)
+  [FAIL] 4B ⚠ AND THE PINNING DOES NOT EXTEND ACROSS FUNCTIONAL FAMILIES.  With each rival given its own free a_0 -- so only the SHAPE is judged -- the operative kernel must be distinguishable from the MOND 'simple' function for the profile to be testing the kernel rather than one shape number.  This check fails when they are a dead heat, which is the honest outcome and matches Desmond 2023's own conclusion   (Route A chi^2 16.3 at a_0 1.635e-10 vs simple mu 16.7 at 1.835e-10 (Delta = 0.4); sqrt(1+1/y) 29.8 at 1.457e-10)
+
+==============================================================================================================================
+PART 5 -- THE UPSILON LEVER, ON a_0 AND ON THE VERDICT
+==============================================================================================================================
+  Upsilon = 0.333:  slope-profile a_0 = 8.0489e-11   zero-parameter chi^2  canonical    31.0   alt    32.4   (10 bins)
+  Upsilon = 0.500:  slope-profile a_0 = 1.6164e-10   zero-parameter chi^2  canonical    21.0   alt    18.2   (10 bins)
+  Upsilon = 0.750:  slope-profile a_0 = 3.6952e-10   zero-parameter chi^2  canonical    47.8   alt    37.9   (10 bins)
+  d log a_0 / d log Upsilon = +1.879
+  covariance-bootstrap seed sensitivity of the best a_0: 1.548e-10 to 1.766e-10 = 0.057 dex across 4 seeds
+  [PASS] 5C ⚠ A SYSTEMATIC I ONLY FOUND BY LOOKING: with 10 correlated bins the inverse covariance is itself a bootstrap estimate, and the location of the chi^2 minimum inherits its noise.  This check fails if that noise is a large fraction of the 0.08 dex gap between the two footings   (seed-to-seed spread 0.057 dex against the footing gap 0.082 dex)
+  [PASS] 5A the Upsilon lever is large and is reported as the leading systematic of the candidate: the profile measures a_0/Upsilon^lever, so a 20% Upsilon error is a 20*lever % error in a_0.  Check FAILS if the lever is small enough (<0.3) that Upsilon is not the blocker here   (d log a_0/d log Upsilon = +1.879; a_0 moves 8.049e-11 -> 3.695e-10 over Upsilon 0.33->0.75)
+  [PASS] 5B ⚠ AND THE ZERO-PARAMETER VERDICT ITSELF MOVES WITH UPSILON.  A relation whose 'nothing fitted' chi^2 swings by a large factor across a defensible Upsilon range is a Upsilon measurement wearing a_0's clothes.  This check fails if the swing is small   (canonical zero-parameter chi^2 ranges 21.0 to 47.8 across Upsilon 0.33-0.75)
+
+==============================================================================================================================
+PART 6 -- SYSTEMATICS THAT CAN KILL: the inner rising curve, the differencing scheme, distance, sin i
+==============================================================================================================================
+  outer-only (both radii beyond 2 R_disk): 1503 pairs, 8 bins
+    1.72e-12:+0.406  3.37e-12:+0.504  6.58e-12:+0.524  1.29e-11:+0.595  2.51e-11:+0.640  4.91e-11:+0.688  9.59e-11:+0.661  1.87e-10:+0.615
+  over the 7 bins the two samples SHARE: rise all radii +0.250, outer-only +0.111, Route A canonical PREDICTS +0.227
+  outer-only zero-parameter chi^2 on those bins: Route A canonical 17.7, alt 12.5, flat 1/2 193.3
+  centred 3-point differencing: 2618 triples; profile agrees with the pair scheme to 0.092 max, 0.036 mean over 10 shared bins
+  [PASS] 6A the measured rise is NOT an artefact of the differencing scheme: a completely different finite difference (centred, three-point) must give the same profile   (max bin difference 0.092)
+  [PASS] 6B ⚠ THE RISE MUST SURVIVE DROPPING THE INNER, STILL-RISING PART OF EVERY ROTATION CURVE.  The high-g_bar bins are inner radii where bars, bulges and beam smearing live; if the rise is carried by them it is galaxy structure, not the kernel.  The test is whether the zero-parameter prediction still fits the outer-only sample -- NOT whether the raw rise is as big, because the outer cut also deletes the two highest-g_bar bins.  Check fails if the outer-only sample rejects the Lambda-fixed prediction   (outer-only chi^2 17.7 (canonical) / 12.5 (alt) on 7 bins; flat 1/2 gives 193.3; measured rise falls +0.250 -> +0.111 against a predicted +0.227)
+  distance x1.37: max bin change 0.00000 over 10 shared bins
+  sin i x1.20: max bin change 0.00000 over 10 shared bins
+  [PASS] 6C the distance-freedom is exact where the algebra says it is exact -- the SLOPE VALUE in a fixed bin cannot see a global rescaling (bins can still migrate, which is why only shared bins are compared)   (max bin change under a 37% distance error 3.44e-15)
+
+==============================================================================================================================
+PART 7 -- CONTROLS: injection, 4x mutation, bin-label permutation
+==============================================================================================================================
+  injected 9.360e-11 -> recovered 9.202e-11   (-0.007 dex)
+  injected 1.130e-10 -> recovered 1.110e-10   (-0.008 dex)
+  injected 3.744e-10 -> recovered 3.671e-10   (-0.009 dex)
+  [PASS] 7A INJECTION: synthetic curves obeying the kernel exactly, on the real g_bar profiles and through the identical binning/differencing/weighting, must be read back at the injected a_0   (bias -0.007 dex at canonical)
+  [PASS] 7B MUTATION: a 4x wrong a_0 must be recovered as 4x wrong -- the estimator is not a fixed point   (bias -0.009 dex from the injected 4x canonical)
+  bin-label permuted profile (global slope 0.649): 0.666 0.617 0.618 0.686 0.685 0.668 0.655 0.616 0.683 0.626
+  [PASS] 7C MUTATION: permuting the bin label destroys the g_bar dependence and nothing else, so the profile must go FLAT -- the RISE is the whole content of the candidate beyond the BTFR restatement   (real rise +0.539, permuted rise -0.040)
+
+==============================================================================================================================
+VERDICT ON K7
+==============================================================================================================================
+  MEASURED: the within-galaxy RAR slope rises 0.328 +- 0.077 -> 0.867 +- 0.103, a 4.2 sigma rise; flat 1/2 is excluded at chi^2 = 96.7/10.
+  ZERO-PARAMETER: Route A with a_0 from Lambda gives chi^2 = 21.0 (canonical) / 18.2 (alt) on 10 correlated bins.
+  a_0 FROM THE SLOPE ALONE: 1.6164e-10 [1.245e-10, 2.154e-10] at Upsilon = 0.5, d log a_0/d log Upsilon = +1.879.
+  IS_RESTATEMENT = True: the published RAR scale g_dagger = 1.20e-10 (McGaugh+2016, fitted in the NORMALISATION channel) predicts this profile at chi^2 = 17.6 with nothing left free.
+  LambdaCDM computed beside: Newton with no boost is excluded at chi^2 = 914, but a free halo adds two
+  parameters PER GALAXY to the shape, so LambdaCDM makes no prediction for this observable at all and the
+  comparison is 1 global parameter against 2 x N_gal.  It is not a discriminating test.
+
+RESULT: 17 checks, 1 FAIL -> ["4B ⚠ AND THE PINNING DOES NOT EXTEND ACROSS FUNCTIONAL FAMILIES.  With each rival given its own free a_0 -- so only the SHAPE is judged -- the operative kernel must be distinguishable from the MOND 'simple' function for the profile to be testing the kernel rather than one shape number.  This check fails when they are a dead heat, which is the honest outcome and matches Desmond 2023's own conclusion"]   rc=1

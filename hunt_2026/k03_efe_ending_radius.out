@@ -1,0 +1,101 @@
+==============================================================================================================================
+k03 -- THE EFE ENDING RADIUS:  r_EFE = sqrt(G M_b a_0)/g_ext = v_flat^2/g_ext
+==============================================================================================================================
+
+1. THE EXTERNAL FIELD, measured independently of any lensing, from 2M++
+------------------------------------------------------------------------------------------------------------------------------
+  175 lines of sight (the SPARC footprint, the programme's own external-field construction)
+    e_N = g_N,ext/a_0  (no cluster term      ): median 3.823e-04  16-84 [1.73e-04, 6.29e-04]   ->  TRUE field g_ext/a_0 = nu(e_N) e_N: median 0.0197  16-84 [0.0132, 0.0254]
+    e_N = g_N,ext/a_0  (maximal cluster term ): median 3.270e-03  16-84 [1.56e-03, 5.24e-03]   ->  TRUE field g_ext/a_0 = nu(e_N) e_N: median 0.0588  16-84 [0.0403, 0.0750]
+  [PASS] K03.1 the repository's own 2M++ external fields put the TRUE external field on a field galaxy in the range 0.01-0.07 a_0.  This check fails if the file is being read in the wrong units, which would invalidate everything below   (2M++ no-cluster (median): 0.0197 a_0, 2M++ max-cluster (median): 0.0588 a_0, 2M++ no-cluster (16th pct, the most isolated): 0.0132 a_0)
+
+2. THE PREDICTION: r_EFE = sqrt(G M_b a_0)/g_ext, four mass bins x two footings x three field estimates
+------------------------------------------------------------------------------------------------------------------------------
+  footing    bin  M_b (Msun) v_flat (km/s)     2M++ no-cluster (median)   2M++ max-cluster (median)  2M++ no-cluster (16th pct,
+  canonical    1   1.500e+10         116.8                        0.239                       0.080                       0.357
+  canonical    2   3.660e+10         146.0                        0.374                       0.126                       0.558
+  canonical    3   6.010e+10         165.3                        0.479                       0.161                       0.715
+  canonical    4   9.130e+10         183.5                        0.591                       0.198                       0.881
+  alt          1   1.500e+10         122.5                        0.218                       0.073                       0.325
+  alt          2   3.660e+10         153.1                        0.340                       0.114                       0.508
+  alt          3   6.010e+10         173.3                        0.436                       0.146                       0.651
+  alt          4   9.130e+10         192.4                        0.538                       0.180                       0.802
+  (values in Mpc)
+  ITEM 1 measured the lensing acceleration falling as 1/r EXACTLY over 0.05-2.6 Mpc in every one of these
+  bins.  ITEM 72 excluded an ENDING below 1.67 / 2.07 / 3.44 / 2.77 Mpc at 3 sigma.  Both are keepers.
+
+3. THE MEASURED OUTER SLOPE of the lensing acceleration, per mass bin (scoping fit, diagonal errors)
+------------------------------------------------------------------------------------------------------------------------------
+  bin N pts      R range (Mpc)  slope d log g_obs/d log R  vs -1 (MOND)  vs -2 (EFE/Newton)
+    1    10      0.164 - 2.603            -0.946 +- 0.264      +0.2 sig            +4.0 sig
+    2    10      0.164 - 2.603            -1.086 +- 0.185      -0.5 sig            +4.9 sig
+    3    10      0.164 - 2.603            -0.981 +- 0.138      +0.1 sig            +7.4 sig
+    4    10      0.164 - 2.603            -1.085 +- 0.116      -0.7 sig            +7.9 sig
+  stack of four bins: slope = -1.025 +- 0.088 (naive), i.e. -0.3 sigma from -1 and +11.1 sigma from -2
+  [FAIL] K03.2 CLAIM UNDER TEST: the framework's external-field effect requires the lensing acceleration to steepen to a slope of -2 beyond r_EFE, which for these lenses and the repository's own 2M++ fields is 0.08-0.6 Mpc. The measured outer slope beyond 0.15 Mpc must therefore be nearer -2 than -1.  It is not   (measured outer slope -1.025; MOND-without-EFE says -1, MOND-with-EFE and a dark halo both say about -2)
+
+4. READ BACKWARD -- the external field on the KiDS isolated-lens stack, measured from the lensing profile
+------------------------------------------------------------------------------------------------------------------------------
+  Requiring r_EFE to exceed item 72's 3-sigma lower bound on the ending radius bounds g_ext from above:
+    canonical  bin 1: r_EFE > 1.67 Mpc  =>  g_ext < 2.649e-13 m/s^2 = 0.00283 a_0
+    canonical  bin 2: r_EFE > 2.07 Mpc  =>  g_ext < 3.339e-13 m/s^2 = 0.00357 a_0
+    canonical  bin 3: r_EFE > 3.44 Mpc  =>  g_ext < 2.574e-13 m/s^2 = 0.00275 a_0
+    canonical  bin 4: r_EFE > 2.77 Mpc  =>  g_ext < 3.941e-13 m/s^2 = 0.00421 a_0
+    alt        bin 1: r_EFE > 1.67 Mpc  =>  g_ext < 2.911e-13 m/s^2 = 0.00258 a_0
+    alt        bin 2: r_EFE > 2.07 Mpc  =>  g_ext < 3.668e-13 m/s^2 = 0.00325 a_0
+    alt        bin 3: r_EFE > 3.44 Mpc  =>  g_ext < 2.829e-13 m/s^2 = 0.00250 a_0
+    alt        bin 4: r_EFE > 2.77 Mpc  =>  g_ext < 4.330e-13 m/s^2 = 0.00383 a_0
+
+  TIGHTEST BOUND across bins and footings: g_ext < 0.00250 a_0 on the KiDS isolated-lens stack.
+  The 2M++ construction in this repository gives 0.0197 a_0 (no cluster term) to 0.0588 a_0 (maximal),
+  i.e. a factor 8-24 LARGER than the lensing allows -- 0.90 to 1.37 dex.
+  [FAIL] K03.3 THE CANDIDATE'S SHARP EDGE, and it cuts against the framework: the external field the lensing data allow is an order of magnitude below the external field the same repository computes from 2M++.  This check is written to fail if the two disagree by more than 0.3 dex, and it fails   (lensing allows < 0.00250 a_0; 2M++ gives 0.0197-0.0588 a_0)
+
+5. THE ALTERNATIVE COMPUTED BESIDE IT, AND THE THREE ESCAPES -- stated because they are real
+------------------------------------------------------------------------------------------------------------------------------
+  LambdaCDM's answer: a dark halo has no external-field effect at all.  Its lensing profile at 0.1-3 Mpc is
+  the one-halo NFW term steepening to -1.2 ... -1.6 (item 1 measured -1.00 and called NFW out), plus a
+  two-halo term that RISES.  So the observed -1 is a problem for the halo too; what k03 adds is that it is
+  ALSO a problem for the framework once the external field is switched on, which item 1 never did.
+  ESCAPE 1 -- the two-halo term.  Beyond r_EFE the framework's own neighbours contribute their phantoms, and
+     that added signal could refill a steepening profile.  Item 84 withdrew E_G on exactly this physics and
+     item 113 is the item that would settle it.  Until it is modelled, k03 is a scoping result.
+  ESCAPE 2 -- the stack smears the break.  r_EFE depends on each lens's own g_ext, which varies by 0.5 dex
+     across 2M++ lines of sight, so a stack of many lenses has no sharp break, only a gradual steepening.
+     The correct test is a forward model of the stack, not a single break radius.
+  ESCAPE 3 -- the KiDS lenses are isolation-selected and the 2M++ sample is not.  The isolation cut removes
+     near neighbours but NOT the large-scale term, which is what dominates the 2M++ numbers; this escape is
+     the weakest of the three and is the one to close first.
+
+6. LEVERS AND MUTATION CONTROLS
+------------------------------------------------------------------------------------------------------------------------------
+  d log r_EFE / d log M_b   = +1/2 exactly       -> d log r_EFE/d log Upsilon = (1/2) x (stellar share of M_b)
+     for these lenses the stellar share of M_b is about 0.85, so d log r_EFE/d log Upsilon = +0.43
+  d log r_EFE / d log a_0   = +1/2 exactly       -> the footing gap of 0.082 dex moves r_EFE by 0.041 dex
+  d log g_ext(inferred)/d log Upsilon = +0.43    -> the backward reading inherits the same lever
+  d log r_EFE / d log g_ext = -1 exactly         -> the whole tension is linear in the external field
+  M1 mutation a_0 / 10  : bin 4 r_EFE at the 2M++ median field ->    1.868 Mpc (vs 0.591 at the true a_0)
+  M1 mutation a_0 x 10  : bin 4 r_EFE at the 2M++ median field ->    0.187 Mpc (vs 0.591 at the true a_0)
+     -- note the mutation moves r_EFE by only sqrt(1/10) = 0.5 dex because g_ext is quoted in units of a_0;
+     held FIXED in physical units the lever is +1/2 and the mutation moves it 0.5 dex the other way.  Both
+     are printed so the reader can see the estimator is not an a_0-blind fixed point.
+  M2 shuffling ESD against radius within a bin: slope -> +0.004 +- 0.389 (the -1 signal is destroyed, so the measured slope is a property of the pairing)
+  [PASS] K03.4 MUTATION: shuffling the ESD values against radius must destroy the slope.  If a shuffled profile still returned -1, the slope would be an artefact of the binning rather than a measurement   (shuffled slope +0.004 +- 0.389 against the real -1.025)
+
+==============================================================================================================================
+VERDICT -- CANDIDATE k03
+==============================================================================================================================
+  THE EQUATION IS SOUND AND IT IS NOT A RESTATEMENT: r_EFE = sqrt(G M_b a_0)/g_ext ties a_0, the lens's
+  baryonic mass, the radius at which its lensing profile must steepen, and the external field, with a
+  predicted coefficient of one.  Nothing in v^4 = G M_b a_0 implies it.
+  AS A TEST IT FIRES AGAINST THE FRAMEWORK, and that is the result.  With the repository's own 2M++
+  external fields the break should sit at 0.08-0.6 Mpc, and the measured outer slope beyond 0.15 Mpc is
+  -1.025, not -2.  Turned round, the lensing profile bounds the external field on these lenses at
+  g_ext < 0.00250 a_0, an order of magnitude below what 2M++ gives for comparable galaxies.
+  IT IS A SCOPING RESULT, NOT A CLOSURE.  Three named escapes -- the neighbours' own phantoms refilling the
+  profile, the stack smearing a break that varies lens by lens, and the isolation cut -- are each capable of
+  absorbing an order of magnitude, and none is modelled here.  The full version needs item 113's two-halo
+  model, the 60x60 covariance item 72 carried, and per-lens external fields for the KiDS footprint rather
+  than the SPARC one.  What k03 establishes is that the calculation is worth doing and which way it points.
+
+RESULT: 4 checks, 2 FAIL -> ["K03.2 CLAIM UNDER TEST: the framework's external-field effect requires the lensing acceleration to steepen to a slope of -2 beyond r_EFE, which for these lenses and the repository's own 2M++ fields is 0.08-0.6 Mpc. The measured outer slope beyond 0.15 Mpc must therefore be nearer -2 than -1.  It is not", "K03.3 THE CANDIDATE'S SHARP EDGE, and it cuts against the framework: the external field the lensing data allow is an order of magnitude below the external field the same repository computes from 2M++.  This check is written to fail if the two disagree by more than 0.3 dex, and it fails"]   rc=1

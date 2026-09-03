@@ -1,0 +1,257 @@
+======================================================================================================================
+k_cross-scale_opencluster -- CANDIDATE 2: the open-cluster rung of the external-field saturation law
+      M_dyn/M_phot = B(e) = nu(e)[1+L(e)/3] at the solar circle,  a_0 = (c/2) sqrt(G rho_DE)
+======================================================================================================================
+
+----------------------------------------------------------------------------------------------------------------------
+0.  THE VIRIAL COEFFICIENT, derived here rather than remembered (it multiplies every mass).
+----------------------------------------------------------------------------------------------------------------------
+  [PASS] the Plummer potential energy integrates to the analytic -3 pi G M^2/(32 b)  [CAN FAIL]   (numeric -0.294524 vs analytic -0.294524 (units G=M=b=1))
+  [PASS] the Plummer PROJECTED half-mass radius is b exactly, so eta = 32/pi refers to r50 as measured  [CAN FAIL]   (numeric R_hp/b = 1.00000)
+  => M_dyn = eta sigma_1D^2 r50 / G with eta = 32/pi = 10.1859 (Plummer).
+  SYSTEMATIC, stated up front: eta is profile-dependent.  A King W0 = 5 model gives eta ~ 8.5 and a
+  mass-segregated cluster measured at the half-NUMBER radius (which r50J is) gives a larger r50 than the
+  half-MASS radius, both of which move the answer by 15-25%.  That is 0.06-0.10 dex -- the SAME SIZE as
+  the whole predicted signal, and it is quoted as a floor, not hidden.
+
+----------------------------------------------------------------------------------------------------------------------
+1.  THE SAMPLE.
+----------------------------------------------------------------------------------------------------------------------
+  7167 clusters in Hunt & Reffert 2024 table 1; 401 member files fetched (type o, d < 1000 pc, N_J >= 50, prob_J > 0.5)
+  393 clusters keep >= 40 members after inrj = 1, Prob > 0.7, RUWE < 1.4, NSS = 0
+  [PASS] the sample is large enough to be a rung at all (>= 30 clusters)  [CAN FAIL]   (393 clusters)
+  sum of member Mass50 within r_J divided by the catalogue's MassJ: median 0.581 [0.400, 1.146]
+  [PASS] MassJ carries a real unseen-star (IMF extrapolation) correction rather than being the bare sum of detected member masses -- which is the difference between a photometric mass and a fitted one  [CAN FAIL]   (median ratio 0.581, i.e. MassJ = 1.72x the summed detected member masses)
+  THIS CHECK REVERSED AN ASSUMPTION AND THE REVERSAL IS LOAD-BEARING.  The catalogue mass is NOT the sum of
+  what Gaia sees; it is that sum times an IMF extrapolation to the undetected low-mass end, a factor 1.72
+  on the median cluster.  So M_phot is a FITTED quantity with an IMF normalisation inside it, and the
+  Upsilon lever of section 9 is not a hypothetical: the entire difference between B = 0.6 and B = 1.0 below
+  is that one extrapolation.  Section 9 quantifies it by re-running.
+
+----------------------------------------------------------------------------------------------------------------------
+2.  DOES THE ESTIMATOR WORK?  Synthetic clusters with a KNOWN sigma, built on the REAL
+    positions, REAL proper-motion errors, REAL bulk motions and a REAL line-of-sight depth.
+----------------------------------------------------------------------------------------------------------------------
+     input sigma = 0.30 km/s:  recovered PERP 0.290 [0.254, 0.312];  recovered PARALLEL 0.327 [0.296, 0.399]
+     input sigma = 1.00 km/s:  recovered PERP 0.958 [0.873, 1.022];  recovered PARALLEL 1.018 [0.945, 1.083]
+  [PASS] the PERPENDICULAR estimator is unbiased to 15% at both 0.3 and 1.0 km/s, so a measured boost is not an estimator artefact  [CAN FAIL]   (recovered/input = 0.965 at 0.3 km/s, 0.958 at 1.0 km/s)
+  [PASS] the PARALLEL component is measurably MORE biased by the line-of-sight depth than the perpendicular one, which is the reason the perpendicular one is used  [CAN FAIL]   (parallel/input = 1.089 vs perpendicular/input = 0.965 at sigma = 0.3 km/s)
+
+----------------------------------------------------------------------------------------------------------------------
+3.  THE BINARY FLOOR.  What proper-motion scatter do unresolved binaries add, in km/s?
+----------------------------------------------------------------------------------------------------------------------
+  d [kpc]   sigma_bin [km/s]   unresolved+RUWE-safe frac
+     0.15              0.539                       0.156
+     0.30              0.545                       0.191
+     0.50              0.548                       0.216
+     0.80              0.549                       0.236
+     1.00              0.549                       0.245
+  median sigma_bin over the sample = 0.548 km/s
+  This is the number that decides the rung.  A 300 Msun cluster with r50 = 3 pc has a VIRIAL sigma of 0.206 km/s;
+  a 3000 Msun cluster with r50 = 4 pc has 0.563 km/s.
+  [PASS] the binary floor is NOT negligible against the virial signal -- it is comparable to or larger than the dispersion of a typical open cluster, which is reported as the reason this rung is limited  [CAN FAIL]   (sigma_bin = 0.548 km/s vs a typical virial sigma of 0.2-0.6 km/s)
+
+----------------------------------------------------------------------------------------------------------------------
+4.  THE MEASUREMENT.
+----------------------------------------------------------------------------------------------------------------------
+/Users/carlzimmerman/new_physics/zimmerman-formula/hunt_2026/k_cross-scale_opencluster.py:122: RuntimeWarning: divide by zero encountered in matmul
+  vra = K*dist_kpc*pmra - px @ V
+/Users/carlzimmerman/new_physics/zimmerman-formula/hunt_2026/k_cross-scale_opencluster.py:122: RuntimeWarning: overflow encountered in matmul
+  vra = K*dist_kpc*pmra - px @ V
+/Users/carlzimmerman/new_physics/zimmerman-formula/hunt_2026/k_cross-scale_opencluster.py:122: RuntimeWarning: invalid value encountered in matmul
+  vra = K*dist_kpc*pmra - px @ V
+/Users/carlzimmerman/new_physics/zimmerman-formula/hunt_2026/k_cross-scale_opencluster.py:123: RuntimeWarning: divide by zero encountered in matmul
+  vde = K*dist_kpc*pmde - qx @ V
+/Users/carlzimmerman/new_physics/zimmerman-formula/hunt_2026/k_cross-scale_opencluster.py:123: RuntimeWarning: overflow encountered in matmul
+  vde = K*dist_kpc*pmde - qx @ V
+/Users/carlzimmerman/new_physics/zimmerman-formula/hunt_2026/k_cross-scale_opencluster.py:123: RuntimeWarning: invalid value encountered in matmul
+  vde = K*dist_kpc*pmde - qx @ V
+  392 clusters with >= 40 surviving members and a usable r50J/MassJ
+  sigma_perp: median 0.386 km/s [0.219, 0.777]
+  R_gal:      median 8.238 kpc  [7.378, 8.866]   -- the R_gal lever this rung can actually reach
+  M_phot:     median 235 Msun [60, 1591]  (1.43 dex)
+  [PASS] the R_gal lever is TOO SHORT to test the law's distinctive prediction (B rising from 1.09 at 4 kpc to 1.79 at 20 kpc): the sample spans well under a factor 1.5 in R_gal  [CAN FAIL -- and it is expected to FAIL, i.e. to report that the lever is short]   (R_gal spans 7.38-8.87 kpc, a factor 1.20)
+
+----------------------------------------------------------------------------------------------------------------------
+5.  THE THREE HYPOTHESES, evaluated on these clusters.
+----------------------------------------------------------------------------------------------------------------------
+  [canonical] a_0 = 9.360e-11:  g_ext/a_0 = 2.282 (median);  SATURATION law B = 1.2694 [1.2225, 1.3066]
+              ISOLATED MOND nu(g_int/a_0) = 5.60 [2.42, 9.90];   Newton = 1.000
+              predicted signal against Newton: 0.1036 dex.  ISOLATED MOND against Newton: 0.748 dex.
+  [alt      ] a_0 = 1.130e-10:  g_ext/a_0 = 1.890 (median);  SATURATION law B = 1.3435 [1.2861, 1.3890]
+              ISOLATED MOND nu(g_int/a_0) = 6.10 [2.61, 10.83];   Newton = 1.000
+              predicted signal against Newton: 0.1283 dex.  ISOLATED MOND against Newton: 0.786 dex.
+
+  statistic                                            value    in dex
+  --------------------------------------------------------------------
+  median M_dyn/M_phot, raw, all clusters               3.692     0.567
+  median M_dyn/M_phot, raw, same subset as below      15.989     1.204
+  median M_dyn/M_phot, binary-floor subtracted         5.350     0.728
+  the binary-subtracted column exists for 57/392 clusters; the other 335 have sigma_perp BELOW the Monte-Carlo binary floor entirely.
+  scatter of log10(M_dyn/M_phot)                       0.420       dex
+  [PASS] the measured M_dyn/M_phot scatter is far above the 0.1 dex a Kepler-grade law needs  [CAN FAIL]   (0.420 dex across 392 clusters)
+
+----------------------------------------------------------------------------------------------------------------------
+6.  THE DATA OVERTURN THE MONTE CARLO: sigma_bin CANNOT be 0.55 km/s.
+----------------------------------------------------------------------------------------------------------------------
+  335/392 clusters have sigma_perp < the Monte-Carlo floor 0.548 km/s, and the 5th percentile of sigma_perp is 0.219 km/s.
+  A floor is a FLOOR: no cluster can sit below it.  So the Monte Carlo is an OVER-estimate, and by how much
+  is set by the data themselves.  Two reasons it over-estimates, both real:
+    (i)  it used m1 = 1 Msun; the median catalogue member mass here is 0.78 Msun, and v_orb ~ sqrt(M);
+    (ii) HDBSCAN membership and the Prob > 0.7 cut are THEMSELVES a velocity cut: a star whose photocentre
+         is displaced by >1 km/s from the cluster mean is a less probable member and is trimmed.
+  [PASS] the Monte-Carlo binary floor is falsified by the data, which is why it is reported as a bound and not used as a correction  [CAN FAIL]   (5th percentile sigma_perp = 0.219 < MC floor 0.548 km/s)
+  EMPIRICAL bound instead: sigma_floor <= 0.219 km/s.  Section 7 FITS it.
+
+----------------------------------------------------------------------------------------------------------------------
+7.  THE ESTIMATOR THAT ACTUALLY SEPARATES THE HYPOTHESES.
+----------------------------------------------------------------------------------------------------------------------
+  Every confound named above -- binaries, a non-equilibrium expansion velocity, membership trimming -- adds
+  a velocity variance that does NOT scale with the cluster's virial dispersion.  The boost multiplies one
+  that DOES.  Over 1.4 dex of cluster mass those two separate:
+          sigma_obs^2 = B x G M_phot/(eta r50) + sigma_floor^2,
+  with B the enclosed-mass boost the law predicts and sigma_floor^2 everything else.  Fit BOTH.
+
+  ALL 392 clusters, inverse-variance weighted:
+     B          =    0.736 +- 0.046      [Newton 1.000; saturation law 1.269 (canonical) / 1.344 (alt); isolated MOND 5.60]
+     sigma_floor =    0.225 km/s   (fitted, not assumed;  floor variance +0.0507 +- 0.0030 km^2/s^2)
+
+  subset                                      N         B      +-  sigma_floor   sigma(B) vs signal
+  all                                       392     0.736   0.046        0.225                  0.2
+  M_phot > 300 Msun (floor subdominant)     152     0.621   0.054        0.255                  0.2
+  M_phot > 1000 Msun                         39     0.445   0.082        0.329                  0.3
+  age > 100 Myr (dynamically relaxed)       185     0.647   0.048        0.249                  0.2
+  age > 100 Myr and M_phot > 300             91     0.664   0.054        0.243                  0.2
+  d < 500 pc (best astrometry)              122     0.766   0.077        0.200                  0.3
+  r50 < 5 pc (compact, tides weak)          375     0.724   0.048        0.224                  0.2
+  the last column is the fit's error bar divided by the whole predicted signal (B - 1 = 0.27): a value
+  above 1 means the rung CANNOT see the law even in principle on this data set.
+  [PASS] the joint fit is DECISIVE against isolated MOND -- the restatement branch, which is all that v^4 = G M_b a_0 plus algebra gives -- at >= 3 sigma  [CAN FAIL]   (B = 0.664 +- 0.054 vs isolated MOND's 5.60: 90.7 sigma)
+  [FAIL] [canonical] the fitted B is within 3 sigma of the SATURATION law's prediction  [CAN FAIL]   (B = 0.664 +- 0.054 vs 1.269: 11.1 sigma)
+  [FAIL] [alt] the fitted B is within 3 sigma of the SATURATION law's prediction  [CAN FAIL]   (B = 0.664 +- 0.054 vs 1.344: 12.5 sigma)
+  [FAIL] the fitted B is within 3 sigma of NEWTON's 1.000  [CAN FAIL]   (B = 0.664 +- 0.054: 6.2 sigma from 1)
+
+----------------------------------------------------------------------------------------------------------------------
+8.  IS THAT FIT ROBUST?  Three estimators of the same two numbers, and a degeneracy check.
+----------------------------------------------------------------------------------------------------------------------
+  subset: age > 100 Myr and M_phot > 300 Msun, N = 91
+     inverse-variance linear fit   B =   0.664 +- 0.054   sigma_floor = 0.243 km/s
+     unweighted linear fit         B =   0.561 +- 0.059   sigma_floor = 0.312 km/s
+     BINNED-MEDIAN fit (primary)   B =   0.590 +- 0.077   sigma_floor = 0.292 km/s
+     bootstrap of the binned fit   B =   0.589 +- 0.139   (400 resamples)
+
+   bin     N  sigma_vir^2 [km2/s2]  sigma_obs^2 [km2/s2]    ratio
+     1    12                0.0356                0.1077     3.03
+     2    11                0.0450                0.0848     1.89
+     3    11                0.0571                0.1517     2.66
+     4    12                0.0696                0.1338     1.92
+     5    12                0.0896                0.1407     1.57
+     6    11                0.1302                0.1504     1.16
+     7    11                0.1802                0.1791     0.99
+     8    12                0.3170                0.2797     0.88
+  [PASS] the three estimators of B agree within their errors, so the answer is not an artefact of the weighting [CAN FAIL]   (IV 0.664, OLS 0.561, binned 0.590, bootstrap 0.589 +- 0.139)
+  DEGENERACY CHECK.  Forcing sigma_floor = 0 gives B = 1.056 instead of 0.590: the floor and the
+  boost ARE anti-correlated, and that is the single biggest reason this rung cannot resolve a 27% boost.
+  [PASS] B and sigma_floor are strongly degenerate, so a quoted B is only as good as the floor model  [CAN FAIL]   (floor free: B = 0.590;  floor = 0: B = 1.056)
+
+----------------------------------------------------------------------------------------------------------------------
+9.  WHAT MOVES B, MEASURED BY RE-RUNNING -- INCLUDING THE UPSILON LEVER.
+----------------------------------------------------------------------------------------------------------------------
+  variation                                                       B   d log B / d log X
+  baseline (Plummer eta, catalogue M_phot and r50)            0.590                  --
+  Upsilon x 1.5 (IMF normalisation of M_phot)                 0.393              -1.000
+  Upsilon x 0.667                                             0.884              -1.000
+  eta = 8.5 (King W0 = 5 instead of Plummer)                  0.492               1.000
+  r50 x 0.85 (half-MASS < half-NUMBER, mass segregation)      0.501               1.000
+  M_phot x 1.25 (unseen low-mass stars)                       0.472              -1.000
+  M_phot = bare SUM of detected member masses (no IMF extrapolation)    1.015              -1.000
+  [PASS] the UPSILON LEVER is exactly -1: B is a ratio of a dynamical mass to a photometric one, so the whole amplitude of this rung rides on the IMF normalisation  [CAN FAIL]   (d log B/d log Upsilon = -1.000 (analytic -1.000))
+  READ THAT AGAINST INTEREST AND BOTH WAYS.  To move the measured B up to the law's 1.27 needs M_phot
+  54% SMALLER than the catalogue's; to reach Newton's 1.000 needs 41% smaller.
+  And the LAST ROW of the table is not hypothetical: dropping the catalogue's IMF extrapolation entirely --
+  using only the stellar mass Gaia actually detects -- moves B from 0.59 to 1.01, i.e. across BOTH
+  Newton's prediction and most of the way to the law's.  ONE defensible modelling choice inside the
+  photometric mass spans the entire discriminating range.  That is the rung's verdict in one line.
+
+----------------------------------------------------------------------------------------------------------------------
+10.  MUTATION CONTROL, THE R_gal SHAPE TEST, AND THE NEWTONIAN ALTERNATIVE.
+----------------------------------------------------------------------------------------------------------------------
+     a_0 x 10        : predicted B = 4.5616   (measured 0.589 +- 0.139)
+     a_0 x 1 (truth) : predicted B = 1.2694   (measured 0.589 +- 0.139)
+     a_0 x 0.1       : predicted B = 1.0017   (measured 0.589 +- 0.139)
+  [PASS] mutation control bites: a_0 x 10 changes the PREDICTED boost by more than the measurement error  [CAN FAIL]   (B_pred 1.269 -> 4.5616 vs sigma(B) = 0.139)
+  nu = 1 foil: switching the kernel off gives B = 1.000 exactly -- that is the Newtonian alternative, and it
+  is 3.0 sigma from the measurement (which sits BELOW it, not above).
+
+  R_gal < median     N =  49  <R_gal> =  7.65 kpc   B measured =  0.701 +- 0.078   B predicted = 1.2440
+  R_gal >= median    N =  42  <R_gal> =  8.61 kpc   B measured =  0.600 +- 0.078   B predicted = 1.2856
+  the law predicts the outer bin to be HIGHER by +0.0416 in B; the measurement differs by -0.100 +- 0.110
+  [PASS] the R_gal shape test is UNDERPOWERED by construction: the predicted difference is smaller than the measurement error  [CAN FAIL -- and expected to fail, which is the finding]   (predicted 0.0416 vs error 0.110: the lever is 3x too short)
+
+----------------------------------------------------------------------------------------------------------------------
+11.  THE RESTATEMENT TEST, EXECUTED.
+----------------------------------------------------------------------------------------------------------------------
+  ATTEMPT: derive M_dyn/M_phot = nu(e)[1+L(e)/3] from v^4 = G M_b a_0 plus algebra.
+  v^4 = G M_b a_0 is the ISOLATED deep-MOND limit; its boost is g_obs/g_N = sqrt(a_0/g_int), which for these
+  clusters is:
+     [canonical] sqrt(a_0/g_int) = 5.09 [1.88, 9.39]   vs the law's 1.269 -- a factor 4.0 apart
+     [alt      ] sqrt(a_0/g_int) = 5.59 [2.07, 10.32]   vs the law's 1.344 -- a factor 4.2 apart
+  The BTFR boost varies by a factor 4 across the sample (it tracks each cluster's own acceleration); the
+  law's B varies by 7% (it tracks only R_gal).  The derivation therefore DOES NOT CLOSE: this is not the
+  RAR in new clothes.  is_restatement = FALSE.
+  
+  BUT the content that survives that test is the EXTERNAL-FIELD EFFECT, which is standard published MOND
+  (Milgrom 1983 ApJ 270 365; Bekenstein & Milgrom 1984; Famaey & McGaugh 2012 Living Rev. Sec. 6.3), and
+  the coefficient nu(e)[1+L/3] is the angle-average of the known anisotropic EFE dilation, not a new object.
+  What IS new here is only the open-cluster MEASUREMENT of it, and section 7 shows that measurement cannot
+  resolve the predicted 0.10-0.13 dex.
+  [PASS] the restatement test is executed and does not close: the BTFR boost varies across the sample by far more than the law's B does  [CAN FAIL]   (BTFR boost spans x5.0, B spans x1.07)
+
+----------------------------------------------------------------------------------------------------------------------
+12.  IS THIS ALREADY IN THE LITERATURE?  Yes, the phenomenon is -- and it must be credited.
+----------------------------------------------------------------------------------------------------------------------
+  The excess of open-cluster DYNAMICAL over PHOTOMETRIC mass is long known and is not discovered here.  It
+  has been reported repeatedly from radial-velocity dispersions (a factor 2-10 depending on cluster) and is
+  attributed in that literature to unresolved binaries, non-equilibrium expansion after gas expulsion, and
+  tidal-tail contamination -- e.g. the Pleiades/Praesepe/Hyades dispersion studies and the Piskunov et al.
+  (2007, 2008) tidal-versus-photometric mass comparisons.  What this script adds is (a) the proper-motion
+  PERPENDICULAR estimator, (b) the mass-lever fit that separates a constant floor from a boost, and (c) the
+  statement that the residual boost is B = 0.59 +- 0.14, which is BELOW Newton, not above it.
+
+======================================================================================================================
+VERDICT ON CANDIDATE 2 (the open-cluster rung)
+======================================================================================================================
+  MEASURED:  B = M_dyn/M_phot's mass-scaling coefficient = 0.589 +- 0.139 (bootstrap),
+             with a fitted non-virial floor sigma_floor = 0.292 km/s, on 91 clusters older than 100 Myr and above 300 Msun.
+             Raw median M_dyn/M_phot = 3.69 with 0.420 dex of scatter.
+
+  PREDICTIONS:  Newton 1.000 | saturation law 1.269 (canonical) / 1.344 (alt) | isolated MOND 5.6
+
+  [PASS] (1) a relation between MEASURED quantities
+         yes -- proper-motion dispersion, half-number radius and summed member masses are all measured
+  [PASS] (2) a_0 appears with a PREDICTED coefficient
+         yes -- B(e) has nothing fitted once a_0 is fixed
+  [FAIL] (3) holds across many systems to <= 0.1 dex
+         NO -- the measured scatter is 0.42 dex, 4x the requirement, and the systematic floor (eta, half-mass vs half-number radius, IMF completeness) is 0.15-0.20 dex on its own
+  [FAIL] (4) nobody has stated it
+         the open-cluster dynamical/photometric mass excess is long published; only the estimator is new
+  [PASS] (5) NOT a restatement of v^4 = G M_b a_0
+         confirmed by execution in section 11
+
+  >>> 3 of 5 criteria met.  THE OPEN-CLUSTER RUNG IS NOT A SECOND LAW.
+  >>> WHAT IT DOES DECIDE, and this is a real result: ISOLATED MOND -- the boost that v^4 = G M_b a_0 alone
+      implies, 5.6 for these clusters -- is excluded at 36 sigma.  Open clusters do NOT look
+      dark-matter dominated, so the external-field effect must be switched on.  That confirms a standard,
+      already-published ingredient of MOND; it is not new content.
+  >>> WHAT IT CANNOT DECIDE: the saturation law's 0.10-0.13 dex boost against Newton's zero.  With the
+      non-virial floor free the fit returns B = 0.59; with the floor forced to zero it returns 1.06.
+      That 0.47 swing, from ONE modelling choice, is 4x the entire predicted signal.  The rung is blind.
+  >>> AGAINST INTEREST, the central value sits BELOW Newton, not above it, and every systematic this script
+      could identify (mass segregation, unseen low-mass stars, a King rather than Plummer profile) pushes it
+      DOWN further, not up toward the law.
+
+  UPSILON LEVER (measured by re-running at Upsilon x 1.5): d log B / d log Upsilon = -1.000.
+  SHAPE STATEMENTS (flatness in mass, rise with R_gal) carry d/d log Upsilon = 0.000, but the R_gal lever on
+  this sample is 3x too short to use.
+
+RESULT: 20 checks, 3 FAIL -> ["[canonical] the fitted B is within 3 sigma of the SATURATION law's prediction  [CAN FAIL]", "[alt] the fitted B is within 3 sigma of the SATURATION law's prediction  [CAN FAIL]", "the fitted B is within 3 sigma of NEWTON's 1.000  [CAN FAIL]"]   rc=1

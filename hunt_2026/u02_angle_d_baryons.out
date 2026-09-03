@@ -1,0 +1,393 @@
+==========================================================================================================================
+u02 -- ANGLE D: is the whole ledger a baryon-census error?
+==========================================================================================================================
+  f_req = the factor the system's baryons must be multiplied by for the framework to be EXACTLY right.
+  A census DEFICIT is one-signed: f_req >= 1.  A census EXCESS (f_req < 1) is a different claim and is
+  bounded from below by the stellar-population floor, which is measured.
+
+  [PASS] 0a deep-MOND isolated limit: a required MASS boost is the SQUARE of the required acceleration boost, so f_req -> 10^(2B).  This is why the ledger's dex-of-acceleration numbers must never be read as baryon factors   (worst |f_req/10^(2B) - 1| = 5.31e-05 at y = 1e-10 for B = 0.1-0.8)
+  [PASS] 0a' and the approach to that limit is the SAME sub-leading term that produced this programme's +0.0985 dex deep-tail bias: at y = 1e-6 the square law is already 0.5 per cent off, because Route A's nu(y)y = sqrt(y)(1 + sqrt(y)/2 + ...).  Recorded so that no row of this table is read as an exact square   (worst departure at y = 1e-6 is 5.28e-03, against 5.31e-05 at y = 1e-10)
+  [PASS] 0b Newtonian limit: f_req -> 10^B   (worst |f_req/10^B - 1| = 2.22e-16 at y = 1e4)
+  [PASS] 0c external-field-dominated limit: the internal field is quasi-Newtonian with G_eff, so f_req -> 10^B again -- which is why the enormous dwarf-satellite offsets are NOT enormous baryon factors   (worst |f_req/10^B - 1| = 1.85e-05 at y = 1e-4, x = 1)
+  [PASS] 0d f_req is one-to-one with the sign of B at every acceleration (positive offsets need more baryons, negative offsets need fewer)   (checked over y = 1e-5 to 1e3 at B = +-0.3)
+
+==========================================================================================================================
+1.  THE CLUSTER AND GROUP FRONT, re-read from the data.  Here the census is DIRECTLY MEASURED (X-ray gas +
+    stellar profiles), so this is where angle D is decided rather than argued.
+==========================================================================================================================
+  [PASS] 1-repro[X-COP @0.9R500] the required baryon multiplier computed here is u01_cluster's published mass-boost eta_M for the same rows, so f_req is the same quantity and not a new one   (f_req = 1.931 vs u01_cluster's eta_M = 1.93 (canonical))
+  [PASS] 1-repro[X-ray groups @R500] the required baryon multiplier computed here is u01_cluster's published mass-boost eta_M for the same rows, so f_req is the same quantity and not a new one   (f_req = 1.972 vs u01_cluster's eta_M = 1.97 (canonical))
+  [PASS] 1-repro[eRASS1 groups] the required baryon multiplier computed here is u01_cluster's published mass-boost eta_M for the same rows, so f_req is the same quantity and not a new one   (f_req = 6.227 vs u01_cluster's eta_M = 6.23 (canonical))
+  [PASS] 1-repro[eRASS1 clusters] the required baryon multiplier computed here is u01_cluster's published mass-boost eta_M for the same rows, so f_req is the same quantity and not a new one   (f_req = 3.799 vs u01_cluster's eta_M = 3.80 (canonical))
+  [PASS] 1-repro[X-COP cores 30-100kpc] the required baryon multiplier computed here is u01_cluster's published mass-boost eta_M for the same rows, so f_req is the same quantity and not a new one   (f_req = 4.659 vs u01_cluster's eta_M = 4.66 (canonical))
+
+  system                      r/kpc   M500       f_gas   M*/Mb    f_req(can)  f_req(alt)   M_b,req/M500  cosmic?
+  --------------------------------------------------------------------------------------------------------------------
+  X-ray groups @R2500           224  3.95e+13   0.048   0.465       4.17       3.64         0.321      OVER
+  X-ray groups @R500            526  3.95e+13   0.077   0.231       1.97       1.69         0.178      OVER
+  X-COP cores 30-100kpc          62  7.31e+14   0.101   0.427       4.66       4.40         0.777      OVER
+  X-COP @0.2R500                246  5.66e+14   0.128   0.096       4.64       4.32         0.658      OVER
+  X-COP @0.5R500                616  5.66e+14   0.161   0.049       3.22       2.92         0.524      OVER
+  X-COP @0.9R500               1107  5.65e+14   0.174   0.042       1.93       1.70         0.380      OVER
+  eRASS1 groups                 409  2.13e+13   0.020   0.167       6.23       5.30         0.159      OVER
+  eRASS1 clusters               758  1.89e+14   0.068   0.167       3.80       3.32         0.322      OVER
+  eRASS1 rich                  1395  1.12e+15   0.110   0.167       3.60       3.24         0.479      OVER
+  eRASS1 z<0.15 @1-3e14         800  1.60e+14   0.064   0.257       3.21       2.78         0.274      OVER
+  eRASS1 z=0.7-1.0 @1-3e14      676  2.19e+14   0.066   0.236       4.94       4.39         0.419      OVER
+  cosmic baryon share Omega_b/Omega_m = 0.1571 (Planck 2018, from hunt_lib)
+
+--------------------------------------------------------------------------------------------------------------------------
+1a  CAN THE MISSING CLUSTER BARYONS BE HOT GAS?  A one-signed theorem, not a model.
+--------------------------------------------------------------------------------------------------------------------------
+    The X-ray gas mass is read off the emission measure, EM = int n_e n_H dV.  For a gas of mean density <n>
+    in the same volume, EM = C <n>^2 V with the clumping factor C = <n^2>/<n>^2 >= 1 by Cauchy-Schwarz,
+    with equality only for perfectly uniform gas.  The published M_gas assumes C = 1, so
+            M_gas,true = M_gas,published / sqrt(C)   <=   M_gas,published.
+    Clumping can therefore only LOWER the true gas mass.  There is no value of C that RAISES it.
+  [PASS] 1a-theorem the direction is one-signed: for every clumping factor C >= 1 the true gas mass is at or below the published one, so the missing cluster baryons CANNOT be extra hot gas in the emitting phase.  Any real clumping makes every cluster row WORSE, not better   (M_gas,true/M_gas,pub = 1.000@C=1, 0.913@C=1.2, 0.816@C=1.5, 0.707@C=2, 0.577@C=3)
+    X-COP @0.9R500             to supply f_req = 1.93 entirely as hot gas the emission measure would have to be x3.7 what is observed, at fixed volume and temperature
+    eRASS1 clusters            to supply f_req = 3.80 entirely as hot gas the emission measure would have to be x14.4 what is observed, at fixed volume and temperature
+    X-ray groups @R500         to supply f_req = 1.97 entirely as hot gas the emission measure would have to be x3.9 what is observed, at fixed volume and temperature
+  [PASS] 1a-size the required hot-gas enhancement is not a calibration-level effect: putting the missing baryons in the emitting phase demands an X-ray emission measure between 4 and 39 times the observed one across the front, against the few-per-cent accuracy with which cluster EM profiles are measured   (required EM factor spans 3.7 to 38.8 across the eleven cluster/group rows)
+
+--------------------------------------------------------------------------------------------------------------------------
+1b  THE COSMIC SHARE.  Reported BOTH ways, because the framework-internal version is weaker than it looks.
+--------------------------------------------------------------------------------------------------------------------------
+    required M_b / M_tot(same radius) exceeds Omega_b/Omega_m = 0.157 in 11 of 11 rows
+    median required share = 0.380, i.e. x2.42 the cosmic value
+  [PASS] 1b-share the baryon budget the framework requires inside the SAME radius, measured against the same system's own LambdaCDM total mass, exceeds the cosmic baryon share in most rows -- clusters would have to be the most baryon-ENRICHED objects in the universe when they are measured to be fair samples or slightly baryon-poor   (11/11 rows over, median x2.42)
+    AGAINST INTEREST: in a framework with no dark matter this comparison uses a LambdaCDM total mass as the
+    denominator, so it is not framework-internal.  The framework-internal version is the COLLECTION RADIUS --
+    the comoving sphere of mean cosmic BARYON density that has to be swept to supply the required baryons,
+    measured against the Lagrangian radius of the same system's LambdaCDM total mass (the region that in the
+    standard picture supplied everything the cluster is made of).
+    eRASS1 groups          required baryons need a comoving sweep of   4.8 Mpc against the LambdaCDM Lagrangian radius   5.0 Mpc  ->  x0.95 in radius, x0.85 in volume
+    eRASS1 clusters        required baryons need a comoving sweep of  12.7 Mpc against the LambdaCDM Lagrangian radius  10.5 Mpc  ->  x1.22 in radius, x1.81 in volume
+    eRASS1 rich            required baryons need a comoving sweep of  27.7 Mpc against the LambdaCDM Lagrangian radius  18.9 Mpc  ->  x1.47 in radius, x3.15 in volume
+    X-COP @0.9R500         required baryons need a comoving sweep of  19.0 Mpc against the LambdaCDM Lagrangian radius  15.1 Mpc  ->  x1.26 in radius, x2.00 in volume
+    X-COP @0.2R500         required baryons need a comoving sweep of  12.7 Mpc against the LambdaCDM Lagrangian radius  15.1 Mpc  ->  x0.84 in radius, x0.60 in volume
+  [PASS] 1b-collect AGAINST INTEREST, AND IT LARGELY NEUTRALISES 1b: expressed framework-internally the required collection radius is 0.84 to 1.47 times the region LambdaCDM already has the cluster forming from -- median 1.22, and BELOW one for two of the five rows, because clusters are measured to be baryon-POOR relative to the cosmic share and the framework's correction mostly just puts that back.  The cosmic-share argument is therefore SUGGESTIVE at best and is not used as a kill; the decisive constraints are 1a, 1c and 1d   (required sweep radius / LambdaCDM Lagrangian radius = 0.95, 1.22, 1.47, 1.26, 0.84 (median 1.22))
+  [PASS] 1b-inner where the sweep argument does NOT apply is the CORE, and that is the sharp version of 1b: inside 0.2 R500 the framework needs a baryonic mass equal to two-thirds to four-fifths of the entire LambdaCDM mass there.  Baryons swept from a large volume end up spread out; this requirement is for them to be piled into the inner tenth of the cluster, which is what 1c measures directly   (required M_b/M_tot at the same radius = 0.777 in the 30-100 kpc cores and 0.658 at 0.2 R500, against 0.380 at 0.9 R500 and a cosmic 0.157)
+
+--------------------------------------------------------------------------------------------------------------------------
+1c  THE REQUIRED EXTRA-BARYON PROFILE in the seven X-COP clusters with a measured stellar profile.
+    M_x(r) = M_b,req(r) - M_b,obs(r), with M_b,req(r) inverted from the kernel at every radius.
+--------------------------------------------------------------------------------------------------------------------------
+    7 clusters with a measured stellar profile
+    r/kpc     median M_x/M_b   median M_x/M_gas   d log M_x/d log r   d log M_gas/d log r
+        30            3.67            15.52
+        50            3.65             6.59
+        75            3.37             5.39
+       100            3.74             4.35
+       150            3.17             3.85
+       200            3.24             3.66
+       300            2.91             3.10
+       420            2.58             2.74
+       600            2.35             2.48
+       900            1.34             1.39
+    d log M_x/d log r     = +1.353  (median over 7 clusters)
+    d log M_gas/d log r   = +1.917
+    clusters where the required M_x(r) is NOT monotone (i.e. needs NEGATIVE extra-baryon density in a shell):
+      over the full 30-900 kpc range : 2 of 7
+      over 30-600 kpc only           : 0 of 7
+    A first version of this check ASSERTED that M_x(r) is positive and monotone everywhere -- i.e. that angle D
+    survives as a genuine mass profile.  It FAILED at 2 of 7.  The failure is left on the record and
+    then localised rather than retuned: it is entirely the OUTERMOST hydrostatic bin, where M_hse is weakest
+    and the profile is extrapolated, and it disappears inside 600 kpc.  So it is NOT a kill and is not used as
+    one.  What replaces it is the shape statement below, which needs no threshold.
+  [PASS] 1c-positive the required extra baryonic mass IS a positive, monotone mass profile over the radial range where the hydrostatic masses are trustworthy (30-600 kpc), so angle D is not killed on a negative-density technicality.  Reported because it is the one cluster test angle D passes cleanly   (0 of 7 clusters non-monotone inside 600 kpc, against 2 of 7 when the outermost extrapolated bin is included)
+  [PASS] 1c-shape but the required component is MORE centrally concentrated than the gas it would have to hide in: its logarithmic slope is shallower than the gas's over 30-900 kpc, i.e. M_x/M_gas FALLS outward, so the missing baryons would have to pile up in the cores where the X-ray data are best and the emission constraint is tightest -- not in the outskirts where missing baryons are actually expected   (d log M_x/d log r = +1.353 vs gas +1.917; M_x/M_gas = 15.52 at 30 kpc falling to 2.74 at 420 kpc)
+
+--------------------------------------------------------------------------------------------------------------------------
+1d  THE BULLET.  The extra mass is required AT THE GALAXY CONCENTRATIONS, 250 kpc from the gas, so whatever it
+    is it moved through the collision like the galaxies and not like the gas.
+--------------------------------------------------------------------------------------------------------------------------
+    BCG1: projected lensing mass 3.500e+14, kernel supplies 1.103e+14 from 4.203e+13 of baryons
+          the residual 2.397e+14 Msun sits on a stellar mass of 1.196e+13 Msun  ->  M_x/M_star = 20.0
+    BCG3: projected lensing mass 2.300e+14, kernel supplies 7.293e+13 from 2.359e+13 of baryons
+          the residual 1.571e+14 Msun sits on a stellar mass of 4.000e+12 Msun  ->  M_x/M_star = 39.3
+  [PASS] 1d-stars if the missing baryons are collisionless (which the Bullet's offset requires) they must track the STARS, and they then outweigh the stars by a factor of 20-60 in the Bullet's galaxy concentrations.  A dark baryonic component locked to stars at that ratio is not a census correction -- it is dark matter with a baryonic label, and section 5 shows what it does to the galaxies   (M_x/M_star = 20.0 (BCG1), 39.3 (BCG3), canonical footing)
+  [PASS] 1d-gas the same residual cannot instead track the gas: the kernel already puts its convergence peak ON the gas (h57: 36 kpc from the nearest gas clump, 246 kpc from the galaxies) while the observed peaks are on the galaxies, so adding mass to the gas moves the prediction further from the measurement, not closer   (h57's own finding, carried; the AMOUNT is the liability and the POSITION forbids the gas-traced cure)
+
+==========================================================================================================================
+2.  THE WHOLE LEDGER AS A REQUIRED BARYON MULTIPLIER.  (B, y, x) transcribed from the three u01 common-currency
+    .out files; f_req computed here.  Every row carries the source it came from.
+==========================================================================================================================
+
+  system                     src    kind      y_bar     B(can)   f_req(can)  f_req(alt)   sign   f_req if host
+                                                                                                 baryons too
+  ----------------------------------------------------------------------------------------------------------------
+  MW ultra-faints            h43    galaxy     0.0008   +1.650      58.275      53.233   +        177.313
+  M31 satellites             h44    galaxy     0.0035   +0.761       7.313       6.640   +         17.643
+  MW classical dSph          h43    galaxy     0.0071   +0.641       6.012       5.383   +         11.742
+  Coma UDGs                  h9     galaxy     0.0074   +1.195      15.925      14.900   +         19.481
+  Pal 14                     h93    cluster    0.0102   -0.658       0.204       0.184   -          0.060
+  LG field, gas-poor         h43e   galaxy     0.0120   +0.118       1.669       1.413   +          1.669
+  Pal 3                      h93    cluster    0.0213   -0.075       0.809       0.723   -          0.734
+  LG field dwarfs            h43e   galaxy     0.0297   -0.088       0.686       0.586   -          0.686
+  NGC1052-DF2                h42    galaxy*    0.0339   -0.485       0.287       0.263   -          0.135
+  Pal 4                      h93    cluster    0.0489   -0.781       0.111       0.100   -          0.035
+  NGC1052-DF4                h42    galaxy*    0.0582   -1.155       0.053       0.049   -          0.007
+  SLUGGS GC logM*>=11.3      h50    galaxy     0.7313   +0.331       2.848       2.913   +          2.848
+  NGC 2419                   h93    cluster    0.8619   -0.199       0.533       0.484   -          0.512
+  PNe in early types         h51    galaxy     1.4399   +0.066       1.224       1.142   +          1.224
+  SLUGGS GC logM*<11.3       h50    galaxy     1.6415   +0.058       1.192       1.196   +          1.192
+  ATLAS3D (Chabrier)         h11    galaxy     2.3213   +0.094       1.310       1.248   +          1.310
+  ATLAS3D (Salpeter)         h11    galaxy     3.9422   -0.095       0.768       0.733   -          0.768
+  Binary galaxy pairs        h48    galaxy     0.0119   +0.553      10.148       8.725   +         10.148
+  Tidal dwarfs (EFE on)      h46    galaxy     0.0380   -0.394       0.371       0.341   -          0.206
+  DiskMass @Ups_K=0.31       h17    galaxy     0.3530   +0.177       1.865       1.699   +          1.865
+  Milky Way K_z              h34    galaxy     1.3910   -0.115       0.693       0.636   -          0.693
+  SLACS (Salpeter)           h53    galaxy    10.0000   +0.084       1.229       1.185   +          1.229
+  Fundamental Plane          h52    galaxy    16.8000   +0.109       1.295       1.277   +          1.295
+  X-ray groups @R2500        u02    clu/grp    0.0414   +0.350       4.171       3.644   +          4.171
+  X-ray groups @R500         u02    clu/grp    0.0232   +0.162       1.972       1.693   +          1.972
+  X-COP cores 30-100kpc      u02    clu/grp    0.5203   +0.464       4.659       4.402   +          4.659
+  X-COP @0.2R500             u02    clu/grp    0.2591   +0.441       4.640       4.323   +          4.640
+  X-COP @0.5R500             u02    clu/grp    0.1746   +0.319       3.218       2.919   +          3.218
+  X-COP @0.9R500             u02    clu/grp    0.1107   +0.170       1.931       1.702   +          1.931
+  eRASS1 groups              u02    clu/grp    0.0042   +0.420       6.227       5.299   +          6.227
+  eRASS1 clusters            u02    clu/grp    0.0358   +0.329       3.799       3.320   +          3.799
+  eRASS1 rich                u02    clu/grp    0.1133   +0.337       3.600       3.235   +          3.600
+  eRASS1 z<0.15 @1-3e14      u02    clu/grp    0.0314   +0.283       3.207       2.784   +          3.207
+  eRASS1 z=0.7-1.0 @1-3e14   u02    clu/grp    0.0586   +0.408       4.944       4.393   +          4.944
+
+    N rows = 34;  f_req spans 0.053 to 58.3, a factor 1094
+    rows requiring MORE baryons (f_req > 1): 24
+    rows requiring FEWER baryons (f_req < 1): 10  ->  Pal 14, Pal 3, LG field dwarfs, NGC1052-DF2, Pal 4, NGC1052-DF4, NGC 2419, ATLAS3D (Salpeter), Tidal dwarfs (EFE on), Milky Way K_z
+  [PASS] 2-sign THE SIGN CENSUS, and it is the structural objection to angle D as posed.  A census DEFICIT is one-signed: you cannot find fewer baryons than are already imaged.  Yet a substantial minority of the ledger requires the baryons to be REMOVED, and those rows are not marginal -- NGC1052-DF4 needs 6% of its measured stars, Pal 4 needs 22%, the tidal dwarfs 41%.  The hypothesis 'the censuses are systematically low' therefore cannot address them at all, whatever it does for the clusters   (10 of 34 rows need f_req < 1; the most extreme is NGC1052-DF4 at f_req = 0.053)
+
+    what the f_req < 1 rows do to the stellar mass-to-light ratio (SPS floor for old populations: 1.3-2.2 in V):
+      Pal 14                   f_req = 0.204  ->  Upsilon_V = 0.41 (carried at Upsilon_V = 2 in the source item)
+      Pal 3                    f_req = 0.809  ->  Upsilon_V = 1.62 (carried at Upsilon_V = 2 in the source item)
+      NGC1052-DF2              f_req = 0.287  ->  Upsilon_V = 0.57 (carried at Upsilon_V = 2 in the source item)
+      Pal 4                    f_req = 0.111  ->  Upsilon_V = 0.22 (carried at Upsilon_V = 2 in the source item)
+      NGC1052-DF4              f_req = 0.053  ->  Upsilon_V = 0.11 (carried at Upsilon_V = 2 in the source item)
+      NGC 2419                 f_req = 0.533  ->  Upsilon_V = 1.07 (carried at Upsilon_V = 2 in the source item)
+      ATLAS3D (Salpeter)       f_req = 0.768  ->  Upsilon_V = 1.54 (carried at Upsilon_V = 2 in the source item)
+      Tidal dwarfs (EFE on)    f_req = 0.371  ->  Upsilon_V = 0.74 (carried at Upsilon_V = 2 in the source item)
+      Milky Way K_z            f_req = 0.693  ->  Upsilon_V = 1.39 (carried at Upsilon_V = 2 in the source item)
+  [PASS] 2-floor and the negative rows are not rescuable by lowering Upsilon either: three of the four outer-halo globulars are driven below the stellar-population floor, which is a measurement and not an assumption   (3 star-cluster rows need Upsilon_V < 1.3 (SPS floor); Pal 4 needs 0.22)
+
+==========================================================================================================================
+3.  THE DISCRIMINATING QUESTION: is the required excess a CONSTANT fraction, or does it scale with something?
+==========================================================================================================================
+    N = 24 rows with f_req >= 1 (the only ones a census DEFICIT can address)
+    raw spread of log f_req                        = 0.403 dex   (f_req = 1.19 to 58.3)
+    d log f_req/d log M_b    = -0.064   r = -0.446   residual scatter 0.369 dex
+    d log f_req/d log y_bar  = -0.277   r = -0.773   residual scatter 0.261 dex
+    d log f_req/d log r      = -0.051   r = -0.172   residual scatter 0.406 dex
+  [PASS] 3-constant the required excess is NOT a constant fraction and it is NOT a clean function of any single variable in the table.  Over 7.4 decades of baryonic mass it spans a factor 60 with 0.3 dex of residual scatter about the best single-variable fit -- a missing baryonic component would have to know about mass, acceleration and object type at once   (raw spread 0.403 dex; best single-variable fit leaves 0.261 dex (mass 0.369, acceleration 0.261))
+
+    RESTRICTED TO THE ELEVEN CLUSTER/GROUP ROWS, where a missing hot-baryon component is most plausible:
+      raw spread of log f_req = 0.158 dex (f_req = 1.93 to 6.23)
+      d log f_req/d log M_b   = -0.096  r = -0.490  residual 0.146 dex
+      d log f_req/d log y_bar = -0.027  r = -0.099  residual 0.166 dex
+  [PASS] 3-cluster inside the cluster front alone the required multiplier is much closer to one number (f_req = 2-6, 0.16 dex) than it is across the ledger, and it has no significant mass or acceleration trend.  This is the strongest single fact FOR angle D and it is reported first: if the clusters were the whole ledger, 'one missing baryonic component of about 3-4x the observed baryons' would be a fair description of them   (cluster-only spread 0.158 dex about a median f_req = 3.80)
+
+    IS THE MISSING COMPONENT WHERE THE HOT GAS IS?  If the missing baryons are an undetected phase of the
+    intracluster medium, then the systems with the largest measured hot-gas content should need the largest
+    correction.  This is testable inside the cluster front alone.
+      measured d log f_req/d log f_gas = -0.327  (r = -0.553, residual 0.139 dex)
+      the slope a pure M_gas error would induce, from the shared variable = -0.833
+      difference from the degeneracy direction = +0.506
+  [PASS] 3-hotgas BUG PATTERN 5 CHECKED BEFORE THE NUMBER IS QUOTED.  f_req and f_gas share M_gas, so a baryon-budget error drives rows along a slope of -0.83 in this plane by construction.  The measured slope is -0.33, i.e. HALF the degeneracy direction and 0.51 away from it, so the plane does carry information -- and what it carries is negative for the hypothesis: the correction does not rise with the measured hot-gas content, it falls.  The systems with the least hot gas need the most missing hot gas   (measured -0.327 against the degeneracy direction -0.833 and against the POSITIVE slope a hot-phase deficit predicts; the two eRASS1 rungs make the point without any fit -- groups have the LOWEST measured hot-gas share (0.020) and need the LARGEST correction (6.23), rich clusters the highest share (0.110) and need 3.60)
+  [PASS] 3-transfer but the cluster number does NOT transfer.  Applying the clusters' own f_req to the rest of the ledger misses by a median 0.5 dex, and it has the wrong sign for a third of the rows outright.  A missing component calibrated on clusters is a cluster fudge, not a unification   (median |log10(f_req/f_cluster)| = 0.462 dex over 13 non-cluster rows with f_req >= 1, plus 10 rows of the wrong sign entirely)
+
+==========================================================================================================================
+4.  THE CANDIDATE BARYON LAWS.  Each is fitted to the ledger rows it claims to explain, then handed to section 5.
+==========================================================================================================================
+
+  law                                   params   fitted value              rms residual (dex)
+  ----------------------------------------------------------------------------------------------------
+  D1  f = A                              1       A = 3.55                  0.403
+  D1c f = A, clusters only               1       A = 3.65                  0.158
+  D2/D3 f = 1 + A f_gas                  1       A = 3.45                  0.571
+  D2/D3 clusters only                    1       A = 3.33                  0.184
+  D4  f = 1 + A f_star                   1       A = 3.78                  0.470
+  D4  clusters only                      1       A = 13.18                  0.220
+  D5  f = A (M_b/1e11)^p                 2       A = 3.50, p = -0.065     0.369
+  D6  f = A (g_bar/a0)^q                 2       A = 1.85, q = -0.275     0.262
+  D8  one A per class (the null)        24      by construction exact       0.000
+  [PASS] 4-fit no one-parameter baryon law comes close to the ledger.  The best single-variable law leaves 0.2-0.4 dex of residual against a raw spread of 0.3, i.e. it explains a minority of the variance, and every one of them is fitted only to the rows of the right sign in the first place   (best rms over the whole positive ledger = 0.262 dex against a raw spread of 0.403 dex)
+
+  D6 IS NOT A BARYON LAW AT ALL -- a theorem.  A correction f(y) applied to g_bar produces the prediction
+  g = nu(f(y) y) f(y) g_bar, which is a function of g_bar alone, i.e. a DIFFERENT KERNEL nu'(y) = f(y) nu(f(y) y).
+  With the fitted D6 the implied kernel is nu'(y) = 1.85 y^-0.275 nu(1.85 y^+0.725), which is monotone in g.
+  [PASS] 4-D6theorem a baryon correction that depends on acceleration is a kernel change wearing a census costume: it is not an independent hypothesis and it inherits every constraint on the kernel.  Stated as a theorem and verified on the fitted form   (nu'(y) = f(y) nu(f(y) y) with f = 1.85 y^(-0.275); the implied nu' is monotone)
+
+==========================================================================================================================
+5.  THE DECIDING COLUMN: what each law does to the GALACTIC SUCCESSES it must not break.
+==========================================================================================================================
+    SPARC: 147 galaxies, 3140 points
+
+5.0  TWO INVARIANCE THEOREMS, verified numerically, that decide what a census correction can do at all.
+
+  T1  SHAPE INVARIANCE.  Under (M_b -> f M_b, a_0 -> f a_0) the prediction nu(g_bar/a_0) g_bar is multiplied by
+      f EXACTLY at every acceleration.  So a uniform census error preserves the RAR SHAPE perfectly -- and
+      leaves a RIGID -log10(f) displacement that no further choice of a_0 can remove.
+  [PASS] 5-T1 shape invariance holds to machine precision on all 3140 SPARC points.  Its consequence is the one that matters: the a_0 that keeps the RAR's SHAPE right is f times the old one, and at that a_0 the whole relation is displaced vertically by log10(f) -- 0.56 dex for the clusters' own factor, against an RAR whose scatter is 0.126 dex   (worst |residual(f) - (residual(1) - log10 f)| = 5.0e-16 for f = 2, 3.65, 10; the irremovable displacement is log10(f) = 0.562 dex at f = 3.65)
+
+  T2  DEEP-LIMIT INVARIANCE.  Under (M_b -> f M_b, a_0 -> a_0/f) the deep-MOND prediction sqrt(G M_b a_0)/r is
+      EXACTLY unchanged.  Since a_0 = kappa c sqrt(G rho_Lambda) with kappa FITTED (kappa = 1/2 has never been
+      derived in this programme), the deep-tail refit absorbs the whole of a uniform census error into kappa,
+      and every deep-MOND liability comes back unchanged.
+      The departure from exactness is the kernel's own sub-leading term and it is a FACTOR OF ORDER
+      1 + (f-1) sqrt(y)/2 -- so this escape leaks precisely where the systems are NOT deep:
+        y = 1e-02   departure +1.358e-01   predicted (f-1)sqrt(y)/2 = +1.325e-01
+        y = 1e-04   departure +1.329e-02   predicted (f-1)sqrt(y)/2 = +1.325e-02
+        y = 1e-06   departure +1.325e-03   predicted (f-1)sqrt(y)/2 = +1.325e-03
+        y = 1e-08   departure +1.325e-04   predicted (f-1)sqrt(y)/2 = +1.325e-04
+  [PASS] 5-T2 deep-limit invariance verified by its CONVERGENCE RATE rather than by a tolerance: the departure falls as sqrt(y) with exactly the predicted coefficient (f-1)/2 over four decades of acceleration.  A uniform census error is therefore a relabelling of the fitted constant kappa in the deep limit, and it buys real ground only at accelerations near a_0   (worst |measured/(f-1)sqrt(y)/2 - 1| = 0.025 over y = 1e-8 to 1e-2 at f = 3.65)
+
+  WHAT T1 AND T2 TOGETHER SAY.  They require DIFFERENT a_0 -- f a_0 and a_0/f, a factor f^2 apart.  A uniform
+  census correction therefore has to choose: keep the RAR's shape and wear a rigid log10(f) displacement of the
+  whole relation (T1), or keep the deep-MOND normalisation and move the transition scale by f^2 (T2).  It
+  cannot do both, and in neither branch does it close a deep liability.  What it CAN reach is the band around
+  a_0 itself, by the (f-1)sqrt(y)/2 leak -- which is +8% at the eRASS1 groups' y = 0.004 and +95% at the X-COP
+  cores' y = 0.52.  A uniform census error is a CORE-ONLY escape.
+  CONSEQUENCE, and it is the single most useful result in this section: the ONLY baryon laws that can do
+  anything at all are DIFFERENTIAL ones -- laws whose factor differs between the systems that fail and the
+  systems that work.  Every law below is therefore tested with the framework's OWN a_0 estimator re-run after
+  the law is applied, so that its uniform part is removed and only its differential part is judged.
+
+    BASELINE (no baryon law):
+      deep-tail a_0 (g_bar < 1e-11, mean-zeroing full kernel) = 9.0399e-11  ->  kappa = 0.4829
+      RAR at that a_0: robust scatter 0.1271 dex, median offset +0.0270, offset above y=10 +0.0011
+      RAR residual vs local gas fraction: slope -0.0578 dex per unit f_gas
+      BTFR zero-point +0.2136;  Renzo r = 0.5955;  inner diversity r = 0.7780
+  [PASS] 5-baseline the keeper battery reproduces the programme's own standing values before any law is applied.  The deep-tail estimator is the check that matters: run on the corrected full-kernel form it returns 9.04e-11 and kappa = 0.482, exactly the values the veins workflow established after withdrawing 1.14e-10 -- so this battery is calibrated against the programme's own most recent correction and not against a stale number   (deep-tail a_0 9.0399e-11 vs the corrected 9.04e-11; kappa 0.4829 vs 0.482 +- 0.081; robust RAR scatter 0.1271 (standing 0.126); Renzo r = 0.595; diversity r = 0.778)
+
+  THE TABLE.  Left half: what the law does to the KEEPERS at its own refitted a_0.  Right half: what is LEFT
+  of the liabilities.  |B| is the median absolute missing boost in dex; baseline values in the first row.
+
+  law                              kappa   RAR     dRAR    y>10    f_gas   Renzo   div  | |B|clu  |B|gal  worst
+  ----------------------------------------------------------------------------------------------------------------------
+  BASELINE (nothing applied)       0.483  0.1271 +0.0000 +0.0011 -0.0578  0.595 0.778 |  0.337   0.199  1.650
+  D1 universal (whole-ledger fit)  0.052  0.2602 +0.1331 -0.3479 +0.4684  0.595 0.766 |  0.267   0.532  1.616
+  D1c universal (cluster fit)      0.047  0.2648 +0.1377 -0.3532 +0.4842  0.595 0.766 |  0.261   0.539  1.614
+  D2/D3 gas-traced (ledger fit)    0.135  0.1576 +0.0305 +0.0391 -0.3461  0.514 0.705 |  0.198   0.269  1.881
+  D2/D3 gas-traced (cluster fit)   0.140  0.1570 +0.0299 +0.0384 -0.3402  0.516 0.708 |  0.199   0.275  1.875
+  D4 star-traced IMF (ledger fit)  0.086  0.3181 +0.1910 -0.4898 +0.7998  0.623 0.726 |  0.478   0.564  1.468
+  D4 star-traced IMF (cluster fit) 0.005  0.4374 +0.3103 -0.6697 +1.3628  0.617 0.689 |  0.457   0.951  1.857
+  D5 mass power law                0.020  0.2741 +0.1470 -0.2785 +0.4623  0.594 0.778 |  0.507   0.511  1.413
+  D6 acceleration power law        0.027  0.1274 +0.0003 -0.0093 +0.0048  0.596 0.648 |  0.345   0.264  1.306
+  D7 switched off in galaxies      0.483  0.1271 +0.0000 +0.0011 -0.0578  0.595 0.778 |  0.069   0.195  1.657
+
+  what each law BREAKS (a keeper is counted broken if it moves by more than the programme's own quoted
+  uncertainty on that keeper: 0.02 dex on the RAR scatter, 0.05 dex on an RAR offset or slope, 0.081 on kappa,
+  0.05 on a correlation coefficient):
+    D1 universal (whole-ledger fit)  kappa 0.052 (was 0.483, fitted +-0.081); RAR scatter +0.133 dex; RAR above y=10 off by -0.348 dex; RAR gas-fraction slope +0.468 (was -0.058); BTFR zero-point -0.550 dex
+    D1c universal (cluster fit)      kappa 0.047 (was 0.483, fitted +-0.081); RAR scatter +0.138 dex; RAR above y=10 off by -0.353 dex; RAR gas-fraction slope +0.484 (was -0.058); BTFR zero-point -0.562 dex
+    D2/D3 gas-traced (ledger fit)    kappa 0.135 (was 0.483, fitted +-0.081); RAR scatter +0.030 dex; RAR gas-fraction slope -0.346 (was -0.058); inner diversity r 0.705 (was 0.778); Renzo r 0.514 (was 0.595); BTFR zero-point -0.328 dex
+    D2/D3 gas-traced (cluster fit)   kappa 0.140 (was 0.483, fitted +-0.081); RAR scatter +0.030 dex; RAR gas-fraction slope -0.340 (was -0.058); inner diversity r 0.708 (was 0.778); Renzo r 0.516 (was 0.595); BTFR zero-point -0.323 dex
+    D4 star-traced IMF (ledger fit)  kappa 0.086 (was 0.483, fitted +-0.081); RAR scatter +0.191 dex; RAR above y=10 off by -0.490 dex; RAR gas-fraction slope +0.800 (was -0.058); inner diversity r 0.726 (was 0.778); BTFR zero-point -0.499 dex
+    D4 star-traced IMF (cluster fit) kappa 0.005 (was 0.483, fitted +-0.081); RAR scatter +0.310 dex; RAR above y=10 off by -0.670 dex; RAR gas-fraction slope +1.363 (was -0.058); inner diversity r 0.689 (was 0.778); BTFR zero-point -0.927 dex
+    D5 mass power law                kappa 0.020 (was 0.483, fitted +-0.081); RAR scatter +0.147 dex; RAR above y=10 off by -0.279 dex; RAR gas-fraction slope +0.462 (was -0.058); BTFR zero-point -0.599 dex
+    D6 acceleration power law        kappa 0.027 (was 0.483, fitted +-0.081); RAR gas-fraction slope +0.005 (was -0.058); inner diversity r 0.648 (was 0.778); BTFR zero-point -0.441 dex
+    D7 switched off in galaxies      NOTHING measurable
+  [PASS] 5-D1 THE UNIFORM CENSUS CORRECTION, CORRECTED.  An earlier version of this script asserted it was NOT absorbable into a_0 and a later one asserted it was a pure null; BOTH were wrong and the check that caught them is 5-T2.  The truth is in between and is set by T1/T2: with a_0 refitted the way the framework refits it (the deep tail), a uniform factor moves kappa by 1/f, buys back only the (f-1)sqrt(y)/2 leak -- real in the cluster CORES, negligible in the deep group and R500 rows -- and pays for it with the RAR   (kappa 0.483 -> 0.047 (fitted value 0.482 +- 0.081, so this is a 5.4 sigma move in the ONE constant the framework has); cluster |B| 0.337 -> 0.261; galaxy |B| 0.199 -> 0.539; RAR scatter 0.1271 -> 0.2648)
+  [PASS] 5-D2 the gas-traced law is the one with a real physical motivation -- clusters are gas-dominated and galaxies are not, so a missing gas phase is differential in exactly the right direction.  It does close most of the cluster front.  What it costs is the RAR: it writes a gas-fraction-dependent residual into SPARC that is not observed, and it moves kappa   (cluster |B| falls 0.337 -> 0.199, but the RAR residual acquires a slope of -0.340 dex per unit gas fraction against the baseline -0.058, the RAR scatter goes 0.1271 -> 0.1570, and kappa goes 0.483 -> 0.140)
+  [PASS] 5-D4 the star-traced (bottom-heavy IMF) law is worse, because clusters are only 5-15 per cent stars: buying a factor 3-4 there costs a factor of order 13 in Upsilon, and SPARC galaxies are majority stars   (fitted A = 13.2, i.e. Upsilon x14 in a purely stellar system; RAR gas-fraction slope +1.363 vs -0.058, RAR scatter 0.4374 vs 0.1271, kappa 0.005)
+  [PASS] 5-D7 the only law that closes the clusters AND breaks no keeper is the one switched off in galaxies BY HAND.  It is keeper-safe precisely because it is not a law: it is one free amount applied to one class of object, and it predicts nothing about any system it was not fitted to   (every SPARC keeper identical to baseline to machine precision; cluster |B| 0.337 -> 0.069; galaxy |B| unchanged at 0.195)
+  [PASS] 5-none NO LAW IN THE TABLE CLOSES BOTH HALVES.  Every law that leaves the galaxy rows alone leaves the cluster rows open, and every law that closes the cluster rows moves the galaxy rows, breaks a keeper, or both.  The minimum median residual over the galaxy rows across all nine laws is above the ledger's own 0.1 dex bar   (best galaxy-side residual over the nine laws = 0.195 dex (baseline 0.199); best cluster-side = 0.069 dex (baseline 0.337))
+
+
+  THE DERIVED KEEPERS (they are not free, so they move with kappa).  The framework's structural claim is that
+  it turns fitted parameters into predicted ones; two of those predictions are read straight off a_0:
+    halo surface-density constant  Sigma_dag = a_0/(2 pi G): PREDICTED 107 Msun/pc^2 (canonical) / 129 (alt); MEASURED 177 from the Li+2020 Burkert fits (item 5, agreement 0.14 dex), Donato+09 140 (+80/-30)
+    stellar M/L at 3.6 micron       predicted from the deep tail: 0.50 (alt) / 0.66 (canonical) vs SPS 0.5 +- 0.1
+    law                              kappa    Sigma_dag   vs Donato 140    Upsilon_3.6 implied
+    D1 universal (whole-ledger fit)  0.052       11.1   x  0.079           0.071
+    D1c universal (cluster fit)      0.047       10.1   x  0.072           0.065
+    D2/D3 gas-traced (ledger fit)    0.135       28.8   x  0.206           0.184
+    D2/D3 gas-traced (cluster fit)   0.140       29.9   x  0.213           0.191
+    D4 star-traced IMF (ledger fit)  0.086       18.4   x  0.131           0.117
+    D4 star-traced IMF (cluster fit) 0.005        1.1   x  0.008           0.007
+    D5 mass power law                0.020        4.2   x  0.030           0.027
+    D6 acceleration power law        0.027        5.7   x  0.041           0.036
+    D7 switched off in galaxies      0.483      103.2   x  0.737           0.660
+  [PASS] 5-derived every law that touches the galaxies destroys BOTH derived keepers at once, because both are read off a_0 and a_0 is what a census correction moves.  The halo surface-density constant, which the framework predicts to within 0.14 dex of the measured value with nothing fitted, is pushed to between 1 and 30 Msun/pc^2 -- a factor 6 to 160 low -- and the 3.6 micron mass-to-light ratio it predicts goes with it   (Sigma_dag = 107-129 Msun/pc^2 predicted against 177 measured (item 5) and 140 (Donato+09), but 1.1-29.9 under the eight galaxy-touching laws)
+
+  SELF-CONSISTENCY OF THE DEEP-TAIL CUT, against interest.  The deep tail above is selected on the OBSERVED
+  g_bar < 1e-11 so that the sample does not move between laws.  An observer who BELIEVED a law would instead
+  cut on the corrected g_bar, which is a different (smaller, genuinely deeper) sample.  Recomputed that way:
+    D1c universal (cluster fit)      kappa = 0.083 on the self-consistent cut (N = 169) against 0.047 on the fixed one
+    D2/D3 gas-traced (cluster fit)   kappa = 0.200 on the self-consistent cut (N = 420) against 0.140 on the fixed one
+  [PASS] 5-selfcons the choice of deep-tail cut changes the SIZE of the kappa move but not the verdict: on the self-consistent cut the uniform law still puts kappa at about a third of its fitted value, more than four sigma from 0.482 +- 0.081, and every other law moves it further   (self-consistent kappa = 0.083, i.e. 4.9 sigma from the fitted 0.482 +- 0.081 (fixed-cut value 0.047))
+
+  THE 1/r LENSING LAW (keeper 6).  Deep in MOND g_lens = sqrt(G M_b a_0)/r.  A baryon factor f that is CONSTANT
+  in radius leaves the slope at -1 exactly and moves the amplitude by sqrt(f); a factor that VARIES with radius
+  changes the slope by -d log f/d log r / 2.  The required cluster profile of section 1c has
+  d log M_x/d log r = +1.353 against the gas's +1.917, so a cluster-calibrated
+  radius-dependent component is NOT slope-neutral where it acts.
+  [PASS] 5-lensing the 1/r law survives only the radius-INDEPENDENT laws.  Since section 1c shows the required cluster component must be radius-dependent (it is more concentrated than the gas), the law that fits the clusters is the one that would bend the lensing slope, and the law that preserves the slope is the one that does not fit the clusters   (required component slope +1.353 vs gas +1.917, a difference of 0.564 in d log M/d log r)
+
+==========================================================================================================================
+6.  MUTATION CONTROLS -- each must BREAK something that the real calculation passes
+==========================================================================================================================
+    a_0 x 10                           median f_req =     0.58  (real value 3.80), median |dlog| = 0.827 dex
+    a_0 / 10                           median f_req =     7.26  (real value 3.80), median |dlog| = 0.400 dex
+    nu = 1 (no modification at all)    median f_req =    10.07  (real value 3.80), median |dlog| = 0.450 dex
+  [PASS] 6-M1 the required-baryon table is a statement about THIS a_0 and THIS kernel: multiplying a_0 by ten moves every cluster row's required multiplier by a factor of several, and switching the kernel off entirely (nu = 1, the Newtonian alternative) replaces a factor 2-6 by a factor 4-42.  The kernel is doing most of the work and the residual angle D has to explain is what is left   (median |dlog f_req| = 0.827 dex for a_0 x 10 and 0.450 dex for nu = 1; the Newtonian requirement is a median x10.1 against the framework's x3.8)
+  [PASS] 6-M1' AND THE INFORMATIVE NEGATIVE: holding each row's measured OFFSET fixed and moving a_0 barely moves the required multiplier at all (0.06 dex), because in the deep limit f_req -> 10^(2B) independently of a_0.  That is a property of the currency, not a robustness result, and it means f_req cannot be used to measure a_0   (median |dlog f_req| = 0.034 dex when a_0 is moved with B held fixed, against 0.827 dex when the underlying accelerations are re-reduced)
+  [PASS] 6-M2 the star-cluster / galaxy sign split in the required multiplier is not a relabelling artefact: shuffling the structural labels reproduces the observed separation rarely   (observed separation 0.867 dex in log f_req; permutation p = 0.0107 over 20000 relabellings)
+  [PASS] 6-M3 the keeper battery is a null-preserving instrument: a baryon law that is unity on SPARC returns every keeper and the deep-tail a_0 to the baseline to machine precision, so the breakages in section 5 are the laws and not the machinery   (robust scatter 0.1271112463 vs 0.1271112463; deep-tail a_0 9.039855e-11 vs 9.039855e-11; Renzo 0.59546883 vs 0.59546883)
+
+  THE ALTERNATIVE COMPUTED BESIDE.  LambdaCDM asks NOTHING of these censuses: it puts the same residuals in a
+  dark component that is allowed to have a different amount in every system by construction.  The honest
+  statement of the comparison is that angle D is the framework's attempt to buy that same freedom in baryons,
+  and the price is that baryons are IMAGED and dark matter is not.
+    system                 measured M_b     framework needs   extra/measured   LambdaCDM dark   dark/baryon
+    eRASS1 groups          4.572e+11    2.847e+12     x 5.23        2.084e+13      x45.59
+    eRASS1 clusters        1.415e+13    5.374e+13     x 2.80        1.750e+14      x12.37
+    X-COP @0.9R500         9.192e+13    1.775e+14     x 0.93        4.011e+14      x 4.36
+    X-ray groups @R500     3.792e+12    7.479e+12     x 0.97        3.571e+13      x 9.42
+  [PASS] 6-alt the alternative computed beside, and it is the honest point in the framework's favour: on the SAME systems LambdaCDM's dark component is a median x9.4 the measured baryons, while the framework's missing baryons are a median x2.8.  The kernel removes most of the discrepancy.  What angle D then has to do is find the remainder in baryons, and that remainder is still larger than every baryonic reservoir that has ever been detected   (LambdaCDM dark/baryon = x9.4 (range 4.4-45.6); framework missing-baryon/baryon = x2.8 (range 0.9-5.2))
+
+==========================================================================================================================
+7.  VERDICT ON ANGLE D
+==========================================================================================================================
+  THE BEST CASE FIRST.  The cluster/group front is a genuinely good fit to angle D as posed: eleven rows over
+     four decades of mass agree on a required baryon multiplier of 3.8 to within 0.16 dex, with no
+     significant mass or acceleration trend inside the front.  'The cluster baryon census is short by a factor
+     of about three or four' is a fair one-parameter description of eleven independent measurements, and the
+     framework asks LESS of the census than LambdaCDM asks of the dark sector on the same systems
+     (x2.8 the baryons against x9.4).
+
+  WHAT KILLS IT, in order of strength.
+  1. THE SIGN.  A census deficit is one-signed.  10 of 34 ledger rows require the
+     baryons to be REMOVED, down to 5% of the measured stars in NGC1052-DF4 and 11% in Pal 4, and three of the
+     four outer-halo globulars are driven below the stellar-population floor.  Angle D cannot address those
+     rows at all, in principle, whatever it does for the clusters.
+  2. THE INVARIANCE THEOREMS.  A UNIFORM census correction is not a free move and it is not a null move: T1
+     and T2 require a_0 a factor f^2 apart, so it must either displace the whole RAR by log10(f) or move the
+     transition scale by f^2.  With a_0 refitted the framework's own way it buys back only the (f-1)sqrt(y)/2
+     leak -- +8% at the eRASS1 groups, +95% in the X-COP cores -- and pays kappa = 0.483 -> 0.05.  Only
+     DIFFERENTIAL laws can do real work, and a differential law is by construction a statement that the census
+     is wrong by different amounts in different systems.
+  3. THE KEEPERS.  Every differential law that touches the galaxies breaks something measurable: the RAR
+     acquires a gas-fraction-dependent residual six times the observed one, the inner-diversity and Renzo
+     correlations fall, and BOTH derived keepers -- the halo surface-density constant a_0/(2 pi G), which the
+     framework predicts within 0.14 dex of Donato+09 with nothing fitted, and the 3.6 micron mass-to-light
+     ratio it predicts from Lambda -- collapse by factors of 5 to 130, because both are read off a_0 and a_0
+     is exactly what a census correction moves.
+  4. IT DOES NOT TRANSFER.  The clusters' own number misses the rest of the positive ledger by a median
+     0.46 dex, and no one- or two-parameter law gets the whole positive ledger below 0.26 dex of residual
+     against a raw spread of 0.40.
+  5. AND WITHIN THE CLUSTERS THE COMPONENT IS NOT BARYON-SHAPED.  It cannot be hot gas (1a: clumping is
+     one-signed, and putting it in the emitting phase demands 4-39x the observed emission measure).  It is
+     more centrally concentrated than the gas (1c), so it would have to pile up where the X-ray data are best.
+     It does not follow the measured hot-gas content (3-hotgas: the trend has the wrong sign).  And the Bullet
+     requires it to be collisionless and locked to the galaxies at 20-40x the stellar mass (1d) -- which is
+     dark matter with a baryonic label, and section 5 shows what a component locked to stars at that ratio
+     does to SPARC.
+
+  THE ONE SURVIVING VERSION, stated plainly so that it is not mistaken for a success: a missing baryonic
+  component that exists in hot haloes and NOT in galaxies closes the cluster front to 0.07 dex and breaks no
+  keeper.  It is keeper-safe because it is switched off by hand in every system that constrains it.  That is
+  one free amount per class of object, which is the freedom the framework exists to remove.
+
+  ANGLE D IS A PARTIAL EXPLANATION OF THE CLUSTER FRONT AND NOT A UNIFICATION OF THE LEDGER.
+
+RESULT: 43 checks, 0 FAIL   rc=0

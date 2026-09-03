@@ -1,0 +1,88 @@
+================================================================================================================
+k_contrarian_q2 -- the Solar-System external-field quadrupole, recomputed independently
+================================================================================================================
+  measured Galactic field at the Sun  g_e = v_c^2/R_0 = 2.1514e-10 m/s^2   (v_c = 233 km/s, R_0 = 8.178 kpc)
+  GM_sun = 1.32712440018e+20 m^3/s^2 (IAU nominal)   r_M(canonical) = 7960 AU
+  [PASS] q2-0 SIGN of the phantom density: rho_ph = -(1/4piG) div[(nu-1)G_N] must be POSITIVE everywhere for an isolated point mass (a phantom HALO, not a hole).  The opposite sign is a real trap and it flips the sign of Q2.   (min rho_ph = 1.329e-20 kg/m^3 over 1e14-1e17 m)
+  [PASS] q2-A the l=2 interior-multipole integrator reproduces an ANALYTIC test density (rho = rho0 P2(cos th) on a shell, Q2 = -(8pi/5) G rho0 ln(b/a)) to better than 0.5%   (analytic -1.544905e-31, numeric -1.545002e-31, rel 6.30e-05)
+
+  ---- Route A kernel, both footings ------------------------------------------------------------
+    canonical  a0=9.360e-11  y_e=g_e/a0=2.2985  y_N(Newtonian-equiv)=1.6663   q=-0.25520  (div -0.25523, cyl -0.25521)
+               a0^(3/2)/sqrt(GM) = 7.8606e-26 s^-2   ->   Q2 = -2.0060e-26 s^-2
+    alt        a0=1.130e-10  y_e=g_e/a0=1.9039  y_N(Newtonian-equiv)=1.2933   q=-0.20956  (div -0.20959, cyl -0.20956)
+               a0^(3/2)/sqrt(GM) = 1.0427e-25 s^-2   ->   Q2 = -2.1851e-26 s^-2
+  [PASS] q2-1 three quadratures of the same integral agree to 3%: by-parts (no numerical derivative), explicit spherical divergence, and an explicit CYLINDRICAL divergence that shares no coordinate with the other two   (by-parts -0.25520; spherical-div -0.25523 (0.01%); cylindrical -0.25521 (0.00%))
+  [PASS] q2-2 RESTATEMENT TEST, executed: with NO external field (y_e = 0) the Sun is an isolated point mass, v^4 = G M a0 applies in full, and Q2 must vanish identically by spherical symmetry.  It does.  So the coefficient q(y_e) is NOT derivable from v^4 = G M_b a0 -- only the prefactor a0/r_M is.   (q(y_e=0) = -7.857e-14)
+  [PASS] q2-3 MUTATION CONTROL: nu == 1 (pure Newton / GR, where the strong equivalence principle holds) must give q = 0 exactly, i.e. the whole effect is the kernel's nonlinearity   (q(nu==1) = 0.000e+00)
+  [PASS] q2-4 a HUGE external field must switch the effect off (the Sun is then deep in the Newtonian regime of the total field)   (q(y_N=1e6) = 1.841e-31 vs q(solar) = -0.25520)
+  [PASS] q2-5 grid convergence: coarsening 5x and refining 2x with 100x more radial range both move q by <1%   (coarse -0.25520 (0.000%), fine -0.25520 (0.000%))
+  [PASS] q2-6 the prefactor a0^{3/2}/sqrt(GM) is verified brute force, not assumed: quadrupling the central mass at fixed a0 and fixed external field must halve Q2 (1/sqrt(M))   (Q2(4M)/Q2(M) = 0.50000000, predicted 0.5)
+  [PASS] q2-7 the phantom source inside 0.05 r_M (= 400 AU, outside every planet and outside Cassini) contributes <1% of q, so the anomalous field really is harmonic where the ephemeris is measured and the r^2 P_2 form is legitimate   (inner 400 AU contributes 0.0000% of q)
+
+  ---- the same law for four kernels (canonical footing) ----------------------------------------
+    Route A (exp, = McGaugh RAR)   y_N=1.6663   q=-0.25520   Q2=-2.0060e-26 s^-2
+    simple                         y_N=1.6016   q=-0.24737   Q2=-1.9445e-26 s^-2
+    standard                       y_N=2.1076   q=-0.12393   Q2=-9.7414e-27 s^-2
+    sqrt(1+1/y)                    y_N=1.8522   q=-0.18649   Q2=-1.4660e-26 s^-2
+  [PASS] q2-8 the SHARPER the Newton<->MOND transition, the SMALLER the quadrupole -- 'standard' (nu-1 ~ 1/2y^2) must beat 'simple' (nu-1 ~ 1/y).  This is Desmond+2024's whole mechanism and it must reproduce, or the integral is wrong.   (|q| simple 0.2474 vs standard 0.1239; Route A (nu-1 ~ e^-sqrt(y)) 0.2552)
+  [PASS] q2-9 feeding the TRUE external field where the NEWTONIAN-equivalent one belongs is a real error and it matters at the tens-of-percent level -- recorded so the number cannot be quoted casually   (q(y_N=1.666) = -0.25520 vs q(y_e=2.298) = -0.32219 (+26.3%))
+  [PASS] q2-10 UPSILON LEVER measured by re-running the pipeline at Upsilon x1.5: d log Q2 / d log Upsilon = 0 EXACTLY.  This is the only candidate in the hunt with an identically zero lever, because no photometric mass enters at any step.   (lever = 0.000e+00; Q2 unchanged in all 15 digits)
+
+  ---- sensitivity to the Galactic field at the Sun (the only measured input) -------------------
+    v_c=229.0 km/s  R_0=8.122 kpc  ->  g_e=2.0925e-10  y_e=2.2355  q=-0.24816  Q2=-1.9507e-26
+    v_c=229.0 km/s  R_0=8.178 kpc  ->  g_e=2.0781e-10  y_e=2.2202  q=-0.24643  Q2=-1.9371e-26
+    v_c=229.0 km/s  R_0=8.275 kpc  ->  g_e=2.0538e-10  y_e=2.1942  q=-0.24348  Q2=-1.9139e-26
+    v_c=233.0 km/s  R_0=8.122 kpc  ->  g_e=2.1662e-10  y_e=2.3143  q=-0.25696  Q2=-2.0199e-26
+    v_c=233.0 km/s  R_0=8.178 kpc  ->  g_e=2.1514e-10  y_e=2.2985  q=-0.25520  Q2=-2.0060e-26
+    v_c=233.0 km/s  R_0=8.275 kpc  ->  g_e=2.1261e-10  y_e=2.2715  q=-0.25220  Q2=-1.9824e-26
+    v_c=236.0 km/s  R_0=8.122 kpc  ->  g_e=2.2223e-10  y_e=2.3743  q=-0.26356  Q2=-2.0718e-26
+    v_c=236.0 km/s  R_0=8.178 kpc  ->  g_e=2.2071e-10  y_e=2.3580  q=-0.26178  Q2=-2.0578e-26
+    v_c=236.0 km/s  R_0=8.275 kpc  ->  g_e=2.1813e-10  y_e=2.3304  q=-0.25874  Q2=-2.0339e-26
+  [PASS] q2-11 the full plausible range of the Galactic rotation measurement moves Q2 by less than 15%, so the prediction is not soft   (spread over v_c 229-236, R_0 8.12-8.28: 8.2%)
+
+================================================================================================================
+  THE CONFRONTATION -- this is a candidate law only if the measurement is consistent with it
+================================================================================================================
+  published ephemeris MEASUREMENT   Q2 = (1.6 +/- 1.8)e-27 s^-2 -- consistent with zero at 0.9 sigma
+  LambdaCDM / GR prediction         Q2 = 0 EXACTLY (strong equivalence principle) -> 0.89 sigma.  GR PASSES.
+  framework, canonical Q2 = -2.006e-26 s^-2   ->    12.0 sigma from the measurement
+  framework, alt       Q2 = -2.185e-26 s^-2   ->    13.0 sigma from the measurement
+  [FAIL] q2-12 THE DECIDING CHECK, and it is written so it CAN fail against the framework: for K1 to be a candidate second law the predicted Q2 must be consistent with the ephemeris measurement at <3 sigma. It is not.  Route A is the RAR-fitting kernel and it is the one the Solar System excludes.   (canonical 12.0 sigma, alt 13.0 sigma -- both EXCLUDED)
+
+  ---- convention, stated openly ----------------------------------------------------------------
+  Desmond, Hees & Famaey 2024 write Q2 = (3/2) a0^{3/2}/sqrt(GM) * q_D with q_D ~ 0.21-0.27, i.e. their
+  coefficient is 1.5x this script's q.  In their normalisation the same integral gives Q2 = 3.01e-26 s^-2, matching their published ~2.9e-26 and Hees+2016's 3.5-4.4e-26 to ~20%.
+  The conclusion is convention-independent: BOTH normalisations are an order of magnitude above the
+  measurement, so the verdict does not turn on the factor 1.5.  Reported both ways deliberately.
+
+================================================================================================================
+  VERDICT
+================================================================================================================
+  NOT a second Kepler-grade law, on TWO of the five criteria, and it is a LIABILITY on the data:
+   (4) 'nobody has stated it' FAILS.  Milgrom 2009 (MNRAS 399, 474) posed the Solar-System EFE
+       quadrupole; Blanchet & Novak 2011 (MNRAS 412, 2530) computed q for the standard families;
+       Hees, Folkner, Jacobson & Park 2014 (PRD 89, 102002) and Hees et al. 2016 (PRD 93, 084018)
+       set the ephemeris limit; Desmond, Hees & Famaey 2024 (MNRAS 530, 1781) turned it into the
+       RAR-vs-Cassini incompatibility at 8.7 sigma.  The law-FORM is fully credited elsewhere.
+   (4b) It is also NOT new to this programme.  real_research/CASSINI_QUADRUPOLE_CONSTRAINT.md
+       (2026-06-05) already records Q2 ~ 3-5e-26 s^-2 and '~15-25 sigma over the central value'.
+       What IS new here is only the full integral for the Route A kernel (the prior repo script,
+       reviews/cassini_quadrupole_framework.py, says in its own docstring that it does an
+       order-of-magnitude check and NOT the quadrupole integral).  A number, not a law.
+   (3) 'holds across many systems' FAILS.  There is exactly one system with a measured Q2.
+   (1),(2),(5) PASS: measured quantities, predicted coefficient, not a restatement (check q2-2).
+
+  AND THE SIGN OF THE RESULT IS AGAINST THE FRAMEWORK: Q2 = -2.01e-26 (canonical) / -2.19e-26 (alt) s^-2
+  against a measurement of (1.6 +/- 1.8)e-27 -- 12 sigma / 13 sigma.  In Desmond's
+  normalisation, 17 / 19 sigma.  GR + cold dark matter, which predicts exactly zero, sits at 0.9 sigma.
+  The proposing agent's 'high promise' rating is not supportable: the one candidate in this batch with a
+  perfectly clean Upsilon lever is clean because it is a Solar-System test, and the Solar System is where
+  this class of theory is in the most trouble.  Zero Upsilon leverage bought zero protection.
+
+  ONE THING THAT SURVIVES, and it is worth recording: check q2-8.  The kernel ordering is
+  standard < Route A < simple in |q|, i.e. Route A does NOT escape by being the sharpest kernel --
+  its e^-sqrt(y) tail is sharp at LARGE y, but the quadrupole integral is dominated by x ~ 1 (r ~ r_M ~
+  8000 AU) where every kernel looks alike.  The natural hope that a sharper transition threads Cassini
+  is refuted for this kernel by direct computation, not by argument.
+
+RESULT: 14 checks, 1 FAIL -> ['q2-12 THE DECIDING CHECK, and it is written so it CAN fail against the framework: for K1 to be a candidate second law the predicted Q2 must be consistent with the ephemeris measurement at <3 sigma. It is not.  Route A is the RAR-fitting kernel and it is the one the Solar System excludes.']   rc=1

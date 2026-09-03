@@ -1,0 +1,108 @@
+========================================================================================================================
+k01 -- THE SOLAR-SYSTEM EXTERNAL-FIELD QUADRUPOLE   Q_2 = q(y_e) a_0^{3/2}/sqrt(G M_sun)
+========================================================================================================================
+  measured Galactic field at the Sun   g_e = v_c^2/R_0 = 2.1514e-10 m/s^2   (v_c = 233 km/s, R_0 = 8.178 kpc)
+    the SAME quantity with v_c = 229/236 km/s spans 2.078e-10 - 2.207e-10  (+-4%)
+
+------------------------------------------------------------------------------------------------------------------------
+FOOTING canonical:  a_0 = 9.360e-11   r_M(Sun) = sqrt(GM/a_0) = 7960 AU   a_0/r_M = 7.8606e-26 s^-2   y_e = g_e/a_0 = 2.298
+------------------------------------------------------------------------------------------------------------------------
+/Users/carlzimmerman/new_physics/zimmerman-formula/hunt_2026/k01_solar_efe_quadrupole.py:130: RuntimeWarning: divide by zero encountered in matmul
+  A = -1.5*np.sum(((Vr*P2 + Vt*MU*S) @ wmu)/x)*dlx
+/Users/carlzimmerman/new_physics/zimmerman-formula/hunt_2026/k01_solar_efe_quadrupole.py:130: RuntimeWarning: overflow encountered in matmul
+  A = -1.5*np.sum(((Vr*P2 + Vt*MU*S) @ wmu)/x)*dlx
+/Users/carlzimmerman/new_physics/zimmerman-formula/hunt_2026/k01_solar_efe_quadrupole.py:130: RuntimeWarning: invalid value encountered in matmul
+  A = -1.5*np.sum(((Vr*P2 + Vt*MU*S) @ wmu)/x)*dlx
+/Users/carlzimmerman/new_physics/zimmerman-formula/hunt_2026/k01_solar_efe_quadrupole.py:140: RuntimeWarning: divide by zero encountered in matmul
+  A = -0.5*np.sum((div*P2) @ wmu)*dlx
+/Users/carlzimmerman/new_physics/zimmerman-formula/hunt_2026/k01_solar_efe_quadrupole.py:140: RuntimeWarning: overflow encountered in matmul
+  A = -0.5*np.sum((div*P2) @ wmu)*dlx
+/Users/carlzimmerman/new_physics/zimmerman-formula/hunt_2026/k01_solar_efe_quadrupole.py:140: RuntimeWarning: invalid value encountered in matmul
+  A = -0.5*np.sum((div*P2) @ wmu)*dlx
+   RouteA exp       y_eN =  1.6663   q = -0.25520 (div-form -0.25520)   Q_2 = -2.0060e-26 s^-2
+   simple           y_eN =  1.6016   q = -0.24738 (div-form -0.24737)   Q_2 = -1.9445e-26 s^-2
+   standard         y_eN =  2.1076   q = -0.12393 (div-form -0.12392)   Q_2 = -9.7414e-27 s^-2
+   sqrt(1+1/y)      y_eN =  1.8522   q = -0.18650 (div-form -0.18650)   Q_2 = -1.4660e-26 s^-2
+   nu==1 (Newton)   y_eN =  2.2985   q = +0.00000 (div-form +0.00000)   Q_2 = +0.0000e+00 s^-2
+
+------------------------------------------------------------------------------------------------------------------------
+FOOTING alt:  a_0 = 1.130e-10   r_M(Sun) = sqrt(GM/a_0) = 7244 AU   a_0/r_M = 1.0427e-25 s^-2   y_e = g_e/a_0 = 1.904
+------------------------------------------------------------------------------------------------------------------------
+   RouteA exp       y_eN =  1.2933   q = -0.20956 (div-form -0.20956)   Q_2 = -2.1851e-26 s^-2
+   simple           y_eN =  1.2482   q = -0.20194 (div-form -0.20194)   Q_2 = -2.1057e-26 s^-2
+   standard         y_eN =  1.6855   q = -0.12134 (div-form -0.12133)   Q_2 = -1.2652e-26 s^-2
+   sqrt(1+1/y)      y_eN =  1.4684   q = -0.16027 (div-form -0.16027)   Q_2 = -1.6711e-26 s^-2
+   nu==1 (Newton)   y_eN =  1.9039   q = +0.00000 (div-form +0.00000)   Q_2 = +0.0000e+00 s^-2
+
+========================================================================================================================
+CHECKS
+========================================================================================================================
+  [PASS] k01-1 MUTATION: turning the kernel off (nu == 1, i.e. GR + dark matter, which obeys the strong equivalence principle) must give Q_2 identically zero -- there is no anomalous quadrupole without nonlinear gravity   (q(nu=1) = 0.000e+00)
+  [PASS] k01-2 MUTATION: switching OFF the external field must give Q_2 identically zero, because an isolated point mass in MOND is spherically symmetric.  This is the check that proves the signal is a strong-equivalence-principle violation and not a kernel artefact   (q(g_e = 0) = 2.757e-13)
+  [PASS] k01-3 LIMIT: an external field far above a_0 must drive Q_2 to zero (the Solar System is then Newtonian out to beyond its own MOND radius)   (q(y_eN = 1e8) = 3.785e-309 vs fiducial -2.552e-01)
+  [PASS] k01-4 two INDEPENDENT quadratures of the same integral -- the by-parts form (no numerical derivative anywhere) and the raw divergence form (two finite-difference derivatives) -- must agree   (by-parts -0.25520 vs divergence -0.25520, relative 1.78e-06)
+  [PASS] k01-5 GRID CONVERGENCE: refining the radial and angular grids by 8x and widening the domain by two decades either side must move q by less than 0.5%   (coarse -0.25520 | fiducial -0.25520 | fine -0.25520)
+  [PASS] k01-6 THE LAW'S SCALING, tested rather than asserted: q must be a function of y_e = g_e/a_0 ALONE, so that Q_2 = q a_0^{3/2}/sqrt(GM).  Recomputing at the same y_e returns the same q, and the dimensional prefactor is analytic   (q reproducible to 0.00e+00; prefactor a_0/r_M = a_0^1.5/sqrt(GM) by construction)
+  [PASS] k01-7 the interior multipole expansion is legitimate: essentially none of the source lies inside 0.05 r_M = 400 AU, so the quadrupole really is harmonic where the planets are   (fraction of q from x < 0.05 (r < 398 AU): 2.58e-09)
+
+  sensitivity of the prediction to its ONE measured input (v_c), canonical footing:
+     v_c = 229 km/s -> y_e = 2.220 -> Q_2 = -1.937e-26 s^-2
+     v_c = 233 km/s -> y_e = 2.298 -> Q_2 = -2.006e-26 s^-2
+     v_c = 236 km/s -> y_e = 2.358 -> Q_2 = -2.058e-26 s^-2
+  [PASS] k01-8 the prediction is not fragile against the one measured input: a +-3 km/s change in the local circular speed (the full spread of modern determinations) must move Q_2 by less than 25%   (spread 6.0% over v_c = 229-236 km/s)
+
+========================================================================================================================
+THE LAW ITSELF:  Q_2 = q(y_e) a_0^{3/2} / sqrt(G M),  q tabulated for the Route A kernel
+========================================================================================================================
+     y_e = g_e/a_0 :      0.25     0.50     1.00     1.50     2.00     2.30     3.00     5.00    10.00
+     q(y_e)        :   -0.0104  -0.0336  -0.0947  -0.1595  -0.2210  -0.2551  -0.3274  -0.4764  -0.6220
+     |q| rises monotonically across this range and only turns over far above it (check k01-3 shows it
+     goes to zero as y_e -> infinity).  The Sun sits at y_e = 2.3, near the steepest part of the curve,
+     so the prediction is sensitive to the external field but not to any fitted quantity.
+
+========================================================================================================================
+THE SAME NUMBER WITH NO Q_2 CONVENTION IN IT: anomalous perihelion precession
+========================================================================================================================
+     (printed once; the header above is the section title)
+     Mars    (canonical): predicted |dvarpi/dt| ~     0.06 mas/century   against a published ephemeris residual bound of order 0.04 mas/century
+     Mars    (alt      ): predicted |dvarpi/dt| ~     0.07 mas/century   against a published ephemeris residual bound of order 0.04 mas/century
+     Saturn  (canonical): predicted |dvarpi/dt| ~     0.97 mas/century   against a published ephemeris residual bound of order 0.4 mas/century
+     Saturn  (alt      ): predicted |dvarpi/dt| ~     1.05 mas/century   against a published ephemeris residual bound of order 0.4 mas/century
+     The coefficient here is an orientation-averaged order-of-magnitude (the exact factor depends on the
+     angle between the orbit and the Galactic-centre direction and on the eccentricity); it is quoted to
+     show that the Q_2 convention is not what drives the verdict.
+
+========================================================================================================================
+THE NUMBER, AND THE PUBLISHED BOUND
+========================================================================================================================
+  Route A exponential kernel:   Q_2 = -2.006e-26 (canonical)   -2.185e-26 (alt)  s^-2
+  the same calculation for the simple       kernel: -1.945e-26 (canonical)  -2.106e-26 (alt)
+  the same calculation for the standard     kernel: -9.741e-27 (canonical)  -1.265e-26 (alt)
+  the same calculation for the sqrt(1+1/y)  kernel: -1.466e-26 (canonical)  -1.671e-26 (alt)
+  
+  LITERATURE VALUE, NOT COMPUTED HERE, quoted as an order of magnitude only: planetary-ephemeris fits
+  bound the MOND external-field quadrupole at |Q_2| of order 3e-27 s^-2 (Milgrom 2009 posed it;
+  Blanchet & Novak 2011 computed it for the standard interpolating families; Hees et al. 2014/2016
+  derived the ephemeris limit).  Conventions for Q_2 differ between papers by factors of order unity,
+  so the ratio below is an order-of-magnitude statement and MUST NOT be quoted as a sigma.
+     |Q_2|/bound  =  6.7 (canonical)   7.3 (alt)   for Route A
+     |Q_2|/bound  =  6.5 (canonical) for simple
+     |Q_2|/bound  =  3.2 (canonical) for standard
+     |Q_2|/bound  =  4.9 (canonical) for sqrt(1+1/y)
+  
+  LambdaCDM / GR + cold dark matter computed beside the framework: Q_2 = 0 EXACTLY, because GR obeys the
+  strong equivalence principle -- a uniform external field is removable by going to the free-fall frame.
+  There is nothing to fit and nothing to tune; the entire signal is a MOND-only effect.
+
+RESULT: 8 checks, 0 FAIL   rc=0
+
+========================================================================================================================
+VERDICT -- k01
+========================================================================================================================
+  The law computes.  Q_2 = q(y_e) a_0^(3/2)/sqrt(G M_sun) with q = -0.2552 (canonical) / -0.2096 (alt),
+  giving Q_2 = -2.006e-26 / -2.185e-26 s^-2.  Nothing is fitted: M_sun and the local circular speed are the
+  only inputs and neither carries a stellar mass-to-light ratio, so d log Q_2 / d log Upsilon = 0 exactly.
+
+  AGAINST INTEREST: this is ~7x the order of magnitude of the published ephemeris bound.  On the
+  operative modified-gravity arm the framework therefore inherits the same Solar-System liability that
+  Blanchet & Novak identified for MOND generally.  The exponential kernel does NOT escape it.

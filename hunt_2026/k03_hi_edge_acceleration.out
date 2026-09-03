@@ -1,0 +1,101 @@
+========================================================================================================================
+k03 -- THE HI SIZE-MASS RELATION: is the tightest relation in extragalactic astronomy an a_0 law?
+========================================================================================================================
+  Sigma_M = a_0/(2 pi G) = 106.9 Msun/pc^2  (canonical)
+  Sigma_M = a_0/(2 pi G) = 129.0 Msun/pc^2  (alt)
+
+  109 SPARC discs have a tabulated HI radius that their rotation curve reaches (38 need <=15% extrapolation).
+
+------------------------------------------------------------------------------------------------------------------------
+STEP 0 -- reproduce the published relation on this sample, or the rest of the item means nothing
+------------------------------------------------------------------------------------------------------------------------
+  log D_HI = 0.509 log M_HI + -3.302,  scatter 0.070 dex, N = 109
+  published (Wang+2016, 562 galaxies): slope 0.506, intercept -3.293, scatter 0.06 dex
+  [PASS] K03-0 the SPARC sample must reproduce the published HI size-mass relation, or it is not the relation under test   (slope 0.509 vs 0.506, scatter 0.070 dex vs 0.06 (SPARC's R_HI is a catalogue value with its own distance errors, so a somewhat larger scatter is expected))
+
+------------------------------------------------------------------------------------------------------------------------
+K03-A  R_HI = xi sqrt(G M_HI/a_0).   Is xi one number, and is it predicted?
+------------------------------------------------------------------------------------------------------------------------
+  canonical  median xi =   7.54   scatter 0.070 dex   d log xi/d log M_HI = +0.009
+  alt        median xi =   8.29   scatter 0.070 dex   d log xi/d log M_HI = +0.009
+  [PASS] K03-A xi must be one number with RAR-class scatter AND no mass trend.  It can fail on either.   (median xi = 7.54, scatter 0.070 dex, mass slope +0.009)
+
+  AND THE DECISIVE POINT, which no amount of tightness can rescue: is xi = 7.54 PREDICTED?
+  The framework fixes a_0 and therefore r_M.  It says nothing whatever about where hydrogen stops being
+  neutral.  xi is a number about self-shielding and the ionising background, and the framework has no
+  handle on it.  So even a perfect K03-A would fail criterion (2) of a Kepler-grade law: the coefficient
+  is fitted, not predicted.  Recorded as such.
+
+------------------------------------------------------------------------------------------------------------------------
+K03-B/C  is the ACCELERATION at the HI edge universal?  (this is the form in which a_0 could appear)
+------------------------------------------------------------------------------------------------------------------------
+  footing   quantity      median /a_0  scatter [dex]   d log/d log M_b  d log/d log g_bar
+  canonical g_bar(R_HI)        0.0708          0.390             0.313                   
+  canonical g_obs(R_HI)        0.3247          0.274             0.202                   
+  alt       g_bar(R_HI)        0.0587          0.390             0.313                   
+  alt       g_obs(R_HI)        0.2689          0.274             0.202                   
+  [FAIL] K03-B g_bar at the HI edge must be a universal fraction of a_0 with <= 0.1 dex scatter and no mass trend   (median 0.0708 a_0, scatter 0.390 dex, mass slope +0.313)
+  [FAIL] K03-C g_obs at the HI edge must be a universal fraction of a_0 with <= 0.1 dex scatter and no mass trend   (median 0.3247 a_0, scatter 0.274 dex, mass slope +0.202)
+
+------------------------------------------------------------------------------------------------------------------------
+K03-D  the HI edge as a surface density.  Sigma_HI(<R_HI) = M_HI/(pi R_HI^2), against Sigma_M = a_0/(2 pi G)
+------------------------------------------------------------------------------------------------------------------------
+  mean HI surface density inside R_HI: median 3.76 Msun/pc^2, scatter 0.140 dex, mass slope -0.018
+  Sigma_M/Sigma_HI = 28.4   (canonical) -- is that a number the framework predicts?  No.
+  Sigma_M/Sigma_HI = 34.3   (alt) -- is that a number the framework predicts?  No.
+  [FAIL] K03-D the HI edge's mean surface density must be a PREDICTED fraction of Sigma_M = a_0/(2 pi G).  The framework predicts no such fraction, so this check is written to fail unless the ratio lands on a simple number (1, 2, pi, 2 pi, 4 pi) to better than 5%   (ratio 28.45 (canonical), 34.34 (alt) -- no simple number within 5%)
+
+------------------------------------------------------------------------------------------------------------------------
+THE UPSILON LEVER, numerically
+------------------------------------------------------------------------------------------------------------------------
+  d log g_bar(R_HI) / d log Upsilon = +0.441
+  d log g_obs(R_HI) / d log Upsilon = +0.000  (zero by construction: g_obs has no stellar mass in it)
+  d log xi / d log Upsilon         = 0.000 exactly (xi uses M_HI, not M_star)
+  So K03-A and K03-C are among the very few statements in this hunt with NO stellar mass-to-light leverage
+  at all.  That is the good news.  The bad news is criterion (2): none of their coefficients is predicted.
+
+------------------------------------------------------------------------------------------------------------------------
+MUTATION CONTROLS
+------------------------------------------------------------------------------------------------------------------------
+  [PASS] M03a shuffling which galaxy's HI mass goes with which galaxy's HI radius must destroy the tightness -- if it does not, the relation is an artefact of the sample's dynamic range and not a relation at all   (shuffled scatter 0.917 dex against the true 0.140 dex)
+  [PASS] M03b quadrupling a_0 must move xi by exactly a factor 2, since xi carries a_0^(1/2) -- and note what that means: xi is an a_0 METER with leverage 1/2, so its 0.1 dex scatter caps any a_0 read from it at 0.2 dex   (shift +0.3010 dex against the predicted +0.301)
+
+------------------------------------------------------------------------------------------------------------------------
+THE NEWTONIAN / LambdaCDM ALTERNATIVE, COMPUTED BESIDE
+------------------------------------------------------------------------------------------------------------------------
+  The standard explanation of the HI size-mass relation needs no gravity theory at all: hydrogen goes
+  neutral below a column set by the ionising background and self-shielding, so the mean surface density
+  inside the 1 Msun/pc^2 isophote is fixed, and M_HI = pi R_HI^2 <Sigma> follows with slope exactly 1/2.
+  Measured here: <Sigma> = 3.76 Msun/pc^2 with 0.140 dex of scatter and a
+  mass slope of -0.018.  That is the whole relation, and there is no acceleration in it.
+  Both theories therefore predict slope 1/2 for the same reason: neither predicts it.  The MOND radius also
+  goes as M^(1/2), which is why the coincidence looked like something.
+
+========================================================================================================================
+THE RESTATEMENT TEST
+========================================================================================================================
+  K03-A: R_HI = xi sqrt(G M_HI/a_0).  Derive from v^4 = G M_b a_0?  v_flat^2 = sqrt(G M_b a_0) = G M_b/r_M, so
+  r_M = G M_b/v_flat^2 -- pure algebra from the BTFR.  So r_M is a BTFR quantity, and K03-A is the statement
+  'R_HI is proportional to r_M', i.e. a restatement PLUS an unexplained proportionality constant.  CLOSES.
+  K03-B/C: g at a radius fixed by an atomic-physics threshold.  Not derivable from the BTFR (the BTFR has no
+  radius), but also not predicted by the framework, because nothing in the framework fixes where hydrogen
+  ionises.  DOES NOT CLOSE as a restatement, but fails criterion (2) instead: no predicted coefficient.
+  K03-D: definitional.  CLOSES trivially.
+
+========================================================================================================================
+VERDICT -- k03: NO.  The tightest scaling relation in extragalactic astronomy is not an a_0 law.
+========================================================================================================================
+  * R_HI does track the MOND radius of its own HI mass, with median xi = 7.54 (canonical) / 8.29 (alt),
+    scatter 0.070 dex and a mass slope of +0.009.  But xi is not predicted by anything, and
+    the tracking is forced: both quantities go as M_HI^(1/2), one because surface density is fixed by
+    atomic physics and the other because a_0 is fixed by Lambda.  Two square roots meeting is not a law.
+  * The acceleration at the HI edge is NOT universal: g_bar spans 0.390 dex with a mass slope of +0.313,
+    g_obs spans 0.274 dex with a mass slope of +0.202.  Both fail the 0.1 dex bar and both
+    carry a mass trend, so there is no acceleration scale hiding at the edge of the HI disc.
+  * Reported against interest, and it removes a candidate the programme might otherwise have chased: the
+    coincidence between the HI size-mass slope and the MOND-radius slope is exactly that.
+  * One thing worth keeping for elsewhere: g_obs(R_HI) and xi have EXACTLY ZERO stellar mass-to-light
+    leverage.  If a quantity of that kind can be found whose coefficient IS predicted, it would be the
+    cleanest measurement in the hunt.  This one is not it.
+
+RESULT: 7 checks, 3 FAIL -> ['K03-B g_bar at the HI edge must be a universal fraction of a_0 with <= 0.1 dex scatter and no mass trend', 'K03-C g_obs at the HI edge must be a universal fraction of a_0 with <= 0.1 dex scatter and no mass trend', "K03-D the HI edge's mean surface density must be a PREDICTED fraction of Sigma_M = a_0/(2 pi G).  The framework predicts no such fraction, so this check is written to fail unless the ratio lands on a simple number (1, 2, pi, 2 pi, 4 pi) to better than 5%"]   rc=1

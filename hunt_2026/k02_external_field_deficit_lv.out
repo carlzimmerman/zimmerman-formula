@@ -1,0 +1,79 @@
+========================================================================================================================
+k02 -- THE EXTERNAL-FIELD DEFICIT LAW:  log V - (1/4) log(G M_b a_0)  =  (1/4) log Xi(R_HI, M_b, g_e)
+========================================================================================================================
+  Updated Nearby Galaxy Catalog: 869 Local Volume galaxies on disk
+  distance methods present: TRGB=272, TF=204, mem=170, h=86, BS=40, SBF=25, Cep=20, txt=20, HB=14, CMD=5
+
+------------------------------------------------------------------------------------------------------------------------
+FOOTING canonical  (a_0 = 9.360e-11)   N = 295 galaxies after cuts (i >= 45 deg, W50 + L_K + M_HI + non-Tully-Fisher distance)
+------------------------------------------------------------------------------------------------------------------------
+    external field g_e/a_0 spans 1.47e-03 to 2.12e-01, median 0.009
+    PREDICTED residual Delta_pred spans -0.038 to +0.350 dex, sd 0.035  <-- if this is tiny the test is underpowered and says so
+    OBSERVED  residual Delta_obs  mean -0.091, sd 0.178 dex
+    NAIVE regression Delta_obs on Delta_pred:  slope = +0.277 +- 0.543   (framework 1, LambdaCDM/SEP 0) -- contaminated, see check k02-2
+    CONTROLLED partial coefficient  d Delta / d log(g_e/a_0)  at fixed log M_b:
+        observed  -0.0450 +- 0.0211     framework predicts +0.0007     LambdaCDM / SEP predicts 0.0000 exactly
+
+------------------------------------------------------------------------------------------------------------------------
+FOOTING alt  (a_0 = 1.130e-10)   N = 295 galaxies after cuts (i >= 45 deg, W50 + L_K + M_HI + non-Tully-Fisher distance)
+------------------------------------------------------------------------------------------------------------------------
+    external field g_e/a_0 spans 1.34e-03 to 1.91e-01, median 0.008
+    PREDICTED residual Delta_pred spans -0.040 to +0.330 dex, sd 0.032  <-- if this is tiny the test is underpowered and says so
+    OBSERVED  residual Delta_obs  mean -0.111, sd 0.178 dex
+    NAIVE regression Delta_obs on Delta_pred:  slope = +0.281 +- 0.580   (framework 1, LambdaCDM/SEP 0) -- contaminated, see check k02-2
+    CONTROLLED partial coefficient  d Delta / d log(g_e/a_0)  at fixed log M_b:
+        observed  -0.0450 +- 0.0212     framework predicts +0.0001     LambdaCDM / SEP predicts 0.0000 exactly
+
+========================================================================================================================
+CHECKS
+========================================================================================================================
+  [PASS] k02-1 POWER, asked before the answer: the predicted deficit must actually vary across the sample, or the test is vacuous.  This check FAILS the item if the framework and LambdaCDM make the same prediction for every galaxy here   (sd(Delta_pred) = 0.0345 dex, range 0.388 dex over 295 galaxies)
+  [FAIL] k02-2 MUTATION, AND IT FIRES: shuffling which galaxy feels which external field must destroy the naive slope.  It does not -- so the naive regression of Delta_obs on Delta_pred is measuring the mass and radius dependence that Delta_pred also carries, not the environment.  This check FAILS the naive statistic and is the reason the controlled partial coefficient above is the one to read   (real slope +0.277 +- 0.543; shuffled +0.309 +- 0.061 -> real is -0.5 shuffled-sigma away)
+  [PASS] k02-3 MUTATION, no tuned threshold: turning the kernel off (nu = 1, pure Newton on the same baryons at the same radii) must fit the measured rotation speeds WORSE than the framework does.  The comparison is rms of the residual, and either side can win   (rms(obs - framework) = 0.216 dex vs rms(obs - Newton) = 0.288 dex [Newton predicts Delta = -0.297 +- 0.110])
+
+  UPSILON LEVER (the wall that killed nine earlier items), measured not asserted:
+     Upsilon_K = 0.4:  mean Delta_obs = -0.0702   partial dDelta/dlog g_e = -0.0418 +- 0.0210   (framework predicts +0.0827)
+     Upsilon_K = 0.6:  mean Delta_obs = -0.0906   partial dDelta/dlog g_e = -0.0450 +- 0.0211   (framework predicts +0.0765)
+     Upsilon_K = 0.9:  mean Delta_obs = -0.1142   partial dDelta/dlog g_e = -0.0481 +- 0.0214   (framework predicts +0.0700)
+     d(zero point)/d log Upsilon_K       = -0.1247 dex per dex
+     d(partial coeff)/d log Upsilon_K    = -0.0180 per dex  =  0.85 of its own error per dex
+  [PASS] k02-4 UPSILON LEVER, the wall nine earlier items hit: the statistic being quoted must move by less than its own 1-sigma error over the realistic Upsilon_K range (0.4-0.9, i.e. 0.35 dex).  If it moves more, this is a mass-to-light measurement wearing a_0's clothes   (moves 0.0063 over the range vs its own error 0.0211)
+  [PASS] k02-5 the direction of the distance systematic is computed, not assumed: a distance error raises M_b as D^2 (lowering Delta_obs) and lowers g_e as D^-2, so it induces a POSITIVE Delta-vs-log g_e slope, opposite to the framework's predicted negative one.  A negative measured slope therefore cannot be a distance artefact; a positive one is uninformative   (measured d Delta_obs/d log(g_e/a_0) = -0.0418 +- 0.0230 (framework: negative; SEP: zero; distance systematic: positive))
+  [PASS] k02-6 the circularity cut matters and is shown to matter: galaxies whose catalogue distance came from the Tully-Fisher relation have a BTFR residual that is partly set by construction   (N = 295 without TF distances vs 473 with; sd(Delta_obs) = 0.178 vs 0.161 dex)
+  [PASS] k02-7 the same slope on the gas-dominated subsample, where the stellar mass-to-light ratio carries less than half the baryonic mass and the lever is structurally small   (N = 165, slope = -1.432 +- 2.145 vs full-sample +0.277 +- 0.543)
+  [PASS] k02-8 an INDEPENDENT environment variable -- the catalogue's own published tidal index, computed by its authors and not by me -- must agree with my reconstructed external field, or my reconstruction is the thing being measured   (corr(Theta_1, log g_e) = +0.970; d Delta_obs/d Theta_1 = -0.0088 +- 0.0080)
+
+RESULT: 8 checks, 1 FAIL -> ['k02-2 MUTATION, AND IT FIRES: shuffling which galaxy feels which external field must destroy the naive slope.  It does not -- so the naive regression of Delta_obs on Delta_pred is measuring the mass and radius dependence that Delta_pred also carries, not the environment.  This check FAILS the naive statistic and is the reason the controlled partial coefficient above is the one to read']   rc=1
+
+========================================================================================================================
+THE LambdaCDM ALTERNATIVE, COMPUTED BESIDE
+========================================================================================================================
+  GR + cold dark matter obeys the strong equivalence principle exactly: a uniform external field is
+  removed by going to the free-fall frame, so internal dynamics cannot know about it.  Its prediction
+  for the slope of Delta_obs on Delta_pred is 0.000, with no freedom.  The only way it can produce a
+  trend is through TIDAL STRIPPING, which removes mass and lowers V -- the same sign as the framework.
+  That degeneracy is real and is the main reason this test is not decisive at Local Volume distances:
+  stripping and the external field are both strongest for the same galaxies.
+
+========================================================================================================================
+VERDICT -- k02
+========================================================================================================================
+  canonical : CONTROLLED d Delta/d log(g_e/a_0) at fixed M_b = -0.0450 +- 0.0211
+              framework predicts +0.0007  (2.2 sigma) | LambdaCDM/SEP predicts 0 exactly (2.1 sigma) | lever sd(Delta_pred) = 0.0345 dex
+  alt       : CONTROLLED d Delta/d log(g_e/a_0) at fixed M_b = -0.0450 +- 0.0212
+              framework predicts +0.0001  (2.1 sigma) | LambdaCDM/SEP predicts 0 exactly (2.1 sigma) | lever sd(Delta_pred) = 0.0324 dex
+
+  THE ANSWER, AGAINST INTEREST.  The framework's OWN predicted partial coefficient is +0.0007 -- that is,
+  in the Local Volume the framework and LambdaCDM make the SAME prediction to four decimal places, because
+  the median external field is 0.009 a_0 and the HI discs end well inside the radius where it would bite.
+  The law is real and it is not a restatement, but THIS SAMPLE CANNOT TEST IT.  Recorded as degenerate,
+  not as a null and not as a confirmation.
+
+  What the data do show is a -0.045 +- 0.021 dex-per-dex deficit at fixed baryonic mass in denser
+  environments -- 2.1 sigma, predicted by NEITHER theory, of the sign and size expected from HI stripping,
+  and of the opposite sign to the distance systematic (check k02-5).  It is most simply gas removal, and
+  it must not be quoted as an external-field detection.
+
+  WHERE THE LAW WOULD HAVE TEETH, computed here rather than guessed: the predicted deficit reaches 0.05 dex
+  only when g_e approaches a_0, which in this catalogue happens for no galaxy at all (max 0.21 a_0).  The
+  test belongs in cluster infall regions and around massive hosts, not in the Local Volume field.

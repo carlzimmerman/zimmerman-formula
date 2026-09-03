@@ -1,0 +1,261 @@
+======================================================================================================================
+u11 -- MODIFICATIONS THAT ARE FUNCTIONS OF y = g_bar/a_0 ALONE
+======================================================================================================================
+
+----------------------------------------------------------------------------------------------------------------------
+(0) VALIDITY -- the keeper battery must reproduce what the source items published, before it is used to judge
+----------------------------------------------------------------------------------------------------------------------
+  K1 RAR point scatter        0.1764 dex   (median offset +0.0233)
+  K3 deep-tail kernel slope   0.5489    (item 25 measures 0.60 +- 0.07 on the data; the kernel's own limit is 1/2)
+  K4 BTFR slope / a_0         1.0326 / 6.984e-11   (predicted slope 1)
+  K5 Renzo 1st-order beta     0.8563    (item 22 published 0.84 against a predicted 1.0)
+  K6 inner diversity r        0.7806    (item 23 published r = 0.79)
+  K7 lensing log slope        -1.0196    (item 1 measured -1.10, -1.00, -0.96, -1.04)
+  [PASS] 0a keeper battery reproduces item 23's inner-diversity correlation   (here 0.781 vs published 0.79)
+  [PASS] 0b keeper battery reproduces item 22's Renzo regression coefficient   (here 0.856 vs published 0.84)
+  [PASS] 0c keeper battery reproduces item 1's lensing 1/r law   (here -1.020 vs predicted -1.000)
+  [PASS] 0d keeper battery reproduces the BTFR's unit slope   (here 1.033)
+  [PASS] 0e MUTATION -- the battery is live: nu = 1 (pure Newton) breaks it   (6 keepers broken by Newton: rar_rms; rar_med; tail_slope; btfr_slope; renzo_beta; lens_slope)
+     Newton breaks rar_rms: +0.176 -> +0.301 (tol 0.02)
+     Newton breaks rar_med: +0.023 -> +0.434 (tol 0.05)
+     Newton breaks tail_slope: +0.549 -> +1.000 (tol 0.05)
+     Newton breaks btfr_slope: +1.033 -> +1.242 (tol 0.1)
+     Newton breaks renzo_beta: +0.856 -> +0.524 (tol 0.2)
+     Newton breaks lens_slope: -1.020 -> -2.000 (tol 0.1)
+  [PASS] 0f ledger spot check -- X-COP cores reproduce h67b's published acceleration eta = 2.91   (10^B = 2.910)
+  [PASS] 0g ledger spot check -- the isolated binary-pair amplitude A = 1.89 in VELOCITY is 2 log10 A in acceleration   (B = +0.5530 vs 2 log10(1.89) = +0.5529)
+  [PASS] 0h ledger spot check -- CLASH's +0.538 dex is h56's eta_g = 3.45   (10^B = 3.450)
+
+----------------------------------------------------------------------------------------------------------------------
+(1) THE NO-GO FOR THE WHOLE CLASS -- how much of B is a function of y?
+----------------------------------------------------------------------------------------------------------------------
+  system                 class    support           y   B(dex)   eta_g     r_kpc  M_enc(Msun)  Newton N
+  mw_ufd                 psupp    pressure     0.0008   +0.709    5.12     0.071    2.708e+03    183.48
+  m31_satellites         psupp    pressure     0.0035   +0.232    1.71     0.299    2.101e+05     29.70
+  erass1_groups          cluster  pressure     0.0042   +0.420    2.63   409.000    4.717e+11     41.92
+  mw_classical_dsph      psupp    pressure     0.0071   +0.134    1.36     0.406    7.857e+05     16.85
+  coma_udgs              psupp    pressure     0.0074   +0.396    2.49     1.900    1.793e+07     30.19
+  pal14                  psupp    pressure     0.0102   -0.871    0.13     0.028    5.217e+03      1.40
+  binary_pairs           disc     pressure     0.0119   +0.553    3.57   141.000    1.588e+11     34.57
+  lg_field_gaspoor       psupp    pressure     0.0120   +0.118    1.31     0.242    4.718e+05     12.65
+  pal3                   psupp    pressure     0.0213   -0.148    0.71     0.020    5.835e+03      5.24
+  lovisari_r500          cluster  pressure     0.0230   +0.161    1.45   526.000    4.272e+12     10.31
+  lg_field_all           psupp    pressure     0.0297   -0.088    0.82     0.320    2.042e+06      5.16
+  erass1_lowz            cluster  pressure     0.0310   +0.283    1.92   800.000    1.332e+13     11.89
+  ngc1052_df2            psupp    pressure     0.0339   -0.771    0.17     1.650    6.196e+07      1.01
+  erass1_clusters        cluster  pressure     0.0360   +0.328    2.13   758.000    1.389e+13     12.33
+  tidal_dwarfs           disc     rotation     0.0380   -0.682    0.21     4.800    5.878e+08      1.17
+  lovisari_r2500         cluster  pressure     0.0410   +0.350    2.24   224.000    1.381e+12     12.22
+  pal4                   psupp    pressure     0.0489   -0.811    0.15     0.016    8.300e+03      0.78
+  ngc1052_df4            psupp    pressure     0.0582   -1.375    0.04     1.200    5.627e+07      0.20
+  erass1_hiz             cluster  pressure     0.0590   +0.408    2.56   676.000    1.810e+13     11.87
+  xcop_0.9r500           cluster  pressure     0.1110   +0.170    1.48  1107.000    9.132e+13      5.22
+  erass1_rich            cluster  pressure     0.1130   +0.337    2.17  1395.000    1.476e+14      7.60
+  xcop_0.5r500           cluster  pressure     0.1750   +0.320    2.09   616.000    4.458e+13      6.11
+  xcop_0.2r500           cluster  pressure     0.2590   +0.441    2.76   246.000    1.052e+13      6.92
+  diskmass               disc     rotation     0.3530   +0.177    1.50     8.630    1.765e+10      3.36
+  clash_lensing          cluster  lensing      0.3610   +0.538    3.45   200.000    9.695e+12      7.64
+  bullet_bcg3            cluster  lensing      0.3820   +0.498    3.15   300.000    2.308e+13      6.83
+  bullet_bcg1            cluster  lensing      0.4140   +0.501    3.17   300.000    2.502e+13      6.68
+  xcop_cores             cluster  pressure     0.5200   +0.464    2.91    50.000    8.728e+11      5.66
+  sluggs_massive         psupp    pressure     0.7300   +0.331    2.14    20.900    2.141e+11      3.73
+  xray_ellipticals       cluster  pressure     0.8000   +0.228    1.69    20.000    2.148e+11      2.86
+  ngc2419                psupp    pressure     0.8619   -0.201    0.63     0.020    2.269e+05      1.04
+  mw_kz                  disc     rotation     1.3900   -0.115    0.77     8.200    6.275e+10      1.11
+  pne_earlytypes         psupp    pressure     1.4400   +0.066    1.16     7.900    6.034e+10      1.67
+  sluggs_lowmass         psupp    pressure     1.6400   +0.058    1.14     7.300    5.867e+10      1.58
+  atlas3d_chabrier       psupp    pressure     2.3200   +0.094    1.24     2.720    1.152e+10      1.59
+  atlas3d_salpeter       psupp    pressure     3.9400   -0.095    0.80     2.720    1.957e+10      0.93
+  slacs_lenses           disc     lensing     10.0000   +0.084    1.21     4.070    1.112e+11      1.27
+  warp_onset             disc     --           0.1850   +1.607      --     7.200           --        --   [LOCATION failure: predicted onset 52 kpc vs measured 7.2 kpc]
+  fp_tilt                disc     --          16.8000   +0.109      --     3.020           --        --   [GRADIENT failure: the sigma coefficient is virial by a theorem]
+
+             y bin  N_led    min B    max B   range   median  SPARC pts  SPARC %   systems at the extremes
+   0.0005-  0.005      3   +0.232   +0.709   0.477   +0.420          3     0.1%   m31_satellites .. mw_ufd
+   0.0050-  0.015      5   -0.871   +0.553   1.424   +0.134         25     0.8%   pal14 .. binary_pairs
+   0.0150-  0.050      9   -0.811   +0.350   1.161   -0.088        444    14.1%   pal4 .. lovisari_r2500
+   0.0500-  0.150      4   -1.375   +0.408   1.783   +0.253        839    26.7%   ngc1052_df4 .. erass1_hiz
+   0.1500-  0.500      6   +0.177   +0.538   0.361   +0.470        668    21.3%   diskmass .. clash_lensing
+   0.5000-  1.500      6   -0.201   +0.464   0.665   +0.147        525    16.7%   ngc2419 .. xcop_cores
+   1.5000-  5.000      3   -0.095   +0.094   0.189   +0.058        386    12.3%   atlas3d_salpeter .. atlas3d_chabrier
+   5.0000- 30.000      1   +0.084   +0.084   0.000   +0.084        225     7.2%   slacs_lenses .. slacs_lenses
+
+  y in [0.0150, 0.050): the ledger needs from -0.811 to +0.350 dex -- a span of 1.161 dex -- while 444 SPARC points (14% of the sample) need 0.000
+  y in [0.0500, 0.150): the ledger needs from -1.375 to +0.408 dex -- a span of 1.783 dex -- while 839 SPARC points (27% of the sample) need 0.000
+  y in [0.5000, 1.500): the ledger needs from -0.201 to +0.464 dex -- a span of 0.665 dex -- while 525 SPARC points (17% of the sample) need 0.000
+  [PASS] 1a THE NO-GO, stated as a fact about the table: there are y bins where the ledger demands corrections of BOTH signs larger than the RAR's own scatter, with hundreds of SPARC points in the same bin demanding zero.  No function of y can serve all three   (3 such bins: [0.0150,0.050), [0.0500,0.150), [0.5000,1.500))
+
+  the best a function of y can do, bin by bin (the ledger's own least-squares D, and what it does to SPARC):
+             y bin   D_best  ledger rms before    after  SPARC pts hit  SPARC damage
+   0.0005-  0.005   +0.454              0.494    0.196              3         0.454
+   0.0050-  0.015   +0.066              0.501    0.496             25         0.066
+   0.0150-  0.050   -0.153              0.481    0.456            444         0.153
+   0.0500-  0.150   -0.115              0.742    0.733            839         0.115
+   0.1500-  0.500   +0.413              0.431    0.126            668         0.413
+   0.5000-  1.500   +0.129              0.269    0.236            525         0.129
+   1.5000-  5.000   +0.019              0.084    0.082            386         0.019
+   5.0000- 30.000   +0.084              0.084    0.000            225         0.084
+  the NONPARAMETRIC best function of y (one free number per bin, 8 parameters for 37 rows):
+     ledger rms   0.461 -> 0.397 dex   (14% of the variance removed)
+     SPARC pays   an rms systematic of 0.216 dex added to a RAR whose own point scatter is 0.176
+  [PASS] 1b even with a free number in every y bin -- more freedom than any kernel has -- the ledger's residual falls by less than half, and paying for it costs SPARC a systematic comparable to the RAR's entire scatter   (ledger 0.461 -> 0.397 dex; SPARC systematic 0.216 dex against an RAR scatter of 0.176)
+  signed B against log y over all 37 amplitude rows: slope +0.002, r = +0.004, permutation p = 0.982
+  [PASS] 1c the signed liability is NOT organised by the framework's own variable (this reproduces, on the full 37-row table, what u01 found separately in the cluster and pressure-supported blocks)   (r = +0.004, p = 0.982 over 20000 relabellings)
+  THE ALTERNATIVE BESIDE: with nu = 1 the same 37 rows need a Newtonian discrepancy of x5.7 (range x0.20 to x183); the Route A kernel already removes 69% of it on the median row.
+  LambdaCDM buys each of these rows a halo with two free parameters per system -- 74 parameters for 37 rows.  The comparison below is one or three parameters TOTAL against that, which is the only fair way to read it.
+
+----------------------------------------------------------------------------------------------------------------------
+(2) THE ATTEMPTS -- each fitted to the ledger, then handed to the keeper battery
+----------------------------------------------------------------------------------------------------------------------
+
+  [A2] alpha-family nu_n, n = 0.655 (n=1 'simple', n=2 'standard'; Route A is not in this family)   (1 free parameter, canonical footing)
+        ledger rms  0.461 -> 0.452 dex   median |B| 0.328 -> 0.247   rows improved 20/37, rows made worse 10/37
+        keepers: 1 BROKEN
+           - rar_med: +0.023 -> -0.075 (tol 0.05)
+
+  [A3] Route A with a free exponent, nu = 1/(1-exp(-y^p)), p = 0.549 (Route A is p = 1/2)   (1 free parameter, canonical footing)
+        ledger rms  0.461 -> 0.456 dex   median |B| 0.328 -> 0.288   rows improved 12/37, rows made worse 7/37
+        keepers: 2 BROKEN
+           - tail_slope: +0.549 -> +0.497 (tol 0.05)
+           - lens_slope: -1.020 -> -0.915 (tol 0.1)
+
+  [A4] a SECOND ACCELERATION SCALE: Route A x [1 + A exp(-(log10 y - log10 y1)^2/2w^2)], A = 2.03, y1 = 0.3042, w = 0.23   (3 free parameters, canonical footing)
+        ledger rms  0.461 -> 0.418 dex   median |B| 0.328 -> 0.148   rows improved 10/37, rows made worse 2/37
+        keepers: 6 BROKEN
+           - rar_rms: +0.176 -> +0.234 (tol 0.02)
+           - rar_med: +0.023 -> -0.077 (tol 0.05)
+           - tail_slope: +0.549 -> +0.637 (tol 0.05)
+           - btfr_slope: +1.033 -> +1.177 (tol 0.1)
+           - renzo_beta: +0.856 -> +0.270 (tol 0.2)
+           - div_r: +0.781 -> +0.656 (tol 0.1)
+
+  [A4b] the same bump fitted to the CLUSTER FRONT ALONE (A = 1.77, y1 = 21.6588, w = 3.00), then shown the other 22 rows   (3 free parameters, canonical footing)  [cluster rms alone 0.381 -> 0.110]
+        ledger rms  0.461 -> 0.529 dex   median |B| 0.328 -> 0.184   rows improved 17/37, rows made worse 15/37
+        keepers: 3 BROKEN
+           - rar_med: +0.023 -> -0.364 (tol 0.05)
+           - tail_slope: +0.549 -> +0.620 (tol 0.05)
+           - lens_slope: -1.020 -> -1.154 (tol 0.1)
+
+  [A7] a free DEEP-MOND EXPONENT, nu = sqrt(1 + y^-2a) with a = 0.560 (a = 1/2 is the framework's; a != 1/2 changes the BTFR slope to 1/(2a) and the lensing law to r^-2(1-a))   (1 free parameter, canonical footing)
+        ledger rms  0.461 -> 0.464 dex   median |B| 0.328 -> 0.285   rows improved 10/37, rows made worse 4/37
+        keepers: 2 BROKEN
+           - tail_slope: +0.549 -> +0.456 (tol 0.05)
+           - lens_slope: -1.020 -> -0.881 (tol 0.1)
+
+  [A5] an additive acceleration floor, g = nu_A(y) g_bar + f a_0 with f = 0.0337   (1 free parameter, canonical footing)
+        ledger rms  0.461 -> 0.449 dex   median |B| 0.328 -> 0.258   rows improved 12/37, rows made worse 7/37
+        keepers: 2 BROKEN
+           - tail_slope: +0.549 -> +0.473 (tol 0.05)
+           - lens_slope: -1.020 -> -0.423 (tol 0.1)
+
+  [A6] a_0 rescaled by lambda = 1.588 (a_0 = 1.486e-10 m/s^2), kernel unchanged   (1 free parameter, canonical footing)
+        ledger rms  0.461 -> 0.453 dex   median |B| 0.328 -> 0.250   rows improved 25/37, rows made worse 9/37
+        keepers: 1 BROKEN
+           - rar_med: +0.023 -> -0.042 (tol 0.05)
+
+  [A2] alpha-family nu_n, n = 0.732 (n=1 'simple', n=2 'standard'; Route A is not in this family)   (1 free parameter, alt footing)
+        ledger rms  0.456 -> 0.451 dex   median |B| 0.291 -> 0.243   rows improved 14/37, rows made worse 4/37
+        keepers: 1 BROKEN
+           - rar_med: -0.004 -> -0.072 (tol 0.05)
+
+  [A3] Route A with a free exponent, nu = 1/(1-exp(-y^p)), p = 0.527 (Route A is p = 1/2)   (1 free parameter, alt footing)
+        ledger rms  0.456 -> 0.455 dex   median |B| 0.291 -> 0.268   rows improved 7/37, rows made worse 1/37
+        keepers: NONE BROKEN
+           (rar_rms 0.1768->0.1790, renzo 0.870->0.899, lens -1.017->-0.960, tail 0.545->0.517)
+
+  [A4] a SECOND ACCELERATION SCALE: Route A x [1 + A exp(-(log10 y - log10 y1)^2/2w^2)], A = 1.80, y1 = 0.2541, w = 0.23   (3 free parameters, alt footing)
+        ledger rms  0.456 -> 0.420 dex   median |B| 0.291 -> 0.149   rows improved 10/37, rows made worse 2/37
+        keepers: 6 BROKEN
+           - rar_rms: +0.177 -> +0.227 (tol 0.02)
+           - rar_med: -0.004 -> -0.097 (tol 0.05)
+           - tail_slope: +0.545 -> +0.612 (tol 0.05)
+           - btfr_slope: +1.030 -> +1.158 (tol 0.1)
+           - renzo_beta: +0.870 -> +0.288 (tol 0.2)
+           - div_r: +0.779 -> +0.665 (tol 0.1)
+
+  [A4b] the same bump fitted to the CLUSTER FRONT ALONE (A = 1.77, y1 = 57.9697, w = 3.00), then shown the other 22 rows   (3 free parameters, alt footing)  [cluster rms alone 0.349 -> 0.109]
+        ledger rms  0.456 -> 0.529 dex   median |B| 0.291 -> 0.185   rows improved 17/37, rows made worse 17/37
+        keepers: 3 BROKEN
+           - rar_med: -0.004 -> -0.364 (tol 0.05)
+           - tail_slope: +0.545 -> +0.622 (tol 0.05)
+           - lens_slope: -1.017 -> -1.138 (tol 0.1)
+
+  [A7] a free DEEP-MOND EXPONENT, nu = sqrt(1 + y^-2a) with a = 0.537 (a = 1/2 is the framework's; a != 1/2 changes the BTFR slope to 1/(2a) and the lensing law to r^-2(1-a))   (1 free parameter, alt footing)
+        ledger rms  0.456 -> 0.461 dex   median |B| 0.291 -> 0.290   rows improved 8/37, rows made worse 3/37
+        keepers: 1 BROKEN
+           - tail_slope: +0.545 -> +0.477 (tol 0.05)
+
+  [A5] an additive acceleration floor, g = nu_A(y) g_bar + f a_0 with f = 0.0218   (1 free parameter, alt footing)
+        ledger rms  0.456 -> 0.449 dex   median |B| 0.291 -> 0.248   rows improved 9/37, rows made worse 3/37
+        keepers: 2 BROKEN
+           - tail_slope: +0.545 -> +0.488 (tol 0.05)
+           - lens_slope: -1.017 -> -0.488 (tol 0.1)
+
+  [A6] a_0 rescaled by lambda = 1.315 (a_0 = 1.486e-10 m/s^2), kernel unchanged   (1 free parameter, alt footing)
+        ledger rms  0.456 -> 0.453 dex   median |B| 0.291 -> 0.250   rows improved 14/37, rows made worse 7/37
+        keepers: NONE BROKEN
+           (rar_rms 0.1768->0.1782, renzo 0.870->0.889, lens -1.017->-1.013, tail 0.545->0.539)
+  [PASS] 2a NO kernel modification of y alone gets the ledger below half its starting residual   (A2 0.461->0.452; A3 0.461->0.456; A4 0.461->0.418; A4b 0.461->0.529; A7 0.461->0.464; A5 0.461->0.449; A6 0.461->0.453)
+  [PASS] 2b EVERY kernel modification that measurably improves the ledger breaks at least one keeper   (A2: d_rms -0.009, 1 keepers broken; A3: d_rms -0.004, 2 keepers broken; A4: d_rms -0.042, 6 keepers broken; A4b: d_rms +0.069, 3 keepers broken; A7: d_rms +0.003, 2 keepers broken; A5: d_rms -0.011, 2 keepers broken; A6: d_rms -0.007, 1 keepers broken)
+  [PASS] 2c the cluster-only fit (A4b) does NOT transfer -- a bump tuned on the eight cluster rows leaves the other rows no better and breaks keepers   (A4b rms 0.461->0.529, keepers 3)
+
+----------------------------------------------------------------------------------------------------------------------
+(3) THE SHARPEST INSTANCE -- two systems half a decade apart in y that need OPPOSITE corrections, with SPARC between them
+----------------------------------------------------------------------------------------------------------------------
+  system A                    y_A     B_A   system B                    y_B     B_B     gap  SPARC pts between
+  ngc1052_df4              0.0582  -1.375   erass1_hiz               0.0590  +0.408   1.783                433
+  ngc1052_df4              0.0582  -1.375   erass1_rich              0.1130  +0.337   1.712                908
+  ngc1052_df4              0.0582  -1.375   xcop_0.9r500             0.1110  +0.170   1.545                894
+  pal14                    0.0102  -0.871   binary_pairs             0.0119  +0.553   1.424                 25
+  pal4                     0.0489  -0.811   erass1_hiz               0.0590  +0.408   1.219                547
+  ngc1052_df2              0.0339  -0.771   erass1_hiz               0.0590  +0.408   1.179                699
+  ngc1052_df2              0.0339  -0.771   lovisari_r2500           0.0410  +0.350   1.121                400
+  ngc1052_df2              0.0339  -0.771   erass1_clusters          0.0360  +0.328   1.099                291
+  tidal_dwarfs             0.0380  -0.682   erass1_hiz               0.0590  +0.408   1.090                657
+  tidal_dwarfs             0.0380  -0.682   lovisari_r2500           0.0410  +0.350   1.032                358
+  pal14                    0.0102  -0.871   lg_field_gaspoor         0.0120  +0.118   0.989                 25
+  pal14                    0.0102  -0.871   pal3                     0.0213  -0.148   0.723                143
+  [PASS] 3a there exist pairs of systems within 0.35 dex in y whose required corrections differ by more than 0.6 dex, with SPARC points in between demanding zero -- the class (a) no-go in its most local form   (12 such pairs; largest gap 1.783 dex (ngc1052_df4 vs erass1_hiz))
+  the largest single amplitude liability, ngc1052_df4 at y = 0.0582, needs -1.375 dex.  988 SPARC points (31.5%) sit within a factor 2 of that y and need 0.000, with an RAR point scatter of 0.176 dex -- so supplying it would be a 7.8-sigma systematic on each of them.
+
+----------------------------------------------------------------------------------------------------------------------
+(4) MUTATION CONTROLS
+----------------------------------------------------------------------------------------------------------------------
+  the 3-parameter bump fitted to 40 SHUFFLED ledgers removes 4.9 +- 2.4% of the residual; on the REAL ledger it removes 9.2%
+  [PASS] M1 the improvement the most flexible kernel attempt achieves on the real ledger is NOT distinguishable from what it achieves on a ledger whose B values have been shuffled against y -- i.e. it is fitting noise, not a function of y   (real 9.2% vs shuffled 4.9 +- 2.4% (z = +1.81))
+  a_0 x 0.1  : ledger rms 0.623 (correct a_0 0.461)
+  a_0 x 10   : ledger rms 0.573 (correct a_0 0.461)
+  [PASS] M2 the ledger responds to a_0 -- a factor 10 either way changes its residual, so 'no a_0 works' is a measurement and not an insensitivity   (see the two lines above)
+  [PASS] M3a BOTH FOOTINGS -- the fitted ledger residual of every attempt is the same on both footings, far inside any failure in the table   (largest |rms_can - rms_alt| = 0.0028 dex)
+  AGAINST INTEREST -- attempt A3's keeper verdict FLIPS with the footing (2 broken canonical, 0 alt); its ledger improvement is +0.004 dex canonical / +0.001 alt, i.e. negligible either way
+  AGAINST INTEREST -- attempt A6's keeper verdict FLIPS with the footing (1 broken canonical, 0 alt); its ledger improvement is +0.007 dex canonical / +0.003 alt, i.e. negligible either way
+  [PASS] M3b BOTH FOOTINGS -- the CATEGORY of every attempt is footing-independent: on neither footing does any kernel modification improve the ledger by more than 0.05 dex without breaking a keeper   (2 attempts have a marginal keeper verdict that flips with the footing, and all of them improve the ledger by under 0.01 dex: A3, A6)
+  de-duplicated ledger (22 independent systems, one per source group): rms 0.502 dex, range -1.375 to +0.709
+  the alpha family refitted on the de-duplicated ledger: n = 0.605, rms 0.502 -> 0.489
+  [PASS] M4 the no-go is not an artefact of counting one sample several times: on 21 independent systems the residual is the same size and no kernel index improves it materially   (0.502 -> 0.489)
+
+======================================================================================================================
+VERDICT -- class (a): kernel and a_0 modifications
+======================================================================================================================
+
+  The 37 amplitude liabilities do not lie on any curve in the framework's own variable.  Over 20000
+  relabellings the signed residual's correlation with log y has p = 0.982; the best NONPARAMETRIC function of
+  y -- eight free numbers, more freedom than any kernel possesses -- takes the ledger from 0.461 to 0.397 dex
+  while imposing an rms systematic of 0.216 dex on SPARC, whose own RAR point scatter is 0.176.
+
+  The reason is local and can be read off the table: within 0.35 dex in y there are 12 pairs of systems whose
+  required corrections differ by more than 0.6 dex, and SPARC points sit between them at zero.  The extreme
+  case is ngc1052_df4 (-1.375 dex at y = 0.0582) against erass1_hiz (+0.408 at y = 0.0590).
+
+  Every attempt below improves the ledger by less than half and breaks keepers as soon as it improves it at
+  all.  The most flexible one does no better on the real ledger than on a shuffled one.
+
+  AGAINST INTEREST, three ways.  (i) The bound is on the CLASS, not on the framework: it says the cure is not
+  a kernel, which leaves classes (b) and (c) open and is what u12 and u13 test.  (ii) Two rows are excluded
+  from the fits as category errors (the warp LOCATION failure and the Fundamental Plane GRADIENT failure), and
+  including them would strengthen the no-go, so their exclusion is conservative in the direction of the
+  framework.  (iii) The LambdaCDM comparison is not flattering to this exercise: LambdaCDM absorbs all 37 rows
+  with two halo parameters per system, i.e. 74 parameters -- it is not a rival that has to pass this test.
+
+
+RESULT: 20 checks, 0 FAIL   rc=0

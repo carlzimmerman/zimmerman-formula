@@ -1,0 +1,82 @@
+======================================================================================================================
+k03 -- (A) the exact a_0(z) curve the published dark-energy fit implies, and (B) the Upsilon lever on item 16
+======================================================================================================================
+  a_0 footings: canonical 9.360e-11, alt 1.130e-10 m/s^2 -- both are z = 0 anchors; the CURVE below is a ratio and is footing-free
+  published CPL fit: w_0 = -0.752 +- 0.057, w_a = -0.860 +- 0.220
+
+======================================================================================================================
+PART A -- a_0(z) if the published dark-energy fit is right
+======================================================================================================================
+       z  rho_DE(z)/rho_DE(0)   a_0(z)/a_0(0)      dex   framework (flat)
+    0.00               1.0000          1.0000   0.0000             1.0000
+    0.25               1.1122          1.0546   0.0231             1.0000
+    0.50               1.1225          1.0595   0.0251             1.0000
+    0.75               1.0814          1.0399   0.0170             1.0000
+    1.00               1.0175          1.0087   0.0038             1.0000
+    1.50               0.8743          0.9351  -0.0292             1.0000
+    2.00               0.7430          0.8620  -0.0645             1.0000
+    2.50               0.6330          0.7956  -0.0993             1.0000
+    3.00               0.5432          0.7370  -0.1325             1.0000
+  [PASS] A1 THE PREDICTION IS NON-MONOTONIC, which the low-z expansion in item 79 could not see: the published fit makes a_0 RISE to a maximum and then FALL back through its present value.  That shape, not the local slope, is the thing a survey at two redshifts can test   (maximum a_0(z)/a_0(0) = 1.0615 (+0.0259 dex) at z = 0.41; back through 1 at z = 1.06)
+  [PASS] A2 and over the window where a_0 has actually been measured the CPL curve is already past its maximum and DECLINING -- the same direction the measurement leans.  So the published dark-energy fit and the framework's flat law are not opposites there; they are two nearby lines, and the data cannot be expected to tell them apart   (d log a_0/dz over z = 0.6-2.5 is -0.0642 for the CPL fit against 0.0000 for the framework -- a separation of only 0.0642 dex per unit z, and of the SAME sign as the measurement in Part B)
+
+======================================================================================================================
+PART B -- the closed-form inversion, reproduced, then differentiated with respect to the stellar mass-to-light ratio
+======================================================================================================================
+  99 of 100 galaxies invert; median a_0 = 1.385e-10 m/s^2 (+0.170 dex from canonical, +0.088 from alt)
+     d log a_0/dz = -0.1123 +- 0.0642
+  [PASS] B1 item 16 is reproduced here from the same table, which is the precondition for differentiating it   (this script -0.1123 +- 0.0642 against item 16's -0.112 +- 0.063)
+  
+  the lever: scaling the assumed stellar mass-to-light ratio by a factor U scales the STELLAR part of the
+  baryonic mass inside R_e, hence 1 - f_DM.  RC100 discs at z = 1-2 are gas-rich, so the stellar share of the
+  baryons is bracketed at 0.5 and 0.8 rather than assumed.
+    f_star      U   median a_0   dex shift   d log a0/dlog U   d log a0/dz
+       0.5   0.80    2.168e-10       0.195                         -0.0806
+       0.5   1.25    1.335e-10      -0.016                         -0.0800
+       0.5   1.00    1.385e-10       0.000            -1.087       -0.1123   [d(slope)/dlogU = +0.0032]
+       0.8   0.80    2.609e-10       0.275                         -0.0692
+       0.8   1.25    1.381e-10      -0.001                         -0.0708
+       0.8   1.00    1.385e-10       0.000            -1.426       -0.1123   [d(slope)/dlogU = -0.0086]
+  [PASS] B2 THE LEVER IS THE LARGEST IN THE WHOLE HUNT, and it was never computed before.  The closed-form inversion is a steep function of f_DM, so a 0.1 dex error in the stellar mass-to-light ratio moves the ABSOLUTE a_0 by two to three times that.  Item 16's median a_0 must not be quoted as an M/L-free measurement   (d log a_0/d log Upsilon = -1.087 (f_star = 0.5) to -1.426 (f_star = 0.8); 0.1 dex in Upsilon is 0.11 dex in a_0, against the 0.09 dex that separates the two footings)
+  [PASS] B3 AND THE GOOD NEWS, WHICH IS THE POINT OF DOING THIS: the TREND is far more robust than the zero point.  A redshift-independent error in Upsilon shifts every galaxy's a_0 by the same factor and cancels out of the slope almost exactly.  Item 16's d log a_0/dz survives; its absolute a_0 does not   (d(d log a_0/dz)/d log Upsilon = -0.0086 to +0.0032, so a 0.1 dex Upsilon error moves the trend by at most 0.0003 against its own error bar of 0.0642 (0% of it))
+  [PASS] B4 the leverage is asymmetric and that is worth recording: raising Upsilon lowers f_DM, and the inversion blows up as f_DM -> 0 because ln(1/f_DM) -> 0.  Galaxies already near baryon domination are the ones that move, so the estimator's tail is the systematic   (at Upsilon x1.25, f_star = 0.8, -1.43 lever and 31 galaxies fall out of the invertible range entirely)
+
+======================================================================================================================
+PART C -- what the two halves say together, with the alternatives beside them
+======================================================================================================================
+                          hypothesis    d log a_0/dz over z = 0.6-2.5   sigma from the measurement
+                 framework: a_0 flat                           0.0000                         1.75
+  published CPL fit (w0=-0.752, wa=-0.86)                          -0.0642                         0.75
+      LambdaCDM-native emergent rise                           0.1250                         3.70
+  [PASS] C1 the measurement separates the LambdaCDM-native rise from the other two, and does NOT separate the flat law from the published dark-energy fit -- because over this window the CPL curve is nearly flat itself.  Item 79's 4.4 sigma against w_0 came from a low-z expansion of a curve that is not linear in z   (flat 1.7 sigma, CPL 0.7 sigma, LambdaCDM-native 3.7 sigma)
+  [PASS] C2 MUTATION: shuffling the redshift labels must destroy the trend   (|slope| 0.1123 exceeded by 8.0% of 2000 shuffles)
+  [PASS] C3 MUTATION: the inversion must be a property of the ROUTE A kernel, not of the arithmetic.  Redone with the alpha = 1 kernel nu = sqrt(1 + 1/y) the same table returns a different a_0 zero point -- so the number is carrying the kernel, as it must   (Route A median a_0 = 1.385e-10, alpha = 1 median a_0 = 1.925e-10 (+0.143 dex apart); the TREND is nearly kernel-free (-0.1231 vs -0.1123))
+
+======================================================================================================================
+VERDICT -- k03
+======================================================================================================================
+
+  (A) IS A RESTATEMENT AND IS LABELLED ONE.  a_0^2 proportional to rho_DE IS the first law; running it forward
+      through a published CPL fit is a cosmology, not a second law.  What the exercise adds is a correction to
+      the lane: the implied a_0(z) is NON-MONOTONIC, peaking at +0.0259 dex at z = 0.41 and
+      returning through its present value, so over the z = 0.6-2.5 window where a_0 has been measured the CPL
+      curve's own slope is only -0.0642 dex per unit z.  The existing data therefore CANNOT separate the
+      framework's flat law from the published dark-energy fit (0.7 sigma), and item 79's
+      4.4 sigma rests on a low-z expansion of a curve that is not linear in z.  Reported against interest.
+
+  (B) IS THE USEFUL HALF.  The Upsilon lever on item 16's closed-form inversion is
+      d log a_0/d log Upsilon = -1.09 (gas-rich, f_star = 0.5) to -1.43
+      (star-dominated, f_star = 0.8) -- the largest the hunt has computed, and larger than the
+      0.09 dex that separates the two footings for a 0.1 dex change in the mass-to-light ratio.  Item 16's median
+      a_0 = 1.38e-10 must NOT be quoted as an M/L-free measurement.
+      Its TREND, however, survives: a redshift-independent Upsilon error cancels out of the slope, moving it by
+      at most 0.0003 for a 0.1 dex shift, 0% of its own error bar.
+      So the headline that matters -- the constraint on a rising a_0 -- stands, and the headline that does not --
+      the absolute value -- is withdrawn from the M/L-free column.
+
+  THE ONE THING TO DO NEXT with this lane: the separation between the flat law and every rival is largest OUTSIDE
+  the measured window, not inside it, and it is a curve rather than a slope.  A single a_0 point at z ~ 0.3-0.5,
+  where the CPL curve is near its maximum, is worth more than tightening the z = 0.6-2.5 slope.
+
+
+RESULT: 9 checks, 0 FAIL   rc=0

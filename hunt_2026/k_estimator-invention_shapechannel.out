@@ -1,0 +1,99 @@
+==============================================================================================================================
+PART 0 -- THE DISTANCE THEOREM, VERIFIED NUMERICALLY RATHER THAN ASSERTED
+==============================================================================================================================
+  3140 points, 147 galaxies
+  under D x1.37:   max |g_bar ratio - 1| = 6.661e-16     max |1.37 * g_obs ratio - 1| = 4.441e-16
+  [PASS] 0A THE DISTANCE THEOREM: g_bar is invariant ROW BY ROW under SPARC's distance rescaling and g_obs picks up exactly the constant 1/f, so a fit that profiles out one offset per galaxy cannot see the distance at all   (g_bar 6.66e-16, g_obs*f 4.44e-16 (machine precision))
+
+==============================================================================================================================
+PART 1 -- K1: a_0 FROM THE SHAPE ONLY, AND EVERY NUISANCE LEVER MEASURED
+==============================================================================================================================
+  SHAPE channel          a_0 = 1.3462e-10   chi^2 = 12583 on 3140 points
+  NORMALISATION channel  a_0 = 1.2411e-10   chi^2 = 51641 on the identical points
+     vs canonical 9.360e-11: shape +0.158 dex, normalisation +0.123 dex
+     vs alt       1.130e-10: shape +0.076 dex, normalisation +0.041 dex
+     d log a_0 / d log D        =  SHAPE  +0.0000   NORMALISATION  -2.7367
+     d log a_0 / d log sin i    =  SHAPE  +0.0000   NORMALISATION  -5.5279
+     d log a_0 / d log cos i    =  SHAPE  +1.4266   NORMALISATION  -1.3374
+     d log a_0 / d log Upsilon  =  SHAPE  +1.3631   NORMALISATION  -1.4032
+  [PASS] 1A the shape channel is EXACTLY distance-free and exactly free of the sin i that deprojects V_obs, where the normalisation channel -- which is what every existing rung of the a_0 ladder uses -- carries both   (shape d log a_0/d log D = +0.00000, d log a_0/d log sin i = +0.00000; normalisation -2.737 and -5.528)
+  [PASS] 1B ⚠ AND INCLINATION IS NOT REMOVED, ONLY HALF OF IT.  The cos i that deprojects the surface brightness multiplies the STELLAR term, sits inside the kernel argument, and is algebraically identical to an Upsilon error.  This check fails if it cancels too -- it does not   (shape d log a_0/d log cos i = +1.427, against d log a_0/d log Upsilon = +1.363 -- the same lever, as the algebra requires)
+  [PASS] 1C the shape channel really does contain a_0 -- an interior minimum with a large Delta chi^2 at both ends, not a flat direction dressed as a measurement   (Delta chi^2 = 64822 at 3e-12 and 13556 at 2e-9)
+  [PASS] 1D THE NEWTONIAN ALTERNATIVE, computed beside: unboosted baryons must be excluded in this very channel, else the channel is empty   (nu = 1 gives chi^2 = 108970 against 12583 for the kernel, on 3140 points)
+
+==============================================================================================================================
+PART 2 -- K1-b / K8(ii): WHERE THE SHAPE LEVERAGE LIVES.  A deep-MOND curve has NO a_0 in its shape.
+==============================================================================================================================
+  gas-dominated  f_*,loc < 0.25    N=  152 in  17 gal   a_0 = 2.0000e-09  <-- RAILED  lever +0.000   y = 0.016-0.079 (median 0.043)
+  star-dominated f_*,loc > 0.90    N= 1615 in  97 gal   a_0 = 1.6362e-10              lever +1.163   y = 0.077-14.062 (median 0.994)
+  all SPARC                        N= 3140 in 147 gal   a_0 = 1.3462e-10              lever +1.363   y = 0.029-7.933 (median 0.235)
+  [PASS] 2A ⚠ K1 FAILS AS AN M/L-FREE ESTIMATOR, AND THE REASON IS STRUCTURAL.  The gas-dominated subsample -- the only one with a small Upsilon lever -- has no shape leverage at all, because ln g_obs = 1/2 ln g_bar + const there and a constant is exactly what the per-galaxy offset absorbs.  The fit must RAIL.  This check fails if it returns a finite interior minimum   (gas-dominated fit rails at 2.000e-09 (scan bound 2.00e-09); its 95th-percentile y is 0.079, a factor 13 short of the transition)
+
+==============================================================================================================================
+PART 3 -- NEW: THE TWO-CHANNEL SOLVE.  Two channels with DIFFERENT Upsilon exponents intersect, and the
+           intersection determines a_0 AND Upsilon.  Does the Upsilon it returns exist in nature?
+==============================================================================================================================
+  shape-channel ridge          a_0 ~ Upsilon^+1.404
+  normalisation-channel ridge  a_0 ~ Upsilon^-1.383
+  the two ridges CROSS at   Upsilon_[3.6] = 0.487   a_0 = 1.2825e-10
+     that a_0 is +0.137 dex from canonical and +0.055 dex from alt
+  for reference, the single joint pooled fit (normalisation channel, Upsilon and a_0 both free) sits at Upsilon = 0.575, a_0 = 1.0208e-10, chi^2 = 50251
+  ⚠ BUG PATTERN 5, HANDLED EXPLICITLY: a_0 and Upsilon are degenerate inside each channel, so the ridges
+     above ARE the degeneracy directions and they are printed rather than hidden.  The solve works only
+     because the two exponents differ by 2.79; if they were equal the two channels would
+     be one channel and the intersection would not exist.
+  [PASS] 3A ⚠ THE TWO-CHANNEL SOLVE RETURNS A STELLAR MASS-TO-LIGHT RATIO THAT MUST EXIST IN NATURE.  Its whole content is that the two channels' Upsilon exponents differ, so their intersection is a measurement.  This check fails if the Upsilon it returns is outside the stellar-population range 0.3-0.8 at 3.6 micron   (Upsilon_[3.6] = 0.487 against SPS 0.5 +- 0.1 (allowed band 0.3-0.8); the two exponents are +1.404 and -1.383, differing by 2.79)
+  [PASS] 3B ⚠ AND THE a_0 IT RETURNS MUST LAND ON A FOOTING.  This is the check that decides whether the solve is a measurement of a_0 or only of Upsilon.  It fails if the intersection a_0 sits more than 0.3 dex from both footings   (a_0 = 1.282e-10: +0.137 dex from canonical, +0.055 dex from alt)
+  [PASS] 3C ⚠ REPORTED AGAINST INTEREST: the two-channel solve inherits the distance scale from the normalisation channel, so it is NOT distance-free even though half of it is.  This check fails if the combination somehow escaped the distance -- it does not, and the claim must never be made   (the normalisation half carries d log a_0/d log D = -2.737; the combination cannot be cleaner than its dirtiest input)
+
+==============================================================================================================================
+PART 4 -- K8: THE STRUCTURAL NO-GO.  Sigma_M = a_0/(2 pi G) against what hydrogen can supply.
+==============================================================================================================================
+  the surface density at which a thin disc reaches y = 1:  Sigma_M = a_0/(2 pi G) = 106.9 (canonical) / 129.0 (alt) Msun/pc^2
+  HI saturates near 10 Msun/pc^2 (above that hydrogen turns molecular): a factor 10.7-12.9 short
+  MEASURED IN SPARC: of 2711 points with a positive gas term, the gas-only y has median 0.0225, 99th percentile 0.0991, max 2.9278
+  among the 174 GAS-DOMINATED points (local stellar share < 0.25) the max gas-only y is 0.1380
+  ⚠ AGAINST INTEREST, THE EXCEPTIONS ARE NAMED: 7 points anywhere in SPARC have a gas-only y > 0.5, all in NGC5005; at those radii the local stellar share is 0.91-0.94, i.e. locally gas-rich but never gas-dominated, so they carry no M/L-free information.
+  [PASS] 4A K8(iii) MEASURED: hydrogen cannot put a disc on the transition.  The gas term alone never reaches y ~ 1 in a gas-DOMINATED region of any SPARC galaxy, which is what makes M/L-freedom and shape leverage mutually exclusive.  This check fails if any gas-dominated point reaches y > 0.5   (max gas-only y among gas-dominated points = 0.138; 99th percentile over all gas-bearing points = 0.099)
+  [PASS] 4B K8(i) MEASURED, NOT ASSUMED: the trade is exact and neither lever can be small at once.  The shape channel is distance-free and Upsilon-loaded; the normalisation channel is the mirror image   (shape (D +0.0000, Upsilon +1.363) vs normalisation (D -2.737, Upsilon -1.403) -- no channel has both levers small)
+
+==============================================================================================================================
+PART 5 -- THE RESTATEMENT TEST, EXECUTED
+==============================================================================================================================
+  v^4 = G M_b a_0  =>  g_obs^2 = a_0 g_bar  =>  ln g_obs = 1/2 ln g_bar + 1/2 ln a_0.
+  The a_0 sits entirely in the ADDITIVE CONSTANT, which is exactly what the per-galaxy offset c_g absorbs.
+  So a purely deep-MOND sample must give the shape estimator ZERO leverage.  Executed in PART 2: the
+  gas-dominated subsample (y = 0.016-0.079)
+  rails at the scan bound with an Upsilon lever of exactly zero -- no Upsilon dependence because no a_0
+  dependence.  THE DERIVATION DOES NOT CLOSE: the estimator lives entirely on the TRANSITION, which the
+  BTFR does not contain.  is_restatement = False for K1's mechanism.
+  ⚠ BUT the thing K1 measures is the same acceleration scale the pooled RAR fit measures, from the same
+  147 galaxies, and PART 3 shows the two channels are one two-parameter fit seen along two directions.
+  K1 is therefore a NEW ESTIMATOR of an OLD quantity, not a new relation -- it fails hunt criterion (1)
+  and (5) is not the reason.
+
+==============================================================================================================================
+PART 6 -- CONTROLS
+==============================================================================================================================
+  injected 5.000e-11 -> recovered 4.994e-11   (-0.001 dex)
+  injected 9.360e-11 -> recovered 9.414e-11   (+0.003 dex)
+  injected 1.130e-10 -> recovered 1.126e-10   (-0.002 dex)
+  injected 3.744e-10 -> recovered 3.749e-10   (+0.001 dex)
+  [PASS] 6A INJECTION: synthetic curves obeying the kernel exactly, on the real g_bar profiles, must be read back at the injected a_0 -- the control that item 25's slope-fixed estimator failed at +0.095 dex   (bias +0.003 dex at canonical, -0.002 at alt)
+  [PASS] 6B MUTATION: a 4x wrong a_0 must come back 4x wrong   (bias +0.001 dex from the injected 4x canonical)
+  [PASS] 6C MUTATION: shuffling which radius gets which V_obs INSIDE each galaxy leaves every normalisation intact and destroys only the shape -- the fit must get much worse   (shuffled chi^2 897956 at its own best a_0 2.000e-09, against 12583 unshuffled)
+
+==============================================================================================================================
+VERDICT ON K1 AND K8
+==============================================================================================================================
+  K1  a_0(shape, Upsilon = 0.5) = 1.3462e-10; EXACTLY distance-free (lever +0.0e+00) and free
+      of the V_obs sin i (lever +0.0e+00), but d log a_0/d log Upsilon = +1.363
+      and d log a_0/d log cos i = +1.427.  It measures a_0/Upsilon^1.36.
+  K8  Sigma_M = a_0/(2 pi G) = 107/129 Msun/pc^2 against HI's ~10; measured
+      max gas-only y in a gas-dominated SPARC region = 0.138.  The no-go holds on the data.
+  NEW two-channel solve: Upsilon = 0.487, a_0 = 1.282e-10 (+0.137 dex canonical, +0.055 dex alt); NOT distance-free.
+  LambdaCDM beside: a free NFW halo adds two parameters PER GALAXY to the shape, so it makes no prediction
+  in this channel at all; the fair statement is 1 global parameter against 2 x N_gal, and the only
+  falsifiable comparison computed here is Newton with no boost, which the channel excludes.
+
+RESULT: 14 checks, 0 FAIL   rc=0

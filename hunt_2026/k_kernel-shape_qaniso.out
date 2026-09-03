@@ -1,0 +1,296 @@
+
+======================================================================================================================
+k_kernel-shape_qaniso  --  candidate K4:  Q = gamma_perp/gamma_par, the EFE anisotropy ratio
+======================================================================================================================
+  COMPUTE stage, angle 'kernel-shape'.  Independent recomputation of the proposed candidate, plus the
+  three dilutions the proposing script omits (internal field, orbit averaging, mass-dependent regime).
+
+----------------------------------------------------------------------------------------------------------------------
+0.  RESTATEMENT TEST -- executed, not asserted:  can Q be derived from v^4 = G M_b a0 ?
+----------------------------------------------------------------------------------------------------------------------
+  Step 1.  Write down everything the deep-MOND relation asserts:  v^4 = G M_b a0, for an ISOLATED system
+           in the limit g_bar << a0.  It contains M_b, v and a0.  It contains no external field, no
+           direction, and no second body's orientation.
+  Step 2.  Attempt the derivation.  Q is a ratio of the system's response to a perturbation ALONG g_ext
+           to its response PERPENDICULAR to g_ext.  Take the deep-MOND relation and differentiate it with
+           respect to an external field:  d(v^4)/d g_ext = 0 identically, because g_ext does not appear.
+           The derivation therefore produces NO number for Q -- not Q = 1, but no statement at all.
+  Step 3.  Confirm numerically that the asymptotic relation is blind to the kernel shape that sets Q:
+      alpha=0.4                     nu(y) sqrt(y) at y = 1e-40, 1e-60, 1e-80 :  1.0000000125 1.0000000000 1.0000000000   (at y = 1e-8 it is 1.031829)
+      alpha=1 (Route A)             nu(y) sqrt(y) at y = 1e-40, 1e-60, 1e-80 :  1.0000000000 1.0000000000 1.0000000000   (at y = 1e-8 it is 1.000050)
+      alpha=3                       nu(y) sqrt(y) at y = 1e-40, 1e-60, 1e-80 :  1.0000000000 1.0000000000 1.0000000000   (at y = 1e-8 it is 1.000000)
+      sqrt 1+1/y (frozen amdt2)     nu(y) sqrt(y) at y = 1e-40, 1e-60, 1e-80 :  1.0000000000 1.0000000000 1.0000000000   (at y = 1e-8 it is 1.000000)
+      simple                        nu(y) sqrt(y) at y = 1e-40, 1e-60, 1e-80 :  1.0000000000 1.0000000000 1.0000000000   (at y = 1e-8 it is 1.000050)
+      (the ASYMPTOTE is alpha-free; the APPROACH is not, which is the honest caveat -- at y = 1e-8 the
+       alpha = 0.4 kernel is still 3.2% off the deep-MOND limit.  Real systems never reach y = 1e-40.)
+  [PASS] 0a  the deep-MOND limit v^4 = G M_b a0 is satisfied IDENTICALLY by every kernel in the class, so it carries zero information about the shape constant that sets Q
+         (max |nu sqrt(y) - 1| over five kernels at y <= 1e-40 is 1.25e-08; the relation cannot be a source for Q)
+  VERDICT on the restatement test:  the derivation does NOT close.  is_restatement = FALSE.
+  (Reported against interest: 'not a restatement' is a necessary condition and not a sufficient one --
+   a quantity can fail to be a restatement and still fail to be measurable, which is what happens below.)
+
+----------------------------------------------------------------------------------------------------------------------
+1.  CONTROL -- reproduce the frozen amendment's eigenvalues, then the asymptotic Q for the kernel class
+----------------------------------------------------------------------------------------------------------------------
+    frozen sqrt kernel   g_ext=1.7780e-10 (primary)  a0=9.360e-11 (canonical)  e=1.8996   gamma_par=1.0112  gamma_perp=1.1115
+    frozen sqrt kernel   g_ext=1.7780e-10 (primary)  a0=1.130e-10 (alt      )  e=1.5735   gamma_par=1.0151  gamma_perp=1.1309
+    frozen sqrt kernel   g_ext=2.0780e-10 (alt    )  a0=9.360e-11 (canonical)  e=2.2201   gamma_par=1.0086  gamma_perp=1.0974
+    frozen sqrt kernel   g_ext=2.0780e-10 (alt    )  a0=1.130e-10 (alt      )  e=1.8389   gamma_par=1.0118  gamma_perp=1.1147
+  [PASS] 1a  the frozen AMENDMENT 2 eigenvalues (1.0112 par / 1.1115 perp at the primary g_ext, canonical a0) are reproduced exactly by an independent implementation
+         (got par 1.0112 (frozen 1.0112), perp 1.1115 (frozen 1.1115))
+
+    kernel                      prim/     canoprim/      altalt/     canoalt/      alt
+    alpha=0.4                           1.1692        1.1746        1.1647        1.1702
+    alpha=0.6                           1.1599        1.1681        1.1531        1.1613
+    alpha=1 (Route A)                   1.1412        1.1549        1.1299        1.1436
+    alpha=1.5                           1.1181        1.1384        1.1017        1.1216
+    alpha=2                             1.0957        1.1221        1.0754        1.1002
+    alpha=3                             1.0559        1.0906        1.0330        1.0613
+    sqrt 1+1/y (frozen amdt2)           1.0993        1.1141        1.0880        1.1017
+    simple                              1.1296        1.1428        1.1189        1.1318
+    standard                            1.0883        1.1117        1.0712        1.0921
+
+    all 36 kernel x footing x g_ext combinations: Q = 1.0330 - 1.1746, median 1.1203
+  [PASS] 1b  the proposed candidate's own asymptotic table is reproduced independently (Route A, primary g_ext, canonical a0 -> Q = 1.1412 in the proposing script)
+         (this script gets Q_asym = 1.1412)
+  [PASS] 1c  MUTATION CONTROL: with nu = 1 (Newton, and every dark-matter model, since no halo model puts dark matter on 10 kAU scales) the asymptotic Q must be exactly 1
+         (nu = 1 gives Q = 1.000000000)
+
+----------------------------------------------------------------------------------------------------------------------
+1d.  THE SIGN.  The candidate's tensor is the SUPERSEDED arm's -- read from the frozen pre-registration
+----------------------------------------------------------------------------------------------------------------------
+  READ ONLY, verbatim from prep_2026/gaia_dr4_prep/PREREGISTRATION_DR4.md, Amendment 10(a) and 10(d2):
+      "the point-mass response in the external field is ANISOTROPIC, B_par = nu(y_extN) = 1.4732 along the
+       external field and B_perp = nu/sqrt(1+L0) = 1.2598 across it (L0 = 0.3674, canonical)"
+      "That sign was MI-arm-derived (the MI tensor is perpendicular-dominant everywhere).  The MG solve
+       gives a RADIUS-DEPENDENT sign: parallel-dominant at saturation (B_par = 1.4732 > B_perp = 1.2598),
+       perpendicular-dominant in the transition zone, with the computed flip at r = 1.96 r_M"
+
+  The candidate is built on gamma_perp^2 = nu(e), gamma_par^2 = d(nu g)/dg -- the MI/algebraic-inertia
+  response tensor, which is perpendicular-dominant at EVERY radius (Q > 1 everywhere in its own table).
+  The operative arm has been MODIFIED GRAVITY since 2026-08-08.  Its saturation value is
+      Q_MG(saturation) = sqrt(B_perp/B_par) = sqrt(1.2598/1.4732) = 0.9247
+  i.e. PARALLEL-dominant, Q < 1 -- the OPPOSITE SIDE OF 1 from every entry in the candidate's table.
+  [PASS] 1d1 REPORTED AGAINST THE CANDIDATE: the proposed Q is computed in the superseded MODIFIED-INERTIA arm.  In the operative MODIFIED-GRAVITY arm the frozen pre-registration's own solved tensor puts Q on the other side of 1 at saturation.  This check PASSES if the two arms genuinely disagree in SIGN, i.e. if the candidate's headline number is arm-contingent
+         (candidate (MI arm) Q_asym = 1.1412 > 1; frozen MG-arm saturation Q = 0.9247 < 1.  A quantity whose SIGN depends on which arm of the theory is operative is not a Kepler-grade law of the theory)
+
+----------------------------------------------------------------------------------------------------------------------
+2.  DILUTION D1 -- THE INTERNAL FIELD.  Q(s) from the exact nonlinear two-body solve at real separations
+----------------------------------------------------------------------------------------------------------------------
+  The eigenvalue ratio in part 1 is the limit h << g_ext, h = G M/(2 s^2).  Real wide binaries do not
+  sit in that limit.  Solve a_rel exactly at each separation and read the radial response.
+  El-Badry EDR3, h15 clean cut reproduced: N = 39702 pairs, median M_tot = 1.099 Msun, median s = 0.72 kAU
+
+    s [kAU]   h/g_ext |                  Route A can |                  Route A alt |             sqrt(frozen) can
+                      |    g_par   g_perp          Q |    g_par   g_perp          Q |    g_par   g_perp          Q
+        0.5    73.331 |   1.0000   1.0000     1.0000 |   1.0000   1.0000     1.0000 |   1.0018   1.0018     1.0000
+        1.0    18.333 |   1.0014   1.0014     1.0000 |   1.0023   1.0023     1.0000 |   1.0071   1.0071     1.0000
+        2.0     4.583 |   1.0274   1.0263     0.9989 |   1.0360   1.0348     0.9988 |   1.0275   1.0269     0.9994
+        3.0     2.037 |   1.0757   1.0693     0.9940 |   1.0921   1.0854     0.9938 |   1.0583   1.0535     0.9955
+        5.0     0.733 |   1.0270   1.1290     1.0993 |   1.0397   1.1527     1.1087 |   1.0178   1.0925     1.0734
+        7.0     0.374 |   1.0159   1.1476     1.1296 |   1.0273   1.1733     1.1421 |   1.0123   1.1054     1.0919
+       10.0     0.183 |   1.0138   1.1540     1.1383 |   1.0249   1.1804     1.1518 |   1.0114   1.1100     1.0974
+       16.0     0.072 |   1.0133   1.1559     1.1408 |   1.0243   1.1825     1.1544 |   1.0112   1.1113     1.0990
+       30.0     0.020 |   1.0132   1.1562     1.1412 |   1.0242   1.1828     1.1549 |   1.0112   1.1115     1.0992
+       60.0     0.005 |   1.0132   1.1563     1.1412 |   1.0242   1.1828     1.1549 |   1.0112   1.1115     1.0993
+      200.0     0.000 |   1.0132   1.1563     1.1412 |   1.0242   1.1828     1.1549 |   1.0112   1.1115     1.0993
+  [PASS] 2a  CAN FAIL: the internal field must actually matter -- Q at the sample's MEDIAN separation must be materially below the asymptotic Q, or dilution D1 is not a real effect and the proposing script was right to ignore it
+         (Q at s = 0.72 kAU (the sample median) is 1.0000 against the asymptotic 1.1412)
+
+  the clean sample's own separation distribution, and Q there (Route A, canonical, primary g_ext):
+       bin [kAU]       N    frac      Q(s)
+     0.5-   1.0   10026   0.396    1.0000
+     1.0-   2.0    7080   0.279    0.9998
+     2.0-   3.0    2837   0.112    0.9973
+     3.0-   5.0    2501   0.099    0.9927
+     5.0-   7.0    1044   0.041    1.1192
+     7.0-  10.0     789   0.031    1.1354
+    10.0-  16.0     620   0.024    1.1401
+    16.0-  30.0     355   0.014    1.1411
+    30.0-  60.0      91   0.004    1.1412
+  N-weighted Q over the clean sample (instantaneous radial response, NO orbit, NO projection) = 1.0140
+  the proposing script's number, geometry-diluted only:                                        = 1.0540
+  the asymptotic eigenvalue ratio:                                                             = 1.1412
+
+----------------------------------------------------------------------------------------------------------------------
+3.  DILUTIONS D2 + D3 -- THE ORBIT AND THE PROJECTION.  End-to-end forward Monte Carlo
+----------------------------------------------------------------------------------------------------------------------
+  Framework and Newton are run on the SAME orbital draws.  Observable: vtilde = v_proj/sqrt(GM/s_proj).
+  Q_obs is the DOUBLE ratio  [med vtilde_perp(F)/med vtilde_perp(N)] / [med vtilde_par(F)/med vtilde_par(N)],
+  i.e. exactly gamma_perp/gamma_par as a survey forms it.  Lines of sight drawn from the REAL (l,b) of the
+  clean El-Badry sample, so the sky coverage is the data's own and not an assumption.
+  <cos^2(LOS, g_ext)> over the real sky distribution = 0.3394 (isotropic would be 0.3333); the sample is high-latitude, which HELPS: the test has no power when the
+  line of sight is along g_ext, and that geometry is under-represented here.
+    ran Route A / canonical / primary
+    ran Route A / alt       / primary
+    ran Route A / canonical / alt gext
+    ran alpha=0.4 / canonical / primary
+    ran alpha=3   / canonical / primary
+    ran sqrt(frozen) / canonical / primary
+    ran NEWTON
+
+----------------------------------------------------------------------------------------------------------------------
+3a.  INTEGRATOR VALIDATION (a check that can fail): the Newtonian run must conserve energy and give the known Newtonian vtilde statistics
+----------------------------------------------------------------------------------------------------------------------
+  [PASS] 3a1 leapfrog conserves the Kepler energy of the isolated Newtonian two-body problem to better than 1e-3 in relative terms (if it did not, every number below would be integration error)
+         (median |dE/E| = 1.98e-04, 99th pct 4.49e-02; median |dL/L| = 9.99e-16)
+
+----------------------------------------------------------------------------------------------------------------------
+3b.  THE MEASUREMENT: Q_obs per projected-separation bin, framework vs Newton on identical draws
+----------------------------------------------------------------------------------------------------------------------
+  run                                    s_p bin [kAU]  gamma_par  gamma_perp  gamma_iso     Q_obs    +-MC
+  Route A / canonical / primary           0.5-   2.0       1.0235      1.0234     1.0233    0.9999  0.0027
+  Route A / canonical / primary           2.0-   5.0       1.0802      1.0747     1.0798    0.9949  0.0044
+  Route A / canonical / primary           5.0-  10.0       1.1404      1.1048     1.1212    0.9688  0.0068
+  Route A / canonical / primary          10.0-  20.0       1.2074      1.1482     1.1717    0.9510  0.0058
+  Route A / canonical / primary          20.0-  60.0       1.2867      1.1762     1.2108    0.9141  0.0089
+
+  Route A / alt       / primary           0.5-   2.0       1.0303      1.0311     1.0302    1.0009     nan
+  Route A / alt       / primary           2.0-   5.0       1.0948      1.0910     1.0956    0.9965     nan
+  Route A / alt       / primary           5.0-  10.0       1.1630      1.1266     1.1429    0.9687     nan
+  Route A / alt       / primary          10.0-  20.0       1.2303      1.1682     1.1931    0.9495     nan
+  Route A / alt       / primary          20.0-  60.0       1.3103      1.2021     1.2354    0.9174     nan
+
+  Route A / canonical / alt gext          0.5-   2.0       1.0210      1.0217     1.0210    1.0007     nan
+  Route A / canonical / alt gext          2.0-   5.0       1.0725      1.0675     1.0720    0.9953     nan
+  Route A / canonical / alt gext          5.0-  10.0       1.1303      1.0979     1.1108    0.9714     nan
+  Route A / canonical / alt gext         10.0-  20.0       1.1950      1.1351     1.1567    0.9499     nan
+  Route A / canonical / alt gext         20.0-  60.0       1.2634      1.1661     1.1966    0.9230     nan
+
+  alpha=0.4 / canonical / primary         0.5-   2.0       1.2912      1.2954     1.2920    1.0033     nan
+  alpha=0.4 / canonical / primary         2.0-   5.0       1.4797      1.4798     1.4814    1.0001     nan
+  alpha=0.4 / canonical / primary         5.0-  10.0       1.5658      1.5266     1.5469    0.9749     nan
+  alpha=0.4 / canonical / primary        10.0-  20.0       1.6652      1.5883     1.6214    0.9538     nan
+  alpha=0.4 / canonical / primary        20.0-  60.0       1.7392      1.6370     1.6613    0.9412     nan
+
+  alpha=3   / canonical / primary         0.5-   2.0       0.9989      0.9992     0.9992    1.0003     nan
+  alpha=3   / canonical / primary         2.0-   5.0       1.0101      1.0106     1.0103    1.0005     nan
+  alpha=3   / canonical / primary         5.0-  10.0       1.0334      1.0230     1.0272    0.9900     nan
+  alpha=3   / canonical / primary        10.0-  20.0       1.0610      1.0238     1.0400    0.9649     nan
+  alpha=3   / canonical / primary        20.0-  60.0       1.1054      1.0368     1.0646    0.9380     nan
+
+  sqrt(frozen) / canonical / primary      0.5-   2.0       1.0248      1.0230     1.0236    0.9982     nan
+  sqrt(frozen) / canonical / primary      2.0-   5.0       1.0592      1.0642     1.0632    1.0047     nan
+  sqrt(frozen) / canonical / primary      5.0-  10.0       1.1061      1.0812     1.0922    0.9775     nan
+  sqrt(frozen) / canonical / primary     10.0-  20.0       1.1629      1.1088     1.1295    0.9535     nan
+  sqrt(frozen) / canonical / primary     20.0-  60.0       1.2188      1.1278     1.1616    0.9254     nan
+
+
+----------------------------------------------------------------------------------------------------------------------
+3c.  MUTATION CONTROLS -- three, all of which can fail
+----------------------------------------------------------------------------------------------------------------------
+    M1  g_ext = 0 (MOND, no external field)     0.5-   2.0   gamma_iso = 1.0379 (a real boost)   Q = 0.9988 +- 0.0027   (must be 1: no preferred direction)
+    M1  g_ext = 0 (MOND, no external field)     2.0-   5.0   gamma_iso = 1.2405 (a real boost)   Q = 1.0000 +- 0.0051   (must be 1: no preferred direction)
+    M1  g_ext = 0 (MOND, no external field)     5.0-  10.0   gamma_iso = 1.6093 (a real boost)   Q = 1.0018 +- 0.0070   (must be 1: no preferred direction)
+    M1  g_ext = 0 (MOND, no external field)    10.0-  20.0   gamma_iso = 2.1067 (a real boost)   Q = 0.9953 +- 0.0051   (must be 1: no preferred direction)
+    M1  g_ext = 0 (MOND, no external field)    20.0-  60.0   gamma_iso = 2.9202 (a real boost)   Q = 0.9966 +- 0.0051   (must be 1: no preferred direction)
+  [PASS] 3c1 MUTATION CONTROL M1: switch the external field OFF and keep everything else -- the same kernel, the same orbits, the same projection, the same real sky coverage, the same orientation binning against the Galactic-centre axis.  The boost survives but the preferred direction does not, so Q must be 1.  This is the check that catches a geometric or binning artefact masquerading as anisotropy
+         (worst deviation over the five separation bins = 0.91 sigma_MC)
+    M2  Newton vs Newton, a SECOND independent eccentricity realisation     0.5-   2.0   Q = 0.9994 +- 0.0031  (0.2 sigma_MC from 1)
+    M2  Newton vs Newton, a SECOND independent eccentricity realisation     2.0-   5.0   Q = 1.0029 +- 0.0059  (0.5 sigma_MC from 1)
+    M2  Newton vs Newton, a SECOND independent eccentricity realisation     5.0-  10.0   Q = 1.0015 +- 0.0062  (0.2 sigma_MC from 1)
+    M2  Newton vs Newton, a SECOND independent eccentricity realisation    10.0-  20.0   Q = 0.9975 +- 0.0070  (0.4 sigma_MC from 1)
+    M2  Newton vs Newton, a SECOND independent eccentricity realisation    20.0-  60.0   Q = 0.9975 +- 0.0088  (0.3 sigma_MC from 1)
+    the paired jackknife error of the ACTUAL estimator runs up to 0.0089 per bin, which is the
+    Monte Carlo floor every number in part 3b must be read against.
+  [PASS] 3c2 MUTATION CONTROL M2: a second, independent Newtonian realisation put through the identical estimator must return Q = 1 within its own jackknife error.  A failure here would mean the estimator itself carries an orientation bias
+         (worst deviation over the five separation bins = 0.49 sigma_MC; the paired jackknife floor on the actual measurement is 0.0089 in Q)
+    M3  the SAME orbits integrated to 6 Newtonian periods instead of 3 (the algebraic EFE force law is not
+        curl-free for an anisotropic response, so a long integration can pump the orbit):
+           0.5-   2.0   Q(3 periods) = 0.9999   Q(6 periods) = 1.0018   shift = 0.7 sigma_MC
+           2.0-   5.0   Q(3 periods) = 0.9949   Q(6 periods) = 1.0009   shift = 1.4 sigma_MC
+           5.0-  10.0   Q(3 periods) = 0.9688   Q(6 periods) = 0.9763   shift = 1.1 sigma_MC
+          10.0-  20.0   Q(3 periods) = 0.9510   Q(6 periods) = 0.9524   shift = 0.2 sigma_MC
+          20.0-  60.0   Q(3 periods) = 0.9141   Q(6 periods) = 0.9201   shift = 0.7 sigma_MC
+  [PASS] 3c3 MUTATION CONTROL M3, and it is the one that decides whether the orbit-averaged number may be quoted at all: doubling the integration time must not move Q by more than 3 sigma_MC in any bin
+         (worst shift = 1.4 sigma_MC over the five bins)
+
+  clean-sample counts per projected-separation bin: 0.5-2.0: 17106  2.0-5.0: 5338  5.0-10.0: 1833  10.0-20.0: 790  20.0-60.0: 276
+  SAMPLE-WEIGHTED Q_obs (Route A, canonical, primary g_ext) = 0.9942
+  the proposing script's projected number                   = 1.0540
+  the asymptotic eigenvalue ratio                           = 1.1412
+  total surviving fraction of the intrinsic anisotropy: -4.1%
+  [FAIL] 3b2 CAN FAIL, AND IS THE POINT OF THIS SCRIPT: is the proposing script's projected Q = 1.054 recovered once the internal field and the orbit are included?  It is recovered only if Q_obs >= 1.04
+         (end-to-end Q_obs = 0.9942, i.e. -4.1% of the intrinsic anisotropy survives, against the 38.2% the geometry-only Monte Carlo retains)
+
+----------------------------------------------------------------------------------------------------------------------
+4.  POWER -- sigma(Q) anchored on the REAL catalogue, not on an assumed error
+----------------------------------------------------------------------------------------------------------------------
+  sigma(median vtilde) per bin is measured from the data's own vtilde scatter: 1.253 sigma/sqrt(N) for a
+  median.  The two orientation bins are independent samples, so sigma(Q)/Q = sqrt(sum of the two).
+    s_p bin [kAU]   N_data  sd(vtilde)  med vtilde   sigma(Q)   Q_obs-1   sigma   Q_inst-1
+     0.5-   2.0      17106      0.3646      0.6380     0.0168   -0.0001   -0.00    -0.0000
+     2.0-   5.0       5338      0.4240      0.7075     0.0316   -0.0051   -0.16    -0.0070
+     5.0-  10.0       1833      0.4572      0.7670     0.0537   -0.0312   -0.58    +0.1301
+    10.0-  20.0        790      0.4358      0.8119     0.0736   -0.0490   -0.67    +0.1405
+    20.0-  60.0        276      0.4015      0.8896     0.1047   -0.0859   -0.82    +0.1412
+
+  inverse-variance combination over separation bins: Q_obs - 1 = -0.00642 +- 0.01394  -> 0.46 sigma on the present EDR3 clean sample
+  the same combination for the ROBUST signal -- the instantaneous radial response, which needs no orbit
+  model at all and is therefore free of the a-prior sensitivity this repository has already documented
+  (real_research/data/widebinaries/wb_mond_orbit_mc.out): Q_inst - 1 = +0.01493 +- 0.01394 -> 1.07 sigma
+  pairs needed for a 3 sigma detection of the ROBUST signal: 7.8x the present clean sample (N = 3.11e+05)
+  for reference, the whole El-Badry EDR3 catalogue is 1.82e6 pairs before ANY quality cut, and Gaia DR4 is expected to roughly double to triple the clean yield, not multiply it by 8.
+  [FAIL] 4a  CAN FAIL: is Q detectable at 3 sigma in a sample the size of Gaia DR4's expected clean wide-binary yield (taken generously as 5x the present EDR3 clean sample)?  This is criterion (3) for the candidate: either it holds across many systems at RAR-class precision, or it is not Kepler-grade
+         (needs 7.8x the present clean sample on the robust signal; DR4 is expected to deliver about 2-3x.  On the orbit-averaged signal the significance is 0.46 sigma.)
+
+  CROSS-CHECK against the frozen pre-registration, which was written independently and before this hunt:
+    Amendment 10(d2) MG-arm pre-registered sample-level orientation split = +0.0013 to +0.0046 boost units (PERP larger)
+    this script's instantaneous-response sample-weighted Q - 1            = +0.01397
+    this script's orbit-averaged sample-weighted Q_obs - 1                = -0.00584
+    the proposing script's geometry-only number                           = +0.0540
+  [PASS] 4b  the end-to-end forecast must land within an order of magnitude of the FROZEN pre-registered MG-arm split.  If it does not, one of the two pipelines is wrong and the discrepancy must be reported.  (The proposing script's +0.0540 is 12x to 42x the frozen band and fails this test outright.)
+         (|Q_inst - 1| = 0.01397 against the frozen band [0.0013, 0.0046]; ratio to the band centre = 4.73.  The proposing script's number is 18x the band centre.)
+
+----------------------------------------------------------------------------------------------------------------------
+5.  THE UPSILON LEVER -- measured by re-running the entire pipeline at M_tot x 1.5
+----------------------------------------------------------------------------------------------------------------------
+  The proposing script claims d log Q / d log Upsilon = 0 EXACTLY, on the grounds that gamma ~ M^(-1/2) in
+  both bins.  That argument is correct for the NORMALISATION and wrong for the REGIME: the mass sets
+  h/g_ext = G M/(2 s^2 g_ext), i.e. which side of the transition each pair sits on.  Measured, not argued:
+    (instantaneous radial-response weighted Q at M x 1.0, no orbit model: 1.01397)
+    M_tot x 1.0:   sample-weighted Q_obs = 0.99416   sample-weighted gamma_iso = 1.04893
+    (instantaneous radial-response weighted Q at M x 1.5, no orbit model: 1.01288)
+    M_tot x 1.5:   sample-weighted Q_obs = 0.99641   sample-weighted gamma_iso = 1.04053
+    d log Q_obs   / d log Upsilon = +0.0056
+    d log gamma_iso / d log Upsilon = -0.0198   (for contrast: the isotropic boost's own lever)
+    in the units the candidate is quoted in: Q_obs - 1 moves from -0.00584 to -0.00359 -- an absolute shift of 0.00225 in Q for a 0.18 dex change
+    in the mass calibration, against a signal whose whole size is 0.01397.
+  [PASS] 5a  REPORTED AGAINST THE CANDIDATE: the claim d log Q / d log Upsilon = 0 EXACTLY holds only for the asymptotic eigenvalue ratio.  For the quantity a survey can form it must be nonzero, because the mass sets the regime.  This check PASSES if the lever is measurably nonzero -- i.e. if the claim is false
+         (measured d log Q_obs/d log Upsilon = +0.0056; the ASYMPTOTIC ratio's lever is 0 exactly, and that part of the claim is confirmed -- it is the observable that carries the lever)
+  IN THE CANDIDATE'S FAVOUR, and it matters: the lever is still far milder than any galaxy-scale
+  Upsilon lever in this hunt, and wide-binary masses come from a main-sequence relation calibrated on
+  eclipsing binaries (0.02-0.04 dex) rather than from stellar population synthesis (0.10-0.25 dex).
+
+======================================================================================================================
+VERDICT -- K4 (Q = gamma_perp/gamma_par)
+======================================================================================================================
+  1. The asymptotic claim REPRODUCES.  Q_asym = 1.1412 (Route A, canonical, primary g_ext); the whole
+     kernel class spans 1.0330-1.1746; Newton gives exactly 1 and the mutation control confirms it
+     end-to-end.  The frozen Amendment 2 eigenvalues are reproduced to <5e-4 by an independent implementation.
+  2. NOT A RESTATEMENT.  Executed: v^4 = G M_b a0 is isotropic, contains no g_ext, and is satisfied
+     identically by every kernel in the class -- it produces no number for Q at all.
+  3. THE CANDIDATE DOES NOT SURVIVE THE DILUTIONS.  Q(s) at the sample median separation is 1.0000, not 1.1412,
+     because the internal field is not small; the orbit averages what is left; and the end-to-end
+     sample-weighted Q_obs = 0.9942, which is -4.1% of the intrinsic anisotropy and -0.11x the
+     proposing script's geometry-only 1.054.
+  4. IT IS NOT MEASURABLE.  -0.46 sigma on the present clean EDR3 sample; a 3 sigma detection needs 8x that sample.
+     This AGREES with the frozen pre-registration's own MG-arm number (+0.0013-0.0046),
+     computed independently and before this hunt, and with hunt item 15, which measured the split on the
+     same catalogue and found it 63x to 793x underpowered.
+  5. THE UPSILON LEVER IS NOT ZERO for the observable: d log Q_obs/d log Upsilon = +0.0056.  It is zero
+     only for the asymptotic eigenvalue ratio, which is not a measurable quantity.
+  6. THE SIGN IS ARM-CONTINGENT.  The candidate's tensor is the superseded MODIFIED-INERTIA one (perp-dominant
+     everywhere).  The operative MODIFIED-GRAVITY arm's own frozen solve gives Q = 0.9247 at saturation --
+     PARALLEL-dominant, the other side of 1.  This script's orbit Monte Carlo, run on the MI-flavoured
+     algebraic law, independently returns Q = 0.9141 in the widest bin, within 0.0106 of that frozen
+     MG saturation value -- and the frozen pre-registration already registers the flip at r = 1.96 r_M.
+  CATEGORY: the anisotropy is real and Newton-forbidden, but it is NOT Kepler-grade.  Criterion (2) is
+  damaged (the coefficient's SIGN depends on which arm is operative) and criterion (3) fails outright on
+  measurability.  Recorded as a FAILED candidate.
+
+  WHICH FAILING CHECKS ARE FINDINGS RATHER THAN DEFECTS: 3b2 (the geometry-only 1.054 is not recovered),
+  4a (not detectable in DR4) and, where they fail, 4b.  Each is a can-fail check whose failure IS the
+  result.  3a1, 3c1, 3c2, 3c3, 1a, 1b, 1c are validation checks and a failure there would void the run.
+
+RESULT: 14 checks, 2 FAIL -> ["3b2 CAN FAIL, AND IS THE POINT OF THIS SCRIPT: is the proposing script's projected Q = 1.054 recovered once the internal field and the orbit are included?  It is recovered only if Q_obs >= 1.04", "4a  CAN FAIL: is Q detectable at 3 sigma in a sample the size of Gaia DR4's expected clean wide-binary yield (taken generously as 5x the present EDR3 clean sample)?  This is criterion (3) for the candidate: either it holds across many systems at RAR-class precision, or it is not Kepler-grade"]

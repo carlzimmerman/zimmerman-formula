@@ -1,0 +1,231 @@
+==========================================================================================================================
+PART 0 -- the geometry, verified against an independent integral before any data is touched
+==========================================================================================================================
+       R/R_d   eps (Bessel, exact)   eps (Hankel integral)     frac diff
+       0.500               0.06835                 0.06835      7.30e-07
+       1.000               0.27796                 0.27796      8.74e-07
+       1.678               0.62499                 0.62499      1.62e-07
+       3.356               1.13442                 1.13442      3.98e-07
+       6.000               1.16673                 1.16673      2.99e-07
+  [PASS] k-hz-0 the enclosed-mass geometry factor is the exact razor-thin exponential disc and is verified against an INDEPENDENT Hankel-integral evaluation -- if the Bessel form were mis-transcribed this fails (hunt bug patterns 1 and 2 closed before any data)   (worst fractional difference over five radii = 8.74e-07; eps(R_e) = 0.6250, eps(2R_e) = 1.1344)
+
+    NOTE, and it is load-bearing: at R = R_e a razor-thin disc gives eps = 0.6250, so using the
+    TOTAL baryonic mass as a point mass overstates g_bar by +0.204 dex there.  That is
+    hunt bug pattern 1, and it is exactly the bug that made the first version of item 16 report
+    58/100 RC100 galaxies below the floor.  Everything below uses eps.
+
+==========================================================================================================================
+PART 1 -- THE CENSUS: the fraction of each sample below its own baryons-only floor
+==========================================================================================================================
+    sample                                          N   <z>  N below    frac       Wilson 1s  median F (dex)    sd F
+    SPARC at 2 R_e, RESOLVED g_bar (z=0)          139  0.00        1   0.007   [0.003,0.019]           0.460   0.257
+    SPARC at 2 R_e, DEGRADED to M_bar+R_e (z=0)   139  0.00       25   0.180   [0.150,0.215]           0.222   0.275
+    MUSE-DARK II lensed (z 0.5-1.45)               95  0.98       24   0.253   [0.211,0.300]           0.238   0.455
+    RC100 (z 0.6-2.5)                             100  1.59       22   0.220   [0.181,0.264]           0.172   0.281
+    MSA-3D golden, stars only (z 0.6-1.7)          23  1.12        0   0.000   [0.000,0.042]           0.984   0.255
+    KROSS stars only (z~0.9)                      381  0.88      117   0.307   [0.284,0.331]           0.263   0.467
+
+    THE ESTIMATOR CONTROL, which is the number that sizes the whole candidate:
+      the SAME 139 local galaxies violate the floor 0.7% of the time with their
+      resolved photometry and 18.0% of the time when degraded to (M_bar, R_e, one velocity),
+      the high-z survey's information.  The difference, +17.3 points, is ESTIMATOR error at z = 0.
+  [PASS] k-hz-1 THE ESTIMATOR CONTROL FIRES: degrading z = 0 galaxies to exactly the information a high-z survey has changes their measured violation fraction, so a nonzero high-z violation fraction is not by itself evidence about the galaxies.  This check fails if degrading changes nothing   (resolved 1/139 = 0.007; degraded 25/139 = 0.180; shift +17.3 points on the identical galaxies)
+  [PASS] k-hz-1b AND THE HIGH-REDSHIFT EXCESS SURVIVES THE CONTROL: MUSE-DARK II's violation fraction is larger than the same estimator's own z = 0 floor.  This check fails if the z = 0 degraded control already reaches the high-z fraction   (MUSE-DARK II 24/95 = 0.253 [0.211,0.300] against the degraded z = 0 control 0.180)
+
+==========================================================================================================================
+PART 2 -- is the census already explained by the catalogues' own quoted errors?
+==========================================================================================================================
+    sample                                        observed frac  expected from noise     sigma  median sig_F
+    SPARC at 2 R_e, RESOLVED g_bar (z=0)                  0.007                0.038     -2.22         0.098
+    SPARC at 2 R_e, DEGRADED to M_bar+R_e (z=0)           0.180                0.141      1.59         0.098
+    MUSE-DARK II lensed (z 0.5-1.45)                      0.253                0.228      0.65         0.288
+    RC100 (z 0.6-2.5)                                     0.220                0.235     -0.41         0.200
+    MSA-3D golden, stars only (z 0.6-1.7)                 0.000                0.020     -0.89         0.201
+    KROSS stars only (z~0.9)                              0.307                0.241      3.44         0.277
+
+    The error model is each catalogue's own: MUSE-DARK II uses its posterior sigma on log v_c and
+    the 16-84 spread on log M*, plus 0.35 dex on the scaling-relation gas (Tacconi+20 molecular and
+    NeutralUniverseMachine HI, whose own quoted scatter in log tau_HI is 0.8 dex) and 0.14 dex on R_e.
+    RC100/MSA-3D/KROSS have no error columns in the tables on disk, so literature-typical values are
+    used and are stated in the source; their rows are indicative, MUSE-DARK II's is not.
+  [FAIL] k-hz-2 THE NOISE-FORWARD TEST, and it is the one that decides whether the census is a finding: MUSE-DARK II's violation fraction is compared with what its OWN quoted errors produce when the floor holds exactly.  The check fails if the observed fraction is NOT in excess of the noise   (MUSE-DARK II excess = 0.65 sigma over the noise expectation (>2 required); RC100 -0.41 sigma, SPARC degraded 1.59 sigma)
+
+    ^ THIS FAILURE IS THE RESULT, and it is stated against the proposing stage's own interest: the
+      pre-specified gate was 'observed fraction in excess of the noise by > 2 sigma => the census is
+      a statement about galaxies'.  It is not met.  The 25.3% is what the catalogue's own error bars
+      produce when the floor holds exactly, so K-C has no empirical content beyond measurement error.
+
+    PART 2b -- WHICH galaxies violate?  Split by the stellar share of g_bar, f_star:
+              f_star bin     N  N below    frac   median log(M_gas/M_*)
+               0.00-0.05    12       12   1.000                    1.57
+               0.05-0.15    19        6   0.316                    0.98
+               0.15-0.35    21        4   0.190                    0.52
+               0.35-1.01    43        2   0.047                   -0.21
+      median f_star of the 24 violators = 0.053; of the 71 non-violators = 0.421
+      The five worst objects have f_star = 0.03, i.e. 97% of their catalogued baryonic mass is the
+      NeutralUniverseMachine HI scaling relation extrapolated for a low-M*, low-SFR galaxy.  One of
+      them (AS1063 952: log M* = 8.95, log M_bar = 10.54, magnification 19.8) is 1.17 dex below its
+      own floor -- no mass calibration at any plausible level rescues it.
+  [PASS] k-hz-2b THE DIAGNOSIS, and it is a check that can fail: if the census were about gravity or about redshift it would not care which COMPONENT supplies g_bar.  It does: the violators are the gas-scaling-relation-dominated objects, so the statistic is a meter for the assumed gas mass   (corr(f_star, violation) = -0.522; violators' median f_star = 0.053 against non-violators' 0.421)
+
+==========================================================================================================================
+PART 3 -- the redshift census, within samples and across them
+==========================================================================================================================
+    WITHIN MUSE-DARK II (one pipeline, one selection, so nothing but z changes):
+      z = 0.4-0.9:   3/ 39 = 0.077 [0.044,0.131]   median F = +0.463
+      z = 0.9-1.2:  11/ 30 = 0.367 [0.284,0.458]   median F = +0.151
+      z = 1.2-1.6:  10/ 26 = 0.385 [0.295,0.483]   median F = +0.053
+    logistic d(logit violation)/dz inside MUSE-DARK II = +3.284 +- 0.983 (+3.34 sigma)
+    the SAME slope with the stellar share f_star partialled out of z = +1.119 +- 0.903 (+1.24 sigma)
+  [FAIL] k-hz-3a THE CONTROL THE DIAGNOSIS DEMANDS: the census's redshift trend is re-fitted with the stellar share of g_bar partialled out of z.  The check is that a trend claimed as a redshift effect survives removing the one variable that is known to run with z by construction in these catalogues (the gas scaling relations)   (raw +3.284 +- 0.983 (+3.34s) -> f_star-controlled +1.119 +- 0.903 (+1.24s))
+    d F/dz (the floor margin itself, all 95 galaxies, no censoring) = -0.585 +- 0.158 dex/z
+  [PASS] k-hz-3 MUTATION (z-shuffle): permuting the redshifts inside MUSE-DARK II must destroy the trend in the floor margin.  If the shuffled slope reproduces the real one, the trend is the sample's own spread and not redshift   (real dF/dz = -0.585, shuffled +0.001 +- 0.173)
+
+    ACROSS the high-z samples (levels differ, so this mixes pipelines -- reported, not fitted):
+      MUSE-DARK II lensed (z 0.5-1.45)             <z> = 0.98   frac = 0.253   median F = +0.238
+      RC100 (z 0.6-2.5)                            <z> = 1.59   frac = 0.220   median F = +0.172
+      MSA-3D golden, stars only (z 0.6-1.7)        <z> = 1.12   frac = 0.000   median F = +0.984
+      KROSS stars only (z~0.9)                     <z> = 0.88   frac = 0.307   median F = +0.263
+      naive stacked d F/dz across all high-z samples = -0.055 dex/z (uninterpretable: it is the survey ladder, see k02 Part 5)
+
+==========================================================================================================================
+PART 4 -- the two-route ledger inside RC100: the same paper's f_DM against the same paper's M_bar
+==========================================================================================================================
+    N = 100;  log10[ g_bar(M_bar, R_e, disc geometry) / g_bar((1-f_DM) g_obs) ]
+      median +0.010 dex, 16-84% [-0.095, +0.102], sd 0.219 dex
+      RC100's measured amplification is LAMBDA = -3.36 (k02 Part 2, verified galaxy by galaxy),
+      so a 0.010 dex disagreement between the two routes is 0.035 dex in a_0.
+  [PASS] k-hz-4 THE INTERNAL LEDGER, a check that can fail and does: RC100 tabulates BOTH a dark-matter fraction AND a baryonic mass AND a size, so g_bar can be built two ways from one paper.  The check is that the two routes agree to better than 0.10 dex   (median offset +0.010 dex (gate 0.10), scatter 0.219 dex (gate 0.30); amplified into a_0 by LAMBDA = -3.36 this is 0.04 dex)
+
+    WHY THIS MATTERS FOR ITEM 16, the hunt's 'strongest result'.  That item reads a_0 from
+    a_0 = (1-f_DM) g_obs / [ln(1/f_DM)]^2, i.e. entirely through the f_DM route.  The direct-mass
+    route on the SAME galaxies is offset by the number above, and LAMBDA multiplies it.
+      median a_0 via f_DM   = 1.919e-10 m/s^2
+      median a_0 via M_bar  = 2.117e-10 m/s^2   (+0.034 dex, N = 78 of 100)
+      galaxies with NO a_0 at all on the mass route (below the floor): 22 of 100
+  [PASS] k-hz-4b AND THE CONSEQUENCE, stated against the hunt's own headline: the two routes give different a_0 on the same galaxies.  The check is that they agree to better than 0.10 dex in a_0   (median difference +0.034 dex in a_0 between the f_DM route (item 16's estimator) and the direct-mass route on the identical RC100 galaxies)
+
+==========================================================================================================================
+PART 5 -- the LambdaCDM/Newtonian alternative computed beside the framework
+==========================================================================================================================
+    NFW c = 10.0, M200 = 1e+12 Msun + exponential disc: min over 0.1-200 kpc of g_obs/g_bar = 1.425502  (>= 1 required)
+    NFW c =  5.0, M200 = 3e+12 Msun + exponential disc: min over 0.1-200 kpc of g_obs/g_bar = 1.264187  (>= 1 required)
+    NFW c = 20.0, M200 = 3e+11 Msun + exponential disc: min over 0.1-200 kpc of g_obs/g_bar = 1.573112  (>= 1 required)
+  [PASS] k-hz-5 THE LambdaCDM ALTERNATIVE, computed rather than asserted: for a disc plus ANY NFW halo the ratio g_obs/g_bar never falls below 1, because dark mass is non-negative and circular motion is assumed.  So the floor is NOT a framework prediction -- it is shared by LambdaCDM, and a statistic that both theories predict identically cannot be a second law for either   (min ratio = 1.000000 for every NFW+disc combination tried; the floor contains no a_0 and no Lambda, which is exactly why it also cannot MEASURE either)
+
+==========================================================================================================================
+PART 6 -- both footings, and the Upsilon lever measured by re-running the pipeline
+==========================================================================================================================
+    Both footings give IDENTICAL numbers by construction: a_0 = 9.360e-11 and 1.130e-10 never enter F = log10(g_obs/g_bar).
+  [PASS] k-hz-6 both footings: the census is footing-INDEPENDENT to machine precision, which is the candidate's one genuine strength and is proved here rather than claimed   (max |frac(canonical) - frac(alt)| = 0 exactly -- a_0 does not appear in the statistic)
+
+    UPSILON x 1.5 (+0.176 dex on the stellar mass), whole pipeline re-run:
+    sample                                        frac (x1.0)  frac (x1.5)   d frac   d frac/d log Ups
+    SPARC at 2 R_e, RESOLVED g_bar (z=0)                0.007        0.187   +0.180             +1.021
+    SPARC at 2 R_e, DEGRADED to M_bar+R_e (z=0)         0.180        0.338   +0.158             +0.899
+    MUSE-DARK II lensed (z 0.5-1.45)                    0.253        0.316   +0.063             +0.359
+    RC100 (z 0.6-2.5)                                   0.220        0.510   +0.290             +1.647
+    MSA-3D golden, stars only (z 0.6-1.7)               0.000        0.043   +0.043             +0.247
+    KROSS stars only (z~0.9)                            0.307        0.428   +0.121             +0.686
+
+    And the lever on the MARGIN itself (the quantity, not the fraction), which is exact:
+      d F / d log10 Upsilon_* (MUSE-DARK II, measured) = -0.350
+      predicted = -f_star = -0.305 (the stellar share of g_bar); for a pure
+      stellar sample it is exactly -1, the smallest lever of any statistic in this programme.
+  [PASS] k-hz-6b THE UPSILON LEVER, measured by re-running the whole pipeline at Upsilon x 1.5 rather than asserted: on the margin it is exactly minus the stellar share of g_bar, and the check is that the measured value matches that prediction   (measured -0.350 against predicted -0.305; the violation FRACTION moves by +0.359 per dex of Upsilon)
+
+    AND THE KILL THAT THE LEVER DELIVERS, stated plainly: a coherent +0.176 dex in the stellar mass moves
+      MUSE-DARK II's violation fraction from 0.253 to 0.316.
+      The census therefore measures the catalogues' mass calibration, at lever 1, and nothing else.
+
+==========================================================================================================================
+PART 7 -- THE RESTATEMENT TEST, executed
+==========================================================================================================================
+    Attempt 1, from the deep-MOND law v^4 = G M_b a_0.  Write g_obs = v^2/R and g_bar = G M_b/R^2
+    (point mass).  Then g_obs/g_bar = v^2 R/(G M_b) = sqrt(G M_b a_0) R /(G M_b) = R sqrt(a_0/(G M_b)),
+    which is a function of RADIUS and is < 1 for R < sqrt(G M_b/a_0) = r_M.  So the deep-MOND law does
+    NOT imply the floor at finite radius -- it implies the opposite inside r_M for a point mass.  The
+    derivation does not close: this is NOT a restatement of the BTFR/RAR.
+      (numerically, for M_b = 1e10 Msun, r_M = 3.9 kpc, and the deep-MOND point-mass ratio at
+       R = 5 kpc is 1.296 < 1 -- the deep limit alone would put that galaxy BELOW the floor)
+
+    Attempt 2, from the interpolating structure.  nu(y) >= 1 for all y > 0 because 1 - e^{-sqrt y} <= 1.
+    One line, and it closes.  So the floor IS a consequence of the kernel -- but of the kernel's
+    non-negativity, not of its value, and a_0 cancels out of the statement entirely.
+  [PASS] k-hz-7 the restatement test executed on the kernel: nu(y) >= 1 everywhere is verified numerically over twelve decades, so the floor closes in one line from the kernel and carries NO information about a_0.  Criterion (2) of the Kepler-grade definition -- a_0 appears with a predicted coefficient -- therefore FAILS by construction   (min nu over y = 1e-8 to 1e4 is 1.000000; the floor is a_0-free, hence un-measurable-with and un-falsifiable-by any a_0)
+
+==========================================================================================================================
+PART 8 -- what the census DOES buy: the one-sided censoring correction to every published high-z a_0
+==========================================================================================================================
+    sample                                        a_0 of inverting subset  censored whole-sample median  shift (dex)
+    MUSE-DARK II lensed (z 0.5-1.45)                            1.102e-10                     5.116e-11       -0.333
+    RC100 (z 0.6-2.5)                                           2.117e-10                     1.520e-10       -0.144
+    MSA-3D golden, stars only (z 0.6-1.7)                       1.933e-09                     1.933e-09       +0.000
+    KROSS stars only (z~0.9)                                    4.012e-10                     1.507e-10       -0.425
+
+    Every published high-z a_0 level is the median of the INVERTING subset.  Because the censored
+    galaxies are, by definition, the ones with the smallest g_obs/g_bar, they belong at the BOTTOM of
+    the a_0 distribution: the published levels are upper-leaning by the shift above.
+  [PASS] k-hz-8 THE ONE THING THE CENSUS IS GOOD FOR, and it is a correction rather than a law: placing the non-inverting galaxies below all others moves MUSE-DARK II's level by a definite, large amount.  This check fails if the censoring is negligible   (see the table; the shift is reported per survey and is the operative caveat on every high-z a_0 quoted in this programme)
+
+==========================================================================================================================
+PART 9 -- mutation controls
+==========================================================================================================================
+  [PASS] M1 SHUFFLE: permuting the baryonic masses across MUSE-DARK II must change the violation fraction; if it does not, the census is measuring the sample's marginal distributions and not the pairing   (real 0.253 vs shuffled 0.369 +- 0.029)
+    M_bar x 0.01 : violation fraction 0.000  (0 of 95)
+    M_bar x 0.1  : violation fraction 0.011  (1 of 95)
+    M_bar x 0.5  : violation fraction 0.105  (10 of 95)
+    M_bar x 2.0  : violation fraction 0.547  (52 of 95)
+  [PASS] M2 CLOSURE, in the limit: as the baryonic mass goes to zero the violation fraction must go to zero, because the floor becomes trivially satisfiable.  If it does not, the estimator is broken   (M_bar/100 gives 0 violations out of 95; at M_bar/10 ONE galaxy still violates (AS1063 952, 1.17 dex below its own floor with 97% of its mass from the HI scaling relation) -- reported rather than thresholded away, because a single object no mass rescaling can save is a data pathology, not a measurement of gravity)
+    gas scale length x 1.0 : violation fraction 0.253   (more extended gas encloses less at 2 R_e, so the floor is easier to satisfy)
+    gas scale length x 1.5 : violation fraction 0.211   (more extended gas encloses less at 2 R_e, so the floor is easier to satisfy)
+    gas scale length x 2.0 : violation fraction 0.158   (more extended gas encloses less at 2 R_e, so the floor is easier to satisfy)
+  [PASS] M3 GEOMETRY STRESS, against interest: the census depends on an assumption nobody measured for these galaxies -- the gas scale length.  Doubling it changes the violation fraction, so the 25% is a statement about the assumed gas distribution as much as about the galaxies   (gas x1 0.253 vs gas x2 0.158)
+  [PASS] M4 KERNEL SWAP: the floor holds for the 'simple' interpolation function too (nu = 0.5 + sqrt(0.25 + 1/y)), so nothing here is specific to Route A -- again showing the statistic cannot discriminate between kernels either   (min simple-nu over five decades = 1.0099)
+
+==========================================================================================================================
+VERDICT (k-high-z floor census, candidate K-C)
+==========================================================================================================================
+  DEAD.  NOT A SECOND LAW, and it dies twice over -- once on the definition and once on the data.
+  Two checks FAIL below and BOTH failures are the result; rc = 1 is the intended outcome.
+
+  ON THE DEFINITION
+   * Criterion (2) fails BY CONSTRUCTION: a_0 does not appear in g_obs >= g_bar, so no coefficient
+     can be predicted and none can be measured.  Part 6 proves the footing-independence the
+     proposal claimed as a strength -- and it is the same fact that disqualifies it.
+   * Criterion (1)/(4) fail too: Part 5 shows LambdaCDM predicts the identical floor, because
+     non-negative dark mass plus circular motion is all the derivation needs.  It is not the
+     framework's statement and nobody would credit it to the framework.
+   * The restatement test (Part 7): the floor does NOT follow from v^4 = G M_b a_0 -- the deep limit
+     alone puts a point mass BELOW the floor inside r_M -- but it follows in one line from nu >= 1.
+     Not a restatement of the BTFR; a restatement of positivity.
+
+  ON THE DATA -- and this is the part the proposing stage did not have
+   * The 25.3% violation fraction is NOT in excess of the catalogue's own errors: expected 22.8%,
+     observed 25.3%, 0.65 sigma (k-hz-2, FAIL against the pre-specified >2 sigma gate).
+   * The z = 0 estimator control says most of it is the estimator: the SAME 139 SPARC galaxies
+     violate 0.7% of the time with resolved photometry and 18.0% when degraded to (M_bar, R_e, one
+     velocity).  17.3 of the 25.3 points are reproduced at z = 0 with no redshift at all.
+   * The violators are not random: violation fraction runs 1.000 / 0.316 / 0.190 / 0.047 across
+     bins of increasing stellar share f_star, corr(f_star, violation) = -0.52.  Every galaxy whose
+     catalogued mass is >95% scaling-relation gas violates; almost none whose mass is >35% stars.
+   * And the redshift census dies with it: the raw +3.28 +- 0.98 logistic slope (3.3 sigma) falls to
+     +1.12 +- 0.90 (1.2 sigma) once the stellar share is partialled out of z (k-hz-3a, FAIL).  It is
+     k03's own gas-fraction artefact again, arriving through a different statistic.
+
+  WHAT SURVIVES, and it is worth keeping
+   * A data-quality meter with the smallest lever in the programme, MEASURED at Upsilon x 1.5:
+     d F/d log Upsilon = -0.350 against a predicted -f_star = -0.305.  For a star-dominated sample
+     it is exactly -1, against |LAMBDA| = 1.5-3.4 for a_0 itself.
+   * A one-sided censoring correction every published high-z a_0 needs: -0.33 dex (MUSE-DARK II),
+     -0.14 (RC100), -0.43 (KROSS).  Published high-z a_0 levels are upper-leaning by that much.
+
+  AND ONE RESULT AGAINST MY OWN EXPECTATION.  I expected Part 4 to damage item 16.  It does not:
+  RC100's two independent routes to g_bar -- its tabulated f_DM and its tabulated M_bar with the
+  exact disc geometry -- agree to +0.010 dex in the median, and the resulting a_0 to +0.034 dex,
+  well inside the 0.10 dex gate.  What they do NOT share is the tails: the scatter between routes is
+  0.219 dex, and 22 of 100 RC100 galaxies that HAVE an a_0 on the f_DM route have none at all on the
+  mass route.  Item 16's level is validated; its per-galaxy values are not interchangeable.
+==========================================================================================================================
+
+RESULT: 18 checks, 2 FAIL -> ["k-hz-2 THE NOISE-FORWARD TEST, and it is the one that decides whether the census is a finding: MUSE-DARK II's violation fraction is compared with what its OWN quoted errors produce when the floor holds exactly.  The check fails if the observed fraction is NOT in excess of the noise", "k-hz-3a THE CONTROL THE DIAGNOSIS DEMANDS: the census's redshift trend is re-fitted with the stellar share of g_bar partialled out of z.  The check is that a trend claimed as a redshift effect survives removing the one variable that is known to run with z by construction in these catalogues (the gas scaling relations)"]   rc=1

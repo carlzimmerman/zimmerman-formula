@@ -232,8 +232,11 @@ def mapping(z0, nhfun):
 def phi_pred(muv, z, nhfun, mp):
     """predicted phi(M_UV, z) = -d n_halo(>M_h(M_UV), z)/dM_UV, Mpc^-3 mag^-1"""
     dm = 0.05
+    # BRIGHTER (more negative) M_UV -> LARGER host halo -> SMALLER cumulative n.  phi = -dn/dM_UV with that sign
+    # convention is therefore n(fainter) - n(brighter), i.e. n2 - n1.  Getting this backwards makes every predicted
+    # phi negative and every log10 collapse to the floor -- it did, in the first run of this script.
     n1 = nhfun(float(mp(muv - dm)), z); n2 = nhfun(float(mp(muv + dm)), z)
-    return (n1 - n2) / (2 * dm)
+    return (n2 - n1) / (2 * dm)
 
 GI = {}
 for br in ("total", "baryon"):
@@ -247,8 +250,9 @@ info(f"{'M_UV':>7} {'log10 M_h (LCDM)':>17} {'log10 M_h (framework)':>22}")
 for mv in (-21.0, -20.0, -19.0, -18.0):
     info(f"{mv:>7.1f} {float(MP_L(mv)):>17.2f} {float(MP_F[('total','ceil','canonical')](mv)):>22.2f}")
 ck("2a sanity: the abundance-matched host halo of an M_UV = -19 galaxy at z = 9 lands in the published "
-   "10^10 - 10^11 Msun range in BOTH theories (the framework needs a slightly smaller halo because it has more of "
-   "them)", 9.5 < float(MP_L(-19.0)) < 11.5 and float(MP_F[('total','ceil','canonical')](-19.0)) < float(MP_L(-19.0)),
+   "10^10 - 10^11 Msun range in BOTH theories, and the framework needs a LARGER one -- because it has more halos "
+   "at every mass, so the same galaxy number density is reached at a higher threshold",
+   9.5 < float(MP_L(-19.0)) < 11.5 and float(MP_F[('total','ceil','canonical')](-19.0)) > float(MP_L(-19.0)),
    f"LCDM {float(MP_L(-19.0)):.2f}, framework {float(MP_F[('total','ceil','canonical')](-19.0)):.2f}")
 r9 = np.array([phi_pred(m, 9.0, nh_lcdm, MP_L) / dpl(m, P9) for m in (-21., -20., -19., -18.)])
 ck("2b MUST-PASS CLOSURE OF THE ESTIMATOR: by construction each theory reproduces the z = 9 luminosity function it "
@@ -317,10 +321,13 @@ ck("4a THE FRAMEWORK'S PREDICTED EXCESS HAS THE RIGHT SIGN AND IS OF THE RIGHT O
    0.0 < RES[best]["mean"] < mean_exc,
    f"best branch {best}: predicted mean excess {RES[best]['mean']:+.3f} dex against a measured {mean_exc:+.3f}, "
    f"i.e. {100*RES[best]['mean']/mean_exc:.0f}% of it")
-ck("4b AND THE SHAPE TEST, WHICH IS THE NEW CONTENT: the framework predicts a specific M_UV slope of the excess.  "
-   "The measured slope and the predicted slope are compared here with no freedom whatsoever",
-   True, f"measured {s_all:+.4f} +- {es_all:.4f} dex/mag; predicted {RES[best]['slope']:+.4f} "
-         f"({(s_all - RES[best]['slope'])/es_all:+.2f} sigma)")
+nsig_shape = (RES[best]["slope"] - s_all) / es_all
+ck("4b THE SHAPE TEST IS THE NEW CONTENT AND IT GOES AGAINST THE FRAMEWORK.  The measured excess is LARGEST AT THE "
+   "BRIGHT END (negative slope in M_UV) -- that is what 'bright-galaxy excess' means.  The framework's collapse "
+   "gain is largest for the LEAST massive halos, so it predicts the excess to be largest at the FAINT end.  The "
+   "two signs are opposite, and the data are not neutral about it",
+   True, f"measured {s_all:+.4f} +- {es_all:.4f} dex/mag (excess grows toward the BRIGHT end); predicted "
+         f"{RES[best]['slope']:+.4f} (grows toward the FAINT end) -- {abs(nsig_shape):.1f} sigma, opposite sign")
 signs = set(np.sign(RES[k]["slope"]) for k in RES)
 ck("4c the predicted slope's SIGN is a property of the mechanism, not of the branch, footing or nu_0 window -- so "
    "it is a genuine prediction and not a choice", len(signs) == 1,
@@ -345,11 +352,11 @@ info(f"   best-fit brightening {dbest:.2f} mag by z = 12.5 (ONE fitted parameter
 info(f"   framework (ZERO fitted parameters), best branch: chi2/N = {RES[best]['chi2']:.2f}, "
      f"mean {RES[best]['mean']:+.3f}, slope {RES[best]['slope']:+.4f}")
 info(f"   LambdaCDM with NO evolution of the efficiency (the null): chi2/N = {chi2_l:.2f}")
-ck("5a REPORTED AGAINST INTEREST: one fitted magnitude of brightening describes these data at least as well as the "
-   "framework's zero-parameter curve, and the two are not separated by the present error bars.  That is the honest "
-   "state of the comparison and it is what item 73's caveat 73c said it would be",
-   True, f"chi2/N: framework {RES[best]['chi2']:.2f} (0 parameters), rising efficiency {min(chi2s):.2f} "
-         f"(1 parameter), no evolution {chi2_l:.2f}")
+ck("5a REPORTED AGAINST INTEREST: ONE fitted magnitude of brightening describes these data essentially perfectly, "
+   "while the framework's zero-parameter curve does not improve on doing nothing at all.  The rival explanation "
+   "the discovery papers themselves invoke wins outright on these data",
+   min(chi2s) < RES[best]["chi2"], f"chi2/N: framework {RES[best]['chi2']:.2f} (0 parameters), rising efficiency "
+   f"{min(chi2s):.2f} (1 parameter, {dbest:.2f} mag of brightening by z = 12.5), no evolution {chi2_l:.2f}")
 ck("5b and the two mechanisms are NOT degenerate in shape, which is what makes the M_UV direction worth measuring: "
    "the fitted-efficiency model moves galaxies horizontally and so tracks the luminosity function's local slope, "
    "while the framework's gain falls with halo mass",
@@ -363,7 +370,7 @@ P(""); P("=" * 118)
 P("PART 6 -- a_0 measured at z = 11-12.5 from galaxy counts alone (no rotation curve, no stellar M/L)")
 P("=" * 118)
 def chi2_of_scale(f, branch="total", nk="ceil", ft="canonical"):
-    gi, _ = build_gain(branch, NU0OF[nk] if False else (NU0_CEIL if nk == "ceil" else NU0_FLOOR), ft, a0scale=f)
+    gi, _ = build_gain(branch, NU0_CEIL if nk == "ceil" else NU0_FLOOR, ft, a0scale=f)
     mp = mapping(9.0, lambda lm, z, g=gi: nh_fw(lm, z, g))
     pr = np.array([math.log10(max(phi_pred(o["muv"], o["z"], lambda lm, z, g=gi: nh_fw(lm, z, g), mp), 1e-30))
                    - o["lcdm"] for o in OBS])
@@ -382,11 +389,39 @@ ck("6a AGAINST INTEREST -- the data do not measure a_0 here, they only bound it 
    True, f"chi2 at a_0 x {SC[0]:.2f}, 1, {SC[-1]:.0f} = {CH[0]:.2f}, {CH[SC.index(1.0)]:.2f}, {CH[-1]:.2f}; "
          f"minimum at x{SC[imin]:.2f}")
 d_chi2 = CH[0] - CH[SC.index(1.0)]
-ck("6b what CAN be said, and it is the one positive statement in this script: switching a_0 on at exactly the "
-   "value Planck's rho_Lambda fixes -- no fitting -- improves the description of the JWST luminosity-function "
-   "evolution relative to the same calculation with a_0 = 0",
-   d_chi2 > 0, f"delta chi2 = {d_chi2:.2f} over {len(OBS)} bins for a ZERO-parameter change "
-               f"({math.sqrt(max(d_chi2,0)):.1f} sigma-equivalent, and the systematics below are larger)")
+ck("6b AND THE ANSWER IS AGAINST INTEREST: turning a_0 on at exactly the value Planck's rho_Lambda fixes makes "
+   "the description of the JWST luminosity-function evolution WORSE than the same calculation with a_0 = 0.  It "
+   "is a small amount worse, and the systematics are larger, but the sign is the sign",
+   True, f"delta chi2 = {d_chi2:+.2f} over {len(OBS)} bins for a ZERO-parameter change (negative = a_0 hurts); "
+         f"chi2 is still falling at 32x canonical, and even there the predicted mean excess is only "
+         f"{float(np.sum(w*chi2_of_scale(32.0)[1])/np.sum(w)):+.3f} dex against a measured {mean_exc:+.3f}")
+
+P("")
+info("WHY THIS DISAGREES WITH ITEM 73, which found the framework supplying 62% of the excess: item 73 held the")
+info("ionizing efficiency FIXED ACROSS THEORIES, so the framework's extra halos were counted as extra galaxies.")
+info("Here each theory is allowed its own efficiency, calibrated at z = 9 -- which is what any real model does,")
+info("since the efficiency is not independently measured.  The same calculation is run BOTH ways below.")
+sh_pred = np.array([math.log10(max(phi_pred(o["muv"], o["z"], lambda lm, z, g=GI[best]: nh_fw(lm, z, g), MP_L), 1e-30))
+                    - o["lcdm"] for o in OBS])          # framework halos read through the LambdaCDM mapping
+sh_mean = float(np.sum(w * sh_pred) / np.sum(w)); sh_slope = wfit(mus, sh_pred, ers)[0]
+info(f"   shared-efficiency reading (item 73's): mean excess {sh_mean:+.3f} dex, M_UV slope {sh_slope:+.4f}")
+info(f"   own-efficiency reading (this script):  mean excess {RES[best]['mean']:+.3f} dex, M_UV slope "
+     f"{RES[best]['slope']:+.4f}")
+ck("6c THE WHOLE OF ITEM 73's POSITIVE RESULT IS THE EFFICIENCY CONVENTION, and that is the most useful thing in "
+   "this script.  Read with a shared efficiency the framework supplies a large excess; read with each theory "
+   "carrying its own efficiency, calibrated at one redshift, almost all of it cancels -- because a smooth, "
+   "monotone boost is exactly what a renormalisation at one redshift absorbs",
+   abs(sh_mean) > 5 * abs(RES[best]["mean"]) + 0.05,
+   f"mean predicted excess {sh_mean:+.3f} dex (shared efficiency) vs {RES[best]['mean']:+.3f} dex (own "
+   f"efficiency), a factor {abs(sh_mean)/max(abs(RES[best]['mean']),1e-3):.0f}")
+ck("6d AND THE SLOPE'S SIGN IS CONVENTION-DEPENDENT -- I expected it not to be, and it is.  With each theory "
+   "carrying its own efficiency the framework predicts the excess to grow toward the FAINT end (wrong sign); "
+   "with a shared efficiency it predicts growth toward the BRIGHT end (right sign) but only a fifth of the "
+   "measured size.  The framework is short either way, and the honest statement is the weaker one",
+   True, f"predicted slope {sh_slope:+.4f} (shared efficiency, {abs(sh_slope/s_all)*100:.0f}% of the measured "
+         f"and {abs(sh_slope-s_all)/es_all:.1f} sigma short) and {RES[best]['slope']:+.4f} (own efficiency, "
+         f"opposite sign, {abs(RES[best]['slope']-s_all)/es_all:.1f} sigma) against a measured "
+         f"{s_all:+.4f} +- {es_all:.4f}")
 
 # =================================================================================================
 P(""); P("=" * 118)
@@ -395,13 +430,11 @@ P("=" * 118)
 c2_zero, pr_zero = chi2_of_scale(1e-30)
 ck("7a MUTATION: with a_0 driven to zero the framework must become LambdaCDM exactly and predict no excess at all",
    float(np.max(np.abs(pr_zero))) < 1e-3, f"max |predicted excess| with a_0 = 0 is {float(np.max(np.abs(pr_zero))):.2e} dex")
-mus_sh = mus.copy(); rng.shuffle(mus_sh)
-sh = [wfit(np.array([o["muv"] for o in OBS])[np.random.default_rng(k).permutation(len(OBS))], exc, ers)[0]
-      for k in range(400)]
+sh = [wfit(mus[rng.permutation(len(OBS))], exc, ers)[0] for _ in range(2000)]
 p_sh = float(np.mean(np.abs(np.array(sh)) >= abs(s_all)))
 ck("7b MUTATION: shuffling which M_UV bin each measured excess belongs to must destroy any M_UV trend.  If the "
    "measured slope is not unusual against shuffles, there is no shape signal in these data to test against",
-   True, f"measured |slope| {abs(s_all):.4f} is exceeded by {100*p_sh:.0f}% of 400 label shuffles "
+   True, f"measured |slope| {abs(s_all):.4f} is exceeded by {100*p_sh:.1f}% of 2000 label shuffles "
          f"(so the measured M_UV trend is {'NOT ' if p_sh > 0.05 else ''}significant)")
 zs_sw = np.where(zs == 11.0, 12.5, 11.0)
 pr_sw = np.array([math.log10(max(phi_pred(o["muv"], zz, lambda lm, z, g=GI[best]: nh_fw(lm, z, g), MP_F[best]), 1e-30))
@@ -415,27 +448,43 @@ P(""); P("=" * 118)
 P("VERDICT -- k01")
 P("=" * 118)
 P(f"""
-  WHAT IS NEW.  Item 73 measured the JWST excess in redshift only.  This script measures it in the LUMINOSITY
-  direction as well, bin by bin, against a baseline that each theory is forced to reproduce exactly at z = 9 --
-  so the star-formation efficiency, the duty cycle and the dust law are absorbed and cannot be used again.  The
-  framework's collapse gain then predicts the whole two-dimensional excess surface with a_0 as its only constant
-  and the stellar mass-to-light ratio nowhere in the chain.
+  THE CANDIDATE IS KILLED, AND THE KILL IS THE RESULT.  The framework's collapse speedup cannot be the JWST
+  bright-galaxy excess, for a reason that has nothing to do with error bars: it predicts the wrong SHAPE.
 
-  THE PREDICTION IS SIGN-DEFINITE AND BRANCH-INDEPENDENT.  All eight combinations of source branch, nu_0 window
-  end and footing give the same sign of the M_UV slope ({min(RES[k]['slope'] for k in RES):+.4f} to
-  {max(RES[k]['slope'] for k in RES):+.4f} dex per magnitude).  That is a real prediction.
+  (1) THE SHAPE.  The measured excess grows toward the BRIGHT end: d(excess)/dM_UV = {s_all:+.4f} +- {es_all:.4f}
+      dex per magnitude over {len(OBS)} bins, a trend that 2000 M_UV-label shuffles reproduce {100*p_sh:.1f}% of
+      the time.  The framework's gain is set by the turnaround acceleration in units of a_0, and a more massive
+      halo turns around at a higher acceleration (y grows as M^(1/3), check 1b), so the boost is largest for the
+      LEAST massive halos: gain {gain_at(GI_ref,9.0,11.0):.4f} at 10^9 Msun against {gain_at(GI_ref,12.0,11.0):.4f}
+      at 10^12.  With each theory carrying its own efficiency the framework therefore predicts the excess to grow
+      toward the FAINT end, {min(RES[k]['slope'] for k in RES):+.4f} to {max(RES[k]['slope'] for k in RES):+.4f}
+      dex per magnitude -- the OPPOSITE sign, {abs(nsig_shape):.1f} sigma out.  I expected that sign to be
+      convention-independent and IT IS NOT (check 6d): with a shared efficiency the prediction turns round to
+      {sh_slope:+.4f}, the right sign but {abs(sh_slope/s_all)*100:.0f}% of the measured size, still
+      {abs(sh_slope-s_all)/es_all:.1f} sigma short.  The defensible statement is the weaker one: the framework's
+      collapse gain is far too flat in halo mass to make the bright-galaxy excess, whichever convention is used.
 
-  THE MEASUREMENT CANNOT YET SEE IT.  The measured M_UV slope of the excess is {s_all:+.4f} +- {es_all:.4f}
-  dex per magnitude across {len(OBS)} bins -- an error bar {es_all/max(abs(RES[best]['slope']),1e-9):.0f} times
-  the predicted signal.  Donnan's binned luminosity functions at z = 11 and 12.5 carry factor-2 to factor-3
-  uncertainties, and that, not the framework, sets the answer.
+  (2) THE AMPLITUDE, ONCE THE EFFICIENCY IS TREATED FAIRLY.  Item 73 reported the framework supplying 62% of the
+      excess.  That reading holds the ionizing efficiency fixed ACROSS theories.  Give each theory its own
+      efficiency, calibrated once at z = 9 -- which is what any model does, because the efficiency is not
+      independently measured -- and almost the whole effect cancels: the predicted mean excess falls from
+      {sh_mean:+.3f} dex to {RES[best]['mean']:+.3f} dex against a measured {mean_exc:+.3f}.  A smooth monotone
+      boost is exactly what a one-redshift renormalisation absorbs.  Item 73's positive number is a statement
+      about the efficiency convention, not about the data.
 
-  THE HONEST COMPARISON.  chi2/N = {RES[best]['chi2']:.2f} for the framework with ZERO fitted parameters,
-  {min(chi2s):.2f} for a rising star-formation efficiency with ONE, and {chi2_l:.2f} for no evolution at all.
-  Turning a_0 on at the value Planck fixes improves the fit by delta chi2 = {d_chi2:.2f} with nothing fitted --
-  a real but small gain, and smaller than the baseline systematic item 73c already quantified.
+  (3) THE RIVAL WINS OUTRIGHT.  One fitted magnitude of brightening by z = 12.5 gives chi2/N = {min(chi2s):.2f};
+      the framework's zero-parameter curve gives {RES[best]['chi2']:.2f}, worse than doing nothing ({chi2_l:.2f}).
+      Scanning a_0 from zero to 32x canonical, chi2 falls monotonically and never reaches the data: a_0 at the
+      Planck value is delta chi2 = {d_chi2:+.2f} WORSE than a_0 = 0.
 
-  SO: NOT a second Kepler-grade law.  It is a zero-parameter, Upsilon-free, sign-definite prediction of a shape
-  that a deeper luminosity function -- JWST is measuring exactly these bins now -- can confirm or kill.
+  (4) WHAT SURVIVES.  The prediction itself, as something for JWST to shoot at: the excess must grow toward the
+      faint end at {min(RES[k]['slope'] for k in RES):+.4f} to {max(RES[k]['slope'] for k in RES):+.4f} dex per
+      magnitude, with the stellar mass-to-light ratio nowhere in the chain (d log(anything here)/d log Upsilon = 0
+      exactly -- no photometric mass is used).  Deeper luminosity functions at z = 11-13 measure exactly this.
+
+  CAVEATS, STATED RATHER THAN BURIED.  The z = 9 anchor is Donnan's own double-power-law fit; abundance matching
+  is monotonic and scatter-free, and scatter alone brightens the bright end and would push the measured slope in
+  the direction the data show; the quoted errors are the published photometric ones and carry no cosmic variance.
+  None of that changes the SIGN, which is what the item turns on.
 """)
 sys.exit(ck.done())

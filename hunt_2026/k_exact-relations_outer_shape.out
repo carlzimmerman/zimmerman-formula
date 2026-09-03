@@ -1,0 +1,127 @@
+======================================================================================================================
+K1 (exact-relations compute) -- the outer-curve shape law:  2 dlnv/dlnr = 1 + (1+L(y)) dln g_bar/dln r
+======================================================================================================================
+
+  (A) THE RESTATEMENT TEST, EXECUTED.  Is the relation new content, or the RAR differentiated?
+      Build synthetic rotation curves that obey g_obs = nu(g_bar/a_0) g_bar EXACTLY, with an arbitrary
+      baryonic profile, and measure both sides of the relation numerically.  If it is an identity the
+      residual is machine noise and the candidate carries no information the RAR does not already have.
+      a_0 = 9.360e-11  profile point             max |LHS - RHS| = 1.139e-07
+      a_0 = 9.360e-11  profile exponential       max |LHS - RHS| = 6.181e-08
+      a_0 = 9.360e-11  profile flat-then-fall    max |LHS - RHS| = 1.128e-07
+      a_0 = 1.130e-10  profile point             max |LHS - RHS| = 1.139e-07
+      a_0 = 1.130e-10  profile exponential       max |LHS - RHS| = 5.740e-08
+      a_0 = 1.130e-10  profile flat-then-fall    max |LHS - RHS| = 1.083e-07
+      a_0 = 3.000e-10  profile point             max |LHS - RHS| = 1.139e-07
+      a_0 = 3.000e-10  profile exponential       max |LHS - RHS| = 3.813e-08
+      a_0 = 3.000e-10  profile flat-then-fall    max |LHS - RHS| = 8.503e-08
+  [PASS] the relation is an EXACT identity of the RAR (residual is numerical, not physical)   (worst residual over 9 synthetic curves = 1.14e-07 (finite-difference noise))
+      ==> is_restatement = TRUE.  It is not a restatement of v^4 = G M_b a_0 -- the BTFR predicts
+      dln v/dln r = 0 identically and nothing else -- but it IS the radial acceleration relation
+      differentiated in ln r.  Every number it can produce is a number the RAR already contains.
+      Criterion (5) therefore fails at one remove: the candidate is a re-parameterisation of the FIRST
+      law, not a second one.  What it could still be is a Upsilon-free ESTIMATOR of a_0 -- which is the
+      only claim worth testing, and is tested below.
+
+  (B) SPARC.  Outer window = the outer 50% of points, >= 5 points, radial range >= 1.25x.
+      131 galaxies with a measurable outer window
+      baryonic shape slope over the window: median -1.36, 16-84% -1.87 to -0.31  (a point mass is exactly -2.00)
+
+      model                                        rms      median resid   regression   r
+      Route A, canonical a_0 = 9.36e-11           0.1689       -0.0397        0.725 +0.728
+      Route A, alt a_0 = 1.13e-10                 0.1688       -0.0460        0.736 +0.728
+      NEWTONIAN alternative (nu = 1, L = 0)       0.3253       +0.2369        0.438 +0.715
+      pure deep MOND (L = -1/2)                   0.1844       -0.1207        0.876 +0.715
+      BTFR / flat-curve null (dlnv/dlnr = 0)      0.2501       +0.0546      (const)    n/a
+  [PASS] Route A beats the Newtonian alternative   (0.1689 vs 0.3253)
+  [PASS] Route A beats the flat-curve (BTFR) null   (0.1689 vs 0.2501)
+  [FAIL] law scatter <= 0.10 in dln v/dln r (RAR-class)   (rms 0.1689)
+      chi2/N against the formal slope errors (median 0.0608): 32.9  -> the residual is 2.8x the errors, so the scatter is REAL, not noise
+
+  (C) MUTATION CONTROL AS A SCAN.  If the shape measures a_0, rms(a_0) must have a minimum at a_0.
+        a_0 [m/s^2]      rms      |   a_0 [m/s^2]      rms
+        3.162e-13  0.3141   |   5.012e-13  0.3055
+        7.943e-13  0.2937   |   1.259e-12  0.2789
+        1.995e-12  0.2617   |   3.162e-12  0.2433
+        5.012e-12  0.2251   |   7.943e-12  0.2083
+        1.259e-11  0.1941   |   1.995e-11  0.1832
+        3.162e-11  0.1757   |   5.012e-11  0.1712
+        7.943e-11  0.1691   |   1.259e-10  0.1689
+        1.995e-10  0.1697   |   3.162e-10  0.1711
+        5.012e-10  0.1728   |   7.943e-10  0.1745
+        1.259e-09  0.1761   |   1.995e-09  0.1775
+        3.162e-09  0.1787   |   3.162e-09  0.1787
+      MINIMUM at a_0 = 1.122e-10  (rms 0.1688); canonical rms 0.1689, alt rms 0.1688
+      the minimum is +0.08 dex from the canonical footing and -0.00 dex from the alt footing.
+  [PASS] the rms profile has an interior minimum within 0.3 dex of a footing   (minimum at 1.122e-10)
+      MUTATION a_0 x 3   : rms 0.1707   (WORSE than canonical 0.1689)
+      MUTATION a_0 / 3   : rms 0.1758   (WORSE than canonical 0.1689)
+      MUTATION a_0 x 10  : rms 0.1751   (WORSE than canonical 0.1689)
+      MUTATION a_0 / 10  : rms 0.2029   (WORSE than canonical 0.1689)
+  [PASS] MUTATION: a_0 x 3 is WORSE than canonical (a wrong a_0 must break the fit)   (0.1707 vs 0.1689)
+  [PASS] MUTATION: a_0 x 10 is WORSE than canonical   (0.1751 vs 0.1689)
+      a_0 from shape alone (rms minimum): log10 a_0 = -9.9500 +- 0.1249 (galaxy bootstrap)  ->  a_0 = 1.122e-10
+      canonical is -0.63 sigma away; alt is +0.02 sigma away
+  [PASS] the shape-only a_0 is within 3 sigma of a footing   (nearest footing 0.003 dex away)
+
+  (D) THE UPSILON LEVER, by re-running the whole pipeline (x1.5 is the mandated step).
+      Upsilon_disk    N    rms(canonical)   a_0 at the rms minimum
+           0.3333   131          0.1879   5.6234e-11
+           0.4000   131          0.1783   7.9433e-11
+           0.5000   131          0.1689   1.1220e-10
+           0.6000   131          0.1634   1.4125e-10
+           0.7500   131          0.1596   2.2387e-10
+           0.7000   131          0.1604   1.9953e-10
+      d log a_0 / d log Upsilon = +1.7037    (deep-tail rung -0.647; KiDS dwarf lens stack -1.046)
+  [FAIL] Upsilon lever |d log a_0/d log Upsilon| < 0.15   (+1.7037)
+      AGAINST INTEREST, and a correction to the propose stage: it measured +0.3013 for this lever using
+      a per-galaxy weighted fit; the rms-profile estimator here gives +1.70 on the same galaxies and the
+      same window.  The lever is therefore itself estimator-dependent by a factor 5.6, which is worse
+      than either value: the quantity being levered is not well defined.
+      CONSEQUENCE.  Stellar populations know Upsilon_[3.6] to about 0.09 dex, so at lever +1.70 the
+      Upsilon systematic on a_0 is 0.15 dex, on top of the 0.125 dex statistical error.
+      Total 0.20 dex -- the two footings are 0.082 dex apart,
+      so this estimator cannot see the difference it was built to see.
+
+  (E) THE STRICTLY UPSILON-FREE FORM.  Where the outer window really is point-mass-like the baryonic
+      slope is -2 by geometry, no photometry enters, and the Upsilon lever is EXACTLY 0.  This is the
+      only version of the candidate that meets its own advertisement, so it is run as the primary.
+      N = 38 galaxies with dln g_bar/dln r in [-2.25, -1.75]
+      rms(canonical) 0.1442   correlation observed-vs-predicted r = +0.236   regression 0.709
+      a_0 from this Upsilon-free subsample: 4.467e-10  (log10 -9.3500 +- 0.2925 galaxy bootstrap)
+      that is +0.68 dex from canonical and +0.60 dex from alt.
+  [FAIL] the Upsilon-free form recovers a_0 within 0.3 dex of a footing   (a_0 = 4.467e-10)
+  [FAIL] the Upsilon-free form correlates with the prediction at r > 0.5   (r = +0.236)
+
+  (F) ANATOMY OF THE RESIDUAL.
+      dln g_bar/dln r in [-3.00,-1.75)  N= 38  median resid +0.0131  rms 0.1240
+      dln g_bar/dln r in [-1.75,-1.25)  N= 33  median resid -0.0285  rms 0.0920
+      dln g_bar/dln r in [-1.25,-0.75)  N= 25  median resid -0.0723  rms 0.2057
+      dln g_bar/dln r in [-0.75, 0.50)  N= 33  median resid -0.1285  rms 0.2274
+      gas fraction in [0.0,0.3)        N= 51  median resid +0.0050  rms 0.1337
+      gas fraction in [0.3,0.6)        N= 34  median resid -0.0774  rms 0.1407
+      gas fraction in [0.6,5.0)        N= 46  median resid -0.1010  rms 0.2163
+
+======================================================================================================================
+  VERDICT ON K1
+======================================================================================================================
+  (1) measured quantities?  YES -- v(r), r and the baryonic profile's log-slope.
+  (2) a_0 with a PREDICTED coefficient?  the relation is parameter-free, but see (5).
+  (3) RAR-class scatter?  NO -- rms 0.169 in dln v/dln r against the <= 0.10 asked for, and chi2/N = 33 says it is real.
+  (4) unstated?  the identity itself overlaps another agent's k02_rar_slope_law.py this session, and
+      the local-slope test is the repo's own item 22 / item 115.
+  (5) restatement?  TRUE at one remove, and PROVEN above rather than argued: it is the radial
+      acceleration relation differentiated in ln r, satisfied to the 1e-7 finite-difference floor by
+      construction on nine synthetic curves at three different a_0.  It carries no
+      information the first law does not already contain.
+  THE a_0 IT RETURNS: 1.122e-10 +- 0.125 dex statistical, the alt footing to 0.003 dex --
+  and that agreement is not evidence, because d log a_0/d log Upsilon = +1.70 means the same
+  pipeline returns 5.6e-11 at Upsilon = 0.33 and 2.2e-10 at Upsilon = 0.75.  The number is chosen by
+  the M/L convention, not measured.
+  THE STRICT UPSILON-FREE FORM, which is the only version that would have escaped that, returns
+  4.47e-10 -- +0.68 dex from canonical, +0.60 from alt -- with a correlation of +0.24 against its own
+  prediction.  It collapses.
+  ==> CANDIDATE K1 IS NOT A SECOND LAW.  Its only independent value would have been as a Upsilon-free
+      a_0 estimator, and the sections above measure how well that works: it does not.
+
+RESULT: 11 checks, 4 FAIL -> ['law scatter <= 0.10 in dln v/dln r (RAR-class)', 'Upsilon lever |d log a_0/d log Upsilon| < 0.15', 'the Upsilon-free form recovers a_0 within 0.3 dex of a footing', 'the Upsilon-free form correlates with the prediction at r > 0.5']   rc=1
