@@ -1,0 +1,67 @@
+====================================================================================================================
+0. the covariance bug, stated and verified
+====================================================================================================================
+  plain reshape(60,60): min eigenvalue -2.767e-23 (NOT positive definite); diagonal/err^2 max deviation 1.005
+  (m,n,i,j) -> transpose(0,2,1,3): min eigenvalue 6.700e-27 (positive definite); diagonal deviation 0.00011
+  [PASS] X0 the ordering is settled by positive-definiteness, not by the diagonal alone: only (m,n,i,j)->transpose gives a valid covariance   (min eig -2.77e-23 vs 6.70e-27)
+
+====================================================================================================================
+1. KiDS mass bins: the coherent mode is degenerate with the amplitude; the differential mode is not
+====================================================================================================================
+  canonical  COHERENT (same eps in all 4 bins), amplitude profiled: eps=0 chi2 127.4/60 (amp +0.15); eps=0.1: -13.7 (amp +0.10), eps=0.2: -20.7 (amp +0.05), eps=0.5: -28.8 (amp -0.03), eps=1.0: -31.6 (amp -0.13), eps=1.5: -31.8 (amp -0.20)
+  canonical  the same coherent test with the amplitude FIXED at 1: eps=0 chi2 269.2, eps=1 339.7 (Delta +70.5) -- the preference is the amplitude, not the halo
+  canonical  DIFFERENTIAL (one bin at a time): bin 1 eps=1.0: +160, bin 1 eps=0.5: +66, bin 2 eps=1.0: +164, bin 2 eps=0.5: +57, bin 3 eps=1.0: +200, bin 3 eps=0.5: +80, bin 4 eps=1.0: +143, bin 4 eps=0.5: +55
+  alt        COHERENT (same eps in all 4 bins), amplitude profiled: eps=0 chi2 126.0/60 (amp +0.11); eps=0.1: -13.4 (amp +0.05), eps=0.2: -20.3 (amp +0.02), eps=0.5: -28.0 (amp -0.07), eps=1.0: -30.6 (amp -0.17), eps=1.5: -30.8 (amp -0.24)
+  alt        the same coherent test with the amplitude FIXED at 1: eps=0 chi2 208.6, eps=1 537.5 (Delta +329.0) -- the preference is the amplitude, not the halo
+  alt        DIFFERENTIAL (one bin at a time): bin 1 eps=1.0: +159, bin 1 eps=0.5: +66, bin 2 eps=1.0: +163, bin 2 eps=0.5: +57, bin 3 eps=1.0: +200, bin 3 eps=0.5: +80, bin 4 eps=1.0: +143, bin 4 eps=0.5: +55
+  [PASS] X1 (the correction) the four KiDS mass bins do NOT forbid a coherent CDM-like halo: with the amplitude profiled they PREFER eps ~ 1 by Delta chi2 <= -25, both footings -- a coherent halo and a coherent stellar-mass shift are degenerate   (canonical: best -31.8 at amp -0.20 dex; alt: best -30.8 at amp -0.24 dex)
+  [PASS] X2 ...and with the amplitude held fixed the same halo is disfavoured, both footings: the entire preference lives in the +/-0.3 dex nuisance   (canonical: 269 -> 340; alt: 209 -> 538)
+  [PASS] X3 the DIFFERENTIAL bound is real and strong: giving ONE mass bin a full CDM-like halo while the others have none costs Delta chi2 >= +100, every bin, both footings -- the halo-to-baryon ratio cannot vary from bin to bin   (min +143)
+
+====================================================================================================================
+2. the bound that is NOT degenerate: SPARC rotation curves at 10-30 kpc
+====================================================================================================================
+  SPARC: 147 galaxies (Q<=2, i>=30); the RAR's own orthogonal scatter is 0.057-0.13 dex (Lelli+17, McGaugh+16)
+  canonical    eps    dlog g @20kpc (logMb=9.5)   dlog g @20kpc (logMb=10.3)   dlog g @20kpc (logMb=11.0)
+  canonical   0.05                        0.016                        0.010                        0.005
+  canonical   0.10                        0.032                        0.019                        0.010
+  canonical   0.20                        0.060                        0.036                        0.020
+  canonical   0.50                        0.128                        0.082                        0.049
+  canonical   1.00                        0.211                        0.145                        0.091
+  alt          eps    dlog g @20kpc (logMb=9.5)   dlog g @20kpc (logMb=10.3)   dlog g @20kpc (logMb=11.0)
+  alt         0.05                        0.016                        0.009                        0.005
+  alt         0.10                        0.032                        0.019                        0.010
+  alt         0.20                        0.060                        0.036                        0.020
+  alt         0.50                        0.128                        0.081                        0.048
+  alt         1.00                        0.210                        0.143                        0.089
+  [PASS] X4 the operative bound is the rotation curves, not the lenses: a Newtonian-accreted CDM-like halo at eps = 0.5 shifts the predicted g_obs at 20 kpc by 0.08-0.13 dex for M_b <= 2e10 Msun, above the RAR's own 0.06 dex orthogonal scatter, both footings; the bound is eps <~ 0.2 (dwarfs) rising to ~0.5 (massive discs)   (canonical: eps=0.5 shift 0.128/0.082/0.049 dex (logMb 9.5/10.3/11.0), largest eps inside 0.06 dex = 0.20; alt: eps=0.5 shift 0.128/0.081/0.048 dex (logMb 9.5/10.3/11.0), largest eps inside 0.06 dex = 0.20)
+  [PASS] X5 and the shift is MASS-DEPENDENT, so it also induces a trend the RAR does not have: at eps = 1 the shift differs by >= 0.10 dex between M_b = 3e9 and 1e11 (a slope of ~0.08 dex per dex), against a measured per-galaxy a_0 slope of +0.07 with a framework expectation of +0.03-0.04 (rar_origin_detector)   (canonical: 0.120 dex across 1.5 dex in mass; alt: 0.121 dex across 1.5 dex in mass)
+
+====================================================================================================================
+3. mutation control
+====================================================================================================================
+/Users/carlzimmerman/new_physics/zimmerman-formula/hunt_2026/h_kids_halo_bound_CORRECTION.py:142: RuntimeWarning: divide by zero encountered in matmul
+  saved = gobsM.copy(); gobsM = truth + L @ rng.standard_normal(60)
+/Users/carlzimmerman/new_physics/zimmerman-formula/hunt_2026/h_kids_halo_bound_CORRECTION.py:142: RuntimeWarning: overflow encountered in matmul
+  saved = gobsM.copy(); gobsM = truth + L @ rng.standard_normal(60)
+/Users/carlzimmerman/new_physics/zimmerman-formula/hunt_2026/h_kids_halo_bound_CORRECTION.py:142: RuntimeWarning: invalid value encountered in matmul
+  saved = gobsM.copy(); gobsM = truth + L @ rng.standard_normal(60)
+  [PASS] M0 mutation control: on 20 pure-MOND mocks with the real covariance, a single-bin full halo is preferred in < 20% of trials (the differential test does not fire on noise)   (0/20)
+
+====================================================================================================================
+VERDICT -- what replaces the 2026-09-02 statement
+====================================================================================================================
+  WITHDRAWN: 'the isolated KiDS lenses tolerate at most 6-14% of a CDM-like halo around a MOND well' (dark_sector_debug D1)
+  and 'an Einstein-frame clock dust is excluded by the KiDS mass bins at Delta chi2 >= +30' (ccnl_clock_fix C1, computed with
+  an indefinite covariance).  IN FORCE INSTEAD, all three parts:
+    (a) coherently, KiDS cannot tell a CDM-like halo from a 0.13 dex stellar-mass shift -- it mildly PREFERS the halo;
+    (b) differentially, KiDS forbids the halo-to-baryon ratio varying between stellar-mass bins (>= +100 per bin);
+    (c) the decisive bound is the SPARC rotation curves: eps >= 0.2 of a Newtonian-accreted halo moves g_obs at 20 kpc
+        by 0.08-0.13 dex at eps = 0.5, above the RAR's own scatter, AND induces a mass trend the RAR does not show.
+  NET: 'MOND plus a cold dust that accretes Newtonianly' is bounded at eps <~ 0.2 (dwarfs) to ~0.5 (massive discs) by GALAXY
+  DYNAMICS, not by lensing.  The kernel-boosted version (27-55 M_b inside 250 kpc) stays dead on both.  The dark-sector debug's
+  conclusion is unchanged in substance -- no single-sector dust can be the CMB's dark matter and absent from galaxies -- but the
+  number that carries it is now the rotation curves, and the lensing bound as previously stated is withdrawn.
+
+RESULT: 7 checks, 0 FAIL   rc=0
+rc=0

@@ -158,6 +158,10 @@ for foot, a0 in A0.items():
     binres[foot] = per
 info("B1' reading (both ways): a rising eps with well depth across the four bins would be the environment selection showing inside the galaxy population; a flat eps says the threshold sits above L* depths")
 EPS_GAL = {f: max(r[2] for r in binres[f]) for f in A0}; EPS_BEST = {f: max(r[1] for r in binres[f]) for f in A0}
+# ⚠ CORRECTION 2026-09-03 (hunt_2026/h_kids_halo_bound_CORRECTION.py, 7/7): this per-bin ceiling is a DIFFERENTIAL bound
+# (one bin's halo against the others').  COHERENTLY the four bins PREFER a full CDM-like halo, Delta chi2 = -32, because it is
+# degenerate with the +/-0.3 dex amplitude nuisance.  The non-degenerate bound is the SPARC rotation curves: eps <~ 0.2 (dwarfs)
+# to ~0.5 (massive discs).  Read D1 as "the halo-to-baryon ratio cannot VARY between mass bins", not as an absolute ceiling.
 check("D1 with per-bin templates and the full covariance, the isolated KiDS lenses tolerate at most ~14% of a CDM-like (Newtonian-accreted) dust halo around a MOND well: max 2-sigma ceiling over the four bins <= 0.15, best-fit eps <= 0.07, both footings",
       all(EPS_GAL[f] <= 0.15 and EPS_BEST[f] <= 0.07 for f in A0), "; ".join(f"{f}: ceilings {[round(r[2],3) for r in binres[f]]}, best {[round(r[1],3) for r in binres[f]]}" for f in A0))
 trend = {f: (binres[f][-1][2] - binres[f][0][2]) for f in A0}

@@ -138,7 +138,12 @@ P(""); P("="*118); P("C. structural escapes inside one metric"); P("="*118)
 # C1: clock dust in the unboosted metric -> Newtonian accretion, eps = 1 against the KiDS stellar-mass bins (full covariance)
 bins = {}
 for b in range(1, 5): bins[b] = load_rar(f"Fig-9_RAR-KiDS-isolated_Massbin-{b}.txt")
-dcov = np.genfromtxt(os.path.join(B, "Fig-9_RAR-KiDS-isolated_Massbins_covmatrix.txt"), comments="#"); covM = (dcov[:, 4]/dcov[:, 6]).reshape(60, 60)*CONV*CONV
+dcov = np.genfromtxt(os.path.join(B, "Fig-9_RAR-KiDS-isolated_Massbins_covmatrix.txt"), comments="#")
+# CORRECTION 2026-09-03: the binned covariance is stored as (m,n,i,j); a plain reshape(60,60) is NOT positive definite
+# (min eigenvalue -2.8e-23) and yields negative chi2.  The correct 60x60 is reshape(4,4,15,15).transpose(0,2,1,3).
+covM = ((dcov[:, 4]/dcov[:, 6])*CONV*CONV).reshape(4, 4, 15, 15).transpose(0, 2, 1, 3).reshape(60, 60)
+_ev = np.linalg.eigvalsh((covM + covM.T)/2)
+assert _ev.min() > 0, f"binned covariance not positive definite: min eig {_ev.min():.3e}"
 LOGM = {1: 10.0, 2: 10.45, 3: 10.7, 4: 10.9}; FGAS = {1: 0.5, 2: 0.3, 3: 0.2, 4: 0.15}
 C1 = {}
 for foot, a0 in A0.items():
@@ -147,6 +152,9 @@ for foot, a0 in A0.items():
     pred = lambda eps: np.concatenate([gpred(Ms[b], caps[b], eps, a0, bins[b][0], rfns[b]) for b in bins])
     c0 = chi2_gen(pred(0.0), gobsM, covM, maskM); c1 = chi2_gen(pred(1.0), gobsM, covM, maskM); C1[foot] = c1 - c0
     info(f"{foot:10} C1 clock dust in the UNBOOSTED metric (Newtonian accretion, {caps[3](250*kpc)/Ms[3](250*kpc):.1f} M_b inside 250 kpc for bin 3), then seen by the kernel: 4-bin KiDS Delta chi2 at eps = 1 vs MOND-only = {c1-c0:+.0f}  (ceiling from dark_sector_debug: eps <= 0.06-0.14)")
+# ⚠ CORRECTION 2026-09-03: with the covariance ordering fixed this flips sign -- the coherent halo is PREFERRED (-30), being
+# degenerate with the amplitude.  C1 as a lensing exclusion is WITHDRAWN; the Einstein-frame route is bounded instead by the
+# SPARC rotation curves at eps <~ 0.2-0.5 (hunt_2026/h_kids_halo_bound_CORRECTION.py).  The check below is left as recorded.
 check("C1 an Einstein-frame clock dust (Newtonian accretion, full share) is excluded by the KiDS stellar-mass bins at Delta chi2 >= +30, both footings: inside one metric the cold charge cannot be both the CMB's dark matter and absent from galaxies",
       all(v >= 30 for v in C1.values()), "; ".join(f"{f}: {v:+.0f}" for f, v in C1.items()))
 info("C2 a clock dust that does not source the visible potential in wells is not the CMB's dark matter unless a SECOND metric carries it and screens it nonlinearly -- outside CCNL by construction (Blanchet-class bimetric/dipolar media; BD-ghost assertion open)")
