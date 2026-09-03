@@ -80,6 +80,7 @@ produce one of those two numbers from something else. None exists in this corpus
 | D-10 | v9 single-field DBI dark sector; "the condensate's pressure keeps dark matter out of galaxies"; the CMC filter as a 2-DOF mechanism | all excluded 09-02 (`condensate_pincer_2026/`) |
 | D-11 | AeST's free per-galaxy boundary constant as an escape | fixed by charge conservation; excluded for every m² on KiDS (09-02) |
 | D-12 | κ = ½ derived (any route: dS-Unruh, entropy, graviton bath, action modulus) | never; fitted |
+| D-13 | a two-sector (second-metric / bigravity) dark charge screened around galaxies by a massive-mode range 1/m | shape right and KiDS + X-COP agree on 1/m = 1.7–2.6 Mpc, but the CMB's third peak and damping tail were made at 30–100 kpc PHYSICAL (inside the KiDS rail) and need full coupling; a comoving range cuts the z = 3 forest by 30–90% at k = 1–10 h/Mpc (`two_sector_2026/`, 09-02 night). Ghost was never the obstacle (singly-coupled sectors are ghost-free) |
 
 ---
 

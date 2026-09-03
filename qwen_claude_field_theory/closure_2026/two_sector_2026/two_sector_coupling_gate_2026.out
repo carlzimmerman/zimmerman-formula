@@ -1,0 +1,65 @@
+======================================================================================================================
+A. linear two-sector kernels from the mode decomposition (sympy)
+======================================================================================================================
+  [PASS] A0 the mode decomposition diagonalises the kinetic term (u-v cross term vanishes identically)
+  g-observer, g-source  (dyn):  4*M_f2*exp(-m*r)/(3*M_g2) + 1      lensing: M_f2*exp(-m*r)/M_g2 + 1
+  g-observer, f-source  (dyn):  1 - 4*exp(-m*r)/3      lensing: 1 - exp(-m*r)
+  f-observer, f-source  (dyn):  1 + 4*M_g2*exp(-m*r)/(3*M_f2)
+  [PASS] A1 g<-g: 1 + (4/3) beta e^{-mr} (dynamics), 1 + beta e^{-mr} (lensing)
+  [PASS] A2 g<-f: 1 - (4/3) e^{-mr} (dynamics: repulsive -1/3 inside 1/m), 1 - e^{-mr} (lensing: invisible inside 1/m), independent of beta
+  [PASS] A3 f<-f: 1 + (4/3) e^{-mr}/beta -- the dark sector's own short-range gravity is enhanced by 4/(3 beta)
+  A4 cosmological coupling: beyond 1/m only the massless mode acts, with G_u = G_N/(1+beta) for EVERY pair; BBN/CMB hold G_cosmo/G_N to ~5% => beta <= 0.05 => the dark sector's own short-range gravity is >= 27 G_N (A3).  Vainshtein screening of the helicity-0 (r < r_V) turns 4/3 -> 1: invisible rather than repulsive.
+
+======================================================================================================================
+B. the two galaxy-scale anchors pin 1/m (a WORKS)
+======================================================================================================================
+  KiDS rail: L(250 kpc) <= 0.14  =>  1/m >= 1.66 Mpc;   X-COP: L(1 Mpc) = 0.32-0.46  =>  1/m = 1.62-2.59 Mpc
+  [PASS] B1 (a WORKS) the KiDS galaxy bound and the X-COP cluster need are CONSISTENT for one massive-mode range: 1/m = 1.7-2.6 Mpc satisfies both   (window 1/m in [1.66, 2.59] Mpc)
+     at 1/m = 1.66 Mpc: r =    40 kpc  lensing coupling 0.02   dynamics (linear) -0.30   (Vainshtein-screened: 0.02)
+     at 1/m = 1.66 Mpc: r =   100 kpc  lensing coupling 0.06   dynamics (linear) -0.26   (Vainshtein-screened: 0.06)
+     at 1/m = 1.66 Mpc: r =   250 kpc  lensing coupling 0.14   dynamics (linear) -0.15   (Vainshtein-screened: 0.14)
+     at 1/m = 1.66 Mpc: r =   500 kpc  lensing coupling 0.26   dynamics (linear) +0.01   (Vainshtein-screened: 0.26)
+     at 1/m = 1.66 Mpc: r =  1000 kpc  lensing coupling 0.45   dynamics (linear) +0.27   (Vainshtein-screened: 0.45)
+     at 1/m = 1.66 Mpc: r =  2000 kpc  lensing coupling 0.70   dynamics (linear) +0.60   (Vainshtein-screened: 0.70)
+
+======================================================================================================================
+C. the cosmological anchor in PHYSICAL units: the CMB was made at galaxy scales
+======================================================================================================================
+  CMB feature            comoving Mpc   PHYSICAL at z=1090 (kpc)   coupling there at 1/m = 1.66 Mpc (physical, fixed)
+  sound horizon r_s             144.6                        133   0.077
+  1st peak l=220                397.0                        364   0.197
+  3rd peak l=800                109.2                        100   0.059
+  damping tail l=2000            43.7                         40   0.024
+  damping tail l=3000            29.1                         27   0.016
+  KiDS rail today: 39-228 kpc physical, coupling required <= 0.14;  CMB third peak + damping tail: 27-100 kpc physical, coupling required ~ 1 (the dark sector is what makes H3/H1)
+  [PASS] C1 THE PHYSICAL-SCALE INTERLEAVING: the CMB's third peak and damping tail were made at 30-100 kpc PHYSICAL, inside the KiDS rail's 39-228 kpc, with opposite coupling requirements -- no fixed physical transition scale can serve both   (coupling at the 3rd peak's physical scale with the KiDS-pinned 1/m = 0.059 (needs ~1))
+
+======================================================================================================================
+D. the comoving alternative: cutoff scaling with a.  Two-fluid growth, baryons feel the dark sector through W(k) = m_c^2/(k^2+m_c^2)
+======================================================================================================================
+  [PASS] M0 mutation control: W = 1 gives identical baryon and dark growth (the LCDM two-fluid limit)
+  1/m_c [Mpc com.] Pb/PLCDM k=0.2 z=3 Pb/PLCDM k=1.0 z=3 Pb/PLCDM k=3.0 z=3 Pb/PLCDM k=10.0 z=3 |   z=0 k=0.2    z=0 k=1.0    z=0 k=3.0   z=0 k=10.0
+              0.25              0.997              0.927              0.555              0.054 |       0.996        0.918        0.514        0.040
+              0.50              0.988              0.752              0.188              0.009 |       0.986        0.723        0.155        0.005
+              1.00              0.952              0.390              0.034              0.003 |       0.946        0.347        0.023        0.001
+              1.66              0.877              0.151              0.009              0.002 |       0.862        0.122        0.005        0.000
+              2.60              0.736              0.049              0.004              0.002 |       0.706        0.035        0.002        0.000
+              4.00              0.519              0.016              0.002              0.002 |       0.477        0.010        0.001        0.000
+  [PASS] D1 at the KiDS-pinned comoving cutoff (1/m_c >= 1.7 Mpc) the BARYON power the z = 3 forest measures is suppressed by more than 20% at k = 1-3 h/Mpc and by more than 50% at k = 10 h/Mpc, against a forest that agrees with LCDM to ~10%: the comoving version is excluded by the forest   (P_b/P_LCDM(z=3) at k = 1, 3, 10 = 0.15, 0.01, 0.00)
+  [PASS] D2 ...and it also cuts the z = 0 galaxy power at k = 0.2-1 h/Mpc (BOSS/DESI, few-percent data): suppression > 5% at k = 1   (P_b/P_LCDM(z=0, k=1) = 0.122, k=0.2: 0.862)
+  both ways: a comoving cutoff short enough for the forest (1/m_c = 0.25 Mpc: P_b/P at z=3, k=1..10 = 0.93, 0.56, 0.05) gives coupling 0.63 at 250 kpc today -- the KiDS bound (<= 0.14) fails by x5
+
+======================================================================================================================
+VERDICT
+======================================================================================================================
+  The two-sector door has exactly the right SHAPE: in ghost-free bigravity a dark sector on the second metric is invisible to light
+  and repulsive to dynamics inside 1/m and fully attractive beyond it, and the two galaxy-scale anchors you already own agree on the
+  range, 1/m = 1.7-2.6 Mpc (KiDS and X-COP, independently).  It fails on the third anchor, and the failure is a theorem about scales,
+  not about ghosts: the CMB's third peak and damping tail were made at 30-100 kpc PHYSICAL, the same physical scales as the KiDS rail
+  today, and there the dark sector must gravitate fully.  A fixed physical range cannot serve both; a comoving range that serves the
+  CMB cuts the baryon power the z = 3 forest measures by 30-90% at k = 1-10 h/Mpc.  So the dark-to-visible coupling cannot be a
+  function of scale, physical or comoving -- the same conclusion the environment debug reached for local variables.  What is left
+  is a switch on COLLAPSE itself (single-stream vs multi-stream), which no metric theory provides.  The last door closes on the data.
+
+RESULT: 9 checks, 0 FAIL   rc=0
+rc=0
