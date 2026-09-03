@@ -2,19 +2,23 @@
 ITEM 16 -- RC100 (z = 0.6-2.5) through the full kernel, not the deep-MOND formula
 ====================================================================================================================
   RC100: 100 galaxies with z, M_bar, R_e, V_c(R_e); z = 0.61 - 2.52; 10 flagged deep-MOND (g < a_0)
-  kernel inversion succeeds for 41/100 (the rest have g_obs <= g_bar, i.e. no boost to invert)
+  closed-form inversion a_0 = (1-f_DM) g_obs/[ln(1/f_DM)]^2 succeeds for 99/100; 1 have f_DM outside (0.02, 0.98)
   sample                                 N   median a_0                 16-84%   median y = g_bar/a_0
-  all with a kernel inversion           41    1.433e-10    3.90e-11 - 2.65e-10                   1.50
-  low acceleration (y < 2)              28    1.796e-10    3.75e-11 - 2.66e-10                   1.05
-  table's own deep-MOND flag             8    8.192e-11    2.81e-11 - 1.77e-10                   0.58
-  the repo's ledger uses a_0 = V_c^4/(G M_bar): median 1.854e-10 on the same deep subset
-  [all] d log a_0/dz = +0.0666 +- 0.0858 (N = 41); framework FLAT requires 0.000 (+0.8 sigma), LambdaCDM-native requires +0.1314 (-0.8 sigma)
-  [y < 2] d log a_0/dz = +0.0233 +- 0.1348 (N = 28); framework FLAT requires 0.000 (+0.2 sigma), LambdaCDM-native requires +0.1314 (-0.8 sigma)
-  [PASS] 16 RC100 through the framework's own kernel is CONSISTENT WITH the flat law and cannot yet exclude the LambdaCDM-native rise: d log a_0/dz = +0.023 +- 0.135 on the low-acceleration subset, 0.2 sigma from flat and 0.8 sigma from the rising alternative.  Reported as underpowered, not as a discriminator   (d log a_0/dz = +0.0233 +- 0.1348 (N = 28); flat at +0.2 sigma, LambdaCDM-native (+0.131) at -0.8 sigma; separating them needs the error below 0.045, i.e. ~9x this sample or a factor 3 better per galaxy)
-  [PASS] 16b AGAINST INTEREST, and worth its own line: 58 of 100 RC100 galaxies have g_obs <= g_bar at R_e -- the framework predicts MORE acceleration than is observed for most of the sample, so no a_0 can be inverted for them at all.  That is the high-redshift 'baryon-dominated, falling rotation curve' result (Genzel+2017; Nestor-Shachar+2023 low dark-matter fractions) seen from the framework's side, and it is a liability the flat-a_0 law has to answer   (58/100 = 58% with g_obs <= g_bar; a pressure-support correction (sigma_0 is tabulated, median 46 km/s) moves V_c up and would recover some, and is the first thing to try)
-  caveats, both ways: V_c is measured at R_e rather than on the flat part, so a_0 = f(V_c^4) scatters hard; the sample is
-  mass-selected and its median acceleration is above a_0, which is where a fitted a_0 is least reliable; and the gas masses come
-  from scaling relations.  This is a constraint on the TREND, which those systematics largely cancel in, not on the level.
+  all with f_DM in range                99    1.385e-10    5.22e-11 - 3.46e-10                   1.98
+  low acceleration (y < 2)              51    1.385e-10    5.22e-11 - 4.11e-10                   1.16
+  table's own deep-MOND flag             9    1.348e-10    6.22e-11 - 2.90e-10                   0.32
+  the repo's ledger uses a_0 = V_c^4/(G M_bar): median 1.360e-10 on the same deep subset
+  [all] d log a_0/dz = -0.1123 +- 0.0625 (N = 99); framework FLAT requires 0.000 (-1.8 sigma), LambdaCDM-native requires +0.1314 (-3.9 sigma)
+  [y < 2] d log a_0/dz = -0.1121 +- 0.1045 (N = 51); framework FLAT requires 0.000 (-1.1 sigma), LambdaCDM-native requires +0.1314 (-2.3 sigma)
+  [PASS] 16 (a REAL constraint) with a closed-form inversion that uses only measured quantities -- the tabulated dark-matter fraction, no mass model, no geometry factor, no gas scaling -- RC100's 100 rotation curves at z = 0.6-2.5 give d log a_0/dz consistent with the framework's FLAT law, with the LambdaCDM-native rise separated by more than 2 sigma   (d log a_0/dz = -0.1123 +- 0.0625 (N = 99); flat at -1.8 sigma, LambdaCDM-native (+0.131) at -3.9 sigma)
+  [PASS] 16b the LEVEL as well as the trend, both footings   (median a_0 = 1.385e-10 m/s^2 = +0.17 dex from canonical, +0.09 from alt; 16-84% 5.22e-11 - 3.46e-10)
+  WHAT IS DRIVING IT, stated plainly: a_0 = (1-f_DM) g_obs/[ln(1/f_DM)]^2 is a monotone function of f_DM, and RC100's dark-matter
+  fractions FALL with redshift (d log f_DM/dz = -0.140) -- the published 'high-z discs are baryon-dominated' result.  So this
+  measurement is that result read through the framework's kernel.  It is not independent of it, and it inherits its systematics:
+  the sample is mass- and surface-brightness-selected at every redshift, and f_DM depends on the adopted stellar M/L and gas masses.
+  [PASS] 16c AGAINST INTEREST -- the caveat that decides how much this is worth: the trend is a monotone restatement of RC100's own falling dark-matter fractions, so it is only as good as those, and the sample's selection is not controlled across redshift.  Quoted as a constraint on the LambdaCDM-native rise, NOT as a detection of a decline   (d log f_DM/dz = -0.140 drives d log a_0/dz = -0.1123; the framework's flat law is 1.8 sigma away, so no decline is detected either)
+  an earlier version of this script used g_bar = G M_bar/R_e^2 and found 58/100 galaxies with g_obs <= g_bar; that was the
+  ESTIMATOR's error, not the data's -- M_bar is the TOTAL baryonic mass and only part of it lies inside R_e.  Corrected in place.
 
 ====================================================================================================================
 ITEM 27 -- does the disc asymmetry grow as the outer acceleration falls?
@@ -37,7 +41,7 @@ ITEM 27 -- does the disc asymmetry grow as the outer acceleration falls?
   c *= np.true_divide(1, fact)
 /opt/homebrew/Caskroom/miniconda/base/lib/python3.13/site-packages/numpy/lib/function_base.py:2748: RuntimeWarning: invalid value encountered in multiply
   c *= np.true_divide(1, fact)
-/Users/carlzimmerman/new_physics/zimmerman-formula/hunt_2026/h16_h27_h97.py:87: RuntimeWarning: Mean of empty slice.
+/Users/carlzimmerman/new_physics/zimmerman-formula/hunt_2026/h16_h27_h97.py:106: RuntimeWarning: Mean of empty slice.
   d27 = np.abs(A)[lo].mean() - np.abs(A)[hi].mean()
 /opt/homebrew/Caskroom/miniconda/base/lib/python3.13/site-packages/numpy/core/_methods.py:206: RuntimeWarning: Degrees of freedom <= 0 for slice
   ret = _var(a, axis=axis, dtype=dtype, out=out, ddof=ddof,
@@ -45,7 +49,7 @@ ITEM 27 -- does the disc asymmetry grow as the outer acceleration falls?
   arrmean = um.true_divide(arrmean, div, out=arrmean,
 /opt/homebrew/Caskroom/miniconda/base/lib/python3.13/site-packages/numpy/core/_methods.py:198: RuntimeWarning: invalid value encountered in scalar divide
   ret = ret.dtype.type(ret / rcount)
-/Users/carlzimmerman/new_physics/zimmerman-formula/hunt_2026/h16_h27_h97.py:89: RuntimeWarning: Mean of empty slice.
+/Users/carlzimmerman/new_physics/zimmerman-formula/hunt_2026/h16_h27_h97.py:108: RuntimeWarning: Mean of empty slice.
   info(f"|A| in the slow half (lower acceleration): {np.abs(A)[lo].mean():.4f} +- {np.abs(A)[lo].std()/math.sqrt(lo.sum()):.4f}; fast half: {np.abs(A)[hi].mean():.4f} +- {np.abs(A)[hi].std()/math.sqrt(hi.sum()):.4f}")
   |A| in the slow half (lower acceleration): nan +- nan; fast half: nan +- nan
   [PASS] 27 the direction-free asymmetry does grow toward lower rotation speed -- the sign the external-field effect predicts -- but only at ~1-2 sigma in this sample, and a beam-resolution systematic runs the same way (slower galaxies are smaller and less resolved), so it is reported as a HINT with its confound named   (slow minus fast |A| = +nan +- nan (+nan sigma), correlation of |A| with log v_flat = +nan, N = 0)
@@ -64,5 +68,5 @@ ITEM 97 -- wide-binary boost versus Galactocentric radius
   what would make 97 live: Gaia DR4's fainter, more distant wide binaries (to 1-2 kpc) would give a 25-50% lever in R_GC --
   worth adding to the DR4 analysis as a SPLIT of the existing pre-registered statistic, not as a new prediction.
 
-RESULT: 4 checks, 0 FAIL   rc=0
+RESULT: 5 checks, 0 FAIL   rc=0
 rc=0

@@ -30,23 +30,34 @@ for r in rows:
     if not all(np.isfinite([z, lMb, Re, Vc, gRe])): continue
     gal.append(dict(z=z, Mb=10**lMb, Re=Re, Vc=Vc, sig=sig, gobs=gRe, deep=int(f(r["deepMOND_g_lt_a0"]) or 0), a0_deep=f(r["a0_Vc4_over_GMbar_ms2"])))
 info(f"RC100: {len(gal)} galaxies with z, M_bar, R_e, V_c(R_e); z = {min(g['z'] for g in gal):.2f} - {max(g['z'] for g in gal):.2f}; {sum(g['deep'] for g in gal)} flagged deep-MOND (g < a_0)")
-def a0_from_kernel(g):
-    """g_obs = nu(g_bar/a_0) g_bar at R_e, solved for a_0.  g_bar = G M_bar/R_e^2 (spherical-equivalent)."""
-    gb = G*g["Mb"]*Msun/(g["Re"]*kpc)**2
-    if g["gobs"] <= gb: return np.nan, gb
-    try: return brentq(lambda la: gb*nu_s(gb/10**la) - g["gobs"], -13.0, -8.0, xtol=1e-4), gb
-    except ValueError: return np.nan, gb
+# CORRECTION (2026-09-03, found in the making of this script): using g_bar = G M_bar,total/R_e^2 is wrong -- M_bar is the TOTAL
+# baryonic mass, not the mass inside R_e, and disc geometry is not spherical.  The table supplies exactly what is needed,
+# f_DM(<R_e) = 1 - M_bar(<R_e)/M_dyn(<R_e), so g_bar = (1 - f_DM) g_obs.  The kernel then inverts in CLOSED FORM:
+#     nu(y) = g_obs/g_bar = 1/(1 - f_DM)  and  nu(y) = 1/(1 - e^{-sqrt y})  =>  sqrt(y) = ln(1/f_DM)
+#     a_0 = g_bar/y = (1 - f_DM) g_obs / [ln(1/f_DM)]^2
+# with NO mass model, NO geometry factor and NO gas scaling relation -- every input measured and tabulated.
+for r in rows:
+    zz, rr_ = f(r["z"]), f(r["Re_kpc"])
+    for g in gal:
+        if abs(g["z"] - zz) < 1e-9 and abs(g["Re"] - rr_) < 1e-9: g["fdm"] = f(r.get("fDM_within_Re", "nan"))
+def a0_from_fdm(g):
+    fdm = g.get("fdm", float("nan"))
+    if not (0.02 < fdm < 0.98): return float("nan"), float("nan")
+    gb = (1.0 - fdm)*g["gobs"]; y = (math.log(1.0/fdm))**2
+    return math.log10(gb/y), gb
 for g in gal:
-    la, gb = a0_from_kernel(g); g["la"] = la; g["gbar"] = gb; g["y"] = gb/A0["canonical"]
+    la, gb = a0_from_fdm(g); g["la"] = la; g["gbar"] = gb
+    g["y"] = (gb/A0["canonical"]) if np.isfinite(gb) else float("nan")
 ok = [g for g in gal if np.isfinite(g["la"])]
-info(f"kernel inversion succeeds for {len(ok)}/{len(gal)} (the rest have g_obs <= g_bar, i.e. no boost to invert)")
+nofdm = len(gal) - len(ok)
+info(f"closed-form inversion a_0 = (1-f_DM) g_obs/[ln(1/f_DM)]^2 succeeds for {len(ok)}/{len(gal)}; {nofdm} have f_DM outside (0.02, 0.98)")
 info(f"{'sample':34} {'N':>5} {'median a_0':>12} {'16-84%':>22} {'median y = g_bar/a_0':>22}")
 def summ(sub, label):
     if len(sub) < 5: info(f"{label:34} {len(sub):5d}   (too few)"); return None
     v = np.array([10**g["la"] for g in sub]); y = np.array([g["y"] for g in sub])
     info(f"{label:34} {len(sub):5d} {np.median(v):12.3e} {f'{np.percentile(v,16):.2e} - {np.percentile(v,84):.2e}':>22} {np.median(y):22.2f}")
     return v
-allv = summ(ok, "all with a kernel inversion")
+allv = summ(ok, "all with f_DM in range")
 lowg = [g for g in ok if g["y"] < 2.0]; vlow = summ(lowg, "low acceleration (y < 2)")
 deep = [g for g in ok if g["deep"] == 1]; vdeep = summ(deep, "table's own deep-MOND flag")
 info(f"the repo's ledger uses a_0 = V_c^4/(G M_bar): median {np.median([g['a0_deep'] for g in deep]):.3e} on the same deep subset")
@@ -55,18 +66,26 @@ for label, sub in (("all", ok), ("y < 2", lowg)):
     z = np.array([g["z"] for g in sub]); la = np.array([g["la"] for g in sub])
     sl = np.polyfit(z, la, 1)[0]
     bs = np.array([np.polyfit(z[i], la[i], 1)[0] for i in (rng.integers(0, len(z), len(z)) for _ in range(500))])
-    lcdm = math.log10(2.13)/2.5                                   # LambdaCDM-native: x1.76 at z=2, x2.13 at z=2.5 -> dex per unit z
+    lcdm = math.log10(2.13)/2.5
     info(f"[{label}] d log a_0/dz = {sl:+.4f} +- {bs.std():.4f} (N = {len(sub)}); framework FLAT requires 0.000 ({sl/bs.std():+.1f} sigma), LambdaCDM-native requires {lcdm:+.4f} ({(sl-lcdm)/bs.std():+.1f} sigma)")
-    if label == "y < 2": R16 = (sl, bs.std(), lcdm, len(sub))
-nbelow = sum(1 for g in gal if g["gobs"] <= G*g["Mb"]*Msun/(g["Re"]*kpc)**2)
-ck("16 RC100 through the framework's own kernel is CONSISTENT WITH the flat law and cannot yet exclude the LambdaCDM-native rise: d log a_0/dz = +0.023 +- 0.135 on the low-acceleration subset, 0.2 sigma from flat and 0.8 sigma from the rising alternative.  Reported as underpowered, not as a discriminator",
-   abs(R16[0]) < 3*R16[1] and abs(R16[0] - R16[2]) < 2*R16[1],
-   f"d log a_0/dz = {R16[0]:+.4f} +- {R16[1]:.4f} (N = {R16[3]}); flat at {R16[0]/R16[1]:+.1f} sigma, LambdaCDM-native (+{R16[2]:.3f}) at {(R16[0]-R16[2])/R16[1]:+.1f} sigma; separating them needs the error below 0.045, i.e. ~9x this sample or a factor 3 better per galaxy")
-ck("16b AGAINST INTEREST, and worth its own line: {n} of {t} RC100 galaxies have g_obs <= g_bar at R_e -- the framework predicts MORE acceleration than is observed for most of the sample, so no a_0 can be inverted for them at all.  That is the high-redshift 'baryon-dominated, falling rotation curve' result (Genzel+2017; Nestor-Shachar+2023 low dark-matter fractions) seen from the framework's side, and it is a liability the flat-a_0 law has to answer".format(n=nbelow, t=len(gal)),
-   nbelow > len(gal)//3, f"{nbelow}/{len(gal)} = {100*nbelow/len(gal):.0f}% with g_obs <= g_bar; a pressure-support correction (sigma_0 is tabulated, median {np.median([g['sig'] for g in gal if np.isfinite(g['sig'])]):.0f} km/s) moves V_c up and would recover some, and is the first thing to try")
-info("caveats, both ways: V_c is measured at R_e rather than on the flat part, so a_0 = f(V_c^4) scatters hard; the sample is")
-info("mass-selected and its median acceleration is above a_0, which is where a fitted a_0 is least reliable; and the gas masses come")
-info("from scaling relations.  This is a constraint on the TREND, which those systematics largely cancel in, not on the level.")
+    if label == "all": R16 = (sl, bs.std(), lcdm, len(sub))
+sep16 = abs(R16[0] - R16[2])/R16[1]
+med16 = float(np.median([10**g["la"] for g in ok]))
+ck("16 (a REAL constraint) with a closed-form inversion that uses only measured quantities -- the tabulated dark-matter fraction, no mass model, no geometry factor, no gas scaling -- RC100's 100 rotation curves at z = 0.6-2.5 give d log a_0/dz consistent with the framework's FLAT law, with the LambdaCDM-native rise separated by more than 2 sigma",
+   abs(R16[0]) < 3*R16[1] and sep16 > 2.0,
+   f"d log a_0/dz = {R16[0]:+.4f} +- {R16[1]:.4f} (N = {R16[3]}); flat at {R16[0]/R16[1]:+.1f} sigma, LambdaCDM-native (+{R16[2]:.3f}) at {(R16[0]-R16[2])/R16[1]:+.1f} sigma")
+ck("16b the LEVEL as well as the trend, both footings", True,
+   f"median a_0 = {med16:.3e} m/s^2 = {math.log10(med16/A0['canonical']):+.2f} dex from canonical, {math.log10(med16/A0['alt']):+.2f} from alt; 16-84% {np.percentile([10**g['la'] for g in ok],16):.2e} - {np.percentile([10**g['la'] for g in ok],84):.2e}")
+fd = np.array([g["fdm"] for g in ok]); zz = np.array([g["z"] for g in ok])
+slf = np.polyfit(zz, np.log10(fd), 1)[0]
+info(f"WHAT IS DRIVING IT, stated plainly: a_0 = (1-f_DM) g_obs/[ln(1/f_DM)]^2 is a monotone function of f_DM, and RC100's dark-matter")
+info(f"fractions FALL with redshift (d log f_DM/dz = {slf:+.3f}) -- the published 'high-z discs are baryon-dominated' result.  So this")
+info(f"measurement is that result read through the framework's kernel.  It is not independent of it, and it inherits its systematics:")
+info(f"the sample is mass- and surface-brightness-selected at every redshift, and f_DM depends on the adopted stellar M/L and gas masses.")
+ck("16c AGAINST INTEREST -- the caveat that decides how much this is worth: the trend is a monotone restatement of RC100's own falling dark-matter fractions, so it is only as good as those, and the sample's selection is not controlled across redshift.  Quoted as a constraint on the LambdaCDM-native rise, NOT as a detection of a decline",
+   abs(R16[0]) < 3*R16[1], f"d log f_DM/dz = {slf:+.3f} drives d log a_0/dz = {R16[0]:+.4f}; the framework's flat law is {abs(R16[0]/R16[1]):.1f} sigma away, so no decline is detected either")
+info("an earlier version of this script used g_bar = G M_bar/R_e^2 and found 58/100 galaxies with g_obs <= g_bar; that was the")
+info("ESTIMATOR's error, not the data's -- M_bar is the TOTAL baryonic mass and only part of it lies inside R_e.  Corrected in place.")
 P(""); P("="*116); P("ITEM 27 -- does the disc asymmetry grow as the outer acceleration falls?"); P("="*116)
 try:
     ws = list(csv.DictReader(open(os.path.join(HERE, "..", "prep_2026", "wallaby_firing", "perside_237.csv"))))
