@@ -9,6 +9,7 @@ of quadratic coefficients.
 import sympy as sp
 
 from cde_l4c_2delta_full_flrw_adm_2026 import (
+    derive_full_quadratic_action,
     derive_full_flrw_adm_geometry,
     exact_real_mode_average,
     series_coefficient,
@@ -220,6 +221,257 @@ def test_shift_sign_mutation_flips_the_derived_B_Psidot_mixing():
     assert baseline_coefficient != 0
     assert mutated_coefficient != baseline_coefficient
     assert sp.simplify(mutated_coefficient + baseline_coefficient) == 0
+
+
+def test_full_action_exposes_eh_cosmological_quadratic_from_exact_geometry():
+    """Catches a wrong real-mode normalization or omitted FLRW terms."""
+
+    result = derive_full_quadratic_action()
+    symbols = result["symbols"]
+    Phi = result["geometry_symbols"]["Phi"]
+    Psi = result["geometry_symbols"]["Psi"]
+    B = result["geometry_symbols"]["B"]
+    H = result["geometry_symbols"]["H"]
+    Psi_dot = result["geometry_symbols"]["Psi_dot"]
+    q = result["normalization"]["q"]
+    Lambda = symbols["Lambda"]
+
+    expected = (
+        -3 * Psi_dot**2
+        - 6 * H * Phi * Psi_dot
+        - 18 * H * Psi * Psi_dot
+        - 3 * H**2 * Phi**2
+        - 9 * H**2 * Phi * Psi
+        - sp.Rational(27, 2) * H**2 * Psi**2
+        + 2 * q**2 * B * (Psi_dot + H * Phi)
+        - 2 * q**2 * Phi * Psi
+        + q**2 * Psi**2
+        + 3 * Lambda * Phi * Psi
+        - sp.Rational(9, 2) * Lambda * Psi**2
+    )
+    actual = result["quadratic"]["normalized_pieces"]["eh_cosmological"]
+    assert sp.simplify(actual - expected) == 0
+
+
+def test_exact_exponential_hessian_generates_the_zero_field_quadratic_piece():
+    """Catches a phenomenological Phi-gradient term or lost cubic remainder."""
+
+    result = derive_full_quadratic_action()
+    exponential = result["exponential"]
+    y = exponential["y"]
+    amplitude = exponential["amplitude"]
+    y_hat = exponential["y_hat"]
+    q = result["normalization"]["q"]
+    Phi = result["geometry_symbols"]["Phi"]
+
+    independently_differentiated_hessian = sp.diff(
+        exponential["primitive"], y, 2
+    ).subs(y, 0)
+    assert independently_differentiated_hessian == -2
+    assert exponential["primitive_hessian_at_zero"] == (
+        independently_differentiated_hessian
+    )
+    assert sp.simplify(
+        result["quadratic"]["normalized_pieces"]["exponential"]
+        - q**2 * Phi**2
+    ) == 0
+
+    remainder = exponential["primitive_remainder"]
+    for order in range(3):
+        assert series_coefficient(remainder, amplitude, order) == 0
+    assert series_coefficient(remainder, amplitude, 3) == (
+        sp.Rational(2, 3) * y_hat**3
+    )
+
+
+def test_multiplier_modes_are_expanded_inside_the_exact_action():
+    """Catches an asserted effective multiplier or a missing lapse factor."""
+
+    result = derive_full_quadratic_action()
+    geometry = result["geometry_symbols"]
+    symbols = result["symbols"]
+    epsilon = geometry["epsilon"]
+    theta = geometry["theta"]
+    Phi = geometry["Phi"]
+    Psi = geometry["Psi"]
+    B = geometry["B"]
+    H = geometry["H"]
+    Psi_dot = geometry["Psi_dot"]
+    q = result["normalization"]["q"]
+    lambda_s_bar = symbols["lambda_s_bar"]
+    lambda_K_bar = symbols["lambda_K_bar"]
+    delta_lambda_s = symbols["delta_lambda_s"]
+    delta_lambda_K = symbols["delta_lambda_K"]
+
+    exact_fields = result["exact_multiplier_fields"]
+    assert exact_fields["lambda_s"] == (
+        lambda_s_bar
+        + epsilon * delta_lambda_s * sp.cos(theta)
+    )
+    assert exact_fields["lambda_K"] == (
+        lambda_K_bar
+        + epsilon * delta_lambda_K * sp.cos(theta)
+    )
+
+    pieces = result["quadratic"]["normalized_pieces"]
+    expected_s = (
+        -2
+        * q**4
+        * (delta_lambda_s + lambda_s_bar * Phi)
+        * (Phi - Psi)
+    )
+    expected_K = (
+        sp.Rational(1, 2)
+        * (delta_lambda_K + lambda_K_bar * Phi)
+        * (3 * q**2 * (Psi_dot + H * Phi) - q**4 * B)
+    )
+    assert sp.simplify(pieces["lambda_s"] - expected_s) == 0
+    assert sp.simplify(pieces["lambda_K"] - expected_K) == 0
+
+
+def test_unitary_cuscuton_and_potential_are_separate_action_contributions():
+    """Catches an invented matter term or an erroneous residual lapse in sqrt(X)."""
+
+    result = derive_full_quadratic_action()
+    symbols = result["symbols"]
+    Psi = result["geometry_symbols"]["Psi"]
+    Phi = result["geometry_symbols"]["Phi"]
+    Mpl2 = symbols["Mpl2"]
+    Mc2 = symbols["Mc2"]
+    V = symbols["V"]
+    pieces = result["quadratic"]["normalized_pieces"]
+
+    assert sp.simplify(
+        pieces["cuscuton"]
+        - sp.Rational(9, 2) * Mc2 * Psi**2 / Mpl2
+    ) == 0
+    assert sp.simplify(
+        pieces["potential"]
+        - sp.Rational(3, 2) * V * Psi * (2 * Phi - 3 * Psi) / Mpl2
+    ) == 0
+    assert result["scope"]["matter_perturbations_invented"] is False
+
+
+def test_background_substitutions_kill_homogeneous_tadpoles_not_cosine_averaging():
+    """Catches a kinematic zero-mode average masquerading as an on-shell check."""
+
+    result = derive_full_quadratic_action()
+    symbols = result["symbols"]
+    geometry = result["geometry_symbols"]
+    Mpl2 = symbols["Mpl2"]
+    Mc2 = symbols["Mc2"]
+    H_dot = symbols["H_dot"]
+    scale = geometry["scale_factor"]
+    Psi = geometry["Psi"]
+
+    background = result["background"]
+    assert background["friedmann_residual_before_solving"] != 0
+    assert background["raychaudhuri_residual_before_solving"] != 0
+    assert background["friedmann_residual_after_solving"] == 0
+    assert background["raychaudhuri_residual_after_solving"] == 0
+    assert background["vacuum_witness_residuals"] == (0, 0, 0)
+
+    tadpoles = result["tadpoles"]
+    assert tadpoles["finite_mode_spatial_average"] == 0
+    assert sp.simplify(
+        tadpoles["homogeneous_bulk_after_friedmann"]
+        + 3 * scale**3 * (Mc2 + 2 * Mpl2 * H_dot) * Psi
+    ) == 0
+    assert tadpoles["homogeneous_bulk_on_shell"] == 0
+    assert sp.simplify(
+        tadpoles["temporal_boundary_primitive"]
+        - 6 * Mpl2 * scale**3 * geometry["H"] * Psi
+    ) == 0
+
+
+def test_time_ibp_remainder_needs_raychaudhuri_and_keeps_lambda_K_canonical():
+    """Catches a dropped dot(A), premature on-shell step, or time-IBP of lambda_K."""
+
+    result = derive_full_quadratic_action()
+    geometry = result["geometry_symbols"]
+    symbols = result["symbols"]
+    A = result["normalization"]["A"]
+    q = result["normalization"]["q"]
+    Phi = geometry["Phi"]
+    Psi = geometry["Psi"]
+    B = geometry["B"]
+    H = geometry["H"]
+    Psi_dot = geometry["Psi_dot"]
+    H_dot = symbols["H_dot"]
+    Mpl2 = symbols["Mpl2"]
+    Mc2 = symbols["Mc2"]
+    lambda_s = symbols["delta_lambda_s"] + symbols["lambda_s_bar"] * Phi
+    lambda_K = symbols["delta_lambda_K"] + symbols["lambda_K_bar"] * Phi
+    theta = Psi_dot + H * Phi
+
+    expected_bulk = A * (
+        -3 * theta**2
+        + 2 * q**2 * B * theta
+        + q**2 * (Phi - Psi) ** 2
+        - 2 * q**4 * lambda_s * (Phi - Psi)
+        + sp.Rational(1, 2)
+        * lambda_K
+        * (3 * q**2 * theta - q**4 * B)
+    )
+    ibp = result["time_ibp"]
+    assert sp.simplify(
+        ibp["temporal_boundary_primitive"] + 9 * A * H * Psi**2
+    ) == 0
+    assert sp.simplify(result["normalization"]["A_dot"] - 3 * H * A) == 0
+    assert sp.simplify(
+        ibp["bulk_remainder"]
+        - 9 * A * (H_dot + 3 * H**2) * Psi**2
+    ) == 0
+    assert sp.simplify(
+        ibp["bulk_after_friedmann"]
+        - expected_bulk
+        - 9 * A * (H_dot + Mc2 / (2 * Mpl2)) * Psi**2
+    ) == 0
+    assert sp.simplify(ibp["on_shell_bulk"] - expected_bulk) == 0
+
+    # A canonical time integration by parts must leave the lambda_K velocity.
+    assert sp.simplify(
+        sp.diff(
+            ibp["on_shell_bulk"],
+            symbols["delta_lambda_K"],
+            Psi_dot,
+        )
+        - sp.Rational(3, 2) * A * q**2
+    ) == 0
+
+
+def test_minkowski_limit_matches_a_direct_specialized_adm_expansion_by_coefficient():
+    """Catches comparing two labels for the same post-expanded expression."""
+
+    result = derive_full_quadratic_action()
+    comparison = result["minkowski_comparison"]
+    assert comparison["direct_specialization_before_expansion"] != 0
+    assert comparison["flrw_simultaneous_limit"] != 0
+    assert comparison["coefficient_keys"]
+    assert all(
+        residual == 0
+        for residual in comparison["coefficient_residuals"].values()
+    )
+    assert sp.simplify(
+        comparison["direct_specialization_before_expansion"]
+        - comparison["flrw_simultaneous_limit"]
+    ) == 0
+
+
+def test_removing_cuscuton_fails_the_on_shell_bulk_identity():
+    """Catches a tautological on-shell reduction insensitive to a missing term."""
+
+    result = derive_full_quadratic_action()
+    mutation = result["mutation_controls"]["without_cuscuton"]
+    A = result["normalization"]["A"]
+    H_dot = result["symbols"]["H_dot"]
+    Psi = result["geometry_symbols"]["Psi"]
+
+    assert mutation["on_shell_residual"] != 0
+    assert sp.simplify(
+        mutation["on_shell_residual"] - 9 * A * H_dot * Psi**2
+    ) == 0
+    assert mutation["identity_survives"] is False
 
 
 if __name__ == "__main__":

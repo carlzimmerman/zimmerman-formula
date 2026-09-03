@@ -285,6 +285,575 @@ def derive_full_flrw_adm_geometry(shift_sign: int = -1) -> dict[str, Any]:
     return deepcopy(_derive_full_flrw_adm_geometry_cached(shift_sign))
 
 
+@lru_cache(maxsize=2)
+def _derive_full_quadratic_action_cached(
+    shift_sign: int = -1,
+) -> dict[str, Any]:
+    """Derive the real-mode quadratic action from the exact ADM geometry."""
+
+    geometry = _derive_full_flrw_adm_geometry_cached(shift_sign)
+    epsilon = geometry["epsilon"]
+    theta = geometry["theta"]
+    k = geometry["k"]
+    scale = geometry["scale_factor"]
+    lapse = geometry["lapse"]
+    sqrt_h = geometry["sqrt_h"]
+
+    Mpl2, Lambda = sp.symbols("M_Pl_sq Lambda", real=True)
+    Mc2, potential = sp.symbols("M_c_sq V", real=True)
+    H_dot = sp.symbols("H_dot", real=True)
+    ell0 = sp.symbols("ell_0", positive=True, nonzero=True)
+    q = sp.symbols("q", real=True)
+    A = Mpl2 * scale**3 / 2
+
+    eh_cosmological_density = (
+        sp.Rational(1, 2)
+        * Mpl2
+        * lapse
+        * sqrt_h
+        * (
+            geometry["three_curvature"]
+            + geometry["eh_kinetic_scalar"]
+            - 2 * Lambda
+        )
+    )
+    eh_cosmological_quadratic = exact_real_mode_average(
+        series_coefficient(eh_cosmological_density, epsilon, 2),
+        theta,
+    )
+    normalized_eh_cosmological = sp.factor(
+        (eh_cosmological_quadratic / A).subs(k, scale * q)
+    )
+
+    # At y=0 the exact norm is directionally nonanalytic, so obtain the
+    # quadratic term from the exact primitive's Hessian before inserting
+    # y^2=ell_0^2 a_i a^i.  This also keeps the first omitted term visible.
+    y = sp.symbols("y", real=True)
+    amplitude, y_hat = sp.symbols("amplitude y_hat", real=True)
+    exponential_primitive = 2 * ((1 + y) * sp.exp(-y) - 1)
+    primitive_at_zero = exponential_primitive.subs(y, 0)
+    primitive_slope_at_zero = sp.diff(exponential_primitive, y).subs(y, 0)
+    primitive_hessian_at_zero = sp.diff(
+        exponential_primitive, y, 2
+    ).subs(y, 0)
+    scaled_y = amplitude * y_hat
+    primitive_remainder = sp.simplify(
+        exponential_primitive.subs(y, scaled_y)
+        - primitive_at_zero
+        - primitive_slope_at_zero * scaled_y
+        - primitive_hessian_at_zero * scaled_y**2 / 2
+    )
+    acceleration_squared = sp.simplify(
+        (
+            geometry["acceleration_covector"].T
+            * geometry["acceleration_vector"]
+        )[0]
+    )
+    y_squared = ell0**2 * acceleration_squared
+    exponential_quadratic = sp.simplify(
+        -Mpl2
+        / ell0**2
+        * primitive_hessian_at_zero
+        / 2
+        * exact_real_mode_average(
+            series_coefficient(lapse * sqrt_h * y_squared, epsilon, 2),
+            theta,
+        )
+    )
+    normalized_exponential = sp.factor(
+        (exponential_quadratic / A).subs(k, scale * q)
+    )
+
+    lambda_s_bar, lambda_K_bar = sp.symbols(
+        "lambda_s_bar lambda_K_bar", real=True
+    )
+    delta_lambda_s, delta_lambda_K = sp.symbols(
+        "delta_lambda_s delta_lambda_K", real=True
+    )
+    lambda_s_field = (
+        lambda_s_bar
+        + epsilon * delta_lambda_s * sp.cos(theta)
+    )
+    lambda_K_field = (
+        lambda_K_bar
+        + epsilon * delta_lambda_K * sp.cos(theta)
+    )
+    lambda_s_density = (
+        sp.Rational(1, 2)
+        * Mpl2
+        * lapse
+        * sqrt_h
+        * lambda_s_field
+        * geometry["D2_C"]
+    )
+    lambda_K_density = (
+        sp.Rational(1, 2)
+        * Mpl2
+        * lapse
+        * sqrt_h
+        * lambda_K_field
+        * geometry["D2_K"]
+    )
+    lambda_s_quadratic = exact_real_mode_average(
+        series_coefficient(lambda_s_density, epsilon, 2), theta
+    )
+    lambda_K_quadratic = exact_real_mode_average(
+        series_coefficient(lambda_K_density, epsilon, 2), theta
+    )
+    normalized_lambda_s = sp.factor(
+        (lambda_s_quadratic / A).subs(k, scale * q)
+    )
+    normalized_lambda_K = sp.factor(
+        (lambda_K_quadratic / A).subs(k, scale * q)
+    )
+
+    # In unitary gauge on the positive-clock branch, sqrt(X)=1/N.  The
+    # lapse therefore cancels from N sqrt(h) M_c^2 sqrt(X), while it remains
+    # in the potential density.  No matter perturbation action is specified.
+    cuscuton_density = Mc2 * sqrt_h
+    potential_density = -potential * lapse * sqrt_h
+    cuscuton_quadratic = exact_real_mode_average(
+        series_coefficient(cuscuton_density, epsilon, 2), theta
+    )
+    potential_quadratic = exact_real_mode_average(
+        series_coefficient(potential_density, epsilon, 2), theta
+    )
+    normalized_cuscuton = sp.factor(cuscuton_quadratic / A)
+    normalized_potential = sp.factor(potential_quadratic / A)
+
+    # Reuse the independently varied homogeneous minisuperspace equations;
+    # do not infer background equations from the vanishing average of a
+    # nonzero cosine mode.
+    from cde_l4c_2delta_flrw_gate_2026 import derive_flrw_gate
+
+    minisuperspace = derive_flrw_gate()["minisuperspace"]
+    mini_scale = minisuperspace["a"]
+    mini_lapse = minisuperspace["N"]
+    mini_clock = minisuperspace["T"]
+    mini_time = minisuperspace["t"]
+    vacuum_flrw_substitution = {
+        minisuperspace["Mpl2"]: Mpl2,
+        minisuperspace["Mc2"]: Mc2,
+        minisuperspace["Lambda"]: Lambda,
+        minisuperspace["V"]: potential,
+        minisuperspace["rho"]: 0,
+        minisuperspace["pressure"]: 0,
+        sp.diff(mini_clock, mini_time): 1,
+        sp.diff(mini_lapse, mini_time): 0,
+        sp.diff(mini_scale, mini_time, 2): (
+            H_dot + geometry["H"] ** 2
+        )
+        * scale,
+        sp.diff(mini_scale, mini_time): geometry["H"] * scale,
+        mini_lapse: 1,
+        mini_scale: scale,
+    }
+    friedmann_residual = sp.factor(
+        minisuperspace["friedmann_equation"].subs(
+            vacuum_flrw_substitution, simultaneous=True
+        )
+    )
+    raychaudhuri_residual = sp.factor(
+        minisuperspace["raychaudhuri_equation"].subs(
+            vacuum_flrw_substitution, simultaneous=True
+        )
+    )
+    friedmann_substitution = sp.solve(
+        sp.Eq(friedmann_residual, 0), potential, dict=True
+    )[0]
+    raychaudhuri_substitution = sp.solve(
+        sp.Eq(raychaudhuri_residual, 0), Mc2, dict=True
+    )[0]
+
+    # Substitute the explicit expanding vacuum witness back into the three
+    # independently varied minisuperspace Euler equations.  This is distinct
+    # from (and stronger than) the kinematic zero of a nonzero cosine's
+    # spatial average.
+    vacuum_witness = minisuperspace["vacuum_expanding_witness"]
+    witness_parameter_substitution = {
+        minisuperspace["Mpl2"]: Mpl2,
+        minisuperspace["Mc2"]: Mc2,
+        minisuperspace["Lambda"]: Lambda,
+    }
+    witness_scale = sp.simplify(
+        vacuum_witness["scale_factor"].subs(
+            witness_parameter_substitution
+        )
+    )
+    witness_clock = vacuum_witness["T"]
+    witness_potential = sp.simplify(
+        vacuum_witness["potential"].subs(
+            witness_parameter_substitution
+        )
+    )
+    witness_clock_velocity = sp.diff(witness_clock, mini_time)
+    witness_potential_derivative = sp.simplify(
+        sp.diff(witness_potential, mini_time) / witness_clock_velocity
+    )
+    witness_substitution = {
+        **witness_parameter_substitution,
+        minisuperspace["rho"]: 0,
+        minisuperspace["pressure"]: 0,
+        sp.diff(minisuperspace["V"], mini_clock): (
+            witness_potential_derivative
+        ),
+        minisuperspace["V"]: witness_potential,
+        sp.diff(mini_lapse, mini_time): 0,
+        sp.diff(mini_scale, mini_time, 2): sp.diff(
+            witness_scale, mini_time, 2
+        ),
+        sp.diff(mini_scale, mini_time): sp.diff(
+            witness_scale, mini_time
+        ),
+        sp.diff(mini_clock, mini_time): witness_clock_velocity,
+        mini_lapse: 1,
+        mini_scale: witness_scale,
+        mini_clock: witness_clock,
+    }
+    vacuum_witness_residuals = tuple(
+        sp.factor(equation.subs(witness_substitution, simultaneous=True))
+        for equation in (
+            minisuperspace["friedmann_equation"],
+            minisuperspace["cuscuton_equation"],
+            minisuperspace["raychaudhuri_equation"],
+        )
+    )
+
+    exact_bulk_densities = {
+        "eh_cosmological": eh_cosmological_density,
+        "lambda_s": lambda_s_density,
+        "lambda_K": lambda_K_density,
+        "cuscuton": cuscuton_density,
+        "potential": potential_density,
+    }
+    linear_density = sp.factor(
+        sum(
+            series_coefficient(density, epsilon, 1)
+            for density in exact_bulk_densities.values()
+        )
+    )
+    finite_mode_linear_average = exact_real_mode_average(
+        linear_density, theta
+    )
+    homogeneous_linear_density = sp.factor(
+        linear_density.subs(k, 0).subs(sp.cos(theta), 1)
+    )
+    homogeneous_velocity_coefficient = sp.diff(
+        homogeneous_linear_density, geometry["Psi_dot"]
+    )
+    tadpole_temporal_boundary = sp.factor(
+        homogeneous_velocity_coefficient * geometry["Psi"]
+    )
+    tadpole_boundary_coefficient_dot = sp.factor(
+        sp.diff(homogeneous_velocity_coefficient, scale)
+        * geometry["H"]
+        * scale
+        + sp.diff(homogeneous_velocity_coefficient, geometry["H"])
+        * H_dot
+    )
+    homogeneous_tadpole_bulk = sp.factor(
+        homogeneous_linear_density
+        - homogeneous_velocity_coefficient * geometry["Psi_dot"]
+        - tadpole_boundary_coefficient_dot * geometry["Psi"]
+    )
+    homogeneous_tadpole_after_friedmann = sp.factor(
+        homogeneous_tadpole_bulk.subs(friedmann_substitution)
+    )
+    homogeneous_tadpole_on_shell = sp.factor(
+        homogeneous_tadpole_after_friedmann.subs(
+            raychaudhuri_substitution
+        )
+    )
+
+    quadratic_pieces = {
+        "eh_cosmological": eh_cosmological_quadratic,
+        "exponential": exponential_quadratic,
+        "lambda_s": lambda_s_quadratic,
+        "lambda_K": lambda_K_quadratic,
+        "cuscuton": cuscuton_quadratic,
+        "potential": potential_quadratic,
+    }
+    normalized_quadratic_pieces = {
+        "eh_cosmological": normalized_eh_cosmological,
+        "exponential": normalized_exponential,
+        "lambda_s": normalized_lambda_s,
+        "lambda_K": normalized_lambda_K,
+        "cuscuton": normalized_cuscuton,
+        "potential": normalized_potential,
+    }
+    raw_quadratic = sp.factor(sum(quadratic_pieces.values()))
+    raw_normalized = sp.factor(
+        (raw_quadratic / A).subs(k, scale * q)
+    )
+
+    # Remove only the EH Psi*Psi_dot term.  No temporal integration by parts
+    # is made in the lambda_K sector, because doing so would change the
+    # canonical momenta.  Derive dot(A)=3HA from A=M_Pl^2 a^3/2.
+    A_dot = sp.factor(sp.diff(A, scale) * geometry["H"] * scale)
+    psi_velocity_mixing_coefficient = sp.factor(
+        sp.diff(raw_quadratic, geometry["Psi"], geometry["Psi_dot"])
+    )
+    psi_velocity_mixing = sp.factor(
+        psi_velocity_mixing_coefficient
+        * geometry["Psi"]
+        * geometry["Psi_dot"]
+    )
+    quadratic_temporal_boundary = sp.factor(
+        psi_velocity_mixing_coefficient * geometry["Psi"] ** 2 / 2
+    )
+    temporal_boundary_coefficient = sp.factor(
+        psi_velocity_mixing_coefficient / 2
+    )
+    temporal_boundary_coefficient_dot = sp.factor(
+        sp.diff(temporal_boundary_coefficient, scale)
+        * geometry["H"]
+        * scale
+        + sp.diff(temporal_boundary_coefficient, geometry["H"])
+        * H_dot
+    )
+    quadratic_bulk_remainder = sp.factor(
+        -temporal_boundary_coefficient_dot * geometry["Psi"] ** 2
+    )
+    bulk_after_time_ibp = sp.factor(
+        raw_quadratic
+        - psi_velocity_mixing
+        + quadratic_bulk_remainder
+    )
+    bulk_after_friedmann = sp.factor(
+        bulk_after_time_ibp.subs(friedmann_substitution)
+        .subs(k, scale * q)
+    )
+    on_shell_bulk = sp.factor(
+        bulk_after_friedmann.subs(raychaudhuri_substitution)
+    )
+
+    # Independent Minkowski route: specialize every exact density before
+    # taking its epsilon coefficient.  The exponential piece is added from
+    # the exact primitive Hessian because its norm is nonanalytic at y=0.
+    minkowski_substitution = {
+        geometry["H"]: 0,
+        lambda_s_bar: 0,
+        lambda_K_bar: 0,
+        Mc2: 0,
+        potential: -Mpl2 * Lambda,
+    }
+    direct_minkowski_exact_density = sum(
+        exact_bulk_densities.values()
+    ).subs(minkowski_substitution, simultaneous=True)
+    direct_minkowski_quadratic = sp.factor(
+        exact_real_mode_average(
+            series_coefficient(
+                direct_minkowski_exact_density, epsilon, 2
+            ),
+            theta,
+        )
+        + exponential_quadratic.subs(
+            minkowski_substitution, simultaneous=True
+        )
+    )
+    direct_minkowski_q = sp.factor(
+        direct_minkowski_quadratic.subs(k, scale * q)
+    )
+    flrw_simultaneous_limit = sp.factor(
+        raw_quadratic.subs(
+            minkowski_substitution, simultaneous=True
+        ).subs(k, scale * q)
+    )
+    coefficient_variables = (
+        geometry["Phi"],
+        geometry["Psi"],
+        geometry["B"],
+        geometry["Psi_dot"],
+        delta_lambda_s,
+        delta_lambda_K,
+    )
+    direct_polynomial = sp.Poly(
+        sp.expand(direct_minkowski_q), *coefficient_variables
+    )
+    limit_polynomial = sp.Poly(
+        sp.expand(flrw_simultaneous_limit), *coefficient_variables
+    )
+    coefficient_keys = tuple(
+        sorted(
+            set(direct_polynomial.monoms())
+            | set(limit_polynomial.monoms())
+        )
+    )
+    coefficient_residuals = {
+        monomial: sp.simplify(
+            direct_polynomial.coeff_monomial(monomial)
+            - limit_polynomial.coeff_monomial(monomial)
+        )
+        for monomial in coefficient_keys
+    }
+
+    without_cuscuton_on_shell = sp.factor(
+        (bulk_after_time_ibp - cuscuton_quadratic)
+        .subs(friedmann_substitution)
+        .subs(k, scale * q)
+        .subs(raychaudhuri_substitution)
+    )
+    without_cuscuton_residual = sp.factor(
+        without_cuscuton_on_shell - on_shell_bulk
+    )
+
+    return {
+        "geometry_symbols": {
+            name: geometry[name]
+            for name in (
+                "epsilon",
+                "theta",
+                "k",
+                "scale_factor",
+                "Phi",
+                "Psi",
+                "B",
+                "H",
+                "Psi_dot",
+            )
+        },
+        "symbols": {
+            "Mpl2": Mpl2,
+            "Lambda": Lambda,
+            "Mc2": Mc2,
+            "V": potential,
+            "H_dot": H_dot,
+            "ell0": ell0,
+            "lambda_s_bar": lambda_s_bar,
+            "lambda_K_bar": lambda_K_bar,
+            "delta_lambda_s": delta_lambda_s,
+            "delta_lambda_K": delta_lambda_K,
+        },
+        "normalization": {
+            "A": A,
+            "A_dot": A_dot,
+            "q": q,
+            "physical_wave_number_substitution": {k: scale * q},
+        },
+        "quadratic": {
+            "pieces": quadratic_pieces,
+            "normalized_pieces": normalized_quadratic_pieces,
+            "raw": raw_quadratic,
+            "raw_normalized": raw_normalized,
+        },
+        "exact_clock_densities": {
+            "cuscuton": cuscuton_density,
+            "potential": potential_density,
+        },
+        "background": {
+            "source_friedmann_equation": minisuperspace[
+                "friedmann_equation"
+            ],
+            "source_cuscuton_equation": minisuperspace[
+                "cuscuton_equation"
+            ],
+            "source_raychaudhuri_equation": minisuperspace[
+                "raychaudhuri_equation"
+            ],
+            "friedmann_residual_before_solving": friedmann_residual,
+            "raychaudhuri_residual_before_solving": raychaudhuri_residual,
+            "friedmann_substitution": friedmann_substitution,
+            "raychaudhuri_substitution": raychaudhuri_substitution,
+            "friedmann_residual_after_solving": sp.simplify(
+                friedmann_residual.subs(friedmann_substitution)
+            ),
+            "raychaudhuri_residual_after_solving": sp.simplify(
+                raychaudhuri_residual.subs(raychaudhuri_substitution)
+            ),
+            "vacuum_witness": {
+                "clock": witness_clock,
+                "scale_factor": witness_scale,
+                "potential": witness_potential,
+                "substitution": witness_substitution,
+            },
+            "vacuum_witness_residuals": vacuum_witness_residuals,
+        },
+        "tadpoles": {
+            "unaveraged_finite_mode_density": linear_density,
+            "finite_mode_spatial_average": finite_mode_linear_average,
+            "finite_mode_average_is_kinematic": True,
+            "homogeneous_raw_density": homogeneous_linear_density,
+            "temporal_boundary_primitive": tadpole_temporal_boundary,
+            "homogeneous_bulk_before_background_equations": (
+                homogeneous_tadpole_bulk
+            ),
+            "homogeneous_bulk_after_friedmann": (
+                homogeneous_tadpole_after_friedmann
+            ),
+            "homogeneous_bulk_on_shell": homogeneous_tadpole_on_shell,
+        },
+        "time_ibp": {
+            "psi_velocity_mixing": psi_velocity_mixing,
+            "temporal_boundary_primitive": quadratic_temporal_boundary,
+            "bulk_remainder": quadratic_bulk_remainder,
+            "bulk_before_background_equations": bulk_after_time_ibp,
+            "bulk_after_friedmann": bulk_after_friedmann,
+            "on_shell_bulk": on_shell_bulk,
+            "lambda_K_was_time_integrated_by_parts": False,
+        },
+        "minkowski_comparison": {
+            "specialization": minkowski_substitution,
+            "direct_exact_density_before_expansion": (
+                direct_minkowski_exact_density
+            ),
+            "direct_specialization_before_expansion": direct_minkowski_q,
+            "flrw_simultaneous_limit": flrw_simultaneous_limit,
+            "coefficient_variables": coefficient_variables,
+            "coefficient_keys": coefficient_keys,
+            "coefficient_residuals": coefficient_residuals,
+        },
+        "mutation_controls": {
+            "without_cuscuton": {
+                "on_shell_bulk": without_cuscuton_on_shell,
+                "on_shell_residual": without_cuscuton_residual,
+                "identity_survives": without_cuscuton_residual == 0,
+            },
+        },
+        "exact_multiplier_fields": {
+            "lambda_s": lambda_s_field,
+            "lambda_K": lambda_K_field,
+        },
+        "exact_multiplier_densities": {
+            "lambda_s": lambda_s_density,
+            "lambda_K": lambda_K_density,
+        },
+        "exponential": {
+            "y": y,
+            "amplitude": amplitude,
+            "y_hat": y_hat,
+            "primitive": exponential_primitive,
+            "primitive_at_zero": primitive_at_zero,
+            "primitive_slope_at_zero": primitive_slope_at_zero,
+            "primitive_hessian_at_zero": primitive_hessian_at_zero,
+            "primitive_remainder": primitive_remainder,
+            "acceleration_squared": acceleration_squared,
+            "y_squared": y_squared,
+        },
+        "scope": {
+            "vacuum_witness": True,
+            "matter_perturbations_invented": False,
+        },
+        "boundary_assumptions": {
+            "spatial": (
+                "one periodic nonzero real cosine mode; equivalently, "
+                "falloff that kills the spatial surface term in the "
+                "self-adjoint D2 integration"
+            ),
+            "temporal": (
+                "the displayed total derivative is fixed or vanishes at "
+                "the initial and final time slices"
+            ),
+            "lambda_K_time_integration_by_parts": False,
+        },
+    }
+
+
+def derive_full_quadratic_action(shift_sign: int = -1) -> dict[str, Any]:
+    """Return an isolated copy of the generated quadratic action data."""
+
+    return deepcopy(_derive_full_quadratic_action_cached(shift_sign))
+
+
 if __name__ == "__main__":
     geometry = derive_full_flrw_adm_geometry()
     print("exact FLRW ADM geometry constructed")
