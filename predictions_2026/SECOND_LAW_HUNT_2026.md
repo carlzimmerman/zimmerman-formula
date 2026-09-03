@@ -209,3 +209,31 @@ ledger, five are dead or withdrawn, and one is a bug fix that changes a publishe
 and a genuine explanation of a dark-matter problem (23). It also acquired two liabilities that were not on the ledger before (8, 68) and
 lost four claims that do not survive contact with the data (3, 6, and the 3/4 and 1/3 forms). Next by value: items 64 (κ to 3%, which
 also rescues 89), 71 (the saddle-point deficit), 55 (group lensing), 16 (RC100), and a selection-controlled redo of 68.
+
+
+---
+
+# RESULTS LEDGER — second pass, 2026-09-03 (items 1, 2, 4, 13, 22, 36, 63, 64, 65, 66, 70, 76, 100)
+
+Thirteen more items, same rules. **Still no second Kepler-grade law — but the pass found the thing that is blocking one.**
+
+| item | verdict | number |
+|---|---|---|
+| **64** | ✅ **best of the pass** | **κ = 0.512 ± 0.076** from the deep tail on galaxies with distance errors under 10%: consistent with ½ at 0.2σ, **excludes 1/(2π) at 4.6σ**. At 15% precision, not the 3% asked for, because the budget is stellar M/L, not distance. |
+| **70** | ✅ keeper | **The cosmological constant measured in rotation curves.** Λ = 32πa₀²/c⁴ from the deep tail lands within a factor 1.5 of Planck's value. |
+| **76** | ✅ keeper | **A stellar-population parameter derived from the cosmological constant.** With a₀ fixed by Planck's ρ_Λ, the deep tail predicts Υ_[3.6] with no fitting: alt footing requires 0.504, canonical 0.656, against stellar populations' 0.5 ± 0.1. DiskMass's 0.3 excluded by both. Mildly prefers alt. |
+| **1** | ✅ keeper | The lensing acceleration falls as **1/r exactly** in every stellar-mass bin over 0.05–2.6 Mpc, where NFW gives −1.2 to −1.6. |
+| **22** | ✅ keeper | **Renzo's rule made quantitative.** The local log-slope of every rotation curve is predicted point by point from the baryons and the kernel's local slope: r = 0.62, regression slope 0.84 vs a predicted 1.0, no free parameter. |
+| **4** | ✔ modest pass | The predicted BTFR bend removes two-thirds of the residual mass tilt (+0.053 → +0.019 dex/dex), no free parameter. |
+| **2, 65, 66** | ↔ the wall | The dwarf lens stack gives a₀ = 9.6e-11, canonical to 0.01 dex — but the L* stack gives 1.9e-10 and red lenses 3× blue. Each split is really a 0.15–0.25 dex statement about **stellar M/L**, each landing where stellar populations put it. Consistency, not measurement. |
+| **36** | ↔ split | Escape velocity passes as a test of the potential's shape (550 km/s, inside Gaia) but only with the baryonic mass the framework needs for the observed rotation speed — inheriting the Milky Way normalisation liability. |
+| **13** | ⚠ against interest | The simple radial timing argument **over-predicts** the Local Group approach 2× (−223 vs −110 km/s). The published MOND treatment resolves this with a **past close encounter 7–11 Gyr ago** — a distinctive prediction to test, not a kill. |
+| **63** | ⚠ hint | No density-split difference, but the environment classes show the external-field **sign** at ~2σ: cluster galaxies have the most declining outer curves. |
+| **100** | 🔴 **the ladder does not close** | Seven a₀ measurements across three decades of acceleration carry a **0.16 dex intrinsic spread**, organised by stellar M/L. The two that do **not** lean on M/L — the gas-dominated deep tail and the dwarf lens stack — agree to **0.08 dex** and bracket the canonical footing. |
+
+**What the two passes together establish.** The blocker is not the data and not a₀. It is the **stellar mass-to-light ratio**: it sets the
+precision of κ (item 64), it explains every split in the lensing items (2, 65, 66), it caps the formation-epoch test (89), and it is what
+keeps the a₀ ladder from closing (100). The framework turns that around — item 76 shows a₀ **predicts** Υ from the cosmological constant —
+which makes an independent Υ at 10% the single highest-value measurement in the whole hunt. It would take κ to 3%, decide between the two
+footings, and close the ladder. Next after that: items 71 (saddle-point deficit), 55 (group lensing), 16 (RC100), and a selection-controlled
+redo of 68.
