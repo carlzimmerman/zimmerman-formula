@@ -499,3 +499,81 @@ Items **103** (its own headline; the budget stands, the framing did not), **119*
 **Removing a nuisance is not the same as removing calibration.** Every route that drops the stellar M/L picks up the HI mass
 scale at lever −1.11 and the distance scale at −2.25, and forces a sample with 1.1 decades of dynamic range. That is why the
 ladder cannot close on present data, and it is a statement about measurement rather than about the framework.
+
+---
+
+# THE KEPLER HUNT — final ledger, 2026-09-03 (23 agents, ten angles, 67 candidates, 6.3M tokens)
+
+## The answer: no, and now for a reason rather than for want of trying
+
+**67 candidates proposed, 39 computed, ZERO survivors.** 24 failed, 13 were restatements, 2 not runnable. Nothing reached
+the refutation stage because nothing was ever classified as a candidate law. **All three judges — including the one
+briefed to argue for ΛCDM — say no independently, and all three name the same decisive result.**
+
+## The closure theorem (`hunt_2026/k_unexplained-regularities_closure.py`) — the most important thing the hunt produced
+
+A seeded derangement shuffle of the "extra" measured inputs across galaxies moves **10 of 12** proposed unexplained
+regularities by **less than 3.3e-16 dex** on both footings. They are the radial acceleration relation reparametrised:
+
+> the Bosma factor · the mass discrepancy · the dark-matter fraction · the dark/luminous speed ratio · the phantom
+> surface density · the phantom enclosed mass · dark-mass-per-hydrogen-mass · **and the baryonic Tully-Fisher relation itself**
+
+**Every single-radius statistic whose extra inputs enter multiplicatively IS the RAR in different clothes.** Confirmed
+independently twice: the Bosma residual rebuilds from the RAR residual to 2.8e-16 dex, and the V_flat–R_HI law rebuilds
+from v⁴ = G M_b a₀ to 9.6e-17 dex.
+
+**This closes, by construction, the entire class the hunt spent 100 items mining.** It is also the explanation for why
+those 100 items produced nothing: the space was closed before it was searched.
+
+## The three escapes the theorem leaves, and their status
+
+| escape | status |
+|---|---|
+| **more than one radius** | Renzo's rule at second order. The detected term is the first-order relation *differentiated* — the chain rule, which slipped the formal restatement test because it closes by calculus rather than algebra. The one genuinely new term, the kernel's log-log curvature, measures **−0.13 ± 0.52** against a predicted 1, and adding it makes the fit slightly worse. |
+| **a non-multiplicative combination / a quantity the RAR lacks** | Gas structure tested: a₀ does not set ⟨Σ_HI⟩ (3.805 M☉/pc², 1/28 of a₀/2πG, no coefficient within 2% on either footing). |
+| **environment** | 🔴 **Now measured AGAINST the framework.** See below. |
+| **redshift** | The only route left, and where framework (0.00 dex) and ΛCDM (+0.33) separate maximally. |
+
+## 🔴 The new negative, and it is the sharpest of the whole session: the external-field effect
+
+Three independent measurements, two independent samples, two independent observables, same sign:
+
+| test | measured | framework predicts | verdict |
+|---|---|---|---|
+| Cluster-infall BTFR slope, N = 314, 0.89 dex of external-field lever | **+0.0033 ± 0.0304** | −0.1348 | **4.5σ against; 0.1σ from ΛCDM** |
+| Local Volume dwarfs, leakage-free design, N = 92 | **+0.0800 ± 0.0467** | −0.1006 | **3.9σ against; 1.7σ from ΛCDM** |
+| KiDS external-field saturation | predicted truncation not seen | — | Δχ² +144 to +507 (not robust to a two-halo term) |
+
+**Roughly 5–6σ combined. ΛCDM predicts exactly zero here by the strong equivalence principle, and gets it.** The
+external-field effect is the signature prediction of MOND-class gravity — the thing no dark-matter theory can produce —
+and in the two places this session could measure its *slope* against a real lever, it is absent.
+
+## Corrections to the programme's own committed work, found by the agents
+
+* **Item 95's exponent is wrong and its table was empty.** The largest bound orbit scales as **M_b^(1/4)**, not M^(1/6)
+  as I wrote it, and the committed table printed 0.000 Mpc in every row. An L* galaxy's edge is **2.83 Mpc**.
+* **A trap caught before use:** Kourkchi & Tully's tabulated second turnaround radius is an exact algebraic function of
+  the K-band mass (slope 0.3334, scatter **0.0014 dex** over 8826 groups). Testing against it yields a spectacular
+  correlation that is pure arithmetic — bug pattern 5, caught by three agents independently.
+* **The Λ-edge over-prediction is replicated three ways** (×2.03 canonical / ×2.13 alt), by three agents that did not
+  share results.
+
+## The closest thing to a law, and why it is not one
+
+**The Λ edge**, R₀ = 0.555·(G M_b a₀)^(1/4)/H_Λ. It is the *only* candidate whose restatement test explicitly fails to
+close: the BTFR forces the M_b^(1/4) exponent but contains no cosmology, so H_Λ and the coefficient are new content, and
+Λ enters twice — once through a₀ and once through H_Λ. The 0.555 is computed, not fitted, constant to ±0.001 over three
+decades. It passes criteria 1, 2 and 5. **It dies on criterion 3**: the framework over-predicts the measured
+zero-velocity radii by a factor 2, and the escape route (a larger external field) is smaller than what the Local Volume
+plus Virgo actually supplies.
+
+**The highest-value follow-up, on which two judges agree:** zero-velocity radii for the ~30 Local Volume groups with
+Hubble-flow coverage, with a hot-gas-inclusive baryon budget and a proper QUMOND external field. At the measured 0.371
+dex per-group scatter, 30 groups gives σ ≈ 0.068 dex against a +0.31 dex offset — **a 4.5σ decision either way, this
+month, from a catalogue already on disk.**
+
+## What the hunt got wrong about its own criteria
+
+The restatement test as written catches derivations "from v⁴ = G M_b a₀ plus algebra." Renzo-2 closes by **calculus**,
+not algebra, and slipped through the formal test — it was caught only in prose. Any future version of this bar must
+close under differentiation and integration as well.
