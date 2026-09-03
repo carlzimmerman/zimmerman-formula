@@ -366,3 +366,77 @@ directions — remove Υ (gas-dominated, HI-only), predict Υ (from a₀ and Λ)
 best idea, that the halo *is* the phantom, into four sharp tests of halo-fit regularities that ΛCDM does not explain. Item **125** is
 the one that would end the hunt: if a₀ measured five M/L-free ways across nine decades of mass agrees to 0.05 dex, that is a second
 Kepler-grade result, and it is reachable with data already on disk.
+
+
+---
+
+# RESULTS LEDGER — first background sweep, 2026-09-03 (57 items, 14 agents, adversarial verification, 8.3M tokens)
+
+**⚠️ CORRECTION to commit f33d4e86a's message, made here in the same file: that message listed four survivors of
+verification. It was wrong. Of six claimed wins, FIVE were refuted — two fatally — and the sixth survived only with
+its headline number withdrawn. The correct verification table is below and it is the operative record.**
+
+## Verification outcomes on every claimed win (three adversarial lenses each: estimator, fairness, mass-to-light)
+
+| claimed win | verdict | why |
+|---|---|---|
+| HI width function from the HI mass function (32) | **REFUTED, fatal** | estimator clean, but the headline reverses under the observable the model actually predicts |
+| Milky Way enclosed mass to 73 kpc (38) | **REFUTED, downgrade** | estimator correct and no bug found, but the precision claimed does not survive |
+| Is the LMC bound (37) | **REFUTED, downgrade** | the external-field prescription used is the *maximal-binding* choice, not the standard one; the null conclusion survives, the number does not |
+| Planetary-nebula dispersion amplitudes (51) | **REFUTED, fatal** | the headline check reverses under the right observable, and the residual separation is a stellar-M/L statement |
+| **Bulk-flow null (85)** | **STANDS, downgraded** | estimator verified analytically and independently; **core conclusion survives, headline number withdrawn** |
+| Local Sheet cold flow (99) | **REFUTED, fatal** | the one positive claim rests on a dark-matter-inclusive number fed into a slot the framework's own physics does not allow |
+
+**So the sweep produced ONE surviving positive result, and it is a null:** the framework's linear regime is Newtonian,
+so the local velocity–density ratio comes out at ΛCDM's value (β = 0.447 against f/b = 0.440) where an unprotected MOND
+kernel would need 0.043–0.047. That **separates this framework from MOND cosmology** — a distinction worth having, and
+the only thing in 57 items that gained ground.
+
+## The framework took real damage. Twenty-five liabilities, and these are the sharp ones
+
+| item | finding |
+|---|---|
+| **9 Coma UDGs** | **The kill fired.** Eleven ultra-diffuse galaxies sit **+1.195 ± 0.062 dex (19.4σ)** above the prediction once the external field is on, all eleven the same sign, and the offset tracks the external field itself. Freundlich+2022 reproduced. |
+| 7 groups with hot gas | With gas actually measured, 20 X-ray groups of 2–14e13 M☉ still need η = 1.8–2.1 at R500, **no step, no threshold temperature** — the cluster residual reaches an order of magnitude further down in mass than the programme assumed |
+| 18 cluster η(r) | η(r) is organised by r/R500 (0.102 dex) **better** than by the framework's own acceleration variable (0.167 dex), winning **0 of 500** cluster bootstraps |
+| 56 CLASH | The 20-cluster collapse is tight but nearly empty (radius alone does as well) and requires **a₀ = 1.72e-9, 18.4× canonical** |
+| 57 Bullet peaks | The kernel supplies 2.6–3.3× against the 8.3–9.8× the JWST lens model requires: **short by a factor 3.2**, i.e. 3.8–4.0e14 M☉ |
+| 67b X-COP cores | η = 2.7–2.9 at 30–100 kpc against ~2 at R500: the residual **does not close inward** |
+| 52 Fundamental Plane | The framework **cannot** be the FP tilt, by a theorem not a fit: the kernel's argument contains surface brightness in the combination the tilt needs to *not* have |
+| 53/54 SLACS | Einstein radii short by 14–18% (Salpeter) and the phantom delivers only 79–85% of the Einstein mass at g_N ≈ 10 a₀ |
+| 34 K_z(R) | Vertical force over-predicted by 30–37%, K_z scale length **4.5σ** too long — confirming the MOND tension Bovy & Rix published |
+| 55 group lensing | **No step:** η is flat from 5e12 to 1.6e15 M☉ across 2.5 decades |
+| 20 the a₀ ladder | Eight system classes over seven decades span **0.78 dex**; the cluster rung is **6.3σ** from the M/L-free deep-tail value |
+| 43/44 dwarfs | Ultra-faint dwarfs need Υ_V ≈ 109, M31 satellites ≈ 24 — far worse than item 8's already-bad 20 |
+| 46 tidal dwarfs | All six rotate **slower** than required; +2.84σ combined on the three independent host systems, and the two paradigms disagree about the *sign* |
+| 48/69 binary galaxies | The framework's external-field branch sits **26σ** above unity on the strictest isolation cut, and it is *not* an isolation artefact (tested against my own hypothesis) |
+| 87 reionization | τ_e = 0.064–0.070 against Planck's 0.054 ± 0.007: **+1.4 to +2.2σ**, in every branch |
+| 30 warps | The MOND external-field radius is the **worst** of five candidate scales for warp onset; the baryonic disc edge organises it (0.073 dex on the clean sample) |
+| 17 DiskMass | Requires Υ_K = 0.582 ± 0.127 against DiskMass's dynamical 0.31 ± 0.05 |
+| 10 X-ray ellipticals | Seven need a median **1.69 dex more boost** than the kernel gives, growing toward low acceleration |
+| 93 outer-halo globulars | Requires M/L_V = 0.76 ± 0.15 where stellar populations give 1.3–2.2 |
+
+## Five items withdrawn because the list's own prediction was wrong
+
+* **40 Sednoids** — the premise is geometrically impossible (their perihelia are r_M/99 to r_M/200, where ν−1 < 1e-38). The framework's real outer-solar-system scale is an *aphelion* crossover near 500 AU.
+* **49 polar rings** — the list said the ring rotates *faster*; a 3-D QUMOND solve says **slower**, because the phantom is flattened toward the disc. A 3.6% framework-versus-halo discriminant, with the sign corrected.
+* **73 JWST luminosity functions** — the list said the excess should *fall* with redshift; it must **grow**, because the halo mass function steepens faster than the collapse speedup declines. Measured: **+0.175 ± 0.047 dex per unit z**, and the total-mass branch predicts +0.085 to +0.093.
+* **84 E_G** — withdrawn on the framework's *own* physics: the phantom saturates in mass at 12–70 kpc, so E_G is 1 − 0.0004 over 1–5 Mpc and there is nothing to measure.
+* **98 Oort constants** — the premise over-stated the effect a hundredfold; done properly it is a double null.
+
+## Two methodological findings worth more than most of the items
+
+* **The slope-only external-field test is formally UNIDENTIFIED** (item 28). Walking the external field over four decades
+  and re-solving the baryonic shape index reproduces **all 85** WALLABY galaxies' observed outer slopes exactly (worst
+  residual 1.2e-9) for a shape shift of only 0.34. The test is not underpowered; it is degenerate.
+* **Fast bars are not decidable** (item 29). MaNGA gives 33.3 ± 3.3% fast, CALIFA gives 90.3 ± 5.3% — **9.2σ apart** — and
+  the within-galaxy spread from seven published bar-length definitions is ×2.12, essentially the ×2.17 that flips the
+  answer. The bar length, not the galaxy, sets the result.
+
+## Where this leaves the standing
+
+The galactic keepers of the earlier passes are untouched — they were not re-tested here. What this sweep establishes is that
+**outside the acceleration relation, the framework is in trouble in more places than the ledger recorded**: clusters at every
+mass and radius, pressure-supported systems at every scale from ultra-faint dwarfs to ellipticals, lensing at Einstein radii,
+the vertical force, warps, tidal dwarfs, binary galaxies, and reionization. The one thing gained is a null that separates it
+from MOND cosmology.
