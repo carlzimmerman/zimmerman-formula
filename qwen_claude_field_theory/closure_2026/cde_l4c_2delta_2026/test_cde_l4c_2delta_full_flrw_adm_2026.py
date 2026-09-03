@@ -8,6 +8,9 @@ of quadratic coefficients.
 
 import sympy as sp
 
+from cde_l4c_2delta_action_gate_2026 import (
+    _derive_minkowski_adm_principal,
+)
 from cde_l4c_2delta_full_flrw_adm_2026 import (
     derive_full_quadratic_action,
     derive_full_flrw_adm_geometry,
@@ -441,10 +444,12 @@ def test_time_ibp_remainder_needs_raychaudhuri_and_keeps_lambda_K_canonical():
 
 
 def test_minkowski_limit_matches_a_direct_specialized_adm_expansion_by_coefficient():
-    """Catches comparing two labels for the same post-expanded expression."""
+    """Catches failure of specialization/epsilon-expansion commutation."""
 
     result = derive_full_quadratic_action()
-    comparison = result["minkowski_comparison"]
+    comparison = result["minkowski_comparison"][
+        "internal_specialization_expansion_commutation"
+    ]
     assert comparison["direct_specialization_before_expansion"] != 0
     assert comparison["flrw_simultaneous_limit"] != 0
     assert comparison["coefficient_keys"]
@@ -455,6 +460,50 @@ def test_minkowski_limit_matches_a_direct_specialized_adm_expansion_by_coefficie
     assert sp.simplify(
         comparison["direct_specialization_before_expansion"]
         - comparison["flrw_simultaneous_limit"]
+    ) == 0
+
+
+def test_minkowski_limit_bridges_to_existing_action_gate_generator_by_coefficient():
+    """Catches an internal commutation check mislabeled as independent provenance."""
+
+    result = derive_full_quadratic_action()
+    bridge = result["minkowski_comparison"][
+        "independent_action_gate_bridge"
+    ]
+    y = sp.symbols("y_existing_gate", positive=True)
+    correction = 2 * ((1 + y) * sp.exp(-y) - 1)
+    existing = _derive_minkowski_adm_principal(correction, y)
+    geometry = result["geometry_symbols"]
+    symbols = result["symbols"]
+    expected_map = {
+        existing["A"]: result["normalization"]["A"],
+        existing["k"]: result["normalization"]["q"],
+        existing["Phi"]: geometry["Phi"],
+        existing["Psi"]: geometry["Psi"],
+        existing["B"]: geometry["B"],
+        existing["lambda_s"]: symbols["delta_lambda_s"],
+        existing["lambda_K"]: symbols["delta_lambda_K"],
+        existing["Psi_dot"]: geometry["Psi_dot"],
+    }
+
+    assert bridge["source_expression"] == (
+        existing["generated_zero_field_lagrangian"]
+    )
+    assert bridge["symbol_map"] == expected_map
+    assert sp.simplify(
+        bridge["mapped_expression"]
+        - bridge["source_expression"].subs(
+            expected_map, simultaneous=True
+        )
+    ) == 0
+    assert bridge["coefficient_keys"]
+    assert all(
+        residual == 0
+        for residual in bridge["coefficient_residuals"].values()
+    )
+    assert sp.simplify(
+        bridge["mapped_expression"]
+        - bridge["task2_minkowski_expression"]
     ) == 0
 
 

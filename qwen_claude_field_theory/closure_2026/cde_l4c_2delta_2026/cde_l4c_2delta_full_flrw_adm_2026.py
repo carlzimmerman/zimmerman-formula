@@ -687,6 +687,57 @@ def _derive_full_quadratic_action_cached(
         for monomial in coefficient_keys
     }
 
+    # Independent provenance bridge: call the already committed Minkowski
+    # ADM generator from the action gate, map its own symbols into this
+    # module's convention, and compare coefficients with the FLRW limit.
+    # This is logically separate from the specialization/expansion
+    # commutation check above, whose two sides share this module's geometry.
+    from cde_l4c_2delta_action_gate_2026 import (
+        _derive_minkowski_adm_principal,
+    )
+
+    action_gate_y = sp.symbols("y_action_gate", positive=True)
+    action_gate_correction = 2 * (
+        (1 + action_gate_y) * sp.exp(-action_gate_y) - 1
+    )
+    action_gate_generator = _derive_minkowski_adm_principal(
+        action_gate_correction, action_gate_y
+    )
+    action_gate_source_expression = action_gate_generator[
+        "generated_zero_field_lagrangian"
+    ]
+    action_gate_symbol_map = {
+        action_gate_generator["A"]: A,
+        action_gate_generator["k"]: q,
+        action_gate_generator["Phi"]: geometry["Phi"],
+        action_gate_generator["Psi"]: geometry["Psi"],
+        action_gate_generator["B"]: geometry["B"],
+        action_gate_generator["lambda_s"]: delta_lambda_s,
+        action_gate_generator["lambda_K"]: delta_lambda_K,
+        action_gate_generator["Psi_dot"]: geometry["Psi_dot"],
+    }
+    action_gate_mapped_expression = sp.factor(
+        action_gate_source_expression.subs(
+            action_gate_symbol_map, simultaneous=True
+        )
+    )
+    action_gate_polynomial = sp.Poly(
+        sp.expand(action_gate_mapped_expression), *coefficient_variables
+    )
+    action_gate_coefficient_keys = tuple(
+        sorted(
+            set(action_gate_polynomial.monoms())
+            | set(limit_polynomial.monoms())
+        )
+    )
+    action_gate_coefficient_residuals = {
+        monomial: sp.simplify(
+            action_gate_polynomial.coeff_monomial(monomial)
+            - limit_polynomial.coeff_monomial(monomial)
+        )
+        for monomial in action_gate_coefficient_keys
+    }
+
     without_cuscuton_on_shell = sp.factor(
         (bulk_after_time_ibp - cuscuton_quadratic)
         .subs(friedmann_substitution)
@@ -792,15 +843,30 @@ def _derive_full_quadratic_action_cached(
             "lambda_K_was_time_integrated_by_parts": False,
         },
         "minkowski_comparison": {
-            "specialization": minkowski_substitution,
-            "direct_exact_density_before_expansion": (
-                direct_minkowski_exact_density
-            ),
-            "direct_specialization_before_expansion": direct_minkowski_q,
-            "flrw_simultaneous_limit": flrw_simultaneous_limit,
-            "coefficient_variables": coefficient_variables,
-            "coefficient_keys": coefficient_keys,
-            "coefficient_residuals": coefficient_residuals,
+            "internal_specialization_expansion_commutation": {
+                "specialization": minkowski_substitution,
+                "direct_exact_density_before_expansion": (
+                    direct_minkowski_exact_density
+                ),
+                "direct_specialization_before_expansion": (
+                    direct_minkowski_q
+                ),
+                "flrw_simultaneous_limit": flrw_simultaneous_limit,
+                "coefficient_variables": coefficient_variables,
+                "coefficient_keys": coefficient_keys,
+                "coefficient_residuals": coefficient_residuals,
+            },
+            "independent_action_gate_bridge": {
+                "source_expression": action_gate_source_expression,
+                "symbol_map": action_gate_symbol_map,
+                "mapped_expression": action_gate_mapped_expression,
+                "task2_minkowski_expression": flrw_simultaneous_limit,
+                "coefficient_variables": coefficient_variables,
+                "coefficient_keys": action_gate_coefficient_keys,
+                "coefficient_residuals": (
+                    action_gate_coefficient_residuals
+                ),
+            },
         },
         "mutation_controls": {
             "without_cuscuton": {
