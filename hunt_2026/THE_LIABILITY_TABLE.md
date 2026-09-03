@@ -167,3 +167,49 @@ Mutations: ν = 1 gives exactly zero; a₀×100 drives the predicted slope to �
 **So the external-field negative is not an artefact of this repository's prescription errors, and the provisional flags
 I attached to it are withdrawn.** It is a real result, and the external-field effect is the one signature no
 dark-matter theory can produce.
+
+
+---
+
+## CONDITIONAL MODE: assume the framework is right, and the table selects its own explanation (`f04_conditional_hot_relic.py`, 6/6)
+
+Not advocacy. The honest conditional question: *if* a₀ = ½c√(Gρ_Λ) is correct in rotating discs, where all of its
+successes are, then the rows above are **not errors** — they are predictions of real undetected mass with a required
+density, a required radius, and a required **absence** from the systems where the framework works.
+
+**A bound decides it.** A fermion cannot be packed denser than its phase space allows (Tremaine & Gunn 1979):
+ρ_max = g m⁴(2π)^{3/2}σ³/h³. So one mass **can** supply a cluster and **cannot** supply a dwarf — exactly the pattern
+this table shows.
+
+**Applied to the actual 28 rows, nothing fitted:**
+
+| requirement | mass needed |
+|---|---|
+| supply the densest genuine cluster/group row | **m ≥ 14.7 eV** |
+| supply the *least* demanding dwarf row | **m ≥ 93 eV** |
+
+**A factor 6 apart with no free parameter.** A relic at the cluster mass is forbidden by phase space from reaching
+dwarf densities. The framework's own liability table selects that story unprompted.
+
+**Credit:** Angus's hot-dark-matter MOND cosmology (Angus 2009; Angus, Famaey & Diaferio 2010); this programme's own
+`ballistic_survivor_window_2026.py` had already found a 5–11 eV window. What is new is only that the table picks it out
+without being asked.
+
+**Three costs, reported against the conditional:**
+
+1. **The abundance does not close for free.** One thermal degree of freedom gives Ω_dm at **11.3 eV**, just *below* the
+   14.7 eV cluster floor; the story needs g_eff ≈ 1.5 or mild non-thermality.
+2. **The boundary is not clusters-versus-dwarfs.** The X-ray ellipticals (need/cap **1.36**) and SLUGGS
+   globular-cluster systems (**2.87**) *exceed* the cap at the abundance mass, so the split is **σ ≳ 300 km/s** and two
+   liability rows sit on the forbidden side.
+3. **The radial profile is wrong, and this is the worst.** The cap is unsaturated by **one to four orders of magnitude**
+   in every true cluster row, so a capped relic fills clusters *smoothly* while the measured residual **grows inward**
+   (1.48 → 2.09 → 2.76 → 2.91 from 0.9 R500 to the core). Phase space explains the galaxy **absence** beautifully and
+   the cluster **profile** not at all.
+
+And the known kill stands: a thermal ~11 eV relic gives ΔN_eff ≈ 1 and is CMB-excluded unless production is non-thermal.
+
+**Net.** The best conditional story available is coherent on the *amount* and on the *galaxy/cluster split*, and fails
+on the radial profile, on two intermediate-σ rows, and on N_eff. That is a far more specific place to stand than
+"clusters do not work", and each failure is a computable next test. ⚠️ Six consecutive agent workflows launched to
+compute those tests died on server overload with zero tokens spent, so they remain open.
