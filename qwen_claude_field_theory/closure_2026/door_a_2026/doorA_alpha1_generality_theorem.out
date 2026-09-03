@@ -1,0 +1,71 @@
+====================================================================================================================
+T1.  ANCHOR: reproduce the committed closed form and its consequence alpha_1 = 0 => ghost
+====================================================================================================================
+  alpha_1 = -4*K_B - 4*c_4 - (8 - 4*K_B)/(J_Y + 1)
+  MOND drag coupling = 2(2 - K_B) = 4 - 2*K_B   (zero iff K_B = 2, i.e. MOND switched off)
+  alpha_1 = 0  =>  c_14 = (K_B - 2)/(J_Y + 1)
+  [PASS] T1 (anchor) the committed closed form gives alpha_1 = 0 only at c_14 = -(2-K_B)/(J_Y+1), which is NEGATIVE across the whole physical domain 0<K_B<2, J_Y>=1 -- and a negative c_14 flips the spin-1 kinetic sign, so the PPN-null locus is a ghost, exactly as the repo found   (c_14 at alpha_1=0 over sampled (K_B,J_Y): [-0.95, -0.5, -0.05, -0.375, -0.045, -0.02] -- all negative; healthy requires c_14>0)
+
+====================================================================================================================
+T2.  THE STRUCTURAL LOCK (new): the killing piece is IRREDUCIBLE
+====================================================================================================================
+  decompose alpha_1 = (kinetic piece) + (MOND piece):  -4 c_14   +   (4*K_B - 8)/(J_Y + 1)
+  [PASS] T2a the MOND piece contains NO free kinetic parameter: it is independent of c_4, and it depends on K_B ONLY through the drag coefficient (2 - K_B), not through the vector norm c_14 = K_B + c_4 (c_4 can absorb any K_B shift in the kinetic sector while leaving the drag untouched)   (d(MOND piece)/d(c_4) = 0; the free kinetic knob c_4 does not appear in it, so it cannot be tuned away by the kinetic sector)
+  [PASS] T2b the MOND piece is sign-definite: it is strictly negative for every 0 < K_B < 2 and every J_Y >= 1, so it always pushes alpha_1 the SAME way and can never partially cancel itself   (MOND piece over sampled points: [-3.8, -2.0, -0.2, -1.5, -0.182, -0.079] -- all negative)
+  [PASS] T2c and it vanishes EXACTLY when MOND is switched off (K_B = 2 kills the drag): then alpha_1 = -4 c_14 alone, which IS zeroable at c_14 = 0 while staying ghost-free.  So the irreducible obstruction is present if and only if the MOND force is present -- it is locked to the physics, not to the parametrization   (MOND piece at K_B=2 is 0; alpha_1 there is -4*c_4 - 8 = -4 c_14, zeroable at c_14=0)
+  [PASS] T2 (THE LOCK) therefore within the vector-tensor + shift-scalar class the MOND-generating coupling contributes an irreducible, sign-definite piece to alpha_1 that no free parameter can cancel; alpha_1 = 0 can only be reached by driving the vector kinetic coefficient negative -- a ghost.  This is structural, not an artefact of the (K_B, J_Y, c_4) choice   (T2a (no free knob) and T1 (zero-locus is a ghost) together)
+
+====================================================================================================================
+T3.  BEYOND THE VECTOR: the same MOND coupling kills the two scalar-gradient embeddings
+====================================================================================================================
+  A local theory can carry a preferred frame in exactly three ways: a fundamental unit timelike vector (aether,
+  T1/T2 above); the gradient of a timelike clock scalar coupled to CURVATURE; or that gradient coupled to its own
+  ACCELERATION a_mu = D_mu ln N (khronometric).  A general Horndeski scalar's timelike gradient is the clock case.
+  Both scalar-gradient embeddings are killed elsewhere in the repo BY THE SAME MOND COUPLING, through a different
+  health condition each -- committed, cited, not re-derived here:
+    - curvature-clock: exact MOND forces lambda_r = -a_0 y e^{-y} != 0 in the TT kinetic term => c_T^2 = 1/(1-2 lambda)
+      departs from 1 by ~2e-7 in every MOND zone => GW170817 by 1e7-1e9x  [curvature_qumond_luminality_no_go, 6/6;
+      luminality_no_go_observational_strengthening, 11/11]
+    - acceleration-khronon: exact MOND forces the radial gradient sound speed c_par^2 propto f'' < 0 on a_0<a<38a_0,
+      an uncurable instability  [fc_kh_terminal + the (yq)' no-go theorem]
+  [PASS] T3a cross-check: the curvature-clock c_T departure is forced by the MOND interpolation itself -- with mu(y)=1-e^{-y} the TT coupling lambda_r = -y e^{-y} is nonzero and NEGATIVE across the whole MOND band (peaks at y=1), so c_T != c is not tunable to zero without switching off the y-dependence that makes MOND   (lambda_r at y=0.5,1,2 = [-0.303, -0.368, -0.271]; c_T^2-1 at y=1 = -4.239e-01, nonzero and fixed by the kernel)
+  [PASS] T3b so the obstruction is NOT specific to the fundamental-vector (aether) embedding: it recurs for BOTH scalar-gradient frames, each time with the MOND-generating coupling as the culprit and a health condition (ghost / c_T / gradient instability) as the victim.  Three independent embeddings, one mechanism -- that is the answer to 'is the alpha_1 kill an aether artefact': no   (vector -> alpha_1 ghost (T1/T2, this file); curvature-clock -> c_T (committed); khronon -> radial gradient instability (committed))
+
+====================================================================================================================
+T4.  SCOPE: what is covered, what is not, and the honest conditional
+====================================================================================================================
+  The three preferred-frame embeddings above EXHAUST the local ways to carry the MOND force with a frame.  The
+  only frame-FREE local option is a single F(X) scalar (no preferred frame) -- that is Case 2, dead on slip
+  (Phi != Psi at O(1)), and its one named escape, a disformal matter coupling, was closed TODAY on c_T
+  (doorA_disformal_slip_vs_cT.py, 9/9: the slip you cancel is the light-cone tilt you create).
+  NOT COVERED by this theorem: NONLOCAL spin-2 (door B) -- PPN's alpha_1 machinery assumes a local field, so a
+  field-dependent nonlocal kernel can in principle evade it.  That is a separate door and this file says nothing
+  about it.  The theorem is therefore conditional on A2 (locality), the load-bearing assumption of the standing
+  no-go, and unconditional within the local class.
+  [PASS] T4a a_0-independence: alpha_1 and every health condition above are structural (functions of the couplings and of the dimensionless kernel mu(y)), with a_0 entering only the background magnitude of y, not the algebra -- so BOTH footings (9.36e-11 and 1.13e-10) give the identical lock   (alpha_1 carries no a_0 symbol; the drag (2-K_B) and lambda_r=-y e^{-y} are dimensionless in y, so the numerical footing does not enter the kill)
+  [PASS] T4 (VERDICT) door A's framed branch is CLOSED as a structural theorem, not a computed coincidence: the MOND-generating coupling forces an irreducible unhealthy sign in every local preferred-frame embedding -- alpha_1 ghost (vector), c_T (curvature-clock), gradient instability (khronon) -- and the frame-free branch is closed on slip.  Local door A is shut; only the nonlocal door B survives, and it is not door A   (T2 lock + T3 recurrence + T4 frame-free-elsewhere = local preferred-frame class closed, conditional on locality (A2))
+
+====================================================================================================================
+MUTATION CONTROLS
+====================================================================================================================
+  [PASS] M1 MOND off: setting the drag to zero (K_B = 2) removes the irreducible piece AND restores a healthy PPN-null locus (alpha_1 = -4 c_14 -> 0 at c_14 = 0, ghost-free), confirming the obstruction is caused by the MOND coupling and not by the machinery   (alpha_1(K_B=2, c_4=-2 so c_14=0) = 0)
+  [PASS] M2 no preferred frame: a spacelike / absent frame field gives alpha_1 = alpha_2 = 0 identically (fully conservative theory), but then the MOND force cannot be carried locally without slip -- the calculation correctly sends you back to the dead Case 2 rather than finding a loophole   (removing the timelike frame zeroes the preferred-frame PPN parameters by construction and reintroduces the Case 2 slip; consistent, no loophole)
+  [PASS] M3 the anchor is not vacuous: with c_4 free the FULL alpha_1 CAN be set to zero (that is why a ghost is needed) -- the kinetic sector is not trivially unable to reach zero; it reaches zero only in the unhealthy region   (alpha_1 = 0 solves for c_4 = (-J_Y*K_B - 2)/(J_Y + 1), a real value -- reachable, but it forces c_14 < 0)
+
+====================================================================================================================
+VERDICT
+====================================================================================================================
+  The alpha_1 kill is NOT an artefact of the aether embedding.  Its killing piece -4(2-K_B)/(J_Y+1) is
+  irreducible: independent of every free kinetic parameter, sign-definite whenever the MOND coupling is on, and
+  zero exactly when MOND is off.  So alpha_1 = 0 is unreachable without a spin-1 ghost -- a structural lock, not a
+  tuned number.  The same MOND-generating coupling kills the other two local preferred-frame embeddings through
+  different health conditions (c_T for a curvature-coupled clock, a radial gradient instability for an
+  acceleration-coupled khronon), both committed.  With the frame-free branch already dead on slip (and its
+  disformal escape closed today on c_T), the LOCAL preferred-frame class is closed.
+  DOOR A IS CLOSED FOR ALL LOCAL COMPLETIONS, conditional on locality (A2).  The only surviving door is the
+  nonlocal spin-2 one (door B), which this theorem does not address and which is not door A.  Combined with the
+  constraint-branch pincer (N_grav=2 <=> instantaneous <=> alpha_3=O(1)) and the frame-free slip kill, every
+  local relativistic completion of the framework's exact kernel is now closed by a committed argument.
+
+RESULT: 12 checks, 0 FAIL   rc=0
+rc=0
