@@ -80,6 +80,26 @@ Together with two earlier catches — the naive prescription over-predicting NGC
 published calculation, and one script using a non-standard maximal-binding form — that is **four independent signs that
 this repository's external-field treatment errs in exactly the direction that would manufacture these liabilities.**
 
-Whether the pressure-supported block *is* one wrong prescription is now being computed. Until it reports, every
-external-field-dependent row above should be read as **provisional**, and that includes the ~5σ external-field-slope
-negative reported earlier the same day.
+### ⚠️ CORRECTION TO THE CORRECTION (`f01_efe_sphere_average.py`, 6/6, derived and checked in the foreground)
+
+The flux theorem is right, but the factor it implies was **attached to the wrong observable**, and the caveat above was
+too generous to the framework. In a dominant uniform external field the effective coupling is a **tensor**,
+ν(x_e)[δ_ij + L_e n_i n_j] (Milgrom 1986; Famaey & McGaugh 2012):
+
+* **ν(1 + L_e) is the coupling PARALLEL to the field.** In the deep limit L_e = −0.4998, so that *is* half of ν. Verified.
+* **An isotropic velocity dispersion, and any sphere-averaged enclosed mass, measure the ANGLE AVERAGE**, which by
+  numerical quadrature with no expansion is **ν(1 + L_e/3) = 0.836 ν** in the deep limit — a **17% reduction, not a
+  factor 2.** The quadrature matches ν(1+L/3) to better than 0.001% at every external field from 1e-3 to 1, and does
+  not match ν(1+L) at all. Newtonian mutation returns exactly 1.000000.
+
+**Consequences, against the framework's interest:**
+
+1. The pressure-supported liabilities shrink by about **0.08 dex, not 0.3**. A ×2.4 median boost becomes ×2.0. The
+   block does not dissolve.
+2. **The ~5σ external-field-SLOPE negative barely moves at all.** A slope measures how the coupling's *logarithm* runs
+   with x_e, not its value: dln(coupling)/dln(x_e) changes by **under 25%** across the whole range (at x_e = 0.1,
+   −0.425 naive versus −0.411 sphere-averaged). So that negative cannot dissolve into this factor, and my flagging it
+   as provisional on a factor 2 was wrong.
+
+The prescription-correction run is still the right test of the *measurement* side. But on the *prediction* side, which
+is what I said was in doubt, the answer is now computed: the correction is 17% and the negative stands.

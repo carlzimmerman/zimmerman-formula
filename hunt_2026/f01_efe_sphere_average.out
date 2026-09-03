@@ -1,0 +1,68 @@
+================================================================================================================
+1. the kernel's log-log slope L = dln nu/dln x, and the three candidate couplings
+================================================================================================================
+         x_e    nu(x_e)       L_e    nu(1+L_e)  [parallel]   nu(1+L_e/3) [sphere avg]  ratio par/nu
+      0.0001   100.5008   -0.4975                  50.5012                    83.8343        0.5025
+      0.0010    32.1254   -0.4921                  16.3153                    26.8554        0.5079
+      0.0100    10.5083   -0.4754                   5.5125                     8.8431        0.5246
+      0.0300     6.2879   -0.4579                   3.4084                     5.3281        0.5421
+      0.1000     3.6886   -0.4251                   2.1206                     3.1659        0.5749
+      0.3000     2.3712   -0.3755                   1.4808                     2.0744        0.6245
+      1.0000     1.5820   -0.2910                   1.1216                     1.4285        0.7090
+      3.0000     1.2150   -0.1862                   0.9888                     1.1396        0.8138
+  [PASS] A1 the kernel's deep-limit log-log slope is -1/2, so nu(1+L) IS half of nu there (the agent's factor is right for the PARALLEL component)   (L(x -> 0) = -0.4998; nu(1+L)/nu = 0.5002)
+
+================================================================================================================
+2. the sphere average, done NUMERICALLY with no expansion
+================================================================================================================
+        x_e     h/a_0   -<S_r>/h  (numerical)    nu(1+L/3)    nu(1+L)        nu   which it matches
+     0.0010  1.00e-07                26.85539     26.85539   16.31534  32.12541   nu(1+L/3) (to 0.000%)
+     0.0010  1.00e-06                26.85539     26.85539   16.31534  32.12541   nu(1+L/3) (to 0.000%)
+     0.0010  1.00e-05                26.85532     26.85539   16.31534  32.12541   nu(1+L/3) (to 0.000%)
+     0.0100  1.00e-06                 8.84305      8.84305    5.51250  10.50833   nu(1+L/3) (to 0.000%)
+     0.0100  1.00e-05                 8.84305      8.84305    5.51250  10.50833   nu(1+L/3) (to 0.000%)
+     0.0100  1.00e-04                 8.84303      8.84305    5.51250  10.50833   nu(1+L/3) (to 0.000%)
+     0.1000  1.00e-05                 3.16591      3.16591    2.12056   3.68859   nu(1+L/3) (to 0.000%)
+     0.1000  1.00e-04                 3.16591      3.16591    2.12056   3.68859   nu(1+L/3) (to 0.000%)
+     0.1000  1.00e-03                 3.16590      3.16591    2.12056   3.68859   nu(1+L/3) (to 0.000%)
+     1.0000  1.00e-04                 1.42853      1.42853    1.12164   1.58198   nu(1+L/3) (to 0.000%)
+     1.0000  1.00e-03                 1.42853      1.42853    1.12164   1.58198   nu(1+L/3) (to 0.000%)
+     1.0000  1.00e-02                 1.42853      1.42853    1.12164   1.58198   nu(1+L/3) (to 0.000%)
+  [PASS] A2 (THE CORRECTION TO THE CORRECTION) the sphere-averaged coupling is nu(1 + L/3), NOT nu(1 + L): the numerical quadrature matches nu(1+L/3) to better than 1% at every external field, and does NOT match nu(1+L)   (x_e=0.001: numerical 26.85539 vs nu(1+L/3) 26.85539 (+0.00%) vs nu(1+L) 16.31534 (+64.6%); x_e=0.01: numerical 8.84305 vs nu(1+L/3) 8.84305 (+0.00%) vs nu(1+L) 5.51250 (+60.4%); x_e=0.1: numerical 3.16591 vs nu(1+L/3) 3.16591 (+0.00%) vs nu(1+L) 2.12056 (+49.3%); x_e=1.0: numerical 1.42853 vs nu(1+L/3) 1.42853 (+0.00%) vs nu(1+L) 1.12164 (+27.4%))
+  [PASS] A3 so the deep-limit correction to an ISOTROPIC, sphere-averaged measurement is 0.83x, a 17% reduction -- NOT the factor 2 that was flagged.  The factor 2 applies to the PARALLEL component only   (nu(1+L/3)/nu = 0.8360 (sphere-averaged, 17% down) vs nu(1+L)/nu = 0.5079 (parallel, 50% down))
+
+================================================================================================================
+3. mutation control
+================================================================================================================
+  [PASS] M1 the quadrature reproduces the isolated-limit identity: as the internal field vanishes the coupling tends to a constant, not to zero or infinity   (-<S_r>/h -> 26.8554 = 0.8360 nu(x_e))
+  [PASS] M2 mutation: with nu = 1 (Newton) the sphere-averaged coupling is exactly 1, so the machinery is not manufacturing a factor   (Newtonian sphere average = 1.00000000)
+
+================================================================================================================
+4. what this does to the numbers that were flagged provisional
+================================================================================================================
+  the ~5 sigma external-field-SLOPE negative (cluster-infall BTFR, Local Volume dwarfs) was computed with the naive
+  nu(x_e) coupling.  A slope is d/dln(x_e) of the log of the coupling, so what matters is not the coupling's VALUE but
+  how its LOGARITHM runs with x_e.  Compute both:
+        x_e   dln[nu]/dln x   dln[nu(1+L/3)]/dln x   dln[nu(1+L)]/dln x
+     0.0010         -0.4921                -0.4906              -0.4844
+     0.0100         -0.4754                -0.4706              -0.4524
+     0.1000         -0.4251                -0.4114              -0.3636
+     0.3000         -0.3755                -0.3541              -0.2857
+     1.0000         -0.2910                -0.2597              -0.1716
+  [PASS] A4 (AGAINST THE FRAMEWORK'S INTEREST) the sphere-averaged correction barely changes the predicted SLOPE, which is the quantity the ~5 sigma negative measures: dln(coupling)/dln(x_e) moves by under 25% across the whole range, so the negative does NOT dissolve into it   (worst fractional change in the predicted slope = 10.7%; e.g. at x_e = 0.1 the naive slope is -0.4251 and the sphere-averaged one -0.4114)
+
+================================================================================================================
+VERDICT
+================================================================================================================
+  The flux theorem is right and the factor it implies is real, but it was attached to the wrong observable, and this
+  script corrects the correction.  nu(1 + L) is the coupling PARALLEL to the external field, and in the deep limit
+  that is indeed half of nu.  An isotropic velocity dispersion, and any sphere-averaged enclosed mass, measure the
+  ANGLE AVERAGE instead, and the numerical quadrature says that is nu(1 + L/3) = 0.83 nu deep -- a 17% reduction, not
+  a factor 2.  So the pressure-supported liabilities shrink by about 0.08 dex, not by 0.3, and the external-field
+  SLOPE negative shrinks hardly at all, because a slope depends on how the coupling's logarithm runs and not on its
+  value.  REPORTED AGAINST INTEREST: I flagged that ~5 sigma negative as provisional on a factor 2, and by this
+  calculation the factor that applies to it is not 2.  The negative stands until the correction run says otherwise
+  on the measurement side, and the caveat I attached to the liability table is too generous to the framework.
+
+RESULT: 6 checks, 0 FAIL   rc=0
+rc=0
