@@ -270,3 +270,24 @@ Corrected in place; the closed-form version supersedes it.
 
 **Bug found and fixed:** the first run of item 71 used a 30 kpc grid and reported *no* negative region. That was resolution, not
 physics — the saddle's structure is kpc-scale. The resolution scan is in the committed output.
+
+
+---
+
+# RESULTS LEDGER — fifth pass, 2026-09-03 (items 24, 33, 61, and item 71 redone)
+
+| item | verdict | number |
+|---|---|---|
+| **71** | ✖ **DEMOTED — my own promotion retracted** | Done properly (`h71b_saddle_forecast.py`): centred where a survey can actually centre — on a **galaxy** with a companion, in **ΔΣ**, finite projection depth, unequal masses — the pair-versus-sum ratio is **1.000 to 1.023** across 50–180 kpc. A 0–2% effect on a signal three orders of magnitude larger, and of the *opposite sign* to what I claimed. The "67% deficit" came from centring on the **saddle**, a local minimum of Σ, and from using Σ instead of ΔΣ. **What survives:** the negative-mass region at the saddle is real, and the control is now *proven* rather than argued — two NFW halos give **exactly** the sum of their parts, because Newtonian gravity is linear. A sign-definite signature of nonlinear gravity that the observable washes out. |
+| **24** | ↔ consistency | The fitted halo core radius tracks the MOND radius slightly better than the disc scale length (0.55 vs 0.52 dex scatter), but with a −0.27 mass slope. Not a law. |
+| **33** | ⚠ over-predicts, my model's fault | (ν−1)Σ_b gives 50 M☉/pc² against Gaia's inferred 25–35 — because that is the asymptotic column far above the disc, not the column inside 1.1 kpc. **Items 33 and 92 both withdrawn** in favour of the repository's existing full-AQUAL vertical-force solve, which does the geometry properly. The distinctive claim — the phantom is *flattened*, following the baryons, where a round halo contributes almost constantly with height — survives untouched. |
+| **61** | ⚠ cannot be done | A point-mass cluster gives a 36 km/s gravitational redshift against a measured 7–15, because a cluster's baryons are extended and the integral piles up where no galaxies are stacked. Needs a real gas profile. |
+
+**Bugs found and fixed this pass:** centring ΔΣ on a saddle (item 71); an angular scale 17× too small that gave 4000 lensing sources
+per pair (item 71 forecast); the asymptotic-versus-measured column confusion (item 33); a point mass standing in for a cluster (item 61).
+
+**Standing after five passes (41 items).** The keepers are unchanged and are all *galactic*: κ = 0.512 ± 0.076 excluding 1/(2π) at 4.6σ;
+Λ measured in rotation curves to within ×1.5 of Planck; the stellar M/L predicted from Λ; the halo surface-density constant explained as
+the phantom's own; the 1/r lensing law; Renzo's rule quantified; the inner-curve diversity predicted from baryons; a₀ measured from the
+deep tail; and RC100 disfavouring the ΛCDM-native rise at 3.9σ. Nothing found outside galaxies has survived contact with a proper
+calculation.
