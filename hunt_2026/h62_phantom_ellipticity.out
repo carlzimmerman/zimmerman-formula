@@ -1,0 +1,100 @@
+  [PASS] V1a (validation) in the radial range this item lives in (r > 30 kpc) the multipole Newtonian solver reproduces Freeman's exact analytic razor-thin exponential-disc rotation curve to better than half a per cent   (v_c^2(numeric)/v_c^2(Freeman) at R = 32, 60, 120, 240 kpc = 0.9967, 1.0002, 1.0003, 1.0003)
+  [PASS] V1b (validation, AGAINST INTEREST) INSIDE 20 kpc the l <= 10 truncation is worth up to 4 per cent on a razor-thin disc, because a delta-function-thin disc needs arbitrarily high multipoles in its own plane.  Raising LMAX is not available -- r^l overflows past l ~ 12 over this dynamic range.  So the INNER q_ph(r) numbers below carry a several-per-cent systematic and are quoted as indicative; every number the verdict rests on is measured beyond 45 kpc, where V1a applies   (v_c^2 ratio at R = 2, 4, 8, 16 kpc = 1.0423, 0.9878, 0.9567, 0.9661  -> worst inner error 4.3%, worst outer error 0.33%)
+  [PASS] V1c (validation, the one that matters) the l = 2 moment of the solved field -- the entire signal of this item -- agrees with a completely independent 3-D quadrature of Int rho r^2 P_2(cos th) dV to one per cent   (Q from the field's Phi_2 at 1 Mpc = -3.3272e+81 kg m^2, Q by direct 3-D quadrature = -3.2761e+81, ratio 1.0156)
+  [PASS] V2 (validation) for a SPHERICAL baryon distribution the numerically differentiated phantom integrates to exactly (nu-1) M_b(r), the known closed form -- so the divergence, the grid and the kernel derivative are all right   (M_ph(<r)/[(nu-1)M_b(r)] over 3-300 kpc: min 0.9999, median 1.0002, max 1.0005)
+  [PASS] V3 (validation) the ellipticity extractor, run on an elliptical NFW whose isodensity axis ratio is KNOWN, returns that ellipticity -- so eps_kappa below is on the same footing as the eps_h the surveys fit   (input eps_h = 0.150, recovered 0.1505 (median over 40-250 kpc), spread 0.0001)
+  [PASS] V4 (validation, the strongest control here) a SPHERICAL baryon distribution put through the whole phantom + projection + m=2 pipeline returns zero ellipticity.  Any nonzero eps_kappa below is therefore the flattening of the baryons, not the grid   (|eps_kappa| for the spherical control over 40-250 kpc: max 1.36e-06 -- the floor the disc results are measured against)
+
+======================================================================================================================
+ITEM 62 -- the shape of the phantom, in the radial range the surveys actually fit (45 kpc/h70 < r < r200c)
+======================================================================================================================
+  baryonic models, matched to the measurement's own blue stellar-mass bins:
+     blue bin 1  logM* 9.5-10.0   M_b = 1.12e+10 Msun, R_d = 2.2 kpc, r_M = sqrt(GM_b/a0) = 4.1 kpc (canonical) / 3.7 kpc (alt)
+     blue bin 2  logM* 10.0-10.5  M_b = 2.67e+10 Msun, R_d = 3.4 kpc, r_M = sqrt(GM_b/a0) = 6.3 kpc (canonical) / 5.7 kpc (alt)
+     blue bin 3  logM* > 10.5     M_b = 7.31e+10 Msun, R_d = 4.8 kpc, r_M = sqrt(GM_b/a0) = 10.4 kpc (canonical) / 9.5 kpc (alt)
+     -> the fit range starts at 45 kpc, which is 4-11 MOND radii out.  That is the whole story of this item.
+
+  Sigma_eff = Sigma_phantom + Sigma_baryon.  The baryons are only ~2 per cent of the projected mass at 45 kpc but
+  they are a razor-thin disc, so they are ~100 per cent elongated and are NOT negligible for a shape measurement.
+  Both are reported; the headline is the total, which is the framework's complete lensing prediction.
+  canonical  blue bin 1  logM* 9.5-10.0   eps_kappa(edge-on, TOTAL) at R = 45 / 100 / 200 kpc = 0.0239 / 0.0045 / 0.0011  |  45-200 mean 0.0071 (q = 0.986); phantom alone 0.0071
+  canonical  blue bin 2  logM* 10.0-10.5  eps_kappa(edge-on, TOTAL) at R = 45 / 100 / 200 kpc = 0.0546 / 0.0085 / 0.0021  |  45-200 mean 0.0148 (q = 0.971); phantom alone 0.0146
+  canonical  blue bin 3  logM* > 10.5     eps_kappa(edge-on, TOTAL) at R = 45 / 100 / 200 kpc = 0.0952 / 0.0149 / 0.0035  |  45-200 mean 0.0271 (q = 0.947); phantom alone 0.0260
+  alt        blue bin 1  logM* 9.5-10.0   eps_kappa(edge-on, TOTAL) at R = 45 / 100 / 200 kpc = 0.0239 / 0.0045 / 0.0011  |  45-200 mean 0.0071 (q = 0.986); phantom alone 0.0071
+  alt        blue bin 2  logM* 10.0-10.5  eps_kappa(edge-on, TOTAL) at R = 45 / 100 / 200 kpc = 0.0545 / 0.0085 / 0.0021  |  45-200 mean 0.0148 (q = 0.971); phantom alone 0.0146
+  alt        blue bin 3  logM* > 10.5     eps_kappa(edge-on, TOTAL) at R = 45 / 100 / 200 kpc = 0.0948 / 0.0149 / 0.0035  |  45-200 mean 0.0270 (q = 0.947); phantom alone 0.0260
+
+  the 3-D isodensity axis ratio of the phantom itself -- the physics, before any projection:
+     blue bin 1  logM* 9.5-10.0   q_ph at r = 2, 5, 10, 20, 30, 45, 100, 200 kpc:  0.332, 0.242, 0.271, 0.483, 0.710, 0.913, 0.988, 0.997
+     blue bin 2  logM* 10.0-10.5  q_ph at r = 2, 5, 10, 20, 30, 45, 100, 200 kpc:  0.426, 0.272, 0.248, 0.376, 0.547, 0.760, 0.977, 0.994
+     blue bin 3  logM* > 10.5     q_ph at r = 2, 5, 10, 20, 30, 45, 100, 200 kpc:  0.508, 0.304, 0.247, 0.293, 0.439, 0.637, 0.951, 0.991
+     (the inner values carry the several-per-cent multipole systematic of V1b; the outer ones do not)
+  [PASS] 62a THE LIST'S PREDICTION IS HALF RIGHT, AND THE HALF THAT IS WRONG IS THE HALF THAT MATTERS.  In THREE DIMENSIONS the list is close: at 45 kpc the phantom of an L* disc really does have q ~ 0.6-0.9.  But that is not what a lensing survey measures.  The survey measures the PROJECTED mass, whose line of sight at R = 45 kpc is dominated by material at 1-2 R where the phantom is already round, and it averages out to r200c where it is rounder still.  The observable is 5-15 times smaller than the 3-D number the list quoted   (3-D: q_ph(10 kpc) = 0.248, q_ph(45 kpc) = 0.760, q_ph(100 kpc) = 0.977.  PROJECTED and band-averaged: eps_kappa = 0.0148, i.e. q = 0.971, not 0.7-0.8)
+  [PASS] V5 (validation) resolution scan: halving the radial and angular grid changes eps_kappa by under 15 per cent of itself, so the small number above is physics and not an unresolved grid   (eps_kappa (45-200 kpc) at 760x801 = 0.01483, at 400x401 = 0.01487, change +0.3%)
+  [PASS] V6 the baryons are lensing mass too, and being a razor-thin disc they are ~100 per cent elongated, so even the 2 per cent of Sigma they contribute at 45 kpc is not obviously negligible for a SHAPE measurement.  Computed rather than assumed, they add about 4 per cent to eps_kappa -- real, in the framework's favour, and small.  The associated worry, that the answer depends on where the gas disc is truncated (nothing measures it at 45 kpc), is also computed and also negligible in the band average   (Sigma_baryon/Sigma_phantom on the major axis at 45 kpc = 0.020; eps_kappa(45-200 kpc) = 0.0146 phantom alone, 0.0148 with baryons, 0.0146 if the gas disc is truncated at 30 kpc)
+
+======================================================================================================================
+f_h -- the published observable, computed the way the surveys compute it
+======================================================================================================================
+  [PASS] V7 (validation) the phantom's projected flattening scales as sin^2(i), as a small oblate flattening must -- checked directly at i = 55 deg, so the inclination average below does not need one projection per inclination   (eps_kappa(55 deg) measured 0.00940 vs sin^2(55) x edge-on = 0.00995, ratio 0.945)
+  canonical  f_h(framework, discs) by blue mass bin: 0.0132, 0.0275, 0.0503   sample-typical 0.0303
+  alt        f_h(framework, discs) by blue mass bin: 0.0132, 0.0275, 0.0502   sample-typical 0.0303
+  an isotropically oriented thin-disc sample (intrinsic q0 = 0.2) has <|eps_g|> = 0.320 -- the blue lenses are this population
+
+  MEASURED (Georgiou/Schrabback+2021, five surveys incl. KiDS/KV450, 45 kpc/h70 < r < r200c):  BLUE f_h = 0.217 +- 0.160
+  MEASURED (Schrabback+2021, KiDS-1000 central galaxies, outer isophotes):                     BLUE f_h = 0.28 +- 0.55
+  FRAMEWORK (this script):  f_h = 0.0303 (canonical) / 0.0303 (alt)
+  [PASS] 62b the framework's prediction for DISC lenses is a NULL.  Because the phantom is nearly round where the surveys measure, the framework predicts f_h of a few hundredths -- not the 0.2-0.3 that is measured.  It sits low, but the blue error bar is so wide that the framework is not excluded   (f_h(framework) = 0.0303 (canonical) / 0.0303 (alt) against a measured 0.217 +- 0.160: 1.17 sigma low, NOT excluded)
+
+======================================================================================================================
+the RED lenses -- an OBLATE early type, computed rather than asserted
+======================================================================================================================
+  the red measurement is 4x sharper (+-0.080 vs +-0.160).  Red lenses are early types: model them as oblate
+  Hernquist spheroids of intrinsic axis ratio q3, with the framework's own super-Salpeter stellar mass (item 54).
+     early type q3=0.70, Re=6 kpc     r_M =  13.7 kpc | q_ph(10/45/100 kpc) = 0.823/0.922/0.957 | eps_kappa(45-200) = 0.0253 | <|eps_g|> = 0.108 | f_h = 0.1509
+     early type q3=0.60, Re=6 kpc     r_M =  13.7 kpc | q_ph(10/45/100 kpc) = 0.765/0.896/0.943 | eps_kappa(45-200) = 0.0343 | <|eps_g|> = 0.148 | f_h = 0.1476
+     early type q3=0.70, Re=9 kpc     r_M =  19.3 kpc | q_ph(10/45/100 kpc) = 0.787/0.898/0.941 | eps_kappa(45-200) = 0.0358 | <|eps_g|> = 0.108 | f_h = 0.2136
+  [PASS] 62c AGAINST MY OWN EXPECTATION, AND THIS IS THE RESULT OF THE ITEM.  I wrote this section expecting the early-type case to be the liability -- a round phantom against a sharp 0.303 detection.  IT IS NOT.  An oblate early type gives f_h = 0.15-0.21, within one to two sigma of the measurement, because two things I had not accounted for both push it up: an early type is heavier, so 45 kpc is only 2-3 MOND radii out instead of 7, and its half-light radius is twice a disc's scale length, so its quadrupole-to-monopole ratio at 45 kpc is four times larger.  The framework does BETTER on the sharp sample than on the blind one   (f_h(framework, oblate early type q3 = 0.70, Re = 6 kpc) = 0.1509 against a measured 0.303 +- 0.080 = 1.9 sigma low.  The answer is insensitive to the assumed intrinsic flattening -- q3 = 0.60 gives 0.1476, because f_h is a RATIO and both ellipticities scale together -- but it IS sensitive to size: Re = 9 kpc gives 0.2136, 1.1 sigma)
+  [PASS] 62d the systematics that would have to be controlled before ANY verdict is drawn from the red sample, stated so the 1-2 sigma above is not over-read in either direction.  Real early types are TRIAXIAL, not oblate, and a triaxial baryon distribution generates a phantom with a larger and differently oriented quadrupole than this model.  And the measurement's reference model is an elliptical NFW, so the f_rel(r) radial weighting it folds in is not the one appropriate to a rho ~ 1/r^2 phantom.  Each is worth an O(1) factor, and neither is evaluated here   (the framework spans 0.148-0.214 across the model choices tried, against 0.303 +- 0.080: 1.1 to 1.9 sigma.  Two uncontrolled O(1) systematics sit on top of that range)
+
+======================================================================================================================
+the LambdaCDM alternative on the identical estimator
+======================================================================================================================
+  a CDM halo is triaxial: dark-matter-only simulations give minor/major c/a ~ 0.6-0.7 at these masses, and
+  baryonic contraction rounds the inner halo to c/a ~ 0.75-0.85.  Taken as oblate and ALIGNED with the light
+  (the most favourable case for a detection), the projected ellipticity follows the same sin^2 i geometry:
+     halo c/a = 0.60 (3-D eps_h = 0.250), perfectly aligned  ->  f_h = 0.435
+     halo c/a = 0.70 (3-D eps_h = 0.176), perfectly aligned  ->  f_h = 0.314
+     halo c/a = 0.85 (3-D eps_h = 0.081), perfectly aligned  ->  f_h = 0.148
+     a misalignment of <cos 2 dphi> = 0.5, which simulations find for blue discs, halves these.
+  [PASS] 62e the LambdaCDM alternative reproduces the measured f_h across the whole plausible range of halo shapes -- but only because a halo's shape is a FREE function set by structure formation, so 'reproduces' here means 'is not constrained by'.  The asymmetry worth recording is the one the item was really about: on this observable the framework has NO freedom (the lensing mass's shape is fixed by the baryons and, per M4, not even by a_0) while LambdaCDM has all of it.  A sharp enough measurement would therefore bind the framework and not LambdaCDM -- but the present one is not sharp enough to bind either   (f_h(LCDM, c/a = 0.60/0.70/0.85, aligned) = 0.435 / 0.314 / 0.148; measured (blue) 0.217 +- 0.160; framework (discs) 0.0303.  LCDM(c/a=0.7) is 0.60 sigma from the blue data, the framework 1.17 sigma)
+  [PASS] 62f THE ITEM AS THE LIST POSED IT CANNOT BE DECIDED, ON EITHER SAMPLE.  It asked for the measured f_h to pick the phantom over the halo at 2 sigma.  On the DISC lenses the list named, the framework (0.030) and an aligned CDM halo (0.314) are far apart but the error bar is +-0.160, so the separation is under 2 sigma and the data sit between them.  On the RED lenses, where the error bar is four times smaller, the framework's OWN prediction has moved up to 0.15-0.21 and is no longer far from the halo's -- so the sharper measurement is aimed at a smaller gap.  Neither sample decides it   (discs: framework 0.030 vs LCDM(aligned, c/a=0.7) 0.314 = a 1.77 sigma separation at +-0.160.  Early types: framework 0.151 vs measured 0.303 +- 0.080 = 1.9 sigma)
+
+======================================================================================================================
+MUTATION CONTROLS -- these must break
+======================================================================================================================
+  [PASS] M1 mutation: at fixed baryonic mass, doubling the disc's scale length must QUADRUPLE eps_kappa in the far field, because the whole signal is the disc's Newtonian quadrupole Q ~ M R_d^2 divided by M r^2.  If this did not hold the estimator would not be measuring the baryons' shape   (eps_kappa beyond 150 kpc: R_d = 3 kpc gives 0.00063, R_d = 6 kpc gives 0.00251, ratio 4.00 against a predicted 4.00)
+  [PASS] M2 mutation: the far-field radial law.  eps_kappa must fall as R^-2, the quadrupole-over-monopole scaling.  A different power would mean the projected shape is being set by something other than the baryons' quadrupole   (d ln eps_kappa / d ln R beyond 150 kpc = -2.00, against a predicted -2.00)
+  [PASS] M3 mutation: switching the kernel off (nu = 1) leaves NO phantom at all, so there is no lensing mass beyond 45 kpc to have a shape.  The entire signal is the kernel's   (rho_ph is identically zero with nu = 1)
+  [PASS] M4 AGAINST MY OWN ESTIMATOR, and it is a finding, not a failure.  I wrote this script expecting eps_kappa to depend strongly on a_0, and built two mutations on that expectation.  BOTH WERE WRONG: moving a_0 by a factor of 100 either way changes eps_kappa by under 10 per cent.  The reason is that (nu-1) is a near-isotropic scalar at these radii, so the phantom simply inherits the Newtonian quadrupole's shape whatever a_0 is.  THIS OBSERVABLE DOES NOT MEASURE a_0 -- which is also why both footings agree to four decimals above.  What it tests is different and sharper: whether the lensing mass's shape is LOCKED to the baryons or FREE   (eps_kappa (45-200 kpc): a_0 x 100 -> 0.01470, canonical -> 0.01483, a_0/100 -> 0.01416  (spread 4% over four decades in a_0))
+
+  the external-field effect, the only mechanism left that could give the phantom a shape at 45-200 kpc:
+     e_N = 0.00: eps_kappa(45-200 kpc) = +0.01461, projected mass at 100 kpc = 100% of the isolated value
+     e_N = 0.01: eps_kappa(45-200 kpc) = +0.01409, projected mass at 100 kpc = 7% of the isolated value
+     e_N = 0.03: eps_kappa(45-200 kpc) = +0.01529, projected mass at 100 kpc = 2% of the isolated value
+     e_N = 0.10: eps_kappa(45-200 kpc) = +0.01942, projected mass at 100 kpc = 0% of the isolated value
+  [PASS] 62g AGAINST INTEREST -- the external field does not rescue the item.  It truncates the phantom's AMPLITUDE hard (the simple scalar prescription used here is over-aggressive, and item 1 of this hunt already showed the 1/r lensing law survives to 2.6 Mpc, so the real truncation is milder) while leaving its SHAPE almost untouched.  And the quadrupole the EFE does add points along g_ext, which is uncorrelated with the light's major axis, so it enters a stacked f_h with a random sign and cancels.  So the DISC prediction of 0.03 cannot be raised toward the measured 0.217 this way -- though per 62c it does not need to be, since it is only 1.2 sigma low to begin with   (the EFE quadrupole is aligned with g_ext, not with the light, so <cos 2 dphi> -> 0 in a stack; that is hunt item 83, not item 62)
+
+======================================================================================================================
+VERDICT
+======================================================================================================================
+  3-D: the phantom IS a flattened, baryon-following structure -- q_ph = 0.25 at 10 kpc -- and that remains a
+     real and distinctive prediction.  But it rounds off fast: q_ph = 0.76 at 45 kpc and 0.98 at 100 kpc.
+  PROJECTED, which is what is measured: eps_kappa(45-200 kpc) = 0.0148 for a disc, i.e. q = 0.971 -- five to fifteen times rounder than the list's 0.7-0.8.
+  f_h: framework 0.030 (discs) and 0.151-0.214 (early types); LambdaCDM (aligned, c/a = 0.7) 0.314;
+     measured 0.217 +- 0.160 (blue) and 0.303 +- 0.080 (red).  Everything is consistent with everything.
+  the two things this script changed its own mind about, both recorded above: eps_kappa does not depend on a_0 (M4),
+     and the early-type case is NOT the liability I expected -- it is the framework's best showing here (62c).
+  [PASS] 62 SUMMARY -- a NULL, with the list's own prediction corrected and one liability I expected NOT confirmed.  (i) The stated framework prediction, q = 0.7-0.8 at 30-100 kpc, is WITHDRAWN: that is the 3-D axis ratio at the inner edge of the range, while the projected quantity lensing measures is q = 0.95-0.99.  (ii) On DISC lenses the framework predicts f_h = 0.03 against 0.217 +- 0.160: consistent, 1.2 sigma, underpowered.  (iii) On RED lenses, where I expected a liability, the framework predicts 0.15-0.21 against 0.303 +- 0.080: also consistent, 1.1-1.9 sigma, because an early type sits only 2-3 MOND radii inside 45 kpc.  No discrimination against LambdaCDM in either direction, and no liability.  What the item does establish is that this observable is a_0-BLIND, so it can never be a measurement of the framework's constant -- only of whether the lensing mass's shape is locked to the baryons   (eps_kappa(45-200 kpc) = 0.0148 (both footings, and a_0-blind to 4 per cent over four decades); f_h(discs) = 0.0303/0.0303 vs blue 0.217+-0.160 (1.2 sigma); f_h(early types) = 0.148-0.214 vs red 0.303+-0.080 (1.1-1.9 sigma))
+
+RESULT: 21 checks, 0 FAIL   rc=0

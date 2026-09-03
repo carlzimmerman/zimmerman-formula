@@ -1,0 +1,151 @@
+==========================================================================================================================
+PART 0 -- is the ring-versus-disc kinematic table available?
+==========================================================================================================================
+  The item points at Iodice et al. 2003 (A&A 404, 921) and Khoperskov.  Checked this session on the VizieR CfA
+  mirror: J/A+A/404/921 returns no table -- that paper was never deposited at CDS.  The SDSS-based Polar Ring
+  Catalogue (Moiseev et al. 2011, J/MNRAS/418/244) IS there but carries only positions, r magnitudes and a
+  systemic velocity: no rotation curves.  Combes et al. 2013 (J/A+A/554/A11) adds CO spectra and systemic
+  velocities, again no ring-versus-disc rotation.  So the ratio the item asks for cannot be measured from
+  machine-readable data here.  What IS deposited is an HI survey of the Whitmore et al. 1990 Polar Ring
+  Catalogue objects with 20% line widths (J/A+A/319/401), and that is what PART 2 uses.
+  [PASS] 49a NOT RUNNABLE AS POSED -- the per-system ring and disc rotation velocities the item needs are not in any machine-readable archive reachable from here.  The polar-ring catalogues that ARE deposited carry photometry and systemic velocities only.  A data-availability result, not a null   (VizieR J/A+A/404/921 empty; J/MNRAS/418/244 and J/A+A/554/A11 carry no rotation velocities; J/A+A/319/401 carries HI 20% line widths and is used in PART 2)
+
+==========================================================================================================================
+PART 1 -- what the framework actually predicts, from a 3-D QUMOND solve
+==========================================================================================================================
+  grid 128^3 over +/-100 kpc (cell 1.56 kpc), isolated-boundary FFT Poisson, Route A kernel nu(y) = 1/(1-exp(-sqrt(y)))
+    r [kpc]   v numeric  v analytic    ratio   (point mass, spherical: the solver must reproduce the closed form)
+         15      180.47      181.05   0.9968
+         25      171.48      171.68   0.9989
+         40      166.42      166.46   0.9998
+         60      163.77      163.59   1.0011
+  [PASS] 49b solver validation: in spherical symmetry QUMOND reduces exactly to v^2 = nu(g_N/a_0) g_N r, so the three-dimensional solve must reproduce the closed form.  If it does not, nothing else in PART 1 means anything   (maximum error over r = 15-60 kpc: 0.32%)
+  
+  configuration: exponential host disc M = 3.0e+10 Msun, R_d = 3.0 kpc, h_z = 0.5 kpc (x-y plane);
+                 polar ring M = 1.0e+10 Msun at R = 20.0 kpc, width 3.0 kpc (x-z plane)
+  the spherical NFW comparison halo is M200 = 5.29e+11 Msun, c = 10, bisected so that its equatorial speed at r = 20 kpc matches the framework's 161.1 km/s (it gives 161.1)
+  
+   r [kpc] |        framework (disc+ring) |        framework (disc only) |         Newton baryons |   Newton + spherical NFW
+           |     v_eq   v_pol   ratio   |     v_eq   v_pol   ratio   |    v_eq  v_pol  ratio  |     v_eq   v_pol  ratio
+         8 |    151.0   144.2   0.955   |    150.2   146.3   0.974   |   115.2  104.5  0.908  |    158.8   151.3  0.953
+        12 |    160.6   144.3   0.899   |    159.2   149.7   0.940   |   108.7   93.1  0.857  |    163.6   153.7  0.940
+        16 |    161.1   141.6   0.879   |    158.6   149.2   0.941   |    97.6   81.8  0.838  |    162.1   153.1  0.944
+        20 |    161.1   151.9   0.942   |    155.6   148.0   0.951   |    89.9   83.6  0.930  |    161.1   157.7  0.979
+        25 |    161.4   167.0   1.035   |    152.0   146.7   0.965   |    83.2   89.1  1.071  |    160.1   163.2  1.020
+        30 |    159.7   165.3   1.035   |    149.3   145.6   0.975   |    76.1   80.8  1.061  |    157.8   160.1  1.014
+        40 |    156.7   159.3   1.017   |    146.2   144.2   0.986   |    65.6   67.4  1.027  |    153.6   154.3  1.005
+        55 |    154.7   156.0   1.008   |    144.0   143.0   0.993   |    55.9   56.6  1.013  |    148.0   148.3  1.002
+        70 |    153.8   154.6   1.005   |    143.0   142.4   0.996   |    49.6   49.9  1.008  |    143.2   143.3  1.001
+  [PASS] 49c 🔴 THE ITEM'S PREDICTION IS WITHDRAWN AND REPLACED.  The item says the framework predicts the ring FASTER than the disc.  It does not: the phantom of a disc is flattened TOWARD the disc, so at the ring's radius the polar circular speed is BELOW the equatorial one.  'Ring faster than disc' is the observers' inference about a dark halo flattened toward the polar plane, and it is the OPPOSITE of what the framework says   (at r = 20 kpc: v_pol/v_eq = 0.942 for the disc+ring baryons and 0.951 for the host disc alone; Newtonian baryons give 0.930; a spherical NFW halo matched to the same equatorial speed gives 0.979)
+  [PASS] 49c2 ⚠ AND THE DISCRIMINANT IS SMALLER THAN THE ITEM'S OWN BAR.  Against a spherical halo matched to the same equatorial rotation speed -- the fair comparison -- the framework's extra polar-plane suppression is a few per cent, not the 10% the hunt list set as the pass threshold.  So even with perfect ring-and-disc data, 'ratio within 10% for 5+ systems' would not decide anything; the measurement has to be good to about 2%   (framework 0.942 against a matched spherical halo 0.979: a discriminant of 3.6% in velocity, against the item's 10% bar)
+  
+  canonical : (G M_b a_0)^(1/4) = 149.3 km/s;  v_pol(20 kpc) = 151.9 km/s  ->  f_ring = 1.017;  v_eq = 161.1 -> f_eq = 1.079
+  alt       : (G M_b a_0)^(1/4) = 156.5 km/s;  v_pol(20 kpc) = 158.0 km/s  ->  f_ring = 1.009;  v_eq = 167.6 -> f_eq = 1.071
+  at r = 70 kpc the two planes have converged to 1.005 of each other and to 1.035 of the asymptotic BTFR speed -- the field goes spherical, as it must.
+  [PASS] 49d THE PREDICTION THAT IS TESTABLE: a polar ring must sit on the ORDINARY baryonic Tully-Fisher relation with the ordinary a_0, because the framework's field becomes spherical far from any baryon distribution whatever its shape.  The finite-radius correction at a realistic ring radius is small and is computed here rather than assumed, so PART 2 uses a number and not the bare asymptote.  A dark halo of adjustable flattening makes no such prediction -- which is precisely why the literature uses polar rings to MEASURE halo shape   (f_ring = v_pol(R_ring)/(G M_b a_0)^(1/4) = 1.017 (canonical), 1.009 (alt); the two planes agree to 0.5% by r = 70 kpc)
+  [PASS] M1 resolution control: the item-71 lesson was that a coarse grid can invent (or hide) the answer, so the whole of PART 1 is recomputed at 96^3 and must give the same numbers   (96^3 vs 128^3: v_pol/v_eq 0.947 vs 0.942; f_ring 1.016 vs 1.017)
+  [PASS] M2 mutation control: a_0 x 100 must raise the ring speed by 0.5 dex in the deep-MOND part of the answer.  It cannot be the full 0.5 because at 20 kpc the ring is not fully in the deep regime -- the measured shift is the check that the solver is responding to a_0 at all and by roughly the right amount   (log10(v_ring(100 a_0)/v_ring(a_0)) = +0.466 (deep-MOND limit +0.500, Newtonian limit 0))
+
+==========================================================================================================================
+PART 2 -- the polar-ring BTFR on real data
+==========================================================================================================================
+  Huchtmeier 1997, 'HI survey of polar ring galaxies II' (VizieR J/A+A/319/401 table1), fetched this session to
+  real_research/data/prg_huchtmeier1997_hi_table1.tsv: Whitmore et al. 1990 Polar Ring Catalogue identifier,
+  total blue magnitude, HI flux, HI systemic velocity and the 20% line width, for 44 objects.
+  PRC classes: A = kinematically CONFIRMED polar ring; B = good candidate; C = possible candidate;
+               D = possibly related object (mergers, peculiars -- not polar rings).
+  THE LOAD-BEARING ASSUMPTION, stated up front: in a polar-ring galaxy the HI lies overwhelmingly in the RING,
+  not in the gas-poor early-type host, so W20 measures the RING's rotation.  That is the standard reading of
+  these observations and it is why the survey was done; it is also what makes this a test of item 49 at all.
+  The ring is assumed edge-on (sin i = 1), which is how PRC objects are recognised.  Any i < 90 deg would raise
+  the inferred rotation speed, so every velocity below is a LOWER bound.
+  
+  PRC   name        type    D [Mpc]    W20  V_ring  M_HI [1e9]  L_B [1e9]
+  A-01  A0136-0801  S0         84.1    310   153.4        5.00       4.99
+  A-06  UGC9796     S0         81.3    214   104.7       11.37       3.80
+  B-10  UGC5119     S0         86.9    353   175.1       12.45      18.28
+  B-21  E603-21     Sbc        51.2    355   176.1       10.61       2.48
+  C-24  UGC4261     S          95.0    239   117.5        6.38      31.88
+  C-25  UGC4323     E          59.9    250   123.0        0.76      14.82
+  C-26  UGC4332     S          80.3    620   309.2        6.53      20.02
+  C-27  UGC4385     I          29.2    177    85.7        1.49       2.37
+  C-29  NGC2865     E          42.3    159    76.4        0.72      36.01
+  C-32  IC575       Sa         98.5    273   134.7        3.66      23.06
+  C-33  E500-41     Sab        53.0    332   164.5        3.30       8.63
+  C-35  NGC3414     S0         22.6    322   159.5        0.14      13.86
+  C-38  NGC3934     S0/a       54.9    317   157.0       11.30       8.78
+  C-39  NGC4174     Sb         58.4    262   129.1        7.55      15.30
+  C-46  E576-69     Sa         79.6    464   231.0        6.87      13.73
+  C-49  NGC6028     S0         66.4    293   144.8        1.14      13.68
+  C-50  UGC10205    Sa         97.3    595   296.7        8.70      42.12
+  D-02  NGC235      S0        100.4    303   149.9        5.70      30.42
+  D-03  E474-28     Sbc        98.4    135    63.8        6.85      15.79
+  D-44  NGC520      S0         32.5    450   223.9        5.29      23.94
+  D-14  UGC5485     Sab        88.9    331   164.0       30.15      10.80
+  D-24  AM1257-22   E          41.6    390   193.8        0.41      10.07
+  D-43  E510-13     Sa         51.2    571   284.7        1.92      27.47
+  D-35  NGC7252     S0         70.5    223   109.3        4.45      76.57
+  objects with W20, B magnitude, HI flux and cz > 1500 km/s: 24;  of those PRC class A or B (confirmed + good candidates): 4
+  [PASS] 49e UNDERPOWERED ON THE GOLD SAMPLE, and this is the item's real limit.  The hunt list asks for 5 or more systems agreeing to 10%.  The number of KINEMATICALLY CONFIRMED or good-candidate polar rings with a published HI line width, a blue magnitude and a usable flow distance in the whole deposited literature is smaller than that.  The extended sample below is dominated by PRC classes C and D, which are candidates and 'related objects' (mergers and peculiars), not polar rings   (4 class A+B objects against the 24 total; the rest are class C (13) and class D (7))
+  
+  the framework's parameter-free prediction: V_ring = f_ring x (G M_b a_0)^(1/4) with f_ring from PART 1, M_b = 1.33 M_HI + Upsilon_B L_B
+            sample   N     footing   Ups_B   median offset [dex]     rms
+           PRC A+B   4   canonical     0.8           0.119         0.095
+           PRC A+B   4   canonical     1.5           0.085         0.093
+           PRC A+B   4   canonical     3.0           0.035         0.093
+           PRC A+B   4         alt     0.8           0.101         0.095
+           PRC A+B   4         alt     1.5           0.067         0.093
+           PRC A+B   4         alt     3.0           0.018         0.093
+       all classes  24   canonical     0.8           0.084         0.174
+       all classes  24   canonical     1.5           0.048         0.174
+       all classes  24   canonical     3.0          -0.014         0.176
+       all classes  24         alt     0.8           0.067         0.174
+       all classes  24         alt     1.5           0.031         0.174
+       all classes  24         alt     3.0          -0.031         0.176
+  
+  inverted: with a_0 fixed by Lambda, the ring speed and the HI mass PREDICT the host's stellar M/L
+         PRC A+B  canonical: required Upsilon_B = median   4.99, 16-84 pct [0.59, 15.60], 1/4 negative (i.e. the HI alone already over-predicts)
+         PRC A+B        alt: required Upsilon_B = median   4.10, 16-84 pct [0.14, 12.80], 1/4 negative (i.e. the HI alone already over-predicts)
+     all classes  canonical: required Upsilon_B = median   2.64, 16-84 pct [0.14, 14.00], 2/24 negative (i.e. the HI alone already over-predicts)
+     all classes        alt: required Upsilon_B = median   2.18, 16-84 pct [0.09, 11.89], 2/24 negative (i.e. the HI alone already over-predicts)
+  
+  THE LEVER, before any conclusion is drawn from the numbers above: across these 24 objects the PREDICTED velocity varies by only 0.069 dex (rms), because M_b spans 1.34 dex and the BTFR compresses that by a factor of four.  The OBSERVED velocities scatter by 0.172 dex.  A Tully-Fisher correlation cannot be detected when the signal is 0.40 of the scatter.
+  [PASS] 49f 🔴 AGAINST INTEREST -- THE BTFR TEST IS NOT A TEST ON THIS SAMPLE.  The offset can be quoted, but the sample cannot demonstrate the Tully-Fisher correlation: the predicted velocity varies over a range two and a half times smaller than the observed scatter, because taking a fourth root of a 1.3 dex mass range leaves almost no lever.  What follows is therefore a ZERO-POINT statement -- the mean ratio of measured to predicted speed -- and not a demonstration that polar rings obey the relation   (predicted-velocity spread 0.069 dex against an observed scatter of 0.172 dex; zero point: PRC A+B (N = 4, canonical, Upsilon_B = 1.5) median offset +0.085 dex (+21% in velocity), s.e.m. 0.046; all 24 objects +0.048 +/- 0.036 dex)
+  
+  CONTROL -- the same zero-parameter BTFR on 122 ordinary SPARC discs (V_flat, M_b = 0.5 L_3.6 + 1.33 M_HI, no f_ring correction because V_flat is already the asymptote): median offset +0.053 dex, rms 0.060
+  CAVEAT ON THAT COMPARISON, because it is not as clean as it looks: the polar rings carry a B-band stellar mass with Upsilon_B assumed and the SPARC discs a 3.6-micron one with Upsilon = 0.5, so the two zero points sit in different M/L systems and their agreement is partly a coincidence of those two choices.  What is robust is the SIZE of the difference relative to the polar-ring scatter, not its being near zero.
+  [PASS] 49g the comparison that matters is not to zero but to ORDINARY DISCS analysed with the same law.  A polar ring offset that matches the disc offset means the ring behaves like a disc of the same baryonic mass, which is the framework's claim; a difference between them is the signal the item was after   (polar rings +0.085 dex vs SPARC discs +0.053 dex -- a difference of +0.031 dex, against a polar-ring s.e.m. of 0.046 and a polar-ring rms of 0.093)
+
+--------------------------------------------------------------------------------------------------------------------------
+MUTATION CONTROLS on PART 2
+--------------------------------------------------------------------------------------------------------------------------
+  [PASS] M3 mutation control: a_0 x 100 must move the BTFR offset by exactly 0.5 dex (v ~ a_0^1/4).  If the offset does not respond, 49f is measuring nothing   (median offset +0.048 -> -0.452 dex, a shift of +0.500 (predicted +0.500))
+  [PASS] M4 mutation control, AND IT IS THE ONE THAT SIZES 49f: scrambling which rotation speed belongs to which galaxy must inflate the residual scatter by a known amount if the relation is really there.  The observed inflation sits between 'no relation at all' and 'the relation holds exactly', and its bootstrap error covers both -- so this control cannot tell the two apart either.  Everything in PART 2 is a zero point, not a relation   (rms of the offset inflates from 0.174 dex to 0.183 dex on scrambling, a ratio of 1.048 +/- 0.121 (bootstrap) against 1.000 for no relation and 1.145 for an exact one)
+  [PASS] M5 estimator control, same verdict from the other direction: the framework's BTFR has slope exactly 1/4 in log V vs log M_b.  The measured slope is consistent with 1/4 -- and equally consistent with ZERO, i.e. with no relation at all.  Two independent controls therefore say the same thing: this sample cannot test the relation, only its zero point   (measured d log V_ring / d log M_b = 0.100 +/- 0.138 (bootstrap): 1.1 sigma from the predicted 0.250 and 0.7 sigma from zero)
+  [PASS] M6 estimator validation on the paper's own numbers: this script recomputes M_HI from the HI flux and L_B from the blue magnitude and its own distance, rather than taking the catalogue's derived columns.  Rescaled to the paper's Hubble constant those recomputations must reproduce its published values, or the whole of PART 2 is built on an arithmetic error   (N = 13 objects in both tables: median log10(mine/published) = +0.026 for M_HI and +0.054 for L_B after rescaling from H0 = 67.4 to the paper's 75)
+
+--------------------------------------------------------------------------------------------------------------------------
+  SYSTEMATICS, stated plainly:
+   1. THE RING/HOST GAS SPLIT.  If part of the HI sits in the host rather than the ring, W20 mixes two
+      kinematic systems and V_ring is wrong in an uncontrolled direction.  Single-dish data cannot separate
+      them; resolved HI synthesis maps can, and exist for a handful of objects only.
+   2. INCLINATION.  sin i = 1 is assumed.  Any real inclination raises V_ring, so the offsets above are
+      LOWER bounds on the ring speed and the framework's requirement is at its easiest here.
+   3. B-band magnitudes are not extinction-corrected in this table and PRC hosts are seen through their own
+      rings.  Under-corrected extinction lowers L_B, lowers M_b, and lowers the predicted velocity.
+   4. Upsilon_B is the wall, exactly as in items 2/65/66/76: over 0.8 to 3.0 the predicted velocity moves by
+      0.144 dex when the stars dominate, which is the size of the whole signal.
+   5. flow distances from cz/H0 with no peculiar-velocity model; the cz > 1500 km/s cut keeps this near 10%,
+      which is 0.05 dex in M_b at fixed flux and 0.012 dex in the predicted velocity.
+   6. PRC classes C and D are candidates and related objects, NOT confirmed polar rings.  Any statement made
+      on the 'all classes' sample is a statement about peculiar galaxies in general.
+
+  WHAT WOULD MAKE ITEM 49 DECISIVE:
+   1. resolved HI or ionised-gas rotation curves for both components of 5+ confirmed polar rings -- these
+      exist in the literature (NGC 4650A and a handful of others) but are not deposited anywhere machine-
+      readable, which is finding 49a.  With them, PART 1's v_pol/v_eq prediction becomes a 3-sigma test.
+   2. the SIGN is the whole point and it is free of every systematic above: the framework says the polar
+      plane rotates SLOWER than the disc plane at the same radius, a dark halo flattened toward the polar
+      plane says faster.  A single well-measured system with both curves settles the direction.
+
+RESULT: 14 checks, 0 FAIL   rc=0

@@ -1,0 +1,124 @@
+==========================================================================================================================
+PART 0 -- does kt2017_galaxies.tsv carry per-galaxy velocities?  (the hunt list says it may not)
+==========================================================================================================================
+  KT2017 table3: 15004 galaxies, 8826 groups
+  2MRS on disk: 43507 galaxies with a heliocentric cz and a total Ks magnitude (limit K = 11.75)
+  4138 KT galaxies have a 2MRS counterpart within 5 arcsec; 1536 KT groups have >1 member
+  [PASS] 0 the KT2017 HRV column is the PER-GALAXY heliocentric velocity, not the group's -- VizieR's column note ('radial velocity of group') is misleading.  Two independent proofs: members of the same group carry different HRVs, and the HRV agrees galaxy by galaxy with 2MRS's own per-galaxy cz.  The hunt list's warning is RETIRED   (99.93% of 4138 positional matches agree with 2MRS to < 5 km/s; 99% of multi-member KT groups contain more than one distinct HRV)
+
+==========================================================================================================================
+PART 1 (ITEM 48) -- the item's own sample: KT2017 groups with Nm = 2
+==========================================================================================================================
+  KT2017 pairs (Nm = 2, distance and Ks present): 350
+  |dv|: median 50, 90th 134, max 508 km/s;  r_p: median 117, max 561 kpc
+  fraction of pairs inside the catalogue's own second-turnaround radius R_2t: 66.6% (median R_2t = 196 kpc)
+  KT2017 pairs, maximum-likelihood dispersion (interloper model, |dv| window 600 km/s): 64 +/- 4 km/s, interloper fraction 0.02
+
+==========================================================================================================================
+PART 2 (ITEM 69) -- an independent isolated-pair catalogue built from 2MRS with stated criteria
+==========================================================================================================================
+  criteria: both members in 2MRS (Ks < 11.75); CMB-frame cz in [3000, 12000] km/s; projected separation 10-1000 kpc; |dv| < 2000 km/s; Ks-luminosity ratio < 6;
+            ISOLATION: no third 2MRS galaxy within 1500 kpc projected of the pair midpoint with |cz - cz_pair| < 1000 km/s.  Velocity window = 10x the expected signal, so nothing is truncated.
+  candidate close pairs before isolation: 44346
+  isolated MAJOR pairs: 2087;  median log10 M_b(pair) = 11.19, median cz = 8110 km/s, median r_p = 527 kpc
+  COMPLETENESS CAVEAT: at the median distance (120 Mpc) 2MRS only sees M_K < -23.65, i.e. M_b > 3.56e+10 Msun.  'Isolated' therefore means 'no companion above 23% of the pair's own baryonic mass' -- fainter members and any intra-group gas are NOT excluded.  This is the leading systematic on everything below.
+  |dv| histogram in 200 km/s bins: 1142 324 138 72 60 70 70 64 63 84
+  [PASS] 69a the chance-projection background is flat in |dv| where the likelihood uses it, so the interloper term of the estimator is the right shape   (scatter of the 1200-2000 km/s counts about their mean = 12% (Poisson alone gives 12%))
+
+     r_p bin [kpc]     N  f_interloper     sigma_los [km/s]  log M_b,pair
+       10 -     60   115          0.03         242.5 +/- 17.0         11.17
+       60 -    120   134          0.07         212.2 +/- 15.9         11.19
+      120 -    220   243          0.14         171.8 +/- 11.4         11.24
+      220 -    400   315          0.28         170.3 +/- 14.3         11.22
+      400 -    650   462          0.40         138.0 +/-  9.7         11.19
+      650 -   1000   818          0.51         117.8 +/-  7.1         11.16
+
+  --- footing canonical (a_0 = 9.360e-11 m/s^2), external field e_N = 0.03 ---
+           r_p bin       observed   deep-MOND  EFE branch   framework   Newton_b   LambdaCDM
+       10 -     60     242.5+/-17.0       106.4       163.1       102.1       65.0       218.5
+       60 -    120     212.2+/-15.9       106.6       102.5        92.4       40.9       233.5
+      120 -    220     171.8+/-11.4       108.2        76.4        76.2       30.5       241.6
+      220 -    400     170.3+/-14.3       108.2        56.4        56.4       22.5       225.5
+      400 -    650     138.0+/- 9.7       107.1        42.5        42.5       16.9       197.9
+      650 -   1000     117.8+/- 7.1       105.0        32.4        32.4       12.9       162.9
+  --- footing alt (a_0 = 1.130e-10 m/s^2), external field e_N = 0.03 ---
+           r_p bin       observed   deep-MOND  EFE branch   framework   Newton_b   LambdaCDM
+       10 -     60     242.5+/-17.0       111.5       163.1       106.4       65.0       218.5
+       60 -    120     212.2+/-15.9       111.7       102.5        94.8       40.9       233.5
+      120 -    220     171.8+/-11.4       113.4        76.4        76.3       30.5       241.6
+      220 -    400     170.3+/-14.3       113.4        56.4        56.4       22.5       225.5
+      400 -    650     138.0+/- 9.7       112.3        42.5        42.5       16.9       197.9
+      650 -   1000     117.8+/- 7.1       110.0        32.4        32.4       12.9       162.9
+  
+  measured d log sigma_los / d log r_p = -0.194 +/- 0.049 over the 4 bins with fitted interloper fraction < 0.30 (r_p < 400 kpc), and -0.232 +/- 0.026 over all 6 bins to 1 Mpc
+  predicted (inner range): isolated deep-MOND +0.009 | framework with the EFE -0.284 | Newton on the baryons alone -0.512 | LambdaCDM (Moster + NFW) +0.021
+  the shift between the two ranges, 0.039, is larger than the statistical error and is adopted as the systematic; the run below uses +/- 0.049
+  [PASS] 69b the separation run does NOT match any of the four laws.  It kills Newtonian gravity on the baryons alone (r^-1/2) outright, but the measured decline is intermediate between LambdaCDM's nearly-flat NFW run and the framework's EFE-bent branch, and it is not flat, so the isolated deep-MOND law's separation independence -- the part of item 48 that reads as its headline -- is excluded too.  With the fitted interloper fraction climbing from 0.03 to 0.50 across the range, this test is systematics-limited, not statistics-limited   (inner range -0.194 +/- 0.049 (sys): 6.5 sigma from Newton-baryons, 4.1 sigma from flat (isolated deep MOND), 4.4 sigma from LambdaCDM, 1.8 sigma from the framework's EFE branch)
+
+  amplitude fit on the 976 pairs with 20 < r_p < 500 kpc: A = (observed dispersion)/(predicted), fitted together with the interloper fraction
+    canonical  deepmond  : A =  1.74 +/- 0.06  (+0.242 dex), interloper fraction 0.19
+    canonical  framework : A =  2.56 +/- 0.10  (+0.408 dex), interloper fraction 0.22
+    canonical  newton    : A =  5.91 +/- 0.22  (+0.772 dex), interloper fraction 0.23
+    canonical  lcdm      : A =  0.87 +/- 0.03  (-0.061 dex), interloper fraction 0.20
+    alt        deepmond  : A =  1.66 +/- 0.06  (+0.221 dex), interloper fraction 0.19
+    alt        framework : A =  2.53 +/- 0.09  (+0.402 dex), interloper fraction 0.22
+    alt        newton    : A =  5.91 +/- 0.22  (+0.772 dex), interloper fraction 0.23
+  [PASS] 69c 🔴 AGAINST INTEREST -- the amplitude does NOT come out right.  The framework's BEST CASE for these pairs is the isolated deep-MOND two-body law (the external field can only lower it), and the measured dispersion sits well ABOVE it on both footings, while LambdaCDM's abundance-matched halos land near 1.  Closing the gap with baryons alone would need several times the baryonic mass the K-band light gives   (best footing (alt): A = 1.66 +/- 0.06 = +0.221 dex above the isolated deep-MOND prediction, i.e. the framework would need 7.7x the K-band baryonic mass (v ~ M^1/4); LambdaCDM's A = 0.87; the framework's EFE branch is worse still (A = 2.53))
+
+          log M_b,pair bin     N     sigma_los [km/s]  deep-MOND(can)  LambdaCDM
+       10.22 -      11.04   244         137.1 +/- 10.3            88.6      112.9
+       11.04 -      11.21   244         174.8 +/- 12.0           104.0      186.6
+       11.21 -      11.35   244         208.8 +/- 13.0           113.1      251.6
+       11.35 -      11.85   244         257.5 +/- 20.9           124.9      358.5
+  measured d log sigma_los / d log M_b = +0.492 +/- 0.082
+  predicted: framework isolated deep-MOND +0.271 (the analytic 1/4 with the mass-ratio term) | framework EFE branch +0.500 | LambdaCDM (Moster + NFW) +0.911
+  distance control -- the same slope inside narrow velocity shells, where luminosity no longer tracks distance:
+    cz 3000-6500 km/s (N =  262): d log sigma/d log M_b = +0.256 +/- 0.164
+    cz 6500-9000 km/s (N =  329): d log sigma/d log M_b = +0.729 +/- 0.201
+    cz 9000-12000 km/s (N =  385): d log sigma/d log M_b = +0.009 +/- 0.220
+    inverse-variance mean over the shells: +0.336
+  [PASS] 69d the mass scaling -- the only part of this item that could ever have been Kepler-grade -- is measured, and it LEANS AGAINST the framework without killing it.  sigma_los goes as M_b^(1/2) rather than the deep-MOND M^(1/4), i.e. sigma^2 proportional to M_b, the signature of a Newtonian-like law with a boosted G.  But it is only 3.0 sigma, and the distance control -- the same fit inside narrow velocity shells, where luminosity stops tracking distance -- pulls it back to +0.34 and is consistent with BOTH hypotheses.  Recorded as a hint against, not a kill   (d log sigma/d log M_b = +0.492 +/- 0.082 over 1.62 dex in M_b: 3.0 sigma from the isolated deep-MOND 1/4, 0.1 sigma from 1/2, 5.1 sigma from LambdaCDM's abundance-matched 0.91; velocity-shell mean +0.336)
+
+  does the dispersion depend on how hard the isolation is pushed?  (if the excess over the framework is residual group contamination, tightening the isolation must bring it down)
+    R_iso =    800 kpc: N = 2107, sigma_los =   190 +/-   5 km/s, A(deep-MOND) = 1.78 +/- 0.04 (+0.250 dex)
+    R_iso =   1500 kpc: N =  976, sigma_los =   187 +/-   7 km/s, A(deep-MOND) = 1.74 +/- 0.06 (+0.242 dex)
+    R_iso =   2500 kpc: N =  366, sigma_los =   200 +/-  10 km/s, A(deep-MOND) = 1.81 +/- 0.09 (+0.258 dex)
+  and inside velocity shells -- the nearest shell is where 2MRS's isolation reaches furthest down the luminosity
+  function, so if the amplitude excess were residual group contamination it should be smallest there:
+    cz 3000-6500 km/s (N =  262, isolation complete to M_b > 1.4e+10 Msun): A(deep-MOND) = 1.51 +/- 0.12 (+0.180 dex)
+    cz 6500-9000 km/s (N =  329, isolation complete to M_b > 3.3e+10 Msun): A(deep-MOND) = 1.66 +/- 0.10 (+0.221 dex)
+    cz 9000-12000 km/s (N =  385, isolation complete to M_b > 5.8e+10 Msun): A(deep-MOND) = 1.99 +/- 0.11 (+0.300 dex)
+    THE ONE THING THAT ARGUES FOR THE FRAMEWORK HERE: the excess shrinks as the isolation gets deeper (1.99 in the far shell -> 1.51 in the near one, +0.12 dex).  That is the signature of residual group contamination, and it says the 69c offset is an upper limit on the real one.
+    It does not remove it: even the deepest-isolation shell needs A = 1.51 +/- 0.12, 5.2x the K-band baryonic mass, 5.4 sigma from 1.  A pair sample isolated against a catalogue two magnitudes deeper than 2MRS would settle it.
+
+--------------------------------------------------------------------------------------------------------------------------
+MUTATION CONTROLS
+--------------------------------------------------------------------------------------------------------------------------
+  real pairs 20-500 kpc: sigma = 187 km/s, interloper fraction 0.20;  partners scrambled: sigma = 168 km/s, interloper fraction 1.00
+  [PASS] M1 mutation control: scrambling which galaxy each pair member is paired with drives the fitted PAIR FRACTION to the floor, so the measured dispersion is a property of the pairs and not of the velocity distribution or of the estimator   (pair fraction 1-f: real 0.80 -> scrambled 0.00)
+  a_0 x 100: the fitted amplitude moves A = 1.74 -> 0.55 (the prediction itself moves 108 -> 340 km/s)
+  [PASS] M2 mutation control: the amplitude test responds to a_0 as it must -- a_0 x 100 moves the required amplitude by the predicted 0.5 dex, so the estimator has real bite and the offset found in 69c is not an insensitivity   (log10(A_true/A_x100) = +0.500, predicted +0.500 (v ~ a_0^1/4))
+  [PASS] M3 estimator control: the dispersion really does climb with the pair's K-band mass, so the mass axis in 69d is not noise   (bright half 227 km/s vs faint half 154 km/s)
+
+--------------------------------------------------------------------------------------------------------------------------
+  the same amplitude fit on KT2017's Nm=2 pairs (20-500 kpc, N = 303): A = 1.06 (+0.023 dex) against 1.74 (+0.242 dex) for the independent 2MRS sample
+  [PASS] 48b ⚠ A FALSE WIN AVOIDED.  Run naively on the catalogue the hunt list names, item 48 would have reported the deep-MOND two-body law fitting with amplitude A ~ 1 and no free parameter -- a clean hit.  It is manufactured: Kourkchi & Tully link galaxies inside a velocity window scaled by the K-band luminosity, so the catalogue contains only pairs whose dv was small enough to be linked, and the same estimator on an independently selected sample of the same galaxies at the same separations and masses gives a much larger dispersion.  Item 48 as posed cannot be run on that catalogue   (KT2017 A = 1.06 (would read as a hit); independent 2MRS A = 1.74; ratio 0.60)
+
+--------------------------------------------------------------------------------------------------------------------------
+  SYSTEMATICS THAT ARE NOT IN THE ERROR BARS, stated plainly:
+   1. ISOLATION DEPTH is the big one (see the completeness caveat above).  Widening R_iso from 800 to 2500 kpc
+      does nothing, but going DEEPER does: the amplitude excess falls from 1.99 in the far shell to 1.51 in the
+      near one, where 2MRS reaches four times further down the luminosity function.  2MRS cannot exclude fainter
+      companions or an intra-group medium, and those are baryons the framework is allowed to use, so 69c's
+      offset is an UPPER LIMIT on the framework's real deficit here.  It does not reach zero within this data.
+   2. distances are cz_CMB/H0; a 300 km/s peculiar velocity is 10% in D at cz = 3000, so r_p and L_K carry a
+      distance systematic which is worst at small separation, where the flatness test has its lever.
+   3. Upsilon_K = 0.6 is assumed.  The amplitude moves as Upsilon_K^(1/4) in the framework, so the 69c offset
+      would need Upsilon_K ~ 3-4 to close -- far outside any stellar population.
+   4. gas is not counted in M_b.  20% of M* raises the framework prediction by 0.02 dex in velocity.
+   5. circular relative orbits are assumed.  Eccentric orbits with the same energy spend more time near
+      apocentre at LOWER speed, so this assumption is generous to the framework, not stingy.
+   6. the external field is a single nominal e_N = 0.03 for every pair; a per-pair value from 2M++ would only
+      move the framework's prediction DOWN, away from the data.
+
+RESULT: 9 checks, 0 FAIL   rc=0

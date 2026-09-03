@@ -1,0 +1,70 @@
+# Bird, Xue, Liu, Zhao, Shen, Flynn, Yang & Zhang 2022, MNRAS 516, 731 (arXiv:2207.08839)
+# "Milky Way mass with K giants and BHB stars using LAMOST, SDSS/SEGUE, and Gaia:
+#  3D spherical Jeans equation and tracer mass estimator"
+# Numbers transcribed from the arXiv PDF text layer (Table 1, Table 2, Sections 2.1, 4.2, 4.4, 4.5).
+# VERIFIED 2026-09-03 line by line against the paper's own LaTeX source (curl https://arxiv.org/e-print/
+# 2207.08839).  Every number below matches the source exactly.  Two clarifications from that check:
+#   (i) the 'systematic' on M(<r) is the authors' adopted 15 per cent for non-spherical / non-virial
+#       effects, which is where 0.6e11 on 4.3e11 comes from -- it is not an independent additive term;
+#   (ii) the TME BHB value is 3.6 +- 1.6 and the NFW TME fits (not used here) are M200 = 0.46 (KG) and
+#       0.67 (BHB) e12 Msun.  The weighted average of all four is M200 = 0.53 +- 0.05 e12 Msun.
+# NOT AVAILABLE, and this is the binding limitation on hunt item 38: the sigma_r(r) profile that reaches
+# 100 kpc lives in Bird et al. 2019 (AJ 157, 104; arXiv:1805.04503) as FIGURES ONLY -- that paper's
+# LaTeX source was downloaded and contains no table of sigma_r(r).  The only machine-readable form of
+# the dispersion profile anywhere in this literature chain is the two-parameter exponential fit below,
+# which its own authors call 'a fitting function only, without direct physical interpretation'.
+# The paper's velocity dispersion profiles come from Bird et al. 2019 (AJ 157, 104) and Bird et al. 2021
+# (ApJ 919, 66); the halo samples are metal-poor, smooth-and-diffuse K giants and BHB stars.
+#
+# --- the radial velocity dispersion profile, sigma_r(r) = sigma_0 exp(-r/h_r)  (their eq. 2)
+# NOTE: the authors state explicitly that the exponential is "a fitting function only, without direct
+# physical interpretation" -- it is used to get d sigma_r^2/dr for the Jeans equation.
+KG_sigma0_kms       187.0
+KG_sigma0_err        3.0
+KG_hr_kpc            68.0
+KG_hr_err             3.0
+BHB_sigma0_kms      143.0
+BHB_sigma0_err        5.0
+BHB_hr_kpc          111.0
+BHB_hr_err           20.0
+#
+# --- broken-power-law TRACER density slopes rho ~ r^alpha (their Section 4.2, Fig. 3)
+KG_alpha_in          -3.1     # they adopt -2.8 instead, to keep v_circ(R0) < 250 km/s -- reported both ways
+KG_alpha_in_adopted  -2.8
+KG_rbreak_kpc        17.0
+KG_alpha_out         -4.6
+BHB_alpha_in         -3.5
+BHB_rbreak_kpc       22.0
+BHB_alpha_out        -4.7
+#
+# --- enclosed TOTAL mass from the 3D spherical Jeans equation and from the Evans+2011 tracer mass
+#     estimator (their Table 1).  r is the MEDIAN galactocentric distance of the stars in the last bin,
+#     so this is the outer reach of the measurement, not a 100 kpc measurement.
+#     random uncertainty quoted; a further +-0.6e11 systematic is added by the authors for non-spherical
+#     and non-virial effects.
+JEANS_KG_r_kpc       73.0
+JEANS_KG_M_e11        4.30
+JEANS_KG_Mrand_e11    0.95
+JEANS_KG_Msys_e11     0.60
+JEANS_BHB_r_kpc      52.0
+JEANS_BHB_M_e11       4.10
+JEANS_BHB_Mrand_e11   1.20
+JEANS_BHB_Msys_e11    0.60
+TME_KG_r_kpc         73.0
+TME_KG_M_e11          4.30
+TME_KG_Mrand_e11      1.10
+TME_BHB_r_kpc        52.0
+TME_BHB_M_e11         3.60
+TME_BHB_Mrand_e11     1.60
+#
+# --- their LambdaCDM alternative: NFW dark halo fitted to the same mass profile (their Table 2)
+NFW_JEANS_KG_M200_e12   0.55
+NFW_JEANS_KG_M200_hi    0.15
+NFW_JEANS_KG_M200_lo    0.11
+NFW_JEANS_KG_r200_kpc 173.0
+NFW_JEANS_KG_c         18.2
+NFW_JEANS_BHB_M200_e12  1.00
+NFW_JEANS_BHB_M200_hi   0.67
+NFW_JEANS_BHB_M200_lo   0.33
+NFW_JEANS_BHB_r200_kpc 211.0
+NFW_JEANS_BHB_c         9.4

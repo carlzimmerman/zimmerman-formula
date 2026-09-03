@@ -1,0 +1,65 @@
+======================================================================================================================
+ITEM 99 -- the Local Sheet's cold flow, and how much braking mass it allows
+======================================================================================================================
+
+----------------------------------------------------------------------------------------------------------------------
+PART A -- the local Hubble diagram from the Updated Nearby Galaxy Catalog
+----------------------------------------------------------------------------------------------------------------------
+  UNGC loaded: 869 galaxies; distance methods TRGB 272, Cep 20, TF 204, mem 170, SBF 25
+  selection declared up front, and it is Karachentsev's own: TRGB or Cepheid distance, tidal index Theta_1 < 0 (not dominated by a nearer group), 0.7 < D_LG < 3 Mpc  ->  23 galaxies
+  straight-line fit: V_LG = 110.2 D -96.7 km/s, scatter 34.1 km/s, and the line crosses zero at R0 = 0.88 Mpc
+  the apparent local expansion rate, 110 km/s/Mpc, is far above the cosmic 67 -- that is not a Hubble tension, it is the Local Group braking the nearby flow, and it is the signal
+  bootstrap uncertainty on the measured zero-velocity radius: R0 = 0.88 +- 0.15 Mpc (4000 of 4000 resamples usable)
+  [PASS] 99a the flow IS cold and the deceleration IS there: a few tens of km/s of scatter about a line whose zero crossing sits near 0.9 Mpc, which is where the Local Group's zero-velocity surface has been measured for two decades   (N = 23, scatter 34.1 km/s, R0(linear) = 0.88 Mpc, apparent H0_local = 110 km/s/Mpc)
+
+----------------------------------------------------------------------------------------------------------------------
+PART B -- integrating the flow from z = 50 to today, three ways
+----------------------------------------------------------------------------------------------------------------------
+  flat LambdaCDM background from the same Planck parameters the rest of the repository uses: Omega_m = 0.3134, Omega_L = 0.6866, H0 = 67.4  ->  age 13.82 Gyr
+  [PASS] 99b the integrator is CORRECT: with the group's mass set to zero it reproduces the unperturbed background exactly -- the test particle ends at the radius it started from in comoving terms and moves at exactly H0 times that radius.  A sign error in the background term or in Lambda cannot pass this   (target r = 2.000 Mpc, got 2.0000; v = 134.80 km/s against H0 r = 134.80)
+                                   model  M_eff(1 Mpc)  R0 (Mpc)  V(2 Mpc)  V(3 Mpc)  rms resid
+             framework + EFE (canonical)     1.738e+12     1.088      93.3     178.4       36.0
+                   framework + EFE (alt)     1.899e+12     1.121      91.6     176.3       39.5
+      framework, EFE ignored (canonical)     1.226e+13     2.722     -90.0     -61.7       46.7
+        framework + EFE, RC-required M_b     2.686e+12     1.258      72.2     167.9       39.0
+            LambdaCDM halos, M = 2.8e+12     2.801e+12     1.277      75.6     167.4       36.5
+    LambdaCDM, timing-argument M = 1.9e12     1.901e+12     1.122      89.9     176.0       37.0
+                 Newtonian, baryons only     2.201e+11     0.547     126.8     198.2       36.9
+  the measured R0 from the linear fit is 0.88 Mpc +- 0.15, and the measured scatter about that line is 34.1 km/s; the last column is the rms of the 18 galaxies beyond 1.4 Mpc -- a window outside EVERY model's zero-velocity radius, so all six curves are compared on the same points -- about each model curve, with NO free parameter of any kind
+
+----------------------------------------------------------------------------------------------------------------------
+PART C -- which model the flow actually allows
+----------------------------------------------------------------------------------------------------------------------
+  framework WITHOUT the external field: effective braking mass at 1 Mpc = 1.23e+13 Msun, R0 = 2.72 Mpc -- 3.1 times the observed zero-velocity radius.  This is the MOND Local Group timing problem, and it is real
+  framework WITH it: 1.74e+12 Msun, R0 = 1.09 Mpc -- the external field cuts the braking mass by a factor 7 and brings R0 to within 24 per cent of the measurement
+  LambdaCDM with the independently measured halos: 2.80e+12 Msun, R0 = 1.28 Mpc
+  Newtonian gravity with the baryons alone: 2.20e+11 Msun, R0 = 0.55 Mpc -- far too little braking, which is why the Local Group needs either dark matter or a boost
+  [PASS] 99c (THE RESULT) the external field is what saves the framework here, and it was not free: with e_N taken unchanged from an entirely separate calculation on an entirely separate dataset, the Local Group's effective braking mass falls by an order of magnitude and the predicted zero-velocity radius lands near the measured one, where the same calculation with the external field ignored over-predicts it by a large factor   (observed R0 = 0.88 Mpc; framework + EFE 1.09; framework without EFE 2.72; LambdaCDM 1.28; Newtonian baryons 0.55)
+  AND THE APPARENT PREFERENCE EVAPORATES ON A NUISANCE PARAMETER.  The framework's curve does fit better than LambdaCDM's at M = 2.8e+12 (36.0 against 36.5 km/s) -- but the Local Group's halo mass is uncertain by a factor of about two, and at the timing-argument value 1.9e12 LambdaCDM gives R0 = 1.12 Mpc and rms 37.0 km/s.  That must not be quoted as a preference for the framework.
+  [PASS] 99d BUT THE FLOW DOES NOT DISCRIMINATE, and saying so is the honest half: the framework's and LambdaCDM's curves fit the 1-3 Mpc galaxies about equally well once LambdaCDM's halo mass is allowed its own factor-of-two uncertainty, because both are matched by nature to the same zero-velocity radius and the data's scatter is far larger than the difference between them   (rms about the framework's curve 36.0 km/s, about LambdaCDM's 36.5 at M = 2.8e+12 and 37.0 at the timing-argument 1.9e12, against an observed scatter of 34.1; the error on an rms from 18 points is about 5.7 km/s)
+
+----------------------------------------------------------------------------------------------------------------------
+mutation controls and robustness
+----------------------------------------------------------------------------------------------------------------------
+  MUTATION 1 (nu = 1, i.e. Newtonian gravity with the same baryons): R0 falls from 1.09 to 0.55 Mpc, well outside the measurement's 0.15 Mpc error -- the kernel is load-bearing for the zero-velocity radius.  The rms in the outer window barely moves (36.0 to 36.9 km/s), which is the same lesson as check 99d: beyond 1.4 Mpc every model looks alike, and ALL of the information is in R0
+  MUTATION 2 (permute which velocity belongs to which distance): rms about the framework's curve rises from 36.0 to 92.9 km/s -- the model curve is tracking the real distance-velocity relation and not just its mean
+  ROBUSTNESS (widen to SBF and SN distances, Theta_1 < 0.5, out to 4 Mpc): N = 53, R0 = 0.76 Mpc against 0.88 -- the zero-velocity radius is not a property of the cut
+  [PASS] 99e MUTATION CONTROLS behave: switching the kernel off collapses the predicted zero-velocity radius by far more than the measurement's own error; scrambling the distance-velocity pairing triples the residual scatter, so the model curve really is tracking the flow and not just its mean; and the measured R0 survives a substantial change of sample   (Newtonian R0 0.55 vs the framework's 1.09 Mpc against a measurement error of 0.15; permuted rms 92.9 vs 36.0 km/s; widened-sample R0 0.76 vs 0.88 Mpc)
+
+----------------------------------------------------------------------------------------------------------------------
+VERDICT.  Item 99 asked for the Local Sheet's cold flow 'from baryons + Lambda with no dark mass'.  The
+scatter itself turns out to be the wrong statistic -- it is 34 km/s and every model reproduces it,
+because it is dominated by the real inhomogeneity of the Local Volume.  The statistic that bites is the
+ZERO-VELOCITY RADIUS, and there the run produces something worth keeping AND something against interest.
+Against interest: the framework's kernel applied naively to the Local Group's 2.2e+11 Msun of baryons
+gives an effective braking mass of 1.2e+13 Msun at 1 Mpc and a zero-velocity radius of 2.72 Mpc,
+3.1 times the measured 0.88 -- the MOND Local Group timing problem, reproduced here and not
+explained away.  Worth keeping: the external field, taken unchanged from the 2M++ reconstruction in a
+different script, saturates the boost beyond ~160 kpc and cuts that to 1.7e+12 Msun and R0 = 1.09 Mpc,
+within 24 per cent of the measurement with no free parameter.  What it is NOT is a discriminant:
+LambdaCDM gives R0 = 1.28 Mpc at M = 2.8e+12 and 1.12 at the timing-argument 1.9e12, and fits the same
+galaxies as well within its own halo-mass uncertainty.  Recorded as
+a CONSISTENCY, with the EFE identified as the load-bearing element and the naive-MOND failure recorded.
+----------------------------------------------------------------------------------------------------------------------
+
+RESULT: 5 checks, 0 FAIL   rc=0

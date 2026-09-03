@@ -1,0 +1,221 @@
+======================================================================================================================
+MASS-MODEL VALIDATION -- nothing is tested until the model reproduces its own published numbers
+======================================================================================================================
+  McMillan 2017 baryons: thin 3.519e+10, thick 1.049e+10, bulge 9.230e+09, HI 1.068e+10, H2 1.231e+09 Msun
+  [PASS] V1 the McMillan mass model reproduces his own stellar mass to better than 10 per cent   (M_* = 5.490e+10 vs his 5.43e10 (1.1%); HI 1.068e+10 vs his 1.1e10; total baryons M_b = 6.681e+10 Msun)
+  [PASS] V2 the local stellar column matches Bovy & Rix's own measured 38 +- 4 Msun/pc^2 -- the model is anchored in the same quantity, at the same height, as the data item 34 uses   (model 41.2 vs 38 +- 4 (stars); total baryonic column 53.4 Msun/pc^2)
+  [PASS] V3 the numerical Hankel transform reproduces the ANALYTIC exponential-disc transform   (max |S_num/S_analytic - 1| = 7.89e-04 over k < 20/kpc)
+  [PASS] V4 the k-grid is fine enough that the inverse transform returns Sigma(R) itself   (max |inverse/direct - 1| = 2.10e-04 at R = 4, 6, 8, 12 kpc)
+
+======================================================================================================================
+ITEM 34 -- the RADIAL run of the vertical force, K_z at |z| = 1.1 kpc
+======================================================================================================================
+  Bovy & Rix 2013 Table 3 (arXiv ancillary file): 43 independent K_Z,1.1 measurements, one per mono-abundance population, R = 4.80 to 8.76 kpc.
+  radii are placed at R = R0(model) - (R0 - R)_table = 8.21 - (R0-R), as Bovy & Rix instruct; using their tabulated R (R0 = 8.00) instead shifts every radius by +0.21 kpc.
+  THE ITEM ASKED FOR Gaia DR3 K_z(R) OVER R = 6-12 kpc AND NO SUCH TABULATED RUN EXISTS that I could find;
+  this is the SEGUE mono-abundance measurement, which is still the standard.  Range covered is 4 kpc of
+  radius, and it is INSIDE R0, not outside -- a limitation of the data, not of the prediction.
+  [PASS] V5 the interpolated force grid reproduces the exact Hankel evaluation (this is the speed fix that let the script run at all -- it must not cost accuracy)   (max |interp/exact - 1| = 3.83e-04)
+  the measured exponential:  K_z,1.1(R0)/2piG = 67.5 Msun/pc^2, scale length 2.69 kpc.
+    formal (quoted-error) uncertainties 2.0 and 0.14; BOOTSTRAP over the 43 MAPs gives 1.3 and 0.09, and the exponential's own chi2 = 32/41 d.o.f.
+    chi2/dof = 0.79 for a pure exponential means the quoted errors are ADEQUATE.
+  [PASS] V6 the refit REPRODUCES Bovy & Rix's own published exponential, which validates the two statistics that item 34's whole verdict rests on   (refit 67.5 Msun/pc^2 and 2.69 kpc against their published K_z,1.1(R0)/2piG = 67 exp(-(R-R0)/2.7 kpc), formal errors 2.5% and 4%)
+    significances below use the AUTHORS' formal errors (1.7 Msun/pc^2, 0.11 kpc), which are larger than the bootstrap and include what they could quantify.  McMillan 2017's independently fitted K_z,1.1 corresponds to 73.9 +- 6, and that 10 per cent disagreement BETWEEN measurements is the honest floor on any claim made here.
+  
+   R [kpc]  Sig_b(<1.1)  K_z^N/2piG  |g_N|/a0     nu   K_z^fw  K_z obs     +-
+      4.80        173.2       167.5      2.59  1.250    209.4    194.7   38.6
+      5.25        148.0       145.7      2.35  1.276    185.9    180.5   29.2
+      6.29        102.9       106.2      1.89  1.338    142.1    147.4   17.7
+      6.78         86.9        91.8      1.72  1.369    125.6    140.1   12.4
+      6.96         81.6        87.0      1.66  1.380    120.1    114.3   11.7
+      7.41         70.0        76.2      1.53  1.410    107.4     77.3   11.8
+      7.63         64.9        71.4      1.46  1.425    101.8     61.7   11.0
+      8.76         44.6        51.6      1.19  1.505     77.7     53.4    4.7
+  
+  canonical  predicted K_z,1.1(R0)/2piG =  88.0 (+12.2 sigma), scale length 3.98 kpc (+11.9 sigma), chi2 =   151 / 43 points, 0 free parameters
+  alt        predicted K_z,1.1(R0)/2piG =  92.7 (+15.0 sigma), scale length 4.04 kpc (+12.4 sigma), chi2 =   221 / 43 points, 0 free parameters
+  baryons only (nu = 1)  K_z,1.1(R0)/2piG =  60.1 ( -4.5 sigma), scale length 3.36 kpc ( +6.1 sigma), chi2 =   135 / 43 points
+  THIS IS A PUBLISHED TEST, NOT A NEW ONE, and that has to be said before any verdict: Bovy & Rix devote a
+  paragraph of their own Section 7 to exactly this.  They estimate that MOND enhances the vertical force at
+  R0 by >~60 per cent, so that for a baryonic column of 51 +- 4 Msun/pc^2 they expect K_z,1.1/2piG >~ 82 +- 6
+  against their measured 68 +- 4 -- a '>~2 sigma tension' in their words -- and that the dynamically inferred
+  disc scale length should come out ~25 per cent long, ~2.9 kpc, which they call '5 sigma removed' from their
+  measured 2.15 +- 0.14 kpc.  What is new here is only that it is redone with THIS kernel and THIS a_0, on
+  the full radial run rather than at R0, with the model's own baryonic column (53.4 against their 51 +- 4).
+  [FAIL] 34a AGAINST INTEREST -- THE NORMALISATION DOES NOT LAND, AND IT CONFIRMS THE PUBLISHED TENSION RATHER THAN RELIEVING IT.  With a_0 fixed, no halo and nothing fitted, the kernel boost on McMillan's baryonic column gives 88.0 (canonical) and 92.7 (alt) Msun/pc^2 against a measured 67.5 -- 30 and 37 per cent over.  The formal significance is 12 sigma on the authors' own 2.5 per cent error, but THAT NUMBER MUST NOT BE QUOTED: McMillan's independent fit of the same quantity gives 73.9 +- 6, a 10 per cent disagreement between measurements, and against that the honest significance is 2.3 sigma.  Either way it sits just above Bovy & Rix's own MOND estimate of >~82 +- 6, so the exponential kernel does not escape the tension they identified.   (predicted 88.0 (canonical) / 92.7 (alt) vs measured 67.5 +- 1.7 Msun/pc^2 (authors' formal error); against McMillan's independent 73.9 +- 6 it is +2.3 sigma; baryons alone give 60.1, already within 11 per cent)
+  [FAIL] 34b AGAINST INTEREST -- THE SHAPE, WHICH IS WHAT THE ITEM ACTUALLY ASKS, DOES NOT LAND EITHER.  The kernel lengthens the predicted scale length (nu rises outward, exactly as the framework says it must), but the baryons were ALREADY too long: predicted 3.98 kpc against a measured 2.69 +- 0.11.  The kernel makes the one discrepancy that existed WORSE, by +0.63 kpc.  The item's own criterion was 10 per cent across the measured range.   (predicted 3.98 kpc (canonical) / 4.04 (alt) vs measured 2.69 +- 0.11; baryons alone 3.36 kpc)
+  point by point: median |predicted/measured - 1| = 11.2%, 90th percentile 43.0%, worst 65.2% at R = 7.59 kpc
+  [FAIL] 34c the point-by-point agreement misses the item's 10 per cent criterion   (median 11.2%, chi2/N = 3.51)
+  predicted K_z scale length as the STELLAR discs are stretched (masses held fixed):
+        R_d,thin [kpc]    0.50    1.00    1.50    2.00    2.50    3.00
+           h framework    3.38    2.83    2.94    3.40    3.98    4.62
+        h baryons only    2.78    2.40    2.52    2.90    3.36    3.84
+    the mapping is NOT monotone -- it turns over at R_d = 1.12 kpc, because a very short stellar disc becomes a point mass whose K_z falls faster while the 7 kpc gas disc holds the outer
+    column up.  So 'what R_d does the framework need' has no unique answer and the inverse problem is the
+    wrong question.  (An earlier version of this block asked it anyway and, because np.interp CLAMPS at the
+    ends of a non-monotone grid, it silently returned R_d = 2.88 [2.88, 2.88] kpc -- three identical clamped
+    values that I nearly wrote up as a measurement.  The guard that catches it is in invert_h above.)
+  the well-posed question instead: FEED THE FRAMEWORK THE DISC BOVY & RIX MEASURE, R_d = 2.15 +- 0.14 kpc.
+    framework then predicts a K_z scale length of 3.56 [3.41, 3.73] kpc; baryons alone predict 3.03 kpc; the measurement is 2.69 +- 0.11 kpc
+  [FAIL] 34d THE WELL-POSED VERSION, and it is the cleanest form of the liability because it uses only quantities these same 43 stars measure: given Bovy & Rix's own disc, R_d = 2.15 +- 0.14 kpc, the framework predicts a K_z scale length of 3.56 kpc against their measured 2.69 +- 0.11 -- 4.5 sigma long.  Newtonian baryons with the same disc give 3.03 kpc, 1.7 sigma.  The kernel's outward-rising boost inflates the inferred disc, which is exactly the effect Bovy & Rix predicted for MOND at 25 per cent; here it is 18 per cent.   (framework 3.56 [3.41, 3.73] kpc, baryons alone 3.03, measured 2.69 +- 0.11; combined error 0.19; at McMillan's own R_d = 2.50 the framework gives 3.98 kpc)
+  LambdaCDM alternative (the SAME baryons + a round NFW halo, r_s = 19 kpc fixed, ONE fitted normalisation): rho_dm(R0) = 0.0096 Msun/pc^3, chi2 = 54
+  [FAIL] 34e THE COMPARISON, both ways: on these 43 points the framework's zero-parameter prediction is WORSE than the baryons alone and far worse than baryons plus a one-parameter round halo, which lands on the standard local dark-matter density.  The vertical force at 1.1 kpc is the one place the Milky Way is close to maximal-disc, and that is precisely where a boost is not wanted   (chi2: framework 151 (0 params), baryons alone 135 (0 params), baryons + NFW 54 (1 param, rho_dm(R0) = 0.0096 against the usual 0.008-0.013))
+  [FAIL] M34 mutation control, and it FIRES THE WRONG WAY, which is the point: moving a_0 up by a decade (which switches the kernel off) IMPROVES the fit towards the baryons-only value, and switching the kernel off entirely improves it further.  The estimator is working; it is the framework that is being rejected here   (chi2: framework 151, a_0 x10 7350, nu = 1 (baryons alone) 135 -- the mutations are BETTER, not worse)
+  [PASS] M34b mutation control: shuffling the measured K_z values between radii destroys the measured scale length, so the scale-length statistic that 34b and 34d turn on carries real radial information   (shuffled scale length -6.79 kpc vs real 2.69 +- 0.11)
+  R0 systematic: using the tabulated radii (R0 = 8.00) instead of shifting to the model's 8.21 moves the predicted scale length 3.98 -> 3.97 and the measured 2.69 -> 2.69 kpc; the GAP, which is the result, moves +1.29 -> +1.28 kpc.  The verdict is not an R0 artefact.
+  CAVEAT that sets the size of the claim, stated because it is the framework's best defence: K_z^fw = nu(|g_N|) K_z^N is the ALGEBRAIC (QUMOND) estimate with the curl term dropped.  The repository's own
+  full AQUAL solve (real_research/reviews/mi_route_a_vertical_radial_ratio_2026.py) finds nu_rad = 1.222 and
+  nu_vert = 1.251 at R0 for the alpha=2 kernel, against nu = 1.444 used here -- so the true boost may be ~15 per cent smaller than the algebraic one, which would cut but not
+  close the 34a gap (92 -> ~80 against 67.5).  It does NOT touch 34b/34d, because the vertical-to-radial ratio
+  that solve reports is 1.024, i.e. essentially constant in R, so it cannot change a SCALE LENGTH.
+
+======================================================================================================================
+ITEM 35 -- the Milky Way's claimed Keplerian decline beyond 20 kpc
+======================================================================================================================
+  two independent measurements of the same curve are run, because the item names both and because a
+  verdict that depends on one pipeline is not a verdict.  Systematic fractions are the authors' own:
+    Ou+2024      37 points 6.3-27.3 kpc; their stated total systematic 1-5% to R = 22 kpc (4% used), 15% beyond
+    Eilers+2019  38 points 5.3-24.8 kpc; their stated total systematic 2-5% throughout (3.5% used)
+  EVERY NUMBER BELOW IS QUOTED TWICE, with STAT-only errors and with stat+sys added in quadrature, because
+  neither is right on its own: a systematic is COHERENT between radii, so folding it in per point as if it
+  were random both flatters the model (chi2 falls) and hides the decline (the slope error inflates).  The
+  first version of this section used stat+sys only and reported a comfortable fit; that was my error and it
+  is corrected here.  The stat-only column is the SHAPE question the item actually asks.
+  the external field the Milky Way actually has: M31's deep-MOND field at 780 kpc is e_N = 0.017 (canonical) / 0.016 (alt) a_0, and the repository's large-scale-structure field for a field galaxy is 0.01-0.03.  The physical prior is e_N <= 0.05, which is exactly
+  the number the hunt list wrote down.  e_N is NOT fitted below except to measure what would be required.
+  
+  Ou+2024   : v_c falls 234.1 -> 173.0 km/s.  Measured outer log-slope over 12-27 kpc = -0.265 +- 0.039 (stat) +- 0.099 (stat+sys)   [flat 0.000, Keplerian -0.500]
+     stat      canonical  best fit A = 1.42 (M_b = 8.75e+10 Msun), e_N = 0.000 [0.000, 0.000], chi2/N = 40.3; with e_N = 0 forced, A = 1.42, outer slope -0.154
+     stat+sys  canonical  best fit A = 1.42 (M_b = 8.75e+10 Msun), e_N = 0.000 [0.000, 0.008], chi2/N = 0.4; with e_N = 0 forced, A = 1.42, outer slope -0.154
+     stat+sys  alt        best fit A = 1.31, e_N = 0.000 [0.000, 0.015], chi2/N = 0.3, e_N=0 slope -0.138
+     NOTE the chi2 swings by a factor 90 between the two error models, from 40 to 0.4 per point.  NEITHER is a usable goodness of fit: the random errors alone
+     (0.3-2 km/s) are far below both the authors' coherent systematics and the real non-axisymmetric
+     structure in the disc, and adding a coherent systematic in quadrature per point then over-corrects.
+     Only the SLOPE is quoted as a result below, and the e_N interval only from the stat+sys fit, where
+     chi2 per point is of order one and a delta-chi2 = 1 interval means something.
+  
+  Eilers+2019: v_c falls 231.2 -> 198.4 km/s.  Measured outer log-slope over 12-25 kpc = -0.254 +- 0.056 (stat) +- 0.067 (stat+sys)   [flat 0.000, Keplerian -0.500]
+     stat      canonical  best fit A = 1.36 (M_b = 8.39e+10 Msun), e_N = 0.000 [0.000, 0.000], chi2/N = 29.1; with e_N = 0 forced, A = 1.36, outer slope -0.157
+     stat+sys  canonical  best fit A = 1.36 (M_b = 8.39e+10 Msun), e_N = 0.000 [0.000, 0.006], chi2/N = 0.6; with e_N = 0 forced, A = 1.36, outer slope -0.157
+     stat+sys  alt        best fit A = 1.25, e_N = 0.000 [0.000, 0.008], chi2/N = 0.4, e_N=0 slope -0.140
+     NOTE the chi2 swings by a factor 46 between the two error models, from 29 to 0.6 per point.  NEITHER is a usable goodness of fit: the random errors alone
+     (0.3-2 km/s) are far below both the authors' coherent systematics and the real non-axisymmetric
+     structure in the disc, and adding a coherent systematic in quadrature per point then over-corrects.
+     Only the SLOPE is quoted as a result below, and the e_N interval only from the stat+sys fit, where
+     chi2 per point is of order one and a delta-chi2 = 1 interval means something.
+  
+                    measured slope   framework (e_N=0)       gap   sigma
+      Ou+2024          -0.265 +-0.039              -0.154    +0.111    +2.8
+     Eilers+2019       -0.254 +-0.056              -0.157    +0.098    +1.7
+  [PASS] 35a THE ITEM'S PREMISE IS WRONG AND THAT IS THE FIRST RESULT: the outer decline is NOT Keplerian.  The measured log-slopes are -0.265 (Ou) and -0.254 (Eilers) against -0.500 for Kepler, and the two independent pipelines agree with each other to 0.2 sigma.  Any verdict phrased as 'can the framework survive a Keplerian decline' is answering a question these data do not pose.   (measured -0.265 +- 0.039 (Ou) and -0.254 +- 0.056 (Eilers), stat-only; Keplerian is -0.500)
+  [FAIL] 35b THE FRAMEWORK DOES MOST BUT NOT ALL OF IT, WITH NO EXTERNAL FIELD AT ALL.  With e_N = 0 and one amplitude, the kernel already produces -0.154 and -0.157 -- 58 and 62 per cent of the observed decline -- because g_bar is still falling at 12-27 kpc and the curve has not reached its asymptote.  What is left over is 2.8 and 1.7 sigma on stat-only errors and 1.1 and 1.5 sigma once the authors' own systematics are folded in.  This is a MILD tension, not a kill, and it is smaller than the item anticipated.   (residual slope tension, stat-only: Ou+2024 +2.8 sigma, Eilers+2019 +1.7 sigma; stat+sys: Ou+2024 +1.1 sigma, Eilers+2019 +1.5 sigma)
+  [PASS] 35c THE EXTERNAL FIELD IS NOT NEEDED AND IS NOT DETECTED -- which retires the item's own framing.  Fitting e_N freely returns 0.000 [0, 0.008] (Ou) and 0.000 [0, 0.006] (Eilers): consistent with zero, and the UPPER limits sit at or below the 0.017 that M31 alone supplies.  So the correct statement is the opposite of the one the item expected: these curves put a CEILING on the Milky Way's external field, they do not demand one.   (fitted e_N (stat+sys, canonical) = 0.000 [0, 0.008] and 0.000 [0, 0.006]; alt footing 0.000/0.000; M31 supplies 0.017)
+  [FAIL] 35d THE PRICE, AND IT IS THE INHERITED LIABILITY IN ITS SHARPEST FORM: the fit is bought with a baryonic amplitude A = 1.36-1.42 on Ou's own census, i.e. M_b = 8.39-8.75e10 Msun against their 6.16e10 and McMillan's 6.68e10.  The framework needs 25-40 per cent more baryons than the published Milky Way has.  In velocity that is only 6-9 per cent, which is why the curve LOOKS fitted, but it is a real mass discrepancy and it is the same one hunt item 36 recorded   (A = 1.42 (Ou) and 1.36 (Eilers) on M_b = 6.16e+10; required M_b = 8.39e+10-8.75e+10 vs McMillan's 6.68e+10)
+  Newtonian baryons alone, with the same one amplitude freedom, give an outer log-slope of -0.520 and need A = 3.3 at 20 kpc -- which is the statement 'dark matter'.
+  Ou+2024's own LambdaCDM answer is a fitted CORED EINASTO halo with M_vir = 1.81e11 Msun (their abstract),
+  i.e. two shape parameters plus a normalisation, and they say themselves it is in tension with globular-
+  cluster, satellite and stream masses.  Bird+2022's NFW fits to halo stars give 0.55-1.00e12.  So the
+  decline is uncomfortable for BOTH sides; it is not a clean LambdaCDM win, and it must not be reported as one.
+  [PASS] M35 mutation control: shuffling v_c between radii destroys the outer-slope statistic the whole item turns on   (shuffled slope +0.091 vs real -0.265 +- 0.039)
+  BOTH WAYS ON THE RESIDUAL 1-3 SIGMA, which is why item 35 is recorded as a MILD TENSION and not as the
+  liability the item anticipated: (i) Ou+2024's own systematic
+  budget reaches 15 per cent beyond 22 kpc, where the last four points carry the steepest part and have only
+  7-22 stars each -- though the authors state explicitly that systematics 'are insufficient to explain the
+  decline ... starting at R ~ 15 kpc'; (ii) the two independent pipelines agree on the slope, which removes
+  the easy escape that one of them is broken; (iii) a 2025 re-analysis (arXiv:2507.23551) argues the
+  recovered potentials are nearly SPHERICAL beyond 20 kpc, contradicting the axisymmetric Jeans equation used
+  to derive them, so the steep part may be an artefact.  The liability is recorded anyway: the framework must
+  not be allowed to wait for the data to be withdrawn.
+
+======================================================================================================================
+ITEM 38 -- halo-star dynamics: enclosed mass and sigma_r(r) beyond 50 kpc
+======================================================================================================================
+  THE ITEM ASKED FOR sigma_r(r) TO 100 kpc AND THAT CANNOT BE RUN.  Bird+2019 (AJ 157, 104) does measure
+  sigma_r out past 100 kpc, but its arXiv source (1805.04503, downloaded and checked this session) contains
+  FIGURES ONLY -- there is no table of sigma_r(r) anywhere in this literature chain.  The outermost
+  machine-readable quantities are Bird+2022's enclosed masses at median radii of 73 and 52 kpc, and a two-parameter
+  exponential fit to sigma_r(r) that its own authors call 'a fitting function only'.  Everything below is
+  therefore a 25-73 kpc test.  ITEM 38 IS MARKED UNDERPOWERED FOR ITS OWN STATED RANGE, not null.
+  
+         measurement  r[kpc]   M_obs     +-   canon    sig     alt    sig  baryons
+    Jeans (K giants)      73    4.30   1.12    5.23  +0.83    5.71  +1.26    0.668
+         Jeans (BHB)      52    4.10   1.34    3.83  -0.20    4.17  +0.05    0.668
+     TME  (K giants)      73    4.30   1.10    5.23  +0.85    5.71  +1.28    0.668
+          TME  (BHB)      52    3.60   1.60    3.83  +0.14    4.17  +0.36    0.668
+  [PASS] 38a A REAL PASS, with nothing fitted anywhere: the kernel applied to the SAME baryon mass that fails to reproduce v_c(R0) reproduces all four of Bird's outer-halo mass measurements, on both footings, where the baryons alone are 3-4 sigma short and a factor 6-8 low.  This is the framework doing at 50-73 kpc exactly what it is for   (canonical residuals [ 0.83 -0.2   0.85  0.14] sigma, alt [1.26 0.05 1.28 0.36]; baryons alone [-3.2 -2.6 -3.3 -1.8] sigma)
+  
+  canonical  e_N = 0.02: the external field takes over at r_EFE =    71 kpc and the enclosed dynamical mass SATURATES at nu(e_N) M_b =  5.07e11 Msun and stops growing
+  canonical  e_N = 0.05: the external field takes over at r_EFE =    45 kpc and the enclosed dynamical mass SATURATES at nu(e_N) M_b =  3.33e11 Msun and stops growing
+  alt        e_N = 0.02: the external field takes over at r_EFE =    64 kpc and the enclosed dynamical mass SATURATES at nu(e_N) M_b =  5.07e11 Msun and stops growing
+  alt        e_N = 0.05: the external field takes over at r_EFE =    41 kpc and the enclosed dynamical mass SATURATES at nu(e_N) M_b =  3.33e11 Msun and stops growing
+  LambdaCDM's answer from the very same measurements (Bird's own NFW fits): M200 = 5.5e11 (KG) to 10.0e11 (BHB) Msun inside r200 = 173-211 kpc -- a mass that keeps CLIMBING by a further factor 1.3-2.3 beyond the data.
+  [PASS] 38b the distinctive, falsifiable half of item 38 is a PREDICTION, not a measurement, and this sample cannot test it: the framework says the enclosed mass stops at about 5.1e11 Msun beyond r_EFE = 71 kpc while the LambdaCDM fit to the same points extrapolates to 5.5-10.0e11.  They differ by a factor 1.3-2.3, and the outermost measurement here is at 73 kpc, INSIDE r_EFE.  A mass at 150-250 kpc would separate them   (framework saturates at 5.07e11 beyond 71 kpc (e_N = 0.02); the data stop at 73 kpc, so the saturation is UNTESTED by this sample)
+  
+    r [kpc]  sig_r KG  sig_r BHB  <- Bird+2022 exponential fits, the only tabulated form
+         25     129.5      114.2
+         40     103.8       99.7
+         55      83.3       87.1
+         73      63.9       74.1
+  the two independent tracer populations agree to 14 per cent over this range, so the DECLINE itself is not a one-sample artefact; both fall by a factor 2.0 (KG) and 1.5 (BHB) from 25 to 73 kpc.
+  
+                                beta=0.4    beta=0.7    beta=0.9
+    predicted sigma_r(73)/sigma_r(25), e_N = 0.00:        0.95        0.95        0.95
+    predicted sigma_r(73)/sigma_r(25), e_N = 0.02:        0.78        0.78        0.77
+    predicted sigma_r(73)/sigma_r(25), e_N = 0.05:        0.71        0.71        0.70
+    predicted sigma_r(73)/sigma_r(25), e_N = 0.20:        0.63        0.63        0.63
+    predicted sigma_r(73)/sigma_r(25), e_N = 0.50:        0.60        0.60        0.60
+    LambdaCDM (Bird NFW, KG fit)                  0.79        0.79        0.78
+    LambdaCDM (Bird NFW, BHB fit)                 0.90        0.89        0.89
+    pure Keplerian point mass (the floor)         0.59        0.59        0.59
+    MEASURED (KG / BHB)                           0.49        0.65
+  
+    the e_N the observed KG decline would require: beta=0.4: UNREACHABLE at any e_N, beta=0.7: UNREACHABLE at any e_N, beta=0.9: UNREACHABLE at any e_N
+  [FAIL] 38c NOT A TEST OF THE FRAMEWORK AT ALL -- MY OWN ESTIMATOR FAILS FIRST, AND SO DOES LambdaCDM.  The measured KG ratio sigma_r(73)/sigma_r(25) = 0.49 is BELOW the pure-Keplerian floor 0.59, which no bounded mass distribution can go under with a single power-law tracer and constant anisotropy.  Bird's own NFW halo, fitted to these very stars, gives 0.79 -- it misses the observed decline by as much as the framework does.  The excess steepness therefore lives in the tracer assumptions (a broken alpha, a rising beta(r), or the exponential fitting function), not in the gravity, and item 38c cannot discriminate.   (measured 0.49 (KG) and 0.65 (BHB); Keplerian floor 0.59; framework e_N = 0 gives 0.95; LambdaCDM NFW gives 0.79 (KG fit) and 0.89 (BHB fit))
+  [FAIL] 38d the ONE thing the dispersion shape does say, and it is against the framework though weakly: the BHB sample's ratio 0.65 IS reachable, and reaching it needs e_N = 0.12 -- above the 0.05 the Milky Way has.  With no external field the framework predicts 0.95, i.e. an almost flat profile, because a logarithmic potential makes sigma_r exactly constant.  The framework's outer halo is too ISOTHERMAL, on both samples, by less than LambdaCDM's own miss.   (BHB ratio 0.65; framework e_N = 0 gives 0.95; the two tracer samples disagree with EACH OTHER about the steepness (0.49 vs 0.65), which is itself the size of the systematic here)
+  MY OWN ESTIMATOR'S LIMITS, stated rather than hidden, and they are severe:
+    (i) sigma_r and M(<r) are NOT independent -- Bird's masses are derived FROM these dispersions through the
+        same Jeans equation, so 38a and 38c are two readings of one dataset, not two tests.  38c is the shape
+        of it and 38a the amplitude, and it is entirely consistent that one passes and the other fails.
+    (ii) the exponential sigma_r fit, the broken power-law tracer density and Bird's binned dispersions are
+        not mutually consistent point by point.  Inverting their own Jeans equation for the anisotropy with
+        their own published summary parameters returns:
+          beta = +0.73 at r = 50 kpc
+          beta = +0.27 at r = 73 kpc
+        so the size of the 38c failure should be read as indicative.  Bird themselves call the exponential
+        'a fitting function only, without direct physical interpretation'.
+  [PASS] M38 mutation control: with the kernel switched off the baryons miss Bird's masses by a factor 6-8, and moving a_0 up by a decade misses them the other way -- so the pass in 38a is carried by the kernel at the framework's own a_0 and not by the mass model   (nu = 1 gives 0.668e11 (-3.2 sigma); a_0 x10 gives 15.80e11 (+10.2 sigma))
+
+======================================================================================================================
+CROSS -- the three lever arms against each other: one e_N?  one baryonic mass?
+======================================================================================================================
+  this is the only genuinely new thing in the three items: 35 and 38 both constrain ONE number, the external
+  field e_N, from lever arms a factor of three apart in radius, and 34, 35 and 38a all make a demand on ONE
+  number, the baryonic amplitude A.  Asking whether either comes out single-valued is the cross-check.
+  
+    e_N ALLOWED by the rotation curve at 12-27 kpc   (item 35, Ou)       0.000  [0, 0.008]
+    e_N ALLOWED by the rotation curve at 12-25 kpc   (item 35, Eilers)   0.000  [0, 0.006]
+    e_N NEEDED  by the halo dispersion at 25-73 kpc  (item 38d, BHB)     0.122
+    e_N NEEDED  by the halo dispersion at 25-73 kpc  (item 38c, KG)      unreachable at any e_N
+    e_N the Milky Way actually has (M31 + large-scale structure)         0.017 + 0.01-0.03
+  [FAIL] CROSS-1 THE EXTERNAL FIELD IS SQUEEZED FROM BOTH SIDES AND THE WINDOW IS EMPTY.  The rotation curve at 12-27 kpc puts a CEILING on it, e_N < 0.008, while the halo dispersion at 25-73 kpc needs a FLOOR of e_N = 0.12 to bend its profile down -- 14 times the ceiling.  One external field cannot do both jobs, so the framework's own escape hatch for the outer Milky Way is closed by the inner Milky Way.  This is new; it is also weak, because the dispersion side of it fails for LambdaCDM too (38c)   (ceiling from item 35 = 0.008 (1 sigma, stat+sys, the looser of the two curves); floor from item 38d = 0.12; M31 supplies 0.017)
+  
+  amplitude on the published baryonic mass demanded by each lever arm, canonical footing:
+     K_z,1.1 at R0            (item 34, |z| = 1.1 kpc, R ~ 8 kpc)   A = 0.77
+     v_c at 8.2 kpc           (item 35, in the plane)               A = 1.33   <- the inherited liability
+     M(< 73 kpc) halo stars   (item 38a)                            A = 0.82
+  [FAIL] CROSS-2 the three lever arms do NOT agree on one baryonic mass, and the pattern is diagnostic: the vertical force at 1.1 kpc wants LESS than the published census (A = 0.77), the halo-star mass at 73 kpc wants about the census (A = 0.82), and the in-plane rotation speed at 8 kpc wants 1.3 times more.  The framework's Milky Way is too flat -- too slow in the plane, too strong above it, and the spread is 1.7x across 8 to 73 kpc.  No single amplitude rescues items 34 and 35 together, so this is a SHAPE problem and adding baryons cannot fix it   (A(K_z,1.1) = 0.77, A(M<73 kpc) = 0.82, A(v_c at R0) = 1.33)
+  the v_c normalisation entry is the repository's KNOWN liability (mi_aqual_mcmillan2017_2026.py; hunt item
+  36), inherited and not re-discovered here.  What this section adds is that it is one face of a three-sided
+  shape problem: the SAME kernel that needs 33 per cent MORE baryons to turn the disc at 8 kpc needs
+  23 per cent FEWER to hold the disc down at 1.1 kpc, and those two demands are made of the same stars.
+  That is a statement about the VERTICAL-TO-RADIAL ratio of the boost, which the repository's own full AQUAL
+  solve puts at 1.024 -- and 1.73 is not 1.02.  A curl-term correction of the size that solve reports cannot
+  close it, so the gap lies either in the Milky Way's baryon distribution or in the kernel, not in the algebra.
+  
+  WHAT SURVIVES, stated as plainly as what does not: item 38a is a genuine zero-parameter success.  The same
+  kernel and the same a_0 that fail on the vertical force and on the outer rotation curve turn a 6.7e10 Msun
+  baryon census into 4-5e11 Msun of dynamical mass at 52-73 kpc, matching all four independent measurements
+  within 1.3 sigma with nothing fitted.  The Milky Way is a hard case for the framework inside 25 kpc
+  and an easy one beyond 50, and that radial split is the result of this group.
+
+RESULT: 25 checks, 12 FAIL -> ["34a AGAINST INTEREST -- THE NORMALISATION DOES NOT LAND, AND IT CONFIRMS THE PUBLISHED TENSION RATHER THAN RELIEVING IT.  With a_0 fixed, no halo and nothing fitted, the kernel boost on McMillan's baryonic column gives 88.0 (canonical) and 92.7 (alt) Msun/pc^2 against a measured 67.5 -- 30 and 37 per cent over.  The formal significance is 12 sigma on the authors' own 2.5 per cent error, but THAT NUMBER MUST NOT BE QUOTED: McMillan's independent fit of the same quantity gives 73.9 +- 6, a 10 per cent disagreement between measurements, and against that the honest significance is 2.3 sigma.  Either way it sits just above Bovy & Rix's own MOND estimate of >~82 +- 6, so the exponential kernel does not escape the tension they identified.", "34b AGAINST INTEREST -- THE SHAPE, WHICH IS WHAT THE ITEM ACTUALLY ASKS, DOES NOT LAND EITHER.  The kernel lengthens the predicted scale length (nu rises outward, exactly as the framework says it must), but the baryons were ALREADY too long: predicted 3.98 kpc against a measured 2.69 +- 0.11.  The kernel makes the one discrepancy that existed WORSE, by +0.63 kpc.  The item's own criterion was 10 per cent across the measured range.", "34c the point-by-point agreement misses the item's 10 per cent criterion", "34d THE WELL-POSED VERSION, and it is the cleanest form of the liability because it uses only quantities these same 43 stars measure: given Bovy & Rix's own disc, R_d = 2.15 +- 0.14 kpc, the framework predicts a K_z scale length of 3.56 kpc against their measured 2.69 +- 0.11 -- 4.5 sigma long.  Newtonian baryons with the same disc give 3.03 kpc, 1.7 sigma.  The kernel's outward-rising boost inflates the inferred disc, which is exactly the effect Bovy & Rix predicted for MOND at 25 per cent; here it is 18 per cent.", "34e THE COMPARISON, both ways: on these 43 points the framework's zero-parameter prediction is WORSE than the baryons alone and far worse than baryons plus a one-parameter round halo, which lands on the standard local dark-matter density.  The vertical force at 1.1 kpc is the one place the Milky Way is close to maximal-disc, and that is precisely where a boost is not wanted", 'M34 mutation control, and it FIRES THE WRONG WAY, which is the point: moving a_0 up by a decade (which switches the kernel off) IMPROVES the fit towards the baryons-only value, and switching the kernel off entirely improves it further.  The estimator is working; it is the framework that is being rejected here', "35b THE FRAMEWORK DOES MOST BUT NOT ALL OF IT, WITH NO EXTERNAL FIELD AT ALL.  With e_N = 0 and one amplitude, the kernel already produces -0.154 and -0.157 -- 58 and 62 per cent of the observed decline -- because g_bar is still falling at 12-27 kpc and the curve has not reached its asymptote.  What is left over is 2.8 and 1.7 sigma on stat-only errors and 1.1 and 1.5 sigma once the authors' own systematics are folded in.  This is a MILD tension, not a kill, and it is smaller than the item anticipated.", "35d THE PRICE, AND IT IS THE INHERITED LIABILITY IN ITS SHARPEST FORM: the fit is bought with a baryonic amplitude A = 1.36-1.42 on Ou's own census, i.e. M_b = 8.39-8.75e10 Msun against their 6.16e10 and McMillan's 6.68e10.  The framework needs 25-40 per cent more baryons than the published Milky Way has.  In velocity that is only 6-9 per cent, which is why the curve LOOKS fitted, but it is a real mass discrepancy and it is the same one hunt item 36 recorded", "38c NOT A TEST OF THE FRAMEWORK AT ALL -- MY OWN ESTIMATOR FAILS FIRST, AND SO DOES LambdaCDM.  The measured KG ratio sigma_r(73)/sigma_r(25) = 0.49 is BELOW the pure-Keplerian floor 0.59, which no bounded mass distribution can go under with a single power-law tracer and constant anisotropy.  Bird's own NFW halo, fitted to these very stars, gives 0.79 -- it misses the observed decline by as much as the framework does.  The excess steepness therefore lives in the tracer assumptions (a broken alpha, a rising beta(r), or the exponential fitting function), not in the gravity, and item 38c cannot discriminate.", "38d the ONE thing the dispersion shape does say, and it is against the framework though weakly: the BHB sample's ratio 0.65 IS reachable, and reaching it needs e_N = 0.12 -- above the 0.05 the Milky Way has.  With no external field the framework predicts 0.95, i.e. an almost flat profile, because a logarithmic potential makes sigma_r exactly constant.  The framework's outer halo is too ISOTHERMAL, on both samples, by less than LambdaCDM's own miss.", "CROSS-1 THE EXTERNAL FIELD IS SQUEEZED FROM BOTH SIDES AND THE WINDOW IS EMPTY.  The rotation curve at 12-27 kpc puts a CEILING on it, e_N < 0.008, while the halo dispersion at 25-73 kpc needs a FLOOR of e_N = 0.12 to bend its profile down -- 14 times the ceiling.  One external field cannot do both jobs, so the framework's own escape hatch for the outer Milky Way is closed by the inner Milky Way.  This is new; it is also weak, because the dispersion side of it fails for LambdaCDM too (38c)", "CROSS-2 the three lever arms do NOT agree on one baryonic mass, and the pattern is diagnostic: the vertical force at 1.1 kpc wants LESS than the published census (A = 0.77), the halo-star mass at 73 kpc wants about the census (A = 0.82), and the in-plane rotation speed at 8 kpc wants 1.3 times more.  The framework's Milky Way is too flat -- too slow in the plane, too strong above it, and the spread is 1.7x across 8 to 73 kpc.  No single amplitude rescues items 34 and 35 together, so this is a SHAPE problem and adding baryons cannot fix it"]   rc=1

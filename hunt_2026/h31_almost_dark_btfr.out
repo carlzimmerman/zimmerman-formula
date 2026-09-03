@@ -1,0 +1,101 @@
+======================================================================================================================
+ITEM 31 -- almost-dark (HI-bearing ultra-diffuse) ALFALFA galaxies on the baryonic Tully-Fisher relation
+======================================================================================================================
+  Leisman+2017 HUDs: N = 115 (30 restrictive, 85 broad); SDSS b/a for 115, stellar mass for 110
+  log M_HI median 8.96 [7.94, 9.50]; W50 median 55 km/s [19, 215]; distance median 79 Mpc
+  gas share of the baryons M_gas/M_b: median 0.922, 10th percentile 0.820
+  [PASS] 31.0 the item's PREMISE holds: these systems are gas-dominated, so the stellar mass-to-light ratio -- the systematic that five previous passes named as the blocker of this whole hunt -- drops out.  DOUBLING every stellar mass moves the predicted rotation speed by under 0.02 dex   (M_gas/M_b median 0.922; doubling M_star moves log v_pred by +0.0081 dex)
+
+----------------------------------------------------------------------------------------------------------------------
+1. THE CONTROL -- the same estimator on ordinary ALFALFA galaxies (this is what makes the result differential)
+----------------------------------------------------------------------------------------------------------------------
+  alpha.100 x ALFALFA-SDSS, code-1 detections with clean photometry and SNR >= 6.5: N = 17558
+  [PASS] 31.1a the SDSS axis ratios of the control sample are consistent with RANDOM disc orientation -- the fraction with i > 45 deg is cos(45 deg) to better than 1% -- so the inclinations used below are not obviously broken   (f(i>45) = 0.7047 vs cos 45 = 0.7071)
+  control, all masses, canonical : median log(v_obs/v_pred) = +0.010 +- 0.001 (bootstrap), scatter 0.185 dex, N = 12361
+  control, all masses, alt       : median log(v_obs/v_pred) = -0.011 +- 0.001 (bootstrap), scatter 0.185 dex, N = 12361
+  control MASS-MATCHED to the HUDs (log M_b in [8.06, 9.62]), canonical : median -0.031 +- 0.003, scatter 0.203, N = 2892
+  control MASS-MATCHED to the HUDs (log M_b in [8.06, 9.62]), alt       : median -0.051 +- 0.003, scatter 0.203, N = 2892
+  [PASS] 31.1b (this is the check that licenses the rest) the estimator -- ALFALFA W50, turbulence removed in quadrature, deprojected with an SDSS axis-ratio inclination -- puts ORDINARY gas-rich galaxies on the framework's zero-parameter BTFR with no offset worth the name, on both footings.  So a HUD offset measured against this control is not the estimator's fault   (all-mass control: canonical +0.010 +- 0.001, alt -0.011 +- 0.001 dex in log v)
+
+----------------------------------------------------------------------------------------------------------------------
+2. THE RESULT -- where the almost-darks actually sit
+----------------------------------------------------------------------------------------------------------------------
+  112/115 HUDs have a usable inclination and width
+  canonical : v_pred median 64.3 km/s, v_obs median 34.0 km/s; median log(v_obs/v_pred) = -0.296 +- 0.028 (scatter 0.263); DIFFERENTIAL vs the mass-matched control = -0.265 +- 0.028 dex (-9.5 sigma), i.e. -1.06 dex in baryonic mass
+  alt       : v_pred median 67.4 km/s, v_obs median 34.0 km/s; median log(v_obs/v_pred) = -0.316 +- 0.028 (scatter 0.263); DIFFERENTIAL vs the mass-matched control = -0.265 +- 0.028 dex (-9.5 sigma), i.e. -1.06 dex in baryonic mass
+    Leisman 'R' subsample (N = 30): median -0.440 +- 0.062 dex
+    Leisman 'B' subsample (N = 82): median -0.219 +- 0.043 dex
+    HUDs with i > 45 deg only (N = 79, the sub-sample least sensitive to the inclination): median -0.340 +- 0.029 dex
+    turbulence FWHM removed =    0 km/s: median -0.271 dex (fiducial 20 km/s gives -0.296)
+    turbulence FWHM removed =   10 km/s: median -0.279 dex (fiducial 20 km/s gives -0.296)
+    turbulence FWHM removed =   30 km/s: median -0.321 dex (fiducial 20 km/s gives -0.296)
+  and AGAINST INTEREST a second time: within the HUD sample itself the baryonic mass and the rotation speed do correlate (Spearman r = 0.50, p = 2.3e-08) but with a BTFR slope of 0.49, nowhere near the framework's 4, over a mass range of only 0.8 dex -- so this sample constrains the BTFR ZERO-POINT and has almost no leverage on its slope
+  [PASS] 31.2 (a LIABILITY, reported against interest) the almost-dark galaxies do NOT lie on the framework's BTFR.  Measured with the estimator that the control shows is unbiased, they sit BELOW the zero-parameter prediction by about a quarter of a dex in rotation speed -- a factor of ~3 in baryonic mass -- and the deficit is significant against the mass-matched control of ordinary galaxies.  The item's Kepler-grade criterion (20+ objects on the line, scatter <= 0.1 dex) is not met and is not close.  This check asserts the DEFICIT, so it fails if the almost-darks are in fact on the line   (canonical -0.296 +- 0.028, alt -0.316 +- 0.028 dex in log v; differential vs control -0.265 +- 0.028 dex = -9.5 sigma; scatter 0.263 dex, not 0.1)
+
+----------------------------------------------------------------------------------------------------------------------
+3. THE RESOLVED ANCHOR -- does this pipeline reproduce the one object with published interferometric kinematics?
+----------------------------------------------------------------------------------------------------------------------
+  AGC 114905 (Mancera Pina+2022, MNRAS 512, 3230): M_HI = 9.70e+08, M_star = 1.30e+08, M_bar = 1.42e+09 Msun; resolved HI inclination i = 32 +- 3 deg; flat rotation speed V_c ~ 23 km/s
+    this catalogue's entries for the same object: log M_HI = 9.11 (ALFALFA flux), W50 = 27 km/s, SDSS b/a = 0.77 -> optical i = 41 deg (the paper quotes an optical inclination 'around 45 deg' and does not use it)
+    canonical : framework predicts V_flat = 64.8 km/s; matching the measured projected amplitude 12.2 km/s needs i = 10.8 deg
+    alt       : framework predicts V_flat = 67.9 km/s; matching the measured projected amplitude 12.2 km/s needs i = 10.3 deg
+  [PASS] 31.3 the pipeline is anchored: run on the ONE almost-dark galaxy with published resolved HI kinematics and with the standard MOND a_0 = 1.2e-10, it returns the inclination that the published paper says MOND requires (10.8 +- 0.3 deg) to within a degree -- so the deficit measured above is the same one the interferometry found, not an artefact here   (this pipeline needs i = 10.2 deg at a_0 = 1.2e-10; Mancera Pina+2022 report 10.8 +- 0.3 deg (and measure 32 +- 3 deg); on the framework's footings 10.8 deg (canonical) / 10.3 deg (alt))
+
+----------------------------------------------------------------------------------------------------------------------
+4. THE ESCAPES, PRICED
+----------------------------------------------------------------------------------------------------------------------
+  HI radii from the Wang+2016 size-mass relation: median R_HI = 8.7 kpc (median optical half-light radius in this sample is 3.0 kpc)
+    canonical : median g_bar(R_HI)/a_0 = 0.026; the kernel at R_HI gives 67.0 km/s vs the asymptote 64.3 km/s -> +0.017 dex
+    alt       : median g_bar(R_HI)/a_0 = 0.021; the kernel at R_HI gives 70.0 km/s vs the asymptote 67.4 km/s -> +0.016 dex
+  [PASS] 31.4a escape (a) CLOSED: 'the HI disc does not reach the flat part of the rotation curve'.  At the Wang+2016 HI radius the baryonic acceleration is already ~0.02 a_0, deep in the modified regime, so the Route A kernel evaluated there is within 0.02 dex of the asymptote.  The framework cannot hide the missing speed outside the measured disc   (median log[v(R_HI)/v_flat] = +0.0172 dex)
+  the median HUD needs nu_eff = 1.70 at R_HI instead of the isolated value 6.59
+  an external field would do it, but it takes g_ext = 0.79 a_0 -- and a 1e11 Msun neighbour produces that only within 15 kpc
+  [PASS] 31.4b escape (b) CLOSED: the external-field effect cannot be the answer.  Suppressing the prediction by the observed amount needs an external field of order a_0 itself, which a 1e11 Msun neighbour supplies only inside a few tens of kpc -- and these objects are selected by Leisman+2017 to be ISOLATED, with no such neighbour   (required g_ext = 0.788 a_0 (canonical); a 1e11 Msun galaxy gives that at 15 kpc)
+  inclination the framework requires, object by object: median 23 deg [10-90%: 11, 44]; SDSS gives a median of 52 deg
+  required-vs-measured inclination distributions: two-sample KS D = 0.679, p = 7.8e-25 -- they are not the same distribution
+  read as a likelihood under random orientation (P(i < i_req) = 1 - cos i_req, objects independent), requiring every one of them to be that face-on costs 130 dex.  This is an upper bound on the cost: these objects are selected on central surface brightness, which does bias the sample toward face-on, and that bias is NOT modelled here
+  AGC 114905 is the calibration point for an optical-vs-kinematic inclination bias: optical ~45 deg, HI 32 deg. Applying that same sin-ratio (0.749) to the whole sample RAISES v_obs by +0.125 dex
+  [PASS] 31.4c escape (c) is the only one still open, and it is expensive.  For the framework to be right these galaxies must be far more face-on than SDSS says -- a median of about 23 deg required against 52 deg measured, two distributions the KS test separates at p ~ 1e-24.  Calibrating an optical-inclination bias on the single resolved object (optical 45 deg vs HI 32 deg) removes only about half the deficit and leaves a residual that is still a real offset -- and that calibration runs the WRONG way for the framework, since the resolved inclination is LOWER, not higher, than the value this analysis assumed   (median required i = 23 deg vs measured 52 deg; after the AGC 114905-calibrated correction the residual is still -0.171 dex in log v (= -0.68 dex in mass))
+
+----------------------------------------------------------------------------------------------------------------------
+5. THE ALTERNATIVE COMPUTED BESIDE IT -- what LambdaCDM has to do with the same objects
+----------------------------------------------------------------------------------------------------------------------
+  Newtonian, baryons only (no halo, no boost) at R_HI: median v = 26.0 km/s against the measured 34.0 -- so these are NOT Newtonian systems either; something boosts them, just less than the framework says
+  LambdaCDM: matching V_max to the measured speed with the Dutton-Maccio c(M) relation gives median log M200 = 9.79, i.e. a baryon fraction M_b/M200 = 0.271 against the cosmic 0.157
+  [PASS] 31.5 both ways: the same objects are a problem for LambdaCDM too -- pinning V_max to the observed speed forces halos so small that these galaxies would have retained an implausible share of the cosmic baryon budget.  The difference is that LambdaCDM has free parameters to spend on it (concentration, feedback, a lower inclination) and the framework, having none, simply predicts the wrong number   (median M_b/M200 = 0.271 = 1.73 x cosmic; Mancera Pina+2022 reach the same conclusion for AGC 114905 (only c200 ~ 0.3 fits, 'unfeasible'))
+
+----------------------------------------------------------------------------------------------------------------------
+6. MUTATION CONTROLS
+----------------------------------------------------------------------------------------------------------------------
+  [PASS] M31a mutation: the measured mass-speed correlation inside the HUD sample is destroyed by shuffling the baryonic masses against the widths, so the estimator is reading a real correlation and not noise -- but note that this same check shows how WEAK the leverage is: the correlation is only r ~ 0.5 over 0.8 dex of mass   (measured Spearman r = 0.498; 2000 shuffles give +0.001 with a 99.9th percentile of 0.294)
+  [PASS] M31b mutation: a_0 raised by 4x must move the residual by exactly -0.25 x log10(4) = -0.151 dex, and it does -- the estimator's sensitivity to a_0 is the textbook one, so the measured offset really is an a_0 statement   (shift -0.1505 dex vs the exact -0.1505)
+  [PASS] M31c mutation: 2000 random mass-matched draws of ORDINARY galaxies, each the same size as the HUD sample, never reproduce the offset -- so the deficit belongs to the almost-darks and not to the sample size   (draws of N = 112: median -0.031, 1st percentile -0.075; fraction at or below the HUDs' -0.296 is 0.0000)
+
+======================================================================================================================
+VERDICT -- ITEM 31: LIABILITY, and a real one
+======================================================================================================================
+  The almost-darks were the best place in this hunt to measure a_0 without a stellar mass-to-light ratio, and they
+  do not cooperate.  115 HI-bearing ultra-diffuse ALFALFA galaxies sit -0.296 +- 0.028 dex
+  (canonical) / -0.316 +- 0.028 dex (alt) BELOW the zero-parameter prediction in rotation speed --
+  -1.18 dex in baryonic mass, -1.06 dex differentially -- with a scatter of 0.26 dex,
+  where the item asked for 0.1.  The alt footing is WORSE than the canonical, so no footing rescues it.
+  The same estimator puts 2892 ordinary gas-rich galaxies of the same baryonic mass at -0.031 dex, so this is
+  differential and it is 9 sigma.  Three escapes were priced: the HI disc DOES reach the modified regime
+  (+0.017 dex), the external-field effect would need 0.79 a_0 in objects selected to be isolated, and the
+  inclination escape needs a median 23 deg where SDSS measures 52 deg.  Only the last is alive, it is the one the
+  published resolved work also identifies, and on the single object where interferometry exists this pipeline
+  reproduces that paper's MOND-required inclination to within a degree.
+  Recorded on the standing ledger.  It is not a clean kill -- optical inclinations of ultra-diffuse discs are the
+  weakest link and the one resolved case shows them biased HIGH -- but it is a genuine negative that the framework
+  cannot argue away, and it is independent of the stellar mass-to-light ratio, which was the point of the item.
+
+**********************************************************************************************************************
+  SUPERSEDED: the paragraph above was written before the selection audit and it is WRONG about the size and the
+  significance.  h31b_almost_dark_selection_audit.py shows that ALFALFA's width-dependent detection limit
+  (SNR ~ W50^(-1/2)) manufactures most of this: 50% of these galaxies would be undetectable if they sat on the
+  framework's BTFR, and the control used above was nearer and brighter and so escaped the same cut.  Against a
+  control matched on the detection ceiling the almost-dark differential is -0.089 +- 0.033 dex, not -0.265, and the
+  9.5 sigma is a statistical error bar on a number whose systematic is larger.  ITEM 31 STANDS AS A NULL.
+**********************************************************************************************************************
+
+RESULT: 12 checks, 0 FAIL   rc=0

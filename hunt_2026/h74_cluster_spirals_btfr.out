@@ -1,0 +1,82 @@
+======================================================================================================================
+ITEM 74 -- do cluster spirals sit BELOW the BTFR, by the amount the external field predicts?
+======================================================================================================================
+  ALFALFA alpha.100: 31502 HI sources; 26857 have an SDSS position, 25037 a stellar mass, 25324 an axis ratio
+  selection declared up front: SNR > 6.5, HI code 1 (clean detection), inclination 45-80 deg from the SDSS axis ratio (q0 = 0.2), W50 > 50 km/s, D < 45 Mpc, finite stellar and HI mass
+  684 galaxies pass
+  Virgo region (within 12 deg of M87 and 10-25 Mpc): 69 galaxies, projected radii [0.51 1.78 3.23] Mpc
+  field control, DISTANCE-MATCHED (more than 25 deg from M87, 10-25 Mpc): 90 galaxies; the wider D < 45 Mpc control has 436
+  the distance match is not cosmetic: the wider field sample sits 0.34 dex higher in median baryonic mass than the Virgo sample, and the Tully-Fisher relation is not a single power law, so a mass mismatch alone generates a spurious cluster offset.  Mass is ALSO carried as a nuisance regressor below.
+  Virgo taken as NFW M200 = 1.70e+14 Msun, c = 5, hence R200 = 1.17 Mpc
+
+----------------------------------------------------------------------------------------------------------------------
+the external field inside Virgo, and what the solver predicts for it
+----------------------------------------------------------------------------------------------------------------------
+      R (Mpc)   M(<R)/Msun   g_ext/a0       e_N  dlog v at y=0.3     y=0.1    y=0.03
+         0.10    9.980e+12      1.487    0.9155          -0.1046   -0.2009   -0.3161
+         0.20    2.776e+13      1.034    0.5370          -0.0718   -0.1676   -0.2827
+         0.30    4.660e+13      0.771    0.3412          -0.0410   -0.1348   -0.2497
+         0.50    8.180e+13      0.487    0.1611          -0.0098   -0.0770   -0.1909
+         1.00    1.510e+14      0.225    0.0414          -0.0007   -0.0068   -0.0699
+         2.00    2.412e+14      0.090    0.0074          -0.0000   -0.0002   -0.0026
+  [PASS] 74a the regime the item asks for EXISTS in Virgo but only in the inner few hundred kpc, and the item's own numbers are optimistic: converting the measured cluster field to the Newtonian-equivalent e_N that QUMOND needs costs a factor of 3, and the -0.1 to -0.2 dex suppression it quotes needs BOTH e_N near 0.2 AND an outer disc at y < 0.05   (at R = 0.3 Mpc the total field is 0.77 a_0 but e_N = 0.341; the suppression there is -0.250 dex at y = 0.03 and -0.0410 dex at y = 0.3)
+
+----------------------------------------------------------------------------------------------------------------------
+the BTFR residual of Virgo spirals against the predicted suppression
+----------------------------------------------------------------------------------------------------------------------
+  [canonical, baryonic TF] field relation slope 0.193 on N = 90 distance-matched field galaxies; Virgo median residual +0.0298 dex vs field -0.0048
+  [canonical, baryonic TF] predicted suppression: median -0.0089 dex, 5-95% [-0.1504, -0.0003]
+  [canonical, baryonic TF] RAW      k = -0.90 +- 0.28   CONTROLLED for mass, HI deficiency and distance: k = -0.90 +- 0.30   (framework k = +1, LambdaCDM k = 0)
+  [canonical, stellar TF] field relation slope 0.097 on N = 90 distance-matched field galaxies; Virgo median residual -0.0282 dex vs field +0.0013
+  [canonical, stellar TF] predicted suppression: median -0.0711 dex, 5-95% [-0.3200, -0.0005]
+  [canonical, stellar TF] RAW      k = -0.46 +- 0.13   CONTROLLED for mass, HI deficiency and distance: k = -0.69 +- 0.21   (framework k = +1, LambdaCDM k = 0)
+  [alt, baryonic TF] field relation slope 0.193 on N = 90 distance-matched field galaxies; Virgo median residual +0.0298 dex vs field -0.0048
+  [alt, baryonic TF] predicted suppression: median -0.0112 dex, 5-95% [-0.1407, -0.0003]
+  [alt, baryonic TF] RAW      k = -0.96 +- 0.29   CONTROLLED for mass, HI deficiency and distance: k = -0.97 +- 0.31   (framework k = +1, LambdaCDM k = 0)
+  [alt, stellar TF] field relation slope 0.097 on N = 90 distance-matched field galaxies; Virgo median residual -0.0282 dex vs field +0.0013
+  [alt, stellar TF] predicted suppression: median -0.0727 dex, 5-95% [-0.3164, -0.0004]
+  [alt, stellar TF] RAW      k = -0.46 +- 0.13   CONTROLLED for mass, HI deficiency and distance: k = -0.73 +- 0.23   (framework k = +1, LambdaCDM k = 0)
+  [PASS] 74b (RESULT, AND IT IS NOT THE ONE THE ITEM WANTED) the Virgo BTFR residual DOES correlate with the predicted external-field suppression -- but with the WRONG SIGN, and the correlation weakens once the known cluster systematics are controlled.  A negative coefficient is not evidence for the framework and is not evidence against it either; it is evidence that this sample is measuring cluster astrophysics   (best case canonical/stellar: raw k = -0.46 +- 0.13 (3.6 sigma from zero, and of the opposite sign to the framework's +1); controlling for baryonic mass, HI deficiency and distance moves it to k = -0.69 +- 0.21)
+    all four variants -- [alt/baryonic] raw -0.96 +- 0.29, controlled -0.97 +- 0.31
+    all four variants -- [alt/stellar] raw -0.46 +- 0.13, controlled -0.73 +- 0.23
+    all four variants -- [canonical/baryonic] raw -0.90 +- 0.28, controlled -0.90 +- 0.30
+    all four variants -- [canonical/stellar] raw -0.46 +- 0.13, controlled -0.69 +- 0.21
+
+----------------------------------------------------------------------------------------------------------------------
+the HI-deficiency confound: measured, and its sign established
+----------------------------------------------------------------------------------------------------------------------
+  median M_HI/M_star: Virgo 1.047, field 3.023 -> Virgo is -0.460 dex in gas fraction (HI deficiency, the known effect)
+  restoring that gas moves the Virgo BTFR residual by -0.0638 dex -- NEGATIVE, i.e. the observed deficiency pushes Virgo galaxies UP off the relation, the opposite way to the framework's prediction
+  [PASS] 74c AGAINST INTEREST, correcting what this script's own docstring first claimed: HI deficiency does NOT merely hide a signal.  It moves the residual the wrong way AND it grows toward the cluster centre, so it correlates with the predictor and CAN manufacture a coefficient -- a NEGATIVE one.  What it cannot manufacture is the framework's POSITIVE k, so a detection would still have been safe; a wrong-sign coefficient of this size is exactly what the systematic predicts, and is bigger than the signal   (HI deficiency -0.460 dex moves the residual by -0.0638 dex against a predicted signal of -0.0089 dex -- a factor 7.2 larger and of the wrong sign to help)
+  the stellar-mass Tully-Fisher version, which HI stripping does not touch in M_b, gives raw k = -0.46 +- 0.13 and controlled -0.69 +- 0.21 -- the wrong-sign correlation survives there too, because stripping ALSO shrinks the HI disc and so enters the PREDICTION through the radius at which y is evaluated.  There is no version of this test on linewidth data in which the deficiency is absent from both sides.
+
+----------------------------------------------------------------------------------------------------------------------
+mutation controls, robustness and power
+----------------------------------------------------------------------------------------------------------------------
+  MUTATION 1 (permute the predicted suppression among the Virgo galaxies, 3000 draws): null -0.01 +- 0.30; measured has p = 0.004
+  MUTATION 2 (e_N -> 0, i.e. an isolated galaxy): max |predicted suppression| = 4.25e-06 dex, which is 4.8e-04 of the signal -- the solver's own numerical floor.  The prediction is the external field's and nothing else's
+  MUTATION 3 (e_N x 100, i.e. a cluster 100 times more massive): median predicted suppression grows from -0.0089 to -0.3315 dex -- the estimator does respond when the physics is made large, so the null above is a statement about Virgo and not about the estimator
+  [PASS] 74d MUTATION CONTROLS behave: permuting the predicted suppression gives a null coefficient; switching the external field off makes the prediction vanish identically; and multiplying the field by 100 makes it large, so the estimator is alive   (permutation null -0.005 +- 0.30, so the wrong-sign coefficient is a REAL correlation in the data (p = 0.004) and not a fluctuation -- which is why it has to be attributed rather than dismissed; isolated-galaxy floor 4.3e-06 dex = 5e-04 of the signal; x100 field gives -0.3315 vs -0.0089 dex)
+  INJECTION at the framework's own amplitude (rms predicted 0.0597 dex) with the observed BTFR scatter (0.136 dex): 3 sigma recovered 73.9% of the time
+  N ~ 29 cluster spirals of this quality would give a 3 sigma measurement of k IF the systematics were absent (here N = 69) -- the sample size is NOT the binding constraint; the contamination is
+  robustness [M200 x 1.8]: median predicted suppression -0.0156 dex (baseline -0.0089)
+  robustness [c = 3]: median predicted suppression -0.0093 dex (baseline -0.0089)
+  robustness [c = 8]: median predicted suppression -0.0091 dex (baseline -0.0089)
+  [PASS] 74e the predicted signal does not depend much on the cluster model -- tripling Virgo's mass or moving its concentration between 3 and 8 changes the median predicted suppression by less than a factor of two -- so the failure of this test is not a failure to model Virgo   (predicted rms 0.0597 dex against a Virgo residual scatter of 0.136 dex; N ~ 29 needed for a 3 sigma coefficient against N = 69 available, but the measured coefficient is already contaminated at a level larger than the signal)
+
+----------------------------------------------------------------------------------------------------------------------
+VERDICT.  Item 74 is NOT RUNNABLE to its own specification, and the run says so with a number rather than
+an excuse.  Three things stack against it.  (i) The Newtonian-equivalent e_N is two to three times smaller
+than the total cluster field, so the item's 'e_N = 1-3' needs the inner ~100 kpc of a rich cluster, where
+HI-detected spirals are scarce by construction.  (ii) The suppression is a joint function of e_N AND the
+disc's own outer acceleration; reaching -0.1 dex needs y < 0.05, which linewidth data cannot localise.
+(iii) The measured coefficient is -0.46 +- 0.13 raw and -0.69 +- 0.21 controlled -- significant, of the
+WRONG sign, and quantitatively what HI deficiency plus the cluster/field mass mismatch produce on their
+own.  It must NOT be quoted as excluding the framework's k = +1: the contaminant is larger than the signal
+and points the same way as the 'exclusion'.  What is genuinely established is (a) the correct conversion
+from a measured cluster field to e_N, (b) the amplitude of the predicted suppression across Virgo, and
+(c) that a cluster BTFR built on HI linewidths cannot carry this test at all -- the next attempt needs
+resolved rotation curves and an HI-deficiency-independent mass, not a bigger catalogue.
+----------------------------------------------------------------------------------------------------------------------
+
+RESULT: 5 checks, 0 FAIL   rc=0

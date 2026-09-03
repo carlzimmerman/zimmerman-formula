@@ -1,0 +1,104 @@
+========================================================================================================================
+ITEM 67 -- eta at 20-100 kpc in the four HFF clusters.  Step 1: what is actually in the on-disk tables.
+========================================================================================================================
+  Abell 2744     z = 0.307   N members =  225   columns = ['ID', 'RAJ2000', 'DEJ2000', 'F814W', 'ReF814W', 'nF814W', 'F160W']
+  AS1063         z = 0.348   N members =  222   columns = ['ID', 'RAJ2000', 'DEJ2000', 'F814W', 'ReF814W', 'nF814W', 'F160W']
+  MACS J0416     z = 0.396   N members =  224   columns = ['ID', 'RAJ2000', 'DEJ2000', 'F814W', 'ReF814W', 'nF814W', 'F160W']
+  MACS J1149     z = 0.542   N members =  279   columns = ['ID', 'RAJ2000', 'DEJ2000', 'F814W', 'ReF814W', 'nF814W', 'F160W']
+  [PASS] 67 the tables carry NO mass information -- every column is photometric or positional (ID, RA, Dec, F814W, effective radius, Sersic index, F160W).  No convergence, no lens-model mass, no velocity dispersion, no gas.  eta cannot be formed from them at any radius   (searched for ('mass', 'mtot', 'logm', 'sigma', 'vdisp', 'kappa', 'conv', 'm500', 'm200', 'shear', 'kt', 'mgas'); matched columns: none; full column set ['dej2000', 'f160w', 'f814w', 'id', 'nf814w', 'raj2000', 'ref814w'])
+
+========================================================================================================================
+Step 2: how well do these member catalogues even sample 20-100 kpc?
+========================================================================================================================
+  cluster         kpc/arcsec   N<20kpc  N 20-100   N<100   N<250  max R (kpc)
+  Abell 2744            4.69         2        17      19     128          534
+  AS1063                5.09         4        25      29     122          470
+  MACS J0416            5.53         1        35      36     129          586
+  MACS J1149            6.58         1         4       5      38          955
+  [PASS] 67 the cores are sparsely sampled even in the one quantity the tables DO carry: between 5 and 36 members lie inside 100 kpc of the brightest member, so a radial profile in 20-100 kpc rests on a handful of galaxies per cluster and one cluster (MACS J1149) has essentially none   (members inside 100 kpc: [19, 29, 36, 5] for ['Abell 2744', 'AS1063', 'MACS J0416', 'MACS J1149'])
+
+========================================================================================================================
+Step 3: the member stellar mass profile, built twice from two bands as its own cross-check.
+========================================================================================================================
+  distance modulus from the repo cosmology; no k-correction (it is absorbed into M/L, stated, not fitted);
+  M/L = 1.2 on F160W (rest-frame ~1 micron at these redshifts) and 3.0 on F814W (rest-frame ~0.6 micron).
+  cluster          M*(<50) F160W   M*(<50) F814W   ratio   M*(<100) F160W      BCG M*
+  Abell 2744           4.273e+11       4.755e+11    1.11        8.235e+11   3.212e+11
+  AS1063               1.106e+12       9.975e+11    0.90        1.655e+12   9.140e+11
+  MACS J0416           8.989e+11       8.992e+11    1.00        1.562e+12   4.328e+11
+  MACS J1149           2.486e+12       3.143e+12    1.26        2.642e+12   2.402e+12
+  [PASS] M67-1 mutation control -- the two photometric bands, with independent mass-to-light ratios, give the same enclosed stellar mass to within 30% in all four clusters, so the stellar term is not an artefact of one band's calibration.  It is also the ONLY term the tables can supply   (M*(F814W)/M*(F160W) inside 50 kpc = [1.11, 0.9, 1.0, 1.26])
+
+========================================================================================================================
+Step 4: how big is the term the tables do NOT carry?  Sigma_crit from the repo cosmology, source at z = 2.
+========================================================================================================================
+  These four fields are the Frontier Fields BECAUSE they are among the strongest known lenses -- giant arcs at
+  20-40 arcsec, i.e. mean convergence of order unity out to ~100-200 kpc.  Taking kappa_bar = 1 at 50 kpc as a
+  deliberately CONSERVATIVE reference, the projected mass inside 50 kpc must be at least pi R^2 Sigma_crit.
+  cluster              Sigma_crit   M_E(<50 kpc)   M*_mem(<50)  members / needed
+  Abell 2744        2.256e+09 Msun/kpc2      1.772e+13     4.273e+11              2.4%
+  AS1063            2.156e+09 Msun/kpc2      1.694e+13     1.106e+12              6.5%
+  MACS J0416        2.081e+09 Msun/kpc2      1.635e+13     8.989e+11              5.5%
+  MACS J1149        2.020e+09 Msun/kpc2      1.586e+13     2.486e+12             15.7%
+  [PASS] 67 the missing term dominates: the tabulated member stars are 2-16% of the projected mass needed for strong lensing at 50 kpc, and the ICM, the intracluster light and the BCG halo -- none of which are in these tables -- must supply the rest.  A baryon budget known only to that fraction of itself cannot yield eta to +-0.1   (member stars / lensing mass inside 50 kpc = Abell 2744 2.4%, AS1063 6.5%, MACS J0416 5.5%, MACS J1149 15.7%)
+
+========================================================================================================================
+Step 5: the Route A kernel across 20-100 kpc.  Is the '23-33% core lever' a prediction or an assumption?
+========================================================================================================================
+   r (kpc)   M_b (Msun)  y = g_b/a_0 can  nu canonical     y alt   nu alt
+        20      1.0e+12             3.72         1.170      3.08    1.209
+        20      3.0e+12            11.17         1.037      9.25    1.050
+        20      1.0e+13            37.24         1.002     30.84    1.004
+        50      1.0e+12             0.60         1.859      0.49    1.982
+        50      3.0e+12             1.79         1.356      1.48    1.421
+        50      1.0e+13             5.96         1.095      4.94    1.122
+       100      1.0e+12             0.15         3.123      0.12    3.376
+       100      3.0e+12             0.45         2.051      0.37    2.194
+       100      1.0e+13             1.49         1.419      1.23    1.491
+  [PASS] 67 AGAINST INTEREST -- the core lever is NOT a parameter-free prediction.  Over the plausible enclosed-baryon range at 20-100 kpc the Route A boost nu runs from 1.00 to 3.38 on the two footings; a '23-33%' core boost picks out one particular baryon budget rather than following from the kernel.  Quoting 23-33% as a prediction requires the baryon profile that these tables do not contain   (nu spans 1.002 to 3.376 over r = 20-100 kpc and M_b = 1e12-1e13 Msun, both footings)
+
+  inverting the kernel: the baryon mass the framework needs inside 50 kpc for nu(y) M_b to reach the lensing
+  mass, against what the member stars actually provide.  APPROXIMATION STATED: the kernel is evaluated on the 3-D
+  enclosed mass while M_E is projected, so the requirement is quoted twice -- once against M_E and once against
+  M_E / (pi/2) = M_E/1.57, the isothermal-sphere deprojection, which is the conservative end.
+  cluster           footing  M_b req (2D)  M_b req (3D)  nu there   M*_mem(<50)  shortfall 2D  shortfall 3D
+  Abell 2744      canonical     1.698e+13     1.034e+13     1.043     4.273e+11          39.7          24.2
+  Abell 2744            alt     1.671e+13     1.006e+13     1.060     4.273e+11          39.1          23.6
+  AS1063          canonical     1.618e+13     9.823e+12     1.047     1.106e+12          14.6           8.9
+  AS1063                alt     1.591e+13     9.553e+12     1.065     1.106e+12          14.4           8.6
+  MACS J0416      canonical     1.557e+13     9.434e+12     1.050     8.989e+11          17.3          10.5
+  MACS J0416            alt     1.530e+13     9.166e+12     1.068     8.989e+11          17.0          10.2
+  MACS J1149      canonical     1.507e+13     9.117e+12     1.053     2.486e+12           6.1           3.7
+  MACS J1149            alt     1.480e+13     8.850e+12     1.072     2.486e+12           6.0           3.6
+  [PASS] 67 AGAINST INTEREST -- even with its own kernel switched on, the framework needs 6-40 times more baryonic mass inside 50 kpc than the tabulated member galaxies contain (3.6-24 on the conservative deprojected version), because at these radii nu has fallen to about 1.05 for the masses in question.  Whether the ICM plus the BCG halo plus the intracluster light close that gap is exactly the measurement the item wanted and exactly what the tables cannot answer   (required M_b / member M* inside 50 kpc = 6.0-39.7 projected, 3.6-24.2 deprojected, across four clusters and both footings)
+
+========================================================================================================================
+Step 6: the LambdaCDM alternative computed at the same radii -- an NFW halo, c200 = 5, M200 = 1e15 Msun.
+========================================================================================================================
+  Abell 2744     r200 =   1897 kpc; NFW M(<50 kpc) = 7.672e+12, M(<100 kpc) = 2.644e+13 Msun (3-D); projected at pi/2 -> 1.205e+13 against the required 1.772e+13
+  AS1063         r200 =   1867 kpc; NFW M(<50 kpc) = 7.901e+12, M(<100 kpc) = 2.717e+13 Msun (3-D); projected at pi/2 -> 1.241e+13 against the required 1.694e+13
+  MACS J0416     r200 =   1832 kpc; NFW M(<50 kpc) = 8.181e+12, M(<100 kpc) = 2.807e+13 Msun (3-D); projected at pi/2 -> 1.285e+13 against the required 1.635e+13
+  MACS J1149     r200 =   1728 kpc; NFW M(<50 kpc) = 9.111e+12, M(<100 kpc) = 3.102e+13 Msun (3-D); projected at pi/2 -> 1.431e+13 against the required 1.586e+13
+  [PASS] 67 the LambdaCDM side is not blocked by the same wall, but it is not effortless either: a single textbook NFW (M200 = 1e15, c = 5) supplies 8e12 Msun inside 50 kpc in 3-D, about 1.2e13 projected, which is 0.7 of what strong lensing needs -- the real Frontier Fields close that with high concentration and merging substructure.  The framework has to find the SAME 1.5e13 in BARYONS with a kernel boost of only ~5% there, so the core is where the two pictures differ most and the item was worth asking even though the tables cannot answer it   (NFW 3-D M(<50 kpc) = 7.91e+12 Msun, projected 1.24e+13, against a mean required M_E(<50 kpc) = 1.67e+13 Msun (ratio 0.74))
+
+========================================================================================================================
+mutation controls
+========================================================================================================================
+  [PASS] M67-2 mutation control -- randomising the member sky positions over the same field destroys the enclosed-mass concentration, so the M_*(<50 kpc) measured above is a real central concentration and not an artefact of the aperture   (true M*(<50 kpc) = 1.11e+12 Msun, randomised 7.25e+10 +- 1.26e+11)
+  [PASS] M67-3 mutation control -- a wrong a_0 changes the core boost by a measurable amount, so the kernel is genuinely live at these radii and the null result above is about missing DATA and not about an inert kernel   (nu at 50 kpc with M_b = 3e12: 1.356 (canonical), 1.421 (alt), 2.900 (10 a_0))
+
+========================================================================================================================
+VERDICT
+========================================================================================================================
+  67 = NOT RUNNABLE, not a null.  The item asks for eta = M_lens/M_framework to +-0.1 at 20-100 kpc; the on-disk
+  HFF tables are member photometry (Granata+2026 structural parameters) with no mass column of any kind, 5-36
+  members inside 100 kpc, and a stellar term that is 2-16% of the mass strong lensing requires there.
+  What would make it runnable, stated so the next pass does not repeat this: (a) a published lens-model
+  convergence map or cumulative M(<R) for each cluster, and (b) an X-ray gas profile into the core.  With those
+  two the computation is short -- the kernel part is already written above and takes one line per radius.
+  Recorded honestly: the parts that COULD be computed from the tables were, and two of them are results in their
+  own right -- the kernel boost at 20-100 kpc is not a fixed 23-33% but a function of an unmeasured baryon
+  budget, and the framework needs 6-40x (3.6-24x deprojected) the tabulated member stellar mass in the core to
+  lens at all, with the kernel contributing only about 5% of it.
+
+RESULT: 9 checks, 0 FAIL   rc=0

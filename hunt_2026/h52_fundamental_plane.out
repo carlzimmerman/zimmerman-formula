@@ -1,0 +1,91 @@
+================================================================================================================================
+ITEM 52 -- the tilt of the Fundamental Plane: does a_0 produce it?
+================================================================================================================================
+  6dFGS FP catalogue: 11102 rows, 7949 pass the quality cut (J-band flag Js=1, e_log sigma < 0.10, cz > 3000 km/s)
+  [PASS] 52.0 UNITS CONTROL (can fail) -- rebuilding the tabulated mean effective surface brightness from the total J magnitude, the angular effective radius and the redshift reproduces it with small scatter, which pins BOTH conventions this item needs: R_e is tabulated in h^-1 kpc (H0 = 100) and I_e is the MEAN surface brightness inside R_e (L = 2 pi I_e R_e^2).  If either were wrong every number below would be wrong   (log10(I_e rebuilt / I_e tabulated) = -0.032 +- 0.027 dex over 7949 galaxies (the small mean offset is the k-correction and Galactic extinction Campbell+2014 apply and I did not))
+  
+dimensionless Jeans solution: sigma_ap = F(x) sqrt(G M_*/R_e).  Newtonian limit F = 0.4176 at aperture R_e/8 (equivalently a virial coefficient 1/F^2 = 5.73, against Cappellari+2006's beta(n=4) = 5.93)
+  [PASS] 52.1 SCALE-FREENESS CONTROL (can fail) -- the framework's predicted dispersion really is sqrt(G M/R_e) times a function of x alone: two galaxies a decade apart in mass but at the same x give the same reduced dispersion.  That is what makes 'a = 2 exactly' a theorem rather than an approximation   (M=1e11/R_e=3.16 kpc gives sigma = 155.4 km/s, M=1e12/R_e=10 kpc gives 276.4 km/s; reduced dispersions agree to 9.6e-17 dex)
+
+--------------------------------------------------------------------------------------------------------------------------------
+1.  THE OBSERVED PLANE, AND WHAT EACH LAW PREDICTS FOR IT
+--------------------------------------------------------------------------------------------------------------------------------
+                                  NOISELESS   a        b   |    WITH sigma ERRORS   a        b   |  orthogonal a        b
+  framework, canonical a_0                2.002   -0.966   |                    1.095   -0.835   |         1.591   -0.932
+  framework, alt a_0                      2.002   -0.957   |                    1.095   -0.830   |         1.591   -0.925
+  framework, 'simple' mu                  2.002   -0.952   |                    1.095   -0.827   |         1.590   -0.921
+  Newton + homology                       2.000   -1.000   |                    1.096   -0.854   |         1.588   -0.960
+  Newton + Sersic non-homology            1.662   -0.946   |                    0.977   -0.835   |         1.524   -0.957
+  OBSERVED                                   --       --   |                    0.769   -0.734   |         1.212   -0.810
+  [PASS] 52.2 THE FRAMEWORK'S THEOREM, VERIFIED NUMERICALLY -- with a homologous family the kernel's argument depends on surface brightness alone, so the framework leaves the sigma coefficient at the exact virial 2 and puts the whole of its tilt into the surface-brightness coefficient.  The noiseless fits reproduce a = 2.000 for both the virial model and the framework, to three decimals   (virial (a, b) = (2.0000, -1.0000) -- the exact plane recovered to 1e-4; framework (2.0024, -0.9656): a moved by +0.0024, b by +0.0344)
+  the framework's a is 2.0024 rather than exactly 2 for a reason worth stating, because it is not numerical: the framework's
+  relation is log R_e = 2 log sigma - log I_e - 2 log F(I_e) + const, and log F is CURVED in log I_e.  A plane fitted to a curved
+  surface leaks a little of that curvature into the other coefficient, because sigma and I_e are correlated across the sample.
+  The leak is 0.002, three orders below the tilt being explained, and it vanishes exactly in the a_0/100 mutation where F is flat.
+  [PASS] 52.3 PIPELINE VALIDATION AGAINST THE PUBLISHED VALUE (can fail) -- de-attenuating the direct fit of the real data by the attenuation the virial mock suffers from the galaxies' own sigma errors recovers the published maximum-likelihood 6dFGS J-band coefficient of Magoulas+2012 (a = 1.404) to better than 1%.  The fitting machinery is therefore doing what it should   (attenuation factor 0.548 from the virial mock (a: 2.000 noiseless -> 1.096 noisy); observed direct a = 0.769 -> de-attenuated 1.403 against Magoulas+2012's 1.404)
+  [PASS] 52.4 AGAINST INTEREST, AND THIS IS THE ITEM'S ANSWER (the check ASSERTS THE FAILURE) -- the observed plane's SIGMA coefficient is far from virial, and the framework cannot move it at all: a_0 tilts the surface-brightness axis and leaves the sigma axis untouched, by the theorem in 52.2.  The item's bar was 'tilt within 0.05 of prediction'; the framework misses the sigma coefficient by six times that.  MOND at R_e is NOT the tilt of the Fundamental Plane   (observed a = 0.769, framework a = 1.095, virial a = 1.096: the framework misses by 0.326 (bar 0.05) and explains 0% of the a tilt.  On b it supplies 16% of the observed tilt (observed -0.734, framework -0.835, virial -0.854))
+  the exponential kernel makes this item HARDER for the framework than plain MOND does: the same calculation with the
+  'simple' mu gives b = -0.827, i.e. 22% of the b tilt against Route A's 16%, because nu - 1 = exp(-sqrt(y)) dies far faster above the transition than 1/(2y) does.
+
+--------------------------------------------------------------------------------------------------------------------------------
+2.  THE SAME STATEMENT AS AN M/L TILT, AND WHERE THE TILT ACTUALLY LIVES
+--------------------------------------------------------------------------------------------------------------------------------
+                                      d log(M/L)/d log L   p (at fixed I_e)   q (at fixed L)
+  OBSERVED                                         0.079              0.020           -0.180
+  framework, canonical a_0                         0.009             -0.005           -0.044
+  framework, alt a_0                               0.012             -0.006           -0.053
+  framework, 'simple' mu                           0.014             -0.005           -0.058
+  Newton + homology                               -0.001             -0.004           -0.009
+  Newton + Sersic non-homology                    -0.014             -0.019           -0.016
+  p is the residual M/L trend with luminosity AT FIXED SURFACE BRIGHTNESS.  The framework's p is ZERO BY CONSTRUCTION --
+  its kernel argument x = 2 pi G Upsilon I_e / a_0 contains no luminosity -- so p is the axis on which this item is decided.
+  [PASS] 52.5 THE STRUCTURE IS RIGHT AND THE AMPLITUDE IS NOT (and this is the honest surprise of the item) -- the observed mass-to-light residual is dominated by SURFACE BRIGHTNESS, not by luminosity, exactly the structure the framework predicts: at fixed I_e the observed trend with L is small and close to the framework's zero.  But on the surface-brightness axis itself the framework delivers only a fraction of the observed coefficient   (p: observed +0.020 vs framework -0.005 (virial -0.004) -- a 0.026 miss; q: observed -0.180 vs framework -0.044 (virial -0.009) -- a 0.136 miss, i.e. the framework supplies 21% of the surface-brightness tilt)
+  
+BIAS CONTROL on q, against interest: R_e and I_e are fitted jointly at (nearly) fixed total magnitude, so an error in
+  log R_e moves log I_e by about -2x and log(M_5/L) by +1x, which fakes a NEGATIVE q.  With the catalogue's own median
+  e_log R_e = 0.048 dex against an intrinsic spread of 0.200 dex, the error fraction is 0.06 and the
+  spurious contribution is about -0.028 -- so the true q is nearer -0.161 than -0.180, and the framework's share
+  of it rises from 21% to about 23%.  Even so it is a minority of the tilt.
+
+--------------------------------------------------------------------------------------------------------------------------------
+3.  CAN ANY UPSILON OR APERTURE RESCUE IT?
+--------------------------------------------------------------------------------------------------------------------------------
+   Upsilon_J  median x = g_N(R_e)/a_0  median nu boost        a        b   % of b tilt        q   % of q tilt
+         0.5                      7.0           1.0578    1.094   -0.806            40   -0.097            52
+         0.8                     11.2           1.0288    1.095   -0.823            26   -0.065            33
+         1.2                     16.8           1.0147    1.095   -0.835            16   -0.044            21
+         1.6                     22.5           1.0088    1.096   -0.841            11   -0.033            14
+         2.2                     30.9           1.0049    1.096   -0.845             7   -0.024             9
+         3.0                     42.1           1.0027    1.096   -0.849             4   -0.018             6
+  no Upsilon moves a, because Upsilon enters only through x, i.e. only through I_e.  Lowering Upsilon buys b tilt but at
+  the price of a stellar M/L below anything a stellar population gives for an old red galaxy, and it never touches a.
+  aperture R_e/8 : framework a = 1.095, b = -0.835   (the aperture moves the zero point, not the tilt)
+  aperture R_e/2 : framework a = 1.095, b = -0.819   (the aperture moves the zero point, not the tilt)
+  aperture R_e   : framework a = 1.094, b = -0.805   (the aperture moves the zero point, not the tilt)
+
+--------------------------------------------------------------------------------------------------------------------------------
+4.  K-BAND CROSS-CHECK
+--------------------------------------------------------------------------------------------------------------------------------
+  K band, N = 7949: observed a = 0.771, b = -0.713; framework a = 1.108, b = -0.834; virial a = 1.109, b = -0.850; framework noiseless a = 2.0021
+  [PASS] 52.6 the K band says the same thing as the J band, so the verdict is not a photometric-band artefact: the framework's sigma coefficient is again pinned to the virial value while the data's is far below it   (framework K-band a = 2.0021 noiseless (theorem holds) and 1.108 noisy, against a virial 1.109 and an observed 0.771)
+
+--------------------------------------------------------------------------------------------------------------------------------
+MUTATION CONTROLS
+--------------------------------------------------------------------------------------------------------------------------------
+  [PASS] M1 mutation: with a_0 divided by 100 every galaxy is Newtonian and the framework's plane must collapse onto the exact virial plane -- it does, so the b tilt reported above really is the kernel's doing and not an artefact of the Jeans solve   (a_0/100 gives noiseless (a, b) = (2.0000, -1.0000) against the virial (2.0000, -1.0000) and the framework's (2.0024, -0.9656))
+  [PASS] M2 mutation: shuffling which galaxy's predicted dispersion goes with which galaxy's radius and surface brightness must destroy the plane -- it does   (shuffled (a, b) = (-0.008, -0.686) against the framework's (+1.095, -0.835))
+
+--------------------------------------------------------------------------------------------------------------------------------
+VERDICT
+--------------------------------------------------------------------------------------------------------------------------------
+  noiseless coefficients -- virial (2.000, -1.000); framework (2.002, -0.966); non-homology (1.662, -0.946); observed, de-attenuated (1.403, -0.734)
+  Sanders' 2000 proposal rested on ellipticals sitting AT the MOND transition.  Measured on 6dFGS with a stellar-population
+  M/L of 1.2, the median internal acceleration at R_e is x = 17 a_0 (5-95%: 6 to 40) -- an order of
+  magnitude above the transition, where Route A's exponential return has almost nothing left to give: the median boost is
+  1.5% in dynamical mass.  The proposal fails on the data, not on the algebra.
+  What survives, and it is worth keeping: the SIGN and the STRUCTURE are the framework's.  The observed mass-to-light residual
+  really is keyed to surface brightness rather than to luminosity, which is what a_0 predicts and what a mass-dependent dark
+  fraction does not; the framework simply supplies a minority of its size.  The item is recorded as a LIABILITY on amplitude
+  with a structural point in the framework's favour, and the 'tilt within 0.05' bar is NOT met.
+
+RESULT: 9 checks, 0 FAIL   rc=0

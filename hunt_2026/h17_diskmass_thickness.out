@@ -1,0 +1,58 @@
+====================================================================================================================
+ITEM 17 -- the DiskMass survey: a dynamical mass-to-light ratio meets the kernel
+====================================================================================================================
+  DMS I parent sample (Bershady+2010): 231 galaxies; DMS XI kinematics (Swaters+2025): 125
+  PPak cross-match: 30 galaxies -- DMS VII analysed 30, so this is that sample
+  of those, 22 carry a kinematic inclination, which the deprojection below needs
+  [PASS] 17-sample the two fetchable catalogues cross-match to EXACTLY the DMS VII sample size, so the galaxies below are the ones the published dynamical mass-to-light ratio was measured on and not some other subset   (30 galaxies with a PPak stellar-dispersion flag, a disc scale length, a distance, a rotation amplitude and a K magnitude; DMS VII analysed 30.  22 of them have a kinematic inclination)
+  disc scale lengths 1.0 - 10.0 kpc (median 3.9); L_K 1.15e+10 - 5.45e+11 Lsun; kinematic inclinations 19 - 45 deg (median 31)
+  SPARC control, same estimator, same footing: median log10(Vflat / V_BTFR) = +0.053 dex over 122 galaxies
+    deprojection 'Vrot as tabulated   ' -> BTFR offset -0.244 dex (-0.297 from SPARC), K-band TF slope 0.248, scatter 0.108 dex
+    deprojection 'Vrot / sin(inc)     ' -> BTFR offset +0.056 dex (+0.002 from SPARC), K-band TF slope 0.231, scatter 0.114 dex
+    deprojection 'Vrot / sin(iiTF)    ' -> BTFR offset +0.119 dex (+0.065 from SPARC), K-band TF slope 0.275, scatter 0.001 dex
+  [PASS] 17-deproj THE DATA TRAP, FOUND AND FIXED.  The fetched rotation column is a PROJECTED amplitude, not a rotation speed: used raw it puts this sample far below the baryonic Tully-Fisher relation, and would have produced a five-fold false liability.  Dividing by sin of the KINEMATIC inclination lands the sample on SPARC's own BTFR offset to three thousandths of a dex.  The inverse-Tully-Fisher inclination is rejected instead of used, because its TF scatter is essentially zero BY CONSTRUCTION and it would make every test below circular.  The cost is stated: this sample's BTFR zero-point is now calibrated, not measured, and must never be quoted as an independent determination of a_0 or of Upsilon   (raw -0.244 dex vs SPARC +0.053 (off by 0.297); /sin(inc) +0.056 (off by 0.002); the iiTF option has TF scatter 0.0006 dex, i.e. exactly zero, which is what 'circular' looks like numerically.  The whole DMS XI column runs down to 6.6 km/s over 125 galaxies, impossible as the deprojected rotation speed of a catalogued spiral)
+  R(2.2 h_R)/h_rot spans 1.8 - 26.0 (median 3.2); at that median the three forms give 0.997 / 0.960 / 0.808 of the asymptotic speed
+
+     footing  RC form  g_obs/a0  nu at DM M/L  g_pred/g_obs  F_b framework  Ups_K required
+   canonical     tanh     1.161          2.24         0.633          0.742           0.625
+   canonical    1-exp     1.036          2.24         0.663          0.721           0.582
+   canonical   arctan     0.741          2.24         0.798          0.657           0.433
+         alt     tanh     0.962          2.40         0.680          0.707           0.569
+         alt    1-exp     0.858          2.40         0.711          0.686           0.530
+         alt   arctan     0.614          2.40         0.850          0.620           0.397
+
+  framework REQUIRES   Upsilon_K = 0.582 (canonical, RC-form range 0.433-0.625), 0.530 (alt); statistical error on the median 0.127
+  DiskMass MEASURES    Upsilon_K = 0.31 +- 0.07  (dynamical, from vertical motions)
+  stellar populations  Upsilon_K = 0.60 +- 0.10  (imported)
+  [PASS] 17 THE FRAMEWORK SIDES WITH STELLAR POPULATIONS AGAINST DISKMASS, and the tension is real but modest.  Inverting the kernel at 2.2 disc scale lengths on the 22 DMS VII galaxies with a usable inclination, the framework needs a K-band mass-to-light ratio close to twice DiskMass's dynamical value -- and that required value lands on the stellar-population number.  So this is a disagreement with ONE measurement, not with the stellar-population consensus, and it is about 2 sigma once the rotation-curve form is carried as a systematic rather than hidden   (required Upsilon_K = 0.582 +- 0.127 (stat) +- 0.096 (RC form) canonical, 0.530 alt; vs DiskMass 0.31 +- 0.07 this is a factor 1.88 at 1.6 sigma; vs stellar populations 0.60 +- 0.10 it is 0.1 sigma)
+  [PASS] 17-Fb the INDEPENDENT cross-check agrees, and it uses no photometry and no mass-to-light ratio at all.  The framework's ratio of baryonic to total rotation speed at 2.2 h_R is fixed by the kernel and the measured acceleration alone; DiskMass measures the same ratio from vertical motions.  The two disagree by the same modest amount, in the same direction, and the implied mass ratio matches the photometric route -- so the result is not an artefact of the K-band photometry   (framework F_b(2.2 h_R) = 0.721 +- 0.021 vs DiskMass's 0.57 +- 0.07 (2.1 sigma); the implied mass ratio (0.721/0.57)^2 = 1.60 against 1.88 from the photometric route -- the two routes agree to 0.28)
+  the alternative, computed beside: DiskMass's own reading is that a dark halo supplies 68% of the centripetal force at 2.2 h_R, which is comfortable for LambdaCDM and is what the survey concluded.  At DiskMass's own M/L the kernel supplies a boost of nu = 2.24 and still falls 34% short of the measured acceleration.
+
+--------------------------------------------------------------------------------------------------------------------
+MUTATION CONTROLS
+--------------------------------------------------------------------------------------------------------------------
+  [PASS] M17-1 with nu = 1 -- no modification at all -- the same rotation speeds demand a maximum-disc mass-to-light ratio ABOVE the stellar-population range, while the kernel's requirement lands inside it.  The factor between them is only 1.8, not the 'several' a first version of this check claimed, because at g_obs of order a_0 the kernel is barely half switched on -- but the direction is what matters: the kernel is doing real work, and the residual disagreement with DiskMass is what is LEFT after it has done so   (nu = 1 requires Upsilon_K = 1.02, above the stellar-population ceiling 0.80; the kernel requires 0.582 (range 0.433-0.625), inside it; DiskMass measures 0.31.  Newton/kernel = 1.75)
+  [PASS] M17-2 tripling a_0 moves the required mass-to-light ratio substantially, so this test IS sensitive to a_0 and is not a rescaling that any acceleration scale would pass   (a_0 x 3 requires Upsilon_K = 0.301 vs 0.582 at the canonical value (-0.29 dex))
+  [PASS] M17-3 THE VERTICAL ROUTE, NOT TAKEN, AND WHY IT CANNOT RESCUE THIS.  The item asked for sigma_z from 2 pi G Sigma_b h_z nu(y).  That estimator's geometry is wrong -- items 33 and 92 were withdrawn for it -- so it is not used to produce a number here.  But its SIGN needs no geometry: any correct nonlinear vertical force from a given baryonic column exceeds the Newtonian one, so a MOND re-analysis of DiskMass's own sigma_z and h_z returns FEWER baryons than their Newtonian analysis did, i.e. an M/L BELOW 0.31.  The framework needs one ABOVE it.  The vertical route runs the wrong way and can only widen the gap, whatever the geometry factor turns out to be   (the boost at these galaxies' accelerations is nu = 2.24 > 1, so the vertical route would return Upsilon_K <= 0.138, against the 0.582 the rotation demands -- a factor 4.2 apart, versus 1.88 on the acceleration route used here)
+  [PASS] M17-4 the rotation-curve functional form is the largest systematic here, because DMS XI tabulates V_rot and h_rot without stating the model.  It is carried, not hidden, and it does NOT change the direction of the result: all three standard forms require a mass-to-light ratio above DiskMass's   (required Upsilon_K = 0.433 to 0.625 across tanh / 1-exp / arctan (a factor 1.44), every one of them above DiskMass's 0.31; alt footing 0.397 - 0.569)
+  [PASS] M17-5 the gas fraction, the one baryonic quantity not measured for these galaxies here, is bracketed from 10% to 30% and moves the answer by less than the disagreement itself, so the conclusion does not rest on it   (required Upsilon_K = 0.612 (f_gas = 0.10) to 0.547 (f_gas = 0.30), a range of 0.064, against a disagreement with DiskMass of 0.272)
+  [PASS] M17-6 the answer is not carried by a few galaxies: dropping the three furthest from the median moves it by less than the statistical error, so this is a property of the sample and not of its tail   (median required Upsilon_K = 0.582 on 22 galaxies, 0.542 on 19 after trimming the three largest deviations (statistical error 0.127))
+
+====================================================================================================================
+ITEM 17 -- verdict
+====================================================================================================================
+  What the item literally asked for -- 30 discs' sigma_z reproduced within 20% -- CANNOT BE SCORED: the
+  per-galaxy sigma_z, h_z and Sigma_dyn of DMS VII are not in VizieR, the publisher's PDF is unreachable
+  from here, and the vertical estimator the item names is the one this repository has withdrawn twice.
+  What CAN be done, and is done here on the correct galaxies, is the same physics in acceleration space.
+  
+  The framework needs Upsilon_K = 0.58 where DiskMass measures 0.31 -- a factor 1.88 at 1.6 sigma, confirmed
+  independently through F_b with no photometry -- and that required value sits on the stellar-population
+  number 0.60 +- 0.10 (0.1 sigma).  So the framework is in tension with ONE dynamical
+  measurement while agreeing with the population synthesis that measurement disagrees with.  Aniyan+2016's
+  published resolution -- DiskMass's luminosity-weighted sigma_z is biased low by young, dynamically cold
+  stars, which raises Sigma_dyn by a factor of order two -- would remove the tension entirely and applies
+  to the Newtonian analysis just as much.  The escape route is not ad hoc for this framework.
+  [PASS] 17 VERDICT -- a LIABILITY, mild, recorded with its escape route named rather than assumed, and with the per-galaxy version marked NOT RUNNABLE from public tables.  The framework requires close to twice DiskMass's dynamically measured stellar mass-to-light ratio, on both footings, on all three rotation-curve models, on the galaxies DMS VII actually analysed, by two independent routes.  It is NOT the factor-of-three kill the 'MOND discs are too thick' framing implies, and it is NOT clean either -- the vertical route would make it worse.  The largest single finding of this item is a data trap: the public rotation column is projected, and using it raw would have produced a five-fold false liability   (required/measured Upsilon_K = 1.88 (canonical) and 1.71 (alt) over 22 galaxies; 1.6 sigma from DiskMass, 0.1 sigma from stellar populations; the F_b route gives 1.60)
+
+RESULT: 11 checks, 0 FAIL   rc=0

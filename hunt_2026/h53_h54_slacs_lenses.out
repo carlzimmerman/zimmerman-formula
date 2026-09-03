@@ -1,0 +1,80 @@
+======================================================================================================================
+SLACS strong lenses -- Auger+2009 (SLACS IX), VizieR J/ApJ/705/1099/lenses
+======================================================================================================================
+  rows read: 85
+  [PASS] A (validation, not a physics result) the lensing geometry is reproduced: M_E recomputed from theta_E, the two redshifts and Auger's own cosmology matches his tabulated Einstein mass   (N = 74, median offset +0.0007 dex, scatter 0.0032 dex)
+  [PASS] B1a (validation) the deprojection is self-consistent: numerically projecting the Prugniel-Simien density back along the line of sight returns the exact Sersic n = 4 projected-mass law   (projected/exact at R/R_e = 0.3, 0.6, 1, 2: 1.0050, 1.0013, 0.9998, 0.9988)
+  [PASS] B1b (validation) the projected phantom mass at the Einstein radius does not depend on where the line of sight is truncated: the deep-MOND phantom's rho ~ 1/r^2 makes the cylinder integrand fall as 1/r^2, so a 200 kpc and a 20 Mpc cylinder give the same answer   (boost with the line of sight cut at 200 kpc / 1 Mpc / 3 Mpc / 20 Mpc = 1.1504 / 1.1545 / 1.1551 / 1.1554)
+  lenses with Einstein radius, Einstein mass, both stellar masses, both stellar fractions and an effective radius: 70
+  median z_lens 0.193, z_src 0.605, theta_E 1.21", R_E 4.07 kpc, R_e(V) 7.53 kpc, R_e(I) 6.07 kpc, sigma 241 km/s
+
+  VALIDATION B -- my de Vaucouleurs light fraction inside R_E against the one implied by Auger's published f_* and M_*:
+     R_e(V): mine/Auger's median 0.918 (-0.037 dex), per-lens scatter 0.038 dex
+     R_e(I): mine/Auger's median 1.117 (+0.048 dex), per-lens scatter 0.077 dex
+  [PASS] B2 AGAINST INTEREST, and it changes how both items must be computed -- I cannot reproduce Auger's own stellar model to better than about 10 per cent.  With his V-band effective radii my de Vaucouleurs puts 8% LESS light inside the Einstein radius than he does; with the I-band radii, 12% MORE.  The V-band version has half the per-lens scatter, so that is probably the radius he used, but the offset does not go away.  Everything below is therefore written to take the projected STELLAR mass from Auger's measured f_*, never from my profile, and to carry the V/I difference as a stated systematic   (V: 0.918 (scatter 0.038 dex); I: 1.117 (scatter 0.077 dex) -- the two bracket unity, and the analysis is written not to depend on which is right)
+
+======================================================================================================================
+ITEM 54 -- can the phantom alone supply the Einstein mass?
+======================================================================================================================
+  the framework's predicted mean convergence at the OBSERVED Einstein radius is kappa_bar = f_*(measured) x B(framework).
+  It is required to be 1.000.  f_* is Auger's; only B is mine, and B is a ratio.
+  BUG FOUND AND FIXED IN THE MAKING, and it ran the wrong way for the framework: the first version of this script computed the
+     boost ONCE, from the Salpeter stellar mass, and then multiplied it by BOTH f_*.  That is wrong -- a Chabrier galaxy is 0.26 dex
+     LIGHTER, so its g_N is lower, so its boost is LARGER.  The boost is recomputed here from each IMF's own stellar mass.  The
+     correction RAISES the Chabrier prediction by about 10 per cent (0.04 dex).  It does not rescue it; see check 54e.
+  canonical      g_N(R_E)/a_0 =  10.0-12.4  |  boost B = 1.168 (V) / 1.136 (I) at Salpeter, 1.290 / 1.238 at Chabrier  |  kappa_bar = B f_*: SALPETER 0.825 / 0.794  (+-0.016 stat), CHABRIER 0.518 / 0.492
+  alt            g_N(R_E)/a_0 =   8.3-10.2  |  boost B = 1.201 (V) / 1.164 (I) at Salpeter, 1.342 / 1.282 at Chabrier  |  kappa_bar = B f_*: SALPETER 0.854 / 0.812  (+-0.016 stat), CHABRIER 0.543 / 0.510
+  Newton (nu=1)  g_N(R_E)/a_0 =  10.0-12.4  |  boost B = 1.000 (V) / 1.000 (I) at Salpeter, 1.000 / 1.000 at Chabrier  |  kappa_bar = B f_*: SALPETER 0.690 / 0.690  (+-0.018 stat), CHABRIER 0.395 / 0.395
+  required boost 1/f_* : Salpeter 1.449, Chabrier 2.532
+  [PASS] 54 LIABILITY (a real negative, stated plainly) -- the phantom CANNOT supply the Einstein mass of a SLACS lens.  The Einstein radius of a massive early-type sits at g_N ~ 10 a_0, deep in the NEWTONIAN part of the kernel, where Route A's projected boost is only about 1.14-1.20.  The measurement requires 1.45 with a Salpeter IMF and 2.5 with a Chabrier one.  The framework therefore delivers only 79-85 per cent of the observed Einstein mass at Salpeter, and 49-54 per cent at Chabrier   (kappa_bar at the observed R_E (must be 1.000): canonical 0.825 (V) / 0.794 (I) +- 0.016, alt 0.854 / 0.812, all Salpeter = -0.084 to -0.068 dex; Chabrier 0.518-0.510; boost available 1.168-1.164 vs required 1.449 (Salp) / 2.532 (Chab))
+  [PASS] 54b what the liability costs, in the only currency that can pay it: the framework needs a stellar mass-to-light ratio HEAVIER than Salpeter by the shortfall.  That is not absurd -- high-dispersion ellipticals are independently measured to be bottom-heavy, at or above Salpeter -- but it leaves the framework with EXACTLY ZERO room for anything else inside the Einstein radius, and it is 0.3 dex above the Chabrier-like ratios the same stellar-population models give for the discs where the framework's other results live   (required M_*/L relative to Salpeter: 1.17x-1.26x (= +0.068 to +0.100 dex); relative to Chabrier: 1.93x = +0.286 dex)
+  [PASS] 54e THE BUG THIS SCRIPT FOUND IN ITSELF, recorded because it ran the wrong way: the boost had been computed once at the Salpeter stellar mass and then applied to the Chabrier stellar fraction too.  A Chabrier galaxy is 0.26 dex lighter, so it sits at a LOWER g_N/a_0 and gets a LARGER boost.  Fixing it raises the Chabrier prediction by about 10 per cent -- in the framework's favour -- and still leaves it a factor of two short, so the verdict is unchanged and the number is now right   (Chabrier kappa_bar: buggy (Salpeter boost) 0.470 -> corrected 0.518, a +0.043 dex correction TOWARD the framework; still 1.93x short of 1.000)
+  [PASS] 54c both ways -- the same table is a much WORSE problem for a bare 'stars only, no dark matter at all' reading, which is the only other zero-parameter option: Newtonian stars at Salpeter reach 69 per cent of the Einstein mass.  The phantom closes over 40 per cent of that gap for free.  This is recorded as a partial success that still falls short, not as a total failure   (Newtonian stars only 0.690 -> framework 0.825 -> required 1.000; the phantom closes 43% of the Newtonian gap)
+
+======================================================================================================================
+ITEM 53 -- the Einstein radius predicted from the stars and a_0 alone
+======================================================================================================================
+  solve for the radius where the mean convergence is 1, written so the stellar normalisation cancels:
+        f_*(Auger)  x  B(R)  x  M2D_*(R/R_e)/M2D_*(R_E/R_e)  =  (R/R_E)^2 .
+  Nothing on the left needs my stellar mass -- only the SHAPE of the light and the framework's boost.
+  canonical      R_E(pred)/R_E(obs) SALPETER: 0.840 +- 0.019 (V) / 0.823 (I); scatter 0.094 dex; within 10% individually 24%; CHABRIER 0.518 / 0.525   (N = 70)
+  alt            R_E(pred)/R_E(obs) SALPETER: 0.864 +- 0.018 (V) / 0.837 (I); scatter 0.093 dex; within 10% individually 27%; CHABRIER 0.533 / 0.536   (N = 70)
+  Newton (nu=1)  R_E(pred)/R_E(obs) SALPETER: 0.751 +- 0.022 (V) / 0.767 (I); scatter 0.099 dex; within 10% individually 14%; CHABRIER 0.460 / 0.484   (N = 70)
+  [PASS] 53 the Einstein radius IS predicted with no halo and no fitting -- from the shape of the light, the measured stellar fraction and a_0 -- and it comes out SHORT by 14-18 per cent with a Salpeter IMF and by nearly half with a Chabrier one.  The hunt list asked for 50 lenses within 10 per cent; only a quarter of them land there, and the miss is a systematic offset, not scatter   (canonical 0.840 (V) / 0.823 (I) +- 0.019; alt 0.864 / 0.837; Newton stars-only 0.751; Chabrier 0.518; scatter 0.094 dex; 24% within 10% individually)
+  [PASS] 53b the framework beats the no-dark-matter Newtonian baseline, the only other zero-parameter prediction on offer, but closes only about a third of its gap   (Newtonian stars only 0.751 -> framework 0.840 -> required 1.000; the phantom closes 36% of the gap)
+  [PASS] 53c AGAINST INTEREST -- items 53 and 54 are NOT independent results.  They are the same equation, mean convergence = 1, solved once for the mass and once for the radius; the mass deficit and the radius deficit are one number related by the local logarithmic slope of the projected mass.  They must be entered on the ledger as ONE item, not two   (mass deficit +0.084 dex, radius deficit +0.076 dex, ratio 1.11 = the local d log M_2D/d log R at R_E)
+
+======================================================================================================================
+ITEM 54b -- the same lenses' velocity dispersions, an independent handle on the same mass
+======================================================================================================================
+  isotropic spherical Jeans, de Vaucouleurs tracer in the de Vaucouleurs + phantom potential, luminosity-weighted in the
+  SDSS fibre.  This uses the TABULATED stellar mass directly and so is independent of the f_* discrepancy of validation B.
+  canonical      sigma(predicted, Salpeter)/sigma(measured): 0.856 +- 0.024 (V) / 0.955 (I), scatter 0.067 dex
+  alt            sigma(predicted, Salpeter)/sigma(measured): 0.865 +- 0.023 (V) / 0.961 (I), scatter 0.067 dex
+  Newton (nu=1)  sigma(predicted, Salpeter)/sigma(measured): 0.824 +- 0.023 (V) / 0.934 (I), scatter 0.071 dex
+  [PASS] 54d AGAINST MY OWN ESTIMATOR -- the dispersion test CANNOT decide the question, and saying so is the result.  sigma depends on the effective radius as R_e^(-1/2), and the V-band and I-band radii of these galaxies differ enough that the predicted dispersion moves by 11 per cent between them -- 0.86 with one, 0.96 with the other.  A 0.08 dex mass deficit is 0.04 dex in sigma, well inside that.  The dispersions are consistent with the lensing deficit and equally consistent with none; they neither confirm nor refute item 54, and they are recorded as UNDERPOWERED rather than as agreement   (sigma_pred/sigma_obs = 0.856 (V) / 0.955 (I) +- 0.024; Newton 0.824 / 0.934; the two bands' predictions differ by 0.048 dex in sigma = 0.095 dex in mass, larger than the 0.084 dex effect being tested)
+
+======================================================================================================================
+MUTATION CONTROLS -- these must break
+======================================================================================================================
+  [PASS] M1 mutation: a_0 multiplied by 100 must massively OVER-predict the Einstein radius.  If it did not, the estimator would not be sensitive to a_0 at all and neither item could ever have been a test of it   (R_E(pred)/R_E(obs) with a_0 x 100 = 4.433, against 0.840 at the canonical value)
+  [PASS] M2 mutation: switching the kernel off (nu = 1) must move both observables the other way   (R_E ratio 0.751 < 0.840; kappa_bar 0.690 < 0.825)
+  [PASS] M3 mutation: pairing each lens's Einstein radius with ANOTHER lens's stellar fraction, mass and size must inflate the scatter.  It does, but only by a factor 1.4, and the honest reading of that is that this estimator is dominated by Auger's per-lens f_*, which is itself derived from the same Einstein mass -- so the per-lens scatter of item 53 is NOT an independent measure of the prediction's quality.  The systematic offset is the result; the scatter is not   (shuffled scatter 0.128 dex against the real 0.094 dex, a factor 1.36)
+
+======================================================================================================================
+THE ALTERNATIVE, AND WHAT COULD STILL RESCUE THE FRAMEWORK
+======================================================================================================================
+  LambdaCDM's reading of the same table: the dark fraction inside theta_E is 0.60 (Chabrier) / 0.31 (Salpeter),
+  which an NFW halo of the mass abundance-matching gives these galaxies supplies comfortably.  That is a FIT with two free
+  parameters per lens, not a prediction -- but it HAS the freedom, and on this observable the framework has none.
+  the systematic that decides how hard the liability bites: Auger's own stellar-mass error is 0.08 dex per lens, my
+      reproduction of his stellar model is good only to 0.038 dex, and the SPS/IMF zero point is worth ~0.1 dex on top.
+      The shortfall is 0.084 dex.  So this is a liability AT the level of the stellar-mass systematic, NOT a clean kill.
+  what is NOT available as an escape: (a) the external-field effect, which would only reduce the phantom further; (b) a larger
+      a_0 -- the alt footing moves kappa_bar from 0.825 to 0.854, a fifth of what is needed; (c) hot gas, a few per cent of M_* inside 5 kpc.
+  what IS available: a bottom-heavy IMF above Salpeter in high-dispersion ellipticals, which is independently measured.  The
+  cost is that the framework then needs super-Salpeter ratios here and Chabrier-like ratios in the discs where its other
+  results live -- and item 76 of this hunt DERIVES the disc value from a_0, so the two cannot be tuned separately.
+  [PASS] 53/54 SUMMARY the joint verdict on both items: at Salpeter the framework is short by 0.08-0.10 dex in Einstein mass and radius, with the same galaxies' dispersions unable to confirm or refute that at the precision the effective radii allow; at Chabrier it is short by 0.29 dex and dead on this observable.  One LIABILITY, sized, with the escape route named and priced   (kappa_bar 0.794-0.854 (Salpeter) / 0.510-0.518 (Chabrier); R_E ratio 0.823-0.864; sigma ratio 0.856-0.955; N = 70 lenses)
+
+RESULT: 16 checks, 0 FAIL   rc=0

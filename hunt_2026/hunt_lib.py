@@ -94,3 +94,55 @@ def fit_loglog(x, y, w=None):
     else:
         W = np.diag(w); s, b = np.linalg.solve(A.T @ W @ A, A.T @ W @ ly)
     return s, b, (ly - (s*lx + b)).std()
+# ---------------------------------------------------------------- ALFALFA (hunt items 31, 32)
+# Fetched this session from the VizieR CfA mirror into real_research/data/:
+#   alfalfa_a100_haynes2018.tsv        J/ApJ/861/49  table2   -- ALFALFA alpha.100, 31502 HI sources (W50, M_HI, D, SNR, rms)
+#   alfalfa_sdss_durbala2020_t1/2.tsv  J/AJ/160/271  table1/2 -- ALFALFA-SDSS: SDSS r-band axis ratio b/a and stellar masses
+#   alfalfa_huds_leisman2017.tsv       J/ApJ/842/133 table1   -- 115 HI-bearing ultra-diffuse ALFALFA galaxies ("almost darks")
+def vizier_tsv(fname):
+    """VizieR ASU-TSV: '#' comment block, then header / units / dashes / rows.  Returns a list of dicts of strings."""
+    rows = [l.rstrip("\n").split("\t") for l in open(os.path.join(DATA, fname), encoding="latin-1")
+            if l.strip() and not l.startswith("#")]
+    hdr = [h.strip() for h in rows[0]]
+    return [{hdr[i]: (r[i].strip() if i < len(r) else "") for i in range(len(hdr))} for r in rows[3:]]
+def _f(v):
+    try: return float(v)
+    except Exception: return float("nan")
+def inclination_from_ba(ba, q0=0.2):
+    """Hubble's formula, intrinsic axis ratio q0 = 0.2.  Returns inclination in DEGREES (nan where b/a missing)."""
+    ba = np.asarray(ba, dtype=float); q = np.clip(ba, q0 + 1e-6, 1.0)
+    return np.degrees(np.arcsin(np.sqrt(np.clip((1 - q**2)/(1 - q0**2), 0.0, 1.0))))
+def load_alfalfa():
+    """alpha.100 merged with the ALFALFA-SDSS value-added catalogue.  Arrays, one entry per alpha.100 source."""
+    a = vizier_tsv("alfalfa_a100_haynes2018.tsv")
+    t1 = {r["AGC"].strip(): r for r in vizier_tsv("alfalfa_sdss_durbala2020_t1.tsv")}
+    t2 = {r["AGC"].strip(): r for r in vizier_tsv("alfalfa_sdss_durbala2020_t2.tsv")}
+    g = [r["AGC"].strip() for r in a]
+    col = lambda k: np.array([_f(r[k]) for r in a])
+    d = dict(agc=np.array(g), W50=col("W50"), eW50=col("e_W50"), W20=col("W20"), flux=col("HIflux"),
+             eflux=col("e_HIflux"), snr=col("SNR"), rms=col("rms"), dist=col("Dist"), edist=col("e_Dist"),
+             logMHI=col("logMHI"), elogMHI=col("e_logMHI"), code=col("HI"))
+    d["ba"]    = np.array([_f(t1[k]["b/a"])    if k in t1 else np.nan for k in g])
+    d["eba"]   = np.array([_f(t1[k]["e_b/a"])  if k in t1 else np.nan for k in g])
+    d["pflag"] = np.array([_f(t1[k]["Flag"])   if k in t1 else np.nan for k in g])
+    d["logMsM"] = np.array([_f(t2[k]["logMsM"]) if k in t2 else np.nan for k in g])
+    d["logMsT"] = np.array([_f(t2[k]["logMsT"]) if k in t2 else np.nan for k in g])
+    d["inc"] = inclination_from_ba(d["ba"])
+    return d
+def load_huds():
+    """Leisman+2017 HI-bearing ultra-diffuse ALFALFA galaxies, merged with the ALFALFA-SDSS b/a and M_star."""
+    h = vizier_tsv("alfalfa_huds_leisman2017.tsv")
+    t1 = {r["AGC"].strip(): r for r in vizier_tsv("alfalfa_sdss_durbala2020_t1.tsv")}
+    t2 = {r["AGC"].strip(): r for r in vizier_tsv("alfalfa_sdss_durbala2020_t2.tsv")}
+    g = [r["AGC"].strip() for r in h]
+    col = lambda k: np.array([_f(r[k]) for r in h])
+    d = dict(agc=np.array(g), cz=col("cz"), W50=col("W50"), eW50=col("e_W50"), flux=col("SdV"),
+             dist=col("Dist"), logMHI=col("logMHI"), elogMHI=col("e_logMHI"), mug0=col("mug0"),
+             rh=col("rh"), gMAG=col("gMAG"), gr=col("g-r"),
+             sset=np.array([r["Set"].strip() for r in h]))
+    d["ba"]     = np.array([_f(t1[k]["b/a"])    if k in t1 else np.nan for k in g])
+    d["pflag"]  = np.array([_f(t1[k]["Flag"])   if k in t1 else np.nan for k in g])
+    d["logMsM"] = np.array([_f(t2[k]["logMsM"]) if k in t2 else np.nan for k in g])
+    d["logMsT"] = np.array([_f(t2[k]["logMsT"]) if k in t2 else np.nan for k in g])
+    d["inc"] = inclination_from_ba(d["ba"])
+    return d

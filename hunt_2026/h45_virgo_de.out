@@ -1,0 +1,114 @@
+================================================================================================================================
+0. DATA INTEGRITY -- the published table is checked before it is used
+================================================================================================================================
+  stellar mass recomputed from M_H with (M/L)_H = 0.73 vs the stellar mass implied by their own f_DM column, galaxy by galaxy: +0.0022 +- 0.0124 dex over 39 dEs
+  [PASS] 45-D1 the stellar masses used here reproduce Toloba+2014's own published dark-matter fractions galaxy by galaxy, so the M_H photometry, the solar H-band AB magnitude and the (M/L)_H convention are all being read correctly   (+0.0022 +- 0.0124 dex)
+  NOTE for anyone re-using the source: in the published table the M_e^* / f_DM-adjacent stellar-mass COLUMN is ordered by increasing stellar mass while the galaxy-name column is ordered by VCC number, so a join by name on that column is wrong (it mismatches by up to 0.9 dex).  The f_DM column IS name-consistent, which is what check 45-D1 above verifies against.
+  [PASS] 45-D2 the stellar masses are recomputed here rather than joined from that column, and the recomputed set matches the published set once both are sorted -- so the numbers are the published ones, just correctly attached to their galaxies   (recomputed log M_e^* spans 8.29-9.17, published column spans 8.27-9.18)
+
+================================================================================================================================
+1. where these galaxies sit in acceleration
+================================================================================================================================
+  39 SMAKCED dEs at D = 16.5 Mpc.  sigma_e 20.3-52.4 km/s; M_H -17.1 to -19.3; R_e 0.55-2.27 kpc; projected distance from M87 168-2656 kpc
+  canonical  external NEWTONIAN field at the projected radius: y_e = 0.01-0.18 a_0 (true field 0.09-0.51 a_0);  internal Newtonian field from the stars: y_i = 0.19-3.42 a_0 (median 0.84)
+  alt        external NEWTONIAN field at the projected radius: y_e = 0.01-0.15 a_0 (true field 0.08-0.46 a_0);  internal Newtonian field from the stars: y_i = 0.16-2.83 a_0 (median 0.70)
+  [PASS] 45a AGAINST THE ITEM AS POSED -- the hunt list assumed an external field of e_N ~ 1-3 a_0 for Virgo dEs.  It is not that strong on any defensible baryonic mass for the cluster: the TRUE external field is 0.1-0.5 a_0 and is a ~20% perturbation on these galaxies' own internal field, not a dominant term.  So item 45's premise is only partly right, the external-field suppression here is real but modest, and the item cannot deliver the clean EFE-dominated test it promised   (canonical: median TRUE external field 0.24 a_0 vs median true internal field 1.40 a_0, ratio 0.18; Newtonian y_ext = 0.05 vs y_int = 0.84)
+
+================================================================================================================================
+2. the test: the mass boost inside R_e, predicted against measured
+================================================================================================================================
+  canonical  boost with the Virgo EFE: predicted 1.13-2.15 (median 1.40); required by the data 1.01-5.94 (median 1.84);  log10(required/predicted) = +0.132 dex, scatter 0.156
+  canonical    same with the EFE switched OFF (isolated MOND, an upper bound on the boost): predicted median 1.67, log10(required/predicted) = +0.080 dex, scatter 0.147
+  alt        boost with the Virgo EFE: predicted 1.16-2.30 (median 1.47); required by the data 1.01-5.94 (median 1.84);  log10(required/predicted) = +0.108 dex, scatter 0.155
+  alt          same with the EFE switched OFF (isolated MOND, an upper bound on the boost): predicted median 1.77, log10(required/predicted) = +0.053 dex, scatter 0.147
+  the Newtonian / no-dark-matter alternative (boost = 1 exactly): log10(required/1) = +0.264 dex, scatter 0.179 -- i.e. the data need a median factor 1.84 of extra mass inside R_e that pure baryons cannot supply, which is the whole content of Toloba+2014's f_DM = 0.46
+  [PASS] 45b THE RESULT, and it is a partial success for the framework in a regime where it had no freedom: the boost these dEs' measured dynamical masses require is 1.84x their stars, and the framework delivers 1.40x with the cluster field on and 1.67x with it off -- a 0.13 dex shortfall with the EFE, 0.08 dex without it, against a 0.26 dex Newtonian shortfall.  So the kernel supplies most of the missing mass and the EFE term makes the agreement WORSE, not better: reported that way round   (canonical +0.132 dex (scatter 0.156); alt +0.108 dex (scatter 0.155); Newtonian +0.264 dex (scatter 0.179))
+  [PASS] 45c AGAINST INTEREST -- it is NOT Kepler-grade and must not be sold as one: the galaxy-to-galaxy scatter about the predicted boost is 0.16 dex in mass (0.08 dex in sigma), half again the 0.1-dex bar, and the observational scatter in f_DM is itself large.  The item is a consistency, not a regularity   (scatter 0.156 dex (canonical) / 0.155 dex (alt) about the zero-parameter prediction, against a 0.100 bar)
+  chi^2 against the published f_DM uncertainties (39 dEs, ZERO fitted parameters in every case): framework+EFE 71.4 | framework isolated 43.2 | Newtonian (no dark matter) 194.6
+  per point that is chi^2/N = 1.83 | 1.11 | 4.99.  The isolated framework prediction is an ACCEPTABLE fit with no fitted parameter at all; Newton with the same baryons is not.
+  [PASS] 45b2 THE STRONGEST POSITIVE RESULT IN THIS SCRIPT, quoted with the published uncertainties rather than as a median: the framework's zero-parameter mass boost fits these 39 Virgo dEs at chi^2/N = 1.1 (isolated kernel), while a no-dark-matter Newtonian prediction with the same stars gives chi^2/N = 5.0 and is excluded by delta chi^2 = 151.  Nothing was fitted.  SEE SECTION 4b BEFORE QUOTING THE 1.1: a per-galaxy rather than sample-average rotation correction takes it to 1.5, so the defensible statement is 'chi^2/N of 1.1-1.5 against Newton's 5.0', not the lower end alone   (chi^2/N: framework isolated 1.11, framework+Virgo EFE 1.83, Newtonian 4.99; delta chi^2 (Newton - framework isolated) = 151.4 on 39 galaxies, 0 free parameters)
+  chi^2 as a function of the Virgo baryonic mass that sources the external field (canonical footing):  0.0e+00: 43.2 | 2.5e+12: 52.0 | 5.0e+12: 56.1 | 1.0e+13: 62.3 | 2.0e+13: 71.4 | 4.0e+13: 84.7 | 8.0e+13: 103.0
+
+  chi^2 over the (M/L)_H x external-field plane -- the honest test of whether 45f is a real preference or a degeneracy:
+     (M/L)_H = 0.54   M_Virgo=0e+00:   81.1 | M_Virgo=2e+13:  140.5 | M_Virgo=6e+13:  184.4
+     (M/L)_H = 0.73   M_Virgo=0e+00:   43.2 | M_Virgo=2e+13:   71.4 | M_Virgo=6e+13:   94.7
+     (M/L)_H = 0.92   M_Virgo=0e+00:   33.0 | M_Virgo=2e+13:   43.5 | M_Virgo=6e+13:   54.8
+     (M/L)_H = 1.10   M_Virgo=0e+00:   37.3 | M_Virgo=2e+13:   37.3 | M_Virgo=6e+13:   41.3
+     best cell: (M/L)_H = 0.92, M_bar(Virgo) = 0e+00 at chi^2 = 33.0; the baseline cell ((M/L)_H = 0.73 with the EFE on) is 71.4
+     REPORTED AGAINST THE PREVIOUS PARAGRAPH: raising the stellar (M/L)_H recovers most of what the external field costs, so
+     45f is partly a degeneracy with the stellar population and NOT a clean statement about the external-field effect.
+  [PASS] 45f AGAINST INTEREST -- and this is the item's real negative: the Virgo external field makes the fit WORSE, monotonically.  The data prefer no external field at all, and the framework's own baseline cluster mass costs delta chi^2 ~ 28.  Modified gravity REQUIRES the external-field effect, so this is a (weak, systematics-limited) point against the modified-gravity leg of the framework specifically -- modified inertia would not pay this price.  The check asserts that the trend is real   (chi^2 rises monotonically from 43.2 at zero external field to 103.0 at M_bar(Virgo) = 8e13; the baseline 2e13 costs delta chi^2 = 28.2.  But raising (M/L)_H to 0.92 recovers it (chi^2 43.5 with the EFE on vs 43.2 with it off at 0.73), so the preference is partly degenerate with the stellar population; and the published f_DM errors are formal and share a common (M/L)_H systematic, so these chi^2 differences are upper bounds on the real significance)
+
+================================================================================================================================
+3. the systematics that could be doing the work
+================================================================================================================================
+  Virgo M_bar 1e13 (half)          predicted boost median 1.47;  log10(required/predicted) = +0.116 dex (scatter 0.153)
+  Virgo M_bar 2e13 (baseline)      predicted boost median 1.40;  log10(required/predicted) = +0.132 dex (scatter 0.156)
+  Virgo M_bar 6e13 (triple)        predicted boost median 1.27;  log10(required/predicted) = +0.174 dex (scatter 0.162)
+  3-D radius = 1.4x projected      predicted boost median 1.43;  log10(required/predicted) = +0.117 dex (scatter 0.155)
+  3-D radius = 2.0x projected      predicted boost median 1.47;  log10(required/predicted) = +0.115 dex (scatter 0.154)
+  (M/L)_H = 0.54 (-1 sigma)        predicted boost median 1.48;  log10(required/predicted) = +0.235 dex (scatter 0.157)
+  (M/L)_H = 0.92 (+1 sigma)        predicted boost median 1.34;  log10(required/predicted) = +0.052 dex (scatter 0.156)
+  [PASS] 45d AGAINST INTEREST -- the systematic budget is LARGER than the signal.  Tripling Virgo's baryonic mass, de-projecting the cluster-centric radii, or moving the stellar (M/L)_H by its published 1 sigma each move the answer by more than the 0.1-dex agreement of check 45b.  So 45b is a consistency inside a wide band, and cannot be quoted as a measurement   (median log10(required/predicted) ranges +0.052 to +0.235 dex over the systematic scan, a 0.183 dex band around a 0.132 dex signal)
+
+================================================================================================================================
+4. the EFE-SPECIFIC signature: the radial trend, which the normalisation cannot fake
+================================================================================================================================
+  canonical  d log10(boost)/d log10(R_proj):  PREDICTED by the framework's EFE +0.105;  MEASURED in the dEs -0.022 +- 0.097 (N = 39)  ->  the measurement sits -1.31 sigma from the prediction and -0.23 sigma from zero
+  alt        d log10(boost)/d log10(R_proj):  PREDICTED by the framework's EFE +0.110;  MEASURED in the dEs -0.022 +- 0.097 (N = 39)  ->  the measurement sits -1.37 sigma from the prediction and -0.23 sigma from zero
+              (the predicted slope is robust to Virgo's baryonic mass: M_bar = 1e+13 gives +0.094 dex/dex)
+              (the predicted slope is robust to Virgo's baryonic mass: M_bar = 2e+13 gives +0.105 dex/dex)
+              (the predicted slope is robust to Virgo's baryonic mass: M_bar = 6e+13 gives +0.123 dex/dex)
+  [PASS] 45e AGAINST INTEREST, and the honest reading of the item's sharpest test: the framework's external-field effect predicts that the required mass boost must RISE with cluster-centric radius, and the measured trend is flat and slightly negative -- but the measurement is not precise enough to say so.  The measured slope is only ~1.3 sigma from the predicted one, so this test is UNDERPOWERED, not a kill.  It is recorded that way rather than as the failure it superficially looks like   (canonical: predicted +0.105 dex/dex, measured -0.022 +- 0.097, difference 1.31 sigma over 168-2656 kpc; separating the two at 3 sigma would need 204 dEs at this precision)
+  caveat both ways, and it is a big one: only the PROJECTED cluster-centric radius is known.  Projection scatters true 3-D
+  radii into small projected ones and therefore washes out exactly this trend, so a flat measured slope is what a correct
+  EFE would ALSO produce if the line-of-sight depth of the cluster is comparable to its projected extent.  Redshift-space
+  membership distances, not more dEs, are what would make this test decisive.
+
+================================================================================================================================
+4b. ROTATION -- the one thing the published estimator averages over, tested per galaxy
+================================================================================================================================
+  Toloba+2014's aperture dispersion is defined (their eq. 4) as the flux-weighted sqrt(V^2 + sigma^2), so rotational support IS in their mass estimator -- but only through their POPULATION fit sigma_2D = 6.7 + 0.9 sigma_e (their eq. 5), which gives
+  every dE the average rotation correction rather than its own.  These dEs span V_rot/sigma_e = 0.00-1.51 (median 0.46), so that is not a small spread.  Two things are checked:
+    the per-galaxy sigma_2D reproduces their population fit to 0.950 +- 0.109 in the median, so the two are calibrated against each other and only the SPREAD differs
+    required boost with the per-galaxy rotation correction: median 1.88 (published 1.84); log10(required/predicted) = +0.135 dex with the EFE, +0.071 isolated, scatter 0.189 (published-based scatter 0.156)
+    residual vs V_rot/sigma_e: published estimator slope -0.053 +- 0.067 dex per unit (-0.79 sigma); per-galaxy-corrected estimator slope +0.158 +- 0.078 (+2.01 sigma)
+    chi^2 with the rotation-corrected masses: framework isolated 58.3 (chi^2/N = 1.50), Newtonian 198.8 (5.10); published-mass values were 43.2 and 194.6
+  [PASS] 45g the rotation test comes out MIXED and is reported that way rather than as either a confirmation or a problem.  What it does NOT do is move the median: correcting each dE for its own rotation instead of the sample-average shifts the zero point by under 0.01 dex either way, so 45b's agreement is not an artefact of averaged rotation.  What it DOES do is inflate the SCATTER (0.16 -> 0.19 dex) and worsen the fit (chi^2/N 1.1 -> 1.5), which is unfavourable.  And the diagnostic points the other way from what I built it for: the residual of the PUBLISHED estimator is flat in V_rot/sigma_e (-0.8 sigma) while my per-galaxy version develops a +2.0 sigma trend, so the population fit is the better-calibrated of the two and my correction over-corrects the fast rotators.  The per-galaxy version is therefore a systematic BRACKET, not an improvement   (median log10(required/predicted) +0.132 -> +0.135 dex with the EFE, +0.080 -> +0.071 isolated; chi^2/N (framework isolated) 1.11 -> 1.50 against Newtonian 4.99 -> 5.10; residual vs V_rot/sigma_e +2.01 sigma)
+
+================================================================================================================================
+5. mutation controls
+================================================================================================================================
+  [PASS] M1 mutation -- shuffling which dE gets which measured dynamical mass must inflate the scatter about the prediction   (shuffled 0.183 vs real 0.156 dex)
+  [PASS] M2 mutation -- a_0 raised 10x must change the predicted boost substantially (the whole point is that these galaxies sit at g ~ a_0, where the kernel is doing real work)   (median log10(required/predicted) moves +0.132 -> -0.205 dex)
+  [PASS] M3 mutation -- switching the kernel off entirely (nu = 1) must make the agreement worse   (Newtonian +0.264 dex vs framework +0.132 dex)
+
+================================================================================================================================
+VERDICT
+================================================================================================================================
+  ITEM 45 -- the hunt list flagged this one as a probable LIABILITY ("observed sigma possibly too high, as for UDGs").
+  It is not.  It is the best-behaved of the four items in this pass, and it is still not a second law.
+  The 39 SMAKCED Virgo dEs need a median mass boost of 1.84 over their stars inside R_e.  The framework's kernel,
+  with ZERO fitted parameters and the published stellar (M/L)_H = 0.73, delivers 1.67 isolated and 1.40 with the Virgo
+  external field on.  Against the published f_DM uncertainties that is chi^2/N = 1.11 isolated and 1.83 with the EFE,
+  versus 4.99 for a no-dark-matter Newtonian prediction with the same stars -- Newton is excluded at delta chi^2 = 151.
+  So the observed dispersions are NOT anomalously high here, unlike the ultra-faints of item 43 and the UDGs of item 42.
+  Three things stop it being promoted, and all three are the honest content of the script:
+    (i)   the residual scatter about the zero-parameter prediction is 0.16 dex in mass, half again the 0.1-dex Kepler bar;
+    (ii)  the systematic band -- Virgo's baryonic mass, de-projection, the published +-0.19 on (M/L)_H -- is 0.18 dex wide,
+          larger than the agreement it would be used to claim; and
+    (iii) the one EFE-specific discriminant, the predicted rise of the boost with cluster-centric radius, is measured at
+          -0.02 +- 0.10 dex/dex against +0.10 predicted -- only 1.3 sigma apart, and projection of 3-D radii onto the sky
+          would flatten the trend anyway.  Underpowered, not failed.
+  And the chi^2/N = 1.11 above must be quoted as a RANGE, not a number: replacing the published sample-average rotation
+  correction with a per-galaxy one (section 4b) leaves the zero point alone but takes it to 1.50, against a Newtonian
+  4.99-5.10.  The framework's advantage over no-dark-matter Newton survives that bracket; the claim of an
+  acceptable ABSOLUTE fit does not survive it cleanly.
+  ONE SUB-RESULT WORTH CARRYING FORWARD, with its caveat attached: turning the Virgo external field ON makes the fit
+  monotonically worse (chi^2 43 -> 103 as M_bar(Virgo) goes 0 -> 8e13).  Modified gravity requires the external-field
+  effect, so that would be a point against the modified-gravity leg specifically -- except that raising the stellar (M/L)_H
+  from 0.73 to 0.92, well inside its published error, buys back essentially all of it (chi^2 44 with the EFE on).
+  The two effects are degenerate on this data, so nothing is claimed from it.
+  Booked as a NULL: a real consistency, no regularity, and no discriminating power at the present systematics.
+
+RESULT: 13 checks, 0 FAIL   rc=0

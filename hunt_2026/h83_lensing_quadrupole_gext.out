@@ -1,0 +1,104 @@
+======================================================================================================================
+ITEM 83 -- is the lensing quadrupole around isolated galaxies aligned with g_ext?
+======================================================================================================================
+
+----------------------------------------------------------------------------------------------------------------------
+PART A -- the phantom's own quadrupole, in three dimensions
+----------------------------------------------------------------------------------------------------------------------
+  EFESolve returns rho_ph on a (r, mu) grid in units of r_M = sqrt(G M_b/a_0) and a_0/(G r_M).  Its multipoles rho_l(r) are extracted by Gauss-Legendre quadrature in mu; the l = 2 to l = 0 ratio is the quantity the item is really asking about, before any projection.
+  the analytic far-field form only applies well beyond the EFE radius r_EFE = r_M/sqrt(e_N), where the external field overtakes the galaxy's own, so the table is indexed by r/r_EFE rather than by r/r_M.
+        e_N    r/r_M  r/r_EFE  rho_2/rho_0  phi_2/phi_0 (total)  analytic -(L/3)/(1+L/3)
+      0.003    18.31      1.0        -1.57               0.0396                   0.1935
+      0.003    91.55      5.0      4668.89               0.1823                   0.1935
+      0.003   273.20     15.0     11988.43               0.1922                   0.1935
+      0.010     9.97      1.0        -1.42               0.0380                   0.1883
+      0.010    50.15      5.0      4674.78               0.1774                   0.1883
+      0.010   149.64     15.0     11988.92               0.1870                   0.1883
+      0.030     5.77      1.0        -1.51               0.0365                   0.1801
+      0.030    28.85      5.0      4649.67               0.1697                   0.1801
+      0.030    86.63     15.0     11992.69               0.1789                   0.1801
+      0.100     3.16      1.0        -1.54               0.0334                   0.1651
+      0.100    15.80      5.0      4704.59               0.1555                   0.1651
+      0.100    47.45     15.0     11997.12               0.1639                   0.1651
+  the DENSITY ratio in the middle column is unusable as a headline and is printed to show why: in the external-field-dominated region the monopole phantom density passes through zero, so rho_2/rho_0 diverges and even changes sign.  The POTENTIAL ratio is the well-behaved statement, and it has an independent analytic value to be checked against.
+  [PASS] 83a the phantom's quadrupole is REAL, is PROLATE along g_ext (positive ratio), and is large -- the quadrupole of the total potential is 16-19 per cent of its monopole -- and the solver reproduces the independent analytic far-field value -(L/3)/(1 + L/3) obtained by linearising QUMOND about a uniform external field.  A sign error or a wrong multipole would fail this   (worst |solver/analytic - 1| = 0.7% over e_N = 0.003-0.1 at r = 15 r_EFE; the analytic ratio runs 0.165 to 0.194.  Nearer in, at r = r_EFE, the ratio is still building up -- which is exactly why the lensing signal grows with radius in the table below)
+
+----------------------------------------------------------------------------------------------------------------------
+PART B -- projecting it, and turning it into a shear (with the kernel CHECKED)
+----------------------------------------------------------------------------------------------------------------------
+  an L* lens with M_b = 5.0e+10 Msun has r_M = 8.6 kpc, so the KiDS radial range 0.035-2.6 Mpc is r/r_M = 4.1 to 301 -- entirely in the regime where the quadrupole has saturated
+  [PASS] 83b the shear inversion is CORRECT, not assumed: for an axisymmetric surface density the code's tangential shear reproduces the textbook DeltaSigma = <Sigma(<R)> - Sigma(R) to better than a few per cent over the radial range used.  A wrong Fourier kernel or a sign error cannot pass this   (worst relative error 1.45% over R = 0.15-1.5 Mpc on a Sigma ~ 1/R test profile, 512^2 grid, cell 12 kpc)
+  uniform elliptical sheet q = 0.4 (major axis along x): interior gamma_1 = -0.4270, exact -(1-q)/(1+q) = -0.4286, error 0.4%
+  uniform elliptical sheet q = 0.6 (major axis along x): interior gamma_1 = -0.2496, exact -(1-q)/(1+q) = -0.2500, error 0.2%
+  uniform elliptical sheet q = 0.8 (major axis along x): interior gamma_1 = -0.1127, exact -(1-q)/(1+q) = -0.1111, error 1.4%
+  [PASS] 83b2 the m = 2 response of the shear code is CORRECT too, not just the monopole: for a uniform elliptical sheet it reproduces the exact interior shear kappa(1-q)/(1+q), with the right sign and orientation, over axis ratios 0.4-0.8   (worst relative error 1.4% over q = 0.4, 0.6, 0.8)
+
+    external field at Theta = 90 deg to the line of sight (the most favourable geometry)
+      R (Mpc)     e=0.003     e=0.010     e=0.030     e=0.100
+        0.059      0.0419      0.0557      0.0590      0.1451
+        0.082      0.0440      0.0990      0.0706      0.2123
+        0.114      0.0486      0.0284      0.1516      0.2487
+        0.158      0.0794      0.0908      0.2234      0.2788
+        0.220      0.0155      0.1620      0.2403      0.2652
+        0.306      0.0823      0.2053      0.2486      0.2591
+        0.425      0.1412      0.2124      0.2337      0.2365
+        0.591      0.1610      0.1981      0.2081      0.2076
+        0.821      0.1546      0.1732      0.1777      0.1760
+        1.141      0.1337      0.1427      0.1445      0.1426
+        1.587      0.1102      0.1146      0.1151      0.1134
+        2.205      0.0889      0.0910      0.0911      0.0895
+  (the entry is the ratio of the cos 2phi amplitude of the tangential DeltaSigma to its azimuthal mean; a value of 0.2 corresponds, for an elliptical halo, to an axis ratio near 0.8)
+
+     Theta (deg)   quadrupole/monopole at 0.5 Mpc, e_N = 0.01  sin^2 Theta
+              90                                       0.2124       1.0000
+              60                                       0.1578       0.7500
+              30                                       0.0516       0.2500
+              10                                       0.0062       0.0302
+  [PASS] 83c the projection dilutes the quadrupole exactly as sin^2(Theta), which is what the analytic projection of a P_2 field predicts -- so a stack of randomly oriented external fields keeps the average factor <sin^2 Theta> = 2/3 and not a random-phase cancellation, PROVIDED the stack is rotated to each lens's own ghat_ext (which is exactly what the committed g_ext vectors make possible)   (quadrupole/sin^2(Theta) = ['0.2124', '0.2104', '0.2066'] at Theta = 90, 60, 30 deg -- constant to 2.8%)
+
+----------------------------------------------------------------------------------------------------------------------
+PART C -- the forecast, against the KiDS errors that are ON DISK
+----------------------------------------------------------------------------------------------------------------------
+          sample    footing     e_N  monopole S/N  quadrupole S/N
+      mass bin 1        alt   0.010          15.4            1.13
+      mass bin 1        alt   0.030          15.4            1.41
+      mass bin 1  canonical   0.010          15.4            1.13
+      mass bin 1  canonical   0.030          15.4            1.39
+      mass bin 2        alt   0.010          20.5            1.88
+      mass bin 2        alt   0.030          20.5            2.28
+      mass bin 2  canonical   0.010          20.5            1.85
+      mass bin 2  canonical   0.030          20.5            2.25
+      mass bin 3        alt   0.010          23.9            2.03
+      mass bin 3        alt   0.030          23.9            2.46
+      mass bin 3  canonical   0.010          23.9            2.02
+      mass bin 3  canonical   0.030          23.9            2.44
+      mass bin 4        alt   0.010          29.1            2.48
+      mass bin 4        alt   0.030          29.1            3.06
+      mass bin 4  canonical   0.010          29.1            2.45
+      mass bin 4  canonical   0.030          29.1            3.01
+  stacking the four mass bins (they are independent lens samples) at e_N = 0.01, canonical footing: combined quadrupole S/N = 3.8
+  [PASS] 83d (FORECAST) the aligned quadrupole is within reach of data that already exist, but only just, and only if the stack is rotated to each lens's own external-field direction.  On the KiDS-1000 isolated lens errors that are on disk it is a 1-3 sigma effect per mass bin and a few sigma combined -- a go-look, not a discovery in waiting   (combined S/N = 3.8 over the four KiDS mass bins at e_N = 0.01 with the <sin^2 Theta> = 2/3 stacking factor included; the single best bin gives 3.06.  The monopole in the same data is detected at S/N = 29, so this is a 13 per cent measurement of a quadrupole on a signal already in hand)
+
+----------------------------------------------------------------------------------------------------------------------
+mutation controls, and the LambdaCDM alternative
+----------------------------------------------------------------------------------------------------------------------
+  MUTATION 1 (external field switched off): quadrupole/monopole at 0.5 Mpc falls from +0.2124 to +0.000000 -- an isolated MOND galaxy's phantom is exactly spherical, so the whole signal is the external field's
+  the LambdaCDM alternative, computed with the same code: a SPHERICAL NFW gives quadrupole/monopole = -0.00000 (zero, as it must) and an NFW flattened to q = 0.8 -- about what dark-matter simulations give for the projected shape -- returns +0.0475, roughly 4 times SMALLER than the framework's +0.2124 at e_N = 0.01.  So the amplitude is a discriminant after all -- but the SIGN-DEFINITE one is still the axis, because a halo's ellipticity axis is the light's and the phantom's is the external field's
+  [PASS] 83e MUTATION CONTROLS behave, and the discriminant is named: with no external field the phantom is exactly round; a spherical NFW returns exactly zero through the same pipeline; and a realistically flattened NFW returns a quadrupole several times SMALLER than the framework's.  The measurement that matters is still whether the quadrupole's axis follows ghat_ext or the light, because those two axes are only weakly correlated and only one of them is a dark-matter prediction   (no-field quadrupole +0.00000; spherical NFW -0.00000; q = 0.8 NFW +0.0475 against the framework's +0.2124 at e_N = 0.01)
+
+----------------------------------------------------------------------------------------------------------------------
+VERDICT.  Item 83 is a REAL and REACHABLE test and this run makes it quantitative for the first time.
+The phantom's quadrupole is not a small correction: the total potential's l = 2 term is 19 per cent of its
+monopole, matching the analytic linearised QUMOND value to a few per cent, and after
+projection the tangential DeltaSigma carries a cos 2phi modulation of 0.21 of the monopole at 0.5 Mpc for a
+typical field e_N = 0.01, diluted only by <sin^2 Theta> = 2/3 in a stack rotated to each lens's own
+ghat_ext.  On the KiDS-1000 isolated-lens errors already on disk that is S/N ~ 3.8 combined.  It is NOT a
+measurement here -- the shear catalogue is not on disk -- so this is recorded as NOT RUNNABLE / forecast.
+The one thing that must not be lost: an NFW halo flattened to q = 0.8 gives 0.048 through the same
+pipeline, 4 times smaller but not zero.  The whole content is in the AXIS.  The framework points
+it at the nearest attractor; every dark-matter model points it at the light or at the filament; and the
+g_ext vectors needed to rotate the stack are already committed for SPARC and computable for any lens
+sample from 2M++.  That is the experiment.
+----------------------------------------------------------------------------------------------------------------------
+
+RESULT: 6 checks, 0 FAIL   rc=0

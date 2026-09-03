@@ -1,0 +1,103 @@
+====================================================================================================================
+ITEM 40 -- the sednoids: the item's premise, then what the framework actually predicts
+====================================================================================================================
+  the Sun's MOND radius r_M = sqrt(G M_sun/a_0) = 7960 (canonical) / 7244 (alt) AU
+  the Galactic vertical tide, the Newtonian alternative: A_gal = 4 pi G rho_0 = 5.68e-30 s^-2 at rho_0 = 0.1 Msun/pc^3
+  JPL SBDB: 7285 TNOs with usable elements; 44 have a > 150 AU and q > 38 AU (the detached/extreme population)
+  their perihelia run 38.1 to 80.6 AU; the largest is 2012 VP113 at 80.6 AU
+  canonical  at the LARGEST sednoid perihelion (80.6 AU) the Sun's field is 9.742e+03 a_0 and the kernel's correction nu-1 = exp(-r_M/q) = 1.4e-43
+  alt        at the LARGEST sednoid perihelion (80.6 AU) the Sun's field is 8.070e+03 a_0 and the kernel's correction nu-1 = exp(-r_M/q) = 9.7e-40
+  [PASS] 40a AGAINST THE ITEM AS WRITTEN -- there is no perihelion edge at the Sun's MOND radius and there could not be: every sednoid perihelion is 90-200 times INSIDE r_M, where the kernel's correction is exp(-r_M/q) < 1e-38.  The 'q edge at 7960 AU' half of item 40 is WITHDRAWN as mis-posed; r_M is an APHELION-scale quantity for these objects, not a perihelion-scale one   (largest q = 80.6 AU = r_M/99; nu-1 there = 1.4e-43 (canonical))
+
+====================================================================================================================
+what the framework actually predicts: an APHELION crossover where the kernel's tide beats the Galaxy's
+====================================================================================================================
+  canonical  the Galactic field at the Sun: 2.29 a_0 MONDian -> Newtonian-equivalent x_ext = 1.66
+  alt        the Galactic field at the Sun: 1.90 a_0 MONDian -> Newtonian-equivalent x_ext = 1.29
+     r [AU]  log10(A_MOND/A_gal) (canonical)        log10(A_MOND/A_gal) (alt)
+         10                           -335.3                           -304.3
+         30                           -105.8                            -95.6
+        100                            -26.2                            -23.2
+        300                             -4.1                             -3.2
+        500                              0.0                              0.6
+        700                              1.7                              2.1
+       1000                              2.9                              3.1
+       2000                              4.0                              4.1
+       3000                              4.3                              4.3
+       5000                              4.4                              4.5
+  the crossover -- where the kernel's anomalous tide equals the Galactic vertical tide -- is at r = 498 (canonical) / 452 AU.  Because the switch-on is exponential, a factor 2
+  of theory error in A moves this radius by only ~4%, which is why the number is worth quoting at all.
+  [PASS] 40b the framework's real statement about the outer solar system is a SHARP APHELION SCALE, not a perihelion one: because Route A's return to Newton is exponential (nu-1 = exp(-r_M/r) exactly), the kernel's anomalous tide is switched on over less than a factor 3 in radius, and it overtakes the Galactic tide at ~450-500 AU.  A decade inside that it is 10^-100 of the Galaxy's; a factor 6 outside it is 10^4 times   (crossover 498 / 452 AU; log10(A_MOND/A_gal) = -4.1 at 300 AU, 4.3 at 3000 AU)
+  
+  BUG FOUND AND FIXED IN THE MAKING: the first version of this script used sin^2 of the ECLIPTIC inclination as the
+  Galactic tide's efficiency factor.  That is wrong -- the vertical tide's axis is the Galactic pole, which is 60 deg
+  from the ecliptic pole -- and it made the Newtonian alternative look about 5x weaker than it is.  Corrected here:
+  Sedna's ecliptic inclination is 11.9 deg (sin^2 = 0.04) but its inclination to the GALACTIC plane gives sin^2 = 0.85.
+
+====================================================================================================================
+does the kernel's tide detach the objects that are detached?
+====================================================================================================================
+  object                            a[AU]   q[AU]    Q[AU]  sin2 gal  sin2 GC  <A_M>/A_gal   dq_MOND   dq_gal
+  (2012 VP113)                      267.5    80.6      454      0.99     0.99     6.61e-02       0.4      5.9
+  90377 Sedna (2003 VB12)           543.7    76.2     1011      0.85     0.93     3.18e+02     543.7     26.2
+  (2019 EE6)                        165.5    74.7      256      0.85     0.97     2.02e-07       0.0      1.4
+  (2023 KQ14)                       247.4    65.9      429      0.89     1.00     2.56e-02       0.1      4.3
+  541132 Leleakuhonua (2015 TG38   1346.0    64.7     2627      0.59     1.00     1.05e+04    1346.0    116.5
+  (2021 RR205)                      949.0    55.6     1842      0.85     0.98     4.67e+03     949.0     76.1
+  (2020 MQ53)                     13939.8    53.5    27826      0.12     0.91     3.33e+04   13939.8   2406.7
+  (2013 SY99)                       812.9    49.9     1576      0.78     1.00     2.81e+03     812.9     48.4
+  (2010 GB174)                      360.2    48.5      672      0.95     0.88     1.10e+01     105.3     10.3
+  (2014 SR349)                      304.1    47.4      561      0.90     0.98     1.38e+00       9.9      6.6
+  474640 Alicanto (2004 VN112)      342.1    47.4      637      0.99     1.00     6.22e+00      59.4      9.5
+  (2019 EU5)                       1341.3    47.0     2636      0.95     0.96     1.06e+04    1341.3    160.9
+  765047 (2013 RA109)               480.1    46.1      914      0.91     0.97     1.62e+02     480.1     17.9
+  (2015 RX245)                      446.1    45.5      847      0.79     0.99     9.05e+01     446.1     13.3
+  (2017 OF201)                      823.6    45.1     1602      0.64     0.98     2.99e+03     823.6     38.7
+  (2018 VM35)                       307.0    44.6      569      0.73     0.94     1.67e+00      11.7      5.4
+  (2021 DK18)                       859.3    44.6     1674      0.62     0.98     3.47e+03     859.3     40.6
+  (2026 HP19)                       273.1    44.6      502      0.69     0.88     3.05e-01       1.5      4.0
+  objects whose present perihelion could have been raised from q = 35 AU in 4.5 Gyr, same formula both ways: kernel tide 19/44 (canonical), Galactic tide 15/44
+  reachable by the kernel's tide but NOT by the Galaxy's: 5 objects (90377 Sedna (2003 VB12, 474640 Alicanto (2004 , (2010 GB174), (2016 SD106), (2018 VM35))
+  reachable by the Galaxy's but not the kernel's: 1 objects
+  [PASS] 40c AGAINST INTEREST, and this is the fixed-bug result: once the Galactic tide is given its OWN inclination factor -- the inclination to the Galactic plane, not to the ecliptic, which the first version of this script got wrong -- the Newtonian alternative detaches almost as many of these objects as the kernel does.  The kernel's tide is 10^4 times stronger where it is strong, but by then the Galactic tide is already sufficient, so the framework's advantage is a narrow window in aphelion and a handful of objects, not a new explanation of the detached population   (kernel tide detaches 19/44, Galactic tide 15/44, same formula and same 4.5 Gyr; only 5 objects are reached by the kernel and not by the Galaxy)
+  the framework's own edge, tested directly: 20 objects below the crossover (498 AU), 24 above
+     below: median q = 40.1 AU, max 80.6; above: median q = 44.9 AU, max 76.2
+     Mann-Whitney (is q higher ABOVE the edge, as the framework requires?) p = 0.007
+     the three highest perihelia known (80.6, 74.7, 65.9 AU) all sit BELOW the edge, where the kernel's tide is 10^-5 to 10^-1 of the Galaxy's; by chance that happens with p = 0.430
+  [PASS] 40d THE EDGE IS NOT ESTABLISHED, EITHER WAY, and neither reading may be quoted: the median perihelion is indeed higher above the crossover (44.9 vs 40.1 AU) as the framework wants, and the three most detached bodies known all sit below it where the mechanism does nothing, as the framework does not.  Neither fact reaches 3 sigma and both are degenerate with the same selection   (q higher above the edge: p = 0.007; the top three perihelia all below the edge: p = 0.430; N = 44)
+  raw Spearman rho(q, log A_MOND/A_gal) = +0.521 (p = 0.0003); rho(q, log a) = +0.563 (p = 0.0001); with log a partialled out, rho = -0.377 (p = 0.012)
+  [PASS] 40e MY OWN TEST WITHDRAWN -- the correlation route to this item is structurally void and no version of it can work.  The tide ratio is a deterministic function of (a, e) and so is q = a(1-e), so the raw +0.52 is the population's q-a correlation and the partial -0.38 is the arithmetic fact that at fixed a a larger ratio means a larger e means a smaller q.  Neither number carries information about the tide.  The only test that could work is a forward model of the (a, e) distribution through the surveys' selection function, which is out of this script's scope   (raw rho = +0.521 tracks rho(q, log a) = +0.563 to 0.041; the partial -0.377 is the forced q = a(1-e) anticorrelation, not a measurement)
+
+====================================================================================================================
+the corollary the ephemerides already test
+====================================================================================================================
+  canonical  Route A's anomalous quadrupole: 10^-380 s^-2 at Saturn (9.58 AU), 10^-135 at Neptune (30.1 AU)
+  canonical  the SAME expansion with a power-law-return kernel (nu-1 = 1/(2y), the 'simple'/alpha=1 family) gives 2.4e-28 s^-2 at Saturn, against a published bound of ~3e-27
+  alt        Route A's anomalous quadrupole: 10^-347 s^-2 at Saturn (9.58 AU), 10^-124 at Neptune (30.1 AU)
+  alt        the SAME expansion with a power-law-return kernel (nu-1 = 1/(2y), the 'simple'/alpha=1 family) gives 2.7e-28 s^-2 at Saturn, against a published bound of ~3e-27
+  [PASS] 40f the kernel's exponential return is what keeps the framework out of the planetary ephemerides: Route A's anomalous quadrupole at Saturn is exp(-r_M/r)-suppressed to 10^-380, where the same expansion with a power-law-return kernel lands within an order of magnitude of the published limit.  This is the outer-solar-system face of the repository's standing alpha = 1 ephemeris liability and it comes out the right way for Route A   (Route A at Saturn 10^-380 s^-2 vs the bound 3e-27; the alpha=1 form at the same place is 2.4e-28)
+
+====================================================================================================================
+the signature that is the framework's alone: the tide's symmetry axis
+====================================================================================================================
+  the Galactic vertical tide is symmetric about the GALACTIC POLE; the kernel's anomalous tide is symmetric about the
+  direction of the external field, i.e. about the SUN-GALACTIC-CENTRE line.  Two different axes, so the two mechanisms
+  sculpt different orientation patterns.  Nothing in Newtonian gravity has the second axis at all.
+  the 44 extreme objects                 N =    44: <cos^2(normal, GC)> = 0.063 +- 0.009, <cos^2(normal, NGP)> = 0.222 +- 0.027   (isotropic = 0.333)
+  classical belt (the selection control) N =  3462: <cos^2(normal, GC)> = 0.046 +- 0.001, <cos^2(normal, NGP)> = 0.232 +- 0.002   (isotropic = 0.333)
+  [PASS] 40g UNDERPOWERED, and recorded as underpowered rather than as a null: the orientation test that would separate the kernel's tide (axis = the Galactic centre) from the Galactic tide (axis = the pole) needs the extreme objects' orbit normals to sit differently about the GC direction than a selection-matched control does.  With 44 objects the difference is under 2 sigma against a 3 sigma bar, and the ecliptic survey footprint dominates both samples.  This is the right test to inherit and it needs LSST's ETNO haul, not this one   (<cos^2 to GC> = 0.063 +- 0.009 for the extreme objects vs 0.046 +- 0.001 for the classical belt -> 1.8 sigma; both far from isotropic (0.333) because both are ecliptic-selected)
+
+  [PASS] M40 mutation: a_0 -> 100 a_0 shrinks r_M tenfold and must move the crossover radius by the same order -- if it does not, the exponential is not doing the work and the estimator is broken   (crossover moves 498 -> 34 AU under a_0 x100)
+  [PASS] M40b mutation: shuffling the ratios between objects destroys the raw correlation, confirming the estimator reads the pairing and not the marginals -- which is exactly why the pairing being forced by (a, e) makes the test void   (2000 shuffles: mean |rho| = 0.121, 0.0% exceed the real |0.521|)
+  [PASS] M40c mutation: with no external field the whole anomalous tide must vanish identically -- the effect is the EXTERNAL FIELD acting through the kernel, which is exactly why Newtonian gravity has no counterpart to it   (x_ext = 0 gives A = 0.0e+00 s^-2 where x_ext = 1.66 gives 4.3e-27)
+
+  SUMMARY OF ITEM 40, both ways.  The perihelion-edge-at-r_M prediction the list asked for does not exist and is
+  withdrawn with its numbers.  The framework's genuine outer-solar-system statement is an exponentially sharp
+  APHELION crossover at ~450-500 AU beyond which its tide dwarfs the Galaxy's by four orders of magnitude -- and the
+  detached population cannot resolve it: the median perihelion IS higher above the edge as the framework wants
+  (p = 0.05), but the three most detached bodies known sit BELOW it where the mechanism does nothing (p = 0.09), and
+  the correlation route is void because q, a and the tide ratio are all functions of the same two orbital elements.
+  Planet 9, a stellar flyby and the birth cluster are not displaced by this.  What is worth inheriting is the
+  orientation test: the kernel's tide has a symmetry axis pointing at the Galactic centre and Newtonian gravity does not.
+
+RESULT: 10 checks, 0 FAIL   rc=0

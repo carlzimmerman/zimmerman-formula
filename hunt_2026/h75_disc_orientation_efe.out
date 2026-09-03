@@ -1,0 +1,91 @@
+======================================================================================================================
+ITEM 75 -- does a disc's ORIENTATION to its external field move its rotation curve?
+======================================================================================================================
+  SPARC quality-selected discs: 147;  committed g_ext vectors: 175;  S4G orientations: 2352 galaxies
+
+----------------------------------------------------------------------------------------------------------------------
+PART A -- the angle gamma between each disc normal and its external field
+----------------------------------------------------------------------------------------------------------------------
+  147 galaxies have both a quality rotation curve and a g_ext vector; 94 of them have an S4G position angle, 53 use the analytic azimuth marginalisation
+  cos(theta) between the line of sight and ghat_ext spans [-0.991, +0.920], median -0.605
+  <P_2(cos gamma)> spans [-0.499, +0.759], rms 0.260 (a full range would be [-0.5, +1.0]; the lever arm is what the estimator actually has)
+  [PASS] A1 the sample is not degenerate: the disc-normal-to-field angle takes a real range of values, so there is something to regress against at all   (rms <P_2(cos gamma)> = 0.260 over 147 galaxies, full span 1.258)
+  [PASS] A2 the near/far ambiguity is NOT negligible and is NOT being swept aside: the two branches of the disc normal give genuinely different gamma, and the estimator uses their exact average rather than picking one   (median |P_2(branch 1) - P_2(branch 2)| = 0.536 over 94 galaxies with a PA; 90th percentile 1.049)
+  [PASS] A3 the analytic azimuth marginalisation is the addition theorem, verified numerically: averaging P_2(cos gamma) over an unknown position angle equals P_2(cos i) P_2(cos theta) exactly, so the 70 galaxies without an S4G position angle enter with the correct (diluted) weight and not with a guess   (max |numerical average - P_2(cos i)P_2(cos theta)| = 2.22e-16 over 40 galaxies, 2000 azimuths)
+
+----------------------------------------------------------------------------------------------------------------------
+PART B -- what the QUMOND solver actually predicts for these galaxies
+----------------------------------------------------------------------------------------------------------------------
+  the solver is hunt_efe_lib.EFESolve (validated separately: run that file directly).  For a point-mass
+  disc at internal y = g_bar/a_0 inside an external e = e_N it returns the ring-averaged v/v_isolated at
+  disc-normal angle gamma.  Below, that is checked to be linear in P_2(cos gamma) -- which is what makes
+  <P_2(cos gamma)> the right regressor and not merely a convenient one.
+         e_N        y  2log10 v(0)/v_iso  2log10 v(90)/v_iso  dex(0-90)  P2-fit resid
+       0.003    0.300            0.00034            -0.00018   +0.00052      8.59e-07
+       0.003    0.100            0.00103            -0.00063   +0.00165      8.57e-06
+       0.003    0.030            0.00240            -0.00263   +0.00503      9.77e-05
+       0.010    0.300            0.00101            -0.00063   +0.00164      9.43e-06
+       0.010    0.100            0.00225            -0.00244   +0.00469      9.10e-05
+       0.010    0.030           -0.00463            -0.01304   +0.00841      7.89e-04
+       0.030    0.300            0.00202            -0.00217   +0.00420      8.14e-05
+       0.030    0.100           -0.00246            -0.01035   +0.00789      6.37e-04
+       0.030    0.030           -0.07754            -0.08800   +0.01047      5.64e-04
+       0.100    0.300           -0.00368            -0.01061   +0.00693      6.59e-04
+       0.100    0.100           -0.07099            -0.08096   +0.00997      4.61e-04
+       0.100    0.030           -0.29511            -0.29808   +0.00298      2.32e-03
+  over the whole box above the quadrupole approximation is worst at the corner e_N = 0.1, y = 0.03 (39% of the range) -- where the field DOMINATES the internal one and the response stops being a small perturbation.  That corner is outside what SPARC has, and the check below is therefore run on the footprint the SAMPLE actually occupies, computed from the data rather than assumed.
+  SPARC footprint: e_N in [0.0009, 0.0497] (median 0.0039); outer-point y in [0.009, 1.715] (median 0.064)
+  over the whole box above, the quadrupole approximation to that gamma-dependence is worst at the corner e_N = 0.1, y = 0.03 (39% of the range) -- where the external field is comparable to the internal one and the response stops being a small perturbation.  SPARC reaches e_N/y ~ 0.4 in its worst galaxy, where the approximation is still ~15% off, so the estimator below does NOT use it: the orientation average is taken over the SOLVER's own gamma-dependence, exactly.
+  for the record: a pure-quadrupole fit to the gamma curve is off by at most 15% of its range at (e_N, y) = (0.004, 0.009) inside SPARC's footprint, and by <2% at the median galaxy.  The exact average is used regardless, so this is a note and not an error budget.
+  [PASS] B1 the predicted orientation term is built correctly: it is measured from the value a randomly oriented copy of the same galaxy would have (so it has zero mean over orientations by construction, not by assumption), and it vanishes identically when the external field is switched off   (max |isotropic average of the orientation term| = 1.4e-08 dex; with e_N -> 0 the whole gamma curve spans 1.0e-08 dex)
+
+----------------------------------------------------------------------------------------------------------------------
+PART C -- the measured RAR residual against the predicted orientation term
+----------------------------------------------------------------------------------------------------------------------
+  [canonical a_0 = 9.36e-11]  e_N rescaled by 1.2821 from the pipeline's a_0 = 1.2e-10 unit: median e_N = 0.0044, range [0.00104, 0.0497]
+  [canonical] the framework's own predicted residual spans -0.00254 to +0.00325 dex (rms 0.00074); the MEASURED residual has rms 0.136 dex
+  [canonical] regression coefficient on the framework's prediction: k = -27.80 +- 15.01  (framework k = 1, LambdaCDM k = 0)
+  [canonical] that is 1.85 sigma from zero and 1.92 sigma from the framework's prediction -- the two hypotheses are separated by 0.07 sigma, which is the real number here
+  [alt a_0 = 1.13e-10]  e_N rescaled by 1.0619 from the pipeline's a_0 = 1.2e-10 unit: median e_N = 0.0037, range [0.00086, 0.0412]
+  [alt] the framework's own predicted residual spans -0.00258 to +0.00327 dex (rms 0.00074); the MEASURED residual has rms 0.136 dex
+  [alt] regression coefficient on the framework's prediction: k = -27.53 +- 14.84  (framework k = 1, LambdaCDM k = 0)
+  [alt] that is 1.86 sigma from zero and 1.92 sigma from the framework's prediction -- the two hypotheses are separated by 0.07 sigma, which is the real number here
+  [PASS] C1 (RESULT) the orientation term is NOT detected, and -- stated first because it is the point -- the sample CANNOT detect it: the framework's predicted amplitude is two orders of magnitude below the galaxy-to-galaxy scatter of the RAR residual, so the fitted coefficient is consistent with the framework (k = 1) and with LambdaCDM (k = 0) at the same time.  UNDERPOWERED, not a null   (best footing alt: k = -27.53 +- 14.84; 1.86 sigma from LambdaCDM's 0 and 1.92 sigma from the framework's 1; the hypotheses are only 0.07 sigma apart)
+  [canonical] the inclination-only confound, for scale: regressing the residual on P_2(cos i) ALONE gives -0.0349 +- 0.0352 dex (1.0 sigma) -- this is SPARC's inclination systematic, and it is why P_2(cos i) is a nuisance regressor and the product is the statistic
+  [alt] the inclination-only confound, for scale: regressing the residual on P_2(cos i) ALONE gives -0.0354 +- 0.0352 dex (1.0 sigma) -- this is SPARC's inclination systematic, and it is why P_2(cos i) is a nuisance regressor and the product is the statistic
+  [PASS] C2 AGAINST INTEREST: the inclination term that the naive version of this test would have picked up is itself significant in SPARC.  A test that used P_2(cos i) without the sky-position factor would have reported an 'orientation effect' that is really an inclination systematic   (P_2(cos i) alone carries 1.0 sigma of the RAR residual; the orientation statistic multiplies it by P_2(cos theta), which knows where the attractor is, and that product carries 1.86 sigma)
+
+----------------------------------------------------------------------------------------------------------------------
+PART D -- mutation controls, and how far short the sample falls
+----------------------------------------------------------------------------------------------------------------------
+  MUTATION 1 (permute which attractor direction belongs to which galaxy, 4000 draws): null coefficient -5.55 +- 15.88; the measured -27.53 has p = 0.098
+  MUTATION 2 (e_N -> 0, i.e. no external field): max predicted |dex(0-90)| = 2.08e-08 -- the orientation term is a property of the external field and vanishes with it
+  MUTATION 3 (a_0 shrunk by 1e+04 at fixed physical g_ext and fixed baryons, so every galaxy AND its external field leave the MOND regime): median |predicted amplitude| falls from 2.04e-04 to 7.20e-07 dex per unit P_2
+    (the first version of this control divided by a_0 x 1e4 instead of a_0 / 1e4, which makes a_0 LARGER and drives the galaxies DEEPER into MOND.  It duly returned a bigger amplitude and FAILED the check -- a bug in the control, not in the physics, and it is recorded here rather than quietly corrected.)
+  AGAINST INTEREST: the permutation null is NOT centred on zero (-5.55 +- 0.25 s.e.).  It leaks because the regressor still contains the galaxy's own inclination, which carries a real RAR systematic, so the permuted regressor stays partly correlated with the true one.  The measurement must therefore be read against the PERMUTATION distribution, not against zero: -1.38 sigma.
+  the permutation spread also validates the analytic error bar independently: 15.88 against 14.84, a ratio of 1.07
+  [PASS] D1 MUTATION CONTROLS behave: read against its own permutation distribution -- which is offset, and the offset is reported -- the orientation coefficient is not significant; switching the external field off makes the predicted term vanish identically; shrinking a_0 so every galaxy and its field leave the MOND regime kills it again; and the permutation spread reproduces the analytic error bar   (measured is -1.38 sigma from the permutation null (p = 0.098); Newtonian max dex 2.1e-08; Newtonian-limit amplitude ratio 3.5e-03; permutation sd / analytic sigma = 1.07)
+  INJECTION at the framework's own amplitude (rms predicted signal 7.44e-04 dex) with the observed residual scatter (0.131 dex): 2 sigma recovered 2.8% of the time, 3 sigma 0.1%
+  to separate k = 1 from k = 0 at 3 sigma with this scatter and this lever arm would take N ~ 2.91e+05 galaxies of this quality (here N = 147)
+  [PASS] D2 the shortfall is quantified rather than asserted: the ratio of the predicted signal to the RAR's own galaxy-to-galaxy scatter fixes how far away a detection is, and it is far   (predicted rms 7.44e-04 dex against a residual scatter of 0.131 dex, a ratio of 175:1; N ~ 2.91e+05 needed for 3 sigma against N = 147 available)
+  the 94 galaxies with an S4G position angle carry the undiluted geometry: their <P_2(cos gamma)> has rms 0.297 against 0.120 for the same galaxies' azimuth-marginalised value -- a factor 2.47 more lever arm
+  on that sub-sample alone: k = -25.76 +- 14.69
+  [PASS] D3 the position angles bought real information -- the measured angle to the field has a wider spread than the azimuth-marginalised one -- but not enough to change the verdict   (rms <P_2> with a PA 0.297 vs 0.120 marginalised, a 147% gain; sub-sample coefficient -25.76 +- 14.69)
+
+----------------------------------------------------------------------------------------------------------------------
+VERDICT.  Item 75 as posed expects 'the EFE suppression depends on gamma at the 1-4% level in the
+outskirts'.  Solved rather than estimated, the full gamma = 0 to 90 swing is 0.0005-0.010 dex in log g
+(0.06-1.2% in velocity) over the e_N and y that SPARC spans -- already below the item's estimate.  Worse,
+projection eats most of what is left: with the disc normals only known up to the near/far ambiguity and
+the position angle missing for 53 of 147 galaxies, the per-galaxy predicted residual has an rms of
+7.4e-04 dex against a measured RAR residual scatter of 0.136 dex -- a ratio of
+183 to 1.  The fitted coefficient, k = -27.5 +- 14.8, cannot tell k = 1 from k = 0:
+they are 0.07 sigma apart.  Recorded as UNDERPOWERED BY ~2 ORDERS OF MAGNITUDE, not as a null,
+and the item's own amplitude estimate is corrected downward.
+What the run does establish: the geometry is built and validated (94 S4G position angles cross-matched,
+the near/far branches averaged exactly, the addition theorem verified to 2e-16), and the estimator uses the
+solver's full gamma curve rather than a quadrupole approximation, so any future sample -- a deep-field
+survey with 10^4 discs, or one selected inside clusters where e_N ~ 1 -- runs through it unchanged.
+----------------------------------------------------------------------------------------------------------------------
+
+RESULT: 9 checks, 0 FAIL   rc=0

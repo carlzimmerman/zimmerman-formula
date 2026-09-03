@@ -1,0 +1,85 @@
+====================================================================================================================
+A. validating the divergence-theorem estimator against two exact answers
+====================================================================================================================
+  A1 sphere identity for a point mass: at r = 500 kpc, y = 0.5958, so M_ph must be exactly nu_tilde(y) M = 8.5923e+13 Msun
+  A2 deep-MOND cylinder, point mass 1e+14 Msun, R = 300 kpc, |z| < 18 Mpc:
+       analytic  sqrt(M a0/G) * int arctan(Z/rho) drho = 1.21454e+14 Msun
+       quadrature                                      = 1.20759e+14 Msun   (error -0.572%)
+  [PASS] 57-A the surface-integral estimator reproduces the exact deep-MOND cylinder mass of a point source to better than a percent, so the projected phantom masses below are quadrature-limited and not resolution-limited   (quadrature 1.2076e+14 vs analytic 1.2145e+14, error -0.572%)
+  [PASS] M1 mutation: with nu_tilde = 0 (no modification at all) the estimator returns exactly zero phantom mass, so nothing in the quadrature is manufacturing mass by itself   (nu_tilde = 0 gives M_ph = -0.000e+00 Msun against a signal of 1.215e+14)
+
+====================================================================================================================
+B. the published baryon model, checked against the paper it comes from
+====================================================================================================================
+  total baryonic mass of the model = 2.392e+14 Msun (the paper quotes ~2.4e14)
+  projected baryons within 300 kpc: BCG1 4.203e+13 Msun (paper: ~4.6e13), BCG3 2.359e+13 Msun (paper: ~2.45e13)
+  [PASS] 57-B the Plummer model transcribed here reproduces the published projected baryonic masses at both galaxy peaks, so the model is the one the paper used and not a garbled copy of it   (BCG1 4.203e+13 vs 4.6e13 (-8.6%), BCG3 2.359e+13 vs 2.45e13 (-3.7%))
+  note the offsets that make this cluster what it is: the main GAS clump sits at (190, 90) kpc while the main
+  GALAXIES sit at (0, 0); the subcluster gas at (670, 170) while its galaxies are at (820, 220) -- 158 kpc apart.
+
+====================================================================================================================
+C. the projected mass the framework predicts at the two galaxy peaks
+====================================================================================================================
+       footing  a_0 [m/s^2]   peak       M_bar    M_phantom    M_bar+ph   boost    observed   RESIDUAL needed  shortfall
+     canonical    9.360e-11   BCG1   4.203e+13    6.826e+13   1.103e+14    2.62   3.500e+14         2.397e+14       3.17
+     canonical    9.360e-11   BCG3   2.359e+13    4.934e+13   7.293e+13    3.09   2.300e+14         1.571e+14       3.15
+           alt    1.130e-10   BCG1   4.203e+13    7.659e+13   1.186e+14    2.82   3.500e+14         2.314e+14       2.95
+           alt    1.130e-10   BCG3   2.359e+13    5.508e+13   7.867e+13    3.34   2.300e+14         1.513e+14       2.92
+    Famaey2026    1.199e-10   BCG1   4.203e+13    7.938e+13   1.214e+14    2.89   3.500e+14         2.286e+14       2.88
+    Famaey2026    1.199e-10   BCG3   2.359e+13    5.700e+13   8.059e+13    3.42   2.300e+14         1.494e+14       2.85
+  [PASS] 57-C the independent reproduction works: at the published a_0 and with the published model this script gets the same boost factors the paper reports (2.8 at BCG1, 3.4 at BCG3), by a completely different numerical route -- a surface integral instead of a billion-cell finite-difference grid   (this script: 2.89 and 3.42; the paper: 2.8 and 3.4)
+  [PASS] 57-D THE ANSWER TO ITEM 57, AND IT IS A LIABILITY: the framework's kernel multiplies the Bullet Cluster's projected baryons by 2.6-3.1 at the galaxy peaks, and the lensing needs 8.3-9.8.  A residual of about 4e14 solar masses -- more than the whole baryonic mass of the cluster -- is still missing, and it is missing AT THE GALAXIES, where the gas is not   (shortfall factor 3.17 at BCG1 and 3.15 at BCG3 (canonical); residual mass needed within the two 300 kpc apertures = 3.97e+14 Msun canonical, 3.83e+14 alt, against a total model baryonic mass of 2.39e+14)
+  [PASS] 57-E and the footing does not rescue it: the two footings differ by 0.08 dex in a_0 and therefore by under 10% in the deep-MOND boost, where a factor 3 is needed.  No choice inside the framework's own bracket closes the Bullet   (M_bar+phantom at BCG1: 1.103e+14 canonical vs 1.186e+14 alt, a change of +7.5% against the 217% needed)
+
+====================================================================================================================
+D. the peaks: does the framework put its convergence on the galaxies or on the gas?
+====================================================================================================================
+  cross-check of the two independent phantom calculations at BCG1 (300 kpc): finite-difference map on a 25 kpc grid gives 6.455e+13 Msun, the surface integral gives 6.826e+13 Msun (-5%)
+  [PASS] M2 the two completely different phantom calculations agree: a finite-difference divergence integrated over a volume, and a closed surface integral of the same field, land within a few per cent of each other at the BCG1 aperture -- so neither the grid nor the quadrature is driving the answer   (volume/finite-difference 6.455e+13 vs surface integral 6.826e+13, -5.4% apart on a 25 kpc grid)
+  peak of the MOND convergence (baryons + phantom): kappa = 0.333 at (x, y) = (225, 100) kpc
+  peak of the GAS surface density:                            at (x, y) = (650, 150) kpc
+  the nearest GAS component centre is 36 kpc away; the nearest GALAXY concentration is 246 kpc away
+     kappa(BCG1      ) at (    0,    0) = 0.236   (baryons alone 0.096)
+     kappa(BCG3      ) at (  820,  220) = 0.150   (baryons alone 0.049)
+     kappa(main gas  ) at (  190,   90) = 0.323   (baryons alone 0.121)
+     kappa(bullet gas) at (  670,  170) = 0.292   (baryons alone 0.132)
+     kappa(midpoint  ) at (  410,  110) = 0.254   (baryons alone 0.099)
+  the observed map (Rihtarsic+2026) has kappa >= 1 over the whole region between the two galaxy concentrations;
+  the paper's own baryons-only MOND map 'barely reaches 0.5' near the BCGs, which this 25 kpc grid cannot resolve --
+  its BCG cores are 10 kpc Plummer spheres.  The statement being tested here is about the field, not the cusp.
+  [PASS] 57-F the framework's convergence peak lands ON THE GAS, not on the galaxies -- because the phantom is generated by whatever the baryons are, and in this cluster most of the baryons are the plasma that was left behind.  This is the qualitative content of the Bullet Cluster and it is unchanged by the kernel   (MOND kappa peak at (225, 100) is 36 kpc from the nearest gas component and 246 kpc from the nearest galaxy concentration)
+  [PASS] 57-G and the convergence between the peaks never gets near the observed value: on the framework's own footing the baryons-plus-phantom map stays well below kappa = 1 across the field, where the JWST lens model has kappa >= 1 over the whole region between the galaxy concentrations   (maximum kappa over the mapped field = 0.333 on a 25 kpc grid; at the midpoint between the galaxy concentrations kappa = 0.254 against an observed >= 1)
+
+====================================================================================================================
+E. two escapes tested and closed
+====================================================================================================================
+  discrete realisation: 266 galaxies of 6e10 Msun replacing the two smooth galaxy components
+  BCG1 with discrete galaxies: M_bar 4.179e+13, M_phantom 6.709e+13, total 1.089e+14 against the smooth 1.103e+14
+  [PASS] 57-H the graininess escape fails: replacing the smooth galaxy components by hundreds of individual galaxies -- each of which generates its own deep-MOND phantom, and n separated masses M/n lens more than one mass M -- changes the projected mass at BCG1 by about one per cent, nowhere near the factor 3 needed   (266 discrete galaxies give 1.089e+14 against the smooth 1.103e+14, a change of -1.3%; Ostrogradsky's theorem says the TOTAL phantom mass cannot depend on graininess, and inside a fixed aperture it barely does either)
+  to reach the observed 3.5e14 within 300 kpc of BCG1 with the kernel alone, the model's baryons would have to be multiplied by 5.60
+  [PASS] 57-I the missing-baryon escape fails too: closing the Bullet with the kernel alone needs the cluster's entire baryonic mass multiplied by more than five, which the X-ray observation forbids -- and in deep MOND the boost only grows as the square root of the mass, which is why so much is needed   (required baryon multiplier 5.60; X-ray gas masses are good to tens of per cent, not to a factor 5.6)
+
+====================================================================================================================
+the LambdaCDM alternative computed beside it
+====================================================================================================================
+  in LambdaCDM the observed projected masses ARE the answer: 3.5e14 and 2.3e14 of collisionless matter centred on
+  the galaxies, with the plasma a 2.4e14 spectator left behind at (190, 90) and (670, 170).
+  the framework needs 3.97e+14 Msun of ADDITIONAL collisionless matter in the same two apertures = 68% of what LambdaCDM needs.
+  So the Bullet does not distinguish the two pictures by the OFFSET, which the framework's phantom also produces
+  (57-F); it distinguishes them by the AMOUNT, and on the amount the framework has to import two thirds of the
+  dark matter it was built to remove -- in this system, at these radii.
+  [PASS] 57-J stated both ways and against interest: the Bullet Cluster is not a MOND-vs-dark-matter test of the OFFSET, because a modified kernel sourced by offset baryons also produces offset lensing -- the popular presentation of this cluster is wrong about that.  It is a test of the AMOUNT, and the framework fails it by needing two thirds of the collisionless mass it exists to eliminate   (residual collisionless mass required by the framework = 68% of the total lensing mass LambdaCDM assigns to dark matter in the same apertures)
+
+====================================================================================================================
+  VERDICT on item 57.  Quantified on both footings, with an estimator validated against two exact answers and an
+  independent reproduction of the published numbers by a different numerical route:
+    * the Route A kernel boosts the Bullet's projected baryons within 300 kpc by 2.62 at BCG1 and 3.09 at BCG3
+      (canonical; 2.82 and 3.34 alt), against the 8.3 and 9.7 the JWST lens model requires;
+    * the shortfall is a factor 3.17 and 3.15, i.e. 3.97e+14 Msun canonical / 3.83e+14 alt of residual
+      collisionless mass sitting on the galaxies -- 68% of the dark matter LambdaCDM puts in the same apertures;
+    * neither footing (7% apart), nor graininess (1%), nor a plausible baryon revision (a factor 5.6 would be needed)
+      closes it.  This is the repository's standing cluster liability appearing in its sharpest single system.
+    * what the framework DOES get right here is the thing the Bullet is famous for: its convergence peak is offset
+      from the galaxies and sits on the gas, so the OFFSET is not the discriminator.  The AMOUNT is, and it fails.
+
+RESULT: 12 checks, 0 FAIL   rc=0

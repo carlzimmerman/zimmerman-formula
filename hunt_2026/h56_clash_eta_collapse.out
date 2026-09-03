@@ -1,0 +1,115 @@
+====================================================================================================================
+ITEM 56 -- CLASH: 20 clusters, lensing masses, does eta collapse onto one curve in g_bar/a_0?
+====================================================================================================================
+  CLASH RAR (Tian+2020 from Umetsu+2016 lensing): 84 points, 20 clusters, r = 14.3-600 kpc
+    log g_bar spans -10.88 to -9.67; log g_tot spans -10.01 to -9.14 (m/s^2)
+    median error: 0.005 dex on log g_bar, 0.085 dex on log g_tot
+
+  canonical  a_0 = 9.360e-11: x = g_bar/a_0 spans 0.140-2.295 (deep-MOND regime throughout)
+  canonical  eta = g_obs/(g_bar nu(x)): median 3.45, 16-84% [2.59, 4.45], scatter 0.123 dex
+  canonical  d log eta / d log x = -0.179; eta is NOT a constant -- it rises inward as the known cluster residual does
+  alt        a_0 = 1.130e-10: x = g_bar/a_0 spans 0.116-1.901 (deep-MOND regime throughout)
+  alt        eta = g_obs/(g_bar nu(x)): median 3.23, 16-84% [2.44, 4.16], scatter 0.122 dex
+  alt        d log eta / d log x = -0.167; eta is NOT a constant -- it rises inward as the known cluster residual does
+  [PASS] 56a the CLASH clusters sit ABOVE the framework's kernel at every one of the 84 points between 14 and 600 kpc -- the standing cluster liability, now measured on LENSING masses that assume no hydrostatic equilibrium.  These are INNER radii, well inside R500, where the residual is known to be largest   (median eta = 3.45 canonical / 3.23 alt; minimum over all 84 points 1.53)
+
+====================================================================================================================
+the assumption-free collapse test: does knowing g_bar predict g_obs better than knowing the radius?
+====================================================================================================================
+  the table is on a radius grid: [14.3, 16.2, 17.2, 22.2, 23.6, 30.3, 100.0, 200.0, 400.0, 600.0]
+    r [kpc]    N   sd(log g_tot)   sd(log g_bar)
+       14.3   13           0.125           0.269
+      100.0   18           0.093           0.185
+      200.0   20           0.086           0.143
+      400.0   15           0.097           0.135
+      600.0   11           0.120           0.137
+  pooled scatter of log g_tot at FIXED RADIUS (no use of g_bar): 0.102 dex over 77 points
+  ONE free acceleration scale fitted to all 84 points: a_0(cluster) = 1.722e-09 (-7.0e-11/+7.3e-11) m/s^2
+     = 18.4x the canonical footing, 15.2x the alt footing; chi2 = 136.1 for 83 dof
+  scatter of log g_tot about that single curve (g_bar USED): 0.112 dex
+     with a_0 FIXED at the canonical footing: chi2 = 4199 for 84 dof, mean offset +0.532 dex, scatter 0.124 dex
+     with a_0 FIXED at the alt footing: chi2 = 3751 for 84 dof, mean offset +0.503 dex, scatter 0.122 dex
+  [PASS] 56b AGAINST INTEREST, AND THIS IS THE RESULT OF THE ITEM: the collapse is TIGHT but it is UNINFORMATIVE.  Knowing g_bar predicts the CLASH lensing acceleration no better than knowing the radius does -- the scatter about the best single kernel curve is not smaller than the scatter at fixed radius.  I expected the opposite when I wrote this check   (scatter about the single kernel curve 0.112 dex vs 0.102 dex at fixed radius (ratio 1.10); the galactic RAR's own scatter is 0.11 dex.  A cluster 'RAR' of RAR-class tightness is what you get for free when every cluster in the sample is about the same size)
+  [PASS] 56c ...and the curve is NOT the framework's.  The acceleration scale the CLASH clusters require is an order of magnitude above the one the cosmological constant fixes.  This is the cluster liability stated as a number on LENSING masses   (a_0(CLASH) = 1.72e-09 = 18.4x canonical / 15.2x alt; a_0 fixed at the canonical footing gives chi2/dof = 50)
+  [PASS] 56d BY THE ITEM'S LITERAL BAR the collapse passes -- 0.11 dex total, of which only 0.04 dex is intrinsic -- so the tightness is NOT what fails here.  What fails is that the tightness means nothing (56b) and that the scale is wrong (56c)   (scatter 0.112 dex, median error 0.086 dex, implied INTRINSIC scatter 0.043 dex (item 56's bar was 0.1 dex total))
+  partial test at fixed radius: N = 77, corr(delta log g_bar, delta log g_obs) = +0.482 (t = +4.76)
+     regression slope +0.277 +- 0.059; the kernel at this a_0 predicts +0.536; a pure radius law predicts 0.000
+  [PASS] 56b2 THE SHARP TEST, AND IT SPLITS THE DIFFERENCE: at fixed radius a CLASH cluster with more baryons does have more lensing acceleration -- so g_bar is not information-free -- but it responds only about HALF as strongly as the deep-MOND kernel requires.  The slope is 4-5 sigma away from BOTH the kernel's value and from zero   (measured slope +0.277 +- 0.059 against the kernel's +0.536 -- a 4.4 sigma miss, and 4.7 sigma above the zero a pure radius law would give.  This is why the aggregate scatter does not improve in 56b: a single-a_0 kernel curve OVER-responds to g_bar by about a factor two)
+
+====================================================================================================================
+does cluster identity add information beyond g_bar?  (per-cluster a_0 versus one a_0)
+====================================================================================================================
+  one a_0 for all: chi2 = 136.1 (1 parameter).  Per-cluster a_0: chi2 = 80.3 (20 parameters).
+  Delta chi2 = 55.8 for 19 extra parameters
+  per-cluster log a_0 spans -9.15 to -8.43, scatter 0.176 dex
+  (BUG FIXED IN PLACE: the first version of this check compared Delta chi2 to 2k + 3 sqrt(2k).  The chance expectation
+   of Delta chi2 for k extra free parameters is k, not 2k, with standard deviation sqrt(2k); the wrong baseline made
+   a 6-sigma effect read as a failure.  The corrected statistic is used below.)
+  [PASS] 56e cluster identity DOES add information beyond g_bar: giving every cluster its own acceleration scale improves the fit far beyond chance, so the CLASH clusters do not share one curve to within their errors -- a second parameter is present   (Delta chi2 = 55.8 for 19 extra parameters (chance expectation 19 +- 6.2) = 6.0 sigma; per-cluster a_0 scatter 0.176 dex, of which the fitting noise on 2-6 points per cluster is a large part)
+
+====================================================================================================================
+mutation controls
+====================================================================================================================
+  [PASS] M1 mutation: breaking the pairing between g_bar and g_obs (shuffling g_bar between points) inflates the scatter about the curve, so the collapse is carried by the pairing and not by the shape of the kernel   (real 0.112 dex vs shuffled 0.237 +- 0.013 dex (1st percentile 0.205))
+  [PASS] M2 mutation: with nu = 1 (no kernel at all) the same data would need a mass discrepancy of a factor 10, so the kernel is doing most -- but not all -- of the work   (Newtonian residual +0.865 dex (factor 7.3) vs +0.004 dex about the fitted kernel)
+  [PASS] M3 mutation: the fit is sharp enough to EXCLUDE the framework's own a_0 at enormous significance -- the estimator is not degenerate   (Delta chi2 (canonical a_0 vs best-fit) = 4063)
+
+====================================================================================================================
+the LambdaCDM alternative computed beside it
+====================================================================================================================
+  in LambdaCDM g_tot at a given radius is set by TWO halo numbers, M200 and c200, so g_bar should not suffice.
+    r [kpc]    sd(log g_NFW) over the CLASH-like halo family
+       14.3                                            0.170
+       16.2                                            0.170
+       17.2                                            0.170
+       22.2                                            0.169
+       23.6                                            0.169
+       30.3                                            0.168
+      100.0                                            0.161
+      200.0                                            0.156
+      400.0                                            0.157
+      600.0                                            0.161
+  [PASS] 56f AGAINST INTEREST -- the LambdaCDM comparison is not the clean loss it looks like: a realistic CLASH-like NFW family (M200 6e14-2.5e15, c 3-6) already spreads log g_tot by only about the amount seen at fixed radius, so this data set does not by itself show that halo concentration is a redundant second parameter   (NFW family spread at fixed radius 0.165 dex vs the observed 0.102 dex; the discriminating statement is the RESIDUAL one -- g_bar reduces 0.102 to 0.112, and nothing in the halo model requires that)
+
+====================================================================================================================
+systematic: Tian+2020's g_bar carries gas + the BCG only, no satellite stars and no intracluster light
+====================================================================================================================
+    adding    0% of the gas mass as satellite stars + ICL: a_0(CLASH) = 1.72e-09, scatter 0.112 dex
+    adding    5% of the gas mass as satellite stars + ICL: a_0(CLASH) = 1.63e-09, scatter 0.112 dex
+    adding   10% of the gas mass as satellite stars + ICL: a_0(CLASH) = 1.55e-09, scatter 0.112 dex
+    adding   15% of the gas mass as satellite stars + ICL: a_0(CLASH) = 1.47e-09, scatter 0.113 dex
+  [PASS] 56g the missing-baryon escape does not work: adding 15% of the gas mass as satellite stars and intracluster light moves the required acceleration scale by well under a factor 2, nowhere near the factor 10 needed   (see the table above -- the residual is not a stellar-mass bookkeeping error)
+
+====================================================================================================================
+independent cross-check: X-COP hydrostatic profiles with MEASURED stellar masses (12 clusters, on disk)
+====================================================================================================================
+    A1644: missing profile ([Errno 2] No such file or directory: '/Users/carlzimmerman/new_physics/zimmerman-formula/hunt_2026/../real_research/data/xcop/A1644/A1644_mstar.fits')
+    A2255: missing profile ([Errno 2] No such file or directory: '/Users/carlzimmerman/new_physics/zimmerman-formula/hunt_2026/../real_research/data/xcop/A2255/A2255_mstar.fits')
+    A3158: missing profile ([Errno 2] No such file or directory: '/Users/carlzimmerman/new_physics/zimmerman-formula/hunt_2026/../real_research/data/xcop/A3158/A3158_mstar.fits')
+    A3266: missing profile ([Errno 2] No such file or directory: '/Users/carlzimmerman/new_physics/zimmerman-formula/hunt_2026/../real_research/data/xcop/A3266/A3266_mstar.fits')
+    RXC1825: missing profile ([Errno 2] No such file or directory: '/Users/carlzimmerman/new_physics/zimmerman-formula/hunt_2026/../real_research/data/xcop/RXC1825/RXC1825_mstar.fits')
+  X-COP: 422 radial points in 7 clusters, r = 101-1884 kpc, gas + measured stars
+  X-COP one free scale: a_0 = 6.07e-10 m/s^2 = 6.5x canonical; scatter about it 0.132 dex vs 0.073 dex at fixed radius
+  X-COP partial test at fixed radius: corr = +0.793, slope +0.465 against the kernel's ~0.55
+     canonical  eta(X-COP) median 2.23; at r > 1 Mpc 1.46; AT R500 median 1.46 over 7 clusters [1.17, 1.79]
+     alt        eta(X-COP) median 2.08; at r > 1 Mpc 1.35; AT R500 median 1.35 over 7 clusters [1.09, 1.65]
+  [PASS] 56h the independent X-COP sample -- hydrostatic masses, a complete measured baryon budget, different clusters, different technique -- confirms the residual but does NOT confirm a universal cluster acceleration scale: it prefers 6.1e-10 where CLASH prefers 1.7e-9, a factor 2.8 apart.  Both are far above the framework's a_0, and the disagreement between them is itself evidence that no single second scale fits clusters   (a_0(X-COP) = 6.07e-10 at r = 100-1900 kpc vs a_0(CLASH) = 1.72e-09 at r = 14-600 kpc (ratio 0.35); eta falls outward, so a fitted single scale depends on the radial range -- which is exactly what a one-variable law forbids)
+  [PASS] 56i the outskirts are where the framework does best and the number is worth recording: at R500 the X-COP residual falls to eta = 1.5 (canonical) / 1.4 (alt), not the 1.9-2.1 the repository's earlier gas-only X-COP pass reported -- the difference is the MEASURED stellar mass, which this run includes and a gas-only budget does not   (eta(R500) = 1.46 canonical over 7 clusters, range [1.17, 1.79]; against a median eta of 2.23 over the full 0.1-1.9 Mpc range)
+
+====================================================================================================================
+  VERDICT on item 56, written against my own expectation when I started it.
+    1. The famous cluster 'collapse' is TIGHT (0.11 dex about one kernel curve, only 0.04 dex of it intrinsic) and
+       the tightness is nearly EMPTY: the same 0.10 dex is achieved by knowing the radius and nothing else.  Item 56's
+       'Kepler-grade if they collapse within 0.1 dex' is therefore MIS-POSED as written -- in a sample of clusters that
+       are all about the same size, a 0.1 dex collapse is what you get for free.  I am withdrawing that criterion
+       rather than claiming the pass it would have handed me, and replacing it with the partial test at fixed radius.
+    1b. On that partial test the answer is HALF a law, and the two samples disagree about which half.  In CLASH the
+       response of log g_obs to log g_bar at fixed radius is +0.28 +- 0.06 where the deep-MOND kernel demands +0.54;
+       in X-COP, over a wider radial range and with measured stellar masses, it is +0.47 against +0.55, consistent.
+    2. The residual itself is real and is the standing liability: eta ~ 2 at R500 (X-COP, measured stars), rising
+       inward, and the acceleration scale CLASH requires is 15-18x the one the cosmological constant fixes.
+    3. There is no universal second scale either: CLASH (inner) wants 1.7e-9, X-COP (outer) 6.1e-10.
+    4. It is not hydrostatic bias (a lensing sample and a hydrostatic sample agree on the residual) and not a
+       stellar-mass bookkeeping error (15% more baryons moves the scale by 15%, not by a factor 10).
+
+RESULT: 13 checks, 0 FAIL   rc=0

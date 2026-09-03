@@ -1,0 +1,122 @@
+======================================================================================================================
+ITEM 32 -- the HI velocity (width) function predicted from the HI mass function with no halo anywhere
+======================================================================================================================
+  published HIMF integrated over M_HI > 1e7:  n = 0.1089 Mpc^-3
+  published HIWF integrated over w50 > 20 km/s: n = 0.1451 Mpc^-3;  ratio 0.751
+  [PASS] 32.0 the two published functions are mutually consistent at the level the amplitude test needs: fitted independently to the same 21827 sources, they integrate to total number densities that agree to about 25%.  That 0.1 dex is the IRREDUCIBLE FLOOR on any amplitude comparison below and it is stated here before any framework number is computed   (n(HIMF, M_HI > 1e7)/n(HIWF, w > 20) = 0.751 = -0.125 dex)
+
+----------------------------------------------------------------------------------------------------------------------
+1. INGREDIENTS, EACH CHECKED
+----------------------------------------------------------------------------------------------------------------------
+  [PASS] 32.1a the catalogue's own signal-to-noise definition is reproduced from its published columns to better than 1% in the median -- which is what licenses the distance limit D_lim = D sqrt(SNR/6.5) used in the independent 1/V_max cross-check in section 4   (median SNR(recomputed)/SNR(catalogue) = 1.0034, scatter 0.022 dex, N = 31501)
+  [PASS] 32.1b the inclination distribution of the detected sample is consistent with RANDOM disc orientation, so the sin i convolution applied to the framework's prediction below is the right one and is not itself a fitted ingredient   (f(i > 45 deg) = 0.7047 vs cos 45 deg = 0.7071, N = 17558)
+  the ONLY empirical ingredient the framework needs beyond a_0: log M_b = 1.1314 log M_HI -0.8151 (scatter 0.240 dex, N = 19441), measured on the ALFALFA-SDSS cross-match
+  [PASS] 32.1c that relation is close to but not exactly proportional (slope 1.13, not 1.00): gas fractions fall with mass, so the BARYONIC mass function is shallower than the HI mass function by that factor, and the framework's predicted velocity-function slope is 4(alpha_HI+1)/1.13, not 4(alpha_HI+1).  Getting this wrong would bias the predicted slope by 13%   (d log M_b/d log M_HI = 1.1314; stellar mass is 0.75 x the gas mass in the median)
+
+----------------------------------------------------------------------------------------------------------------------
+2. THE FRAMEWORK'S ZERO-PARAMETER PREDICTION: HIMF --> HIWF
+----------------------------------------------------------------------------------------------------------------------
+  canonical  w50 =    30 km/s: framework 0.6314, published HIWF 0.2110 (counting-only fit 0.1773) Mpc^-3 dex^-1 -> ratio  2.99 (+0.48 dex)
+  canonical  w50 =    50 km/s: framework 0.2545, published HIWF 0.1504 (counting-only fit 0.1312) Mpc^-3 dex^-1 -> ratio  1.69 (+0.23 dex)
+  canonical  w50 =    80 km/s: framework 0.1283, published HIWF 0.1073 (counting-only fit 0.0970) Mpc^-3 dex^-1 -> ratio  1.20 (+0.08 dex)
+  canonical  w50 =   120 km/s: framework 0.0725, published HIWF 0.0764 (counting-only fit 0.0711) Mpc^-3 dex^-1 -> ratio  0.95 (-0.02 dex)
+  canonical  w50 =   200 km/s: framework 0.0253, published HIWF 0.0422 (counting-only fit 0.0403) Mpc^-3 dex^-1 -> ratio  0.60 (-0.22 dex)
+  alt        w50 =    30 km/s: framework 0.6007, published HIWF 0.2110 (counting-only fit 0.1773) Mpc^-3 dex^-1 -> ratio  2.85 (+0.45 dex)
+  alt        w50 =    50 km/s: framework 0.2680, published HIWF 0.1504 (counting-only fit 0.1312) Mpc^-3 dex^-1 -> ratio  1.78 (+0.25 dex)
+  alt        w50 =    80 km/s: framework 0.1358, published HIWF 0.1073 (counting-only fit 0.0970) Mpc^-3 dex^-1 -> ratio  1.27 (+0.10 dex)
+  alt        w50 =   120 km/s: framework 0.0777, published HIWF 0.0764 (counting-only fit 0.0711) Mpc^-3 dex^-1 -> ratio  1.02 (+0.01 dex)
+  alt        w50 =   200 km/s: framework 0.0286, published HIWF 0.0422 (counting-only fit 0.0403) Mpc^-3 dex^-1 -> ratio  0.68 (-0.17 dex)
+  [PASS] 32.2a the framework turns one published function into the other with NO free parameter and matches it to within the irreducible amplitude floor -- the 0.125 dex by which the two published fits disagree with each other -- at w50 = 80 and 120 km/s.  No threshold is chosen here: the comparison is against the floor that check 32.0 measured before any framework number was computed   (|log ratio| = 0.078 at 80 km/s and 0.022 at 120 km/s, against the floor 0.125 dex; alt footing 0.102 and 0.007)
+  [PASS] 32.2a2 AGAINST INTEREST, and this is a real miss rather than a rounding: at w50 = 50 km/s the framework over-predicts the number density by 0.23 dex, which is nearly TWICE the amplitude floor.  The agreement is good at 80-120 km/s and degrades monotonically toward the narrow end.  This check asserts the MISS, so it fails if the framework is in fact within the floor at 50 km/s   (log ratio at 50 km/s = +0.229 dex (factor 1.69) against the 0.125 dex floor; at 200 km/s the framework UNDER-predicts by -0.222 dex)
+  diagnosis of the w = 30 km/s point: 96% of the predicted sources there come from log M_HI < 7.5, i.e. from EXTRAPOLATING the published Schechter function below where ALFALFA measures it
+    truncating the HIMF at log M_HI = 7.0 (ALFALFA's own floor) moves the w = 30 km/s prediction from 0.6314 to 0.0694 Mpc^-3 dex^-1, i.e. from a ratio of 2.99 to 0.33 -- from over-predicting to under-predicting
+    the same truncation moves w = 50 km/s only from 1.69 to 1.50, so the 50-150 km/s comparison is NOT sensitive to where the mass function is stopped and the 30 km/s one is entirely so
+  [PASS] 32.2b AGAINST INTEREST, and against the item as posed: the bottom of the range the item asked about does not actually test the framework.  With the published Schechter extrapolated to 1e6 Msun the framework over-predicts the number of 30 km/s sources by a factor of 3; truncated at ALFALFA's own 1e7 floor it under-predicts them.  The answer at 30 km/s is set by where the mass function is stopped, not by a_0, so 'within errors at 30-100 km/s' is not established and cannot be with these ingredients   (w = 30 km/s: framework/observed = 2.99 with the Schechter extrapolated to 1e6, 0.33 truncated at 1e7; at w = 50 km/s the same two choices give 1.69 and 1.50)
+    turbulent FWHM    0 km/s: ratio at w = 30 is 1.57, at w = 80 is 1.08
+    turbulent FWHM   10 km/s: ratio at w = 30 is 1.86, at w = 80 is 1.11
+    turbulent FWHM   30 km/s: ratio at w = 30 is 1.32, at w = 80 is 1.38
+    M_b(M_HI) scatter 0.00 dex: ratio at w = 50 is 1.69, at w = 200 is 0.59
+    M_b(M_HI) scatter 0.40 dex: ratio at w = 50 is 1.73, at w = 200 is 0.63
+
+  WHAT THE AMPLITUDE TEST IS AND IS NOT.  It is not independent evidence.  Mapping the HI mass function onto a
+  width function through w = 2 (G M_b a_0)^(1/4) sin i tests exactly one number -- the BTFR zero-point -- re-expressed
+  as number densities.  Measured directly on the same catalogue it is:
+/Users/carlzimmerman/new_physics/zimmerman-formula/hunt_2026/h32_hi_velocity_function.py:175: RuntimeWarning: divide by zero encountered in divide
+  vv = np.sqrt(np.maximum(a["W50"]**2 - W_TURB**2, 0.0))/(2*np.sin(np.radians(a["inc"])))
+/Users/carlzimmerman/new_physics/zimmerman-formula/hunt_2026/h32_hi_velocity_function.py:179: RuntimeWarning: divide by zero encountered in log10
+  rr_ = np.log10(vv[inc_ok]/((G*aMb_all[inc_ok]*Msun*a0)**0.25/1e3))
+    canonical : median log(v_obs/v_pred) over 12374 detected alpha.100 galaxies = +0.010 dex
+    alt       : median log(v_obs/v_pred) over 12374 detected alpha.100 galaxies = -0.011 dex
+    so the width function agreeing to ~0.1 dex in amplitude and the BTFR zero-point agreeing to ~0.01 dex in log v are THE SAME STATEMENT, not two.  Quote one of them, never both as independent.
+    and that zero-point is itself measured on DETECTED galaxies, which ALFALFA selects with a width-dependent limit (SNR ~ W50^(-1/2); see h31b_almost_dark_selection_audit.py).  That selection biases the detected zero-point LOW by roughly 0.06 dex at the observed scatter, so the true zero-point is slightly HIGHER than measured and the framework's predicted width function should sit slightly to the RIGHT of the one computed above -- which would reduce the 50 km/s over-prediction and deepen the 200 km/s under-prediction.  Not corrected for here; flagged.
+  [PASS] 32.2a3 the item's independent content is therefore the SHAPE and the LambdaCDM comparison, not the amplitude.  This check records that the amplitude agreement and the BTFR zero-point are one number: they must agree, and if they did not, the calculation would be wrong   (BTFR zero-point +0.010 (canonical) / -0.011 (alt) dex in log v, i.e. +0.039 dex in mass -- the same information as the amplitude ratios above)
+
+  fitting the SAME modified Schechter form to the framework's predicted width function over 25-500 km/s gives log phi* = -1.79, w* = 239 km/s, alpha = -1.26, beta = 2.40
+  the published alpha.100 values are log phi* = -1.67, w* = 307 km/s, alpha = -0.63 (+1.12/-0.41), beta = 2.0
+  the framework's ANALYTIC low-width slope is 4(alpha_HI + 1)/(d log M_b/d log M_HI) = 4 x -0.29/1.13 = -1.03, which is -1.0 sigma from the published value on the all-statistical error bar
+  the like-for-like number is the FITTED alpha = -1.26 (same functional form, same width range as the paper); the raw Monte-Carlo 30-100 km/s log-slope is -1.57, steeper still because the turbulence floor piles sources up near 20-30 km/s
+  [PASS] 32.2c AGAINST INTEREST, the shape: the framework predicts a STEEPER low-width slope than ALFALFA measures, on every way of reading it.  Fitting the paper's own functional form to the framework's predicted width function gives alpha = -1.26 against the published -0.63: a 1.5 sigma tension on the published all-statistical error bar and a 4 sigma one on its counting-only error bar.  This check asserts the TENSION and would fail if the slopes agreed   (fitted -1.26 vs published -0.63 (+1.12/-0.41) = -1.5 sigma all-stat, and vs -0.56 +- 0.16 counting-only = -4.3 sigma; analytic value -1.03, raw 30-100 km/s slope -1.57)
+  the likeliest explanation is NOT a_0: it is that a 50% line width is not a flat rotation speed, and the mapping between them is mass dependent.  Fits of the BTFR with W50 give a slope near 3.3 where fits with V_flat give 4 (Bradford+16; Lelli+16; Ponomareva+18).  A slope of 3.3 instead of 4 is exactly a shallower velocity function, and the framework has no way to distinguish itself from that systematic using widths alone.
+
+----------------------------------------------------------------------------------------------------------------------
+3. THE ALTERNATIVE COMPUTED BESIDE IT: LambdaCDM's halo velocity function
+----------------------------------------------------------------------------------------------------------------------
+  [PASS] 32.3a the LambdaCDM side is validated before it is used: the Sheth-Tormen mass function built here from an Eisenstein-Hu transfer function normalised to sigma_8 = 0.811 gives a cluster abundance n(> 1e14 Msun) of the right size, and a low-mass logarithmic slope of -0.9 as it must   (n(> 1e14) = 1.25e-05 Mpc^-3 (literature ~1e-5); d log n/d log M at 1e10 = -0.90; V_max(1e10) = 39.6 km/s)
+  w50 =    30 km/s: LambdaCDM halo width function 7.3111 vs observed 0.2110 Mpc^-3 dex^-1 -> LambdaCDM over by  34.6 x   (framework over by 2.99 x)
+  w50 =    50 km/s: LambdaCDM halo width function 1.6874 vs observed 0.1504 Mpc^-3 dex^-1 -> LambdaCDM over by  11.2 x   (framework over by 1.69 x)
+  w50 =    80 km/s: LambdaCDM halo width function 0.4295 vs observed 0.1073 Mpc^-3 dex^-1 -> LambdaCDM over by   4.0 x   (framework over by 1.20 x)
+  w50 =   120 km/s: LambdaCDM halo width function 0.1390 vs observed 0.0764 Mpc^-3 dex^-1 -> LambdaCDM over by   1.8 x   (framework over by 0.95 x)
+  w50 =   200 km/s: LambdaCDM halo width function 0.0340 vs observed 0.0422 Mpc^-3 dex^-1 -> LambdaCDM over by   0.8 x   (framework over by 0.60 x)
+  [PASS] 32.3b the classic result is reproduced from scratch: mapping the LambdaCDM halo velocity function to HI widths the naive way overshoots the measured ALFALFA width function by an order of magnitude at 50 km/s -- Papastergis+2011 report a factor ~8 there and ~100 extrapolated to 20 km/s, and this independent calculation gives the same   (LambdaCDM/observed = 35 x at w = 30, 11 x at 50, 4.0 x at 80, 0.81 x at 200)
+  [PASS] 32.3c (the item's actual content, and it is a WORKS) the framework has NO velocity-function problem, because it has no halo velocity function: the observed width function IS its baryonic mass function stretched by v ~ M_b^(1/4).  At 50 km/s the framework misses by a factor of 1.7 where LambdaCDM's halo function misses by 11, and at 30 km/s by 3 where LambdaCDM misses by 35 -- one order of magnitude closer at both.  This is not a fit: a_0 is fixed by Lambda and every other ingredient is measured   (framework is 6.6 x closer than the LambdaCDM halo function at w = 50 km/s and 11.6 x closer at w = 30)
+  both ways, and this is the standard LambdaCDM answer: the halo-to-width mapping used above is the naive one.  Real HI discs in small halos do not reach V_max, and low-mass halos may host no detectable HI at all -- either escape removes the excess.  What cannot be arranged away is that the framework needs neither escape.
+
+----------------------------------------------------------------------------------------------------------------------
+4. INDEPENDENT CROSS-CHECK -- building both functions from alpha.100 with one 1/V_max estimator
+----------------------------------------------------------------------------------------------------------------------
+  my 1/V_max HIMF vs the published one: median ratio 1.11 over log M_HI = 8.9-10.3, but the faint-end slope comes out alpha = -1.66 against the published -1.29
+  [PASS] 32.4 AGAINST MY OWN ESTIMATOR: a 1/V_max mass function built here from the same catalogue matches the published one in the middle but is far too steep at the faint end -- the known large-scale-structure bias of 1/V_max, which is exactly why the published 2D-stepwise functions were used for the test above and not this.  If section 2 had been run on my own 1/V_max the framework's predicted slope would have been -2.3, spuriously   (my alpha = -1.66 vs published -1.29; middle-decade amplitude ratio 1.11)
+
+----------------------------------------------------------------------------------------------------------------------
+5. MUTATION CONTROLS
+----------------------------------------------------------------------------------------------------------------------
+  [PASS] M32a mutation: a_0 raised by 4x must slide the predicted ROTATIONAL widths by exactly 0.25 log10(4) = +0.151 dex, and it does -- so the amplitude comparison in section 2 really is an a_0 measurement and not a shape coincidence.  (On the raw widths the shift is diluted to about +0.10 dex by the 20 km/s turbulence floor, which is itself a reminder that the narrow end of this test is floor-dominated)   (rotational widths move +0.1502 dex against the exact +0.1505; raw widths above 100 km/s move +0.0341 dex; raw widths overall move +0.1136)
+    and it costs accuracy: at w = 50 km/s the 4a_0 mutation gives a ratio of 2.44 against the framework's 1.69
+  [PASS] M32b mutation: replacing the measured HI mass function with a FLAT one changes the predicted low-width slope by more than a full unit -- so section 2 is testing the mass function's SHAPE carried through the framework's map, not an insensitive integral that any input would satisfy   (flat input gives a 30-100 km/s log-slope of -0.36 against the framework's -1.57 and the observed -0.63)
+
+======================================================================================================================
+VERDICT -- ITEM 32: a partial pass, and the strongest thing in it is the comparison, not the fit
+======================================================================================================================
+  The framework converts the published ALFALFA HI mass function into the published ALFALFA HI width function with
+  ZERO free parameters -- a_0 from Lambda, the baryon correction and the inclination distribution both measured -- and
+  lands within a factor 0.95-1.69 over w50 = 50-150 km/s, against an irreducible 0.12 dex floor set by the two
+  published fits' own mutual normalisation.  It is INSIDE that floor at 80 and 120 km/s and outside it at 50 km/s,
+  where it over-predicts by +0.23 dex -- a real miss, not a rounding.
+  AND THE AMPLITUDE IS NOT INDEPENDENT EVIDENCE: it is the BTFR zero-point (+0.010 dex in log v on the same
+  catalogue) re-expressed as number densities.  The independent content of this item is the SHAPE and the LambdaCDM
+  comparison.  The zero-point is itself measured on width-selected detections, which biases it low (see h31b).
+  At 30 km/s it over-predicts by 3.0 x with the Schechter extrapolated to 1e6
+  and UNDER-predicts by 0.33 x truncated at ALFALFA's own 1e7 floor, so the item's 'within errors at 30-100 km/s'
+  is not established at the bottom end -- and that point is set by where the mass function stops, not by a_0.
+  The predicted low-width slope, -1.26 fitted the paper's own way (-1.03 analytically), is steeper than the
+  measured -0.63; that is a real tension of 1.5 to 4 sigma depending on which published error bar is used, and the honest
+  reading is the velocity-definition systematic (W50 vs V_flat gives BTFR slopes 3.3 vs 4), not a_0.
+  What is NOT ambiguous is the alternative computed beside it.  LambdaCDM's halo velocity function, built here from
+  scratch and validated on the cluster abundance, overshoots the same measured width function by 11 x at 50 km/s and
+  35 x at 30 -- the known 'velocity function problem', reproduced independently.  The framework is an order of
+  magnitude closer at both, and it is closer WITHOUT a halo occupation function, a V_max-to-W50 correction, or any
+  free parameter.  Recorded as a WORKS on the comparison and a partial miss on the absolute shape.
+
+  Two corrections made in audit, both stated rather than buried:
+   * the LambdaCDM halos were being drawn with weights proportional to dn/dlogV over a uniform log-MASS grid, which
+     re-weights by the local slope of V_max(M).  Fixed to dn/dlogM.  The slope is nearly constant so the error was
+     about 1% -- it moved the 50 km/s excess from 11.1x to 11.2x -- but it was an error.
+   * check 32.2a originally compared the 50-120 km/s ratios against a hand-picked factor of 1.8 while the worst was
+     1.69.  That threshold was doing work it had not earned; it is now compared against the 0.125 dex floor that
+     check 32.0 measures from the two published fits BEFORE any framework number is computed, and on that footing
+     the 50 km/s point FAILS and is reported as a miss.
+  Literature inputs verified this session against Oman 2022 MNRAS 509, 3268 Table 1: the alpha.100 HIMF
+  (log phi* = -2.26, log M* = 9.92, alpha = -1.29) and HIWF (log phi* = -1.67, w* = 307, alpha = -0.63, beta = 2.0,
+  all-statistical; 300/-0.56/2.1 counting-only) and the 21827-source sample size all match the published values.
+
+RESULT: 15 checks, 0 FAIL   rc=0

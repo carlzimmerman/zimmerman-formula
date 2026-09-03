@@ -1,0 +1,63 @@
+======================================================================================================================
+ITEM 30 -- the HI warp onset radius, against the MOND external-field radius and against the disc edge
+======================================================================================================================
+  WHISP edge-on sample: 26 galaxies; 17 have a published warp onset radius, 9 are classed as unwarped or unmeasurable
+  analysed: 16 galaxies with a clean published warp onset radius
+  of these, 11 are in van der Kruit's OWN clean statistic (a detected truncation AND not one of the three systems he removes as disturbed); 3 have NO detected truncation, so their R_deep is only an apparent disc size, and 2 are systems he excludes -- both kept in the headline numbers below and stripped out again in the robustness arm at the end
+  deprojected flat speeds v = sqrt((W50/2)^2 - (10)^2)/sin i: median 101 km/s, range 67 - 162
+  consistency check on the masses: the BTFR mass implied by v_flat is 4.1x the atomic-gas mass (16-84%: 2.6 - 12.4); for late-type discs the stars carry most of the baryons, so a factor of a few is expected and a factor of 100 would mean the speeds or the gas masses are wrong
+  [PASS] 30a the BTFR mass and the measured gas mass are consistent to within the stellar contribution, so v_flat and the distances are not grossly wrong before any warp statistic is computed   (median M_b(BTFR)/M_gas = 4.1 on canonical, 3.4 on alt)
+  
+  candidate scale for the warp onset   N  median ratio  log scatter (dex)
+  R_deep (stellar truncation)         16         0.918              0.097
+  R_25 (optical radius)               16         1.015              0.130
+  R_opt (visual disc edge)            16         0.929              0.103
+  R_HI (1 Msun/pc^2)                  16         0.665              0.087
+  r_M = v^2/a_0 (MOND radius)         16         2.326              0.260
+  (the first four are distance-free ratios of two angles; only the MOND radius needs a distance)
+  
+  external field from the nearest catalogued companion, assuming a fiducial baryonic mass of 1e+10 Msun and the PROJECTED separation (both of which make this an UPPER limit): e_N median 1.58e-03, max 3.46e-02 over 10/16 galaxies with a companion
+  large-scale-structure field for comparison: the committed 2M++/MCXC calculation for 237 WALLABY galaxies (prep_2026/wallaby_firing/gext_wallaby_237.csv) gives a median e_N of 4.57e-03 with the cluster term and 5.52e-04 without it, on canonical
+  
+  [canonical] to put the EFE radius AT the observed warp onset, the external field would have to be e_N = 0.185 (16-84%: 0.091 - 0.532)
+  [canonical]   that is 40x the large-scale-structure field these galaxies actually sit in, and 215x the UPPER limit from their nearest catalogued companion
+  [canonical]   equivalently, with the real field the EFE radius sits at r_EFE = 52 kpc while the warp starts at 7.2 kpc: r_warp/r_EFE = 0.157 with 0.260 dex scatter
+  [alt] to put the EFE radius AT the observed warp onset, the external field would have to be e_N = 0.127 (16-84%: 0.063 - 0.365)
+  [alt]   that is 34x the large-scale-structure field these galaxies actually sit in, and 178x the UPPER limit from their nearest catalogued companion
+  [alt]   equivalently, with the real field the EFE radius sits at r_EFE = 47 kpc while the warp starts at 7.2 kpc: r_warp/r_EFE = 0.173 with 0.260 dex scatter
+  
+  [canonical] the acceleration where the warp begins is g_obs(r_warp) = 0.43 a_0 (16-84%: 0.30 - 0.73), scatter 0.260 dex, with a rotation-speed trend of +0.97 +- 0.48 dex per dex
+  [alt] the acceleration where the warp begins is g_obs(r_warp) = 0.36 a_0 (16-84%: 0.25 - 0.60), scatter 0.260 dex, with a rotation-speed trend of +0.97 +- 0.48 dex per dex
+  so warps do begin near the MOND transition -- but three times less tightly than they track the stellar disc's edge, and
+  with a residual mass trend, so this is a restatement of the disc-edge result and not an independent a_0 law.
+  
+  MUTATION 1 (shuffle which warp radius belongs to which galaxy, 4000 draws): the truncation-radius ratio's scatter goes from 0.097 to 0.203 +- 0.027 dex (4.0 sigma of improvement over chance); the MOND-radius ratio's goes from 0.260 to 0.339 +- 0.036 (2.2 sigma)
+  MUTATION 2 (a_0 x 100): r_M shrinks by 100, so the MEDIAN of r_warp/r_M moves by 2 dex while its SCATTER is unchanged --
+    a scale-free statistic cannot see a_0.  Only the median can, which is why both are reported and why the scatter
+    comparison alone would be a_0-blind.  Stated so the scatter result is not over-read.
+    check: scatter with a_0 x 100 = 0.260 dex, identical to 0.260; median moves from 2.33 to 232.6
+  [PASS] 30b MUTATION CONTROLS behave: shuffling the warp radii between galaxies degrades every ratio's scatter, so the ratios do carry real per-galaxy information, and multiplying a_0 by 100 leaves the scatter statistic untouched -- which is exactly why the median is reported alongside it   (truncation ratio 0.097 -> 0.203 dex when shuffled; MOND ratio 0.260 -> 0.339; a_0 x100 leaves the MOND-ratio scatter at 0.260)
+  distance systematic: swapping the Virgocentric-flow distances for the Tully-Fisher ones changes the r_warp/r_M scatter from 0.260 to 0.248 dex and the median from 2.33 to 2.86.  The four angle ratios are distance-free and are untouched by this.
+  FAIRNESS CONTROL, because the comparison is not symmetric: the four disc-edge ratios are ratios of two ANGLES and carry no distance error, while r_warp/r_M needs a distance.  The two independent distance estimates for these galaxies differ by 0.200 dex, i.e. about 0.141 dex of error each.  Removing that in quadrature still leaves the MOND-radius ratio at 0.218 dex, more than twice the truncation ratio's 0.097, so the conclusion is not an artefact of the distances.
+  
+  ------------------------------------------------------------------------------------------------------------------
+  ROBUSTNESS ARM: van der Kruit's own clean subsample (a detected truncation, and none of his disturbed systems)
+  ------------------------------------------------------------------------------------------------------------------
+  restricting 16 -> 11 galaxies; dropped for no truncation: UGC 6283, UGC 7090, UGC 8396; dropped as disturbed: UGC 7125, UGC 8246
+    van der Kruit's own clean statistic is 12 -- these 11 plus UGC 1281, whose R_warp he prints with a question mark and which this script excludes on its own 'uncertain' flag before any of this.  Stated so the two counts are not confused: 11 is a subset of his 12, not a different selection.
+  candidate scale                      N    median   scatter     vs full sample
+  R_deep (stellar truncation)         11     0.926     0.073    0.097 -> 0.073 dex
+  R_25 (optical radius)               11     1.050     0.138    0.130 -> 0.138 dex
+  R_opt (visual disc edge)            11     0.922     0.090    0.103 -> 0.090 dex
+  R_HI (1 Msun/pc^2)                  11     0.698     0.091    0.087 -> 0.091 dex
+  r_M = v^2/a_0 (MOND radius)         11     2.208     0.208    0.260 -> 0.208 dex
+  on this clean subsample the EFE picture is UNCHANGED: r_warp/r_EFE = 0.149 with 0.208 dex, and the external field needed to put r_EFE at the warp onset is still e_N = 0.205, 45x the large-scale-structure field.
+  and van der Kruit's own published ratio for these same galaxies, R_warp/R_max, has a median of 0.90 -- an independent check that this script's angle ratio reproduces the number the paper prints.
+  [PASS] 30e ROBUSTNESS ARM: the result does not come from the three galaxies with no measured truncation or from the two systems van der Kruit himself throws out.  Cut to his own selection, every baryonic disc-edge scale stays two to three times tighter than the MOND radius and the external-field radius stays the worst of them, so the negative verdict on the item is not a selection artefact   (clean N = 11: R_warp/R_deep = 0.926 at 0.073 dex (full sample 0.097); MOND radius 0.208 dex (full 0.260); tightest scale is still 'R_deep (stellar truncation)' at 0.073 dex; r_warp/r_EFE = 0.149)
+  [FAIL] 30 (the framework's stated warp mechanism does NOT survive) the external-field radius is the WORST of the candidate scales, not the best: with the external field these galaxies actually sit in, r_EFE lies far outside where their warps begin, and matching the two would need a field roughly forty times the large-scale structure these galaxies sit in and two hundred times the upper limit their nearest catalogued companion can supply   (r_warp/r_EFE = 0.157 (canonical) / 0.173 (alt) with 0.260 dex scatter (the criterion was < 0.15 dex and a ratio near 1); the required e_N is 0.19, 40x the actual large-scale field and 215x the companion upper limit)
+  [PASS] 30b2 what DOES organise the warp onset is a BARYONIC scale: all four disc-edge radii beat the MOND radius by a factor of two and a half to three in scatter, and the warp begins essentially AT the edge of the stellar disc.  That is the standard picture (Briggs 1990; van der Kruit 2007), it needs no external field, no halo and no a_0, and it is neutral between the framework and LambdaCDM -- and negative for the item as posed   (tightest scale = 'R_HI (1 Msun/pc^2)' at 0.087 dex; R_warp/R_deep = 0.918 with 0.097 dex (N = 16); R_warp/R_opt 0.103; R_warp/R_25 0.130; against 0.260 dex for the MOND radius)
+  [FAIL] 30b3 the weaker fallback -- that warps begin at a FIXED ACCELERATION in units of a_0 -- also fails, and is recorded as a claim that does not hold rather than as a near-miss: the onset acceleration is 0.4 a_0 in the median, which sounds like a law, but it carries a rotation-speed trend of a full dex per dex, so what is actually constant is r_warp/v_flat, i.e. the disc's size, not its acceleration   (g_obs(r_warp) = 0.43 a_0 canonical / 0.36 a_0 alt, scatter 0.260 dex against 0.097 for R_deep; mass trend +0.97 +- 0.48 dex/dex in v_flat, i.e. r_warp propto v_flat^1.03 and not v_flat^2)
+  [PASS] 30c TWO CORRECTIONS TO THE HUNT LIST, recorded: the papers it cites for warp catalogues (van Eymeren+2011, A&A 530 A29/A30) are about lopsidedness and contain no warp radii, and the Garcia-Ruiz+2002 paper it wants does not tabulate the per-galaxy warp radius at all -- it is only in their figures.  The numbers used here had to come from van der Kruit 2007 Table 3   (16 galaxies with a printed R_warp, out of 26 in the WHISP edge-on sample)
+  [PASS] 30d AGAINST INTEREST, the limits of this test: N = 16 galaxies, the warp radii are PROJECTED (a lower limit; van der Kruit's own deprojection puts the intrinsic value near 1.1 R_max, a factor that moves medians and not scatters), the external fields are estimated and not measured for these particular galaxies, and a companion mass had to be assumed. None of that can close a factor of 40 in e_N   (scatter comparison is the load-bearing statistic and is projection-proof; the median r_warp/r_EFE would need the projection factor to be 6 rather than 1.1)
+
+RESULT: 8 checks, 2 FAIL -> ["30 (the framework's stated warp mechanism does NOT survive) the external-field radius is the WORST of the candidate scales, not the best: with the external field these galaxies actually sit in, r_EFE lies far outside where their warps begin, and matching the two would need a field roughly forty times the large-scale structure these galaxies sit in and two hundred times the upper limit their nearest catalogued companion can supply", "30b3 the weaker fallback -- that warps begin at a FIXED ACCELERATION in units of a_0 -- also fails, and is recorded as a claim that does not hold rather than as a near-miss: the onset acceleration is 0.4 a_0 in the median, which sounds like a law, but it carries a rotation-speed trend of a full dex per dex, so what is actually constant is r_warp/v_flat, i.e. the disc's size, not its acceleration"]   rc=1

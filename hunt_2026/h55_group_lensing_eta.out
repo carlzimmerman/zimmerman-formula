@@ -1,0 +1,118 @@
+====================================================================================================================
+RUNG 1 -- galaxies: eta from the KiDS-1000 stacked lensing RAR (on disk, a real Delta-Sigma stack)
+====================================================================================================================
+  isolated KiDS-bright lenses: 15 acceleration bins, g_bar = 1.38e-15 to 3.92e-12 m/s^2
+  canonical  stars only     : eta = 1.41 +- 0.03 over all 15 bins; 1.51 +- 0.04 over the 12 deep bins (g_bar < 1e-12, x < 0.011)
+  canonical  stars + hot gas: eta = 0.89 +- 0.02 over all 15 bins; 0.86 +- 0.02 over the 12 deep bins (g_bar < 1e-12, x < 0.011)
+  alt        stars only     : eta = 1.29 +- 0.03 over all 15 bins; 1.38 +- 0.03 over the 12 deep bins (g_bar < 1e-12, x < 0.011)
+  alt        stars + hot gas: eta = 0.81 +- 0.02 over all 15 bins; 0.78 +- 0.02 over the 12 deep bins (g_bar < 1e-12, x < 0.011)
+  the galaxy rung is therefore eta = 0.81 to 1.41: the spread is the BARYON BUDGET (whether the hot gas around
+  isolated galaxies is counted), not the statistics, exactly as it will be for the groups below.
+  [PASS] 55-1 the ladder starts at 1: the KiDS-1000 stacked lensing of isolated galaxies brackets eta = 1 between its two baryon budgets on both footings, so any rise measured further up the ladder is a real rise and not an offset in the zero point   (eta(galaxies) = 1.41 +- 0.03 with stars alone and 0.89 with Brouwer's hot-gas correction (canonical); 1.29 / 0.81 (alt).  The 0.15-0.25 dex stellar M/L systematic on g_bar -- this repository's own items 2, 65 and 66 -- is far larger than the 0.03 statistical error, so this is a consistency, not a measurement)
+
+====================================================================================================================
+RUNGS 2-3 -- groups to clusters: eRASS1, weak-lensing-calibrated M500, measured M_gas
+====================================================================================================================
+  eRASS1 clean sample: N = 9830, log M500 = 12.71 to 15.21, z = 0.003 to 0.999
+
+  --- canonical footing, a_0 = 9.360e-11 m/s^2
+                    mass bin     N    <z>  x=g_bar/a0           none         flat02        scaling
+     GROUPS      [12.5,13.5)   249  0.076      0.0042           2.89           2.63           1.56
+     poor groups [13.5,14.0)  1532  0.154      0.0149           2.41           2.19           1.85
+     clusters    [14.0,14.5)  5691  0.332      0.0358           2.35           2.13           2.07
+     rich        [14.5,15.0)  2305  0.375      0.0671           2.38           2.15           2.20
+     very rich   [15.0,15.6)    53  0.380      0.1133           2.42           2.17           2.30
+/Users/carlzimmerman/new_physics/zimmerman-formula/hunt_2026/h55_group_lensing_eta.py:107: RuntimeWarning: divide by zero encountered in matmul
+  resid = le - A @ coef
+/Users/carlzimmerman/new_physics/zimmerman-formula/hunt_2026/h55_group_lensing_eta.py:107: RuntimeWarning: overflow encountered in matmul
+  resid = le - A @ coef
+/Users/carlzimmerman/new_physics/zimmerman-formula/hunt_2026/h55_group_lensing_eta.py:107: RuntimeWarning: invalid value encountered in matmul
+  resid = le - A @ coef
+  canonical  gas only (upper bound on eta)             : d log eta/d log M500 = -0.080 +- 0.003   (z term +0.206 +- 0.005 per unit z); eta(1e14, z=0.3) = 2.69
+  canonical  M* = 0.2 M_gas (repo baseline)            : d log eta/d log M500 = -0.082 +- 0.003   (z term +0.204 +- 0.005 per unit z); eta(1e14, z=0.3) = 2.44
+  canonical  M*/M500 = 0.0125 (M500/6e14)^-0.37        : d log eta/d log M500 = +0.056 +- 0.002   (z term +0.181 +- 0.004 per unit z); eta(1e14, z=0.3) = 2.06
+
+  --- alt footing, a_0 = 1.130e-10 m/s^2
+                    mass bin     N    <z>  x=g_bar/a0           none         flat02        scaling
+     GROUPS      [12.5,13.5)   249  0.076      0.0035           2.64           2.40           1.43
+     poor groups [13.5,14.0)  1532  0.154      0.0124           2.21           2.00           1.70
+     clusters    [14.0,14.5)  5691  0.332      0.0297           2.16           1.96           1.90
+     rich        [14.5,15.0)  2305  0.375      0.0556           2.19           1.98           2.02
+     very rich   [15.0,15.6)    53  0.380      0.0938           2.23           2.01           2.13
+  alt        gas only (upper bound on eta)             : d log eta/d log M500 = -0.077 +- 0.003   (z term +0.207 +- 0.005 per unit z); eta(1e14, z=0.3) = 2.46
+  alt        M* = 0.2 M_gas (repo baseline)            : d log eta/d log M500 = -0.080 +- 0.003   (z term +0.206 +- 0.005 per unit z); eta(1e14, z=0.3) = 2.23
+  alt        M*/M500 = 0.0125 (M500/6e14)^-0.37        : d log eta/d log M500 = +0.058 +- 0.002   (z term +0.183 +- 0.004 per unit z); eta(1e14, z=0.3) = 1.89
+  [PASS] 55-2 THE ANSWER TO ITEM 55, AND IT IS NOT A STEP: from 5e12 to 1.6e15 solar masses the residual at R500 is FLAT to within a factor 1.4.  There is no threshold where the hot gas 'switches the problem on' -- groups already carry a residual of the same size as clusters do.  The sign of the small remaining trend is set by the stellar prescription, not by the data   (d log eta/d log M500 spans -0.082 to +0.058 over both footings and all three baryon budgets, at fixed redshift, across 2.5 decades of mass; a 'step' from eta = 1 to eta = 2 across one decade would be +0.30 dex/dex, and even the largest trend here gives only a factor 1.61 over the whole range)
+  [PASS] 55-2b and the same fit reproduces this repository's standing item-68 liability from a different direction: at FIXED MASS the residual rises with redshift by about +0.2 dex per unit z, where a constant a_0 requires zero   (d log eta/dz = +0.181 to +0.207 per unit z across the six fits, against item 68's independently measured +0.187 +- 0.013; the same selection and mass-proxy caveats apply to both)
+  [PASS] 55-3 eta(group) is determined to well inside the item's +-0.2 STATISTICALLY and nowhere near it SYSTEMATICALLY: the three baryon prescriptions give group values spanning a factor two, because at 1e13 solar masses the stars are comparable to the gas and eRASS1 does not measure them.  Item 55's '+-0.2' bar cannot be met from this data   (eta(groups, 1e12.5-1e13.5) = 2.89 (gas only) / 2.63 (M*=0.2 M_gas) / 1.56 (declining f_star); the spread 1.33 is the systematic, against a statistical error of order 0.05)
+  [PASS] 55-7 AGAINST THE FRAMEWORK, AND THIS IS THE ITEM'S REAL FINDING: groups do NOT have eta = 1.  Every baryon budget puts the 1e12.5-1e13.5 systems at eta = 1.4 to 2.9, i.e. the residual is ALREADY THERE at group masses, where Milgrom's reading of the cluster problem (no missing mass below sigma ~ 300 km/s) says it should not be   (eta(groups) = 1.56 to 2.89 canonical, 1.43 to 2.64 alt, over the three baryon budgets.  X-ray flux selection makes this WORSE for the framework, not better: at fixed M500 a flux-limited catalogue prefers the gas-RICH systems, which are the ones with the smallest eta)
+
+====================================================================================================================
+how much of the ladder is the unmeasured stellar mass?  scan of the stellar-fraction scaling
+====================================================================================================================
+   norm f*(6e14)   slope   eta(1e13)   eta(1e14.5)   d log eta/d log M
+          0.0080   -0.20        2.07          2.23              -0.013
+          0.0080   -0.37        1.68          2.22               0.022
+          0.0080   -0.50        1.40          2.20               0.056
+          0.0125   -0.20        1.81          2.17               0.011
+          0.0125   -0.37        1.43          2.14               0.056
+          0.0125   -0.50        1.17          2.12               0.096
+          0.0200   -0.20        1.53          2.06               0.042
+          0.0200   -0.37        1.18          2.03               0.096
+          0.0200   -0.50        0.96          2.01               0.144
+  [PASS] 55-4 the FLATNESS of the ladder survives the stellar systematic even though its normalisation does not: over every plausible stellar-fraction normalisation and slope the mass trend of eta stays inside +-0.15 dex per dex, so 'no step' is robust -- but the SIGN of the residual trend is not determined, and eta(1e13) itself moves by a factor two   (d log eta/d log M500 spans -0.082 to +0.144 across the nine scanned stellar prescriptions and the six headline fits; eta(1e13) itself spans a factor two over the same scan)
+
+====================================================================================================================
+the estimator's own weakness: mass and redshift are confounded in a flux-selected sample
+====================================================================================================================
+  corr(log M500, z) = +0.393 in the clean sample -- groups are nearby, clusters are far, so a mass trend and a
+  redshift trend cannot be separated without care.  The fits above already carry a linear z term.  Now the low-z cut:
+  z < 0.2 subsample: N = 3022, log M500 = 12.71 to 15.08, corr(logM, z) = +0.311
+/Users/carlzimmerman/new_physics/zimmerman-formula/hunt_2026/h55_group_lensing_eta.py:161: RuntimeWarning: divide by zero encountered in matmul
+  res = le[mlo] - A @ co; cv = np.linalg.inv(A.T @ A)*res.var(ddof=2)
+/Users/carlzimmerman/new_physics/zimmerman-formula/hunt_2026/h55_group_lensing_eta.py:161: RuntimeWarning: overflow encountered in matmul
+  res = le[mlo] - A @ co; cv = np.linalg.inv(A.T @ A)*res.var(ddof=2)
+/Users/carlzimmerman/new_physics/zimmerman-formula/hunt_2026/h55_group_lensing_eta.py:161: RuntimeWarning: invalid value encountered in matmul
+  res = le[mlo] - A @ co; cv = np.linalg.inv(A.T @ A)*res.var(ddof=2)
+  z < 0.2 alone, no z term: d log eta/d log M500 = -0.067 +- 0.004, eta(1e14) = 2.23
+  [PASS] 55-5 the low-redshift subsample, where mass and redshift are much less confounded, gives the same gentle mass trend as the full fit -- so the ladder's shape is not an artifact of X-ray flux selection   (z < 0.2: -0.067 +- 0.004 against the full-sample, z-controlled -0.082 +- 0.003)
+
+====================================================================================================================
+mutation controls
+====================================================================================================================
+  [PASS] M1 mutation: a_0 ten times too large moves the whole ladder by the factor sqrt(10) the deep-MOND kernel demands, so eta really is measuring the acceleration scale and not an arbitrary normalisation   (median eta with 10 a_0 = 0.73 vs 2.15, ratio 0.340 against the predicted 0.316)
+  [PASS] M2 mutation: with nu = 1 (Newton, no kernel) the same systems need a mass discrepancy of 42 in groups and 9 in rich clusters instead of eta ~ 2, so the kernel removes 80-95% of the missing mass everywhere on the ladder and the residual is what is left   (Newtonian M500/M_bar median 12.4 (groups 42.1, rich clusters 9.4) vs eta = 2.15 with the kernel)
+  [PASS] M3 mutation: shuffling the gas masses between systems destroys the ladder -- the mass trend of eta swings to the value a random baryon budget gives, which is far from the measured one   (shuffled d log eta/d log M500 = +0.709 against the real -0.082)
+
+====================================================================================================================
+the LambdaCDM alternative computed beside it
+====================================================================================================================
+  in LambdaCDM the quantity with a prediction is the baryon fraction, not eta: f_bar should approach the cosmic 0.157
+                    mass bin  f_bar(measured)   f_bar/f_cosmic   missing baryons
+     GROUPS      [12.5,13.5)            0.024            0.151             84.9%
+     poor groups [13.5,14.0)            0.053            0.338             66.2%
+     clusters    [14.0,14.5)            0.081            0.516             48.4%
+     rich        [14.5,15.0)            0.106            0.673             32.7%
+     very rich   [15.0,15.6)            0.132            0.841             15.9%
+  so LambdaCDM's own statement about groups -- that they should have LOST most of their baryons to feedback -- and
+  the framework's -- that the residual should switch on with the hot gas -- point in OPPOSITE directions on the same
+  numbers: the systems with the fewest baryons are the ones the framework needs to work best in.
+  [PASS] 55-6 the two theories are pulled the same way by the same number and neither is discriminated here: groups are missing 4/5 of their cosmic baryons in LambdaCDM's accounting, and it is exactly that missing gas that keeps the framework's eta above 1 in groups.  The measurement cannot separate 'feedback expelled the gas' from 'the gravity law is wrong'   (f_bar = 0.024 in groups vs 0.106 in rich clusters, against a cosmic 0.157)
+
+====================================================================================================================
+  VERDICT on item 55.
+    * The lensing group Delta-Sigma profiles the item names are not machine-readable anywhere reachable from here,
+      so the group rung is built on eRASS1's weak-lensing-CALIBRATED masses rather than on a stacked profile.  That
+      is a real weakening and it is recorded as one.
+    * There is NO STEP.  eta at R500 is flat from 5e12 to 1.6e15 solar masses: d log eta/d log M500 lies between
+      -0.08 and +0.14 across both footings and every defensible baryon budget, a factor of at most 1.6 over 2.5
+      decades, against the +0.30 dex/dex a 1 -> 2 step across one decade would need.
+    * And the sign of the answer is against the framework: groups do not have eta = 1, they have eta = 1.4 to 2.9.
+      The residual is present at group masses, not switched on at cluster masses.
+    * eta(group) CANNOT be pinned to +-0.2, which was the item's Kepler-grade bar: the three defensible stellar
+      budgets give 1.56 to 2.89 at 1e13 because at group masses the unmeasured stars are comparable to the measured
+      gas.  Stellar masses for eRASS1 groups are the measurement that would decide it.
+    * A by-product: the same fit independently reproduces item 68's redshift liability, +0.18 to +0.21 dex per unit
+      z at fixed mass, where a constant a_0 requires zero.
+
+RESULT: 11 checks, 0 FAIL   rc=0

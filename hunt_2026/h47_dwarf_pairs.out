@@ -1,0 +1,198 @@
+==========================================================================================================================
+SECTION 1 -- is the TiNy Titans per-pair table available at all?
+==========================================================================================================================
+  files on disk matching TNT / TiNy / Stierwalt: NONE
+  VizieR (CfA mirror, vizier.cfa.harvard.edu, the one reachable from here) answers
+     'Error=Table or Catalog not found: J/ApJ/805/2'  -- checked this session; Stierwalt et al. 2015 was never
+  deposited at CDS.  The arXiv preprint 1412.4796 carries one table, 'TNT Starburst and Quenched Fractions';
+  the per-pair r_sep and v_sep exist only as plotted points in its Figure 2.
+  [PASS] 47a ITEM 47 AS POSED IS NOT RUNNABLE -- the dwarf-pair velocity differences and separations it needs are not available in machine-readable form: nothing on disk, no CDS/VizieR deposit, and the preprint publishes them only as a scatter plot.  A data-availability result, not a null   (0 matching files on disk; VizieR J/ApJ/805/2 returns 'Table or Catalog not found')
+
+==========================================================================================================================
+SECTION 2 -- what regime are dwarf pairs actually in?  (the item assumed deep MOND; check it)
+==========================================================================================================================
+  TNT selection (Stierwalt et al. 2015, ApJ 805, 2): 60 isolated pairs, r_sep < 50 kpc, v_sep < 300 km/s (only
+  six above 150), 7 < log(M*/Msun) < 9.7, stellar mass ratio < 10, every pair > 1.5 Mpc from a galaxy with
+  M* > 2.5e10 Msun.  Baryonic mass here M_b = 3 M* (gas-rich dwarfs).
+
+   log M* (each)    M_b pair  r [kpc]    g_N/a_0   g_int/a_0  g_int/e_N
+             7.5    1.90e+08       10     0.0028      0.0532       2.66
+             7.5    1.90e+08       30     0.0003      0.0177       0.89
+             7.5    1.90e+08       50     0.0001      0.0106       0.53
+             8.5    1.90e+09       10     0.0283      0.1681       8.41
+             8.5    1.90e+09       30     0.0031      0.0560       2.80
+             8.5    1.90e+09       50     0.0011      0.0336       1.68
+             9.5    1.90e+10       10     0.2826      0.5316      26.58
+             9.5    1.90e+10       30     0.0314      0.1772       8.86
+             9.5    1.90e+10       50     0.0113      0.1063       5.32
+  [PASS] 47b the item's premise needs correcting: TNT pairs are deep in the MOND regime (g_N/a_0 = 1e-4 to 1e-2, kernel fully engaged) but their internal MOND field is only a few per cent of a_0 -- the SAME ORDER as the external field of large-scale structure on an isolated galaxy.  The EFE therefore governs the answer over most of the range, and the isolated deep-MOND law is the framework's BEST CASE, not its prediction   (56% of the tabulated (mass, separation) combinations have internal field below 3 e_N with e_N = 0.02; only the most massive TNT dwarfs at the smallest separations stay on the isolated branch)
+
+==========================================================================================================================
+SECTION 3 -- the forecast for a 60-pair TNT sample with SDSS-grade velocities
+==========================================================================================================================
+  --- footing canonical (a_0 = 9.360e-11) ---
+   log M* (each)  r [kpc]   deep-MOND  EFE branch   Newton_b   LambdaCDM  [km/s, sigma_los]
+             7.5       10        20.0        14.4        5.2        47.8
+             7.5       30        20.0         8.3        3.0        45.2
+             8.5       10        35.6        45.4       16.5        62.5
+             8.5       30        35.6        26.2        9.5        64.3
+             9.5       10        63.2       143.6       52.2        81.6
+             9.5       30        63.2        82.9       30.1        93.2
+  --- footing alt (a_0 = 1.130e-10) ---
+   log M* (each)  r [kpc]   deep-MOND  EFE branch   Newton_b   LambdaCDM  [km/s, sigma_los]
+             7.5       10        21.0        14.4        5.2        47.8
+             7.5       30        21.0         8.3        3.0        45.2
+             8.5       10        37.3        45.4       16.5        62.5
+             8.5       30        37.3        26.2        9.5        64.3
+             9.5       10        66.3       143.6       52.2        81.6
+             9.5       30        66.3        82.9       30.1        93.2
+  against a published median SDSS velocity uncertainty of +/- 37 km/s PER PAIR.
+
+  forecast: 200 mock TNT samples of 60 pairs each, generated under each law and fitted for the amplitude A relative to the framework's deep-MOND prediction (A = 1 means the framework is right)
+    truth = deepmond  : fitted A = 1.00 +/- 0.21
+    truth = efe       : fitted A = 1.82 +/- 0.27
+    truth = newton    : fitted A = 0.82 +/- 0.23
+    truth = lcdm      : fitted A = 1.47 +/- 0.26
+  separations at N = 60: framework vs LambdaCDM 1.4 sigma, framework vs its own EFE branch 2.4 sigma, framework vs Newton-on-the-baryons 0.6 sigma
+  AGAINST THE DRAFT'S OWN CLAIM: the earlier version of this script asserted that 60 TNT pairs could at least kill Newtonian gravity on the baryons alone.  They cannot (0.6 sigma) -- over TNT's mass and
+  separation ranges the Newtonian and deep-MOND amplitudes happen to be close, so the two laws are degenerate
+  in an amplitude fit and only the SEPARATION DEPENDENCE would tell them apart.
+  [PASS] 47c UNDERPOWERED even if the table existed -- with a median velocity uncertainty of 37 km/s against a 20-40 km/s signal, 60 pairs reach only ~2 sigma between the framework and LambdaCDM, under the hunt list's 3 sigma bar, and cannot separate the framework's own two branches either   (framework vs LambdaCDM 1.4 sigma at N = 60 (3 sigma needs N ~ 261); vs its own EFE branch 2.4 sigma; vs Newton-baryons 0.6 sigma)
+  [PASS] M1 mutation control (REPAIRED) -- generating the mocks with a_0 sixteen times too large while the reference prediction keeps the true a_0 moves the fitted amplitude by the predicted factor of 2 (v ~ a_0^1/4), so the 47c verdict is a statement about the size of the effect and not about a dead estimator   (a_0 x 16 in the generator only: fitted A = 1.93 +/- 0.24, predicted 2.00, 4.0 sigma from 1)
+
+==========================================================================================================================
+SECTION 4 -- the substitute that works: isolated dwarf pairs from ALFALFA alpha.100
+==========================================================================================================================
+  alpha.100 (Haynes et al. 2018, J/ApJ/861/49 table2) fetched this session to
+  real_research/data/alfalfa_a100_positions.tsv -- 31502 HI sources with position, systemic velocity, W50,
+  flow-model distance and log M_HI.  Why it beats TNT for this item:
+    * the systemic velocity comes from an HI profile, good to a few km/s, not 37;
+    * M_HI is a MEASURED baryonic mass, so the stellar M/L that blocks the rest of this hunt is a minor term;
+    * TNT's own isolation criterion (no galaxy with M* > 2.5e10 within 1.5 Mpc) can be imposed against 2MRS;
+    * there are about ten times as many pairs.
+  What it costs: ALFALFA's 3.5' beam blends pairs closer than about two beamwidths, so this sample lives at
+  LARGER separations than TNT's < 50 kpc, where the external-field branch is even more dominant.
+  alpha.100 rows: 31502;  code-1 (S/N-selected, reliable) 25434;  with an ALFALFA-SDSS stellar mass 24012
+  code-1 sources with 5 < D < 100 Mpc: 11052;  of those log M_HI < 9.3: 6275
+  candidate dwarf pairs (20-400 kpc, |dv| < 500 km/s, separation > 4'): 5192
+  after relative isolation (no third alpha.100 source inside max(2 r_p, 150 kpc) of the midpoint at |dv| < 500 km/s): 350
+  2MRS galaxies with Upsilon_K = 0.6 stellar mass above 2.5e+10 Msun: 38374
+  after TNT's isolation veto (no M* > 2.5e+10 galaxy within 1.5 Mpc and 1000 km/s): 138
+  FINAL SAMPLE: 138 isolated ALFALFA dwarf pairs.  median r_p = 168 kpc, median D = 35 Mpc, median log M_b(pair) = 9.44, median |dv| = 50 km/s
+  velocity error per pair from the tabulated e_W50: 4.4 km/s (TNT's is 37)
+  |dv| histogram in 50 km/s bins: 69 29 11 9 6 3 6 1 2 2
+  [PASS] 47f the ALFALFA substitute exists and is large enough to matter: an isolated dwarf-pair sample an order of magnitude bigger than TNT's, with velocities an order of magnitude better.  This is what makes the rest of the section a measurement rather than a forecast   (N = 138 pairs (TNT: 60); per-pair velocity error 4.4 km/s (TNT: 37))
+  maximum-likelihood dv dispersion of the whole sample: 52.7 +/- 6.7 km/s, interloper fraction 0.29
+
+     r_p bin [kpc]     N   f_int     sigma_los [km/s]  log M_b,pair
+       60 -    120    38    0.05          83.4 +/- 15.1          9.52
+      120 -    200    33    0.23          74.1 +/- 13.6          9.40
+      200 -    300    28    0.39          43.1 +/- 14.0          9.46
+
+  --- footing canonical (a_0 = 9.360e-11), external field e_N = 0.02 ---
+           r_p bin        observed   deep-MOND  EFE branch   framework   Newton_b   LambdaCDM
+       60 -    120       83.4+/-15.1        42.0        16.2        16.2        5.9        52.2
+      120 -    200       74.1+/-13.6        39.0        10.9        10.9        4.0        43.5
+      200 -    300       43.1+/-14.0        39.8         9.1         9.1        3.3        37.0
+
+  --- footing alt (a_0 = 1.130e-10), external field e_N = 0.02 ---
+           r_p bin        observed   deep-MOND  EFE branch   framework   Newton_b   LambdaCDM
+       60 -    120       83.4+/-15.1        44.0        16.2        16.2        5.9        52.2
+      120 -    200       74.1+/-13.6        40.8        10.9        10.9        4.0        43.5
+      200 -    300       43.1+/-14.0        41.7         9.1         9.1        3.3        37.0
+
+  amplitude A = (observed dispersion)/(predicted), fitted jointly with the interloper fraction on all 138 pairs.  A = 1 means the law is right with no free parameter.
+    canonical  deepmond  : A =  1.79 +/- 0.20  (+0.253 dex), interloper fraction 0.22
+    canonical  framework : A =  5.15 +/- 1.01  (+0.712 dex), interloper fraction 0.31
+    canonical  newton    : A = 14.50 +/- 2.86  (+1.162 dex), interloper fraction 0.32
+    canonical  lcdm      : A =  1.37 +/- 0.16  (+0.137 dex), interloper fraction 0.26
+    alt        deepmond  : A =  1.71 +/- 0.19  (+0.233 dex), interloper fraction 0.22
+    alt        framework : A =  5.15 +/- 1.01  (+0.712 dex), interloper fraction 0.31
+    alt        newton    : A = 14.50 +/- 2.86  (+1.162 dex), interloper fraction 0.32
+  to fit on the EFE branch the external field would have to satisfy nu(e_N) = 201 (it is 7.6 at e_N = 0.02), i.e. e_N = 2.5e-05 a_0 -- 806x below the large-scale-structure value the repository uses for an isolated galaxy.
+  THE LOOPHOLE, stated because it is real: if the EFE branch IS right, pairs at these separations are not bound at all, and their velocity differences would be local flow rather than orbits.  The interloper term removes chance projections, not physically associated but unbound pairs.  So 47g excludes 'bound circular orbits on the EFE branch', which is what the item asked about, and not the branch itself.
+  [PASS] 47g THE FRAMEWORK'S OWN EFE BRANCH DOES NOT FIT, and neither does Newtonian gravity on the baryons.  At 60-400 kpc a dwarf pair's internal MOND field is far below the external field of large-scale structure, so the framework's honest prediction is the quasi-Newtonian branch with G_eff = nu(e_N)G -- and that is four to five times too small for bound circular orbits.  Only the ISOLATED deep-MOND branch, e_N -> 0, reproduces the observed dispersion   (framework (min of the two branches, e_N = 0.02): A = 5.15 +/- 1.01, 4.1 sigma above 1; Newton on the baryons: A = 14.50 +/- 2.86, 4.7 sigma above 1; the EFE branch would need e_N = 2.5e-05 a_0)
+  [PASS] 47h THE AMPLITUDE, and it does NOT come out at 1.  Against the framework's best case -- the isolated deep-MOND two-body law, which no external field can raise -- the observed dispersion sits ABOVE the parameter-free prediction.  LambdaCDM's abundance-matched halos sit above their own prediction too, by less. Whether the excess is physics or residual contamination is what 47i tests   (best footing (alt): A = 1.71 +/- 0.19 = +0.233 dex, 3.6 sigma above the parameter-free prediction -- 8.5x the measured baryonic mass would be needed (v ~ M_b^1/4).  LambdaCDM (Moster+NFW): A = 1.37 +/- 0.16, 2.3 sigma above 1)
+
+  UNBINNED maximum-likelihood d log sigma_los / d log r_p = -0.150 +/- 0.225 over 20-400 kpc
+  predicted: isolated deep-MOND +0.044 (separation-INDEPENDENT, the item's headline) | framework's EFE branch -0.391 | Newton on the baryons -0.391 | LambdaCDM -0.228
+  [PASS] 47k UNDERPOWERED -- the item's headline axis, 'Delta v flat in separation', cannot be read at this sample size.  The measured slope is consistent with ALL FOUR laws, including the two that differ from each other by 0.44 in slope.  It is the amplitude (47g, 47h) and not the separation dependence that carries whatever information this sample has; a sample several times larger, or one reaching below ALFALFA's blend limit where the two branches diverge most, would be needed to use this axis   (measured -0.150 +/- 0.225: 0.9 sigma from the isolated deep-MOND +0.044, 1.1 sigma from the EFE branch -0.391, 0.3 sigma from LambdaCDM -0.228 -- no separation at all)
+
+            log M_b,pair bin     N     sigma_los [km/s]  deep-MOND(can)  LambdaCDM
+         7.65 -       9.13    35          48.3 +/-  7.5            26.8       31.9
+         9.13 -       9.44    34          89.3 +/- 25.1            36.4       42.6
+         9.44 -       9.62    34          49.5 +/-  9.7            42.2       42.7
+         9.62 -      10.07    35         135.3 +/- 16.2            46.3       48.7
+  binned regression on those four points: d log sigma / d log M_b = +0.405 +/- 0.086
+  UNBINNED maximum-likelihood d log sigma_los / d log M_b = +0.150 +/- 0.100 over 2.42 dex in M_b
+  predicted: framework isolated deep-MOND +0.250 (the 1/4 law with the mass-ratio term) | LambdaCDM (Moster + NFW) +0.167
+  the crude control on the same axis: bright half 50.2 km/s vs faint half 55.2 km/s (implied slope -0.08)
+  [PASS] 47i the mass scaling -- the part of the item that could have been Kepler-grade -- CANNOT BE MEASURED HERE, and the reason is not the data but the item's own arithmetic: over the mass range an HI-selected dwarf-pair sample spans, the framework's M_b^(1/4) law and LambdaCDM's abundance-matched halos predict slopes that differ by less than the measurement error.  The axis that was supposed to be decisive is degenerate   (measured +0.150 +/- 0.100; framework +0.250, LambdaCDM +0.167 -- the two predictions are 0.083 apart against an error of 0.100, so no sample of this kind can separate them on this axis.  (The binned four-point regression gave +0.405 +/- 0.086; it disagrees with the bright/faint half-split, which is why it is not the headline))
+
+--------------------------------------------------------------------------------------------------------------------------
+MUTATION CONTROLS on the ALFALFA sample
+--------------------------------------------------------------------------------------------------------------------------
+  real pairs: sigma = 52.7 km/s, interloper fraction 0.29;  partners scrambled: sigma = 4.1 km/s, interloper fraction 0.95 (N = 27)
+  [PASS] M2 mutation control: scrambling which dwarf each dwarf is paired with must drive the fitted PAIR fraction toward zero, so the measured dispersion is a property of the pairs and not of the velocity field or of the estimator   (pair fraction 1-f: real 0.71 -> scrambled 0.05)
+  [PASS] M3 mutation control: the amplitude test must respond to a_0 exactly as v ~ a_0^(1/4) says -- a_0 x 100 has to move the required amplitude by 0.5 dex.  If it does not, the fit is insensitive and 47g means nothing   (log10(A_true/A_x100) = +0.500, predicted +0.500)
+  [PASS] M4 injection-recovery control: mock velocity differences built from the SAME per-pair predictions with a known amplitude and a known interloper fraction must come back with that amplitude.  If the estimator were biased, every amplitude above would be worthless   (injected A = 1.60, f_int = 0.25; recovered A = 1.62 +/- 0.15, f_int = 0.30 on N = 138 mock pairs)
+
+  SENSITIVITY to the relative-isolation criterion (the one free choice in the sample definition).  If the
+  47h excess were residual group contamination, tightening the criterion would bring it down.
+    F (d3 > F r_p)     N   med r_p     sigma [km/s]     A(deep-MOND)     A(LambdaCDM)    A(EFE branch)
+               1.0   220       215        58.2 +/- 5.6        1.88 +/-0.17        1.63 +/-0.15        6.81 +/-0.91
+               1.5   169       184        61.8 +/- 6.9        1.85 +/-0.17        1.58 +/-0.15        7.60 +/-0.93
+               2.0   138       168        52.7 +/- 6.7        1.79 +/-0.20        1.37 +/-0.16        5.15 +/-1.01
+               3.0    94       129        44.3 +/- 5.0        1.19 +/-0.22        1.07 +/-0.14        4.24 +/-0.58
+               5.0    53        94        42.9 +/- 6.0        1.12 +/-0.29        1.04 +/-0.18        4.15 +/-0.70
+  the framework's EFE branch stays excluded at every isolation depth: A = 6.81 at the loosest and 4.15 +/- 0.70 (4.5 sigma above 1) at the strictest, so 47g does not rest on the contamination that 47j identifies.
+  the excess FALLS as the isolation is tightened, for BOTH laws: deep-MOND 1.88 -> 1.12, LambdaCDM 1.63 -> 1.04.  That is the signature of residual group contamination, not of gravity, and it makes 47h's offset an UPPER LIMIT on any real one.
+  CROSS-CHECK, and it does not agree.  h48_h69b_relative_isolation.py applies exactly this criterion to 2MRS MAJOR pairs and finds the amplitude FLAT at 1.8-2.0 from F = 2 to F = 8 -- no decline at all.  So either these 53 dwarf pairs are noise (1.12 +/- 0.29 against 1.89 +/- 0.05 is 2.6 sigma), or the framework's deficit grows with mass.  The tension is recorded, not resolved.
+  [PASS] 47j THE HONEST VERDICT ON THE AMPLITUDE: the offset found in 47h is not stable.  Tightening the relative-isolation criterion by a factor of five brings the framework's amplitude down toward 1 -- and brings LambdaCDM's down with it, which is the signature of residual contamination rather than of gravity.  The best-isolated subsample is consistent with the framework's parameter-free prediction and equally consistent with LambdaCDM's, so this item CANNOT separate them.  It is a weaker statement than it looks: the same criterion leaves the major-pair amplitude untouched (see the cross-check above), so the decline here may be small-number scatter.  What the item CAN and does do is exclude the framework's own external-field branch (47g)   (strictest isolation (F = 5, N = 53): deep-MOND A = 1.12 +/- 0.29 (0.4 sigma from 1), LambdaCDM A = 1.04 +/- 0.18 (0.2 sigma from 1); at the loosest, 1.88 and 1.63)
+
+==========================================================================================================================
+SECTION 5 -- why the on-disk K-band pair catalogue cannot substitute
+==========================================================================================================================
+  KT2017 Nm = 2 pairs: 350; both members below 1e10 Msun: 192; of those inside TNT's 50 kpc window: 62
+  So the catalogue does contain dwarf pairs -- the earlier draft of this script wrongly asserted it did not.
+  They are still unusable, for the reason item 48b established on the same catalogue: Kourkchi & Tully link
+  galaxies inside a velocity window scaled by K-band luminosity, so a KT2017 pair is BY CONSTRUCTION a pair
+  whose dv was small enough to be linked.  The velocity difference the item wants to measure is the quantity
+  the catalogue selected on.
+  as a demonstration: those 62 KT dwarf pairs have max |dv| = 108 km/s and a fitted dispersion of 47 km/s -- truncated, and the truncation is the selection, not the physics.
+  [PASS] 47d the on-disk K-band catalogue cannot substitute for TNT -- not because it lacks dwarf pairs (it has 62 inside the TNT window) but because its group-finder selected on the very velocity difference the item measures.  Item 48b demonstrated the same bias on the massive pairs, where an independently selected sample of the same galaxies gave a much larger dispersion   (62 both-dwarf KT pairs inside 50 kpc, maximum |dv| = 108 km/s -- a hard edge set by the linking window, not by gravity)
+
+==========================================================================================================================
+SECTION 6 -- the one dwarf pair whose 3-D kinematics are actually measured
+==========================================================================================================================
+  Literature values, quoted for a consistency statement and used in no fit: M*(LMC) ~ 2.7e9, M_HI(LMC) ~ 5e8,
+  M*(SMC) ~ 3.1e8, M_HI(SMC) ~ 4e8 Msun; 3-D separation ~23 kpc; relative space velocity ~128 km/s
+  (HST proper motions, Kallivayalil et al. 2013).
+  canonical : MW external field at 55 kpc = 0.17 a_0 (so the pair is EFE-dominated, not isolated); isolated deep-MOND relative speed 75 km/s, EFE-quasi-Newtonian 46 km/s, observed 128 km/s
+  alt       : MW external field at 55 kpc = 0.16 a_0 (so the pair is EFE-dominated, not isolated); isolated deep-MOND relative speed 79 km/s, EFE-quasi-Newtonian 47 km/s, observed 128 km/s
+  [PASS] 47e AGAINST INTEREST -- the archetypal dwarf pair sits ABOVE both framework branches, not between them.  Both the isolated deep-MOND speed and the EFE-quasi-Newtonian speed fall short of the measured 128 km/s.  The caveat that softens it is real and was not put in to soften it: the Clouds are near pericentre of a highly eccentric relative orbit (and possibly not bound to each other at all), and a circular-orbit formula is a lower bound on the instantaneous speed for any eccentric orbit passing through that separation   (canonical: isolated deep-MOND 75 km/s, EFE branch 46 km/s, observed 128 km/s -- the best case is 1.70x short, needing 8x the assumed baryonic mass on a circular orbit)
+
+--------------------------------------------------------------------------------------------------------------------------
+  SYSTEMATICS on the ALFALFA measurement, stated plainly:
+   1. flow-model distances.  r_p and M_HI both scale with D; a 10% distance error is 10% in r_p and 20% in M_HI,
+      i.e. 5% in the predicted dv.  Peculiar velocities at D < 20 Mpc are the worst case.
+   2. the 4-arcminute cut.  ALFALFA blends closer pairs into one source, so the sample is biased AGAINST the
+      small separations where the isolated deep-MOND branch survives, and toward the EFE branch.
+   3. isolation depth.  2MRS is complete for M* > 2.5e10 only to ~100 Mpc, which is why D < 100 Mpc is imposed;
+      fainter companions and any intra-group gas are not excluded, and those are baryons the framework may use.
+   4. M* is the ALFALFA-SDSS Taylor colour mass where available and M_HI otherwise.  In a gas-rich dwarf M_HI
+      dominates M_b, so the stellar M/L that blocks the rest of this hunt enters here only at the 10-20% level.
+   5. circular relative orbits.  Eccentric orbits of the same energy spend most of their time near apocentre at
+      LOWER speed, so this assumption is generous to the framework rather than stingy.
+   6. one nominal external field e_N for every pair.  A per-pair value from 2M++ would move the framework's own
+      prediction down, not up.
+
+  WHAT WOULD MAKE ITEM 47 RUNNABLE AS POSED, in order of value:
+   1. the TNT per-pair table (r_sep, v_sep, M*_1, M*_2) from the authors or IOP.  Even then section 3 says the
+      60 pairs give ~2 sigma; the sample would have to grow several-fold.
+   2. resolved HI synthesis imaging of the ALFALFA pairs below the 4-arcminute blend limit, which is the only
+      way to reach TNT's < 50 kpc separations with HI-grade velocities.
+   3. a per-pair external field.  Section 2 shows the EFE, not a_0, sets the framework's own answer over most of
+      the range, so a test that ignores it is testing the wrong branch.
+
+RESULT: 15 checks, 0 FAIL   rc=0

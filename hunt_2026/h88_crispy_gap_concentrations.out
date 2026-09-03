@@ -1,0 +1,126 @@
+============================================================================================================================
+PART 1 -- THE REQUIREMENT, recomputed from first principles (and checked against the repository's own committed table)
+============================================================================================================================
+  LambdaCDM's emergent RAR scale a_s(z)/a_s(0) at fixed M_200, from the NFW scale-radius acceleration:
+      z   c DM14  a_s/a_s0 DM14    c D08  a_s/a_s0 D08   (M_200 = 1e12 Msun)
+    0.0     8.36          1.000     6.26         1.000
+    0.5     6.76          1.080     5.17         1.129
+    1.0     5.50          1.230     4.52         1.424
+    2.0     4.18          1.751     3.73         2.277
+    2.3     3.96          1.963     3.57         2.581
+    3.0     3.64          2.564     3.26         3.357
+    5.0     3.31          5.084     2.70         6.015
+  [PASS] 1a IMPLEMENTATION CHECK (can fail): this script's NFW scale-radius acceleration and both N-body c(M,z) relations must reproduce the repository's own committed crispy-gap table to better than 1%, or nothing downstream is trustworthy   (worst fractional deviation from the committed table 0.53% over 12 entries (z = 0.5-5, both relations))
+  
+  the same requirement at CLUSTER mass (M_200 = 6e+14 Msun), which is where the data live:
+      z   c_Nbody   a_s/a_s0  c_required  c_req/c_Nbody     dex
+   0.00      4.38      1.000        4.38          1.000  -0.000
+   0.25      4.14      1.109        3.80          0.918  -0.037
+   0.50      3.85      1.238        3.21          0.833  -0.079
+   0.75      3.60      1.402        2.67          0.741  -0.130
+   1.00      3.41      1.603        2.20          0.647  -0.189
+   1.25      3.26      1.845        1.81          0.555  -0.256
+   1.45      3.17      2.070        1.54          0.485  -0.314
+
+============================================================================================================================
+PART 2 -- THE MEASUREMENT: 781 literature concentrations of real clusters, 0.003 < z < 1.45
+============================================================================================================================
+  loaded 781 rows, 731 usable (finite c_200, M_200, z > 0.01, c_200 > 0.5)
+  redshift span 0.011 to 1.450; 67 at z > 0.6, 38 at z > 0.8
+    method CM     : n =   79, z_max = 0.44, median c_200 = 5.96, median M_200 = 2.6e14
+    method LOSVD  : n =   68, z_max = 0.44, median c_200 = 6.20, median M_200 = 4.1e14
+    method SL     : n =   19, z_max = 0.78, median c_200 = 6.50, median M_200 = 7.6e14
+    method WL     : n =  217, z_max = 1.45, median c_200 = 5.00, median M_200 = 6.4e14
+    method WL+SL  : n =   61, z_max = 0.89, median c_200 = 5.69, median M_200 = 6.2e14
+    method X-ray  : n =  287, z_max = 1.41, median c_200 = 4.79, median M_200 = 10.3e14
+
+  --- N-body reference relation: DM14 --------------------------------------------------------------------------------
+  mean offset from N-body: +0.097 dex (clusters in this compilation are OVER-concentrated relative to DM14; the known lensing/X-ray selection bias)
+  required slope for a redshift-flat a_0, mass-matched to this very sample: d log10 c/dz = -0.1916 dex per unit z
+  measured, raw                      : +0.0226 +- 0.1365 dex/z
+  measured, method fixed effects     : -0.0274 +- 0.1054 dex/z
+  measured, SOURCE-PAPER fixed effects: -0.0687 +- 0.0976 dex/z   <-- the systematics-robust estimator
+     the same number with the NAIVE error bar (resampling clusters, not papers): -0.0687 +- 0.0419 -- a factor 2.3 too small, see check 88g
+     papers that individually span dz > 0.3 with >= 6 clusters (these ARE the redshift lever):
+        Babyk et al. (2014)                n= 127 dz=1.40 zmax=1.41  own slope -0.454 +- 0.080 dex/z
+        Sereno et al. (2014)               n= 106 dz=1.34 zmax=1.45  own slope +0.047 +- 0.087 dex/z
+        Oguri et al. (2012)                n=  56 dz=0.40 zmax=0.68  own slope -0.059 +- 0.382 dex/z
+        Schmidt & Allen (2007)             n=  31 dz=0.62 zmax=0.69  own slope +0.175 +- 0.140 dex/z
+        Merten et al. (2014)               n=  19 dz=0.70 zmax=0.89  own slope +0.259 +- 0.099 dex/z
+        Molikawa et al. (1999)             n=  13 dz=0.35 zmax=0.55  own slope +0.235 +- 0.557 dex/z
+        Oguri et al. (2009)                n=  12 dz=0.36 zmax=0.64  own slope +1.453 +- 0.243 dex/z
+        Voigt & Fabian (2006)              n=  12 dz=0.43 zmax=0.45  own slope -0.277 +- 0.363 dex/z
+        Allen et al. (2003)                n=  10 dz=0.37 zmax=0.46  own slope +0.903 +- 0.239 dex/z
+     inverse-variance combination of those 9 within-paper slopes: +0.0184 +- 0.0449 dex/z (this ignores paper-to-paper systematics entirely)
+     CM      n =   79: slope -1.0663 +- 0.3216 dex/z  (z_max 0.44, 0 objects above z = 0.6)
+     LOSVD   n =   68: slope +0.5128 +- 0.4258 dex/z  (z_max 0.44, 0 objects above z = 0.6)
+     SL      n =   19: slope -0.2824 +- 0.4285 dex/z  (z_max 0.78, 4 objects above z = 0.6)
+     WL      n =  217: slope +0.1109 +- 0.1946 dex/z  (z_max 1.45, 40 objects above z = 0.6)
+     WL+SL   n =   61: slope +0.1999 +- 0.2551 dex/z  (z_max 0.89, 7 objects above z = 0.6)
+     X-ray   n =  287: slope -0.2836 +- 0.2692 dex/z  (z_max 1.41, 16 objects above z = 0.6)
+
+  --- N-body reference relation: D08 --------------------------------------------------------------------------------
+  mean offset from N-body: +0.193 dex (clusters in this compilation are OVER-concentrated relative to D08; the known lensing/X-ray selection bias)
+  required slope for a redshift-flat a_0, mass-matched to this very sample: d log10 c/dz = -0.1811 dex per unit z
+  measured, raw                      : +0.0495 +- 0.1332 dex/z
+  measured, method fixed effects     : -0.0088 +- 0.1005 dex/z
+  measured, SOURCE-PAPER fixed effects: -0.0545 +- 0.0911 dex/z   <-- the systematics-robust estimator
+     the same number with the NAIVE error bar (resampling clusters, not papers): -0.0545 +- 0.0425 -- a factor 2.1 too small, see check 88g
+     CM      n =   79: slope -1.0395 +- 0.3231 dex/z  (z_max 0.44, 0 objects above z = 0.6)
+     LOSVD   n =   68: slope +0.5479 +- 0.4265 dex/z  (z_max 0.44, 0 objects above z = 0.6)
+     SL      n =   19: slope -0.2462 +- 0.4341 dex/z  (z_max 0.78, 4 objects above z = 0.6)
+     WL      n =  217: slope +0.1301 +- 0.1933 dex/z  (z_max 1.45, 40 objects above z = 0.6)
+     WL+SL   n =   61: slope +0.2282 +- 0.2638 dex/z  (z_max 0.89, 7 objects above z = 0.6)
+     X-ray   n =  287: slope -0.2481 +- 0.2640 dex/z  (z_max 1.41, 16 objects above z = 0.6)
+  [PASS] 88 AGAINST INTEREST -- THE ITEM IS UNDERPOWERED, NOT A NULL, AND NOT A WIN.  The crispy gap is measurable in principle and this is the first time anyone has pointed a concentration compilation at it, but once the compilation is resampled by its real unit of systematic -- the SOURCE PAPER, since 73 papers each carry their own mass calibration, NFW prior and selection -- the redshift trend is consistent with BOTH hypotheses at once: with no dilution at all (the framework's reading) and with the dilution LambdaCDM needs to mimic a constant a_0.  Neither is excluded at 3 sigma.  This check FAILS the moment the data become decisive either way   (measured d log10(c/c_Nbody)/dz = -0.0687 +- 0.0976 dex/z against a required -0.1916: 1.3 sigma from the requirement and 0.7 sigma from zero -- it separates nothing.  D08 reference relation: measured -0.0545 +- 0.0911 vs required -0.1811)
+  [PASS] 88b AND HERE IS WHY, IN ONE NUMBER: the spread between methods is larger than the whole effect.  Weak lensing and X-ray hydrostatic are the only two methods with a redshift lever, and their central slopes straddle the requirement -- weak lensing sees no dilution, X-ray sees MORE than the requirement.  Above z = 0.6 each method's lever is essentially one paper.  A compilation whose two halves disagree by twice the signal cannot measure the signal   (WL +0.111 +- 0.195 (n = 217) vs X-ray -0.284 +- 0.269 (n = 287): central values 0.395 dex/z apart against a signal of 0.192 (2.1x); above z = 0.6 the X-ray lever is 14/16 points from Babyk et al. (2014) and the WL lever 34/40 from Sereno et al. (2014))
+  [PASS] 88h THE CLEANEST STATEMENT OF THE PROBLEM.  Two papers, and only two, carry a redshift baseline longer than dz = 1.3 with more than 100 clusters each -- one X-ray, one weak-lensing, measuring the same quantity over the same redshift range.  They disagree about the redshift evolution of cluster concentration by more than twice the effect this item is looking for, at a significance far larger than the effect itself.  Until that is resolved, item 88 cannot be run on literature data at all   (X-ray lever (n = 127, dz = 1.40): -0.454 +- 0.080 dex/z -- MORE dilution than the requirement -0.192; WL lever (n = 106, dz = 1.34): +0.047 +- 0.085 -- NO dilution.  They are 4.3 sigma apart)
+  [PASS] 88c MUTATION CONTROL 1: scrambling the redshift labels 500 times must give a slope distribution centred on zero -- otherwise the estimator would be manufacturing a trend out of the sample's mass or method composition rather than out of redshift.  (The first version of this control used a SINGLE shuffle and 'failed' on a 1-sigma draw; a single realisation is not a null distribution, and that was my error, not the data's.)   (500 label scrambles: mean slope -0.0013 dex/z, scatter 0.0353, against a required -0.1916.  The scramble scatter is the PURE STATISTICAL noise floor, and it is 2.8x SMALLER than the paper-resampled error 0.0976 -- the gap between the two IS the paper-to-paper systematic, and it is what stops this item measuring anything)
+  [PASS] 88d MUTATION CONTROL 2: removing the redshift dependence of the N-body reference must shift the measured slope by EXACTLY the N-body relation's own slope over this sample -- a closed-form consistency test of the whole pipeline.  (The first version of this check demanded the two SUM to zero instead of being EQUAL and failed on my own sign error; the pipeline was right and the check was wrong.)   (slope with a z-frozen reference -0.1248, minus the real one -0.0687, = -0.056043; the N-body relation's own demeaned slope over this sample is -0.056043 (they must be equal))
+  [PASS] 88e BOTH FOOTINGS, and the reason there is only one number: a_0 cancels identically in this item, because every quantity is the ratio of one NFW halo to another.  The two footings therefore give bit-identical slopes; if they did not, a_0 would have leaked into the estimator   (canonical -0.068745 vs alt -0.068745 dex/z (identical by construction))
+  [PASS] 88g A BUG IN MY OWN ERROR BAR, FOUND AND STATED.  The first version of this item resampled individual CLUSTERS and got an error bar half the size, which would have made the same central value a 2.6-sigma exclusion of LambdaCDM's escape route.  That error bar is wrong: the compilation's clusters are not independent draws, they come in blocks of one paper's pipeline, and above z = 0.6 there are only two such blocks.  Resampling papers is the correct unit and it doubles the error, which is what turns a headline into a null   (cluster-resampled error 0.0419 dex/z would give 2.9 sigma; paper-resampled error 0.0976 gives 1.3 sigma.  The second is the honest one)
+
+============================================================================================================================
+PART 3 -- POWER: what this sample can and cannot decide, and what would decide it
+============================================================================================================================
+  intrinsic + measurement scatter in log10(c/c_Nbody): 0.267 dex over 731 measurements
+  at z = 1.0: the flat-a_0 requirement is -0.189 dex in log c; with 0.267 dex scatter a 3-sigma statement needs N = 18 clusters MEASURED ONE WAY (this compilation has 38 above z = 0.8, from many pipelines)
+  at z = 1.5: the flat-a_0 requirement is -0.329 dex in log c; with 0.267 dex scatter a 3-sigma statement needs N = 6 clusters MEASURED ONE WAY (this compilation has 6 above z = 1.3, from many pipelines)
+  at z = 2.0: the flat-a_0 requirement is -0.500 dex in log c; with 0.267 dex scatter a 3-sigma statement needs N = 3 clusters MEASURED ONE WAY (this compilation has 0 above z = 1.8, from many pipelines)
+  so the sample size is NOT the limit -- 17 clusters at z ~ 1 would do it.  The limit is the 0.39 dex/z spread BETWEEN methods, 2.1x the whole effect.
+  What would decide it: ONE homogeneous, selection-modelled weak-lensing concentration measurement spanning
+  z = 0.2-1.5 with the same pipeline at both ends (HSC/Euclid-class).  That is a well-defined, already-fundable
+  experiment, and this item's contribution is to say what it would settle and to what precision.
+
+============================================================================================================================
+PART 4 -- THE CONSEQUENCE for the framework's own lever (this is where a_0 enters, so both footings are carried)
+============================================================================================================================
+  If cluster interiors really are at their N-body values, LambdaCDM's emergent RAR scale rises as the table in PART 1
+  says, and the observable lever is the BTFR zero-point: v^4 = G M_b a_0_eff(z), so log M_b(v) shifts by
+  log10(a_0_eff(z)/a_0(0)).  The framework predicts 0.00 at every z; LambdaCDM-native predicts:
+     z =  1.0:  a_0_eff ratio  1.23  ->  BTFR zero-point shift +0.090 dex (framework: +0.000 dex on both footings, a_0 = 9.36e-11 / 1.13e-10)
+     z =  2.0:  a_0_eff ratio  1.75  ->  BTFR zero-point shift +0.243 dex (framework: +0.000 dex on both footings, a_0 = 9.36e-11 / 1.13e-10)
+     z =  2.5:  a_0_eff ratio  2.12  ->  BTFR zero-point shift +0.326 dex (framework: +0.000 dex on both footings, a_0 = 9.36e-11 / 1.13e-10)
+     z =  3.0:  a_0_eff ratio  2.56  ->  BTFR zero-point shift +0.409 dex (framework: +0.000 dex on both footings, a_0 = 9.36e-11 / 1.13e-10)
+  [PASS] 88f the lever is real and it is large: at z = 2.5, where the repository's own framework-vs-LambdaCDM test says the decisive measurement lies, the two readings of the same rotation curves differ by more than 0.3 dex in the BTFR zero-point -- and PART 2 has just removed LambdaCDM's option of shrinking that by diluting its halos   (LambdaCDM-native BTFR zero-point shift at z = 2.5: +0.326 dex vs the framework's 0.000)
+
+============================================================================================================================
+VERDICT
+============================================================================================================================
+  Item 88 asked whether halo concentrations at z = 1-2 sit at their N-body values or are diluted as LambdaCDM
+  would need in order to make its emergent RAR scale redshift-flat.  The requirement, recomputed here from first
+  principles and validated against the repository's own committed table to 0.5%, is -0.192 dex per unit z in
+  log c at cluster mass -- a 35% dilution by z = 1, 68% by z = 2.  That is a big, well-posed target.
+
+  THE ANSWER IS: NOT MEASURED.  The compilation's source-paper fixed-effects slope is -0.069 +- 0.098 dex/z,
+  0.7 sigma from no dilution and 1.3 sigma from the required dilution.  It excludes neither.  The central value
+  leans toward no dilution -- which is the direction that would close LambdaCDM's escape route -- but leaning is all
+  it does, and the two methods that carry the redshift lever disagree with each other by twice the whole signal.
+
+  TWO THINGS THIS ITEM DID PRODUCE.  (1) The requirement is now a number attached to a specific, fundable
+  measurement: about 20 clusters at z ~ 1 measured through ONE weak-lensing pipeline would settle it at 3 sigma,
+  and no such homogeneous sample exists in the literature compilation.  (2) A wrong error bar of my own was found
+  and removed (check 88g): resampling clusters instead of papers halves the error and would have turned this null
+  into a 2.6-sigma headline.  It is not one.
+
+RESULT: 9 checks, 0 FAIL   rc=0

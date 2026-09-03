@@ -1,0 +1,63 @@
+======================================================================================================================
+ITEM 28 -- the external-field effect on the OUTER SLOPE of WALLABY rotation curves
+======================================================================================================================
+  on disk: 237 per-side rows, 237 external-field rows, 237 tilted-ring curve sets; 237 galaxies in all three
+  selection declared up front: >= 5 rings; outer window = rings with R >= 0.5 R_out and >= 3 of them; 25 <= inc <= 80 deg; R_out >= 3 beams of 30 arcsec; all window velocities > 0
+  rejected: rings 84, inc 21, beams 45, window 0, vneg 0, eN 0  ->  87 galaxies analysed
+  measured outer slopes d ln v/d ln R: median +0.236, 16-84% [-0.038, +0.440], rms 0.274
+    an isolated asymptotic disc gives 0.00 and a Keplerian one -0.50; only 21% of this sample declines --
+    WALLABY curves are still RISING at their last measured ring (median g_obs(R_out) = 0.27 a_0).
+  baryonic power-law index calibrated per galaxy so the isolated model matches its own slope: 85/87 solve, median q = 0.87 (q = 2 is a point mass, q = 1 is enclosed mass growing linearly -- an HI disc still accumulating)
+  [canonical a_0 = 9.36e-11] e_N (with cluster term): median 4.57e-03, 16-84% [2.14e-03, 1.16e-02], max 6.60e-02; without it, median 5.52e-04
+  [canonical] the kernel's OWN predicted regression coefficient d(outer slope)/d log10 e_N = -0.0517 (median -0.0390); full suppression at each galaxy's e_N: median -0.0388 (collinear, maximum) to -0.0006 (perpendicular, minimum)
+  [alt a_0 = 1.13e-10] e_N (with cluster term): median 3.78e-03, 16-84% [1.77e-03, 9.64e-03], max 5.46e-02; without it, median 4.57e-04
+  [alt] the kernel's OWN predicted regression coefficient d(outer slope)/d log10 e_N = -0.0534 (median -0.0407); full suppression at each galaxy's e_N: median -0.0379 (collinear, maximum) to +0.0026 (perpendicular, minimum)
+  internal-structure controls removed before the environmental regression: log v_flat, log(R_out/beam), log g_obs(R_out)/a_0, inclination
+  [canonical] raw     d(slope)/d log10 e_N = +0.0505 +- 0.0754   (kernel predicts -0.0517, LambdaCDM 0)
+  [canonical] partial d(slope)/d log10 e_N = +0.0303 +- 0.0678   (+0.4 sigma from 0, +1.2 sigma from the kernel's prediction); Spearman on residuals +0.162 (p = 0.139)
+  [canonical] top-third minus bottom-third mean outer slope = +0.0681 +- 0.0686 (+1.0 sigma; the framework wants NEGATIVE)
+  [alt] raw     d(slope)/d log10 e_N = +0.0505 +- 0.0744   (kernel predicts -0.0534, LambdaCDM 0)
+  [alt] partial d(slope)/d log10 e_N = +0.0303 +- 0.0693   (+0.4 sigma from 0, +1.2 sigma from the kernel's prediction); Spearman on residuals +0.162 (p = 0.139)
+  [alt] top-third minus bottom-third mean outer slope = +0.0681 +- 0.0686 (+1.0 sigma; the framework wants NEGATIVE)
+  MUTATION 1 (permute e_N across galaxies, 3000 draws): null coefficient +0.0006 +- 0.0556; the measured +0.0303 has permutation p = 0.604
+  MUTATION 2 (nu = 1, pure Newton): max |Delta s| = 0.00e+00 -- the external-field effect is a property of the kernel and vanishes identically without it, as it must
+  MUTATION 3 (a_0 x 0.0001 at FIXED PHYSICAL external field, so every galaxy is Newtonian): median |Delta s| falls from 0.0432 to 9.77e-06
+  [PASS] 28a MUTATION CONTROLS behave: permuting the environmental labels gives a null coefficient consistent with zero, the predicted suppression vanishes identically with nu = 1, and it vanishes again when a_0 is shrunk so the galaxies leave the MOND regime at fixed physical external field -- the estimator is measuring the kernel's external-field term, not the slope fit   (permutation null +0.0006 +- 0.0556; Newtonian max |Delta s| 0.0e+00; Newtonian-limit median |Delta s| 9.8e-06)
+  INJECTION at the kernel's OWN amplitude (-0.0517 per dex of e_N) with the observed residual scatter (0.208): a >= 3 sigma detection is recovered 3.0% of the time
+  to reach 3 sigma at this predicted amplitude and this scatter would take N ~ 1313 galaxies of this quality (here N = 85)
+  confound corr(log e_N, log R_out/beam) = -0.069
+  confound corr(log e_N, log v_flat) = -0.104
+  confound corr(log e_N, log g_obs(R_out)/a_0) = +0.017
+  confound corr(log e_N, log D) = -0.186
+  confound corr(log e_N, log R_out[kpc]) = -0.237
+  directions: poorer beam resolution FLATTENS a measured outer slope (same sign as switching the EFE off); HI stripping in
+  the high-e_N environments truncates the disc and moves the outer window inward where curves are still RISING -- opposite
+  sign to the signal, so it makes a detection conservative and a null harder to read.
+  regime check: the external field only bends a curve beyond r_EFE = r_M/sqrt(e_N); median R_out/r_EFE = 0.276 and only 6% of galaxies reach it
+  and 74/85 galaxies have an outer slope ABOVE what an isolated point mass would give, i.e. their curves are still being built by baryons inside the window -- which is why a Chae-style inversion for e_N from the slope alone
+  returns nothing usable here and why Chae+2021 needed full rotation-curve fits with a mass model per galaxy.
+  
+  ------------------------------------------------------------------------------------------------------------------
+  IDENTIFIABILITY: can the outer slope alone determine e_N, as a slope-only version of Chae's test would need?
+  ------------------------------------------------------------------------------------------------------------------
+        e_N   galaxies with an exact solution   median q needed
+    1.0e-04                           85 / 85             0.859
+    3.2e-04                           85 / 85             0.849
+    1.0e-03                           85 / 85             0.833
+    3.2e-03                           85 / 85             0.807
+    1.0e-02                           85 / 85             0.768
+    3.2e-02                           85 / 85             0.715
+    1.0e-01                           85 / 85             0.656
+    3.2e-01                           85 / 85             0.602
+    1.0e+00                           85 / 85             0.565
+  85/85 galaxies admit an exact fit at EVERY e_N on a four-decade grid, and the worst slope residual over the whole grid is 1.2e-09 -- i.e. the fits are exact, not approximate.
+  the price is only a change in the baryonic shape index: q has to move by 0.34 in the median (16-84%: 0.11 - 0.69) across those four decades, which is well inside the range real HI discs span, so nothing in the data rejects any of it.
+  CONSEQUENCE, stated plainly: on these data e_N is NOT a measurable parameter from the rotation-curve shape.  It is exactly degenerate with the baryon distribution, which is why Chae+2021 could only run this test on SPARC, where Spitzer photometry fixes the baryonic mass model independently and leaves e_N as the one free thing.  Without photometry the WALLABY replication of item 28 can only ever be the weak environmental regression above.
+  [FAIL] 28e IDENTIFIABILITY, and it converts an assertion in the first version of this script into a demonstration: the outer log-slope alone cannot measure e_N at all.  Over four decades in external field there is an exact-fitting baryonic shape index for essentially every galaxy, so a slope-only Chae-style inversion is not underpowered -- it is formally unidentified, and the item can only be replicated where independent photometry pins the baryons   (85/85 galaxies fit exactly at all 9 grid values from e_N = 1e-04 to 1e+00; worst slope residual 1.2e-09; the compensating change in q is only 0.34 in the median)
+  [PASS] 28 (NULL) the Chae external-field correlation is NOT detected on WALLABY: with the internal-structure variables removed, the outer log-slope carries no significant dependence on each galaxy's own 2M++/MCXC external field, on either footing   (best footing canonical: partial d(slope)/d log10 e_N = +0.0303 +- 0.0678 (+0.4 sigma from 0); permutation p = 0.604; the kernel predicts -0.0517)
+  [PASS] 28b ...and it is a NULL THAT DOES NOT CONSTRAIN THE FRAMEWORK, because the sample cannot see the predicted amplitude: at WALLABY's radii the external fields are e_N ~ 4e-3 and the kernel's own predicted slope response is far below the galaxy-to-galaxy scatter in outer slope.  Recorded as UNDERPOWERED, not as evidence against the external-field effect   (kernel amplitude -0.0517/dex vs residual scatter 0.208; 3 sigma recovery rate 3.0% over 1000 injections; measured is +1.2 sigma from the prediction and +0.4 sigma from zero -- the two hypotheses are not separated)
+  [PASS] 28c AGAINST INTEREST, and a bug in my own first estimator, stated: regressing the slope on the kernel's Delta s (rather than on the environment) returns a 4-sigma coefficient of the WRONG SIGN, because Delta s is itself a function of the galaxy's internal structure.  That version is superseded, not reported as a result   (Delta s depends on g_N at the window as strongly as on e_N; the structural correlation dominates it. The environmental partial regression above is the corrected statistic)
+  [PASS] 28d the regime, computed rather than asserted: these curves are nowhere near where the external field acts   (median R_out/r_EFE = 0.276, only 6% of galaxies reach r_EFE; 74/85 still rise faster than an isolated point mass; N ~ 1313 such galaxies would be needed for 3 sigma)
+  cross-check on the 44 galaxies that also pass the FROZEN per-side QC of the pre-registered asymmetry lane: partial coefficient +0.0499 +- 0.0916 (+0.5 sigma) -- same answer, smaller sample
+
+RESULT: 6 checks, 1 FAIL -> ['28e IDENTIFIABILITY, and it converts an assertion in the first version of this script into a demonstration: the outer log-slope alone cannot measure e_N at all.  Over four decades in external field there is an exact-fitting baryonic shape index for essentially every galaxy, so a slope-only Chae-style inversion is not underpowered -- it is formally unidentified, and the item can only be replicated where independent photometry pins the baryons']   rc=1

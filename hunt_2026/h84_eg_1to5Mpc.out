@@ -1,0 +1,96 @@
+==============================================================================================================================
+PART 1 -- E_G, and the reduction that makes it the right statistic here
+==============================================================================================================================
+  GR: E_G = Omega_m0/f(z) = 0.3134/0.6374 = 0.4917 at z = 0.20
+  GR: E_G = Omega_m0/f(z) = 0.3134/0.6921 = 0.4528 at z = 0.32
+  framework: beta and Upsilon_gg are LambdaCDM's (item 85's measured beta = 0.447 vs 0.440 requires it),
+  so E_G(fw)/E_G(GR) = Upsilon_gm(fw)/Upsilon_gm(LambdaCDM) -- bias-free and, for a matched sample, selection-free.
+
+==============================================================================================================================
+PART 2 -- the correlated-mass (two-halo) term from linear theory, validated before use
+==============================================================================================================================
+  [PASS] 2a linear theory validated before it is used: the transfer function is normalised to sigma_8 = 0.811 by construction, and the correlation function it produces must cross xi = 1 near 5 h^-1 Mpc, which is where LambdaCDM's linear matter correlation length sits   (sigma_8 recovered 0.8110; xi_mm = 1 at r0 = 7.29 Mpc = 4.91 h^-1 Mpc; xi(1 Mpc) = 7.25, xi(5 Mpc) = 1.590, xi(20 Mpc) = 0.2060)
+  [PASS] 2b the two-halo Delta-Sigma must be insensitive to where the line-of-sight integral is truncated -- Sigma itself is not, but Delta-Sigma differences it away, and if that failed every number below would be an artefact of the box   (chi_max = 150 Mpc gives 0.2681, chi_max = 60 Mpc gives 0.2680 Msun/pc^2 (0.0% apart) at R = 2 Mpc, b = 1)
+
+==============================================================================================================================
+PART 3 -- the lens's own phantom, solved in QUMOND WITH the external field of large-scale structure
+==============================================================================================================================
+  a demonstration lens, M_b = 1e+10 Msun: MOND radius r_M = sqrt(G M_b/a_0) = 3.9 kpc (canonical footing)
+    R [Mpc]   no EFE (1/R)      e=0.003       e=0.01       e=0.03        e=0.1
+       0.10         6.6383       4.9566       2.8146       1.6978       1.0093
+       0.30         2.1769       0.5563       0.3131       0.1887       0.1120
+       1.00         0.6513       0.0498       0.0279       0.0167       0.0098
+       2.00         0.3316       0.0122       0.0067       0.0039       0.0022
+       5.00         0.1044       0.0018       0.0009       0.0005       0.0002
+    (e = g_N,ext/a_0 from large-scale structure; the repository's own g_ext vectors put field galaxies at e ~ 0.01-0.05)
+    e = 0.003: nu(e) = 18.76, phantom saturates at M_ph/M_b =  15.00, r_EFE = r_M/sqrt(e) =   70.5 kpc
+    e = 0.010: nu(e) = 10.51, phantom saturates at M_ph/M_b =   8.00, r_EFE = r_M/sqrt(e) =   38.6 kpc
+    e = 0.030: nu(e) =  6.29, phantom saturates at M_ph/M_b =   4.41, r_EFE = r_M/sqrt(e) =   22.3 kpc
+    e = 0.100: nu(e) =  3.69, phantom saturates at M_ph/M_b =   2.21, r_EFE = r_M/sqrt(e) =   12.2 kpc
+  [PASS] 84a THE FINDING, AND IT IS AGAINST THE FRAMEWORK'S OWN DISTINCTIVE SIGNAL AT THESE SCALES.  Solved in QUMOND with the external field of large-scale structure, an isolated galaxy's phantom does not extend to megaparsecs: its mass SATURATES at r ~ r_M/sqrt(e_N) -- tens to a couple of hundred kpc for these lenses -- and beyond that the lens is a point mass of nu(e) M_b whose Delta-Sigma falls as R^-2, not R^-1.  At 2 Mpc that is a suppression of more than an order of magnitude below the isolated 1/R law the item assumed   (at R = 2 Mpc, e = 0.01 gives 0.0067 against the isolated 0.3316 Msun/pc^2, a factor 49 suppression; even the weakest field considered, e = 0.003, suppresses by 27x)
+  [PASS] 84b MUTATION CONTROL 1 -- it is the external field that does this, not a coding error: setting e -> 0 must restore the exact deep-MOND 1/R law sqrt(G M_b a_0)/(4 G R), which is an independent closed form this projection never used   (e -> 0 numeric 0.3316 vs the closed form 0.3239 Msun/pc^2 at R = 2 Mpc)
+
+==============================================================================================================================
+PART 4 -- the three readings against the KiDS-1000 lensing profiles, 1.0-2.6 Mpc, full covariance
+==============================================================================================================================
+  [PASS] 4a the covariance's storage order, checked rather than assumed: the file is (m,n,i,j) and a plain reshape is NOT positive definite -- a bug this repository has already been bitten by once.  The transposed matrix is   (plain reshape min eigenvalue -6.421e+01 (indefinite); (m,i,n,j) transpose min eigenvalue 1.259e-02, symmetric = True)
+  radial bins: 15; prediction range R >= 1.0 Mpc (4 bins: 1.04, 1.41, 1.92, 2.60)
+  NOTHING IS FITTED TO THE OUTER BINS.  Baryonic masses are B21's own stellar-mass bins with an effective
+  log10 M* = 10.10, 10.45, 10.70, 10.89 and M_b = 1.2 M*; LambdaCDM halo masses come from the
+  Moster+2013 stellar-mass-halo-mass relation.  Both are literature inputs, not free parameters.
+  
+   bin   logM*  logM_b  logM200(Moster) | at R = 1.92 Mpc:       data  lens,noEFE  lens,e=.003  lens,e=.01  linear 2h   NFW(1h)
+     1   10.10   10.18            11.57 |                      0.318       0.421       0.0203      0.0113      0.291     0.084
+     2   10.45   10.53            11.88 |                      0.644       0.626       0.0459      0.0257      0.291     0.166
+     3   10.70   10.78            12.30 |                      1.582       0.833       0.0819      0.0460      0.291     0.407
+     4   10.89   10.97            12.75 |                      1.201       1.037       0.1270      0.0714      0.291     1.040
+  [PASS] 84c THE FRAMEWORK'S LENS IS NOT THERE AT A MEGAPARSEC.  With its own external-field effect at the strength large-scale structure actually supplies, the lens galaxy -- baryons plus the whole saturated phantom -- accounts for a few per cent of the measured lensing at 1.9 Mpc.  Without the EFE the same lens accounts for most of it.  So the entire megaparsec-scale signal is either correlated mass (as in LambdaCDM) or it is the un-truncated 1/R phantom, which the framework's own field equation forbids at e_N >= 0.003   (lens fraction of the measured Delta-Sigma at 1.92 Mpc: bin1 3.5% (e=0.01) vs 132% (no EFE), bin2 4.0% (e=0.01) vs 97% (no EFE), bin3 2.9% (e=0.01) vs 53% (no EFE), bin4 5.9% (e=0.01) vs 86% (no EFE))
+  [PASS] 84d AGAINST INTEREST -- MY OWN CORRELATED-MASS MODEL IS THE WEAK LINK, AND IT IS STATED RATHER THAN HIDDEN.  Linear theory is a LOWER BOUND on the correlated mass at 1-3 Mpc: it omits the nonlinear growth of clustering and the group-scale halos the lens sample still contains.  It under-predicts the measurement in ALL FOUR mass bins, and by up to a factor five in the massive ones -- though only marginally in the least massive.  Adding the LambdaCDM one-halo term from an untuned literature stellar-mass-halo-mass relation closes most of that gap.  I therefore CANNOT do model selection on the amplitude at these radii, and no chi^2 between the readings is quoted   (measured/linear-two-halo at 1.92 Mpc = 1.1, 2.2, 5.4, 4.1x across the four bins; with the NFW one-halo term added the model reaches 118%, 71%, 44%, 111% of the measurement)
+  [PASS] 84e AND THAT PUTS A NUMBER ON THE FRAMEWORK'S OWN OPEN FORK.  If the dark fluid virialises into halos, the framework gets LambdaCDM's one-halo term too and everything at 1-5 Mpc is common to both theories.  If it stays linear -- the reading in which the framework has no dark halos at all -- then with the EFE applied the framework has nothing left to make the measured megaparsec lensing out of, and under-predicts it by the factor below.  The scales of item 84 do not measure E_G; they measure which branch of the dark sector the framework is on.  AND THE SHORTFALL BELOW IS AN UPPER BOUND ON THE TENSION, NOT A KILL, because check 84d has just established that the correlated-mass term it is measured against is a lower bound   (framework, dust-stays-linear branch, at 1.92 Mpc: predicted/measured = 0.95, 0.49, 0.21, 0.30, i.e. a shortfall of +0.1, +1.6, +5.8, +3.9 sigma in the four bins -- consistent in the least massive bin, 5.8 and 3.9 sigma short in the two most massive)
+
+==============================================================================================================================
+PART 5 -- E_G(R) at 1-5 Mpc: the prediction, both footings, and the branch item 85 already killed
+==============================================================================================================================
+  a typical lens: log10 M_b = 10.61, LambdaCDM log10 M200 = 12.00
+    R [Mpc]  Ups(LambdaCDM)   Ups_phantom cano    Ups_phantom alt   E_G/E_G(GR)
+       1.00          0.3428            -0.0001            -0.0002         1.000
+       2.00          0.3658            -0.0003            -0.0004         0.999
+       3.00          0.3758            -0.0003            -0.0004         0.999
+       5.00          0.3913            -0.0003            -0.0003         0.999
+  [PASS] 84 THE ITEM'S ANSWER: E_G at 1-5 Mpc is predicted to be GR's, to within a few per cent, on BOTH footings.  The framework's only distinctive term at those scales was the lens's own phantom, and its own external-field effect has removed it.  Item 84 therefore carries no information that item 85 did not already carry, and the E_G machinery -- whose whole purpose is to cancel the galaxy bias and the lens selection -- would be cancelling systematics in front of a signal that is not there   (E_G(framework)/E_G(GR) = 1 + -0.0004 at worst over R = 1-5 Mpc with the EFE (canonical -0.0004, alt -0.0006); WITHOUT the EFE the same calculation gives 1 + 2.11, which is the tens-of-per-cent signal the item was written to look for.  GR's own value is Omega_m/f = 0.492 at z = 0.2)
+  [PASS] 84f THE ONE BRANCH THAT WOULD HAVE SHOWN UP IS ALREADY DEAD.  If the kernel acted on the quasi-linear correlated field rather than only on bound baryons, every megaparsec-scale lensing amplitude would be multiplied by nu(e_N) and E_G would be several times GR's -- excluded independently by item 85's beta and by the published E_G measurements at 10-50 h^-1 Mpc.  This item's contribution is to put a number on how far that branch sits from the data   (an unprotected kernel at e_N = 0.01 gives nu = 10.51, i.e. E_G = 4.76 against GR's 0.45 and the published Reyes+2010 measurement 0.39 +- 0.06 at 10-50 h^-1 Mpc, z = 0.32 -- about 73 sigma out.  The framework survives only through its linear-growth theorem, which is item 85's conclusion restated)
+  [PASS] 84g MUTATION CONTROL 2: with a_0 -> 0 the kernel is off, the phantom must vanish identically, and the lens must reduce to its bare baryons.  It does -- so every number above is the a_0 term and not a projection artefact   (a_0 -> 0 gives Delta-Sigma(2 Mpc) = 0.00327 Msun/pc^2 against the bare point-mass value M_b/(pi R^2) = 0.00327)
+
+==============================================================================================================================
+WHAT IS MISSING, STATED PLAINLY
+==============================================================================================================================
+  The item asked for E_G, which needs projected galaxy clustering w_p(R) for the SAME isolated lens sample as the
+  Delta-Sigma above.  That is not in this repository and could not be fetched for a matched sample; the published
+  E_G measurements use LRG or BOSS/GAMA lenses at R >= 5 h^-1 Mpc, a different selection at larger scales.  So the
+  E_G measurement itself is NOT RUNNABLE here.  What has changed is that it no longer matters: the quantity it would
+  measure is predicted to be GR's to a few per cent, so no achievable precision would separate the theories.
+
+==============================================================================================================================
+VERDICT
+==============================================================================================================================
+  Item 84 is WITHDRAWN as a discriminating test, on the framework's own physics rather than for want of data.
+  E_G(framework)/E_G(GR) = 1 + -0.000 at 1-5 Mpc on both footings, against 1 + 2.11 if the EFE is left out.
+  The reason is the external-field effect:
+  solved in QUMOND, an isolated galaxy's phantom saturates in mass at r ~ r_M/sqrt(e_N) = 40-220 kpc for these
+  lenses, so beyond a few hundred kpc the lens is a point mass of nu(e) M_b and everything else that is measured is
+  correlated mass -- which the framework and LambdaCDM share, by item 85's own load-bearing theorem.
+
+  THE BY-PRODUCT IS THE PART WORTH KEEPING, AND IT IS A CAVEAT ON TWO ITEMS ON THE KEEPER LIST.  The measured 1/r
+  lensing law out to 2.6 Mpc (items 1 and 72) cannot be the isolated lens's own MOND phantom beyond ~0.1 Mpc if the
+  framework's own external-field effect is applied; on these data a phantom cut off at 0.1 Mpc plus correlated mass
+  contributes only 6% of the measured signal at 1.9 Mpc, so the megaparsec end of that law is correlated mass
+  in the framework exactly as it is in LambdaCDM.  Those keepers should be read as 'the TOTAL profile is close to
+  1/R over 0.05-2.6 Mpc', which is what B21 measured and is a real fact about the data, and not as 'the MOND boost
+  itself has been seen to extend to megaparsecs' -- the framework's own field equation does not allow that.
+
+  AND ONE THING THE ITEM DID NOT SETTLE.  My correlated-mass model is linear theory, a lower bound at these radii;
+  it under-predicts the measurement by factors of 1.1 to 5.4 on its own.  So the amplitude at 1-3 Mpc cannot be
+  used for
+  model selection here, and the framework's dark-sector fork -- does the dust virialise? -- is what it would decide.
+
+RESULT: 11 checks, 0 FAIL   rc=0

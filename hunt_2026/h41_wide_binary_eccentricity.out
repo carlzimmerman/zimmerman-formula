@@ -1,0 +1,62 @@
+====================================================================================================================
+ITEM 41 -- do wide binaries' ORBIT SHAPES know about a_0?
+====================================================================================================================
+  El-Badry+2021 Gaia EDR3 catalogue: 1817594 pairs loaded
+  clean sample (R_chance_align < 0.01, RUWE < 1.4 both, d < 250 pc, parallax S/N > 50 both, |dmu|/sigma > 5): 61128 pairs
+
+     bin [kAU]       N  <M_tot>   <cos^2 g>      +-  median 1/SNR   interpretation
+    0.2-  1.0   31662     1.00      0.5105  0.0020        0.0515   super-thermal
+    1.0-  2.0   10839     1.19      0.5187  0.0034        0.0663   super-thermal
+    2.0-  5.0    8322     1.28      0.5181  0.0039        0.0792   super-thermal
+    5.0- 10.0    2809     1.36      0.5171  0.0067        0.0949   super-thermal
+   10.0- 30.0    1558     1.48      0.4904  0.0088        0.1098   sub-thermal
+  (<cos^2 gamma> = 0.5 is BOTH the random-direction value and the thermal-f(e) value; the two coincide, which is
+   why this statistic is a clean eccentricity meter and a useless null test at the same time.)
+
+====================================================================================================================
+pipeline validation: thermal f(e) in Newtonian gravity must give <cos^2 gamma> = 1/2 exactly
+====================================================================================================================
+  noiseless Newtonian mocks, no cuts: f(e) ~ e^0 gives <cos^2 g> = 0.4300; f(e) = 2e (THERMAL) gives 0.5003; f(e) ~ e^2 gives 0.5470
+  [PASS] V41 pipeline validation -- a thermal eccentricity distribution must reproduce the analytic <cos^2 gamma> = 0.5 exactly, and sub- and super-thermal distributions must fall either side of it.  This is what licenses every number below; without it the Monte Carlo could not be trusted at the 0.01 level it needs to work at   (thermal gives 0.5003 against the analytic 0.5000 (0.0003 off, N = 300000); e^0 0.4300 < thermal < e^2 0.5470)
+
+====================================================================================================================
+forward model: the same 400k systems under Newton and under the framework
+====================================================================================================================
+  mock: 400000 systems per bin (common random numbers across gravity laws), f(e) ~ e^1.0, x_ext = 1.7, Gaia noise and the S/N > 5 cut applied exactly as to the data
+     bin [kAU]   g_N/a_0    Newton  framework     shift   MC err  data err  shift/data  d alpha equiv
+    0.2-  1.0    317.76    0.5003     0.5005   +0.0002   0.0000    0.0020       +0.09         +0.003
+    1.0-  2.0     37.63    0.4998     0.5023   +0.0026   0.0001    0.0034       +0.74         +0.040
+    2.0-  5.0      8.14    0.4997     0.5114   +0.0117   0.0002    0.0039       +2.99         +0.175
+    5.0- 10.0      1.73    0.5001     0.5194   +0.0193   0.0002    0.0067       +2.87         +0.277
+   10.0- 30.0      0.31    0.4994     0.5149   +0.0155   0.0002    0.0088       +1.76         +0.224
+  [PASS] 41 the framework's effect on wide-binary orbit SHAPE is real, computable and -- surprisingly -- LARGER than the present sample's statistical error: it raises <cos^2 gamma> by 0.012-0.019 beyond 2 kAU, up to three times the data error bar, and it switches on exactly where g_N crosses a_0.  So the item is NOT underpowered, which is the opposite of what this script was written expecting   (largest shift +0.0117 +- 0.0002 (MC) in the 2-5 kAU bin, against a data error of 0.0039 -> 3.0 sigma of statistical reach)
+
+====================================================================================================================
+...and the degeneracy that stops it being a test
+====================================================================================================================
+  the same shift is produced by raising the eccentricity index alpha in f(e) ~ e^alpha by +0.17 to +0.28 in the bins beyond 2 kAU.
+  the published measurements of alpha for wide binaries (Hwang, Ting & Zakamska 2022) carry uncertainties of ~0.1-0.2
+  AND a strong, astrophysical separation dependence of their own: close pairs are circularised, wide pairs are
+  super-thermal, because of how they form and how they are stirred.  So the framework's signature is the same shape
+  and about the same size as the nuisance it would have to be separated from.
+  measured trend of <cos^2 gamma> with separation: +0.0021 +- 0.0034 per dex (0.6 sigma -- consistent with FLAT); the framework predicts +0.0121 per dex on top of whatever f(e) does.
+  [PASS] 41b AGAINST INTEREST, and this is the item's verdict: the effect is measurable in principle but NOT SEPARABLE in practice.  It is degenerate with the eccentricity distribution -- an alpha shift of ~0.3, inside the astrophysical uncertainty on alpha and with the same separation dependence that binary formation already imprints.  <cos^2 gamma> is an eccentricity meter that happens to be 0.5 for both a thermal distribution and for random directions; it cannot be a gravity meter without an independent f(e), and there is none   (the framework's shift is worth d alpha = +0.23 in the bins beyond 2 kAU, against a published alpha uncertainty of ~0.1-0.2 and an astrophysical separation trend in alpha of order 0.5 across this range)
+  
+  the one statement that CAN be made, and it is about star formation rather than gravity: if the framework is right, then the eccentricity distribution inferred from these same data is LESS super-thermal than a Newtonian analysis of them concludes, by d alpha ~ 0.22 at 10-30 kAU.  That is a testable consequence for binary-formation theory, and it is the only thing this item delivers.
+
+  separation-function systematic, log-flat in a (Opik)                        : shift = +0.0152 (baseline +0.0155)
+  separation-function systematic, dN/da ~ a^-0.6 (steeper, El-Badry+21 wide end): shift = +0.0190 (baseline +0.0155)
+  external-field systematic, x_ext =  0.0: shift = +0.0817
+  external-field systematic, x_ext =  1.7: shift = +0.0160
+  external-field systematic, x_ext =  3.0: shift = +0.0099
+  [PASS] M41 mutation: a_0 -> a_0/1000 must collapse the framework's mock ONTO the Newtonian one on the same systems, since the kernel then does nothing at these separations.  With common random numbers this is a near-exact test, and it is the check that caught the first version of this script, whose unpaired Monte-Carlo error was as large as the signal   (a_0/1000 gives 0.50030 vs Newton 0.50028 on the same 300k systems, a residual of +0.00001 against a real shift of +0.01550)
+  [PASS] M41b mutation on the DATA: pairing each separation vector with a DIFFERENT pair's relative proper motion must drive <cos^2 gamma> to the random-direction value 0.5, showing the real signal is orbital and not an artefact of the sky geometry or of Gaia's scanning law   (shuffled <cos^2 gamma> = 0.4997 (random = 0.5000) vs the real 0.4904 in the same bin)
+
+  SUMMARY OF ITEM 41.  The catalogue is right, the observable is right, and the framework's effect on it is bigger
+  than the error bar -- and the item still fails, for a reason worth recording: <cos^2 gamma> is 1/2 both for random
+  directions and for a thermal eccentricity distribution, and the kernel's shift is worth a change of ~0.3 in the
+  eccentricity index, which is the size of the astrophysical uncertainty in that index AND has the same separation
+  dependence.  Item 41 is DEGENERATE, not underpowered.  The wide-binary lever stays where the pre-registration put
+  it: on the SPEED (gamma_v), where the framework's effect is not something binary formation can also produce.
+
+RESULT: 5 checks, 0 FAIL   rc=0

@@ -1,0 +1,156 @@
+================================================================================================================================
+1. VALIDATION -- reproduce Lelli+2015's own MOND columns with the Route A kernel before claiming anything
+================================================================================================================================
+  Lelli+2015 Table 5 gives V_ISO and V_EFE for nu_n with n = 1, which is exactly Route A, at a_0 = 1.30e-10 m/s^2.
+    NGC5291N    g_Ni/a0 here 0.073 (paper 0.073) | V_ISO here  76.9 (paper   77) | V_EFE here  62.0 (paper   62) | MEASURED V_circ   45 +- 9
+    NGC5291S    g_Ni/a0 here 0.033 (paper 0.033) | V_ISO here  75.7 (paper   76) | V_EFE here  53.7 (paper   54) | MEASURED V_circ   35 +- 6
+    NGC5291SW   g_Ni/a0 here 0.033 (paper 0.033) | V_ISO here  61.9 (paper   62) | V_EFE here  46.5 (paper   46) | MEASURED V_circ   28 +- 7
+    NGC7252E    g_Ni/a0 here 0.021 (paper 0.019) | V_ISO here  52.8 (paper   52) | V_EFE here  31.6 (paper   30) | MEASURED V_circ   18 +- 5
+    NGC7252NW   g_Ni/a0 here 0.015 (paper 0.015) | V_ISO here  63.2 (paper   63) | V_EFE here  41.5 (paper   41) | MEASURED V_circ   21 +- 6
+    VCC2062     g_Ni/a0 here 0.022 (paper 0.022) | V_ISO here  40.9 (paper   41) | V_EFE here  27.3 (paper   27) | MEASURED V_circ   16 +- 7
+  [PASS] 46-V1 the internal Newtonian accelerations recomputed from the published M_bar and R_out reproduce the paper's own g_Ni/a_0 column, so the transcribed table is internally consistent   (ratio 1.0131 +- 0.0337 over 6 TDGs)
+  [PASS] 46-V2 GOLD-STANDARD VALIDATION of the external-field machinery used in h43/h44/h45 as well as here: at the paper's own a_0 the Route A kernel reproduces Lelli+2015's published isolated AND external-field MOND velocities to better than 2%.  This is an independent check of the QUMOND eq.-60 implementation against a careful published calculation   (V_ISO ratio 1.0015 +- 0.0064; V_EFE ratio 1.0139 +- 0.0194)
+
+================================================================================================================================
+2. THE TEST at the framework's own footings
+================================================================================================================================
+    canonical + EFE            NGC5291N    predicted  58.1 +-  5.1 | measured   45 +- 9 km/s | +1.27 sigma
+    canonical + EFE            NGC5291S    predicted  50.2 +-  4.2 | measured   35 +- 6 km/s | +2.08 sigma
+    canonical + EFE            NGC5291SW   predicted  43.4 +-  4.7 | measured   28 +- 7 km/s | +1.83 sigma
+    canonical + EFE            NGC7252E    predicted  29.7 +-  6.1 | measured   18 +- 5 km/s | +1.48 sigma
+    canonical + EFE            NGC7252NW   predicted  38.7 +-  4.1 | measured   21 +- 6 km/s | +2.43 sigma
+    canonical + EFE            VCC2062     predicted  25.6 +-  3.4 | measured   16 +- 7 km/s | +1.23 sigma
+    canonical + EFE            COMBINED    mean tension +1.72 sigma per TDG, sum/sqrt(N) = +4.21 sigma, chi^2 = 18.9 on 6 points
+    canonical isolated         NGC5291N    predicted  71.7 +-  2.7 | measured   45 +- 9 km/s | +2.84 sigma
+    canonical isolated         NGC5291S    predicted  70.3 +-  2.6 | measured   35 +- 6 km/s | +5.38 sigma
+    canonical isolated         NGC5291SW   predicted  57.4 +-  2.8 | measured   28 +- 7 km/s | +3.90 sigma
+    canonical isolated         NGC7252E    predicted  48.9 +-  2.0 | measured   18 +- 5 km/s | +5.74 sigma
+    canonical isolated         NGC7252NW   predicted  58.5 +-  1.6 | measured   21 +- 6 km/s | +6.04 sigma
+    canonical isolated         VCC2062     predicted  37.9 +-  2.3 | measured   16 +- 7 km/s | +2.98 sigma
+    canonical isolated         COMBINED    mean tension +4.48 sigma per TDG, sum/sqrt(N) = +10.98 sigma, chi^2 = 130.6 on 6 points
+
+    alt + EFE                  NGC5291N    predicted  60.3 +-  5.2 | measured   45 +- 9 km/s | +1.47 sigma
+    alt + EFE                  NGC5291S    predicted  52.2 +-  4.4 | measured   35 +- 6 km/s | +2.32 sigma
+    alt + EFE                  NGC5291SW   predicted  45.1 +-  4.9 | measured   28 +- 7 km/s | +2.01 sigma
+    alt + EFE                  NGC7252E    predicted  30.8 +-  6.3 | measured   18 +- 5 km/s | +1.59 sigma
+    alt + EFE                  NGC7252NW   predicted  40.3 +-  4.3 | measured   21 +- 6 km/s | +2.62 sigma
+    alt + EFE                  VCC2062     predicted  26.6 +-  3.5 | measured   16 +- 7 km/s | +1.35 sigma
+    alt + EFE                  COMBINED    mean tension +1.89 sigma per TDG, sum/sqrt(N) = +4.63 sigma, chi^2 = 22.8 on 6 points
+    alt isolated               NGC5291N    predicted  74.6 +-  2.7 | measured   45 +- 9 km/s | +3.15 sigma
+    alt isolated               NGC5291S    predicted  73.3 +-  2.7 | measured   35 +- 6 km/s | +5.81 sigma
+    alt isolated               NGC5291SW   predicted  59.9 +-  2.9 | measured   28 +- 7 km/s | +4.22 sigma
+    alt isolated               NGC7252E    predicted  51.1 +-  2.0 | measured   18 +- 5 km/s | +6.13 sigma
+    alt isolated               NGC7252NW   predicted  61.2 +-  1.7 | measured   21 +- 6 km/s | +6.45 sigma
+    alt isolated               VCC2062     predicted  39.6 +-  2.3 | measured   16 +- 7 km/s | +3.20 sigma
+    alt isolated               COMBINED    mean tension +4.83 sigma per TDG, sum/sqrt(N) = +11.83 sigma, chi^2 = 151.0 on 6 points
+
+    Newtonian (no dark matter) NGC5291N    predicted  37.4 +-  5.3 | measured   45 +- 9 km/s | -0.73 sigma
+    Newtonian (no dark matter) NGC5291S    predicted  30.8 +-  3.3 | measured   35 +- 6 km/s | -0.61 sigma
+    Newtonian (no dark matter) NGC5291SW   predicted  25.2 +-  3.9 | measured   28 +- 7 km/s | -0.35 sigma
+    Newtonian (no dark matter) NGC7252E    predicted  19.3 +-  4.8 | measured   18 +- 5 km/s | +0.19 sigma
+    Newtonian (no dark matter) NGC7252NW   predicted  21.4 +-  2.9 | measured   21 +- 6 km/s | +0.06 sigma
+    Newtonian (no dark matter) VCC2062     predicted  15.2 +-  2.4 | measured   16 +- 7 km/s | -0.11 sigma
+    Newtonian (no dark matter) COMBINED    mean tension -0.26 sigma per TDG, sum/sqrt(N) = -0.63 sigma, chi^2 = 1.1 on 6 points
+    Lelli a_0 = 1.30e-10 + EFE NGC5291N    predicted  62.0 +-  5.3 | measured   45 +- 9 km/s | +1.62 sigma
+    Lelli a_0 = 1.30e-10 + EFE NGC5291S    predicted  53.7 +-  4.5 | measured   35 +- 6 km/s | +2.50 sigma
+    Lelli a_0 = 1.30e-10 + EFE NGC5291SW   predicted  46.5 +-  5.0 | measured   28 +- 7 km/s | +2.15 sigma
+    Lelli a_0 = 1.30e-10 + EFE NGC7252E    predicted  31.6 +-  6.5 | measured   18 +- 5 km/s | +1.67 sigma
+    Lelli a_0 = 1.30e-10 + EFE NGC7252NW   predicted  41.5 +-  4.4 | measured   21 +- 6 km/s | +2.76 sigma
+    Lelli a_0 = 1.30e-10 + EFE VCC2062     predicted  27.3 +-  3.6 | measured   16 +- 7 km/s | +1.44 sigma
+    Lelli a_0 = 1.30e-10 + EFE COMBINED    mean tension +2.02 sigma per TDG, sum/sqrt(N) = +4.96 sigma, chi^2 = 26.0 on 6 points
+  [PASS] 46a THE RESULT, and it is a LIABILITY: the framework over-predicts the rotation of every one of the six tidal dwarfs, on both footings, with the external-field effect included.  The LambdaCDM expectation -- that a TDG is dark-matter free and obeys plain Newtonian gravity with its observed baryons -- fits them, and the framework does not   (canonical + EFE: mean +1.72 sigma per TDG, combined +4.21 sigma, chi^2 18.9/6; alt + EFE: +1.89 / +4.63 sigma; Newtonian: -0.26 / -0.63 sigma, chi^2 1.1/6)
+  [PASS] 46b the framework's own a_0 footings make the tension SMALLER than the a_0 = 1.30e-10 that Lelli+2015 used, because a lower a_0 predicts lower velocities -- so part of the published 'MOND fails on TDGs' result is an a_0 choice, and that part is quantified here rather than left implicit.  It is not enough to remove the liability   (combined tension +4.96 sigma at a_0 = 1.30e-10 (the paper's value), +4.21 sigma at 9.36e-11 (canonical), +4.63 sigma at 1.13e-10 (alt))
+
+================================================================================================================================
+3. what it would take to save it -- stated so the size of the gap is explicit
+================================================================================================================================
+    NGC5291N    needs M_bar =  8.34e8 Msun instead of the measured 15.60 +- 1.7e8 (0.53x, i.e. 0.27 dex), or an external field far stronger than the host can supply
+    NGC5291S    needs M_bar =  7.06e8 Msun instead of the measured 15.90 +- 2.1e8 (0.44x, i.e. 0.35 dex), or an external field far stronger than the host can supply
+    NGC5291SW   needs M_bar =  2.56e8 Msun instead of the measured  7.10 +- 1.2e8 (0.36x, i.e. 0.44 dex), or an external field far stronger than the host can supply
+    NGC7252E    needs M_bar =  1.37e8 Msun instead of the measured  3.90 +- 0.5e8 (0.35x, i.e. 0.46 dex), or an external field far stronger than the host can supply
+    NGC7252NW   needs M_bar =  2.19e8 Msun instead of the measured  8.20 +- 0.8e8 (0.27x, i.e. 0.57 dex), or an external field far stronger than the host can supply
+    VCC2062     needs M_bar =  0.50e8 Msun instead of the measured  1.40 +- 0.3e8 (0.36x, i.e. 0.44 dex), or an external field far stronger than the host can supply
+  [PASS] 46d the size of the gap, stated plainly: to put these six TDGs on the framework's law their baryonic masses would have to be 2-5x SMALLER than measured -- and their baryon budgets are HI-dominated, directly measured from resolved 21-cm maps, and would have to be wrong by more than the total molecular plus stellar content to close it   (required M_bar/measured M_bar = 0.27-0.53 (median 0.36); the measured M_bar errors are 14% on average)
+
+================================================================================================================================
+4. the same thing said as a BTFR position -- which is how the hunt list posed it
+================================================================================================================================
+  The hunt list's promotion criterion for item 46 was 'all TDGs within 0.15 dex of the line'.  The BTFR line the framework
+  predicts is M_bar = V_circ^4/(G a_0), with NO external-field correction -- the EFE version is quoted beside it.
+  canonical  offset from the bare BTFR line M_bar = V^4/(G a_0): +0.67 to +1.72 dex in M_bar (median +1.29) -- the TDGs are TOO BARYON-RICH for their rotation.  With the external field folded in (canonical solve): median +0.44 dex
+  alt        offset from the bare BTFR line M_bar = V^4/(G a_0): +0.76 to +1.80 dex in M_bar (median +1.37) -- the TDGs are TOO BARYON-RICH for their rotation.  With the external field folded in (canonical solve): median +0.44 dex
+  [PASS] 46c the hunt list's own promotion criterion is missed, by a lot and in the direction LambdaCDM predicts: the TDGs sit far to the low-velocity side of the framework's BTFR, i.e. they are too baryon-rich for their rotation.  Not one of the six is within the 0.15 dex the item asked for   (canonical: median offset +1.29 dex in M_bar from the bare line (0/6 within 0.15 dex), +0.44 dex once the external field is folded in)
+
+================================================================================================================================
+5. the honest defences, computed rather than asserted
+================================================================================================================================
+  (a) EQUILIBRIUM.  Lelli+2015's own strongest caveat: these HI discs have completed less than one orbit since the merger
+      (t_merg/t_orb = 0.2-0.8), so V_circ may not trace the potential.  If the discs are still expanding, the true
+      equilibrium velocity would be HIGHER than measured and the tension would shrink.  This is not a defence the data can
+      settle, and it applies equally to the LambdaCDM reading, which is why the paper reports both.
+  (b) WHICH KINEMATICS.  Milgrom (2007) and Gentile et al. (2007) found MOND SUCCEEDED on the same three NGC 5291 TDGs,
+      using Bournaud et al. 2007's kinematics.  Lelli+2015's 3-D disc models lowered V_rot by ~2x and raised M_gas by
+      ~1.5-2x, which is what turned the success into a failure.  So item 46's verdict is a bet on whose HI modelling is
+      right, not on the acceleration law -- and this script bets on the newer, resolved, 3-D-modelled analysis.
+      NGC5291N    with a B07-era gas budget (M_bar / 1.5-2.0) the framework predicts 44-49 km/s; B07's own V_rot for these three was 50-70 km/s (Lelli+2015 App. A), against 45 km/s now -- the older numbers were consistent, the newer ones are not
+      NGC5291S    with a B07-era gas budget (M_bar / 1.5-2.0) the framework predicts 37-42 km/s; B07's own V_rot for these three was 50-70 km/s (Lelli+2015 App. A), against 35 km/s now -- the older numbers were consistent, the newer ones are not
+      NGC5291SW   with a B07-era gas budget (M_bar / 1.5-2.0) the framework predicts 32-37 km/s; B07's own V_rot for these three was 50-70 km/s (Lelli+2015 App. A), against 28 km/s now -- the older numbers were consistent, the newer ones are not
+  (c) THE EXTERNAL FIELD is already included, with the paper's own g_Ne, and it is what brings the prediction down from
+      57 to 41 km/s on average against a measured mean of 27.  A stronger field cannot be invoked: it is set by the host's
+      measured K-band luminosity and the projected separation, and the projected separation is a LOWER bound on the true one,
+      so the true field is if anything WEAKER and the true prediction HIGHER.  That defence is closed.
+      NGC7252E    has NO finite external field that works: even the Newtonian floor 19.3 km/s exceeds the measured 18 km/s (by +0.26 sigma, i.e. not significantly -- these two are the two TDGs the framework misses least)
+      NGC7252NW   has NO finite external field that works: even the Newtonian floor 21.4 km/s exceeds the measured 21 km/s (by +0.07 sigma, i.e. not significantly -- these two are the two TDGs the framework misses least)
+  [PASS] 46e the external-field escape is CLOSED, quantitatively: saving the framework by strengthening the host field alone would need external fields 9-32x the ones the hosts' measured luminosities supply for the 4 TDGs where a finite field exists at all, and for the other 2 there is no such field at any strength because the prediction bottoms out at the Newtonian floor.  The projected separations used are lower bounds, so the true fields are weaker still and the true predictions higher   (required g_Ne / published g_Ne = 9.5x to 32.3x (median 20.4x) for 4/6; unreachable at any field strength: NGC7252E, NGC7252NW)
+
+================================================================================================================================
+5b. the combined significance, taken apart -- AGAINST the liability this script is booking
+================================================================================================================================
+  The +4.2 sigma 'combined' number above adds six z-scores as if they were six independent experiments.  They are not:
+  three of them share NGC 5291's data cube, distance, inclination convention and host mass, two share NGC 7252's.  Both
+  weakenings and strengthenings of the liability are computed here, and the weakening is stated first.
+    per-host mean tension: NGC5291 +1.73 sigma (N=3), NGC7252 +1.96 sigma (N=2), VCC2062 +1.23 sigma (N=1)
+    combining ONE point per host instead of one per TDG: +2.84 sigma, against +4.21 sigma naive.
+    a Student t on the three host means alone gives t = +7.66 on 2 d.o.f., i.e. p = 0.017 two-sided = 2.39 sigma -- with only three independent systems the t distribution's tails are fat and the large t buys little
+    the coherent error that WOULD erase it: every prediction would have to come down by a factor 1.57 (median of 1.29-1.84).  V_pred scales as sqrt(D) here, so that is a distance error of 2.5x;
+    Lelli+2015 bound the distance error on these systems at <12% (Hubble flow at V_sys > 4300 km/s; Virgo for VCC 2062),
+    which moves V_pred by only 6%.  Alternatively every inclination would have to be wrong by enough to
+    raise the measured velocities 1.57x, i.e. sin(i) too large by that factor -- for NGC 7252E, i = 80 deg, sin i = 0.98,
+    which cannot be reduced by more than 2% at all.  Neither coherent escape is available.
+  [PASS] 46f AGAINST THE LIABILITY, reported before it is banked: the headline '+4.2 sigma combined' is an over-statement, because the six TDGs are three host systems and their errors are not independent.  Collapsing to one point per host gives +2.84 sigma, and a t-test on three host means alone lands under 3 sigma.  The liability survives on the SIGN and on the size of the offset (a factor 1.6 in velocity, 2.8 in mass), not on the naive combined significance, and this script will not quote that combined number without this line attached   (naive +4.21 sigma on 6 TDGs -> +2.84 sigma on 3 hosts, 2.39 sigma by a t-test on the host means (p = 0.017); per-host means NGC5291 +1.73, NGC7252 +1.96, VCC2062 +1.23; the coherent velocity error needed to erase it is 1.57x = a 2.5x distance error against a published 12% bound)
+
+================================================================================================================================
+6. mutation controls
+================================================================================================================================
+  [PASS] M1 mutation -- switching the kernel off (nu = 1, plain Newton with the same baryons) must CHANGE the answer, and here it must change it in the direction of agreement, since that is the LambdaCDM expectation being tested   (mean tension +1.72 sigma with the kernel, -0.26 sigma without)
+  [PASS] M2 mutation -- a_0 raised 10x must make the over-prediction much worse (V ~ a_0^{1/4} in the deep-MOND limit)   (mean tension +1.72 -> +6.18 sigma at 10 a_0)
+  [PASS] M3 mutation -- shuffling which TDG gets which measured velocity must inflate the scatter of the tension, i.e. the systematic over-prediction must not be a fluke of six numbers that would look the same in any order   (shuffled scatter 1.14 vs real 0.44 sigma per TDG)
+
+================================================================================================================================
+VERDICT
+================================================================================================================================
+  ITEM 46 -- a LIABILITY, and the sharpest one in this pass, because the two paradigms disagree about the sign and the data
+  come down on the other side.
+  All six of Lelli et al. 2015's bona-fide tidal dwarfs rotate more slowly than the framework requires.  With the external
+  field included and no free parameter, the canonical footing over-predicts by +1.72 sigma per galaxy (+4.21 sigma if the six are
+  treated as independent, +2.84 sigma collapsed to their three independent host systems, which is the number to quote;
+  chi^2 = 18.9 on 6 points); the alt footing by +1.89 sigma.  A dark-matter-free Newtonian prediction using the same
+  measured baryons fits them at -0.26 sigma per galaxy -- which is exactly what LambdaCDM says a tidal dwarf should do.
+  On the hunt list's own criterion -- all TDGs within 0.15 dex of the BTFR -- the score is 0 of 6, median offset +1.29 dex.
+  Two things are reported in the framework's favour and neither rescues it:
+    * the repository's a_0 footings are LOWER than the 1.30e-10 the paper used, which cuts the published tension from
+      +4.96 sigma to +4.21 sigma combined.  Smaller, still there.
+    * the older kinematics (Bournaud+2007), on which Milgrom 2007 and Gentile+2007 declared a MOND success for the same
+      three NGC 5291 objects, WOULD have agreed.  Item 46's verdict therefore rides on trusting Lelli+2015's 3-D HI disc
+      models over the earlier position-velocity estimates.  This script trusts the newer analysis and says so.
+  The two escapes that could be closed here are closed: the external field is already included at the hosts' own measured
+  luminosities and would have to be 20x stronger to work on the four TDGs where any finite field works at all
+  (for NGC7252E and NGC7252NW no field of any strength reaches the measurement, because the prediction
+  bottoms out at the Newtonian floor), and the baryon budgets would have to be 2.8x too high when they
+  are HI-dominated and directly mapped.  The one escape that stays open is dynamical equilibrium: these discs have completed
+  less than one orbit since the merger, and Lelli+2015 say so themselves.  That caveat is the reason this is booked as a
+  LIABILITY on the ledger rather than as a kill.
+  Code note: section 1 reproduces the paper's own published MOND velocities to better than 2% with the Route A kernel, which
+  validates the QUMOND external-field implementation shared with h43/h44/h45.
+
+RESULT: 11 checks, 0 FAIL   rc=0
