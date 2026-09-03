@@ -262,3 +262,42 @@ cheap test: **cluster UDGs should carry the residual and field UDGs should not.*
 
 **Net: the conditional is COHERENT and INCOMPLETE** — a much stronger position than f04 left it in, and all four
 remaining items are computable next tests.
+
+
+---
+
+## THE CONDITIONAL IS DEAD, and it dies on its own internal consistency (`f06_relic_freestreaming_kill.py`, 7/7)
+
+Two of the four items f05 left owed are now computed. **Twice in the conditional's favour, and then decisively against.**
+
+**In its favour, first.** The repository's ΔN_eff objection is **too strong**. An 11.3 eV species is deeply
+non-relativistic at recombination (m/T = 68), so it does **not** enter the CMB's N_eff at all — it counts as matter,
+which is the point. The applicable constraint is the looser BBN one: a 2–3σ tension, not an exclusion.
+
+**In its favour again, and this was my own error.** My first free-streaming bound was wrong by two orders of magnitude,
+and its own mutation control caught it: the neutrino-temperature formula must reproduce the keV warm-dark-matter limit,
+and it gave 11 Mpc against the published ~0.1 Mpc, because that formula only holds for a species at the neutrino
+temperature. **The conditional is not dead by the factor of 40 that error implied.**
+
+**It is dead by a factor of 1.6, and that is worse for it,** because a tight conflict is a real physical statement
+rather than an order-of-magnitude dismissal. Hold Ω at Ω_dm and let production be as cold as it likes: n ∝ T³ and
+Ω ∝ nm give T ∝ (Ω/m)^{1/3}, so the thermal velocity goes as **m^{−4/3}** and so does λ_fs. Anchored where thermal
+production is exact (11.3 eV → Ω_dm exactly → λ_fs = 185 Mpc/h):
+
+| requirement | bound |
+|---|---|
+| spare even the coarsest Lyman-α scale (k = 1 h/Mpc) | **m ≥ 148 eV** |
+| keep the relic out of the dwarfs (Tremaine–Gunn) | **m ≤ 93 eV** |
+
+**No overlap.** And the conflict is *exact rather than coincidental*: a relic is kept **out of dwarfs** by having **low**
+primordial phase-space density, and kept out of the **free-streaming** problem by having **high** primordial phase-space
+density. It is **one quantity**, and the conditional needs it small and large at once. The very property that gives the
+story its single impressive feature — the automatic, unfitted galaxy exclusion — is the property that destroys it.
+
+**And the standard escape is closed for this framework specifically.** A MOND cosmology can regrow the power
+free-streaming erased. This one cannot: the **bulk-flow null**, the one positive that survived a 57-item sweep and
+three-lens verification, measured its linear regime to be **Newtonian** (β = 0.447 against ΛCDM's 0.440, where an
+unprotected MOND kernel needs 0.045). **The result that is the framework's best selling point is exactly the result that
+forbids it the escape.**
+
+This is the cleanest kill of the session: derived from the framework's own results, with no external datum required.

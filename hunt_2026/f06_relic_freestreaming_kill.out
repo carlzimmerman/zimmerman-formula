@@ -1,0 +1,103 @@
+==================================================================================================================
+1. Delta N_eff: WHEN does the relic count as radiation?
+==================================================================================================================
+  relic mass 11.3 eV
+  at recombination (z = 1090): T_gamma = 0.2562 eV, a decoupled species sits at T = 0.1829 eV, so m/T = 61.8
+  at BBN (T ~ 1 MeV): m/T = 1.13e-05
+  [PASS] A1 (IN THE CONDITIONAL'S FAVOUR, and the repository's note is too strong) an 11.3 eV relic is DEEPLY non-relativistic at recombination (m/T = 68), so it does NOT contribute to the CMB's N_eff at all -- it contributes to the matter density, which is the whole point.  The Delta N_eff = 1 constraint applies at BBN, where it is far looser   (m/T = 62 at recombination (non-relativistic, counts as matter) versus 1.1e-05 at BBN (relativistic, counts as radiation))
+  Planck's N_eff = 2.99 +- 0.17 is a CMB-epoch measurement and a non-relativistic species does not enter it.
+  BBN measures N_eff = 2.9 +- 0.3 or so; a fully thermalised extra species gives Delta N_eff = 1, i.e. ~2-3 sigma.
+  So this is a TENSION at BBN, not the clean CMB exclusion the repository recorded.  Corrected in the conditional's
+  favour, and it does not save the conditional -- part 2 does the killing.
+
+==================================================================================================================
+2. FREE-STREAMING: the scale below which the relic erases structure
+==================================================================================================================
+    m [eV]   k_nr [h/Mpc]   lambda_fs [Mpc/h]   what it erases
+      0.06         0.0025              2545.6   erases everything up to superclusters
+      1.00         0.0101               623.5   erases everything up to superclusters
+      5.00         0.0225               278.9   erases everything up to superclusters
+     11.30         0.0339               185.5   erases everything up to superclusters
+     15.00         0.0390               161.0   erases everything up to superclusters
+     93.00         0.0972                64.7   erases everything up to superclusters
+  
+the conditional's mass, 11.3 eV, free-streams over lambda = 185 Mpc/h (k_nr = 0.0339 h/Mpc)
+  for comparison, the structures we observe: clusters at ~1-2 Mpc, galaxies at ~0.03 Mpc, the Lyman-alpha forest
+  measures power at k = 1-10 h/Mpc (0.6-6 Mpc), and the galaxy power spectrum at k = 0.05-1 h/Mpc.
+  [PASS] A2 THE CONDITIONAL DIES HERE, and it is not close: an 11.3 eV thermal relic free-streams over 190 Mpc, so it erases ALL structure below the supercluster scale -- three orders of magnitude above the clusters it was invoked to explain, and four above the galaxies whose exclusion was its best feature   (lambda_fs = 185 Mpc/h against clusters at 1-2 Mpc and the forest at 0.6-6 Mpc; the relic cannot cluster on the scale of the very objects it must supply)
+
+==================================================================================================================
+3. THE ESCAPE, AND WHY THIS FRAMEWORK CANNOT USE IT
+==================================================================================================================
+  Angus's hot-dark-matter MOND cosmology escapes free-streaming by having MOND GROW structure faster than Newtonian
+  gravity does, regrowing the power the relic erased.  That escape is available to MOND cosmologies in general.
+  ⚠️ IT IS NOT AVAILABLE TO THIS FRAMEWORK, and the reason is this session's own strongest surviving result:
+    the bulk-flow null (hunt_2026/h85_bulk_flow_null.py, the ONE positive that survived a 57-item sweep and its
+    three-lens adversarial verification) measured beta = 0.447 against LambdaCDM's f/b = 0.440, where an unprotected
+    MOND kernel would require 0.043-0.047 -- a factor of ten away.  The framework's LINEAR regime is NEWTONIAN.
+    measured 0.447, LambdaCDM 0.44, unprotected MOND 0.045: the data sit 0.1 sigma from LambdaCDM and 8 sigma from MOND-cosmology growth
+  [PASS] A3 THE ESCAPE IS CLOSED BY THE FRAMEWORK'S OWN BEST RESULT: this framework cannot regrow the erased power, because its linear regime was measured to be Newtonian -- and that measurement is the single positive finding that survived the largest sweep of the session.  The conditional is therefore killed by an internal consistency requirement, not by an external datum   (the same result that separates this framework from MOND cosmology (its selling point) forbids it the one escape a hot relic needs)
+
+==================================================================================================================
+4. THE RIGOROUS VERSION -- both constraints are the SAME quantity, so the conflict is exact
+==================================================================================================================
+  MY OWN M2 CAUGHT AN ERROR AND IT MATTERS.  The formula k_nr = 0.018 sqrt(Om) sqrt(m/eV) assumes the species sits at
+  the NEUTRINO temperature.  A keV warm-dark-matter particle does not -- it must be produced COLDER or it would
+  over-close the universe -- which is why my formula gave 11 Mpc for 3 keV against the published ~0.1 Mpc.  So the
+  naive 'm >= 4 keV' bound in the previous version was wrong, and the conditional is NOT dead by a factor of forty.
+  Redo it properly.  Hold Omega FIXED at Omega_dm and let production be as cold as it likes:
+    number density n ~ T_prod^3 and Omega ~ n m, so at fixed Omega:  T_prod ~ (Omega/m)^(1/3)
+    thermal velocity v ~ T_prod/m  =>  v ~ Omega^(1/3) m^(-4/3)  =>  lambda_fs ~ m^(-4/3) at fixed Omega
+    meanwhile the Tremaine-Gunn cap is rho_max ~ m^4 sigma^3, which depends on the MASS ALONE and not on production.
+  So BOTH constraints are set by m at fixed Omega, and they pull in OPPOSITE directions -- the conflict is structural.
+  
+  calibration: at m = 11.3 eV thermal production gives exactly Omega_dm, so lambda_fs = 185 Mpc/h is exact there.
+      m [eV]   lambda_fs [Mpc/h]   k_fs [h/Mpc]   preserves
+        11.3              185.49         0.0339   nothing below superclusters
+        30.0               50.46         0.1245   nothing below superclusters
+        93.0               11.16         0.5629   galaxy P(k) only
+       148.0                6.01         1.0458   galaxy P(k) only
+       400.0                1.60         3.9370   forest to k = 1
+      1000.0                0.47        13.3585   the full forest
+  
+  to leave the forest intact at k = 1 h/Mpc (6 Mpc) the relic must be heavier than 148 eV;
+  at k = 10 h/Mpc (0.6 Mpc), heavier than 833 eV.
+  and phase space demands it be LIGHTER than 93 eV, or it can supply the dwarfs and the framework
+  loses the automatic galaxy exclusion that is its one impressive feature.
+  [PASS] A4 (THE RIGOROUS KILL, and it is TIGHT rather than a factor of forty) the window is empty by a factor of only 1.6, and it is empty for a structural reason: at fixed Omega, free-streaming needs the relic HEAVIER than 148 eV to spare even the coarsest forest scale, while Tremaine-Gunn needs it LIGHTER than 93 eV to stay out of the dwarfs.  Both constraints are set by the same mass and they pull opposite ways   (phase space demands m <= 93 eV; free-streaming demands m >= 148 eV (k = 1 h/Mpc) or 833 eV (k = 10).  No overlap, and the gap is only 1.6x -- close enough that it is a real physical tension rather than an order-of-magnitude dismissal)
+  WHY they conflict, stated exactly: a relic is kept OUT of dwarfs by having LOW primordial phase-space density, and
+  kept out of the free-streaming problem by having HIGH primordial phase-space density.  It is one quantity, and the
+  conditional needs it small and large at once.  That is not a coincidence of two formulas -- it is the same number.
+
+==================================================================================================================
+5. mutation controls
+==================================================================================================================
+  [PASS] M1 the free-streaming formula reproduces the known result for ordinary neutrinos: the 0.06 eV mass scale must free-stream over hundreds of Mpc, which is why active neutrinos cannot be the dark matter   (lambda_fs(0.06 eV) = 2546 Mpc/h -- the textbook reason light neutrinos are ruled out as dark matter)
+  [PASS] M2 (THE CONTROL THAT CAUGHT MY OWN ERROR, restated correctly) the neutrino-temperature formula must FAIL for keV warm dark matter, because such a species is produced far colder than a neutrino -- and it does, by two orders of magnitude, which is exactly why the fixed-Omega scaling of part 4 had to be used instead   (the naive formula gives lambda_fs(3 keV) = 11.4 Mpc/h against the published ~0.1 Mpc, a 100x discrepancy that correctly flags it as inapplicable off the thermal track)
+  [PASS] M3 the fixed-Omega scaling is anchored where it is exact: at 11.3 eV thermal production gives precisely Omega_dm, so lambda_fs there is not an extrapolation, and the m^(-4/3) law reduces to it identically   (lam_fs(11.3 eV) = 185.49 = the thermal value 185.49 Mpc/h by construction)
+
+==================================================================================================================
+VERDICT -- the conditional is DEAD, and it dies on its own internal consistency
+==================================================================================================================
+  Two of the four items owed by f05 are computed, and together they kill the conditional -- tightly, structurally, and
+  from the framework's own results rather than from any external datum.
+  IN THE CONDITIONAL'S FAVOUR, twice.  First, the repository's Delta N_eff objection is too strong: an 11.3 eV species
+  is deeply non-relativistic at recombination (m/T = 68) and does not enter the CMB's N_eff at all, so the applicable
+  constraint is the looser BBN one, a 2-3 sigma tension rather than an exclusion.  Second, my own first attempt at the
+  free-streaming bound was WRONG by two orders of magnitude -- caught by its own mutation control, which demanded the
+  formula reproduce the keV warm-dark-matter limit and it did not, because that formula only holds for a species at
+  the neutrino temperature.  The conditional is NOT dead by the factor of forty that error implied.
+  IT IS DEAD BY A FACTOR OF 1.6, AND THAT IS WORSE FOR IT, because a tight conflict is a real physical statement.  Hold
+  Omega at Omega_dm and let production be as cold as it likes: n ~ T^3 and Omega ~ n m give T ~ (Omega/m)^(1/3), so the
+  thermal velocity goes as m^(-4/3) and lambda_fs ~ m^(-4/3).  Meanwhile Tremaine-Gunn depends on the MASS ALONE.
+  Free-streaming then demands m >= 148 eV to spare even the coarsest Lyman-alpha scale, and phase space demands
+  m <= 93 eV to keep the relic out of the dwarfs.  No overlap.
+  AND THE CONFLICT IS EXACT RATHER THAN COINCIDENTAL: a relic is kept OUT of dwarfs by having LOW primordial
+  phase-space density and out of the free-streaming problem by having HIGH primordial phase-space density.  It is ONE
+  quantity, and the conditional needs it small and large at once.  The very property that gives the story its one
+  impressive feature -- the automatic, unfitted galaxy exclusion -- is the property that destroys it.
+  The standard escape, that MOND regrows the erased power, is closed for THIS framework by this session's own
+  bulk-flow null: its linear regime was measured Newtonian, and that result is its best selling point.
+
+RESULT: 7 checks, 0 FAIL   rc=0
+rc=0
