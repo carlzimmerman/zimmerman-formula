@@ -440,3 +440,62 @@ The galactic keepers of the earlier passes are untouched — they were not re-te
 mass and radius, pressure-supported systems at every scale from ultra-faint dwarfs to ellipticals, lensing at Einstein radii,
 the vertical force, warps, tidal dwarfs, binary galaxies, and reionization. The one thing gained is a null that separates it
 from MOND cosmology.
+
+---
+
+# RESULTS LEDGER — the veins workflow, 2026-09-03 (items 101–125, 38 agents, 5.8M tokens)
+
+**⚠️ THIS PASS OVERTURNED THREE OF THE HUNT'S OWN HEADLINE RESULTS. Read the corrections before anything else.**
+
+## The corrections
+
+| what was claimed | what is true | consequence |
+|---|---|---|
+| **Item 25:** a₀ = 1.14e-10 from the slope-fixed deep tail, "the alt footing to 0.004 dex" | The estimator is **biased +0.0985 dex**. It fixes the slope at 1/2 and reads ⟨g_obs²/g_bar⟩, but g_bar < 1e-11 is not deep enough: ν(y)y = √y(1+√y/2+…), ⟨√y⟩ = 0.231, bias = 2log₁₀(1+⟨√y⟩/2). **Synthetic curves obeying the kernel exactly at 9.36e-11 are read back as 1.174e-10.** | **a₀ = 9.04e-11 — the canonical footing to 0.015 dex.** Items 64, 70, 76, 100 inherit. **κ = 0.512 ± 0.076 → 0.482 ± 0.081; 1/(2π) excluded at 4.0σ, not 4.6σ.** |
+| **Item 100:** "the two rungs that do not lean on M/L agree to 0.08 dex" | **Neither is M/L-free** (levers −0.647 and −1.046; deep-MOND lensing a₀ is degenerate with the assumed baryonic mass at exponent 1, not 2), **and the agreement was the +0.095 dex bias.** | Both halves fail. The sentence organised two ledgers and section 1 of `WHAT_THE_HUNT_TAUGHT.md`; all three corrected in place. |
+| **The standing diagnosis:** "the blocker is the stellar M/L" | **Not only.** Distance leads the random budget (38% of variance once Υ is cut). Removing Υ takes the total from 0.073 to 0.074 dex — it buys almost nothing. **Floor with Υ removed = 10.5%, not 3%**, set by the distance scale. Removing Υ **trades one calibration for a worse one**: d log a₀/d log M_gas = **−1.11**. | The "3% cut" **does not exist**. 3% in a₀ needs the distance ladder to 1.3%. |
+
+## Item 125 — the answer, and it is settled rather than pending
+
+**The hunt did not find a second law, and the criterion could not even be evaluated.** Seven M/L-free rungs; median quoted
+error **0.13 dex against the 0.05 dex agreement asked for** — identical central values could not have demonstrated it. The
+rungs are in mild tension anyway (**χ² = 16.6/6, p = 0.011**), and the moment estimator cannot detect that spread at N = 7,
+**which retires item 100's 0.156 dex "intrinsic spread" as a detection too.**
+
+* **The organiser changed.** It is not Υ: three rungs have exactly zero leverage, the best common Υ shift is +2.5 dex, and a
+  bare sample-membership flag absorbs the same χ². It is the **velocity measurement** — resolved rotation curves sit
+  **+0.24 dex above unresolved HI line widths**, matching item 124's independently measured width bias of +0.25 dex/dex
+  across three decades of mass, which also explains item 31's almost-dark "deficit."
+* **M/L-freedom and dynamic range are in direct conflict.** Dropping the stellar mass forces gas-rich selection → low mass →
+  the same acceleration. The load-bearing rungs span **1.1 decades**, not nine, and every one is a gas-rich dwarf.
+* **The three SPARC rungs agreeing to 0.016 dex is not the law closing** — R2 is a subset of R1, R3 shares 15 of 20, and all
+  three share one distance scale, one inclination convention, one hydrogen calibration. Three estimators on one sample is
+  one rung.
+
+## Item 123 — neither footing is decided, and not for want of data
+
+Best M/L-free value **a₀ = 7.36e-11 ± 0.065 stat, ±0.104 with the coherent floor**: canonical −1.0σ, alt −1.8σ. **A cut
+choice inside the same sample moves a₀ by 0.204 dex — 2.5× the 0.0818 dex gap between the footings.** Eight TRGB/Cepheid
+galaxies give 9.08e-11; fifteen Hubble-flow galaxies give 5.68e-11. A verdict that flips on a cut is not a verdict.
+Deciding needs the distance scale to 1.4%, the HI mass scale to 3%, and ~518 resolved gas-dominated discs against 23.
+
+## What survived triple refutation (5 of 10 claimed wins)
+
+| item | result |
+|---|---|
+| **102** | The M/L-free deep tail done correctly: the **local** stellar share at the radii used, not the global gas fraction, sets the leverage (bug pattern 1 inside the item's own specification). Cutting on f_*,loc < 0.2 takes the lever to −0.14 and gives **a₀ = 7.36e-11**, agreeing with the KiDS dwarf stack at 0.9σ with no mass trend. Bonus: **Υ_[3.6] = 0.61 ± 0.15 measured with no a₀ in it.** |
+| **105b** | A structural factor **C = ν(y)²·y·ε** separates the BTFR zero-point from a₀; applying it moves the naive 1.53e-10 to **9.82e-11**, +0.021 dex from canonical. |
+| **109** | The halo spin parameter predicted from the baryons. |
+| **110** | The phantom reproduces the fitted halo profile **shape**, not just its scales. |
+| **115** | **Renzo's rule at second order**: β[(1+n)L″] = **0.944 ± 0.135** against a predicted 1.000 — a 0.4σ pass on the *curvature*, with no free parameter. |
+| **118** | RAR residuals show no bar-strength dependence (−0.026 ± 0.039 dex), as the framework requires. |
+
+## Refuted on verification
+
+Items **103** (its own headline; the budget stands, the framing did not), **119**, **121**, **101b**.
+
+## The durable methodological finding
+
+**Removing a nuisance is not the same as removing calibration.** Every route that drops the stellar M/L picks up the HI mass
+scale at lever −1.11 and the distance scale at −2.25, and forces a sample with 1.1 decades of dynamic range. That is why the
+ladder cannot close on present data, and it is a statement about measurement rather than about the framework.
