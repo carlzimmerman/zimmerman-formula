@@ -177,6 +177,13 @@ does not mean the full relativistic theory passed.
 | Mathbox `validate_manifest.py` on the exact-kernel, CDE-L4C-2Delta, and Cassini manifests | 0 | All three computation manifests valid |
 | `python3 qwen_claude_field_theory/closure_2026/door_a_2026/doorA_alpha1_generality_theorem.py` | 0 | 12 reported checks; only the AeST/vector algebra is computed. T3b, T4, and M2 are literal `True` assertions, so the universal local-class verdict is not accepted |
 
+### Publication
+
+| Exact command | Status | Observed result |
+|---|---:|---|
+| `git commit -m "Audit exact MOND action and zero-field obstruction"` | 0 | Created `92257aa65`; 21 intended files, unrelated live-tree work excluded |
+| `git push origin main` | 0 | Published `1cdc25ea5..92257aa65` to `origin/main` |
+
 ### TDD and audit-hardening failures retained
 
 | Exact command and state | Status | Reason |
