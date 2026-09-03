@@ -1,0 +1,58 @@
+========================================================================================================
+RICCI-POLYNOMIAL VANISHING PROJECTOR: ACTION / DIRAC / WARD GATE
+========================================================================================================
+Action: S_EH[g]+S_m[g,psi]+int sqrt(-g) {lambda[P^mn(g) nabla_m nabla_n chi-J(g,T)]+U(chi)}
+
+[1] Isotropic construction
+  S = Matrix([[-3*d, 0, 0, 0], [0, d, 0, 0], [0, 0, d, 0], [0, 0, 0, d]])
+  tr(S^2) = 12*d**2
+  P = Matrix([[0, 0, 0, 0], [0, 8*d**2, 0, 0], [0, 0, 8*d**2, 0], [0, 0, 0, 8*d**2]])
+  ranks (d!=0,d=0) = 3 0
+  [PASS] P is a smooth rank-three scaled spatial projector off flat space
+
+[2] Anisotropic causal-type gate
+  P^0_0 = (s_1**2 - s_1*s_2 - s_1*s_3 + s_2**2 - s_2*s_3 + s_3**2)/2
+  sum-of-squares form = s_1**2/2 - s_1*s_2/2 - s_1*s_3/2 + s_2**2/2 - s_2*s_3/2 + s_3**2/2
+  example P^{00} = -3*epsilon_aniso**2/2
+  auxiliary velocity Hessian = Matrix([[0, 3*epsilon_aniso**2/2], [3*epsilon_aniso**2/2, 0]])
+  eigenvalues = [-3*epsilon_aniso**2/2, 3*epsilon_aniso**2/2]
+  [PASS] generic spatial Ricci anisotropy activates a ghost-signed time block
+
+[3] Bianchi-I highest metric derivatives
+  tr(S^2) = A_1**2 + A_2**2 + A_3**2
+  sum_i P^i_i = 3*A_1**2/2 + A_1*A_2/2 + A_1*A_3/2 + 3*A_2**2/2 + A_2*A_3/2 + 3*A_3**2/2
+  acceleration Hessian = Matrix([[3*C_BI, C_BI/2, C_BI/2], [C_BI/2, 3*C_BI, C_BI/2], [C_BI/2, C_BI/2, 3*C_BI]])
+  shear restriction = Matrix([[5*C_BI, 0], [0, 15*C_BI]])
+  scope = N=1 local Bianchi-I principal sector; lapse-retaining full Dirac completion remains required
+  [PASS] both physical Bianchi-I shear accelerations have nonzero Hessian
+
+[4] Reduced higher-derivative shear Dirac closure
+  L_shear = lambda*(-2*J_shear + kappa_shear*(a_1**2 + a_2**2))/2
+  acceleration Hessian = Matrix([[kappa_shear*lambda, 0], [0, kappa_shear*lambda]])
+  H_canonical = J_shear*lambda + P_1*v_1 + P_2*v_2 + pi_1**2/(2*kappa_shear*lambda) + pi_2**2/(2*kappa_shear*lambda)
+  primaries = [p_lambda]
+  secondaries = [-(2*J_shear*kappa_shear*lambda**2 - pi_1**2 - pi_2**2)/(2*kappa_shear*lambda**2)]
+  PB matrix = Matrix([[0, (pi_1**2 + pi_2**2)/(kappa_shear*lambda**3)], [(-pi_1**2 - pi_2**2)/(kappa_shear*lambda**3), 0]])
+  det(PB)|constraint = 4*J_shear**2/lambda**2
+  multiplier solution = [{u_lambda: lambda*(-P_1*pi_1 - P_2*pi_2)/(pi_1**2 + pi_2**2)}]
+  first/second class = 0 2
+  physical/baseline/extra DOF = 4 2 2
+  [PASS] the principal shear chain closes with two extra Ostrogradsky modes
+
+[5] Effective-stress / Ward fork
+  bare E_chi = -f*k**2*lambda_aux
+  bare lambda = 0
+  with U': lambda = U_prime/(f*k**2)
+  div(T_m) for J[psi] = U_prime*delta_J_over_delta_psi*nabla_psi/(f*k**2)
+  div(T_m) for J[g] = 0
+  [PASS] bare multiplier has no stress; direct-matter rescue exchanges momentum
+
+[VERDICT]
+  RICCI-POLYNOMIAL CANDIDATE DEAD; GENERAL RANK-CHANGING METRIC-SPECTRAL BRANCH OPEN
+  The broad regular-projector no-go stays withdrawn. This explicit P fails
+  away from exact isotropy and has two extra higher-derivative shear modes.
+  Bare lambda cannot source Einstein; U(chi) makes lambda nonzero, while
+  J[T(g,psi)] then violates separate ordinary-matter conservation.
+  A nonanalytic exact spectral projector with a metric-only source remains
+  outside this candidate-specific calculation and is therefore OPEN.
+  Checks completed: 5/5

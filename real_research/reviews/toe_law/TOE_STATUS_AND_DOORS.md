@@ -5,6 +5,33 @@ susceptibility coupling (F4) selected by the spec sheet → F4 passes deep-MOND 
 at its best-Υ) + WB-EFE consistency, and inverts the DR4 fork. Plus tonight's hostile Υ-check (below). This doc places
 that on the TOE ladder and enumerates the doors with kill conditions. Hostile-verification handoff to Fable at the end.*
 
+> **2026-09-03 projector correction.** The broad regular metric-only
+> elliptic-projector no-go is withdrawn. Lorentz invariance still forces the
+> value at exact Minkowski to be \(H^{\mu\nu}=B\eta^{\mu\nu}\) or zero, but a
+> smooth tensor can be rank three away from zero and vanish there:
+> \(H^{\mu\nu}=(-V^2)g^{\mu\nu}+V^\mu V^\nu\). Its fixed-mode constraint
+> determinant scales as \(V^8k^8\), exposing a rank bifurcation. The first
+> explicit pure-metric realization, polynomial in traceless Ricci, is dead:
+> anisotropy activates a ghost-signed auxiliary time block, while a Bianchi-I
+> Dirac calculation leaves two extra Ostrogradsky shear modes. The general
+> nonanalytic metric-spectral branch remains open. The exact-Minkowski
+> \(J_0=0\) statement is not an FLRW result; the covariant homogeneous operator
+> contains \(-3H\dot\chi\). See
+> METRIC_ONLY_ELLIPTIC_PROJECTOR_RANK_CHANGE_2026-09-03.md.
+>
+> The bare multiplier also gives \(\lambda=0\) and no phantom stress. A
+> \(U(\chi)\) rescue makes \(\lambda\ne0\), but direct sourcing through
+> \(J[g,T(g,\psi)]\) changes the matter equation and violates separate
+> ordinary-matter conservation. A live construction must use a metric-only or
+> indirect baryon source and still pass the rank-changing stability gate.
+>
+> The immediate independent-frame follow-on also removed a false positive:
+> CDE-L4C's bounded cuscuton momentum is not an inhomogeneous primary
+> constraint. Its correct ADM Hessian is nonzero for
+> \(D_i\chi D^i\chi>0\), while the advertised four-pair rank certificate
+> omits \((\chi,p_\chi)\). That candidate is OPEN, not certified or
+> falsified; its full coupled Dirac chain is now the named calculation.
+
 ## Where this puts the TOE ladder
 **Phenomenology (banked) → LAW (tonight's motion) → derivation (still gated).**
 The honest analogy is **Bohr 1913**: F4 is a quantization-rule-grade object — a one-line dynamical rule

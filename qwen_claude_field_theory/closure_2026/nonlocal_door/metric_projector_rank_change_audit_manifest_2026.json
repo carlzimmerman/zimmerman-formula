@@ -1,0 +1,102 @@
+{
+  "schema_version": 1,
+  "claim_id": "metric-projector-rank-change-and-ricci-candidate-2026",
+  "repository": {
+    "commit": "3d50d91a8f0a46966fab312fed998fcf70941108",
+    "base_commit": "3d50d91a8f0a46966fab312fed998fcf70941108",
+    "branch": "main",
+    "dirty": true,
+    "dirty_during_audit": true,
+    "scope": "Metric-only elliptic-projector correction, one explicit Ricci-polynomial candidate, tests, observed outputs, and verdict. Unrelated pre-existing worktree files are excluded."
+  },
+  "command": "Run test_metric_only_elliptic_projector_gate_2026.py, metric_only_elliptic_projector_gate_2026.py, test_ricci_polynomial_projector_gate_2026.py, and ricci_polynomial_projector_gate_2026.py with Python 3.9.6 and SymPy 1.14.0.",
+  "environment": {
+    "software": ["Python 3.9.6", "SymPy 1.14.0"],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit",
+    "python": "3.9.6",
+    "sympy": "1.14.0",
+    "platform": "macOS-26.5.2-arm64-arm-64bit",
+    "randomness_used": false
+  },
+  "mathematics": {
+    "assertion_tested": "Whether regular metric-only covariance universally forbids a rank-three elliptic auxiliary operator, and whether a concrete Ricci-polynomial rank-changing projector supplies the requested nondynamical MOND source without extra modes or a separate-matter Ward violation.",
+    "coefficient_domain": "Exact symbolic Lorentz tensors and PB matrices; fixed spatial Fourier mode k; timelike covector V where stated; isotropic Ricci eigenvalues (-3d,d,d,d); arbitrary diagonal anisotropic tracefree Ricci eigenvalues; nonzero elliptic coefficient branch analyzed separately from its zero-field limit.",
+    "conventions": "Mostly-plus metric; h^{mu nu}=g^{mu nu}+u^mu u^nu for a normalized timelike frame; S=Ricci-(R/4)I; P=(3/4 tr(S^2))I-S^2; auxiliary action lambda(P^{mu nu} nabla_mu nabla_nu chi-J)+U(chi).",
+    "inputs": [
+      "Lorentz-invariant exact-Minkowski tensor ansatz H^{mu nu}=A eta^{mu nu}+B delta_0^mu delta_0^nu",
+      "Smooth covector construction H^{mu nu}=(-V^2)g^{mu nu}+V^mu V^nu",
+      "Tracefree Ricci polynomial P=(3/4 tr(S^2))I-S^2",
+      "Bare and potential-completed auxiliary multiplier actions"
+    ],
+    "exact_results": [
+      "At exact Minkowski without extra structure, Lorentz invariance allows H=B eta or zero and not a nonzero rank-three value.",
+      "The smooth covector tensor H=(-V^2)g+VV is an explicit rank-three counterexample for timelike V and vanishes smoothly as V tends to zero.",
+      "Its fixed-mode auxiliary PB determinant scales as f^4 k^8 while inverse response scales as 1/f, so the zero-field limit is a constraint-rank bifurcation rather than a universal nonexistence theorem.",
+      "The covariant FLRW contraction h^{mu nu} nabla_mu nabla_nu chi contains -3H chi_dot; the earlier flat-toy J_0=0 condition is not a general FLRW obstruction.",
+      "For isotropic tracefree Ricci eigenvalues (-3d,d,d,d), P has eigenvalues (0,8d^2,8d^2,8d^2).",
+      "Any diagonal spatial Ricci anisotropy produces nonzero P^0_0 equal to one quarter of the sum of squared eigenvalue differences, activating the auxiliary velocity Hessian.",
+      "The reduced Bianchi-I Ostrogradsky Dirac chain has one primary and one secondary second-class constraint, four shear-sector configuration modes rather than the two baseline shears, and a Hamiltonian linear in Ostrogradsky momenta.",
+      "A bare multiplier has lambda=0 on the invertible elliptic branch and supplies no effective stress; a direct J[g,T(g,psi)] term modifies the ordinary matter Euler equation and its separate Ward identity."
+    ],
+    "bounds": {
+      "closed_subclasses": [
+        "the explicit polynomial Ricci projector P=(3/4 tr(S^2))I-S^2 with the displayed ordinary auxiliary localization",
+        "a bare linear multiplier on an invertible self-adjoint elliptic branch as a source of nonzero auxiliary stress"
+      ],
+      "not_universal": true
+    },
+    "non_claims": [
+      "No universal no-go is claimed for nonanalytic exact spectral projectors.",
+      "No full perturbation analysis is inferred from the reduced Bianchi-I principal sector.",
+      "The smooth covector counterexample does not itself provide a metric-only construction unless V is supplied covariantly from the metric without adding a state.",
+      "No complete relativistic MOND action or PPN solution is claimed."
+    ]
+  },
+  "literature": {
+    "search_method": "No new literature theorem is used by these algebraic calculations; earlier repository citations were treated only as context.",
+    "checked_at": "2026-09-03",
+    "sources": [],
+    "scope_result": "This manifest certifies only the computations in its listed outputs and makes no novelty claim."
+  },
+  "verification": {
+    "test_programs": 2,
+    "individual_tests": 19,
+    "main_checks": 17,
+    "test_status": "Both self-running test programs and both main gate programs exited 0."
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-09-02",
+    "runtime_seconds": null,
+    "exit_status": 0
+  },
+  "outputs": [
+    {"path": "qwen_claude_field_theory/closure_2026/nonlocal_door/metric_only_elliptic_projector_gate_2026.py", "sha256": "b1f2f8659a3509cf8ff9a13d12b2cc42bdd95c31b5faf99df7d77b12c0e95db0"},
+    {"path": "qwen_claude_field_theory/closure_2026/nonlocal_door/test_metric_only_elliptic_projector_gate_2026.py", "sha256": "692d5b58878915301325e07b7e156151838927819b92fda0af11042f2bf466ef"},
+    {"path": "qwen_claude_field_theory/closure_2026/nonlocal_door/metric_only_elliptic_projector_gate_2026.out", "sha256": "0f7fdcf63a4d096efe3cdec96c9bd8ab5667624744f54e5bb328337a08a25e44"},
+    {"path": "qwen_claude_field_theory/closure_2026/nonlocal_door/ricci_polynomial_projector_gate_2026.py", "sha256": "52df17c9023191c5fd3ada8153223ed1994f6791671e96ab1fc97ab97cae2407"},
+    {"path": "qwen_claude_field_theory/closure_2026/nonlocal_door/test_ricci_polynomial_projector_gate_2026.py", "sha256": "51002016a02a7ab88b6be7182df7ffda2b4dfc5941aeff55de379ff1e980c219"},
+    {"path": "qwen_claude_field_theory/closure_2026/nonlocal_door/ricci_polynomial_projector_gate_2026.out", "sha256": "89790de9e70399a0ab7d8bfb90be629292c24eccb25cfa2d455f029097f495b6"},
+    {"path": "qwen_claude_field_theory/closure_2026/nonlocal_door/METRIC_ONLY_ELLIPTIC_PROJECTOR_RANK_CHANGE_2026-09-03.md", "sha256": "f1a3fd9b28595fab93053e3d484d8d0bad4ae06c795b13cd8f0ccbce88fd5b2d"}
+  ],
+  "checks": [
+    "Solve the Lorentz-stabilizer tensor equations at exact Minkowski.",
+    "Construct the smooth timelike-covector projector and calculate its eigenvalues, determinant scaling, and zero-field response.",
+    "Run the fixed-mode auxiliary Dirac chain separately for k=0 and k!=0.",
+    "Contract the covariant spatial projector on homogeneous FLRW and retain its connection term.",
+    "Construct the Ricci polynomial on isotropic and anisotropic eigenvalues.",
+    "Derive the Bianchi-I acceleration Hessian and reduced Ostrogradsky constraint chain.",
+    "Vary the auxiliary fields and distinguish a metric-only source from a direct matter-dependent source."
+  ],
+  "result": "CORRECTION PLUS SCOPED NO-GO. A regular rank-changing projector is not excluded in general. The explicit polynomial Ricci realization is dead because anisotropy activates higher-derivative auxiliary modes; the nonanalytic metric-spectral branch remains open.",
+  "next_unavoidable_calculation": "Freeze a candidate exact spectral projector and metric-only baryon source in one nonlinear action, then derive its full ADM Hessian, Dirac chain, independent weak-field potentials, Ward identity, FLRW branch, and stability.",
+  "residual_risks": [
+    "The exact spectral projector is nonanalytic at eigenvalue degeneracy and has not been defined globally.",
+    "Rank-changing zero-field limits can be strongly coupled even when the tensor is smooth.",
+    "The reduced anisotropic calculation is a kill for the displayed Ricci polynomial, not every curvature construction."
+  ]
+}

@@ -9,3 +9,11 @@
    in a Milky-Way-like MOND zone: $2\times10^9$ above the GW170817 bound. This is the luminality kill of the curvature-coupled clock
    class, inherited by the localized retarded kernel. (`ccnl_kernel_tensor_speed_2026.py`, 6 checks, control $\bar\xi\to0$.)
 3. Both results hold for Deffayet–Woodard's own interpolation function.
+4. **Correction: the broad regular-projector no-go is withdrawn.** At exact Minkowski, Lorentz invariance does force the *value* of a
+   metric-only symmetric tensor to be \(H^{\mu\nu}=B\eta^{\mu\nu}\) or zero, but a smooth tensor can be rank three away from zero and
+   vanish there: \(H^{\mu\nu}=(-V^2)g^{\mu\nu}+V^\mu V^\nu\). Its fixed-mode Dirac determinant scales as \(V^8k^8\), so the branch loses
+   constraint rank and bounded linear response at zero. The first explicit pure-metric realization, a polynomial in traceless Ricci,
+   is **DEAD**: anisotropy activates a ghost-signed auxiliary time block, and its Bianchi-I shear Hamiltonian contains two extra
+   Ostrogradsky modes. The general rank-changing metric-spectral branch remains **OPEN**.
+   (`metric_only_elliptic_projector_gate_2026.py`, 12 checks;
+   `ricci_polynomial_projector_gate_2026.py`, 5 checks.)

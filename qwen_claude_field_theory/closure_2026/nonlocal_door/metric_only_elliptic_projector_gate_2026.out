@@ -1,0 +1,83 @@
+==================================================================================================
+METRIC-ONLY ELLIPTIC PROJECTOR / ZERO-FIELD GATE
+==================================================================================================
+
+[1] Lorentz stabilizer at the exact Minkowski branch
+  invariant H solution = {A: -B, C: 0}
+  H = Matrix([[-B, 0, 0, 0], [0, B, 0, 0], [0, 0, B, 0], [0, 0, 0, B]])
+  ranks (B!=0, B=0) = 4 0
+  invariant vector solution = [{v_0: 0}]
+  [PASS] regular metric-only H is B*eta or zero, never a rank-3 spatial projector
+  [PASS] the Minkowski metric supplies no nonzero invariant clock vector
+
+[2] The multiplier action is varied
+  L_aux = -A*chi_dot*lambda_dot - B*chi*k**2*lambda - J*lambda
+  E_lambda = A*chi_ddot - B*chi*k**2 - J
+  E_chi = A*lambda_ddot - B*k**2*lambda
+  Lorentz-branch Hessian = Matrix([[0, B], [B, 0]])
+  determinant = -B**2 ; rank = 2
+  eigenvalues = [-B, B]
+  [PASS] nonzero Lorentz branch is hyperbolic with two auxiliary modes and one ghost sign
+
+[3] Genuine elliptic branch: complete finite-k Dirac chain
+  primaries = [p_chi, p_lambda]
+  preservation = [-B*k**2*q_lambda, -B*k**2*q_chi - J]
+  secondaries = [B*k**2*q_lambda, B*k**2*q_chi + J]
+  secondary preservation = [B*k**2*u_lambda, B*k**2*u_chi]
+  tertiaries = []
+  PB matrix = Matrix([[0, 0, 0, -B*k**2], [0, 0, -B*k**2, 0], [0, B*k**2, 0, 0], [B*k**2, 0, 0, 0]])
+  det(PB) = B**4*k**8
+  first/second class = 0 / 4
+  auxiliary DOF = 0
+  k=0 toy scope = exact Minkowski fixed-background Fourier toy (Hubble=0)
+  k=0 toy source condition = J = 0
+  k=0 (if J_0=0) first/second class = 2 / 0
+  k=0 auxiliary DOF = 0
+  [PASS] at k!=0 the elliptic pair has four second-class constraints and zero auxiliary DOF
+  [PASS] in the exact-Minkowski toy, k=0 requires the homogeneous source to vanish
+  covariant FLRW h^mn nabla_mn chi = -3*H_FLRW*chi_dot_FLRW
+  FLRW lambda equation = -3*B*H_FLRW*chi_dot_FLRW - J = 0
+  expanding-branch solution chi_dot = -J/(3*B*H_FLRW)
+  [PASS] the covariant FLRW operator can carry nonzero homogeneous source when H!=0
+
+[4] Frame-free momentum projector
+  Theta^mu_nu(static k) = Matrix([[1, 0, 0, 0], [0, 0, 0, 0], [0, 0, 1, 0], [0, 0, 0, 1]])
+  Theta^munu(static k) = Matrix([[-1, 0, 0, 0], [0, 0, 0, 0], [0, 0, 1, 0], [0, 0, 0, 1]])
+  nonzero bilinear eigenvalues = [-1, 1, 1]
+  Theta^munu k_mu k_nu = 0
+  [PASS] momentum projector is indefinite for static k and singular at k=0/null k
+
+[5] Metric-derived frame and exact zero-field control
+  path-1 projector = Matrix([[0, 0], [0, 1]])
+  path-2 projector = Matrix([[sinh(zeta)**2, sinh(2*zeta)/2], [sinh(2*zeta)/2, cosh(zeta)**2]])
+  squared path difference = 2*sinh(zeta)**4 + sinh(2*zeta)**2/2
+  regulated h(0) = Matrix([[-1, 0], [0, 1]]) ; rank = 2
+  Ricci eigenframe mixing = epsilon_R / Delta_R
+  zero-gap condition number = oo
+  [PASS] exact normalization is path-dependent as the metric covariant vanishes
+  [PASS] the additive normalization regulator gives h(0)=eta and removes its spatial kernel
+  [PASS] the illustrative symmetric eigenvalue-gap sensitivity diverges at degeneracy
+
+[6] Smooth vanishing-projector loophole and rank change
+  H_rest = Matrix([[0, 0, 0, 0], [0, epsilon_V**2, 0, 0], [0, 0, epsilon_V**2, 0], [0, 0, 0, epsilon_V**2]])
+  H_boosted = Matrix([[epsilon_V**2*sinh(zeta)**2, epsilon_V**2*sinh(2*zeta)/2, 0, 0], [epsilon_V**2*sinh(2*zeta)/2, epsilon_V**2*cosh(zeta)**2, 0, 0], [0, 0, epsilon_V**2, 0], [0, 0, 0, epsilon_V**2]])
+  both zero-field limits = Matrix([[0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0]])
+  det(PB) with B=epsilon_V^2 = epsilon_V**8*k**8
+  ranks (epsilon_V>0, epsilon_V=0) = 4 0
+  chi for J=epsilon_V J_1 = -J_1/(epsilon_V*k**2)
+  [PASS] a polynomial rank-three projector can vanish smoothly at Minkowski
+  [PASS] that loophole loses constraint rank and bounded linear source response at zero field
+
+[VERDICT]
+  CORRECTED LEMMA: Poincare-covariant metric-only H cannot remain a
+  NONZERO rank-three elliptic projector at the exact zero-field branch.
+  H=B*g is hyperbolic and propagates a ghost-signed multiplier pair;
+  H=0 has no linear Poisson operator. But H=(-V^2)g+VV is a smooth
+  metric-derived counterexample away from zero and vanishes uniquely at zero.
+  Its flat-space elliptic PB determinant scales as epsilon_V^8 and a linear source
+  requires chi~1/epsilon_V. BROAD NO-GO WITHDRAWN; this branch is OPEN.
+  The covariant FLRW contraction instead contains -3 H chi_dot, so the
+  full homogeneous Dirac chain is also OPEN; J_0=0 was only the flat toy.
+  Next: vary a full curvature-polynomial realization and test whether the
+  rank-changing nonlinear y->0 branch is controlled or strongly coupled.
+  Checks completed: 12/12

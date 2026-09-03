@@ -10,8 +10,8 @@ GATES:
   2. Velocity-freeness of the MOND term: y = c^2 |D_i lnN| / a0(chi) has NO time derivative (spatial gradient
      of lnN + algebraic chi), so a0^2(chi)F(y) adds ZERO to the kinetic Hessian -> cannot create a scalar graviton
      or a chi-kinetic term. (The key 'does a0(chi) spoil the DOF count' question.)
-  3. Cuscuton stays non-dynamical under a0(chi): the cuscuton momentum gives a primary constraint; an algebraic
-     a0(chi) coupling with no chi-dot adds no chi-dot^2, so the degeneracy that removes the scalar survives.
+  3. Cuscuton claim audit: a finite large-velocity momentum asymptote is not an inhomogeneous primary constraint. The full coupled
+     cuscuton/gravity Dirac chain is required; algebraic a0(chi) only leaves its Hessian unchanged.
   4. No-slip weak field: C_slip = 3R - 4 D^2 lnN -> (4/c^2) nabla^2 (Psi - Phi); =0 on FLRW automatically.
   5. a0 promotion: a0^2(chi)=G V(chi)/4 -> a0 = (1/2) c sqrt(G rho_Lambda) when V=rho_Lambda c^2; a0(z) ~ sqrt(rho_DE).
 """
@@ -51,23 +51,31 @@ check("y has NO d/dt(chi) dependence (chi enters only algebraically via a0(chi))
 P("  => the MOND Lagrangian a0^2(chi)F(y) is velocity-free: it contributes 0 to the kinetic Hessian,")
 P("     so it cannot add a propagating scalar graviton nor a chi-kinetic term. (structural, SOLID)")
 
-P(""); P("="*74); P("GATE 3: cuscuton stays non-dynamical under a0(chi)"); P("="*74)
-# cuscuton kinetic: L_c = mu_c^2 sqrt( chidot^2/N^2 - (Dchi)^2 ) - V(chi).  momentum p_chi = dL/dchidot.
+P(""); P("="*74); P("GATE 3 CORRECTION: a momentum asymptote is not a primary constraint"); P("="*74)
+# Include the ADM measure N: L_c = N mu_c^2 sqrt(chidot^2/N^2-(Dchi)^2).
 muc, Dchi2 = sp.symbols('mu_c Dchi2', positive=True); chidot, Nv = sp.symbols('chidot N', positive=True)
-Lc = muc**2*sp.sqrt(chidot**2/Nv**2 - Dchi2)
+Lc = Nv*muc**2*sp.sqrt(chidot**2/Nv**2 - Dchi2)
 p_chi = sp.diff(Lc, chidot)
-# primary constraint: p_chi^2 relation eliminates chidot -> p_chi bounded (cuscuton). Hessian d p_chi/d chidot:
 Hess = sp.simplify(sp.diff(p_chi, chidot))
-# the cuscuton constraint: p_chi^2 = mu_c^4/N^2 * [1 + ... ] -> chidot drops; verify p_chi has a max (bounded)
 p_chi_limit = sp.limit(p_chi, chidot, sp.oo)
-check("cuscuton momentum is BOUNDED as chidot->oo (=> primary constraint, non-dynamical)",
-      p_chi_limit == muc**2/Nv, f"lim p_chi = {sp.simplify(p_chi_limit)}")
+check("correct ADM cuscuton momentum has large-velocity limit p_chi=mu_c^2",
+      p_chi_limit == muc**2, f"lim p_chi = {sp.simplify(p_chi_limit)}")
+check("inhomogeneous Hessian is NONZERO for Dchi2>0 (no primary from this variable alone)",
+      Hess != 0, f"Hessian={Hess}")
+margin=sp.symbols('margin', positive=True)
+p_near_null=sp.simplify(p_chi.subs(chidot, Nv*sp.sqrt(Dchi2+margin**2)))
+check("p_chi is not globally bounded: it diverges at the null boundary",
+      sp.limit(p_near_null, margin, 0, dir='+').is_infinite,
+      f"lim={sp.limit(p_near_null, margin, 0, dir='+')}")
+check("homogeneous Dchi2=0 branch alone has zero Hessian",
+      sp.simplify(Hess.subs(Dchi2,0)) == 0)
 # a0^2(chi) coupling has NO chidot -> adds nothing to p_chi or the Hessian
 a0sq = sp.Function('a0sq')(sp.symbols('chi_'))
 check("a0^2(chi) coupling contributes 0 to d/d(chidot) (algebraic in chi, no chidot)",
       sp.diff(a0sq, chidot)==0)
-P("  => an algebraic a0(chi) coupling does NOT introduce a chidot^2 term, so the cuscuton degeneracy")
-P("     (its primary constraint) survives. The scalar remains non-dynamical. (structural, SOLID)")
+P("  => a0(chi) adds no velocity term, but the inhomogeneous cuscuton Hessian remains nonzero.")
+P("     Standard cuscuton nonpropagation, if retained, must follow from the FULL coupled Dirac chain.")
+P("     It is NOT certified by a finite asymptote or by this one-variable Hessian.")
 
 P(""); P("="*74); P("GATE 4: no-slip weak field  C_slip = 3R - 4 D^2 lnN -> (4/c^2) lap(Psi-Phi)"); P("="*74)
 x1,x2,x3=sp.symbols('x1 x2 x3', real=True); Psi=sp.Function('Psi'); Phi=sp.Function('Phi')
@@ -109,11 +117,10 @@ check("= c^2 sqrt(Lambda/32pi)", sp.simplify(a0_lam - cc2**2*sp.sqrt(Lam/(32*pi)
 P("  => a0(z) proportional to sqrt(V[chi(z)]) = sqrt(rho_DE(z)); NOT forced to be H(z) unless rho_DE ~ H^2.")
 
 P(""); P("="*74); P("OWED (NOT-COMPUTED, flagged honestly):"); P("="*74)
-P("  - The full 4x4 Dirac matrix Delta_AB={C_A,C_B} with INVERSE-DESIGNED C_2,3,4 (Yao-Gao 4-AC): rank 4,")
-P("    N_grav=2, on k!=0 while keeping Phi,Psi NONZERO (the exact place the 2026 Laplacian-MMG example fails).")
-P("  - Combined Hessian with cuscuton + 4 ACs + a0(chi) all live at once (Gate A).")
+P("  - The full Dirac matrix including the inhomogeneous cuscuton pair plus the four ACs.")
+P("  - The existing 4x4 subsystem rank does NOT establish full-action N_grav=2.")
 P("  - Then MOND+no-slip full field eqs (Gate B) and boosted PPN alpha_1,alpha_2,alpha_3 (Gate C).")
 P("  - PREDICTION (to be tested, NOT assumed): being a preferred-foliation theory with an elliptic (Laplacian)")
 P("    k!=0 constraint, alpha_3 is the likely killer (DC-019/York wall). The Laplacian trick fixes FLRW, not instantaneity.")
-P(""); P("STRUCTURAL GATES:", "ALL PASS" if not FAILS else f"FAILED {FAILS}")
+P(""); P("STRUCTURAL DIAGNOSTICS:", "REPRODUCED; FULL DOF CERTIFICATION OPEN" if not FAILS else f"FAILED {FAILS}")
 sys.exit(1 if FAILS else 0)

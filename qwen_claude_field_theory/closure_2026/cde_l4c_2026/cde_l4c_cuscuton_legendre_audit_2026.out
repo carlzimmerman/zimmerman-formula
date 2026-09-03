@@ -1,0 +1,57 @@
+================================================================================================
+CDE-L4C CUSCUTON LEGENDRE-MAP / CERTIFICATE AUDIT
+================================================================================================
+
+[1] Correct ADM density
+  L_cusc,kin = M2*sqrt_gamma*sqrt(-N**2*S + (-D_chi*N_shift + chi_dot)**2)
+  lapse-form residual = 0
+  p_chi = -M2*sqrt_gamma*(D_chi*N_shift - chi_dot)/sqrt(-N**2*S + (-D_chi*N_shift + chi_dot)**2)
+  large-velocity lim p_chi = M2*sqrt_gamma
+  null-boundary lim p_chi = oo
+  old no-measure limit = M2/N
+  [PASS] the full ADM density fixes normalization but the momentum is not globally bounded
+
+[2] Inhomogeneous branch
+  d p_chi/d chi_dot = -M2*N**2*S*sqrt_gamma/(D_chi**2*N_shift**2 - 2*D_chi*N_shift*chi_dot - N**2*S + chi_dot**2)**(3/2)
+  on chi_dot=N*sqrt(S+u^2): -M2*S*sqrt_gamma/(N*u**3)
+  inverse chi_dot(p) = D_chi*N_shift + N*sqrt(S)*p_chi/sqrt(-M2**2*sqrt_gamma**2 + p_chi**2)
+  H_cusc = D_chi*N_shift*p_chi - M2**2*N*sqrt(S)*sqrt_gamma**2*sqrt(-1/(M2**2*sqrt_gamma**2 - p_chi**2)) + N*sqrt(S)*p_chi**2/sqrt(-M2**2*sqrt_gamma**2 + p_chi**2) + N*V_chi*sqrt_gamma
+  [PASS] for S>0 the Hessian is nonzero/negative and the velocity is invertible
+  [PASS] the Legendre transform includes the shift, density factor, and potential
+
+[3] Homogeneous branch
+  p_chi(S=0) = M2*sqrt_gamma
+  Hessian(S=0) = 0
+  primary = -M2*sqrt_gamma + p_chi
+  [PASS] only S=0 has the displayed primary constraint; the Hessian rank changes
+
+[4] Algebraic a0 coupling
+  Hessian shift = 0
+  total inhomogeneous Hessian = -M2*N**2*S*sqrt_gamma/(D_chi**2*N_shift**2 - 2*D_chi*N_shift*chi_dot - N**2*S + chi_dot**2)**(3/2)
+  [PASS] a0(chi)F(y) preserves the Hessian but does not manufacture an inhomogeneous primary
+
+[5] Parse the advertised 4x4 rank certificate
+  Q = ['Phi', 'Psi', 'B', 'lam']
+  P = ['pPhi', 'pPsi', 'pB', 'plam']
+  contains chi,p_chi = False False
+  [PASS] the rank certificate omits (chi,p_chi), so it does not count the displayed full action
+
+[6] Hidden determinant and momentum-constraint surfaces
+  Delta = Matrix([[0, k_mode*(-B_p - L_parallel*a0_squared), 0, -c_s*k_mode], [k_mode*(B_p + L_parallel*a0_squared), 0, B_p*k_mode, c_s*k_mode], [0, -B_p*k_mode, 0, c_s*k_mode], [c_s*k_mode, -c_s*k_mode, -c_s*k_mode, 0]])
+  det Delta = c_s**2*k_mode**4*(2*B_p + L_parallel*a0_squared)**2
+  cancellation = {B_p: -L_parallel*a0_squared/2}
+  rank(generic,cancellation) = 4 2
+  H_mom brackets = [0, -B_p*k_mode**2, 0, c_s*k_mode**2]
+  [PASS] the displayed subsystem drops from rank four to two on its cancellation surface
+  [PASS] the displayed nonzero H_mom brackets do not certify first-class closure
+
+[VERDICT]
+  CERTIFICATE REFUTED, CANDIDATE NOT YET FALSIFIED.
+  A finite large-velocity momentum asymptote is not a primary constraint;
+  the momentum actually diverges at the null boundary for D_i chi != 0.
+  Standard cuscuton nonpropagation requires the complete coupled Dirac
+  analysis. The current CDE-L4C 4x4 matrix omits that canonical pair,
+  has an unreported rank-2 surface, and does not establish H_mom closure.
+  No single nonlinear action/four-constraint set is frozen in the directory;
+  N_grav=2 is OPEN for the same explicit action, not established.
+  Checks completed: 8/8

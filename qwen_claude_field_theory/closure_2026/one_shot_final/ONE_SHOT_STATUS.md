@@ -153,7 +153,7 @@ ablation, and it is reproduced with Deffayet--Woodard's own interpolation.
 Therefore the `R_uu -> Box_ret^-1 -> f(Z)` route is **DEAD at stability gate
 7**, not merely unclosed canonically.
 
-## Last spin-2 residual: two new scoped closures
+## Last spin-2 residual: two scoped closures and one corrected open branch
 
 The positive-spectral realization of a genuinely non-rational retarded tensor
 form factor is incompatible with the exact two-state count: nonzero spectral
@@ -180,11 +180,81 @@ and both tensor kinetic terms lose rank at the exact zero-field point. A
 positive floor saves the tensor Hessian only by replacing the specified MOND
 law with `mu+epsilon` and dominating the deep-MOND limit.
 
-These results close the positive-spectral and regular universal form-factor
-subclasses. The precise remaining residue is a non-universal, metric-only,
-covariant projector that modifies the static scalar constraint while leaving
-TT exactly Einstein, introduces no poles/cuts/auxiliary data, and preserves the
-nonlinear Bianchi and matter Ward identities. No such action is present.
+The first metric-only projector audit overreached, and its broad no-go is
+withdrawn. The Lorentz stabilizer still proves that the value at exact
+Minkowski is \(H=B\eta\) or zero, but
+
+\[
+H^{\mu\nu}=(-V^2)g^{\mu\nu}+V^\mu V^\nu
+\]
+
+is a smooth counterexample: it has rank three for timelike \(V\ne0\) and
+vanishes uniquely at \(V=0\). Its fixed-mode Poisson determinant scales as
+\(V^8k^8\), so it replaces nonexistence with a rank-bifurcation/strong-coupling
+problem. The exact-Minkowski \(k=0\) toy requires \(J_0=0\), but the covariant
+FLRW contraction is \(-3H\dot\chi\), so expansion can support a homogeneous
+source. Full FLRW closure remains open.
+
+One explicit pure-metric realization was then constructed from traceless
+Ricci,
+
+\[
+P={3\over4}\operatorname{tr}(S^2)I-S^2.
+\]
+
+It is a scaled spatial projector on an isotropic Ricci branch, but any spatial
+Ricci anisotropy produces
+
+\[
+P^0{}_0={
+(s_1-s_2)^2+(s_1-s_3)^2+(s_2-s_3)^2
+\over4},
+\]
+
+which activates a ghost-signed auxiliary time block. Its Bianchi-I
+acceleration Hessian is nonzero on both physical shears; the reduced Dirac
+chain has one primary and one secondary second-class constraint yet leaves
+four shear-sector modes, two more than the second-order baseline, with a
+Hamiltonian linear in the Ostrogradsky momenta. This Ricci-polynomial
+candidate is **DEAD**; a nonanalytic exact metric spectral projector remains
+**OPEN**.
+
+The action also exposes a source trilemma. The bare multiplier has
+\(\lambda=0\) on an invertible elliptic branch and therefore no effective
+stress. Adding \(U(\chi)\) makes \(\lambda\ne0\), but sourcing
+\(J[g,T(g,\psi)]\) directly modifies the ordinary-matter equation, so
+\(\nabla_\mu T_m^{\mu\nu}\ne0\) generically. Preserving the separate Ward
+identity forces a metric-only or indirect baryon source, which is the live
+action-level branch.
+
+## Independent-frame follow-on: CDE-L4C certificate correction
+
+The next candidate was attacked immediately. Its structural script inferred a
+cuscuton primary constraint from a finite large-velocity momentum asymptote,
+but with \(A=\dot\chi-N^iD_i\chi\) the covariant ADM density gives
+
+\[
+{\partial p_\chi\over\partial\dot\chi}
+=-{\sqrt\gamma M^2N^2S\over(A^2-N^2S)^{3/2}},
+\qquad S=D_i\chi D^i\chi.
+\]
+
+This is nonzero for \(S>0\), and the velocity is explicitly invertible. The
+momentum tends to \(\sqrt\gamma M^2\) at large positive velocity but diverges
+at the timelike/null boundary, so it is not globally bounded. The primary
+\(p_\chi-\sqrt\gamma M^2\approx0\) appears only at \(S=0\), and the Legendre
+rank changes between homogeneous and inhomogeneous sectors. Parsing the
+existing CDE-L4C rank script confirms that its phase space omits
+\((\chi,p_\chi)\). Its computed determinant also vanishes and its rank drops
+from four to two when
+\(B_p=-\lambda_\parallel a_0^2/2\); its momentum-constraint brackets have not
+been closed. The \(4\times4\) submatrix therefore does not certify
+\(N_{\rm grav}=2\) for the advertised full architecture.
+
+This refutes the certificate, not the candidate. CDE-L4C is **OPEN / NOT
+CERTIFIED** pending one frozen nonlinear action and its full coupled cuscuton,
+gravity, and auxiliary-constraint Dirac chain, followed—only if that closes—by
+the boosted PPN calculation.
 
 ## High download/view record
 

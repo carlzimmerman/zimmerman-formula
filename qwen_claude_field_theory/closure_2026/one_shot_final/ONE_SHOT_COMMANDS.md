@@ -152,3 +152,45 @@ to this commit.
 | `git diff --check` | 0 | No whitespace errors |
 
 Commit and push commands are appended only after they have actually completed.
+
+## Projector and CDE certificate correction (2026-09-03)
+
+Status 0 below means that the scoped diagnostic reproduced; it is not a
+fried-chicken theory PASS.
+
+| Exact command | Status | Observed result |
+|---|---:|---|
+| `python3 qwen_claude_field_theory/closure_2026/nonlocal_door/test_metric_only_elliptic_projector_gate_2026.py` | 0 | 13 tests; smooth rank-changing counterexample, sector split, and provenance guards |
+| `python3 qwen_claude_field_theory/closure_2026/nonlocal_door/metric_only_elliptic_projector_gate_2026.py` | 0 | 12/12 checks; broad regular-projector no-go withdrawn, singular zero-field response exposed |
+| `python3 qwen_claude_field_theory/closure_2026/nonlocal_door/test_ricci_polynomial_projector_gate_2026.py` | 0 | 6 tests |
+| `python3 qwen_claude_field_theory/closure_2026/nonlocal_door/ricci_polynomial_projector_gate_2026.py` | 0 | 5/5 checks; explicit Ricci-polynomial realization fails anisotropic/Ostrogradsky gate |
+| `python3 qwen_claude_field_theory/closure_2026/cde_l4c_2026/test_cde_l4c_cuscuton_legendre_audit_2026.py` | 0 | 7 tests |
+| `python3 qwen_claude_field_theory/closure_2026/cde_l4c_2026/cde_l4c_cuscuton_legendre_audit_2026.py` | 0 | 8/8 checks; old full-action DOF certificate refuted, architecture remains open |
+| `python3 qwen_claude_field_theory/closure_2026/cde_l4c_2026/cde_l4c_structural_gate.py` | 0 | Corrected structural diagnostics reproduced; full DOF certificate explicitly open |
+| `python3 qwen_claude_field_theory/closure_2026/cde_l4c_2026/gateA/cde_l4c_covariant_dirac_rank.py` | 0 | Generic truncated rank 4, derived rank-2 cancellation surface, non-closed momentum brackets |
+| `python3 /Users/carlzimmerman/.codex/plugins/cache/openai-curated-remote/mathbox/2.1.0/skills/computation-audit/scripts/validate_manifest.py qwen_claude_field_theory/closure_2026/nonlocal_door/metric_projector_rank_change_audit_manifest_2026.json` | 0 | Valid computation manifest |
+| `python3 /Users/carlzimmerman/.codex/plugins/cache/openai-curated-remote/mathbox/2.1.0/skills/computation-audit/scripts/validate_manifest.py qwen_claude_field_theory/closure_2026/cde_l4c_2026/cde_l4c_certificate_correction_manifest_2026.json` | 0 | Valid computation manifest |
+
+### TDD and audit-hardening failures retained
+
+| Exact command and state | Status | Reason |
+|---|---:|---|
+| `python3 test_metric_only_elliptic_projector_gate_2026.py` before the smooth-vector branch | 1 | Expected red: counterexample result absent |
+| `python3 metric_only_elliptic_projector_gate_2026.py` after adding the branch | 1 | Expected red: report referenced a not-yet-bound result |
+| `python3 test_metric_only_elliptic_projector_gate_2026.py` before the covariant FLRW correction | 1 | Expected red: homogeneous connection-term result absent |
+| `python3 test_metric_only_elliptic_projector_gate_2026.py` before the momentum-projector guard | 1 | Expected red: contraction result absent |
+| `python3 test_metric_only_elliptic_projector_gate_2026.py` before provenance fields | 1 | Expected red: action/provenance scope fields absent |
+| `python3 test_ricci_polynomial_projector_gate_2026.py` before implementation | 1 | Expected red: module absent |
+| `python3 test_ricci_polynomial_projector_gate_2026.py` after first implementation | 1 | Exact DOF expectation exposed a float instead of rational count |
+| `python3 test_cde_l4c_cuscuton_legendre_audit_2026.py` before full ADM normalization | 1 | Expected red: `sqrt_gamma` result absent |
+| `python3 cde_l4c_cuscuton_legendre_audit_2026.py` after extending the derivation | 1 | Expected red: report still asserted the old bounded-momentum statement |
+
+### Fresh pre-commit verification
+
+| Exact command | Status | Observed result |
+|---|---:|---|
+| each of the eight test/main commands in the table above, rerun individually on the final tree | 0 | 8/8 programs exited 0; 26 individual tests and 25 scoped main checks |
+| `python3 <each gate> | diff - <its .out>` for the metric-projector, Ricci-projector, and cuscuton audit | 0 | All three observed-output artifacts exactly match fresh stdout |
+| `env PYTHONPYCACHEPREFIX=/tmp/zimmerman_projector_cde_pycache python3 -m compileall -q` on the eight changed Python files | 0 | Syntax compilation passed |
+| output-hash check across both new computation manifests | 0 | 16 outputs, 0 hash mismatches |
+| `git diff --check` | 0 | No whitespace errors |

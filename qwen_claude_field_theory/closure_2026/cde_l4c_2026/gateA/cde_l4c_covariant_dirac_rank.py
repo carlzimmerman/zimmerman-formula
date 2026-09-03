@@ -1,16 +1,18 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 r"""
-cde_l4c_covariant_dirac_rank.py -- full Dirac DOF count for CDE-L4C (scalar-sector, all constraints).
+cde_l4c_covariant_dirac_rank.py -- truncated four-pair rank audit for CDE-L4C.
 =====================================================================================================
-The per-mode preservation gate showed the MOND equation EMERGES (lambda-steal evaded). Now the DOF count.
-By Yao-Oliosi-Gao-Mukohyama (arXiv:2302.02090): FOUR SECOND-CLASS scalar auxiliary constraints propagate
-exactly N_grav=2. So the question is: do the four PHYSICAL constraints {p_N, C_MOND, C_K, C_slip} form a
-rank-4 (all second-class) Dirac matrix, while (i) the momentum constraint stays first-class (spatial-diffeo
-gauge), (ii) Phi,Psi stay nonzero, (iii) the tensor sector is 2 gravitons? If yes -> N_grav=2.
+The per-mode preservation gate proposed a principal MOND residual after a
+multiplier elimination. No single nonlinear action is frozen in this
+directory, so C_MOND below is an assigned surrogate rather than a fresh
+Hamiltonian derivation. This computes whether the four displayed constraints {p_N, C_MOND, C_K,
+C_slip} form a rank-4 second-class subsystem. It does not include the
+cuscuton pair (chi,p_chi), so the Yao-Oliosi-Gao-Mukohyama theorem cannot be
+invoked here to certify the full action's DOF count.
 
-C_MOND is NOT inserted: it is the constraint that EMERGED from dot p_N=0 after lambda_s was fixed by dot C_K=0
-(previous script). Its field part is the MOND operator Lpar*a0^2*kk*Phi + (GR/source terms). We build the
+C_MOND imports the principal residual reported by the previous script. Its field part is the MOND operator
+Lpar*a0^2*kk*Phi + (GR/source terms). We build the
 4x4 Dirac matrix over {p_N, C_MOND, C_K, C_slip} and test rank 4, det ~ kk^4 * Lpar^2 (the user's k^8 Lpar^2).
 Includes the momentum-constraint (shift) sector to confirm it stays first-class. Honest scope: linearized
 scalar sector with standard ADM structure; exact-coefficient covariant version flagged if any check is soft.
@@ -21,7 +23,7 @@ def check(n, ok, d='', soft=False):
     tag='PASS' if ok else ('SOFT' if soft else 'FAIL'); P(f"  [{tag}] {n}"+(f"  ({d})" if d else ''))
     if not ok: (SOFT if soft else FAILS).append(n)
 
-# ---- scalar-sector per-mode phase space (include shift B for the momentum constraint) ----
+# ---- declared scalar-sector phase space; cuscuton chi,p_chi are absent ----
 Phi,pPhi,Psi,pPsi,B,pB,lam,plam = sp.symbols('Phi pPhi Psi pPsi B pB lam plam', real=True)
 Q=[Phi,Psi,B,lam]; Pm=[pPhi,pPsi,pB,plam]
 def PB(f,g):
@@ -48,8 +50,14 @@ P(f"\n  Delta =\n{sp.pretty(Delta)}")
 detD=sp.factor(sp.simplify(Delta.det())); rankD=Delta.rank()
 P(f"\n  det Delta = {detD}")
 P(f"  rank Delta = {rankD}")
-check("4x4 Dirac matrix is RANK 4 (all four second-class)", rankD==4, f"rank={rankD}")
-check("det Delta != 0 for kk>0, Lpar>0", detD!=0 and not sp.simplify(detD).is_zero, f"det={detD}")
+check("4x4 Dirac matrix has GENERIC rank 4", rankD==4, f"rank={rankD}")
+cancel={Bp: -Lpar*a0sq/2}
+Delta_cancel=sp.simplify(Delta.subs(cancel)); rank_cancel=Delta_cancel.rank()
+check("rank drops to 2 on 2*B_p+Lpar*a0sq=0",
+      sp.simplify(detD.subs(cancel))==0 and rank_cancel==2,
+      f"rank={rank_cancel}, matrix={Delta_cancel}")
+check("det Delta is nonzero only away from c_s*k*(2*B_p+Lpar*a0sq)=0",
+      sp.factor(detD)==cs**2*kk**4*(2*Bp+Lpar*a0sq)**2, f"det={detD}")
 # the user's expected structure det ~ kk^4 * (leading)^2; check kk^4 factor and Lpar dependence
 detD_expand=sp.expand(detD)
 has_kk4=sp.simplify(detD/kk**4).free_symbols and (detD/kk**4).is_finite if detD!=0 else False
@@ -58,16 +66,18 @@ check("det Delta carries kk^4 (principal k^8 Lpar^2 structure of the user's anal
 
 P(""); P("="*74); P("STEP 2: {p_N, C_MOND} = the second-class pairing that makes MOND propagate-free"); P("="*74)
 b=sp.simplify(PB(G_N,C_MOND)); P(f"  {{p_N, C_MOND}} = {b}")
-check("{p_N,C_MOND} = (Lpar a0^2 + B_p) kk != 0 (p_N & C_MOND are a genuine 2nd-class PAIR)", b!=0 and b.has(Lpar), f"{b}")
+check("{p_N,C_MOND} has the displayed generic coefficient (not an all-parameter certificate)",
+      sp.factor(b)==-kk*(Bp+Lpar*a0sq), f"{b}")
 
-P(""); P("="*74); P("STEP 3: momentum constraint stays FIRST-CLASS (spatial-diffeo gauge)"); P("="*74)
+P(""); P("="*74); P("STEP 3: momentum first-class status is NOT established by this matrix"); P("="*74)
 # H_mom should have vanishing bracket with the second-class set on the constraint surface (up to constraints)
 bm=[sp.simplify(PB(H_mom, c)) for c in Cset]
 P(f"  {{H_mom, [p_N,C_MOND,C_K,C_slip]}} = {bm}")
 # first-class means its brackets close on constraints; here check it is not generically invertible against the set
-check("H_mom bracket with p_N vanishes ({shift-mom, lapse-mom}=0)", PB(H_mom,G_N)==0)
-P("  (H_mom generates spatial diffeos = gauge; it removes the shift scalar B, standard. Full closure with the")
-P("   diffeo algebra is the covariant-completion item; principal check: it does not pair-invert the 4 ACs.)")
+check("H_mom bracket with p_N vanishes but other displayed brackets do not",
+      PB(H_mom,G_N)==0 and any(x!=0 for x in bm[1:]), f"brackets={bm}")
+P("  These nonzero expressions were not reduced to combinations of constraints.")
+P("  Full functional diffeomorphism closure is therefore OPEN, not certified.")
 
 P(""); P("="*74); P("STEP 4: Phi, Psi remain NONZERO on the constraint surface (evade the 2026-example failure)"); P("="*74)
 # solve the linearized constraints C_slip=0, C_K=0, C_MOND=0 and check Phi,Psi are not forced to 0
@@ -79,22 +89,21 @@ phi_sol=sp.solve(cm_noslip, Phi)
 check("Phi is SOURCED (nonzero, proportional to rho_b), NOT forced to 0", len(phi_sol)>0 and phi_sol[0].has(rho), f"Phi={phi_sol[0] if phi_sol else None}")
 check("Psi = Phi nonzero (no-slip, both sourced) -- NOT the 2026-example Phi=Psi=0", phi_sol and phi_sol[0]!=0)
 
-P(""); P("="*74); P("STEP 5: DOF COUNT"); P("="*74)
-P("  Scalar sector: 4 second-class constraints {p_N,C_MOND,C_K,C_slip} (rank 4) remove 2 config DOF.")
-P("  The momentum constraint (first-class) + its gauge remove the shift scalar. Net scalar propagating DOF = 0.")
-P("  Tensor sector: MOND term is velocity-free (structural gate 2) and the ACs are scalars => the TT graviton")
-P("  kinetic term is Einstein's => 2 tensor DOF, c_T=1. Vector sector: standard diffeo gauge, 0 propagating.")
-P("  => N_grav = 2  (by the Yao-Gao four-second-class-AC theorem, arXiv:2302.02090, whose hypotheses this")
-P("     constraint structure meets: four independent second-class scalar ACs, matter minimally coupled).")
-ndof = "N_grav = 2 (scalar propagating = 0)" if rankD==4 else f"UNDETERMINED (rank {rankD})"
-check("N_grav = 2 established (four second-class ACs, rank 4; Yao-Gao)", rankD==4)
+P(""); P("="*74); P("STEP 5: SCOPE OF THE COUNT"); P("="*74)
+P("  The displayed constraints form a rank-4 second-class SUBSYSTEM in the declared")
+P("  (Phi,Psi,B,lambda) phase space. The full action also contains the cuscuton")
+P("  pair (chi,p_chi), omitted here. Its inhomogeneous Legendre Hessian is nonzero,")
+P("  so its finite large-velocity momentum asymptote does not remove it from the Dirac analysis.")
+P("  => N_grav=2 for the FULL action is OPEN pending the coupled chain.")
+ndof = "TRUNCATED RANK 4; FULL-ACTION N_grav OPEN" if rankD==4 else f"UNDETERMINED (rank {rankD})"
+check("the declared four-constraint subsystem has rank 4", rankD==4)
 
 P(""); P("="*74); P("SCOPE / OWED (honest):"); P("="*74)
 P("  - This is the LINEARIZED scalar-sector principal analysis with standard ADM structure. The FULL covariant")
 P("    closure (exact GR H_perp/H_i coefficients, the complete diffeo constraint algebra {H_i,H_j}, {H_perp,H_i},")
 P("    and the nonlinear brackets at all orders) is the remaining rigor item -- flagged NOT fully covariant.")
-P("  - The Yao-Gao theorem is INVOKED for the count; verifying its hypotheses hold for THIS exact H_T at full")
-P("    nonlinear order is owed. But the rank-4 second-class structure of the four ACs is COMPUTED here.")
+P("  - The Yao-Gao theorem cannot yet be invoked for the full count because (chi,p_chi) is absent here.")
+P("    The generic rank-4 structure is COMPUTED, with a rank-2 cancellation surface now explicit.")
 P("  - Matter nabla_mu T^munu=0 and PPN (alpha_1,2,3 -- the predicted alpha_3 killer) remain.")
 P(""); P("RESULT:", ndof); P("FAILED:", FAILS if FAILS else "none", "| SOFT/owed:", SOFT if SOFT else "none")
 sys.exit(1 if FAILS else 0)

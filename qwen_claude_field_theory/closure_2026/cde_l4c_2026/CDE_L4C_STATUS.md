@@ -1,39 +1,109 @@
-# CDE-L4C MOND (Cuscuton Dark-Energy + Laplacian 4-Constraint MOND) — structural gates: ALL PASS (2026-09-01)
+# CDE-L4C MOND — corrected status: OPEN / not a full-action certificate (2026-09-03)
 
-**Provisional strict-2-DOF horse. Architecture: Einstein tensor sector + cuscuton DE (constraint-like scalar,
-no propagating DOF) + four Laplacian second-class scalar auxiliary constraints (Yao-Oliosi-Gao-Mukohyama
-arXiv:2302.02090; Laplacian zero-mode trick arXiv:2607.26031) + exponential-MOND in the lapse-gradient sector
-+ minimally-coupled matter. Verdict = OPEN (structurally coherent; the decisive Dirac/PPN gates are owed).**
+The CDE-L4C directory contains a promising architecture, but it does not yet
+contain one frozen nonlinear action whose complete Dirac chain, weak-field
+equations, PPN parameters, FLRW branch, and perturbative stability have all
+been derived together. In particular, the old claim that the displayed
+cuscuton argument plus a four-constraint matrix established
+\(N_{\rm grav}=2\) is withdrawn.
 
-Script: `cde_l4c_structural_gate.py` (rc=0, every check can fail). Division of labor:
-Einstein -> 2 tensor waves + Newtonian baseline; 4-AC -> remove scalar graviton; C_slip=3R-4D^2 lnN -> Phi=Psi;
-F(y) -> mu=1-e^{-y}; cuscuton chi -> rho_DE(t); V(chi) -> a0(t).
+The architecture combines Einstein gravity, a cuscuton-like dark-energy
+sector, lapse-gradient exponential MOND, a proposed no-slip constraint, and
+four Laplacian auxiliary constraints. The independently reproducible pieces
+are useful ingredients, not a closed theory.
 
-## Structural gates (ALL PASS)
-1. **F(y) correction (no Newtonian double-counting).** Einstein already supplies the y^2 Newtonian stiffness,
-   so the MOND term ADDS F with (y^2+F)'/(2y)=mu, i.e. **F'(y)=-2y e^{-y}, F(y)=2(1+y)e^{-y}+C**, and
-   1+F'/(2y)=1-e^{-y}=mu EXACTLY. Deep MOND: the y^2 CANCELS, leaving (2/3)y^3 (cubic AQUAL, |gradPhi|^3).
-   GR recovery: F'(y)->0 exponentially. [The earlier version adding the full G(y) on top of Einstein
-   double-counted y^2 -- corrected here.]
-2. **Velocity-freeness.** y = c^2|D_i lnN|/a0(chi) has NO time derivative (spatial gradient of lnN + algebraic
-   chi), so a0^2(chi)F(y) contributes 0 to the kinetic Hessian: it cannot add a scalar graviton or a chi-kinetic term.
-3. **Cuscuton non-dynamical under a0(chi).** Cuscuton momentum is bounded as chidot->oo (primary constraint);
-   a0(chi) is algebraic (no chidot), adds no chidot^2. The degeneracy that removes the scalar survives.
-4. **No-slip weak field.** C_slip = 3R - 4 D^2 lnN -> (4/c^2) nabla^2(Psi-Phi) (3R=(4/c^2)nabla^2 Psi verified);
-   D^2 C_slip=0 gives Phi=Psi for k!=0; on FLRW (Psi=Phi=0, D_iN=0) C_slip=0 automatically -> does NOT freeze H.
-5. **a0 promotion.** a0^2(chi)=G V(chi)/4 -> a0=(1/2)c sqrt(G rho_Lambda)=c^2 sqrt(Lambda/32pi) when V=rho_L c^2;
-   a0(z) proportional to sqrt(rho_DE(z)), NOT forced to H(z) unless rho_DE~H^2. The a0<->Lambda relation is now a
-   field-dependent constitutive relation, not pasted on.
+## What survives
 
-## Owed (NOT-COMPUTED, flagged honestly -- the decisive gates)
-- **Gate A**: the full 4x4 Dirac matrix Delta_AB={C_A,C_B} with INVERSE-DESIGNED C_2,3,4 (do NOT guess them):
-  rank 4, N_grav=2, on k!=0 while keeping BOTH Phi and Psi nonzero (the exact place the 2026 Laplacian-MMG
-  example fails -- its own constraints force Phi=Psi=0 on k!=0). Combined Hessian with cuscuton+4AC+a0(chi) live.
-- **Gate B**: MOND + no-slip from the full field equations (multipliers solved, not assumed zero).
-- **Gate C**: boosted PPN alpha_1, alpha_2, alpha_3.
-- **PREDICTION (to test, not assume)**: preferred-foliation + elliptic (Laplacian) k!=0 constraint => alpha_3
-  is the likely killer (the DC-019/York instantaneity wall). The Laplacian trick fixes the FLRW zero mode, not
-  the instantaneity of the k!=0 constraint. If Gate A/B pass and Gate C gives alpha_3=O(1), the horse dies there.
+1. **Exact constitutive kernel.** Because Einstein gravity already supplies
+   the Newtonian \(y^2\) term, the added function may be chosen as
+   \[
+   F'(y)=-2y e^{-y},\qquad F(y)=2(1+y)e^{-y}+C,
+   \]
+   so that
+   \(1+F'(y)/(2y)=1-e^{-y}\). The combined small-\(y\) stiffness is
+   \((2/3)y^3+O(y^4)\), while the correction decays exponentially at large
+   \(y\).
 
-STATUS: the cleanest structurally-coherent strict-2-DOF chassis to date; the make-or-break Dirac closure (Gate A)
-is the next single job.
+2. **Velocity-free lapse-gradient term.** With
+   \(y=c^2|D_i\ln N|/a_0(\chi)\), the MOND term contains no time derivative
+   of the ADM variables or of \(\chi\). It does not itself change the kinetic
+   Hessian.
+
+3. **Linear no-slip identity as an ingredient.** The proposed
+   \(C_{\rm slip}=3{}^{(3)}R-4D^2\ln N\) reduces to a Laplacian of
+   \(\Psi-\Phi\) on the stated weak-field branch and vanishes on homogeneous
+   FLRW. This has not yet been obtained as part of a closed full-action
+   multiplier chain with both potentials sourced.
+
+4. **Possible acceleration-scale constitutive relation.** The ansatz
+   \(a_0^2(\chi)=G V(\chi)/4\) reproduces
+   \(a_0=(c/2)\sqrt{G\rho_\Lambda}\) when
+   \(V=\rho_\Lambda c^2\). This remains an imposed constitutive choice, not a
+   derived cosmological prediction.
+
+## What the corrected cuscuton calculation says
+
+Let
+\[
+A=\dot\chi-N^iD_i\chi,\qquad S=D_i\chi D^i\chi,
+\]
+and use
+\[
+L_{\rm cusc}=\sqrt\gamma M^2\sqrt{A^2-N^2S}-N\sqrt\gamma V(\chi).
+\]
+Then
+\[
+p_\chi={\sqrt\gamma M^2 A\over\sqrt{A^2-N^2S}},\qquad
+{\partial p_\chi\over\partial\dot\chi}
+=-{\sqrt\gamma M^2N^2S\over(A^2-N^2S)^{3/2}}.
+\]
+For \(S>0\) the one-variable Legendre map is invertible. On its positive
+timelike branch,
+\[
+\dot\chi=N^iD_i\chi+{Np_\chi\sqrt S\over
+\sqrt{p_\chi^2-\gamma M^4}},
+\]
+and
+\[
+H_{\rm cusc}=N^i p_\chi D_i\chi
++N\sqrt S\sqrt{p_\chi^2-\gamma M^4}+N\sqrt\gamma V.
+\]
+The momentum approaches \(\sqrt\gamma M^2\) at large positive velocity but
+diverges at the timelike/null boundary, so it is not globally bounded. At
+\(S=0\), the Hessian vanishes and the positive branch has
+\(p_\chi-\sqrt\gamma M^2\approx0\). Thus the displayed Legendre rank changes
+between the homogeneous and inhomogeneous sectors. Standard cuscuton
+nonpropagation may still emerge from the *complete coupled gravity analysis*;
+it is not proved by the old one-variable argument.
+
+## Why the old four-constraint certificate is insufficient
+
+The script `gateA/cde_l4c_covariant_dirac_rank.py` declares only
+\((\Phi,\Psi,B,\lambda)\) and their momenta. It omits
+\((\chi,p_\chi)\), assigns a principal \(C_{\rm MOND}\) surrogate rather
+than deriving it from one frozen nonlinear Hamiltonian, and does not close
+the nonzero momentum-constraint brackets on constraints.
+
+Its displayed determinant is genuinely computed,
+\[
+\det\Delta=c_s^2 k^8
+\left(2B_p+\lambda_\parallel a_0^2\right)^2,
+\]
+but this means generic rank four only inside that truncated subsystem. The
+rank drops to two on
+\(B_p=-\lambda_\parallel a_0^2/2\). Neither the generic submatrix rank nor
+its nonzero sourced-potential solution is a full-action DOF count.
+
+## Unavoidable next calculation
+
+Freeze one nonlinear ADM action and run the Dirac algorithm including lapse,
+shift, metric, cuscuton, and every auxiliary/multiplier canonical pair. List
+all primaries, preserve them through closure, compute the functional PB
+matrix without preassigning its rank, and analyze \(k=0\) separately from
+\(k\ne0\). Only if that yields exactly two tensor modes should the same action
+be taken through independent \(\Phi\) and \(\Psi\) equations, the matter Ward
+identity, boosted PPN, FLRW, and stability.
+
+**Verdict: OPEN / NOT CERTIFIED.** The executable correction is
+`cde_l4c_cuscuton_legendre_audit_2026.py`; a zero exit status means its
+diagnostic claims reproduced, not that CDE-L4C passed the fried-chicken gates.
