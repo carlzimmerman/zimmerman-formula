@@ -135,3 +135,35 @@ simply **including the system's own internal field in ν's argument**, and the J
 **Net: the pressure-supported block is real, it was being UNDER-stated, and both corrections owed to it push against
 the framework.** That is the opposite of what the run was launched to find, and it replaces the hopeful reading of this
 table with a worse one.
+
+
+---
+
+## The external-field negative, prediction side recomputed and CLOSED (`f03_efe_slope_prediction.py`, 4/4)
+
+Twice today I flagged the ~5σ external-field-slope negative as provisional, on the grounds that its *prediction* was
+computed with a prescription this programme has since found to be wrong in two ways. That caveat is now discharged by
+computation, and it discharges against the framework.
+
+Recomputing the predicted slope on the 92 Local Volume dwarfs' own (x_int, x_e), canonical footing:
+
+| treatment | predicted slope | significance vs the framework |
+|---|---|---|
+| naive ν(x_e) — what the negative was measured against | **−0.2394** | +6.84σ |
+| sphere-averaged ν(x_e)(1+L/3) — `f01`'s correction | −0.2374 | +6.79σ |
+| ν(x_int + x_e) — `f02`'s dominant correction | −0.0945 | +3.76σ |
+| **both corrections** | **−0.0929** | **+3.70σ** |
+
+The corrections do bite, and by a factor 2.6: these dwarfs have **x_int/x_e = 3.6 in the median**, so their own internal
+fields dominate and ν barely responds to the environment at all. The committed script's −0.1006 is close to the fully
+corrected value, so it was effectively right by accident.
+
+**But the negative survives, because the disagreement is one of SIGN.** The measured slope is **+0.0800 ± 0.0467**;
+every corrected prediction is **negative**. No correction to a coupling can fix a sign. The framework sits **+3.70σ**
+away; ΛCDM predicts **exactly zero** by the strong equivalence principle, sits +1.71σ away, and **gets the sign right**.
+
+Mutations: ν = 1 gives exactly zero; a₀×100 drives the predicted slope to −0.2489 against the analytic deep-MOND −0.25.
+
+**So the external-field negative is not an artefact of this repository's prescription errors, and the provisional flags
+I attached to it are withdrawn.** It is a real result, and the external-field effect is the one signature no
+dark-matter theory can produce.
