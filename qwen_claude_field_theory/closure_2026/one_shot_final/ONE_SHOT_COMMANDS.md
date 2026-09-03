@@ -151,6 +151,54 @@ to this commit.
 | `python3 -c "...verify all output hashes from the three computation manifests..."` | 0 | 25 outputs, 0 hash mismatches |
 | `git diff --check` | 0 | No whitespace errors |
 
+### Projector/CDE checkpoint publication
+
+| Exact command | Status | Observed result |
+|---|---:|---|
+| `git commit -m "Correct projector and CDE constraint certificates"` | 0 | Created `d535b8ee1`; 24 intended files, unrelated live-tree work excluded |
+| `git push origin main` | 0 | Published `dadab0384..d535b8ee1` to `origin/main` |
+
+## Exact-kernel, CDE-L4C-2Delta, FLRW, and Cassini attack (2026-09-03)
+
+Status 0 means the stated derivation or exclusion certificate reproduced. It
+does not mean the full relativistic theory passed.
+
+| Exact command | Status | Observed result |
+|---|---:|---|
+| `python3 hunt_2026/test_exact_exponential_mu_2026.py` | 0 | 13 tests; exact inverse, input guards, dependency graph, nonlinear-BVP scoping, and executable channel identities |
+| `python3 hunt_2026/exact_exponential_mu_2026.py` | 0 | 11/11 checks; Route A distinguished from exact target; twelve scoped channels, not twelve independent laws |
+| `python3 qwen_claude_field_theory/closure_2026/cde_l4c_2delta_2026/test_cde_l4c_2delta_action_gate_2026.py` | 0 | 12 tests; finite-k static variation, explicit ADM generation, and zero/nonzero-field Dirac chains |
+| `python3 qwen_claude_field_theory/closure_2026/cde_l4c_2delta_2026/cde_l4c_2delta_action_gate_2026.py` | 0 | 21/21 checks; corrected ADM normalization gives `det=A^8 k^32`, one scalar pair, `omega^2=lambda_parallel*k^2/3` |
+| `python3 qwen_claude_field_theory/closure_2026/cde_l4c_2delta_2026/test_cde_l4c_2delta_flrw_gate_2026.py` | 0 | 8 tests; background equations, exact expanding witness, and FLRW principal family |
+| `python3 qwen_claude_field_theory/closure_2026/cde_l4c_2delta_2026/cde_l4c_2delta_flrw_gate_2026.py` | 0 | 10/10 checks; FLRW exists; promoted principal family retains the pair, while the direct `k=0` chain differs |
+| `PYTHONWARNINGS=error python3 hunt_2026/exact_mu_cassini_2026/test_exact_mu_qumond_cassini.py` | 0 | 6 tests; inverse, independent quadratures, domain/tail controls, mutations, physical conversion |
+| `PYTHONWARNINGS=error python3 hunt_2026/exact_mu_cassini_2026/exact_mu_qumond_cassini.py` | 0 | Exact-target standard QUMOND gives 3.761895912 and 4.961976265 times the adopted ceiling for the canonical and alternate `a0` footings |
+| each of the four main programs piped to `diff -` against its `.out` | 0 | All recorded outputs match fresh stdout |
+| Mathbox `validate_manifest.py` on the exact-kernel, CDE-L4C-2Delta, and Cassini manifests | 0 | All three computation manifests valid |
+| `python3 qwen_claude_field_theory/closure_2026/door_a_2026/doorA_alpha1_generality_theorem.py` | 0 | 12 reported checks; only the AeST/vector algebra is computed. T3b, T4, and M2 are literal `True` assertions, so the universal local-class verdict is not accepted |
+
+### TDD and audit-hardening failures retained
+
+| Exact command and state | Status | Reason |
+|---|---:|---|
+| `python3 test_exact_exponential_mu_2026.py` before implementation | 1 | Expected red: implementation module absent |
+| the same inverse test after first implementation | 1 | Deep-`x` stopping tolerance scaled to one and lost relative accuracy |
+| the same report before the analytic branch correction | 1 | Exposed the false claim that `lambda_parallel` grows for every `y>0` |
+| the same test before stable logarithmic-slope evaluation | 1 | `expm1(1e5)` overflowed under strict floating-point errors |
+| `python3 test_cde_l4c_2delta_action_gate_2026.py` before implementation | 1 | Expected red: action module absent |
+| the same test before the zero-field extension | 1 | Expected red: `zero_field_dirac` result absent |
+| the same test after first count comparison | 1 | Exact rational degree count was compared to a Python float |
+| the same test after updating the next calculation | 1 | Stale string expected the superseded full-Dirac wording |
+| the same test before the positive-gradient extension | 1 | Expected red: `nonzero_field_dirac` result absent |
+| the same test after the extension | 1 | Algebraically opposite bracket factorizations needed entrywise simplification before antisymmetry comparison |
+| `python3 test_cde_l4c_2delta_flrw_gate_2026.py` before implementation | 1 | Expected red: FLRW module absent |
+| the same test before the exact expanding witness | 1 | Expected red: simultaneous three-equation FLRW witness absent |
+| `PYTHONWARNINGS=error python3 test_exact_mu_qumond_cassini.py` before implementation | 1 | Expected red: hardened Cassini module absent |
+| the Cassini test after requiring both `a0` footings | 1 | Expected red: alternate footing constant was not yet implemented |
+| the action test after requiring ADM provenance | 1 | Expected red: manually entered Dirac block had no `adm_principal_derivation` |
+| the FLRW test after requiring a direct `k=0` restart | 1 | Expected red: promoted finite-k family had no independent homogeneous chain |
+| `python3 -m py_compile` without a local cache prefix | 1 | macOS denied the external system Python cache; no syntax failure was emitted |
+
 Commit and push commands are appended only after they have actually completed.
 
 ## Projector and CDE certificate correction (2026-09-03)

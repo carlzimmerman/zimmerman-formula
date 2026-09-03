@@ -1,0 +1,124 @@
+====================================================================================================
+CDE-L4C-2DELTA: ONE FROZEN ACTION, FIRST VARIATIONAL / CANONICAL GATES
+====================================================================================================
+
+[ACTION]
+S_* = (M_Pl^2/2) int sqrt(-g) [
+        R - 2 Lambda - (2/ell_0^2) F_exp(y)
+        + lambda_s D^2(R_3 - 4 D_mu a^mu)
+        + lambda_K D^2 K
+      ] d^4x
+      + int sqrt(-g) [M_c^2 sqrt(X) - V(T)] d^4x
+      + S_m[g,psi],
+X=-g^{mu nu} partial_mu T partial_nu T>0,
+u_mu=-partial_mu T/sqrt(X), h_mu nu=g_mu nu+u_mu u_nu,
+y=ell_0 sqrt(a_mu a^mu), ell_0=c^2/a_0,
+F_exp(y)=2[(1+y)exp(-y)-1].
+
+[1] Exact exponential correction
+  F_exp = 2*(y + 1)*exp(-y) - 2
+  1+F_exp'/(2y) = 1 - exp(-y)
+  y^2+F_exp deep = -y**4/4 + 2*y**3/3
+  [PASS] the correction produces exactly mu=1-exp(-y)
+  [PASS] the Newtonian quadratic term cancels and the leading term is (2/3)y^3
+
+[2] Multiplier Euler-Lagrange equations
+  E_lambda_s = D2_C_slip
+  E_lambda_K = D2_K
+  [PASS] both Laplacian constraints follow by variation
+
+[3] Independent weak-static variations
+  E_Phi = -8*pi*G*rho(z) + 2*Derivative(Psi(z), (z, 2)) - 4*Derivative(lambda_s(z), (z, 4)) - 2*exp(-Derivative(Phi(z), z)/a0)*Derivative(Phi(z), (z, 2)) + 2*exp(-Derivative(Phi(z), z)/a0)*Derivative(Phi(z), z)*Derivative(Phi(z), (z, 2))/a0
+  E_Psi = 2*Derivative(Phi(z), (z, 2)) - 2*Derivative(Psi(z), (z, 2)) + 4*Derivative(lambda_s(z), (z, 4))
+  E_lambda_s = -4*Derivative(Phi(z), (z, 4)) + 4*Derivative(Psi(z), (z, 4))
+  finite-k solution = {Psi_k: Phi_k, lambda_s_k: 0}
+  E_Phi after Psi=Phi, lambda_s=0 = -8*pi*G*rho(z) + 2*Derivative(Phi(z), (z, 2)) - 2*exp(-Derivative(Phi(z), z)/a0)*Derivative(Phi(z), (z, 2)) + 2*exp(-Derivative(Phi(z), z)/a0)*Derivative(Phi(z), z)*Derivative(Phi(z), (z, 2))/a0
+  [PASS] the finite-k multiplier equations derive Psi=Phi and lambda_s=0
+  [PASS] the remaining Phi equation is the exact longitudinal AQUAL equation
+  [PASS] linear gamma_PPN=1 on this reduced branch
+
+[4] k-sector split
+  constraint matrix(k!=0) = Matrix([[4*k**4, 0], [2*k**2, 4*k**4]])
+  ranks k!=0,k=0 = 2 0
+  [PASS] the Laplacian constraints act at k!=0 and vanish at k=0
+  [PASS] the multiplier equations do not force FLRW H=0
+
+[5] Ordinary-matter Ward fork
+  auxiliary matter Euler derivative = 0
+  div T_m on E_psi=0 = 0
+  direct-J(psi) mutation = J_prime*eta*grad_psi
+  [PASS] minimal S_m retains its separate on-shell Ward identity
+
+[6] Unitary-gauge velocity Hessian (not a full count)
+  H_EH = Matrix([[-6*A_EH, 0], [0, 0]])
+  H_MOND shift = Matrix([[0, 0], [0, 0]])
+  H_multiplier shift = Matrix([[0, 0], [0, 0]])
+  rank = 1
+  [PASS] MOND and two multiplier terms add no quadratic velocity Hessian in this scalar principal block
+  [PASS] the omitted covariant clock pair prevents a full-action DOF claim
+
+[6b] ADM-generated Minkowski principal block
+  <K_ij K^ij-K^2> = Psi_dot*(2*B_0*k**2 - 3*Psi_dot)
+  <N sqrt(h) R_3>_(2) = Psi_0*k**2*(-2*Phi_0 + Psi_0)
+  <MOND correction>_(2), y=0 = Phi_0**2*k**2
+  D2 C_slip amplitude = 4*k**4*(-Phi_0 + Psi_0)
+  D2 K amplitude = k**2*(-B_0*k**2 + 3*Psi_dot)
+  generated L0 = -A*(-4*B_0*Psi_dot*k**2 + B_0*k**4*lambda_K_0 - 2*Phi_0**2*k**2 + 4*Phi_0*Psi_0*k**2 + 4*Phi_0*k**4*lambda_s_0 - 2*Psi_0**2*k**2 - 4*Psi_0*k**4*lambda_s_0 + 6*Psi_dot**2 - 3*Psi_dot*k**2*lambda_K_0)/2
+  generated L_y>0 = -A*(-4*B_0*Psi_dot*k**2 + B_0*k**4*lambda_K_0 + 2*Phi_0**2*k**2*lambda_parallel - 2*Phi_0**2*k**2 + 4*Phi_0*Psi_0*k**2 + 4*Phi_0*k**4*lambda_s_0 - 2*Psi_0**2*k**2 - 4*Psi_0*k**4*lambda_s_0 + 6*Psi_dot**2 - 3*Psi_dot*k**2*lambda_K_0)/2
+  [PASS] the Dirac Lagrangians are generated from the ADM geometry
+  [PASS] the positive-gradient coefficient is the action Hessian
+
+[7] Exact-zero-field finite-k Dirac chain
+  L0 = -A*(-4*B_0*Psi_dot*k**2 + B_0*k**4*lambda_K_0 - 2*Phi_0**2*k**2 + 4*Phi_0*Psi_0*k**2 + 4*Phi_0*k**4*lambda_s_0 - 2*Psi_0**2*k**2 - 4*Psi_0*k**4*lambda_s_0 + 6*Psi_dot**2 - 3*Psi_dot*k**2*lambda_K_0)/2
+  p_Psi = -A*(-4*B_0*k**2 + 12*Psi_dot - 3*k**2*lambda_K_0)/2
+  primaries = (p_Phi, p_B, p_lambda_s, p_lambda_K)
+  secondaries = (-2*A*k**2*(-Phi_0 + Psi_0 + k**2*lambda_s_0), k**2*(2*A*B_0*k**2 - p_Psi)/3, -2*A*k**4*(Phi_0 - Psi_0), k**2*(3*A*k**2*lambda_K_0 - 2*p_Psi)/8)
+  Poisson matrix =
+\left[\begin{matrix}0 & 0 & 0 & 0 & - 2 A k^{2} & 0 & 2 A k^{4} & 0\\0 & 0 & 0 & 0 & 0 & - \frac{2 A k^{4}}{3} & 0 & 0\\0 & 0 & 0 & 0 & 2 A k^{4} & 0 & 0 & 0\\0 & 0 & 0 & 0 & 0 & 0 & 0 & - \frac{3 A k^{4}}{8}\\2 A k^{2} & 0 & - 2 A k^{4} & 0 & 0 & \frac{2 A k^{4}}{3} & 0 & \frac{A k^{4}}{2}\\0 & \frac{2 A k^{4}}{3} & 0 & 0 & - \frac{2 A k^{4}}{3} & 0 & \frac{2 A k^{6}}{3} & 0\\- 2 A k^{4} & 0 & 0 & 0 & 0 & - \frac{2 A k^{6}}{3} & 0 & - \frac{A k^{6}}{2}\\0 & 0 & 0 & \frac{3 A k^{4}}{8} & - \frac{A k^{4}}{2} & 0 & \frac{A k^{6}}{2} & 0\end{matrix}\right]
+  determinant = A**8*k**32
+  rank / Jacobian rank = 8 8
+  preservation multipliers = {u0: (4*A*B_0*k**2 + 3*A*k**2*lambda_K_0 - 2*p_Psi)/(12*A), u1: -Phi_0 + Psi_0 + k**2*lambda_s_0, u2: 0, u3: -4*Phi_0/3 + 4*Psi_0/3 + 4*k**2*lambda_s_0/3}
+  first / second class = 0 8
+  reduced one-form = dPsi*p_Psi
+  H_reduced = p_Psi**2/(12*A)
+  reduced scalar configuration DOF = 1
+  spatial orders: quadratic coefficient = 0 , first nonzero order = 3
+  [PASS] the displayed Dirac chain genuinely closes without tertiary residuals
+  [PASS] the constraint classification is computed from an independent full-rank Jacobian
+  [PASS] the reduced canonical pair survives but has no quadratic spatial stiffness
+
+[8] Positive-gradient longitudinal scalar block
+  L_y>0 = -A*(-4*B_0*Psi_dot*k**2 + B_0*k**4*lambda_K_0 + 2*Phi_0**2*k**2*lambda_parallel - 2*Phi_0**2*k**2 + 4*Phi_0*Psi_0*k**2 + 4*Phi_0*k**4*lambda_s_0 - 2*Psi_0**2*k**2 - 4*Psi_0*k**4*lambda_s_0 + 6*Psi_dot**2 - 3*Psi_dot*k**2*lambda_K_0)/2
+  determinant / rank = A**8*k**32 8
+  constraint solution = {B_0: p_Psi/(2*A*k**2), Phi_0: Psi_0, lambda_K_0: 2*p_Psi/(3*A*k**2), lambda_s_0: -Psi_0*lambda_parallel/k**2, p_B: 0, p_Phi: 0, p_lambda_K: 0, p_lambda_s: 0}
+  H_reduced = (12*A**2*Psi_0**2*k**2*lambda_parallel + p_Psi**2)/(12*A)
+  omega^2 = k**2*lambda_parallel/3
+  exact exponential omega^2 = k**2*(y + exp(y) - 1)*exp(-y)/3
+  deep omega^2 = 2*k**2*y/3 - k**2*y**2/2 + 2*k**2*y**3/9 + O(y**4)
+  reduced scalar configuration DOF = 1
+  [PASS] the positive-gradient chain closes with its matrix-derived classification
+  [PASS] the surviving canonical scalar has a derived positive longitudinal dispersion
+  [PASS] its Hamiltonian tends continuously to the ultralocal zero-field result
+
+[9] k=0 rank-changing symbol
+  finite-k Poisson rank = 8
+  k=0 Poisson rank = 0
+  k=0 secondary symbols = (0, 0, 0, 0)
+  [PASS] the homogeneous symbol is treated separately and all Laplacian secondaries collapse
+
+[10] Homogeneous tensor principal block
+  multiplier contribution at k=0 = 0
+  c_T^2 on homogeneous branch = 1
+  [PASS] the homogeneous multiplier symbols vanish and the EH tensor cone remains luminal
+
+[VERDICT]
+  OPEN overall. The ADM-generated zero-multiplier Minkowski principal block leaves
+  one positive-kinetic scalar canonical pair with omega^2=lambda_parallel*k^2/3
+  for y>0, collapsing to zero spatial stiffness at y=0.
+  This is a candidate-specific principal-symbol obstruction, not a full-action kill:
+  lower-derivative clock, potential, matter and background-multiplier terms and the
+  nonlinear y->0+ constraint rank remain to be included.
+  Boosted PPN, anisotropic tensor propagation, and cosmological stability also remain open.
+  Next: Derive the complete second-order scalar action on the explicit on-shell FLRW witness, including all lower-spatial-derivative cuscuton, potential, matter and multiplier terms, then take the nonlinear constraint rank as y approaches zero from above.
+
+Checks completed: 21/21

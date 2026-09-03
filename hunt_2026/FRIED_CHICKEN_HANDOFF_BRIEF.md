@@ -17,8 +17,11 @@ Anything in between (a candidate that "mostly works") is a loss and must be labe
 
 - Acceleration scale: **a₀ = ½ c √(G ρ_DE) = c² √(Λ/32π)**. Two numerical footings, use BOTH in every test:
   canonical 9.36e-11 m/s², alternative 1.13e-10 m/s². The ½ is FITTED to SPARC, not derived. Never claim it derived.
-- Galactic kernel (Route A): **ν(y) = 1/(1 − e^{−√y})**, y = g_bar/a₀. Equivalently μ(x) = 1 − e^{−x}.
-  Field equation used empirically: QUMOND, ∇·g = ∇·[ν(|g_N|/a₀) g_N].
+- Historical empirical kernel (Route A): **ν_RA(x) = 1/(1 − e^{−√x})**, with `x = g_N/a₀`.
+  This is **not** the inverse of the fried-chicken target **μ(y)=1−e^{−y}**, `y = g/a₀`. The exact target obeys
+  `x=y(1−e^(−y))`, `ν_exact(x)=y(x)/x`; Route A is high by 2.45%, 7.30%, 17.19%, and 4.42% at
+  `x=0.01,0.1,1,10`. Empirical QUMOND hunts used Route A unless a script explicitly says otherwise. See
+  `EXACT_EXPONENTIAL_PREDICTION_LEDGER_2026-09-03.md` and `exact_exponential_mu_2026.py`.
 - Where it works: 147–175 SPARC rotating discs at 0.06 dex; Milky Way rotation curve; vertical force; Renzo's rule.
 - Where it fails (THE LIABILITY TABLE, `hunt_2026/THE_LIABILITY_TABLE.md`): every pressure-supported system —
   clusters need ×2–3 more at R500 (core g≈20a₀ Newtonian, no kernel can touch it), groups, ellipticals, dwarf
@@ -44,12 +47,18 @@ Anything in between (a candidate that "mostly works") is a loss and must be labe
     to the Einstein term is F_M(y) = 2[(1+y)e^{−y} − 1]. Do NOT add the full G(y) — Einstein already supplies y².
 13. a₀ = c²√(Λ/32π) may be taken as INPUT. Any claim to DERIVE it must be a theorem with a committed proof.
 
-## WHAT IS ALREADY DEAD — do not rebuild these (every kill is a committed script, rc=0)
+## WHAT IS DEAD OR CORRECTED — do not import stale certificates
 
-**The LOCAL NO-GO THEOREM** (`FRIED_CHICKEN_VERDICT_2026-09-01.md`, assumptions A1–A7, A2 = locality is
-load-bearing). Every local carrier of the MOND force beyond the two tensor polarisations dies:
+`FRIED_CHICKEN_VERDICT_2026-09-01.md` gives a scoped local case split under assumptions A1–A7, with locality
+load-bearing. Its executable gates kill the subclasses listed below; they do **not** classify every local action.
+A zero return code means the stated diagnostic reproduced, not that a universal theorem was certified.
 - Algebraic / elliptic metric constraint → instantaneous (gate 7).
 - Frame-free F(X) scalar → anisotropic-stress slip (gate 3).
+- The Bekenstein-form disformal escape for that frame-free branch can cancel
+  the slip tensor pointwise, but the same correction tilts the photon cone
+  relative to the Einstein-metric graviton cone. `doorA_disformal_slip_vs_cT.py`
+  closes that specified coupling conditionally on the inherited O(Phi) slip;
+  it is not a theorem for every possible matter metric.
 - Clock scalar + R_nn or K → c_T ≠ c (gate 6; λ ≈ −2e-7 in every MOND zone, GW170817 excluded 1e7–1e9×).
 - Clock + a_μ (khronometric) → radial gradient instability for a₀ < a < 38a₀, uncurable (gate 7).
 - Spatial-curvature couplings → c_T (gate 6).
@@ -57,11 +66,25 @@ load-bearing). Every local carrier of the MOND force beyond the two tensor polar
 - Clock + second scalar → N = 2+2 (gate 2).
 - Vector / Einstein-aether (AeST and its c₂,c₄ generalization) → PPN: α₁ = −4c₁₄ − 4(2−K_B)/(J_Y+1). The term
   that MAKES MOND gives an irreducible negative α₁; α₁ = 0 costs a spin-1 ghost. Solar screening loophole dead.
+  The later `doorA_alpha1_generality_theorem.py` rechecks this algebra **only inside that vector parametrization**.
+  Its claimed exhaustion of all local completions is not an executable theorem: checks T3b and T4 pass literal
+  `True`, the three-embedding classification is asserted rather than derived from a general action, and the
+  displayed `c_T` normalization is not tied to the quoted `~2e-7` coefficient. Do not import its universal title
+  or the resurrected `N_grav=2 <=> instantaneous <=> alpha3` pincer as proved results.
 - Second metric / bimetric → N = 7 DOF (gate 2) plus Boulware–Deser ghost.
-- **CDE-L4C strict-2-DOF (the furthest any 2-DOF MOND got):** killed at α₃ = O(1), excluded ~1e19×.
-  **THE PINCER, mechanism exposed:** N_grav = 2 ⇔ MOND via a second-class constraint ⇔ instantaneous
-  propagator ⇔ α₃ = O(1). You cannot have N_grav = 2 AND α₃ = 0 for a MOND theory. α₃ = 0 needs a retarded
-  propagating carrier, which is exactly the scalar graviton that N_grav = 2 removes.
+- **CDE-L4C:** its old `N_grav=2` certificate is withdrawn, not killed at a computed α₃. The correct cuscuton
+  Legendre map is invertible for nonzero spatial gradient; the advertised four-pair matrix omits `(χ,p_χ)`,
+  drops rank on a coefficient surface, and does not close the momentum brackets. No boosted α₃ extraction from
+  one frozen CDE-L4C action exists. The architecture remains **OPEN / NOT CERTIFIED**. Any claimed universal
+  `N_grav=2 => α₃=O(1)` pincer is a conjectured obstruction, not a theorem.
+- **CDE-L4C-2Delta frozen follow-on:** its reduced static action derives exact
+  exponential AQUAL and `Phi=Psi`. Its corrected ADM-generated Minkowski
+  principal block has `det Delta=A^8 k^32` and leaves one scalar canonical
+  pair. On a positive-gradient longitudinal background
+  `omega^2=lambda_parallel k^2/3`; at exact zero field the spatial stiffness
+  vanishes. A geometry-motivated FLRW promotion retains the pair, but a direct
+  `k=0` restart differs and the complete quadratic FLRW action is still owed.
+  Status: **OPEN overall, adverse principal block; not a full-action kill**.
 - v9 DBI dark sector → dead (pin is DBI-specific per SZ21). CCNL clock → fixable clock but DEAD on lensing for
   any clock inside one metric. Two-sector (dark field on a second metric) → CMB physical-scale theorem + forest.
 - Nonlocal spin-2 subclasses: projected kernel keeps the ghost; c_T² = 1/(1−ξ̄) kills 2e9× over GW170817.
@@ -70,12 +93,13 @@ load-bearing). Every local carrier of the MOND force beyond the two tensor polar
   does not help.
 - Pure modified inertia (rapidity-gap action) → excluded 21σ. (See "the open fork" below — the CLASS is not dead.)
 
-## WHAT IS OPEN — the only places a theory can still live
+## WHAT IS OPEN — strongest current doors, not a proved exhaustive list
 
-**(A) MOND + a dark field that IS dark energy.** The universal dark-field theorem says gate 2-as-written ∧ gate 3
-is unsatisfiable, so the honest target is gate 2′ with one explicit, counted, healthy dark scalar whose
-background IS ρ_DE (this is where a₀ = ½c√(Gρ_DE) comes from physically). AeST is the template and AeST's PPN is
-dead, so this needs a NEW action whose MOND-generating coupling does not feed α₁. Cluster lever: potential depth
+**(A) MOND + a dark field that IS dark energy.** The earlier “universal dark-field theorem” is withdrawn: exact
+AQUAL supplies a counterexample to one boundary-flux premise, and a retarded denominator is not a PPN solve.
+Ordinary localizations still fail narrower ghost/state gates. A live version must contain one explicit, counted,
+healthy dark scalar whose background is ρ_DE; this does not by itself derive the numerical `a₀–ρ_DE` coefficient.
+AeST is a template whose tested PPN branch is dead, so a new action must avoid feeding its MOND coupling into α₁. Cluster lever: potential depth
 |Φ| orders clusters ~20× above galaxies; a +μ²Φ Helmholtz term is "real, 28–100% of the core residual,
 galaxy- and Cassini-safe" but PHASE-TUNED. Decisive un-run calculation: does the phase pin DYNAMICALLY in a
 time-dependent spherical field solve (potential flow, NOT a PM N-body)?
@@ -83,21 +107,27 @@ time-dependent spherical field solve (potential flow, NOT a PM N-body)?
 **(B) Field-dependent nonlocal spin-2.** The one residual door of the local theorem. Known obstructions:
 localization adds DOF; conservation is not Euler–Lagrange. A candidate must show both are evaded, not assumed.
 
-**(C) THE NEW FORK (2026-09-03, `hunt_2026/F08_G06_*`): modified INERTIA vs modified GRAVITY.** Every system
+**(C) THE NEW PHENOMENOLOGY FORK (2026-09-03, `hunt_2026/F08_F10_THE_COHERENCE_FORK.md`): modified INERTIA vs modified GRAVITY.** Every system
 the framework fits is rotation-supported; every failure is pressure-supported, across 11 decades of mass.
 Milgrom proved the two arms coincide for circular orbits and differ for all others. The repo has run ONLY the
 modified-gravity arm. Status: 1.73σ hint on 8 dwarf spheroidals (the hard ceiling); globular clusters
 (confound-free, no dark matter possible) lean the OTHER way — framework OVER-predicts them by 0.3 dex even with
 the EFE on, and the EFE is required to keep it that close. Rotating galaxies can NEVER decide this fork
 (proved: what they test is a circular-orbit identity). The cheap wide-binary eccentricity test is SHUT (slope
-reverses sign with the eccentricity population). Modified inertia has NO relativistic completion; if you build
-one it must be time-nonlocal, and it must explain why globular clusters are Newtonian inside the MW field.
+reverses sign with the eccentricity population). Under this brief's strict action `S_m[g,ψ]`, ordinary matter
+follows physical-metric geodesics. A genuine modified-inertia law needs an acceleration/history-dependent matter
+action or a nonmetric force and therefore lies outside the stated minimal-matter/Ward gate. The fork remains useful
+phenomenologically, but is not a strict-action escape unless the specification is explicitly relaxed.
 
 ## THE EMPIRICAL GATES a candidate must ALSO clear (data, not theory)
 
 - SPARC RAR 0.06 dex; both a₀ footings.
 - Cassini |γ−1| < 2.3e-5; pulsar α₃; LLR/ephemerides for anomalous solar-system acceleration (repo has ~50
-  scripts, grep "cassini" — cite, don't redo).
+  scripts, grep "cassini" — cite, don't redo). For the exact target kernel,
+  the warning-strict standard-QUMOND calculation is now certified at
+  `Q2=1.95619e-26 s^-2`, 3.762 times the adopted ceiling on the canonical
+  footing and `2.58023e-26 s^-2`, 4.962 times the ceiling on the alternate
+  footing; this is **not** a direct AQUAL or action-level result.
 - GW170817 c_T.
 - CMB: any dark field must reproduce the acoustic peaks at physical scales (the two-sector kill).
 - Lyman-α forest: dark component cold at z~3 (the matching theorem: a galaxy well today IS the background at
@@ -124,8 +154,9 @@ one it must be time-nonlocal, and it must explain why globular clusters are Newt
    is 2/3 for spheres, 0.82 for discs); aperture centred on a local minimum/saddle; covariance reshaped wrong;
    trivial correlation from a joint-fit degeneracy; a "residual" whose SIGN tracks a branch of your own
    prescription rather than the data; a mutation control run once on 15 rows (use ≥ 20000 permutations).
-5. NEVER say "theory closed" or "no open doors." Say "every local route closed." NEVER say the data favour
-   this framework over ΛCDM. NEVER cite κ = ½ as derived. NEVER cite the de Sitter–Unruh argument for κ (it
+5. NEVER say "theory closed" or "no open doors." State exactly which frozen action or explicitly defined subclass
+   a gate excludes; do not upgrade a case split to an exhaustive theorem. NEVER say the data favour this framework
+   over ΛCDM. NEVER cite κ = ½ as derived. NEVER cite the de Sitter–Unruh argument for κ (it
    forces a₀ = 2cH_Λ, excluded 15.6σ).
 6. If literature values are needed, cite author+year inline. If a number cannot be found, mark the check
    NOT-RUN. Fabricated data is a catastrophe; "blocked, here is the pipeline and the exact input needed" is fine.

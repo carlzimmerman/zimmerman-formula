@@ -1,0 +1,70 @@
+================================================================================================
+CDE-L4C-2DELTA: ON-SHELL FLRW BACKGROUND AND FINITE-k PRINCIPAL GATE
+================================================================================================
+
+[1] Exact homogeneous multiplier sector
+  D2 C_slip = 0
+  D2 K      = 0
+  E_lambda_s, E_lambda_K = 0 0
+  multiplier coefficient rank = 0
+  The homogeneous Euler equations leave lambda_s_bar(t) and lambda_K_bar(t) arbitrary.  They are multiplier zero modes, not derived zero backgrounds.
+  [PASS] homogeneous multiplier equations vanish and do not fix their zero modes
+
+[2] Minisuperspace Euler-Lagrange equations
+  Friedmann = -Lambda*M_Pl_sq + 3*M_Pl_sq*Derivative(a(t), t)**2/(N(t)**2*a(t)**2) - V(T(t)) - rho(t)
+  cuscuton  = 3*M_c_sq*Derivative(a(t), t)/(N(t)*a(t)) + Derivative(V(T(t)), T(t))
+  Raychaudhuri after Friedmann = 2*M_Pl_sq*Derivative(a(t), (t, 2))/(N(t)**2*a(t)) - 2*M_Pl_sq*Derivative(a(t), t)**2/(N(t)**2*a(t)**2) - 2*M_Pl_sq*Derivative(N(t), t)*Derivative(a(t), t)/(N(t)**3*a(t)) + M_c_sq*Derivative(T(t), t)/N(t) + p(t) + rho(t)
+  H for V=V0+m_T^2 T^2/2 = -m_T_sq*T(t)/(3*M_c_sq)
+  [PASS] Friedmann, cuscuton, and Raychaudhuri residuals vanish
+  [PASS] the homogeneous equations permit H nonzero
+  simultaneous vacuum tuning = {V_0: -Lambda*M_Pl_sq, m_T_sq: 3*M_c_sq**2/(2*M_Pl_sq)}
+  T witness = -T_star + t
+  H witness = M_c_sq*(T_star - t)/(2*M_Pl_sq)
+  a witness = a_star*exp(M_c_sq*t*(2*T_star - t)/(4*M_Pl_sq))
+  three witness residuals = (0, 0, 0)
+  [PASS] one explicit expanding interval solves all three background equations (t<T_star)
+
+[3] Geometry-motivated FLRW finite-k principal family
+  Theta = H*Phi + Psi_dot
+  effective delta lambda_s = Phi*lambda_s_bar + delta_lambda_s
+  effective delta lambda_K = Phi*lambda_K_bar + delta_lambda_K
+  L_principal = -A*(-4*B*H*Phi*q**2 + B*Phi*lambda_K_bar*q**4 - 4*B*Psi_dot*q**2 + B*delta_lambda_K*q**4 + 6*H**2*Phi**2 - 3*H*Phi**2*lambda_K_bar*q**2 + 12*H*Phi*Psi_dot - 3*H*Phi*delta_lambda_K*q**2 + 4*Phi**2*lambda_s_bar*q**4 - 2*Phi**2*q**2 - 4*Phi*Psi*lambda_s_bar*q**4 + 4*Phi*Psi*q**2 - 3*Phi*Psi_dot*lambda_K_bar*q**2 + 4*Phi*delta_lambda_s*q**4 - 2*Psi**2*q**2 - 4*Psi*delta_lambda_s*q**4 + 6*Psi_dot**2 - 3*Psi_dot*delta_lambda_K*q**2)/2
+  p_Psi = A*(4*B*q**2 - 12*H*Phi + 3*Phi*lambda_K_bar*q**2 - 12*Psi_dot + 3*delta_lambda_K*q**2)/2
+  [PASS] the zero-H, zero-multiplier limit reproduces the ADM-generated Minkowski block
+
+[4] Generated Dirac chain
+  primaries   = (p_Phi, p_B, p_lambda_s, p_lambda_K)
+  secondaries = ((3*A*Phi*lambda_K_bar**2*q**4 - 32*A*Phi*lambda_s_bar*q**4 + 16*A*Phi*q**2 + 16*A*Psi*lambda_s_bar*q**4 - 16*A*Psi*q**2 + 3*A*delta_lambda_K*lambda_K_bar*q**4 - 16*A*delta_lambda_s*q**4 + 8*H*p_Psi - 2*lambda_K_bar*p_Psi*q**2)/8, q**2*(2*A*B*q**2 - p_Psi)/3, -2*A*q**4*(Phi - Psi), q**2*(3*A*Phi*lambda_K_bar*q**2 + 3*A*delta_lambda_K*q**2 - 2*p_Psi)/8)
+  determinant = A**8*q**32
+  Poisson rank / Jacobian rank = 8 8
+  preservation multipliers = {u0: (4*A*B*q**2 - 12*A*H*Phi + 3*A*Phi*lambda_K_bar*q**2 + 3*A*delta_lambda_K*q**2 - 2*p_Psi)/(12*A), u1: Phi*lambda_s_bar*q**2 - Phi + Psi + delta_lambda_s*q**2, u2: (-4*A*B*lambda_s_bar*q**4 + 24*A*H*Phi*lambda_s_bar*q**2 - 12*A*H*Phi + 12*A*H*Psi + 12*A*H*delta_lambda_s*q**2 - 3*A*Phi*lambda_K_bar*lambda_s_bar*q**4 - 3*A*delta_lambda_K*lambda_s_bar*q**4 + 2*lambda_s_bar*p_Psi*q**2)/(12*A*q**2), u3: (-4*A*B*lambda_K_bar*q**2 + 12*A*H*Phi*lambda_K_bar - 3*A*Phi*lambda_K_bar**2*q**2 + 16*A*Phi*lambda_s_bar*q**2 - 16*A*Phi + 16*A*Psi - 3*A*delta_lambda_K*lambda_K_bar*q**2 + 16*A*delta_lambda_s*q**2 + 2*lambda_K_bar*p_Psi)/(12*A)}
+  [PASS] the generated constraints are regular and preservation closes in this family
+  [PASS] H and both arbitrary multiplier backgrounds drop from the PB determinant
+
+[5] Constraint surface and reduced pair
+  solution = {B: p_Psi/(2*A*q**2), Phi: Psi, delta_lambda_K: (-3*A*Psi*lambda_K_bar*q**2 + 2*p_Psi)/(3*A*q**2), delta_lambda_s: (-2*A*Psi*lambda_s_bar*q**4 + H*p_Psi)/(2*A*q**4), p_B: 0, p_Phi: 0, p_lambda_K: 0, p_lambda_s: 0}
+  pulled-back one-form = dPsi*p_Psi
+  H_reduced = -H*Psi*p_Psi + p_Psi**2/(12*A)
+  scalar configuration DOF = 1
+  [PASS] one scalar canonical pair survives in the FLRW principal family
+
+[6] Homogeneous symbol and scope
+  finite-k rank / k=0 rank = 8 0
+  direct q=0 L = -3*A*(H**2*Phi**2 + 2*H*Phi*Psi_dot + Psi_dot**2)
+  direct q=0 H_c = -p_Psi*(12*A*H*Phi + p_Psi)/(12*A)
+  direct q=0 lapse secondary = H*p_Psi
+  full finite-k FLRW action derived = False
+  global nonlinear theorem = False
+  [PASS] k=0 is rank-distinct and no global nonlinear claim is made
+  [PASS] the homogeneous chain is restarted rather than inferred from the finite-k matrix
+
+[VERDICT]
+  CONDITIONAL_OBSTRUCTION_ON_FLRW_PRINCIPAL_FAMILY
+  The exact homogeneous equations leave both multiplier zero modes arbitrary.
+  Keeping those backgrounds and H in the geometry-motivated principal family does not
+  remove the finite-k scalar pair. This is a conditional obstruction: the direct
+  q=0 restart differs, and the complete quadratic FLRW action plus nonlinear
+  irregular constraint remain owed.
+  Next: Derive the complete second-order scalar action on an on-shell FLRW solution, including all k^0 and H-dependent cuscuton, potential, matter, and multiplier terms; then run the nonlinear Dirac algorithm as the MOND gradient approaches zero from above.
+
+Checks completed: 10/10

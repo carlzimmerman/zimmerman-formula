@@ -1,0 +1,55 @@
+EXACT-EXPONENTIAL QUMOND CASSINI CONVERGENCE CERTIFICATE
+SCOPE: QUMOND ONLY; NOT AQUAL; NOT A RELATIVISTIC-ACTION CERTIFICATE
+python=3.9.6 numpy=1.26.2 scipy=1.11.4
+script_sha256=a9f91a54d1e7d82bbad0c2b3c2ef24cffad11c54ce1ae5be2c0d0eeb79b804a3
+GM_sun=1.327124400180e+20 m^3 s^-2
+a0=9.361900000000e-11 m s^-2
+g_external=2.320000000000e-10 m s^-2
+eta_true=g_external/a0=2.47812943953685
+e_N=eta_true*mu(eta_true)=2.27021433257669
+
+inverse_max_relative_residual=2.206126e-16
+[PASS] exact inverse closes x=y[1-exp(-y)]
+direct_adaptive_v6 q=0.165855042414111 reported_error=1.944969e-11
+direct_adaptive_v10 q=0.165855042413394 reported_error=1.736679e-11
+split_gauss_v6_order32 q=0.165856009038587
+split_gauss_v6_order64 q=0.165855086645526
+split_gauss_v6_order128 q=0.16585504440536
+split_gauss_v6_order256 q=0.165855042502764
+order_delta_32_64=9.223931e-07
+order_delta_64_128=4.224017e-08
+order_delta_128_256=1.902596e-09
+[PASS] split-rule order sequence converges
+analytic_tail_bound_v6=8.698093e-14
+direct_domain_delta_v6_v10=7.170653e-13
+[PASS] adaptive domain change is covered by reported error plus analytic tail
+[PASS] analytic tail above v=6 is negligible
+independent_method_delta=8.865342e-11
+independent_method_allowance=9.532516e-09
+[PASS] adaptive and split quadrature agree within observed convergence allowance
+split_domain_delta_v6_v10_order96=2.026157e-15
+[PASS] split-rule domain scan is stable
+mutation_nu_equals_one_q=0
+mutation_eta_equals_zero_q=0
+[PASS] nu=1 mutation annihilates the phantom quadrupole
+[PASS] eta=0 mutation annihilates the EFE quadrupole
+
+q_adopted=0.165855042414111
+Q2=1.956185874272e-26 s^-2
+Park_2sigma_ceiling=5.200000000000e-27 s^-2
+Q2_over_ceiling=3.761895912
+offset_from_Park_central=9.978810413 sigma
+PHYSICAL VERDICT: exact-mu QUMOND is above the adopted Cassini 2-sigma ceiling.
+
+[ALTERNATE a0 FOOTING]
+a0_alternate=1.127900000000e-10 m s^-2
+eta_true_alternate=2.05691993971097
+q_adaptive_alternate=0.165430921606774
+q_split256_alternate=0.165430921677366
+independent_delta_alternate=7.059181e-11
+Q2_alternate=2.580227657819e-26 s^-2
+Q2_over_ceiling_alternate=4.961976265
+[PASS] alternate-footing adaptive and split quadratures agree
+[PASS] alternate a0 footing also exceeds the adopted ceiling
+
+NUMERICAL CERTIFICATE: PASS (the exclusion result, not the theory, is certified)
