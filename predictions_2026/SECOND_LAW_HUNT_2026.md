@@ -291,3 +291,78 @@ per pair (item 71 forecast); the asymptotic-versus-measured column confusion (it
 the phantom's own; the 1/r lensing law; Renzo's rule quantified; the inner-curve diversity predicted from baryons; a₀ measured from the
 deep tail; and RC100 disfavouring the ΛCDM-native rise at 3.9σ. Nothing found outside galaxies has survived contact with a proper
 calculation.
+
+---
+
+# PART V — items 101–125: built on the winners
+
+Five passes produced ten keepers, and they cluster into five veins. These items extend the veins that produced, rather than
+sampling the space again. Same rules: one committed script with checks that can fail, a mutation control, both footings, the
+alternative computed beside the framework, verdict both ways. **Effort is marked by whether the data are on disk.**
+
+## Vein A — the closed-form estimator (from items 16, 25, 64, 79)
+The single most productive thing found: with a₀ fixed by Λ, quantities that are usually *fitted* become *predicted*, and where a
+survey tabulates a dark-matter fraction the kernel inverts in closed form with no mass model at all.
+
+| # | search | data | compute | prediction | pass if | effort |
+|---|---|---|---|---|---|---|
+| 101 | **The closed-form inversion on every survey that tabulates f_DM** | KMOS3D (Übler+17), KROSS (Harrison+17), MUSE-DARK II/III, MSA-3D, RC100 — several already on disk | a₀ = (1−f_DM)g_obs/[ln(1/f_DM)]² per galaxy, per survey | one a₀ across all of them, and a joint d log a₀/dz far tighter than RC100's ±0.063 | the joint trend separates FLAT from the ΛCDM-native rise at ≥ 5σ, or the surveys disagree with each other (which would expose the systematic) | low, mostly on disk |
+| 102 | **The gas-dominated deep tail: a₀ with no stellar M/L at all** | ON DISK SPARC, f_gas > 0.7 subset | item 25's slope-fixed intercept on gas-dominated galaxies only | the same a₀ as the full sample, but with the M/L budget *removed* — the one measurement in the hunt that does not go through Υ | a₀ to better than 8%, and consistent with the dwarf lens stack's 9.6e-11 | low |
+| 103 | **The deep tail's error budget, decomposed** | ON DISK SPARC + the TRGB/Cepheid flags | propagate distance, inclination, Υ and gas separately into the slope-fixed a₀ | Υ dominates (items 2, 65, 66, 76 all said so); the question is what the floor is when it is removed | the floor is quantified and the sample cut that reaches 3% is named | low |
+| 104 | **w(z) from the whole a₀(z) ladder, not one survey** | outputs of 101 | ρ_DE(z)/ρ_DE(0) = [a₀(z)/a₀(0)]², fit (w₀, wₐ) | a dark-energy equation of state from galaxy dynamics alone, with a real error bar | w₀ to ±0.05 — competitive with a supernova sample, from rotation curves | low, after 101 |
+| 105 | **The BTFR zero-point as an a₀ meter at every redshift** | the same surveys | v⁴ = G M_b a₀ on the flat part only, gas included | the cleanest a₀(z) there is, and the one the decisive z ≈ 2.5 measurement will use | the local zero-point returns a₀ to 5%, validating the estimator before it is used at high z | medium |
+
+## Vein B — the phantom *is* the halo (from items 5, 24)
+A fitted dark halo is the phantom of a MOND galaxy, so every "unexplained regularity" of halo fits should be a property of a₀.
+
+| # | search | data | compute | prediction | pass if | effort |
+|---|---|---|---|---|---|---|
+| 106 | **The ρ₀–r₀ anti-correlation, not just the product** | ON DISK Li+2020 halo fits | slope of log ρ₀ vs log r₀ | **exactly −1** if the product is a constant of nature; feedback models give −0.7 to −0.9 | slope −1.00 ± 0.05 and no mass dependence | low |
+| 107 | **The concentration–mass relation of fitted halos** | ON DISK Li+2020 (c200, M200 for 8 halo models) | predict c(M) from the phantom of an exponential disc | the fitted c(M) is a *baryonic* relation in the framework: it should track disc surface density, not halo mass | fitted c correlates with Σ₀ more tightly than with M200 | low |
+| 108 | **Core size versus the baryonic profile** | ON DISK Li+2020 + SPARC photometry | r₀ against the radius where g_bar = a₀ | the "core" is where the boost switches on: r₀ ≈ r(g_bar = a₀), no feedback needed | r₀/r(g_bar = a₀) is one number with < 0.2 dex scatter | low |
+| 109 | **Halo spin, predicted** | ON DISK Li+2020 + SPARC | λ = j/(√2 R200 V200) with the phantom's own j | the framework predicts the *observed* λ distribution from the baryons; ΛCDM predicts it from tidal torque | the predicted λ distribution matches the fitted one in median and width | medium |
+| 110 | **Does the phantom reproduce the fitted profile SHAPE, not just its scales?** | ON DISK Li+2020 + SPARC rotmods | compute ρ_ph(r) directly and fit a Burkert to it | the fitted core-to-outer slope of a phantom is what halo fitters measure | a phantom fitted with a Burkert returns the observed distribution of shape parameters | medium |
+
+## Vein C — the lensing law (from items 1, 2, 65, 66)
+The 1/r law is exact and parameter-free; every lensing split turned out to measure stellar M/L. Both are exploitable.
+
+| # | search | data | compute | prediction | pass if | effort |
+|---|---|---|---|---|---|---|
+| 111 | **Lensing as an M/L machine** | ON DISK KiDS colour, Sérsic and mass bins | invert each bin's a₀ *assuming* a₀ universal, read off the relative Υ | a Υ(colour) relation measured by gravity rather than by stellar populations | the measured Υ(colour) matches SPS within 0.1 dex across all bins — a new, independent M/L calibration | low |
+| 112 | **The Sérsic split** | ON DISK Fig-8 Sérsic bins (not yet used) | as item 65 | bulge-dominated and disc-dominated lenses must give the same a₀ once their Υ differ as SPS says | consistent with 111's calibration | low |
+| 113 | **The 1/r law's radial reach** | ON DISK KiDS to 3 Mpc + a modelled two-halo term | fit the 1/r law with a ΛCDM two-halo term added, see which the data prefer | the framework needs no two-halo term at all; ΛCDM needs one with a fixed amplitude | the two-halo amplitude is consistent with zero, or is measured and compared | medium |
+| 114 | **Gas-dominated lenses** | KiDS/GAMA HI-selected lens sample | ΔΣ around gas-rich lenses where Υ barely matters | the M/L-free lensing a₀ | a₀ to 10% with no Υ assumption | high |
+
+## Vein D — the kernel in the shape of a curve (from items 22, 23)
+The local slope and the inner-curve diversity are both predicted point by point. Push on the residuals.
+
+| # | search | data | compute | prediction | pass if | effort |
+|---|---|---|---|---|---|---|
+| 115 | **Renzo's rule at second order** | ON DISK SPARC | the curvature, not just the slope, of v(r) predicted from g_bar(r) | the kernel fixes both derivatives with no freedom | the second-order prediction correlates at r > 0.5, beyond what the first order already explains | low |
+| 116 | **What is left over after the diversity prediction?** | ON DISK SPARC (item 23's residuals) | correlate the 0.15 rms residual with inclination, distance method, Υ, gas fraction, bar presence | the residual should be *observational*, not physical | the residual correlates with a measurement systematic and not with a physical property | low |
+| 117 | **The RAR's intrinsic scatter, budgeted** | ON DISK SPARC | subtract the known error budget from the observed 0.06 dex orthogonal scatter | the framework predicts *zero* intrinsic scatter | the intrinsic residual is consistent with zero, and the bound is quoted | low |
+| 118 | **Bars and spirals in the residuals** | ON DISK SPARC + morphological flags | RAR residual as a function of bar strength and arm class | non-circular motions, not the kernel, should carry them | barred galaxies' residuals differ in the way non-circular motions predict, not in a₀ | medium |
+
+## Vein E — the M/L pivot (from item 76)
+The blocker of the whole hunt, and the framework turns it into a prediction.
+
+| # | search | data | compute | prediction | pass if | effort |
+|---|---|---|---|---|---|---|
+| 119 | **Per-galaxy Υ predicted from a₀, versus per-galaxy colour** | ON DISK SPARC + [3.6]−[4.5] or optical colours | fix a₀, solve each galaxy's rotation curve for its Υ, plot against colour | a Υ(colour) relation derived from the cosmological constant | the derived relation matches Bell & de Jong / Schombert within 0.1 dex, with the right slope | low |
+| 120 | **The Υ that Λ predicts, versus DiskMass** | ON DISK SPARC + Martinsson+13 | item 76 restricted to the DiskMass overlap | DiskMass's dynamical Υ ≈ 0.3 is excluded by both footings (item 76 already found this) | the disagreement is localised: which galaxies, and why | medium |
+| 121 | **Gas-dominated calibration transfer** | ON DISK SPARC | calibrate a₀ on f_gas > 0.7 (item 102), then *predict* Υ for the star-dominated rest | zero free parameters anywhere in the chain | the predicted Υ distribution matches SPS in median and spread | low |
+
+## Vein F — the things the winners imply that nobody has asked
+| # | search | data | compute | prediction | pass if | effort |
+|---|---|---|---|---|---|---|
+| 122 | **Is Σ_M = a₀/(2πG) a ceiling on the PHANTOM's surface density?** | ON DISK SPARC + Li+2020 | the maximum phantom surface density any galaxy attains | item 6 showed it is not a ceiling on *baryonic* surface density — but it should bound the *phantom's* | no galaxy's phantom exceeds Σ_M, and the distribution piles up against it | low |
+| 123 | **The two footings, decided** | outputs of 102, 103, 119 | the M/L-free a₀ against 9.36e-11 and 1.13e-10 | the deep tail gave 1.14e-10 and the dwarf lenses 9.6e-11 — they straddle | one footing excluded at ≥ 3σ by an M/L-free measurement | medium |
+| 124 | **a₀ from a system with no stars at all** | HI-only clouds, almost-darks, tidal debris | v⁴ = G M_HI a₀ with the 1.33 helium correction the only assumption | the cleanest a₀ anywhere: no Υ, no bulge, no colour | a₀ to 15% from a stellar-mass-free sample | medium |
+| 125 | **The ladder, closed** | outputs of 101–124 | the a₀ ladder of item 100 rebuilt from M/L-free rungs only | item 100 found a 0.16 dex intrinsic spread organised by M/L; removing M/L should collapse it | the M/L-free rungs agree to < 0.05 dex — which would BE the second law: one acceleration, measured five independent ways, from a solar mass to 10¹⁵ | low, after the rest |
+
+**Why these and not another fifty.** Every keeper of the first hundred is galactic and rests on the acceleration relation, and every
+one of them ran into the same wall: the stellar mass-to-light ratio. Veins A, E and F are all attacks on that wall, from three
+directions — remove Υ (gas-dominated, HI-only), predict Υ (from a₀ and Λ), or measure Υ (with lensing). Vein B turns the framework's
+best idea, that the halo *is* the phantom, into four sharp tests of halo-fit regularities that ΛCDM does not explain. Item **125** is
+the one that would end the hunt: if a₀ measured five M/L-free ways across nine decades of mass agrees to 0.05 dex, that is a second
+Kepler-grade result, and it is reachable with data already on disk.
