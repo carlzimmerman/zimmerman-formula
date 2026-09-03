@@ -1,6 +1,11 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 r"""
+⚠️ CORRECTED BY f15 (2026-09-03): this file tested the COEFFICIENT at a FIXED exponent of four and never fit the
+exponent.  f15 fits it: the isolated dwarfs give slope 0.07 +/- 0.04 in log sigma vs log M_bar, 4.7 sigma from 1/4.
+The "scaling holds" line in this file's verdict is WRONG; the 0.12 dex scatter was partly the exponent mismatch.
+Cite f15 for the isolated-dwarf verdict.  What stands here: the sample, the EFE handling, the data-vintage check.
+
 f14_isolated_dwarf_msigma_law.py -- a ZERO-PARAMETER law on the cleanest pressure-supported systems that exist.
 =================================================================================================================
 THE LAW.  Milgrom's deep-MOND virial theorem (proved exactly in f11 for any spherical profile) says every isolated
