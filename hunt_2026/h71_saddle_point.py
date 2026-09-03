@@ -1,6 +1,11 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 r"""
+⚠️ SUPERSEDED 2026-09-03 by h71b_saddle_forecast.py -- READ THAT FIRST.  The "67% deficit" this script reports is an artifact of
+centring on the saddle (a local MINIMUM of Sigma) and of using Sigma rather than the observable Delta Sigma.  Measured the way a
+survey measures -- Delta Sigma around a galaxy with a companion, against the same galaxy isolated -- the effect is 0-2%, not 67%,
+and of the opposite sign.  Item 71's promotion is WITHDRAWN.  Part A (the negative-mass region at the saddle) stands.
+
 h71_saddle_point.py -- HUNT ITEM 71: the saddle-point lensing deficit.  THE sign-definite MOND-only prediction.
 ================================================================================================================
 Between two masses the Newtonian field has a SADDLE.  In QUMOND the phantom density is
