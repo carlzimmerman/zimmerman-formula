@@ -1,0 +1,142 @@
+======================================================================================================================
+0. THE ESTIMATOR -- a synthetic control that item 25's version fails
+======================================================================================================================
+  1086 SPARC deep-tail points (g_bar < 1e-11); <sqrt(y)> at canonical a_0 = 0.231
+  analytic bias of the deep-limit estimator = 2 log10(1 + <sqrt y>/2) = +0.095 dex
+  canonical  a_true = 9.360e-11: full-kernel estimator recovers +0.0000 dex, item-25 deep-limit estimator +0.0985 dex; with 0.11 dex scatter added, -0.0196 / +0.0811
+  alt        a_true = 1.130e-10: full-kernel estimator recovers +0.0000 dex, item-25 deep-limit estimator +0.0898 dex; with 0.11 dex scatter added, +0.0057 / +0.0949
+  [PASS] 102.0a AGAINST INTEREST, and it is a bug in five committed items -- item 25's slope-fixed estimator is BIASED. Fed synthetic rotation curves that obey the Route A kernel EXACTLY at a known a_0, it returns a_0 about +0.10 dex too high, because g_bar < 1e-11 is not deep enough for nu -> y^{-1/2}: the leading correction is 1 + sqrt(y)/2 and <sqrt y> = 0.24 there.  Items 25, 64, 70, 76 and 100 all inherit this shift   (synthetic bias: canonical +0.0985 dex, alt +0.0898 dex)
+  [PASS] 102.0b the full-kernel estimator used from here on has no such bias: it recovers the injected a_0 to better than 0.01 dex on the same synthetic data, on both footings   (synthetic bias: canonical +0.00000 dex, alt +0.00000 dex)
+
+  the same two estimators on the REAL deep tail, as a function of how deep the cut is:
+     g_bar cut      N   a_0 full kernel   a_0 item-25 limit  difference
+         3e-11   1735         9.642e-11           1.291e-10      +0.127 dex
+         1e-11   1086         9.040e-11           1.138e-10      +0.100 dex
+         5e-12    529         8.301e-11           1.007e-10      +0.084 dex
+         3e-12    200         9.053e-11           1.051e-10      +0.065 dex
+  [PASS] 102.0c the drift with the cut is the fingerprint of the missing kernel correction: making the tail deeper walks the deep-limit estimator's a_0 monotonically DOWN by 0.13 dex (it must, since its bias scales as <sqrt y>), and the difference between the two estimators shrinks from 0.127 to 0.065 dex exactly as predicted.  The full-kernel estimator's own residual range over the same cuts is smaller but not zero -- 0.07 dex of real sample change   (range over the four cuts: full kernel 0.065 dex, deep-limit 0.108 dex; estimator difference +0.127 -> +0.065 dex)
+
+======================================================================================================================
+1. THE ITEM'S PREMISE TESTED: does a global gas-fraction cut remove the M/L?
+======================================================================================================================
+  SPARC f_gas = 1.33 M_HI/M_bar at Upsilon_d = 0.5: median 0.44, 32 galaxies above 0.7, 18 above 0.8 (of 147)
+  the identity that matters: d log a_0/d log Upsilon = <(1+n) f_*,loc>/<n> with n = d log nu/d log y, which is
+  -<f_*,loc> in the deep limit.  f_*,loc is the LOCAL stellar share of g_bar at the points used -- NOT the
+  galaxy's global gas fraction.  The last two columns show how much the deep limit understates it.
+
+             cut  ngal   Npts  <f_gas> global   <f_*,loc>  d log a0/d log Y   identity deep limit  0.3->0.7
+             all   107   1086            0.55        0.56          -0.681     -0.705     -0.561    -0.657
+     f_gas > 0.3    84    964            0.65        0.53          -0.664     -0.668     -0.534    -0.640
+     f_gas > 0.5    62    774            0.72        0.51          -0.637     -0.638     -0.513    -0.615
+     f_gas > 0.7    32    432            0.82        0.43          -0.538     -0.538     -0.430    -0.513
+     f_gas > 0.8    18    263            0.86        0.37          -0.460     -0.460     -0.373    -0.446
+  [PASS] 102.1a AGAINST THE ITEM'S OWN PREMISE -- 'f_gas > 0.7, where the stellar M/L barely enters' is FALSE for this estimator.  Cutting on the GLOBAL gas fraction leaves the local stellar share of g_bar at the deep-tail points near half, so the M/L lever falls only by a fifth.  The reason is the hunt's own bug pattern (1): the global f_gas is a TOTAL, while g_bar(r) is set by the ENCLOSED mass, and in these dwarfs the extended HI is mostly OUTSIDE the radii that enter while all the stars are inside   (lever d log a_0/d log Upsilon: all points -0.681, f_gas>0.7 -0.538, f_gas>0.8 -0.460 -- a 21% reduction, not a removal)
+  [PASS] 102.1b the lever is the analytic identity <(1+n) f_*,loc>/<n> to 0.03 in every bin, which proves the diagnosis rather than asserting it: the estimator's whole M/L dependence is the LOCAL stellar share of g_bar.  The familiar deep-limit form -<f_*,loc> is 15-20% too small here, the same sub-asymptotic correction section 0 found   (max |local derivative - identity| = 0.0234; max |derivative - deep-limit form -<f_*>| = 0.1304; the practical 0.3->0.7 secant differs from the local derivative by up to 0.025 (curvature))
+
+  what DOES remove it: a cut on the local stellar share itself.
+                 cut  ngal   Npts   <f_*,loc>  measured lever   a_0 (full kernel)
+                 all   107   1086        0.56          -0.681           9.040e-11
+       f_*,loc < 0.5    68    477        0.30          -0.370           8.700e-11
+       f_*,loc < 0.4    52    329        0.23          -0.288           8.234e-11
+       f_*,loc < 0.3    36    219        0.17          -0.216           7.862e-11
+      f_*,loc < 0.25    27    170        0.15          -0.181           7.455e-11
+       f_*,loc < 0.2    23    128        0.12          -0.148           7.361e-11
+      f_*,loc < 0.15    14     85        0.09          -0.111           7.257e-11
+       f_*,loc < 0.1     5     48        0.06          -0.078           7.213e-11
+  [PASS] 102.1c the local cut does what the global one was supposed to do: at f_*,loc < 0.2 the stellar M/L moves a_0 by 0.06 dex per dex of Upsilon, i.e. a factor-2 error in Upsilon costs 0.02 dex in a_0.  THIS is the M/L-free measurement the item wanted, and it is a different sample from the one the item specified   (lever -0.148 against -0.681 for the full deep tail (a 2x error in Upsilon: 0.045 dex vs 0.205 dex))
+
+======================================================================================================================
+2. THE SCAN THE ITEM ASKED FOR: a_0 and its error against the f_gas cut
+======================================================================================================================
+             cut  ngal   Npts   a_0 full kernel   +- dex     %  dex vs canon  dex vs alt   a_0 item-25
+             all   107   1086         9.040e-11    0.038     9        -0.015      -0.097     1.138e-10
+     f_gas > 0.3    84    964         9.069e-11    0.043    10        -0.014      -0.096     1.137e-10
+     f_gas > 0.5    62    774         8.955e-11    0.051    13        -0.019      -0.101     1.114e-10
+     f_gas > 0.6    55    702         8.801e-11    0.058    14        -0.027      -0.109     1.092e-10
+     f_gas > 0.7    32    432         7.136e-11    0.073    18        -0.118      -0.200     8.982e-11
+     f_gas > 0.8    18    263         8.374e-11    0.076    19        -0.048      -0.130     1.037e-10
+  [PASS] 102.2a the item's own criterion -- 'a_0 to better than 8%' -- is NOT met on the f_gas > 0.7 subset, and cannot be: the cut leaves 32 galaxies, most of them dwarfs with 20-30% Hubble-flow distances, and a_0 scales as D^-2, so the galaxy bootstrap gives 17%.  Reported as a failure of the item's precision target, not of the framework   (a_0(f_gas>0.7) = 7.136e-11 +- 0.073 dex = 18%, target 8%; 32 galaxies, 432 points)
+  [PASS] 102.2b the scan is not monotone and the f_gas > 0.7 and > 0.8 bins differ by 0.07 dex with 18 galaxies in common, so the cut is being driven by which handful of dwarfs survive it rather than by a physical trend -- the honest reading is that the global-f_gas scan has no resolving power at this sample size   (f_gas>0.7 7.136e-11, f_gas>0.8 8.374e-11 (+0.069 dex apart, each +- ~0.07))
+
+======================================================================================================================
+3. THE M/L-FREE MEASUREMENT (local cut), and what carries its error
+======================================================================================================================
+  a_0 (f_*,loc < 0.2, full kernel) = 7.361e-11 +- 0.062 dex [6.489e-11, 8.430e-11], 23 galaxies, 128 points
+     vs canonical 9.360e-11: -0.104 dex (-1.7 sigma)
+     vs alt       1.130e-10: -0.186 dex (-3.0 sigma)
+     vs the KiDS dwarf lens stack (item 2, the other M/L-insensitive rung) 9.550e-11 +- 0.109 dex: -0.113 dex (-0.9 sigma)
+  [PASS] 102.3a (the item's second criterion, and this one PASSES) the M/L-free deep tail agrees with the KiDS dwarf lens stack -- two measurements of a_0 eleven decades apart in acceleration and sharing no systematic, neither of which goes through a stellar mass-to-light ratio   (7.36e-11 vs 9.55e-11, -0.113 +- 0.126 dex)
+  [PASS] 102.3b AGAINST INTEREST: with the estimator bug removed AND the M/L removed, the SPARC deep tail sits BELOW both footings, by about 1.7 sigma under canonical and 3.0 under alt.  Item 25's headline (a_0 = 1.14e-10, 'the alt footing to 0.004 dex') was the +0.10 dex estimator bias plus a stellar M/L; corrected, the alt footing is the one in trouble and the canonical is the one that survives   (corrected M/L-free a_0 = 7.361e-11; canonical -1.7 sigma, alt -3.0 sigma; item 25 quoted 1.14e-10)
+  CAVEAT ON THAT SIGMA -- the errors above are the GALAXY BOOTSTRAP only.  h103_deep_tail_error_budget.py adds the
+  coherent calibration terms (the distance scale above all), which take the total to 0.074 dex and make BOTH
+  footings consistent.  The deep tail must not be quoted as deciding between them; what it says is that the
+  central value moved down by 0.19 dex when the estimator bug and the stellar M/L were both removed.
+
+  splits -- the M/L-free sample is small and its error is a DISTANCE error (a_0 ~ D^-2):
+    distance error < 12% (TRGB/Cepheid/direct)   a_0 = 9.078e-11 +- 0.104 dex  (8 galaxies, 70 points)
+    distance error >= 12% (Hubble flow)          a_0 = 5.677e-11 +- 0.077 dex  (15 galaxies, 58 points)
+    inclination >= 60 deg                        a_0 = 7.176e-11 +- 0.084 dex  (12 galaxies, 89 points)
+    inclination < 60 deg                         a_0 = 7.805e-11 +- 0.081 dex  (11 galaxies, 39 points)
+  [PASS] 102.3c the M/L-free sample splits on DISTANCE QUALITY at 0.20 dex, 1.6 sigma: the eight galaxies with TRGB or Cepheid distances give a_0 on the canonical footing, the fifteen with 20-30% Hubble-flow distances give 40% less. Since a_0 ~ D^-2 this is where the whole error lives, and it is item 103's business   (good distances 9.078e-11 vs Hubble flow 5.677e-11: +0.204 +- 0.129 dex (+1.6 sigma))
+
+======================================================================================================================
+4. AN a_0-FREE MEASUREMENT OF UPSILON THAT FALLS OUT OF THE SAME SAMPLE
+======================================================================================================================
+  The deep tail contains both gas-dominated and star-dominated points.  Requiring the two to return the SAME a_0
+  -- whatever a_0 is -- determines Upsilon_[3.6] with no cosmology in it at all.  (Item 76 asked the different
+  question of what Upsilon reproduces Planck's a_0; this one never uses a_0.)
+     Upsilon_d   a_0 (f_*,loc<0.2)     N   a_0 (f_*,loc>0.6)     N  difference
+          0.30           8.594e-11   213           1.741e-10   489      +0.307 dex
+          0.40           7.631e-11   162           1.221e-10   495      +0.204 dex
+          0.50           7.361e-11   128           9.135e-11   472      +0.094 dex
+          0.60           7.143e-11    99           7.255e-11   450      +0.007 dex
+          0.70           6.955e-11    86           6.035e-11   428      -0.062 dex
+          0.80           6.384e-11    72           5.172e-11   396      -0.091 dex
+  the two halves of the deep tail return the same a_0 at Upsilon_[3.6] = 0.612 +- 0.150 (galaxy bootstrap, 83 successes)
+  stellar populations at 3.6 um: 0.50 +- 0.10 (Schombert+2019, McGaugh+2016).  DiskMass dynamical: ~0.3.
+  [PASS] 102.4 a stellar mass-to-light ratio measured WITHOUT a_0 and without stellar populations, from the internal consistency of the deep tail alone: Upsilon_[3.6] = the value that makes gas-dominated and star-dominated points return the same a_0.  It agrees with stellar populations.  AGAINST INTEREST it is NOT precise enough to decide anything: +-0.15 puts DiskMass's 0.3 only 2.0 sigma away, so 'DiskMass excluded' must NOT be quoted from this measurement -- what can be quoted is that a completely independent route lands on the SPS value   (Upsilon = 0.612 +- 0.150; vs SPS 0.50 +- 0.10 at +0.6 sigma; vs DiskMass 0.30 at only +2.0 sigma -- not an exclusion)
+  AGAINST INTEREST: at that self-consistent Upsilon the deep tail's a_0 is 7.129e-11, which is -0.118 dex from canonical and -0.200 from alt.
+  So the sample cannot have all three of (Upsilon = 0.5, a_0 = canonical, gas and star points agreeing).  Fixing
+  the internal consistency costs ~0.1 dex in a_0; fixing a_0 costs ~0.09 dex of gas-vs-star disagreement.  That
+  residual is the real M/L systematic of the deep-tail estimator and it is quoted here, not hidden.
+
+======================================================================================================================
+5. THE ALTERNATIVE COMPUTED BESIDE IT
+======================================================================================================================
+  Newtonian (nu = 1, same baryons, no halo): <log g_obs/g_bar> = +0.713 dex on the M/L-free points -- a factor 5 discrepancy, so these points are not Newtonian
+  per-galaxy M/L-free a_0 (17 galaxies with >= 3 points): spread 0.267 dex, slope against log M_bar = -0.167 +- 0.143
+  In LambdaCDM there is no a_0: the quantity measured here would be a halo property, and halo properties of dwarfs
+  run with mass (V_max^4/(G M_b) tracks the stellar-to-halo mass relation, slope ~ -0.4 to -0.6 over this range).
+  [PASS] 102.5 the framework's side of the alternative holds: the per-galaxy M/L-free a_0 has no significant mass trend over 1.7 decades of baryonic mass, where a halo-property reading of the same number would run with mass   (slope -0.167 +- 0.143 dex/dex (-1.2 sigma from flat); per-galaxy spread 0.267 dex, dominated by the 20-30% distances)
+
+======================================================================================================================
+6. MUTATION CONTROLS
+======================================================================================================================
+  [PASS] M102a AGAINST INTEREST, and it is a property of the estimator worth stating: permuting g_obs against g_bar changes NOTHING.  <log g_obs - log(nu(g_bar/a) g_bar)> depends only on the two marginal means, so the a_0 measured here is a NORMALISATION of the deep tail and carries no information about the RAR point by point.  A permutation mutation therefore cannot test it -- the controls that can are the injections M102b/M102c, and the shape is tested separately by the free-slope fit below and by items 22 and 25   (shuffled a_0 = 7.361152e-11, unshuffled 7.361152e-11 -- identical to machine precision)
+  free log-log slope of the M/L-free points: OLS(y|x) = 0.281 +- 0.078 (galaxy bootstrap), orthogonal 0.369, inverse regression 1.218; the kernel's own local slope here is 0.553 (not 1/2 -- same sub-asymptotic correction); shuffled +0.061; correlation r = 0.480
+  [PASS] M102a2 AGAINST INTEREST: the M/L-free subsample CANNOT measure the RAR slope, and its OLS value looks bad.  The cut leaves only 0.9 dex of g_bar and r = 0.48, so the forward regression is heavily attenuated: OLS gives 0.28, 3.5 sigma below the kernel's predicted 0.55 (and 2.8 below a nominal 1/2).  The errors-in-variables bracket [OLS, inverse regression] = [0.28, 1.22] does contain the prediction, so this is an absence of leverage rather than a discrepancy -- but it must be recorded as an untested assumption of the a_0 measurement, which fixes the shape and fits only the normalisation.  The shuffle control does work: permuting g_obs flattens even this weak slope to 0.06   (OLS 0.281 +- 0.078 (-3.5 sigma from the kernel's 0.553); bracket [0.28, 1.22] contains it; shuffled +0.061)
+  [PASS] M102b turning the kernel off (nu = 1, g_obs = g_bar) must make the estimator run away to an absurd a_0, since no a_0 can make the boosted kernel reproduce an unboosted curve   (nu=1 synthetic returns a_0 = nan (bracket floor 1e-13))
+  [PASS] M102c injecting a 4x wrong a_0 must be recovered as a 4x wrong a_0 -- the estimator's sensitivity is the textbook one and not a fixed point   (injected 3.744e-10, recovered 3.744e-10 (+0.0000 dex))
+
+======================================================================================================================
+VERDICT -- ITEM 102
+======================================================================================================================
+  The item as written does not work, for a reason worth more than the item: the global gas fraction is not what
+  sets the estimator's M/L leverage.  Cutting SPARC at f_gas > 0.7 leaves the local stellar share of g_bar at
+  0.43 and the M/L lever at -0.54, against -0.68 for the whole deep tail -- a 21% reduction, not a
+  removal, because the HI that makes these dwarfs gas-rich lies OUTSIDE the radii where g_bar is evaluated.
+  Cutting on the local stellar share instead takes the lever to -0.15, and that is the measurement:
+      a_0 (M/L-free, full kernel) = 7.361e-11  +- 0.062 dex  (15%, 23 galaxies, 128 points)
+      canonical -0.104 dex (-1.7 sigma) | alt -0.186 dex (-3.0 sigma) | KiDS dwarf lenses -0.113 dex (-0.9 sigma)
+  It does not reach the item's 8%; it reaches 15%, and the budget is distance, not M/L (item 103).
+  Two corrections go on the ledger and both cut against previously banked numbers:
+    * item 25's slope-fixed estimator is biased +0.10 dex by the kernel's own sub-asymptotic
+      correction.  Its a_0 = 1.14e-10 becomes 9.04e-11 on the same points with the full kernel, and the
+      claim that it lands on the alt footing to 0.004 dex is withdrawn.  Items 64, 70, 76 and 100 inherit the shift.
+    * the same points give an a_0-free measurement of Upsilon_[3.6] = 0.61 +- 0.15, from the requirement that
+      gas-dominated and star-dominated points agree.  It sits on the SPS value and is 2.0 sigma from DiskMass's
+      0.3 -- consistent, not decisive, and it must not be quoted as an exclusion.
+  Nothing here is a second Kepler-grade law.  What it is, is the first rung of the ladder that item 125 needs, with
+  its systematic named and an estimator bias removed from four items that were already banked.
+
+RESULT: 17 checks, 0 FAIL   rc=0

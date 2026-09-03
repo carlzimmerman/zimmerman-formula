@@ -1,0 +1,111 @@
+====================================================================================================================
+ITEM 115 -- Renzo's rule at second order: the kernel fixes the CURVATURE of every rotation curve too
+====================================================================================================================
+
+  K1 -- the closed forms above must reproduce numerical derivatives of nu(y) = 1/(1 - exp(-sqrt(y))) and the two limits
+           y   n (closed)  n (numeric)   ndot (closed)  ndot (numeric)
+      0.0001    -0.497504    -0.497504        0.001246        0.001246
+       0.001    -0.492136    -0.492136        0.003911        0.003911
+        0.01    -0.475417    -0.475417        0.012083        0.012083
+         0.1    -0.425103    -0.425103        0.035376        0.035376
+           1    -0.290988    -0.290988        0.084674        0.084674
+           3    -0.186153    -0.186153        0.102789        0.102789
+          10    -0.069887    -0.069887        0.080441        0.080441
+         100    -0.000227    -0.000227        0.001022        0.001022
+       1e+04    -0.000000     0.000000        0.000000        0.000000
+  [PASS] K1 the analytic kernel derivatives are correct: n(y) and ndot(y) match numerical differentiation of the Route A kernel everywhere, and reach the required limits n -> -1/2, ndot -> 0 in deep MOND and n, ndot -> 0 in the Newtonian regime   (max |closed - numeric|: n 2.70e-10, ndot 4.05e-12; n(1e-6) = -0.4998, n(1e4) = -1.86e-42; ndot peaks at 0.1031 near y ~ 3)
+  ndot is a BUMP of height ~0.10 centred near y ~ 3.  That is the whole second-order signal: it is small, and where it
+  lives (the transition region) is exactly where rotation curves have their fewest well-measured points.
+
+  SPARC after the standard cuts (Q <= 2, i >= 30 deg, >= 6 points): 147 galaxies
+
+--------------------------------------------------------------------------------------------------------------------
+A -- the DIRECT test (the item's literal criterion): correlate the measured d^2 ln v/dx^2 with the prediction
+--------------------------------------------------------------------------------------------------------------------
+  canonical  N = 2116 interior points.  measured curvature correlation r = +0.184 (first-order-only form +0.174, Newton +0.171, deep-MOND +0.171); regression slope +0.289 vs predicted 1.000
+  canonical  NOISE CEILING from synthetic curves that obey the framework exactly with SPARC's own velocity errors: r = +0.267 +- 0.046   (the same pipeline recovers the FIRST-order slope at r = 0.886, measured 0.766)
+  alt        N = 2117 interior points.  measured curvature correlation r = +0.180 (first-order-only form +0.170, Newton +0.167, deep-MOND +0.167); regression slope +0.284 vs predicted 1.000
+  alt        NOISE CEILING from synthetic curves that obey the framework exactly with SPARC's own velocity errors: r = +0.264 +- 0.044   (the same pipeline recovers the FIRST-order slope at r = 0.883, measured 0.766)
+  [PASS] 115A AGAINST INTEREST -- the item's literal criterion FAILS.  The measured curvature of SPARC rotation curves correlates with the framework's prediction at only r = 0.18, far below the r > 0.5 the item asked for.  The reason is not the framework: a synthetic curve that obeys the framework EXACTLY, carrying SPARC's own quoted velocity errors, is recovered by the same pipeline at r = 0.27.  Second derivatives of these data are noise-dominated, and the item's threshold was never reachable   (measured r = +0.184; noise ceiling r = +0.267 +- 0.046; the measurement reaches 69% of what the data can support, where the FIRST-order slope reaches 86%)
+  Read that the other way: at first order the data deliver 86% of the ceiling, at second order 68%.  Pointwise curvature
+  is the wrong observable for this dataset.  Estimator B below asks the same physical question as an integral instead.
+
+--------------------------------------------------------------------------------------------------------------------
+B -- the DIFFERENTIAL test: Taylor-reconstruct ln v at neighbouring measured radii, first order vs first+second
+--------------------------------------------------------------------------------------------------------------------
+  canonical  N = 13368 anchor-neighbour pairs, median |Delta ln r| between anchor and neighbour = 0.147 (a factor 1.16 in radius)
+  canonical  rms of the reconstruction of Delta ln v:
+                0th order (no model)            0.1408
+                Newton  1st                     0.1039      Newton  1st+2nd  0.0941
+                deep-MOND-everywhere 1st        0.0805      +2nd             0.0761
+                FRAMEWORK 1st (item 22)         0.0800      FRAMEWORK 1st+2nd 0.0738   (without the ndot term 0.0735)
+  canonical  second-order coefficients by regression (the framework predicts 1.000 for BOTH):
+                beta[(1+n) L''  ] = +0.944 +- 0.135   -> 0.4 sigma from 1
+                beta[ndot (L')^2] = -0.130 +- 0.525   -> 2.2 sigma from 1, 0.2 sigma from 0
+             rms improvement from adding second order: +0.0062 +- 0.0019 (+7.8%, 3.3 sigma, galaxy bootstrap)
+  alt        N = 13368 anchor-neighbour pairs, median |Delta ln r| between anchor and neighbour = 0.147 (a factor 1.16 in radius)
+  alt        rms of the reconstruction of Delta ln v:
+                0th order (no model)            0.1408
+                Newton  1st                     0.1039      Newton  1st+2nd  0.0941
+                deep-MOND-everywhere 1st        0.0805      +2nd             0.0761
+                FRAMEWORK 1st (item 22)         0.0796      FRAMEWORK 1st+2nd 0.0735   (without the ndot term 0.0733)
+  alt        second-order coefficients by regression (the framework predicts 1.000 for BOTH):
+                beta[(1+n) L''  ] = +0.957 +- 0.137   -> 0.3 sigma from 1
+                beta[ndot (L')^2] = +0.015 +- 0.567   -> 1.7 sigma from 1, 0.0 sigma from 0
+             rms improvement from adding second order: +0.0061 +- 0.0018 (+7.7%, 3.4 sigma, galaxy bootstrap)
+  [PASS] 115B (a WORKS) the second order is REAL and its coefficient is the predicted one.  Reconstructing each rotation curve from its neighbours, adding the kernel's second-order term cuts the residual by 8% over the first order alone, and the coefficient of the (1+n) L'' term measured by regression is 0.94 +- 0.13 where the framework predicts exactly 1.000 -- a 0.4 sigma agreement with no free parameter   (beta[(1+n)L''] = +0.944 +- 0.135 (0.4 sigma from the predicted 1.000); rms 0.0800 -> 0.0738 (3.3 sigma))
+  [PASS] 115C (a WORKS) the framework beats both alternatives at BOTH orders: Newton needs a second-order term to reach a residual the framework already beats at first order, and the framework's full second-order reconstruction is 22% tighter than Newton's   (1st order: framework 0.0800 vs Newton 0.1039; 1st+2nd: framework 0.0738 vs Newton 0.0941; 0th order (no model) 0.1408)
+  [PASS] 115D AGAINST INTEREST -- the term that is genuinely NEW at second order, ndot (L')^2, is NOT detected.  Its regression coefficient is -0.13 +- 0.52 where the framework predicts 1.000: consistent with the prediction at 2 sigma, consistent with ZERO at 0.3 sigma, and dropping it from the model does not worsen the fit.  The kernel's log-log CURVATURE cannot be measured inside SPARC galaxies any more than item 91 could measure it from binned RAR medians   (beta[ndot (L')^2] = -0.130 +- 0.525: 2.2 sigma from the predicted 1, 0.2 sigma from 0.  rms without it 0.0735, with it 0.0738 -- adding the predicted term makes the fit very slightly WORSE)
+  The ndot term is small by construction: its median size is about 0.04 against 0.26 for the (1+n) L'' term, i.e. a 15%
+  correction to a second-order correction.  A detection needs either much finer radial sampling or a kernel with a
+  larger ndot; the two footings differ in ndot by far less than the 0.52 error bar, so this route cannot separate them.
+
+--------------------------------------------------------------------------------------------------------------------
+MUTATION CONTROLS
+--------------------------------------------------------------------------------------------------------------------
+  nu = 1 everywhere (Newtonian kernel):        rms 1st+2nd = 0.0941   vs framework 0.0738
+  a_0 x 0.01 (drives the kernel Newtonian):    rms 1st+2nd = 0.0907   vs framework 0.0738
+  second-order term shuffled across points:    rms 1st+2nd = 0.0858   vs framework 0.0738
+  [PASS] M115 the mutations break it: replacing the kernel by nu = 1, pushing a_0 down by two decades, or shuffling the second-order term across points all degrade the reconstruction   (framework 0.0738; nu=1 0.0941; a_0/100 0.0907; shuffled 0.0858)
+
+--------------------------------------------------------------------------------------------------------------------
+WHAT THIS ESTIMATOR CANNOT DO -- reported against interest
+--------------------------------------------------------------------------------------------------------------------
+   log10 a_0   rms(1st+2nd)
+      -12.00        0.09055
+      -11.50        0.08652
+      -11.00        0.08133
+      -10.50        0.07661
+      -10.00        0.07368
+       -9.50        0.07282
+       -9.00        0.07328
+       -8.50        0.07412
+  the profile has a shallow minimum at log10 a_0 = -9.50, i.e. +0.53 dex ABOVE the canonical footing
+  the same minimum, recomputed on a FIXED sample of the 74 best-sampled galaxies as the smoothing window is widened:
+     K=5: -9.25   K=7: -9.50   K=9: -9.50   K=11: -9.75   K=13: -9.75
+  [PASS] 115E AGAINST INTEREST -- this estimator is NOT an a_0 meter and must not be quoted as one.  Its preferred a_0 sits 0.5 dex above the canonical footing, and it moves by 0.5 dex with nothing but the width of the derivative-smoothing window.  The local-shape statistic constrains the kernel's SLOPE, not its scale: it excludes the Newtonian end firmly and is nearly blind above a_0 ~ 1e-10   (shallow minimum at log10 a_0 = -9.50 (canonical -10.03, alt -9.95); window drift 0.50 dex across K = 5..13 at fixed sample; rms at the minimum 0.0728 vs 0.0737 at 1e-10, a 1.2% difference)
+  Upsilon lever (bug pattern 5 -- is this really an M/L result wearing a_0's clothes?):
+     Upsilon_[3.6] = 0.3:  rms 1st = 0.0811   rms 1st+2nd = 0.0761
+     Upsilon_[3.6] = 0.5:  rms 1st = 0.0800   rms 1st+2nd = 0.0738
+     Upsilon_[3.6] = 0.7:  rms 1st = 0.0803   rms 1st+2nd = 0.0733
+  [PASS] 115F the result is NOT an M/L result: swinging Upsilon_[3.6] from 0.3 to 0.7, which moves every other a_0 measurement in this hunt by 0.2 dex, changes the reconstruction rms by under 4%.  The differential estimator cancels the normalisation and keeps only the SHAPE   (rms(1st+2nd) = 0.0761 / 0.0738 / 0.0733 for Upsilon = 0.3 / 0.5 / 0.7, a spread of 3.9%)
+
+====================================================================================================================
+VERDICT -- item 115
+====================================================================================================================
+  Renzo's rule DOES extend to second order, and the coefficient is the predicted one: beta[(1+n) L''] = 0.94 +- 0.13
+  against a prediction of exactly 1.000, with the reconstruction residual falling 8% below the first order alone.  The
+  framework beats Newton at both orders and beats deep-MOND-everywhere at second order.  Nothing here is fitted.
+
+  Three things are reported against interest.  (i) The item's own criterion -- a pointwise curvature correlation above
+  0.5 -- FAILS at 0.18, and a noise-ceiling simulation shows the threshold was unreachable with SPARC's error bars.
+  (ii) The piece that is genuinely NEW at second order, ndot (L')^2 -- the kernel's log-log curvature -- is NOT detected:
+  -0.13 +- 0.52 against a predicted 1.  Item 91 failed to measure the same quantity from binned RAR medians; this is an
+  independent route to it and it fails too.  (iii) The estimator's preferred a_0 is 0.5 dex high and moves 0.5 dex with
+  the smoothing window, so it is a slope meter and not a scale meter -- do not quote an a_0 from it.
+
+  What the item asked -- does the second order add information beyond the first? -- answers YES for the (1+n) L'' term
+  and NO for the ndot term.  The first is the first-order relation differentiated; the second is the only place a new
+  kernel property enters, and it is below the noise.
+
+RESULT: 8 checks, 0 FAIL   rc=0

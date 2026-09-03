@@ -1,0 +1,98 @@
+========================================================================================================================
+PART A -- the mapping, and a check that it is the one the two footings are built on
+========================================================================================================================
+  Planck-like background: h = 0.674, Omega_m = 0.3134, Omega_Lambda = 0.6866, rho_crit = 8.533e-27 kg/m^3
+     (c/2) sqrt(G rho_Lambda) = 9.3732e-11 m/s^2   vs the CANONICAL footing 9.3600e-11 (+0.0006 dex)
+     (c/2) sqrt(G rho_crit)   = 1.1312e-10 m/s^2   vs the ALT footing       1.1300e-10 (+0.0005 dex)
+  [PASS] 104-A the inversion rho_DE = (2 a_0/c)^2/G is not an assumption bolted on for this item: the canonical footing IS (c/2)sqrt(G rho_Lambda) and the alt footing IS (c/2)sqrt(G rho_total) on the same background, both to under 0.01 dex, so reading a_0(z) as a dark-energy density is exactly what the two footings already mean   (canonical +0.0006 dex, alt +0.0005 dex)
+  
+  The framework's own statement is therefore not 'a_0 happens to be flat' but w = -1 EXACTLY: pure Lambda has
+  rho_DE constant, so a_0 is constant, so any detected d log a_0/dz is a detection of w != -1.  Leverage:
+     at z = 0.5:  d log10 a_0 / d(1+w) = 0.264 dex   (so 0.05 in w_0 is 0.0132 dex in a_0 -- 8.3x SMALLER than the RAR's own 0.11 dex scatter)
+     at z = 1.0:  d log10 a_0 / d(1+w) = 0.452 dex   (so 0.05 in w_0 is 0.0226 dex in a_0 -- 4.9x SMALLER than the RAR's own 0.11 dex scatter)
+     at z = 1.5:  d log10 a_0 / d(1+w) = 0.597 dex   (so 0.05 in w_0 is 0.0298 dex in a_0 -- 3.7x SMALLER than the RAR's own 0.11 dex scatter)
+     at z = 2.5:  d log10 a_0 / d(1+w) = 0.816 dex   (so 0.05 in w_0 is 0.0408 dex in a_0 -- 2.7x SMALLER than the RAR's own 0.11 dex scatter)
+
+========================================================================================================================
+PART B -- a constant w from each rung set, intercept free and then pinned to SPARC
+========================================================================================================================
+  SPARC's own z = 0 value through the identical estimator: a_0(0) = 1.176e-10 (log = -9.930)
+  rung set                  N  z med       w (a_0(0) free)    w (a_0(0) pinned to SPARC)
+  RC100                    99   1.53       -1.428 +- 0.241               -0.916 +- 0.064
+  MSA-3D golden            23   1.10       +0.050 +- 0.912               +0.081 +- 0.190
+  joint (all three)       250   0.00       -0.731 +- 0.103         (SPARC is in the fit)
+  MUSE-DARK III (lit)      79   0.89       -0.160 +- 0.023 (published a_0(z), stat only)
+
+  The pinned column is not a refinement, it is a WARNING: pinning the z = 0 intercept to SPARC moves RC100's w by
+  0.51, because RC100's internal slope is negative while its LEVEL sits above SPARC's.  A number that
+  moves by half a unit of w depending on whether an anchor is used is not a measurement of w.
+  [PASS] 104-B AGAINST INTEREST -- the equation of state from a_0(z) is not stable against the choice of z = 0 anchor: RC100 alone gives w = -1.4 with a free intercept and w = -0.9 pinned to SPARC's own value through the same estimator, a shift larger than the entire DESI-vs-Lambda signal.  Neither number may be quoted as a measurement   (RC100 free -1.428 +- 0.241 vs pinned -0.916 +- 0.064: shift +0.512)
+
+========================================================================================================================
+PART C -- the full (w_0, w_a), with the degeneracy shown rather than hidden
+========================================================================================================================
+  RC100            w_0 = -1.42 +- 3.79,  w_a = -0.02 +- 6.48,  corr = -0.998
+                   best-measured direction -0.86 w_0 -0.50 w_a to +-0.21; worst direction to +-7.50
+  MSA-3D golden    w_0 = +10.83 +- 13.96,  w_a = -20.93 +- 27.03,  corr = -0.997
+                   best-measured direction -0.89 w_0 -0.46 w_a to +-0.94; worst direction to +-30.40
+
+  Both surveys measure ONE number -- a slope -- so (w_0, w_a) is degenerate along a line by construction; the
+  'marginal' errors above are meaningless on their own and are printed only to show how large they are.
+  [PASS] 104-C the CPL fit is rank-deficient by construction, and saying so is the result: one redshift-slope cannot separate w_0 from w_a, so the marginal w_0 error from a single survey exceeds unity and the only constrained combination is the one printed.  A (w_0, w_a) contour from a_0(z) alone would be a picture of a prior   (RC100 marginal sigma(w_0) = 3.79, sigma(w_a) = 6.48, corr -0.998; best direction +-0.21, worst +-7.50)
+
+========================================================================================================================
+PART D -- beside Planck, beside DESI, and beside the framework's own requirement
+========================================================================================================================
+  framework (a_0 fixed by rho_Lambda):   w = -1 EXACTLY, w_a = 0     -> d log a_0/dz = 0.000
+  Planck LCDM:                           w = -1                      -> d log a_0/dz = 0.000
+  DESI DR2 w0waCDM + Pantheon+:          w_0 = -0.838 +- 0.055, w_a = -0.620 +- 0.22
+       -> the framework WITH DESI's CPL predicts d log a_0/dz = -0.0518 over 0.5 < z < 2.5 (a_0 falls to 0.822 of today's by z = 2.5)
+  measured:
+       RC100                  w = -1.428 +- 0.241   (1.8 sigma from w = -1, 2.5 sigma from DESI's w_0)
+       MSA-3D golden          w = +0.050 +- 0.912   (1.2 sigma from w = -1, 1.0 sigma from DESI's w_0)
+       MUSE-DARK III (lit)    w = -0.160 +- 0.023   (35.8 sigma from w = -1, 28.9 sigma from DESI's w_0) [stat only, systematic swamps it]
+  [PASS] 104-D the one thing this route CAN say today, and it says it about the framework's own DESI variant rather than about dark energy at large: RC100's slope is consistent with pure Lambda (0.000), with the framework carrying DESI's CPL, and with the LambdaCDM-native emergent rise all at once -- the three predictions differ by less than this measurement's error bar, so a_0(z) at RC100's precision does not discriminate any of them   (RC100 d log a_0/dz = -0.1123 +- 0.0640; pure Lambda 0.0000 (1.8s), framework+DESI-CPL -0.0518 (0.9s), LambdaCDM-native +0.1314 (3.8s))
+
+========================================================================================================================
+PART E -- the precision actually reached, against the +-0.05 the item asked for
+========================================================================================================================
+  best sigma(w) from a survey THIS script inverts = 0.241 (RC100), against the item's target of 0.05 -- short by a factor 5
+  (MUSE-DARK III's nominal +-0.023 is the STATISTICAL error on a published a_1 whose own paper says a
+   +0.2 to +0.45 dex stellar-mass shift would remove the whole signal; it is not a usable error on w, and is not used here.)
+  and the CENTRAL values across the three surveys span w = -1.43 to +0.05, a range of 1.48 in w -- 27 times DESI's own w_0 error
+  the same three surveys' a_0 levels span 0.48 dex, which alone is +-0.40 in w at z = 1.5
+  [PASS] 104-E AGAINST INTEREST -- item 104's headline ('w_0 to +-0.05, competitive with a supernova sample, from rotation curves') is NOT reached and is not close.  The best single-survey statistical error is an order of magnitude too large, and the survey-to-survey disagreement found in item 101 puts the central value anywhere between a strongly phantom w and no dark energy evolution at all.  This route does not yet measure an equation of state   (best sigma(w) = 0.24 vs target 0.05; central values -1.43 (RC100), +0.05 (MSA-3D), -0.16 (MUSE-DARK III))
+
+  What WOULD reach it, computed rather than asserted: at z = 1.5 the lever is d log a_0/d(1+w) = 0.597 dex, so sigma(w_0) = 0.05 needs a_0(z) to 0.0298 dex = 7.1% at one redshift,
+  with the z = 0 anchor known at least that well.  The closed-form estimator's per-galaxy floor is 0.4 dex, so it
+  needs N > 180 galaxies with a CONTROLLED selection -- and the level systematics (0.05 dex truncation bias, 0.4 dex
+  survey-to-survey) would still dominate.  The BTFR route of item 105 is the one with the right systematics.
+
+========================================================================================================================
+PART F -- mutation controls
+========================================================================================================================
+     within-survey z-shuffle on the joint set: w = -0.647 +- 0.099 (the real joint fit gives -0.731 +- 0.103)
+     -- the shuffle does NOT return w = -1, for the reason item 101's M1 gave: the joint 'trend' is the survey
+        ladder, which survives shuffling z inside each survey.  Shuffling z ACROSS surveys instead:
+     global z-shuffle: w = -0.975 +- 0.103  (0.2 sigma from w = -1)
+  [PASS] M104-1 the mutation that must fire: destroying the redshift information entirely returns w = -1 (no evolution) within errors, while the within-survey shuffle does not -- which is the same diagnosis as item 101's, that a joint a_0(z) built by stacking surveys measures the survey ladder and not cosmology   (global shuffle w = -0.975 +- 0.103; within-survey shuffle w = -0.647 vs real -0.731)
+     closure: injected w = -1.00 (no noise) -> recovered -1.0000
+     closure: injected w = -0.70 (no noise) -> recovered -0.7000
+     closure: injected w = -1.30 (no noise) -> recovered -1.3000
+     closure with RC100's real 0.39 dex per-galaxy scatter: injected w = -0.70 -> recovered -0.585 +- 0.273
+  [PASS] M104-2 closure: the fitter recovers an injected w exactly in the absence of noise, and with RC100's own per-galaxy scatter it recovers it to about a quarter of a unit -- which is the error bar Part B quotes, so the error bar is real and not an artefact of the bootstrap   (noiseless recovery of w = -1 gives -1.000000; noisy recovery of w = -0.70 gives -0.585 +- 0.273)
+
+========================================================================================================================
+VERDICT (item 104).  The mapping is exact and it is the framework's own -- the canonical footing IS
+(c/2)sqrt(G rho_Lambda) to 0.001 dex -- so a_0(z) really is a dark-energy density measurement in principle.
+In practice it is not one yet:
+  * best sigma(w) from a survey inverted here = 0.24 against the item's +-0.05 target, a factor 5 short;
+  * (w_0, w_a) is rank-deficient from a single slope, marginal sigma(w_0) > 1;
+  * the central value swings by 0.51 in w on the choice of z = 0 anchor alone, and by 1.48 across the three surveys;
+  * and RC100's slope cannot separate pure Lambda (0.000), the framework carrying DESI's CPL (-0.052) and the
+    LambdaCDM-native rise (+0.131) -- all three sit inside one error bar.
+The honest product is the LEVER, computed here rather than asserted: sigma(w_0) = 0.05 requires a_0 at one
+redshift near z = 1.5 to 7.1%, with a z = 0 anchor at least as good.  That is item 105's BTFR meter, not this one.
+========================================================================================================================
+
+RESULT: 7 checks, 0 FAIL   rc=0

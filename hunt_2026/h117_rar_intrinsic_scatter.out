@@ -1,0 +1,117 @@
+====================================================================================================================
+ITEM 117 -- the RAR's intrinsic scatter, budgeted against the framework's own parameter-free curve
+====================================================================================================================
+
+--------------------------------------------------------------------------------------------------------------------
+THE OBSERVED SCATTER about the framework's own curve (nothing fitted)
+--------------------------------------------------------------------------------------------------------------------
+  canonical  no cut         N =  3140 points: ORTHOGONAL rms 0.1489 dex (mean +0.0099), vertical rms 0.1764 dex
+  canonical  dv/v < 0.10    N =  2684 points: ORTHOGONAL rms 0.1118 dex (mean +0.0283), vertical rms 0.1327 dex
+  alt        no cut         N =  3140 points: ORTHOGONAL rms 0.1500 dex (mean -0.0145), vertical rms 0.1768 dex
+  alt        dv/v < 0.10    N =  2684 points: ORTHOGONAL rms 0.1123 dex (mean +0.0043), vertical rms 0.1326 dex
+  for reference, the published SPARC analyses quote a total RAR scatter near 0.13 dex on the same accuracy cut;
+  this reproduces that with NO fitted acceleration scale, on either footing
+  [PASS] 117A the parameter-free curve reproduces the published scatter without fitting anything.  On the standard accuracy cut the vertical scatter is 0.133 dex on both footings, and the orthogonal scatter is 0.112 dex.  The two footings differ by under 0.5%, so the scatter budget cannot separate them   (canonical orthogonal 0.1118 vertical 0.1327; alt orthogonal 0.1123 vertical 0.1326; N = 2684)
+
+--------------------------------------------------------------------------------------------------------------------
+(A) THE SCATTER IS NOT ONE NUMBER: it splits into a per-galaxy OFFSET and a within-galaxy SHAPE residual
+--------------------------------------------------------------------------------------------------------------------
+  N = 139 galaxies, 2678 points
+  total vertical rms 0.1319 dex  =  WITHIN-galaxy 0.0715 dex  (+)  BETWEEN-galaxy 0.1109 dex, in quadrature
+  median within-galaxy rms of a single galaxy: 0.0601 dex
+  [PASS] 117B (a structural result, new here) most of the RAR's scatter is a per-galaxy NORMALISATION offset, not a failure of the relation's shape.  Splitting the residual into a between-galaxy and a within-galaxy part gives 0.111 dex and 0.072 dex: a galaxy sits off the relation as a whole nearly twice as far as its own points scatter about themselves.  That is exactly the signature of distance, inclination and mass-to-light errors, all of which move a galaxy bodily   (within 0.0715, between 0.1109, quadrature 0.1319 against the total 0.1327)
+
+--------------------------------------------------------------------------------------------------------------------
+THE MONTE-CARLO BUDGET, in both channels
+--------------------------------------------------------------------------------------------------------------------
+  source          within [dex]  between [dex]
+  velocity              0.0380         0.0159
+  distance              0.0000         0.0966
+  inclination           0.0050         0.0664
+  Upsilon               0.0143         0.0561
+  quadrature            0.0409         0.1309     observed: within 0.0715, between 0.1109
+  naive intrinsic: within 0.0587 dex, between 0.0000 dex
+  [PASS] 117C the NAIVE budget gives the textbook answer -- the between-galaxy scatter is fully accounted for, intrinsic consistent with zero -- and it leans almost entirely on one term: SPARC's quoted distance errors, which alone supply 0.097 of the 0.130 dex between-galaxy budget.  Check 117D shows that term is not real   (between-galaxy budget 0.1309 against an observed 0.1109 (the budget EXCEEDS the data, so the naive intrinsic is 0); the distance term alone is 0.0966, the next largest 0.0664)
+
+--------------------------------------------------------------------------------------------------------------------
+(B) THE DISTANCE TERM, TESTED RATHER THAN TRUSTED
+--------------------------------------------------------------------------------------------------------------------
+  A distance error is a PURE VERTICAL shift in the RAR plane: g_bar at a tabulated point is distance-invariant
+  (v_bar^2 ~ D and r ~ D), while g_obs = v_obs^2/r ~ 1/D.  So the galaxies with 30% distances must scatter more
+  than the galaxies with 5% distances, by a predictable amount, and nothing else about them differs.
+  distance method                 N  median e_D/D  predicted offset rms  OBSERVED offset rms
+  1 Hubble flow                  77         0.295                 0.128                0.131
+  2 TRGB                         31         0.050                 0.022                0.132
+  3 Cepheid                       3         0.101                 0.044                0.109
+  4 Ursa Major cluster           26         0.139                 0.060                0.096
+  if the quoted distance errors were Gaussian, the 77 Hubble-flow galaxies would have to scatter by 0.164 dex given that
+  the 36 direct-distance galaxies scatter by 0.127.  They scatter by 0.131.  chi^2 = 48.6 on 76 dof, p = 6.0e-03
+  SPARC assigns a flat 30% below 20 Mpc, 25% to 50 Mpc and 15% beyond -- a conservative envelope, not a 1-sigma error:
+  at the median Hubble-flow distance it implies a peculiar velocity of ~387 km/s, several times the real local flow dispersion.
+  [PASS] 117D AGAINST THE NAIVE BUDGET -- the distance term it leans on is refuted by the data themselves.  Galaxies with TRGB or Cepheid distances (5-10%) and galaxies with Hubble-flow distances (15-30%) show the SAME per-galaxy RAR offset scatter, 0.115 versus 0.131 dex, where the quoted errors demand 0.15+ for the Hubble-flow half.  SPARC's Hubble-flow allowance is a conservative envelope, and using it as a Gaussian error inflates the budget until it swallows the whole observed scatter   (Hubble-flow observed offset rms 0.1313 vs 0.1642 required if the quoted errors were Gaussian: chi^2 = 48.6 / 76 dof, p = 6.0e-03.  Direct-distance galaxies: 0.1274 on N = 36)
+
+--------------------------------------------------------------------------------------------------------------------
+THE BOUND, on the subsample where the distance error is a measurement rather than an envelope
+--------------------------------------------------------------------------------------------------------------------
+  canonical  N = 36 galaxies with TRGB / Cepheid / SN distances
+               observed  within 0.0569 +- 0.0050   between 0.1150 +- 0.0147
+               budget    within 0.0441                between 0.0848   (velocity 0.0412/0.0141, distance 0.0000/0.0411, inclination 0.0055/0.0456, Upsilon 0.0149/0.0567)
+               INTRINSIC within 0.0359                between 0.0777
+  alt        N = 36 galaxies with TRGB / Cepheid / SN distances
+               observed  within 0.0563 +- 0.0050   between 0.1149 +- 0.0143
+               budget    within 0.0429                between 0.0790   (velocity 0.0410/0.0135, distance 0.0000/0.0386, inclination 0.0049/0.0519, Upsilon 0.0116/0.0434)
+               INTRINSIC within 0.0365                between 0.0834
+  [PASS] 117E (the item's deliverable, WITHIN channel) inside a galaxy the acceleration relation is followed to an intrinsic 0.036 +- 0.008 dex -- tighter than the RAR's own quoted scatter, and the tightest bound in this hunt.  It is NOT zero, at 4.5 sigma, but 0.036 dex in g is about 4% in v, which is the size of the disc-geometry correction this estimator deliberately omits: item 23's spherical relation g_obs = nu(g_bar/a_0) g_bar is not the AQUAL/QUMOND answer for a flattened disc.  So this is an UPPER BOUND on intrinsic scatter and cannot be pushed lower without a proper disc solve   (observed within 0.0569 +- 0.0050, budget 0.0441 -> intrinsic 0.0359 +- 0.0079 dex (4.6 sigma from zero, 95% upper bound 0.0478); alt footing 0.0365)
+  [PASS] 117F (the item's deliverable, BETWEEN channel -- AGAINST INTEREST) the framework's prediction of ZERO intrinsic scatter FAILS in the normalisation channel.  On the best-distance galaxies a per-galaxy offset of 0.079 dex survives the whole observational budget, with a 95% lower bound of 0.04 dex.  a_0 universal plus the quoted errors plus a 0.11 dex stellar-population Upsilon scatter is NOT enough to put these galaxies on one curve   (observed between 0.1150 +- 0.0147, budget 0.0848 -> intrinsic 0.0777 dex (95% lower bound 0.0326); alt footing 0.0834)
+  what the 0.079 dex costs, two ways:
+     as stellar M/L: the Upsilon term would have to rise from 0.11 dex to 0.19 dex of galaxy-to-galaxy scatter (1.7x the stellar-population value)
+     as a_0: with the sample's median kernel slope n = -0.39 at y = 0.24, a per-galaxy a_0 scatter of 0.20 dex would do it -- which the framework forbids
+  [PASS] 117G the residual has exactly two readings and the framework is committed to one of them: either the galaxy-to-galaxy stellar M/L scatter is 1.7x the stellar-population value, or a_0 varies from galaxy to galaxy by 0.23 dex.  The framework forbids the second, so it OWES the first -- an independent Upsilon measurement at 10% would settle it, which is the same conclusion items 76 and 100 reached from the other side   (Upsilon scatter would need to be 0.19 dex (SPS: 0.11); a_0 scatter would need to be 0.20 dex (framework: 0))
+
+--------------------------------------------------------------------------------------------------------------------
+THE LambdaCDM ALTERNATIVE, COMPUTED HERE: how much RAR scatter do halo mass and concentration make?
+--------------------------------------------------------------------------------------------------------------------
+  each galaxy gets the NFW halo that reproduces its OUTERMOST measured point at the mean c(M200) of Dutton & Maccio (2014);
+  M200 is then scattered by the stellar-to-halo-mass scatter and c by its cosmological 0.11 dex, and the induced RAR
+  residual is decomposed into the same two channels.  This is the halo-to-halo scatter LambdaCDM cannot avoid.
+  sigma(log M200) = 0.08, sigma(log c) = 0.11:  LambdaCDM RAR scatter  within 0.0157 dex   between 0.0711 dex
+  sigma(log M200) = 0.16, sigma(log c) = 0.11:  LambdaCDM RAR scatter  within 0.0210 dex   between 0.0797 dex
+  sigma(log M200) = 0.25, sigma(log c) = 0.11:  LambdaCDM RAR scatter  within 0.0280 dex   between 0.0969 dex
+  [PASS] 117H AGAINST INTEREST -- the unexplained offset is exactly the size LambdaCDM predicts for free.  Scattering M200 by 0.16 dex and c by its cosmological 0.11 dex produces 0.083 dex of between-galaxy RAR scatter and almost none within galaxies -- the same shape and the same size as the residual the framework has to charge to the mass-to-light ratio.  On the between channel LambdaCDM's prediction lands on the observed value with no extra freedom, and the framework's does not   (observed between 0.1150 +- 0.0147; framework budget alone 0.0848; framework budget + LambdaCDM halo scatter 0.1164.  LambdaCDM within-galaxy prediction 0.0210 against an observed 0.0569, so the WITHIN channel does not discriminate either way)
+  [PASS] 117I AGAINST BOTH MODELS AND AGAINST MY OWN ESTIMATOR -- the within-galaxy channel excludes the framework's zero (4.5 sigma) AND LambdaCDM's 0.021 dex (1.9 sigma), which means it is not discriminating between them but measuring something neither includes.  The obvious candidate is the modelling error common to both: the spherical algebraic relation applied to a flattened disc, plus non-circular motions and beam smearing.  So the between-galaxy channel is where the two theories differ, and there they are degenerate -- the framework charging 0.19 dex to Upsilon, LambdaCDM charging 0.083 dex to halo scatter.  This item delivers a BOUND, not a discrimination   (within-galaxy intrinsic 0.0359 +- 0.0079: 4.6 sigma above the framework's 0 and 1.9 sigma above LambdaCDM's 0.0210.  Between-galaxy intrinsic 0.0777 +- 0.0217, against a LambdaCDM halo-scatter prediction of 0.0797 -- 0.1 sigma, i.e. indistinguishable)
+
+--------------------------------------------------------------------------------------------------------------------
+MUTATION CONTROLS
+--------------------------------------------------------------------------------------------------------------------
+  a_0 x 3                            within 0.0714  between 0.1182  total 0.1381   (correct a_0: 0.1319)
+  a_0 / 3                            within 0.0877  between 0.1180  total 0.1470   (correct a_0: 0.1319)
+  a_0 x 100 (deep-MOND everywhere)   within 0.0977  between 0.1456  total 0.1753   (correct a_0: 0.1319)
+  [PASS] M117 the mutations break it: moving a_0 by a factor 3 either way inflates the scatter about the parameter-free curve, so the curve really is being tested and the residual really is measured against a_0   (correct a_0 total 0.1319; a_0 x 3 0.1381; a_0 / 3 0.1470)
+
+====================================================================================================================
+VERDICT -- item 117
+====================================================================================================================
+  The bound the item asked for, in the two channels the residual actually has (best-distance galaxies, both footings):
+
+     WITHIN a galaxy   intrinsic = 0.036 +- 0.008 dex  -- an upper bound, at the size of the disc-geometry correction
+                                                          this estimator omits.  The tightest number in the hunt.
+     BETWEEN galaxies  intrinsic = 0.078 +- 0.022 dex  -- the framework's zero-scatter prediction FAILS here.
+
+  The standard answer -- 'the RAR's scatter is entirely observational, intrinsic consistent with zero' -- is
+  reproduced here and then withdrawn, because the budget that produces it leans on SPARC's Hubble-flow distance
+  allowance, a flat 30% envelope implying ~390 km/s peculiar velocities.  A distance error is a pure vertical shift
+  in the RAR plane, so it is directly testable, and the test fails: galaxies with 5% distances and galaxies with
+  30% distances have the SAME per-galaxy offset scatter (p = 0.006 against the quoted errors).  Restricted to the
+  36 galaxies with TRGB, Cepheid or SN distances, an unexplained 0.078 dex per-galaxy offset survives.
+
+  What that costs: either the galaxy-to-galaxy stellar M/L scatter is 0.19 dex, 1.7x the stellar-population value,
+  or a_0 varies by 0.20 dex from galaxy to galaxy.  The framework forbids the second and therefore owes the first.
+  LambdaCDM gets 0.080 dex for free from halo mass and concentration scatter, in the same channel, with no extra
+  freedom -- indistinguishable from the residual.  So this is a bound, not a discrimination.  And the within-galaxy
+  channel excludes BOTH predictions, which says it is measuring the modelling error they share, not either theory.
+
+  By-product worth keeping: the RAR's own scatter MEASURES SPARC's Hubble-flow distance errors and finds them far
+  smaller than the catalogue's conservative allowance.  Any error budget in this repository that propagates e_D/D
+  as a Gaussian for Hubble-flow galaxies is overestimating that term.
+
+RESULT: 10 checks, 0 FAIL   rc=0

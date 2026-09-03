@@ -1,0 +1,17 @@
+msa3d_2026_rotation_curves.csv -- provenance
+============================================
+Source : "MSA-3D: Rotation Curves and Dark Matter Fractions at z~0.5-1.7 with JWST/NIRSpec", arXiv:2606.27853v1.
+Fetched: 2026-09-03 from https://arxiv.org/e-print/2606.27853 (LaTeX source tarball); the two per-galaxy tables
+         tables/galaxy_parameters.tbl (paper Table 1) and tables/fitted_parameters.tbl (paper Table 2) were parsed
+         verbatim and merged on the galaxy ID.  Commented-out duplicate table versions in the source were skipped.
+Rows   : 30 galaxies -- 23 "golden" (the paper's statistical sample) and 7 "good" (excluded by the authors from
+         their own regression fits; kept here and flagged in the `sample` column).
+Columns: ID, sample, z, RA, Dec, logMstar, SFR, Re_phot_arcsec   (Table 1: 3D-HST/CANDELS M*, SFR; GALFIT F444W R_e)
+         incl, Re_disk_kpc, eRe_p, eRe_m, sigma0, esig_p, esig_m, Vrot_Re, eVrot_p, eVrot_m, vsig,
+         fDM_Re, efDM_p, efDM_m, RC_shape                        (Table 2: DysmalPy forward-modelling posteriors)
+Notes  : all quantities in Table 2 are evaluated at R_e,disk, the disc effective radius of the dynamical model, and
+         the errors are the paper's 16th/84th percentiles inflated by max(1, sqrt(chi2_red)).  Asymmetric errors
+         quoted by the paper as "..." (unconstrained on one side) are stored as empty/NaN.  f_DM(R_e) is a FITTED
+         NFW-halo parameter with the concentration fixed to c = 10.9 (1+z)^-0.83, and the baryonic prior uses
+         Tacconi+2018 scaling-relation molecular gas -- i.e. it is model-mediated, exactly as RC100's f_DM is.
+Used by: hunt_2026/h101_fdm_inversion_surveys.py (hunt item 101).

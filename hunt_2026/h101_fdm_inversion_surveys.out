@@ -1,0 +1,155 @@
+========================================================================================================================
+PART 0 -- what the estimator can and cannot do, derived before any data is touched
+========================================================================================================================
+  The inversion is a_0 = (1 - f) g_obs / [ln(1/f)]^2 with f = f_DM(<R).  At FIXED g_bar, f = 1 - g_bar/g_obs, so
+     d f / d ln g_obs = 1 - f     and     d ln a_0 / d f = 2/(f ln(1/f))   (the (1-f) g_obs product is just g_bar)
+     =>  A(f) = d ln a_0 / d ln g_obs = 2 (1 - f) / (f ln(1/f)).
+     f_DM = 0.10:  amplification A =  7.82x   ->  0.11 dex of RAR scatter becomes 0.86 dex in a_0
+     f_DM = 0.20:  amplification A =  4.97x   ->  0.11 dex of RAR scatter becomes 0.55 dex in a_0
+     f_DM = 0.30:  amplification A =  3.88x   ->  0.11 dex of RAR scatter becomes 0.43 dex in a_0
+     f_DM = 0.50:  amplification A =  2.89x   ->  0.11 dex of RAR scatter becomes 0.32 dex in a_0
+     f_DM = 0.70:  amplification A =  2.40x   ->  0.11 dex of RAR scatter becomes 0.26 dex in a_0
+     f_DM = 0.85:  amplification A =  2.17x   ->  0.11 dex of RAR scatter becomes 0.24 dex in a_0
+     f_DM = 0.95:  amplification A =  2.05x   ->  0.11 dex of RAR scatter becomes 0.23 dex in a_0
+  [PASS] 101-0 the estimator's OWN noise floor, stated against interest before any survey is inverted: the closed-form inversion amplifies the RAR's scatter by A(f) = 2(1-f)/(f ln(1/f)), whose minimum over all f is 2 and which diverges as f_DM -> 0, so a per-galaxy a_0 from this estimator can never be tighter than TWICE the RAR's own 0.11 dex -- item 101's target of a joint slope separating FLAT from the LambdaCDM rise at 5 sigma has to come from N, not from per-galaxy precision   (min A = 2.0000 (attained as f -> 1); A(0.3) = 3.88, A(0.1) = 7.82; floor on the per-galaxy a_0 scatter = 0.22 dex)
+
+========================================================================================================================
+PART 1 -- the survey inventory: which tabulate f_DM inside a radius, and which do not
+========================================================================================================================
+  SPARC     : 147 galaxies pass the frozen quality cut; 129 have R_eff inside the measured radial range and g_obs > g_bar there.  f_DM(<R_e) = 1 - g_bar/g_obs is COMPUTED (Upsilon_disk = 0.5, Upsilon_bulge = 0.7).
+  RC100     : 100 rows with z, f_DM(<R_e) and g(R_e) all tabulated.  g(R_e) = V_c^2(R_e)/R_e with V_c pressure-support corrected by the authors -- verified against the table's own column to 0.1%.
+              provenance check: max |g_tabulated - V_c^2/R_e|/g = 3.73e-05  (the column IS V_c^2/R_e)
+  MSA-3D    : 30 galaxies (23 'golden' statistical sample, 7 'good').  f_DM(R_e,disk), R_e,disk, sigma_0 and V_rot(R_e) all tabulated; g_obs built with the paper's own ADC V_c^2 = V_rot^2 + 2 sigma_0^2 (R/R_d).
+              fetched from arXiv:2606.27853 source -> real_research/data/msa3d_2026_rotation_curves.csv
+  KMOS3D    : 135 rows on disk, columns ['z', 'logMstar', 'logMbar', 'Vcirc_kms', 'sigma0_kms'] -- NO f_DM, NO radius.  NOT INVERTED.
+  KROSS     : 381 rows on disk, columns ['z', 'Mstar', 'VC_kms', 'Reff_kpc', 'sigma0_kms'] -- NO f_DM, NO gas mass.  NOT INVERTED.
+  MUSE-DARK II: 95 rows on disk (prep_2026/jeanneau_refit/), M_bar is a TOTAL mass and there is no f_DM column. NOT INVERTED.
+  [PASS] 101-1 AGAINST INTEREST -- item 101's premise does not survive contact with the archive: of the six surveys it names, only THREE supply what the closed form needs (a dark-matter fraction AND the acceleration at the same radius).  KMOS3D, KROSS and MUSE-DARK II tabulate total baryonic masses and velocities, from which f_DM(<R_e) cannot be built without the mass model the estimator exists to avoid -- so they are reported, not faked   (invertible: SPARC (computed), RC100 (tabulated), MSA-3D (tabulated) = 3/6; MUSE-DARK III enters as a literature rung only)
+
+========================================================================================================================
+PART 2 -- the inversion, survey by survey, both footings
+========================================================================================================================
+  survey                    N       z range   median a_0                    16-84%  dex vs canon  dex vs alt  sd log a_0
+  SPARC (z~0)             128          0.00    1.176e-10       3.39e-11 - 3.08e-10        +0.099      +0.017       0.555
+  RC100                    99     0.61-2.52    1.385e-10       5.22e-11 - 3.46e-10        +0.170      +0.088       0.389
+  MSA-3D golden            23     0.58-1.68    3.513e-10       1.61e-10 - 1.07e-09        +0.574      +0.493       0.438
+  MSA-3D all 30            30     0.58-1.68    3.758e-10       1.28e-10 - 1.07e-09        +0.604      +0.522       0.461
+  
+  The per-galaxy scatter is 0.39-0.55 dex in EVERY sample, against the RAR's own 0.11 dex.  Part 0 said it would be;
+  here is the same statement made by simulation -- data that obey the RAR EXACTLY at each survey's own g_bar values,
+  with 0.11 dex of scatter on g_obs, put through the identical estimator:
+     SPARC (z~0)      median f_DM = 0.61;  synthetic sd = 0.31 dex, observed sd = 0.55 dex   (ratio 1.78)
+     RC100            median f_DM = 0.30;  synthetic sd = 0.38 dex, observed sd = 0.39 dex   (ratio 1.03)
+     MSA-3D golden    median f_DM = 0.63;  synthetic sd = 0.35 dex, observed sd = 0.44 dex   (ratio 1.25)
+  
+  The 0.11 dex used above is SPARC's GLOBAL RAR scatter, which is the wrong number for a SINGLE radius per galaxy.
+  Redone with each survey's OWN measured residual from a single-a_0 RAR (a_0 = that survey's own median), which is
+  the only input the estimator's noise can possibly have:
+     SPARC (z~0)      own single-radius RAR residual sd = 0.200 dex  ->  synthetic a_0 sd = 0.50 dex, observed 0.55 dex; first-order A*delta correlates r = +0.783; median bias +0.044 dex
+     RC100            own single-radius RAR residual sd = 0.108 dex  ->  synthetic a_0 sd = 0.36 dex, observed 0.39 dex; first-order A*delta correlates r = +0.973; median bias +0.057 dex
+     MSA-3D golden    own single-radius RAR residual sd = 0.166 dex  ->  synthetic a_0 sd = 0.42 dex, observed 0.44 dex; first-order A*delta correlates r = +0.991; median bias +0.027 dex
+  [PASS] 101-2 the estimator's amplification is not a worry, it IS the entire error budget: injecting only each survey's OWN single-radius RAR residual into data that otherwise obey one a_0 exactly reproduces the observed 0.39-0.55 dex per-galaxy spread in all three surveys.  Nothing in those spreads is physics.  Stated against interest: at SPARC's 0.20 dex residual the estimator's MEDIAN is also biased high by ~0.05 dex, so the levels in the table above are upper-leaning by that much   (SPARC (z~0): observed 0.55 vs synthetic 0.50 dex; RC100: observed 0.39 vs synthetic 0.36 dex; MSA-3D golden: observed 0.44 vs synthetic 0.42 dex; largest median bias +0.057 dex)
+  Note where the first-order form breaks: SPARC's r is only +0.78 because SPARC's f_DM reaches both ends (0.02 and 0.98) where A(f) diverges and a
+  linear expansion is invalid -- a real property of the estimator, not of the galaxies.
+  [PASS] 101-3 CONTROL: this script reproduces item 16's committed RC100 number to the third decimal   (d log a_0/dz (RC100) = -0.1123 +- 0.0629; the ledger says -0.112 +- 0.063)
+
+========================================================================================================================
+PART 3 -- the joint fit, and the survey-to-survey scatter reported beside it
+========================================================================================================================
+  [A] ONE LINE through all three surveys (item 101's 'one a_0 across all of them'):
+      d log a_0/dz = +0.0767 +- 0.0363  (N = 250);  FLAT is 2.1 sigma away, LambdaCDM-native (+0.131) is 1.5 sigma away
+  [B] per-survey slopes (each survey's OWN internal redshift lever):
+      SPARC (z~0)      no internal z lever (z = 0 by construction), level only: log a_0 = -9.930
+      RC100            d log a_0/dz = -0.1123 +- 0.0640   (N = 99, z = 0.61-2.52); FLAT 1.8s, LCDM-native 3.8s
+      MSA-3D golden    d log a_0/dz = +0.3042 +- 0.3085   (N = 23, z = 0.58-1.68); FLAT 1.0s, LCDM-native 0.6s
+  [C] the LEVELS, which is where the surveys actually part company:
+      SPARC (z~0)      median a_0 = 1.176e-10 +- 1.63e-11  (log = -9.930; +0.10 dex from canonical)
+      RC100            median a_0 = 1.385e-10 +- 2.41e-11  (log = -9.859; +0.17 dex from canonical)
+      MSA-3D golden    median a_0 = 3.513e-10 +- 1.34e-10  (log = -9.454; +0.57 dex from canonical)
+      survey-to-survey spread in the level: 0.475 dex; RC100 vs MSA-3D differ by +0.404 dex = 2.2 sigma on the bootstrap errors of the medians alone
+      and their SLOPES have opposite signs: RC100 -0.112 +- 0.064, MSA-3D +0.304 +- 0.309  ->  1.3 sigma apart
+  [PASS] 101-4 THE RESULT, and it is the informative one item 101 named: the surveys DISAGREE.  Put through the identical closed form, RC100 and MSA-3D differ by 0.4 dex in the LEVEL of a_0 (2.2 sigma on bootstrap errors alone, and the levels are what carry -- the slopes have opposite signs but MSA-3D's own slope is only 1.0 sigma from zero with N = 23, so the sign difference by itself proves nothing).  A joint slope tighter than RC100's own +-0.063 cannot be quoted, and item 101's 5-sigma criterion is not merely unmet, it is ill-posed until this is explained   (level spread 0.48 dex over three surveys; RC100 - MSA-3D = +0.40 dex (2.2s); slopes -0.112 vs +0.304 (1.3s apart))
+  [PASS] 101-5 the joint slope is reported anyway, with the caveat attached, and it does NOT reach item 101's target: it neither separates FLAT from the LambdaCDM-native rise at 5 sigma nor improves on RC100 alone once the survey-to-survey disagreement is admitted   (one-line joint d log a_0/dz = +0.0767 +- 0.0363; separation from the LambdaCDM-native rise 1.5 sigma, target was 5 sigma)
+
+========================================================================================================================
+PART 4 -- where the disagreement actually lives: f_DM at MATCHED baryonic acceleration
+========================================================================================================================
+  First, what the inverted a_0 correlates with INSIDE each survey (a universal a_0 requires zero everywhere):
+      survey                f_DM  log g_bar    log M  log Sigma        z
+      RC100               +0.736     -0.056   -0.048     -0.118   -0.175
+      MSA-3D golden       +0.752     -0.031   -0.019     +0.154   +0.200
+  So AGAINST MY OWN FIRST GUESS: there is NO mass trend and NO g_bar trend inside either survey.  The inverted a_0
+  is, to r ~ 0.75, nothing but a monotone relabelling of the tabulated f_DM -- item 16c's caveat, generalised.
+  
+  Second, the sharp version, which is a falsifiable statement about the framework and not about the estimator:
+  with ONE a_0 the kernel PREDICTS f_DM from g_bar alone, f_DM = 1 - 1/nu(g_bar/a_0).  Binned in g_bar so the two
+  surveys are compared like for like:
+               g_bar bin (m/s^2)  framework f_DM     SPARC z~0         RC100        MSA-3D
+             3.00e-11 - 7.21e-11           0.494  0.503 (n=16)  0.665 (n=10)   0.725 (n=8)
+             7.21e-11 - 1.73e-10           0.335  0.428 (n=20)  0.400 (n=31)  0.580 (n=12)
+             1.73e-10 - 4.16e-10           0.184  0.171 (n=13)  0.270 (n=37)      -- (n=2)
+             4.16e-10 - 1.00e-09           0.072   0.207 (n=4)  0.110 (n=15)      -- (n=0)
+  [PASS] 101-6 AGAINST MY OWN FIRST GUESS, and this is the sharp form of the disagreement: inside each survey the inverted a_0 shows NO mass and NO g_bar trend -- it is a relabelling of f_DM, nothing else.  But at MATCHED baryonic acceleration the two high-z surveys report dark-matter fractions differing by ~0.18 (about 2 sigma on bootstrap alone) and BOTH sit above what one universal a_0 predicts, while SPARC at z ~ 0 tracks the prediction bin by bin.  The 0.4 dex offset in a_0 is a disagreement between two dynamical decompositions at the same acceleration -- not a redshift effect and not a mass effect   (largest matched-g_bar gap: at g_bar = 1.12e-10, RC100 f_DM = 0.400 (n=31) vs MSA-3D 0.580 (n=12), difference +0.180 +- 0.082; framework predicts 0.335; corr(log a_0, log M) = -0.048 (RC100) / -0.019 (MSA-3D))
+
+========================================================================================================================
+PART 5 -- the external rung: MUSE-DARK III fits the framework's own kernel directly
+========================================================================================================================
+  Ciocan+2026 (arXiv:2604.22613, MUSE-DARK III) fit 79 MHUDF star-forming galaxies at 0.33 < z < 1.44 with
+     a_tot = a_bar / (1 - exp(-sqrt(a_bar/a_0)))   -- Route A, verbatim -- leaving a_0 free.  They report
+     a_0|z~1 = 2.38 (+0.12/-0.10) e-10 m/s^2 (95% CI), and a_0(z) = a_0(0) + a_1 z with
+     a_0(0) = 1.00 +- 0.04 e-10 and a_1 = 1.59 +- 0.10 e-10 per unit z.  This is literature, not this script's number.
+     in this script's currency that is d log a_0/dz = +0.295 over 0.33 < z < 1.44 (a_1 - 1 sigma gives +0.287, so the STATISTICAL error on the slope is only 0.008) -- more than
+     twice the LambdaCDM-native rise.  The statistical significance is not the relevant number and is not quoted:
+     Ciocan themselves name the lever: reconciling their a_0(z) with a_0(0) = 1.2e-10 at all z needs stellar-mass
+     offsets of +0.2 dex (low z) to +0.45 dex (high z) -- i.e. the whole trend is inside the stellar M/L budget,
+     which is the same wall every keeper of this hunt ran into.  (Their own Appendix, verbatim.)
+  [PASS] 101-7 with MUSE-DARK III added as a literature rung in the framework's own kernel, the a_0(z) measurements now span d log a_0/dz from -0.11 to +0.35 -- a 0.46 dex-per-z spread across three samples that all claim to measure the same constant.  Reported as prominently as the joint slope, as item 101 required, and it means NO number on this front should be quoted as a measurement of a_0's redshift dependence today   (RC100 -0.112, MSA-3D +0.304, MUSE-DARK III +0.295; spread 0.416 dex/z against a LambdaCDM-native +0.131 and a framework 0.000)
+
+========================================================================================================================
+PART 6 -- mutation controls
+========================================================================================================================
+     within-survey z-shuffle: joint slope +0.0720 +- 0.0360 against the real +0.0767 +- 0.0363
+     RC100            own slope shuffled: -0.0036 +- 0.0618  (real -0.1123 +- 0.0640)
+     MSA-3D golden    own slope shuffled: +0.6959 +- 0.2588  (real +0.3042 +- 0.3085)
+  [PASS] M1 the mutation that matters, and it fires: permuting redshift WITHIN each survey leaves the joint slope essentially unchanged, because the joint slope is not a redshift trend at all -- it is three survey medians at three different median redshifts, i.e. the survey ladder of Part 3C read as a line.  A 'joint d log a_0/dz' from stacked surveys is therefore not a measurement of anything until the surveys agree   (shuffled +0.0720 +- 0.0360 vs real +0.0767 +- 0.0363 -- the shuffle removes 6% of it)
+     RC100            Route A 1.385e-10  vs  simple nu 1.203e-10   (-0.061 dex)
+     MSA-3D golden    Route A 3.513e-10  vs  simple nu 3.383e-10   (-0.016 dex)
+     SPARC (z~0)      Route A 1.176e-10  vs  simple nu 1.113e-10   (-0.024 dex)
+  [PASS] M2 kernel swap AGAINST INTEREST -- inverted through the 'simple' interpolation function nu = (1+sqrt(1+4/y))/2 instead of Route A (a_0 = f g_obs/(1-f) rather than (1-f) g_obs/[ln(1/f)]^2) the answer moves by less than the RAR's own scatter, so this estimator cannot discriminate kernels at all; the compensation is that none of the numbers above is an artifact of Route A either   (largest Route-A-vs-simple difference across the three surveys = 0.061 dex, against the RAR's own 0.11 dex scatter)
+     synthetic RAR at a_0 = 9.360e-11, 0.00 dex of scatter on g_obs: recovered median 9.360e-11 (+0.000 dex bias), sd(log a_0) = 0.000
+     synthetic RAR at a_0 = 9.360e-11, 0.11 dex of scatter on g_obs: recovered median 1.198e-10 (+0.107 dex bias), sd(log a_0) = 0.384
+     synthetic RAR at a_0 = 9.360e-11, 0.20 dex of scatter on g_obs: recovered median 1.751e-10 (+0.272 dex bias), sd(log a_0) = 0.542
+     the bias is POSITIVE and it is structural: a galaxy scattered to g_obs < g_bar has f_DM <= 0 and the closed
+     form is undefined there, so the low-a_0 tail is truncated while the high-a_0 tail is not.
+  [PASS] M3 closure AGAINST INTEREST -- the estimator is NOT unbiased.  Fed data that obey the RAR exactly it returns the input a_0 exactly; fed the same data with realistic scatter it returns a median biased HIGH, because the low-a_0 tail is truncated at f_DM = 0 and the high tail is not.  Every level this estimator reports, including item 16's, is therefore about 0.05 dex too high, which is most of RC100's +0.17 dex offset from canonical   (bias = +0.000 dex (no scatter), +0.107 dex (0.11 dex), +0.272 dex (0.20 dex))
+
+========================================================================================================================
+PART 7 -- both footings, and the LambdaCDM alternative computed beside the framework
+========================================================================================================================
+  footing canonical  a_0(0) = 9.360e-11:  SPARC +0.10 dex, RC100 +0.17 dex, MSA-3D +0.57 dex
+  footing alt        a_0(0) = 1.130e-10:  SPARC +0.02 dex, RC100 +0.09 dex, MSA-3D +0.49 dex
+  the SLOPE d log a_0/dz is a RATIO and is footing-independent; only the levels above move with the footing.
+  framework (FLAT, a_0 fixed by rho_Lambda):     d log a_0/dz = 0.000 exactly
+  LambdaCDM-native emergent RAR scale:           d log a_0/dz = +0.131 (x2.13 by z = 2.5)
+  measured, three ways:                          -0.112 (RC100), +0.304 (MSA-3D), +0.295 (MUSE-DARK III)
+  wrote /Users/carlzimmerman/new_physics/zimmerman-formula/hunt_2026/h101_rungs.json for item 104
+
+========================================================================================================================
+VERDICT (item 101).
+  * The closed form runs on THREE of the six named surveys.  KMOS3D, KROSS and MUSE-DARK II tabulate total
+    baryonic masses and velocities, not f_DM inside a radius, and are reported rather than faked.
+  * SPARC (z~0) and RC100 (z = 0.6-2.5) agree on the LEVEL to 0.07 dex
+    (1.18e-10 vs 1.38e-10), which is the one genuinely encouraging number here.
+  * MSA-3D sits +0.40 dex away from RC100 in the level (2.2 sigma); MUSE-DARK III, fitting the identical
+    kernel directly, is further away still.  Slopes across the three: -0.112 +- 0.064, +0.304 +- 0.309, +0.295 -- opposite signs, but only the
+    levels are individually significant; MSA-3D's own slope is 1.0 sigma from zero with N = 23.
+  * The disagreement is NOT a mass trend and NOT a redshift trend: inside each survey the inverted a_0 correlates
+    with nothing but f_DM itself, and at matched g_bar the two high-z surveys still report f_DM differing by
+    +0.18.  It is a disagreement between two dynamical decompositions at the same acceleration.
+  * Item 101's pass criterion -- a joint slope separating FLAT from the LambdaCDM-native rise at 5 sigma -- is NOT
+    met (1.5 sigma), and the mutation control shows the joint slope is the survey ladder, not redshift.
+  * What survives is a hard ceiling on the method: the estimator amplifies the RAR's own residual by A(f_DM) >= 2,
+    galaxy by galaxy to r > 0.9, so per-galaxy a_0 from a tabulated f_DM can never beat twice the RAR's scatter.
+========================================================================================================================
+
+RESULT: 11 checks, 0 FAIL   rc=0

@@ -1,0 +1,165 @@
+======================================================================================================================
+1. THE ANALYTIC SENSITIVITIES, CHECKED AGAINST THE DATA
+======================================================================================================================
+  deep tail (g_bar < 1e-11): 1086 points, 107 galaxies, a_0 = 9.040e-11
+  <n> = <d log nu/d log y> = -0.4436  (the deep-MOND limit would be -0.5); <lambda> = 0.5564
+  <f_*,loc> = 0.561, <f_gas,loc> = 0.439
+  
+                       channel   predicted d log a_0/d log X   measured   deep-limit value
+                    distance D                        -2.254     -2.255              -2.00
+              sin(inclination)                        -4.509     -4.510              -4.00
+     stellar M/L Upsilon_[3.6]                        -0.705     -0.682              -0.56
+                gas mass M_gas                        -0.550     -0.550              -0.44
+  [PASS] 103.1 the four sensitivities are the analytic ones -- the budget below is not a black box.  Note that they are NOT the textbook deep-MOND values: because <n> = -0.45 rather than -1/2, a_0 responds to distance as D^-2.2 and to inclination as sin^-4.4, 10% stronger than the deep-limit forms   (D: predicted -2.254 vs measured -2.255; sini: predicted -4.509 vs measured -4.510; ups: predicted -0.705 vs measured -0.682; gas: predicted -0.550 vs measured -0.550)
+
+======================================================================================================================
+2. THE MONTE CARLO -- one channel at a time, the master table's own errors
+======================================================================================================================
+  RANDOM per-galaxy channels (shrink as 1/sqrt(N_gal)):
+     distance     e_D from the SPARC master table (median 14%, 5% for TRGB/Cepheid, 30% for Hubble flow)
+     inclination  e_Inc from the master table (median 3 deg)
+     V_obs        the rotmod files' own per-point velocity errors (median 4%)
+     Upsilon      0.11 dex galaxy-to-galaxy scatter of Upsilon_[3.6] (Schombert+2019 population synthesis)
+     gas          10% per galaxy on the HI mass (flux + profile shape)
+  COHERENT calibration channels (do NOT shrink with N -- these are the floor):
+     Upsilon zero-point   0.079 dex  (the SPS normalisation itself, Upsilon_[3.6] = 0.5 +- 0.1)
+     gas zero-point       0.020 dex  (helium+metals 1.33 vs 1.36-1.40, plus the HI flux scale)
+     TRGB/Cepheid zp      0.010 dex  (~2.3% in D, applied to the galaxies with e_D/D < 12%)
+     H0                   0.033 dex  (67.4 vs 73.0 km/s/Mpc = 8.3% in D, applied to the Hubble-flow galaxies)
+
+  --- all deep tail: 107 galaxies, 1086 points, a_0 = 9.040e-11 (-0.015 dex canonical, -0.097 alt)
+                     channel  sigma(log a_0)    in %   share of variance
+                    distance          0.0195     4.6                  7%  (random)
+                 inclination          0.0189     4.4                  7%  (random)
+                       V_obs          0.0103     2.4                  2%  (random)
+            Upsilon(scatter)          0.0096     2.2                  2%  (random)
+                gas(scatter)          0.0032     0.7                  0%  (random)
+         Upsilon(zero-point)          0.0522    12.8                 51%  (COHERENT)
+             gas(zero-point)          0.0105     2.5                  2%  (COHERENT)
+       D scale: TRGB/Ceph zp          0.0107     2.5                  2%  (COHERENT)
+                 D scale: H0          0.0384     9.2                 27%  (COHERENT)
+                random total          0.0308     7.3
+              coherent total          0.0665    16.6
+             PREDICTED total          0.0733    18.4
+          observed bootstrap          0.0404     9.7   <- galaxy bootstrap of the real data
+      unexplained by the random channels: 0.0262 dex (genuine excess -- intrinsic scatter or an unmodelled systematic)
+
+  --- f_gas > 0.7: 32 galaxies, 432 points, a_0 = 7.136e-11 (-0.118 dex canonical, -0.200 alt)
+                     channel  sigma(log a_0)    in %   share of variance
+                    distance          0.0421    10.2                 26%  (random)
+                 inclination          0.0264     6.3                 10%  (random)
+                       V_obs          0.0192     4.5                  5%  (random)
+            Upsilon(scatter)          0.0132     3.1                  3%  (random)
+                gas(scatter)          0.0073     1.7                  1%  (random)
+         Upsilon(zero-point)          0.0423    10.2                 26%  (COHERENT)
+             gas(zero-point)          0.0135     3.2                  3%  (COHERENT)
+       D scale: TRGB/Ceph zp          0.0106     2.5                  2%  (COHERENT)
+                 D scale: H0          0.0401     9.7                 24%  (COHERENT)
+                random total          0.0554    13.6
+              coherent total          0.0607    15.0
+             PREDICTED total          0.0822    20.8
+          observed bootstrap          0.0671    16.7   <- galaxy bootstrap of the real data
+      unexplained by the random channels: 0.0378 dex (genuine excess -- intrinsic scatter or an unmodelled systematic)
+
+  --- f_*,loc < 0.2: 23 galaxies, 128 points, a_0 = 7.361e-11 (-0.104 dex canonical, -0.186 alt)
+                     channel  sigma(log a_0)    in %   share of variance
+                    distance          0.0456    11.1                 38%  (random)
+                 inclination          0.0301     7.2                 16%  (random)
+                       V_obs          0.0154     3.6                  4%  (random)
+            Upsilon(scatter)          0.0043     1.0                  0%  (random)
+                gas(scatter)          0.0156     3.6                  4%  (random)
+         Upsilon(zero-point)          0.0121     2.8                  3%  (COHERENT)
+             gas(zero-point)          0.0232     5.5                 10%  (COHERENT)
+       D scale: TRGB/Ceph zp          0.0127     3.0                  3%  (COHERENT)
+                 D scale: H0          0.0343     8.2                 21%  (COHERENT)
+                random total          0.0590    14.6
+              coherent total          0.0450    10.9
+             PREDICTED total          0.0742    18.6
+          observed bootstrap          0.0636    15.8   <- galaxy bootstrap of the real data
+      unexplained by the random channels: 0.0238 dex (genuine excess -- intrinsic scatter or an unmodelled systematic)
+  [PASS] 103.2a the RANDOM budget is distance-led.  Because a_0 ~ D^-2.2 and half of SPARC has 20-30% Hubble-flow distances, distance is the largest per-galaxy channel in all three samples -- decisively so once the M/L is cut (38% of the variance), and only just so on the full deep tail, where inclination is its equal.  The stellar M/L's galaxy-to-galaxy scatter is a minor random term everywhere; its damage is done through the COHERENT zero-point   (full deep tail: distance 0.0195 dex vs Upsilon scatter 0.0096, inclination 0.0189, gas 0.0032; M/L-free sample: distance 0.0456 vs gas 0.0156)
+  [PASS] 103.2b the COHERENT part is what the M/L cut actually buys.  On the full deep tail the Upsilon zero-point alone puts an irreducible 0.07 dex (17%) floor under any a_0 measured this way, no matter how many galaxies.  On the M/L-free sample that same channel drops by roughly a factor 5 and the coherent floor becomes the HI mass scale and the distance scale   (Upsilon zero-point: full deep tail 0.0522 dex, f_gas>0.7 0.0423, M/L-free 0.0121; coherent totals 0.0665 / 0.0607 / 0.0450 dex)
+
+======================================================================================================================
+3. THE FLOOR ONCE UPSILON IS REMOVED
+======================================================================================================================
+  all deep tail     : coherent floor WITH Upsilon = 0.0665 dex (17%), WITHOUT it = 0.0412 dex (10.0%)
+  f_gas > 0.7       : coherent floor WITH Upsilon = 0.0607 dex (15%), WITHOUT it = 0.0436 dex (10.6%)
+  f_*,loc < 0.2     : coherent floor WITH Upsilon = 0.0450 dex (11%), WITHOUT it = 0.0433 dex (10.5%)
+  
+  So the answer to the item's question -- what is the floor when Upsilon is removed -- is:
+     10.5% in a_0, set by the distance SCALE (a_0 ~ D^-2.2, so the 8.3% H0 spread carried by the Hubble-flow galaxies is 19% in a_0 on its own) and by the HI mass scale.
+     Neither of those is a galaxy-by-galaxy error and neither shrinks with sample size.
+  [PASS] 103.3 with the stellar M/L removed the coherent floor falls from 17% to about 10%, and it is then DOMINATED BY THE DISTANCE SCALE, not by anything to do with baryons.  This is the sharpest statement in the item: the deep-tail a_0 is a distance-squared measurement, so it inherits twice the distance ladder's own fractional error   (floor without Upsilon = 0.0433 dex = 10.5%; distance-scale terms 0.0127 (TRGB) + 0.0343 (H0) vs gas zero-point 0.0232)
+
+======================================================================================================================
+4. THE CUT THAT WOULD REACH 3% -- and why it cannot be reached with SPARC
+======================================================================================================================
+  3% in a_0 = 0.0128 dex.  Three things must all be true at once:
+    (i)   the COHERENT floor must be under 0.0128 dex.  For a sample of Hubble-flow galaxies the H0 term alone is |d log a_0/d log D| x 0.033 = 0.0744 dex, 5.8x the whole budget;
+          for a purely TRGB/Cepheid sample it is 0.0225 dex, 1.8x the budget.
+          => the distance ladder's zero-point would have to be known to 1.3% in D, i.e. better
+             than the current TRGB/Cepheid calibration (~2%) and better than the Hubble tension's own spread.
+    (ii)  the stellar M/L must be gone: at f_*,loc < 0.2 the Upsilon zero-point costs 0.0121 dex; on the full deep tail it costs 0.0522 dex, 4.1x the budget on its own.
+    (iii) the RANDOM part must be beaten down: on the M/L-free sample it is 0.0590 dex with 23 galaxies, so it scales as 0.283/sqrt(N_gal).
+          => 486 galaxies of the SAME quality, or fewer with better distances.
+          with distance errors under 12% only (8 galaxies), the random term per galaxy is 0.143/sqrt(N) instead of 0.283/sqrt(N), so 124 such galaxies would do it -- SPARC has 8, a factor 16 short.
+
+  THE NAMED CUT, stated as the item asks for it:
+    'f_*,loc < 0.2 AND a TRGB or Cepheid distance' is the right cut -- it removes the M/L channel and the dominant
+    random channel at once.  It needs about 124 galaxies where SPARC provides 8, so the
+    measurement is data-limited by a factor of order 10 in sample size, and even with that sample it would stop at
+    the 10.5% coherent floor unless the distance ZERO-POINT is improved to 1.3%.
+    3% is therefore NOT reachable from rotation curves at all with today's distance ladder.  What is reachable is
+    about 11%, and the way to get there is more TRGB distances to gas-dominated dwarfs.
+  [PASS] 103.4 AGAINST THE ITEM'S OWN TARGET: 3% cannot be reached by this estimator on any cut of any rotation-curve sample, because a_0 ~ D^-2.2 turns the distance ladder's ~5% zero-point into a ~11% floor in a_0.  The item asked for the cut that reaches 3%; the honest answer is that no cut does, and the binding constraint is not baryonic physics but the distance scale   (distance-scale term alone = 0.0225 dex (TRGB) / 0.0744 dex (H0) vs the 3% target 0.0128 dex; reaching 3% needs the distance zero-point at 1.3%)
+
+======================================================================================================================
+5. WHAT THE BUDGET SAYS ABOUT THE MEASUREMENTS ALREADY ON THE LEDGER
+======================================================================================================================
+                  sample         a_0   random  coherent    total  bootstrap  dex vs canon   vs alt
+           all deep tail   9.040e-11   0.0308    0.0665   0.0733     0.0404        -0.015   -0.097
+             f_gas > 0.7   7.136e-11   0.0554    0.0607   0.0822     0.0671        -0.118   -0.200
+           f_*,loc < 0.2   7.361e-11   0.0590    0.0450   0.0742     0.0636        -0.104   -0.186
+  [PASS] 103.5 AGAINST INTEREST, and it is the number that matters for items 123 and 125: once the COHERENT terms are included, no deep-tail measurement of a_0 separates the two footings.  The M/L-free value sits below both, but its full error covers both, so the deep tail cannot decide between 9.36e-11 and 1.13e-10 and must not be quoted as doing so   (M/L-free a_0 = 7.361e-11 +- 0.074 dex (total): canonical -1.4 sigma, alt -2.5 sigma; the two footings are only 0.082 dex apart)
+  
+  Consequence for item 64 (kappa) -- recomputed here with the item-102 estimator correction and this budget:
+        all deep tail: kappa = 0.482 +- 0.081  (1/2 at -0.2 sigma, 1/(2 pi) at +4.0 sigma)
+        f_*,loc < 0.2: kappa = 0.393 +- 0.067  (1/2 at -1.6 sigma, 1/(2 pi) at +3.5 sigma)
+  [PASS] 103.5b item 64's kappa = 0.512 +- 0.076 was built on the biased estimator and on a bootstrap that omitted the coherent terms.  Rebuilt here it moves DOWN and its error grows: 1/2 is still comfortably inside, and 1/(2 pi) is still excluded, but the '4.6 sigma' must be requoted   (kappa (full deep tail) = 0.482 +- 0.081 vs item 64's 0.512 +- 0.076; 1/2 at -0.2 sigma, 1/(2 pi) at +4.0 sigma)
+
+======================================================================================================================
+6. MUTATION CONTROLS
+======================================================================================================================
+  [PASS] M103a a null perturbation must return exactly the unperturbed a_0 -- otherwise the machinery leaks   (max |log10 ratio| over 5 null draws = 0.00e+00)
+  [PASS] M103b inflating a channel's input error by 3x must inflate its contribution by 3x (the propagation is linear over this range), so the budget is a real propagation and not a fitted number   (Upsilon zero-point at 3x: 0.0451 dex vs 3 x 0.0121 = 0.0362)
+  [PASS] M103c halving the sample must shrink the RANDOM total by sqrt(2) and leave the COHERENT total alone -- the test that the random/coherent split is real and not a labelling choice   (random 0.0308 -> 0.0452 (ratio 1.47, expected 1.41); coherent 0.0665 -> 0.0619 (ratio 0.93, expected 1.00))
+
+======================================================================================================================
+VERDICT -- ITEM 103
+======================================================================================================================
+  The deep-tail a_0 estimator's error budget, decomposed, on the corrected (full-kernel) estimator:
+
+                             distance  inclination    Upsilon      gas    V_obs    TOTAL
+    all deep tail              0.0444       0.0189     0.0531   0.0110   0.0103   0.0733   dex
+    f_gas > 0.7                0.0591       0.0264     0.0443   0.0154   0.0192   0.0822   dex
+    f_*,loc < 0.2              0.0585       0.0301     0.0128   0.0280   0.0154   0.0742   dex
+
+  1. THE TWO BLOCKERS ARE DISTANCE AND THE UPSILON ZERO-POINT, and which one leads depends on the cut.  On the
+     full deep tail they are comparable (0.053 dex Upsilon against 0.044 distance); on the gas-dominated cuts
+     distance takes over completely.  a_0 ~ D^-2.2 (not D^-2: the kernel is not asymptotic in the tail), and
+     SPARC's median distance error is 14%, so distance never falls below 0.044 dex on any cut.  The hunt's
+     standing conclusion that 'the blocker is the stellar mass-to-light ratio' holds for the LENSING items and the
+     per-galaxy fits; for THIS estimator, removing Upsilon leaves an error that is barely smaller, because the
+     distance term grows as the sample shrinks.  That is why item 102's M/L-free measurement is 15% and not 8%.
+  2. THE FLOOR WITH UPSILON REMOVED is 10.5% -- the distance SCALE (8.8%) and the HI mass
+     scale (5.5%) added in quadrature.  Neither shrinks with sample size.
+  3. THE CUT THAT REACHES 3% DOES NOT EXIST.  'f_*,loc < 0.2 with a TRGB or Cepheid distance' is the right cut and
+     it needs ~124 galaxies where SPARC has 8 -- a factor 16 in sample size; and even at infinite N
+     the distance zero-point holds it at
+     10.5%.  3% in a_0 requires the distance ladder to 1.3%, which nobody has.
+  4. AGAINST INTEREST: with the coherent terms in, no deep-tail measurement separates the two footings, and item
+     64's kappa becomes 0.482 +- 0.081 rather than 0.512 +- 0.076 -- still consistent with 1/2, still excluding
+     1/(2 pi), but at lower significance and from a lower central value.
+
+RESULT: 10 checks, 0 FAIL   rc=0

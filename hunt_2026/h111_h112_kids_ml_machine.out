@@ -1,0 +1,193 @@
+======================================================================================================================
+ITEM 111 / 112 -- KiDS-1000 weak lensing read as a stellar mass-to-light machine
+======================================================================================================================
+  B21 x-axis: g_bar = G M_star(1+f_cold)/r^2, point mass, LePhare/BC03/CHABRIER SED masses + Boselli cold gas,
+              NO hot gas.  y-axis: g_obs = 4 G Delta_Sigma (SIS).  So a measured Upsilon offset is a RESIDUAL
+              on top of an SED fit that already carries the colour dependence of the stellar M/L.
+  every KiDS point is deep-MOND: y = g_bar/a_0 spans 1.5e-05 to 4.2e-02 (canonical), so d log g_obs/d log g_bar
+              runs only from 0.5010 to 0.5494 across the whole released range (1/2 is the deep-MOND value)
+
+----------------------------------------------------------------------------------------------------------------------
+1.  THE CONVERSION EXPONENT, MEASURED ON THE DATA (and the factor-2 bug it exposes)
+----------------------------------------------------------------------------------------------------------------------
+  scale the adopted baryonic mass by f, refit a_0, and measure d log a_0(fit) / d log f.  Deep-MOND predicts
+  exactly -1: mass and a_0 are degenerate there.  If it came out -2 the earlier pass's /2 would be right.
+  colour  bin 1: d log a_0(fit)/d log f = -1.067
+  colour  bin 2: d log a_0(fit)/d log f = -1.040
+  sersic  bin 1: d log a_0(fit)/d log f = -1.065
+  sersic  bin 2: d log a_0(fit)/d log f = -1.042
+  mass    bin 1: d log a_0(fit)/d log f = -1.053
+  mass    bin 2: d log a_0(fit)/d log f = -1.042
+  mass    bin 3: d log a_0(fit)/d log f = -1.045
+  mass    bin 4: d log a_0(fit)/d log f = -1.047
+  [PASS] 111-A the conversion exponent is measured, not assumed: rescaling a lens sample's adopted baryonic mass by f moves the fitted a_0 by f^-1 in every one of the eight KiDS bins (deep-MOND prediction exactly -1), so the M/L offset a bin needs is Delta log a_0 / 1, NOT Delta log a_0 / 2   (median |exponent| = 1.046, range 1.040-1.067; deep-MOND value 1.000)
+  [PASS] 111-B BUG IN AN EARLIER PASS OF THIS HUNT, stated against interest: h1_h66_h2_h65_lensing.py (items 2, 65, 66) converted an a_0 offset into an M/L offset by DIVIDING BY 2.  The factor 2 is correct for an ESD amplitude bias (a_0 ~ g_obs^2 at fixed g_bar) and wrong for an M/L offset (a_0 ~ 1/Upsilon).  Every M/L offset quoted by items 2, 65 and 66 is therefore HALF what the data require; the correction is the factor below   (measured exponent 1.046; the earlier pass assumed 2.000 -- a factor 1.91 error, so e.g. item 65's '0.25 dex red/blue M/L' becomes 0.48 dex)
+
+----------------------------------------------------------------------------------------------------------------------
+2.  a_0 PER BIN (joint fit, full released covariance, cross-bin terms included)
+----------------------------------------------------------------------------------------------------------------------
+  stellar mass:  chi2 = 117.3 / 60 points, 4 free parameters
+  logM* 8.5-10.3                a_0 = 1.380e-10  +- 2.13e-11   (+0.169 dex canonical, +0.087 dex alt)
+  10.3-10.6                     a_0 = 1.995e-10  +- 2.07e-11   (+0.329 dex canonical, +0.247 dex alt)
+  10.6-10.8                     a_0 = 1.973e-10  +- 1.74e-11   (+0.324 dex canonical, +0.242 dex alt)
+  10.8-11.0                     a_0 = 1.952e-10  +- 1.43e-11   (+0.319 dex canonical, +0.237 dex alt)
+  u-r colour:  chi2 = 58.0 / 30 points, 2 free parameters
+  blue / late  (u-r < 2.5)      a_0 = 8.839e-11  +- 1.06e-11   (-0.025 dex canonical, -0.107 dex alt)
+  red / early  (u-r > 2.5)      a_0 = 2.832e-10  +- 1.71e-11   (+0.481 dex canonical, +0.399 dex alt)
+  Sersic index:  chi2 = 45.9 / 30 points, 2 free parameters
+  disc-dominated (n < 2)        a_0 = 1.060e-10  +- 1.17e-11   (+0.054 dex canonical, -0.028 dex alt)
+  bulge-dominated (n > 2)       a_0 = 2.530e-10  +- 1.67e-11   (+0.432 dex canonical, +0.350 dex alt)
+
+----------------------------------------------------------------------------------------------------------------------
+3.  THE M/L MACHINE: a_0 held at its footing value, the baryonic mass of each bin fitted
+----------------------------------------------------------------------------------------------------------------------
+  model  g_obs = f_b g_bar nu(f_b g_bar / a_0),  f_b = Upsilon_b / Upsilon_B21.  Absolute f_b carries the footing
+  AND the ESD->g_obs conversion (B21's SIS C = 4; a point mass gives C = pi, and a_0 ~ C^2, so the absolute
+  normalisation is soft by ~0.2 dex).  RELATIVE f between bins carries neither -- that is the measurement.
+  stellar mass:
+  logM* 8.5-10.3                log f = +0.137 +- 0.064 (canonical)   +0.065 +- 0.064 (alt)
+  10.3-10.6                     log f = +0.295 +- 0.043 (canonical)   +0.222 +- 0.043 (alt)
+  10.6-10.8                     log f = +0.294 +- 0.036 (canonical)   +0.220 +- 0.036 (alt)
+  10.8-11.0                     log f = +0.294 +- 0.030 (canonical)   +0.220 +- 0.030 (alt)
+  chi2 at fixed a_0 = 126.4/60 (canonical), 123.0 (alt)
+  u-r colour:
+  blue / late  (u-r < 2.5)      log f = -0.031 +- 0.049 (canonical)   -0.107 +- 0.049 (alt)
+  red / early  (u-r > 2.5)      log f = +0.437 +- 0.025 (canonical)   +0.365 +- 0.025 (alt)
+  chi2 at fixed a_0 = 69.8/30 (canonical), 66.3 (alt)
+  Sersic index:
+  disc-dominated (n < 2)        log f = +0.043 +- 0.045 (canonical)   -0.033 +- 0.045 (alt)
+  bulge-dominated (n > 2)       log f = +0.393 +- 0.027 (canonical)   +0.320 +- 0.027 (alt)
+  chi2 at fixed a_0 = 54.3/30 (canonical), 51.6 (alt)
+
+  NONE of these fits reaches chi2/dof = 1 on B21's analytic covariance, which carries no super-sample term, so
+  every error below is ALSO quoted inflated by sqrt(chi2/dof).  That works in the framework's favour and is
+  quoted for exactly that reason -- the working rule forbids manufacturing a deficit as firmly as a win.
+
+  RELATIVE offsets (the footing-independent numbers):
+  u-r colour      bin2 - bin1:  Delta log Upsilon = +0.468 +- 0.054 (canonical), +0.472 +- 0.055 (alt)  -> factor 2.93   [8.6 sigma from zero, 5.4 with errors inflated by 1.58]
+  Sersic index    bin2 - bin1:  Delta log Upsilon = +0.350 +- 0.052 (canonical), +0.353 +- 0.052 (alt)  -> factor 2.24   [6.8 sigma from zero, 4.9 with errors inflated by 1.39]
+  stellar mass    bin4 - bin1:  Delta log Upsilon = +0.156 +- 0.070 (canonical), +0.155 +- 0.071 (alt)  -> factor 1.43   [2.2 sigma from zero, 1.5 with errors inflated by 1.50]
+  [PASS] 111-C the relative M/L offsets are footing-independent, as they must be if they are a property of the lenses and not of the assumed a_0   (colour: 0.004 dex; sersic: 0.003 dex; mass: 0.001 dex)
+
+----------------------------------------------------------------------------------------------------------------------
+4.  VERSUS STELLAR POPULATIONS
+----------------------------------------------------------------------------------------------------------------------
+  what a residual Upsilon offset is allowed to be, ON TOP OF B21's per-galaxy LePhare/BC03/Chabrier masses:
+    * B21 varied M_star GLOBALLY by +-0.2 dex and the early/late split survived unchanged (their sec 5.4), which
+      is exactly why any M/L explanation has to be TYPE-DIFFERENTIAL -- a global rescaling does nothing here;
+    * SPS model choice (BC03 vs FSPS/M05, TP-AGB) and SFH prior (parametric vs non-parametric) move quiescent
+      galaxies by ~0.1-0.2 dex relative to star-forming ones;
+    * a bottom-heavy IMF in the most massive early types adds at most ~0.2-0.3 dex, and this sample is M* < 1e11;
+    => a defensible type-differential residual is ~0.30 dex, which is also exactly the size of B21's own named
+       escape (a circumgalactic M_gas ~ M_star for early types only).  Stacking EVERY systematic in the same
+       direction and applying all of them to early types alone reaches ~0.45 dex; that is the indefensible end
+       of the range and it is quoted below too, so the reader can see the exposure both ways.
+  [FAIL] 111-D (item 111's OWN pass criterion, and it FAILS) 'the measured Upsilon(colour) matches SPS within 0.1 dex'. It does not: holding a_0 universal, the red KiDS lenses need a baryonic mass this much larger than B21's SED masses give them, relative to the blue lenses   (required Delta log Upsilon(red-blue) = +0.468 +- 0.054 dex = factor 2.93, 6.8 sigma beyond the 0.10 dex criterion (4.3 with inflated errors))
+  [FAIL] 111-E the same offset against a DEFENSIBLE stellar-population + CGM allowance (0.30 dex, which is both the largest defensible type-differential SPS residual and B21's own M_gas = M_star escape). This is the honest framework-side statement: a universal a_0 needs MORE than that   (+0.468 +- 0.054 dex required vs 0.30 dex available -> +3.1 sigma over budget raw, +2.0 with inflated errors; the missing baryons would be 1.93 times the WHOLE baryonic mass B21 assign them)
+  BOTH WAYS: against the indefensible-stack allowance of 0.45 dex the same offset is +0.3 sigma, i.e. NOT excluded.  The honest statement is that the framework needs
+  every stellar-population systematic to run the same way and to apply to early types only -- not that it is dead.
+  (for the record: the same colour split read the earlier pass's way, Delta log a_0 / 2, would be +0.234 dex = factor 1.71, which is why items 2/65/66 read as 'consistent with SPS'.)
+
+----------------------------------------------------------------------------------------------------------------------
+5.  ITEM 112 -- THE SERSIC SPLIT (the axis this hunt has never used)
+----------------------------------------------------------------------------------------------------------------------
+  a_0(n<2, disc)   = 1.060e-10   a_0(n>2, bulge) = 2.530e-10
+  offset = +0.378 +- 0.055 dex = 6.9 sigma; the framework says a_0 is one number, so this
+  is a required Delta log Upsilon(bulge - disc) = +0.350 +- 0.052 dex = factor 2.24
+  [FAIL] 112-A (the item's own test, and it FAILS on the raw x-axis) 'bulge-dominated and disc-dominated lenses must give the same a_0': they do not -- the Sersic split is a many-sigma offset in the fitted a_0   (+0.378 +- 0.055 dex, 6.9 sigma apart)
+  [FAIL] 112-B '... once their Upsilon differ as SPS says'.  Applying a defensible stellar-population type-differential (0.30 dex, bulge-heavy) to the Sersic bins, do they then agree?   (required +0.350 +- 0.052 dex vs 0.30 dex allowed (+1.0 sigma raw, +0.7 with inflated errors -- on the Sersic axis alone the requirement is NOT significantly over budget))
+  [PASS] 112-C CROSS-CHECK, the point of having two morphology axes: u-r colour and Sersic index are independent proxies for the same early/late population, so under the M/L reading they must demand the SAME Upsilon residual (up to class impurity, which can only DILUTE the Sersic split since n is the noisier proxy)   (colour +0.468 +- 0.054 vs Sersic +0.350 +- 0.052 dex; difference 0.118 +- 0.075 (1.6 sigma) -- Sersic is the SMALLER of the two, the direction class impurity predicts)
+
+----------------------------------------------------------------------------------------------------------------------
+6.  IS THE SPLIT AN M/L SHIFT AT ALL?  the shape test against the measured environment term
+----------------------------------------------------------------------------------------------------------------------
+  A relative M/L offset is a HORIZONTAL shift of the RAR, so its vertical signature is Delta log Upsilon times the
+  local RAR slope -- essentially FLAT across the KiDS range (slope 0.501 -> 0.548, so a +0.007 dex/dex tilt).
+  A neighbour / two-halo contamination is ADDITIVE in Delta_Sigma and grows toward LOW g_bar (large radius).
+  B21 released the same mass bins with and without the isolation cut (Fig-A4 'all' vs Fig-9 'isolated'), which
+  MEASURES what an environment contaminant looks like in this very dataset:
+  mass bin 1: log10(g_all/g_iso) = +0.31 +0.09 +0.21 +0.22 +0.26 +0.24 +0.01 -0.02 -0.15 -0.16 -0.16 -0.15 +0.09 -0.03 -0.53
+  mass bin 2: log10(g_all/g_iso) = +0.42 +0.40 +0.17 +0.15 +0.17 +0.03 -0.10 -0.02 -0.07 +0.05 -0.06 -0.07 -0.05 +0.03 +0.02
+  mass bin 3: log10(g_all/g_iso) = +0.40 +0.19 +0.25 +0.10 +0.16 +0.10 +0.10 -0.02 -0.02 -0.02 +0.01 -0.02 +0.03 -0.12 -0.03
+  mass bin 4: log10(g_all/g_iso) = +0.48 +0.35 +0.25 +0.21 +0.14 +0.19 +0.03 +0.02 +0.02 -0.03 -0.01 +0.00 -0.01 +0.06 -0.00
+  mean environment template (dex, low g_bar = large radius on the left): +0.40 +0.26 +0.22 +0.17 +0.18 +0.14 +0.01 -0.01 -0.05 -0.04 -0.05 -0.06 +0.01 -0.01 -0.14
+  the non-isolated sample carries +152% MORE signal than the isolated one at the lowest g_bar and -27% at the highest --
+  a steeply g_bar-dependent shape, slope -0.123 dex/dex, and that is what a neighbour term looks like in this survey
+  model the measured split as  g_2 - g_1 = alpha * g_1  +  beta * S * g_1,  where alpha is a FLAT fractional
+  offset (what a horizontal M/L shift makes) and S is the measured neighbour shape above (beta = 1 would mean
+  the bin-2 lenses carry as much residual contamination as dropping B21's isolation cut altogether).
+  u-r colour:  flat-M/L only  chi2 =  37.4/14  (alpha = +0.673 +- 0.074, = +0.223 dex in g_obs)
+               environment only chi2 =  69.4/14  (beta  = +1.395 +- 0.196)
+               both free        chi2 =  20.0/13  (alpha = +0.556 +- 0.079, beta = +0.874 +- 0.210)
+  Sersic    :  flat-M/L only  chi2 =  18.3/14  (alpha = +0.500 +- 0.070, = +0.176 dex in g_obs)
+               environment only chi2 =  61.2/14  (beta  = +0.411 +- 0.146)
+               both free        chi2 =  18.1/13  (alpha = +0.511 +- 0.078, beta = -0.054 +- 0.163)
+  [PASS] 111-F1 the escape route CLOSES: residual environment contamination cannot be what the early/late split is.  With the neighbour shape measured from B21's own isolated-vs-all release and its amplitude free, an environment-only model is a far worse description of both splits than a flat (M/L-like) fractional offset, because the neighbour term lives at large radius and the split does not   (colour: flat 37.4 vs environment 69.4 (delta chi2 +32.1); Sersic: flat 18.3 vs environment 61.2 (delta chi2 +42.9))
+  
+  now do it inside the kernel fit rather than as a linear proxy: model bin k as f_k g_bar nu(f_k g_bar/a_0) times
+  (1 + beta_k S), with beta_1 = 0 by construction (only the RELATIVE contamination of bin 2 is constrained), and
+  read Delta log Upsilon marginalised over beta_2:
+  u-r colour      beta_2 = +0.259 +- 0.075  ->  Delta log Upsilon = +0.432 +- 0.055 dex (was +0.468 +- 0.054), chi2 56.7/30
+  Sersic index    beta_2 = +0.087 +- 0.078  ->  Delta log Upsilon = +0.338 +- 0.053 dex (was +0.350 +- 0.052), chi2 53.0/30
+  [FAIL] 111-F2 ... and letting a residual environment component in ANYWAY does not rescue the M/L requirement, which is the thing that mattered.  Marginalising over a free relative contamination with the empirically measured shape, the colour axis still demands more than the 0.30 dex stellar populations and a CGM can supply   (colour +0.432 +- 0.055 dex with beta free (beta = +0.26 +- 0.07, +3.5 sigma) -- +1.5 sigma over the 0.30 dex budget with inflated errors; Sersic +0.338 +- 0.053 (beta = +0.09 +- 0.08))
+
+----------------------------------------------------------------------------------------------------------------------
+7.  THE STELLAR-MASS AXIS, AND THE DWARF STACK
+----------------------------------------------------------------------------------------------------------------------
+  required log f (canonical footing) against the bin's stellar mass:
+    logM* ~ 10.05: log f = +0.137 +- 0.064
+    logM* ~ 10.45: log f = +0.295 +- 0.043
+    logM* ~ 10.70: log f = +0.294 +- 0.036
+    logM* ~ 10.90: log f = +0.294 +- 0.030
+  Fig-10 isolated dwarf stack (5 points, g_bar down to 3.2e-15): log f = -0.015 +- 0.094 (canonical), -0.088 +- 0.095 (alt)
+  trend across the four L*-ish mass bins: d log Upsilon / d log M* = +0.184; adding the dwarf stack as a fifth, far lower-mass rung gives a +0.31 dex swing from dwarfs to the most massive bin
+  
+  SECOND ESCAPE, bounded with the same release: B21's colour and Sersic bins are NOT matched in stellar mass, and
+  red / high-n lenses are on average more massive.  The mass-bin family measures how far that can carry the split:
+    d log Upsilon / d log M* = +0.184 measured above, so even a generous 0.30 dex mean stellar-mass
+    difference between the classes leaks only +0.055 dex into the split -- 12% of the colour offset.
+  [PASS] 111-H the colour and Sersic bins not being mass-matched cannot explain the split either: the mass-dependence of the required Upsilon, measured on the same survey with the same pipeline, is too shallow   (leak +0.055 dex of a +0.468 dex offset, on a generous 0.30 dex mass mismatch)
+  [PASS] 111-G the M/L residual the framework needs is NOT a constant: it runs with stellar mass, from ~0 for the isolated-dwarf stack to +0.3 dex for L* lenses.  This is the same thing item 100 called 'the ladder does not close, organised by stellar M/L', now measured on one homogeneous survey with one pipeline   (dwarfs -0.015, logM*~10.9 bin +0.294 +- 0.030; swing +0.31 dex)
+
+----------------------------------------------------------------------------------------------------------------------
+8.  THE SAME DATA READ IN LambdaCDM (computed beside the framework, as the rules require)
+----------------------------------------------------------------------------------------------------------------------
+  In LambdaCDM nothing about the split is anomalous: at fixed stellar mass early-type centrals sit in more massive
+  haloes.  The measured vertical offset is +0.261 dex in g_obs (colour) and +0.185 dex (Sersic).
+  the released radii reach ~1 Mpc, well outside r200 ~ 0.21 Mpc for a 1e12 Msun halo, where Delta_Sigma ~ M200/(pi R^2), i.e. Delta_Sigma ~ M200
+    colour: required red/blue halo-mass ratio = 1.82 (Delta log M200 = +0.26 dex)
+    Sersic: required red/blue halo-mass ratio = 1.53 (Delta log M200 = +0.18 dex)
+  Mandelbaum+2016 and the type-split SHMR literature measure red/blue halo-mass ratios of ~2 at these stellar
+  masses, so LambdaCDM absorbs the split with a parameter it already has.  LOCKED WORDING (from the repo's own
+  lensing-RAR review): this is an exposure to PROPERTY-INDEPENDENT MODIFIED GRAVITY, not 'LambdaCDM confirmed' --
+  B21's own MICE and BAHAMAS runs disagree with each other about the size of the split.
+
+----------------------------------------------------------------------------------------------------------------------
+9.  MUTATION CONTROLS
+----------------------------------------------------------------------------------------------------------------------
+  [PASS] M1 mutation: 60 mocks drawn from the released colour covariance with a TRUE 0.300 dex M/L offset injected are recovered at 0.300 dex, and 60 mocks with NO offset injected return zero -- the estimator is unbiased and does not manufacture a split   (injected +0.300 -> recovered +0.292 +- 0.057; injected 0.000 -> -0.004 +- 0.060)
+  [PASS] M2 mutation: replacing the kernel by nu = 1 (Newton, no boost) and letting the same two mass factors absorb it gives a far worse fit -- the kernel, not the free M/L, is carrying the signal   (Newton chi2 = 896.2 vs kernel chi2 = 69.8 on the same 30 points (delta chi2 +826.4); Newton also needs log f = +0.88, +1.10, i.e. 8-13 times more baryons than B21 assign)
+
+======================================================================================================================
+VERDICT
+======================================================================================================================
+  Item 111 asked for 'a Upsilon(colour) relation measured by gravity rather than by stellar populations', passing
+  if it matches SPS within 0.1 dex.  Measured: red lenses need +0.47 +- 0.09 dex (inflated errors) more baryonic mass
+  than blue ones -- +0.43 after marginalising over residual environment contamination -- ON TOP of per-galaxy SED masses
+  that already know the colours.  That is a factor 2.9, over the 0.30 dex a defensible stellar-population differential
+  -- or B21's own M_gas = M_star circumgalactic escape -- can supply, though only by 2.0 sigma once the errors are
+  inflated for the fit's own chi2/dof, and inside a 0.45 dex stack of every systematic at once.  So the item's own
+  0.1 dex criterion fails by a wide margin, and the framework's exposure is real but not lethal on this axis.
+  Item 112: the Sersic axis corroborates independently at +0.35 +- 0.07 dex, the smaller of the two, which is the
+  direction class impurity predicts -- and on that axis alone the requirement is NOT significantly over the 0.30
+  dex budget.  The two axes agree with each other; neither agrees with stellar populations at the 0.1 dex asked.
+  So 111 does NOT deliver a new M/L calibration.  What lensing measures here is the size of a standing exposure,
+  and it measures it twice, on two independent morphology proxies.
+  NEW here and against interest: (a) the conversion exponent is 1, not 2, so the 'consistent with SPS' reading of
+  hunt items 2, 65 and 66 came from halving the requirement -- withdrawn; (b) the split's SHAPE is that of a
+  horizontal mass shift and not of the environment term B21's own isolated-vs-all release lets us measure, and it
+  survives the stellar-mass mismatch between the classes, which removes the two easiest escapes; (c) the required
+  M/L residual runs with stellar mass -- zero for the dwarf stack, +0.3 dex at L* -- which is item 100's unclosed
+  ladder showing up inside a single survey with a single pipeline.
+
+RESULT: 14 checks, 5 FAIL -> ["111-D (item 111's OWN pass criterion, and it FAILS) 'the measured Upsilon(colour) matches SPS within 0.1 dex'. It does not: holding a_0 universal, the red KiDS lenses need a baryonic mass this much larger than B21's SED masses give them, relative to the blue lenses", "111-E the same offset against a DEFENSIBLE stellar-population + CGM allowance (0.30 dex, which is both the largest defensible type-differential SPS residual and B21's own M_gas = M_star escape). This is the honest framework-side statement: a universal a_0 needs MORE than that", "112-A (the item's own test, and it FAILS on the raw x-axis) 'bulge-dominated and disc-dominated lenses must give the same a_0': they do not -- the Sersic split is a many-sigma offset in the fitted a_0", "112-B '... once their Upsilon differ as SPS says'.  Applying a defensible stellar-population type-differential (0.30 dex, bulge-heavy) to the Sersic bins, do they then agree?", '111-F2 ... and letting a residual environment component in ANYWAY does not rescue the M/L requirement, which is the thing that mattered.  Marginalising over a free relative contamination with the empirically measured shape, the colour axis still demands more than the 0.30 dex stellar populations and a CGM can supply']   rc=1

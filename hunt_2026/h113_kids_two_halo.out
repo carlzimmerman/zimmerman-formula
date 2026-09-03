@@ -1,0 +1,164 @@
+======================================================================================================================
+ITEM 113 -- does the KiDS 1/r law out to 2.6 Mpc want a LambdaCDM two-halo term?
+======================================================================================================================
+  Fig-3: 4 stellar-mass bins x 15 radial bins, R = 0.035 to 2.60 Mpc, 60x60 covariance
+  [PASS] 113-A the covariance is loaded in the ONE index order that is positive definite.  The plain reshape that hunt_lib.load_cov_esd still does (correct only for the unbinned files) is indefinite on this binned file and would give negative chi2 -- exhibited here rather than hidden, because it is the bug that voided an earlier published-adjacent number in this repository   (correct (m,n,i,j) ordering: min eigenvalue +1.259e-02 (positive definite); plain reshape -6.421e+01 (INDEFINITE))
+
+  linear theory: sigma_8 = 0.811 at z = 0, growth D(0.23) = 0.885, rho_m(comoving) = 3.951e+10 Msun/Mpc^3, b(1e12) = 0.85, b(1e13) = 1.19
+  bias-1 two-halo Delta_Sigma (Msun/pc^2), comoving / physical convention:  R=0.3: 0.085/0.146  R=1.0: 0.161/0.266  R=2.0: 0.211/0.341  R=2.6: 0.229/0.367
+  measured Delta_Sigma at the same radii, mass bin 1:  1.89+-0.87  1.28+-0.27  0.32+-0.15  0.25+-0.11
+  => at 2-2.6 Mpc a bias-1 two-halo term is the same size as the ENTIRE measured signal in the lowest mass
+     bin, so the data have real power to accept it or reject it.  This is not a marginal addition.
+  
+  framework profile: 4 x D(x) x x -> 1 as x -> infinity (the deep-MOND limit Delta_Sigma = sqrt(G M a_0)/(4 G R),
+  which is exactly B21's Delta_Sigma = g/(4G)).  Measured 0.9968-1.0000 for x > 200; the
+  departure at smaller x is PHYSICAL (the kernel's 1 + 1/(2x) correction), not numerical: 4 D x = 0.802 at x = 3.
+  independent brute-force recomputation vs the table the fits use:
+      x =    3.0:  table 6.680610e-02   brute force 6.680364e-02   ratio 1.00004
+      x =   30.0:  table 8.157974e-03   brute force 8.157109e-03   ratio 1.00011
+      x =  300.0:  table 8.316527e-04   brute force 8.307599e-04   ratio 1.00107
+  [PASS] 113-B the framework's Delta_Sigma profile is computed from the kernel rather than assumed, and it is validated twice: it reproduces its own analytic deep-MOND limit at large radius, and it agrees with an independent brute-force integration (different quadrature, numerical rather than analytic derivative) at every radius   (max |4 D x - 1| = 0.0032 for x > 200; brute-force ratios 1.0000, 1.0001, 1.0011)
+
+----------------------------------------------------------------------------------------------------------------------
+1.  LambdaCDM FIRST: NFW + stars + its own two-halo term
+----------------------------------------------------------------------------------------------------------------------
+  LambdaCDM is run twice: four halo masses with Duffy concentrations (4 parameters, the same count as the
+  framework), and the same plus one shared concentration rescaling (5 parameters), because a rigid c(M) is not
+  what a real galaxy-galaxy lensing analysis assumes -- miscentring alone flattens the inner profile.
+  [comoving]  two-halo, c fixed: chi2 =  199.0/60, logM200 = 11.83 12.25 12.38 12.52   b(M) = 0.82 0.91 0.94 0.99
+  [comoving]  NO two-halo, c fixed: chi2 =  235.8/60, logM200 = 11.86 12.27 12.40 12.54
+  [comoving]  two-halo, c free : chi2 =   82.8/60, logM200 = 11.90 12.34 12.48 12.61   c x 0.47
+  [comoving]  NO two-halo, c free : chi2 =   83.0/60, logM200 = 11.94 12.37 12.52 12.63   c x 0.42
+  [physical]  two-halo, c fixed: chi2 =  185.7/60, logM200 = 11.81 12.23 12.37 12.51   b(M) = 0.82 0.90 0.94 0.98
+  [physical]  NO two-halo, c fixed: chi2 =  235.8/60, logM200 = 11.86 12.27 12.40 12.54
+  [physical]  two-halo, c free : chi2 =   88.8/60, logM200 = 11.87 12.32 12.46 12.59   c x 0.50
+  [physical]  NO two-halo, c free : chi2 =   83.0/60, logM200 = 11.94 12.37 12.52 12.63   c x 0.42
+  [PASS] 113-C REPORTED FIRST, because it softens the item's own premise: LambdaCDM wants its two-halo term ONLY while its concentration is nailed to the standard c(M).  Let one shared concentration rescaling float and the two-halo term becomes redundant -- on these profiles the two are degenerate.  The preferred rescaling is well below 1, i.e. shallower haloes, which is also what miscentring does   (c fixed: chi2 199.0 with two-halo vs 235.8 without (delta +36.7); c free: 82.8 vs 83.0 (delta +0.2), with c x 0.47; logM200 = 11.90 12.34 12.48 12.61)
+
+----------------------------------------------------------------------------------------------------------------------
+2.  THE FRAMEWORK, NO EFE: one baryonic mass per bin, a_0 fixed, no two-halo term
+----------------------------------------------------------------------------------------------------------------------
+  [canonical] chi2 =   95.6/60, log M_gal = 10.42 10.96 11.18 11.36   r_M [kpc] = 6 12 15 19
+  [alt      ] chi2 =   98.5/60, log M_gal = 10.34 10.86 11.08 11.27   r_M [kpc] = 5 9 12 15
+  B21's own baryonic masses for these bins are log M_gal = 10.22 10.55 10.77 10.95 (M* + Boselli cold gas), so the fit wants
+  +0.20 +0.40 +0.41 +0.41 dex more -- the same stellar-M/L offset hunt items 111 and 2 measure on this survey, not a new problem.
+  CROSS-CHECK against item 111, which fits the same lenses in B21's OTHER binning (Fig-9, binned in g_bar rather
+  than in R): item 111 gets +0.14 +0.30 +0.29 +0.29 dex for the same four mass bins against +0.20 +0.40 +0.41
+  +0.41 here.  The ~0.1 dex difference between two binnings of one survey is the size of the binning-plus-
+  conversion systematic on any absolute lensing mass, and it is why only RELATIVE offsets are quoted as results.
+  the footings differ only by a rigid shift in M_gal, as they must (deep MOND sees only M a_0): +0.087 +0.092 +0.095 +0.095 vs the predicted +0.082
+  [PASS] 113-D a_0 is very nearly unmeasurable here, stated before anything is drawn from it: every released point is deep-MOND, where only the product M_gal a_0 enters, so a change of footing is absorbed by the fitted baryonic mass to better than 0.02 dex in every bin.  What is tested is the radial SHAPE, which is what a two-halo term changes   (footing shift absorbed to < 0.013 dex in every bin; residual chi2 difference between footings 2.90)
+  
+  the degeneracy is not exact -- the kernel's inner 1 + 1/(2x) correction leaves a weak lever -- so profile a_0
+  with the four masses refitted at every step.  Nothing about stellar populations enters, so this is an
+  M/L-FREE a_0; it is also driven by the innermost radii, where B21's profiles are least reliable:
+    all radii  : best a_0 = 6.31e-11 m/s^2 (-0.17 dex canonical, -0.25 alt), chi2 91.9, delta chi2 = 1 range [5.4e-11, 7.5e-11]
+    R > 0.1 Mpc: best a_0 = 1.26e-10 m/s^2 (+0.13 dex canonical, +0.05 alt), chi2 78.5, delta chi2 = 1 range [5.4e-11, 1.0e-09]  (open at a grid edge)
+  [PASS] 113-D2 that M/L-free a_0 is REPORTED, NOT BANKED.  It is the only a_0 here that does not pass through a stellar mass, but it comes from the profile's inner curvature alone, and dropping the points inside 100 kpc -- where miscentring and the lens's own baryonic extent live -- moves it by more than its own error.  On the hunt's rules that makes it a consistency, not a rung of the ladder   (all radii 6.31e-11 [5.4e-11, 7.5e-11]; R > 0.1 Mpc 1.26e-10 [5.4e-11, 1.0e-09]; footings 9.36e-11 and 1.13e-10)
+
+----------------------------------------------------------------------------------------------------------------------
+3.  ITEM 113: ADD THE LambdaCDM TWO-HALO TERM AND LET ITS AMPLITUDE FLOAT
+----------------------------------------------------------------------------------------------------------------------
+  model  Delta_Sigma_b(R) = framework(M_gal,b ; a_0) + beta * b_h(M200,b) * Delta_Sigma_2h(R),
+  beta = 0 being the framework's prediction and beta = 1 the full LambdaCDM two-halo term at the halo masses
+  LambdaCDM itself fitted in section 1.  Five parameters against 60 points.
+  [comoving / canonical] beta = -1.335 +- 0.350   chi2 81.1 vs 95.6 at beta = 0 (delta -14.57);   beta = 0 at -3.8 sigma, beta = 1 at -6.7 sigma
+  [comoving / alt      ] beta = -1.225 +- 0.346   chi2 86.1 vs 98.5 at beta = 0 (delta -12.46);   beta = 0 at -3.5 sigma, beta = 1 at -6.4 sigma
+  [physical / canonical] beta = -0.823 +- 0.218   chi2 81.4 vs 95.6 at beta = 0 (delta -14.25);   beta = 0 at -3.8 sigma, beta = 1 at -8.4 sigma
+  [physical / alt      ] beta = -0.754 +- 0.216   chi2 86.4 vs 98.5 at beta = 0 (delta -12.14);   beta = 0 at -3.5 sigma, beta = 1 at -8.1 sigma
+  the two-halo template's own signal-to-noise against this covariance is 3.4 sigma, so a rejection here is
+  a measurement and not an absence of power.  No model reaches chi2/dof = 1 (the framework's best is 95.6/56), so
+  the same betas with errors inflated by sqrt(chi2/dof) = 1.31:  com/cano: -1.33 +- 0.46; com/alt: -1.23 +- 0.45; phy/cano: -0.82 +- 0.29; phy/alt: -0.75 +- 0.28
+  [PASS] 113-E1 the half of item 113 that HOLDS: a two-halo term at the LambdaCDM amplitude its own fitted halo masses and the Tinker bias require (beta = 1) is excluded on top of the framework's 1/r profile, in every combination of footing and radius convention, with errors inflated for the poor chi2/dof   (com/cano: beta = -1.33 +- 0.46 (5.1 sigma from 1); com/alt: beta = -1.23 +- 0.45 (4.9 sigma from 1); phy/cano: beta = -0.82 +- 0.29 (6.4 sigma from 1); phy/alt: beta = -0.75 +- 0.28 (6.2 sigma from 1))
+  [FAIL] 113-E2 the half that DOES NOT hold: the framework's own prediction for this fit was beta = 0, and beta is not zero either.  It comes out NEGATIVE at ~3 sigma with inflated errors -- the outer KiDS points fall FASTER than 1/r, not slower -- so the bare 1/r law over-predicts at 2-2.6 Mpc   (com/cano: -1.33 +- 0.46 (2.9 sigma from 0); com/alt: -1.23 +- 0.45 (2.7 sigma from 0); phy/cano: -0.82 +- 0.29 (2.9 sigma from 0); phy/alt: -0.75 +- 0.28 (2.7 sigma from 0))
+  [FAIL] 113-F the model comparison the item asked for, and it cuts both ways.  At EQUAL parameter count (four each) the framework's four baryonic masses beat LambdaCDM's four halo masses decisively, with no dark matter anywhere.  Give LambdaCDM the fifth parameter a real lensing analysis would give it -- a free concentration -- and it wins back more than it spends   (framework 95.6/60 (4 par) vs LambdaCDM 199.0/60 (4 par, c fixed) and 82.8/60 (5 par, c free): the framework beats the four-parameter LambdaCDM by 103 and loses to the five-parameter one by 13)
+
+----------------------------------------------------------------------------------------------------------------------
+4.  THE PART AGAINST THE FRAMEWORK: ITS OWN EXTERNAL FIELD ENDS THE 1/r LAW
+----------------------------------------------------------------------------------------------------------------------
+  With an external field the boost saturates at nu(g_ext/a_0), and beyond r_end = r_M/sqrt(g_ext/a_0) the lens
+  is a point mass again: Delta_Sigma falls as 1/R^2, not 1/R.  r_M here is 6-19 kpc, so an ordinary field ends
+  the law well inside the KiDS range.  Scanning g_ext with the four masses refitted at every step:
+  
+    g_ext/a_0     g_ext [m/s^2]   r_end bin1 [kpc]   chi2 (framework alone)   delta chi2 vs best
+     0.00e+00       0.00e+00                inf                   95.6   +15.5
+     1.00e-06       9.36e-17               6292                   95.2   +15.0
+     1.78e-06       1.66e-16               4728                   94.6   +14.5
+     3.16e-06       2.96e-16               3560                   93.6   +13.5
+     5.62e-06       5.26e-16               2696                   91.8   +11.7
+     1.00e-05       9.36e-16               2053                   89.1   +9.0
+     1.78e-05       1.66e-15               1573                   85.5   +5.4
+     3.16e-05       2.96e-15               1212                   81.9   +1.7
+     5.62e-05       5.26e-15                936                   80.1   +0.0
+     1.00e-04       9.36e-15                722                   83.0   +2.8
+     1.78e-04       1.66e-14                557                   93.1   +12.9
+     3.16e-04       2.96e-14                430                  112.4   +32.3
+     5.62e-04       5.26e-14                332                  141.9   +61.8
+     1.00e-03       9.36e-14                258                  181.8   +101.6
+     1.78e-03       1.66e-13                202                  231.4   +151.3
+     3.16e-03       2.96e-13                160                  289.9   +209.7
+     5.62e-03       5.26e-13                127                  355.3   +275.2
+     1.00e-02       9.36e-13                102                  425.5   +345.3
+     1.78e-02       1.66e-12                 83                  497.4   +417.2
+     3.16e-02       2.96e-12                 68                  567.7   +487.6
+  [PASS] 113-G AGAINST INTEREST, and the item as written did not ask for it: 'the framework needs no two-halo term' is true only of a framework WITHOUT its own external-field effect.  At the g_ext ~ 0.01 a_0 usually quoted for field galaxies the lens's own profile dies at ~100 kpc, the fit collapses, and the framework would then need a large-radius term of its own -- exactly the role LambdaCDM gives the two-halo term.  Read the other way, these data BOUND the external field on B21's isolated lenses far below what large-scale structure supplies   (best-fit g_ext/a_0 = 5.6e-05; the 95% range (delta chi2 < 3.84, inflated) is [1.5e-05, 1.2e-04] a_0 = [1.4e-15, 1.2e-14] m/s^2, while g_ext = 0.01 a_0 costs delta chi2 = +345)
+  
+  note the sign: the data do not merely tolerate a small EFE, they PREFER one -- g_ext = 0 costs delta chi2 = +15.5 (+9.1 inflated),
+  the same information the negative beta of section 3 carries, read through the framework's own mechanism.
+  THE OTHER WAY TO READ THE SAME DEFICIT, and it must be said: the outermost bins of any galaxy-galaxy lensing
+  profile are where residual ADDITIVE systematics live -- boost-factor and random-point subtraction, and an
+  analytic covariance with no super-sample term.  A small negative additive residual at large R would produce
+  exactly this signature, and nothing here separates it from a real EFE.  The g_ext number below is therefore a
+  BOUND that is safe and a DETECTION that is not.
+  THE FORK, stated plainly because this script cannot resolve it: the SAME correlated structure that supplies
+  g_ext also lenses.  Either B21's isolated lenses really sit in a field of order 5e-15 m/s^2 -- far below what
+  large-scale structure supplies -- or the outer signal is not the lens's own phantom halo, in which case the
+  framework needs a large-radius term too and only its AMPLITUDE, not its existence, separates it from the
+  two-halo term.  Settling that needs a MOND structure-formation calculation, outside this script.
+  This corroborates and sharpens hunt item 72 (endings of the sqrt boost excluded below 1.7-3.4 Mpc): item 72
+  tested a UNIVERSAL ending radius, while the EFE ending scales as sqrt(M_gal), and that scaling is excluded too.
+
+----------------------------------------------------------------------------------------------------------------------
+5.  WHERE THE POWER IS, AND WHAT DROPPING THE ISOLATION CUT DOES
+----------------------------------------------------------------------------------------------------------------------
+  outer residuals (data - framework, Msun/pc^2) beside the bias-1 two-halo term the fit rejects:
+    bin 1 resid:  +0.05  +0.69  +0.27  -0.02  -0.23  -0.15  |  2-halo(b=0.82):  0.10  0.12  0.13  0.15  0.17  0.19
+    bin 2 resid:  +0.08  +0.32  +0.79  -0.27  -0.37  -0.49  |  2-halo(b=0.91):  0.11  0.13  0.15  0.17  0.19  0.21
+    bin 3 resid:  +0.91  +0.25  +0.52  -0.07  +0.28  -0.37  |  2-halo(b=0.94):  0.11  0.13  0.15  0.18  0.20  0.22
+    bin 4 resid:  +0.70  -0.06  +0.19  +0.22  -0.41  -0.41  |  2-halo(b=0.99):  0.12  0.14  0.16  0.18  0.21  0.23
+  BOTH WAYS on 'the framework needs none': dropping B21's isolation cut (their Fig-A4 vs Fig-9, same mass bins)
+  raises the signal by +152% at the largest radii and leaves it unchanged at the smallest, so a
+  correlated-structure term of that size exists in this survey whatever the theory.  What the framework claims is
+  not that large-scale lensing is absent, but that no term is needed whose amplitude is set by a dark-matter halo
+  bias -- and that is what beta measures.  On the ISOLATED sample beta is not positive; on the full sample it
+  plainly would be.
+
+----------------------------------------------------------------------------------------------------------------------
+6.  MUTATION CONTROLS
+----------------------------------------------------------------------------------------------------------------------
+  [PASS] M1 mutation: 15 mocks drawn from the released covariance with the FULL LambdaCDM two-halo term injected come back at beta = 1, and 15 with none injected come back at beta = 0.  Sections 3 and 4 are measuring something, not reporting a blind spot   (injected beta = 1 -> recovered +0.94 +- 0.35; injected beta = 0 -> +0.04 +- 0.37)
+  [PASS] M2 mutation: switch the kernel off.  A Newtonian point lens gives Delta_Sigma = M/(pi R^2) and the data fall as 1/R, so no set of four masses can fit them -- the kernel's shape, not the four free masses, is doing the work   (Newton chi2 = 1230.1 vs framework 95.6 on the same 60 points (delta chi2 +1134.5))
+
+======================================================================================================================
+VERDICT
+======================================================================================================================
+  Item 113 asked whether the KiDS profiles out to 2.6 Mpc prefer a LambdaCDM two-halo term added to the 1/r law.
+  Half of the item's prediction holds, half does not, and the premise itself is softer than it was stated.
+  HOLDS.  A two-halo term at the LambdaCDM amplitude is excluded on top of the framework's profile: beta = -1.33 +- 0.46 (comoving)
+  and -0.82 +- 0.29 (physical) against a predicted 1, 5-6 sigma away with inflated errors, and the template is
+  detectable at 3 sigma, so this is a measurement.  At equal parameter count the framework also wins the
+  fit, 96/60 against 199/60, with no dark matter anywhere.
+  DOES NOT HOLD.  beta is not zero either: NEGATIVE at 2.9 sigma inflated, because the outer points fall FASTER
+  than 1/r.  The framework predicted a null and the data give a small deficit.
+  THE PREMISE IS SOFT.  LambdaCDM wants its own two-halo term only while its concentration is nailed to c(M); let
+  one shared concentration float (c x 0.47, which is also what miscentring does) and the two-halo term becomes
+  redundant (delta chi2 +0.2) -- and that five-parameter LambdaCDM then fits better than the framework, 83 against 96.
+  WHAT IS WORTH KEEPING.  The deficit is exactly the sign the framework's OWN external-field effect predicts, and
+  scanning it, the data prefer g_ext ~ 5e-15 m/s^2 and allow at most ~1e-14 (a bound that is safe; the preference itself is
+  not, because an additive systematic in the outermost bins would look the same); the g_ext ~ 0.01 a_0 for field
+  galaxies costs delta chi2 = +345 and is dead either way.  Either B21's isolated lenses sit in a field orders below what large-scale
+  structure supplies, or the outer signal is not the lens's own phantom halo -- and the same structure supplies
+  both, so the framework cannot claim the outer 1/r as its own and disown the two-halo term at the same time.
+  'The framework needs none' survives as written; it does not survive its own EFE.
+
+RESULT: 11 checks, 2 FAIL -> ["113-E2 the half that DOES NOT hold: the framework's own prediction for this fit was beta = 0, and beta is not zero either.  It comes out NEGATIVE at ~3 sigma with inflated errors -- the outer KiDS points fall FASTER than 1/r, not slower -- so the bare 1/r law over-predicts at 2-2.6 Mpc", "113-F the model comparison the item asked for, and it cuts both ways.  At EQUAL parameter count (four each) the framework's four baryonic masses beat LambdaCDM's four halo masses decisively, with no dark matter anywhere.  Give LambdaCDM the fifth parameter a real lensing analysis would give it -- a free concentration -- and it wins back more than it spends"]   rc=1

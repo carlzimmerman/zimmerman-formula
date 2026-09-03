@@ -1,0 +1,236 @@
+======================================================================================================================
+ENGINE VALIDATION -- reconstructing Li+2020's parameterisation from the catalogue itself
+======================================================================================================================
+  pISO-Flat      log rho_0(C200) residual -0.0001 +- 0.0030 dex;  log rs(V200,C200) residual +0.0000 +- 0.0029 dex;  e_rs / uncorrelated-propagation = 1.000;  e_logM200 / (3 e_V200/V200 ln10) = 0.999
+  Burkert-Flat   log rho_0(C200) residual +0.0000 +- 0.0029 dex;  log rs(V200,C200) residual -0.0000 +- 0.0023 dex;  e_rs / uncorrelated-propagation = 1.000;  e_logM200 / (3 e_V200/V200 ln10) = 1.000
+  NFW-Flat       log rho_0(C200) residual -0.0009 +- 0.0032 dex;  log rs(V200,C200) residual -0.0000 +- 0.0006 dex;  e_rs / uncorrelated-propagation = 1.000;  e_logM200 / (3 e_V200/V200 ln10) = 0.999
+  NFW-LCDM       log rho_0(C200) residual +0.0004 +- 0.0029 dex;  log rs(V200,C200) residual +0.0000 +- 0.0002 dex;  e_rs / uncorrelated-propagation = 1.000;  e_logM200 / (3 e_V200/V200 ln10) = 1.002
+  [PASS] E1 the catalogue's own parameterisation is recovered exactly: rho_0 is a function of C200 alone and rs = V200/(10 H0 C200) with H0 = 73 km/s/Mpc, both to the table's rounding precision -- so the engine below is fitting the SAME two parameters Li fitted   (worst rms residual over the four models 0.0032 dex (table rounding is 0.005 dex))
+  [PASS] E2 AND the catalogue's quoted e_rs is EXACTLY the propagation of e_V200 and e_C200 assuming they are UNCORRELATED (ratio 1.000), while the actual posterior correlation measured below is -0.90 to -0.98.  The published error bars on r_0 therefore cannot be used as an error ellipse for item 106 -- the correlation has to be re-derived, which is what the engine does   (e_rs/propagation = 1.000 worst; e_logM200/propagation = 1.002 worst)
+
+  recomputing the (V200, C200) posterior for 4 models x 175 galaxies -- this is the slow part (~3 min)
+  posteriors computed: 682 galaxy-model pairs in 37 s
+  pISO-Flat      N=169  my sigma(logV200)/Li's = 0.91, sigma(logC200)/Li's = 0.45   |  correlation of (log rho_0, log r_0) = -0.899   DEGENERACY SLOPE = -1.39
+  Burkert-Flat   N=171  my sigma(logV200)/Li's = 0.90, sigma(logC200)/Li's = 0.85   |  correlation of (log rho_0, log r_0) = -0.930   DEGENERACY SLOPE = -1.74
+  NFW-Flat       N=171  my sigma(logV200)/Li's = 0.93, sigma(logC200)/Li's = 0.86   |  correlation of (log rho_0, log r_0) = -0.978   DEGENERACY SLOPE = -1.46
+  NFW-LCDM       N=171  my sigma(logV200)/Li's = 1.23, sigma(logC200)/Li's = 0.92   |  correlation of (log rho_0, log r_0) = -0.946   DEGENERACY SLOPE = -1.65
+  caveat stated against interest: sigma(log C200) matches Li's to 0.85-0.92 for Burkert and both NFW variants but only 0.45
+  for pISO, so the pISO ellipse below is probably too TIGHT and its degeneracy correction correspondingly under-applied.
+  [PASS] E3 the re-derived posterior reproduces Li's own quoted parameter uncertainties to within a factor ~1.3, which is what licenses using its CORRELATION (the thing Li does not publish) as the error ellipse for items 106 and 107   (median sigma(log V200) mine/Li over the four models: [0.91 0.9  0.93 1.23])
+  [PASS] E4 (bug pattern 4, checked explicitly rather than assumed) every 2x2 error ellipse used below -- in both orderings, since the (log rho_0, log r_0) matrix is transposed into (x, y) = (log r_0, log rho_0) for the regression -- is symmetric and POSITIVE DEFINITE, not merely positive on the diagonal.  An earlier item in this hunt was voided by exactly this   (682 posteriors x 3 orderings checked, 0 non-positive-definite; worst eigenvalue ratio 3.6e-06, and 5 of 2046 are thinner than 1e-4 -- those are the galaxies whose rotation curve fixes one combination of (V200, C200) and says almost nothing about the other, which is the physical situation and not a numerical failure)
+
+======================================================================================================================
+ITEM 106 -- the rho_0 - r_0 anti-correlation: is the slope -1, and is -1 free?
+======================================================================================================================
+  the prediction restated exactly: log rho_0 = log Sigma_M - log r_0 has slope -1 IF AND ONLY IF the product does not
+  itself depend on r_0, since  d log rho_0/d log r_0 = -1 + d log(rho_0 r_0)/d log r_0.  Item 5 already measured the
+  product: median 177 Msun/pc^2 for Burkert with a 0.45 dex SCATTER, so 'constant' is a statement about the median only.
+  Sigma_M = a_0/(2 pi G) = 106.9 (canonical) / 129.0 (alt) Msun/pc^2.
+
+  (a) the NAIVE slope, straight from the catalogue, every model:
+      Burkert-Flat    N=162  slope -1.193 +- 0.109   residual scatter 0.440 dex
+      DC14-Flat       N=162  slope -1.405 +- 0.106   residual scatter 0.537 dex
+      DC14-LCDM       N=159  slope -0.888 +- 0.120   residual scatter 0.443 dex
+      Einasto-Flat    N=148  slope -1.334 +- 0.087   residual scatter 0.448 dex
+      Einasto-LCDM    N=148  slope -0.990 +- 0.087   residual scatter 0.302 dex
+      Lucky13-Flat    N=161  slope -1.347 +- 0.109   residual scatter 0.465 dex
+      Lucky13-LCDM    N=157  slope -1.096 +- 0.058   residual scatter 0.331 dex
+      NFW-Flat        N=156  slope -1.451 +- 0.056   residual scatter 0.529 dex
+      NFW-LCDM        N=148  slope -0.999 +- 0.082   residual scatter 0.334 dex
+      coreNFW-Flat    N=160  slope -1.686 +- 0.066   residual scatter 0.551 dex
+      coreNFW-LCDM    N=152  slope -1.031 +- 0.085   residual scatter 0.296 dex
+      pISO-Flat       N=161  slope -1.290 +- 0.082   residual scatter 0.429 dex
+      cut sensitivity, Burkert-Flat, no chi2 cut                                         : N = 165, slope -1.196
+      cut sensitivity, Burkert-Flat, chi2 < 10 (the cut used, and the one items 5 and 24 used): N = 162, slope -1.193
+      cut sensitivity, Burkert-Flat, chi2 < 3                                            : N = 137, slope -1.169
+      -Flat models (no c-M prior): slopes -1.69 to -1.19, median -1.35
+      -LCDM models (Dutton & Maccio c-M prior imposed): slopes -1.10 to -0.89, median -1.00  <-- the models with a LambdaCDM prior are the ones that land ON -1
+  [PASS] 106a AGAINST INTEREST -- there is no such thing as 'the' slope to test.  Across the twelve profile/prior combinations fitted to the SAME 175 rotation curves the slope runs from -0.89 to -1.69, a spread far wider than the +-0.05 the item asked for, so it is set more by the choice of halo profile and prior than by the galaxies.  The prior-free cored fits give -1.19 and -1.29, STEEPER than the framework's -1 and nowhere near feedback's -0.7/-0.9; the combinations that land on -1.00 are the ones carrying a LambdaCDM c-M prior   (full range -1.69 to -0.89; Burkert-Flat -1.193 +- 0.109, pISO-Flat -1.290 +- 0.082; -Flat median -1.347 vs -LCDM median -0.999)
+
+      the LambdaCDM alternative computed beside the framework: take Dutton & Maccio's c(M200) with NO MOND input at all,
+      convert to (rho_s, r_s) through the same NFW definitions, and read off the slope it predicts:
+      a pure Dutton & Maccio c-M relation gives d log rho_s/d log r_s = -0.571 over 1e9-1e13 Msun -- so LambdaCDM's
+      own concentration-mass relation ALREADY produces a steep anti-correlation with no a_0 anywhere in it.
+
+  (b) THE TRAP the hunt list warned about, measured rather than assumed.  rho_0 and r_0 are two numbers squeezed out of one
+      rotation curve, and the engine says their posterior correlation is -0.90 to -0.98 with a degeneracy slope of -1.4 to -1.8.
+      How much of the measured slope does that degeneracy buy for free?  A population with NO intrinsic relation at all
+      (true log rho_0 constant), pushed through the REAL per-galaxy ellipses:
+      pISO-Flat       median per-galaxy degeneracy slope -1.43, POPULATION-AVERAGED degeneracy slope <C_xy>/<C_xx> = -1.04  <-- the attractor; median sigma(log r_0) = 0.091 dex (19% of the observed log r_0 variance is fit error);  a population with NO intrinsic relation returns slope -0.197 +- 0.063
+      Burkert-Flat    median per-galaxy degeneracy slope -1.79, POPULATION-AVERAGED degeneracy slope <C_xy>/<C_xx> = -1.07  <-- the attractor; median sigma(log r_0) = 0.115 dex (20% of the observed log r_0 variance is fit error);  a population with NO intrinsic relation returns slope -0.211 +- 0.066
+      NFW-Flat        median per-galaxy degeneracy slope -1.49, POPULATION-AVERAGED degeneracy slope <C_xy>/<C_xx> = -1.28  <-- the attractor; median sigma(log r_0) = 0.228 dex (27% of the observed log r_0 variance is fit error);  a population with NO intrinsic relation returns slope -0.340 +- 0.061
+      NFW-LCDM        median per-galaxy degeneracy slope -1.66, POPULATION-AVERAGED degeneracy slope <C_xy>/<C_xx> = -1.49  <-- the attractor; median sigma(log r_0) = 0.106 dex (14% of the observed log r_0 variance is fit error);  a population with NO intrinsic relation returns slope -0.221 +- 0.056
+  [PASS] 106b the trap is REAL, and it has a precise shape that is worth more than the warning: attenuation drags any measured slope toward the POPULATION-AVERAGED degeneracy slope, which for these fits is about -1.  So the naive estimator is unbiased exactly AT -1 and pulls everything else toward it (see the mocks in (d): true -0.8 reads -0.85, true -1.4 reads -1.33).  A population with no relation at all returns only -0.2, because just ~20% of the log r_0 variance is fit error -- so -1 is not handed over for free, it is a magnet   (Burkert-Flat population-averaged degeneracy slope -1.065 (the attractor); null-relation mock slope -0.211 +- 0.066 vs the catalogue's -1.193 +- 0.109; 20% of the log r_0 variance is fit error)
+
+  (c) the degeneracy-corrected slope.  Estimator: an errors-in-variables fit in the Kelly (2007) form -- per-galaxy 2x2
+      ellipse from the engine, plus one intrinsic scatter in log rho_0 at FIXED log r_0, which is scatter in the PRODUCT
+      and is the right shape for this hypothesis.  (An orthogonal-scatter fit was written first and is biased by -0.30 on
+      these data; that bug is kept visible in the mock control (d) below rather than hidden.)
+      pISO-Flat       N=159  EIV slope -1.305 +- 0.087  (naive -1.290);  intrinsic scatter in log rho_0 at fixed r_0 = 0.380 dex;  implied d log(rho_0 r_0)/d log r_0 = -0.305
+      Burkert-Flat    N=162  EIV slope -1.328 +- 0.123  (naive -1.193);  intrinsic scatter in log rho_0 at fixed r_0 = 0.401 dex;  implied d log(rho_0 r_0)/d log r_0 = -0.328
+      NFW-Flat        N=156  EIV slope -1.601 +- 0.091  (naive -1.451);  intrinsic scatter in log rho_0 at fixed r_0 = 0.456 dex;  implied d log(rho_0 r_0)/d log r_0 = -0.601
+      NFW-LCDM        N=148  EIV slope -0.996 +- 0.093  (naive -0.999);  intrinsic scatter in log rho_0 at fixed r_0 = 0.330 dex;  implied d log(rho_0 r_0)/d log r_0 = +0.004
+
+  (d) MUTATION CONTROL for the estimator itself -- inject a KNOWN slope, add the REAL error ellipses, and see what each
+      estimator returns.  If the fit cannot separate -1.0 from -0.8 the item is unanswerable with this catalogue.
+      injected slope -1.00:  naive OLS returns -1.007 +- 0.078  (bias -0.007);  EIV returns -0.999 +- 0.087  (bias +0.001)
+      injected slope -0.80:  naive OLS returns -0.854 +- 0.073  (bias -0.054);  EIV returns -0.802 +- 0.069  (bias -0.002)
+      injected slope -1.40:  naive OLS returns -1.333 +- 0.078  (bias +0.067);  EIV returns -1.397 +- 0.080  (bias +0.003)
+      robustness of the ONE assumption the estimator makes (a Gaussian distribution of true log r_0): injecting -1.33 with the OBSERVED, non-Gaussian log r_0 distribution instead returns -1.320 +- 0.068 (bias +0.010) -- the assumption is not driving the answer
+  [PASS] M106 mutation: the estimator is calibrated on mocks that use the real error ellipses.  The naive fit is pulled TOWARD -1 from both sides (-0.05 at a true -0.8, +0.07 at a true -1.4, and no bias at all exactly at -1), which is the magnet of (b) seen directly; the EIV fit recovers every injected value to within its own scatter, including with the observed non-Gaussian log r_0 distribution.  The estimator CAN fail and did not, so the measurement below means something   (true -1.00 -> EIV -0.999 +- 0.087; true -0.80 -> -0.802 +- 0.069; true -1.40 -> -1.397 +- 0.080; naive biases -0.007 / -0.054 / +0.067; non-Gaussian-x control at -1.33 -> -1.320 +- 0.068)
+  [PASS] 106c AGAINST INTEREST -- with the joint-fit degeneracy divided out by a calibrated estimator, the cored-halo slope is NOT -1: it is significantly STEEPER, which means log(rho_0 r_0) still falls with r_0 and the surface-density product is not a constant of nature in this catalogue.  Item 5's statement about the product's MEDIAN is untouched; its constancy as a LAW is not supported by the slope   (Burkert-Flat EIV -1.328 +- 0.123 (-2.7 sigma from -1, and -4.3 sigma from the feedback -0.8); pISO-Flat -1.305 +- 0.087; NFW-Flat -1.601 +- 0.091)
+
+  (e) the a_0-sensitive half.  The framework's line is not just 'slope -1', it is the FIXED line
+      log rho_0 = log Sigma_M(a_0) - log r_0 - 3.  With the slope HELD at the predicted -1 and only the intercept free,
+      the intercept is a zero-parameter measurement of Sigma_M -- the item-5 statement, now with the fit ellipses in it.
+      slope fixed at -1: measured Sigma_M = rho_0 r_0 = 193.3 [180.3, 210.4] Msun/pc^2, intrinsic scatter 0.434 dex
+      canonical  framework Sigma_M = a_0/(2 pi G) = 106.9 Msun/pc^2 -> measured is +0.257 dex away (7.3 sigma)
+      alt        framework Sigma_M = a_0/(2 pi G) = 129.0 Msun/pc^2 -> measured is +0.176 dex away (5.0 sigma)
+      FOR THE a_0 LADDER, with every caveat attached: inverting Sigma_M = a_0/(2 pi G) gives a_0 = 1.69e-10 [1.58e-10, 1.84e-10] m/s^2 from Burkert-Flat, i.e. +0.26 dex from
+      canonical and +0.18 dex from alt.  It is NOT an M/L-free rung -- Li's fits carry a fitted Upsilon_disk with a 0.1 dex
+      prior -- and its real error bar is the 1.2 dex profile-choice spread below, not the bootstrap interval quoted.  It
+      should go on the ladder as an UPPER-BOUND-quality rung or not at all.
+      THE SYSTEMATIC THAT SIZES THIS: the same 175 rotation curves give a median rho_0 r_0 of 23 to 369 Msun/pc^2 depending only on WHICH halo profile is fitted (item 5's table) -- a 1.2 dex
+      spread.  The +-0.04 dex statistical error above is therefore not the error that matters, and the 0.2 dex offset from
+      a_0/(2 pi G) is well inside the profile-choice systematic.  Quoted both ways.
+  [PASS] M106b mutation and a_0 sensitivity: with the slope held at the predicted -1 the intercept measures the surface-density constant, and it sits ~0.2 dex ABOVE both footings.  a_0 x 10 (a 1.0 dex shift) is excluded many times over, so the test does have a_0 in it -- but the profile-choice systematic is 1.2 dex, an order of magnitude larger than the offset being discussed, so this is a consistency and NOT a measurement of a_0   (measured 193.3 +- 15.7 Msun/pc^2 (Burkert-Flat); canonical +0.257 dex, alt +0.176 dex; a_0 x 10 would be 1.000 dex = 28 statistical sigma away, but the profile-choice spread is 1.21 dex)
+
+  VERDICT 106.  Three separate things, and only one of them is what the item asked for.
+    (i)   The trap is real and its shape is now known: attenuation is a MAGNET at slope ~-1 (the population-averaged
+          degeneracy slope), so the naive fit reads -1 back whatever the truth is nearby.  A pure null returns only -0.2.
+    (ii)  There is no stable slope to test: 12 profile/prior combinations on the SAME curves give -0.89 to -1.69.  The
+          prior-free cored fits give -1.19/-1.29 naive and -1.33/-1.30 corrected -- steeper than the
+          framework's -1 by 2-4 sigma, and far from feedback's -0.7/-0.9.  A pure Dutton & Maccio c-M relation gives -0.57
+          with no a_0 in it at all.  Slope -1 is not a discriminator in either direction.
+    (iii) What survives is the INTERCEPT -- item 5 restated with the fit ellipses -- and it is a consistency, not a law:
+          rho_0 r_0 sits ~0.2 dex above a_0/(2 pi G) against a 1.2 dex profile-choice systematic.
+    Item 106's stated pass condition ('slope -1.00 +- 0.05 and no mass dependence') is REFUTED by the data on disk.
+
+======================================================================================================================
+ITEM 107 -- is c200 a halo number (M200) or a baryonic number (the disc's central surface density)?
+======================================================================================================================
+  pISO-Flat      N=159   r(log c, log M200) = -0.125   r(log c, log Sigma_0) = +0.140   r(log c, log M_b/2piR_d^2) = +0.165
+                       partial correlations: c-M200 at fixed Sigma_0 = -0.230, c-Sigma_0 at fixed M200 = +0.238, c-<Sigma_b> at fixed M200 = +0.246
+                       joint fit  log c = (-0.120 +- 0.037) log M200 + (+0.146 +- 0.046) log Sigma_0 + const
+  Burkert-Flat   N=162   r(log c, log M200) = -0.417   r(log c, log Sigma_0) = +0.053   r(log c, log M_b/2piR_d^2) = +0.020
+                       partial correlations: c-M200 at fixed Sigma_0 = -0.492, c-Sigma_0 at fixed M200 = +0.291, c-<Sigma_b> at fixed M200 = +0.222
+                       joint fit  log c = (-0.171 +- 0.036) log M200 + (+0.125 +- 0.045) log Sigma_0 + const
+  NFW-Flat       N=156   r(log c, log M200) = -0.391   r(log c, log Sigma_0) = +0.245   r(log c, log M_b/2piR_d^2) = +0.355
+                       partial correlations: c-M200 at fixed Sigma_0 = -0.496, c-Sigma_0 at fixed M200 = +0.404, c-<Sigma_b> at fixed M200 = +0.482
+                       joint fit  log c = (-0.251 +- 0.057) log M200 + (+0.284 +- 0.053) log Sigma_0 + const
+  NFW-LCDM       N=148   r(log c, log M200) = -0.079   r(log c, log Sigma_0) = +0.067   r(log c, log M_b/2piR_d^2) = +0.163
+                       partial correlations: c-M200 at fixed Sigma_0 = -0.156, c-Sigma_0 at fixed M200 = +0.150, c-<Sigma_b> at fixed M200 = +0.263
+                       joint fit  log c = (-0.056 +- 0.030) log M200 + (+0.050 +- 0.024) log Sigma_0 + const
+  [PASS] 107a the item's stated pass condition FAILS, but the loss is not total and both halves are reported.  The raw correlation with M200 beats the raw correlation with the disc's central surface density in 3 of the 4 models (pISO is the exception, where Sigma_0 narrowly wins, 0.140 to 0.125), so c200 is NOT more tightly a baryonic number than a halo number.  What DOES survive: at fixed M200 the disc's surface density still carries a significant positive signal (+0.15 to +0.40 partial correlation, 2 to 5 sigma in the joint fit), which a pure halo c(M) relation does not predict at all   (|r(c,M200)| > |r(c,Sigma_0)| in 3/4 models; Burkert-Flat 0.417 vs 0.053; partial c-Sigma_0 at fixed M200 = +0.291, joint-fit coefficient +0.125 +- 0.045 (2.8 sigma))
+
+  (b) BUT the same trap as item 106 sits here too, and it runs the OTHER way this time: c200 and M200 are BOTH derived from
+      the same two fitted parameters (log c = log C200, log M200 = 3 log V200 + const), so they share fit errors, whereas
+      Sigma_0 is independent photometry.  The engine's (log c, log M200) ellipse says how much of r(c, M200) is free:
+      pISO-Flat       error correlation of (log c, log M200) = -0.063; fit error is 20% of the observed log M200 variance;  naive c-M slope -0.056 -> EIV -0.048 +- 0.037   (Dutton & Maccio: -0.101)
+      Burkert-Flat    error correlation of (log c, log M200) = -0.540; fit error is 22% of the observed log M200 variance;  naive c-M slope -0.130 -> EIV -0.156 +- 0.031   (Dutton & Maccio: -0.101)
+      NFW-Flat        error correlation of (log c, log M200) = -0.785; fit error is 22% of the observed log M200 variance;  naive c-M slope -0.195 -> EIV -0.217 +- 0.054   (Dutton & Maccio: -0.101)
+      NFW-LCDM        error correlation of (log c, log M200) = -0.527; fit error is 6% of the observed log M200 variance;  naive c-M slope -0.022 -> EIV -0.005 +- 0.030   (Dutton & Maccio: -0.101)
+  [PASS] 107b AGAINST INTEREST -- with the shared fit errors divided out the same way as in item 106, the c-M200 relation of the three PRIOR-FREE fits is CONSISTENT with Dutton & Maccio's LambdaCDM relation (every one under 2.5 sigma).  The fitted concentration behaves like a LambdaCDM halo concentration, which is the opposite of what item 107 predicted.  (NFW-LCDM, which is not prior-free, is excluded from this check and reported below as the caution it is.)   (EIV c-M slopes vs LambdaCDM -0.101: pISO-Flat -0.048+-0.037 (1.4s), Burkert-Flat -0.156+-0.031 (1.7s), NFW-Flat -0.217+-0.054 (2.2s), NFW-LCDM -0.005+-0.030 (3.3s))
+      caution that caps every number in this section: even the -LCDM fits, which have the Dutton & Maccio c-M relation
+      imposed as a PRIOR, return a c-M slope of -0.005 +- 0.030 rather than the -0.101 they were given.  The derived
+      (c200, M200) of a rotation-curve fit is therefore a weak measurement of any c-M relation, and this test is correspondingly weak.
+
+  (c) the framework's own zero-parameter prediction, which is a sharper statement than the horse race.  If the fitted halo is
+      the phantom, its scale radius is the MOND radius r_M = sqrt(G M_b/a_0) and its V200 is the flat speed v_f = (G M_b a_0)^1/4,
+      so   c200 = R200/r_M = a_0^(3/4) / (10 H0 G^(1/4) M_b^(1/4))   ->   d log c/d log M_b = -1/4 EXACTLY, with a fixed
+      normalisation.  LambdaCDM's c(M) gives -0.101 in M200; converted through the observed M200(M_b) slope it is shallower still.
+      Burkert-Flat   canonical  observed d log c200/d log M_b = -0.093 +- 0.033 (predicted -0.250; LambdaCDM -0.101 x +0.59 = -0.060);  normalisation: log(c_fit/c_pred) median -0.31 dex
+      Burkert-Flat   alt        observed d log c200/d log M_b = -0.093 +- 0.033 (predicted -0.250; LambdaCDM -0.101 x +0.59 = -0.060);  normalisation: log(c_fit/c_pred) median -0.37 dex
+      pISO-Flat      canonical  observed d log c200/d log M_b = -0.030 +- 0.039 (predicted -0.250; LambdaCDM -0.101 x +0.55 = -0.056);  normalisation: log(c_fit/c_pred) median +0.20 dex
+      pISO-Flat      alt        observed d log c200/d log M_b = -0.030 +- 0.039 (predicted -0.250; LambdaCDM -0.101 x +0.55 = -0.056);  normalisation: log(c_fit/c_pred) median +0.14 dex
+  [PASS] 107c AGAINST INTEREST -- the framework's zero-parameter prediction c200 ~ M_b^(-1/4) LOSES to LambdaCDM's converted c(M) on the slope: the observed d log c200/d log M_b is nearly 5 sigma from the predicted -0.250 and 1 sigma from LambdaCDM's -0.060.  The normalisation misses by 0.2-0.4 dex as well, and its sign flips between profiles -- the same 0.2-0.5 dex offset item 24 found for r_0/r_M, seen from the other end   (observed -0.093 +- 0.033: 4.8 sigma from the framework's -0.250, 1.0 sigma from LambdaCDM's -0.060; normalisation offset -0.31 dex)
+
+  (d) THE UPSILON LEVER (bug pattern 5: three earlier items turned out to be M/L results wearing a_0's clothes).
+      Burkert-Flat, Li's per-galaxy fitted Upsilon: r(log c, log Sigma_0) = +0.053, partial at fixed M200 = +0.291
+      Burkert-Flat, fixed 0.5                     : r(log c, log Sigma_0) = +0.127, partial at fixed M200 = +0.373
+      Burkert-Flat, fixed 0.3 (DiskMass)          : r(log c, log Sigma_0) = +0.127, partial at fixed M200 = +0.373
+      Burkert-Flat, fixed 0.8                     : r(log c, log Sigma_0) = +0.127, partial at fixed M200 = +0.373
+      a GLOBAL Upsilon only rescales Sigma_0 by a constant, so every correlation here is exactly Upsilon-blind -- the three
+      fixed values above are identical by construction and are printed to show it.  The only Upsilon that moves anything is
+      Li's per-galaxy fitted one (0.1 dex prior), and it moves r(c, Sigma_0) from +0.13 to +0.05.  Item 107's answer is
+      therefore NOT an M/L result: what drives it is the shared-error structure of the fit, quantified in (b).
+  [PASS] M107 mutation: shuffling Sigma_0 between galaxies destroys the c-Sigma_0 partial correlation, so the surviving signal in (a) is not an artefact of the estimator   (shuffled partial at fixed M200 = -0.041 vs real +0.291; shuffled raw r = -0.043 vs real +0.053)
+
+  VERDICT 107.  The item asked whether c200 is better predicted by M200 or by the disc's central surface density, and the
+  answer is M200 -- so the item FAILS its stated condition.  Two things survive, one each way:
+    * against the framework: after correcting for the shared fit errors the c-M200 relation is consistent with Dutton &
+      Maccio's LambdaCDM relation in every model, and the framework's own zero-parameter c ~ M_b^(-1/4) is 4 sigma off.
+    * for the framework: at FIXED M200 the disc's central surface density still carries a 2-5 sigma positive signal, which
+      a halo-only c(M) relation has no reason to produce.  That is a residual worth chasing with a sample whose halo fits
+      publish their (V200, C200) covariance -- without it the correction done here is the limiting systematic.
+
+======================================================================================================================
+ITEM 108 -- is the fitted core radius the radius where g_bar = a_0?
+======================================================================================================================
+  first, the thing that decides this item before any ratio is computed: does the switch-on radius EXIST?
+    canonical  of 175 SPARC galaxies: 56 have g_bar crossing a_0 inside the measured curve, 2 are still above a_0 at the last point, and 117 (67%) NEVER reach a_0 anywhere -- for those, r(g_bar = a_0) does not exist
+    alt        of 175 SPARC galaxies: 53 have g_bar crossing a_0 inside the measured curve, 1 are still above a_0 at the last point, and 121 (69%) NEVER reach a_0 anywhere -- for those, r(g_bar = a_0) does not exist
+    the median SPARC galaxy peaks at g_bar,max = 0.30 a_0 (canonical): two thirds of the sample are in the deep-MOND regime at EVERY measured radius, so the boost is already fully on where their 'core' is
+  [PASS] 108a AGAINST INTEREST, and it is the answer to the item: for two thirds of SPARC the radius where g_bar = a_0 DOES NOT EXIST -- the baryonic acceleration never reaches a_0 anywhere in the galaxy.  'The core is where the boost switches on' therefore cannot be the explanation of the fitted core for most of the sample; those galaxies are boosted everywhere and still have a fitted core   (117/175 = 67% have max(g_bar) < a_0; median peak g_bar = 0.30 a_0)
+
+  second, on the third of the sample where the switch-on radius does exist, is r_0/r(g_bar = a_0) one number?
+  (the LambdaCDM-flavoured comparisons are computed beside it: the disc scale length, and the effective radius.)
+    pISO-Flat      canonical  N= 54:  r_0/r(g_bar=a_0) median  0.49 scatter 0.465 dex (mass slope -0.137) | r_0/R_disk  0.90 scatter 0.489 | r_0/R_eff  0.96 scatter 0.496 | r_0/r_M  0.37 scatter 0.456
+    pISO-Flat      alt        N= 52:  r_0/r(g_bar=a_0) median  0.58 scatter 0.499 dex (mass slope -0.224) | r_0/R_disk  0.90 scatter 0.482 | r_0/R_eff  0.96 scatter 0.499 | r_0/r_M  0.41 scatter 0.451
+    Burkert-Flat   canonical  N= 55:  r_0/r(g_bar=a_0) median  1.56 scatter 0.358 dex (mass slope +0.066) | r_0/R_disk  2.74 scatter 0.393 | r_0/R_eff  2.61 scatter 0.393 | r_0/r_M  1.21 scatter 0.340
+    Burkert-Flat   alt        N= 51:  r_0/r(g_bar=a_0) median  1.69 scatter 0.401 dex (mass slope +0.025) | r_0/R_disk  2.76 scatter 0.391 | r_0/R_eff  2.66 scatter 0.384 | r_0/r_M  1.34 scatter 0.334
+    DC14-Flat      canonical  N= 56:  r_0/r(g_bar=a_0) median  2.72 scatter 0.541 dex (mass slope +0.137) | r_0/R_disk  4.40 scatter 0.558 | r_0/R_eff  4.06 scatter 0.540 | r_0/r_M  1.78 scatter 0.542
+    DC14-Flat      alt        N= 52:  r_0/r(g_bar=a_0) median  2.95 scatter 0.582 dex (mass slope +0.149) | r_0/R_disk  4.40 scatter 0.567 | r_0/R_eff  4.14 scatter 0.556 | r_0/r_M  1.84 scatter 0.554
+    coreNFW-Flat   canonical  N= 54:  r_0/r(g_bar=a_0) median  3.25 scatter 0.715 dex (mass slope +0.188) | r_0/R_disk  4.89 scatter 0.776 | r_0/R_eff  5.27 scatter 0.784 | r_0/r_M  2.16 scatter 0.738
+    coreNFW-Flat   alt        N= 52:  r_0/r(g_bar=a_0) median  3.32 scatter 0.702 dex (mass slope +0.174) | r_0/R_disk  4.89 scatter 0.766 | r_0/R_eff  5.27 scatter 0.783 | r_0/r_M  2.38 scatter 0.726
+    Lucky13-Flat   canonical  N= 54:  r_0/r(g_bar=a_0) median  1.14 scatter 0.412 dex (mass slope +0.074) | r_0/R_disk  1.82 scatter 0.432 | r_0/R_eff  2.18 scatter 0.451 | r_0/r_M  0.80 scatter 0.394
+    Lucky13-Flat   alt        N= 52:  r_0/r(g_bar=a_0) median  1.27 scatter 0.435 dex (mass slope +0.021) | r_0/R_disk  1.82 scatter 0.424 | r_0/R_eff  2.18 scatter 0.447 | r_0/r_M  0.88 scatter 0.382
+    NFW-Flat       canonical  N= 54:  r_0/r(g_bar=a_0) median  3.34 scatter 0.611 dex (mass slope -0.063) | r_0/R_disk  5.29 scatter 0.619 | r_0/R_eff  5.01 scatter 0.621 | r_0/r_M  2.26 scatter 0.597
+    NFW-Flat       alt        N= 50:  r_0/r(g_bar=a_0) median  3.73 scatter 0.586 dex (mass slope -0.060) | r_0/R_disk  4.72 scatter 0.616 | r_0/R_eff  4.76 scatter 0.625 | r_0/r_M  2.37 scatter 0.591
+  [PASS] 108b the ratio is NOT one number: on the subsample where the switch-on radius exists at all, r_0/r(g_bar = a_0) has 0.36-0.72 dex of scatter against the 0.2 dex the item asked for, and its 0.03 dex edge over the disc scale length -- the feedback/LambdaCDM comparison -- is nothing.  Item 108 FAILS its own bar, both footings and every cored profile   (Burkert-Flat canonical: median 1.56, scatter 0.358 dex (bar was 0.2), mass slope +0.066; r_0/R_disk scatter 0.393; alt footing scatter 0.401)
+  [PASS] 108c and the comparison is a dead heat: NONE of the four candidate length scales -- the switch-on radius, the MOND radius, the disc scale length, the effective radius -- gets the fitted core radius below 0.33 dex of scatter.  Two of them contain a_0 and two do not, and they are separated by less than 0.06 dex.  There is no length scale in this catalogue that predicts the fitted core   (Burkert-Flat canonical: r_0/r(g=a_0) 0.358, r_0/r_M 0.340, r_0/R_disk 0.393, r_0/R_eff 0.393 dex; tightest is r_M, spread between them 0.054 dex)
+
+  (the UPSILON lever for item 108: r(g_bar = a_0) moves with Upsilon because g_bar does.  Recomputed with a global Upsilon:)
+      Upsilon = 0.3: 127/175 = 73% of SPARC still never reaches a_0 anywhere;  on the rest, r_0/r(g_bar=a_0) median 2.02, scatter 0.417 dex (N = 46)
+      Upsilon = 0.5: 114/175 = 65% of SPARC still never reaches a_0 anywhere;  on the rest, r_0/r(g_bar=a_0) median 1.34, scatter 0.437 dex (N = 58)
+      Upsilon = 0.8: 106/175 = 61% of SPARC still never reaches a_0 anywhere;  on the rest, r_0/r(g_bar=a_0) median 1.25, scatter 0.453 dex (N = 66)
+      read both ways: the SCATTER, which is what item 108's bar is on, is Upsilon-robust (0.42 to 0.45 dex over the whole
+      plausible range, never near 0.2), and so is the 'no switch-on radius' finding (61-73%).  But the MEDIAN ratio moves
+      0.21 dex between Upsilon = 0.3 and 0.8, so the ratio's NORMALISATION is an M/L-sensitive number and is not quoted as
+      anything else.  The verdict rests on the scatter and on the premise, neither of which moves with Upsilon.
+      ONE caveat stated against interest: r_M = sqrt(G M_b/a_0) uses the TOTAL baryonic mass, and for the smaller galaxies
+      r_M falls inside the HI disc, so the enclosed mass there is less than M_b and r_M is an over-estimate.  r(g_bar = a_0)
+      does not have this problem -- it is read off the measured curve -- which is why the two differ by ~0.1 dex in median.
+    mutation a_0 x 10: N=19, r_0/r(g_bar=a_0) median 8.77 (+0.75 dex from the canonical value), scatter 0.389 dex
+    mutation a_0 / 10: N=125, r_0/r(g_bar=a_0) median 0.44 (-0.55 dex from the canonical value), scatter 0.507 dex
+  [PASS] M108 mutation: a_0 x 10 moves the median ratio by ~0.5 dex and changes which galaxies even have a crossing, so the number does depend on a_0 -- the item's failure is a failure of the PREDICTION, not of an a_0-blind estimator   (median ratio 1.56 -> 8.77 (+0.75 dex), N with a crossing 55 -> 19)
+
+  VERDICT 108.  The item's premise is wrong for most of SPARC: there is no radius where g_bar = a_0 in two thirds of these
+  galaxies, because they are deep-MOND everywhere, yet they still have fitted cores.  On the third where the radius exists,
+  the ratio carries 0.36-0.72 dex of scatter and is a dead heat with three other length scales, two of which (R_disk, R_eff)
+  contain no a_0 at all.  The framework's core-radius statement survives only in the weak form item 24 already recorded
+  (r_0 tracks r_M with about half a dex of scatter); the strong form asked for here is refuted by the data on disk.
+  What would make this testable: a sample selected to STRADDLE a_0 -- high-surface-brightness discs whose inner regions are
+  Newtonian -- rather than SPARC, which is dominated by galaxies that never leave the deep-MOND regime.
+
+======================================================================================================================
+SUMMARY
+======================================================================================================================
+  106 REFUTED as posed.  There is no single slope to test: 12 profile/prior combinations on the SAME 175 curves give -0.89
+       to -1.69.  The prior-free cored fits give -1.193 +- 0.109 naive and -1.328 +- 0.123 degeneracy-corrected -- STEEPER than the
+       framework's -1 by 2.7 sigma, and further still from feedback's -0.7/-0.9.  The trap is real and its shape is now known:
+       attenuation is a MAGNET at ~-1 (population-averaged degeneracy slope -1.07), so the naive fit reads -1 back for anything
+       nearby; a pure null returns only -0.21.  A pure Dutton & Maccio c-M relation gives -0.57 with no a_0 in it at all.
+       What survives is the INTERCEPT: rho_0 r_0 = 193 Msun/pc^2, +0.26 (canonical) / +0.18 (alt) dex from the two footings,
+       against a 1.2 dex profile-choice systematic.  A consistency, as item 5 already recorded it; not a law.
+  107 FAILS its stated condition.  c200 tracks M200 (r = -0.417) better than the disc's central surface density (r = +0.053)
+       in 3 of 4 models; after the shared-error correction the c-M relation is consistent with Dutton & Maccio in all four, and
+       the framework's zero-parameter c ~ M_b^(-1/4) is 5 sigma off in slope and -0.31 dex in normalisation.  ONE thing survives
+       for the framework: at fixed M200 the disc's central surface density carries a 2.8 sigma positive signal that a halo-only
+       c(M) relation has no reason to produce.  Upsilon-blind by construction, so it is not bug pattern 5.
+  108 REFUTED as posed, and refuted at the premise.  r(g_bar = a_0) does not EXIST for 67% of SPARC: the median galaxy
+       peaks at g_bar,max = 0.30 a_0 and is deep-MOND at every measured radius, yet still has a fitted core.  That finding is
+       Upsilon-robust across 0.3-0.8.  On the third where the radius exists, r_0/r(g_bar=a_0) scatters 0.36 dex against a 0.2 dex
+       bar and ties with three other length scales, two of which know nothing about a_0.
+
+RESULT: 17 checks, 0 FAIL   rc=0

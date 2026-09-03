@@ -1,0 +1,106 @@
+======================================================================================================================
+ITEM 121 -- a_0 calibrated where there are no stars, Upsilon predicted where there are
+======================================================================================================================
+
+----------------------------------------------------------------------------------------------------------------------
+THE Upsilon-LEVERAGE OF THE DEEP-TAIL ESTIMATOR, MEASURED
+----------------------------------------------------------------------------------------------------------------------
+                                                sample  N gal  N pts   a_0(U=0.5)    a_0(0.2)    a_0(0.8)  d log a0/d log U
+       FULL SPARC, no point cut (item 25's own sample)    107   1035    1.146e-10   2.043e-10   8.336e-11            -0.647
+                    f_gas > 0.7 galaxies, no point cut     32    409    8.824e-11   1.173e-10   7.229e-11            -0.349
+            f_gas > 0.7 galaxies, stars < 30% of g_bar     27    196    9.380e-11   1.046e-10   8.638e-11            -0.138
+            f_gas > 0.7 galaxies, stars < 20% of g_bar     22    127    9.182e-11   1.058e-10   8.074e-11            -0.195
+  [PASS] 121a AGAINST INTEREST, AND IT CORRECTS THIS HUNT'S OWN LEDGER.  The item-100 ladder lists item 25's a_0 = 1.14e-10 as 'the gas-dominated deep tail' and as one of the two rungs that do NOT lean on the stellar mass-to-light ratio.  Measured rather than assumed, that estimator's Upsilon leverage is the LARGEST on the ladder: change Upsilon by a factor 4 and its a_0 moves by 0.39 dex.  Item 25 was run on the WHOLE of SPARC, not on a gas-dominated subset, and its number must not be quoted as M/L-free.  Restricting to gas-dominated galaxies more than halves the leverage, and adding a point-level cut that keeps only points where the stars supply under 30% of g_bar cuts it by a further factor of two   (d log a_0/d log Upsilon: full SPARC -0.647, f_gas > 0.7 -0.349, immunised -0.138; the immunised deep tail gives a_0 = 9.380e-11 against item 25's 1.146e-10 -- +0.087 dex apart)
+
+----------------------------------------------------------------------------------------------------------------------
+THE CHAIN, ITERATED TO ITS FIXED POINT
+----------------------------------------------------------------------------------------------------------------------
+   pass  Upsilon used in the split/calibration  N cal  N tgt     a_0(gas)  predicted Upsilon
+      0                                 0.5000     32     55   9.3800e-11             0.5339
+      1                                 0.5339     31     56   9.3332e-11             0.5345
+  fixed point after 2 passes: Upsilon = 0.5339, a_0(gas) = 9.3332e-11 m/s^2 from 27 calibrator galaxies (188 deep-tail points), 55 of 56 target galaxies fitted
+  calibrators and targets share 0 galaxies (must be 0) and, by the f_gas split, no rotation-curve point
+  a_0(gas) galaxy-bootstrap: 9.3408e-11 +- 0.058 dex (14%)
+  compared with the two footings: canonical 9.360e-11 is -0.001 dex away, alt 1.130e-10 is -0.083 dex away
+
+----------------------------------------------------------------------------------------------------------------------
+THE PREDICTION, AGAINST STELLAR POPULATIONS, IN MEDIAN AND IN SPREAD
+----------------------------------------------------------------------------------------------------------------------
+  predicted Upsilon_[3.6] on 55 star-dominated galaxies (f_gas < 0.3), zero free parameters:
+     median 0.534 +- 0.026 (galaxy bootstrap)   vs stellar populations 0.5 +- 0.1
+     16-84%  0.390 - 0.714;  full range 0.270 - 1.160
+     spread  0.136 dex observed;  measurement budget 0.134 dex rms (distance 0.096, inclination 0.029);  implied intrinsic 0.022 dex [0.000 - 0.063 if the budget is wrong by 10%]   vs SPS total 0.1, per-galaxy component 0.07
+      (B-V)-free binned view    N  median Upsilon   log sd
+             log L36 0.5-1.8   14           0.578    0.081
+             log L36 1.8-2.0   13           0.504    0.139
+             log L36 2.0-2.3   14           0.532    0.137
+             log L36 2.3-2.7   14           0.575    0.161
+  [PASS] 121b (a WORKS -- and it is the only place in the hunt where a stellar-population parameter is PREDICTED with no free parameter at all) a_0 measured on gas-dominated galaxies alone, transferred to a disjoint set of star-dominated ones, predicts their 3.6 um stellar mass-to-light ratio to within 0.03 dex of the stellar-population value.  Nothing was fitted to the target galaxies except one Upsilon each, and a_0 came from galaxies whose light barely enters the calculation   (predicted median Upsilon = 0.534 +- 0.026 (galaxies) and +- 0.027 dex from the a_0 calibration, against SPS 0.5 +- 0.1: +0.029 dex, 0.8 of this measurement's own sigma and 0.3 of the stellar populations' sigma.  N = 55 targets, 27 calibrators, no shared galaxy)
+  [PASS] 121c ...and the SPREAD matches too, which is the half of the item that could have failed independently.  The predicted Upsilon distribution is 0.14 dex wide, and the distance and inclination errors alone account for essentially all of it: the intrinsic galaxy-to-galaxy spread is bounded below the stellar populations' own per-galaxy component.  As in item 119 this is a BOUND and not a measurement -- the budget saturates the observation, so the sample cannot detect an intrinsic spread of the size stellar populations predict   (observed 0.136 dex, budget 0.134, intrinsic 0.022 dex [0.000-0.063] against the SPS per-galaxy component 0.07 and total 0.1.  For contrast, the same estimator over item 119's wider sample gave 0.25 dex, because gas-dominated galaxies -- where Upsilon is barely visible -- were still in it)
+
+----------------------------------------------------------------------------------------------------------------------
+SYSTEMATICS ON a_0(gas)
+----------------------------------------------------------------------------------------------------------------------
+      stars < 20% of g_bar -> a_0 = 9.1984e-11 (-0.006 dex, 113 points)   [the point-level cut]
+      stars < 50% of g_bar -> a_0 = 9.1262e-11 (-0.010 dex, 277 points)   [the point-level cut]
+       deep-tail cut 3e-11 -> a_0 = 9.1533e-11 (-0.008 dex, 193 points)   [item 25's threshold moved up]
+       deep-tail cut 3e-12 -> a_0 = 1.2863e-10 (+0.139 dex, 53 points)   [item 25's threshold moved down]
+            gas mass x 1.1 -> a_0 = 8.5484e-11 (-0.038 dex, 199 points)   [the 1.33 helium factor / HI flux scale]
+            gas mass x 0.9 -> a_0 = 1.0164e-10 (+0.037 dex, 177 points)   [the same, the other way]
+       all distances x 1.1 -> a_0 = 7.7134e-11 (-0.083 dex, 188 points)   [a coherent distance-scale error]
+       all distances x 0.9 -> a_0 = 1.1522e-10 (+0.092 dex, 188 points)   [the same, the other way]
+  total on a_0(gas): 0.058 (statistical) (+) 0.010 (cut choices) (+) 0.038 (gas calibration) (+) 0.092 (a coherent 10% distance-scale error) = 0.116 dex
+  [PASS] 121d AGAINST INTEREST -- this does NOT decide between the two footings, and the reason is the distance scale.  The M/L-immunised a_0 lands on the canonical footing almost exactly, but its total error is dominated by a systematic the estimator cannot see: a coherent 10% error in SPARC's distances moves a_0 by 0.09 dex, which is larger than the whole 0.082 dex gap between the footings.  The central value favours canonical; the error bar does not exclude alt, and item 123 must be told so   (a_0(gas) = 9.333e-11 +- 0.116 dex total: canonical at 0.0 sigma, alt at 0.7 sigma.  Statistical alone would give canonical 0.0 sigma and alt 1.4 sigma -- so the distance scale, not the sample size, is what blocks the footing decision here)
+
+  THE LADDER, RE-RUNG (input to items 123 and 125).  The item-100 ladder's two supposedly M/L-free rungs were item 25's deep tail (1.14e-10) and the KiDS dwarf lens stack (9.55e-11), 0.08 dex apart.  Item 25's rung is not M/L-free (leverage -0.65, above).  Replacing it with the immunised measurement made here:
+     gas-dominated, M/L-immunised deep tail : 9.333e-11 +- 0.116 dex   (leverage -0.14)
+     KiDS dwarf lens stack (item 2)         : 9.550e-11 +- 0.109 dex
+     they agree to 0.010 dex, and both sit on the canonical footing (-0.001 and +0.009 dex).
+     That agreement is far inside both error bars (0.12 and 0.11 dex), so it is a coincidence of central values and NOT a 0.01 dex measurement.  What it does support is that the ladder's spread was M/L, exactly as item 100 said.
+
+======================================================================================================================
+MUTATION CONTROLS
+======================================================================================================================
+  [PASS] M121-1 the transfer carries real information, shown by breaking it: calibrate a_0 on the TARGET galaxies instead -- the circular version the item is designed to avoid -- and both the a_0 and the recovered Upsilon move.  The gas-calibrated chain is therefore not returning its own input   (a_0 from the star-dominated targets themselves = 1.067e-10 (+0.058 dex from the gas-calibrated 9.333e-11), and it returns Upsilon = 0.508 against the transferred 0.534)
+  a_0 x 0.5: predicted Upsilon median 0.693 (+0.142 dex from SPS), implied d log Upsilon/d log a_0 = -0.38
+  a_0 x 2.0: predicted Upsilon median 0.386 (-0.112 dex from SPS), implied d log Upsilon/d log a_0 = -0.47
+  [PASS] M121-2 the a_0 mutation, and it is honest about the POWER rather than flattering it.  Doubling a_0 moves the predicted Upsilon off the stellar-population value -- but by only 1.3 sigma of the stellar populations' own error, because these star-dominated galaxies sit at accelerations where the kernel's response to a_0 is half what the deep-MOND limit gives.  So 121b is a genuine zero-parameter agreement and NOT a sharp measurement of a_0: this test on its own constrains a_0 only to about a factor of two   (a_0 x 2 -> Upsilon = 0.386, -0.112 dex from SPS = 1.3 sigma of the SPS uncertainty; measured d log Upsilon/d log a_0 = -0.47, against -1 in the deep-MOND limit)
+  [PASS] M121-3 the kernel is load-bearing: with nu = 1 and no dark matter the same target curves demand nearly twice the stellar-population mass-to-light ratio, so the agreement in 121b is not something the rotation curves would give for any gravity law   (Newtonian predicted Upsilon median 0.950 = +0.28 dex from SPS, against 0.534 = +0.029 dex with the kernel)
+  [PASS] M121-4 pairing each target galaxy's photometry with a DIFFERENT galaxy's observed rotation curve, interpolated onto its own radial range, roughly triples the spread of the recovered Upsilon and rails a tenth of the fits.  So the 0.14 dex distribution in 121c is genuine per-galaxy correspondence between light and kinematics, not something the estimator would return for any pairing   (scrambled pairs over 20 permutations: N = 955 fits (136 railed and dropped, against 1 in the true sample), median Upsilon 0.568, spread 0.468 dex against the true 0.136 dex (ratio 3.4x) and the measurement budget 0.134)
+
+----------------------------------------------------------------------------------------------------------------------
+THE SAME PREDICTION WITH a_0 IMPOSED AT EACH FOOTING, for comparison with items 76 and 119
+----------------------------------------------------------------------------------------------------------------------
+   canonical a_0 = 9.360e-11 imposed: predicted Upsilon median 0.534 (+0.029 dex from SPS) on the same 55 star-dominated galaxies
+         alt a_0 = 1.130e-10 imposed: predicted Upsilon median 0.495 (-0.004 dex from SPS) on the same 55 star-dominated galaxies
+  measured a_0(gas) = 9.333e-11 gives 0.534.  Item 76's deep-tail inversion required 0.656 / 0.504; item 119's full-curve median over a wider sample was 0.505 / 0.456.  The spread among these is the estimator-and-sample systematic on 'the Upsilon that Lambda predicts', and it is about 0.1 dex.
+  AGAINST INTEREST, and it is why 121d refuses to pick a footing: read as an imposed-a_0 test the ALT footing lands closer to stellar populations here, while the MEASURED gas calibration lands on canonical.  Both differences are well inside the 0.12 dex systematic on a_0(gas), so the two readings do not conflict -- but neither may be quoted as favouring a footing, in either direction.
+
+----------------------------------------------------------------------------------------------------------------------
+THE LambdaCDM / NEWTONIAN ALTERNATIVE, COMPUTED BESIDE
+----------------------------------------------------------------------------------------------------------------------
+  There is no LambdaCDM version of this chain.  A dark halo has at least two free parameters per galaxy, so the
+  gas-dominated galaxies determine no acceleration scale to transfer, and the star-dominated ones' Upsilon is
+  degenerate with the halo -- rotation curves bound it from above and no further.  What LambdaCDM does instead is
+  take Upsilon from stellar populations as an INPUT and fit the halo; the framework takes Lambda as the input and
+  returns Upsilon as an OUTPUT.  The comparison is therefore asymmetric by construction: this item shows that one
+  theory makes the prediction and that the prediction is right, not that the other theory is wrong.
+  the maximum-disc upper bound on Upsilon for these same 55 galaxies: median 0.48, 5-95% 0.08 - 1.09 -- an upper limit, and 45% of it lies above the stellar-population value, i.e. carries no information
+
+======================================================================================================================
+VERDICT
+======================================================================================================================
+  The chain closes.  a_0 measured on 27 gas-dominated SPARC galaxies -- with a point-level cut that keeps only
+  places where the stars supply under 30% of g_bar, and iterated to self-consistency -- is 9.333e-11 m/s^2,
+  -0.001 dex from the canonical footing.  Transferred with no further freedom to 55 disjoint star-dominated
+  galaxies, it predicts Upsilon_[3.6] = 0.534, +0.029 dex from stellar populations, with a spread of 0.14 dex
+  that the distance and inclination errors alone account for.  Median and spread both pass.
+  Three things are recorded AGAINST it.  (1) The power is modest: doubling a_0 would show at only 1.3 sigma of the
+  stellar populations' own error, so this is a zero-parameter agreement, not a sharp measurement of a_0.  (2) The
+  footing question is NOT settled -- a coherent 10% distance-scale error moves a_0 by 0.09 dex, more than the gap
+  between the footings.  (3) The scatter agreement is a bound, not a detection, for the same reason as in item 119.
+  And one correction it forces on this hunt's own ledger: item 25's 1.14e-10 is NOT the M/L-free rung the item-100
+  ladder calls it -- its Upsilon leverage is -0.65, the largest there -- and the immunised replacement is
+  9.333e-11, which agrees with the dwarf lens stack to 0.010 dex instead of 0.08.
+
+RESULT: 8 checks, 0 FAIL   rc=0

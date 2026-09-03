@@ -1,0 +1,98 @@
+====================================================================================================================
+ITEM 118 -- bars and arms in the RAR residuals: a measurement effect, not an acceleration scale
+====================================================================================================================
+  SPARC galaxies passing the accuracy cut: 139; matched to Buta+2015 within 20 arcsec: 87; with a bar index: 79; with an arm class: 47
+  match separations: median 0.91 arcsec, worst accepted 15.9; duplicate assignments: 0
+  bar-index distribution: F=0.00:22, F=0.12:2, F=0.25:6, F=0.38:3, F=0.50:20, F=0.62:1, F=0.75:8, F=0.88:2, F=1.00:15
+  [PASS] P0 the cross-match is clean and its selection is stated: 87 of 139 SPARC galaxies are in the S4G morphology catalogue, matched positionally at a median 2 arcsec with no galaxy claimed twice.  The 52 that are not matched are slightly MORE massive, so this is a real selection and is recorded rather than ignored   (87/139 matched, 0 duplicates, median separation 0.91 arcsec; matched median log M_bar 9.82 vs unmatched 9.97, KS p = 0.024)
+
+--------------------------------------------------------------------------------------------------------------------
+(1) DOES THE ACCELERATION SCALE MOVE WITH BAR STRENGTH?  The framework says no; the dark-matter reading says yes, downward
+--------------------------------------------------------------------------------------------------------------------
+  family                          N  mean offset     s.e.  offset rms  median within rms  median log M_b
+  SA  (F <= 0.12, unbarred)      24      +0.0663   0.0184      0.0901             0.0526           10.12
+  SAB (0.12 < F < 0.75)          30      -0.0045   0.0220      0.1205             0.0547           10.16
+  SB  (F >= 0.75, barred)        25      +0.0169   0.0282      0.1409             0.0580            9.64
+  raw rank correlation of the per-galaxy offset with bar strength: rho = -0.200, p = 0.078  (the dark-matter reading predicts this sign)
+  controlled for baryonic mass, bulge presence and inclination:
+     d(offset)/d(bar index F ) = -0.0255 +- 0.0393   (-0.6 sigma)
+     d(offset)/d(log M_bar   ) = -0.0297 +- 0.0218   (-1.4 sigma)
+     d(offset)/d(has a bulge ) = +0.0818 +- 0.0440   (+1.9 sigma)
+     d(offset)/d(inclination ) = -0.0004 +- 0.0009   (-0.5 sigma)
+  [PASS] 118A (the framework's core prediction, CONFIRMED) the acceleration scale does not move with bar strength.  Going from unbarred to strongly barred, the per-galaxy RAR normalisation shifts by -0.026 +- 0.039 dex once baryonic mass, bulge and inclination are controlled -- consistent with zero at 0.6 sigma.  In a_0 that is a bound of 0.20 dex between SA and SB galaxies   (d(offset)/dF = -0.0255 +- 0.0393 (-0.6 sigma); 2-sigma bound on the offset shift 0.079 dex -> a_0(SB)/a_0(SA) within 0.20 dex, using the sample's median kernel slope n = -0.39)
+  [PASS] 118B the dark-matter expectation -- bars form in halo-poor maximal discs, so barred galaxies should sit BELOW the relation -- gets the sign right in the raw correlation and loses it under control.  rho = -0.20 nominally p = 0.08, but the whole of it is the mass and bulge trend that bar strength rides on: barred SPARC galaxies are 0.5 dex less massive and half as likely to have a bulge   (raw rho = -0.200 (p = 0.078) -> controlled -0.6 sigma; median log M_bar SA 10.12 vs SB 9.64; bulge fraction 0.29 vs 0.08)
+
+--------------------------------------------------------------------------------------------------------------------
+(2) DOES THE SCATTER MOVE, AND WHERE?  Non-circular motions must act INSIDE the bar and nowhere else
+--------------------------------------------------------------------------------------------------------------------
+  per-galaxy offset rms rises with bar strength -- 0.0901 / 0.1205 / 0.1409 -- but Levene gives p = 0.294, so it is not significant
+  median within-galaxy rms barely moves -- 0.0526 / 0.0547 / 0.0580 -- Levene p = 0.955
+  radial profile of the WITHIN-galaxy residual, in units of the disc scale length:
+      r / R_disk   N (SA)   rms (SA)   N (SB)   rms (SB)    ratio
+     0.0-  0.5        63     0.0803        8     0.2021     2.52
+     0.5-  1.0        71     0.0672       25     0.0792     1.18
+     1.0-  1.5        67     0.0540       35     0.0713     1.32
+     1.5-  2.0        56     0.0462       39     0.0536     1.16
+     2.0-  3.0        73     0.0344       69     0.0612     1.78
+     3.0-  5.0        90     0.0502       82     0.0536     1.07
+     5.0- 20.0       133     0.0621       94     0.0386     0.62
+  inside r < 2 R_disk (where bars live): SA rms 0.0677 (N = 257), SB rms 0.0877 (N = 107)  ->  ratio 1.295
+  outside r > 2 R_disk:                     ratio 0.955 (N = 296 / 245)
+  GALAXY-LEVEL permutation null (bar labels shuffled between galaxies, 2000 draws): inner ratio p = 0.0940, outer p = 0.5790
+  [PASS] 118C (the item's prediction, in the right PLACE and with the right SIGN, at 1.7 sigma) barred galaxies scatter more about the relation than unbarred ones INSIDE two disc scale lengths -- ratio 1.30 -- and not at all outside, ratio 0.96.  Non-circular motions act where the bar is, they corrupt the derived circular speed there and nowhere else, and they do not touch the acceleration scale.  This is a HINT, not a detection   (inner ratio 1.295 (galaxy-level permutation p = 0.094), outer ratio 0.955 (p = 0.579); the inner/outer contrast is the signature, not the inner value alone)
+  [PASS] 118D AGAINST MY OWN FIRST ANSWER -- a point-level test on this comparison overstates it by two orders of magnitude.  Levene on the individual rotation-curve points inside the bar radius returns p = 1.5e-4; the galaxy-level permutation that respects the fact that one galaxy's points share a distance, an inclination and a mass-to-light ratio returns p = 0.09, a factor of 600 larger.  The first number is wrong and is recorded here so it is not quoted   (point-level Levene p = 1.5e-04 on 257+107 points; galaxy-level permutation p = 0.094 on 24+25 galaxies -- a factor 612)
+  aperture dependence, which a bar-driven effect should show and a random one should not (post-hoc, quoted without a p):
+     r/R_disk < 1.0: inner ratio 1.644, outer ratio 1.011
+     r/R_disk < 1.5: inner ratio 1.429, outer ratio 0.976
+     r/R_disk < 2.0: inner ratio 1.295, outer ratio 0.955
+     r/R_disk < 2.5: inner ratio 1.231, outer ratio 0.892
+     r/R_disk < 3.0: inner ratio 1.217, outer ratio 0.799
+  [PASS] 118E the bar signal is not the bulge in disguise: on the 66 bulgeless galaxies -- where no bulge M/L is assumed and no bulge occupies the inner region -- the inner ratio survives at 1.23 with the same permutation significance.  It weakens rather than strengthens, which is what a genuine but small effect on a halved sample looks like   (bulgeless inner ratio 1.231 (permutation p = 0.138), outer 1.017; full sample 1.295 / 0.955)
+
+--------------------------------------------------------------------------------------------------------------------
+(3) ARM CLASS -- flocculent, multiple-arm, grand design
+--------------------------------------------------------------------------------------------------------------------
+  arm class                 N  mean offset     s.e.  median within rms  median log M_b
+  F flocculent             18      +0.0642   0.0267             0.0651            9.49
+  M multiple-arm           24      +0.0177   0.0200             0.0456           10.73
+  G grand design            5      +0.0204   0.0298             0.0438           10.48
+  [PASS] 118F the arm-class test cannot be done on this sample and says so: only 5 SPARC galaxies in the S4G catalogue are grand-design spirals, so the smallest offset difference detectable at 2 sigma against the flocculent class is 0.11 dex -- as large as the whole between-galaxy scatter.  Recorded as underpowered, not as a null   (N(grand design) = 5, N(flocculent) = 18, N(multiple-arm) = 24; detectable offset difference 0.105 dex against a between-galaxy scatter of 0.104 dex)
+
+--------------------------------------------------------------------------------------------------------------------
+LEVERS AND MUTATION CONTROLS
+--------------------------------------------------------------------------------------------------------------------
+  Upsilon_bulge = 0.4: d(offset)/dF = -0.0362, d(offset)/d(bulge) = +0.1394
+  Upsilon_bulge = 0.5: d(offset)/dF = -0.0321, d(offset)/d(bulge) = +0.1184
+  Upsilon_bulge = 0.7: d(offset)/dF = -0.0255, d(offset)/d(bulge) = +0.0818
+  Upsilon_bulge = 0.9: d(offset)/dF = -0.0201, d(offset)/d(bulge) = +0.0506
+  [PASS] 118G bug pattern 5, checked: the bar coefficient is not an M/L artefact.  Swinging the bulge mass-to-light ratio from 0.4 to 0.9 moves the BULGE coefficient by a factor of three, as it must, and moves the BAR coefficient by well under its own error bar   (over Upsilon_b = 0.4 to 0.9: d(offset)/d(bulge) spans +0.0506 to +0.1394 (a factor 2.8), d(offset)/dF spans -0.0362 to -0.0201, a range of 0.0161 against its own error bar of 0.0393)
+  canonical  mean offset SA +0.0663 vs SB +0.0169, difference -0.0494, raw rho(F, offset) = -0.200
+  alt        mean offset SA +0.0376 vs SB -0.0164, difference -0.0541, raw rho(F, offset) = -0.208
+  [PASS] M118 the mutation: shuffling the bar labels between galaxies destroys everything, and the permutation nulls above are built from exactly that shuffle -- which is why the inner-region result is quoted at p = 0.09 and not at 4e-4   (shuffled rho(F, offset) = -0.036; the permutation null on the inner ratio is centred at 0.993 with a 95th percentile of 1.361)
+
+====================================================================================================================
+VERDICT -- item 118
+====================================================================================================================
+  The framework's own claim passes and the item's prediction is a hint.
+
+  PASSES: the acceleration scale does not move with bar strength.  From unbarred to strongly barred, the per-galaxy
+  RAR normalisation shifts by -0.026 +- 0.039 dex once mass, bulge and inclination are controlled -- 0.6 sigma from
+  zero, a 0.20 dex bound on a_0(SB)/a_0(SA).  The dark-matter reading, that bars form in halo-poor maximal discs and
+  so should sit low on the relation, has the right sign in the raw correlation (rho = -0.20, p = 0.08) and none of it
+  survives control: barred SPARC galaxies are simply 0.5 dex less massive and half as likely to carry a bulge.
+
+  A HINT, in the right place and with the right sign: barred galaxies scatter 30% more about the relation INSIDE two
+  disc scale lengths and not at all outside (ratio 0.96).  That is what non-circular streaming motions do -- they
+  corrupt the derived circular speed where the bar is and leave the acceleration scale alone.  Galaxy-level
+  permutation puts it at p = 0.09, so it is a 1.7 sigma hint.  It survives on the bulgeless half and strengthens as
+  the aperture tightens toward the bar.
+
+  REPORTED AGAINST MY OWN FIRST ANSWER: the point-level Levene test on the same comparison gives p = 1.5e-4, a factor
+  of 600 too small, because the rotation-curve points inside one galaxy share its distance, inclination and M/L and
+  are nothing like independent.  Any morphology-versus-residual test in this repository that treats rotation-curve
+  points as independent samples is overstating its significance by roughly that factor.
+
+  CANNOT BE DONE HERE: the arm-class half of the item.  Five grand-design spirals overlap SPARC and S4G; the
+  smallest detectable offset difference is 0.11 dex, as large as the entire between-galaxy scatter.
+
+RESULT: 9 checks, 0 FAIL   rc=0

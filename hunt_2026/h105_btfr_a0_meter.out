@@ -1,0 +1,163 @@
+========================================================================================================================
+PART A -- the estimator, and the condition under which it is exact
+========================================================================================================================
+  MOND makes v(r -> infinity)^4 = G M a_0 EXACT for any isolated system, whatever the interpolation function.
+  What a survey measures is v at a FINITE radius.  For a disc, with epsilon = g_bar(R) R^2/(G M_b) the ratio of the
+  actual baryonic field to a point mass's at the same radius,
+        V(R)^2 = nu(y) g_bar(R) R,  g_bar = epsilon G M_b/R^2   =>   V^4/(G M_b a_0) = nu(y)^2 * y * epsilon,
+  so the BTFR estimator returns a_0 times a computable factor C = nu(y)^2 y epsilon that is 1 only as y -> 0 with
+  epsilon -> 1.  C for a point mass (epsilon = 1), Route A:
+        y = g_bar/a_0 =  0.01  ->  C =  1.104  (+0.043 dex)
+        y = g_bar/a_0 =  0.03  ->  C =  1.186  (+0.074 dex)
+        y = g_bar/a_0 =  0.10  ->  C =  1.361  (+0.134 dex)
+        y = g_bar/a_0 =  0.30  ->  C =  1.687  (+0.227 dex)
+        y = g_bar/a_0 =  1.00  ->  C =  2.503  (+0.398 dex)
+        y = g_bar/a_0 =  3.00  ->  C =  4.428  (+0.646 dex)
+        y = g_bar/a_0 = 10.00  ->  C = 10.904  (+1.038 dex)
+  [PASS] 105-A the estimator's exactness condition, derived before any data: v^4 = G M a_0 holds only asymptotically, and the finite-radius factor C = nu(y)^2 y epsilon is above 1 everywhere -- 0.13 dex already at y = 0.1 and 0.40 dex at y = 1.  Any BTFR zero-point measured at finite radius is therefore an UPPER bound on a_0 unless C is removed   (C(y=0.01) = 1.104, C(0.1) = 1.361, C(1) = 2.503, C(10) = 10.90)
+
+========================================================================================================================
+PART B -- the local measurement on SPARC, flat part only, gas included
+========================================================================================================================
+  N = 122 SPARC galaxies with a measured V_flat, Q <= 2, i >= 30, Upsilon_disk = 0.5
+  a_0(BTFR) = V_flat^4/(G M_b): median 1.531e-10 m/s^2, 16-84% 9.09e-11 - 2.65e-10, sd(log) = 0.241 dex
+  statistical precision on the median: 0.0269 dex = 6.4%   (the item asked for 5%)
+     vs the canonical  footing 9.360e-11: +0.214 dex
+     vs the alt        footing 1.130e-10: +0.132 dex
+  the 0.24 dex per-galaxy spread is the BTFR's OBSERVED vertical scatter; Lelli+2016b quote the same figure and an intrinsic scatter of ~0.10 dex after the observational error budget is removed.
+  [PASS] 105-B the local BTFR zero-point comes CLOSE to the item's target on statistics alone -- 122 galaxies give a_0 to 6.4%, not quite the 5% asked for but within a factor 1.3 of it, and the shortfall would be closed by N alone.  Everything after this part is about why that number is not the precision of the measurement   (median a_0 = 1.531e-10, statistical 0.0269 dex = 6.4% against a 5% target (1.3x); N = 122)
+
+========================================================================================================================
+PART C -- the finite-radius factor measured on the same galaxies
+========================================================================================================================
+  at SPARC's outermost measured points: y = g_bar/a_0 median 0.065 (16-84% 0.030 - 0.175), epsilon median 1.18
+     => C median 1.59 = +0.202 dex (nu^2 y contributes +0.108, disc geometry epsilon +0.073)
+  the same galaxies through the kernel AT the measured radius (item 101's closed form, no asymptotic assumption):
+     a_0 = 9.818e-11 +- 0.0289 dex, i.e. +0.193 dex BELOW the naive BTFR zero-point
+     and +0.021 dex from the canonical footing / -0.061 dex from the alt footing
+  AGAINST INTEREST, two ways: (i) item 101 showed this same closed form is itself biased HIGH by ~0.05 dex from
+  truncation at f_DM = 0, so the corrected value is if anything a little lower still; and (ii) item 101's SPARC
+  rung, the identical estimator evaluated at R_eff instead of the last point, gave 1.18e-10 -- a +0.08 dex
+  radius dependence inside one sample, which is a systematic of the inversion that nothing here removes.
+  [PASS] 105-C the BTFR zero-point is NOT a_0: it is a_0 times a structural factor that SPARC's own rotation curves measure to be 1.55.  Removing it with the framework's own kernel moves the local value from 1.53e-10 to 9.8e-11, which lands on the canonical footing -- but the same estimator moves 0.08 dex if it is evaluated at R_eff instead of the last point, so no footing is decided here   (C(measured) = 1.59 (+0.202 dex) against an observed BTFR-minus-kernel gap of +0.193 dex; corrected a_0 = 9.818e-11 (+0.021 dex from canonical))
+  
+  WHY THIS MATTERS FOR z ~ 2.5, which is the whole point of item 105: SPARC's flat points sit at y ~ 0.06.  The
+  high-z rotation curves that would carry the decisive measurement are sampled at ONE effective radius, where two
+  things change at once -- y rises to ~2, and epsilon FALLS below 1 because only part of M_bar is inside R_e.
+  BUG CAUGHT IN THE MAKING OF THIS SCRIPT: the first version assumed epsilon = 1.2 at R_e by analogy with SPARC's
+  outermost points.  That is bug pattern 1 -- a TOTAL mass where an ENCLOSED one belongs -- and it overstated C by
+  0.3 dex.  epsilon is computed here from RC100's own tabulated M_bar, R_e and f_DM instead:
+        RC100 at R_e: epsilon = 0.61 (16-84% 0.49 - 0.78), y = 1.98  ->  C = 2.06 (+0.315 dex)
+        SPARC flat  : epsilon = 1.18, y = 0.065  ->  C = 1.59 (+0.202 dex)
+        MSA-3D tabulates no M_bar, only M*, so its epsilon is NOT computed here -- with the paper's own median
+        M_mol/M* ~ 2 it would sit near RC100's, but that is an import and is not used.
+  [PASS] 105-C2 the warning the decisive measurement needs, with epsilon MEASURED rather than assumed: applying v^4 = G M_b a_0 to a velocity taken at ONE effective radius, as every z ~ 1-2.5 kinematic survey does, overstates a_0 by +0.31 dex on RC100's own epsilon and y.  Against a local sample measured on a flat outer curve (+0.20 dex) most of that cancels, but +0.11 dex does not -- and that residual alone eats 87% of the decisive test's entire +-0.13 dex budget.  Stated against my own first version, which assumed epsilon = 1.2 at R_e and made this look twice as bad as it is   (C(RC100 at R_e) = 2.06 = +0.315 dex vs C(SPARC flat) = 1.59 = +0.202 dex; the non-cancelling difference is +0.113 dex against a +-0.13 dex target)
+
+========================================================================================================================
+PART D -- the BTFR slope, three fitting directions, and the mass trend it implies
+========================================================================================================================
+  The framework requires slope EXACTLY 4 and hence zero mass trend in a_0.  Regressing log a_0 on log M_b would
+  share M_b between both axes (it enters y with coefficient -1 and x with +1) and is biased toward -1, so the
+  slope is taken from the M_b-V plane in all three standard directions instead, and converted by 4/alpha - 1:
+     forward OLS (M on V) 3.546  |  inverse OLS 3.800  |  total least squares 3.783 +- 0.087
+     implied mass trend of a_0: +0.128 / +0.053 / +0.057 dex per dex of M_b
+     Lelli+2019's orthogonal slope on their stricter sample is 3.85 +- 0.09, consistent with the TLS value here
+     curvature of log M_b vs log V_flat: -0.355 +- 0.376 (framework requires 0; a LambdaCDM BTFR built from abundance matching is curved because M_*/M_halo turns over)
+  [PASS] 105-D the slope is NOT 4 at the committed Upsilon: three fitting directions bracket 3.55-3.80, and the framework requires 4 exactly.  That is a mass trend of +0.057 dex per dex in the a_0 the BTFR reports -- 0.23 dex across SPARC's four decades of baryonic mass, far larger than the +-0.13 dex the decisive test needs   (TLS slope 3.783 +- 0.087, 2.5 sigma from 4; forward 3.546, inverse 3.800; curvature -0.355 +- 0.376 (consistent with a straight line))
+
+========================================================================================================================
+PART E -- the mass-to-light lever, and the split that exposes it
+========================================================================================================================
+    Ups_d    N     a_0 all     gas-dom    star-dom  split dex  TLS slope    trend
+      0.3  122   2.086e-10   1.378e-10   3.130e-10      0.356      3.575   +0.119
+      0.4  122   1.786e-10   1.253e-10   2.274e-10      0.259      3.691   +0.084
+      0.5  122   1.531e-10   1.090e-10   1.871e-10      0.235      3.783   +0.057
+      0.6  122   1.381e-10   1.057e-10   1.589e-10      0.177      3.858   +0.037
+      0.7  122   1.264e-10   9.125e-11   1.404e-10      0.187      3.921   +0.020
+      0.8  122   1.139e-10   1.123e-10   1.251e-10      0.047      3.975   +0.006
+      0.9  122   1.066e-10   1.084e-10   1.101e-10      0.007      4.022   -0.006
+      1.1  122   9.152e-11   9.552e-11   9.296e-11     -0.012      4.100   -0.024
+    the lever: d log a_0 / d log Upsilon = -0.591, which is -f_star with f_star = 0.59 as it must be
+    the split at the committed Upsilon = 0.5 is +0.235 dex between 52 star-dominated (f_gas < 0.3) and 20 gas-dominated (f_gas > 0.7) galaxies
+    the split closes at Upsilon ~ 0.9 and the slope reaches 4 at Upsilon ~ 0.9
+  [PASS] 105-E BUG PATTERN 5, and it fires hardest here: the BTFR a_0 meter's own internal consistency is a statement about the stellar mass-to-light ratio.  At the committed Upsilon = 0.5 the gas-dominated and star-dominated halves disagree by 0.24 dex; they agree, and the slope becomes 4, only at Upsilon ~ 0.9.  That is 0.25 dex above item 76's deep-tail value (0.50-0.66) and 0.25 dex above stellar populations' 0.5 +- 0.1 -- so two of the framework's own Upsilon-predictors disagree by 0.13-0.25 dex in Upsilon, and the meter cannot be trusted below that gap   (split at Upsilon = 0.5 is +0.235 dex, closes at Upsilon ~ 0.9; TLS slope 4 at Upsilon ~ 0.9; lever d log a_0/d log Upsilon = -0.59)
+
+========================================================================================================================
+PART F -- the error budget, and the precision the meter actually reaches
+========================================================================================================================
+  term                                                dex        %   nature
+  statistical (bootstrap median)                   0.0269      6.4   random
+  Upsilon zero-point, +-0.10 dex (SPS)             0.0589     14.5   COHERENT
+  gas mass, +-0.05 dex                             0.0205      4.8   COHERENT
+  distance scale, 2%                               0.0172      4.0   COHERENT
+  per-galaxy distance (median 14%)                 0.0102      2.4   random
+  per-galaxy inclination (median 64 deg +- 3)      0.0040      0.9   random
+  per-galaxy V_flat (median 4%)                    0.0058      1.3   random
+  quadrature total (excluding C and the split)     0.0712     17.8
+  the C correction itself                          0.2018     59.1   STRUCTURAL, framework-computed
+  the gas/star split at Upsilon = 0.5              0.2348     71.7   INTERNAL INCONSISTENCY
+  [PASS] 105-F AGAINST INTEREST -- the honest answer to 'what precision does the local BTFR zero-point reach': 6.4% statistically, 18% once the coherent mass-to-light, gas and distance-scale terms are carried, and no better than the 0.24 dex by which the meter disagrees with itself between its gas-rich and star-rich halves.  The item's 5% is reached only in the one term that does not matter   (statistical 0.0269 dex; coherent total 0.0712 dex = 18%; internal split 0.235 dex = 72%)
+
+========================================================================================================================
+PART G -- the Newtonian and LambdaCDM alternatives computed beside the framework
+========================================================================================================================
+  NEWTON: with baryons only and no modification there is no asymptotically flat velocity at all -- v ~ R^{-1/2}
+  beyond the disc -- so 'the BTFR zero-point' is not defined.  The relation's existence is already the result;
+  its zero-point is the second-order question this item is about.
+  LambdaCDM: the BTFR is inherited from M_b(M_200) and V_flat(M_200).  V_200 ~ M_200^{1/3} exactly, so a slope of
+  4 requires M_b ~ M_200^{4/3}, i.e. the baryon fraction must RISE as M_200^{1/3} over four decades, and the
+  relation must stay straight while abundance matching's M_*/M_200 turns over at both ends.  The measurable
+  consequences are a curvature and a scatter:
+     curvature measured here: -0.355 +- 0.376 -- consistent with a straight line, as the framework
+     requires, but the test is UNDERPOWERED: the 2-sigma bound is |curvature| < 0.75, wide enough to admit a
+     substantially bent relation, so straightness is not yet a discriminant on this sample.
+     observed vertical scatter 0.241 dex, of which Lelli+2016b attribute ~0.10 dex to intrinsic scatter;
+     the framework requires ZERO intrinsic scatter in a_0 and therefore has to spend all 0.10 dex on M/L, gas and distance.
+  [PASS] 105-G the framework's two structural BTFR predictions -- a straight line and no intrinsic scatter -- are not violated, but the straightness test is UNDERPOWERED here and is reported as such; what does NOT survive is slope 4 at the committed Upsilon.  LambdaCDM's freedom is the other way round: it can fit any slope but has to arrange the straightness and the tightness by hand   (curvature -0.355 +- 0.376 (0.9 sigma from straight); slope 3.78 +- 0.09 (2.5 sigma from 4))
+
+========================================================================================================================
+PART H -- what this means for the decisive z ~ 2.5 measurement
+========================================================================================================================
+  The decisive test is a deep-MOND BTFR zero-point at z ~ 2.5 to +-0.13 dex (framework 0.00, LambdaCDM-native +0.33).  What this validation says it needs:
+    1. velocities on a genuinely FLAT outer curve.  At one R_e the structural factor C is +0.31 dex (RC100's own epsilon and y),
+       against +0.20 dex on a local flat curve, so +0.11 dex does NOT cancel between the two ends -- 87% of the whole budget.
+    2. MEASURED gas, not scaling-relation gas.  The local coherent gas term is only 0.021 dex because M_HI is
+       measured; the repo's own MUSE-DARK II refit carries +-0.20 dex from modelled gas alone, which already
+       exceeds 0.13 dex on its own.
+    3. a differential design.  The Upsilon zero-point (0.059 dex) cancels between z = 0 and z = 2.5 only if the
+       SAME Upsilon convention is used at both ends; what does NOT cancel is the EVOLUTION of Upsilon, and the
+       gas/star split found in Part E says the local Upsilon itself is uncertain by ~0.25 dex.
+    4. N: with the local per-galaxy spread of 0.24 dex, reaching 0.13 dex statistically needs only N ~ 7 galaxies
+       with the coherent terms already at 0.062 dex -- so N is NOT the binding constraint; the gas and
+       the mass-to-light ratio are.
+  [PASS] 105-H the forecast, stated in the item's own currency: the +-0.13 dex decisive measurement is not limited by sample size (a handful of galaxies would do it statistically) but by two systematics this local validation measures -- the structural factor C if the velocities are not on a flat curve, and the gas plus mass-to-light budget, which locally already contributes more than half the target   (coherent M/L + gas floor 0.062 dex of a 0.13 dex target; N needed statistically 7; non-cancelling C between R_e and a flat curve +0.11 dex)
+
+========================================================================================================================
+PART I -- mutation controls
+========================================================================================================================
+     M1 shuffle M_b against V_flat: sd(log a_0) goes 0.241 -> 1.119 dex, median 1.531e-10 -> 1.626e-10
+  [PASS] M105-1 shuffling which baryonic mass belongs to which rotation speed destroys the meter: the spread rises by more than a factor 3, so the 0.24 dex the real data show is a real relation and not an artefact of the ranges   (real sd 0.241 dex vs shuffled 1.119 dex)
+     closure: injected a_0 = 9.360e-11 with 0.00 dex of BTFR scatter -> recovered 9.360e-11 (-0.0000 dex), TLS slope 4.000
+     closure: injected a_0 = 9.360e-11 with 0.24 dex of BTFR scatter -> recovered 9.119e-11 (-0.0113 dex), TLS slope 4.161
+     closure: injected a_0 = 1.130e-10 with 0.00 dex of BTFR scatter -> recovered 1.130e-10 (+0.0000 dex), TLS slope 4.000
+     closure: injected a_0 = 1.130e-10 with 0.24 dex of BTFR scatter -> recovered 1.143e-10 (+0.0051 dex), TLS slope 4.192
+  [PASS] M105-2 closure: a synthetic BTFR of slope exactly 4 at a known a_0 is recovered exactly with no scatter and to better than 0.05 dex with SPARC's own 0.24 dex of scatter -- so the estimator itself is sound and everything found above is in the data, not in the arithmetic   (noiseless recovery -4.82e-17 dex with slope 4.000000; with 0.24 dex scatter -0.0113 dex)
+
+========================================================================================================================
+VERDICT (item 105).  The BTFR zero-point is a usable a_0 meter only with two corrections that item 105 asked to
+have measured before the z ~ 2.5 test is designed, and this script measures both:
+  * STRUCTURAL.  V_flat^4 = G M_b a_0 is exact only asymptotically.  On SPARC's own outermost points it overstates
+    a_0 by +0.20 dex; at one effective radius, where high-z curves are sampled, RC100's own
+    epsilon and y make it +0.31 dex, so +0.11 dex does not cancel between the two ends.
+    Removing it with the kernel gives a_0 = 9.82e-11, canonical to 0.02 dex -- but the same estimator moves
+    0.08 dex between R_eff and the last point, so this does not decide a footing.
+  * MASS-TO-LIGHT.  At Upsilon = 0.5 the meter's gas-rich and star-rich halves disagree by 0.23 dex and the BTFR
+    slope is 3.78, not 4.  Both close at Upsilon ~ 0.9, which contradicts item 76 and stellar populations.
+  * PRECISION.  6.4% statistical on 122 galaxies; 18% with the coherent terms; 72% if the internal split
+    is taken as the systematic it is.  The item's 5% is reached only in the statistical term.
+  * FOR z ~ 2.5.  N is not the constraint (about 7 galaxies suffice statistically).  Measured gas, a flat
+    outer curve and a shared Upsilon convention are.  A z ~ 2.5 zero-point built on scaling-relation gas cannot
+    reach +-0.13 dex however many galaxies it has.
+========================================================================================================================
+
+RESULT: 11 checks, 0 FAIL   rc=0

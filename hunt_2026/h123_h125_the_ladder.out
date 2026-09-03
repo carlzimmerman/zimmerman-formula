@@ -1,0 +1,251 @@
+========================================================================================================================
+0.  PROVENANCE -- the two SPARC M/L-free rungs re-derived from the raw data, checked against the committed .out
+========================================================================================================================
+  SPARC: 147 discs pass the standard quality cuts (Q<=2, i>=30 deg, >=6 points)
+  R1  M/L-free deep tail (g_bar<1e-11, f_*,loc<0.2): a_0 = 7.3612e-11 +- 0.0647 dex (23 galaxies, 128 points)
+  [PASS] 0.1 rung R1 re-derived from the SPARC rotmods reproduces h102_gas_dominated_a0.out's committed number (7.361e-11 +- 0.062 dex) -- the ladder below is not built on a transcribed value   (re-derived 7.3612e-11 +- 0.065 vs committed 7.361e-11 +- 0.062 (+0.0000 dex))
+  R2  gas-dominated discs, outermost point, all baryons: a_0 = 7.8158e-11 +- 0.0797 dex (21 discs);  gas-only variant 9.0875e-11 +- 0.0857
+  [PASS] 0.2 rung R2 re-derived reproduces h124_stellar_mass_free_a0.out's rung A (7.816e-11 +- 0.083 dex stat) and its gas-only variant (9.088e-11 +- 0.088)   (re-derived 7.8158e-11 / 9.0875e-11 vs committed 7.816e-11 / 9.088e-11)
+  R3  BTFR zero-point on the 20 f_gas>0.7 galaxies: raw 1.0807e-10 +- 0.0800 dex
+      the structural factor C = nu(y)^2 y eps measured on THOSE SAME galaxies: 1.510 canonical / 1.490 alt (the full SPARC sample gives 1.591, which is item 105's 1.59)
+      C-removed: a_0 = 7.1557e-11 (canonical footing) / 7.2549e-11 (alt footing)
+  [PASS] 0.3 rung R3 re-derived reproduces h105_btfr_a0_meter.out's gas-dominated BTFR zero-point (1.090e-10) and its full-sample structural factor C = 1.59, and it shows AGAINST THE EARLIER READING that the gas-dominated subsample's own C is smaller than the full sample's -- so borrowing 1.59 would have over-corrected this rung   (raw 1.0807e-10 vs 1.090e-10; C(gas-dominated) = 1.510 vs C(all) = 1.591 -- a +0.023 dex difference)
+
+========================================================================================================================
+1.  THE ADMISSION RULE, AND WHAT IT DOES TO ITEM 100's LADDER
+========================================================================================================================
+  An a_0 measurement is admitted as M/L-FREE here if its MEASURED leverage |d log a_0/d log Upsilon| <= 0.20,
+  i.e. a factor-2 error in the stellar mass-to-light ratio moves it by less than 0.06 dex.  The leverage is
+  not asserted for any rung: item 102 measured it for the deep tail by re-running at fixed sample, item 111
+  measured it for every KiDS bin by rescaling the adopted baryonic mass, item 105 measured it for the BTFR.
+  
+    R1's leverage measured at fixed sample by re-running at Upsilon = 0.4/0.5/0.6: d log a_0/d log Upsilon = -0.146  (item 102 got -0.148)
+  
+    measurement                                                  a_0   +-dex  |lever|   M/L-free?  provenance
+    SPARC deep tail, f_*,loc < 0.2                         7.361e-11   0.065    0.146       ADMIT  h102 (re-derived above)
+    SPARC gas-dominated discs, outermost point             7.816e-11   0.080    0.182       ADMIT  h124 rung A (re-derived)
+    SPARC BTFR, f_gas>0.7, C removed                       7.156e-11   0.080    0.180       ADMIT  h105 part E (re-derived)
+    KiDS-1000 lensing, shape-only a_0                      6.310e-11   0.300    0.000       ADMIT  h113 check 113-D2
+    ALFALFA gas-dominated (f_* < 0.15), all baryons        5.820e-11   0.250    0.110       ADMIT  h124 rung B table
+    Leisman almost-darks, ceiling-matched                  3.110e-11   0.130    0.000       ADMIT  h124 rung C / item 31b
+    Lelli tidal dwarfs, external field included            1.734e-11   0.170    0.000       ADMIT  h124 rung D
+    KiDS-1000 dwarf lens stack                             9.550e-11   0.109    1.046      reject  h1_h66_h2_h65 item 2; lever from h111-A
+    SPARC full deep tail, full kernel                      9.040e-11   0.038    0.647      reject  h102 sec.2; lever h121a
+    SPARC full deep tail, item 25 as published             1.146e-10   0.043    0.647      reject  item 25; +0.10 dex estimator bias, h102 sec.0
+    SPARC BTFR all 122, C removed                          9.818e-11   0.029    0.591      reject  h105 check 105-C
+    KiDS colour bins (blue / red)                          8.840e-11   0.052    1.046      reject  h111 fig-8; red bin 2.83e-10
+    KiDS Sersic bins (disc / bulge)                        1.060e-10   0.048    1.046      reject  h112 fig-8; bulge bin 2.53e-10
+    SPARC closed-form inversion at R_eff                   1.176e-10   0.056    0.647      reject  h101; f_DM carries a stellar mass model
+    RC100 closed-form inversion at R_e                     1.385e-10   0.070    0.647      reject  h101; same
+    Li+2020 halo product 2 pi G rho_0 r_0                  1.690e-10   1.200    0.647      reject  h106; profile-choice systematic 1.2 dex
+  [PASS] 1.1 ITEM 100's HEADLINE IS WITHDRAWN, and it is my own workflow's number.  Item 100 wrote that 'the two measurements that do NOT lean on a stellar M/L -- the gas-dominated deep tail and the dwarf lens stack -- agree to 0.08 dex'.  NEITHER of those two is M/L-free on a measured leverage: the deep tail as item 25 ran it carries -0.647 (h121a) and the KiDS dwarf lens stack carries -1.046 (h111-A, where a deep-MOND lensing a_0 is degenerate with the assumed baryonic mass at exponent 1).  The sentence that organised two ledgers is false   (deep tail lever -0.647, dwarf lens stack lever -1.046, both above the 0.20 admission threshold; and their 0.08 dex agreement is itself an artefact -- the deep-tail value in it (1.14e-10) carried the +0.10 dex estimator bias h102 found)
+  [PASS] 1.2 the admission rule keeps something: 7 of the 16 measurements in the hunt clear |lever| <= 0.20, so the M/L-free ladder is not empty -- but 3 of the 7 are the SAME 20-23 SPARC gas-rich discs seen through different estimators, which is a fact section 3 has to handle rather than average over   (7 admitted of 16; admitted rungs R1,R2,R3 share SPARC galaxies)
+
+========================================================================================================================
+2.  ITEM 123 -- THE TWO FOOTINGS, DECIDED?
+========================================================================================================================
+  canonical a_0 = 9.360e-11 (log -10.0287) | alt a_0 = 1.130e-10 (log -9.9469)
+  they are 0.0818 dex apart, so a 3 sigma decision needs a TOTAL error of 0.0273 dex = 6.5% on an M/L-free measurement of a_0
+
+------------------------------------------------------------------------------------------------------------------------
+2A.  the coherent floor, built here from sensitivities this script measures (item 103 is not used)
+------------------------------------------------------------------------------------------------------------------------
+    the kernel's mean local log-slope on the R1 points: <n> = <d log nu/d log y> = -0.4525 (the deep-MOND limit is -1/2)
+    analytic, from d/d log a of the estimating equation:  d log a_0/d log D      = 1/<n> = -2.210
+                                                          d log a_0/d log M_gas  = (1+<n>)/<n> x (gas share)
+    numerical, scaling every distance by 1.05: d log a_0/d log D = -2.246  (item 103 measured -2.254 independently)
+  [PASS] 2A.1 the distance sensitivity is the analytic 1/<n>, not the textbook deep-MOND -2 -- so the deep tail's a_0 inherits 2.2x the distance ladder's fractional error, not 2x.  Derived and measured two ways here, so it does not depend on item 103, whose win did not survive verification   (numerical -2.246 vs analytic 1/<n> = -2.210)
+    numerical, scaling the HI mass scale by 1.1: d log a_0/d log M_gas = -1.107 (gas supplies 85% of g_bar on these points)
+  [PASS] 2A.2 THE PRICE OF REMOVING THE STELLAR M/L, and it is the sharpest new number in item 123.  Cutting to points where stars supply under 20% of g_bar drops the Upsilon leverage to 0.15 -- but it RAISES the HI mass scale's leverage to very nearly 1.2, because the same gas now supplies almost all of g_bar.  The measurement does not become calibration-free; it trades a stellar calibration for a hydrogen one, at higher leverage   (d log a_0/d log M_gas = -1.107 against d log a_0/d log Upsilon = -0.146; gas is 85% of g_bar)
+    inclination: V_obs ~ 1/sin i so g_obs ~ sin^-2 i and d log a_0/d log sin i = 2/<n> = -4.420 (median inclination of the R1 sample 60 deg)
+      optimistic  (distance scale 2%, HI mass scale 0.03 dex, inclination zero-point 1 deg) -> distance 0.0193, gas 0.0332, inclination 0.0190  TOTAL 0.0428 dex
+      realistic   (distance scale 5%, HI mass scale 0.05 dex, inclination zero-point 2 deg) -> distance 0.0476, gas 0.0554, inclination 0.0371  TOTAL 0.0819 dex
+  [PASS] 2A.3 the COHERENT floor under any M/L-free deep-tail a_0 is dominated by the HI mass scale, not by anything stellar and not by the distance scale.  Even on the optimistic budget it exceeds the 0.027 dex a 3 sigma footing decision needs, so NO amount of extra galaxies can decide the footings by this route   (optimistic floor 0.0428 dex, realistic 0.0819 dex, against the 0.0273 dex a 3 sigma decision requires)
+
+------------------------------------------------------------------------------------------------------------------------
+2B.  the footing test, on each admitted M/L-free rung
+------------------------------------------------------------------------------------------------------------------------
+    rung                                                         a_0  sig_tot   canonical         alt
+    SPARC deep tail, f_*,loc < 0.2                         7.361e-11   0.1044      -1.00s      -1.78s
+    SPARC gas-dominated discs, outermost point             7.816e-11   0.1143      -0.69s      -1.40s
+    SPARC BTFR, f_gas>0.7, C removed                       7.156e-11   0.1145      -1.02s      -1.73s
+    KiDS-1000 lensing, shape-only a_0                      6.310e-11   0.3000      -0.57s      -0.84s
+    ALFALFA gas-dominated (f_* < 0.15), all baryons        5.820e-11   0.2631      -0.78s      -1.10s
+    Leisman almost-darks, ceiling-matched                  3.110e-11   0.1537      -3.11s      -3.65s
+    Lelli tidal dwarfs, external field included            1.734e-11   0.1887      -3.88s      -4.31s
+  [PASS] 2B.1 ITEM 123's OWN CRITERION, and it is NOT met.  On the headline M/L-free measurement -- the SPARC deep tail with the stellar share of g_bar under 20% -- NEITHER footing is excluded at 3 sigma once the coherent calibration floor is carried.  The measured value sits BELOW both, by 1.0 sigma and 1.8 sigma respectively, so the most that can be said is that it leans canonical.  Note which two rungs DO exclude both footings at over 3 sigma: the almost-darks and the tidal dwarfs, the two item 124 identified as non-measurements   (a_0 = 7.361e-11 +- 0.1044 dex total: canonical -1.00 sigma, alt -1.78 sigma)
+
+------------------------------------------------------------------------------------------------------------------------
+2C.  the two ways the verdict flips, which is why it cannot be quoted either way
+------------------------------------------------------------------------------------------------------------------------
+    distance error < 12% (TRGB/Cepheid/direct),  8 galaxies: a_0 = 9.0778e-11 +- 0.104 dex   canonical -0.10s   alt -0.72s
+    distance error >= 12% (Hubble flow),         15 galaxies: a_0 = 5.6774e-11 +- 0.070 dex   canonical -2.01s   alt -2.77s
+  [PASS] 2C.1 AGAINST INTEREST, and it is fatal to any footing claim from this sample: splitting the SAME M/L-free galaxies on distance QUALITY moves a_0 by more than twice the separation between the two footings.  The eight galaxies with TRGB or Cepheid distances land on the canonical footing; the fifteen with Hubble-flow distances land 0.2 dex below it.  A verdict that flips on a cut choice is not a verdict   (good distances 9.078e-11 vs Hubble flow 5.677e-11: +0.204 dex, against a footing separation of 0.082 dex; on the good-distance half alt is only -0.72 sigma away)
+  
+    deep-tail points, all baryons                        a_0 = 7.3612e-11  (-0.104 canonical, -0.186 alt)
+    outermost point, all baryons                         a_0 = 7.8158e-11  (-0.078 canonical, -0.160 alt)
+    BTFR zero-point, C removed                           a_0 = 7.1557e-11  (-0.117 canonical, -0.198 alt)
+    outermost point, GAS ONLY (biased +0.086 dex, h124)  a_0 = 9.0875e-11  (-0.013 canonical, -0.095 alt)   <- upper bound, not a best estimate
+    spread of the THREE defensible estimators on essentially the SAME 21-23 gas-rich SPARC discs: 0.038 dex (full range), 0.016 dex (rms)
+    including the gas-only upper bound as well: 0.104 dex
+  [PASS] 2C.2 MY OWN SECOND FLIP, TESTED AND WITHDRAWN.  I expected estimator choice to move a_0 by more than the gap between the footings, as the distance split does.  It does not: the three defensible M/L-free estimators on these discs span only a third of the footing separation, so estimator choice is a sub-dominant systematic here and the claim is retracted.  The range only exceeds the gap if the gas-only variant is included, and h124 already showed that one is a known-biased upper bound rather than a competing estimate   (three defensible estimators span 0.038 dex (rms 0.016) against a footing separation of 0.082 dex; with the biased gas-only variant the range is 0.104 dex)
+
+------------------------------------------------------------------------------------------------------------------------
+2D.  what precision WOULD decide it, and where it would have to come from
+------------------------------------------------------------------------------------------------------------------------
+    required TOTAL error for a 3 sigma exclusion of one footing: 0.0273 dex (6.5%)
+      on the optimistic  budget the calibration floor alone is 0.0428 dex = 1.6x the whole allowance
+      on the realistic   budget the calibration floor alone is 0.0819 dex = 3.0x the whole allowance
+    spending the WHOLE budget on one channel: the distance scale would have to be known to 2.84%, or the HI mass scale to 0.0246 dex (5.8%)
+    a balanced requirement (half the budget to calibration, half to statistics):
+      distance scale to 1.41%  AND  HI mass scale to 0.0123 dex (2.9%)  AND  about 518 gas-dominated discs with resolved curves (SPARC has 23)
+  [PASS] 2D.1 the answer to item 123, stated as a requirement rather than as a result: deciding between 9.36e-11 and 1.13e-10 needs a total 2.7% on an M/L-free a_0.  That means the distance scale to about 1%, the HI mass scale (flux calibration plus the helium factor plus molecular gas) to about 3%, and roughly ten times SPARC's gas-dominated sample.  None of the three exists today, and the first two are not sample-size problems   (need 0.0273 dex; optimistic floor 0.0428; need ~518 discs vs 23 in hand)
+
+========================================================================================================================
+3.  ITEM 125 -- THE LADDER REBUILT FROM M/L-FREE RUNGS ONLY
+========================================================================================================================
+    rung                                           a_0   +-dex    log M_b 16-84    log g_bar 16-84  velocity
+    R1 SPARC deep tail, f_*,loc<0.2          7.361e-11   0.104    8.37    9.51    -11.69   -11.26  resolved RC
+    R2 SPARC gas-dom, outermost point        7.816e-11   0.114    8.41    9.48    -11.76   -11.38  resolved RC
+    R3 SPARC BTFR f_gas>0.7, C removed       7.156e-11   0.114    8.56    9.41    -11.76   -11.39  resolved RC
+    R4 KiDS-1000 lensing, shape-only         6.310e-11   0.300    9.50   11.00    -14.80   -12.40  weak lensing
+    R5 ALFALFA gas-dominated, all baryons    5.820e-11   0.250    9.41   10.63   --  (asymptotic)  HI line width
+    R6 Leisman almost-darks, matched         3.110e-11   0.130    8.78    9.36   --  (asymptotic)  HI line width
+    R7 Lelli tidal dwarfs, EFE included      1.734e-11   0.170    8.15    9.20   --  (asymptotic)  resolved RC
+  
+    ALL SEVEN M/L-free rungs: inverse-variance mean a_0 = 5.538e-11 (-0.228 dex canonical, -0.310 alt)
+    total spread 0.226 dex | INTRINSIC beyond the quoted errors 0.133 dex (item 100's estimator) | 0.176 dex (maximum likelihood)
+    chi2 of one common a_0 across the seven: 16.6 on 6 degrees of freedom, p = 0.011 (2.3 sigma equivalent)
+    AND the inverse-variance mean above must NOT be quoted as an a_0: it is pulled down by R6 and R7, the two rungs item 124 itself labelled non-measurements.  Dropping those two it is 7.279e-11
+  [PASS] 3.1 ITEM 125's OWN CRITERION IS NOT MET, and the first reason is arithmetic rather than physical: the criterion cannot be evaluated with these rungs at all.  Item 125 asked whether the M/L-free rungs agree to better than 0.05 dex; the MEDIAN QUOTED ERROR of the seven M/L-free rungs is over three times that, because the price of removing the stellar mass is a sample of gas-rich dwarfs measured by lensing shape, HI line width or post-merger debris.  Even if every central value were identical, this ladder could not demonstrate 0.05 dex agreement   (median quoted error 0.130 dex, range 0.104-0.300, against the 0.05 dex criterion)
+  [PASS] 3.2 and the central values do not agree either, though only weakly: one common a_0 across the seven is rejected at p = 0.011, an intrinsic spread of 0.133 dex by item 100's own moment estimator and 0.176 dex by maximum likelihood.  AGAINST INTEREST IN BOTH DIRECTIONS -- that is a 2-3 sigma inconsistency, not a decisive one, and it is essentially the SAME 0.16 dex item 100 found with the stellar M/L still in.  Removing the mass-to-light ratio neither collapsed the ladder nor made it worse; it left it where it was   (chi2 16.6/6 (p = 0.011); intrinsic 0.133 dex moment / 0.176 dex ML, against item 100's 0.156 dex and item 125's 0.05 dex criterion)
+
+------------------------------------------------------------------------------------------------------------------------
+3A.  what the residual is organised by, now that it is not organised by Upsilon
+------------------------------------------------------------------------------------------------------------------------
+    raw correlation of log a_0 with the residual Upsilon leverage across the seven: r = +0.741 -- but
+    with N = 7 and levers spanning only 0.00 to 0.18, and with the leverage
+    collinear with which SYSTEM each rung is, that correlation cannot be read as an Upsilon organiser.  The
+    physical test is whether a COMMON error in Upsilon could reconcile the rungs: fit log a_0 = mu + lever x d.
+      best-fit common Upsilon shift d log Upsilon = +2.48 dex (a factor 302 in the stellar
+      mass-to-light ratio), which does move chi2 from 16.6 to 3.4
+      but a BINARY 'is this a SPARC rung' indicator, which contains no Upsilon at all, does the same job:
+      chi2 16.6 -> 4.5.  The leverage column is a proxy for which sample a rung came from,
+      because 3 of the 7 rungs have leverage exactly zero and all three SPARC rungs sit near 0.17.
+  [PASS] 3A.0 the stellar mass-to-light ratio CANNOT be the organiser any more.  It formally fits -- but only at a shift of +2.5 dex, a factor of three hundred in the stellar M/L against stellar populations' 0.5 +- 0.1 (0.09 dex) -- and a binary sample-membership indicator carrying no Upsilon whatsoever absorbs the same chi2, which shows the fit is sample membership in disguise.  AGAINST INTEREST: my first version of this check asserted that Upsilon leaves the chi2 behind.  It does not; it is degenerate with the sample label, which is a weaker statement and the one that is true   (required shift +2.48 dex (factor 302) vs the 0.09 dex stellar-population uncertainty; chi2 16.6 -> 3.4 on the leverage, -> 4.5 on a bare SPARC/not-SPARC flag; 3 of 7 rungs have zero leverage)
+      velocity class HI line width  : N = 2, median log a_0 = -10.371 (-0.342 dex from canonical)
+      velocity class resolved RC    : N = 4, median log a_0 = -10.139 (-0.110 dex from canonical)
+      velocity class weak lensing   : N = 1, median log a_0 = -10.200 (-0.171 dex from canonical)
+    SPARC resolved rotation curves minus HI line widths: +0.238 dex
+  [PASS] 3A.1 the residual's new organiser is the VELOCITY MEASUREMENT.  The rungs built on resolved rotation curves sit about 0.24 dex above the rungs built on unresolved HI line widths -- the direction and roughly the size of the width bias item 124 measured directly on galaxies whose stellar masses ARE known (+0.25 dex per dex of mass in ALFALFA against +0.07 in SPARC).  Stated with its own limitation: this is a comparison of 3 rungs against 2, so it is a diagnosis consistent with an independently measured bias, not an independent detection   (SPARC resolved minus HI width +0.238 dex, on 3 rungs vs 2; the independently measured ALFALFA width bias runs +0.246 dex/dex of mass where SPARC's resolved curves run +0.070 +- 0.033)
+    and the outlier that is neither: the tidal dwarfs sit -0.628 dex below the resolved-curve rungs on RESOLVED kinematics, so their offset is not a width bias -- it is item 46's liability (equilibrium one orbit after a merger), and it cannot be cut without cutting on the answer
+
+------------------------------------------------------------------------------------------------------------------------
+3B.  the sub-ladder of resolved kinematics only, and why it is one measurement and not four
+------------------------------------------------------------------------------------------------------------------------
+    the three SPARC rungs alone: mean 7.435e-11, total spread 0.016 dex, intrinsic 0.000 dex
+    BUT they are not three measurements: R1 and R2 share 21 of 21 galaxies, R1 and R3 share 15 of 20, and all three use the same distances, the same inclinations and the same HI mass scale
+  [PASS] 3B.1 the three SPARC rungs DO agree to better than 0.05 dex -- their rms is 0.016 dex -- and that is NOT a second law, because R2's galaxies are a SUBSET of R1's and R3 shares three quarters of them, and all three use the same distances, the same inclinations and the same hydrogen mass scale.  Recorded here explicitly so that this 0.016 dex cannot later be mistaken for the item-125 criterion being met: their concordance tests the estimator, not nature, and three estimators on one sample is one rung   (rms of the three 0.016 dex (moment intrinsic 0.000 once the shared floor is charged), but R1-R2 overlap 21 of 21 galaxies and R1-R3 overlap 15 of 20)
+
+------------------------------------------------------------------------------------------------------------------------
+3C.  the dynamic range the M/L-free ladder actually spans
+------------------------------------------------------------------------------------------------------------------------
+    baryonic mass covered by all seven M/L-free rungs: log M_b = 8.15 to 11.00 = 2.8 decades
+    local baryonic acceleration where one exists:       log g_bar = -14.80 to -11.26 = 3.5 decades
+    drop the one rung whose own a_0 is unstable at 0.30 dex (KiDS shape-only): 2.5 decades of mass
+    keep only the three rungs that carry the measurement (the SPARC gas-rich discs): 1.1 decades, log M_b 8.37 to 9.51
+  [PASS] 3C.1 the structural reason item 125 could not have closed, which is worth more than the failed criterion.  M/L-freedom and dynamic range are in DIRECT CONFLICT: the only way to remove the stellar mass is to select gas-rich systems, gas-rich systems are low-mass, and low-mass systems all sit at the same acceleration.  The item promised one acceleration measured five ways over nine decades of mass; the M/L-free ladder that actually exists spans one decade in the rungs that carry it and 2.5 decades if every usable rung is admitted, and every one of those rungs is a gas-rich dwarf   (load-bearing SPARC rungs span 1.1 decades of M_b against the item's nine; all seven span 2.8, and 2.5 once the 0.30 dex KiDS rung is dropped)
+
+------------------------------------------------------------------------------------------------------------------------
+3D.  three named sensitivities of this ladder, all reported rather than chosen
+------------------------------------------------------------------------------------------------------------------------
+    as built above (7 rungs)                                                   mean 5.538e-11  intrinsic 0.133 dex
+    + item 121's 9.333e-11 (REFUTED in verification; shown only to size the effect) mean 6.048e-11  intrinsic 0.147 dex
+    with the almost-darks at their UNMATCHED value 6.133e-12                   mean 4.258e-11  intrinsic 0.347 dex
+    resolved-kinematics rungs only (R1,R2,R3,R7)                               mean 6.207e-11  intrinsic 0.242 dex
+    SPARC gas-rich discs collapsed to ONE rung, + KiDS + ALFALFA + almost-darks + TDG mean 4.948e-11  intrinsic 0.120 dex
+  [PASS] 3D.1 the failure is not a choice of rungs: every defensible variant of the ladder -- including the one that admits the refuted item 121, the one that collapses SPARC to a single rung, and the one that keeps only resolved kinematics -- leaves an intrinsic spread far above the 0.05 dex item 125 asked for   (as built above: 0.133; + item 121's 9.333e-11: 0.147; with the almost-darks at t: 0.347; resolved-kinematics rungs : 0.242; SPARC gas-rich discs colla: 0.120)
+
+========================================================================================================================
+4.  THE ALTERNATIVE COMPUTED BESIDE IT
+========================================================================================================================
+  In the framework a_0 is a constant of nature, so the ladder's rungs must agree and must not run with mass.
+  In LambdaCDM there is no a_0: v^4/(G M_b) is a halo property and MUST run with baryonic mass, because the
+  stellar-to-halo-mass relation is not a power law with index 1.  So the mass trend of the ladder is the test.
+    ladder-level trend of log a_0 with log M_b: +0.111 +- 0.162 dex/dex (+0.7 sigma from the framework's required zero)
+    for comparison, WITHIN one sample: SPARC resolved curves give +0.070 +- 0.033 dex/dex (h124), ALFALFA
+    line widths give +0.246 dex/dex on the same estimator with stellar masses known -- so the ladder-level
+    trend sits between them and is dominated by which velocity estimator each rung used, not by halo physics
+    Newtonian control (nu = 1, same baryons, no halo) on the R1 points: <log g_obs/g_bar> = +0.713 dex -- a factor 5.2, so these points are not Newtonian and the ladder is measuring something
+  [PASS] 4.1 the ladder's mass trend does not separate the two paradigms, and it must be said so.  The framework requires zero and LambdaCDM requires a nonzero trend, but the measured ladder-level trend is dominated by the velocity-estimator bias of section 3A, which is an instrumental effect present in both paradigms.  This test is confounded, not passed   (ladder trend +0.111 +- 0.162 dex/dex; within-sample SPARC +0.070 +- 0.033, ALFALFA +0.246 on the same estimator)
+
+========================================================================================================================
+5.  MUTATION CONTROLS
+========================================================================================================================
+    M1: multiplying one of the three concordant SPARC rungs by 2.0 raises their intrinsic spread from 0.000 to 0.084 dex
+  [PASS] M1 the agreement of section 3B is falsifiable: injecting a factor-2 error into one of the three concordant SPARC rungs takes their intrinsic spread from under the 0.05 dex threshold to far above it   (0.000 -> 0.084 dex on a x2.0 injection)
+    M2: 4000 synthetic ladders drawn from ONE a_0 with these same quoted errors give
+        moment intrinsic spread: median 0.000, 95th percentile 0.188 dex -- observed 0.133
+        chi2 about a common a_0:  median 5.4, 95th percentile 12.8 -- observed 16.6
+  [PASS] M2 the null is run, and it CORRECTS MY OWN CHECK 3.2 in part.  Item 100's moment estimator of the intrinsic spread is too noisy at N = 7 with these error bars to detect the observed 0.13 dex: its own null reaches 0.18 dex at the 95th percentile.  The chi2 does clear its null, so the inconsistency is real but it rests on the chi2 and NOT on the intrinsic-spread number, which must therefore be quoted as an estimate and never as a detection.  Item 100's headline 0.156 dex inherits exactly the same weakness   (observed chi2 16.6 above the null's 95th percentile 12.8, but observed intrinsic 0.133 dex BELOW the moment estimator's null 95th percentile 0.188)
+    M3: synthetic g_obs built from the R1 g_bar values at a_0 = 4.0x canonical = 3.744e-10 is recovered as 3.744e-10 (+0.00000 dex)
+        and AGAINST INTEREST, a factor-4 error in a_0 registers as only 5.8 sigma against this measurement's coherent floor -- which is how weak an M/L-free a_0 currently is, not a failure of the control
+  [PASS] M3 the estimator is not a fixed point and follows the data: an injected a_0 four times canonical is recovered as four times canonical to better than 0.001 dex   (injected 3.7440e-10, recovered 3.7440e-10 (+0.00000 dex); it would register at 5.8 sigma)
+  [PASS] M4 turning the kernel off (nu = 1, g_obs set equal to g_bar) must leave no a_0 that fits, since no boosted kernel can reproduce an unboosted curve   (nu=1 synthetic returns a_0 = nan)
+  [PASS] M5 the only covariance this script builds is checked for positive-definiteness rather than for its diagonal, which is the discipline that caught the Brouwer index-ordering bug earlier in the hunt   (min eigenvalue 1.090e-02)
+
+========================================================================================================================
+VERDICT -- ITEMS 123 AND 125
+========================================================================================================================
+
+  ITEM 123 -- NEITHER FOOTING IS DECIDED, and the reason is not sample size.
+    The best M/L-free measurement in the hunt is the SPARC deep tail with stars supplying under 20% of g_bar:
+    a_0 = 7.361e-11 +- 0.065 dex statistical, 0.104 dex with the coherent
+    calibration floor rebuilt here.  That is -1.0 sigma from
+    the canonical footing and -1.8 sigma from the alt footing:
+    neither is excluded at 3 sigma.  One further fact forbids quoting it either way: splitting the SAME galaxies
+    on distance quality moves a_0 by 0.20 dex -- 2.5 times the whole gap between the
+    footings -- with the good-distance half landing ON the canonical value (9.08e-11) and the Hubble-flow half
+    0.2 dex below it.  (My second candidate flip, estimator choice, was tested and WITHDRAWN: the three
+    defensible M/L-free estimators span only 0.038 dex, well inside the gap.)
+    The precision needed is 0.0273 dex total, i.e. the distance scale to about 1.4%, the HI mass scale to
+    about 3%, and roughly 518 gas-dominated discs with resolved rotation curves against SPARC's
+    23.  Removing the stellar mass-to-light ratio does not remove the calibration problem: it trades it
+    for the hydrogen mass scale, whose leverage on this estimator is 1.11, about eight times the
+    stellar leverage (0.15) that the cut removed.  That trade is the reason the floor does not fall.
+
+  ITEM 125 -- THE HUNT DID NOT FIND A SECOND LAW.  The M/L-free ladder is not worse than the one it replaced,
+    and it is not better; it is the same size, for a different reason.
+    Seven M/L-free rungs.  The criterion cannot even be evaluated: their median quoted error is 0.13
+    dex, three times the 0.05 dex agreement item 125 asked for, so identical central values could not have
+    demonstrated it.  The central values are in mild tension anyway -- chi2 16.6 on 6 d.o.f.,
+    p = 0.011 -- with an intrinsic spread of 0.133 dex by item 100's moment estimator and 0.176
+    dex by maximum likelihood, against item 100's 0.156 dex.  The null in control M2 says the moment
+    estimator cannot detect that at N = 7, so the tension rests on the chi2 and the intrinsic-spread number is an
+    estimate, never a detection -- which retires item 100's 0.156 dex as a detection too.
+    The organiser has CHANGED.  It is no longer the stellar mass-to-light ratio: 3 of the seven rungs have
+    exactly zero M/L leverage, the best common Upsilon shift is an impossible +2.5 dex (a factor
+    302 against stellar populations' 0.09 dex), and a bare sample-membership flag carrying no
+    Upsilon absorbs the same chi2 (16.6 -> 4.5 against 3.4), so what the leverage column
+    fits is which catalogue a rung came from.
+    It is now the VELOCITY MEASUREMENT -- resolved rotation curves sit +0.24 dex above
+    unresolved HI line widths, the direction and size of the width bias item 124 measured independently -- with
+    the tidal dwarfs 0.63 dex below everything on an equilibrium
+    assumption rather than on an estimator.
+    The three SPARC rungs agree to 0.016 dex rms, and that must NOT be read as the law closing: R2's
+    galaxies are a subset of R1's, R3 shares three quarters of them, and all three share one distance scale, one
+    inclination convention and one hydrogen calibration.  Three estimators on one sample is one rung.
+    The structural finding is the durable one.  M/L-freedom and dynamic range are in direct conflict -- the only
+    way to drop the stellar mass is to select gas-rich systems, which are low-mass, which all sit at the same
+    acceleration.  The load-bearing M/L-free rungs span 1.1 decades of baryonic mass and the
+    whole usable ladder 2.5, not the nine the item promised, and every rung is a gas-rich dwarf.
+
+  ONE CORRECTION THIS ITEM OWES THE LEDGER, against my own workflow's earlier headline.
+    Item 100's closing sentence -- 'the two measurements that do not lean on a stellar M/L agree to 0.08 dex' --
+    is WITHDRAWN.  Neither of the two was M/L-free.  The deep-tail rung carries a measured leverage of -0.647
+    (h121a) and the KiDS dwarf lens stack carries -1.046 (h111-A, where a deep-MOND lensing a_0 is degenerate with
+    the assumed baryonic mass at exponent one, not two).  The 0.08 dex agreement was additionally an artefact of
+    the +0.10 dex estimator bias that item 102 found in item 25.  Both halves of the sentence fail.
+
+
+RESULT: 25 checks, 0 FAIL   rc=0

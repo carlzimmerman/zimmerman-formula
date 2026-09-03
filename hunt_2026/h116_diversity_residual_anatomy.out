@@ -1,0 +1,131 @@
+====================================================================================================================
+ITEM 116 -- the anatomy of the inner-diversity residual
+====================================================================================================================
+
+  [PASS] P0 the master table parses the same way whitespace-split and fixed-width, so the distance-method flag is the real one (a guard against silently mis-columned .mrt fields)   (175 rows both ways, 0 disagreements; distance methods: 1:97, 2:45, 3:3, 4:28, 5:2)
+  item 23 reproduced: N = 106 galaxies, correlation r = 0.788, residual mean -0.0149, rms 0.1536; observed range 0.22-1.23
+  [PASS] P1 item 23 is reproduced exactly from the ledger's numbers before anything is done to its residual   (r = 0.788 (ledger 0.79), rms = 0.1536 (ledger 0.15), N = 106 (ledger's range 0.22-1.23, here 0.22-1.23))
+  canonical  residual mean -0.0149, rms 0.1536
+  alt        residual mean -0.0334, rms 0.1538
+  [PASS] P2 AGAINST INTEREST -- this residual carries no information about a_0 at all.  The two footings, 0.08 dex apart, give residual scatters that differ by under 0.2%.  Whatever the 0.15 is, it cannot be used to measure or to test a_0   (canonical rms 0.1536, alt rms 0.1538: 0.13% apart)
+
+--------------------------------------------------------------------------------------------------------------------
+(1) MEAN-SHIFT CORRELATIONS -- sixteen predictors, classified in advance
+--------------------------------------------------------------------------------------------------------------------
+  predictor                        class        Spearman rho  p (nominal)
+  inclination [deg]                systematic         -0.255     8.34e-03   <- best
+  e_inclination [deg]              systematic         +0.093     3.41e-01
+  e_D/D                            systematic         +0.114     2.43e-01
+  distance [Mpc]                   systematic         -0.138     1.59e-01
+  distance method f_D              systematic         -0.187     5.44e-02
+  quality flag Q                   systematic         -0.092     3.49e-01
+  2 kpc in arcsec                  systematic         +0.138     1.59e-01
+  N points inside 2 kpc            systematic         +0.174     7.47e-02
+  innermost radius [kpc]           systematic         -0.107     2.73e-01
+  Hubble type T                    physical           +0.160     1.01e-01
+  gas fraction                     physical           +0.206     3.38e-02
+  log M_bar                        physical           -0.205     3.54e-02
+  central SB_disk                  physical           -0.102     3.00e-01
+  V_flat [km/s]                    physical           -0.077     4.31e-01
+  stellar share of g_bar(2kpc)     M/L                -0.004     9.66e-01
+  has a bulge                      M/L                -0.211     3.03e-02
+  best predictor overall: inclination [deg] (systematic), |rho| = 0.255
+  permutation look-elsewhere null on max |rho| over all 16: median 0.180, 95th 0.276  ->  GLOBAL p = 0.100
+  best SYSTEMATIC |rho| = 0.255 (global p over the 9 systematics 0.064);  best PHYSICAL |rho| = 0.206 (global p over the 5 physicals 0.097)
+  with N = 106 this machinery can detect |rho| >= 0.288 at a look-elsewhere-corrected 5% -- nothing here reaches it
+  [PASS] 116A AGAINST INTEREST -- no predictor correlates with the residual once the look-elsewhere effect is paid for.  Inclination is the strongest at rho = -0.26, nominally p = 0.008, but the permutation null for the largest of sixteen correlations puts it at a GLOBAL p of 0.10.  The item's question cannot be answered by mean-shift correlations on 106 galaxies   (max |rho| = 0.255 on 'inclination [deg]', global p = 0.100; detectable |rho| at corrected 5% is 0.288)
+  [PASS] 116B the DIRECTION nonetheless favours the framework's wish: the best systematic beats the best physical property, and it does so on a class of nine predictors versus five   (best systematic 0.255 (inclination [deg]) vs best physical 0.206 (gas fraction))
+
+--------------------------------------------------------------------------------------------------------------------
+THE BULGE COEFFICIENT IS AN UPSILON STATEMENT (bug pattern 5, caught in the act)
+--------------------------------------------------------------------------------------------------------------------
+   Upsilon_bulge  bulged mean   bulgeless  difference  overall rms
+            0.30      +0.1447     +0.0043     +0.1404       0.1624
+            0.40      +0.0796     +0.0043     +0.0753       0.1531
+            0.50      +0.0198     +0.0043     +0.0155       0.1491
+            0.52      +0.0084     +0.0043     +0.0041       0.1489
+            0.60      -0.0358     +0.0043     -0.0401       0.1496
+            0.70      -0.0881     +0.0043     -0.0924       0.1536
+            0.90      -0.1850     +0.0043     -0.1893       0.1692
+            1.20      -0.3159     +0.0043     -0.3202       0.2027
+  [PASS] 116C the 'bulge' correlation is not physics and not a_0: it is the assumed bulge mass-to-light ratio.  At the committed Upsilon_b = 0.7 the 22 bulged galaxies sit 0.092 BELOW the bulgeless ones (p = 0.02); the offset passes through zero at Upsilon_b = 0.52, and every physical correlation in the table above dies with it   (bulged - bulgeless = -0.0924 at Upsilon_b = 0.70 (Welch p = 0.022); the offset nulls at Upsilon_b = 0.53, i.e. essentially the disc value)
+  the same table on the 84 BULGELESS galaxies, where no bulge M/L is assumed:
+     inclination [deg]                systematic  rho = -0.188  p = 0.087
+     e_inclination [deg]              systematic  rho = -0.036  p = 0.745
+     e_D/D                            systematic  rho = +0.093  p = 0.399
+     distance [Mpc]                   systematic  rho = -0.154  p = 0.162
+     distance method f_D              systematic  rho = -0.192  p = 0.080
+     quality flag Q                   systematic  rho = -0.124  p = 0.261
+     2 kpc in arcsec                  systematic  rho = +0.154  p = 0.162
+     N points inside 2 kpc            systematic  rho = +0.192  p = 0.081
+     innermost radius [kpc]           systematic  rho = -0.128  p = 0.246
+     Hubble type T                    physical    rho = +0.029  p = 0.795
+     gas fraction                     physical    rho = +0.125  p = 0.259
+     log M_bar                        physical    rho = -0.177  p = 0.107
+     central SB_disk                  physical    rho = -0.005  p = 0.965
+     V_flat [km/s]                    physical    rho = +0.049  p = 0.660
+     stellar share of g_bar(2kpc)     M/L         rho = +0.010  p = 0.931
+  [PASS] 116D on the bulgeless subsample every PHYSICAL correlation dissolves (best |rho| falls from 0.21 to 0.18, nominal p = 0.11) while inclination survives as the strongest single correlate.  The gas-fraction and mass 'signals' of the full sample were the bulge M/L in disguise   (bulgeless: best systematic |rho| = 0.192, best physical |rho| = 0.177, N = 84, rms 0.1461)
+
+--------------------------------------------------------------------------------------------------------------------
+(2) VARIANCE SPLITS -- random error inflates SCATTER, not the mean
+--------------------------------------------------------------------------------------------------------------------
+  'predicted' below is the rms the Monte-Carlo budget says each half should have, given a common unexplained floor
+  quality flag                   Q = 1 (high)             N= 75 rms=0.1529 | Q = 2 (medium)         N= 31 rms=0.1534   ratio 1.00 (predicted 0.89), Levene p = 0.552
+  distance method                Hubble flow              N= 64 rms=0.1515 | direct                 N= 42 rms=0.1524   ratio 0.99 (predicted 1.36), Levene p = 0.705
+  inclination                    i >= median              N= 54 rms=0.1585 | i < median             N= 52 rms=0.1363   ratio 1.16 (predicted 0.85), Levene p = 0.263
+  distance error                 e_D/D above median       N= 53 rms=0.1464 | below median           N= 53 rms=0.1599   ratio 0.92 (predicted 1.40), Levene p = 0.747
+  angular size of 2 kpc          well resolved            N= 69 rms=0.1568 | poorly resolved        N= 37 rms=0.1464   ratio 1.07 (predicted 0.85), Levene p = 0.882
+  the budget's own sigma         predicted sigma high     N= 53 rms=0.1480 | predicted sigma low    N= 53 rms=0.1565   ratio 0.95 (predicted 1.68), Levene p = 0.422
+  the last split is the sharp one: it divides the sample by the budget's OWN predicted per-galaxy sigma, so it is where
+  the budget makes its strongest prediction -- variance ratio 2.83 predicted, 0.89 observed, and the F test
+  at 53 vs 53 galaxies resolves anything above 1.73.  Under the budget's model the observed ratio has p = 2.9e-05.
+  [PASS] 116E AGAINST MY OWN ESTIMATOR -- the budget's TOTAL is right (check 116F) but its PER-GALAXY ALLOCATION is refuted.  Split by the budget's own predicted sigma, it demands a variance ratio near 2.8 between the halves; the data give 0.9, in the opposite direction, and this is the one split an F test on 53 galaxies a side can actually resolve.  The most likely culprit is SPARC's Hubble-flow distance allowances -- a blanket 14-30% covering peculiar-velocity systematics, treated here as Gaussian per-galaxy errors, which over-assigns scatter to exactly the galaxies carrying the largest quoted e_D   (predicted variance ratio 2.83 (resolvable threshold 1.73), observed 0.89, p = 2.9e-05; the other five splits are all within noise (largest observed rms ratio 1.16, smallest Levene p 0.263) and none of them is resolvable)
+  Consequence: the 81% observational share below is a match of TOTALS, not a demonstration that the residual is
+  distributed the way the quoted errors say it is.  Quote it with that caveat attached.
+
+--------------------------------------------------------------------------------------------------------------------
+(3) THE ERROR BUDGET -- perturb each galaxy by its own quoted errors and re-run item 23 end to end
+--------------------------------------------------------------------------------------------------------------------
+  velocity      : re-running item 23 with this error alone induces an rms of 0.0518 on the residual
+  distance      : re-running item 23 with this error alone induces an rms of 0.0870 on the residual
+  inclination   : re-running item 23 with this error alone induces an rms of 0.0577 on the residual
+  Upsilon       : re-running item 23 with this error alone induces an rms of 0.0749 on the residual
+  quadrature sum: 0.1386     observed residual rms: 0.1536     implied unexplained: 0.0663
+  observational share of the VARIANCE: 81%
+  [PASS] 116F (the answer, with check 116E's caveat attached) IN TOTAL the residual is mostly observational -- 81% of its variance.  Re-running item 23's estimator with each galaxy's own quoted distance error, inclination error and velocity errors, plus the stellar-population scatter in Upsilon, produces 0.139 of the observed 0.154 rms with nothing tuned.  The LARGEST single term is the DISTANCE, at 0.087, because '2 kpc' is a fixed PHYSICAL aperture and a distance error changes which part of the rotation curve is sampled.  116E shows this agreement is between totals only   (velocity 0.0518, distance 0.0870, inclination 0.0577, Upsilon 0.0749 -> quadrature 0.1386 vs observed 0.1536; unexplained 0.0663 (19% of the variance))
+  [PASS] 116G what is NOT observational is a residual of about 0.066 in v(2 kpc)/v_flat, roughly 10% in velocity, and this script does not identify it.  The leading suspects are known repo bug patterns rather than the kernel: item 23 applies the SPHERICAL relation g_obs = nu(g_bar/a_0) g_bar to a DISC (bug pattern 2 -- the AQUAL/QUMOND disc correction is a few per cent to ten per cent in v and varies with disc shape), and Upsilon varies galaxy to galaxy beyond the 0.11 dex assumed here   (unexplained rms 0.0663 on a ratio whose median value is 0.63, i.e. 10% in v(2 kpc); the observational budget already covers 81% of the variance)
+
+--------------------------------------------------------------------------------------------------------------------
+MUTATION CONTROL
+--------------------------------------------------------------------------------------------------------------------
+  a random column correlates with the residual at rho = -0.052 (p = 0.600)
+  shuffling the residual across galaxies: best |rho| over the 16 predictors = 0.158 (measured 0.255; permutation 95th percentile 0.276)
+  [PASS] M116 the machinery has no built-in signal: a random column finds nothing, and a shuffled residual reproduces the same size of 'best correlation' the real one does -- which is the point of check 116A   (random column rho = -0.052; shuffled best |rho| = 0.158 vs measured 0.255)
+
+====================================================================================================================
+VERDICT -- item 116
+====================================================================================================================
+  The framework's wish is GRANTED by the budget and NOT by the correlations, and the two are not in conflict.
+
+  Granted, in total: an end-to-end Monte Carlo of SPARC's own quoted errors -- distance, inclination, velocity --
+  plus the 0.11 dex stellar-population scatter in Upsilon reproduces 0.139 of the observed 0.154 rms, i.e. 81% of
+  the variance, with nothing fitted.  The largest single contributor is the distance error acting through a FIXED
+  PHYSICAL 2 kpc aperture, which is a feature of item 23's estimator and not of the framework.
+
+  Not granted, twice.  (i) No single predictor correlates significantly once the look-elsewhere effect over sixteen
+  predictors is paid for (global p = 0.10).  The strongest correlate is a systematic (inclination, rho = -0.26) and
+  the strongest PHYSICAL ones -- gas fraction and mass -- were the assumed BULGE mass-to-light ratio in disguise:
+  the bulged/bulgeless offset nulls at Upsilon_b = 0.52 and every physical correlation dissolves on the bulgeless
+  subsample.  That is the hunt's bug pattern 5, caught again.  (ii) More seriously, and against my own estimator:
+  the budget's per-galaxy ALLOCATION is refuted.  Split by the budget's own predicted sigma it demands a variance
+  ratio near 2.8 between the halves; the data give 0.9, in the opposite direction, and that split is the one an F
+  test on this sample can resolve.  So the 81% is an agreement of TOTALS.  The honest reading is that SPARC's
+  blanket Hubble-flow distance allowances (14-30%, one value per method) are not Gaussian per-galaxy errors.
+
+  Left over: about 0.066 in the ratio, roughly 10% in v(2 kpc), unexplained.  It is NOT an a_0 effect -- the two
+  footings give the same scatter to 0.2%, so item 23's residual is useless as an a_0 diagnostic -- and the leading
+  suspect is that item 23 uses the SPHERICAL kernel relation on a DISC.  Closing that gap needs the repository's
+  own AQUAL/QUMOND disc solve, not another correlation.
+
+RESULT: 11 checks, 0 FAIL   rc=0

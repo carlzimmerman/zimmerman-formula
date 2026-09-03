@@ -1,0 +1,181 @@
+==============================================================================================================================
+ITEM 122 -- the EXACT ceiling on the phantom's surface density (a_0/(2 pi G) is NOT it)
+==============================================================================================================================
+  f(y) = y (nu(y)-1) = u^2/(e^u - 1) is maximised at u* = 1.593624, y* = g_bar/a_0 = 2.539638, f_max = 0.647610
+  [PASS] 122-thm the analytic maximum (the root of u + 2e^-u = 2) agrees with a blind numerical maximisation of f to 1e-6 -- the theorem is not an algebra slip   (analytic u* = 1.59362426 f_max = 0.64761024; numerical u* = 1.59362426 f_max = 0.64761024)
+  canonical  Sigma_M = a_0/(2 pi G) =  106.9;  Sigma_dagger = a_0/(pi G) =  213.7;  CEILING = f_max a_0/(pi G) =  138.4 Msun/pc^2 = 1.2952 Sigma_M
+  alt        Sigma_M = a_0/(2 pi G) =  129.0;  Sigma_dagger = a_0/(pi G) =  258.0;  CEILING = f_max a_0/(pi G) =  167.1 Msun/pc^2 = 1.2952 Sigma_M
+  [PASS] 122a THE ITEM AS POSED IS CORRECTED: Sigma_M = a_0/(2 pi G) is not the phantom's ceiling either.  The phantom is allowed to exceed it by exactly 1.2952, and the true ceiling is 0.64761 a_0/(pi G).  A phantom measured at 130 Msun/pc^2 would falsify the item's version of the bound and satisfy the framework's, so the distinction is not cosmetic   (ceiling/Sigma_M = 1.2952 on both footings; ceiling = 138.4 (canonical) / 167.1 (alt) Msun/pc^2 against Sigma_M = 106.9 / 129.0)
+  the a_0-FREE corollary: at the radius where the excess acceleration peaks, g_obs/g_bar = nu(y*) = 1.2550 exactly, and
+       the peak excess is g_obs - g_bar = 0.64761 a_0.  The ratio carries no footing, no distance and no size -- only Upsilon.
+  kernel dependence, which is what makes 0.64761 a fingerprint rather than a generality: the 'simple' nu = 1/2 + sqrt(1/4 + 1/y)
+       gives f -> 1 MONOTONICALLY (f = 0.9902 at y = 100, 1.000000 at y = 1e8), so its bound is a_0/(pi G), 1.54x higher,
+       and is never attained at finite y.  Newtonian gravity (nu = 1) gives f = 0 identically: no phantom, no ceiling.
+  [PASS] 122b the two kernels are cleanly separated by the SHAPE and not only by the number: Route A peaks at 0.648 at a finite acceleration and then DECLINES; the simple function rises monotonically to 1.0 and never turns over.  The existence of a maximum at finite g_bar is itself the falsifiable prediction   (Route A f_max = 0.6476 at y = 2.540, falling to 0.0425 at y = 50; simple nu gives 0.9808 at y = 50 and still rising)
+
+==============================================================================================================================
+ITEM 110 -- the phantom's profile, computed and fitted with a Burkert
+==============================================================================================================================
+  GEOMETRY, stated up front (bug pattern 2): everything below is the SPHERICAL-EQUIVALENT phantom, M_ph(<r) = (nu-1) g_bar r^2/G.
+  That is not an approximation to what halo fitters do -- it is EXACTLY what they do: a rotation-curve halo fit defines
+  V_halo^2(r) = G M_halo(<r)/r with M_halo spherical, so both sides of every comparison here carry the same geometry.  It IS an
+  approximation to the true QUMOND phantom of a flattened disc, which is itself flattened, and no PROJECTED quantity is claimed
+  anywhere below for that reason.
+  phantom computed and Burkert-fitted for 147 SPARC galaxies; 147 also have a Li+2020 Burkert fit
+  Burkert fit quality, fractional rms in the halo rotation curve: MODEL phantom median 0.047 (90th 0.091); DATA halo at the same Upsilon median 0.076
+  [PASS] 110a the phantom of a real baryonic disc IS well described by a Burkert where the data are: a two-parameter Burkert reproduces the phantom's own rotation curve to a median 5% in velocity across the measured range, BETTER than the same form and the same code fit the real halo curve   (median fractional rms 0.047 (phantom) vs 0.076 (real curve, same Upsilon, same code); N = 147)
+
+------------------------------------------------------------------------------------------------------------------------------
+the recovered Burkert shape parameters, three ways (same code for the first two; Li's own pipeline for the third)
+------------------------------------------------------------------------------------------------------------------------------
+  phantom        N=147  rho_0 median   0.0377 Msun/pc^3 (width 0.28 dex) | r_0 median   5.21 kpc (width 0.31) | rho_0 r_0 median  181.2 Msun/pc^2 (width 0.19) | d log rho_0/d log r_0 = -0.71
+  data_fixedUps  N=147  rho_0 median   0.0426 Msun/pc^3 (width 0.56 dex) | r_0 median   4.45 kpc (width 0.59) | rho_0 r_0 median  219.6 Msun/pc^2 (width 0.41) | d log rho_0/d log r_0 = -0.71
+  li2020         N=147  rho_0 median   0.0339 Msun/pc^3 (width 0.76 dex) | r_0 median   4.60 kpc (width 0.51) | rho_0 r_0 median  176.2 Msun/pc^2 (width 0.43) | d log rho_0/d log r_0 = -1.24
+  [PASS] 110b (WORKS) the Burkert parameters a fitter would recover from the PHANTOM land on the ones Li+2020 recovered from the same galaxies' real rotation curves: core radius, central density and their product all agree in the median to better than 0.1 dex, with the framework putting no parameter anywhere in the calculation   (median offsets phantom - Li: r_0 +0.054 dex (5.21 vs 4.60 kpc), rho_0 +0.046 (0.0377 vs 0.0339), product +0.012 (181.2 vs 176.2); the same-code fit to the real curve gives -0.014/+0.099/+0.096)
+  [FAIL] 110c CLAIM UNDER TEST, AND IT FAILS, exactly as item 109's did: that the phantom returns the observed DISTRIBUTION of shape parameters, not just its centre.  The predicted distributions are far too narrow -- the phantom knows only the baryons, and real halo fits carry the rotation curves' scatter plus the fitter's free Upsilon, distance and inclination on top   (widths (dex) r_0: phantom 0.31, same-code data fit 0.59, Li 0.51; rho_0: 0.28 / 0.56 / 0.76.  The intermediate column says roughly half the missing width is the RAR's own scatter and the rest is Li's extra freedom)
+  [PASS] 110d the PRODUCT rho_0 r_0 -- the Donato constant, which hunt item 5 matched to Sigma_M by taking it from Li's fits -- is now DERIVED from the phantom's own profile with no halo fit assumed anywhere, and it lands on Donato's 140 (+80/-30) and on Li's own value   (rho_0 r_0: phantom 181.2, same-code data fit 219.6, Li+2020 176.2, Donato 140 (+80/-30) Msun/pc^2; phantom vs Donato +0.112 dex)
+  the rho_0-r_0 anti-correlation slope (hunt item 106's quantity, reported not claimed): phantom -0.71, real-curve fit -0.71, Li -1.24.
+       An exactly constant product needs -1.00.  The phantom does NOT give -1; it gives -0.71, so item 106's 'exactly -1' is not the framework's prediction either.
+
+------------------------------------------------------------------------------------------------------------------------------
+the shape test proper: is the phantom's DENSITY profile Burkert-shaped, and where does it part company?
+------------------------------------------------------------------------------------------------------------------------------
+  phantom log-density slope minus the best-fit Burkert's OWN slope at the same r/r_0: median +0.17 (16-84% [-0.12, +0.38]) -- the density shapes agree to a few tenths of a slope unit over the measured range
+  phantom log-density slope: at the innermost measured point -0.96, at R_d -1.08, at 2 R_d -1.35, at the last point -1.88
+       for comparison a Burkert runs 0 -> -1.5 -> -3 and an NFW -1 -> -2 -> -3; deep MOND forces the phantom to -2 and NO FURTHER, since M_ph ~ r.
+  [PASS] 110e (a genuine SHAPE prediction, and it is distinctive) the phantom is NOT a Burkert in the tail: it has no outer edge at all.  Deep MOND makes M_ph proportional to r, so rho_ph falls as r^-2 for ever, where a Burkert falls as r^-3 and an NFW as r^-3.  The measured outer slope confirms it, and this is where the framework and every fitted halo must eventually disagree   (outer slope at the last measured radius: median -1.88 (16-84% [-2.86, -1.14]) against the asymptotic -2 the framework forces and the -3 both Burkert and NFW reach)
+  [PASS] 110f MY OWN PREDICTION WAS WRONG AND IS CORRECTED: I expected a hollow phantom centre, because nu-1 -> e^-sqrt(y) -> 0 where g_bar >> a_0.  That is a SPHERE's behaviour.  A disc's radial acceleration vanishes at its own centre by symmetry, so y -> 0 there whatever the surface density, and the phantom is instead mildly CUSPED.  Essentially no galaxy has a hollow phantom   (inner slope positive in 3% of galaxies; median slope at R_d = -1.08, i.e. NFW-like rho ~ r^-1 rather than a core -- the analytic small-r limit for an exponential disc is -1/2 with log corrections, computed below)
+
+  the same statement without any data: the exact thin exponential (Freeman) disc, phantom slope vs central surface density
+    Sigma_0   y(0.5R_d)  sl(0.1Rd)  sl(0.3Rd)    sl(1Rd)    sl(2Rd)    sl(5Rd)
+         25        0.06      -0.75      -0.89      -1.26      -1.76      -2.42
+        100        0.26      -0.78      -0.91      -1.22      -1.67      -2.38
+        400        1.02      -0.85      -0.95      -1.12      -1.47      -2.29
+       1600        4.09      -1.01      -1.06      -0.91      -1.06      -2.09
+  [FAIL] 110g CLAIM UNDER TEST, AND IT FAILS: that the phantom's shape carries the cusp-core diversity through the disc's own central surface density.  The analytic disc says the slope at 1-2 R_d should flatten from -1.8 to -1.1 as Sigma_0 rises over four decades, which is the framework's version of that diversity.  In the real sample the correlation is absent -- the HI disc dominates the outer baryonic profile exactly in the low-surface-brightness galaxies and washes the trend out, so this route to the diversity is not usable and item 23's inner-curve version remains the one that works   (analytic prediction: slope at 2 R_d = -1.76 at Sigma_0 = 25 rising to -1.06 at 1600 Msun/pc^2; measured r(log Sigma_0, slope at 2 R_d) = -0.054 on N = 142 -- no correlation)
+  [PASS] 110h no negative-density pathology in the spherical-equivalent phantom of an isolated disc, unlike at the two-body saddle of hunt item 71: rho_ph stays positive throughout the measured range   (median fraction of radii with rho_ph < 0 is 0.000; 0% of galaxies exceed a tenth)
+
+==============================================================================================================================
+ITEM 122 -- testing the ceiling: the model identity first, then the data
+==============================================================================================================================
+  canonical  MODEL phantom: 36/147 galaxies span y* = 2.540; those reach 138.34 Msun/pc^2 against the ceiling 138.40 (spread 1.74, pure radial sampling); the rest reach 71.0
+  alt        MODEL phantom: 34/147 galaxies span y* = 2.540; those reach 166.96 Msun/pc^2 against the ceiling 167.08 (spread 1.04, pure radial sampling); the rest reach 80.1
+  [PASS] 122c the identity the theorem demands -- a test of this code, not of nature: every galaxy whose g_bar passes through y* = 2.5396 must sit EXACTLY on the ceiling with zero scatter beyond radial sampling, and no galaxy anywhere may exceed it.  Both hold   (spanning galaxies median 138.34 vs ceiling 138.40 (-0.04%); global max over every galaxy and radius 138.40)
+
+------------------------------------------------------------------------------------------------------------------------------
+the data arm: the excess acceleration g_obs - g_bar in bins of g_bar, whose PEAK is the ceiling
+------------------------------------------------------------------------------------------------------------------------------
+  MY FIRST ESTIMATOR, kept as a warning: on the 36 galaxies whose g_bar actually spans y*, max over r of (g_obs - g_bar)
+       galaxy by galaxy gives a median of 1.51 a_0 and puts 81% of them 'above' the ceiling -- a factor 2.3 bias.
+       That is not a violation: the excess is a difference of two nearly equal large numbers, so at g_bar ~ 20 a_0 a 0.05 dex
+       wiggle is a whole a_0 of excess, and a per-galaxy MAXIMUM selects the largest wiggle every time.  Everything below uses
+       the binned median in a FIXED bin at y*, which has no such selection.
+  canonical  excess in the fixed bin at y* : 1.242 +- 0.323 a_0 against the predicted ceiling 0.648  (+1.8 sigma); observed peak of the curve over bins with N >= 60: 1.24 at y = 2.84 (predicted peak 0.65 at y = 2.54)
+  alt        excess in the fixed bin at y* : 0.983 +- 0.236 a_0 against the predicted ceiling 0.648  (+1.4 sigma); observed peak of the curve over bins with N >= 60: 0.98 at y = 2.89 (predicted peak 0.65 at y = 2.54)
+
+  canonical  observed :  0.02:+0.15  0.03:+0.15  0.04:+0.17  0.05:+0.20  0.07:+0.25  0.11:+0.31  0.16:+0.34  0.22:+0.44  0.32:+0.48  0.46:+0.60  0.66:+0.58  0.94:+0.74  1.41:+0.78  1.97:+0.94  2.84:+1.24  4.03:+1.06  6.02:+0.26  8.29:+0.67 11.96:+0.62 17.58:+0.99
+             predicted:  0.02:+0.13  0.03:+0.15  0.04:+0.17  0.05:+0.20  0.07:+0.24  0.11:+0.28  0.16:+0.32  0.22:+0.37  0.32:+0.42  0.46:+0.47  0.66:+0.53  0.94:+0.57  1.41:+0.62  1.97:+0.64  2.84:+0.65  4.03:+0.63  6.02:+0.57  8.29:+0.49 11.96:+0.39 17.58:+0.27
+  alt        observed :  0.02:+0.12  0.03:+0.12  0.04:+0.15  0.05:+0.19  0.07:+0.24  0.10:+0.27  0.15:+0.31  0.22:+0.38  0.32:+0.45  0.46:+0.47  0.68:+0.53  0.93:+0.61  1.34:+0.68  1.95:+0.75  2.89:+0.98  4.05:+0.59  5.83:+0.40  8.44:+0.23 12.06:+0.03 17.12:+0.98
+             predicted:  0.02:+0.13  0.03:+0.15  0.04:+0.17  0.05:+0.20  0.07:+0.24  0.10:+0.27  0.15:+0.32  0.22:+0.37  0.32:+0.42  0.46:+0.47  0.68:+0.53  0.93:+0.57  1.34:+0.61  1.95:+0.64  2.89:+0.65  4.05:+0.62  5.83:+0.57  8.44:+0.49 12.06:+0.39 17.12:+0.28
+  [PASS] 122d THE DATA ARM AT THE COMMITTED UPSILON = 0.5: the excess-acceleration curve does turn over near the predicted place -- which the simple interpolating function forbids outright -- but its HEIGHT at y* comes out about twice the ceiling on canonical and 1.5x on alt.  The galaxy-to-galaxy bootstrap is large enough that this is under 2 sigma either way, so the honest verdict is HIGH BUT NOT EXCLUDED, i.e. underpowered rather than refuted, and the cause is identified immediately below rather than absorbed   (canonical 1.242 +- 0.323 a_0 = 1.9x the ceiling 0.648 (+1.8 sigma); alt 0.983 +- 0.236 = 1.5x (+1.4 sigma).  Below y ~ 1 the same curve tracks the prediction to a few per cent on the alt footing, so the discrepancy is localised at the turnover, where the excess is most sensitive to Upsilon)
+
+------------------------------------------------------------------------------------------------------------------------------
+the Upsilon lever (bug pattern 5) quantified -- and the ceiling turned round into an Upsilon meter
+------------------------------------------------------------------------------------------------------------------------------
+  canonical  excess at y* vs Upsilon_[3.6]: 0.35:2.274  0.45:1.521  0.50:1.242  0.55:0.646  0.65:0.288  0.80:-0.208   (ceiling 0.648)
+  canonical  the Upsilon that puts the observed excess exactly ON the ceiling: Upsilon_[3.6] = 0.55
+  alt        excess at y* vs Upsilon_[3.6]: 0.35:1.770  0.45:1.237  0.50:0.983  0.55:0.716  0.65:0.165  0.80:-0.265   (ceiling 0.648)
+  alt        the Upsilon that puts the observed excess exactly ON the ceiling: Upsilon_[3.6] = 0.56
+  [PASS] 122e THE MISS IS AN UPSILON MISS -- BUG PATTERN 5 CAUGHT IN THE ACT.  The excess at y* swings by more than its own predicted value across the plausible Upsilon range, so item 122's empirical arm measures the stellar mass-to-light ratio far more sensitively than it measures a_0.  Turned round it is an independent Upsilon meter, and the value it returns is inside what stellar populations allow   (Upsilon required 0.55 (canonical) / 0.56 (alt) against Schombert/McGaugh 0.5 +- 0.1 and hunt item 76's 0.656 (canonical) / 0.504 (alt) from the deep tail; the statistic swings by 2.48 a_0 = 3.8x the whole predicted quantity over Upsilon 0.35-0.80)
+
+------------------------------------------------------------------------------------------------------------------------------
+can the turnover MEASURE a_0?  two independent inversions of the same curve, and what stops them
+------------------------------------------------------------------------------------------------------------------------------
+  peak of the excess curve at log10 g_bar = -9.566 (m/s^2), fitted by a parabola over the five bins around it
+    a_0 from the peak's LOCATION (g_peak = 2.5396 a_0): 1.070e-10 m/s^2, bootstrap [6.522e-11, 1.176e-10] = 0.128 dex
+    a_0 from the peak's HEIGHT   (peak = 0.64761 a_0): 1.589e-10 m/s^2, bootstrap [1.209e-10, 1.967e-10]
+    for reference: canonical 9.360e-11, alt 1.130e-10, hunt item 25's slope-fixed deep tail 1.14e-10
+    Upsilon = 0.50: a_0 from the location = 1.070e-10, from the height = 1.589e-10
+    Upsilon = 0.60: a_0 from the location = 3.946e-11, from the height = 7.935e-11
+    Upsilon = 0.70: a_0 from the location = 2.339e-11, from the height = 5.640e-11
+  [FAIL] 122-a0 CLAIM UNDER TEST, AND IT FAILS: that the turnover gives a usable new rung on the a_0 ladder.  Its statistical error is respectable and it brackets both footings, but the turnover is a ~5x AMPLIFIER of the stellar mass-to-light ratio -- the inferred a_0 moves by nearly a decade over Upsilon 0.5-0.7 -- so reaching the ladder's 0.05 dex would need Upsilon to about 1%.  This is a mass-to-light meter, not an acceleration meter, and it must not be added to the ladder   (a_0(location) = 1.070e-10 [6.52e-11, 1.18e-10] at Upsilon = 0.5, but d log a_0 / d log Upsilon = -4.5 (1.07e-10 -> 2.34e-11 over Upsilon 0.50 -> 0.70); a_0(height) = 1.589e-10, +0.23 dex from canonical.  Required Upsilon precision for 0.05 dex in a_0: 2.6%)
+
+------------------------------------------------------------------------------------------------------------------------------
+do the halos people actually fit respect the ceiling?  (Li+2020 Burkert)
+------------------------------------------------------------------------------------------------------------------------------
+  conversion: for a Burkert, max over r of M(<r)/(pi r^2) = 0.50897 rho_0 r_0, attained at r = 0.963 r_0
+  Li+2020 Burkert halos: median Sigma_max = 89.7 (all N = 175) / 90.0 (chi2 < 10, N = 162) Msun/pc^2
+  canonical  against the ceiling 138.4: median/ceiling = 0.65; 33% of the good fits exceed it (all fits 33%)
+  alt        against the ceiling 167.1: median/ceiling = 0.54; 25% of the good fits exceed it (all fits 26%)
+  the phantom's OWN Burkert fits give median Sigma_max = 92.2 Msun/pc^2 -- only 0.67 of the exact ceiling, because a two-parameter
+       Burkert cannot follow the phantom's r^-2 tail (110e) and its fitted r_0 runs outward, which lowers M(<r)/(pi r^2) at its own peak.
+  [PASS] 122f (WORKS apples-to-apples, FAILS as a pile-up) the right comparison is Burkert-to-Burkert, and there the phantom and Li's fitted halos agree on this quantity to 0.02 dex.  But the distribution does NOT pile up against the exact ceiling: the median fitted halo sits at about two-thirds of it, and a quarter to a third of the fits sit ABOVE it -- so the ceiling is not a visible edge in the halo-fit population, and it is not a bound one can check through Burkert fits without correcting for the form   (phantom's Burkert Sigma_max 92.2 vs Li's 90.0 Msun/pc^2 (-0.011 dex); against the exact ceiling 33% (canonical) / 25% (alt) of good fits exceed it, and the median is 0.65 of it)
+
+------------------------------------------------------------------------------------------------------------------------------
+the LambdaCDM alternative computed beside it: NFW has a ceiling too, but it is not universal
+------------------------------------------------------------------------------------------------------------------------------
+  for an NFW halo M(<r) -> 2 pi rho_s r_s r^2 as r -> 0, so M(<r)/(pi r^2) -> 2 rho_s r_s: a limit set by the halo's own
+  concentration and mass, with no reason to be the same number in a dwarf and a cluster.
+    log M200   c (Dutton-Maccio)    2 rho_s r_s [Msun/pc^2]
+         9.0               16.80                       51.9
+        10.0               13.31                       78.4
+        11.0               10.55                      119.8
+        12.0                8.36                      185.1
+        13.0                6.63                      289.3
+        14.0                5.25                      458.5
+        15.0                4.16                      737.6
+  [PASS] 122g the LambdaCDM alternative produces no universal ceiling: an NFW halo's own M(<r)/(pi r^2) limit, 2 rho_s r_s, varies by more than a decade across the halo masses compared here and is a function of the concentration-mass relation, where the framework's number is one constant fixed by a_0 for every system from a dwarf to a cluster   (2 rho_s r_s runs 52 to 738 Msun/pc^2 over log M200 = 9 to 15, a factor 14.2; the framework's ceiling is 138.4 for all of them)
+
+------------------------------------------------------------------------------------------------------------------------------
+mutation controls
+------------------------------------------------------------------------------------------------------------------------------
+  mutation a_0 x 4.00: measured excess at y* = 0.224 +- 0.232 (mutated a_0 units) against the same predicted 0.648 -> -1.8 sigma
+  mutation a_0 x 0.25: measured excess at y* = 2.362 +- 0.209 (mutated a_0 units) against the same predicted 0.648 -> +8.2 sigma
+  [PASS] M122a mutation: the ceiling is a statement about a_0's VALUE and not an algebraic identity -- moving a_0 by a factor 4 drives the measured excess at y* to opposite sides of the predicted 0.648, and both moves are larger than the 122d discrepancy itself.  (A bug in the first version of this check: the bootstrap error must be recomputed IN THE MUTATED UNITS, or the significance is wrong by the same factor 4.)   (a_0 x 4 gives 0.224 +- 0.232 (-1.8 sigma), a_0/4 gives 2.362 +- 0.209 (+8.2 sigma), straddling 0.648)
+  [PASS] M122a-power AGAINST INTEREST, the statistic's power is ONE-SIDED and that caps what item 122 can ever do: a_0 four times too SMALL is excluded at better than 3 sigma, but a_0 four times too LARGE is not, because that mutation moves the test bin to g_bar ~ 10 a_0 where the excess is a small difference of large numbers and the bootstrap error swells to match.  The ceiling bounds a_0 from below far better than from above   (a_0/4 excluded at 8.2 sigma; a_0 x 4 only at 1.8 sigma -- and the same asymmetry is why 122d itself is only 1.8 sigma despite a factor 1.9 in the central value)
+  [PASS] M122b mutation: with nu = 1 the phantom vanishes identically -- no profile to fit, no ceiling to test.  The Burkert fit collapses onto the floor of its own prior instead of returning the Donato constant   (nu = 1 gives median fitted rho_0 = 1.00e-06 Msun/pc^3 (prior floor 1e-6) against the phantom's 0.0377)
+  [PASS] M122c mutation: shuffling g_obs across the whole sample destroys the turnover -- the shuffled curve has no maximum near y* and runs strongly negative at high g_bar, so the shape in 122d belongs to the pairing and not to the binning   (shuffled binned excess runs -16.33 to +0.88 a_0 against the true curve's +0.15 to +1.24)
+
+------------------------------------------------------------------------------------------------------------------------------
+self-audit against the five bug patterns
+------------------------------------------------------------------------------------------------------------------------------
+  (1) TOTAL vs ENCLOSED: every mass here is ENCLOSED -- M_b(<r) = g_bar r^2/G point by point, never a catalogue total.  That is
+      exactly why Sigma_ph collapses to a function of y alone and why the ceiling exists at all.
+  (2) SPHERICAL on a DISC: caught twice.  Once in the setup, where the spherical-equivalent is legitimate because halo fitters use
+      the same convention; and once in my own prediction of a hollow phantom centre, which is a sphere's behaviour and not a disc's
+      (110f).  No projected surface density is quoted anywhere, because the true phantom of a disc is flattened.
+  (3) an aperture on a SADDLE: not applicable -- one monotone radius per galaxy, no aperture, no local minimum.
+  (4) covariance reshaped wrongly: no covariance matrix is used; errors are galaxy-level bootstraps.
+  (5) a result that is really about UPSILON: check 122e IS that finding.  The excess at y* moves by more than its own predicted
+      value across Upsilon 0.35-0.80, so item 122's data arm is an Upsilon measurement in a_0's clothes.  Item 110's r_0 and the
+      rho_0 r_0 product are the robust half: the same-code column at fixed Upsilon shows how much of the offset is Li's freedom.
+
+==============================================================================================================================
+VERDICT -- items 110 and 122
+==============================================================================================================================
+  ITEM 110: MEDIANS WORK, WIDTHS AND THE TAIL DO NOT.  A Burkert fits the phantom's own rotation curve to 5% -- better than it fits
+  the real one -- and the core radius, central density and their product all land within 0.1 dex of what Li+2020 recovered from the
+  same galaxies, with no parameter anywhere.  The rho_0 r_0 product is thereby DERIVED rather than borrowed: item 5 read the Donato
+  constant off other people's halo fits, and it now comes out of the phantom's own profile.  Against interest: the predicted
+  distributions are much too narrow (110c), the phantom's rho_0-r_0 slope is not the -1 item 106 expects, the outer density falls as
+  r^-2 and not r^-3 so no fitted halo can be right in the tail, and the surface-brightness diversity the analytic disc predicts is
+  absent from the real sample (110g).  The shape is Burkert-like where the data are and Burkert-unlike where they are not.
+
+  ITEM 122: A THEOREM, AND AN UNDERPOWERED TEST.  The framework does have an exact ceiling on the phantom, but it is NOT
+  Sigma_M = a_0/(2 pi G) as the item said -- it is 1.2952 x that, 0.64761 a_0/(pi G) = 138.4 / 167.1 Msun/pc^2, reached at
+  g_bar = 2.5396 a_0, with the footing-free corollary g_obs/g_bar = 1.2550 there.  Its EXISTENCE is already a discriminator: the
+  simple interpolating function has no maximum at all, and no LambdaCDM halo has a universal one (2 rho_s r_s runs over a factor 14).
+  The measured excess at y* is 1.9x the ceiling on canonical and 1.5x on alt, but only +1.8 and +1.4 sigma on a galaxy-level
+  bootstrap -- high, not excluded.  Three things cap it and all are stated: the statistic swings by 3.8x its own predicted value
+  over Upsilon 0.35-0.80 (bug pattern 5, and turned round it is an Upsilon meter returning 0.55-0.56); its power is ONE-SIDED, so
+  it bounds a_0 from below at 7.8 sigma and from above at only 1.8; and the fitted-halo population does not pile up against the
+  bound -- the median Burkert sits at two-thirds of it and a quarter to a third of the fits are above it.  NOT Kepler-grade.
+  NO NEW LADDER RUNG COMES OUT OF THIS.  Inverted for a_0, the turnover's LOCATION gives 1.07e-10 [6.5e-11, 1.18e-10] and its
+  HEIGHT gives 1.59e-10 -- but d log a_0 / d log Upsilon = -4.5, so the ladder's 0.05 dex would need Upsilon to 2.6%.  Recorded as
+  a mass-to-light meter, and it must NOT be added to the a_0 ladder of items 100/125.
+  What is worth carrying forward is the theorem and its two corollaries, which are cheap to test anywhere a rotation curve reaches
+  g_bar ~ 2.5 a_0 with a controlled Upsilon: max(g_obs - g_bar) = 0.64761 a_0, and g_obs/g_bar = 1.2550 there, whatever the galaxy.
+  And the 5x Upsilon amplification is itself the useful product: the turnover is the sharpest Upsilon lever found in the hunt so
+  far, which puts it in vein E (items 119-121) rather than in vein F where the item was filed.
+
+RESULT: 21 checks, 3 FAIL -> ["110c CLAIM UNDER TEST, AND IT FAILS, exactly as item 109's did: that the phantom returns the observed DISTRIBUTION of shape parameters, not just its centre.  The predicted distributions are far too narrow -- the phantom knows only the baryons, and real halo fits carry the rotation curves' scatter plus the fitter's free Upsilon, distance and inclination on top", "110g CLAIM UNDER TEST, AND IT FAILS: that the phantom's shape carries the cusp-core diversity through the disc's own central surface density.  The analytic disc says the slope at 1-2 R_d should flatten from -1.8 to -1.1 as Sigma_0 rises over four decades, which is the framework's version of that diversity.  In the real sample the correlation is absent -- the HI disc dominates the outer baryonic profile exactly in the low-surface-brightness galaxies and washes the trend out, so this route to the diversity is not usable and item 23's inner-curve version remains the one that works", "122-a0 CLAIM UNDER TEST, AND IT FAILS: that the turnover gives a usable new rung on the a_0 ladder.  Its statistical error is respectable and it brackets both footings, but the turnover is a ~5x AMPLIFIER of the stellar mass-to-light ratio -- the inferred a_0 moves by nearly a decade over Upsilon 0.5-0.7 -- so reaching the ladder's 0.05 dex would need Upsilon to about 1%.  This is a mass-to-light meter, not an acceleration meter, and it must not be added to the ladder"]   rc=1

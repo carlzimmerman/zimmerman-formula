@@ -1,0 +1,153 @@
+======================================================================================================================
+RUNG A -- SPARC gas-dominated discs: the only stellar-mass-free sample with RESOLVED kinematics
+======================================================================================================================
+  147 SPARC discs with a positive HI contribution at the outermost measured radius
+       cut on f_* at the outer point    N  a_0 (1.33 M_HI ONLY)   a_0 (all baryons)  literal V_flat^4/G M_HI   <f_*>
+                                 all  147             2.659e-10           9.010e-11                4.700e-10   0.552
+                           f_* < 0.4   52             1.006e-10           7.564e-11                1.789e-10   0.228
+                           f_* < 0.3   36             9.496e-11           7.787e-11                1.666e-10   0.182
+                           f_* < 0.2   21             9.088e-11           7.816e-11                1.666e-10   0.146
+                          f_* < 0.15   13             8.317e-11           7.075e-11                1.444e-10   0.107
+  
+  WHY THE LITERAL FORMULA IS AN UPPER BOUND.  v^4 = G M a_0 is exact only asymptotically and only for the TOTAL
+  baryonic mass.  Three terms separate it from what the data actually constrain, and all three are computed here:
+    (1) DISC GEOMETRY: at the outermost point the HI disc's in-plane force equals that of a point mass 1.33x M_gas (+0.124 dex), so the point-mass formula understates the baryonic pull -> a_0 too high by +0.155 dex
+    (2) THE KERNEL IS NOT ASYMPTOTIC: median y = g_gas/a_0 = 0.0252 at that point, so v^4 = G M a_0 (1+sqrt(y)/2)^2 -> a_0 too high by +0.060 dex
+    (3) V_flat vs the last measured point: +0.009 dex
+    (4) and the item's assumption itself -- STARS OMITTED.  Global stellar share of these discs 0.164, local share at the point used 0.146 -> the gas-only answer is high by +0.086 dex
+  
+  literal v_flat^4/(G x 1.33 M_HI)                = 1.666e-10  <- the item's formula, an UPPER bound
+  kernel at the outermost point, GAS ONLY         = 9.088e-11  +- 0.088 dex  (stars still omitted)
+  kernel at the outermost point, ALL BARYONS      = 7.816e-11  +- 0.083 dex  <- best estimate
+  predicted literal-minus-gas-only gap from (1)+(2)+(3) = +0.223 dex; observed +0.263 dex
+    RUNG  A  SPARC gas-dominated, resolved (f_*,loc < 0.2) a_0 = 7.816e-11  +- 0.094 dex   (-0.08 canon, -0.16 alt)   21 discs, per-galaxy scatter 0.26 dex
+  [PASS] 124.A the gap between the item's literal formula and what the data constrain is fully accounted for by three named terms -- the disc's in-plane force exceeding a point mass, the kernel not being asymptotic at the last measured radius, and V_flat not being the last point -- with nothing left over.  So the literal 1.7e-10 is not a measurement of a_0; it is the same number seen through a point-mass asymptotic approximation that these discs do not satisfy   (predicted gap +0.223 dex = geometry +0.155 + kernel +0.060 + V_flat +0.009; observed +0.263 dex; residual -0.040)
+  [PASS] 124.A2 AGAINST INTEREST: rung A does not reach the item's 15%.  Its statistical error alone is 21% on 21 galaxies and item 103's calibration floor adds 10%.  The item's own criterion is missed by a factor of about two   (a_0 = 7.816e-11 +- 0.094 dex = 24%, target 15%)
+  residual M/L sensitivity of rung A: the stellar term is 15% of g_bar at the point used, so d log a_0/d log Upsilon = -0.182 -- a factor-2 error in Upsilon costs 0.055 dex.  Not zero, but a sixth of the full deep tail's.
+
+======================================================================================================================
+RUNG B -- ALFALFA gas-dominated: 12,000 galaxies, and why the number they give cannot be used
+======================================================================================================================
+  alpha.100 x ALFALFA-SDSS, code-1, SNR >= 6.5, clean photometry, i >= 45 deg: N = 12361
+               cut       N  a_0 (1.33 M_HI only)   a_0 (+ stars)   <f_*>  <log M_b>
+               all   12361             1.849e-10       1.023e-10   0.424      10.07
+         f_* < 0.3    4161             8.773e-11       7.199e-11   0.182       9.64
+         f_* < 0.2    2390             7.247e-11       6.333e-11   0.133       9.55
+        f_* < 0.15    1504             6.447e-11       5.820e-11   0.106       9.50
+         f_* < 0.1     650             5.760e-11       5.354e-11   0.071       9.44
+  
+  the cut moves the answer by half a dex.  The reason is a MASS trend in the estimator, which the same table
+  exposes on galaxies whose stellar masses ARE known, so it cannot be an M/L effect:
+         log M_b bin       N  a_0 = v^4/(G M_b)  [W50, ALFALFA]   a_0  [resolved, SPARC]
+           7.5 - 8.5     320                          2.231e-11                3.608e-11
+           8.5 - 9.5    2003                          6.894e-11                7.986e-11
+          9.5 - 10.0    3310                          8.564e-11                9.476e-11
+         10.0 - 10.5    3784                          1.119e-10                9.313e-11
+         10.5 - 11.5    2917                          1.413e-10                9.378e-11
+  
+  regression of log a_0 on log M_b: ALFALFA W50 +0.246 dex/dex; SPARC resolved +0.070 +- 0.033 dex/dex
+     turbulence FWHM    0 km/s: ALFALFA slope +0.179 dex/dex -- the trend is not the turbulence subtraction
+     turbulence FWHM   10 km/s: ALFALFA slope +0.192 dex/dex -- the trend is not the turbulence subtraction
+     turbulence FWHM   30 km/s: ALFALFA slope +0.271 dex/dex -- the trend is not the turbulence subtraction
+     intrinsic axis ratio q0 = 0.1: ALFALFA slope +0.247 dex/dex, median a_0 1.09e-10 -- dwarfs being THICKER than q0 = 0.2 would push their a_0 DOWN further, i.e. the wrong way to explain the trend away
+     intrinsic axis ratio q0 = 0.3: ALFALFA slope +0.246 dex/dex, median a_0 9.38e-11 -- dwarfs being THICKER than q0 = 0.2 would push their a_0 DOWN further, i.e. the wrong way to explain the trend away
+     intrinsic axis ratio q0 = 0.4: ALFALFA slope +0.247 dex/dex, median a_0 8.43e-11 -- dwarfs being THICKER than q0 = 0.2 would push their a_0 DOWN further, i.e. the wrong way to explain the trend away
+  [PASS] 124.B (the finding that reorganises three items) the HI LINE WIDTH is not a rotation speed at low mass, and the damage is measurable: a_0 = v^4/(G M_b) from ALFALFA W50 runs UP with baryonic mass at +0.25 dex per dex over three decades, where the same quantity from SPARC's resolved rotation curves rises 3.5x more slowly (+0.07, itself only 2 sigma from flat, and driven by the very lowest-mass discs).  Since stellar masses are known for both, this cannot be an M/L effect -- it is the estimator.  Any stellar-mass-free sample selected on gas fraction is also selected to be LOW MASS, so it inherits the whole trend   (ALFALFA W50 slope +0.246 dex/dex (a 0.74 dex swing over the range); SPARC resolved +0.070 +- 0.033 (+2.1 sigma from flat); ALFALFA a_0 = 2.23e-11 at log M_b ~ 8 against 1.41e-10 at ~11)
+    RUNG  B  ALFALFA W50, log M_b > 9 (NOT M/L-free, shown for calibration) a_0 = 1.061e-10  +- 0.044 dex   (+0.05 canon, -0.03 alt)   11507 galaxies; the gas-dominated cut of the SAME data gives 6.45e-11
+  Rung B is deliberately NOT entered as a stellar-mass-free measurement: its gas-dominated subsample gives
+     6.447e-11, which is -0.15 dex from rung A, and check 124.B says why.
+
+======================================================================================================================
+RUNG C -- Leisman+2017 almost-darks (the item's own named sample), restated as an a_0
+======================================================================================================================
+  112 almost-darks with a usable width and inclination; median M_gas/M_b = 0.920
+  a_0 from v^4/(G x 1.33 M_HI) = 6.210e-12 +- 0.116 dex; including the (small) stellar mass, 6.133e-12
+  that is -1.18 dex from canonical -- a factor 15 low.  Item 31 reported this as -0.30 dex in log v; 4 x that is the number here.
+  the SAME estimator on ordinary ALFALFA galaxies of the same baryonic mass gives 7.060e-11 (-0.12 dex from canonical): so -0.12 dex of the almost-darks' offset is the generic width systematic of check 124.B and -1.06 dex is differential, matching item 31's -0.265 dex in log v exactly (4 x it).
+  Item 31b then showed that most of even THAT differential is ALFALFA's width-dependent detection limit: matched
+  on the detection ceiling (flux and noise only, so not a collider) the almost-dark excess is -0.089 +- 0.033 dex
+  in log v = -0.36 +- 0.13 dex in a_0, which would put them at 3.110e-11 rather than 6.133e-12.
+  Both numbers are far below both footings.  Neither is a measurement of a_0; both are measurements of how badly
+  an unresolved line width performs on a dwarf, which is what check 124.B quantifies on ordinary galaxies.
+    RUNG  C  Leisman+2017 almost-darks (unresolved widths) a_0 = 6.133e-12  +- 0.319 dex   (-1.18 canon, -1.27 alt)   SYSTEMATIC-DOMINATED, not usable; see 124.B and item 31b
+  [PASS] 124.C AGAINST INTEREST: the item's own named sample gives an a_0 more than a dex below both footings, and it must be reported as such: 6.1e-12, a factor 15 below canonical.  Only a small part of that is the generic width systematic of 124.B (0.12 dex); the rest is the differential item 31 measured and item 31b then traced mostly to ALFALFA's width-dependent detection limit, leaving -0.36 +- 0.13 dex in a_0 after matching.  Whichever number is taken, this rung does not measure a_0 and must be carried on the ladder as a failure, not dropped   (almost-darks 6.133e-12 (-1.18 dex from canonical); same-mass ordinary ALFALFA 7.060e-11 (-0.12 dex); differential -1.06 dex)
+
+======================================================================================================================
+RUNG D -- Lelli+2015 tidal dwarfs (tidal debris, the item's other named class)
+======================================================================================================================
+             TDG   V_circ  M_bar/1e8  V_ISO(paper)  V_EFE(paper)   a_0 isolated   a_0 with EFE
+        NGC5291N       45       15.6            77            62      1.516e-11      3.608e-11
+        NGC5291S       35       15.9            76            54      5.847e-12      2.294e-11
+       NGC5291SW       28        7.1            62            46      5.408e-12      1.785e-11
+        NGC7252E       18        3.9            52            30      1.866e-12      1.685e-11
+       NGC7252NW       21        8.2            63            41      1.605e-12      8.947e-12
+         VCC2062       16        1.4            41            27      3.015e-12      1.603e-11
+  median a_0 required by these six tidal dwarfs: 4.038e-12 isolated, 1.734e-11 with the paper's own external field (-0.73 dex from canonical)
+  The paper's V_ISO1/V_EFE1 columns are the n=1 interpolation function, which IS this repository's Route A kernel;
+  item 46 reproduced them to 2%, so the scaling a_0 ~ (V_obs/V_pred)^4 used here is the paper's own calculation.
+  Caveat the paper itself raises and item 46 booked: these discs have completed under one orbit since the merger,
+  so dynamical equilibrium is not established.  That is why rung D is quoted and not used.
+    RUNG  D  Lelli+2015 tidal dwarfs (EFE included)    a_0 = 1.734e-11  +- 0.170 dex   (-0.73 canon, -0.81 alt)   6 objects, 3 independent hosts; equilibrium not established
+  [PASS] 124.D AGAINST INTEREST: tidal debris, the cleanest stellar-mass-free system there is in principle, gives an a_0 a factor 3-6 below both footings on the published kinematics.  This is item 46's liability restated as a number for the ladder.  It is not a kill (one orbit since the merger) but it is not evidence either way for a_0, and it cannot be quietly left out of a stellar-mass-free ladder   (a_0(TDG, EFE) = 1.734e-11 +- 0.081 dex, -0.73 dex from canonical, -0.81 from alt)
+
+======================================================================================================================
+THE STELLAR-MASS-FREE LADDER
+======================================================================================================================
+                                                rung          a_0   +- dex  dex vs canon  dex vs alt  note
+    A  SPARC gas-dominated, resolved (f_*,loc < 0.2)    7.816e-11    0.094         -0.08       -0.16  21 discs, per-galaxy scatter 0.26 dex
+  B  ALFALFA W50, log M_b > 9 (NOT M/L-free, shown for calibration)    1.061e-10    0.044          0.05       -0.03  11507 galaxies; the gas-dominated cut of the SAME data gives 6.45e-11
+    C  Leisman+2017 almost-darks (unresolved widths)    6.133e-12    0.319         -1.18       -1.27  SYSTEMATIC-DOMINATED, not usable; see 124.B and item 31b
+           D  Lelli+2015 tidal dwarfs (EFE included)    1.734e-11    0.170         -0.73       -0.81  6 objects, 3 independent hosts; equilibrium not established
+  
+  the 3 stellar-mass-free rungs span 1.11 dex, with an implied intrinsic spread of 0.40 dex beyond their quoted errors -- they do NOT agree, and averaging them would be meaningless.
+  inverse-variance mean of the 3: 4.808e-11; the ONE with resolved kinematics alone: 7.816e-11
+  [PASS] 124.E the item's target -- a_0 to 15% from a stellar-mass-free sample -- is NOT met, and the reason is now specific rather than vague.  Removing the stellar mass forces the sample to be gas-rich, gas-rich means low mass, and at low mass every catalogue that measures velocity from an HI line width is biased.  Only resolved rotation curves survive, and SPARC has 21 gas-dominated ones   (best rung 7.816e-11 +- 0.094 dex = 24% (target 15%); spread of the 3 M/L-free rungs 1.11 dex, intrinsic 0.40 dex)
+  [PASS] 124.F what CAN be said: the one stellar-mass-free measurement with resolved kinematics agrees with the M/L-free deep tail of item 102 and with the KiDS dwarf lens stack of item 2, all three within 0.15 dex of one another and of the canonical footing, while the alt footing sits above all three   (rung A 7.816e-11; item 102 M/L-free deep tail 7.36e-11 (+0.03 dex); item 2 dwarf lenses 9.55e-11 (-0.09 dex); canonical -0.08, alt -0.16; NOTE the quoted errors already carry item 103's coherent floor, and on those errors NEITHER footing is excluded)
+
+======================================================================================================================
+THE ALTERNATIVE COMPUTED BESIDE IT
+======================================================================================================================
+  Newtonian, same baryons, no halo and no kernel: the gas-dominated discs' outermost point needs 5.4x more acceleration than their baryons give (+0.74 dex) -- i.e. a dynamical-to-baryonic mass ratio of 5
+  LambdaCDM: for these gas-rich dwarfs the same quantity v^4/(G M_b) is a halo property, so it should run with
+  mass.  Measured on SPARC's resolved curves it does not (+0.070 +- 0.033 dex/dex).  Measured on
+  ALFALFA's line widths it appears to (+0.246 dex/dex) -- which is a warning about reading halo trends off
+  line widths, not a detection.
+  For the tidal dwarfs the two paradigms genuinely differ and item 46 already ran it: LambdaCDM says tidal debris
+  is dark-matter free and a purely Newtonian prediction fits them, which is what the data do.
+
+======================================================================================================================
+MUTATION CONTROLS
+======================================================================================================================
+  [PASS] M124a injecting a_0 = 0.25x canonical into rung A's own g_bar values must be recovered exactly   (injected 2.340e-11, recovered 2.340e-11 (-0.0000 dex))
+  [PASS] M124a injecting a_0 = 4.0x canonical into rung A's own g_bar values must be recovered exactly   (injected 3.744e-10, recovered 3.744e-10 (-0.0000 dex))
+  [PASS] M124b turning the kernel off (nu = 1) must make rung A's gas-dominated discs unfittable by any a_0   (nu = 1 returns a_0 = nan)
+  [PASS] M124c the ALFALFA mass trend is not a sample-size artefact: random subsamples of the full catalogue the size of the most massive bin never reproduce that bin's a_0   (most massive bin 1.413e-10 vs random draws 1.026e-10 +- 0.010 dex (+14.3 sigma))
+  [PASS] M124d shuffling which galaxy gets which HI mass must break the measured trend, confirming that it is a property of the pairing and not of the marginal distributions.  (The shuffled slope goes to 4 x d log v/d log M_b, since the denominator no longer tracks the numerator -- a different number, which is the point)   (shuffled slope +1.239 vs real +0.246)
+
+======================================================================================================================
+VERDICT -- ITEM 124
+======================================================================================================================
+  The item asked for a_0 to 15% from a sample with no stellar mass in it.  Four such samples exist in this
+  repository and they do not agree with each other, so the honest answer is a ladder with one usable rung.
+
+    A  SPARC gas-dominated discs, RESOLVED    7.816e-11 +- 0.094 dex   24%   <-- the only usable one
+    C  Leisman+2017 almost-darks              6.133e-12                    a dex low
+    D  Lelli+2015 tidal dwarfs                1.734e-11                    a factor 4 low
+
+  WHY THEY DISAGREE, in one number: a_0 = v^4/(G M_b) measured from ALFALFA HI line widths runs up with baryonic
+  mass at +0.25 dex per dex over three decades, while the same quantity from SPARC's resolved rotation curves
+  rises 3.5x more slowly from SPARC's resolved rotation curves (+0.070 +- 0.033, itself only 2 sigma from flat).
+  Stellar masses are known for both samples, so this is not the M/L wall -- it is the
+  line width failing to be a rotation speed in low-mass systems.  Removing the stars from a sample forces it to be
+  gas-rich and therefore low-mass, so every stellar-mass-free catalogue built on unresolved HI inherits the whole
+  bias.  That single fact accounts for item 31's almost-dark deficit (which item 31b had already traced to a
+  related width-selection effect) and it is why rungs B and C cannot be used.
+
+  WHAT SURVIVES.  On the 21 SPARC discs whose outermost measured point is more than 80% gas, with the neglected
+  stars and the finite-radius kernel term both corrected, a_0 = 7.82e-11.  That agrees with item 102's
+  M/L-free deep tail (7.4e-11) and with the KiDS dwarf lens stack (9.6e-11) inside 0.15 dex, all three sitting on
+  or just below the canonical footing, with the alt footing above all of them.  It is 24%, not 15%.
+  The class of measurement the item wanted -- a_0 with no stellar M/L at all -- exists and is self-consistent;
+  what does not exist is a large enough sample of it with resolved kinematics.
+
+RESULT: 12 checks, 0 FAIL   rc=0
