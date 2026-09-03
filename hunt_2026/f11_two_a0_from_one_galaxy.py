@@ -1,6 +1,15 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 r"""
+⚠️⚠️ SUPERSEDED IN PART BY f12_disc_virial_coefficient.py -- READ THIS FIRST.
+The +0.180 dex offset found below is REAL but is NOT a tension: it is disc geometry.  f12 computes the disc virial
+coefficient exactly (Freeman solution, and independently from the real SPARC baryonic profiles using the kernel with
+NO observed velocities) and gets 0.823, against the spherical 2/3 and against the 0.820 this file's offset required.
+The observed curves deliver 0.826.  So this file's route-2 normalisation was spherical and the galaxies are discs.
+DO NOT CITE THE +0.180 dex AS A TENSION with the mass-to-light ratio or with the field equation.  What stands here is
+the METHOD, the proof of the spherical theorem, and the calibration that route 1 independently recovers the
+framework's own acceleration constant (9.44e-11 against the canonical 9.36e-11).
+
 f11_two_a0_from_one_galaxy.py -- TWO INDEPENDENT MEASUREMENTS OF a_0 IN THE SAME GALAXY, AND WHETHER THEY AGREE.
 =================================================================================================================
 This is a test of the FRAMEWORK'S FIELD EQUATION that needs no second system, no external sample, no dwarf
