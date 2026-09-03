@@ -255,3 +255,18 @@ g_obs ≤ g_bar. That was the estimator's error, not the data's — M_bar is the
 Corrected in place; the closed-form version supersedes it.
 
 **Item 67 cannot run on disk:** the Frontier Fields tables in the repository are cluster-member photometry, not lensing mass profiles.
+
+
+---
+
+# RESULTS LEDGER — fourth pass, 2026-09-03 (items 71, 5, 95, 58)
+
+| item | verdict | number |
+|---|---|---|
+| **71** | ✅ **promoted to the top** | The saddle-point deficit computed for the first time. **Two effects.** (a) The negative-mass region is real: QUMOND's phantom density reaches −2.5e5 M☉/kpc³ and is negative over ~25% of the saddle region — but it is a few kpc across and lensing-irrelevant. (b) The one that matters is the **nonlinearity**: the phantom halo of a galaxy *pair* is only **one third** of the sum of two isolated phantom halos at the midpoint, a **67% deficit stable from 200 to 800 kpc separation**, where overlapping halos and a shared filament both *add*. Indicative aperture estimate puts a 3σ stack within KiDS/DES reach. Absolute normalisation is box-dependent, so this is a **go-look, not a forecast**. |
+| **5** | ✅ **keeper — explains a known unexplained constant** | The halo surface-density product ρ₀·r₀ from **162 Burkert fits** to real rotation curves (Li+2020, fetched this session) is **177 M☉/pc²**, consistent with Donato's 140 (+80/−30) and **within 0.14 dex of Σ_M = a₀/(2πG)** — which in the framework is not a halo property at all but the phantom's own central surface density, fixed by a₀ and hence by Λ. Halo-mass slope +0.14, weak, as a constant of nature should be. |
+| **95** | ✔ list corrected | The largest bound orbit scales as **M_b^(1/6), not M^(1/4)** as the list said: 1.3 Mpc for an L* galaxy, 6 Mpc for a cluster. The **mass scaling** is what distinguishes it from a splashback radius (M^(1/3)). |
+| **58** | ✖ withdrawn | Fed the **baryons** rather than the lensing mass (the earlier version double-counted the phantom), MOND and Newton give similar Bullet infall speeds and the assumed turnaround radius dominates. Non-diagnostic. |
+
+**Bug found and fixed:** the first run of item 71 used a 30 kpc grid and reported *no* negative region. That was resolution, not
+physics — the saddle's structure is kpc-scale. The resolution scan is in the committed output.
