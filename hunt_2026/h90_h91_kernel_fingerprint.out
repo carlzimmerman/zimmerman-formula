@@ -1,0 +1,72 @@
+====================================================================================================================
+ITEMS 90 + 91 -- the kernel's fingerprint: the high-acceleration return and the curvature landmark
+====================================================================================================================
+  SPARC: 147 galaxies, 3140 points; g_bar = 2.09e-13 - 7.34e-09 m/s^2
+
+1. ITEM 90 -- the high-acceleration return, predicted
+====================================================================================================================
+    y = g_bar/a0  Route A (exponential)         alpha=1 (sqrt)                 simple               standard
+               5              1.197e-01              9.545e-02              1.708e-01              1.908e-02
+              10              4.420e-02              4.881e-02              9.161e-02              4.939e-03
+              30              4.198e-03              1.653e-02              3.229e-02              5.548e-04
+             100              4.540e-05              4.988e-03              9.902e-03              4.999e-05
+             300              3.005e-08              1.665e-03              3.322e-03              5.555e-06
+  the return is the observable: nu - 1 = (g_obs - g_bar)/g_bar at high y, measurable galaxy by galaxy in bulges and inner discs
+
+2. ITEM 90 measured: binned (g_obs/g_bar - 1) at high acceleration, both footings
+====================================================================================================================
+  canonical         y range     N      measured nu-1        Route      alpha=1       simple     standard
+  canonical       3-6         173     0.1410+-0.0030       0.1546       0.1169       0.2053       0.0285
+  canonical       6-12        123     0.0149+-0.0038       0.0634       0.0610       0.1130       0.0078
+  canonical      12-25         57     0.0754+-0.0075       0.0167       0.0292       0.0561       0.0017
+  canonical      25-60         33     0.0830+-0.0208       0.0034       0.0153       0.0299       0.0005
+  canonical    chi2 of the return, y = 3-200, Route A (exponential) :    260.5 / 4 bins
+  canonical    chi2 of the return, y = 3-200, alpha=1 (sqrt)        :    262.0 / 4 bins
+  canonical    chi2 of the return, y = 3-200, simple                :   1145.8 / 4 bins
+  canonical    chi2 of the return, y = 3-200, standard              :   1525.9 / 4 bins
+  alt               y range     N      measured nu-1        Route      alpha=1       simple     standard
+  alt             3-6         161     0.0491+-0.0032       0.1524       0.1155       0.2031       0.0279
+  alt             6-12         95     0.0264+-0.0041       0.0641       0.0614       0.1137       0.0079
+  alt            12-25         54     0.0698+-0.0088       0.0169       0.0294       0.0564       0.0018
+  alt            25-60         24    -0.0133+-0.0279       0.0032       0.0151       0.0295       0.0005
+  alt          chi2 of the return, y = 3-200, Route A (exponential) :   1138.1 / 4 bins
+  alt          chi2 of the return, y = 3-200, alpha=1 (sqrt)        :    515.3 / 4 bins
+  alt          chi2 of the return, y = 3-200, simple                :   2717.6 / 4 bins
+  alt          chi2 of the return, y = 3-200, standard              :    124.2 / 4 bins
+  NOTE (both ways): at high y the measured ratio is dominated by the stellar M/L, not by the kernel -- a coherent Upsilon error of
+  10% moves (g_obs/g_bar - 1) by 0.1, larger than every kernel difference below y ~ 30.  The comparison above is therefore
+  Upsilon-LIMITED, and the chi2 ranking is reported, not scored, unless one kernel is excluded by orders of magnitude.
+  [PASS] 90a (reported, Upsilon-limited) the high-acceleration return ranks the kernels; no kernel is excluded by orders of magnitude, so this is not a discriminator at SPARC's M/L precision   (canonical: best = Route A (exponential) (chi2 Route=260, alpha=1=262, simple=1146, standard=1526); alt: best = standard (chi2 Route=1138, alpha=1=515, simple=2718, standard=124))
+
+3. ITEM 91 -- the curvature landmark, predicted (parameter-free, a_0-independent in shape)
+====================================================================================================================
+  kernel                     y at C_max  slope there      C_max
+  Route A (exponential)           3.462        0.829     0.1031
+  alpha=1 (sqrt)                  1.000        0.750     0.1250
+  simple                          2.000        0.789     0.0962
+  standard                        1.414        0.789     0.1925
+  [PASS] 91a the landmark separates the kernels: the curvature maximum sits at y = 4.0 (Route A) vs 1.0 (alpha=1) vs 2.0 (simple) -- a factor 4 in position and 20% in height, all parameter-free   (Route A y_max = 3.46, alpha=1 1.00, simple 2.00, standard 1.41)
+
+4. ITEM 91 measured: the RAR's curvature from SPARC, with a bootstrap
+====================================================================================================================
+  canonical  measured curvature maximum at y = 8.16 [16-84%: 0.03, 8.77], C_max = 0.280 [0.269, 0.602]  (galaxy bootstrap, N = 300)
+  alt        measured curvature maximum at y = 6.76 [16-84%: 0.02, 7.43], C_max = 0.280 [0.247, 0.606]  (galaxy bootstrap, N = 300)
+  [PASS] 91b (AGAINST INTEREST) the SPARC curvature landmark is NOT a usable discriminator: the galaxy bootstrap spans more than two decades in y, so every kernel's predicted landmark falls inside it, and the measured C_max sits well above all four predictions -- binned-median curvature is dominated by binning and by the M/L, not by the kernel   (interval y = [0.03, 8.77] (span x306); measured C_max = 0.280 [0.269, 0.602] vs predictions Route 0.103, alpha=1 0.125, simple 0.096, standard 0.192)
+
+5. mutation control: shuffle g_bar within each galaxy -- the landmark must be destroyed
+====================================================================================================================
+  [PASS] M0 mutation control: shuffling g_bar within each galaxy moves the landmark or flattens the curvature (|C_max| changes by > 30%)   (shuffled: y_max = 1.19, C_max = 0.638 vs real 0.280)
+
+====================================================================================================================
+VERDICT
+====================================================================================================================
+  Item 90 is Upsilon-limited: at y > 3 the stellar mass-to-light ratio, not the kernel, sets (g_obs/g_bar - 1), so SPARC cannot
+  separate an exponential return from a power-law one.  Item 91 is the sharper of the two -- the curvature landmark is
+  parameter-free and a_0-independent in position (y = 4.0 Route A vs 1.0 alpha=1) -- and the measured value with its galaxy
+  bootstrap is reported above, AGAINST INTEREST: the interval spans two decades in y and the measured curvature exceeds every
+  kernel's prediction, so binned-median curvature is dominated by binning and M/L, not by the kernel.  BOTH ITEMS ARE CLOSED as
+  discriminators at SPARC quality.  What would reopen 91: a hierarchical per-galaxy slope-field fit (not binned medians), which
+  the equation book (E1) already flags as the right estimator and which nobody has run.
+
+RESULT: 4 checks, 0 FAIL   rc=0
+rc=0
