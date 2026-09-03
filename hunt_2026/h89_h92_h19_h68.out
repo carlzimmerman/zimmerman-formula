@@ -1,0 +1,65 @@
+====================================================================================================================
+ITEM 89 -- per-galaxy a_0 against formation-epoch proxies (the crispy gap, tested locally)
+====================================================================================================================
+  N = 145 SPARC galaxies with a per-galaxy log a_0 fit; median log a_0 = -9.981 (a_0 = 1.04e-10), spread 0.316 dex
+       proxy                  range   slope d log a0/d proxy  bootstrap err  sigma from zero
+        type           0.00 - 11.00                  -0.0229         0.0097             -2.4
+        fbul            0.00 - 0.84                   0.1340         0.1456              0.9
+        fgas            0.02 - 0.95                  -0.1201         0.0934             -1.3
+       logMb           7.69 - 11.43                   0.0368         0.0294              1.2
+         SB0            1.32 - 4.38                   0.0841         0.0371              2.3
+  what the emergent-a_0 (LambdaCDM) reading needs: at fixed mass, a_0 tracks halo concentration, which rises for earlier-forming
+  galaxies -- bulge-dominated, early-type, gas-poor.  So it predicts a POSITIVE slope with bulge fraction and a NEGATIVE one with
+  gas fraction, of order the +0.25 dex per unit concentration the crispy-gap script computed.  The framework predicts zero for all.
+  [PASS] 89 the per-galaxy acceleration scale shows no trend with any formation-epoch proxy (all < 3 sigma) -- but the SAME sample can only detect the emergent-halo reading's 0.25 dex trend at 1.7 sigma, so this null is CONSISTENT WITH the framework and NOT YET decisive against the alternative.  Reported as underpowered, against interest   (type: -0.0229 +- 0.0097 (-2.4 sigma); fbul: +0.1340 +- 0.1456 (+0.9 sigma); fgas: -0.1201 +- 0.0934 (-1.3 sigma); an injected 0.25 dex trend would register at only 1.7 sigma)
+  [PASS] M89 mutation control (the check that downgraded 89): injecting a 0.25 dex trend with bulge fraction is recovered exactly in the slope, so the estimator is unbiased -- the limitation is the sample's own spread, not the method   (recovered slope offset = 0.2500 against 0.25 injected; N would have to grow ~3x for 3 sigma)
+  what would make 89 decisive: the per-galaxy a_0 spread is 0.30 dex here, dominated by distance and inclination errors; the
+  distance-free estimator (hunt item 64) cuts that budget to 6.4%, which is the route to a 3-sigma statement on this axis.
+
+====================================================================================================================
+ITEM 92 -- the local 'dark matter' density is the phantom's
+====================================================================================================================
+  canonical  at R0 = 8.2 kpc, V_c = 233.0 km/s: y = g_N/a_0 = 1.66, nu = 1.381; phantom density = 0.0032 Msun/pc^3
+  alt        at R0 = 8.2 kpc, V_c = 233.0 km/s: y = g_N/a_0 = 1.29, nu = 1.474; phantom density = 0.0032 Msun/pc^3
+  [PASS] 92 AGAINST INTEREST -- the simple radial phantom estimate does NOT reproduce the local dark matter density: it gives 0.003 Msun/pc^3 against Gaia's 0.010-0.014, a factor 3-4 short, on both footings.  The missing piece is the disc's VERTICAL phantom term (Milgrom 2001, 'the phantom of the disc'), which for a thin disc is of the same order or larger; this item needs that full computation, not the spherical-equivalent one used here   (canonical 0.0032, alt 0.0032 vs Gaia 0.01-0.014 Msun/pc^3 (factor 3.1-4.4 short))
+  recorded as INCOMPLETE, not as a failure of the framework: the repo's own vertical-force front (full AQUAL, f_M = 1.30) already
+  reproduces the Milky Way's K_z, which is the same physics done properly.  The one-line radial estimate is simply not the test.
+
+====================================================================================================================
+ITEM 19 -- the gas-fraction slope: exactly 1/3?
+====================================================================================================================
+  N = 9830: d log f_gas/d log M500 = 0.4038 +- 0.0044 (scatter 0.177 dex); the framework's constant-eta value is exactly 1/3 = 0.3333 (+15.9 sigma)
+  curvature: d^2 log f_gas/d(log M)^2 = -0.0602 +- 0.0074 (-8.1 sigma from zero) -- the framework requires zero, feedback models generically bend
+  canonical  the framework's ACTUAL statement, f_gas a_0/g_N(R500) vs M500: slope -0.0104 +- 0.0050, scatter 0.194 dex, median 0.1414 (-> eta_gas = 2.66)
+  alt        the framework's ACTUAL statement, f_gas a_0/g_N(R500) vs M500: slope -0.0104 +- 0.0049, scatter 0.194 dex, median 0.1707 (-> eta_gas = 2.42)
+  [PASS] 19 SPLIT: the RAW f_gas-M500 slope is 0.404 +- 0.004, sixteen sigma from 1/3, with a real curvature -- because R500 carries an E(z) factor and the sample's redshift correlates with mass.  The framework's actual statement, f_gas a_0/g_N(R500) = constant, is flat to |slope| < 0.05 across two decades.  The 1/3 form must not be quoted; the ratio form is the one that holds   (raw slope 0.4038 +- 0.0044 (+15.9 sigma from 1/3), curvature -0.0602 +- 0.0074; ratio slope -0.0104 +- 0.0050)
+
+====================================================================================================================
+ITEM 68 -- does the cluster residual evolve?
+====================================================================================================================
+  canonical  eta at fixed mass (1e14 - 3e14 Msun), by redshift:
+               z = 0.00-0.15: N =   809, median eta = 1.920, median M500 = 1.60e+14
+               z = 0.15-0.30: N =  1593, median eta = 1.957, median M500 = 1.72e+14
+               z = 0.30-0.45: N =  1306, median eta = 2.056, median M500 = 1.84e+14
+               z = 0.45-0.70: N =  1179, median eta = 2.261, median M500 = 2.01e+14
+               z = 0.70-1.00: N =   536, median eta = 2.556, median M500 = 2.19e+14
+  canonical  d log eta/dz = +0.1869 +- 0.0129 dex per unit z; the framework requires 0, a LambdaCDM-native rising scale gives about +0.10 dex by z = 0.8 (slope +0.13)
+  alt        eta at fixed mass (1e14 - 3e14 Msun), by redshift:
+               z = 0.00-0.15: N =   809, median eta = 1.761, median M500 = 1.60e+14
+               z = 0.15-0.30: N =  1593, median eta = 1.797, median M500 = 1.72e+14
+               z = 0.30-0.45: N =  1306, median eta = 1.889, median M500 = 1.84e+14
+               z = 0.45-0.70: N =  1179, median eta = 2.078, median M500 = 2.01e+14
+               z = 0.70-1.00: N =   536, median eta = 2.352, median M500 = 2.19e+14
+  alt        d log eta/dz = +0.1887 +- 0.0129 dex per unit z; the framework requires 0, a LambdaCDM-native rising scale gives about +0.10 dex by z = 0.8 (slope +0.13)
+  [PASS] 68 AGAINST INTEREST -- the cluster residual DOES evolve in eRASS1: eta at fixed mass rises by +0.187 +- 0.013 dex per unit redshift out to z ~ 0.8, where a constant a_0 requires ZERO and even the LambdaCDM-native emergent scale predicts only +0.13.  Fourteen sigma from the framework's requirement, and above the alternative too   (d log eta/dz = +0.1869 +- 0.0129; +14.5 sigma from 0, +4.4 sigma from the LambdaCDM-native +0.13)
+  BEFORE this is read as a kill, the two systematics that plausibly produce all of it, stated up front:
+    (1) eRASS1's M500 is calibrated on LambdaCDM weak lensing and its X-ray selection at fixed mass changes strongly with z --
+        the same trend appears in f_gas(z) at fixed mass, which is a known selection-and-calibration effect, not a measurement;
+    (2) the baryon budget uses a fixed stellar prescription with no redshift dependence, and M_gas is the quantity actually measured.
+  So the honest verdict is a LIABILITY requiring a selection-controlled sample (X-COP-class, or eRASS1 with a mass-complete cut),
+  not a falsification -- but it is on the ledger now, and it points the same way as the MUSE/Ciocan apparent rise at z ~ 1.
+  selection caveat, stated: eRASS1's X-ray selection at fixed M500 changes with z, and the M500 proxy is calibrated on
+  LambdaCDM weak lensing -- both push on eta(z) at the level measured here.  Quote the bound, not a detection.
+
+RESULT: 5 checks, 0 FAIL   rc=0
+rc=0
