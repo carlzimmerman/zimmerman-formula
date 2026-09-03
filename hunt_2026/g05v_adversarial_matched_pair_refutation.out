@@ -1,0 +1,223 @@
+========================================================================================================================
+PART 0.  INDEPENDENT RECOMPUTATION OF THE HEADLINE NUMBER.
+========================================================================================================================
+  canonical : sep +0.0644 dex, 0.929 sigma, perm p = 0.1086, N_pres = 14 kept / 36 dropped, N_rot = 147, rot median -0.0068
+  alt       : sep +0.0652 dex, 0.941 sigma, perm p = 0.1049, N_pres = 14 kept / 36 dropped, N_rot = 147, rot median -0.0081
+  [PASS] V0 the headline numbers reproduce independently from the LVD and SPARC files: +0.064 dex / 0.93 sigma / p = 0.103 canonical, +0.065 / 0.94 alt, 14 kept against 36 dropped, 147 rotating.  The arithmetic of the claim is not in dispute; only its meaning is   (canonical +0.0644 dex / 0.93 sigma / p=0.1086; alt +0.0652 / 0.94; kept 14, dropped 36)
+
+========================================================================================================================
+V1.  IS THE DROP CRITERION HONEST?  Direct SPARC point counts at each dropped object's acceleration.
+========================================================================================================================
+  SPARC pooled points: 3140; log10(g_bar/a_0) spans -2.652 to +1.894 (g_bar/a_0 = 0.00223 to 78.4)
+     fraction of SPARC points below g_bar/a_0 = 0.00582 is 0.1 per cent
+     fraction of SPARC points below g_bar/a_0 = 0.01172 is 0.5 per cent
+     fraction of SPARC points below g_bar/a_0 = 0.01584 is 1.0 per cent
+     fraction of SPARC points below g_bar/a_0 = 0.01991 is 2.0 per cent
+     fraction of SPARC points below g_bar/a_0 = 0.02855 is 5.0 per cent
+
+  f09's OWN EIGHT, each with the number of SPARC points inside +-0.20 dex of its internal acceleration:
+     dwarf               x_i  SPARC pts   kept?  raw resid
+     Draco           0.00676         12      no     +0.852
+     Sculptor        0.02915        369     YES     +0.217
+     Fornax          0.03371        453     YES     -0.087
+     Carina          0.00696         12      no     +0.305
+     Sextans         0.00093          0      no     +1.110
+     Leo I           0.07279        738     YES     -0.021
+     Leo II          0.02059        185     YES     +0.289
+     Ursa Minor      0.00403          3      no     +0.947
+     kept 4 of 8, median raw residual +0.098 dex; dropped 4, median raw residual +0.899 dex
+  [FAIL] V1a (FAILS -- AND THIS IS THE FIRST HALF OF THE REFUTATION) TESTED PROPOSITION: the four of f09's eight that g05 discards are discarded because SPARC has essentially NO data at their internal accelerations, so a bar of 5 points, or 1, would still drop them.  IT IS FALSE.  SPARC has 12 points within 0.20 dex of Draco and 12 of Carina.  They are not outside SPARC's range -- SPARC runs down to g_bar/a_0 = 0.0022, three times deeper than Draco -- they are in a thinly sampled part of it, and it is the UNDISCLOSED 20-point bar, not SPARC's coverage, that removes them   (dropped: Draco x_i=0.00676 -> 12 SPARC points, Carina x_i=0.00696 -> 12 SPARC points, Sextans x_i=0.00093 -> 0 SPARC points, Ursa Minor x_i=0.00403 -> 3 SPARC points; kept: Sculptor 369, Fornax 453, Leo I 738, Leo II 185.  SPARC's own floor is g_bar/a_0 = 0.00223, deeper than three of the four dropped objects)
+  [FAIL] V1b (FAILS) TESTED PROPOSITION: the same holds for the whole dropped set -- the great majority of the 36 discarded objects have ZERO SPARC points in the window and none has more than a handful.  IT IS FALSE.  Only 10 of 36 have zero.  The largest count among the dropped is 19 -- ONE POINT below the bar of 20.  A threshold sitting one unit above the top of the distribution it cuts is the single most fragile place it could have been put, and g05's own sensitivity scan never tests below it   (10 of 36 dropped objects have 0 SPARC points in window; the largest count among all dropped objects is 19 (bar is 20).  So 26 of the 36 are inside SPARC's sampled range and are removed by the threshold, not by the data.  The claim's phrase 'dropped as outside SPARC's range' is accurate for 10 of them and inaccurate for 26)
+
+========================================================================================================================
+V2.  IS MATCH_N LOAD-BEARING?  g05's A9 scan moves w and n TOGETHER and never scans n alone at w = 0.20.
+========================================================================================================================
+       w   n_min  N kept  N rot   sep dex   sigma   perm p
+    0.20       1      40    147    +0.214    3.50   0.0002
+    0.20       3      29    147    +0.232    3.07   0.0002
+    0.20       5      22    147    +0.202    2.96   0.0002
+    0.20      10      19    147    +0.077    1.11   0.0300
+    0.20      20      14    147    +0.064    0.93   0.1035
+    0.20      40      13    147    +0.077    1.04   0.0615
+    0.20      80      10    147    -0.026   -0.30   0.6103
+  [FAIL] V2 (FAILS -- THIS IS THE REFUTATION) TESTED PROPOSITION: the minimum-point bar is not what produces the null, so scanning it alone at fixed window width leaves the separation under two sigma.  IT IS FALSE, and by a wide margin.  Holding the window at g05's own 0.20 dex and moving ONLY the point bar, the separation runs from -0.03 dex at n >= 80 to +0.214 dex at n >= 1 -- and at n >= 5, where the local SPARC relation is still estimated from five real points, it is +0.202 dex at 2.96 sigma, p = 0.0002.  That REPRODUCES f09's +0.215 dex at higher significance than f09 claimed.  The headline 0.93 sigma is the value at one particular setting of an undisclosed knob, and g05's published sensitivity table (A9) scans n only at 20, 30 and 50 -- never below 20, which is the entire region where the result returns   (n>=1: N=40, +0.214 dex (3.50 sigma, p=0.0002); n>=3: N=29, +0.232 dex (3.07 sigma, p=0.0002); n>=5: N=22, +0.202 dex (2.96 sigma, p=0.0002); n>=10: N=19, +0.077 dex (1.11 sigma, p=0.0300); n>=20: N=14, +0.064 dex (0.93 sigma, p=0.1035); n>=40: N=13, +0.077 dex (1.04 sigma, p=0.0615); n>=80: N=10, -0.026 dex (-0.30 sigma, p=0.6103))
+
+  THE SAME SCAN ON THE ALT FOOTING, because one footing is not a scan:
+       w   n_min  N kept   sep dex   sigma   perm p
+    0.20       1      40    +0.218    3.56   0.0002
+    0.20       5      22    +0.203    2.98   0.0002
+    0.20      20      14    +0.065    0.94   0.1102
+    0.20      80      10    -0.024   -0.28   0.6406
+  [FAIL] V2b (FAILS on both footings, so it is not an a_0 artefact) TESTED PROPOSITION: the point-bar sensitivity is peculiar to the canonical footing.  IT IS FALSE -- the alt footing behaves identically, which is the point: a_0 is not what sets this number, the undisclosed threshold is   (n>=1: +0.218 dex (3.56 sigma, N=40); n>=5: +0.203 dex (2.98 sigma, N=22); n>=20: +0.065 dex (0.94 sigma, N=14); n>=80: -0.024 dex (-0.28 sigma, N=10))
+
+------------------------------------------------------------------------------------------------------------------------
+V2c.  THE FAIRNESS CHECK I OWE THE AUTHOR: is a 12-point window really 12 INDEPENDENT comparisons,
+      or is it one galaxy's outer disc?  If the latter, the 20-point bar has a defence.
+------------------------------------------------------------------------------------------------------------------------
+     object                       x_i   pts  galaxies  admitted at n>=   raw dex
+     Lacerta I                0.00812    19        11               19    +0.236
+     Cassiopeia III           0.00763    17        10               17    -0.077
+     Carina                   0.00696    12         8               12    +0.305
+     Draco                    0.00676    12         8               12    +0.852
+     Cetus                    0.00651    10         7               10    +0.047
+     Andromeda III            0.00626     8         6                8    +0.840
+     Andromeda XVIII          0.00600     7         5                7    +0.605
+     LGS 3                    0.00584     6         5                6    +0.280
+     Andromeda I              0.00442     4         3                4    +0.872
+     Andromeda XVI            0.00436     4         3                4    +0.140
+     Andromeda XX             0.00470     4         3                4    +1.138
+     Ursa Minor               0.00403     3         2                3    +0.947
+     Andromeda II             0.00393     3         2                3    +0.068
+     Andromeda V              0.00408     3         2                3    +0.980
+     Perseus I                0.00341     3         3                3    -0.057
+  [FAIL] V2c (FAILS -- the defence does not hold) TESTED PROPOSITION: the objects admitted below the 20-point bar are compared against one or two galaxies' outer discs, so the bar is protecting against an N=1 control.  IT IS FALSE.  Every object with at least three SPARC points in its window draws them from several distinct galaxies, and Draco's and Carina's 12 points come from a handful of independent systems.  Thin is not the same as degenerate, and a bar set at 20 discards real independent comparisons   (Lacerta I 19 points from 11 galaxies (raw +0.236 dex); Cassiopeia III 17 points from 10 galaxies (raw -0.077 dex); Carina 12 points from 8 galaxies (raw +0.305 dex); Draco 12 points from 8 galaxies (raw +0.852 dex); Cetus 10 points from 7 galaxies (raw +0.047 dex); Andromeda III 8 points from 6 galaxies (raw +0.840 dex); Andromeda XVIII 7 points from 5 galaxies (raw +0.605 dex); LGS 3 6 points from 5 galaxies (raw +0.280 dex).  Median number of contributing galaxies across the 15 objects with >=3 points: 5.0)
+
+========================================================================================================================
+V3.  CAN THE SURVIVING SAMPLE SHOW THE EFFECT AT ALL?  The fork is a DEEP-MOND statement.
+========================================================================================================================
+  Milgrom's theorem (1994; 2011, arXiv:1111.1611) says modified inertia and modified gravity agree exactly
+  for circular orbits IN THE DEEP-MOND LIMIT and differ for other orbits.  At x_i >~ 1 both reduce to
+  Newton and neither predicts anything, so a near-Newtonian object carries no information about the fork
+  but does carry a vote in the median.  Here is the kept sample, ordered by depth:
+     object                        x_i   raw dex  delta vs SPARC
+     Tucana                    0.01134    +0.117          +0.045
+     Phoenix                   0.01195    +0.383          +0.311
+     Antlia B                  0.01375    +0.231          +0.166
+     Andromeda VI              0.01479    +0.422          +0.382
+     Andromeda VII             0.01561    +0.111          +0.071
+     Leo II                    0.02059    +0.289          +0.263
+     Sculptor                  0.02915    +0.217          +0.225
+     Fornax                    0.03371    -0.087          -0.071
+     UGC 4879                  0.06683    -0.091          -0.104
+     Leo I                     0.07279    -0.021          -0.040
+     NGC 147                   0.27458    -0.550          -0.590
+     NGC 185                   0.51579    -0.041          -0.075
+     NGC 205                   1.42872    +0.015          -0.026
+     M 32                     29.66442    +0.385          +0.372
+     restricting to x_i < 100.0 : N= 14  sep +0.064 dex (0.93 sigma, p=0.1085)
+     restricting to x_i < 1.0   : N= 12  sep +0.064 dex (0.85 sigma, p=0.1354)
+     restricting to x_i < 0.3   : N= 11  sep +0.077 dex (0.94 sigma, p=0.0924)
+     restricting to x_i < 0.1   : N= 10  sep +0.125 dex (2.27 sigma, p=0.0107)
+     restricting to x_i < 0.05  : N=  8  sep +0.202 dex (3.68 sigma, p=0.0002)
+  [FAIL] V3 (FAILS -- THE SECOND HALF OF THE REFUTATION) TESTED PROPOSITION: the null survives when the matched sample is restricted to the deep-MOND side, where the fork actually has content.  IT IS FALSE.  Four of the fourteen kept objects are M31's dwarf ellipticals and compact elliptical -- M 32 at x_i = 29.7, NGC 205 at 1.43, NGC 185 at 0.52, NGC 147 at 0.27 -- at or above the MOND transition, where modified inertia and modified gravity are BOTH Newton and neither predicts anything.  They carry votes in the median all the same.  Cutting to x_i < 0.1 gives +0.125 dex at 2.27 sigma (p = 0.009); to x_i < 0.05, +0.202 dex at 3.68 sigma.  CAVEAT AGAINST MY OWN POINT: a cut on x_i is also a cut on the residual (see V5), so this restoration is no more trustworthy than the null it displaces -- which is exactly why neither number may be quoted as the answer   (x_i<0.05: +0.202 dex, 3.68 sigma, p=0.0002, N=8; x_i<0.1: +0.125 dex, 2.27 sigma, p=0.0107, N=10; x_i<0.3: +0.077 dex, 0.94 sigma, p=0.0924, N=11; x_i<1.0: +0.064 dex, 0.85 sigma, p=0.1354, N=12; x_i<100.0: +0.064 dex, 0.93 sigma, p=0.1085, N=14)
+
+========================================================================================================================
+V4.  IS THE QUOTED SIGMA RIGHT?  The statistic is a difference of MEDIANS; the error bar is a MEAN's.
+========================================================================================================================
+     separation                     +0.0644 dex
+     g05's se (mean formula)        0.0693  ->  0.93 sigma   [the quoted number]
+     bootstrap se of the MEDIANS    0.0908  ->  0.71 sigma
+     permutation p = 0.1086          ->  1.60 sigma equivalent
+  [FAIL] V4 (FAILS) TESTED PROPOSITION: g05's three reported statistics for the same separation agree with each other.  THEY DO NOT.  g05 quotes '0.93 sigma' from a standard error built for MEANS while the statistic is a difference of MEDIANS, and quotes a permutation p = 0.103 alongside it, which is 1.63 sigma two-sided.  The three numbers disagree with each other by more than a factor two.  A referee quoting the permutation test -- the appropriate one for a median -- would write 1.6 sigma, not 0.9.  The claim's own headline pairs '0.93 sigma' with 'p = 0.1033' in the same sentence, and those two numbers are not the same statement about the same data   (quoted 0.93 sigma; bootstrap-median 0.71 sigma; permutation-equivalent 1.60 sigma.  Spread of 0.68 sigma between the file's own two reported statistics)
+
+========================================================================================================================
+V5.  SELECTION ON THE OUTCOME.  Is the x_i cut arithmetically a residual cut?
+========================================================================================================================
+  g05's A1c reports slope -0.498 of residual against log10(x_i) across the pressure sample, and explains
+  that -1/2 is what you get if g_obs carries NO x_i dependence.  If that holds, then keeping the highest-
+  x_i objects is the same operation as keeping the lowest-residual objects, and the kept median is
+  predictable WITHOUT LOOKING AT THE DISPERSIONS AT ALL.  Test that directly.
+     fitted slope -0.315 dex/dex, intercept -0.143; r = -0.568 on N=50
+     REAL      kept median raw residual +0.114, dropped +0.731
+     SURROGATE (residuals replaced by the fitted line, dispersions never consulted):
+               kept median +0.332, dropped +0.669
+  [FAIL] V5 (FAILS -- AND THE FAILURE IS A POINT IN g05's FAVOUR, WHICH I REPORT AS READILY AS THE OTHERS) TESTED PROPOSITION: the kept-versus-dropped split in raw residual is purely mechanical -- a surrogate that throws away every measured dispersion and replaces it by the fitted line in log10(x_i) reproduces the gap, so cutting on acceleration IS cutting on the residual and the null is circular.  IT IS ONLY HALF TRUE.  The line-surrogate reproduces about half the real gap; the other half is genuine excess residual in the dropped objects beyond the mechanical trend.  So the acceleration cut is partly, but not wholly, a cut on the outcome.  My circularity objection is therefore WEAKER than I expected and g05's matching is not circular by construction -- which makes the threshold sensitivity in V2 the whole case   (real kept-vs-dropped gap +0.617 dex; line-surrogate gap +0.337 dex; unexplained excess 0.280 dex, i.e. 45 per cent of the split is NOT mechanical)
+  [FAIL] V5b (FAILS -- also in g05's favour) TESTED PROPOSITION: the depth trend continues inside the kept set, so the kept median is just an accident of where those 14 objects sit in x_i.  IT IS FALSE.  Inside the matched range the trend is essentially flat (slope -0.03, r = -0.12).  The pressure objects that overlap SPARC really do sit near the rotating relation with no residual gradient, which is a real and clean result and is the strongest thing g05 has.  The dispute is entirely about which objects are allowed in   (inside the kept set: slope -0.032 dex per dex, r = -0.123 on N=14; deltas run -0.590 to +0.382 dex over x_i = 0.0113 to 29.7)
+
+========================================================================================================================
+V6.  THE DISCRIMINANT QUESTION, put to the withdrawal itself.
+========================================================================================================================
+  The lens is: does the claim distinguish the framework's failure mode from ordinary cold dark matter?
+  A WITHDRAWAL is the assertion that a previously claimed discriminant does not discriminate, so it
+  cannot fail that test -- but it can be checked for the opposite error, a manufactured null.  The single
+  cleanest cross-check available is g05's own globular-cluster class, recomputed here from the same
+  numbers: pressure-supported, and dark-matter-free under LCDM.
+     Pal 4      x_i=  0.0611  sigma_obs= 0.87  sigma_pred= 2.38   -0.874 dex
+     Pal 14     x_i=  0.0127  sigma_obs= 0.38  sigma_pred= 1.71   -1.306 dex
+     Pal 3      x_i=  0.0267  sigma_obs= 0.80  sigma_pred= 2.12   -0.844 dex
+     NGC 2419   x_i=  1.0774  sigma_obs= 5.10  sigma_pred= 6.50   -0.211 dex
+  [PASS] V6 the globular clusters reproduce and they do cut against support-type as the organising variable: at OVERLAPPING internal accelerations the dark-matter-dominated dwarf spheroidals sit above the kernel and the dark-matter-free clusters far below it.  Support type does not predict the sign; dark-matter content does.  So the withdrawal is not merely 'the number got smaller' -- an independent class argues the same way, and ordinary cold dark matter reproduces the whole pattern   (GC median -0.859 dex on N=4 (16-23 stars apiece, two of four from model-dependent N-body fits); dSph over x_i = 0.01-1.2 median +0.114 dex on N=12)
+
+========================================================================================================================
+V7.  MUTATION CONTROLS on this verification.
+========================================================================================================================
+  [FAIL] M1 MUTATION CONTROL (FAILS my stated expectation, and again in g05's favour) TESTED PROPOSITION: shuffling the residuals across the pressure objects while holding every x_i fixed, then re-running the identical matching, leaves the separation where it is -- i.e. the kept set is a random draw.  IT IS FALSE.  The shuffled separation centres on +0.46 dex and the real kept value sits well below it.  The kept objects genuinely are the low-residual ones, so the matching is doing real work and is not a relabelling.  The machinery is sound; the disputed choice is the threshold   (real +0.064 dex; residual-shuffle-through-the-same-matching gives +0.463 +- 0.165, i.e. the real value is 2.42 shuffle-sigma out)
+  MUTATION CONTROL: multiply every dwarf-spheroidal dispersion by 10^(0.5*0.215), which injects exactly
+     f09's claimed +0.215 dex offset into the pressure side, and check the matched test recovers it.
+  [PASS] M2 the boosted-dispersion mutation lands where arithmetic says it must   (separation +0.064 -> +0.279 dex, shift +0.2150 against the injected +0.215; injected significance 4.03 sigma, so the matched test WOULD have detected a genuine f09-sized offset in the kept sample at that strength)
+
+========================================================================================================================
+VERDICT OF THE ADVERSARIAL PASS
+========================================================================================================================
+  THE CLAIM IS REFUTED.  Not its arithmetic -- that reproduces to the last digit -- but the withdrawal.
+
+  WHAT REPRODUCES.  At g05's settings (window 0.20 dex, at least 20 SPARC points in it) the separation is
+  +0.0644 dex, 0.93 sigma, permutation p = 0.1086, 14 kept / 36 dropped against 147 rotating;
+  alt footing +0.0652 dex, 0.94 sigma.  Every number in the claim is correct as computed.
+
+  THE SPECIFIC ERROR: A SECOND FREE PARAMETER, UNDISCLOSED AND UNSCANNED, DOES ALL THE WORK.
+  g05 declares MATCH_W = 0.20 and MATCH_N = 20 on one line and treats only the WINDOW as an analysis
+  choice -- its A9 sensitivity table scans n at 20, 30 and 50 and NEVER BELOW 20.  Holding the window at
+  g05's own 0.20 dex and moving only the point bar:
+
+        n >= 1    N_pres =  40  N_rot = 147   +0.214 dex    3.50 sigma   p = 0.0002
+        n >= 3    N_pres =  29  N_rot = 147   +0.232 dex    3.07 sigma   p = 0.0002
+        n >= 5    N_pres =  22  N_rot = 147   +0.202 dex    2.96 sigma   p = 0.0002
+        n >= 10   N_pres =  19  N_rot = 147   +0.077 dex    1.11 sigma   p = 0.0300
+        n >= 20   N_pres =  14  N_rot = 147   +0.064 dex    0.93 sigma   p = 0.1035   <-- the value the claim reports
+        n >= 40   N_pres =  13  N_rot = 147   +0.077 dex    1.04 sigma   p = 0.0615
+        n >= 80   N_pres =  10  N_rot = 147   -0.026 dex   -0.30 sigma   p = 0.6103
+
+  At n >= 5 the separation is +0.202 dex, 2.96 sigma, p = 0.0002 on N = 22 pressure objects.
+  That REPRODUCES f09's +0.215 dex at HIGHER significance than f09 itself claimed, on the alt footing too
+  (+0.203 dex, 2.98 sigma).  A claim of withdrawal cannot rest on the one setting of an
+  undisclosed knob at which the effect vanishes when a neighbouring setting restores the predecessor's
+  number outright.
+
+  AND THE STATED REASON FOR THE DROPS IS NOT WHAT THE DATA SAY.  The claim says 36 objects were 'dropped
+  as outside SPARC's range'.  Only 10 of the 36 have zero SPARC points in the window.  The largest count
+  among the dropped is 19 -- ONE POINT below the bar of 20.  SPARC's own floor is g_bar/a_0 = 0.00223,
+  three times deeper than Draco sits.  Draco and Carina -- two of f09's own eight -- each have 12 SPARC
+  points within 0.20 dex, drawn from 8 DISTINCT GALAXIES apiece, so the bar is not protecting against a
+  degenerate one-galaxy control (V2c): every object with three or more points draws them from a median of
+  5 independent systems.  The four members of f09's eight that the bar removes have a median raw
+  residual of +0.899 dex against +0.098 for the four it keeps.
+
+  A SECOND, INDEPENDENT ROUTE TO THE SAME PLACE.  The fork is a DEEP-MOND statement; Milgrom's theorem
+  concerns the deep-MOND limit.  Four of the fourteen survivors (M 32 at x_i = 29.7, NGC 205 at 1.43,
+  NGC 185 at 0.52, NGC 147 at 0.27) are M31 dwarf/compact ellipticals at or above the MOND transition,
+  where both arms reduce to Newton and neither predicts anything -- yet they vote in the median.
+  Restricting to x_i < 0.1 gives +0.125 dex at 2.27 sigma (p = 0.0107); to x_i < 0.05, +0.202 dex at 3.68 sigma.
+
+  THE REPORTED SIGNIFICANCE IS ALSO THE WEAKEST OF THREE INCONSISTENT STATISTICS.  A difference of
+  MEDIANS was given a difference-of-MEANS standard error (0.93 sigma).  Bootstrapping the medians
+  gives 0.71 sigma.  The file's own permutation p = 0.1086 is 1.60 sigma.  The claim's headline
+  sentence quotes '0.93 sigma' and 'p = 0.1033' side by side; they differ by 0.68 sigma.
+
+  WHERE I ATTACKED AND FAILED, REPORTED AS READILY AS THE REST.  Three of my own lines went against me:
+   * The circularity objection is only half right (V5).  A line-surrogate in log10(x_i) reproduces only
+     55 per cent of the kept-versus-dropped gap; the rest is genuine excess residual.  The matching
+     is NOT circular by construction.
+   * Inside the kept range the depth trend is flat (V5b: slope -0.03, r = -0.12).  The pressure objects that
+     genuinely overlap SPARC really do sit on the rotating relation with no gradient.  That is a clean
+     result and it is g05's strongest card.
+   * The residual-shuffle mutation (M1) shows the matching does real work, and the injected-offset
+     mutation (M2) shows the test would have caught an f09-sized separation in the kept sample at 4.0 sigma.
+     The machinery is sound.  The dispute is entirely about which objects are admitted.
+
+  AND ONE THING THE CLAIM GETS RIGHT THAT SURVIVES ALL OF THIS.  The globular clusters are the only
+  genuine discriminant in the file and they argue against the whole rotation/pressure reading: dark-
+  matter-free, pressure-supported outer-halo clusters sit -0.86 dex BELOW the kernel while dark-
+  matter-dominated dwarf spheroidals at the same accelerations sit +0.11 dex above it.  Support type
+  does not predict the sign; dark-matter content does.  Ordinary cold dark matter reproduces the entire
+  pattern.  So f09's split was never a discriminant -- but that is a DIFFERENT argument from the one the
+  claim makes, and it does not license the sentence 'it falls to 0.93 sigma'.
+
+  WHAT MAY BE SAID INSTEAD.  'Under object-by-object matching the rotation-versus-pressure separation is
+  not a stable number: it spans -0.026 to +0.232 dex and -0.3 to 3.5 sigma across defensible settings of the
+  matching window, the minimum-count threshold, and the acceleration range admitted, with no principled
+  way to choose among them.  f09's 1.73 sigma is not confirmed and is not withdrawn; it is undetermined.
+  The comparison does not measure the modified-inertia fork in either direction, and the globular-cluster
+  class argues that dark-matter content, not support type, organises the residuals.'
+
+RESULT: 13 checks, 10 FAIL -> ["V1a (FAILS -- AND THIS IS THE FIRST HALF OF THE REFUTATION) TESTED PROPOSITION: the four of f09's eight that g05 discards are discarded because SPARC has essentially NO data at their internal accelerations, so a bar of 5 points, or 1, would still drop them.  IT IS FALSE.  SPARC has 12 points within 0.20 dex of Draco and 12 of Carina.  They are not outside SPARC's range -- SPARC runs down to g_bar/a_0 = 0.0022, three times deeper than Draco -- they are in a thinly sampled part of it, and it is the UNDISCLOSED 20-point bar, not SPARC's coverage, that removes them", "V1b (FAILS) TESTED PROPOSITION: the same holds for the whole dropped set -- the great majority of the 36 discarded objects have ZERO SPARC points in the window and none has more than a handful.  IT IS FALSE.  Only 10 of 36 have zero.  The largest count among the dropped is 19 -- ONE POINT below the bar of 20.  A threshold sitting one unit above the top of the distribution it cuts is the single most fragile place it could have been put, and g05's own sensitivity scan never tests below it", "V2 (FAILS -- THIS IS THE REFUTATION) TESTED PROPOSITION: the minimum-point bar is not what produces the null, so scanning it alone at fixed window width leaves the separation under two sigma.  IT IS FALSE, and by a wide margin.  Holding the window at g05's own 0.20 dex and moving ONLY the point bar, the separation runs from -0.03 dex at n >= 80 to +0.214 dex at n >= 1 -- and at n >= 5, where the local SPARC relation is still estimated from five real points, it is +0.202 dex at 2.96 sigma, p = 0.0002.  That REPRODUCES f09's +0.215 dex at higher significance than f09 claimed.  The headline 0.93 sigma is the value at one particular setting of an undisclosed knob, and g05's published sensitivity table (A9) scans n only at 20, 30 and 50 -- never below 20, which is the entire region where the result returns", 'V2b (FAILS on both footings, so it is not an a_0 artefact) TESTED PROPOSITION: the point-bar sensitivity is peculiar to the canonical footing.  IT IS FALSE -- the alt footing behaves identically, which is the point: a_0 is not what sets this number, the undisclosed threshold is', "V2c (FAILS -- the defence does not hold) TESTED PROPOSITION: the objects admitted below the 20-point bar are compared against one or two galaxies' outer discs, so the bar is protecting against an N=1 control.  IT IS FALSE.  Every object with at least three SPARC points in its window draws them from several distinct galaxies, and Draco's and Carina's 12 points come from a handful of independent systems.  Thin is not the same as degenerate, and a bar set at 20 discards real independent comparisons", "V3 (FAILS -- THE SECOND HALF OF THE REFUTATION) TESTED PROPOSITION: the null survives when the matched sample is restricted to the deep-MOND side, where the fork actually has content.  IT IS FALSE.  Four of the fourteen kept objects are M31's dwarf ellipticals and compact elliptical -- M 32 at x_i = 29.7, NGC 205 at 1.43, NGC 185 at 0.52, NGC 147 at 0.27 -- at or above the MOND transition, where modified inertia and modified gravity are BOTH Newton and neither predicts anything.  They carry votes in the median all the same.  Cutting to x_i < 0.1 gives +0.125 dex at 2.27 sigma (p = 0.009); to x_i < 0.05, +0.202 dex at 3.68 sigma.  CAVEAT AGAINST MY OWN POINT: a cut on x_i is also a cut on the residual (see V5), so this restoration is no more trustworthy than the null it displaces -- which is exactly why neither number may be quoted as the answer", "V4 (FAILS) TESTED PROPOSITION: g05's three reported statistics for the same separation agree with each other.  THEY DO NOT.  g05 quotes '0.93 sigma' from a standard error built for MEANS while the statistic is a difference of MEDIANS, and quotes a permutation p = 0.103 alongside it, which is 1.63 sigma two-sided.  The three numbers disagree with each other by more than a factor two.  A referee quoting the permutation test -- the appropriate one for a median -- would write 1.6 sigma, not 0.9.  The claim's own headline pairs '0.93 sigma' with 'p = 0.1033' in the same sentence, and those two numbers are not the same statement about the same data", "V5 (FAILS -- AND THE FAILURE IS A POINT IN g05's FAVOUR, WHICH I REPORT AS READILY AS THE OTHERS) TESTED PROPOSITION: the kept-versus-dropped split in raw residual is purely mechanical -- a surrogate that throws away every measured dispersion and replaces it by the fitted line in log10(x_i) reproduces the gap, so cutting on acceleration IS cutting on the residual and the null is circular.  IT IS ONLY HALF TRUE.  The line-surrogate reproduces about half the real gap; the other half is genuine excess residual in the dropped objects beyond the mechanical trend.  So the acceleration cut is partly, but not wholly, a cut on the outcome.  My circularity objection is therefore WEAKER than I expected and g05's matching is not circular by construction -- which makes the threshold sensitivity in V2 the whole case", "V5b (FAILS -- also in g05's favour) TESTED PROPOSITION: the depth trend continues inside the kept set, so the kept median is just an accident of where those 14 objects sit in x_i.  IT IS FALSE.  Inside the matched range the trend is essentially flat (slope -0.03, r = -0.12).  The pressure objects that overlap SPARC really do sit near the rotating relation with no residual gradient, which is a real and clean result and is the strongest thing g05 has.  The dispute is entirely about which objects are allowed in", "M1 MUTATION CONTROL (FAILS my stated expectation, and again in g05's favour) TESTED PROPOSITION: shuffling the residuals across the pressure objects while holding every x_i fixed, then re-running the identical matching, leaves the separation where it is -- i.e. the kept set is a random draw.  IT IS FALSE.  The shuffled separation centres on +0.46 dex and the real kept value sits well below it.  The kept objects genuinely are the low-residual ones, so the matching is doing real work and is not a relabelling.  The machinery is sound; the disputed choice is the threshold"]   rc=1

@@ -1,0 +1,117 @@
+======================================================================================================================
+g04v -- ADVERSARIAL AUDIT OF THE SEDNA ORBIT-FIT ABSORPTION (g04 checks D2b, D4a)
+======================================================================================================================
+
+----------------------------------------------------------------------------------------------------------------------
+V1 -- does g04's central number reproduce under a completely different estimator?
+----------------------------------------------------------------------------------------------------------------------
+  Sedna: a = 506.2 AU, e = 0.8496, r_now = 85 AU, P = 11389.2 yr; 25 yr = 0.2195% of one orbit
+     footing      dg here     dg g04   raw here   raw g04   post here  post g04   chi100   chi10
+   canonical   1.3747e-12  1.375e-12     0.3549    0.3549     0.02263   0.02263   0.0047  0.0469
+         alt   2.9524e-12  2.952e-12     0.7623    0.7623     0.04861   0.04860   0.0101  0.1008
+  [PASS] V1a  every reported g04 D2 number reproduces under variational signal + analytic design + SVD   (worst relative difference over dg, raw, post-fit, chi(100 mas), chi(10 mas), both footings = 0.18%.  The arithmetic of the claim is CORRECT.  In particular the 1.7e-9 rad signal is NOT a cancellation artefact: obtained here without ever differencing two O(1) rad trajectories, it agrees with g04's differenced DOP853 result to 4 significant figures)
+  independent check of the envelope itself: aphelion Q = 936.27 AU, g_N(Q) = 6.76489e-09 m/s^2, sqrt(y) = 8.5014,
+  eps = 1/expm1(sqrt y) = 2.03217e-04, dg = eps*g_N(Q) = 1.37474e-12 m/s^2 -- computed in closed form, no kernel helper used
+
+  V1b -- MUTATION CONTROLS on this audit's own pipeline (they must fire)
+  in-family control : a*(1+1e-9) is absorbed to 2.61e-06 of itself
+  detection control : dg x 1e4 gives chi(100 mas) = 46.9 -- the pipeline DOES report a detection when one exists (linearity 1.0000, expected 1)
+  [PASS] V1b  MUTATION CONTROL: in-family signal vanishes, a 1e4x signal is detected, response is linear   (a pure element change is absorbed to 2.6e-06 of itself (so the projector is not leaking in-family signal and calling it a residual), a 1e4x anomaly is reported at 47 sigma (so the checks below are capable of returning a POSITIVE), and chi is linear in dg to 0.00%)
+
+  V1c -- the reported sigma is proportional to sqrt(N_epochs), and N = 401 is an assumption
+  N =   101: chi(100 mas) = 0.00241   (chi_raw 0.04768)
+  N =   401: chi(100 mas) = 0.00469   (chi_raw 0.09408)
+  N =  1601: chi(100 mas) = 0.00933   (chi_raw 0.18751)
+  [PASS] V1c  no plausible epoch count rescues the channel   (chi scales as sqrt(N) exactly, so the quoted 0.005 sigma is 0.0024 at N=101 and 0.0093 at N=1601.  N=401 over 25 yr is ~16 independent epochs per year, which is generous rather than conservative for a V=20.6 target.  Recorded as an assumption of the claim, not as a defect: even 1e4 epochs gives 0.02 sigma)
+
+----------------------------------------------------------------------------------------------------------------------
+V2 -- is the projector ill-conditioned?  (the residual is only 1/16 of the raw signal, so this matters)
+----------------------------------------------------------------------------------------------------------------------
+  design-column noise   0e+00: post-fit = 2.263280e-02 +- 0.0e+00 mas
+  design-column noise   1e-14: post-fit = 2.263280e-02 +- 8.8e-14 mas
+  design-column noise   1e-12: post-fit = 2.263280e-02 +- 8.9e-12 mas
+  design-column noise   1e-10: post-fit = 2.263280e-02 +- 8.9e-10 mas
+  design-column noise   1e-08: post-fit = 2.263281e-02 +- 8.9e-08 mas
+  normal-equation solve instead of SVD: post-fit = 2.263280e-02 mas;  normalised cond(A) = 6.95e+03
+  [PASS] V2a  the 4-element projector is well conditioned once the columns are normalised, and the residual is real   (cond = 7.0e+03 (not 1e18 -- g04's own note about an unnormalised lstsq truncating a column is the right diagnosis, and its fix works).  Injecting 1e-8 relative noise into every design entry moves the post-fit residual by 4e-6 of itself; SVD and normal equations agree to 1e-9.  The 0.0226 mas residual is a genuine out-of-family signal, not numerical dirt)
+
+----------------------------------------------------------------------------------------------------------------------
+V3 -- THE MECHANISM: is the signal reabsorbed BECAUSE 25 yr is 0.22% of one orbit?
+----------------------------------------------------------------------------------------------------------------------
+  If the stated mechanism is right, the fraction absorbed by the 4 free elements must be LARGEST on the
+  shortest arc and must fall as the arc grows.  Measured directly, at fixed dg, on this audit's pipeline:
+   arc [yr]  % orbit   raw [mas]  post [mas]   chi_raw  chi_post  absorbed x
+         25     0.22   3.549e-01   2.263e-02      0.94     0.047        20.0
+         50     0.44   2.926e+00   1.759e-01      7.68     0.359        21.4
+         75     0.66   1.001e+01   4.949e-01     26.13     1.088        24.0
+        100     0.88   2.364e+01   6.659e-01     61.50     1.911        32.2
+        150     1.32   7.467e+01   4.427e-01    194.86     2.552        76.4
+        200     1.76   1.544e+02   6.477e-01    408.09     2.851       143.2
+        250     2.20   2.501e+02   1.207e+00    674.24     3.519       191.6
+        300     2.63   3.492e+02   1.954e+00    962.82     4.678       205.8
+        400     3.51   5.339e+02   3.822e+00   1537.87     8.080       190.3
+        800     7.02   1.248e+03   1.511e+01   3638.13    30.388       119.7
+  [FAIL] V3a  the 4 elements absorb MORE of the signal on the 25-yr arc than on a long one   (THEY DO NOT, and it is not close: the absorbed factor is 20.0 on the 25-yr arc, 143 on 200 yr and 190 on 400 yr.  Reabsorption is WEAKEST on the short arc and grows by an order of magnitude as the arc lengthens.  So 'the signal is reabsorbed by its own orbital elements BECAUSE 25 yr is 0.22% of one orbit' inverts the actual dependence.  What the short arc really does is make the RAW signal small -- 0.355 mas, because a 1.4e-12 m/s^2 acceleration displaces Sedna along-track by only ~2e4 m in 25 yr -- and detection improves with arc length because the raw signal grows as ~T^5, not because the elements stop eating it)
+
+----------------------------------------------------------------------------------------------------------------------
+V4 -- STRUCTURAL OR INSTRUMENTAL?  factorise the shortfall
+----------------------------------------------------------------------------------------------------------------------
+     footing  sigma_ast   chi_raw   chi_post  raw S/N x  absorb x   total x
+   canonical        100    0.0941     0.0047       31.9      20.0       639
+   canonical         10    0.9408     0.0469        3.2      20.0        64
+         alt        100    0.2020     0.0101       14.8      20.0       298
+         alt         10    2.0204     0.1008        1.5      20.0        30
+  'raw S/N x' is how far short the signal is of 3 sigma BEFORE any orbit fit -- a purely instrumental
+  factor.  'absorb x' is what the 4-element fit then removes -- the structural factor.  They multiply.
+  3 sigma on the EXISTING 25-yr arc needs per-epoch astrometry of 0.156 mas (canonical) / 0.336 mas (alt)
+  [FAIL] V4a  the shortfall is dominated by the orbit-fit absorption rather than by raw sensitivity   (NOT ON THE HEADLINE FOOTING.  At 100 mas the canonical 639x shortfall factorises as 32x raw signal-to-noise times 20x orbit-fit absorption -- the INSTRUMENT is the larger factor, so 'structurally rather than instrumentally' is not supported by the number it is attached to.  The structural reading only takes over at 10 mas (3.2x raw vs 20x absorption).  And the instrumental factor is finite and modest: 0.16 mas per epoch on the arc that already exists would reach 3 sigma, which is 64x better than LSST-class but not a different kind of thing from a 200-yr observing campaign)
+
+----------------------------------------------------------------------------------------------------------------------
+V5 -- THE ARC REQUIREMENT: g04 says ~400 yr (3.5% of the orbit) for 3 sigma at 10 mas
+----------------------------------------------------------------------------------------------------------------------
+   arc [yr]  % orbit  chi_total  chi_angular  chi_range
+        150     1.32      2.552        0.886      2.393
+        175     1.54      2.679        0.960      2.501
+        190     1.67      2.772        1.138      2.528
+        200     1.76      2.851        1.297      2.539
+        205     1.80      2.896        1.387      2.542
+        210     1.84      2.946        1.482      2.546
+        215     1.89      3.000        1.583      2.548
+        220     1.93      3.059        1.689      2.550
+        225     1.98      3.123        1.800      2.552
+        250     2.20      3.519        2.417      2.558
+        300     2.63      4.678        3.912      2.565
+        400     3.51      8.080        7.654      2.590
+  [FAIL] V5a  3 sigma at 10 mas requires an arc of ~400 yr, as reported   (IT REQUIRES 215 yr = 1.9% of the orbit, not 400 yr = 3.5%.  A factor 1.9 overstatement, and in the direction that makes the negative look stronger. The cause is visible in g04's own D4 table: the scan steps in powers of two (25, 50, 100, 200, 400) and the residual is non-monotone, so the first GRID POINT above 3 sigma is 400 yr while the 200-yr point already stands at 2.85 sigma.  Recorded also: at the crossing the significance is carried by the RANGE channel (chi_range 2.55 of chi_total 3.00), so the arc requirement is largely a statement about annual parallax, and it inherits the idealisation that every epoch delivers an independent distance at the per-epoch angular precision)
+
+----------------------------------------------------------------------------------------------------------------------
+V6 -- and now the part of the claim that SURVIVES: the negative itself
+----------------------------------------------------------------------------------------------------------------------
+  [FAIL] V6a  Sedna's 25-yr arc reaches 3 sigma on the MI-A envelope, on any footing or precision tested   (IT DOES NOT, confirming g04's D2b under an independent estimator: 0.0047 / 0.0101 sigma at 100 mas and 0.047 / 0.101 sigma at 10 mas, i.e. shortfalls of 639x / 298x and 64x / 30x.  The HEADLINE NEGATIVE IS CORRECT AND IS NOT MARGINAL.  Adding nuisance parameters that a real fit would carry (out-of-plane elements, planetary masses, an effective GM) can only enlarge the absorbed family, so this is an upper bound on detectability -- the negative is conservative, exactly as g04 says)
+
+======================================================================================================================
+VERDICT
+======================================================================================================================
+
+ THE ARITHMETIC IS RIGHT.  All six headline numbers -- dg = 1.3747e-12 / 2.9524e-12 m/s^2, raw
+ 0.355 / 0.762 mas, post-fit 0.0226 / 0.0486 mas, 0.0047 / 0.0101 sigma at 100 mas and
+ 0.047 / 0.101 sigma at 10 mas -- reproduce to 4 significant figures under a signal computed from the
+ linearised variational equations, an analytic design matrix, and an SVD projection, none of which g04 uses.
+ The projector is stable (V2) and the mutation controls fire in both directions (V1b).  The negative -- Sedna
+ cannot see the MI-A precession envelope on its present arc -- SURVIVES and is conservative.
+
+ THE STORY ATTACHED TO IT DOES NOT.  "Falls short structurally rather than instrumentally, because 25 yr is
+ 0.22% of one orbit" is refuted twice over.  (i) The 4 elements absorb a factor 20 on the 25-yr arc and
+ 143 on a 200-yr arc: reabsorption is weakest exactly where the claim says it bites hardest.  (ii) At the
+ headline 100 mas footing the 639x shortfall is 32x raw signal-to-noise times 20x absorption, so the
+ instrument is the larger factor; the structural reading only wins at 10 mas.  And the quoted arc requirement
+ is a grid artefact: 3 sigma at 10 mas arrives at 215 yr, not 400.
+
+ WHAT SHOULD BE SAID INSTEAD.  Sedna's 25-yr arc is short of the MI-A envelope by 639x at 100 mas and 64x
+ at 10 mas.  Roughly a factor 20 of that is the 4-element degeneracy and the rest is raw sensitivity to a
+ 0.355 mas signal.  Closing it needs EITHER ~215 yr of arc at 10 mas OR ~0.16 mas per-epoch astrometry on the
+ arc that already exists.  Both are out of reach today; neither is structural in the sense of being immune to
+ a better instrument.
+
+
+RESULT: 8 checks, 4 FAIL -> ['V3a  the 4 elements absorb MORE of the signal on the 25-yr arc than on a long one', 'V4a  the shortfall is dominated by the orbit-fit absorption rather than by raw sensitivity', 'V5a  3 sigma at 10 mas requires an arc of ~400 yr, as reported', "V6a  Sedna's 25-yr arc reaches 3 sigma on the MI-A envelope, on any footing or precision tested"]   rc=1

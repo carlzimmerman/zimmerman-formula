@@ -1,0 +1,128 @@
+======================================================================================================================
+V1.  ARITHMETIC REPLICATION -- the number itself is not in dispute
+======================================================================================================================
+  r(residual, beta)   = +0.666615
+  r(residual, log M*) = -0.922467     r(beta, log M*) = -0.455406
+  partial by the closed formula      = +0.717212
+  partial by regressing both on logM = +0.717212   (independent construction, must agree)
+  alt footing = +0.719257
+  [PASS] V1 the claimed +0.717 reproduces from the raw table by two independent constructions   (closed formula +0.7172, regression construction +0.7172, alt +0.7193. The arithmetic is correct and is NOT what this audit disputes)
+  variance of the residual left after removing log M*: 1 - r^2 = 0.149, i.e. 15 per cent of 8 points
+
+======================================================================================================================
+V2.  LEAVE-ONE-OUT: the partial sits on five degrees of freedom
+======================================================================================================================
+      drop Draco        -> partial = +0.694   (raw Pearson +0.605)
+      drop Sculptor     -> partial = +0.765   (raw Pearson +0.669)
+      drop Fornax       -> partial = +0.611   (raw Pearson +0.830)
+      drop Carina       -> partial = +0.896   (raw Pearson +0.671)
+      drop Sextans      -> partial = +0.775   (raw Pearson +0.751)
+      drop Leo I        -> partial = +0.657   (raw Pearson +0.565)
+      drop Leo II       -> partial = +0.618   (raw Pearson +0.706)
+      drop Ursa Minor   -> partial = +0.597   (raw Pearson +0.524)
+  leave-one-out range of the partial: +0.597 to +0.896, full value +0.717
+  [PASS] V2 (STABILITY) on eight objects a partial correlation quoted to three decimals must not be movable by more than about a third by deleting one object; if it is, the number is a property of individual dwarfs and not of the sample   (deleting one object moves the partial over +0.597 to +0.896, a swing of 0.299. Dropping Ursa Minor alone takes it to +0.597; dropping Carina alone takes it to +0.896)
+
+======================================================================================================================
+V3.  THE NULL IS WRONG: shuffling beta destroys beta's own correlation with the covariate
+======================================================================================================================
+  naive permutation of beta (what g03 does): partial = +0.717, p = 0.0765 (1.77 sigma)
+  Freedman-Lane permutation of beta|logM   : partial = +0.717, p = 0.0579 (1.90 sigma)
+  reference: t on 5 dof = 2.301
+  sd of the null statistic: naive 0.409, Freedman-Lane 0.380
+  [FAIL] V3 (NULL CALIBRATION) the permutation p quoted for the PARTIAL must not depend on which null is used; the naive shuffle breaks the beta-log M* association that the data actually have, so its null distribution is not the distribution of the statistic under 'beta carries no extra information'   (naive p = 0.0765, Freedman-Lane p = 0.0579; null sds 0.409 vs 0.380. Neither reaches the 5 per cent bar, so the direction of the miscalibration does not rescue anything, but the quoted 1.77 sigma is a number from the wrong null)
+
+======================================================================================================================
+V4.  THE COVARIATE-CHOICE CONFOUND: the strengthening depends entirely on WHICH covariate is chosen
+======================================================================================================================
+  system            beta  sig_beta  logD_gc  residual     branch
+  Draco           +0.611     0.179    1.881    +0.617   isolated
+  Sculptor        +0.383     0.256    1.934    +0.177   isolated
+  Fornax          +0.425     0.205    2.167    -0.380        EFE
+  Carina          +0.563     0.251    2.021    +0.279   isolated
+  Sextans         +0.339     0.281    1.934    +0.404   isolated
+  Leo I           +0.224     0.322    2.405    -0.251        EFE
+  Leo II          +0.241     0.358    2.367    +0.134   isolated
+  Ursa Minor      +0.755     0.082    1.881    +0.654   isolated
+  r(beta, sigma_beta)      = -0.924  <-- REJECTED as a confound: sbeta is the Jacobian
+                                          10^(-x) ln10 times the log-space error, so it is beta by
+                                          construction. Not used.
+  log-space published error, the true precision variable: values 0.200 0.180 0.155 0.250 0.185 0.180 0.205 0.145
+  r(residual, err_log) = +0.137   r(beta, err_log) = -0.099
+  partial(residual, err_log | log M*) = -0.702     partial(residual, beta | err_log) = +0.690
+
+  GALACTOCENTRIC DISTANCE, which is not a nuisance here but a physical driver: it sets the number of
+  member stars (hence how well beta is measured), it enters the framework's OWN external-field
+  prescription through g_ext = v_c^2/d, and under cold dark matter it sets how much tidal stripping a
+  satellite has suffered and therefore its M/L.
+  r(residual, log D_gc) = -0.753    r(beta, log D_gc) = -0.751
+  partial(residual, beta | log D_gc)            = +0.234   against the claimed +0.717
+  partial(residual, beta | log M* AND log D_gc) = +0.363  (on 4 degrees of freedom)
+  [FAIL] V4 (SELECTION / DISTANCE CONFOUND) the claim is that controlling for the confound STRENGTHENS the correlation. That must not be an artefact of choosing the one covariate that happens to be a suppressor. Galactocentric distance is at least as defensible a control -- it drives survey depth, it enters the framework's own external-field branch, and under cold dark matter it drives tidal stripping. Controlling for it must not collapse the correlation   (controlling log M* gives +0.717 but controlling log D_gc gives +0.234 -- the correlation very nearly vanishes. beta and the residual BOTH correlate with distance at r = -0.751 and -0.753. Controlling for both together leaves +0.363 on 4 dof. So 'partialling out the confound strengthens it' is a statement about ONE chosen covariate, not about confounding, and the opposite choice is available and equally physical)
+
+======================================================================================================================
+V5.  THE PRESCRIPTION-BRANCH CONFOUND (f09's own A6 liability, carried into g03 unaddressed)
+======================================================================================================================
+  isolated branch (6): Draco +0.617, Sculptor +0.177, Carina +0.279, Sextans +0.404, Leo II +0.134, Ursa Minor +0.654
+  EFE branch      (2): Fornax -0.380, Leo I -0.251
+  restricted to the 6 isolated-branch objects: Pearson +0.813, Spearman +0.829, partial|logM = +0.676
+  whole sample, partialling out the BRANCH INDICATOR instead of mass: +0.702
+  [PASS] V5 (BRANCH) the residual's sign must not be a relabelling of which branch of the framework's own external-field prescription was taken. All six isolated-branch objects have positive residuals and both EFE-branch objects have negative ones, so the branch alone reproduces the residual's ordering at the coarse level the rank correlation uses. The correlation must survive removing it   (dropping the two EFE-branch objects takes the raw Pearson from +0.667 to +0.813 and the partial from +0.717 to +0.676 on THREE degrees of freedom; partialling out the branch indicator on the full sample gives +0.702. A binary flag set by the framework's own prescription carries a large part of what is being read as an anisotropy trend)
+
+======================================================================================================================
+V6.  THE COLD-DARK-MATTER SIGNATURE: is +0.717 distinguishable from the Newtonian +0.331?
+======================================================================================================================
+  framework partial +0.717; Newtonian (nu = 1, i.e. the raw mass discrepancy) partial +0.331
+  the two residual vectors themselves correlate at r = +0.939
+  Fisher-z difference 0.558 against an INDEPENDENT-samples se of 0.816 -> 0.68 sigma, and the true dependent-sample se is LARGER still
+  [FAIL] V6 (DISCRIMINATION) the framework's partial correlation must be distinguishable from the one cold dark matter gives on the same eight objects. Under Newton plus a halo the mass discrepancy log10(g_obs/g_N) correlates with the same anisotropies at the same sign; if the two cannot be told apart, the statistic does not select an arm of the fork and does not favour the framework over dark matter   (framework +0.717 vs Newtonian +0.331 differ by 0.68 sigma even on the anti-conservative independent-samples se. The two residual vectors correlate at r = +0.939, so the real se is larger and the difference is smaller. THE SAME SIGN AND COMPARABLE STRENGTH APPEARS WITH GRAVITY COMPLETELY UNMODIFIED)
+
+======================================================================================================================
+V7.  THE ESTIMATOR IS NOT ANISOTROPY-BLIND -- and its bias has the OBSERVED SIGN
+======================================================================================================================
+  The scalar virial theorem fixes the GLOBAL luminosity-weighted <sigma_los^2> of a bound system
+  independently of beta. Real dispersions are APERTURE-limited, and an aperture-limited one is not:
+  at projected R = 0 the line of sight is purely radial, so radial anisotropy RAISES the central
+  sigma_los at fixed mass. g_obs = 3 sigma^2 / R_half therefore reads HIGH for radially biased systems
+  under ANY theory of gravity. Solved below from the spherical Jeans equation, Plummer tracer, the
+  framework's own kernel (and Newtonian as the mutation), constant beta.
+
+      aperture     kernel  b=+0.00  b=+0.20  b=+0.40  b=+0.60  b=+0.80   dex over the sample's beta range
+           1Rh  canonical   +0.000   +0.027   +0.058   +0.097   +0.145   span over sample = 0.104 dex
+           1Rh        alt   +0.000   +0.027   +0.058   +0.097   +0.145   span over sample = 0.104 dex
+           1Rh     newton   +0.000   +0.021   +0.047   +0.077   +0.115   span over sample = 0.082 dex
+           2Rh  canonical   +0.000   +0.011   +0.025   +0.043   +0.067   span over sample = 0.048 dex
+           2Rh        alt   +0.000   +0.011   +0.025   +0.043   +0.067   span over sample = 0.048 dex
+           2Rh     newton   +0.000   +0.008   +0.018   +0.031   +0.049   span over sample = 0.035 dex
+
+  estimator bias implied by each dwarf's own beta (aperture 1 R_half, canonical): +0.030 to +0.134 dex, span 0.104
+  observed residual spread = 1.034 dex, so the anisotropy bias of the ESTIMATOR alone accounts for 10 per cent of it
+  the bias vector correlates with the residual at r = +0.677 -- same sign as the claimed signal
+  subtracting it: Pearson +0.667 -> +0.609, partial|logM +0.717 -> +0.581
+  [FAIL] V7 (ESTIMATOR ARTEFACT) the observable must not carry a beta dependence of its own. 3 sigma_ap^2/R_half is anisotropy-blind only for the GLOBAL virial dispersion; inside a finite aperture radial anisotropy raises sigma_los, so the estimator manufactures a POSITIVE residual-beta correlation with no physics in it at all -- and it does so identically under Newton plus cold dark matter   (the estimator's own anisotropy bias spans 0.104 dex across the sample's beta values, i.e. 10 per cent of the 1.034 dex residual spread, with r = +0.677 against the residual. The Newtonian mutation gives essentially the same bias curve, which is the point: THIS IS NOT A TEST OF GRAVITY. Nothing in g03 corrects for it)
+
+======================================================================================================================
+VERDICT OF THE AUDIT
+======================================================================================================================
+  THE NUMBER IS RIGHT AND THE INFERENCE IS NOT SUPPORTED. partial(residual, beta | log M*) = +0.7172
+  reproduces exactly, on both footings. What does not follow is 'therefore the mass confound is not
+  manufacturing it'. A partial correlation RISING when a near-collinear covariate is removed
+  (r(residual, log M*) = -0.922, leaving 15 per cent of the variance) is the textbook
+  signature of suppression, not of independence, and on 5 degrees of freedom it is not evidence about
+  confounding at all. Concretely:
+   * leave-one-out moves it over +0.597 to +0.896;
+   * controlling Galactocentric distance instead of stellar mass gives partial +0.234, so the
+     'strengthening' is a property of the covariate chosen, not of the data;
+   * dropping the two external-field-branch objects takes the partial to +0.676 on 3 dof, so the
+     framework's own prescription branch carries part of the trend;
+   * Newton plus a dark halo gives +0.331 on the same data, 0.68 sigma away at best;
+   * and the mass estimator itself is not anisotropy-blind: aperture-limited 3 sigma^2/R_half is biased
+     HIGH for radially biased systems by 0.104 dex across this sample, 10 per cent of the whole
+     residual spread, in the OBSERVED direction, under any theory of gravity.
+
+  As a DISCRIMINANT between modified inertia and modified gravity the claim fails outright: cold dark
+  matter produces this signature through the estimator bias alone, before any halo physics is invoked.
+  g03's own conclusion -- that the input variable is not measured well enough for the test to be run --
+  stands and is if anything understated.
+
+RESULT: 7 checks, 4 FAIL -> ["V3 (NULL CALIBRATION) the permutation p quoted for the PARTIAL must not depend on which null is used; the naive shuffle breaks the beta-log M* association that the data actually have, so its null distribution is not the distribution of the statistic under 'beta carries no extra information'", "V4 (SELECTION / DISTANCE CONFOUND) the claim is that controlling for the confound STRENGTHENS the correlation. That must not be an artefact of choosing the one covariate that happens to be a suppressor. Galactocentric distance is at least as defensible a control -- it drives survey depth, it enters the framework's own external-field branch, and under cold dark matter it drives tidal stripping. Controlling for it must not collapse the correlation", "V6 (DISCRIMINATION) the framework's partial correlation must be distinguishable from the one cold dark matter gives on the same eight objects. Under Newton plus a halo the mass discrepancy log10(g_obs/g_N) correlates with the same anisotropies at the same sign; if the two cannot be told apart, the statistic does not select an arm of the fork and does not favour the framework over dark matter", 'V7 (ESTIMATOR ARTEFACT) the observable must not carry a beta dependence of its own. 3 sigma_ap^2/R_half is anisotropy-blind only for the GLOBAL virial dispersion; inside a finite aperture radial anisotropy raises sigma_los, so the estimator manufactures a POSITIVE residual-beta correlation with no physics in it at all -- and it does so identically under Newton plus cold dark matter']   rc=1

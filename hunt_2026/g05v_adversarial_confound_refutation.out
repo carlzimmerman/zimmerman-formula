@@ -1,0 +1,157 @@
+==========================================================================================================================
+PART 0.  AN INDEPENDENT IMPLEMENTATION OF THE PREDICTION, WRITTEN WITHOUT LOOKING AT g05's QUADRATURE.
+==========================================================================================================================
+  g05's sphere average is  <g_r> = -(1/2) INT nu(|x_e zhat - x_i rhat|) (x_e zhat - x_i rhat).rhat sin th dth.
+  I implement it here by GAUSS-LEGENDRE in mu = cos(theta) instead of a trapezoid in theta, which is a
+  different quadrature rule on a different variable, so an error in either shows up as a disagreement.
+  [PASS] V0 two independent quadrature rules (Gauss-Legendre in cos theta against g05's trapezoid in theta) agree on the sphere-averaged QUMOND acceleration to better than 1e-6 at every (x_i, x_e) that occurs in the sample, so the PREDICTED side of every residual is arithmetically sound   (worst fractional disagreement 8.05e-08 over 7 (x_i,x_e) pairs)
+  [PASS] M-A MUTATION CONTROL on my own quadrature: with nu = 1 it must return the internal Newtonian field EXACTLY at any external field, so my machinery is not manufacturing a coupling either   (Newtonian sphere average / x_i = 1.000000000000, 1.000000000000, 1.000000000000)
+
+==========================================================================================================================
+PART 1.  THE SAMPLE AND THE RESIDUALS, RE-DERIVED FROM THE RAW CATALOGUE COLUMNS.
+==========================================================================================================================
+  reconstructed sample: classical 11, M31 34, isolated 5, ultrafaint 29; the A1b universe is classical+M31+isolated = 50
+  INDEPENDENT RE-DERIVATION: N = 50, kept 14, dropped 36
+     kept median raw residual +0.114 dex   dropped median +0.731 dex   ratio 6.42   difference +0.617 dex
+     g05 reported                +0.114                        +0.731            6.4
+  [PASS] V1 the A1b arithmetic REPRODUCES through a completely independent code path -- catalogue columns read again, Wolf+2010 re-implemented, the sphere average done by a different quadrature rule on a different variable.  N = 50 splits 14/36 and the two medians come back to 0.005 dex.  There is no arithmetic error in the central number   (N=50, 14/36, kept +0.1139 (g05 +0.114), dropped +0.7312 (g05 +0.731))
+  [PASS] V2 the split is a clean threshold in x_i and the words 'below SPARC's coverage' are literally true: every dropped object has a smaller internal acceleration than every kept one, so the kept/dropped label carries no information beyond depth   (deepest KEPT x_i = 0.01134; shallowest DROPPED x_i = 0.00812; kept span 0.01134-29.664, dropped span 0.000100-0.00812)
+
+==========================================================================================================================
+PART 2.  WHAT THE A1b STATISTIC DOES TO KNOWN INPUTS.  Injection tests: the only way to find out whether a
+         'factor 6.4 with support type held fixed' can mean what it is being asked to mean.
+==========================================================================================================================
+  (a) NULL INJECTION.  Every object's observed acceleration is REPLACED by the framework's own prediction
+      times lognormal scatter of 0.13 dex (SPARC's intrinsic RAR scatter, Lelli et al. 2017, ApJ 836, 152).
+      By construction there is NO support-type effect and NO depth effect.  A clean statistic must return
+      kept ~ dropped ~ 0 and a ratio near 1.
+      null kept median -0.0003 +- 0.0412;  null dropped median -0.0010 +- 0.0259;  null DIFFERENCE -0.0007 +- 0.0475
+  [PASS] V3 the estimator is UNBIASED under the null: fed accelerations that obey the framework exactly plus SPARC's own scatter, the kept and dropped medians both come back at zero and their difference at zero.  The +0.617 dex kept-minus-dropped difference is therefore NOT manufactured by the estimator; something real separates the deep objects from the shallow ones   (null difference -0.0007 +- 0.0475 dex over 2000 realisations; the measured difference is +0.617 dex, 13.0 null-sigma out)
+
+  (b) CONSTANT-OFFSET INJECTION -- THE DECISIVE TEST.  Same framework-consistent baseline, but now with a
+      depth-INDEPENDENT +0.4 dex added to EVERY pressure object.  That is a pure SUPPORT-TYPE effect with
+      ZERO depth dependence by construction.  If the A1b statistic still reports a large 'factor', then the
+      factor cannot be read as evidence that the split is 'at least as much about depth as about support'.
+      injected PURE support-type effect, no depth dependence at all:
+         kept median +0.400, dropped median +0.400
+         RATIO (A1b's headline currency)  1.01 +- 0.12
+         DIFFERENCE                        -0.000 +- 0.047 dex
+  [PASS] V4 (PASSES -- AND IT IS A POINT FOR A1b, RECORDED AS SUCH) I tried to show that a purely depth-INDEPENDENT support-type effect would fake A1b's factor.  It does not.  Injected on a framework-consistent baseline, a flat +0.40 dex returns a ratio of 1.0 and a difference of zero, exactly as it should.  So the measured factor of 6.4 and the measured +0.617 dex difference are NOT what a constant support-type offset looks like; there really is depth structure in the residuals.  This attack fails and A1b keeps the underlying finding   (pure-support injection at +0.4 dex: kept +0.400, dropped +0.400, ratio 1.01 +- 0.12, difference -0.000 +- 0.047 dex.  Measured values are 6.42 and +0.617 dex, so the depth structure is real and is not an artefact of a flat offset)
+
+  (c) HOW UNCERTAIN IS THE 'FACTOR 6.4'?  Bootstrap both medians (10000 resamples of the 14 and the 36).
+      kept median  +0.114, bootstrap 16-84 per cent +0.015 to +0.217
+      dropped      +0.731, bootstrap 16-84 per cent +0.578 to +0.862
+      RATIO        6.42, bootstrap 16-84 per cent 2.13 to 11.70; 14.9 per cent of resamples give a NEGATIVE ratio and 9.0 per cent give |ratio| > 50
+      DIFFERENCE   +0.617, bootstrap 16-84 per cent +0.446 to +0.791
+  [FAIL] V5 (FAILS) the quoted 'factor 6.4' has no usable error bar: the kept median it divides by is +0.114 dex with a bootstrap 68 per cent interval that reaches to within 0.03 dex of zero, so the ratio's own 68 per cent interval runs over a factor of several and a non-negligible fraction of resamples put it negative or above 50.  A ratio whose denominator is consistent with zero is not a measurement.  The DIFFERENCE, +0.617 dex, is well determined and is what the claim should rest on   (ratio 68 per cent interval 2.13-11.70 (span x5.5), 1487 of 10000 resamples negative, 900 above 50 in absolute value; difference interval +0.446 to +0.791 dex is tight by comparison)
+
+  (d) BOTH a_0 FOOTINGS.  A ratio of dex is zero-point dependent, so it must move when a_0 moves; the
+      difference must not.  This is the same complaint, measured rather than asserted.
+      canonical  a_0=9.36e-11: kept +0.114 (N=14), dropped +0.731 (N=36), RATIO 6.42, DIFFERENCE +0.617 dex
+      alt        a_0=1.13e-10: kept +0.075 (N=14), dropped +0.695 (N=36), RATIO 9.23, DIFFERENCE +0.619 dex
+  [FAIL] V6 (FAILS) a 21 per cent change in a_0 -- the two footings this repository requires everywhere -- moves the headline 'factor' by more than a whole unit while moving the difference by a few hundredths of a dex.  The number chosen for the headline is the footing-sensitive one   (ratio 6.42 (canonical) against 9.23 (alt), moves by 2.81; difference +0.617 against +0.619, moves by 0.002 dex)
+
+==========================================================================================================================
+PART 3.  IS IT DEPTH, OR IS IT THE M31 SATELLITES?  The dropped set's class composition.
+==========================================================================================================================
+  g05's own reliability table says of the M31 class: 'Dispersions of 3-5 km/s sit near the instrumental
+  floor, Milky Way foreground contamination biases small-N dispersions HIGH ... the class most likely to be
+  inflating the result.'  Then 35 of the 36 DROPPED objects are... let us count.
+  class         N kept    median  N dropped    median
+  classical          4    +0.098          7    +0.852
+  m31                6    +0.063         28    +0.731
+  isolated           4    +0.174          1    +0.047
+  [PASS] V7 the dropped set is 69 per cent M31 satellites, the one class g05's own reliability note flags as biased HIGH -- but the depth split is NOT reducible to that: the classical Milky Way dwarfs that are dropped sit at a large positive median on their own, and the non-M31 dropped objects do too.  The composition is lopsided and worth stating, but it does not explain the difference away   (dropped set: 28 M31 (78 per cent, median +0.731), 7 classical (median +0.852), 1 isolated (median +0.047); non-M31 dropped median +0.704 dex on N=8)
+
+==========================================================================================================================
+PART 4.  THE COUNTEREXAMPLE THAT IS ALREADY INSIDE g05.  'Pressure-supported' and 'deep' are NOT the same
+         set in the Local Group, and g05 section 4e proves it on g05's own data.
+==========================================================================================================================
+  Outer-halo globular clusters: pressure-supported, Local Group, and at x_i = 0.01-1.2 they are NOT deep.
+  Structural parameters Baumgardt & Hilker 2018 / Baumgardt et al. 2019-2023; extinction Harris 2010;
+  dispersions Jordi et al. 2009, AJ 137, 4586 (Pal 14, 16 members) and Frank et al. 2012, MNRAS 423, 2917
+  (Pal 4, 23 members).  Pal 3 and NGC 2419 from Baumgardt N-body fits, MODEL-DEPENDENT.  Upsilon_V = 2.
+        Pal 4      x_i = 0.0611  sigma_obs 0.87  sigma_pred 2.38  residual -0.874 dex  [INSIDE SPARC coverage]
+        Pal 14     x_i = 0.0127  sigma_obs 0.38  sigma_pred 1.71  residual -1.306 dex  [INSIDE SPARC coverage]
+        Pal 3      x_i = 0.0267  sigma_obs 0.80  sigma_pred 2.12  residual -0.844 dex  [INSIDE SPARC coverage]
+        NGC 2419   x_i = 1.0774  sigma_obs 5.10  sigma_pred 6.50  residual -0.211 dex  [INSIDE SPARC coverage]
+  [FAIL] V8 (FAILS -- AND IT REFUTES THE WORD 'COMPLETELY') the confound is NOT complete.  Four pressure-supported Local Group systems sit squarely INSIDE the acceleration range SPARC covers, at exactly the depths where the dwarf spheroidals also live, and they sit about a dex BELOW the kernel while the dwarf spheroidals at the same depth sit ABOVE it.  Pressure support and depth are therefore separable in the Local Group -- g05's own section 4e does the separating, and gets a large answer.  What is confounded is 'dwarf spheroidal' with 'deep', which is a narrower and different statement   (globular clusters at x_i = 0.013-1.077: residuals -0.87, -1.31, -0.84, -0.21, median -0.859 dex, 4 of 4 inside SPARC's coverage.  Dwarf spheroidals over the SAME x_i range: median +0.045 dex on N=10.  Separation at fixed depth = +0.904 dex, and it is not zero)
+
+==========================================================================================================================
+PART 5.  'NO LOCAL GROUP COMPARISON CAN SEPARATE THEM' -- IMPOSSIBLE, OR MERELY UNDERPOWERED?
+==========================================================================================================================
+  A structural confound means the comparison CANNOT BE MADE.  A power problem means it CAN be made and
+  returns a bound.  g05 made it: 14 dwarf spheroidals inside SPARC's coverage against 147 SPARC galaxies,
+  +0.064 dex, 0.93 sigma.  That is a MEASUREMENT with an error bar, so it is the second thing, not the first.
+      matched separation +0.064 +- 0.069 dex (0.93 sigma) on N_pressure = 14, N_rot = 147
+      two-sigma upper bound on any depth-independent support-type effect inside the overlap: +0.203 dex
+      (the N needed to settle it is computed after the median's own error is bootstrapped, below)
+  [FAIL] V9 (FAILS) the Local Group comparison at matched depth is not impossible; it was PERFORMED and it returned a bound.  The correct statement is that it is UNDERPOWERED at N = 14, not that support and depth cannot be separated.  Saying 'no Local Group comparison can separate them' converts a power limit into a structural theorem, and the two have different consequences: a power limit is fixed by more objects inside the overlap, a structural confound is not   (the comparison EXISTS and returns +0.064 dex on 14 pressure objects spanning 3.42 decades of overlap with the rotating sample.  A structural confound would leave nothing to compare; here there is a number with an error bar on it)
+
+  (e) THE POWER OF THE MATCHED TEST -- the question A1b never asks.  'The separation dies because of the
+      confound' is only true if the matched test lacked the SENSITIVITY to see f09's +0.215 dex.  Bootstrap
+      the standard error of the median difference properly (the median's error, not the mean's, which is what
+      g05's compare() uses -- for a Gaussian the median's is about 1.25 times larger), then ask what f09's
+      claimed effect would have registered as.
+      separation +0.064 dex; bootstrap SE of the MEDIAN difference 0.091 dex (g05 quotes 0.069, the SE of the MEAN, which is +31 per cent optimistic)
+      so the measured separation is 0.71 sigma, and f09's claimed +0.215 dex would have registered at 2.36 sigma
+      68 per cent interval on the matched separation: -0.013 to +0.190 dex; 95 per cent: -0.051 to +0.269
+  [FAIL] V9b (FAILS, AND THE FAILURE CUTS BOTH WAYS -- READ IT CAREFULLY) g05 quotes the matched separation with the standard error of the MEAN while taking the difference of MEDIANS; bootstrapping the median's own error gives 0.091 dex, 31 per cent larger, so the honest matched result is +0.064 +- 0.091 dex, 0.71 sigma rather than 0.93.  That cuts against the file's own headline precision.  But it also means the matched test has only about 2.4 sigma sensitivity to f09's +0.215 dex and its 95 per cent interval STILL CONTAINS +0.215 -- so the matched comparison neither establishes nor excludes f09's effect.  'The separation dies' is therefore not established either: what is established is that the overlap sample cannot decide, which is a power statement about N = 14 and NOT the structural confound A1b asserts   (measured +0.064 dex, bootstrap SE 0.091; f09's +0.215 dex would be a 2.36 sigma effect; 95 per cent interval -0.051 to +0.269 dex does not exclude +0.215)
+
+  AND THE OVERLAP IS NOT EMPTY BY A LITTLE -- it is 3.4 decades wide on the pressure side:
+      kept x_i span 0.0113 to 29.66, i.e. 3.42 decades of genuine overlap
+  [FAIL] V10 (FAILS) 'completely confounded' would require the two sets to be disjoint in acceleration.  They are not: the pressure sample overlaps SPARC over 3.4 decades and 28 per cent of the objects live there.  A confound this partial is a sampling imbalance -- a real and important one -- but the word 'completely' is not supportable and neither is 'no comparison can separate them'   (14 of 50 pressure objects (28 per cent) lie inside SPARC's coverage, spanning 3.42 decades in x_i)
+
+==========================================================================================================================
+PART 6.  MUTATION CONTROLS ON MY OWN ATTACK.
+==========================================================================================================================
+  [PASS] M-B MUTATION CONTROL: inflating every observed dispersion by sqrt(2) must move every residual by exactly log10(2) and nothing else in my pipeline may respond   (median shift +0.301029995664 against log10(2) = +0.301029995664)
+  [PASS] M-C MUTATION CONTROL: raising a_0 by 100 must drive everything into the modified regime and drive the residuals DOWN   (median residual +0.489 dex at canonical a_0, -0.464 at 100 a_0)
+  [PASS] M-D the kept/dropped DIFFERENCE survives its own label shuffle, so what I am complaining about is the STATISTIC and not the underlying structure: the deep pressure objects really do sit higher than the shallow ones   (real difference +0.617 dex; 5000 label shuffles give -0.0065 +- 0.2069, P(|shuffled| >= real) = 0.00060)
+
+==========================================================================================================================
+VERDICT OF THE ADVERSARIAL PASS
+==========================================================================================================================
+  THE ARITHMETIC IS CLEAN.  Re-derived from the raw catalogue through an independent implementation of
+  Wolf+2010 and a different quadrature rule for the QUMOND sphere average, the sample splits 14/36 at
+  x_i = 0.0113 and the medians come back +0.114 and +0.731 dex.  V1 and V2 PASS.  No
+  total-for-enclosed-mass error, no spherical-formula-on-a-disc error, no aperture problem, and the
+  residual's sign does not track a branch of anyone's prescription -- the branch is gone by construction.
+  The null injection (V3) shows the estimator is unbiased, and the label shuffle (M-D) shows the
+  kept-minus-dropped difference of +0.617 dex is real at p = 0.0006.
+
+  WHAT IS WRONG IS THE STATISTIC AND THE WORDING, NOT THE ARITHMETIC.
+   1. 'A factor 6.4 in the same currency' is a RATIO of two dex values.  Dex has an arbitrary additive
+      zero point, so the ratio is not a physical quantity.  Bootstrapping it gives a 68 per cent interval of
+      2.1 to 11.7 with 14.9 per cent of resamples NEGATIVE, because the denominator,
+      +0.114 dex on 14 objects, is itself within about one sigma of zero.  Changing a_0 from the canonical
+      to the alt footing -- 21 per cent -- moves the ratio from 6.42 to 9.23.  The invariant statistic
+      is the DIFFERENCE, +0.617 dex, which is tight (+0.446 to +0.791) and footing-stable.  V5 and V6 FAIL.
+   2. BUT THE UNDERLYING DEPTH STRUCTURE IS REAL, AND MY ATTACK ON IT FAILED (V4 PASSES).  A pure
+      support-type effect with no depth dependence, injected at +0.4 dex on a framework-consistent baseline,
+      returns a ratio of 1.01 and a difference of -0.000 dex -- nothing like the measured 6.4 and +0.617.
+      So the deep pressure objects genuinely do sit higher than the shallow ones.  Only the CURRENCY the
+      claim is quoted in is wrong; the finding underneath it stands.
+   3. 'COMPLETELY confounded' and 'no Local Group comparison can separate them' are both too strong, and
+      g05's own section 4e refutes them: outer-halo globular clusters are pressure-supported, are in the
+      Local Group, sit INSIDE SPARC's coverage at x_i = 0.013-1.08, and land -0.86 dex, i.e. about a dex
+      away from the dwarf spheroidals at the same depth.  Pressure support and depth are separable in the
+      Local Group; what is confounded is 'dwarf spheroidal' with 'three decades below a_0'.  V8 FAILS.
+   4. The matched comparison was MADE and returned +0.064 +- 0.091 dex (bootstrapped median error; g05
+      quotes 0.069, the error of the MEAN, so its 0.93 sigma is really 0.71) on 14 objects spanning
+      3.4 decades of real overlap.  Its 95 per cent interval, -0.051 to +0.269 dex, still
+      CONTAINS f09's +0.215.  So the matched test does not exclude f09's effect either; it is UNDERPOWERED at
+      N = 14.  About 23 matched pressure objects would settle it at 3 sigma -- a finite, stateable
+      observational requirement, which is exactly what 'no comparison can separate them' would deny.
+      V9, V9b and V10 FAIL.
+
+  WHAT SURVIVES OF A1b, AND IT IS WORTH KEEPING:
+   * '36 of the 50 pressure-supported Local Group objects sit below the deepest acceleration SPARC reaches
+     (x_i < 0.0113), and their median raw residual is +0.62 dex HIGHER than the 14 that overlap.  The
+     difference is significant at p = 0.0006 against a label shuffle and is stable across both a_0 footings.'
+   * 'The overlap sample is small (N = 14), so the matched comparison neither establishes nor excludes a
+     support-type effect: +0.064 +- 0.091 dex, 95 per cent interval -0.051 to +0.269, which still contains
+     f09's +0.215.  It is a POWER limit at N = 14, not a structural impossibility.'
+  NOT: 'a factor 6.4', NOT 'completely confounded', NOT 'no Local Group comparison can separate them'.
+
+RESULT: 16 checks, 6 FAIL -> ["V5 (FAILS) the quoted 'factor 6.4' has no usable error bar: the kept median it divides by is +0.114 dex with a bootstrap 68 per cent interval that reaches to within 0.03 dex of zero, so the ratio's own 68 per cent interval runs over a factor of several and a non-negligible fraction of resamples put it negative or above 50.  A ratio whose denominator is consistent with zero is not a measurement.  The DIFFERENCE, +0.617 dex, is well determined and is what the claim should rest on", "V6 (FAILS) a 21 per cent change in a_0 -- the two footings this repository requires everywhere -- moves the headline 'factor' by more than a whole unit while moving the difference by a few hundredths of a dex.  The number chosen for the headline is the footing-sensitive one", "V8 (FAILS -- AND IT REFUTES THE WORD 'COMPLETELY') the confound is NOT complete.  Four pressure-supported Local Group systems sit squarely INSIDE the acceleration range SPARC covers, at exactly the depths where the dwarf spheroidals also live, and they sit about a dex BELOW the kernel while the dwarf spheroidals at the same depth sit ABOVE it.  Pressure support and depth are therefore separable in the Local Group -- g05's own section 4e does the separating, and gets a large answer.  What is confounded is 'dwarf spheroidal' with 'deep', which is a narrower and different statement", "V9 (FAILS) the Local Group comparison at matched depth is not impossible; it was PERFORMED and it returned a bound.  The correct statement is that it is UNDERPOWERED at N = 14, not that support and depth cannot be separated.  Saying 'no Local Group comparison can separate them' converts a power limit into a structural theorem, and the two have different consequences: a power limit is fixed by more objects inside the overlap, a structural confound is not", "V9b (FAILS, AND THE FAILURE CUTS BOTH WAYS -- READ IT CAREFULLY) g05 quotes the matched separation with the standard error of the MEAN while taking the difference of MEDIANS; bootstrapping the median's own error gives 0.091 dex, 31 per cent larger, so the honest matched result is +0.064 +- 0.091 dex, 0.71 sigma rather than 0.93.  That cuts against the file's own headline precision.  But it also means the matched test has only about 2.4 sigma sensitivity to f09's +0.215 dex and its 95 per cent interval STILL CONTAINS +0.215 -- so the matched comparison neither establishes nor excludes f09's effect.  'The separation dies' is therefore not established either: what is established is that the overlap sample cannot decide, which is a power statement about N = 14 and NOT the structural confound A1b asserts", "V10 (FAILS) 'completely confounded' would require the two sets to be disjoint in acceleration.  They are not: the pressure sample overlaps SPARC over 3.4 decades and 28 per cent of the objects live there.  A confound this partial is a sampling imbalance -- a real and important one -- but the word 'completely' is not supportable and neither is 'no comparison can separate them'"]   rc=1

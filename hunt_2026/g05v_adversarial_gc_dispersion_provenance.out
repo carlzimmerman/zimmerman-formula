@@ -1,0 +1,156 @@
+========================================================================================================================
+PART 1.  REPRODUCING g05's FOUR NUMBERS INDEPENDENTLY.  If I cannot, the bug is arithmetic and I say where.
+========================================================================================================================
+  cluster        M_V        L_V      x_i      x_e  sig_pred   my dex  g05 dex     diff
+  Pal 4        -5.83  1.838e+04   0.0611  0.00825      2.38   -0.874   -0.874  -0.0003
+  Pal 14       -5.33  1.156e+04   0.0127  0.01902      1.71   -1.306   -1.306  +0.0003
+  Pal 3        -5.45  1.293e+04   0.0267  0.00927      2.12   -0.844   -0.844  -0.0005
+  NGC 2419     -9.42  5.021e+05   1.0774  0.00971      6.50   -0.211   -0.211  -0.0003
+  [PASS] V1 g05's four cluster residuals and its median reproduce EXACTLY under an independent re-implementation of the same prescription, so there is no coding error inside g05's globular-cluster block.  Whatever is wrong with the claim is wrong in the INPUTS, not in the arithmetic that consumes them   (worst per-cluster difference 0.0005 dex; my median -0.859 against g05's quoted -0.859)
+
+========================================================================================================================
+PART 2.  PROVENANCE.  Where does each of g05's four hard-coded dispersions actually come from?
+========================================================================================================================
+  Baumgardt's parameter table column 22 is sigma0[km/s] -- the CENTRAL velocity dispersion of his fitted
+  N-body MODEL.  His separate profile table carries the MEASURED dispersion in radial bins, with star counts.
+  The Wolf et al. 2010 estimator that g05 inverts wants the dispersion AT r_1/2, not the model centre.
+
+  cluster     g05 used  sigma0 (MODEL)                   measured bins (R arcsec: sigma, N)   at r_hl
+  Pal 4           0.87            0.80                                     27": 0.88 (N=23)     0.880
+  Pal 14          0.38            0.70                                     77": 0.71 (N=16)     0.710
+  Pal 3           0.80            0.80                                     24": 1.70 (N=22)     1.700
+  NGC 2419        5.10            5.10 38": 5.51 (N=62); 100": 2.63 (N=62); 214": 1.64 (N=59)     4.771
+  
+  PUBLISHED DIRECT MEASUREMENTS, carried alongside: Pal 14 sigma = 0.38 +- 0.12 km/s from 16 members
+     (Jordi et al. 2009, AJ 137, 4586); Pal 4 sigma = 0.87 +- 0.18 km/s from 23 members (Frank et al. 2012,
+     MNRAS 423, 2917).  Baumgardt's own bins on the SAME stars give 0.71 and 0.88.
+  [PASS] V2 (THE PROVENANCE IS NOT WHAT THE CLAIM SAYS IT IS) g05 describes Pal 3 and NGC 2419 as coming 'from Baumgardt's own N-body fits'.  They come from ONE COLUMN of that fit -- sigma0, the MODEL CENTRAL dispersion -- and g05 then feeds that central value into a Wolf et al. 2010 estimator that is defined at the half-light radius.  Baumgardt's separately tabulated MEASURED dispersions for those same two clusters exist, are in this repository, and are used by this repository's own committed h93_outer_halo_globulars.py   (exact column matches to sigma0: Pal 4=not sigma0, Pal 14=not sigma0, Pal 3=sigma0, NGC 2419=sigma0)
+  [FAIL] V3 (THE SMOKING GUN, AND IT FAILS) for Pal 3 the model central dispersion g05 uses and the measured dispersion Baumgardt tabulates from the SAME 22 stars the model was fitted to disagree by a factor of more than two.  Pal 3 is the ONE cluster of the four whose measurement the N-body model does not reproduce -- for Pal 4 and Pal 14 the model sigma0 and the measured bin agree to 10 per cent -- and it is precisely that cluster where g05 substitutes the model number for the measurement.  The substitution moves Pal 3 by 0.65 dex in the direction that supports the claim.  This repository's own h93 uses the measured 1.70 and states in its check 93f that 'Pal 3 goes the OTHER way ... a problem for Newton and a point FOR the framework'   (Pal 3: g05 uses sigma = 0.80 km/s (Baumgardt sigma0, model central); Baumgardt's MEASURED bin is 1.70 +0.38/-0.30 km/s from 22 stars at 11.1 pc.  Ratio 2.12, i.e. +0.655 dex in acceleration.  For comparison the model reproduces the measurement for Pal 4 (0.80 vs 0.88) and Pal 14 (0.70 vs 0.71))
+  [FAIL] V4 (an APERTURE error, this repository's own listed bug pattern, and it fails) NGC 2419's dispersion profile falls by a factor 3.4 from 16 pc to 92 pc.  g05 uses the model CENTRAL dispersion 5.10 km/s as if it were the dispersion at the half-light radius 19.76 pc.  Interpolating Baumgardt's measured profile to r_h,l gives 4.77 km/s.  Small on its own -- 0.06 dex -- but it is the same class of substitution as V3 and it also runs toward the claim   (NGC 2419: g05 uses 5.10 km/s (model central); measured profile interpolated to r_h,l = 19.76 pc gives 4.77 km/s, i.e. -0.058 dex)
+  [FAIL] V5 (the Pal 14 choice, disclosed by g05 but made the OPPOSITE way to this repository's own convention) g05 takes the LOWER of the two dispersions available for Pal 14 (Jordi et al. 2009, 0.38 km/s) where Baumgardt's bin on the SAME 16 stars gives 0.71.  h93 carries the HIGHER value and says so explicitly: 'The LOWER value makes the framework's over-prediction WORSE, so this script carries the higher one as the framework-favourable choice.'  g05 reverses that convention without saying it did, and it is worth 0.54 dex on the most extreme of the four points   (Pal 14: Jordi 0.38 vs Baumgardt bin 0.71 on the same 16 stars = +0.543 dex; g05's quoted -1.306 becomes -0.763)
+
+========================================================================================================================
+PART 3.  THE MEDIAN UNDER EVERY DEFENSIBLE DISPERSION CHOICE, BOTH FOOTINGS.
+========================================================================================================================
+
+  FOOTING canonical  (a_0 = 9.36e-11 m/s^2)
+  dispersion choice                                             Pal 4     Pal 14      Pal 3   NGC 2419    MEDIAN
+  g05 as published (Frank, Jordi, sigma0, sigma0)              -0.874     -1.306     -0.844     -0.211    -0.859
+  h93's choice: Baumgardt MEASURED bins at r_h,l               -0.864     -0.763     -0.190     -0.269    -0.516
+  direct published where it exists, measured otherwise         -0.874     -1.306     -0.190     -0.269    -0.572
+  MODEL sigma0 for all four (fully model-dependent)            -0.947     -0.775     -0.844     -0.211    -0.810
+
+  FOOTING alt  (a_0 = 1.13e-10 m/s^2)
+  dispersion choice                                             Pal 4     Pal 14      Pal 3   NGC 2419    MEDIAN
+  g05 as published (Frank, Jordi, sigma0, sigma0)              -0.911     -1.343     -0.882     -0.235    -0.896
+  h93's choice: Baumgardt MEASURED bins at r_h,l               -0.901     -0.800     -0.227     -0.293    -0.547
+  direct published where it exists, measured otherwise         -0.911     -1.343     -0.227     -0.293    -0.602
+  MODEL sigma0 for all four (fully model-dependent)            -0.983     -0.813     -0.882     -0.235    -0.847
+  [FAIL] V6 (THE QUOTED MEDIAN IS WRONG BY 0.34 DEX AND THE ERROR RUNS TOWARD THE CLAIM) replacing the two model central dispersions and the low Pal 14 value with the measured dispersions this repository already has on disk -- the ones its own h93 uses -- moves the cluster median from the quoted -0.859 dex to about -0.52.  Two of the four quoted per-cluster numbers change by more than half a dex: Pal 3 from -0.844 to about -0.19 and Pal 14 from -1.306 to about -0.76.  The claim's headline arithmetic does not stand as published   (canonical: g05 as published -0.859 dex; on the measured dispersions -0.516 dex; difference +0.343.  Every one of the four substitutions moves the median UP (less negative), i.e. every one of g05's input choices ran toward its own conclusion)
+
+========================================================================================================================
+PART 4.  THE 'Upsilon_V = 1' CAVEAT, RE-DERIVED RATHER THAN ASSUMED.
+========================================================================================================================
+  g05 reports the Upsilon_V = 1 median as median(residual) + log10(2).  That is the NEWTONIAN scaling: it
+  assumes g_pred is proportional to the mass.  Three of the four clusters sit at x_i = 0.013-0.061, deep in
+  the modified regime, where d ln(nu(x) x)/d ln x is about 0.54-0.56, not 1.  The correct shift is smaller.
+   Upsilon_V     Pal 4    Pal 14     Pal 3   NGC 2419    MEDIAN
+         1.0    -0.704    -1.008    -0.652     -0.004    -0.678
+         1.6    -0.820    -1.211    -0.787     -0.143    -0.803
+         2.0    -0.874    -1.306    -0.844     -0.211    -0.859
+  [FAIL] V7 (AN ARITHMETIC ERROR IN THE STATED CAVEAT, and this one runs AGAINST the claim) g05's caveat says the clusters move to -0.558 dex at Upsilon_V = 1, obtained by adding log10(2).  Rerunning the pipeline at Upsilon_V = 1 gives about -0.69, because in the modified regime halving the mass lowers the predicted acceleration by only about a factor 1.5, not 2.  The stated caveat number is 0.13 dex too forgiving of the author's own point; the true Upsilon_V = 1 median is MORE negative than advertised   (rerun at Upsilon_V = 1 gives median -0.678 dex; the quoted 'median + log10(2)' gives -0.558; error +0.120 dex.  At Upsilon_V = 1.6 (h93's fiducial) -0.803, at 2.0 -0.859)
+
+========================================================================================================================
+PART 5.  THE DWARF-SPHEROIDAL SIDE OF THE COMPARISON, REBUILT INDEPENDENTLY.
+========================================================================================================================
+  dwarf spheroidals with 0.01 <= x_i <= 1.2 (the clusters' range), N = 12:
+        Tucana                 x_i = 0.0113    +0.117 dex
+        Phoenix                x_i = 0.0119    +0.383 dex
+        Antlia B               x_i = 0.0138    +0.231 dex
+        Andromeda VI           x_i = 0.0148    +0.422 dex
+        Andromeda VII          x_i = 0.0156    +0.111 dex
+        Leo II                 x_i = 0.0206    +0.289 dex
+        Sculptor               x_i = 0.0291    +0.217 dex
+        Fornax                 x_i = 0.0337    -0.087 dex
+        UGC 4879               x_i = 0.0668    -0.091 dex
+        Leo I                  x_i = 0.0728    -0.021 dex
+        NGC 147                x_i = 0.2746    -0.550 dex
+        NGC 185                x_i = 0.5158    -0.041 dex
+  [PASS] V8 the dwarf-spheroidal side of g05's comparison reproduces independently: N = 12 objects over the clusters' internal-acceleration range with a median of +0.114 dex.  The dwarf side of the claim is not where the problem is   (N = 12, median +0.114 dex against g05's quoted +0.114 on N = 12)
+
+========================================================================================================================
+PART 6.  DOES THE SIGN OF THE CLAIM SURVIVE?  Every dispersion choice x every Upsilon_V x both footings.
+========================================================================================================================
+  dispersion choice                                          Ups       foot  GC median  dSph med      gap
+  g05 as published (Frank, Jordi, sigma0, sigma0)            1.0  canonical     -0.678    +0.114   +0.792
+  g05 as published (Frank, Jordi, sigma0, sigma0)            1.0        alt     -0.716    -0.007   +0.709
+  g05 as published (Frank, Jordi, sigma0, sigma0)            1.6  canonical     -0.803    +0.114   +0.917
+  g05 as published (Frank, Jordi, sigma0, sigma0)            1.6        alt     -0.840    -0.007   +0.833
+  g05 as published (Frank, Jordi, sigma0, sigma0)            2.0  canonical     -0.859    +0.114   +0.973
+  g05 as published (Frank, Jordi, sigma0, sigma0)            2.0        alt     -0.896    -0.007   +0.889
+  h93's choice: Baumgardt MEASURED bins at r_h,l             1.0  canonical     -0.264    +0.114   +0.378
+  h93's choice: Baumgardt MEASURED bins at r_h,l             1.0        alt     -0.297    -0.007   +0.289
+  h93's choice: Baumgardt MEASURED bins at r_h,l             1.6  canonical     -0.434    +0.114   +0.548
+  h93's choice: Baumgardt MEASURED bins at r_h,l             1.6        alt     -0.466    -0.007   +0.458
+  h93's choice: Baumgardt MEASURED bins at r_h,l             2.0  canonical     -0.516    +0.114   +0.630
+  h93's choice: Baumgardt MEASURED bins at r_h,l             2.0        alt     -0.547    -0.007   +0.539
+  direct published where it exists, measured otherwise       1.0  canonical     -0.383    +0.114   +0.497
+  direct published where it exists, measured otherwise       1.0        alt     -0.416    -0.007   +0.409
+  direct published where it exists, measured otherwise       1.6  canonical     -0.510    +0.114   +0.624
+  direct published where it exists, measured otherwise       1.6        alt     -0.541    -0.007   +0.534
+  direct published where it exists, measured otherwise       2.0  canonical     -0.572    +0.114   +0.686
+  direct published where it exists, measured otherwise       2.0        alt     -0.602    -0.007   +0.594
+  MODEL sigma0 for all four (fully model-dependent)          1.0  canonical     -0.565    +0.114   +0.679
+  MODEL sigma0 for all four (fully model-dependent)          1.0        alt     -0.603    -0.007   +0.596
+  MODEL sigma0 for all four (fully model-dependent)          1.6  canonical     -0.733    +0.114   +0.847
+  MODEL sigma0 for all four (fully model-dependent)          1.6        alt     -0.771    -0.007   +0.764
+  MODEL sigma0 for all four (fully model-dependent)          2.0  canonical     -0.810    +0.114   +0.924
+  MODEL sigma0 for all four (fully model-dependent)          2.0        alt     -0.847    -0.007   +0.840
+  [PASS] V9 (AND THIS ONE PASSES -- THE DIRECTION OF THE CLAIM SURVIVES EVERYTHING I CAN THROW AT IT) under every dispersion choice, every stellar mass-to-light ratio from 1 to 2, and both a_0 footings, the outer-halo globular clusters still sit BELOW the kernel and the dwarf spheroidals at the same internal acceleration still sit above it.  The qualitative statement -- support type does not predict the sign of the residual -- is not refuted by the input errors.  Only the numbers are   (least negative cluster median over all 24 combinations: -0.264 dex (h93's choice: Baumgardt MEASURED bins at r_h,l, Ups=1.0, canonical); smallest dwarf-minus-cluster gap +0.289 dex)
+  [PASS] V10 the prescription systematic g05 itself flags (its own P4 and S2, the 0.28 dex spread between the exact sphere average and the published one-dimensional formula) does not rescue the clusters either   (on the measured dispersions: sphere average -0.516 dex, FM12 eq.60 -0.381 dex)
+
+========================================================================================================================
+PART 7.  MUTATION CONTROLS.
+========================================================================================================================
+  [PASS] M1 MUTATION CONTROL: with nu = 1 the same pipeline is plain Newtonian gravity, and on the measured dispersions at a stellar-population Upsilon_V = 1.6 the four clusters must sit near zero -- they contain no dark matter.  They do, which is the independent evidence that the geometry, the estimator and the photometry in this script are right and that the negative MOND residual is the boost and not a bookkeeping error   (Newtonian residuals at Ups=1.6: Pal 4 -0.109, Pal 14 +0.146, Pal 3 +0.719, NGC 2419 +0.018; median +0.082 dex)
+  [PASS] M2 MUTATION CONTROL on the data: inflating every cluster dispersion by sqrt(2) must move every residual by exactly +log10(2) and nothing else may respond   (max deviation 2.78e-16 dex)
+  [PASS] M3 GEOMETRY CONTROL: the (4/3) deprojection g05 applies to the projected half-light radius must land on Baumgardt's independently tabulated 3-D half-MASS radius.  It does, to 3 per cent, for all four clusters.  The radius is NOT one of the errors here   ((4/3) r_h,l against tabulated r_h,m: Pal 4 0.3%, Pal 14 2.4%, Pal 3 2.7%, NGC 2419 0.1%)
+  [FAIL] M4 (THE CIRCULARITY, AND IT FAILS) Baumgardt's sigma0 is the output of a NEWTONIAN N-body model fitted to the cluster.  Substituting it for a measurement therefore imports the Newtonian answer by construction: at Upsilon_V = 1.6 the four sigma0 values scatter by only 0.10 dex about Newton, where the four MEASURED dispersions scatter by 0.35 dex.  A quantity that is Newtonian by construction cannot be used as the observed side of a test of whether gravity is Newtonian.  If Pal 3's 22-star measurement is thought unreliable -- and at a Newtonian M/L_V near 8 it may well be binary-inflated -- the honest move is to DROP Pal 3, not to replace it with a Newtonian model output; dropping it leaves the cluster median at the Pal 4 / NGC 2419 / Pal 14 value   (Newtonian residuals at Ups=1.6 from MODEL sigma0: Pal 4 -0.192, Pal 14 +0.134, Pal 3 +0.064, NGC 2419 +0.075 (scatter 0.145); from MEASURED bins: Pal 4 -0.109, Pal 14 +0.146, Pal 3 +0.719, NGC 2419 +0.018 (scatter 0.366))
+     Pal 3 dropped entirely, measured dispersions elsewhere: residuals -0.864, -0.763, -0.269, median -0.763 dex
+  [FAIL] M5 (BOTH-FOOTINGS VIOLATION, AND IT FAILS) g05's check S5 is computed on the canonical footing ONLY -- a0c is hard-coded in its globular-cluster block and in the dwarf comparison set it is compared against.  On the alt footing a_0 = 1.13e-10 the dwarf spheroidals over the clusters' acceleration range sit essentially ON the kernel, not above it.  The clusters stay below on both footings, so the GAP survives, but the half of the claim that says the dwarfs 'sit above it' at these accelerations holds on one footing of the two   (dwarf median over 0.01 <= x_i <= 1.2: canonical +0.114 dex on N=12, alt -0.007 dex on N=11)
+
+========================================================================================================================
+VERDICT
+========================================================================================================================
+  THE CLAIM'S DIRECTION SURVIVES.  ITS NUMBERS DO NOT.
+
+  The arithmetic inside g05's globular-cluster block is correct: I reproduce all four residuals and the
+  median -0.859 to 0.0005 dex with an independent implementation (V1).  The errors are in the INPUTS.
+
+  1. Pal 3.  g05 uses 0.80 km/s, which is column 22 of Baumgardt's parameter table -- sigma0, the CENTRAL
+     dispersion of his fitted N-body MODEL -- and feeds it to a Wolf et al. 2010 estimator defined at the
+     half-light radius.  Baumgardt's MEASURED dispersion for Pal 3, from the same 22 stars, is 1.70
+     +0.38/-0.30 km/s.  Pal 3 is the only one of the four where model and measurement disagree (they agree
+     to 10 per cent for Pal 4 and Pal 14), and it is the one g05 replaces.  Pal 3 goes from -0.844 to
+     -0.190.
+     This repository's own committed h93 uses 1.70 and concludes the opposite about Pal 3 (its check 93f).
+  2. NGC 2419.  Same substitution, smaller: the model central 5.10 km/s used at r_h,l where the measured
+     profile interpolates to 4.77.  An aperture error, -0.058 dex.
+  3. Pal 14.  g05 takes the lower of two dispersions for the same 16 stars, reversing h93's stated
+     convention of carrying the framework-favourable one.  Worth +0.543 dex.
+  4. The Upsilon_V = 1 caveat is computed as median + log10(2), the Newtonian scaling, on objects at
+     x_i = 0.013-0.061 where the correct exponent is about 0.55.  Rerun, it is -0.678, not -0.558.
+
+  NET: the quoted median -0.859 dex becomes -0.516 dex on the measured dispersions this repository
+  already holds on disk -- a +0.343 dex correction.  Two of the four quoted per-cluster numbers
+  move by more than half a dex.  ALL FOUR input choices ran toward the claim.
+
+  WHAT STILL STANDS (V9, V10, M1).  Under every dispersion choice, Upsilon_V from 1 to 2, both footings and
+  both external-field prescriptions, the clusters remain below the kernel (worst case -0.264 dex) and
+  the dwarf spheroidals at the same x_i remain above it, with a gap of at least
+  +0.289 dex.  The Newtonian mutation puts the clusters on zero at Ups = 1.6,
+  which is what a dark-matter-free system should do.  So 'support type does not predict the sign of the
+  residual' is NOT refuted -- but it must be quoted at a cluster median near -0.52 dex, not -0.86, and
+  Pal 3 must be quoted as the object that argues the other way, not as a -0.844 point in favour.
+
+RESULT: 15 checks, 7 FAIL -> ["V3 (THE SMOKING GUN, AND IT FAILS) for Pal 3 the model central dispersion g05 uses and the measured dispersion Baumgardt tabulates from the SAME 22 stars the model was fitted to disagree by a factor of more than two.  Pal 3 is the ONE cluster of the four whose measurement the N-body model does not reproduce -- for Pal 4 and Pal 14 the model sigma0 and the measured bin agree to 10 per cent -- and it is precisely that cluster where g05 substitutes the model number for the measurement.  The substitution moves Pal 3 by 0.65 dex in the direction that supports the claim.  This repository's own h93 uses the measured 1.70 and states in its check 93f that 'Pal 3 goes the OTHER way ... a problem for Newton and a point FOR the framework'", "V4 (an APERTURE error, this repository's own listed bug pattern, and it fails) NGC 2419's dispersion profile falls by a factor 3.4 from 16 pc to 92 pc.  g05 uses the model CENTRAL dispersion 5.10 km/s as if it were the dispersion at the half-light radius 19.76 pc.  Interpolating Baumgardt's measured profile to r_h,l gives 4.77 km/s.  Small on its own -- 0.06 dex -- but it is the same class of substitution as V3 and it also runs toward the claim", "V5 (the Pal 14 choice, disclosed by g05 but made the OPPOSITE way to this repository's own convention) g05 takes the LOWER of the two dispersions available for Pal 14 (Jordi et al. 2009, 0.38 km/s) where Baumgardt's bin on the SAME 16 stars gives 0.71.  h93 carries the HIGHER value and says so explicitly: 'The LOWER value makes the framework's over-prediction WORSE, so this script carries the higher one as the framework-favourable choice.'  g05 reverses that convention without saying it did, and it is worth 0.54 dex on the most extreme of the four points", "V6 (THE QUOTED MEDIAN IS WRONG BY 0.34 DEX AND THE ERROR RUNS TOWARD THE CLAIM) replacing the two model central dispersions and the low Pal 14 value with the measured dispersions this repository already has on disk -- the ones its own h93 uses -- moves the cluster median from the quoted -0.859 dex to about -0.52.  Two of the four quoted per-cluster numbers change by more than half a dex: Pal 3 from -0.844 to about -0.19 and Pal 14 from -1.306 to about -0.76.  The claim's headline arithmetic does not stand as published", "V7 (AN ARITHMETIC ERROR IN THE STATED CAVEAT, and this one runs AGAINST the claim) g05's caveat says the clusters move to -0.558 dex at Upsilon_V = 1, obtained by adding log10(2).  Rerunning the pipeline at Upsilon_V = 1 gives about -0.69, because in the modified regime halving the mass lowers the predicted acceleration by only about a factor 1.5, not 2.  The stated caveat number is 0.13 dex too forgiving of the author's own point; the true Upsilon_V = 1 median is MORE negative than advertised", "M4 (THE CIRCULARITY, AND IT FAILS) Baumgardt's sigma0 is the output of a NEWTONIAN N-body model fitted to the cluster.  Substituting it for a measurement therefore imports the Newtonian answer by construction: at Upsilon_V = 1.6 the four sigma0 values scatter by only 0.10 dex about Newton, where the four MEASURED dispersions scatter by 0.35 dex.  A quantity that is Newtonian by construction cannot be used as the observed side of a test of whether gravity is Newtonian.  If Pal 3's 22-star measurement is thought unreliable -- and at a Newtonian M/L_V near 8 it may well be binary-inflated -- the honest move is to DROP Pal 3, not to replace it with a Newtonian model output; dropping it leaves the cluster median at the Pal 4 / NGC 2419 / Pal 14 value", "M5 (BOTH-FOOTINGS VIOLATION, AND IT FAILS) g05's check S5 is computed on the canonical footing ONLY -- a0c is hard-coded in its globular-cluster block and in the dwarf comparison set it is compared against.  On the alt footing a_0 = 1.13e-10 the dwarf spheroidals over the clusters' acceleration range sit essentially ON the kernel, not above it.  The clusters stay below on both footings, so the GAP survives, but the half of the claim that says the dwarfs 'sit above it' at these accelerations holds on one footing of the two"]   rc=1

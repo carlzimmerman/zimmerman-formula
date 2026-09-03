@@ -1,0 +1,181 @@
+======================================================================================================================
+g04v -- ADVERSARIAL REFUTATION ATTEMPT ON g04's A5b CASSINI-Q2 CLAIM
+======================================================================================================================
+  A PASSing check below means MY ATTACK FAILED and g04's claim survived it.
+  A FAILing check means I broke the claim.  I am trying to make these FAIL.
+
+----------------------------------------------------------------------------------------------------------------------
+V1 -- INDEPENDENT QUADRATURE.  g04 used scipy.dblquad.  I use fixed-order Gauss-Legendre in xi and a
+      substituted, adaptively-split grid in v.  Different algorithm, same equation, written from the
+      paper's eq (12) rather than copied from g04.
+----------------------------------------------------------------------------------------------------------------------
+
+    etilde  published q   q (my GL)    rel err   Desmond+2024 Fig.1 anchors
+       1.0        0.094      0.0947     0.758%
+       1.5        0.159      0.1595     0.305%
+       2.0        0.221      0.2210    -0.001%
+  [PASS] V1a  SURVIVES: an independent quadrature reproduces the published Desmond+2024 anchors   (ATTACK FAILED.  My Gauss-Legendre implementation, written from eq (12) and not from g04's code, hits the three PUBLISHED Desmond+2024 anchors to 0.76% worst.  The integral is not a coding artefact.  (Note the anchors are quoted in the paper to 2 significant figures, so ~0.5-1% is the floor of this test, not a discrepancy.))
+
+  canonical: etilde = 2.2927  eN = 1.6608  q = 0.25456   (g04 printed 0.2546)
+  alt      : etilde = 1.8991  eN = 1.2889  q = 0.20899   (g04 printed 0.2090)
+  [PASS] V1b  SURVIVES: g04's operating-point q values reproduce independently   (ATTACK FAILED.  Worst disagreement with g04's printed q is 0.014%.)
+
+----------------------------------------------------------------------------------------------------------------------
+V2 -- INDEPENDENT Q_2.  Q_2 = -(3 a_0^{3/2})/(2 sqrt(GM)) q.  Recomputed from my own q, and the
+      dimensional identity checked ([m/s^2]^{3/2}/[m^3/s^2]^{1/2} = s^-2).
+----------------------------------------------------------------------------------------------------------------------
+
+     footing         a0        q     Q2 mine      Q2 g04      rel  /ceiling   sigma
+   canonical  9.360e-11   0.2546  3.0016e-26  3.0020e-26  -0.015%      5.77    15.8
+         alt  1.130e-10   0.2090  3.2687e-26  3.2690e-26  -0.010%      6.29    17.3
+  [PASS] V2a  SURVIVES: the Q_2 arithmetic is right and BOTH footings sit OVER the ceiling   (ATTACK FAILED.  I get Q_2 = 3.002e-26 / 3.269e-26 s^-2, agreeing with g04 to 0.015%, and BOTH exceed the Park+2026 2-sigma ceiling (5.77x / 6.29x).  The arithmetic is correct and the direction is over, not under.)
+
+----------------------------------------------------------------------------------------------------------------------
+V3 -- LOCALISATION.  g04 asserts Q_2 'is set at r_M ~ 8000 AU where y ~ 1, not at Saturn'.  In eq (12)
+      v^2 = g_N,int/a_0 = (r_M/r)^2, so v = r_M/r: v -> 0 is far outside, v -> inf is the inner solar
+      system.  If g04 has the physics backwards, the support will sit at large v.  MUTATION CONTROL:
+      truncating to the inner solar system (r < 100 AU) must leave ESSENTIALLY NOTHING behind.
+----------------------------------------------------------------------------------------------------------------------
+
+  r_M = sqrt(GM/a0) = 7960 AU (canonical).  Cumulative q(v < V) / q(total):
+          v    r = r_M/v [AU]      cum q   fraction
+       0.25           31838.5   -0.00000     0.0000
+       0.50           15919.2   -0.00005     0.0002
+       1.00            7959.6   -0.00621     0.0244
+       1.50            5306.4   -0.07770     0.3052
+       2.00            3979.8   -0.16255     0.6385
+       3.00            2653.2   -0.22826     0.8967
+       5.00            1591.9   -0.25173     0.9889
+      10.00             796.0   -0.25455     0.9999
+      80.00              99.5   -0.25456     1.0000
+  fraction of q from r > 15919 AU (v<0.5): 0.0002
+  fraction of q from r < 2653 AU (v>3.0): 1.0335e-01
+  fraction of q from r < 100 AU (v>80, the whole planetary + Kuiper region): 6.550e-15
+  [PASS] V3a  SURVIVES: Q_2 is set at r ~ r_M, not in the exponentially-suppressed inner solar system   (ATTACK FAILED, and decisively.  89.7% of q comes from v < 3, i.e. r > 2653 AU, and the ENTIRE region inside 100 AU contributes 6.6e-15 of the total.  The integrand's argument is sqrt(eN^2 + v^4 + ...) ~ v^2 at large v, so nu-1 ~ exp(-v) there -- Route A's exponential kills the INNER contribution, which was never the contribution that mattered.  g04's physical statement is correct: Q_2 lives at r ~ r_M, not at Saturn. MUTATION CONTROL: an inner-truncated integral returns 6.6e-15 of q, so the machinery IS capable of showing an inner-dominated result and does not.)
+
+----------------------------------------------------------------------------------------------------------------------
+V4 -- THE STATED WEAKEST LINK: g_ext = 2.146e-10 with no error bar.  How far must the Milky Way mass
+      model move to rescue the claim?  g_ext = V_c^2/R_0 (the total in-plane field at the Sun).
+----------------------------------------------------------------------------------------------------------------------
+  source                              V_c [km/s]  R_0 [kpc]      g_ext   etilde   Q2 canon   /ceil
+  Bovy+2012 (low end)                      218.0      8.000  1.925e-10    2.057  2.684e-26    5.16
+  Eilers+2019                              229.0      8.122  2.092e-10    2.236  2.926e-26    5.63
+  g04 value                                233.0      8.200  2.146e-10    2.292  3.001e-26    5.77
+  GRAVITY 2021 R0 / Reid+2019              236.0      8.275  2.181e-10    2.330  3.051e-26    5.87
+  Reid+2019 high 1-sigma                   243.0      8.275  2.313e-10    2.471  3.231e-26    6.21
+  g_ext required to bring Q_2 down to the 2-sigma ceiling: 5.555e-11 m/s^2 = V_c 119 km/s at R_0 = 8.2 kpc
+  [PASS] V4a  SURVIVES: no published Milky Way mass model rescues the claim   (ATTACK FAILED.  Across the FULL modern published span of (V_c, R_0) -- Bovy+2012's 218 km/s to Reid+2019's 243 -- Q_2 stays at 5.16x to 6.21x the ceiling; it never drops below it.  To reach the ceiling you need g_ext = 5.56e-11 m/s^2, i.e. V_c = 119 km/s, which is not a Milky Way.  The reason is the WEAK exponent: dln q/dln etilde ~ 1.2, so the 12% span in g_ext buys 15% in Q_2 against a factor 5.8 shortfall.  The 'no error bar on g_ext' weakness is real for the SIGMA and irrelevant for the VERDICT.)
+
+----------------------------------------------------------------------------------------------------------------------
+V5 -- CONFOUND: the a_0 footing.  Q_2 ~ a0^{3/2} q(g_ext/a0): raising a_0 raises the prefactor but LOWERS
+      etilde and hence q.  The two powers fight, so Q_2 is nearly a_0-BLIND.  Can any a_0 rescue it?
+----------------------------------------------------------------------------------------------------------------------
+           a0   etilde        q          Q2  /ceiling
+    1.000e-11   21.460   0.5616   2.312e-27      0.44
+    2.000e-11   10.730   0.6280   7.313e-27      1.41
+    3.000e-11    7.153   0.5677   1.215e-26      2.34
+    5.000e-11    4.292   0.4322   1.990e-26      3.83
+    7.000e-11    3.066   0.3336   2.544e-26      4.89
+    9.360e-11    2.293   0.2546   3.002e-26      5.77
+    1.130e-10    1.899   0.2090   3.269e-26      6.29
+    1.500e-10    1.431   0.1506   3.603e-26      6.93
+    2.500e-10    0.858   0.0765   3.938e-26      7.57
+    5.000e-10    0.429   0.0262   3.816e-26      7.34
+  a_0 required to bring Q_2 down to the 2-sigma ceiling: 1.587e-11 m/s^2 = 5.9x BELOW the canonical footing, 7.1x below the alt one.
+  Q_2 is nearly a_0-blind near the footings (dln Q_2/dln a_0 = 0.45 between them) because the
+  a0^(3/2) prefactor is almost cancelled by q's fall with etilde = g_ext/a_0.
+  [PASS] V5a  SURVIVES: no a_0 the framework is allowed to use rescues the claim   (PARTIALLY BROKEN, THEN REPAIRED -- and this is the one place the attack got traction.  Unlike g_ext, a_0 CAN in principle rescue Q_2: the ratio does cross 1 at a_0 = 1.59e-11 m/s^2 (the scan hits 0.44x at a_0 = 1e-11).  But that is 5.9x below the canonical footing and 7.1x below the alt one, and a_0 is not a free parameter here -- it is the quantity the whole framework is built to match on galaxy rotation curves, where both footings are pinned to within tens of percent.  So the rescue is mathematically available and physically unavailable, and it must be stated that way rather than as 'no a_0 works'.  Between the two footings the claim is essentially footing-independent (5.77x vs 6.29x), which is the substantive point.)
+
+----------------------------------------------------------------------------------------------------------------------
+V6 -- EXTERNAL CROSS-CHECK.  If this machinery is right it must reproduce OTHER groups' published Q_2 at
+      THEIR inputs, not just its own.  Two independent pins.
+----------------------------------------------------------------------------------------------------------------------
+  (a) at Blanchet & Novak 2011's inputs (a0 = 1.2e-10, g_e = 1.9e-10): etilde = 1.583, q = 0.1701,
+      Q_2 = 2.911e-26 s^-2.  Their published band for standard mu is 2.2e-26 to 4.1e-26 (mu_exp: 3.0e-26).
+  (b) against the bound live in 2024, Hees+2014 Q_2 = (3 +/- 3)e-27, that same Q_2 is 8.7 sigma.
+      Desmond+2024's PUBLISHED fiducial RAR-vs-Cassini tension is 8.7 sigma.  Reproduced to 0.0%.
+  [PASS] V6a  SURVIVES: the machinery reproduces two other groups' PUBLISHED numbers at their own inputs   (ATTACK FAILED, and this is the single strongest support the claim has.  Run at Blanchet & Novak 2011's OWN inputs the machinery returns Q_2 = 2.91e-26 s^-2, inside their published 2.2e-26 - 4.1e-26 band and within 3% of their mu_exp value; and against the Hees+2014 bound that was live when Desmond+2024 was written, that same number is 8.7 sigma against their PUBLISHED fiducial 8.7 sigma.  Two independent groups' published numbers are recovered from this equation with no tuning.  g04's Q_2 = 3.0e-26 is therefore not an inflated in-house value: it sits AT the published fiducial.)
+
+----------------------------------------------------------------------------------------------------------------------
+V7 -- DROP THE UNVERIFIABLE INPUT.  Park+2026 (arXiv:2602.17884) is a 2026 preprint I cannot open from
+      here; it is an external input taken on trust.  Does the claim survive WITHOUT it, on the
+      unambiguously-published Hees+2014 PRD 89 102002 Q_2 = (3 +/- 3)e-27 alone?
+----------------------------------------------------------------------------------------------------------------------
+  bound                         ceiling(2sig)  canon /ceil  alt /ceil  canon sigma
+  Hees+2014 (3+-3)e-27               9.00e-27         3.34       3.63          9.0
+  Park+2026 (1.6+-1.8)e-27           5.20e-27         5.77       6.29         15.8
+  [PASS] V7a  SURVIVES: the failure does not rest on the un-openable Park+2026 preprint   (ATTACK FAILED.  On Hees+2014 alone -- a 2014 PRD paper with no verification problem -- Q_2 is still 3.34x the 2-sigma ceiling and 9.0 sigma. Park+2026 tightens the margin from 3.3x to 5.8x; it does not create the failure.  The verdict does not rest on it.)
+
+----------------------------------------------------------------------------------------------------------------------
+V8 -- THE DISCRIMINANT HALF.  g04 quotes the MI arm at 7.4e-34 s^-2 = 1e-7 of the ceiling.  I read the
+      committed source rather than restate it.
+----------------------------------------------------------------------------------------------------------------------
+  source present: True   (/Users/carlzimmerman/new_physics/zimmerman-formula/real_research/reviews/cassini_mi_evasion_2026/CASSINI_MI_EVASION_2026-07.md)
+  that file states, verbatim in its own table and text:
+    l=2 quadrupole (what Cassini constrains) : 7.4e-34 s^-2  = 1e-07 x ceiling
+    'worst corner (inflating the O(1) prefactor, steeper true gradient)': 3.9e-28 s^-2 = 0.075 x ceiling
+    l=1 dipole scale                          : 2.7e-29 s^-2  = 0.005 x ceiling
+  So the SAME committed source spans 5e+05 in the MI quadrupole.  g04 quotes only the
+  best corner.  Even at the WORST corner, though, MI is 13x UNDER the ceiling while MG
+  is 5.8x OVER: a separation of 8e+01, not 4e+07.
+  ADDITIONALLY: that MI number is computed at the OLD kernel nu=sqrt(1+1/y), whose load-bearing
+  suppression is nu-1 = a0/(2 a_int) = 7.1e-7 at Saturn.  It has NOT been recomputed on Route A.
+  [FAIL] V8a  SURVIVES: the quoted MI contrast 1e-7 is the source's only reading, not its best corner   (ATTACK SUCCEEDS, PARTIALLY.  The committed source itself gives a worst corner of 3.9e-28 s^-2 = 0.075x the ceiling -- 5e+05 above the 7.4e-34 g04 quotes -- and the repo's OTHER committed MI script (cassini_mi_q2_saturn_2026.py, via BOUNDS.md) reports 2.7e-29 as its headline before the dipole/quadrupole relabel.  Quoting '1e-7 of the ceiling' as THE MI number is selecting the most favourable end of a 5e+05-wide in-house spread, on a kernel that is not Route A.  THIS DOES NOT FLIP THE SIGN: MI is under the ceiling at every corner and MG is over it at every corner, so the observable still separates the arms.  What is refuted is the PRECISION of the contrast, not its direction.)
+  [PASS] V8b  the DIRECTION of the discriminant survives even at the MI source's worst corner   (MI at its worst corner is 0.075x the ceiling (under); MG on Route A is 5.8x / 6.3x (over).  The bound sits BETWEEN the two arms on every reading available in this repository, so Q_2 does discriminate and it does point away from modified gravity.  The honest separation to quote is >= 8e+01, not 1e7.)
+
+======================================================================================================================
+ADVERSARIAL VERDICT
+======================================================================================================================
+
+ THE CORE CLAIM SURVIVES.  Eight of my nine attacks failed.  Q_2 = 3.002e-26 (canonical) /
+ 3.269e-26 (alt) s^-2 reproduces independently to 0.015%, via a Gauss-Legendre quadrature written
+ from Desmond+2024 eq (12) rather than copied from g04 -- and my first attempt at it was WRONG (I applied nu
+ to sqrt(D) instead of to the kernel's own inner square root, which inflates q(1) from 0.094 to 0.212); the
+ published anchors caught my error, not g04's.  The value is 5.8x / 6.3x the Park+2026
+ 2-sigma ceiling and 3.3x the Hees+2014 one, so the failure does not depend on the 2026 preprint.
+
+ THE CONFOUNDS DO NOT RESCUE IT.  Over the full published span of Milky Way (V_c, R_0) -- Bovy+2012's 218
+ km/s to Reid+2019's 243 -- the ratio moves only 5.16x to 6.21x; reaching the ceiling would need
+ V_c = 119 km/s.  The localisation claim is not merely true but dramatic: everything inside 100 AU carries
+ 6.6e-15 of the integral, so Route A's exponential tail provably cannot touch this channel -- the two
+ liabilities g04 insists on separating really are separate.  And the machinery reproduces Blanchet & Novak
+ 2011's published Q_2 to 3% of their mu_exp value at THEIR inputs, and Desmond+2024's published 8.7-sigma
+ fiducial to 0.0%, with no tuning.  g04's Q_2 is not an inflated in-house number; it sits at the
+ published fiducial.
+
+ ORDINARY COLD DARK MATTER DOES NOT PRODUCE THIS SIGNATURE, so the confound list the adversarial lens asks
+ about has no purchase.  In GR the only Galaxy-sourced quadrupole at Saturn is the ordinary tide,
+ ~4 pi G rho_local ~ 1e-30 s^-2, three orders under the ceiling.  The MOND Q_2 is generated by the phantom
+ density the EXTERNAL field induces through the nonlinear Poisson equation and has no dark-matter analogue.
+ Nothing in the calculation uses a halo profile, an anisotropy, a distance ladder, or a galaxy sample, so
+ there is no NFW-derived input that could smuggle the answer in.  This is a null test GR+CDM passes trivially
+ and the modified-gravity arm fails.
+
+ WHERE THE ATTACK GOT TRACTION, TWICE.
+  (1) V8a, BROKEN.  The MI contrast is quoted at the most favourable end of its own source's spread.
+      CASSINI_MI_EVASION_2026-07.md gives the l=2 value 7.4e-34 s^-2 BUT ALSO a stated 'worst corner' of
+      3.9e-28 s^-2 = 0.075x the ceiling, and the repo's other committed MI script headlines 2.7e-29.
+      '1e-7 of the ceiling' is a 5e+05-times-optimistic reading of an in-house number, on the OLD
+      kernel nu=sqrt(1+1/y), at the quasistatic-MI premise, never recomputed on Route A.  The arm separation
+      should be quoted as ">= 1e2, with the bound sitting between the arms", not as 1e7.  The DIRECTION is
+      unaffected: MI is under the ceiling at every corner, MG over it at every corner.
+  (2) V5a, PARTIAL.  Unlike g_ext, a_0 CAN in principle rescue Q_2 -- the ratio crosses 1 at
+      a_0 = 1.59e-11 m/s^2, 5.9x below the canonical footing.  That is not an available
+      escape (a_0 is what the framework is built to match on rotation curves), but "no a_0 works" would be
+      the wrong statement; "no a_0 the framework is allowed to use works" is the right one.
+
+ A THIRD, SMALLER PROBLEM WITH THE HEDGE.  The claim hedges to 'several sigma, up to ~16' by citing
+ Desmond+2024's 1.9-sigma bulge-removed variant.  That variant comes from a DIFFERENT, sharper interpolating
+ function preferred once bulge galaxies leave the RAR fit; it is not available to Route A, whose nu is fixed
+ by the framework.  What genuinely varies is the Milky Way mass model, and V4 shows that moves the ratio by
+ ~20%, not by a factor 5.  The hedge errs toward the framework, which is the safe direction, but it
+ misattributes the source of the spread -- and the ROBUST statement the claim already prefers, the ratio to
+ the ceiling, is the one my scans confirm: 5.2x-6.2x on canonical across every MW model, and
+ 5.8x-6.3x across the two footings.
+
+ NET: the claim as a KILL of the modified-gravity arm on the Cassini external-field quadrupole STANDS, on
+ both footings, and is robust to every confound I could construct.  The claim as a QUANTIFIED FORK
+ DISCRIMINANT is overstated by ~5 orders in its MI leg, though the fork's direction survives.
+
+
+RESULT: 10 checks, 1 FAIL -> ["V8a  SURVIVES: the quoted MI contrast 1e-7 is the source's only reading, not its best corner"]   rc=1

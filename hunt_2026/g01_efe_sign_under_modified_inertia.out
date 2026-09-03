@@ -1,0 +1,173 @@
+====================================================================================================================
+g01 -- does modified INERTIA predict a different SIGN for the external-field slope?  Short answer: no.
+====================================================================================================================
+  N = 92 Local Group dwarfs with a MEASURED dispersion (45 MW, 34 M31, 13 field).  Local Volume Database (Pace 2024).
+
+====================================================================================================================
+1.  THE HOPE'S PREMISE, TESTED: does going to the freely-falling frame remove the effect in modified inertia?
+====================================================================================================================
+  Local ('algebraic') modified inertia: the body's TOTAL acceleration a in the inertial frame obeys
+      mu(|a|/a_0) a = -grad Phi_N   ==>   a = nu(|g_N|/a_0) g_N   pointwise  (Milgrom 1994; 2011).
+  The dwarf's centre of mass obeys the SAME law with the host's field, A_cm = nu(g_Ne/a_0) g_Ne, so the
+  relative acceleration a_rel = a - A_cm is what an internal observer measures.  If the equivalence principle
+  were intact, a_rel would not know g_Ne at all.  Sphere-average -<a_rel . r_hat>/h and compare with QUMOND's
+  flux-theorem answer <g_r> = <S_r>, S = nu(|g_N|/a_0) g_N (f01).  TWO INDEPENDENT CODE PATHS.
+
+        x_e      h/a_0    MI  -<a_rel.r>/h    QUMOND  -<S_r>/h    frac diff   nu(x_e)(1+L/3)
+     0.0010   1.00e-06           26.855388           26.855388      0.0000%        26.855388
+     0.0010   1.00e-05           26.855323           26.855323     -0.0000%        26.855388
+     0.0100   1.00e-05            8.843053            8.843053     -0.0000%         8.843053
+     0.0100   1.00e-04            8.843033            8.843033      0.0000%         8.843053
+     0.1000   1.00e-04            3.165910            3.165910     -0.0000%         3.165910
+     0.1000   1.00e-03            3.165904            3.165904      0.0000%         3.165910
+     0.5000   5.00e-04            1.746532            1.746532     -0.0000%         1.746532
+     0.5000   5.00e-03            1.746529            1.746529      0.0000%         1.746532
+     1.0000   1.00e-03            1.428531            1.428531     -0.0000%         1.428531
+     1.0000   1.00e-02            1.428530            1.428530      0.0000%         1.428531
+  [PASS] G1 (AGAINST THE HOPE, AND IT IS THE WHOLE POINT OF SECTION 1) local modified inertia gives the SAME sphere-averaged external-field coupling as QUMOND, to quadrature precision, by two independent code paths. Going to the freely-falling frame does NOT remove the external-field effect, because mu depends on the acceleration MAGNITUDE and a_0 is absolute: MOND of every kind breaks the strong equivalence principle. The centre-of-mass term drops out only because its radial sphere-average vanishes, which is computed here and not assumed.   (worst fractional MI-vs-QUMOND difference over 10 (x_e, h) pairs = 0.00000%; |<A_cm . r_hat>| <= 1.73e-18)
+
+====================================================================================================================
+2.  SO THE ESCAPE MUST BE NONLOCAL.  One parameter: the external-field transparency w.
+====================================================================================================================
+  Modified inertia is a CLASS, not a theory.  Milgrom 1994 shows the modification must be a NONLOCAL
+  functional of the whole trajectory (a local one cannot conserve momentum), and nothing in the class fixes
+  how much a zero-frequency, constant external acceleration weighs against the system's own bound modes.
+  So parameterise it honestly with ONE number and report the RANGE:
+      log C(w) = log nu_sphere(x_int) + w * [ log nu_sphere(x_int + x_e) - log nu_sphere(x_int) ],  x = g_N/a_0
+      w = 1  local MI == modified gravity (section 1); w = 0  full equivalence-principle restoration, no EFE.
+  w is NOT derived here and MUST NOT be quoted as a prediction.  It is a dial spanning the class's freedom.
+  (The transparency is applied in the LOG of the coupling, not inside the kernel's argument.  Putting it in the
+   argument sends x_int + w x_e negative for w < 0 where the kernel is undefined -- a bug that produced slopes
+   of order +30 in the first run of this script, and is recorded here rather than quietly fixed.)
+
+  ---- canonical footing, a_0 = 9.360e-11 ------------------------------------------------------------
+  g_e/a_0 spans 0.0070 to 4.876, median 0.0931
+  MEASURED slope, statistic (C), identical design matrix: +0.0800 +/- 0.0466
+           w  arm                                           predicted slope   EFE part   sigma from data
+       -1.00  hypothetical ANTI-EFE (no theory supplies it)          +0.1272    +0.1124             1.01
+       -0.80  hypothetical ANTI-EFE (no theory supplies it)          +0.1048    +0.0899             0.53
+       -0.50  hypothetical ANTI-EFE (no theory supplies it)          +0.0711    +0.0562             0.19
+       -0.25  hypothetical ANTI-EFE (no theory supplies it)          +0.0430    +0.0281             0.80
+       +0.00  no EFE (equivalence principle intact)                 +0.0149    +0.0000             1.40
+       +0.25  nonlocal modified inertia, transparency w             -0.0132    -0.0281             2.00
+       +0.50  nonlocal modified inertia, transparency w             -0.0413    -0.0562             2.61
+       +0.75  nonlocal modified inertia, transparency w             -0.0694    -0.0843             3.21
+       +1.00  modified gravity == local modified inertia            -0.0975    -0.1124             3.81
+
+  ---- alt footing, a_0 = 1.130e-10 ------------------------------------------------------------
+  g_e/a_0 spans 0.0064 to 4.163, median 0.0844
+  MEASURED slope, statistic (C), identical design matrix: +0.0803 +/- 0.0467
+           w  arm                                           predicted slope   EFE part   sigma from data
+       -1.00  hypothetical ANTI-EFE (no theory supplies it)          +0.1287    +0.1141             1.04
+       -0.80  hypothetical ANTI-EFE (no theory supplies it)          +0.1059    +0.0913             0.55
+       -0.50  hypothetical ANTI-EFE (no theory supplies it)          +0.0717    +0.0571             0.19
+       -0.25  hypothetical ANTI-EFE (no theory supplies it)          +0.0431    +0.0285             0.80
+       +0.00  no EFE (equivalence principle intact)                 +0.0146    +0.0000             1.41
+       +0.25  nonlocal modified inertia, transparency w             -0.0139    -0.0285             2.02
+       +0.50  nonlocal modified inertia, transparency w             -0.0425    -0.0571             2.63
+       +0.75  nonlocal modified inertia, transparency w             -0.0710    -0.0856             3.24
+       +1.00  modified gravity == local modified inertia            -0.0995    -0.1141             3.85
+  [PASS] G2 REPRODUCTION: this script's independent regression must recover k_contrarian_dwarfefe's measured +0.0800 +/- 0.0467 on statistic (C).  If it does not, nothing downstream means anything.   (this run +0.0800 +/- 0.0466 vs committed +0.0800 +/- 0.0467 (alt footing +0.0803 +/- 0.0467))
+  [PASS] G3 THE HOPE FAILS, STATED AS A RANGE, AND STATED ON THE RIGHT QUANTITY: the EXTERNAL-FIELD PART of the predicted slope, slope(w) - slope(0), is NON-POSITIVE for every w in (0, 1] on both footings.  Modified inertia cannot flip the sign by weakening the external-field effect; weakening it only walks the prediction toward the no-EFE limit.  The other arm does NOT rescue the framework's sharpest failure -- it can only make the failure smaller.  (Stated as the DIFFERENCE and not as the raw slope because the design matrix leaks a small positive constant into every arm alike -- see G4.)   (canonical EFE part: w=1 -0.1124, w=0.5 -0.0562, w=0.25 -0.0281; alt EFE part: w=1 -0.1141, w=0.5 -0.0571, w=0.25 -0.0285)
+  [PASS] G4 PIPELINE LEAKAGE, reported because it moves the answer TOWARD the framework's rival and must not be hidden: a model with w = 0 has no external-field dependence whatsoever, so the honest zero-EFE prediction through this design matrix is NOT 0.0000 but the residual curvature leakage.  It is small but non-zero, and it means the raw predicted slope is faintly POSITIVE for w below about 0.13 -- from the regression, not from any physics.   (w=0 predicted slope through the pipeline = +0.0149 (canonical), +0.0146 (alt); pure analytic zero-EFE answer is exactly 0)
+
+  slope_pred(w) = -0.11236 w +0.01489 EXACTLY (max deviation over the 9-point grid 1.80e-16), because
+  a least-squares coefficient is a linear functional of the response and log C is linear in w by construction.
+  INVERTING: the data require w = -0.580 +/- 0.414.
+  [PASS] G5 WHAT THE DATA PREFER, and it is not merely 'a weaker EFE': the central value asks a modified-inertia theory for an ANTI-external-field effect -- the external field ENHANCING the MOND boost rather than suppressing it.  No modified-inertia theory in the literature has been shown to do that and this script does not construct one.  The check passes only if the preferred w is negative AND the modified-gravity value w = 1 is excluded at more than 2 sigma.  REPORTED AGAINST THE CLAIM: w = 0 is NOT excluded, so the data do not DEMAND an anti-EFE, they merely lean that way.   (preferred w = -0.580 +/- 0.414; w = 1 (modified gravity) is 3.81 sigma away, w = 0 (no EFE) only 1.40 sigma away and therefore fully allowed (alt footing: w = -0.576))
+
+====================================================================================================================
+3.  THE THEORY-LIGHT STATEMENT (c): how far are the data from ZERO external-field effect?
+====================================================================================================================
+  canonical  measured +0.0800 +/- 0.0466  ->  1.72 sigma from an exact zero;  1.40 sigma from the leakage-corrected zero-EFE model;  3.81 sigma from modified gravity
+  alt        measured +0.0803 +/- 0.0467  ->  1.72 sigma from an exact zero;  1.41 sigma from the leakage-corrected zero-EFE model;  3.85 sigma from modified gravity
+  [PASS] G6 THE ONLY STATEMENT HERE WORTH QUOTING, and it costs no theory: the Local Group dwarf dispersions are CONSISTENT WITH NO EXTERNAL-FIELD EFFECT AT ALL on both footings.  That is what GR plus dark matter predicts exactly, by the strong equivalence principle, and it is what any modified-inertia theory whose nonlocal kernel screens a constant external acceleration would predict.  It does not distinguish the two.   (canonical 1.72 sigma from zero, alt 1.72 sigma from zero (modified gravity sits at 3.81 and 3.85 sigma))
+
+====================================================================================================================
+4.  MUTATION CONTROLS
+====================================================================================================================
+  [PASS] M1 (d) SHUFFLE THE ENVIRONMENT LABELS: permuting log(g_e/a_0) among the dwarfs must destroy the measured slope.  If it did not, the regression itself would be manufacturing the signal.   (shuffled +0.0000 +/- 0.0387 against the real +0.0800 (2.07 shuffle-sigma))
+  [PASS] M2 nu == 1 (Newton, strong equivalence principle intact) must predict a slope of exactly zero in BOTH arms -- the LambdaCDM alternative, computed rather than asserted   (predicted slope with nu == 1: +5.245e-16)
+  [PASS] M3 a_0 LEVER, both directions, on the leakage-free EFE part of the slope: at a_0 / 100 every dwarf is deep-NEWTONIAN and the external-field effect must collapse toward zero; at a_0 x 100 every dwarf is deep-MOND and it must saturate near the analytic deep value -(1/4)<x_e/(x_int+x_e)>, which is diluted well below -1/4 because these dwarfs' own internal fields dominate their external ones.   (deep-Newtonian (a_0/100) -0.02461; canonical -0.11236; deep-MOND (a_0 x100) -0.12680 against the analytic deep-MOND target -0.13006 (mean x_e/(x_int+x_e) = 0.520))
+
+====================================================================================================================
+5.  ATTACKING THE +0.0800 ITSELF.  Is the measurement robust, or is it a selection effect?
+====================================================================================================================
+  raw correlations of log(g_e/a_0) with everything that could confound it, canonical footing:
+      corr(log g_e, log M_b (stellar mass)      ) = -0.251   (N=92)
+      corr(log g_e, log r_half                  ) = -0.256   (N=92)
+      corr(log g_e, M_V (fainter = larger)      ) = +0.226   (N=92)
+      corr(log g_e, log sigma_los               ) = -0.040   (N=92)
+      corr(log g_e, log heliocentric distance   ) = -0.502   (N=92)
+      corr(log g_e, fractional error on sigma   ) = +0.093   (N=92)
+
+    variant of the measurement                                    N              slope  sigma from 0  sigma from MG
+    ----------------------------------------------------------------------------------------------------------------
+    baseline, statistic (C)                                      92   +0.0800+/-0.0465          1.72           3.82
+    + host fixed effects (MW / M31 dummies)                      92   +0.0646+/-0.0725          0.89           3.51
+    inverse-variance weighted by the sigma error                 92   +0.1063+/-0.0672          1.58           1.94
+    drop sigma <= 2 km/s (unresolved-binary inflation)           89   +0.0769+/-0.0455          1.69           3.82
+    drop sigma <= 3 km/s (unresolved-binary inflation)           81   +0.0809+/-0.0376          2.15           4.12
+    drop sigma <= 4 km/s (unresolved-binary inflation)           67   +0.1118+/-0.0315          3.55           5.31
+    drop M_V > -6 (ultra-faint discovery selection)              62   +0.0871+/-0.0499          1.74           3.08
+    drop M_V > -8 (ultra-faint discovery selection)              50   +0.0997+/-0.0468          2.13           3.16
+    MW satellites only                                           45   +0.0103+/-0.1002          0.10           3.27
+    M31 satellites only                                          34   +0.0337+/-0.1701          0.20           1.14
+    MW + M31 (drop ambiguous field hosts)                        79   +0.0697+/-0.0782          0.89           3.58
+  [PASS] R1 HOST FIXED EFFECTS -- THE TEST THAT MATTERS AND THE ONE NOBODY RAN.  The pooled slope (+0.08) is LARGER than either host's slope taken alone (MW +0.01, M31 +0.03 in the committed run).  That is the signature of a between-host OFFSET being read as a within-host trend: the Milky Way and M31 satellite populations differ in mean environment AND in mean dispersion at fixed mass, and pooling them converts the offset into a slope.  This check PASSES only if the slope survives host dummies.   (baseline +0.0800 +/- 0.0465  ->  with host dummies +0.0646 +/- 0.0725 (shift -0.0155 = 0.33 baseline sigma))
+  [PASS] R2 SIGN STABILITY across every variant.  The measured slope's SIGN is the entire content of the disagreement with modified gravity, so if the sign is not stable the disagreement is not either.   (11/11 variants positive; range +0.0103 to +0.1118)
+  [FAIL] R3 THE MODIFIED-GRAVITY NEGATIVE MUST NOT EVAPORATE UNDER ANY REASONABLE ANALYSIS CHOICE.  It does not survive every one: reported whichever way it falls.   (weakest variant for the negative: 'M31 satellites only' at 1.14 sigma; strongest: 'drop sigma <= 4 km/s (unresolved-binary inflation)' at 5.31 sigma)
+  [PASS] R4 NO SINGLE DWARF DRIVES THE RESULT: leave-one-out must not move the slope by more than half a bootstrap sigma.  With only 92 objects and a 6-term design this is a real risk.   (largest leave-one-out shift +0.0218 = 0.47 bootstrap sigma (dropping 'andromeda_17'))
+  [PASS] R5 SELECTION AUDIT, reported not asserted: does environment correlate with a galaxy property strongly enough to fake the slope?  The dangerous one is the ultra-faint discovery selection -- faint, compact dwarfs are found preferentially close to the Milky Way, i.e. at HIGH g_e, and their dispersions are the ones unresolved binaries inflate (Spencer+2017).  That would manufacture a POSITIVE slope in ANY theory.  The check passes only if BOTH the luminosity cut and the dispersion floor leave the slope intact.   (drop sigma <= 2 km/s (unresolved-binary inflation): +0.0769 +/- 0.0455; drop sigma <= 3 km/s (unresolved-binary inflation): +0.0809 +/- 0.0376; drop sigma <= 4 km/s (unresolved-binary inflation): +0.1118 +/- 0.0315; drop M_V > -6 (ultra-faint discovery selection): +0.0871 +/- 0.0499; drop M_V > -8 (ultra-faint discovery selection): +0.0997 +/- 0.0468)
+
+====================================================================================================================
+VERDICT
+====================================================================================================================
+  THE ANSWER TO THE QUESTION ASKED -- does modified inertia predict a different SIGN? -- IS NO.
+  What it CAN do is delete the prediction, and that is worth 3.8 sigma -> 1.4 sigma.  That is not nothing, but
+  it is not a signature either: it is the same answer GR gives, so it buys agreement by predicting nothing.
+
+  (a) Modified inertia does NOT uniquely predict a sign, because it is a class and not a theory (Milgrom 1994).
+      But the premise the hope rested on is wrong.  The freely-falling frame does not remove the external-field
+      effect: the LOCAL modified-inertia prescription mu(|a|/a_0) a = -grad Phi_N gives a sphere-averaged
+      coupling numerically IDENTICAL to QUMOND's, to 0.0000%, by two independent code paths.  MOND breaks
+      the strong equivalence principle in every formulation because a_0 is an absolute constant.  Any escape is
+      purely nonlocal, and the class does not fix its size -- so the honest output is a RANGE, not a number.
+
+  (b) Through the identical regression pipeline, on the identical 92 dwarfs, both footings:
+        canonical  measured +0.0800 +/- 0.0466  |  modified gravity (w=1) -0.0975 -> 3.81 sigma  |  no-EFE modified inertia (w=0) +0.0149 -> 1.40 sigma
+        alt        measured +0.0803 +/- 0.0467  |  modified gravity (w=1) -0.0995 -> 3.85 sigma  |  no-EFE modified inertia (w=0) +0.0146 -> 1.41 sigma
+      Over the whole range w in (0, 1] the EXTERNAL-FIELD PART of the prediction is NEGATIVE.  Modified
+      inertia can only shrink the failure toward the no-EFE limit; it cannot flip it.  To MATCH the data it
+      prefers w = -0.58 +/- 0.41 -- an ANTI-external-field effect at most of full strength.  Nothing in the
+      literature supplies one and this script does not construct one, and w = 0 is only 1.4 sigma away, so the
+      data lean toward an anti-EFE without demanding one.  DO NOT quote 'modified inertia fixes the EFE
+      failure'.  It does not.  The most it buys is 3.8 sigma -> 1.4 sigma, by deleting the prediction.
+
+  (c) The clean, theory-light statement, and the only thing here I would put in the liability table:
+      the Local Group dwarfs are 1.72 sigma (canonical) / 1.72 sigma (alt) from ZERO external-field
+      effect.  They are CONSISTENT WITH NO EFE.  Modified gravity's 3.8 sigma stands; the honest
+      alternative it loses to is 'no external-field effect', which is GR's answer and is also what a
+      screening nonlocal modified inertia would give.  This measurement does not separate those two.
+
+  (d) The environment labels shuffle to +0.0000 +/- 0.0387: the slope is in the data, not the design.
+
+  THE TRAP, ATTACKED, AND ONE CHARGE STICKS.
+      The +0.0800 is NOT uniformly robust.  With host fixed effects it moves to +0.0646 +/- 0.0725, and
+      the pooled slope is larger than EITHER host's slope alone -- the pooled number is carrying a
+      between-host offset, not only a within-host trend.  Across all 11 variants the sign is
+      stable and the modified-gravity tension ranges 1.1 to 5.3 sigma.
+      With host dummies the measurement is 0.89 sigma from zero -- not significant at all.
+      The ultra-faint / binary-inflation selection is real and biases POSITIVE in any theory, but cutting on
+      luminosity and on a dispersion floor does not remove the slope; it strengthens it, which is the opposite
+      of what that selection would do, so that particular charge does not stick.
+      Two variants take the modified-gravity negative below 2 sigma: M31 satellites alone (1.14) and the
+      inverse-variance-weighted fit (1.94), and R3 FAILS on that.  Net: the modified-gravity negative
+      survives as a 3-4 sigma result on the pooled sample but must keep TWO qualifiers -- it is a POOLED slope
+      over two host systems, neither of which shows it strongly alone, and it weakens under error weighting.
+
+  LITERATURE ATTRIBUTIONS IN THE HEADER ARE FROM KNOWLEDGE AND WERE NOT MACHINE-VERIFIED AGAINST THE PAPER
+  TEXT IN THIS RUN.  The Chae et al. 2020/2021 SPARC claim of an EFE detection with the modified-gravity SIGN
+  is in direct conflict with this dwarf slope and is NOT adjudicated here -- that conflict is itself an open item.
+
+RESULT: 14 checks, 1 FAIL -> ['R3 THE MODIFIED-GRAVITY NEGATIVE MUST NOT EVAPORATE UNDER ANY REASONABLE ANALYSIS CHOICE.  It does not survive every one: reported whichever way it falls.']   rc=1

@@ -1,0 +1,102 @@
+======================================================================================================================
+g04 ADVERSARIAL RE-VERIFICATION -- the Cassini external-field quadrupole Q_2 on Route A's kernel
+======================================================================================================================
+
+  V1 -- eq (12) by an INDEPENDENT quadrature, pinned on the paper's own Fig. 1 anchors
+    etilde  published q   q (Gauss-Legendre)   rel err
+       1.0        0.094              0.09471    0.758%
+       1.5        0.159              0.15949    0.305%
+       2.0        0.221              0.22100   -0.001%
+  [PASS] V1a  a DIFFERENT quadrature reproduces Desmond+2024's published q anchors for nu_RAR   (worst relative error 0.76% against q(1)=0.094, q(1.5)=0.159, q(2)=0.221, read verbatim from the Fig. 1 caption of arXiv:2401.04796.  g04 used scipy dblquad; this uses tensor Gauss-Legendre on geometric panels.  Agreement to 0.8% (and the 0.8% is the paper's own 2-significant-figure rounding at etilde=1, since the etilde=2 anchor matches to 1e-5) rules out a quadrature artefact in g04)
+
+     footing        a_0   etilde      e_N      |q|   Q_2 [s^-2]  /ceiling   sigma
+   canonical  9.360e-11   2.2927   1.6608  0.25456   3.0015e-26     5.772   15.79
+         alt  1.130e-10   1.8991   1.2889  0.20899   3.2687e-26     6.286   17.27
+  Park+2026: Q_2 = (1.6e-27 +- 1.8e-27) s^-2 (1 sigma, DE440); 2-sigma ceiling 5.2e-27.
+  [PASS] V1b  g04's central numbers survive: Q_2 = 3.00e-26 / 3.27e-26 s^-2, both footings over the ceiling   (reproduced to 0.05% (canonical) and 0.04% (alt).  BOTH FOOTINGS GENUINELY ENTER AND THEY ARE NOT DECORATIVE: they give different etilde (2.293 vs 1.899), different e_N (1.661 vs 1.289), different q (0.2546 vs 0.2090) and a different a_0^{3/2} prefactor -- and the two effects PARTIALLY CANCEL (the smaller a_0 raises etilde hence q while lowering the prefactor), which is why the two footings land within 9% of each other rather than 32% apart.  Both are over the ceiling)
+
+  V1c -- MUTATION CONTROL: the retired kernel must MISS the published RAR anchors
+  etilde=1.0: retired nu=sqrt(1+1/y) gives |q|=0.0867 against the RAR-anchored 0.094 -- factor 0.92
+  etilde=1.5: retired nu=sqrt(1+1/y) gives |q|=0.1302 against the RAR-anchored 0.159 -- factor 0.82
+  etilde=2.0: retired nu=sqrt(1+1/y) gives |q|=0.1669 against the RAR-anchored 0.221 -- factor 0.76
+  [PASS] V1d  MUTATION CONTROL fires: a different kernel gives different q, so the anchors really pin the kernel   (the retired nu=sqrt(1+1/y) misses the published anchors by factors 0.92/0.82/0.76.  If it had matched, V1a would have been pinning nothing and 'the published anchors are for Route A's own kernel' would have been an empty sentence.  It is not empty: q is kernel-discriminating at this level)
+
+  V2 -- WHERE the q integral accumulates: the load-bearing physics g04 asserts but never shows
+  In eq (12), v^2 = g_N,Sun/a_0 = (r_M/r)^2, so each quadrature panel in v is a shell in radius r = r_M/v.
+  If q were built up near Saturn (r ~ 10 AU, v ~ 800) Route A's exp(-sqrt y) WOULD suppress it and g04's
+  claim would collapse.  Accumulating panel by panel, from large r inward (canonical footing):
+  r_M = sqrt(GM/a_0) = 7960 AU;  g_N,Sun = g_ext at r_ext = 5257 AU;  e_N = 1.661
+     quantile of q         v      r [AU]
+               10%     1.300        6123
+               25%     1.500        5306
+               50%     1.800        4422
+               75%     2.300        3461
+               90%     3.100        2568
+               99%     5.364        1484
+         fraction of q from INSIDE r
+  r <       10 AU (v >   795.962):    0.0000e+00
+  r <      100 AU (v >    79.596):    0.0000e+00
+  r <     1000 AU (v >     7.960):    2.2581e-04
+  r <     3000 AU (v >     2.653):    1.4828e-01
+  r <     5000 AU (v >     1.592):    6.1310e-01
+  r <     8000 AU (v >     0.995):    9.7561e-01
+  [PASS] V2a  q is built at the MOND-transition radius, NOT at Saturn -- the exponential tail cannot touch it   (the fraction of q coming from inside Saturn's neighbourhood is 0.0e+00, from inside 100 AU 0.0e+00, and from inside 1000 AU only 2.3e-04.  Half of q comes from OUTSIDE ~4300 AU and 99% from outside ~1500 AU.  So g04's A5b sentence is right in substance.  ONE CORRECTION TO ITS WORDING: the weighting is centred nearer r_ext = 5257 AU (where the Sun's field equals the galactic one, i.e. y ~ e_N = 1.66) than at r_M = 7960 AU (where y = 1), so 'set at r_M ~ 8000 AU' overstates the radius by ~2x.  The conclusion is unaffected -- both radii are thousands of AU -- and Desmond+2024's Fig. 1 caption says the same thing independently: q 'mainly probes the behaviour of the IF around e_N')
+
+  V3 -- the stated weakest link: how far would g_ext (or a_0) have to move to clear the ceiling?
+   canonical: Route A clears 5.2e-27 only if g_ext < 5.555e-11 m/s^2 = 25.9% of V^2/R0, i.e. V_circ < 119 km/s at R0 = 8.2 kpc
+         alt: Route A clears 5.2e-27 only if g_ext < 5.611e-11 m/s^2 = 26.1% of V^2/R0, i.e. V_circ < 119 km/s at R0 = 8.2 kpc
+  and at fixed g_ext, Route A clears the ceiling only if a_0 < 1.587e-11 m/s^2 -- a factor 5.9 below the canonical footing and 7.1 below the alt one
+  [FAIL] V3a  a plausible error in the Milky Way external field could rescue Route A   (IT COULD NOT.  g_ext would have to be 26% of V^2/R0 -- a Milky Way circular speed of 119 km/s instead of 233 -- to bring Q_2 under the ceiling.  So the stated weakest link (a single g_ext with no error bar) sets the SIGMA VALUE but cannot flip the SIGN of the verdict: the 5.8x-6.3x ratio to the ceiling is robust to any defensible Milky Way model, and a_0 itself is not a free knob here -- it is fixed by the framework's own two footings)
+
+  V4 -- END-TO-END validation against a PUBLISHED number g04 never used: Park's 2% boost bound
+  Park+2026 abstract: the Q_2 constraint 'imposes an upper bound of only 2% (at 95% confidence) on the
+  MOND boost to the galactic radial acceleration ... at the position of the Sun'.  That boost is nu(e_N):
+  a pure kernel quantity with no quadrupole machinery in it.  Push the Q_2 ceiling back through THIS
+  script's chain and see whether 2% comes out.  If the transcription, the etilde<->e_N inversion, the
+  eq-(10) prefactor or the a_0 scaling were wrong, this reconstruction would miss.
+  Q_2 = 5.2e-27 s^-2 is reached at a_0 = 1.587e-11, where e_N = 13.16 and the boost
+  nu(e_N) - 1 = 2.73%   <-->   Park+2026's published 2% at 95% confidence.
+  [PASS] V4a  reconstructing Park+2026's published 2% boost bound from the Q_2 ceiling through this chain   (2.73% reconstructed against 2% published -- agreement to 0.73 percentage points, which is the expected size of the gap between a 2-sigma ceiling on a Gaussian Q_2 posterior and a proper 95%-confidence bound on a nonlinearly derived quantity.  This validates eq (12), the etilde<->e_N inversion, the eq-(10) prefactor and the a_0^{3/2} scaling SIMULTANEOUSLY, against a published quantity that appears nowhere in g04)
+
+     footing    MOND boost at the Sun   Park+2026 ceiling   over by
+   canonical                    38.0%                  2%       19x
+         alt                    47.3%                  2%       24x
+  [FAIL] V4b  Route A's own MOND boost at the Sun respects the published 2% bound   (IT DOES NOT, and this is the cleanest statement of the failure available -- cleaner than any sigma.  Route A boosts the galactic radial acceleration at the Sun by 38.0% (canonical) / 47.3% (alt) against a published ceiling of 2% at 95% confidence: over by 19x / 24x.  It involves NO quadrupole integral, NO error bar of ours and NO sigma arithmetic -- just nu(e_N) with e_N nu(e_N) = g_ext/a_0.  Quote THIS, not the 16 sigma)
+
+  V5 -- is the formally-quoted significance inside the published band?
+  Park+2026 abstract: tensions 'at the 3-15 sigma level depending on the detailed mass modeling or the
+  subset of galaxies considered'.  Desmond+2024 abstract: 8.7 sigma fiducial, reduced 'to 1.9 sigma by
+  removing galaxies with bulges'.  g04's A5b prints +15.8 / +17.3 sigma.
+  [FAIL] V5a  g04's formal sigma sits INSIDE the published 3-15 sigma band without needing a caveat   (IT DOES NOT -- +15.8 / +17.3 sigma sits just ABOVE Park+2026's own published 3-15 sigma range, because g04 fixes g_ext, a_0 and the IF exactly and so carries no model variance at all.  This is NOT an error in g04 -- it already forbids quoting 16 alone -- but the honest bound is the PUBLISHED band.  RECOMMENDED WORDING: 'several sigma; Park+2026's own published range for this tension is 3-15 sigma, and a zero-variance evaluation on Route A's exact footings lands at the top of it.'  The robust statements remain the two ratios: 5.8x-6.3x the Q_2 ceiling, and 19x-24x the published 2% boost bound)
+
+======================================================================================================================
+VERDICT OF THE ADVERSARIAL PASS
+======================================================================================================================
+
+ THE CLAIM SURVIVES.  Route A's modified-gravity arm gives Q_2 = 3.00e-26 (canonical) /
+ 3.27e-26 (alt) s^-2 against Park+2026's 2-sigma ceiling 5.2e-27: over by
+ 5.8x / 6.3x.  Reproduced here by a different quadrature, pinned on anchors read
+ verbatim from the primary source, on the kernel the anchors are published for (their eq 6 IS Route A).
+ Both footings genuinely enter the etilde -> e_N -> q -> Q_2 chain and both fail.
+
+ THE ONE PIECE OF PHYSICS THE CLAIM RESTS ON IS VERIFIED, NOT JUST ASSERTED.  99% of q is built outside
+ ~1500 AU and the contribution from inside 100 AU is 0e+00.  Route A's exp(-sqrt y) tail lives at
+ y ~ 1e8 and is irrelevant to Q_2.  The isotropic-tail discharge and the Q_2 failure are genuinely
+ different channels and g04 is right to insist they never be conflated.
+
+ CORRECTION TO g04's WORDING, not to its result: the q weighting is centred nearer r_ext = 5257 AU
+ (y ~ e_N = 1.66) than r_M = 7960 AU (y = 1).  A factor ~2 in the quoted radius; nothing else moves.
+
+ THE CLEANEST RESTATEMENT, AND IT IS STRONGER THAN THE SIGMA.  Route A boosts the galactic radial
+ acceleration at the Sun by 38% / 47% against Park+2026's published 2% at 95%
+ confidence.  No integral, no sigma, no error bar of ours.  Recommended as the headline.
+
+ WHAT THIS PASS DID NOT VERIFY.  The modified-inertia contrast 7.4e-34 s^-2 is one model on the retired
+ kernel; it was not recomputed.  The CLASS-level direction is however the published authors' own reading:
+ Desmond+2024 state that a Solar System quadrupole is not generically predicted by modified inertia and
+ that the Cassini constraint may be circumvented entirely in such formulations.  So "this observable
+ separates the arms" is literature-supported as a direction, while the factor 1e-7 is not independently
+ established and must not be quoted as a prediction of the MI class.
+
+
+RESULT: 8 checks, 3 FAIL -> ['V3a  a plausible error in the Milky Way external field could rescue Route A', "V4b  Route A's own MOND boost at the Sun respects the published 2% bound", "V5a  g04's formal sigma sits INSIDE the published 3-15 sigma band without needing a caveat"]   rc=1

@@ -1,0 +1,95 @@
+======================================================================================================================
+g04v -- ADVERSARIAL AUDIT of the g04 isotropic-tail margin claim (A1a / A2a)
+======================================================================================================================
+
+  V1 -- independent re-derivation of g04's A1 delta-g bound table (mpmath, own closed form)
+  planet        a [AU]    P [yr]   dg bound here   g04 / BOUNDS.md    ratio
+  Mercury      0.38710    0.2408      4.5091e-14           4.6e-14   0.9802
+  Venus        0.72334    0.6152      8.0704e-14           8.0e-14   1.0088
+  Earth        1.00000    1.0000      8.6952e-15           8.7e-15   0.9994
+  Mars         1.52371    1.8809      1.3776e-15           1.4e-15   0.9840
+  Jupiter      5.20289   11.8679      5.6235e-13           5.6e-13   1.0042
+  Saturn       9.53668   29.4513      6.9742e-15           7.0e-15   0.9963
+  [PASS] V1a  the bound machinery reproduces independently -- g04's A1a is arithmetically sound   (worst |log10 ratio| vs the committed BOUNDS.md numbers is 0.0087, from a completely separate mpmath implementation with the closed form re-derived from Lagrange's equations rather than copied.  g04's A1a number 0.0087 is CONFIRMED)
+
+  V2 -- but the '<1%' description of that validation is WRONG, and it is a log/percent conflation
+  worst |log10 ratio| = 0.0087   ->   as a FRACTIONAL error that is 10^0.0087 - 1 = 2.02%
+  worst actual fractional deviation over the six planets = 1.98%  (Mercury, 0.9802 of BOUNDS.md)
+  [FAIL] V2a  the claim's stated validation precision '<1%' is correct   (IT IS NOT.  The worst per-planet deviation is 1.98% (Mercury), not <1%.  The '<1%' comes from reading the log10 residual 0.0087 as if it were a fraction; 10^0.0087 - 1 = 2.02%.  g04's own A1a text says 'all within 3%', which is right -- the ERROR IS IN THE CLAIM SUMMARY, not in the script.  Immaterial to the verdict at a 10^320 margin, flagged because it is exactly the kind of number that gets quoted downstream)
+
+  V3 -- THE ESTIMATOR ATTACK: g04's A2 margin uses dg AT r = a against a CONSTANT-dg bound
+  Route A's dg(r) = g_N/(exp(sqrt(g_N/a0)) - 1) falls off super-exponentially inward, so along ONE orbit
+  it spans many decades and its orbit average is set at APHELION.  Evaluating it at r = a therefore
+  UNDERSTATES the observable.  The self-consistent comparison is to push the true dg(r) through the same
+  Gauss integral that defined the bound, and compare the precession RATE to sigma(omega-dot) directly.
+
+  planet          foot  log10 dg(a)  log10 dg(Q)  A2 margin  log10|rate| mas/yr  sigma mas/yr  TRUE margin  A2 optimism
+  Mercury    canonical      -8931.5      -7408.5     8918.1             -7398.7       0.00600       7396.5       1521.6
+  Venus      canonical      -4780.9      -4748.8     4767.9             -4736.7       0.01500       4734.9         33.0
+  Earth      canonical      -3459.0      -3402.2     3445.0             -3390.6       0.00190       3387.8         57.1
+  Mars       canonical      -2271.3      -2077.6     2256.4             -2066.8       0.00037       2063.3        193.1
+  Jupiter    canonical       -668.1       -637.4      655.8              -625.7       0.28000        625.2         30.6
+  Saturn     canonical       -366.7       -348.2      352.5              -336.3       0.00470        333.9         18.6
+  Mercury          alt      -8128.8      -6742.8     8115.5             -6733.0       0.00600       6730.8       1384.7
+  Venus            alt      -4351.4      -4322.1     4338.3             -4310.0       0.01500       4308.2         30.1
+  Earth            alt      -3148.3      -3096.6     3134.3             -3085.0       0.00190       3082.2         52.0
+  Mars             alt      -2067.4      -1891.1     2052.5             -1880.3       0.00037       1876.8        175.7
+  Jupiter          alt       -608.3       -580.5      596.1              -568.7       0.28000        568.2         27.9
+  Saturn           alt       -334.1       -317.3      319.9              -305.3       0.00470        303.0         16.9
+    'A2 margin'   = log10(bound) - log10(dg at r=a)                       <- what g04's A2a reports
+    'TRUE margin' = log10(sigma_wdot) - log10(|orbit-averaged rate|)      <- apples to apples
+    'A2 optimism' = how many decades the point estimate is too generous by
+  [FAIL] V3a  g04's A2 margins are the right estimator -- the point value at r = a is not systematically low   (THEY ARE NOT the right estimator.  Comparing dg at r = a against a bound built for a CONSTANT dg is a mismatch, and it runs in the ANTI-CONSERVATIVE direction on every planet and both footings: the optimism ranges from 17 to 1522 decades, worst on Mercury (highest e times highest sqrt(y), so the aphelion/mean contrast is largest).  Every A2a margin is overstated)
+  [FAIL] V3b  the claim's quoted margin range '10^320 to 10^8900' is the correct range   (IT IS NOT.  Done self-consistently the range is 10^303 to 10^7397, against the claimed 10^320 to 10^8918.  The smallest margin (Saturn, alt footing) is 10^303, not 10^320.  THE NUMBERS IN THE CLAIM ARE WRONG; the CONCLUSION they support is not, and the next check says so)
+  [PASS] V3c  the qualitative conclusion nevertheless survives the correction: absolute, not marginal, discharge   (the smallest self-consistent margin over six planets and both footings is still 10^303.  A ~1522-decade correction to a ~303-decade margin changes nothing about whether the isotropic tail is discharged.  The claim's ADJECTIVE ('absolutely, not marginally') is right; its DIGITS are not)
+
+  V4 -- sanity: does the mutation control still fire on the retired kernel, in MY implementation?
+  nu = sqrt(1+1/y) has nu-1 -> 1/(2y), i.e. a CONSTANT a_0/2 sunward.  Constant is exactly the estimator
+  the bound was built for, so here the point comparison IS self-consistent and no correction applies.
+  planet          foot        a0/2      bound  excluded by  KERNEL_PLANETS
+  Mercury    canonical   4.680e-11   4.51e-14         1038            1018
+  Venus      canonical   4.680e-11   8.07e-14          580              --
+  Earth      canonical   4.680e-11   8.70e-15         5382            5380
+  Mars       canonical   4.680e-11   1.38e-15        33973           33436
+  Jupiter    canonical   4.680e-11   5.62e-13           83              --
+  Saturn     canonical   4.680e-11   6.97e-15         6710            6687
+  Mercury          alt   5.650e-11   4.51e-14         1253              --
+  Venus            alt   5.650e-11   8.07e-14          700              --
+  Earth            alt   5.650e-11   8.70e-15         6498              --
+  Mars             alt   5.650e-11   1.38e-15        41014              --
+  Jupiter          alt   5.650e-11   5.62e-13          100              --
+  Saturn           alt   5.650e-11   6.97e-15         8101              --
+  [PASS] V4a  MUTATION CONTROL reproduces independently: the retired kernel is excluded by the banked factors   (max exclusion 41014x; Mars reproduces the banked 33436x to 1.6% and Saturn its 6687x to 0.4%, from an independent implementation.  So the machinery CAN fail and g04's A3a is confirmed.  Note this control does NOT exercise the r-dependence that V3a exposes -- a constant perturbation is precisely the case where the point estimate is exact, which is why the control passed while the estimator mismatch went unflagged)
+
+  V5 -- SCOPE: is the word 'isotropic' load-bearing?  Price the OTHER anomaly in the same currency
+  g04's own A5b FAILS: the EFE quadrupole is Q_2 = 3.0e-26 / 3.3e-26 s^-2 against Park+2026's 5.2e-27
+  2-sigma ceiling.  Q_2 has units s^-2 and produces a tidal acceleration of order Q_2 * r at radius r.
+  Evaluated at Saturn that is a DIRECT competitor to the same per-planet delta-g bound.
+     footing    Q2 [s^-2]   Q2*r_Saturn  Saturn dg bound    ratio
+   canonical    3.002e-26     4.283e-14        6.974e-15     6.14
+         alt    3.269e-26     4.664e-14        6.974e-15     6.69
+  [FAIL] V5a  the framework's modified-gravity arm predicts a Saturn anomaly under the ephemeris bound   (IT DOES NOT.  The EFE quadrupole alone gives Q_2*r = 4.28e-14 m/s^2 at Saturn, 6.1x-6.7x the same 7.0e-15 m/s^2 bound that the tail clears by 10^303.  So 'the anomalous acceleration is below every per-planet ephemeris bound' is TRUE ONLY of the isotropic piece and FALSE of the arm's total predicted anomaly.  The word 'isotropic' in the claim is not decoration -- it is the entire content, and g04 itself says so ('the two must never be conflated').  This check exists so that the claim cannot be quoted with that word dropped)
+
+======================================================================================================================
+VERDICT OF THE AUDIT
+======================================================================================================================
+
+ CONFIRMED.  The kernel algebra, the bound machinery, and the mutation control all reproduce from an
+ independent 60-digit implementation (V1a, V4a).  Route A's isotropic tail really is discharged absolutely:
+ the smallest self-consistent margin over six planets and both footings is 10^303 (V3c).  No
+ measurement now or conceivable touches it.
+
+ REFUTED AS STATED, IN THREE PLACES, NONE OF WHICH FLIPS THE CONCLUSION.
+  1. The margin RANGE is wrong.  g04's A2 (and the claim) compares dg evaluated at r = a against a bound
+     derived for a CONSTANT radial dg.  Route A's dg is dominated by aphelion, so the point estimate is
+     anti-conservative by 17-1522 decades.  Self-consistently the range is
+     10^303 to 10^7397, not 10^320 to 10^8900 (V3a, V3b).
+  2. '<1%' for the A1a validation is a log/percent conflation; the worst deviation is 1.98% (V2a).
+     g04's own text says 'within 3%' and is correct.
+  3. 'below every per-planet ephemeris bound' is true only with the word 'isotropic' attached.  The same
+     arm's EFE quadrupole is 6.1x-6.7x OVER that very bound at Saturn (V5a).
+
+ WHAT A REFEREE WOULD DO WITH THIS: accept the physics, strike the digits, and insist on the scope word.
+
+
+RESULT: 7 checks, 4 FAIL -> ["V2a  the claim's stated validation precision '<1%' is correct", "V3a  g04's A2 margins are the right estimator -- the point value at r = a is not systematically low", "V3b  the claim's quoted margin range '10^320 to 10^8900' is the correct range", "V5a  the framework's modified-gravity arm predicts a Saturn anomaly under the ephemeris bound"]   rc=1

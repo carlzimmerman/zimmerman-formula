@@ -1,0 +1,371 @@
+==========================================================================================================================
+PART 0.  THE PRESCRIPTION.  Replacing f09's max() branch with the exact QUMOND sphere average.
+==========================================================================================================================
+  limit 1: isolated.  The quadrature must reproduce nu(x_i) x_i when the external field is switched off.
+  [PASS] P1 the fixed prescription reduces EXACTLY to the framework's own isolated kernel when the external field is zero, so it is not a different theory smuggled in   (quadrature/nu(x_i)x_i = 1.0000000000, 1.0000000000, 1.0000000000, 1.0000000000, 1.0000000000, 1.0000000000)
+  limit 2: external-field dominated.  Must reproduce f01's verified sphere-averaged coupling nu(x_e)(1+L_e/3).
+  [PASS] P2 in the external-field-dominated limit the quadrature reproduces f01's independently derived sphere-averaged coupling nu(x_e)(1+L_e/3) to better than 1 per cent, so two separate derivations in this repository agree   (quadrature/[nu(x_e)(1+L_e/3) x_i] = 1.00000, 1.00000, 1.00000, 1.00000)
+  limit 3: continuity, by a RESOLUTION test, which is the only way to tell a kink from a steep smooth curve.
+     For a smooth function the largest jump in the log-log slope between adjacent grid points falls in
+     proportion to the grid spacing.  At a genuine kink it does not fall at all.
+  [PASS] P3 the fixed prescription is SMOOTH and f09's max() is NOT, established by refining the grid fourfold: the fixed prescription's worst slope jump falls by about a factor 4, as a smooth function must, while f09's max() does not fall at all because it has a real kink.  The branch -- and with it any residual whose sign can track a branch -- is gone by construction   (fixed: worst slope jump 1.08e-02 at 600 points -> 2.71e-03 at 2400 (falls x4.00).  f09 max(): 3.09e-01 -> 4.62e-01 (falls x0.67, i.e. does not fall -- a kink))
+  cross-check against the published one-dimensional formula (Famaey & McGaugh 2012 eq. 60):
+        x_i       x_e   sphere-avg (exact)    FM12 eq60 (1-D)    ratio
+     0.0010    0.0010             0.026058           0.013603    1.916
+     0.0010    0.0100             0.008841           0.005394    1.639
+     0.0010    0.1000             0.003166           0.002117    1.496
+     0.0010    1.0000             0.001429           0.001122    1.274
+     0.0100    0.0010             0.104875           0.078352    1.339
+     0.0100    0.0100             0.085917           0.046574    1.845
+     0.0100    0.1000             0.031653           0.020839    1.519
+     0.0100    1.0000             0.014285           0.011207    1.275
+     0.1000    0.0010             0.368852           0.338850    1.089
+     0.1000    0.0100             0.368208           0.284614    1.294
+     0.1000    0.1000             0.308854           0.185784    1.662
+     0.1000    1.0000             0.142839           0.111255    1.284
+  [FAIL] P4 (THIS CHECK FAILS AND THE FAILURE IS A RESULT) the exact sphere average and the published one-dimensional EFE formula do NOT agree to 35 per cent: they differ by up to 92 per cent, i.e. 0.28 dex in acceleration.  So 'use a proper external-field treatment' does not name a unique number, and every dwarf-spheroidal residual in this literature carries a prescription systematic of that size.  The exact sphere average is used for the headline BECAUSE it is the one that predicts MORE acceleration and therefore the SMALLER liability -- the conservative choice, against interest   (sphere-average/FM12 ratio spans 1.089-1.916; the sphere average is exact for an isotropic tracer (flux theorem) and the 1-D formula is an approximation, so the difference is the approximation's error, but it is a 0.28 dex systematic on every number below)
+
+==========================================================================================================================
+PART 1.  THE PRESSURE-SUPPORTED SAMPLE.  Local Volume Database (Pace 2024, ApJS 273, 15), class by class.
+==========================================================================================================================
+  LVD rows with a MEASURED (not upper-limit) dispersion, a half-light radius, and confirmed_galaxy = 1:
+     Milky Way satellites 45   M31 satellites 34   Local Group field 13
+  excluded before any calculation (13):
+     Bootes III             (MW   ) tidally disrupting
+     LMC                    (MW   ) rotation-supported (belongs on the OTHER side)
+     Sagittarius            (MW   ) tidally disrupting
+     SMC                    (MW   ) rotation-supported (belongs on the OTHER side)
+     Tucana IV              (MW   ) tidally disrupting
+     Aquarius               (field) gas-rich, M_HI/M* = 1.32
+     IC 1613                (field) gas-rich, M_HI/M* = 0.32
+     Leo A                  (field) gas-rich, M_HI/M* = 0.91
+     Leo T                  (field) gas-rich, M_HI/M* = 1.48
+     NGC 6822               (field) gas-rich, M_HI/M* = 0.62
+     Pegasus dIrr           (field) gas-rich, M_HI/M* = 0.45
+     Sagittarius dIrr       (field) gas-rich, M_HI/M* = 1.23
+     WLM                    (field) gas-rich, M_HI/M* = 0.72
+
+--------------------------------------------------------------------------------------------------------------------------
+1a.  THE CLASSICAL MILKY WAY DWARF SPHEROIDALS: f09's prescription and arithmetic, against the repaired ones.
+--------------------------------------------------------------------------------------------------------------------------
+  the eight objects f09 used, matched by name in the LVD: 8 of 8 recovered
+  dwarf            M*/Msun      x_i      x_e  f09 branch  f09 presc     FIXED   change
+  Carina          1.02e+06   0.0070   0.0078    isolated     +0.215    +0.305   +0.090
+  Draco           6.03e+05   0.0068   0.0134    isolated     +0.650    +0.852   +0.201
+  Fornax          3.89e+07   0.0337   0.0043         EFE     -0.511    -0.087   +0.425
+  Leo I           9.12e+06   0.0728   0.0013         EFE     -0.845    -0.021   +0.824
+  Leo II          1.07e+06   0.0206   0.0020         EFE     -0.197    +0.289   +0.486
+  Sculptor        3.47e+06   0.0291   0.0127         EFE     +0.033    +0.217   +0.185
+  Sextans         5.25e+05   0.0009   0.0113    isolated     +0.516    +1.110   +0.594
+  Ursa Minor      6.03e+05   0.0040   0.0172    isolated     +0.585    +0.947   +0.361
+  [FAIL] A6-FIXED (f09's own flagged defect, and the repair says f09 MIS-DIAGNOSED IT) f09 attributed 'a large part of the reported scatter' to its own max() branch.  Removing the branch entirely -- replacing it with a prescription that provably has none -- reduces the gap between the two branch groups by only about a tenth.  The branch was not what was driving the split.  What drives it is that f09's 'isolated-branch' objects are simply the ones at the LOWEST internal acceleration, and those are the discrepant ones.  The branch label was a proxy for depth, and depth is what Part 3 has to control for   (f09 prescription: isolated-branch (4 objects) minus external-field-branch (4) = +0.905 dex, perfect sign separation = False.  FIXED: gap +0.801 dex, perfect sign separation = False.  Only 11 per cent of the branch structure was the branch; the rest is a real trend with x_i)
+
+  DECOMPOSING THE THREE f09 ARITHMETIC BUGS ON THE CLASSICAL EIGHT (canonical footing, median dex):
+     f09's inputs, fixed prescription                                  +0.293
+     + enclosed mass M_b/2 instead of M_b (Wolf+2010)                  +0.590  (+0.297)
+     + deprojected r_1/2 = (4/3) R_e instead of R_e                    +0.715  (+0.125)
+     + NEWTONIAN external field G M_host/D^2 instead of V_c^2/D        +0.297  (-0.418)
+  [FAIL] A7 (AND THIS CHECK FAILS, WHICH IS THE HONEST OUTCOME) I expected the three f09 arithmetic bugs to push the same way.  They do not: two of them (enclosed mass, deprojected radius) made f09's pressure-supported residual too SMALL by +0.42 dex between them, and the third (the true instead of the Newtonian external field) made it too LARGE by a comparable amount.  On the classical eight they very nearly cancel, so f09's classical-dwarf median was accidentally close to right -- and 'nearly cancel on eight objects' is a coincidence of this sample, not a defence of the arithmetic   (+0.293 -> +0.297 dex, net +0.003; the three steps are +0.297, +0.125, -0.418 -- the third has the opposite sign, so they do not compound)
+
+--------------------------------------------------------------------------------------------------------------------------
+1b.  THE EXPANDED SAMPLE, class by class, WITH ITS RELIABILITY.  Canonical footing, fixed prescription.
+--------------------------------------------------------------------------------------------------------------------------
+
+  [CLASSICAL]  N = 11   reliability: GOLD
+     hundreds to thousands of member velocities; dispersions stable across two decades of independent studies; distances from RR Lyrae and the tip of the red giant branch.  Systematic worries: the tidal state of Sextans and Carina, an unresolved-binary contribution of order 1 km/s (McConnachie & Cote 2010, ApJ 722, L209), and the two very extended 'feeble giants' Antlia II and Crater II.
+     median residual +0.492 dex, scatter 0.416; x_i 0.00010-0.0728, x_e 0.00130-0.0172
+        Antlia II              M*=1.35e+06  x_i= 0.00010  x_e= 0.00571    +1.007 dex
+        Crater II              M*=3.24e+05  x_i= 0.00012  x_e= 0.00670    +0.492 dex
+        Sextans                M*=5.25e+05  x_i= 0.00093  x_e= 0.01131    +1.110 dex
+        Canes Venatici I       M*=5.37e+05  x_i= 0.00211  x_e= 0.00201    +0.556 dex
+        Ursa Minor             M*=6.03e+05  x_i= 0.00403  x_e= 0.01720    +0.947 dex
+        Draco                  M*=6.03e+05  x_i= 0.00676  x_e= 0.01344    +0.852 dex
+        Carina                 M*=1.02e+06  x_i= 0.00696  x_e= 0.00778    +0.305 dex
+        Leo II                 M*=1.07e+06  x_i= 0.02059  x_e= 0.00200    +0.289 dex
+        Sculptor               M*=3.47e+06  x_i= 0.02915  x_e= 0.01265    +0.217 dex
+        Fornax                 M*=3.89e+07  x_i= 0.03371  x_e= 0.00427    -0.087 dex
+        Leo I                  M*=9.12e+06  x_i= 0.07279  x_e= 0.00130    -0.021 dex
+
+  [M31]  N = 34   reliability: SILVER
+     10-100 members each, Keck/DEIMOS (Collins et al. 2013, ApJ 768, 172; Tollerud, Kirby). Dispersions of 3-5 km/s sit near the instrumental floor, Milky Way foreground contamination biases small-N dispersions HIGH, and the M31 baryonic mass carries ~0.1 dex.  This class is the one most likely to be inflating the result.
+     median residual +0.578 dex, scatter 0.581; x_i 0.00016-29.6644, x_e 0.00013-4.2567
+        Andromeda XIX          M*=1.78e+06  x_i= 0.00016  x_e= 0.01404    +1.259 dex
+        Andromeda XXI          M*=6.46e+05  x_i= 0.00051  x_e= 0.01210    +0.986 dex
+        Andromeda XXVI         M*=4.27e+04  x_i= 0.00066  x_e= 0.01713    +1.887 dex
+        Andromeda XXIII        M*=1.38e+06  x_i= 0.00072  x_e= 0.01110    +0.821 dex
+        Andromeda XXVII        M*=2.45e+05  x_i= 0.00097  x_e= 0.02894    +1.999 dex
+        Andromeda XXV          M*=7.41e+05  x_i= 0.00098  x_e= 0.02528    +0.525 dex
+        Andromeda IX           M*=4.90e+05  x_i= 0.00133  x_e= 0.02629    +1.497 dex
+        ...
+        Lacerta I              M*=5.25e+06  x_i= 0.00812  x_e= 0.00264    +0.236 dex
+        Andromeda VI           M*=5.62e+06  x_i= 0.01479  x_e= 0.00226    +0.422 dex
+        Andromeda VII          M*=2.24e+07  x_i= 0.01561  x_e= 0.00338    +0.111 dex
+        NGC 147                M*=7.24e+08  x_i= 0.27458  x_e= 0.01577    -0.550 dex
+        NGC 185                M*=2.95e+08  x_i= 0.51579  x_e= 0.00744    -0.041 dex
+        NGC 205                M*=6.92e+08  x_i= 1.42872  x_e= 0.04970    +0.015 dex
+        M 32                   M*=5.89e+08  x_i=29.66442  x_e= 4.25666    +0.385 dex
+
+  [ISOLATED]  N = 5   reliability: GOLD for the prescription, THIN in number
+     x_e ~ 1e-4, so the ENTIRE external-field prescription -- the thing f09 got wrong -- is removed.  Cetus and Tucana have 40-100 members (Taibi et al. 2018, A&A 618, A122; 2020, A&A 635, A152).  The cleanest objects in the comparison, and there are five.
+     median residual +0.117 dex, scatter 0.180; x_i 0.00651-0.0668, x_e 0.00009-0.0008
+        Cetus                  M*=5.13e+06  x_i= 0.00651  x_e= 0.00055    +0.047 dex
+        Tucana                 M*=1.12e+06  x_i= 0.01134  x_e= 0.00021    +0.117 dex
+        Phoenix                M*=1.51e+06  x_i= 0.01195  x_e= 0.00078    +0.383 dex
+        Antlia B               M*=1.41e+06  x_i= 0.01375  x_e= 0.00009    +0.231 dex
+        UGC 4879               M*=1.35e+07  x_i= 0.06683  x_e= 0.00017    -0.091 dex
+
+  [ULTRAFAINT]  N = 29   reliability: BRONZE -- these must not carry the result
+     5-100 member velocities; unresolved BINARIES inflate sigma by up to a factor 2 in the faintest systems (McConnachie & Cote 2010; Simon 2019, ARA&A 57, 375); several are tidally disturbed.  They also sit two to three decades below a_0, far outside any acceleration SPARC reaches, so they cannot enter a matched comparison AT ALL.
+     median residual +1.436 dex, scatter 0.580; x_i 0.00009-0.0033, x_e 0.00065-0.6364
+        Tucana II              M*=5.37e+03  x_i= 0.00009  x_e= 0.03245    +2.196 dex
+        Grus I                 M*=7.76e+03  x_i= 0.00025  x_e= 0.00594    +1.176 dex
+        Leo VI                 M*=4.57e+03  x_i= 0.00025  x_e= 0.00691    +1.436 dex
+        Aquarius II            M*=9.55e+03  x_i= 0.00026  x_e= 0.00809    +1.736 dex
+        Columba I              M*=8.13e+03  x_i= 0.00036  x_e= 0.00255    +1.667 dex
+        Ursa Major I           M*=1.95e+04  x_i= 0.00036  x_e= 0.00860    +1.888 dex
+        Tucana V               M*=4.68e+02  x_i= 0.00038  x_e= 0.03326    +1.409 dex
+        ...
+        Carina III             M*=1.55e+03  x_i= 0.00170  x_e= 0.14253    +2.428 dex
+        Willman 1              M*=1.78e+03  x_i= 0.00187  x_e= 0.04892    +2.032 dex
+        Centaurus I            M*=2.34e+04  x_i= 0.00195  x_e= 0.00686    +0.974 dex
+        Hydrus I               M*=1.32e+04  x_i= 0.00201  x_e= 0.15580    +1.308 dex
+        Pegasus IV             M*=8.51e+03  x_i= 0.00206  x_e= 0.01126    +1.082 dex
+        Canes Venatici II      M*=2.00e+04  x_i= 0.00286  x_e= 0.00347    +0.989 dex
+        Leo V                  M*=9.77e+03  x_i= 0.00330  x_e= 0.00310    +0.708 dex
+  [PASS] A8 (THE CLEANEST OBJECTS, AND THEY ARGUE FOR A MUCH SMALLER EFFECT) the ISOLATED Local Group dwarf spheroidals need no external-field prescription at all (x_e ~ 1e-4), and they sit BARELY above the framework's kernel -- a median far below the classical satellites and the M31 satellites.  Cetus and Tucana, the two best-observed of them, are essentially ON it.  So whatever the offset is, the objects where the prescription cannot be blamed show the LEAST of it, and that is evidence that part of the satellite offset is environmental or tidal rather than a property of pressure support   (Cetus +0.047, Tucana +0.117, Phoenix +0.383, Antlia B +0.231, UGC 4879 -0.091; isolated median +0.117 dex on N=5 against classical +0.492 and M31 +0.578)
+
+==========================================================================================================================
+PART 2.  DEFECT 2.  WHY the mass-matched rotating control degrades: the framework, or SPARC?
+==========================================================================================================================
+  SPARC (Lelli, McGaugh & Schombert 2016, AJ 152, 157), Q<=2, i>=30 deg, >=6 points: 147 galaxies
+            M_b bin (Msun)    N  median dex  scatter
+       1e+07 -     1e+08    5      -0.205    0.323
+       1e+08 -     1e+09   20      -0.007    0.184
+       1e+09 -     1e+10   58      +0.041    0.142
+       1e+10 -     1e+11   44      -0.010    0.076
+       1e+11 -     1e+13   20      +0.041    0.104
+
+  THE LOWEST-MASS SPARC BIN, OBJECT BY OBJECT -- this is f09's degraded control:
+  galaxy              M_b  residual   V_max  V_flat  V_max/sig_HI   inc  Q  D Mpc  Npts
+  UGC04483       4.91e+07    -0.162    24.3    NONE          2.43    58  2    3.3     8
+  CamB           5.35e+07    -0.802    20.1    NONE          2.01    65  2    3.4     9
+  D564-8         5.51e+07    -0.205    25.0    NONE          2.50    63  2    8.8     6
+  UGC07577       8.10e+07    -0.652    17.8    NONE          1.78    63  2    2.6     9
+  UGCA444        9.51e+07    -0.083    38.3    37.0          3.83    78  2    1.0    36
+  median -0.205 dex on N=5  (f09 reported -0.205 on 5 galaxies)
+  [FAIL] D2a (I EXPECTED SMALL-N AND I WAS WRONG) drawing five SPARC galaxies at random from all 147 essentially never reproduces f09's -0.205 dex.  Those five really are low.  f09's A3 was not a small-number accident and the deficit at the lowest disc masses is real in the data   (P(median of 5 random SPARC galaxies <= -0.205) = 0.0029 over 20000 draws; the 5-galaxy median has a 16-84 per cent range of -0.047 to +0.074 dex about a whole-sample median of +0.006)
+  [PASS] D2b BUT IT IS A PROPERTY OF THE MEASUREMENT, NOT OBVIOUSLY OF THE FRAMEWORK: four of those five galaxies have NO measured V_flat in the SPARC master table at all -- SPARC itself declines to assign them a flat rotation velocity -- and every one of the five has a peak rotation speed within a factor 2.5 of the HI turbulent dispersion (Leroy et al. 2008: 10 +- 2 km/s), where asymmetric drift and the 1/sin(i) inclination error both bite hardest.  Across all 147 galaxies the twenty with the lowest V_max/sigma_HI scatter three times more widely about the kernel than the twenty highest   (4 of 5 have no V_flat; lowest 20 by V_max/sigma_HI: median -0.086, scatter 0.248 (V_max/sigma_HI = 1.8-5.8); highest 20: median +0.088, scatter 0.093)
+  ⚠️ THE LIMIT ON D2b, and f09 hit the same wall: V_max/sigma_HI at fixed sigma_HI IS V_max, so SPARC alone cannot
+     separate 'the rotation is not a clean tracer' from a plain velocity-scale trend.  f08 already failed on exactly
+     this confound.  The defensible statement is narrow: those five galaxies are the least reliable rotation curves
+     in SPARC, so they cannot serve as a control -- but the deficit is real in the data and is NOT explained away.
+     f09's mass-matched comparison stays unusable, and it is unusable in BOTH directions.
+  and the matching itself was apples to oranges: f09 compared dwarf-spheroidal STELLAR mass with SPARC BARYONIC
+     mass on gas-dominated dwarf irregulars.  Classical dSph M_b = 3.2e+05-3.9e+07 Msun.
+
+==========================================================================================================================
+PART 3.  THE MATCHING, DONE PROPERLY, AND THE RECOMPUTED SEPARATION.
+==========================================================================================================================
+  f09 took the min-max acceleration span of its eight dwarfs as a 'window'.  With a larger pressure sample that
+  span runs from 1e-4 to 30 and swallows all of SPARC, matching nothing.  Instead: every pressure object is
+  compared to the SPARC relation AT ITS OWN x_i -- the running median of every SPARC data point within
+  0.2 dex -- and objects where SPARC has fewer than 20 points are DROPPED rather than extrapolated to.
+
+  FOOTING: canonical   (a_0 = 9.36e-11 m/s^2)
+  pressure sample                                       N_in  N_out  N_rot  rot dex  pres dex  sep dex  sigma   perm p
+  classical only (f09's sample, expanded to the class)     4      7    147   -0.007    +0.093   +0.099   1.13   0.1628
+  classical + M31                                         10     35    147   -0.007    +0.022   +0.029   0.32   0.5450
+  classical + M31 + ISOLATED (no EFE at all)              14     36    147   -0.007    +0.058   +0.064   0.93   0.1033
+  + ultra-faints (BRONZE, shown only to be dismissed)     14     65    147   -0.007    +0.058   +0.064   0.93   0.1075
+
+  FOOTING: alt   (a_0 = 1.13e-10 m/s^2)
+  pressure sample                                       N_in  N_out  N_rot  rot dex  pres dex  sep dex  sigma   perm p
+  classical only (f09's sample, expanded to the class)     4      7    147   -0.008    +0.093   +0.101   1.15   0.1614
+  classical + M31                                         10     35    147   -0.008    +0.023   +0.031   0.34   0.5251
+  classical + M31 + ISOLATED (no EFE at all)              14     36    147   -0.008    +0.057   +0.065   0.94   0.1040
+  + ultra-faints (BRONZE, shown only to be dismissed)     14     65    147   -0.008    +0.057   +0.065   0.94   0.1052
+
+  WHAT THE MATCHING THREW AWAY -- and this is the whole story:
+     36 of 50 pressure objects sit OUTSIDE the acceleration range where SPARC has any data, and are dropped.
+     They are not a random subset.  They are the DEEPEST ones, and the deepest ones are the discrepant ones:
+        KEPT (14), x_i inside SPARC's coverage:  median raw residual +0.114 dex
+           Tucana                 x_i = 0.01134   +0.117 dex
+           Phoenix                x_i = 0.01195   +0.383 dex
+           Antlia B               x_i = 0.01375   +0.231 dex
+           Andromeda VI           x_i = 0.01479   +0.422 dex
+           Andromeda VII          x_i = 0.01561   +0.111 dex
+           Leo II                 x_i = 0.02059   +0.289 dex
+           Sculptor               x_i = 0.02915   +0.217 dex
+           Fornax                 x_i = 0.03371   -0.087 dex
+           UGC 4879               x_i = 0.06683   -0.091 dex
+           Leo I                  x_i = 0.07279   -0.021 dex
+           NGC 147                x_i = 0.27458   -0.550 dex
+           NGC 185                x_i = 0.51579   -0.041 dex
+           NGC 205                x_i = 1.42872   +0.015 dex
+           M 32                   x_i = 29.66442   +0.385 dex
+        DROPPED (36), x_i below SPARC's coverage: median raw residual +0.731 dex
+           Antlia II              x_i = 0.00010   +1.007 dex   (0 SPARC points within 0.2 dex, 20 required)
+           Crater II              x_i = 0.00012   +0.492 dex   (0 SPARC points within 0.2 dex, 20 required)
+           Andromeda XIX          x_i = 0.00016   +1.259 dex   (0 SPARC points within 0.2 dex, 20 required)
+           Andromeda XXI          x_i = 0.00051   +0.986 dex   (0 SPARC points within 0.2 dex, 20 required)
+           Andromeda XXVI         x_i = 0.00066   +1.887 dex   (0 SPARC points within 0.2 dex, 20 required)
+           Andromeda XXIII        x_i = 0.00072   +0.821 dex   (0 SPARC points within 0.2 dex, 20 required)
+  [FAIL] A1-REPAIRED (THE HEADLINE, AND IT IS A NEGATIVE.  THE 1.73 SIGMA DOES NOT SURVIVE HONEST MATCHING) with the prescription repaired, the arithmetic repaired, the sample expanded from 8 objects to 50, and -- decisively -- the acceleration matching done object by object against the SPARC relation instead of through f09's min-max window, the separation FALLS from +0.215 dex / 1.73 sigma to about +0.06 dex / 0.9 sigma, p = 0.10.  No sample combination and neither footing reaches two sigma.  f09's matched-pair result is WITHDRAWN   (canonical +0.064 dex, 0.93 sigma, permutation p = 0.1033; alt +0.065 dex, 0.94 sigma.  Classical class alone: +0.099 dex, 1.13 sigma on N = 4.  N_pressure = 14 matched, 36 dropped as outside SPARC's range, against N_rotating = 147)
+  [PASS] A1b (WHY IT DIES, AND THIS IS THE REAL RESULT OF THE FILE) support type and acceleration DEPTH are completely confounded in the Local Group.  Every large pressure-supported residual sits at an internal acceleration BELOW anything SPARC measures: the objects inside SPARC's range have a median residual near the rotating value, the objects below it a median an order of magnitude larger.  f09's 'matched acceleration window' was the min-max span of its eight dwarfs, which includes accelerations where the rotating side has almost no data, so its comparison was an EXTRAPOLATION dressed as a match   (inside SPARC's coverage (x_i >= 0.0113): median raw residual +0.114 dex on N=14; below it: +0.731 dex on N=36.  A factor 6.4 in the same currency, with SUPPORT TYPE held fixed -- so the split is at least as much about depth as about support)
+  [PASS] A1c the depth trend inside the pressure sample is strong, and its own shuffle control confirms it -- but READ THE SLOPE CAREFULLY, because -0.5 is not an arbitrary number.  In the deep-MOND limit the prediction is g = sqrt(x_i) a_0, so the residual is log(g_obs) - 0.5 log(x_i) - log(a_0), and a slope of exactly -0.5 is what you get when g_obs carries NO dependence on x_i at all.  That is what is measured.  The pressure-supported dwarfs' observed dynamical accelerations do not track their baryonic accelerations in the way the framework requires; they behave as if set by something with a common scale.  This is a mechanical identity as much as a measurement, and it must not be quoted as independent evidence -- but it is exactly why 'depth' and 'residual' are the same axis in this sample and cannot be disentangled from support type here   (slope -0.498 dex per dex, r = -0.623 on N = 79 pressure objects; 5000 shuffles give slope -0.0008 +- 0.0920, so the real slope is 5.4 shuffle-sigma out)
+  [PASS] A2-REPAIRED the rotating side is a genuine control and not just a second number: measured against the same local SPARC relation, leave-one-out so no galaxy is compared with itself, the rotating galaxies sit on zero   (rotating median -0.007 dex, scatter 0.156, N = 147; matched pressure median +0.058, scatter 0.255)
+  [FAIL] A4-REPAIRED (fails with A1) the separation was supposed to hold at strength on both footings.  It is footing-independent, but at a strength that is not a result on either   (canonical +0.064 dex (0.93 sigma), alt +0.065 dex (0.94 sigma) -- identical to 0.001 dex, so a_0 is not the issue; the sample is)
+  [PASS] A5-REPAIRED (the honest limit, kept as a check so it cannot be quietly dropped) the pressure-supported failure is NOT uniform and has no consistent sign: a quarter of these objects sit on the kernel and several sit below it.  It is a broad shifted distribution, not a switch   (13 of 50 within 0.15 dex of the kernel (26 per cent), 1 BELOW it; full range -0.55 to +2.00 dex)
+  [FAIL] A3-REPAIRED (f09's failing mass-match check, revisited and STILL FAILING) f09 reported that matching on baryonic mass as well as acceleration degraded the control.  Part 2 confirms the deficit is real in the data (p = 0.0029 against a random draw of five) and shows those five are the least reliable rotation curves in SPARC -- four have no V_flat at all.  That does not rescue the mass-matched comparison; it explains why it cannot be used, in either direction   (random-draw p = 0.0029 (so NOT small-number noise); 4 of 5 have no measured V_flat; lowest-V/sigma scatter 0.248 against highest 0.093)
+
+  MATCHING-PARAMETER SENSITIVITY -- the negative must not be an artefact of MY window either:
+   window (dex)  min SPARC pts  N matched  separation   sigma   perm p
+           0.15             30         13      +0.067    0.91   0.1287
+           0.20             20         14      +0.064    0.93   0.1110
+           0.25             20         16      +0.071    1.12   0.0625
+           0.30             20         19      +0.097    1.42   0.0110
+           0.30             50         14      +0.088    1.24   0.0330
+           0.40             20         22      +0.205    2.93   0.0002
+  [FAIL] A9 (FAILS, AND THE FAILURE IS THE SAME STATEMENT AS A1b) the separation was supposed to be robust to my own matching window.  It is not -- it is a MONOTONE FUNCTION OF HOW MUCH EXTRAPOLATION IS ALLOWED, running from 0.9 sigma at strict matching to 2.9 sigma at a 0.40 dex window.  A 0.40 dex window compares an object at x_i = 0.004 with SPARC points at x_i = 0.010, which is a smear and not a match; the significance is bought entirely by re-admitting the deep objects that have no rotating counterpart.  Nothing here reaches three sigma, and the number one quotes is set by the analysis choice rather than by the data   (w=0.15/n=30: +0.067 dex (0.91 sigma, N=13); w=0.20/n=20: +0.064 dex (0.93 sigma, N=14); w=0.25/n=20: +0.071 dex (1.12 sigma, N=16); w=0.30/n=20: +0.097 dex (1.42 sigma, N=19); w=0.30/n=50: +0.088 dex (1.24 sigma, N=14); w=0.40/n=20: +0.205 dex (2.93 sigma, N=22))
+
+==========================================================================================================================
+PART 4.  THE SYSTEMATICS THAT COULD ERASE IT, each moved until it does or fails to.
+==========================================================================================================================
+  Two numbers are tracked through every systematic, because they are different claims:
+    RAW      = the median residual of the whole pressure sample against the framework's kernel.  This is the
+               liability-table quantity, and it is large.  It is NOT matched to a rotating control.
+    MATCHED  = the separation from the rotating control at the SAME internal acceleration.  This is f09's claim,
+               and it is the one that just collapsed.
+
+  (a) STELLAR MASS-TO-LIGHT RATIO   Upsilon_V    RAW dex   MATCHED sep   sigma
+                                          1.0     +0.781        +0.162    1.62
+                                          1.5     +0.613        +0.114    1.51
+                                          2.0     +0.489        +0.064    0.93
+                                          3.0     +0.322        +0.073    1.02
+                                          5.0     +0.154        -0.027   -0.40
+  [PASS] S1 the RAW pressure-supported offset is not a stellar mass-to-light ratio: erasing it needs Upsilon_V near 5 for old, metal-poor dwarf-spheroidal populations, roughly three times what anyone publishes (Woo, Courteau & Dekel 2008, MNRAS 390, 1453; Martin, de Jong & Rix 2008, ApJ 684, 1075 use 1-2).  The MATCHED separation, by contrast, is small at every Upsilon and never becomes a result   (RAW: Ups=1.0 +0.781, Ups=2.0 +0.489, Ups=3.0 +0.322, Ups=5.0 +0.154.  MATCHED: Ups=1.0 +0.162 (1.62 sigma), Ups=2.0 +0.064 (0.93 sigma), Ups=3.0 +0.073 (1.02 sigma), Ups=5.0 -0.027 (-0.40 sigma))
+
+  (b) WHICH CORRECT PRESCRIPTION                       RAW dex   MATCHED sep   sigma
+                                   f09 max() branch       +0.043        -0.525   -4.06
+                                   FM12 eq.60 1-D         +0.694        +0.157    2.08
+                                   sphere avg (exact)     +0.489        +0.064    0.93
+  [FAIL] S2 (FAILS, AND IT IS THE SAME FAILURE AS P4) the choice among CORRECT external-field prescriptions is not free.  The exact sphere average and the published one-dimensional formula differ by more than 0.1 dex in the RAW offset, so 'treat the external field properly' does not name a number.  The sphere average is used everywhere here because it is exact for an isotropic tracer AND gives the smaller liability -- against interest   (RAW offsets: sphere average +0.489, FM12 eq.60 +0.694, f09 max() +0.043 dex.  Prescription systematic 0.205 dex, about 42 per cent of the raw offset.  Note f09's max() gives the SMALLEST raw offset of the three, so f09 was using the prescription least favourable to its own conclusion)
+  [FAIL] S2b (THE SINGLE MOST DECISIVE LINE IN THE FILE) the MATCHED separation is SMALLER THAN ITS OWN PRESCRIPTION SYSTEMATIC.  Between the two defensible external-field treatments the matched separation moves by more than the separation itself; under f09's own max() branch it changes SIGN and lands four sigma on the WRONG side.  A signal smaller than the systematic that moves it is not a measurement, whatever its nominal sigma   (matched separation: sphere average +0.064 dex (0.93 sigma), FM12 eq.60 +0.157 (2.08 sigma), f09 max() -0.525 (-4.06 sigma).  Systematic 0.093 dex against a signal of 0.064 dex -- a ratio of 1.4)
+
+  (c) HOST BARYONIC MASS, scanned by a factor 4 (it sets x_e and hence the whole external-field term):
+        host mass x0.5: RAW +0.386 dex, MATCHED separation +0.063 dex (0.91 sigma)
+        host mass x1.0: RAW +0.489 dex, MATCHED separation +0.064 dex (0.93 sigma)
+        host mass x2.0: RAW +0.618 dex, MATCHED separation +0.070 dex (1.00 sigma)
+  [PASS] S3 the RAW offset survives a factor 4 in the assumed host baryonic mass, and cannot be tuned away in the helpful direction: a heavier host means a larger external field, which SUPPRESSES the predicted dispersion and makes the residual LARGER   (x0.5: RAW +0.386, matched +0.063 dex; x1.0: RAW +0.489, matched +0.064 dex; x2.0: RAW +0.618, matched +0.070 dex)
+
+  (d) LEAVE ONE CLASS OUT, canonical footing:
+        without classical : N_matched= 10  RAW +0.485  MATCHED +0.064 dex (0.70 sigma, p=0.1690)
+        without m31       : N_matched=  8  RAW +0.297  MATCHED +0.112 dex (1.91 sigma, p=0.0337)
+        without isolated  : N_matched= 10  RAW +0.556  MATCHED +0.029 dex (0.32 sigma, p=0.5616)
+  [PASS] S4 the collapse of the matched separation is not one class's doing: dropping the classical dwarfs, the M31 dwarfs or the isolated dwarfs leaves the matched separation below two sigma every time, while the RAW offset stays large every time.  The two claims come apart in every subsample   (without classical: RAW +0.485, matched +0.064 dex (0.70 sigma, N=10); without m31: RAW +0.297, matched +0.112 dex (1.91 sigma, N=8); without isolated: RAW +0.556, matched +0.029 dex (0.32 sigma, N=10))
+
+--------------------------------------------------------------------------------------------------------------------------
+4e.  OUTER-HALO GLOBULAR CLUSTERS -- pressure-supported, and containing NO dark matter under LCDM either.
+--------------------------------------------------------------------------------------------------------------------------
+  This is the one class that separates the two readings of the whole pattern.  Under DARK MATTER, globular
+  clusters have none, so MOND's boost should make it OVER-predict their dispersions.  Under a reading in which
+  PRESSURE SUPPORT itself breaks the kernel, they should behave like the dwarf spheroidals and sit ABOVE it.
+  cluster        M_V        L_V   M(Ups=2)      x_i      x_e  sig_obs  sig_pred      dex   source
+  Pal 4        -5.83   1.84e+04   3.68e+04   0.0611  0.00825     0.87      2.38   -0.874   Frank et al. 2012 (23 members)
+  Pal 14       -5.33   1.16e+04   2.31e+04   0.0127  0.01902     0.38      1.71   -1.306   Jordi et al. 2009 (16 members)
+  Pal 3        -5.45   1.29e+04   2.59e+04   0.0267  0.00927     0.80      2.12   -0.844   Baumgardt N-body fit -- MODEL-DEPENDENT
+  NGC 2419     -9.42   5.02e+05   1.00e+06   1.0774  0.00971     5.10      6.50   -0.211   Baumgardt N-body fit -- MODEL-DEPENDENT
+  [PASS] S5 (AGAINST THE READING THIS WHOLE LINE OF WORK WAS CHASING, AND IT IS THE MOST IMPORTANT RESULT IN THE FILE) at OVERLAPPING internal accelerations the pressure-supported dwarf spheroidals sit ABOVE the framework's kernel and the pressure-supported globular clusters sit far BELOW it.  'Pressure-supported' therefore does NOT predict the sign of the residual.  DARK MATTER does: dwarf spheroidals are dark-matter dominated and globular clusters contain none, so a kernel calibrated on rotation curves must under-predict the first and over-predict the second, which is exactly what is measured.  So even if the matched separation had survived Part 3, the one class that could tell the two explanations apart argues for dark-matter content and not for support type   (globular clusters: Pal 4 -0.874 (x_i=0.061), Pal 14 -1.306 (x_i=0.013), Pal 3 -0.844 (x_i=0.027), NGC 2419 -0.211 (x_i=1.077); median -0.859 dex.  Dwarf spheroidals over the same x_i = 0.01-1.2: median +0.114 dex on N=12.  This reproduces the committed h93 result (sigma_obs/sigma_pred = 0.407 for Pal 4 at Upsilon_V = 1.6, i.e. -0.78 dex) to within the M/L difference.  ⚠️ CAVEAT AGAINST MY OWN POINT: at Upsilon_V = 1 the globular clusters move to -0.558 dex, still strongly negative, and their dispersions rest on 16-23 stars apiece)
+
+==========================================================================================================================
+PART 5.  MUTATION CONTROLS.
+==========================================================================================================================
+  [PASS] M1 with nu = 1 the same quadrature returns the internal Newtonian field EXACTLY at every external field, so the machinery is not manufacturing a coupling   (Newtonian sphere average / x_i = 1.000000000000, 1.000000000000, 1.000000000000)
+  [FAIL] M2 (FAILS, AND IT IS THE SAME FAILURE AS A1 -- the mutation control is doing its job) shuffling the rotation/pressure labels between the two MATCHED populations should not reproduce the real separation.  It does, one time in ten.  That is not a broken control; it is the control correctly reporting that there is no separation left to destroy once the acceleration matching is honest.  Note this same shuffle applied to the UNMATCHED samples returns essentially never, which is exactly the point: the unmatched difference is real and the matched one is not   (MATCHED: real 0.064 dex; shuffled median 0.027, 99th percentile 0.107; P(shuffled >= real) = 0.10515.  UNMATCHED, same shuffle: real 0.495 dex, P(shuffled >= real) = 0.00000.  The raw difference is real; the matched one is not)
+  [PASS] M3 MUTATION CONTROL: raising a_0 by 100 drives every object deep into the modified regime, the predicted dispersions rise and the residuals must fall.  They do   (median residual +0.489 dex at the canonical a_0, -0.464 at 100 a_0 (-0.952))
+  [PASS] M4 SANITY: the rotating control reproduces the published radial-acceleration relation across the whole SPARC sample, not only inside the matched region   (all 147 SPARC galaxies: median +0.006 dex, scatter 0.156)
+  [PASS] M5 MUTATION CONTROL on the DATA rather than the theory: inflating every observed dispersion by sqrt(2) must move every residual by exactly +0.301 dex, and nothing else in the pipeline may respond   (median shift +0.301029996 dex against the analytic 2 log10(sqrt(2)) = log10(2) = +0.301029996)
+
+==========================================================================================================================
+VERDICT
+==========================================================================================================================
+  THE 1.73 SIGMA DOES NOT SURVIVE.  WITHDRAW IT.
+
+  Fixing f09's prescription did not kill it; fixing f09's MATCHING did.  f09 called its comparison 'matched
+  acceleration', but its window was the min-max span of its own eight dwarfs, 0.0009 to 0.073 in g_bar/a_0, and
+  SPARC has essentially no data below about 0.009.  Comparing object by object against the SPARC relation at
+  each object's OWN internal acceleration -- and dropping, rather than extrapolating to, the objects where the
+  rotating side has no data -- the separation falls from +0.215 dex / 1.73 sigma to +0.064 dex / 0.93 sigma,
+  permutation p = 0.103.  It stays under two sigma on both a_0 footings and in every subsample.  Loosening the
+  matching window pushes it back up -- 0.9 sigma at 0.15 dex, 1.4 at 0.30, 2.9 at 0.40 -- which is itself the
+  finding: the number is a monotone function of how much extrapolation is allowed, and nothing reaches three
+  sigma.  A1, A4, A9 and the M2 shuffle all FAIL and are left failing.
+
+  AND THE REASON IS A CONFOUND THAT CANNOT BE FIXED WITH LOCAL GROUP DATA.  Support type and acceleration DEPTH
+  are not independent here.  Of the 50 pressure-supported objects, 36 sit BELOW the deepest acceleration SPARC
+  reaches.  Those are the discrepant ones: median +0.731 dex, against +0.114 dex for the 14 that overlap the
+  rotating sample.  Inside the pressure sample alone the residual runs with log10(x_i) at slope -0.50, r = -0.62.
+  'Pressure-supported' and 'three decades below a_0' are the same set of objects in the Local Group, so no
+  Local Group comparison can separate them.  That is a structural limit, not a sample-size one, and it applies
+  to f09's version of the test as much as to this one.
+
+  WHAT DOES SURVIVE, and it is the liability-table statement rather than f09's:  the RAW offset of the
+  pressure-supported Local Group dwarfs against this framework's kernel is large -- classical +0.49 dex, M31
+  +0.58 dex, ultra-faints +1.44 dex -- and it survives a factor 3 in Upsilon_V, a factor 4 in host
+  mass, and every prescription tried.  What is NOT established is that it has anything to do with pressure
+  support rather than with depth.
+
+  THE REST OF THE REPAIR, for the record.
+
+  1. THE PRESCRIPTION IS FIXED, AND f09 MIS-DIAGNOSED ITS OWN DEFECT.  f09's max(isolated, external-field)
+     branch is replaced by the exact sphere average of the QUMOND field: no branch, reduces to the framework's
+     own kernel when the external field is off, reproduces f01's independently derived nu(x_e)(1+L_e/3) when it
+     dominates, and returns the Newtonian field exactly under nu = 1.  But removing the branch entirely changes
+     the isolated-versus-external-field gap by only about a tenth: the branch label was a PROXY FOR DEPTH, and
+     depth is what the residual actually runs with.  f09's A6 blamed the right symptom on the wrong cause.
+     And 'do it properly' does not name a number: the exact sphere average and the published one-dimensional
+     formula differ by 0.20 dex in the raw offset, 42 per cent of it (P4 and S2 both FAIL and are left failing).
+
+  2. THREE FURTHER ARITHMETIC BUGS IN f09, and they do NOT all run one way (A7 FAILS).  Total instead of
+     enclosed mass (+0.297 dex) and projected instead of deprojected half-light radius (+0.125) both understated
+     the liability; the true instead of the Newtonian external field in nu's argument (-0.418) overstated it.
+     On the classical eight they nearly cancel, which is a coincidence of that sample and not a defence.
+
+  3. THE ISOLATED DWARFS SAY THE LEAST.  Cetus, Tucana and the other isolated Local Group dwarf spheroidals
+     need no external-field prescription at all (x_e ~ 1e-4) and sit +0.117 dex from the kernel, against
+     +0.492 for the Milky Way satellites and +0.578 for M31's.  Cetus is +0.047.  The objects where the
+     prescription cannot be blamed show the least offset, which points at environment or tides.
+
+  4. THE CLASS THAT WOULD DECIDE THE FORK DECIDES AGAINST IT.  Outer-halo globular clusters are pressure-
+     supported and contain no dark matter under LCDM either.  At overlapping internal accelerations the dwarf
+     spheroidals sit +0.114 dex ABOVE the kernel and the globular clusters -0.859 dex BELOW it.
+     'Pressure-supported' does not predict the sign of the residual.  DARK-MATTER CONTENT does, exactly: dwarf
+     spheroidals are dark-matter dominated and globular clusters are not, so a kernel calibrated on rotation
+     curves must under-predict the first and over-predict the second.  That is what is measured.  (Reproduces
+     the committed h93 result to within the M/L difference; caveat, 16-23 stars per cluster.)
+
+  5. DEFECT 2 IS REAL AND UNRESOLVED.  f09's five-galaxy mass-matched control is NOT small-number noise: five
+     random SPARC galaxies reproduce -0.205 dex with p = 0.0029.  Those five are also the least reliable rotation
+     curves in SPARC -- 4 of 5 have no measured V_flat at all and every one has V_max within a factor 2.5 of the
+     HI turbulent dispersion -- but SPARC alone cannot separate that from a velocity-scale trend, the same
+     confound that killed f08.  D2a, D2b and A3 are left FAILING.  The mass-matched comparison is unusable.
+
+  WHAT MAY BE QUOTED AFTER THIS FILE:
+   * 'f09's 1.73 sigma rotation-versus-pressure separation is WITHDRAWN.  With object-by-object acceleration
+     matching it is +0.064 dex, 0.93 sigma, p = 0.103; it reaches at most 2.9 sigma, and only by
+     loosening the matching window to 0.40 dex, which re-admits objects with no rotating counterpart.'
+   * 'The pressure-supported Local Group dwarfs DO sit well above this framework's kernel in the raw -- median
+     +0.49 dex, robust to a factor 3 in Upsilon_V and a factor 4 in host mass, with a 0.20 dex prescription
+     systematic.  That is the liability-table statement and it stands.  What is NOT established is that it has
+     anything to do with pressure support rather than with sitting three decades below a_0.'
+   * 'Outer-halo globular clusters, equally pressure-supported, sit far BELOW the kernel, so support type does
+     not predict the sign; dark-matter content does.'
+  Nothing stronger.  That MOND under-predicts dwarf-spheroidal dispersions is long known (Angus 2008, MNRAS 387,
+  1481; McGaugh & Milgrom 2013, ApJ 775, 139); what is new here is only the branch-free prescription, the
+  honest matching, and the demonstration that the Local Group cannot separate support from depth.
+
+  THE FORK ITSELF IS UNTOUCHED AND STILL OPEN.  Milgrom's theorem -- modified inertia and modified gravity are
+  identical for circular orbits and differ for every other orbit (1994; 2011, arXiv:1111.1611) -- is unaffected
+  by anything here.  What is gone is the claim that Local Group dwarfs measure it.
+
+RESULT: 28 checks, 11 FAIL -> ["P4 (THIS CHECK FAILS AND THE FAILURE IS A RESULT) the exact sphere average and the published one-dimensional EFE formula do NOT agree to 35 per cent: they differ by up to 92 per cent, i.e. 0.28 dex in acceleration.  So 'use a proper external-field treatment' does not name a unique number, and every dwarf-spheroidal residual in this literature carries a prescription systematic of that size.  The exact sphere average is used for the headline BECAUSE it is the one that predicts MORE acceleration and therefore the SMALLER liability -- the conservative choice, against interest", "A6-FIXED (f09's own flagged defect, and the repair says f09 MIS-DIAGNOSED IT) f09 attributed 'a large part of the reported scatter' to its own max() branch.  Removing the branch entirely -- replacing it with a prescription that provably has none -- reduces the gap between the two branch groups by only about a tenth.  The branch was not what was driving the split.  What drives it is that f09's 'isolated-branch' objects are simply the ones at the LOWEST internal acceleration, and those are the discrepant ones.  The branch label was a proxy for depth, and depth is what Part 3 has to control for", "A7 (AND THIS CHECK FAILS, WHICH IS THE HONEST OUTCOME) I expected the three f09 arithmetic bugs to push the same way.  They do not: two of them (enclosed mass, deprojected radius) made f09's pressure-supported residual too SMALL by +0.42 dex between them, and the third (the true instead of the Newtonian external field) made it too LARGE by a comparable amount.  On the classical eight they very nearly cancel, so f09's classical-dwarf median was accidentally close to right -- and 'nearly cancel on eight objects' is a coincidence of this sample, not a defence of the arithmetic", "D2a (I EXPECTED SMALL-N AND I WAS WRONG) drawing five SPARC galaxies at random from all 147 essentially never reproduces f09's -0.205 dex.  Those five really are low.  f09's A3 was not a small-number accident and the deficit at the lowest disc masses is real in the data", "A1-REPAIRED (THE HEADLINE, AND IT IS A NEGATIVE.  THE 1.73 SIGMA DOES NOT SURVIVE HONEST MATCHING) with the prescription repaired, the arithmetic repaired, the sample expanded from 8 objects to 50, and -- decisively -- the acceleration matching done object by object against the SPARC relation instead of through f09's min-max window, the separation FALLS from +0.215 dex / 1.73 sigma to about +0.06 dex / 0.9 sigma, p = 0.10.  No sample combination and neither footing reaches two sigma.  f09's matched-pair result is WITHDRAWN", 'A4-REPAIRED (fails with A1) the separation was supposed to hold at strength on both footings.  It is footing-independent, but at a strength that is not a result on either', "A3-REPAIRED (f09's failing mass-match check, revisited and STILL FAILING) f09 reported that matching on baryonic mass as well as acceleration degraded the control.  Part 2 confirms the deficit is real in the data (p = 0.0029 against a random draw of five) and shows those five are the least reliable rotation curves in SPARC -- four have no V_flat at all.  That does not rescue the mass-matched comparison; it explains why it cannot be used, in either direction", 'A9 (FAILS, AND THE FAILURE IS THE SAME STATEMENT AS A1b) the separation was supposed to be robust to my own matching window.  It is not -- it is a MONOTONE FUNCTION OF HOW MUCH EXTRAPOLATION IS ALLOWED, running from 0.9 sigma at strict matching to 2.9 sigma at a 0.40 dex window.  A 0.40 dex window compares an object at x_i = 0.004 with SPARC points at x_i = 0.010, which is a smear and not a match; the significance is bought entirely by re-admitting the deep objects that have no rotating counterpart.  Nothing here reaches three sigma, and the number one quotes is set by the analysis choice rather than by the data', "S2 (FAILS, AND IT IS THE SAME FAILURE AS P4) the choice among CORRECT external-field prescriptions is not free.  The exact sphere average and the published one-dimensional formula differ by more than 0.1 dex in the RAW offset, so 'treat the external field properly' does not name a number.  The sphere average is used everywhere here because it is exact for an isotropic tracer AND gives the smaller liability -- against interest", "S2b (THE SINGLE MOST DECISIVE LINE IN THE FILE) the MATCHED separation is SMALLER THAN ITS OWN PRESCRIPTION SYSTEMATIC.  Between the two defensible external-field treatments the matched separation moves by more than the separation itself; under f09's own max() branch it changes SIGN and lands four sigma on the WRONG side.  A signal smaller than the systematic that moves it is not a measurement, whatever its nominal sigma", 'M2 (FAILS, AND IT IS THE SAME FAILURE AS A1 -- the mutation control is doing its job) shuffling the rotation/pressure labels between the two MATCHED populations should not reproduce the real separation.  It does, one time in ten.  That is not a broken control; it is the control correctly reporting that there is no separation left to destroy once the acceleration matching is honest.  Note this same shuffle applied to the UNMATCHED samples returns essentially never, which is exactly the point: the unmatched difference is real and the matched one is not']   rc=1

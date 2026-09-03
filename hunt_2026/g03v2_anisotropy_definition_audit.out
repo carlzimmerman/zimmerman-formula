@@ -1,0 +1,115 @@
+======================================================================================================================
+W.  BASELINE REPRODUCED (independent code path)
+======================================================================================================================
+  a0 = 9.36e-11 (canonical): Spearman rho = +0.6667, Pearson = +0.6666   [g03 reports +0.667 / +0.667 on both footings]
+  a0 = 1.13e-10 (alt      ): Spearman rho = +0.6667, Pearson = +0.6681   [g03 reports +0.667 / +0.667 on both footings]
+  between-object spread of the homogeneous beta_z set = 0.5308  [g03 reports 0.531]
+  null sd of Spearman rho at N = 8 = 0.378
+
+======================================================================================================================
+W1.  HOW MUCH OF THE HEADLINE PER-OBJECT SPREAD IS A CHANGE OF DEFINITION, NOT A DISAGREEMENT?
+======================================================================================================================
+
+  Draco:
+      [mer ] Hayashi+2020 beta_z (cylindrical)            +0.611
+      [mer ] Vitral+2024 beta_J (meridional, JamPy)       +0.560
+      [sphB] Vitral+2024 beta_B (spherical model 3)       +0.390
+      [sphB] Massari+2020 beta (spherical Jeans, NFW)     +0.250
+      [sphB] Vitral+2024 beta_bar_B (global 3D average)   -0.200
+      ALL definitions mixed  -> spread 0.811   (this is g03's quoted number)
+      MERIDIONAL class only  -> spread 0.051   from values [0.611, 0.56]
+
+  Sculptor:
+      [mer ] Hayashi+2020 beta_z (cylindrical)            +0.383
+      [mer ] Vitral+2026 beta_J at adopted i=57.1 deg     +0.720
+      [mer ] Vitral+2026 beta_J, i-marginalised           +0.130
+      [sphB] Vitral+2026 beta_bar_B at i=57.1 deg         +0.350
+      [sphB] Vitral+2026 beta_bar_B, i-marginalised       -0.560
+      ALL definitions mixed  -> spread 1.280   (this is g03's quoted number)
+      MERIDIONAL class only  -> spread 0.590   from values [0.383, 0.72, 0.13]
+
+  [PASS] W1 (THE CATEGORY ERROR) g03's headline per-object spreads must not be dominated by differencing anisotropy parameters that the source papers define as DIFFERENT quantities. beta_bar_B is a global 3D average of a spherical Binney anisotropy whose sign Vitral+2024's own abstract says changes with direction inside Draco; beta_z and beta_J are meridional-plane parameters. To sustain g03's claim, the spread computed WITHIN the meridional class must still exceed the between-object spread for at least one of the two galaxies at the papers' own adopted configurations   (restricted to the meridional class, Draco spans 0.051 (Hayashi +0.611 vs Vitral beta_J +0.560 -- two fully independent analyses, line-of-sight Jeans vs 18 years of HST proper motions, agreeing to 0.051, i.e. 10 per cent of the between-object range) and Sculptor spans 0.590. g03 quotes 0.811 and 1.280. The beta_bar_B entries supply 94 per cent of Draco's headline spread and 54 per cent of Sculptor's)
+
+======================================================================================================================
+W2.  THE SUBSTITUTION COLLAPSE -- ONE NUMBER, OR TWO?
+======================================================================================================================
+  [canonical] baseline rho +0.667 | Draco beta_bar_B only -> +0.167 (Pearson -0.014) | Sculptor only -> +0.667 | both -> +0.167
+  [alt      ] baseline rho +0.667 | Draco beta_bar_B only -> +0.167 (Pearson -0.015) | Sculptor only -> +0.667 | both -> +0.167
+  LIKE-FOR-LIKE substitution (beta_J for beta_z, same quantity): rho -> +0.595 (canonical), +0.595 (alt); shift 0.071 against null sd 0.378
+  [FAIL] W2 (IS THE COLLAPSE A PROPERTY OF THE SAMPLE OR OF ONE ENTRY?) g03 describes the collapse as what happens when 'the two Jeans-derived anisotropies' are replaced. For that description to hold, BOTH substitutions must contribute; if one object supplies the whole effect the finding is about a single published number   (substituting Sculptor alone moves Spearman rho by 0.000 -- it does not move at all, because +0.35 and +0.383 occupy the same rank. The entire collapse from +0.667 to +0.167 is Draco's beta_bar_B = -0.20, which demotes the object with the LARGEST residual (+0.617 dex) from second-highest beta to lowest. Substituting the like-for-like beta_J values instead moves rho by only 0.071)
+
+======================================================================================================================
+W3.  WHAT SURVIVES: THE INCLINATION DEGENERACY IS WITHIN ONE DEFINITION AND ONE ANALYSIS
+======================================================================================================================
+  Vitral+2026 abstract, verbatim: 'Our modeling reveals a significant degeneracy due to the unknown
+  galaxy inclination, which is overlooked under spherical symmetry assumptions.'
+  Sculptor beta_J across eleven acceptable inclinations: +0.98 to -0.88, swing 1.86, ALL meridional class, ALL one paper, one dataset.
+  their inclination-marginalised beta_J = +0.13 (+0.78, -1.15); 68 per cent width 1.93 against between-object spread 0.531
+  [FAIL] W3 (THE SURVIVING HALF OF g03's CLAIM) a single object's anisotropy, compared LIKE FOR LIKE and within a single published analysis, must be determined to better than the between-object spread. This is the check A8 should have been   (Sculptor's beta_J swings 1.86 on viewing angle alone, 3.5x the between-object spread, with no change of definition and no second paper involved. THIS is a real measurability obstruction. It applies to ONE of the eight objects, and the authors themselves prefer i = 57.1 deg on higher-order-moment grounds)
+
+======================================================================================================================
+W4.  IS A 0.524 SHIFT FROM SUBSTITUTING 2 OF 8 VALUES RARE?  g03 COMPARES IT TO THE WRONG NULL.
+======================================================================================================================
+  [canonical] replace 2 of 8 by draws inside the beta_z range: mean |d rho| 0.111, 95th 0.286, P(|d| >= 0.524) = 0.0000
+  [canonical] replace 2 of 8 by draws over the full published union (-0.56..+0.755): mean 0.329, 95th 0.524, P(|d| >= 0.524) = 0.0001
+  [alt      ] replace 2 of 8 by draws inside the beta_z range: mean |d rho| 0.112, 95th 0.286, P(|d| >= 0.524) = 0.0000
+  [alt      ] replace 2 of 8 by draws over the full published union (-0.56..+0.755): mean 0.328, 95th 0.524, P(|d| >= 0.524) = 0.0003
+  [FAIL] W4 (THE NULL g03 USED) g03 compares the substitution shift 0.524 against 'a null sd of 0.378', which is the sd of rho ITSELF under a full shuffle, not the sd of a two-element substitution shift. The correct comparison is against the distribution of |delta rho| when two of the eight values are replaced. For g03's framing to be wrong, 0.524 must be COMMON under that null   (P(|delta rho| >= 0.524) = 0.0002 when two entries are redrawn over the full published union range, and 0.0000 when redrawn inside the beta_z range. So the shift IS large in magnitude -- g03's null is mislabelled but its conclusion on this sub-point is not rescued by the correct null. The shift is large because -0.20 lies OUTSIDE the beta_z range entirely, which is itself the signature of a different quantity (W1))
+
+======================================================================================================================
+W5.  AN UNCITED INPUT
+======================================================================================================================
+  g03's substitution table contains the row 'Vitral inclination-marginalised beta_J' with (Draco, Sculptor)
+  = (0.13, 0.13). +0.13 is Sculptor's inclination-marginalised beta_J (g03's own SCL_ALT dict). g03's
+  DRACO_ALT dict contains no 0.13, and its docstring cites no inclination-marginalised beta_J for Draco.
+  That row therefore assigns Sculptor's number to Draco. It produces rho = +0.143, one of the two rows
+  g03's verdict calls a collapse.
+  [FAIL] W5 (PROVENANCE) every substituted value must be traceable to a cited published number for the object it is assigned to   (the Draco entry of the 'inclination-marginalised beta_J' row is uncited and equals Sculptor's value; that row returns rho = +0.143. Marked FAIL as a provenance defect, not a physics one -- it does not change W1's conclusion either way)
+
+======================================================================================================================
+W6.  THE OBSTRUCTION THAT DOES NOT NEED A8 AT ALL
+======================================================================================================================
+  sorted beta_z: [0.224 0.241 0.339 0.383 0.425 0.563 0.611 0.755]
+  adjacent gaps: [0.018 0.098 0.044 0.041 0.139 0.047 0.144]   median gap = 0.047
+  median Hayashi+2020 STATISTICAL error on beta_z = 0.253  = 5.3x the median adjacent gap
+  [canonical] MC over quoted errors: rho median +0.476, 16-84 +0.214 to +0.714, fraction positive 0.948
+  [alt      ] MC over quoted errors: rho median +0.476, 16-84 +0.190 to +0.714, fraction positive 0.948
+  [FAIL] W6 (THE ORDERING) a rank correlation needs the ORDERING of the eight objects, which needs the adjacent gaps to exceed the per-object errors. Test that on Hayashi+2020's OWN quoted statistical errors, with no cross-method or cross-definition argument anywhere in it   (the median quoted error 0.253 is 5.3 times the median adjacent gap 0.047. The ordering is NOT established, on the homogeneous set's own error bars, before any of A8-A10 is invoked. This is the honest form of g03's verdict item 1, it is footing-independent, and it needs none of the definitional mixing that W1 rejects)
+
+======================================================================================================================
+W7.  MUTATION CONTROL
+======================================================================================================================
+  M1 kernel OFF (nu = 1): baseline rho = +0.429; after the beta_bar_B substitution -0.024; shift 0.452
+     the framework's own shift under the same substitution is 0.500
+  M2 shuffled beta_z, then the same substitution: baseline +0.000
+  [FAIL] W7 (MUTATION) if the substitution collapse were a statement about the FRAMEWORK's residual, turning the kernel off (nu = 1, pure Newtonian) should change how big the collapse is. If the collapse is the same size with gravity unmodified, it is a property of the substituted number and not of the framework   (Newtonian shift 0.452 vs framework shift 0.500. The substitution does essentially the same thing with gravity completely unmodified, confirming it is an input-value effect, not a kernel effect)
+
+======================================================================================================================
+VERDICT ON g03's A8 / A9 / VERDICT-ITEM-1
+======================================================================================================================
+  REFUTED AS STATED, RECOVERABLE AS RESTATED.
+
+  1. THE HEADLINE NUMBERS ARE A CATEGORY ERROR. g03's per-object spreads 0.811 (Draco) and 1.280 (Sculptor)
+     difference quantities the source papers define differently. Vitral+2024's abstract states in one
+     sentence that Draco is radially anisotropic along the symmetry axis AND tangentially anisotropic in
+     the equatorial plane, with globally-averaged beta_bar_B = -0.20 where 1 - beta_B == <v_tan^2>/<v_rad^2>.
+     beta_bar_B = -0.20 and beta_J = +0.56 are both correct descriptions of ONE velocity ellipsoid field.
+     Within the meridional class the two INDEPENDENT analyses of Draco -- line-of-sight Jeans and 18 years
+     of HST proper motions -- agree to 0.051, which is 10 per cent of the between-object spread, not 153 per cent.
+  2. THE SUBSTITUTION COLLAPSE IS ONE NUMBER. Sculptor's substitution moves rho by 0.000. All of it
+     is Draco's beta_bar_B demoting the largest-residual object to lowest anisotropy. Like for like the
+     shift is 0.071, inside the null sd 0.378.
+  3. WHAT SURVIVES, AND IT IS ENOUGH TO KEEP THE FORK SHUT: (a) W6 -- the median quoted statistical error
+     on beta_z is 5.3x the median adjacent gap, so the ordering is unestablished on the
+     homogeneous set's own error bars alone; (b) W3 -- Sculptor's beta_J swings
+     1.86 on viewing angle within one definition and one paper; (c) g03's own A11, that
+     no published beta was derived inside this framework's potential and its phantom halo is cuspier than
+     the fitted ones by 0.61-1.47 in log slope.
+  4. AND THE TEST WOULD NOT DISCRIMINATE EVEN IF beta WERE PERFECT: g03's own A6 (64 per cent of the
+     correlation survives nu = 1) and A13 (the deep-MOND virial relation is common to both arms) already
+     say so. Those, not A8, are the load-bearing reasons.
+
+  RECOMMENDATION: do not cite '0.81 for Draco' or '1.28 for Sculptor' as measurement uncertainties, and do
+  not cite 'rho collapses to +0.167' as evidence about measurability. Cite W6 and A11 instead.
+
+RESULT: 7 checks, 6 FAIL -> ["W2 (IS THE COLLAPSE A PROPERTY OF THE SAMPLE OR OF ONE ENTRY?) g03 describes the collapse as what happens when 'the two Jeans-derived anisotropies' are replaced. For that description to hold, BOTH substitutions must contribute; if one object supplies the whole effect the finding is about a single published number", "W3 (THE SURVIVING HALF OF g03's CLAIM) a single object's anisotropy, compared LIKE FOR LIKE and within a single published analysis, must be determined to better than the between-object spread. This is the check A8 should have been", "W4 (THE NULL g03 USED) g03 compares the substitution shift 0.524 against 'a null sd of 0.378', which is the sd of rho ITSELF under a full shuffle, not the sd of a two-element substitution shift. The correct comparison is against the distribution of |delta rho| when two of the eight values are replaced. For g03's framing to be wrong, 0.524 must be COMMON under that null", 'W5 (PROVENANCE) every substituted value must be traceable to a cited published number for the object it is assigned to', "W6 (THE ORDERING) a rank correlation needs the ORDERING of the eight objects, which needs the adjacent gaps to exceed the per-object errors. Test that on Hayashi+2020's OWN quoted statistical errors, with no cross-method or cross-definition argument anywhere in it", "W7 (MUTATION) if the substitution collapse were a statement about the FRAMEWORK's residual, turning the kernel off (nu = 1, pure Newtonian) should change how big the collapse is. If the collapse is the same size with gravity unmodified, it is a property of the substituted number and not of the framework"]   rc=1

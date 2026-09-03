@@ -1,0 +1,154 @@
+==============================================================================================================================
+1.  INDEPENDENT RE-DERIVATION OF THE HEADLINE NUMBER
+==============================================================================================================================
+  [PASS] V0 my own Jeans solver reproduces sigma^4 = (4/81) G M a_0 (Milgrom 1994), so any disagreement with g06 below is a disagreement about the data or the prescription and not about my integrator   (sigma^4/(G M a_0) = 0.049388 vs 4/81 = 0.049383)
+  UNGC re-read independently: 869 galaxies -> 26 groups, 333 members, N per group 5-39
+  independent median boost: canonical 0.817 (g06 quotes 0.817), alt 0.746 (g06 quotes 0.746); bootstrap 16-84% [0.656, 1.110] (g06 (0.656, 1.11))
+  median g_bar/a_0 = 0.00189; per-group boosts span 0.23 - 6.01
+  [PASS] V1 the headline reproduces under an independent re-implementation of the whole chain (catalogue read, membership, gapper, baryon budget, baryonic external field, Jeans solve).  If this failed the claim would be dead on arithmetic; it is not, and everything below is about the INFERENCE   (canonical 0.8172 vs 0.817 (+0.0001 dex); alt 0.7455 vs 0.746 (-0.0003 dex))
+
+==============================================================================================================================
+2.  ATTACK 1 -- IS THE MEDIAN A PROPERTY OF THE SAMPLE, OR OF ITS WORST-MEASURED HALF?
+==============================================================================================================================
+  boost = (sigma_obs/sigma_pred)^2, and in the deep-MOND limit of a point mass 3 sigma_pred^2 = sqrt(G M a_0)
+  is nearly radius-independent (g06's own check J3).  So the boost is, to within the transition correction,
+          boost  ~  3 sigma_obs^2 / sqrt(G M_b a_0),
+  i.e. a baryonic-Tully-Fisher-style test in which ALL the per-group scatter enters through sigma_obs.  A
+  5-member gapper dispersion is the noisiest and the most membership-sensitive quantity in the file, and the
+  sample runs from 5 to 39 members.  So: does the boost run with membership number?
+    variable                      Spearman rho   permutation p
+    members per group N                 +0.330          0.1026
+    host distance D                     +0.071          0.7314
+    log baryonic mass                   +0.079          0.6994
+  split at N = 10: rich half N_grp = 9, median boost 1.431 (+0.156 dex); poor half N_grp = 17, median boost 0.604 (-0.219 dex); gap +0.375 dex
+  the same split on 20000 label-permuted samples: |gap| >= 0.375 dex in 8.11% of them
+  [PASS] A1 the boost does NOT run with the number of members, i.e. the headline is not being set by the sparsest and least reliable groups.  This is the data-quality confound: sigma_obs from 5 velocities is both the noisiest and the most membership-sensitive number in the chain, and if the boost tracks N then the median over 26 groups is a statement about catalogue depth rather than about gravity   (Spearman rho(N, log boost) = +0.330, permutation p = 0.1026; rich (N>=10) median 1.431 vs poor (N<10) median 0.604, a gap of +0.375 dex (split permutation p = 0.0811))
+  [FAIL] A2 the well-measured subsample carries the claim.  Restricting to the {N>=10} groups -- the ones with enough members for the gapper to mean anything -- must leave the separation from the liability table's X-ray group/cluster median of 2.11 substantially intact (asserted here at 0.30 dex, against the claimed 0.412)   (rich-subsample median boost 1.431; separation from the cluster median +0.169 dex, against the full-sample +0.412 dex.  The liability table's mildest X-ray group/cluster rows are 1.45 and 1.48)
+  [PASS] A3 MUTATION CONTROL for attack 1 -- shuffle the membership numbers across groups.  The N-trend must vanish when the labels are broken; if a shuffled N still correlated with the boost, attack 1 would be an artefact of my own ranking rather than a property of the sample   (shuffled rho = -0.019 +- 0.196; real rho = +0.330, i.e. 1.68 sigma from the shuffled null)
+  
+  Is an N-trend just small-sample bias in the gapper?  Monte-Carlo, 20000 draws per n: n-1 Gaussian tracers
+  plus one host pinned at the systemic velocity (the host IS in the member list and sits at the centre):
+       n   median gapper / true sigma   -> bias in boost (dex)
+       5                       0.8490                  -0.1422
+       6                       0.8758                  -0.1152
+       8                       0.9107                  -0.0813
+      10                       0.9320                  -0.0612
+      20                       0.9684                  -0.0279
+      39                       0.9833                  -0.0146
+  [FAIL] A4 the rich-vs-poor gap IS explained away by the gapper's own small-sample behaviour, in which case attack 1 is a statistics artefact and the claim survives it.  This check is deliberately phrased AGAINST my own attack: PASS = my attack is an estimator artefact and I withdraw it; FAIL = the gap is bigger than the estimator can produce and the confound is real.  The n = 5 bias goes the RIGHT way to help the claim (sparse groups read low), so it had to be sized rather than waved at   (estimator bias n=5 vs n=39 predicts -0.128 dex in the boost; the observed rich-vs-poor gap is +0.375 dex, a factor 2.9 larger)
+
+==============================================================================================================================
+3.  ATTACK 2 -- THE '3.6 SIGMA' USES ONLY THE STATISTICAL ERROR.  THE FILE'S OWN SYSTEMATICS ARE LARGER.
+==============================================================================================================================
+    systematic (admissible branches only)             low     high  half-width dex
+    stellar M/L: Upsilon_K = 0.4 vs 1.0             1.011    0.621           0.106
+    hot gas: f_hot = 0 vs 1.0                       0.912    0.746           0.044
+    external field: isolated vs x3                  0.706    0.909           0.055
+    aperture: r_h vs 3 r_max                        0.648    0.873           0.065
+  statistical half-width on the median (bootstrap)          = 0.114 dex  -> 3.61 sigma
+  quadrature sum of the ADMISSIBLE prescription systematics = 0.143 dex
+  stat + sys                                                = 0.183 dex  -> 2.26 sigma
+  and this still counts NOTHING on the cluster side (hydrostatic bias, abundance-matched stellar masses),
+  and EXCLUDES the two branches g06 itself rules out by argument: the pure external-field limit (0.208) and
+  the raw 2M++ field (2.215, which lands on the cluster median).
+  [FAIL] B1 the claimed separation from the cluster rows survives the file's OWN admissible systematic bracket at three sigma.  The quoted 3.6 sigma is explicitly 'on the group side's error alone'; a referee will not accept a statistical-only error bar on a comparison whose dominant uncertainty is the stellar M/L   (separation +0.412 dex; 3.61 sigma statistical-only, 2.26 sigma once the admissible systematics are included)
+  [PASS] B2 the separation survives the SINGLE worst admissible systematic on its own -- the stellar M/L.  Upsilon_K = 1.0 is a defensible old-population K-band value (Bell & de Jong 2001 span roughly 0.6-1.0 in K for red colours), and this rung's whole baryon budget is 93% host K-band light   (at Upsilon_K = 1.0 the median boost is 0.621, separation from 2.11 = +0.531 dex against 3 x 0.114)
+
+==============================================================================================================================
+4.  ATTACK 3 -- IS THE PER-GROUP SCATTER CONSISTENT WITH THE QUOTED ERRORS, OR IS THERE UNMODELLED SYSTEMATIC?
+==============================================================================================================================
+  observed scatter of log boost   = 0.415 dex over 26 groups
+  quoted statistical scatter      = 0.276 dex (rms of the per-group 2/sqrt(2(N-1)) errors)
+  implied INTRINSIC/unmodelled    = 0.310 dex
+  chi^2 about the median = 78.8 for 25 dof  (p = <1e-4)
+  [FAIL] C1 the 26 boosts are statistically consistent with a single value, so quoting a median with a bootstrap error is a legitimate summary.  If they are not, the sample carries an unmodelled per-group systematic (membership, interlopers, non-equilibrium, projection) at least as large as the effect being claimed, and the median's error bar understates what is actually known   (chi^2/dof = 3.15; the unmodelled term is 0.310 dex per group, against a quoted statistical 0.276 dex and a claimed separation of 0.412 dex)
+
+==============================================================================================================================
+5.  ATTACK 4 -- WOULD ORDINARY COLD DARK MATTER PRODUCE THE SAME SIGNATURE?  ZERO FREE PARAMETERS.
+==============================================================================================================================
+  Abundance matching (Moster, Naab & White 2013, MNRAS 428, 3121, z = 0: log M1 = 11.59, N = 0.0351,
+  beta = 1.376, gamma = 0.608) fixes M200 from the MEASURED stellar mass with no freedom; concentration from
+  Dutton & Maccio 2014 (MNRAS 441, 3359): log c200 = 0.905 - 0.101 log(M200 h / 1e12).  The SAME tracer
+  profile, the SAME aperture and the SAME Jeans solver are then used, so the two frameworks are compared
+  through one pipeline.  If LambdaCDM lands on these dispersions as well as the framework does, this rung
+  cannot separate them and the 'counted vs modelled baryons' reading of the group/cluster contrast is one
+  story among several, not a measurement.
+    group            N  log M*  log M200(AM)  sig_obs  sig_LCDM  boost_LCDM  boost_frame
+    MESSIER031      39   10.55         12.03    118.6      89.1        1.77         1.80
+    MESSIER081      36   10.89         12.76    125.6     158.9        0.63         1.43
+    NGC3368         31   10.91         12.80    173.4     154.6        1.26         3.74
+    Milky Way       30   10.71         12.34     97.4     118.5        0.68         0.93
+    NGC5128         27   10.95         12.89    135.6     170.3        0.63         1.78
+    NGC4258         20   10.75         12.42     88.9     121.6        0.53         0.81
+    NGC5236         16   10.65         12.20     69.1      92.2        0.56         0.57
+    NGC4736         14   10.50         11.95     52.3      68.0        0.59         0.51
+    NGC4594         10   11.08         13.24    149.5     224.2        0.44         1.57
+    IC0342           9   10.44         11.87     73.4      68.0        1.16         0.83
+    NGC3412          9   10.07         11.55    103.2      53.3        3.75         4.26
+    NGC0253          8   10.85         12.66     57.3     132.9        0.19         0.32
+    NGC3115          8   10.74         12.40    106.1     115.4        0.85         1.17
+    NGC3627          8   10.89         12.76     80.2     155.8        0.26         0.60
+    NGC2784          7   10.68         12.27    100.2     110.5        0.82         1.11
+    NGC6744          7   10.72         12.35     56.8     119.9        0.22         0.31
+    NGC6946          7   10.56         12.04     69.2      91.7        0.57         0.56
+    NGC4945          6   10.92         12.82    155.6     165.9        0.88         2.42
+    MESSIER101       6   10.64         12.19     79.1     100.4        0.62         0.71
+    NGC0925          5    9.93         11.45     38.5      53.2        0.52         0.37
+    NGC2903          5   10.60         12.11     46.0      93.3        0.24         0.26
+    NGC3432          5    9.44         11.20    121.8      53.0        5.28         5.16
+    NGC3521          5   10.87         12.70     53.2     156.6        0.12         0.23
+    NGC4631          5   10.32         11.74    184.8      67.1        7.60         6.01
+    NGC5055          5   10.77         12.46     77.4     121.7        0.40         0.60
+    NGC5194          5   10.90         12.78     53.2     166.1        0.10         0.25
+  LambdaCDM (abundance-matched NFW, zero free parameters): median boost 0.606 (-0.218 dex), scatter 0.450 dex
+  framework (Route A kernel,        zero free parameters): median boost 0.817 (-0.088 dex), scatter 0.415 dex
+  [FAIL] D1 the rung DISCRIMINATES: the framework and a zero-free-parameter abundance-matched NFW halo must not land on these dispersions equally well.  A FAIL here confirms the author's own concession that this is a non-discrimination -- and it also removes the causal reading, because if CDM reproduces the group side too then 'the deficit appears where baryons are MODELLED' is an interpretation, not a result   (LambdaCDM median boost 0.606 vs framework 0.817; the two differ by -0.130 dex against 3 x the bootstrap half-width 0.342 dex.  Scatters 0.450 (LCDM) vs 0.415 (framework) dex)
+
+==============================================================================================================================
+6.  ATTACK 5 -- THE GROUP/CLUSTER CONTRAST IS DEGENERATE WITH THE MASS ESTIMATOR
+==============================================================================================================================
+  The liability table carries a row that matches this rung in BOTH mass and acceleration:
+      | 2.63 | 0.004 | pressure | eRASS1 groups 10^12.5-13.5 at R500 |
+  This rung's abundance-matched halo masses are log M200 = 11.20 - 13.24, median 12.34 -- the SAME decade -- at g_bar/a_0 = 0.0019 against that row's 0.004.
+  So the contrast is not group-mass vs cluster-mass and it is not high-acceleration vs low-acceleration.
+  What differs between the two rows is the ESTIMATOR: galaxy-tracer line-of-sight dispersions here, X-ray
+  hydrostatic masses there.  'Counted vs modelled baryons' is ONE reading of that difference.  The others,
+  which this rung cannot exclude, all push the group side DOWN rather than the cluster side up:
+    (i)   radial orbit anisotropy: an isotropic Jeans solve applied to a radially anisotropic satellite
+          population under-reads the mass from a line-of-sight dispersion;
+    (ii)  Theta_1 > 0 membership reaches the zero-velocity surface, so a large fraction of members sit in the
+          infall region where peculiar velocities are SMALL -- g06 argues this only inflates sigma; it can
+          equally deflate the line-of-sight dispersion of a sample dominated by large-radius members;
+    (iii) 5-39 members with no interloper rejection beyond the catalogue's own tidal index.
+  [FAIL] E1 the separation is from the cluster BLOCK and not merely from its median.  The table's mildest X-ray group/cluster rows are 1.45 and 1.48; if the rung's number is not separated from THOSE at three sigma then 'groups do not show the cluster deficit' is a statement about the top of the cluster block only   (separation from the mildest X-ray row (1.45) = +0.249 dex against 3 x 0.183 = 0.548 dex)
+  [FAIL] E2 the rich (N>=10) subsample is separated from the mildest X-ray group/cluster rows.  This is the strongest form of the audit: take only the groups whose dispersions are worth trusting, and ask whether they still sit below the cluster block at all   (rich-subsample median 1.431 against the table's 1.45 and 1.48 rows: +0.006 dex, against a one-sigma stat+sys of 0.183 dex)
+
+==============================================================================================================================
+7.  BOTH FOOTINGS ON EVERY CONCLUSION OF THIS AUDIT, AND A SECOND MUTATION CONTROL
+==============================================================================================================================
+    footing        median  rich N>=10  poor N<10  rho(N,boost)        p  sep from 2.11
+    canonical       0.817       1.431      0.604        +0.330   0.1026         +0.412
+    alt             0.746       1.307      0.551        +0.330   0.1004         +0.452
+  [PASS] F1 both footings give the same audit verdict on the richness confound   (canonical rho +0.330 p 0.1026; alt rho +0.330 p 0.1004)
+  [PASS] F2 MUTATION CONTROL -- shuffle the measured dispersions across groups.  The N-trend must be destroyed, because it is a pairing between a group's own richness and its own kinematics.  If it survived a shuffle it would be an artefact of the baryon budget or the radii, not of the dispersions   (shuffled rho(N, log boost) = -0.059 +- 0.179; real +0.330)
+
+==============================================================================================================================
+8.  VERDICT OF THE AUDIT
+==============================================================================================================================
+    * The arithmetic REPRODUCES: median boost 0.817 canonical / 0.746 alt, bootstrap [0.656, 1.110].
+    * The 'consistent with unity, cannot discriminate' half of the claim STANDS and is if anything
+      understated -- see D1.
+    * The '3.6 sigma from the cluster rows' half does NOT stand at that strength: 3.6 sigma
+      statistical-only becomes 2.3 sigma once the file's OWN admissible systematic bracket is
+      included, and that still counts nothing on the cluster side.
+    * Richness confound: rho(N, log boost) = +0.330, permutation p = 0.1026 -- NOT significant, and
+      said so: check A1 PASSES.  What is established is not a trend but a FRAGILITY.  The N >= 10 groups sit
+      at 1.43 and the N < 10 groups at 0.60; a quality cut any referee would ask for moves the
+      rung onto the liability table's mildest X-ray rows (1.45, 1.48), separation +0.006 dex (E2).
+    * Unmodelled per-group scatter 0.310 dex against a quoted statistical 0.276 dex; chi^2/dof = 3.15, so the 26
+      groups are NOT draws from one value and the bootstrap band is not the whole error.
+    * LambdaCDM, zero free parameters, lands at 0.61 on the same groups with the same pipeline -- it
+      does not show the cluster deficit either.  So the group/cluster contrast does not isolate 'counted vs
+      modelled baryons'; it is equally a statement about galaxy-kinematic vs X-ray-hydrostatic estimators.
+
+RESULT: 14 checks, 7 FAIL -> ["A2 the well-measured subsample carries the claim.  Restricting to the {N>=10} groups -- the ones with enough members for the gapper to mean anything -- must leave the separation from the liability table's X-ray group/cluster median of 2.11 substantially intact (asserted here at 0.30 dex, against the claimed 0.412)", "A4 the rich-vs-poor gap IS explained away by the gapper's own small-sample behaviour, in which case attack 1 is a statistics artefact and the claim survives it.  This check is deliberately phrased AGAINST my own attack: PASS = my attack is an estimator artefact and I withdraw it; FAIL = the gap is bigger than the estimator can produce and the confound is real.  The n = 5 bias goes the RIGHT way to help the claim (sparse groups read low), so it had to be sized rather than waved at", "B1 the claimed separation from the cluster rows survives the file's OWN admissible systematic bracket at three sigma.  The quoted 3.6 sigma is explicitly 'on the group side's error alone'; a referee will not accept a statistical-only error bar on a comparison whose dominant uncertainty is the stellar M/L", "C1 the 26 boosts are statistically consistent with a single value, so quoting a median with a bootstrap error is a legitimate summary.  If they are not, the sample carries an unmodelled per-group systematic (membership, interlopers, non-equilibrium, projection) at least as large as the effect being claimed, and the median's error bar understates what is actually known", "D1 the rung DISCRIMINATES: the framework and a zero-free-parameter abundance-matched NFW halo must not land on these dispersions equally well.  A FAIL here confirms the author's own concession that this is a non-discrimination -- and it also removes the causal reading, because if CDM reproduces the group side too then 'the deficit appears where baryons are MODELLED' is an interpretation, not a result", "E1 the separation is from the cluster BLOCK and not merely from its median.  The table's mildest X-ray group/cluster rows are 1.45 and 1.48; if the rung's number is not separated from THOSE at three sigma then 'groups do not show the cluster deficit' is a statement about the top of the cluster block only", 'E2 the rich (N>=10) subsample is separated from the mildest X-ray group/cluster rows.  This is the strongest form of the audit: take only the groups whose dispersions are worth trusting, and ask whether they still sit below the cluster block at all']   rc=1

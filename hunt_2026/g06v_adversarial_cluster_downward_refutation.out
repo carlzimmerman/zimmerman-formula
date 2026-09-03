@@ -1,0 +1,116 @@
+==============================================================================================================================
+0.  RE-RUN g06's OWN MACHINERY VERBATIM (exec of the committed file; nothing re-implemented)
+==============================================================================================================================
+  imported: 26 groups, canonical median boost 0.817, alt 0.746, bootstrap [0.656, 1.110]; g06 printed 276 lines, suppressed
+  [PASS] V0 the re-run reproduces g06's published headline exactly, so everything below is an argument about that number and not a transcription of a different one   (re-run canonical 0.817 (published 0.817), alt 0.746 (published 0.746))
+
+==============================================================================================================================
+1.  V1 -- CURRENCY.  Is (sigma_obs/sigma_pred)^2 the liability table's ACCELERATION boost?
+==============================================================================================================================
+  THE_LIABILITY_TABLE.md defines its currency as 'the factor by which the observation exceeds the framework's
+  zero-parameter prediction in ACCELERATION'.  g06 reports (sigma_obs/sigma_pred)^2.  These agree only if
+  sigma^2 scales as g at fixed radius.  In the deep-MOND point-mass limit sigma^2 = (1/3) sqrt(G M a_0) and
+  g = sqrt(G M a_0)/r, so BOTH ratios equal sqrt(M_dyn/M_bar).  Checked numerically, not asserted.
+  [PASS] V1 the two rungs ARE in one currency: a dispersion-squared ratio and an acceleration ratio are the same number in the deep-MOND limit, so g06's row can legitimately be laid beside the X-ray rows.  This check is a control -- if it had failed, the whole comparison would be void by a square root and the claim would die here   (a factor 4 in mass gives acceleration ratio 2.000000 and sigma^2 ratio 2.000000; both = sqrt(M_dyn/M_bar) = 2.000000)
+  [PASS] V1b and the deep-MOND limit that V1 leans on is actually where these groups live, so the currency identity is not being used outside its domain   (largest internal g_bar/a_0 in the sample is 0.02080, deepest 0.00013; the kernel's transition sits at y ~ 1, three decades away)
+
+==============================================================================================================================
+2.  V2 -- SELECTION ON THE DEPENDENT VARIABLE.  What the 'boost <= 3' cut deletes
+==============================================================================================================================
+  pressure-supported rows in the table: 18.  g06's comparison set is 'pressure AND boost <= 3': 14 kept, 4 DELETED.
+    DELETED row                                      boost     g/a0  vs this rung
+    MW ultra-faint dwarfs, 31 satellites             44.70   0.0010  BELOW the rung's median acceleration
+    Pal 14 (outer-halo globular)                      4.60   0.0100  inside the rung's acceleration range
+    Pal 4 (outer-halo globular)                       6.00   0.0490  above the rung's range
+    SLUGGS globular systems, log M* >= 11.3           4.63   0.7300  above the rung's range
+  this rung: median g/a0 = 0.00189, range 0.00013 - 0.02080, boost 0.82
+  [FAIL] V2 (THE CENTRAL ATTACK) the claim is that NOTHING at or below this rung's acceleration carries a cluster-sized boost -- that is what 'the deficit does not extend downward' means.  Tested against ALL pressure rows rather than the boost-selected 14, it asserts that no pressure row at or below this rung's own MEDIAN acceleration sits above this rung's boost.  If it fails, the comparison set was built by cutting on the quantity being compared and the ordering statistic 14/14 is circular   (pressure rows at g/a_0 <= 0.00189 (this rung's median): MW ultra-faint dwarfs, 31 satellites at 0.0010 a_0, boost 44.70.  This rung's boost is 0.82)
+  [FAIL] V2b and the weaker form: within this rung's own acceleration RANGE (0.00013 - 0.0208 a_0), no pressure row carries a boost above the rung's.  This is the honest scope of the 'does not extend downward' statement, because outside that range the two rungs are not being compared at matched acceleration at all   (3 pressure rows lie inside the rung's acceleration range with a LARGER boost: MW ultra-faint dwarfs, 31 satellites (44.70 at 0.0010); Pal 14 (outer-halo globular) (4.60 at 0.0100); eRASS1 groups 10^12.5-13.5 at R500 (2.63 at 0.0040))
+
+==============================================================================================================================
+3.  V3 -- DOES THE 'boost <= 3' CUT MANUFACTURE THE FLAT TREND?
+==============================================================================================================================
+      all 26 boost-carrying rows                           N = 26   slope = -0.203   r = -0.517
+      all pressure rows                                    N = 18   slope = -0.240   r = -0.567
+      pressure rows AFTER the boost <= 3 cut  (g06's set)  N = 14   slope = -0.040   r = -0.252
+  THE_LIABILITY_TABLE.md's own published regression over its 26 rows is slope -0.206, r = -0.53; reproduced here as -0.203, r = -0.517
+  [FAIL] V3 the table's own headline says the boost RISES toward LOW acceleration (slope -0.206, r = -0.53).  That is the 'low-acceleration tail' reading.  This check asserts the boost <= 3 cut does not materially change that trend.  If it fails, g06's flat picture is an artefact of the cut, not a property of the data   (all pressure rows slope -0.240 (r = -0.567); after the cut -0.040 (r = -0.252); the cut changes the slope by +0.200, i.e. 83% of it)
+  [PASS] V3b MUTATION CONTROL for V3.  Delete the same NUMBER of pressure rows, but by the INDEPENDENT variable (highest acceleration) instead of by boost.  A cut that is innocent of the dependent variable must leave the sign of the trend alone.  This isolates 'cutting on boost' as the cause rather than 'cutting 4 rows'   (deleting the 4 highest-ACCELERATION rows leaves slope -0.393 (r = -0.687), same sign as the full -0.240; deleting the 4 highest-BOOST rows gives -0.040)
+  extrapolating the ALL-pressure-row trend to this rung's median acceleration 0.00189 predicts log boost = +0.830 (boost 6.76); g06 measures -0.088 (boost 0.82).  The rung is +0.917 dex BELOW that trend, which is the real content of the finding -- an outlier from the table's trend, not a demonstration that the trend is absent.
+
+==============================================================================================================================
+4.  V4 -- IS 0.82 ROBUST TO A MEMBERSHIP CUT?  boost goes as sigma^2 and half these groups have 5-8 members
+==============================================================================================================================
+      membership cut  N groups  median boost (can)    (alt)  median g/a0  typ stat err/dex
+              N >= 5        26               0.817    0.746      0.00189             0.263
+              N >= 8        14               1.054    0.962      0.00109             0.190
+             N >= 10         9               1.431    1.307      0.00289             0.159
+             N >= 15         7               1.431    1.307      0.00289             0.141
+             N >= 20         6               1.604    1.463      0.00315             0.132
+  [FAIL] V4 the headline median must not depend on where the membership cut is put.  g06 keeps every group with >= 5 members; a 5-member gapper carries 0.31 dex on its own boost while a 39-member one carries 0.10.  This check asserts that moving the cut to N >= 20 -- the six groups whose dispersions are actually measured -- moves the median boost by less than the claimed separation's own standard error of 0.081 dex.  A failure means the number quoted in the liability table is a statement about the catalogue's faint end   (N >= 5 (g06's primary): 0.817; N >= 10: 1.431; N >= 20: 1.604 canonical / 1.463 alt -- a swing of +0.293 dex against the standard error 0.081 dex)
+  [FAIL] V4b THE ORDERING STATISTIC ITSELF.  C1's '14 of 14' is the load-bearing sentence.  Recompute it on the best-measured half of the rung (N >= 20).  If the 14/14 does not survive, the claim 'every X-ray group and cluster row sits above this rung's boost' is a property of the 5-member groups   (11 of 14 rows sit above the N >= 20 median of 1.60 (g06's N >= 5 value was 0.82, 14 of 14).  The rows now BELOW it: X-COP at 0.9 R500 (1.48), X-ray groups at R500 (1.45), SLUGGS globular systems, log M* < 11.3 (1.30))
+  [PASS] V4c and is that membership dependence a trend or an accident of six points?  Judged against a permutation null, the same way g06 judged its own acceleration slope in R5.  A null here would mean V4/V4b are small-sample noise and the claim survives them   (corr(log N_members, log boost) = +0.278 against a permutation null of width 0.201, i.e. 1.39 sigma)
+
+==============================================================================================================================
+5.  V5 -- SMALL-N BIAS.  The MEDIAN of a dispersion estimator at n = 5 sits BELOW the truth, and boost ~ sigma^2
+==============================================================================================================================
+  Monte-Carlo: draw n Gaussian velocities of unit true dispersion, apply g06's own gapper() function, and
+  record the median of the returned sigma^2.  This is a property of the estimator, not of the data.
+       n  median (sigma_hat/sigma)^2   bias in dex
+       3                      0.8781       -0.0564
+       4                      0.9301       -0.0315
+       5                      0.9483       -0.0230
+       6                      0.9536       -0.0206
+       7                      0.9607       -0.0174
+       8                      0.9689       -0.0137
+      11                      0.9807       -0.0085
+      12                      0.9835       -0.0072
+      13                      0.9825       -0.0077
+      16                      0.9894       -0.0046
+      20                      0.9918       -0.0036
+      26                      0.9969       -0.0014
+      28                      0.9930       -0.0031
+      37                      0.9936       -0.0028
+  [PASS] V5 the estimator's own small-n bias must be smaller than the effect being claimed.  Debiasing each group's boost by the Monte-Carlo median of its own membership count moves the sample median; this check asserts that move is under half the claimed separation's standard error.  It is a bias against the framework's interest in the sense that correcting it RAISES the boost toward the cluster rows   (debiased median boost 0.837 canonical / 0.764 alt against g06's 0.817 / 0.746: a shift of +0.011 dex, standard error 0.081 dex)
+  combining V4 and V5: the N >= 20 subsample debiased sits at 1.615 canonical, against g06's headline 0.817 and the X-ray rows' 1.45 - 2.91.
+
+==============================================================================================================================
+6.  V6 -- THE PHYSICS FRAMING: deep-MOND applicability, the EFE regime, and modified inertia
+==============================================================================================================================
+  groups: internal g_bar/a_0 = 0.00013 - 0.02080; e_N/x_int = 0.003 - 2.167, median 0.061
+  dwarf spheroidals (g06 section 7): e_N/x_int = 0.04 - 31.97, median 2.11
+  [FAIL] V6 the two pressure-supported populations g06 compares in section 7 are in the SAME external-field regime, so the interpolated branch is doing the same job in both.  g06's own check R4 says the pure external-field limit is inapplicable to the groups and would move them by a factor 3.93; if the dwarf spheroidals sit in that limit while the groups do not, the +0.82 dex gap of check F3 is partly a regime difference and not a difference between the systems   (groups median e_N/x_int = 0.061 (internal-field dominated); dwarf spheroidals median 2.11, with 5 of 8 EXTERNAL-field dominated (Draco 6.2, Sextans 32.0, Ursa Minor 4.2))
+  [PASS] V6b MODIFIED INERTIA IS A CLASS, NOT A THEORY.  Milgrom's theorem (1994; 2011 arXiv:1111.1611) says only that modified inertia and modified gravity agree for CIRCULAR deep-MOND orbits and differ otherwise.  It fixes no sign and no magnitude on a group's eccentric satellite orbits.  g06's check F1 asserts 'EVERY pressure-supported system should sit above the kernel', which is not a consequence of the theorem.  This check passes only if the file ALSO retracts that inference where a reader would meet it   (the over-strong premise is present in F1's check text; the retraction ('it fixes no sign and no size') is present in section 9.  The premise is therefore stated as a check and withdrawn as a conclusion in the same file -- readable, but F1's own text must not be quoted without section 9 item 2)
+  [PASS] V6c BOTH FOOTINGS genuinely enter the attacked claim, rather than being printed decoratively.  The claim's own headline number 0.82 is canonical-only (C1 never touches the alt footing); this check asserts the alt footing would not change the claim's direction   (canonical 0.817 and alt 0.746 both sit below the lowest kept row 1.30; the alt footing is LOWER, so it strengthens rather than threatens C1 -- but note that C1, R3-R6 and F1-F3 are all computed on the canonical footing alone)
+
+==============================================================================================================================
+7.  MUTATION CONTROLS ON THIS AUDIT
+==============================================================================================================================
+  [PASS] W1 MUTATION -- shuffle the accelerations against the boosts among the pressure rows.  The all-row trend V3 leans on must be distinguishable from that null, or V3 has no content and the claim survives V3   (all-pressure-row slope -0.240 against a shuffled null of width 0.102, i.e. 2.35 sigma)
+  [PASS] W2 MUTATION -- the imported machinery still responds to switching the kernel off, so the exec-import did not silently freeze a cached result   (Newtonian median boost 15.0 against the framework's 0.82)
+  [PASS] W3 MUTATION -- V4's membership effect must vanish when the boosts are randomly reassigned to groups, or V4 is measuring the marginal distribution rather than the membership   (reported not asserted: over 2000 reassignments the median |log10(median_{N>=20}/median_{N>=5})| is 0.123 dex, against the real 0.293 dex)
+
+==============================================================================================================================
+8.  VERDICT
+==============================================================================================================================
+  WHAT SURVIVES
+    * The currency is right (V1, V1b).  A dispersion-squared ratio IS the table's acceleration boost in the
+      deep-MOND limit, and these groups are three decades inside that limit.  The comparison is legitimate.
+    * The Jeans machinery, the enclosed-mass handling and the external-field inversion are not where this
+      breaks.  g06's own R3/R4/R6/M1-M5 are sound and its R2 and R4b failures are honestly reported.
+  WHAT DOES NOT
+    * V2: the comparison set was built by cutting on the quantity being compared.  Of the 18 pressure rows, 4 were deleted by 'boost <= 3', and they include the table's LOWEST-
+      acceleration row (MW ultra-faint dwarfs, 0.001 a_0 -- below this rung's median 0.00189) carrying the
+      table's LARGEST boost, 44.7, and Pal 14 at 0.010 a_0 (inside the rung's range) at 4.60.
+    * V3: the table's own trend over all pressure rows is slope -0.240; the cut turns it into -0.040.
+    * V4/V4b: the median boost is 0.82 at N >= 5 and 1.60 at N >= 20, a 0.29 dex swing against a
+      quoted standard error of 0.081 dex, and the 14/14 ordering does not survive it.
+    * V5: the gapper's own small-n bias moves the median a further +0.011 dex, in the same direction.
+
+  THE HONEST RESIDUAL FINDING, which is smaller than the claim but is real: 26 Local Volume groups with a
+  directly counted baryon budget sit BELOW the extrapolation of the liability table's own pressure-row trend
+  to their acceleration by 0.92 dex.  That is an outlier from the trend.
+  It is NOT a demonstration that the trend is absent, and 'the deficit does not extend downward in
+  acceleration' is contradicted by the table's own lowest-acceleration row.
+
+RESULT: 17 checks, 6 FAIL -> ["V2 (THE CENTRAL ATTACK) the claim is that NOTHING at or below this rung's acceleration carries a cluster-sized boost -- that is what 'the deficit does not extend downward' means.  Tested against ALL pressure rows rather than the boost-selected 14, it asserts that no pressure row at or below this rung's own MEDIAN acceleration sits above this rung's boost.  If it fails, the comparison set was built by cutting on the quantity being compared and the ordering statistic 14/14 is circular", "V2b and the weaker form: within this rung's own acceleration RANGE (0.00013 - 0.0208 a_0), no pressure row carries a boost above the rung's.  This is the honest scope of the 'does not extend downward' statement, because outside that range the two rungs are not being compared at matched acceleration at all", "V3 the table's own headline says the boost RISES toward LOW acceleration (slope -0.206, r = -0.53).  That is the 'low-acceleration tail' reading.  This check asserts the boost <= 3 cut does not materially change that trend.  If it fails, g06's flat picture is an artefact of the cut, not a property of the data", "V4 the headline median must not depend on where the membership cut is put.  g06 keeps every group with >= 5 members; a 5-member gapper carries 0.31 dex on its own boost while a 39-member one carries 0.10.  This check asserts that moving the cut to N >= 20 -- the six groups whose dispersions are actually measured -- moves the median boost by less than the claimed separation's own standard error of 0.081 dex.  A failure means the number quoted in the liability table is a statement about the catalogue's faint end", "V4b THE ORDERING STATISTIC ITSELF.  C1's '14 of 14' is the load-bearing sentence.  Recompute it on the best-measured half of the rung (N >= 20).  If the 14/14 does not survive, the claim 'every X-ray group and cluster row sits above this rung's boost' is a property of the 5-member groups", "V6 the two pressure-supported populations g06 compares in section 7 are in the SAME external-field regime, so the interpolated branch is doing the same job in both.  g06's own check R4 says the pure external-field limit is inapplicable to the groups and would move them by a factor 3.93; if the dwarf spheroidals sit in that limit while the groups do not, the +0.82 dex gap of check F3 is partly a regime difference and not a difference between the systems"]   rc=1

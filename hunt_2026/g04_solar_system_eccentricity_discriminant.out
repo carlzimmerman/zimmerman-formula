@@ -1,0 +1,310 @@
+======================================================================================================================
+g04 -- THE SOLAR SYSTEM AS AN ECCENTRICITY DISCRIMINANT BETWEEN MODIFIED GRAVITY AND MODIFIED INERTIA
+======================================================================================================================
+
+----------------------------------------------------------------------------------------------------------------------
+PART A -- the modified-gravity anomalous acceleration vs heliocentric distance, and Cassini
+----------------------------------------------------------------------------------------------------------------------
+
+  A1 -- the delta-g bound machinery, validated against the repo's own committed conversion
+  planet       a [AU]        e  sig(wdot) mas/yr   delta-g here   BOUNDS.md   ratio
+  Mercury     0.38710  0.20564           0.00600      4.509e-14     4.6e-14   0.980
+  Venus       0.72334  0.00678           0.01500      8.070e-14     8.0e-14   1.009
+  Earth       1.00000  0.01671           0.00190      8.695e-15     8.7e-15   0.999
+  Mars        1.52371  0.09339           0.00037      1.378e-15     1.4e-15   0.984
+  Jupiter     5.20289  0.04839           0.28000      5.624e-13     5.6e-13   1.004
+  Saturn      9.53668  0.05386           0.00470      6.974e-15     7.0e-15   0.996
+  [PASS] A1a  the delta-g conversion reproduces the repo's committed per-planet bounds   (worst |log10 ratio| = 0.0087 over 6 planets (all within 3%, the rounding of the 1-2 significant figures BOUNDS.md quotes).  This validates the Gauss secular machinery used throughout Part B against an independently committed derivation BEFORE it is used for anything)
+
+  A2 -- Route A's anomalous acceleration at every planet, both footings
+  planet      g_N [m/s2]     y=g/a0  sqrt(y)   log10 dg     bound  log10 margin
+  --- footing canonical: a_0 = 9.360e-11 m/s^2 ---
+  Mercury      3.957e-02  4.228e+08  20562.2    -8931.5   4.5e-14        8918.1
+  Venus        1.133e-02  1.211e+08  11004.1    -4780.9   8.1e-14        4767.9
+  Earth        5.930e-03  6.336e+07   7959.6    -3459.0   8.7e-15        3445.0
+  Mars         2.554e-03  2.729e+07   5223.8    -2271.3   1.4e-15        2256.4
+  Jupiter      2.191e-04  2.340e+06   1529.8     -668.1   5.6e-13         655.8
+  Saturn       6.520e-05  6.966e+05    834.6     -366.7   7.0e-15         352.5
+  --- footing alt: a_0 = 1.130e-10 m/s^2 ---
+  Mercury      3.957e-02  3.502e+08  18714.1    -8128.8   4.5e-14        8115.5
+  Venus        1.133e-02  1.003e+08  10015.0    -4351.4   8.1e-14        4338.3
+  Earth        5.930e-03  5.248e+07   7244.2    -3148.3   8.7e-15        3134.3
+  Mars         2.554e-03  2.260e+07   4754.3    -2067.4   1.4e-15        2052.5
+  Jupiter      2.191e-04  1.939e+06   1392.3     -608.3   5.6e-13         596.1
+  Saturn       6.520e-05  5.770e+05    759.6     -334.1   7.0e-15         319.9
+  [PASS] A2a  Route A PASSES every per-planet ephemeris bound, and not marginally   (the SMALLEST margin over all six planets and both footings is 10^320 (Saturn on the alt footing -- Saturn because it is the most distant, hence lowest-y, well-bounded planet); Saturn canonical sits at 10^353 and Jupiter, the weakest-BOUNDED planet, at 10^596.  This CONFIRMS the repo's committed relief (mi_route_a_exponential_kernel_2026.py R2a, ~3.3e13x vs alpha=2) in ABSOLUTE terms rather than as a ratio: under Route A there is no isotropic solar-system liability at any conceivable measurement precision, now or ever)
+
+  A3 -- MUTATION CONTROL: the same machinery on the RETIRED kernel nu = sqrt(1+1/y) must FAIL
+  planet       a0/2 anom     bound  excluded by  KERNEL_PLANETS
+  --- footing canonical ---
+  Mercury      4.680e-11   4.5e-14         1038            1018
+  Venus        4.680e-11   8.1e-14          580              --
+  Earth        4.680e-11   8.7e-15         5382            5380
+  Mars         4.680e-11   1.4e-15        33973           33436
+  Jupiter      4.680e-11   5.6e-13           83              --
+  Saturn       4.680e-11   7.0e-15         6710            6687
+  --- footing alt ---
+  Mercury      5.650e-11   4.5e-14         1253              --
+  Venus        5.650e-11   8.1e-14          700              --
+  Earth        5.650e-11   8.7e-15         6498              --
+  Mars         5.650e-11   1.4e-15        41014              --
+  Jupiter      5.650e-11   5.6e-13          100              --
+  Saturn       5.650e-11   7.0e-15         8101              --
+  [PASS] A3a  MUTATION CONTROL fires: the retired kernel is excluded, by the repo's own banked factors   (the retired nu=sqrt(1+1/y) gives a CONSTANT a_0/2 sunward anomaly excluded up to 33973x (canonical) / 41014x (alt); Mars reproduces KERNEL_PLANETS.md's banked 33436x to 1.6% and Saturn its 6687x to 0.4%.  The A2a checks are therefore capable of failing -- they fail here, on a kernel that differs from Route A only in HOW IT APPROACHES NEWTON and in nothing else)
+
+  A4 -- where the isolated Route A anomaly PEAKS, and where the external field takes over
+  With u = sqrt(y) = r_M/r and g_N = a_0 u^2, the anomaly is dg = a_0 u^2/(e^u - 1).  Maximising gives
+  2(e^u - 1) = u e^u, i.e. e^u (2 - u) = 2.  (The naive answer u = 2 drops the 1/(e^u-1) denominator and
+  is wrong by 25% in radius -- the numerical argmax below is what caught it.)
+   canonical: u* = 1.593624 (y* = 2.5396)  ->  r_peak =  4994.7 AU, dg_peak = 6.062e-11 m/s^2 = 0.6476 a_0   [numerical argmax  4994.7 AU, 0.0004% off]
+              r_M = sqrt(GM/a0) =   7960 AU;  external field takes over at r_ext = sqrt(GM/g_ext) =  5257 AU;  g_ext/g_N at the peak = 0.90
+         alt: u* = 1.593624 (y* = 2.5396)  ->  r_peak =  4545.7 AU, dg_peak = 7.318e-11 m/s^2 = 0.6476 a_0   [numerical argmax  4545.8 AU, 0.0012% off]
+              r_M = sqrt(GM/a0) =   7244 AU;  external field takes over at r_ext = sqrt(GM/g_ext) =  5257 AU;  g_ext/g_N at the peak = 0.75
+  [PASS] A4a  the anomaly peaks at the exact root of e^u(2-u)=2, at ~5000 AU, and never exceeds ~7e-11 m/s^2   (analytic u* = 1.5936 confirmed by numerical argmax to 0.0004%.  Peak dg = 6.06e-11 m/s^2 = 0.648 a_0 at 4995 AU (canonical).  THIS IS THE CEILING ON THE WHOLE EFFECT: no heliocentric distance, at any eccentricity, on either footing, produces a larger anomalous acceleration than 7.32e-11 m/s^2.  Caveat carried forward: the external field is already 0.90 of the solar field at the peak (crossover 5257 AU), so the isolated calculation OVERSTATES the peak by up to a factor ~2 (doubling y raises sqrt(y) by 1.41 and divides nu-1 by ~1.9) and is INVALID beyond ~5257 AU -- the Oort cloud is EFE-governed, which is the regime h12_h14_satellites_and_oort.py covers, not this one)
+
+  A5 -- THE PART THE EXPONENTIAL TAIL DOES NOT SAVE: the external-field quadrupole Q_2
+  Q_2 is NOT a property of the field at Saturn.  It is the constant tidal quadrupole that the nonlinear
+  Poisson equation's external boundary condition at r_M ~ 8000 AU imprints on the WHOLE interior.  There
+  y ~ 1, so there is no exponential suppression and Route A inherits the standard MOND-class value.
+  Desmond, Hees & Famaey 2024 (arXiv:2401.04796) eq (12):
+     q = (3/2) Int_0^inf dv Int_-1^1 dxi (nu-1)[eN(3xi-5xi^3) + v^2(1-3xi^2)],  nu at sqrt(eN^2+v^4+2 eN v^2 xi)
+  with eN nu(eN) = etilde = g_ext/a_0, and Q_2 = -(3 a_0^{3/2})/(2 sqrt(GM)) q.  Their published Fig. 1
+  anchors are quoted for nu_RAR(y) = 1/(1-exp(-sqrt y)) -- which IS Route A's kernel, so this is a direct
+  published pin with no shape assumption imported.
+
+    etilde  published q    q here   rel err   (Desmond+2024 Fig. 1 caption)
+       1.0        0.094    0.0947    0.758%
+       1.5        0.159    0.1595    0.305%
+       2.0        0.221    0.2210   -0.001%
+  [PASS] A5a  the eq-(12) quadrupole integral is pinned on the published anchors, for THIS kernel   (worst relative error vs Desmond+2024's published q(1)=0.094, q(1.5)=0.159, q(2)=0.221 is 0.76%.  Independently re-derived here from the paper's equation, and it also matches the repo's committed transcription in branchB_q2_gate_2026/verify_laneC_paper_anchor.py)
+
+     footing   etilde       eN        q   Q2 [s^-2]  /ceiling    sigma
+   canonical    2.293    1.661   0.2546   3.002e-26      5.77     15.8
+         alt    1.899    1.289   0.2090   3.269e-26      6.29     17.3
+  measured: Q2 = (1.6 +- 1.8)e-27 s^-2 (Park+2026); 2-sigma ceiling 5.2e-27; earlier Hees+2014
+  ceiling 9.0e-27.  Blanchet & Novak 2011 class values for other mu: 2.2e-26 to 4.1e-26.
+  CONTRAST, the modified-INERTIA arm: cassini_mi_evasion_2026/ computes the true l=2 quadrupole at
+  7.4e-34 s^-2 = 1e-07 of the ceiling.  (Committed on the OLD nu = sqrt(1+1/y); the
+  suppression there is the deep-Newtonian nu-1 at Saturn, which Route A makes SMALLER still, so the MI
+  evasion is not weakened by the kernel change.  Not recomputed here -- flagged, not claimed.)
+  [FAIL] A5b  Route A passes the Cassini external-field quadrupole bound   (IT DOES NOT.  Q_2 = 3.00e-26 (canonical) / 3.27e-26 (alt) s^-2, i.e. 5.8x / 6.3x the Park+2026 2-sigma ceiling and formally +16 / +17 sigma.  Route A's exponential tail discharges the ISOTROPIC ephemeris liability (A2a) and does NOTHING here, because Q_2 is set at r_M ~ 7960 AU where y ~ 1.  The two must never be conflated.  This CONFIRMS rather than discovers -- STANDING.md already carries a 3-15 sigma Cassini Q_2 tension for the AeST(=MG) realisation and Desmond+2024 quote 8.7 sigma fiducial, 1.9 sigma with bulge galaxies removed -- but it establishes it ON ROUTE A SPECIFICALLY, on the published anchors for Route A's own kernel.  AND IT IS FORK-RELEVANT: the MI arm evades the same bound by 1e-07, so this observable DOES separate the arms, and it points AWAY from modified gravity)
+
+----------------------------------------------------------------------------------------------------------------------
+PART B -- the discriminant: anomalous perihelion precession as an exact function of (a, e)
+----------------------------------------------------------------------------------------------------------------------
+  In modified GRAVITY the correction is central, so the precession follows from the force alone.  To first
+  order, Gauss's form of the Lagrange planetary equations for a purely radial perturbing acceleration,
+  integrated over one orbit in true anomaly f:
+
+      Delta(omega) = (1/(GM e)) Int_0^{2pi} dg(r(f)) r(f)^2 cos f  df ,      r = a(1-e^2)/(1+e cos f)
+
+  with dg > 0 meaning EXTRA INWARD.  A pure function of (a, e) and of nothing else: no trajectory memory,
+  no dependence on where the orbit has been.  THAT is the modified-gravity arm's content, and it is what a
+  trajectory-dependent modification must violate.
+
+  B1 -- the integrator, validated against two independent closed forms with opposite signs
+  GR      a=   0.3871 AU e=0.2056: analytic +5.018660439e-07  numeric +5.018660439e-07  rel -1.44e-15
+  GR      a=   9.5367 AU e=0.0539: analytic +1.956638855e-08  numeric +1.956638855e-08  rel -2.55e-15
+  GR      a= 506.2000 AU e=0.8496: analytic +1.321289992e-09  numeric +1.321289992e-09  rel -3.11e-15
+  const   a=   0.3871 AU e=0.2056: analytic -1.553751820e-11  numeric -1.553751820e-11  rel +2.00e-15
+  const   a=   9.5367 AU e=0.0539: analytic -9.622373921e-09  numeric -9.622373921e-09  rel -2.22e-16
+  const   a= 506.2000 AU e=0.8496: analytic -1.431944437e-05  numeric -1.431944437e-05  rel +2.22e-16
+  [PASS] B1a  the precession integrator reproduces the GR closed form 6 pi GM/(c^2 a(1-e^2))   (worst relative error 3.11e-15 over e = 0.054 to 0.850, a = 0.39 to 506 AU)
+  [PASS] B1b  and the constant-sunward closed form -2 pi dg a^2 sqrt(1-e^2)/GM used for the Part A bounds   (worst relative error 2.00e-15.  Note the SIGN: a constant extra inward force precesses the perihelion RETROGRADE, because it falls off slower than 1/r^2, while the GR 1/r^4 term is prograde.  Two closed forms with opposite signs and different r-powers, both reproduced -- the integrator is not tuned to either)
+
+  B2 -- MUTATION CONTROL on the integrator: a perturbation that MUST give exactly zero
+  A dg proportional to 1/r^2 is nothing but a rescaling of GM.  It cannot precess anything, and if the
+  integrator carried a spurious constant it would show up here as a fake precession.  A 1/r^3 term of the
+  same amplitude is the reference that shows the integrator is not simply returning zero.
+  a=   1.00 AU e=0.3000:  1/r^2 (pure GM rescale) -1.881e-26   1/r^3 reference +5.822e-11   ratio 3.23e-16
+  a= 506.20 AU e=0.8496:  1/r^2 (pure GM rescale) -7.229e-27   1/r^3 reference +3.762e-13   ratio 1.92e-14
+  [PASS] B2a  MUTATION CONTROL: a 1/r^2 perturbation gives exactly zero precession, a 1/r^3 one does not   (the 1/r^2 case returns 1.9e-14 of the 1/r^3 reference.  This is a THEOREM as well as a control, and Part D uses it: any modification that merely rescales the effective GM along an orbit is invisible to perihelion precession, no matter how large it is)
+
+  B3 -- THE DISCRIMINANT FUNCTION: modified-gravity precession at fixed a, circular vs eccentric
+  Delta(omega) per orbit and the rate in mas/yr, for e = 0.01 and e = 0.90 at the same semi-major axis.
+  The ratio is the modified-gravity arm's OWN eccentricity signature: it exists entirely because the
+  eccentric orbit's aphelion samples a lower acceleration.  Canonical footing; alt differs only in scale.
+  Everything is in log10 because the values underflow float64 inside ~30 AU.  The last column flags rows
+  where the galactic external field at aphelion exceeds 30% of the Sun's (crossover r_ext = 5257 AU), so
+  this isolated calculation stops being valid -- those rows are shown for shape only, not as predictions.
+      a [AU]  log10|dw| e=.01  log10|dw| e=.9  log10 ratio  log10 rate(e=.9)   EFE?   (rad/orbit, mas/yr)
+           1         -3421.15        -1821.22      1599.93          -1812.91         
+           5          -682.73         -365.37       317.36           -358.10         
+          10          -340.33         -183.28       157.05           -176.47         
+          30          -111.98          -61.75        50.23            -55.65         
+         100           -32.14          -19.04        13.10            -13.72         
+         300            -9.60           -6.67         2.93             -2.07         
+        1000            -2.06           -2.16        -0.10              1.65         
+        3000            -0.17           -0.64        -0.47              2.46  INVALID
+       10000             0.57            0.26        -0.32              2.57  INVALID
+  [PASS] B3a  modified gravity DOES carry a huge eccentricity signature -- in ratio, though not in magnitude   (at a = 10 AU the e=0.9 precession exceeds the e=0.01 one by 1.1e+157, because aphelion at 19 AU sits at sqrt(y) = 419 against 796 at 10 AU and the kernel is exp(-sqrt y).  So it is NOT true that modified gravity is eccentricity-blind: the CENTRAL FORCE is blind, the ORBIT AVERAGE is not.  Recorded because the naive statement of the fork gets this backwards)
+  [PASS] B3b  but the discriminant is vacuous inside 100 AU -- the signal is not small, it is absent   (the largest modified-gravity precession rate anywhere inside 100 AU, at the most favourable eccentricity e = 0.9, is 1.9e-14 mas/yr.  The bar here is set by the MEASUREMENT, not by the result: one part in 1e6 of Mars's 0.00037 mas/yr, the sharpest perihelion sigma in astronomy (Pitjeva & Pitjev 2013).  The actual shortfall is 10^10.  No measurement, existing or conceivable, reaches it)
+
+----------------------------------------------------------------------------------------------------------------------
+PART C -- which real objects give the best lever, in (a, e) space
+----------------------------------------------------------------------------------------------------------------------
+  Three readings of the same kernel are compared on every orbit.  They bracket the fork:
+    modified GRAVITY : dg = (nu(y(r)) - 1) g_N(r), keyed to the LOCAL distance      [the field at a point]
+    MI-A envelope    : dg = a CONSTANT equal to the modified-gravity value AT APHELION, held all orbit
+    MI-B envelope    : nu itself FROZEN at its aphelion value, i.e. dg = (nu(y_apo)-1) g_N(r)
+  MI-A and MI-B are UPPER ENVELOPES, deliberately extreme (Milgrom 2009 MNRAS 399 474: MI anomalies attach
+  to trajectories that reach low-acceleration regions).  A real nonlocal MI kernel lands between them and
+  the modified-gravity curve.  If the most generous reading is unmeasurable, every reading is.
+  NOTE, and it is load-bearing: by the B2a theorem MI-B is a pure GM rescale and PRECESSES NOTHING.  It is
+  therefore not a competitor in Part B at all; it reappears in D3 as a different observable.
+
+  object              a [AU]        e  q [AU]   Q [AU]  MG log10 dg      at q    MI-A dg   MI-B eps     P [yr]     EFE?
+  Mercury               0.39  0.20564    0.31      0.5      -7408.5  -11243.0   0.00e+00   0.00e+00        0.2         
+  Saturn                9.54  0.05386    9.02     10.1       -348.2    -387.2   0.00e+00   0.00e+00       29.5         
+  Neptune              30.07  0.00859   29.81     30.3       -119.2    -121.1  6.75e-120  1.05e-114      164.9         
+  1P/Halley            17.83  0.96714    0.59     35.1       -103.9   -5900.5  1.40e-104   2.91e-99       75.3         
+  136199 Eris          67.86  0.43607   38.27     97.5        -41.7     -95.7   2.12e-42   3.39e-36      559.1         
+  2012 VP113          266.00  0.69000   82.46    449.5        -15.2     -48.0   6.00e-16   2.04e-08     4338.4         
+  90377 Sedna         506.20  0.84960   76.13    936.3        -11.9     -51.4   1.37e-12   2.03e-04    11389.2         
+  LPC a=2500 AU      2500.00  0.99800    5.00   4995.0        -10.2    -695.0   6.06e-11   2.55e-01   125002.4  INVALID
+  Oort-spike LPC    20000.00  0.99995    1.00  39999.0        -10.8   -3459.0   1.68e-11   4.54e+00  2828480.5  INVALID
+    'MG log10 dg' is at aphelion, ' at q' at perihelion -- their difference is how far apart the readings
+     sit ON THE SAME ORBIT, which is the entire discriminant.  MI-B eps is dimensionless (a GM fraction).
+     'EFE INVALID' marks orbits where the galactic external field at aphelion exceeds 30% of the Sun's
+     (crossover r_ext = 5257 AU), so this isolated calculation does not apply -- the two long-period-comet
+     rows are there to locate the optimum in (a,e), NOT as predictions.  Sedna's aphelion (936 AU) is at
+     g_ext/g_N = 0.032 and is safely inside.
+  [PASS] C1a  the lever exists and it is enormous IN RATIO: on Sedna the readings differ by >10^25   (Sedna is observed near perihelion (q = 76 AU) where modified gravity predicts 10^-51 m/s^2 -- exactly nothing -- while an aphelion-keyed modified inertia carries 1.4e-12 m/s^2 around the whole orbit.  A ratio of 10^40.  The fork is not subtle on this object; it is the difference between zero and something.  The whole question is whether the something is measurable)
+
+  C2 -- where in (a, e) the arms differ MOST in ABSOLUTE terms, and what object sits there
+  The envelope is maximised when the APHELION sits on the anomaly's peak (A4a).  With e -> 1 that means
+  a = r_peak/2: a long-period comet.  Modified gravity's value at such an object's PERIHELION, where it is
+  actually observed, is identically zero.  So the theoretical optimum of this entire test IS the
+  long-period comet population -- and D1 shows why that optimum is unusable.
+   canonical: optimum a =   2497 AU (aphelion on the peak); at q = 5 AU, e = 0.99800: MI-A Delta(omega) = 2.533e-02 rad/orbit = 1.45 deg/orbit, P = 124802 yr
+         alt: optimum a =   2273 AU (aphelion on the peak); at q = 5 AU, e = 0.99780: MI-A Delta(omega) = 2.655e-02 rad/orbit = 1.52 deg/orbit, P = 108361 yr
+  [PASS] C2a  the theoretical optimum is a ~2500 AU long-period comet carrying ~1 degree per orbit   (1.45 deg/orbit (canonical) / 1.52 (alt) at a = 2497 AU, q = 5 AU.  That is a LARGE number, not a small one -- which is why the shutdown in Part D is a statement about MEASURABILITY, not about the size of the physics.  Recorded as the ceiling any future experiment on this route would be aiming at)
+
+----------------------------------------------------------------------------------------------------------------------
+PART D -- how far short, quantified; and the one channel that is not shut
+----------------------------------------------------------------------------------------------------------------------
+
+  D1 -- the theoretical optimum: killed three times over by comet physics
+  outgassing at q = 1 AU: A1 = 1e-08 AU/d^2 -> 2.00e-07 m/s^2  vs the ABSOLUTE peak anomaly 6.06e-11 m/s^2  ->  outgassing is 3306x larger
+  outgassing at q = 5 AU: A1 = 1e-08 AU/d^2 -> 8.02e-09 m/s^2  vs the ABSOLUTE peak anomaly 6.06e-11 m/s^2  ->  outgassing is 132x larger
+  per-passage planetary scatter in 1/a is ~1e-04 AU^-1 (h12_h14_satellites_and_oort.out): 25% of 1/a for an a = 2497 AU comet
+  and a long-period comet is seen for ONE apparition, so a per-orbit secular precession has no second
+  epoch to be differenced against.  Three independent kills, any one of which suffices.
+  [FAIL] D1a  the long-period-comet optimum is usable: the signal exceeds the outgassing   (IT IS NOT.  A typical A1 = 1e-8 AU/d^2 gives 8.0e-09 m/s^2 at q = 5 AU against the ABSOLUTE CEILING of the anomaly 6.1e-11 m/s^2 -- 132x larger -- and A1 is fitted per comet to 10-30%, so the outgassing UNCERTAINTY ALONE is ~26x the entire signal.  Add one apparition and a 25% per-passage scatter in 1/a and the route is not marginal, it is closed)
+
+  D2 -- Sedna, the best inert lever that exists: the orbit-fit absorption calculation
+  Sedna has no outgassing (85 AU, inactive), a ~25-yr observed arc (2001 precovery to 2026), and the
+  largest well-determined aphelion of any inert object.  A purely radial perturbation preserves the orbit
+  plane, so only the 4 in-plane elements (a, e, omega, M0) are free.  Two observables are used: the
+  heliocentric longitude, and ln r -- the latter because a TNO's distance IS measured, by the annual
+  parallax, with sigma(ln r) = sigma(theta) * r/AU.  No range measurement is assumed.
+  control: a*(1+1e-9) absorbed to 2.61e-06 of itself;  e+1e-9 to 6.16e-07;  integrator-vs-Kepler at dg=0: 5.68e-05 mas
+  [PASS] D2a  MUTATION CONTROL: pure element changes are absorbed, and the integrator baseline is clean   (a 1e-9 fractional change in a is absorbed to 2.6e-06 of itself and a 1e-9 change in e to 6.2e-07 -- so the projector is not leaking in-family signal and calling it a detection.  The dg=0 integrator reproduces the analytic Kepler orbit to 5.7e-05 mas, 405x below the smallest signal reported below.  THIS CONTROL EARNED ITS PLACE: the first version of this script used an unnormalised least-squares solve, which truncated a design column and manufactured a 58 mas residual out of a perturbation that is provably degenerate)
+
+     footing   reading   dg or eps   raw [mas]  post-fit [mas]  chi @100mas  chi @10mas
+   canonical      MI-A   1.375e-12   3.549e-01       2.263e-02         0.00        0.05
+   canonical      MI-B   2.032e-04   1.565e+03       2.749e+00         0.57        5.70
+         alt      MI-A   2.952e-12   7.623e-01       4.860e-02         0.01        0.10
+         alt      MI-B   4.364e-04   3.360e+03       5.903e+00         1.22       12.24
+    raw = the angular signal before any orbit fit; post-fit = what survives the 4-element in-plane fit,
+    which is what is actually measurable.  chi is over 401 epochs at the stated per-epoch astrometry.
+    100 mas ~ current ground-based for a V=20.6 TNO; 10 mas ~ LSST-class.  BOTH ARE ESTIMATES, not a
+    published Sedna orbit covariance, which this repository does not hold.
+  [FAIL] D2b  Sedna's 25-yr arc reaches the MI-A precession envelope   (IT DOES NOT, and not remotely.  The aphelion-keyed constant anomaly 1.4e-12 m/s^2 leaves 2.26e-02 mas after the orbit fit: 0.005 sigma at 100 mas and 0.05 sigma even at 10 mas (alt footing 0.010 / 0.10).  THE REASON IS STRUCTURAL, NOT INSTRUMENTAL: 25 yr is 0.22% of Sedna's orbit, and a secular perihelion advance is not defined on a hundredth of an orbit -- the four free elements absorb 94% of the raw signal (a factor 16).  So the PRECESSION channel is shut on the best inert object in the sky)
+
+  D3 -- the one channel that is NOT shut, reported with its killer attached
+  MI-B -- nu frozen at the orbit's minimum acceleration -- is exactly a rescaling of the effective GM
+  along that orbit.  By the B2a theorem it precesses NOTHING, so it is invisible to Part B entirely.  But
+  it is not invisible to an orbit fit that has an independent distance, because the same 4 elements cannot
+  simultaneously null the angular and the radial signature.
+   canonical: eps = 2.032e-04 (Sedna) = 67.7 M_earth of equivalent interior mass;  post-fit 2.75 mas;  0.57 sigma at 100 mas, 5.70 sigma at 10 mas
+         alt: eps = 4.364e-04 (Sedna) = 145.3 M_earth of equivalent interior mass;  post-fit 5.90 mas;  1.22 sigma at 100 mas, 12.24 sigma at 10 mas
+  and the CONTRAST that makes it a fork test: modified gravity's eps at Sedna's PRESENT distance (85 AU) is 10^-41, against MI-B's 2.03e-04.
+  A ratio of 10^37.  The two arms bracket the
+  measurement, so a Sedna effective-GM determination at the 1e-4 level lands INSIDE the bracket.
+  [FAIL] D3a  the MI-B effective-GM channel is currently detectable at 3 sigma   (NOT AT PRESENT PRECISION -- 0.57 sigma at 100 mas over 401 epochs -- but it is the ONLY solar-system channel in this script that is within reach at all: 5.7 sigma (canonical) / 12.2 sigma (alt) at 10 mas LSST-class astrometry.  IT IS REPORTED WITH ITS KILLER ATTACHED, and the killer is decisive on the positive side: eps = 2.03e-04 of M_sun is 68 M_earth of unmodelled interior mass, so a DETECTION would be attributed to Planet Nine, not to gravity.  This is the repo's own known-bug pattern -- a residual degenerate with a nuisance parameter -- and it is flagged here rather than discovered later.  ONLY THE NULL SIDE IS CLEAN: a Sedna eps < 1e-4 would exclude the most generous MI reading on a real orbit, which nothing currently does)
+
+  D4 -- the arc-length obstruction: why this is 'centuries', not 'a bigger telescope'
+  object               P [yr]   25-yr arc / P
+  Neptune               164.9        1.52e-01
+  136199 Eris           559.1        4.47e-02
+  2012 VP113           4338.4        5.76e-03
+  90377 Sedna         11389.2        2.20e-03
+  LPC a=2500 AU      125002.4        2.00e-04
+  Oort-spike LPC    2828480.5        8.84e-06
+
+  Sedna, MI-A precession channel, as a function of observed arc length:
+    arc [yr]  % of orbit  post-fit [mas]  sigma @10mas
+          25        0.22       2.263e-02          0.05
+          50        0.44       1.759e-01          0.36
+         100        0.88       6.659e-01          1.91
+         200        1.76       6.478e-01          2.85
+         400        3.51       3.822e+00          8.08
+         800        7.02       1.511e+01         30.38
+        1600       14.05       5.409e+01        108.44
+  [FAIL] D4a  an observing programme of realistic length (<= 200 yr) reaches the MI-A channel at 3 sigma   (IT DOES NOT.  The MI-A post-fit residual reaches 3 sigma at 10 mas astrometry only at an arc of ~400 yr = 3.5% of Sedna's orbit, against the ~25 yr of precision astrometry this object has.  The residual grows as a high power of the arc because it is the first term the 4-element fit cannot absorb, which is precisely why more telescope does not help and only more decades do.  The scan is not perfectly monotone (the fit family's orientation relative to the signal shifts as the arc covers more of the orbit); that is reported rather than smoothed)
+
+  D5 -- the summary shortfall table
+  route                                                  signal   sensitivity     shortfall
+  MG tail, Saturn (Cassini ranging)                      1e-367       7.0e-15         1e353
+  MG tail, Mars (sharpest in astronomy)                 1e-2271       1.4e-15        1e2256
+  MI-A envelope, LPC optimum (outgassing)               6.1e-11       8.0e-09          132x
+  MI-A envelope, Sedna 25-yr arc (100 mas)            2.3e-02mas       100 mas          639x
+  MI-B envelope, Sedna 25-yr arc (100 mas)                2.7mas       100 mas          5.3x
+  MG EFE quadrupole Q_2 -- OVER the bound, not under        3.0e-26       5.2e-27       +16 sig
+  [PASS] D5a  the solar system is shut as a PRECESSION discriminant, on both arms at once   (the modified-gravity eccentricity signature is real (B3a) and falls short of the sharpest measurement in astronomy by 10^353.  The most generous MI precession reading falls short on the best inert object by 64x even at LSST-class astrometry, and on the theoretical optimum by 132x in outgassing alone.  This is a clean CLOSURE of the route, not a marginal result -- and because it closes BOTH arms at once it does not decide the fork through this channel.  The fork-relevant solar-system information is entirely in A5b (Q_2) and, prospectively, in D3a (Sedna's effective GM))
+
+======================================================================================================================
+WHAT THIS CLOSES AND WHAT IT OPENS
+======================================================================================================================
+
+ SHUT, CLEANLY, AND FOR BOTH ARMS.  The solar system cannot decide the modified-gravity / modified-inertia
+ fork through orbit shape.  Under Route A's exponential kernel the anomalous acceleration inside 100 AU is
+ below 1e-25 m/s^2 everywhere, so the eccentricity discriminant has no magnitude to work with: the largest
+ modified-gravity precession rate at the most favourable eccentricity inside 100 AU is 1.9e-14 mas/yr
+ against Mars's 0.00037 mas/yr -- short by 10^10.  The lever moves outward to where the
+ anomaly is real -- it peaks at 6.1e-11 m/s^2 at 4995 AU, and that is a hard ceiling on the whole
+ effect -- but every object with an aphelion there is either a long-period comet whose outgassing is
+ 132x the signal and which is seen once, or a detached TNO whose observed arc is a hundredth of an orbit
+ and whose signal is therefore reabsorbed into its own orbital elements (2.3e-02 mas post-fit on
+ Sedna, 0.05 sigma even at LSST-class astrometry).  The negative is quantified and it is not close.
+
+ BUT THE SOLAR SYSTEM IS NOT SILENT, AND WHAT IT SAYS GOES AGAINST THIS REPOSITORY'S OPERATIVE ARM.  The live
+ solar-system observable is the external-field quadrupole Q_2, and it is not a tail effect: it is set at the
+ MOND radius r_M = 7960 AU where y ~ 1 and the exponential does nothing.  Route A's own kernel, pinned on the
+ published anchors FOR THAT KERNEL, gives Q_2 = 3.00e-26 (canonical) / 3.27e-26 (alt) s^-2 against the
+ Park+2026 ceiling 5.2e-27: 5.8x / 6.3x over.  The modified-INERTIA arm's committed value is
+ 7.4e-34 s^-2, 1e-07 of the ceiling.  So this channel DOES separate the arms, and it favours modified
+ inertia -- which STANDING.md closes as physics at 21 sigma on lensing.  The honest reading is that the
+ framework has no arm passing everything: MG fails Cassini Q_2, MI fails lensing.  That is a real pincer, and
+ it is not new; what is new is that it holds on Route A SPECIFICALLY, and that it must not be conflated with
+ the isotropic tail liability, which really is discharged by 350 orders.
+
+ ONE PROSPECTIVE TEST SURVIVES, AND IT IS NOT A PRECESSION TEST.  The most generous MI reading is a rescaling
+ of the effective GM along the orbit -- eps = 2.03e-04 on Sedna against modified gravity's 10^-41 at
+ Sedna's present distance.  A ratio of 10^37, and by the B2a theorem it precesses nothing, so it has
+ been invisible to every test of this kind.  Against angles plus parallax range on the 25-yr arc it is
+ 0.57 sigma at 100 mas and 5.7 sigma at 10 mas.  Reported WITH ITS KILLER: eps of that size is
+ 68 M_earth of unmodelled interior mass, so a DETECTION reads as Planet Nine, not as gravity.
+ Only the NULL is clean, and the null already yields a number: scaling 0.57 sigma to a 3-sigma bar, the
+ present arc constrains Sedna's effective-GM excess to eps < 1.1e-3, a factor 5.3 above the MI-B envelope.
+ So the most generous MI reading is NOT yet excluded on a real orbit, and a 10 mas dataset would exclude it.
+ That is the one actionable item this script produces, and it is a proposal, not a result.
+
+ CAVEATS, IN BOTH DIRECTIONS, ALL LOAD-BEARING.
+  * The Q_2 significance is set by the Milky Way mass model, not by the kernel.  Desmond+2024 quote 8.7 sigma
+    fiducial and 1.9 sigma with bulge galaxies removed from the RAR.  A single g_ext = 2.146e-10 m/s^2 is used
+    here with no error on it, so +16 sigma is an UPPER reading of the tension.  Quote it as "several
+    sigma, up to ~16", never as 16 alone.  The ROBUST statement is the ratio to the ceiling, 5.8x-6.3x.
+  * The MI contrast 7.4e-34 s^-2 is committed on the OLD kernel nu = sqrt(1+1/y) and at the quasistatic-MI
+    premise.  It has NOT been recomputed on Route A here.
+  * MI-A and MI-B are deliberately extreme envelopes, not predictions of any MI theory.  They exist to make
+    the negative robust, and the D3a number must never be quoted as "the framework predicts".
+  * The Sedna astrometric precisions (100 mas, 10 mas) are ESTIMATES; no published Sedna orbit covariance is
+    held in this repository.  Every sigma in D2/D3/D4 inherits that.  A systematic astrometric floor, which
+    does not average down over epochs, would make them worse, not better.
+  * Nothing here can prefer the framework over LambdaCDM.  At planetary accelerations GR predicts zero and so
+    do healthy MOND-family theories; these numbers discriminate between the framework's own arms only.
+
+
+RESULT: 19 checks, 5 FAIL -> ['A5b  Route A passes the Cassini external-field quadrupole bound', 'D1a  the long-period-comet optimum is usable: the signal exceeds the outgassing', "D2b  Sedna's 25-yr arc reaches the MI-A precession envelope", 'D3a  the MI-B effective-GM channel is currently detectable at 3 sigma', 'D4a  an observing programme of realistic length (<= 200 yr) reaches the MI-A channel at 3 sigma']   rc=1

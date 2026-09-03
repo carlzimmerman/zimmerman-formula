@@ -1,0 +1,228 @@
+==========================================================================================================================
+V1.  THE QUADRATURE, RECOMPUTED WITH A DIFFERENT INTEGRATION RULE.
+==========================================================================================================================
+  [PASS] V1 the sphere-average quadrature is not an integration artefact: Gauss-Legendre in cos(theta) and g05's trapezoid in theta agree to better than one part in 1e-6 over four decades in both arguments   (worst |GL/trapezoid - 1| = 8.052e-08 over 20 (x_i, x_e) pairs)
+  [PASS] V1b MUTATION CONTROL on my own quadrature: with nu = 1 the Gauss-Legendre sphere average must return the internal Newtonian field exactly, at every external field, or the machinery is manufacturing a coupling   (worst |<S_r>/x_i - 1| with nu=1: 5.640e-14)
+  
+  the two prescriptions, side by side, recomputed here (this is g05's P4 table, independently):
+        x_i       x_e   x_e/x_i   sphere (exact)    FM12 eq60    ratio
+     0.0010    0.0010      1.00         0.026058     0.013603    1.916
+     0.0010    0.0100     10.00         0.008841     0.005394    1.639
+     0.0010    0.1000    100.00         0.003166     0.002117    1.496
+     0.0010    1.0000   1000.00         0.001429     0.001122    1.274
+     0.0100    0.0010      0.10         0.104875     0.078352    1.339
+     0.0100    0.0100      1.00         0.085917     0.046574    1.845
+     0.0100    0.1000     10.00         0.031653     0.020839    1.519
+     0.0100    1.0000    100.00         0.014285     0.011207    1.275
+     0.1000    0.0010      0.01         0.368852     0.338850    1.089
+     0.1000    0.0100      0.10         0.368208     0.284614    1.294
+     0.1000    0.1000      1.00         0.308854     0.185784    1.662
+     0.1000    1.0000     10.00         0.142839     0.111255    1.284
+  [PASS] V2 the 0.28 dex prescription spread that P4 reports is REAL and reproduces independently: the exact sphere average and the published one-dimensional formula differ by up to 92 per cent on this grid   (ratio spans 1.089-1.916, i.e. 0.282 dex at worst (g05 reports 1.089-1.916))
+
+==========================================================================================================================
+V3.  THE WHOLE PIPELINE, REBUILT FROM THE DATA, AND THE FOUR HEADLINE NUMBERS.
+==========================================================================================================================
+  rebuilt sample, independently of g05:  classical 11, ultrafaint 29, m31 34, isolated 5
+  
+     footing         prescription    N   RAW dex  matched sep   sigma
+   canonical                  f09   14    +0.043       -0.525   -4.06
+   canonical                 fm12   14    +0.694       +0.157    2.08
+   canonical               sphere   14    +0.489       +0.064    0.93
+         alt                  f09   14    +0.004       -0.531   -4.11
+         alt                 fm12   14    +0.657       +0.158    2.10
+         alt               sphere   14    +0.450       +0.065    0.94
+  [PASS] V3 the four headline numbers of the claim reproduce from an independent rebuild of the pipeline: the matched separation is +0.064 dex (0.93 sigma) under the exact sphere average, +0.157 dex (2.08 sigma) under FM12 eq. 60, and -0.525 dex under f09's max() branch.  The arithmetic of the claim is not in dispute   (sphere +0.064 (0.93 sigma), FM12 +0.157 (2.08), f09 -0.525 (-4.06), all on N = 14; RAW sphere +0.489 vs FM12 +0.694, systematic 0.205 dex)
+
+==========================================================================================================================
+V4.  THE FOOTING.  g05 COMPUTES S2b AT THE CANONICAL a_0 ONLY.  Does the verdict hold at the alt footing?
+==========================================================================================================================
+  g05's part 4 scan() hard-codes a0c, so the entire prescription table -- the single most decisive line in
+  that file, by its own description -- was never evaluated at a_0 = 1.13e-10.  The standing rule of this
+  repository is BOTH footings on every load-bearing number.  Here it is.
+  
+     footing  sphere sep   FM12 sep  systematic  ratio sys/sig                verdict
+   canonical      +0.064     +0.157       0.093           1.44        systematic WINS
+         alt      +0.065     +0.158       0.093           1.42        systematic WINS
+  [PASS] V4 (THE RULE-MANDATED TEST g05 NEVER RAN) the systematic-versus-signal verdict is the same on BOTH a_0 footings, so the claim is not a footing artefact.  This is a check the claim needed and did not have   (canonical: signal +0.064, systematic 0.093, ratio 1.44; alt: signal +0.065, systematic 0.093, ratio 1.42)
+
+==========================================================================================================================
+V5.  IS THE RATIO 1.4 A STATEMENT?  Both numbers are differences of MEDIANS of 14 objects.
+==========================================================================================================================
+  the 14 matched pressure objects, object by object, under both defensible prescriptions:
+  object                       x_i       x_e  x_e/x_i  sphere delta  FM12 delta    shift
+  Tucana                   0.01134   0.00021     0.02        +0.045      +0.101   +0.056
+  Phoenix                  0.01195   0.00078     0.06        +0.311      +0.413   +0.103
+  Antlia B                 0.01375   0.00009     0.01        +0.166      +0.200   +0.034
+  Andromeda VI             0.01479   0.00226     0.15        +0.382      +0.534   +0.152
+  Andromeda VII            0.01561   0.00338     0.22        +0.071      +0.247   +0.177
+  Leo II                   0.02059   0.00200     0.10        +0.263      +0.385   +0.122
+  Sculptor                 0.02915   0.01265     0.43        +0.225      +0.448   +0.223
+  Fornax                   0.03371   0.00427     0.13        -0.071      +0.064   +0.135
+  UGC 4879                 0.06683   0.00017     0.00        -0.104      -0.085   +0.019
+  Leo I                    0.07279   0.00130     0.02        -0.040      +0.010   +0.050
+  NGC 147                  0.27458   0.01577     0.06        -0.590      -0.513   +0.077
+  NGC 185                  0.51579   0.00744     0.01        -0.075      -0.039   +0.036
+  NGC 205                  1.42872   0.04970     0.03        -0.026      +0.018   +0.044
+  M 32                    29.66442   4.25666     0.14        +0.372      +0.381   +0.010
+     median pointwise prescription shift +0.067 dex; largest +0.223, smallest +0.010
+  [FAIL] V5 (FAILS IF THE RATIO IS NOT STABLE) 'the systematic is 1.4 times the signal' is a ratio of two differences of medians of 14 objects.  Resampling those 14 objects, the ratio has to stay above 1 in at least 80 per cent of resamples for 'the systematic wins' to be a statement rather than a coin flip   (bootstrap over the 14 matched objects: ratio > 1 in 65 per cent of 20000 resamples; ratio 16-50-84 percentiles 0.50 / 1.44 / 3.55; sphere separation -0.019 to +0.173 dex)
+
+==========================================================================================================================
+V6.  IS THE 1-D FORMULA A DEFENSIBLE EVALUATION OF THE SAME FIELD, OR JUST WRONG?
+==========================================================================================================================
+  g05's own stated weakest link: the sphere average is exact (QUMOND flux theorem) and the 1-D formula is an
+  approximation, so the 0.093 dex might be the approximation's ERROR rather than an ambiguity.  Test: the
+  exact QUMOND source S.rhat is a function of direction.  If the 1-D value lies INSIDE the pointwise range
+  of the exact field it is an evaluation of that field along one direction -- defensible, and the spread is
+  real physics.  If it lies OUTSIDE, it is not a possible value of anything and should simply be dropped.
+  
+  object                      x_i      x_e  min_th S_r  sphere avg  max_th S_r      FM12  inside?
+  Tucana                  0.01134  0.00021     0.11113     0.11224     0.11335   0.09865    False
+  Phoenix                 0.01195  0.00078     0.11137     0.11528     0.11927   0.09102    False
+  Antlia B                0.01375  0.00009     0.12383     0.12427     0.12472   0.11502    False
+  Andromeda VI            0.01479  0.00226     0.11831     0.12855     0.13926   0.09061    False
+  Andromeda VII           0.01561  0.00338     0.11682     0.13169     0.14752   0.08767    False
+  Leo II                  0.02059  0.00200     0.14585     0.15374     0.16186   0.11615    False
+  Sculptor                0.02915  0.01265     0.13686     0.17912     0.22607   0.10714    False
+  Fornax                  0.03371  0.00427     0.18670     0.20036     0.21450   0.14696    False
+  UGC 4879                0.06683  0.00017     0.29295     0.29337     0.29378   0.28068    False
+  Leo I                   0.07279  0.00130     0.30471     0.30781     0.31093   0.27419    False
+  NGC 147                 0.27458  0.01577     0.64906     0.67288     0.69700   0.56335    False
+  NGC 185                 0.51579  0.00744     0.99711     1.00666     1.01624   0.92618    False
+  NGC 205                 1.42872  0.04970     1.99577     2.04842     2.10134   1.85264    False
+  M 32                   29.66442  4.25666    25.57321    29.79195    34.02162  29.14544     True
+  [FAIL] V6 (FAILS, AND THIS IS THE FIRST HALF OF THE REFUTATION) the one-dimensional formula would be a defensible alternative if its value were a possible value of the field it approximates -- i.e. if it lay inside the range the EXACT QUMOND radial source takes over the sphere.  For 13 of the 14 matched objects it lies BELOW the exact MINIMUM over all directions.  It is not the exact field evaluated with some other directional weighting; it is a number the field never takes anywhere on the sphere   (1 of 14 matched objects have FM12 inside [min_theta S_r, max_theta S_r]; where it is outside it is always BELOW the minimum, i.e. it systematically under-predicts the binding force)
+  [PASS] V7 the one loophole that could have RESCUED the claim is closed: 'an isotropic velocity dispersion measures exactly the sphere average' is strictly an overclaim -- the flux theorem gives <g_r> = <S_r> at fixed radius exactly, but the observed side g_obs = 3 sigma^2/r_1/2 comes from the Wolf et al. 2010 estimator, which is derived for a SPHERICALLY SYMMETRIC potential, and in an external field it is not.  Had that anisotropy been large it would have supplied a genuine irreducible systematic and saved the claim.  It does not: over the matched objects the exact radial force varies over the sphere by a median of a few per cent   (peak-to-peak variation of the exact radial source over the sphere, in units of the sphere average: median 0.07, range 0.00-0.50 across the 14 matched objects (0 of 14 exceed 50 per cent).  Too small to be the 0.093 dex claimed)
+
+--------------------------------------------------------------------------------------------------------------------------
+V7b.  THE DECISIVE ONE.  How much external-field effect is there in the MATCHED sample at all?
+--------------------------------------------------------------------------------------------------------------------------
+  The claim calls 0.093 dex an EXTERNAL-FIELD-PRESCRIPTION systematic.  A prescription systematic cannot be
+  larger than the effect being prescribed.  So: for each matched object, compare the exact prescription
+  against SWITCHING THE EXTERNAL FIELD OFF ENTIRELY (x_e = 0, the framework's isolated kernel nu(x_i) x_i).
+  That difference IS the external-field effect, in the same dex currency.
+  
+  object                  x_e/x_i  EFE effect (dex)  FM12 - exact (dex)    ratio
+  Tucana                    0.019            0.0000              0.0560   1855.7
+  Phoenix                   0.065            0.0004              0.1026    284.0
+  Antlia B                  0.007            0.0000              0.0336   8598.8
+  Andromeda VI              0.153            0.0020              0.1519     76.5
+  Andromeda VII             0.217            0.0040              0.1767     44.3
+  Leo II                    0.097            0.0008              0.1218    153.6
+  Sculptor                  0.434            0.0157              0.2232     14.2
+  Fornax                    0.127            0.0013              0.1346    101.6
+  UGC 4879                  0.003            0.0000              0.0192  19196.3
+  Leo I                     0.018            0.0000              0.0502   1997.6
+  NGC 147                   0.057            0.0002              0.0772    342.8
+  NGC 185                   0.014            0.0000              0.0362   2857.6
+  NGC 205                   0.035            0.0001              0.0436    805.8
+  M 32                      0.143            0.0000              0.0095    710.6
+  [FAIL] V7b (FAILS, AND IT IS THE REFUTATION) the 0.093 dex is NOT an external-field-prescription systematic, because on the matched sample there is almost no external field effect to prescribe.  EVERY one of the 14 matched objects has x_e < x_i -- the matching to SPARC's acceleration range selects exactly the objects whose internal field dominates -- and switching the external field off entirely moves the exact prediction by a median of well under 0.01 dex.  The FM12 formula nevertheless departs from the exact answer by a median 0.06 dex on the same objects, an order of magnitude more than the entire physical effect it claims to be a treatment of.  A spread that survives when the effect it prescribes is switched off is not a systematic of that effect; it is one formula's error   (median external-field effect on the matched sample 0.0001 dex (largest 0.0157, Sculptor, the only object with x_e/x_i > 0.25); median FM12 departure from exact 0.0666 dex (largest 0.2232) -- a factor 477 in the median.  All 14 matched objects have x_e/x_i <= 0.43)
+
+  AND THE CONTRAST THAT MAKES THE POINT SHARP -- the SAME test on the UNMATCHED (raw) sample, where the
+  claim's other number, 0.205 dex on a +0.489 dex offset, lives:
+     RAW sample     N =  50: 56 per cent have x_e > x_i, median x_e/x_i = 1.38; true external-field effect median 0.149 dex; FM12 departure median 0.211 dex
+     MATCHED sample N =  14: 0 per cent have x_e > x_i, median x_e/x_i = 0.06; true external-field effect median 0.0001 dex; FM12 departure median 0.067 dex
+  [PASS] V7d (PASSES, AND IT IS WHY THE CLAIM'S TWO HALVES MUST BE SEPARATED) on the RAW sample the external field really is doing work -- more than half those objects have x_e > x_i and the true external-field effect is a median 0.15 dex -- so calling the 0.205 dex there a prescription systematic is at least arguable.  On the MATCHED sample it is not arguable at all, because the matching removes every external-field-dominated object.  The claim's raw half and matched half are not the same statement and the matched half does not inherit the raw half's defence   (raw: true EFE 0.149 dex vs FM12 departure 0.211 dex (comparable); matched: true EFE 0.0001 dex vs FM12 departure 0.067 dex (a factor 477))
+  
+  WHY the 1-D formula fails here, analytically.  In the deep-MOND limit nu(y)y = sqrt(y), so
+     FM12  = sqrt(x_i + x_e) - sqrt(x_e)  =  sqrt(x_i) [1 - sqrt(x_e/x_i) + ...]
+  i.e. its deficit against the isolated value is FIRST ORDER IN sqrt(x_e/x_i).  The exact sphere average,
+  by contrast, expands as -<F(x_i - x_e cos th)> with F(u) = nu(u) u, whose linear term averages to zero:
+  its deficit is SECOND order in x_e/x_i.  The two are not competing treatments of one effect -- they are
+  different ORDERS, and the 1-D formula carries a spurious sqrt(x_e) suppression that never switches off.
+     x_e/x_i   exact deficit (dex)   FM12 deficit (dex)   sqrt(x_e/x_i)
+      0.0001              0.000000             0.004048          0.0100
+      0.0010              0.000000             0.012790          0.0316
+      0.0100              0.000008             0.040281          0.1000
+      0.1000              0.000842             0.124465          0.3162
+  [FAIL] V7c (FAILS) the two prescriptions do not even agree on the ORDER of the external-field effect, which is why their difference does not shrink where the effect does.  Fitting the deficit against the isolated kernel as a power of x_e/x_i over four decades: the exact sphere average scales with a power near 1, the 1-D formula with a power near 1/2.  A treatment that disagrees about the leading power of the small parameter is not an alternative prescription for the same physics   (exact deficit ~ (x_e/x_i)^2.00, FM12 deficit ~ (x_e/x_i)^0.49; at x_e/x_i = 1e-4 the exact external-field effect is 8.42e-10 dex while FM12 still shows 0.0040 dex, a spurious suppression that does not vanish with the external field)
+
+==========================================================================================================================
+V8.  THE DEEP-MOND LIMIT, WHERE g05 ACTUALLY APPLIED IT (check A1c).
+==========================================================================================================================
+  external-field census over the 79 pressure objects: 55 have x_e > x_i (70 per cent), median x_e/x_i = 4.00, up to 791.
+  In the ISOLATED deep-MOND limit g_pred ~ sqrt(x_i), so a residual slope of -0.5 means g_obs is flat in x_i.
+  In the EXTERNAL-FIELD-DOMINATED limit g_pred ~ nu(x_e)(1 + L_e/3) x_i, LINEAR in x_i, so a flat g_obs
+  gives a slope of -1.  This sample is mostly the second case, so -0.5 is NOT the no-information value.
+  
+     measured residual slope                                  -0.498 dex/dex
+     the mechanical identity, COMPUTED (g_obs replaced by its sample median, so g_obs carries NO
+     dependence on x_i at all, and the same prescription refitted)                 -0.878 dex/dex
+     g05's asserted identity value (isolated deep-MOND, g ~ sqrt(x_i))            -0.500 dex/dex
+  [FAIL] V8 (FAILS -- g05 APPLIED THE ISOLATED DEEP-MOND LIMIT TO AN EXTERNAL-FIELD-DOMINATED SAMPLE) g05's check A1c reads its measured slope of -0.498 as 'exactly the mechanical identity', on the argument that g_pred = sqrt(x_i) a_0.  That is the ISOLATED deep-MOND limit and most of these dwarfs are not isolated.  Computing the identity instead of asserting it -- replace every g_obs by a constant and refit through the same prescription -- gives a different number, so the measured slope is NOT the no-information value and A1c's reading of it is wrong.  This does not touch the S2b claim, but it is a physics error in the same file   (computed identity slope -0.878 against the asserted -0.500 (difference -0.378); measured slope -0.498.  55 of 79 objects have x_e > x_i, where g_pred is LINEAR in x_i and the identity slope would be -1)
+
+==========================================================================================================================
+V9.  WHAT THE SYSTEMATIC DOES AND DOES NOT DO TO THE SIGN.
+==========================================================================================================================
+  [FAIL] V9 (FAILS, AND THE FAILURE IS AGAINST THE CLAIM'S RHETORIC RATHER THAN ITS NUMBER) S2b's text says the separation 'changes SIGN and lands four sigma on the WRONG side'.  It does so ONLY under f09's max() branch, which g05's own check P3 demonstrates is a kinked, non-physical prescription and which g05 elsewhere discards.  Between the two treatments S2b itself calls defensible, the separation is POSITIVE both times and the sign never moves.  The honest statement is narrower than the one made: the separation lies somewhere between +0.06 dex (0.9 sigma) and +0.16 dex (2.1 sigma) depending on prescription, which is uninformative, but it is not sign-ambiguous   (sphere +0.064 and FM12 +0.157 are both POSITIVE; only the discarded f09 branch (-0.525) is negative)
+  [PASS] V10 the operative conclusion is over-determined and does not need the systematic argument at all: under the EXACT prescription alone, with no appeal to any systematic, the matched separation is under one sigma with a permutation p of order 0.1 on 14 pressure objects.  'Not a measurement' follows from the statistics; the systematic argument adds a second, weaker reason for the same verdict   (exact prescription +0.064 dex (0.93 sigma) on N = 14; the full prescription range is +0.064 to +0.157 dex (0.93 to 2.08 sigma) -- the TOP of that range is still not a result)
+
+==========================================================================================================================
+MUTATION CONTROLS ON THIS VERIFICATION.
+==========================================================================================================================
+  [PASS] M1 raising a_0 by 100 drives every object deep into the modified regime and must lower every residual   (median raw +0.489 dex at canonical a_0, -0.464 at 100 a_0)
+  [PASS] M2 MUTATION CONTROL ON THE SYSTEMATIC ITSELF: switch the external field off and the two prescriptions must become the SAME function, so the prescription systematic must vanish identically.  If it did not, the 0.093 dex would be measuring something other than the external-field treatment   (|sphere - FM12| at x_e = 0 is 0.000e+00 in units of a_0)
+  [PASS] M3 the permutation test on the exact prescription reproduces g05's p of about 0.10, independently   (permutation p = 0.0764 on N_pressure = 14 against N_rotating = 147)
+
+==========================================================================================================================
+VERDICT OF THE ADVERSARIAL PASS:  THE CLAIM IS REFUTED AS STATED.
+==========================================================================================================================
+  THE ARITHMETIC IS CORRECT AND REPRODUCES INDEPENDENTLY (V1-V4).  Matched separation +0.064 dex under the
+  exact sphere average, +0.157 dex under FM12 eq. 60, difference 0.093 dex, ratio 1.4; and it is the
+  same on both a_0 footings, which g05 never checked (its scan() hard-codes the canonical a_0).  Nothing is
+  wrong with the numbers.  What is wrong is what they are called.
+
+  THE 0.093 dex IS NOT AN EXTERNAL-FIELD-PRESCRIPTION SYSTEMATIC (V7b, V7c, V6).  Three independent ways:
+
+   1. THE MATCHED SAMPLE HAS ALMOST NO EXTERNAL FIELD IN IT.  Matching to SPARC's acceleration coverage
+      selects the 14 objects with the HIGHEST internal acceleration, and every one of them has x_e < x_i
+      (max x_e/x_i = 0.43, median 0.06).  Switching the external field off ENTIRELY moves the
+      exact prediction by a median 0.0001 dex and at most 0.0157 dex.  The claimed 'external-field
+      prescription systematic' is 477 times the whole external-field effect it purports to prescribe.
+      A spread that persists when the effect is switched off is not a systematic of that effect.
+
+   2. THE 1-D FORMULA IS NOT A VALUE THE FIELD EVER TAKES.  For 13 of the 14 matched objects it lies BELOW
+      the exact QUMOND radial source's MINIMUM over every direction on the sphere.  It is not the same field
+      evaluated with a different directional weighting; it is outside the field's range.
+
+   3. THE TWO DISAGREE ON THE ORDER OF THE EFFECT.  Deep-MOND: FM12 = sqrt(x_i+x_e) - sqrt(x_e), deficit
+      first order in sqrt(x_e/x_i); the exact sphere average's linear term cancels by symmetry, deficit
+      second order.  Measured over four decades: exact ~ (x_e/x_i)^2.00, FM12 ~ (x_e/x_i)^0.49.  The 1-D
+      formula carries a spurious sqrt(x_e) suppression that never switches off, and THAT, not any physical
+      ambiguity, is the whole of the 0.093 dex.
+
+  AND THE LOOPHOLE THAT COULD HAVE SAVED IT IS CLOSED (V7).  g05's own weakest-link defence -- that the
+  sphere average is only exact for an isotropic tracer -- is a real overclaim: the Wolf et al. 2010 estimator
+  assumes a spherically symmetric potential and the external field breaks that.  Had the anisotropy been
+  large it would have supplied a genuine irreducible systematic.  It is a median 7 per cent peak-to-peak
+  over the matched objects, far too small to be the 0.093 dex.
+
+  TWO FURTHER OVERSTATEMENTS.  (V5) 'ratio 1.4' is a ratio of two differences of medians of 14 objects; it
+  exceeds 1 in only 65 per cent of bootstrap resamples, 16-84 range 0.50 to 3.55.  (V9) 'changes SIGN
+  and lands four sigma on the WRONG side' is true only of f09's max() branch, which g05's own check P3 shows
+  is kinked and which g05 discards everywhere else; between the two treatments the claim itself calls
+  defensible the separation is positive both times, +0.064 to +0.157 dex.
+
+  WHAT SURVIVES, AND IT IS THE CONCLUSION RATHER THAN THE ARGUMENT (V10).  Under the exact prescription
+  alone -- no appeal to any systematic -- the matched separation is +0.064 dex, 0.93 sigma, permutation
+  p = 0.08 on 14 pressure objects, and the top of the whole prescription range is 2.1 sigma.  'Not a
+  measurement' is forced by the statistics and the sample size.  It is NOT forced by, and should not be
+  argued from, a prescription systematic that the physics says is not there.
+
+  QUOTE INSTEAD:  'With the exact QUMOND sphere average the matched separation is +0.06 dex, 0.93 sigma,
+  p = 0.10 on 14 objects and 2.9 sigma only under a 0.40 dex matching window that re-admits objects with no
+  rotating counterpart.  The published 1-D external-field formula gives +0.16 dex, but it under-predicts the
+  exact field everywhere on the sphere for these near-isolated objects and its departure is its own
+  convergence error, not a systematic of the framework.'
+
+  ONE FURTHER PHYSICS ERROR IN THE SAME FILE, load-bearing for a DIFFERENT g05 claim (V8): check A1c reads
+  its measured residual slope of -0.498 as the mechanical identity of the ISOLATED deep-MOND limit,
+  g ~ sqrt(x_i).  55 of 79 of these dwarfs have x_e > x_i and are EXTERNAL-FIELD dominated, where the
+  prediction is LINEAR in x_i and the identity slope is -1.  Computing the identity instead of asserting it
+  -- hold g_obs fixed and refit through the same prescription -- gives -0.878, not -0.500.  So the measured
+  -0.498 is NOT the no-information value: it is 0.38 dex/dex away from it, and A1c's reading of its
+  own slope as 'a mechanical identity' is wrong in the direction of understating what it measured.
+
+RESULT: 17 checks, 6 FAIL -> ["V5 (FAILS IF THE RATIO IS NOT STABLE) 'the systematic is 1.4 times the signal' is a ratio of two differences of medians of 14 objects.  Resampling those 14 objects, the ratio has to stay above 1 in at least 80 per cent of resamples for 'the systematic wins' to be a statement rather than a coin flip", 'V6 (FAILS, AND THIS IS THE FIRST HALF OF THE REFUTATION) the one-dimensional formula would be a defensible alternative if its value were a possible value of the field it approximates -- i.e. if it lay inside the range the EXACT QUMOND radial source takes over the sphere.  For 13 of the 14 matched objects it lies BELOW the exact MINIMUM over all directions.  It is not the exact field evaluated with some other directional weighting; it is a number the field never takes anywhere on the sphere', "V7b (FAILS, AND IT IS THE REFUTATION) the 0.093 dex is NOT an external-field-prescription systematic, because on the matched sample there is almost no external field effect to prescribe.  EVERY one of the 14 matched objects has x_e < x_i -- the matching to SPARC's acceleration range selects exactly the objects whose internal field dominates -- and switching the external field off entirely moves the exact prediction by a median of well under 0.01 dex.  The FM12 formula nevertheless departs from the exact answer by a median 0.06 dex on the same objects, an order of magnitude more than the entire physical effect it claims to be a treatment of.  A spread that survives when the effect it prescribes is switched off is not a systematic of that effect; it is one formula's error", 'V7c (FAILS) the two prescriptions do not even agree on the ORDER of the external-field effect, which is why their difference does not shrink where the effect does.  Fitting the deficit against the isolated kernel as a power of x_e/x_i over four decades: the exact sphere average scales with a power near 1, the 1-D formula with a power near 1/2.  A treatment that disagrees about the leading power of the small parameter is not an alternative prescription for the same physics', "V8 (FAILS -- g05 APPLIED THE ISOLATED DEEP-MOND LIMIT TO AN EXTERNAL-FIELD-DOMINATED SAMPLE) g05's check A1c reads its measured slope of -0.498 as 'exactly the mechanical identity', on the argument that g_pred = sqrt(x_i) a_0.  That is the ISOLATED deep-MOND limit and most of these dwarfs are not isolated.  Computing the identity instead of asserting it -- replace every g_obs by a constant and refit through the same prescription -- gives a different number, so the measured slope is NOT the no-information value and A1c's reading of it is wrong.  This does not touch the S2b claim, but it is a physics error in the same file", "V9 (FAILS, AND THE FAILURE IS AGAINST THE CLAIM'S RHETORIC RATHER THAN ITS NUMBER) S2b's text says the separation 'changes SIGN and lands four sigma on the WRONG side'.  It does so ONLY under f09's max() branch, which g05's own check P3 demonstrates is a kinked, non-physical prescription and which g05 elsewhere discards.  Between the two treatments S2b itself calls defensible, the separation is POSITIVE both times and the sign never moves.  The honest statement is narrower than the one made: the separation lies somewhere between +0.06 dex (0.9 sigma) and +0.16 dex (2.1 sigma) depending on prescription, which is uninformative, but it is not sign-ambiguous"]   rc=1

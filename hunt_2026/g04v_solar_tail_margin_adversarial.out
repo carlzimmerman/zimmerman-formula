@@ -1,0 +1,132 @@
+====================================================================================================================
+g04v -- ADVERSARIAL AUDIT of g04 A2a: is the 10^320-10^8900 solar-system tail margin what it claims to be?
+====================================================================================================================
+
+--------------------------------------------------------------------------------------------------------------------
+V1 -- INDEPENDENT REPRODUCTION (this must pass, or there is nothing to argue about)
+--------------------------------------------------------------------------------------------------------------------
+  planet            g_N  bound(num)  BOUNDS.md   ratio   sqrt(y) can log10dg can margin can margin alt
+  Mercury    3.9575e-02   4.509e-14    4.6e-14   0.980       20562.2     -8931.5     8918.1     8115.5
+  Venus      1.1334e-02   8.070e-14    8.0e-14   1.009       11004.1     -4780.9     4767.9     4338.3
+  Earth      5.9301e-03   8.695e-15    8.7e-15   0.999        7959.6     -3459.0     3445.0     3134.3
+  Mars       2.5542e-03   1.378e-15    1.4e-15   0.984        5223.8     -2271.3     2256.4     2052.5
+  Jupiter    2.1906e-04   5.624e-13    5.6e-13   1.004        1529.8      -668.1      655.8      596.1
+  Saturn     6.5203e-05   6.974e-15    7.0e-15   0.996         834.6      -366.7      352.5      319.9
+  [PASS] V1a  g04's per-planet bounds reproduce by an INDEPENDENT numerical Gauss average   (worst deviation 2.0% from the BOUNDS.md values, computed here by numerically orbit-averaging r^2 cos f rather than by g04's analytic -2 pi a^2 sqrt(1-e^2)/GM.  The bound machinery is not in dispute)
+  [PASS] V1b  g04's A2a arithmetic reproduces exactly: margins span 10^320 to 10^8900   (smallest margin 10^320 (Saturn, alt footing), largest 10^8918 (Mercury, canonical).  Independently recomputed here.  THE ARITHMETIC IN A2a IS CORRECT.  Everything below is about what that arithmetic licenses)
+
+  CALIBRATION RANGE OF THE KERNEL.  SPARC (147 galaxies, 3140 points, hunt_lib.load_sparc):
+     canonical: fitted over y = 2.23e-03 to 78.4, i.e. sqrt(y) <= 8.86
+           alt: fitted over y = 1.85e-03 to 65.0, i.e. sqrt(y) <= 8.06
+    the planets sit at sqrt(y) = 835 (Saturn) to 20562 (Mercury).
+    Route A's exponent sqrt(y) is therefore extrapolated by a factor 94x (Saturn) to 2322x (Mercury) beyond the largest value any fitting datum has.
+
+--------------------------------------------------------------------------------------------------------------------
+V2 -- MUTATION CONTROL on the attack machinery: it must be able to BOTH pass and fail
+--------------------------------------------------------------------------------------------------------------------
+  A 1/y relic is the physically motivated one: it is exactly the tail of the RETIRED kernel
+  nu = sqrt(1+1/y) -> 1 + 1/(2y), the one Blanchet & Novak 2011 call ruled out.  So this is not an
+  arbitrary deformation -- it is the family the framework itself was in until 2026-08-02.
+         eps   relic/nu at y=1   dg Saturn [m/s2]    /bound   verdict
+       1e-12          6.32e-13          9.360e-23  1.34e-08    PASSES
+       1e-08          6.32e-09          9.360e-19  1.34e-04    PASSES
+       1e-05          6.32e-06          9.360e-16  1.34e-01    PASSES
+       1e-03          6.32e-04          9.360e-14  1.34e+01     FAILS
+  [PASS] V2a  MUTATION CONTROL: a tiny relic leaves the margin intact, a large one destroys it   (eps = 1e-12 gives 1.3e-08 of the Saturn bound (margin survives); eps = 1e-3 gives 1.3e+01 of it (margin gone).  The V3 test below is therefore capable of both outcomes and is not passing or failing by construction)
+
+--------------------------------------------------------------------------------------------------------------------
+V3 -- THE ATTACK: is 10^320 a ROBUSTNESS margin, or the value of an extrapolated analytic form?
+--------------------------------------------------------------------------------------------------------------------
+  The question a referee asks is not 'what does this function do at y = 7e5' -- it is 'how much of the
+  function at y = 7e5 is fixed by anything measured'.  Below: the smallest relic coefficient eps that
+  saturates each planet's bound, and how large that relic is IN THE CALIBRATED REGIME (y = 1, the RAR's
+  own transition point), where the data constrain nu to the RAR scatter of 0.11 dex = 29%.
+
+  planet      footing  eps_crit (1/y relic)   relic/nu at y=1  vs RAR scatter
+  Mercury   canonical             4.817e-04         3.045e-04        1.06e-03
+  Mercury         alt             3.990e-04         2.522e-04        8.75e-04
+  Venus     canonical             8.622e-04         5.450e-04        1.89e-03
+  Venus           alt             7.142e-04         4.515e-04        1.57e-03
+  Earth     canonical             9.290e-05         5.872e-05        2.04e-04
+  Earth           alt             7.695e-05         4.864e-05        1.69e-04
+  Mars      canonical             1.472e-05         9.303e-06        3.23e-05
+  Mars            alt             1.219e-05         7.706e-06        2.67e-05
+  Jupiter   canonical             6.008e-03         3.798e-03        1.32e-02
+  Jupiter         alt             4.977e-03         3.146e-03        1.09e-02
+  Saturn    canonical             7.451e-05         4.710e-05        1.63e-04
+  Saturn          alt             6.172e-05         3.901e-05        1.35e-04
+
+  Same test with a 1/y^2 relic (a sharper, even more 'Newtonian-looking' deformation):
+  planet      footing      eps_crit (1/y^2)   relic/nu at y=1
+  Mars      canonical             4.016e+02         2.539e+02
+  Mars            alt             2.756e+02         1.742e+02
+  Saturn    canonical             5.191e+01         3.281e+01
+  Saturn          alt             3.561e+01         2.251e+01
+  [FAIL] V3a  the 10^320 margin is ROBUST to the freedom the calibrating data leave in the kernel   (IT IS NOT, and by a very large factor.  The tightest planet (Mars) is saturated by a 1/y relic with eps = 1.22e-05, which at y = 1 -- the middle of the RAR's own transition, where SPARC has thousands of points -- is a fractional change in nu of 7.71e-06.  The RAR's measured orthogonal scatter is 0.11 dex = 29% (McGaugh+2016), so this deformation is 4e+04x SMALLER than the noise on the data that fixed the kernel.  The 10^320 to 10^8900 is not a statement about the framework's robustness; it is the value of exp(-sqrt y) continued 94x-2319x beyond the largest sqrt(y) any fitting datum reaches.  The physically supportable statement is the DIRECTION (this functional form carries no isotropic planetary tail), never the adverb ('absolutely', 'at any conceivable precision, now or ever'))
+  [PASS] V3b  the solar system is nevertheless a real 1e-5-level constraint ON THE KERNEL, which is the content the margin actually has   (the correct reading of the same arithmetic, stated as a measurement rather than as a margin: the planets bound any 1/y relic in nu to eps < 1.2e-05, i.e. they pin the kernel at the 8e-06 fractional level in a regime the galaxy data cannot see at all.  That is a genuine and quotable result and it is the SAME arithmetic; it is simply not the claim A2a makes)
+
+--------------------------------------------------------------------------------------------------------------------
+V4 -- THE ATTACK: 'the anomalous acceleration is below every per-planet bound' -- is it?
+--------------------------------------------------------------------------------------------------------------------
+  g04's own A5b FAILS: Route A's external-field quadrupole is Q_2 = 3.0e-26 (canonical) / 3.3e-26 (alt)
+  s^-2 against the Park+2026 2-sigma ceiling 5.2e-27.  A quadrupole is a TIDAL ACCELERATION Q_2 * r.  It
+  is recomputed here from the same published equation and confronted with the SAME delta-g bounds A2a
+  used, because a referee will not accept 'the anomalous acceleration' meaning one multipole of it.
+  [PASS] V4a  the DHF24 eq-(12) integral is independently re-pinned on the published anchors for THIS kernel   (worst 0.76% vs q(1)=0.094, q(1.5)=0.159, q(2)=0.221 (Desmond+2024 Fig. 1), recomputed here from the paper's equation with no code shared with g04.  So the Q_2 numbers below are not taken on trust from the script under audit)
+
+     footing   Q_2 [s^-2]  /Park ceiling   then, as an acceleration Q_2*r:
+                                           planet      Q2*r [m/s2]     bound   over by
+   canonical    3.002e-26           5.77
+                                           Mercury       1.738e-15   4.5e-14      0.04x
+                                           Venus         3.248e-15   8.1e-14      0.04x
+                                           Earth         4.490e-15   8.7e-15      0.52x
+                                           Mars          6.842e-15   1.4e-15      4.97x
+                                           Jupiter       2.336e-14   5.6e-13      0.04x
+                                           Saturn        4.282e-14   7.0e-15      6.14x
+         alt    3.269e-26           6.29
+                                           Mercury       1.893e-15   4.5e-14      0.04x
+                                           Venus         3.537e-15   8.1e-14      0.04x
+                                           Earth         4.890e-15   8.7e-15      0.56x
+                                           Mars          7.451e-15   1.4e-15      5.41x
+                                           Jupiter       2.544e-14   5.6e-13      0.05x
+                                           Saturn        4.663e-14   7.0e-15      6.69x
+  [FAIL] V4b  Route A's TOTAL anomalous acceleration is below every per-planet ephemeris bound   (IT IS NOT.  Route A's external-field quadrupole delivers 4.28e-14 m/s^2 at Saturn's orbit against the same 7.0e-15 m/s^2 bound A2a used -- OVER by 6.1x (canonical) / 6.7x (alt), and over at Mars by 5.0x / 5.4x.  The 10^320 applies ONLY to the isotropic l=0 component.  The l=2 component, which is the DOMINANT one and is set at r_M ~ 8000 AU where the exponential does nothing, EXCEEDS the very bounds the claim says it clears by hundreds of orders.  g04's own A5b says this and FAILS on it; the claim as worded does not carry that)
+  [PASS] V4c  the tail-multipole decomposition is legitimate, i.e. A2a is not simply computing the wrong thing   (checked and it is: for a point mass in a constant external field the AQUAL/QUMOND anomalous internal field is a TRACELESS tidal tensor Q_ij x_j plus the isolated-source isotropic piece, and at Saturn g_ext/g_N = 3.3e-06 so the external field shifts sqrt(y) by only 1.4e-03 and cannot rescue the l=0 term.  A2a's l=0 number is the right number for the l=0 term.  The defect is in the INFERENCE from it, not in it)
+
+====================================================================================================================
+VERDICT
+====================================================================================================================
+
+ SURVIVES.  The arithmetic of A2a is exactly right (V1a, V1b, reproduced independently).  The bound
+ machinery is right (V1a, by a different route than g04's).  The mutation control in g04 A3a is real: the
+ retired kernel does fail the same machinery by ~3e4x.  Route A's isotropic l=0 tail at planetary
+ accelerations is, WITHIN THE ASSUMED FUNCTIONAL FORM, unmeasurably small, and the retired kernel's constant
+ a_0/2 liability is genuinely not inherited.  That much is a real result and should be banked as such.
+
+ DOES NOT SURVIVE, TWO WAYS.
+
+ (1) "ABSOLUTELY, NOT MARGINALLY" IS NOT SUPPORTED (V3a).  nu = 1/(1-exp(-sqrt y)) is a FITTED form whose
+     calibrating data reach sqrt(y) <= 8.9; the planets are at sqrt(y) = 835-20562.  A 1/y relic in
+     nu -- the tail of the framework's OWN previous kernel -- with eps = 1.2e-05 saturates the Mars bound,
+     and at y = 1 that relic is 7.7e-06 of nu, i.e. 4e+04x below the RAR's 0.11 dex scatter.  So the
+     10^320 measures the analytic continuation, not the physics: a kernel modification four to five orders
+     below the precision of the data that chose the kernel converts it to O(1).  Correct wording: "this
+     functional form carries no isotropic planetary tail" -- never "at any conceivable measurement
+     precision, now or ever".  Read the other way round it IS a result (V3b): the planets pin the kernel at
+     the 8e-06 fractional level in a regime galaxies cannot see.
+
+ (2) "THE ANOMALOUS ACCELERATION IS BELOW EVERY PER-PLANET EPHEMERIS BOUND" IS FALSE AS WRITTEN (V4b).
+     Route A's own external-field quadrupole, recomputed here independently from Desmond+2024 eq (12) and
+     pinned to their published anchors for this exact kernel, gives 6.1x the Saturn delta-g bound
+     and 5.0x the Mars one.  The claim holds only for the l=0 multipole in isolation; Route A's
+     total solar-system anomalous acceleration EXCEEDS the same bounds.  g04 itself is scrupulous about this
+     (A5b FAILS and says "the two must never be conflated"); the summary claim is not.
+
+ ON THE FORK.  This channel does not discriminate modified gravity from modified inertia in the direction
+ the claim implies, and it cannot discriminate the framework from LambdaCDM at all: GR predicts zero
+ planetary anomaly and so does any sharp-transition MOND kernel, so a null here is not evidence for
+ anything.  The one solar-system observable that DOES separate the arms is Q_2 -- and it points away from
+ modified gravity, which is this repository's operative arm.
+
+
+RESULT: 8 checks, 2 FAIL -> ['V3a  the 10^320 margin is ROBUST to the freedom the calibrating data leave in the kernel', "V4b  Route A's TOTAL anomalous acceleration is below every per-planet ephemeris bound"]   rc=1

@@ -1,0 +1,150 @@
+======================================================================================================================
+g04v -- ADVERSARIAL: does 'the eccentricity discriminant is vacuous inside 100 AU' survive?
+======================================================================================================================
+
+----------------------------------------------------------------------------------------------------------------------
+PART V1 -- can g04's B3b arithmetic be reproduced by an independent implementation?
+----------------------------------------------------------------------------------------------------------------------
+
+  V1.0 -- validate the independent Gauss integrator on two closed forms with opposite signs
+  a=  0.3871 e=0.2056   GR  ana +5.018660e-07 num +5.018660e-07 rel -6.7e-16   |  const  ana -1.553752e-11 num -1.553752e-11 rel +2.2e-16
+  a=  9.5367 e=0.0539   GR  ana +1.956639e-08 num +1.956639e-08 rel -1.3e-15   |  const  ana -9.622374e-09 num -9.622374e-09 rel +8.9e-16
+  a=100.0000 e=0.9000   GR  ana +9.792472e-09 num +9.792472e-09 rel -2.2e-16   |  const  ana -4.618446e-07 num -4.618446e-07 rel -5.6e-16
+  [PASS] V1a  the independent Gauss integrator reproduces both closed forms   (worst relative error 1.33e-15 over the GR 1/r^4 prograde form and the constant-inward retrograde form.  Different quadrature (Simpson) and a transverse term g04 does not carry; both closed forms recovered, so this is an independent check of g04's Part B machinery, not a rerun)
+
+  V1.1 -- reproduce g04's B3 table: log10|dw| per orbit and the rate at e=0.01 vs e=0.90
+     a [AU]    L(e=.01)    L(e=.9)  log10 ratio   rate(e=.9) mas/yr    g04 rate
+          1    -3421.15   -1821.22      1599.93            -1812.91    -1812.91
+          5     -682.73    -365.37       317.36             -358.10     -358.10
+         10     -340.33    -183.28       157.05             -176.47     -176.47
+         30     -111.98     -61.75        50.23              -55.65      -55.65
+        100      -32.14     -19.04        13.10              -13.72      -13.72
+  [PASS] V1b  g04's B3 table reproduces independently, to better than 0.02 dex everywhere   (worst |delta log10 rate| = 0.0037 dex and worst |delta log10 ratio| = 0.0047 dex across a = 1-100 AU.  The 10^157 ratio at 10 AU and the log10 rate = -13.72 at 100 AU are both confirmed)
+  [PASS] V1c  the B3b HEADLINE NUMBER is confirmed: 1.9e-14 mas/yr, shortfall 10^10 vs Mars   (independently 1.89e-14 mas/yr (g04 says 1.9e-14), shortfall 10^10.3 against Mars's 0.00037 mas/yr.  THE ARITHMETIC OF THE CLAIM IS CORRECT AND IS NOT WHAT THIS AUDIT DISPUTES)
+
+  V1.2 -- MUTATION CONTROL M1: the retired kernel nu = sqrt(1+1/y) through the SAME machinery
+  Mercury   rate 6.227e+00 mas/yr   sigma 0.00600   excluded by     1038x
+  Venus     rate 8.698e+00 mas/yr   sigma 0.01500   excluded by      580x
+  Earth     rate 1.023e+01 mas/yr   sigma 0.00190   excluded by     5382x
+  Mars      rate 1.257e+01 mas/yr   sigma 0.00037   excluded by    33973x
+  Jupiter   rate 2.330e+01 mas/yr   sigma 0.28000   excluded by       83x
+  Saturn    rate 3.154e+01 mas/yr   sigma 0.00470   excluded by     6710x
+  [PASS] V1d  MUTATION CONTROL M1 fires: the retired kernel is blown out by ~3e4 through this machinery   (max exclusion 33973x (canonical) / 41014x (alt), driven by Mars -- matching KERNEL_PLANETS.md's banked 33436x.  So the V1 machinery CAN report a solar-system violation; the 10^10 shortfall in V1c is a property of Route A's kernel, not of a dead integrator)
+
+----------------------------------------------------------------------------------------------------------------------
+PART V2 -- THE ATTACK: the term B3b omits, and it is the one that is measured
+----------------------------------------------------------------------------------------------------------------------
+  The Sun is not isolated.  g_ext = 2.146e-10 m/s^2 > a_0, so the nonlinear MOND field equation's
+  exterior boundary condition imprints a CONSTANT anomalous quadrupole on the whole interior:
+      delta-Phi = -(Q_2/2)[(e.x)^2 - x^2/3]   ->   a_i = Q_2[(e.x) e_i - x_i/3]
+  (Milgrom 2009 MNRAS 399 474; Blanchet & Novak 2011 arXiv:1105.5815; Hees+2014 PRD 89 102002.)
+  Q_2 is set at r_M ~ 8000 AU where y ~ 1.  Route A's exponential does NOTHING to it -- that is
+  g04's own A5b finding, which FAILS at 5.8x over the Park+2026 ceiling.  The anomalous acceleration
+  it carries is Q_2 * r, GROWING outward, ANISOTROPIC, and it precesses perihelia.
+
+  V2.0 -- MUTATION CONTROL M2: Q_2 = 0 must give exactly zero through the quadrupole path
+  [PASS] V2a  MUTATION CONTROL M2: the quadrupole path returns identically zero at Q_2 = 0   (max |dw| over 6 planets x 3 orientations at Q_2 = 0 is 0.0e+00; the Q_2 = 1e-26 reference at Saturn is 6.349e-10 rad/orbit.  No spurious constant is leaking into the quadrupole branch)
+
+  V2.1 -- ANCHOR: invert the measured sigmas to a Q_2 ceiling; must land on the PUBLISHED one
+  If this machinery is right, feeding each planet's measured sigma(omegadot) back through it must
+  reproduce the Q_2 ceilings the literature actually quotes (Park+2026 5.2e-27, Hees+2014 9e-27).
+  Nothing is tuned: the geometry is scanned over the full range of orientations and the resulting
+  per-planet ceiling BAND is compared to the published number.
+  planet      P [yr]  |dw/dt| per Q2 [mas/yr / (1e-26 s^-2)]    Q2 ceiling from sigma [s^-2]
+  Mercury       0.24                   2.538e-06 - 1.156e-04             5.19e-25 - 2.36e-23
+  Venus         0.62                   6.625e-06 - 3.017e-04             4.97e-25 - 2.26e-23
+  Earth         1.00                   1.077e-05 - 4.903e-04             3.87e-26 - 1.76e-24
+  Mars          1.88                   2.017e-05 - 9.183e-04             4.03e-27 - 1.83e-25
+  Jupiter      11.87                   1.277e-04 - 5.813e-03             4.82e-25 - 2.19e-23
+  Saturn       29.45                   3.167e-04 - 1.442e-02             3.26e-27 - 1.48e-25
+  [PASS] V2b  ANCHOR: the published Q_2 ceiling falls inside the band this machinery derives from Saturn   (Saturn's measured sigma = 0.0047 mas/yr maps to Q_2 <= 3.26e-27 - 1.48e-25 s^-2 across orbit orientations, and the published ceilings -- Park+2026 5.2e-27 and Hees+2014 9.0e-27 -- sit inside that band.  Saturn is exactly the planet those analyses are driven by (Cassini ranging).  The quadrupole precession machinery is therefore validated against published numbers it was not fitted to, which is what licenses the next check)
+
+  V2.2 -- THE REFUTATION: Route A's OWN Q_2 through the SAME machinery, inside 100 AU
+  Route A's Q_2 = 3.00e-26 (canonical) / 3.27e-26 (alt) s^-2, taken
+  from g04's own A5b (Desmond+2024 eq 12, pinned to 0.76% on that paper's anchors for THIS kernel).
+  planet      MG quadrupole rate [mas/yr]   sigma [mas/yr]   over by   B3b isolated tail   omitted factor
+  Mercury                      3.4676e-04          0.00600       0.1             1e-7399           1e7395
+  Venus                        9.0505e-04          0.01500       0.1             1e-4737           1e4734
+  Earth                        1.4710e-03          0.00190       0.8             1e-3391           1e3388
+  Mars                         2.7550e-03          0.00037       7.4             1e-2067           1e2064
+  Jupiter                      1.7439e-02          0.28000       0.1              1e-626            1e624
+  Saturn                       4.3265e-02          0.00470       9.2              1e-336            1e335
+  [FAIL] V2c  B3b's 'largest modified-gravity precession rate anywhere inside 100 AU' is the largest   (IT IS NOT, BY TWELVE TO FOURTEEN ORDERS.  At the very configuration B3b names -- a = 100 AU, e = 0.9 -- the external-field quadrupole gives 6.41e-01 mas/yr against B3b's 1.89e-14 mas/yr for the isolated tail: a factor 10^14.  At Saturn the quadrupole gives up to 0.0433 mas/yr against sigma = 0.0047.  B3b computed ONE TERM of the modified-gravity solution -- the isolated-Sun central tail -- and its sentence promotes that to 'the modified-gravity precession')
+  [FAIL] V2d  the modified-gravity arm's inner-solar-system precession is below the measured bounds   (IT IS NOT.  Route A's Q_2 exceeds the sharpest per-planet perihelion sigma by up to 9.2x (canonical) / 10.0x (alt) at the maximal-coupling orientation.  That is the SAME 5.8x/6.3x g04's A5b reports against the Park+2026 ceiling, recovered here through perihelion precession rather than through the Cassini Q_2 fit -- so the modified-gravity arm does not merely have magnitude to work with inside 100 AU, it has too much, and the inner solar system already excludes it.  (Reading caveat carried from g04: the true orientation is fixed by the Galactic-centre direction, not scanned, and the significance is set by the Milky Way mass model -- Desmond+2024 quote 8.7 sigma fiducial, 1.9 sigma with bulge galaxies cut.  The ROBUST statement is 'of order the bound, not 1e-10 of it'))
+
+----------------------------------------------------------------------------------------------------------------------
+PART V3 -- does the inner solar system decide the fork, or not?
+----------------------------------------------------------------------------------------------------------------------
+  modified GRAVITY  arm : Q_2 = 3.00e-26 s^-2  ->  5.8x the Park+2026 ceiling
+  modified INERTIA  arm : Q_2 = 7.40e-34 s^-2  ->  1.4e-07 of the same ceiling
+                          (committed in cassini_mi_evasion_2026/, on the OLD kernel; quoted, not
+                           recomputed, exactly as g04 flags it)
+  [FAIL] V3a  the fork CANNOT be decided by orbital dynamics in the inner solar system   (IT CAN, AND g04's OWN PART A DECIDES IT.  The two arms differ by a factor 4.1e+07 in the one inner-solar-system observable that carries magnitude, and the measurement sits BETWEEN them: the modified-gravity arm is 5.8x OVER the 2-sigma ceiling and the modified-inertia arm is 1e-07 UNDER it.  A bracketed measurement is the definition of a decided fork.  g04's own conclusion says so -- 'the fork-relevant solar-system information is entirely in A5b (Q_2)' -- which is precisely what the B3b headline sentence denies)
+  orbit-shape dependence of the quadrupole precession: orientation spread at fixed (a,e) = 45.5x;  e=0.90 / e=0.01 at fixed beta, a = 100 AU = 0.44x
+  [FAIL] V3b  the Q_2 channel is orbit-shape-blind, so 'cannot be decided by ORBIT SHAPE' still stands   (IT IS NOT ORBIT-SHAPE-BLIND.  The quadrupole force is anisotropic, so its perihelion advance depends on the perihelion's orientation relative to the symmetry axis (Saturn response varies 45.5x over the orientation scan at fixed a and e) and on eccentricity (0.44x between e = 0.01 and e = 0.90 at a = 100 AU, fixed beta).  Both are far from 1, which is what 'blind' would require.  Orbit shape is exactly the handle the published Q_2 constraints use -- they are fits to SUPPLEMENTARY PERIHELION ADVANCES, per planet, per geometry.  The eccentricity lever here is modest (0.44x, not 1e157) but it is not zero, and it sits on a signal that is of order the measurement rather than 1e-10 of it, which is the whole point)
+
+----------------------------------------------------------------------------------------------------------------------
+PART V4 -- the confound lens: would ordinary cold dark matter give the same signature?
+----------------------------------------------------------------------------------------------------------------------
+  For the B3b NULL: GR + CDM predicts identically zero solar-system anomaly.  1.9e-14 mas/yr is
+  observationally indistinguishable from zero, so B3b separates the framework from nothing.
+  For the Q_2 CHANNEL: the Newtonian/CDM Galactic tide at the Sun is of order V^2/R_0^2 =
+  8.48e-31 s^-2 (V = 233 km/s, R_0 = 8.2 kpc), against the Park+2026 ceiling 5.2e-27 and
+  Route A's 3.00e-26.  The CDM tide is 6132x BELOW the ceiling
+  and 3.5e+04x below the MOND value.
+  [FAIL] V4a  the B3b null discriminates the framework from GR + cold dark matter   (IT DOES NOT, and cannot: 1.9e-14 mas/yr is zero to any instrument.  B3b is a CONSISTENCY statement, not a discriminant.  This is not a criticism of the arithmetic -- g04's own honesty note says the same -- but it does mean B3b carries no fork information in EITHER direction, so nothing about the fork can be concluded from it)
+  [FAIL] V4b  the Q_2 channel is confounded by the ordinary Newtonian Galactic tide   (IT IS NOT.  The CDM/Newtonian tide 8.48e-31 s^-2 is 6132x below the measurement ceiling and 3.5e+04x below Route A's prediction, so the Q_2 excess is not something ordinary cold dark matter produces.  The channel that DOES carry magnitude inside 100 AU is therefore clean of the confound the audit lens asks about -- which makes the refutation of B3b's inference stronger, not weaker)
+
+======================================================================================================================
+VERDICT
+======================================================================================================================
+
+ THE ARITHMETIC SURVIVES.  Route A's isolated-Sun central tail gives 1.89e-14 mas/yr at a = 100 AU,
+ e = 0.9 -- 10^10 below Mars -- reproduced here to 0.004 dex with a different quadrature,
+ a transverse term g04 does not carry, and a mutation control that fires at 33973x on the retired
+ kernel.  The 10^157 ratio at 10 AU is confirmed to 0.005 dex.  V1a-V1d all PASS.
+
+ THE INFERENCE DOES NOT.  "The modified-gravity precession has no magnitude to work with [inside 100 AU],
+ so the fork cannot be decided by orbit shape in the inner solar system" is false on both clauses:
+
+  * The isolated-Sun tail is one term of the modified-gravity solution, and not the leading one.  The
+    Sun sits in a Galactic field above a_0; the resulting anomalous quadrupole is set at r_M ~ 8000 AU
+    where the exponential does nothing, and inside 100 AU it exceeds the isolated tail by
+    10^14.  Fed through the same Gauss machinery -- anchored by recovering the PUBLISHED Q_2
+    ceilings out of the measured per-planet sigmas (V2b) -- Route A's own Q_2 gives up to 9.2x the
+    sharpest per-planet perihelion sigma.  The modified-gravity arm is not invisible inside 100 AU; it
+    is already EXCLUDED there.
+
+  * The fork IS decided there.  The two arms sit at 5.8x over and 1e-07 under the same ceiling, a
+    separation of 4.1e+07, and the measurement falls between them.  g04's own A5b FAILS and g04's own
+    conclusion says the fork-relevant solar-system information is entirely in that check.  The B3b
+    headline sentence contradicts the file it is drawn from.
+
+  * And the quadrupole IS an orbit-shape observable: the published constraints are fits to
+    supplementary perihelion advances planet by planet, and the response varies with e and with the
+    perihelion's orientation.
+
+ WHAT SHOULD BE CLAIMED INSTEAD.  "Route A's ISOLATED-SUN exponential tail is vacuous as an eccentricity
+ discriminant inside 100 AU, by 10^10 -- and this says nothing about the fork, because the inner solar
+ system's fork-relevant signal is the external-field quadrupole, which is 5.8x over the bound for
+ modified gravity and 1e-7 under it for modified inertia."  That sentence is fully supported by g04.
+ The one that was handed out is not.
+
+ DIRECTION OF THE ERROR.  Against the framework's operative arm, not for it.  Every correction here makes
+ the modified-gravity arm's solar-system standing WORSE.  Nothing in this file is a win for anything.
+
+ CAVEATS, LOAD-BEARING.
+  * Q_2 = 3.00e-26 s^-2 is QUOTED from g04's A5b, not recomputed.  If that integral is wrong, V2c/V2d/V3a
+    move with it.  It is pinned to 0.76% on Desmond+2024's own published anchors for this exact kernel.
+  * The Q_2 -> precession response is computed with the symmetry axis IN the orbit plane and scanned over
+    orientation.  The true Galactic-centre direction is fixed and out of the ecliptic, so the real
+    per-planet response is a specific number inside the band, not the maximum.  Every "over by" figure is
+    therefore an UPPER reading; the robust statement is "of order the measured bound", which is all the
+    refutation needs -- B3b's claim is 1e-10 of the bound.
+  * The MI contrast 7.4e-34 s^-2 is committed on the OLD kernel nu = sqrt(1+1/y) and quoted, not
+    recomputed, exactly as g04 flags.  The fork separation in V3a inherits that.
+  * Nothing here prefers the framework over LambdaCDM.  V4a/V4b establish only that the Q_2 channel is
+    not CDM-confounded, i.e. that it is a real discriminant against the framework's modified-gravity arm.
+
+
+RESULT: 12 checks, 6 FAIL -> ["V2c  B3b's 'largest modified-gravity precession rate anywhere inside 100 AU' is the largest", "V2d  the modified-gravity arm's inner-solar-system precession is below the measured bounds", 'V3a  the fork CANNOT be decided by orbital dynamics in the inner solar system', "V3b  the Q_2 channel is orbit-shape-blind, so 'cannot be decided by ORBIT SHAPE' still stands", 'V4a  the B3b null discriminates the framework from GR + cold dark matter', 'V4b  the Q_2 channel is confounded by the ordinary Newtonian Galactic tide']   rc=1

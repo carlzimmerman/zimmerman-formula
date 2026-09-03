@@ -1,0 +1,309 @@
+
+========================================================================================================
+  V1  THE SYSTEMATIC, FIRST -- what discriminating power is available before any prediction
+========================================================================================================
+  THE STATISTIC.   S = nu_vert / nu_rad, entirely a ratio of FORCES:
+
+      nu_vert = |K_z^obs(R0,1.1 kpc)| / |K_z^bar(R0,1.1 kpc)| = 2 pi G Sigma_dyn / |g_bar,z(R0,1.1)|
+      nu_rad  = (V_c^2/R0) / |g_bar,R(R0,0)|
+      =>  S = 2 pi G Sigma_dyn * Q * R0 / V_c^2,     Q = |g_bar,R(R0,0)| / |g_bar,z(R0,1.1 kpc)|
+
+  Published Sigma_1.1 values are DEFINED as |K_z(1.1 kpc)|/(2 pi G) (Kuijken & Gilmore 1991), so no
+  surface-density/force conversion and no radial-term correction ever enters.  Scaling every
+  baryonic component by a common f leaves Q untouched: the baryon budget's NORMALISATION -- the
+  systematic the brief warned would swamp this test -- CANCELS IDENTICALLY.  Only the mass model's
+  SHAPE survives, in the single dimensionless number Q.
+
+  the vertical measurement, four published determinations of Sigma_1.1(R0):
+       71.0 +- 6.0   Kuijken & Gilmore 1991, ApJ 367, L9
+       74.0 +- 6.0   Holmberg & Flynn 2004, MNRAS 352, 440
+       68.0 +- 4.0   Bovy & Rix 2013, ApJ 779, 115
+       55.5 +- 1.7   Nitschai+ 2021, ApJ 916, 112 (Gaia EDR3+APOGEE)
+
+  unweighted mean 67.1, between-paper scatter 8.1 (12.1%), quoted errors 1.7-6.0
+  [PASS] V1a the SPREAD BETWEEN PUBLISHED Sigma_1.1 DETERMINATIONS EXCEEDS THEIR QUOTED ERRORS -- so the vertical measurement's true uncertainty is the literature scatter, not any one paper's error bar   (scatter 8.1 vs mean quoted error 4.4 Msun/pc^2)
+
+  the planar measurement:  V_c(R0) = 229.0 +- 2.6 km/s (Eilers+ 2019, ApJ 871, 120)
+                           V_c(R0) = 234.7 +- 1.7 km/s (Nitschai+ 2021, ApJ 916, 112)
+                           R0      = 8.178 +- 0.026 kpc (GRAVITY 2019)
+  the baryon column, a cross-check only (it cancels from S):  Sigma_bar(R0) = 47.1 +- 3.4 Msun/pc^2 (McKee+ 2015)
+
+========================================================================================================
+  V2  THE MACHINERY AND ITS VALIDATIONS -- exact axisymmetric Poisson, then exact QUMOND
+========================================================================================================
+  grid: R 0.015-60.0 kpc x 2000 uniform;  z +-60.0 kpc x 481 sinh (finest 0.00039 kpc);  k 0.0008-10.0 kpc^-1 x 2025 (log below 0.005, then uniform)
+
+  V2a  Miyamoto-Nagai (M=5e10 Msun, a=3 kpc, b=0.3 kpc) -- numeric vs exact analytic:
+      R,z [kpc]               gR num     gR exact      err       gz num     gz exact      err
+       4.00,  0.00     -2.0002e-10  -1.9997e-10   0.027%  -5.9883e-27  -0.0000e+00   0.000%
+       8.18,  1.10     -7.4041e-11  -7.4020e-11   0.028%  -3.6158e-11  -3.6153e-11   0.015%
+       8.18, -1.10     -7.4041e-11  -7.4020e-11   0.028%   3.6158e-11   3.6153e-11   0.015%
+      15.00,  1.10     -2.7760e-11  -2.7751e-11   0.034%  -7.3813e-12  -7.3896e-12   0.112%
+  [PASS] V2a the Hankel machinery reproduces the exact Miyamoto-Nagai forces (and returns gz = 0 in the plane, gz antisymmetric across it)   (worst error 0.112%)
+
+  V2b  the EXACT QUMOND spherical identity.  In spherical symmetry div g = div[nu g_N] integrates
+       to g = nu(|g_N|/a0) g_N with NO approximation, so this tests the phantom construction itself:
+      canonical  r = 4, 8, 16, 30 kpc:   solver / identity = 1.0003, 1.0005, 1.0005, 1.0004
+      alt        r = 4, 8, 16, 30 kpc:   solver / identity = 1.0003, 1.0005, 1.0006, 1.0004
+  [PASS] V2b the solver reproduces the EXACT QUMOND spherical identity g = nu(g_N/a0) g_N -- so any vertical/planar split it reports later is geometry, not solver error   (worst deviation 0.06%)
+
+  V2c  k- and R-grid convergence on the baryonic rotation curve (this is the test that caught a purely
+       logarithmic k grid oscillating by tens of per cent past 10 kpc):
+      R [kpc]             6.00     8.18    11.00    16.00
+      v_bar coarse      185.75   176.20   162.83   138.42
+      v_bar fine        185.75   176.20   162.82   138.41
+  [PASS] V2c halving dk and dR changes the baryonic rotation curve by less than 1% out to 16 kpc   (worst change 0.005%)
+
+========================================================================================================
+  V3  THE NEWTONIAN BARYON MODEL -- the shape number Q and its literature-spanning systematic
+========================================================================================================
+  vertical evaluation node z = 1.100000 kpc
+
+  McMillan 2017 columns at R0 = 8.178 kpc, |z| < 1.1 kpc  [Msun/pc^2]:
+      stars  41.75   gas  12.28   TOTAL  54.03
+      independent census, McKee+2015: 47.1 +- 3.4 (model +14.7%); Bovy & Rix 2013 stars 38 +- 4 (model +9.9%)
+  [FAIL] V3a AGAINST INTEREST: the dynamical mass model's local stellar column and the direct baryon census DISAGREE by more than either's error bar -- recorded here because it is exactly the SHAPE disagreement that does NOT cancel from Q   (McMillan 41.8 vs McKee 33.4 +- 3.0 -> +25.0%; FAILING THIS IS THE POINT and it is folded into sigma(Q) below)
+
+    R [kpc]  v_bar [km/s]   |g_bar,R|(0)  |g_bar,z|(1.1)  Sig_bar(<1.1)   Q = gR/gz
+      6.000         185.8     1.8637e-10      1.0204e-10         113.91      1.8264
+      8.178         176.2     1.2302e-10      5.3437e-11          54.03      2.3022
+     11.000         162.8     7.8111e-11      2.4677e-11          22.25      3.1654
+
+  Q's response to the mass model's SHAPE (the normalisation is already cancelled):
+      Rd_thin    d ln Q = -0.1256   [thin-disc scale length 2.6 +- 0.5 kpc, Bland-Hawthorn & Gerhard 2016]
+      Rd_thick   d ln Q = -0.0168   [thick-disc scale length, +-0.4 kpc]
+      rho0_b     d ln Q = +0.0289   [bulge mass +-30%]
+      S0_thick   d ln Q = +0.0028   [thick-disc normalisation +-30%]
+      S_HI_fid   d ln Q = -0.0285   [HI column +-25%]
+      Rd_HI      d ln Q = -0.0120   [HI radial scale +-2 kpc]
+      zd_thin    d ln Q = +0.0097   [thin-disc scale height 300 +- 100 pc]
+      -> total SHAPE uncertainty on Q:  13.40%   (Q = 2.3022)
+  [PASS] V3b the residual baryon systematic on S, after the normalisation has cancelled, is the SHAPE term alone -- and even with literature-spanning ranges it is under 30%   (13.40%)
+  [FAIL] V3c but it is NOT small: the shape term alone exceeds 10%, so the baryon model has not been eliminated from this test, only demoted   (13.40% -- FAILING THIS CHECK records that the baryon SHAPE remains a leading systematic)
+
+  census-anchored alternative: the local column is forced onto McKee+2015's 47.1 Msun/pc^2 and the
+  disc scale length is re-fitted until |g_bar,R(R0)| returns to the McMillan value 1.2302e-10:
+       R_d [kpc]  norm scale    |g_bar,R|        Q
+            1.60      1.8009   1.2829e-10   2.5655
+            1.90      1.4409   1.2654e-10   2.5476
+            2.20      1.1186   1.1886e-10   2.4562
+            2.50      0.8717   1.0951e-10   2.3346
+            3.00      0.6034   9.5428e-11   2.1291
+  -> R_d = 2.04 kpc, Q = 2.5057  (+8.8% against the McMillan-shape Q)
+  [PASS] V3d the root is bracketed by the scan, so R_d and Q are interpolated and not extrapolated   (target 1.2302e-10 inside [9.5428e-11, 1.2829e-10])
+  [PASS] V3d2 the two independently-anchored mass models disagree on Q by less than the shape systematic already assigned, so sigma(Q) is not understated   (census Q / McMillan Q = 1.088 against sigma_lnQ = 13.4%)
+  Carried forward, NOT adopted: swapping to the census-anchored shape multiplies S_obs by 1.088.
+  V6 reports the confrontation under both anchors so the reader sees the shape dependence directly.
+
+========================================================================================================
+  V4  THE MODIFIED-GRAVITY ARM -- QUMOND, the framework's own Route A kernel, a0 an INPUT
+========================================================================================================
+  div g = div [ nu(|g_N|/a0) g_N ],  nu(y) = 1/(1 - exp(-sqrt(y))).  ONE potential; the vertical
+  force and the circular speed are both derivatives of it.  NO freedom once the baryons are fixed.
+  The vertical/planar split is then whatever the phantom density's SHAPE makes it, and nothing else.
+
+  a0 = 9.360e-11 (canonical):
+        R [kpc]   y=gbar/a0   nu_rad  nu_vert   S=nv/nr   v_c pred  Sig_1.1 pred
+      6.000       1.991   1.2889   1.3145    1.0198      210.9        153.12
+      8.178       1.314   1.4405   1.4565    1.0111      211.5         88.85
+     11.000       0.835   1.6621   1.6734    1.0068      209.9         47.14
+
+  a0 = 1.130e-10 (alt):
+        R [kpc]   y=gbar/a0   nu_rad  nu_vert   S=nv/nr   v_c pred  Sig_1.1 pred
+      6.000       1.649   1.3447   1.3736    1.0215      215.4        160.00
+      8.178       1.089   1.5154   1.5333    1.0118      216.9         93.53
+     11.000       0.691   1.7626   1.7753    1.0072      216.2         50.01
+  [PASS] V4a the MODIFIED-GRAVITY split at R0 is within 10% of unity on BOTH footings -- a full QUMOND solve barely separates the vertical from the planar boost in the solar neighbourhood   (S_MG = 1.0111 / 1.0118)
+  [PASS] V4b and its sign is the same on both footings, so the split is a property of the disc geometry and not of the footing choice   (+0.0111, +0.0118)
+  [PASS] V4c the split is stable when the phantom source is truncated at 22-38 kpc instead of 35-55 kpc, so it is not a boundary artefact   (S = 1.0095 vs 1.0111)
+
+  comparator: Bienayme, Famaey, Wu, Zhao & Aubert 2009 (A&A 500, 801) solve FULL 3D AQUAL on a 256^3
+  multigrid with the 'simple' mu and obtain nu_vert = 1.57-1.66 at R = 7.5-8.5 kpc.  This solve, with
+  the framework's OWN kernel and a0, gives nu_vert = 1.456 (canonical) / 1.533 (alt) -- lower, as the
+  stiffer Route A kernel requires, and in the same regime.
+
+========================================================================================================
+  V5  THE MODIFIED-INERTIA ARMS -- every assumption written as an equation, and scanned
+========================================================================================================
+
+  local baryonic Newtonian field:  |g_N|(R0,0) = 1.2302e-10,  |g_N|(R0,1.1kpc) = 1.2349e-10 m/s^2
+  vertical/radial component ratio at 1.1 kpc:  |g_z|/|g_R| = 0.480
+  [PASS] V5a *** THE MAGNITUDE |g_N| -- the argument EVERY kernel takes -- DIFFERS BY ONLY A FEW PER CENT BETWEEN THE TWO EVALUATION POINTS, because at 1.1 kpc the vertical pull is a fraction of the radial one and adds in quadrature.  That is the physical reason this laboratory is blunt, and it is a fact about the Milky Way, not about either theory ***   (|g_N| differs by 0.38%; |g_z|/|g_R| = 0.480)
+
+  trajectory frequencies at R0:  Omega = V_c/R0 = 9.0748e-16 rad/s (Eilers+ 2019, ApJ 871, 120)
+      nu_z for z_max = 1.1 kpc  = 1.6345e-15 rad/s  ->  q = nu_z/Omega = 1.801
+      nu_z for z_max -> 0       = 2.8446e-15 rad/s  ->  q = 3.135   (midplane limit)
+  [PASS] V5b the vertical-to-circular frequency ratio at the Sun is in the 1.5-3.5 band, i.e. the two trajectories are genuinely separated in frequency -- computed from the model potential, not assumed   (q = 1.801 at z_max = 1.1 kpc, 3.135 in the midplane limit)
+
+  ASSUMPTION A1 (orbit-averaged MI):  <|g_N|> over the vertical orbit = 1.2533e-10 m/s^2, against
+      the turning-point value 1.2349e-10  (+1.48%)
+
+  the arms, both footings, at R0:
+      arm                                  canonical             alt
+      MI algebraic (local)                    0.9990          0.9989
+      MI orbit-avg [A1]                       0.9951          0.9948
+      MI gate [A2] omc lo                     0.9546          0.9496
+      MI gate [A2] omc committed              0.9981          0.9979
+      MI gate [A2] omc hi                     0.9990          0.9989
+      MI power [A3] p=-2.0                    1.4469          1.4710
+      MI power [A3] p=-1.0                    1.1863          1.1971
+      MI power [A3] p=-0.5                    1.0847          1.0897
+      MI power [A3] p=+0.0                    0.9990          0.9989
+      MI power [A3] p=+0.5                    0.9273          0.9226
+      MI power [A3] p=+1.0                    0.8680          0.8589
+      MI power [A3] p=+2.0                    0.7809          0.7640
+      MG QUMOND (V4)                          1.0111          1.0118
+  [PASS] V5c the ALGEBRAIC MI arm predicts S within 5% of exactly 1, parameter-free, because the kernel's argument is nearly the same at the two evaluation points   (S = 0.9990)
+  [PASS] V5d *** THE REPOSITORY'S OWN FREQUENCY GATE CANNOT PRODUCE A LARGE VERTICAL/PLANAR SPLIT ANYWHERE IN ITS THEORY-ALLOWED omega_c WINDOW: across ~4 decades of omega_c the largest departure from unity is under 10% ***   (max |S-1| = 4.54%)
+  [PASS] V5e and orbit-averaging the kernel argument (A1) moves S by less than 2% -- because the orbit spends its time where |g_N| is dominated by the RADIAL component, which the vertical motion does not change   (|Delta S| = 0.390%)
+  [PASS] V5f only the generic power-law bracket A3, with an exponent the framework does not supply, moves S by more than 10% -- so any measurable split needs a trajectory dependence stronger than anything the framework currently contains   (max |S-1| = 44.7%)
+
+========================================================================================================
+  V6  THE CONFRONTATION -- S measured, with the full error budget, against every arm
+========================================================================================================
+
+  S_obs = 0.6417 +- 0.1208   (18.8%)
+      isolated sigma(S) from Sigma_dyn   = 0.0824  (12.8%)
+      isolated sigma(S) from shape Q     = 0.0884  (13.8%)
+      isolated sigma(S) from V_c and R0  = 0.0200  (3.1%)
+  [PASS] V6a the DOMINANT systematic is NOT the baryon budget's normalisation (which cancels) but the shape Q term   (largest single term = shape Q)
+
+  arm                              S canonical    sigma         S alt    sigma
+  ----------------------------------------------------------------------------
+  MI algebraic (local)                  0.9990    -2.96        0.9989    -2.96
+  MI orbit-avg [A1]                     0.9951    -2.92        0.9948    -2.92
+  MI gate [A2] omc lo                   0.9546    -2.59        0.9496    -2.55
+  MI gate [A2] omc committed            0.9981    -2.95        0.9979    -2.95
+  MI gate [A2] omc hi                   0.9990    -2.96        0.9989    -2.96
+  MI power [A3] p=-2.0                  1.4469    -6.66        1.4710    -6.86
+  MI power [A3] p=-1.0                  1.1863    -4.51        1.1971    -4.60
+  MI power [A3] p=-0.5                  1.0847    -3.67        1.0897    -3.71
+  MI power [A3] p=+0.0                  0.9990    -2.96        0.9989    -2.96
+  MI power [A3] p=+0.5                  0.9273    -2.36        0.9226    -2.32
+  MI power [A3] p=+1.0                  0.8680    -1.87        0.8589    -1.80
+  MI power [A3] p=+2.0                  0.7809    -1.15        0.7640    -1.01
+  MG QUMOND                             1.0111    -3.06        1.0118    -3.06
+
+  UNDER THE CENSUS-ANCHORED MASS MODEL of V3d instead:  S_obs = 0.6984 +- 0.1208, i.e. -2.49 sigma
+  from algebraic MI and -2.59 sigma from QUMOND, with the arm-vs-arm separation unchanged at 0.10 sigma.
+  [PASS] V6b0 the arm-vs-arm separation is INSENSITIVE to which mass-model anchor is used -- swapping anchors moves both arms together and changes the fork verdict not at all   (0.10 sigma under either anchor, while the COMMON offset moves from 2.96 to 2.49 sigma)
+
+  READING IT.  The measured split sits 3.06 sigma from the modified-GRAVITY prediction and
+  2.96 sigma from the algebraic modified-INERTIA one, and those two predictions are only
+  0.10 sigma APART FROM EACH OTHER.
+  [PASS] V6b *** THE FORK IS NOT DECIDED HERE.  Modified gravity and algebraic modified inertia are separated by less than one sigma of the measurement, so this laboratory cannot tell the two arms apart ***   (arm-vs-arm separation 0.10 sigma)
+  [FAIL] V6c ATTEMPTED, AND IT FAILS ITS 3-SIGMA BAR: the arm-vs-arm separation does not reach 3 sigma   (separation 0.10 sigma -- FAILING THIS CHECK IS THE RESULT)
+  [PASS] V6d against interest, and reported at its true strength: BOTH arms sit on the same side of the measurement and BOTH are in tension with it at the same level, so this is not evidence for either arm over the other   (MG -3.06 sigma, MI-algebraic -2.96 sigma)
+  [FAIL] V6e and the common tension is itself below 3 sigma, so nothing here falsifies the kernel either   (worst 3.06 sigma)
+
+  the A3 family's REACHABLE range: as p -> +inf the vertical boost is switched off completely and S -> 1/nu_rad =
+  0.6822; as p -> -inf, S -> infinity.  So the family spans (0.682, inf), and the measurement 0.642 +- 0.121 sits -0.34 sigma from that floor.
+  the A3 exponent allowed at 2 sigma:  +0.87 < p < >= +12 (unbounded); p = 0, i.e. NO trajectory dependence, is OUTSIDE it
+  [PASS] V6f the data do not pin the trajectory-dependence exponent -- the 2-sigma band on p is wider than 1 and unbounded above   (band +0.87 to >= +12 (unbounded))
+  [FAIL] V6g and p = 0 (no trajectory dependence at all) is allowed at 2 sigma, so the measurement does not require modified inertia   (band starts at p = +0.87)
+
+  V6h  WHERE THE COMMON OFFSET LIVES (the ratio hides this by design, so it is undone here).
+       At the mass model's own normalisation, the Milky Way needs
+           nu_rad(observed)  = 1.689      against the kernel's nu = 1.466
+           nu_vert(observed) = 1.100      against the kernel's nu = 1.464
+       so the ROTATION CURVE wants MORE boost than the kernel supplies and the VERTICAL FORCE wants
+       LESS.  Expressed as the baryon rescaling each direction would need under the kernel:
+           f_radial = 1.211   (the rotation curve wants +21% baryons)
+           f_vertical = 0.671   (the vertical force wants -33% baryons)
+       One normalisation cannot serve both -- this IS the dilemma Lisanti, Moschella, Outmezguine &
+       Slone 2019 (PRD 100, 083009) state for scalar enhancements, and the QUMOND solve of V4
+       inherits it essentially unchanged because its own split is only 1.1%.
+  [PASS] V6i the offset is NOT one-sided: the radial direction wants more baryons and the vertical wants fewer, so it cannot be repaired by any rescaling of the baryon budget -- which is exactly why the ratio S is the right statistic and exactly why improving the budget would not help   (f_radial = 1.211, f_vertical = 0.671)
+
+  V6j  DEGENERACY CONTROL.  Moving Q by ONE sigma of its shape systematic (13.4%) moves the lower
+       edge of the allowed exponent band from p = +0.87 to p = +0.16 -- a shift of 0.71 against
+       the whole distance 0.87 from p = 0.
+  [PASS] V6j against interest: the trajectory exponent is DEGENERATE with the baryon shape -- one sigma of the shape systematic alone moves the band's edge by at least half the distance from p = 0, so V6g's exclusion of p = 0 is measuring the mass model, not the trajectory   (|dp| = 0.71 from a 1-sigma Q shift, against |p_edge| = 0.87)
+
+========================================================================================================
+  V7  WHAT WOULD HAVE TO IMPROVE FOR THIS TEST TO DECIDE THE FORK
+========================================================================================================
+
+  |S_MG - S_MI(algebraic)| = 0.0121.  A 3-sigma discrimination needs sigma(S) <= 0.0040, i.e. 29.9x better than today's 0.1208.
+  sigma(S)/S adds in quadrature over  Sigma_dyn (12.8%), the baryon SHAPE (13.8%) and V_c^2/R0 (3.1%), so EVERY term would have to fall below 0.63%.  Concretely:
+      Sigma_1.1(R0) known to +- 0.42 Msun/pc^2 -- today the four published values SPAN 18.5;
+      the disc scale length, bulge mass and gas profile good enough to fix Q to 0.63% -- today 13.4%.
+  [PASS] V7a the required precision on Sigma_1.1 is far below the DISAGREEMENT BETWEEN PUBLISHED DETERMINATIONS, so no reduction of statistical error can deliver it -- the obstruction is a systematic one   (need +-0.42, published values span 18.5 Msun/pc^2)
+  [PASS] V7b and the baryon SHAPE would have to be pinned an order of magnitude better than any current Milky Way mass model delivers   (need 0.63%, have 13.4% -> a factor 21)
+
+========================================================================================================
+  V8  MUTATION CONTROLS
+========================================================================================================
+
+  M1 Newtonian limit (a0 = 1e-18):  S_MG = 1.000000; worst MI arm |S-1| = 0.00e+00
+  [PASS] M1 with the kernel switched off every arm returns S = 1, so the splits this script reports are produced by the kernel and not by the machinery   (worst |S-1| = 0.00e+00)
+  M2 spherical mutation (the same total baryonic mass 6.645e+10 Msun in a Plummer sphere): S_MG = 1.00480 against the disc's 1.01109
+  [PASS] M2 a spherical mass distribution drives the MG split to exactly 1 (QUMOND is algebraic in spherical symmetry) -- so the disc's split is geometry, and the statistic does respond to geometry   (S_sph = 1.00480)
+  M3 frequency mutation (q = nu_z/Omega forced to 1 and the orbit average forced to the local value): every trajectory-dependent arm collapses onto the algebraic one to 6.40e-05
+  [PASS] M3 with the two trajectories made identical, every trajectory-dependent arm collapses onto the algebraic arm to a residual FAR below the splits it is controlling -- so the V5 splits are the frequency dependence and nothing else.  (The collapse is exact for A1 and A3; for the gate A2 a residual of order (nu(g_v)-nu(g_r)) x (1-|G|) survives by construction, so the bar is set relative to the effect rather than at zero.)   (residual 6.40e-05, i.e. 0.14% of the gate's own 4.54% split)
+  M4 deleting the literature disagreement (all four Sigma_1.1 replaced by draws from their common mean): sigma(S) would fall to 0.0986, arm-vs-arm separation 0.12 sigma
+  [PASS] M4 even with the vertical measurement's literature disagreement deleted outright, the two arms stay unresolved -- so the negative verdict is not an artefact of that scatter alone   (0.12 sigma)
+  M5 leave-one-out on the four vertical determinations (does the common offset survive?):
+      drop Kuijken & Gilmore 1991 -> S = 0.6295 +- 0.1218, -3.03 sigma from algebraic MI
+      drop Holmberg & Flynn 2004 -> S = 0.6199 +- 0.1151, -3.29 sigma from algebraic MI
+      drop Bovy & Rix 2013      -> S = 0.6390 +- 0.1276, -2.82 sigma from algebraic MI
+      drop Nitschai+ 2021       -> S = 0.6788 +- 0.1099, -2.91 sigma from algebraic MI
+  [PASS] M5 the common offset of S below the arms' prediction is not created by any single vertical determination: dropping any one leaves the sign unchanged   (signs ['-3.03', '-3.29', '-2.82', '-2.91'])
+
+========================================================================================================
+  SUMMARY
+========================================================================================================
+
+  1. THE BARYON-BUDGET SYSTEMATIC DOES NOT SWAMP THIS TEST -- its NORMALISATION CANCELS.  Writing
+     the vertical and planar boosts as one ratio of forces removes it identically (V1).  What
+     survives is the mass model's SHAPE, in the single number Q = 2.302, uncertain at 13.4%
+     even with literature-spanning parameter ranges.  That is the brief's anticipated failure mode
+     CHECKED FIRST and found to be only PART of the obstruction, not all of it.
+
+  2. THE VERTICAL MEASUREMENT DISAGREES WITH ITSELF.  Four published Sigma_1.1(R0) span
+     55.5-74.0 Msun/pc^2 with quoted errors 1.7-6.0: the between-paper scatter
+     (8.1) is 1.8x the mean quoted error.  Together with the shape term this gives
+     sigma(S) = 0.121 on S_obs = 0.642.
+
+  3. THE TWO ARMS PREDICT ALMOST THE SAME THING, AND THE REASON IS PHYSICAL.  At (R0, 1.1 kpc) the
+     baryonic vertical pull is 0.48 of the radial one and adds in quadrature, so |g_N| -- the
+     argument every kernel takes -- differs by only 0.4% between the circular and the vertical
+     evaluation point.  A full QUMOND solve splits them by 1.1%; the algebraic MI map by 0.1%;
+     orbit-averaging the argument by 0.4%; the repository's own frequency gate by at most 4.5%
+     ANYWHERE in its theory-allowed omega_c window.  The two arms are 0.10 sigma apart.
+
+  4. VERDICT ON THE FORK: NOT DECIDED, AND NOT DECIDABLE HERE.  A 3-sigma separation needs
+     sigma(S) <= 0.0040 -- Sigma_1.1 to +- 0.42 Msun/pc^2, far inside the spread between
+     published determinations, and Q to 0.63%, a factor 21 beyond any current mass model.
+     Improving the baryon budget alone would NOT fix it: the budget's normalisation is already gone.
+
+  5. THERE IS A COMMON OFFSET, AND IT IS REPORTED AT EXACTLY ITS STRENGTH, NOT HIGHER.
+     S_obs = 0.642 +- 0.121 sits 2.96 sigma from algebraic MI and 3.06 sigma from QUMOND --
+     the SAME offset, in the same direction, for both arms, so it discriminates NOTHING about the
+     fork.  V6h shows where it lives: the rotation curve wants +21% baryons under the kernel while
+     the vertical force wants -33%, one normalisation cannot serve both, and that is precisely the
+     dilemma Lisanti, Moschella, Outmezguine & Slone 2019 (PRD 100, 083009) state for scalar
+     enhancements.  It is a known published feature of the Milky Way, re-derived here in a
+     normalisation-free statistic with the framework's own kernel; it is NOT new and it is NOT a
+     kill -- it sits at 3.1 sigma with a 13% shape systematic that could move it either way,
+     and the census-anchored mass model of V3d shifts Q by +8.8% on its own, which alone moves the
+     offset to 2.5 sigma.  The honest range is 2.5-3.1 sigma, shared by both arms.
+
+  6. AND THE ONE THING THAT LOOKED LIKE A SIGNAL IS DEGENERATE.  V6g excludes p = 0 at 2 sigma,
+     which would read as evidence FOR trajectory dependence.  V6j kills that reading: one sigma of
+     the baryon SHAPE systematic alone moves the band's edge by 0.71, against the whole distance
+     0.87 from p = 0.  The exponent is measuring the mass model.  And the A3 family cannot
+     reach the measurement anyway: switching the vertical boost off ENTIRELY (p -> inf) only gets
+     to S = 0.682, still -0.34 sigma from S_obs.
+
+  7. WHAT WOULD BITE, IF ANYTHING.  Only a trajectory dependence far stronger than anything the
+     framework contains -- the generic A3 bracket needs |p| of order 1 before it clears the error
+     bar.  The framework's own frequency structure (the one-pole gate) is 4.5% and cannot
+     reach it.  The vertical/planar split of the Milky Way disc is therefore NOT the cheap route to
+     deciding the modified-gravity / modified-inertia fork.  f10 shut the wide-binary route; this
+     shuts the solar-neighbourhood route, and for a reason that is structural rather than
+     observational: at the one place where both motions are measured, the two trajectories sample
+     almost the same |g_N|.
+
+
+RESULT: 35 checks, 5 FAIL -> ["V3a AGAINST INTEREST: the dynamical mass model's local stellar column and the direct baryon census DISAGREE by more than either's error bar -- recorded here because it is exactly the SHAPE disagreement that does NOT cancel from Q", 'V3c but it is NOT small: the shape term alone exceeds 10%, so the baryon model has not been eliminated from this test, only demoted', 'V6c ATTEMPTED, AND IT FAILS ITS 3-SIGMA BAR: the arm-vs-arm separation does not reach 3 sigma', 'V6e and the common tension is itself below 3 sigma, so nothing here falsifies the kernel either', 'V6g and p = 0 (no trajectory dependence at all) is allowed at 2 sigma, so the measurement does not require modified inertia']   rc=1

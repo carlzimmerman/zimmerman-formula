@@ -1,0 +1,109 @@
+======================================================================================================================
+A.  IS THE ISOLATED BRANCH LEGITIMATE?  external field vs internal field, satellite by satellite
+======================================================================================================================
+  MOND's external-field effect is not optional: the isolated deep-MOND relation g = sqrt(g_N a0) holds only
+  where the system's OWN field dominates the field it is falling in.  The physical criterion is
+  g_ext vs g_int, not 'whichever formula returns the larger number'.  Milky Way field taken as v_c^2/d with
+  v_c = 200 km/s, exactly as g03 and f09 do.
+
+  system         g_N/a0  g_int/a0  g_ext/a0 g_ext/g_int                 regime    g03 branch
+  Draco          0.0088    0.0940    0.1822        1.94     EXTERNAL-dominated      isolated
+  Sculptor       0.0428    0.2068    0.1610        0.78     internal-dominated      isolated
+  Fornax         0.1271    0.3564    0.0942        0.26     internal-dominated           EFE
+  Carina         0.0091    0.0952    0.1319        1.39     EXTERNAL-dominated      isolated
+  Sextans        0.0014    0.0368    0.1610        4.37     EXTERNAL-dominated      isolated
+  Leo I          0.1300    0.3606    0.0545        0.15     internal-dominated           EFE
+  Leo II         0.0356    0.1886    0.0594        0.32     internal-dominated      isolated
+  Ursa Minor     0.0132    0.1148    0.1822        1.59     EXTERNAL-dominated      isolated
+  [FAIL] V1 (THE BRANCH CRITERION IS NOT PHYSICAL) g03 assigns the external-field branch by max(g_iso, g_efe). If that rule tracked the physics, the objects it labels 'EFE' would be the externally dominated ones. It must agree with the physical criterion g_ext > g_int on all eight objects   (it agrees on NONE of the four externally dominated objects and is inverted on the two it does flag. Draco, Carina, Sextans and Ursa Minor sit in an external field 1.4 to 4.4 times their own internal MOND field and are given the ISOLATED branch; Fornax and Leo I, the two LEAST externally dominated objects (g_ext/g_int = 0.26 and 0.15), are the only two given the EFE branch. max() picks the larger number, and for high-g_N objects the quasi-Newtonian formula beats the deep-MOND asymptote for reasons that have nothing to do with the external field)
+  [FAIL] V2 (HOW MANY OBJECTS ARE MISTREATED) at most one or two of the eight may be externally dominated for the isolated deep-MOND asymptote to be a defensible default across the sample   (4 of 8 are externally dominated (g_ext > g_int), and every one of them is put on the isolated branch. Sextans is the extreme case at g_ext/g_int = 4.37)
+
+======================================================================================================================
+B.  INDEPENDENT REPRODUCTION of g03's headline number, with the EXACT permutation null (all 8! orderings)
+======================================================================================================================
+  canonical  a0 = 9.36e-11: Spearman rho = +0.6667, Pearson = +0.6666, EXACT two-sided p = 0.0831 (1.73 sigma)
+  alt        a0 = 1.13e-10: Spearman rho = +0.6667, Pearson = +0.6681, EXACT two-sided p = 0.0831 (1.73 sigma)
+  g03 reported rho = +0.667 / p = 0.0820 (canonical) and +0.667 / 0.0822 (alt) from 50000 permutations.
+  The exact null gives p = 0.0831; g03's Monte Carlo p is correct to its own precision.
+  Achievable rho values at N=8 near the observed one: [0.5952, 0.619, 0.6429, 0.6667, 0.6905, 0.7143, 0.7381]
+  [PASS] V3 (ARITHMETIC REPRODUCTION) g03's headline rho and p must reproduce independently on both footings   (rho = +0.6667 (canonical) and +0.6667 (alt), exact p = 0.0831 = 1.73 sigma. The arithmetic in g03 is sound and the 1.74 sigma is honest. Note the two footings return rho identical to 12 decimal places: a rank statistic is nearly a0-blind here by construction, so 'confirmed on both footings' carries no independent information)
+
+======================================================================================================================
+C.  THE ATTACK: does the correlation survive treating the external field consistently?
+======================================================================================================================
+  prescription                          footing         rho   exact p  sigma  Pearson  partial|logM
+  max      (g03's rule)                 canonical    +0.667    0.0831   1.73   +0.667        +0.717
+  max      (g03's rule)                 alt          +0.667    0.0831   1.73   +0.668        +0.719
+  iso      (no external field at all)   canonical    +0.667    0.0831   1.73   +0.673        +0.691
+  iso      (no external field at all)   alt          +0.667    0.0831   1.73   +0.673        +0.691
+  kernel   (framework nu, isolated)     canonical    +0.667    0.0831   1.73   +0.665        +0.696
+  kernel   (framework nu, isolated)     alt          +0.667    0.0831   1.73   +0.666        +0.696
+  efe      (quasi-Newtonian, all)       canonical    +0.429    0.2992   1.04   +0.584        +0.433
+  efe      (quasi-Newtonian, all)       alt          +0.429    0.2992   1.04   +0.585        +0.434
+  sum      (smooth g_N + g_ext)         canonical    +0.357    0.3894   0.86   +0.296        +0.236
+  sum      (smooth g_N + g_ext)         alt          +0.357    0.3894   0.86   +0.298        +0.239
+  qumond   (self-consistent EFE)        canonical    +0.429    0.2992   1.04   +0.583        +0.423
+  qumond   (self-consistent EFE)        alt          +0.429    0.2992   1.04   +0.582        +0.421
+  newton   (MUTATION: nu = 1)           canonical    +0.429    0.2992   1.04   +0.538        +0.331
+  newton   (MUTATION: nu = 1)           alt          +0.429    0.2992   1.04   +0.538        +0.331
+
+  residuals under the two prescriptions, dex:
+                     Draco  Sculptor    Fornax    Carina   Sextans     Leo I    Leo II Ursa Mino
+    g03 max()          +0.62     +0.18     -0.38     +0.28     +0.40     -0.25     +0.13     +0.65
+    self-consistent     +1.15     +0.40     -0.23     +0.71     +1.28     -0.03     +0.21     +1.11
+    newton             +1.64     +0.86     +0.20     +1.30     +1.84     +0.43     +0.86     +1.59
+  [FAIL] V4 (THE REFUTATION) the correlation must not depend on a non-physical branch rule. Treating the external field consistently for every satellite -- by any of the three prescriptions that do so -- must leave the correlation materially above the script's own Newtonian mutation control   (self-consistent QUMOND external field gives rho = +0.429, exact p = 0.299 = 1.04 sigma, landing EXACTLY on g03's own Newtonian mutation control (+0.429), which g03's check A6 already marks FAIL. The pure quasi-Newtonian prescription gives the same +0.429 and the smooth (g_N+g_ext) one gives +0.357, i.e. every external-field-consistent prescription lands AT OR BELOW the Newtonian control. The headline +0.667 appears only in the three prescriptions that apply the isolated deep-MOND form to externally dominated satellites. Sextans' residual moves by +0.88 dex, Draco's by +0.53 dex -- these are not rounding corrections)
+  [FAIL] V5 (IS THE DIFFERENCE ITSELF SIGNIFICANT?) verifying the refutation as hard as the claim: the drop from +0.667 to +0.429 must itself be larger than the noise floor at N=8, or neither number means anything   (the drop is 0.238 against a null sd of 0.378 at N=8, i.e. 0.63 sd. It is NOT resolvable. This cuts BOTH ways and is the honest reading: +0.667 and +0.429 are the same number at this sample size, so the claim is not that the correlation is refuted to be zero -- it is that NO prescription in the sweep produces a correlation distinguishable from the null, and the one that was quoted is the most favourable member of a family whose spread exceeds its own signal)
+
+======================================================================================================================
+D.  THE PHYSICS OF THE OBSERVABLE AND OF THE VARIABLE
+======================================================================================================================
+  all eight sit at g_N/a0 = 0.0014 to 0.1300: deep-MOND, where Milgrom's virial relation
+  has the SAME form in modified inertia and in AQUAL/QUMOND, irrespective of the mass distribution.
+  g03's own check A13 states this and marks it FAIL. It is correct, and it is fatal to the claim's clause.
+  [FAIL] V6 (THE CLAIM'S INTERPRETIVE CLAUSE HAS NO CONTENT) for the phrase 'in the sense a trajectory-dependent modification would suggest' to be meaningful, modified inertia must predict the SIGN of this correlation. Modified inertia is a class with no unique prediction, and on a global deep-MOND virial observable the two arms are proven to agree at leading order   (no sign is predicted, which is why g03 correctly used a TWO-SIDED permutation test -- a two-sided test is the formal admission that rho = -0.667 would have been equally 'the sense modified inertia suggests'. The sign clause is post-hoc. g03's own docstring says 'MODIFIED INERTIA DOES NOT PREDICT THE SIGN', and its VERDICT block then says 'the sign is the one a trajectory-dependent modification would suggest'. Those two sentences are in the same file and cannot both stand; the claim as handed to the verifier inherits the second)
+  [FAIL] V7 (WRONG ANISOTROPY) the correlating variable must be the orbit-shape quantity a trajectory-dependent modification keys on, namely the radial anisotropy beta_r = 1 - sigma_t^2/sigma_r^2 that distinguishes circular from eccentric orbits   (it is not. Hayashi+2020 define beta_z = 1 - <u_z^2>/<u_R^2> in CYLINDRICAL coordinates (verified against the paper), which measures the flattening of the velocity ellipsoid in the meridional plane, and they state 'there are obvious degeneracies between b_halo-rho_0 and Q-beta_z' where Q is the halo AXIS RATIO. beta_z is entangled with a shape parameter of the system, and there is no monotone map from beta_z to orbital eccentricity: tangential orbits confined near a plane raise beta_z exactly as in-plane radial orbits do. This also breaks g03's substitution test A9, which swaps in Vitral+2024's beta_B -- a SPHERICAL radial anisotropy, a different physical quantity from the beta_z it replaces)
+
+======================================================================================================================
+E.  THE CITED INDEPENDENT CORROBORATION
+======================================================================================================================
+  canonical  LVD max()  rho = +0.548, exact p = 0.1710 (1.37 sigma);  LVD self-consistent rho = +0.500 (1.24 sigma);  r(LVD, g03) = +0.955
+  alt        LVD max()  rho = +0.548, exact p = 0.1710 (1.37 sigma);  LVD self-consistent rho = +0.500 (1.24 sigma);  r(LVD, g03) = +0.954
+  [FAIL] V8 (THE CORROBORATION IS NOT INDEPENDENT AND IS WEAKER THAN QUOTED) the Local Volume Database rerun is offered as independent support at rho = +0.548. It must be an independent measurement and must reach the claimed strength   (the two residual vectors correlate at r = +0.955 (g03's own A4 reports +0.955): it is the same eight objects with slightly different structural inputs and the SAME eight anisotropies, so it re-tests the structural table and nothing else. Its rho = +0.548 is exact p = 0.171 = 1.37 sigma, not 1.74)
+
+======================================================================================================================
+VERDICT OF THE ADVERSARIAL VERIFICATION
+======================================================================================================================
+  THE ARITHMETIC IS SOUND.  rho = +0.667 and p = 0.082 reproduce independently on both footings, and the
+  exact 8! permutation null confirms p = 0.0831 = 1.73 sigma. The literature values were checked
+  against Hayashi+2020 and all eight match, error bars included. g03 is an honest file: 10 of its 13 checks
+  FAIL and its own A6, A7, A8, A9 and A13 already say most of what follows.
+
+  THE CLAIM IS REFUTED ON THE PHYSICS, IN THREE PLACES:
+  1. THE EXTERNAL FIELD.  g_pred = max(g_iso, g_efe) is not a physical criterion. Four of the eight dwarfs
+     sit in a Milky Way field 1.4 to 4.4 times their own internal MOND field, and all four are given the
+     ISOLATED deep-MOND asymptote; the only two given the external-field branch are the two LEAST externally
+     dominated. Treating the external field consistently drops rho to +0.429 -- exactly g03's own
+     Newtonian mutation control (+0.429), which A6 already marks FAIL. The excess of the headline number
+     over the null control is produced by the branch rule, not by the data. This is the repository's own
+     listed bug pattern: a residual whose value tracks a branch of one's own prescription.
+  2. THE OBSERVABLE.  A global 3 sigma^2/R virial residual is the one observable on which Milgrom proved the
+     two arms AGREE in the deep-MOND limit, and all eight dwarfs are deep-MOND. Modified inertia is a class
+     and predicts no sign, so 'in the sense modified inertia would suggest' is post-hoc -- the two-sided test
+     g03 correctly ran is the formal admission that rho = -0.667 would have read the same way.
+  3. THE VARIABLE.  beta_z is a CYLINDRICAL vertical-to-radial ellipsoid ratio degenerate with the halo axis
+     ratio Q, not the radial anisotropy that distinguishes circular from eccentric orbits. It is a shape
+     parameter of the fit, not a trajectory parameter.
+
+  AND HONESTLY, AGAINST MY OWN ATTACK: the drop from +0.667 to +0.429 is 0.63 null-sd and is NOT itself
+  resolvable at N = 8. The correct statement is not 'the correlation is zero'. It is that every member of
+  the prescription family lies inside the null, the family's spread exceeds its own signal, and the number
+  that was quoted is the most favourable member. Nothing here says the framework fails these dwarfs; the
+  self-consistent prescription that kills the correlation also enlarges the residuals, and that is a
+  different question this file does not adjudicate.
+
+  WHAT WOULD MAKE THE TEST REAL, beyond g03's own list: the residual must be recomputed with the external
+  field treated self-consistently for every satellite, and the anisotropy must be a RADIAL beta_r rather
+  than a cylindrical beta_z -- and an actual modified-inertia theory must be named that predicts a sign.
+
+RESULT: 8 checks, 7 FAIL -> ["V1 (THE BRANCH CRITERION IS NOT PHYSICAL) g03 assigns the external-field branch by max(g_iso, g_efe). If that rule tracked the physics, the objects it labels 'EFE' would be the externally dominated ones. It must agree with the physical criterion g_ext > g_int on all eight objects", 'V2 (HOW MANY OBJECTS ARE MISTREATED) at most one or two of the eight may be externally dominated for the isolated deep-MOND asymptote to be a defensible default across the sample', "V4 (THE REFUTATION) the correlation must not depend on a non-physical branch rule. Treating the external field consistently for every satellite -- by any of the three prescriptions that do so -- must leave the correlation materially above the script's own Newtonian mutation control", 'V5 (IS THE DIFFERENCE ITSELF SIGNIFICANT?) verifying the refutation as hard as the claim: the drop from +0.667 to +0.429 must itself be larger than the noise floor at N=8, or neither number means anything', "V6 (THE CLAIM'S INTERPRETIVE CLAUSE HAS NO CONTENT) for the phrase 'in the sense a trajectory-dependent modification would suggest' to be meaningful, modified inertia must predict the SIGN of this correlation. Modified inertia is a class with no unique prediction, and on a global deep-MOND virial observable the two arms are proven to agree at leading order", 'V7 (WRONG ANISOTROPY) the correlating variable must be the orbit-shape quantity a trajectory-dependent modification keys on, namely the radial anisotropy beta_r = 1 - sigma_t^2/sigma_r^2 that distinguishes circular from eccentric orbits', 'V8 (THE CORROBORATION IS NOT INDEPENDENT AND IS WEAKER THAN QUOTED) the Local Volume Database rerun is offered as independent support at rho = +0.548. It must be an independent measurement and must reach the claimed strength']   rc=1

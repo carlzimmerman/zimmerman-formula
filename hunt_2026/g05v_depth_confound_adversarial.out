@@ -1,0 +1,146 @@
+==========================================================================================================================
+V1.  REPRODUCE THE AUDITED NUMBERS FIRST.  An attack on numbers I cannot reproduce is worthless.
+==========================================================================================================================
+  N pressure (classical+M31+isolated) = 50;  inside coverage 14, dropped 36
+  median raw residual: kept +0.114 dex, dropped +0.731 dex, gap +0.617 dex
+  depth trend on all 79 pressure objects: slope -0.498, r = -0.623, shuffle +0.0009 +- 0.0917 -> 5.4 shuffle-sigma
+  [PASS] V1 the audited file's headline numbers reproduce independently from the same public data: 36 of 50 dropped, +0.731 against +0.114 dex, slope -0.498, r = -0.623 on N = 79, about 5.4 shuffle-sigma.  Everything below is an attack on the INFERENCE, not on the arithmetic   (dropped 36 (claim 36), kept 14 (claim 14), medians +0.731/+0.114 (claim +0.731/+0.114), slope -0.498 (claim -0.498), r -0.623 (claim -0.623), N 79 (claim 79), 5.4 shuffle-sigma (claim 5.4))
+
+==========================================================================================================================
+V2.  A1c NAMES THE WRONG MECHANICAL IDENTITY.  Split the slope into its prescription piece and its data piece.
+==========================================================================================================================
+  residual = log10 g_obs - log10 g_pred(x_i).  g_pred is a function of x_i (and x_e) ALONE, so
+     d(residual)/d(log x_i) = d(log g_obs)/d(log x_i) - d(log g_pred)/d(log x_i).
+  The second term is fixed by the prescription and has NOTHING to do with the data.  Measure it.
+     d(log g_pred)/d(log x_i) = +0.8777   <- the prescription's own slope, pure arithmetic
+     d(log g_obs )/d(log x_i) = +0.3796 +- 0.0548   <- the only part that is DATA
+     sum check: +0.3796 - (+0.8777) = -0.4981, against the fitted residual slope -0.4981
+     Spearman(log x_i, log g_obs) rho = +0.360, p = 0.001
+  [PASS] V2 (THE AUTHOR'S STATED WEAKEST LINK IS ITSELF WRONG, IN BOTH DIRECTIONS) A1c says 'a slope of exactly -0.5 is what you get when g_obs carries NO dependence on x_i at all.  That is what is measured.'  Neither half holds.  (i) -0.5 is the ISOLATED deep-MOND number, but most of this sample is external-field dominated, where g_pred runs as x_i to the FIRST power; the prescription's actual slope over this sample is +0.878, so the mechanically forced residual slope is -0.878, not -0.5.  (ii) g_obs is NOT independent of x_i: it rises with slope +0.380 +- 0.055, seven sigma from zero.  The measured -0.498 is the difference of two numbers that both differ from what A1c names, and its closeness to -0.5 is a coincidence, not the identity claimed   (prescription slope over this sample +0.8777 (A1c assumes +0.5, i.e. mechanical residual slope -0.878 not -0.500); observed-side slope +0.3796 +- 0.0548 = 6.93 sigma from zero, Spearman rho +0.360, p = 1.1e-03.  Sum check +0.3796 - +0.8777 = -0.4981 against the fitted -0.4981)
+  [FAIL] V2b (MY OWN ATTACK, AND IT FAILS -- RECORDED SO IT CANNOT BE QUIETLY DROPPED) I tried to show the depth trend is PURE arithmetic, with no data content.  It is not.  The observed dynamical accelerations do climb with the baryonic ones, at +0.380 +- 0.055 dex per dex.  So the pressure sample is not a set of objects with one common dynamical acceleration; there is real, if shallow, tracking.  The audited file's interpretive sentence -- 'they behave as if set by something with a common scale' -- is the part that is refuted, while its caution about the slope not being independent evidence stands for a different reason than the one it gives   (observed-side slope +0.3796 +- 0.0548; a common-scale sample would give 0.000.  ATTACK FAILED: the trend carries about 4.1 shuffle-sigma of genuine data on top of 9.6 of prescription)
+
+==========================================================================================================================
+V3.  THE HEADLINE +0.731 vs +0.114 IS TWO THIRDS ARITHMETIC -- and, unlike the slope, it is NOT flagged.
+==========================================================================================================================
+  group         N   median log10 g_obs   median log10 g_pred   median residual
+  KEPT         14              -10.573               -10.751            +0.114
+  DROPPED      36              -11.001               -11.617            +0.731
+     gap decomposition: observed piece -0.428 dex, predicted piece -0.865 dex (gap = observed - predicted = +0.437)
+     Mann-Whitney on log10 g_obs, kept against dropped: p = 0.002
+  [PASS] V3 (THE LOAD-BEARING HEADLINE IS MAJORITY-ARITHMETIC, AND UNLIKE THE SLOPE IT IS NOT FLAGGED) the 0.617 dex gap between the objects inside SPARC's coverage and those below it decomposes exactly into an OBSERVED piece and a PREDICTED piece.  The predicted piece -- what the kernel says these objects should do, a function of the very x_i that DEFINES the split -- is twice the observed piece.  A1c flags this identity for the slope and then quotes the binned form of the same identity as 'a factor 6.4 in the same currency with support type held fixed' with no such flag.  Most of that factor is the cut restated   (observed piece -0.428 dex, predicted piece -0.865 dex; predicted/observed = 2.0.  Also: '+0.731 against +0.114 is a factor 6.4' is a ratio of two LOGARITHMS and is not a factor in any physical currency -- in acceleration the gap is 10^0.617 = 4.1)
+  [FAIL] V3b (MY OWN ATTACK, PARTIALLY FAILING) I tried to show the kept and dropped groups are indistinguishable in OBSERVED dynamical acceleration, which would have made the headline gap entirely definitional.  They are not indistinguishable: the dropped objects really do sit lower in g_obs.  So the gap is about one third real and two thirds arithmetic, not pure arithmetic   (Mann-Whitney on log10 g_obs, kept against dropped: p = 0.0022 (kept -10.573, dropped -11.001).  ATTACK FAILED at this strength; the weaker V3 statement is what stands)
+
+==========================================================================================================================
+V4.  AT FIXED DEPTH THE LOCAL GROUP SPLITS WIDE OPEN -- using the audited file's OWN globular clusters.
+==========================================================================================================================
+  g05's own Part 4e tabulates four outer-halo globular clusters.  The two that carry this check -- Pal 4 and
+  Pal 14 -- have DIRECTLY MEASURED dispersions (Frank et al. 2012; Jordi et al. 2009), not N-body-fitted ones, so
+  this comparison does not rest on a model-dependent input.  Pal 14 sits at x_i = 0.0127, between Tucana
+  (0.0113) and Antlia B (0.0138).  Both are pressure-supported.  If the residual were a function of depth, as
+  'depth and residual are the same axis' requires, they would agree.  Recomputed here from the same numbers:
+  object                 class            x_i  residual dex
+  Lacerta I              dSph         0.00812        +0.236
+  Tucana                 dSph         0.01134        +0.117
+  Phoenix                dSph         0.01195        +0.383
+  Pal 14                 GC           0.01269        -1.306
+  Antlia B               dSph         0.01375        +0.231
+  Andromeda VI           dSph         0.01479        +0.422
+  Andromeda VII          dSph         0.01561        +0.111
+  Leo II                 dSph         0.02059        +0.289
+  Pal 3                  GC           0.02665        -0.844
+  Sculptor               dSph         0.02915        +0.217
+  Fornax                 dSph         0.03371        -0.087
+  Pal 4                  GC           0.06107        -0.874
+  UGC 4879               dSph         0.06683        -0.091
+  Leo I                  dSph         0.07279        -0.021
+  [PASS] V4 (THE CLAIM 'NO LOCAL GROUP COMPARISON CAN SEPARATE THEM' IS CONTRADICTED BY THE AUDITED FILE'S OWN SECTION 4e) inside one narrow depth band, 0.008 <= x_i <= 0.10, the Local Group contains pressure-supported objects whose residuals differ by well over a dex, with the globular clusters far BELOW the kernel and the dwarf spheroidals above it.  Depth is therefore NOT the axis the residual runs along, and the Local Group does contain a comparison that separates depth from whatever is driving the residual -- it is in the same file, as check S5, where it is correctly read as dark-matter content.  The confound is with DARK-MATTER FRACTION, not with depth   (in the band: 11 dwarf spheroidals median +0.217 dex, 3 globular clusters median -0.874 dex, separation +1.092 dex at FIXED depth; full spread 1.73 dex.  Pal 14 (x_i = 0.0127) is -1.306 while Tucana (x_i = 0.0113) is +0.117 -- 1.4 dex apart at the same depth)
+
+==========================================================================================================================
+V5.  IS DEPTH THE PRIVILEGED AXIS, OR ONE LABEL ON A BUNDLE?  Rank every candidate driver.
+==========================================================================================================================
+  candidate driver                    Spearman rho          p
+  log10 x_i (DEPTH)                         -0.760   4.49e-16
+  M_V (luminosity)                          +0.809   1.99e-19
+  log10 M_star                              -0.808   2.34e-19
+  log10 r_half                              -0.609   2.59e-09
+  log10 sigma_los                           -0.389   3.90e-04
+  sigma error / sigma (QUALITY)             +0.393   3.45e-04
+  log10 x_e (environment)                   +0.579   2.25e-08
+  [PASS] V5 (DEPTH IS NOT SINGLED OUT BY THE DATA) ranking every candidate driver of the residual by rank correlation, depth does NOT come first.  Luminosity and stellar mass both track the residual more tightly than depth does, and even a pure DATA-QUALITY proxy -- the fractional error on the measured dispersion, which no theory says should correlate with anything -- reaches p ~ 1e-4.  In this sample faint, small, low-dispersion, poorly measured, close-in and deep are the same objects.  Naming DEPTH as THE confound is a choice among several equally good labels; the defensible statement is that everything is confounded with everything, which is weaker and different from the claim under audit   (ranked by |rho|: M_V (luminosity) +0.81; log10 M_star -0.81; log10 x_i (DEPTH) -0.76; log10 r_half -0.61.  Depth ranks 3 of 7, behind M_V (luminosity) (+0.81).  The data-quality proxy alone reaches rho = +0.39, p = 3.5e-04)
+     dynamical-to-baryonic mass ratio inside r_1/2 spans 0.7-1017; Spearman(log M_dyn/M_bar, residual) = +0.945, p = 3.8e-39
+     and that ratio itself runs with luminosity: Spearman(M_V, log M_dyn/M_bar) = +0.824, p = 1.2e-20
+  [PASS] V5b (WOULD ORDINARY COLD DARK MATTER PRODUCE THE SAME SIGNATURE?  YES, EXACTLY) the residual against this framework's kernel is a monotone relabelling of the dynamical-to-baryonic mass ratio inside the half-light radius, and that ratio rising as dwarfs get fainter is the oldest and least controversial fact about Local Group dwarfs under LCDM.  So the entire pattern the audited file calls a depth trend is reproduced with no modified gravity at all.  It therefore does not discriminate, whichever way it is read   (Spearman(log M_dyn/M_bar, residual) = +0.945 (p = 3.8e-39) on N = 79; Spearman(M_V, log M_dyn/M_bar) = +0.824 (p = 1.2e-20).  The residual axis IS the dark-matter-fraction axis, and the globular clusters in V4 -- zero dark matter -- sit at the opposite end of it)
+
+==========================================================================================================================
+V6.  IS 'BELOW SPARC'S COVERAGE' A FACT ABOUT THE DATA OR ABOUT THE WINDOW SETTING?
+==========================================================================================================================
+  quoted coverage floor (deepest KEPT object) x_i = 0.0113
+  SPARC points below it: 15 of 3140, from 10 of 147 galaxies; deepest SPARC point x = 0.00223
+  dropped pressure objects that nevertheless sit ABOVE SPARC's deepest measured point: 21 of 36
+  [FAIL] V6 (A SECONDARY ERROR IN A1b'S WORDING) A1b states that 'every large pressure-supported residual sits at an internal acceleration BELOW anything SPARC measures'.  That is not so: SPARC's deepest measured point is x = 0.0022, and a majority of the dropped objects sit ABOVE it.  They are dropped because SPARC's points there are too SPARSE to form a 20-point median, not because the data end.  The coverage floor at 0.011 is a density threshold for most of the dropped sample and an absolute one only for the rest -- which is a weaker statement than the file makes, though it does not change the operational conclusion   (21 of 36 dropped objects lie ABOVE SPARC's deepest measured point x = 0.00223; only 15 of 3140 SPARC points, from 10 of 147 galaxies, lie below the quoted floor x = 0.0113, so the sparsity itself is real and the file's operational choice to drop them is defensible)
+
+==========================================================================================================================
+MUTATION CONTROLS.
+==========================================================================================================================
+  [PASS] M-V1 MUTATION: a synthetic pressure sample whose observed accelerations are set EQUAL to the kernel's prediction must show no depth trend and no kept/dropped gap.  It does not.  The machinery is not manufacturing the slope out of nothing   (synthetic slope +0.00e+00, synthetic kept-dropped gap +0.00e+00)
+  a zero-information sample (every object given the sample-median observed acceleration) yields:
+     slope -0.878, r = -0.949, 8.6 shuffle-sigma; kept -0.018 dex, dropped +0.848 dex, gap +0.865 dex
+  [PASS] M-V2 (THE DECISIVE MUTATION) replace every observed dynamical acceleration by a single constant -- a sample containing literally no information about any individual object -- and the claimed signature comes back STRONGER than the real one: same sign of slope, a tighter correlation, a larger shuffle significance, and a kept-versus-dropped gap larger than the measured one.  A statistic that a constant reproduces and exceeds is not a measurement of how the residual depends on depth; it is a measurement of how the PREDICTION depends on depth   (constant-data sample: slope -0.878 (real -0.498), r -0.949 (real -0.623), 8.6 shuffle-sigma (real 5.4), kept-dropped gap +0.865 dex (real +0.617).  Note the constant sample OVERSHOOTS the real slope, which is the V2b point from the other side: the real sample has some genuine tracking that flattens it)
+
+==========================================================================================================================
+BOTH FOOTINGS.
+==========================================================================================================================
+  canonical : observed-side slope +0.3796, prescription slope +0.8777; kept/dropped 14/36; gap pieces observed -0.428, predicted -0.865
+  alt       : observed-side slope +0.3796, prescription slope +0.8743; kept/dropped 14/36; gap pieces observed -0.428, predicted -0.865
+  [PASS] V7 the audit is footing-independent: on BOTH a_0 footings the kept/dropped split is identical, the prescription side of the depth trend dominates the observed side, and the kept-versus-dropped gap is carried mostly by the predicted piece.  Nothing in this refutation, and nothing in the claim it attacks, depends on the choice of a_0   (canonical: kept/dropped 14/36, obs slope +0.3796 against prescription +0.8777, obs gap piece -0.428 against predicted -0.865; alt: kept/dropped 14/36, obs slope +0.3796 against prescription +0.8743, obs gap piece -0.428 against predicted -0.865)
+
+==========================================================================================================================
+VERDICT ON THE CLAIM
+==========================================================================================================================
+  CLAIM: 'Support type and acceleration depth are completely confounded in the Local Group, so no Local Group
+  comparison can separate them.  This is why the separation dies, and it applies to f09's version of the test
+  as much as to this one.'
+
+  WHAT SURVIVES, and it is the operationally important part.
+   * The arithmetic reproduces exactly (V1): 36 of 50 dropped, +0.731 against +0.114 dex, slope -0.498,
+     r = -0.623 on N = 79, 5.4 shuffle-sigma.  No computational error was found anywhere in the audited file.
+   * The withdrawal of f09's 1.73 sigma is UNTOUCHED by anything here.  The matched separation really is
+     0.9 sigma, really does move with the matching window, and really is smaller than its own prescription
+     systematic.  Nothing in this file rescues f09.
+   * There IS a real confound.  What is wrong is its name and the evidence offered for it.
+
+  WHAT DOES NOT SURVIVE.
+   1. 'NO LOCAL GROUP COMPARISON CAN SEPARATE THEM' IS CONTRADICTED BY THE SAME FILE, 300 LINES LATER.  In the
+      band 0.008 <= x_i <= 0.10 the Local Group holds pressure-supported objects spanning 1.73 dex, the
+      globular clusters 1.09 dex below the dwarf spheroidals AT FIXED DEPTH; Pal 14 at x_i = 0.0127 is
+      1.4 dex from Tucana at x_i = 0.0113.  Depth therefore does not determine the residual, and check S5 is
+      itself a Local Group comparison that separates depth from the driver.  The verdict block ignores it.
+   2. THE DRIVER IS DARK-MATTER FRACTION, NOT DEPTH (V5, V5b).  Depth ranks 3 of 7 among candidate
+      drivers, behind luminosity and stellar mass; a pure data-quality proxy also tracks the residual at
+      p ~ 1e-4; and the residual axis is a monotone relabelling of M_dyn/M_bar (rho = +0.95), so ordinary
+      cold dark matter reproduces the whole signature.  'Confounded with depth' is one label on a bundle.
+   3. THE EVIDENCE QUOTED FOR THE CONFOUND IS MOSTLY ARITHMETIC, AND A1c NAMES THE WRONG IDENTITY (V2, V3).
+      The prescription contributes +0.878 to the slope and the data +0.380 +- 0.055; A1c's stated
+      identity assumes +0.5 for the first and 0 for the second, and neither holds.  A constant-valued sample
+      reproduces the signature at 8.6 shuffle-sigma against the real 5.4 (M-V2).  The kept/dropped
+      headline decomposes -0.428 observed against -0.865 predicted, and unlike the slope it is not flagged.
+      'A factor 6.4 in the same currency' is a ratio of two logarithms; the acceleration factor is 4.1.
+   4. A SECONDARY WORDING ERROR (V6): 'every large pressure-supported residual sits BELOW anything SPARC
+      measures' is false for 21 of the 36 dropped objects.
+
+  WHAT MY OWN ATTACKS FAILED TO SHOW, recorded as failing checks so they cannot be dropped.
+   * V2b: the depth trend is NOT pure arithmetic.  The observed accelerations do climb with the baryonic ones
+     at +0.380 +- 0.055 dex per dex, 6.9 sigma from zero.  A1c's sentence 'they behave as if set by
+     something with a common scale' is refuted, but in the direction of MORE data content, not less.
+   * V3b: the kept and dropped groups are NOT indistinguishable in observed acceleration (p = 0.002), so the
+     headline gap is roughly a third real and two thirds definitional, not purely definitional.
+
+  THE STATEMENT THAT WOULD SURVIVE A REFEREE, replacing the one under audit:
+   * 'The Local Group pressure-supported sample cannot test support type, because the objects carrying the
+     residual are dark-matter dominated AND faint AND deep AND poorly measured at once, and the residual against
+     this kernel is a relabelling of their dark-matter fraction.  Outer-halo globular clusters at the same
+     internal accelerations, with no dark matter, sit far below the kernel -- so the Local Group DOES separate
+     support type from dark-matter content, and separates it against support type.'
+   * Not: 'depth and support type are completely confounded, so no Local Group comparison can separate them.'
+
+RESULT: 12 checks, 3 FAIL -> ["V2b (MY OWN ATTACK, AND IT FAILS -- RECORDED SO IT CANNOT BE QUIETLY DROPPED) I tried to show the depth trend is PURE arithmetic, with no data content.  It is not.  The observed dynamical accelerations do climb with the baryonic ones, at +0.380 +- 0.055 dex per dex.  So the pressure sample is not a set of objects with one common dynamical acceleration; there is real, if shallow, tracking.  The audited file's interpretive sentence -- 'they behave as if set by something with a common scale' -- is the part that is refuted, while its caution about the slope not being independent evidence stands for a different reason than the one it gives", 'V3b (MY OWN ATTACK, PARTIALLY FAILING) I tried to show the kept and dropped groups are indistinguishable in OBSERVED dynamical acceleration, which would have made the headline gap entirely definitional.  They are not indistinguishable: the dropped objects really do sit lower in g_obs.  So the gap is about one third real and two thirds arithmetic, not pure arithmetic', "V6 (A SECONDARY ERROR IN A1b'S WORDING) A1b states that 'every large pressure-supported residual sits at an internal acceleration BELOW anything SPARC measures'.  That is not so: SPARC's deepest measured point is x = 0.0022, and a majority of the dropped objects sit ABOVE it.  They are dropped because SPARC's points there are too SPARSE to form a 20-point median, not because the data end.  The coverage floor at 0.011 is a density threshold for most of the dropped sample and an absolute one only for the rest -- which is a weaker statement than the file makes, though it does not change the operational conclusion"]   rc=1

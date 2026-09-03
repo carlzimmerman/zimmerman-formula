@@ -1,0 +1,130 @@
+================================================================================================================
+V1.  INDEPENDENT RE-DERIVATION OF THE PUBLISHED NUMBERS
+================================================================================================================
+  branches: {'Draco': 'isolated', 'Sculptor': 'isolated', 'Fornax': 'EFE', 'Carina': 'isolated', 'Sextans': 'isolated', 'Leo I': 'EFE', 'Leo II': 'isolated', 'Ursa Minor': 'isolated'}
+  raw Pearson r(residual, beta)          = +0.6666   [g03 says +0.667]
+  raw Spearman rho                       = +0.6667   [g03 says +0.667]
+  partial | logM, shortcut formula       = +0.7172  [g03 says +0.717]
+  partial | logM, OLS-residual route     = +0.7172  (must agree with the line above)
+  partial | logM, alt footing            = +0.7193   [g03 says +0.719]
+  r(residual, logM) = -0.9225 [g03 -0.922];  r(beta, logM) = -0.4554 [g03 -0.455]
+  [PASS] V1 every published number in the claim reproduces to +-0.002 from independently written code, and the shortcut partial-correlation formula agrees with the regression-residual route   (raw +0.6666, partial +0.7172 (= OLS route +0.7172), alt +0.7193. THE ARITHMETIC IS CORRECT. No typo, no reshaped covariance, no wrong formula.)
+
+================================================================================================================
+V2.  ALGEBRAIC IDENTITY: DOES THE KERNEL SURVIVE THE PARTIALLING AT ALL?
+================================================================================================================
+  On the isolated branch g_pred = sqrt(g_N a0) = sqrt(G M a0)/R and g_obs = 3 sigma^2/R, so R CANCELS:
+      residual = log10(3 sigma^2) - 0.5 log10(G M a0)  =  2 log sigma - 0.5 log M* + const(a0).
+      check: r(residual_isolated, 2logS - 0.5logM) = +1.000000 (must be exactly 1)
+      check: sd of (residual_isolated - alg) = 2.48e-16 (must be 0 -- pure constant)
+      partial(residual_isolated, beta | logM) = +0.6911
+      partial(log sigma        , beta | logM) = +0.6911   <-- identical by the identity above
+      partial(residual_MAXBRANCH, beta | logM) = +0.7172  (the published number)
+  [FAIL] V2 (WHAT THE CLAIMED NUMBER ACTUALLY MEASURES) if the partial correlation is evidence about the FRAMEWORK, it must change when the framework's acceleration constant or kernel changes.  On the isolated branch a0 enters the residual as a pure ADDITIVE CONSTANT, so the partial is identically the correlation between anisotropy and line-of-sight dispersion at fixed stellar mass -- a statistic with no framework in it at all   (partial(residual_isolated, beta|logM) = +0.691073 is EXACTLY partial(log sigma, beta|logM) = +0.691073, to machine precision, because residual = 2logS - 0.5logM + const. a0 CANCELS. The published +0.717 is the same statistic with 2 of 8 objects moved onto the EFE branch. So 'the deficit correlates with beta at fixed mass' is, arithmetically, 'sigma correlates with beta at fixed M*'.)
+
+================================================================================================================
+V3.  IS +0.717 > +0.667 A STRENGTHENING?  DEGREES OF FREEDOM
+================================================================================================================
+  raw     r = +0.6666  t = 2.191 on 6 df  ->  p = 0.0710   (null sd 0.378, z = 1.764)
+  partial r = +0.7172  t = 2.301 on 5 df  ->  p = 0.0697   (null sd 0.408, z = 1.757)
+  g03's own permutation p's: raw 0.0820 vs partial 0.0774 -- a shift of 0.005, i.e. NOTHING.
+  covariance carried by beta BEFORE partialling (in r units) +0.6666; AFTER +0.2465 -- the shared signal SHRANK by 63 per cent; the coefficient only rises because the DENOMINATOR (residual variance left after mass) shrank faster.
+  fraction of residual variance already explained by logM alone = 0.851
+  [FAIL] V3 (THE WORD 'STRENGTHENS') for the claim to mean what it says, the partial must be more significant than the raw correlation once the lost degree of freedom is accounted for   (p goes 0.0710 -> 0.0697 (t-test) and 0.0820 -> 0.0774 (g03's own permutation). In standardised units z = 1.764 -> 1.757. THE CORRELATION DOES NOT STRENGTHEN; it is unchanged to three decimal places in significance. The rise from 0.667 to 0.717 in the COEFFICIENT is the arithmetic consequence of dividing by sqrt((1-rxz^2)(1-ryz^2)) = 0.3437, i.e. of removing 85 per cent of the residual's variance, not of any gain in evidence.)
+
+================================================================================================================
+V4.  THE PERMUTATION NULL IS THE WRONG NULL
+================================================================================================================
+  naive shuffle-beta permutation  p = 0.0777   [g03 reports 0.0774 -- reproduced]
+  Freedman-Lane permutation       p = 0.0777   (preserves r(beta,logM) = -0.455)
+  [PASS] V4 the p-value attached to the claim must come from the null the claim is about ('beta carries nothing beyond mass'), not from the stronger null that beta is unrelated to mass as well   (naive 0.0777 vs Freedman-Lane 0.0777. The gap is 0.0000. The published p uses the naive shuffle. Whether or not the gap is large, the quoted p answers a different question than the claim asks.)
+
+================================================================================================================
+V5.  LEVERAGE ON EIGHT OBJECTS
+================================================================================================================
+      drop Draco      : partial = +0.6938   raw = +0.6045
+      drop Sculptor   : partial = +0.7646   raw = +0.6686
+      drop Fornax     : partial = +0.6106   raw = +0.8301
+      drop Carina     : partial = +0.8963   raw = +0.6709
+      drop Sextans    : partial = +0.7749   raw = +0.7514
+      drop Leo I      : partial = +0.6572   raw = +0.5648
+      drop Leo II     : partial = +0.6178   raw = +0.7062
+      drop Ursa Minor : partial = +0.5975   raw = +0.5236
+  jackknife range of the partial: +0.597 to +0.896 (published +0.717)
+  bootstrap (19641 resamples): 2.5-97.5 per cent = -0.101 to +0.988, fraction <= 0 = 0.037
+  [PASS] V5 (LEVERAGE) no single object may move the partial by more than the null sd 1/sqrt(N-2) = 0.408   (largest leave-one-out swing is 0.179 (dropping Carina), against a null sd of 0.408. The bootstrap interval -0.101 to +0.988 includes zero.)
+
+================================================================================================================
+V6.  BRANCH SENSITIVITY -- THE REPO'S OWN KNOWN BUG PATTERN
+================================================================================================================
+  g_pred = max(g_iso, g_efe) is a PRESCRIPTION CHOICE that fires for exactly 2 of the 8 objects
+  (Fornax, Leo I -- the two most massive).  If the claimed partial tracks that branch, it tracks the
+  author's prescription, not the data.
+      branch=max  footing=canonical: raw r = +0.6666  partial|logM = +0.7172  r(res,logM) = -0.9225
+      branch=max  footing=alt      : raw r = +0.6681  partial|logM = +0.7193  r(res,logM) = -0.9218
+      branch=iso  footing=canonical: raw r = +0.6728  partial|logM = +0.6911  r(res,logM) = -0.9062
+      branch=iso  footing=alt      : raw r = +0.6728  partial|logM = +0.6911  r(res,logM) = -0.9062
+      branch=efe  footing=canonical: raw r = +0.5841  partial|logM = +0.4330  r(res,logM) = -0.8792
+      branch=efe  footing=alt      : raw r = +0.5846  partial|logM = +0.4341  r(res,logM) = -0.8788
+  [FAIL] V6 the partial must not depend on which branch of the author's own max(g_iso, g_efe) prescription is taken; a spread across branches comparable to the statistic itself is the 'residual tracks your own branch' failure mode this repository has been bitten by before   (partial|logM across branches (canonical) = ['+0.717', '+0.691', '+0.433']: max(+0.717) vs iso-only(+0.691) vs efe-only(+0.433), spread 0.284)
+
+================================================================================================================
+V7.  THE DECIDER -- SPEARMAN HEADLINE vs PEARSON PARTIAL
+================================================================================================================
+  Every headline number in g03 is a SPEARMAN rank correlation: checks A2, A3, A4, A7, the substitution
+  table A9, the Monte Carlo A12 and the VERDICT all quote rho = +0.667.  The confound test A5 alone
+  switches to a PEARSON partial.  Pearson and Spearman happen to coincide at +0.667 for the RAW
+  correlation here, which is why the swap is invisible in the text.  They do NOT coincide after
+  partialling.  Doing the partial in RANKS -- the estimator the rest of the file uses -- is the
+  apples-to-apples comparison.
+
+      RAW  Pearson  r   = +0.6666      RAW  Spearman rho = +0.6667   (they coincide)
+      PEARSON  partial|logM = +0.7172  perm p = 0.0750  (1.78 sigma)  <- the claim
+      SPEARMAN partial|logM = +0.1721  perm p = 0.6976  (0.39 sigma)  <- rank-consistent
+      KENDALL  partial|logM = +0.2728   (third estimator, agrees with Spearman)
+
+  WHY THEY DISAGREE.  partial = (rxy - rxz*ryz)/sqrt((1-rxz^2)(1-ryz^2)).  rxz (residual vs logM) is
+  -0.92 either way.  The direction is set entirely by ryz = corr(beta, logM):
+      Pearson  r(beta, logM) = -0.4554     Spearman rho(beta, logM) = -0.6667
+  The Pearson value is ATTENUATED, and by exactly one object.  Fornax sits at log M* = 7.63 with the
+  next object at 6.74 -- a leverage of h_ii = 0.69 out of 1 in the log M* regression:
+        Draco       logM = 5.46  z = -0.87  leverage h_ii = 0.221
+        Sculptor    logM = 6.36  z = +0.37  leverage h_ii = 0.142
+        Fornax      logM = 7.63  z = +2.13  leverage h_ii = 0.693
+        Carina      logM = 5.58  z = -0.71  leverage h_ii = 0.188
+        Sextans     logM = 5.64  z = -0.62  leverage h_ii = 0.174
+        Leo I       logM = 6.74  z = +0.89  leverage h_ii = 0.225
+        Leo II      logM = 5.87  z = -0.31  leverage h_ii = 0.137
+        Ursa Minor  logM = 5.46  z = -0.87  leverage h_ii = 0.221
+      drop Fornax: Pearson r(beta,logM) goes -0.455 -> -0.715, and the Pearson partial FALLS to +0.611
+
+  leave-one-out, both estimators:
+        drop Draco      : Pearson partial = +0.694   Spearman partial = +0.008
+        drop Sculptor   : Pearson partial = +0.765   Spearman partial = +0.073
+        drop Fornax     : Pearson partial = +0.611   Spearman partial = +0.550
+        drop Carina     : Pearson partial = +0.896   Spearman partial = +0.444
+        drop Sextans    : Pearson partial = +0.775   Spearman partial = +0.471
+        drop Leo I      : Pearson partial = +0.657   Spearman partial = +0.200
+        drop Leo II     : Pearson partial = +0.618   Spearman partial = -0.079
+        drop Ursa Minor : Pearson partial = +0.597   Spearman partial = +0.008
+  [FAIL] V7 (THE DECIDER) the claim 'partialling out stellar mass STRENGTHENS the correlation' must hold under the estimator the rest of the file uses for every other number.  g03's headline is Spearman; its confound test is Pearson   (SPEARMAN: rho +0.667 -> partial +0.172, permutation p 0.698 = 0.39 sigma. KENDALL: +0.571 -> +0.273. Both rank estimators say partialling out stellar mass DESTROYS the correlation (74 per cent of it gone, p = 0.70). Only the Pearson version rises, and it rises because Pearson understates r(beta,logM) as -0.455 against the rank value -0.667, an attenuation caused by Fornax alone (leverage 0.69).)
+
+  Local Volume Database footing: raw r = +0.6112, partial|logM = +0.5816  [g03 says +0.582]
+
+================================================================================================================
+VERDICT
+================================================================================================================
+  The ARITHMETIC of the claim is CORRECT and reproduces exactly.  What is wrong is the INFERENCE drawn
+  from it.  (i) 0.667 -> 0.717 is not a strengthening: p goes 0.071 -> 0.070 (t) and 0.0820 -> 0.0774
+  (the file's own permutation).  The coefficient rises only because partialling removes 85 per cent of the
+  residual's variance and the partial-correlation denominator divides it back out.  (ii) On the isolated
+  branch the residual is ALGEBRAICALLY 2 log sigma - 0.5 log M* + const(a0), so the partial is exactly
+  corr(beta, log sigma | log M*) -- a0 and the kernel cancel, and the statistic contains no framework.
+  (iii) The bootstrap interval on the partial spans -0.101 to +0.988 and includes zero.
+  (iv) DECISIVE: the file's headline statistic is SPEARMAN everywhere except this one check. The rank-
+  consistent partial is +0.172 with permutation p = 0.698 (0.39 sigma), and Kendall's gives +0.273.
+  Partialling out stellar mass DESTROYS the correlation under both rank estimators. The Pearson rise is
+  driven by Pearson understating r(beta,logM) (-0.455 vs rank -0.667), an attenuation
+  produced by Fornax alone (log M* = 7.63, leverage 0.69). THE DIRECTION OF THE CLAIM IS AN ESTIMATOR CHOICE.
+
+RESULT: 7 checks, 4 FAIL -> ["V2 (WHAT THE CLAIMED NUMBER ACTUALLY MEASURES) if the partial correlation is evidence about the FRAMEWORK, it must change when the framework's acceleration constant or kernel changes.  On the isolated branch a0 enters the residual as a pure ADDITIVE CONSTANT, so the partial is identically the correlation between anisotropy and line-of-sight dispersion at fixed stellar mass -- a statistic with no framework in it at all", "V3 (THE WORD 'STRENGTHENS') for the claim to mean what it says, the partial must be more significant than the raw correlation once the lost degree of freedom is accounted for", "V6 the partial must not depend on which branch of the author's own max(g_iso, g_efe) prescription is taken; a spread across branches comparable to the statistic itself is the 'residual tracks your own branch' failure mode this repository has been bitten by before", "V7 (THE DECIDER) the claim 'partialling out stellar mass STRENGTHENS the correlation' must hold under the estimator the rest of the file uses for every other number.  g03's headline is Spearman; its confound test is Pearson"]   rc=1

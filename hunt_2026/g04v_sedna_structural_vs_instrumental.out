@@ -1,0 +1,116 @@
+==================================================================================================================
+g04v -- ADVERSARIAL: is Sedna's shortfall STRUCTURAL (orbit-fit absorption) or INSTRUMENTAL (small signal)?
+==================================================================================================================
+
+  Sedna: a = 506.2 AU, e = 0.8496, aphelion Q = 936.3 AU, P = 11389.2 yr;  25 yr = 0.220% of one orbit  [g04 quotes 0.22%]
+  V1-V3 -- the exact factorisation of the shortfall, MI-A envelope, both footings
+     footing   sig_th   dg [m/s2]   raw mas  post mas   chi_raw  chi_post    INSTR   STRUCT    total  product
+   canonical      100   1.375e-12 3.549e-01 2.263e-02    0.0941    0.0047     31.9     20.0    639.0    639.0
+   canonical       10   1.375e-12 3.549e-01 2.263e-02    0.9408    0.0469      3.2     20.0     63.9     63.9
+         alt      100   2.952e-12 7.623e-01 4.860e-02    0.2020    0.0101     14.8     20.0    297.6    297.6
+         alt       10   2.952e-12 7.623e-01 4.860e-02    2.0204    0.1008      1.5     20.0     29.8     29.8
+    INSTR  = 3/chi_raw   : how far short the signal is BEFORE any orbit fit -- pure sensitivity
+    STRUCT = chi_raw/chi_post : how much the 4 free elements eat -- the 'structural' factor
+    total  = 3/chi_post  : the shortfall g04 quotes (639x at 100 mas canonical, 64x at 10 mas)
+  [PASS] V1a  this audit reproduces g04's published Sedna MI-A significances   (worst relative deviation from g04's printed 0.005/0.05 (canonical) and 0.010/0.10 (alt) is 6.1%, which is the rounding of the 1-2 significant figures g04 prints.  The integrator, design matrix, weights and projector are lifted verbatim, so the machinery is not in dispute -- only the attribution of the shortfall is)
+  [PASS] V2a  the shortfall factorises exactly into instrumental x structural   (worst |INSTR*STRUCT/total - 1| = 2.2e-16.  The decomposition is an identity, not a model: 3/chi_post = (3/chi_raw)(chi_raw/chi_post).  There is no third factor to hide in)
+  [FAIL] V3a  THE CLAIM: the shortfall is STRUCTURAL rather than INSTRUMENTAL at the headline precision   (IT IS NOT, at the 100 mas footing that carries the headline 0.005 sigma / 639x.  There the INSTRUMENTAL factor is 32x (canonical) / 15x (alt) and the STRUCTURAL factor is only 20x / 20x.  The signal is 32x too small for 100 mas astrometry BEFORE a single orbital element is fitted; switching the 4-element absorption off entirely still leaves 0.094 sigma, 32x short of 3.  The orbit-fit absorption is the SMALLER of the two effects at the headline precision, so 'structural, NOT instrumental' inverts the actual ranking.  (At 10 mas the ranking does flip -- INSTR 3.2x vs STRUCT 20x -- so the honest statement is that BOTH factors independently suffice at 10 mas and the instrumental one dominates at 100 mas.  The negative itself is untouched: Sedna falls short either way))
+  V4 -- MUTATION CONTROL: does the projector discriminate, or does it eat everything?
+  omega+1e-9 (IN-family)     chi_raw  4.1304e-02  chi_post  3.7705e-17  absorbed factor   1.095e+15
+  dg = 1e-12 (AU/r)^3        chi_raw  1.1232e-06  chi_post  1.1217e-06  absorbed factor   1.001e+00
+  dg = 1e-12 const           chi_raw  6.8433e-02  chi_post  3.4144e-03  absorbed factor   2.004e+01
+  [PASS] V4a  MUTATION CONTROL: in-family absorbed >1e4x more strongly than out-of-family   (a pure omega shift (which IS one of the 4 fitted elements) is absorbed by a factor 1.1e+15, while the out-of-family radial perturbations are absorbed by only 2.0e+01.  A ratio of 5.5e+13.  So the factor-16 absorption reported for MI-A is a REAL partial degeneracy and not a projector that flattens everything -- g04's structural mechanism is genuine, it is only its RANKING against the instrumental factor that this audit disputes)
+  V5 -- 'more telescope does not help, only more decades do' -- quantified at the PRESENT 25-yr arc
+  MI-A on the existing 25-yr arc reaches 3 sigma at a per-epoch astrometric precision of 156 micro-arcsec (0.156 mas), at 401 epochs.
+  Equivalently, at 10 mas it needs 1.64e+06 epochs -- which is the route that really is shut.
+  g04's D4a scan instead extends the ARC and finds 3 sigma at ~400 yr.  Both statements are true; g04
+  scans only one axis and then asserts the other axis is closed.  0.156 mas is 64x
+  beyond LSST-class but it is not centuries away, and Sedna is V=20.6 -- within reach of a dedicated
+  space-astrometry programme in principle.  Reported as a caveat on the framing, not as a live proposal.
+  [FAIL] V5a  the precision axis is as closed as the arc axis (needs > 1e6 x better astrometry)   (NOT AT THAT LEVEL.  The required per-epoch precision on the existing arc is 0.156 mas = 156 uas, only 64x beyond the 10 mas LSST-class figure g04 uses -- not the 'centuries, not a bigger telescope' dichotomy D4a asserts.  The epoch count route is genuinely shut (1.6e+06 epochs at 10 mas), and the overall NEGATIVE stands, but the specific claim that only more decades help is not established by the scan D4a actually ran)
+  V6 -- is MI-A an envelope over MODIFIED INERTIA, or only over Route A's own kernel?
+  Milgrom's theorem (1994, Ann. Phys. 229, 384) fixes MI = MG for CIRCULAR orbits.  Sedna's orbit is
+  nowhere near circular and nowhere near deep-MOND: its APHELION sits at y = g_N/a_0 = 72 (canonical),
+  sqrt(y) = 8.5, i.e. DEEP NEWTONIAN.  No theorem constrains MI there.  So MI-A/MI-B are not envelopes
+  derived from MI; they are Route A's EXPONENTIAL kernel evaluated at the orbit's minimum acceleration.
+  But the exponential approach to Newton is a MODIFIED-GRAVITY fit choice.  MI's own kernel is not fixed
+  by it -- that is the whole content of the fork.  The standard MOND interpolating families approach
+  Newton as a POWER law, nu - 1 ~ 1/y (the 'simple'/RAR family), not as exp(-sqrt y).  On Sedna's
+  aphelion that is the difference between 1/(e^8.5-1) = 2.0e-4 and 1/72 = 1.4e-2: a factor ~68.
+
+  MI reading                           dg [m/s2]    / a_0   post mas  sig@100   sig@10
+  can MI-A, Route A exp kernel         1.375e-12    0.015  2.263e-02    0.005     0.05
+  can MI-A, power-law nu-1 = 1/(2y)    4.680e-11    0.500  7.705e-01    0.160     1.60
+  can MI-A, anomaly of order a_0       9.360e-11    1.000  1.541e+00    0.320     3.20
+  alt MI-A, Route A exp kernel         2.952e-12    0.026  4.860e-02    0.010     0.10
+  alt MI-A, power-law nu-1 = 1/(2y)    5.650e-11    0.500  9.302e-01    0.193     1.93
+  alt MI-A, anomaly of order a_0       1.130e-10    1.000  1.860e+00    0.386     3.86
+
+  BUT THE COUNTEREXAMPLE MUST ITSELF SURVIVE THE INNER PLANETS.  Under the SAME MI-A ansatz, Mars's
+  anomaly is keyed to MARS's aphelion, so any MI kernel generous at Sedna is also generous at Mars.
+  Scan the one-parameter power-law family nu - 1 = y^-p (normalised so nu - 1 = 1 at y = 1, which is
+  what galaxy rotation curves require of any MOND-class kernel) and impose EVERY planetary bound:
+       p  binding planet  dg(Sedna)/a_0   dg [m/s2]  sigma @10mas
+   1.000         Mercury         1.0000   9.360e-11           nan
+   1.250         Mercury         0.3430   3.210e-11           nan
+   1.500           Earth         0.1176   1.101e-11           nan
+   1.656            Mars         0.0603   5.647e-12           nan
+   1.750         ALLOWED         0.0403   3.776e-12          0.14
+   2.000         ALLOWED         0.0138   1.295e-12          0.05
+   2.500         ALLOWED         0.0016   1.523e-13          0.01
+   3.000         ALLOWED         0.0002   1.792e-14          0.00
+  The planetary bounds force p > ~1.66 (Mars binds); at the boundary the Sedna anomaly is capped at
+  0.040 a_0 = 3.78e-12 m/s^2, giving 0.14 sigma at 10 mas on the 25-yr arc.
+  [PASS] V6a  MI-A bounds every modified-inertia reading, so 'shut for the most generous is shut for all'   (UPHELD, BUT NOT FOR THE REASON g04 GIVES, AND ITS SCOPE MUST BE NARROWED.  Taken at face value the envelope claim fails: MI-A is the most generous reading of ROUTE A'S EXPONENTIAL kernel, not of modified inertia, and Sedna's aphelion sits at y = 72 -- DEEP NEWTONIAN, where Milgrom's circular-orbit theorem says nothing and MI's interpolating behaviour is not fixed by the MG fit.  A free anomaly of order a_0 along the orbit gives 3.2 sigma (canonical) / 3.9 (alt) at 10 mas, ABOVE 3, so MI-A is NOT an envelope over the class.  What rescues the conclusion is a constraint g04 never invokes here: under the SAME MI-A ansatz the inner planets are bound too, and Mars forces any power-law kernel nu-1 = y^-p (normalised to O(1) at y ~ 1, as rotation curves require) to p > 1.66, capping Sedna at 0.040 a_0 = 0.14 sigma at 10 mas.  So the NEGATIVE survives on the one-parameter power-law family -- by an inner-planet argument, not by MI-A being an envelope.  It is NOT established for kernels with intrinsic eccentricity dependence, which a genuinely nonlocal MI has and which Mars (e = 0.09) cannot constrain from Sedna (e = 0.85))
+  V7 -- the arc length at which MI-A crosses 3 sigma: g04's grid says '~400 yr', the grid is coarse
+    arc [yr]  % of orbit    post mas  sigma @10mas
+         150        1.32   4.427e-01          2.55
+         175        1.54   4.793e-01          2.68
+         200        1.76   6.478e-01          2.85
+         225        1.98   8.988e-01          3.12
+         250        2.20   1.207e+00          3.52
+         300        2.63   1.954e+00          4.68
+         400        3.51   3.822e+00          8.08
+  [FAIL] V7a  3 sigma at 10 mas genuinely requires an arc of ~400 yr, as g04's D4a states   (IT DOES NOT.  On a finer grid the MI-A residual crosses 3 sigma at an arc of ~225 yr (2.0% of the orbit), not ~400 yr.  g04's D4a scanned octaves (25, 50, 100, 200, 400) and quoted the first grid point above 3 sigma; its own printed row at 200 yr already reads 2.85 sigma.  This overstates the required arc by roughly a factor 2 -- in the direction of a STRONGER negative, so it is conservative for the conclusion but wrong as a number.  The qualitative statement (centuries, not decades) survives)
+
+==================================================================================================================
+VERDICT OF THIS AUDIT
+==================================================================================================================
+
+ CONFIRMED.  Sedna's MI-A precession channel falls short.  chi_post = 0.0047 sigma at 100 mas and
+ 0.047 sigma at 10 mas (canonical), 0.0101 / 0.101 (alt), reproducing g04's table
+ to within its printed precision.  The mutation controls confirm the projector is not manufacturing the
+ negative (V4a: in-family absorbed 1e+15x, out-of-family 2e+01x).  25 yr really is
+ 0.22% of the orbit and the 4-element family really does eat a factor 20 of the signal.
+
+ REFUTED, THE CAUSAL CLAUSE (V3a).  "The reason is STRUCTURAL, NOT INSTRUMENTAL" inverts the ranking at the
+ headline 100 mas canonical footing -- the one that carries the quoted 0.005 sigma and 639x.  There the
+ instrumental factor is 32x and the structural factor 20x.  With the 4-element fit switched off
+ entirely the signal is still only 0.094 sigma, 32x short of 3.  The correct statement is: at 100 mas
+ the shortfall is mostly instrumental (32x) with a factor 20 of orbit-fit absorption on top; at
+ 10 mas the absorption becomes the larger single factor (20x vs 3.2x); at neither precision does
+ either factor alone explain the shortfall, and at both precisions either alone would suffice to close it.
+ The bottom line is untouched.  The error is in the attribution, not the arithmetic.
+
+ TWO SECONDARY NUMBERS OVERSTATED, BOTH TOWARD A STRONGER NEGATIVE.
+  * V7a: 3 sigma at 10 mas is reached at an arc of ~225 yr, not the ~400 yr D4a quotes -- D4a scanned
+    octaves and reported the first grid point above 3 sigma while its own 200-yr row already read 2.85.
+  * V5a: "more telescope does not help, only more decades do" is not what the numbers say.  On the EXISTING
+    25-yr arc, 0.156 mas per epoch reaches 3 sigma -- 64x beyond LSST-class, not centuries away.  The
+    epoch-count route is the one genuinely shut (1.6e+06 epochs at 10 mas).
+
+ ONE SCOPE NARROWING, NOT A REFUTATION (V6a).  "MI-A is the most generous reading, and a route shut for the
+ most generous is shut for every reading" is false as stated: MI-A is the most generous reading of ROUTE A'S
+ EXPONENTIAL kernel, and Sedna's aphelion is at y = 72, DEEP NEWTONIAN, where Milgrom's circular-orbit
+ theorem constrains nothing and MI's interpolating behaviour is not fixed by the MG fit.  A free O(a_0)
+ anomaly gives 3.2 / 3.9 sigma at 10 mas.  The conclusion is nevertheless rescued, by an argument g04
+ does not make: under the same ansatz Mars binds too, forcing nu-1 = y^-p to p > 1.66 and capping Sedna at
+ 0.040 a_0 = 0.14 sigma.  It remains unestablished for kernels with intrinsic eccentricity dependence.
+
+ WHAT SURVIVES INTACT.  Milgrom's theorem is stated conservatively and is not leaned on anywhere it does not
+ apply; the deep-MOND limit is never invoked on Sedna (the full kernel is used at y = 72 to 1e4); and both
+ a_0 footings genuinely propagate -- dg differs by 2.15x between footings against an a_0 ratio of
+ 1.21x, i.e. through the exponential, not decoratively.
+
+
+RESULT: 7 checks, 3 FAIL -> ['V3a  THE CLAIM: the shortfall is STRUCTURAL rather than INSTRUMENTAL at the headline precision', 'V5a  the precision axis is as closed as the arc axis (needs > 1e6 x better astrometry)', "V7a  3 sigma at 10 mas genuinely requires an arc of ~400 yr, as g04's D4a states"]   rc=1

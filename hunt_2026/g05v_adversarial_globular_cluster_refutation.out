@@ -1,0 +1,182 @@
+======================================================================================================================
+1.  INDEPENDENT RECOMPUTATION OF THE FOUR CLUSTERS.  Different quadrature, photometry re-entered from the
+    published catalogues, nothing imported from g05.
+======================================================================================================================
+  cluster        M_V   M(Ups=2)       x_i       x_e   boost  sig_pred  sig_obs      dex      g05    diff
+  Pal 4        -5.83   3.68e+04    0.0611   0.00825   4.552     2.380     0.87   -0.874   -0.874  -0.000
+  Pal 14       -5.33   2.31e+04    0.0127   0.01902   6.485     1.709     0.38   -1.306   -1.306  +0.000
+  Pal 3        -5.45   2.59e+04    0.0267   0.00927   6.486     2.115     0.80   -0.844   -0.844  -0.000
+  NGC 2419     -9.42   1.00e+06    1.0774   0.00971   1.548     6.505     5.10   -0.211   -0.211  -0.000
+  median residual -0.8594 dex against g05's quoted -0.859
+  [PASS] V1 the four residuals, the four internal accelerations and the median REPRODUCE under an independently written pipeline.  The claim is not a coding artefact of g05: the photometry, the enclosed-mass Wolf inversion and the QUMOND sphere average all check out against a separate implementation   (worst residual difference 0.0005 dex, worst x_i difference 0.17 per cent, median -0.8594 against -0.859)
+
+======================================================================================================================
+2.  BOTH a_0 FOOTINGS -- which g05's globular-cluster block never ran.
+======================================================================================================================
+  [FAIL] V2 PROCEDURE (FAILS) the repository's standing rule is BOTH a_0 footings on every load-bearing claim.  The globular-cluster block of g05 -- section 4e, the block that produces the claim under test -- evaluates a0c only.  The claim as quoted is a single-footing number   (the 4e block references a0c 3 times and A0['alt'] 0 times)
+  dwarf comparison set frozen on the canonical selection, N = 12: Fornax, Leo I, Leo II, Sculptor, Andromeda VI, Andromeda VII, NGC 147, NGC 185, Antlia B, Phoenix, Tucana, UGC 4879
+     canonical  (a_0 = 9.36e-11):  globular clusters Pal 4 -0.874, Pal 14 -1.306, Pal 3 -0.844, NGC 2419 -0.211  median -0.859 dex;  the same 12 dwarfs median +0.114 (gap +0.973 dex)
+     alt        (a_0 = 1.13e-10):  globular clusters Pal 4 -0.911, Pal 14 -1.343, Pal 3 -0.882, NGC 2419 -0.235  median -0.896 dex;  the same 12 dwarfs median +0.075 (gap +0.972 dex)
+  [PASS] V3 the omitted footing does NOT rescue the framework and does not overturn the claim.  With the dwarf comparison set held fixed, the alt footing moves clusters and dwarfs down by almost exactly the same amount, leaving the gap identical to 0.002 dex and the dwarfs still above the kernel.  The procedural violation is real; the result of repairing it is that nothing changes   (canonical: GC median -0.859, dwarf median +0.114, gap +0.973 dex.  alt: GC median -0.896, dwarf median +0.075, gap +0.972 dex.  The GAP is footing-stable to 0.002 dex; the dwarf SIGN is not)
+  [PASS] V3b what the claim needs -- that the two classes sit on opposite sides of each other by a large margin at matched acceleration -- IS footing-independent, and the alt footing makes the clusters worse, not better, so the omitted footing was not hiding a rescue   (cluster median canonical -0.859 -> alt -0.896; gap canonical +0.973 -> alt +0.972 dex)
+     re-applying g05's fixed window 0.01 <= x_i <= 1.2 on the ALT footing instead of freezing the sample: N = 11, dwarf median -0.007 dex
+  [FAIL] V3c (FAILS) the dwarf comparison number '+0.114 dex on N = 12' is fragile to the WINDOW EDGE rather than to the physics.  g05 selects the dwarfs by a fixed window in x_i = g_N/a_0, but x_i scales as 1/a_0, so on the alt footing that window is a different physical acceleration band and drops an object; the dwarf median then reads -0.007 dex on N = 11 and the phrase 'dwarf spheroidals sit above it' stops being true as stated.  The GAP survives because the clusters move with them.  The quotable statement is therefore the GAP at matched acceleration, never the absolute dwarf offset behind a hard window edge on an a_0-scaled variable   (frozen sample, alt footing: dwarf median +0.075 on N = 12; g05's window re-applied on the alt footing: -0.007 on N = 11; the two differ by 0.083 dex on a claim whose dwarf side is +0.114)
+
+======================================================================================================================
+3.  THE Upsilon_V = 1 CAVEAT NUMBER.  g05 computes it ANALYTICALLY as median + log10(2) = -0.558 dex.
+======================================================================================================================
+  g05's line is:  np.median(gcr) + math.log10(2.0)
+  That analytic shift assumes g_pred is PROPORTIONAL to M -- the NEWTONIAN scaling.  In the deep-MOND limit
+  g_pred goes as sqrt(M a_0)/r, so halving the mass moves the residual by log10(sqrt(2)) = +0.151, not +0.301.
+  cluster     x_i(Ups=2)  res(Ups=2)  res(Ups=1)  true shift  g05 assumes
+  Pal 4           0.0611      -0.874      -0.704      +0.170       +0.301
+  Pal 14          0.0127      -1.306      -1.008      +0.297       +0.301
+  Pal 3           0.0267      -0.844      -0.652      +0.192       +0.301
+  NGC 2419        1.0774      -0.211      -0.004      +0.207       +0.301
+  EXACT recomputation at Upsilon_V = 1: median -0.678 dex.  g05's analytic value -0.558 dex.
+  [FAIL] V4 (FAILS -- A CONCRETE ERROR IN A QUOTED NUMBER) g05's Upsilon_V = 1 caveat, '-0.558 dex', is computed with the NEWTONIAN mass scaling and is wrong by about 0.15 dex.  Three of the four clusters sit at x_i = 0.013-0.061 where the kernel is deep-MOND and the predicted dispersion goes as M^(1/4), so the residual moves by only +0.151 dex when the mass-to-light ratio is halved.  The error runs AGAINST g05's own argument -- the true Upsilon_V = 1 median is MORE negative than quoted, not less -- so the caveat as printed is more generous to the alternative than the arithmetic allows.  It is still a wrong number in a quoted result   (exact -0.678 dex, g05's analytic -0.558 dex, discrepancy -0.120; per-cluster true shifts Pal 4 +0.170, Pal 14 +0.297, Pal 3 +0.192, NGC 2419 +0.207)
+
+======================================================================================================================
+4.  IS THE DEEP-MOND LIMIT ACTUALLY APPLICABLE WHERE IT IS APPLIED?
+======================================================================================================================
+  Test 1 -- the SIGNATURE of the deep-MOND regime for this estimator: sigma_pred^2 = g r_1/2/3 with
+     g = sqrt(G (M/2) a_0)/r_1/2, so sigma_pred is INDEPENDENT of r_1/2.  If a cluster is deep-MOND, moving
+     its half-light radius by 25 per cent must not move its predicted dispersion.  If it is not, it will.
+  cluster          x_i      res  res(r x1.25)  res(r x0.80)  spread dex
+  Pal 4         0.0611   -0.874        -0.862        -0.888       0.014
+  Pal 14        0.0127   -1.306        -1.212        -1.394       0.094
+  Pal 3         0.0267   -0.844        -0.822        -0.859       0.022
+  NGC 2419      1.0774   -0.211        -0.173        -0.257       0.046
+     x_i vs x_e decides which limit each cluster is in: Pal 4 x_i/x_e = 7.40, Pal 14 x_i/x_e = 0.67, Pal 3 x_i/x_e = 2.87, NGC 2419 x_i/x_e = 110.94
+  [FAIL] V5 (FAILS, AND THE FAILURE NAMES A SECOND SOFT SPOT) the isolated deep-MOND limit -- in which the predicted dispersion is independent of the assumed half-light radius -- holds for Pal 3 and Pal 4 (x_i/x_e = 2.9-7.4), so for them the Baumgardt N-body r_h,l is not load-bearing.  It does NOT hold for Pal 14, which is EXTERNAL-FIELD DOMINATED (x_i/x_e = 0.67): there the kernel is quasi-Newtonian with a boosted G, the prediction goes back to depending on the radius, and a 25 per cent error in Pal 14's model-derived r_h,l moves its residual by 0.09 dex.  Nor does it hold for NGC 2419 at x_i ~ 1.1.  Pal 14 is the cluster carrying the most extreme residual and it is the one whose structural input matters most   (Pal 4 0.014 dex, Pal 14 0.094 dex, Pal 3 0.022 dex, NGC 2419 0.046 dex; Pal 4 and Pal 3 are radius-independent to 0.02 dex as the deep-MOND limit requires, Pal 14 is not)
+  
+  Test 2 -- the VIRIAL COEFFICIENT.  The Wolf et al. 2010 estimator is derived in Newtonian gravity.  Applied
+     inside the kernel it must reproduce the exact isolated deep-MOND relation sigma^4 = (4/81) G M a_0
+     (Milgrom 1984, ApJ 287, 571; Famaey & McGaugh 2012 eq. 43).  If it does not, both classes are biased --
+     but by the SAME factor, so the bias cancels in the dwarf-versus-cluster comparison.
+  [PASS] V6 the Wolf-estimator route reproduces the exact deep-MOND M-sigma relation to better than 0.05 dex in acceleration, so the estimator is not manufacturing the cluster deficit -- and because dwarfs and clusters go through the identical estimator, whatever residual bias there is cancels exactly in the comparison that carries the claim   (sigma from the Wolf route against sigma = ((4/81) G M a_0)^(1/4) over 10 deep-MOND configurations: +0.0258 to +0.0318 dex (analytic expectation +0.0256))
+
+======================================================================================================================
+5.  IS THE ACCELERATION MATCHING GENUINE, OR DO THE CLUSTERS SIT DEEPER THAN THE DWARFS THEY ARE COMPARED TO?
+======================================================================================================================
+  g05 established (its own check A1c) that inside the pressure sample the residual runs with log10(x_i) at
+  slope about -0.5.  A window as wide as x_i = 0.01-1.2 is 2.1 dex, so a median-versus-median comparison over
+  it could be a DEPTH difference wearing the label 'globular cluster'.  Tested object by object.
+     dwarf window N = 12, median residual +0.114 dex, log10 x_i median -1.611
+     cluster       log10 x_i median -1.394
+  cluster          x_i   GC res    dwarfs within 0.35 dex of log x_i  dwarf med      gap
+  Pal 4         0.0611   -0.874    Fornax, Leo I, Sculptor, UGC 4879     -0.054   +0.820
+  Pal 14        0.0127   -1.306 Carina, Draco, Leo II, Andromeda III     +0.285   +1.590
+  Pal 3         0.0267   -0.844 Fornax, Leo II, Sculptor, Andromeda      +0.231   +1.075
+  NGC 2419      1.0774   -0.211                     NGC 185, NGC 205     -0.013   +0.198
+  [PASS] V7 the separation is NOT a depth confound in disguise: matched object by object to the dwarfs within 0.35 dex of the same internal acceleration, every cluster still sits below its own depth-matched dwarfs, and the cluster and dwarf samples have nearly the same median log10 x_i.  This is the one comparison in the whole g05 file that IS acceleration-matched rather than window-matched   (Pal 4 gap +0.820 dex; Pal 14 gap +1.590 dex; Pal 3 gap +1.075 dex; NGC 2419 gap +0.198 dex; median gap +0.948 dex)
+  [FAIL] V8 (FAILS, AND IT IS THE WEAK POINT g05 DOES NOT NAME) the gap is not uniform across the four clusters: it collapses at NGC 2419, the only cluster with real statistical weight (183 radial velocities against 16-23 for the other three) and the only one whose dispersion does not rest on a handful of stars.  The claim's strength is carried entirely by the three sparse clusters; the well-measured one shows almost nothing.  NGC 2419 is also the one cluster outside the deep-MOND regime, where the kernel's boost is only about 1.3   (NGC 2419 gap +0.198 dex on 183 velocities and a kernel boost of 1.55; the three sparse clusters give gaps Pal 4 +0.820, Pal 14 +1.590, Pal 3 +1.075)
+
+======================================================================================================================
+6.  EVERY ADVERSARIAL LEVER, ONE AT A TIME AND THEN ALL AT ONCE.
+======================================================================================================================
+  (a) Upsilon_V.  Baumgardt's DYNAMICAL M/L_V for these clusters is 0.8-1.7; mass segregation depletes
+      low-mass stars, so the photometric 2.0 is an upper bound and inflates the predicted dispersion.
+  (b) Pal 14's dispersion.  Baumgardt's own profile bin is 0.71 +- 0.16 km/s on the SAME 16 stars that
+      Jordi et al. 2009 give 0.38 +- 0.12 for.  h93 carries the higher value; g05 carries the lower.
+  (c) The Milky Way external field.  g05 uses the framework's own baryonic mass, giving v_inf = 165 km/s;
+      halo tracers show 200-220 km/s at 70-100 kpc.  A stronger external field means MORE external-field
+      suppression and a SMALLER predicted dispersion.  Fed in through nu correctly: the observed field is the
+      TRUE one, so it is inverted to the Newtonian source field that QUMOND's nu actually takes.
+  lever                                                   Pal 4   Pal 14    Pal 3  NGC2419   median
+  as published in g05                                    -0.874   -1.306   -0.844   -0.211   -0.859
+  (a) Upsilon_V = 1.0 (Baumgardt dynamical floor)        -0.704   -1.008   -0.652   -0.004   -0.678
+  (b) Pal 14 -> Baumgardt 0.71 km/s                      -0.874   -0.763   -0.844   -0.211   -0.804
+  (c) MW external field from v_c = 220 km/s              -0.865   -1.128   -0.781   -0.211   -0.823
+  (c') MW baryonic mass x2 = 1.2e11                      -0.870   -1.173   -0.814   -0.211   -0.842
+  ALL THREE STACKED (a)+(b)+(c)                          -0.665   -0.285   -0.491   -0.004   -0.388
+  [PASS] V9 the cluster deficit survives every adversarial lever available, stacked: the dynamical rather than the photometric mass-to-light ratio, the HIGHER of the two disputed Pal 14 dispersions, and the Milky Way's MEASURED rotation curve in place of the framework's own weaker baryonic field.  All three together move the median by about 0.3 dex and leave it strongly negative.  The claim's SIGN and order of magnitude are not rescuable by the inputs   (as published in g05: -0.859; (a) Upsilon_V = 1.0 (Baumgardt dynamical floor): -0.678; (b) Pal 14 -> Baumgardt 0.71 km/s: -0.804; (c) MW external field from v_c = 220 km/s: -0.823; (c') MW baryonic mass x2 = 1.2e11: -0.842; ALL THREE STACKED (a)+(b)+(c): -0.388)
+
+======================================================================================================================
+7.  WHAT DOES THE MODIFIED-INERTIA ARM ACTUALLY PREDICT?  The physics lens on the claim's second clause.
+======================================================================================================================
+  Milgrom's theorem (1994, Ann. Phys. 229, 384; 2011, arXiv:1111.1611): modified inertia and modified gravity
+  coincide for CIRCULAR orbits in the deep-MOND limit and differ for every other orbit.  Modified inertia is a
+  CLASS, not a theory.  Absent a specific action there is no unique prediction for a pressure-supported system,
+  and in particular NO PREDICTED SIGN for the deviation of a dispersion-supported object from the modified-
+  gravity kernel.  So:
+    * 'Globular clusters sit below where dwarf spheroidals sit above' does refute the coarse reading f09 was
+      chasing -- 'pressure support itself breaks the kernel', which is a SINGLE-SIGN hypothesis and is
+      falsified by two signs.  That inference is sound and does not need modified inertia to have a sign.
+    * It does NOT refute modified inertia, because an MI theory keyed to ORBIT SHAPE rather than to support
+      type can accommodate both signs: globular-cluster stars are collisionally relaxed onto near-isotropic
+      rosettes, dwarf-spheroidal stars are collisionless and may be radially anisotropic.  'Pressure-supported'
+      is a coarser variable than the one Milgrom's theorem is about.
+    * The claim as written says SUPPORT TYPE does not predict the sign.  That is what the data show.  Any
+      stronger reading -- that the fork is closed, that modified inertia is excluded -- is not supported.
+  [PASS] V10 g05 does NOT over-claim what modified inertia predicts: it nowhere states that the globular clusters exclude modified inertia, and its verdict block says in terms that the fork is untouched and still open.  The claim's second clause is about SUPPORT TYPE, which is the variable f09 actually used, and it is the right variable to falsify   (explicit fork disclaimer present = True; over-claiming phrases found = none)
+  [FAIL] V11 (FAILS -- A FRAMING DEFECT, NOT A NUMERICAL ONE) S5's setup sentence asserts that under a reading in which pressure support breaks the kernel the clusters 'should behave like the dwarf spheroidals and sit ABOVE it'.  That assumes a SIGN for a hypothesis class that has none: no theorem fixes the sign of a modified-inertia deviation for a dispersion-supported system.  The falsification that actually goes through is the weaker and sufficient one -- a single-sign 'pressure support' hypothesis predicts ONE sign and the data show TWO -- and S5 should be stated that way rather than by attributing a prediction to the alternative   (the sentence is in the committed file; the numerical claim is unaffected, but the stated logic gives the alternative hypothesis a prediction it does not have)
+
+======================================================================================================================
+8.  HOW STRONG IS IT, IN ITS OWN CURRENCY?  The published statistics on the same data.
+======================================================================================================================
+  Gentile, Famaey, Angus & Kroupa 2010, A&A 509, A97 ran a Kolmogorov-Smirnov test on the SAME Pal 14 data
+  against the SAME published MOND prediction and found only 64-73 per cent confidence (p = 0.27-0.36), i.e.
+  NO exclusion.  The committed h93 records that gap and attributes it to the statistic, not the data.  The
+  claim under test is correctly NOT quoted as a sigma; the check below is what the four residuals alone support.
+  cluster      residual  +- from sigma_obs alone   N_RV
+  Pal 4          -0.874                    0.180     23
+  Pal 14         -1.306                    0.274     16
+  Pal 3          -0.844                    0.369     22
+  NGC 2419       -0.211                    0.082    183
+  [PASS] V12 the four-cluster median is many times its own scatter-based standard error even before the measurement errors are folded in, so the claim is not an error-bar illusion -- but with N = 4 objects, two of whose dispersions are N-body model fits rather than measurements, and with a published KS analysis of the same Pal 14 data giving no exclusion at all, quoting this as a sigma would be wrong.  The claim does not, and must not   (mean -0.809 dex, scatter 0.451, standard error 0.225, ratio 3.6; per-cluster errors from sigma_obs alone are 0.08-0.37 dex)
+
+======================================================================================================================
+9.  MUTATION CONTROLS.
+======================================================================================================================
+  cluster     kernel res  Newtonian res
+  Pal 4           -0.874         -0.216
+  Pal 14          -1.306         -0.494
+  Pal 3           -0.844         -0.033
+  NGC 2419        -0.211         -0.021
+  [PASS] M1 MUTATION CONTROL, and it is the cleanest statement of the whole claim: switch the kernel off (nu = 1, pure Newton with baryons only) and the globular clusters land ON zero while the dwarf spheroidals at the same internal acceleration stay far above it.  The cluster deficit IS the kernel's boost and nothing else, and the pipeline is not manufacturing it -- the identical pipeline gives the dwarfs a large positive residual   (Newtonian median: clusters -0.124 dex, dwarfs over the same x_i +1.021 dex on N=12; with the kernel on, clusters -0.859 and dwarfs +0.114)
+  [PASS] M2 MUTATION CONTROL on the DATA: inflating every measured dispersion by sqrt(2) must move every residual by exactly +log10(2) and nothing else in the pipeline may respond   (shifts ['+0.301029996', '+0.301029996', '+0.301029996', '+0.301029996'] against +0.301029996)
+  [PASS] M3 MUTATION CONTROL on the THEORY: raising a_0 a hundredfold drives every cluster deeper into the modified regime, so the predicted dispersions rise and the residuals must fall further below zero   (median -0.859 dex at the canonical a_0, -1.820 at 100 a_0)
+  [PASS] M4 the independent Gauss-Legendre quadrature reduces to the framework's own isolated kernel exactly when the external field is switched off, so the two implementations agree on the thing they are both meant to compute   (boost_sphere(x_i, 0)/nu(x_i) = 1.000000000000)
+
+======================================================================================================================
+VERDICT
+======================================================================================================================
+  THE CLAIM SURVIVES IN SUBSTANCE AND CARRIES ONE WRONG NUMBER.
+
+  Reproduced independently: Pal 4 -0.874, Pal 14 -1.306, Pal 3 -0.844, NGC 2419 -0.211, median -0.859 dex,
+  against dwarf spheroidals over the same internal accelerations at +0.114 dex on N = 12.  Object-by-object
+  depth matching -- not the 2.1-dex window g05 used -- leaves a median gap of +0.948 dex with every cluster
+  below its own depth-matched dwarfs.  The sign survives Upsilon_V = 1, the higher disputed Pal 14 dispersion,
+  the Milky Way's measured rotation curve as the external field, and all three stacked (-0.388 dex).  Under
+  nu = 1 the clusters land on zero and the dwarfs do not, so the deficit is the kernel's boost and not the pipeline.
+
+  THE ERROR.  g05's Upsilon_V = 1 caveat, quoted as -0.558 dex, applies the NEWTONIAN mass scaling (+log10 2)
+  to a deep-MOND prediction.  Three of the four clusters sit at x_i = 0.013-0.061 where sigma_pred goes as
+  M^(1/4), so the shift is +0.151 dex.  The exact value is -0.678 dex, not -0.558.  The error is against
+  g05's own interest and does not touch the claim's substance, but the quoted number is wrong.
+
+  THE PROCEDURAL VIOLATION.  Section 4e runs the canonical footing only.  Repaired here: with the dwarf set
+  held fixed the alt footing gives clusters -0.896 and dwarfs +0.075, a gap of +0.972 dex against the canonical
+  +0.973 -- identical to 0.002 dex.  Nothing was hidden.  But the '+0.114 dex on N = 12' dwarf number is
+  fragile to the WINDOW EDGE: x_i scales as 1/a_0, so re-applying the fixed 0.01-1.2 window on the alt footing
+  re-selects the sample and reads -0.007 on N = 11.  Quote the GAP, never the absolute dwarf offset.
+
+  THE DEEP-MOND LIMIT IS NOT UNIFORM.  Pal 3 and Pal 4 are isolated deep-MOND and radius-independent, so the
+  model-derived r_h,l does not matter for them.  Pal 14 is EXTERNAL-FIELD DOMINATED (x_i/x_e = 0.67), where the
+  kernel is quasi-Newtonian with a boosted G and the prediction depends on the radius again: 25 per cent in
+  r_h,l moves Pal 14's residual by 0.09 dex.  The cluster carrying the most extreme residual is the one whose
+  structural input is both model-derived and load-bearing.
+
+  THE WEAK POINT, AND IT IS NOT THE ONE g05 NAMES.  g05 names Pal 14's 16 stars.  The real soft spot is that
+  the depth-matched gap collapses to +0.198 dex at NGC 2419 -- the only cluster with real statistical weight
+  (183 velocities), the only one whose boost is small (1.55), and the only one outside the deep-MOND limit.
+  The claim is carried by three clusters with 16-23 stars each, two of whose dispersions are N-body model fits.
+
+  THE PHYSICS OF THE FORK IS USED CORRECTLY, WITH ONE FRAMING DEFECT.  Modified inertia is a class with no
+  unique prediction, so it has no predicted SIGN for a dispersion-supported system; S5's setup sentence gives
+  the alternative a prediction it does not have.  The falsification that does go through is weaker and enough:
+  a single-sign 'pressure support breaks the kernel' hypothesis predicts one sign and the data show two.  g05's
+  verdict block already says the fork itself is untouched, and that is the correct standing.
+
+RESULT: 18 checks, 6 FAIL -> ["V2 PROCEDURE (FAILS) the repository's standing rule is BOTH a_0 footings on every load-bearing claim.  The globular-cluster block of g05 -- section 4e, the block that produces the claim under test -- evaluates a0c only.  The claim as quoted is a single-footing number", "V3c (FAILS) the dwarf comparison number '+0.114 dex on N = 12' is fragile to the WINDOW EDGE rather than to the physics.  g05 selects the dwarfs by a fixed window in x_i = g_N/a_0, but x_i scales as 1/a_0, so on the alt footing that window is a different physical acceleration band and drops an object; the dwarf median then reads -0.007 dex on N = 11 and the phrase 'dwarf spheroidals sit above it' stops being true as stated.  The GAP survives because the clusters move with them.  The quotable statement is therefore the GAP at matched acceleration, never the absolute dwarf offset behind a hard window edge on an a_0-scaled variable", "V4 (FAILS -- A CONCRETE ERROR IN A QUOTED NUMBER) g05's Upsilon_V = 1 caveat, '-0.558 dex', is computed with the NEWTONIAN mass scaling and is wrong by about 0.15 dex.  Three of the four clusters sit at x_i = 0.013-0.061 where the kernel is deep-MOND and the predicted dispersion goes as M^(1/4), so the residual moves by only +0.151 dex when the mass-to-light ratio is halved.  The error runs AGAINST g05's own argument -- the true Upsilon_V = 1 median is MORE negative than quoted, not less -- so the caveat as printed is more generous to the alternative than the arithmetic allows.  It is still a wrong number in a quoted result", "V5 (FAILS, AND THE FAILURE NAMES A SECOND SOFT SPOT) the isolated deep-MOND limit -- in which the predicted dispersion is independent of the assumed half-light radius -- holds for Pal 3 and Pal 4 (x_i/x_e = 2.9-7.4), so for them the Baumgardt N-body r_h,l is not load-bearing.  It does NOT hold for Pal 14, which is EXTERNAL-FIELD DOMINATED (x_i/x_e = 0.67): there the kernel is quasi-Newtonian with a boosted G, the prediction goes back to depending on the radius, and a 25 per cent error in Pal 14's model-derived r_h,l moves its residual by 0.09 dex.  Nor does it hold for NGC 2419 at x_i ~ 1.1.  Pal 14 is the cluster carrying the most extreme residual and it is the one whose structural input matters most", "V8 (FAILS, AND IT IS THE WEAK POINT g05 DOES NOT NAME) the gap is not uniform across the four clusters: it collapses at NGC 2419, the only cluster with real statistical weight (183 radial velocities against 16-23 for the other three) and the only one whose dispersion does not rest on a handful of stars.  The claim's strength is carried entirely by the three sparse clusters; the well-measured one shows almost nothing.  NGC 2419 is also the one cluster outside the deep-MOND regime, where the kernel's boost is only about 1.3", "V11 (FAILS -- A FRAMING DEFECT, NOT A NUMERICAL ONE) S5's setup sentence asserts that under a reading in which pressure support breaks the kernel the clusters 'should behave like the dwarf spheroidals and sit ABOVE it'.  That assumes a SIGN for a hypothesis class that has none: no theorem fixes the sign of a modified-inertia deviation for a dispersion-supported system.  The falsification that actually goes through is the weaker and sufficient one -- a single-sign 'pressure support' hypothesis predicts ONE sign and the data show TWO -- and S5 should be stated that way rather than by attributing a prediction to the alternative"]   rc=1

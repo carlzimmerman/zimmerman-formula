@@ -1,0 +1,95 @@
+======================================================================================================================
+A.  REPRODUCTION: the number itself is not in dispute
+======================================================================================================================
+  canonical a0 = 9.36e-11: Spearman rho = +0.6667, Pearson r = +0.6666, EXACT permutation p = 0.0831 (1.73 sigma)
+  alt       a0 = 1.13e-10: Spearman rho = +0.6667, Pearson r = +0.6681, EXACT permutation p = 0.0831 (1.73 sigma)
+  [PASS] V0 (REPRODUCTION) g03's headline rho = +0.667 at p = 0.082 must reproduce independently, on both footings, with the p-value computed EXACTLY over all 40320 orderings rather than by Monte Carlo   (rho = +0.6667 / +0.6667, exact p = 0.0831 / 0.0831 against g03's 50000-permutation 0.0820 / 0.0822. The arithmetic is correct. Everything below is about the INFERENCE, not the number)
+
+======================================================================================================================
+B.  WHAT THE RESIDUAL ACTUALLY IS
+======================================================================================================================
+  system           branch  log M*  sigma    resid  rank(resid)  rank(-logM*)  rank(beta)
+  Draco          isolated    5.46    9.1   +0.617            6             6           6
+  Sculptor       isolated    6.36    9.2   +0.177            3             2           3
+  Fornax              EFE    7.63   11.7   -0.380            0             0           4
+  Carina         isolated    5.58    6.6   +0.279            4             5           5
+  Sextans        isolated    5.64    7.9   +0.404            5             4           2
+  Leo I               EFE    6.74    9.2   -0.251            1             1           0
+  Leo II         isolated    5.87    6.6   +0.134            2             3           1
+  Ursa Minor     isolated    5.46    9.5   +0.654            7             7           7
+
+  Spearman(resid, -log M*)  = +0.9524   <-- the residual is a stellar-mass rank order
+  Spearman(-log M*, beta)   = +0.6905   <-- and THIS is the claimed correlation, without gravity
+  Spearman(resid, beta)     = +0.6667
+  Kendall tau(-log M*, beta) = +0.536  -- the whole test, restated: Hayashi's beta_z anticorrelates with M*
+  [FAIL] V1 (THE RESIDUAL IS A MASS ORDERING) for the correlation to be about orbits, the residual must carry rank information that stellar mass does not already carry. Spearman(resid, -log M*) must be below 0.9   (Spearman(resid, -log M*) = +0.9524: seven of the eight objects are in the same rank position in the residual as in inverse stellar mass. And Spearman(-log M*, beta) = +0.6905 is LARGER than the claimed +0.6667, so stellar mass alone outperforms the framework's residual)
+
+======================================================================================================================
+C.  THE ALGEBRA: R_half cancels, and the residual is 2 log(sigma) - 0.5 log(M*)
+======================================================================================================================
+  isolated branch: g_pred = sqrt(G M a0)/R and g_obs = 3 sigma^2/R, so R_half cancels IDENTICALLY:
+      Draco         resid = +0.6169   log10(3 sigma^2/sqrt(G M a0)) = +0.6169   EXACT
+      Sculptor      resid = +0.1767   log10(3 sigma^2/sqrt(G M a0)) = +0.1767   EXACT
+      Fornax        resid = -0.3803   log10(3 sigma^2/sqrt(G M a0)) = -0.2504   (EFE branch, differs)
+      Carina        resid = +0.2792   log10(3 sigma^2/sqrt(G M a0)) = +0.2792   EXACT
+      Sextans       resid = +0.4035   log10(3 sigma^2/sqrt(G M a0)) = +0.4035   EXACT
+      Leo I         resid = -0.2511   log10(3 sigma^2/sqrt(G M a0)) = -0.0126   (EFE branch, differs)
+      Leo II        resid = +0.1344   log10(3 sigma^2/sqrt(G M a0)) = +0.1344   EXACT
+      Ursa Minor    resid = +0.6542   log10(3 sigma^2/sqrt(G M a0)) = +0.6542   EXACT
+  spread of 2*log10(sigma) = 0.497 dex; of 0.5*log10(M*) = 1.086 dex -- ratio 2.18
+  the two EFE-branch objects are ['Fornax', 'Leo I'], which are the two most massive, so the branch choice is itself a stellar-mass indicator
+  [FAIL] V2 (VARIANCE BUDGET) for the residual to be a dynamical statistic, the kinematic term 2 log(sigma) must contribute at least as much spread as the photometric term 0.5 log(M*)   (2*log10(sigma) spans 0.497 dex, 0.5*log10(M*) spans 1.086 dex. On the six isolated-branch objects the residual is EXACTLY the deep-MOND Faber-Jackson residual and is dominated 2.2:1 by stellar mass by construction)
+
+======================================================================================================================
+D.  MUTATION CONTROLS: which input carries the correlation?
+======================================================================================================================
+  M-dispersions frozen to the sample mean (NO kinematics)        rho = +0.6905 (canonical), +0.6905 (alt)
+  M-stellar masses frozen to the sample mean (kinematics kept)   rho = +0.2619 (canonical), +0.2619 (alt)
+  M-baseline, nothing frozen                                       rho = +0.6667 (canonical), +0.6667 (alt)
+  [FAIL] V3 (THE MUTATION THAT DECIDES IT) a trajectory-dependent modification expresses itself through the KINEMATICS. So deleting the kinematics -- setting every velocity dispersion to the sample mean and leaving only M*, R_half and Galactocentric distance -- must DESTROY the correlation with anisotropy   (with every dispersion frozen the correlation is rho = +0.6905, i.e. LARGER than the baseline +0.6667. Freezing the stellar masses instead and keeping the kinematics collapses it to +0.2619. The correlation lives entirely in the stellar masses; the dynamics can be removed without loss. Whatever this measures, it is not a property of the orbits)
+
+======================================================================================================================
+E.  g03's CONFOUND CHECK A5 IS COMPUTED IN THE WRONG CURRENCY
+======================================================================================================================
+  PEARSON partial(resid, beta | log M*) -- what g03 reports as A5: +0.7172 (canonical), +0.7193 (alt), exact p = 0.0757
+  SPEARMAN partial, same variables on ranks -- matching the headline statistic: +0.1721 (canonical), +0.1721 (alt), exact p = 0.7017 (0.38 sigma)
+  g03's headline statistic is Spearman rho and its own stated weakest link is that 'the rank ordering is what
+  the statistic uses'. Its partial() is nevertheless a Pearson partial on the raw variables. The two disagree
+  by more than the null sd, so the sign of A5's verdict is a choice of statistic, at N = 8.
+  [FAIL] V4 (CURRENCY) the confound check must be computed in the same currency as the headline statistic. A Spearman headline requires a Spearman partial. The two must agree to within the null sd   (Pearson partial +0.7172 against Spearman partial +0.1721, a difference of 0.545 against a null sd of 0.378. In the claim's OWN currency, controlling for stellar mass takes the correlation to +0.1721 at exact p = 0.702 = 0.38 sigma -- consistent with zero. g03's verdict line 'Controlling for stellar mass does NOT weaken it (+0.717)' does not survive this)
+  
+  Local Volume Database compilation, same three statistics: Spearman(resid, beta) = +0.5476, Spearman(resid, -log M*) = +0.8095, Spearman partial | log M* = +0.4503
+  
+  AGAINST INTEREST -- the same two mutations on the Local Volume Database compilation are NOT as clean:
+      baseline +0.5476;  dispersions frozen +0.4048;  stellar masses frozen +0.4286
+      On that compilation the kinematics carry about as much as the masses, so the 'photometry carries all of
+      it' statement is specific to f09's hand-entered table. What is compilation-INDEPENDENT is the near-
+      degeneracy of the residual with stellar mass and the fact that the rank partial is consistent with zero.
+  [PASS] V5 (INDEPENDENT COMPILATION) the same diagnosis must hold on the Local Volume Database numbers, otherwise it is an artefact of f09's hand-entered table. The rank-partial on that compilation must also be consistent with zero for the diagnosis to stand   (Local Volume Database: raw rho = +0.5476, resid-vs-mass rank correlation +0.8095, Spearman partial controlling stellar mass = +0.4503. Same diagnosis, independent structural data. NOTE this check PASSING is a point AGAINST the claim, not for it)
+
+======================================================================================================================
+VERDICT
+======================================================================================================================
+  THE NUMBER REPRODUCES AND THE INFERENCE DOES NOT. rho = +0.667, exact p = 0.0831, 1.73 sigma,
+  identical on both footings. But in rank terms the residual IS the stellar-mass ordering
+  (Spearman = +0.952), and stellar mass alone correlates with Hayashi's beta_z at
+  +0.690 -- BETTER than the framework's residual does. Deleting every velocity dispersion from the
+  residual leaves the correlation at +0.690; deleting the stellar masses instead collapses it to +0.262.
+  The correlation is carried by the photometry, not the dynamics, so it cannot be a fingerprint of a
+  modification that attaches to trajectories.
+
+  AND g03's OWN CONFOUND CHECK REVERSES. A5 reports a Pearson partial (+0.717) while the headline is Spearman;
+  the matching Spearman partial is +0.172 at exact p = 0.70. 'Controlling for stellar mass does NOT
+  weaken it' is a currency mismatch, and the verdict line built on it should be withdrawn.
+
+  ORDINARY COLD DARK MATTER PRODUCES THIS SIGNATURE. A mass-anisotropy trend among the classical dwarfs is a
+  statement about the tracers and the modelling. Hayashi+2020 fit beta_z jointly with the halo axis ratio Q and
+  the inclination and report the Q-beta_z degeneracy themselves; fainter dwarfs have fewer member velocities and
+  their beta_z drifts toward whatever that degeneracy favours. No gravity theory is being discriminated.
+
+  WHAT SURVIVES: nothing that g03 did not already concede. Its A6 (Newtonian mutation keeps 64 per cent), A7
+  (below the shuffle's own 95th percentile), A8-A11 (the input variable is not measured) and A13 (the arms
+  agree on this observable) all stand and are correct. This file adds that the ONE thing g03 counted in the
+  claim's favour -- that mass does not explain it -- is the opposite of true.
+
+RESULT: 6 checks, 4 FAIL -> ['V1 (THE RESIDUAL IS A MASS ORDERING) for the correlation to be about orbits, the residual must carry rank information that stellar mass does not already carry. Spearman(resid, -log M*) must be below 0.9', 'V2 (VARIANCE BUDGET) for the residual to be a dynamical statistic, the kinematic term 2 log(sigma) must contribute at least as much spread as the photometric term 0.5 log(M*)', 'V3 (THE MUTATION THAT DECIDES IT) a trajectory-dependent modification expresses itself through the KINEMATICS. So deleting the kinematics -- setting every velocity dispersion to the sample mean and leaving only M*, R_half and Galactocentric distance -- must DESTROY the correlation with anisotropy', 'V4 (CURRENCY) the confound check must be computed in the same currency as the headline statistic. A Spearman headline requires a Spearman partial. The two must agree to within the null sd']   rc=1

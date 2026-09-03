@@ -1,0 +1,276 @@
+==============================================================================================================================
+1.  THE JEANS MACHINERY, AND THREE ANALYTIC RESULTS IT MUST REPRODUCE BEFORE IT TOUCHES ANY DATA
+==============================================================================================================================
+  A dispersion is not an acceleration.  Instead of substituting nu into a Newtonian mass estimator, the
+  prediction here is sigma itself, from the isotropic spherical Jeans equation
+        d(rho_t sigma_r^2)/dr = -rho_t g(r),      sigma_r^2(r) = (1/rho_t) int_r^inf rho_t g dr',
+  with rho_t the TRACER (member-galaxy) density and g the framework's own field.  For an isotropic
+  population the number-weighted line-of-sight dispersion equals the mass-weighted <sigma_r^2>, so
+        sigma_pred^2 = int rho_t sigma_r^2 r^2 dr / int rho_t r^2 dr     over the observed aperture,
+  and the liability table's currency follows exactly: boost = g_obs/g_pred = (sigma_obs/sigma_pred)^2.
+  tracer models: Plummer (a = r_h/1.3048) and Hernquist-like rho ~ r^-1(r+a)^-3 (a = r_h/2.4134), both solved to the same half-number radius, so they differ only in SHAPE
+  [PASS] J1 the Jeans solver reproduces the analytic Newtonian Plummer dispersion, so the integration, the weighting and the units are right   (solver 205.516 km/s vs analytic 205.510 km/s, ratio 1.0000)
+  [PASS] J2 the Jeans solver reproduces the deep-MOND virial theorem sigma^4 = (4/81) G M a_0 for an isolated Plummer sphere (Milgrom 1994).  This is the most important validation in the file: it is the exact relation the whole pressure-supported side of the liability table implicitly leans on   (solver gives sigma^4/(G M a_0) = 0.049388 against the exact 4/81 = 0.049383, agreement 0.011%)
+  [PASS] J3 in the deep-MOND field of a POINT mass -- which is what a group is, to its satellites -- the tracer dispersion obeys 3 sigma^2 = sqrt(G M a_0) for ANY tracer density profile.  That is why this measurement does not depend on how the satellites are distributed, and it is checked on two profiles differing by a factor 2.4 in central concentration   (Plummer tracers 1.00005, Hernquist-like tracers 1.00005, both against the exact 1)
+
+==============================================================================================================================
+2.  THE SAMPLE: Local Volume groups from the UNGC, on the catalogue's own membership criterion
+==============================================================================================================================
+  UNGC read: 869 Local Volume galaxies (Karachentsev, Makarov & Kaisina 2013)
+  distance methods: TRGB=272, TF=204, mem=170, h=86, BS=40, SBF=25
+  groups with >= 5 members (host + Theta_1 > 0 satellites): N = 26
+  [PASS] S1 the Local Volume supplies a group sample of the size the programme has been assuming it does   (26 groups, 333 member galaxies, host distances 0.01 - 10.70 Mpc)
+  [PASS] S2 the groups are dynamically old enough for an equilibrium dispersion to mean anything: the crossing time r_h/sigma must be under a Hubble time, or the Jeans equation does not apply and the measurement is void   (crossing times 0.19 - 12.36 Gyr, median 2.62; longest is NGC4736)
+  [PASS] S3 (bug pattern: a residual whose sign tracks a branch of my own prescription) removing the Hubble flow across each group's depth, using the members' individually measured distances, is a REAL choice and it is checked here rather than assumed harmless.  If the correction were large the answer would be a statement about the distance scale, not about gravity   (median |log10(sigma_Hubble-corrected / sigma_raw)| = 0.0122 dex, max 0.1247 dex (NGC6744); gapper vs plain rms differs by 0.0277 dex in the median)
+
+==============================================================================================================================
+3.  THE BARYON BUDGET, INCLUDING HOT GAS -- the trap that has bitten every group-scale MOND analysis
+==============================================================================================================================
+  Lovisari, Reiprich & Schellenberger 2015 (20 X-ray groups, on disk): log M_gas,500 = 1.008 log M500 -1.255, rms 0.091 dex, over M500 = 2.1e+13 - 1.4e+14 Msun; median f_gas,500 = 0.077
+  Kravtsov, Vikhlinin & Meshcheryakov 2018 (AstL 44, 8): M_star,500 = 1.7e12 (M500/1e14)^0.6 lets that be
+  re-expressed against MEASURED stellar mass and extrapolated down to Local Volume group masses.
+      extrapolated X-ray intragroup medium at M_star = 5e+10:  M_hot/M_star = 0.39
+      extrapolated X-ray intragroup medium at M_star = 1e+11:  M_hot/M_star = 0.62
+      extrapolated X-ray intragroup medium at M_star = 3e+11:  M_hot/M_star = 1.32
+  That runs two decades below the fitted range and must NOT be read as a measurement -- and it is known to
+  be an over-estimate at the low end, because the fitted slope is near 1 (f_gas roughly constant) whereas
+  f_gas is observed to FALL steeply below 10^13 Msun.  The independent handle at this scale is the summed
+  circumgalactic medium:
+      Bregman et al. 2018 (ApJ 862, 3): Milky Way hot halo ~ 4e10 Msun against M_star = 5e10 -> ~0.8
+      Werk et al. 2014 (ApJ 792, 8):    COS-Halos cool CGM ~ 1e10 Msun per L* galaxy         -> ~0.2
+  [PASS] B1 the two INDEPENDENT hot-gas prescriptions available at Local Volume group masses -- an X-ray scaling extrapolated two decades down, and a directly measured circumgalactic medium extrapolated across galaxies -- land inside the same bracket, which is what makes f_hot = M_hot/M_star in {0, 0.5, 1.0} defensible rather than invented.  If they disagreed by more than that bracket, the hot gas would have to be the headline uncertainty of this rung and it is not   (X-ray extrapolation gives M_hot/M_star median 0.40 (range 0.05 - 0.71); the circumgalactic measurements give 0.2 - 0.8; the bracket carried is 0 - 1.0 with a central 0.5)
+  baryonic masses (stars + HI, no hot gas): log M_b = 9.86 - 11.08, median 10.76; HI is 9% of it in the median, and the host galaxy carries 93% of the stellar light
+
+==============================================================================================================================
+4.  THE EXTERNAL FIELD -- and WHICH field it is, which turns out to matter by two orders of magnitude
+==============================================================================================================================
+  In QUMOND the external-field parameter is e_N = |g_N,ext|/a_0 where g_N,ext is the NEWTONIAN field sourced
+  by the actual matter.  In this framework the actual matter is BARYONS.  So the external field is built
+  here from the 2MRS K_s luminosities directly.  The 2M++ velocity-field reconstruction is computed beside
+  it and is ~100x larger -- because it returns the TOTAL-matter Newtonian field, which in this framework is
+  not a Newtonian field at all but (to good accuracy) the MOND field.  Section 4b shows the two agree once
+  that is undone, which is the check that decides which number belongs in nu's argument.
+  2MRS parsed: 43533 galaxies, 38565 with 350 < cz < 15000 km/s used, log L_K = 8.43 - 12.33
+
+  4b.  THE CONSISTENCY CHECK, at the Local Group where both methods are best calibrated:
+      baryonic (2MRS + UNGC):            g_N = 6.024e-15 m/s^2   = 0.00006 a_0
+      2M++ LambdaCDM reconstruction:     g   = 1.161e-12 m/s^2   = 0.01240 a_0
+      ... read as the framework's MOND field and inverted through nu(y) y a_0 = g:
+                                         g_N = 1.422e-14 m/s^2   = 0.00015 a_0
+      and the baryonic field, pushed forward through nu, gives a Local Group peculiar velocity of 328 km/s on the crude estimate v ~ g t_0, against the CMB dipole's 620 km/s (the LambdaCDM reconstruction gives 505 km/s the same way).  Neither is a fit; v ~ g t_0 is worth a factor of two and no more, and it is quoted only to show both routes are in the right decade.
+      CAVEAT, stated not buried: 2MRS is magnitude-limited and unmasked here for the zone of avoidance, so
+      the baryonic sum is a LOWER bound on the external field.  R4 shows a threefold error in it moves the
+      median boost by 11%, which is why this does not have to be fixed for the present purpose.
+  [PASS] E1 the two external-field routes agree to within a factor 2.5 once the LambdaCDM reconstruction is read as a MOND field and inverted, rather than being fed in as a Newtonian one.  That is what fixes the number going into nu's argument, and it says the naive move -- a LambdaCDM velocity-field reconstruction used directly as g_N -- is wrong by two orders of magnitude in e_N.  It is an agreement between two crude estimates, not a precision result, and R4b carries the consequence of its being wrong   (direct baryonic g_N = 6.024e-15, inverted-from-2M++ g_N = 1.422e-14, ratio 0.424; the un-inverted reconstruction would have given e_N = 0.0124 instead of 0.00006, a factor 193)
+
+    group            D/Mpc  meth  r_h/Mpc   e_N(far)  e_N(near)   e_N tot  x_int(r_h)  e_N/x_int
+    MESSIER031        0.77    3D    0.157    0.00010    0.00011   0.00021     0.00383       0.05
+    MESSIER081        3.63  proj    0.196    0.00013    0.00004   0.00012     0.00483       0.03
+    NGC3368          10.42  proj    0.459    0.00015    0.00024   0.00037     0.00089       0.41
+    Milky Way         0.01    3D    0.094    0.00011    0.00011   0.00007     0.01397       0.00
+    NGC5128           3.75  proj    0.326    0.00014    0.00003   0.00017     0.00189       0.09
+    NGC4258           7.83  proj    0.162    0.00017    0.00008   0.00018     0.00530       0.03
+    NGC5236           4.92  proj    0.331    0.00015    0.00005   0.00012     0.00109       0.11
+    NGC4736           4.66  proj    0.660    0.00015    0.00001   0.00015     0.00018       0.83
+    NGC4594           9.30  proj    0.257    0.00014    0.00001   0.00014     0.00410       0.03
+    IC0342            3.28  proj    0.416    0.00010    0.00012   0.00015     0.00054       0.28
+    NGC3412          10.40  proj    0.313    0.00016    0.00056   0.00059     0.00027       2.17
+    NGC0253           3.94  proj    0.495    0.00008    0.00000   0.00009     0.00068       0.13
+    NGC3115           9.68  proj    0.338    0.00014    0.00000   0.00014     0.00110       0.13
+    NGC3627          10.28  proj    0.235    0.00018    0.00011   0.00018     0.00320       0.06
+    NGC2784           9.82  proj    0.150    0.00010    0.00000   0.00010     0.00498       0.02
+    NGC6744           8.30  proj    0.070    0.00010    0.00000   0.00010     0.03042       0.00
+    NGC6946           5.89  proj    0.144    0.00011    0.00001   0.00011     0.00478       0.02
+    NGC4945           3.80  proj    0.257    0.00014    0.00004   0.00016     0.00282       0.06
+    MESSIER101        7.38  proj    0.215    0.00016    0.00009   0.00025     0.00256       0.10
+    NGC0925           9.29  proj    0.177    0.00006    0.00004   0.00006     0.00087       0.07
+    NGC2903           8.87  proj    0.205    0.00016    0.00001   0.00015     0.00224       0.07
+    NGC3432           9.20  proj    0.024    0.00016    0.00000   0.00016     0.02250       0.01
+    NGC3521          10.70  proj    0.213    0.00015    0.00006   0.00017     0.00384       0.04
+    NGC4631           7.38  proj    0.201    0.00018    0.00006   0.00016     0.00144       0.11
+    NGC5055           8.99  proj    0.227    0.00018    0.00012   0.00012     0.00272       0.05
+    NGC5194           8.40  proj    0.331    0.00018    0.00005   0.00018     0.00167       0.11
+  [PASS] E2 with the external field computed from BARYONS, Local Volume groups are mostly internal-field dominated at their half-number radii, and the external-field effect is a correction rather than the leading term.  This is the opposite of what the LambdaCDM reconstruction would have said, and it is checked rather than asserted because the whole prediction hangs on it   (median e_N/x_int(r_h) = 0.061, range 0.003 - 2.167; 1 of 26 groups are external-field dominated; with the un-inverted reconstruction it would have been 23 of 26)
+
+==============================================================================================================================
+5.  THE MEASUREMENT -- predicted vs observed dispersion, in the liability table's own currency
+==============================================================================================================================
+  --- canonical footing, a_0 = 9.360e-11 m/s^2; f_hot = 0.5; baryonic external field; interpolated EFE; Plummer tracers ---
+    group            N  g_bar/a0  sig_obs  sig_pred   boost     dex  +-stat  M_hot/M* for boost=1
+    MESSIER031      39   0.00289    118.6      88.3    1.80  +0.256   0.102                   6.0
+    MESSIER081      36   0.00340    125.6     105.0    1.43  +0.156   0.123                   2.8
+    NGC3368         31   0.00059    173.4      89.6    3.74  +0.573   0.141                  16.6
+    Milky Way       30   0.01122     97.4     100.9    0.93  -0.030   0.118                   0.2
+    NGC5128         27   0.00128    135.6     101.8    1.78  +0.249   0.159                   4.4
+    NGC4258         20   0.00414     88.9      99.1    0.81  -0.094   0.185                   0.0
+    NGC5236         16   0.00084     69.1      91.7    0.57  -0.246   0.194                   0.0
+    NGC4736         14   0.00013     52.3      73.3    0.51  -0.294   0.177                   0.0
+    NGC4594         10   0.00341    149.5     119.3    1.57  +0.196   0.275                   4.0
+    IC0342           9   0.00037     73.4      80.7    0.83  -0.082   0.232                   0.0
+    NGC3412          9   0.00022    103.2      50.0    4.26  +0.630   0.307                  18.9
+    NGC0253          8   0.00054     57.3     101.7    0.32  -0.498   0.251                   0.0
+    NGC3115          8   0.00090    106.1      97.9    1.17  +0.070   0.251                   1.4
+    NGC3627          8   0.00243     80.2     103.5    0.60  -0.222   0.232                   0.0
+    NGC2784          7   0.00374    100.2      95.1    1.11  +0.046   0.434                   1.0
+    NGC6744          7   0.02080     56.8     101.7    0.31  -0.507   0.355                   0.0
+    NGC6946          7   0.00363     69.2      92.1    0.56  -0.248   0.251                   0.0
+    NGC4945          6   0.00178    155.6      99.9    2.42  +0.384   0.307                   8.9
+    MESSIER101       6   0.00196     79.1      93.7    0.71  -0.147   0.275                   0.0
+    NGC0925          5   0.00062     38.5      63.5    0.37  -0.435   0.307                   0.0
+    NGC2903          5   0.00182     46.0      90.8    0.26  -0.591   0.307                   0.0
+    NGC3432          5   0.01469    121.8      53.6    5.16  +0.713   0.307                  78.9
+    NGC3521          5   0.00313     53.2     109.8    0.23  -0.630   0.434                   0.0
+    NGC4631          5   0.00106    184.8      75.4    6.01  +0.779   0.355                  75.4
+    NGC5055          5   0.00221     77.4      99.6    0.60  -0.219   0.355                   0.0
+    NGC5194          5   0.00122     53.2     106.5    0.25  -0.603   0.355                   0.0
+    MEDIAN BOOST = 0.817  bootstrap 16-84% [0.656, 1.110]  = -0.088 dex;  per-group 16-84% [0.32, 2.42];  median g_bar/a_0 = 0.00189
+  --- alt footing, a_0 = 1.130e-10 m/s^2; f_hot = 0.5; baryonic external field; interpolated EFE; Plummer tracers ---
+    group            N  g_bar/a0  sig_obs  sig_pred   boost     dex  +-stat  M_hot/M* for boost=1
+    MESSIER031      39   0.00239    118.6      92.5    1.65  +0.216   0.102                   4.7
+    MESSIER081      36   0.00282    125.6     109.9    1.31  +0.116   0.123                   2.1
+    NGC3368         31   0.00049    173.4      93.8    3.41  +0.533   0.141                  13.9
+    Milky Way       30   0.00929     97.4     105.4    0.85  -0.069   0.118                   0.0
+    NGC5128         27   0.00106    135.6     106.6    1.62  +0.209   0.159                   3.5
+    NGC4258         20   0.00343     88.9     103.6    0.74  -0.133   0.185                   0.0
+    NGC5236         16   0.00070     69.1      96.1    0.52  -0.286   0.194                   0.0
+    NGC4736         14   0.00011     52.3      76.8    0.46  -0.334   0.177                   0.0
+    NGC4594         10   0.00282    149.5     124.8    1.43  +0.157   0.275                   3.0
+    IC0342           9   0.00031     73.4      84.5    0.76  -0.122   0.232                   0.0
+    NGC3412          9   0.00018    103.2      52.3    3.89  +0.590   0.307                  16.2
+    NGC0253          8   0.00045     57.3     106.5    0.29  -0.538   0.251                   0.0
+    NGC3115          8   0.00074    106.1     102.6    1.07  +0.030   0.251                   0.9
+    NGC3627          8   0.00201     80.2     108.3    0.55  -0.261   0.232                   0.0
+    NGC2784          7   0.00310    100.2      99.5    1.01  +0.006   0.434                   0.6
+    NGC6744          7   0.01723     56.8     106.2    0.29  -0.544   0.355                   0.0
+    NGC6946          7   0.00301     69.2      96.3    0.52  -0.287   0.251                   0.0
+    NGC4945          6   0.00148    155.6     104.6    2.21  +0.344   0.307                   7.3
+    MESSIER101       6   0.00163     79.1      98.1    0.65  -0.187   0.275                   0.0
+    NGC0925          5   0.00052     38.5      66.5    0.33  -0.475   0.307                   0.0
+    NGC2903          5   0.00151     46.0      95.0    0.23  -0.631   0.307                   0.0
+    NGC3432          5   0.01217    121.8      56.0    4.73  +0.675   0.307                  69.0
+    NGC3521          5   0.00259     53.2     114.9    0.21  -0.670   0.434                   0.0
+    NGC4631          5   0.00088    184.8      78.9    5.48  +0.739   0.355                  63.7
+    NGC5055          5   0.00183     77.4     104.3    0.55  -0.259   0.355                   0.0
+    NGC5194          5   0.00101     53.2     111.5    0.23  -0.643   0.355                   0.0
+    MEDIAN BOOST = 0.746  bootstrap 16-84% [0.551, 1.014]  = -0.128 dex;  per-group 16-84% [0.29, 2.21];  median g_bar/a_0 = 0.00157
+
+  PRESCRIPTION AND SYSTEMATIC BRACKETS (canonical footing, median boost over the 26 groups):
+      isolated -- no external field                median boost =  0.706   (-0.151 dex)
+      interpolated EFE  (PRIMARY)                  median boost =  0.817   (-0.088 dex)
+      pure external-field branch                   median boost =  0.208   (-0.682 dex)
+      external field x3                            median boost =  0.909   (-0.041 dex)
+      2M++ field used raw as g_N (wrong, shown)    median boost =  2.215   (+0.345 dex)
+      Hernquist-like tracers                       median boost =  0.793   (-0.101 dex)
+      f_hot = 0  (no hot gas at all)               median boost =  0.912   (-0.040 dex)
+      f_hot = 1.0 (hot gas = all the stars)        median boost =  0.746   (-0.127 dex)
+      Upsilon_K = 0.4                              median boost =  1.011   (+0.005 dex)
+      Upsilon_K = 1.0                              median boost =  0.621   (-0.207 dex)
+  [PASS] R1 THE MEASUREMENT.  Local Volume groups do NOT reproduce the cluster deficit.  The liability table's pressure-supported rows have a median missing boost of 2.40 and every X-ray group and cluster row sits at 1.45-3.45; these groups sit BELOW almost all of those in acceleration, with a baryon budget counted galaxy by galaxy rather than modelled, and their median boost is far under the cluster median.  This check fails if the groups look like clusters   (canonical median boost 0.817 bootstrap [0.656, 1.110] = -0.088 dex; alt 0.746 = -0.128 dex; against the cluster/group rows' 1.45-3.45 and the pressure-supported median 2.40)
+  [FAIL] R2 the median is distinguishable from unity.  If this FAILS the correct statement is that Local Volume groups are CONSISTENT with the framework's zero-parameter prediction and this rung cannot discriminate -- which is itself the answer, because a rung that cannot discriminate must not be quoted as a success either   (unity is inside the bootstrap band [0.656, 1.110]; per-group spread [0.32, 2.42] against a typical single-group statistical error of 0.263 dex from the dispersion alone)
+  [PASS] R3 the hot gas is NOT the lever on this rung, which is the whole reason the Local Volume was worth the trouble.  Turning the bracket from no hot gas at all to a hot mass equal to the entire stellar content moves the median boost by less than the bootstrap error on that median.  At cluster scale the equivalent bracket is the dominant uncertainty; here it is not, because the baryons are counted galaxy by galaxy   (f_hot 0 -> 1.0 moves the median boost by a factor 0.818 (0.912 -> 0.746), against the bootstrap band's factor 1.692; the stellar M/L bracket, which IS a real lever, moves it by 1.629)
+  [PASS] R4 the external-field prescriptions that are ADMISSIBLE at the measured e_N/x_int agree.  E2 shows these groups run at e_N/x_int ~ 0.06, so the isolated branch, the interpolated branch and a threefold error in the external field bracket the answer; the pure external-field branch is a limit that does not apply here and is printed above only for completeness.  f09's check A6 caught the opposite situation -- residuals whose sign tracked which branch was used -- so this had to be tested, not assumed   (isolated 0.706, interpolated 0.817, external field x3 0.909 -- a factor 1.287, against the bootstrap band's 1.692.  The inapplicable pure external-field limit would give 0.208, a factor 3.93 from the primary)
+  [FAIL] R4b (THE LOAD-BEARING DEPENDENCE, AND IT FAILS ON PURPOSE) this rung's whole headline rests on E1: that the field entering nu's argument is the BARYONIC Newtonian field and not a LambdaCDM velocity-field reconstruction.  Feed the 2M++ reconstruction in raw, as the naive reading of the external field would, and these groups land ON TOP of the cluster rows instead of below them.  The check asserts R1's conclusion survives that substitution.  It does not.  So the reader is told plainly: if E1's inversion argument is wrong, this rung's answer reverses   (with the raw reconstruction the median boost is 2.215 (= +0.345 dex), inside the cluster band, against the primary 0.817.  E1 decides between them at a ratio of 0.42 and the Local Group's own measured motion; that argument is the load-bearing one)
+  [PASS] R6 the answer is not an aperture artefact.  The predicted dispersion is weighted over the observed member population; shrinking that aperture to the half-number radius or tripling it must not move the median boost by more than the bootstrap error, or the number would be a statement about where the catalogue stops   (aperture = r_h: 0.648;  aperture = r_max (primary): 0.817;  aperture = 3 r_max: 0.873)
+  [PASS] R5 the residual does not run with acceleration inside the sample.  A mis-normalised kernel, or an a_0 in the wrong place, would print a definite slope of log boost against log g_bar/a_0 across the 2.2 decades this sample spans.  Judged against a permutation null, not against zero by eye   (slope -0.019 (r = -0.02) against a permutation null of width 0.159, i.e. 0.12 sigma; sample spans g_bar/a_0 = 0.00013 - 0.02080)
+
+==============================================================================================================================
+6.  WHERE GROUPS SIT BETWEEN GALAXIES AND CLUSTERS
+==============================================================================================================================
+  the table's X-ray group and cluster rows (pressure-supported, boost <= 3): N = 14, median boost 2.11, at g_bar/a_0 = 0.004 - 1.640
+  the table's rotation-supported rows: median boost 1.99
+  THIS RUNG, UNGC Local Volume groups: boost = 0.82 canonical / 0.75 alt at g_bar/a_0 = 0.0019
+
+  The row for THE_LIABILITY_TABLE.md, in its format:
+     | 0.82 | 0.0019 | pressure | UNGC Local Volume groups, 26 groups, 333 members |
+
+  [PASS] C1 the group rung BREAKS the reading in which the deficit is a low-acceleration phenomenon.  These groups sit at 10^-4 to 10^-2 a_0 -- below every X-ray group and cluster row but one -- and carry a SMALLER boost than nearly all of them.  So the residual is not a function of acceleration; it appears where the baryon budget is MODELLED, not where it is COUNTED   (14 of 14 X-ray group/cluster rows sit ABOVE this rung's boost of 0.82, and they do so at HIGHER accelerations (median 0.111 a_0 against this rung's 0.0019 a_0))
+
+==============================================================================================================================
+7.  THE COHERENCE FORK: groups are pressure-supported too.  Their residual beside the dwarf spheroidals
+==============================================================================================================================
+  f09_orbital_coherence_fork.py found rotation-supported systems on the kernel (+0.013 dex) and the eight
+  classical dwarf spheroidals above it (+0.228 dex): a 1.73 sigma hint that the modification attaches to the
+  TRAJECTORY rather than to the field.  Local Volume groups are pressure-supported, six decades in mass away
+  from the dwarf spheroidals, with entirely different data -- so they are the independent replication that
+  hint needs.  Run here through the SAME Jeans machinery and the SAME external-field prescription.
+    dwarf spheroidal  g_bar/a0       e_N  sig_obs  sig_pred   boost     dex
+    Draco              0.00249   0.01554      9.1       1.9   22.04  +1.343
+    Sculptor           0.01203   0.01215      9.2       4.7    3.81  +0.581
+    Fornax             0.03573   0.00420     11.7      12.3    0.90  -0.046
+    Carina             0.00255   0.00817      6.6       2.4    7.67  +0.885
+    Sextans            0.00038   0.01215      7.9       1.4   29.78  +1.474
+    Leo I              0.03657   0.00145      9.2       7.7    1.44  +0.157
+    Leo II             0.01001   0.00171      6.6       4.3    2.38  +0.376
+    Ursa Minor         0.00371   0.01554      9.5       2.1   20.02  +1.302
+
+  population                                        median dex   scatter     N
+  rotating discs (f09, matched acceleration)            +0.013     0.175   105
+  classical dwarf spheroidals (this machinery)          +0.733     0.542     8
+  UNGC Local Volume groups (this machinery)             -0.088     0.407    26
+  [FAIL] F1 (THE FORK, AND THIS IS THE CHECK IT WAS WRITTEN TO BE ABLE TO FAIL) if the modification attaches to the trajectory rather than to the field, EVERY pressure-supported system should sit above the kernel, groups included.  This asserts a three-sigma positive offset for the groups.  A null here is exactly as informative as a hit: it says the rotation/pressure split does not generalise across mass   (group offset from the rotating control -0.101 dex, standard error 0.081, i.e. -1.24 sigma.  The dwarf spheroidals through this same machinery sit at +0.733 dex)
+  so f09's own matched-pair separation, recomputed with this file's prescription, is +0.720 dex +- 0.206 = 3.50 sigma
+  against its published +0.215 dex at 1.73 sigma.  BOTH directions are now on the table and they conflict:
+  the dwarf spheroidal separation gets STRONGER when the external field is fixed, and the groups -- the
+  independent pressure-supported replication -- return -0.101 dex.  A pattern that strengthens in one
+  population and vanishes in another is not yet a pattern; it is two measurements that have to be
+  reconciled, and the honest reading is that the fork stays open and unsettled.
+  [FAIL] F3 the two pressure-supported populations must AGREE if the rotation/pressure split is real.  They do not: the dwarf spheroidals sit high and the groups sit at the control.  This check asserts they agree to within the groups' own error, and it fails, which is the single most useful thing this section produces   (dwarf spheroidals +0.733 dex, groups -0.088 dex, a gap of +0.821 dex against the groups' standard error 0.081)
+  [FAIL] F2 and the dwarf spheroidal number MOVES when the prescription is fixed, which sizes how much of f09's 1.73 sigma was prescription rather than data.  f09 took the LARGER of the isolated and external-field predictions; this file interpolates them and puts the internal field in nu's argument as f02 requires, and it uses a BARYONIC external field rather than a naive one.  If the shift is large, f09's separation cannot be quoted at its published value   (same eight objects, same sigma and R_half: f09 published +0.228 dex, this file gets +0.733 dex, a shift of +0.505 dex)
+
+==============================================================================================================================
+8.  MUTATION CONTROLS
+==============================================================================================================================
+  [PASS] M1 mutation -- switch the kernel off (nu = 1, Newtonian gravity on the same measured baryons).  The boost must explode to the dark-matter-to-baryon ratio these groups are famous for; if it did not, the pipeline would not be measuring gravity at all   (Newtonian median boost = 15.0 (range 2.2 - 140.9) against the framework's 0.82: the kernel removes a factor 18 of the Newtonian missing mass in these groups)
+  [PASS] M2 mutation -- triple a_0.  In the deep-MOND limit the predicted acceleration goes as sqrt(a_0), so the boost must fall by 1/sqrt(3) = 0.577.  The external field and the transition region push these groups off the pure deep limit, so a 25% departure is allowed but not an arbitrary one   (median boost 0.477 vs 0.817, ratio 0.5841 against the deep-MOND 0.5774)
+  [PASS] M3 mutation -- shuffle the measured dispersions across groups.  Every marginal distribution is kept and only the pairing between a group's own baryons and its own kinematics is destroyed.  The MEDIAN boost is a marginal quantity and survives, which is a standing warning about what a median alone can prove; the acceleration slope of R5 must be indistinguishable from the shuffled one, and it is, because there is no slope there to destroy   (shuffled median boost 0.951 vs real 0.817; shuffled slope -0.121 +- 0.148 vs real -0.019)
+  [PASS] M4 mutation -- break the groups.  Give every group another group's radius and dispersion while keeping its own baryons.  The result must move well away from the real answer; if a scrambled catalogue gave the same number, the measurement would be a property of the marginal distributions rather than of the systems   (scrambled median boost 1.052 = +0.110 dex from the real 0.817)
+  [PASS] M5 both footings, and the answer is not a choice of a_0   (canonical 0.817, alt 0.746, difference +0.040 dex)
+
+==============================================================================================================================
+9.  WHAT THIS RUNG SETTLES AND WHAT IT DOES NOT
+==============================================================================================================================
+  MEASURED: 26 Local Volume groups, 333 member galaxies; every
+  distance, K_s luminosity and HI mass individually measured; hot gas bracketed by two independent
+  prescriptions; the external field built from baryons and cross-checked against the 2M++ reconstruction;
+  the prediction made by solving the Jeans equation, not by substituting nu into a Newtonian estimator.
+      median boost = 0.82 canonical / 0.75 alt, bootstrap [0.66, 1.11],
+      = -0.088 dex, at g_bar/a_0 = 0.0019.
+
+  WHAT IT SETTLES
+    1. The cluster deficit does NOT continue downward.  These groups sit at a median 0.0019 a_0 --
+       below all 14 X-ray group and cluster rows in the liability table -- and carry a boost of 0.82,
+       against those rows' 1.45-3.45.  Whatever the cluster residual is, it is not the low-acceleration tail
+       of a kernel error.  The one thing that changes between the two is whether the baryons are COUNTED or
+       MODELLED.
+    2. The fork gets a SPLIT verdict and STAYS OPEN.  Local Volume groups are pressure-supported and sit
+       -0.101 dex from the
+       rotating control (-1.24 sigma), so f09's split does not replicate six
+       decades of mass away.  On this evidence the split is a property of the dwarf spheroidals rather than
+       of pressure support as such -- and the tension is sharp, because the SAME prescription fix pushes
+       the dwarf spheroidals the other way, to +0.720 dex (3.5 sigma) from the
+       control.  Check F3 records that the two pressure-supported populations disagree by +0.82 dex.
+       What that is NOT: a refutation of modified inertia.  Milgrom's theorem
+       says only that modified inertia and modified gravity AGREE for circular deep-MOND orbits and DIFFER
+       otherwise -- it fixes no sign and no size for the difference on a group's eccentric satellite orbits.
+       So this null removes the empirical pattern that motivated the fork; it does not close the fork.
+    3. AGAINST INTEREST, and this is the largest single number in the file: the eight classical dwarf
+       spheroidals move from f09's +0.228 dex to +0.733 dex once the
+       external field is treated as QUMOND requires (Newtonian, baryonic) and the enclosed rather than the
+       total mass is used inside the half-light radius.  f09's dwarf spheroidal number should not be quoted
+       at its published value.
+
+  WHAT IT DOES NOT SETTLE
+    4. It cannot discriminate.  Unity sits inside the bootstrap band [0.66, 1.11] (check R2 FAILS),
+       because 5-39 members per group is 0.26 dex on each boost and the sample is 26 groups.  So
+       this rung is CONSISTENT with the framework's zero-parameter prediction and must not be quoted as a
+       confirmation of it.  LambdaCDM fits these groups too, with haloes.
+    5. It rests entirely on E1.  Check R4b fails on purpose: substitute a LambdaCDM velocity-field
+       reconstruction for the baryonic Newtonian field in nu's argument and the answer moves into the
+       cluster band.  E1's inversion and the Local Group's own motion are what decide that, and they are the
+       part of this file most worth attacking.
+    6. Membership reaches the zero-velocity surface (Karachentsev's Theta_1 > 0), so infalling galaxies are
+       inside the dispersions.  That inflates sigma_obs and therefore inflates the boost, so the measured
+       0.82 is an UPPER bound on the true value -- which pushes further from the cluster rows, not
+       closer to them.
+
+RESULT: 25 checks, 5 FAIL -> ["R2 the median is distinguishable from unity.  If this FAILS the correct statement is that Local Volume groups are CONSISTENT with the framework's zero-parameter prediction and this rung cannot discriminate -- which is itself the answer, because a rung that cannot discriminate must not be quoted as a success either", "R4b (THE LOAD-BEARING DEPENDENCE, AND IT FAILS ON PURPOSE) this rung's whole headline rests on E1: that the field entering nu's argument is the BARYONIC Newtonian field and not a LambdaCDM velocity-field reconstruction.  Feed the 2M++ reconstruction in raw, as the naive reading of the external field would, and these groups land ON TOP of the cluster rows instead of below them.  The check asserts R1's conclusion survives that substitution.  It does not.  So the reader is told plainly: if E1's inversion argument is wrong, this rung's answer reverses", 'F1 (THE FORK, AND THIS IS THE CHECK IT WAS WRITTEN TO BE ABLE TO FAIL) if the modification attaches to the trajectory rather than to the field, EVERY pressure-supported system should sit above the kernel, groups included.  This asserts a three-sigma positive offset for the groups.  A null here is exactly as informative as a hit: it says the rotation/pressure split does not generalise across mass', "F3 the two pressure-supported populations must AGREE if the rotation/pressure split is real.  They do not: the dwarf spheroidals sit high and the groups sit at the control.  This check asserts they agree to within the groups' own error, and it fails, which is the single most useful thing this section produces", "F2 and the dwarf spheroidal number MOVES when the prescription is fixed, which sizes how much of f09's 1.73 sigma was prescription rather than data.  f09 took the LARGER of the isolated and external-field predictions; this file interpolates them and puts the internal field in nu's argument as f02 requires, and it uses a BARYONIC external field rather than a naive one.  If the shift is large, f09's separation cannot be quoted at its published value"]   rc=1

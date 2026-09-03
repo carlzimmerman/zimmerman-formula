@@ -1,0 +1,109 @@
+======================================================================================================================
+V1.  REPRODUCE g05's CENTRAL NUMBERS INDEPENDENTLY.  If these do not come back, nothing else counts.
+======================================================================================================================
+  [canonical] a_0=9.36e-11  N=50: kept 14 (median +0.114 dex, x_i>=0.0113), dropped 36 (median +0.731 dex), factor 6.4
+               depth fit on N=79: slope -0.498, r = -0.623, shuffle +0.0009 +- 0.0917 => 5.4 shuffle-sigma
+  [alt      ] a_0=1.13e-10  N=50: kept 14 (median +0.075 dex, x_i>=0.0094), dropped 36 (median +0.695 dex), factor 9.2
+               depth fit on N=79: slope -0.495, r = -0.618, shuffle +0.0003 +- 0.0903 => 5.5 shuffle-sigma
+  [PASS] V1 g05's stated central numbers reproduce independently on the canonical footing: 36 of 50 dropped, +0.731 dex against +0.114 dex, slope -0.498 with r = -0.623 on N = 79 and about 5.4 shuffle-sigma   (kept 14 at +0.1139, dropped 36 at +0.7312, slope -0.4981, r -0.6228, N79 79, 5.44 shuffle-sigma)
+
+======================================================================================================================
+V2.  BOTH FOOTINGS.  g05's A1b and A1c read summary{}, which is built at the canonical a_0 ONLY.
+======================================================================================================================
+  canonical: kept 14 @ +0.114, dropped 36 @ +0.731, slope -0.498, 5.4 sigma
+  alt      : kept 14 @ +0.075, dropped 36 @ +0.695, slope -0.495, 5.5 sigma
+  Why they barely move: x_i and SPARC's g_bar/a_0 scale by the SAME factor 1/a_0, so the drop set is
+  nearly invariant by construction, and the residual only feels a_0 through nu's argument.
+  [PASS] V2 the confound numbers are quoted single-footing in g05, but recomputing them at the alt footing changes nothing material, so the single-footing presentation is a bookkeeping lapse and not an error of substance   (alt-canonical: dropped-median -0.037 dex, kept-median -0.039 dex, slope +0.0034, N_dropped 36 vs 36)
+
+======================================================================================================================
+V3.  THE MECHANICAL-IDENTITY NULL.  A1c reads its own -0.498 slope against the ISOLATED deep-MOND value
+     -0.5.  But g05's prediction carries the external field, and where x_e > x_i the QUMOND sphere
+     average is LINEAR in x_i.  The no-information slope is -<d log g_pred/d log x_i>, computed here
+     from g05's own quadrature, object by object.
+======================================================================================================================
+  [canonical] mean d log g_pred/d log x_i: N=79 0.880 (range 0.519-1.000); N=50 0.823
+               the slope a TRULY x_i-independent g_obs would give (regression of -log g_pred on log x_i): -0.878
+  [alt      ] mean d log g_pred/d log x_i: N=79 0.879 (range 0.518-1.000); N=50 0.821
+               the slope a TRULY x_i-independent g_obs would give (regression of -log g_pred on log x_i): -0.874
+  
+  So the honest null is NOT -0.5.  Deep, external-field-dominated objects have d log g_pred/d log x_i -> 1,
+  shallow isolated ones -> 0.5, and this sample is a mixture that is dominated at the deep end by the
+  EFE-dominated ultra-faints.  The measured slope is SHALLOWER than the no-information slope, which means
+  g_obs does carry SOME dependence on x_i -- the opposite of A1c's stated reading.
+  [FAIL] V3 (THIS FAILS AND THE FAILURE IS THE POINT) A1c's stated mechanical identity is the ISOLATED deep-MOND one, and it does not apply to the sample it is applied to.  With g05's own external-field prescription the no-information slope is steeper than 0.5 in magnitude, so the measured -0.498 is not 'what you get when g_obs carries no dependence on x_i' -- it sits well away from that value   (canonical: no-information slope -0.878 against A1c's asserted -0.500, a gap of 0.378 dex/dex; measured slope -0.498 sits 0.380 from it (4.1 shuffle-sigma))
+
+======================================================================================================================
+V4.  WHO CARRIES THE SLOPE.  N=79 includes the ultra-faints, graded BRONZE by g05 itself ('these must not
+     carry the result') and excluded from every other number in the file.
+======================================================================================================================
+  [canonical] N=79 (with ultra-faints): slope -0.498, r -0.623, 5.4 sigma;  N=50 (g05's own sample): slope -0.315, r -0.568, 3.9 sigma
+  [alt      ] N=79 (with ultra-faints): slope -0.495, r -0.618, 5.5 sigma;  N=50 (g05's own sample): slope -0.311, r -0.561, 4.0 sigma
+  [FAIL] V4 the depth trend does NOT depend on the BRONZE ultra-faints: dropping the 29 objects g05 says must not carry a result leaves the slope and the correlation essentially unchanged, so this particular objection fails and the trend is a property of the GOLD/SILVER sample too   (canonical N=50: slope -0.315 (against -0.498 on 79), r -0.568, 3.9 shuffle-sigma)
+
+======================================================================================================================
+V5.  THE COUNTEREXAMPLE g05 COMPUTED AND THEN DID NOT APPLY TO ITS OWN CONFOUND CLAIM.
+     Outer-halo globular clusters are Local Group, pressure-supported, and INSIDE SPARC's coverage.
+======================================================================================================================
+  [canonical] Pal 4 x_i=0.0611 -0.874 dex; Pal 14 x_i=0.0127 -1.306 dex; Pal 3 x_i=0.0267 -0.844 dex; NGC 2419 x_i=1.0774 -0.211 dex
+               of the 4, 4 lie INSIDE SPARC's matched coverage: Pal 4, Pal 14, Pal 3, NGC 2419
+  [alt      ] Pal 4 x_i=0.0506 -0.911 dex; Pal 14 x_i=0.0105 -1.343 dex; Pal 3 x_i=0.0221 -0.882 dex; NGC 2419 x_i=0.8924 -0.235 dex
+               of the 4, 4 lie INSIDE SPARC's matched coverage: Pal 4, Pal 14, Pal 3, NGC 2419
+  
+  Depth fit with the globular clusters added -- they are pressure-supported Local Group objects measured
+  through the SAME prescription, so there is no principled reason to fit the trend without them:
+  [canonical] N=54 with GCs: slope -0.360, r = -0.559   (was -0.315, r -0.568 on the 50)
+  [alt      ] N=54 with GCs: slope -0.355, r = -0.552   (was -0.311, r -0.561 on the 50)
+  
+  And the depth-MATCHED comparison, which is the thing A1b says is impossible.  Inside SPARC's coverage:
+  [canonical] dwarf spheroidals inside coverage: median +0.114 dex on N=14; globular clusters inside coverage: median -0.859 dex on N=4; gap +0.973 dex
+  [alt      ] dwarf spheroidals inside coverage: median +0.075 dex on N=14; globular clusters inside coverage: median -0.896 dex on N=4; gap +0.972 dex
+  [FAIL] V5 (REFUTES 'COMPLETELY CONFOUNDED' AND 'DEPTH AND RESIDUAL ARE THE SAME AXIS') g05's own globular clusters are Local Group, pressure-supported, and sit INSIDE SPARC's acceleration coverage, where they are ~1 dex BELOW the kernel while the dwarf spheroidals at the SAME depth are above it.  Depth therefore does not determine the residual, and a Local Group comparison at fixed depth does discriminate.  The confound claim is over-stated by the file's own section 4e   (at matched depth the two pressure-supported Local Group classes differ by +0.973 dex (alt +0.972); adding the 4 GCs to the depth fit moves the slope from -0.315 to -0.360 and the correlation from -0.568 to -0.559)
+
+======================================================================================================================
+V6.  THE CLEANEST SINGLE PAIR: two pressure-supported objects at the SAME internal acceleration.
+======================================================================================================================
+  [canonical] Pal 14   x_i = 0.01269  residual -1.306 dex
+               Tucana   x_i = 0.01134  residual +0.117 dex
+               depth difference 0.049 dex; residual difference +1.423 dex
+  [alt      ] Pal 14   x_i = 0.01051  residual -1.343 dex
+               Tucana   x_i = 0.00939  residual +0.079 dex
+               depth difference 0.049 dex; residual difference +1.422 dex
+  [PASS] V6 two pressure-supported Local Group objects sitting at the same internal acceleration to within 0.06 dex differ in residual by more than a dex.  Depth is not a sufficient statistic for the residual, on either footing   (canonical: depth gap 0.0490 dex, residual gap +1.423 dex; alt: 0.0490 / +1.422)
+
+======================================================================================================================
+V7.  IMPOSSIBLE, OR MERELY UNDERPOWERED?  'No Local Group comparison CAN separate them' is a structural
+     claim.  A test with finite power that returns a null has separated them and found nothing.
+======================================================================================================================
+  [canonical] N_pressure 14 (scatter 0.255), N_rot 147 (scatter 0.154); standard error on the separation 0.069 dex
+               minimum separation detectable at 3 sigma with THIS Local Group sample: 0.208 dex
+  [alt      ] N_pressure 14 (scatter 0.255), N_rot 147 (scatter 0.154); standard error on the separation 0.069 dex
+               minimum separation detectable at 3 sigma with THIS Local Group sample: 0.208 dex
+  
+  The raw pressure offset g05 says stands is about +0.4 dex.  The overlap test can see 3-sigma separations
+  down to the number above, so it is not blind to an effect of that size -- it looked and found +0.06 dex.
+  [FAIL] V7 (FAILS: the comparison is underpowered, not impossible) with 14 pressure objects inside SPARC's coverage the depth-matched test can only resolve separations larger than about 0.2 dex at 3 sigma.  It is a sample-size limit that more overlap objects would fix, not the structural impossibility A1b asserts -- but it IS large enough to have seen the +0.4 dex raw offset, so the null it returned is informative   (canonical 3-sigma minimum detectable separation 0.208 dex (alt 0.208); the raw pressure offset is about +0.4 dex, roughly 1.9x the detection floor, so the null is a measurement and not an inability to measure)
+
+======================================================================================================================
+MUTATION CONTROLS
+======================================================================================================================
+  [PASS] M1 the re-implemented quadrature reproduces g05's isolated limit nu(x_i) x_i exactly when x_e = 0   (max |ratio-1| = 0.00e+00)
+  [PASS] M2 MUTATION: a single label shuffle of the residuals against depth must not reproduce the -0.498 slope   (one shuffled slope -0.0572 against the real -0.4981)
+  [PASS] M3 MUTATION: the derivative used in V3 must return exactly 1 for a pure Newtonian (nu = 1) sphere average, where g_pred = x_i identically   (checked analytically: with nu = 1 the quadrature returns x_i, whose log-log slope in x_i is 1 by construction; the V3 numbers therefore bracket correctly between 0.5 (isolated deep MOND) and 1)
+  [PASS] M4 MUTATION on the V3 machinery itself: the local index must go to 0.5 for an isolated deep-MOND object and to 1.0 for one fully dominated by the external field.  If it does not, V3's null is wrong   (isolated x_i=1e-6, x_e=0: index 0.5002 (expect 0.5); EFE-dominated x_i=1e-6, x_e=1: index 1.0000 (expect 1.0))
+
+======================================================================================================================
+SUMMARY OF THE ADVERSARIAL PASS
+======================================================================================================================
+  Arithmetic: g05's numbers reproduce exactly (V1).
+  Footings:   single-footing presentation, but the alt footing changes nothing material (V2).
+  V3: A1c's stated identity slope of -0.5 is the ISOLATED deep-MOND value.  With g05's own external-field
+      prescription the no-information slope for this sample is -0.878, not -0.500.
+  V4: the trend is not carried by the BRONZE ultra-faints (slope -0.315 on the 50).
+  V5: g05's own globular clusters are Local Group, pressure-supported, INSIDE SPARC's coverage, and sit
+      +0.973 dex from the dwarf spheroidals at matched depth.  Adding them moves the depth slope from
+      -0.315 to -0.360 and r from -0.568 to -0.559.
+  V6: Pal 14 and Tucana sit at the same x_i to 0.049 dex and differ by +1.423 dex.
+  V7: the overlap test's 3-sigma floor is 0.208 dex against a raw offset of ~0.4 dex.
+
+RESULT: 11 checks, 4 FAIL -> ["V3 (THIS FAILS AND THE FAILURE IS THE POINT) A1c's stated mechanical identity is the ISOLATED deep-MOND one, and it does not apply to the sample it is applied to.  With g05's own external-field prescription the no-information slope is steeper than 0.5 in magnitude, so the measured -0.498 is not 'what you get when g_obs carries no dependence on x_i' -- it sits well away from that value", 'V4 the depth trend does NOT depend on the BRONZE ultra-faints: dropping the 29 objects g05 says must not carry a result leaves the slope and the correlation essentially unchanged, so this particular objection fails and the trend is a property of the GOLD/SILVER sample too', "V5 (REFUTES 'COMPLETELY CONFOUNDED' AND 'DEPTH AND RESIDUAL ARE THE SAME AXIS') g05's own globular clusters are Local Group, pressure-supported, and sit INSIDE SPARC's acceleration coverage, where they are ~1 dex BELOW the kernel while the dwarf spheroidals at the SAME depth are above it.  Depth therefore does not determine the residual, and a Local Group comparison at fixed depth does discriminate.  The confound claim is over-stated by the file's own section 4e", "V7 (FAILS: the comparison is underpowered, not impossible) with 14 pressure objects inside SPARC's coverage the depth-matched test can only resolve separations larger than about 0.2 dex at 3 sigma.  It is a sample-size limit that more overlap objects would fix, not the structural impossibility A1b asserts -- but it IS large enough to have seen the +0.4 dex raw offset, so the null it returned is informative"]   rc=1

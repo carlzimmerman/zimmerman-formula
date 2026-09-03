@@ -1,0 +1,130 @@
+======================================================================================================================
+PART 0.  THE INDEPENDENT QUADRATURE, checked before any data is touched.
+======================================================================================================================
+  [PASS] V0 the independent adaptive quadrature reproduces the framework's isolated kernel exactly when the external field is off, so it is the same prescription as g05's and not a second theory   (quad/nu(x)x = 1.000000000000, 1.000000000000, 1.000000000000, 1.000000000000)
+  [PASS] V0b MUTATION CONTROL: with nu = 1 the same quadrature returns the internal Newtonian field exactly at every external field, so the machinery manufactures no coupling of its own   (Newtonian quad / x_i = 1.000000000000, 1.000000000000, 1.000000000000)
+
+======================================================================================================================
+PART 1.  Q1 -- IS g05's ARITHMETIC RIGHT?  Independent re-derivation from the raw LVD CSVs.
+======================================================================================================================
+  [PASS] V1 the independent CSV parse reproduces g05's class sizes exactly (classical 11, M31 34, isolated 5, ultra-faint 29), so the sample selection is not where any disagreement lives   (classical 11, m31 34, isolated 5, ultrafaint 29)
+  canonical  a_0=9.36e-11:  N_pressure=14 matched, 36 dropped, N_rotating=147;  pressure median +0.0576 (sd 0.255), rotating median -0.0068 (sd 0.156);  separation +0.0644 dex, 0.93 sigma, perm p = 0.1086
+  alt        a_0=1.13e-10:  N_pressure=14 matched, 36 dropped, N_rotating=147;  pressure median +0.0571 (sd 0.255), rotating median -0.0081 (sd 0.156);  separation +0.0652 dex, 0.94 sigma, perm p = 0.1049
+  [PASS] V2 (g05's ARITHMETIC IS CLEAN) recomputed from the raw catalogues with different physical constants, a different quadrature and an independent parse, every headline number of g05 reproduces: +0.064 dex, 0.93 sigma, N = 14 matched / 36 dropped against 147 rotating, rotating control on zero, and the alt footing at +0.065 / 0.94.  There is no arithmetic defect in the estimator   (canonical +0.0644 dex / 0.93 sigma / p=0.1086 against g05's +0.064 / 0.93 / 0.1033;  alt +0.0652 / 0.94 against g05's +0.065 / 0.94;  rotating control -0.0068 (sd 0.156) against g05's -0.007 (0.156))
+
+  THE 14 OBJECTS THAT CARRY THE HEADLINE, ordered by internal acceleration:
+        object                 class             x_i   raw dex  SPARC ctrl    delta
+        Tucana                 isolated      0.01134    +0.117      +0.073   +0.045
+        Phoenix                isolated      0.01195    +0.383      +0.072   +0.311
+        Antlia B               isolated      0.01375    +0.231      +0.065   +0.166
+        Andromeda VI           m31           0.01479    +0.422      +0.040   +0.382
+        Andromeda VII          m31           0.01561    +0.111      +0.040   +0.071
+        Leo II                 classical     0.02059    +0.289      +0.026   +0.263
+        Sculptor               classical     0.02915    +0.217      -0.008   +0.225
+        Fornax                 classical     0.03371    -0.087      -0.016   -0.071
+        UGC 4879               isolated      0.06683    -0.091      +0.013   -0.104
+        Leo I                  classical     0.07279    -0.021      +0.019   -0.040
+        NGC 147                m31           0.27459    -0.550      +0.040   -0.590   <-- M31 dwarf/compact ELLIPTICAL, not a dSph
+        NGC 185                m31           0.51580    -0.041      +0.034   -0.075   <-- M31 dwarf/compact ELLIPTICAL, not a dSph
+        NGC 205                m31           1.42874    +0.015      +0.040   -0.026   <-- M31 dwarf/compact ELLIPTICAL, not a dSph
+        M 32                   m31          29.66499    +0.385      +0.013   +0.372   <-- M31 dwarf/compact ELLIPTICAL, not a dSph
+
+======================================================================================================================
+PART 2.  Q2 -- THE PRESSURE SIDE IS CONTAMINATED WITH ROTATION-SUPPORTED SYSTEMS.
+======================================================================================================================
+  g05's own classifier drops the LMC and the SMC by name, with the comment 'rotation-supported (belongs on
+  the OTHER side)'.  It does not apply that principle to the M31 early-type dwarfs.  NGC 147, NGC 205 and
+  M 32 are the textbook ROTATING members of that sequence (Geha et al. 2010, ApJ 711, 361; Simien & Prugniel
+  2002, A&A 384, 371; Geha et al. 2006, AJ 131, 332; Bender, Burstein & Faber 1992, ApJ 399, 462), and M 32
+  is a compact elliptical, not a dwarf spheroidal at all.  Two consequences, both against g05's conclusion:
+     (i)  they are rotation-supported, so on the hypothesis under test they belong on the ROTATING side;
+     (ii) g_obs = 3 sigma^2/r_1/2 is Wolf et al. 2010's DISPERSION-supported estimator.  For a rotating
+          system it omits the rotational support and UNDER-states g_obs, forcing the residual negative.
+  They are also exactly the objects the acceleration cut SPARES: the four highest x_i in the kept sample.
+  [PASS] V3 the four M31 dwarf/compact ellipticals are not a random 4 of the 14: they are the FOUR HIGHEST-x_i objects in the entire kept pressure sample, and every kept object above x_i = 0.1 is one of them.  The acceleration cut that g05 introduces to make the comparison honest is precisely the cut that promotes them to a quarter of the pressure votes   (kept objects with x_i > 0.1: NGC 147 (0.27), NGC 185 (0.52), NGC 205 (1.43), M 32 (29.66); they are 4/14 = 29 per cent of the matched pressure sample)
+
+  THE SEPARATION UNDER THREE SAMPLE DEFINITIONS, both footings:
+  definition                                               foot        N_p   sep dex   sigma   perm p
+  g05 as published (all 14 kept)                           canonical    14    +0.064    0.93   0.1038
+  minus the 4 M31 dE/cE (rotation-supported)               canonical    10    +0.125    2.27   0.0103
+  NO object named: both sides restricted to 0.01<x<0.10    canonical    10    +0.114    1.91   0.0504
+  g05 as published (all 14 kept)                           alt          14    +0.065    0.94   0.1036
+  minus the 4 M31 dE/cE (rotation-supported)               alt          10    +0.126    2.29   0.0097
+  NO object named: both sides restricted to 0.01<x<0.10    alt           8    +0.118    1.76   0.0738
+  [FAIL] V4 (THE REFUTATION, AND IT FAILS BECAUSE g05's CLAIM DOES NOT SURVIVE IT) g05 says the 1.73 sigma 'is not reproducible'.  It is.  Removing the four rotation-supported M31 dwarf and compact ellipticals from the PRESSURE side -- an exclusion g05's own classifier already applies to the LMC and SMC -- takes the separation from +0.064 dex / 0.93 sigma / p = 0.11 to +0.125 dex / 2.3 sigma / p = 0.010, on both footings.  That is LARGER in significance than f09's own 1.62-1.73 sigma.  The word WITHDRAWN is not supported: what g05 has shown is that the number depends on the composition of the pressure sample, not that the effect is absent   (canonical: all 14 -> +0.064 dex (0.93 sigma, p=0.1086);  10 genuine dSph -> +0.125 dex (2.27 sigma, p=0.0103).  alt: +0.126 dex (2.29 sigma).  f09 quoted +0.215 dex at 1.62 sigma in its own .out and 1.73 in the fork note)
+  [FAIL] V5 (FAILS, AND IT IS THE CLEANER FORM OF V4 BECAUSE IT NAMES NO OBJECT AND MAKES NO JUDGEMENT ABOUT ANY GALAXY'S KINEMATICS) restrict BOTH sides to the single decade 0.01 < x_i < 0.10 that the dwarf spheroidals actually occupy -- no exclusion list, no rotation call, just a symmetric acceleration restriction of the kind g05 itself argues for -- and the separation is +0.114 dex at 1.9 sigma, p = 0.054.  g05's A9 shows that LOOSENING the per-object window inflates the significance; it does not show that TIGHTENING the sample's acceleration span does the same thing.  Both are analysis choices, and 0.93 sigma is the value at only one of them   (canonical +0.114 dex (1.91 sigma, p=0.0504, N_p=10, N_rot=60); alt +0.118 dex (1.76 sigma, N_p=8))
+
+======================================================================================================================
+PART 3.  AGAINST MY OWN POINT.  Every way this refutation is fragile, computed rather than asserted.
+======================================================================================================================
+  (a) LEAVE ONE OBJECT OUT of the 14.  If my reading were right for a simple reason, one object would carry it:
+        without Tucana                 sep +0.0774 dex   1.04 sigma
+        without Phoenix                sep +0.0514 dex   0.72 sigma
+        without Antlia B               sep +0.0514 dex   0.69 sigma
+        without Andromeda VI           sep +0.0514 dex   0.74 sigma
+        without Andromeda VII          sep +0.0514 dex   0.69 sigma
+        without Leo II                 sep +0.0514 dex   0.71 sigma
+        without Sculptor               sep +0.0514 dex   0.70 sigma
+        without Fornax                 sep +0.0774 dex   1.05 sigma
+        without UGC 4879               sep +0.0774 dex   1.05 sigma
+        without Leo I                  sep +0.0774 dex   1.04 sigma
+        without NGC 147                sep +0.0774 dex   1.51 sigma
+        without NGC 185                sep +0.0774 dex   1.05 sigma
+        without NGC 205                sep +0.0774 dex   1.04 sigma
+        without M 32                   sep +0.0514 dex   0.73 sigma
+  [PASS] V6 (AGAINST MY OWN POINT) no single object carries the difference.  Dropping any ONE of the fourteen leaves the separation at or below 1.51 sigma; the 2.3 sigma needs all four ellipticals gone at once, which is partly median discreteness on N = 10.  My alternative number is fragile in exactly the way g05's is, and neither should be quoted as a measurement   (worst single leave-one-out: NGC 147 at 1.51 sigma; NGC 147 alone 1.51, M 32 alone 0.73)
+  [PASS] V7 (AGAINST MY OWN POINT, AND IT PASSES, WHICH IS THE POINT) I am not removing only objects that help me.  M 32's residual is +0.385 dex -- it pushes the pressure median UP -- and dropping it ALONE takes the separation DOWN to 0.73 sigma, further from my conclusion than g05's own number.  The exclusion set is defined by kinematic class, not by which way each object moves the answer   (M 32 delta +0.372 dex (helps the pressure side); without it +0.051 dex (0.73 sigma) against the full-sample 0.93 sigma)
+  [FAIL] V8 (AN ERROR IN g05 THAT RUNS THE OTHER WAY, reported because a verifier must report both directions) g05 divides a difference of MEDIANS by the standard error of a difference of MEANS.  The asymptotic standard error of a median is 1.2533 sigma/sqrt(n) for a normal parent, so the correctly scaled baseline is 0.74 sigma, not 0.93.  This makes g05's published number MORE null than it states, and it applies to f09's 1.62-1.73 sigma identically   (g05 quotes 0.93 sigma; median-corrected 0.74 sigma.  The permutation p = 0.1086 is unaffected and is the number that should be quoted)
+  [PASS] V9 the baseline separation's own bootstrap interval spans zero comfortably and also spans my alternative value, so the two readings are not statistically distinguishable from each other either.  This is a dispute about which objects belong in the sample, not about what the data say   (2.5-97.5 per cent bootstrap interval on the published separation: [-0.051, +0.270] dex; P(separation <= 0) = 0.200; my alternative +0.125 sits at the 70th percentile of it)
+  [PASS] V10 (g05's BROADER CONCLUSION SURVIVES AND IS AFFIRMED HERE) nothing in this refutation reaches three sigma either.  g05's structural finding stands untouched: 36 of the 50 pressure objects sit below SPARC's deepest acceleration, they carry a median residual an order of magnitude larger than the 14 that overlap, and support type cannot be separated from acceleration depth with Local Group data.  What is refuted is only the specific statement that f09's separation is WITHDRAWN and that 0.93 sigma is THE number   (largest alternative significance 2.29 sigma; dropped-object median raw residual +0.731 dex on N=36 against kept +0.114 dex on N=14)
+
+======================================================================================================================
+PART 4.  MUTATION CONTROLS ON THIS VERIFICATION ITSELF.
+======================================================================================================================
+  [PASS] W1 MUTATION: shuffling the pressure/rotating labels reproduces the published separation about one time in ten, which is the permutation p already reported.  The control agrees with g05 that the PUBLISHED separation is not significant -- my objection is to the sample, not to that arithmetic   (P(shuffled >= 0.064) = 0.1082)
+  [PASS] W2 MUTATION: the same shuffle on the dE-free sample does NOT reproduce its separation -- about one time in a hundred -- so the difference between 0.93 sigma and 2.3 sigma is not an artefact of the smaller N   (P(shuffled >= 0.125) = 0.0106 on N = 10)
+  [PASS] W3 MUTATION on the theory: raising a_0 by 100 drives every pressure object deep into the modified regime and the residuals must fall.  They do, by the same amount g05 reports, confirming the two pipelines are the same pipeline   (median residual +0.489 dex at canonical a_0 (g05: +0.489), -0.464 at 100 a_0)
+  [PASS] W4 MUTATION on the data: inflating every dispersion by sqrt(2) moves every observed acceleration by exactly log10(2), and nothing else responds   (shift +0.301029995664 against log10(2) = +0.301029995664)
+
+======================================================================================================================
+VERDICT OF THE VERIFICATION
+======================================================================================================================
+  THE ARITHMETIC IS CLEAN.  THE CONCLUSION IS NOT SUPPORTED BY IT.
+
+  Q1.  Every number in g05's claim reproduces exactly under an independent re-derivation with different
+       physical constants, a different quadrature and an independent parse of the raw catalogues:
+       +0.0644 dex, 0.93 sigma, N = 14 matched / 36 dropped / 147 rotating, alt footing +0.0652 dex.
+       No arithmetic defect, no units slip, no covariance or aperture error.  The enclosed-mass and
+       deprojected-radius repairs are correct, the QUMOND flux theorem is applied correctly, and the
+       Wolf et al. 2010 observed-side estimator is the right one FOR A DISPERSION-SUPPORTED SYSTEM.
+
+  Q2.  The null is an artefact of WHICH OBJECTS survive g05's own acceleration cut.  The four highest-x_i
+       objects in the kept sample are NGC 147, NGC 185, NGC 205 and M 32 -- M31 dwarf and compact
+       ELLIPTICALS with documented rotation, on which Wolf's dispersion-only estimator under-states g_obs.
+       g05's own classifier removes the LMC and SMC by name as 'rotation-supported (belongs on the OTHER
+       side)' and does not apply that rule here.  They are 4 of the 14 votes in the median.
+
+          g05 as published                                     +0.064 dex   0.93 sigma   p = 0.109
+          minus the four rotation-supported M31 dE/cE          +0.125 dex   2.27 sigma   p = 0.010
+          no object named, both sides at 0.01 < x_i < 0.10     +0.114 dex   1.91 sigma   p = 0.050
+
+       So 'the prior 1.73 sigma is not reproducible' is FALSE.  It is reproducible, and exceeded in
+       significance, under a sample definition at least as defensible as g05's -- and under one that names
+       no object at all.  g05's A9 correctly warns that LOOSENING the per-object window inflates the
+       significance; the same warning applies with the same force to the sample's acceleration SPAN, and
+       g05 does not make it.  The published 0.93 sigma is the value at one analysis choice among several.
+
+  WHAT SURVIVES OF g05, AND IT IS THE LARGER PART.  The structural finding is untouched and is affirmed
+  by this verification: 36 of 50 pressure objects sit below SPARC's deepest acceleration, they carry a
+  median residual of +0.73 dex against +0.11 dex for the 14 that overlap, and support type cannot be
+  separated from acceleration depth with Local Group data.  Nothing here reaches three sigma either, so
+  the rotation-versus-pressure separation remains a HINT and not a detection.  The prescription repair,
+  the three arithmetic-bug decompositions, the globular-cluster class and the isolated-dwarf class all
+  stand as g05 reports them.
+
+  WHAT MAY NOT BE QUOTED.  'f09's separation is WITHDRAWN' and '0.93 sigma' as THE number.  The defensible
+  statement is: 'at matched acceleration the separation is between +0.06 and +0.13 dex, 0.9 to 2.3 sigma
+  depending on whether rotating M31 early-type dwarfs are counted as pressure-supported; it is not a
+  detection on any choice, and the Local Group cannot separate support type from acceleration depth.'
+
+RESULT: 16 checks, 3 FAIL -> ["V4 (THE REFUTATION, AND IT FAILS BECAUSE g05's CLAIM DOES NOT SURVIVE IT) g05 says the 1.73 sigma 'is not reproducible'.  It is.  Removing the four rotation-supported M31 dwarf and compact ellipticals from the PRESSURE side -- an exclusion g05's own classifier already applies to the LMC and SMC -- takes the separation from +0.064 dex / 0.93 sigma / p = 0.11 to +0.125 dex / 2.3 sigma / p = 0.010, on both footings.  That is LARGER in significance than f09's own 1.62-1.73 sigma.  The word WITHDRAWN is not supported: what g05 has shown is that the number depends on the composition of the pressure sample, not that the effect is absent", "V5 (FAILS, AND IT IS THE CLEANER FORM OF V4 BECAUSE IT NAMES NO OBJECT AND MAKES NO JUDGEMENT ABOUT ANY GALAXY'S KINEMATICS) restrict BOTH sides to the single decade 0.01 < x_i < 0.10 that the dwarf spheroidals actually occupy -- no exclusion list, no rotation call, just a symmetric acceleration restriction of the kind g05 itself argues for -- and the separation is +0.114 dex at 1.9 sigma, p = 0.054.  g05's A9 shows that LOOSENING the per-object window inflates the significance; it does not show that TIGHTENING the sample's acceleration span does the same thing.  Both are analysis choices, and 0.93 sigma is the value at only one of them", "V8 (AN ERROR IN g05 THAT RUNS THE OTHER WAY, reported because a verifier must report both directions) g05 divides a difference of MEDIANS by the standard error of a difference of MEANS.  The asymptotic standard error of a median is 1.2533 sigma/sqrt(n) for a normal parent, so the correctly scaled baseline is 0.74 sigma, not 0.93.  This makes g05's published number MORE null than it states, and it applies to f09's 1.62-1.73 sigma identically"]   rc=1

@@ -1,0 +1,131 @@
+======================================================================================================================
+A.  THE SAMPLE: every pressure-supported system with a published velocity anisotropy AND the structural data
+======================================================================================================================
+  N = 8.  These are ALL of the classical dwarf spheroidals; three other populations were considered and are
+  marked NOT RUN in this file's docstring because no usable published anisotropy exists for them.
+  The brief's own bar was 'if it is under 8 the test is underpowered'.  It is exactly 8, which is the floor.
+
+  system          M*/Msun   g_N/a0    branch   beta_z     +-  residual dex
+  Draco          2.90e+05   0.0088  isolated   +0.611  0.179        +0.617
+  Sculptor       2.30e+06   0.0428  isolated   +0.383  0.256        +0.177
+  Fornax         4.30e+07   0.1271       EFE   +0.425  0.205        -0.380
+  Carina         3.80e+05   0.0091  isolated   +0.563  0.251        +0.279
+  Sextans        4.40e+05   0.0014  isolated   +0.339  0.281        +0.404
+  Leo I          5.50e+06   0.1300       EFE   +0.224  0.322        -0.251
+  Leo II         7.40e+05   0.0356  isolated   +0.241  0.358        +0.134
+  Ursa Minor     2.90e+05   0.0132  isolated   +0.755  0.082        +0.654
+
+======================================================================================================================
+B.  THE CORRELATION: residual against measured anisotropy, permutation-tested
+======================================================================================================================
+  canonical a0 = 9.36e-11:  Spearman rho = +0.667, Pearson r = +0.667, permutation p = 0.0820  (1.74 sigma)
+  alt       a0 = 1.13e-10:  Spearman rho = +0.667, Pearson r = +0.668, permutation p = 0.0822  (1.74 sigma)
+  50000 permutations per p-value; null sd of Spearman rho at N=8 is 1/sqrt(N-1) = 0.378
+  [FAIL] A1 (SAMPLE SIZE, AND IT FAILS BY CONSTRUCTION) the within-population anisotropy test needs a sample large enough that the effect it finds could reach three sigma.  Only eight classical dwarf spheroidals exist, and they are the ONLY pressure-supported systems in the sky with a homogeneous published anisotropy and the structural data the framework's kernel needs.  Three further populations were considered and none supplies a usable anisotropy   (N = 8; at the measured rho = +0.667 a three-sigma detection would need N = 14. Early-type galaxies NOT RUN (no per-galaxy anisotropy in the repository and the ATLAS3D JAM catalogue does not resolve in VizieR); outer-halo globulars Pal 4 / Pal 14 NOT RUN (no published internal anisotropy); galaxy clusters NOT RUN (published beta comes from NFW-based MAMPOSSt modelling, maximal circularity))
+  [FAIL] A2 (THE TEST ITSELF) the deficit correlates with measured anisotropy at three sigma, in the sense modified inertia would suggest -- more radially biased orbits sitting further above the framework's kernel   (Spearman rho = +0.667, permutation p = 0.0820, i.e. 1.74 sigma. The sign IS positive and IS the direction a trajectory-dependent modification would suggest, but this is a HINT at the same strength as f09's 1.7 sigma and must never be quoted higher)
+  [PASS] A3 the correlation is a property of the data and not of the acceleration constant: it must be the same on both footings of a0   (canonical rho = +0.667, alt rho = +0.667; the residuals shift with a0 but their ORDERING does not, so the rank correlation is footing-independent)
+  [PASS] A4 (STRUCTURAL ROBUSTNESS) the correlation must not depend on which compilation of stellar masses, half-light radii, dispersions and Galactocentric distances is used.  Recomputed from the Local Volume Database already in this repository (real_research/data/dsph/lvd_dwarf_mw.csv), independent of f09's hand-entered table   (f09 compilation rho = +0.667; Local Volume Database rho = +0.548; the two residual vectors correlate at r = +0.955. Difference 0.119 is inside the null sd 0.378, so the structural compilation is not driving anything)
+
+======================================================================================================================
+C.  THE CONFOUND: beta correlates with system type and mass, so mass must be partialled out
+======================================================================================================================
+  residual vs log M*      : r = -0.922   <-- the residual is very nearly a stellar-mass relation
+  anisotropy vs log M*    : r = -0.455
+  partial(residual, beta | log M*) = +0.717, permutation p = 0.0774 (1.77 sigma)
+  same on the alt footing = +0.719;  same on the Local Volume Database = +0.582
+  partial controlling log g_N/a0  : +0.676
+  partial controlling log R_half  : +0.637
+  partial controlling log sigma   : +0.779
+  [FAIL] A5 (THE CONFOUND CHECK, AND IT DOES NOT CLEAR ITS BAR) partialling out stellar mass must leave the anisotropy correlation significant at the five per cent level, otherwise the correlation cannot be distinguished from the mass trend that dark matter also predicts   (partial r = +0.717 (it goes UP from the raw +0.667, i.e. mass is not manufacturing it), but permutation p = 0.0774 = 1.77 sigma, short of the bar. AND NOTE THE WARNING: the residual correlates with log M* at r = -0.922, so the currency is very nearly a stellar-mass relation on its own and partialling it out removes most of the variance in a sample of eight)
+
+======================================================================================================================
+D.  MUTATION CONTROLS
+======================================================================================================================
+  M1 kernel OFF (nu = 1, pure Newtonian residual log10(g_obs/g_N)): rho = +0.429, partial|logM = +0.331
+  M2 shuffled anisotropy, 10000 draws: 95th percentile |rho| = 0.714, observed |rho| = 0.667
+  M3 anisotropy replaced by uniform draws over the same range: mean |rho| = 0.318, fraction exceeding the observed = 0.090
+  [FAIL] A6 (THE MUTATION THAT MATTERS, AND IT FAILS) if the correlation is about the framework's kernel, then turning the kernel OFF must destroy it.  Replacing nu by 1 -- pure Newtonian gravity, no modification of any kind -- and correlating the resulting mass discrepancy against the same anisotropies must leave a much weaker correlation   (Newtonian mutation still gives rho = +0.429 against the framework's +0.667, i.e. about 64 per cent of the signal survives with gravity completely unmodified. So most of what is being measured is a mass-discrepancy/anisotropy relation among dwarf spheroidals, which dark matter produces too, not a fingerprint of a trajectory-dependent modification)
+  [FAIL] A7 (SHUFFLE MUTATION) the observed correlation must exceed the 95th percentile of the shuffled-anisotropy null, which is the same bar f08's withdrawn result failed   (observed |rho| = 0.667 against a 95th percentile of 0.714; with eight objects a rank correlation of 0.67 is simply not rare under the null)
+
+======================================================================================================================
+E.  THE CIRCULARITY AUDIT: are these anisotropies usable to test a theory with no dark-matter halo?
+======================================================================================================================
+  Every published beta for a dwarf spheroidal is fitted JOINTLY with a dark-matter halo.  That is the
+  mass-anisotropy degeneracy.  The question is not whether it exists but HOW BIG it is compared with the
+  signal, and the two galaxies with resolved internal proper motions answer it directly.
+
+  between-object spread of the homogeneous set (Hayashi+2020, 8 objects): +0.224 to +0.755  =  0.531   <-- the entire signal lives inside this
+  Draco, published anisotropies, all from proper-motion or line-of-sight data on the same galaxy:
+      Hayashi+2020 beta_z (axisym Jeans, gen-Hernquist halo)      +0.611
+      Vitral+24 axisym beta_bar_B                              -0.200
+      Vitral+24 JAM beta_J                                     +0.560
+      Vitral+24 spherical beta_B                               +0.390
+      Massari+20 spherical NFW beta                            +0.250
+      -> spread for ONE galaxy: 0.811
+  Sculptor, same:
+      Hayashi+2020 beta_z (axisym Jeans, gen-Hernquist halo)      +0.383
+      Vitral+26 i=57.1 beta_J                                  +0.720
+      Vitral+26 i=57.1 beta_bar_B                              +0.350
+      Vitral+26 i-marginalised beta_J                          +0.130
+      Vitral+26 i-marginalised beta_bar_B                      -0.560
+      -> spread for ONE galaxy: 1.280
+  [FAIL] A8 (THE DECISIVE ONE) the per-object spread across published re-analyses must be SMALLER than the between-object spread the correlation is built from.  If one galaxy's anisotropy is less well known than the difference between galaxies, the ordering that the rank correlation depends on is not measured   (Draco spans 0.811 and Sculptor spans 1.280 across published values, against a between-object spread of only 0.531. The two BEST-measured dwarf spheroidals in the sky each carry a method-to-method uncertainty LARGER than the whole dynamic range of the test)
+
+  SUBSTITUTION TEST -- swap the two Jeans-derived values for the direct proper-motion-based ones and rerun:
+      Hayashi+2020 throughout (the baseline)                     rho = +0.667   partial|logM = +0.717   Pearson = +0.667
+      Vitral axisymmetric beta_bar_B (the least model-dependent) rho = +0.167   partial|logM = +0.037   Pearson = -0.013
+      Vitral meridional beta_J                                   rho = +0.595   partial|logM = +0.735   Pearson = +0.552
+      Vitral inclination-marginalised beta_J                     rho = +0.143   partial|logM = +0.154   Pearson = +0.231
+      Massari+20 Draco / Vitral i=57.1 Sculptor                  rho = +0.429   partial|logM = +0.479   Pearson = +0.295
+  [FAIL] A9 (SUBSTITUTION) the correlation must survive replacing the two Jeans-derived anisotropies with the proper-motion-based ones measured by the same technique on the same galaxies.  Those are the only two anisotropies in the sample that are constrained by data rather than by a halo prior   (largest change in Spearman rho under substitution is 0.524, against a null sd of 0.378. Substituting the least model-dependent values (Vitral axisymmetric) collapses the correlation from +0.667 to +0.167 and the Pearson coefficient to essentially zero. The result depends entirely on which published anisotropy is adopted for two of the eight objects)
+  [FAIL] A10 (THE NUISANCE PARAMETER) the published anisotropy of a single galaxy must not swing across the whole physical range when one unconstrained nuisance parameter is varied.  Vitral+2026 fit Sculptor at eleven inclinations from 43.7 to 90 degrees, all giving acceptable fits, because their Jeans models do not constrain the inclination at all   (Sculptor's beta_J runs from +0.98 to -0.88, a swing of 1.86, driven by NOTHING but the assumed viewing angle, against a between-object spread of 0.531. Their inclination-marginalised value is beta_J = +0.13 (+0.78,-1.15))
+
+  TRANSPORTABILITY.  A beta fitted inside a dark halo can only be reused to test the framework if the
+  framework's own mass profile is close to that halo.  Plummer scale lengths from Hayashi+2020 Table 1;
+  published slopes Gamma_dark over the same radii from Vitral+2024 (Draco) and Vitral+2026 (Sculptor).
+      Draco     framework phantom dln(rho)/dln(r) over 120-240 pc = -1.435 (canonical), -1.436 (alt);  published fitted halo Gamma_dark = -0.830;  gap 0.61
+      Sculptor  framework phantom dln(rho)/dln(r) over 120-240 pc = -1.184 (canonical), -1.185 (alt);  published fitted halo Gamma_dark = +0.290;  gap 1.47
+  [FAIL] A11 (TRANSPORTABILITY / CIRCULARITY) the framework's own phantom mass profile must be close to the halo inside which the published anisotropies were fitted, otherwise those anisotropies cannot be carried across. Vitral+2024 state the degeneracy explicitly -- models with a core require more radial anisotropy -- so a different assumed profile moves beta by a non-negligible amount, in a way that differs object by object   (the framework's phantom halo is CUSPIER than the fitted haloes by 0.61 (Draco) and 1.47 (Sculptor) in log slope. By the published degeneracy that pushes the inferred beta TANGENTIAL relative to the quoted values, by an object-dependent amount comparable to the whole between-object spread. Nobody has re-derived beta inside this framework's potential, so no published beta is transportable into it)
+
+======================================================================================================================
+F.  ERROR PROPAGATION, AND THE LIMIT THE THEORY ITSELF PUTS ON THIS OBSERVABLE
+======================================================================================================================
+  Monte Carlo over the published 68 per cent intervals (20000 draws): rho median +0.476, 16-84 range +0.214 to +0.714, fraction positive 0.948
+  median published uncertainty on beta is 0.253, against a between-object spread of 0.531 -- the error bars are half the whole dynamic range before any method systematic is added
+  [PASS] A12 (ERROR PROPAGATION) propagating only the quoted statistical uncertainties, the SIGN of the correlation should be robust in at least 90 per cent of draws   (94.8 per cent of draws are positive. This is the ONE thing in this file that passes cleanly, and it is worth almost nothing, because the quoted statistical errors are far smaller than the method-to-method spread measured in A8-A10, which the Monte Carlo does not include)
+  [FAIL] A13 (THE THEORY LIMIT ON THE OBSERVABLE ITSELF) the observable used here must be one for which modified inertia and modified gravity actually differ.  The deep-MOND virial relation -- which is what a global sigma^2/R residual measures -- is a theorem in modified-gravity formulations AND was derived for modified-inertia formulations by Milgrom 1994 (Ann. Phys. 229, 384; see also Milgrom 1997, Phys. Rev. E 56, 1148). So the arms are proven to AGREE on this observable in the deep-MOND limit   (all eight dwarfs sit at g_N/a0 = 0.0014 to 0.1300, i.e. deep in the MOND regime where the virial relation is common to both arms. Any anisotropy dependence is therefore a SECOND-ORDER effect, and modified inertia -- being a class rather than a theory -- predicts NEITHER its sign NOR its size. That forces a two-sided test, halves the power, and means even a clean correlation would not by itself select an arm. Marked as a FAIL because it is a structural limit on the test, not on the data)
+
+======================================================================================================================
+VERDICT
+======================================================================================================================
+  THE CORRELATION EXISTS AND IS NOT A RESULT.  Spearman rho = +0.667 (canonical), +0.667 (alt),
+  permutation p = 0.082 = 1.74 sigma on eight objects. Controlling for stellar mass does NOT
+  weaken it (+0.717, p = 0.077), so it is not obviously the mass trend dark matter also predicts, and the
+  sign is the one a trajectory-dependent modification would suggest. Quote it at 1.7 sigma or not at all.
+
+  THREE THINGS KILL IT, AND THEY ARE THE POINT OF THIS FILE:
+  1. THE INPUT VARIABLE IS NOT MEASURED WELL ENOUGH FOR THE TEST TO BE RUN. Published anisotropies for a
+     SINGLE galaxy span 0.81 (Draco) and 1.28 (Sculptor); the between-object spread the whole
+     correlation rests on is 0.53. Varying nothing but Sculptor's unconstrained inclination moves its beta
+     from +0.98 to -0.88. The ORDERING of the eight objects in anisotropy is simply not established.
+  2. SUBSTITUTING THE BEST-MEASURED VALUES COLLAPSES IT. Using the proper-motion-based axisymmetric
+     anisotropies for Draco and Sculptor takes rho from +0.667 to +0.167 and Pearson r to zero.
+  3. IT PARTLY SURVIVES TURNING GRAVITY BACK TO NEWTON. The same correlation computed with nu = 1 gives
+     rho = +0.429, so roughly 64 per cent of it is a mass-discrepancy/anisotropy relation among
+     dwarf spheroidals that dark matter produces as readily as any modification.
+
+  AND THE CIRCULARITY IS WORSE THAN A CAVEAT: the framework's own phantom halo is CUSPIER than the haloes
+  inside which these anisotropies were fitted, and the published mass-anisotropy degeneracy (core <-> radial)
+  then shifts beta by an object-dependent amount of order the entire signal. No published beta is
+  transportable into a theory with no dark-matter halo without redoing the modelling, which nobody has done.
+
+  WHAT WOULD MAKE THIS TEST REAL, and it is cheap to state: resolved internal proper motions for six more
+  classical dwarf spheroidals (N = 14 would carry the measured effect to three sigma), each analysed
+  axisymmetrically with the inclination constrained by higher-order moments as Vitral+2024/2026 do -- and,
+  separately, the anisotropy re-derived inside the framework's own potential so the input is not borrowed
+  from a dark-matter fit. Until then this is a hint on top of a hint, and the fork stays open.
+
+  NOTHING HERE RESCUES CLUSTERS and nothing here reopens the excluded modified-inertia action; f09's four
+  honest limits all still apply, and dark matter explains this pattern exactly as well.
+
+RESULT: 13 checks, 10 FAIL -> ["A1 (SAMPLE SIZE, AND IT FAILS BY CONSTRUCTION) the within-population anisotropy test needs a sample large enough that the effect it finds could reach three sigma.  Only eight classical dwarf spheroidals exist, and they are the ONLY pressure-supported systems in the sky with a homogeneous published anisotropy and the structural data the framework's kernel needs.  Three further populations were considered and none supplies a usable anisotropy", "A2 (THE TEST ITSELF) the deficit correlates with measured anisotropy at three sigma, in the sense modified inertia would suggest -- more radially biased orbits sitting further above the framework's kernel", 'A5 (THE CONFOUND CHECK, AND IT DOES NOT CLEAR ITS BAR) partialling out stellar mass must leave the anisotropy correlation significant at the five per cent level, otherwise the correlation cannot be distinguished from the mass trend that dark matter also predicts', "A6 (THE MUTATION THAT MATTERS, AND IT FAILS) if the correlation is about the framework's kernel, then turning the kernel OFF must destroy it.  Replacing nu by 1 -- pure Newtonian gravity, no modification of any kind -- and correlating the resulting mass discrepancy against the same anisotropies must leave a much weaker correlation", "A7 (SHUFFLE MUTATION) the observed correlation must exceed the 95th percentile of the shuffled-anisotropy null, which is the same bar f08's withdrawn result failed", "A8 (THE DECISIVE ONE) the per-object spread across published re-analyses must be SMALLER than the between-object spread the correlation is built from.  If one galaxy's anisotropy is less well known than the difference between galaxies, the ordering that the rank correlation depends on is not measured", 'A9 (SUBSTITUTION) the correlation must survive replacing the two Jeans-derived anisotropies with the proper-motion-based ones measured by the same technique on the same galaxies.  Those are the only two anisotropies in the sample that are constrained by data rather than by a halo prior', 'A10 (THE NUISANCE PARAMETER) the published anisotropy of a single galaxy must not swing across the whole physical range when one unconstrained nuisance parameter is varied.  Vitral+2026 fit Sculptor at eleven inclinations from 43.7 to 90 degrees, all giving acceptable fits, because their Jeans models do not constrain the inclination at all', "A11 (TRANSPORTABILITY / CIRCULARITY) the framework's own phantom mass profile must be close to the halo inside which the published anisotropies were fitted, otherwise those anisotropies cannot be carried across. Vitral+2024 state the degeneracy explicitly -- models with a core require more radial anisotropy -- so a different assumed profile moves beta by a non-negligible amount, in a way that differs object by object", 'A13 (THE THEORY LIMIT ON THE OBSERVABLE ITSELF) the observable used here must be one for which modified inertia and modified gravity actually differ.  The deep-MOND virial relation -- which is what a global sigma^2/R residual measures -- is a theorem in modified-gravity formulations AND was derived for modified-inertia formulations by Milgrom 1994 (Ann. Phys. 229, 384; see also Milgrom 1997, Phys. Rev. E 56, 1148). So the arms are proven to AGREE on this observable in the deep-MOND limit']   rc=1

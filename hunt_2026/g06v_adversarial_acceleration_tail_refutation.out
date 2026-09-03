@@ -1,0 +1,141 @@
+==============================================================================================================================
+A.  INDEPENDENT RECOMPUTATION OF THE RUNG -- analytic deep-MOND, no Jeans integration, no external field
+==============================================================================================================================
+  g06's own check J3 establishes that in the deep-MOND field of a POINT mass the tracer dispersion obeys
+      3 sigma^2 = sqrt(G M a_0)   for ANY tracer profile.
+  These groups run at x_int ~ 1e-4 - 2e-2 a_0 and e_N/x_int ~ 0.06, so they ARE in that limit and the host
+  carries 93% of the light.  So the whole Jeans apparatus is optional and the boost can be recomputed as
+      boost = sigma_obs^2 / sigma_pred^2,   sigma_pred = (G M_b a_0)^(1/4)/sqrt(3).
+  If this does not land on g06's 0.817 the audit has nothing to attack.
+  rebuilt independently: 26 groups, 333 members, D = 0.01 - 10.70 Mpc
+  [PASS] A1 the sample rebuild reproduces g06's sample exactly (26 groups, 333 members).  If it does not, everything below is about a different sample and the audit is void   (26 groups, 333 members against g06's 26 / 333)
+    group            N   D/Mpc  g_bar/a0  sig_obs  sig_ana   boost     g06
+    MESSIER031      39    0.77   0.00383    118.6     96.8    1.50    1.80
+    MESSIER081      36    3.63   0.00483    125.6    114.5    1.20    1.43
+    NGC3368         31   10.42   0.00089    173.4    114.9    2.28    3.74
+    Milky Way       30    0.01   0.01397     97.4    103.3    0.89    0.93
+    NGC5128         27    3.75   0.00189    135.6    116.8    1.35    1.78
+    NGC4258         20    7.83   0.00530     88.9    106.4    0.70    0.81
+    NGC5236         16    4.92   0.00109     69.1    102.7    0.45    0.57
+    NGC4736         14    4.66   0.00018     52.3     92.5    0.32    0.51
+    NGC4594         10    9.30   0.00410    149.5    125.8    1.41    1.57
+    IC0342           9    3.28   0.00054     73.4     96.5    0.58    0.83
+    NGC3412          9   10.40   0.00027    103.2     70.6    2.14    4.26
+    NGC0253          8    3.94   0.00068     57.3    111.3    0.26    0.32
+    NGC3115          8    9.68   0.00110    106.1    103.9    1.04    1.17
+    NGC3627          8   10.28   0.00320     80.2    113.1    0.50    0.60
+    NGC2784          7    9.82   0.00498    100.2    101.0    0.98    1.11
+    NGC6744          7    8.30   0.03042     56.8    108.6    0.27    0.31
+    NGC6946          7    5.89   0.00478     69.2     97.9    0.50    0.56
+    NGC4945          6    3.80   0.00282    155.6    114.6    1.84    2.42
+    MESSIER101       6    7.38   0.00256     79.1    102.3    0.60    0.71
+    NGC0925          5    9.29   0.00087     38.5     71.1    0.29    0.37
+    NGC2903          5    8.87   0.00224     46.0     96.7    0.23    0.26
+    NGC3432          5    9.20   0.02250    121.8     58.6    4.31    5.16
+    NGC3521          5   10.70   0.00384     53.2    112.8    0.22    0.23
+    NGC4631          5    7.38   0.00144    184.8     85.6    4.66    6.01
+    NGC5055          5    8.99   0.00272     77.4    106.7    0.53    0.60
+    NGC5194          5    8.40   0.00167     53.2    114.1    0.22    0.25
+    ANALYTIC MEDIAN BOOST = 0.648 canonical / 0.590 alt   bootstrap [0.540, 0.984]   (g06's Jeans result: 0.817 / 0.746)
+  [FAIL] A2 the analytic recomputation reproduces g06's per-group boosts.  The two differ only by the Jeans integration, the external-field interpolation and the satellite mass profile, none of which should matter at e_N/x_int ~ 0.06 in the deep limit.  A large disagreement would mean one of the two is wrong   (median |log10(mine/g06)| = 0.0759 dex, max 0.2997 dex; my median boost 0.648 vs g06's 0.817, a difference of -0.1006 dex)
+  [PASS] A3 the rung's central number is NOT distinguishable from unity, so it cannot on its own be quoted as sitting below anything.  This restates g06's own failing R2 in the independent recomputation, because the claim under audit leans on the value 0.82 and not merely on an upper bound   (unity is not inside the bootstrap band [0.540, 0.984]; per-group boosts span 0.22 - 4.66)
+
+==============================================================================================================================
+B.  SELECTION ON THE OUTCOME VARIABLE -- g06's comparison set was cut on the quantity being compared
+==============================================================================================================================
+  this rung spans g_bar/a_0 = 0.00018 - 0.03042, median 0.00264
+  g06's comparison set = pressure rows with boost <= 3.0: N = 14, median boost 2.11, x = 0.004 - 1.640
+
+  rows the boost<=3.0 cut removed, with their accelerations:
+      boost  44.70  at g_bar/a_0 = 0.001   MW ultra-faint dwarfs, 31 satellites (star counts)
+      boost   6.00  at g_bar/a_0 = 0.049   Pal 4 outer-halo globular (star counts)
+      boost   4.63  at g_bar/a_0 = 0.730   SLUGGS globular systems, log M* >= 11.3
+      boost   4.60  at g_bar/a_0 = 0.010   Pal 14 outer-halo globular (star counts)
+  [FAIL] B1 g06's comparison set is not selected on an independent variable.  The cut that defines it -- boost <= 3.0 -- is a cut on the DEPENDENT variable of the comparison.  This check asserts the cut is harmless because it removes no row inside this rung's own acceleration band; it fails if it does, because then the count '14 of 14' was produced by discarding the rows that would have contradicted it   (the cut removed 4 pressure rows; 2 of them lie INSIDE this rung's acceleration band [0.00018, 0.03042]: MW ultra-faint dwarfs, 31 satellites (star counts) (boost 44.70 at 0.001); Pal 14 outer-halo globular (star counts) (boost 4.60 at 0.010))
+
+  THE ACCELERATION QUESTION ASKED HONESTLY: every pressure/two-body row inside this rung's own band:
+      boost  44.70  at g_bar/a_0 = 0.001  [counted]  MW ultra-faint dwarfs, 31 satellites (star counts)
+      boost   2.63  at g_bar/a_0 = 0.004  [modelled]  eRASS1 groups 10^12.5-13.5 at R500
+      boost   4.60  at g_bar/a_0 = 0.010  [counted]  Pal 14 outer-halo globular (star counts)
+      boost   3.57  at g_bar/a_0 = 0.012  [counted]  isolated major galaxy pairs, 2MRS
+      boost   1.45  at g_bar/a_0 = 0.023  [modelled]  X-ray groups at R500
+      median of those 5 rows = 3.57;  THIS RUNG = 0.65
+  [FAIL] B2 THE HEADLINE, RE-ASKED WITHOUT THE OUTCOME CUT.  The claim is that the deficit does not extend downward in acceleration.  Restricted to the acceleration band this rung actually occupies, the table's other pressure-supported rows must therefore sit near 1 as well.  They do not: they sit at a factor of several, and the single largest boost in the entire liability table sits at the LOWEST acceleration in it -- below this rung's own median   (in-band rows median boost 3.57 (range 1.45 - 44.70) against this rung's 0.65, a gap of +0.741 dex.  The MW ultra-faint row sits at g_bar/a_0 = 0.001, BELOW this rung's median 0.00264, with boost 44.7)
+  [FAIL] B3 if the residual really is not a function of acceleration, the table's LOWEST-acceleration row should not also be its highest-boost row.  It is.  This is the table's own text ('three decades below a_0 and one decade above everything else in boost'), and it is the single datum most directly opposed to the claim under audit   (lowest-acceleration row = MW ultra-faint dwarfs, 31 satellites (star counts) at g_bar/a_0 = 0.001 with boost 44.7; highest boost in the table = 44.7.  They are the same row)
+
+==============================================================================================================================
+C.  THE PROPOSED EXPLANATORY VARIABLE -- 'counted vs modelled baryons' -- TESTED ON THE TABLE'S OWN ROWS
+==============================================================================================================================
+  The claim names one variable as what changes between the two rungs.  A variable offered as the explanation
+  of a residual must at minimum ORDER the rows of the table it is invoked to explain.  Test it.
+      COUNTED baryons  : N =  8, median boost 4.08, range 1.30 - 44.70
+      MODELLED baryons : N = 18, median boost 2.21, range 1.30 - 4.63
+      (for contrast, the split that DOES order the table -- rotation 1.99 vs pressure 2.21)
+      counted-vs-modelled gap 0.268 dex, permutation p = 0.006
+      rotation-vs-pressure gap 0.045 dex, permutation p = 0.721
+  [PASS] C1 'whether the baryon budget is counted or modelled' must separate the liability table's rows if it is the variable that explains them.  This check asserts it does, at p < 0.05 on a label permutation.  It fails: the counted-baryon rows include the four largest liabilities in the table (44.7, 6.40, 6.00, 4.60), every one of them a system whose stars are resolved and counted individually and which carries no abundance-matching mass and no hydrostatic bias   (counted median 4.08 vs modelled 2.21, gap 0.268 dex, p = 0.006; the counted side runs 1.30 - 44.70)
+      the five largest liabilities and their baryon provenance:
+           44.70  [counted ]  MW ultra-faint dwarfs, 31 satellites (star counts)
+            6.40  [counted ]  HI warp onset, 16 WHISP edge-on discs
+            6.00  [counted ]  Pal 4 outer-halo globular (star counts)
+            4.63  [modelled]  SLUGGS globular systems, log M* >= 11.3
+            4.60  [counted ]  Pal 14 outer-halo globular (star counts)
+  [FAIL] C2 and the direction is wrong as well as insignificant: if modelled baryons manufactured the residual, the modelled side should carry the LARGER boosts.  This asserts it does   (modelled median 2.21 vs counted median 4.08)
+
+==============================================================================================================================
+D.  AN INTERNAL CONFOUND g06 DOES NOT TEST: the boost against member count, i.e. data quality
+==============================================================================================================================
+  g06's stated weakest link is a possible ~0.4 dex common-mode offset between the two rungs' estimators, and
+  it says nothing bounds it.  Here is a 0.4 dex offset INSIDE the rung, on a variable that has nothing to do
+  with gravity: how many members the dispersion was measured from.
+      canonical : N >= 10  (9 groups) median boost 1.204   |   N < 10 (17 groups) median boost 0.526   |   gap +0.359 dex
+      alt       : N >= 10  (9 groups) median boost 1.096   |   N < 10 (17 groups) median boost 0.479   |   gap +0.359 dex
+      Spearman rank correlation boost vs N = +0.321; permutation p on the N>=10 / N<10 median gap = 0.1189
+  [FAIL] D1 the rung's headline must not depend on how well each group's dispersion was measured.  This check asserts the N >= 10 and N < 10 halves agree to within the bootstrap width of the median.  It fails: the nine best-measured groups sit at a boost of 1.20, at the bottom edge of the very cluster band the claim says they are separated from, and the headline 0.82 is produced by the seventeen groups with 5-9 members   (N >= 10: 1.204 (9 groups);  N < 10: 0.526 (17 groups);  gap +0.359 dex, permutation p = 0.1189, against the bootstrap band's 0.260 dex)
+  [FAIL] D2 the size of that gap against the author's own stated killer.  g06 says a common-mode offset of ~0.4 dex between the two rungs' estimators would erase the contrast and that nothing bounds it.  This check asserts the internal N-split offset is comfortably under half of that   (internal N-split offset 0.359 dex against the 0.4 dex the file names as fatal)
+  [PASS] D3 and the N-split is NOT an acceleration effect in disguise, which would have made it part of the claim rather than a confound.  The two halves sit at the same acceleration, so the boost gap between them is measured at fixed g_bar/a_0 and is therefore a data-quality effect, not a kernel effect   (median g_bar/a_0: N >= 10 0.00383, N < 10 0.00256, a difference of +0.176 dex -- the same acceleration, a +0.359 dex boost gap)
+  [FAIL] D4 THE CONSEQUENCE FOR THE CLAIM.  '14 of 14 cluster rows sit above this rung' must survive using only the groups whose dispersions are actually measured well.  It does not survive intact: at N >= 10 the rung sits at 1.20 against the lowest cluster row's 1.30   (N >= 10 rung boost 1.204; lowest pressure row in g06's comparison set 1.30; ratio 1.08, i.e. +0.033 dex, against the 0.41 dex the claim quotes as a 3.6 sigma separation from the cluster median)
+
+==============================================================================================================================
+E.  MUTATION CONTROLS
+==============================================================================================================================
+  [FAIL] M1 mutation -- shuffle the counted/modelled labels.  The real gap must be indistinguishable from a shuffled one if section C's null is honest, and it is: the real split carries no more information than a random relabelling of the same 26 rows   (real gap 0.268 dex, shuffled 0.086 +- 0.057 dex)
+  [FAIL] M2 mutation -- shuffle the member counts across groups, keeping every boost.  Section D's gap must be LARGER than the shuffled one, or the N-dependence is an artefact of a 9/17 split of a scattered sample rather than a real trend   (real |gap| 0.359 dex against shuffled 0.215 +- 0.112, 90th percentile 0.362)
+  [PASS] M3 both footings.  The N-split confound and the in-band comparison must not be a choice of a_0   (canonical gap +0.359 dex, alt gap +0.359 dex; rung median 0.648 / 0.590)
+  [PASS] M4 mutation -- the same trend judged by correlation rather than by a median split, against a permutation null, so the answer does not depend on where the split was put   (Pearson r(N, log boost) = +0.295 against a permutation null of width 0.120, i.e. 2.46 sigma; Spearman +0.321)
+
+==============================================================================================================================
+F.  VERDICT ON THE CLAIM
+==============================================================================================================================
+  WHAT SURVIVES.  The rung itself reproduces: 26 groups, boost 0.65 canonical / 0.59
+    alt by an INDEPENDENT analytic route, median per-group agreement 0.076 dex with g06's Jeans solve.  Local Volume groups are not a factor-2 liability, and
+    that is a real and useful negative.  Nothing here says the number 0.82 is wrong.
+
+  WHAT DOES NOT SURVIVE -- three separate defects in the INFERENCE built on it:
+    1. SELECTION ON THE OUTCOME.  '14 of 14' is counted over rows pre-filtered at boost <= 3.0.  That cut
+       removed 2 pressure rows lying INSIDE this rung's own
+       acceleration band, including the table's largest liability, the MW ultra-faint dwarfs at boost 44.7
+       and g_bar/a_0 = 0.001 -- BELOW this rung's median of 0.0026.  At matched acceleration the
+       table's other pressure rows sit at a median boost of 3.57, not at 1.
+    2. THE EXPLANATORY VARIABLE FAILS ON THE TABLE'S OWN ROWS.  'Counted vs modelled' does not order them
+       (gap 0.268 dex, p = 0.006, indistinguishable from a label shuffle), and it points the wrong
+       way: counted median 4.08 vs modelled 2.21.  The four largest boosts in
+       the table are all star-count systems with no abundance-matched mass and no hydrostatic bias.
+    3. A 0.4 DEX CONFOUND EXISTS AND IS INTERNAL.  Splitting on member count -- at fixed acceleration -- moves
+       the rung by +0.359 dex (p = 0.1189).  The nine groups with N >= 10 sit at 1.20,
+       at the bottom edge of the cluster band; the headline 0.65 is produced by the seventeen groups
+       with 5-9 members.  The author names ~0.4 dex as the offset that would erase the contrast and says
+       nothing bounds it.  Something does: his own sample.
+
+  WHAT THE CLAIM CAN STILL SAY, and it is worth saying: Local Volume groups, with baryons counted galaxy by
+  galaxy, do NOT show a factor 2-3 deficit, which is a genuine constraint on any story that makes the cluster
+  residual a smooth function of acceleration alone.  What it cannot say is that the deficit does not extend
+  downward in acceleration (the table's own low-acceleration rows do extend it), nor that counted-vs-modelled
+  baryons is the variable responsible (the table's counted rows carry its largest liabilities), nor that the
+  contrast is 3.6 sigma (a data-quality split inside the rung moves it by 0.4 dex).
+  AND THE OBVIOUS CONFOUND IS UNTOUCHED: ordinary cold dark matter reproduces this rung exactly as well.  A
+  group's dispersion is set by its halo, and the framework's kernel is calibrated on the same BTFR-like
+  scaling that halo abundance matching reproduces.  g06 concedes this in item 4.  So even were the inference
+  sound, it discriminates nothing between the framework and CDM; it is an internal bookkeeping statement.
+
+RESULT: 16 checks, 10 FAIL -> ["A2 the analytic recomputation reproduces g06's per-group boosts.  The two differ only by the Jeans integration, the external-field interpolation and the satellite mass profile, none of which should matter at e_N/x_int ~ 0.06 in the deep limit.  A large disagreement would mean one of the two is wrong", "B1 g06's comparison set is not selected on an independent variable.  The cut that defines it -- boost <= 3.0 -- is a cut on the DEPENDENT variable of the comparison.  This check asserts the cut is harmless because it removes no row inside this rung's own acceleration band; it fails if it does, because then the count '14 of 14' was produced by discarding the rows that would have contradicted it", "B2 THE HEADLINE, RE-ASKED WITHOUT THE OUTCOME CUT.  The claim is that the deficit does not extend downward in acceleration.  Restricted to the acceleration band this rung actually occupies, the table's other pressure-supported rows must therefore sit near 1 as well.  They do not: they sit at a factor of several, and the single largest boost in the entire liability table sits at the LOWEST acceleration in it -- below this rung's own median", "B3 if the residual really is not a function of acceleration, the table's LOWEST-acceleration row should not also be its highest-boost row.  It is.  This is the table's own text ('three decades below a_0 and one decade above everything else in boost'), and it is the single datum most directly opposed to the claim under audit", 'C2 and the direction is wrong as well as insignificant: if modelled baryons manufactured the residual, the modelled side should carry the LARGER boosts.  This asserts it does', "D1 the rung's headline must not depend on how well each group's dispersion was measured.  This check asserts the N >= 10 and N < 10 halves agree to within the bootstrap width of the median.  It fails: the nine best-measured groups sit at a boost of 1.20, at the bottom edge of the very cluster band the claim says they are separated from, and the headline 0.82 is produced by the seventeen groups with 5-9 members", "D2 the size of that gap against the author's own stated killer.  g06 says a common-mode offset of ~0.4 dex between the two rungs' estimators would erase the contrast and that nothing bounds it.  This check asserts the internal N-split offset is comfortably under half of that", "D4 THE CONSEQUENCE FOR THE CLAIM.  '14 of 14 cluster rows sit above this rung' must survive using only the groups whose dispersions are actually measured well.  It does not survive intact: at N >= 10 the rung sits at 1.20 against the lowest cluster row's 1.30", "M1 mutation -- shuffle the counted/modelled labels.  The real gap must be indistinguishable from a shuffled one if section C's null is honest, and it is: the real split carries no more information than a random relabelling of the same 26 rows", "M2 mutation -- shuffle the member counts across groups, keeping every boost.  Section D's gap must be LARGER than the shuffled one, or the N-dependence is an artefact of a 9/17 split of a scattered sample rather than a real trend"]   rc=1

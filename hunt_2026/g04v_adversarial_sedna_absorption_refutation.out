@@ -1,0 +1,143 @@
+================================================================================================================
+g04v -- ADVERSARIAL: is Sedna's shortfall STRUCTURAL (orbit-fit absorption) or INSTRUMENTAL (signal
+        too small for the astrometry)?  And is the '400 yr arc' number an artefact of a fixed epoch count?
+================================================================================================================
+  Sedna: a = 506.2 AU, e = 0.8496, r_now = 85 AU, P = 11389 yr; 25-yr arc = 0.220% of the orbit
+
+----------------------------------------------------------------------------------------------------------------
+V1 -- do g04's central Sedna numbers reproduce under an INDEPENDENT propagator, design matrix and projector?
+----------------------------------------------------------------------------------------------------------------
+     footing     dg mine      dg g04   raw mine   raw g04   post mine   post g04  chi100 mine  chi10 mine
+   canonical  1.3747e-12  1.3750e-12     0.3549    0.3549  2.2634e-02  2.263e-02      0.00469      0.0469
+         alt  2.9524e-12  2.9520e-12     0.7623    0.7623  4.8604e-02  4.860e-02      0.01008      0.1008
+  [PASS] V1a  g04's dg / raw / post-fit Sedna numbers reproduce independently to better than 5%   (worst relative deviation on (dg, raw, post-fit) = 0.02%, on the chi values = 4.33%, across both footings.  Different Kepler starter, different finite-difference steps (3e-7/4e-8/3e-8/4e-10 vs g04's 1e-6/1e-7/1e-7/1e-9), QR projector instead of lstsq.  THE ARITHMETIC IS NOT THE PROBLEM -- so the attack has to be on the inference, which is what V2 and V3 do)
+
+  V1b -- MUTATION CONTROLS on my own machinery (they must behave, or nothing below counts)
+  in-family a*(1+1e-9) absorbed to 2.49e-06 of itself;  e+1e-9 to 5.95e-07
+  dg=0 integrator vs analytic Kepler: 5.75e-05 mas (394x below the smallest post-fit signal);  chi of an identically-zero signal = 0.00e+00
+  [PASS] V1b  MUTATION CONTROL: in-family perturbations are absorbed, a zero signal gives zero chi, baseline clean   (a 1e-9 change in a is absorbed to 2.5e-06 of itself, in e to 6.0e-07; the dg=0 integrator matches the analytic orbit to 5.7e-05 mas; a null signal returns chi = 0.0e+00.  My projector is not leaking in-family power and is not manufacturing a residual)
+
+----------------------------------------------------------------------------------------------------------------
+V2 -- ATTACK 1: the decomposition.  Is the shortfall STRUCTURAL (absorption) or INSTRUMENTAL (magnitude)?
+----------------------------------------------------------------------------------------------------------------
+  3/sigma_obtained = I x S, with
+     S = raw / post-fit                      the STRUCTURAL factor -- what the 4 free elements eat
+     I = 3 / (raw / (precision/sqrt(N)))     the INSTRUMENTAL factor -- how far the FULLY UNABSORBED
+                                             raw signal would still be from a 3-sigma bar
+  The claim 'structurally rather than instrumentally' asserts S > I.  Note S is the same at every
+  precision, so the verdict can and does flip between the two precisions the claim is quoted at.
+
+     footing   prec  raw [mas]  post [mas]  S (absorb)  I (instr)     I x S     3/chi               verdict
+   canonical    100     0.3549  2.2634e-02       15.68      42.21     661.9     639.0          INSTRUMENTAL
+   canonical     10     0.3549  2.2634e-02       15.68       4.22      66.2      63.9            STRUCTURAL
+         alt    100     0.7623  4.8604e-02       15.68      19.65     308.2     297.6          INSTRUMENTAL
+         alt     10     0.7623  4.8604e-02       15.68       1.97      30.8      29.8            STRUCTURAL
+  (I x S reproduces the actual 3/chi shortfall to 3.6%, so the factorisation is exact, not a fit)
+  [FAIL] V2a  the shortfall is STRUCTURAL at the headline 100 mas precision the claim is quoted at   (IT IS NOT.  At 100 mas the instrumental factor is I = 42 against a structural factor S = 16 (alt: I = 20, S = 16).  THE INSTRUMENT IS THE BIGGER OF THE TWO, by 2.7x (canonical) / 1.3x (alt).  The headline sentence -- 'the precession signal is reabsorbed by its own orbital elements' -- names the SMALLER of the two causes at the precision the headline sigma (0.005) is quoted at)
+  [PASS] V2b  ... and at 10 mas, where the claim IS structurally dominated   (here it holds: S = 16 against I = 4.2 (alt S = 16, I = 2.0).  So the claim's stated mechanism is correct at LSST-class precision and incorrect at ground-based precision.  It is a PRECISION-DEPENDENT statement being quoted as an unconditional structural one)
+
+  V2c -- the counterfactual that settles it: switch the absorption OFF entirely
+  Suppose the 4-element degeneracy did not exist at all -- a perfect experiment that measures the RAW
+  signal with no orbit fit.  Does Sedna's 25-yr arc then reach 3 sigma?
+     footing   prec   raw sigma (no fit at all)  still short by
+   canonical    100                       0.071            42.2x
+   canonical     10                       0.711             4.2x
+         alt    100                       0.153            19.7x
+         alt     10                       1.526             2.0x
+  [FAIL] V2c  with absorption switched OFF, the 25-yr arc reaches 3 sigma at 100 mas   (IT DOES NOT -- 0.071 sigma (canonical) / 0.153 (alt), still 42x short with the orbit-fit degeneracy ENTIRELY REMOVED.  This is the cleanest refutation of the stated reason: at 100 mas you could hand the experiment a perfect, absorption-free measurement of the whole raw signal and it would still fail by a factor of 42.  '25 yr is 0.22% of one orbit' is a true statement about the absorption factor of 16x; it is NOT the reason the 0.005-sigma number is 0.005.  At 10 mas the counterfactual gives 0.71 sigma, still short by 4.2x -- so even there the absorption is not the whole story)
+
+----------------------------------------------------------------------------------------------------------------
+V3 -- ATTACK 2: g04's D4 arc scan holds the epoch count at 401 for EVERY arc length
+----------------------------------------------------------------------------------------------------------------
+  g04's D4 builds every arc with NEP = 401 epochs, so a 400-yr programme is credited with the same
+  number of observations as a 25-yr one.  A real programme at FIXED CADENCE has N proportional to T.
+  g04's own baseline cadence is 401 epochs / 25 yr = 16.04 epochs per year.  Carrying that
+  cadence forward multiplies chi by sqrt(T/25).  Below: g04's fixed-N scan re-run, and the same scan
+  at fixed cadence.  Canonical footing, 10 mas, MI-A -- exactly the configuration D4a checks.
+
+   arc [yr]  % orbit  N fixed  post [mas]  sigma fixed-N  N cadence  sigma cadence
+         25     0.22      401  2.2634e-02           0.05        401           0.05
+         50     0.44      401  1.7586e-01           0.36        802           0.51
+         75     0.66      401  4.9492e-01           1.09       1203           1.88
+        100     0.88      401  6.6592e-01           1.91       1604           3.81
+        150     1.32      401  4.4266e-01           2.55       2406           6.25
+        200     1.76      401  6.4776e-01           2.85       3208           8.05
+        300     2.63      401  1.9537e+00           4.68       4812          16.14
+        400     3.51      401  3.8224e+00           8.08       6416          32.18
+  [FAIL] V3a  g04's '~400 yr arc for 3 sigma' survives when the epoch count is allowed to grow with the arc   (IT DOES NOT.  At g04's own fixed 401 epochs the 3-sigma crossing is at ~300 yr, reproducing D4a.  At g04's own baseline cadence of 16.0 epochs/yr held constant, the crossing moves to ~100 yr -- INSIDE D4a's own 'realistic <= 200 yr' bar, which means D4a's stated verdict ('IT DOES NOT') is produced by the scan's bookkeeping, not by the physics.  The quoted '~400 yr = 3.5% of the orbit' should be read as an upper bound conditional on never taking another observation after the 401st.  NOTE this cuts the claim's rhetoric, not its bottom line: 100 yr is still far beyond any programme, and the 25-yr answer is unchanged)
+
+  V3b -- MUTATION CONTROL on the arc scan: dg = 0 must give chi ~ 0 at every arc
+  arc    25 yr, N =   401: chi of the (integrator - analytic) baseline difference = 1.120e-04
+  arc   100 yr, N =  1604: chi of the (integrator - analytic) baseline difference = 6.313e-04
+  arc   400 yr, N =  6416: chi of the (integrator - analytic) baseline difference = 2.069e-03
+  [PASS] V3b  MUTATION CONTROL: the dg=0 baseline carries no spurious significance at any arc length   (worst chi from the integrator's own baseline error is 2.07e-03 at 10 mas, against the 3.0 bar and against the 3-sigma crossings quoted above.  The growth of chi with arc in V3a is therefore signal, not accumulated integration error -- which is the failure mode that would have made ATTACK 2 itself wrong)
+
+----------------------------------------------------------------------------------------------------------------
+V4 -- does the negative SURVIVE the confounds?  (checking g04's conclusion is not too optimistic)
+----------------------------------------------------------------------------------------------------------------
+  A real Sedna solution does not fit 4 parameters.  It fits 6 elements, the planetary masses, and -- in
+  every Planet Nine paper -- a distant perturber.  Adding ONE more free column, an unmodelled interior
+  mass (a GM rescale), is the minimum honest extension and it is exactly the nuisance g04 flags as the
+  D3a killer.  If the negative is real it must get WORSE, never better, when that column is added.
+
+     footing  reading   chi 4-elt @10mas   chi 5-par @10mas   degradation
+   canonical     MI-A              0.047              0.001      1.15e-02
+   canonical     MI-B              5.701              0.012      2.18e-03
+         alt     MI-A              0.101              0.001      1.18e-02
+         alt     MI-B             12.242              0.027      2.21e-03
+  [PASS] V4a  adding one nuisance parameter (unmodelled interior mass) makes the Sedna channels WORSE, not better   (every channel loses significance: worst-case ratio 1.18e-02 <= 1.  MI-B, being exactly a GM rescale, is annihilated -- which independently confirms g04's own D3a killer (a detection would be read as 68 M_earth of Planet Nine, not as gravity) and shows g04's 4-parameter fit is the GENEROUS choice.  So g04's negative is conservative in the right direction and my two attacks are attacks on its stated REASON, not on its bottom line)
+
+----------------------------------------------------------------------------------------------------------------
+V5 -- the astrometric systematic floor, which g04 flags but does not compute
+----------------------------------------------------------------------------------------------------------------
+  Sedna's 25-yr arc is heterogeneous ground-based astrometry tied to successive reference catalogues.
+  A catalogue-systematic floor does NOT average down as 1/sqrt(N).  g04 asserts this makes the numbers
+  worse; here is by how much, for floors of 1, 5 and 20 mas on top of the 10 mas LSST-class statistics.
+   floor [mas]   MI-A sigma   MI-B sigma   (canonical, 10 mas per-epoch, 401 epochs)
+             0       0.0469        5.701
+             1       0.0210        2.547
+             5       0.0047        0.567
+            20       0.0012        0.142
+  [PASS] V5a  g04's 'a systematic floor makes it worse, not better' is verified quantitatively   (a 1 mas floor already drops the MI-B channel from 5.70 to 2.55 sigma and a 5 mas floor to 0.57.  So g04's D3a headline '5.7 sigma at 10 mas' requires the astrometry to be statistics-limited to below ~1 mas systematic, which no 25-yr heterogeneous TNO arc is.  This STRENGTHENS g04's negative and WEAKENS its one surviving prospective item -- a caveat g04 states in words and does not number)
+
+================================================================================================================
+VERDICT ON THE CLAIM
+================================================================================================================
+
+ THE ARITHMETIC IS SOUND.  dg = 1.375e-12 / 2.952e-12 m/s^2, raw
+ 0.355 / 0.762 mas, post-fit 0.0226 /
+ 0.0486 mas, 0.0047 / 0.0101 sigma at 100 mas and
+ 0.047 / 0.101 at 10 mas, all reproduced to better than 0.02%
+ on an independent propagator, design matrix and projector.  The bottom line -- the Sedna PRECESSION channel is
+ shut -- is CORRECT, and it is conservative: every confound I could add (a 5th nuisance parameter, an
+ astrometric systematic floor) makes it worse, and the 4-element fit g04 uses is the generous choice.
+
+ THE STATED REASON IS WRONG AS QUOTED.  'Falls short structurally rather than instrumentally' factorises as
+ 3/sigma = I x S.  At the 100 mas precision the headline 0.005 sigma is quoted at, I = 42
+ and S = 16: the INSTRUMENT is the larger factor by 2.7x.  The counterfactual is decisive --
+ delete the orbit-fit degeneracy entirely and the raw signal is still only 0.071 sigma,
+ 42x short.  Only at 10 mas does S (16) exceed I (4.2), and even there the
+ absorption accounts for 66% of the log shortfall, not all of it.
+
+ AND THE '~400 YR' NUMBER IS AN ARTEFACT.  g04's D4 scan holds N = 401 epochs at every arc length.  At g04's
+ own baseline cadence of 16.0 epochs/yr the 3-sigma crossing moves from ~300 yr to ~100 yr, inside D4a's
+ own 'realistic <= 200 yr' bar -- so D4a's verdict is set by the scan's bookkeeping.  'More telescope does not
+ help and only more decades do' is false in both halves: V2c shows more telescope is in fact the dominant
+ missing factor at 100 mas, and V3a shows the decades required are ~100, not ~300.
+
+ WHAT SHOULD BE CLAIMED INSTEAD.  'Sedna's 25-yr arc misses the MI-A precession envelope by 639x at
+ 100 mas and 64x at 10 mas.  Roughly a factor 16 of that is the four in-plane elements
+ absorbing the signal over an arc that is 0.22% of the orbit; the rest is the raw signal being too
+ small for the astrometry.  Neither factor is closable: reaching 3 sigma needs either ~100 yr of arc at
+ LSST-class precision and cadence, or ~64x better per-epoch astrometry on a V=20.6 object.'  That sentence
+ keeps the negative, which is real, and drops the mechanism attribution, which is precision-dependent.
+
+ CAVEATS ON MY OWN AUDIT.  The astrometric precisions are g04's estimates, not a published Sedna covariance;
+ I inherit them and so does every I above -- but S is precision-independent, so the factorisation itself does
+ not depend on them, only the verdict of which factor is larger does.  The cadence of 16.0 epochs/yr is
+ g04's own implied baseline, not an observing-programme design.  Nothing here bears on LambdaCDM: at
+ 10^4-10^8 a_0 GR+CDM and healthy MOND-family theories both predict zero, so no part of this discriminates
+ the framework against dark matter, and no part of it should be quoted as if it did.
+
+
+RESULT: 9 checks, 3 FAIL -> ['V2a  the shortfall is STRUCTURAL at the headline 100 mas precision the claim is quoted at', 'V2c  with absorption switched OFF, the 25-yr arc reaches 3 sigma at 100 mas', "V3a  g04's '~400 yr arc for 3 sigma' survives when the epoch count is allowed to grow with the arc"]   rc=1
