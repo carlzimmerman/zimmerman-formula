@@ -16,6 +16,7 @@ the normalized real-mode average with the two public helper functions.
 
 from __future__ import annotations
 
+from copy import deepcopy
 from functools import lru_cache
 from typing import Any
 
@@ -53,7 +54,9 @@ def exact_real_mode_average(expression: sp.Expr, theta: sp.Symbol) -> sp.Expr:
 
 
 @lru_cache(maxsize=2)
-def derive_full_flrw_adm_geometry(shift_sign: int = -1) -> dict[str, Any]:
+def _derive_full_flrw_adm_geometry_cached(
+    shift_sign: int = -1,
+) -> dict[str, Any]:
     """Construct the exact scalar-sector ADM geometry before expansion.
 
     ``shift_sign=-1`` is the frozen convention.  The opposite sign is
@@ -269,6 +272,17 @@ def derive_full_flrw_adm_geometry(shift_sign: int = -1) -> dict[str, Any]:
         "eh_kinetic_scalar": kinetic_scalar,
         "eh_kinetic_density": eh_kinetic_density,
     }
+
+
+def derive_full_flrw_adm_geometry(shift_sign: int = -1) -> dict[str, Any]:
+    """Return an isolated copy of the cached exact symbolic construction.
+
+    The construction is expensive enough to cache, but its result contains
+    mutable matrices and a mutable dictionary.  A deep copy prevents a
+    caller's diagnostic mutation from changing later derivations.
+    """
+
+    return deepcopy(_derive_full_flrw_adm_geometry_cached(shift_sign))
 
 
 if __name__ == "__main__":

@@ -19,6 +19,46 @@ def _zero_matrix(matrix: sp.MatrixBase) -> bool:
     return matrix.applyfunc(sp.simplify) == sp.zeros(*matrix.shape)
 
 
+def _assert_first_order_spatial_identities(geometry):
+    """Check three independently written, nonzero geometric formulas."""
+
+    epsilon = geometry["epsilon"]
+    theta = geometry["theta"]
+    scale = geometry["scale_factor"]
+    k = geometry["k"]
+    Phi = geometry["Phi"]
+    Psi = geometry["Psi"]
+    B = geometry["B"]
+    H = geometry["H"]
+    Psi_dot = geometry["Psi_dot"]
+
+    acceleration_linear = series_coefficient(
+        geometry["acceleration_covector"], epsilon, 1
+    )
+    D2_C_linear = series_coefficient(geometry["D2_C"], epsilon, 1)
+    D2_K_linear = series_coefficient(geometry["D2_K"], epsilon, 1)
+
+    expected_acceleration = sp.Matrix(
+        [-k * Phi * sp.sin(theta), 0, 0]
+    )
+    expected_D2_C = (
+        4 * k**4 * (Psi - Phi) * sp.cos(theta) / scale**4
+    )
+    expected_D2_K = (
+        k**2
+        * (-B * k**2 + 3 * scale**2 * (H * Phi + Psi_dot))
+        * sp.cos(theta)
+        / scale**4
+    )
+
+    assert not _zero_matrix(acceleration_linear)
+    assert D2_C_linear != 0
+    assert D2_K_linear != 0
+    assert _zero_matrix(acceleration_linear - expected_acceleration)
+    assert sp.simplify(D2_C_linear - expected_D2_C) == 0
+    assert sp.simplify(D2_K_linear - expected_D2_K) == 0
+
+
 def test_series_and_real_mode_average_are_computed_not_tabulated():
     epsilon, theta, z = sp.symbols("epsilon theta z", real=True)
     assert series_coefficient(sp.exp(epsilon * z), epsilon, 2) == z**2 / 2
@@ -62,8 +102,13 @@ def test_metric_inverse_and_determinant_are_exact_identities():
     geometry = derive_full_flrw_adm_geometry()
     h = geometry["spatial_metric"]
     h_inverse = geometry["spatial_inverse"]
+    scale = geometry["scale_factor"]
+    s = geometry["conformal_exponent"]
     assert _zero_matrix(h * h_inverse - sp.eye(3))
-    assert sp.simplify(geometry["spatial_determinant"] - h.det()) == 0
+    independent_determinant = scale**6 * sp.exp(-6 * s)
+    assert sp.simplify(
+        geometry["spatial_determinant"] - independent_determinant
+    ) == 0
 
 
 def test_three_curvature_matches_independent_conformal_formula():
@@ -91,17 +136,64 @@ def test_extrinsic_trace_agrees_with_direct_index_contraction():
     ) == 0
 
 
-def test_homogeneous_limit_kills_spatial_operators_but_not_expansion():
+def test_nonzero_first_order_spatial_operators_and_zero_mutations():
     geometry = derive_full_flrw_adm_geometry()
-    homogeneous = {geometry["epsilon"]: 0}
-    assert sp.simplify(geometry["three_curvature"].subs(homogeneous)) == 0
-    assert _zero_matrix(geometry["acceleration_covector"].subs(homogeneous))
-    assert sp.simplify(geometry["D2_C"].subs(homogeneous)) == 0
-    assert sp.simplify(geometry["D2_K"].subs(homogeneous)) == 0
+    _assert_first_order_spatial_identities(geometry)
+
+    mutations = {
+        "acceleration_covector": sp.zeros(3, 1),
+        "D2_C": sp.Integer(0),
+        "D2_K": sp.Integer(0),
+    }
+    for field, zero_value in mutations.items():
+        mutated = dict(geometry)
+        mutated[field] = zero_value
+        mutation_failed = False
+        try:
+            _assert_first_order_spatial_identities(mutated)
+        except AssertionError:
+            mutation_failed = True
+        assert mutation_failed, f"zeroing {field} escaped the identity gate"
+
+
+def test_k_zero_perturbation_sector_kills_every_spatial_operator():
+    geometry = derive_full_flrw_adm_geometry()
+    zero_mode = {geometry["k"]: 0}
+
+    # This is not epsilon=0: lapse and spatial-metric perturbations remain.
+    assert geometry["lapse"].subs(zero_mode) != 1
+    assert geometry["spatial_metric"].subs(zero_mode) != (
+        geometry["scale_factor"] ** 2 * sp.eye(3)
+    )
+    assert sp.simplify(geometry["three_curvature"].subs(zero_mode)) == 0
+    assert _zero_matrix(geometry["acceleration_covector"].subs(zero_mode))
+    assert sp.simplify(geometry["D2_C"].subs(zero_mode)) == 0
+    assert sp.simplify(geometry["D2_K"].subs(zero_mode)) == 0
+
+
+def test_unperturbed_flrw_limit_retains_K_equal_three_H():
+    geometry = derive_full_flrw_adm_geometry()
+    unperturbed = {geometry["epsilon"]: 0}
+    assert sp.simplify(geometry["three_curvature"].subs(unperturbed)) == 0
+    assert _zero_matrix(geometry["acceleration_covector"].subs(unperturbed))
+    assert sp.simplify(geometry["D2_C"].subs(unperturbed)) == 0
+    assert sp.simplify(geometry["D2_K"].subs(unperturbed)) == 0
     assert sp.simplify(
-        geometry["extrinsic_trace_direct"].subs(homogeneous)
+        geometry["extrinsic_trace_direct"].subs(unperturbed)
         - 3 * geometry["H"]
     ) == 0
+
+
+def test_callers_cannot_poison_cached_exact_geometry_by_mutation():
+    first = derive_full_flrw_adm_geometry()
+    original_D2_C = first["D2_C"]
+    first["D2_C"] = sp.Integer(0)
+    first["acceleration_covector"][0] = 0
+
+    fresh = derive_full_flrw_adm_geometry()
+    assert fresh["D2_C"] != 0
+    assert sp.simplify(fresh["D2_C"] - original_D2_C) == 0
+    _assert_first_order_spatial_identities(fresh)
 
 
 def test_shift_sign_mutation_flips_the_derived_B_Psidot_mixing():
