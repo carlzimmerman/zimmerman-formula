@@ -65,8 +65,9 @@ def load_cov(fname, n):
     reshape(4,4,15,15).transpose(0,2,1,3) -- a plain reshape(60,60) is NOT positive definite and gives negative chi2.
     Verified here at load time: the returned matrix must be symmetric positive definite."""
     d = np.genfromtxt(os.path.join(B, fname), comments="#"); v = (d[:, 4]/d[:, 6])*CONV*CONV
-    nb = n//15
-    C = v.reshape(n, n) if nb == 1 else v.reshape(nb, nb, 15, 15).transpose(0, 2, 1, 3).reshape(n, n)
+    nb = len(np.unique(d[:, 0])); npb = n//nb
+    if nb*npb != n: raise ValueError(f"{fname}: {nb} observable bins x {npb} rows != {n}")
+    C = v.reshape(n, n) if nb == 1 else v.reshape(nb, nb, npb, npb).transpose(0, 2, 1, 3).reshape(n, n)
     ev = np.linalg.eigvalsh((C + C.T)/2)
     if ev.min() <= 0:
         raise ValueError(f"{fname}: covariance not positive definite (min eig {ev.min():.3e}) -- ordering wrong")
