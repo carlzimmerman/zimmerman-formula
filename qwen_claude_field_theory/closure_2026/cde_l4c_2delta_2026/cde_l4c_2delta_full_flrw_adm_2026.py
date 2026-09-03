@@ -1,17 +1,19 @@
 #!/usr/bin/env python3
 """Exact real-mode FLRW ADM geometry for the frozen CDE-L4C-2Delta action.
 
-The module deliberately stops before a quadratic action is asserted.  It
-constructs the exact lapse, spatial metric, shift, acceleration, intrinsic
-curvature, extrinsic curvature and multiplier operators for
+The module first constructs the exact lapse, spatial metric, shift,
+acceleration, intrinsic curvature, extrinsic curvature and multiplier
+operators for
 
     N = 1 + epsilon Phi cos(theta),
     h_ij = a^2 exp[-2 epsilon Psi cos(theta)] delta_ij,
     N_i = -epsilon k B sin(theta) delta_ix,
 
 where ``theta=k x`` and a spatial x derivative is therefore
-``k*d/dtheta``.  Downstream calculations can take epsilon coefficients and
-the normalized real-mode average with the two public helper functions.
+``k*d/dtheta``.  It then generates the complete on-shell quadratic FLRW
+action and its finite-k time-dependent Dirac chain.  Downstream calculations
+can take epsilon coefficients and the normalized real-mode average with the
+two public helper functions.
 """
 
 from __future__ import annotations
@@ -918,6 +920,1018 @@ def derive_full_quadratic_action(shift_sign: int = -1) -> dict[str, Any]:
     """Return an isolated copy of the generated quadratic action data."""
 
     return deepcopy(_derive_full_quadratic_action_cached(shift_sign))
+
+
+def _canonical_poisson_bracket(
+    first: sp.Expr,
+    second: sp.Expr,
+    coordinates: tuple[sp.Symbol, ...],
+    momenta: tuple[sp.Symbol, ...],
+) -> sp.Expr:
+    """Canonical Poisson bracket used by the full finite-k chain."""
+
+    return sp.factor(
+        sum(
+            sp.diff(first, coordinate) * sp.diff(second, momentum)
+            - sp.diff(first, momentum) * sp.diff(second, coordinate)
+            for coordinate, momentum in zip(coordinates, momenta)
+        )
+    )
+
+
+def _matrix_rank_witness(matrix: sp.MatrixBase) -> dict[str, Any]:
+    """Find a nonzero minor whose size is the matrix's computed rank."""
+
+    rank = matrix.rank()
+    if rank == 0:
+        empty = sp.zeros(0, 0)
+        return {
+            "size": 0,
+            "rows": (),
+            "columns": (),
+            "matrix": empty,
+            "determinant": sp.Integer(1),
+        }
+
+    columns = tuple(matrix.rref()[1])
+    column_basis = matrix[:, columns]
+    rows = tuple(column_basis.T.rref()[1])
+    witness = matrix.extract(rows, columns)
+    determinant = sp.factor(witness.det())
+    if determinant == 0:
+        raise RuntimeError("rank decomposition failed to produce a nonzero minor")
+    return {
+        "size": rank,
+        "rows": rows,
+        "columns": columns,
+        "matrix": witness,
+        "determinant": determinant,
+    }
+
+
+def _proportional_polynomial_residual(
+    first: sp.Expr,
+    second: sp.Expr,
+    variables: tuple[sp.Symbol, ...],
+) -> tuple[sp.Expr, sp.Expr]:
+    """Derive a proportionality factor between two constraint polynomials."""
+
+    first_poly = sp.Poly(sp.expand(first), *variables)
+    second_poly = sp.Poly(sp.expand(second), *variables)
+    monomials = tuple(
+        sorted(set(first_poly.monoms()) | set(second_poly.monoms()))
+    )
+    for monomial in monomials:
+        second_coefficient = second_poly.coeff_monomial(monomial)
+        if second_coefficient != 0:
+            ratio = sp.factor(
+                first_poly.coeff_monomial(monomial) / second_coefficient
+            )
+            return ratio, sp.simplify(first - ratio * second)
+    if first == 0 and second == 0:
+        return sp.Integer(1), sp.Integer(0)
+    raise ValueError("cannot compare against an identically zero constraint")
+
+
+@lru_cache(maxsize=1)
+def _derive_finite_k_dirac_chain_cached() -> dict[str, Any]:
+    """Derive the complete time-dependent finite-k scalar Dirac chain.
+
+    The starting point is Task 2's on-shell quadratic action.  The scalar
+    spatial metric mode E is restored through the independently checked
+    shear Sigma=B-a^2 dot(E) before any momentum is calculated.
+    """
+
+    task2 = _derive_full_quadratic_action_cached()
+    task2_geometry = task2["geometry_symbols"]
+    task2_symbols = task2["symbols"]
+
+    Phi = task2_geometry["Phi"]
+    Psi = task2_geometry["Psi"]
+    B = task2_geometry["B"]
+    H = task2_geometry["H"]
+    Psi_dot = task2_geometry["Psi_dot"]
+    scale = task2_geometry["scale_factor"]
+    q = task2["normalization"]["q"]
+    task2_A = task2["normalization"]["A"]
+    lambda_s_bar = task2_symbols["lambda_s_bar"]
+    lambda_K_bar = task2_symbols["lambda_K_bar"]
+    delta_lambda_s = task2_symbols["delta_lambda_s"]
+    delta_lambda_K = task2_symbols["delta_lambda_K"]
+
+    A = sp.symbols("A", positive=True, nonzero=True)
+    E = sp.symbols("E", real=True)
+    Phi_dot, B_dot, E_dot = sp.symbols(
+        "Phi_dot B_dot E_dot", real=True
+    )
+    delta_lambda_s_dot, delta_lambda_K_dot = sp.symbols(
+        "delta_lambda_s_dot delta_lambda_K_dot", real=True
+    )
+    p_Phi, p_Psi, p_B, p_E, p_s, p_K = sp.symbols(
+        "p_Phi p_Psi p_B p_E p_s p_K", real=True
+    )
+    H_dot, lambda_s_bar_dot, lambda_K_bar_dot = sp.symbols(
+        "H_dot lambda_s_bar_dot lambda_K_bar_dot", real=True
+    )
+
+    coordinates = (
+        Phi,
+        Psi,
+        B,
+        E,
+        delta_lambda_s,
+        delta_lambda_K,
+    )
+    velocities = (
+        Phi_dot,
+        Psi_dot,
+        B_dot,
+        E_dot,
+        delta_lambda_s_dot,
+        delta_lambda_K_dot,
+    )
+    momenta = (p_Phi, p_Psi, p_B, p_E, p_s, p_K)
+    phase_variables = coordinates + momenta
+
+    Theta = Psi_dot + H * Phi
+    Sigma = B - scale**2 * E_dot
+    effective_lambda_s = delta_lambda_s + lambda_s_bar * Phi
+    effective_lambda_K = delta_lambda_K + lambda_K_bar * Phi
+
+    task2_on_shell_action = task2["time_ibp"]["on_shell_bulk"]
+    task2_normalized_action = sp.factor(task2_on_shell_action / task2_A)
+    gauge_fixed_action = sp.factor(A * task2_normalized_action)
+    lagrangian = sp.factor(gauge_fixed_action.subs(B, Sigma))
+    task2_provenance_residual = sp.simplify(
+        gauge_fixed_action.subs(A, task2_A) - task2_on_shell_action
+    )
+    E_zero_gauge_action_residual = sp.simplify(
+        lagrangian.subs(E_dot, 0) - gauge_fixed_action
+    )
+    spatial_diffeomorphism_identity = sp.simplify(
+        sp.diff(lagrangian, E_dot)
+        + scale**2 * sp.diff(lagrangian, B)
+    )
+
+    background_derivative_rules = {
+        A: 3 * H * A,
+        scale: H * scale,
+        q: -H * q,
+        H: H_dot,
+        lambda_s_bar: lambda_s_bar_dot,
+        lambda_K_bar: lambda_K_bar_dot,
+    }
+
+    def partial_time(expression: sp.Expr) -> sp.Expr:
+        return sp.factor(
+            sum(
+                sp.diff(expression, background) * background_dot
+                for background, background_dot in (
+                    background_derivative_rules.items()
+                )
+            )
+        )
+
+    def constraint_rank(expressions: list[sp.Expr] | tuple[sp.Expr, ...]) -> int:
+        if not expressions:
+            return 0
+        return sp.Matrix(expressions).jacobian(phase_variables).rank()
+
+    def canonical_signature(expression: sp.Expr) -> dict[str, Any]:
+        derived_momenta = tuple(
+            sp.factor(sp.diff(expression, velocity))
+            for velocity in velocities
+        )
+        velocity_hessian = sp.hessian(expression, velocities).applyfunc(
+            sp.factor
+        )
+        velocity_hessian_rank = velocity_hessian.rank()
+        velocity_hessian_nullspace = velocity_hessian.nullspace()
+
+        regular_velocity_indices = tuple(velocity_hessian.rref()[1])
+        regular_columns = velocity_hessian[:, regular_velocity_indices]
+        regular_momentum_indices = tuple(regular_columns.T.rref()[1])
+        momentum_equations = tuple(
+            sp.Eq(momenta[index], derived_momenta[index])
+            for index in regular_momentum_indices
+        )
+        regular_velocities = tuple(
+            velocities[index] for index in regular_velocity_indices
+        )
+        velocity_solutions = sp.solve(
+            momentum_equations,
+            regular_velocities,
+            dict=True,
+            simplify=False,
+        )
+        if not velocity_solutions:
+            raise RuntimeError("regular velocity block could not be inverted")
+        velocity_solution = {
+            velocity: sp.factor(solution)
+            for velocity, solution in velocity_solutions[0].items()
+        }
+
+        primaries = tuple(
+            sp.factor(
+                sum(
+                    null_vector[index]
+                    * (momenta[index] - derived_momenta[index])
+                    for index in range(len(coordinates))
+                )
+            )
+            for null_vector in velocity_hessian_nullspace
+        )
+        legendre_expression = sp.factor(
+            sum(
+                momentum * velocity
+                for momentum, velocity in zip(momenta, velocities)
+            )
+            - expression
+        )
+        legendre_after_regular_solution = sp.factor(
+            legendre_expression.subs(velocity_solution)
+        )
+        null_velocity_substitution = {
+            velocities[index]: 0
+            for index in range(len(velocities))
+            if index not in regular_velocity_indices
+        }
+        canonical_hamiltonian = sp.factor(
+            legendre_after_regular_solution.subs(null_velocity_substitution)
+        )
+        null_velocity_primary_piece = sp.factor(
+            legendre_after_regular_solution - canonical_hamiltonian
+        )
+        legendre_decomposition_residual = sp.simplify(
+            legendre_after_regular_solution
+            - canonical_hamiltonian
+            - null_velocity_primary_piece
+        )
+
+        secondary_candidates = tuple(
+            sp.factor(
+                partial_time(primary)
+                + _canonical_poisson_bracket(
+                    primary,
+                    canonical_hamiltonian,
+                    coordinates,
+                    momenta,
+                )
+            )
+            for primary in primaries
+        )
+        constraints: list[sp.Expr] = []
+        running_ranks: list[int] = []
+        for candidate in primaries + secondary_candidates:
+            if sp.simplify(candidate) == 0:
+                continue
+            old_rank = constraint_rank(constraints)
+            proposed = constraints + [candidate]
+            new_rank = constraint_rank(proposed)
+            if new_rank > old_rank:
+                constraints.append(candidate)
+                running_ranks.append(new_rank)
+
+        constraint_tuple = tuple(constraints)
+        poisson_matrix = sp.Matrix(
+            [
+                [
+                    _canonical_poisson_bracket(
+                        first, second, coordinates, momenta
+                    )
+                    for second in constraint_tuple
+                ]
+                for first in constraint_tuple
+            ]
+        ).applyfunc(sp.factor)
+        constraint_jacobian = sp.Matrix(constraint_tuple).jacobian(
+            phase_variables
+        )
+        return {
+            "lagrangian": expression,
+            "derived_momenta": derived_momenta,
+            "velocity_hessian": velocity_hessian,
+            "velocity_hessian_rank": velocity_hessian_rank,
+            "velocity_hessian_nullspace": velocity_hessian_nullspace,
+            "regular_velocity_indices": regular_velocity_indices,
+            "regular_momentum_indices": regular_momentum_indices,
+            "velocity_solution": velocity_solution,
+            "primaries": primaries,
+            "legendre_expression": legendre_expression,
+            "legendre_after_regular_solution": (
+                legendre_after_regular_solution
+            ),
+            "null_velocity_primary_piece": null_velocity_primary_piece,
+            "legendre_decomposition_residual": (
+                legendre_decomposition_residual
+            ),
+            "canonical_hamiltonian": canonical_hamiltonian,
+            "secondary_candidates": secondary_candidates,
+            "constraints": constraint_tuple,
+            "constraint_generation_ranks": tuple(running_ranks),
+            "poisson_matrix": poisson_matrix,
+            "poisson_determinant": sp.factor(poisson_matrix.det()),
+            "poisson_rank": poisson_matrix.rank(),
+            "constraint_jacobian": constraint_jacobian,
+            "constraint_jacobian_rank": constraint_jacobian.rank(),
+        }
+
+    baseline = canonical_signature(lagrangian)
+    primaries = baseline["primaries"]
+    primary_multipliers = sp.symbols(
+        f"u0:{len(primaries)}", real=True
+    )
+    total_hamiltonian = sp.factor(
+        baseline["canonical_hamiltonian"]
+        + sum(
+            multiplier * primary
+            for multiplier, primary in zip(primary_multipliers, primaries)
+        )
+    )
+
+    # Use a declared elimination preference only to retain the surviving
+    # canonical variables in readable form.  The number of solved variables
+    # is determined by the generated constraints, not supplied in advance.
+    elimination_preference = (
+        p_Phi,
+        p_B,
+        p_s,
+        p_K,
+        p_E,
+        Phi,
+        delta_lambda_K,
+        delta_lambda_s,
+    )
+    constraint_solutions = sp.solve(
+        baseline["constraints"],
+        elimination_preference,
+        dict=True,
+        simplify=False,
+    )
+    if not constraint_solutions:
+        raise RuntimeError("finite-k constraint surface could not be solved")
+    constraint_solution = {
+        variable: sp.factor(value)
+        for variable, value in constraint_solutions[0].items()
+    }
+    constraint_solution_residuals = tuple(
+        sp.simplify(
+            constraint.subs(constraint_solution, simultaneous=True)
+        )
+        for constraint in baseline["constraints"]
+    )
+
+    partial_time_terms = tuple(
+        partial_time(constraint) for constraint in baseline["constraints"]
+    )
+    poisson_evolution_terms = tuple(
+        _canonical_poisson_bracket(
+            constraint, total_hamiltonian, coordinates, momenta
+        )
+        for constraint in baseline["constraints"]
+    )
+    total_time_derivatives = tuple(
+        sp.factor(partial + poisson)
+        for partial, poisson in zip(
+            partial_time_terms, poisson_evolution_terms
+        )
+    )
+    on_constraint_surface = tuple(
+        sp.factor(
+            equation.subs(constraint_solution, simultaneous=True)
+        )
+        for equation in total_time_derivatives
+    )
+    multiplier_coefficient_matrix = sp.Matrix(
+        [
+            [
+                sp.diff(equation, multiplier)
+                for multiplier in primary_multipliers
+            ]
+            for equation in on_constraint_surface
+        ]
+    ).applyfunc(sp.factor)
+    zero_multiplier_substitution = {
+        multiplier: 0 for multiplier in primary_multipliers
+    }
+    multiplier_rhs = sp.Matrix(
+        [
+            -equation.subs(zero_multiplier_substitution)
+            for equation in on_constraint_surface
+        ]
+    ).applyfunc(sp.factor)
+    multiplier_coefficient_rank = multiplier_coefficient_matrix.rank()
+    augmented_rank = multiplier_coefficient_matrix.row_join(
+        multiplier_rhs
+    ).rank()
+    multiplier_solutions = sp.solve(
+        on_constraint_surface,
+        primary_multipliers,
+        dict=True,
+        simplify=False,
+    )
+    multiplier_solution = (
+        {
+            multiplier: sp.factor(value)
+            for multiplier, value in multiplier_solutions[0].items()
+        }
+        if multiplier_solutions
+        else {}
+    )
+    closure_residuals = tuple(
+        sp.simplify(equation.subs(multiplier_solution))
+        for equation in on_constraint_surface
+    )
+    tertiary_candidates: list[sp.Expr] = []
+    current_rank = baseline["constraint_jacobian_rank"]
+    for residual in closure_residuals:
+        if residual == 0 or residual.has(*primary_multipliers):
+            continue
+        proposed = baseline["constraints"] + tuple(tertiary_candidates) + (
+            residual,
+        )
+        proposed_rank = constraint_rank(proposed)
+        if proposed_rank > current_rank:
+            tertiary_candidates.append(residual)
+            current_rank = proposed_rank
+    free_multipliers = tuple(
+        multiplier
+        for multiplier in primary_multipliers
+        if multiplier not in multiplier_solution
+    )
+    multiplier_rank_witness = _matrix_rank_witness(
+        multiplier_coefficient_matrix
+    )
+
+    poisson_matrix = baseline["poisson_matrix"]
+    poisson_nullspace = poisson_matrix.nullspace()
+    first_class_combinations = tuple(
+        sp.factor(
+            sum(
+                vector[index] * baseline["constraints"][index]
+                for index in range(len(baseline["constraints"]))
+            )
+        )
+        for vector in poisson_nullspace
+    )
+    weak_first_class_brackets = sp.Matrix(
+        [
+            [
+                sp.simplify(
+                    _canonical_poisson_bracket(
+                        combination, constraint, coordinates, momenta
+                    ).subs(constraint_solution, simultaneous=True)
+                )
+                for constraint in baseline["constraints"]
+            ]
+            for combination in first_class_combinations
+        ]
+    )
+    first_class_count = len(poisson_nullspace)
+    second_class_count = baseline["poisson_rank"]
+    phase_dimension = len(phase_variables)
+    reduced_phase_dimension = (
+        phase_dimension - 2 * first_class_count - second_class_count
+    )
+    configuration_dof = sp.Rational(reduced_phase_dimension, 2)
+    poisson_rank_witness = _matrix_rank_witness(poisson_matrix)
+
+    sample_symbol_pool = tuple(
+        sorted(poisson_matrix.free_symbols, key=lambda symbol: symbol.name)
+    )
+    sampled_exact_ranks: list[int] = []
+    sampled_numerical_ranks: list[int] = []
+    sample_substitutions: list[dict[sp.Symbol, sp.Expr]] = []
+    import numpy as np
+
+    for sample_index in range(3):
+        substitution: dict[sp.Symbol, sp.Expr] = {}
+        for symbol_index, symbol in enumerate(sample_symbol_pool):
+            numerator = 2 + sample_index + symbol_index
+            denominator = 1 + ((sample_index + symbol_index) % 3)
+            substitution[symbol] = sp.Rational(numerator, denominator)
+        substitution[A] = sp.Rational(2 + sample_index, 1)
+        substitution[scale] = sp.Rational(3 + sample_index, 2)
+        substitution[q] = sp.Rational(4 + sample_index, 3)
+        exact_sample = poisson_matrix.subs(substitution)
+        sampled_exact_ranks.append(exact_sample.rank())
+        numerical_sample = np.asarray(exact_sample.evalf(), dtype=float)
+        sampled_numerical_ranks.append(
+            int(np.linalg.matrix_rank(numerical_sample))
+        )
+        sample_substitutions.append(substitution)
+
+    # Pull back the canonical and extended one-forms before choosing a gauge.
+    free_phase_variables = tuple(
+        variable
+        for variable in phase_variables
+        if variable not in constraint_solution
+    )
+    one_form_coefficients: dict[sp.Symbol, sp.Expr] = {}
+    for free_variable in free_phase_variables:
+        coefficient = sp.Integer(0)
+        for coordinate, momentum in zip(coordinates, momenta):
+            reduced_coordinate = coordinate.subs(
+                constraint_solution, simultaneous=True
+            )
+            reduced_momentum = momentum.subs(
+                constraint_solution, simultaneous=True
+            )
+            coefficient += reduced_momentum * sp.diff(
+                reduced_coordinate, free_variable
+            )
+        one_form_coefficients[free_variable] = sp.simplify(coefficient)
+    differential_symbols = {
+        variable: sp.symbols(f"d_{variable.name}", real=True)
+        for variable in free_phase_variables
+    }
+    pulled_spatial_one_form = sp.simplify(
+        sum(
+            one_form_coefficients[variable]
+            * differential_symbols[variable]
+            for variable in free_phase_variables
+        )
+    )
+    reduced_hamiltonian = sp.factor(
+        baseline["canonical_hamiltonian"].subs(
+            constraint_solution, simultaneous=True
+        )
+    )
+    dt = sp.symbols("dt", real=True)
+    pulled_extended_one_form = sp.simplify(
+        pulled_spatial_one_form - reduced_hamiltonian * dt
+    )
+    symplectic_matrix = sp.Matrix(
+        [
+            [
+                sp.diff(one_form_coefficients[column], row)
+                - sp.diff(one_form_coefficients[row], column)
+                for column in free_phase_variables
+            ]
+            for row in free_phase_variables
+        ]
+    )
+    symplectic_rank = symplectic_matrix.rank()
+    quotient_symplectic_witness = _matrix_rank_witness(symplectic_matrix)
+
+    # Discover the p_B -> C_B first-class chain and construct its Castellani
+    # generator.  The generator is expressed in the generated constraints,
+    # not counted as an extra constraint.
+    primary_B_index = next(
+        index
+        for index, primary in enumerate(primaries)
+        if sp.simplify(primary - p_B) == 0
+    )
+    C_B = baseline["secondary_candidates"][primary_B_index]
+    eta, eta_dot = sp.symbols("eta eta_dot", real=True)
+    spatial_generator = sp.factor(
+        scale**2 * eta_dot * primaries[primary_B_index]
+        - scale**2 * eta * C_B
+    )
+    generator_constraint_representation_residual = sp.simplify(
+        spatial_generator
+        - (
+            scale**2 * eta_dot * primaries[primary_B_index]
+            - scale**2 * eta * C_B
+        )
+    )
+    coordinate_variations = {
+        coordinate: _canonical_poisson_bracket(
+            coordinate, spatial_generator, coordinates, momenta
+        )
+        for coordinate in coordinates
+    }
+    Sigma_variation = sp.simplify(
+        coordinate_variations[B] - scale**2 * eta_dot
+    )
+    weak_generator_brackets = tuple(
+        sp.simplify(
+            _canonical_poisson_bracket(
+                spatial_generator, constraint, coordinates, momenta
+            ).subs(constraint_solution, simultaneous=True)
+        )
+        for constraint in baseline["constraints"]
+    )
+
+    E_dot_on_constraint_surface = sp.factor(
+        baseline["velocity_solution"][E_dot].subs(
+            constraint_solution, simultaneous=True
+        )
+    )
+    B_solutions = sp.solve(
+        sp.Eq(E_dot_on_constraint_surface, 0), B, dict=True
+    )
+    if not B_solutions:
+        raise RuntimeError("E=0 gauge preservation did not determine the shift")
+    B_solution = sp.factor(B_solutions[0][B])
+
+    # Compare the gauge-fixed action and constraints to the pre-existing
+    # gauge-fixed principal derivation.  Proportionality factors are obtained
+    # from polynomial coefficients rather than supplied in advance.
+    from cde_l4c_2delta_flrw_gate_2026 import _derive_principal_family
+
+    existing = _derive_principal_family()
+    existing_symbol_map = {
+        existing["A"]: A,
+        existing["q"]: q,
+        existing["H"]: H,
+        existing["lambda_s_bar"]: lambda_s_bar,
+        existing["lambda_K_bar"]: lambda_K_bar,
+    }
+    for old, new in zip(
+        existing["coordinates"],
+        (Phi, Psi, B, delta_lambda_s, delta_lambda_K),
+    ):
+        existing_symbol_map[old] = new
+    for old, new in zip(
+        existing["momenta"],
+        (p_Phi, p_Psi, p_B, p_s, p_K),
+    ):
+        existing_symbol_map[old] = new
+    existing_mapped_lagrangian = sp.factor(
+        existing["lagrangian"].subs(
+            existing_symbol_map, simultaneous=True
+        )
+    )
+    existing_mapped_constraints = tuple(
+        sp.factor(
+            constraint.subs(existing_symbol_map, simultaneous=True)
+        )
+        for constraint in existing["constraints"]
+    )
+    gauge_fixed_secondaries = list(baseline["secondary_candidates"])
+    gauge_fixed_secondaries[primary_B_index] = sp.factor(B - B_solution)
+    gauge_fixed_constraints = primaries + tuple(gauge_fixed_secondaries)
+    proportionality_factors: list[sp.Expr] = []
+    proportionality_residuals: list[sp.Expr] = []
+    for generated, previous in zip(
+        gauge_fixed_constraints, existing_mapped_constraints
+    ):
+        ratio, residual = _proportional_polynomial_residual(
+            generated, previous, phase_variables
+        )
+        proportionality_factors.append(ratio)
+        proportionality_residuals.append(residual)
+
+    # Positive longitudinal background: change only the spatial Phi^2
+    # coefficient, then repeat the complete momentum/constraint generation.
+    lambda_parallel, y = sp.symbols(
+        "lambda_parallel y", positive=True
+    )
+    positive_lagrangian = sp.factor(
+        lagrangian - A * lambda_parallel * q**2 * Phi**2
+    )
+    positive_signature = canonical_signature(positive_lagrangian)
+    positive_constraint_solutions = sp.solve(
+        positive_signature["constraints"],
+        elimination_preference,
+        dict=True,
+        simplify=False,
+    )
+    if not positive_constraint_solutions:
+        raise RuntimeError("positive-gradient constraint surface not solved")
+    positive_constraint_solution = {
+        variable: sp.factor(value)
+        for variable, value in positive_constraint_solutions[0].items()
+    }
+    positive_reduced_hamiltonian = sp.factor(
+        positive_signature["canonical_hamiltonian"].subs(
+            positive_constraint_solution, simultaneous=True
+        )
+    )
+    omega_squared = sp.simplify(
+        sp.diff(positive_reduced_hamiltonian, p_Psi, 2)
+        * sp.diff(positive_reduced_hamiltonian, Psi, 2)
+    )
+    sound_speed_squared = sp.simplify(omega_squared / q**2)
+    exact_lambda_parallel = sp.simplify(1 + (y - 1) * sp.exp(-y))
+    exact_sound_speed_squared = sp.simplify(
+        sound_speed_squared.subs(lambda_parallel, exact_lambda_parallel)
+    )
+
+    # Two adversarial mutations are regenerated through the same canonical
+    # pipeline.  One removes a multiplier coupling; one changes a kinetic
+    # coefficient while preserving dependence on Sigma.
+    lambda_s_piece = sp.factor(
+        A
+        * task2["quadratic"]["normalized_pieces"]["lambda_s"]
+    )
+    deleted_lambda_s_lagrangian = sp.factor(lagrangian - lambda_s_piece)
+    deleted_lambda_s_signature = canonical_signature(
+        deleted_lambda_s_lagrangian
+    )
+    shear_theta_piece = sp.factor(2 * A * q**2 * Sigma * Theta)
+    perturbed_shear_lagrangian = sp.factor(
+        lagrangian + shear_theta_piece / 2
+    )
+    perturbed_shear_signature = canonical_signature(
+        perturbed_shear_lagrangian
+    )
+    perturbed_spatial_diffeomorphism_identity = sp.simplify(
+        sp.diff(perturbed_shear_lagrangian, E_dot)
+        + scale**2 * sp.diff(perturbed_shear_lagrangian, B)
+    )
+
+    primary_rank = constraint_rank(primaries)
+    final_rank = baseline["constraint_jacobian_rank"]
+    preservation_iterations = (
+        {
+            "stage": "primaries",
+            "constraint_count": len(primaries),
+            "jacobian_rank": primary_rank,
+            "new_independent_constraints": len(primaries),
+        },
+        {
+            "stage": "secondaries",
+            "constraint_count": len(baseline["constraints"]),
+            "jacobian_rank": final_rank,
+            "new_independent_constraints": (
+                len(baseline["constraints"]) - len(primaries)
+            ),
+        },
+        {
+            "stage": "closure",
+            "constraint_count": (
+                len(baseline["constraints"]) + len(tertiary_candidates)
+            ),
+            "jacobian_rank": current_rank,
+            "new_independent_constraints": len(tertiary_candidates),
+        },
+    )
+
+    return {
+        "symbols": {
+            "A": A,
+            "a": scale,
+            "q": q,
+            "H": H,
+            "H_dot": H_dot,
+            "Phi": Phi,
+            "Psi": Psi,
+            "B": B,
+            "E": E,
+            "delta_lambda_s": delta_lambda_s,
+            "delta_lambda_K": delta_lambda_K,
+            "lambda_s_bar": lambda_s_bar,
+            "lambda_K_bar": lambda_K_bar,
+            "lambda_s_bar_dot": lambda_s_bar_dot,
+            "lambda_K_bar_dot": lambda_K_bar_dot,
+            "Phi_dot": Phi_dot,
+            "Psi_dot": Psi_dot,
+            "B_dot": B_dot,
+            "E_dot": E_dot,
+            "delta_lambda_s_dot": delta_lambda_s_dot,
+            "delta_lambda_K_dot": delta_lambda_K_dot,
+            "p_Phi": p_Phi,
+            "p_Psi": p_Psi,
+            "p_B": p_B,
+            "p_E": p_E,
+            "p_s": p_s,
+            "p_K": p_K,
+        },
+        "restoration": {
+            "Theta": Theta,
+            "Sigma": Sigma,
+            "effective_lambda_s": effective_lambda_s,
+            "effective_lambda_K": effective_lambda_K,
+            "task2_on_shell_action": task2_on_shell_action,
+            "task2_normalized_action": task2_normalized_action,
+            "task2_gauge_fixed_action": gauge_fixed_action,
+            "lagrangian": lagrangian,
+            "task2_provenance_residual": task2_provenance_residual,
+            "E_zero_gauge_action_residual": (
+                E_zero_gauge_action_residual
+            ),
+            "spatial_diffeomorphism_identity": (
+                spatial_diffeomorphism_identity
+            ),
+            "identity_checked_before_legendre": True,
+        },
+        "canonical": {
+            "coordinates": coordinates,
+            "velocities": velocities,
+            "momenta": momenta,
+            "phase_variables": phase_variables,
+            "lagrangian": lagrangian,
+            "derived_momenta": baseline["derived_momenta"],
+            "velocity_hessian": baseline["velocity_hessian"],
+            "velocity_hessian_rank": baseline["velocity_hessian_rank"],
+            "velocity_hessian_nullspace": baseline[
+                "velocity_hessian_nullspace"
+            ],
+            "regular_velocity_indices": baseline[
+                "regular_velocity_indices"
+            ],
+            "regular_momentum_indices": baseline[
+                "regular_momentum_indices"
+            ],
+            "velocity_solution": baseline["velocity_solution"],
+            "primaries": primaries,
+            "legendre_expression": baseline["legendre_expression"],
+            "legendre_after_regular_solution": baseline[
+                "legendre_after_regular_solution"
+            ],
+            "null_velocity_primary_piece": baseline[
+                "null_velocity_primary_piece"
+            ],
+            "legendre_decomposition_residual": baseline[
+                "legendre_decomposition_residual"
+            ],
+            "canonical_hamiltonian": baseline[
+                "canonical_hamiltonian"
+            ],
+            "primary_multipliers": primary_multipliers,
+            "total_hamiltonian": total_hamiltonian,
+        },
+        "dirac": {
+            "secondary_candidates": baseline["secondary_candidates"],
+            "constraints": baseline["constraints"],
+            "constraint_generation_ranks": baseline[
+                "constraint_generation_ranks"
+            ],
+            "constraint_solution": constraint_solution,
+            "constraint_solution_residuals": (
+                constraint_solution_residuals
+            ),
+            "constraint_jacobian": baseline["constraint_jacobian"],
+            "constraint_jacobian_rank": baseline[
+                "constraint_jacobian_rank"
+            ],
+            "poisson_matrix": poisson_matrix,
+            "poisson_determinant": baseline["poisson_determinant"],
+            "poisson_rank": baseline["poisson_rank"],
+            "rank_witness_minor": poisson_rank_witness,
+            "sample_substitutions": tuple(sample_substitutions),
+            "sampled_exact_ranks": tuple(sampled_exact_ranks),
+            "sampled_numerical_ranks": tuple(sampled_numerical_ranks),
+            "declared_singular_surfaces": (A, scale, q),
+        },
+        "time_preservation": {
+            "background_derivative_rules": background_derivative_rules,
+            "partial_time_operator": partial_time,
+            "partial_time_terms": partial_time_terms,
+            "poisson_evolution_terms": poisson_evolution_terms,
+            "total_time_derivatives": total_time_derivatives,
+            "on_constraint_surface": on_constraint_surface,
+            "multiplier_coefficient_matrix": (
+                multiplier_coefficient_matrix
+            ),
+            "multiplier_rhs": multiplier_rhs,
+            "multiplier_coefficient_rank": multiplier_coefficient_rank,
+            "augmented_rank": augmented_rank,
+            "multiplier_rank_witness_minor": multiplier_rank_witness,
+            "multiplier_solution": multiplier_solution,
+            "fixed_multipliers": tuple(multiplier_solution),
+            "free_multipliers": free_multipliers,
+            "closure_residuals": closure_residuals,
+            "tertiary_candidates": tuple(tertiary_candidates),
+            "no_tertiary_evidence": not tertiary_candidates
+            and all(residual == 0 for residual in closure_residuals),
+            "C_B": C_B,
+            "C_B_preservation": total_time_derivatives[
+                len(primaries) + primary_B_index
+            ],
+            "iterations": preservation_iterations,
+        },
+        "classification": {
+            "poisson_nullspace": poisson_nullspace,
+            "first_class_combinations": first_class_combinations,
+            "weak_first_class_brackets": weak_first_class_brackets,
+            "first_class_count": first_class_count,
+            "second_class_count": second_class_count,
+            "phase_dimension": phase_dimension,
+            "reduced_phase_dimension": reduced_phase_dimension,
+            "configuration_dof": configuration_dof,
+        },
+        "spatial_gauge": {
+            "primary_B_index": primary_B_index,
+            "C_B": C_B,
+            "eta": eta,
+            "eta_dot": eta_dot,
+            "generator": spatial_generator,
+            "generator_constraint_representation_residual": (
+                generator_constraint_representation_residual
+            ),
+            "coordinate_variations": coordinate_variations,
+            "Sigma_variation": Sigma_variation,
+            "weak_generator_brackets": weak_generator_brackets,
+            "E_zero_action_residual": E_zero_gauge_action_residual,
+            "E_zero_preservation_equation": (
+                E_dot_on_constraint_surface
+            ),
+            "B_solution": B_solution,
+            "existing_gauge_fixed_comparison": {
+                "source_lagrangian": existing["lagrangian"],
+                "symbol_map": existing_symbol_map,
+                "mapped_lagrangian": existing_mapped_lagrangian,
+                "lagrangian_residual": sp.simplify(
+                    gauge_fixed_action - existing_mapped_lagrangian
+                ),
+                "generated_constraints": gauge_fixed_constraints,
+                "mapped_existing_constraints": (
+                    existing_mapped_constraints
+                ),
+                "constraint_count_matches": (
+                    len(gauge_fixed_constraints)
+                    == len(existing_mapped_constraints)
+                ),
+                "proportionality_factors": tuple(
+                    proportionality_factors
+                ),
+                "proportionality_residuals": tuple(
+                    proportionality_residuals
+                ),
+            },
+        },
+        "reduction": {
+            "free_phase_variables": free_phase_variables,
+            "differentials": differential_symbols,
+            "dt": dt,
+            "one_form_coefficients": one_form_coefficients,
+            "pulled_spatial_one_form": pulled_spatial_one_form,
+            "reduced_hamiltonian": reduced_hamiltonian,
+            "pulled_extended_one_form": pulled_extended_one_form,
+            "symplectic_matrix": symplectic_matrix,
+            "symplectic_rank": symplectic_rank,
+            "quotient_symplectic_rows": quotient_symplectic_witness[
+                "rows"
+            ],
+            "quotient_symplectic_columns": quotient_symplectic_witness[
+                "columns"
+            ],
+            "quotient_symplectic_determinant": (
+                quotient_symplectic_witness["determinant"]
+            ),
+        },
+        "positive_gradient": {
+            "y": y,
+            "lambda_parallel": lambda_parallel,
+            "exact_lambda_parallel": exact_lambda_parallel,
+            "lagrangian": positive_lagrangian,
+            "derived_momenta": positive_signature["derived_momenta"],
+            "constraints": positive_signature["constraints"],
+            "poisson_matrix": positive_signature["poisson_matrix"],
+            "poisson_rank": positive_signature["poisson_rank"],
+            "constraint_solution": positive_constraint_solution,
+            "reduced_hamiltonian": positive_reduced_hamiltonian,
+            "omega_squared": omega_squared,
+            "sound_speed_squared": sound_speed_squared,
+            "exact_sound_speed_squared": exact_sound_speed_squared,
+        },
+        "mutation_controls": {
+            "without_lambda_s_coupling": {
+                "lagrangian": deleted_lambda_s_lagrangian,
+                "lagrangian_difference": sp.factor(
+                    deleted_lambda_s_lagrangian - lagrangian
+                ),
+                "lambda_s_euler_derivative": sp.diff(
+                    deleted_lambda_s_lagrangian, delta_lambda_s
+                ),
+                "constraints": deleted_lambda_s_signature["constraints"],
+                "constraint_jacobian_rank": deleted_lambda_s_signature[
+                    "constraint_jacobian_rank"
+                ],
+                "poisson_matrix": deleted_lambda_s_signature[
+                    "poisson_matrix"
+                ],
+                "poisson_rank": deleted_lambda_s_signature[
+                    "poisson_rank"
+                ],
+            },
+            "perturbed_shear_theta_coefficient": {
+                "lagrangian": perturbed_shear_lagrangian,
+                "lagrangian_difference": sp.factor(
+                    perturbed_shear_lagrangian - lagrangian
+                ),
+                "derived_momenta": perturbed_shear_signature[
+                    "derived_momenta"
+                ],
+                "constraints": perturbed_shear_signature["constraints"],
+                "poisson_matrix": perturbed_shear_signature[
+                    "poisson_matrix"
+                ],
+                "poisson_rank": perturbed_shear_signature[
+                    "poisson_rank"
+                ],
+                "spatial_diffeomorphism_identity": (
+                    perturbed_spatial_diffeomorphism_identity
+                ),
+            },
+        },
+        "scope": {
+            "finite_k_only": True,
+            "full_time_dependent_quadratic_chain": True,
+            "matter_perturbations_invented": False,
+            "nonlinear_zero_gradient_rank_proved": False,
+            "global_covariant_dof_theorem": False,
+        },
+    }
+
+
+def derive_finite_k_dirac_chain() -> dict[str, Any]:
+    """Return an isolated copy of the generated finite-k Dirac analysis."""
+
+    return deepcopy(_derive_finite_k_dirac_chain_cached())
 
 
 if __name__ == "__main__":

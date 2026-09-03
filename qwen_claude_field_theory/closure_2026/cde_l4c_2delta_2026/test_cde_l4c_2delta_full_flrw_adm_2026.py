@@ -12,6 +12,7 @@ from cde_l4c_2delta_action_gate_2026 import (
     _derive_minkowski_adm_principal,
 )
 from cde_l4c_2delta_full_flrw_adm_2026 import (
+    derive_finite_k_dirac_chain,
     derive_full_quadratic_action,
     derive_full_flrw_adm_geometry,
     exact_real_mode_average,
@@ -521,6 +522,401 @@ def test_removing_cuscuton_fails_the_on_shell_bulk_identity():
         mutation["on_shell_residual"] - 9 * A * H_dot * Psi**2
     ) == 0
     assert mutation["identity_survives"] is False
+
+
+def _canonical_poisson(first, second, coordinates, momenta):
+    return sp.factor(
+        sum(
+            sp.diff(first, coordinate) * sp.diff(second, momentum)
+            - sp.diff(first, momentum) * sp.diff(second, coordinate)
+            for coordinate, momentum in zip(coordinates, momenta)
+        )
+    )
+
+
+def test_E_is_restored_by_a_spatial_diffeomorphism_identity_before_legendre():
+    result = derive_finite_k_dirac_chain()
+    restoration = result["restoration"]
+    canonical = result["canonical"]
+    symbols = result["symbols"]
+
+    assert restoration["Sigma"] == (
+        symbols["B"] - symbols["a"] ** 2 * symbols["E_dot"]
+    )
+    assert restoration["lagrangian"].has(symbols["E_dot"])
+    assert not restoration["lagrangian"].has(symbols["E"])
+    assert restoration["task2_provenance_residual"] == 0
+    assert restoration["E_zero_gauge_action_residual"] == 0
+
+    independently_derived_identity = sp.simplify(
+        sp.diff(restoration["lagrangian"], symbols["E_dot"])
+        + symbols["a"] ** 2
+        * sp.diff(restoration["lagrangian"], symbols["B"])
+    )
+    assert independently_derived_identity == 0
+    assert restoration["spatial_diffeomorphism_identity"] == 0
+
+    # No Legendre-transform output is used to establish this identity.
+    assert restoration["identity_checked_before_legendre"] is True
+    assert canonical["lagrangian"] == restoration["lagrangian"]
+
+
+def test_all_momenta_hessian_nullspace_and_primaries_are_generated():
+    result = derive_finite_k_dirac_chain()
+    canonical = result["canonical"]
+    lagrangian = canonical["lagrangian"]
+
+    independently_derived_momenta = tuple(
+        sp.factor(sp.diff(lagrangian, velocity))
+        for velocity in canonical["velocities"]
+    )
+    assert canonical["derived_momenta"] == independently_derived_momenta
+
+    independently_derived_hessian = sp.hessian(
+        lagrangian, canonical["velocities"]
+    )
+    assert canonical["velocity_hessian"] == independently_derived_hessian
+    assert canonical["velocity_hessian_rank"] == (
+        independently_derived_hessian.rank()
+    )
+    assert canonical["velocity_hessian_nullspace"] == (
+        independently_derived_hessian.nullspace()
+    )
+    for null_vector in canonical["velocity_hessian_nullspace"]:
+        assert _zero_matrix(independently_derived_hessian * null_vector)
+
+    independently_derived_primaries = tuple(
+        sp.factor(
+            sum(
+                null_vector[index]
+                * (
+                    canonical["momenta"][index]
+                    - independently_derived_momenta[index]
+                )
+                for index in range(len(canonical["coordinates"]))
+            )
+        )
+        for null_vector in canonical["velocity_hessian_nullspace"]
+    )
+    assert canonical["primaries"] == independently_derived_primaries
+
+    for index in canonical["regular_velocity_indices"]:
+        momentum_equation = (
+            canonical["momenta"][index]
+            - independently_derived_momenta[index]
+        )
+        assert sp.simplify(
+            momentum_equation.subs(canonical["velocity_solution"])
+        ) == 0
+    assert canonical["legendre_decomposition_residual"] == 0
+    assert sp.simplify(
+        canonical["total_hamiltonian"]
+        - canonical["canonical_hamiltonian"]
+        - sum(
+            multiplier * primary
+            for multiplier, primary in zip(
+                canonical["primary_multipliers"],
+                canonical["primaries"],
+            )
+        )
+    ) == 0
+
+
+def test_final_constraints_and_classification_come_from_actual_matrices():
+    result = derive_finite_k_dirac_chain()
+    canonical = result["canonical"]
+    dirac = result["dirac"]
+    classification = result["classification"]
+    coordinates = canonical["coordinates"]
+    momenta = canonical["momenta"]
+
+    for primary, secondary in zip(
+        canonical["primaries"], dirac["secondary_candidates"]
+    ):
+        independently_preserved = sp.factor(
+            result["time_preservation"]["partial_time_operator"](primary)
+            + _canonical_poisson(
+                primary,
+                canonical["canonical_hamiltonian"],
+                coordinates,
+                momenta,
+            )
+        )
+        assert sp.simplify(secondary - independently_preserved) == 0
+
+    constraints = dirac["constraints"]
+    matrix = dirac["poisson_matrix"]
+    jacobian = sp.Matrix(constraints).jacobian(
+        coordinates + momenta
+    )
+    assert (matrix + matrix.T).applyfunc(sp.simplify) == sp.zeros(
+        len(constraints)
+    )
+    assert dirac["poisson_rank"] == matrix.rank()
+    assert dirac["poisson_determinant"] == sp.factor(matrix.det())
+    assert dirac["constraint_jacobian"] == jacobian
+    assert dirac["constraint_jacobian_rank"] == jacobian.rank()
+    assert dirac["constraint_jacobian_rank"] == len(constraints)
+
+    minor = dirac["rank_witness_minor"]
+    rebuilt_minor = matrix.extract(minor["rows"], minor["columns"])
+    assert minor["matrix"] == rebuilt_minor
+    assert minor["size"] == dirac["poisson_rank"]
+    assert minor["determinant"] == sp.factor(rebuilt_minor.det())
+    assert minor["determinant"] != 0
+
+    assert all(
+        rank == dirac["poisson_rank"]
+        for rank in dirac["sampled_exact_ranks"]
+    )
+    assert all(
+        rank == dirac["poisson_rank"]
+        for rank in dirac["sampled_numerical_ranks"]
+    )
+
+    nullspace = matrix.nullspace()
+    assert classification["poisson_nullspace"] == nullspace
+    assert classification["first_class_count"] == len(nullspace)
+    assert classification["second_class_count"] == matrix.rank()
+    assert (
+        classification["first_class_count"]
+        + classification["second_class_count"]
+        == len(constraints)
+    )
+    independently_counted_dof = sp.Rational(
+        classification["phase_dimension"]
+        - 2 * classification["first_class_count"]
+        - classification["second_class_count"],
+        2,
+    )
+    assert classification["configuration_dof"] == independently_counted_dof
+    assert classification["weak_first_class_brackets"] == sp.zeros(
+        classification["first_class_count"], len(constraints)
+    )
+
+
+def test_explicit_time_preservation_fixes_only_matrix_selected_multipliers():
+    result = derive_finite_k_dirac_chain()
+    canonical = result["canonical"]
+    dirac = result["dirac"]
+    preservation = result["time_preservation"]
+    symbols = result["symbols"]
+
+    independently_derived_partials = tuple(
+        sp.factor(
+            sum(
+                sp.diff(constraint, background)
+                * background_dot
+                for background, background_dot in preservation[
+                    "background_derivative_rules"
+                ].items()
+            )
+        )
+        for constraint in dirac["constraints"]
+    )
+    assert all(
+        sp.simplify(stored - independent) == 0
+        for stored, independent in zip(
+            preservation["partial_time_terms"],
+            independently_derived_partials,
+        )
+    )
+
+    independently_derived_totals = tuple(
+        sp.factor(
+            partial
+            + _canonical_poisson(
+                constraint,
+                canonical["total_hamiltonian"],
+                canonical["coordinates"],
+                canonical["momenta"],
+            )
+        )
+        for constraint, partial in zip(
+            dirac["constraints"], independently_derived_partials
+        )
+    )
+    assert all(
+        sp.simplify(stored - independent) == 0
+        for stored, independent in zip(
+            preservation["total_time_derivatives"],
+            independently_derived_totals,
+        )
+    )
+    assert any(term.has(symbols["H_dot"]) for term in independently_derived_partials)
+    assert any(
+        term.has(symbols["lambda_s_bar_dot"])
+        for term in independently_derived_partials
+    )
+    assert any(
+        term.has(symbols["lambda_K_bar_dot"])
+        for term in independently_derived_partials
+    )
+
+    coefficient_matrix = sp.Matrix(
+        [
+            [
+                sp.diff(equation, multiplier)
+                for multiplier in canonical["primary_multipliers"]
+            ]
+            for equation in preservation["on_constraint_surface"]
+        ]
+    )
+    assert (
+        preservation["multiplier_coefficient_matrix"] - coefficient_matrix
+    ).applyfunc(sp.simplify) == sp.zeros(*coefficient_matrix.shape)
+    assert preservation["multiplier_coefficient_rank"] == coefficient_matrix.rank()
+    assert preservation["augmented_rank"] == coefficient_matrix.row_join(
+        preservation["multiplier_rhs"]
+    ).rank()
+    assert preservation["multiplier_coefficient_rank"] == preservation[
+        "augmented_rank"
+    ]
+    fixing_minor = preservation["multiplier_rank_witness_minor"]
+    rebuilt_fixing_minor = coefficient_matrix.extract(
+        fixing_minor["rows"], fixing_minor["columns"]
+    )
+    assert fixing_minor["size"] == preservation[
+        "multiplier_coefficient_rank"
+    ]
+    assert (
+        fixing_minor["matrix"] - rebuilt_fixing_minor
+    ).applyfunc(sp.simplify) == sp.zeros(*rebuilt_fixing_minor.shape)
+    assert sp.simplify(
+        fixing_minor["determinant"] - rebuilt_fixing_minor.det()
+    ) == 0
+    assert fixing_minor["determinant"] != 0
+    assert all(residual == 0 for residual in preservation["closure_residuals"])
+    assert preservation["tertiary_candidates"] == ()
+    assert preservation["no_tertiary_evidence"] is True
+    assert preservation["free_multipliers"]
+    assert preservation["iterations"][-1]["jacobian_rank"] == (
+        preservation["iterations"][-2]["jacobian_rank"]
+    )
+
+
+def test_spatial_generator_and_E_zero_gauge_reproduce_gauge_fixed_chain():
+    result = derive_finite_k_dirac_chain()
+    canonical = result["canonical"]
+    gauge = result["spatial_gauge"]
+    symbols = result["symbols"]
+
+    generator = gauge["generator"]
+    independently_derived_variations = {
+        coordinate: _canonical_poisson(
+            coordinate,
+            generator,
+            canonical["coordinates"],
+            canonical["momenta"],
+        )
+        for coordinate in canonical["coordinates"]
+    }
+    assert gauge["coordinate_variations"] == independently_derived_variations
+    assert sp.simplify(
+        gauge["coordinate_variations"][symbols["B"]]
+        - symbols["a"] ** 2 * gauge["eta_dot"]
+    ) == 0
+    assert sp.simplify(
+        gauge["coordinate_variations"][symbols["E"]] - gauge["eta"]
+    ) == 0
+    assert gauge["Sigma_variation"] == 0
+    assert all(residual == 0 for residual in gauge["weak_generator_brackets"])
+    assert gauge["generator_constraint_representation_residual"] == 0
+
+    assert gauge["E_zero_action_residual"] == 0
+    assert gauge["E_zero_preservation_equation"].subs(
+        symbols["B"], gauge["B_solution"]
+    ) == 0
+    comparison = gauge["existing_gauge_fixed_comparison"]
+    assert comparison["lagrangian_residual"] == 0
+    assert comparison["constraint_count_matches"] is True
+    assert all(
+        residual == 0
+        for residual in comparison["proportionality_residuals"]
+    )
+
+
+def test_extended_one_form_and_positive_gradient_branch_are_derived():
+    result = derive_finite_k_dirac_chain()
+    canonical = result["canonical"]
+    reduction = result["reduction"]
+    positive = result["positive_gradient"]
+    symbols = result["symbols"]
+
+    independently_pulled_extended = sp.simplify(
+        reduction["pulled_spatial_one_form"]
+        - reduction["reduced_hamiltonian"] * reduction["dt"]
+    )
+    assert reduction["pulled_extended_one_form"] == independently_pulled_extended
+    assert reduction["symplectic_matrix"] == sp.Matrix(
+        [
+            [
+                sp.diff(reduction["one_form_coefficients"][column], row)
+                - sp.diff(reduction["one_form_coefficients"][row], column)
+                for column in reduction["free_phase_variables"]
+            ]
+            for row in reduction["free_phase_variables"]
+        ]
+    )
+    assert reduction["symplectic_rank"] == reduction["symplectic_matrix"].rank()
+    assert reduction["quotient_symplectic_determinant"] != 0
+    assert reduction["symplectic_rank"] == result["classification"][
+        "reduced_phase_dimension"
+    ]
+
+    independently_derived_positive_momenta = tuple(
+        sp.factor(
+            sp.diff(positive["lagrangian"], velocity)
+        )
+        for velocity in canonical["velocities"]
+    )
+    assert positive["derived_momenta"] == independently_derived_positive_momenta
+    omega_squared = sp.simplify(
+        sp.diff(
+            positive["reduced_hamiltonian"], symbols["p_Psi"], 2
+        )
+        * sp.diff(
+            positive["reduced_hamiltonian"], symbols["Psi"], 2
+        )
+    )
+    assert positive["omega_squared"] == omega_squared
+    assert positive["sound_speed_squared"] == sp.simplify(
+        omega_squared / symbols["q"] ** 2
+    )
+    assert positive["exact_sound_speed_squared"] == sp.simplify(
+        positive["sound_speed_squared"].subs(
+            positive["lambda_parallel"],
+            positive["exact_lambda_parallel"],
+        )
+    )
+    assert sp.limit(
+        positive["exact_sound_speed_squared"], positive["y"], 0, dir="+"
+    ) == 0
+
+
+def test_dirac_deletion_and_coefficient_mutations_change_generated_results():
+    result = derive_finite_k_dirac_chain()
+    canonical = result["canonical"]
+    baseline = result["dirac"]
+    mutations = result["mutation_controls"]
+
+    deletion = mutations["without_lambda_s_coupling"]
+    assert deletion["lagrangian_difference"] != 0
+    assert deletion["lambda_s_euler_derivative"] == 0
+    assert (
+        deletion["constraint_jacobian_rank"]
+        != baseline["constraint_jacobian_rank"]
+        or deletion["poisson_rank"] != baseline["poisson_rank"]
+    )
+
+    coefficient = mutations["perturbed_shear_theta_coefficient"]
+    assert coefficient["lagrangian_difference"] != 0
+    assert coefficient["spatial_diffeomorphism_identity"] == 0
+    assert coefficient["derived_momenta"] != canonical["derived_momenta"]
+    assert (
+        coefficient["poisson_matrix"] != baseline["poisson_matrix"]
+        or coefficient["constraints"] != baseline["constraints"]
+    )
 
 
 if __name__ == "__main__":
