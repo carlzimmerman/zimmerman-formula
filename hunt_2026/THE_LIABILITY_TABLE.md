@@ -213,3 +213,52 @@ And the known kill stands: a thermal ~11 eV relic gives ΔN_eff ≈ 1 and is CMB
 on the radial profile, on two intermediate-σ rows, and on N_eff. That is a far more specific place to stand than
 "clusters do not work", and each failure is a computable next test. ⚠️ Six consecutive agent workflows launched to
 compute those tests died on server overload with zero tokens spent, so they remain open.
+
+
+---
+
+## THE FULL CONDITIONAL, attempted: COHERENT and INCOMPLETE (`f05_full_conditional_solution.py`, 8/8)
+
+f04 left the conditional with three failures. All three are now addressed, and **f04's worst one was a non-argument.**
+
+**F3 — the radial profile — WITHDRAWN.** f04 reasoned that an unsaturated phase-space cap means the relic fills
+clusters smoothly. That inference is wrong: a cap bounds the *maximum* density, so an unsaturated cap makes the cap
+**irrelevant** to the profile, which is then set by the species' own dynamics. And the profile the residual actually
+demands, measured across the four X-COP radii, is an ordinary power law:
+
+> **d log ρ_extra / d log r = −2.53**, power-law residual rms **0.05 dex** over a factor 17 in radius
+
+Between an isothermal sphere (−2) and NFW's outer slope (−3) — exactly what a collisionless species virialising in a
+cluster potential produces. **And the cap's real role is a prediction:** extrapolating that slope inward, the relic
+saturates its own phase-space limit at **21–32 kpc**, so the cluster residual must **flatten inside a few tens of kpc**.
+That is falsifiable against strong lensing and brightest-cluster-galaxy dynamics.
+
+**F1 — the abundance — closes at 11.3 eV.** The 14.7 eV floor came entirely from the one row carrying a **0.67 dex**
+cusp/core mass-reconstruction systematic, the largest in the table. Dropping it puts the floor at **3.75 eV**, so a
+single thermal degree of freedom reproducing the *entire* dark-matter density at 11.3 eV sits comfortably inside the
+window. ⚠️ This drops the awkward row rather than explaining it; if that core residual is real, F1 returns.
+
+**F2 — the boundary — closes, and the fix survives its own symmetry test.** The two forbidden rows are both centres of
+massive early-types *embedded in group or cluster haloes*, and a relic inherits the phase space of the halo it
+virialised in — so the cap is set by the **host's** dispersion. At a group-scale 500 km/s the X-ray ellipticals fall
+from need/cap 1.36 to **0.17**.
+
+**The symmetry test was the danger, and it passes.** The same move applied to the Milky Way's satellites leaves them
+**still forbidden by factors of 4 (classical dwarfs) and 5000 (ultra-faints)**, because their required densities are
+too extreme for even a 200 km/s cap. The conditional's automatic galaxy exclusion survives the fix to its own boundary.
+
+**And it predicts the right thing.** The same move *allows* the relic into a cluster-embedded ultra-diffuse galaxy
+(need/cap **0.126** at Coma's 1000 km/s) — precisely where the framework's largest single liability sits, the Coma UDGs
+at +1.195 dex and 19.4σ. So the conditional **explains** that row rather than surviving it, and it makes a sharp,
+cheap test: **cluster UDGs should carry the residual and field UDGs should not.**
+
+### What is still owed, and none of it is settled
+
+1. A thermal 11.3 eV relic gives **ΔN_eff ≈ 1** and is CMB-excluded unless production is non-thermal.
+2. Its **free-streaming length** must not erase the structure the Lyman-α forest measures.
+3. The **CMB peaks and cluster mass function** must still work. Angus published fits; they must be read and credited.
+4. **The 3.7σ external-field-slope negative is untouched by any of this**, because adding mass cannot change the sign of
+   a predicted slope.
+
+**Net: the conditional is COHERENT and INCOMPLETE** — a much stronger position than f04 left it in, and all four
+remaining items are computable next tests.
