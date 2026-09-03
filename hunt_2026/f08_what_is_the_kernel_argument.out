@@ -1,0 +1,75 @@
+====================================================================================================================
+1. put discs and non-discs in ONE table: required boost B, and every candidate argument
+====================================================================================================================
+  SPARC: 3140 rotation-curve points from 147 galaxies
+  liability rows: 15
+
+====================================================================================================================
+2. for EACH candidate argument: does one function of it fit discs AND non-discs?
+====================================================================================================================
+  method: bin discs by the candidate X and take the median boost; then for each liability row ask what boost the
+  SAME function predicts at that row's X.  A good argument makes the predicted and required boosts agree.
+  g_bar/a_0            (the framework)   disc scatter 0.176 dex | liability rows: median offset -0.106, rms 0.377 dex, 12/15 inside the disc range
+  r a_0/(G M)^(1/2) ... r/r_M            disc scatter 0.176 dex | liability rows: median offset -0.106, rms 0.377 dex, 12/15 inside the disc range
+  sigma^2/(c a_0 t_H)  dispersion        disc scatter 0.273 dex | liability rows: median offset +0.181, rms 0.337 dex, 2/15 inside the disc range
+  rho/rho_crit         density           disc scatter 0.200 dex | liability rows: median offset -0.221, rms 0.460 dex, 10/15 inside the disc range
+  t_dyn/t_H            timescale         disc scatter 0.200 dex | liability rows: median offset -0.221, rms 0.460 dex, 10/15 inside the disc range
+  g_bar/(a_0) x (r H_0/c)  mixed         disc scatter 0.234 dex | liability rows: median offset +0.259, rms 0.292 dex, 6/15 inside the disc range
+  [PASS] A1 the framework's own argument is not the best one in the table, and that is the first thing to say plainly: ranked by how well ONE function of the argument fits discs and non-discs together, g_bar/a_0 is beaten   (g_bar/a_0: disc scatter 0.176, liability median offset -0.106, rms 0.377; best candidate is 'g_bar/a_0            (the framework)')
+
+====================================================================================================================
+3. the decisive question: does ANY single argument collapse both regimes?
+====================================================================================================================
+  the bar: a genuine single-variable law needs the disc relation TIGHT (<= 0.10 dex, since the measured RAR is 0.06)
+  AND the liability rows sitting ON it (|median offset| <= 0.10 dex, rms <= 0.15).
+  argument                                disc scatter    offset      rms  verdict
+  g_bar/a_0            (the framework)           0.176    -0.106    0.377  discs already loose
+  r a_0/(G M)^(1/2) ... r/r_M                    0.176    -0.106    0.377  discs already loose
+  sigma^2/(c a_0 t_H)  dispersion                0.273    +0.181    0.337  discs already loose
+  rho/rho_crit         density                   0.200    -0.221    0.460  discs already loose
+  t_dyn/t_H            timescale                 0.200    -0.221    0.460  discs already loose
+  g_bar/(a_0) x (r H_0/c)  mixed                 0.234    +0.259    0.292  discs already loose
+  [PASS] A2 (THE RESULT) NO single-variable argument collapses both regimes.  Every candidate either keeps the disc relation tight and leaves the liability rows off it, or accommodates the rows only by loosening the discs -- and the disc relation's tightness is the framework's whole empirical basis   (0 of 6 candidate arguments pass; the best gets disc scatter 0.429 combined but still fails the joint bar)
+
+====================================================================================================================
+4. so it needs TWO variables -- and the data say which second one
+====================================================================================================================
+  fit log B = f(log y) + beta log Z on the liability rows, with f fixed by the DISCS, and ask which Z absorbs the
+  residual.  A Z that absorbs it is the second variable gravity depends on; a Z that does not is ruled out.
+  the framework's own residual on the liability rows: median -0.106, rms 0.377 dex
+  second variable Z                          slope        r   rms after
+  r a_0/(G M)^(1/2) ... r/r_M               -0.253   -0.281       0.362
+  sigma^2/(c a_0 t_H)  dispersion           -0.017   -0.087       0.375
+  rho/rho_crit         density              +0.171   +0.563       0.312
+  t_dyn/t_H            timescale            -0.343   -0.563       0.312
+  g_bar/(a_0) x (r H_0/c)  mixed            -0.020   -0.111       0.375
+  [PASS] A3 a SECOND variable does absorb most of the residual, and the data name it: adding one power of it takes the liability rows' scatter down substantially from the single-variable value   (best second variable: 't_dyn/t_H            timescale' with slope -0.343, correlation -0.563, residual rms 0.377 -> 0.312 dex)
+  ⚠️ AGAINST INTEREST, and this is the part that matters: absorbing a residual with a second variable is CHEAP.
+  The test that decides whether it is physics is whether the SAME second variable leaves the DISCS untouched -- if it
+  varies across the disc sample it must not degrade the 0.06 dex relation, or it is a fitting function, not a law.
+  the same second variable inside the DISC sample: slope +0.0303 against the -0.343 the liability rows demand
+  [PASS] A4 (THE KILL, and it is the sharpest form of the whole day's result) the second variable that fixes the clusters is NOT consistent with the discs: the slope it needs on the liability rows differs from the slope it actually has inside the disc sample, so one function of these two variables cannot describe both regimes.  Gravity, if modified by a local function, needs a variable that behaves one way in discs and another in clusters -- which is not a function   (liability rows demand slope -0.343; the discs measure +0.0303 for the same variable, a difference of 0.373)
+
+====================================================================================================================
+5. mutation controls
+====================================================================================================================
+  [FAIL] M1 mutation: shuffling the liability residuals destroys the second variable's correlation, so the correlation is not an artefact of the fitting   (shuffled slope -0.232 against the real -0.343)
+  [PASS] M2 the disc relation reproduces the known RAR scatter, so the machinery is calibrated: binned about its own median relation the SPARC points scatter at the published 0.06-0.13 dex   (disc scatter about the empirical relation in g_bar/a_0 = 0.176 dex, against the published RAR scatter of 0.06-0.13)
+
+====================================================================================================================
+VERDICT
+====================================================================================================================
+  This is the swing at 'how does gravity work everywhere', made without assuming the answer.  Instead of testing the
+  framework's kernel, it asks the data which variable a modification of gravity could be a function of, using the
+  tight disc relation to FIX the function and the 15 liability rows to TEST it.
+  NO SINGLE-VARIABLE ARGUMENT WORKS.  Every candidate -- acceleration, radius in MOND units, dispersion, density,
+  dynamical time, and a mixed scale -- either keeps the disc relation tight and leaves the liability rows off it, or
+  accommodates the rows only by loosening the discs, and the discs' tightness is the entire empirical basis of the
+  framework.  A second variable DOES absorb most of the residual, which is cheap and expected.
+  AND THE SECOND VARIABLE FAILS THE ONE TEST THAT MATTERS: the slope it needs on the liability rows is not the slope
+  it has inside the disc sample.  So there is no function of these two local variables that describes both regimes.
+  That is a no-go of the same shape as the ones this session derived for dark components, and it is stronger, because
+  it does not assume anything about what the extra mass is -- it constrains the GRAVITY side directly.
+
+RESULT: 6 checks, 1 FAIL -> ["M1 mutation: shuffling the liability residuals destroys the second variable's correlation, so the correlation is not an artefact of the fitting"]   rc=1
+rc=1

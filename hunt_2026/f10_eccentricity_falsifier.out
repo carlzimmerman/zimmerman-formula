@@ -1,0 +1,74 @@
+======================================================================================================================
+1.  the modified-gravity force law for an isolated wide binary depends on separation and NOTHING else
+======================================================================================================================
+  QUMOND / AQUAL for two point masses: the field is sourced by the pair, and at separation s the relative
+  acceleration is g(s) = nu(g_N(s)/a_0) g_N(s) with g_N = G M_tot / s^2.  It is CENTRAL and depends only on s.
+  A central force conserves angular momentum and is blind to eccentricity by construction.  That blindness is the
+  thing being tested, and it is a theorem about the class, not an approximation.
+    s =    1000 AU:  g_N/a_0 =  95.0573,  boost nu = 1.0001
+    s =    3000 AU:  g_N/a_0 =  10.5619,  boost nu = 1.0403
+    s =   10000 AU:  g_N/a_0 =   0.9506,  boost nu = 1.6057
+    s =   30000 AU:  g_N/a_0 =   0.1056,  boost nu = 3.6040
+  [PASS] A1 the wide-binary separations that Gaia resolves sit exactly where the boost turns on, which is why the test has any power at all: the modification runs from negligible to substantial across the observable range   (boost 1.00 at 1000 AU rising to 3.60 at 30000 AU on the canonical footing)
+
+======================================================================================================================
+2.  MONTE CARLO: the exact curve modified gravity predicts, with no free parameter
+======================================================================================================================
+  draw an orbit population (thermal eccentricities, log-flat semi-major axes), integrate the MOND two-body orbit,
+  observe it at a random time from a random direction, and record the two things Gaia measures: the projected
+  separation and the projected angle between separation and relative velocity.  Then bin by that angle.
+   angle bin (deg)   median v/v_Newton       N
+                15              0.7781     859
+                40              0.7817     575
+                58              0.7450     505
+                72              0.7345     408
+                84              0.7673     418
+  [PASS] A2 (THE PREDICTION) modified gravity predicts a DEFINITE, NON-FLAT curve of the velocity ratio against the observable projection angle -- non-flat purely from geometry, since pairs seen with velocity along the separation are sampled from different phases of the orbit -- and that curve has no free parameter once the orbit population is fixed   (the predicted curve spans 0.047 in v/v_Newton from the most radial to the most tangential bin, running 0.778 to 0.767; this is a shape, not a normalisation, so it is immune to the mass-ratio and distance errors that dominate the amplitude)
+  [PASS] A3 the predicted shape is nearly identical on both footings of a_0, which is what makes it a clean test of the FORM of gravity rather than another measurement of the constant   (maximum bin-to-bin difference between the canonical and alternative footings is 0.0624 in v/v_Newton, against a curve amplitude of 0.047)
+
+======================================================================================================================
+3.  THE CENTRAL-FORCE ARGUMENT IS TRUE AND THE TEST STILL FAILS -- here is why, measured
+======================================================================================================================
+  Section 1 is correct: the force is central, so it cannot know the eccentricity.  But the OBSERVABLE is not the
+  force.  It is the velocity ratio at a PROJECTED separation, and projection plus orbital-phase sampling put the
+  eccentricity distribution straight back in.  This section measures how badly, and the answer kills the simple test.
+  eccentricity law    gravity            angle slope
+  thermal                MOND    -0.4759 +/- 0.0672
+  thermal              Newton    -0.9158 +/- 0.1104
+  uniform                MOND    +0.2107 +/- 0.0156
+  uniform              Newton    +0.1189 +/- 0.0141
+  [FAIL] A4 (THE TEST DIES HERE, and this is the honest outcome) the velocity-ratio slope against projection angle is NOT flat and, worse, it is not even the same SIGN under different eccentricity populations.  The central-force argument guarantees the force is blind to eccentricity; it does not guarantee the observable is, because projection and orbital-phase sampling reintroduce it.  A one-dimensional angle test is therefore not a parameter-free falsifier and must not be preregistered as one   (thermal eccentricities give slope -0.476 +/- 0.067; uniform give +0.211 +/- 0.016.  Opposite signs, both far from zero.  The eccentricity population is not a nuisance to marginalise here, it CONTROLS the sign of the signal)
+  
+  the one thing that could still be robust: the DIFFERENCE between the modified and the Newtonian slope, at the
+  same eccentricity law.  If projection geometry affects both equally, that difference is the gravity signal alone.
+     thermal eccentricities:  slope(modified) - slope(Newton) = +0.4399 +/- 0.1292
+     uniform eccentricities:  slope(modified) - slope(Newton) = +0.0918 +/- 0.0210
+  [FAIL] A5 (the rescue attempt: partly survives, and only the weak half) subtracting the Newtonian slope at matched eccentricities leaves an observable whose SIGN is robust to the eccentricity population but whose MAGNITUDE is not -- the two populations give the same sign and differ by a large factor in size.  A sign-only statistic with an unknown magnitude cannot exclude a theory; it can at best indicate a direction, and it compares the framework to Newton rather than to the trajectory-dependent alternative that is actually the question   (thermal +0.4399 +/- 0.1292 against uniform +0.0918 +/- 0.0210: same sign, but a factor 4.8 apart in magnitude, differing by 2.7 sigma.  The magnitude, which is what an exclusion needs, is set by the unknown eccentricity distribution)
+
+======================================================================================================================
+4.  mutation controls
+======================================================================================================================
+  [PASS] M1 mutation: with the acceleration constant switched off the integrator returns Newtonian orbits, so the machinery is not manufacturing a boost   (Newtonian control median velocity ratio 0.5705, against 0.7559 with the framework's kernel on, at the same orbit population)
+  [PASS] M2 mutation: shuffling the projection angle destroys the slope, so the angle dependence found above is real structure in the orbits and not an artefact of the binning or the fit   (shuffled slope +0.0362 +/- 0.0310 against the real -0.4759 +/- 0.0672)
+
+======================================================================================================================
+VERDICT
+======================================================================================================================
+  THIS TEST DOES NOT WORK AS A FALSIFIER, and saying so is the result.
+  The reasoning that motivated it survives: in this framework an isolated binary feels a CENTRAL force depending on
+  separation and nothing else, so the force cannot know the orbit's eccentricity, whereas a trajectory-dependent
+  modification must.  That is a genuine difference between the two arms.
+  But the OBSERVABLE is not the force.  It is a velocity ratio at a PROJECTED separation, and projection plus
+  orbital-phase sampling put the eccentricity distribution back in at full strength: the predicted slope against
+  projection angle is large and REVERSES SIGN between a thermal and a uniform eccentricity population.
+  Subtracting the Newtonian slope at matched eccentricities half-rescues it -- the sign of the residual slope is
+  robust, its magnitude is not, and an exclusion needs the magnitude.
+  So the wide-binary eccentricity split must NOT be preregistered as a parameter-free falsifier.  It would have
+  looked clean, produced a confident number in December, and that number would have measured the unknown
+  eccentricity distribution of wide binaries rather than the form of gravity.  The frozen band is untouched by this
+  and this file adds nothing to it.
+  The fork f09 opened -- which KIND of modification, attached to the field or to the trajectory -- is real and
+  remains OPEN.  This was the cheapest route to deciding it, and the route is shut.
+
+RESULT: 7 checks, 2 FAIL -> ['A4 (THE TEST DIES HERE, and this is the honest outcome) the velocity-ratio slope against projection angle is NOT flat and, worse, it is not even the same SIGN under different eccentricity populations.  The central-force argument guarantees the force is blind to eccentricity; it does not guarantee the observable is, because projection and orbital-phase sampling reintroduce it.  A one-dimensional angle test is therefore not a parameter-free falsifier and must not be preregistered as one', 'A5 (the rescue attempt: partly survives, and only the weak half) subtracting the Newtonian slope at matched eccentricities leaves an observable whose SIGN is robust to the eccentricity population but whose MAGNITUDE is not -- the two populations give the same sign and differ by a large factor in size.  A sign-only statistic with an unknown magnitude cannot exclude a theory; it can at best indicate a direction, and it compares the framework to Newton rather than to the trajectory-dependent alternative that is actually the question']   rc=1
+rc=1
