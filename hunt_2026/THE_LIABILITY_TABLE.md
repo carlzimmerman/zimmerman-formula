@@ -301,3 +301,38 @@ unprotected MOND kernel needs 0.045). **The result that is the framework's best 
 forbids it the escape.**
 
 This is the cleanest kill of the session: derived from the framework's own results, with no external datum required.
+
+
+---
+
+## THE CLASS IS CLOSED, not just the species (`f07_two_component_nogo.py`, 6/6)
+
+`f06` closed the one-species conditional. The obvious escape is **two components** — a cold part that seeds structure
+and a hot part that supplies the clusters — and if that worked, `f06` would prove nothing. It does not work, and the
+closure is *tighter* than the single-species one.
+
+The two components are bounded by **different data, on the same split**:
+
+| side | bound | source |
+|---|---|---|
+| **hot fraction, from above** | ΔP/P ≈ −8 f_h against a forest measured to 10–20% ⇒ **f_h ≤ 0.0125–0.0375** | Hu, Eisenstein & Tegmark 1998; the repository's own forest work |
+| **hot fraction, from below** | whatever is not hot is cold, and a cold component clusters into galaxies as CDM does ⇒ f_c ≤ 0.2 (dwarfs) to 0.5 (massive discs) ⇒ **f_h ≥ 0.5–0.8** | this repository's own corrected galactic bounds |
+
+**No combination of the most generous bound on each side overlaps.** All nine pairings fail. The tightest gap is a
+factor of **8**; the combination the programme actually defends is short by a factor of **32**.
+
+**And it is structural, which is why more components do not help.** Whatever supplies the clusters must be *absent from
+galaxies*, therefore hot. Whatever seeds structure must be *present in galaxies*, therefore cold. The framework's
+galactic success **is** the statement that there is nothing cold in galaxies. A third component only partitions the
+same two requirements again.
+
+**The one loophole is already closed by earlier work in this repository**, so the no-go rests on committed results
+rather than new assumptions: no *local* variable can switch the coupling, because the environments that require it and
+those that forbid it interleave in potential depth, acceleration, density and dispersion (`dark_sector_debug_2026.py`);
+and the two-sector route fails because the CMB's third peak and damping tail were imprinted at 30–100 kpc **physical**,
+inside the KiDS rail's own scales (`two_sector_coupling_gate_2026.py`). Only a shell-crossing switch remains, and it
+abandons the cluster residual too, since clusters are multi-stream.
+
+> **Within this framework, the cluster residual cannot be explained by any dark component — hot, cold, or mixed.**
+> It is a statement that the framework's own galactic success is incompatible with its own cluster failure, derived
+> entirely from results already committed here.
