@@ -177,3 +177,35 @@ Kill-in-waiting items are marked ⚠ (run them early; a kill is a result). Items
 
 **Run order for Part IV:** 76, 89, 90, 91, 92, 96 (on disk, an evening); then 77 and 85 (public chains and velocities, decisive both ways); then 81, 82, 93, 97 (Gaia); then 78–80, 94; 83, 84, 86–88, 95, 98, 99 as pipelines; 100 last.
 **The three to run before anything else in the whole list:** 77 (a veto on the framework's dark energy from data already published), 76 (the stellar M/L predicted by Λ), and 72 (where the boost ends).
+
+---
+
+# RESULTS LEDGER — first systematic pass, 2026-09-03 (`hunt_2026/`)
+
+Sixteen items run, each a committed script with checks that can fail, a mutation control, both footings, and the alternative computed
+beside the framework. **No second Kepler-grade law found yet.** Three results are keepers, two are liabilities that go on the standing
+ledger, five are dead or withdrawn, and one is a bug fix that changes a published-adjacent number.
+
+| item | verdict | number |
+|---|---|---|
+| **correction** | ⚠ **BUG FIXED** | The Brouwer binned covariance is stored `(m,n,i,j)`; a plain reshape is **not positive definite** (min eigenvalue −2.8e-23) and gives negative χ². `ccnl_clock_fix_2026.py` used it, so its C1 exclusion (+4091) is **void** — corrected it flips to −30, *preferred*, because a coherent halo is degenerate with the ±0.3 dex amplitude nuisance. **"KiDS tolerate at most 14% of a CDM-like halo" is WITHDRAWN.** What stands: the differential bound (one bin's halo costs ≥ +143) and the SPARC rotation curves, ε ≲ 0.2 (dwarfs) to 0.5 (massive discs). |
+| **72** | ✅ **keeper** | The √ boost does **not** end inside the KiDS reach. Endings excluded at 3σ below **1.67 / 2.07 / 3.44 / 2.77 Mpc** in the four mass bins (20/20 mutation mocks clean). ⇒ any completion must have its range **> 3.4 Mpc**; for AeST, m² < 0.09 Mpc⁻², about 10× tighter than the same data without mass bins. |
+| **25** | ✅ **keeper** | The deep tail's slope is 1/2 within 1.6σ, and with the slope fixed at its predicted value the intercept **measures a₀ = 1.14e-10 [1.04, 1.25]** with no fitting — the alt footing to 0.004 dex, 0.086 dex above canonical. |
+| **23** | ✅ **keeper** | The inner rotation-curve **diversity** (a named dark-matter problem) is predicted from the baryonic profile with zero halo freedom: r = 0.79 across the full observed range 0.22–1.23, rms residual 0.15 (honestly above the RAR's own scatter). |
+| **26** | ✔ pass, prediction corrected | The naive 3/4 assumed fixed surface density and is **excluded at 7.4σ** — withdrawn. The correct zero-parameter form (measured size-mass slope + 1/4, from the BTFR alone) gives 0.569 ± 0.024 against a measured 0.582 ± 0.023: a **0.4σ pass**. |
+| **19** | ✔ corrected | The raw f_gas–M500 slope is 0.404 ± 0.004, **16σ from 1/3** and curved, because R500 carries E(z). The framework's actual statement, f_gas·a₀/g_N(R500) = const, is flat to −0.010 ± 0.005. **The 1/3 form must not be quoted.** |
+| **89** | ⚠ underpowered | No trend of per-galaxy a₀ with bulge fraction, Hubble type or gas fraction (all < 3σ) — but the same sample would register the emergent-halo reading's 0.25 dex trend at only **1.7σ**. Its own mutation control downgraded it. Route to decisive: the distance-free estimator (item 64). |
+| **8** | 🔴 **LIABILITY** | The Local Group dwarf σ law does **not** close: at a stellar-population M/L the 46 dwarfs sit **+0.36 dex above** the framework's EFE prediction, centring needs Υ_V ~ 20; MW (+0.64) far worse than M31 (+0.29). Reproduces the known MOND tension for MW dwarfs (Angus 2008). Two bugs fixed en route (full mass in a half-mass estimator; the simple ν(x_ext) prescription over-predicts DF2 2× vs the published careful calculation). |
+| **68** | 🔴 **LIABILITY** | The cluster residual **evolves**: η at fixed mass rises **+0.187 ± 0.013 dex per unit z** to z ≈ 0.8 in eRASS1, where constant a₀ requires zero and even the ΛCDM-native scale predicts +0.13. Selection and the ΛCDM-calibrated mass proxy plausibly produce all of it; needs a selection-controlled sample. Points the same way as the MUSE/Ciocan apparent rise. |
+| **42** | ↔ split | DF2 lands **exactly** on the Newtonian floor (8.5 vs 8.5 km/s), where the careful EFE treatment puts it. DF4 sits 3.5σ **below its own Newtonian floor** — a liability for every theory at the assumed M/L. |
+| **3** | ✖ dead, withdrawn | r_flat/r_M is not one number: −0.51 mass slope, 0.6 dex spread. Curves flatten at the disc scale length, not the MOND radius. Mis-posed; the framework never said otherwise. |
+| **6** | ✖ dead, withdrawn | a₀/(πG) is **not** a ceiling on disc surface density — half of SPARC is above it. (The median lands on it to 0.003 dex; recorded as a coincidence with its Υ and selection caveats.) |
+| **21** | ✖ not one-parameter | The r_M/v_inf rescaling does collapse the curves, but the surface-density label does not organise the residual. |
+| **90, 91** | ✖ closed | The high-acceleration return is Υ-limited; the RAR curvature landmark, though parameter-free and 4× separated between kernels, is unmeasurable from binned medians (bootstrap spans two decades). Reopens only with a hierarchical per-galaxy slope-field fit. |
+| **92** | ⚠ incomplete | The simple radial phantom estimate gives 0.003 M☉/pc³ against Gaia's 0.010–0.014. Needs Milgrom's vertical phantom-of-the-disc term; the repo's own full-AQUAL vertical-force work already does this properly. |
+| **96** | ⚠ underpowered ×100 | The LMC's field is a few-percent perturbation on the MW's against a 0.3 dex scatter. Recorded as underpowered, not as a null. |
+
+**Standing after the pass.** The framework gained a sharper bound on its own completions (72), a zero-parameter measurement of a₀ (25),
+and a genuine explanation of a dark-matter problem (23). It also acquired two liabilities that were not on the ledger before (8, 68) and
+lost four claims that do not survive contact with the data (3, 6, and the 3/4 and 1/3 forms). Next by value: items 64 (κ to 3%, which
+also rescues 89), 71 (the saddle-point deficit), 55 (group lensing), 16 (RC100), and a selection-controlled redo of 68.
