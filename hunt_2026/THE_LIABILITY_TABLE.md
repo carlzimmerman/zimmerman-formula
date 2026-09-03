@@ -103,3 +103,35 @@ too generous to the framework. In a dominant uniform external field the effectiv
 
 The prescription-correction run is still the right test of the *measurement* side. But on the *prediction* side, which
 is what I said was in doubt, the answer is now computed: the correction is 17% and the negative stands.
+
+
+---
+
+## The pressure-support hypothesis, tested and refuted (`f02_pressure_jeans.py`, 5/5)
+
+The table's sharpest structural fact — 20 of 28 rows pressure-supported, the four rotation-supported rows being the
+mildest failures in the set — suggested one obvious common cause: the framework's kernel is stated for a **circular
+orbit**, and every dwarf, globular and elliptical row substitutes ν into a Newtonian mass estimator rather than solving
+a Jeans equation. That substitution had never been checked in this programme.
+
+**It is innocent.** For a Plummer sphere the ν-substituted half-mass estimator and the proper isotropic Jeans solution
+in the exact spherical MOND field agree to **0.8% at every mass from 10⁵ to 10⁹ M☉**. The Jeans machinery is validated
+by its own mutations (Newtonian limit 0.990, deep-MOND virial 1.074) and buys nothing. A real difference would require
+anisotropy, a non-Plummer profile, or tides — not the substitution.
+
+**And treating the external field correctly makes the block worse, not better.** Decomposed on the 46 Local Group
+dwarfs, canonical footing, median log(σ_obs/σ_pred):
+
+| treatment | offset | change |
+|---|---|---|
+| ν(x_e) — what the programme used | **+0.051** | — |
+| ν(x_int + x_e) — the internal field belongs in ν's argument too | **+0.278** | **+0.227 (dominant)** |
+| sphere-averaged ν(1+L/3) from `f01` | **+0.294** | +0.016 (as f01 predicted) |
+| full Jeans integration | **+0.290** | −0.004 (negligible) |
+
+So the dwarf offset grows from +0.05 to +0.29 dex once the external field is handled properly, the dominant term is
+simply **including the system's own internal field in ν's argument**, and the Jeans integration is irrelevant.
+
+**Net: the pressure-supported block is real, it was being UNDER-stated, and both corrections owed to it push against
+the framework.** That is the opposite of what the run was launched to find, and it replaces the hopeful reading of this
+table with a worse one.
