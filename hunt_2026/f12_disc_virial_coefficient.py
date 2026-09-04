@@ -1,6 +1,11 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 r"""
+⚠️ CORRECTED BY f16 (2026-09-03): this file's verdict says rotating galaxies can NEVER decide the inertia-vs-gravity
+fork.  That is true of the ALGEBRAIC relation only.  Modified gravity's true disc field carries a CURL correction
+(Brada & Milgrom 1995) that modified inertia lacks; f16 computes it (-42% at 0.1 R_d to +2% at 5-7 R_d) and fits it
+to SPARC: A = -0.08 +/- 0.48 (galaxy bootstrap), 2.2 sigma from MG, consistent with MI.  A lean, not a result.
+
 f12_disc_virial_coefficient.py -- CLOSING f11: compute the disc virial coefficient directly, and see if the offset dies.
 =========================================================================================================================
 f11 found that the two routes to a_0 inside the same galaxy disagree by +0.180 dex (10.3 sigma statistically), and named
