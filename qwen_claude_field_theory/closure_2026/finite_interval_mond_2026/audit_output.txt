@@ -1,0 +1,301 @@
+START: 2026-09-04T23:45:32.979062+00:00
+PREFLIGHT ERRORS: []
+
+JOB: study_unittests
+COMMAND: /Applications/Xcode.app/Contents/Developer/usr/bin/python3 -m unittest discover -s /Users/carlzimmerman/new_physics/zimmerman-formula/qwen_claude_field_theory/closure_2026/finite_interval_mond_2026 -v
+CWD: /var/folders/66/fvmh_ndx2bj_y7k8v29wk3m40000gn/T/finite-interval-study-lplkyt65
+ENVIRONMENT: {"MKL_NUM_THREADS": "1", "MPLBACKEND": "Agg", "MPLCONFIGDIR": "/var/folders/66/fvmh_ndx2bj_y7k8v29wk3m40000gn/T/finite-interval-study-lplkyt65/matplotlib", "NUMEXPR_NUM_THREADS": "1", "OMP_NUM_THREADS": "1", "OPENBLAS_NUM_THREADS": "1", "PYTHONDONTWRITEBYTECODE": "1", "VECLIB_MAXIMUM_THREADS": "1", "XDG_CACHE_HOME": "/var/folders/66/fvmh_ndx2bj_y7k8v29wk3m40000gn/T/finite-interval-study-lplkyt65/xdg-cache"}
+EXIT: 0 TIMEOUT: False
+SECONDS: 0.927747
+test_bootstrap_resamples_whole_rows_and_is_reproducible (test_empirical.EmpiricalTests) ... ok
+test_complete_controls_serialize_as_strict_json (test_empirical.EmpiricalTests) ... ok
+test_contrast_and_covariance_have_shared_middle_point (test_empirical.EmpiricalTests) ... ok
+test_covariance_rejects_non_psd_or_wrong_shape (test_empirical.EmpiricalTests) ... ok
+test_global_acceleration_normalization_and_common_noise_cancel (test_empirical.EmpiricalTests) ... ok
+test_narrow_and_degenerate_triples_are_rejected (test_empirical.EmpiricalTests) ... ok
+test_selection_uses_baryons_and_has_no_velocity_argument (test_empirical.EmpiricalTests) ... ok
+test_signed_negative_gas_is_not_a_primary_sample_exclusion (test_empirical.EmpiricalTests) ... ok
+test_single_galaxy_does_not_get_zero_width_population_intervals (test_empirical.EmpiricalTests) ... ok
+test_wrong_empty_input_not_a_vacuous_success (test_empirical.EmpiricalTests) ... ok
+test_payload_preserves_empirical_prediction_difference (test_render_results.PlotInputTests) ... ok
+test_chord_defect_preserves_violations_and_cancels_uniform_amplitudes (test_response_math.ResponseTests) ... ok
+test_exact_exponential_and_rar_predictions_obey_common_interval_bounds (test_response_math.ResponseTests) ... ok
+test_exponential_inverse_recovers_independent_forward_accelerations (test_response_math.ResponseTests) ... ok
+test_finite_transfer_preserves_endpoints_and_broadcasting (test_response_math.ResponseTests) ... ok
+test_invalid_inputs_fail_without_silently_clipping_or_reordering (test_response_math.ResponseTests) ... ok
+test_other_kernels_have_independent_forward_benchmarks (test_response_math.ResponseTests) ... ok
+test_positive_kernels_have_correct_deep_and_newton_limits (test_response_math.ResponseTests) ... ok
+test_symbolic_curvature_matches_independent_log_acceleration_differences (test_response_math.ResponseTests) ... ok
+test_fingerprints_record_missing_and_detect_content_change (test_run_study.RunnerTests) ... ok
+test_job_plan_covers_both_suites_math_empirical_plot_and_old_cli (test_run_study.RunnerTests) ... ok
+test_missing_executable_is_recorded_and_timeout_is_bounded (test_run_study.RunnerTests) ... ok
+test_nonzero_and_timeout_preserve_stdout_and_status (test_run_study.RunnerTests) ... ok
+test_source_inventory_includes_new_docs_and_requires_full_catalog (test_run_study.RunnerTests) ... ok
+test_success_records_output_and_required_environment (test_run_study.RunnerTests) ... ok
+test_verdict_is_execution_only_and_detects_provenance_drift (test_run_study.RunnerTests) ... ok
+
+----------------------------------------------------------------------
+Ran 26 tests in 0.710s
+
+OK
+
+
+JOB: response_math
+COMMAND: /Applications/Xcode.app/Contents/Developer/usr/bin/python3 /Users/carlzimmerman/new_physics/zimmerman-formula/qwen_claude_field_theory/closure_2026/finite_interval_mond_2026/response_math.py
+CWD: /var/folders/66/fvmh_ndx2bj_y7k8v29wk3m40000gn/T/finite-interval-study-lplkyt65
+ENVIRONMENT: {"MKL_NUM_THREADS": "1", "NUMEXPR_NUM_THREADS": "1", "OMP_NUM_THREADS": "1", "OPENBLAS_NUM_THREADS": "1", "PYTHONDONTWRITEBYTECODE": "1", "VECLIB_MAXIMUM_THREADS": "1"}
+EXIT: 0 TIMEOUT: False
+SECONDS: 0.489341
+{
+  "domains": {
+    "mu_exp": "x=g/a0>0; b=a0*x*(1-exp(-x))",
+    "nu_rar": "x=sqrt(b/a0)>0; g=a0*x^2/(1-exp(-x))"
+  },
+  "logarithm_convention": "slope and curvature use ln; finite statistics use log10",
+  "slope": {
+    "mu_exp": "(exp(x) - 1)/(x + exp(x) - 1)",
+    "nu_rar": "-(x/2 - exp(x) + 1)/(exp(x) - 1)"
+  },
+  "curvature": {
+    "mu_exp": "x*(1 - exp(x))*(-(1 - exp(x))*(exp(x) + 1) - (x + exp(x) - 1)*exp(x))/(x + exp(x) - 1)**3",
+    "nu_rar": "x*(x*exp(x) - exp(x) + 1)/(4*(exp(2*x) - 2*exp(x) + 1))"
+  },
+  "residuals": {
+    "exp_slope": "0",
+    "rar_slope": "0",
+    "exp_curvature": "0",
+    "rar_curvature": "0",
+    "Lprime_numerator": "0",
+    "numerator_derivative": "0"
+  },
+  "slope_limits": {
+    "mu_exp": {
+      "deep": "1/2",
+      "newton": "1"
+    },
+    "nu_rar": {
+      "deep": "1/2",
+      "newton": "1"
+    }
+  },
+  "Lprime_numerator_at_zero": "0",
+  "Lprime_numerator_derivative": "(1 - x)*exp(x) - exp(x)",
+  "examples": {
+    "mu_exp": {
+      "b_over_a0": [
+        0.003,
+        0.3,
+        30.0
+      ],
+      "g_over_a0": [
+        0.055534427335936686,
+        0.6368693553254003,
+        30.000000000002807
+      ],
+      "log10_transfer": 2.7325589568833513,
+      "chord_defect_dex": -0.30679142413167815
+    },
+    "nu_rar": {
+      "b_over_a0": [
+        0.003,
+        0.3,
+        30.0
+      ],
+      "g_over_a0": [
+        0.05628594812984994,
+        0.7113476415208968,
+        30.125954000298623
+      ],
+      "log10_transfer": 2.728540822505122,
+      "chord_defect_dex": -0.2625885014341827
+    },
+    "simple": {
+      "b_over_a0": [
+        0.003,
+        0.3,
+        30.0
+      ],
+      "g_over_a0": [
+        0.05629279149669234,
+        0.7178908345800273,
+        30.968719422671313
+      ],
+      "log10_transfer": 2.740470461987061,
+      "chord_defect_dex": -0.26462960770059774
+    },
+    "deep": {
+      "b_over_a0": [
+        0.003,
+        0.3,
+        30.0
+      ],
+      "g_over_a0": [
+        0.05477225575051661,
+        0.5477225575051661,
+        5.477225575051661
+      ],
+      "log10_transfer": 2.0,
+      "chord_defect_dex": 0.0
+    },
+    "newton": {
+      "b_over_a0": [
+        0.003,
+        0.3,
+        30.0
+      ],
+      "g_over_a0": [
+        0.003,
+        0.3,
+        30.0
+      ],
+      "log10_transfer": 4.0,
+      "chord_defect_dex": 0.0
+    }
+  },
+  "scope": "Formal corollaries of algebraic laws; no disk-field or empirical certificate."
+}
+
+
+JOB: empirical
+COMMAND: /Applications/Xcode.app/Contents/Developer/usr/bin/python3 /Users/carlzimmerman/new_physics/zimmerman-formula/qwen_claude_field_theory/closure_2026/finite_interval_mond_2026/empirical.py --output /var/folders/66/fvmh_ndx2bj_y7k8v29wk3m40000gn/T/finite-interval-study-lplkyt65/results.json
+CWD: /var/folders/66/fvmh_ndx2bj_y7k8v29wk3m40000gn/T/finite-interval-study-lplkyt65
+ENVIRONMENT: {"MKL_NUM_THREADS": "1", "NUMEXPR_NUM_THREADS": "1", "OMP_NUM_THREADS": "1", "OPENBLAS_NUM_THREADS": "1", "PYTHONDONTWRITEBYTECODE": "1", "VECLIB_MAXIMUM_THREADS": "1"}
+EXIT: 0 TIMEOUT: False
+SECONDS: 0.799288
+primary {"status": "computed_descriptive_not_certified", "galaxies": 78, "observed_mean_D_J": [0.6840112241852134, -0.006849255655112278], "observed_mean_percentiles_2p5_50_97p5": [[0.6156243157974262, -0.02381751573731085], [0.6848687002779968, -0.0071101976876791735], [0.752871082717799, 0.010478279173533132]], "kernel_rms_D_J": {"mu_exp": [0.16664349397348865, 0.08182859582484656], "nu_rar": [0.16693971295462112, 0.0806671857360657], "simple": [0.169208177454294, 0.08100910273378581], "deep": [0.2155966414333634, 0.08091916449695859], "newton": [0.5039359333689202, 0.08091916449695886]}}
+low_stellar_ml {"status": "computed_descriptive_not_certified", "galaxies": 76, "observed_mean_D_J": [0.683987323742229, -0.012193991226034782], "observed_mean_percentiles_2p5_50_97p5": [[0.6128065389429586, -0.02886366810295525], [0.6853654638252852, -0.01243197502428568], [0.7564634878966647, 0.005554776026596014]], "kernel_rms_D_J": {"mu_exp": [0.18749800260613037, 0.08017316635991202], "nu_rar": [0.17741320800137492, 0.07995719206387833], "simple": [0.1764934457534205, 0.08015856394011506], "deep": [0.24199211350330294, 0.08105003947109615], "newton": [0.45719724637998654, 0.08105003947109612]}}
+high_stellar_ml {"status": "computed_descriptive_not_certified", "galaxies": 84, "observed_mean_D_J": [0.6584239242999889, -0.0015520451547390347], "observed_mean_percentiles_2p5_50_97p5": [[0.5931411133523213, -0.01868972880646453], [0.6593503292298883, -0.001817782945830167], [0.7245767474307726, 0.016532269401948643]], "kernel_rms_D_J": {"mu_exp": [0.19342861864366342, 0.0868903511778635], "nu_rar": [0.20024634740329514, 0.08448417056861328], "simple": [0.20521413579599967, 0.08489547884548271], "deep": [0.2134283584731328, 0.08360160374143558], "newton": [0.5464303989208459, 0.08360160374143547]}}
+high_quality {"status": "computed_descriptive_not_certified", "galaxies": 52, "observed_mean_D_J": [0.6777161848749709, -0.013365471596857295], "observed_mean_percentiles_2p5_50_97p5": [[0.5976999320641571, -0.03204511489805751], [0.6789478526103273, -0.0131295031443636], [0.7585841958458152, 0.0046699371193276796]], "kernel_rms_D_J": {"mu_exp": [0.16503213430927618, 0.06974448627535199], "nu_rar": [0.16243030681455045, 0.06737635196057594], "simple": [0.1645694187958406, 0.06756804307895117], "deep": [0.2151237621336318, 0.0690663889822883], "newton": [0.4801425922684563, 0.06906638898228855]}}
+inner_half_scale {"status": "computed_descriptive_not_certified", "galaxies": 87, "observed_mean_D_J": [0.7285364691353031, -0.0019697385433364487], "observed_mean_percentiles_2p5_50_97p5": [[0.6458216658736046, -0.021087813072832185], [0.7277491456561943, -0.0016906958192774819], [0.8083725593728819, 0.02018051477573994]], "kernel_rms_D_J": {"mu_exp": [0.2267251804410985, 0.1052619067806167], "nu_rar": [0.22872192623157966, 0.10182552828517412], "simple": [0.23183989112054987, 0.10240684700001257], "deep": [0.2706062843958923, 0.09953593296677739], "newton": [0.5629603137896579, 0.09953593296677749]}}
+outer_two_scales {"status": "computed_descriptive_not_certified", "galaxies": 70, "observed_mean_D_J": [0.5889678466827345, -0.009181308251506103], "observed_mean_percentiles_2p5_50_97p5": [[0.5382874781433395, -0.025324151281595493], [0.5901231340329973, -0.009642045719092369], [0.6413081300198964, 0.007988026660322401]], "kernel_rms_D_J": {"mu_exp": [0.11879868794691846, 0.06704321537865968], "nu_rar": [0.11375360947922857, 0.06723164517573277], "simple": [0.114230566420067, 0.06722287285463242], "deep": [0.16722329936783878, 0.06963818606156644], "newton": [0.40666250448342406, 0.06963818606156637]}}
+gas_dominated {"status": "single_galaxy_no_population_inference", "galaxies": 1, "observed_mean_D_J": [0.19859207252025612, 0.027408498957850507]}
+alternative_a0 {"status": "computed_descriptive_not_certified", "galaxies": 78, "observed_mean_D_J": [0.6840112241852134, -0.006849255655112278], "observed_mean_percentiles_2p5_50_97p5": [[0.6156243157974262, -0.02381751573731085], [0.6848687002779968, -0.0071101976876791735], [0.752871082717799, 0.010478279173533132]], "kernel_rms_D_J": {"mu_exp": [0.1659434506432126, 0.08094139555002752], "nu_rar": [0.16444683898142481, 0.08033477967725271], "simple": [0.16589219039165556, 0.08063633541926975], "deep": [0.21559664143336355, 0.08091916449695881], "newton": [0.5039359333689202, 0.08091916449695886]}}
+Controls: {"checks": {"synthetic_exact_recovery": true, "coherent_distance_inclination_cancellation": true, "common_mode_covariance_cancellation": true, "conditional_noise_variance_recovery": true, "reversed_force_mutant_violates_compression": true, "concave_mutant_violates_J_sign": true}, "all_implementation_controls_pass": true, "conditional_noise_empirical_to_analytic_variance_ratio_D_J": [0.9671376258203547, 1.0247500209701945], "conditional_noise_mean_residual_D_J": [0.0005953558337415437, -2.222470131549996e-05], "permuted_observed_force_rms_D_J": [0.9828272810164265, 0.44892455398948805], "note": "Surrogate/negative controls, not empirical confirmations of the law."}
+
+
+JOB: render_results
+COMMAND: /Applications/Xcode.app/Contents/Developer/usr/bin/python3 /Users/carlzimmerman/new_physics/zimmerman-formula/qwen_claude_field_theory/closure_2026/finite_interval_mond_2026/render_results.py --input /var/folders/66/fvmh_ndx2bj_y7k8v29wk3m40000gn/T/finite-interval-study-lplkyt65/results.json --output /var/folders/66/fvmh_ndx2bj_y7k8v29wk3m40000gn/T/finite-interval-study-lplkyt65/finite_interval_results.png
+CWD: /var/folders/66/fvmh_ndx2bj_y7k8v29wk3m40000gn/T/finite-interval-study-lplkyt65
+ENVIRONMENT: {"MKL_NUM_THREADS": "1", "MPLBACKEND": "Agg", "MPLCONFIGDIR": "/var/folders/66/fvmh_ndx2bj_y7k8v29wk3m40000gn/T/finite-interval-study-lplkyt65/matplotlib", "NUMEXPR_NUM_THREADS": "1", "OMP_NUM_THREADS": "1", "OPENBLAS_NUM_THREADS": "1", "PYTHONDONTWRITEBYTECODE": "1", "VECLIB_MAXIMUM_THREADS": "1", "XDG_CACHE_HOME": "/var/folders/66/fvmh_ndx2bj_y7k8v29wk3m40000gn/T/finite-interval-study-lplkyt65/xdg-cache"}
+EXIT: 0 TIMEOUT: False
+SECONDS: 8.614115
+Matplotlib is building the font cache; this may take a moment.
+/var/folders/66/fvmh_ndx2bj_y7k8v29wk3m40000gn/T/finite-interval-study-lplkyt65/finite_interval_results.png
+
+
+JOB: orbit_shape_unittests
+COMMAND: /Applications/Xcode.app/Contents/Developer/usr/bin/python3 -m unittest discover -s /Users/carlzimmerman/new_physics/zimmerman-formula/qwen_claude_field_theory/closure_2026/two_kernel_orbit_shape_2026 -v
+CWD: /var/folders/66/fvmh_ndx2bj_y7k8v29wk3m40000gn/T/finite-interval-study-lplkyt65
+ENVIRONMENT: {"MKL_NUM_THREADS": "1", "NUMEXPR_NUM_THREADS": "1", "OMP_NUM_THREADS": "1", "OPENBLAS_NUM_THREADS": "1", "PYTHONDONTWRITEBYTECODE": "1", "VECLIB_MAXIMUM_THREADS": "1"}
+EXIT: 0 TIMEOUT: False
+SECONDS: 3.352806
+test_recovers_noiseless_rar_with_a0_fitted_in_both_models (test_kernel_comparison.ProfileTests) ... ok
+test_replication_within_each_galaxy_does_not_change_equal_galaxy_score (test_kernel_comparison.ProfileTests) ... ok
+test_acceleration_satisfies_implicit_constitutive_equation (test_orbit_shape.OrbitShapeTests) ... ok
+test_deep_invariant_has_opposite_signs (test_orbit_shape.OrbitShapeTests) ... ok
+test_direct_orbits_agree_with_predicted_epicycle_ratio (test_orbit_shape.OrbitShapeTests) ... ok
+test_flow_matches_force_differentiation_without_epicycle_formula (test_orbit_shape.OrbitShapeTests) ... ok
+test_lambert_inverse_selects_nonzero_branch (test_orbit_shape.OrbitShapeTests) ... ok
+test_qumond_action_and_constraint_preservation_are_computed (test_orbit_shape.OrbitShapeTests) ... ok
+test_qumond_primitive_matches_required_action_derivative (test_orbit_shape.OrbitShapeTests) ... ok
+test_rar_action_primitive_varies_to_required_flux (test_orbit_shape.OrbitShapeTests) ... ok
+test_symbolic_action_and_orbit_residuals (test_orbit_shape.OrbitShapeTests) ... ok
+test_wrong_kernel_does_not_pass_shape_null (test_orbit_shape.OrbitShapeTests) ... ok
+
+----------------------------------------------------------------------
+Ran 12 tests in 3.020s
+
+OK
+
+
+JOB: orbit_shape
+COMMAND: /Applications/Xcode.app/Contents/Developer/usr/bin/python3 /Users/carlzimmerman/new_physics/zimmerman-formula/qwen_claude_field_theory/closure_2026/two_kernel_orbit_shape_2026/orbit_shape.py
+CWD: /var/folders/66/fvmh_ndx2bj_y7k8v29wk3m40000gn/T/finite-interval-study-lplkyt65
+ENVIRONMENT: {"MKL_NUM_THREADS": "1", "NUMEXPR_NUM_THREADS": "1", "OMP_NUM_THREADS": "1", "OPENBLAS_NUM_THREADS": "1", "PYTHONDONTWRITEBYTECODE": "1", "VECLIB_MAXIMUM_THREADS": "1"}
+EXIT: 0 TIMEOUT: False
+SECONDS: 2.020557
+{
+  "checks": {
+    "radial_action_EL": true,
+    "particle_epicycle": true,
+    "particle_circular_frequency": true,
+    "exp_primitive_flux": true,
+    "exp_q": true,
+    "rar_q": true,
+    "exp_flow": true,
+    "rar_flow": true,
+    "rar_strict_inequality_identity": true,
+    "rar_action_flux": true,
+    "Phi_variation_Poisson": true,
+    "chi_variation_phantom_density": true,
+    "secondary_preservation_0": true,
+    "secondary_preservation_1": true
+  },
+  "symbolic": {
+    "q": {
+      "mu_exp": "(3*x + exp(x) - 1)/(x + exp(x) - 1)",
+      "nu_rar": "(x + exp(x) - 1)/(exp(x) - 1)"
+    },
+    "flow": {
+      "mu_exp": "2*x*((exp(x) + 1)*(3*x + exp(x) - 1) - (exp(x) + 3)*(x + exp(x) - 1))*(exp(x) - 1)/(x + exp(x) - 1)**3",
+      "nu_rar": "x*(x*exp(x) - exp(x) + 1)/(exp(2*x) - 2*exp(x) + 1)"
+    },
+    "deep_invariant": {
+      "mu_exp": "4/3",
+      "nu_rar": "-1/3"
+    }
+  },
+  "examples": {
+    "1.1": {
+      "mu_exp": "0.63201639505256960000447213249119620800759883324386649956008527273",
+      "nu_rar": "0.27149504270875306296818887235726614351768898794997097805422635759"
+    },
+    "1.25": {
+      "mu_exp": "0.87094536778500457214716953580153018196404327662835000456630345127",
+      "nu_rar": "0.39666574556576347029571256667850278866987618488927725992130628003"
+    },
+    "1.5": {
+      "mu_exp": "0.69589520312271571014945395296582600909520520256611793830715677279",
+      "nu_rar": "0.37821560431308483849136880830460816345820841585066185556294736352"
+    },
+    "1.75": {
+      "mu_exp": "0.32074504782137788878593634326139839036650115164501460699983299346",
+      "nu_rar": "0.22515055624430144111494888453093781732207003691389729898465525703"
+    },
+    "1.9": {
+      "mu_exp": "0.11268119428278379880782276811595304880035036328739687103399778107",
+      "nu_rar": "0.096431852649824962973369863596753063807269858199620075660082992621"
+    }
+  },
+  "qumond_action_audit": {
+    "EL": "[4*A*chi_r*r + 2*A*chi_rr*r**2 - r**2*rho, 2*A*Phi_rr*r**2 + A*chi_rr*r**2*(-2*nu(chi_r/a0) - 2*chi_r*Subs(Derivative(nu(_xi_1), _xi_1), _xi_1, chi_r/a0)/a0) + 2*A*r*(2*Phi_r - 2*chi_r*nu(chi_r/a0))]",
+    "Hamiltonian": "A*k**2*(-b*c**2 + 2*c*f) + f*rho",
+    "primaries": "[p_f, p_c]",
+    "secondaries": "[-2*A*c*k**2 - rho, 2*A*b*c*k**2 - 2*A*f*k**2]",
+    "constraint_Jacobian_rank": "4",
+    "PB_matrix": "Matrix([[0, 0, 0, 2*A*k**2], [0, 0, 2*A*k**2, -2*A*b*k**2], [0, -2*A*k**2, 0, 0], [-2*A*k**2, 2*A*b*k**2, 0, 0]])",
+    "PB_determinant": "16*A**4*k**8",
+    "finite_k_rank": "4",
+    "finite_k_first_class": "0",
+    "finite_k_second_class": "4",
+    "finite_k_scalar_dof": "0",
+    "preservation_equations": "[-2*A*k**2*u_c, 2*A*b*k**2*u_c - 2*A*k**2*u_f]",
+    "multipliers": "{u_c: 0, u_f: 0}",
+    "zero_k_rank": "0",
+    "zero_k_secondaries": "[-rho, 0]",
+    "lorentzian_hessian": "Matrix([[0, 2*A], [2*A, -2*A*b]])",
+    "lorentzian_hessian_determinant": "-4*A**2",
+    "wrong_primitive_newton_ratio": "0",
+    "wrong_squared_argument_deep_g_over_a0": "1"
+  },
+  "bounded_scan": {
+    "q_min": 1.01,
+    "q_max": 1.99,
+    "count": 99,
+    "minimum_gap": "0.000166325028012304"
+  },
+  "interpretation": "Derived nonrelativistic spherical corollaries; relativistic completion OPEN"
+}
+
+
+EXECUTION FAILURE REASONS: []
