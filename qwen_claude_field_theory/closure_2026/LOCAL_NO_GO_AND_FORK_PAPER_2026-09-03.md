@@ -1,12 +1,12 @@
-# No healthy local relativistic completion of the exponential MOND kernel with $a_0=\tfrac12 c\sqrt{G\rho_\Lambda}$: a structural no-go theorem, and the inertia–gravity fork on galaxies
+# Obstruction map for tested relativistic completions of exponential-MOND phenomenology, and the inertia–gravity fork on galaxies
 
-*Version 2026-09-03 (v1, draft for internal review). A theorem paper. Every quantitative statement below is a committed, runnable script with numbered checks that can fail, at least one mutation control, and both numerical footings of $a_0$. Script paths are given inline; the table in §9 lists them all.*
+*Version 2026-09-03 (v2, corrected draft for internal review). Each computational claim below carries its cited artifact and scope. Checks, mutation controls, and numerical footings vary by artifact. Script paths are given inline; the table in §10 lists them.*
 
 ---
 
 ## Abstract
 
-We consider the phenomenological framework in which the Milgromian acceleration scale is the free-fall acceleration of the dark-energy density, $a_0=\tfrac12 c\sqrt{G\rho_\Lambda}=c^2\sqrt{\Lambda/32\pi}$, with the galactic kernel $\nu(y)=[1-e^{-\sqrt y}]^{-1}$, $y=g_{\rm bar}/a_0$. Conditional on the single premise that $a_0$ is a universal local acceleration scale, the $\sqrt{\rho}$ form and the exponent $\tfrac12$ are forced by dimensional analysis; the coefficient $\tfrac12$ is fitted to SPARC and is never claimed derived. We then prove, by exhaustion of cases with each case closed by a committed calculation, that **no local relativistic completion of this kernel passes the standard health gates simultaneously**: the constraint-based (two-degree-of-freedom) branch is instantaneous and carries $\alpha_3=O(1)$; the frame-free scalar branch violates no-slip, and its one named escape—a disformal matter coupling—converts the cancelled slip into an equal gravitational-wave/light speed difference, excluded by GW170817 by $\sim10^6$; and the preferred-frame branch carries an irreducible preferred-frame PPN parameter $\alpha_1$ whose MOND-generating piece is independent of every free kinetic parameter and can be cancelled only by a ghost. The same MOND-generating coupling kills the two scalar-gradient embeddings through $c_T\neq c$ and a radial gradient instability. Every *written* route through the nonlocal spin-2 door is also closed: the smoothly-vanishing spatial projector survives Dirac's algorithm with zero degrees of freedom on both sides of its rank bifurcation and is killed only by being an $\omega$-independent elliptic channel. Independently, we show the cluster mass residual cannot be supplied by any dark component—hot, cold, or mixed—within the framework's own galactic bounds. Finally we exhibit the one structural fork the framework leaves open: every system it fits is rotation-supported and every system it misses is pressure-supported, which is the signature that separates modified inertia from modified gravity. We construct the first test that distinguishes the two arms on rotating galaxies—the curl field of the modified-gravity disc solution—and find that its sign is contradicted by SPARC's deep discs at high significance while its amplitude is degenerate with the stellar mass-to-light ratio; the pressure-supported dwarfs and globular clusters lean the same way but pull in opposite directions from each other. The framework's one distinctive, undecided prediction remains that $a_0$ is constant in redshift where the emergent $\Lambda$CDM scale rises by $+0.33$ dex at $z\simeq2.5$. This paper claims no completion and no discovery; it claims a map.
+We consider the phenomenological framework in which the Milgromian acceleration scale is the free-fall acceleration of the dark-energy density, $a_0=\tfrac12 c\sqrt{G\rho_\Lambda}=c^2\sqrt{\Lambda/32\pi}$. We distinguish the fitted algebraic RAR function $\nu_{\rm RAR}$ from the exact exponential AQUAL constitutive law $\mu_{\exp}$. Conditional on the premise that $a_0$ is a universal local acceleration scale, dimensional analysis fixes the $\sqrt\rho$ scaling but not the fitted coefficient $\tfrac12$. Across three tested, non-exhaustive local architecture families, named candidates fail specific gates. In the tested constraint reductions the scalar response is $\omega$-independent; where that response is the physical MOND mediator it fails the stipulated no-unacceptable-instantaneous-channel gate, but $\alpha_1$, $\alpha_2$, and $\alpha_3$ remain uncomputed absent a boosted 1PN metric/matter solution and standard-PPN gauge matching. A new regular-center theorem supplies an independent obstruction: exact $\mu_{\exp}$ and no slip turn any smooth positive-density spherical core into a finite-action but non-$C^2$ metric with divergent Ricci and tidal curvature. The other candidate-specific local, nonlocal, cluster, and inertia–gravity results are mapped with their individual scopes. This paper claims no completed relativistic theory, no exhaustive classification of all local actions, and no global novelty theorem; it claims a reproducible map and a new repository-level central-core prediction.
 
 ---
 
@@ -14,45 +14,52 @@ We consider the phenomenological framework in which the Milgromian acceleration 
 
 **The equation.** $a_0=\tfrac12 c\sqrt{G\rho_\Lambda}$. Equivalent forms: $a_0=c^2\sqrt{\Lambda/32\pi}$; $a_0=cH_0\sqrt{3\Omega_\Lambda/32\pi}\simeq0.144\,cH_0$. Numerically $9.36\times10^{-11}$ m s$^{-2}$ (Planck $H_0=67.4$, $\Omega_\Lambda=0.69$); the SPARC-fitted value is $1.2\times10^{-10}$. Both footings, $9.36\times10^{-11}$ (canonical) and $1.13\times10^{-10}$ (alternative), are carried through every calculation.
 
-**What is forced.** Given one premise—$a_0$ is a universal *local* acceleration scale, so its inputs are $\{c,G,\rho\}$—Buckingham-$\Pi$ leaves exactly one dimensionless group: $a_0=\kappa c\sqrt{G\rho}$. The form and the exponent are not choices (`real_research/uniqueness_dimensional_proof.py`). Two things are not forced and are stated as such: the premise itself (Milgrom calls $\Lambda$-versus-$H_0$ "moot"; the premise is the content), and the coefficient $\kappa$, which is fitted: $\kappa=0.465\pm0.076$ (BTFR) and $0.551\pm0.043$ (distance-free), bracketing $\tfrac12$, with $\tfrac12$ versus $1/2\pi$ separated at $\sim4\sigma$ (`real_research/reviews/mi_kappa_error_budget_unlock_2026.py`). **$\kappa=\tfrac12$ is provably underivable from any homogeneous or quadratic sector of the theory**: $\ell_0=c^2/a_0$ cancels identically at quadratic order in the acceleration expansion, and $a_\mu=0$ on FLRW, so the first place a theory could fix $\kappa$ is cubic order (§8).
+**What is forced.** Given one premise—$a_0$ is a universal *local* acceleration scale, so its inputs are $\{c,G,\rho\}$—Buckingham-$\Pi$ leaves exactly one dimensionless group: $a_0=\kappa c\sqrt{G\rho}$. The form and the exponent are not choices (`real_research/uniqueness_dimensional_proof.py`). Two things are not forced and are stated as such: the premise itself (Milgrom calls $\Lambda$-versus-$H_0$ "moot"; the premise is the content), and the coefficient $\kappa$, which is fitted: $\kappa=0.465\pm0.076$ (BTFR) and $0.551\pm0.043$ (distance-free), bracketing $\tfrac12$, with $\tfrac12$ versus $1/2\pi$ separated at $\sim4\sigma$ (`real_research/reviews/mi_kappa_error_budget_unlock_2026.py`). For the displayed acceleration-kernel actions studied here, $\ell_0=c^2/a_0$ cancels at quadratic order and $a_\mu=0$ on FLRW; those sectors therefore do not fix $\kappa$. This is not a theorem about every possible homogeneous or quadratic completion.
 
-**The kernel.** $\nu(y)=[1-e^{-\sqrt y}]^{-1}$, the radial-acceleration-relation fit of McGaugh, Lelli & Schombert. Fitted, and stated as fitted.
+**The two functions that must not be conflated.** The phenomenological algebraic RAR fit used in the galaxy analyses is $\nu_{\rm RAR}(y_N)=[1-e^{-\sqrt{y_N}}]^{-1}$, $y_N=g_{\rm bar}/a_0$. Separately, the relativistic-action target is exact AQUAL $\mu_{\exp}(x)=1-e^{-x}$, $x=g/a_0$. In spherical symmetry its boost $\nu_{\rm AQUAL}$ is defined implicitly by $y_N=x\mu_{\exp}(x)$ and $x=\nu_{\rm AQUAL}(y_N)y_N$, hence
+$$\nu_{\rm AQUAL}(y_N)\left[1-e^{-\nu_{\rm AQUAL}(y_N)y_N}\right]=1.$$
+No exact identity between $\nu_{\rm RAR}$ and $\nu_{\rm AQUAL}$ is claimed; they share the deep-MOND and Newtonian limiting behavior but differ at finite acceleration.
 
 **Where it works.** 147–175 SPARC rotating discs at 0.06 dex; the Milky Way rotation curve; the vertical force (`prep_2026`); Renzo's rule. A theorem of this repository (`hunt_2026/k_unexplained-regularities_closure.py`) shows that ten of twelve "unexplained galactic regularities" in the literature, including the baryonic Tully–Fisher relation, are reparametrisations of the radial acceleration relation to machine precision under a seeded derangement shuffle; only a two-radius statistic and a non-multiplicative statistic escape. The framework's galactic content is therefore one relation.
 
 **Where it fails.** Every pressure-supported system (`hunt_2026/THE_LIABILITY_TABLE.md`): clusters need $\times2$–$3$ at $R_{500}$ and their cores are Newtonian at $g\approx20a_0$; groups, ellipticals, dwarf spheroidals, ultra-diffuse galaxies, globular clusters. The external-field slope is measured at $+0.080\pm0.047$ where modified gravity predicts $-0.093$, a sign disagreement at $3.7\sigma$ (`hunt_2026/f03_efe_slope_prediction.py`).
 
-**The gates.** A relativistic completion must produce $\mu(y)=1-e^{-y}$ exactly in the quasi-static limit from one action, with $N_{\rm grav}=2$ tensor degrees of freedom plus at most one healthy scalar (all degrees of freedom explicit, counted, healthy); $\Phi=\Psi$ derived; full PPN with $\gamma=\beta=1$, $\alpha_{1,2,3}=0$ (Cassini $|\gamma-1|<2.3\times10^{-5}$; pulsar $|\alpha_3|<4\times10^{-20}$); $\nabla_\mu T^{\mu\nu}=0$ as a Noether identity; $c_T=c$ to $10^{-15}$; stability with no instantaneous channel; a dynamically accelerating FLRW background; a controlled $y\to0$ limit; $G_N$ derived; one metric (`FRIED_CHICKEN_SPEC.md`).
+**The gates.** For the exact-AQUAL action target, distinct from the fitted $\nu_{\rm RAR}$ relation above, a relativistic completion must produce $\mu(y)=1-e^{-y}$ exactly in the quasi-static limit from one action, with $N_{\rm grav}=2$ tensor degrees of freedom plus at most one healthy scalar (all degrees of freedom explicit, counted, healthy); $\Phi=\Psi$ derived; full PPN with $\gamma=\beta=1$, $\alpha_{1,2,3}=0$ (Cassini $|\gamma-1|<2.3\times10^{-5}$; pulsar $|\alpha_3|<4\times10^{-20}$); $\nabla_\mu T^{\mu\nu}=0$ as a Noether identity; $c_T=c$ to $10^{-15}$; stability with no unacceptable instantaneous physical channel; a dynamically accelerating FLRW background; a controlled $y\to0$ limit; $G_N$ derived; one metric (`FRIED_CHICKEN_SPEC.md`).
 
 ---
 
-## 2. Assumptions of the no-go
+## 2. Assumptions and scope of the obstruction map
 
 - **A1** The matter coupling is metric, or metric plus a Bekenstein-form disformal term $B\,\partial_\mu\phi\,\partial_\nu\phi$.
 - **A2** Locality: the action is a local functional of the fields (the nonlocal case is treated separately in §5).
 - **A3** At most one propagating scalar beyond the two tensor polarisations, or a unit timelike vector.
-- **A4** Lensing and dynamics agree in the MOND regime ($\gamma_{\rm PPN}=1$ from KiDS-1000: $21.2\sigma\to0.6\sigma$).
+- **A4** On the relevant quasistatic branch, dynamics and lensing require $\Phi=\Psi$ at leading weak-field order. Calling this $\gamma_{\rm PPN}=1$ additionally requires a complete 1PN solution and standard-PPN gauge/matching; the KiDS statistic is not that derivation.
 - **A5** GW170817: $|c_{\rm GW}/c_{\rm light}-1|<10^{-15}$ along the observed path.
 - **A6** Pulsar bound $|\alpha_3|<4\times10^{-20}$; Cassini $|\gamma-1|<2.3\times10^{-5}$.
 - **A7** An expanding background with $H\neq0$.
+- **A8** The exact AQUAL equation applies through smooth positive-density matter, and the physical weak metric is at least $C^2$ with bounded classical curvature at a regular force-free center.
 
-A2 is load-bearing. Everything in §3–§4 is unconditional within the local class and conditional on A2 overall.
+A2 and A8 are load-bearing for different claims. Results in §§3–4 are conditional on each subsection's displayed field content, action, and branch assumptions; they do not exhaust the local class.
 
 ---
 
-## 3. The local no-go, by branch
+## 3. Local obstruction map, by tested branch
 
-A local theory can carry the MOND force in exactly three ways: through a constraint on the metric with no new propagating field; through a frame-free scalar; or through a field that defines a preferred frame. Each is closed.
+We audit three broad, non-exhaustive architectures represented by explicit candidate actions in the repository.
 
-### 3.1 The constraint branch: two degrees of freedom is instantaneous
+### 3.1 The constraint branch: bounded successes, open PPN, and a regular-center obstruction
 
-If $N_{\rm grav}=2$, the MOND force is carried by a second-class constraint. A constraint has an $\omega$-independent $1/k^2$ propagator, i.e. it is instantaneous in the preferred foliation, and an instantaneous potential in a moving frame carries the preferred-frame parameter $\alpha_3=O(1)$. The furthest any strict two-degree-of-freedom MOND reached is the cuscuton-plus-Laplacian-constraint construction, which clears exact $\mu$, the deep-MOND cubic, the $a_0$ promotion $a_0^2=GV(\chi)/4$, no-slip, and the Dirac count, and dies at $\alpha_3=-1$ in the principal $(k,\omega)$ extraction, excluded by $\sim10^{19}$ (`cde_l4c_2026/cde_l4c_ppn_alpha3.py`). The mechanism is a pincer:
-$$N_{\rm grav}=2\;\Longleftrightarrow\;\text{MOND via second-class constraint}\;\Longleftrightarrow\;\omega\text{-independent }1/k^2\;\Longleftrightarrow\;\alpha_3=O(1).$$
-$\alpha_3=0$ requires a retarded propagating carrier, which is exactly the scalar that $N_{\rm grav}=2$ removes. Independent confirmations: the elliptic MOND potential becomes a physical instantaneous observable via the external-field effect (`theory_2026/york/YORK_CAUSAL_GATE_VERDICT.md`); DC-019.
+The HPI-$\Delta$ candidate is the strongest bounded construction in this branch. Its first-order action retains the Einstein Hamiltonian and adds one trace-momentum Laplacian constraint. On the tested $k\neq0$, $y>0$ scalar block, the generated eight-constraint chain has Poisson rank six, two first-class and six second-class constraints, and zero scalar configuration degrees of freedom. Independent leading static-dust variations give $\nabla^2(\Phi-\Psi)=0$ and exact exponential AQUAL in the bounded branch. This is not yet a derivation of $\gamma_{\rm PPN}$. The configuration action and a clock-covariant notation are derived in `hpi_delta_covariant_lift_2026/`; a full nonlinear covariant Dirac theorem is not.
+
+In the tested CDE-L4C and vanishing-projector reductions, the principal scalar response is proportional to $1/k^2$ and independent of $\omega$. This is a valid instantaneous-channel diagnostic when that response is the physical MOND channel; it is not a PPN coefficient. The corrected CDE-L4C provenance audit leaves $\alpha_1$, $\alpha_2$, and $\alpha_3$ uncomputed. A full boosted 1PN solve—including $g_{00}$, $g_{0i}$, $g_{ij}$, all constraint/multiplier backreaction, moving conserved matter, and standard-PPN gauge matching—is required.
+
+The exact zero-field law supplies a different, action-independent obstruction. Let $A(p)=(1-e^{-|p|/a_0})p$. Then $DA(0)=0$, so any $C^2$ solution with $\nabla\Phi(x_0)=0$ obeys $\nabla\!\cdot A(\nabla\Phi)(x_0)=0$ and the exact field equation forces $\rho(x_0)=0$. For a smooth spherical core with $\rho(r)=\rho_0+O(r^2)$ and $C=4\pi G\rho_0/3$,
+$$g(r)=\sqrt{a_0Cr}+\frac C4r+O(r^{3/2}),\qquad R^{(1)}\sim\frac{5\sqrt{a_0C}}{c^2\sqrt r}.$$
+The weak solution has finite action but the no-slip physical metric is not $C^2$ and its Ricci and tidal curvature diverge. Thus HPI-$\Delta$ is dead as an exact classical regular-center theory under A8, without invoking any PPN identification (`exact_mond_regular_center_no_go_2026/`).
 
 ### 3.2 The frame-free branch: slip, and the disformal escape
 
-A single frame-free scalar $F(X)$, $X=-\tfrac12(\partial\phi)^2$, has anisotropic stress $\propto F_X\partial_i\phi\partial_j\phi$ that sources $\nabla^2(\Phi-\Psi)\neq0$ at $O(\Phi)$ in the MOND regime (the Bekenstein–Sanders result that forced TeVeS's vector; DC-013). The one escape is a disformal matter coupling, $\tilde g_{\mu\nu}=g_{\mu\nu}+B\,\partial_\mu\phi\,\partial_\nu\phi$, whose spatial correction shares the tensor structure $\partial_i\phi\partial_j\phi$ of the scalar stress and can therefore cancel the slip *pointwise* (`door_a_2026/doorA_disformal_slip_vs_cT.py`, check A1). It dies on one identity (check A2): the no-slip condition fixes $B\phi'^2=2(\Psi-\Phi)$, and that same quantity is the fractional difference between the null cone of $g$ (gravitational waves) and of $\tilde g$ (light):
+A single frame-free scalar $F(X)$, $X=-\tfrac12(\partial\phi)^2$, has anisotropic stress $\propto F_X\partial_i\phi\partial_j\phi$ that sources $\nabla^2(\Phi-\Psi)\neq0$ at $O(\Phi)$ in the MOND regime (the Bekenstein–Sanders result that forced TeVeS's vector; DC-013). One tested escape in the named model is a disformal matter coupling, $\tilde g_{\mu\nu}=g_{\mu\nu}+B\,\partial_\mu\phi\,\partial_\nu\phi$, whose spatial correction shares the tensor structure $\partial_i\phi\partial_j\phi$ of the scalar stress and can therefore cancel the slip *pointwise* (`door_a_2026/doorA_disformal_slip_vs_cT.py`, check A1). It dies on one identity (check A2): the no-slip condition fixes $B\phi'^2=2(\Psi-\Phi)$, and that same quantity is the fractional difference between the null cone of $g$ (gravitational waves) and of $\tilde g$ (light):
 $$\frac{c_{\rm GW}-c_{\rm light}}{c}=\frac{B\phi'^2}{2}=(\Psi-\Phi)_{\rm uncancelled}.$$
 The slip cancelled is the light-cone tilt created. In a galaxy's MOND outskirts $\Psi-\Phi\sim\epsilon\,\Phi_{\rm MOND}$ with $\Phi_{\rm MOND}=v_{\rm flat}^2/c^2=3.9\times10^{-7}$ (NGC 4993's host), $3.0\times10^{-7}$ (Milky Way). Along GW170817's path the two galaxies' MOND regions give $2\times10^{6}\,\epsilon$ over the bound; the 40 Mpc of intergalactic medium alone, suppressed by $(g_{\rm IGM}/g_{\rm gal})^2$, still exceeds it by 30–300. Cassini is untouched because the scalar carries no force at solar-system accelerations (check A6): the escape trades gate 3 for gate 6 and nothing else. Calibrated against the repository's own curvature-clock kill (a light-cone tilt of $-2\times10^{-7}$, excluded $10^5$–$10^9\times$). 9/9 checks; mutation controls $B=0$ (slip returns, tilt vanishes) and $\phi'=0$ (GR).
 
@@ -67,11 +74,11 @@ verified against a $4\times3$ $(K_B,J_Y)$ grid (`generalized_aest_2026/`). The d
 
 So $\alpha_1=0$ can be reached only at $c_{14}=(K_B-2)/(J_Y+1)<0$, which flips the spin-1 kinetic sign (verified: $-0.429$ healthy vs $+1.930$ at the null locus). Solar screening worsens it ($\alpha_1$: $-4.4\to-5.65$). The term that makes MOND breaks preferred-frame PPN.
 
-The other two local ways to carry a preferred frame are killed by the *same* coupling: a curvature-coupled clock forces $\lambda_r=-a_0\,y\,e^{-y}\neq0$ in the tensor kinetic term, $c_T^2=1/(1-2\lambda)$ departs from 1 by $\sim2\times10^{-7}$ in every MOND zone, excluded $10^7$–$10^9\times$ (`one_shot_final/curvature_qumond_luminality_no_go_2026.py`, 6/6; `…observational_strengthening_2026.py`, 11/11); an acceleration-coupled khronon has $c_\parallel^2\propto f''<0$ on $a_0<a<38a_0$, an uncurable radial gradient instability (`fc_kh_terminal/`, and the $(yq)'$ theorem). Three embeddings, one mechanism.
+Two other tested preferred-frame embeddings are killed by the *same* coupling: a curvature-coupled clock forces $\lambda_r=-a_0\,y\,e^{-y}\neq0$ in the tensor kinetic term, $c_T^2=1/(1-2\lambda)$ departs from 1 by $\sim2\times10^{-7}$ in every MOND zone, excluded $10^7$–$10^9\times$ (`one_shot_final/curvature_qumond_luminality_no_go_2026.py`, 6/6; `…observational_strengthening_2026.py`, 11/11); an acceleration-coupled khronon has $c_\parallel^2\propto f''<0$ on $a_0<a<38a_0$, an uncurable radial gradient instability (`fc_kh_terminal/`, and the $(yq)'$ theorem). Three tested embeddings, one recurring mechanism.
 
 ### 3.4 Statement
 
-**Theorem (local).** Under A1–A7, no action that is a local functional of a metric, at most one scalar, and at most one unit timelike vector reproduces $\mu(y)=1-e^{-y}$ in the quasi-static limit while satisfying no-slip, $c_T=c$, $\alpha_1=\alpha_2=\alpha_3=0$, and absence of ghosts, gradient instabilities and instantaneous channels. Each branch of the case analysis is closed by the committed calculation named above; the result is independent of the numerical footing of $a_0$, which enters only the background magnitude of $y$.
+**Theorem (regular center, conditional on A8).** Any theory whose no-slip weak branch obeys exact exponential AQUAL pointwise inside a smooth spherical positive-density core fails bounded classical curvature at its force-free center. Equivalently, retaining the exact law requires a $C^{1,1/2}$ weak potential rather than a $C^2$ physical metric. This theorem is independent of the candidate carrier and the numerical footing of $a_0$. The remaining subsections establish candidate-specific failures, not an exhaustive theorem over every local metric-plus-scalar/vector action.
 
 ---
 
@@ -81,13 +88,13 @@ Suppose the cluster residual is a dark component. Structure caps a hot (free-str
 
 ---
 
-## 5. The nonlocal door: every written route closed
+## 5. The nonlocal door: scoped failures and an open class
 
-A2 is load-bearing, so the nonlocal spin-2 class is examined separately (`nonlocal_door/`). The state-space verdict of 2026-09-02 closes the positive-spectral causal completion (memory implies extra carrier states), the pole-free regular metric completion (no-slip forces the form factors equal; exact $\mu(0)=0$ removes the TT quadratic action), and the Ricci-polynomial elliptic projector. The corrected rank-change result withdrew "every regular metric-only projector is excluded" and left one loophole: a field-dependent spatial projector $H^{\mu\nu}=X(g^{\mu\nu}+u^\mu u^\nu)$ that is rank three away from zero field and vanishes smoothly at $X=0$, whose constraint structure changes rank.
+A2 is load-bearing, so the nonlocal spin-2 class is examined separately (`nonlocal_door/`). Under the explicit regularity, spectral, and form-factor hypotheses recorded in the state-space verdict of 2026-09-02, the named positive-spectral causal completion, pole-free regular metric completion, and Ricci-polynomial elliptic projector fail their stated gates. The corrected rank-change result withdrew "every regular metric-only projector is excluded" and left one loophole: a field-dependent spatial projector $H^{\mu\nu}=X(g^{\mu\nu}+u^\mu u^\nu)$ that is rank three away from zero field and vanishes smoothly at $X=0$, whose constraint structure changes rank.
 
-`nonlocal_door/vanishing_projector_dirac_chain_2026.py` (11/11) runs Dirac's algorithm through that bifurcation. On the $u$-frame background $H^{00}=X(-1+1)=0$, so no time derivatives survive. For $X\neq0$: two primaries, two secondaries, $\det C=X^4k^8$, four second-class constraints, multipliers fixed, no tertiary, zero degrees of freedom, on-shell $\chi=-J/(Xk^2)$. For $X=0$: one secondary vanishes identically, the other degenerates to the constant $J$, the primaries become first class, zero degrees of freedom, and consistency demands $J\propto X$. **The bifurcation changes the class of the constraints, not the count.** The loophole is consistent and ghost-free—and it is killed by what it is: the surviving channel $\chi=-\tilde J/k^2$ has no $\omega$ anywhere, an instantaneous elliptic potential, which by the pincer of §3.1 carries $\alpha_3=O(1)$. It is a local elliptic constraint that switches itself off at zero field.
+`nonlocal_door/vanishing_projector_dirac_chain_2026.py` (13 checks) runs Dirac's algorithm through that bifurcation. On the $u$-frame background $H^{00}=X(-1+1)=0$, so no time derivatives survive. For $X\neq0$: two primaries, two secondaries, $\det C=X^4k^8$, four second-class constraints, multipliers fixed, no tertiary, zero degrees of freedom, on-shell $\chi=-J/(Xk^2)$. For $X=0$: one secondary vanishes identically, the other degenerates to the constant $J$, the primaries become first class, zero degrees of freedom, and consistency demands $J\propto X$. **The bifurcation changes the class of the constraints, not the count.** This candidate-specific $u$-frame, $k\neq0$ auxiliary reduction has zero auxiliary degrees of freedom on both branches. Its physical MOND response is instantaneous and its $X\to0$ solution map is path-dependent, so this specified reduction is adverse on gates 7 and 9. It does not establish full ghost freedom, and $\alpha_1$, $\alpha_2$, and $\alpha_3$ are uncomputed.
 
-What remains for the nonlocal door is not a loophole but an unwritten construction: a genuinely retarded, $\omega$-dependent kernel that yields $\mu=1-e^{-y}$; §4 of the state-space verdict shows positive spectral weight costs extra carrier states. We do not say the door is closed; we say every route through it that has been written is.
+What remains is an unconstructed possibility: a genuinely retarded, $\omega$-dependent constrained kernel that yields $\mu=1-e^{-y}$; §4 of the state-space verdict shows positive spectral weight costs extra carrier states. The broader nonlocal door remains open.
 
 ---
 
@@ -135,10 +142,10 @@ If $\Lambda$ is a constant, $\rho_\Lambda$ is constant and $a_0$ is **flat** in 
 
 ## 9. What this paper does not claim
 
-- It does not present a relativistic completion, a field theory, or a theory of everything. Its central result is a **no-go**.
+- It does not present a completed relativistic theory or a theory of everything. Its central result is a scoped obstruction map plus the conditional regular-center theorem, not an exhaustive local no-go.
 - It does not claim $\kappa=\tfrac12$ is derived. It is fitted, and §8 shows where a derivation would have to live.
 - It does not claim the data favour the framework over $\Lambda$CDM. The one discriminating measurement (§7) has not been made.
-- It does not claim the nonlocal door is closed, only that every written route through it is.
+- It does not claim the broader nonlocal door is closed; the vanishing-projector calculation closes only its specified reduced mechanism on gates 7 and 9.
 - It does not claim modified inertia is confirmed. It claims the modified-gravity curl field has the wrong sign on SPARC's deep discs, and that pressure-supported systems break the kernel in both directions.
 - Every "fails" was verified as hard as every "works": the 2012 dwarf dispersions, the $+1.1$ curl amplitude, the $-0.98$ amplitude, and the $10\sigma$ virial offset of `f11` were each caught by a control and are recorded as such.
 
@@ -146,18 +153,20 @@ If $\Lambda$ is a constant, $\rho_\Lambda$ is constant and $a_0$ is **flat** in 
 
 ## 10. Reproducibility
 
-All scripts exit 0 unless the listed checks are designed to fail; each has numbered checks, a mutation control, and both $a_0$ footings.
+Run each cited artifact according to its own documented interface. Checks, mutations, and numerical footings vary by artifact.
 
 | claim | script | checks |
 |---|---|---|
 | form and exponent forced | `real_research/uniqueness_dimensional_proof.py` | — |
 | $\kappa$ measured | `real_research/reviews/mi_kappa_error_budget_unlock_2026.py` | — |
-| constraint branch: $\alpha_3=O(1)$ | `cde_l4c_2026/cde_l4c_ppn_alpha3.py` | — |
+| CDE-L4C PPN provenance: $\alpha_3$ uncomputed | `cde_l4c_2026/gateA/cde_l4c_ppn_alpha3.py` | 4/4 |
+| HPI-$\Delta$ action/covariant-lift gate | `hpi_delta_covariant_lift_2026/` | 16/16 |
+| exact-MOND regular-center theorem and central Kepler law | `exact_mond_regular_center_no_go_2026/` | 17/17 |
 | disformal escape: slip $\to$ $c_T$ | `door_a_2026/doorA_disformal_slip_vs_cT.py` | 9/9 |
 | $\alpha_1$ structural lock | `door_a_2026/doorA_alpha1_generality_theorem.py` | 12/12 |
 | curvature-clock $c_T$ | `one_shot_final/curvature_qumond_luminality_no_go_2026.py` | 6/6 |
 | khronon gradient instability | `fc_kh_terminal/` | — |
-| vanishing projector Dirac chain | `nonlocal_door/vanishing_projector_dirac_chain_2026.py` | 11/11 |
+| vanishing projector Dirac chain | `nonlocal_door/vanishing_projector_dirac_chain_2026.py` | 13 checks |
 | cluster dark-component no-go | `hunt_2026/f04`–`f07` | 6/6, 8/8, 7/7, 6/6 |
 | external-field slope | `hunt_2026/f03_efe_slope_prediction.py` | 4/4 |
 | closure of galactic regularities | `hunt_2026/k_unexplained-regularities_closure.py` | — |
