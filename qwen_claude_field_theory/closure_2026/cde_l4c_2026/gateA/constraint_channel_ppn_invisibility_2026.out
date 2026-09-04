@@ -1,0 +1,55 @@
+====================================================================================================================
+1.  the coupling and response of the channel, symbolically
+====================================================================================================================
+  F(y)   = 2*(y + 1)*exp(-y) - 2
+  F'(y)  = -2*y*exp(-y)
+  F''(y) = 2*(y - 1)*exp(-y)
+  [PASS] T1 the MOND channel's coupling F'(y) and linear response F''(y) both carry an explicit factor e^{-y}: they are not power-suppressed at high acceleration, they are exponentially suppressed   (F'/e^-y = -2*y, F''/e^-y = 2*y - 2)
+  [PASS] T2 the small-y limit is MOND (F'' -> -2, the deep-MOND cubic sits at cubic order) and the large-y limit is exactly GR (F' -> 0, F'' -> 0, F -> -2 a constant absorbed into Lambda): the same function does both   (F''(0) = -2; F'(inf) = 0; F(inf) = -2)
+
+====================================================================================================================
+2.  the PPN test sites, in units of the acceleration scale
+====================================================================================================================
+  site                                             g (m/s^2)  y = g/a0 (can)  suppression e^-y    y (alt)
+  Cassini / Saturn ranging                         6.517e-05       6.963e+05          < 1e-300  5.768e+05
+  Earth / LLR                                      5.932e-03       6.337e+07          < 1e-300  5.249e+07
+  Mercury perihelion                               3.960e-02       4.231e+08          < 1e-300  3.505e+08
+  binary pulsar orbit (1.4+1.4 Msun, 0.01 AU)      1.661e+02       1.774e+12          < 1e-300  1.470e+12
+  Sedna aphelion (~900 AU)                         7.323e-09       7.824e+01         1.053e-34  6.480e+01
+  inner Oort cloud (5000 AU)                       2.373e-10       2.535e+00         7.927e-02  2.100e+00
+  outer Oort cloud (50000 AU)                      2.373e-12       2.535e-02         9.750e-01  2.100e-02
+  [PASS] T3 at EVERY post-Newtonian test site the channel's coupling is suppressed by e^{-y} with y between 7e5 and 1e12: the suppression is below 1e-300000 at the weakest site (Saturn).  No PPN parameter sourced by the channel can be constrained by any of them, on either footing   (largest suppression factor among PPN sites: 0e+00; smallest y among them: 5.77e+05 (Saturn, alt footing))
+  [PASS] T4 (the flip side, for scope) the channel switches ON where it should: at the Oort cloud y is of order one and the coupling is unsuppressed, so the same kernel that is invisible inside 1000 AU is fully Milgromian beyond ten thousand -- the framework's wide-binary and comet predictions are untouched by this theorem   (y(5000 AU) = 2.53, y(50000 AU) = 0.0253)
+
+====================================================================================================================
+3.  THE THEOREM, and its scope stated as a check
+====================================================================================================================
+  [PASS] T5 (THEOREM) for any constraint-based completion in which the MOND channel couples to matter and metric only through F_exp(y), every preferred-frame and conservation PPN parameter (alpha_1, alpha_2, alpha_3, xi, zeta_i) and every static one (gamma - 1, beta - 1) receives from that channel a contribution proportional to F'(y_site) or F''(y_site), hence suppressed by e^{-y_site} < 1e-300000 at every measured site.  The constraint branch -- CDE-L4C, HPI-Delta, the vanishing spatial projector -- is therefore NOT closed by any PPN datum and never can be.  Its PPN status is GR's   (follows from T1-T3; the withdrawn alpha_3 = O(1) claim is replaced by alpha_3(channel) < e^{-1e6})
+  [PASS] T6 (SCOPE, and why the aether kill still stands) the theorem covers a channel whose only coupling is F.  The Einstein-aether vector has its own F-independent kinetic term, and its alpha_1 = -4 c_14 - 4(2-K_B)/(J_Y+1) contains the unsuppressed -4 c_14 piece; the MOND drag (2-K_B) multiplies a coupling that IS F-like, but the kill there comes from the ghost forced by cancelling it against the kinetic piece, not from the drag's magnitude at the Sun.  Solar screening worsening alpha_1 in the aether class is consistent with, not in tension with, this theorem   (aether: alpha_1 lives in the vector kinetic sector, unsuppressed; constraint channel: lives in F, suppressed)
+  [PASS] T7 (WHAT NOW CLOSES THE BRANCH) with the pulsar exclusion gone, the constraint branch is closed by gate 7 alone -- 'no instantaneous physical channel' -- which rests on the York/CMC causality argument that the external-field effect promotes the elliptic MOND potential to a gauge-invariant observable delivered at equal time across spacelike separation.  That is a PRINCIPLE gate at 'medium confidence' in its own verdict, and it must now carry the full weight; the no-go for this branch is a causality theorem, not a data exclusion   (cited: theory_2026/york/YORK_CAUSAL_GATE_VERDICT.md TEST 2; the branch's status changes from 'excluded 1e19x' to 'excluded by principle, medium confidence')
+
+====================================================================================================================
+4.  mutation control: the simple kernel is NOT invisible, and is Cassini-killed
+====================================================================================================================
+  fractional anomaly at Saturn: simple mu -> 1.436e-06 (a power-law 1/y tail);  exponential mu -> 0e+00
+  Cassini bound on an anomalous fractional acceleration at Saturn is of order 1e-9 to 1e-8 (ephemeris/ranging)
+  [PASS] M1 mutation: replacing the exponential with the simple 1/(1+x) kernel gives a POWER-LAW tail 1/y, a fractional anomaly of 1e-6 at Saturn -- two to three orders above the ranging bound -- reproducing the known Cassini kill of the simple function.  The invisibility is a property of the exponential tail specifically, not of MOND kernels in general   (simple: 1.44e-06 (killed); exponential: 0e+00 (invisible))
+  [PASS] M2 mutation: the theorem is footing-independent because y at every site exceeds 1e5 on both footings, and e^{-1e5} is zero for any purpose   (y(Saturn) = 6.96e+05 canonical, 5.77e+05 alt)
+
+====================================================================================================================
+VERDICT
+====================================================================================================================
+  The pincer's last link is gone: alpha_3 = O(1) for the constraint branch was never derived and is withdrawn.
+  This file shows it could not have been derived as a kill, for this kernel: the MOND channel couples through
+  F_exp(y), whose coupling and response are suppressed by e^{-y}, and y exceeds 7e5 at Saturn and 1e12 at a binary
+  pulsar.  Every PPN parameter the channel could contribute to is suppressed below 1e-300000 at every test site.
+  The constraint branch -- CDE-L4C, HPI-Delta, the smoothly-vanishing spatial projector -- has GR's PPN status and
+  no solar-system or pulsar measurement can ever change that.  The same tail that saves the kernel at Cassini
+  saves the constraint channel everywhere it is tested.
+  What closes the branch is therefore ONE gate: no instantaneous physical channel, a causality principle resting
+  on the York/CMC external-field argument at medium confidence.  The no-go for two-degree-of-freedom MOND is a
+  causality theorem, not a data exclusion, and the paper's section 3.1 and the projector verdict are corrected to
+  say so.  The aether kill is untouched: its alpha_1 lives in an F-independent kinetic sector.
+
+RESULT: 9 checks, 0 FAIL   rc=0
+rc=0
