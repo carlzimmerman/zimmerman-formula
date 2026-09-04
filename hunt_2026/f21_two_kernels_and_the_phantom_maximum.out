@@ -37,8 +37,8 @@
      1.50    24       -8.522  0.038   -8.549   -8.551      +0.7      +0.8
   chi^2 (galaxy-level errors, 18 bins): nu_RAR = 38.8, mu_exp = 201.6; difference 162.8
   [PASS] S1 SPARC follows nu_RAR: with galaxy-level errors the binned relation matches the fitted kernel across four decades (it was fitted to these data, so this is calibration, not confirmation)   (chi^2/dof(nu_RAR) = 2.16)
-  [PASS] S2 (THE RESULT) SPARC REJECTS the field-theory kernel mu_exp = 1 - e^{-x} in the transition: the binned data sit several sigma above its prediction at g_bar between 0.1 and 6 a_0, and the total chi^2 difference is decisive.  The 'exact exponential AQUAL' law of gate 12 is not the relation the data follow; only its two limits are   (chi^2(mu_exp) - chi^2(nu_RAR) = 162.8 on 18 bins; worst transition-bin pull against mu_exp = 7.5 sigma)
-  [PASS] S3 both footings agree: the rejection of mu_exp does not depend on which a_0 is used (the footing shifts the y-axis; the kernels' shapes are what differ)   (alt footing: chi^2(mu_exp) - chi^2(nu_RAR) = 98.6)
+  [PASS] S2 fixed-footing binned diagnostic: mu_exp has a larger diagonal residual statistic; the worst standardized bin residual is not a global model-rejection significance   (chi^2(mu_exp) - chi^2(nu_RAR) = 162.8 on 18 bins; worst transition-bin pull against mu_exp = 7.5 sigma)
+  [PASS] S3 the same diagonal-bin diagnostic favors nu_RAR at both fixed a0 footings; this does not profile a0 or correlated nuisance parameters   (alt footing: chi^2(mu_exp) - chi^2(nu_RAR) = 98.6)
 
 ====================================================================================================================
 3.  the phantom maximum, for the kernel the data follow
@@ -46,29 +46,27 @@
   For nu_RAR the phantom acceleration is g_ph = g_bar (nu - 1) = a_0 y e^{-sqrt y}/(1 - e^{-sqrt y}).  Its maximum:
      max g_ph = 0.6476 a_0  at  g_bar = 2.540 a_0   (mu_exp instead: 1/e = 0.368 a_0 at 0.632 a_0)
      in m/s^2: 6.062e-11 (canonical), 7.318e-11 (alt)
-  [PASS] P1 (THE NUMBER) the observed phantom acceleration near its predicted peak matches the nu_RAR maximum within the galaxy-level error: no SPARC galaxy's dark acceleration exceeds ~0.66 a_0   (observed max in the window 8.83 +/- 3.79 x 1e-11 m/s^2; predicted 6.06 at g_bar = 2.54 a_0)
-  [PASS] P2 the observed phantom TURNS OVER: the well-populated bins above the peak sit below it, as any kernel with a Newtonian limit requires and as the 'simple' kernel (phantom -> a_0, never declining) forbids   (bins at log y in (0.75, 1.45]: max 6.63 vs peak 8.83 (x1e-11); N bins 3)
+  [PASS] P1 the largest bin median in the selected peak window is within 2.5 bootstrap errors of the nu_RAR maximum; this does NOT test a ceiling on individual galaxies or data points   (observed max in the window 8.83 +/- 3.79 x 1e-11 m/s^2; predicted 6.06 at g_bar = 2.54 a_0)
+  [PASS] P2 selected high-acceleration bin medians are lower than the peak-window median; this is a descriptive turnover, not a significance test. Newtonian recovery alone does not require phantom acceleration to vanish   (bins at log y in (0.75, 1.45]: max 6.63 vs peak 8.83 (x1e-11); N bins 3)
 
 ====================================================================================================================
 4.  mutation controls
 ====================================================================================================================
   [PASS] M1 mutation: shuffling g_obs across points destroys the relation for both kernels, so S1/S2 are structure in the data and not in the binning   (shuffled residual power far exceeds the real one)
-  [PASS] M2 mutation: the two kernels are numerically identical in both limits (deep MOND: g = sqrt(g_bar a_0); Newtonian: g = g_bar), so the rejection in S2 is a TRANSITION-shape statement and cannot be blamed on either limit   (both limits agree to <0.005 dex)
+  [PASS] M2 limiting check: the kernels agree asymptotically (deep MOND: g = sqrt(g_bar a_0); Newtonian: g = g_bar), so S2 probes their transition as well as fixed-input normalization   (both limits agree to <0.005 dex)
 
 ====================================================================================================================
 VERDICT
 ====================================================================================================================
   The repository has been running two kernels and calling them one.  The empirical nu_RAR = 1/(1-e^{-sqrt y}) and
   the field-theory 'exact exponential' mu_exp = 1-e^{-x} share both limits and differ by up to ~0.08 dex in the
-  transition, and SPARC decides between them: chi^2(mu_exp) - chi^2(nu_RAR) = 163 on 18 galaxy-level bins, with
-  transition pulls of up to 7 sigma against mu_exp.  The data follow nu_RAR (which was fitted to them) and reject
-  mu_exp.  Every completion gate that demanded 'exact mu_exp' -- CDE-L4C, HPI-Delta, the regular-center coefficients,
-  the alpha_1 drag term -- was built to reproduce a transition the data do not have.  The obstruction results are
-  about the SHAPE class (a deep-MOND limit, an exponential Newtonian tail), which both kernels share, so they are
-  not undone; but gate 1 as written ('mu = 1 - e^{-y} exactly') is the wrong target, and the right one is nu_RAR's
-  mu, which has no closed form.  The phantom-acceleration maximum for the kernel the data follow is
-  0.648 a_0 at g_bar = 2.54 a_0 (6.06e-11 m/s^2 canonical), observed 8.83 +/- 3.79 x 1e-11: a universal
-  ceiling on the dark acceleration in galaxies, set by the cosmological constant.
+  transition. At fixed inputs, the diagonal-bin statistic differs by 163 on 18 bins, with
+  a largest standardized transition residual of 7.5 for mu_exp. These are conditional diagnostics,
+  not a calibrated rejection: cross-bin covariance, a0 fitting and galaxy nuisance parameters are absent.
+  The two_kernel_orbit_shape_2026 audit profiles a0 and resamples complete galaxies in paired draws.
+  A kernel substitution is a new action target; neither relativistic closure nor a PPN coefficient transfers automatically.
+  For nu_RAR's algebraic curve, the theoretical maximum g_ph is 0.648 a0 at g_bar=2.54 a0.
+  The selected observed peak-window median is 8.83 +/- 3.79 x 1e-11 m/s^2.
+  This median does not certify a bound on individual catalog estimates. The a0-Lambda relation remains an input.
 
 RESULT: 8 checks, 0 FAIL   rc=0
-rc=0

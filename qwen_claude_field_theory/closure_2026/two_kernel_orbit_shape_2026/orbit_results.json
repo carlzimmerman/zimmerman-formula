@@ -1,0 +1,82 @@
+{
+  "checks": {
+    "radial_action_EL": true,
+    "particle_epicycle": true,
+    "particle_circular_frequency": true,
+    "exp_primitive_flux": true,
+    "exp_q": true,
+    "rar_q": true,
+    "exp_flow": true,
+    "rar_flow": true,
+    "rar_strict_inequality_identity": true,
+    "rar_action_flux": true,
+    "Phi_variation_Poisson": true,
+    "chi_variation_phantom_density": true,
+    "secondary_preservation_0": true,
+    "secondary_preservation_1": true
+  },
+  "symbolic": {
+    "q": {
+      "mu_exp": "(3*x + exp(x) - 1)/(x + exp(x) - 1)",
+      "nu_rar": "(x + exp(x) - 1)/(exp(x) - 1)"
+    },
+    "flow": {
+      "mu_exp": "2*x*((exp(x) + 1)*(3*x + exp(x) - 1) - (exp(x) + 3)*(x + exp(x) - 1))*(exp(x) - 1)/(x + exp(x) - 1)**3",
+      "nu_rar": "x*(x*exp(x) - exp(x) + 1)/(exp(2*x) - 2*exp(x) + 1)"
+    },
+    "deep_invariant": {
+      "mu_exp": "4/3",
+      "nu_rar": "-1/3"
+    }
+  },
+  "examples": {
+    "1.1": {
+      "mu_exp": "0.63201639505256960000447213249119620800759883324386649956008527273",
+      "nu_rar": "0.27149504270875306296818887235726614351768898794997097805422635759"
+    },
+    "1.25": {
+      "mu_exp": "0.87094536778500457214716953580153018196404327662835000456630345127",
+      "nu_rar": "0.39666574556576347029571256667850278866987618488927725992130628003"
+    },
+    "1.5": {
+      "mu_exp": "0.69589520312271571014945395296582600909520520256611793830715677279",
+      "nu_rar": "0.37821560431308483849136880830460816345820841585066185556294736352"
+    },
+    "1.75": {
+      "mu_exp": "0.32074504782137788878593634326139839036650115164501460699983299346",
+      "nu_rar": "0.22515055624430144111494888453093781732207003691389729898465525703"
+    },
+    "1.9": {
+      "mu_exp": "0.11268119428278379880782276811595304880035036328739687103399778107",
+      "nu_rar": "0.096431852649824962973369863596753063807269858199620075660082992621"
+    }
+  },
+  "qumond_action_audit": {
+    "EL": "[4*A*chi_r*r + 2*A*chi_rr*r**2 - r**2*rho, 2*A*Phi_rr*r**2 + A*chi_rr*r**2*(-2*nu(chi_r/a0) - 2*chi_r*Subs(Derivative(nu(_xi_1), _xi_1), _xi_1, chi_r/a0)/a0) + 2*A*r*(2*Phi_r - 2*chi_r*nu(chi_r/a0))]",
+    "Hamiltonian": "A*k**2*(-b*c**2 + 2*c*f) + f*rho",
+    "primaries": "[p_f, p_c]",
+    "secondaries": "[-2*A*c*k**2 - rho, 2*A*b*c*k**2 - 2*A*f*k**2]",
+    "constraint_Jacobian_rank": "4",
+    "PB_matrix": "Matrix([[0, 0, 0, 2*A*k**2], [0, 0, 2*A*k**2, -2*A*b*k**2], [0, -2*A*k**2, 0, 0], [-2*A*k**2, 2*A*b*k**2, 0, 0]])",
+    "PB_determinant": "16*A**4*k**8",
+    "finite_k_rank": "4",
+    "finite_k_first_class": "0",
+    "finite_k_second_class": "4",
+    "finite_k_scalar_dof": "0",
+    "preservation_equations": "[-2*A*k**2*u_c, 2*A*b*k**2*u_c - 2*A*k**2*u_f]",
+    "multipliers": "{u_c: 0, u_f: 0}",
+    "zero_k_rank": "0",
+    "zero_k_secondaries": "[-rho, 0]",
+    "lorentzian_hessian": "Matrix([[0, 2*A], [2*A, -2*A*b]])",
+    "lorentzian_hessian_determinant": "-4*A**2",
+    "wrong_primitive_newton_ratio": "0",
+    "wrong_squared_argument_deep_g_over_a0": "1"
+  },
+  "bounded_scan": {
+    "q_min": 1.01,
+    "q_max": 1.99,
+    "count": 99,
+    "minimum_gap": "0.000166325028012304"
+  },
+  "interpretation": "Derived nonrelativistic spherical corollaries; relativistic completion OPEN"
+}

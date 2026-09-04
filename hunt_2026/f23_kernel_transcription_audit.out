@@ -65,8 +65,8 @@ f23 -- which kernel the closure program ran, and the theory of the kernel the da
        1.50    19       -8.442  0.059      +0.5      +0.5       +0.5
   chi^2 on 18 bins: nu_RAR 18.7, mu_exp 117.4, mu_10 500.7; worst transition pull: RAR 1.6, exp 5.7, mu_10 12.7 sigma
   [PASS] 3a SPARC follows nu_RAR (calibration, it was fitted to these data): chi^2/dof < 3   (2.16)
-  [PASS] 3b f21 reproduced: mu_exp is rejected in the transition (dchi^2 > 100, worst pull > 5 sigma)   (dchi^2 = 163, worst 7.5 sigma)
-  [PASS] 3c THE CLOSURE PROGRAM'S SURVIVING KERNEL IS DEAD ON THE GALAXY DATA: mu_10, the Cassini-selected kernel of 'AeST + mu_10, the surviving architecture', is rejected by SPARC far more strongly than mu_exp, on both footings   (canonical: dchi^2 = 562, worst pull 13 sigma; alt: dchi^2 = 482, worst pull 13 sigma)
+  [PASS] 3b f21 fixed-input diagnostic reproduced: diagonal-bin difference >100 and standardized residual >5; not a calibrated rejection significance   (dchi^2 = 163, worst 7.5 sigma)
+  [PASS] 3c the fixed-input diagonal-bin discrepancy is larger for mu_10 than for mu_exp on both footings; the statistic does not profile galaxy nuisance parameters or establish a global model-rejection significance   (canonical: dchi^2 = 562, worst pull 13 sigma; alt: dchi^2 = 482, worst pull 13 sigma)
 
 4.  INVENTORY: which closure files froze which kernel, and which kills are kernel-blind
 ----------------------------------------------------------------------------------------------------------------------
@@ -115,9 +115,9 @@ f23 -- which kernel the closure program ran, and the theory of the kernel the da
   [PASS] 5a AQUAL closed form: x(mu) = [ln(1 - mu)]^2/mu inverts the framework's kernel exactly   (residual < 1e-10 at six points)
   [PASS] 5b AQUAL Lagrangian: F(X) = 2u^4/mu - u^4 - 4 I_3(u) with I_3 in polylogarithms satisfies dF/dX = mu(x) to 1e-8 at six points, and I_3's closed form matches direct quadrature   (max |dF/dX - mu| = 6.6e-12; I_3(2) closed 1.1763425966 vs quad 1.1763425966)
   [PASS] 5c F has the two required limits: F -> X (Newton, coefficient 1, up to the additive constant -4 pi^4/15 that the F(0) = 0 normalisation leaves at large X) and F -> (2/3) X^{3/2} (deep MOND)   (F/X at x = 1600: 0.999990;  F/X^1.5 at x = 1.0e-03: 0.6662)
-  [PASS] 5d QUMOND Lagrangian: Q(y) = y + 2 sqrt(y) ln(1 - e^{-sqrt y}) - 2 Li_2(e^{-sqrt y}) + pi^2/3 has Q' = nu_RAR to 1e-8, Q(0) = 0, Q -> 2 sqrt(y) deep and Q -> y Newtonian   (max |Q' - nu| = 4.0e-10; Q(1e-6)/(2 sqrt y) = 1.0003; Q(1e4)/y = 1.0003)
+  [PASS] 5d QUMOND action primitive: Q(Z)=Z+4 I_3(Z^(1/4)), Z=|grad chi|^2/a0^2, has Q_Z=nu_RAR(sqrt Z); Q(0)=0, Q~(4/3) Z^(3/4) deep, Q~Z Newtonian   (max |Q_Z - nu(sqrt Z)| = 2.9e-11; deep ratio = 1.0119; Newton ratio = 1.0026)
   [PASS] 5e the identity nu_RAR(y) = 1 + 1/(e^{sqrt y} - 1): the kernel is one plus a Bose-Einstein occupation number in the deep-MOND acceleration sqrt(g_bar a_0) at the scale a_0 (an identity; the temperature normalisation is a convention and NO Lambda coincidence is claimed from it)   (sympy residual 0)
-  [PASS] 5f health of the AQUAL form: 0 < mu < 1, mu rising, (x mu) rising (both eigenvalues positive: elliptic, no static ghost) across six decades of x   (all three hold on x = 1e-3..1e3)
+  [PASS] 5f static AQUAL constitutive ellipticity: 0 < mu < 1, mu rising, (x mu) rising across six decades; this is not a dynamical ghost-freedom test   (all three hold on x = 1e-3..1e3)
   Newtonian tail 1 - mu = e^{-sqrt(x mu)} at wide binary (x ~ 1): 4.89e-01   (mu_exp there: 3.7e-01)
   Newtonian tail 1 - mu = e^{-sqrt(x mu)} at Neptune (x ~ 7e4): 1.25e-115   (mu_exp there: 0.0e+00)
   Newtonian tail 1 - mu = e^{-sqrt(x mu)} at Saturn (x ~ 7e5): 0.00e+00   (mu_exp there: 0.0e+00)
@@ -138,14 +138,14 @@ f23 -- which kernel the closure program ran, and the theory of the kernel the da
     mu_exp          0.1654   2.586e-26        4.97                      13.5
     mu_10           0.0055   8.638e-28        0.17                      -0.4
   nu_RAR at g_ext - 1 sigma: q = 0.2105, Q2/ceiling = 6.33
-/opt/homebrew/Caskroom/miniconda/base/lib/python3.13/site-packages/scipy/integrate/_quadpack_py.py:1260: IntegrationWarning: The algorithm does not converge.  Roundoff error is detected
+/Users/carlzimmerman/Library/Python/3.9/lib/python/site-packages/scipy/integrate/_quadpack_py.py:1233: IntegrationWarning: The algorithm does not converge.  Roundoff error is detected
   in the extrapolation table.  It is assumed that the requested tolerance
   cannot be achieved, and that the returned result (if full_output = 1) is 
   the best which can be obtained.
   quad_r = quad(f, low, high, args=args, full_output=self.full_output,
   nu_RAR at g_ext + 1 sigma: q = 0.2435, Q2/ceiling = 7.32
   [PASS] 6b anchors: mu_exp lands at the committed 3.76x ceiling (canonical) and mu_10 clears it (< 0.2x), so this is the same integral the closure program used   (mu_exp 3.76x, mu_10 0.064x)
-  [FAIL] 6c (HYPOTHESIS CHECK -- a FAIL is the result) the framework's OWN kernel, in any AQUAL/QUMOND (modified-gravity) realisation, clears the Park 2026 two-sigma Cassini ceiling on at least one footing at g_ext - 1 sigma.  If this fails, the non-relativistic modified-gravity theory of section 5 is excluded by the Solar System before any relativistic question is asked -- the Desmond-Hees-Famaey 2024 tension, on the framework's numbers   (canonical: 6.23x central, 5.81x at g_ext - 1 sigma; alt: 6.83x central, 6.33x at g_ext - 1 sigma)
+  [FAIL] 6c (HYPOTHESIS CHECK -- a FAIL is the result) the RAR kernel's QUMOND integral clears the stated Park 2026 two-sigma ceiling on at least one footing at g_ext - 1 sigma. This calculation does not establish the same quadrupole in every AQUAL or relativistic realisation   (canonical: 6.23x central, 5.81x at g_ext - 1 sigma; alt: 6.83x central, 6.33x at g_ext - 1 sigma)
   [PASS] 6d and the exclusion is not a footing choice: on both footings the framework's kernel sits above the ceiling by more than 2x even at g_ext - 1 sigma   (canonical: 5.81x; alt: 6.33x)
 
 ======================================================================================================================
@@ -153,19 +153,18 @@ f23 -- which kernel the closure program ran, and the theory of the kernel the da
 ======================================================================================================================
   The field-theory document carries the framework's kernel (nu_RAR) exactly.  The closure program that built and
   killed every relativistic candidate froze a different function, mu_exp(x) = 1 - e^{-x}, and its surviving branch
-  then selected mu_10 on Cassini.  SPARC rejects both; mu_10 overwhelmingly.  The ARCHITECTURAL kills are kernel-blind
+  then selected mu_10 on Cassini. Fixed-input diagonal-bin diagnostics prefer nu_RAR; calibrated rejection is uncomputed. The reported architectural certificates are kernel-blind
   by their own certificates and by the identity G = -x^2 mu', so they stand for the framework's kernel too.  The
   kernel-SPECIFIC selection of mu_10 is void.
   The theory of the kernel the data follow exists at the non-relativistic level in closed form (section 5): AQUAL with
-  F(X) in polylogarithms, or QUMOND with Q(y) in a dilogarithm; nu_RAR = 1 + Bose-Einstein occupation in sqrt(g_bar a_0).
-  It is elliptic and ghost-free in the static sector.  And in that modified-gravity form the Galactic external field
+  F(X) in polylogarithms, or QUMOND with Q(Z)=Z+4 I_3(Z^(1/4)); nu_RAR = 1 + Bose-Einstein occupation in sqrt(g_bar a_0).
+  Its static constitutive sector is elliptic; dynamical ghost freedom is not established. In the QUMOND integral the Galactic external field
   gives the Solar System a quadrupole of 6.2x (canonical) / 6.8x (alt) the Park 2026 ceiling,
   still 5.8x / 6.3x at g_ext - 1 sigma.  That is Desmond, Hees & Famaey 2024 on this framework's numbers.
   Modified inertia has no such quadrupole (the planets move at accelerations far above a_0 in a field that is not a
   field equation), which is the same side of the fork the disc curl sign (f16-f18) points to -- and modified inertia
   has no local action by Milgrom's theorem and every written completion of it in this repository has failed.
-  So: the framework's own kernel has a healthy non-relativistic Lagrangian and that Lagrangian is Cassini-excluded;
-  the escape is a theory class with no Lagrangian yet.  The relativistic question has not changed, but the target has:
-  it is nu_RAR, not the exponential, and every kernel-specific gate must be re-run on it.
+  The QUMOND quadrupole exceeds the stated ceiling. AQUAL requires its own non-spherical solve; this integral is not an exhaustive no-go.
+  The RAR and exact-exponential targets remain distinct. Kernel-specific gates must be rerun for whichever explicit action is pursued.
 
-RESULT: 19 checks, 1 FAIL -> ["6c (HYPOTHESIS CHECK -- a FAIL is the result) the framework's OWN kernel, in any AQUAL/QUMOND (modified-gravity) realisation, clears the Park 2026 two-sigma Cassini ceiling on at least one footing at g_ext - 1 sigma.  If this fails, the non-relativistic modified-gravity theory of section 5 is excluded by the Solar System before any relativistic question is asked -- the Desmond-Hees-Famaey 2024 tension, on the framework's numbers"]   rc=1
+RESULT: 19 checks, 1 FAIL -> ["6c (HYPOTHESIS CHECK -- a FAIL is the result) the RAR kernel's QUMOND integral clears the stated Park 2026 two-sigma ceiling on at least one footing at g_ext - 1 sigma. This calculation does not establish the same quadrupole in every AQUAL or relativistic realisation"]   rc=1

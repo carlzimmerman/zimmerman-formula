@@ -26,7 +26,7 @@ THE ANSWER THIS FILE ESTABLISHES, EACH PART AS A CHECK THAT CAN FAIL:
   5. THE THEORY OF THE KERNEL THE DATA FOLLOW, at the non-relativistic level, in closed form:
         AQUAL:   x(mu) = [ln(1-mu)]^2 / mu ;   F(X) = 2u^4/mu(u) - u^4 - 4 I_3(u),  I_3 = int_0^u t^3/(e^t-1) dt
                  (polylogarithms Li_2..Li_4), with F -> X (Newton) and F -> (2/3) X^{3/2} (deep MOND).
-        QUMOND:  Q(y) = y + 2 sqrt(y) ln(1 - e^{-sqrt y}) - 2 Li_2(e^{-sqrt y}) + pi^2/3,   Q' = nu_RAR.
+        QUMOND:  Z = (g_bar/a_0)^2, t = Z^(1/4), Q(Z) = Z + 4 I_3(t), Q_Z = nu_RAR(sqrt(Z)).
         and the identity  nu_RAR(y) = 1 + 1/(e^{sqrt y} - 1):  the kernel is one plus a Bose-Einstein occupation
         in the deep-MOND acceleration sqrt(g_bar a_0), with a_0 as the scale.  (An identity, not a derivation.)
      Health: mu in (0,1), mu' > 0, (x mu)' > 0 (elliptic, no static ghost), Newtonian tail 1 - mu = e^{-sqrt(x mu)}.
@@ -37,6 +37,13 @@ THE ANSWER THIS FILE ESTABLISHES, EACH PART AS A CHECK THAT CAN FAIL:
 
 Nothing here is a relativistic completion.  It is the correction of a transcription, the closed-form
 non-relativistic theory of the kernel that survives, and the one Solar-System number that theory must face.
+
+ACTION/STATISTICAL AUDIT 2026-09-04: section 5c now uses the SQUARED-gradient action argument Z.
+The former dilogarithm was an antiderivative of nu(s) in s, not the required QUMOND action primitive.
+See closure_2026/two_kernel_orbit_shape_2026/ for the explicit variation, Dirac block, and falsifier.
+Section 3's diagonal-bin 'sigma' labels are conditional standardized residuals, not calibrated rejection
+significances. The paired galaxy/a0-profile audit there is the controlling statistical scope correction.
+The quadrupole integral in section 6 is a QUMOND calculation; AQUAL does not share it exactly in general.
 """
 import os, sys, math, subprocess, re
 import numpy as np
@@ -140,10 +147,10 @@ for foot, a0 in A0.items():
          f"worst transition pull: RAR {worst['nu_RAR']:.1f}, exp {worst['mu_exp']:.1f}, mu_10 {worst['mu_10']:.1f} sigma")
 c = SP["canonical"]
 ck("3a SPARC follows nu_RAR (calibration, it was fitted to these data): chi^2/dof < 3", c["chi"]["nu_RAR"]/c["dof"] < 3, f"{c['chi']['nu_RAR']/c['dof']:.2f}")
-ck("3b f21 reproduced: mu_exp is rejected in the transition (dchi^2 > 100, worst pull > 5 sigma)",
+ck("3b f21 fixed-input diagnostic reproduced: diagonal-bin difference >100 and standardized residual >5; not a calibrated rejection significance",
    c["chi"]["mu_exp"] - c["chi"]["nu_RAR"] > 100 and c["worst"]["mu_exp"] > 5, f"dchi^2 = {c['chi']['mu_exp'] - c['chi']['nu_RAR']:.0f}, worst {c['worst']['mu_exp']:.1f} sigma")
-ck("3c THE CLOSURE PROGRAM'S SURVIVING KERNEL IS DEAD ON THE GALAXY DATA: mu_10, the Cassini-selected kernel of "
-   "'AeST + mu_10, the surviving architecture', is rejected by SPARC far more strongly than mu_exp, on both footings",
+ck("3c the fixed-input diagonal-bin discrepancy is larger for mu_10 than for mu_exp on both footings; "
+   "the statistic does not profile galaxy nuisance parameters or establish a global model-rejection significance",
    all(SP[f]["chi"]["mu_10"] - SP[f]["chi"]["nu_RAR"] > 3*(SP[f]["chi"]["mu_exp"] - SP[f]["chi"]["nu_RAR"]) and SP[f]["worst"]["mu_10"] > 10 for f in SP),
    "; ".join(f"{f}: dchi^2 = {SP[f]['chi']['mu_10'] - SP[f]['chi']['nu_RAR']:.0f}, worst pull {SP[f]['worst']['mu_10']:.0f} sigma" for f in SP))
 
@@ -225,18 +232,19 @@ lim_N = float(F_of_u(40.0))/float(x_of_u(40.0))**2; lim_D = float(F_of_u(1e-3))/
 ck("5c F has the two required limits: F -> X (Newton, coefficient 1, up to the additive constant -4 pi^4/15 that the "
    "F(0) = 0 normalisation leaves at large X) and F -> (2/3) X^{3/2} (deep MOND)",
    abs(lim_N - 1) < 1e-4 and abs(lim_D - 2/3) < 2e-3, f"F/X at x = {float(x_of_u(40.0)):.0f}: {lim_N:.6f};  F/X^1.5 at x = {float(x_of_u(1e-3)):.1e}: {lim_D:.4f}")
-# (c) QUMOND Q(y)
-def Q_of_y(yy):
-    yy = mp.mpf(yy); s = mp.sqrt(yy); z = mp.e**(-s)
-    return yy + 2*s*mp.log(1 - z) - 2*mp.polylog(2, z) + mp.pi**2/3
+# (c) Standard QUMOND action argument Z = |grad chi|^2/a0^2, NOT |grad chi|/a0.
+def Q_of_Z(ZZ):
+    ZZ = mp.mpf(ZZ)
+    if ZZ == 0: return mp.mpf(0)
+    return ZZ + 4*I3(ZZ**mp.mpf('0.25'))
 resq = []
-for yy in (1e-3, 0.03, 0.3, 1.0, 3.0, 30.0):
-    h = mp.mpf(yy)*mp.mpf(1e-5)
-    resq.append(abs(float((Q_of_y(mp.mpf(yy) + h) - Q_of_y(mp.mpf(yy) - h))/(2*h)) - float(nu_rar(yy))))
-ck("5d QUMOND Lagrangian: Q(y) = y + 2 sqrt(y) ln(1 - e^{-sqrt y}) - 2 Li_2(e^{-sqrt y}) + pi^2/3 has Q' = nu_RAR to "
-   "1e-8, Q(0) = 0, Q -> 2 sqrt(y) deep and Q -> y Newtonian",
-   max(resq) < 1e-8 and abs(float(Q_of_y(1e-12))) < 1e-5 and abs(float(Q_of_y(1e-6))/(2e-3) - 1) < 0.02 and abs(float(Q_of_y(1e4))/1e4 - 1) < 0.03,
-   f"max |Q' - nu| = {max(resq):.1e}; Q(1e-6)/(2 sqrt y) = {float(Q_of_y(1e-6))/2e-3:.4f}; Q(1e4)/y = {float(Q_of_y(1e4))/1e4:.4f}")
+for ZZ in (1e-3, 0.03, 0.3, 1.0, 3.0, 30.0):
+    h = mp.mpf(ZZ)*mp.mpf('1e-5')
+    resq.append(abs(float((Q_of_Z(mp.mpf(ZZ)+h)-Q_of_Z(mp.mpf(ZZ)-h))/(2*h)) - float(nu_rar(math.sqrt(ZZ)))))
+ck("5d QUMOND action primitive: Q(Z)=Z+4 I_3(Z^(1/4)), Z=|grad chi|^2/a0^2, has Q_Z=nu_RAR(sqrt Z); "
+   "Q(0)=0, Q~(4/3) Z^(3/4) deep, Q~Z Newtonian",
+   max(resq) < 1e-8 and Q_of_Z(0) == 0 and abs(float(Q_of_Z(1e-6))/((4/3)*1e-6**.75)-1) < .02 and abs(float(Q_of_Z(1e4))/1e4-1) < .03,
+   f"max |Q_Z - nu(sqrt Z)| = {max(resq):.1e}; deep ratio = {float(Q_of_Z(1e-6))/((4/3)*1e-6**.75):.4f}; Newton ratio = {float(Q_of_Z(1e4))/1e4:.4f}")
 # (d) Bose-Einstein identity
 ys = sp.symbols("y", positive=True)
 ck("5e the identity nu_RAR(y) = 1 + 1/(e^{sqrt y} - 1): the kernel is one plus a Bose-Einstein occupation number in "
@@ -245,8 +253,8 @@ ck("5e the identity nu_RAR(y) = 1 + 1/(e^{sqrt y} - 1): the kernel is one plus a
    sp.simplify(1/(1 - sp.exp(-sp.sqrt(ys))) - (1 + 1/(sp.exp(sp.sqrt(ys)) - 1))) == 0, "sympy residual 0")
 # (e) health + tail
 xg = np.logspace(-3, 3, 600); mg = mu_rar_x(xg); xm = xg*mg
-ck("5f health of the AQUAL form: 0 < mu < 1, mu rising, (x mu) rising (both eigenvalues positive: elliptic, no static "
-   "ghost) across six decades of x", np.all((mg > 0) & (mg < 1)) and np.all(np.diff(mg) > 0) and np.all(np.diff(xm) > 0), "all three hold on x = 1e-3..1e3")
+ck("5f static AQUAL constitutive ellipticity: 0 < mu < 1, mu rising, (x mu) rising across six decades; "
+   "this is not a dynamical ghost-freedom test", np.all((mg > 0) & (mg < 1)) and np.all(np.diff(mg) > 0) and np.all(np.diff(xm) > 0), "all three hold on x = 1e-3..1e3")
 for nm, xx in (("wide binary (x ~ 1)", 1.0), ("Neptune (x ~ 7e4)", 7e4), ("Saturn (x ~ 7e5)", 7e5)):
     mm = float(mu_rar_x(min(xx, 5e3))) if xx <= 5e3 else 1.0
     tail = math.exp(-math.sqrt(xx)) if xx > 5e3 else 1 - mm
@@ -290,10 +298,9 @@ ck("6b anchors: mu_exp lands at the committed 3.76x ceiling (canonical) and mu_1
    "same integral the closure program used",
    abs(Q2[("canonical", "mu_exp")][2] - 3.76) < 0.15 and Q2[("canonical", "mu_10")][2] < 0.2,
    f"mu_exp {Q2[('canonical', 'mu_exp')][2]:.2f}x, mu_10 {Q2[('canonical', 'mu_10')][2]:.3f}x")
-ck("6c (HYPOTHESIS CHECK -- a FAIL is the result) the framework's OWN kernel, in any AQUAL/QUMOND (modified-gravity) "
-   "realisation, clears the Park 2026 two-sigma Cassini ceiling on at least one footing at g_ext - 1 sigma.  If this "
-   "fails, the non-relativistic modified-gravity theory of section 5 is excluded by the Solar System before any "
-   "relativistic question is asked -- the Desmond-Hees-Famaey 2024 tension, on the framework's numbers",
+ck("6c (HYPOTHESIS CHECK -- a FAIL is the result) the RAR kernel's QUMOND integral clears the stated "
+   "Park 2026 two-sigma ceiling on at least one footing at g_ext - 1 sigma. This calculation does not establish "
+   "the same quadrupole in every AQUAL or relativistic realisation",
    any(Q2[(f, "g_ext - 1 sigma")][2] < 1.0 for f in A0),
    "; ".join(f"{f}: {Q2[(f, 'nu_RAR')][2]:.2f}x central, {Q2[(f, 'g_ext - 1 sigma')][2]:.2f}x at g_ext - 1 sigma" for f in A0))
 ck("6d and the exclusion is not a footing choice: on both footings the framework's kernel sits above the ceiling by "
@@ -306,18 +313,17 @@ P("7.  VERDICT")
 P("=" * 118)
 P("  The field-theory document carries the framework's kernel (nu_RAR) exactly.  The closure program that built and")
 P("  killed every relativistic candidate froze a different function, mu_exp(x) = 1 - e^{-x}, and its surviving branch")
-P("  then selected mu_10 on Cassini.  SPARC rejects both; mu_10 overwhelmingly.  The ARCHITECTURAL kills are kernel-blind")
+P("  then selected mu_10 on Cassini. Fixed-input diagonal-bin diagnostics prefer nu_RAR; calibrated rejection is uncomputed. The reported architectural certificates are kernel-blind")
 P("  by their own certificates and by the identity G = -x^2 mu', so they stand for the framework's kernel too.  The")
 P("  kernel-SPECIFIC selection of mu_10 is void.")
 P("  The theory of the kernel the data follow exists at the non-relativistic level in closed form (section 5): AQUAL with")
-P("  F(X) in polylogarithms, or QUMOND with Q(y) in a dilogarithm; nu_RAR = 1 + Bose-Einstein occupation in sqrt(g_bar a_0).")
-P("  It is elliptic and ghost-free in the static sector.  And in that modified-gravity form the Galactic external field")
+P("  F(X) in polylogarithms, or QUMOND with Q(Z)=Z+4 I_3(Z^(1/4)); nu_RAR = 1 + Bose-Einstein occupation in sqrt(g_bar a_0).")
+P("  Its static constitutive sector is elliptic; dynamical ghost freedom is not established. In the QUMOND integral the Galactic external field")
 P(f"  gives the Solar System a quadrupole of {Q2[('canonical', 'nu_RAR')][2]:.1f}x (canonical) / {Q2[('alt', 'nu_RAR')][2]:.1f}x (alt) the Park 2026 ceiling,")
 P(f"  still {Q2[('canonical', 'g_ext - 1 sigma')][2]:.1f}x / {Q2[('alt', 'g_ext - 1 sigma')][2]:.1f}x at g_ext - 1 sigma.  That is Desmond, Hees & Famaey 2024 on this framework's numbers.")
 P("  Modified inertia has no such quadrupole (the planets move at accelerations far above a_0 in a field that is not a")
 P("  field equation), which is the same side of the fork the disc curl sign (f16-f18) points to -- and modified inertia")
 P("  has no local action by Milgrom's theorem and every written completion of it in this repository has failed.")
-P("  So: the framework's own kernel has a healthy non-relativistic Lagrangian and that Lagrangian is Cassini-excluded;")
-P("  the escape is a theory class with no Lagrangian yet.  The relativistic question has not changed, but the target has:")
-P("  it is nu_RAR, not the exponential, and every kernel-specific gate must be re-run on it.")
+P("  The QUMOND quadrupole exceeds the stated ceiling. AQUAL requires its own non-spherical solve; this integral is not an exhaustive no-go.")
+P("  The RAR and exact-exponential targets remain distinct. Kernel-specific gates must be rerun for whichever explicit action is pursued.")
 sys.exit(ck.done())

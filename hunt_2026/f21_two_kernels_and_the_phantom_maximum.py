@@ -6,8 +6,8 @@ f21_two_kernels_and_the_phantom_maximum.py -- distinct kernels and a fixed-footi
 NOTE 2026-09-04 (see f23_kernel_transcription_audit.py): the 'field-theory kernel' named below is the CLOSURE PROGRAM's
 frozen kernel (FRIED_CHICKEN_SPEC item 12; mond_compiler_2026 'FROZEN NON-NEGOTIABLES'), mu_exp(x) = 1 - e^{-x} in the
 AQUAL variable.  THE_COMPLETION.md's own MOND sector is the parametric pair mu(u) = 1 - e^{-u}, u = sqrt(g_bar/a_0),
-which is nu_RAR EXACTLY.  The rejection below stands against mu_exp(x), i.e. against what the closure program ran,
-not against the field-theory document.  f23 adds mu_10 (rejected 13 sigma) and the RAR kernel's own quadrupole.
+which is nu_RAR EXACTLY. The fixed-input comparison below concerns mu_exp(x), i.e. what the closure program ran,
+not the parametric field-theory document. f23 adds mu_10 diagnostics and the RAR kernel's QUMOND quadrupole.
 Two kernels are in play.  The EMPIRICAL one, fitted to SPARC (McGaugh, Lelli & Schombert 2016) and used in every
 phenomenological script here:
         nu_RAR(y) = 1 / (1 - e^{-sqrt(y)}),     y = g_bar/a_0,     g_obs = nu_RAR(y) g_bar.
@@ -109,7 +109,7 @@ for i in range(len(edges)-1):
 rows_sh = np.array(rows_sh); pr_sh = np.log10(nu_rar(10**rows_sh[:, 0])) + rows_sh[:, 2]
 ck("M1 mutation: shuffling g_obs across points destroys the relation for both kernels, so S1/S2 are structure in the data and not in the binning",
    float(np.sum((rows_sh[:, 1] - pr_sh)**2)) > 50*float(np.sum((rows[:, 1] - pr)**2)), "shuffled residual power far exceeds the real one")
-ck("M2 mutation: the two kernels are numerically identical in both limits (deep MOND: g = sqrt(g_bar a_0); Newtonian: g = g_bar), so the rejection in S2 is a TRANSITION-shape statement and cannot be blamed on either limit",
+ck("M2 limiting check: the kernels agree asymptotically (deep MOND: g = sqrt(g_bar a_0); Newtonian: g = g_bar), so S2 probes their transition as well as fixed-input normalization",
    abs(math.log10(float(nu_rar(1e-4))) - math.log10(float(nu_muexp(1e-4)))) < 0.005 and abs(math.log10(float(nu_rar(1e3))) - math.log10(float(nu_muexp(1e3)))) < 0.001, "both limits agree to <0.005 dex")
 
 P(""); P("="*116); P("VERDICT"); P("="*116)
