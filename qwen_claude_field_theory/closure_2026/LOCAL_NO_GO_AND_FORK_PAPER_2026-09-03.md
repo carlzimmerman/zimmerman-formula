@@ -59,6 +59,8 @@ The exact zero-field law supplies a different, action-independent obstruction. L
 $$g(r)=\sqrt{a_0Cr}+\frac C4r+O(r^{3/2}),\qquad R^{(1)}\sim\frac{5\sqrt{a_0C}}{c^2\sqrt r}.$$
 The weak solution has finite action but the no-slip physical metric is not $C^2$ and its Ricci and tidal curvature diverge. Thus HPI-$\Delta$ is dead as an exact classical regular-center theory under A8, without invoking any PPN identification (`exact_mond_regular_center_no_go_2026/`).
 
+The no-instantaneous-channel principle (gate 7) is formalised as a signalling protocol in `theory_2026/york/elliptic_channel_signaling_theorem_2026.py` (6/6): conditional on (i) an $\omega$-independent elliptic constraint on a physically selected foliation and (ii) an external-field effect, a mass rearrangement at $A$ changes a local observable at spacelike-separated $B$ on the same slice. It closes three escapes the York verdict left open—the exponential tail (the sender chooses a deep-MOND receiver, where the EFE sensitivity is $O(1)$ on both footings), the gauge status of York time, and the GR control (GR's lapse is elliptic on the same slices but enters no local observable, so the argument is specific to the EFE)—and remains a linear-response, single-slice statement; a covariant nonlinear counterexample would refute it at the cost of a propagating degree of freedom.
+
 The same expansion has a directly falsifiable circular-orbit corollary,
 $$\lim_{r\to0}\frac{v_c^4}{\rho_0r^3}=\frac{4\pi}{3}Ga_0,
 \qquad
@@ -177,6 +179,7 @@ Run each cited artifact according to its own documented interface. Checks, mutat
 | $\kappa$ measured | `real_research/reviews/mi_kappa_error_budget_unlock_2026.py` | — |
 | CDE-L4C PPN provenance: $\alpha_3$ uncomputed | `cde_l4c_2026/gateA/cde_l4c_ppn_alpha3.py` | 4/4 |
 | conditional large-$y$ exponential-tail estimate (not a PPN derivation) | `cde_l4c_2026/gateA/constraint_channel_ppn_invisibility_2026.py` | 9/9 |
+| elliptic-channel signalling protocol (gate 7, escapes closed at linear order) | `theory_2026/york/elliptic_channel_signaling_theorem_2026.py` | 6/6 |
 | HPI-$\Delta$ action/covariant-lift gate | `hpi_delta_covariant_lift_2026/` | 16/16 |
 | exact-MOND regular-center theorem and central Kepler law | `exact_mond_regular_center_no_go_2026/` | 18/18 |
 | direct exact-exponential AQUAL Solar-System quadrupole | `exact_exponential_aqual_q2_2026/` | 8/8 |
