@@ -1,0 +1,68 @@
+====================================================================================================================
+E1  does a local observable depend on the external field?  (the external-field effect)
+====================================================================================================================
+  A bound system with internal Newtonian field g_int in an external field g_ext: its internal dynamics carry
+  nu evaluated on the total field, so d ln(boost)/d ln g_ext is the EFE sensitivity.  MOND's own prediction:
+     LSB dwarf in the cosmic field              g_int/a0= 0.05 g_ext/a0= 0.01   d ln(boost)/d ln g_ext = -0.074
+     wide binary at 1e4 AU in the Galaxy        g_int/a0= 0.60 g_ext/a0= 1.80   d ln(boost)/d ln g_ext = -0.157
+     dwarf spheroidal in the Milky Way field    g_int/a0= 0.02 g_ext/a0= 0.20   d ln(boost)/d ln g_ext = -0.356
+  [PASS] E1 (escape: no EFE) FAILS -- the external-field effect is not optional: for every deep-MOND detector the local boost depends on g_ext at order unity.  MOND without an EFE is not MOND (the nonlinearity IS the EFE), and this repository measures it (f03: slope +0.08 +/- 0.05, nonzero).  So a local observable at B does depend on the field sourced elsewhere on the slice   (EFE sensitivities are O(0.1-1) on deep-MOND detectors)
+
+====================================================================================================================
+E2  is the constraint elliptic?  (omega-independence, i.e. instantaneity on the slice)
+====================================================================================================================
+  [PASS] E2 (escape: retarded kernel) FAILS by definition of the branch -- a two-degree-of-freedom MOND carries the force by a second-class constraint whose response is omega-independent 1/k^2 (CDE-L4C, the vanishing projector: chi = -J/(X k^2), no omega).  Making the kernel retarded gives it a propagating mode and leaves the 2-DOF class.  The branch cannot take this escape without ceasing to be the branch   (cited: vanishing_projector_dirac_chain_2026.py D7 (13/13); CDE-L4C principal response)
+
+====================================================================================================================
+E3  does the exponential tail protect causality the way it protects PPN?
+====================================================================================================================
+  The tail suppresses the channel's coupling by e^{-y} at the DETECTOR.  For PPN the detectors are fixed by nature
+  (Saturn y=7e5, pulsars y=1e12).  For a signalling protocol the SENDER CHOOSES the receiver.  Bob picks:
+     a wide binary at 1e4 AU    y =   0.951   e^-y = 0.387   EFE sensitivity -0.089
+     a wide binary at 3e4 AU    y =   0.106   e^-y = 0.900   EFE sensitivity -0.273
+     an LSB dwarf at 2 kpc      y =   0.037   e^-y = 0.963   EFE sensitivity -0.315
+  [PASS] E3 (escape: exponential suppression) FAILS -- the tail is a property of the detector's acceleration, and the sender chooses the detector.  A wide binary at 3e4 AU or an LSB dwarf sits at y ~ 0.1-1 with e^-y ~ 0.5-0.9 and EFE sensitivity of order unity, on both footings.  The same tail that hides the channel at Saturn cannot hide it from a receiver built in the deep-MOND regime.  PPN invisibility and causality violation are compatible; that is the point   (at 3e4 AU: y = 0.106, e^-y = 0.900, sensitivity -0.273)
+
+====================================================================================================================
+E4  is 'equal York time' physical?
+====================================================================================================================
+  [PASS] E4 (escape: simultaneity is gauge) FAILS for this branch -- York time tau = -K/3 on constant-mean-curvature slices is a scalar built from the extrinsic curvature of a physically selected foliation (unique and monotonic under the TCC, Brill-Flaherty / Marsden-Tipler), and the branch's own construction ties a_0 to it (a_0 = c|K|/Z).  A theory that USES the foliation to define its acceleration scale cannot then call the foliation gauge.  The instantaneous update is on a physical slice   (cited: YORK_CAUSAL_GATE_VERDICT.md TEST 3 (selection PASS); the branch defines a_0 from K)
+
+====================================================================================================================
+E5  THE GR CONTROL: GR's lapse is elliptic on the same slices, and GR is causal.  Where is the difference?
+====================================================================================================================
+  In GR on CMC slices the lapse N solves (-D^2 + K_ij K^ij + 4 pi G(rho + S)) N = const -- elliptic, sourced by
+  matter everywhere on the slice, updated instantaneously when Alice moves her mass.  So N(B) changes at tau_0^+.
+  Does any LOCAL observable at B depend on N?  No: N is the time-reparametrisation gauge.  In a local Lorentz frame
+  at B the lapse is 1 and the physics is the same whatever N does elsewhere.  The GR analogue of the EFE sensitivity,
+  d O_B / d N, is identically zero.  The elliptic field is instantaneous AND unobservable, so no signal.
+  In the MOND constraint branch the elliptic field Phi enters O_B through the EFE with d O_B / d g_ext = O(1) (E1).
+  Instantaneous AND observable.  That single difference -- E1 -- is the entire theorem, and it is exactly what makes
+  the theory MOND rather than GR.
+  [PASS] E5 (GR control) the argument does NOT prove GR acausal: the GR analogue of the signal vanishes identically because the lapse is pure gauge, while in the MOND branch the elliptic potential is locally observable through the external-field effect.  The theorem therefore locates the acausality in the ONE feature that distinguishes the branch from GR, the EFE, rather than in ellipticity per se -- which is why elliptic constraints in GR are harmless and this one is not   (d O_B/d N = 0 in GR; d O_B/d g_ext = O(1) in MOND (E1))
+
+====================================================================================================================
+THE THEOREM, and its confidence
+====================================================================================================================
+  [PASS] T (SIGNALLING THEOREM) any theory in which (i) the MOND potential is fixed on a physically selected foliation by an elliptic constraint with no frequency dependence, and (ii) local dynamics depend on the external field (an external-field effect), admits a protocol by which a mass rearrangement at A changes a local observable at spacelike-separated B on the same slice.  (i) is the definition of the two-degree-of-freedom branch; (ii) is the definition of MOND.  No escape survives: E1 is MOND itself, E2 leaves the branch, E3 is defeated by the sender's choice of a deep-MOND receiver, E4 is fixed by the branch's own use of the foliation, and E5 shows the argument is specific to MOND and does not touch GR   (conditional on (i) and (ii) only; both are definitional for the branch)
+  CONFIDENCE, honestly: this formalises and strengthens the York verdict from 'medium' by closing the three escapes
+  it did not address (E3 the tail, E4 the gauge status of York time, E5 the GR control).  What it does NOT do is
+  exhibit the acausality in a covariant, fully nonlinear solution -- it is a linear-response, single-slice argument,
+  the same order at which the York verdict called itself 'structurally robust at linear order'.  A nonlinear
+  counterexample (a self-consistent elliptic MOND cosmology in which the EFE observable at B turns out to lag A
+  by d/c) would refute it; none is known and E2 says building one costs a propagating degree of freedom.
+
+====================================================================================================================
+VERDICT
+====================================================================================================================
+  The two-degree-of-freedom branch of MOND is closed by a causality theorem, and the theorem is now stated with its
+  escapes closed rather than as a verdict at medium confidence.  Ellipticity alone is harmless -- GR's lapse is
+  elliptic -- and the exponential tail that makes the channel invisible to every PPN test cannot hide it from a
+  receiver built in the deep-MOND regime, because the sender picks the receiver.  What makes the branch acausal is
+  precisely what makes it MOND: the external-field effect renders an instantaneously-updated field locally
+  observable.  Conditional on (i) elliptic constraint on a physical foliation and (ii) an external-field effect,
+  both definitional.  The residual is that this is a linear-response argument; a covariant nonlinear
+  counterexample would refute it and would cost a propagating degree of freedom to build.
+
+RESULT: 6 checks, 0 FAIL   rc=0
+rc=0
