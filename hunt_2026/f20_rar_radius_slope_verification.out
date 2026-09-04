@@ -1,0 +1,93 @@
+======================================================================================================================
+baseline (R >= 0.5 R_d, quartic in log y, galaxy offsets)
+======================================================================================================================
+/Users/carlzimmerman/new_physics/zimmerman-formula/hunt_2026/f20_rar_radius_slope_verification.py:58: RuntimeWarning: divide by zero encountered in matmul
+  XtW = X.T*R["w"]; beta = np.linalg.lstsq(XtW @ X, XtW @ R["res"], rcond=None)[0]
+/Users/carlzimmerman/new_physics/zimmerman-formula/hunt_2026/f20_rar_radius_slope_verification.py:58: RuntimeWarning: overflow encountered in matmul
+  XtW = X.T*R["w"]; beta = np.linalg.lstsq(XtW @ X, XtW @ R["res"], rcond=None)[0]
+/Users/carlzimmerman/new_physics/zimmerman-formula/hunt_2026/f20_rar_radius_slope_verification.py:58: RuntimeWarning: invalid value encountered in matmul
+  XtW = X.T*R["w"]; beta = np.linalg.lstsq(XtW @ X, XtW @ R["res"], rcond=None)[0]
+     baseline, full sample                                      N= 2779 G=147  slope -0.1493  boot -0.1513 +/- 0.0484  (3.1 sigma)
+     baseline, deep-MOND discs                                  N= 1205 G= 88  slope -0.1470  boot -0.1491 +/- 0.0625  (2.4 sigma)
+
+======================================================================================================================
+V1  non-parametric kernel shape: 14 indicator bins in log y instead of a quartic
+======================================================================================================================
+     14-bin y-basis, full                                       N= 2779 G=147  slope -0.0922  boot -0.0928 +/- 0.0387  (2.4 sigma)
+     14-bin y-basis, deep                                       N= 1205 G= 88  slope -0.1304  boot -0.1302 +/- 0.0557  (2.3 sigma)
+  [FAIL] V1 the slope survives a fully non-parametric kernel-shape function, so it is not a rigid y-basis leaking the RAR's own shape into the radius term   (quartic -0.1513 +/- 0.0484 -> 14-bin -0.0928 +/- 0.0387)
+
+======================================================================================================================
+V2  which radius?  R/R_d vs R/R_eff vs physical R vs R/R_HI
+======================================================================================================================
+     R / R_disc (stellar scale length)                          N= 2779 G=147  slope -0.0922  boot -0.0928 +/- 0.0387  (2.4 sigma)
+     R / R_eff (half-light)                                     N= 2779 G=147  slope -0.0922  boot -0.0928 +/- 0.0387  (2.4 sigma)
+     physical R in kpc                                          N= 2779 G=147  slope -0.0922  boot -0.0928 +/- 0.0387  (2.4 sigma)
+     R / R_HI (gas extent)                                      N= 2779 G=147  slope -0.0922  boot -0.0928 +/- 0.0387  (2.4 sigma)
+  [FAIL] V2 the effect is about POSITION IN THE DISC, not physical scale: it is present for radius in units of the stellar scale length and half-light radius, and weaker or absent for physical radius in kpc (which mixes galaxies of all sizes)   (R/R_d 2.4 sigma, R/R_eff 2.4, kpc 2.4, R/R_HI 2.4)
+
+======================================================================================================================
+V3  outer-disc systematics: drop each galaxy's outermost two points
+======================================================================================================================
+     outermost 2 points dropped, full                           N= 2476 G=144  slope -0.0797  boot -0.0798 +/- 0.0398  (2.0 sigma)
+     outermost 2 points dropped, deep                           N= 1020 G= 85  slope -0.0925  boot -0.0912 +/- 0.0679  (1.3 sigma)
+  [FAIL] V3 the slope is not carried by the outermost points of each galaxy (warps, truncations, declining outer curves): dropping them leaves it significant with the same sign   (full: -0.0798 +/- 0.0398 (2.0 sigma); deep: -0.0912 +/- 0.0679)
+
+======================================================================================================================
+V4  driven by a few galaxies?  jackknife
+======================================================================================================================
+     jackknife slopes: min -0.1121, max -0.0790, all same sign: True
+     ten most influential: UGC02953, NGC2403, NGC6015, NGC5985, UGC00128, NGC5585, IC2574, UGC09133, NGC5371, UGC00731
+     ten most influential galaxies removed                      N= 2385 G=137  slope -0.0892  boot -0.0835 +/- 0.0272  (3.1 sigma)
+  [PASS] V4 no single galaxy flips the sign, and removing the ten most influential leaves the slope significant -- it is a population property   (jackknife range [-0.1121, -0.0790]; without top-10: -0.0835 +/- 0.0272 (3.1 sigma))
+
+======================================================================================================================
+V5  data quality
+======================================================================================================================
+     quality flag Q = 1 only                                    N= 1839 G= 93  slope -0.1045  boot -0.1085 +/- 0.0494  (2.2 sigma)
+     inclination > 45 deg only                                  N= 2431 G=125  slope -0.0910  boot -0.0833 +/- 0.0422  (2.0 sigma)
+  [FAIL] V5 the slope holds on the highest-quality subsample and on the well-inclined subsample   (Q=1: -0.1085 +/- 0.0494; inc>45: -0.0833 +/- 0.0422)
+
+======================================================================================================================
+V6  surface-brightness halves
+======================================================================================================================
+     HSB half                                                   N= 1856 G= 74  slope -0.0937  boot -0.1015 +/- 0.0501  (2.0 sigma)
+     LSB half                                                   N=  923 G= 73  slope -0.1421  boot -0.1439 +/- 0.0633  (2.3 sigma)
+  [PASS] V6 both surface-brightness halves show the slope with the same sign, so it is not a high-versus-low-surface-brightness offset in disguise   (HSB -0.1015 +/- 0.0501; LSB -0.1439 +/- 0.0633)
+
+======================================================================================================================
+V7  the within-galaxy view: per-galaxy slopes against the global kernel function
+======================================================================================================================
+/Users/carlzimmerman/new_physics/zimmerman-formula/hunt_2026/f20_rar_radius_slope_verification.py:121: RuntimeWarning: divide by zero encountered in matmul
+  beta = np.linalg.lstsq(XtW @ X, XtW @ R0["res"], rcond=None)[0]; fy = ybasis(R0["ly"], "bins") @ beta[NG:]
+/Users/carlzimmerman/new_physics/zimmerman-formula/hunt_2026/f20_rar_radius_slope_verification.py:121: RuntimeWarning: overflow encountered in matmul
+  beta = np.linalg.lstsq(XtW @ X, XtW @ R0["res"], rcond=None)[0]; fy = ybasis(R0["ly"], "bins") @ beta[NG:]
+/Users/carlzimmerman/new_physics/zimmerman-formula/hunt_2026/f20_rar_radius_slope_verification.py:121: RuntimeWarning: invalid value encountered in matmul
+  beta = np.linalg.lstsq(XtW @ X, XtW @ R0["res"], rcond=None)[0]; fy = ybasis(R0["ly"], "bins") @ beta[NG:]
+     per-galaxy slopes: N=147, median -0.0215, mean -0.0029 +/- 0.0229, fraction negative 0.55
+  [FAIL] V7 the effect is WITHIN galaxies: a clear majority of individual discs have a negative slope of the kernel-corrected residual on log(R/R_d), and the population mean is negative at high significance -- so it is not an artefact of pooling galaxies with different intercepts   (55% negative; mean -0.0029 +/- 0.0229 (0.1 sigma))
+
+======================================================================================================================
+V8  footing and mutation
+======================================================================================================================
+     alternative a_0 footing                                    N= 2779 G=147  slope -0.0966  boot -0.0971 +/- 0.0387  (2.5 sigma)
+  [PASS] V8a both footings agree   (canonical -0.0928, alt -0.0971)
+     R/R_d shuffled WITHIN galaxies (mutation)                  N= 2779 G=147  slope +0.0008  boot +0.0007 +/- 0.0028  (0.3 sigma)
+  [PASS] V8b mutation: shuffling R/R_d within galaxies kills the slope   (shuffled +0.0007 +/- 0.0028)
+
+======================================================================================================================
+VERDICT
+======================================================================================================================
+  CANDIDATE WITHDRAWN.  The pooled slope of the residual on log(R/R_d) at fixed g_bar/a_0 is -0.093 +/- 0.039
+  with a non-parametric kernel shape -- under three sigma -- and the decisive check is V7: fitted WITHIN each galaxy
+  against the global kernel function, the slope has population mean -0.0029 +/- 0.0229 with 55 percent of
+  discs negative.  Zero.  There is no outward decline of the residual inside any disc at fixed g_bar.  The pooled
+  number was a between-galaxy pooling artefact: discs of different surface density map g_bar onto R/R_d differently,
+  and a single shared kernel function cannot absorb that, so the pooled fit dumped it into the radius term.
+  V1, V2, V3 and V5 each fell below three sigma once the kernel shape was non-parametric.  Every quantity that looked
+  like a second variable in f19 is accounted for by (i) the beam-smeared innermost bin and (ii) between-galaxy kernel-
+  shape differences that are not a function of position.  The radial acceleration relation has no hidden radial
+  variable at the precision of SPARC, and the fork test's SIGN result (f18) is unaffected.  No new law.
+
+RESULT: 9 checks, 5 FAIL -> ["V1 the slope survives a fully non-parametric kernel-shape function, so it is not a rigid y-basis leaking the RAR's own shape into the radius term", 'V2 the effect is about POSITION IN THE DISC, not physical scale: it is present for radius in units of the stellar scale length and half-light radius, and weaker or absent for physical radius in kpc (which mixes galaxies of all sizes)', 'V3 the slope is not carried by the outermost points of each galaxy (warps, truncations, declining outer curves): dropping them leaves it significant with the same sign', 'V5 the slope holds on the highest-quality subsample and on the well-inclined subsample', 'V7 the effect is WITHIN galaxies: a clear majority of individual discs have a negative slope of the kernel-corrected residual on log(R/R_d), and the population mean is negative at high significance -- so it is not an artefact of pooling galaxies with different intercepts']   rc=1
+rc=1
