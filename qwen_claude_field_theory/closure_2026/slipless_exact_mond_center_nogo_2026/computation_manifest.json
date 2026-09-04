@@ -1,0 +1,101 @@
+{
+  "schema_version": 1,
+  "claim_id": "slipless_exact_mond_center_nogo_2026",
+  "repository": {
+    "commit": "edff7fddedb24f76af60a1133e49f1110ab38dce",
+    "dirty": true,
+    "note": "Commit is the audited base before this isolated artifact is committed; source and result hashes below pin this bundle while unrelated user changes remain outside its scope."
+  },
+  "command": "PYTHONDONTWRITEBYTECODE=1 python3 -m unittest -v qwen_claude_field_theory/closure_2026/slipless_exact_mond_center_nogo_2026/test_slipless_exact_mond_center_nogo_2026.py\nPYTHONDONTWRITEBYTECODE=1 python3 qwen_claude_field_theory/closure_2026/slipless_exact_mond_center_nogo_2026/slipless_exact_mond_center_nogo_2026.py --output qwen_claude_field_theory/closure_2026/slipless_exact_mond_center_nogo_2026/calculation_results.json\nPYTHONDONTWRITEBYTECODE=1 python3 qwen_claude_field_theory/closure_2026/slipless_exact_mond_center_nogo_2026/independent_numeric_audit.py --json --output qwen_claude_field_theory/closure_2026/slipless_exact_mond_center_nogo_2026/independent_numeric_results.json",
+  "environment": {
+    "software": [
+      "Python 3.9.6",
+      "SymPy 1.14.0",
+      "mpmath 1.3.0"
+    ],
+    "hardware": "arm64"
+  },
+  "mathematics": {
+    "assertion_tested": "An exact MOND center with mu(y)=kappa*y^n+o(y^n), n>0, positive smooth spherical source, and physical metric-lapse acceleration has divergent Kretschmann curvature even with arbitrary slip. The proof uses the derivative-free tangential bound K>=8*(Phi'/r)^2/c^4. If rho_eff~r^m, finite leading curvature necessarily requires m>=n but that condition is not sufficient. With derivative regular variation, the sharper coefficients follow; the analytic exponential n=1 no-slip branch has R=5*C/(c^2*sqrt(r)) and K=43*C^2/(c^4*r).",
+    "coefficient_domain": "exact SymPy rational/symbolic algebra; independent 80-decimal-digit mpmath roots",
+    "conventions": "signature -+++; x0=ct; g00=-(1+2 Phi/c^2); gij=(1-2 Psi/c^2) delta_ij; inward acceleration magnitudes positive",
+    "inputs": [
+      "symbolic positive a0, b, kappa, n, r",
+      "ten deterministic dimensionless source values from 1e-12 through 1e-3"
+    ],
+    "bounds": {
+      "numeric_x_min": 1e-12,
+      "numeric_x_max": 0.001,
+      "numeric_points": 10,
+      "decimal_digits": 80
+    },
+    "non_claims": [
+      "not a no-go for theories that modify the exact equation near force-free centers",
+      "not a global uniqueness theorem for relativistic MOND actions",
+      "not a PPN or full degree-of-freedom calculation",
+      "bounded numerical roots are validation, not the universal proof",
+      "fixed generic R and K coefficients require the recorded derivative-regularity hypothesis; the derivative-free lower bound does not"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-09-04T04:29:44Z",
+    "runtime_seconds": null,
+    "exit_status": 0
+  },
+  "sources": [
+    {
+      "path": "qwen_claude_field_theory/closure_2026/slipless_exact_mond_center_nogo_2026/slipless_exact_mond_center_nogo_2026.py",
+      "sha256": "3b68adeef73752735a7294b6657d2d66af72aba690040e80886ed7c7f2d6f523"
+    },
+    {
+      "path": "qwen_claude_field_theory/closure_2026/slipless_exact_mond_center_nogo_2026/independent_numeric_audit.py",
+      "sha256": "2f66ea6da599f57a5b80370b35b75c93da9eae5ca2bb3d5cf29d297d05b7b8a8"
+    },
+    {
+      "path": "qwen_claude_field_theory/closure_2026/slipless_exact_mond_center_nogo_2026/test_slipless_exact_mond_center_nogo_2026.py",
+      "sha256": "a632f5d511868ef52ae6288aed3e44ef86db912db60cc7ac8a7a87473c8d913e"
+    },
+    {
+      "path": "qwen_claude_field_theory/closure_2026/slipless_exact_mond_center_nogo_2026/REPORT.md",
+      "sha256": "976148a1bfd593b28c5e5f990844aafc60186b431e7e0d91d03fbcfcfa53a457"
+    },
+    {
+      "path": "qwen_claude_field_theory/closure_2026/slipless_exact_mond_center_nogo_2026/LITERATURE_SCOPE.md",
+      "sha256": "8fa367145622e6a846c2e748ec850871592ce2a845488b15bcd12544ba7dac54"
+    }
+  ],
+  "outputs": [
+    {
+      "path": "qwen_claude_field_theory/closure_2026/slipless_exact_mond_center_nogo_2026/calculation_results.json",
+      "sha256": "4e9121e7b1b79fae46be91b3a9da6e3d6143927bb621f0a9749a3f180bf33d37"
+    },
+    {
+      "path": "qwen_claude_field_theory/closure_2026/slipless_exact_mond_center_nogo_2026/independent_numeric_results.json",
+      "sha256": "e419909ca2b4a22f985638aefb0a8bb1553033d5c2550a630e87b78d5e824b41"
+    }
+  ],
+  "checks": [
+    "independent literal expectations for the exponential Puiseux coefficients",
+    "componentwise construction and contraction of the linearized Riemann tensor",
+    "weak-Schwarzschild benchmark R=0 and K coefficient 48",
+    "weak-isotropic-de-Sitter benchmarks R=12 H^2 and K=24 H^4",
+    "arbitrary-slip positive-square decomposition and derivative-free tangential K lower bound",
+    "generic mu~kappa*y^n symbolic scaling, with derivative regularity explicitly separated from value asymptotics",
+    "source/kernel necessary regularity matching law m>=n",
+    "explicit physical c^-2 and c^-4 curvature scaling",
+    "six live renderer certificate predicates and 17 adversarial unit tests",
+    "manifest SHA-256 pins every source/output and stored symbolic results equal a fresh derivation",
+    "independent high-precision implicit-root convergence audit"
+  ],
+  "result": "Arbitrary-slip derivative-free curvature no-go verified under the stated assumptions; sharper coefficients verified with the recorded derivative regularity; independent exponential-root audit passed on the declared range.",
+  "residual_risks": [
+    "the weak-field metric expansion is assumed to remain the physical one-metric description arbitrarily near the center",
+    "nonlocal boundary data or environmental external fields may remove an exact force-free point",
+    "global literature novelty is not established"
+  ]
+}
