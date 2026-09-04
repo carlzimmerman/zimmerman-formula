@@ -1,0 +1,55 @@
+======================================================================================================================
+f28 -- the one-argument pincer on the mu_n family
+======================================================================================================================
+
+1.  Cassini axis: Q_2 / ceiling at the solar-circle external field (QUMOND integral; exact AQUAL is 8-30% higher, f24)
+  nu_rar : Q2/ceiling canonical 6.231, alt 6.834
+/opt/homebrew/Caskroom/miniconda/base/lib/python3.13/site-packages/scipy/integrate/_quadpack_py.py:1260: IntegrationWarning: The maximum number of subdivisions (50) has been achieved.
+  If increasing the limit yields no improvement it is advised to analyze 
+  the integrand in order to determine the difficulties.  If the position of a 
+  local difficulty can be determined (singularity, discontinuity) one will 
+  probably gain from splitting up the interval and calling the integrator 
+  on the subranges.  Perhaps a special-purpose integrator should be used.
+  quad_r = quad(f, low, high, args=args, full_output=self.full_output,
+/opt/homebrew/Caskroom/miniconda/base/lib/python3.13/site-packages/scipy/integrate/_quadpack_py.py:1260: IntegrationWarning: The occurrence of roundoff error is detected, which prevents 
+  the requested tolerance from being achieved.  The error may be 
+  underestimated.
+  quad_r = quad(f, low, high, args=args, full_output=self.full_output,
+  mu_1   : Q2/ceiling canonical 6.064, alt 6.598
+  mu_2   : Q2/ceiling canonical 2.813, alt 3.692
+  mu_3   : Q2/ceiling canonical 1.244, alt 1.959
+  mu_4   : Q2/ceiling canonical 0.593, alt 1.096
+  mu_5   : Q2/ceiling canonical 0.314, alt 0.662
+  mu_7   : Q2/ceiling canonical 0.125, alt 0.309
+  mu_10  : Q2/ceiling canonical 0.064, alt 0.166
+  [PASS] C1 anchors reproduce: the framework's kernel at 6.2x/6.8x (f23), mu_10 under 0.2x   (RAR 6.23/6.83, mu_10 0.064)
+  Cassini-safe members (Q2 < ceiling on at least one footing, QUMOND): ['mu_4', 'mu_5', 'mu_7', 'mu_10']; the boundary is n_c = 4
+
+2.  galaxy axis: a_0 and a global disc M/L profiled per kernel, paired galaxy resampling against nu_RAR
+  nu_rar : RMS 0.2015 dex at (Upsilon, a_0) = (0.50, 8.71e-11)
+  mu_1   : RMS 0.2016 at (0.50, 8.51e-11); paired dMSE [-0.00012, +0.00005, +0.00024], worse in 0.715 -> tolerated
+  mu_2   : RMS 0.2042 at (0.60, 1.00e-10); paired dMSE [+0.00016, +0.00110, +0.00211], worse in 0.988 -> disfavoured
+  mu_3   : RMS 0.2059 at (0.60, 1.07e-10); paired dMSE [+0.00045, +0.00181, +0.00324], worse in 0.998 -> rejected
+  mu_4   : RMS 0.2070 at (0.60, 1.10e-10); paired dMSE [+0.00065, +0.00221, +0.00384], worse in 1.000 -> rejected
+  mu_5   : RMS 0.2076 at (0.60, 1.12e-10); paired dMSE [+0.00081, +0.00245, +0.00420], worse in 1.000 -> rejected
+  mu_7   : RMS 0.2083 at (0.60, 1.12e-10); paired dMSE [+0.00093, +0.00270, +0.00457], worse in 1.000 -> rejected
+  mu_10  : RMS 0.2087 at (0.60, 1.12e-10); paired dMSE [+0.00105, +0.00286, +0.00479], worse in 1.000 -> rejected
+
+3.  the pincer
+    kernel  Q2/ceil can Q2/ceil alt  Cassini galaxy RMS worse frac     galaxy
+    nu_rar        6.231       6.834     FAIL     0.2015        nan  reference
+    mu_1          6.064       6.598     FAIL     0.2016      0.715  tolerated
+    mu_2          2.813       3.692     FAIL     0.2042      0.988 disfavoured
+    mu_3          1.244       1.959     FAIL     0.2059      0.998   rejected
+    mu_4          0.593       1.096     safe     0.2070      1.000   rejected
+    mu_5          0.314       0.662     safe     0.2076      1.000   rejected
+    mu_7          0.125       0.309     safe     0.2083      1.000   rejected
+    mu_10         0.064       0.166     safe     0.2087      1.000   rejected
+  [PASS] P1 (THE PINCER, and it can fail) no member of the mu_n family, n = 1..10, is both Cassini-safe and galaxy-tolerated: every Cassini-safe member is rejected on SPARC with a_0 and the disc M/L free, and every galaxy-tolerated member fails Cassini.  If this FAILS the one-argument class has a survivor and the length-scale argument is wrong   (survivors: []; Cassini-safe: ['mu_4', 'mu_5', 'mu_7', 'mu_10']; tolerated: ['mu_1'])
+  [PASS] P2 the boundary is sharp on both sides: the softest Cassini-safe member is rejected on galaxies in >= 99% of resamples, and the sharpest galaxy-tolerated member exceeds the ceiling by more than 2x on both footings   (n_c = 4: worse in 1.000; tolerated members' min Q2/ceiling = mu_1 6.06)
+  [PASS] P3 mutation: the galaxy axis has sensitivity to sharpness in the right direction -- the profiled RMS rises monotonically with n from n = 2 upward   (n=1: 0.2016, n=2: 0.2042, n=3: 0.2059, n=4: 0.2070, n=5: 0.2076, n=7: 0.2083, n=10: 0.2087)
+
+  scope: QUMOND quadrupole (AQUAL is 8-30% higher, f24, which only widens the Cassini side); descriptive galaxy MSE
+  with catalogue distances and inclinations; the mu_n family is the standard sharpness axis, not every one-argument law.
+
+RESULT: 4 checks, 0 FAIL   rc=0

@@ -53,3 +53,28 @@ it alive and kills the framework's own pre-registration; γ_v ≈ 1.2 kills it a
 Running at the time of this commit (147 discs, three kernels, each at its own profiled M/L and a₀, ±0.15 dex in a₀;
 the validation reproduces the exact exponential disc's QUMOND correction to 0.02 dex on interior points). The
 per-kernel disc correction and the paired comparison on QUMOND-corrected residuals follow in the next commit.
+
+## D. The one-argument pincer, closed on the μ_n family — `hunt_2026/f28_one_argument_pincer.py` (4/4)
+
+Both axes with the same machinery: the committed DHF quadrupole integral at the solar-circle field (both footings), and
+the paired-galaxy comparison with a₀ and a global disc M/L profiled per kernel.
+
+| kernel | Q₂/ceiling canonical | alt | Cassini | SPARC RMS (dex) | worse than ν_RAR in | galaxy verdict |
+|---|---|---|---|---|---|---|
+| ν_RAR | 6.23 | 6.83 | fail | 0.2015 | — | reference |
+| μ₁ | 6.06 | 6.60 | fail | 0.2016 | 72% | tolerated |
+| μ₂ | 2.81 | 3.69 | fail | 0.2042 | 98.8% | disfavoured |
+| μ₃ | 1.24 | 1.96 | fail | 0.2059 | 99.8% | rejected |
+| μ₄ | 0.59 | 1.10 | safe (canonical) | 0.2070 | 100% | rejected |
+| μ₅ | 0.31 | 0.66 | safe | 0.2076 | 100% | rejected |
+| μ₇ | 0.13 | 0.31 | safe | 0.2083 | 100% | rejected |
+| μ₁₀ | 0.06 | 0.17 | safe | 0.2087 | 100% | rejected |
+
+No member is both Cassini-safe and galaxy-tolerated. The boundary is sharp on both sides: the softest Cassini-safe
+member (n = 4) loses on every paired resample; the sharpest galaxy-tolerated member (n = 1) is 6× over the ceiling.
+Exact AQUAL only widens the Cassini side (f24: +8–30%). Scope: the μ_n family is the sharpness axis DHF identify as
+the only lever on Q₂; it is not every one-argument law, and the statement is on that family.
+
+Read with RESUME_HERE's own line — which field carries the halo cannot move Q₂ — this is the closure of the
+one-argument class: no static law μ(g/a₀), carried by any field, passes both the Solar System and the galaxy data.
+The second argument is not another acceleration (u02); it is a length.

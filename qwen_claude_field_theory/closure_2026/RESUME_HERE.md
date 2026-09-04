@@ -132,3 +132,6 @@ That, not Cassini, is now the wall.** No choice of `mu_n` touches it.
   globular clusters Newtonian (3 of 4 outer-halo rows are, f27), and Gaia DR4 wide binaries gamma_v = 1.00 -- the
   opposite of the pre-registered 1.16-1.23. The localised (Helmholtz-filter) version is closed as a local theory
   (Theorem 8); a non-localisable or healing-length (medium) version has not been written. That is the open door.
+- f28 (4/4) closes the one-argument class on the mu_n family: the Cassini boundary is n = 4 (0.59x canonical, 1.10x
+  alt); every n >= 3 loses on SPARC in >= 99.8% of paired resamples with a_0 and M/L free; n = 1 is tolerated on
+  galaxies and 6x over on Cassini. No member passes both.
