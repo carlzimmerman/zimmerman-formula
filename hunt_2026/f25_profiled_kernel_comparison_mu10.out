@@ -1,0 +1,34 @@
+  [PASS] K1 the tabulated inverse partners are exact where they can be checked: mu_exp's table matches f21's Newton solve and every table has the deep and Newtonian limits   (nu_muexp(1) = 1.3500 (f21: 1.3500))
+  SPARC: 3140 points, 147 galaxies; Upsilon_d grid 0.3-0.8 (6), log a_0 grid -10.8..-9.2 (161)
+
+1.  a_0 profiled, Upsilon fixed at 0.5 (the parallel agent's design) -- reproduction, then mu_10 and mu_5 added
+--------------------------------------------------------------------------------------------------------------
+  nu_rar : best a_0 = 8.710e-11, equal-galaxy RMS = 0.2015 dex
+  mu_exp : best a_0 = 1.072e-10, equal-galaxy RMS = 0.2041 dex
+  mu_10  : best a_0 = 1.318e-10, equal-galaxy RMS = 0.2117 dex
+  mu_5   : best a_0 = 1.318e-10, equal-galaxy RMS = 0.2105 dex
+  paired MSE(mu_exp) - MSE(nu_rar): 2.5/50/97.5% = [-0.00009, +0.00099, +0.00212] dex^2; fraction > 0: 0.966
+  paired MSE(mu_10) - MSE(nu_rar): 2.5/50/97.5% = [+0.00168, +0.00408, +0.00670] dex^2; fraction > 0: 1.000
+  paired MSE(mu_5) - MSE(nu_rar): 2.5/50/97.5% = [+0.00137, +0.00358, +0.00602] dex^2; fraction > 0: 0.999
+  [PASS] R1 the parallel agent's mu_exp result reproduces on this coarser grid: a_0 profiled, Upsilon fixed, the 95% interval of the paired MSE difference contains zero and the two best a_0 differ by ~0.09 dex   (interval [-0.00009, +0.00212]; log a_0 ratio +0.090 (agent: +0.089))
+  [PASS] R2 mu_10 does NOT survive a_0 profiling: its paired MSE excess over nu_RAR is positive in every replicate (2.5th percentile > 0) and its MSE excess is more than three times the exp-RAR gap   (2.5th pct +0.00168 dex^2, fraction > 0 = 1.000; dMSE mu_10 +0.00422 vs mu_exp +0.00105)
+
+2.  a_0 AND Upsilon_d profiled jointly for every kernel (the fair test)
+--------------------------------------------------------------------------------------------------------------
+  nu_rar : best (Upsilon_d, a_0) = (0.50, 8.710e-11), equal-galaxy RMS = 0.2015 dex
+  mu_exp : best (Upsilon_d, a_0) = (0.60, 8.913e-11), equal-galaxy RMS = 0.2030 dex
+  mu_10  : best (Upsilon_d, a_0) = (0.60, 1.122e-10), equal-galaxy RMS = 0.2087 dex
+  mu_5   : best (Upsilon_d, a_0) = (0.60, 1.122e-10), equal-galaxy RMS = 0.2076 dex
+  paired MSE(mu_exp) - MSE(nu_rar): 2.5/50/97.5% = [-0.00011, +0.00058, +0.00138] dex^2; fraction > 0: 0.949
+  paired MSE(mu_10) - MSE(nu_rar): 2.5/50/97.5% = [+0.00104, +0.00275, +0.00471] dex^2; fraction > 0: 1.000
+  paired MSE(mu_5) - MSE(nu_rar): 2.5/50/97.5% = [+0.00075, +0.00236, +0.00416] dex^2; fraction > 0: 0.999
+  [PASS] R3 with BOTH a_0 and Upsilon free, mu_10 still loses to nu_RAR in every replicate: the closure program's surviving kernel cannot be rescued by heavier discs   (2.5th pct +0.00104 dex^2, fraction > 0 = 1.000, RMS 0.2087 vs 0.2015)
+  [PASS] R4 (HYPOTHESIS CHECK -- a FAIL is a result) the softest 'Cassini-safe' member mu_5 also loses in every replicate with both parameters free.  If this fails, the mu_n family has a member the galaxy data tolerate, and the Cassini-vs-RAR pincer would need the n at which it closes   (2.5th pct +0.00075 dex^2, fraction > 0 = 0.999)
+  [PASS] R5 (HYPOTHESIS CHECK -- a FAIL is a result) mu_exp vs nu_RAR remains undecided with both parameters free: the 95% interval of the paired difference contains zero.  If this FAILS the data DO separate them once the M/L is allowed to move, and the direction is in the detail   (interval [-0.00011, +0.00138], fraction > 0 = 0.949)
+  [PASS] R6 the profiled a_0 of the framework's kernel sits inside the footing band on both designs, and the profiled Upsilon_d is inside the population-synthesis range 0.3-0.8 for every kernel (no kernel is rescued by an unphysical disc)   (nu_rar: Ups 0.50, a_0 8.71e-11; mu_exp: Ups 0.60, a_0 8.91e-11; mu_10: Ups 0.60, a_0 1.12e-10; mu_5: Ups 0.60, a_0 1.12e-10)
+  [PASS] M1 mutation: shuffling g_obs across points destroys the relation for every kernel (MSE up by > 10x), so the ordering above is structure in the pairing, not in the score   (nu_rar: 0.533; mu_exp: 0.536; mu_10: 0.548; mu_5: 0.549)
+
+  scope: descriptive equal-galaxy MSE with a_0 and a GLOBAL Upsilon_d profiled; per-galaxy M/L, distance and
+  inclination stay fixed; no observational-error weighting.  It can rank kernels; it cannot assign a sigma.
+
+RESULT: 8 checks, 0 FAIL   rc=0

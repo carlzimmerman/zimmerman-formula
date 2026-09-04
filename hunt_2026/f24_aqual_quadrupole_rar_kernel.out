@@ -1,0 +1,20 @@
+==============================================================================================================
+f24 -- exact-AQUAL Solar-System quadrupole for the framework's kernel
+==============================================================================================================
+  [PASS] T1 the tabulated kernel reproduces the closed-form inverse x(mu) = [ln(1-mu)]^2/mu to 1e-4 relative (the quadrupole is quoted to 1e-2) at 200 random points (interpolation on 6001 nodes), and is monotone with mu -> 1 at x = 1e8   (max rel err 2.2e-06; mu(1e8) = 1.000000000000000)
+  [PASS] V1 with the framework's kernel the solver reproduces the exact spherical first integral mu(g) g = 1/r^2 to 2%   (max rel err 5.991e-04, 17 iters, resid 8.5e-11   (1 s))
+  framework kernel, eta = 2.000: AQUAL |q_zz| = 0.2875  vs QUMOND q = 0.2210  excess +30.1%   (18 iters, resid 9.2e-11, 6 s)
+  [PASS] A1 the AQUAL-vs-QUMOND excess for the framework's kernel at eta = 2 is positive and of the size DHF footnote 6 reports for the similar mu_1 (about +25%; accepted band 0 to +60%)   (excess +30.1%)
+  canonical framework kernel (RAR)   eta = 2.479: AQUAL |q_zz| = 0.3398 (QUMOND 0.2748, excess +23.7%);  |Q2| = 4.006e-26 s^-2 = 7.70x ceiling, 21.4 sigma above Park central   (18 it, 11 s)
+  canonical mu_exp                   eta = 2.479: AQUAL |q_zz| = 0.1786 (QUMOND 0.1658, excess +7.7%);  |Q2| = 2.106e-26 s^-2 = 4.05x ceiling, 10.8 sigma above Park central   (19 it, 17 s)
+  canonical framework kernel at g_ext - 1 sigma (eta = 2.308): AQUAL |q_zz| = 0.3219, |Q2| = 7.30x ceiling   (22 s)
+  alt       framework kernel (RAR)   eta = 2.053: AQUAL |q_zz| = 0.2936 (QUMOND 0.2272, excess +29.2%);  |Q2| = 4.592e-26 s^-2 = 8.83x ceiling, 24.6 sigma above Park central   (18 it, 27 s)
+  alt       mu_exp                   eta = 2.053: AQUAL |q_zz| = 0.1834 (QUMOND 0.1654, excess +10.9%);  |Q2| = 2.868e-26 s^-2 = 5.52x ceiling, 15.0 sigma above Park central   (18 it, 33 s)
+  alt       framework kernel at g_ext - 1 sigma (eta = 1.912): AQUAL |q_zz| = 0.2770, |Q2| = 8.33x ceiling   (38 s)
+  [FAIL] A2 (HYPOTHESIS CHECK -- a FAIL is the result) in exact AQUAL the framework's kernel clears the Park 2026 two-sigma ceiling on at least one footing at g_ext - 1 sigma   (canonical: 7.70x central, 7.30x at g_ext - 1 sigma; alt: 8.83x central, 8.33x at g_ext - 1 sigma)
+  [PASS] A3 exact AQUAL is at least as constraining as the QUMOND integral for the framework's kernel on both footings (the parallel agent's caveat runs the wrong way for an escape)   (canonical: AQUAL/QUMOND = 1.237; alt: AQUAL/QUMOND = 1.292)
+  [PASS] A4 mu_exp shows a comparable AQUAL excess, so the excess is a property of the AQUAL operator and not of this kernel's table   (canonical: +7.7%; alt: +10.9%)
+
+  total runtime 38 s
+
+RESULT: 6 checks, 1 FAIL -> ["A2 (HYPOTHESIS CHECK -- a FAIL is the result) in exact AQUAL the framework's kernel clears the Park 2026 two-sigma ceiling on at least one footing at g_ext - 1 sigma"]   rc=1
