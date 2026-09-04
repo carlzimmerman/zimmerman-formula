@@ -1,6 +1,6 @@
 # Obstruction map for tested relativistic completions of exponential-MOND phenomenology, and the inertia–gravity fork on galaxies
 
-*Version 2026-09-03 (v2, corrected draft for internal review). Each computational claim below carries its cited artifact and scope. Checks, mutation controls, and numerical footings vary by artifact. Script paths are given inline; the table in §10 lists them.*
+*Version 2026-09-03 (v2.1, corrected draft for internal review; v2.1 adds the PPN-invisibility theorem to §3.1). Each computational claim below carries its cited artifact and scope. Checks, mutation controls, and numerical footings vary by artifact. Script paths are given inline; the table in §10 lists them.*
 
 ---
 
@@ -52,6 +52,8 @@ We audit three broad, non-exhaustive architectures represented by explicit candi
 The HPI-$\Delta$ candidate is the strongest bounded construction in this branch. Its first-order action retains the Einstein Hamiltonian and adds one trace-momentum Laplacian constraint. On the tested $k\neq0$, $y>0$ scalar block, the generated eight-constraint chain has Poisson rank six, two first-class and six second-class constraints, and zero scalar configuration degrees of freedom. Independent leading static-dust variations give $\nabla^2(\Phi-\Psi)=0$ and exact exponential AQUAL in the bounded branch. This is not yet a derivation of $\gamma_{\rm PPN}$. The configuration action and a clock-covariant notation are derived in `hpi_delta_covariant_lift_2026/`; a full nonlinear covariant Dirac theorem is not.
 
 In the tested CDE-L4C and vanishing-projector reductions, the principal scalar response is proportional to $1/k^2$ and independent of $\omega$. This is a valid instantaneous-channel diagnostic when that response is the physical MOND channel; it is not a PPN coefficient. The corrected CDE-L4C provenance audit leaves $\alpha_1$, $\alpha_2$, and $\alpha_3$ uncomputed. A full boosted 1PN solve—including $g_{00}$, $g_{0i}$, $g_{ij}$, all constraint/multiplier backreaction, moving conserved matter, and standard-PPN gauge matching—is required.
+
+That solve, if done, cannot close the branch. In every constraint construction here the MOND channel couples to matter and metric only through $F_{\exp}(y)=2[(1+y)e^{-y}-1]$, whose coupling $F'=-2ye^{-y}$ and linear response $F''=2(y-1)e^{-y}$ carry $e^{-y}$. At every post-Newtonian test site $y=g/a_0$ is large—$7\times10^5$ at Saturn, $6\times10^7$ at Earth, $\sim2\times10^{12}$ in a binary-pulsar orbit—so the channel's contribution to $\gamma-1$, $\beta-1$, $\alpha_{1,2,3}$ and $\xi$ is suppressed by $e^{-y}$, below $10^{-300000}$ at the weakest site (`cde_l4c_2026/gateA/constraint_channel_ppn_invisibility_2026.py`, 9/9, both footings). The constraint channel of the exponential kernel has GR's PPN status and no solar-system or pulsar datum can change it; the same tail that makes the kernel Cassini-safe makes the channel invisible wherever it is tested, and it switches on at the Oort cloud ($y\simeq2.5$ at 5000 AU) as the wide-binary predictions require. The scope is a channel whose only coupling is $F$; the Einstein-aether vector of §3.3 has an $F$-independent kinetic sector, so its $\alpha_1$ kill is unaffected. What therefore constrains this branch is not data but two principles: the regular-center theorem below (A8), and gate 7 as stated—no instantaneous physical channel—whose justification is the York/CMC causality argument (`theory_2026/york/YORK_CAUSAL_GATE_VERDICT.md`: the external-field effect promotes the elliptic potential to a gauge-invariant observable delivered at equal time across spacelike separation), which rates itself "medium confidence, structurally robust at linear order."
 
 The exact zero-field law supplies a different, action-independent obstruction. Let $A(p)=(1-e^{-|p|/a_0})p$. Then $DA(0)=0$, so any $C^2$ solution with $\nabla\Phi(x_0)=0$ obeys $\nabla\!\cdot A(\nabla\Phi)(x_0)=0$ and the exact field equation forces $\rho(x_0)=0$. For a smooth spherical core with $\rho(r)=\rho_0+O(r^2)$ and $C=4\pi G\rho_0/3$,
 $$g(r)=\sqrt{a_0Cr}+\frac C4r+O(r^{3/2}),\qquad R^{(1)}\sim\frac{5\sqrt{a_0C}}{c^2\sqrt r}.$$
@@ -145,6 +147,7 @@ If $\Lambda$ is a constant, $\rho_\Lambda$ is constant and $a_0$ is **flat** in 
 - It does not present a completed relativistic theory or a theory of everything. Its central result is a scoped obstruction map plus the conditional regular-center theorem, not an exhaustive local no-go.
 - It does not claim $\kappa=\tfrac12$ is derived. It is fitted, and §8 shows where a derivation would have to live.
 - It does not claim the data favour the framework over $\Lambda$CDM. The one discriminating measurement (§7) has not been made.
+- It does not claim the constraint (two-degree-of-freedom) branch is excluded by post-Newtonian data: under the exponential kernel its channel is PPN-invisible (§3.1). What constrains it is the regular-center theorem under A8 and the no-instantaneous-channel principle, the latter at medium confidence.
 - It does not claim the broader nonlocal door is closed; the vanishing-projector calculation closes only its specified reduced mechanism on gates 7 and 9.
 - It does not claim modified inertia is confirmed. It claims the modified-gravity curl field has the wrong sign on SPARC's deep discs, and that pressure-supported systems break the kernel in both directions.
 - Every "fails" was verified as hard as every "works": the 2012 dwarf dispersions, the $+1.1$ curl amplitude, the $-0.98$ amplitude, and the $10\sigma$ virial offset of `f11` were each caught by a control and are recorded as such.
@@ -160,6 +163,7 @@ Run each cited artifact according to its own documented interface. Checks, mutat
 | form and exponent forced | `real_research/uniqueness_dimensional_proof.py` | — |
 | $\kappa$ measured | `real_research/reviews/mi_kappa_error_budget_unlock_2026.py` | — |
 | CDE-L4C PPN provenance: $\alpha_3$ uncomputed | `cde_l4c_2026/gateA/cde_l4c_ppn_alpha3.py` | 4/4 |
+| constraint channel PPN-invisible under the exponential kernel | `cde_l4c_2026/gateA/constraint_channel_ppn_invisibility_2026.py` | 9/9 |
 | HPI-$\Delta$ action/covariant-lift gate | `hpi_delta_covariant_lift_2026/` | 16/16 |
 | exact-MOND regular-center theorem and central Kepler law | `exact_mond_regular_center_no_go_2026/` | 17/17 |
 | disformal escape: slip $\to$ $c_T$ | `door_a_2026/doorA_disformal_slip_vs_cT.py` | 9/9 |
