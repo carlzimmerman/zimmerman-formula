@@ -48,11 +48,39 @@ So this is a Cassini + globular-cluster + DR4 statement, not a ledger pattern, a
 It is the only structure I can find that passes both arms of the pincer, and DR4 falsifies it cleanly: γ_v = 1.00 keeps
 it alive and kills the framework's own pre-registration; γ_v ≈ 1.2 kills it and leaves modified gravity Cassini-dead.
 
-## C. The matched disc forward solve you asked for — `hunt_2026/f26_matched_disc_forward_solve.py`
+## C. The matched disc forward solve you asked for — `hunt_2026/f26_matched_disc_forward_solve.py` (8 checks, 2 hypothesis fails)
 
-Running at the time of this commit (147 discs, three kernels, each at its own profiled M/L and a₀, ±0.15 dex in a₀;
-the validation reproduces the exact exponential disc's QUMOND correction to 0.02 dex on interior points). The
-per-kernel disc correction and the paired comparison on QUMOND-corrected residuals follow in the next commit.
+For each of 147 SPARC discs and each kernel: the baryonic field at the kernel's own profiled M/L (f25), inverted to a
+sech² thick disc with f18's analytic Hankel inversion, solved in QUMOND with the kernel's ν on the same Hankel grid at
+the profiled a₀ and ±0.15 dex, and the disc correction T(R) = log₁₀[g_QUMOND/g_algebraic] applied to the algebraic
+prediction on the data before the paired comparison. Validation: the chain reproduces an exact exponential disc's
+correction to 0.02 dex on interior points (0.04 at the outermost, extrapolated point). Inversion residual median 0.073
+dex, 87 of 147 under 0.10; the comparison is read on the full sample and on that subset. Catalogue distance and
+inclination for every kernel (paired); no external field. Descriptive MSE, no sigma.
+
+| | median T (dex) | g_bar/a₀ 0.03–0.1 | 0.1–0.3 | 0.3–1 | 1–3 | 3–30 |
+|---|---|---|---|---|---|---|
+| ν_RAR | −0.025 | −0.040 | −0.027 | −0.023 | −0.019 | −0.007 |
+| μ_exp | −0.023 | −0.040 | −0.027 | −0.023 | −0.013 | −0.001 |
+| μ₁₀ | −0.023 | −0.044 | −0.031 | −0.030 | −0.002 | 0.000 |
+
+1. **The disc geometry cannot separate exp from RAR.** Their corrections agree to 0.002 dex (median) against a kernel
+   difference of up to 0.073 dex. After correction the paired MSE difference is a coin flip on the full sample
+   (interval [−0.00111, +0.00102] dex², exp worse in 49%) and leans exp on the well-inverted subset (worse in 19%,
+   interval still containing zero). Undecided stays undecided.
+2. **The disc geometry weakens, but does not remove, the μ₁₀ rejection.** μ₁₀'s correction vanishes above a₀ where
+   the RAR's is −0.02 dex, so the forward solve moves μ₁₀ toward the data at high acceleration: worse than ν_RAR in
+   94.6% of resamples (full) and 90.2% (subset), against 99.9% algebraically. On the forward solve μ₁₀ is
+   *disfavoured*, not rejected; the rejection rests on the algebraic comparison (f25, f28). This is the one place
+   the forward solve changed a verdict's strength, and you were right to ask for it.
+3. **The QUMOND correction makes the framework's kernel fit WORSE** (RMS 0.2015 → 0.2031 dex, ΔMSE +0.00064), leaves
+   μ_exp unchanged, and improves μ₁₀. SPARC discs follow the spherical algebraic relation better than the QUMOND disc
+   solution of the same kernel. That is f18's curl-sign finding on the full sample: the data do not want the
+   modified-gravity disc field. It is a second, independent reason the static limit cannot be "one μ in AQUAL/QUMOND"
+   — and it is the side of the fork that has no field-sourced quadrupole either.
+
+Scope left open, as you named it: per-galaxy distance and inclination marginalisation, the external field, and the
+AQUAL (rather than QUMOND) disc operator. None of these can plausibly move a 0.002-dex kernel-independence.
 
 ## D. The one-argument pincer, closed on the μ_n family — `hunt_2026/f28_one_argument_pincer.py` (4/4)
 

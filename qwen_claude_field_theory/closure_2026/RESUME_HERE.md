@@ -135,3 +135,8 @@ That, not Cassini, is now the wall.** No choice of `mu_n` touches it.
 - f28 (4/4) closes the one-argument class on the mu_n family: the Cassini boundary is n = 4 (0.59x canonical, 1.10x
   alt); every n >= 3 loses on SPARC in >= 99.8% of paired resamples with a_0 and M/L free; n = 1 is tolerated on
   galaxies and 6x over on Cassini. No member passes both.
+- f26 (the matched QUMOND disc forward solve you asked for; 8 checks, 2 hypothesis fails): the disc correction is
+  0.02-0.04 dex and identical for exp and RAR to 0.002 dex (exp vs RAR stays undecided); it weakens the mu_10
+  rejection to 90-95% of resamples (disfavoured, not rejected, on the forward solve); and it makes the RAR kernel's
+  fit WORSE -- SPARC discs follow the algebraic relation better than the QUMOND disc field of the same kernel (f18's
+  curl-sign result on the full sample). The data do not want the modified-gravity disc field either.
