@@ -1,0 +1,98 @@
+{
+  "schema_version": 1,
+  "claim_id": "hpi-delta-exponential-mond-finite-eccentric-kepler-2026",
+  "repository": {
+    "base_commit": "7c72e1704e993a49ad040b54be4574366aef988d",
+    "dirty_outside_artifact": true
+  },
+  "command": "python3 hpi_delta_eccentric_kepler_2026.py",
+  "commands": [
+    "python3 hpi_delta_eccentric_kepler_2026.py",
+    "python3 -m unittest -v test_hpi_delta_eccentric_kepler_2026.py"
+  ],
+  "environment": {
+    "software": [
+      "Python 3.9.6",
+      "mpmath 1.3.0",
+      "NumPy 1.26.2",
+      "SciPy 1.11.4",
+      "SymPy 1.14.0"
+    ],
+    "hardware": "arm64"
+  },
+  "mathematics": {
+    "assertion_tested": "Conditional on the spherical exterior weak-static flux mu(g/a0)g=GM/r^2 with mu(y)=1-exp(-y), leading weak-field slow-motion test-particle orbits obey exact full-force turning quadratures; in the deep regime T_r^4=F(e)^4 R^4/(GM a0) and (<v^2>_t)^2=GM a0.",
+    "coefficient_domain": "Symbolic positive G, M_b, a_0, r, g, x, y; double precision for ordinary quadrature/ODE checks; 50-80+ decimal digits for cancellation-prone endpoint branches.",
+    "conventions": "r_p<r_a, R=(r_p+r_a)/2, e=(r_a-r_p)/(r_a+r_p), 0<e<1; T_r is pericenter-to-pericenter radial period; Theta is pericenter-to-pericenter azimuth; Delta_varpi=Theta-2*pi.",
+    "inputs": [
+      "deep-log table e in {0.1, 0.3, 0.6, 0.9}",
+      "independent deep-log RK45 event grid e in {0.1, 0.6, 0.9}",
+      "full exponential RK45 event grid (x_p,x_a) in {(1.35,1.65), (0.7,2.3), (0.15,2.85)}",
+      "Newtonian-limit turning radii (x_p,x_a)=(0.01,0.03)",
+      "deep-limit turning radii (x_p,x_a)=(1000,3000)",
+      "force-solver x grid {1e-3, 1e-2, 0.1, 1, 10, 1e3, 1e6}",
+      "near-circular deep-log e in {3e-4, 1e-6, 1e-8}",
+      "near-radial deep-log e in {0.9999, 0.99999}",
+      "same-input backend comparisons at e=0.0201 and R/r_M in {0.02,1,100}"
+    ],
+    "bounds": {
+      "quadrature_epsabs": 2e-11,
+      "quadrature_epsrel": 2e-11,
+      "ode_rtol": 2e-11,
+      "ode_atol": 2e-13,
+      "transition_event_relative_error_max": 2e-8,
+      "deep_event_relative_error_max": 2e-9,
+      "force_solver_relative_residual_max": 5e-10,
+      "newtonian_relative_error_max": 2e-8,
+      "deep_similarity_relative_error_max": 8e-4,
+      "test_particle_virial_absolute_error_max": 2e-9,
+      "same_input_backend_relative_error_max": 2e-8,
+      "high_e_precision_crosscheck_relative_error_max": 1e-20
+    },
+    "non_claims": [
+      "No global novelty claim.",
+      "No proof of full relativistic action closure.",
+      "No PPN, FLRW, or perturbative-stability certification.",
+      "No exact y=0 endpoint test.",
+      "No test of nonspherical sources or the external-field effect.",
+      "The virial identity is for one regular test-particle orbit in a fixed exterior potential, not a self-gravitating galaxy theorem.",
+      "The pure-log e->1 endpoint is not a fixed-scale limit of the full exponential branch: it requires xi=R/r_M->infinity with xi*(1-e)->infinity and an exterior pericenter."
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-09-04T01:26:27Z",
+    "exit_status": 0
+  },
+  "outputs": [
+    {
+      "path": "hpi_delta_eccentric_kepler_2026.out",
+      "sha256": "4b066b26b119d5807b37e10da64d2a1d6adce1fe0b12f433a9564f5183dcf21a"
+    }
+  ],
+  "checks": [
+    "Symbolic flux scaling, constitutive monotonicity, potential chain rule, turning-point solution, Newtonian circular law, deep epicycle law, and virial residuals vanish.",
+    "The numerical exponential-force inversion is monotone and satisfies the flux across a nine-decade radius grid.",
+    "Finite-eccentricity deep quadratures differ from the near-circular mutation.",
+    "Three deep-log RK45 event integrations reproduce independent period and apsidal quadratures.",
+    "Three full exponential RK45 event integrations reproduce quadratures built from a DOP853 potential interpolation.",
+    "The high-acceleration limit recovers Newtonian Kepler behavior.",
+    "The low-acceleration full-force calculation approaches the universal deep similarity law.",
+    "A fixed-eccentricity scale comparison rejects a one-parameter full-transition law.",
+    "Near-circular and near-radial multiprecision branches remain finite, warning-free, and cross-checked.",
+    "Same-input arbitrary-precision and dense-potential evaluations agree at the numerical cutover.",
+    "The formal e->1 log-potential period and angle follow from explicit asymptotic scalings and closed integrals.",
+    "The naive circular-law substitution is analytically rejected at both formal eccentricity endpoints."
+  ],
+  "result": "The bounded finite-eccentricity prediction is analytically derived and numerically verified under the stated spherical exterior test-particle assumptions.",
+  "residual_risks": [
+    "The parent relativistic action remains open and is not re-certified by this artifact.",
+    "The numerical checks use a finite set of orbits.",
+    "The deep closed law requires the entire orbit to remain in the y<<1 regime and outside the baryonic source.",
+    "Known logarithmic-potential mechanics prevents a global novelty claim without a broader literature review."
+  ]
+}

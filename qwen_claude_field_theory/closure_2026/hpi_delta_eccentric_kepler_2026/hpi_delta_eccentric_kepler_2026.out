@@ -1,0 +1,40 @@
+========================================================================================
+HPI-DELTA FINITE-ECCENTRICITY KEPLER LAW
+========================================================================================
+Deep-MOND eccentric test-particle laws:
+  <v^2>^2 = G*M*a0  (one exterior test particle; time average)
+  T_r = R/(G*M*a0)^(1/4) * F(e)
+  Theta_peri->peri = Theta(e),  Delta_varpi=Theta(e)-2*pi
+
+Computed universal deep functions:
+       e          F(e)      Theta(e)    precession[deg]   <v^2>/v_inf^2
+   0.100   4.446595614   4.439164764     -105.654594474   1.000000000000
+   0.300   4.477064259   4.408223081     -107.427422334   1.000000000000
+   0.600   4.591731415   4.283890053     -114.551180074   1.000000000000
+   0.900   4.847967732   3.928482111     -134.914555152   1.000000000000
+
+Limiting values:
+  e->0: F=Theta=sqrt(2)*pi; Delta_varpi=-105.4415588 deg
+  formal log e->1: F=2*sqrt(2*pi), Theta->pi
+    full branch requires xi*(1-e)>>1 and an exterior pericenter
+
+Falsified shortcut:
+  Reusing the circular law with (R,T_r) misses the exact deep law by a factor 4 as e->0 and pi**2/4 in the formal log e->1 limit.
+
+Checks:
+  [PASS] symbolic_flux_to_orbit_chain
+  [PASS] numerical_exponential_force_solver
+  [PASS] deep_test_particle_virial_invariant
+  [PASS] deep_quadrature_matches_nonlinear_events
+  [PASS] finite_eccentricity_changes_apsidal_angle
+  [PASS] turning_point_algebra_consistency
+  [PASS] transition_quadrature_matches_nonlinear_events
+  [PASS] newtonian_kepler_limit
+  [PASS] deep_similarity_limit
+  [PASS] full_transition_retains_scale_dependence
+  [PASS] radial_limit_closed_integrals
+  [PASS] naive_one_point_kepler_substitution_falsified
+
+VERDICT: PASS_BOUNDED
+NON-CLAIMS: known central/log-potential machinery; no novelty, PPN, full-action closure, galaxy BTFR, EFE, or exact-y=0 proof.
+CERTIFICATE_JSON: {"checks_passed": 12, "checks_total": 12, "deep_angle_similarity_error": 3.9205753109561314e-05, "deep_period_similarity_error": 3.306855539997322e-05, "fixed_e_scale_separation": 0.8043820901615921, "max_deep_ode_error": 3.164402073707606e-11, "max_force_solver_residual": 1.5125530644286296e-11, "max_test_particle_virial_error": 1.1945999744966684e-13, "max_transition_ode_error": 4.2381653742040726e-11, "proves_novelty": false, "proves_relativistic_closure": false, "status": "PASS_BOUNDED"}
