@@ -1,8 +1,13 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 r"""
-f21_two_kernels_and_the_phantom_maximum.py -- the repository's two kernels are not the same function, and SPARC knows.
+f21_two_kernels_and_the_phantom_maximum.py -- distinct kernels and a fixed-footing binned diagnostic.
 =======================================================================================================================
+NOTE 2026-09-04 (see f23_kernel_transcription_audit.py): the 'field-theory kernel' named below is the CLOSURE PROGRAM's
+frozen kernel (FRIED_CHICKEN_SPEC item 12; mond_compiler_2026 'FROZEN NON-NEGOTIABLES'), mu_exp(x) = 1 - e^{-x} in the
+AQUAL variable.  THE_COMPLETION.md's own MOND sector is the parametric pair mu(u) = 1 - e^{-u}, u = sqrt(g_bar/a_0),
+which is nu_RAR EXACTLY.  The rejection below stands against mu_exp(x), i.e. against what the closure program ran,
+not against the field-theory document.  f23 adds mu_10 (rejected 13 sigma) and the RAR kernel's own quadrupole.
 Two kernels are in play.  The EMPIRICAL one, fitted to SPARC (McGaugh, Lelli & Schombert 2016) and used in every
 phenomenological script here:
         nu_RAR(y) = 1 / (1 - e^{-sqrt(y)}),     y = g_bar/a_0,     g_obs = nu_RAR(y) g_bar.
@@ -13,8 +18,10 @@ These agree as y -> 0 (both give g = sqrt(g_bar a_0)) and as y -> infinity (both
 relation in between: inverting mu_exp gives a nu_mu(y) that differs from nu_RAR(y) in the transition.  This file
 (1) quantifies the difference, (2) asks SPARC which one it follows, and (3) states the phantom-acceleration maximum
 -- the 'dark' acceleration g_obs - g_bar never exceeds a fixed multiple of a_0 -- for the kernel the data follow.
-An earlier version of this file predicted the phantom maximum with mu_exp and was rejected by the data at 4-6 sigma
-in the transition bins; that rejection is the result, kept here as check S2.  Both footings.  Mutation controls.
+S2 is a fixed-parameter, diagonal-bin diagnostic, not a calibrated model-rejection significance.
+Galaxy resampling is independent between bins; distance, inclination, M/L and a0 are not fitted.
+See closure_2026/two_kernel_orbit_shape_2026/kernel_comparison.py for a paired whole-galaxy
+audit with a0 profiled in both laws. Neither script solves the non-spherical AQUAL disk equation.
 """
 import sys, math
 import numpy as np
@@ -66,10 +73,10 @@ tr = (rows[:, 0] > -1.0) & (rows[:, 0] < 0.8)
 worst_exp = float(np.max(np.abs((rows[tr, 1] - pm[tr])/rows[tr, 2])))
 ck("S1 SPARC follows nu_RAR: with galaxy-level errors the binned relation matches the fitted kernel across four decades (it was fitted to these data, so this is calibration, not confirmation)",
    chi_r/dof < 3.0, f"chi^2/dof(nu_RAR) = {chi_r/dof:.2f}")
-ck("S2 (THE RESULT) SPARC REJECTS the field-theory kernel mu_exp = 1 - e^{-x} in the transition: the binned data sit several sigma above its prediction at g_bar between 0.1 and 6 a_0, and the total chi^2 difference is decisive.  The 'exact exponential AQUAL' law of gate 12 is not the relation the data follow; only its two limits are",
+ck("S2 fixed-footing binned diagnostic: mu_exp has a larger diagonal residual statistic; the worst standardized bin residual is not a global model-rejection significance",
    chi_m - chi_r > 25 and worst_exp > 3.0, f"chi^2(mu_exp) - chi^2(nu_RAR) = {chi_m - chi_r:.1f} on {dof} bins; worst transition-bin pull against mu_exp = {worst_exp:.1f} sigma")
 ra, pa, pma, cra, cma = RES["alt"]
-ck("S3 both footings agree: the rejection of mu_exp does not depend on which a_0 is used (the footing shifts the y-axis; the kernels' shapes are what differ)",
+ck("S3 the same diagonal-bin diagnostic favors nu_RAR at both fixed a0 footings; this does not profile a0 or correlated nuisance parameters",
    cma - cra > 25, f"alt footing: chi^2(mu_exp) - chi^2(nu_RAR) = {cma - cra:.1f}")
 
 P(""); P("="*116); P("3.  the phantom maximum, for the kernel the data follow"); P("="*116)
@@ -88,9 +95,9 @@ for i in range(21):
 med, se = np.array(med), np.array(se); ok = np.isfinite(med) & (se > 0)
 win = ok & (cen > math.log10(ypk) - 0.5) & (cen < math.log10(ypk) + 0.5)
 obs_pk = float(np.nanmax(med[win])); obs_pk_se = float(se[win][int(np.nanargmax(med[win]))])
-ck("P1 (THE NUMBER) the observed phantom acceleration near its predicted peak matches the nu_RAR maximum within the galaxy-level error: no SPARC galaxy's dark acceleration exceeds ~0.66 a_0",
+ck("P1 the largest bin median in the selected peak window is within 2.5 bootstrap errors of the nu_RAR maximum; this does NOT test a ceiling on individual galaxies or data points",
    abs(obs_pk - gpk*a0c) < 2.5*obs_pk_se, f"observed max in the window {obs_pk/1e-11:.2f} +/- {obs_pk_se/1e-11:.2f} x 1e-11 m/s^2; predicted {gpk*a0c/1e-11:.2f} at g_bar = {ypk:.2f} a_0")
-ck("P2 the observed phantom TURNS OVER: the well-populated bins above the peak sit below it, as any kernel with a Newtonian limit requires and as the 'simple' kernel (phantom -> a_0, never declining) forbids",
+ck("P2 selected high-acceleration bin medians are lower than the peak-window median; this is a descriptive turnover, not a significance test. Newtonian recovery alone does not require phantom acceleration to vanish",
    (lambda hi: hi.sum() >= 2 and float(np.nanmax(med[hi])) < 0.8*obs_pk)(ok & (cen > 0.75) & (cen <= 1.45)), f"bins at log y in (0.75, 1.45]: max {float(np.nanmax(med[ok & (cen > 0.75) & (cen <= 1.45)]))/1e-11:.2f} vs peak {obs_pk/1e-11:.2f} (x1e-11); N bins {int((ok & (cen > 0.75) & (cen <= 1.45)).sum())}")
 
 P(""); P("="*116); P("4.  mutation controls"); P("="*116)
@@ -108,13 +115,12 @@ ck("M2 mutation: the two kernels are numerically identical in both limits (deep 
 P(""); P("="*116); P("VERDICT"); P("="*116)
 P("  The repository has been running two kernels and calling them one.  The empirical nu_RAR = 1/(1-e^{-sqrt y}) and")
 P("  the field-theory 'exact exponential' mu_exp = 1-e^{-x} share both limits and differ by up to ~0.08 dex in the")
-P(f"  transition, and SPARC decides between them: chi^2(mu_exp) - chi^2(nu_RAR) = {chi_m-chi_r:.0f} on {dof} galaxy-level bins, with")
-P(f"  transition pulls of up to {worst_exp:.0f} sigma against mu_exp.  The data follow nu_RAR (which was fitted to them) and reject")
-P("  mu_exp.  Every completion gate that demanded 'exact mu_exp' -- CDE-L4C, HPI-Delta, the regular-center coefficients,")
-P("  the alpha_1 drag term -- was built to reproduce a transition the data do not have.  The obstruction results are")
-P("  about the SHAPE class (a deep-MOND limit, an exponential Newtonian tail), which both kernels share, so they are")
-P("  not undone; but gate 1 as written ('mu = 1 - e^{-y} exactly') is the wrong target, and the right one is nu_RAR's")
-P("  mu, which has no closed form.  The phantom-acceleration maximum for the kernel the data follow is")
-P(f"  {gpk:.3f} a_0 at g_bar = {ypk:.2f} a_0 ({gpk*a0c:.2e} m/s^2 canonical), observed {obs_pk/1e-11:.2f} +/- {obs_pk_se/1e-11:.2f} x 1e-11: a universal")
-P("  ceiling on the dark acceleration in galaxies, set by the cosmological constant.")
+P(f"  transition. At fixed inputs, the diagonal-bin statistic differs by {chi_m-chi_r:.0f} on {dof} bins, with")
+P(f"  a largest standardized transition residual of {worst_exp:.1f} for mu_exp. These are conditional diagnostics,")
+P("  not a calibrated rejection: cross-bin covariance, a0 fitting and galaxy nuisance parameters are absent.")
+P("  The two_kernel_orbit_shape_2026 audit profiles a0 and resamples complete galaxies in paired draws.")
+P("  A kernel substitution is a new action target; neither relativistic closure nor a PPN coefficient transfers automatically.")
+P(f"  For nu_RAR's algebraic curve, the theoretical maximum g_ph is {gpk:.3f} a0 at g_bar={ypk:.2f} a0.")
+P(f"  The selected observed peak-window median is {obs_pk/1e-11:.2f} +/- {obs_pk_se/1e-11:.2f} x 1e-11 m/s^2.")
+P("  This median does not certify a bound on individual catalog estimates. The a0-Lambda relation remains an input.")
 sys.exit(ck.done())
