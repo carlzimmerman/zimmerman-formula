@@ -1,0 +1,195 @@
+{
+  "schema_version": 1,
+  "claim_id": "exact-exponential-mond-kepler-spectrometer-finite-e-null-2026-09-04",
+  "repository": {
+    "source_base_commit": "86f2c6a96e553ecacd321e903ded4df58612e58c",
+    "dirty": true,
+    "note": "This is the parent commit from which the isolated bundle was developed, not the bundle commit. The containing git commit pins this manifest without a self-reference; the internal verifier recomputes every declared source/output hash and can require all paths to be tracked."
+  },
+  "command": "PYTHONDONTWRITEBYTECODE=1 python3 -m unittest discover -s qwen_claude_field_theory/closure_2026/exponential_mond_kepler_spectrometer_2026 -p 'test_*.py' -v\nPYTHONDONTWRITEBYTECODE=1 python3 qwen_claude_field_theory/closure_2026/exponential_mond_kepler_spectrometer_2026/exponential_mond_kepler_spectrometer_2026.py\nPYTHONDONTWRITEBYTECODE=1 python3 qwen_claude_field_theory/closure_2026/exponential_mond_kepler_spectrometer_2026/adm_weak_static_reduction_audit.py\nPYTHONDONTWRITEBYTECODE=1 python3 qwen_claude_field_theory/closure_2026/exponential_mond_kepler_spectrometer_2026/finite_eccentricity_null_2026.py\nPYTHONDONTWRITEBYTECODE=1 python3 qwen_claude_field_theory/closure_2026/exponential_mond_kepler_spectrometer_2026/exact_finite_e_kepler_null_2026.py\nPYTHONDONTWRITEBYTECODE=1 python3 qwen_claude_field_theory/closure_2026/exponential_mond_kepler_spectrometer_2026/independent_metric_audit.py\nPYTHONDONTWRITEBYTECODE=1 python3 qwen_claude_field_theory/closure_2026/exponential_mond_kepler_spectrometer_2026/independent_orbit_audit.py\nPYTHONDONTWRITEBYTECODE=1 python3 qwen_claude_field_theory/closure_2026/exponential_mond_kepler_spectrometer_2026/independent_finite_e_orbit_audit.py\nPYTHONDONTWRITEBYTECODE=1 python3 qwen_claude_field_theory/closure_2026/exponential_mond_kepler_spectrometer_2026/verify_computation_manifest.py qwen_claude_field_theory/closure_2026/exponential_mond_kepler_spectrometer_2026/computation_manifest.json --require-tracked",
+  "environment": {
+    "software": [
+      "Python 3.9.6",
+      "NumPy 1.26.2",
+      "SciPy 1.11.4",
+      "SymPy 1.14.0",
+      "mpmath 1.3.0"
+    ],
+    "hardware": "Apple arm64; macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "On the stated static spherical positive-field branch of the displayed HPI-Delta ADM action, the explicit weak expansion and independent variations give exact exponential AQUAL and no slip; the resulting isolated point-mass exterior admits the branch-correct W_-1 two-clock inverse, paired (a0,M) estimators, clock/curvature identities, a pointwise O(e^4) cross-radius null, and an exact all-orders branch-aware eccentric null on a bounded numerical window.",
+    "coefficient_domain": "Exact SymPy expressions over positive real symbols where possible; adaptive mpmath arithmetic for the Lambert endpoint inversion; deterministic IEEE-754 binary64 SciPy DOP853 integrations and bracketed scalar roots for bounded nonlinear-orbit audits; exact eccentric quadrature evaluated only on y_peri in [1e-6,25], e in [0.01,0.7], with inverse scans on y_peri in [1e-5,20] and an empirical 1e-8 q endpoint-resolution guard.",
+    "conventions": "epsilon=c^-2; N=exp(epsilon Phi); h_ij=exp(-2 epsilon Psi) delta_ij; g=Phi'>0; the local fixed-a0 scaling is Lambda=epsilon^2 Lambda_2; rho is rest-mass density; q=kappa^2/Omega^2 in the circular limit; q_e=(Omega_r/Omega_phi)^2=(2pi/Theta)^2 at finite eccentricity; r0 is the fixed-angular-momentum circular guiding radius; e=(r_a-r_p)/(r_a+r_p); R=(r_a+r_p)/2.",
+    "inputs": [
+      "F_exp(y)=2[(1+y)exp(-y)-1]",
+      "mu(y)=1-exp(-y)",
+      "ell_0=c^2/a0",
+      "isolated spherical exterior with constant enclosed baryonic mass",
+      "finite-e symbolic samples y in {0.1,1,3,7}",
+      "independent finite-e orbit grid y in {0.1,1,3,7}, initial apoapsis offsets in {0.003,0.01,0.03}",
+      "independent exact logarithmic-potential limiting orbit at e=0.03",
+      "exact eccentric forward samples and branch scans with y_peri in [1e-6,25] and e in [0.01,0.7]",
+      "independent infinitesimal orbit samples y in {0.1,0.25,1,3,7}"
+    ],
+    "bounds": {
+      "action_reduction": "Symmetry-reduced static zero-shift branch; fixed-boundary finite-radius integrations by parts; fixed-a0 Lambda=epsilon^2 Lambda_2 scaling; not an unrestricted full-action Dirac proof.",
+      "circular_inverse": "Positive-field point-mass exterior y>0 and 1<q<2; inputs must retain enough precision not to round q to an endpoint.",
+      "finite_e": "Smooth analytic stable central potential and fixed angular momentum. The O(e^4) remainder is pointwise for finite y>0, and uniform only on compact y intervals away from inverse endpoints. The implementation guard is 0<=e<=0.03, matching the tested amplitude range; it is not a universal remainder theorem. Endpoint intervals require a caller-supplied absolute q-model error bound.",
+      "exact_finite_e": "The displayed all-orders quadrature holds for y_peri>0 and 0<e<1. The double-precision forward implementation is audited only for y_peri in [1e-6,25], e in [0.01,0.7], and the inverse for y_peri in [1e-5,20]. The inverse enumerates sign-changing roots on a 32-cell log grid but does not certify absence of even-multiplicity or subgrid roots; nonzero residuals within 1e-8 in q of a finite search endpoint are explicitly unresolved. The guard exceeds four times the worst discrepancy in a 64-point comparison to the independent prior evaluator but is not a global error theorem.",
+      "orbit_solver": "GM=a0=1; implicit force root solved at every evaluation; DOP853 rtol=2e-12, atol=2e-14, maximum step one circular period/120 for finite-e audit.",
+      "conditioning": "Numerical minimum only over ln y in [-12,12], compared with a 4001-point grid."
+    },
+    "non_claims": [
+      "No viable completed relativistic MOND theory and no repair of the HPI-Delta regular-center obstruction",
+      "No full nonlinear Dirac closure, complete PPN parameters, cosmological perturbation stability, or unrestricted FLRW certificate",
+      "No disk, extended-mass, external-field, or nonspherical substitution for the exterior null",
+      "No global all-e inverse injectivity theorem, certified all-root inverse, or precision 1PN observable-radius/time map",
+      "No worldwide novelty theorem; only repository novelty plus a bounded primary-source search",
+      "No observational detection or fit"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": null,
+    "seed": null,
+    "note": "All symbolic and numerical audits are deterministic."
+  },
+  "run": {
+    "started_at": "2026-09-04T06:18:42Z",
+    "runtime_seconds": null,
+    "exit_status": 0
+  },
+  "sources": [
+    {
+      "path": "qwen_claude_field_theory/closure_2026/exponential_mond_kepler_spectrometer_2026/adm_weak_static_reduction_audit.py",
+      "sha256": "298bb8f79b5f413f0bc97e0de6f8327b04407c11bacb977def342bddbcd729d0"
+    },
+    {
+      "path": "qwen_claude_field_theory/closure_2026/exponential_mond_kepler_spectrometer_2026/exponential_mond_kepler_spectrometer_2026.py",
+      "sha256": "87df78543aa643f76b40f83b44e57f7b35dc703426d433032ad189c2dff82d1d"
+    },
+    {
+      "path": "qwen_claude_field_theory/closure_2026/exponential_mond_kepler_spectrometer_2026/finite_eccentricity_null_2026.py",
+      "sha256": "db15dcabe9ea1a1ed7f2a77cabffa8580218cba4e3b827fbca6f42d0babe19db"
+    },
+    {
+      "path": "qwen_claude_field_theory/closure_2026/exponential_mond_kepler_spectrometer_2026/exact_finite_e_kepler_null_2026.py",
+      "sha256": "54580e30bcfcb485bdd1d5fe53f930353dca8e6f61fdd13e64854d29a5e205b0"
+    },
+    {
+      "path": "qwen_claude_field_theory/closure_2026/hpi_delta_eccentric_kepler_2026/hpi_delta_eccentric_kepler_2026.py",
+      "sha256": "33aa489daf44e5a47e733ba5aa63ab6b53c235543fd2678734b481abe70b4770"
+    },
+    {
+      "path": "qwen_claude_field_theory/closure_2026/exponential_mond_kepler_spectrometer_2026/independent_finite_e_orbit_audit.py",
+      "sha256": "04e2bcf35d6f9e40e3c65f918f1aaae74f70839c2f70d9a4b5acb2043c5d914b"
+    },
+    {
+      "path": "qwen_claude_field_theory/closure_2026/exponential_mond_kepler_spectrometer_2026/independent_metric_audit.py",
+      "sha256": "b4f9f74226fc58047ad852bcc1ea20af7a4dfff924806cfa994b333ac811f759"
+    },
+    {
+      "path": "qwen_claude_field_theory/closure_2026/exponential_mond_kepler_spectrometer_2026/independent_orbit_audit.py",
+      "sha256": "1ef2818b31fab4bd3385cf83780cc4464d1a4d5440c5d27d7cfe5ee59ee873e5"
+    },
+    {
+      "path": "qwen_claude_field_theory/closure_2026/exponential_mond_kepler_spectrometer_2026/test_adm_weak_static_reduction_audit.py",
+      "sha256": "012e9bc68a2a098748b25397af2dcb585d29f71b75afe63dc6eaa3cbcc936537"
+    },
+    {
+      "path": "qwen_claude_field_theory/closure_2026/exponential_mond_kepler_spectrometer_2026/test_exact_finite_e_kepler_null_2026.py",
+      "sha256": "20cc58f7ba16d4ce0cc707a4a365e6d43128d9adc7233aac4c0acdc2f515abbf"
+    },
+    {
+      "path": "qwen_claude_field_theory/closure_2026/exponential_mond_kepler_spectrometer_2026/test_exponential_mond_kepler_spectrometer_2026.py",
+      "sha256": "80e50c9a360e47b95d210d1133024ecba7f6e0688f2378ec6e2fe27f503554be"
+    },
+    {
+      "path": "qwen_claude_field_theory/closure_2026/exponential_mond_kepler_spectrometer_2026/test_finite_eccentricity_null_2026.py",
+      "sha256": "271c82d50d81e54ed480110ee5ee84d96cd11fbadc5cc2a8b7b55c5534afe32e"
+    },
+    {
+      "path": "qwen_claude_field_theory/closure_2026/exponential_mond_kepler_spectrometer_2026/test_independent_finite_e_orbit_audit.py",
+      "sha256": "3c968b6b57de139027bdda8d81cfc2083472a26ed8a7fdab101eda6e75995792"
+    },
+    {
+      "path": "qwen_claude_field_theory/closure_2026/exponential_mond_kepler_spectrometer_2026/verify_computation_manifest.py",
+      "sha256": "0d544954f5d555e9f89f710cfc976f61d66e84660ba1c968136dfef49feb6905"
+    },
+    {
+      "path": "qwen_claude_field_theory/closure_2026/exponential_mond_kepler_spectrometer_2026/test_verify_computation_manifest.py",
+      "sha256": "211f16a634e9364c10fe570dc3cfeb4969d1ac94ea524079c75220d4eb26e27a"
+    },
+    {
+      "path": "qwen_claude_field_theory/closure_2026/exponential_mond_kepler_spectrometer_2026/REPORT.md",
+      "sha256": "5f8d18bb2dcfa77bb540c29f1e87e0d6360590f3e7e2d1e02060accb356c6ba0"
+    },
+    {
+      "path": "qwen_claude_field_theory/closure_2026/exponential_mond_kepler_spectrometer_2026/LITERATURE_SCOPE.md",
+      "sha256": "9e48ddd6412df5b71944a7f8fc4cf9d336952ec6d0e9fc2bcd1e5914e9335d34"
+    }
+  ],
+  "outputs": [
+    {
+      "path": "qwen_claude_field_theory/closure_2026/exponential_mond_kepler_spectrometer_2026/adm_reduction_results.json",
+      "sha256": "41da76b035c44dc4a1f1a7b22295f6c1ebe8c31bfc680d69b4eafdcab3e2233d"
+    },
+    {
+      "path": "qwen_claude_field_theory/closure_2026/exponential_mond_kepler_spectrometer_2026/calculation_results.json",
+      "sha256": "c976ea6d6729ea37507ad83a8491610e1f91498a665c1b035d46cafc9ee080e6"
+    },
+    {
+      "path": "qwen_claude_field_theory/closure_2026/exponential_mond_kepler_spectrometer_2026/exact_finite_e_results.json",
+      "sha256": "4e8cdf8d5de12511d3b90ccd4f56cb34b5dae37ab5a4ddd38f968b5c541a0ffe"
+    },
+    {
+      "path": "qwen_claude_field_theory/closure_2026/exponential_mond_kepler_spectrometer_2026/finite_eccentricity_results.json",
+      "sha256": "f2112363298f56daff12039e0ac14adc58a76069d697f042bd5c1938b8ea2f04"
+    },
+    {
+      "path": "qwen_claude_field_theory/closure_2026/exponential_mond_kepler_spectrometer_2026/independent_finite_e_results.json",
+      "sha256": "69cf193fb7570caaa1828b15e2d9d4a23e360a9e65f848d052f69aca3849972d"
+    },
+    {
+      "path": "qwen_claude_field_theory/closure_2026/exponential_mond_kepler_spectrometer_2026/independent_metric_results.json",
+      "sha256": "4dc67d973ec0c98a343139f6d40b29495199cad5a18b7d0de8690b149ab639a5"
+    },
+    {
+      "path": "qwen_claude_field_theory/closure_2026/exponential_mond_kepler_spectrometer_2026/independent_orbit_results.json",
+      "sha256": "be606d4ebebbd39ff08b971c96e638a34adb6b07ac4e58d548511cab8f2b4233"
+    }
+  ],
+  "checks": [
+    "Strict test-first RED: the circular, ADM-reduction, finite-e, and independent finite-e modules each failed before their implementations/artifacts existed",
+    "73 unit/regression tests across six suites",
+    "Direct three-dimensional Christoffel/Ricci contraction and two wrong-metric/action coefficient mutations",
+    "Explicit epsilon/c/ell_0/Planck/Lambda scaling with three scaling mutations",
+    "Independent variation of Phi and Psi before no slip",
+    "Adaptive W_-1 endpoint round trips through y=1e-100 and y=200",
+    "Exact spherical-coordinate weak curvature contraction",
+    "Five independent infinitesimal nonlinear orbit integrations",
+    "Generated Poincare-Lindstedt secular cancellation and mean-azimuth clock correction",
+    "Kepler and isotropic-oscillator zero-correction controls; deep-logarithmic 1/6 control",
+    "Twelve production-independent finite-e nonlinear orbit integrations over a three-amplitude ladder plus an exact logarithmic-limit orbit",
+    "Signed-amplitude secular equations generate zero linear/cubic frequency terms and a live cubic-frequency mutation fails",
+    "Finite-e point inversion handles an interior q_e>2 sliver; a truncation-aware interval accepts valid physical data above the O(e^2) endpoint without calling it excluded",
+    "Exact all-orders forward quadrature on a declared finite numerical window, including deep/Newton limits, three independent radius-space quadrature cross-checks, and loud rejection below the audited zero-field floor",
+    "A 64-point independent comparison at both inverse endpoints calibrates the 1e-8 q endpoint guard at more than four times the observed 2.294e-9 maximum disagreement",
+    "Branch-aware exact inverse scans every log-grid sign change, accepts exact endpoint and interior-node roots, refuses synthetic two-root and endpoint-ambiguous scalar inverses, returns detected invariant sets with per-orbit warnings, reports possible tangential/subgrid omissions, and classifies q values inside a conservative endpoint guard as numerically unresolved rather than inventing roots",
+    "Cached exact forward records are returned by copy, with a mutation-poisoning regression test",
+    "Common-distance cancellation and corrected cross-radius null",
+    "Bounded primary-source and full-repository overlap search",
+    "Strict JSON serialization plus internal byte-level SHA-256/path/tracked-file manifest verification"
+  ],
+  "result": "PASS_BOUNDED_WEAK_STATIC_KEPLER_SPECTROMETER_AND_BRANCH_AWARE_EXACT_FINITE_E_NULL: the same derived branch yields the exact W_-1 circular inverse, two-constant estimator, curvature clocks, a pointwise O(e^4) small-e null, and an exact all-orders detected-set eccentric null on the stated numerical window. This is not relativistic fried-chicken closure.",
+  "residual_risks": [
+    "The parent HPI-Delta action is independently dead at a smooth force-free center and lacks full acceptable PPN/cosmology closure.",
+    "The finite-e formula is asymptotic; the executable e<=0.03 guard matches the audited amplitudes but is not a rigorous uniform remainder theorem.",
+    "The exact eccentric inverse enumerates sign-changing branches only on a finite 32-cell log-y scan; global injectivity and absence of tangential/subgrid roots remain unproved.",
+    "The exact quadrature formula controls 0<e<1 and y>0 analytically, but the current double-precision executable deliberately rejects y_peri<1e-6, y_peri>25, e<0.01, and e>0.7.",
+    "The observables still need a 1PN map from chart radius/time to measured radii and periods for precision use.",
+    "External fields, extended source mass slopes, nonsphericity, tides, and multiple bodies can spoil the null.",
+    "A bounded literature search can miss equivalent formulas written in different notation."
+  ]
+}
