@@ -1,0 +1,80 @@
+{
+  "schema_version": 1,
+  "claim_id": "hpi-delta-covariant-lift-gate-2026-09-03",
+  "repository": {
+    "commit": "a0fd788289bc04e49da49e5cd9ada39928dcac6d",
+    "dirty": true
+  },
+  "command": "python3 hpi_delta_covariant_lift_2026.py && python3 -m unittest -v test_hpi_delta_covariant_lift_2026.py",
+  "environment": {
+    "software": [
+      "Python 3.9.6",
+      "SymPy 1.14.0",
+      "mpmath 1.3.0"
+    ],
+    "hardware": "macOS 26.5.2 arm64"
+  },
+  "mathematics": {
+    "assertion_tested": "The displayed HPI-Delta configuration action exactly Legendre-reconstructs the committed first-order Hamiltonian; its bounded finite-k scalar chain, homogeneous restart, weak-static equations, Ward identity, and TT block pass, but exact exponential MOND fails the classical regular-center curvature gate.",
+    "coefficient_domain": "Symbolic real fields with M_Pl^2>0, N>0, a>0, k nonzero and lambda_parallel>0 in the finite-k branch; k=0 is restarted separately.",
+    "conventions": "ADM K_ij convention is inherited from the committed HPI-Delta gate; T=t is unitary clock gauge, b=D^2(lambda)/N, and ordinary matter is minimally coupled to one physical metric.",
+    "inputs": [
+      "the explicit ADM and clock-covariant action printed by the executable",
+      "the committed cde_hpi_delta_2026 finite-k Hamiltonian gate",
+      "the exact_mond_regular_center_no_go_2026 local theorem",
+      "minimal diffeomorphism-invariant matter action S_m[g,psi]"
+    ],
+    "bounds": {
+      "finite_k": "quadratic scalar block with k!=0 and positive-gradient constitutive branch",
+      "k_zero": "flat homogeneous minisuperspace restart",
+      "tensor": "quadratic TT block on homogeneous FLRW",
+      "weak_static": "leading one-dimensional static-dust variation"
+    },
+    "non_claims": [
+      "No full nonlinear functional Dirac theorem for the covariant clock action.",
+      "No boosted 1PN solution or PPN coefficients.",
+      "No inhomogeneous FLRW scalar/vector stability certificate.",
+      "No derivation of the a0-Lambda coefficient.",
+      "No completed relativistic MOND theory."
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-09-04T02:26:04Z",
+    "runtime_seconds": 18.10,
+    "exit_status": 0
+  },
+  "outputs": [
+    {
+      "path": "REPORT.md",
+      "sha256": "d87e8ceb3883f5716fcd02fda26cb6d2b4faec5f86da20e3ab1ca3cbf4ef5d6d"
+    },
+    {
+      "path": "hpi_delta_covariant_lift_2026.py",
+      "sha256": "d390fb5a0c07f0b1b680e1d605a86de9e77a1a00f0e3e27c9325b3f08116cf09"
+    },
+    {
+      "path": "test_hpi_delta_covariant_lift_2026.py",
+      "sha256": "f44a4cc9b07f800655d1a7a9ab867e08fee67f4c083560cbfd49262841994ccd"
+    }
+  ],
+  "checks": [
+    "16/16 executable certificate predicates passed",
+    "14/14 adversarial unit tests passed",
+    "the Legendre inversion residual and auxiliary Euler residual are zero",
+    "the finite-k constraint Jacobian rank is 8 and Poisson rank is 6 from symbolic matrices",
+    "the separate k=0 constraint Jacobian rank is 3 and Poisson rank is 0",
+    "deleting or changing the b^2 term fires the negative controls"
+  ],
+  "result": "Bounded construction gates pass; candidate classification DEAD_AS_AN_EXACT_CLASSICAL_REGULAR_CENTER_THEORY.",
+  "residual_risks": [
+    "The clock-covariant expression may have nonlinear constraint structure not visible in unitary gauge.",
+    "Finite-k quadratic degree counting does not establish full nonlinear degree counting.",
+    "The homogeneous TT calculation does not cover every background or perturbation sector.",
+    "The regular-center obstruction can be evaded only by leaving at least one stated exact-law/classical-regularity assumption."
+  ]
+}

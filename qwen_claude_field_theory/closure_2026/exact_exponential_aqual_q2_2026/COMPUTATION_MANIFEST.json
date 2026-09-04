@@ -1,0 +1,92 @@
+{
+  "schema_version": 1,
+  "claim_id": "exact-exponential-aqual-q2-frozen-2026",
+  "repository": {
+    "commit": "a0fd788289bc04e49da49e5cd9ada39928dcac6d",
+    "dirty": true
+  },
+  "command": "python3 exact_exponential_aqual_q2_2026.py && python3 -m unittest -v test_exact_exponential_aqual_q2_2026.py",
+  "environment": {
+    "software": [
+      "Python 3.9.6",
+      "NumPy 1.26.2",
+      "SciPy 1.11.4"
+    ],
+    "hardware": "Darwin 25.5.0 arm64"
+  },
+  "mathematics": {
+    "assertion_tested": "At a0=9.3619e-11 m s^-2 and g_ext=(2.32+/-0.16)e-10 m s^-2, the direct nonlinear AQUAL solution for mu(x)=1-exp(-x) has a central Solar-System |Q2| whose conservative numerical lower endpoint exceeds the stated Park et al. positive two-sigma ceiling 5.2e-27 s^-2.",
+    "coefficient_domain": "IEEE-754 float64 finite-volume solve; scalar roots and quadratures via SciPy double precision",
+    "conventions": "GM=a0=1; eta=g_ext/a0; u=phi+eta*z; u+1/r=c2*r^2*P2+...; |qzz|=2|c2|; q2_BN=3|c2|; |Q2|=(3/2)|qzz| a0^(3/2)/sqrt(GM)",
+    "inputs": [
+      "a0=9.3619e-11 m s^-2",
+      "g_ext=(2.32+/-0.16)e-10 m s^-2",
+      "G=6.67430e-11 SI",
+      "M_sun=1.98892e30 kg",
+      "Park central=1.6e-27 s^-2 and sigma=1.8e-27 s^-2",
+      "Blanchet-Novak benchmark eta=1.9/1.2 and q2=0.26"
+    ],
+    "bounds": {
+      "r_over_rM": [1e-6, 10000.0],
+      "quadrupole_fit_window_r_over_rM": [0.001, 0.01],
+      "main_meshes_ns_nt": [[192, 48], [288, 72], [384, 96]],
+      "external_field_sensitivity_sigma": [-1.0, 1.0],
+      "nonlinear_iteration_cap": 600
+    },
+    "non_claims": [
+      "not a relativistic completion",
+      "not a universal no-go for MOND",
+      "not a global novelty claim",
+      "numerical uncertainty does not include all astrophysical parameter systematics"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-09-04T02:57:31Z",
+    "runtime_seconds": 51.90,
+    "exit_status": 0
+  },
+  "outputs": [
+    {
+      "path": "exact_exponential_aqual_q2_2026.json",
+      "sha256": "41e0888e024757c51d5730a4f41c0618d5f2ccbc63378d2b81cec72cefe8e15a"
+    },
+    {
+      "path": "exact_exponential_aqual_q2_2026.py",
+      "sha256": "1f009a43cee0e981cd255362c55e181ec061a4efc071db6e9e0633f4ba9e456b"
+    },
+    {
+      "path": "test_exact_exponential_aqual_q2_2026.py",
+      "sha256": "3a411eddd5ca4f0a8a182c6300c2fb78764e1596e9e297148856200a67c5b8fb"
+    },
+    {
+      "path": "REPORT.md",
+      "sha256": "3e74ed8223877fdd24a198b7ec1e2251e23a2bda0518a705a3b2158292fe578c"
+    },
+    {
+      "path": "../../theory_2026/aqual_solver_2026.py",
+      "sha256": "9813b60976f46bf8e33c7d87c9812aa15a855710c6a6f9cd0dcaa800f7456c26"
+    }
+  ],
+  "checks": [
+    "eight regression/mutation tests pass",
+    "zero-external-field spherical solution max relative error 1.948e-3",
+    "published exact-AQUAL mu_exp anchor q2=0.26 reproduced as 0.259773",
+    "three main meshes converge monotonically",
+    "nonlinear discrete relative residual below 4.8e-7 on every main mesh",
+    "classification flips under a below-ceiling mutation",
+    "matched-log-spacing rmin sweep from 1e-5 to 1e-7 has fractional qzz span 3.918e-4"
+  ],
+  "result": "Computed frozen |Q2|=2.0930e-26 s^-2 with conservative numerical error 3.0e-28 s^-2. Across g_ext +/-1sigma, the minimum (Q2-numerical_error) is 1.9856e-26 s^-2, 3.818 times the 5.2e-27 ceiling; derived classification is excluded at tested parameters.",
+  "residual_risks": [
+    "point source represented by a finite inner Newtonian boundary",
+    "external-field asymptotic boundary imposed at finite rmax",
+    "h^2 continuum model inferred from three meshes",
+    "a0 and Galactic-field model uncertainty not jointly marginalized",
+    "weak-field AQUAL result alone says nothing about action-level relativistic health"
+  ]
+}

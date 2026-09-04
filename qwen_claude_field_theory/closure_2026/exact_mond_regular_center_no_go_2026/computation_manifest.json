@@ -1,0 +1,78 @@
+{
+  "schema_version": 1,
+  "claim_id": "exact-exponential-mond-regular-center-2026-09-03",
+  "repository": {
+    "commit": "a0fd788289bc04e49da49e5cd9ada39928dcac6d",
+    "dirty": true
+  },
+  "command": "python3 exact_mond_regular_center_no_go_2026.py && python3 -m unittest -v test_exact_mond_regular_center_no_go_2026.py",
+  "environment": {
+    "software": [
+      "Python 3.9.6",
+      "SymPy 1.14.0",
+      "mpmath 1.3.0"
+    ],
+    "hardware": "macOS 26.5.2 arm64"
+  },
+  "mathematics": {
+    "assertion_tested": "For exact exponential AQUAL, a C2 force-free point requires rho=0; a smooth positive-density spherical core instead has a finite-action C1,1/2 branch with divergent Hessian and no-slip Ricci scalar, together with the displayed central circular-orbit law.",
+    "coefficient_domain": "Exact rational and symbolic real arithmetic with a0>0, G>0, rho0>0, r>0; 80-decimal mpmath only for an independent root check.",
+    "conventions": "g=Phi'(r)>0, C=4*pi*G*rho0/3, t=sqrt(C*r/a0), u=g/a0, v_c^2=r*g, T=2*pi*r/v_c.",
+    "inputs": [
+      "mu(y)=1-exp(-y)",
+      "div[mu(|grad Phi|/a0) grad Phi]=4*pi*G*rho",
+      "rho(r)=rho0+O(r^2)",
+      "no-slip weak metric Phi=Psi for the Ricci-scalar consequence"
+    ],
+    "bounds": {
+      "analytic": "local r->0 asymptotic theorem",
+      "numeric_t_samples": [0.1, 0.03, 0.01, 0.003],
+      "numeric_precision_decimal_digits": 80
+    },
+    "non_claims": [
+      "No global nonexistence theorem for all relativistic MOND actions.",
+      "No claim that finite-action weak or distributional solutions are absent.",
+      "No global literature-novelty claim for the leading T proportional to r^(1/4) law.",
+      "No observational fit is performed."
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-09-04T02:26:04Z",
+    "runtime_seconds": 13.73,
+    "exit_status": 0
+  },
+  "outputs": [
+    {
+      "path": "REPORT.md",
+      "sha256": "b08d61c6e843ff128fd65c97c3cd587976bfce437f63dd071d3d643dc4a5ee21"
+    },
+    {
+      "path": "exact_mond_regular_center_no_go_2026.py",
+      "sha256": "d4260e9ea097b6f01de1f5cff2959718dc47f6057dfe8be0a2f3d0e6c10041b1"
+    },
+    {
+      "path": "test_exact_mond_regular_center_no_go_2026.py",
+      "sha256": "72a5e1a09c05204b2edd7fe6cc09b81ffbcb9b708f67499ac084ba0361685093"
+    }
+  ],
+  "checks": [
+    "18/18 executable certificate predicates passed",
+    "15/15 adversarial unit tests passed",
+    "constitutive Jacobian and its rank-zero origin were symbolically derived",
+    "Puiseux coefficients were recursively solved with zero coefficient residuals",
+    "the fifth-order series converged against independent high-precision roots",
+    "a positive-mu(0) mutation removed the rank collapse while violating the exact target"
+  ],
+  "result": "PROVED_UNDER_STATED_ASSUMPTIONS; HPI-Delta is DEAD as an exact classical regular-center theory.",
+  "residual_risks": [
+    "A nonzero external field makes the geometric center non-force-free and breaks the isolated spherical expansion, but displaced positive-density critical points are not analyzed.",
+    "A non-C2 physical metric or distributional curvature lies outside the classical regularity gate.",
+    "Changing the law in an arbitrarily small neighborhood of y=0 evades exact-law inheritance.",
+    "The literature search was narrow and cannot certify global novelty."
+  ]
+}
