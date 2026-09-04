@@ -1,0 +1,44 @@
+========================================================================================
+HPI-DELTA EXPONENTIAL-MOND EXTERIOR ORBIT AUDIT
+========================================================================================
+Analytic exterior (M_b constant):
+  kappa^2/Omega^2 = (exp(y)-1+3*y)/(exp(y)-1+y)
+  Delta_varpi = 2*pi*(sqrt((exp(y)-1+y)/(exp(y)-1+3*y))-1)
+Extended spherical mass profile:
+  kappa^2/Omega^2 = ((1+m)*(exp(y)-1)+3*y)/(exp(y)-1+y), m=d ln(M_b(<r))/d ln(r)
+Convention: Delta_varpi is relative to 2*pi per radial period.
+
+Nonlinear pericenter-event measurements (G*M=a0=1, epsilon=1e-4):
+       y          r0      predicted       measured       rel.error   precession[deg]  cycles
+    0.01      100.25   1.4133286673   1.4133286685  8.336e-10   -105.282178150      11
+     0.1      10.251   1.4052747142   1.4052747153  8.355e-10   -103.822331627      10
+       1     1.25777   1.3174820235   1.3174820246  8.070e-10    -86.751490132      10
+       5    0.448728   1.0322844243   1.0322844265  2.087e-09    -11.258906195       7
+      10    0.316235   1.0004537109   1.0004537111  1.921e-10     -0.163261935       7
+
+Epsilon-to-zero convergence at y=1:
+  epsilon=1e-02  absolute relative error=8.205e-06
+  epsilon=1e-03  absolute relative error=8.080e-08
+  epsilon=1e-04  absolute relative error=8.071e-10
+
+Integrator comparison at y=1, epsilon=1e-3:
+  DOP853: kappa/Omega=1.317482129995
+  RK45: kappa/Omega=1.317482130081
+  fractional disagreement=6.513e-11
+
+Mutation control (drop constitutive slope, falsely set kappa/Omega=1):
+  correct relative error=8.355e-10
+  mutated relative error=4.053e-01
+  mutation survives: False
+
+Checks:
+  [PASS] symbolic_derivation_residuals_zero
+  [PASS] five_nonlinear_orbits_match_linear_law
+  [PASS] implicit_force_residual_small
+  [PASS] epsilon_to_zero_convergence
+  [PASS] independent_integrators_agree
+  [PASS] no_constitutive_slope_mutation_rejected
+
+VERDICT: PASS (BOUNDED NUMERICAL VALIDATION)
+NON-CLAIMS: no novelty proof, no full relativistic closure proof, no exact-y=0 test, and no finite-eccentricity theorem.
+CERTIFICATE_JSON: {"grid_points": 5, "max_grid_force_residual": 1.7763568394002505e-15, "max_grid_relative_error": 2.086879558049759e-09, "mutation_survives": false, "proves_full_relativistic_theory": false, "proves_novelty": false, "status": "PASS_BOUNDED"}

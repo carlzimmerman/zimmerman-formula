@@ -1,0 +1,73 @@
+{
+  "schema_version": 1,
+  "claim_id": "hpi-delta-exponential-mond-exterior-near-circular-apsidal-2026",
+  "repository": {
+    "commit": "462175f6899918ecf241c1ea56fec9848462bdfe",
+    "dirty": true
+  },
+  "command": "python3 hpi_delta_orbit_numeric_2026.py",
+  "environment": {
+    "software": [
+      "Python 3.9.6",
+      "NumPy 1.26.2",
+      "SciPy 1.11.4",
+      "SymPy 1.14.0"
+    ],
+    "hardware": "arm64"
+  },
+  "mathematics": {
+    "assertion_tested": "Conditional on mu(g/a0) g = GM/r^2 with mu(y)=1-exp(-y) and constant exterior M, nonlinear near-circular orbit events approach kappa^2/Omega^2=(exp(y)-1+3y)/(exp(y)-1+y).",
+    "coefficient_domain": "Symbolic real y>0 and double-precision floating point for numerical integrations.",
+    "conventions": "GM=a0=1; g>0 is inward acceleration magnitude; Delta_varpi is pericenter-to-pericenter azimuth minus 2*pi.",
+    "inputs": [
+      "y in {0.01, 0.1, 1, 5, 10}",
+      "epsilon=1e-4 for the five-point grid",
+      "epsilon in {1e-2, 1e-3, 1e-4} for convergence",
+      "DOP853 and RK45 at y=1, epsilon=1e-3"
+    ],
+    "bounds": {
+      "grid_points": 5,
+      "requested_radial_cycles": 7,
+      "DOP853_rtol": 2e-11,
+      "DOP853_atol": 2e-13,
+      "maximum_grid_relative_error": 2e-7
+    },
+    "non_claims": [
+      "No novelty claim.",
+      "No proof of full relativistic action closure.",
+      "No exact y=0 endpoint test.",
+      "No finite-eccentricity theorem.",
+      "No test of nonspherical sources or the external-field effect."
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-09-04T00:35:54Z",
+    "runtime_seconds": 2.9,
+    "exit_status": 0
+  },
+  "outputs": [
+    {
+      "path": "hpi_delta_orbit_numeric_2026.out",
+      "sha256": "28d30377ae188e873eee56e9eec5d8c19640fa2f0e12fcc6dadfe24968bb0ca9"
+    }
+  ],
+  "checks": [
+    "Symbolic derivation residuals are zero.",
+    "Five nonlinear pericenter-event measurements match the analytic limit.",
+    "Implicit force residuals are below tolerance.",
+    "Near-circular discrepancy decreases quadratically with epsilon.",
+    "DOP853 and RK45 event frequencies agree.",
+    "The no-constitutive-slope mutation is rejected."
+  ],
+  "result": "Implementation and finite assertion verified in the stated range; the displayed algebraic identity is symbolically verified under the stated spherical assumptions.",
+  "residual_risks": [
+    "The parent action and weak-static reduction are not revalidated here.",
+    "The numerical grid is finite and excludes y=0.",
+    "Only the constant-enclosed-mass exterior branch is integrated."
+  ]
+}
