@@ -100,7 +100,7 @@ Two other tested preferred-frame embeddings are killed by the *same* coupling: a
 
 ## 4. Clusters: no dark component can supply the residual
 
-Suppose the cluster residual is a dark component. Structure caps a hot (free-streaming) fraction of the dark sector at $f_h\le0.0375$, through the standard $\Delta P/P\simeq-8f_h$ suppression against a Lyman-$\alpha$ forest measured to 10–20 per cent. The framework's own galaxies require $f_h\ge0.30$–$0.80$, because whatever is not hot is cold, and a cold component clusters into galaxies exactly as cold dark matter does—and the framework's galactic success *is* the statement that there is nothing cold in galaxies. All nine pairings of the most generous bound on each side fail; the tightest gap is a factor of eight (`hunt_2026/f07_two_component_nogo.py`, 6/6; single-species and free-streaming versions in `f04`–`f06`). The result is structural, so a third component does not help. The escape that a MOND cosmology regrows erased power is closed for this framework by its own bulk-flow null ($\beta=0.447$ against $\Lambda$CDM's $0.440$), which measured its linear regime Newtonian.
+Suppose the cluster residual is a dark component. Structure caps a hot (free-streaming) fraction of the dark sector at $f_h\le0.0375$, through the standard $\Delta P/P\simeq-8f_h$ suppression against a Lyman-$\alpha$ forest measured to 10–20 per cent. The framework's own galaxies require $f_h\ge0.30$–$0.80$, because whatever is not hot is cold, and a cold component clusters into galaxies exactly as cold dark matter does—and the framework's galactic success *is* the statement that there is nothing cold in galaxies. All nine pairings of the most generous bound on each side fail; the tightest gap is a factor of eight (`hunt_2026/f07_two_component_nogo.py`, 6/6; single-species and free-streaming versions in `f04`–`f06`). The result is structural, so a third component does not help. The residual is confined to clusters: the 26 Local Volume groups of §6.1, one rung down in mass, sit on the kernel at $0.82$ $[0.66,1.11]$. The escape that a MOND cosmology regrows erased power is closed for this framework by its own bulk-flow null ($\beta=0.447$ against $\Lambda$CDM's $0.440$), which measured its linear regime Newtonian.
 
 ---
 
@@ -116,9 +116,11 @@ What remains is an unconstructed possibility: a genuinely retarded, $\omega$-dep
 
 ## 6. The fork the map leaves open: inertia or gravity
 
-### 6.1 The pattern
+### 6.1 The pattern, and its correction
 
-Read the liability table by how each system holds itself up: every system the framework fits is rotation-supported, every system it misses is pressure-supported, across eleven decades of mass and five of size. Milgrom proved that modified inertia and modified gravity agree exactly for circular orbits in the deep-MOND limit and differ for every other orbit. The split is therefore a theory fork, and this repository ran only the modified-gravity arm from 2026-08-08 until 2026-09-03.
+Read the liability table by how each system holds itself up and it appeared to sort: every system the framework fits rotation-supported, every system it misses pressure-supported. Milgrom proved that modified inertia and modified gravity agree exactly for circular orbits in the deep-MOND limit and differ for every other orbit, so such a split would be a theory fork, and this repository ran only the modified-gravity arm from 2026-08-08 until 2026-09-03.
+
+**The split is not clean.** The Local Volume groups—26 groups from the Updated Nearby Galaxy Catalog with hot-gas-inclusive baryons and the QUMOND external field from the baryonic Newtonian field—are pressure-supported and sit on the kernel: median boost ratio $0.82$ with a galaxy-bootstrap band $[0.66,1.11]$ containing unity (`hunt_2026/g06_local_volume_groups_lambda_edge.py`; the check that unity is distinguishable fails by design). Membership reaching the zero-velocity surface inflates the dispersions, so $0.82$ is an upper bound, pushing the groups further from the cluster rows, not closer. This is consistency with a zero-parameter prediction, not confirmation ($\Lambda$CDM fits these groups with haloes), and it rests on inverting the baryonic field for the external field—substituting a $\Lambda$CDM velocity-field reconstruction moves the answer into the cluster band. But it settles two things: the cluster residual of §4 is confined to clusters, and "pressure-supported" is not the variable. The rung between galaxies and clusters passes.
 
 ### 6.2 Pressure-supported systems
 
@@ -166,7 +168,7 @@ If $\Lambda$ is a constant, $\rho_\Lambda$ is constant and $a_0$ is **flat** in 
 - It does not claim the constraint (two-degree-of-freedom) branch is excluded by post-Newtonian data. The full boosted 1PN metric/matter solution has not been derived, so $\beta$, $\gamma$, $\alpha_1$, $\alpha_2$, $\alpha_3$, and $\xi$ remain open. The exponential-tail calculation is only a conditional scale estimate, not a substitute for that derivation.
 - It does not promote the Solar-System quadrupole calculation into a no-go for every MOND theory. It applies to a branch whose actual weak-field equation is unscreened exact exponential AQUAL with the stated external boundary and parameters.
 - It does not claim the broader nonlocal door is closed; the vanishing-projector calculation closes only its specified reduced mechanism on gates 7 and 9.
-- It does not claim modified inertia is confirmed. It claims the modified-gravity curl field has the wrong sign on SPARC's deep discs, and that pressure-supported systems break the kernel in both directions.
+- It does not claim modified inertia is confirmed. It claims the modified-gravity curl field has the wrong sign on SPARC's deep discs, that globular clusters require the external-field effect, and that the rotation-versus-pressure split which motivated the fork does not survive the Local Volume groups.
 - Every "fails" was verified as hard as every "works": the 2012 dwarf dispersions, the $+1.1$ curl amplitude, the $-0.98$ amplitude, and the $10\sigma$ virial offset of `f11` were each caught by a control and are recorded as such.
 
 ---
@@ -197,6 +199,7 @@ Run each cited artifact according to its own documented interface. Checks, mutat
 | wide-binary eccentricity shut | `hunt_2026/f10_eccentricity_falsifier.py` | 7 (2 fail by design) |
 | disc virial coefficient | `hunt_2026/f11`, `f12` | 12 (3 fail), 6/6 |
 | globular clusters | `hunt_2026/f13_globular_clusters_confound_free.py` | 5/5 |
+| Local Volume groups: consistent with the zero-parameter prediction | `hunt_2026/g06_local_volume_groups_lambda_edge.py` | 25 (5 fail by design) |
 | isolated dwarfs, exponent | `hunt_2026/f14`, `f15` | 10/10, 10 (4 fail by design) |
 | curl field on discs | `hunt_2026/f16`, `f17`, `f18` | 9 (1 fail), 14 (4 fail), 11 (4 fail) |
 | RC100 inversion | `hunt_2026/h16_h27_h97.py` | 5/5 |
