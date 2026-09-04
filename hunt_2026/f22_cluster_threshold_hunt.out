@@ -1,0 +1,419 @@
+======================================================================================================================
+f22 -- THE CLUSTER THRESHOLD HUNT: is the scale where the framework stops working a Lambda scale?
+======================================================================================================================
+
+0.  THE SCALES THE FRAMEWORK OWNS (every 'Lambda scale' below is built from these and nothing else)
+----------------------------------------------------------------------------------------------------------------------
+  rho_crit = 8.5331e-27 kg/m^3, Omega_Lambda = 0.6866, rho_Lambda = 5.8588e-27 kg/m^3, H_Lambda = 1.8099e-18 s^-1
+  a_0 = (c/2) sqrt(G rho_Lambda) = 9.3732e-11 m/s^2  (canonical footing carried as 9.360e-11, alt 1.130e-10)
+  Z = c H_Lambda / a_0 = 5.789   (sqrt(32 pi/3) = 5.789)
+  Lambda LENGTHS: c/H_Lambda = 5368 Mpc, c^2/a_0 = 31118 Mpc, 1/sqrt(Lambda) = 3099 Mpc
+  Lambda MASSES : de Sitter horizon mass 5.61e+22 Msun; r_M = r_S mass c^4/(4 G a_0) = 1.63e+23 Msun
+  the dimensionless POTENTIALS available without a mass: a_0/(c H_Lambda) = 1/Z = 0.173 and its powers
+  [PASS] 0a the framework's own a_0 is reproduced from rho_Lambda to the precision of the footing   (9.3732e-11 vs 9.360e-11)
+  [PASS] 0b the kernel used here is the ledger's kernel (hunt_lib.nu_s), so B values are in the ledger's currency   (nu(0.5) = 1.972654 both ways)
+
+======================================================================================================================
+1.  THE LIABILITY LEDGER ON THE POTENTIAL-DEPTH AXIS  Phi_d = g_obs r = v_c^2  (plus the 26 Local Volume groups)
+======================================================================================================================
+  [PASS] 1a the 26 Local Volume groups are read back from g06's committed output (canonical block) with its median boost   (26 groups, median boost 0.820 (g06: 0.817))
+
+  --- canonical footing, a_0 = 9.360e-11 ---
+    row                      class      v_c km/s Phi_obs/c^2 Phi_pred/c^2   log y   B dex
+    mw_ufd                   psupp           5.5    3.35e-10     6.55e-11   -3.10  +0.709
+    pal14                    psupp           1.1    1.27e-11     9.42e-11   -1.99  -0.871
+    pal3                     psupp           2.6    7.24e-11     1.02e-10   -1.67  -0.148
+    pal4                     psupp           1.3    1.95e-11     1.26e-10   -1.31  -0.811
+    m31_satellites           psupp           9.5    9.99e-10     5.85e-10   -2.46  +0.232
+    lg_field_gaspoor         psupp          10.3    1.18e-09     8.99e-10   -1.92  +0.118
+    ngc2419                  psupp           7.2    5.71e-10     9.07e-10   -0.06  -0.201
+    mw_classical_dsph        psupp          11.8    1.56e-09     1.15e-09   -2.15  +0.134
+    lg_field_all             psupp          11.9    1.58e-09     1.93e-09   -1.53  -0.088
+    coma_udgs                psupp          35.0    1.36e-08     5.48e-09   -2.13  +0.396
+    ngc1052_df4              psupp           6.3    4.42e-10     1.05e-08   -1.24  -1.375
+    ngc1052_df2              psupp          12.8    1.81e-09     1.07e-08   -1.47  -0.771
+    tidal_dwarfs             disc           24.9    6.88e-09     3.31e-08   -1.42  -0.682
+    LV NGC3412               group_lv      178.7    3.55e-07     8.34e-08   -3.66  +0.629
+    LV NGC3432               group_lv      211.0    4.95e-07     9.59e-08   -1.83  +0.713
+    LV NGC0925               group_lv       66.7    4.95e-08     1.35e-07   -3.21  -0.432
+    LV NGC4736               group_lv       90.6    9.13e-08     1.79e-07   -3.89  -0.292
+    LV NGC4631               group_lv      320.1    1.14e-06     1.90e-07   -2.97  +0.779
+    LV IC0342                group_lv      127.1    1.80e-07     2.17e-07   -3.43  -0.081
+    diskmass                 disc          171.8    3.28e-07     2.19e-07   -0.45  +0.177
+    atlas3d_chabrier         psupp         170.1    3.22e-07     2.59e-07    0.37  +0.094
+    LV MESSIER031            group_lv      205.4    4.70e-07     2.60e-07   -2.54  +0.255
+    LV NGC3368               group_lv      300.3    1.00e-06     2.68e-07   -3.23  +0.573
+    LV NGC2903               group_lv       79.7    7.06e-08     2.75e-07   -2.74  -0.585
+    LV NGC5236               group_lv      119.7    1.59e-07     2.81e-07   -3.08  -0.244
+    LV NGC6946               group_lv      119.9    1.60e-07     2.83e-07   -2.44  -0.252
+    LV MESSIER101            group_lv      137.0    2.09e-07     2.93e-07   -2.71  -0.149
+    LV NGC2784               group_lv      173.6    3.35e-07     3.02e-07   -2.43  +0.045
+    LV NGC3115               group_lv      183.8    3.76e-07     3.20e-07   -3.05  +0.068
+    LV NGC4258               group_lv      154.0    2.64e-07     3.28e-07   -2.38  -0.092
+    LV NGC5055               group_lv      134.1    2.00e-07     3.31e-07   -2.66  -0.222
+    LV NGC4945               group_lv      269.5    8.08e-07     3.33e-07   -2.75  +0.384
+    LV Milky Way             group_lv      168.7    3.17e-07     3.40e-07   -1.95  -0.032
+    LV NGC0253               group_lv       99.2    1.10e-07     3.45e-07   -3.27  -0.495
+    LV NGC6744               group_lv       98.4    1.08e-07     3.45e-07   -1.68  -0.509
+    LV NGC5128               group_lv      234.9    6.14e-07     3.46e-07   -2.89  +0.250
+    LV NGC3627               group_lv      138.9    2.15e-07     3.58e-07   -2.61  -0.222
+    LV MESSIER081            group_lv      217.5    5.27e-07     3.68e-07   -2.47  +0.155
+    LV NGC5194               group_lv       92.1    9.45e-08     3.79e-07   -2.91  -0.602
+    atlas3d_salpeter         psupp         169.8    3.21e-07     3.99e-07    0.60  -0.095
+    LV NGC3521               group_lv       92.1    9.45e-08     4.02e-07   -2.50  -0.638
+    LV NGC4594               group_lv      258.9    7.46e-07     4.75e-07   -2.47  +0.196
+    binary_pairs             disc          409.3    1.86e-06     5.22e-07   -1.92  +0.553
+    pne_earlytypes           psupp         234.0    6.09e-07     5.23e-07    0.16  +0.066
+    mw_kz                    disc          191.0    4.06e-07     5.29e-07    0.14  -0.115
+    sluggs_lowmass           psupp         233.9    6.09e-07     5.33e-07    0.21  +0.058
+    sluggs_massive           psupp         405.4    1.83e-06     8.53e-07   -0.14  +0.331
+    xray_ellipticals         cluster       363.5    1.47e-06     8.70e-07   -0.10  +0.228
+    erass1_groups            cluster       456.0    2.31e-06     8.80e-07   -2.38  +0.420
+    slacs_lenses             disc          385.9    1.66e-06     1.37e-06    1.00  +0.084
+    lovisari_r2500           cluster       569.3    3.61e-06     1.61e-06   -1.39  +0.350
+    xcop_cores               cluster       652.2    4.73e-06     1.63e-06   -0.28  +0.464
+    lovisari_r500            cluster       600.1    4.01e-06     2.76e-06   -1.64  +0.161
+    erass1_lowz              cluster       923.0    9.48e-06     4.94e-06   -1.51  +0.283
+    erass1_clusters          cluster       985.6    1.08e-05     5.07e-06   -1.44  +0.328
+    xcop_0.2r500             cluster      1128.4    1.42e-05     5.13e-06   -0.59  +0.441
+    clash_lensing            cluster      1262.1    1.77e-05     5.14e-06   -0.44  +0.538
+    erass1_hiz               cluster      1169.3    1.52e-05     5.94e-06   -1.23  +0.408
+    bullet_bcg3              cluster      1503.8    2.52e-05     7.99e-06   -0.42  +0.498
+    bullet_bcg1              cluster      1548.1    2.67e-05     8.41e-06   -0.38  +0.501
+    xcop_0.5r500             cluster      1379.6    2.12e-05     1.01e-05   -0.76  +0.320
+    xcop_0.9r500             cluster      1361.6    2.06e-05     1.39e-05   -0.95  +0.170
+    erass1_rich              cluster      1860.4    3.85e-05     1.77e-05   -0.95  +0.337
+  'lands' = |B| < 0.15 dex: 16 of 63 rows land; AUC(log Phi_d) = 0.376, permutation p = 0.144
+  restricted to v_c > 30 km/s (51 rows, 12 land): AUC = 0.357, p = 0.134
+  missing-mass side (B > -0.15, v_c > 30; 40 rows): Spearman(B, log Phi_obs) = +0.544 (p = 0.0004) -- partly BUILT IN (R1: g_obs is in both);  Spearman(B, log Phi_pred) = +0.131 (p = 0.4245) -- the clean axis
+
+  --- alt footing, a_0 = 1.130e-10 ---
+    row                      class      v_c km/s Phi_obs/c^2 Phi_pred/c^2   log y   B dex
+    mw_ufd                   psupp           5.5    3.35e-10     7.18e-11   -3.18  +0.669
+    pal14                    psupp           1.1    1.27e-11     1.03e-10   -2.07  -0.910
+    pal3                     psupp           2.6    7.24e-11     1.11e-10   -1.75  -0.186
+    pal4                     psupp           1.3    1.95e-11     1.37e-10   -1.39  -0.848
+    m31_satellites           psupp           9.5    9.99e-10     6.42e-10   -2.54  +0.192
+    ngc2419                  psupp           7.2    5.71e-10     9.61e-10   -0.15  -0.226
+    lg_field_gaspoor         psupp          10.3    1.18e-09     9.83e-10   -2.00  +0.079
+    mw_classical_dsph        psupp          11.8    1.56e-09     1.25e-09   -2.23  +0.095
+    lg_field_all             psupp          11.9    1.58e-09     2.10e-09   -1.61  -0.126
+    coma_udgs                psupp          35.0    1.36e-08     6.00e-09   -2.21  +0.357
+    ngc1052_df4              psupp           6.3    4.42e-10     1.14e-08   -1.32  -1.411
+    ngc1052_df2              psupp          12.8    1.81e-09     1.17e-08   -1.55  -0.808
+    tidal_dwarfs             disc           24.9    6.88e-09     3.61e-08   -1.50  -0.719
+    LV NGC3412               group_lv      178.7    3.55e-07     8.34e-08   -3.74  +0.589
+    LV NGC3432               group_lv      211.0    4.95e-07     9.59e-08   -1.91  +0.673
+    LV NGC0925               group_lv       66.7    4.95e-08     1.35e-07   -3.29  -0.472
+    LV NGC4736               group_lv       90.6    9.13e-08     1.79e-07   -3.97  -0.332
+    LV NGC4631               group_lv      320.1    1.14e-06     1.90e-07   -3.06  +0.739
+    LV IC0342                group_lv      127.1    1.80e-07     2.17e-07   -3.51  -0.121
+    diskmass                 disc          171.8    3.28e-07     2.34e-07   -0.53  +0.147
+    LV MESSIER031            group_lv      205.4    4.70e-07     2.60e-07   -2.62  +0.215
+    LV NGC3368               group_lv      300.3    1.00e-06     2.68e-07   -3.31  +0.533
+    atlas3d_chabrier         psupp         170.1    3.22e-07     2.70e-07    0.28  +0.076
+    LV NGC2903               group_lv       79.7    7.06e-08     2.75e-07   -2.82  -0.625
+    LV NGC5236               group_lv      119.7    1.59e-07     2.81e-07   -3.16  -0.284
+    LV NGC6946               group_lv      119.9    1.60e-07     2.83e-07   -2.52  -0.292
+    LV MESSIER101            group_lv      137.0    2.09e-07     2.93e-07   -2.79  -0.189
+    LV NGC2784               group_lv      173.6    3.35e-07     3.02e-07   -2.51  +0.005
+    LV NGC3115               group_lv      183.8    3.76e-07     3.20e-07   -3.13  +0.028
+    LV NGC4258               group_lv      154.0    2.64e-07     3.28e-07   -2.46  -0.132
+    LV NGC5055               group_lv      134.1    2.00e-07     3.31e-07   -2.74  -0.262
+    LV NGC4945               group_lv      269.5    8.08e-07     3.33e-07   -2.83  +0.344
+    LV Milky Way             group_lv      168.7    3.17e-07     3.40e-07   -2.03  -0.072
+    LV NGC0253               group_lv       99.2    1.10e-07     3.45e-07   -3.35  -0.535
+    LV NGC6744               group_lv       98.4    1.08e-07     3.45e-07   -1.76  -0.549
+    LV NGC5128               group_lv      234.9    6.14e-07     3.46e-07   -2.97  +0.210
+    LV NGC3627               group_lv      138.9    2.15e-07     3.58e-07   -2.70  -0.262
+    LV MESSIER081            group_lv      217.5    5.27e-07     3.68e-07   -2.55  +0.115
+    LV NGC5194               group_lv       92.1    9.45e-08     3.79e-07   -3.00  -0.642
+    LV NGC3521               group_lv       92.1    9.45e-08     4.02e-07   -2.59  -0.678
+    atlas3d_salpeter         psupp         169.8    3.21e-07     4.12e-07    0.51  -0.109
+    LV NGC4594               group_lv      258.9    7.46e-07     4.75e-07   -2.55  +0.156
+    pne_earlytypes           psupp         234.0    6.09e-07     5.50e-07    0.08  +0.044
+    mw_kz                    disc          191.0    4.06e-07     5.57e-07    0.06  -0.137
+    sluggs_lowmass           psupp         233.9    6.09e-07     5.59e-07    0.13  +0.037
+    binary_pairs             disc          409.3    1.86e-06     5.71e-07   -2.01  +0.514
+    sluggs_massive           psupp         405.4    1.83e-06     9.07e-07   -0.22  +0.305
+    xray_ellipticals         cluster       363.5    1.47e-06     9.23e-07   -0.18  +0.202
+    erass1_groups            cluster       456.0    2.31e-06     9.64e-07   -2.46  +0.380
+    slacs_lenses             disc          385.9    1.66e-06     1.39e-06    0.92  +0.078
+    xcop_cores               cluster       652.2    4.73e-06     1.74e-06   -0.37  +0.435
+    lovisari_r2500           cluster       569.3    3.61e-06     1.75e-06   -1.47  +0.313
+    lovisari_r500            cluster       600.1    4.01e-06     3.02e-06   -1.72  +0.123
+    erass1_lowz              cluster       923.0    9.48e-06     5.38e-06   -1.59  +0.246
+    clash_lensing            cluster      1262.1    1.77e-05     5.51e-06   -0.52  +0.508
+    xcop_0.2r500             cluster      1128.4    1.42e-05     5.52e-06   -0.67  +0.409
+    erass1_clusters          cluster       985.6    1.08e-05     5.53e-06   -1.53  +0.291
+    erass1_hiz               cluster      1169.3    1.52e-05     6.46e-06   -1.31  +0.372
+    bullet_bcg3              cluster      1503.8    2.52e-05     8.56e-06   -0.50  +0.468
+    bullet_bcg1              cluster      1548.1    2.67e-05     9.01e-06   -0.46  +0.471
+    xcop_0.5r500             cluster      1379.6    2.12e-05     1.09e-05   -0.84  +0.287
+    xcop_0.9r500             cluster      1361.6    2.06e-05     1.51e-05   -1.04  +0.136
+    erass1_rich              cluster      1860.4    3.85e-05     1.92e-05   -1.03  +0.302
+  'lands' = |B| < 0.15 dex: 18 of 63 rows land; AUC(log Phi_d) = 0.494, permutation p = 0.942
+  restricted to v_c > 30 km/s (51 rows, 15 land): AUC = 0.452, p = 0.586
+  missing-mass side (B > -0.15, v_c > 30; 39 rows): Spearman(B, log Phi_obs) = +0.518 (p = 0.0008) -- partly BUILT IN (R1: g_obs is in both);  Spearman(B, log Phi_pred) = +0.120 (p = 0.4633) -- the clean axis
+  [PASS] 1b (can fail) the potential-depth axis is NOT a sharp boundary on the full ledger either: this check asserts the ledger's landing/missing split is not separated by Phi_d at AUC >= 0.9.  If it FAILED, u13's negative would be overturned by the new axis and section 4 would have a threshold to confront   (AUC 0.376 (all rows), 0.357 (v_c > 30 km/s))
+  [FAIL] 1c (HYPOTHESIS CHECK -- a FAIL is a result) on the missing-mass side of the ledger the residual rises with the framework's PREDICTED potential, the axis with no g_obs in it.  If this fails, the ledger's apparent rise with potential depth was built in through g_obs (R1) and there is no potential-depth ordering to hunt a threshold in   (Spearman(B, log Phi_pred) +0.131, p = 0.4245  vs built-in Spearman(B, log Phi_obs) +0.518)
+
+======================================================================================================================
+2.  THE SINGLE-ESTIMATOR SWEEP: Kourkchi & Tully 2017 groups within 3500 km/s -- one catalogue, one method, from
+    galaxy groups to the nearest clusters.  Residual against LIGHT (the independent axis), dispersion for display.
+======================================================================================================================
+  catalogue read: 8826 groups; 309 with >= 5 members, 122 with >= 10, 41 with >= 20
+  Lovisari+2015: log M_gas,500 = 1.008 log M500 -1.255 over M500 = 2.1e+13-1.4e+14 (20 groups)
+    budget A stars+HI        : M_b/M_* at M_* = 1e11: 1.10, 1e12: 1.10, 3e12: 1.10
+    budget B +CGM 0.5M*      : M_b/M_* at M_* = 1e11: 1.60, 1e12: 1.60, 3e12: 1.60
+    budget C +X-ray hot(L_K) : M_b/M_* at M_* = 1e11: 1.72, 1e12: 4.09, 3e12: 7.41
+    host         N_g06  sig_g06  N_KT  sig_KT   logK
+    MESSIER031      39    118.6    38     114  10.81
+    MESSIER081      36    125.6    41     131  10.98
+    NGC5128         27    135.6    30     219  11.26
+    NGC4258         20     88.9    21     241  10.91
+    NGC5236         16     69.1    13     124  10.65
+    NGC4736         14     52.3     7      56  10.69
+    NGC4594         10    149.5    17     466  11.62
+    IC0342           9     73.4     8      89  10.27
+    NGC0253          8     57.3     4     146  11.10
+    NGC3115          8    106.1     6      72  10.51
+    NGC3627          8     80.2    15     167  11.32
+    NGC2784          7    100.2     9     306  10.54
+    NGC6744          7     56.8    11     273  11.00
+    NGC6946          7     69.2     7     101  10.48
+    MESSIER101       6     79.1     9     230  10.44
+    NGC0925          5     38.5     4      17   9.86
+    NGC2903          5     46.0     4      35  10.43
+    NGC3521          5     53.2     7     346  10.90
+    NGC4631          5    184.8    10     217  10.60
+    NGC5055          5     77.4     7     110  10.80
+    NGC5194          5     53.2     6      77  11.03
+  [PASS] 2a-best the two best-populated hosts both catalogues contain (>= 30 members in each: M31 and M81) agree on their dispersions to a few per cent, so where membership is not in doubt the Kourkchi sweep IS g06's measurement   (2 hosts; log10(sigma_KT/sigma_g06) = MESSIER031 -0.017, MESSIER081 +0.018)
+  [FAIL] 2a-rest (HYPOTHESIS CHECK -- a FAIL is a result) the catalogues also agree on every OTHER shared host to 0.1 dex.  If this fails, a group's dispersion depends on which membership algorithm built the group, by more than the group-vs-cluster contrast the ledger carries, and the group-scale amplitude is estimator-limited (g06v's common-mode systematic, here measured directly on the same sky)   (19 hosts; median log10(sigma_KT/sigma_g06) = +0.208, rms 0.284 (= +0.42 dex in B); worst NGC3521 +0.813)
+
+  --- canonical, N >= 10, budget A stars+HI: 110 groups, sigma_obs 61-800 km/s ---
+     log M_b bin    N  median B     +-  sig_obs  sig_pred  Phi_pred/c^2
+     10.4-10.8    17    +0.364  0.079      131        89      2.56e-07
+     10.8-11.1    33    +0.308  0.043      152       109      3.88e-07
+     11.1-11.4    21    +0.253  0.058      167       128      5.35e-07
+     11.4-11.7    21    +0.275  0.073      206       148      7.13e-07
+     11.7-12.0    12    +0.530  0.057      314       172      9.62e-07
+    canonical N>=10 A stars+HI: models on 5 bins of log M_b
+      const  chi2 =   14.76  k = 1  BIC =   16.37   level = +0.335
+      ramp   chi2 =   10.77  k = 2  BIC =   13.99   a = -1.211, p = +0.138
+      step   chi2 =    1.58  k = 3  BIC =    6.41   xt = +11.650, lo = +0.297, hi = +0.530
+      hinge  chi2 =    1.58  k = 3  BIC =    6.41   xt = +11.650, level = +0.297, p = +1.788
+  Spearman(B, log M_b) over the 110 groups = +0.149, permutation p = 0.1249
+
+  --- canonical, N >= 10, budget B +CGM 0.5M*: 110 groups, sigma_obs 61-800 km/s ---
+     log M_b bin    N  median B     +-  sig_obs  sig_pred  Phi_pred/c^2
+     10.4-10.8    11    +0.294  0.107      124        92      2.75e-07
+     10.8-11.1    19    +0.226  0.049      140       108      3.84e-07
+     11.1-11.4    30    +0.205  0.037      157       125      5.07e-07
+     11.4-11.7    27    +0.182  0.069      185       153      7.67e-07
+     11.7-12.0    16    +0.334  0.075      262       183      1.08e-06
+    canonical N>=10 B +CGM 0.5M*: models on 5 bins of log M_b
+      const  chi2 =    3.09  k = 1  BIC =    4.70   level = +0.228
+      ramp   chi2 =    2.88  k = 2  BIC =    6.10   a = -0.206, p = +0.039
+      step   chi2 =    0.94  k = 3  BIC =    5.77   xt = +11.730, lo = +0.214, hi = +0.334
+      hinge  chi2 =    0.94  k = 3  BIC =    5.77   xt = +11.730, level = +0.214, p = +0.812
+  Spearman(B, log M_b) over the 110 groups = +0.148, permutation p = 0.1234
+
+  --- canonical, N >= 10, budget C +X-ray hot(L_K): 110 groups, sigma_obs 61-800 km/s ---
+     log M_b bin    N  median B     +-  sig_obs  sig_pred  Phi_pred/c^2
+     10.4-10.8    11    +0.294  0.087      124        92      2.75e-07
+     10.8-11.1    19    +0.226  0.056      140       108      3.84e-07
+     11.1-11.4    26    +0.181  0.043      156       127      5.25e-07
+     11.4-11.7    17    +0.133  0.087      173       152      7.53e-07
+     11.7-12.0    19    +0.104  0.083      206       179      1.04e-06
+     12.0-12.3    11    +0.255  0.082      294       217      1.51e-06
+    canonical N>=10 C +X-ray hot(L_K): models on 6 bins of log M_b
+      const  chi2 =    3.63  k = 1  BIC =    5.43   level = +0.196
+      ramp   chi2 =    2.91  k = 2  BIC =    6.50   a = +0.843, p = -0.057
+      step   chi2 =    2.14  k = 3  BIC =    7.52   xt = +11.118, lo = +0.242, hi = +0.171
+      hinge  chi2 =    3.03  k = 3  BIC =    8.41   xt = +10.837, level = +0.223, p = -0.054
+  Spearman(B, log M_b) over the 110 groups = -0.016, permutation p = 0.8771
+
+  --- alt, N >= 10, budget B +CGM 0.5M*: 110 groups, sigma_obs 61-800 km/s ---
+     log M_b bin    N  median B     +-  sig_obs  sig_pred  Phi_pred/c^2
+     10.4-10.8    11    +0.254  0.106      124        97      3.02e-07
+     10.8-11.1    19    +0.185  0.068      140       113      4.22e-07
+     11.1-11.4    30    +0.165  0.033      157       131      5.57e-07
+     11.4-11.7    27    +0.142  0.074      185       160      8.42e-07
+     11.7-12.0    16    +0.294  0.077      262       191      1.18e-06
+    alt N>=10 B +CGM 0.5M*: models on 5 bins of log M_b
+      const  chi2 =    3.21  k = 1  BIC =    4.82   level = +0.186
+      ramp   chi2 =    2.99  k = 2  BIC =    6.21   a = -0.254, p = +0.039
+      step   chi2 =    0.96  k = 3  BIC =    5.79   xt = +11.730, lo = +0.173, hi = +0.294
+      hinge  chi2 =    0.96  k = 3  BIC =    5.79   xt = +11.730, level = +0.173, p = +0.820
+  Spearman(B, log M_b) over the 110 groups = +0.149, permutation p = 0.1214
+  PRIMARY (canonical, N >= 10, budget B): best model by BIC = 'const'; dBIC(const - best) = 0.0, dBIC(step - ramp) = -0.3, dBIC(hinge - ramp) = -0.3
+     step threshold log M_b = 11.73 (levels +0.214 -> +0.334); hinge onset log M_b = 11.73, slope above +0.812 dex/dex; ramp slope +0.039 dex/dex
+     groups below log M_b = 11.4 (the g06 regime): median B = +0.217 dex over 61 groups; above 12.6: +0.861 over 2
+  [FAIL] 2b (HYPOTHESIS CHECK -- a FAIL is a result) THE SWEEP FINDS A RISE: within one catalogue and one estimator the residual rises with baryonic mass from the group regime to the nearest clusters.  A FAIL means the residual is FLAT across the sweep on the primary budget   (Spearman +0.148, p = 0.1234)
+  [FAIL] 2c (THE THRESHOLD QUESTION -- HYPOTHESIS CHECK, a FAIL is a result) is there a STEP -- a sharp domain boundary -- in the sweep?  A step needs dBIC(step - ramp) < -6 (strong evidence) on the primary budget.  A FAIL means there is no edge to hand to Lambda   (dBIC(step - ramp) = -0.3; best = const)
+
+    slope of B against log M_b (ramp model), every variant:
+    variant                                          N   slope  onset(hinge)  dBIC step-ramp  Spearman
+    canonical|N>=10|A stars+HI                     110  +0.138         11.65            -7.6    +0.149
+    canonical|N>=10|B +CGM 0.5M*                   110  +0.039         11.73            -0.3    +0.148
+    canonical|N>=10|C +X-ray hot(L_K)              110  -0.057         10.84            +1.0    -0.016
+    canonical|N>=5|A stars+HI                      252  +0.310         11.38            -2.9    +0.194
+    canonical|N>=5|B +CGM 0.5M*                    252  +0.215         10.82            +1.8    +0.193
+    canonical|N>=5|C +X-ray hot(L_K)               252  +0.082         12.00            -0.3    +0.107
+    canonical|N>=20|A stars+HI                      38  +0.300         11.19            +1.0    +0.281
+    canonical|N>=20|B +CGM 0.5M*                    38  +0.240         11.73            -0.2    +0.281
+    canonical|N>=20|C +X-ray hot(L_K)               38  +0.094         11.43            +0.4    +0.084
+    alt|N>=10|A stars+HI                           110  +0.138         11.65            -7.6    +0.151
+    alt|N>=10|B +CGM 0.5M*                         110  +0.039         11.73            -0.4    +0.149
+    alt|N>=10|C +X-ray hot(L_K)                    110  -0.049         12.01            +1.0    -0.014
+    alt|N>=5|A stars+HI                            252  +0.311         11.38            -2.8    +0.194
+    alt|N>=5|B +CGM 0.5M*                          252  +0.209         10.82            +1.5    +0.194
+    alt|N>=5|C +X-ray hot(L_K)                     252  +0.083         12.00            -0.4    +0.107
+    alt|N>=20|A stars+HI                            38  +0.293         11.19            +1.0    +0.281
+    alt|N>=20|B +CGM 0.5M*                          38  +0.224         11.73            -0.1    +0.281
+    alt|N>=20|C +X-ray hot(L_K)                     38  +0.084         11.43            +0.4    +0.084
+  [FAIL] 2d (HYPOTHESIS CHECK -- a FAIL is a result) any rise survives the X-ray hot-gas budget keyed to light (budget C).  A FAIL means whatever rise the stellar budgets show is removable by counting the hot baryons, i.e. it is the onset of hot gas and not of a gravitational regime   (slope B-budget +0.039, C-budget -0.057)
+  [PASS] 2e THE SIGN OF THE SLOPE IS A BUDGET CHOICE: on stars+HI alone every variant slopes up; with the light-keyed X-ray hot gas every variant is flat to within 0.1 dex per dex.  A slope whose sign the baryon budget controls is a statement about the budget, not about gravity, and it cannot locate a gravitational threshold   (stars+HI slopes +0.14, +0.31, +0.30, +0.14, +0.31, +0.29;  hot-gas slopes -0.06, +0.08, +0.09, -0.05, +0.08, +0.08)
+
+    (R1) the built-in slope: B against log sigma_obs, real pairing vs sigma shuffled among groups of similar light
+  Spearman(B, log sigma_obs) real = +0.857; with sigma shuffled inside light blocks = +0.814 +- 0.014
+  [PASS] 2f (R1 named and measured) plotting the residual against the OBSERVED dispersion manufactures a correlation even when the pairing is destroyed, which is why the light axis is the one every conclusion above uses   (shuffle-floor Spearman +0.814 -- a large 'signal' from noise alone)
+
+    synthetic injection: would a RISE of the cluster-front size have been seen against the flat model on this bin layout?
+  injected step vs flat, fraction detected at dBIC > 6: 0.10 dex -> 15%, 0.20 dex -> 64%, 0.30 dex -> 97%;  false detection on flat data 2%;  the real data: dBIC(const - best) = -1.1
+  (step-vs-ramp discrimination has no power at these sizes on five bins -- 2c's dBIC is reported, not leaned on; the null that matters is rise-vs-flat)
+  [PASS] 2g THE STRENGTH OF THE NULL: against the flat model the sweep detects a 0.3 dex step (the ledger's cluster level above g06's group level) in >= 90% of injections with <= 10% false detections, and the real data prefer FLAT.  So the null excludes a domain edge of 0.3 dex anywhere in 10^10.4-10^12.3 Msun; at 0.2 dex the power is partial and is quoted, not leaned on   (detection 97% at 0.3 dex, 64% at 0.2, 15% at 0.1; false 2%; real dBIC(const - best) = -1.1)
+
+    provenance of sigma_V: scatter of log sigma_V at fixed light, by membership
+        N_m in [5,10): 142 groups, log sigma_V = +0.08 +0.174 logK, residual scatter 0.248 dex
+        N_m in [10,20): 73 groups, log sigma_V = -0.07 +0.200 logK, residual scatter 0.155 dex
+        N_m in [20,1000): 38 groups, log sigma_V = -1.96 +0.372 logK, residual scatter 0.140 dex
+        catalogue logMd vs 3 sigma^2 Rg/G: median offset +0.117 dex, scatter 0.002 -- M_d is a virial function of sigma and Rg, and sigma is not a function of light
+  [PASS] 2h the dispersions are MEASURED, not luminosity-derived: at fixed light they scatter by far more than a scaling relation would (>= 0.15 dex), so the sweep is not circular   (scatter at fixed logK = 0.248 dex (N_m 5-9))
+  [PASS] 2i THE FLATNESS, stated at its strength: on both footings and both hot-gas budgets (N >= 10), no bin of the sweep departs from the sample median by more than 0.15 dex across 10^10.4-10^12.3 Msun of baryons -- two decades of mass and a factor 10 in predicted potential with no edge   (max |bin - median| = 0.108, 0.097, 0.108, 0.096)
+
+======================================================================================================================
+3.  THE eRASS1 TEMPERATURE SWEEP: residual at R500 against a MEASURED potential depth (kT), 0.5-12 keV, z < 1
+======================================================================================================================
+  eRASS1 clean with kT: 3213 systems, kT 0.31-12.42 keV, M500 5.1e+12-1.6e+15
+  potential from kT (v_c^2 = 2 kT / mu m_p) vs from M500/R500: median ratio 0.55 -- the two potential axes agree to a factor of order unity, as they must
+
+  --- canonical, stars 0.2 M_gas ---
+      kT bin keV     N  median B     +-   Phi/c^2  median z
+     0.30- 0.60   102    +0.372  0.020  6.09e-06      0.18
+     0.60- 0.90   189    +0.394  0.020  6.65e-06      0.20
+     0.90- 1.30   625    +0.349  0.020  7.86e-06      0.17
+     1.30- 1.80   757    +0.332  0.020  1.14e-05      0.22
+     1.80- 2.50   649    +0.334  0.020  1.41e-05      0.25
+     2.50- 3.50   488    +0.337  0.020  1.63e-05      0.26
+     3.50- 5.00   260    +0.338  0.020  1.87e-05      0.25
+     5.00- 7.00   104    +0.330  0.020  1.94e-05      0.23
+     7.00-13.00    39    +0.315  0.020  2.60e-05      0.23
+    canonical|stars 0.2 M_gas: models on 9 bins of log kT
+      const  chi2 =   11.72  k = 1  BIC =   13.92   level = +0.344
+      ramp   chi2 =    3.73  k = 2  BIC =    8.12   a = +0.360, p = -0.049
+      step   chi2 =    2.18  k = 3  BIC =    8.77   xt = -0.024, lo = +0.383, hi = +0.333
+      hinge  chi2 =    3.64  k = 3  BIC =   10.23   xt = -0.223, level = +0.373, p = -0.052
+  Spearman(B, log kT) = -0.148, p = 0.0003; median B = +0.339 dex
+
+  --- canonical, stars KVM18 ---
+      kT bin keV     N  median B     +-   Phi/c^2  median z
+     0.30- 0.60   102    +0.308  0.020  6.09e-06      0.18
+     0.60- 0.90   189    +0.327  0.020  6.65e-06      0.20
+     0.90- 1.30   625    +0.321  0.020  7.86e-06      0.17
+     1.30- 1.80   757    +0.330  0.020  1.14e-05      0.22
+     1.80- 2.50   649    +0.343  0.020  1.41e-05      0.25
+     2.50- 3.50   488    +0.348  0.020  1.63e-05      0.26
+     3.50- 5.00   260    +0.351  0.020  1.87e-05      0.25
+     5.00- 7.00   104    +0.347  0.020  1.94e-05      0.23
+     7.00-13.00    39    +0.341  0.020  2.60e-05      0.23
+    canonical|stars KVM18: models on 9 bins of log kT
+      const  chi2 =    4.15  k = 1  BIC =    6.35   level = +0.335
+      ramp   chi2 =    1.09  k = 2  BIC =    5.49   a = +0.326, p = +0.030
+      step   chi2 =    0.83  k = 3  BIC =    7.42   xt = +0.249, lo = +0.321, hi = +0.346
+      hinge  chi2 =    1.24  k = 3  BIC =    7.83   xt = -0.223, level = +0.318, p = +0.031
+  Spearman(B, log kT) = +0.161, p = 0.0003; median B = +0.338 dex
+
+  --- alt, stars 0.2 M_gas ---
+      kT bin keV     N  median B     +-   Phi/c^2  median z
+     0.30- 0.60   102    +0.334  0.020  6.09e-06      0.18
+     0.60- 0.90   189    +0.356  0.020  6.65e-06      0.20
+     0.90- 1.30   625    +0.311  0.020  7.86e-06      0.17
+     1.30- 1.80   757    +0.295  0.020  1.14e-05      0.22
+     1.80- 2.50   649    +0.297  0.020  1.41e-05      0.25
+     2.50- 3.50   488    +0.300  0.020  1.63e-05      0.26
+     3.50- 5.00   260    +0.301  0.020  1.87e-05      0.25
+     5.00- 7.00   104    +0.294  0.020  1.94e-05      0.23
+     7.00-13.00    39    +0.281  0.020  2.60e-05      0.23
+    alt|stars 0.2 M_gas: models on 9 bins of log kT
+      const  chi2 =   10.76  k = 1  BIC =   12.96   level = +0.308
+      ramp   chi2 =    3.73  k = 2  BIC =    8.13   a = +0.322, p = -0.046
+      step   chi2 =    1.81  k = 3  BIC =    8.40   xt = -0.024, lo = +0.345, hi = +0.297
+      hinge  chi2 =    3.67  k = 3  BIC =   10.26   xt = -0.223, level = +0.335, p = -0.049
+  Spearman(B, log kT) = -0.139, p = 0.0003; median B = +0.302 dex
+  eRASS1 primary: const level +0.344; ramp slope -0.049 dex per dex of kT; dBIC(step - ramp) = +0.6; dBIC(ramp - const) = -5.8
+  [PASS] 3a inside the cluster regime (0.3-12 keV, Phi/c^2 ~ 1e-6 to 4e-5) there is NO threshold: the residual is a plateau, not a step -- a step is not preferred over a ramp and the total swing across 1.6 decades of kT is under 0.3 dex.  If a Lambda edge existed inside this range it would have to show here, on 3000+ systems   (dBIC(step-ramp) = +0.6, ramp swing over 1.6 dex = 0.078 dex)
+  [PASS] 3b the plateau is the ledger's cluster level, both stellar imports, both footings (median B between +0.2 and +0.5 dex)   (canonical|stars 0.2 M_gas: +0.339, canonical|stars KVM18: +0.338, alt|stars 0.2 M_gas: +0.302, alt|stars KVM18: +0.301)
+  at fixed depth (kT = 2-5 keV): median B = +0.326 (z < 0.2, N = 419) vs +0.381 (z > 0.5, N = 158)
+
+======================================================================================================================
+4.  THE LAMBDA CONFRONTATION: where the residual turns on, and whether that place is a scale the framework owns
+======================================================================================================================
+  the Kourkchi hinge onset (primary): log M_b = 11.73  ->  M_b = 5.37e+11 Msun, predicted potential sqrt(G M_b a_0)/c^2 = 9.09e-07, v_c = 286 km/s, kT-equivalent = 0.26 keV
+  the step threshold (for reference, even though 2c did not prefer it): log M_b = 11.73
+
+    4a  THE DIMENSIONAL STATEMENT.  A potential threshold needs a mass or a length beside a_0, c, G and H_Lambda:
+      the only Lambda lengths are 5368-31118 Mpc (Gpc scale); the only Lambda masses are 5.6e+22-1.6e+23 Msun.
+      the onset sits at 4.8e-42 of the de Sitter mass and its potential at 5.3e-06 of a_0/(c H_Lambda).
+      So a Lambda-set onset would need a NEW dimensionless number of order 1e-10 to 1e-11 that nothing in the framework supplies,
+      OR it must be a DENSITY (rho_Lambda is the one scale that lives at the right order).  4b tests the density reading.
+  [PASS] 4a no Lambda length or mass sits within three decades of the onset, so the onset cannot be 'a_0 times a Lambda length' or 'the framework's potential at a Lambda mass': any Lambda threshold must be a density or a coincidence   (M/M_dS = 4.8e-42; Phi/(a_0 c/H_Lambda) = 5.3e-06)
+
+    4b  THE DENSITY READING: mean enclosed OBSERVED density at the measurement radius, in units of rho_Lambda
+      Kourkchi groups, landing regime (log M_b < 11.4): median rho_enc/rho_Lambda = 430;  cluster end (> 12.6): 1142
+      every X-ray row at R500 (Lovisari, X-COP, eRASS1): 500 rho_c = 728 rho_Lambda at z = 0 (higher at z > 0 by E(z)^2)
+      SPARC discs inside their own MOND radius r_M = sqrt(G M_b/a_0): median rho/rho_Lambda = 590889  (they land)
+      the ledger's X-ray ellipticals at 20 kpc: rho_enc/rho_Lambda ~ 211783  (they miss by +0.23 dex)
+  [PASS] 4b (can fail) the failure is NOT ordered by enclosed density in units of rho_Lambda: landing discs are the DENSEST systems, landing groups the SPARSEST, and the missing clusters sit in between.  A 'fails below X rho_Lambda' or 'fails above X rho_Lambda' law would need a monotone ordering, and there is none   (discs ~590889, clusters ~1142-728, landing groups ~430 (rho_Lambda units))
+
+    4c  THE COINCIDENCE-DENSITY CONTROL: how many 'natural' numbers land within 0.15 dex of the onset?
+      onset Phi/c^2    = 9.09e-07: 2 products of <= 4 factors from ['Omega_b', 'Omega_m', 'Omega_L', '1/Z', '2pi', '32pi', 'h', '3', '2'] land within 0.15 dex; e.g. Omega_b^1*2pi^-1*32pi^-2; Omega_b^1*1/Z^1*32pi^-2
+      onset M_b/M_dS   = 4.81e-42: 0 products of <= 4 factors from ['Omega_b', 'Omega_m', 'Omega_L', '1/Z', '2pi', '32pi', 'h', '3', '2'] land within 0.15 dex; e.g. 
+      step Phi/c^2     = 9.09e-07: 2 products of <= 4 factors from ['Omega_b', 'Omega_m', 'Omega_L', '1/Z', '2pi', '32pi', 'h', '3', '2'] land within 0.15 dex; e.g. Omega_b^1*2pi^-1*32pi^-2; Omega_b^1*1/Z^1*32pi^-2
+      chance expectation for a 0.3-dex window in the same decade band: 3.7 +- 4.1 matches; observed 2
+  [PASS] 4c any match of the onset to a product of the framework's own numbers is at the chance rate for this combinatorial space (observed count within 2 sigma of the random-window expectation), so a single-number Lambda coincidence could never have been evidence; only a SCALING (4d) could   (observed 2 vs chance 3.7 +- 4.1)
+
+    4d  WHAT WOULD BE EVIDENCE: a scaling.  A Lambda-set threshold is a fixed potential (or mass) at every z; a
+        baryon-physics threshold moves with the baryon budget.  The eRASS1 fixed-depth z-split (section 3) is the only
+        handle on disk, and its selection function is not under this file's control; recorded, not claimed:
+          kT = 2-5 keV: B(z < 0.2) = +0.326, B(z > 0.5) = +0.381; a fixed threshold predicts equal levels
+
+======================================================================================================================
+5.  MUTATION CONTROLS
+======================================================================================================================
+  [PASS] M1 switch the kernel off (Newtonian gravity on the same baryons): the group residual must explode to the dark-matter ratio these groups are famous for, or the pipeline is not measuring gravity   (Newtonian median B = +1.587 dex (x39) vs framework +0.226)
+  [PASS] M2 shuffle the LIGHT among groups (keep every marginal, destroy the pairing): the correlation of B with log M_b must collapse to the negative built-in value (B falls with the shuffled M_b through sigma_pred alone).  The real pairing sits far above that floor, which is the sensitivity that makes the flat result of 2b/2i a measurement   (shuffled Spearman -0.453 +- 0.073 vs real +0.148)
+  [PASS] M3 triple a_0: in the deep limit sigma_pred grows as a_0^(1/4), so B must fall by 0.5 log 3 = 0.239 dex (a 25% departure allowed for the groups that are not fully deep)   (shift 0.235 dex vs 0.239)
+  Upsilon_K = 0.4: median B = +0.316, Spearman(B, log M_b) = +0.149
+  Upsilon_K = 1.0: median B = +0.113, Spearman(B, log M_b) = +0.146
+  [PASS] M4 the mass-to-light bracket 0.4-1.0 moves the zero point by under 0.1 dex either way and leaves the trend's sign   (zero points +0.316 / +0.226 / +0.113)
+
+======================================================================================================================
+6.  VERDICT
+======================================================================================================================
+  There is no edge -- and there is no onset to put one at.  On one catalogue and one estimator the pressure-supported
+  residual is FLAT from 10^10.4 to 10^12.3 Msun of baryons once the hot gas is counted (2i), and inside the cluster
+  regime (eRASS1, 0.3-12 keV, 10^12-10^15) it is a plateau (3a).  The only rise anywhere in the sweep sits in the
+  stellar-only budget and is removed by a hot-gas budget keyed to light (2e): it is the onset of hot baryons.
+  The 'groups pass, clusters fail' contrast the ledger carries is an ESTIMATOR contrast: two membership algorithms
+  disagree by ~0.3 dex in B on the same poorly-populated groups (2a-rest) while agreeing on M31 and M81 (2a-best),
+  and on either single estimator the group level and the cluster level differ by ~0.1-0.15 dex, inside that systematic.
+  A rise of 0.3 dex anywhere in the sweep is excluded at 97% power (2g); 0.2 dex only at 64%.
+  Recorded (canonical, N >= 10): group plateau +0.198 dex (hot-gas budget) / +0.226 (CGM budget); eRASS1 plateau +0.344 dex; g06's estimator on the same sky: -0.09.
+  On the Lambda question: no Lambda length or mass lies within three decades of the sweep (4a), the density ordering
+  is non-monotone (4b), and a number match would be at the chance rate anyway (4c).  Fifth null on the
+  'second Lambda scale' search (k02 crossing, u13 boundary, u02 second scale, h20 ladder, f22 onset).
+
+RESULT: 24 checks, 5 FAIL -> ["1c (HYPOTHESIS CHECK -- a FAIL is a result) on the missing-mass side of the ledger the residual rises with the framework's PREDICTED potential, the axis with no g_obs in it.  If this fails, the ledger's apparent rise with potential depth was built in through g_obs (R1) and there is no potential-depth ordering to hunt a threshold in", "2a-rest (HYPOTHESIS CHECK -- a FAIL is a result) the catalogues also agree on every OTHER shared host to 0.1 dex.  If this fails, a group's dispersion depends on which membership algorithm built the group, by more than the group-vs-cluster contrast the ledger carries, and the group-scale amplitude is estimator-limited (g06v's common-mode systematic, here measured directly on the same sky)", '2b (HYPOTHESIS CHECK -- a FAIL is a result) THE SWEEP FINDS A RISE: within one catalogue and one estimator the residual rises with baryonic mass from the group regime to the nearest clusters.  A FAIL means the residual is FLAT across the sweep on the primary budget', '2c (THE THRESHOLD QUESTION -- HYPOTHESIS CHECK, a FAIL is a result) is there a STEP -- a sharp domain boundary -- in the sweep?  A step needs dBIC(step - ramp) < -6 (strong evidence) on the primary budget.  A FAIL means there is no edge to hand to Lambda', '2d (HYPOTHESIS CHECK -- a FAIL is a result) any rise survives the X-ray hot-gas budget keyed to light (budget C).  A FAIL means whatever rise the stellar budgets show is removable by counting the hot baryons, i.e. it is the onset of hot gas and not of a gravitational regime']   rc=1
