@@ -1,0 +1,43 @@
+TDD RED RECORD — Q=0 branch audit
+Date: 2026-09-04
+Repository HEAD: edff7fddedb24f76af60a1133e49f1110ab38dce (dirty)
+
+INITIAL COMMAND
+  PYTHONDONTWRITEBYTECODE=1 python3 test_dw_q0_branch_dirac_2026.py
+
+INITIAL EXIT STATUS
+  1
+
+INITIAL RESULT
+  Ran 6 tests; 6 intentional failures.
+
+FAILURE REASON
+  Each test failed with the explicit assertion:
+    Q=0 audit module has not been implemented
+  The production file dw_q0_branch_dirac_2026.py did not yet exist.
+
+SECOND RED/GREEN CYCLE
+  After the first implementation, two tests rejected structurally equal but
+  differently factored SymPy expressions.  The tests were corrected to compare
+  exact simplified differences; the production mathematics was unchanged.
+
+THIRD RED COMMAND
+  PYTHONDONTWRITEBYTECODE=1 python3 test_dw_q0_branch_dirac_2026.py
+
+THIRD RED EXIT STATUS
+  1
+
+THIRD RED RESULT
+  Three tests failed because the production API did not yet expose independently
+  derived Legendre-energy residuals or the action-expansion residual.  The
+  implementation then derived these quantities from p.v-L and the epsilon
+  expansion, rather than inserting the proposed Hamiltonians as unchecked input.
+
+FINAL GREEN COMMAND
+  PYTHONDONTWRITEBYTECODE=1 python3 test_dw_q0_branch_dirac_2026.py
+
+FINAL GREEN EXIT STATUS
+  0
+
+FINAL RESULT
+  Ran 6 tests; all passed.

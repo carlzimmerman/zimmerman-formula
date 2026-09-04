@@ -1,0 +1,101 @@
+{
+  "schema_version": 1,
+  "claim_id": "dw-q0-stratified-dirac-fourier-audit-2026-09-04",
+  "repository": {
+    "commit": "edff7fddedb24f76af60a1133e49f1110ab38dce",
+    "dirty": true
+  },
+  "command": "From qwen_claude_field_theory/closure_2026/fried_chicken_2026 run separately: PYTHONDONTWRITEBYTECODE=1 python3 test_dw_q0_branch_dirac_2026.py ; PYTHONDONTWRITEBYTECODE=1 python3 dw_q0_branch_dirac_2026.py",
+  "environment": {
+    "software": [
+      "Python 3.9.6",
+      "SymPy 1.14.0"
+    ],
+    "hardware": "Darwin arm64"
+  },
+  "mathematics": {
+    "assertion_tested": "Restart the localized DW auxiliary Legendre analysis directly on Q=0, separately at lambda!=0 and lambda=0; derive exact Hessian null vectors, branch Legendre/Hamilton-Pontryagin energies, preservation equations and Poisson matrices; and determine whether the fixed-background finite-k (X,xi) block disappears on either stratum.",
+    "coefficient_domain": "Exact SymPy expressions over rational functions of N, a0, c and canonical variables. The arbitrary smooth f is represented by its symbolic two-jet f0+f1*Z+f2*Z^2/2, which is sufficient for the Hessian and linearized principal symbol. No numerical rank tolerance is used.",
+    "conventions": "Metric signature (-,+,+,+); c=a0^2/kappa; homogeneous Z=-4*Xdot^2/(N^2*a0^2); Fourier Delta maps to -k^2; canonical PB is sum_q (dF/dq*dG/dp-dF/dp*dG/dq). Differentiation precedes every Q=0 substitution.",
+    "inputs": [
+      {
+        "path": "dw_q0_branch_dirac_2026.py",
+        "sha256": "98c53e6ae93ce33649d60c257e3c673e79b20a6d646855899b98c5e3d8ccc1ab"
+      },
+      {
+        "path": "test_dw_q0_branch_dirac_2026.py",
+        "sha256": "a823c3ae105ad71631ad40cac5d70a3fde09bafe0b5db184512b7cc096599bac"
+      }
+    ],
+    "bounds": {
+      "hessian_and_preservation": "Homogeneous fixed-lapse, frozen-metric auxiliary sector. Both Q=0/lambda!=0 and Q=lambda=0 strata are evaluated exactly.",
+      "spatial_tangency": "Linear Fourier mode around grad(Xbar)=0 and p_xi_bar=v!=0; k=0 and k!=0 are explicit.",
+      "pole_audit": "Quadratic fixed-background (X,xi) sector around constant X with W=c; arbitrary positive f'(0), with no metric perturbations retained."
+    },
+    "non_claims": [
+      "The intrinsic branch Poisson nullity is not interpreted as a gauge or physical DOF count for the irregular embedded branch.",
+      "No full spatial distributional Poisson matrix is calculated.",
+      "No lapse, shift, spatial metric, or curvature-response ADM momentum is included.",
+      "No full ADM N_grav count, PPN result, FLRW perturbation result, or canonical retarded-history construction is claimed.",
+      "The computation is not a no-go theorem for every possible causal nonlocal variational formalism."
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-09-04T00:57:52-04:00",
+    "runtime_seconds": 1.1,
+    "exit_status": 0,
+    "individual_runs": [
+      {
+        "command": "PYTHONDONTWRITEBYTECODE=1 python3 test_dw_q0_branch_dirac_2026.py",
+        "exit_status": 0,
+        "result": "6/6 unittest cases passed"
+      },
+      {
+        "command": "PYTHONDONTWRITEBYTECODE=1 python3 dw_q0_branch_dirac_2026.py",
+        "exit_status": 0,
+        "result": "29/29 internal controls passed"
+      }
+    ]
+  },
+  "outputs": [
+    {
+      "path": "dw_q0_branch_dirac_2026.out",
+      "sha256": "43b695e564aa91c1e58ded25276428b198de6718207de7bd6cae4a3096c72fa9"
+    },
+    {
+      "path": "test_dw_q0_branch_dirac_2026.out",
+      "sha256": "ec0f9cec5f787b19a637da59948befcdfa1a6712149aee6cf24621893bdfa3be"
+    },
+    {
+      "path": "dw_q0_branch_tdd_red_2026.out",
+      "sha256": "983436342b505c84c9ee147aa2dfe8e4e78af963692180e3d093e8b19d62ad62"
+    },
+    {
+      "path": "DW_Q0_BRANCH_DIRAC_AUDIT_2026.md",
+      "sha256": "748256a0e932c41506f7d6d9d7042c027522ed1245259e61b4da213eb430a3bd"
+    }
+  ],
+  "checks": [
+    "Exact maximal minors give Hessian ranks 3 and 2 on the two Q=0 lambda strata.",
+    "Every supplied Hessian null vector is multiplied into the independently derived undivided Hessian and gives zero.",
+    "Restricting Q=0 before differentiating is retained as a mutation that changes the null direction.",
+    "Both branch energies have zero residual against a direct p.v-L derivation.",
+    "Poisson matrices are generated from the displayed branch relations and canonical bracket, with exact maximal-minor witnesses.",
+    "Transverse lambda and M equations fix clock/transport velocities and expose the irregular multiplier tie.",
+    "The quadratic (X,xi) density is obtained as an epsilon-series coefficient of QW-cM at W=c.",
+    "The kinetic determinant is -1, the exact inertia is one positive plus one negative direction, and finite-k versus k=0 poles are separate.",
+    "Linear spatial Q tangency has unit coefficient on u_M, so it fixes that multiplier rather than generating a new constraint."
+  ],
+  "result": "The Q=0 rank drop does not remove the indefinite (X,xi) scalar block: the unrestricted independent-auxiliary local representative is DEAD. The homogeneous embedded branch closes on both lambda strata but is irregular, so its intrinsic Poisson nullity is not promoted to a Dirac gauge count. Full spatial+ADM and retarded-history formulations remain open.",
+  "residual_risks": [
+    "The DEAD classification is established in the fixed-background/decoupling scalar sector; the full metric-coupled constraint algebra has not been recomputed here.",
+    "The finite-k pole calculation uses a constant-X background and f'(0); nonconstant backgrounds can add mixing but cannot be inferred from this bounded run.",
+    "Spatial Q tangency is linearized about one homogeneous background family.",
+    "A causal retarded prescription may select a noncanonical solution subset and requires a separate variational construction."
+  ]
+}

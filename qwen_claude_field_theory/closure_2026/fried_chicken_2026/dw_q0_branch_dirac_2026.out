@@ -1,0 +1,112 @@
+
+==================================================================================================
+PART 1 -- UNDIVIDED MOMENTA, EXACT Q=0 HESSIAN MINORS, AND NULL VECTORS
+==================================================================================================
+  momenta (pX, pxi, pphi, pnu) = ((N**4*a0**4*vxi - 8*N**2*a0**2*f1*vX*vnu*vphi + 32*f2*vX**3*vnu*vphi)/(N**5*a0**4), vX/N, (M*N**4*a0**4*vnu + N**4*a0**4*f0*vnu - 2*N**4*a0**4*lambda*vphi - 4*N**2*a0**2*f1*vX**2*vnu + 8*f2*vX**4*vnu)/(N**5*a0**4), vphi*(M*N**4*a0**4 + N**4*a0**4*f0 - 4*N**2*a0**2*f1*vX**2 + 8*f2*vX**4)/(N**5*a0**4))
+  Q=0, lambda!=0 rank/witness = 3 2*lambda/N**3
+  Q=0, lambda=0  rank/witness = 2 -1/N**2
+  lambda!=0 null vector = Matrix([[0, vX*vphi*(8*f1 - 32*f2*vX**2/(N**2*a0**2))/(N**2*a0**2), 0, 1]])
+  lambda=0 null vectors = [Matrix([[0, vX*vnu*(8*f1 - 32*f2*vX**2/(N**2*a0**2))/(N**2*a0**2), 1, 0]]), Matrix([[0, vX*vphi*(8*f1 - 32*f2*vX**2/(N**2*a0**2))/(N**2*a0**2), 0, 1]])]
+  [PASS] Q=0, lambda!=0 exact-minor rank is 3
+  [PASS] Q=0, lambda=0 exact-minor rank is 2
+  [PASS] lambda!=0 null vector annihilates the undivided Hessian
+  [PASS] both lambda=0 null vectors annihilate the undivided Hessian
+  [PASS] mutation: restricting Q=0 before differentiation changes the null direction
+
+==================================================================================================
+PART 2 -- Q=0, lambda!=0: BRANCH RELATIONS, PB MATRIX, AND EMBEDDED MULTIPLIER TIE
+==================================================================================================
+  Hc = N*(M*c - lambda + pX*pxi - pphi**2/(4*lambda))
+  branch relations = (plambda, pM, pnu, M + f0 - 4*f1*pxi**2/a0**2 + 8*f2*pxi**4/a0**4, -4*lambda**2 + pphi**2)
+  calculated PB matrix =
+⎡ 0    0  0  0   8⋅λ⎤
+⎢                   ⎥
+⎢ 0    0  0  -1   0 ⎥
+⎢                   ⎥
+⎢ 0    0  0  0    0 ⎥
+⎢                   ⎥
+⎢ 0    1  0  0    0 ⎥
+⎢                   ⎥
+⎣-8⋅λ  0  0  0    0 ⎦
+  PB rank/witness = 4 64*lambda**2
+  clock secondary = -(2*lambda - pphi)*(2*lambda + pphi)
+  embedded null-multiplier tie = Eq(u_Q, pphi*vnu/(2*lambda))
+  pM preservation: u_Q = -N*c ; vnu = -2*N*c*lambda/pphi
+  post-secondary preservation = {'Q': vM, 'clock_relation': -8*lambda*vlambda, 'pnu': 0}
+  intrinsic PB-null relation count = 1
+  [PASS] branch Hamiltonian is the Legendre energy of the undivided action
+  [PASS] five-relation PB matrix is antisymmetric
+  [PASS] exact minors give PB rank 4 with a nonzero witness
+  [PASS] p_lambda preservation derives pphi^2-4 lambda^2
+  [PASS] Legendre-map matching derives the Q/null-velocity multiplier tie
+  [PASS] transverse lambda and M equations enforce both velocity conditions
+  [PASS] homogeneous embedded preservation closes after multipliers are fixed
+  [PASS] ordinary Dirac count is not applied to the irregular embedded branch
+
+==================================================================================================
+PART 3 -- Q=0, lambda=0: HAMILTON--PONTRYAGIN PRESERVATION
+==================================================================================================
+  generalized branch energy = N*(M*c + pX*pxi) + lambda*(-N + vphi**2/N) + pM*vM + plambda*vlambda + pnu*vnu + pphi*vphi - vnu*vphi*(M + f0 - 4*f1*pxi**2/a0**2 + 8*f2*pxi**4/a0**4)/N
+  branch relations = (plambda, pM, pphi, pnu, lambda, M + f0 - 4*f1*pxi**2/a0**2 + 8*f2*pxi**4/a0**4)
+  calculated PB matrix =
+⎡0  0  0  0  -1  0 ⎤
+⎢                  ⎥
+⎢0  0  0  0  0   -1⎥
+⎢                  ⎥
+⎢0  0  0  0  0   0 ⎥
+⎢                  ⎥
+⎢0  0  0  0  0   0 ⎥
+⎢                  ⎥
+⎢1  0  0  0  0   0 ⎥
+⎢                  ⎥
+⎣0  1  0  0  0   0 ⎦
+  PB rank/witness = 4 1
+  velocity stationarity constraints = (pphi, pnu)
+  transverse preservation equations = ((N - vphi)*(N + vphi)/N, -(N**2*c - vnu*vphi)/N)
+  clock/transport velocity solutions = ((-N, -N*c), (N, N*c))
+  intrinsic PB-null relation count = 2
+  [PASS] Hamilton--Pontryagin energy is derived from p.v-L before restricting the branch
+  [PASS] six-relation PB matrix is antisymmetric
+  [PASS] exact minors give PB rank 4 with a nonzero witness
+  [PASS] velocity stationarity returns pphi=pnu=0
+  [PASS] transverse equations fix the two sign-related clock/transport velocities
+  [PASS] homogeneous embedded lambda=0 preservation closes after multiplier fixing
+  [PASS] ordinary Dirac count is not applied after transverse equations fix null multipliers
+
+==================================================================================================
+PART 4 -- Q=0 FINITE-k POLES, k=0 SECTOR, AND RESIDUE SIGN
+==================================================================================================
+  quadratic L_(X,xi) = -gX*gxi + vX*vxi + 4*c*f1*gX**2/a0**2 - 4*c*f1*vX**2/a0**2
+  kinetic matrix = [[-8*c*f1/a0**2, 1], [1, 0]]
+  inertia (positive, negative, zero) = (1, 1, 0)
+  det O(omega,k) = -(k - omega)**2*(k + omega)**2
+  det O(omega,0) = -omega**4
+  [PASS] quadratic Fourier density is derived by expanding the QW-cM action sector
+  [PASS] action-derived kinetic determinant is -1
+  [PASS] negative determinant gives one positive and one negative kinetic direction
+  [PASS] finite-k operator has two scalar light-cone factors
+  [PASS] k=0 remains a separate omega^4 sector
+  [PASS] unrestricted local Q=0 action is classified DEAD
+
+==================================================================================================
+PART 5 -- SPATIAL Q=0 TANGENCY: k!=0 VERSUS k=0
+==================================================================================================
+  delta(dot Q)(k) = u_M + 8*delta_X*f1*k**2*v/a0**2
+  u_M(k!=0) = -8*delta_X*f1*k**2*v/a0**2
+  u_M(k=0) = 0
+  [PASS] finite-k Q tangency fixes u_M exactly
+  [PASS] k=0 and k!=0 are explicit: u_M vanishes only at k=0
+  [PASS] Q tangency fixes a multiplier rather than adding a constraint
+
+==================================================================================================
+VERDICT
+==================================================================================================
+  unrestricted local Q=0 action : DEAD
+    The nondegenerate (X,xi) block survives both lambda strata and has opposite kinetic signs.
+  embedded Q=0 branch          : OPEN_EMBEDDED_IRREGULAR
+    Exact branch PB matrices were computed, but transverse Euler--Lagrange equations tie/fix
+    null multipliers.  An ordinary first-/second-class count on the intrinsic branch alone is invalid.
+  retarded fixed histories     : OPEN_NONCANONICAL
+  full spatial+ADM count       : NOT_COMPUTED
+    Metric constraints and their distributional PB operator have not been included.
+  computational checks passed: 29/29
