@@ -1,4 +1,4 @@
-# Exact exponential MOND: inverse correction and twelve observational channels
+# Exact exponential MOND: inverse correction and fourteen scoped observational channels
 
 ## Executive result
 
@@ -25,9 +25,11 @@ fresh rerun, a result for the specified exact \(\mu\).
 
 The executable `exact_exponential_mu_2026.py` implements the monotone inverse
 without replacing \(y\) by \(\sqrt{x}\), tests it across 22 decades, derives
-the low-acceleration series, and records twelve distinct observational
-channels. They are not twelve mathematically independent laws: the executable
-dependency graph records which channels are derivatives or pipelines. Most
+the low-acceleration series, and records the first twelve observational
+channels. The later external-field Kepler bundle adds two boundary/orbit
+consequences. They are not fourteen mathematically independent laws: the
+ledger's dependency column records which channels are derivatives or
+pipelines. Most
 rows require the AQUAL field equation, while lensing additionally needs a
 relativistic metric rule. They are not predictions of a closed relativistic
 action.
@@ -60,7 +62,7 @@ g=\sqrt{a_0g_N}+{1\over4}g_N
 \]
 At high acceleration, \(y=x[1+O(e^{-x})]\).
 
-## Twelve scoped channels
+## Fourteen scoped channels
 
 “Exact-kernel” below uses only the implicit force map. “Conditional AQUAL”
 also assumes
@@ -87,8 +89,10 @@ a full field theory.
 | 10 | \(\Delta\gamma_t[\rho_1,\rho_2]\not\equiv0\) generically: pair-minus-sum lensing | Proposed nonlinear functional; it vanishes in Newtonian/infinite-separation/trivial limits and needs a specified geometry | `10 <- nonlinear operator + metric` |
 | 11 | \(\mathbf g_{\rm lens}=-\nabla(\Phi+\Psi)/2=-\nabla\Phi\); \(\hat\alpha_{\rm deep}(b;R)=4\sqrt{GMa_0}c^{-2}\tan^{-1}(\sqrt{R^2-b^2}/b)\) | Physical no-slip metric; \(2\pi\sqrt{GMa_0}/c^2\) is the \(b/R\to0\) limit | `11 <- 1 + no slip` |
 | 12 | \(z_{1\to2}=[\Phi(r_2)-\Phi(r_1)]/c^2=\sqrt{GMa_0}c^{-2}\ln(r_2/r_1)\) | Both radii in the exterior deep pre-EFE region; AQUAL \(\Phi\) must be the physical lapse; no slip is unnecessary | `12 <- 1 + physical lapse` |
+| 13 | \(P\dot\Omega_{\rm node}=\pi[L_e/(1+L_e)]\cos i[1-\alpha^2\cos(2\omega)]/\sqrt{1-e^2}+O(\epsilon_e^2,g_{\rm int}/g_e)\) | Point-source EFD AQUAL; exact in \(e,i,\omega\) only at first order in \(\epsilon_e=L_e/(1+L_e)\); direct unexpanded-orbit calibration required at finite anisotropy | `13 <- 7 + secular orbit average` |
+| 14 | \(T_\parallel/T_\perp=\sqrt{(1+L_e)N_\perp/N_\parallel}\), tending to \(\sqrt{(\pi-2)/(4-\pi)}\) in deep EFD | Boundary-matched harmonic response of a prescribed homogeneous physical sphere; not a universal self-consistent morphology | `14 <- 6 + finite-source boundary data` |
 
-These are distinct observational channels, not twelve independent equations.
+These are distinct observational channels, not fourteen independent equations.
 BTFR, dark
 fraction, mass discrepancy, phantom enclosed mass, phantom surface density,
 and Bosma-type ratios are deliberately excluded because they are
@@ -143,9 +147,10 @@ but the action specification can.
 
 ## Status
 
-**Kernel inverse: CLOSED and executable. Twelve scoped observational channels:
+**Kernel inverse: CLOSED and executable. Fourteen scoped observational channels:
 DEFINED with dependencies. Bankable analytic subset: 1, 2, 3, 4, 6, 7 and
-the regime-limited parts of 11 and 12. Twelve independent Kepler-grade laws:
+the regime-limited parts of 11, 12, 13, and 14. Fourteen independent
+Kepler-grade laws:
 not established. Predictions from one fully closed relativistic action: still
 OPEN.** Channels 5, 8, 9, and 10 require additional boundary data or an actual
 BVP before they yield a number.
