@@ -1,0 +1,122 @@
+{
+  "schema_version": 1,
+  "claim_id": "exact-exponential-aqual-efd-flyby-scattering-2026-09-04",
+  "repository": {
+    "commit": "edff7fddedb24f76af60a1133e49f1110ab38dce",
+    "dirty": true,
+    "note": "Commit is the audited base before this isolated artifact is committed; the hashes below pin every source and result byte in the artifact while unrelated user changes remain outside its scope."
+  },
+  "command": "PYTHONDONTWRITEBYTECODE=1 python3 -m unittest discover -s qwen_claude_field_theory/closure_2026/exact_exponential_aqual_efe_flyby_2026 -p 'test_*.py' -v\nPYTHONDONTWRITEBYTECODE=1 python3 qwen_claude_field_theory/closure_2026/exact_exponential_aqual_efe_flyby_2026/exact_exponential_aqual_efe_flyby_2026.py --output qwen_claude_field_theory/closure_2026/exact_exponential_aqual_efe_flyby_2026/calculation_results.json\nPYTHONDONTWRITEBYTECODE=1 python3 qwen_claude_field_theory/closure_2026/exact_exponential_aqual_efe_flyby_2026/symbolic_impulse_audit.py --output qwen_claude_field_theory/closure_2026/exact_exponential_aqual_efe_flyby_2026/symbolic_impulse_results.json\nPYTHONDONTWRITEBYTECODE=1 python3 qwen_claude_field_theory/closure_2026/exact_exponential_aqual_efe_flyby_2026/independent_flyby_audit.py --output qwen_claude_field_theory/closure_2026/exact_exponential_aqual_efe_flyby_2026/independent_flyby_results.json",
+  "environment": {
+    "software": [
+      "Python 3.9.6",
+      "NumPy 1.26.2",
+      "SciPy 1.11.4",
+      "SymPy 1.14.0"
+    ],
+    "hardware": "Apple arm64; macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "The exponential-AQUAL constant-external-field linearization has the stated coordinate-free point-source first-Born impulse, transversality, principal and generic-azimuth factors, misalignment bound, and small-angle cross-section; its z=0 invariant submanifold has the stated exact Kepler conics, period, hyperbolic deflection, and Rutherford cross-section.",
+    "coefficient_domain": "Exact symbolic expressions over positive real symbols where possible; IEEE-754 binary64 for deterministic improper quadrature, finite-difference Jacobians, and SciPy DOP853 trajectories.",
+    "conventions": "+z is the external-field direction in displayed component formulas; n is a unit incoming direction; b is the Euclidean impact vector with n dot b=0; theta is the trajectory/external-field angle; impact azimuth phi is measured from the impact-plane vector perpendicular to both n and the external field; deflection components use that principal basis; positive Theta denotes the unsigned attractive deflection.",
+    "inputs": [
+      "G(y)=y^2+2(1+y)exp(-y)-2",
+      "mu(y)=1-exp(-y)",
+      "eta samples 0, 0.1, 0.5, 1, 2, 2.47812944, 5, 10",
+      "96 deterministic random 3-D quadrature cases",
+      "24 deterministic random scattering-map Jacobian cases",
+      "147-case curved-path grid: q in {1.1,1.5,1.99}; theta and impact azimuth in {0,15,...,90} degrees",
+      "curved-path Born parameter h=0.002, with h=0.001 repeat at the worst grid geometry",
+      "equatorial exact-control q=1.7, h=0.04"
+    ],
+    "bounds": {
+      "field_regime": "eta>0, mu_e>0, and max(g_internal/g_external)<<1 over the whole trajectory; eta=0 is retained only as a one-sided finite-ratio limit",
+      "generic_scattering": "first Born order with h=C/(b v_inf^2)<<1 and small deflection for the differential cross-section",
+      "equatorial_scattering": "exact at arbitrary deflection within the linearized EFD Green potential, provided the whole orbit, especially periapsis, stays EFD",
+      "source": "point-source Green function or encounters outside the finite source size",
+      "external_field": "approximately constant magnitude and direction over the encounter",
+      "curved_solver": "dimensionless DOP853 with rtol=3e-12, atol=3e-13, default endpoints at 30000 impact parameters; equatorial control endpoints at 50000 impact parameters",
+      "quadrature": "SciPy improper quadrature epsabs=2e-12, epsrel=2e-12, limit=300"
+    },
+    "non_claims": [
+      "No relativistic completion, PPN result, gravitational degree-of-freedom count, Dirac closure, Ward identity, FLRW result, or stability certificate",
+      "No universal theorem for post-Born error from the finite 147-case grid",
+      "No nonlinear-AQUAL error bound and no certification of a named astronomical encounter",
+      "No global novelty claim; the EFD Green potential, static force-axis anisotropy, and equatorial Kepler mathematics are prior structures",
+      "No ellipticity or absolute impulse claim at eta=0",
+      "No generic three-dimensional large-angle scattering formula"
+    ]
+  },
+  "randomness": {
+    "used": true,
+    "generator": "NumPy Generator PCG64",
+    "seed": 20260904,
+    "note": "The Jacobian audit uses seed 20260905 and the joint-regime examples use seed 20260906."
+  },
+  "run": {
+    "started_at": "2026-09-04T04:34:42Z",
+    "runtime_seconds": null,
+    "exit_status": 0
+  },
+  "sources": [
+    {
+      "path": "qwen_claude_field_theory/closure_2026/exact_exponential_aqual_efe_flyby_2026/exact_exponential_aqual_efe_flyby_2026.py",
+      "sha256": "20aff7b253755fd2d4dda5dba103ea986adeaea44929de10d46e2834eb0e88a0"
+    },
+    {
+      "path": "qwen_claude_field_theory/closure_2026/exact_exponential_aqual_efe_flyby_2026/independent_flyby_audit.py",
+      "sha256": "5304e897ec9b8aaa4ca55163d2bb4271137cf2979b8791d78c53b8baccdba49e"
+    },
+    {
+      "path": "qwen_claude_field_theory/closure_2026/exact_exponential_aqual_efe_flyby_2026/symbolic_impulse_audit.py",
+      "sha256": "421665087c5af0da92e4f0a9f784a9204e7e3c394191b704e9d63c8b739a2564"
+    },
+    {
+      "path": "qwen_claude_field_theory/closure_2026/exact_exponential_aqual_efe_flyby_2026/test_exact_exponential_aqual_efe_flyby_2026.py",
+      "sha256": "096d20f629dbdfaec00cb82647cb06af7b5ee12bdaf94dc8a7b10b0887a144a7"
+    },
+    {
+      "path": "qwen_claude_field_theory/closure_2026/exact_exponential_aqual_efe_flyby_2026/REPORT.md",
+      "sha256": "e45c45b91317363d088448095fb109fad820cc1c6e065dfa489a4632cb41237e"
+    },
+    {
+      "path": "qwen_claude_field_theory/closure_2026/exact_exponential_aqual_efe_flyby_2026/LITERATURE_SCOPE.md",
+      "sha256": "c2e7303f7716c5e8e2f42891f47bdfa9abda6ed499d32bad7ea6027c4ebad454"
+    }
+  ],
+  "outputs": [
+    {
+      "path": "qwen_claude_field_theory/closure_2026/exact_exponential_aqual_efe_flyby_2026/calculation_results.json",
+      "sha256": "deef8051675936372e8eab2bedf6c2aaa54b11b6639fda89e143e439c682bc6b"
+    },
+    {
+      "path": "qwen_claude_field_theory/closure_2026/exact_exponential_aqual_efe_flyby_2026/symbolic_impulse_results.json",
+      "sha256": "636301ba693e94837da0bc558fa4a7bd4ff13928bd5d25177c3d153eca90cbf1"
+    },
+    {
+      "path": "qwen_claude_field_theory/closure_2026/exact_exponential_aqual_efe_flyby_2026/independent_flyby_results.json",
+      "sha256": "be2e8e72f2c682cac8bec0fc8eafe983ba02202d5091911d37b53b965010dcc7"
+    }
+  ],
+  "checks": [
+    "Strict test-first RED: 14 independent behavior tests failed before the implementation module existed",
+    "14 independent regression and certificate tests pass after implementation",
+    "18 symbolic identities for the primitive, line integral, Schur eigensystem, transversality, extrema, scattering Jacobian, conic, and Rutherford law",
+    "96 deterministic random 3-D direct improper quadratures",
+    "four mutation controls: omitted displacement, omitted Schur term, omitted sqrt(a), and wrong sign",
+    "24 finite-difference scattering-map Jacobians",
+    "147 generic curved-path integrations plus a halved-h repeat at the worst grid geometry",
+    "independent exact equatorial hyperbola integration",
+    "energy and axial-angular-momentum conservation monitors",
+    "strict JSON serialization and manifest SHA-256 validation"
+  ],
+  "result": "PASS_NONRELATIVISTIC_EFD_SCATTERING_CALCULATION within the recorded EFD, point-source, constant-external-field, and Born/small-angle bounds; the equatorial Kepler sector is exact within the EFD potential.",
+  "residual_risks": [
+    "The numerical audit independently codes but necessarily shares the same linearized EFD physical potential.",
+    "The post-Born grid is bounded evidence, not a uniform error theorem over orientation or coupling.",
+    "Finite integration endpoints leave a small controlled truncation error in curved-path checks.",
+    "Generic spatial anisotropic-Kepler and MOND EFD literature materially limit novelty.",
+    "The underlying exact unscreened AQUAL relativistic candidate remains excluded by separate regular-center and Solar-System gates."
+  ]
+}

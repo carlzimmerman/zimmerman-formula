@@ -1,0 +1,40 @@
+{
+  "checks": {
+    "anisotropic_rutherford_cross_section": true,
+    "azimuth_maximizer": true,
+    "azimuth_maximum": true,
+    "azimuthal_impact_eigenvalue": true,
+    "born_map_jacobian": true,
+    "equatorial_conic_solves_binet": true,
+    "equatorial_potential_is_kepler": true,
+    "equatorial_vertical_force_vanishes": true,
+    "even_line_integral": true,
+    "exact_equatorial_rutherford": true,
+    "hyperbolic_deflection_identity": true,
+    "impulse_transversality": true,
+    "misalignment_maximizer": true,
+    "misalignment_sine_bound": true,
+    "odd_line_integral_vanishes": true,
+    "polar_impact_eigenvalue": true,
+    "primitive_yields_exponential_mu": true,
+    "schur_matrix_annihilates_trajectory": true
+  },
+  "expressions": {
+    "anisotropic_rutherford_cross_section": "4*C**2/(v**4*(a*u_2**2 + u_1**2)**2)",
+    "azimuth_maximum": "(lambda_hi + lambda_lo)/(2*sqrt(lambda_hi)*sqrt(lambda_lo))",
+    "azimuth_stationary_weight": "lambda_lo/(lambda_hi + lambda_lo)",
+    "born_map_jacobian": "-ell**2*lambda_hi*lambda_lo/(b_x**2*lambda_hi + b_y**2*lambda_lo)**2",
+    "exact_equatorial_rutherford": "C**2/(4*q*v**4*sin(Theta/2)**4)",
+    "impact_eigenvalues": "q, q/(q*sin(theta)**2 + cos(theta)**2)",
+    "line_integral": "2/(D*sqrt(a))",
+    "maximum_misalignment_sine": "(q - 1)/(q + 1)",
+    "mu": "1 - exp(-y)",
+    "trajectory_anisotropy": "q*sin(theta)**2 + cos(theta)**2"
+  },
+  "schema_version": 1,
+  "scope": {
+    "equatorial_plane": "exact dynamics within the linearized EFD potential",
+    "generic_3d": "exact line integral of the first-Born straight trajectory"
+  },
+  "status": "PASS_SYMBOLIC_DERIVATION"
+}
