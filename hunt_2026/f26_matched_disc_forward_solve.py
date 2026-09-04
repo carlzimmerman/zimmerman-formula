@@ -25,8 +25,9 @@ sit at e_N ~ 0.01-0.03 and the data radii have g_bar/a_0 > 0.03 almost everywher
 
 Every check can fail.  Cached to f26_forward_cache.npz (delete to recompute).
 """
-import os, sys, math, time
+import os, sys, math, time, warnings
 import numpy as np
+warnings.filterwarnings("ignore", category=RuntimeWarning)      # numpy prints absolute paths in its warnings; keep them out of the .out
 from scipy.special import j0, j1
 from scipy.optimize import brentq
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
