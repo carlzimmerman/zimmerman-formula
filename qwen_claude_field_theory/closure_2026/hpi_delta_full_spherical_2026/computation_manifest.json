@@ -1,0 +1,85 @@
+{
+  "schema_version": 1,
+  "claim_id": "hpi-delta-full-spherical-center-audit-2026-09-04",
+  "repository": {
+    "commit": "edff7fddedb24f76af60a1133e49f1110ab38dce",
+    "dirty": true
+  },
+  "command": "PYTHONDONTWRITEBYTECODE=1 python3 -m unittest -v test_hpi_delta_full_spherical_2026.py && PYTHONDONTWRITEBYTECODE=1 python3 hpi_delta_full_spherical_2026.py",
+  "environment": {
+    "software": [
+      "Python 3.9.6",
+      "SymPy 1.14.0"
+    ],
+    "hardware": "macOS 26.5.2 arm64"
+  },
+  "mathematics": {
+    "assertion_tested": "For the displayed HPI-Delta action, retaining and varying the full static spherical lapse, radial shift, two spatial metric functions, and multiplier derives an auxiliary-flat isolated branch; on that branch a classical positive-density center requires 4*pi*G*(rho_0+3*p_c)=Lambda, while the attractive Puiseux branch has R4~5*c/sqrt(r) and Kretschmann~43*c^2/r.",
+    "coefficient_domain": "Exact symbolic real arithmetic; N>0, A>0, R>0 for r>0, ell_0>0, G>0, c>0 on the attractive one-sided radial branch.",
+    "conventions": "ADM signature (-,+,+,+), K_ij=(dot(h)_ij-L_beta h_ij)/(2N), T=t, q=D^2(lambda), the speed of light is set to one in the relativistic equations, and matter source normalizations E_N/(A R^2)=16*pi*G*rho and E_A/(2N)=-8*pi*G*p_r*R^2.",
+    "inputs": [
+      "the committed HPI-Delta configuration action",
+      "unitary-clock spherical ADM ansatz with N, beta, A, R, and lambda retained",
+      "F_exp(y)=2*((1+y)*exp(-y)-1)",
+      "regular-center and asymptotically static isolated boundary conditions"
+    ],
+    "bounds": {
+      "symmetry": "static spherical sector; time-dependent spherical extrinsic-curvature convention stated but not fully varied",
+      "matter": "zero radial momentum, continuous central rho and pressure, p_r(0)=p_t(0)",
+      "center": "exact Taylor jets sufficient through the first finite smooth and Puiseux coefficients",
+      "boundary": "no central lambda point charge, finite auxiliary action, asymptotically static isolated branch"
+    },
+    "non_claims": [
+      "No full nonlinear functional Dirac theorem.",
+      "No boosted PPN coefficients or global stability result.",
+      "No nonspherical external-field theorem.",
+      "No exclusion of a cosmological constant-mean-curvature branch.",
+      "No global literature-novelty claim and no completed relativistic MOND theory."
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-09-04T04:46:39Z",
+    "runtime_seconds": 10.667,
+    "exit_status": 0
+  },
+  "outputs": [
+    {
+      "path": "REPORT.md",
+      "sha256": "0933181f7c6d3a2b6f39933415ed9166ab59374b7faa2cd7bbb8d201972c98e7"
+    },
+    {
+      "path": "RUN_RECORD.md",
+      "sha256": "08e1f8d03387f3d32de6e32e3d5a608f0802ce63e7d6b23ee9449ad3aeab7a6e"
+    },
+    {
+      "path": "hpi_delta_full_spherical_2026.py",
+      "sha256": "9a882b41fd5714cf03e31d0b17c3faa775a2d5e7efbefe8377ab390cbfca1980"
+    },
+    {
+      "path": "test_hpi_delta_full_spherical_2026.py",
+      "sha256": "0196b925f659a8a49e3ea94affb4c9d4074ec15b09d604d5d60649fc1113eaef"
+    }
+  ],
+  "checks": [
+    "direct higher-Euler variation reproduces the factored lambda and radial-shift equations",
+    "direct N, A, and R variations reproduce three independently stated geometric equations, while all full barred-kinetic metric variations vanish only after the derived auxiliary-flat branch is substituted",
+    "raw curvature action differs from the first-order action only by the derived boundary term",
+    "radial-diffeomorphism identity vanishes in both metric and barred-kinetic sectors",
+    "direct Christoffel/Riemann engine produces the Ricci and Kretschmann center coefficients",
+    "Minkowski, Schwarzschild, unit-three-sphere, and static-de-Sitter controls pass",
+    "GR, positive-mu(0), wrong-laplacian, wrong-b-square, premature-shift, and singular-flux mutations are live",
+    "11/11 adversarial unit tests and 13/13 executable certificate predicates pass"
+  ],
+  "result": "HPI-Delta is DEAD_UNDER_ISOLATED_STATIC_CLASSICAL_REGULAR_CENTER_REQUIREMENTS.",
+  "residual_risks": [
+    "The covariant clock completion still lacks a full nonlinear Dirac proof.",
+    "A cosmological CMC or nonspherical external-field branch is outside the tested family.",
+    "A singular central auxiliary charge or nonclassical weak metric leaves the stated regularity class.",
+    "The symbolic computation verifies finite center jets; it is not a global boundary-value existence proof."
+  ]
+}
