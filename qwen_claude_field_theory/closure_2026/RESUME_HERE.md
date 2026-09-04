@@ -119,3 +119,16 @@ That, not Cassini, is now the wall.** No choice of `mu_n` touches it.
   only class that screens the FORCE.
 - **Caustics errored mid-response**; its synthesis row is from a PARTIAL and is not reliable.
 - `mu_n` needs: a relativistic host, gate 4 (health) is UNDETERMINED for it, and gate 5 fails.
+
+## 2026-09-04 (night) — for the field-theory lead: read these two files before the next covariant attempt
+- `hunt_2026/SUPPORT_BRIEF_FOR_ASTRA_2026-09-04.md` and `..._ADDENDUM.md`.
+- The one-line state above ("which field carries the halo cannot move the Cassini quadrupole; only the interpolation
+  function can") now has its other half: the interpolation function cannot either. With a_0 AND the disc M/L profiled,
+  every Cassini-safe member of the mu_n family loses to the RAR kernel on SPARC in >= 99.9% of paired galaxy resamples
+  (f25), and the RAR kernel itself gives 6.2-8.8x the Park 2026 ceiling in QUMOND and exact AQUAL (f23, f24). No
+  one-argument static law mu(g/a_0) passes both. A second ACCELERATION argument is already excluded on the ledger (u02).
+  What separates the Sun at 0.1 pc from a galaxy at 10 kpc at the SAME acceleration is a LENGTH: the static limit must
+  carry a coherence length xi, 0.1 pc << xi <~ 200 pc, below which the phantom switches off. Consequences: Cassini passes,
+  globular clusters Newtonian (3 of 4 outer-halo rows are, f27), and Gaia DR4 wide binaries gamma_v = 1.00 -- the
+  opposite of the pre-registered 1.16-1.23. The localised (Helmholtz-filter) version is closed as a local theory
+  (Theorem 8); a non-localisable or healing-length (medium) version has not been written. That is the open door.
