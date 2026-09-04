@@ -1,0 +1,115 @@
+{
+  "schema_version": 1,
+  "claim_id": "dw-localized-action-stratified-audit-2026-09-04",
+  "repository": {
+    "commit": "edff7fddedb24f76af60a1133e49f1110ab38dce",
+    "dirty": true
+  },
+  "command": "From qwen_claude_field_theory/closure_2026/fried_chicken_2026, run separately: PYTHONDONTWRITEBYTECODE=1 python3 test_dw_localized_repairs_2026.py ; PYTHONDONTWRITEBYTECODE=1 python3 dw_localized_noether_identity_2026.py ; PYTHONDONTWRITEBYTECODE=1 python3 dw_localized_dirac_count_2026.py",
+  "environment": {
+    "software": [
+      "Python 3.9.6",
+      "SymPy 1.14.0"
+    ],
+    "hardware": "Darwin arm64"
+  },
+  "mathematics": {
+    "assertion_tested": "For the displayed localized DW action: verify the inverse-metric curvature variation and off-shell Ward identity; derive exact homogeneous Hessian strata and the generic Q!=0 Poisson matrix; and derive the fixed-background scalar poles, residue signature, zero-mode symbols, and retarded-branch quadratic-energy sign.",
+    "coefficient_domain": "Exact symbolic expressions over rational functions of the declared real/nonzero/positive parameters, plus symbolic f and its derivatives; no floating-point rank decisions.",
+    "conventions": "Metric signature (-,+,+,+), kappa=16*pi*G, u_a=nabla_a phi, Z=4*nabla_a X*nabla^a X/a0^2, Q=M+f(Z), and E_mn=(1/sqrt(-g))*delta S/delta g^{mn}.",
+    "inputs": [
+      {
+        "path": "dw_localized_noether_identity_2026.py",
+        "sha256": "74814f71e9e78a4315b4d14c8dd27c631b9ffa9350270fe58d75f1e1bb031cd9"
+      },
+      {
+        "path": "dw_localized_dirac_count_2026.py",
+        "sha256": "30d7aa6e94513c385b41742306719a324042e4936d3bd1a792d2689795faf1b6"
+      },
+      {
+        "path": "test_dw_localized_repairs_2026.py",
+        "sha256": "fe08df4b579d7a96b929a3a8cd0fb2a2711620ab081eef514bdff3a7835989e4"
+      },
+      {
+        "path": "dw_tensor_toolkit_2026.py",
+        "sha256": "76c08ef039674b004d5178d60a72b2709603edca03d874bb3aa08be8d7cd564f"
+      }
+    ],
+    "bounds": {
+      "ward_identity": "Component-wise exact test on diagonal diag(-N^2,A^2,C^2,D^2) with arbitrary (t,x) dependence, all seven scalar fields arbitrary, and both cubic and undefined f(Z).",
+      "dirac": "Homogeneous frozen-metric auxiliary reduction only; generic Q!=0 chain is complete within that reduction, while Q=0 is limited to exact Lagrangian Hessian strata.",
+      "pole_audit": "Quadratic fixed-background localization and clock/transport symbols, with k!=0 and k=0 kept separate."
+    },
+    "non_claims": [
+      "No full ADM gravitational degree-of-freedom count is claimed.",
+      "No completed Dirac chain on Q=0 is claimed.",
+      "No canonical equivalence between the unrestricted local action and a metric-only retarded nonlocal prescription is claimed.",
+      "No PPN, FLRW, MOND interpolation, or all-requirements certification follows from this audit alone."
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-09-04T00:34:55-04:00",
+    "runtime_seconds": 64.8,
+    "exit_status": 0,
+    "individual_runs": [
+      {
+        "command": "PYTHONDONTWRITEBYTECODE=1 python3 test_dw_localized_repairs_2026.py",
+        "exit_status": 0,
+        "result": "7/7 unittest cases passed"
+      },
+      {
+        "command": "PYTHONDONTWRITEBYTECODE=1 python3 dw_localized_noether_identity_2026.py",
+        "exit_status": 0,
+        "result": "26/26 internal checks passed"
+      },
+      {
+        "command": "PYTHONDONTWRITEBYTECODE=1 python3 dw_localized_dirac_count_2026.py",
+        "exit_status": 0,
+        "result": "20/20 internal checks passed"
+      }
+    ]
+  },
+  "outputs": [
+    {
+      "path": "test_dw_localized_repairs_2026.out",
+      "sha256": "37566f4f58c9c195d096b47a8d88ed4b0e56dbf92932e1a4a500d39e8f67fbd1"
+    },
+    {
+      "path": "dw_localized_noether_identity_2026.out",
+      "sha256": "d5a65631075788888a38e8733e7db4ca287bbc8c9436758235baf402e7780289"
+    },
+    {
+      "path": "dw_localized_dirac_count_2026.out",
+      "sha256": "375fae77361620c4bdccdd138af794ff4222fcc6efb0645c83237a714221f463"
+    },
+    {
+      "path": "dw_localized_pre_repair_failures_2026.out",
+      "sha256": "ec2039f470e05340c0fc4757020111f296c7a2ee5c52791b061ecd43c14e94f8"
+    },
+    {
+      "path": "DW_LOCALIZED_ACTION_AUDIT_REPAIR_2026.md",
+      "sha256": "610faa7deb23fe51205765eb5534cc44cdff8480ed3d66dfe9876c103b44fb59"
+    }
+  ],
+  "checks": [
+    "Independent reduced Euler-Lagrange metric projection detects the curvature derivative-block sign.",
+    "Independent homogeneous action calculation fixes a=-4/kappa and retarded energy +2/kappa at f'(0)=1/2.",
+    "Exact maximal minors give Hessian ranks 4, 3, and 2 on the stated Q/lambda strata.",
+    "Poisson matrix is calculated from four constraints; its determinant is 16*Q^2*pnu^4 and 16*Q^6 on shell.",
+    "Finite-k determinant is -(omega^2-k^2)^2 with opposite residues; k=0 determinant is -omega^4.",
+    "Clock/transport determinant is -4*omega^4, and exact past-source witnesses are nonzero at k=1 and k=0.",
+    "Mutation controls break the Ward identity when covariance, a metric-equation sign, or clock-response stress is removed."
+  ],
+  "result": "The local-action Ward identity passes within its stated symbolic ansatz. The unrestricted local representative is DEAD because of an extra opposite-residue scalar channel. The retarded fixed-history reading is OPEN_NONCANONICAL. The Q=0 branch is OPEN pending a restarted full spatial+metric Dirac chain.",
+  "residual_risks": [
+    "The Ward computation is a strong structured symbolic test, not a coordinate-free computer proof for every metric ansatz.",
+    "The generic auxiliary count freezes the metric and cannot determine N_grav.",
+    "The Q=0 Hessian ranks do not determine its final first/second-class constraint split.",
+    "A causal fixed-history theory needs its own variational and phase-space formulation before stability or degree-of-freedom claims are valid."
+  ]
+}

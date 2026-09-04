@@ -1,0 +1,57 @@
+PRE-REPAIR FAILURE RECORD — localized Deffayet-Woodard audit
+Recorded: 2026-09-04
+Repository HEAD at reproduction: edff7fddedb24f76af60a1133e49f1110ab38dce (dirty)
+
+This file records the failures reproduced before changing either audit script.
+It is intentionally a concise failure transcript, not post-repair output.
+
+COMMAND 1
+  PYTHONDONTWRITEBYTECODE=1 python3 dw_localized_noether_identity_2026.py
+
+EXIT STATUS
+  1
+
+OBSERVED RESULT
+  checks passed: 18/26
+
+FAILED CHECKS
+  metric variation wrt N: reduced EL != sqrt(-g) E_00 d g^00/dN
+  metric variation wrt A: reduced EL != sqrt(-g) E_11 d g^11/dA
+  metric variation wrt C: reduced EL != sqrt(-g) E_22 d g^22/dC
+  metric variation wrt D: reduced EL != sqrt(-g) E_33 d g^33/dD
+  Noether identity component nu=t did not vanish for cubic f(Z)
+  Noether identity component nu=x did not vanish for cubic f(Z)
+  Noether identity component nu=t did not vanish for undefined f(Z)
+  Noether identity component nu=x did not vanish for undefined f(Z)
+
+ROOT CAUSE LATER CONFIRMED
+  The derivative contribution from varying integral sqrt(-g) V^{ab} R_ab
+  with respect to the inverse metric had been inserted with the opposite sign.
+
+COMMAND 2
+  PYTHONDONTWRITEBYTECODE=1 python3 dw_localized_dirac_count_2026.py
+
+EXIT STATUS
+  1
+
+OBSERVED EXCEPTION
+  TypeError: Invalid NaN comparison
+  raised while SymPy Matrix.rank(simplify=True) attempted a symbolic pivot.
+
+ROOT CAUSES LATER CONFIRMED
+  The audit mixed the generic Q != 0 Legendre chart with the singular Q = 0
+  stratum, including divisions by Q before substituting Q=0.  It also relied
+  on a heuristic symbolic rank call instead of exact minors.  Separately, its
+  reported equal-retarded energy coefficient had the wrong sign.
+
+REGRESSION TEST — RED PHASE
+  PYTHONDONTWRITEBYTECODE=1 python3 test_dw_localized_repairs_2026.py
+
+INITIAL EXIT STATUS
+  1
+
+INITIAL OBSERVED FAILURES
+  The independent reduced metric variation rejected the old curvature sign.
+  Import/probe of the old Dirac script crashed before returning its energy
+  coefficient.  Additional exact-stratum, bracket, pole, and transport tests
+  remained red until the Dirac audit was replaced by stratified calculations.

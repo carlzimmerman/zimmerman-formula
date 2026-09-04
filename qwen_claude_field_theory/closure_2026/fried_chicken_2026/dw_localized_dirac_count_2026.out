@@ -1,0 +1,74 @@
+
+================================================================================================
+PART 1 -- EXACT HESSIAN MINORS AND LEGENDRE STRATA (homogeneous, metric frozen)
+================================================================================================
+  generic maximal minor = Q**2/N**4
+  Q=0, lambda!=0 rank/witness = 3 2*lambda/N**3
+  Q=0, lambda=0  rank/witness = 2 -1/N**2
+  [PASS] Q!=0 rank is obtained from a nonzero 4x4 minor
+  [PASS] generic Hessian determinant is Q^2/N^4
+  [PASS] Q=0, lambda!=0 has rank 3 from exact minors
+  [PASS] Q=0, lambda=0 has rank 2 from exact minors
+  [PASS] Q=0 witnesses are 2*lambda/N^3 and -1/N^2
+
+================================================================================================
+PART 2 -- GENERIC Q!=0 DIRAC CHAIN AND ACTUAL POISSON MATRIX
+================================================================================================
+  primary constraints = (plambda, pM)
+  secondary constraints (before Q abbreviation) = (-(M - pnu + f(-4*pxi**2/a0**2))*(M + pnu + f(-4*pxi**2/a0**2)), -M**3*c - 3*M**2*c*f(-4*pxi**2/a0**2) - 3*M*c*f(-4*pxi**2/a0**2)**2 + M*pnu*pphi - c*f(-4*pxi**2/a0**2)**3 + 2*lambda*pnu**2 + pnu*pphi*f(-4*pxi**2/a0**2))
+  denominator-free constraints (Q abbreviation) = (plambda, pM, -(Q - pnu)*(Q + pnu), -Q**3*c + Q*pnu*pphi + 2*lambda*pnu**2)
+  Poisson matrix =
+⎡                                             2     ⎤
+⎢  0              0            0        -2⋅pnu      ⎥
+⎢                                                   ⎥
+⎢                                     2             ⎥
+⎢  0              0           2⋅Q  3⋅Q ⋅c - pnu⋅pphi⎥
+⎢                                                   ⎥
+⎢  0            -2⋅Q           0           0        ⎥
+⎢                                                   ⎥
+⎢     2       2                                     ⎥
+⎣2⋅pnu   - 3⋅Q ⋅c + pnu⋅pphi   0           0        ⎦
+  det(PB) = 16*Q**2*pnu**4
+  det(PB) reduced by pnu^2-Q^2 = 16*Q**6
+  formal off-shell rank after setting Q=0 in the INVALID generic chart = 2
+  [PASS] two primaries generate two independent secondaries
+  [PASS] secondary preservation by Hc adds no tertiary before multiplier equations
+  [PASS] PB matrix is antisymmetric
+  [PASS] generic PB rank is derived as 4
+  [PASS] on-shell PB determinant is 16 Q^6, not a supplied rank
+  [PASS] generic frozen-metric homogeneous auxiliary count is 4 DOF   ((12 phase dimensions - 4 second-class)/2 = 4)
+  [PASS] generic Q!=0 chart is explicitly forbidden at Q=0
+
+================================================================================================
+PART 3 -- k!=0 POLES, k=0 MODES, RESIDUES, AND RETARDED ENERGY
+================================================================================================
+  localization kinetic matrix = [[-8*f1/kappa, 1], [1, 0]]
+  det K = -1
+  finite-k det O = -(k - omega)**2*(k + omega)**2
+  k=0 det O = -omega**4
+  f'(0)=1/2: a = -4/kappa ; retarded-branch energy coefficient -a/2 = 2/kappa
+  [PASS] det K=-1 gives opposite-sign kinetic residues
+  [PASS] k!=0 has two scalar light-cone channels
+  [PASS] k=0 is a separate omega^4 zero-mode sector
+  [PASS] correct action sign gives a=-4/kappa at f'(0)=1/2
+  [PASS] equal-retarded particular branch has POSITIVE +2/kappa coefficient
+  clock+transport det O = -4*omega**4
+  [PASS] clock+transport determinant is -4 omega^4 (zero-speed modes, still canonical DOF)
+  retarded past-source data at k=1 and k=0 = (22*cos(3) - 12*sin(3) - 12*sin(4) - 22*cos(4), 22*sin(4) - 22*sin(3) - 12*cos(4) - 12*cos(3), 7/60, 1/30)
+  [PASS] finite-k retarded data depend on the past source
+  [PASS] k=0 retarded data also depend on the past source
+
+================================================================================================
+VERDICT -- THREE DISTINCT OBJECTS, THREE DISTINCT STATUSES
+================================================================================================
+  unrestricted local representative : DEAD
+    Reason: the nondegenerate (X,xi) block has two finite-k scalar channels with opposite residues.
+  retarded fixed-history reading     : OPEN_NONCANONICAL
+    Reason: history conditions remove free auxiliary data only as a solution prescription; this
+            script derives no Dirac constraint implementing that prescription.
+  Q=0 MOND Legendre stratum          : OPEN
+    Reason: rank bifurcates (3 for lambda!=0, 2 for lambda=0); the full spatial+metric Dirac
+            chain must be restarted there and is not inferred by a Q->0 limit.
+  Full ADM N_grav count              : NOT COMPUTED HERE
+    The exact generic result is only the homogeneous frozen-metric auxiliary reduction.
+  computational checks passed: 20/20

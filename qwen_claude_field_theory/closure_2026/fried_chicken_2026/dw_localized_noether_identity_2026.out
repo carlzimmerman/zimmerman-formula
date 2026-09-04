@@ -1,0 +1,78 @@
+
+================================================================================================
+PART 1 -- build the localized DW action, covariant E_{mu nu}, auxiliary E_A  (generic cubic f)
+================================================================================================
+  built in 1.7s
+
+================================================================================================
+PART 2 -- VARIATION CROSS-CHECK: direct Euler-Lagrange of the reduced density vs covariant formulas
+================================================================================================
+  [PASS] metric variation wrt N: reduced EL == sqrt-g E_00 dg^00/dq
+  [PASS] metric variation wrt A: reduced EL == sqrt-g E_11 dg^11/dq
+  [PASS] metric variation wrt C: reduced EL == sqrt-g E_22 dg^22/dq
+  [PASS] metric variation wrt D: reduced EL == sqrt-g E_33 dg^33/dq
+  [PASS] auxiliary/matter variation wrt X: reduced EL == sqrt-g E_A
+  [PASS] auxiliary/matter variation wrt xi: reduced EL == sqrt-g E_A
+  [PASS] auxiliary/matter variation wrt phi: reduced EL == sqrt-g E_A
+  [PASS] auxiliary/matter variation wrt lam: reduced EL == sqrt-g E_A
+  [PASS] auxiliary/matter variation wrt M: reduced EL == sqrt-g E_A
+  [PASS] auxiliary/matter variation wrt nu: reduced EL == sqrt-g E_A
+  [PASS] auxiliary/matter variation wrt psi: reduced EL == sqrt-g E_A
+  (4.3s)
+
+================================================================================================
+PART 3 -- THE NOETHER IDENTITY  2 nabla^mu E_{mu nu} + sum_A E_A d_nu Phi_A == 0  OFF-SHELL
+================================================================================================
+  [PASS] identity component nu=t vanishes identically (off-shell, cubic f)
+  [PASS] identity component nu=x vanishes identically (off-shell, cubic f)
+  [PASS] 2 nabla^mu E_{mu t} alone is NOT identically zero off-shell (teeth)
+  [PASS] 2 nabla^mu E_{mu x} alone is NOT identically zero off-shell (teeth)
+  (21.1s)
+  [PASS] matter sector alone: nabla^mu T_{mu t} == E_psi d_nu psi  (conservation <=> matter EOM)
+  [PASS] matter sector alone: nabla^mu T_{mu x} == E_psi d_nu psi  (conservation <=> matter EOM)
+
+================================================================================================
+PART 4 -- MUTATION CONTROLS (each must BREAK the identity)
+================================================================================================
+  [PASS] M1 non-covariant transport term (u^t d_t nu without the metric) BREAKS the identity
+  [PASS] M2 sign flip of the a0^2 M g_munu term in E_tt BREAKS the identity
+  [PASS] M3 DROPPING the clock-response (mimetic multiplier lambda u_mu u_nu) stress BREAKS the identity   (=> DW's causal equations MUST carry the clock-response stress to be conserved)
+  (46.9s)
+
+================================================================================================
+PART 5 -- same identity with an UNDEFINED f(Z) (no polynomial assumption)
+================================================================================================
+  [PASS] identity component nu=t vanishes identically for undefined f(Z)
+  [PASS] identity component nu=x vanishes identically for undefined f(Z)
+  (62.1s)
+
+================================================================================================
+PART 6 -- retarded vs advanced is a choice of SOLUTION of a hyperbolic local equation, not of the equation
+================================================================================================
+  [PASS] E_X is a wave equation for the response xi: coeff(xi_tt) = g^tt, coeff(xi_xx) = g^xx (hyperbolic)   (-1/N(t, x)**2, A(t, x)**(-2))
+  [PASS] E_xi is a wave equation for X: coeff(X_tt) = g^tt
+  [PASS] 1+1 Duhamel ret solution satisfies the SAME local equation Box X = J   (residual=0)
+  [PASS] 1+1 Duhamel adv solution satisfies the SAME local equation Box X = J   (residual=0)
+  (62.4s)
+
+================================================================================================
+VERDICT
+================================================================================================
+
+      [SOLID]  The localized DW-2026 action is a diffeomorphism-invariant LOCAL functional of (g, X, xi, phi,
+               lambda, M, nu, psi).  Its Noether identity  2 nabla^mu E_munu + sum_A E_A d_nu Phi_A == 0  holds
+               OFF-SHELL, verified component-wise on a 4-function (t,x) metric with all seven fields arbitrary,
+               for generic cubic f and for undefined f.  Analytic E_munu cross-checked against direct variation.
+      [SOLID]  Corollary for THIS SYNTHESIZED LOCAL ACTION: on ANY solution of its auxiliary equations --
+               retarded, advanced, or any other -- nabla^mu E^grav_munu = 0 identically, so the metric equation
+               E^grav_munu = T_munu/2 is consistent, and nabla^mu T_munu = E_psi d_nu psi vanishes on the matter
+               shell.  Baryons couple to g only.  => FRIED-CHICKEN req 5 (matter conservation as a consequence of
+               the action) = PASS for this local representative.  The identity is boundary-condition blind.
+               This does NOT prove that the local theory with independent auxiliaries is canonically equivalent
+               to DW's metric-only retarded functional; that is a separate nonlocal prescription.
+      [SOLID]  Mutation M3: conservation REQUIRES the clock-response stress lambda u_mu u_nu (the mimetic
+               multiplier).  DW 2026 never writes the synthesized model's field equations; DEW 2014 eq (17) does
+               include the analogous clock-response (psi and the u u u u R normalization term).  Any implementation
+               that varies only the explicit metric dependence and treats phi[g] as inert is NOT conserved.
+      SCOPE:   this settles CONSISTENCY (req 5), not degree-of-freedom content (req 2) -- see the Dirac script.
+      checks passed: 26/26   runtime 62.4s
