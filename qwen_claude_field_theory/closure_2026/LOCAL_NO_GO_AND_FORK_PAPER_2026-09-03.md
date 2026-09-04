@@ -18,7 +18,7 @@ We consider the phenomenological framework in which the Milgromian acceleration 
 
 **The two functions that must not be conflated.** The phenomenological algebraic RAR fit used in the galaxy analyses is $\nu_{\rm RAR}(y_N)=[1-e^{-\sqrt{y_N}}]^{-1}$, $y_N=g_{\rm bar}/a_0$. Separately, the relativistic-action target is exact AQUAL $\mu_{\exp}(x)=1-e^{-x}$, $x=g/a_0$. In spherical symmetry its boost $\nu_{\rm AQUAL}$ is defined implicitly by $y_N=x\mu_{\exp}(x)$ and $x=\nu_{\rm AQUAL}(y_N)y_N$, hence
 $$\nu_{\rm AQUAL}(y_N)\left[1-e^{-\nu_{\rm AQUAL}(y_N)y_N}\right]=1.$$
-No exact identity between $\nu_{\rm RAR}$ and $\nu_{\rm AQUAL}$ is claimed; they share the deep-MOND and Newtonian limiting behavior but differ at finite acceleration.
+No exact identity between $\nu_{\rm RAR}$ and $\nu_{\rm AQUAL}$ is claimed; they share the deep-MOND and Newtonian limiting behavior but differ at finite acceleration. The difference is quantified and the data decide it (`hunt_2026/f21_two_kernels_and_the_phantom_maximum.py`, 8/8, both footings): inverting $\mu_{\exp}$ gives $g_{\rm obs}$ lower than $\nu_{\rm RAR}$'s by up to $0.073$ dex at $g_{\rm bar}\simeq1.7a_0$, larger than the relation's scatter, and on 2916 SPARC points binned with galaxy-level errors the data follow $\nu_{\rm RAR}$ and reject $\mu_{\exp}$ in the transition, $\Delta\chi^2=163$ on 18 bins with a worst bin pull of $7.5\sigma$. So gate 1 as written targets a transition the data do not have; the obstruction results below concern the shape class both functions share. For the function the data follow, the phantom acceleration $g_{\rm obs}-g_{\rm bar}=a_0\,y\,e^{-\sqrt y}/(1-e^{-\sqrt y})$ has a universal maximum of $0.648\,a_0$ at $g_{\rm bar}=2.54\,a_0$ ($6.1\times10^{-11}$ m s$^{-2}$; observed $8.8\pm3.8\times10^{-11}$ in that window) and turns over above it, which the simple kernel forbids.
 
 **Where it works.** 147–175 SPARC rotating discs at 0.06 dex; the Milky Way rotation curve; the vertical force (`prep_2026`); Renzo's rule. A theorem of this repository (`hunt_2026/k_unexplained-regularities_closure.py`) shows that ten of twelve "unexplained galactic regularities" in the literature, including the baryonic Tully–Fisher relation, are reparametrisations of the radial acceleration relation to machine precision under a seeded derangement shuffle; only a two-radius statistic and a non-multiplicative statistic escape. The framework's galactic content is therefore one relation.
 
@@ -195,6 +195,7 @@ Run each cited artifact according to its own documented interface. Checks, mutat
 | cluster dark-component no-go | `hunt_2026/f04`–`f07` | 6/6, 8/8, 7/7, 6/6 |
 | external-field slope | `hunt_2026/f03_efe_slope_prediction.py` | 4/4 |
 | closure of galactic regularities | `hunt_2026/k_unexplained-regularities_closure.py` | — |
+| $\nu_{\rm RAR}\neq\mu_{\exp}$ quantified; SPARC rejects $\mu_{\exp}$ in the transition ($\Delta\chi^2=163$); phantom maximum $0.648a_0$ | `hunt_2026/f21_two_kernels_and_the_phantom_maximum.py` | 8/8 |
 | rotation/pressure matched pair | `hunt_2026/f09_orbital_coherence_fork.py` | 7 (2 fail by design) |
 | wide-binary eccentricity shut | `hunt_2026/f10_eccentricity_falsifier.py` | 7 (2 fail by design) |
 | disc virial coefficient | `hunt_2026/f11`, `f12` | 12 (3 fail), 6/6 |
