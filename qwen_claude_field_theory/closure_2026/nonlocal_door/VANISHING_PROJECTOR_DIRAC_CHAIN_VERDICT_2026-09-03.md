@@ -1,32 +1,104 @@
-# Vanishing spatial projector: the Dirac chain through the rank bifurcation — 2026-09-03
+# Vanishing spatial projector: Dirac chain and zero-field response audit — 2026-09-03
 
-**Closes the residual named in `METRIC_ONLY_ELLIPTIC_PROJECTOR_RANK_CHANGE_2026-09-03.md`.**
-Script: `vanishing_projector_dirac_chain_2026.py` (11/11, sympy Poisson brackets, mutation controls reproduce the
-repo's Lorentz-branch ghost and the fixed-background det C = B⁴k⁸).
+Script: `vanishing_projector_dirac_chain_2026.py` (13/13). The SymPy
+calculation derives the Poisson brackets and response limits; its controls
+reproduce the Lorentz-branch ghost and fixed-projector determinant, reject an
+unscaled source at zero field, and remove the finite path memory when the
+source is changed from linear to quadratic switch-off.
 
-## The loophole
-A Poincaré-equivariant tensor cannot be a nonzero rank-3 spatial projector at Minkowski, but
-H^{μν} = X(g^{μν}+u^μu^ν), X = −V² > 0, is rank 3 away from zero field and vanishes smoothly at X = 0. Its
-auxiliary sector S_aux = ∫√−g λ(H^{μν}∇_μ∇_νχ − J) changes constraint rank as X → 0. Left open as "a rank
-bifurcation rather than a nonexistence theorem."
+## Candidate and scope
 
-## The chain (u-frame, mode k ≠ 0)
-H^{00} = X(−1+1) = 0 ⇒ **no time derivatives survive**: L = −Xk²λχ − Jλ.
-- **X ≠ 0:** primaries p_λ, p_χ; secondaries −Xk²χ − J, −Xk²λ; det C = X⁴k⁸ ≠ 0 ⇒ four second-class, multipliers
-  fixed, no tertiary. **DOF = 0.** On-shell χ = −J/(Xk²), λ = 0.
-- **X = 0:** φ₄ ≡ 0, φ₃ → −J (a constant). Surviving constraints {p_λ, p_χ} commute ⇒ **first class**, λ, χ pure
-  gauge. **DOF = 0.** Consistency requires **J(X=0) = 0**: the source must carry a factor of X.
-- With J = XJ̃ the chain is consistent on both branches. **The bifurcation changes the CLASS, not the COUNT.**
+The tested auxiliary reduction is
 
-## Why it dies anyway
-The surviving channel is χ = −J̃/k² with **no ω anywhere**: an instantaneous elliptic potential in the u-frame. That
-is the gate-7 failure by definition. By the committed pincer (N_grav=2 ⇔ MOND via second-class constraint ⇔
-ω-independent 1/k² ⇔ α₃ = O(1)) it carries α₃ = O(1), excluded ~10¹⁹× (pulsar). The field-dependent projector is a
-**local elliptic constraint that switches itself off at zero field** — it lands on the DC-019 / York-CMC / CDE-L4C wall.
+\[
+ S_{\rm aux}=\int\sqrt{-g}\,\lambda
+ \left(H^{\mu\nu}\nabla_\mu\nabla_\nu\chi-J\right),\qquad
+ H^{\mu\nu}=X(g^{\mu\nu}+u^\mu u^\nu),
+\]
 
-## Scope
-Conditional on the repo's u-frame k-space reduction and on the pincer's instantaneous ⇒ α₃ link. This closes every
-metric-only elliptic projector route that has been written, including the smoothly-vanishing one. What remains for
-door B is not a loophole but an unwritten construction: a genuinely retarded (ω-dependent) nonlocal kernel giving
-μ = 1−e^{−y} — and §4 of the state-space verdict shows positive spectral weight means extra carrier states (gate 2′).
-Never say "door B closed"; say every written route through it is.
+on the $u$-frame background, one Fourier mode $k\ne0$, and with $X$
+treated as a background parameter. There $H^{00}=0$, $H^{ij}=X\delta^{ij}$,
+and
+
+\[
+ L=-Xk^2\lambda\chi-J\lambda .
+\]
+
+This is a candidate-specific auxiliary principal reduction. It is not the
+full covariant metric/clock Dirac chain and is not a classification of every
+metric-only projector.
+
+## Dirac chain
+
+- **$X\ne0$:** the primaries $p_\lambda,p_\chi$ generate the
+  secondaries $-Xk^2\chi-J,-Xk^2\lambda$. Their actual Poisson matrix has
+  determinant $X^4k^8\ne0$, so all four are second class. Preservation fixes
+  both multipliers and produces no tertiary. The auxiliary count is zero.
+- **$X=0$:** for a generic source the secondary becomes the external
+  consistency condition $J=0$. With $J=X\widetilde J$, both secondary
+  expressions vanish at $X=0$; the two primaries commute and are first
+  class. The auxiliary count is again zero.
+
+Thus the constraint **class** changes while the auxiliary count remains zero.
+That branchwise count does not establish a regular response through the
+rank-changing point.
+
+## What is actually adverse
+
+For $X>0$, substituting $J=X\widetilde J$ gives
+
+\[
+ \chi=-\frac{\widetilde J}{k^2},\qquad
+ \frac{\partial\chi}{\partial\widetilde J}=-\frac1{k^2},
+\]
+
+with no frequency dependence. If $\chi$ is the physical MOND mediator, this
+specified mechanism fails the strict no-instantaneous-channel requirement
+(gate 7).
+
+The exact zero-field equation must be evaluated before cancelling $X$:
+
+\[
+ -X(k^2\chi+\widetilde J)=0
+ \quad\xrightarrow{X=0}\quad 0=0.
+\]
+
+It selects no $\chi$. Two paths whose rescaled sources differ by
+$\Delta\widetilde J$ have physical source difference
+$X\Delta\widetilde J\to0$, yet their $X\to0^+$ solutions retain
+
+\[
+ \Delta\chi=-\frac{\Delta\widetilde J}{k^2}.
+\]
+
+The same endpoint $(X,J)=(0,0)$ therefore has a nonunique/path-dependent
+finite limiting solution. The $J=X^2\widetilde J$ mutation instead gives
+$\chi=-X\widetilde J/k^2\to0$, demonstrating that the check is sensitive to
+the linear source scaling. The tested $J=X\widetilde J$ ansatz fails the
+controlled-zero-field requirement (gate 9) unless a further action-derived
+prescription resolves this discontinuity.
+
+## PPN correction
+
+The calculation contains a static $u$-frame auxiliary response. It does not
+contain the boosted $g_{00}$, $g_{0i}$, and $g_{ij}$ solutions through the
+required post-Newtonian orders, all constraint and multiplier backreaction, a
+moving-matter solution, the standard-PPN gauge map, or PPN coefficient
+matching. Consequently:
+
+\[
+ \alpha_1=\text{UNCOMPUTED},\qquad
+ \alpha_2=\text{UNCOMPUTED},\qquad
+ \alpha_3=\text{UNCOMPUTED}.
+\]
+
+An instantaneous denominator is not itself a PPN parameter; general
+relativity also has elliptic lapse and shift constraints. The previous
+inherited-$\alpha_3$ claim is withdrawn.
+
+## Corrected verdict
+
+The specified $H=X(g+uu)$, $J=X\widetilde J$ auxiliary reduction preserves
+the valid zero-auxiliary-DOF Dirac facts, but is adverse on gates 7 and 9.
+Gate 4 remains uncomputed. This does **not** close every metric-only projector
+and does not close the broader nonlocal door.
