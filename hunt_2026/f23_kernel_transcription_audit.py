@@ -45,8 +45,9 @@ Section 3's diagonal-bin 'sigma' labels are conditional standardized residuals, 
 significances. The paired galaxy/a0-profile audit there is the controlling statistical scope correction.
 The quadrupole integral in section 6 is a QUMOND calculation; AQUAL does not share it exactly in general.
 """
-import os, sys, math, subprocess, re
+import os, sys, math, subprocess, re, warnings
 import numpy as np
+warnings.filterwarnings("ignore")      # scipy/numpy warnings print absolute paths; keep them out of the .out
 import sympy as sp
 import mpmath as mp
 from scipy import integrate
