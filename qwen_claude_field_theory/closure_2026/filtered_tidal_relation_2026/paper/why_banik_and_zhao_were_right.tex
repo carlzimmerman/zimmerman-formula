@@ -1,0 +1,373 @@
+\documentclass[11pt,letterpaper]{article}
+\usepackage[margin=0.9in]{geometry}
+\usepackage{amsmath,amssymb,amsthm,booktabs,microtype}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue]{hyperref}
+\usepackage{fancyhdr}
+\pagestyle{fancy}\fancyhf{}
+\fancyhead[L]{\small Filtered MOND: a central tidal consistency relation}
+\fancyhead[R]{\small Research draft}\fancyfoot[C]{\thepage}
+\setlength{\headheight}{14pt}
+\setlength{\parindent}{0pt}\setlength{\parskip}{5pt}
+\newtheorem{proposition}{Proposition}
+\newcommand{\ph}{\mathrm{ph}}\newcommand{\dd}{\mathrm{d}}
+\newcommand{\ee}{\hat{\boldsymbol e}}\newcommand{\kk}{\hat{\boldsymbol k}}
+\newcommand{\tr}{\operatorname{tr}}
+\hypersetup{pdftitle={Why Banik and Zhao Were Right},pdfauthor={Carl Zimmerman},
+pdfsubject={Conditional central tidal identity in action-derived filtered MOND}}
+\begin{document}
+\begin{center}
+{\LARGE\bfseries Why Banik and Zhao Were Right\par}
+\vspace{8pt}
+{\large External-field structure and a central tidal\par
+consistency relation in filtered MOND\par}
+\vspace{12pt}
+Carl Zimmerman\par
+\small AI-assisted research draft; not peer reviewed\par
+4 September 2026
+\end{center}
+\begin{abstract}
+A modified-gravity law cannot be tested from an isolated spherical force curve
+alone: its response to an ambient field also matters. We revisit the
+external-field linearization of QUMOND and study an explicitly varied,
+spatially filtered specialization of its two-potential action. The Newtonian
+source is left unsmoothed; variation places an adjoint filter outside the
+nonlinear phantom-density source. For a spherical source perturbing a constant,
+nonzero constitutive background, isotropic filtering produces a finite central
+phantom-potential Hessian whenever the stated spectral integral converges.
+Its trace $D$ and axial quadrupole $Q_2$ obey a division-free consistency
+identity independent of source mass and filter amplitude. For the inverse
+partner of $\mu(y)=1-e^{-y}$, the ratio is
+$Q_2/D=2y/\{5[3+3(y-1)e^{-y}-y]\}$ where $D\ne0$.
+Symbolic identities and independent quadrature over 324 cases check this
+result, with a deliberately anisotropic control violating it. The contribution
+is a conditional central-response corollary, not a new MOND architecture,
+an empirical detection, or a completed relativistic theory.
+\end{abstract}
+\section{What the title means}
+Banik and Zhao derived the anisotropic external-field-dominated response of
+AQUAL and QUMOND \cite{banik}. In QUMOND their equation (24) contains both
+the value of the interpolation function and its logarithmic derivative.
+Suppressing or retaining a scalar force enhancement therefore does not, by
+itself, specify the directional response. This conditional mathematical point
+is the sense in which the title says they were right; we do not adjudicate
+their observational claims or any wide-binary controversy.
+
+The parent two-potential action and external-field asymptotics are due to
+Milgrom \cite{qumond}. His later generalization explicitly allows a possibly
+nonlocal functional of the Newtonian potential and investigates extra-scale
+screening \cite{gqumond}. Thus neither an additional length scale nor a nonlocal
+QUMOND action is claimed here as a new architecture.
+
+Our narrower question can fail: once an isotropic filter changes the amplitude
+of the central response, can it tune the isotropic and anisotropic parts
+independently? In the linear regime below, the answer is no. The resulting
+relation provides a joint consistency test of this candidate, provided both
+components can eventually be measured.
+
+\newpage
+\section{One static action and its variations}
+Let $u$ be an auxiliary Newtonian potential and $\Phi$ the potential felt by
+nonrelativistic matter. Fix $a_0>0$ and a real, normalized, isotropic convolution
+$S$ on space. Its Fourier multiplier is $\sigma(k)$, with $\sigma(0)=1$.
+The filter is self-adjoint under the boundary prescription and commutes
+with spatial derivatives. A Gaussian example is
+$S=\exp(\xi^2\Delta/2)$, $\sigma(k)=\exp(-\xi^2k^2/2)$.
+
+Use the exact inverse constitutive pair
+\begin{equation}
+ \mu(y)=1-e^{-y},\qquad s=y\mu(y),\qquad \nu(s)=y/s,\quad y>0.
+ \label{eq:pair}
+\end{equation}
+The inverse is unique since $\dd s/\dd y=1+(y-1)e^{-y}>0$ for $y>0$.
+The exponential function itself is not new; it appears explicitly in
+earlier Solar-System MOND work \cite{hees}. Define
+\begin{align}
+ \mathcal G(y)&=y^2+2(1+y)e^{-y}-2, & \mathcal G'(y)&=2s,\\
+ q(s^2)&=2sy-\mathcal G(y)-s^2, & q'(s^2)&=\nu(s)-1.
+ \label{eq:primitive}
+\end{align}
+Here $q'$ differentiates its single argument, not $s$. Consider
+\begin{equation}
+ I=\int\dd t\,\dd^3x\left\{\mathcal L_{m,\mathrm{kin}}-\rho_b\Phi
+ -\frac{2\nabla\Phi\cdot\nabla u-|\nabla u|^2
+ -a_0^2q\!\left(|\nabla Su|^2/a_0^2\right)}{8\pi G}\right\}.
+ \label{eq:action}
+\end{equation}
+This is a spatially nonlocal, nonrelativistic action, not an Einstein-Hilbert
+completion. It specializes Milgrom's functional construction with
+$P[u]=|\nabla u|^2/a_0^2+q(|\nabla Su|^2/a_0^2)$ \cite{gqumond}.
+
+Set $f(p)=[\nu(|p|/a_0)-1]p$. Compatible fixed-boundary variations give
+\begin{align}
+ \frac{\delta I}{\delta\Phi}&=\frac{\Delta u}{4\pi G}-\rho_b=0,\\
+ \frac{\delta I}{\delta u}&=\frac{\Delta\Phi-\Delta u-S^*\nabla\cdot f(\nabla Su)}{4\pi G}=0.
+ \label{eq:variation}
+\end{align}
+Consequently,
+\begin{equation}
+ \boxed{\Delta u=4\pi G\rho_b,\qquad
+ \Delta\Phi=4\pi G\rho_b+S^*\nabla\cdot f(\nabla Su).}
+ \label{eq:field}
+\end{equation}
+In particular, $\int f\cdot\nabla S\delta u=-\int\delta u\,S^*\nabla\cdot f$:
+the outer filter is required by variation. Matter-coordinate variation gives
+acceleration $-\nabla\Phi$; it does not establish a four-dimensional matter
+Ward identity. The unsmoothed Newtonian term is retained exactly.
+
+For infinite space these are variational field equations with fixed
+asymptotics or background subtraction, not a claim of finite unsubtracted
+action. At $S=1$ they reduce to QUMOND. Finite filtering preserves the chosen
+constitutive function, \emph{not} the original universal AQUAL equation for
+$\Phi$. Even unfiltered QUMOND and AQUAL are not generally identical outside
+the appropriate symmetric configurations.
+
+\newpage
+\section{A central-tide consistency identity}
+Take a uniform background $p_e=\nabla Su_e=a_0s_e\ee$, with $s_e>0$.
+The filtered source perturbation must be small relative to $|p_e|$ throughout
+the response region. Define
+\begin{equation}
+ A=\nu(s_e)-1,\quad B=s_e\nu'(s_e),\quad
+ Df(p_e)_{ij}=A\delta_{ij}+B e_i e_j.
+ \label{eq:AB}
+\end{equation}
+All following source responses are first order in source amplitude, at fixed
+background. For a point-source perturbation of mass $M$, \eqref{eq:field} gives
+\begin{equation}
+ \widehat{\Phi}_{\ph}(\boldsymbol k)
+ =-\frac{4\pi GM}{k^2}|\sigma(k)|^2
+ \left[A+B(\kk\cdot\ee)^2\right],\qquad k\ne0,
+ \label{eq:fourier}
+\end{equation}
+where $\Phi_{\ph}$ subtracts the Newtonian source potential and the prescribed
+external background. The inverse Fourier measure is $\dd^3k/(2\pi)^3$.
+Choose a decaying perturbation at infinity and no additional external tidal
+harmonic. Neither the potential constant nor the background is determined
+by inverting the $k\ne0$ equation.
+
+\begin{proposition}
+Assume isotropic $S$, a spherical source, the nonzero uniform background
+and linear regime above, and a convergent central spectral integral. For a
+point source put $I_\sigma=\int |\sigma(k)|^2\dd^3k/(2\pi)^3$.
+The central phantom-potential Hessian is
+\begin{equation}
+ H_{ij}=\partial_i\partial_j\Phi_{\ph}(0)
+ =\frac{4\pi GM I_\sigma}{15}
+ \left[(5A+B)\delta_{ij}+2B e_i e_j\right].
+ \label{eq:H}
+\end{equation}
+With $H_\parallel=e_iH_{ij}e_j$, $H_\perp=(\tr H-H_\parallel)/2$,
+$Q_2=H_\perp-H_\parallel$ and $D=\tr H$, one has
+\begin{equation}
+ \boxed{(15A+5B)Q_2+2BD=0.}
+ \label{eq:identity}
+\end{equation}
+For a finite spherical source, replace $MI_\sigma$ everywhere by
+$J_\rho=\int\widehat\rho_b(k)|\sigma(k)|^2\dd^3k/(2\pi)^3$, assuming absolute
+convergence. The same identity holds, even if $J_\rho=0$.
+\end{proposition}
+\begin{proof}
+Two derivatives in \eqref{eq:fourier} contribute $-k_i k_j$, canceling the
+potential's minus sign. Isotropy separates the radial integral from
+\begin{equation}
+ \langle n_i n_j\rangle=\frac{\delta_{ij}}3,\qquad
+ \langle n_i n_j(n\cdot\ee)^2\rangle
+ =\frac{\delta_{ij}+2e_i e_j}{15}.
+\end{equation}
+These angular moments give \eqref{eq:H}. Its axial difference and trace are
+\begin{equation}
+ Q_2=-\frac{8\pi GM I_\sigma B}{15},\qquad
+ D=4\pi GM I_\sigma\left(A+\frac B3\right).
+ \label{eq:QD}
+\end{equation}
+Substitution proves \eqref{eq:identity}. A spherical finite source changes
+only the radial integral, establishing the final statement.
+\end{proof}
+
+\newpage
+\section{The exponential prediction and its interpretation}
+Write $s_e=y(1-e^{-y})$ and $\lambda(y)=1+(y-1)e^{-y}$. Differentiating the
+inverse relation, rather than assigning its response, yields
+\begin{equation}
+ A=\frac{e^{-y}}{1-e^{-y}},\qquad
+ B=-\frac{y e^{-y}}{(1-e^{-y})\lambda(y)}.
+\end{equation}
+The result for the exponential constitutive law is therefore
+\begin{equation}
+ \boxed{\frac{Q_2}{D}=\frac{2y}{5[3\lambda(y)-y]}}\quad(D\ne0).
+ \label{eq:ratio}
+\end{equation}
+Mass, isotropic filter shape and smoothing length cancel. At $y=1$ the ratio
+is $1/5$; as $y\to0^+$ it approaches $2/25$. The latter is generic for a regular
+deep-MOND inverse asymptotic $\nu(s)\sim s^{-1/2}$ with its corresponding
+derivative asymptotic, not a unique exponential fingerprint. Taking this
+limit while retaining external dominance also requires reducing the source
+amplitude; the exactly zero-background problem is different.
+
+For reference, the point-source amplitudes are
+\begin{equation}
+ I_{\mathrm{Gaussian}}=\frac{1}{8\pi^{3/2}\xi^3},\qquad
+ I_{\mathrm{Helmholtz}}=\frac{1}{8\pi\xi^3},
+\end{equation}
+for $\sigma=e^{-\xi^2k^2/2}$ and $\sigma=(1+\xi^2k^2)^{-1}$ respectively.
+A general spherical density need not give positive $J_\rho$ for every real
+isotropic filter. Nonnegative real-space Gaussian or Helmholtz kernels and
+nonnegative density secure positivity for a nonzero source. The tested finite
+sources are Gaussian. Positivity is not needed for the identity.
+
+\begin{center}
+\begin{tabular}{lll}
+\toprule
+Point-source feature & Root equation & Computed $y$\\
+\midrule
+$H_\parallel=0$ & $3y=5\lambda(y)$ & 1.8907779792\\
+$D=0$ & $y=3\lambda(y)$ & 3.2602387018\\
+$H_\perp=0$ & $y=5\lambda(y)$ & 5.1228414320\\
+\bottomrule
+\end{tabular}
+\end{center}
+At the middle root the Hessian is finite; only the quotient in
+\eqref{eq:ratio} is undefined. Equation \eqref{eq:identity} is the primary
+statement. Between the first and third roots the additional acceleration
+stretches parallel to the background and compresses perpendicular to it.
+This is not a claim that total gravity is repulsive: the physical tidal
+acceleration tensor is $-H$, and the ordinary Newtonian force remains.
+
+Locally the anomalous potential has the expansion
+\begin{equation}
+ \Phi_{\ph}(x)=\Phi_{\ph}(0)+\frac{D r^2}{6}
+ -\frac{Q_2}{2}\left[(\ee\cdot x)^2-\frac{r^2}{3}\right]+o(r^2).
+ \label{eq:local}
+\end{equation}
+Thus $D=4\pi G\rho_{\ph}(0)$ is isotropic central curvature, not total
+phantom mass. Our $Q_2$ convention matches the traceless coefficient in
+Hees et al., equation (6) \cite{hees}. The extra $D$ term and the weak-source
+assumption make this a different prediction from a nonlinear solar
+quadrupole calculation; an existing pure-quadrupole fit cannot simply be
+read as a fit of both coefficients here.
+
+\newpage
+\section{Reproducible checks, not observational evidence}
+The companion calculation computes the directional Hessian by numerical
+angular integration rather than setting $Q_2/D$ to its expected value.
+SymPy separately checks exact angular moments, the inverse derivative,
+the division-free identity and the deep limit. Finite differences of the
+nonlinear flux check the constitutive Jacobian independently.
+\begin{center}
+\begin{tabular}{ll}
+\toprule
+Input & Tested range\\
+\midrule
+Background $y$ & $0.03,\ 0.3,\ 1,\ 2.5,\ 4,\ 6$\\
+Filters & Gaussian, Helmholtz, $1/[1+(\xi k)^4]$\\
+Widths $\xi$ & $0.4,\ 1,\ 2.5$ (common numerical units)\\
+Gaussian source radii $R$ & $0,\ 0.3,\ 2$ ($R=0$: point source)\\
+Directions & $(0,0,1)$ and $(1,2,3)/\sqrt{14}$\\
+Full combinations & $6\times3\times3\times3\times2=324$\\
+\bottomrule
+\end{tabular}
+\end{center}
+The code sets $G=M=1$ to calculate linear-response coefficients; this is an
+amplitude normalization, not a claim that each dimensional realization is
+external-field dominated. Finite sources use
+$\widehat\rho_b(k)/M=\exp(-R^2k^2/2)$.
+
+The maximum normalized identity residual is $1.10\times10^{-14}$, and the
+maximum relative tensor discrepancy is $1.99\times10^{-14}$. The former
+divides the absolute left-hand side of \eqref{eq:identity} by
+$(|15A+5B|+2|B|)\|H\|_F$; the latter is
+$\|H_{\rm num}-H_{\rm analytic}\|_F/\|H_{\rm analytic}\|_F$.
+These are floating-point agreement measures, not empirical error bars or
+certified continuum error bounds.
+
+Gaussian and Helmholtz radial integrals are checked against exact
+normalizations. Increasing the polar quadrature from 24 to 40 nodes and
+rotating the field axis checks the angular implementation. An intentionally
+anisotropic spectral weight $1+0.8(\kk\cdot\ee)^2$ gives an identity residual
+of $0.06672$ at $y=1$. This negative control illustrates why isotropy is a
+load-bearing hypothesis.
+
+The current rerun passes six tidal tests, ten parent-action tests, six
+existing exact-inverse-kernel tests and two elliptic-action regression tests:
+24 distinct tests, all with exit status zero. The parent checks include a
+finite-difference first variation. They do not collectively certify a
+relativistic field theory. The numerical environment is Python 3.9.6,
+NumPy 1.26.2, SciPy 1.11.4 and SymPy 1.14.0. The companion manifest records
+runtime, repository state and input/output checksums; the adjacent reproduction
+note gives commands. No astronomical observations were fitted or analyzed.
+
+\section{What a falsification would require}
+The first practical calculation is a fully nonlinear solution of
+\eqref{eq:field} with a known external source, testing how the relation changes
+as the filtered internal field ceases to be small. The host system must also
+calibrate $s_e$: $y$ is an inverse-kernel parameter, not automatically the
+measured physical external acceleration divided by $a_0$.
+Milgrom's external-boundary analysis distinguishes those fields in a general
+host \cite{qumond}. A meaningful data test then needs joint identifiability
+of $D$ and $Q_2$, including ordinary tides, source shape and nuisance
+parameters. Increasing $\xi$ can suppress both amplitudes together; the ratio
+alone does not exclude that escape.
+
+\newpage
+\section{Scope, priority and the unfinished relativistic problem}
+The proposition is an analytic consequence of the specified static action,
+its constant-background linearization and isotropic angular averages. It is
+not inferred from 324 numerical successes. Those checks do not test nonlinear
+source corrections, nonspherical systems or varying external fields. The
+exactly zero-background limit is singular in the constitutive tangent; finite
+central curvature at nonzero background does not settle strong coupling or
+loss of rank at zero field.
+
+There is no physical spacetime metric in \eqref{eq:action}. This paper derives
+neither $\Phi=\Psi$ nor lensing, PPN parameters, a two-tensor Dirac count,
+covariant matter conservation, gravitational-wave speed, perturbative
+stability or FLRW evolution. Elliptic potentials are not proof that a
+covariant completion has no hidden mode or instantaneous physical channel.
+Both $a_0$ and $\xi$ are inputs; no cosmological acceleration-scale relation
+is derived. The exact exponential constitutive choice is retained, but the
+stronger original AQUAL target is not fulfilled by this finite-filter action.
+
+The explicit functional architecture has prior art \cite{gqumond}. The central
+filtered identity was not identified in the inspected source passages or the
+bounded repository/web searches documented with this draft. That is not
+evidence of global priority. The defensible contribution is an explicitly
+derived and reproducibly checked central-response corollary for this
+specialization. No claim of a first discovery is made.
+
+\section{Conclusion}
+The external-field anisotropy emphasized by Banik and Zhao survives isotropic
+smoothing in a constrained form: changing the filter amplitude cannot
+independently change the two central tidal coefficients in the stated linear
+regime. This is a concrete, conditional prediction from one action, not a
+fitted pair of unrelated signals. Its scientific value will be decided by
+nonlinear corrections and joint observational identifiability. The static
+identity is established under its assumptions; the full theory remains open.
+
+\begin{thebibliography}{9}
+\bibitem{banik}
+I. Banik and H. Zhao,
+\emph{The External Field Dominated Solution In QUMOND \& AQUAL:
+Application To Tidal Streams},
+\href{https://arxiv.org/pdf/1509.08457v2}{arXiv:1509.08457v2},
+4 May 2018 revision; equations (22)--(25), (36).
+\bibitem{qumond}
+M. Milgrom, \emph{Quasi-linear formulation of MOND},
+\href{https://arxiv.org/pdf/0911.5464v2}{arXiv:0911.5464v2},
+2 March 2010 revision; equations (3)--(6) and section 5.
+\bibitem{gqumond}
+M. Milgrom, \emph{Generalizations of quasilinear MOND (QUMOND)},
+\href{https://arxiv.org/pdf/2305.01589v2}{arXiv:2305.01589v2},
+4 October 2023 revision; section II.B and equations (6)--(7).
+\bibitem{hees}
+A. Hees, W. M. Folkner, R. A. Jacobson and R. S. Park,
+\emph{Constraints on MOND theory from radio tracking data of the Cassini
+spacecraft}, \href{https://arxiv.org/pdf/1402.6950v2}{arXiv:1402.6950v2},
+29 April 2014 revision; equations (5b) and (6).
+\end{thebibliography}
+\small\textit{Research integrity note.} Drafting, symbolic work and verification
+were AI-assisted. This is not a journal acceptance, an endorsement by the
+cited authors, or a claim to have settled observational disputes. Human
+author review is required before submission or public dissemination.
+\end{document}
