@@ -23,9 +23,9 @@ J chosen so the static law is the exponential kernel's (requirement 12), ξ the 
 | 5 | matter conservation | PASS by minimal coupling (inherited from AeST-type hosts) | not recomputed |
 | 6 | c_T = c | PASS (c₁₃ = 0 built in) | pipeline |
 | 7 | causality | OPEN as judgment, now with numbers (f34): the MOND scalar is Bogoliubov, ω² = c_s²k²(1+ξ²k²) with c_s² ≈ 0.04 (units c), and the khronon is the fast khronometric mode, c_s² ≈ 4×10⁴ ∝ 1/c₁₄; no instability, no ghost; superluminal modes evade the Cherenkov bound; see CAUSALITY_EXPLAINER §4 | f34 |
-| 8 | FLRW | OPEN (AeST-type hosts admit it; the operator's homogeneous mode is trivial since V̄ = 0) | not computed |
+| 8 | FLRW | PASS (g03e, minisuperspace in the pipeline's convention): expanding FLRW with H ≠ 0; the clock only renormalises the cosmological constant of gravitation, G_cos/G = 1/(1 + (c₁₃ + 3c₂)/2); Y = 0 on the background so J and the operator are inert; the scalar's Q-sector gives ρ_φ = QK′ − K with the conserved charge a³K′, i.e. a dust piece of free amplitude plus an a⁻⁶ correction (the AeST structure). BBN (|G_cos/G_N − 1| < 0.13) puts c₂ = 0.1 at the edge and admits c₂ ≤ 0.05; f34b shows those c₂ are healthy | g03e, f34b |
 | 9 | zero-field limit | PASS for the spherical law and the symbol with the ξ term OUTSIDE J (g03c): symbol J_Y k² + ξ²k⁴ uniformly elliptic at y = 0; point-mass solution regular, Newton-exact inside, deep-MOND 1/r outside with the computed correction −ξ²/(r_M r) (0.1%); field nulls: the bare law's saddle anomaly is erased (suppression 10⁻²⁹ at the Earth–Sun saddle). General non-spherical existence theory not done | g03c |
-| 10 | measured G | OPEN (AeST-type renormalisation, computable) | — |
+| 10 | measured G | COMPUTED, and it is a LIABILITY (f35): G_N = G/(1 − c₁₄/2) × (1 + f_s), the clock part validated against Einstein-aether exactly; the scalar's Newtonian-regime share f_s ≈ 0.9/J_Y is present at r ≫ ξ and screened by the operator below ξ (by 10⁻⁴), so the measured G is scale-dependent: a Yukawa-like fifth force of range ξ and strength f_s in the Newtonian regime. Wide binaries at 1–30 kAU with g ≫ a₀ bound f_s at the few-percent level, which forces J_Y,Newton ≳ 30 (K₂ ≈ −300 keeps c_s² unchanged; f34b: healthy). The bound itself is not computed from data here | f35 |
 | 11 | one metric | PASS | construction |
 | 12 | exponential primitive | PASS | g02c's Qt(s) |
 | 13 | a₀ = ½c√(Gρ_Λ) | not derived (κ fitted) | standing |
@@ -33,6 +33,7 @@ J chosen so the static law is the exponential kernel's (requirement 12), ξ the 
 Solar-System static gates for the operator's own static law, SOLVED EXACTLY (g03d: metric Newton + the MOND scalar's fourth-order law, Sun in the Galactic field, axisymmetric, both footings, three field inputs): floors ξ ≥ 0.03 pc (canonical) / 0.05 pc (alt); the quadrupole is the binding gate at 0.02 pc (1.05× the Park ceiling canonical), the phantom monopole inside Saturn binds on the alternate footing at 0.03 pc (1.10× Pitjev–Pitjeva at g_ext = 2.00×10⁻¹⁰); ξ → 0 reproduces G01's strict-AQUAL quadrupole to 0.05%. The proxy (g03b) had the same floors. T-B's double filter: 0.02/0.03 pc (G02). Wide binaries: aligned two-body tables (g02c) only; perpendicular orientation not computed.
 
 ## What would kill it
+0. The Newtonian-regime fifth force of range ξ (f35): if the wide-binary data at 1–5 kAU exclude a G ratio of 1 + 0.9/J_Y between r ≪ ξ and r ≫ ξ at the level J_Y,N ≳ 30 cannot reach, or if J_Y,N ≳ 30 breaks the MOND transition shape on galaxy data.
 1. The clock corner (c₁₄ ≲ 2.5×10⁻⁵ with c₁₃ = 0) being strongly coupled: linear stability with the scalar present is now established (f34); the strong-coupling scale of the khronon (∝ M_P√c₁₄) is not computed.
 2. The causal gate refusing the Lifshitz dispersion.
 3. ~~The nonlinear static law failing the three Solar-System gates when actually solved~~ — solved (g03d): it passes for ξ ≥ 0.03/0.05 pc.
@@ -42,5 +43,5 @@ Solar-System static gates for the operator's own static law, SOLVED EXACTLY (g03
 1. Clock-host stability with φ: DONE (f34) — no time-derivative pole from the mixing; healthy for K₂ < 0; PPN corner re-derived there (f33b, 0 FAIL).
 2. The nonlinear fourth-order static solve for the Sun in the external field: DONE (g03d), floors 0.03/0.05 pc.
 3. Zero-field limit with the ξ term outside J (requirement 9): DONE for the spherical law and the symbol (g03c); the general existence theory of the fourth-order quasilinear problem remains.
-4. FLRW background and the measured G.
+4. FLRW background and the measured G: DONE (g03e, f35); the corner moves to J_Y,N ≳ 30, c₂ ≤ 0.05; f33's ladder at J_Y = 30 explicitly, and the wide-binary Newtonian-regime bound on f_s from data, remain.
 5. Perpendicular wide-binary orientation.
