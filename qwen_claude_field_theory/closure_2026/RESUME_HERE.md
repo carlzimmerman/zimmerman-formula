@@ -32,7 +32,7 @@ BEFORE trusting a single number from it.
   (forward integration from a 10x spurious dark point mass converges by 100 r_M). A real theorem.
 - **p_r - p_t is unobservable in the weak field** (exact flat direction). The equation-of-state
   route is not the constraint.
-- **Every STATIC single k-essence has p_t = -rho**, any F. Carl's condensate `phi = Q0 t + psi(r)`
+- **Every STATIC single k-essence has p_t = -rho**, any F. the framework's condensate `phi = Q0 t + psi(r)`
   is what escapes it.
 - **The khronon cannot produce the amplitude law**, by a scaling theorem (a0 is an acceleration and
   cannot be built from c and G alone).
@@ -42,7 +42,7 @@ BEFORE trusting a single number from it.
 - **"the amplitude law is a derivation"** — it is EQUIVALENT to `v_c^4 = G M_b a0`, i.e. to flat
   curves at the BTFR value. Four mechanisms return the identical Bekenstein-Milgrom 1984 phantom
   density.
-- **"coefficient 1.000000 supports Carl's kernel"** — `mu = x/(1+x)` and `mu = x/sqrt(1+x^2)` give
+- **"coefficient 1.000000 supports the framework's kernel"** — `mu = x/(1+x)` and `mu = x/sqrt(1+x^2)` give
   it too. It measures the deep-MOND normalisation and nothing else.
 - **"1278x / 1544x" ephemeris** — UNDERSTATES by ~27x. Correct: **33,435x / 40,282x** on Mars.
   Two independent derivations. ADVERSE; propagate as a corpus correction.
