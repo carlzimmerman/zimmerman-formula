@@ -1,9 +1,9 @@
 [S1] unit-norm constraint solved (0.5s)
-    aether operators built (92.1s)
-    dark scalars (133.3s)
-    Ricci (149.7s)
-    biharmonic operator built: (D^2 phi)^2 at O(eps^2) has 32 terms (334.0s)
-    L2dc built+cached: 675 terms (337.1s)
+    aether operators built (91.6s)
+    dark scalars (133.1s)
+    Ricci (150.0s)
+    biharmonic operator built: (D^2 phi)^2 at O(eps^2) has 32 terms (337.0s)
+    L2dc built+cached: 675 terms (340.2s)
 
 ============================================================================
 ANCHOR: XI2 = 0 reproduces the banked alpha_1 = -4(2+K_B J_Y)/(1+J_Y), gamma = 1, alpha_3 = 0
@@ -14,7 +14,7 @@ ANCHOR: XI2 = 0 reproduces the banked alpha_1 = -4(2+K_B J_Y)/(1+J_Y), gamma = 1
   [PASS]    gamma = 1, alpha_3 = 0  (gamma=1 a3=0)
   [PASS] anchor KB=1/5 JY=2: alpha_1(XI2=0) = -16/5 == banked -16/5
   [PASS]    gamma = 1, alpha_3 = 0  (gamma=1 a3=0)
-  (343s)
+  (346s)
 
 ============================================================================
 MAIN: the ladder with the k^4 term, XI2 = (xi k)^2 = 0, 1, 1e2, 1e4, 1e8; c2 = c4 = 0
@@ -35,7 +35,7 @@ MAIN: the ladder with the k^4 term, XI2 = (xi k)^2 = 0, 1, 1e2, 1e4, 1e8; c2 = c
     1/5    2    1e+02   1.568000e+02    1.576e+02             oo        0      1
     1/5    2    1e+04   1.599680e+04    1.600e+04             oo        0      1
     1/5    2    1e+08   1.600000e+08    1.600e+08             oo        0      1
-  (369s)
+  (372s)
 
 ============================================================================
 CLOSED FORM WITH THE k^4 TERM: is the drag piece -4(2-K_B)/(J_Y (1+XI2) + 1)?
@@ -61,12 +61,15 @@ CLOSED FORM WITH THE k^4 TERM: is the drag piece -4(2-K_B)/(J_Y (1+XI2) + 1)?
   [PASS] K5 gamma = 1 and alpha_3 = 0 persist with the k^4 term at every XI2 (semiconservative; the screening touches only the preferred-frame sector)
 
 ============================================================================
-VERDICT
+VERDICT (reconciled with the numbers above, 2026-09-04 night)
 ============================================================================
-  With the biharmonic term the scalar's spatial operator is stiffened by (1 + xi^2 k^2) in the place the alpha_1 lock lived.
-  At 1 AU with xi >= 0.045 pc that factor is >= 8.6e7: the scalar drag's contribution to alpha_1 is below 1e-7, and
-  alpha_1 within its bound needs only 0 < c_14 <= 2.5e-5 -- Einstein-aether's own post-GW170817 region, no ghost.
-  gamma = 1 and alpha_3 = 0 are untouched.  What this does NOT cover: the aether sector's own alpha_2 at c_14 ~ 1e-5 (Einstein-aether
-  literature), the nonlinear regime, and the cuspy-kernel sunward force (f30 C1: xi >= 0.8 pc for a single biharmonic term).
+  The anchors hold (XI2 = 0 reproduces the banked closed form; gamma = 1 and alpha_3 = 0 at every XI2), and the prediction
+  of f30 FAILS for this operator: the drag piece of alpha_1 is NOT suppressed as 1/(J_Y(1+XI2)+1).  Fitting the exact
+  rationals, drag = 4(2-K_B)/(J_Y+1) [J_Y XI2/(J_Y+1) - 1]: suppressed at XI2 ~ 1, then GROWING linearly, 1e8 at the
+  Solar-System value.  f31b shows the growth is the pure chi-chi stiffening term itself; f31c shows the coherent stiffening
+  J_Y -> J_Y(1+XI2) of the whole Y sector DOES give the propagator form, while the covariant Hessian-squared operator fails
+  identically to this trace operator.  So: the screened door exists as a reference (A), but neither local fourth-order
+  scalar operator tried realises it in this host.  Status of the k^4 PPN gate for the aether-scalar host: OPEN on the
+  operator, FAIL for (D^2 phi)^2 and |D_m D_n phi|^2.
 
 RESULT: 3 FAIL -> ['K2 the closed form with the k^4 term: the scalar drag piece of alpha_1 becomes -4(2-K_B)/(J_Y(1+XI2)+1) -- the biharmonic term stiffens the scalar by (1 + xi^2 k^2) in exactly the place the lock lived, and its metric/aether mixings change nothing else in alpha_1 (if this FAILS the mixings matter and the printed DIFFERS lines say by how much)', 'K3 (THE VERDICT) at the Solar-System scale, XI2 = 8.6e7 or more, the drag piece of alpha_1 is below 1e-6, so |alpha_1| < 1e-4 is reached with c_14 POSITIVE (0 < c_14 <= 2.5e-5): the lock -- alpha_1 = 0 only at c_14 < 0, a spin-1 ghost -- does not apply to the screened scalar', "K4 alpha_2's scalar channel is suppressed by the same term: |alpha_2(XI2 = 1e8)| < 1e-4 |alpha_2(0)| (the v9 alpha_2 kill was 1e4-1e5 x over the 1e-7 bound; report the residual)"]

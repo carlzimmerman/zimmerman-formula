@@ -26,7 +26,7 @@ T0 = time.time(); P = lambda *a: print(*a, flush=True)
 import tempfile
 SC = os.environ.get('SCRATCH', tempfile.gettempdir()) + '/'
 os.makedirs(SC, exist_ok=True)
-CACHE = SC + 'L2dc_k4.pkl'
+CACHE = SC + 'L2dc_k4_hess.pkl'
 FAILS = []
 def check(name, ok, detail=''):
     P(f"  [{'PASS' if ok else 'FAIL'}] {name}" + (f"  ({detail})" if detail else ''))
@@ -55,6 +55,7 @@ a1f, a1k, a1b = nf('a1'); a2f, a2k, a2b = nf('a2'); a3f, a3k, a3b = nf('a3')
 chif, chik, chib = nf('chi')
 rho, Rk, Rb = nf('rho'); a0f, a0k, a0b = nf('a0p')
 KETS = [Psik, Phik, B2k, B3k, s22k, s23k, a1k, a2k, a3k, chik]
+XA, XB = sp.symbols('xA xB', nonnegative=True)
 BRAS = [Psib, Phib, B2b, B3b, s22b, s23b, a1b, a2b, a3b, chib]
 
 if os.path.exists(CACHE) and '--rebuild' not in sys.argv:
@@ -134,13 +135,29 @@ else:
     # pure-EA sign convention (FJ-validated in wf3_pure_ea_control_build): L = R - c1 T1 - c2 T2 - c3 T3 + c4 T4
     gS = [gR[n] - (2*LAM if n == 0 else 0) - (KB/2)*gF2[n] - C2*g2[n] + C4*g4[n]
           + 2*(2-KB)*gJ[n] - (2-KB)*gY[n] - gK[n] for n in range(3)]
-    # NEW (f31): the spatial biharmonic operator D^2 phi = (g^{mn} + A^m A^n)(d_m d_n phi - Gamma^l_{mn} d_l phi), to O(eps)
+    # f31c: two alternative coherence-length operators, each with its own switch
+    #   (A) coherent stiffening of the WHOLE Y sector: J_Y -> J_Y (1 + XI2)     [reference: does ANY stiffening suppress the drag?]
+    #   (B) the covariant Hessian-squared operator  xi^2 h^{ma} h^{nb} (nabla_m nabla_n phi)(nabla_a nabla_b phi)
+    # EFFICIENT BUILD: Gamma_bg = 0 and d d phi_bg = 0, so the Hessian is O(eps) exactly; at O(eps^2) the operator is the
+    # BACKGROUND projector h0 (no eps) contracted with the first-order Hessian H1 -- a 16x16 sum of single-eps terms.
+    XA, XB = sp.symbols('xA xB', nonnegative=True)
     ddchi = [[d(d(chif, n), m) for n in range(4)] for m in range(4)]
-    D2phi = te(sum((guT[m, n] + AupT[m]*AupT[n])*(eps*ddchi[m][n] - sum(GamT[l][m][n]*dphiT[l] for l in range(4)))
-                   for m in range(4) for n in range(4)))
-    gD2 = grade(D2phi**2)
-    P(f"    biharmonic operator built: (D^2 phi)^2 at O(eps^2) has {len(sp.Add.make_args(sp.expand(gD2[2])))} terms ({time.time()-T0:.1f}s)")
-    L2_grav = wtrunc(sum(gsq[a]*gS[2-a] for a in range(3))) - (2-KB)*JY*gY[2] - (2-KB)*JY*XI2*gD2[2]
+    dphi_bgT = sp.Matrix(4, 1, lambda i, j: te(dphi_bg[i]))
+    H1 = [[sp.expand(ddchi[m][n] - sum(sp.expand(GamT[l][m][n]).coeff(eps, 1)*dphi_bgT[l] for l in range(4))) for n in range(4)] for m in range(4)]
+    h0 = sp.Matrix(4, 4, lambda m, n: wtrunc(sp.expand(eta[m, n] + Aup_bg[m]*Aup_bg[n])))
+    HS2 = 0
+    for m in range(4):
+        for n in range(4):
+            if H1[m][n] == 0: continue
+            for a in range(4):
+                if h0[m, a] == 0: continue
+                for b in range(4):
+                    if h0[n, b] == 0 or H1[a][b] == 0: continue
+                    HS2 += h0[m, a]*h0[n, b]*H1[m][n]*H1[a][b]
+    gHS2 = wtrunc(sp.expand(HS2))
+    gHS = [0, 0, gHS2]
+    P(f"    Hessian-squared operator built (efficient): {len(sp.Add.make_args(gHS2))} terms ({time.time()-T0:.1f}s)")
+    L2_grav = wtrunc(sum(gsq[a]*gS[2-a] for a in range(3))) - (2-KB)*JY*(1 + XA*XI2)*gY[2] - (2-KB)*JY*XB*XI2*gHS[2]
     L2_matt = -16*sp.pi*GT*wtrunc(rho*(-H[0, 0]/2))
     L2 = sp.expand(L2_grav + L2_matt)
     def DC(e):
@@ -188,63 +205,31 @@ def a1_q0(r):
     return sp.nsimplify(sp.limit(r['a1'], q, 0)) if r['a1'].has(q) else sp.nsimplify(r['a1'])
 
 
+
 FAILS = []
-P(""); P("="*76); P("ANCHOR: XI2 = 0 reproduces the banked alpha_1 = -4(2+K_B J_Y)/(1+J_Y), gamma = 1, alpha_3 = 0"); P("="*76)
-GRID = [(R(1,5), 1), (R(1,2), 1), (R(1,5), 2)]
-for kbv, jyv in GRID:
-    r = ladder({KB: kbv, K2: sp.S(10), JY: sp.S(jyv), Q0: q, C2: 0, C4: 0, XI2: 0})
-    if not isinstance(r, dict): check(f"anchor KB={kbv} JY={jyv}: ladder regular", False, str(r)); continue
-    a1v = a1_q0(r); pred = -4*(2 + kbv*jyv)/(1 + jyv)
-    check(f"anchor KB={kbv} JY={jyv}: alpha_1(XI2=0) = {a1v} == banked {pred}", sp.simplify(a1v - pred) == 0)
-    check(f"   gamma = 1, alpha_3 = 0", sp.simplify(r['g'] - 1) == 0 and sp.simplify(sp.limit(r['a3'], q, 0) if r['a3'].has(q) else r['a3']) == 0, f"gamma={r['g']} a3={r['a3']}")
-P(f"  ({time.time()-T0:.0f}s)")
-
-P(""); P("="*76); P("MAIN: the ladder with the k^4 term, XI2 = (xi k)^2 = 0, 1, 1e2, 1e4, 1e8; c2 = c4 = 0"); P("="*76)
+P(""); P("="*76); P("TWO ALTERNATIVE OPERATORS (K_B = 1/5 and 1/2 at J_Y = 1; K_B = 1/5 at J_Y = 2; c2 = c4 = 0)"); P("="*76)
+VARS = {"(A) J_Y -> J_Y(1+XI2), whole Y sector": (1, 0), "(B) Hessian-squared |D_m D_n phi|^2": (0, 1)}
 RES = {}
-P(f"  {'K_B':>5s} {'J_Y':>4s} {'XI2':>8s} {'alpha_1':>14s} {'drag piece':>12s} {'alpha_2':>14s} {'alpha_3':>8s} {'gamma':>6s}")
-for kbv, jyv in GRID:
-    for xi2 in (0, 1, 100, 10**4, 10**8):
-        r = ladder({KB: kbv, K2: sp.S(10), JY: sp.S(jyv), Q0: q, C2: 0, C4: 0, XI2: sp.S(xi2)})
-        if not isinstance(r, dict): P(f"  KB={kbv} JY={jyv} XI2={xi2}: {r}"); continue
-        a1v = a1_q0(r); a2v = sp.nsimplify(sp.limit(r['a2'], q, 0)) if (r['a2'] != 'SING2' and r['a2'].has(q)) else r['a2']
-        a3v = sp.nsimplify(sp.limit(r['a3'], q, 0)) if (r['a3'] != 'SING2' and r['a3'].has(q)) else r['a3']
-        drag = sp.nsimplify(a1v + 4*kbv)                     # alpha_1 + 4 c_14 with c_4 = 0, c_14 = K_B
-        RES[(kbv, jyv, xi2)] = dict(a1=a1v, a2=a2v, a3=a3v, g=r['g'], drag=drag)
-        P(f"  {str(kbv):>5s} {jyv:4d} {xi2:8.0e} {float(a1v):14.6e} {float(drag):12.3e} {str(a2v):>14s} {str(a3v):>8s} {str(r['g']):>6s}")
+P(f"  {'operator':40s} {'K_B':>4s} {'J_Y':>3s} {'XI2':>7s} {'alpha_1':>13s} {'drag':>11s} {'-4(2-K_B)/(J_Y(1+XI2)+1)':>25s} {'gamma':>5s} {'a3':>4s}")
+for nm, (xa, xb) in VARS.items():
+    for kbv, jyv in [(R(1,5), 1), (R(1,2), 1), (R(1,5), 2)]:
+        for xi2 in (0, 1, 100, 10**4):
+            r = ladder({KB: kbv, K2: sp.S(10), JY: sp.S(jyv), Q0: q, C2: 0, C4: 0, XI2: sp.S(xi2), XA: xa, XB: xb})
+            if not isinstance(r, dict): P(f"  {nm:40s} {str(kbv):>4s} {jyv:3d} {xi2:7.0e}: {r}"); continue
+            a1v = a1_q0(r); drag = sp.nsimplify(a1v + 4*kbv); pred = -4*(2 - kbv)/(jyv*(1 + xi2) + 1)
+            a3v = sp.nsimplify(sp.limit(r['a3'], q, 0)) if (r['a3'] != 'SING2' and r['a3'].has(q)) else r['a3']
+            RES[(nm, kbv, jyv, xi2)] = dict(a1=a1v, drag=drag, pred=pred, g=r['g'], a3=a3v)
+            P(f"  {nm:40s} {str(kbv):>4s} {jyv:3d} {xi2:7.0e} {float(a1v):13.5e} {float(drag):11.4e} {float(pred):25.4e} {str(r['g']):>5s} {str(a3v):>4s}")
 P(f"  ({time.time()-T0:.0f}s)")
-
-P(""); P("="*76); P("CLOSED FORM WITH THE k^4 TERM: is the drag piece -4(2-K_B)/(J_Y (1+XI2) + 1)?"); P("="*76)
-ok_form = True
-for (kbv, jyv, xi2), r in RES.items():
-    cand = -4*(2 - kbv)/(jyv*(1 + xi2) + 1)
-    match = sp.simplify(r['drag'] - cand) == 0
-    P(f"  KB={kbv} JY={jyv} XI2={xi2:g}: drag = {r['drag']}  vs  -4(2-K_B)/(J_Y(1+XI2)+1) = {cand}  {'OK' if match else 'DIFFERS by ' + str(sp.nsimplify(r['drag']-cand))}")
-    ok_form &= match
-check("K2 the closed form with the k^4 term: the scalar drag piece of alpha_1 becomes -4(2-K_B)/(J_Y(1+XI2)+1) -- the biharmonic "
-      "term stiffens the scalar by (1 + xi^2 k^2) in exactly the place the lock lived, and its metric/aether mixings change nothing "
-      "else in alpha_1 (if this FAILS the mixings matter and the printed DIFFERS lines say by how much)", ok_form)
-# the physical verdict
-kbv, jyv = R(1,5), 1
-big = RES[(kbv, jyv, 10**8)]
-c14_needed = -float(big['drag'])/4.0
-check("K3 (THE VERDICT) at the Solar-System scale, XI2 = 8.6e7 or more, the drag piece of alpha_1 is below 1e-6, so |alpha_1| < 1e-4 "
-      "is reached with c_14 POSITIVE (0 < c_14 <= 2.5e-5): the lock -- alpha_1 = 0 only at c_14 < 0, a spin-1 ghost -- does not "
-      "apply to the screened scalar", abs(float(big['drag'])) < 1e-6 and c14_needed > -1e-6,
-      f"drag piece at XI2 = 1e8: {float(big['drag']):.2e}; alpha_1 = 0 at c_14 = {c14_needed:.2e}")
-a2_0 = RES[(kbv, jyv, 0)]['a2']; a2_big = big['a2']
-check("K4 alpha_2's scalar channel is suppressed by the same term: |alpha_2(XI2 = 1e8)| < 1e-4 |alpha_2(0)| (the v9 alpha_2 kill was 1e4-1e5 x "
-      "over the 1e-7 bound; report the residual)", (a2_0 != 'SING2' and a2_big != 'SING2') and abs(float(a2_big)) < 1e-4*max(abs(float(a2_0)), 1e-30),
-      f"alpha_2: {a2_0} -> {a2_big}")
-check("K5 gamma = 1 and alpha_3 = 0 persist with the k^4 term at every XI2 (semiconservative; the screening touches only the preferred-frame sector)",
-      all(sp.simplify(r['g'] - 1) == 0 and (r['a3'] != 'SING2' and sp.simplify(r['a3']) == 0) for r in RES.values()))
-P(""); P("="*76); P("VERDICT (reconciled with the numbers above, 2026-09-04 night)"); P("="*76)
-P("  The anchors hold (XI2 = 0 reproduces the banked closed form; gamma = 1 and alpha_3 = 0 at every XI2), and the prediction")
-P("  of f30 FAILS for this operator: the drag piece of alpha_1 is NOT suppressed as 1/(J_Y(1+XI2)+1).  Fitting the exact")
-P("  rationals, drag = 4(2-K_B)/(J_Y+1) [J_Y XI2/(J_Y+1) - 1]: suppressed at XI2 ~ 1, then GROWING linearly, 1e8 at the")
-P("  Solar-System value.  f31b shows the growth is the pure chi-chi stiffening term itself; f31c shows the coherent stiffening")
-P("  J_Y -> J_Y(1+XI2) of the whole Y sector DOES give the propagator form, while the covariant Hessian-squared operator fails")
-P("  identically to this trace operator.  So: the screened door exists as a reference (A), but neither local fourth-order")
-P("  scalar operator tried realises it in this host.  Status of the k^4 PPN gate for the aether-scalar host: OPEN on the")
-P("  operator, FAIL for (D^2 phi)^2 and |D_m D_n phi|^2.")
+nmA, nmB = list(VARS)
+okA = all(sp.simplify(RES[(nmA, kb, jy, x)]['drag'] - RES[(nmA, kb, jy, x)]['pred']) == 0 for (n_, kb, jy, x) in RES if n_ == nmA)
+check("A1 coherent stiffening of the whole Y sector gives EXACTLY the propagator form -4(2-K_B)/(J_Y(1+XI2)+1): so a coherence length "
+      "that scales the full scalar sector does suppress the drag, and the lock is then evaded at c_14 > 0", okA)
+okB = all(sp.simplify(RES[(nmB, kb, jy, x)]['drag'] - RES[(nmB, kb, jy, x)]['pred']) == 0 for (n_, kb, jy, x) in RES if n_ == nmB)
+bigB = RES[(nmB, R(1,5), 1, 10**4)]['drag']
+check("B1 the covariant Hessian-squared operator reproduces the propagator form (its background pieces mirror Y's)", okB,
+      f"K_B=1/5, J_Y=1, XI2=1e4: drag = {float(bigB):+.4e} vs propagator form {float(RES[(nmB, R(1,5), 1, 10**4)]['pred']):+.4e}")
+check("B2 at least the Hessian-squared operator SUPPRESSES the drag at large XI2 (|drag(1e4)| < 0.1 |drag(0)|), even if not in the exact propagator form",
+      abs(float(bigB)) < 0.1*abs(float(RES[(nmB, R(1,5), 1, 0)]['drag'])), f"drag {float(RES[(nmB, R(1,5), 1, 0)]['drag']):+.3f} -> {float(bigB):+.3e}")
 P(f"\nRESULT: {len(FAILS)} FAIL -> {FAILS}" if FAILS else "\nRESULT: 0 FAIL")
 sys.exit(1 if FAILS else 0)
