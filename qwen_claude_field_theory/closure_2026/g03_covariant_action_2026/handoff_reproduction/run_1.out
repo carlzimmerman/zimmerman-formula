@@ -1,0 +1,89 @@
+==============================================================================================================
+G02 -- screened extension (T-B): exact inverse exponential kernel, double filter
+==============================================================================================================
+  [PASS] K1 the tabulated nu is the exact inverse partner of mu_exp: nu(s) s mu_exp(nu(s) s)... i.e. y = nu s satisfies y mu(y) = s to 1e-9, and nu -> 1/sqrt(s) (deep) and 1 (Newton)
+
+1.  Fourier benchmark: linear response about a constant filtered gradient, from finite differences of the exact flux
+  [PASS] B1 the response coefficient of section 4 is reproduced from finite differences of the exact nonlinear flux for three background strengths and six wavevector angles: nu_e - 1 + s_e nu'_e (khat.ehat)^2   (s_e=0.3 ang=0.0: +0.23783 vs +0.23783; s_e=1.0 ang=0.0: -0.08318 vs -0.08318; s_e=2.5 ang=0.0: -0.10339 vs -0.10339)
+  [PASS] B2 tangents: transverse = nu_e - 1; longitudinal = d(s nu)/ds - 1 = 1/[mu + y mu'] - 1, finite-differenced against the closed form   (longitudinal -0.08318 vs 1/[mu + y mu'] - 1 = -0.08318; transverse +0.34998)
+  [PASS] B3 the filter enters squared (input and output filters): sigma(k)^2 = e^{-xi^2 k^2}; xi = 0 gives 1 and k xi >> 1 gives 0
+  [PASS] B4 constant-background subtraction: the background gradient itself has zero divergence of flux (uniform p0), so it sources nothing
+
+2.  validation of the filtered-phantom machinery
+  [PASS] V1 at xi = 0 the machinery reproduces f23's committed QUMOND quadrupole for the exponential kernel, |Q2| = 3.76x the ceiling (q = 0.1658 at the solar circle), to 5%: same physics (QUMOND phantom of a point mass), independent implementation   (this file +1.953e-26 vs 1.955e-26)
+  [PASS] V2 second representation of the output filter: a Gaussian mass distribution of width xi convolved once by the l = 0 kernel equals the Gaussian of width sqrt(2) xi to 0.5% inside 5 xi (kernel normalisation, ive scaling and quadrature)   (max rel dev 2.1e-05)
+  [PASS] V3 the Helmholtz filter conserves the monopole mass to 0.5% (its Green's function is normalised)   (mass ratio 1.0000)
+
+3.  the Solar System: signed Q2, monopole inside Saturn's orbit, radial anomaly at the planets  (a0 x g_ext x filter x xi)
+    footing      g_ext    filter  xi[pc]  Q2/ceil M_ph(<Sat)/bound g_r(Saturn)/sunward g_r(Earth)/sunward
+    canonical 2.32e-10     gauss    0.00      nan        2.021e-03           2.410e-04          1.927e-05
+    canonical 2.32e-10     gauss    0.01      nan        4.158e+00           4.958e-01          2.578e-02
+    canonical 2.32e-10     gauss    0.02    0.788        4.431e-01           5.282e-02          2.747e-03
+    canonical 2.32e-10     gauss    0.03    0.242        1.261e-01           1.503e-02          7.817e-04
+    canonical 2.32e-10     gauss    0.05    0.053        2.699e-02           3.218e-03          1.673e-04
+    canonical 2.32e-10     gauss    0.10    0.007        3.368e-03           4.016e-04          2.088e-05
+    canonical 2.32e-10     gauss    0.30    0.000        1.261e-04           1.503e-05          7.816e-07
+    canonical 2.32e-10     gauss    1.00    0.000        3.404e-06           4.058e-07          2.110e-08
+    canonical 2.32e-10     gauss    3.00    0.000        1.261e-07           1.503e-08          7.816e-10
+    canonical 2.32e-10     gauss   10.00    0.000        3.403e-09           4.058e-10          2.110e-11
+    canonical 2.32e-10     gauss   30.00    0.000        1.261e-10           1.503e-11          7.815e-13
+    canonical 2.32e-10     gauss  100.00    0.000        3.404e-12           4.058e-13          2.110e-14
+    canonical 2.32e-10 helmholtz    0.00    3.695        2.725e-01           3.248e-02          2.599e-03
+    canonical 2.32e-10 helmholtz    0.01    3.465        3.087e+00           3.681e-01          1.914e-02
+    canonical 2.32e-10 helmholtz    0.02    1.366        8.628e-01           1.029e-01          5.358e-03
+    canonical 2.32e-10 helmholtz    0.03    0.427        2.283e-01           2.722e-02          1.417e-03
+    canonical 2.32e-10 helmholtz    0.05    0.093        4.794e-02           5.716e-03          2.974e-04
+    canonical 2.32e-10 helmholtz    0.10    0.012        5.971e-03           7.119e-04          3.703e-05
+    canonical 2.32e-10 helmholtz    0.30    0.000        2.233e-04           2.662e-05          1.384e-06
+    canonical 2.32e-10 helmholtz    1.00    0.000        6.032e-06           7.192e-07          3.740e-08
+    canonical 2.32e-10 helmholtz    3.00    0.000        2.234e-07           2.664e-08          1.385e-09
+    canonical 2.32e-10 helmholtz   10.00    0.000        6.032e-09           7.192e-10          3.740e-11
+    canonical 2.32e-10 helmholtz   30.00    0.000        2.234e-10           2.664e-11          1.385e-12
+    canonical 2.32e-10 helmholtz  100.00    0.000        6.032e-12           7.192e-13          3.740e-14
+    alt       2.32e-10     gauss    0.00      nan        7.576e-03           9.032e-04          7.224e-05
+    alt       2.32e-10     gauss    0.01      nan        7.357e+00           8.772e-01          4.562e-02
+    alt       2.32e-10     gauss    0.02    1.033        1.023e+00           1.219e-01          6.340e-03
+    alt       2.32e-10     gauss    0.03    0.318        2.993e-01           3.568e-02          1.856e-03
+    alt       2.32e-10     gauss    0.05    0.069        6.447e-02           7.686e-03          3.997e-04
+    alt       2.32e-10     gauss    0.10    0.009        8.056e-03           9.604e-04          4.995e-05
+    alt       2.32e-10     gauss    0.30    0.000        2.972e-04           3.544e-05          1.843e-06
+    alt       2.32e-10     gauss    1.00    0.000        8.025e-06           9.568e-07          4.976e-08
+    alt       2.32e-10     gauss    3.00    0.000        2.972e-07           3.544e-08          1.843e-09
+    alt       2.32e-10     gauss   10.00    0.000        8.025e-09           9.568e-10          4.975e-11
+    alt       2.32e-10     gauss   30.00    0.000        2.972e-10           3.544e-11          1.843e-12
+    alt       2.32e-10     gauss  100.00    0.000        8.026e-12           9.568e-13          4.976e-14
+    alt       2.32e-10 helmholtz    0.00    4.871        5.694e-01           6.788e-02          5.431e-03
+    alt       2.32e-10 helmholtz    0.01    4.541        5.888e+00           7.020e-01          3.652e-02
+    alt       2.32e-10 helmholtz    0.02    1.787        1.861e+00           2.218e-01          1.155e-02
+    alt       2.32e-10 helmholtz    0.03    0.562        5.335e-01           6.360e-02          3.311e-03
+    alt       2.32e-10 helmholtz    0.05    0.123        1.143e-01           1.363e-02          7.090e-04
+    alt       2.32e-10 helmholtz    0.10    0.015        1.427e-02           1.702e-03          8.851e-05
+    alt       2.32e-10 helmholtz    0.30    0.001        5.268e-04           6.281e-05          3.267e-06
+    alt       2.32e-10 helmholtz    1.00    0.000        1.422e-05           1.696e-06          8.819e-08
+    alt       2.32e-10 helmholtz    3.00    0.000        5.268e-07           6.281e-08          3.266e-09
+    alt       2.32e-10 helmholtz   10.00    0.000        1.422e-08           1.696e-09          8.818e-11
+    alt       2.32e-10 helmholtz   30.00    0.000        5.268e-10           6.281e-11          3.266e-12
+    alt       2.32e-10 helmholtz  100.00    0.000        1.422e-11           1.696e-12          8.819e-14
+    (51 s)
+        gauss canonical: smallest tabulated xi admissible at ALL three external-field inputs = 0.02 pc; admissible set [0.02, 0.03, 0.05, 0.1, 0.3, 1.0, 3.0, 10.0, 30.0, 100.0]
+        gauss alt      : smallest tabulated xi admissible at ALL three external-field inputs = 0.03 pc; admissible set [0.03, 0.05, 0.1, 0.3, 1.0, 3.0, 10.0, 30.0, 100.0]
+    helmholtz canonical: smallest tabulated xi admissible at ALL three external-field inputs = 0.03 pc; admissible set [0.03, 0.05, 0.1, 0.3, 1.0, 3.0, 10.0, 30.0, 100.0]
+    helmholtz alt      : smallest tabulated xi admissible at ALL three external-field inputs = 0.03 pc; admissible set [0.03, 0.05, 0.1, 0.3, 1.0, 3.0, 10.0, 30.0, 100.0]
+  [PASS] S1 (the static falsification gate) the screened prescription has a NON-EMPTY admissible xi window on both footings and both filters against the three Solar-System bounds (signed Q2, monopole inside Saturn's orbit, radial anomaly at every planet) at all three external-field inputs -- if this FAILS the static prescription is discarded (roadmap 'fail implication')   (gauss/canonical: 0.02 pc; gauss/alt: 0.03 pc; helmholtz/canonical: 0.03 pc; helmholtz/alt: 0.03 pc)
+  [PASS] S2 the Gaussian and Helmholtz floors differ by the core structure (Helmholtz cuspy: constant sunward force inside xi), the Helmholtz floor being the higher one on both footings   (see the floors above)
+    gauss: just below the floor (xi = 0.01 pc) the binding quantity is: |Q2|/ceil = nan, M_ph/bound = 4.16, max |g_r|/sunward = 1.56
+    helmholtz: just below the floor (xi = 0.02 pc) the binding quantity is: |Q2|/ceil = 1.37, M_ph/bound = 0.86, max |g_r|/sunward = 0.32
+
+4.  galactic scales (the double filter's suppression at disc scales) and the action's own compact-source onset
+    xi =    0.1 pc: phantom suppression e^(-k^2 xi^2) at k = 1/R_d (2.5 kpc): 1.60e-09;  at k = 1/h_z (300 pc): 1.11e-07
+    xi =    1.0 pc: phantom suppression e^(-k^2 xi^2) at k = 1/R_d (2.5 kpc): 1.60e-07;  at k = 1/h_z (300 pc): 1.11e-05
+    xi =   10.0 pc: phantom suppression e^(-k^2 xi^2) at k = 1/R_d (2.5 kpc): 1.60e-05;  at k = 1/h_z (300 pc): 1.11e-03
+    xi =  100.0 pc: phantom suppression e^(-k^2 xi^2) at k = 1/R_d (2.5 kpc): 1.60e-03;  at k = 1/h_z (300 pc): 1.05e-01
+  [PASS] G1 at every admissible xi up to 100 pc the double filter changes the disc-scale phantom by < 0.2% (rotation curves untouched); at the disc scale height the change reaches 10% only at xi ~ 100 pc, which is where the vertical-force front (K_z at 1.1 kpc) would begin to constrain xi -- recorded, not computed here
+  [PASS] C1 the action's own isolated-source onset r_eq^6 ~ (81/4) G M xi^4/a0 (smoothed_onset_action_2026) is reproduced by this solver at epsilon = 1e-5 and 1e-6 to 5% (their stated approximation error is 4% at 1e-4, smaller below); at epsilon <= 1e-8 this grid's finite-difference divergence of a nearly uniform phantom loses precision (33% at 1e-8 in the first run) and is not used as a check   (eps=1e-05: r_eq/xi = 0.2416 vs 0.2423; eps=1e-06: r_eq/xi = 0.1643 vs 0.1651)
+
+5.  two-body finite-mass forces from varying both positions in the same action: OPEN (not derived here).
+
+RESULT: 0 FAIL   (52 s)
+
+STDERR:
