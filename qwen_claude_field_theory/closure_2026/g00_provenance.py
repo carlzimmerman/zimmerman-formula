@@ -57,7 +57,7 @@ for nm, cmd in CMDS:
         out, rc = "TIMEOUT", -1
     m = re.search(r"Ran (\d+) tests?", out); n = int(m.group(1)) if m else None
     okline = ("OK" in out.splitlines()[-1] if out.strip() else False) if n is not None else (rc == 0)
-    runs[nm] = dict(cmd=cmd, rc=rc, tests=n, ok=okline, seconds=round(time.time() - t, 1), tail=out[-600:])
+    runs[nm] = dict(cmd=cmd, rc=rc, tests=n, ok=okline, seconds=round(time.time() - t, 1), tail=out[-600:].replace(ROOT, '<repo>'))
     check(f"regression '{nm}': rc = {rc}, tests = {n}, ok = {okline}", rc == 0 and okline, f"{runs[nm]['seconds']} s")
 
 # f31 / f31b / f31c: re-read the numbers from the committed outputs and state the reconciled status
