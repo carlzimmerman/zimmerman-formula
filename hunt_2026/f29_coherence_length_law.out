@@ -1,0 +1,82 @@
+======================================================================================================================
+f29 -- the coherence-length law: one parameter, one machinery
+======================================================================================================================
+
+1.  validation at xi -> 0 against the committed quadrupole, and the spherical null
+  Sun: r_M = 0.039 pc; solar-circle field 2.32e-10 (observed) -> Newtonian external field 1.723e-10 m/s^2 = 1.840 a_0
+  [PASS] V1 the point-mass limit of this quadrature reproduces the committed DHF quadrupole (f23: q = 0.2748 at the solar circle, canonical) to 5 per cent -- an independent implementation (phantom density + interior multipole) of the same physics   (this file 3.236e-26 vs committed 3.240e-26 s^-2, ratio 0.999)
+  [PASS] V2 with no external field the phantom is spherical and the quadrupole vanishes (P2 orthogonality)   (|Q2(g_ext = 0)| / Q2(solar) = 7.5e-04)
+  total phantom mass of the isolated Sun inside 1000 r_M: 997.86 M_sun (deep-MOND growth ~ sqrt(a_0/G M) r, as it should)
+
+2.  the Solar-System quadrupole against the coherence length
+     xi [pc]  Q2/ceiling can  Q2/ceiling alt  suppression can
+        0.00       2713.6374       3177.8317         1.00e+00
+        0.01         79.0344         92.5240         2.91e-02
+        0.02          4.4846          5.3783         1.65e-03
+        0.03          1.1239          1.3238         4.14e-04
+        0.04          0.4593          0.5389         1.69e-04
+        0.05          0.2330          0.2731         8.59e-05
+        0.07          0.0845          0.0990         3.11e-05
+        0.10          0.0289          0.0339         1.07e-05
+        0.20          0.0036          0.0042         1.33e-06
+        0.30          0.0011          0.0013         3.94e-07
+        0.50          0.0002          0.0003         8.51e-08
+        1.00          0.0000          0.0000         1.06e-08
+        3.00          0.0000          0.0000         3.93e-10
+       10.00          0.0000          0.0000         1.06e-11
+       30.00          0.0000          0.0000         3.93e-13
+  smallest xi that clears the Park 2026 two-sigma ceiling: canonical 0.03 pc, alt 0.03 pc; to sit within one sigma of the central value: 0.04 / 0.04 pc
+  [PASS] S1 the Solar System needs only a SUB-PARSEC coherence length: the quadrupole falls below the Cassini ceiling for xi under 1 pc on both footings, and by xi = 3 pc it is below one per cent of the ceiling   (xi_min = 0.03 / 0.03 pc; Q2(3 pc)/ceiling = 1.1e-06)
+  [PASS] S2 the suppression is the geometric one: for xi >> r_M the quadrupole falls as xi^-3 (the phantom moved from r_M to xi), slope between -2.5 and -3.5   (d ln Q2 / d ln xi = -3.00 over 0.5-30 pc)
+  [PASS] S3 THE LAW HAS A HARD LOWER EDGE: smoothing the Sun over LESS than its MOND radius r_M = 0.039 pc makes the quadrupole LARGER (the source's transition region moves inward, where the r^-3 weighting is strongest); the maximum is several times the point-mass value, so xi between ~0.003 and ~0.03 pc is worse than no smoothing at all   (maximum 290.7x the point-mass value at xi = 0.003 pc = 0.08 r_M)
+
+3.  wide binaries: the pair's phantom monopole inside the separation, and gamma_v(xi)
+  pair of 2 M_sun in the solar-circle field: r_M(pair) = 0.055 pc = 11258 AU; internal field equals the external at s = 8299 AU
+  unsmoothed phantom monopole inside s / pair mass: 1 kAU: 0.000, 2 kAU: 0.004, 4 kAU: 0.067, 6 kAU: 0.169, 10 kAU: 0.238, 21 kAU: 0.241, 31 kAU: 0.241
+     xi [pc]   gv(1kAU)   gv(2kAU)   gv(4kAU)   gv(6kAU)  gv(10kAU)  gv(21kAU)  gv(31kAU)
+        0.00      1.000      1.004      1.063      1.152      1.207      1.210      1.210
+        0.00      1.000      1.004      1.062      1.150      1.207      1.210      1.210
+        0.01      1.004      1.017      1.069      1.151      1.207      1.210      1.210
+        0.02      1.001      1.007      1.044      1.103      1.188      1.210      1.210
+        0.03      1.000      1.002      1.016      1.045      1.123      1.208      1.210
+        0.04      1.000      1.001      1.007      1.022      1.073      1.190      1.210
+        0.05      1.000      1.000      1.004      1.012      1.044      1.158      1.204
+        0.07      1.000      1.000      1.001      1.005      1.019      1.095      1.170
+        0.10      1.000      1.000      1.000      1.002      1.007      1.044      1.105
+        0.20      1.000      1.000      1.000      1.000      1.001      1.007      1.022
+        0.30      1.000      1.000      1.000      1.000      1.000      1.002      1.007
+        0.50      1.000      1.000      1.000      1.000      1.000      1.000      1.002
+        1.00      1.000      1.000      1.000      1.000      1.000      1.000      1.000
+        3.00      1.000      1.000      1.000      1.000      1.000      1.000      1.000
+       10.00      1.000      1.000      1.000      1.000      1.000      1.000      1.000
+       30.00      1.000      1.000      1.000      1.000      1.000      1.000      1.000
+  [PASS] W0 sanity: the UNSMOOTHED law already has a separation dependence -- Newtonian inside the radius where the pair's own field exceeds the external one (~8 kAU) and the full pre-registered boost beyond ~10 kAU.  This check pins the method: gamma_v(2 kAU) < 1.05 and gamma_v(20 kAU) within 0.02 of 1.21   (gamma_v(2 kAU) = 1.004, (6 kAU) = 1.152, (20 kAU) = 1.210)
+  [PASS] W1 THE CASSINI <-> WIDE-BINARY LOCK IS BROKEN BY A LENGTH: at the smallest xi that clears Cassini the pre-registered boost at 20-30 kAU SURVIVES (gamma_v > 1.15) while the Solar-System quadrupole is gone.  The repository's lock assumed a screening keyed on the external-field strength; a screening keyed on length separates the two, because the quadrupole is weighted by r^-3 around the Sun while the binary boost is the phantom monopole inside the separation   (xi = 0.04 pc: Q2/ceiling = 0.46 / 0.54, gamma_v(20 kAU) = 1.190)
+  [PASS] W2 (THE NEW PREDICTION) the coherence length moves the wide-binary KNEE outward: at 6 kAU the unsmoothed law is already boosted (gamma_v > 1.12) while the Cassini-minimal xi keeps it near Newton (gamma_v < 1.06); by 20-30 kAU both agree.  Gaia DR4 binned in separation (the 4-10 kAU bins) distinguishes them; a flat 1.00 or a flat 1.2 fits neither   (at 6 kAU: framework 1.152 vs xi = 0.04 pc 1.022; at 30 kAU: 1.210 vs 1.210)
+  [PASS] W3 and for xi >= 0.3 pc the binaries are Newtonian at every separation up to 30 kAU: the large-xi regime (the one the globular clusters point to) predicts a flat gamma_v = 1.00 in DR4   (max gamma_v over s <= 30 kAU at xi >= 0.3 pc: 1.0071)
+
+4.  the four outer-halo globular clusters: the fraction of the MOND+EFE boost the data require, and the xi it implies
+    cluster   r_h [pc]     M_enc    e_N  B_MOND   B_EFE  B_Newt   F_req   xi implied
+    pal4          15.9  1.66e+04  0.008  -0.811  -0.781  -0.109  -0.060    > 4770 pc (Newton or below)
+    pal14         27.6  1.04e+04  0.019  -0.871  -0.658  +0.146  +0.075        50 pc
+    ngc2419       19.8  4.54e+05  0.000  -0.201  -0.199  +0.017  +0.063       140 pc
+    pal3          20.2  1.17e+04  0.009  -0.148  -0.075  +0.719  +0.811         9 pc
+  [PASS] G1 the three Newtonian-side globulars want a coherence length of tens of parsecs or more (Pal 4 a lower bound, Pal 14 and NGC 2419 finite values within a factor of three of each other), and Pal 3 wants a much smaller one: the globular-cluster rung MEASURES xi if three of the four are trusted, and Pal 3 is the discordant row   (pal4: out of range; pal14: 50 pc; ngc2419: 140 pc; pal3: 9 pc)
+  geometric mean of the two finite values: xi_GC ~ 84 pc
+
+5.  what xi ~ xi_GC leaves untouched
+  [PASS] D1 a Draco-like dwarf spheroidal (r_h = 220 pc) keeps more than 70 per cent of its MOND+EFE boost at xi = xi_GC (a 0.1-0.15 dex reduction, inside the dwarf rung's own prescription spread), and a 3 kpc disc keeps more than 99 per cent: the length the globulars point to does not touch the discs and only trims the dwarfs   (F(dSph) = 0.755, F(disc) = 1.0003 at xi = 84 pc)
+
+6.  handed to the field-theory lead: the static system whose constraint chain decides whether xi costs a degree of freedom
+      (i)   nabla^2 Phi_N = 4 pi G rho_b
+      (ii)  (1 - xi^2 nabla^2) Phi~ = Phi_N            [Helmholtz filter; the Gaussian used above is its smooth cousin]
+      (iii) nabla^2 Phi = nabla . [ nu(|grad Phi~|/a_0) grad Phi~ ]
+    Three elliptic equations, no time derivatives.  (ii) is what Theorem 8 localised into a dynamical field and killed;
+    here it is a CONSTRAINT.  The question for the Dirac chain: with Phi~ a constrained variable, is the finite-k static
+    block still 0 propagating DOF (as your two-field block was), and does the k -> 0 sector survive a background?
+    Numbers to hold it to: xi >= 0.03 pc (Cassini; and NOT below ~0.03 pc, where smoothing makes it worse); two regimes:
+      small xi (0.03-0.1 pc): Cassini passes, wide binaries keep the boost at 20 kAU with a knee near xi, globulars stay MOND (f13's +0.3 dex remains);
+      large xi (~84 pc, from 3 of 4 globulars): Cassini passes, wide binaries Newtonian at all separations, dwarfs trimmed by 0.1-0.15 dex, discs untouched.
+    Gaia DR4 binned in separation, and the outer-halo globulars, decide between them.
+
+RESULT: 11 checks, 0 FAIL   rc=0

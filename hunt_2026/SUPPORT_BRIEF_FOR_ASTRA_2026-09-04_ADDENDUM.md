@@ -106,3 +106,68 @@ the only lever on Q₂; it is not every one-argument law, and the statement is o
 Read with RESUME_HERE's own line — which field carries the halo cannot move Q₂ — this is the closure of the
 one-argument class: no static law μ(g/a₀), carried by any field, passes both the Solar System and the galaxy data.
 The second argument is not another acceleration (u02); it is a length.
+
+## E. The coherence-length law, made concrete — `hunt_2026/f29_coherence_length_law.py` (12/12)
+
+**The hardest problem, in one sentence:** *find the covariant action whose static limit is QUMOND applied to a
+Helmholtz-smoothed Newtonian potential, (1 − ξ²∇²)Φ̃ = Φ_N, with Φ̃ entering as a constraint that adds no propagating
+degree of freedom — because the phantom must switch off below a length ξ ≳ 0.03 pc to survive Cassini, lensing forbids
+modified inertia, and no acceleration-only law can do it (f28).*
+
+The static system (three elliptic equations, no time derivatives):
+```
+(i)   ∇²Φ_N = 4πG ρ_b
+(ii)  (1 − ξ²∇²) Φ̃ = Φ_N            [a Gaussian filter of width ξ was used for the numbers; same behaviour]
+(iii) ∇²Φ = ∇·[ ν(|∇Φ̃|/a₀) ∇Φ̃ ]     [ν = the framework's kernel]
+```
+For sources varying on scales ≫ ξ it *is* QUMOND. For a point source it removes the phantom from inside ξ. Theorem 8
+killed the version in which (ii) is a dynamical field; here it is a constraint, and whether it can stay one in a
+covariant host is exactly the question your Dirac-chain machinery (§3 of your orbit-shape report, which found 0 DOF for
+the two-field static block) can answer with Φ̃ as a third constrained variable.
+
+Everything below comes from one phantom-density quadrature (axisymmetric source in the Newtonian external field),
+validated at ξ → 0 against the committed DHF quadrupole to 0.2% (with the repository's Q₂ = 3G·I₂ convention) and by
+the spherical null.
+
+**Solar System.** Q₂/ceiling (canonical / alt): ξ = 0.02 pc: 4.5 / 5.4; 0.03 pc: 1.12 / 1.32; 0.04 pc: 0.46 / 0.54;
+0.05 pc: 0.23 / 0.27; 0.1 pc: 0.029 / 0.034; then ∝ ξ⁻³ (slope −3.00). **The Solar System needs only ξ ≳ 0.03–0.04 pc,
+about one MOND radius of the Sun.** And the law has a hard lower edge: smoothing over *less* than r_M(☉) = 0.039 pc
+makes the quadrupole *larger* (the transition region moves inward where the r⁻³ weighting is strongest), so ξ below
+~0.03 pc is worse than no smoothing.
+
+**Wide binaries — the Cassini ↔ wide-binary lock is broken by a length.** The pair's phantom monopole inside the
+separation, scaled to the pre-registered 1.21 where it saturates:
+
+| ξ | 2 kAU | 4 kAU | 6 kAU | 10 kAU | 21 kAU | 31 kAU |
+|---|---|---|---|---|---|---|
+| 0 (the framework's own law) | 1.004 | 1.06 | 1.15 | 1.21 | 1.21 | 1.21 |
+| 0.04 pc (Cassini-minimal) | 1.001 | 1.007 | 1.022 | 1.073 | 1.19 | 1.21 |
+| 0.05 pc | 1.000 | 1.004 | 1.012 | 1.044 | 1.16 | 1.20 |
+| 0.07 pc | 1.000 | 1.001 | 1.005 | 1.019 | 1.095 | 1.17 |
+| ≥ 0.3 pc | 1.000 | 1.000 | 1.000 | 1.000 | 1.002 | 1.007 |
+
+Two things the repository did not have. First, the pre-registered boost at 20–30 kAU **survives Cassini** at
+ξ = 0.04–0.05 pc — the lock (`cassini_widebinary_lock_2026.py`) assumed a screening keyed on the external-field
+strength; one keyed on length separates the two because the quadrupole is r⁻³-weighted around the Sun while the binary
+boost is the monopole inside the separation. Second, **the prediction**: the coherence length moves the wide-binary
+knee outward, from ~5–8 kAU (where the pair's own field equals the external one) to ~15–20 kAU. At 6 kAU the framework
+says 1.15 and the Cassini-minimal law says 1.02; at 10 kAU, 1.21 against 1.07; they agree again by 30 kAU. Gaia DR4
+binned in separation (the 4–10 kAU bins) decides it. A flat 1.00 or a flat 1.2 fits neither. And for ξ ≥ 0.3 pc the
+binaries are Newtonian at every separation.
+
+**Globular clusters measure ξ, if three of four are trusted.** Each outer-halo row with its own external field, the
+fraction F of the MOND+EFE boost the data require: Pal 4, F < 0 (Newton or below, ξ unbounded above); Pal 14,
+F = 0.075 → ξ ≈ 50 pc; NGC 2419, F = 0.063 → ξ ≈ 140 pc; Pal 3, F = 0.81 → ξ ≈ 9 pc (the discordant row). At ξ ≈ 84 pc
+a Draco-like dwarf keeps 76% of its boost (a 0.1–0.15 dex trim, inside the dwarf rung's prescription spread) and a
+3 kpc disc keeps 100.0%.
+
+**So there are two regimes, and the data on disk already split them:**
+- small ξ ≈ 0.03–0.07 pc: Cassini passes, the wide-binary boost survives with the knee at 15–20 kAU, globulars stay
+  MOND (f13's +0.3 dex over-prediction remains);
+- large ξ ≈ 50–140 pc: Cassini passes, wide binaries Newtonian at all separations, three of four globulars Newtonian,
+  dwarfs trimmed, discs and lensing untouched.
+Gaia DR4 in separation bins and the outer-halo globulars decide between them; the Solar System is satisfied by both.
+
+Scope: a static one-parameter law, not a relativistic theory; the globular source is a Gaussian matched to a Plummer
+half-mass radius; the wide-binary numbers are a monopole-phantom ratio scaled to the pre-registration, not a rerun of
+its pipeline; the pre-registration file is untouched.

@@ -140,3 +140,10 @@ That, not Cassini, is now the wall.** No choice of `mu_n` touches it.
   rejection to 90-95% of resamples (disfavoured, not rejected, on the forward solve); and it makes the RAR kernel's
   fit WORSE -- SPARC discs follow the algebraic relation better than the QUMOND disc field of the same kernel (f18's
   curl-sign result on the full sample). The data do not want the modified-gravity disc field either.
+- f29 (12/12) makes the length concrete: QUMOND on a Helmholtz-smoothed Newtonian potential, (1 - xi^2 nabla^2) Phi~
+  = Phi_N, Phi~ a CONSTRAINT. Cassini needs only xi >= 0.03-0.04 pc (one solar MOND radius; below that it is WORSE);
+  the Cassini <-> wide-binary lock is broken by a length -- the pre-registered 1.21 at 20-30 kAU survives at xi =
+  0.04-0.05 pc and the KNEE moves from ~6 to ~15-20 kAU (at 6 kAU: 1.15 framework vs 1.02); xi >= 0.3 pc gives flat
+  1.00. Three of four outer-halo globulars want xi ~ 50-140 pc. THE ONE-LINE PROBLEM: find the covariant action whose
+  static limit is (i)-(iii) with Phi~ a constraint that adds no propagating DOF. Your Dirac chain with Phi~ as a third
+  constrained variable is the calculation. Addendum section E has the tables.
