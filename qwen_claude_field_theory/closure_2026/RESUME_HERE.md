@@ -165,6 +165,8 @@ That, not Cassini, is now the wall.** No choice of `mu_n` touches it.
 - ROADMAP EXECUTION (2026-09-04 night): G00, G01, G02 of FRIED_CHICKEN_ROADMAP_2026-09-04 are done and committed; the
   first handoff in the requested format is `FABLE_HANDOFF_2026-09-04.md`. T-A (strict exact AQUAL): FAIL on Cassini by two
   discretisations (Q2 = +2.10e-26, 4-5x the ceiling on both footings, all three g_ext inputs; 1e-11 convergence reached by
-  the second scheme). T-B (double-filter, exact inverse exponential kernel): SURVIVES statically, floors 0.02 pc (Gaussian)
-  and 0.03 pc (Helmholtz), two-body OPEN. Next is G03 -- with the k^4 PPN constraint: the covariant filter must realise the
+  the second scheme). T-B (double-filter, exact inverse exponential kernel): SURVIVES statically, floors 0.02/0.03 pc (Gaussian,
+  canonical/alt) and 0.03 pc (Helmholtz) after the external-field conversion fix caught by g02b (astra's tidal identity
+  reproduced to 1.4%/0.6%), two-body OPEN. 2026-09-04 night: the lead is directed to review the handoff and start G03
+  (`MESSAGE_TO_ASTRA_2026-09-04_START_G03.md`). Next is G03 -- with the k^4 PPN constraint: the covariant filter must realise the
   coherent stiffening of the scalar's full quadratic form (f31c A), since local fourth-order operators fail alpha_1.
