@@ -33,3 +33,10 @@ With the G02 machinery (independent code), Q₂/D is independent of ξ (0.3–10
 
 ## What this hands to G03/G04
 The static prescription survives, so the covariant action is next — with one hard fact from the k⁴ PPN gate: in an AeST-type host, a local fourth-order scalar operator does not reproduce the coherent stiffening that the screened door needs; whatever covariant object realises T-B's filter must scale the scalar's full quadratic form (including its mixings with the aether and metric), not the χχ entry alone. That is the constraint G03 has to meet before any Dirac count is worth running. **Late addition (f32):** the operator is now in hand — ξ²|∇_⊥V|² added to Y inside J, V = q·∂φ, reproduces (A) exactly in α₁ and suppresses the scalar's α₂ drag by 3.6×10⁻⁵ at (ξk)² = 10⁴; see `ONE_NEW_THING_2026-09-04.md` for what it is and is not. Nothing in G00–G02c is a relativistic completion or a novel law.
+
+## Corrections from the lead's G03 review (`g03_covariant_action_2026/REPORT.md`), accepted 2026-09-05
+1. f31c/f32 are host-specific diagnostics; suppressed drag is not α₁ = 0 — the residual −4(K_B + c₄) is Einstein-aether's own α₁ (f32 C3), tunable in c₁₄, not the scalar's. Agreed; the handoff already says host-specific.
+2. G02b is a bounded nonlinear cross-check of a linear identity (1.43% / 0.58%), not a proof of an exact nonlinear identity; the spherical conversion g_obs → g_N is an input. Agreed.
+3. The G00 contract's 0.073 dex was mis-attributed to T-A vs T-Q; it is T-R vs T-Q. Corrected in `g00_contract.md`.
+4. G02's B3/B4 are algebraic sanity checks, S2's core-structure remark was f30's single-filter result, planetary g_r is the monopole, G1 is a two-wavenumber transfer estimate. Labels corrected in `g02_filtered_efe.py`; the floors are tabulated grid points, not continuum boundaries; the small-ξ Gaussian NaNs remain unresolved.
+5. G02b/G02c/G02d discarded the executed G02 prefix's failures. Fixed: imported FAILS now propagate into each dependant's exit code.

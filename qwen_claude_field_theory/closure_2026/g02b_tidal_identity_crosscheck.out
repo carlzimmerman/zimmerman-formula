@@ -6,8 +6,8 @@ G02 -- screened extension (T-B): exact inverse exponential kernel, double filter
 1.  Fourier benchmark: linear response about a constant filtered gradient, from finite differences of the exact flux
   [PASS] B1 the response coefficient of section 4 is reproduced from finite differences of the exact nonlinear flux for three background strengths and six wavevector angles: nu_e - 1 + s_e nu'_e (khat.ehat)^2   (s_e=0.3 ang=0.0: +0.23783 vs +0.23783; s_e=1.0 ang=0.0: -0.08318 vs -0.08318; s_e=2.5 ang=0.0: -0.10339 vs -0.10339)
   [PASS] B2 tangents: transverse = nu_e - 1; longitudinal = d(s nu)/ds - 1 = 1/[mu + y mu'] - 1, finite-differenced against the closed form   (longitudinal -0.08318 vs 1/[mu + y mu'] - 1 = -0.08318; transverse +0.34998)
-  [PASS] B3 the filter enters squared (input and output filters): sigma(k)^2 = e^{-xi^2 k^2}; xi = 0 gives 1 and k xi >> 1 gives 0
-  [PASS] B4 constant-background subtraction: the background gradient itself has zero divergence of flux (uniform p0), so it sources nothing
+  [PASS] B3 [algebraic sanity check, not a solver test] the filter enters squared (input and output filters): sigma(k)^2 = e^{-xi^2 k^2}; xi = 0 gives 1 and k xi >> 1 gives 0
+  [PASS] B4 [algebraic sanity check] constant-background subtraction: the background gradient itself has zero divergence of flux (uniform p0), so it sources nothing
 
 2.  validation of the filtered-phantom machinery
   [PASS] V1 at xi = 0 the machinery reproduces f23's committed QUMOND quadrupole for the exponential kernel, |Q2| = 3.76x the ceiling (q = 0.1658 at the solar circle), to 5%: same physics (QUMOND phantom of a point mass), independent implementation   (this file +1.953e-26 vs 1.955e-26)

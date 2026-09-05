@@ -6,8 +6,8 @@ G02 -- screened extension (T-B): exact inverse exponential kernel, double filter
 1.  Fourier benchmark: linear response about a constant filtered gradient, from finite differences of the exact flux
   [PASS] B1 the response coefficient of section 4 is reproduced from finite differences of the exact nonlinear flux for three background strengths and six wavevector angles: nu_e - 1 + s_e nu'_e (khat.ehat)^2   (s_e=0.3 ang=0.0: +0.23783 vs +0.23783; s_e=1.0 ang=0.0: -0.08318 vs -0.08318; s_e=2.5 ang=0.0: -0.10339 vs -0.10339)
   [PASS] B2 tangents: transverse = nu_e - 1; longitudinal = d(s nu)/ds - 1 = 1/[mu + y mu'] - 1, finite-differenced against the closed form   (longitudinal -0.08318 vs 1/[mu + y mu'] - 1 = -0.08318; transverse +0.34998)
-  [PASS] B3 the filter enters squared (input and output filters): sigma(k)^2 = e^{-xi^2 k^2}; xi = 0 gives 1 and k xi >> 1 gives 0
-  [PASS] B4 constant-background subtraction: the background gradient itself has zero divergence of flux (uniform p0), so it sources nothing
+  [PASS] B3 [algebraic sanity check, not a solver test] the filter enters squared (input and output filters): sigma(k)^2 = e^{-xi^2 k^2}; xi = 0 gives 1 and k xi >> 1 gives 0
+  [PASS] B4 [algebraic sanity check] constant-background subtraction: the background gradient itself has zero divergence of flux (uniform p0), so it sources nothing
 
 2.  validation of the filtered-phantom machinery
   [PASS] V1 at xi = 0 the machinery reproduces f23's committed QUMOND quadrupole for the exponential kernel, |Q2| = 3.76x the ceiling (q = 0.1658 at the solar circle), to 5%: same physics (QUMOND phantom of a point mass), independent implementation   (this file +1.953e-26 vs 1.955e-26)
@@ -64,13 +64,13 @@ G02 -- screened extension (T-B): exact inverse exponential kernel, double filter
     alt       2.32e-10 helmholtz   10.00    0.000        1.422e-08           1.696e-09          8.818e-11
     alt       2.32e-10 helmholtz   30.00    0.000        5.268e-10           6.281e-11          3.266e-12
     alt       2.32e-10 helmholtz  100.00    0.000        1.422e-11           1.696e-12          8.819e-14
-    (50 s)
+    (51 s)
         gauss canonical: smallest tabulated xi admissible at ALL three external-field inputs = 0.02 pc; admissible set [0.02, 0.03, 0.05, 0.1, 0.3, 1.0, 3.0, 10.0, 30.0, 100.0]
         gauss alt      : smallest tabulated xi admissible at ALL three external-field inputs = 0.03 pc; admissible set [0.03, 0.05, 0.1, 0.3, 1.0, 3.0, 10.0, 30.0, 100.0]
     helmholtz canonical: smallest tabulated xi admissible at ALL three external-field inputs = 0.03 pc; admissible set [0.03, 0.05, 0.1, 0.3, 1.0, 3.0, 10.0, 30.0, 100.0]
     helmholtz alt      : smallest tabulated xi admissible at ALL three external-field inputs = 0.03 pc; admissible set [0.03, 0.05, 0.1, 0.3, 1.0, 3.0, 10.0, 30.0, 100.0]
   [PASS] S1 (the static falsification gate) the screened prescription has a NON-EMPTY admissible xi window on both footings and both filters against the three Solar-System bounds (signed Q2, monopole inside Saturn's orbit, radial anomaly at every planet) at all three external-field inputs -- if this FAILS the static prescription is discarded (roadmap 'fail implication')   (gauss/canonical: 0.02 pc; gauss/alt: 0.03 pc; helmholtz/canonical: 0.03 pc; helmholtz/alt: 0.03 pc)
-  [PASS] S2 the Gaussian and Helmholtz floors differ by the core structure (Helmholtz cuspy: constant sunward force inside xi), the Helmholtz floor being the higher one on both footings   (see the floors above)
+  [PASS] S2 [tabulated floors only; the core-structure remark is f30's single-filter result, not tested here] the Helmholtz floor being the higher one on both footings   (see the floors above)
     gauss: just below the floor (xi = 0.01 pc) the binding quantity is: |Q2|/ceil = nan, M_ph/bound = 4.16, max |g_r|/sunward = 1.56
     helmholtz: just below the floor (xi = 0.02 pc) the binding quantity is: |Q2|/ceil = 1.37, M_ph/bound = 0.86, max |g_r|/sunward = 0.32
 
@@ -79,9 +79,9 @@ G02 -- screened extension (T-B): exact inverse exponential kernel, double filter
     xi =    1.0 pc: phantom suppression e^(-k^2 xi^2) at k = 1/R_d (2.5 kpc): 1.60e-07;  at k = 1/h_z (300 pc): 1.11e-05
     xi =   10.0 pc: phantom suppression e^(-k^2 xi^2) at k = 1/R_d (2.5 kpc): 1.60e-05;  at k = 1/h_z (300 pc): 1.11e-03
     xi =  100.0 pc: phantom suppression e^(-k^2 xi^2) at k = 1/R_d (2.5 kpc): 1.60e-03;  at k = 1/h_z (300 pc): 1.05e-01
-  [PASS] G1 at every admissible xi up to 100 pc the double filter changes the disc-scale phantom by < 0.2% (rotation curves untouched); at the disc scale height the change reaches 10% only at xi ~ 100 pc, which is where the vertical-force front (K_z at 1.1 kpc) would begin to constrain xi -- recorded, not computed here
+  [PASS] G1 [two-wavenumber transfer estimate, not a solved Galactic disc] at every admissible xi up to 100 pc the double filter changes the disc-scale phantom by < 0.2%; at the disc scale height the change reaches 10% only at xi ~ 100 pc, which is where the vertical-force front (K_z at 1.1 kpc) would begin to constrain xi -- recorded, not computed here
   [PASS] C1 the action's own isolated-source onset r_eq^6 ~ (81/4) G M xi^4/a0 (smoothed_onset_action_2026) is reproduced by this solver at epsilon = 1e-5 and 1e-6 to 5% (their stated approximation error is 4% at 1e-4, smaller below); at epsilon <= 1e-8 this grid's finite-difference divergence of a nearly uniform phantom loses precision (33% at 1e-8 in the first run) and is not used as a check   (eps=1e-05: r_eq/xi = 0.2416 vs 0.2423; eps=1e-06: r_eq/xi = 0.1643 vs 0.1651)
 
 5.  two-body finite-mass forces from varying both positions in the same action: OPEN (not derived here).
 
-RESULT: 0 FAIL   (51 s)
+RESULT: 0 FAIL   (52 s)

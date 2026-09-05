@@ -82,9 +82,9 @@ lon_fd = float(nu(1.0) - 1 + 1.0*nu_prime(1.0))
 check("B2 tangents: transverse = nu_e - 1; longitudinal = d(s nu)/ds - 1 = 1/[mu + y mu'] - 1, finite-differenced against the closed form",
       abs(lon_fd - lon) < 1e-4, f"longitudinal {lon_fd:+.5f} vs 1/[mu + y mu'] - 1 = {lon:+.5f}; transverse {float(nu(1.0)) - 1:+.5f}")
 sig2 = lambda k, xi: math.exp(-xi**2*k**2)          # two Gaussian filters: sigma^2
-check("B3 the filter enters squared (input and output filters): sigma(k)^2 = e^{-xi^2 k^2}; xi = 0 gives 1 and k xi >> 1 gives 0",
+check("B3 [algebraic sanity check, not a solver test] the filter enters squared (input and output filters): sigma(k)^2 = e^{-xi^2 k^2}; xi = 0 gives 1 and k xi >> 1 gives 0",
       sig2(1.0, 0.0) == 1.0 and sig2(50.0, 1.0) < 1e-100 and abs(sig2(1.0, 1.0) - math.exp(-1)) < 1e-15)
-check("B4 constant-background subtraction: the background gradient itself has zero divergence of flux (uniform p0), so it sources nothing",
+check("B4 [algebraic sanity check] constant-background subtraction: the background gradient itself has zero divergence of flux (uniform p0), so it sources nothing",
       float(np.linalg.norm(flux(np.array([0., 0., 1.0])) - flux(np.array([0., 0., 1.0])))) == 0.0)
 
 # ---------------------------------------------------------------- 2. the nonlinear axisymmetric solve with the output filter
@@ -189,7 +189,7 @@ check("S1 (the static falsification gate) the screened prescription has a NON-EM
       "against the three Solar-System bounds (signed Q2, monopole inside Saturn's orbit, radial anomaly at every planet) at all three "
       "external-field inputs -- if this FAILS the static prescription is discarded (roadmap 'fail implication')",
       all(not math.isnan(v) for v in floors.values()), "; ".join(f"{k}/{f}: {v:.2f} pc" for (k, f), v in floors.items()))
-check("S2 the Gaussian and Helmholtz floors differ by the core structure (Helmholtz cuspy: constant sunward force inside xi), the Helmholtz "
+check("S2 [tabulated floors only; the core-structure remark is f30's single-filter result, not tested here] the Helmholtz "
       "floor being the higher one on both footings",
       all(floors[("helmholtz", f)] >= floors[("gauss", f)] for f in A0 if not math.isnan(floors[("helmholtz", f)])), "see the floors above")
 # which bound binds at the floor
@@ -207,7 +207,7 @@ print("\n4.  galactic scales (the double filter's suppression at disc scales) an
 for xi_pc in (0.1, 1.0, 10.0, 100.0):
     sRd = math.exp(-(xi_pc*PC/(2500*PC))**2); shz = math.exp(-(xi_pc*PC/(300*PC))**2)
     print(f"    xi = {xi_pc:6.1f} pc: phantom suppression e^(-k^2 xi^2) at k = 1/R_d (2.5 kpc): {1-sRd:.2e};  at k = 1/h_z (300 pc): {1-shz:.2e}")
-check("G1 at every admissible xi up to 100 pc the double filter changes the disc-scale phantom by < 0.2% (rotation curves untouched); at the "
+check("G1 [two-wavenumber transfer estimate, not a solved Galactic disc] at every admissible xi up to 100 pc the double filter changes the disc-scale phantom by < 0.2%; at the "
       "disc scale height the change reaches 10% only at xi ~ 100 pc, which is where the vertical-force front (K_z at 1.1 kpc) would begin to "
       "constrain xi -- recorded, not computed here", 1 - math.exp(-(100/2500)**2) < 2e-3 and 0.05 < 1 - math.exp(-(100/300)**2) < 0.15)
 # compact source: onset radius where the anomalous acceleration equals the unsmoothed Newtonian one, isolated, epsilon = GM/(a0 xi^2) -> 0

@@ -20,9 +20,10 @@ HERE = os.path.dirname(os.path.abspath(__file__)); src = open(os.path.join(HERE,
 head = src[:src.index("# ---------------------------------------------------------------- 3. the scans")]
 g = {}; import io, contextlib
 with contextlib.redirect_stdout(io.StringIO()): exec(compile(head, "g02head", "exec"), g)      # G02's own benchmark sections run silently
+IMPORTED_FAILS = list(g.get("FAILS", []))   # failures of the executed G02 prefix are NOT discarded (the lead's correction 5)
 PC, AU, MSUN, G, A0, GM = g["PC"], g["AU"], g["MSUN"], g["G"], g["A0"], g["GM"]
 nu, nu_prime, smoothed_field, eN_of = g["nu"], g["nu_prime"], g["smoothed_field"], g["eN_of"]
-T0 = time.time(); FAILS = []
+T0 = time.time(); FAILS = list(IMPORTED_FAILS)
 def check(name, ok, detail=""):
     print(f"  [{'PASS' if ok else 'FAIL'}] {name}" + (f"   ({detail})" if detail else ""), flush=True)
     if not ok: FAILS.append(name)

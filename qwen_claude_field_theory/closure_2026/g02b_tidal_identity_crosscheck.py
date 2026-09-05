@@ -8,8 +8,9 @@ import math, sys, os, numpy as np, warnings; warnings.filterwarnings("ignore")
 HERE = os.path.dirname(os.path.abspath(__file__)); src = open(os.path.join(HERE, "g02_filtered_efe.py")).read()
 head = src[:src.index("# ---------------------------------------------------------------- 3. the scans")]
 g = {}; exec(compile(head, "g02head", "exec"), g)
+IMPORTED_FAILS = list(g.get("FAILS", []))   # failures of the executed G02 prefix are NOT discarded (the lead's correction 5)
 PC, MSUN, G, A0, GM = g["PC"], g["MSUN"], g["G"], g["A0"], g["GM"]
-FAILS = []
+FAILS = list(IMPORTED_FAILS)
 def check(name, ok, detail=""):
     print(f"  [{'PASS' if ok else 'FAIL'}] {name}" + (f"   ({detail})" if detail else ""), flush=True)
     if not ok: FAILS.append(name)
