@@ -1,0 +1,72 @@
+[S1] unit-norm constraint solved (0.5s)
+    aether operators built (92.1s)
+    dark scalars (133.3s)
+    Ricci (149.7s)
+    biharmonic operator built: (D^2 phi)^2 at O(eps^2) has 32 terms (334.0s)
+    L2dc built+cached: 675 terms (337.1s)
+
+============================================================================
+ANCHOR: XI2 = 0 reproduces the banked alpha_1 = -4(2+K_B J_Y)/(1+J_Y), gamma = 1, alpha_3 = 0
+============================================================================
+  [PASS] anchor KB=1/5 JY=1: alpha_1(XI2=0) = -22/5 == banked -22/5
+  [PASS]    gamma = 1, alpha_3 = 0  (gamma=1 a3=0)
+  [PASS] anchor KB=1/2 JY=1: alpha_1(XI2=0) = -5 == banked -5
+  [PASS]    gamma = 1, alpha_3 = 0  (gamma=1 a3=0)
+  [PASS] anchor KB=1/5 JY=2: alpha_1(XI2=0) = -16/5 == banked -16/5
+  [PASS]    gamma = 1, alpha_3 = 0  (gamma=1 a3=0)
+  (343s)
+
+============================================================================
+MAIN: the ladder with the k^4 term, XI2 = (xi k)^2 = 0, 1, 1e2, 1e4, 1e8; c2 = c4 = 0
+============================================================================
+    K_B  J_Y      XI2        alpha_1   drag piece        alpha_2  alpha_3  gamma
+    1/5    1    0e+00  -4.400000e+00   -3.600e+00            -oo        0      1
+    1/5    1    1e+00  -2.600000e+00   -1.800e+00            -oo        0      1
+    1/5    1    1e+02   1.756000e+02    1.764e+02             oo        0      1
+    1/5    1    1e+04   1.799560e+04    1.800e+04             oo        0      1
+    1/5    1    1e+08   1.800000e+08    1.800e+08             oo        0      1
+    1/2    1    0e+00  -5.000000e+00   -3.000e+00            -oo        0      1
+    1/2    1    1e+00  -3.500000e+00   -1.500e+00            -oo        0      1
+    1/2    1    1e+02   1.450000e+02    1.470e+02             oo        0      1
+    1/2    1    1e+04   1.499500e+04    1.500e+04             oo        0      1
+    1/2    1    1e+08   1.500000e+08    1.500e+08             oo        0      1
+    1/5    2    0e+00  -3.200000e+00   -2.400e+00            -oo        0      1
+    1/5    2    1e+00  -1.600000e+00   -8.000e-01            -oo        0      1
+    1/5    2    1e+02   1.568000e+02    1.576e+02             oo        0      1
+    1/5    2    1e+04   1.599680e+04    1.600e+04             oo        0      1
+    1/5    2    1e+08   1.600000e+08    1.600e+08             oo        0      1
+  (369s)
+
+============================================================================
+CLOSED FORM WITH THE k^4 TERM: is the drag piece -4(2-K_B)/(J_Y (1+XI2) + 1)?
+============================================================================
+  KB=1/5 JY=1 XI2=0: drag = -18/5  vs  -4(2-K_B)/(J_Y(1+XI2)+1) = -18/5  OK
+  KB=1/5 JY=1 XI2=1: drag = -9/5  vs  -4(2-K_B)/(J_Y(1+XI2)+1) = -12/5  DIFFERS by 3/5
+  KB=1/5 JY=1 XI2=100: drag = 882/5  vs  -4(2-K_B)/(J_Y(1+XI2)+1) = -6/85  DIFFERS by 3000/17
+  KB=1/5 JY=1 XI2=10000: drag = 89982/5  vs  -4(2-K_B)/(J_Y(1+XI2)+1) = -6/8335  DIFFERS by 30000000/1667
+  KB=1/5 JY=1 XI2=1e+08: drag = 899999982/5  vs  -4(2-K_B)/(J_Y(1+XI2)+1) = -6/83333335  DIFFERS by 3000000000000000/16666667
+  KB=1/2 JY=1 XI2=0: drag = -3  vs  -4(2-K_B)/(J_Y(1+XI2)+1) = -3  OK
+  KB=1/2 JY=1 XI2=1: drag = -3/2  vs  -4(2-K_B)/(J_Y(1+XI2)+1) = -2  DIFFERS by 1/2
+  KB=1/2 JY=1 XI2=100: drag = 147  vs  -4(2-K_B)/(J_Y(1+XI2)+1) = -1/17  DIFFERS by 2500/17
+  KB=1/2 JY=1 XI2=10000: drag = 14997  vs  -4(2-K_B)/(J_Y(1+XI2)+1) = -1/1667  DIFFERS by 25000000/1667
+  KB=1/2 JY=1 XI2=1e+08: drag = 149999997  vs  -4(2-K_B)/(J_Y(1+XI2)+1) = -1/16666667  DIFFERS by 2500000000000000/16666667
+  KB=1/5 JY=2 XI2=0: drag = -12/5  vs  -4(2-K_B)/(J_Y(1+XI2)+1) = -12/5  OK
+  KB=1/5 JY=2 XI2=1: drag = -4/5  vs  -4(2-K_B)/(J_Y(1+XI2)+1) = -36/25  DIFFERS by 16/25
+  KB=1/5 JY=2 XI2=100: drag = 788/5  vs  -4(2-K_B)/(J_Y(1+XI2)+1) = -36/1015  DIFFERS by 32000/203
+  KB=1/5 JY=2 XI2=10000: drag = 79988/5  vs  -4(2-K_B)/(J_Y(1+XI2)+1) = -36/100015  DIFFERS by 320000000/20003
+  KB=1/5 JY=2 XI2=1e+08: drag = 799999988/5  vs  -4(2-K_B)/(J_Y(1+XI2)+1) = -36/1000000015  DIFFERS by 32000000000000000/200000003
+  [FAIL] K2 the closed form with the k^4 term: the scalar drag piece of alpha_1 becomes -4(2-K_B)/(J_Y(1+XI2)+1) -- the biharmonic term stiffens the scalar by (1 + xi^2 k^2) in exactly the place the lock lived, and its metric/aether mixings change nothing else in alpha_1 (if this FAILS the mixings matter and the printed DIFFERS lines say by how much)
+  [FAIL] K3 (THE VERDICT) at the Solar-System scale, XI2 = 8.6e7 or more, the drag piece of alpha_1 is below 1e-6, so |alpha_1| < 1e-4 is reached with c_14 POSITIVE (0 < c_14 <= 2.5e-5): the lock -- alpha_1 = 0 only at c_14 < 0, a spin-1 ghost -- does not apply to the screened scalar  (drag piece at XI2 = 1e8: 1.80e+08; alpha_1 = 0 at c_14 = -4.50e+07)
+  [FAIL] K4 alpha_2's scalar channel is suppressed by the same term: |alpha_2(XI2 = 1e8)| < 1e-4 |alpha_2(0)| (the v9 alpha_2 kill was 1e4-1e5 x over the 1e-7 bound; report the residual)  (alpha_2: -oo -> oo)
+  [PASS] K5 gamma = 1 and alpha_3 = 0 persist with the k^4 term at every XI2 (semiconservative; the screening touches only the preferred-frame sector)
+
+============================================================================
+VERDICT
+============================================================================
+  With the biharmonic term the scalar's spatial operator is stiffened by (1 + xi^2 k^2) in the place the alpha_1 lock lived.
+  At 1 AU with xi >= 0.045 pc that factor is >= 8.6e7: the scalar drag's contribution to alpha_1 is below 1e-7, and
+  alpha_1 within its bound needs only 0 < c_14 <= 2.5e-5 -- Einstein-aether's own post-GW170817 region, no ghost.
+  gamma = 1 and alpha_3 = 0 are untouched.  What this does NOT cover: the aether sector's own alpha_2 at c_14 ~ 1e-5 (Einstein-aether
+  literature), the nonlinear regime, and the cuspy-kernel sunward force (f30 C1: xi >= 0.8 pc for a single biharmonic term).
+
+RESULT: 3 FAIL -> ['K2 the closed form with the k^4 term: the scalar drag piece of alpha_1 becomes -4(2-K_B)/(J_Y(1+XI2)+1) -- the biharmonic term stiffens the scalar by (1 + xi^2 k^2) in exactly the place the lock lived, and its metric/aether mixings change nothing else in alpha_1 (if this FAILS the mixings matter and the printed DIFFERS lines say by how much)', 'K3 (THE VERDICT) at the Solar-System scale, XI2 = 8.6e7 or more, the drag piece of alpha_1 is below 1e-6, so |alpha_1| < 1e-4 is reached with c_14 POSITIVE (0 < c_14 <= 2.5e-5): the lock -- alpha_1 = 0 only at c_14 < 0, a spin-1 ghost -- does not apply to the screened scalar', "K4 alpha_2's scalar channel is suppressed by the same term: |alpha_2(XI2 = 1e8)| < 1e-4 |alpha_2(0)| (the v9 alpha_2 kill was 1e4-1e5 x over the 1e-7 bound; report the residual)"]

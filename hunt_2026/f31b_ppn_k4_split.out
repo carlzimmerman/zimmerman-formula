@@ -1,0 +1,47 @@
+[S1] unit-norm constraint solved (0.5s)
+    aether operators built (92.5s)
+    dark scalars (133.2s)
+    Ricci (149.3s)
+    biharmonic operator built: (D^2 phi)^2 at O(eps^2) has 32 terms (332.4s)
+    (D^2 phi)^2 split: chi-chi 6 terms, chi-metric/aether 16, metric/aether only 10
+    L2dc built+cached: 675 terms (335.6s)
+
+============================================================================
+SPLIT DIAGNOSTIC: which piece of (D^2 phi)^2 drives alpha_1 at large XI2?  (K_B = 1/5, J_Y = 1, c2 = c4 = 0)
+============================================================================
+  piece                         XI2        alpha_1   drag piece  gamma  alpha_3
+  full                        0e+00  -4.400000e+00  -3.6000e+00      1        0
+  full                        1e+00  -2.600000e+00  -1.8000e+00      1        0
+  full                        1e+02   1.756000e+02   1.7640e+02      1        0
+  full                        1e+04   1.799560e+04   1.7996e+04      1        0
+  chi-chi only                0e+00  -4.400000e+00  -3.6000e+00      1        0
+  chi-chi only                1e+00  -2.600000e+00  -1.8000e+00      1        0
+  chi-chi only                1e+02   1.756000e+02   1.7640e+02      1        0
+  chi-chi only                1e+04   1.799560e+04   1.7996e+04      1        0
+  chi-metric cross only       0e+00  -4.400000e+00  -3.6000e+00      1        0
+  chi-metric cross only       1e+00  -4.400000e+00  -3.6000e+00      1        0
+  chi-metric cross only       1e+02  -4.400000e+00  -3.6000e+00      1        0
+  chi-metric cross only       1e+04  -4.400000e+00  -3.6000e+00      1        0
+  metric/aether only          0e+00  -4.400000e+00  -3.6000e+00      1        0
+  metric/aether only          1e+00  -4.400000e+00  -3.6000e+00      1        0
+  metric/aether only          1e+02  -4.400000e+00  -3.6000e+00      1        0
+  metric/aether only          1e+04  -4.400000e+00  -3.6000e+00      1        0
+  chi-chi + cross             0e+00  -4.400000e+00  -3.6000e+00      1        0
+  chi-chi + cross             1e+00  -2.600000e+00  -1.8000e+00      1        0
+  chi-chi + cross             1e+02   1.756000e+02   1.7640e+02      1        0
+  chi-chi + cross             1e+04   1.799560e+04   1.7996e+04      1        0
+  (372s)
+  [FAIL] D1 the pure chi-chi stiffening alone SUPPRESSES the drag piece (|drag| at XI2 = 1e4 below 1e-2 of its XI2 = 0 value)  (chi-chi only: drag -3.600 -> +1.800e+04)
+  [FAIL] D2 the growth ~ +(2 - K_B J_Y) XI2 comes from the pieces the operator generates by acting on the scalar's BACKGROUND gradient (the chi-metric cross and/or metric/aether-only terms), not from the stiffening  (cross -3.600e+00, metric-only -3.600e+00, full +1.800e+04)
+
+alpha_2 at finite q (q = 1/10, 1/100), chi-chi-only piece and full, XI2 = 0 and 1e4:
+  chi-chi only   XI2= 0e+00 q=1/10  : alpha_1 = -4.1805e+00, alpha_2 = -3.3986e+01, alpha_3 = +0.00e+00
+  chi-chi only   XI2= 0e+00 q=1/100 : alpha_1 = -4.3972e+00, alpha_2 = -3.7308e+03, alpha_3 = +0.00e+00
+  chi-chi only   XI2= 1e+04 q=1/10  : alpha_1 = +1.6586e+04, alpha_2 = +3.5720e+04, alpha_3 = +0.00e+00
+  chi-chi only   XI2= 1e+04 q=1/100 : alpha_1 = +1.7983e+04, alpha_2 = +2.7886e+06, alpha_3 = +0.00e+00
+  full           XI2= 0e+00 q=1/10  : alpha_1 = -4.1805e+00, alpha_2 = -3.3986e+01, alpha_3 = +0.00e+00
+  full           XI2= 0e+00 q=1/100 : alpha_1 = -4.3972e+00, alpha_2 = -3.7308e+03, alpha_3 = +0.00e+00
+  full           XI2= 1e+04 q=1/10  : alpha_1 = +1.6586e+04, alpha_2 = +3.5273e+04, alpha_3 = +0.00e+00
+  full           XI2= 1e+04 q=1/100 : alpha_1 = +1.7983e+04, alpha_2 = +2.7886e+06, alpha_3 = +0.00e+00
+
+RESULT: 2 FAIL -> ['D1 the pure chi-chi stiffening alone SUPPRESSES the drag piece (|drag| at XI2 = 1e4 below 1e-2 of its XI2 = 0 value)', "D2 the growth ~ +(2 - K_B J_Y) XI2 comes from the pieces the operator generates by acting on the scalar's BACKGROUND gradient (the chi-metric cross and/or metric/aether-only terms), not from the stiffening"]
