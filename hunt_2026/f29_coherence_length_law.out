@@ -30,6 +30,27 @@ f29 -- the coherence-length law: one parameter, one machinery
   [PASS] S2 the suppression is the geometric one: for xi >> r_M the quadrupole falls as xi^-3 (the phantom moved from r_M to xi), slope between -2.5 and -3.5   (d ln Q2 / d ln xi = -3.00 over 0.5-30 pc)
   [PASS] S3 THE LAW HAS A HARD LOWER EDGE: smoothing the Sun over LESS than its MOND radius r_M = 0.039 pc makes the quadrupole LARGER (the source's transition region moves inward, where the r^-3 weighting is strongest); the maximum is several times the point-mass value, so xi between ~0.003 and ~0.03 pc is worse than no smoothing at all   (maximum 290.7x the point-mass value at xi = 0.003 pc = 0.08 r_M)
 
+2b. the monopole: smoothing spreads the Sun's phantom over xi, so the phantom MASS inside Saturn's orbit must also clear the ephemerides
+  bound: extra density < 1.1e-17 kg/m^3 inside Saturn's orbit = extra mass < 6.7e-11 M_sun inside 9.5 AU
+     xi [pc]  M_ph(<Saturn)/M_sun  ratio to bound  mean rho_ph
+       0.003            2.254e-07        3346.430     3.68e-14
+       0.010            6.191e-09          91.933     1.01e-15
+       0.020            7.739e-10          11.492     1.26e-16
+       0.030            2.293e-10           3.405     3.75e-17
+       0.040            9.673e-11           1.436     1.58e-17
+       0.050            4.953e-11           0.735     8.09e-18
+       0.070            1.805e-11           0.268     2.95e-18
+       0.100            6.191e-12           0.092     1.01e-18
+       0.200            7.739e-13           0.011     1.26e-19
+       0.300            2.293e-13           0.003     3.75e-20
+       0.500            5.075e-14           0.001     8.29e-21
+       1.000            6.253e-15           0.000     1.02e-21
+       3.000            2.276e-16           0.000     3.72e-23
+      10.000            6.258e-18           0.000     1.02e-24
+      30.000            2.286e-19           0.000     3.73e-26
+  the phantom monopole inside Saturn's orbit clears the ephemeris bound for xi > 0.045 pc; the quadrupole needed xi > 0.033 pc
+  [PASS] S4 (the check the first version of this file lacked) the smoothed law also has to clear the ephemeris bound on extra MASS inside Saturn's orbit, because smoothing spreads a phantom of order 0.3 M_sun over xi^3: this sets its own floor on xi, and that floor is the binding one (above the quadrupole's)   (monopole floor xi > 0.045 pc vs quadrupole floor 0.033 pc)
+
 3.  wide binaries: the pair's phantom monopole inside the separation, and gamma_v(xi)
   pair of 2 M_sun in the solar-circle field: r_M(pair) = 0.055 pc = 11258 AU; internal field equals the external at s = 8299 AU
   unsmoothed phantom monopole inside s / pair mass: 1 kAU: 0.000, 2 kAU: 0.004, 4 kAU: 0.067, 6 kAU: 0.169, 10 kAU: 0.238, 21 kAU: 0.241, 31 kAU: 0.241
@@ -51,8 +72,8 @@ f29 -- the coherence-length law: one parameter, one machinery
        10.00      1.000      1.000      1.000      1.000      1.000      1.000      1.000
        30.00      1.000      1.000      1.000      1.000      1.000      1.000      1.000
   [PASS] W0 sanity: the UNSMOOTHED law already has a separation dependence -- Newtonian inside the radius where the pair's own field exceeds the external one (~8 kAU) and the full pre-registered boost beyond ~10 kAU.  This check pins the method: gamma_v(2 kAU) < 1.05 and gamma_v(20 kAU) within 0.02 of 1.21   (gamma_v(2 kAU) = 1.004, (6 kAU) = 1.152, (20 kAU) = 1.210)
-  [PASS] W1 THE CASSINI <-> WIDE-BINARY LOCK IS BROKEN BY A LENGTH: at the smallest xi that clears Cassini the pre-registered boost at 20-30 kAU SURVIVES (gamma_v > 1.15) while the Solar-System quadrupole is gone.  The repository's lock assumed a screening keyed on the external-field strength; a screening keyed on length separates the two, because the quadrupole is weighted by r^-3 around the Sun while the binary boost is the phantom monopole inside the separation   (xi = 0.04 pc: Q2/ceiling = 0.46 / 0.54, gamma_v(20 kAU) = 1.190)
-  [PASS] W2 (THE NEW PREDICTION) the coherence length moves the wide-binary KNEE outward: at 6 kAU the unsmoothed law is already boosted (gamma_v > 1.12) while the Cassini-minimal xi keeps it near Newton (gamma_v < 1.06); by 20-30 kAU both agree.  Gaia DR4 binned in separation (the 4-10 kAU bins) distinguishes them; a flat 1.00 or a flat 1.2 fits neither   (at 6 kAU: framework 1.152 vs xi = 0.04 pc 1.022; at 30 kAU: 1.210 vs 1.210)
+  [PASS] W1 (HYPOTHESIS CHECK -- a FAIL is a result) THE LOCK IS BROKEN BY A LENGTH: at the smallest xi that clears BOTH Solar-System bounds the pre-registered boost at 20-30 kAU SURVIVES (gamma_v > 1.15) while the quadrupole is gone.  The repository's lock assumed a screening keyed on the external-field strength; a screening keyed on length separates the two, because the quadrupole is weighted by r^-3 around the Sun while the binary boost is the phantom monopole inside the separation   (xi = 0.05 pc: Q2/ceiling = 0.23 / 0.27, monopole/bound = 0.74, gamma_v(20 kAU) = 1.158, (30 kAU) = 1.204)
+  [PASS] W2 (THE PREDICTION) at the smallest admissible xi the wide-binary signal is a KNEE: near Newton at 6 kAU (gamma_v < 1.06, where the unsmoothed law already gives > 1.12) and boosted at 30 kAU (gamma_v > 1.10).  Gaia DR4 binned in separation distinguishes the three readings: flat 1.2 (framework), knee (small xi), flat 1.00 (large xi)   (at 6 kAU: framework 1.152 vs xi = 0.05 pc 1.012; at 30 kAU: 1.210 vs 1.204)
   [PASS] W3 and for xi >= 0.3 pc the binaries are Newtonian at every separation up to 30 kAU: the large-xi regime (the one the globular clusters point to) predicts a flat gamma_v = 1.00 in DR4   (max gamma_v over s <= 30 kAU at xi >= 0.3 pc: 1.0071)
 
 4.  the four outer-halo globular clusters: the fraction of the MOND+EFE boost the data require, and the xi it implies
@@ -74,9 +95,9 @@ f29 -- the coherence-length law: one parameter, one machinery
     Three elliptic equations, no time derivatives.  (ii) is what Theorem 8 localised into a dynamical field and killed;
     here it is a CONSTRAINT.  The question for the Dirac chain: with Phi~ a constrained variable, is the finite-k static
     block still 0 propagating DOF (as your two-field block was), and does the k -> 0 sector survive a background?
-    Numbers to hold it to: xi >= 0.03 pc (Cassini; and NOT below ~0.03 pc, where smoothing makes it worse); two regimes:
-      small xi (0.03-0.1 pc): Cassini passes, wide binaries keep the boost at 20 kAU with a knee near xi, globulars stay MOND (f13's +0.3 dex remains);
+    Numbers to hold it to: xi >= 0.05 pc (the Saturn-orbit monopole bound, above the quadrupole's 0.03 pc; and NOT below ~0.03 pc, where smoothing makes the quadrupole worse); two regimes:
+      small xi (0.05-0.1 pc): both Solar-System bounds pass, wide binaries keep part of the boost at 20-30 kAU with a knee near xi, globulars stay MOND (f13's +0.3 dex remains);
       large xi (~84 pc, from 3 of 4 globulars): Cassini passes, wide binaries Newtonian at all separations, dwarfs trimmed by 0.1-0.15 dex, discs untouched.
     Gaia DR4 binned in separation, and the outer-halo globulars, decide between them.
 
-RESULT: 11 checks, 0 FAIL   rc=0
+RESULT: 12 checks, 0 FAIL   rc=0

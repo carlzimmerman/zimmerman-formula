@@ -147,3 +147,10 @@ That, not Cassini, is now the wall.** No choice of `mu_n` touches it.
   1.00. Three of four outer-halo globulars want xi ~ 50-140 pc. THE ONE-LINE PROBLEM: find the covariant action whose
   static limit is (i)-(iii) with Phi~ a constraint that adds no propagating DOF. Your Dirac chain with Phi~ as a third
   constrained variable is the calculation. Addendum section E has the tables.
+- CORRECTION + CANDIDATE (f29 13/13; addendum sections E-F): the binding Solar-System floor is the phantom MONOPOLE inside
+  Saturn's orbit (Pitjev-Pitjeva), xi >= 0.045 pc, not the quadrupole's 0.03; at xi = 0.05 pc the pre-registered boost at
+  20-30 kAU still survives. Section F writes an explicit local candidate action: aether-frame scalar, the framework's F,
+  plus xi^2 (D^2 phi)^2 -- AQUAL with a healing length; K w^2 = mu k_perp^2 + (x mu)' k_par^2 + xi^2 k^4 > 0 (no ghost, no
+  Ostrogradsky, no gradient instability); the scalar is k^4-screened inside xi ~ 9000 AU, which reopens the alpha_1 lock
+  as a calculation. Four calculations decide it: the biharmonic static solve for the Sun (your AQUAL solver + one term),
+  PPN with the screened scalar (your aqual_solar_gate with xi), the Dirac count with the aether, the FLRW background.

@@ -129,9 +129,12 @@ Everything below comes from one phantom-density quadrature (axisymmetric source 
 validated at ξ → 0 against the committed DHF quadrupole to 0.2% (with the repository's Q₂ = 3G·I₂ convention) and by
 the spherical null.
 
-**Solar System.** Q₂/ceiling (canonical / alt): ξ = 0.02 pc: 4.5 / 5.4; 0.03 pc: 1.12 / 1.32; 0.04 pc: 0.46 / 0.54;
-0.05 pc: 0.23 / 0.27; 0.1 pc: 0.029 / 0.034; then ∝ ξ⁻³ (slope −3.00). **The Solar System needs only ξ ≳ 0.03–0.04 pc,
-about one MOND radius of the Sun.** And the law has a hard lower edge: smoothing over *less* than r_M(☉) = 0.039 pc
+**Solar System, two bounds.** Quadrupole, Q₂/ceiling (canonical / alt): ξ = 0.02 pc: 4.5 / 5.4; 0.03 pc: 1.12 / 1.32;
+0.04 pc: 0.46 / 0.54; 0.05 pc: 0.23 / 0.27; 0.1 pc: 0.029 / 0.034; then ∝ ξ⁻³ (slope −3.00). Monopole: smoothing spreads
+the Sun's phantom over ξ, so the phantom mass inside Saturn's orbit must clear the ephemeris bound (Pitjev & Pitjeva 2013,
+< 6.7×10⁻¹¹ M☉ inside 9.5 AU): ratio to bound 3.4 at 0.03 pc, 1.44 at 0.04 pc, 0.74 at 0.05 pc, 0.09 at 0.1 pc. **The
+binding floor is the monopole's: ξ ≳ 0.045 pc, about one MOND radius of the Sun** (the first version of f29 lacked this
+check; it is S4 now). And the law has a hard lower edge: smoothing over *less* than r_M(☉) = 0.039 pc
 makes the quadrupole *larger* (the transition region moves inward where the r⁻³ weighting is strongest), so ξ below
 ~0.03 pc is worse than no smoothing.
 
@@ -141,17 +144,17 @@ separation, scaled to the pre-registered 1.21 where it saturates:
 | ξ | 2 kAU | 4 kAU | 6 kAU | 10 kAU | 21 kAU | 31 kAU |
 |---|---|---|---|---|---|---|
 | 0 (the framework's own law) | 1.004 | 1.06 | 1.15 | 1.21 | 1.21 | 1.21 |
-| 0.04 pc (Cassini-minimal) | 1.001 | 1.007 | 1.022 | 1.073 | 1.19 | 1.21 |
-| 0.05 pc | 1.000 | 1.004 | 1.012 | 1.044 | 1.16 | 1.20 |
+| 0.04 pc (quadrupole-safe, monopole 1.4× over) | 1.001 | 1.007 | 1.022 | 1.073 | 1.19 | 1.21 |
+| 0.05 pc (the smallest admissible ξ) | 1.000 | 1.004 | 1.012 | 1.044 | 1.16 | 1.20 |
 | 0.07 pc | 1.000 | 1.001 | 1.005 | 1.019 | 1.095 | 1.17 |
 | ≥ 0.3 pc | 1.000 | 1.000 | 1.000 | 1.000 | 1.002 | 1.007 |
 
-Two things the repository did not have. First, the pre-registered boost at 20–30 kAU **survives Cassini** at
-ξ = 0.04–0.05 pc — the lock (`cassini_widebinary_lock_2026.py`) assumed a screening keyed on the external-field
+Two things the repository did not have. First, the pre-registered boost at 20–30 kAU **survives both Solar-System bounds** at
+ξ ≈ 0.05 pc (1.16 at 20 kAU, 1.20 at 30 kAU) — the lock (`cassini_widebinary_lock_2026.py`) assumed a screening keyed on the external-field
 strength; one keyed on length separates the two because the quadrupole is r⁻³-weighted around the Sun while the binary
 boost is the monopole inside the separation. Second, **the prediction**: the coherence length moves the wide-binary
 knee outward, from ~5–8 kAU (where the pair's own field equals the external one) to ~15–20 kAU. At 6 kAU the framework
-says 1.15 and the Cassini-minimal law says 1.02; at 10 kAU, 1.21 against 1.07; they agree again by 30 kAU. Gaia DR4
+says 1.15 and the smallest admissible law says 1.01; at 10 kAU, 1.21 against 1.04; they agree again by 30 kAU. Gaia DR4
 binned in separation (the 4–10 kAU bins) decides it. A flat 1.00 or a flat 1.2 fits neither. And for ξ ≥ 0.3 pc the
 binaries are Newtonian at every separation.
 
@@ -162,8 +165,8 @@ a Draco-like dwarf keeps 76% of its boost (a 0.1–0.15 dex trim, inside the dwa
 3 kpc disc keeps 100.0%.
 
 **So there are two regimes, and the data on disk already split them:**
-- small ξ ≈ 0.03–0.07 pc: Cassini passes, the wide-binary boost survives with the knee at 15–20 kAU, globulars stay
-  MOND (f13's +0.3 dex over-prediction remains);
+- small ξ ≈ 0.045–0.1 pc: both Solar-System bounds pass, the wide-binary boost survives at 20–30 kAU with the knee at
+  15–20 kAU, globulars stay MOND (f13's +0.3 dex over-prediction remains);
 - large ξ ≈ 50–140 pc: Cassini passes, wide binaries Newtonian at all separations, three of four globulars Newtonian,
   dwarfs trimmed, discs and lensing untouched.
 Gaia DR4 in separation bins and the outer-halo globulars decide between them; the Solar System is satisfied by both.
@@ -171,3 +174,46 @@ Gaia DR4 in separation bins and the outer-halo globulars decide between them; th
 Scope: a static one-parameter law, not a relativistic theory; the globular source is a Gaussian matched to a Plummer
 half-mass radius; the wide-binary numbers are a monopole-phantom ratio scaled to the pre-registration, not a rerun of
 its pipeline; the pre-registration file is untouched.
+
+## F. A candidate action — the constructive object, stated with its status
+
+The static system of §E is the weak-field limit of a *local* action if the smoothing is carried by a spatial fourth-derivative
+term rather than by a nonlocal filter. With a unit timelike aether $u^\mu$ (the foliation AeST and the khronometric hosts
+already carry), $h_{\mu\nu}=g_{\mu\nu}+u_\mu u_\nu$, $D$ the spatial derivative along $h$, and $Y=h^{\mu\nu}\partial_\mu\phi\,\partial_\nu\phi$:
+
+$$S=\int d^4x\sqrt{-g}\Big[\frac{R}{16\pi G}+\mathcal L_{\rm ae}(u;c_1..c_4)\Big]
+-\frac{1}{8\pi G}\int d^4x\sqrt{-g}\Big[-\frac{K}{2}(u^\mu\partial_\mu\phi)^2+a_0^2F\!\Big(\frac{Y}{a_0^2}\Big)+\xi^2\,(D^2\phi)^2\Big]+S_m[\tilde g,\psi],$$
+
+with matter coupled so that the potential it feels is $\Phi_E+\phi$ and light sees the same combination (the AeST/TeVeS-type
+coupling this repository's lensing embedding already established: Φ = Ψ with the phantom, γ_PPN = 1 at that level).
+
+**Static limit** ($u=\partial_t$): $\nabla\cdot[F'(|\nabla\phi|^2/a_0^2)\nabla\phi]-\xi^2\nabla^4\phi=4\pi G\rho$ — AQUAL with a
+healing length. For sources varying on scales ≫ ξ it is AQUAL with $\mu=F'$ = the framework's kernel (f23 §5 gives $F$ in closed
+form). Its linear response is exactly the Helmholtz filter, $\phi_k\propto\rho_k/[k^2(1+\xi^2k^2)]$; inside ξ the biharmonic term
+makes a point source's field smooth, which is what removed the quadrupole in §E. (The §E numbers are for the smoothed-QUMOND
+form; this theory's own nonlinear biharmonic solve for the Sun in the Galactic field is the first thing to run.)
+
+**Quadratic health in the aether frame**, on a static-gradient background (the block your §3 analysed): with $\mu=F'>0$ and
+$(x\mu)'>0$ (f23 5f: both hold for the framework's kernel on six decades) and $\xi^2>0$,
+
+$$K\omega^2=\mu\,k_\perp^2+(x\mu)'\,k_\parallel^2+\xi^2k^4>0 .$$
+
+No ghost ($K>0$), no gradient instability, and no Ostrogradsky mode because the higher derivatives are spatial only. It is a
+Bogoliubov dispersion, $\omega^2=c_s^2k^2+\xi^2k^4/K$: the MOND scalar is a superfluid-phonon-like mode with healing length ξ.
+The QUMOND-bilinear ghost you found (det W = −4A²) is absent because there is one scalar with its own kinetic term, not two
+potentials with a cross term.
+
+**What it changes, relative to the hosts already killed here.** (1) Inside ξ the scalar is k⁴-dominated and decouples: its
+contribution to the Solar-System metric is suppressed by powers of $r/\xi$ with $\xi\gtrsim0.045$ pc ≈ 9000 AU. The AeST α₁ lock
+(doorA_alpha1_generality_theorem: the MOND scalar's coupling to the aether forces α₁ ≠ 0) was computed with the scalar
+*unscreened* at Solar-System scales; with the scalar screened, α₁ and α₂ revert to the aether's own, which the four Einstein-aether
+couplings $c_1..c_4$ can zero. That reopens the PPN gate as a calculation rather than a theorem. (2) At cosmological $k$ the ξ²k⁴ term
+is invisible, so the cosmological sector is the aether-scalar one the repository has already run through CLASS; AeST's separate
+mass parameter for the dark-matter-like growth is a separate question, untouched here. (3) RESUME_HERE's own note that
+"Vainshtein / k-mouflage is unrun — the only class that screens the force" is this: a derivative screening, but spatial and
+fourth-order, with the screening scale set by a length instead of a coupling.
+
+**Status, stated plainly.** A candidate action with a healthy quadratic sector and the right static limit. Not a theory: its
+Solar-System numbers, its full PPN with the screened scalar, its Dirac count with the aether, and its FLRW background are the
+four calculations that decide it, in that order. The first two your machinery can run now: the biharmonic static solve is the
+AQUAL solver with one extra term, and the PPN is your `aqual_solar_gate_2026` with ξ in it.

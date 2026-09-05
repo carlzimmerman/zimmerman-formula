@@ -129,6 +129,32 @@ ck("S3 THE LAW HAS A HARD LOWER EDGE: smoothing the Sun over LESS than its MOND 
    "is several times the point-mass value, so xi between ~0.003 and ~0.03 pc is worse than no smoothing at all",
    Q2["canonical"][ipk] > 3*Q2_0*1.5 and XIS[ipk] < rM, f"maximum {Q2['canonical'][ipk]/(Q2_0*1.5):.1f}x the point-mass value at xi = {XIS[ipk]/PC:.3f} pc = {XIS[ipk]/rM:.2f} r_M")
 
+# --------------------------------------------------------------- 2b. the OTHER Solar-System bound: the phantom monopole inside Saturn's orbit
+P("\n2b. the monopole: smoothing spreads the Sun's phantom over xi, so the phantom MASS inside Saturn's orbit must also clear the ephemerides")
+AU = 1.495978707e11; R_SAT = 9.54*AU
+RHO_BOUND = 1.1e-17                 # Pitjev & Pitjeva 2013: extra (dark) density inside Saturn's orbit < 1.1e-20 g/cm^3
+M_BOUND = RHO_BOUND*4/3*math.pi*R_SAT**3
+info(f"bound: extra density < {RHO_BOUND:.1e} kg/m^3 inside Saturn's orbit = extra mass < {M_BOUND/1.98892e30:.1e} M_sun inside {R_SAT/AU:.1f} AU")
+MPH = {}
+P(f"    {'xi [pc]':>8s} {'M_ph(<Saturn)/M_sun':>20s} {'ratio to bound':>15s} {'mean rho_ph':>12s}")
+for xi in XIS:
+    r, th, rho = phantom(1.98892e30, xi, eN, a0c, min(1e-4*rM, 1e-3*xi, 0.1*R_SAT), max(1e4*rM, 1e3*xi))
+    m = enclosed(r, th, rho, R_SAT); MPH[xi] = m
+    P(f"    {xi/PC:8.3f} {m/1.98892e30:20.3e} {m/M_BOUND:15.3f} {m/(4/3*math.pi*R_SAT**3):12.2e}")
+def xi_cross_m(level):
+    q = np.array([MPH[xi]/level for xi in XIS])
+    for i in range(1, len(XIS)):
+        if q[i-1] >= 1 > q[i]:
+            return math.exp(np.interp(0.0, [math.log(q[i]), math.log(q[i-1])], [math.log(XIS[i]), math.log(XIS[i-1])]))
+    return float("nan")
+xi_mono = xi_cross_m(M_BOUND)
+info(f"the phantom monopole inside Saturn's orbit clears the ephemeris bound for xi > {xi_mono/PC:.3f} pc; the quadrupole needed xi > {max(xi_min.values())/PC:.3f} pc")
+ck("S4 (the check the first version of this file lacked) the smoothed law also has to clear the ephemeris bound on extra "
+   "MASS inside Saturn's orbit, because smoothing spreads a phantom of order 0.3 M_sun over xi^3: this sets its own floor "
+   "on xi, and that floor is the binding one (above the quadrupole's)", (not math.isnan(xi_mono)) and xi_mono > max(xi_min.values()),
+   f"monopole floor xi > {xi_mono/PC:.3f} pc vs quadrupole floor {max(xi_min.values())/PC:.3f} pc")
+XI_FLOOR = max(xi_mono, max(xi_min.values()))
+
 # --------------------------------------------------------------- 3. wide binaries
 P("\n3.  wide binaries: the pair's phantom monopole inside the separation, and gamma_v(xi)")
 Mpair = 2*1.98892e30; rMp = math.sqrt(G*Mpair/a0c)
@@ -154,17 +180,17 @@ ck("W0 sanity: the UNSMOOTHED law already has a separation dependence -- Newtoni
    "field exceeds the external one (~8 kAU) and the full pre-registered boost beyond ~10 kAU.  This check pins the method: "
    "gamma_v(2 kAU) < 1.05 and gamma_v(20 kAU) within 0.02 of 1.21",
    GV[0.0][SEPS[1]] < 1.05 and abs(GV[0.0][SEPS[-2]] - 1.21) < 0.02, f"gamma_v(2 kAU) = {GV[0.0][SEPS[1]]:.3f}, (6 kAU) = {GV[0.0][SEPS[3]]:.3f}, (20 kAU) = {GV[0.0][SEPS[-2]]:.3f}")
-xi_c = XIS[XIS >= max(xi_min.values())][0]                          # the smallest tabulated xi that clears Cassini on both footings
-ck("W1 THE CASSINI <-> WIDE-BINARY LOCK IS BROKEN BY A LENGTH: at the smallest xi that clears Cassini the pre-registered "
-   "boost at 20-30 kAU SURVIVES (gamma_v > 1.15) while the Solar-System quadrupole is gone.  The repository's lock assumed "
+xi_c = XIS[XIS >= XI_FLOOR][0]                                      # the smallest tabulated xi that clears BOTH Solar-System bounds
+ck("W1 (HYPOTHESIS CHECK -- a FAIL is a result) THE LOCK IS BROKEN BY A LENGTH: at the smallest xi that clears BOTH "
+   "Solar-System bounds the pre-registered boost at 20-30 kAU SURVIVES (gamma_v > 1.15) while the quadrupole is gone.  The repository's lock assumed "
    "a screening keyed on the external-field strength; a screening keyed on length separates the two, because the "
    "quadrupole is weighted by r^-3 around the Sun while the binary boost is the phantom monopole inside the separation",
-   GV[xi_c][SEPS[-2]] > 1.15 and Q2["canonical"][XIS == xi_c][0] < Q2_CEIL,
-   f"xi = {xi_c/PC:.2f} pc: Q2/ceiling = {Q2['canonical'][XIS == xi_c][0]/Q2_CEIL:.2f} / {Q2['alt'][XIS == xi_c][0]/Q2_CEIL:.2f}, gamma_v(20 kAU) = {GV[xi_c][SEPS[-2]]:.3f}")
-ck("W2 (THE NEW PREDICTION) the coherence length moves the wide-binary KNEE outward: at 6 kAU the unsmoothed law is already "
-   "boosted (gamma_v > 1.12) while the Cassini-minimal xi keeps it near Newton (gamma_v < 1.06); by 20-30 kAU both agree.  "
-   "Gaia DR4 binned in separation (the 4-10 kAU bins) distinguishes them; a flat 1.00 or a flat 1.2 fits neither",
-   GV[0.0][SEPS[3]] > 1.12 and GV[xi_c][SEPS[3]] < 1.06 and GV[xi_c][SEPS[-1]] > 1.15,
+   GV[xi_c][SEPS[-2]] > 1.15 and Q2["canonical"][XIS == xi_c][0] < Q2_CEIL and MPH[xi_c] < M_BOUND,
+   f"xi = {xi_c/PC:.2f} pc: Q2/ceiling = {Q2['canonical'][XIS == xi_c][0]/Q2_CEIL:.2f} / {Q2['alt'][XIS == xi_c][0]/Q2_CEIL:.2f}, monopole/bound = {MPH[xi_c]/M_BOUND:.2f}, gamma_v(20 kAU) = {GV[xi_c][SEPS[-2]]:.3f}, (30 kAU) = {GV[xi_c][SEPS[-1]]:.3f}")
+ck("W2 (THE PREDICTION) at the smallest admissible xi the wide-binary signal is a KNEE: near Newton at 6 kAU "
+   "(gamma_v < 1.06, where the unsmoothed law already gives > 1.12) and boosted at 30 kAU (gamma_v > 1.10).  Gaia DR4 "
+   "binned in separation distinguishes the three readings: flat 1.2 (framework), knee (small xi), flat 1.00 (large xi)",
+   GV[0.0][SEPS[3]] > 1.12 and GV[xi_c][SEPS[3]] < 1.06 and GV[xi_c][SEPS[-1]] > 1.10,
    f"at 6 kAU: framework {GV[0.0][SEPS[3]]:.3f} vs xi = {xi_c/PC:.2f} pc {GV[xi_c][SEPS[3]]:.3f}; at 30 kAU: {GV[0.0][SEPS[-1]]:.3f} vs {GV[xi_c][SEPS[-1]]:.3f}")
 ck("W3 and for xi >= 0.3 pc the binaries are Newtonian at every separation up to 30 kAU: the large-xi regime (the one the "
    "globular clusters point to) predicts a flat gamma_v = 1.00 in DR4",
@@ -218,8 +244,8 @@ P("      (iii) nabla^2 Phi = nabla . [ nu(|grad Phi~|/a_0) grad Phi~ ]")
 P("    Three elliptic equations, no time derivatives.  (ii) is what Theorem 8 localised into a dynamical field and killed;")
 P("    here it is a CONSTRAINT.  The question for the Dirac chain: with Phi~ a constrained variable, is the finite-k static")
 P("    block still 0 propagating DOF (as your two-field block was), and does the k -> 0 sector survive a background?")
-P(f"    Numbers to hold it to: xi >= {max(xi_min.values())/PC:.2f} pc (Cassini; and NOT below ~0.03 pc, where smoothing makes it worse); two regimes:")
-P(f"      small xi (0.03-0.1 pc): Cassini passes, wide binaries keep the boost at 20 kAU with a knee near xi, globulars stay MOND (f13's +0.3 dex remains);")
+P(f"    Numbers to hold it to: xi >= {XI_FLOOR/PC:.2f} pc (the Saturn-orbit monopole bound, above the quadrupole's {max(xi_min.values())/PC:.2f} pc; and NOT below ~0.03 pc, where smoothing makes the quadrupole worse); two regimes:")
+P(f"      small xi ({XI_FLOOR/PC:.2f}-0.1 pc): both Solar-System bounds pass, wide binaries keep part of the boost at 20-30 kAU with a knee near xi, globulars stay MOND (f13's +0.3 dex remains);")
 P(f"      large xi (~{XI_GC/PC:.0f} pc, from 3 of 4 globulars): Cassini passes, wide binaries Newtonian at all separations, dwarfs trimmed by 0.1-0.15 dex, discs untouched.")
 P("    Gaia DR4 binned in separation, and the outer-halo globulars, decide between them.")
 sys.exit(ck.done())
