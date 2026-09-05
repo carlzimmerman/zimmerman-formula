@@ -170,3 +170,13 @@ That, not Cassini, is now the wall.** No choice of `mu_n` touches it.
   reproduced to 1.4%/0.6%), two-body OPEN. 2026-09-04 night: the lead is directed to review the handoff and start G03
   (`MESSAGE_TO_ASTRA_2026-09-04_START_G03.md`). Next is G03 -- with the k^4 PPN constraint: the covariant filter must realise the
   coherent stiffening of the scalar's full quadratic form (f31c A), since local fourth-order operators fail alpha_1.
+- G02c (2026-09-04 night): the two-body finite-mass force from the action (`g02c_two_body_force.py`, 36 checks): Milgrom's deep-MOND
+  two-body force to 1%, F = -dE/dx to 0.3%, the no-net-phantom-force theorem verified; aligned wide binaries: total-mass one-body
+  reduction within 2.5% except an 8-10% spike at d = sqrt(G M_tot/g_e); T-B at the Cassini floor keeps the aligned boost < 1%
+  inside 15 kAU. Perpendicular orientation NOT computed. The ten hardest open questions for the lead:
+  `TEN_HARDEST_QUESTIONS_FOR_THE_LEAD_2026-09-04.md`.
+- f32 (2026-09-04 late): the operator that realises f31c's coherent stiffening from an action: xi^2 |grad_perp V|^2 added to Y
+  inside J (V = q.dphi, the aether-frame spatial gradient; V_bg = 0 makes it multiply the whole Y sector): alpha_1 identical to
+  (A) at all 12 ladder points; scalar alpha_2 drag suppressed 3.6e-5 at (xi k)^2 = 1e4 (c2 = c4 = 1/10); purely spatial =>
+  no new mode, Bogoliubov dispersion (xi = healing length). Not a derivation of xi, not T-B literally, host still aether-scalar
+  (spec req 2). `ONE_NEW_THING_2026-09-04.md`.
