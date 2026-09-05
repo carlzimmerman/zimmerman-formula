@@ -1,0 +1,247 @@
+{
+  "schema_version": 1,
+  "claim_id": "fixed-exponential-AQUAL-solar-gate-2026-09-04",
+  "repository": {
+    "commit": "ba6e53c46e31a4b2e949f4050a56abec11d90b90",
+    "dirty": true,
+    "ending_commit": "ba6e53c46e31a4b2e949f4050a56abec11d90b90"
+  },
+  "command": "PYTHONDONTWRITEBYTECODE=1 /Applications/Xcode.app/Contents/Developer/usr/bin/python3 qwen_claude_field_theory/closure_2026/aqual_solar_gate_2026/audit.py",
+  "environment": {
+    "software": [
+      "3.9.6 (default, May 22 2026, 11:13:45) \n[Clang 21.0.0 (clang-2100.1.1.101)]",
+      "numpy 1.26.2",
+      "scipy 1.11.4"
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit",
+    "threads": 1
+  },
+  "mathematics": {
+    "assertion_tested": "Numerical quadrupole sensitivity for exact mu=1-exp(-g/a0) AQUAL, not QUMOND",
+    "coefficient_domain": "IEEE binary64; sparse nonlinear finite-volume solves",
+    "conventions": "GM=a0=1 in PDE; Phi_N=-1/r; Park Q2=-3*c2*a0^(3/2)/sqrt(GM_Sun)",
+    "inputs": [
+      {
+        "path": "qwen_claude_field_theory/theory_2026/aqual_solver_2026.py",
+        "sha256": "9813b60976f46bf8e33c7d87c9812aa15a855710c6a6f9cd0dcaa800f7456c26"
+      },
+      {
+        "path": "qwen_claude_field_theory/closure_2026/aqual_solar_gate_2026/audit.py",
+        "sha256": "558051d292ab45672b1a9222c1c2852b1c2e507f6566ff4a64fd6fa659224a4f"
+      },
+      {
+        "path": "qwen_claude_field_theory/closure_2026/aqual_solar_gate_2026/test_audit.py",
+        "sha256": "9e3e0fef31cc904801e1346d0df4a4f6f3886c83d1e33d0a20fc548d41be1611"
+      },
+      {
+        "path": "qwen_claude_field_theory/closure_2026/aqual_solar_gate_2026/CONTRACT.md",
+        "sha256": "995a9812f141a642525bff738bb767704b266e83c8005044e4352631ad091cb1"
+      },
+      {
+        "path": "qwen_claude_field_theory/closure_2026/aqual_solar_gate_2026/REPORT.md",
+        "sha256": "d25436e16bdd3a59728fb4b8cbfc90ecc7b8c2e390c9448f84c273fc8a59ccd2"
+      }
+    ],
+    "bounds": {
+      "cases": [
+        {
+          "rmin": 0.0001,
+          "rmax": 10000.0,
+          "ns": 256,
+          "nt": 64,
+          "a0": 9.3619e-11,
+          "gext": 2.32e-10,
+          "outer": "zero",
+          "inner": "total_spherical",
+          "tol": 1e-09,
+          "name": "coarse"
+        },
+        {
+          "rmin": 0.0001,
+          "rmax": 10000.0,
+          "ns": 512,
+          "nt": 128,
+          "a0": 9.3619e-11,
+          "gext": 2.32e-10,
+          "outer": "zero",
+          "inner": "total_spherical",
+          "tol": 1e-09,
+          "name": "baseline"
+        },
+        {
+          "rmin": 0.0001,
+          "rmax": 10000.0,
+          "ns": 768,
+          "nt": 192,
+          "a0": 9.3619e-11,
+          "gext": 2.32e-10,
+          "outer": "zero",
+          "inner": "total_spherical",
+          "tol": 1e-09,
+          "name": "fine"
+        },
+        {
+          "rmin": 0.0001,
+          "rmax": 1000.0,
+          "ns": 448,
+          "nt": 128,
+          "a0": 9.3619e-11,
+          "gext": 2.32e-10,
+          "outer": "zero",
+          "inner": "total_spherical",
+          "tol": 1e-09,
+          "name": "outer_near"
+        },
+        {
+          "rmin": 0.0001,
+          "rmax": 100000.0,
+          "ns": 576,
+          "nt": 128,
+          "a0": 9.3619e-11,
+          "gext": 2.32e-10,
+          "outer": "zero",
+          "inner": "total_spherical",
+          "tol": 1e-09,
+          "name": "outer_far"
+        },
+        {
+          "rmin": 3e-05,
+          "rmax": 10000.0,
+          "ns": 545,
+          "nt": 128,
+          "a0": 9.3619e-11,
+          "gext": 2.32e-10,
+          "outer": "zero",
+          "inner": "total_spherical",
+          "tol": 1e-09,
+          "name": "inner_smaller"
+        },
+        {
+          "rmin": 0.0003,
+          "rmax": 10000.0,
+          "ns": 482,
+          "nt": 128,
+          "a0": 9.3619e-11,
+          "gext": 2.32e-10,
+          "outer": "zero",
+          "inner": "total_spherical",
+          "tol": 1e-09,
+          "name": "inner_larger"
+        },
+        {
+          "rmin": 0.0001,
+          "rmax": 10000.0,
+          "ns": 512,
+          "nt": 128,
+          "a0": 9.3619e-11,
+          "gext": 2.32e-10,
+          "outer": "asymptotic",
+          "inner": "total_spherical",
+          "tol": 1e-09,
+          "name": "outer_asymptotic"
+        },
+        {
+          "rmin": 0.0001,
+          "rmax": 10000.0,
+          "ns": 512,
+          "nt": 128,
+          "a0": 9.3619e-11,
+          "gext": 2.32e-10,
+          "outer": "zero",
+          "inner": "perturbation_spherical",
+          "tol": 1e-09,
+          "name": "inner_perturbation"
+        },
+        {
+          "rmin": 0.0001,
+          "rmax": 10000.0,
+          "ns": 512,
+          "nt": 128,
+          "a0": 9.3619e-11,
+          "gext": 2e-10,
+          "outer": "zero",
+          "inner": "total_spherical",
+          "tol": 1e-09,
+          "name": "gext_minus_2sigma"
+        },
+        {
+          "rmin": 0.0001,
+          "rmax": 10000.0,
+          "ns": 512,
+          "nt": 128,
+          "a0": 9.3619e-11,
+          "gext": 2.64e-10,
+          "outer": "zero",
+          "inner": "total_spherical",
+          "tol": 1e-09,
+          "name": "gext_plus_2sigma"
+        },
+        {
+          "rmin": 0.0001,
+          "rmax": 10000.0,
+          "ns": 512,
+          "nt": 128,
+          "a0": 1.1279e-10,
+          "gext": 2.32e-10,
+          "outer": "zero",
+          "inner": "total_spherical",
+          "tol": 1e-09,
+          "name": "alternative_a0"
+        },
+        {
+          "rmin": 0.0001,
+          "rmax": 10000.0,
+          "ns": 512,
+          "nt": 128,
+          "a0": 1.2e-10,
+          "gext": 1.9e-10,
+          "outer": "zero",
+          "inner": "total_spherical",
+          "tol": 1e-09,
+          "name": "BN2011_exponential_anchor"
+        }
+      ],
+      "case_cap_seconds": 120,
+      "max_iterations": 160,
+      "random_sampling": false
+    },
+    "non_claims": [
+      "No continuum error bound",
+      "No independent PDE discretization",
+      "No reanalysis of raw Cassini data",
+      "No relativistic closure or novelty proof"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-09-05T00:12:01.862855+00:00",
+    "runtime_seconds": 144.091649542,
+    "exit_status": 1
+  },
+  "outputs": [
+    {
+      "path": "/Users/carlzimmerman/new_physics/zimmerman-formula/qwen_claude_field_theory/closure_2026/aqual_solar_gate_2026/results.json",
+      "sha256": "a7edd08e4807b96a50fd0c4e70a9dfb5dca9eed588affe3e01d7a0a55a2b283c"
+    }
+  ],
+  "checks": [
+    {
+      "name": "all_requested_cases_completed",
+      "passed": false
+    },
+    {
+      "name": "inputs_unchanged",
+      "passed": true
+    }
+  ],
+  "result": "bounded numerical evidence; interpret with REPORT.md; execution status is not a theory verdict",
+  "residual_risks": [
+    "finite boundaries and mesh; no certified truncation bound",
+    "constant external field and point-Sun approximation",
+    "phenomenological fixed a0 and external-field inputs"
+  ]
+}

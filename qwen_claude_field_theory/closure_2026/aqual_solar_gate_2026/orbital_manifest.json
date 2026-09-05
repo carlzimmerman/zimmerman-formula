@@ -1,0 +1,80 @@
+{
+  "schema_version": 1,
+  "claim_id": "AQUAL-circular-orbit-node-response",
+  "repository": {
+    "commit": "ba6e53c46e31a4b2e949f4050a56abec11d90b90",
+    "dirty": true
+  },
+  "command": "PYTHONDONTWRITEBYTECODE=1 /Applications/Xcode.app/Contents/Developer/usr/bin/python3 /Users/carlzimmerman/new_physics/zimmerman-formula/qwen_claude_field_theory/closure_2026/aqual_solar_gate_2026/orbital_prediction.py",
+  "environment": {
+    "software": [
+      "3.9.6 (default, May 22 2026, 11:13:45) \n[Clang 21.0.0 (clang-2100.1.1.101)]",
+      "sympy 1.14.0"
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Circular orbit averaged torque from the signed quadrupole potential",
+    "coefficient_domain": "exact symbolic derivation, binary64 SI evaluation",
+    "conventions": "Phi=-Q2(z^2-r^2/3)/2; acceleration=-grad Phi; inclination to external-field axis",
+    "inputs": [
+      {
+        "path": "/Users/carlzimmerman/new_physics/zimmerman-formula/qwen_claude_field_theory/closure_2026/aqual_solar_gate_2026/results.json",
+        "sha256": "a7edd08e4807b96a50fd0c4e70a9dfb5dca9eed588affe3e01d7a0a55a2b283c"
+      },
+      {
+        "path": "/Users/carlzimmerman/new_physics/zimmerman-formula/qwen_claude_field_theory/closure_2026/aqual_solar_gate_2026/orbital_prediction.py",
+        "sha256": "381871c7f98de3645c25b81634d7627b5a8594e3923a7fb30505f61cd3b9c491"
+      },
+      {
+        "path": "/Users/carlzimmerman/new_physics/zimmerman-formula/qwen_claude_field_theory/closure_2026/aqual_solar_gate_2026/test_orbital_prediction.py",
+        "sha256": "e4a737e65b3bb1523f238f285148433e63fcd36a06d733d7d130a9e6a5ba8479"
+      }
+    ],
+    "bounds": {
+      "orbit": "circular; first order in Q2/n^2",
+      "example_period_years": 29.4
+    },
+    "non_claims": [
+      "Not a new fundamental law",
+      "Not an independent Cassini dataset",
+      "Not an eccentric orbit calculation"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-09-05T00:17:40.279035+00:00",
+    "runtime_seconds": 0.355449291,
+    "exit_status": 0
+  },
+  "outputs": [
+    {
+      "path": "/Users/carlzimmerman/new_physics/zimmerman-formula/qwen_claude_field_theory/closure_2026/aqual_solar_gate_2026/orbital_prediction.json",
+      "sha256": "1b383697efdd8324ca7157a7507a6cebfb993147e8246ac063107efafebb6793"
+    }
+  ],
+  "checks": [
+    {
+      "name": "tidal_tensor_trace_zero",
+      "passed": true
+    }
+  ],
+  "result": {
+    "Q2_from_fine_AQUAL_solve": 2.0978277040040482e-26,
+    "derived_node_rate": "Q*cos(I)/(2*n)",
+    "derived_tidal_tensor": "Matrix([[-Q/3, 0, 0], [0, -Q/3, 0], [0, 0, 2*Q/3]])",
+    "coefficient_mas_per_century_per_orbital_year": 0.03429201616279838,
+    "saturn_like_29_4_year_orbit_coefficient_mas_century": 1.0081852751862723,
+    "Park_upper_endpoint_saturn_like_coefficient": 0.24990438542509122,
+    "scope": "Multiply coefficient by cos I; leading secular circular-orbit approximation; no eccentric planetary ephemeris fit",
+    "novelty": "Known quadrupole response; newly computed project coefficient; not an independent empirical confirmation"
+  },
+  "residual_risks": [
+    "Inherits the unresolved strict-tolerance PDE check",
+    "Nearly circular first-order approximation"
+  ]
+}
