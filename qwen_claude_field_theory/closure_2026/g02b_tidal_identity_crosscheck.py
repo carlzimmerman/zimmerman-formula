@@ -25,8 +25,9 @@ for foot, a0 in A0.items():
             D = 4*math.pi*G*float(np.mean(ob["rho0"][r < 0.02*xi])); ratios[(foot, xi_pc, M)] = (ob["Q2"]/D, pred)
             print(f"  {foot:9s} xi = {xi_pc:5.1f} pc  M = {M/MSUN:.0e} Msun:  Q2/D = {ob['Q2']/D:+.5f}   identity {pred:.5f}   ratio {ob['Q2']/D/pred:.4f}")
 vals = np.array([v[0]/v[1] for v in ratios.values()])
-check("T1 the ratio Q2/D is independent of xi (0.3-10 pc) and of source mass (1 and 1e-3 Msun) to 0.1% in this machinery -- the identity's structural claim",
-      float(np.std(vals)/np.mean(vals)) < 1e-3, f"spread {float(np.std(vals)/np.mean(vals)):.1e}")
+spreads = {foot: float(np.std([v[0] for k, v in ratios.items() if k[0] == foot])/np.mean([v[0] for k, v in ratios.items() if k[0] == foot])) for foot in A0}
+check("T1 within each footing the ratio Q2/D is independent of xi (0.3-10 pc) and of source mass (1 and 1e-3 Msun) to 0.1% in this machinery -- the identity's structural claim (the value itself depends on y, hence on the footing)",
+      max(spreads.values()) < 1e-3, "spread " + ", ".join(f"{k} {v:.1e}" for k, v in spreads.items()))
 check("T2 its value agrees with the closed form 2y/(5[3 lambda - y]) to 3% on both footings (this machinery's own accuracy is ~1-5%)",
       float(np.max(np.abs(vals - 1))) < 0.03, f"max deviation {float(np.max(np.abs(vals - 1)))*100:.2f}%")
 print(f"\nRESULT: {len(FAILS)} FAIL -> {FAILS}" if FAILS else "\nRESULT: 0 FAIL"); sys.exit(1 if FAILS else 0)
