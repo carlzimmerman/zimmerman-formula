@@ -1,0 +1,27 @@
+====================================================================================================
+g03l -- SPARC vs the candidate's monotone-completed kernel (f25 design: a_0 and Upsilon profiled, paired galaxy resampling)
+====================================================================================================
+  SPARC: 3140 points, 147 galaxies; Upsilon_d grid 0.3-0.8 (6), log a_0 grid -10.8..-9.2 (161)
+  kernels nu(y) at y = 0.3 0.632 0.7 1 2 3 5 10 30 100
+    nu_rar     : 2.3712 1.8234 1.7642 1.5820 1.3212 1.2150 1.1197 1.0442 1.0042 1.0000
+    mu_exp     : 2.1229 1.5821 1.5244 1.3500 1.1193 1.0454 1.0066 1.0000 1.0000 1.0000
+    cand_p0.0  : 2.1229 1.5821 1.5255 1.3679 1.1839 1.1226 1.0736 1.0368 1.0123 1.0037
+    cand_p0.1  : 2.1229 1.5821 1.5309 1.3851 1.2064 1.1433 1.0905 1.0485 1.0180 1.0061
+    cand_p0.25 : 2.1229 1.5821 1.5391 1.4126 1.2453 1.1810 1.1234 1.0734 1.0322 1.0130
+  [PASS] C1 the candidate kernel is continuous at y = 1 - 1/e and equals the exponential kernel below it   (jump 1.2e-04)
+  nu_rar     : profiled MSE = 0.04060 dex^2 at Upsilon = 0.50, a_0 = 8.710e-11
+  mu_exp     : profiled MSE = 0.04121 dex^2 at Upsilon = 0.60, a_0 = 8.913e-11
+  mu_10      : profiled MSE = 0.04356 dex^2 at Upsilon = 0.60, a_0 = 1.122e-10
+  mu_5       : profiled MSE = 0.04311 dex^2 at Upsilon = 0.60, a_0 = 1.122e-10
+  cand_p0.0  : profiled MSE = 0.04141 dex^2 at Upsilon = 0.60, a_0 = 8.710e-11
+  cand_p0.1  : profiled MSE = 0.04147 dex^2 at Upsilon = 0.60, a_0 = 8.710e-11
+  cand_p0.25 : profiled MSE = 0.04150 dex^2 at Upsilon = 0.50, a_0 = 1.047e-10
+  paired MSE(mu_exp) - MSE(nu_rar): [-0.00011, +0.00058, +0.00138] dex^2, fraction > 0: 0.949   (f25: interval contains zero)
+  [PASS] R1 f25's result reproduces: the exp-vs-RAR paired difference's 95% interval contains zero
+  paired MSE(cand_p0.0) - MSE(mu_exp): [-0.00011, +0.00011, +0.00031] (frac > 0 0.826);  - MSE(nu_rar): [+0.00001, +0.00070, +0.00140] (frac > 0 0.975)
+  paired MSE(cand_p0.1) - MSE(mu_exp): [-0.00015, +0.00013, +0.00039] (frac > 0 0.811);  - MSE(nu_rar): [+0.00003, +0.00072, +0.00141] (frac > 0 0.979)
+  paired MSE(cand_p0.25) - MSE(mu_exp): [-0.00016, +0.00020, +0.00054] (frac > 0 0.847);  - MSE(nu_rar): [+0.00008, +0.00079, +0.00149] (frac > 0 0.990)
+  verdict vs the exponential kernel with a_0 and Upsilon profiled: undecided for p = [0.0, 0.1, 0.25]; disfavoured (95%) for p = []; favoured (95%) for p = []
+  [PASS] S1 the SPARC verdict on the monotone completion is REPORTED, not manufactured: for each p the paired difference vs the exponential kernel is classified as undecided / disfavoured / favoured by its 95% interval, and at least the saturated case p = 0 is not favoured at 95%
+
+RESULT: 0 FAIL -> []
