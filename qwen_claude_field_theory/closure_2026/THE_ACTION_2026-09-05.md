@@ -36,7 +36,7 @@ Its signature: the RAR lies +0.02 to +0.05 dex above the pure exponential at g_N
 
 ## 5. Predictions that can lose
 1. **Gaia DR4 wide binaries:** the frozen estimator returns γ_v = 1.032 (canonical) / 1.040 (alt), ± 0.015, against the registered band 1.16–1.23 and Newton 1.000 (g03g, g03h). Force boost 1.002 (3 kAU) → 1.064 (30 kAU) at the Cassini floor; larger ξ lowers it.
-2. **The anisotropy sign flip:** perpendicular pairs boosted more than aligned below ≈ 15 kAU, aligned more above; the crossing separation is set by ξ (g03i, scan running). Bare AQUAL and bare QUMOND each have one fixed ordering.
+2. **The anisotropy sign flip:** Δ(s) = γ_aligned − γ_perpendicular crosses zero at s_× = (2.5 ± 0.1) ξ + 0.3 kAU, measured over ξ = 0.03–0.08 pc with s_×/r_e varying 2.5–6.8 (g03i): 16.0 kAU at the canonical floor, 26.6 kAU at the alternate. Bare AQUAL and bare QUMOND each have one fixed ordering; only a coherence length flips it.
 3. **The RAR bump:** +0.02 to +0.05 dex at g_N = 2–10 a₀ relative to the exponential kernel (g03j).
 4. **The saddle null:** no Bekenstein–Magueijo anomaly at any Solar-System field null (g03c).
 5. **Newtonian-regime wide binaries:** no fifth force beyond the EFE response (f35 corrected, g03f).
