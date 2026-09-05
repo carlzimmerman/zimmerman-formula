@@ -30,17 +30,17 @@ J chosen so the static law is the exponential kernel's (requirement 12), ξ the 
 | 12 | exponential primitive | PASS | g02c's Qt(s) |
 | 13 | a₀ = ½c√(Gρ_Λ) | not derived (κ fitted) | standing |
 
-Solar-System static gates for the operator's own static law: proxy floors ξ ≥ 0.03 pc (canonical) / 0.05 pc (alt) (g03b, single Helmholtz response); T-B's double filter: 0.02/0.03 pc (G02). Wide binaries: aligned two-body tables (g02c) only; perpendicular orientation not computed.
+Solar-System static gates for the operator's own static law, SOLVED EXACTLY (g03d: metric Newton + the MOND scalar's fourth-order law, Sun in the Galactic field, axisymmetric, both footings, three field inputs): floors ξ ≥ 0.03 pc (canonical) / 0.05 pc (alt); the quadrupole is the binding gate at 0.02 pc (1.05× the Park ceiling canonical), the phantom monopole inside Saturn binds on the alternate footing at 0.03 pc (1.10× Pitjev–Pitjeva at g_ext = 2.00×10⁻¹⁰); ξ → 0 reproduces G01's strict-AQUAL quadrupole to 0.05%. The proxy (g03b) had the same floors. T-B's double filter: 0.02/0.03 pc (G02). Wide binaries: aligned two-body tables (g02c) only; perpendicular orientation not computed.
 
 ## What would kill it
 1. The clock corner (c₁₄ ≲ 2.5×10⁻⁵ with c₁₃ = 0) being strongly coupled: linear stability with the scalar present is now established (f34); the strong-coupling scale of the khronon (∝ M_P√c₁₄) is not computed.
 2. The causal gate refusing the Lifshitz dispersion.
-3. The nonlinear static law of J(Y + ξ²|∇⊥V|²) failing the three Solar-System gates when actually solved (the proxy could be off).
+3. ~~The nonlinear static law failing the three Solar-System gates when actually solved~~ — solved (g03d): it passes for ξ ≥ 0.03/0.05 pc.
 4. Galactic phenomenology: the operator changes the disc phantom only at k ≳ 1/ξ, but this is asserted from G02's G1, not solved.
 
 ## Calculations, in order
 1. Clock-host stability with φ: DONE (f34) — no time-derivative pole from the mixing; healthy for K₂ < 0; PPN corner re-derived there (f33b, 0 FAIL).
-2. The nonlinear fourth-order static solve for the Sun in the external field (G02-type, exact, both footings).
+2. The nonlinear fourth-order static solve for the Sun in the external field: DONE (g03d), floors 0.03/0.05 pc.
 3. Zero-field limit with the ξ term outside J (requirement 9): DONE for the spherical law and the symbol (g03c); the general existence theory of the fourth-order quasilinear problem remains.
 4. FLRW background and the measured G.
 5. Perpendicular wide-binary orientation.

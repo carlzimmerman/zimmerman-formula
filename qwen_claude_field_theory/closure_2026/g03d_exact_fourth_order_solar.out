@@ -1,0 +1,58 @@
+==============================================================================================================
+g03d -- exact fourth-order static law of the candidate, Sun in the Galactic field
+==============================================================================================================
+  V1 eps = 1e-3, canonical, g_obs 2.32e-10: Q2 = +2.097e-26, +2.097e-26, +2.097e-26  (31 it, resid 7.6e-10, 2 s)   [G01: +2.097e-26]
+  [PASS] V1 eps -> 0 reproduces G01's strict-AQUAL quadrupole +2.10e-26 s^-2 (canonical, 2.32e-10) to 3% on all three windows
+  [PASS] V2 mu = 1 (Newton) with eps = 1: the scalar vanishes identically (no source), Q2 and the monopole are zero to 1e-12   (Q2 0.0e+00, M_ph/M 0.0e+00, max|psi| 0.0e+00)
+  [PASS] V3 eta = 0, eps = 0.3: the l = 0 field at r_M reproduces g03c's independent spherical solve (phantom kept 0.8097) to 2%   (kept 0.8110, 37 iterations, step 2e-10)
+  [PASS] V3 eta = 0, eps = 1.0: the l = 0 field at r_M reproduces g03c's independent spherical solve (phantom kept 0.3679) to 2%   (kept 0.3692, 30 iterations, step 1e-10)
+
+  scan: footing | g_obs | xi [pc] | eps | Q2 (3 windows) | Q2/ceil | M_ph(<Sat)/bound | max planetary |g_anom|/sunward | it | admissible
+    canonical 2.00e-10  0.01  0.26 | +1.17e-26 +1.16e-26 +1.17e-26 |   2.241 | +1.59e+00 |  5.92e-01 |  31 | NO   (4 s)
+    canonical 2.00e-10  0.02  0.52 | +5.95e-27 +5.95e-27 +5.95e-27 |   1.144 | +1.01e+00 |  3.76e-01 |  31 | NO   (5 s)
+    canonical 2.00e-10  0.03  0.78 | +3.55e-27 +3.55e-27 +3.55e-27 |   0.683 | +6.09e-01 |  2.26e-01 |  31 | yes   (7 s)
+    canonical 2.00e-10  0.05  1.30 | +1.66e-27 +1.66e-27 +1.66e-27 |   0.319 | +2.77e-01 |  1.03e-01 |  31 | yes   (8 s)
+    canonical 2.00e-10  0.10  2.59 | +5.13e-28 +5.13e-28 +5.13e-28 |   0.099 | +8.20e-02 |  3.04e-02 |  30 | yes   (10 s)
+    canonical 2.00e-10  0.30  7.78 | +6.62e-29 +6.61e-29 +6.62e-29 |   0.013 | +1.01e-02 |  3.76e-03 |  29 | yes   (11 s)
+    canonical 2.32e-10  0.01  0.26 | +1.09e-26 +1.09e-26 +1.09e-26 |   2.098 | +1.17e+00 |  4.33e-01 |  31 | NO   (13 s)
+    canonical 2.32e-10  0.02  0.52 | +5.45e-27 +5.45e-27 +5.45e-27 |   1.048 | +6.73e-01 |  2.50e-01 |  32 | NO   (14 s)
+    canonical 2.32e-10  0.03  0.78 | +3.22e-27 +3.22e-27 +3.22e-27 |   0.619 | +3.89e-01 |  1.44e-01 |  32 | yes   (16 s)
+    canonical 2.32e-10  0.05  1.30 | +1.49e-27 +1.49e-27 +1.49e-27 |   0.286 | +1.70e-01 |  6.33e-02 |  32 | yes   (17 s)
+    canonical 2.32e-10  0.10  2.59 | +4.55e-28 +4.55e-28 +4.55e-28 |   0.088 | +4.88e-02 |  1.81e-02 |  30 | yes   (19 s)
+    canonical 2.32e-10  0.30  7.78 | +5.83e-29 +5.83e-29 +5.83e-29 |   0.011 | +5.88e-03 |  2.18e-03 |  29 | yes   (20 s)
+    canonical 2.64e-10  0.01  0.26 | +9.95e-27 +9.94e-27 +9.95e-27 |   1.913 | +8.31e-01 |  3.08e-01 |  32 | NO   (22 s)
+    canonical 2.64e-10  0.02  0.52 | +4.87e-27 +4.87e-27 +4.87e-27 |   0.936 | +4.31e-01 |  1.60e-01 |  32 | yes   (24 s)
+    canonical 2.64e-10  0.03  0.78 | +2.84e-27 +2.84e-27 +2.84e-27 |   0.547 | +2.37e-01 |  8.79e-02 |  31 | yes   (25 s)
+    canonical 2.64e-10  0.05  1.30 | +1.30e-27 +1.30e-27 +1.30e-27 |   0.250 | +9.86e-02 |  3.66e-02 |  31 | yes   (27 s)
+    canonical 2.64e-10  0.10  2.59 | +3.94e-28 +3.94e-28 +3.94e-28 |   0.076 | +2.69e-02 |  1.00e-02 |  30 | yes   (28 s)
+    canonical 2.64e-10  0.30  7.78 | +5.02e-29 +5.02e-29 +5.02e-29 |   0.010 | +3.12e-03 |  1.16e-03 |  30 | yes   (30 s)
+  canonical: smallest tabulated xi admissible at all three field inputs = 0.03 pc
+  [PASS] F1 [canonical] the exact fourth-order law has a nonempty admissible window at xi <= 0.1 pc   (floor 0.03 pc)
+  [PASS] F2 [canonical] admissibility is monotone above the floor up to 0.3 pc
+  [PASS] F3 [canonical] the quadrupole fit is window-stable (spread < 5%) at every admissible xi
+    alt       2.00e-10  0.01  0.28 | +1.48e-26 +1.48e-26 +1.48e-26 |   2.843 | +2.85e+00 |  1.06e+00 |  30 | NO   (31 s)
+    alt       2.00e-10  0.02  0.57 | +7.48e-27 +7.47e-27 +7.48e-27 |   1.437 | +1.81e+00 |  6.74e-01 |  31 | NO   (33 s)
+    alt       2.00e-10  0.03  0.85 | +4.43e-27 +4.43e-27 +4.44e-27 |   0.853 | +1.10e+00 |  4.08e-01 |  31 | NO   (34 s)
+    alt       2.00e-10  0.05  1.42 | +2.06e-27 +2.06e-27 +2.06e-27 |   0.395 | +5.04e-01 |  1.87e-01 |  31 | yes   (36 s)
+    alt       2.00e-10  0.10  2.84 | +6.30e-28 +6.30e-28 +6.30e-28 |   0.121 | +1.51e-01 |  5.60e-02 |  30 | yes   (37 s)
+    alt       2.00e-10  0.30  8.53 | +8.07e-29 +8.07e-29 +8.07e-29 |   0.016 | +1.88e-02 |  6.97e-03 |  29 | yes   (39 s)
+    alt       2.32e-10  0.01  0.28 | +1.45e-26 +1.44e-26 +1.45e-26 |   2.780 | +2.22e+00 |  8.26e-01 |  31 | NO   (40 s)
+    alt       2.32e-10  0.02  0.57 | +7.16e-27 +7.16e-27 +7.16e-27 |   1.377 | +1.32e+00 |  4.91e-01 |  31 | NO   (42 s)
+    alt       2.32e-10  0.03  0.85 | +4.21e-27 +4.20e-27 +4.21e-27 |   0.809 | +7.79e-01 |  2.89e-01 |  31 | yes   (43 s)
+    alt       2.32e-10  0.05  1.42 | +1.93e-27 +1.93e-27 +1.93e-27 |   0.372 | +3.49e-01 |  1.30e-01 |  31 | yes   (45 s)
+    alt       2.32e-10  0.10  2.84 | +5.88e-28 +5.88e-28 +5.88e-28 |   0.113 | +1.02e-01 |  3.80e-02 |  30 | yes   (46 s)
+    alt       2.32e-10  0.30  8.53 | +7.50e-29 +7.50e-29 +7.50e-29 |   0.014 | +1.26e-02 |  4.67e-03 |  29 | yes   (48 s)
+    alt       2.64e-10  0.01  0.28 | +1.38e-26 +1.38e-26 +1.38e-26 |   2.648 | +1.70e+00 |  6.33e-01 |  31 | NO   (49 s)
+    alt       2.64e-10  0.02  0.57 | +6.70e-27 +6.69e-27 +6.70e-27 |   1.287 | +9.42e-01 |  3.50e-01 |  31 | NO   (51 s)
+    alt       2.64e-10  0.03  0.85 | +3.90e-27 +3.89e-27 +3.90e-27 |   0.749 | +5.39e-01 |  2.00e-01 |  31 | yes   (52 s)
+    alt       2.64e-10  0.05  1.42 | +1.77e-27 +1.77e-27 +1.77e-27 |   0.341 | +2.35e-01 |  8.74e-02 |  31 | yes   (54 s)
+    alt       2.64e-10  0.10  2.84 | +5.36e-28 +5.36e-28 +5.36e-28 |   0.103 | +6.73e-02 |  2.50e-02 |  30 | yes   (55 s)
+    alt       2.64e-10  0.30  8.53 | +6.80e-29 +6.80e-29 +6.80e-29 |   0.013 | +8.13e-03 |  3.02e-03 |  29 | yes   (57 s)
+  alt: smallest tabulated xi admissible at all three field inputs = 0.05 pc
+  [PASS] F1 [alt] the exact fourth-order law has a nonempty admissible window at xi <= 0.1 pc   (floor 0.05 pc)
+  [PASS] F2 [alt] admissibility is monotone above the floor up to 0.3 pc
+  [PASS] F3 [alt] the quadrupole fit is window-stable (spread < 5%) at every admissible xi
+  [PASS] C1 refining L 8 -> 12, NS 700 -> 1000 changes the canonical Q2 at xi = 0.03 pc by < 3%   (+3.217e-27 -> +3.216e-27)
+
+RESULT: 0 FAIL   (64 s)
+rc=0
