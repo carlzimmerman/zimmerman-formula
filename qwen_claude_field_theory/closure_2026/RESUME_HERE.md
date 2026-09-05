@@ -162,3 +162,9 @@ That, not Cassini, is now the wall.** No choice of `mu_n` touches it.
   f_ph G M/(2 xi^2) that the alpha = 1 ephemeris gate bounds -> xi >= 0.8 pc, DR4 flat 1.00; a smooth-cored two-length
   operator keeps the 0.05-0.1 pc window and the pre-registered boost. First calculation: the full PPN expansion with
   the k^4 term. It decides whether the host class is open before any action is varied.
+- ROADMAP EXECUTION (2026-09-04 night): G00, G01, G02 of FRIED_CHICKEN_ROADMAP_2026-09-04 are done and committed; the
+  first handoff in the requested format is `FABLE_HANDOFF_2026-09-04.md`. T-A (strict exact AQUAL): FAIL on Cassini by two
+  discretisations (Q2 = +2.10e-26, 4-5x the ceiling on both footings, all three g_ext inputs; 1e-11 convergence reached by
+  the second scheme). T-B (double-filter, exact inverse exponential kernel): SURVIVES statically, floors 0.02 pc (Gaussian)
+  and 0.03 pc (Helmholtz), two-body OPEN. Next is G03 -- with the k^4 PPN constraint: the covariant filter must realise the
+  coherent stiffening of the scalar's full quadratic form (f31c A), since local fourth-order operators fail alpha_1.
