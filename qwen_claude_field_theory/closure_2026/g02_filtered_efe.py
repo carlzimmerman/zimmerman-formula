@@ -132,8 +132,11 @@ def observables(r, th, rho, xi, kind, a0):
     g_r = G*Menc/np.maximum(r, 1e-30)**2                                                           # radial anomalous acceleration (monopole; inward if Menc > 0)
     return dict(Menc=Menc, Q2=Q2, g_r=g_r, rho0=rho0)
 def eN_of(gobs, a0):
-    """Newtonian external gradient from the observed field by THIS kernel's spherical relation y mu(y) = s; labelled an input, not a derivation."""
-    return brentq(lambda e: e*mu_exp(e) - gobs/a0, 1e-6, gobs/a0*1.5)*a0
+    """Newtonian external gradient from the observed field by THIS kernel's spherical relation: y = g_obs/a0 is the MOND-side
+    variable and s = y mu(y) the Newtonian one (QUMOND: g = nu(s) s a0, s = y mu(y)).  Labelled an input, not a derivation.
+    (The first run of this file solved the relation in the wrong direction; caught by the cross-check against
+    filtered_tidal_relation_2026's identity, which is exactly independent of xi and mass in this machinery too.)"""
+    yv = gobs/a0; return yv*mu_exp(yv)*a0
 
 print("\n2.  validation of the filtered-phantom machinery")
 a0c = A0["canonical"]; rM = math.sqrt(GM/a0c)

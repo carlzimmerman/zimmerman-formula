@@ -1,0 +1,38 @@
+==============================================================================================================
+G02 -- screened extension (T-B): exact inverse exponential kernel, double filter
+==============================================================================================================
+  [PASS] K1 the tabulated nu is the exact inverse partner of mu_exp: nu(s) s mu_exp(nu(s) s)... i.e. y = nu s satisfies y mu(y) = s to 1e-9, and nu -> 1/sqrt(s) (deep) and 1 (Newton)
+
+1.  Fourier benchmark: linear response about a constant filtered gradient, from finite differences of the exact flux
+  [PASS] B1 the response coefficient of section 4 is reproduced from finite differences of the exact nonlinear flux for three background strengths and six wavevector angles: nu_e - 1 + s_e nu'_e (khat.ehat)^2   (s_e=0.3 ang=0.0: +0.23783 vs +0.23783; s_e=1.0 ang=0.0: -0.08318 vs -0.08318; s_e=2.5 ang=0.0: -0.10339 vs -0.10339)
+  [PASS] B2 tangents: transverse = nu_e - 1; longitudinal = d(s nu)/ds - 1 = 1/[mu + y mu'] - 1, finite-differenced against the closed form   (longitudinal -0.08318 vs 1/[mu + y mu'] - 1 = -0.08318; transverse +0.34998)
+  [PASS] B3 the filter enters squared (input and output filters): sigma(k)^2 = e^{-xi^2 k^2}; xi = 0 gives 1 and k xi >> 1 gives 0
+  [PASS] B4 constant-background subtraction: the background gradient itself has zero divergence of flux (uniform p0), so it sources nothing
+
+2.  validation of the filtered-phantom machinery
+  [PASS] V1 at xi = 0 the machinery reproduces f23's committed QUMOND quadrupole for the exponential kernel, |Q2| = 3.76x the ceiling (q = 0.1658 at the solar circle), to 5%: same physics (QUMOND phantom of a point mass), independent implementation   (this file +1.953e-26 vs 1.955e-26)
+  [PASS] V2 second representation of the output filter: a Gaussian mass distribution of width xi convolved once by the l = 0 kernel equals the Gaussian of width sqrt(2) xi to 0.5% inside 5 xi (kernel normalisation, ive scaling and quadrature)   (max rel dev 2.1e-05)
+  [PASS] V3 the Helmholtz filter conserves the monopole mass to 0.5% (its Green's function is normalised)   (mass ratio 1.0000)
+====================================================================================================
+g02b -- cross-check of the central tidal identity
+====================================================================================================
+  canonical xi =   0.3 pc  M = 1e+00 Msun:  Q2/D = +1.09313   identity 1.10889   ratio 0.9858
+  canonical xi =   0.3 pc  M = 1e-03 Msun:  Q2/D = +1.09313   identity 1.10889   ratio 0.9858
+  canonical xi =   1.0 pc  M = 1e+00 Msun:  Q2/D = +1.09313   identity 1.10889   ratio 0.9858
+  canonical xi =   1.0 pc  M = 1e-03 Msun:  Q2/D = +1.09313   identity 1.10889   ratio 0.9858
+  canonical xi =   3.0 pc  M = 1e+00 Msun:  Q2/D = +1.09312   identity 1.10889   ratio 0.9858
+  canonical xi =   3.0 pc  M = 1e-03 Msun:  Q2/D = +1.09312   identity 1.10889   ratio 0.9858
+  canonical xi =  10.0 pc  M = 1e+00 Msun:  Q2/D = +1.09308   identity 1.10889   ratio 0.9857
+  canonical xi =  10.0 pc  M = 1e-03 Msun:  Q2/D = +1.09308   identity 1.10889   ratio 0.9857
+  alt       xi =   0.3 pc  M = 1e+00 Msun:  Q2/D = +0.61367   identity 0.61016   ratio 1.0058
+  alt       xi =   0.3 pc  M = 1e-03 Msun:  Q2/D = +0.61367   identity 0.61016   ratio 1.0058
+  alt       xi =   1.0 pc  M = 1e+00 Msun:  Q2/D = +0.61367   identity 0.61016   ratio 1.0058
+  alt       xi =   1.0 pc  M = 1e-03 Msun:  Q2/D = +0.61367   identity 0.61016   ratio 1.0058
+  alt       xi =   3.0 pc  M = 1e+00 Msun:  Q2/D = +0.61366   identity 0.61016   ratio 1.0057
+  alt       xi =   3.0 pc  M = 1e-03 Msun:  Q2/D = +0.61366   identity 0.61016   ratio 1.0057
+  alt       xi =  10.0 pc  M = 1e+00 Msun:  Q2/D = +0.61364   identity 0.61016   ratio 1.0057
+  alt       xi =  10.0 pc  M = 1e-03 Msun:  Q2/D = +0.61364   identity 0.61016   ratio 1.0057
+  [FAIL] T1 the ratio Q2/D is independent of xi (0.3-10 pc) and of source mass (1 and 1e-3 Msun) to 0.1% in this machinery -- the identity's structural claim   (spread 1.0e-02)
+  [PASS] T2 its value agrees with the closed form 2y/(5[3 lambda - y]) to 3% on both footings (this machinery's own accuracy is ~1-5%)   (max deviation 1.43%)
+
+RESULT: 1 FAIL -> ["T1 the ratio Q2/D is independent of xi (0.3-10 pc) and of source mass (1 and 1e-3 Msun) to 0.1% in this machinery -- the identity's structural claim"]
