@@ -180,3 +180,4 @@ That, not Cassini, is now the wall.** No choice of `mu_n` touches it.
   (A) at all 12 ladder points; scalar alpha_2 drag suppressed 3.6e-5 at (xi k)^2 = 1e4 (c2 = c4 = 1/10); purely spatial =>
   no new mode, Bogoliubov dispersion (xi = healing length). Not a derivation of xi, not T-B literally, host still aether-scalar
   (spec req 2). `ONE_NEW_THING_2026-09-04.md`.
+- 2026-09-05 morning: the lead is directed to strip the machine paths from its seven files and continue G03 (`MESSAGE_TO_ASTRA_2026-09-05_STRIP_PATHS_CONTINUE_G03.md`); its G03 start and two-body work are committed and pushed (d21a0db77, 084d6cbdf).
