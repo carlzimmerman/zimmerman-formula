@@ -1,0 +1,16 @@
+====================================================================================================
+g03g -- 3-D pair solver: validation (self-force subtraction, resolution by separation)
+====================================================================================================
+  external field: observed 1.778e-10 (y_e = 1.900), Newtonian s_e = 1.616 a0, r_e(1 Msun) = 6.3 kAU, xi = 6.2 kAU
+  equal pair at 10 kAU, 60 deg: gamma = 1.0246, tangential 0.018; axial |F1+F2|.n/|F2| = 3.57e-01; common-mode scalar force = 1.22e-02 of Newton; raw self-force artefact removed = 2.45e-02  ((21, 21, 17) it, 116 s)
+  [PASS] V2 the common-mode scalar force on an equal pair (zero in the continuum by translation invariance; it cancels identically in the relative acceleration for equal masses) is below 3% of the Newtonian pair force on the production grid   (common 1.22e-02 of Newton; scalar pair force 2.07e-02)
+  common-mode artefact vs resolution: h = 0.75 kAU -> 1.22e-02, h = 0.56 kAU -> 1.22e-02 of Newton; gamma 1.0246 -> 1.0246
+  [FAIL] V2b the common-mode force is a grid artefact: it shrinks under refinement (h 0.75 -> 0.56 kAU) while gamma moves by < 1%   (1.22e-02 -> 1.22e-02; gamma 1.0246 -> 1.0246)
+  perpendicular 1+1 at 10 kAU: gamma = 1.0296 (h = 0.75 kAU) / 1.0296 (h = 0.56) / 1.0295 (h = 0.75, box 216)  (1460 s)
+  [PASS] V3 the perpendicular 10 kAU boost changes by < 1% under resolution 0.75 -> 0.56 kAU and box 144 -> 216 kAU   (1.0296, 1.0296, 1.0295)
+  linear-response anchor (xi -> 0, s = 100 kAU = 5 r_e, test mass): theta =   0: gamma_3D = 1.1522 vs AQUAL anisotropic Coulomb 1.1759  (1797 s)
+  linear-response anchor (xi -> 0, s = 100 kAU = 5 r_e, test mass): theta =  45: gamma_3D = 1.0766 vs AQUAL anisotropic Coulomb 1.0885  (2119 s)
+  linear-response anchor (xi -> 0, s = 100 kAU = 5 r_e, test mass): theta =  90: gamma_3D = 1.0218 vs AQUAL anisotropic Coulomb 1.0180  (2430 s)
+  [PASS] V4 at xi -> 0 and s = 100 kAU (5 r_e) the 3-D boost matches the AQUAL anisotropic Coulomb law gamma = 1/(mu_e sqrt(1+L) q(theta)) to 6% at 0, 45, 90 deg
+
+RESULT: 1 FAIL -> ['V2b the common-mode force is a grid artefact: it shrinks under refinement (h 0.75 -> 0.56 kAU) while gamma moves by < 1%']   (2430 s)
