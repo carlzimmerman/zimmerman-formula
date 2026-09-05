@@ -1,0 +1,97 @@
+
+sector2_aether_scalar_equations_2026.py
+=======================================
+SECTOR 2 of the first-principles field-equation derivation of THE_GENERALIZED_COMPLETION action
+(qwen_claude_field_theory/closure_2026/THE_GENERALIZED_COMPLETION.md):
+
+    (a) the AETHER equation  delta S / delta A^nu = 0  with the multiplier lambda solved,
+    (b) the SCALAR equation  delta S / delta phi = 0  as a CONSERVATION LAW  nabla_mu J^mu = 0
+        with the current J^mu written out (promotion term F_Q kept: the v9 novelty).
+
+METHOD (derive, do not transcribe).  The aether+scalar bracket of the action is coded in JET SPACE
+for FULLY GENERAL fields A^mu(t,x,y,z), phi(t,x,y,z), lambda(t,x,y,z) on a fixed background metric.
+The Euler-Lagrange operator is applied mechanically (no hand IBP), divided by sqrt(-g), and compared
+term by term with the COVARIANT expressions claimed below, on TWO backgrounds:
+    * Minkowski (every derivative structure exercised, Christoffels vanish),
+    * FRW with lapse, g = diag(-N(t)^2, a^2, a^2, a^2) (Christoffel/connection structure exercised).
+Mutation controls (drop a term, flip a coefficient) MUST make the comparison fail, so the checks
+are capable of failing.  All couplings symbolic: K_B, c2, c4, the drag coefficient c_J, the
+Y-coefficient c_Y (the doc sets c_J = c_Y = 2 - K_B; they are kept separate so the controls can
+tell them apart), and a generic scalar Lagrangian L_s(Y,Q) (polynomial with independent
+coefficients, so F_Y and F_Q are structurally distinguishable).  Part 4 then evaluates F_Y, F_Q for
+the ACTUAL L_s of the doc (exponential-kernel G, DBI K, bump B, promotion a0^2(Q) = -kappa^2 G K).
+
+CONVENTIONS: signature (-,+,+,+); c = 1; A_mu A^mu = -1 enforced by +lambda(A^2+1);
+a^mu = A^nu nabla_nu A^mu; Q = A^mu nabla_mu phi; Y = (g^{mu nu}+A^mu A^nu) nabla_mu phi nabla_nu phi;
+G(y) = y^2 + 2(1+y)e^{-y} - 2, y = sqrt(Y)/a0; K(Q) = -M^4 sqrt(1 - mu^2 (Q-Q0)^2/M^4);
+a0^2(Q) = -kappa^2 G K(Q) (c=1); B(u) = u/(1+u)^2.
+
+THE BRACKET VARIED (metric held fixed; the Einstein-Hilbert and matter parts do not contain A, phi):
+    L = -(K_B/2) F_{mn}F^{mn} + c2 (nabla.A)^2 + c4 a_m a^m + lambda (A_m A^m + 1)
+        + 2 c_J a^m nabla_m phi - c_Y Y + L_s(Y, Q),          c_J = c_Y = 2 - K_B in the doc,
+    L_s(Y,Q) = (a0^2(Q)/8 pi G) G(sqrt(Y)/a0(Q)) + sigma_K K(Q) + Acal B(Y/a0^2(Q)) (Q-Q0)^2 .
+sigma_K is the sign/normalisation with which K enters (the doc writes "-2K(Q)", i.e. sigma_K = -2;
+see sector2_conserved_charge_dust_2026.py for why the physically consistent value has sigma_K > 0).
+
+RESULTS (each certified below; SOLID = sympy identity on both backgrounds with controls):
+  (E1) aether equation, E_nu = 0, with
+       E_nu = 2 K_B nabla^m F_{m nu} - 2 c2 nabla_nu(nabla.A)
+              + 2 c4 [ a_r nabla_nu A^r - nabla_m (A^m a_nu) ]
+              + 2 c_J [ (nabla_nu A^r) nabla_r phi - nabla_m (A^m nabla_nu phi) ]
+              - 2 c_Y Q nabla_nu phi + (2 F_Y Q + F_Q) nabla_nu phi + 2 lambda A_nu
+  (E2) lambda = (1/2) A^nu Ecal_nu   (Ecal = E without the lambda term), which on the constraint
+       surface (A_m nabla_n A^m = 0) reduces to
+       lambda = K_B A^nu nabla^m F_{m nu} - c2 A.nabla(nabla.A) + 2 c4 a^2
+                + c_J [ 2 a.nabla phi - nabla_m(Q A^m) ] - c_Y Q^2 + (F_Y Q + F_Q/2) Q ;
+       the physical (lambda-free) aether equation is the projection P^mu_nu E^nu = 0.
+  (E3) scalar equation  nabla_mu J^mu = 0  with
+       J^mu = 2 c_J a^mu + 2 (F_Y - c_Y) (g^{mu nu} + A^mu A^nu) nabla_nu phi + F_Q A^mu ,
+       a consequence of shift symmetry (dL/dphi = 0 identically; control: adding V(phi) gives
+       nabla_mu J^mu = -V'(phi)).
+  (E4) for the doc's L_s:  F_Y = mu(y)/(8 pi G) + Acal (Q-Q0)^2 B'(Y/a0^2)/a0^2,  mu = 1 - e^{-y};
+       F_Q = sigma_K K'(Q) + 2 Acal B(Y/a0^2)(Q-Q0)
+             - kappa^2 K'(Q) { [e^{-y}(y^2+2y+2) - 2]/(8 pi) - G Acal (Q-Q0)^2 (Y/a0^4) B'(Y/a0^2) } ,
+       the last line being the promotion's contribution (proportional to K'(Q) = the charge density
+       up to sigma_K: "charge-suppressed", stage 17 A4); it vanishes at Y = 0 (FRW) and tends to
+       +kappa^2 K'(Q)/(4 pi) in the Newtonian regime y -> infinity.
+
+====================================================================================================
+PART 1-3 -- derivation by mechanical Euler-Lagrange on general fields, two backgrounds
+====================================================================================================
+
+====================================================================================================
+BACKGROUND: Minkowski   g = diag(-1, 1, 1, 1)
+====================================================================================================
+  [info] jet-space Euler-Lagrange operator applied (7.1s); |L| = 337 terms
+  [ok] E_lambda:  A_mu A^mu + 1 = 0 (the multiplier enforces unit norm)
+  [ok] (E1) delta S/delta A^nu == 2K_B nabla^m F_{m nu} - 2c2 nabla_nu(nabla.A) + 2c4[a_r nabla_nu A^r - nabla_m(A^m a_nu)] + 2c_J[(nabla_nu A^r)d_r phi - nabla_m(A^m d_nu phi)] - 2c_Y Q d_nu phi + (2F_Y Q + F_Q) d_nu phi + 2 lambda A_nu   [all four components]
+  [ok]       control [drop_FQ]: the mutated aether equation FAILS the comparison
+  [ok]       control [drop_c4_grad]: the mutated aether equation FAILS the comparison
+  [ok]       control [flip_c2]: the mutated aether equation FAILS the comparison
+  [ok]       control [drop_cY]: the mutated aether equation FAILS the comparison
+  [ok]       control [KB_coeff_1]: the mutated aether equation FAILS the comparison
+  [ok]       control [drop_drag_grad]: the mutated aether equation FAILS the comparison
+  [FAIL] (E2) lambda = (1/2) A^nu Ecal_nu solves A^nu E_nu = 0 identically (off the constraint too)
+  [ok] (E2) on the constraint surface: lambda = K_B A^nu nabla^m F_{m nu} - c2 A.nabla(nabla.A) + 2c4 a^2 + c_J[2 a.dphi - nabla_m(Q A^m)] - c_Y Q^2 + (F_Y Q + F_Q/2) Q
+  [ok]       control: the simplified lambda differs OFF the constraint surface (identity used: A_m nabla_n A^m = 0)
+  [ok] (E3) dL/dphi == 0 identically: phi enters only through nabla phi (shift symmetry)
+  [ok] (E3) delta S/delta phi == -nabla_mu J^mu with J^mu = 2c_J a^mu + 2(F_Y - c_Y)(g^{mu nu}+A^mu A^nu) d_nu phi + F_Q A^mu
+  [ok]       control [drop_drag]: the mutated current FAILS the comparison
+  [ok]       control [drop_FQ]: the mutated current FAILS the comparison
+  [ok]       control [P_to_g]: the mutated current FAILS the comparison
+  [ok]       control: with an explicit potential V(phi) the law becomes nabla_mu J^mu = -V'(phi) != 0 (conservation <=> shift symmetry)
+  (190.4s elapsed)
+
+====================================================================================================
+BACKGROUND: FRW with lapse   g = diag(-N(t)**2, a(t)**2, a(t)**2, a(t)**2)
+====================================================================================================
+  [info] jet-space Euler-Lagrange operator applied (10.8s); |L| = 405 terms
+  [ok] E_lambda:  A_mu A^mu + 1 = 0 (the multiplier enforces unit norm)
+  [ok] (E1) delta S/delta A^nu == 2K_B nabla^m F_{m nu} - 2c2 nabla_nu(nabla.A) + 2c4[a_r nabla_nu A^r - nabla_m(A^m a_nu)] + 2c_J[(nabla_nu A^r)d_r phi - nabla_m(A^m d_nu phi)] - 2c_Y Q d_nu phi + (2F_Y Q + F_Q) d_nu phi + 2 lambda A_nu   [all four components]
+  [ok]       control [drop_FQ]: the mutated aether equation FAILS the comparison
+  [ok]       control [drop_c4_grad]: the mutated aether equation FAILS the comparison
+  [ok]       control [flip_c2]: the mutated aether equation FAILS the comparison
+  [ok]       control [drop_cY]: the mutated aether equation FAILS the comparison
+  [ok]       control [KB_coeff_1]: the mutated aether equation FAILS the comparison
+  [ok]       control [drop_drag_grad]: the mutated aether equation FAILS the comparison
+  [FAIL] (E2) lambda = (1/2) A^nu Ecal_nu solves A^nu E_nu = 0 identically (off the constraint too)

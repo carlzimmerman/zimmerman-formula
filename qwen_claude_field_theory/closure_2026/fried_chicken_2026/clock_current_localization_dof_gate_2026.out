@@ -1,0 +1,52 @@
+================================================================================================
+[I] GAUGE-INVARIANT VECTOR MEDIATOR: velocity Hessian, constraint, and plane-wave symbol on the MOND background
+================================================================================================
+  velocity Hessian eigenvalues on the background (x 4piG): {1 - exp(-y): 2, (y + exp(y) - 1)*exp(-y): 1}
+  [PASS] transverse eigenvalue = mu(y) = 1 - e^{-y} (x2)
+  [PASS] longitudinal eigenvalue = mu + y mu' = 1 + (y-1) e^{-y}  (spec's lambda_par)
+  d lam_par/dy = (2 - y)*exp(-y)  ;  lam_par - 1 = (y - 1)*exp(-y)
+  [PASS] all three eigenvalues positive for every y > 0: no ghost among the spatial components (positive-definite Hessian)
+  [PASS] MUTATION CONTROL: the wrong-sign kernel -G(y) (the naive 'AQUAL sign' for a vector) has a negative-definite Hessian (ghost)
+  [PASS] pi^0 = dL/d(A_0 dot) == 0 identically for ANY kernel: A_0 is a Lagrange multiplier (Gauss constraint, first class)
+  Dirac count (standard for L(F^2) + A.J with J independent of A): 8-dim phase space per point, two first-class
+  constraints (pi^0, Gauss) => 8 - 2x2 = 4 => TWO propagating polarizations.  Verified below at the symbol level.
+  [PASS] gauge invariance: the symbol annihilates eps_m = k_m (pure gauge)
+  det(spatial symbol) = -Fp**2*omega**2*(k_x**2 + k_z**2 - omega**2)*(-4*E**2*Fpp*k_z**2 + 4*E**2*Fpp*omega**2 + Fp*a0**2*k_x**2 + Fp*a0**2*k_z**2 - Fp*a0**2*omega**2)/a0**2
+  det with the exponential kernel = omega**2*(exp(y) - 1)**2*(k_x**2 + k_z**2 - omega**2)*(k_x**2*exp(y) - k_x**2 + k_z**2*y + k_z**2*exp(y) - k_z**2 - omega**2*y - omega**2*exp(y) + omega**2)*exp(-3*y)/8
+  det / [omega^2 (w^2-k^2) (lam_par w^2 - lam_perp kx^2 - lam_par kz^2)] = (exp(2*y) - 2*exp(y) + 1)*exp(-2*y)/8
+  [PASS] symbol factorizes: one residual-gauge factor omega^2 (nonpropagating longitudinal) x TWO propagating dispersion factors
+  [PASS] ordinary polarization is exactly luminal on any background (w^2 = k^2)
+  extraordinary phase speed^2 (angle theta to E) = (y*cos(theta)**2 + exp(y) - 1)/(y + exp(y) - 1)
+  [PASS] dark-photon characteristics on the MOND background are SUBLUMINAL for all y>0 and all directions (v^2 - 1 = -(y mu'/lam_par) sin^2 theta <= 0)
+  [PASS] no superluminal channel: y mu' = y e^{-y} > 0 and lam_par > 0 for y > 0
+  [PASS] MUTATION CONTROL: a kernel with mu' < 0 (e.g. mu = 2 - e^{y}, decreasing) would be superluminal -- test discriminates
+  => (I) is HEALTHY (no ghost, causal, subluminal) but carries TWO propagating dark polarizations: the retarded Box^{-1}
+     on a conserved current IS massless-vector exchange; making it causal means giving the vector its own Cauchy data.
+
+================================================================================================
+[II] FEYNMAN-TYPE COMPONENTWISE LOCALIZATION  L = -1/2 d_m V_n d^m V^n + V.J
+================================================================================================
+  velocity Hessian = Matrix([[-1, 0, 0, 0], [0, 1, 0, 0], [0, 0, 1, 0], [0, 0, 0, 1]])
+  [PASS] V_0 has NEGATIVE kinetic sign (ghost) while V_i are healthy: exactly the component that would carry the FLRW homogeneous mode
+
+================================================================================================
+[III] MULTIPLIER LOCALIZATION  Lambda^m (Box V_m - J_m)  ->  -d Lambda . d V
+================================================================================================
+  [PASS] per component det = -b^2 < 0: opposite-sign kinetic eigenvalues (ghost pair), for every V self-term a
+  (vector version of tensor_nonlocal_localization_gate_2026.py; retarded data are history conditions, not Dirac constraints)
+
+================================================================================================
+[IV] ELLIPTIC REPLACEMENT  Box -> Laplacian
+================================================================================================
+  [PASS] no velocity dependence at all: the potential is a constraint (instantaneous) -- this is Case 1 of the local theorem (alpha_3 / DC-019)
+
+================================================================================================
+SCORECARD (d)  (14/14 checks passed)
+================================================================================================
+  The retarded Box^{-1} acting on a conserved current has exactly one ghost-free causal localization: a dynamical
+  massless vector (Gauss constraint + 2 propagating polarizations; positive Hessian and subluminal characteristics on the
+  exponential-kernel background).  The alternatives are a V_0 ghost (II), a (V,Lambda) ghost pair (III), or an
+  instantaneous constraint (IV = Case 1).  ANSWER TO THE CRUX: NO -- a causal, ghost-free, current-sourced nonlocality
+  is a propagating dark vector: N_total = 2 (tensor) + 1 (clock) + 2 (mediator) = 5, violating A3 (at most one extra
+  scalar).  This is not a DOF-neutral trick.  Combined with the companion script: the mediator's Gauss law then
+  forbids the net-charged homogeneous background, and the mediator never reaches baryons at Newtonian order.

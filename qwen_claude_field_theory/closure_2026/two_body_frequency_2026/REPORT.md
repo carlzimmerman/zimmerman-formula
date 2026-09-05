@@ -299,7 +299,7 @@ counted as evidence for the orbital relation.
 | `python3 -m unittest discover -s qwen_claude_field_theory/closure_2026/filtered_tidal_relation_2026 -q` | 0; six tidal tests |
 | `python3 -m unittest discover -s hunt_2026/exact_mu_cassini_2026 -q` | 0; six inverse-kernel tests |
 | `python3 qwen_claude_field_theory/closure_2026/elliptic_phantom_action_gate_2026/test_elliptic_phantom_action_gate_2026.py` | 0; two tests |
-| `python3 /Users/carlzimmerman/.codex/plugins/cache/openai-curated-remote/mathbox/2.2.0/skills/computation-audit/scripts/validate_manifest.py qwen_claude_field_theory/closure_2026/two_body_frequency_2026/computation_manifest.json` | 0; valid manifest |
+| `python3 <home>/.codex/plugins/cache/openai-curated-remote/mathbox/2.2.0/skills/computation-audit/scripts/validate_manifest.py qwen_claude_field_theory/closure_2026/two_body_frequency_2026/computation_manifest.json` | 0; valid manifest |
 
 Total: 33 distinct tests, not 33 independent predictions. The manifest pins
 actual commit/dirty state, Python/NumPy/SciPy/SymPy versions, bounds and hashes.

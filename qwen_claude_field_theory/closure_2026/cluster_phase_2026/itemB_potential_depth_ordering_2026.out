@@ -1,0 +1,79 @@
+====================================================================================================
+ITEM B -- ORDERING BY POTENTIAL DEPTH |Phi|/c^2, framework kernel, self-consistent, both footings
+====================================================================================================
+cluster: M500=1e15, R500=1.56 Mpc, M_b(<420kpc)=3.127e+13, M_b(<R500)=1.416e+14 Msun
+group  : M500=1e14, R500=0.72 Mpc, M_b(<R500)=1.284e+13
+MW-like: M_b(<30kpc)=6.477e+10 Msun;  SPARC: 175 galaxies, 3389 points
+  [ok] C0a point-mass Newtonian depth = GM(1/r - 1/R_cut)   num/exact = 1.00000
+  [ok] C0b deep-MOND depth tail = v_flat^2 ln(R_cut/r) (point mass 1e11, 100 kpc -> 1 Mpc)   num/analytic = 1.0016
+
+####################################################################################################
+# FOOTING canon: a0 = 9.360e-11 m/s^2   (kernel: framework g_obs = sqrt(g^2 + g a0))
+####################################################################################################
+
+PART 1 -- |Phi|/c^2 at A = mu^2 (self-consistent), R_cut = kR/mu; 'bare' = baryons+kernel only; 'N' = Newtonian control
+
+  kR = 1.000  (R_cut = 1.00 Mpc)      |Phi|/c^2
+      system  max(selfc)  max(bare)     max(N)  depth at characteristic radii (self-consistent)
+     cluster   3.493e-05  3.292e-05  2.261e-05  2.28e-05@50kpc  1.53e-05@200kpc  1.00e-05@420kpc
+       group   1.261e-05  1.102e-05  4.392e-06  1.00e-05@50kpc  7.40e-06@200kpc  2.17e-06@724kpc
+          MW   5.181e-06  2.927e-06  1.562e-06  4.63e-06@1kpc  3.85e-06@8kpc  3.52e-06@20kpc
+       SPARC   9.130e-06  7.180e-06  4.809e-06  deepest=UGC09133; median(max)=3.19e-06; RAR-point median=3.37e-06, max=8.93e-06
+    RATIOS (max depth): cluster/deepest-SPARC = 3.8x; cluster/median-SPARC = 11x; cluster/MW = 6.7x; group/deepest-galaxy = 1.4x;  bare-kernel control 4.6x; Newtonian control 4.7x
+    RATIO where the mass sits: cluster@420kpc / deepest SPARC RAR point = 1.1x   (convention-sensitive: 420 kpc is near R_cut)
+
+  kR = 1.571  (R_cut = 1.57 Mpc)      |Phi|/c^2
+      system  max(selfc)  max(bare)     max(N)  depth at characteristic radii (self-consistent)
+     cluster   4.773e-05  3.914e-05  2.453e-05  3.56e-05@50kpc  2.80e-05@200kpc  2.24e-05@420kpc
+       group   2.151e-05  1.371e-05  4.779e-06  1.89e-05@50kpc  1.62e-05@200kpc  9.77e-06@724kpc
+          MW   1.387e-05  3.071e-06  1.563e-06  1.33e-05@1kpc  1.25e-05@8kpc  1.22e-05@20kpc
+       SPARC   1.761e-05  7.481e-06  4.814e-06  deepest=UGC09133; median(max)=1.20e-05; RAR-point median=1.21e-05, max=1.74e-05
+    RATIOS (max depth): cluster/deepest-SPARC = 2.7x; cluster/median-SPARC = 4x; cluster/MW = 3.4x; group/deepest-galaxy = 1.2x;  bare-kernel control 5.2x; Newtonian control 5.1x
+    RATIO where the mass sits: cluster@420kpc / deepest SPARC RAR point = 1.3x   (convention-sensitive: 420 kpc is near R_cut)
+  [ok] C1 depth ordering cluster > group > EVERY galaxy (deepest SPARC and MW) at every kR (max depth, self-consistent)
+    note: the deepest SPARC spiral (UGC09133) is deeper than the MW-like model -- the MW model is lighter than the most massive SPARC spirals; ordering vs ALL galaxies is what is checked.
+
+  DENSITY (kg/m^3): cluster core local 100-300 kpc = 1.11e-23, mean(<420 kpc) = 6.82e-24;  MW mean(<2.2Rd) = 3.35e-21;  SPARC mean(<inner third) median = 7.48e-22
+  [ok] C2 MUTATION CONTROL on the key: density ordering REVERSED (galaxy disk > cluster core)   MW/cluster-local = 302x, SPARC-median/cluster-local = 68x  [paper: 3.7x with its own conventions]
+
+PART 2 -- Helmholtz p=1 response, self-consistent, R_cut = kR/sqrt(A): cluster yield vs galaxy cost
+  [ok] C3a cluster fixed point CONVERGED at A=mu^2   8 iterations, last change 6.8e-08 dex
+  [ok] C3b A -> 0 gives zero yield, linearly (fixed R_cut = 1 Mpc)   yield(1e-3 mu^2)/yield(mu^2) = 8.88e-04
+  [ok] C3c source map linear in A at fixed |Phi|
+  cluster MOND dynamical mass inside 420 kpc (no response): 6.842e+13 Msun; targets {'paper_1e14': 100000000000000.0, 'harsh_1.5e14': 150000000000000.0}
+
+  kR = 1.000: R_cut = 1.00/sqrt(A); the 420-kpc core stays inside R_cut for A <= 5.67 mu^2
+   A/mu^2 1/sqrtA[Mpc]  M_resp(<420)  dM_dyn(<420)  eta420  f(1e14) f(1.5e14)  SPARC max      p95    median        scatter      MW   group
+     0.50        1.414     4.606e+12     5.985e+12   1.087    0.060     0.040     0.0201   0.0022   0.00013 0.1409->0.1407  0.0016  +0.313
+     1.00        1.000     6.436e+12     8.310e+12   1.121    0.083     0.055     0.0283   0.0032   0.00020 0.1409->0.1408  0.0024  +0.356
+     1.50        0.816     7.549e+12     9.711e+12   1.142    0.097     0.065     0.0344   0.0041   0.00025 0.1408->0.1406  0.0030  +0.340
+     2.00        0.707     8.246e+12     1.058e+13   1.155    0.106     0.071     0.0396   0.0048   0.00030 0.1409->0.1410  0.0036  +0.299
+     3.00        0.577     8.849e+12     1.134e+13   1.166    0.113     0.076     0.0480   0.0060   0.00038 0.1408->0.1411  0.0046  +0.273
+     4.00        0.500     8.754e+12     1.122e+13   1.164    0.112     0.075     0.0550   0.0071   0.00045 0.1408->0.1414  0.0055  +0.256
+     5.00        0.447     8.182e+12     1.050e+13   1.154    0.105     0.070     0.0610   0.0081   0.00051 0.1409->0.1414  0.0063  +0.244
+  [ok] C3d all fixed points converged (kR=1.00)
+  GALAXY-SAFE (0.1dex worst SPARC point) kR=1.00: A = 5.67 mu^2 (1/sqrtA = 0.42 Mpc) -> cluster dM_dyn(<420) = 9.772e+12 = 10% of 1e14 / 7% of 1.5e14; eta(420)=1.143; SPARC scatter 0.1409->0.1413; MW 0.0068 dex (galaxy-safe over the WHOLE unique-branch range; capped at core=R_cut)
+  GALAXY-SAFE (0.05dex worst SPARC point) kR=1.00: A = 3.27 mu^2 (1/sqrtA = 0.55 Mpc) -> cluster dM_dyn(<420) = 1.137e+13 = 11% of 1e14 / 8% of 1.5e14; eta(420)=1.166; SPARC scatter 0.1408->0.1412; MW 0.0048 dex 
+  AMPLITUDE for 50% of 1e14 (kR=1.00): NOT REACHED inside the unique branch (core <= R_cut); max yield at A=5.67 mu^2 is 10%
+  AMPLITUDE for 100% of 1e14 (kR=1.00): NOT REACHED inside the unique branch (core <= R_cut); max yield at A=5.67 mu^2 is 10%
+
+  kR = 1.571: R_cut = 1.57/sqrt(A); the 420-kpc core stays inside R_cut for A <= 13.99 mu^2
+   A/mu^2 1/sqrtA[Mpc]  M_resp(<420)  dM_dyn(<420)  eta420  f(1e14) f(1.5e14)  SPARC max      p95    median        scatter      MW   group
+     0.50        1.414     8.788e+12     1.126e+13   1.165    0.113     0.075     0.0701   0.0078   0.00049 0.1410->0.1415  0.0058  +0.751
+     1.00        1.000     1.291e+13     1.634e+13   1.239    0.163     0.109     0.0938   0.0111   0.00070 0.1410->0.1407  0.0083  +0.938
+     1.50        0.816     1.592e+13     1.999e+13   1.292    0.200     0.133     0.1104   0.0137   0.00087 0.1409->0.1407  0.0101  +1.031
+     2.00        0.707     1.828e+13     2.281e+13   1.333    0.228     0.152     0.1235   0.0158   0.00100 0.1409->0.1406  0.0117  +1.074
+     3.00        0.577     2.176e+13     2.694e+13   1.394    0.269     0.180     0.1438   0.0193   0.00124 0.1408->0.1408  0.0144  +1.072
+     4.00        0.500     2.414e+13     2.973e+13   1.435    0.297     0.198     0.1596   0.0223   0.00146 0.1409->0.1416  0.0167  +0.995
+     5.00        0.447     2.576e+13     3.161e+13   1.462    0.316     0.211     0.1726   0.0249   0.00164 0.1409->0.1415  0.0187  +0.897
+     7.00        0.378     2.736e+13     3.347e+13   1.489    0.335     0.223     0.1934   0.0292   0.00196 0.1408->0.1416  0.0222  +0.828
+    10.00        0.316     2.704e+13     3.310e+13   1.484    0.331     0.221     0.2170   0.0347   0.00236 0.1409->0.1408  0.0266  +0.763
+  [ok] C3d all fixed points converged (kR=1.57)
+  GALAXY-SAFE (0.1dex worst SPARC point) kR=1.57: A = 1.17 mu^2 (1/sqrtA = 0.92 Mpc) -> cluster dM_dyn(<420) = 1.770e+13 = 18% of 1e14 / 12% of 1.5e14; eta(420)=1.259; SPARC scatter 0.1408->0.1409; MW 0.0090 dex 
+Traceback (most recent call last):
+  File "/Users/carlzimmerman/new_physics/zimmerman-formula/qwen_claude_field_theory/closure_2026/cluster_phase_2026/itemB_potential_depth_ordering_2026.py", line 308, in <module>
+    A_safe = 10**brentq(fn, lo, hi, xtol=1e-4)*MU2; note = ""
+                 ~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/homebrew/Caskroom/miniconda/base/lib/python3.13/site-packages/scipy/optimize/_zeros_py.py", line 806, in brentq
+    r = _zeros._brentq(f, a, b, xtol, rtol, maxiter, args, full_output, disp)
+ValueError: f(a) and f(b) must have different signs

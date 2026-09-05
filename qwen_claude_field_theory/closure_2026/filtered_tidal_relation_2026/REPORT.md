@@ -199,7 +199,7 @@ No existing theory code or roadmap is modified; this study is not committed.
 | `python3 qwen_claude_field_theory/closure_2026/filtered_tidal_relation_2026/test_tidal_relation.py -q` | 0; six tests pass through the direct runner |
 | `python3 -m unittest discover -s hunt_2026/exact_mu_cassini_2026 -q` | 0; six existing tests pass |
 | `python3 qwen_claude_field_theory/closure_2026/elliptic_phantom_action_gate_2026/test_elliptic_phantom_action_gate_2026.py` | 0; two existing tests pass |
-| `python3 /Users/carlzimmerman/.codex/plugins/cache/openai-curated-remote/mathbox/2.2.0/skills/computation-audit/scripts/validate_manifest.py qwen_claude_field_theory/closure_2026/filtered_tidal_relation_2026/computation_manifest.json` | 0; manifest valid |
+| `python3 <home>/.codex/plugins/cache/openai-curated-remote/mathbox/2.2.0/skills/computation-audit/scripts/validate_manifest.py qwen_claude_field_theory/closure_2026/filtered_tidal_relation_2026/computation_manifest.json` | 0; manifest valid |
 
 Development failures are retained as history, not physics failures: five
 test-first failures before implementation (exit 1); a CLI NumPy-boolean

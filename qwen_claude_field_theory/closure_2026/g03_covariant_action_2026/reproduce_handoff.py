@@ -68,7 +68,8 @@ def main():
                                 env={**os.environ, 'PYTHONDONTWRITEBYTECODE': '1'})
         log = evidence / f'run_{number}.out'
         log.write_text(result.stdout + '\nSTDERR:\n' + result.stderr)
-        runs.append(dict(command=command, exit_status=result.returncode,
+        portable_command = ['python3',str(Path(command[1]).relative_to(BASE.parents[1]))]+command[2:]
+        runs.append(dict(command=portable_command, exit_status=result.returncode,
                          runtime_seconds=time.time()-t, log=str(log.relative_to(HERE)),
                          sha256=digest(log)))
         print(f'[{"ok" if result.returncode == 0 else "FAIL"}] {number}: '

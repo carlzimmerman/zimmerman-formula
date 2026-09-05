@@ -37,7 +37,7 @@ python3 -m unittest discover -s qwen_claude_field_theory/closure_2026/filtered_t
 python3 -m unittest discover -s qwen_claude_field_theory/closure_2026/smoothed_onset_action_2026 -q
 python3 -m unittest discover -s hunt_2026/exact_mu_cassini_2026 -q
 python3 qwen_claude_field_theory/closure_2026/elliptic_phantom_action_gate_2026/test_elliptic_phantom_action_gate_2026.py
-python3 /Users/carlzimmerman/.codex/plugins/cache/openai-curated-remote/mathbox/2.2.0/skills/computation-audit/scripts/validate_manifest.py qwen_claude_field_theory/closure_2026/filtered_tidal_relation_2026/computation_manifest.json
+python3 <home>/.codex/plugins/cache/openai-curated-remote/mathbox/2.2.0/skills/computation-audit/scripts/validate_manifest.py qwen_claude_field_theory/closure_2026/filtered_tidal_relation_2026/computation_manifest.json
 ```
 
 Outcomes, in the displayed order: **0, 0, 0, 0, 0, 0**.

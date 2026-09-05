@@ -1,0 +1,218 @@
+{
+  "schema_version": 1,
+  "claim_id": "C-H-full-variation-cylinder-charge",
+  "repository": {
+    "commit": "56107a6b0dfcc51ca7abc0385cb02082eac2fbfd",
+    "dirty": true
+  },
+  "command": "python3 qwen_claude_field_theory/closure_2026/g03_covariant_action_2026/g03_full_variation.py",
+  "environment": {
+    "software": [
+      "3.9.6",
+      "numpy 1.26.2",
+      "scipy 1.11.4",
+      "sympy 1.14.0"
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Full off-shell variations, exact electrovacuum branch, linearized constraints with heat stress",
+    "coefficient_domain": "exact SymPy and float64/complex128",
+    "conventions": "(-+++), alpha=1, cylindrical R x S^2 domain extension",
+    "inputs": [
+      {
+        "path": "qwen_claude_field_theory/closure_2026/g03_covariant_action_2026/g03_full_variation.py",
+        "sha256": "15853efad3d894a96381f6c0d767c6dcc6fcba3b87e3953f04932f7942718ba4"
+      },
+      {
+        "path": "qwen_claude_field_theory/closure_2026/g03_covariant_action_2026/g03_action_gate.py",
+        "sha256": "f44b842817e04705cc5898f3883458eabe6f01831961213894968979bd71d88d"
+      },
+      {
+        "path": "qwen_claude_field_theory/closure_2026/g03_covariant_action_2026/ACTION.md",
+        "sha256": "18b75c25f8842bdb9ea6be22e8f6bfb4ecf67d34819dbb530772632b97d810ed"
+      },
+      {
+        "path": "qwen_claude_field_theory/closure_2026/g03_covariant_action_2026/FULL_VARIATION.md",
+        "sha256": "be1afb069e5fb12aa319a473dc9965bf96482d56899928dd29960081464a3eba"
+      }
+    ],
+    "bounds": {
+      "clock_grids": [
+        32,
+        48
+      ],
+      "xi_alpha": 0.2,
+      "Lambda": 0.03,
+      "wavenumbers": [
+        0.2,
+        0.7,
+        2,
+        7,
+        15
+      ],
+      "diffusion_nodes": 64
+    },
+    "non_claims": [
+      "generic DOF count",
+      "no ghosts",
+      "causality clearance",
+      "PPN",
+      "Galactic background",
+      "T-A closure"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-09-05T14:02:22.257099+00:00",
+    "runtime_seconds": 0.7491409778594971,
+    "exit_status": 0
+  },
+  "outputs": [
+    {
+      "path": "qwen_claude_field_theory/closure_2026/g03_covariant_action_2026/full_variation_results.json",
+      "sha256": "6d6f2ebdc17169f4fa7cb3e8a5f08e6e5125fa48f476326206c6e2b869c7c7fc"
+    }
+  ],
+  "checks": [
+    {
+      "name": "complete off-shell clock current",
+      "passed": true,
+      "evidence": [
+        {
+          "grid": 32,
+          "analytic": -3.028984694425688e-05,
+          "finite_difference": -3.028983730501977e-05,
+          "error": 9.639237111546415e-12,
+          "unit_error": 4.440892098500626e-16
+        },
+        {
+          "grid": 48,
+          "analytic": -3.0289846944257485e-05,
+          "finite_difference": -3.0289859509480262e-05,
+          "error": 1.2565222777869258e-11,
+          "unit_error": 5.551115123125783e-16
+        }
+      ]
+    },
+    {
+      "name": "full lapse and spatial heat stress",
+      "passed": true,
+      "evidence": [
+        {
+          "grid": 32,
+          "lapse_error": 9.60523327542262e-12,
+          "metric_trace_error": 1.746842254179981e-11,
+          "omitted_heat_stress_error": 0.00015092405402549608
+        },
+        {
+          "grid": 48,
+          "lapse_error": 1.2599324361595166e-11,
+          "metric_trace_error": 6.366143723290918e-12,
+          "omitted_heat_stress_error": 0.0001509240651277749
+        }
+      ]
+    },
+    {
+      "name": "exact product background geometry",
+      "passed": true,
+      "evidence": {
+        "Ricci_scalar": "-2*a**2 + 2/R**2",
+        "Gnn": "R**(-2)",
+        "Gxx": "-1/R**2"
+      }
+    },
+    {
+      "name": "source-free Maxwell background",
+      "passed": true,
+      "evidence": "constant orthonormal electric field along the cylinder"
+    },
+    {
+      "name": "nonzero exact C-H electrovacuum backgrounds",
+      "passed": true,
+      "evidence": [
+        {
+          "y": 0.8,
+          "a": 0.8046854561070746,
+          "R": 1.3896553689670967,
+          "rho_em": 0.28758427082199756,
+          "epsilon": 0.2002440281622918
+        },
+        {
+          "y": 1.0,
+          "a": 1.0075453768008045,
+          "R": 1.1516778205474958,
+          "rho_em": 0.5015177646857695,
+          "epsilon": 0.22242433334132916
+        },
+        {
+          "y": 2.056919939710967,
+          "a": 2.0807046007398586,
+          "R": 0.5740657249336515,
+          "rho_em": 3.0425565874395026,
+          "epsilon": -0.038129094725014134
+        },
+        {
+          "y": 2.478129439536846,
+          "a": 2.5059534866298536,
+          "R": 0.46945022608349996,
+          "rho_em": 4.754755770937641,
+          "epsilon": -0.24721129514361628
+        }
+      ]
+    },
+    {
+      "name": "full constraints admit nonzero scalar charge",
+      "passed": true,
+      "evidence": {
+        "cases": 20,
+        "max_constraint_residual": 2.360543315052053e-13,
+        "largest_condition_number": 4714.576640253876
+      }
+    },
+    {
+      "name": "independent radial equation includes heat stress",
+      "passed": true,
+      "evidence": {
+        "max_residual": 2.212673605064388e-14
+      }
+    },
+    {
+      "name": "gauge-invariant conserved scalar charge",
+      "passed": true,
+      "evidence": "delta C = delta epsilon + 2(epsilon+Pperp) zeta = 2(k^2+a^2) zeta; dot C=0"
+    },
+    {
+      "name": "k=0 handled without inverting singular lapse/U block",
+      "passed": true,
+      "evidence": [
+        {
+          "y": 0.8,
+          "fixed_charge_radius_coefficient": 0.22936097063882332
+        },
+        {
+          "y": 1.0,
+          "fixed_charge_radius_coefficient": 0.9963737253777616
+        },
+        {
+          "y": 2.056919939710967,
+          "fixed_charge_radius_coefficient": 12.20274272865807
+        },
+        {
+          "y": 2.478129439536846,
+          "fixed_charge_radius_coefficient": 19.887868264325032
+        }
+      ]
+    }
+  ],
+  "result": "OPEN",
+  "residual_risks": [
+    "full retarded curvature response with dynamically admissible localized matter sources",
+    "generic branch health and independent physical-time data count",
+    "closed-leaf and zero-gradient branches"
+  ]
+}

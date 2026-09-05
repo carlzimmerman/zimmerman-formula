@@ -244,8 +244,8 @@ def main():
     records,details=checks()
     failed=[r['name'] for r in records if not r['passed']]
     # These are explicit outstanding obligations, not asserted success flags.
-    unresolved=['full metric and clock equations including heat-kernel stress',
-                'constrained retarded physical curvature response and admissible initial data',
+    unresolved=['ordinary-matter realization of the conserved-source causal test',
+                'original compact-domain response and admissible physical boundary/initial data',
                 'zero-field and homogeneous branches']
     payload=dict(checks=records,details=details,failed_checks=failed,
                  outstanding_obligations=unresolved,
@@ -279,7 +279,7 @@ def main():
                         dirty=bool(subprocess.check_output(['git','status','--porcelain'],text=True)),
                         dirty_state=subprocess.check_output(['git','status','--porcelain'],text=True).splitlines(),
                         source_hashes={str(p.relative_to(root)):hashlib.sha256(p.read_bytes()).hexdigest() for p in sources}),
-        command='python3 '+str(HERE/'g03_action_gate.py')+(' --require-closed-g03' if args.require_closed_g03 else ''),
+        command='python3 '+str((HERE/'g03_action_gate.py').relative_to(root))+(' --require-closed-g03' if args.require_closed_g03 else ''),
         environment=dict(software=[f'Python {platform.python_version()}',f'NumPy {np.__version__}',
                                    f'SciPy {scipy.__version__}',f'SymPy {sp.__version__}'],hardware=platform.platform()),
         mathematics=dict(assertion_tested='Explicit action weak-static algebra, finite nonlinear/metric variations, scoped causal obstructions',
@@ -290,7 +290,7 @@ def main():
                          non_claims=['covariant closure','physical DOF count','PPN','no ghost','causality','prior-art novelty']),
         randomness=dict(used=False,generator='',seed=None),
         run=dict(started_at=timestamp,runtime_seconds=time.time()-start,exit_status=rc),
-        outputs=[dict(path=str(p),sha256=hashlib.sha256(p.read_bytes()).hexdigest()) for p in (output,inventory)],
+        outputs=[dict(path=str(p.relative_to(root)),sha256=hashlib.sha256(p.read_bytes()).hexdigest()) for p in (output,inventory)],
         checks=records,result=payload['G03_status'],residual_risks=unresolved)
     (HERE/'computation_manifest.json').write_text(json.dumps(manifest,indent=2)+'\n')
     print(f'Finite diagnostics: {len(records)-len(failed)}/{len(records)}; G03={payload["G03_status"]}; rc={rc}')

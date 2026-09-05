@@ -6,6 +6,11 @@ target. Static matching below is at leading weak-field order on the stated
 domain. Causality, physical mode count and full metric/clock variation are
 not certified.
 
+Continuation on 2026-09-05: FULL_VARIATION.md supplies the full localized
+metric and clock equations, an exact nonzero cylindrical domain extension,
+and a conditional conserved-source causal failure. The original compact
+domain remains OPEN; the initial diagnostics below are retained as history.
+
 ## Fields, constants and domain
 
 Use signature (-+++), coordinates of length with x0=ct, and action in SI
@@ -219,9 +224,9 @@ they do not supply the full covariant metric and clock equations.
 
 Varying the normalized clock gives
 delta_tau n_mu=-h_mu^nu partial_nu(delta tau)/sqrt(X). This must be
-propagated through h, a, K and Delta_h, including the heat variation. It
-has not yet been reduced into a complete clock equation. Diffeomorphism
-invariance defines that equation unambiguously, but does not replace it.
+propagated through h, a, K and Delta_h, including the heat variation.
+FULL_VARIATION.md now gives the complete localized clock current and
+metric stress, checked by direct off-shell variations.
 The minimally coupled matter action separately obeys its usual
 diffeomorphism identity, so on its matter equations nabla_mu T_m^{mu nu}=0.
 No auxiliary matter force was inserted; the full gravitational off-shell

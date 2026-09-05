@@ -1,5 +1,14 @@
 # G03: explicit action started; causal feasibility remains OPEN
 
+**2026-09-05 continuation:** FULL_VARIATION.md now derives the full
+localized equations and tests the shift-inclusive tidal response on an
+exact nonzero electrovacuum cylinder. The conserved-external-source causal
+criterion fails there; the original compact-domain/ordinary-matter problem
+remains OPEN. This supersedes the earlier principal-block warning as the
+strongest adverse result. Executable results are in the two new diagnostic
+manifests. Machine-specific path prefixes have been stripped while
+preserving scientific values and original-content hashes.
+
 2026-09-04. Work began at HEAD `4362cc405`; a concurrent attribution-only
 commit advanced HEAD to `7a4413989`. All files produced by this task are
 inside this study directory. Existing dirty work, Fable's files, original
