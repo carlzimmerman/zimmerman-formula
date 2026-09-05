@@ -1,0 +1,23 @@
+====================================================================================================
+g03c -- zero-field limit with the coherence term outside J
+====================================================================================================
+  [PASS] A1 bare AQUAL eigenvalues: lambda_perp = mu, lambda_par = 1 + (y-1)e^{-y} (spec req 12), positive for y > 0 and BOTH -> 0 as y -> 0
+  [PASS] A2 outside J: the symbol's smaller eigenvalue at y = 0 is xi^2 k^4 > 0 (uniformly elliptic, fourth order); inside J it is 0 (degenerate)
+  spherical point mass, r in units of r_M = sqrt(GM/a0), G = g/a0.  xi/r_M | Newton its, scaled residual | max |G/G_alg - 1| | at r = r_M | G/G_alg - 1 at r = 300: numeric vs -xi^2/(r_M r) | phantom kept at r_M
+     0.03 |  3, 6.2e-15 | 1.188e-03 | 8.434e-04 | -3.003e-06 vs -3.000e-06 | 0.9967  monotonic True
+     0.10 |  3, 7.9e-16 | 8.811e-03 | 8.741e-03 | -3.336e-05 vs -3.333e-05 | 0.9663  monotonic True
+     0.30 |  3, 4.2e-16 | 5.863e-02 | 4.932e-02 | -3.003e-04 vs -3.000e-04 | 0.8097  monotonic True
+     1.00 |  5, 4.1e-16 | 2.817e-01 | 1.639e-01 | -3.342e-03 vs -3.333e-03 | 0.3679  monotonic True
+  [PASS] B1 every Newton solve converges (residual relative to the largest term < 1e-10) and every solution is monotonic (no oscillatory homogeneous mode: the stiffening is Yukawa-like, not wave-like)   (residuals ['6e-15', '8e-16', '4e-16', '4e-16'])
+  [PASS] B2 Newton is exact inside: at r = 0.01 r_M, |G r^2 - 1| < 1e-6 for every xi/r_M (the fourth-order term annihilates 1/r^2)   (worst 2.0e-07)
+  [PASS] B3 the deviation at r = r_M scales as (xi/r_M)^2 in the perturbative range (0.03 -> 0.1: ratio within 15% of 11.1) and then saturates (ratios decrease for 0.1 -> 0.3 -> 1)   (ratios 10.36, 5.64, 3.32)
+  [PASS] B4 the deep-MOND 1/r law survives with the analytic correction G/G_alg - 1 = -xi^2/(r_M r): numeric within 30% of it at r = 300 r_M for xi/r_M = 0.3 and 1, and negative for all four   (ratios 1.001, 1.003)
+  [PASS] B5 a solar-mass body with xi = r_M keeps less than 60% of the algebraic phantom at r = r_M (the term acts on the transition when xi ~ r_M), and more than 99% when xi = 0.03 r_M   (kept 0.368 (xi = r_M), 0.9967 (xi = 0.03 r_M))
+  Earth-Sun saddle: 259229 km from Earth, |T| = 4.58e-11 s^-2, bare MOND bubble a0/|T| = 2.04 m; xi = 0.02 pc: the outside-J term dominates below 9.20e+06 km, amplitude suppression ~ (r_b/xi)^2 = 1.1e-29
+  Earth-Sun saddle: 259229 km from Earth, |T| = 4.58e-11 s^-2, bare MOND bubble a0/|T| = 2.04 m; xi = 0.03 pc: the outside-J term dominates below 1.21e+07 km, amplitude suppression ~ (r_b/xi)^2 = 4.9e-30
+  Earth-Sun saddle: 259229 km from Earth, |T| = 4.58e-11 s^-2, bare MOND bubble a0/|T| = 2.04 m; xi = 0.05 pc: the outside-J term dominates below 1.69e+07 km, amplitude suppression ~ (r_b/xi)^2 = 1.8e-30
+  [PASS] C1 at every Solar-System field null the coherence term dominates the response by more than 1e12 for xi >= 0.02 pc (bubble a0/|T| under 1e6 km): the saddle anomaly of the bare law is erased, and for any bubble below 1e6 km the statement holds   (suppression 1.1e-29)
+
+  requirement 9 status: outside J the static operator is uniformly elliptic at y = 0 (fourth order), the point-mass solution is regular, Newton-exact inside and deep-MOND outside with a computed O(xi^2/(r_M r)) correction; inside J the y -> 0 degeneracy of the bare law remains. Null-point (saddle) anomalies are a null prediction of both placements.
+
+RESULT: 0 FAIL

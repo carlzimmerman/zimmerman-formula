@@ -24,7 +24,7 @@ J chosen so the static law is the exponential kernel's (requirement 12), ξ the 
 | 6 | c_T = c | PASS (c₁₃ = 0 built in) | pipeline |
 | 7 | causality | OPEN: dispersion ω² = c_s²k²(1+ξ²k²), unbounded front speed in the clock frame; see CAUSALITY_EXPLAINER §4 for the defensible reading | g03pre |
 | 8 | FLRW | OPEN (AeST-type hosts admit it; the operator's homogeneous mode is trivial since V̄ = 0) | not computed |
-| 9 | zero-field limit | OPEN, with a proposal: put the ξ term OUTSIDE J with its own coefficient so the principal symbol is J_Y k² + c_ξξ²k⁴, uniformly elliptic at Y → 0; identical PPN, different zero-field law | CAUSALITY_EXPLAINER §5 |
+| 9 | zero-field limit | PASS for the spherical law and the symbol with the ξ term OUTSIDE J (g03c): symbol J_Y k² + ξ²k⁴ uniformly elliptic at y = 0; point-mass solution regular, Newton-exact inside, deep-MOND 1/r outside with the computed correction −ξ²/(r_M r) (0.1%); field nulls: the bare law's saddle anomaly is erased (suppression 10⁻²⁹ at the Earth–Sun saddle). General non-spherical existence theory not done | g03c |
 | 10 | measured G | OPEN (AeST-type renormalisation, computable) | — |
 | 11 | one metric | PASS | construction |
 | 12 | exponential primitive | PASS | g02c's Qt(s) |
@@ -41,6 +41,6 @@ Solar-System static gates for the operator's own static law: proxy floors ξ ≥
 ## Calculations, in order
 1. Clock-host stability with φ: the scalar/clock quadratic action with time dependence (the k⁴ term is spatial; check the mixing does not reintroduce a time-derivative pole).
 2. The nonlinear fourth-order static solve for the Sun in the external field (G02-type, exact, both footings).
-3. Zero-field limit with the ξ term outside J (requirement 9).
+3. Zero-field limit with the ξ term outside J (requirement 9): DONE for the spherical law and the symbol (g03c); the general existence theory of the fourth-order quasilinear problem remains.
 4. FLRW background and the measured G.
 5. Perpendicular wide-binary orientation.
