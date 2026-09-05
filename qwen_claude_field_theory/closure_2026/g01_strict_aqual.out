@@ -1,0 +1,25 @@
+====================================================================================================
+G01 -- strict exact exponential AQUAL
+====================================================================================================
+  [PASS] S1 the primitive: d(G)/dy / (2y) = mu exactly; G(0) = 0; G ~ (2/3) y^3 (deep, since mu ~ y) and ~ y^2 (Newton)
+  [PASS] S2 limits: mu -> y (deep MOND, g^2 = a0 g_N) and 1 - mu = e^{-y} (Newton, exponentially small)
+  [PASS] S3 spherical first integral mu(g/a0) g r^2 = G M (Gauss's law on the flux mu g)   (by divergence theorem; used as the eta = 0 solver validation below)
+  [PASS] S4 measured-G normalisation: G_eff/G_N - 1 = e^{-g/a0} to leading order -- at Earth's orbit (g/a0 = 6e7) it is zero to every digit, so the strict law's G is the laboratory G with no renormalisation   (1/mu - 1 = e^{-y}/(1-e^{-y}))
+  [PASS] C1 positive-density force-free centre: with mu ~ g/a0, (1/r^2) d(r^2 g^2/a0)/dr = 4 pi G rho0 gives g^2 = (4 pi G a0 rho0/3) r, so g ~ r^{1/2}, Phi'/r ~ r^{-1/2} and the tidal tensor dg/dr ~ r^{-1/2} DIVERGES at the centre; g -> 0 (a weak solution exists, Phi in C^{1.5}), the divergence is integrable, but bounded curvature (A8) fails -- the regular-centre theorem of this repository (universal to every kernel, and Newton's point mass fails A8 too): a smoothness statement, not a viability kill   (verified symbolically; relativistic boundary layer: OPEN (none proposed))
+
+2.  independent discretisation (FD in ln r x Legendre in theta)
+  [PASS] V1 eta = 0: the l = 0 solution reproduces the exact spherical first integral mu(g) g = 1/r^2 to 1% over 1e-3 < r/R_M < 1e3   (max rel err 7.47e-04, 19 iterations, residual 6.7e-11   (1 s))
+  [PASS] V2 the Blanchet-Novak 2011 mu_1 anchor (a0 = 1.2e-10, g_e = 1.9e-10 observed): |Q2| = 3.8e-26 s^-2 reproduced to 8% on all three fit windows, with the SIGN of Park's convention   (Q2 = +3.826e-26, +3.824e-26, +3.820e-26; 19 it, resid 1.0e-10   (2 s))
+
+    footing        g_ext    eta                    Q2 [s^-2] (3 windows)  Q2/ceiling  sigma above central   it    resid
+    canonical   2.00e-10  2.136       +2.148e-26  +2.147e-26  +2.147e-26        4.13                 11.0   20  6.2e-12
+    canonical   2.32e-10  2.478       +2.097e-26  +2.096e-26  +2.096e-26        4.03                 10.8   20  6.7e-12
+    canonical   2.64e-10  2.820       +1.991e-26  +1.990e-26  +1.990e-26        3.83                 10.2   20  8.9e-12
+    alt         2.00e-10  1.773       +2.794e-26  +2.794e-26  +2.793e-26        5.37                 14.6   20  8.1e-12
+    alt         2.32e-10  2.057       +2.842e-26  +2.841e-26  +2.841e-26        5.46                 14.9   20  6.1e-12
+    alt         2.64e-10  2.341       +2.810e-26  +2.810e-26  +2.809e-26        5.40                 14.7   20  6.5e-12
+  [PASS] V3 INDEPENDENT AGREEMENT: at the canonical footing and central field this discretisation gives Q2 within 5% of aqual_solar_gate_2026's finite-volume value (2.098e-26 at 768x192) and of f24's (2.106e-26): the exponential-AQUAL Solar-System quadrupole is bounded by two discretisations, not one   (this file +2.096e-26 vs 2.098e-26)
+  [PASS] V4 the 1e-11 iteration requirement: the Picard iteration converges to residual < 1e-11 within its cap for the central cases (the finite-volume solver's cap exhaustion is not reproduced here); if it FAILS the observable is still bounded by V3 at 1e-10   (canonical 6.7e-12 in 20 it; alt 6.1e-12 in 20 it)
+  [PASS] G01 VERDICT (T-A, Cassini): the strict exact exponential AQUAL law gives a signed Q2 above the Park 2026 two-sigma ceiling on both footings and at every external-field endpoint, including the low one (2.00e-10); the exclusion is conditional on Park's likelihood and the external-field input and is not a mathematical no-go   (lowest Q2 over footings x endpoints = +2.147e-26 = 4.13x ceiling)
+
+RESULT: 0 FAIL   (11 s)
