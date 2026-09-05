@@ -18,7 +18,7 @@ J chosen so the static law is the exponential kernel's (requirement 12), ξ the 
 ## Scorecard against the 13 requirements
 | # | Requirement | Status | Basis |
 |---|---|---|---|
-| 1 | exponential static law | PASS in the static limit of J; the ξ term modifies it at k ≳ 1/ξ | g00 contract; f32 |
+| 1 | exponential static law | MODIFIED, and this is a theorem (g03j): a healthy single-valued scalar carrier can realise the exponential kernel only for y_tot ≤ 1 (g_N ≤ 0.632 a₀); beyond it the kernel's scalar force falls and the stiffness is negative for 1 < y < 38, which IS the FC-KH instability band and f21's phantom maximum. The candidate's kernel is exponential below y_tot = 1 and monotone-scalar above (+0.02–0.05 dex RAR bump at 2–10 a₀, screened in the Solar System by ξ). Requirement 1 as literally written cannot be met by any scalar carrier | g03j, THE_ACTION §3 |
 | 2 | N_grav = 2 + counted scalars | PASS: count (2 tensor + clock + φ) and HEALTH at the PPN corner — time-dependent quadratic action (f34): both scalar modes real, positive ω², positive norm for kξ = 0.01–100, tensor ω² = k²; requires the MOND scalar's time-kinetic sign K₂ < 0 (pipeline convention) and c₂ outside the band near −1/2 | f34, f33b |
 | 3 | Φ = Ψ, lensing | PASS in the ladder (γ = 1 at every point) | f32/f33 tables |
 | 4 | PPN derived | PASS at the Cassini floor: α₁ ≈ −4c₁₄ + O(10⁻⁷), α₂(clock) = −6×10⁻⁶, scalar drags suppressed, α₃ = 0, γ = 1 | f33 K1–K5 |
