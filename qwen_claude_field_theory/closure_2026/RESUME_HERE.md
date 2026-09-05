@@ -80,7 +80,7 @@ survives) and clears the squeeze. 175 real SPARC curves, Upsilon refit per kerne
 | kernel | Ups | RAR rms | chi2/dof | **Q2/ceiling** can/alt | 1-AU monopole / Mars |
 |---|---|---|---|---|---|
 | RouteA/MS08 | 0.62 | 0.0998 | 7.6 | 7.77 / 8.52 (21.6/23.7 sig) | 0 |
-| **a0-line (Carl)** | 0.70 | 0.1083 | 21.1 | **5.59 / 6.39 (15.3/17.6 sig)** | 3.34e4 / 4.03e4 |
+| **a0-line (framework)** | 0.70 | 0.1083 | 21.1 | **5.59 / 6.39 (15.3/17.6 sig)** | 3.34e4 / 4.03e4 |
 | mu3 | 0.81 | 0.1179 | 34.0 | 1.55 / 2.44 | 2.80 / 3.70 |
 | **mu5** | 0.84 | 0.1233 | 42.4 | **0.39 / 0.82** | 2.7e-8 / 4.2e-8 |
 | **mu10** | 0.85 | 0.1266 | 49.1 | **0.08 / 0.21** | 4e-28 |
@@ -102,7 +102,7 @@ That trade is the real content and must not be hidden.
 That, not Cassini, is now the wall.** No choice of `mu_n` touches it.
 
 ## Other results this run
-- **Mechanism C's parallel-mode ghost DOES NOT EXIST** on Carl's own a0-line:
+- **Mechanism C's parallel-mode ghost DOES NOT EXIST** on the framework's own a0-line:
   `K_par = 1 - 2x/sqrt(1+4x^2) > 0` for every real x, no root (400 samples, 26 decades).
   `c_T = 1` exactly; transverse modes `c^2 = 1` exactly; Cherenkov cleared. **v2's ghost kill was
   wrong** — flagging it as contested was right. C still dies on gates 2/3.
