@@ -1,0 +1,56 @@
+======================================================================================================================
+f30 -- the PPN door: a scalar screened by a spatial biharmonic term has no 1/r potential inside xi
+======================================================================================================================
+
+1.  the static Green's function of  nabla^2 phi - xi^2 nabla^4 phi = 4 pi G M delta^3  is  phi = -G M (1 - e^{-r/xi})/r
+  [PASS] G1 the biharmonic operator's Green's function is Coulomb minus Yukawa, phi = -G M (1 - e^{-r/xi})/r: verified in Fourier space across six decades of k (the partial-fraction identity 1/[k^2(1+xi^2 k^2)] = 1/k^2 - 1/(k^2 + xi^-2))   (max residual 2.2e-16)
+  [PASS] G2 inside xi the scalar's force ratio to the unscreened one is r^2/(2 xi^2) -- the potential there is a constant plus a uniform force plus r^2, with no 1/r term (the leading-order statement the PPN argument rests on)   (S(r)/(r^2/2xi^2) = 0.9999, 0.9993, 0.9934 at r/xi = 1e-4, 1e-3, 1e-2)
+
+2.  how much of the scalar survives inside the Solar System
+            radius    xi=0.045 pc      xi=0.1 pc        xi=1 pc       xi=84 pc
+              1 AU       5.80e-09       1.18e-09       1.18e-11       1.67e-15
+     Saturn 9.5 AU       5.28e-07       1.07e-07       1.07e-09       1.52e-13
+     Neptune 30 AU       5.21e-06       1.06e-06       1.06e-08       1.50e-12
+       Oort 1e4 AU       2.93e-01       8.56e-02       1.14e-03       1.66e-07
+       Oort 1e5 AU       1.00e+00       9.54e-01       8.56e-02       1.66e-05
+  [PASS] P1 at every planetary radius and for every admissible xi the scalar's force is suppressed relative to an unscreened scalar by more than 1e-8 at 1 AU (where the alpha_1 bound from lunar laser ranging and gamma from Cassini live), 1e-6 at Saturn and 1e-5 at Neptune; the Oort cloud at 1e4-1e5 AU straddles xi and keeps 30-100% of it   (S(1 AU) = 5.8e-09, S(Saturn) = 5.3e-07, S(Neptune) = 5.2e-06 at xi = 0.045 pc)
+  reading: the PPN parameters are coefficients of 1/r-type potentials; the screened scalar has none inside xi, so its
+  contributions to gamma-1, beta-1, alpha_1, alpha_2 are absent at leading order and enter only through the (r/xi)^2 tail.
+  The AeST alpha_1 lock (-4(2-K_B)/(J_Y+1), from an unscreened scalar) therefore does not apply to this host; the aether's
+  own alpha_1 = -4 c_14 (with c_13 = 0 for c_T = 1) sits in Einstein-aether's viable post-GW170817 region (c_14 <~ 2.5e-5).
+
+3.  what replaces the lock: (a) the interior force of the screened scalar, (b) G_eff at galactic scales
+  planetary bound on a constant sunward acceleration: 3.66e-14 m/s^2 (the repository's alpha = 1 ephemeris gate)
+     xi [pc]  f G M/(2 xi^2) at f=1   x bound  max f allowed
+       0.045               3.44e-11   9.4e+02         0.0011
+       0.100               6.97e-12   1.9e+02         0.0053
+       0.300               7.75e-13   2.1e+01         0.0473
+       0.500               2.79e-13   7.6e+00         0.1313
+       0.800               1.09e-13   3.0e+00         0.3362
+       1.000               6.97e-14   1.9e+00         0.5253
+       1.400               3.56e-14   9.7e-01         1.0000
+       3.000               7.75e-15   2.1e-01         1.0000
+      84.000               9.88e-18   2.7e-04         1.0000
+  the phantom fraction at the Sun in the Galactic field, nu(e_N) - 1 = 0.347 (e_N = 1.84 a_0)  ->  cuspy-kernel floor xi >= 0.81 pc; a scalar carrying the full Newtonian potential (f = 1) would need xi >= 1.38 pc
+  [PASS] C1 (the first replacement constraint, and it is the kernel's CORE that sets it) with the biharmonic operator's cuspy kernel the screened phantom exerts a constant sunward acceleration f_ph G M/(2 xi^2); the planetary bound then needs xi >= 0.8 pc for the phantom fraction nu(e_N) - 1 = 0.35 -- eighteen times the smooth-kernel floor of f29 (0.045 pc).  The f29 wide-binary window (xi ~ 0.05-0.1 pc) survives ONLY for a smooth-cored smoothing; a single biharmonic term does not give one   (floor 0.81 pc at f_ph = 0.35)
+  a smooth-cored local kernel needs the Yukawa cusps to cancel: 1/[k^2 (1+xi_1^2 k^2)(1+xi_2^2 k^2)] (sixth order in spatial
+  derivatives, two lengths) has a finite force at the origin only if the two Yukawa terms' linear pieces cancel; that is the
+  next design choice, not a free lunch: it is a second length.
+  canonical: SPARC at g_bar > 5 a_0: 250 points in 27 galaxies, per-galaxy median log10(g_obs/g_bar) = -0.006 +/- 0.027 (Upsilon_d = 0.5, 0.7 bulge) -> 1 + f = 0.987; with the M/L calibration systematic of ~0.1 dex, f <~ 0.24
+  alt: SPARC at g_bar > 5 a_0: 217 points in 25 galaxies, per-galaxy median log10(g_obs/g_bar) = -0.015 +/- 0.021 (Upsilon_d = 0.5, 0.7 bulge) -> 1 + f = 0.966; with the M/L calibration systematic of ~0.1 dex, f <~ 0.22
+  [PASS] C2 (the second replacement constraint) the Newtonian-regime normalisation of the RAR bounds the scalar's high-acceleration fraction: with the stellar M/L calibration systematic (0.1 dex) allowed, f <~ 0.3 on both footings.  A MOND host whose scalar is the phantom (f -> nu - 1 -> 0 at high acceleration) satisfies this automatically   (f <~ 0.24)
+  consequence for Gaia DR4 in the local biharmonic host: xi >= 0.8 pc lies in f29's regime W3 -- the binaries are Newtonian at every
+  separation to 30 kAU (gamma_v = 1.00), consistent with a Banik-type null and inconsistent with a Chae-type boost; the pre-registered
+  1.16-1.23 would be wrong in this host.  The smooth-kernel window (xi ~ 0.05-0.1 pc, boost survives) needs a two-length operator.
+
+4.  the door
+    The aether-scalar hosts were closed here on preferred-frame PPN parameters sourced by an UNSCREENED MOND scalar.  With a
+    spatial biharmonic term the scalar has no 1/r potential inside xi: its PPN contributions are absent at leading order (P1).
+    What replaces the lock is not a wall but a fork set by the smoothing kernel's CORE: a single biharmonic term (cuspy kernel)
+    needs xi >= 0.8 pc, which puts Gaia DR4 at gamma_v = 1.00 and leaves the globulars' 50-140 pc as the natural range; a
+    smooth-cored kernel (two lengths, sixth order) allows xi ~ 0.05-0.1 pc with the pre-registered wide-binary boost intact.
+    Both satisfy the Solar System, the RAR's Newtonian end (C2), galaxies, lensing and the aether's own PPN region.  This is the
+    'Vainshtein / k-mouflage UNRUN' class of RESUME_HERE, realised with a length.  Not yet done, in order: the full PPN expansion
+    with the k^4 term; the nonlinear static solve for the Sun in this theory; the Dirac count with the aether; the FLRW background.
+
+RESULT: 5 checks, 0 FAIL   rc=0

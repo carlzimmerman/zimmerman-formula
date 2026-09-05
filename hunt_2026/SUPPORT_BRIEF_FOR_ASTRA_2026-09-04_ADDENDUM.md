@@ -117,7 +117,7 @@ modified inertia, and no acceleration-only law can do it (f28).*
 The static system (three elliptic equations, no time derivatives):
 ```
 (i)   ∇²Φ_N = 4πG ρ_b
-(ii)  (1 − ξ²∇²) Φ̃ = Φ_N            [a Gaussian filter of width ξ was used for the numbers; same behaviour]
+(ii)  Φ̃ = S_ξ Φ_N                     [a Gaussian filter of width ξ was used for the numbers; see §G for why the KERNEL'S CORE matters]
 (iii) ∇²Φ = ∇·[ ν(|∇Φ̃|/a₀) ∇Φ̃ ]     [ν = the framework's kernel]
 ```
 For sources varying on scales ≫ ξ it *is* QUMOND. For a point source it removes the phantom from inside ξ. Theorem 8
@@ -189,9 +189,10 @@ coupling this repository's lensing embedding already established: Φ = Ψ with t
 
 **Static limit** ($u=\partial_t$): $\nabla\cdot[F'(|\nabla\phi|^2/a_0^2)\nabla\phi]-\xi^2\nabla^4\phi=4\pi G\rho$ — AQUAL with a
 healing length. For sources varying on scales ≫ ξ it is AQUAL with $\mu=F'$ = the framework's kernel (f23 §5 gives $F$ in closed
-form). Its linear response is exactly the Helmholtz filter, $\phi_k\propto\rho_k/[k^2(1+\xi^2k^2)]$; inside ξ the biharmonic term
-makes a point source's field smooth, which is what removed the quadrupole in §E. (The §E numbers are for the smoothed-QUMOND
-form; this theory's own nonlinear biharmonic solve for the Sun in the Galactic field is the first thing to run.)
+form). Its linear response is exactly the Helmholtz filter, $\phi_k\propto\rho_k/[k^2(1+\xi^2k^2)]$, Coulomb minus Yukawa in real space.
+**Correction (f30):** that kernel has a 1/r cusp, so inside ξ the screened phantom's force is *constant* and sunward,
+$f_{\rm ph}GM/(2\xi^2)$, not the harmonic core of the Gaussian filter used for the §E numbers; the planetary bound on a constant
+sunward acceleration (the repository's α = 1 ephemeris gate, 3.7×10⁻¹⁴ m s⁻²) then needs ξ ≥ 0.8 pc for this host. See §G.
 
 **Quadratic health in the aether frame**, on a static-gradient background (the block your §3 analysed): with $\mu=F'>0$ and
 $(x\mu)'>0$ (f23 5f: both hold for the framework's kernel on six decades) and $\xi^2>0$,
@@ -217,3 +218,33 @@ fourth-order, with the screening scale set by a length instead of a coupling.
 Solar-System numbers, its full PPN with the screened scalar, its Dirac count with the aether, and its FLRW background are the
 four calculations that decide it, in that order. The first two your machinery can run now: the biharmonic static solve is the
 AQUAL solver with one extra term, and the PPN is your `aqual_solar_gate_2026` with ξ in it.
+
+## G. The door the finding opens — `hunt_2026/f30_ppn_screening_door.py` (5/5)
+
+**What killed every aether-scalar host here** was the preferred-frame PPN sector sourced by an *unscreened* MOND scalar:
+α₁ = −4c₁₄ − 4(2−K_B)/(J_Y+1), un-tunable (doorA_alpha1_generality_theorem), α₂ four to five orders over. The scalar's term
+exists because at Solar-System scales its static field of the Sun is a 1/r potential, and every PPN parameter is the
+coefficient of a 1/r-type post-Newtonian potential.
+
+**What the coherence length does to that.** With the spatial biharmonic term the scalar's static Green's function is
+Coulomb minus Yukawa, $(1-e^{-r/\xi})/r$ (verified in Fourier space, G1). Inside ξ the potential is a constant, a constant
+force and an $r^2$ term — **no 1/r term** (G2). So the scalar's contributions to γ, β, α₁, α₂ are absent at leading order and
+enter only through the $(r/\xi)^2$ tail: suppression 6×10⁻⁹ at 1 AU, 5×10⁻⁷ at Saturn, 5×10⁻⁶ at Neptune for ξ = 0.045 pc (P1).
+The α₁ lock does not apply to a screened scalar. The aether's own α₁ = −4c₁₄ (with c₁₃ = 0 for c_T = 1) and α₂ are
+Einstein-aether's and have a viable post-GW170817 region (c₁₄ ≲ 2.5×10⁻⁵; cited, not recomputed). This is RESUME_HERE's
+"Vainshtein / k-mouflage — unrun, the only class that screens the force," realised with a length instead of a coupling.
+
+**What replaces the lock: a fork set by the kernel's core, not a wall.**
+- *Cuspy core (a single biharmonic term).* The constant sunward force $f_{\rm ph}GM/(2\xi^2)$ is exactly what the
+  repository's α = 1 ephemeris gate bounds (3.7×10⁻¹⁴ m s⁻²). With the phantom fraction at the Sun in the Galactic field,
+  $f_{\rm ph}=\nu(e_N)-1=0.35$, the floor is **ξ ≥ 0.8 pc** (C1) — eighteen times the smooth-core floor of f29. In this host
+  Gaia DR4 sees γ_v = 1.00 at every separation (f29 W3), consistent with a Banik-type null and inconsistent with a Chae-type
+  boost; the pre-registration would be wrong; the globulars' 50–140 pc is the natural range.
+- *Smooth core (two lengths, sixth order in spatial derivatives, the Yukawa cusps cancelling).* The f29 window ξ ≈
+  0.05–0.1 pc survives, with the pre-registered boost at 20–30 kAU and the knee at 15–20 kAU. The price is a second length.
+- Common to both: the RAR's Newtonian end bounds the scalar's high-acceleration fraction at f ≲ 0.3 (C2), which a host whose
+  scalar *is* the phantom satisfies automatically.
+
+**Status.** No gate this repository has computed closes either branch; the four calculations of §F remain, and the first
+— the full PPN expansion with the k⁴ term — is the one that could. Astra: this is the calculation to put in front of the
+covariant question, because it decides whether the host class is open at all before any action is varied.

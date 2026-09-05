@@ -6,8 +6,10 @@ THE LAW (static limit, the only new ingredient is one length xi):
         nabla^2 Phi_N        = 4 pi G rho_b                          (Newton, from the baryons)
         Phi~                 = S_xi * Phi_N                          (the Newtonian potential smoothed over xi)
         nabla^2 Phi          = nabla . [ nu(|grad Phi~|/a_0) grad Phi~ ]   (QUMOND on the smoothed field; nu = the framework's kernel)
-with S_xi a Gaussian filter of width xi (a Helmholtz filter (1 - xi^2 nabla^2)^-1 behaves the same way; both make a point
-source's field harmonic inside xi).  For sources that vary on scales >> xi it IS QUMOND.  For a point source it removes
+with S_xi a GAUSSIAN filter of width xi, whose smoothed point source has a harmonic core (force -> 0 at the centre).  NOTE
+(f30): a Helmholtz filter (1 - xi^2 nabla^2)^-1 -- the kernel a single biharmonic term in a local action produces -- does NOT
+behave the same inside xi: its Coulomb-minus-Yukawa kernel has a 1/r cusp and a CONSTANT sunward force f G M/(2 xi^2) there,
+which the planetary ephemerides bound; that raises the floor to xi >= 0.8 pc.  The numbers below are for the smooth core.  For sources that vary on scales >> xi it IS QUMOND.  For a point source it removes
 the phantom from inside xi.  Equivalently: the phantom density is the QUMOND phantom of a source that has been spread
 over xi.  This is what a medium with a healing length does; the closure programme's localised version (a dynamical
 filter field, Theorem 8) is not what is written here -- Phi~ is a constraint, and whether it can remain one in a
@@ -239,7 +241,7 @@ ck("D1 a Draco-like dwarf spheroidal (r_h = 220 pc) keeps more than 70 per cent 
 # --------------------------------------------------------------- 6. the equations for the lead
 P("\n6.  handed to the field-theory lead: the static system whose constraint chain decides whether xi costs a degree of freedom")
 P("      (i)   nabla^2 Phi_N = 4 pi G rho_b")
-P("      (ii)  (1 - xi^2 nabla^2) Phi~ = Phi_N            [Helmholtz filter; the Gaussian used above is its smooth cousin]")
+P("      (ii)  Phi~ = S_xi Phi_N                          [a SMOOTH-cored filter; the Helmholtz (1 - xi^2 nabla^2)^-1 kernel is cuspy and needs xi >= 0.8 pc, f30]")
 P("      (iii) nabla^2 Phi = nabla . [ nu(|grad Phi~|/a_0) grad Phi~ ]")
 P("    Three elliptic equations, no time derivatives.  (ii) is what Theorem 8 localised into a dynamical field and killed;")
 P("    here it is a CONSTRAINT.  The question for the Dirac chain: with Phi~ a constrained variable, is the finite-k static")

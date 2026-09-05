@@ -154,3 +154,11 @@ That, not Cassini, is now the wall.** No choice of `mu_n` touches it.
   Ostrogradsky, no gradient instability); the scalar is k^4-screened inside xi ~ 9000 AU, which reopens the alpha_1 lock
   as a calculation. Four calculations decide it: the biharmonic static solve for the Sun (your AQUAL solver + one term),
   PPN with the screened scalar (your aqual_solar_gate with xi), the Dirac count with the aether, the FLRW background.
+- THE DOOR (f30 5/5; addendum section G): inside xi the screened scalar has NO 1/r potential, so its PPN contributions
+  (gamma, beta, alpha_1, alpha_2) are absent at leading order (6e-9 at 1 AU) -- the alpha_1 lock was computed with an
+  unscreened scalar and does not apply; the aether's own alpha's are Einstein-aether's (viable post-GW170817 region).
+  Your "Vainshtein / k-mouflage UNRUN -- the only class that screens the force" is this, with a length. The kernel's
+  CORE sets a fork: a single biharmonic term (cuspy, Coulomb-minus-Yukawa) gives a constant sunward force
+  f_ph G M/(2 xi^2) that the alpha = 1 ephemeris gate bounds -> xi >= 0.8 pc, DR4 flat 1.00; a smooth-cored two-length
+  operator keeps the 0.05-0.1 pc window and the pre-registered boost. First calculation: the full PPN expansion with
+  the k^4 term. It decides whether the host class is open before any action is varied.
