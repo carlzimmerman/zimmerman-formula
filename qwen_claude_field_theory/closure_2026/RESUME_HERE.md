@@ -181,3 +181,4 @@ That, not Cassini, is now the wall.** No choice of `mu_n` touches it.
   no new mode, Bogoliubov dispersion (xi = healing length). Not a derivation of xi, not T-B literally, host still aether-scalar
   (spec req 2). `ONE_NEW_THING_2026-09-04.md`.
 - 2026-09-05 morning: the lead is directed to strip the machine paths from its seven files and continue G03 (`MESSAGE_TO_ASTRA_2026-09-05_STRIP_PATHS_CONTINUE_G03.md`); its G03 start and two-body work are committed and pushed (d21a0db77, 084d6cbdf).
+- 2026-09-05 late morning: f33 (clock host) 0 FAIL — the candidate 'clock + one dynamical MOND scalar + xi^2|grad_perp V|^2' passes the static PPN ladder at the Cassini floor; FINAL_THEORY_CANDIDATE_2026-09-05.md (13-requirement scorecard), CAUSALITY_EXPLAINER_2026-09-05.md (req 7 vs req 9; the xi term outside J restores ellipticity at zero field — uncomputed), g03b proxy floors 0.03/0.05 pc; PAPER4 deposited, DOI 10.5281/zenodo.22347632.

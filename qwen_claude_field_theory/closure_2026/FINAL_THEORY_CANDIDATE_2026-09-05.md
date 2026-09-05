@@ -1,0 +1,46 @@
+# The candidate, as of 2026-09-05 morning: a clock host, one dynamical MOND scalar, and the healing-length operator
+
+Assembled from what the lead's G03 established, the spec's own wording, and f32/f33/g03b/g02c. Not a completion. Every "PASS" below is a computed statement with a committed script; every "OPEN" is unproved.
+
+## The action (schematic where the lead's ACTION.md is definitive)
+S = ∫√−g [ R/16πG − Λ ] + S_clock[τ; c₁₃ = 0, c₁₄ small, c₂ = λ] + S_φ[g, n, φ] + S_m[g, matter],
+with n_μ = −∂_μτ/√(−(∂τ)²) the clock's unit normal (no aether vector), q_μν = g_μν + n_μn_ν, and the MOND scalar sector
+  S_φ = −∫√−g { K(Q) + (2 − K_B) J( Y + ξ² q^{λσ}q^{μν}∇_λV_μ∇_σV_ν ) },  Q = n·∂φ,  V_μ = q_μ^ν∂_νφ,  Y = V·V,
+J chosen so the static law is the exponential kernel's (requirement 12), ξ the coherence (healing) length. Matter minimally coupled to g (requirement 11).
+
+## Why this and not the alternatives
+- Requirement 2 forbids an aether vector's modes but admits "a genuine matter or clock scalar … counted separately and shown healthy": the clock τ and the scalar φ are exactly that; the tensor sector is untouched (c_T = c, requirement 6).
+- Requirement 7 (spec line 68) already excludes elliptic-constraint carriers as instantaneous channels; the lead's C-H has an elliptic heat sector and its own report says the naive realisation fails the causal screen. A dynamical φ replaces that sector with a hyperbolic one.
+- The scalar's aether-mixing PPN lock (the 08-31 AeST kill) is evaded by the operator, not by tuning: f32 (aether host) and f33 (clock host) show α₁'s scalar drag becomes −4(2−K_B)/(J_Y(1+ξ²k²)+1) exactly, and the scalar's α₂ drag is suppressed 3×10⁻⁵ at (ξk)² = 10⁴.
+
+## Scorecard against the 13 requirements
+| # | Requirement | Status | Basis |
+|---|---|---|---|
+| 1 | exponential static law | PASS in the static limit of J; the ξ term modifies it at k ≳ 1/ξ | g00 contract; f32 |
+| 2 | N_grav = 2 + counted scalars | PASS for the count (2 tensor + clock + φ); health of the clock corner OPEN (c₁₄ → 0 strong coupling) | g03pre; Blas–Pujolàs–Sibiryakov family |
+| 3 | Φ = Ψ, lensing | PASS in the ladder (γ = 1 at every point) | f32/f33 tables |
+| 4 | PPN derived | PASS at the Cassini floor: α₁ ≈ −4c₁₄ + O(10⁻⁷), α₂(clock) = −6×10⁻⁶, scalar drags suppressed, α₃ = 0, γ = 1 | f33 K1–K5 |
+| 5 | matter conservation | PASS by minimal coupling (inherited from AeST-type hosts) | not recomputed |
+| 6 | c_T = c | PASS (c₁₃ = 0 built in) | pipeline |
+| 7 | causality | OPEN: dispersion ω² = c_s²k²(1+ξ²k²), unbounded front speed in the clock frame; see CAUSALITY_EXPLAINER §4 for the defensible reading | g03pre |
+| 8 | FLRW | OPEN (AeST-type hosts admit it; the operator's homogeneous mode is trivial since V̄ = 0) | not computed |
+| 9 | zero-field limit | OPEN, with a proposal: put the ξ term OUTSIDE J with its own coefficient so the principal symbol is J_Y k² + c_ξξ²k⁴, uniformly elliptic at Y → 0; identical PPN, different zero-field law | CAUSALITY_EXPLAINER §5 |
+| 10 | measured G | OPEN (AeST-type renormalisation, computable) | — |
+| 11 | one metric | PASS | construction |
+| 12 | exponential primitive | PASS | g02c's Qt(s) |
+| 13 | a₀ = ½c√(Gρ_Λ) | not derived (κ fitted) | standing |
+
+Solar-System static gates for the operator's own static law: proxy floors ξ ≥ 0.03 pc (canonical) / 0.05 pc (alt) (g03b, single Helmholtz response); T-B's double filter: 0.02/0.03 pc (G02). Wide binaries: aligned two-body tables (g02c) only; perpendicular orientation not computed.
+
+## What would kill it
+1. The clock corner (c₁₄ ≲ 2.5×10⁻⁵ with c₁₃ = 0) being strongly coupled or unstable with the scalar present (requirement 2/7).
+2. The causal gate refusing the Lifshitz dispersion.
+3. The nonlinear static law of J(Y + ξ²|∇⊥V|²) failing the three Solar-System gates when actually solved (the proxy could be off).
+4. Galactic phenomenology: the operator changes the disc phantom only at k ≳ 1/ξ, but this is asserted from G02's G1, not solved.
+
+## Calculations, in order
+1. Clock-host stability with φ: the scalar/clock quadratic action with time dependence (the k⁴ term is spatial; check the mixing does not reintroduce a time-derivative pole).
+2. The nonlinear fourth-order static solve for the Sun in the external field (G02-type, exact, both footings).
+3. Zero-field limit with the ξ term outside J (requirement 9).
+4. FLRW background and the measured G.
+5. Perpendicular wide-binary orientation.

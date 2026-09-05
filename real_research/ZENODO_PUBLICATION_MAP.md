@@ -139,3 +139,5 @@ will draft both, paper by paper, against this map.
 
 *Sources verified this session:* all 80 scripts pass; `SALVAGE_LEDGER.md`, `WEB_SYNTHESIS.md`,
 `NOVELTY.md`, `FRAMEWORK.md`, and your `ERRATA_DIMENSIONAL_STRUCTURE.md`.
+
+- 2026-09-05 — PAPER4 The Filtered MOND Action (central tidal identity, comparable-mass forces, first covariant clock action, the screening operator): DOI 10.5281/zenodo.22347632 (concept 10.5281/zenodo.22347631); files qwen_claude_field_theory/papers_2026/PAPER4_filtered_action_2026.{tex,pdf,zenodo.json}
