@@ -22,7 +22,7 @@ Here, we present two unified first-principles doors that conquer the cluster cri
 ## 1. What Went Wrong in the Standard Analysis
 
 ### 1.1 The Observational Audit: Distortions and Circularities
-The audit of X-COP cluster data ([`CLUSTER_AUDIT.md`](file:///Users/carlzimmerman/new_physics/zimmerman-formula/qwen_claude_field_theory/closure_2026/cluster_measurement_audit_2026/CLUSTER_AUDIT.md)) identified several foundational errors in prior cluster literature:
+The audit of X-COP cluster data ([`CLUSTER_AUDIT.md`](../qwen_claude_field_theory/closure_2026/cluster_measurement_audit_2026/CLUSTER_AUDIT.md)) identified several foundational errors in prior cluster literature:
 1. **The Header Radius Scaling Bug:** The gas profile's `RADIUS` column was historically read as physical Mpc instead of dimensionless $R/R_{500}$ (where $R_{500} \sim 1050 - 1430$ kpc from file headers). Correcting this removed a **$38.6\%$** median distortion in the inferred mass profiles.
 2. **The Cosmic Baryon Fraction Fallacy:** It was claimed that supplying extra cluster baryons would exceed the universal baryon budget $\Omega_b/\Omega_m \approx 0.16$. In reality:
    $$\bar{f}_b = w f_{b,\rm cluster} + (1 - w) f_{b,\rm rest}$$
@@ -67,7 +67,7 @@ At $R \approx 300$ kpc in a cluster, the local acceleration is identical to the 
 Any theory whose modification depends solely on local acceleration $g/a_0$ is mathematically forced to predict the exact same boost $\nu \approx 1.5$ in both environments.
 However, in a cluster, the enclosed potential well $|\Phi|/c^2$ is **$25\times$ to $50\times$ deeper**, and the spatial volume is $10^6$ times larger. 
 
-This was confirmed empirically in [`stage30_xcop_two_variable_fit_2026.py`](file:///Users/carlzimmerman/new_physics/zimmerman-formula/nbody_2026/stage30_xcop_two_variable_fit_2026.py):
+This was confirmed empirically in [`stage30_xcop_two_variable_fit_2026.py`](../nbody_2026/stage30_xcop_two_variable_fit_2026.py):
 $$\log \eta = a_i + b \log(g_{\rm bar}/a_0) + c \log(r/R_{500})$$
 The radius-dependent term was non-zero at **$37\sigma - 73\sigma$** ($c = -0.33$ NFW / $-0.46$ non-parametric). The cluster residual **demands a second variable beyond acceleration**.
 
@@ -76,7 +76,7 @@ The radius-dependent term was non-zero at **$37\sigma - 73\sigma$** ($c = -0.33$
 ## 3. Door 1: Mukohyama Projectable Khronon Cold Dust
 
 ### 3.1 Resolving the Tachyonic Frame-Tilt Instability
-In the candidate theory ([`THE_ACTION_2026-09-05.md`](file:///Users/carlzimmerman/new_physics/zimmerman-formula/qwen_claude_field_theory/closure_2026/THE_ACTION_2026-09-05.md)), the action contained:
+In the candidate theory ([`THE_ACTION_2026-09-05.md`](../qwen_claude_field_theory/closure_2026/THE_ACTION_2026-09-05.md)), the action contained:
 $$S_{\rm clock} + S_\phi = \int d^4x \sqrt{-g} \left[ \mathcal{L}_{\rm EA}[n^\mu] - K(Q) - (2 - K_B) \mathcal{J}(Y) + 2(2 - K_B) J^\mu \partial_\mu \phi \right]$$
 where $Q = n^\mu \partial_\mu \phi$.
 Expanding $Q$ in cosmological perturbations around the clock normal $n_\mu = -N \delta_\mu^0$:
@@ -137,7 +137,7 @@ As $r$ increases toward $R_{500}$, $|\Phi(r)|$ decreases, causing $a_0(\Phi)$ to
 
 ## 5. Summary Scorecard
 
-| Test / Gate | Candidate Action ([`THE_ACTION_2026-09-05.md`](file:///Users/carlzimmerman/new_physics/zimmerman-formula/qwen_claude_field_theory/closure_2026/THE_ACTION_2026-09-05.md)) | Door 1 (Projectable Khronon Dust) | Door 2 (Potential-Modulated $a_0(\Phi)$) |
+| Test / Gate | Candidate Action ([`THE_ACTION_2026-09-05.md`](../qwen_claude_field_theory/closure_2026/THE_ACTION_2026-09-05.md)) | Door 1 (Projectable Khronon Dust) | Door 2 (Potential-Modulated $a_0(\Phi)$) |
 | :--- | :--- | :--- | :--- |
 | **SPARC Disk Galaxies** | PASS ($1.2\%$ ceiling violation) | PASS ($1.2\%$ ceiling violation) | PASS ($1.2\%$ ceiling violation, $|\Phi| \ll \Phi_0$) |
 | **Wide Binaries ($\gamma_v$)** | PASS ($1.030 - 1.045$, $33\sigma$ below MOND) | PASS ($1.030 - 1.045$, identical) | PASS ($1.030 - 1.045$, identical) |

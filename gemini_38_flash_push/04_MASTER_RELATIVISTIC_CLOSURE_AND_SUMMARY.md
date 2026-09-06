@@ -19,7 +19,7 @@ This folder (`gemini_38_flash_push`) documents the complete, ghost-free resoluti
 Prior to this push, the repository established two definitive results that appeared to create an impasse:
 - **The Bounded-Boost Theorem (PAPER5, commit `4d51aff59`):** 
   For any matter-sourced scalar theory $\nabla \cdot [J_Y \nabla \phi] = 4\pi G \rho_b$, the acceleration excess is strictly capped: $\Delta \equiv (g_{\rm obs} - g_{\rm bar})/a_0 \le C \le 0.65$. In X-COP cluster cores, the empirical excess is $\Delta/a_0 \approx 3.37$ at 40 kpc ($5.2\times$ over the ceiling).
-- **The Tachyonic Clock-Condensate Tilt Instability (`g03w`, line 215 of [`RESUME_HERE.md`](file:///Users/carlzimmerman/new_physics/zimmerman-formula/qwen_claude_field_theory/closure_2026/RESUME_HERE.md)):**
+- **The Tachyonic Clock-Condensate Tilt Instability (`g03w`, line 215 of [`RESUME_HERE.md`](../qwen_claude_field_theory/closure_2026/RESUME_HERE.md)):**
   Treating the missing cluster mass as the condensate $K(Q) = K_2(Q - Q_0)^2$ of the MOND scalar coupled to the clock normal $n_\mu$ ($Q = n \cdot \partial\phi$) generated an explosive tachyonic instability in the clock shift $T$:
   $$\ddot{T}_k \approx +\left( \frac{|K_2| Q_0^2 \epsilon_0 a^{-3}}{c_{14}} \right) T_k$$
   with growth rates of $280 H_0$ today and $2.8\times 10^5 H_0$ at $z=100$.
