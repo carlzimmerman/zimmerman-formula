@@ -1,0 +1,26 @@
+  Einstein-Hilbert part expanded (1s)
+  quadratic Lagrangian (GR + sector) (2s)
+  Euler-Lagrange equations (2s)
+    GR lapse equation, leading terms: Phi: -2*(-3*Lambda*a(t)**2 + 9*adot**2 + 2*k**2)*a(t), Psi: 2*(Lambda*a(t)**2 - 9*adot**2)*a(t), Phi_t: -12*adot*a(t)**2
+    GR Phi equation, k^2 terms: Phi: 4*a(t), Psi: -4*a(t)
+  coefficients lambdified (3s)
+    GR control (Phi dynamical), growth/LCDM at k = [0.05, 0.2]: [0.9976, 0.9997]  (526s)
+  [PASS] W1 [GR control] sector off with Phi dynamical: growth within 1% of LambdaCDM at k = 0.05 and 0.2/Mpc   ([0.9976, 0.9997])
+<repo>/qwen_claude_field_theory/closure_2026/g03w_growth_phi_dynamical.py:90: RuntimeWarning: overflow encountered in scalar multiply
+  r4 = -(dcT['Psik']*Ps + cT['Pk']*Pt + dcT['Pk']*Pv + dcT['Pk_t']*Pt + dcT['Tk']*Tq)/cT['Tk']
+      [trace k = 0.05, fast  c2 = c2*, Q0 = 1.0] delta at a = [0.01, 0.22, 0.35, 0.46, 0.56, 0.67, 0.78, 0.88, 1.0]: ['1.00e+00', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan']
+      [trace k = 0.2, fast  c2 = c2*, Q0 = 1.0] delta at a = [0.01, 0.22, 0.35, 0.46, 0.56, 0.67, 0.78, 0.88, 1.0]: ['1.00e+00', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan']
+    fast  c2 = c2*   Q0 =  1.0 H0: growth/LCDM at k = [0.05, 0.2] -> [nan, nan]   Psi/Phi(z=0, k=0.2) = nan, T' /Psi = nan  (527s)
+      [trace k = 0.05, fast  c2 = 0, Q0 = 1.0] delta at a = [0.01, 0.22, 0.35, 0.46, 0.56, 0.67, 0.78, 0.88, 1.0]: ['1.00e+00', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan']
+      [trace k = 0.2, fast  c2 = 0, Q0 = 1.0] delta at a = [0.01, 0.22, 0.35, 0.46, 0.56, 0.67, 0.78, 0.88, 1.0]: ['1.00e+00', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan']
+    fast  c2 = 0     Q0 =  1.0 H0: growth/LCDM at k = [0.05, 0.2] -> [nan, nan]   Psi/Phi(z=0, k=0.2) = nan, T' /Psi = nan  (528s)
+      [trace k = 0.05, rigid c2 = 1e-4, Q0 = 1.0] delta at a = [0.01, 0.22, 0.35, 0.46, 0.56, 0.67, 0.78, 0.88, 1.0]: ['1.00e+00', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan']
+      [trace k = 0.2, rigid c2 = 1e-4, Q0 = 1.0] delta at a = [0.01, 0.22, 0.35, 0.46, 0.56, 0.67, 0.78, 0.88, 1.0]: ['1.00e+00', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan']
+    rigid c2 = 1e-4  Q0 =  1.0 H0: growth/LCDM at k = [0.05, 0.2] -> [nan, nan]   Psi/Phi(z=0, k=0.2) = nan, T' /Psi = nan  (529s)
+  [FAIL] W2 [finite] all coupled runs stay finite to z = 0 with Phi dynamical
+  [FAIL] W4 [reported] some fast-branch case is within 10% of LambdaCDM at both k   ({"1.0|fast  c2 = c2*": [NaN, NaN], "1.0|fast  c2 = 0": [NaN, NaN], "1.0|rigid c2 = 1e-4": [NaN, NaN]})
+
+  caveats: as g03v (standard H(a); baryons explicit, dust through the sector; J_Y0 = 0; sector unexcited at z = 100); Phi dynamical, Psi from the exact constraint; the differentiated constraint uses finite-difference a-derivatives of the coefficients.  total 529s
+
+RESULT: 2 FAIL -> ['W2 [finite] all coupled runs stay finite to z = 0 with Phi dynamical', 'W4 [reported] some fast-branch case is within 10% of LambdaCDM at both k']
+rc=1
