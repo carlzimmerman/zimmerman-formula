@@ -1,0 +1,38 @@
+======================================================================================================================
+g04f -- cold clock dust and the MOND source are mutually exclusive in this action
+======================================================================================================================
+
+  N1  general clock: J_x = Derivative(Psi(t, x), x) - Derivative(T(t, x), t, x);   linear lapse N^(1) = -Psi(t, x) + Derivative(T(t, x), t)
+      d_x of the linear lapse = -Derivative(Psi(t, x), x) + Derivative(T(t, x), t, x)
+  [PASS] N1 [identity] the clock's linear four-acceleration is exactly the spatial gradient of its own normalisation, up to the sign fixed by the convention for n_mu, so the MOND source in this action IS the lapse gradient and dies whenever that gradient is switched off   (J_x = Derivative(Psi(t, x), x) - Derivative(T(t, x), t, x); the linear lapse is N^(1) = -Psi(t, x) + Derivative(T(t, x), t), so J_x = -d_x N^(1) in this convention)
+
+  N2  the MIMETIC constraint g^{mu nu} d_mu tau d_nu tau = -1, expanded to linear order:
+      linear constraint: 2*Psi(t, x) - 2*Derivative(T(t, x), t) = 0  =>  T-dot = Psi(t, x)
+      substituting into the source: J_x = 0
+      and the EXACT statement, at all orders: for u_mu = -d_mu tau with u.u = -1,
+        u^nu grad_nu u_mu = u^nu grad_mu u_nu = (1/2) grad_mu (u.u) = (1/2) grad_mu(-1) = 0,
+      using grad_nu u_mu = -grad_nu d_mu tau, which is symmetric in (mu, nu).  A mimetic clock is GEODESIC.
+  [PASS] N2 [mimetic FAILS] the mimetic constraint forces T-dot = Psi at linear order, which cancels the MOND source exactly; and at all orders a unit-norm gradient congruence is geodesic, so its acceleration and hence the source vanish identically   (constraint gives T-dot = Psi, hence J_x = 0; the exact statement is that mimetic dust is free-falling, so it exerts no MOND force in this action)
+
+  N3  projectable lapse N = N(t): J_x = -Derivative(T(t, x), t, x); in the static limit 0
+  [PASS] N3 [projectable FAILS] reproduces g04d: with the lapse projectable the source vanishes in the static limit   (J_x = 0, as found independently in g04d)
+
+  N4  THE NO-GO.  Both known routes to cold integration-constant dust from the clock fix its normalisation:
+      projectability makes N depend on t alone; the mimetic constraint sets N = 1.  The MOND source is d_mu ln N.
+      Therefore, within this action, COLD CLOCK DUST AND A NONZERO STATIC MOND SOURCE ARE MUTUALLY EXCLUSIVE.
+      This is structural: it is not a property of one implementation, but of what makes the dust cold.
+  [PASS] N4 [no-go] the two routes fail for one reason, so the class fails: any construction that makes the clock's dust cold by fixing its normalisation removes the lapse gradient that carries MOND   (both routes give J = 0; the obstruction is the identity J = d ln N, not the implementations)
+
+  N5  and nothing is lost.  The cluster no longer needs a cold clock component:
+      shape     (g04c): the condensate atmosphere reproduces the corrected profile at 0.113 dex rms at |K_2| = 2.0e5,
+                        inside the dark sector's own window, with a peak-radius offset of 1.33.
+      amplitude (g04e): the chain from cosmic share through the converged infall to that atmosphere delivers
+                        1.61-1.77 of the required mass inside 420 kpc under Newtonian growth, with nothing fitted --
+                        and Newtonian growth is what g03v's closure independently requires.
+  [PASS] N5 [and it does not matter] the cluster is delivered in shape and in amplitude by the condensate the action already has, so the no-go closes a route that is no longer needed   (shape 0.113 dex rms, amplitude 1.61-1.77x, both without a fitted normalisation and both at a stiffness inside the window)
+
+  caveats: the identity J = d ln N is for a hypersurface-orthogonal unit normal built from a scalar, which is what this
+  action uses; a clock that is not a gradient would evade it and is not considered here.  The no-go says nothing about
+  cold dust from a sector OTHER than the clock.  total 0s
+
+RESULT: 0 FAIL
