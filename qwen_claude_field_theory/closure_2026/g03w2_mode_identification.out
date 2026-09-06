@@ -1,0 +1,23 @@
+  Einstein-Hilbert part expanded (1s)
+  quadratic Lagrangian (GR + sector) (2s)
+  Euler-Lagrange equations (2s)
+    GR lapse equation, leading terms: Phi: -2*(-3*Lambda*a(t)**2 + 9*adot**2 + 2*k**2)*a(t), Psi: 2*(Lambda*a(t)**2 - 9*adot**2)*a(t), Phi_t: -12*adot*a(t)**2
+    GR Phi equation, k^2 terms: Phi: 4*a(t), Psi: -4*a(t)
+  coefficients lambdified (3s)
+    clock equation at a = 0.01, k = 0.05/Mpc, c2 = 0.05: coeff(T'') = -9.893e-03, coeff(T) = -2.122e+10; -coeff(T)/coeff(T'') = -2.145e+12 (negative = oscillatory); c2 k^4 term 2.45e+10 vs dust term 7.89e+08 (ratio 31.0)
+  [PASS] M1 [analytic] at c_2 = 0.05 the clock's own T coefficient is dominated by the c_2 k^4 rigidity (ratio > 5) and the pure clock oscillates (-coeff(T)/coeff(T'') < 0)   (ratio 31.0, -cT/cTtt = -2.15e+12)
+    c2 = 0.05                                           : max Re =  6.97e+02 H (Im 0.0e+00 H); eigenvector weight delta 0.99 | Phi 0.01 | T 0.00 | P 0.00
+    c2 = 0.05, eps0 = 0 (no dust)                       : max Re =  2.97e-02 H (Im 1.4e-01 H); eigenvector weight delta 1.00 | Phi 0.00 | T 0.00 | P 0.00
+    c2 = 0.05, P frozen (no MOND scalar dynamics)       : max Re =  3.04e+02 H (Im 0.0e+00 H); eigenvector weight delta 0.98 | Phi 0.02 | T 0.00 | P 0.00
+    c2 = 0.05, Psi' = 0 (constraint not differentiated) : max Re =  5.71e+02 H (Im 0.0e+00 H); eigenvector weight delta 0.89 | Phi 0.11 | T 0.00 | P 0.00
+    c2 = 1e-4                                           : max Re =  1.02e+03 H (Im 0.0e+00 H); eigenvector weight delta 0.00 | Phi 0.00 | T 1.00 | P 0.00
+    c2 = 1e-4, eps0 = 0                                 : max Re =  3.00e-02 H (Im 1.4e-01 H); eigenvector weight delta 1.00 | Phi 0.00 | T 0.00 | P 0.00
+    analytic tilt rate at a = 0.01: 503.3 H
+    identification: tilt-like = False, not-tilt = False
+  [FAIL] M3 [identification, reported] the c_2 = 0.05 early-time mode is identified: either the tilt mode (disappears without dust, lives in T) or not (survives without dust, < 10% weight in T)   (rate 6.97e+02 H; without dust 2.97e-02 H; T-weight 0.00)
+  [PASS] M4 [scheme] the unstable rate at c_2 = 0.05 changes by less than a factor 3 when the differentiated constraint is replaced by Psi' = 0 (scheme-insensitive)   (6.97e+02 vs 5.71e+02 H)
+
+  caveats: frozen-coefficient Jacobian (WKB-like; valid while the rate >> H, which is the case examined); eigenvector weights compare (x, x'/H) pairs; the differentiated-constraint scheme of g03w with its Psi' = 0 variant as the only scheme control.  total 0s
+
+RESULT: 1 FAIL -> ['M3 [identification, reported] the c_2 = 0.05 early-time mode is identified: either the tilt mode (disappears without dust, lives in T) or not (survives without dust, < 10% weight in T)']
+rc=1
