@@ -21,11 +21,32 @@ in the PPN pipeline's sign convention (f31–f35, g03e). The term 2(2−K_B)J^μ
 | a₀ | 9.3619×10⁻¹¹ / 1.1279×10⁻¹⁰ m s⁻² | the framework's two footings; a₀ = ½c√(Gρ_Λ) is an optional relation, κ = ½ fitted (requirement 13 not derived) |
 | G_N | G/(1 − c₁₄/2) (f35, = Einstein-aether's exactly) | measured Newton constant, requirement 10 |
 
-## 3. The kernel a scalar carrier can carry (g03j)
-With the scalar sourced by matter, J_Y√Y = g_N for a spherical source, so the scalar's own force g_φ = g_tot − g_N must be a non-decreasing function of g_N for a single-valued J, and its longitudinal stiffness dg_N/dg_φ = J_Y + 2YJ_YY must be positive. For the exact exponential kernel g_φ = a₀ y e^(−y) peaks at y_tot = 1 (g_N = 0.632 a₀) and falls, with negative stiffness for 1 < y < 38 — the FC-KH instability band a₀ < a < 38a₀ and f21's phantom maximum are this one fact. Therefore requirement 1 as literally written (exact exponential AQUAL at all accelerations) cannot be carried by a healthy scalar. The candidate's kernel is:
-- exponential, μ = 1 − e^(−y), for y_tot ≤ 1 (the whole deep-MOND and transition regime up to g_N = 0.632 a₀);
-- a monotone scalar force beyond, g_φ = (a₀/e)(g_N/0.632a₀)^p with small p ≥ 0 (p = 0 is the saturated limit; p > 0 keeps the stiffness strictly positive).
-Its signature: the RAR lies +0.02 to +0.05 dex above the pure exponential at g_N = 2–10 a₀ and rejoins it above 30 a₀ (g03j). SPARC could not separate kernels at the 0.07 dex level (f25); BIG-SPARC can. In the Solar System the saturated scalar force a₀/e would be 940× the sunward gate; the coherence length screens it to a few per cent of the gate (g03j estimate; g03d exact: 0.14 at Neptune for ξ = 0.03 pc). So the same length that passes Cassini is what makes the scalar carrier admissible at all.
+## 3. The kernel the action carries: ν_RAR, carried and saturated (g03j, g03u, g03w, g03x, g03z)
+**The kernel was swapped from the exponential carrier to ν_RAR on 2026-09-06.** The structural rule is unchanged and is now understood to be the bounded-boost theorem itself (§5.9, §5.13): with the scalar sourced by matter, J_Y(g_φ)g_φ = g_N, so g_φ must be a single-valued monotone function of g_N with positive longitudinal stiffness. Writing g_φ = a₀Δ(s), s = g_N/a₀, that stiffness is exactly 1/Δ′(s). Since Δ is bounded for every kernel of the class, **any carried kernel must saturate at its own maximum** — the saturation is universal, not a defect of one choice.
+
+The kernel carried is therefore:
+- **ν_RAR, g = g_N/(1 − e^(−√(g_N/a₀))), for s ≤ 2.540**, the whole deep-MOND and transition regime;
+- **saturated beyond**, g_φ = C·a₀ with C = 0.6476, i.e. g = g_N + 0.6476 a₀ for s > 2.540.
+
+*Why the swap.* The ceiling test on the bulgeless SPARC control — 113 of 144 galaxies with no bulge at any radius, where Υ_disk is the only stellar freedom and the Newtonian limit pins it — has 7.3% (canonical) and 3.5% (alt) of points beyond 2 kpc exceeding the exponential carrier's ceiling a₀/e at >3σ, against **1.2% and 0.6%** for ν_RAR (g03w). The ceiling-implied lower bound on a₀ is within 9% of the radial acceleration relation's own fitted value for ν_RAR and 1.9× it for the carrier.
+
+*What the swap costs, gate by gate (g03z, 0 FAIL).* The kernel enters everywhere through one function, J_Y(s) = s/Δ(s), whose saturated slope is e for the carrier and 1/0.6476 = 1.544 for ν_RAR — a single ratio of 1.76.
+
+| gate | exponential carrier | ν_RAR carried |
+|---|---|---|
+| PPN α₁ (bound 10⁻⁴) | −4.1×10⁻⁵ | −4.1×10⁻⁵ |
+| Solar-System floor ξ, canonical / alt | 0.07 / 0.10 pc | 0.10 / 0.15 pc |
+| SPARC ceiling violated, bulgeless | 7.3% / 3.5% | 1.2% / 0.6% |
+| wide-binary γ_v, canonical / alt | 1.0375 / 1.0275 | 1.0450 / 1.0300 |
+| dark-sector \|K₂\| window | [5×10⁴, 3.2×10⁵] | [2.8×10⁴, 2.8×10⁵] |
+| cluster ceiling violated at 40 kpc | 9.1× | 5.2× |
+| linear-source closure locus | c₂\|K₂\| = (2−K_B)² | same, kernel-independent |
+
+The swap is admissible on every gate. PPN is untouched because the screening crushes the α₁ drag to under 2% of α₁ at either floor. The cosmological closure is untouched because S_eff contains only K_B, c₂ and K₂ and not the kernel (g03z G4). The dark sector's deep-MOND hydrostatic length is **identical** for the two kernels, 0.42 c²/(\|K₂\|a₀); only the saturated value differs, by 0.568, so the \|K₂\| window shifts by that one factor and stays non-empty against the Cherenkov bound. The costs are a factor 1.4–1.5 in the coherence length and, through it, an anisotropy sign-flip radius pushed out of Gaia's usable range (§5.14).
+
+**Clusters are not rescued by the swap**, and the theorem said they would not be: the corrected X-COP excess is 5.2× ν_RAR's wider ceiling at 40 kpc against 9.1× the carrier's. The requirement of a real extra source is kernel-independent, and remains the framework's outstanding liability.
+
+*Solar System.* Every carried kernel leaves a constant residual force C·a₀ at high acceleration; ν_RAR's is 1.76× the carrier's. The coherence length screens it, which is why the same length that passes Cassini is what makes the scalar carrier admissible at all.
 
 ## 4. Static and cosmological limits (all computed)
 - Static: ∇·[μ∇Φ] − ξ²Δ²ψ = 4πGρ for the total potential Φ = Φ_N + ψ, the operator acting on the scalar part only (g03d); ξ → 0 is exact AQUAL (G01 reproduced to 0.05%); Solar-System floors 0.03/0.05 pc.

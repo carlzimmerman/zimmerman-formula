@@ -1,0 +1,62 @@
+======================================================================================================================
+g03z -- the action carrying nu_RAR: the full gate ladder rerun
+======================================================================================================================
+
+  G1  J_Y(s) = s/Delta(s), the scalar's gradient coefficient, at the Galactic external field and saturated
+      kernel                       C   s_sat J_Y(y_e) canonical     J_Y(y_e) alt  J_Y/s saturated
+      exponential carrier     0.3679   0.632            5.163            4.285           2.7183
+      nu_RAR carried          0.6476   2.540            2.967            2.510           1.5442
+  [PASS] G1 [kernel] the two carried kernels differ by the single ratio e/1.544 = 1.76 in the saturated regime, and by a comparable factor in J_Y at the Galactic field, which is the only channel through which the swap propagates   (saturated J_Y/s = 2.718 (exp) vs 1.544 (nu_RAR), ratio 1.760; at the Galactic field J_Y = exponential/canonical 5.16, exponential/alt 4.29, nu_RAR/canonical 2.97, nu_RAR/alt 2.51)
+
+  G2  PPN: alpha_1 = -4 c_14 + drag, drag = -4(2-K_B)/(J_Y (1 + xi^2 k^2) + 1)   [f32/f33], at each kernel's own floor
+      the relevant wavenumber is the Solar System's, k ~ 1/r; at Saturn r = 9.54 AU the screening (xi k)^2 is enormous, so the drag is crushed
+      kernel / footing                xi [pc]  (xi k)^2 at Saturn  J_Y(y_e)         drag      alpha_1
+      exponential carrier / canonical     0.07           2.291e+06     5.163   -6.089e-07   -4.061e-05
+      exponential carrier / alt          0.10           4.675e+06     4.285   -3.594e-07   -4.036e-05
+      nu_RAR carried / canonical         0.10           4.675e+06     2.967   -5.190e-07   -4.052e-05
+      nu_RAR carried / alt               0.15           1.052e+07     2.510   -2.727e-07   -4.027e-05
+  [PASS] G2 [PPN] with the screening operator at each kernel's own Cassini floor the alpha_1 drag contributes under 2% of alpha_1 for BOTH kernels and the total stays inside the 1e-4 bound f33 uses, so the kernel swap costs nothing in PPN   (exponential/canonical alpha_1 = -4.061e-05 (drag 1.50% of it); exponential/alt alpha_1 = -4.036e-05 (drag 0.89% of it); nu_RAR/canonical alpha_1 = -4.052e-05 (drag 1.28% of it); nu_RAR/alt alpha_1 = -4.027e-05 (drag 0.68% of it); bound 1e-4)
+
+  G3  the dark sector: c_s^2 = 0.42 J_Y c^2/|K_2| and H = c_s^2/g = 0.42 J_Y c^2/(|K_2| a0 y), y = s + Delta(s)
+      kernel                   H deep-MOND (s=1e-4)   H saturated (s=1e3)   in units c^2/(|K_2| a0)
+      exponential carrier                    0.4221                1.1413
+      nu_RAR carried                         0.4200                0.6481
+      the deep-MOND lengths are IDENTICAL (both 0.42 c^2/(|K_2| a0)); only the saturated value differs, by 0.568
+      so the dark sector's |K_2| window shifts by the same factor: [5.0e+04, 5.0e+05] -> [2.8e+04, 2.8e+05]
+      the Cherenkov + closure bound |K_2| <= (2-K_B)^2/c_14 = 3.24e+05 still applies: joint window [2.8e+04, 2.84e+05]
+  [PASS] G3 [dark sector] the two kernels give an IDENTICAL deep-MOND hydrostatic length, so the swap only rescales the saturated regime; the dark sector's |K_2| window shifts by that one factor and remains non-empty against the Cherenkov bound   (deep-MOND H identical to 0.5%; saturated ratio 0.568; joint window [2.8e+04, 2.84e+05], a factor 10.0)
+
+  G4  the linear-source screening, re-derived from the action to test kernel dependence
+      S_eff = (K_2*c_2 + K_B**2 - 4*K_B + 4)/(K_2*c_2);  free symbols: ['K_2', 'K_B', 'c_2']
+  [PASS] G4 [cosmology] the linear-source screening S_eff contains only K_B, c_2 and K_2 and NOT the kernel's J_Y0, so the closure locus c_2|K_2| = (2-K_B)^2 and the Cherenkov bound carry over to nu_RAR unchanged   (free symbols ['K_2', 'K_B', 'c_2']; the closure locus and the |K_2| upper bound are kernel-independent)
+
+  G5  the bounded-boost ceiling against the corrected X-COP excess (g03u), both kernels
+       r [kpc]  Delta/a0 (data)      x exponential           x nu_RAR
+            40            3.365               9.15               5.20
+           100            2.283               6.21               3.53
+           300            1.628               4.43               2.51
+          1000            0.694               1.89               1.07
+  [PASS] G5 [clusters] the cluster core violates the ceiling for BOTH kernels -- 9.1x the exponential carrier's bound and 5.2x nu_RAR's wider one -- so the swap does not rescue clusters and the requirement of a real extra source is kernel-independent, exactly as the theorem says   (at 40 kpc: 9.1x (exponential) and 5.2x (nu_RAR))
+
+  G6-G8  the gates already run for nu_RAR, read back from those scripts' own output files
+      G6 Solar System (g03x):  nu_RAR CARRIED                          0.1 pc         0.15 pc
+      G7 SPARC ceiling (g03w): nu_RAR                    0.6476         1.15%         5.59%         0.58%         2.69%  (bulgeless / bulge-bearing, per footing)
+      G8 wide binaries (g03y): gamma_v = 1.0450 (canonical) and 1.0300 (alt)
+  [PASS] G6-G8 [read back] the three gates already run for nu_RAR are present in their own committed output files and are assembled here rather than retyped   (Solar System nu_RAR CARRIED                          0.1 pc         0.15 pc; SPARC nu_RAR                    0.6476         1.15%         5.59%         0.58%         2.69%; gamma_v 1.0450/1.0300)
+
+  THE SCORECARD: the action carrying nu_RAR
+      gate                                      exponential carrier             nu_RAR carried
+      PPN alpha_1 (bound 1e-4)                             -4.1e-05                   -4.1e-05
+      Solar-System floor xi [pc] can/alt                0.07 / 0.10                0.10 / 0.15
+      SPARC ceiling violated, bulgeless                 7.3% / 3.5%                1.2% / 0.6%
+      wide-binary gamma_v can/alt                   1.0375 / 1.0275            1.0450 / 1.0300
+      dark-sector |K_2| window                     [5e+04, 3.2e+05]           [3e+04, 2.8e+05]
+      cluster ceiling violated at 40 kpc                       9.1x                       5.2x
+      linear-source closure locus              c_2|K_2| = (2-K_B)^2  same (kernel-independent)
+  [PASS] SWAP [verdict] nu_RAR carried passes every gate the exponential carrier passes, improves the one that selected it (the SPARC ceiling, 1.2% against 7.3% of points violating), costs a factor 1.4-1.5 in the coherence length, leaves PPN and the cosmological closure untouched, and leaves clusters requiring a real source exactly as before   (the swap is admissible; the cluster deficit is kernel-independent and remains the outstanding liability)
+
+  caveats: the Solar-System floors come from g03b's linear-response proxy (g03x), not g03d's exact fourth-order solve; the
+  dark-sector window is g03r's, rescaled by the saturated J_Y ratio rather than re-run through the collapse; the PPN drag
+  formula is f32/f33's closed form evaluated at the new J_Y, not a re-derivation of the full symbolic ladder.  total 17s
+
+RESULT: 0 FAIL
