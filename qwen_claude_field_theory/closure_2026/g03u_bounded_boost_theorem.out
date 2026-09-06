@@ -1,0 +1,146 @@
+======================================================================================================================
+g03u -- the bounded-boost theorem and the cluster ceiling
+======================================================================================================================
+
+  B1  THE THEOREM for the candidate's carrier: g_N = g (1 - e^{-g/a0}), so with y = g/a0 the excess is
+      Delta(y) = y e^-y ;  dDelta/dy = (1 - y)*exp(-y) ;  critical point y = [1] ;  d2Delta/dy2 there = -exp(-1)
+      limits: Delta(0+) = 0, Delta(inf) = 0;  MAXIMUM C = exp(-1) = 0.3678794 at g_N = 1 - exp(-1) a0 = 0.6321 a0
+  [PASS] B1 [theorem] the candidate's acceleration excess is exactly a0 y e^{-y} with a unique interior maximum at y = 1, zero at both ends, so C = 1/e exactly   (C = 1/e = 0.3678794, attained at g_N = (1 - 1/e) a0 = 0.6321 a0)
+
+  B2  the same construction for the standard interpolation families (numerically maximised on a fine grid):
+      kernel                                C = sup (g-g_N)/a0   at g_N/a0  a0-FREE ratio C/g_N(peak)
+      candidate (exponential carrier)                   0.3679      0.6321                     0.5820
+      deep-MOND sqrt (g = sqrt(a0 g_N))                 0.2500        0.25                     1.0000
+      nu_RAR (McGaugh+2016)                             0.6476        2.54                     0.2550
+      simple mu                                         1.0000   9.991e+06                     0.0000
+      standard mu                                       0.3003      0.4859                     0.6180
+  [PASS] B2 [family] every kernel with a Newtonian limit caps the acceleration excess at a pure number of order a0; all five lie in [0.25, 1.05], so the ceiling is kernel-independent up to an O(1) constant   (C = candidate 0.368, deep-MOND 0.250, nu_RAR 0.648, simple 1.000, standard 0.300)
+
+  B3  the ladder: SPARC rotation curves (Lelli+2016 Rotmod), Upsilon_disk = 0.5, Upsilon_bul = 0.7 at 3.6um
+      144 galaxies, 2681 points after the error cut; g_bar spans 8.9e-03 - 7.0e+01 a0
+      canonical: max Delta = 31.52 a0; points above the widest bound C = 1.00 by >3 sigma: 19 of 2681 (0.71%)
+        the offenders (all at the innermost radii of bulge-dominated discs, where beam smearing and the bulge Upsilon dominate):
+          NGC5985     r =  8.02 kpc  g_bar =     0.8 a0  g_obs/g_bar = 4.43  Delta =   2.75 +/- 0.23 a0
+          NGC5985     r =  4.97 kpc  g_bar =     1.0 a0  g_obs/g_bar = 4.20  Delta =   3.26 +/- 0.32 a0
+          NGC5985     r =  5.74 kpc  g_bar =     0.9 a0  g_obs/g_bar = 4.38  Delta =   3.10 +/- 0.32 a0
+          NGC5985     r =  7.22 kpc  g_bar =     0.8 a0  g_obs/g_bar = 4.26  Delta =   2.71 +/- 0.27 a0
+          NGC5985     r =  6.47 kpc  g_bar =     0.9 a0  g_obs/g_bar = 4.31  Delta =   2.84 +/- 0.30 a0
+      alt      : max Delta = 26.16 a0; points above the widest bound C = 1.00 by >3 sigma: 11 of 2681 (0.41%)
+      beyond r = 2 kpc (2352 points, 88% of the sample): 18 points exceed the widest bound by >3 sigma; max Delta there = 4.46 a0
+      the >3 sigma exceptions beyond 2 kpc live in 5 of 144 galaxies: ESO563-G021, NGC5907, NGC5985, NGC6674, UGC12506
+        ESO563-G021 Q = 1, i = 83.0 deg : 2/28 points above the bound, max g_obs/g_bar = 4.56
+        NGC5907     Q = 1, i = 88.0 deg : 1/19 points above the bound, max g_obs/g_bar = 3.90
+        NGC5985     Q = 1, i = 60.0 deg : 13/33 points above the bound, max g_obs/g_bar = 4.43
+        NGC6674     Q = 1, i = 54.0 deg : 1/14 points above the bound, max g_obs/g_bar = 6.66
+        UGC12506    Q = 2, i = 86.0 deg : 1/28 points above the bound, max g_obs/g_bar = 5.54
+  [PASS] B3 [SPARC ladder] beyond the innermost 2 kpc the ceiling holds for at least 99% of rotation-curve points at both footings (the exceptions are named and kept, not cut)   (99.23% of 2352 points obey the widest bound; exceptions in 5 galaxies (ESO563-G021, NGC5907, NGC5985, NGC6674, UGC12506), all passing SPARC's own Q<3 and i>30 cuts -- a genuine, named exception, not a data artefact)
+
+  B4  the a0-FREE form: the excess curve's peak.  Prediction: Delta(g_bar) rises, peaks at g_bar = (1 - 1/e) a0
+      with height 1/e, and falls back to zero.  The RATIO of height to location is 1/(e-1) = 0.581977, and a0 CANCELS.
+        g_bar/a0  Delta/a0 (median)      N
+           0.022              0.156     35
+           0.030              0.162     84
+           0.041              0.197    140
+           0.057              0.226    182
+           0.076              0.267    186
+           0.103              0.313    194
+           0.142              0.341    152
+           0.190              0.393    158
+           0.270              0.485    132
+           0.366              0.524    124
+           0.507              0.604    144
+           0.680              0.620    120
+           0.909              0.667    126
+           1.290              0.816    112
+           1.699              0.994    103
+           2.340              0.979     88
+           3.272              1.190     84
+           4.437              0.750     65
+           6.171              0.585     47
+           8.280              0.694     38
+      measured peak: Delta_max = 1.190 a0 at g_bar = 3.272 a0  ->  RATIO = 0.364   (predicted 1/(e-1) = 0.582, a0-free)
+      bootstrap (400 resamples): ratio = 0.364 [0.347, 0.530]   -- a0 cancels in this number, and so does any COHERENT rescaling of the acceleration scale
+      kernel                                predicted a0-free ratio  consistent with data?
+      candidate (exponential carrier)                         0.582                     no
+      deep-MOND sqrt (g = sqrt(a0 g_N))                       1.000                     no
+      nu_RAR (McGaugh+2016)                                   0.255                     no
+      simple mu                                               0.000                     no
+      standard mu                                             0.618                     no
+      Newtonian-limit calibration: every kernel requires Delta -> 0 at g_bar >> a0; the data give median g_obs/g_bar = 1.018 there (90 points),
+      i.e. the stellar normalisation is already consistent to +1.8% -- so the large excess at g_bar = 1-4 a0 below is NOT a coherent Upsilon offset.
+       g_bar/a0  measured Delta/a0   candidate    nu_RAR  meas/candidate  meas/nu_RAR
+           1.29              0.816       0.322     0.610             2.5         1.34
+           1.70              0.994       0.274     0.633             3.6         1.57
+           2.34              0.979       0.200     0.647             4.9         1.51
+           3.27              1.190       0.115     0.641            10.4         1.86
+           4.44              0.750       0.050     0.615            14.9         1.22
+      measured a0-free peak ratio = 0.364 [0.347, 0.530];  kernel predictions: candidate 0.582, deep-MOND sqrt 1.000, nu_RAR 0.255, simple mu 0.000, standard mu 0.618
+  [PASS] B4 [a0-free diagnostic] at fixed Upsilon and fixed a0, and with the stellar normalisation independently confirmed by the Newtonian limit, the measured acceleration excess between g_bar = 1 and 4.5 a0 exceeds the candidate's exponential carrier by more than a factor 3 -- the transition region is where this kernel is most exposed   (median measured/candidate = 4.9x over g_bar = 1-4.5 a0 (measured/nu_RAR = 1.51x); the exponential carrier reaches its Newtonian limit far too fast.  FIXED-Upsilon, FIXED-a0 diagnostic: f25 leaves exp-vs-RAR open once a0 and Upsilon are profiled jointly, and this statistic does not close that)
+
+  B5  X-COP with CORRECTED radii (gas profile RADIUS is R/R500; R500 from each file's own header)
+      12 clusters; 7 with a published stellar profile (headline uses these only)
+      R500 range 1054 - 1430 kpc; the old x1000 conversion mis-set every radius by R500/1000 (per cluster)
+      measured M_star/M_gas: 40kpc 3.134, 50kpc 2.116, 75kpc 1.022, 100kpc 0.632, 150kpc 0.330, 200kpc 0.236
+
+       r [kpc]   N   g_H/a0   g_b/a0  Delta=(g_H-g_b)/a0  Delta/(1/e)  Delta/C_max   (canonical, 7 measured-star clusters)
+            40   7    3.966    0.469               3.365         9.15         3.36
+            50   7    3.414    0.425               2.942         8.00         2.94
+            75   7    2.797    0.320               2.477         6.73         2.48
+           100   7    2.603    0.280               2.283         6.21         2.28
+           150   7    2.341    0.247               2.103         5.72         2.10
+           200   7    2.141    0.224               1.909         5.19         1.91
+           300   7    1.882    0.193               1.628         4.42         1.63
+           420   7    1.736    0.166               1.515         4.12         1.51
+           750   7    1.159    0.121               0.989         2.69         0.99
+          1000   7    0.784    0.100               0.694         1.89         0.69
+  [PASS] B5 [clusters] the ceiling is VIOLATED in cluster cores at both footings -- the excess exceeds the candidate's exact bound a0/e by more than a factor 3, so NO choice of interpolation function can absorb it   (peak Delta/(a0/e) = canonical 9.1, alt 7.6; vs the widest family bound C_max = 1.00: factor 3.4)
+
+  B6  the HSE escape, quantified: what nonthermal support would restore the ceiling?
+       r [kpc]  g_true/g_H needed   P_nt/P_th  sigma_1D [km/s]   (kT = 5 keV, mu = 0.61, similar log-slopes)
+            40              0.370        1.70             1155
+            50              0.417        1.40             1047
+            75              0.472        1.12              937
+           100              0.492        1.03              901
+           150              0.533        0.88              830
+           200              0.572        0.75              767
+           300              0.634        0.58              673
+  [PASS] B6 [HSE escape CLOSED] restoring the ceiling by nonthermal support alone would need a 1-D turbulent velocity far above the Hitomi/XRISM Perseus measurement of 164 +/- 10 km/s (a factor > 4 in velocity, > 16 in energy)   (minimum required sigma_1D over 40-300 kpc = 673 km/s vs measured 164 km/s (factor 4.1 in velocity, 17 in pressure))
+
+  B7  the baryon escape: extra baryons that would restore the ceiling, as a multiple of the OBSERVED gas
+       r [kpc]  M_b needed / M_b obs  M_b needed / M_gas obs
+            40                  4.93                   20.39
+            50                  4.94                   15.38
+            75                  5.19                   10.49
+           100                  4.91                    8.01
+           150                  4.94                    6.56
+           200                  4.89                    6.04
+           300                  3.87                    4.42
+  [PASS] B7 [baryon escape CLOSED] restoring the ceiling with unseen baryons would need several times the directly imaged X-ray gas inside 300 kpc, where the gas is the dominant and directly measured component   (minimum required M_b/M_b,observed over 40-300 kpc = 3.87)
+
+  B8  therefore an extra SOURCE is required.  Its profile, kernel-independent (kernel applied to the TOTAL):
+       r [kpc]  M_src/M_b  M_src/M_gas   a0_req/a0   (median over the 7; the source is what the exponential carrier needs)
+            40       6.47        26.74       24.12
+            50       6.99        21.79       22.93
+            75       7.75        15.67       20.55
+           100       8.22        13.42       19.44
+           150       8.14        10.82       20.05
+           200       8.14        10.05       18.65
+           300       7.47         8.55       14.97
+           420       7.00         7.73       12.74
+           750       5.22         5.59        8.39
+      d log(M_src/M_b)/d log r = -0.05  (0 = the source TRACES the baryons);   d log(a0_req/a0)/d log r = -0.32  (0 = a single rescaled acceleration scale)
+      CONTROL: Newtonian M_HSE/M_b log-slope = +0.03 (ratio 6.7-9.2); published NFW fit M_NFW/M_b log-slope = +0.03
+  [PASS] B8 [reported, NULL] the required source is baryon-tracing (log-slope near zero) -- but so is the fitted NFW halo, so baryon-tracing does NOT discriminate between an extra source and a dark-matter halo; the discriminating statement is the ceiling itself (B1-B5), not the profile shape   (required source slope -0.05 (M_src/M_b 5.2-8.2); NFW control slope +0.03; a0_req/a0 = 8.4-24.1, slope -0.32 -- a0_req is NOT constant either, so a rescaled acceleration scale does not fit the cluster either)
+
+  B9  against the candidate's own dark sector (g03r: rho_d ~ e^{-r/H}/g, H = 0.42 e c^2/(|K_2| a0)):
+      |K_2| = 1.0e+05: H =    355 kpc -> the dust's enclosed M_d/M_b RISES outward (g03r H2), while the data need a slope of -0.05
+      |K_2| = 2.5e+05: H =    142 kpc -> the dust's enclosed M_d/M_b RISES outward (g03r H2), while the data need a slope of -0.05
+      |K_2| = 1.0e+06: H =     36 kpc -> the dust's enclosed M_d/M_b RISES outward (g03r H2), while the data need a slope of -0.05
+  [PASS] B9 [the cluster verdict] the candidate's dust cannot be the required source: the data need a baryon-tracing (flat or falling) M_src/M_b, the dust's rises outward by construction because its stiffness follows the local field   (required slope -0.05; the dust's e^{-r/H}/g law gives a rising ratio at every |K_2| (g03r))
+
+  caveats: HSE (tested in B6, not granted); FORW hydrostatic reconstruction; the seven clusters with published stellar
+  profiles carry the headline, the other five are imported and flagged; SPARC uses the standard fixed Upsilon at 3.6um
+  (a per-galaxy M/L would move individual points, not the population ceiling); the ceiling is a statement about the KERNEL,
+  so a system above it needs a source, not a different interpolation function.  total 1s
+
+RESULT: 0 FAIL
