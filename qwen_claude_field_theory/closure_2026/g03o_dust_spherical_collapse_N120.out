@@ -1,0 +1,13 @@
+====================================================================================================
+g03o -- spherical collapse of the scalar dust with self-gravity and local stiffness
+====================================================================================================
+  references and controls (captured = bound with virialised radius r_ta/2 inside the aperture; fractions of the cosmic share):
+    galaxy 100 kpc: cold Newtonian 0.200 (inner 0.000); cold in the MOND well 0.200 (inner 0.067)  <- the CDM-like reference
+    cluster 1 Mpc: cold Newtonian 0.067 (inner 0.000); cold in the MOND well 0.067 (inner 0.000)  <- the CDM-like reference
+    hot dust (c_s = 300 km/s, galaxy): 0.000
+  [PASS] C1 the cold references capture a definite part of the share inside the apertures (> 0.05 in both systems; the apertures are smaller than the virialised extents, so the absolute fractions are modest and only the RATIOS stiff/cold are used below) and the hot control captures little (< 0.1 of the galaxy's cold reference)   (galaxy 0.200, cluster 0.067, hot 0.000)
+  if not (cs_fixed is not None and cs_fixed == 0.0): q[conv] = 2.0*rho_l[:-1][conv]*dv[conv]**2
+  v += acc*dt; r += v*dt; r = np.maximum(r, rcore); t += dt; a += a*H_of(a)*dt; rmax = np.maximum(rmax, r)
+
+     |K_2| | galaxy 100 kpc | galaxy inner 10 kpc | cluster 1 Mpc     (relative to the cold MOND reference; targets: galaxy <= 0.14, inner ~ 0, cluster >= 0.32-0.46)
+     3e+04 |          0.000 |               0.000 |         0.000
