@@ -1,0 +1,76 @@
+======================================================================================================================
+g03y -- the registered DR4 estimator at the CORRECTED floors with the CARRIED kernel
+======================================================================================================================
+  carried interpolations at y = [0.5, 0.999, 1.001, 1.9, 5.0]:
+    exponential carrier mu = [0.39347, 0.63175, 0.63249, 0.80638, 0.92642]   (plain 1 - e^-y = [0.39347, 0.63175, 0.63249, 0.85043, 0.99326])
+    nu_RAR carried      mu = [0.33645, 0.51032, 0.51086, 0.67879, 0.87048]
+  [PASS] Z1 [kernels] both carried interpolations are continuous at their saturation points and differ from the plain exponential in the wide-binary regime y_e = 1.9, which is above the saturation point y = 1   (continuity jumps 7.4e-10 and 7.9e-06; at y_e = 1.9 the carried mu is 0.8064 against the plain 0.8504)
+  Z0 control [canonical]: this script's estimator on g03g's ORIGINAL table returns gamma_v = 1.0325 +/- 0.0025 (g03h published 1.032)
+  Z0 control [alt]: this script's estimator on g03g's ORIGINAL table returns gamma_v = 1.0400 +/- 0.0037 (g03h published 1.040)
+  [PASS] Z0 [control] the estimator code used below, fed g03g's original tables, reproduces g03h's published gamma_v to 0.002 at both footings, so any change reported afterwards is the physics and not a re-implementation difference   (canonical: 1.0325 vs 1.032; alt: 1.0400 vs 1.040)
+
+  [exp_carried_oldxi/canonical] xi = 0.03 pc; orientation-averaged gamma_force, s [kAU] =   3.0   5.0   7.0  10.0  15.0  20.0  30.0
+      M_tot = 1.0: 1.0069 1.0185 1.0353 1.0603 1.0945 1.1187 1.1428
+      M_tot = 2.0: 1.0048 1.0137 1.0289 1.0552 1.0897 1.1145 1.1398
+      REGISTERED ESTIMATOR: gamma_v = 1.0725 +/- 0.0037   (published at the OLD floor: 1.032; registered band 1.1614-1.1814; Newton 1.000)
+
+  [exp_carried_oldxi/alt] xi = 0.05 pc; orientation-averaged gamma_force, s [kAU] =   3.0   5.0   7.0  10.0  15.0  20.0  30.0
+      M_tot = 1.0: 1.0036 1.0102 1.0204 1.0380 1.0683 1.0969 1.1393
+      M_tot = 2.0: 1.0026 1.0079 1.0173 1.0354 1.0656 1.0944 1.1373
+      REGISTERED ESTIMATOR: gamma_v = 1.0625 +/- 0.0037   (published at the OLD floor: 1.040; registered band 1.1917-1.2267; Newton 1.000)
+
+  [exp_carried/canonical] xi = 0.07 pc; orientation-averaged gamma_force, s [kAU] =   3.0   5.0   7.0  10.0  15.0  20.0  30.0
+      M_tot = 1.0: 1.0017 1.0047 1.0097 1.0186 1.0356 1.0537 1.0851
+      M_tot = 2.0: 1.0012 1.0037 1.0083 1.0175 1.0343 1.0525 1.0841
+      REGISTERED ESTIMATOR: gamma_v = 1.0375 +/- 0.0037   (published at the OLD floor: 1.032; registered band 1.1614-1.1814; Newton 1.000)
+
+  [exp_carried/alt] xi = 0.10 pc; orientation-averaged gamma_force, s [kAU] =   3.0   5.0   7.0  10.0  15.0  20.0  30.0
+      M_tot = 1.0: 1.0010 1.0030 1.0063 1.0125 1.0250 1.0403 1.0703
+      M_tot = 2.0: 1.0008 1.0024 1.0055 1.0118 1.0243 1.0395 1.0696
+      REGISTERED ESTIMATOR: gamma_v = 1.0275 +/- 0.0037   (published at the OLD floor: 1.040; registered band 1.1917-1.2267; Newton 1.000)
+
+  [rar_carried/canonical] xi = 0.10 pc; orientation-averaged gamma_force, s [kAU] =   3.0   5.0   7.0  10.0  15.0  20.0  30.0
+      M_tot = 1.0: 1.0016 1.0045 1.0095 1.0191 1.0388 1.0631 1.1114
+      M_tot = 2.0: 1.0012 1.0036 1.0082 1.0177 1.0374 1.0617 1.1101
+      REGISTERED ESTIMATOR: gamma_v = 1.0450 +/- 0.0037   (published at the OLD floor: 1.032; registered band 1.1614-1.1814; Newton 1.000)
+
+  [rar_carried/alt] xi = 0.15 pc; orientation-averaged gamma_force, s [kAU] =   3.0   5.0   7.0  10.0  15.0  20.0  30.0
+      M_tot = 1.0: 1.0009 1.0025 1.0053 1.0110 1.0231 1.0399 1.0761
+      M_tot = 2.0: 1.0007 1.0020 1.0046 1.0102 1.0223 1.0391 1.0754
+      REGISTERED ESTIMATOR: gamma_v = 1.0300 +/- 0.0037   (published at the OLD floor: 1.040; registered band 1.1917-1.2267; Newton 1.000)
+
+  kernel / footing              xi [pc]  gamma_v (corrected)  published (stale)  band floor
+  exp_carried_oldxi / canonical     0.03         1.0725 +/- 0.0037              1.032      1.1614
+  exp_carried_oldxi / alt          0.05         1.0625 +/- 0.0037              1.040      1.1917
+  exp_carried / canonical          0.07         1.0375 +/- 0.0037              1.032      1.1614
+  exp_carried / alt                0.10         1.0275 +/- 0.0037              1.040      1.1917
+  rar_carried / canonical          0.10         1.0450 +/- 0.0037              1.032      1.1614
+  rar_carried / alt                0.15         1.0300 +/- 0.0037              1.040      1.1917
+
+  DECOMPOSITION: the two corrections compete, so the net change is not monotone in xi.
+      step                                                  canonical        alt
+      published: plain kernel at the old floor                 1.0320     1.0400
+      + carried kernel, SAME old floor (kernel effect)         1.0725     1.0625
+      + corrected floor as well (floor effect)                 1.0375     1.0275
+      kernel effect +0.0405 / +0.0225;  floor effect -0.0350 / -0.0350  (opposite signs, comparable size)
+  [PASS] Z2 [decomposition] the two corrections act in OPPOSITE directions -- the carried kernel raises the boost (nu is 5.5% larger at the external field y_e = 1.9, which lies above the saturation point) while the larger coherence length lowers it -- so the net change is not monotone and had to be computed, not assumed   (kernel effect +0.0405/+0.0225, floor effect -0.0350/-0.0350)
+  [PASS] Z3 [THE NUMBER] at the corrected floors, with the kernel the scalar can actually carry, the pre-registered DR4 estimator still returns a value below the registered band floor, so the candidate remains distinguishable from standard MOND by this measurement   (exp_carried_oldxi/canonical: 1.0725 +/- 0.0037 (band floor 1.1614); exp_carried_oldxi/alt: 1.0625 +/- 0.0037 (band floor 1.1917); exp_carried/canonical: 1.0375 +/- 0.0037 (band floor 1.1614); exp_carried/alt: 1.0275 +/- 0.0037 (band floor 1.1917); rar_carried/canonical: 1.0450 +/- 0.0037 (band floor 1.1614); rar_carried/alt: 1.0300 +/- 0.0037 (band floor 1.1917))
+
+  the SECOND consequence of the corrected floors: the anisotropy sign flip (g03i/g03k, s_x = 2.49 xi + 0.31 kAU)
+      configuration                 xi [pc]  xi [kAU]  s_x [kAU]   (DR4's usable range is about 4-30 kAU)
+      exp_carried / canonical          0.07      14.4       36.3
+      exp_carried / alt                0.10      20.6       51.7
+      rar_carried / canonical          0.10      20.6       51.7
+      rar_carried / alt                0.15      30.9       77.3
+      at the OLD floors the crossing sat at 15.7 kAU (canonical) and 26.0 kAU (alt), inside DR4's range;
+      at the corrected floors it moves to 36-77 kAU, at or beyond the edge of it.
+  [PASS] Z4 [reported] the corrected floors also push the predicted anisotropy sign-flip radius out of DR4's usable separation range, so that second prediction weakens as the first one sharpens   (s_x moves from 16/26 kAU to 36-77 kAU)
+
+  caveats: g03g's solver, boxes and convergence settings are unchanged; the registration is imported and not edited;
+  the floors come from g03b's linear-response proxy (g03x), not from g03d's exact fourth-order solve, so they carry
+  that proxy's systematics; the common-mode force remains the open numerical item flagged in g03g.
+  Note that g03g's analytic cross-check gamma_linear hardcodes the PLAIN exponential's derivative (L = y_e e^-y_e/mu_e);
+  it is used only in that script's validate mode and never in the production table, so the patched kernel is not involved.
+
+RESULT: 0 FAIL
+rc=0
