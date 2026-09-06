@@ -1,0 +1,52 @@
+======================================================================================================================
+g03v -- closing the |K_2| pincer by dynamical clock screening
+======================================================================================================================
+  V1  re-derived from the action:  S_eff = (K_2*c_2 + K_B**2 - 4*K_B + 4)/(K_2*c_2)
+  [PASS] V1 [reproduce] the effective linear source, re-derived here from the action, equals 1 + (2-K_B)^2/(c_2 K_2)   (difference from the closed form = 0)
+
+  V2  S_eff = 0  <=>  c_2 = (-K_B**2 + 4*K_B - 4)/K_2   i.e.  c_2 |K_2| = (2 - K_B)^2
+      at K_B = 0.2, |K_2| = 2.5e+05:  c_2* = 1.296e-05   (the parameter table allows c_2 <= 0.05, with no lower bound)
+  [PASS] V2 [locus] the linear source vanishes exactly on c_2 |K_2| = (2-K_B)^2, and that value of c_2 lies inside the allowed range 0 < c_2 <= 0.05   (c_2* = 1.296e-05, S_eff there = -2.74e-16)
+
+  V3  the STATIC limit of the same scalar equation (P_dot = 0, so the clock drag is absent):
+      coefficient of d^2 Psi = 2*K_B - 4;  of d^2 P = 2*J_Y0*(2 - K_B);  ratio = -1/J_Y0
+      on the closure locus the ratio is -1/J_Y0 -- c_2 and K_2 do not appear in it at all
+  [PASS] V3 [MAKE-OR-BREAK] the static law is untouched by the closure: the static limit is still J_Y d^2 P = d^2 Psi with unit coefficient, and neither c_2 nor K_2 appears in it, so galaxy phenomenology is unchanged while the linear cosmological source is screened   (static ratio = -1/J_Y0; free symbols = ['J_Y0'] (no c_2, no K_2): the drag is proportional to P_dot and vanishes in a static system)
+
+  V4  the tuning.  Growth boost = |S_eff| x 0.9 (c_* k t_0)^2; require < 10% of LambdaCDM at k = 0.2/Mpc.
+          |K_2|  c_* t_0 [Mpc]  boost at S_eff = 1  |S_eff| allowed          c_2|K_2| band  fractional width
+        5.0e+04          12.26                5.41            0.018           [3.18, 3.30]               4%
+        1.0e+05           8.67                2.71            0.037           [3.12, 3.36]               7%
+        2.5e+05           5.48                1.08            0.092           [2.97, 3.57]              19%
+        5.0e+05           3.88                0.54            0.185           [2.73, 3.97]              38%
+  [PASS] V4 [tuning, reported] closing the pincer is a one-parameter relation between two otherwise-free parameters, and it must hold to a stated precision -- this is a tuning, reported as such, not a derivation   (|S_eff| must be below 0.018 at the stiffest end, i.e. c_2|K_2| must equal (2-K_B)^2 = 3.24 to within 4%; it converts a factor-5.4 CONTRADICTION into a testable RELATION, which is progress but not a derivation)
+
+  V5  the cost of c_2 ~ 1e-5 instead of 0.05:
+      G_cos/G = 1/(1 + 3 c_2/2) = 0.999980560  (was 0.930233 at c_2 = 0.05): closer to 1, so BBN and the measured-G gate are EASIER, not harder
+      PPN alpha_2: f33 measured it insensitive to c_2 -- a factor 10 change in c_2 moved alpha_2 by 0.1% (-5.899e-06 -> -5.893e-06), so the locus costs nothing in PPN
+      khronon sound speed c_khronon^2 = c_2/c_14 = 1.296  -> c_khronon = 1.138 c   (at c_2 = 0.05 it was 71 c)
+  [PASS] V5 [cost] the small c_2 the locus requires costs nothing: it moves G_cos/G closer to unity, leaves PPN alpha_2 unchanged at the 0.1% level (f33's own c_2 scan), and brings the khronon's superluminal speed down from ~71c to order c   (G_cos/G = 0.9999806; c_khronon = 1.14 c (from 71 c))
+
+  V6  gravitational Cherenkov: a SUBluminal khronon would let ultra-high-energy cosmic rays radiate gravitationally,
+      so the healthy corner needs c_khronon >= c, i.e. c_2 >= c_14.  On the closure locus c_2 = (2-K_B)^2/|K_2|, so
+           |K_2|  <=  (2 - K_B)^2 / c_14  =  3.240e+05     <-- a NEW upper bound, absent before the closure
+      the dark sector's own window (g03r/g03s) is |K_2| in [5e4, 5e5].  Joint window: [5.0e+04, 3.24e+05]
+  [PASS] V6 [NEW BOUND] combining the closure locus with gravitational-Cherenkov safety gives a new upper bound |K_2| <= (2-K_B)^2/c_14, and it leaves the dark sector's window non-empty   (|K_2| <= 3.24e+05 from Cherenkov + closure; the dark sector needs [5e4, 5e5]; JOINT WINDOW [5.0e+04, 3.24e+05], a factor 6.5 -- the factor-5.4 gap is gone)
+
+  V7  with the locus imposed, c_2 is no longer a free parameter.  Predictions across the joint window:
+          |K_2|  c_2 (predicted)   H [kpc]  c_khronon/c    G_cos/G - 1
+        5.0e+04        6.480e-05       710        2.546      -9.72e-05
+        1.0e+05        3.240e-05       355        1.800      -4.86e-05
+        2.0e+05        1.620e-05       178        1.273      -2.43e-05
+        3.2e+05        1.000e-05       110        1.000      -1.50e-05
+      the chain is: the dark sector fixes |K_2| -> the closure fixes c_2 -> c_2/c_14 fixes the khronon speed.
+      c_14 is already pinned near 1e-5 by alpha_1, so the khronon speed becomes a PREDICTION: c_khronon/c = sqrt((2-K_B)^2/(c_14 |K_2|)),
+      between 1.00 and 2.55 across the joint window, and >= 1 is required.
+  [PASS] V7 [prediction] the closure removes c_2 as a free parameter and turns the khronon's propagation speed into a prediction fixed by the dark sector's |K_2| and the PPN-pinned c_14   (c_2 = (2-K_B)^2/|K_2| in [1.00e-05, 6.48e-05]; c_khronon/c in [1.00, 2.55], bounded below by 1 exactly at |K_2| = 3.24e+05)
+
+  caveats: S_eff is the sub-horizon (leading-k) limit of g03t's exact coefficient; the growth boost 0.9 (c_* k t)^2 is g03s's
+  matter-era driven solution, not a Boltzmann-code fit, so the 10% band is indicative; the locus is a RELATION between two free
+  parameters tuned at the stated precision, not a derivation of either; gravitational-Cherenkov safety is the standard
+  Lorentz-violation argument applied to this khronon, not re-derived here.  total 16s
+
+RESULT: 0 FAIL
