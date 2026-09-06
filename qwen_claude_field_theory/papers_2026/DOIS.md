@@ -6,3 +6,4 @@
 
 # Published 2026-09-06
 - PAPER5 (the bounded-boost theorem: a parameter-free ceiling on the acceleration excess that a dark-matter halo cannot impose; holds for 99.23% of SPARC beyond 2 kpc, discriminates against the exponential carrier at 2-3x, and fails 9.1-fold in X-COP cluster cores with the nonthermal and missing-baryon escapes both closed): DOI 10.5281/zenodo.22544565 (concept 10.5281/zenodo.22544564)
+- PAPER5 v2 (references added; the carrier theorem shown to BE the bounded-boost theorem, the bulgeless kernel selection, and the Solar-System cost of the nu_RAR swap; flags a correction to the standing coherence-length floors): DOI 10.5281/zenodo.22544996 (same concept 10.5281/zenodo.22544564)
