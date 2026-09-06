@@ -39,3 +39,16 @@ k01–k02 leave one coefficient-free, right-sign, right-size identification: a�
 | P4 | Gaia DR4 gives 21% on a₀; 4.3% is needed for 2σ |
 
 **Standing after k01–k03.** κ = ½ stays the frozen empirical target; the present action class cannot derive it (k01); the only zero-mode-removing principle of the global type misses by 10⁵ (k02); the one principle-shaped coefficient not excluded predicts 0.461, which the data cannot separate from ½ and which is degenerate with the H₀ tension (k03). The coefficient is a precision problem gated by the stellar M/L zero point, the absolute gas scale and H₀.
+
+## k04 — the four-form promotion of a₀ (`k04_four_form_promotion_consistency.py`, 2 FAIL of 6; relayed construction, independent audit in the user's download)
+
+Promote the MOND scale to a conserved four-form flux, a₀ = β√G|q|, with vacuum action P(q) = Zq²/2. The four-form's gravitating energy is the Legendre form ε = qP_q − P, so the k01 constant comes out **positive** (F1) and both a₀ and ρ_Λ are set by one flux: a₀ ∝ √(Gρ_Λ) becomes structural and the flux amplitude cancels, κ² = 2β²/(Z + 2bβ²). The half is then **Z/β² = 7.96**, a ratio of two couplings that nothing in the action fixes (F2). Feeding a₀(q) back into the four-form equation dL/dq = const makes a₀ environmental: in the saturated regime the equation is linear in q, a₀_loc = a₀(1 − g_N/155a₀), and above 155 a₀ = 1.4×10⁻⁸ m s⁻² the only solution is q = 0, so the scalar switches off (a kink of |q|).
+
+| check | result |
+|---|---|
+| F3 galaxies | a₀ 1.2% low at the RAR knee, 64% low at 100 a₀; the RAR moves by < 0.002 dex (invisible) |
+| F4 Solar System | the scalar is off inside 205 AU: the planetary sunward residual vanishes without the coherence length; the Cassini quadrupole is set at s ≈ 1 where a₀_loc = 0.997 a₀, so ξ is still required |
+| F5 wide binaries | a₀ 15% low at 2 kAU (1.5 M☉): δγ_v = −0.019 canonical / −0.015 alt in the 2 kAU bin, about 1σ for DR4 |
+| F6 stability | Z_eff > 0 everywhere |
+
+**Standing.** The construction reverses the sign and turns the seesaw form into structure, at the price of an environmental a₀ that is invisible in galaxies and a 1σ effect for DR4. The coefficient is untouched: "why 32π" has become "why Z = 8β²". Not a derivation; the cleanest statement of the open problem so far.

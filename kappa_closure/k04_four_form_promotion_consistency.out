@@ -1,0 +1,28 @@
+======================================================================================================================
+k04 -- four-form promotion of a0: sign, coefficient, and the feedback on the local sector
+======================================================================================================================
+    F1: P(q) = Z*q**2/2 + b*beta**2*q**2;  eps = q P_q - P = q**2*(Z/2 + b*beta**2);  promoted-primitive part = +b a0^2/G = b*beta**2*q**2  (k01 had -b a0^2/G)
+  [PASS] F1 [sign] the promoted primitive's gravitating energy is +b a0^2/G (reversed from k01's -b a0^2/G) with the MOND gradient term untouched
+    F2: kappa^2 = 2*beta**2/(Z + 2*b*beta**2);  kappa = 1/2  <=>  Z/beta^2 = 8 - 2*b = {"K_B=0.0": 7.964, "K_B=0.25": 7.968}  (b = (2-K_B) I/(16 pi), I = 0.4525)
+  [FAIL] F2 [coefficient] the action fixes the ratio Z/beta^2 (kappa = 1/2 needs 7.96); it is a free ratio of two couplings, q cancels   (the flux amplitude cancels from kappa, the coefficient does not: one number, undetermined)
+    F3: K_B = 0.00 canonical: a0_loc/a0 (Delta log g_obs): s=0.01: 1.0000 (-0.0000 dex), s=0.1: 0.9999 (-0.0000 dex), s=1: 0.9968 (-0.0004 dex), s=2.54: 0.9881 (-0.0011 dex), s=10: 0.9398 (-0.0016 dex), s=100: 0.3574 (-0.0018 dex), s=1000: 0.0000 (-0.0003 dex)
+    F3: K_B = 0.25 canonical: a0_loc/a0 (Delta log g_obs): s=0.01: 1.0000 (-0.0000 dex), s=0.1: 0.9999 (-0.0000 dex), s=1: 0.9972 (-0.0003 dex), s=2.54: 0.9896 (-0.0009 dex), s=10: 0.9474 (-0.0014 dex), s=100: 0.4381 (-0.0016 dex), s=1000: 0.0000 (-0.0003 dex)
+  [PASS] F3 [feedback, galaxies] the environmental a0 changes the RAR by < 0.01 dex for g_N <= 100 a0 (both footings, K_B 0-0.25)   (max |Delta log g_obs| at s <= 100 = 0.0018 dex; a0 falls by 1.2% at the knee and 64% at 100 a0)
+    F4: canonical promoted residual g_phi = Delta_sat a0_loc vs the sunward bound 3.66e-14 m/s^2: Mercury 8.2e-24 (0.0x), Earth 8.9e-28 (0.0x), Saturn 1.5e-25 (0.0x), Neptune 3.2e-24 (0.0x)
+    F4: alt       promoted residual g_phi = Delta_sat a0_loc vs the sunward bound 4.41e-14 m/s^2: Mercury 1.4e-23 (0.0x), Earth 1.9e-27 (0.0x), Saturn 3.9e-25 (0.0x), Neptune 9.8e-24 (0.0x)
+  [PASS] F4 [Solar System] the promotion alone (no coherence length) keeps the planetary residual below the g03d sunward bound at every planet   (largest residual/bound = 1.1e-09: the scalar is switched off inside g_N = 155 a0 (r < 205 AU); the Cassini quadrupole is set at s ~ 1 where a0_loc = 0.997 a0, so xi is still required)
+    F5: canonical a0_loc/a0 at 2, 3, 5, 10, 20 kAU (1.5 Msun): 0.851 (dgamma_v -0.0187), 0.936 (dgamma_v -0.0076), 0.980 (dgamma_v -0.0023), 0.997 (dgamma_v -0.0003), 1.000 (dgamma_v -0.0000)
+    F5: alt       a0_loc/a0 at 2, 3, 5, 10, 20 kAU (1.5 Msun): 0.877 (dgamma_v -0.0152), 0.948 (dgamma_v -0.0062), 0.984 (dgamma_v -0.0019), 0.998 (dgamma_v -0.0003), 1.000 (dgamma_v -0.0000)
+  [FAIL] F5 [wide binaries] the induced shift of gamma_v in the 2-3 kAU bins is below DR4's +/-0.015 (not separable this decade)   (largest |dgamma_v| = 0.0187 at 2 kAU)
+  [PASS] F6 [stability] the effective flux stiffness Z_eff = Z + (2-K_B) beta^2 (s Delta - j)/(8 pi) is positive everywhere (s Delta - j >= 0)   (min(s Delta - j) = 1.05e-05)
+
+  OUTCOME: the four-form promotion does what the note claims and no more.  Sign: reversed (F1).  Form: a0 and rho_Lambda from ONE conserved flux,
+           so a0 ~ sqrt(G rho_Lambda) becomes structural and the flux amplitude cancels; the coefficient becomes the coupling ratio Z/beta^2 = 8,
+           which nothing fixes (F2).  Feedback: a0 becomes environmental, a0_loc = a0 (1 - g_N/155 a0): 1.2% low at the RAR knee, 64% low at 100 a0,
+           and the scalar switches OFF above 155 a0 = 1.4e-8 m/s^2 (inside 205 AU of the Sun); invisible in galaxies (F3), a 1-sigma shift of
+           DR4's 2 kAU bin (F5), stable (F6); it screens the Solar-System MONOPOLE by itself (F4) but not the Cassini quadrupole, set at s ~ 1,
+           so the coherence length is still required.
+           Net: the half is now 'why Z = 8 beta^2', a cleaner question than 'why 32 pi', and still an open one.
+
+RESULT: 2 FAIL -> ['F2 [coefficient] the action fixes the ratio Z/beta^2 (kappa = 1/2 needs 7.96); it is a free ratio of two couplings, q cancels', "F5 [wide binaries] the induced shift of gamma_v in the 2-3 kAU bins is below DR4's +/-0.015 (not separable this decade)"]
+rc=0
