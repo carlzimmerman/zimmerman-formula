@@ -1,0 +1,56 @@
+==============================================================================================================
+g03s -- the dust growth law from the candidate's perturbation equations
+==============================================================================================================
+  c_* = (0.42)^1/2 c/|K_2|^1/2 = 389 km/s at |K_2| = 2.5e+05; deep-MOND sound speed c_s = c_* y_N^1/4: 69 km/s at y_N = 1e-3, 219 km/s at 0.1
+  [PASS] S1 [static limit] point mass 1e14 Msun, no expansion, psi from 0, implicit steps of 0.02 Gyr for 40 crossing times: the field solver's psi_r matches the g03j carrier force within 3% at r = 50, 200, 800, 1500 kpc (y_N = 60 - 0.07: saturated to deep MOND)   (psi_r/g_carrier = [1.0, 1.0, 1.0, 1.0], y_N = [59.568, 3.723, 0.233, 0.066], crossing time 7.4 Gyr, 14823 steps, Newton iterations <= 30)
+    S1b: field-solver t_80 at r = 50, 200, 800, 1500 kpc = [0.06, 0.14, 1.08, 3.46] Gyr; crossing-time model with BETA = 1.19: [0.032, 0.127, 1.08, 4.953] Gyr; model/field = [0.53, 0.91, 1.0, 1.43]
+  [PASS] S1b [calibration] with one BETA (fitted at y_N = 0.23) the crossing-time relaxation model's t_80 matches the field solver's within a factor 1.5 at y_N = 3.7 and 0.07 as well   (BETA = 1.19, model/field = [0.53, 0.91, 1.0, 1.43])
+  S2: cluster seed x 0.001, growth of the enclosed contrast delta_bar(<r_L) from z_i = 50 to 0 vs LambdaCDM D(1)/D(a_i)
+    newton  : delta_bar(1)/delta_bar(a_i) at r_L = 3, 10, 14 Mpc = [41.23, 40.62, 40.57]  (LambdaCDM 40.18); 35040 steps, 1s
+    instant : delta_bar(1)/delta_bar(a_i) at r_L = 3, 10, 14 Mpc = [8785.41, 22409519.65, 3622357.25]  (LambdaCDM 40.18); 964713 steps, 45s
+    dynamic : delta_bar(1)/delta_bar(a_i) at r_L = 3, 10, 14 Mpc = [746.78, 171.91, 130.09]  (LambdaCDM 40.18); 34364 steps, 2s
+    analytic (i): g_psi/g_N = 0.9 (c_* k t_0)^2 with c_* t_0 = 5.5 Mpc, k = pi/r_L: [29.69, 2.67, 1.36] at r_L = 3, 10, 14 Mpc (before saturation at (a0 g_N)^1/2)
+  [FAIL] S2 [linear regime] the derived law's linear growth at r_L = 10 and 14 Mpc is within 8% of LambdaCDM's D(1)/D(a_i) (zero-seed drift subtracted) -- expected to FAIL by (i); the newton law must pass the same test (integrator control)   (derived/LCDM = [18.586, 4.279, 3.238] (3, 10, 14 Mpc), instant/LCDM = [218.659, 557747.134, 90156.3], newton/LCDM = [1.026, 1.011, 1.01])
+  [PASS] S2c [integrator control] the Newtonian law reproduces LambdaCDM's linear growth within 8% at r_L = 3, 10, 14 Mpc   (newton/LCDM = [1.026, 1.011, 1.01])
+  S3-S5: the derived law on the model cluster (z_c = 0.3) and galaxy (z_c = 1), |K_2| = 2.5e5, canonical
+    cluster  derived law N = 400: captured/share 0.9168 / 0.3113, turned around 1.276, r_ta 6695 kpc  (1029774 steps, 114s)
+    cluster  derived law N = 800: captured/share 0.9738 / 0.2530, turned around 1.360, r_ta 6700 kpc  (1047158 steps, 176s)
+    galaxy   derived law N = 400: captured/share 5.2402 / 1.6958, turned around 5.976, r_ta 1022 kpc  (2102416 steps, 246s)
+    galaxy   derived law N = 800: captured/share 5.4659 / 1.3996, turned around 5.893, r_ta 1007 kpc  (2126236 steps, 396s)
+  [PASS] S3 [convergence] derived-law cluster: turned-around mass and 1-Mpc capture change < 15% between N = 400 and 800   (spreads [0.062, 0.059])
+    S4 cluster at 1000 kpc: scalar force / static carrier force = [0.12, 0.36, 0.69, 1.01, 1.02] at a = 0.1, 0.3, 0.5, 0.8, 1; reaches 80% at z = 1.34
+    S4 cluster at 200 kpc: scalar force / static carrier force = [0.67, 1.01, 1.07, 1.04, 0.98] at a = 0.1, 0.3, 0.5, 0.8, 1; reaches 80% at z = 5.43
+    S4 galaxy at 30 kpc: scalar force / static carrier force = [0.76, 1.0, 1.0, 1.0, 1.0] at a = 0.1, 0.3, 0.5, 0.8, 1; reaches 80% at z = 6.62
+    S4 galaxy at 100 kpc: scalar force / static carrier force = [0.53, 1.12, 0.62, 0.99, 1.02] at a = 0.1, 0.3, 0.5, 0.8, 1; reaches 80% at z = 3.03
+  [PASS] S4 [reported] the scalar force reaches 80% of its static MOND value before a = 1 at 30 kpc in the galaxy and at 200 kpc in the cluster
+    S5 cluster: turned-around mass (shares) newton 0.527 | DERIVED 1.360 | instant 3.884;  captured inside 1000 kpc: 0.423 | 0.974 | 2.046
+    S5 galaxy: turned-around mass (shares) newton 0.803 | DERIVED 5.893 | instant 4.266;  captured inside 100 kpc: 0.793 | 5.466 | 4.432
+  [FAIL] S5 [reported] the derived law lies between the two brackets in the turned-around mass for both systems
+  S6 window table, derived law, canonical footing: atmosphere mass / derived-law cold capture inside the apertures (cold reference: galaxy 5.240/1.696, cluster 0.917/0.311 of the share; turned around 5.976, 1.276)
+     |K_2| | galaxy 100 kpc | galaxy 10 kpc | cluster 1 Mpc | cluster 200 kpc | H [kpc]
+       5e+04 |          0.001 |         0.000 |         0.502 |           0.038 |     710
+       1e+05 |          0.002 |         0.000 |         0.926 |           0.138 |     355
+       2e+05 |          0.004 |         0.000 |         1.293 |           0.437 |     178
+       3e+05 |          0.202 |         0.000 |         1.377 |           0.834 |     118
+       5e+05 |          0.559 |         0.003 |         1.392 |           1.733 |      71
+       1e+06 |          0.967 |         0.020 |         1.392 |           3.380 |      36
+       3e+06 |          1.140 |         0.207 |         1.392 |           4.099 |      12
+    window (canonical): [50000.0, 100000.0, 200000.0]
+    X-COP under the derived law: best |K_2| = 1.58e+05 (H = 224 kpc), rms 0.27 dex, trend +0.57 vs data -0.14; supplied [0.36, 0.49, 0.63, 0.9, 1.06, 1.41, 1.54, 1.95, 2.61]
+  S6 window table, derived law, alt footing: atmosphere mass / derived-law cold capture inside the apertures (cold reference: galaxy 5.665/1.941, cluster 1.061/0.273 of the share; turned around 5.997, 1.429)
+     |K_2| | galaxy 100 kpc | galaxy 10 kpc | cluster 1 Mpc | cluster 200 kpc | H [kpc]
+       5e+04 |          0.001 |         0.000 |         0.609 |           0.078 |     590
+       1e+05 |          0.002 |         0.000 |         1.024 |           0.252 |     295
+       2e+05 |          0.004 |         0.000 |         1.305 |           0.768 |     147
+       3e+05 |          0.297 |         0.001 |         1.344 |           1.425 |      98
+       5e+05 |          0.644 |         0.005 |         1.347 |           2.784 |      59
+       1e+06 |          0.974 |         0.032 |         1.347 |           4.741 |      29
+       3e+06 |          1.058 |         0.270 |         1.347 |           5.242 |      10
+    window (alt): [50000.0, 100000.0, 200000.0]
+  [PASS] S6 [reported] under the derived law a window exists at both footings (galaxy 100 kpc <= 14%, cluster 1 Mpc >= 32%)   ({"canonical": [50000.0, 100000.0, 200000.0], "alt": [50000.0, 100000.0, 200000.0]})
+  [FAIL] S6b [reported] under the derived law the best |K_2| for X-COP matches the residual to < 0.15 dex rms with the data's trend within 0.2   (best 1.6e+05, rms 0.27, trend +0.57 vs -0.14)
+
+  caveats: (*) is assembled from f34's coefficients and the static law, not re-derived from the covariant action in the expanding background -- in particular the LINEAR source 4 pi G delta rho is inherited from the static law (where it arises through the clock's spatial gradient tracking the potential, f33); if the candidate's FLRW linear theory couples the scalar only through the metric (as in AeST's published linear analysis) the boost of (i) is absent and the linear growth is LambdaCDM's -- deciding this is the next gate and the candidate's cosmology stands or falls on it; the flux function is the g03j carrier branch continued with slope 100 at saturation; the dynamics uses the per-shell relaxation model calibrated on the field solver (BETA = 1.19); the scalar starts unexcited at z_i = 50; the relaxation target carries the 0.02 a0 large-scale external field in its argument exactly as the instant law does (without it the deep-MOND target is unbounded at small g_N); spherical; the AeST reading (the dust sources the scalar); |K_2| = 2.5e5 for the dynamics (the X-COP value), the atmosphere scanned in |K_2|.  total 2145s
+
+RESULT: 3 FAIL -> ["S2 [linear regime] the derived law's linear growth at r_L = 10 and 14 Mpc is within 8% of LambdaCDM's D(1)/D(a_i) (zero-seed drift subtracted) -- expected to FAIL by (i); the newton law must pass the same test (integrator control)", 'S5 [reported] the derived law lies between the two brackets in the turned-around mass for both systems', "S6b [reported] under the derived law the best |K_2| for X-COP matches the residual to < 0.15 dex rms with the data's trend within 0.2"]
+rc=1
