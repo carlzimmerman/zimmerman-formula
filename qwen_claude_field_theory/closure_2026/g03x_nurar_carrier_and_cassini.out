@@ -1,0 +1,63 @@
+======================================================================================================================
+g03x -- nu_RAR as the carried kernel: the generalised carrier theorem and the Solar-System gate
+======================================================================================================================
+  Delta(s) maxima:  exponential partner C = 0.3679 at g_N = 0.6330 a0;   nu_RAR C = 0.6476 at g_N = 2.540 a0
+
+  Y1  stiffness d g_N/d g_phi = 1/Delta'(s): positive below each maximum, NEGATIVE above it (a gradient instability for any
+      single-valued scalar Lagrangian).  Sign change at g_N = 0.6330 a0 (exponential) and 2.540 a0 (nu_RAR), i.e. exactly at the maxima.
+  [PASS] Y1 [theorem] for BOTH kernels the scalar's longitudinal stiffness is positive below the maximum of Delta and negative above it, so the carrier theorem is the bounded-boost theorem and the saturation is universal, not peculiar to the exponential kernel   (sign change at 0.6330 a0 (exp, max at 0.6330) and 2.540 a0 (nu_RAR, max at 2.540))
+
+  Y2  the constant residual scalar force each carried kernel leaves at high acceleration:
+      exponential carrier: C a0 = 3.444e-11 m/s^2 = 940 x the alpha = 1 sunward gate
+      nu_RAR carried:      C a0 = 6.063e-11 m/s^2 = 1656 x the same gate   (1.76x the exponential's)
+  [PASS] Y2 [saturation] nu_RAR's carried kernel leaves a constant residual force 1.5-2x the exponential carrier's, so the kernel swap that helps the rotation curves makes the Solar-System screening harder, and by a quantified factor   (C(nu_RAR)/C(exp) = 1.760; both are ~10^3 times the sunward gate before screening)
+
+  Y3  validation: the machinery must reproduce g03b's published floors with the exponential inverse partner
+      on g03b's own grid: canonical 0.03 pc, alt 0.05 pc   (g03b published 0.03 and 0.05)
+      on this script's finer grid: canonical 0.03 pc, alt 0.04 pc  (the alt floor resolves to 0.04, a value absent from g03b's grid)
+  [PASS] Y3 [validation] run with the published exponential inverse partner on g03b's own tabulated grid this gate reproduces its published floors exactly, 0.03 pc canonical and 0.05 pc alt; on the finer grid used here the alt floor resolves to 0.04 pc, a value g03b did not tabulate   (g03b grid {'canonical': 0.03, 'alt': 0.05}; finer grid {'canonical': 0.03, 'alt': 0.04})
+
+  Y4  the gate for each carried kernel (canonical footing, external field 2.32e-10 shown):
+      exponential CARRIED    canonical xi =  0.01 pc: Q2/ceil   1.843 | M/bound  20.800 | g_r/gate   7.787  EXCLUDED
+      exponential CARRIED    canonical xi =  0.02 pc: Q2/ceil   0.887 | M/bound   7.676 | g_r/gate   2.878  EXCLUDED
+      exponential CARRIED    canonical xi =  0.03 pc: Q2/ceil   0.516 | M/bound   3.963 | g_r/gate   1.486  EXCLUDED
+      exponential CARRIED    canonical xi =  0.04 pc: Q2/ceil   0.336 | M/bound   2.412 | g_r/gate   0.905  EXCLUDED
+      exponential CARRIED    canonical xi =  0.05 pc: Q2/ceil   0.236 | M/bound   1.621 | g_r/gate   0.608  EXCLUDED
+      exponential CARRIED    canonical xi =  0.07 pc: Q2/ceil   0.134 | M/bound   0.876 | g_r/gate   0.329  admissible
+      exponential CARRIED    canonical xi =  0.10 pc: Q2/ceil   0.071 | M/bound   0.448 | g_r/gate   0.168  admissible
+      exponential CARRIED    canonical xi =  0.15 pc: Q2/ceil   0.034 | M/bound   0.206 | g_r/gate   0.077  admissible
+      exponential CARRIED    canonical xi =  0.30 pc: Q2/ceil   0.009 | M/bound   0.053 | g_r/gate   0.020  admissible
+      exponential CARRIED    canonical xi =  1.00 pc: Q2/ceil   0.001 | M/bound   0.005 | g_r/gate   0.002  admissible
+      nu_RAR CARRIED         canonical xi =  0.01 pc: Q2/ceil   3.121 | M/bound  36.623 | g_r/gate  13.711  EXCLUDED
+      nu_RAR CARRIED         canonical xi =  0.02 pc: Q2/ceil   1.500 | M/bound  13.530 | g_r/gate   5.072  EXCLUDED
+      nu_RAR CARRIED         canonical xi =  0.03 pc: Q2/ceil   0.872 | M/bound   6.990 | g_r/gate   2.622  EXCLUDED
+      nu_RAR CARRIED         canonical xi =  0.04 pc: Q2/ceil   0.568 | M/bound   4.257 | g_r/gate   1.597  EXCLUDED
+      nu_RAR CARRIED         canonical xi =  0.05 pc: Q2/ceil   0.398 | M/bound   2.862 | g_r/gate   1.074  EXCLUDED
+      nu_RAR CARRIED         canonical xi =  0.07 pc: Q2/ceil   0.227 | M/bound   1.546 | g_r/gate   0.580  EXCLUDED
+      nu_RAR CARRIED         canonical xi =  0.10 pc: Q2/ceil   0.121 | M/bound   0.792 | g_r/gate   0.297  admissible
+      nu_RAR CARRIED         canonical xi =  0.15 pc: Q2/ceil   0.057 | M/bound   0.364 | g_r/gate   0.137  admissible
+      nu_RAR CARRIED         canonical xi =  0.30 pc: Q2/ceil   0.015 | M/bound   0.094 | g_r/gate   0.035  admissible
+      nu_RAR CARRIED         canonical xi =  1.00 pc: Q2/ceil   0.001 | M/bound   0.009 | g_r/gate   0.003  admissible
+
+      kernel                     floor xi, canonical   floor xi, alt
+      exponential partner                    0.03 pc         0.04 pc
+      exponential CARRIED                    0.07 pc          0.1 pc
+      nu_RAR (unsaturated)                    0.1 pc          0.1 pc
+      nu_RAR CARRIED                          0.1 pc         0.15 pc
+  [PASS] Y4 [GATE] nu_RAR as the carried kernel has a NON-EMPTY admissible window in the coherence length at both footings and all three external-field inputs: the kernel swap survives the Solar System   (nu_RAR carried floors: canonical 0.1 pc, alt 0.15 pc; against the exponential carrier's 0.07 and 0.1 pc)
+
+  Y5  the coherence length also sets the wide-binary boost (g03g/g03h: gamma_v rises as xi falls, the registered
+      band is 1.16-1.23 and the candidate returned 1.032/1.040 at the PUBLISHED floors).  A higher floor means a smaller
+      boost and a gamma_v closer to Newton, which SHARPENS the contrast with the registered MOND band rather than
+      softening it -- but it also means the published gamma_v was computed at a floor that the carried kernel does
+      not actually permit, and must be recomputed at the corrected floors.
+      floor ratio nu_RAR/exponential: canonical 1.43x, alt 1.50x
+      CORRECTION FLAGGED: the repository's standing floors 0.03/0.05 pc were computed with the UNSATURATED inverse
+      partner; the kernel the scalar can actually carry saturates, and its floors are 0.07/0.1 pc -- a factor 2.3/2 higher.
+  [PASS] Y5 [verdict, reported] the nu_RAR floor is at most a factor 2 above the exponential carrier's, so the swap does not open a new Solar-System problem, but it does push the coherence length up and therefore the wide-binary boost down   (floors move 0.07 -> 0.1 pc (canonical) and 0.1 -> 0.15 pc (alt))
+
+  caveats: this is g03b's linear-response PROXY (one Helmholtz output filter on an unfiltered source flux), not the
+  exact fourth-order nonlinear solve of g03d; the floors are read off a tabulated xi grid, so they are resolved to
+  the grid spacing; the three gates and their numerical bounds are inherited from g02 unchanged.  total 5s
+
+RESULT: 0 FAIL
