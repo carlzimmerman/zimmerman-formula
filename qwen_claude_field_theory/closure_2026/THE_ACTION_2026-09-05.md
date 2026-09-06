@@ -18,7 +18,7 @@ in the PPN pipeline's sign convention (f31–f35, g03e). The term 2(2−K_B)J^μ
 | K(Q) = K₂(Q − Q₀)² near the condensate | K₂ < 0 in this convention (healthy sign of the scalar's time-kinetic term, f34); |K₂| sets c_s² = (2−K_B)J_Y/|K₂|, hence the dust's hydrostatic scale H = 0.42 e c²/(|K₂| a₀) (g03r); the KiDS/cluster split needs H between the galaxy and cluster scales: |K₂| ∈ [5×10⁴, 5×10⁵] (Newtonian growth), [5×10⁴, 2–3×10⁵] (MOND-peculiar growth), both footings | linear stability; the dust amplitude C in a³K′ = C is a free cosmological initial datum (g03e) |
 | J(Y) | fixed by the kernel, see §3 | the static law |
 | ξ | ≥ 0.03 pc (canonical) / 0.05 pc (alt), a constraint, not derived | Cassini quadrupole, Saturn monopole, sunward gate (g03d, exact solve); the operator's own zero-field limit (g03c) |
-| a₀ | 9.3619×10⁻¹¹ / 1.1279×10⁻¹⁰ m s⁻² | the framework's two footings; a₀ = ½c√(Gρ_Λ) is an optional relation, κ = ½ fitted (requirement 13 not derived) |
+| a₀ | 9.3619×10⁻¹¹ / 1.1279×10⁻¹⁰ m s⁻² | the framework's two footings; a₀ = ½c√(Gρ_Λ) is an optional relation, κ = ½ fitted (requirement 13 not derived); **k01 (kappa_closure/, 2026-09-06): provably underivable by this action — J enters the field equations only through J′ and the background only through Λ + (2−K_B)J(0)/2, so Λ and a₀ are independent (zero mode); the Λ-free repair gives a negative vacuum energy of 0.5% of ρ_Λ; the 4π⁴/15 reading is the forbidden unsaturated branch and gives κ ≈ 1** |
 | G_N | G/(1 − c₁₄/2) (f35, = Einstein-aether's exactly) | measured Newton constant, requirement 10 |
 
 ## 3. The kernel the action carries: ν_RAR, carried and saturated (g03j, g03u, g03w, g03x, g03z)
