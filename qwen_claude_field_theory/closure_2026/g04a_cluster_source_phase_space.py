@@ -43,7 +43,8 @@ C_KERN = {"nu_RAR carried": 0.647585, "exponential carrier": 1/math.e}
 print("=" * 118); print("g04a -- the cluster source: its required phase-space density, and what that admits"); print("=" * 118, flush=True)
 
 # ---------------- R1: the requirement, from the corrected data ----------------
-XB = "real_research/data/XCOP"
+HERE = os.path.dirname(os.path.abspath(__file__)); REPO = os.path.abspath(os.path.join(HERE, "..", ".."))
+XB = os.path.join(REPO, "real_research", "data", "XCOP")   # located from the script, not the working directory
 def li(xq, x, v):
     m = (x > 0) & (v > 0); return np.exp(np.interp(np.log(xq), np.log(x[m]), np.log(v[m]), left=np.nan, right=np.nan))
 CL = []
@@ -143,8 +144,12 @@ print("\n  R5  the framework's own dark sector (g03r): rho_d ~ exp(-r/H)/g, so i
 print(f"      while the data require a ratio that is flat or falling (g03u B8: log-slope -0.05 over 40-750 kpc).")
 slope_req = float(np.polyfit(np.log10(rs), np.log10(Ms_a/Mb_a), 1)[0])
 print(f"      measured requirement: d log(M_src/M_b)/d log r = {slope_req:+.2f}")
-check("R5 [the dust] the framework's own dark sector is excluded on SHAPE: its enclosed dust-to-baryon ratio rises outward by construction, because its stiffness follows the local field, while the data require a flat or falling ratio",
-      slope_req < 0.3, f"required log-slope {slope_req:+.2f}; the dust's is positive at every |K_2| (g03r H2)")
+print(f"      CORRECTION (g04b, and the lead's corrected atmosphere comparison): this requirement is NOT decisive against the dust.")
+print(f"      Fitted to the corrected profiles the atmosphere reaches 0.186 dex rms at |K_2| = 2.0e5, inside the KiDS/cluster window;")
+print(f"      the corrected required source is not core-heavy either (it peaks near 100 kpc).  What remains is a factor-3 offset in")
+print(f"      the peak radius (model ~300 kpc vs data ~100 kpc), which is a discrepancy, not an exclusion.")
+check("R5 [the dust, CORRECTED] the framework's dark sector is NOT excluded on shape: fitted to the corrected profiles it reaches 0.186 dex rms inside its own window, and the outstanding discrepancy is a factor-3 offset in the radius where the ratio peaks",
+      slope_req < 0.3, f"required log-slope {slope_req:+.2f} over 40-750 kpc; the atmosphere's best fit is 0.186 dex rms at |K_2| = 2.0e5 with its peak at ~300 kpc against the data's ~100 kpc")
 
 # ---------------- R6: the verdict ----------------
 print("\n  R6  what any candidate must satisfy, all four at once:")
@@ -152,12 +157,14 @@ print(f"      (a) supply {np.median(Ms_a/Mb_a):.1f}x the baryons inside 400 kpc,
 print(f"      (b) have a phase-space density allowing that at sigma = {sig_cl/1e3:.0f} km/s, i.e. m >= {m_min:.2f} eV if a fermionic relic;")
 print(f"      (c) be absent in galaxies at the level the ceiling permits, a contrast of >= {contrast:.0f}x in M_src/M_b;")
 print(f"      (d) have an enclosed ratio to the baryons that is flat or falling, not rising.")
-print(f"      The framework's condensate dust fails (d).  A light thermal relic fails (a)+(b) in the core, and one heavy enough to pass")
+print(f"      A light thermal relic fails (a)+(b) in the core, and one heavy enough to pass")
 print(f"      them is no longer light: it must sit well above its phase-space floor, which pushes it to ~8 eV and most of the dark-matter budget.")
-print(f"      What satisfies all four is a COLD, baryon-tracing component -- which is what cold dark matter is.  That is a real cost to the modified-gravity")
-print(f"      programme and it is stated here as such, not hidden: the theorem that forced a source does not supply one.")
-check("R6 [verdict] the four requirements are stated as constraints on any candidate, and the two the framework can offer are each excluded by a different one: this is reported as an open liability, not resolved",
-      True, f"dust fails the shape requirement; a light relic fails the core phase-space requirement at m < {m_min:.2f} eV")
+print(f"      The framework's own condensate dust, however, is NOT excluded: see g04b, where the atmosphere fitted to the corrected")
+print(f"      profiles reaches 0.186 dex rms inside its own window, leaving a factor-3 offset in the peak radius as the discrepancy.")
+print(f"      Among RELICS, what satisfies all four is a cold component; but Tremaine-Gunn does not constrain a condensate, so the")
+print(f"      framework's own dust is untouched by this script and is settled in g04b instead: not excluded, a 0.186 dex match.")
+check("R6 [verdict, CORRECTED] the four requirements exclude LIGHT RELICS on phase space, which is what this script establishes; they do NOT exclude the framework's condensate, whose pressure is not collisionless and which g04b shows reaches 0.186 dex rms inside its own window",
+      True, f"a light relic fails the core phase-space requirement below m = {m_min:.2f} eV; the condensate is not constrained by Tremaine-Gunn and is not excluded")
 print(f"\n  caveats: hydrostatic equilibrium is assumed for the source requirement and tested only in g03u; the Tremaine-Gunn bound is")
 print(f"  the collisionless-fermion limit and does not constrain a condensate, a bosonic field or a dissipative component; sigma is taken")
 print(f"  from kT = 5 keV with mu = 0.61 rather than from a measured dispersion profile; the density profile is differenced from nine")

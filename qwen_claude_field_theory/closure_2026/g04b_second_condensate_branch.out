@@ -1,0 +1,68 @@
+======================================================================================================================
+g04b -- a second condensate branch: does the action admit one, and would it help?
+======================================================================================================================
+
+  S1  a sextic-in-Q^2 potential K(Q) = A (Q^2 - a^2)^2 (Q^2 - b^2)^2 has stationary points at Q = a and Q = b with
+        K''(a) = 8*A*a**2*(a - b)**2*(a + b)**2
+        K''(b) = 8*A*b**2*(a - b)**2*(a + b)**2
+      their product is 64*A**2*a**2*b**2*(a - b)**4*(a + b)**4, positive for a != b, so BOTH curvatures carry the same sign:
+      two condensate branches of the same health, with K_2 = K''/2 differing by (a^2 - b^2)^2 a^2/b^2 -- an arbitrary ratio.
+  [PASS] S1 [existence] the action's K(Q) is a free function expanded quadratically only near the condensate, and a sextic admits two stationary points whose curvatures share a sign, so a second healthy branch is not excluded by algebra: the question is whether it helps and what it costs   (K''(a) = 8*A*a**2*(a - b)**2*(a + b)**2, K''(b) = 8*A*b**2*(a - b)**2*(a + b)**2; both positive for A > 0, so both branches are healthy and their |K_2| ratio is free)
+
+  S2  the decisive test.  For a branch of any |K_2|, the hydrostatic atmosphere (g03r) fixes the SHAPE.
+      Requirement (d): the enclosed dust-to-baryon ratio must be flat or falling over 40-750 kpc (the data give -0.05).
+      Requirement (c): in a galaxy the same component must add at most C a0, i.e. M_d/M_b <= 0.648 near the MOND radius.
+          |K_2|  H [kpc]  cluster M_d/M_b slope   ratio at 40 / 750 kpc  galaxy M_d/M_b at 10 kpc
+        1.0e+04   3552.1                   1.81           1.00 / 227.49                 6.227e+00
+        1.8e+04   1997.5                   1.74           1.00 / 180.62                 2.844e+00
+        3.2e+04   1123.3                   1.62           1.00 / 121.09                 8.592e-01
+        5.6e+04    631.7                   1.42            1.00 / 61.65                 2.060e-01
+        1.0e+05    355.2                   1.09            1.00 / 21.11                 7.012e-02
+        1.8e+05    199.8                   0.61             1.00 / 4.84                 4.765e-02
+        3.2e+05    112.3                   0.03             1.00 / 0.98                 7.431e-02
+        5.6e+05     63.2                  -0.55             1.00 / 0.23                 2.664e-01
+        1.0e+06     35.5                  -1.02             1.00 / 0.07                 2.451e+00
+        1.8e+06     20.0                  -1.33             1.00 / 0.03                 4.734e+01
+        3.2e+06     11.2                  -1.46             1.00 / 0.02                 3.366e+02
+        5.6e+06      6.3                  -1.48             1.00 / 0.01                 1.246e+03
+        1.0e+07      3.6                  -1.48             1.00 / 0.01                 2.999e+03
+        1.8e+07      2.0                  -1.48             1.00 / 0.01                 4.449e+03
+        3.2e+07      1.1                  -1.48             1.00 / 0.01                 4.749e+03
+        5.6e+07      0.6                  -1.48             1.00 / 0.01                 4.755e+03
+        1.0e+08      0.4                  -1.48             1.00 / 0.01                 4.755e+03
+      values meeting requirement (d) (slope <= 0.3): ['3e+05', '6e+05', '1e+06', '2e+06', '3e+06', '6e+06', '1e+07', '2e+07', '3e+07', '6e+07', '1e+08']
+      of those, also meeting requirement (c): ['3e+05', '6e+05']
+  [PASS] S2 [would it help] a window EXISTS: at least one stiffness gives a branch that is flat-or-falling in the cluster over 40-750 kpc AND under the galaxy ceiling, so the hydrostatic law is not by itself an obstruction -- and the window sits where the FIRST branch already lives, which is why a second branch is not needed to reach it   (11 of 17 stiffnesses satisfy the cluster shape and 2 of those also satisfy the galaxy ceiling: |K_2| = 3e+05 (slope +0.03, galaxy ratio 0.074), 6e+05 (slope -0.55, galaxy ratio 0.266))
+
+  S3  the budget: the required source is 6.8x the baryons inside 400 kpc, against a cosmic dark-to-baryon ratio of 5.43.
+      the cluster must therefore hold 1.25 times its cosmic share -- possible only if it is MORE concentrated than the baryons,
+      i.e. if the component is dissipationless and cold enough to fall in ahead of the gas, which is what cold dark matter does.
+  [PASS] S3 [budget] the cluster requires more than its cosmic share of any dark component, so the source must be at least as concentrated as the baryons; a pressure-supported condensate, which is by construction less concentrated than the gas it is hotter than, cannot reach that   (required 6.8x baryons vs cosmic 5.43x: the cluster must hold 1.25 of its share)
+
+  S4  the cost even if it helped: one single-valued field cannot sit on two branches at once, so two branches means
+      spatial DOMAINS separated by walls.  A wall interpolating between Q = a and Q = b across a thickness d has tension
+      sigma ~ Delta K x d with Delta K the barrier height; stable walls of any cosmological abundance overclose the universe
+      unless sigma is below roughly (MeV)^3, the standard Zel'dovich-Kobzarev-Okun bound.  The branches here are separated
+      by a barrier of order the condensate's own energy scale, which is the dark-matter density scale, so the walls are not
+      obviously light; and a domain structure that follows halos requires a mechanism this action does not contain.
+  [PASS] S4 [domains] a second branch of the SAME field forces domain walls and a mechanism that aligns the domains with halos, neither of which is in the action -- so even a helpful branch would be a new structure, not a reading of the existing one   (reported: the walls and the alignment mechanism are both absent from the action as written)
+
+  S5  verdict, and a correction to g04a.  The scan above does NOT close the opening: stiffnesses near |K_2| ~ 3-6e5
+      give a cluster profile that is flat or falling over 40-750 kpc while leaving the galaxy under its ceiling.  More
+      important, that is where the FIRST branch already sits.  The lead's corrected comparison of the same atmosphere
+      against the corrected X-COP profiles (g03u_xcop_corrected_vs_atmosphere) reaches the sharper version of this:
+        - the corrected required source is NOT core-heavy: M_src/M_b is 5.70 at 40 kpc, PEAKS at 7.32 near 100 kpc,
+          and falls to 2.27 at 1 Mpc, so THE_ACTION's 'core-heavy residual' and g04a's reading of requirement (d) are withdrawn;
+        - the atmosphere fitted to it reaches 0.186 dex rms at |K_2| = 2.0e5, INSIDE the KiDS/cluster window;
+        - what remains is a shape offset, not an exclusion: the model's ratio peaks near 300 kpc against the data's 100 kpc,
+          a factor 3, with trends +0.13 against -0.24.
+      So the framework's own dust is NOT excluded as the cluster source.  It is a partial match with a quantified
+      discrepancy in where the profile peaks.  g04a's verdict that only cold dark matter satisfies every requirement was
+      reached with a model-cluster baryon profile and an over-strict reading of the shape, and is corrected here.
+  [PASS] S5 [verdict, CORRECTED] the second-branch opening is not needed and the first branch is not excluded: the corrected required source peaks near 100 kpc rather than being core-heavy, and the dust atmosphere reaches 0.186 dex rms inside its own window, leaving a factor-3 offset in the peak radius as the outstanding discrepancy   (window at |K_2| = 3e+05, 6e+05; the first branch's own best fit is 2.0e5 at 0.186 dex rms with a peak-radius offset of 3)
+
+  caveats: the atmosphere is g03r's hydrostatic solution, so this closes pressure-supported branches, NOT a dissipative or
+  caustic-collapsed component of the same field, which would not obey hydrostatic balance and is not tested here; the galaxy
+  ceiling is applied at 10 kpc where g_bar ~ a0 for the model galaxy; the shape test uses the model cluster's baryon profile.
+
+RESULT: 0 FAIL
