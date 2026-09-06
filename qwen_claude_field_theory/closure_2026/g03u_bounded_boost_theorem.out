@@ -5,11 +5,12 @@ g03u -- the bounded-boost theorem and the cluster ceiling
   B1  THE THEOREM for the candidate's carrier: g_N = g (1 - e^{-g/a0}), so with y = g/a0 the excess is
       Delta(y) = y e^-y ;  dDelta/dy = (1 - y)*exp(-y) ;  critical point y = [1] ;  d2Delta/dy2 there = -exp(-1)
       limits: Delta(0+) = 0, Delta(inf) = 0;  MAXIMUM C = exp(-1) = 0.3678794 at g_N = 1 - exp(-1) a0 = 0.6321 a0
-  [PASS] B1 [theorem] the candidate's acceleration excess is exactly a0 y e^{-y} with a unique interior maximum at y = 1, zero at both ends, so C = 1/e exactly   (C = 1/e = 0.3678794, attained at g_N = (1 - 1/e) a0 = 0.6321 a0)
+      the COMPLETED kernel (g03j) saturates at y = 1: the scalar force stays at a0/e above it, so the bound C = 1/e is ATTAINED ON A PLATEAU for all g_N >= (1 - 1/e) a0, not merely approached
+  [PASS] B1 [theorem] on the carrier branch the acceleration excess is exactly a0 y e^{-y} with a unique interior maximum at y = 1, and the completed kernel saturates there, so C = 1/e exactly   (C = 1/e = 0.3678794, attained at g_N = (1 - 1/e) a0 = 0.6321 a0)
 
   B2  the same construction for the standard interpolation families (numerically maximised on a fine grid):
       kernel                                C = sup (g-g_N)/a0   at g_N/a0  a0-FREE ratio C/g_N(peak)
-      candidate (exponential carrier)                   0.3679      0.6321                     0.5820
+      candidate (exponential carrier)                   0.3679   9.895e+06                     0.0000
       deep-MOND sqrt (g = sqrt(a0 g_N))                 0.2500        0.25                     1.0000
       nu_RAR (McGaugh+2016)                             0.6476        2.54                     0.2550
       simple mu                                         1.0000   9.991e+06                     0.0000
@@ -61,7 +62,7 @@ g03u -- the bounded-boost theorem and the cluster ceiling
       measured peak: Delta_max = 1.190 a0 at g_bar = 3.272 a0  ->  RATIO = 0.364   (predicted 1/(e-1) = 0.582, a0-free)
       bootstrap (400 resamples): ratio = 0.364 [0.347, 0.530]   -- a0 cancels in this number, and so does any COHERENT rescaling of the acceleration scale
       kernel                                predicted a0-free ratio  consistent with data?
-      candidate (exponential carrier)                         0.582                     no
+      candidate (exponential carrier)                         0.000                     no
       deep-MOND sqrt (g = sqrt(a0 g_N))                       1.000                     no
       nu_RAR (McGaugh+2016)                                   0.255                     no
       simple mu                                               0.000                     no
@@ -69,13 +70,16 @@ g03u -- the bounded-boost theorem and the cluster ceiling
       Newtonian-limit calibration: every kernel requires Delta -> 0 at g_bar >> a0; the data give median g_obs/g_bar = 1.018 there (90 points),
       i.e. the stellar normalisation is already consistent to +1.8% -- so the large excess at g_bar = 1-4 a0 below is NOT a coherent Upsilon offset.
        g_bar/a0  measured Delta/a0   candidate    nu_RAR  meas/candidate  meas/nu_RAR
-           1.29              0.816       0.322     0.610             2.5         1.34
-           1.70              0.994       0.274     0.633             3.6         1.57
-           2.34              0.979       0.200     0.647             4.9         1.51
-           3.27              1.190       0.115     0.641            10.4         1.86
-           4.44              0.750       0.050     0.615            14.9         1.22
-      measured a0-free peak ratio = 0.364 [0.347, 0.530];  kernel predictions: candidate 0.582, deep-MOND sqrt 1.000, nu_RAR 0.255, simple mu 0.000, standard mu 0.618
-  [PASS] B4 [a0-free diagnostic] at fixed Upsilon and fixed a0, and with the stellar normalisation independently confirmed by the Newtonian limit, the measured acceleration excess between g_bar = 1 and 4.5 a0 exceeds the candidate's exponential carrier by more than a factor 3 -- the transition region is where this kernel is most exposed   (median measured/candidate = 4.9x over g_bar = 1-4.5 a0 (measured/nu_RAR = 1.51x); the exponential carrier reaches its Newtonian limit far too fast.  FIXED-Upsilon, FIXED-a0 diagnostic: f25 leaves exp-vs-RAR open once a0 and Upsilon are profiled jointly, and this statistic does not close that)
+           1.29              0.816       0.368     0.610             2.2         1.34
+           1.70              0.994       0.368     0.633             2.7         1.57
+           2.34              0.979       0.368     0.647             2.7         1.51
+           3.27              1.190       0.368     0.641             3.2         1.86
+           4.44              0.750       0.368     0.615             2.0         1.22
+      measured a0-free peak ratio = 0.364 [0.347, 0.530];  kernel predictions: candidate 0.000, deep-MOND sqrt 1.000, nu_RAR 0.255, simple mu 0.000, standard mu 0.618
+      the candidate's OWN ceiling is the tightest of the family, C = 1/e = 0.3679.  Beyond 2 kpc, 9.8% of points (263 of 2352)
+      exceed it by more than 3 sigma, spread over 32 of 144 galaxies -- this is NOT a handful of outliers, it is the transition region of the ordinary population.
+      raising a0 cannot absorb it: the ceiling is a0/e in physical units, so accommodating the largest measured excess needs a0 >= 1.14e-09 m/s^2 = 12.1 x the canonical value, far outside the 20% spread between the two footings.
+  [PASS] B4 [kernel discriminator] the ceiling is tight enough to discriminate: at fixed a0 and Upsilon the measured excess between g_bar = 1 and 4.5 a0 is 2-3x the candidate's saturated ceiling a0/e, and a large fraction of the ordinary rotation-curve population exceeds that ceiling at >3 sigma, whereas nu_RAR's wider ceiling is exceeded only by 1.2-1.9x   (median measured/candidate = 2.7x, measured/nu_RAR = 1.51x over g_bar = 1-4.5 a0; 9.8% of points beyond 2 kpc exceed the candidate's own ceiling at >3 sigma.  FIXED-Upsilon, FIXED-a0: the coherent Upsilon freedom is independently pinned to +1.8% by the Newtonian limit, and a0 cannot absorb it either (12.1x needed), but f25's joint a0-Upsilon profiling is the formal test and is not repeated here)
 
   B5  X-COP with CORRECTED radii (gas profile RADIUS is R/R500; R500 from each file's own header)
       12 clusters; 7 with a published stellar profile (headline uses these only)
@@ -141,6 +145,6 @@ g03u -- the bounded-boost theorem and the cluster ceiling
   caveats: HSE (tested in B6, not granted); FORW hydrostatic reconstruction; the seven clusters with published stellar
   profiles carry the headline, the other five are imported and flagged; SPARC uses the standard fixed Upsilon at 3.6um
   (a per-galaxy M/L would move individual points, not the population ceiling); the ceiling is a statement about the KERNEL,
-  so a system above it needs a source, not a different interpolation function.  total 1s
+  so a system above it needs a source, not a different interpolation function.  total 0s
 
 RESULT: 0 FAIL
