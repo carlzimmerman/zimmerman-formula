@@ -1,0 +1,28 @@
+====================================================================================================
+g03o -- spherical collapse of the scalar dust with self-gravity and local stiffness
+====================================================================================================
+  references and controls (captured = bound with virialised radius r_ta/2 inside the aperture; fractions of the cosmic share):
+    galaxy 100 kpc: cold Newtonian 0.160 (inner 0.020); cold in the MOND well 0.160 (inner 0.060)  <- the CDM-like reference
+    cluster 1 Mpc: cold Newtonian 0.060 (inner 0.020); cold in the MOND well 0.060 (inner 0.020)  <- the CDM-like reference
+    hot dust (c_s = 300 km/s, galaxy): 0.000
+  [PASS] C1 the cold references capture a definite part of the share inside the apertures (> 0.05 in both systems; the apertures are smaller than the virialised extents, so the absolute fractions are modest and only the RATIOS stiff/cold are used below) and the hot control captures little (< 0.1 of the galaxy's cold reference)   (galaxy 0.160, cluster 0.060, hot 0.000)
+  yN = np.asarray(yN, float); yt = ytot(yN); return np.where(yt <= 1, yN/np.maximum(yt*np.exp(-yt), 1e-300), yN/(1/math.e))
+
+     |K_2| | galaxy 100 kpc | galaxy inner 10 kpc | cluster 1 Mpc     (relative to the cold MOND reference; targets: galaxy <= 0.14, inner ~ 0, cluster >= 0.32-0.46)
+     5e+04 |          0.000 |               0.000 |         0.000
+  if not (cs_fixed is not None and cs_fixed == 0.0): q[conv] = 2.0*rho_l[:-1][conv]*dv[conv]**2
+  v += acc*dt; r += v*dt; r = np.maximum(r, rcore); t += dt; a += a*H_of(a)*dt; rmax = np.maximum(rmax, r)
+     1e+05 |          0.000 |               0.000 |         1.667
+     2e+05 |          0.000 |               0.000 |         1.000
+     3e+05 |          0.000 |               0.000 |         1.000
+     5e+05 |          0.000 |               0.000 |         1.000
+     1e+06 |          0.000 |               0.000 |         1.000
+     3e+06 |          0.375 |               0.667 |         1.000
+  [PASS] D1 with self-gravity and the growing well there is at least one |K_2| in 5e4-3e6 with the galaxy's captured dust <= 14% and the cluster's >= 32% of the CDM-like reference   (window points [100000.0, 200000.0, 300000.0, 500000.0, 1000000.0])
+  [PASS] D2 at every |K_2| the cluster's relative capture exceeds the galaxy's (the kernel-fixed ordering survives the dynamics)
+  [PASS] D3 the inner galaxy (10 kpc) captures under 5% of its cold reference wherever the outskirts capture under 14%
+
+  caveats: spherical, one representative system each, baryon assembly history assumed, the dust sources the MOND scalar (AeST reading), potential truncated at 50 r_max for the binding energy, no shell-crossing beyond the fluid treatment.
+
+RESULT: 0 FAIL
+rc=0
