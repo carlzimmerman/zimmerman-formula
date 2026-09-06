@@ -1,0 +1,21 @@
+====================================================================================================
+g03m -- dark-sector capture criterion R/lambda_J by environment (candidate kernel, corner K_B = 1/5)
+====================================================================================================
+  environment                       R     y      J_Y      rho | R/lambda_J at |K_2| = 1e6, 1e8, 1e10, 1e12
+  galaxy outskirts (KiDS)       100kpc  0.05    0.267  1.0e-26 | 1.416e-02 1.416e-01 1.416e+00 1.416e+01
+  galaxy core                     5kpc 10.00   27.183  1.0e-22 | 7.020e-03 7.020e-02 7.020e-01 7.020e+00
+  cluster R500                 1000kpc  0.50    1.373  1.0e-24 | 6.247e-01 6.247e+00 6.247e+01 6.247e+02
+  cluster core                  100kpc  5.00   13.591  1.0e-23 | 6.279e-02 6.279e-01 6.279e+00 6.279e+01
+
+  capture threshold |K_2| (R/lambda_J = 1) per environment: galaxy outskirts (KiDS): 4.99e+09, galaxy core: 2.03e+10, cluster R500: 2.56e+06, cluster core: 2.54e+08
+  capture order as |K_2| grows: cluster R500 -> cluster core -> galaxy outskirts (KiDS) -> galaxy core
+  [PASS] J1 the cluster at R500 captures the dust at a smaller |K_2| than the galaxy outskirts where KiDS measures (the kernel's stiffness ordering J_Y(cluster) > J_Y(galaxy) is outweighed by the density and size ratios)   (cluster R500 2.56e+06 vs galaxy outskirts 4.99e+09)
+
+  WINDOW: for 2.56e+06 < |K_2| < 4.99e+09 (a factor 1947.6) the cluster at R500 captures the scalar dust while the galaxy outskirts do not; galaxy cores capture at |K_2| > 2.03e+10, cluster cores at |K_2| > 2.54e+08
+  [PASS] J2 a window in |K_2| exists (wider than a factor 3) in which clusters at R500 capture the dust and galaxy outskirts do not, so the KiDS-versus-cluster pincer is not automatic for this dark sector at the Jeans level   (factor 1947.6)
+  [PASS] J3 inside the window galaxy cores never capture the dust (their threshold lies above the window top: the RAR in galaxies is untouched), while cluster cores capture in the window's upper part (|K_2| > 2.5e8): the residual can sit in cluster outskirts or throughout, depending on K_2   (galaxy core 2.03e+10 > window top 4.99e+09; cluster core 2.54e+08 inside the window)
+  at |K_2| = 1.1e+08 (window centre): MOND-scalar sound speed at the Galactic field c_s = 4.2e+04 m/s (the Bogoliubov branch; irrelevant for statics), a^-6 cosmological correction coefficient 1/(4 K_2) negligible
+
+  what this does and does not establish: the ordering is kernel-fixed and the window is a Jeans-level statement with representative densities; the FRACTIONS (KiDS <= 14% around galaxies, clusters 32-46%) need the dust's accretion and virialisation in the candidate's potential wells, which the repository's virialisation front (nbody) left open. Not a solution of the cluster residual; a door that is not shut.
+
+RESULT: 0 FAIL
