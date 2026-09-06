@@ -1,0 +1,21 @@
+==============================================================================================================
+g04i -- galaxy capture of the thermal relic: m = 11.2 eV/xi^3 = 27.6 eV at xi = 0.74
+==============================================================================================================
+    canonical: v_flat = 158 km/s, external-field radius 431 kpc, v_esc(10 kpc) = 433 km/s, v_esc(30 kpc) = 365 km/s; relic v_rms = 44 (z = 8), 19 (z = 3), 4.8 (z = 0) km/s
+    alt: v_flat = 165 km/s, external-field radius 393 kpc, v_esc(10 kpc) = 448 km/s, v_esc(30 kpc) = 375 km/s; relic v_rms = 44 (z = 8), 19 (z = 3), 4.8 (z = 0) km/s
+  [PASS] C1 [cold] at z = 3-8 the 28 eV relic's rms velocity is below 15% of the escape speed at 10 kpc: it falls in like cold dark matter once galaxies form   (v_rms(z=8)/v_esc(10 kpc) = 0.10)
+    canonical: m = 27.6 eV: phase-space ceiling on M_relic/M_b inside 10, 20, 30 kpc = [9.714, 58.92, 164.575]
+    canonical: m = 11.4 eV: phase-space ceiling on M_relic/M_b inside 10, 20, 30 kpc = [0.278, 1.687, 4.713]
+    alt: m = 27.6 eV: phase-space ceiling on M_relic/M_b inside 10, 20, 30 kpc = [10.794, 65.006, 180.558]
+    alt: m = 11.4 eV: phase-space ceiling on M_relic/M_b inside 10, 20, 30 kpc = [0.309, 1.862, 5.171]
+  [FAIL] C2 [phase space, the pincer] the ceiling protects the RAR at 11.4 eV (M_TG(<10 kpc) < 0.25 M_b) but NOT at 28 eV (> 1 M_b), at both footings   ({"canonical": {"11.4": 0.278, "27.6": 9.71}, "alt": {"11.4": 0.309, "27.6": 10.79}})
+    canonical: cold-infall capture (g03r, N = 800, 148s): M_relic/M_b inside 10, 30, 100 kpc = [2.71, 8.68, 23.92]; capped by phase space (28 eV): [2.71, 8.68, 23.92]
+    alt: cold-infall capture (g03r, N = 800, 154s): M_relic/M_b inside 10, 30, 100 kpc = [3.26, 9.54, 24.04]; capped by phase space (28 eV): [3.26, 9.54, 24.04]
+  [PASS] C3 [dynamics] the cold infall delivers more than 25% of the baryonic mass inside 10 kpc at both footings (the RAR's tolerance)   ({"canonical": [2.71, 8.68, 23.92], "alt": [3.26, 9.54, 24.04]})
+    C4: the mass below which phase space keeps the relic under 25% of the baryons inside 10 kpc: {"canonical": 11.1, "alt": 10.8} eV; the N_eff floor is 27.6 eV (Delta N_eff <= 0.3) -- the pincer's width is a factor 2.5 in mass
+  [PASS] C4 [verdict] the galaxy gate fails for the N_eff-compatible relic: the mass needed for phase-space protection lies below the 27.6 eV floor at both footings, and the delivered mass inside 10 kpc exceeds 25% of the baryons   ({"canonical": [11.1, 2.71], "alt": [10.8, 3.26]})
+
+  caveats: spherical cold infall onto an assembling disc (g03r's model, MOND on the peculiar field with the 0.02 a0 external field); the ceiling uses the MOND log potential's escape speed truncated at the external-field radius; a relic that never collapses with the galaxy (nuHDM's smooth-background picture) is exactly what C3 tests and does not find; no relic thermal pressure beyond C1's cold verdict.  total 302s
+
+RESULT: 1 FAIL -> ['C2 [phase space, the pincer] the ceiling protects the RAR at 11.4 eV (M_TG(<10 kpc) < 0.25 M_b) but NOT at 28 eV (> 1 M_b), at both footings']
+rc=1
