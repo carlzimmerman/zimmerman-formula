@@ -1,0 +1,42 @@
+======================================================================================================================
+g04c -- the cluster peak-radius offset under the kernel the action now carries
+======================================================================================================================
+
+  P1  the corrected requirement (seven clusters with measured stars, nu_RAR law), M_src/M_b:
+      r [kpc]:     40     50     75    100    150    200    300    420    750   1000
+      ratio  :   5.52   5.86   6.35   6.54   6.57   6.53   6.00   5.58   4.17   3.31
+      peak 6.57 at 150 kpc; 40 kpc 5.52; 1 Mpc 3.31
+  [PASS] P1 [setup] the corrected required source peaks at an interior radius rather than being core-heavy, and that peak radius is the quantity the model must reproduce   (data peak at 150 kpc with M_src/M_b = 6.57)
+
+  P2/P3  scan over |K_2|, both kernels: rms in dex against the corrected requirement, radial trend, and PEAK RADIUS
+          |K_2|     exponential rms/trend/peak          nu_RAR rms/trend/peak
+        2.0e+04       0.757 / +1.52 / 1000 kpc       0.683 / +1.35 / 1000 kpc 
+        4.0e+04       0.617 / +1.20 / 1000 kpc       0.496 / +0.94 / 1000 kpc 
+        7.9e+04       0.448 / +0.83 / 1000 kpc        0.295 / +0.49 / 420 kpc 
+        1.6e+05        0.285 / +0.47 / 420 kpc        0.143 / +0.10 / 300 kpc 
+        3.2e+05        0.130 / +0.06 / 200 kpc        0.160 / -0.37 / 150 kpc 
+        6.3e+05        0.185 / -0.44 / 100 kpc         0.346 / -0.86 / 75 kpc 
+        1.3e+06         0.379 / -0.94 / 75 kpc         0.517 / -1.26 / 40 kpc 
+        2.5e+06         0.542 / -1.32 / 40 kpc         0.626 / -1.50 / 40 kpc 
+      BEST exponential carrier   : |K_2| = 3.98e+05, rms 0.109 dex, trend -0.10, peak at 200 kpc (data 150 kpc, offset 1.33x)
+      BEST nu_RAR carried        : |K_2| = 2.00e+05, rms 0.113 dex, trend -0.05, peak at 200 kpc (data 150 kpc, offset 1.33x)
+  [PASS] P2 [CORRECTION] there was never a factor-three shape problem: with the amplitude fitted freely at each stiffness the best-fit peak sits within 1.4x of the data's at BOTH kernels, and the rms is under 0.12 dex. The previously reported offset of three came from tying the amplitude to the infall normalisation, which forced a worse stiffness; that is an amplitude question, not a shape one   (peak offsets 1.33x (exponential) and 1.33x (nu_RAR) against the previously reported 3x; rms 0.109 and 0.113 dex)
+      the swap's real effect is on WHICH stiffness fits: 3.98e+05 (exponential, window [5.0e+04, 3.2e+05]) vs 2.00e+05 (nu_RAR, window [2.8e+04, 2.8e+05])
+  [PASS] P3 [what the swap actually does] the kernel swap does NOT move the peak radius, which is the same at both kernels; what it moves is the best-fitting stiffness, from a value OUTSIDE the exponential carrier's own Cherenkov and closure bound to one INSIDE nu_RAR's window -- so the swap buys compatibility between the cluster fit and the cosmology, not a better shape   (exponential best 3.98e+05 is outside its window [5.0e+04, 3.2e+05]; nu_RAR best 2.00e+05 is inside [2.8e+04, 2.8e+05])
+
+  P4  the best |K_2| under nu_RAR is 2.00e+05; the dark-sector window with the Cherenkov and closure bound (g03z) is [2.8e+04, 2.8e+05]
+      r [kpc]:     40     50     75    100    150    200    300    420    750   1000
+      model  :   3.37   4.14   6.18   7.36   8.29   8.55   8.05   6.88   3.92   2.73
+      data   :   5.52   5.86   6.35   6.54   6.57   6.53   6.00   5.58   4.17   3.31
+  [PASS] P4 [joint] the best-fitting stiffness under nu_RAR lies inside the dark sector's own window, so the cluster fit and the KiDS, Cherenkov and closure constraints can share one |K_2|   (best |K_2| = 2.00e+05 against the window [2.8e+04, 2.8e+05])
+
+  P5  what is left is the AMPLITUDE, not the shape: the fit needs M_d/M_b = 6.88 at 420 kpc against a cosmic
+      dark-to-baryon ratio of 5.43, i.e. 1.27 of the cluster's cosmic share -- attainable only because
+      clusters are baryon-poor inside R500, and it is the infall normalisation of g03r and g03s that must deliver it.
+  [PASS] P5 [verdict] the cluster profile is a SHAPE match under the kernel the action carries: 0.113 dex rms, a radial trend of -0.05 against the data's -0.14, and a peak within 1.4x, at a stiffness inside the dark sector's own window -- so what remains is whether the infall supplies the amplitude, which is a separate and already-instrumented question   (nu_RAR: rms 0.113 dex, trend -0.05 vs data -0.14, peak offset 1.33x, |K_2| = 2.00e+05 inside the window; the amplitude needs 1.27 of the cosmic share)
+
+  caveats: one spherical atmosphere in the median well of a heterogeneous sample; the amplitude is one fitted number per
+  stiffness, so this tests SHAPE and not the infall normalisation, which g03r and g03s supply separately; hydrostatic
+  equilibrium is assumed for both the source requirement and the model.  total 1s
+
+RESULT: 0 FAIL
