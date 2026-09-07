@@ -1,11 +1,21 @@
 # STANDING
 
 **de Sitter–Unruh modified inertia — where the programme actually stands**
-Last updated **2026-09-04** (rev. 7 block at the top, then the rev. 6 block of 2026-09-02; body below them is the rev. 5 record of 2026-08-03). Maintained as the single entry point: what is claimed, what is earned,
+Last updated **2026-09-06** (rev. 8 block at the top, then rev. 7 of 2026-09-04 and rev. 6 of 2026-09-02; body below them is the rev. 5 record of 2026-08-03). Maintained as the single entry point: what is claimed, what is earned,
 what is postulated, what is live, and what is closed. If a statement anywhere in this repository
 conflicts with this file, this file is newer unless it says otherwise.
 
 ---
+
+## ⚠⚠⚠ REVISION 8 BLOCK — 2026-09-06. Newer than everything below it; where they conflict, this block wins.
+
+**The claim, unchanged.** $a_0=\kappa c\sqrt{G\rho_{\rm DE}}$, κ = ½ **fitted**; both footings always. New this revision: κ is **proven underivable by the candidate action** (`kappa_closure/k01`: the MOND primitive enters the field equations only through $J'$ and the background only through $\Lambda+(2-K_B)J(0)/2+K(Q_0)/2$ — a normalisation zero mode). The Λ-free repair gives a *negative* vacuum energy 220× too small; the $4\pi^4/15$ constant of the RAR primitive is the unsaturated branch the bounded-boost theorem forbids (κ ≈ 1 if read anyway); a sequestering-type global constraint misses by five orders (`k02`); the four-form promotion $a_0=\beta\sqrt G|q|$ fixes the sign and makes $a_0\propto\sqrt{G\rho_\Lambda}$ structural but leaves κ as the free ratio $Z/\beta^2=8$, with an environmental $a_0$ that switches the scalar off above 155 $a_0$ and is invisible in galaxies (`k04`). The one coefficient-free alternative, $a_0=c^2/(2\pi L_{\rm dS})$ (κ = 0.461; **not** Milgrom 1999's excluded $2cH_\Lambda$), is 8.5% from ½, below the 9.47% BTFR mass-budget floor, undecided by the two measurements, and **exactly degenerate with the $H_0$ tension** (κ = ½ at Planck $H_0$ ≡ κ = 0.461 at SH0ES $H_0$ to 0.2% at fixed Ω_Λ) (`k03`). Published: DOI 10.5281/zenodo.22559892. **κ = ½ is an empirical boundary condition; its determination is a precision problem (M/L zero point, absolute gas scale, $H_0$), not a theory problem of this class.**
+
+**Gaia DR4 — Amendment 11 filed (append-only, hash-stamped).** Both mutually exclusive arms registered: Arm A (Amdt 10 band 1.1614–1.1814 / 1.1917–1.2267, unchanged) and Arm B (the covariant candidate at its Cassini-minimal ξ, same estimator: ceilings 1.0450 / 1.0300, falling toward 1.000). Decision rule fixed: A falsified < 1.056, B falsified ≥ 1.129, undecided 1.084–1.101. Against interest: DR4 separates the arms (4.2σ_tot) but cannot confirm B over Newton beyond 1.6σ_tot; a Newtonian result kills A and leaves B alive-but-unconfirmed — never a success. Variant B′ (four-form, −0.019 at 2 kAU) recorded, not registered. The closure documents' 1.032/1.040 are superseded.
+
+**Dark sector — frozen.** The thermal-relic completion (m = 11.2 eV/ξ³ ≈ 28 eV from ΔN_eff) is a pincer with no interior: N_eff ≥ 27.6 eV, the RAR ≤ 11 eV (phase space and cold infall deliver 2.7–3.3 M_b inside 10 kpc), the cluster profile worked only at 11.4 eV (`g04f`–`g04i`); P(k) regeneration by the causal boost fails at linear order (`g04h`). Four condensate doors closed on the action's own terms (`g03w`–`g03z`). No particle candidate remains except wave exclusion at m ~ 10⁻²⁴ eV (low prior, untested); the hunt is frozen behind the coefficient question. The cluster residual (6.8× baryons, ρ ∝ r^-1.5) stands unexplained.
+
+**High-z a₀(z).** The existing-archive Tully–Fisher confrontation is exhausted (12 constraints, undecided, prior-dominated); the relayed funnel score on the 21-object ledger finds no object passing the flagship gate (`highz_target_score_2026`); the decisive object is a deep-MOND lensed rotator at z ≈ 2.3–2.9 screened for rotation with NIRSpec first, then ALMA CO(3–2) in Band 3.
 
 ## ⚠⚠⚠ REVISION 7 BLOCK — 2026-09-04. Newer than everything below it; where they conflict, this block wins.
 

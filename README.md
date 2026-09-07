@@ -6,6 +6,30 @@ $$a_0 \;=\; \kappa\,c\sqrt{G\rho_\Lambda}\;=\;c^2\sqrt{\frac{\Lambda}{32\pi}}\;=
 
 Plain text, for the record: `a0 = kappa * c * sqrt(G * rho_Lambda) = c^2 * sqrt(Lambda / (32 pi)) = 9.36e-11 m/s^2`, with κ = ½ **adopted** — measured **0.551 ± 0.043** by a distance-free method (fitted, **not derived**; four candidate coefficients sit inside 2σ). Alternative footing (ρ_total, cH₀): a₀ = 1.1279×10⁻¹⁰ — every dimensional result in this repository is quoted on both footings.
 
+<details open><summary><b>Key equations, plain text (for search; every symbol defined)</b></summary>
+
+```
+a0 = kappa c sqrt(G rho_Lambda), kappa = 1/2 (FITTED, not derived):  a0 = (1/2) c sqrt(G rho_Lambda) = c^2 sqrt(Lambda/(32 pi)) = 9.36e-11 m/s^2
+   natural units (c = hbar = 1):  a0 = M_Lambda^2 / (2 M_Planck),  M_Lambda^4 = rho_Lambda,  M_Planck = G^(-1/2)   (a gravitational seesaw with an exact 2)
+   equivalently  4 a0^2 = G c^2 rho_Lambda,   Lambda = 32 pi a0^2 / c^4,   Lambda l0^2 = 32 pi  with  l0 = c^2/a0
+deep-MOND baryonic Tully-Fisher:  v_flat^4 = G M_bar a0 = (1/2) c G^(3/2) M_bar sqrt(rho_Lambda)
+the a0-line:  g_obs^2 - g_bar^2 = a0 g_bar;   RAR kernel  nu(y) = 1/(1 - exp(-sqrt(y))),  y = g_bar/a0   (Milgrom & Sanders 2008; McGaugh, Lelli & Schombert 2016)
+a0(z)/a0(0) = sqrt(rho_DE(z)/rho_DE(0)):  flat to < 1% for z <= 5 if Lambda is constant
+candidate covariant action (2026-09):  L = sqrt(-g)/(16 pi G) [ R - 2 Lambda - c1 T1 - c2 T2 - c3 T3 + c4 T4 + 2 (2 - K_B) J^mu d_mu phi - K(Q) - (2 - K_B) J(Y + xi^2 |grad_perp V|^2) ] + L_m
+   n_mu = -d_mu tau / N (khronometric clock),  J^mu = n^nu grad_nu n^mu,  Q = n . d phi,  Y = q^{mu nu} d_mu phi d_nu phi,  K = K2 (Q - Q0)^2,  c1 = -c3 = K_B
+static law:  div( J_Y grad phi ) = laplacian Psi,   J_Y(s) = s / Delta(s),   g_phi = a0 Delta(s),   s = g_N / a0
+   nu_RAR carried:  Delta(s) = s / (exp(sqrt(s)) - 1), saturated at its maximum s = 2.540, Delta = 0.6476 (bounded-boost theorem)
+coherence length (Cassini floor):  xi >= 0.10 pc (canonical) / 0.15 pc (alt)
+zero-mode theorem (k01):  the field equations contain J only through J';  the background sees Lambda_eff = Lambda + (2 - K_B) J(0)/2 + K(Q0)/2  =>  a0 and Lambda independent
+Lambda-free vacuum (k01):  rho_vac = -(2 - K_B) I a0^2 / (16 pi G),  I = 2 int_0^{s_sat} s dDelta = 0.4525  =>  rho_vac / rho_Lambda = -0.0045 (wrong sign, 220x too small)
+global constraint (k02):  <L_phi> / rho_Lambda ~ 1e-5 today -> 0 in the de Sitter future
+four-form promotion (k04):  a0 = beta sqrt(G) |q|,  P(q) = Z q^2 / 2,  eps = q P_q - P > 0;   kappa^2 = 2 beta^2 / (Z + 2 b beta^2);   kappa = 1/2  <=>  Z / beta^2 = 7.96
+   environmental scale:  a0_loc = a0 (1 - g_N / (155 a0)),  scalar off above 155 a0
+horizon coefficient (k03):  a0 = c^2 / (2 pi L_dS)  =>  kappa = sqrt(8 pi / 3) / (2 pi) = 0.461;   H0 lock:  kappa = 1/2 at H0 = 67.4  ==  kappa = 0.461 at H0 = 73.0 (fixed Omega_Lambda, to 0.2%)
+Gaia DR4 wide binaries (Amendment 11, both arms registered):  Arm A  gamma_v = 1.1614-1.1814 (canonical) / 1.1917-1.2267 (alt);   Arm B  gamma_v <= 1.0450 / 1.0300;   Newton 1.000
+```
+</details>
+
 The exact algebraic law (the **a₀-line**) and the operative interpolation kernel:
 
 $$g_{\rm obs}^2-g_{\rm bar}^2=a_0\,g_{\rm bar}
@@ -32,6 +56,8 @@ $$\frac{a_0^2(z)}{a_0^2(0)}=\frac{\sqrt{1+\nu_0^2}}{\sqrt{1+\nu_0^2\,(1+z)^6}}\,
 $$\mathcal{Q}_0=\frac{g_{\rm tot}-g_N}{c\,v}\;\approx\;2.4\times10^{-3}\,\text{–}\,1.5\times10^{-2}\ \mathrm{Mpc}^{-1}$$
 
 interior to Skordis & Złośnik's own CMB fits, containing both their MOND-compatible parameter sets and excluding their MOND-incompatible one ([DOI 10.5281/zenodo.21937958](https://doi.org/10.5281/zenodo.21937958)).
+
+**Standing 2026-09-06 (rev. 8) — the coefficient is a boundary condition; both wide-binary arms registered; the dark-sector hunt frozen.** The candidate covariant action (khronometric clock + dynamical MOND scalar + coherence operator, ν_RAR carried) **cannot relate a₀ to Λ**: the MOND primitive enters the field equations only through its derivative and the FLRW background only through Λ + (2−K_B)J(0)/2, a normalisation zero mode ([`kappa_closure/k01`](kappa_closure/k01_zero_mode_theorem_and_lambda_free_vacuum.py)). The Λ-free repair yields a *negative* vacuum energy 220× too small; a sequestering-type global constraint misses by five orders ([`k02`](kappa_closure/k02_global_constraint_average.py)); promoting a₀ to a conserved four-form flux fixes the sign and makes a₀ ∝ √(Gρ_Λ) structural but leaves κ as the free coupling ratio Z/β² = 8, with an environmental a₀ that switches the scalar off above 155 a₀ and is invisible in galaxies ([`k04`](kappa_closure/k04_four_form_promotion_consistency.py)). The one coefficient-free alternative, the horizon form a₀ = c²/(2πL_dS) (κ = 0.461), is 8.5% from ½, below the 9.5% BTFR mass-budget floor, and **exactly degenerate with the H₀ tension**: κ = ½ on Planck's H₀ and κ = 0.461 on SH0ES's predict the same a₀ to 0.2% ([`k03`](kappa_closure/k03_half_vs_two_pi_precision.py)). κ = ½ is therefore an empirical boundary condition this class of actions cannot derive, to be settled by a stellar M/L zero point, an absolute gas scale and H₀ — published as [DOI 10.5281/zenodo.22559892](https://doi.org/10.5281/zenodo.22559892). **Gaia DR4:** [Amendment 11](prep_2026/gaia_dr4_prep/PREREGISTRATION_DR4.md) registers **both** mutually exclusive arms before the data — Arm A (the frozen kernel as modified gravity) γ_v = 1.1614–1.1814 / 1.1917–1.2267, Arm B (the covariant candidate at its Cassini-minimal coherence length) **ceilings 1.0450 / 1.0300** — with the decision rule fixed in advance; DR4 separates the arms at 4.2σ but cannot confirm Arm B over Newton beyond 1.6σ (stated against interest). **Dark sector:** the thermal-relic completion is a pincer with no interior (N_eff needs m ≥ 27.6 eV, the RAR needs ≤ 11 eV, the cluster profile worked only at 11.4 eV; [`g04f`–`g04i`](qwen_claude_field_theory/closure_2026/)), four condensate doors are closed on the action's own terms, and the hunt is frozen behind the coefficient question. The existing-archive high-z Tully–Fisher confrontation is exhausted; the decisive object is a deep-MOND lensed rotator at z ≈ 2.5 ([target ranking](prep_2026/a0z_crossscale/highz_target_score_2026.py)).
 
 **Standing 2026-09-04 (rev. 7) — the kernel, the pincer, and a length.** The field theory's own kernel is the RAR function exactly; the closure programme had frozen $1-e^{-x}$ and then the sharp $\mu_{10}$, and with $a_0$ and the disc M/L profiled the galaxy data reject every Cassini-safe sharpened kernel while leaving exponential-versus-RAR undecided ([`f23`](hunt_2026/f23_kernel_transcription_audit.py), [`f25`](hunt_2026/f25_profiled_kernel_comparison_mu10.py), [`f28`](hunt_2026/f28_one_argument_pincer.py)). The framework's kernel as modified gravity gives the Solar System an external-field quadrupole 6–9× the Cassini ceiling ([`f23`](hunt_2026/f23_kernel_transcription_audit.py), [`f24`](hunt_2026/f24_aqual_quadrupole_rar_kernel.py)); modified inertia is lensing-dead; no acceleration-only law passes both. The one structure that does is **QUMOND on a Helmholtz-smoothed Newtonian potential with a coherence length ξ**: the Solar System needs only ξ ≥ 0.045 pc (one solar MOND radius; the binding bound is the phantom mass inside Saturn's orbit), for a smooth-cored smoothing the pre-registered wide-binary boost at 20–30 kAU survives with the knee moved to 15–20 kAU, while a local biharmonic host has a cuspy kernel whose constant sunward force needs ξ ≥ 0.8 pc and predicts Newtonian binaries; three of four outer-halo globulars want ξ ≈ 50–140 pc ([`f29`](hunt_2026/f29_coherence_length_law.py), [`f30`](hunt_2026/f30_ppn_screening_door.py); the pre-registration is untouched). The screened scalar has no 1/r potential inside ξ, so the preferred-frame PPN lock that closed the aether-scalar hosts does not apply to it: that host class is reopened as a calculation. Clusters: no threshold in any variable marks where the kernel stops working, and the group-versus-cluster contrast is estimator-limited ([`f22`](hunt_2026/f22_cluster_threshold_hunt.py)). Full block: [STANDING.md](STANDING.md).
 
@@ -124,6 +150,8 @@ framework's own local-a₀ structure DR4 doubles as a *conditional* charge meter
 ⚠️ The literature disagrees violently on this quantity — Banik+24 reports 19σ Newtonian; Chae 2023
 reports γ = 1.43 ± 0.06 — which is why the systematic budget is split one-sided.
 
+**Amendment 11 (2026-09-06) — both arms registered.** The programme now carries two mutually exclusive wide-binary predictions and both are on record before Gaia DR4: Arm A, the frozen kernel as modified gravity, γ_v = 1.1614–1.1814 (canonical) / 1.1917–1.2267 (alt); Arm B, the covariant candidate action at its Cassini-minimal coherence length evaluated with the same estimator, ceilings γ_v ≤ 1.0450 / ≤ 1.0300 falling toward 1.000 as the length grows. Arm A's kernel as strict AQUAL fails the Cassini quadrupole 4–5×; with the length that passes Cassini it *is* Arm B, so the two cannot both hold. Decision rule fixed in advance (σ_tot = 0.028): A falsified below 1.056, B falsified at or above 1.129, arm undecided 1.084–1.101; DR4 separates the arms at 4.2σ but cannot confirm B over Newton beyond 1.6σ even at its ceiling — a Newtonian result kills A and leaves B alive but unconfirmed, and must never be called a success. Append-only, hash-stamped ([`AMENDMENT11_HASH.txt`](prep_2026/gaia_dr4_prep/AMENDMENT11_HASH.txt)).
+
 ### 5 · The BTFR discriminator and a₀(z) fronts
 The derived a₀(z) law predicts **<2×10⁻⁴ dex** of BTFR zero-point evolution at z ≤ 5 (flat below
 z_t) — so the observed 1 < z < 5 null is a *prediction*, while the naive a₀ ∝ cH(z) reading is
@@ -163,6 +191,9 @@ Enforced by the scripts, not by trust.
 
 ## Publication record
 
+[![Kappa No-Go](https://img.shields.io/badge/The%20Coefficient%20of%20the%20a0%E2%80%93%CE%9B%20Relation%20%E2%80%94%20Zero--Mode%20Theorem%20(Sep%206%202026)-10.5281%2Fzenodo.22559892-red)](https://doi.org/10.5281/zenodo.22559892)
+[![Bounded-Boost Theorem v4](https://img.shields.io/badge/A%20Ceiling%20Dark%20Matter%20Cannot%20Impose%20%E2%80%94%20Bounded--Boost%20Theorem%20(v4%2C%20Sep%206%202026)-10.5281%2Fzenodo.22548669-red)](https://doi.org/10.5281/zenodo.22548669)
+[![Filtered MOND Action](https://img.shields.io/badge/The%20Filtered%20MOND%20Action%20(Sep%205%202026)-10.5281%2Fzenodo.22347632-red)](https://doi.org/10.5281/zenodo.22347632)
 [![Crispy Fried Chicken Matching Theorem](https://img.shields.io/badge/Crispy%20Fried%20Chicken%20Matching%20Theorem%20(Sep%202%202026)-10.5281%2Fzenodo.22261001-red)](https://doi.org/10.5281/zenodo.22261001)
 [![Nonlocal MOND Kernel Instability v2](https://img.shields.io/badge/Nonlocal%20MOND%20Kernel%20Instability%20(v2%2C%20Sep%202026)-10.5281%2Fzenodo.22255522-red)](https://doi.org/10.5281/zenodo.22255522)
 [![Cluster Phase Pinning v2](https://img.shields.io/badge/Cluster%20Phase%20Pinning%20Polytrope%20(v2%2C%20Sep%202026%20%E2%80%94%20cosmology%20withdrawn)-10.5281%2Fzenodo.22254075-orange)](https://doi.org/10.5281/zenodo.22254075)
@@ -211,6 +242,63 @@ Enforced by the scripts, not by trust.
 [![Corpus DOI](https://img.shields.io/badge/Code%20%26%20Data-10.5281%2Fzenodo.20576494-blue)](https://doi.org/10.5281/zenodo.20576494)
 
 </details>
+
+
+### DOI index — every deposit with its title (newest first; version DOI, concept DOI in brackets)
+
+Plain text on purpose, so that titles and DOIs are searchable. Versions of one record share a concept DOI; cite the concept DOI for "latest".
+
+| date | DOI | title | version |
+|---|---|---|---|
+| 2026-09-06 | [10.5281/zenodo.22559892](https://doi.org/10.5281/zenodo.22559892) (concept 22559891) | The Coefficient of the a0–Λ Relation: a Zero-Mode Theorem for Local MOND Actions, Two Failed Repairs, a Four-Form Reframing, and an H0 Degeneracy | v1 |
+| 2026-09-06 | [10.5281/zenodo.22548669](https://doi.org/10.5281/zenodo.22548669) (concept 22544564) | A Ceiling Dark Matter Cannot Impose: the Bounded-Boost Theorem for MOND-Class Kernels, and What It Says About Galaxies and Clusters | v4 (v1 22544565, v2 22544996, v3 22548309) |
+| 2026-09-05 | [10.5281/zenodo.22347632](https://doi.org/10.5281/zenodo.22347632) (concept 22347631) | The Filtered MOND Action: a Central Tidal Identity, Comparable-Mass Forces, a First Covariant Clock Action, and the Operator That Screens the Solar System | v1 |
+| 2026-09-02 | [10.5281/zenodo.22261001](https://doi.org/10.5281/zenodo.22261001) (concept 22261000) | Crispy Fried Chicken Matching Theorem | v1 |
+| 2026-09-02 | [10.5281/zenodo.22255522](https://doi.org/10.5281/zenodo.22255522) (concept 22253952) | The Retarded Nonlocal MOND Kernel Is Unstable on MOND Backgrounds: a Longitudinal Gradient Instability and a Deep-MOND Ghost Close the Nonlocal Door | v2 (v1 22253953) |
+| 2026-09-02 | [10.5281/zenodo.22254075](https://doi.org/10.5281/zenodo.22254075) (concept 22242700) | The Aether-Scalar-Tensor Dark Sector Is a γ = 2 Polytrope: the Cluster Helmholtz Phase Is Its Mass, It Pins Dynamically, and It Fills About a Quarter of the Cluster Gap | v2 (v1 22242701; cosmology withdrawn) |
+| 2026-08-28 | [10.5281/zenodo.22135510](https://doi.org/10.5281/zenodo.22135510) (concept 22135509) | An Obstruction Map for Relativistic MOND: the Conformal Lensing Barrier and the Cost of Its Repair | v1 |
+| 2026-08-27 | [10.5281/zenodo.22133406](https://doi.org/10.5281/zenodo.22133406) (concept 22132651) | A Conditionally Closed Constraint-Defined MOND Theory with Two Tensor Degrees of Freedom: Hamiltonian Certification, Kernel-Agnostic Chassis, and Solar-System Gates | v2 (v1 22132652) |
+| 2026-08-27 | [10.5281/zenodo.22132648](https://doi.org/10.5281/zenodo.22132648) (concept 22132647) | Carrier No-Go Theorems for Two-Degree-of-Freedom MOND: the F(A²) Class, the Auxiliary-Legendre Escape, and a Hamiltonian Audit of Causal Nonlocal MOND | v1 |
+| 2026-08-21 | [10.5281/zenodo.22044021](https://doi.org/10.5281/zenodo.22044021) (concept 22036262) | The Amplitude Law: the obstruction is the interpolation function, not the carrier — and a monotone kernel escapes it with a0 untouched | v3 |
+| 2026-08-14 | [10.5281/zenodo.21937976](https://doi.org/10.5281/zenodo.21937976) (concept 21937975) | The Registered Wide-Binary Target under a Local a0: A Conditional Charge Meter, and the EFE-Present Exact Two-Body Solve | v1 |
+| 2026-08-14 | [10.5281/zenodo.21937958](https://doi.org/10.5281/zenodo.21937958) (concept 21935942) | Pinning AeST's Free Background Parameter: Q0 = 2.4e-3 – 1.5e-2 Mpc^-1 from Galaxy-Scale Phenomenology | v4 |
+| 2026-08-12 | [10.5281/zenodo.21895046](https://doi.org/10.5281/zenodo.21895046) (concept 21863521) | The completion: a relativistic field theory carrying a0 = κ c √(G ρ_Λ) | v9 (dark sector excluded Sep 2026) |
+| 2026-08-10 | [10.5281/zenodo.21865866](https://doi.org/10.5281/zenodo.21865866) (concept 21865865) | The Completion, For Everyone: the whole theory in plain words | v1 |
+| 2026-07-30 | [10.5281/zenodo.21708842](https://doi.org/10.5281/zenodo.21708842) (concept 21707844) | Structural Theorems for de Sitter-Unruh Modified Inertia: What the First-Moment Closure Forbids | v2 |
+| 2026-07-30 | [10.5281/zenodo.21702746](https://doi.org/10.5281/zenodo.21702746) (concept 21580092) | A Cubic Separation Law for Wide Binaries: an Exponent With No Free Parameters (the Gaia DR4 pre-registration) | v4 |
+| 2026-07-29 | [10.5281/zenodo.21654272](https://doi.org/10.5281/zenodo.21654272) (concept 21654271) | When Is a Numerological Search Finished? An Exhaustive Null to Depth 10, and What Went Wrong With Our Own Stopping Rule | v2 (null) |
+| 2026-07-21 | [10.5281/zenodo.21478568](https://doi.org/10.5281/zenodo.21478568) (concept 21478567) | A Pre-Registered a0(z) Gate for the Rubin/LSST Supernova Stream: Committing the Test Before the Data | v1 |
+| 2026-07-20 | [10.5281/zenodo.21461435](https://doi.org/10.5281/zenodo.21461435) (concept 21461434) | Tidal Dwarf Galaxies as a Test of History-Dependent Inertia: How a Long-Memory Kernel Can Leave Young Dwarfs Near-Newtonian | v1 |
+| 2026-07-20 | [10.5281/zenodo.21460161](https://doi.org/10.5281/zenodo.21460161) | Three Roads to the Cosmological-Constant Acceleration Scale: Dynamics, Weak-Lensing Geometry, and Expansion — and Why the Lensing Leg Is a Consistency Check | v1 |
+| 2026-07-20 | [10.5281/zenodo.21458605](https://doi.org/10.5281/zenodo.21458605) | Which Acceleration Does Inertia Listen To? The Ignatiev High-Latitude Window as an Intra-Modified-Inertia Discriminator, and a Pre-Registered Exact Null | v1 |
+| 2026-07-19 | [10.5281/zenodo.21440407](https://doi.org/10.5281/zenodo.21440407) | Does the Galaxy Acceleration Scale Track Cosmic Dark Energy? A Non-Circular Cross-Scale a0(z) Test of de Sitter-Unruh Modified Inertia | v2 |
+| 2026-07-18 | [10.5281/zenodo.21421896](https://doi.org/10.5281/zenodo.21421896) (concept 21421895) | The Relational Velocity-Dispersion Spread: A Modified-Gravity-Impossible Signature of History-Dependent Inertia | v1 |
+| 2026-07-18 | [10.5281/zenodo.21179351](https://doi.org/10.5281/zenodo.21179351) | No Pump-Free Corner: The Residual Doors of Covariant Modified Inertia, Computed — and a Pre-Registered Sign-Flip Signature | v3 |
+| 2026-07-17 | [10.5281/zenodo.21419735](https://doi.org/10.5281/zenodo.21419735) (concept 21419734) | Reading the Cosmological Constant from Dwarf-Galaxy Rotation Curves: The a0-Line, Its Systematic Floor, and the de Sitter-Modified-Inertia Inversion | v1 |
+| 2026-07-17 | [10.5281/zenodo.21418816](https://doi.org/10.5281/zenodo.21418816) (concept 21418815) | A Passivity Obstruction: Why a Derived a0 = cH_Λ/Z and Single-Metric Weak Lensing Cannot Coexist in de Sitter-Unruh Modified Inertia | v1 |
+| 2026-07-17 | [10.5281/zenodo.21403470](https://doi.org/10.5281/zenodo.21403470) (concept 21403469) | A de Sitter-Unruh Modified-Inertia Field Theory, Complete Up To Its Constants: the Action, Its Radiative Protection, Its Equation Set, and Its Measurements | v1 |
+| 2026-07-11 | [10.5281/zenodo.21312985](https://doi.org/10.5281/zenodo.21312985) (concept 21312984) | There Is No Dark Matter in Galaxies: a staked position (the bold statement inside is retracted; see RETRACTIONS.md) | v1 |
+| 2026-07-11 | [10.5281/zenodo.21312654](https://doi.org/10.5281/zenodo.21312654) (concept 21312653) | A Cosmological-Constant Acceleration Scale, and the Dark-Matter-Free Theories It Points To (flagship; the MI arm is since closed) | v1 |
+| 2026-07-10 | [10.5281/zenodo.21301058](https://doi.org/10.5281/zenodo.21301058) (concept 21301057) | A Covariant Action for the Elastic Dark-Energy Medium: the Verlinde-class anharmonic solid with the a0 = c²√(Λ/32π) displacement law | v1 |
+| 2026-07-10 | [10.5281/zenodo.21300855](https://doi.org/10.5281/zenodo.21300855) (concept 21300854) | A Derived Response Cutoff for Elastic Dark-Energy Lensing: y_c = Z/2 from Verlinde's Own Entropy Budget (located, not detected) | v1 |
+| 2026-07-08 | [10.5281/zenodo.21253644](https://doi.org/10.5281/zenodo.21253644) | A Written de Sitter-Unruh Modified-Inertia Action (v13): the passive-frame constraint structure closes | v13 |
+| 2026-07-03 | [10.5281/zenodo.21175723](https://doi.org/10.5281/zenodo.21175723) (concept 21175722) | Scale Yes, Shape Yes, Sign No: A Sixth Theorem Closing the Finite-Time/Non-Stationary Corner of Covariant Modified Inertia | v1 |
+| 2026-07-03 | [10.5281/zenodo.21152331](https://doi.org/10.5281/zenodo.21152331) (concept 21152330) | The Kernel That Builds Its Own Laser: Five Theorems on Covariant Modified Inertia, from Specification to Closure | v1 |
+| 2026-07-03 | [10.5281/zenodo.21148494](https://doi.org/10.5281/zenodo.21148494) (concept 21148493) | The Fourth Horn: Local Pais-Uhlenbeck Modified Inertia Is Excluded by an Exceptional-Point Cap and a Frequency-Selection No-Go | v1 |
+| 2026-07-02 | [10.5281/zenodo.21140507](https://doi.org/10.5281/zenodo.21140507) (concept 21140506) | Which a0? The Coefficient of the Radial-Acceleration Relation Under Full Nuisances: A Population-Split Answer | v1 |
+| 2026-07-02 | [10.5281/zenodo.21139029](https://doi.org/10.5281/zenodo.21139029) (concept 21139028) | The Sign Premise Is a State Clause: Pumped Baths, the de Sitter Thermostat, and the Limits of Scale Without Law | v1 |
+| 2026-07-02 | [10.5281/zenodo.21137568](https://doi.org/10.5281/zenodo.21137568) (concept 21137567) | A Fixed-Direction Ephemeris Test of s^TX at the CMB Apex: Pre-Registered Prediction, Analysis Recipe, and a Provisional Bound from Public Data | v1 |
+| 2026-07-01 | [10.5281/zenodo.21110936](https://doi.org/10.5281/zenodo.21110936) (concept 21110935) | A Non-Monotonic a0(z) Signature: An Observational Discriminant Among Evolving-Acceleration-Scale Models in the DESI Era | v1 |
+| 2026-07-01 | [10.5281/zenodo.21104820](https://doi.org/10.5281/zenodo.21104820) (concept 21104819) | Testing Modified Inertia in Galaxy Clusters: An Anisotropy-Dependent Mass Normalization | v1 |
+| 2026-06-29 | [10.5281/zenodo.21016309](https://doi.org/10.5281/zenodo.21016309) (concept 21016308) | Scale Without Law: Why the de Sitter-Unruh Temperature Forces the MOND Acceleration but Not the Interpolation | v1 |
+| 2026-06-28 | [10.5281/zenodo.20978308](https://doi.org/10.5281/zenodo.20978308) (concept 20978306) | A Fixed-Direction Solar-System Lorentz-Violation Target: the s̄^TX Boost-Dipole of de Sitter-Unruh Modified Inertia | v1 |
+| 2026-06-27 | [10.5281/zenodo.20977421](https://doi.org/10.5281/zenodo.20977421) (concept 20977420) | A Growing Neutrino Mass from an Evolving MOND Scale: A de Sitter-Unruh Reading of the DESI Σm_ν Anomaly | v1 |
+| 2026-06-21 | [10.5281/zenodo.20779562](https://doi.org/10.5281/zenodo.20779562) (concept 20779561) | The Galaxy-Cluster Residual in de Sitter-MOND: the Dark Sector Has the Mass, but a Density-Ordering Veto Forbids It from Being Galaxy-Safe and Cluster-Sufficient | v1 |
+| 2026-06-20 | [10.5281/zenodo.20773004](https://doi.org/10.5281/zenodo.20773004) | Why Skordis and Złośnik Were Right: The MOND Acceleration Scale as a de Sitter-Unruh Manifestation of the Cosmological Constant | v1 |
+| 2026-06-16 | [10.5281/zenodo.20721540](https://doi.org/10.5281/zenodo.20721540) (concept 20721539) | The MOND Acceleration Scale as a de Sitter Curvature Scale: Gauged SO(4,1) Gravity Reduces a0 = c²√(Λ/32π) to a Single Free Number | v1 |
+| 2026-06-12 | [10.5281/zenodo.20670670](https://doi.org/10.5281/zenodo.20670670) (concept 20670669) | The Λ-Anchored Acceleration Scale a0 = c²√(Λ/32π): A Completed Falsification Map, Exact No-Go Results, and the Specification of the Unique Surviving Option | v1 |
+| 2026-06-07 | [10.5281/zenodo.20576494](https://doi.org/10.5281/zenodo.20576494) (concept 20576493) | The Zimmerman Theory of Gravity — Research Corpus (code, data, and analysis) | 2026-06-06 |
+| 2026-06-07 | [10.5281/zenodo.20576485](https://doi.org/10.5281/zenodo.20576485) (concept 20576484) | The Zimmerman Theory of Gravity (comprehensive edition; the TOE/SM claims in it are RETRACTED, see RETRACTIONS.md) | 2026-06-06 |
 
 ---
 
