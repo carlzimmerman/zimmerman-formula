@@ -349,7 +349,10 @@ export default function Home() {
                     ΛCDM&rsquo;s emergent halo scale: <span className="font-medium">+0.33 dex</span>. One clean
                     low-acceleration rotator measured to ±0.13 dex decides at 20:1. On present data the two are
                     undecided and prior-dominated; the apparent rise seen by MUSE and JWST is also what ΛCDM&rsquo;s halo
-                    structure produces. A robust measured rise kills the framework&rsquo;s law either way.
+                    structure produces. A robust measured rise kills the framework&rsquo;s law either way. The measurement
+                    itself &mdash; target gate, NIRSpec-then-ALMA CO(3&ndash;2) funnel, frozen statistic &mdash; is pre-registered for
+                    observers:{' '}
+                    <a href="https://doi.org/10.5281/zenodo.22563139" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">DOI 10.5281/zenodo.22563139</a>.
                   </td>
                   <td className="py-3 px-4 text-gray-500">JWST / ALMA, a handful of objects</td>
                 </tr>
@@ -374,6 +377,7 @@ export default function Home() {
           <h2 className="text-lg font-semibold text-gray-900 mb-4">Papers, September 2026 (Zenodo; AI-assisted drafts, not peer reviewed)</h2>
           <ul className="space-y-2 text-sm text-gray-700">
             {[
+              ['10.5281/zenodo.22563139', 'Does the MOND Acceleration Scale Evolve? A Pre-Registered Decisive Measurement: the Deep-MOND Tully–Fisher Zero Point of One Lensed Rotator at z ≃ 2.5, with a Two-Stage JWST/ALMA Funnel (6 Sep)'],
               ['10.5281/zenodo.22559892', 'The Coefficient of the a₀–Λ Relation: a Zero-Mode Theorem for Local MOND Actions, Two Failed Repairs, a Four-Form Reframing, and an H₀ Degeneracy (6 Sep)'],
               ['10.5281/zenodo.22548669', 'A Ceiling Dark Matter Cannot Impose: the Bounded-Boost Theorem for MOND-Class Kernels, and What It Says About Galaxies and Clusters (v4, 6 Sep)'],
               ['10.5281/zenodo.22347632', 'The Filtered MOND Action: a Central Tidal Identity, Comparable-Mass Forces, a First Covariant Clock Action, and the Operator That Screens the Solar System (5 Sep)'],
