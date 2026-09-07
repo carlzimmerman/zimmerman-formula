@@ -67,7 +67,7 @@ export default function Home() {
           <div className="flex flex-wrap items-center gap-4 text-sm text-gray-500 mb-8 pb-8 border-b border-gray-200">
             <span className="font-medium text-gray-700">Carl P. Zimmerman</span>
             <span className="text-gray-300">|</span>
-            <span>Standing revision 4 &mdash; 30 July 2026</span>
+            <span>Standing revision 8 &mdash; 6 September 2026</span>
             <span className="text-gray-300">|</span>
             <a
               href="https://github.com/carlzimmerman/zimmerman-formula/blob/main/STANDING.md"
@@ -90,9 +90,21 @@ export default function Home() {
               </div>
               <p className="text-sm text-gray-600 max-w-2xl mx-auto">
                 Realised as <span className="font-medium">modified gravity</span> — the modified-inertia arm
-                was closed by lensing in August 2026 — with the exact relation
-                g_obs² = g_bar² + a₀ g_bar and the Milgrom&ndash;Sanders (2008) kernel
-                ν(y) = 1/(1 − e^(−√y)) as the operative interpolation.
+                was closed by lensing in August 2026 — with the Milgrom&ndash;Sanders (2008) kernel
+                ν(y) = 1/(1 − e^(−√y)) as the operative interpolation. κ = ½ is{' '}
+                <span className="font-medium">fitted, not derived</span>: measured 0.551 ± 0.043 (distance-free)
+                and 0.465 ± 0.076 (Tully&ndash;Fisher) &mdash; and, as of 6 September 2026,{' '}
+                <span className="font-medium">proven underivable by the programme&rsquo;s own covariant action</span>: the MOND
+                primitive enters the field equations only through its derivative and the cosmological background only
+                through Λ + (2 − K_B) J(0)/2, a normalisation zero mode (
+                <a href="https://doi.org/10.5281/zenodo.22559892" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">DOI 10.5281/zenodo.22559892</a>
+                ). The one coefficient-free alternative, the horizon form a₀ = c²/(2π L_dS) with κ = 0.461, is 8.5% away and
+                exactly degenerate with the H₀ tension: κ = ½ on Planck&rsquo;s H₀ and κ = 0.461 on SH0ES&rsquo;s predict the
+                same a₀ to 0.2%. Because a₀ tracks the dark-energy density it{' '}
+                <span className="font-medium">cannot track the expansion rate</span>: a₀(z)/a₀(0) = √(ρ_DE(z)/ρ_DE(0))
+                exactly, which is flat if Λ is constant, 13% lower by z = 2 on DESI&rsquo;s w₀wₐ fit, and within ±20% of
+                today&rsquo;s value out to z = 3 for any dark energy the data allow &mdash; against ×3 for a₀ ∝ H(z) and
+                ×1.8 for ΛCDM&rsquo;s emergent scale. That is the one statement here that ΛCDM does not make.
               </p>
             </div>
           </section>
@@ -147,8 +159,35 @@ export default function Home() {
                   <td className="py-3 px-4 text-gray-900">Every π, the 32 and the 3 cancel</td>
                 </tr>
                 <tr className="border-b border-gray-100">
+                  <td className="py-3 px-4 text-gray-700">The coefficient κ cannot be derived by the candidate action (6 September 2026)</td>
+                  <td className="py-3 px-4 text-gray-900">
+                    Zero-mode theorem; the Λ-free repair has the wrong sign and is 220× too small; a global constraint misses by
+                    10⁵; a four-form promotion of a₀ fixes the sign and makes a₀ ∝ √(Gρ_Λ) structural but leaves κ as the
+                    free coupling ratio Z/β² = 8; the horizon coefficient 0.461 vs ½ is locked to H₀. Published &mdash;{' '}
+                    <a href="https://doi.org/10.5281/zenodo.22559892" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">DOI 10.5281/zenodo.22559892</a>
+                  </td>
+                </tr>
+                <tr className="border-b border-gray-100">
+                  <td className="py-3 px-4 text-gray-700">The condensate polytrope (September 2026)</td>
+                  <td className="py-3 px-4 text-gray-900">
+                    The dust of the Aether&ndash;Scalar&ndash;Tensor completion is a γ = 2 polytrope whose sound speed in a
+                    well is the well depth, c_s² = |Ψ| c²; the static Helmholtz equation is its hydrostatics.
+                    Algebra published &mdash;{' '}
+                    <a href="https://doi.org/10.5281/zenodo.22242701" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">DOI 10.5281/zenodo.22242701</a>
+                    {' '}(the cluster cosmology built on it is withdrawn, see below)
+                  </td>
+                </tr>
+                <tr className="border-b border-gray-100">
+                  <td className="py-3 px-4 text-gray-700">Nonlocal MOND kernels (Deffayet&ndash;Woodard class) are unstable</td>
+                  <td className="py-3 px-4 text-gray-900">
+                    In-in linear analysis: longitudinal gradient instability and a deep-MOND ghost; an independent tensor-speed kill.
+                    Published &mdash;{' '}
+                    <a href="https://doi.org/10.5281/zenodo.22253953" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">DOI 10.5281/zenodo.22253953</a>
+                  </td>
+                </tr>
+                <tr className="border-b border-gray-100">
                   <td className="py-3 px-4 text-gray-700">Modified-inertia action (v1–v11); disformal lensing construction</td>
-                  <td className="py-3 px-4 text-gray-900">Published; constraint structure machine-verified, zero frame degrees of freedom; lensing Cassini-safe and Ostrogradsky-free</td>
+                  <td className="py-3 px-4 text-gray-900">Published; the arm is closed as physics (lensing, 21σ); kept as mathematics</td>
                 </tr>
                 <tr>
                   <td className="py-3 px-4 text-gray-700">Seven structural theorems</td>
@@ -177,18 +216,29 @@ export default function Home() {
           <ul className="space-y-3 text-sm text-gray-700">
             <li className="border-l-2 border-gray-300 pl-4">
               <span className="font-medium text-gray-900">κ = ½.</span> Its <em>value</em> is not
-              derived. Ghost-freedom, unitarity and holography have each been shown insufficient to
-              force it. This is a <span className="font-medium">one-parameter effective theory, not a
-              zero-parameter derivation</span>. Z has the same status.
+              derived, and since 6 September 2026 it is proven underivable by the candidate action itself: the
+              additive zero of the MOND primitive is a zero mode of the field equations, the two repairs that could fix it
+              fail on sign and by five orders of magnitude, and the four-form extension that fixes the sign turns the
+              question into a free coupling ratio. It is an <span className="font-medium">empirical boundary condition</span>
+              that only a stellar mass-to-light zero point, an absolute gas scale and a settled H₀ can pin. This is a{' '}
+              <span className="font-medium">one-parameter effective theory, not a zero-parameter derivation</span>. Z has the same status.
             </li>
             <li className="border-l-2 border-gray-300 pl-4">
-              <span className="font-medium text-gray-900">The law itself is not the Euler&ndash;Lagrange
-              equation of the published action.</span> It <em>does</em> arise variationally in a
-              nonlocal, non-quadratic class — Milgrom&rsquo;s own virial construction — but only on the
-              two-parameter family of circular orbits. Infinitely many extensions share that slice and
-              none is written down. Milgrom&rsquo;s own status line still applies: &ldquo;we do not have
-              a modified-inertia theory for MOND at the level of satisfaction achieved for
-              modified-gravity formulations.&rdquo;
+              <span className="font-medium text-gray-900">Dark matter exists, at full Ω_dm, and it is cold.</span>{' '}
+              The CMB needs a pressureless component and the relativistic completion (v9, on Skordis &amp;
+              Złośnik&rsquo;s Aether&ndash;Scalar&ndash;Tensor chassis) supplied it with a condensate. On 2 September 2026
+              that condensate&rsquo;s own equation of state closed the door: read on the cosmic background it fixes
+              c_s²(z) = 4πG ρ_dm(z)/μ², which pins the theory&rsquo;s free amplitude 18&ndash;300× above its own
+              power-spectrum ceiling, and for <em>any</em> such field a galaxy well today is the background at
+              z ≲ 16 with the same sound speed &mdash; so a field cold enough for the Lyman-α forest falls into
+              galaxies. The slogan &ldquo;no dark matter in galaxies&rdquo; has no kinetic mechanism left.
+            </li>
+            <li className="border-l-2 border-gray-300 pl-4">
+              <span className="font-medium text-gray-900">A two-field metric MOND that light and matter both
+              see is forced to carry a third field.</span> At quadratic order around de Sitter, any elliptic
+              auxiliary that enters the lapse equation frees one dust-like scalar; couplings to the spatial
+              curvature free none but split lensing from dynamics. That is why TeVeS, AeST and the superfluid
+              all carry a genuine extra field, and it is why the hoped-for constraint-only theory does not exist.
             </li>
             <li className="border-l-2 border-gray-300 pl-4">
               <span className="font-medium text-gray-900">Two footings are carried on every dimensional
@@ -204,28 +254,38 @@ export default function Home() {
           <div className="space-y-4 text-sm">
             <div className="border-l-4 border-red-400 pl-4 py-2 bg-red-50/50">
               <div className="font-medium text-gray-900 mb-1">
-                The exact law is in conflict with the inner-planet ephemerides
+                Dark matter falls into galaxies, and MOND is still there
               </div>
               <p className="text-gray-700">
-                Held to all accelerations, the relation implies a constant sunward anomaly of a₀/2 =
-                4.68 × 10⁻¹¹ m s⁻² that never decays. Against the Earth 2σ limit derived from Sereno
-                &amp; Jetzer (2006) that is <span className="font-medium">1278× too large</span>, and
-                119&ndash;189× too large even after the framework&rsquo;s own external-field effect.
-                Galaxy data does not require this: across SPARC the α = 1, α = 2 and α = ∞ tails fit
-                within 0.0084 dex of one another. The honest reading is that the relation is an{' '}
-                <span className="font-medium">infrared</span> statement — which costs nothing in
-                galaxies but withdraws the claim that it is <em>exact</em>.
+                The completion needs an Ω_dm-worth of cold energy for the acoustic peaks and the 100-Mpc
+                clustering. Cold means it clusters into galaxies, where the MOND boost is also acting: by the
+                repository&rsquo;s own numbers that double count overshoots rotation curves by{' '}
+                <span className="font-medium">2.7&ndash;4.4×</span>. Every kinetic escape has now been run and
+                closed &mdash; pressure support, a superfluid phase, a rising a₀, a Hubble-scaled filter &mdash;
+                each one a committed script with checks that can fail. On 6 September 2026 the last particle candidate, a
+                thermal relic at the mass the N_eff bound allows (about 28 eV), closed as a pincer with no interior: N_eff needs
+                at least 27.6 eV, the radial acceleration relation needs at most 11 eV, and the cluster profile worked only at
+                11.4 eV. Four condensate constructions are closed on the action&rsquo;s own terms. The dark-sector hunt is frozen
+                behind the coefficient question. This is the programme&rsquo;s blocking problem, and it is the same one
+                MOND-plus-halos always had.
               </p>
             </div>
             <div className="border-l-4 border-orange-400 pl-4 py-2 bg-orange-50/50">
               <div className="font-medium text-gray-900 mb-1">Galaxy clusters</div>
               <p className="text-gray-700">
-                η(R₅₀₀) = 2.33 median / 2.54 geometric mean on real eRASS1 (N = 9830) using the
-                framework&rsquo;s own kernel — significant at 4.1/2.7/2.0σ against a 0.10/0.15/0.20 dex
-                systematic floor. The cluster acceleration scale is 21.6× the framework&rsquo;s a₀. The
-                framework&rsquo;s lower coefficient makes this <span className="font-medium">13.2%
-                worse</span> than standard MOND. Real, soft, central, and shared with AeST by an
-                in-corpus argument — not a published family-wide theorem.
+                The framework&rsquo;s own kernel leaves clusters short by η(R₅₀₀) ≈ 1.9&ndash;2.1. The condensate
+                polytrope pins a core worth 23&ndash;33% of the missing mass (published, DOI 10.5281/zenodo.22242701, v2
+                22254075), but the cosmology behind that mechanism is the one excluded on 2 September 2026: the
+                static algebra stands, the yield is <span className="font-medium">withdrawn as a live number</span>.
+                Recorded in RETRACTIONS.md.
+              </p>
+            </div>
+            <div className="border-l-4 border-gray-400 pl-4 py-2 bg-gray-50">
+              <div className="font-medium text-gray-900 mb-1">The inner-planet ephemerides &mdash; discharged</div>
+              <p className="text-gray-700">
+                The earlier &ldquo;exact&rdquo; α = 1 law implied a constant sunward anomaly 1278× over the Earth
+                bound. The exponential kernel now in force (Route A, 2 August 2026) makes the departure from Newton
+                exponentially small in the Solar System, 2.7 × 10⁻²² at the Sun. The word &ldquo;exact&rdquo; stays withdrawn.
               </p>
             </div>
             <div className="border-l-4 border-gray-400 pl-4 py-2 bg-gray-50">
@@ -272,29 +332,68 @@ export default function Home() {
                 <tr className="border-b border-gray-100">
                   <td className="py-3 px-4 text-gray-700">Wide binaries</td>
                   <td className="py-3 px-4 text-gray-700">
-                    In force (Amendment 10, Aug 2026): γ_v = 1.1614&ndash;1.1814 canonical / 1.1917&ndash;1.2267
-                    alt footing, no-verdict edge 1.23 — hash-stamped, amended in the open before
-                    data. Earlier targets (1.09, 1.1582) superseded on the record.
+                    Two mutually exclusive arms, both registered before the data (Amendment 11, 6 Sep 2026, append-only and
+                    hash-stamped). Arm A, the frozen kernel as modified gravity: γ_v = 1.1614&ndash;1.1814 canonical /
+                    1.1917&ndash;1.2267 alt, no-verdict edge 1.23. Arm B, the covariant candidate at its Cassini-minimal coherence
+                    length: γ_v ≤ 1.0450 / ≤ 1.0300, falling toward 1.000 as the length grows. Decision rule fixed in advance:
+                    A falsified below 1.056, B falsified at or above 1.129. Stated against interest: DR4 separates the arms at
+                    4.2σ but cannot confirm Arm B over Newton beyond 1.6σ &mdash; a Newtonian result kills A and leaves B alive but
+                    unconfirmed, never a success. Newton = 1.000.
                   </td>
                   <td className="py-3 px-4 text-gray-500">Gaia DR4, Dec 2026</td>
                 </tr>
                 <tr className="border-b border-gray-100">
-                  <td className="py-3 px-4 text-gray-700">Lorentz-violation dipole s<sup>TX</sup></td>
+                  <td className="py-3 px-4 text-gray-700">Deep-MOND Tully&ndash;Fisher zero-point at z ≈ 2.5</td>
                   <td className="py-3 px-4 text-gray-700">
-                    Sign frozen negative; margin 1.50× / 1.24× on the two footings
+                    Framework: <span className="font-medium">0.00 dex</span> (−0.09 with DESI dark energy).
+                    ΛCDM&rsquo;s emergent halo scale: <span className="font-medium">+0.33 dex</span>. One clean
+                    low-acceleration rotator measured to ±0.13 dex decides at 20:1. On present data the two are
+                    undecided and prior-dominated; the apparent rise seen by MUSE and JWST is also what ΛCDM&rsquo;s halo
+                    structure produces. A robust measured rise kills the framework&rsquo;s law either way.
                   </td>
-                  <td className="py-3 px-4 text-gray-500">Gaia DR4</td>
+                  <td className="py-3 px-4 text-gray-500">JWST / ALMA, a handful of objects</td>
                 </tr>
                 <tr>
                   <td className="py-3 px-4 text-gray-700">a₀(z) evolution</td>
                   <td className="py-3 px-4 text-gray-700">
-                    Bump-then-decline, not a monotonic rise. Dissolves if w → −1.
+                    a₀(z)/a₀(0) = √(ρ_DE(z)/ρ_DE(0)), footing-independent: constant to &lt;1% for z ≤ 5 if Λ is constant
+                    (the v9 completion switches it off only above z ≈ 20), a ~13% decline by z = 2 on DESI&rsquo;s w₀wₐ fit,
+                    and never more than ±20% out to z = 3 for any allowed w. ΛCDM&rsquo;s emergent scale rises ×1.8 by z = 2;
+                    to mimic a flat a₀ its haloes would have to be diluted to 0.61 (z = 2) and 0.40 (z = 3) of their N-body
+                    concentrations.
                   </td>
                   <td className="py-3 px-4 text-gray-500">DESI, ongoing</td>
                 </tr>
               </tbody>
             </table>
           </div>
+        </section>
+
+        {/* Papers */}
+        <section className="mb-12">
+          <h2 className="text-lg font-semibold text-gray-900 mb-4">Papers, September 2026 (Zenodo; AI-assisted drafts, not peer reviewed)</h2>
+          <ul className="space-y-2 text-sm text-gray-700">
+            {[
+              ['10.5281/zenodo.22559892', 'The Coefficient of the a₀–Λ Relation: a Zero-Mode Theorem for Local MOND Actions, Two Failed Repairs, a Four-Form Reframing, and an H₀ Degeneracy (6 Sep)'],
+              ['10.5281/zenodo.22548669', 'A Ceiling Dark Matter Cannot Impose: the Bounded-Boost Theorem for MOND-Class Kernels, and What It Says About Galaxies and Clusters (v4, 6 Sep)'],
+              ['10.5281/zenodo.22347632', 'The Filtered MOND Action: a Central Tidal Identity, Comparable-Mass Forces, a First Covariant Clock Action, and the Operator That Screens the Solar System (5 Sep)'],
+              ['10.5281/zenodo.22261001', 'Crispy Fried Chicken Matching Theorem (2 Sep)'],
+              ['10.5281/zenodo.22255522', 'The Retarded Nonlocal MOND Kernel Is Unstable on MOND Backgrounds: a Longitudinal Gradient Instability and a Deep-MOND Ghost Close the Nonlocal Door (v2, 2 Sep)'],
+              ['10.5281/zenodo.22254075', 'The Aether-Scalar-Tensor Dark Sector Is a γ = 2 Polytrope: the Cluster Helmholtz Phase Is Its Mass, It Pins Dynamically, and It Fills About a Quarter of the Cluster Gap (v2, 2 Sep; cosmology withdrawn)'],
+              ['10.5281/zenodo.22135510', 'An Obstruction Map for Relativistic MOND: the Conformal Lensing Barrier and the Cost of Its Repair (28 Aug)'],
+              ['10.5281/zenodo.22133406', 'A Conditionally Closed Constraint-Defined MOND Theory with Two Tensor Degrees of Freedom: Hamiltonian Certification, Kernel-Agnostic Chassis, and Solar-System Gates (v2, 27 Aug)'],
+              ['10.5281/zenodo.22132648', 'Carrier No-Go Theorems for Two-Degree-of-Freedom MOND: the F(A²) Class, the Auxiliary-Legendre Escape, and a Hamiltonian Audit of Causal Nonlocal MOND (27 Aug)'],
+            ].map(([doi, title]) => (
+              <li key={doi} className="border-l-2 border-gray-300 pl-4">
+                <span className="text-gray-900">{title}</span>{' '}&mdash;{' '}
+                <a href={`https://doi.org/${doi}`} target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">DOI {doi}</a>
+              </li>
+            ))}
+          </ul>
+          <p className="text-sm text-gray-600 mt-3">
+            The full record, every deposit since June 2026 with its title and concept DOI, is the{' '}
+            <a href="https://github.com/carlzimmerman/zimmerman-formula#doi-index--every-deposit-with-its-title-newest-first-version-doi-concept-doi-in-brackets" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">DOI index in the repository README</a>.
+          </p>
         </section>
 
         {/* Where to look */}
@@ -344,7 +443,7 @@ export default function Home() {
             . Where a claim has been corrected, the correction and its direction are recorded rather
             than quietly dropped.
           </p>
-          <p>Carl P. Zimmerman &middot; Standing revision 4, 30 July 2026</p>
+          <p>Carl P. Zimmerman &middot; Standing revision 8, 6 September 2026</p>
         </footer>
       </div>
     </main>
