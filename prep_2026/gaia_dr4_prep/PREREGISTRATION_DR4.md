@@ -1082,6 +1082,110 @@ gamma by −0.0150 (flagged systematic, §1.5). DR3 dry run: §1.6 numbers,
 > g_ext under the Route A kernel) is reproduced in PART A of the same script to 5×10⁻⁴ (the
 > residual is the pipeline's a₀ rounding).
 
+
+> ### 🚨 AMENDMENT 11 — 2026-09-06, ADDED IN THE OPEN BEFORE DR4. READ BEFORE SCORING.
+>
+> **THE PROGRAM NOW CARRIES TWO MUTUALLY EXCLUSIVE WIDE-BINARY PREDICTIONS, AND ONLY ONE OF THEM
+> WAS REGISTERED. THIS AMENDMENT REGISTERS THE SECOND, STATES WHY THE TWO CANNOT BOTH HOLD, AND
+> FIXES THE DECISION RULE BETWEEN THEM BEFORE THE DATA EXIST.**  It adds; it moves nothing.
+>
+> **(a) Arm A — registered already, unchanged.**  Amendment 10's computed band from the full
+> nonlinear AQUAL-EFE solve of the frozen kernel taken as modified gravity with no coherence
+> length: canonical **1.1614–1.1814**, alt **1.1917–1.2267**; no-verdict edge 1.23; Newton 1.000;
+> σ_fit = 0.019 at the frozen N = 30,000, σ_tot = 0.028.  Every clause of Amendment 10 stands.
+>
+> **(b) Arm B — registered here for the first time.**  The covariant candidate action of the
+> closure program (`qwen_claude_field_theory/closure_2026/THE_ACTION_2026-09-05.md`: a
+> khronometric clock, a dynamical MOND scalar, and the coherence operator ξ²|∇⊥V|² inside the
+> kernel; ν_RAR carried and saturated at its maximum, THE_ACTION §3) passes the static
+> Solar-System gates only with a coherence length at or above a floor set by the Cassini
+> quadrupole and the Saturn monopole (`g03d_exact_fourth_order_solar.py`): **ξ ≥ 0.10 pc
+> canonical / 0.15 pc alt** for the carried kernel (0.07 / 0.10 pc for the superseded exponential
+> carrier).  Evaluated with THE SAME frozen estimator as Arm A — the orientation-averaged force
+> boost over 3–30 kAU turned into γ_v by the registered pipeline's estimator
+> (`g03y_gammav_corrected_floors.py`, 0 FAIL; its control Z0 reproduces the earlier published
+> g03h numbers to 0.002 at both footings) — the candidate returns, AT THE FLOORS:
+>
+> | kernel | footing | ξ at the floor | γ_v (estimator error) |
+> |---|---|---|---|
+> | ν_RAR carried (in force) | canonical | 0.10 pc | **1.0450 ± 0.0037** |
+> | ν_RAR carried (in force) | alt | 0.15 pc | **1.0300 ± 0.0037** |
+> | exponential carrier (superseded, record only) | canonical | 0.07 pc | 1.0375 ± 0.0037 |
+> | exponential carrier (superseded, record only) | alt | 0.10 pc | 1.0275 ± 0.0037 |
+>
+> The quoted error is the estimator's model-side error; the measurement error is the frozen
+> σ_fit / σ_tot.  γ_v DECREASES monotonically as ξ grows above its floor (g03y check Z2: the
+> coherence length lowers the boost; the carried kernel raises it, and the two compete), so the
+> registered numbers are **CEILINGS**: Arm B predicts **1.000 < γ_v ≤ 1.0450 (canonical) /
+> ≤ 1.0300 (alt)**, the ceiling being the prediction at the Cassini-minimal length.  The
+> numbers 1.032 / 1.040 quoted in the closure documents on 2026-09-05 were computed at the old
+> floors 0.03 / 0.05 pc; they are SUPERSEDED and must not be scored.  The candidate's
+> anisotropy sign-flip radius moves to 36–77 kAU at the corrected floors (g03y Z4), outside
+> DR4's usable 4–30 kAU range: Amendment 2(f)'s sample-level sign rule remains an Arm-A rule
+> and is NOT a test of Arm B.
+>
+> **(c) Why both are registered and why they are exclusive.**  Arm A's kernel as strict
+> AQUAL-EFE fails the Cassini quadrupole gate by 4–5× (roadmap gate G01, two independent
+> solvers agreeing to 0.05%).  The same kernel carried by a scalar with the coherence length
+> that passes Cassini IS Arm B, and that length is exactly what lowers the boost from the band
+> to the ceiling.  The two numbers cannot both be true.  Arm A is the frozen program's
+> phenomenological prediction; Arm B is the prediction of the covariant candidate that passes
+> the Solar System.  The program states in advance that it does not get to choose after the
+> data arrive: whichever arm DR4 kills is dead, and if DR4 lands between them both are.
+>
+> **(d) Decision rule — readings ADDED to the section-1 table (existing rows unchanged).**
+> Distances in σ_tot = 0.028 (the table's convention), with σ_fit = 0.019 in brackets; A's
+> canonical floor 1.1614, B's canonical ceiling 1.0450 (alt: 1.1917 / 1.0300, same logic,
+> shifted).  "Falsified" = > 3σ_tot on the wrong side of the arm's edge.
+>
+> | γ̂ lands in | Arm A | Arm B | added reading |
+> |---|---|---|---|
+> | ≤ 1.007 | falsified (≥ 5.5σ_tot below floor) | consistent only as its Newtonian limit (ξ far above the floor) | Arm A dead; Arm B alive but unconfirmed; the implied ξ is reported from g03y's monotone map, no verdict word |
+> | 1.007 – 1.056 | falsified (≥ 3.8σ_tot) | consistent (within 2σ_tot of the ceiling or below it) | **the arm question is decided for B**; B-vs-Newton is NOT decidable at the frozen error model (see (e)) |
+> | 1.056 – 1.084 | disfavored (2.8–3.8σ_tot) | consistent | Newton disfavored at 2–3σ_tot; B favoured over Newton only at that level |
+> | 1.084 – 1.101 | 2.2–2.8σ_tot below floor | within 2σ_tot of the ceiling | **arm NOT decided** (the existing row's "framework-band" reading stands) |
+> | 1.101 – 1.129 | within 2.2σ_tot of the floor | disfavored (2–3σ_tot above the ceiling) | leaning A; not a B kill |
+> | ≥ 1.129 | per Amendment 10 rows | **falsified** (> 3σ_tot above the ceiling; ≥ 4.4σ_fit) | the covariant candidate is dead; Arm A's kernel stands with its unsolved Solar-System problem |
+> | > 1.23 | no-verdict edge (Amdt 10) | falsified regardless | unchanged for A |
+>
+> **(e) Falsifiability, stated against interest.**  At the frozen error model DR4 SEPARATES
+> THE ARMS — ceiling to floor is 0.116 = 4.2σ_tot (6.1σ_fit) — but it CANNOT separate Arm B
+> from Newton beyond 1.6σ_tot (2.4σ_fit) even if the truth sits at B's ceiling, and not at all
+> if ξ is above its floor.  A Newtonian DR4 result therefore falsifies Arm A and leaves Arm B
+> alive.  Arm B is, as a wide-binary prediction, one-sided: DR4 can kill it from above
+> (γ̂ ≥ 1.129) and cannot confirm it.  Confirming B at 3σ_tot needs σ_tot ≤ 0.015 at the
+> ceiling (about four times the frozen N at unchanged systematics, or DR5), or a different
+> observable.  This is recorded so that a Newtonian result is never later described as a
+> success of the covariant candidate: it is the survival of an untested ceiling.
+>
+> **(f) Variant B′ — recorded, NOT registered as a number.**  The four-form promotion of a₀
+> (`kappa_closure/k04_four_form_promotion_consistency.py`, a relayed construction audited
+> 2026-09-06) makes a₀ environmental, a₀_loc = a₀(1 − g_N/155a₀), which depresses the boost at
+> the innermost separations: Δγ_v = −0.019 / −0.015 (canonical / alt) at 2 kAU for a 1.5 M☉
+> pair, −0.008 / −0.006 at 3 kAU, under 0.003 at 5 kAU and beyond.  The registered estimator
+> averages 3–30 kAU, so B′'s effect on the registered number is below the estimator's own
+> error.  It is listed so that a radius-dependent depression of the boost below 4 kAU is
+> interpretable, not so that it can be scored.
+>
+> **(g) Unchanged.**  Everything in Arm A; the estimator; the 16-row frozen cut table; the
+> error model; the strictness ladder; the NSS screen; the frozen N = 30,000; both a₀ footings;
+> the κ window [0.95, 1.05]; the a₀-degeneracy flag; the no-verdict edge 1.23; the no-EFE
+> benchmark 1.33.  Amendment 7(e)'s reporting rule is EXTENDED, not weakened: the raw γ̂ with
+> σ_fit and its distances to Arm A's four anchors AND to Arm B's two ceilings (1.0450 /
+> 1.0300), never a verdict word.  **κ = ½ FITTED, NOT DERIVED** — and now shown underivable by
+> the candidate action itself (`kappa_closure/k01–k04`: the primitive's constant is a zero
+> mode of the field equations; the Λ-free repair has the wrong sign and is 220× too small; the
+> sequestering-type global average misses by five orders; the four-form extension fixes the
+> sign and makes the seesaw form structural but leaves the coefficient as a free coupling
+> ratio Z/β² = 8).
+>
+> **(h) Provenance.**  `qwen_claude_field_theory/closure_2026/g03y_gammav_corrected_floors.py`
+> (numbers, monotonicity, control), `g03d_exact_fourth_order_solar.py` (floors),
+> `THE_ACTION_2026-09-05.md` §3 (kernel), `hunt_2026/g01*`/roadmap gate G01 (Arm A's Cassini
+> failure), `kappa_closure/k04` (B′).  In the same commit: `wide_binary_pipeline.py` gains
+> `GAMMA_B_CEIL = 1.0450` / `GAMMA_B_CEIL_ALT = 1.0300` and `report_7e` prints the distances
+> to them; no registered number of Arm A moved; the readiness audit re-run.
+
 ---
 
 ## SECTION 2 — s^TX SME boost-dipole template (Door 4B, Front A)

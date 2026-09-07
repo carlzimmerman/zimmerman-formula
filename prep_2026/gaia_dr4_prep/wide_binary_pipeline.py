@@ -112,6 +112,12 @@ GAMMA_TARGET = 1.1614    # *** IN FORCE, Amdt 10: full-solve BAND FLOOR (total-m
 GAMMA_TARGET_TOP = 1.1814   # Amdt 10 band TOP (benchmark-corrected grade), canonical
 GAMMA_TARGET_ALT = 1.1917  # Amdt 10 band FLOOR, alt footing
 GAMMA_TARGET_ALT_TOP = 1.2267  # Amdt 10 band TOP, alt (the edge construction's input)
+GAMMA_B_CEIL = 1.0450          # *** Amdt 11 (2026-09-06): ARM B, the covariant candidate action
+                               # (clock + MOND scalar + coherence length) at its Cassini-minimal
+                               # xi = 0.10 pc, nu_RAR carried, SAME estimator (g03y): a CEILING --
+                               # the candidate predicts 1.000 < gamma_v <= 1.0450 (gamma_v falls
+                               # as xi grows).  Arm A (band above) and Arm B are mutually exclusive.
+GAMMA_B_CEIL_ALT = 1.0300      # Amdt 11: Arm B ceiling, alt footing (xi = 0.15 pc)
 GAMMA_MI  = 1.1582       # SUPERSEDED by Amdt 9.  Kept for the record; Amdt 10 WITHDREW the
                          #     "2.68-sigma arm separation" claim -- the Amdt-10 band sits
                          #     0.003-0.023 above this, INSIDE the MI magnitude range: DR4
@@ -365,6 +371,12 @@ def report_7e(g, sg, kap, label):
           f"{d_tgt:+.2f} / top {GAMMA_TARGET_TOP:.4f} = {d_top:+.2f}; alt "
           f"{GAMMA_TARGET_ALT:.4f} = {d_alt:+.2f} / top {GAMMA_TARGET_ALT_TOP:.4f} = "
           f"{d_alt_top:+.2f} sigma_fit (distances to ALL FOUR anchors per Amdt 10(b))")
+    d_b = (g - GAMMA_B_CEIL) / sg if sg > 0 else float("nan")
+    d_b_alt = (g - GAMMA_B_CEIL_ALT) / sg if sg > 0 else float("nan")
+    print(f"    [7(e)] IN FORCE (Amdt 11, ARM B = covariant candidate, CEILINGS): canonical "
+          f"{GAMMA_B_CEIL:.4f} = {d_b:+.2f}; alt {GAMMA_B_CEIL_ALT:.4f} = {d_b_alt:+.2f} sigma_fit "
+          f"(Arm B predicts 1.000 < gamma_v <= ceiling; Arms A and B are mutually exclusive; "
+          f"B is killed from above only -- Amdt 11(d)/(e))")
     print(f"    [7(e)] superseded record only: MI {GAMMA_MI:.4f} = {d_mi:+.2f} sigma_fit; "
           f"MI ranges radial {GAMMA_MI_RANGE_RAD}, magnitude {GAMMA_MI_RANGE_MAG}.  "
           f"No verdict word is emitted by design.")
