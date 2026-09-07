@@ -1,0 +1,19 @@
+======================================================================================================================
+g04k -- cold collisionless infall onto a MOND-boosted disc, 3D particles (the shell model's number, stress-tested)
+======================================================================================================================
+  [PASS] P0 [kernel] the disc alone gives the deep-MOND flat speed (G M_b a0)^1/4 at 30 kpc to 10% (canonical, no EFE)   (168 vs 158 km/s, s = 0.081)
+    MOND, sigma_i = 0, spherical baryons (shell-like): M/M_b inside 10, 30, 100, 200 kpc = 2.65, 8.89, 28.9, 37.3  (disc 1.00 M_b0; 13617 steps, 125s)
+    NEWTON control, sigma_i = 20 km/s, disc     : M/M_b inside 10, 30, 100, 200 kpc = 0.35, 0.99, 2.3, 3.6  (disc 0.28 M_b0; 13617 steps, 115s)
+    MOND, sigma_i = 20 km/s, disc (canonical)   : M/M_b inside 10, 30, 100, 200 kpc = 2.58, 8.85, 28.6, 37.4  (disc 1.00 M_b0; 13617 steps, 131s)
+    MOND, sigma_i = 60 km/s, disc (canonical)   : M/M_b inside 10, 30, 100, 200 kpc = 1.52, 8.07, 27.9, 37.7  (disc 1.00 M_b0; 13617 steps, 133s)
+    MOND, sigma_i = 20 km/s, disc (alt footing) : M/M_b inside 10, 30, 100, 200 kpc = 2.64, 9.26, 28.8, 37.6  (disc 1.00 M_b0; 13617 steps, 133s)
+  [PASS] P1 [shell] the radial 3D run reproduces g03r's cold-infall M(<10 kpc)/M_b = 2.71 within a factor 2   (3D radial 2.65 vs shell 2.71; inside 30 kpc 8.89 vs 8.68; 100 kpc 28.9 vs 23.9)
+  [PASS] P2 [control] the Newtonian run delivers a CDM-like inner mass, M(<10 kpc)/M_b in [0.3, 5]   (0.35)
+  [FAIL] P3 [THE TEST] with angular momentum and the flattened disc the mass inside 10 kpc is below 25% of the baryons (sigma_i = 20 and 60 km/s, both footings)   ({"mond20": 2.58, "mond60": 1.52, "mond20alt": 2.64})
+  [FAIL] P4 [BTFR] the same inside 30 kpc   ({"mond20": 8.85, "mond60": 8.07, "mond20alt": 9.26})
+  [FAIL] P5 [KiDS] the MOND runs hold less than 14% of the Newtonian control's mass inside 100 kpc   (MOND/Newton inside 100 kpc = 12.21, 11.94)
+
+  caveats: dust self-gravity as a monopole (the dust stays near-spherical; the disc is the flattened part), algebraic QUMOND with the external field in the kernel argument, an isolated vacuole of 8 shares (no tides beyond it), z_i = 20 against the shell model's 50.  total 637s
+
+RESULT: 3 FAIL -> ['P3 [THE TEST] with angular momentum and the flattened disc the mass inside 10 kpc is below 25% of the baryons (sigma_i = 20 and 60 km/s, both footings)', 'P4 [BTFR] the same inside 30 kpc', "P5 [KiDS] the MOND runs hold less than 14% of the Newtonian control's mass inside 100 kpc"]
+rc=0
