@@ -479,9 +479,10 @@ def anisotropy_split(gN, vt, extra, mod, rng, a0, label):
         z = d/sd if sd > 0 else float('nan')
         print(f"  [aniso] {label}: gamma_perp - gamma_par = {d:+.4f} +- {sd:.4f} "
               f"({z:+.2f} sigma).  PRE-DECLARED SIGN: POSITIVE (perpendicular larger).")
-        print(f"  [aniso] expected observable split {ANISO_DILUTION*ANISO_EIG['canonical'][1]-ANISO_DILUTION*ANISO_EIG['canonical'][0]:+.4f} "
-              f"(3-D spread x dilution {ANISO_DILUTION}); 3 sigma needs N ~ 2.1-2.7e5, so at the "
-              f"frozen N this is a DIRECTIONAL check, not decisive.")
+        print(f"  [aniso] expected observable split: MI-era {ANISO_DILUTION*ANISO_EIG['canonical'][1]-ANISO_DILUTION*ANISO_EIG['canonical'][0]:+.4f} "
+              f"(superseded); Amdt 10(d2) MG full solve, sample-level projected split +0.0013 to +0.0046 (both footings) -- "
+              f"the SIGN (perpendicular larger) is the retained rule; NON-SCORING at any frozen N; Arm B's sign-flip radius is "
+              f"outside the window (Amdt 11(b)), so this is an Arm-A rule only.")
         if z <= -3:
             print("  [aniso] *** WRONG SENSE AT >= 3 SIGMA: this FALSIFIES the derived "
                   "external-field effect independently of the aggregate gamma_v (Amendment 2) ***")
@@ -523,7 +524,7 @@ ELBADRY = ('/Users/carlzimmerman/new_physics/zimmerman-formula/real_research/'
 
 def load_elbadry():
     from astropy.io import fits
-    C = ['ra1','dec1','parallax1','parallax2','parallax_error1','parallax_error2',
+    C = ['ra1','dec1','ra2','dec2','parallax1','parallax2','parallax_error1','parallax_error2',
          'pmra1','pmra2','pmdec1','pmdec2','pmra_error1','pmra_error2',
          'pmdec_error1','pmdec_error2','ruwe1','ruwe2','ipd_frac_multi_peak1',
          'ipd_frac_multi_peak2','phot_g_mean_mag1','phot_g_mean_mag2','sep_AU',
@@ -535,6 +536,15 @@ def load_elbadry():
     ra, dec = np.radians(D['ra1']), np.radians(D['dec1'])
     b = np.degrees(np.arcsin(np.sin(dec)*np.sin(dN)
                              + np.cos(dec)*np.cos(dN)*np.cos(ra-aN)))
+    # Galactic longitude (standard J2000 pole, l_NCP = 122.93192 deg) and the pair's
+    # position angle east of north from star 1 to star 2 -- the two columns the
+    # anisotropy falsifier (checklist item 5) needs; computed here so the dry run
+    # exercises items 5 and 6 rather than declining them (Amendment 11 readiness).
+    l = (122.93192 - np.degrees(np.arctan2(np.cos(dec)*np.sin(ra-aN),
+                                           np.sin(dec)*np.cos(dN) - np.cos(dec)*np.sin(dN)*np.cos(ra-aN)))) % 360.0
+    ra2, dec2 = np.radians(D['ra2']), np.radians(D['dec2'])
+    pa = np.degrees(np.arctan2(np.sin(ra2-ra)*np.cos(dec2),
+                               np.cos(dec)*np.sin(dec2) - np.sin(dec)*np.cos(dec2)*np.cos(ra2-ra))) % 360.0
     d1, d2 = 1000/D['parallax1'], 1000/D['parallax2']
     dist = 0.5*(d1+d2); skAU = D['sep_AU']/1e3
     sd1 = 1000*D['parallax_error1']/D['parallax1']**2
@@ -557,7 +567,8 @@ def load_elbadry():
             & (np.abs(d1-d2) < np.minimum(4*sdd, 8))
             & (D['R_chance_align'] < 0.01))
     gN = G*Mt*MSUN/s**2
-    return gN[mask], vt[mask], int(mask.sum())
+    extra = {'l_gal': l[mask], 'b_gal': b[mask], 'pa_deg': pa[mask]}
+    return gN[mask], vt[mask], int(mask.sum()), extra
 
 # ----------------------------------------------------------------------
 # MAIN
@@ -578,9 +589,11 @@ def main():
     print("="*78)
     print(f"a0 canonical {A0_CAN:.3e} (y_extN={y_extN(A0_CAN):.4f}) | "
           f"alt {A0_ALT:.3e} (y_extN={y_extN(A0_ALT):.4f})")
-    print(f"targets IN FORCE (Amdt 9, modified-GRAVITY arm): canonical {GAMMA_TARGET} / "
-          f"alt {GAMMA_TARGET_ALT};  no-verdict edge {NOVERDICT_EDGE}")
-    print(f"  ladder: Newton 1.00 < [superseded MI {GAMMA_MI}] < canonical {GAMMA_TARGET} "
+    print(f"targets IN FORCE -- ARM A (Amdt 10 band, modified-GRAVITY arm): canonical {GAMMA_TARGET}-{GAMMA_TARGET_TOP} / "
+          f"alt {GAMMA_TARGET_ALT}-{GAMMA_TARGET_ALT_TOP};  no-verdict edge {NOVERDICT_EDGE}")
+    print(f"                  -- ARM B (Amdt 11, covariant candidate, CEILINGS): canonical <= {GAMMA_B_CEIL} / alt <= {GAMMA_B_CEIL_ALT}; "
+          f"the arms are mutually exclusive (Amdt 11(c)); B is killed from above only (Amdt 11(e))")
+    print(f"  ladder: Newton 1.00 < Arm B ceilings {GAMMA_B_CEIL}/{GAMMA_B_CEIL_ALT} < [superseded MI {GAMMA_MI}] < Arm A canonical {GAMMA_TARGET} "
           f"< alt {GAMMA_TARGET_ALT} < edge {NOVERDICT_EDGE} < MOND benchmark {GAMMA_MOND}")
     print(f"  NOTE: alt footing {GAMMA_TARGET_ALT} sits only "
           f"{NOVERDICT_EDGE - GAMMA_TARGET_ALT:.4f} below the no-verdict edge -- "
@@ -687,7 +700,7 @@ def main():
         print("\n" + "-"*78)
         print("DR3-ERA DRY RUN (El-Badry+2021 eDR3, Banik-like cuts) -- NOT the DR4 test")
         print("-"*78)
-        gN, vt, n = load_elbadry()
+        gN, vt, n, extra = load_elbadry()
         print(f"  pairs after cuts: {n} "
               f"(looser than Banik's 8,611: no chi2/nu, no faint-companion, no RV")
         print(f"   screen -> contamination biases gamma HIGH; interpret as a")
@@ -697,8 +710,10 @@ def main():
         pop_m3 = make_population(NM, rng, dr4=False)
         mod3_can = model_medians(pop_m3, A0_CAN, GRID, rng)
         mod3_alt = model_medians(pop_m3, A0_ALT, GRID, rng)
-        run_fit(np.log10(gN/A0_CAN), vt, mod3_can, rng, "El-Badry [a0 canonical]")
-        run_fit(np.log10(gN/A0_ALT), vt, mod3_alt, rng, "El-Badry [a0 alt footing]")
+        for fnm, a0v, modv in (("canonical", A0_CAN, mod3_can), ("alt footing", A0_ALT, mod3_alt)):
+            g3, sg3, *_ = run_fit(np.log10(gN/a0v), vt, modv, rng, f"El-Badry [a0 {fnm}]")
+            score_gated(g3, sg3, f"El-Badry [a0 {fnm}]")                          # checklist item 6, exercised on data
+            anisotropy_split(gN, vt, extra, modv, rng, a0v, f"El-Badry [a0 {fnm}]")   # checklist item 5, exercised on data
         ndeep3 = int((gN/A0_CAN < 0.3).sum())
         print(f"  deep pairs (y<0.3, canonical): {ndeep3}")
 

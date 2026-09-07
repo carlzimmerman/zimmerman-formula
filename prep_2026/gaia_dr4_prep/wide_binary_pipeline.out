@@ -2,7 +2,10 @@
 DOOR 4A -- GAIA DR4 WIDE-BINARY PIPELINE (prep, 2026-07-16)
 ==============================================================================
 a0 canonical 9.360e-11 (y_extN=1.4647) | alt 1.130e-10 (y_extN=1.1513)
-targets: Newton 1.00 < MI 1.09 (banked; NOT 1.137) < MG 1.137 < MOND benchmark 1.33
+targets IN FORCE -- ARM A (Amdt 10 band, modified-GRAVITY arm): canonical 1.1614-1.1814 / alt 1.1917-1.2267;  no-verdict edge 1.23
+                  -- ARM B (Amdt 11, covariant candidate, CEILINGS): canonical <= 1.045 / alt <= 1.03; the arms are mutually exclusive (Amdt 11(c)); B is killed from above only (Amdt 11(e))
+  ladder: Newton 1.00 < Arm B ceilings 1.045/1.03 < [superseded MI 1.1582] < Arm A canonical 1.1614 < alt 1.1917 < edge 1.23 < MOND benchmark 1.33
+  NOTE: alt footing 1.1917 sits only 0.0383 below the no-verdict edge -- declared risk, exercised in the GATE below
 
 [FROZEN DR4 CUTS] (pre-registered 2026-07-16; PREREGISTRATION_DR4.md)
   |b_gal|              > 15 deg                                         [Banik+2024 sec 2.1]
@@ -29,27 +32,77 @@ targets: Newton 1.00 < MI 1.09 (banked; NOT 1.137) < MG 1.137 < MOND benchmark 1
 [GATE] synthetic DR4 catalogs, N_data=30000 (injection: boost at TRUE 3D y, canonical a0; recovery below)
  inject gamma_inf = 1.00  (N=30000, deep y<0.3: 2819)
   recover [a0 canonical]             gamma_inf = 0.9850 +- 0.0137  (chi2/bin=0.81, bins=8, kappa=1.0070)
+    [7(e)] raw gamma_hat = 0.9850, sigma_fit = 0.0137; distance to Newton 1.000 = -1.09 sigma_fit
+    [7(e)] IN FORCE (Amdt 10, MG arm, BAND): canonical 1.1614 = -12.83 / top 1.1814 = -14.28; alt 1.1917 = -15.03 / top 1.2267 = -17.58 sigma_fit (distances to ALL FOUR anchors per Amdt 10(b))
+    [7(e)] IN FORCE (Amdt 11, ARM B = covariant candidate, CEILINGS): canonical 1.0450 = -4.36; alt 1.0300 = -3.27 sigma_fit (Arm B predicts 1.000 < gamma_v <= ceiling; Arms A and B are mutually exclusive; B is killed from above only -- Amdt 11(d)/(e))
+    [7(e)] superseded record only: MI 1.1582 = -12.60 sigma_fit; MI ranges radial (1.1311, 1.1964), magnitude (1.1339, 1.2007).  No verdict word is emitted by design.
+    [7(e)] no declared risk tripped (kappa = 1.0070 inside (0.95, 1.05); gamma_hat below the 1.23 edge)
   recover [a0 alt footing]           gamma_inf = 0.9900 +- 0.0125  (chi2/bin=1.77, bins=8, kappa=1.0043)
+    [7(e)] raw gamma_hat = 0.9900, sigma_fit = 0.0125; distance to Newton 1.000 = -0.80 sigma_fit
+    [7(e)] IN FORCE (Amdt 10, MG arm, BAND): canonical 1.1614 = -13.71 / top 1.1814 = -15.31; alt 1.1917 = -16.14 / top 1.2267 = -18.94 sigma_fit (distances to ALL FOUR anchors per Amdt 10(b))
+    [7(e)] IN FORCE (Amdt 11, ARM B = covariant candidate, CEILINGS): canonical 1.0450 = -4.40; alt 1.0300 = -3.20 sigma_fit (Arm B predicts 1.000 < gamma_v <= ceiling; Arms A and B are mutually exclusive; B is killed from above only -- Amdt 11(d)/(e))
+    [7(e)] superseded record only: MI 1.1582 = -13.46 sigma_fit; MI ranges radial (1.1311, 1.1964), magnitude (1.1339, 1.2007).  No verdict word is emitted by design.
+    [7(e)] no declared risk tripped (kappa = 1.0043 inside (0.95, 1.05); gamma_hat below the 1.23 edge)
   GATE @1.00: |0.9850-1.00|=0.0150 < tol 0.0275 -> PASS
- inject gamma_inf = 1.09  (N=30000, deep y<0.3: 2731)
-  recover [a0 canonical]             gamma_inf = 1.0950 +- 0.0137  (chi2/bin=0.82, bins=8, kappa=0.9991)
-  recover [a0 alt footing]           gamma_inf = 1.0925 +- 0.0150  (chi2/bin=1.24, bins=8, kappa=0.9994)
-  GATE @1.09: |1.0950-1.09|=0.0050 < tol 0.0275 -> PASS
- inject gamma_inf = 1.33  (N=30000, deep y<0.3: 2804)
-  recover [a0 canonical]             gamma_inf = 1.3450 +- 0.0212  (chi2/bin=0.53, bins=7, kappa=0.9981)
-  recover [a0 alt footing]           gamma_inf = 1.3375 +- 0.0212  (chi2/bin=0.13, bins=8, kappa=1.0031)
-  GATE @1.33: |1.3450-1.33|=0.0150 < tol 0.0425 -> PASS
+ inject gamma_inf = 1.16  (N=30000, deep y<0.3: 2731)
+  recover [a0 canonical]             gamma_inf = 1.1725 +- 0.0162  (chi2/bin=0.75, bins=8, kappa=0.9970)
+    [7(e)] raw gamma_hat = 1.1725, sigma_fit = 0.0162; distance to Newton 1.000 = +10.62 sigma_fit
+    [7(e)] IN FORCE (Amdt 10, MG arm, BAND): canonical 1.1614 = +0.68 / top 1.1814 = -0.55; alt 1.1917 = -1.18 / top 1.2267 = -3.34 sigma_fit (distances to ALL FOUR anchors per Amdt 10(b))
+    [7(e)] IN FORCE (Amdt 11, ARM B = covariant candidate, CEILINGS): canonical 1.0450 = +7.85; alt 1.0300 = +8.77 sigma_fit (Arm B predicts 1.000 < gamma_v <= ceiling; Arms A and B are mutually exclusive; B is killed from above only -- Amdt 11(d)/(e))
+    [7(e)] superseded record only: MI 1.1582 = +0.88 sigma_fit; MI ranges radial (1.1311, 1.1964), magnitude (1.1339, 1.2007).  No verdict word is emitted by design.
+    [7(e)] no declared risk tripped (kappa = 0.9970 inside (0.95, 1.05); gamma_hat below the 1.23 edge)
+  recover [a0 alt footing]           gamma_inf = 1.1650 +- 0.0150  (chi2/bin=1.15, bins=8, kappa=1.0002)
+    [7(e)] raw gamma_hat = 1.1650, sigma_fit = 0.0150; distance to Newton 1.000 = +11.00 sigma_fit
+    [7(e)] IN FORCE (Amdt 10, MG arm, BAND): canonical 1.1614 = +0.24 / top 1.1814 = -1.09; alt 1.1917 = -1.78 / top 1.2267 = -4.11 sigma_fit (distances to ALL FOUR anchors per Amdt 10(b))
+    [7(e)] IN FORCE (Amdt 11, ARM B = covariant candidate, CEILINGS): canonical 1.0450 = +8.00; alt 1.0300 = +9.00 sigma_fit (Arm B predicts 1.000 < gamma_v <= ceiling; Arms A and B are mutually exclusive; B is killed from above only -- Amdt 11(d)/(e))
+    [7(e)] superseded record only: MI 1.1582 = +0.45 sigma_fit; MI ranges radial (1.1311, 1.1964), magnitude (1.1339, 1.2007).  No verdict word is emitted by design.
+    [7(e)] no declared risk tripped (kappa = 1.0002 inside (0.95, 1.05); gamma_hat below the 1.23 edge)
+  GATE @1.16: |1.1725-1.16|=0.0111 < tol 0.0325 -> PASS
+ inject gamma_inf = 1.19  (N=30000, deep y<0.3: 2804)
+  recover [a0 canonical]             gamma_inf = 1.2025 +- 0.0187  (chi2/bin=0.35, bins=7, kappa=0.9994)
+    [7(e)] raw gamma_hat = 1.2025, sigma_fit = 0.0187; distance to Newton 1.000 = +10.80 sigma_fit
+    [7(e)] IN FORCE (Amdt 10, MG arm, BAND): canonical 1.1614 = +2.19 / top 1.1814 = +1.13; alt 1.1917 = +0.58 / top 1.2267 = -1.29 sigma_fit (distances to ALL FOUR anchors per Amdt 10(b))
+    [7(e)] IN FORCE (Amdt 11, ARM B = covariant candidate, CEILINGS): canonical 1.0450 = +8.40; alt 1.0300 = +9.20 sigma_fit (Arm B predicts 1.000 < gamma_v <= ceiling; Arms A and B are mutually exclusive; B is killed from above only -- Amdt 11(d)/(e))
+    [7(e)] superseded record only: MI 1.1582 = +2.36 sigma_fit; MI ranges radial (1.1311, 1.1964), magnitude (1.1339, 1.2007).  No verdict word is emitted by design.
+    [7(e)] no declared risk tripped (kappa = 0.9994 inside (0.95, 1.05); gamma_hat below the 1.23 edge)
+  recover [a0 alt footing]           gamma_inf = 1.1975 +- 0.0175  (chi2/bin=0.18, bins=8, kappa=1.0029)
+    [7(e)] raw gamma_hat = 1.1975, sigma_fit = 0.0175; distance to Newton 1.000 = +11.29 sigma_fit
+    [7(e)] IN FORCE (Amdt 10, MG arm, BAND): canonical 1.1614 = +2.06 / top 1.1814 = +0.92; alt 1.1917 = +0.33 / top 1.2267 = -1.67 sigma_fit (distances to ALL FOUR anchors per Amdt 10(b))
+    [7(e)] IN FORCE (Amdt 11, ARM B = covariant candidate, CEILINGS): canonical 1.0450 = +8.71; alt 1.0300 = +9.57 sigma_fit (Arm B predicts 1.000 < gamma_v <= ceiling; Arms A and B are mutually exclusive; B is killed from above only -- Amdt 11(d)/(e))
+    [7(e)] superseded record only: MI 1.1582 = +2.25 sigma_fit; MI ranges radial (1.1311, 1.1964), magnitude (1.1339, 1.2007).  No verdict word is emitted by design.
+    [7(e)] no declared risk tripped (kappa = 1.0029 inside (0.95, 1.05); gamma_hat below the 1.23 edge)
+  GATE @1.19: |1.2025-1.19|=0.0108 < tol 0.0375 -> PASS
+ inject gamma_inf = 1.33  (N=30000, deep y<0.3: 2726)
+  recover [a0 canonical]             gamma_inf = 1.3325 +- 0.0187  (chi2/bin=1.28, bins=8, kappa=0.9960)
+    [7(e)] raw gamma_hat = 1.3325, sigma_fit = 0.0187; distance to Newton 1.000 = +17.73 sigma_fit
+    [7(e)] IN FORCE (Amdt 10, MG arm, BAND): canonical 1.1614 = +9.13 / top 1.1814 = +8.06; alt 1.1917 = +7.51 / top 1.2267 = +5.64 sigma_fit (distances to ALL FOUR anchors per Amdt 10(b))
+    [7(e)] IN FORCE (Amdt 11, ARM B = covariant candidate, CEILINGS): canonical 1.0450 = +15.33; alt 1.0300 = +16.13 sigma_fit (Arm B predicts 1.000 < gamma_v <= ceiling; Arms A and B are mutually exclusive; B is killed from above only -- Amdt 11(d)/(e))
+    [7(e)] superseded record only: MI 1.1582 = +9.30 sigma_fit; MI ranges radial (1.1311, 1.1964), magnitude (1.1339, 1.2007).  No verdict word is emitted by design.
+    [7(e)] *** PRE-DECLARED UNSCOREABLE on the MAGNITUDE convention -- gamma_hat = 1.3325 exceeds the 1.23 no-verdict edge (Amdt 8 risk (d)) ***
+  recover [a0 alt footing]           gamma_inf = 1.3350 +- 0.0200  (chi2/bin=1.29, bins=8, kappa=0.9997)
+    [7(e)] raw gamma_hat = 1.3350, sigma_fit = 0.0200; distance to Newton 1.000 = +16.75 sigma_fit
+    [7(e)] IN FORCE (Amdt 10, MG arm, BAND): canonical 1.1614 = +8.68 / top 1.1814 = +7.68; alt 1.1917 = +7.16 / top 1.2267 = +5.41 sigma_fit (distances to ALL FOUR anchors per Amdt 10(b))
+    [7(e)] IN FORCE (Amdt 11, ARM B = covariant candidate, CEILINGS): canonical 1.0450 = +14.50; alt 1.0300 = +15.25 sigma_fit (Arm B predicts 1.000 < gamma_v <= ceiling; Arms A and B are mutually exclusive; B is killed from above only -- Amdt 11(d)/(e))
+    [7(e)] superseded record only: MI 1.1582 = +8.84 sigma_fit; MI ranges radial (1.1311, 1.1964), magnitude (1.1339, 1.2007).  No verdict word is emitted by design.
+    [7(e)] *** PRE-DECLARED UNSCOREABLE on the MAGNITUDE convention -- gamma_hat = 1.3350 exceeds the 1.23 no-verdict edge (Amdt 8 risk (d)) ***
+  GATE @1.33: |1.3325-1.33|=0.0025 < tol 0.0375 -> PASS
 
-[spread check] 8 independent catalogs @ gamma=1.09 (canonical fit)
-  realizations: mean=1.0881 rms=0.0191 (profile-sigma above should be comparable)
+[spread check] 8 independent catalogs @ gamma=1.1614 (in-force canonical; canonical fit)
+  realizations: mean=1.1600 rms=0.0182 (profile-sigma above should be comparable)
 
-[separation] sigma(gamma) = 0.0191 at N=30000 -> 3-sigma separation of 1.09 vs 1.00 needs N ~ 12,187 pairs (~1,109 deep y<0.3), under this population/selection.
-             separating MOND benchmark 1.33 from MI 1.09 at 3 sigma: N ~ 1,714.
-             separating MG 1.137 from MI 1.09 at 3 sigma: N ~ 44,689 (statistical only; the frozen sys allowance 0.02 makes MI-vs-MG UNDECIDED unless systematics beat ~0.01).
+[separation] sigma(gamma) = 0.0182 at N=30000 -> 3-sigma separation of the IN-FORCE 1.1614 vs Newton 1.00 needs N ~ 3,443 pairs (~313 deep y<0.3), under this population/selection.
+             separating MOND benchmark 1.33 from the target 1.1614 at 3 sigma: N ~ 3,155.
+             *** THE FOOTING FORK: separating alt 1.1917 from canonical 1.1614 at 3 sigma needs N ~ 97,679 pairs (statistical only; the frozen sys allowance 0.02 is 0.7x the 0.0303 separation, so the footing fork stays UNDECIDED unless systematics beat ~0.010). ***
+             (historical: separating the in-force target from the superseded MI 1.1582 would need N ~ 8,757,673 -- the MI arm is closed by lensing, not by wide binaries.)
 
-[ecc bracket] recovery of 1.09 when the TRUE population is FLAT f(e)
-  flat-e truth vs thermal-e model    gamma_inf = 1.0750 +- 0.0125  (chi2/bin=0.36, bins=8, kappa=1.1213)  <- ecc systematic (kappa absorbs most)
-  ecc-mismatch shift on gamma: -0.0150 (FLAGGED systematic; Hwang+2022 superthermal at wide s)
+[ecc bracket] recovery of the in-force 1.1614 when the TRUE population is FLAT f(e)
+  flat-e truth vs thermal-e model    gamma_inf = 1.1650 +- 0.0137  (chi2/bin=0.21, bins=7, kappa=1.1157)  <- ecc systematic (kappa absorbs most)
+    [7(e)] raw gamma_hat = 1.1650, sigma_fit = 0.0137; distance to Newton 1.000 = +12.00 sigma_fit
+    [7(e)] IN FORCE (Amdt 10, MG arm, BAND): canonical 1.1614 = +0.26 / top 1.1814 = -1.19; alt 1.1917 = -1.94 / top 1.2267 = -4.49 sigma_fit (distances to ALL FOUR anchors per Amdt 10(b))
+    [7(e)] IN FORCE (Amdt 11, ARM B = covariant candidate, CEILINGS): canonical 1.0450 = +8.73; alt 1.0300 = +9.82 sigma_fit (Arm B predicts 1.000 < gamma_v <= ceiling; Arms A and B are mutually exclusive; B is killed from above only -- Amdt 11(d)/(e))
+    [7(e)] superseded record only: MI 1.1582 = +0.49 sigma_fit; MI ranges radial (1.1311, 1.1964), magnitude (1.1339, 1.2007).  No verdict word is emitted by design.
+    [7(e)] *** SYSTEMATIC-LIMITED, NO VERDICT -- nuisance kappa = 1.1157 is OUTSIDE the frozen window (0.95, 1.05) (Amdt 8 printed clause 8(h); its declared consequence is 'reported, not repaired') ***
+  ecc-mismatch shift on gamma: +0.0036 (FLAGGED systematic; Hwang+2022 superthermal at wide s)
 
 ------------------------------------------------------------------------------
 DR3-ERA DRY RUN (El-Badry+2021 eDR3, Banik-like cuts) -- NOT the DR4 test
@@ -58,10 +111,58 @@ DR3-ERA DRY RUN (El-Badry+2021 eDR3, Banik-like cuts) -- NOT the DR4 test
    screen -> contamination biases gamma HIGH; interpret as a
    pipeline shakeout, not a verdict)
   building DR3-noise model MC ...
-  El-Badry [a0 canonical]            gamma_inf = 1.2050 +- 0.0350  (chi2/bin=0.56, bins=7, kappa=1.0245)
-  El-Badry [a0 alt footing]          gamma_inf = 1.2025 +- 0.0337  (chi2/bin=1.05, bins=8, kappa=1.0271)
+  El-Badry [a0 canonical]            gamma_inf = 1.2075 +- 0.0350  (chi2/bin=0.48, bins=7, kappa=1.0223)
+    [7(e)] raw gamma_hat = 1.2075, sigma_fit = 0.0350; distance to Newton 1.000 = +5.93 sigma_fit
+    [7(e)] IN FORCE (Amdt 10, MG arm, BAND): canonical 1.1614 = +1.32 / top 1.1814 = +0.75; alt 1.1917 = +0.45 / top 1.2267 = -0.55 sigma_fit (distances to ALL FOUR anchors per Amdt 10(b))
+    [7(e)] IN FORCE (Amdt 11, ARM B = covariant candidate, CEILINGS): canonical 1.0450 = +4.64; alt 1.0300 = +5.07 sigma_fit (Arm B predicts 1.000 < gamma_v <= ceiling; Arms A and B are mutually exclusive; B is killed from above only -- Amdt 11(d)/(e))
+    [7(e)] superseded record only: MI 1.1582 = +1.41 sigma_fit; MI ranges radial (1.1311, 1.1964), magnitude (1.1339, 1.2007).  No verdict word is emitted by design.
+    [7(e)] no declared risk tripped (kappa = 1.0223 inside (0.95, 1.05); gamma_hat below the 1.23 edge)
+  [gated] El-Badry [a0 canonical]: distance to the GATED branch (1.00064-1.00117 at 10 kAU) = +5.90 to +5.91 sigma_fit
+  [gated] its aggregate separation from Newton is only 0.033 sigma at this precision (needs N ~ 8.6e7), so the AGGREGATE cannot distinguish gated from Newtonian -- the handle is the INTERNAL RISE, 0.001 sigma_fit at 2 kAU to 1.56 at 30 kAU.
+  [gated] 1.56 sigma is not 3: registered as a WATCH item, not a decisive test.
+  El-Badry [a0 canonical] proj-PARALLEL gamma_inf = 1.1900 +- 0.0525  (chi2/bin=0.38, bins=7, kappa=1.0251)
+    [7(e)] raw gamma_hat = 1.1900, sigma_fit = 0.0525; distance to Newton 1.000 = +3.62 sigma_fit
+    [7(e)] IN FORCE (Amdt 10, MG arm, BAND): canonical 1.1614 = +0.54 / top 1.1814 = +0.16; alt 1.1917 = -0.03 / top 1.2267 = -0.70 sigma_fit (distances to ALL FOUR anchors per Amdt 10(b))
+    [7(e)] IN FORCE (Amdt 11, ARM B = covariant candidate, CEILINGS): canonical 1.0450 = +2.76; alt 1.0300 = +3.05 sigma_fit (Arm B predicts 1.000 < gamma_v <= ceiling; Arms A and B are mutually exclusive; B is killed from above only -- Amdt 11(d)/(e))
+    [7(e)] superseded record only: MI 1.1582 = +0.61 sigma_fit; MI ranges radial (1.1311, 1.1964), magnitude (1.1339, 1.2007).  No verdict word is emitted by design.
+    [7(e)] no declared risk tripped (kappa = 1.0251 inside (0.95, 1.05); gamma_hat below the 1.23 edge)
+  El-Badry [a0 canonical] proj-PERPENDICULAR gamma_inf = 1.2175 +- 0.0462  (chi2/bin=1.07, bins=7, kappa=1.0233)
+    [7(e)] raw gamma_hat = 1.2175, sigma_fit = 0.0462; distance to Newton 1.000 = +4.70 sigma_fit
+    [7(e)] IN FORCE (Amdt 10, MG arm, BAND): canonical 1.1614 = +1.21 / top 1.1814 = +0.78; alt 1.1917 = +0.56 / top 1.2267 = -0.20 sigma_fit (distances to ALL FOUR anchors per Amdt 10(b))
+    [7(e)] IN FORCE (Amdt 11, ARM B = covariant candidate, CEILINGS): canonical 1.0450 = +3.73; alt 1.0300 = +4.05 sigma_fit (Arm B predicts 1.000 < gamma_v <= ceiling; Arms A and B are mutually exclusive; B is killed from above only -- Amdt 11(d)/(e))
+    [7(e)] superseded record only: MI 1.1582 = +1.28 sigma_fit; MI ranges radial (1.1311, 1.1964), magnitude (1.1339, 1.2007).  No verdict word is emitted by design.
+    [7(e)] no declared risk tripped (kappa = 1.0233 inside (0.95, 1.05); gamma_hat below the 1.23 edge)
+  [aniso] El-Badry [a0 canonical]: gamma_perp - gamma_par = +0.0275 +- 0.0700 (+0.39 sigma).  PRE-DECLARED SIGN: POSITIVE (perpendicular larger).
+  [aniso] expected observable split: MI-era +0.0416 (superseded); Amdt 10(d2) MG full solve, sample-level projected split +0.0013 to +0.0046 (both footings) -- the SIGN (perpendicular larger) is the retained rule; NON-SCORING at any frozen N; Arm B's sign-flip radius is outside the window (Amdt 11(b)), so this is an Arm-A rule only.
+  El-Badry [a0 alt footing]          gamma_inf = 1.2075 +- 0.0350  (chi2/bin=1.15, bins=8, kappa=1.0252)
+    [7(e)] raw gamma_hat = 1.2075, sigma_fit = 0.0350; distance to Newton 1.000 = +5.93 sigma_fit
+    [7(e)] IN FORCE (Amdt 10, MG arm, BAND): canonical 1.1614 = +1.32 / top 1.1814 = +0.75; alt 1.1917 = +0.45 / top 1.2267 = -0.55 sigma_fit (distances to ALL FOUR anchors per Amdt 10(b))
+    [7(e)] IN FORCE (Amdt 11, ARM B = covariant candidate, CEILINGS): canonical 1.0450 = +4.64; alt 1.0300 = +5.07 sigma_fit (Arm B predicts 1.000 < gamma_v <= ceiling; Arms A and B are mutually exclusive; B is killed from above only -- Amdt 11(d)/(e))
+    [7(e)] superseded record only: MI 1.1582 = +1.41 sigma_fit; MI ranges radial (1.1311, 1.1964), magnitude (1.1339, 1.2007).  No verdict word is emitted by design.
+    [7(e)] no declared risk tripped (kappa = 1.0252 inside (0.95, 1.05); gamma_hat below the 1.23 edge)
+  [gated] El-Badry [a0 alt footing]: distance to the GATED branch (1.00064-1.00117 at 10 kAU) = +5.90 to +5.91 sigma_fit
+  [gated] its aggregate separation from Newton is only 0.033 sigma at this precision (needs N ~ 8.6e7), so the AGGREGATE cannot distinguish gated from Newtonian -- the handle is the INTERNAL RISE, 0.001 sigma_fit at 2 kAU to 1.56 at 30 kAU.
+  [gated] 1.56 sigma is not 3: registered as a WATCH item, not a decisive test.
+  El-Badry [a0 alt footing] proj-PARALLEL gamma_inf = 1.1925 +- 0.0525  (chi2/bin=0.41, bins=7, kappa=1.0252)
+    [7(e)] raw gamma_hat = 1.1925, sigma_fit = 0.0525; distance to Newton 1.000 = +3.67 sigma_fit
+    [7(e)] IN FORCE (Amdt 10, MG arm, BAND): canonical 1.1614 = +0.59 / top 1.1814 = +0.21; alt 1.1917 = +0.02 / top 1.2267 = -0.65 sigma_fit (distances to ALL FOUR anchors per Amdt 10(b))
+    [7(e)] IN FORCE (Amdt 11, ARM B = covariant candidate, CEILINGS): canonical 1.0450 = +2.81; alt 1.0300 = +3.10 sigma_fit (Arm B predicts 1.000 < gamma_v <= ceiling; Arms A and B are mutually exclusive; B is killed from above only -- Amdt 11(d)/(e))
+    [7(e)] superseded record only: MI 1.1582 = +0.65 sigma_fit; MI ranges radial (1.1311, 1.1964), magnitude (1.1339, 1.2007).  No verdict word is emitted by design.
+    [7(e)] no declared risk tripped (kappa = 1.0252 inside (0.95, 1.05); gamma_hat below the 1.23 edge)
+  El-Badry [a0 alt footing] proj-PERPENDICULAR gamma_inf = 1.2100 +- 0.0500  (chi2/bin=1.21, bins=7, kappa=1.0299)
+    [7(e)] raw gamma_hat = 1.2100, sigma_fit = 0.0500; distance to Newton 1.000 = +4.20 sigma_fit
+    [7(e)] IN FORCE (Amdt 10, MG arm, BAND): canonical 1.1614 = +0.97 / top 1.1814 = +0.57; alt 1.1917 = +0.37 / top 1.2267 = -0.33 sigma_fit (distances to ALL FOUR anchors per Amdt 10(b))
+    [7(e)] IN FORCE (Amdt 11, ARM B = covariant candidate, CEILINGS): canonical 1.0450 = +3.30; alt 1.0300 = +3.60 sigma_fit (Arm B predicts 1.000 < gamma_v <= ceiling; Arms A and B are mutually exclusive; B is killed from above only -- Amdt 11(d)/(e))
+    [7(e)] superseded record only: MI 1.1582 = +1.04 sigma_fit; MI ranges radial (1.1311, 1.1964), magnitude (1.1339, 1.2007).  No verdict word is emitted by design.
+    [7(e)] no declared risk tripped (kappa = 1.0299 inside (0.95, 1.05); gamma_hat below the 1.23 edge)
+  [aniso] El-Badry [a0 alt footing]: gamma_perp - gamma_par = +0.0175 +- 0.0725 (+0.24 sigma).  PRE-DECLARED SIGN: POSITIVE (perpendicular larger).
+  [aniso] expected observable split: MI-era +0.0416 (superseded); Amdt 10(d2) MG full solve, sample-level projected split +0.0013 to +0.0046 (both footings) -- the SIGN (perpendicular larger) is the retained rule; NON-SCORING at any frozen N; Arm B's sign-flip radius is outside the window (Amdt 11(b)), so this is an Arm-A rule only.
   deep pairs (y<0.3, canonical): 802
 
 ==============================================================================
-GATE VERDICT: PASS (recovered 1.00/1.09/1.33 within max(2sigma, 0.02))
+PIPELINE SELF-TEST: PASS (injected/recovered 1.00/1.1614/1.1917/1.33 within max(2sigma, 0.02))
+  This is a SELF-TEST of the estimator, NOT a scientific verdict on any
+  measurement.  Per Amendment 7(e) no verdict word is emitted for data:
+  see the [7(e)] lines above for raw gamma_hat, sigma_fit and both distances.
 ==============================================================================
+rc=0

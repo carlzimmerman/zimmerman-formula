@@ -315,22 +315,24 @@ todo = [
     "emit 'systematic-limited, no verdict' per its own declared consequence rather than a number.",
     "(4) DONE (same edit): surface declared risk (d) -- flag the magnitude-convention corner above 1.20 as "
     "PRE-DECLARED UNSCOREABLE.",
-    "(5) implement the ANISOTROPY falsifier: perpendicular pairs must show the LARGER boost, spread "
-    "0.1758 under Route A.  This is independent of the aggregate gamma_v and is the front's "
-    "cleanest kill.",
-    "(6) implement the GATED branch as a second scored hypothesis (trap count STAYS 2): "
-    "1.00064-1.00117 at 10 kAU, rising to 1.56 sigma_fit by 30 kAU, so it is falsifiable WITHIN the "
-    "frozen window.",
+    "(5) DONE (2026-09-06): the ANISOTROPY falsifier runs on the dry run -- the El-Badry loader now returns "
+    "l, b and the pair position angle, anisotropy_split() fits both projected halves, and the DR3-era sample "
+    "gives gamma_perp - gamma_par = +0.0275 +- 0.070 (+0.39 sigma, canonical) / +0.0175 +- 0.073 (+0.24 sigma, alt): "
+    "the pre-declared SIGN, non-scoring at any frozen N (Amdt 10(d2): expected +0.0013 to +0.0046); an Arm-A rule "
+    "only, Arm B's sign-flip radius being outside the window (Amdt 11(b)).",
+    "(6) DONE (2026-09-06): the GATED branch is scored on the dry run by score_gated() alongside the ungated "
+    "fit (trap count STAYS 2): DR3-era distance +5.90 to +5.91 sigma_fit at both footings, with the aggregate "
+    "power statement (0.033 sigma from Newton; needs N ~ 8.6e7) and the internal-rise handle printed; a WATCH item.",
     "(7) DONE in v4: correct the field-theory paper's alpha = 2 sentence to Route A (v4).",
 ]
 for s in todo:
     print(f"  {s}")
 done = [s for s in todo if s.startswith("(") and "DONE" in s]
 remaining = [s for s in todo if "DONE" not in s]
-check(len(done) == 5 and len(remaining) == 2 and len(todo) == 7,
-      f"E1  of seven items, {len(done)} are DONE (all three that were BLOCKING, plus risk (d) and "
-      f"the paper correction) and {len(remaining)} remain -- the anisotropy falsifier and the gated "
-      "second hypothesis, neither blocking for a first DR4 read",
+check(len(done) == 7 and len(remaining) == 0 and len(todo) == 7,
+      f"E1  all seven items are DONE ({len(done)}/7; the last two -- the anisotropy falsifier and the gated "
+      "second hypothesis -- closed 2026-09-06 by wiring them into the DR3-era dry run and exercising them on data; "
+      "the dry run also prints the Amendment 11 two-arm report on every fit)",
       "no registered number moved; every item was the pipeline catching up to filed amendments")
 check(not any("PREREGISTRATION" in s or "HASH" in s for s in todo),
       "E2  and NOTHING on the list modifies PREREGISTRATION_DR4.md or any hash file -- the freeze is "
