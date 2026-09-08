@@ -7,6 +7,12 @@ No global novelty, empirical success, full PPN calculation or Lean proof is
 claimed. The computation-audit workflow distinguishes exact identities,
 finite numerical diagnostics and still-unproved physical implications.
 
+**Subsequent same-day calculation:** IC-1's unmodified inhomogeneous scalar
+has negative high-frequency kinetic energy. Its homogeneous claims below
+remain valid but do not make IC-1 viable. The current constructed correction
+and its explicitly limited scalar results are [IC-2](SCALAR_REPORT.md).
+The pinned IC-1 code/output are preserved rather than rewritten as a success.
+
 ## 1. The concrete construction
 
 Use the timelike varied clock T and auxiliary u defined in ACTION.md. Write
