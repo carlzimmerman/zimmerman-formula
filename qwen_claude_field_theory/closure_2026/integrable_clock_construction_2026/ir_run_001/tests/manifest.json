@@ -1,0 +1,210 @@
+{
+  "schema_version": 2,
+  "claim_id": "IC2_UNIFORM_FINITE_IR_BAND_AMPLIFICATION",
+  "repository": {
+    "commit": "0a9f9fa33be9d4ace0e1496cef9ff19f48215017",
+    "dirty": true
+  },
+  "command": [
+    "/usr/bin/python3",
+    "-B",
+    "qwen_claude_field_theory/closure_2026/integrable_clock_construction_2026/test_ir_growth.py"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.12.14"
+      },
+      {
+        "name": "Scientific Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "SymPy",
+        "version": "1.14.0"
+      },
+      {
+        "name": "NumPy",
+        "version": "1.26.2"
+      },
+      {
+        "name": "SciPy",
+        "version": "1.11.4"
+      },
+      {
+        "name": "mpmath",
+        "version": "1.3.0"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Recompute from the pinned IC-2 scalar action the exact damping, force, primitive and physical clock-slice observables supporting the uniform all-future bound W(tau)<=exp(Gamma(x_star))*W(0) for every fixed k>0 with 0<x0<=x_star; corroborate with deterministic fundamental matrices and the nine regression tests. This record executes algebra and bounded numerical checks; the universal differential-inequality argument is separately pinned in IR_GROWTH.md.",
+    "coefficient_domain": "Exact SymPy rational and symbolic expressions with d0=8*(-27/16+54/(5*log(9/5))); IEEE double-precision SciPy ODE corroboration with two explicit tolerance settings",
+    "conventions": "Same IC-2 action, genuine varied clock T in unitary gauge T=t, exact constant-(u,N) expanding witness, tau=h*(t-t0), x=x0*exp(-2*tau), p=dot(z)/h, W=abs(z)+abs(p)/2. Physical intrinsic curvature is the scalar of clock-defined slices, not four-dimensional Ricci curvature. The numerical x0=0 regression is the limiting nonzero-mode ODE, not the separately constrained homogeneous sector.",
+    "inputs": [
+      "Frozen action and correction: ACTION.md and IC2_ACTION.md",
+      "Raw-action reduction and exact witness: scalar_completion.py and SCALAR_REPORT.md",
+      "Finite-band proof and executable checks: IR_GROWTH.md, ir_growth.py and test_ir_growth.py"
+    ],
+    "bounds": {
+      "analytic_domain": "Each fixed comoving k>0, every 0<x0<=x_star, every future tau>=0; additional ordinary-matter perturbations excluded",
+      "state_norm": "abs(z)+abs(dot(z)/h)/2; no ratio through an amplitude node",
+      "uniform_bound": "exp(Gamma(x_star)), approximately 4.2354210613; the decimal is not interval-certified",
+      "numerical_x0_over_x_star": [
+        1e-08,
+        0.0001,
+        0.01,
+        0.1,
+        0.25,
+        0.5,
+        0.75,
+        1.0
+      ],
+      "numerical_tau_interval": [
+        0,
+        20
+      ],
+      "samples_per_case": 801,
+      "method": "DOP853 fundamental matrix, identity initial matrix, deterministic inputs",
+      "coarse_tolerance": {
+        "rtol": 1e-09,
+        "atol": 1e-11,
+        "max_step": 0.25
+      },
+      "fine_tolerance": {
+        "rtol": 1e-12,
+        "atol": 1e-14,
+        "max_step": 0.125
+      },
+      "wronskian_check": "tau<=4 only, avoiding nearly proportional late columns",
+      "regression_tests": 9,
+      "per_command_wall_seconds": 60,
+      "per_process_CPU_seconds": 20,
+      "combined_log_bytes_per_command": 1048576,
+      "numerical_library_threads": 1,
+      "CPU_affinity": "Unavailable on this macOS platform; not requested or claimed",
+      "memory_cap": "Not requested; wall time, per-process CPU time and output are bounded",
+      "result_delivery": "Scientific JSON is emitted to and hashed in stdout.txt; tests report to stderr.txt. No separate command-created result file is declared."
+    },
+    "non_claims": [
+      "No absence of negative instantaneous frequency",
+      "No optimal amplification constant or interval-certified decimal",
+      "No bound on histories starting above the band",
+      "No full nonlinear constraint closure or nonlinear stability estimate",
+      "No physical Cauchy domain-of-dependence or full causal-support proof",
+      "No stability theorem including added ordinary-matter perturbations",
+      "No all-four-dimensional-curvature, observational, realistic-cosmology or PPN certificate",
+      "No Lean proof; successful computation is not a substitute for the pinned mathematical argument"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-09-08T21:02:02.692582+00:00",
+    "runtime_seconds": 3.253189,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 60.0,
+    "max_output_bytes": 1048576,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": 20,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "qwen_claude_field_theory/closure_2026/integrable_clock_construction_2026/ir_contract.json",
+    "qwen_claude_field_theory/closure_2026/integrable_clock_construction_2026/ir_growth.py",
+    "qwen_claude_field_theory/closure_2026/integrable_clock_construction_2026/scalar_completion.py",
+    "qwen_claude_field_theory/closure_2026/integrable_clock_construction_2026/test_ir_growth.py",
+    "qwen_claude_field_theory/closure_2026/integrable_clock_construction_2026/IR_GROWTH.md",
+    "qwen_claude_field_theory/closure_2026/integrable_clock_construction_2026/SCALAR_REPORT.md",
+    "qwen_claude_field_theory/closure_2026/integrable_clock_construction_2026/IC2_ACTION.md",
+    "qwen_claude_field_theory/closure_2026/integrable_clock_construction_2026/ACTION.md"
+  ],
+  "input_artifacts": [
+    {
+      "path": "qwen_claude_field_theory/closure_2026/integrable_clock_construction_2026/ir_contract.json",
+      "sha256": "761c9704f07d80249e3f5aae8b5313e4d1848275a4af58bcf79facd9a8777104",
+      "sha256_after": "761c9704f07d80249e3f5aae8b5313e4d1848275a4af58bcf79facd9a8777104"
+    },
+    {
+      "path": "qwen_claude_field_theory/closure_2026/integrable_clock_construction_2026/ir_growth.py",
+      "sha256": "e0c257ef9eeda3ac88a7ba33acceef2efba1db8767a6d5be473b0299ff28d165",
+      "sha256_after": "e0c257ef9eeda3ac88a7ba33acceef2efba1db8767a6d5be473b0299ff28d165"
+    },
+    {
+      "path": "qwen_claude_field_theory/closure_2026/integrable_clock_construction_2026/scalar_completion.py",
+      "sha256": "801e50f8a3485842eec9bafd58d4f652c42200050917da6d9f0360aea5ff7745",
+      "sha256_after": "801e50f8a3485842eec9bafd58d4f652c42200050917da6d9f0360aea5ff7745"
+    },
+    {
+      "path": "qwen_claude_field_theory/closure_2026/integrable_clock_construction_2026/test_ir_growth.py",
+      "sha256": "f361f1afb828c63943c32a465cc11a89a5a0f29b7127faa22d7d507c865a6def",
+      "sha256_after": "f361f1afb828c63943c32a465cc11a89a5a0f29b7127faa22d7d507c865a6def"
+    },
+    {
+      "path": "qwen_claude_field_theory/closure_2026/integrable_clock_construction_2026/IR_GROWTH.md",
+      "sha256": "e046b31bdc9131b6b1663840bb4d1e4c3b4f3da38f283261f2ce2aaf9bf7f80b",
+      "sha256_after": "e046b31bdc9131b6b1663840bb4d1e4c3b4f3da38f283261f2ce2aaf9bf7f80b"
+    },
+    {
+      "path": "qwen_claude_field_theory/closure_2026/integrable_clock_construction_2026/SCALAR_REPORT.md",
+      "sha256": "b9f56adf208b24e962c8c1ba966a206656e8d4bda90ae18131f6476810c0a9f3",
+      "sha256_after": "b9f56adf208b24e962c8c1ba966a206656e8d4bda90ae18131f6476810c0a9f3"
+    },
+    {
+      "path": "qwen_claude_field_theory/closure_2026/integrable_clock_construction_2026/IC2_ACTION.md",
+      "sha256": "0e02f23c43366092028983f26154aa59f5bcd7fcbe0a3306829ef65985e9e32c",
+      "sha256_after": "0e02f23c43366092028983f26154aa59f5bcd7fcbe0a3306829ef65985e9e32c"
+    },
+    {
+      "path": "qwen_claude_field_theory/closure_2026/integrable_clock_construction_2026/ACTION.md",
+      "sha256": "249708ace187d840a0987ee1a9f6d28f5c5af763659ad0bc90574b1b96963251",
+      "sha256_after": "249708ace187d840a0987ee1a9f6d28f5c5af763659ad0bc90574b1b96963251"
+    }
+  ],
+  "output_directory": "qwen_claude_field_theory/closure_2026/integrable_clock_construction_2026/ir_run_001/tests",
+  "declared_results": [],
+  "outputs": [
+    {
+      "path": "qwen_claude_field_theory/closure_2026/integrable_clock_construction_2026/ir_run_001/tests/stdout.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "qwen_claude_field_theory/closure_2026/integrable_clock_construction_2026/ir_run_001/tests/stderr.txt",
+      "sha256": "bab5f18a3ff13e29d7c7982a8704ad0fd81c964b7cd21b3fe0d3a6111c3cbef1",
+      "kind": "log"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them.",
+    "The POSIX CPU-time limit is per process, not an aggregate descendant budget."
+  ]
+}

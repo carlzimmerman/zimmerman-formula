@@ -99,3 +99,119 @@ kinetic coefficient and UV physical scalar speed squared 4/9 on the exact
 expanding branch. The finite negative-frequency band, physical causal support,
 nonlinear closure and full PPN are not certified. See SCALAR_REPORT.md for
 the exact next calculations. The full objective has not been marked complete.
+
+## IC-4 construction continuation at base 0a9f9fa33
+
+Current action: [IC4_ACTION.md](IC4_ACTION.md). Mathematical result and limits:
+[LOCAL_WAVE_REPORT.md](LOCAL_WAVE_REPORT.md). Earlier sections above are
+historical run records for different action revisions, not extra IC-4 passes.
+
+New scientific code and tests, all executed:
+
+- `clock_locality_completion.py`, `test_clock_locality_completion.py`:
+  intermediate IC-3 coefficient matching, with its remaining pole retained.
+- `ir_growth.py`, `test_ir_growth.py`, `IR_GROWTH.md`:
+  independent IC-2 finite-band future bound; not used to certify IC-4.
+- `curvature_operator_bridge.py`, `test_curvature_operator_bridge.py`:
+  full physical-density variation and independently reduced new coupling.
+- `local_clock_wave.py`, `test_local_clock_wave.py`:
+  explicit IC-4 construction, energy and compact packet identities, numerical
+  transfer with refinement and independent analytic controls.
+- `quadratic_dirac.py`, `test_quadratic_dirac.py`:
+  independently restored spatial gauge, Hamiltonian, actual Poisson matrices,
+  preservation and counts for IC-2, IC-4 and the separate genuine zero mode.
+
+New prose/contracts: `IC4_ACTION.md`, `LOCAL_WAVE_REPORT.md`,
+`ir_contract.json`, `wave_contract.json`. New recorded evidence:
+
+- `ir_run_001/manifest.json`, `stdout.txt`, `stderr.txt`, `run_index.json`;
+  `ir_run_001/full_closure/` and `ir_run_001/tests/` each contain
+  `manifest.json`, `stdout.txt`, `stderr.txt`.
+- `wave_run_001/run_index.json`; each of `wave_run_001/wave/`,
+  `bridge/`, `dirac/`, `matching/`, `tests/` contains
+  `manifest.json`, `stdout.txt`, `stderr.txt`.
+
+Existing files updated: this `REPRODUCE.md` and
+`../CRISPY_FRIED_CHICKEN_RECIPE.md` (current construction pointer only).
+Frozen IC-1/IC-2 scientific code, tests, action descriptions and old evidence
+remain unchanged; unrelated dirty G03 and other work is not included.
+
+### Executed commands and exits
+
+Run from the repository root. The primary run uses Anaconda Python 3.13.9,
+SymPy 1.13.1, NumPy 1.26.4, SciPy 1.14.1, mpmath 1.3.0.
+
+```bash
+OPENBLAS_NUM_THREADS=1 python -B -m unittest discover -s qwen_claude_field_theory/closure_2026/integrable_clock_construction_2026 -p 'test_*.py' -v
+OPENBLAS_NUM_THREADS=1 python -B -m unittest discover -s qwen_claude_field_theory/closure_2026/lapse_braiding_gate_2026 -p 'test_*.py' -v
+OPENBLAS_NUM_THREADS=1 python -B qwen_claude_field_theory/closure_2026/integrable_clock_construction_2026/local_clock_wave.py
+OPENBLAS_NUM_THREADS=1 python -B qwen_claude_field_theory/closure_2026/integrable_clock_construction_2026/local_clock_wave.py --require-full-closure
+OPENBLAS_NUM_THREADS=1 python -B qwen_claude_field_theory/closure_2026/integrable_clock_construction_2026/curvature_operator_bridge.py
+OPENBLAS_NUM_THREADS=1 python -B qwen_claude_field_theory/closure_2026/integrable_clock_construction_2026/clock_locality_completion.py
+OPENBLAS_NUM_THREADS=1 python -B qwen_claude_field_theory/closure_2026/integrable_clock_construction_2026/quadratic_dirac.py --require-full-nonlinear-count
+git diff --check
+```
+
+The full exact bounded-run commands, including every input path, runner
+location, limits, outputs and validators, are retained in
+[wave_run_001/run_index.json](wave_run_001/run_index.json).
+This records executed commands, not an unexecuted suggested plan. The primary
+scientific calculations and the complete construction test suite each have a
+fresh manifest. All five manifests were validated with `--root`.
+
+| Important check | Actual result | Exit |
+| --- | --- | --- |
+| Complete construction tests | 73 passed; 15.594 seconds in the recorded run | 0 |
+| Existing lapse/closure regression tests | 32 passed | 0 |
+| IC-4 default calculation | 29 zero exact residuals; positive kinetic; numerical controls passed | 0 |
+| Independent curvature bridge | 38 zero exact residuals | 0 |
+| Actual quadratic Dirac calculation | 78 checked identities/sign checks; pinned inputs match | 0 |
+| Intermediate IC-3 matching | Derived coefficients; remaining pole explicitly reported | 0 |
+| IC-4 full-theory requirement | Still unproved; not a successful closure test | 2 |
+| Full nonlinear Dirac requirement | Still unproved | 2 |
+| Five primary provenance validators | Input/output hashes verified, not mathematical certification | 0 each |
+| Whitespace check | Clean | 0 |
+
+The separate [IR run index](ir_run_001/run_index.json) records exact commands
+using Python 3.9.6, SymPy 1.14.0, NumPy 1.26.2 and SciPy 1.11.4: nine tests
+exit0, default calculation exit0, full-closure child exit2. The last is
+authentically recorded by its runner as `failed`, runner exit1; all three
+manifests validate with exit0. Their inputs are still byte-identical. The
+primary 73-test run also reproduces the IR checks under the Anaconda runtime.
+
+New scripts were written tests-first. Root's initial local-wave tests failed
+with exit1 for the missing implementation; the later packet test failed with
+exit1 for the absent reconstruction, then all eleven passed. A concurrently
+developed Dirac source pin detected a changed IC-4 input, refused it, and was
+explicitly re-audited/repinned after the source froze. This development event
+is not a physical counterexample. One documentation patch failed to match
+context and was reapplied correctly; it changed no scientific output.
+
+### Independent review and current limits
+
+An independent physical-metric variation verified the factor $16\ell^2/3$;
+an independent raw-action solve and a separate Hamiltonian route recovered
+the same scalar equation and readouts. The latter does not borrow IC-2's
+Poisson rank: IC-4's secondary bracket and determinant are computed anew.
+The shared upstream background remains a common dependency, not an
+independently formalized theorem.
+
+Read-only proof review confirmed the compact-packet cone argument only for
+the stated data class, and corrected the prose distinction between $P$ and
+the original trace momentum $P-18z$. It also clarified the squared-speed
+parameter and the static zero-field notation. The final report retains
+harmonic-moment restrictions and the lack of an IR-uniform canonical norm.
+
+Frozen key hashes:
+
+- `local_clock_wave.py`: `a88d84135ea99263c62ecc339feffc76830623fb70b394222a1843174be7511d`
+- `test_local_clock_wave.py`: `d03571c74dc9327bcfc5aea883aae19d3f50a10d21bb2fabe4c5e96e99bf3d21`
+- `curvature_operator_bridge.py`: `a7e0f9985911a34dbac3e87c3460e9332bb918d46cbbfc47266a00f748b31864`
+- `quadratic_dirac.py`: `8c5476ac217df3f3b146f7293ff69e91d4e72e8c4665e1ebfc2fd26fde98a1e0`
+
+Strongest result: one explicit correction constructs an all-wave-number healthy
+linear scalar wave on the exact expanding branch, together with computed
+quadratic constraint closure and restricted finite-speed physical packets.
+Full theory: **OPEN**. Next: nonlinear functional constraint preservation and
+admissible-data correspondence, followed by the same action's galactic/FLRW
+matching and PPN. No empirical, Lean, global novelty or final-theory claim is made.

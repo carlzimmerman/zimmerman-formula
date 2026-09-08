@@ -1,0 +1,84 @@
+{
+  "claim_id": "IC2_UNIFORM_FINITE_IR_BAND_AMPLIFICATION",
+  "mathematics": {
+    "assertion_tested": "Recompute from the pinned IC-2 scalar action the exact damping, force, primitive and physical clock-slice observables supporting the uniform all-future bound W(tau)<=exp(Gamma(x_star))*W(0) for every fixed k>0 with 0<x0<=x_star; corroborate with deterministic fundamental matrices and the nine regression tests. This record executes algebra and bounded numerical checks; the universal differential-inequality argument is separately pinned in IR_GROWTH.md.",
+    "coefficient_domain": "Exact SymPy rational and symbolic expressions with d0=8*(-27/16+54/(5*log(9/5))); IEEE double-precision SciPy ODE corroboration with two explicit tolerance settings",
+    "conventions": "Same IC-2 action, genuine varied clock T in unitary gauge T=t, exact constant-(u,N) expanding witness, tau=h*(t-t0), x=x0*exp(-2*tau), p=dot(z)/h, W=abs(z)+abs(p)/2. Physical intrinsic curvature is the scalar of clock-defined slices, not four-dimensional Ricci curvature. The numerical x0=0 regression is the limiting nonzero-mode ODE, not the separately constrained homogeneous sector.",
+    "inputs": [
+      "Frozen action and correction: ACTION.md and IC2_ACTION.md",
+      "Raw-action reduction and exact witness: scalar_completion.py and SCALAR_REPORT.md",
+      "Finite-band proof and executable checks: IR_GROWTH.md, ir_growth.py and test_ir_growth.py"
+    ],
+    "bounds": {
+      "analytic_domain": "Each fixed comoving k>0, every 0<x0<=x_star, every future tau>=0; additional ordinary-matter perturbations excluded",
+      "state_norm": "abs(z)+abs(dot(z)/h)/2; no ratio through an amplitude node",
+      "uniform_bound": "exp(Gamma(x_star)), approximately 4.2354210613; the decimal is not interval-certified",
+      "numerical_x0_over_x_star": [1e-8, 0.0001, 0.01, 0.1, 0.25, 0.5, 0.75, 1.0],
+      "numerical_tau_interval": [0, 20],
+      "samples_per_case": 801,
+      "method": "DOP853 fundamental matrix, identity initial matrix, deterministic inputs",
+      "coarse_tolerance": {"rtol": 1e-9, "atol": 1e-11, "max_step": 0.25},
+      "fine_tolerance": {"rtol": 1e-12, "atol": 1e-14, "max_step": 0.125},
+      "wronskian_check": "tau<=4 only, avoiding nearly proportional late columns",
+      "regression_tests": 9,
+      "per_command_wall_seconds": 60,
+      "per_process_CPU_seconds": 20,
+      "combined_log_bytes_per_command": 1048576,
+      "numerical_library_threads": 1,
+      "CPU_affinity": "Unavailable on this macOS platform; not requested or claimed",
+      "memory_cap": "Not requested; wall time, per-process CPU time and output are bounded",
+      "result_delivery": "Scientific JSON is emitted to and hashed in stdout.txt; tests report to stderr.txt. No separate command-created result file is declared."
+    },
+    "non_claims": [
+      "No absence of negative instantaneous frequency",
+      "No optimal amplification constant or interval-certified decimal",
+      "No bound on histories starting above the band",
+      "No full nonlinear constraint closure or nonlinear stability estimate",
+      "No physical Cauchy domain-of-dependence or full causal-support proof",
+      "No stability theorem including added ordinary-matter perturbations",
+      "No all-four-dimensional-curvature, observational, realistic-cosmology or PPN certificate",
+      "No Lean proof; successful computation is not a substitute for the pinned mathematical argument"
+    ]
+  },
+  "execution_artifacts": [
+    "qwen_claude_field_theory/closure_2026/integrable_clock_construction_2026/ir_contract.json",
+    "qwen_claude_field_theory/closure_2026/integrable_clock_construction_2026/ir_growth.py",
+    "qwen_claude_field_theory/closure_2026/integrable_clock_construction_2026/scalar_completion.py",
+    "qwen_claude_field_theory/closure_2026/integrable_clock_construction_2026/test_ir_growth.py",
+    "qwen_claude_field_theory/closure_2026/integrable_clock_construction_2026/IR_GROWTH.md",
+    "qwen_claude_field_theory/closure_2026/integrable_clock_construction_2026/SCALAR_REPORT.md",
+    "qwen_claude_field_theory/closure_2026/integrable_clock_construction_2026/IC2_ACTION.md",
+    "qwen_claude_field_theory/closure_2026/integrable_clock_construction_2026/ACTION.md"
+  ],
+  "dependency_review": {
+    "local_executable_closure": [
+      "test_ir_growth.py dynamically loads ir_growth.py via importlib.util.spec_from_file_location",
+      "ir_growth.py dynamically loads scalar_completion.py via importlib.util.spec_from_file_location",
+      "scalar_completion.py imports only standard-library modules and SymPy; it does not import integrable_clock.py or any other project module"
+    ],
+    "project_conventions_and_proof": ["ACTION.md", "IC2_ACTION.md", "SCALAR_REPORT.md", "IR_GROWTH.md"],
+    "external_runtime_scope": "External Python standard-library, compiled-library and package source trees are not copied or exhaustively content-hashed. Actual scientific runtime versions are recorded below; SymPy's non-optional mpmath dependency and SciPy's NumPy dependency were inspected. The complete project-local executable closure is content-pinned, not the entire external environment.",
+    "child_python": "/usr/bin/python3",
+    "child_python_resolved": "/Applications/Xcode.app/Contents/Developer/usr/bin/python3",
+    "runner_python": "/Users/carlzimmerman/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+    "runner_python_version": "3.12.14",
+    "runner_source": "/Users/carlzimmerman/.codex/plugins/cache/openai-curated-remote/mathbox/3.0.0/skills/computation-audit/scripts/run_experiment.py",
+    "runner_sha256": "9f405b1ee477758197218b0e6580d5c1ba4893e90309ca442c57f090dc4514aa",
+    "validator_source": "/Users/carlzimmerman/.codex/plugins/cache/openai-curated-remote/mathbox/3.0.0/skills/computation-audit/scripts/validate_manifest.py",
+    "validator_sha256": "1190c474501d82b2ec7f1f38acf3499ccfa8d81779a57b398ad86574619f329f"
+  },
+  "run_interpretation": {
+    "default": "The actual child exit is recorded; zero means the script's exact and finite numerical checks executed successfully, not full physical closure.",
+    "full_closure_gate": "The scientific gate is expected to report unresolved closure with child exit 2. The authentic runner records this as failed, with its own exit 1; do not rewrite either exit as success.",
+    "tests": "The actual nine-test execution and child exit are recorded independently.",
+    "provenance_validation": "Each generated manifest is validated with --root against current input and output hashes. Validation success authenticates the record structure and freshness, not the theorem."
+  },
+  "software": [
+    {"name": "Scientific Python", "version": "3.9.6"},
+    {"name": "SymPy", "version": "1.14.0"},
+    {"name": "NumPy", "version": "1.26.2"},
+    {"name": "SciPy", "version": "1.11.4"},
+    {"name": "mpmath", "version": "1.3.0"}
+  ],
+  "randomness": {"used": false, "generator": "", "seed": null}
+}

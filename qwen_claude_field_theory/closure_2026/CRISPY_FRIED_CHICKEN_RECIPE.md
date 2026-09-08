@@ -13,13 +13,15 @@ obligation; it is not permission to conceal the failure or relax a requirement.
 Historical obstructions are reference material, not the main deliverable.
 
 **Current constructive checkpoint (2026-09-08):**
-[IC-2 action and scalar completion](integrable_clock_construction_2026/SCALAR_REPORT.md)
-build on integrable auxiliary-clock mixing and an exact expanding homogeneous
-branch. An explicit correction removes IC-1's quadratic high-frequency kinetic
-defect while retaining its static equations. IC-2 has a finite negative-frequency
-band; full scalar health, causal support, nonlinear constraints and PPN remain
-OPEN. This is not a full-theory PASS. Continue from its explicit action, not
-the historical candidate labels below.
+[IC-4 action and local scalar-wave construction](integrable_clock_construction_2026/LOCAL_WAVE_REPORT.md)
+combine integrable auxiliary-clock mixing with a derived clock–curvature
+coupling. The same exact expanding branch now has positive scalar kinetic energy,
+a local scalar wave at a chosen speed c/sqrt(3), and independently recomputed
+quadratic Dirac closure. A restricted compact physical-packet construction is
+also derived. The static equations and background tensor sector are preserved;
+galactic matching, full nonlinear constraints, all-background health and PPN
+remain OPEN. No full-theory PASS or observational prediction is claimed.
+Continue from this explicit action, not historical candidate labels below.
 
 **Methodological inspiration:** OpenAI's *NavierStokesAndEuler* repository,
 particularly its independently specified Comparator challenges and separately

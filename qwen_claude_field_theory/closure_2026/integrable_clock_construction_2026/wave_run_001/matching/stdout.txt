@@ -1,0 +1,125 @@
+{
+  "action": {
+    "coefficients": {
+      "A_J": "729/(16*Tcal*ell**2*(5*Tcal - 27))",
+      "B_J": "-(80*Tcal**2 + 216*Tcal + 2187)/(64*Tcal*ell**2*(5*Tcal - 27))",
+      "C_J": "3*(112*Tcal**2 + 1728*Tcal + 2187)/(1024*Tcal*ell**2*(5*Tcal - 27))"
+    },
+    "constants": "ell=ln(9/5), Tcal=-27/16+54/(5 ell); these are fixed constructed coefficients",
+    "formula": "S_IC1 + (m/2) integral sqrt(-g) Q^2 [A_J a^2+B_J a.Du+C_J(Du)^2]/a0^2",
+    "new_auxiliary_velocity_pair": false,
+    "same_action_bridges": "J and its first variation vanish on homogeneous gradients; Q=0 kills the static correction; pure TT quadratic term unchanged on this background",
+    "scope": "Point-map integrability is retained; no nonlinear Dirac rank or health assertion"
+  },
+  "base": "179aae239",
+  "candidate": "IC-3: retuned J; solved constant-kinetic and velocity-clock matching",
+  "checks_passed": true,
+  "clock_locality_completed": false,
+  "full_theory_closed": false,
+  "input": {
+    "path": "/Users/carlzimmerman/new_physics/zimmerman-formula/qwen_claude_field_theory/closure_2026/integrable_clock_construction_2026/scalar_completion.py",
+    "sha256": "801e50f8a3485842eec9bafd58d4f652c42200050917da6d9f0360aea5ff7745"
+  },
+  "matching": {
+    "condition": "K divides x^2 A Kprime for z=0, y=(T+ex) x f",
+    "polynomial": "(Tcal*ratio + 9)*(8*Tcal*ratio + 27*ratio + 108)",
+    "ratios_d_over_e": [
+      "-9/Tcal",
+      "-108/(8*Tcal + 27)"
+    ],
+    "scope": "alpha*e=d^2, e>0; not a classification of repeated quadratic K roots"
+  },
+  "open_obligations": [
+    "Cancel the remaining physical clock readout pole while preserving this solved kinetic matching",
+    "Full nonlinear constraints, ordinary-matter perturbations, physical Cauchy lift and health",
+    "Static clock matching, PPN and realistic cosmology"
+  ],
+  "remaining_clock_condition": {
+    "exterior_coefficient_times_inverse_D": "2*Tcal*(5*Tcal - 27)**2/3",
+    "initial": "z=(Tcal+ex) x f, y=0; f smooth, nonnegative, compact and nonzero",
+    "local_initial_scalar_canonical_data": true,
+    "n_dot_over_h": "-x**2*(-25600*Tcal**4 + 1920*Tcal**3*x + 190080*Tcal**3 + 864*Tcal**2*x**2 - 29808*Tcal**2*x + 1061424*Tcal**2 - 2916*Tcal*x**2 + 17496*Tcal*x - 11967264*Tcal - 19683*x**2 + 472392*x + 25509168)/(576*(4*Tcal - 27)*(5*Tcal - 27)*(20*Tcal + 3*x - 108))",
+    "nonpolynomial_part": "3*x**2*(5*Tcal - 27)/(2*(20*Tcal + 3*x - 108))",
+    "physical_readout": "X_clock=-grad(T)^2/2=1/(2N^2); delta X_clock=-exp(-1/2)n. The background X_clock is constant, so this linear scalar is gauge invariant.",
+    "positive_coefficient": true,
+    "reconstructed": {
+      "n": "-3*x**2/16",
+      "physical_metric_scalar": "x*(80*Tcal**2 + 7*Tcal*x - 432*Tcal + 27*x)/(16*(5*Tcal - 27))",
+      "shift_scaled": "x**2*(4*Tcal + 27)*(20*Tcal + 3*x - 108)/(48*(5*Tcal - 27))",
+      "shift_scaled_over_x": "x*(4*Tcal + 27)*(20*Tcal + 3*x - 108)/(48*(5*Tcal - 27))",
+      "trace_momentum": "x*(20*Tcal + 3*x - 108)*(4*Tcal*x - 108*Tcal + 27*x)/(24*(5*Tcal - 27))",
+      "v": "-x**2/2"
+    },
+    "scope": "Linear, constrained scalar action; scalar trace/TF momenta are local because trace_momentum and shift_scaled/x are polynomial. No nonlinear lift or full-theory causality theorem."
+  },
+  "repair": {
+    "UV_physical_speed_squared": "1/3",
+    "a": "3*(4*Tcal - 27)/(4*Tcal)",
+    "alpha": "243/(4*Tcal*(5*Tcal - 27))",
+    "b": "x*(4*Tcal + 27)/(6*Tcal)",
+    "beta": "-(80*Tcal**2 + 216*Tcal + 2187)/(48*Tcal*(5*Tcal - 27))",
+    "c": "-x*(-20*Tcal**2 + 2*Tcal*x + 108*Tcal - 27*x)/(Tcal*(20*Tcal + 3*x - 108))",
+    "e": "3*Tcal/(4*(5*Tcal - 27))",
+    "e_positive": true,
+    "g": "-x*(-160*Tcal**2 + 36*Tcal*x + 1404*Tcal - 243*x - 2916)/(12*Tcal*(20*Tcal + 3*x - 108))",
+    "gamma": "(112*Tcal**2 + 1728*Tcal + 2187)/(256*Tcal*(5*Tcal - 27))",
+    "kinetic_positive": true,
+    "n": "-3*x*z*(5*Tcal - 27)/(4*Tcal*(20*Tcal + 3*x - 108)) + y*(8*Tcal + 27)/(16*Tcal)",
+    "n_dot_over_h": "-x*z*(-25600*Tcal**4 + 1920*Tcal**3*x + 190080*Tcal**3 + 864*Tcal**2*x**2 - 29808*Tcal**2*x + 1061424*Tcal**2 - 2916*Tcal*x**2 + 17496*Tcal*x - 11967264*Tcal - 19683*x**2 + 472392*x + 25509168)/(144*Tcal*(4*Tcal - 27)*(20*Tcal + 3*x - 108)**2) - 3*y*(160*Tcal**2 + 44*Tcal*x - 324*Tcal - 27*x - 2916)/(16*Tcal*(20*Tcal + 3*x - 108))"
+  },
+  "residuals": [
+    "0",
+    "0",
+    "0",
+    "0",
+    "0",
+    "0",
+    "0",
+    "0",
+    "0",
+    "0",
+    "0",
+    "0",
+    "0",
+    "0"
+  ],
+  "second_constructed_family": {
+    "a": "3*(4*Tcal - 27)*(64*Tcal**2 + 64*Tcal*e*x + 432*Tcal + 540*e*x + 729)/(4*(Tcal + e*x)*(8*Tcal + 27)**2)",
+    "both_first_slopes_local": true,
+    "compatible_e_for_both_second_slopes": [],
+    "d_over_e": "-108/(8*Tcal + 27)",
+    "kinetic_positive": true,
+    "next_kinetic_root": "(-64*Tcal**2 - 432*Tcal - 729)/(4*e*(16*Tcal + 135))",
+    "position_first": "x**2*(64*Tcal**2 + 64*Tcal*e*x - 24*Tcal*x + 216*Tcal - 108*e*x - 81*x - 2187)/(144*(4*Tcal - 27))",
+    "position_second_only_e": [
+      "3*(64*Tcal**2 + 432*Tcal + 729)/(8*(128*Tcal**2 + 1296*Tcal + 5103))"
+    ],
+    "scope": "A solved stronger first-slope matching family; the next derivative identity remains. No full classification of possible actions.",
+    "velocity_first": "-3*x*(64*Tcal**2 + 64*Tcal*e*x + 8*Tcal*x + 432*Tcal + 540*e*x + 27*x + 729)/(16*(8*Tcal + 27))",
+    "velocity_second_residue": "3*(8*Tcal + 27)**6/(512*e**3*(16*Tcal + 135)**3)",
+    "velocity_second_residue_positive": true
+  },
+  "software": {
+    "python": "3.13.9",
+    "sympy": "1.13.1"
+  },
+  "status": "OPEN",
+  "uniform": {
+    "kinetic": "(4*Tcal - 27)/9",
+    "scope": "The genuinely uniform action is unchanged by retuning J; no k-divided momentum constraint or inherited full count."
+  },
+  "velocity_data": {
+    "initial": "z=0, y=(Tcal+ex) x f; f smooth compact",
+    "local": true,
+    "n_dot_over_h": "-3*x*(160*Tcal**2 + 44*Tcal*x - 324*Tcal - 27*x - 2916)/(64*(5*Tcal - 27))",
+    "reconstructed": {
+      "n": "x*(8*Tcal + 27)*(20*Tcal + 3*x - 108)/(64*(5*Tcal - 27))",
+      "physical_metric_scalar": "-x*(8*Tcal - 27)*(20*Tcal + 3*x - 108)/(192*(5*Tcal - 27))",
+      "shift_scaled": "3*x*(4*Tcal - 27)*(20*Tcal + 3*x - 108)/(16*(5*Tcal - 27))",
+      "shift_scaled_over_x": "3*(4*Tcal - 27)*(20*Tcal + 3*x - 108)/(16*(5*Tcal - 27))",
+      "trace_momentum": "3*x*(4*Tcal - 27)*(20*Tcal + 3*x - 108)/(8*(5*Tcal - 27))",
+      "v": "9*x*(20*Tcal + 3*x - 108)/(8*(5*Tcal - 27))"
+    },
+    "slope_local": true
+  }
+}
