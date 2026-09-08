@@ -12,6 +12,13 @@ structure together. Checks remain honest: a failure identifies a construction
 obligation; it is not permission to conceal the failure or relax a requirement.
 Historical obstructions are reference material, not the main deliverable.
 
+**Current constructive checkpoint (2026-09-08):**
+[IC-1 action and derivations](integrable_clock_construction_2026/REPORT.md)
+construct integrable auxiliary-clock mixing and an exact expanding homogeneous
+branch. Full inhomogeneous constraints, scalar health and PPN remain OPEN;
+this is not a full-theory PASS. Continue from its explicit action, not the
+historical candidate labels below.
+
 **Methodological inspiration:** OpenAI's *NavierStokesAndEuler* repository,
 particularly its independently specified Comparator challenges and separately
 checked proof submissions. We adapt that verification architecture to a
