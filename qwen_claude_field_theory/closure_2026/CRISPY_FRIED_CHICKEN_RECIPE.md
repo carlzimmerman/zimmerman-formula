@@ -211,6 +211,13 @@ of the candidate, build the candidate and proofs separately, and then verify tha
 the proved statements are exactly the required ones. This is an original project
 workflow proposal, not a claim that the fluid authors devised this gravity method.
 
+In short: **fixed gravity challenge → one explicit action and connected proofs →
+independent statement, dependency and proof checks → same-action assembly**.
+This verification strategy is explicitly **inspired by OpenAI's
+NavierStokesAndEuler project** and its [Comparator checking workflow][NS-checks].
+Adopting that workflow is not an assertion that our gravity proofs have already
+been formalized or checked by Lean.
+
 ### 12.2 Three separate responsibilities
 
 | Responsibility | Required artifact | Cannot be changed by the proof author to obtain a pass |
@@ -324,8 +331,8 @@ as the user's completed theory.
 
 ### 12.7 Attribution and source-check record
 
-1. **OpenAI. *NavierStokesAndEuler: Lean certificates accompanying Navier–Stokes
-   and Euler results*.** Software repository, revision
+1. **OpenAI. *Finite time blowup for Navier–Stokes and Euler equations*.**
+   *NavierStokesAndEuler* software repository (title as given in its README), revision
    `8937a8f4cbc7abaab5e9e97d1cc7f5d2319d9538`; README, ComparatorChallenges/README.md,
    and ComparatorChallenges/NavierStokes.json. Accessed 2026-09-08.
    [Repository at the cited revision][NS-repo]; [checking instructions][NS-checks].
