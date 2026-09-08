@@ -337,3 +337,121 @@ thirteen requirements are unchanged. No global novelty claim, empirical fit,
 first-principles a0-Lambda derivation, or project-specific Lean certificate is
 made; Mathlib's coercivity theorem was source-checked as a possible later
 formalization dependency, not executed here.
+
+## IC6 strong continuation and IC7 isotropic action repair
+
+Base `0b75e72bf5797e451beb258847ade528cd9c4551`, 2026-09-08. This section
+supersedes the previous checkpoint's open-work list, not its immutable runs.
+The current action is [IC7_CURVATURE_SQUARE.md](IC7_CURVATURE_SQUARE.md).
+IC6's stronger auxiliary/Dirac and characteristic results are retained under
+their own action ID. **The full theory is OPEN; both revisions fail the
+requested all-background propagation requirement.**
+
+### Exact files created or changed
+
+All names below are relative to this directory unless specified.
+
+New scientific programs, all executed, each with its executed test module:
+
+- `ic6_strong_auxiliary.py`, `test_ic6_strong_auxiliary.py`;
+- `ic6_dirac_flow.py`, `test_ic6_dirac_flow.py`;
+- `ic6_odd_characteristics.py`, `test_ic6_odd_characteristics.py`;
+- `ic6_even_characteristics.py`, `test_ic6_even_characteristics.py`;
+- `ic7_curvature_square.py`, `test_ic7_curvature_square.py`.
+
+New mathematical documents: `IC6_STRONG_AUXILIARY.md`, `IC6_DIRAC_FLOW.md`,
+`IC6_ODD_CHARACTERISTICS.md`, `IC6_EVEN_CHARACTERISTICS.md`,
+`IC6_CONTINUATION_REVIEW.md`, `IC7_CURVATURE_SQUARE.md`.
+New provenance: `continuation_contract.json` and
+`continuation_run_001/run_index.json`. Each of the following twelve fresh
+subdirectories under `continuation_run_001/` contains exactly
+`manifest.json`, `stdout.txt`, `stderr.txt`:
+
+    strong, odd, flow, even, repair,
+    strong_required, odd_required, flow_required, even_required,
+    repair_required, tests, closure_tests.
+
+Existing files changed: this `REPRODUCE.md` and
+`../CRISPY_FRIED_CHICKEN_RECIPE.md` (current construction pointer; existing
+NavierStokesAndEuler inspiration/citation retained). Frozen prior scientific
+files and prior recorded evidence are unchanged. Unrelated dirty G03, hunt,
+website and other files are excluded from this checkpoint.
+
+### Exact commands and observed exits
+
+The complete executed runner argv, child argv, validator argv, child and
+wrapper exits and runtimes are in
+[continuation_run_001/run_index.json](continuation_run_001/run_index.json).
+The runner uses the actual Python 3.13.9, SymPy 1.13.1, NumPy 1.26.4,
+SciPy 1.14.1 and mpmath 1.3.0 environment. Each run has a 180-second wall
+limit, 1 MiB combined-output limit and one cooperative numerical-library
+thread. No memory/affinity or interval-arithmetic guarantee is claimed.
+The manifest pins all declared code, imports, action documents and contract.
+
+Scientific commands executed from the repository root (the bounded runner
+sets the cooperative thread environment for its children):
+
+```bash
+python -B qwen_claude_field_theory/closure_2026/integrable_clock_construction_2026/ic6_strong_auxiliary.py
+python -B qwen_claude_field_theory/closure_2026/integrable_clock_construction_2026/ic6_odd_characteristics.py
+python -B qwen_claude_field_theory/closure_2026/integrable_clock_construction_2026/ic6_dirac_flow.py
+python -B qwen_claude_field_theory/closure_2026/integrable_clock_construction_2026/ic6_even_characteristics.py
+python -B qwen_claude_field_theory/closure_2026/integrable_clock_construction_2026/ic7_curvature_square.py
+python -B qwen_claude_field_theory/closure_2026/integrable_clock_construction_2026/ic6_strong_auxiliary.py --require-full-theory
+python -B qwen_claude_field_theory/closure_2026/integrable_clock_construction_2026/ic6_odd_characteristics.py --require-all-background-causality
+python -B qwen_claude_field_theory/closure_2026/integrable_clock_construction_2026/ic6_dirac_flow.py --require-field-closure
+python -B qwen_claude_field_theory/closure_2026/integrable_clock_construction_2026/ic6_even_characteristics.py --require-all-background-causality
+python -B qwen_claude_field_theory/closure_2026/integrable_clock_construction_2026/ic7_curvature_square.py --require-full-closure
+python -B -m unittest discover -s qwen_claude_field_theory/closure_2026/integrable_clock_construction_2026 -p 'test_*.py' -v
+python -B -m unittest discover -s qwen_claude_field_theory/closure_2026/lapse_braiding_gate_2026 -p 'test_*.py' -v
+git diff --check
+```
+
+| Important check | Observed result | Child exit |
+| --- | --- | --- |
+| Five default mathematical programs | Derivations/checks reported at stated scope | 0 each |
+| IC7 exact symbolic bridge groups | Twelve zero residuals, including actual witness jets | 0 |
+| Complete construction suite | 176 tests passed; 59.714 seconds inside test process | 0 |
+| Existing lapse/closure regression suite | 32 tests passed; 2.347 seconds | 0 |
+| Five demanding theory/causality/closure gates | Unpassed; no full certificate | 2 each |
+| Twelve manifest validators with current-root hash checks | Valid reproducibility records, not mathematical certificates | 0 each |
+| Patch whitespace | No errors | 0 |
+
+The five failed scientific gates have wrapper exit1 and retained manifest
+status `failed`; this is not converted into a physics PASS. The bounded
+construction-suite runtime including process overhead was 60.071979 seconds.
+An earlier direct full-suite run also passed 176 tests (57.879 seconds).
+Test-first IC7 execution failed on the missing implementation (exit1), then
+11 tests passed; the singular-static cutoff added two more passing tests.
+IC6 strong development exposed a structural-expression comparison issue,
+resolved with an exact zero-difference check. IC6 even development replaced
+an over-tight finite-k leading-term comparison with its derived next terms.
+These development failures are not claimed as physical counterexamples.
+
+### Strongest mathematical result and next unavoidable calculation
+
+IC6 now has a strong local nonlinear auxiliary solve in specified Sobolev
+spaces and an explicit smooth-domain Dirac multiplier construction. Its
+unprojected homogeneous trajectory preserves the auxiliary constraints under
+step refinement. A symmetry-decoupled odd tensor has the physical null
+principal cone in the specified anisotropic plane class. These are scoped
+results, not coupled inhomogeneous existence or a full physical DOF theorem.
+
+The complete even reduction, independently bridged to its compact action,
+proves S4'(1)<0 on the actual nearby isotropic IC6 branch. IC7 then adds the
+explicit curvature-square coefficient c7=theta*v^T M^(-1)v/8, with smooth
+zero extension before any singular inverse. Direct variation cancels the
+isotropic quartic coefficient identically on eta=theta=1, preserves the
+flat homogeneous equations and exact witness quadratic action, and gives
+positive sampled scalar/tensor masses and bounded sampled high-frequency
+wave ratios. No coefficients are fitted to the desired speeds.
+
+The sheared-background mixing is still nonzero. The next action construction
+must simultaneously satisfy N2=N2^T and C4−B2 A0^(-1)B2^T=0 there, then
+derive the remaining k² cones including actual background time derivatives.
+This is the next necessary calculation, not a claim that it will complete
+the theory. Galactic matching, measured G, full PPN, exact zero-field control,
+coupled causal evolution and realistic cosmology remain required afterward.
+Mathbox auditing led to the explicit domain cutoff and the refusal to promote
+bounded computations to full closure. Lean/lake were unavailable on PATH;
+no Lean build, novelty proof or empirical test is claimed.

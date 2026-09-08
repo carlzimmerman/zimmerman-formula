@@ -13,18 +13,21 @@ obligation; it is not permission to conceal the failure or relax a requirement.
 Historical obstructions are reference material, not the main deliverable.
 
 **Current constructive checkpoint (2026-09-08):**
-[IC-6 nonlinear construction and tensor balance](integrable_clock_construction_2026/TENSOR_BALANCE.md)
-extend the [explicit covariant IC-5 phase action](integrable_clock_construction_2026/IC5_ACTION.md).
-An exact auxiliary-gradient square gives a proved local weak-operator
-coercivity bound under stated conditions. The same-action tensor correction
-derives positive, luminal tensors on flat isotropic backgrounds with J_T>0,
-including nearby homogeneous solutions beyond the special witness. Its own
-nonuniform auxiliary equations are solved on refined grids. Explicit bridges
-preserve the static equations, flat isotropic homogeneous evolution and the
-IC-4 witness's quadratic scalar-wave/constraint results. Full nonlinear
-preservation, inhomogeneous physical characteristics, galactic matching,
-zero-field control and PPN remain OPEN. No full-theory PASS or observational
-prediction is claimed.
+[IC-7 action-derived isotropic repair](integrable_clock_construction_2026/IC7_CURVATURE_SQUARE.md)
+continues the explicit IC-6 phase action. A new strong local auxiliary theorem,
+actual homogeneous Dirac flow and symmetry-decoupled tensor proof strengthen
+the IC-6 analysis. Its full even-sector variation also reveals an exact scalar
+quartic obstruction on nearby isotropic solutions. IC-7 adds a smoothly
+defined curvature-square coefficient derived from that same action's Hessian;
+it cancels this isotropic obstruction on its regular plateau and preserves
+the static and flat homogeneous background equations. The sheared-background
+mixing remains nonzero: this revision is **not** a healthy all-background
+theory. The next construction must satisfy both momentum/curvature
+integrability and quartic cancellation, then derive the remaining physical
+cones. Full evolution, galactic matching, zero-field control and PPN remain
+OPEN. Exact derivations, failed gates and bounded numerical tests are linked
+in the [reproduction record](integrable_clock_construction_2026/REPRODUCE.md).
+No full-theory PASS or observational prediction is claimed.
 Continue from this explicit action, not historical candidate labels below.
 
 **Methodological inspiration:** OpenAI's *NavierStokesAndEuler* repository,
