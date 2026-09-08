@@ -1,0 +1,473 @@
+{
+  "acceptance": false,
+  "derivation": {
+    "critical": {
+      "H": "(-12*alpha*k**2*m**2*n**2 - 24*k**2*m**2*n*z - 4*k**2*m**2*v**2 - 12*k**2*m**2*z**2 + 4*k*m*p*v - p**2)/(12*m)",
+      "determinant": "16*alpha**2*k**8*m**4/9",
+      "dof": 1,
+      "first_class": 0,
+      "matrix": [
+        [
+          0,
+          0,
+          "-2*alpha*k**2*m",
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          "-2*k**2*m/3"
+        ],
+        [
+          "2*alpha*k**2*m",
+          0,
+          0,
+          "-2*k**3*m/3"
+        ],
+        [
+          0,
+          "2*k**2*m/3",
+          "2*k**3*m/3",
+          0
+        ]
+      ],
+      "multipliers": {
+        "u0": "(-2*k*m*v + p)/(6*alpha*m)",
+        "u1": "k*n + k*z"
+      },
+      "p_velocity": "2*k**2*m*z*(alpha - 1)/alpha",
+      "preservation_residuals": [
+        0,
+        0
+      ],
+      "primary": [
+        "pn",
+        "pv"
+      ],
+      "rank": 4,
+      "second_class": 4,
+      "secondary": [
+        "2*k**2*m*(alpha*n + z)",
+        "-k*(-2*k*m*v + p)/3"
+      ],
+      "z_velocity": 0
+    },
+    "flrw": {
+      "D": "D",
+      "H_zero_then_UV_kinetic": "-3*Z*(2*D + 3*Z)/D",
+      "UV_kinetic": "D",
+      "UV_speed2": "Z/D",
+      "Z": "Z",
+      "auxiliary_determinant": "4*M**4*k**4*(9*D*H**2*a**2*q**2 + D*K0**2*a**2*q**2 - 18*H**2*M**2*k**2)/(3*a**4*(9*H**2 + K0**2))",
+      "kinetic": "-3*(12*D*H**2*M**4*k**4 + 36*D*H**2*M**2*Z*a**2*k**2*q**2 + 27*D*H**2*Z**2*a**4*q**4 + 4*D*K0**2*M**2*Z*a**2*k**2*q**2 + 3*D*K0**2*Z**2*a**4*q**4 + 6*K0**2*M**2*Z**2*a**2*k**2*q**2)/(2*M**2*k**2*(9*D*H**2*a**2*q**2 + D*K0**2*a**2*q**2 - 18*H**2*M**2*k**2))",
+      "limitation": "UV recovery is not full stability: auxiliary elimination is singular at the displayed positive wave number; not by itself a physical pole proof",
+      "positive_pole_kappa2": "D*q**2*(9*H**2 + K0**2)/(18*H**2*M**2)"
+    },
+    "general_local_deformation": {
+      "allowed_lapse_gradient_change": 0,
+      "derivative_solution": {
+        "Derivative(A(invariant), invariant)": 0,
+        "Derivative(C(invariant), invariant)": 0
+      },
+      "integrated_form": "K*A(invariant) + C(invariant)",
+      "integration_residual": 0,
+      "scope": "C^2 functions F(s,K), connected domain, no added operators/multipliers, trace Hessian zero at every s,K, fixed exact static constitutive law and arbitrary unchanged static momentum equation",
+      "shift_equation": "Derivative(A(sigma(x)), sigma(x))*Derivative(sigma(x), x)",
+      "static_restrictions": [
+        "Derivative(A(invariant), invariant)",
+        "Derivative(C(invariant), invariant)"
+      ],
+      "trace_hessian": 0
+    },
+    "homogeneous": {
+      "L": "-M**2*N*vol*(-varphi**2/3 + V(varphi)) + 2*M**2*varphi*vd/3 + sd**2*vol/(2*N)",
+      "bracket_antisymmetric": true,
+      "canonical_H": "N*(-2*M**2*vol**2*(varphi**2 - 3*V(varphi)) + 3*psigma**2)/(6*vol)",
+      "de_sitter_stiff_potential": "2*H_deSitter*(varphi - varphi_star) + varphi**2/3",
+      "de_sitter_stiff_residuals": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "exceptional_stratum": "rho=H=0: constraint differential may vanish; generic count not a vacuum certificate",
+      "first_class": 2,
+      "homogeneous_dof": 1,
+      "phi_velocity": "-N*(-2*M**2*varphi**2*vol**2 + 6*M**2*vol**2*V(varphi) - 3*psigma**2)/(4*M**2*vol**2)",
+      "poisson_matrix": [
+        [
+          0,
+          "-2*M**2/3",
+          0,
+          "M**2*varphi**2/3 - M**2*V(varphi) + psigma**2/(2*vol**2)"
+        ],
+        [
+          "2*M**2/3",
+          0,
+          0,
+          "2*M**2*varphi*vol/3 - M**2*vol*Derivative(V(varphi), varphi)"
+        ],
+        [
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          "-M**2*varphi**2/3 + M**2*V(varphi) - psigma**2/(2*vol**2)",
+          "-2*M**2*varphi*vol/3 + M**2*vol*Derivative(V(varphi), varphi)",
+          0,
+          0
+        ]
+      ],
+      "poisson_rank": 2,
+      "preservation_residuals": [
+        0,
+        0,
+        0
+      ],
+      "primary": [
+        "-2*M**2*varphi/3 + pv",
+        "pphi",
+        "pN"
+      ],
+      "second_class": 2,
+      "secondary": [
+        "(2*M**2*vol**2*(-varphi**2 + 3*V(varphi)) + 3*psigma**2)/(6*vol)"
+      ],
+      "stiff_H": "1/(3*t)",
+      "stiff_solution_residuals": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "volume_velocity": "N*vol*(-2*varphi + 3*Derivative(V(varphi), varphi))/2"
+    },
+    "nonzero": {
+      "H": "-(36*alpha*b*k**2*m**2*n**2 + 72*b*k**2*m**2*n*z + 12*b*k**2*m**2*v**2 + 36*b*k**2*m**2*z**2 - 12*b*k*m*p*v - p**2)/(36*b*m)",
+      "Hred": "-(36*alpha*b*k**2*m**2*z**2 - 3*alpha*b*p**2 - alpha*p**2 - 36*b*k**2*m**2*z**2)/(36*alpha*b*m)",
+      "alpha": "alpha",
+      "auxiliary_solution": {
+        "n": "-z/alpha",
+        "v": "p/(2*k*m)"
+      },
+      "b": "b",
+      "determinant": "16*alpha**2*k**8*m**4/9",
+      "dof": 1,
+      "euler_lagrange": {
+        "lapse": "2*alpha*k**2*m*n + 2*k**2*m*z",
+        "momentum": "-6*b*k*m*v + 18*b*m*zd",
+        "shift": "2*b*k**2*m*v - 6*b*k*m*zd + 2*k**2*m*v/3"
+      },
+      "first_class": 0,
+      "k": "k",
+      "kinetic": "18*b*m/(3*b + 1)",
+      "m": "m",
+      "matrix": [
+        [
+          0,
+          0,
+          "-2*alpha*k**2*m",
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          "-2*k**2*m/3"
+        ],
+        [
+          "2*alpha*k**2*m",
+          0,
+          0,
+          "-2*k**3*m/3"
+        ],
+        [
+          0,
+          "2*k**2*m/3",
+          "2*k**3*m/3",
+          0
+        ]
+      ],
+      "multipliers": {
+        "u0": "(-6*b*k*m*v - p)/(18*alpha*b*m)",
+        "u1": "k*n + k*z"
+      },
+      "p": "p",
+      "preservation_residuals": [
+        0,
+        0
+      ],
+      "primary": [
+        "pn",
+        "pv"
+      ],
+      "rank": 4,
+      "second_class": 4,
+      "secondary": [
+        "2*k**2*m*(alpha*n + z)",
+        "-k*(-2*k*m*v + p)/3"
+      ],
+      "speed2": "-(alpha - 1)*(3*b + 1)/(9*alpha*b)",
+      "z": "z"
+    },
+    "residuals": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "scope": "Static results are local nonzero-mode principal symbols on a regular nonzero-acceleration branch; not a full nonlinear gravitational Dirac count or a constructed global galaxy",
+    "static_invariance": {
+      "affine_hessian": 0,
+      "allowed_constants": {
+        "c0": 0,
+        "c1": 0
+      },
+      "c0": "c0",
+      "c1": "c1",
+      "general_trace_degenerate_B": "Eq(B(K), C1 + C2*K)",
+      "linear_shift_equation": "c1*Derivative(acc2(x), x)",
+      "scope": "Only sB(K) additions preserving zero trace Hessian at all K,s and arbitrary unchanged static branches; not all possible degenerate completions"
+    },
+    "switch": {
+      "B": "-K**2/(K**2 + K0**2)",
+      "B0": 0,
+      "Bprime0": 0,
+      "Bsecond0": "-2/K0**2",
+      "H": "H",
+      "K": "K",
+      "K0": "K0",
+      "alpha_flrw": "K0**2/(9*H**2 + K0**2)",
+      "b_static": "-acc2/K0**2",
+      "trace_hessian": "-2*K0**2*acc2*(-3*K**2 + K0**2)/(K**2 + K0**2)**3"
+    },
+    "trace_zero": {
+      "H": "-alpha*k**2*m*n**2 - 2*k**2*m*n*z - k**2*m*v**2/3 - k**2*m*z**2",
+      "determinant": "64*k**12*m**6*(alpha - 1)**2/9",
+      "dof": 0,
+      "first_class": 0,
+      "matrix": [
+        [
+          0,
+          0,
+          0,
+          "-2*k**2*m",
+          "-2*k**2*m",
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          "-2*k**2*m",
+          "-2*alpha*k**2*m",
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          "-2*k**2*m/3"
+        ],
+        [
+          "2*k**2*m",
+          "2*k**2*m",
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          "2*k**2*m",
+          "2*alpha*k**2*m",
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          "2*k**2*m/3",
+          0,
+          0,
+          0
+        ]
+      ],
+      "multipliers": {
+        "u0": 0,
+        "u1": 0,
+        "u2": 0
+      },
+      "preservation_residuals": [
+        0,
+        0,
+        0
+      ],
+      "primary": [
+        "p",
+        "pn",
+        "pv"
+      ],
+      "rank": 6,
+      "second_class": 6,
+      "secondary": [
+        "2*k**2*m*(n + z)",
+        "2*k**2*m*(alpha*n + z)",
+        "2*k**2*m*v/3"
+      ]
+    },
+    "vacuum": {
+      "H": "-k**2*m*n**2 - 2*k**2*m*n*z - k**2*m*v**2/3 - k**2*m*z**2",
+      "determinant": 0,
+      "dof": 0,
+      "first_class": 1,
+      "matrix": [
+        [
+          0,
+          0,
+          0,
+          "-2*k**2*m",
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          "-2*k**2*m",
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          "-2*k**2*m/3"
+        ],
+        [
+          "2*k**2*m",
+          "2*k**2*m",
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          "2*k**2*m/3",
+          0,
+          0
+        ]
+      ],
+      "multipliers": {
+        "u0": "-u1",
+        "u2": 0
+      },
+      "preservation_residuals": [
+        0,
+        0
+      ],
+      "primary": [
+        "p",
+        "pn",
+        "pv"
+      ],
+      "rank": 4,
+      "second_class": 4,
+      "secondary": [
+        "2*k**2*m*(n + z)",
+        "2*k**2*m*v/3"
+      ]
+    }
+  },
+  "fixture": {
+    "kinetic": -2,
+    "speed2": -1
+  },
+  "independent_cuscuton_screen": {
+    "arithmetic": "exact symbolic, no random sampling",
+    "checks": {
+      "derived_mond_slope": true,
+      "derived_secondary_bracket": true,
+      "functional_mode_agreement": true,
+      "hamilton_metric_velocities": true,
+      "k0_recomputed": true,
+      "legendre_contraction": true,
+      "legendre_inverse": true,
+      "metric_tensor_momenta": true,
+      "multiplier_closure": true,
+      "seed_affine_identity": true,
+      "seed_lapse_affinity": true,
+      "seed_trace_not_deleted": true,
+      "uncorrelated_seed_control": true,
+      "unmodified_recomputed": true
+    },
+    "checks_passed": true,
+    "domain": "M,a,Nbar>0; comoving k!=0; alpha=1; seed N+u4!=0 and v4>0",
+    "full_nonlinear_dof_count_claimed": false,
+    "homogeneous_primary_secondary_bracket": "0",
+    "homogeneous_scope": "No full rank or first-class claim; remaining preservation requires a separate analysis",
+    "interpretation": "The bare acceleration addition lifts the lapse-constraint null direction; the seed's scalar-removing preservation condition cannot be inherited.",
+    "lapse_pair_poisson_determinant": "4*M**4*a**2*alpha**2*k**4/Nbar**2",
+    "limitations": [
+      "No full nonlinear constraint rank or stability certificate",
+      "No physical extra-mode kinetic or propagation sign determined",
+      "k=0 and alpha=0 controls rebuilt without dividing by the vanished symbol",
+      "No conclusion about correlated new kinetic or lapse-velocity modifications"
+    ],
+    "mond_lapse_hessian_symbol": "-2*M**2*a*k**2/Nbar",
+    "multiplier_coefficient": "2*M**2*a*alpha*k**2/Nbar",
+    "multiplier_preservation_residual": "0",
+    "name": "extended_cuscuton_bare_acceleration_screen",
+    "primary_secondary_bracket": "-2*M**2*a*alpha*k**2/Nbar",
+    "seed_lapse_hessian": "0",
+    "seed_trace_hessian": "-4*N**2*l1*l2*l3*v4/(3*(N + u4))",
+    "software": {
+      "python": "3.13.9",
+      "sympy": "1.13.1"
+    },
+    "source": {
+      "equations": [
+        14,
+        24,
+        42,
+        48,
+        78,
+        84
+      ],
+      "url": "https://arxiv.org/html/1809.10935v2",
+      "version": "1809.10935v2, 2018-12-05"
+    },
+    "two_tensor_gate": "FAIL"
+  },
+  "non_claim": "A gate PASS would not certify a full theory; rejection is scoped to this action/regular branch",
+  "status": "EXPANSION_SWITCH_STATIC_SCALAR_GATE_FAILED"
+}
