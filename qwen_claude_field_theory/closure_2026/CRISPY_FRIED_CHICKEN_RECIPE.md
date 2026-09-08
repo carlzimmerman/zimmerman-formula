@@ -1,13 +1,27 @@
 # CRISPY FRIED CHICKEN RECIPE 
 
-**Permanent architectural specification for the relativistic-MOND program.** Every theory is just a
-different batter; the ingredients, mandatory gates, and forbidden substitutions stay fixed. A candidate is
-not "good" because it resembles a survivor — only if it uses the required ingredients and survives the
-gates. Purpose: never resurrect a killed mechanism under new notation; never confuse phenomenology with
-field-theory viability; never change μ to dodge a relativistic failure; never spend big compute on a
-candidate that fails a cheap structural test; never promote "no computed kill" to "viable."
-**Every future Claude/Qwen prompt on this program begins from this file. Last updated 2026-08-29.**
-Rule: a gate flip = edit the ledger here in the SAME commit as the script. Never delete a graveyard entry.
+**Construction and verification blueprint for one complete relativistic-MOND theory.**
+Current objective, updated by the user on **2026-09-08**: construct a new theory
+that passes the requirements, not another elimination-only campaign. Work starts
+from [the thirteen-requirement specification](FRIED_CHICKEN_SPEC.md). Its physics
+requirements take precedence over older recipe language and historical verdicts.
+
+Build one explicit action and its connected derivation. Preserve the exponential
+kernel, derive the physical metric response, and prove the constraint and matter
+structure together. Checks remain honest: a failure identifies a construction
+obligation; it is not permission to conceal the failure or relax a requirement.
+Historical obstructions are reference material, not the main deliverable.
+
+**Methodological inspiration:** OpenAI's *NavierStokesAndEuler* repository,
+particularly its independently specified Comparator challenges and separately
+checked proof submissions. We adapt that verification architecture to a
+constructive gravity target; we do not import a fluid theorem as gravity evidence.
+See [the pinned project checking instructions][NS-checks] and the complete
+attribution and limits in section 12.
+
+**Every future Claude/Qwen/Codex handoff begins from this file and the current
+spec. Last updated 2026-09-08.** Record a proved gate change with its exact action
+revision and supporting derivation; never rewrite immutable old evidence.
 
 ---
 
@@ -18,6 +32,9 @@ Rule: a gate flip = edit the ledger here in the SAME commit as the script. Never
   sector-dependent G without explicit reclassification.
 - **I3 — GR tensor sector:** c_T=1, Q_T>0. No hiding a tensor-speed correction behind a low-frequency
   approximation.
+- **I3a — Gravitational mode target:** exactly N_grav=2, the tensor polarizations.
+  A genuine matter/primordial-clock scalar is allowed only with its own explicit,
+  healthy, separately derived count. Relabeling a scalar graviton is not a solution.
 - **I4 — Local screening anchor:** the Solar System is high-acceleration INSIDE the galactic MOND
   environment ⇒ screening must be controlled by a LOCAL dynamical quantity (acceleration/derivative), not
   environment labels, halo phases, potential-only or velocity-dispersion screening.
@@ -29,7 +46,9 @@ Rule: a gate flip = edit the ledger here in the SAME commit as the script. Never
   G(y)=y²+2(1+y)e^{−y}−2 with G′/(2y)=1−e^{−y}. (B) nonlocal F₊(Z)=4[1−(1+√Z/2)e^{−√Z/2}], Z=4y²,
   2F₊′=e^{−y} (`mond_compiler_2026/FROZEN_PRIMITIVE.md`). Constitutive ingredients, not new fields.
 
-## 2. PROHIBITED INGREDIENTS (CLOSED unless a new derivation overturns the no-go)
+## 2. HISTORICAL CONSTRUCTION WARNINGS (apply only with their proved hypotheses)
+The entries below retain earlier research claims for traceability. A historical
+class label or finite search is not an automatic theorem about a new action.
 - **P1 — Quadratic MOND carrier stress:** a carrier lensing only through (DΦDΦ)^TF-type quadratic flux
   vs a linear obstruction. [T3 + order-counting kill a9261161: Σ_P is unique O(ε²,Φ²).]
 - **P2 — Unscreened constant preferred-frame coupling:** killed by α₁,α₂. The viable pattern is
@@ -64,11 +83,18 @@ Rule: a gate flip = edit the ledger here in the SAME commit as the script. Never
 identifying them creates no instability. (The central lesson of the whole program: AeST identified the
 first two and died at α₂; khronometric identifies the last two and risks strong coupling.)
 
-## 5. REQUIRED GATES (in order; STOP at the first kill, record the structural reason)
+## 5. REQUIRED PROOF OBLIGATIONS (all from the same action)
+Build these as connected work packages under section 12. Prioritize constructing
+the action and its central constraint/matter/static identities; independent workers
+may derive other sectors once the same action revision is frozen. A failed check
+must be reported and addressed in the construction, not promoted to a pass.
 - **G0 Structural order:** Φ→εΦ; order every proposed source. Different-order terms cannot cancel for
   arbitrary weak fields without an independently justified singular mechanism.
 - **G1 Exact MOND reduction:** ∇·[μ∇Φ]=4πGρ over the full MOND domain (no isolated-point fits).
-- **G2 Newtonian/GR limit:** regular, G_eff/G_N=1 with NO rescaling repair.
+- **G2 Newtonian/GR limit:** derive the measured G_N and its relation to bare
+  couplings, then establish regular recovery using that same measured constant
+  in dynamics, lensing and cosmology. Never hide a discrepancy by inconsistent
+  normalizations or assume measured G_N equals the bare coupling.
 - **G3 Tensor sector:** explicit quadratic action; Q_T>0, c_T²=1.
 - **G4 DOF:** actual Hamiltonian/characteristic analysis. Never infer DOF from appearance.
 - **G5 Ghost/gradient:** K_i>0, c_i²>0 for every propagating mode (or an explicitly justified limit).
@@ -87,16 +113,29 @@ first two and died at α₂; khronometric identifies the last two and risks stro
 eliminates a family). Never call a candidate "viable" while OPEN or CONDITIONAL.
 
 ## 7. DISCOVERY ALGORITHM
-Ingredients → G0 → G1 → … → G12. First kill ⇒ stop spending, record the reason, then **alter the
-architecture, not a coefficient** (unless the failure is provably coefficient-specific).
+Trusted target → explicit construction → action variation → coupled proof
+obligations → independently reproduced checks → assembled same-action result.
+The next deliverable must supply an action term, a derivation, a solved compatibility
+condition, or a verified construction lemma needed by the candidate. Do not replace
+it with a fresh catalogue of excluded models. If a calculation exposes a defect,
+retain the evidence and derive a correction from the required identity; do not
+silently change models between gates. Stop claiming progress from a new label alone.
 
 ## 8. GLOBAL DESIGN TARGET
 One metric; μ=1−e^{−y}; correct MOND dynamics + lensing; c_T=1; no ghost; no gradient instability;
-acceptable PPN; Λ_sc≫E; healthy matter + cosmology. **The DOF count is NOT frozen in advance — 2, 3, or
-more is a RESULT, not an input.** (Forcing N=2 repeatedly killed mechanisms with coherent routes to
-lensing + screening.)
+acceptable PPN; Λ_sc≫E; healthy matter + cosmology. **The required gravitational
+count is N_grav=2; the calculation must derive that count, never hard-code it.**
+Additional genuine matter/clock modes must be separately counted and healthy as
+specified in FRIED_CHICKEN_SPEC.md. A computed third gravitational mode does not
+pass simply because a previous recipe allowed it. Constant a₀ is acceptable;
+the fitted a₀–Λ relation is not promoted to a first-principles derivation.
 
-## 9. CURRENT PROGRAM STATUS (2026-08-29)
+## 9. HISTORICAL PROGRAM SNAPSHOT (2026-08-29; not current certification)
+This archived snapshot and section 10 were not re-audited by the blueprint edit.
+Their broad class verdicts and PASS labels must be checked against their actual
+assumptions, code and current spec before reuse. In particular, a three-gravitational-
+mode candidate cannot close the current two-mode target. Do not treat a candidate
+scan as a universal proof or the phrase "only live class" as an exhaustive theorem.
 **Master no-go (DEAD CLASS, exhaustive):** {local, ≤2-deriv, single-metric, correct MOND lensing} ⇒
 {unremovable preferred-frame carrier}. 108k-candidate search, zero survivors; unique lensing fix =
 Bekenstein's disformal (M5/M1=4.000000, rediscovered by root-finding); cancellation ∝A_0², frame not
@@ -122,7 +161,7 @@ the frame (A3/P2 pattern) or leave locality (A5).
 spherical lensing, c_T=1 (TT quadratic); OPEN: localization→G4→G7→G10 (P4/P6 apply; ω²=½c²k² warning).
 `mond_compiler_2026/FROZEN_PRIMITIVE.md`.
 
-## 10. GRAVEYARD (DEAD — never re-cook; the reason is the lesson)
+## 10. HISTORICAL FAILURE RECORDS (preserved, not the active work queue)
 | Architecture | Killed by | Ref |
 |---|---|---|
 | FC-AeST + c₂★ (6-DOF aether) | α₂=1+2/K_B~8e4 (λ_s=1); α₁~−2.7 | 66cf94e5, FC_AEST_STATUS.md |
@@ -138,6 +177,166 @@ spherical lensing, c_T=1 (TT quadratic); OPEN: localization→G4→G7→G10 (P4/
 
 ## 11. THE "EXTRA CRISPY" RULE
 Never "we found the new theory" → **"we found the next architecture."** Never "no ghost" → **"no ghost in
-the tested sector."** Never "viable" until every mandatory gate is PASS. The objective is not to protect a
-candidate; it is to kill everything that cannot work until the first thing that survives is left standing.
-**That survivor gets the name.**
+the tested sector."** Never "viable" until every mandatory gate is PASS.
+The objective is to construct and demonstrate one complete theory. Neither a
+collection of failures nor a collection of unrelated passes satisfies it.
+
+## 12. CRISPY FRIED CHICKEN VERIFICATION BLUEPRINT
+
+### 12.1 What is borrowed, and what is our adaptation
+
+The OpenAI project supplies Lean formalizations and distinct challenge/solution
+modules, with explicitly listed theorem names and allowed axioms; its checking
+configuration also requests a second kernel. That is the methodological
+inspiration, not evidence for this gravity program. [OpenAI repository README][NS-main];
+[Navier–Stokes checking configuration][NS-config].
+
+Comparator's documented guarantee is conditional on trusted challenge definitions,
+imports, build configuration, isolation and kernel correctness. It checks statement
+identity, permitted axioms and proof acceptance, with optional additional kernels.
+Its documentation also warns that unrestricted definition holes can satisfy a
+formal challenge without meeting its intended meaning. [Comparator documentation][Comparator].
+
+**Our constructive adaptation:** specify the desired gravity theory independently
+of the candidate, build the candidate and proofs separately, and then verify that
+the proved statements are exactly the required ones. This is an original project
+workflow proposal, not a claim that the fluid authors devised this gravity method.
+
+### 12.2 Three separate responsibilities
+
+| Responsibility | Required artifact | Cannot be changed by the proof author to obtain a pass |
+| --- | --- | --- |
+| Trusted challenge | Precise thirteen-requirement contract, physical definitions, allowed fields, boundary/initial data, empirical tolerances and branch hypotheses | Meaning of N_grav, physical metric, conservation, exact μ, admissibility, or the success predicate |
+| Construction and proof | One fully written action/Hamiltonian, Euler–Lagrange equations, canonical structure and connected proofs | No borrowing a missing result from another action, coefficient choice, matter sector or inverse prescription |
+| Independent verification | Statement comparison, proof/dependency review, executed calculations and, for implemented Lean portions, kernel checks | Cannot replace missing mathematics by hashes, green tests, unchecked axioms or sampled ranks |
+
+The intended final statement is **existence of one explicit admissible theory
+satisfying the fixed spec**, not merely “if a successful theory exists, it works.”
+The challenge owns the definition of success. A candidate record must not contain
+assumed fields such as `has_two_dof = true`, `gamma = 1`, or `satisfies_spec = true`
+in place of derived propositions. No assumed MOND equation may stand in for varying
+the action. Supply nonempty admissible-data/parameter witnesses, including a
+nontrivial galactic branch and H≠0 FLRW from the same theory, so an inconsistent
+hypothesis set cannot make the result vacuously true.
+
+### 12.3 Construct from joint compatibility conditions
+
+The first construction package is one physical metric plus the permitted field
+content, including a genuine primordial clock only if its healthy independent
+initial data and canonical classification can be demonstrated. Write every action
+term, coefficient, physical metric coupling and boundary prescription explicitly;
+`S_aux` is a placeholder, not a finished construction. Preserve the exact primitive
+G(y) while deriving its placement in the action rather than assigning a phantom
+stress by hand. Keep a₀ constant and the a₀–Λ relation labeled input unless derived.
+
+Solve the degeneracy/constraint conditions, matter Ward identity and two static
+metric variations as a **joint compatibility problem** for that action. Do not
+derive MOND first and bolt unrelated lensing, conservation or DOF results onto it.
+Any proposed auxiliary elimination must preserve the action domain, boundary
+conditions and solution/initial-data correspondence. A singular reduction is its
+own branch, not a limit to substitute without proof.
+
+Each successful lemma becomes a dependency for the next calculation. When an
+identity does not close, the construction worker must identify and derive the
+missing coupling or constraint—not launch a stand-alone family-elimination scan.
+Verification still reports genuine failures; the new priority does not authorize
+false passes or suppression of adverse data.
+
+### 12.4 One action ID, with parallel proof packages
+
+Freeze a candidate ID containing the commit/hash of the full action, physical
+matter sector, parameter values/functions, clock prescription, inverse domains
+and boundary conditions. The following packages all consume that ID:
+
+| Package | Required derived output |
+| --- | --- |
+| V0 — Definition and variation | Explicit action, independent variations of every field, boundary terms, and agreement of equivalent Hamiltonian/Lagrangian descriptions |
+| V1 — Constitutive law and static geometry | Exact μ=1−exp(−y), general-source quasistatic equation, independent Φ and Ψ, spherical/BTFR limits, measured G_N and regular high-acceleration recovery |
+| V2 — Canonical closure | All primary/secondary/higher constraints, actual functional Poisson brackets, preservation to closure, first-/second-class separation and separate gravitational/matter counts |
+| V3 — Matter and causal evolution | Full ordinary-matter Ward identity; physical, gauge-invariant initial/retarded response; auxiliary initial-data correspondence; no unacceptable instantaneous channel |
+| V4 — Cosmology and stability | Expanding backgrounds and coupled scalar/vector/tensor perturbations; positive tensor kinetic term and c_T=c; ghost/gradient/strong-coupling analysis |
+| V5 — PPN and empirical recovery | Derived β,γ,α₁,α₂,α₃, source/environment matching, dated primary observational bounds and one consistent measured Newton constant |
+| V6 — Exceptional sectors and assembly | Separate k=0/k≠0, y=0/y>0, vanishing matter/clock charge, domains and boundaries; demonstrate overlap of all required parameter/solution regimes |
+
+V1, V2 and V4 can run in parallel once V0 fixes their input. V3 and V5 must
+use the reconstructed physical metric, not a convenience potential. Workers have
+disjoint files; the coordinator compares action IDs and shared intermediate
+equations before merging. Changing the action invalidates dependent proofs until
+they are rederived; a same-directory name or successful rerun alone is insufficient.
+
+### 12.5 Evidence levels must remain separate
+
+- **Analytic derivation:** full statement, hypotheses and argument; independent
+  mathematical review is required for load-bearing claims.
+- **Exact computation:** a reproducible symbolic/exact identity or matrix result
+  at the stated level. Derive ranks and constraints; a finite-mode matrix does not
+  establish a functional operator's rank or boundary-domain closure.
+- **Numerical/empirical evidence:** declared range, precision, refinements, data
+  provenance, uncertainties, selection cuts and out-of-sample checks. It tests
+  physical predictions; it is not a universal theorem or a derivation of a₀.
+- **Lean-verified portion:** actual checked declarations with fixed definitions,
+  proof dependencies and allowed axioms. An unfinished `.lean` file, unchecked
+  `sorry`, or a proof of only a constitutive identity is not full-theory verification.
+
+Start formalization with small, stable construction lemmas (for example the
+exponential primitive and a correctly scoped canonical identity), then formalize
+the essential bridges: action → equations, equations → constraints/observables,
+and those results → the thirteen requirements. Inspect definition holes and
+non-vacuity independently. Do not axiomatize an unproved physical bridge merely
+to complete a Lean theorem. Formal proof checks mathematics, not whether a model
+fits nature or is novel; those remain separate empirical and literature tasks.
+
+### 12.6 Reproducible verification and the present implementation boundary
+
+Pin the action, source dependencies, data and toolchain; record exact commands,
+software versions, outputs, exit statuses and hashes. Execute every new scientific
+script. Run independent Python jobs in parallel with bounded resources; avoid
+multiple workers rewriting the same artifacts. Compare symbolic and numerical
+routes when they check genuinely independent aspects of a claim.
+
+For future Lean verification, separate trusted challenges from submissions,
+check statement identity and allowed axioms, and use an additional kernel where
+supported. The documented isolation path is Linux-specific; ordinary macOS builds
+or development substitutes do not establish that guarantee. [Comparator][Comparator].
+
+**This edit updates the blueprint; it does not install or execute Lean/Comparator.**
+Neither `lean` nor `lake` was found on this task's PATH on 2026-09-08. No gravity
+proof or external fluid proof is certified by this documentation change. The
+reference repository's instructions are not silently advertised as commands for
+a gravity Lean project that has not been created.
+
+The final review must inspect each requirement and its actual proof/evidence,
+including common action identity and nonempty admissible branches. No overall
+PASS until all mandatory requirements are established. Optional a₀–Λ derivation
+and any remaining phenomenological inputs must be labeled exactly as the spec
+allows. Report files, commands, exits, the strongest result, OPEN/CLOSED status,
+and the next concrete construction calculation; do not redefine a partial result
+as the user's completed theory.
+
+### 12.7 Attribution and source-check record
+
+1. **OpenAI. *NavierStokesAndEuler: Lean certificates accompanying Navier–Stokes
+   and Euler results*.** Software repository, revision
+   `8937a8f4cbc7abaab5e9e97d1cc7f5d2319d9538`; README, ComparatorChallenges/README.md,
+   and ComparatorChallenges/NavierStokes.json. Accessed 2026-09-08.
+   [Repository at the cited revision][NS-repo]; [checking instructions][NS-checks].
+2. **The leanprover/comparator project. *Comparator*.** Primary repository
+   documentation, master version read 2026-09-08; sections on checking, additional
+   kernels, definition holes and development. The documentation credits original
+   development to Lean FRO. Its revision must be pinned before any future executed
+   gravity proof audit. [Documentation][Comparator].
+
+Source question: attribution of a verification workflow, not verification of a
+fluid theorem or a novelty claim. The primary README and checking configuration
+were inspected; no external proof build was run and no full source cache was
+created. Fetching the reference `.lean` statement failed during this update, so
+no theorem-content claim relies on that unsuccessful fetch. Classification:
+**adjacent verification method, adapted constructively here**. This attribution
+does not imply OpenAI endorsement, an equivalence between fluid and gravity
+equations, or proof of the existence of the requested MOND theory.
+
+[NS-repo]: https://github.com/openai/NavierStokesAndEuler/tree/8937a8f4cbc7abaab5e9e97d1cc7f5d2319d9538
+[NS-main]: https://github.com/openai/NavierStokesAndEuler/blob/8937a8f4cbc7abaab5e9e97d1cc7f5d2319d9538/README.md
+[NS-checks]: https://github.com/openai/NavierStokesAndEuler/blob/8937a8f4cbc7abaab5e9e97d1cc7f5d2319d9538/ComparatorChallenges/README.md
+[NS-config]: https://github.com/openai/NavierStokesAndEuler/blob/8937a8f4cbc7abaab5e9e97d1cc7f5d2319d9538/ComparatorChallenges/NavierStokes.json
+[Comparator]: https://github.com/leanprover/comparator/blob/master/README.md

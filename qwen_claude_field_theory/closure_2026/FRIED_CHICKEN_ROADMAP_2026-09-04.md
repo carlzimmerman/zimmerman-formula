@@ -1,5 +1,13 @@
 # First-principles relativistic MOND: closure roadmap for Fable
 
+**2026-09-08 priority update:** the user now requires construction of a passing
+theory, not an elimination-only campaign. Use the current
+[specification](FRIED_CHICKEN_SPEC.md) and
+[NavierStokesAndEuler-inspired verification blueprint](CRISPY_FRIED_CHICKEN_RECIPE.md#12-crispy-fried-chicken-verification-blueprint)
+for the active work order. The dated instructions below are preserved as
+historical context, not authorization to substitute another exclusion study
+for the requested construction. No requirement is relaxed.
+
 **Date:** 2026-09-04. **Inspected HEAD:** `4fed8bfa6`.
 **Goal:** construct one explicit theory satisfying the full specification, or
 prove a sharply scoped incompatibility; neither outcome is guaranteed.

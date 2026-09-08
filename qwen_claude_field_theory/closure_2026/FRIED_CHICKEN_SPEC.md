@@ -1,7 +1,15 @@
 # FRIED CHICKEN — the canonical project goal (2026-08-31)
 
-**GOAL: Build or falsify ONE complete relativistic MOND field theory that satisfies ALL of the
+**GOAL: Build ONE complete relativistic MOND field theory that satisfies ALL of the
 requirements below from the SAME explicit action/Hamiltonian.**
+
+**Current user direction — 2026-09-08:** construction is the active objective;
+stop elimination-only campaigns. The thirteen requirements below are unchanged.
+Use the [construction-first verification blueprint](CRISPY_FRIED_CHICKEN_RECIPE.md#12-crispy-fried-chicken-verification-blueprint),
+explicitly inspired by OpenAI's NavierStokesAndEuler challenge/proof-checking
+workflow and cited there. Historical no-go results remain evidence, not a
+substitute for building the requested theory. Checks must still report failures
+honestly; the change of priority does not lower any acceptance criterion.
 
 ## The 13 requirements (all from ONE theory)
 
@@ -50,7 +58,7 @@ Victory chain: ONE explicit action/Hamiltonian → exact μ(y)=1−e^{−y} → 
 limits → Φ=Ψ → correct lensing → N_grav=2 → ∇_μT^{μν}=0 → β,γ acceptable → α₁,α₂,α₃ acceptable →
 c_T=c → no ghost/gradient instability → expanding FLRW → controlled k=0 and y=0 limits.
 
-## TWO POSSIBLE SCIENTIFIC SUCCESSES
+## HISTORICAL SCIENTIFIC OUTCOMES (current deliverable is A)
 - **A. FRIED CHICKEN:** one explicit theory derives and passes every requirement above.
 - **B. A NEW NO-GO THEOREM:** prove rigorously that some required combination cannot coexist under
   clearly stated assumptions. **The especially important combination to test:
@@ -59,10 +67,14 @@ c_T=c → no ghost/gradient instability → expanding FLRW → controlled k=0 an
 ## DISCIPLINE
 Do not lower the requirements to manufacture a PASS. Do not declare success because a script exits 0.
 Every important PASS must be derived analytically or by a reproducible computation CAPABLE OF FAILING.
-The objective is the strongest mathematically defensible result — a completed theory OR a rigorous
-no-go.
+The active objective is a completed theory, with the strongest mathematically
+defensible derivation. A scoped no-go may inform construction but does not now
+count as completing the user's goal.
 
 ## How the spec maps onto the closure map as of 2026-08-31 (see HANDOFF_2026-08-31.md)
+Historical mapping only: the class exclusions and exhaustiveness statements
+below were not re-audited in the 2026-09-08 blueprint update and are not a
+replacement for the current construction-first work order.
 - Bimetric (Hassan–Rosen, 7 DOF) — EXCLUDED by req 2 (N_grav=2), independent of health.
 - AeST / aether vector — EXCLUDED by req 2 (extra gravitational DOF) + req 4 (PPN α₁,α₂ KILLED).
 - Elliptic-constraint carriers (MMG, York/CMC) — EXCLUDED by req 7 (instantaneous channel) + α₃.
