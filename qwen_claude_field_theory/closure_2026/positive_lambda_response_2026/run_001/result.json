@@ -1,0 +1,1568 @@
+{
+  "base_commit": "c759c46ac02e6c09cd0c7c3cb206b8c31bbc1b97",
+  "checks_passed": true,
+  "evidence": {
+    "auxiliary_localization": {
+      "I": "R-4 Delta_h log(N)-2|D log(N)|^2",
+      "Y": "m U sqrt(N)/8+W",
+      "auxiliary_EL": {
+        "U": "m/8 (L U-sqrt(N) I)",
+        "V": "L W-2c V",
+        "W": "L V-I"
+      },
+      "auxiliary_constraints": {
+        "auxiliary_pairs": 0,
+        "eigenvalue": "eigenvalue",
+        "first_class": 0,
+        "hamiltonian": "-U**2*eigenvalue*m/16 + U*m*source_u/8 + V**2*c - V*W*eigenvalue + W*source_v",
+        "m": "m",
+        "multiplier_matrix": [
+          [
+            "eigenvalue*m/8",
+            0,
+            0
+          ],
+          [
+            0,
+            "-2*c",
+            "eigenvalue"
+          ],
+          [
+            0,
+            "eigenvalue",
+            0
+          ]
+        ],
+        "multipliers": [
+          "-(U*eigenvalue_dot - source_u_dot)/eigenvalue",
+          "-(V*eigenvalue_dot - source_v_dot)/eigenvalue",
+          "-(2*V*c*eigenvalue_dot - 2*V*c_dot*eigenvalue + W*eigenvalue*eigenvalue_dot - 2*c*source_v_dot)/eigenvalue**2"
+        ],
+        "poisson_matrix": [
+          [
+            0,
+            0,
+            0,
+            "-eigenvalue*m/8",
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            "2*c",
+            "-eigenvalue"
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            "-eigenvalue",
+            0
+          ],
+          [
+            "eigenvalue*m/8",
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            "-2*c",
+            "eigenvalue",
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            "eigenvalue",
+            0,
+            0,
+            0,
+            0
+          ]
+        ],
+        "poisson_rank": 6,
+        "preservation_residuals": [
+          0,
+          0,
+          0
+        ],
+        "primary_constraints": [
+          "p_U",
+          "p_V",
+          "p_W"
+        ],
+        "secondary_constraints": [
+          "U*eigenvalue*m/8 - m*source_u/8",
+          "-2*V*c + W*eigenvalue",
+          "V*eigenvalue - source_v"
+        ],
+        "solution_drift_residuals": [
+          0,
+          0,
+          0
+        ],
+        "velocity_momenta": [
+          0,
+          0,
+          0
+        ],
+        "zero_mode": {
+          "auxiliary_pairs_claimed": null,
+          "poisson_rank": 2,
+          "secondary_constraints": [
+            "-m*source_u/8",
+            "-2*V*c",
+            "-source_v"
+          ]
+        }
+      },
+      "auxiliary_pairs": 0,
+      "boundary_scope": "Unprojected decay/IBP domain only: inverse prescription, finite pairings and vanishing surface terms required. Compact mean multipliers and metric-dependent projector variations are not included.",
+      "checks_passed": true,
+      "coefficient_convention": "m>0; c=b*tau_T/24>0; eigenvalue>0",
+      "compact_projector_metric_variation_completed": false,
+      "constraint_scope": "Computed auxiliary-only nonzero eigenmode count, with arbitrary time-dependent source/eigenvalue data. In the coupled theory its multiplier equations depend on metric/lapse evolution; the full lapse-conformal functional rank remains unproved.",
+      "curved_R": "2*(-Derivative(zeta(x), x)**2 - 2*Derivative(zeta(x), (x, 2)))*exp(-2*zeta(x))",
+      "full_nonlinear_gravity_count_claimed": null,
+      "generic_R3_finite_action_neighborhood_proved": false,
+      "geometry_checked": "h_ij=exp(2 zeta(x)) delta_ij; arbitrary n,U,V,W(x,y,z); all six arbitrary symmetric inverse-metric directions",
+      "infrared_scope": "For sufficiently localized I, nonzero integral sqrt(h) I produces a V~1/r monopole and divergent integral sqrt(h) V^2. Zero monopole is necessary in this class, not a proved complete nonlinear domain. W=2c L^-2 I need not decay even for dipole I.",
+      "integration_by_parts_residual": 0,
+      "lapse_EL": "(sqrt(h))^-1 delta S/delta log(N) = -m U sqrt(N) I/16 +4 Delta_h Y-4 D_i(Y a^i)",
+      "local_action": "int sqrt(h) [m|DU|^2/16 + DW.DV - c V^2 - (m U sqrt(N)/8+W) I]",
+      "metric_EL": "E_ij=m U_i U_j/16+W_(i V_j)-4 Y_(i a_j)+2Y a_i a_j-h_ij A/2-Y G_ij+D_iD_jY-h_ij Delta_hY; A=m|DU|^2/16+DW.DV-cV^2-4DY.a+2Y a^2",
+      "metric_EL_residuals": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "metric_variation_convention": "E_ij=(sqrt(h))^-1 delta S_aux/delta h^ij, fixing n,U,V,W; parentheses symmetrize with weight 1/2",
+      "mode_on_shell_action": "-(16*c*source_v**2 + eigenvalue*m*source_u**2)/(16*eigenvalue**2)",
+      "nonzero_mode_auxiliary_closure": true,
+      "scalar_EL_residuals": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "sympy_version": "1.13.1"
+    },
+    "general_family": {
+      "action": {
+        "H": "H",
+        "K": "K_scalar",
+        "L_b": "-b*n**2*q**2 - 2*b*n*q**2*z - b*q**2*z**2 + k**2*m*v**2/3 + k*q*u*v + n**2*q**2/2 - n*q*ud + 3*q*ud*z + ud**2/2 - k**2*u**2/(2*a**2)",
+        "a": "a",
+        "acceleration": "-(6*H*K_scalar*a**2*m*ud + 3*a**2*q**2*u + 2*k**2*m*u)/(2*K_scalar*a**2*m)",
+        "b": "b",
+        "b_of_K": "9/(2*(K_scalar + 15))",
+        "classification_scope": "For b>0 only: K>=1 is the proved Cauchy-support family; 0<K<1 has superluminal principal matter speed; K=0 has degenerate reduced kinetic; K<0 has negative reduced kinetic. No constraint count is assigned at K=0.",
+        "evolution_equation": "K_scalar*(3*H*ud + udd) + u*(3*a**2*q**2 + 2*k**2*m)/(2*a**2*m)",
+        "gradient_mass": "(3*a**2*q**2 + 2*k**2*m)/(2*a**2*m)",
+        "input_hashes": {
+          "qwen_claude_field_theory/closure_2026/constraint_response_gate_2026/adaptive_endpoint.py": {
+            "current": "a8311beda89e15fbb7d1c0bbc73ec5a52f421f7bfef73af71c737c25643a0f51",
+            "pinned": "a8311beda89e15fbb7d1c0bbc73ec5a52f421f7bfef73af71c737c25643a0f51"
+          },
+          "qwen_claude_field_theory/closure_2026/constraint_response_gate_2026/causal_response.py": {
+            "current": "2492788f9d74c98ed72bcf87a2104c77fbaefef61fdc3b50d4abd3b738b2865d",
+            "pinned": "2492788f9d74c98ed72bcf87a2104c77fbaefef61fdc3b50d4abd3b738b2865d"
+          },
+          "qwen_claude_field_theory/closure_2026/vcdm_flrw_gate_2026/vcdm_flrw.py": {
+            "current": "940d0b2eb80892abd00e31589795e560e0fb805c3866eb70283dee25c36c6850",
+            "pinned": "940d0b2eb80892abd00e31589795e560e0fb805c3866eb70283dee25c36c6850"
+          }
+        },
+        "k": "k",
+        "kinetic": "K_scalar",
+        "kinetic_b": "-3*(10*b - 3)/(2*b)",
+        "kinetic_b_derivative": "-9/(2*b**2)",
+        "m": "m",
+        "matter_momentum": "K_scalar*a**3*ud",
+        "n": "n",
+        "physical_density": "-3*q*ud",
+        "pinned_inputs_match": true,
+        "positive_b_classification": {
+          "K_ge_one": "Interval.Lopen(0, 9/32)",
+          "K_negative": "Interval.open(3/10, oo)",
+          "K_zero": "{3/10}",
+          "zero_lt_K_lt_one": "Interval.open(9/32, 3/10)"
+        },
+        "q": "q",
+        "reduced_L": "-(-2*K_scalar*a**2*m*ud**2 + 3*a**2*q**2*u**2 + 2*k**2*m*u**2)/(4*a**2*m)",
+        "reduced_b": "-(30*a**2*b*m*ud**2 + 3*a**2*b*q**2*u**2 - 9*a**2*m*ud**2 + 2*b*k**2*m*u**2)/(4*a**2*b*m)",
+        "residuals": {
+          "canonical_matter_momentum": 0,
+          "free_auxiliary_0": 0,
+          "free_auxiliary_1": 0,
+          "free_auxiliary_2": 0,
+          "kinetic_parameterization": 0,
+          "unit_speed_boundary": 0,
+          "zero_kinetic_boundary": 0
+        },
+        "solution": {
+          "n": "4*ud/q",
+          "v": "-3*q*u/(2*k*m)",
+          "z": "ud*(K_scalar + 3)/(3*q)"
+        },
+        "solution_b": {
+          "n": "4*ud/q",
+          "v": "-3*q*u/(2*k*m)",
+          "z": "(-8*b*ud + 3*ud)/(2*b*q)"
+        },
+        "speed_squared": "1/K_scalar",
+        "tau": "tau",
+        "u": "u",
+        "ud": "ud",
+        "udd": "udd",
+        "v": "v",
+        "z": "z"
+      },
+      "amplitude_scope": "For each finite K one may choose sufficiently small epsilon; there is no uniform fixed-amplitude K->infinity statement.",
+      "annular": {
+        "data_scope": "chi=1 for r<=1 and zero for r>=2, smooth and radial. Original canonical data differ only in the annulus. On R^3 use decay; on a centered flat torus of side L>4 use xy parity and mean-zero inverse. No incoming vector/TT data. Constrained localized potentials need not agree in the inner ball and are not adjoined as independent initial data.",
+        "epsilon_may_depend_on_K": true,
+        "healthy_matter_scope": "For each finite K, choose epsilon small enough for positive lapse, timelike canonical scalar gradient, and small metric perturbations. K>0 and gradient/mass>0 give positive reduced matter quadratic energy. Since z=(K+3)ud/(3q), the permitted amplitude can depend on K; no uniform fixed-amplitude K->infinity limit is asserted.",
+        "initial_fields": {
+          "extrinsic_mixed": [
+            [
+              "-4*H*initial_velocity/q",
+              0,
+              0
+            ],
+            [
+              0,
+              "-4*H*initial_velocity/q",
+              0
+            ],
+            [
+              0,
+              0,
+              "-4*H*initial_velocity/q"
+            ]
+          ],
+          "lapse": "4*initial_velocity/q",
+          "n_dot": 0,
+          "physical_density": "-3*initial_velocity*q",
+          "pi_mixed": [
+            [
+              "a**3*(2*K_scalar*initial_velocity*tau + 6*initial_velocity*tau)/(6*q)",
+              0,
+              0
+            ],
+            [
+              0,
+              "-a**3*(-4*K_scalar*initial_velocity*tau - 12*initial_velocity*tau)/(12*q)",
+              0
+            ],
+            [
+              0,
+              0,
+              "-a**3*(-4*K_scalar*initial_velocity*tau - 12*initial_velocity*tau)/(12*q)"
+            ]
+          ],
+          "scalar_field": 0,
+          "scalar_momentum": "K_scalar*a**3*initial_velocity",
+          "scalar_velocity": "initial_velocity",
+          "shift_potential": 0,
+          "spatial_conformal_metric": "initial_velocity*(K_scalar + 3)/(3*q)",
+          "trace_multiplier": "-8*H*initial_velocity/q",
+          "z_dot": 0
+        },
+        "inner_initial_fields": {
+          "extrinsic_mixed": [
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0
+            ]
+          ],
+          "lapse": 0,
+          "n_dot": 0,
+          "physical_density": 0,
+          "pi_mixed": [
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0
+            ]
+          ],
+          "scalar_field": 0,
+          "scalar_momentum": 0,
+          "scalar_velocity": 0,
+          "shift_potential": 0,
+          "spatial_conformal_metric": 0,
+          "trace_multiplier": 0,
+          "z_dot": 0
+        },
+        "kernel_potentials": [
+          "-4*epsilon*g_hat*k**2*(K_scalar + 15)/(3*q)",
+          "-4*a**2*epsilon*g_hat*(K_scalar + 15)/(3*q)"
+        ],
+        "localized_auxiliary_values_claimed_equal": false,
+        "physical_velocity": "annular_x*annular_y*epsilon*(Subs(Derivative(chi(radius), (radius, 2)), radius, sqrt(annular_x**2 + annular_y**2 + annular_z**2)) + 6*Subs(Derivative(chi(radius), radius), radius, sqrt(annular_x**2 + annular_y**2 + annular_z**2))/sqrt(annular_x**2 + annular_y**2 + annular_z**2))",
+        "profile": "annular_x*annular_y*chi(sqrt(annular_x**2 + annular_y**2 + annular_z**2))",
+        "residuals": {
+          "cutoff_laplacian": 0,
+          "inner_cross_derivative": 0,
+          "inner_harmonic": 0,
+          "inner_initial_extrinsic_mixed_0": 0,
+          "inner_initial_extrinsic_mixed_1": 0,
+          "inner_initial_extrinsic_mixed_2": 0,
+          "inner_initial_extrinsic_mixed_3": 0,
+          "inner_initial_extrinsic_mixed_4": 0,
+          "inner_initial_extrinsic_mixed_5": 0,
+          "inner_initial_extrinsic_mixed_6": 0,
+          "inner_initial_extrinsic_mixed_7": 0,
+          "inner_initial_extrinsic_mixed_8": 0,
+          "inner_initial_lapse_0": 0,
+          "inner_initial_n_dot_0": 0,
+          "inner_initial_physical_density_0": 0,
+          "inner_initial_pi_mixed_0": 0,
+          "inner_initial_pi_mixed_1": 0,
+          "inner_initial_pi_mixed_2": 0,
+          "inner_initial_pi_mixed_3": 0,
+          "inner_initial_pi_mixed_4": 0,
+          "inner_initial_pi_mixed_5": 0,
+          "inner_initial_pi_mixed_6": 0,
+          "inner_initial_pi_mixed_7": 0,
+          "inner_initial_pi_mixed_8": 0,
+          "inner_initial_scalar_field_0": 0,
+          "inner_initial_scalar_momentum_0": 0,
+          "inner_initial_scalar_velocity_0": 0,
+          "inner_initial_shift_potential_0": 0,
+          "inner_initial_spatial_conformal_metric_0": 0,
+          "inner_initial_trace_multiplier_0": 0,
+          "inner_initial_z_dot_0": 0,
+          "mean_zero_inverse": 0,
+          "odd_x": 0,
+          "odd_y": 0
+        },
+        "torus_mean_zero_by_parity": true,
+        "total_initial_canonical_X": "(point_w*small_amplitude + q)**2/(2*(4*point_w*small_amplitude/q + 1)**2)"
+      },
+      "assertion_scope": "Action/geometry identities and a uniform analytic short-time support proof. No nonlinear closure, no arbitrary healthy actuator realization, and no equality of all constrained localized auxiliary fields.",
+      "b_negative_claimed": false,
+      "base_commit": "c759c46ac02e6c09cd0c7c3cb206b8c31bbc1b97",
+      "checks": {
+        "action:canonical_matter_momentum": true,
+        "action:free_auxiliary_0": true,
+        "action:free_auxiliary_1": true,
+        "action:free_auxiliary_2": true,
+        "action:kinetic_parameterization": true,
+        "action:unit_speed_boundary": true,
+        "action:zero_kinetic_boundary": true,
+        "annular:cutoff_laplacian": true,
+        "annular:inner_cross_derivative": true,
+        "annular:inner_harmonic": true,
+        "annular:inner_initial_extrinsic_mixed_0": true,
+        "annular:inner_initial_extrinsic_mixed_1": true,
+        "annular:inner_initial_extrinsic_mixed_2": true,
+        "annular:inner_initial_extrinsic_mixed_3": true,
+        "annular:inner_initial_extrinsic_mixed_4": true,
+        "annular:inner_initial_extrinsic_mixed_5": true,
+        "annular:inner_initial_extrinsic_mixed_6": true,
+        "annular:inner_initial_extrinsic_mixed_7": true,
+        "annular:inner_initial_extrinsic_mixed_8": true,
+        "annular:inner_initial_lapse_0": true,
+        "annular:inner_initial_n_dot_0": true,
+        "annular:inner_initial_physical_density_0": true,
+        "annular:inner_initial_pi_mixed_0": true,
+        "annular:inner_initial_pi_mixed_1": true,
+        "annular:inner_initial_pi_mixed_2": true,
+        "annular:inner_initial_pi_mixed_3": true,
+        "annular:inner_initial_pi_mixed_4": true,
+        "annular:inner_initial_pi_mixed_5": true,
+        "annular:inner_initial_pi_mixed_6": true,
+        "annular:inner_initial_pi_mixed_7": true,
+        "annular:inner_initial_pi_mixed_8": true,
+        "annular:inner_initial_scalar_field_0": true,
+        "annular:inner_initial_scalar_momentum_0": true,
+        "annular:inner_initial_scalar_velocity_0": true,
+        "annular:inner_initial_shift_potential_0": true,
+        "annular:inner_initial_spatial_conformal_metric_0": true,
+        "annular:inner_initial_trace_multiplier_0": true,
+        "annular:inner_initial_z_dot_0": true,
+        "annular:mean_zero_inverse": true,
+        "annular:odd_x": true,
+        "annular:odd_y": true,
+        "geometry:background_Weyl_parallel": true,
+        "geometry:background_Weyl_transverse": true,
+        "geometry:connection_Ricci_ADM_identity": true,
+        "geometry:connection_pure_time_gauge_Ricci": true,
+        "geometry:general_Weyl_local_nonlocal_split": true,
+        "geometry:general_Weyl_scalar_potential": true,
+        "geometry:general_Weyl_trace": true,
+        "geometry:linear_Weyl_trace": true,
+        "geometry:physical_Klein_Gordon": true,
+        "geometry:trace_primary": true,
+        "green:Green_arithmetic": true,
+        "green:general_positive_Lambda_mass": true,
+        "green:hole_Weyl_amplitude": true,
+        "green:initial_Weyl": true,
+        "green:initial_Ydot": true,
+        "green:moment_operator": true
+      },
+      "checks_passed": true,
+      "domain": "Every finite K>=1, equivalently0<b<=9/32, on every expanding stiff-plus-positive-Lambda background with m,Hd,a_initial,q0>0 at finite t0. R^3 decay or a flat torus containing the cutoff chart.",
+      "geometry": {
+        "H": "H",
+        "K": "K_scalar",
+        "Weyl_parallel": "(18*H*a**2*q**2*u + 2*K_scalar*k**2*m*ud - 9*a**2*q**2*ud - 18*k**2*m*ud)/(18*a**2*m*q)",
+        "Weyl_real_space": "Ehat_ij=(9-K)D_ij ud/(6a^2 q)+3q D_ij Delta^-1(2Hu-ud)/(4m)",
+        "Weyl_transverse": "-(18*H*a**2*q**2*u + 2*K_scalar*k**2*m*ud - 9*a**2*q**2*ud - 18*k**2*m*ud)/(36*a**2*m*q)",
+        "a": "a",
+        "delta_K_TF": [
+          [
+            "(24*H*K_scalar*a**2*m*ud + 2*K_scalar*k**2*m*u + 9*a**2*q**2*u + 6*k**2*m*u)/(6*K_scalar*a**2*m*q) + (-24*H*K_scalar*a**2*m*ud + 6*K_scalar*a**2*q**2*u - 2*K_scalar*k**2*m*u - 9*a**2*q**2*u - 6*k**2*m*u)/(6*K_scalar*a**2*m*q)",
+            0,
+            0
+          ],
+          [
+            0,
+            "(24*H*K_scalar*a**2*m*ud + 2*K_scalar*k**2*m*u + 9*a**2*q**2*u + 6*k**2*m*u)/(6*K_scalar*a**2*m*q) - (24*H*K_scalar*a**2*m*ud + 3*K_scalar*a**2*q**2*u + 2*K_scalar*k**2*m*u + 9*a**2*q**2*u + 6*k**2*m*u)/(6*K_scalar*a**2*m*q)",
+            0
+          ],
+          [
+            0,
+            0,
+            "(24*H*K_scalar*a**2*m*ud + 2*K_scalar*k**2*m*u + 9*a**2*q**2*u + 6*k**2*m*u)/(6*K_scalar*a**2*m*q) - (24*H*K_scalar*a**2*m*ud + 3*K_scalar*a**2*q**2*u + 2*K_scalar*k**2*m*u + 9*a**2*q**2*u + 6*k**2*m*u)/(6*K_scalar*a**2*m*q)"
+          ]
+        ],
+        "delta_K_mixed": [
+          [
+            "(-24*H*K_scalar*a**2*m*ud + 6*K_scalar*a**2*q**2*u - 2*K_scalar*k**2*m*u - 9*a**2*q**2*u - 6*k**2*m*u)/(6*K_scalar*a**2*m*q)",
+            0,
+            0
+          ],
+          [
+            0,
+            "-(24*H*K_scalar*a**2*m*ud + 3*K_scalar*a**2*q**2*u + 2*K_scalar*k**2*m*u + 9*a**2*q**2*u + 6*k**2*m*u)/(6*K_scalar*a**2*m*q)",
+            0
+          ],
+          [
+            0,
+            0,
+            "-(24*H*K_scalar*a**2*m*ud + 3*K_scalar*a**2*q**2*u + 2*K_scalar*k**2*m*u + 9*a**2*q**2*u + 6*k**2*m*u)/(6*K_scalar*a**2*m*q)"
+          ]
+        ],
+        "delta_K_trace": "-(24*H*K_scalar*a**2*m*ud + 2*K_scalar*k**2*m*u + 9*a**2*q**2*u + 6*k**2*m*u)/(2*K_scalar*a**2*m*q)",
+        "delta_pi_mixed": [
+          [
+            "a**3*(2*K_scalar*tau*ud + 3*q**2*u + 6*tau*ud)/(6*q)",
+            0,
+            0
+          ],
+          [
+            0,
+            "-a**3*(-4*K_scalar*tau*ud + 3*q**2*u - 12*tau*ud)/(12*q)",
+            0
+          ],
+          [
+            0,
+            0,
+            "-a**3*(-4*K_scalar*tau*ud + 3*q**2*u - 12*tau*ud)/(12*q)"
+          ]
+        ],
+        "inverse_Weyl_coefficient": "3*q/(4*m)",
+        "inverse_shift_coefficient": "-3*q/(2*m)",
+        "local_slip_coefficient": "-(K_scalar - 9)/(6*a**2*q)",
+        "m": "m",
+        "n_dot": "-2*u*(3*a**2*q**2 + 2*k**2*m)/(K_scalar*a**2*m*q)",
+        "q": "q",
+        "residuals": {
+          "background_Weyl_parallel": 0,
+          "background_Weyl_transverse": 0,
+          "connection_Ricci_ADM_identity": 0,
+          "connection_pure_time_gauge_Ricci": 0,
+          "general_Weyl_local_nonlocal_split": 0,
+          "general_Weyl_scalar_potential": 0,
+          "general_Weyl_trace": 0,
+          "linear_Weyl_trace": 0,
+          "physical_Klein_Gordon": 0,
+          "trace_primary": 0
+        },
+        "scalar_Weyl_potential": "-(18*H*a**2*q**2*u + 2*K_scalar*k**2*m*ud - 9*a**2*q**2*ud - 18*k**2*m*ud)/(6*k**2*m*q)",
+        "shift_potential": "3*q*u/(2*k**2*m)",
+        "shift_potential_dot": "-3*q*(3*H*u - ud)/(2*k**2*m)",
+        "trace_multiplier_variation": "-(24*H*K_scalar*a**2*m*ud + 2*K_scalar*k**2*m*u + 9*a**2*q**2*u + 6*k**2*m*u)/(3*K_scalar*a**2*m*q)",
+        "u": "u",
+        "ud": "ud",
+        "z_dot": "-u*(K_scalar + 3)*(3*a**2*q**2 + 2*k**2*m)/(6*K_scalar*a**2*m*q)"
+      },
+      "green": {
+        "Weyl_abs_lower": "633*epsilon*q0/(1600*m)",
+        "damping": "9*H(time)",
+        "damping_upper_bound": 9,
+        "green_lower": "211/400",
+        "hole_Weyl_xy": "-3*epsilon*(H(time)*Y(time) + Derivative(Y(time), time))/(4*m)",
+        "hole_shift": "-3*epsilon*hole_x*hole_y*q(time)*s_local(time)/(2*m)",
+        "initial_Weyl_xy": "-3*epsilon*q0/(4*m)",
+        "local_ode": "(K_scalar*(3*H(time)*Derivative(s_local(time), time) + Derivative(s_local(time), (time, 2))) + 3*q(time)**2*s_local(time)/(2*m))/K_scalar",
+        "mass": "9*(H_d**2*K_scalar - H_d**2 + K_scalar*H(time)**2 + H(time)**2)/K_scalar",
+        "mass_positive_certificate": "9*(2*H_d**2*K_excess + 2*H_d**2 + H_squared_excess*K_excess + 2*H_squared_excess)/(K_excess + 1)",
+        "mass_upper_bound": 18,
+        "mass_upper_slack": "9*H_squared_excess*K_excess/(K_excess + 1)",
+        "matter_cone_margin": "3/4",
+        "metric_cone_margin": "3/4",
+        "metric_speed_gap_certificate": "K_excess/(K_excess + 1)",
+        "moment_variable": "Y=q*s, s(t0)=0, sdot(t0)=1",
+        "proof": [
+          "For F(t0)=0,Fdot(t0)=chi(r)xy, u=epsilon Delta F solves the physical unforced equation. The F equation has speed1/sqrt(K). Its local positive energy has flux bound e/(a sqrt(K)); for K>=1 the origin remains in the harmonic-data region through delta<=a_initial/4.",
+          "There F=s(t)xy and the action-derived local n-z term is zero. The general shift gives the displayed E_xy proportional to Ydot+HY. Y=q*s obeys the displayed positive-Lambda homogeneous ODE, with Y(t0)=0,Ydot(t0)=q0.",
+          "H decreases from H0 and Hd<=H. The exact certificates imply normalized damping0<=p<=9 and mass0<c<=18. With x=H0(t-t0), g=H0G, before a first zero of g' one has 0<=g'<=1 and0<=g<=x. Hence g'>=1-9x-9x^2>=211/400 for x<=1/20, excluding a first zero and giving G_t+HG>=211/400.",
+          "Thus |E_xy(origin,t)|>=633epsilon q0/(1600m)>0 for every0<t-t0<=min[1/(20H0),a_initial/4]. Both matter and metric coordinate propagation distances are <=1/4; the differing original canonical data start at radius1.",
+          "This compares two unforced linear solutions whose original metric/matter canonical data agree in the inner ball, but whose physical Weyl differs there before light can arrive. Curvature accelerations and constrained localized inverse-kernel potentials are not extra independently specified canonical data in that comparison."
+        ],
+        "residuals": {
+          "Green_arithmetic": 0,
+          "general_positive_Lambda_mass": 0,
+          "hole_Weyl_amplitude": 0,
+          "initial_Weyl": 0,
+          "initial_Ydot": 0,
+          "moment_operator": 0
+        },
+        "response_interval": "Min(1/(20*H0), a_initial/4)",
+        "transformed_ode": "18*H(time)**2*Y(time) + 9*H(time)*Derivative(Y(time), time) + 3*Y(time)*Derivative(H(time), time) + Derivative(Y(time), (time, 2)) - 3*Y(time)*Derivative(H(time), time)/K_scalar"
+      },
+      "healthy_linear_cauchy_gate": "FAIL",
+      "infinite_K_or_b_zero_claimed": false,
+      "input_hashes": {
+        "qwen_claude_field_theory/closure_2026/constraint_response_gate_2026/adaptive_endpoint.py": {
+          "current": "a8311beda89e15fbb7d1c0bbc73ec5a52f421f7bfef73af71c737c25643a0f51",
+          "pinned": "a8311beda89e15fbb7d1c0bbc73ec5a52f421f7bfef73af71c737c25643a0f51"
+        },
+        "qwen_claude_field_theory/closure_2026/constraint_response_gate_2026/causal_response.py": {
+          "current": "2492788f9d74c98ed72bcf87a2104c77fbaefef61fdc3b50d4abd3b738b2865d",
+          "pinned": "2492788f9d74c98ed72bcf87a2104c77fbaefef61fdc3b50d4abd3b738b2865d"
+        },
+        "qwen_claude_field_theory/closure_2026/vcdm_flrw_gate_2026/vcdm_flrw.py": {
+          "current": "940d0b2eb80892abd00e31589795e560e0fb805c3866eb70283dee25c36c6850",
+          "pinned": "940d0b2eb80892abd00e31589795e560e0fb805c3866eb70283dee25c36c6850"
+        }
+      },
+      "localized_auxiliary_values_claimed_equal": false,
+      "nonlinear_initial_data_lift_claimed": false,
+      "software": {
+        "python": "3.13.9",
+        "sympy": "1.13.1"
+      },
+      "zero_past_actuator_realization_claimed": false
+    },
+    "homogeneous_dirac": {
+      "checks_passed": true,
+      "derivation": {
+        "H": "(6*Lambda*N*m**2*exp(3*chi) + 3*N*m*p_sigma**2 - 2*N*tau**2*exp(3*chi) + 4*m*tau_dot*exp(3*chi))*exp(-3*chi/2)/(6*m)",
+        "Hubble": "-tau/(3*m)",
+        "N": "N",
+        "background_residuals": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "canonical_primary_residual": 0,
+        "chi": "chi",
+        "clock_correction": "2*tau_dot*exp(3*chi/2)/3",
+        "explicit_secondary_time_derivatives": [
+          "2*tau*tau_dot*exp(3*chi/2)/(3*m)",
+          "N*tau*tau_dot*exp(3*chi/2)/m - tau_ddot*exp(3*chi/2)"
+        ],
+        "first_class": 0,
+        "functional_obligation": "Compute the full (N,chi) functional Hessian at fixed canonical shape/matter, including variation of inverse Laplacians, measures, zero-mode projectors and the clock-volume term. Its invertibility on an admissible surface would close the regular scalar multiplier system.",
+        "generator": "2*tau*exp(3*chi/2)/3",
+        "homogeneous_pairs": 1,
+        "lapse": "2*tau_dot*exp(3*chi)/(3*p_sigma**2)",
+        "m": "m",
+        "multiplier_block": [
+          [
+            0,
+            "-3*Lambda*m*exp(3*chi/2)/2 + 3*p_sigma**2*exp(-3*chi/2)/4 + tau**2*exp(3*chi/2)/(2*m)"
+          ],
+          [
+            "-3*Lambda*m*exp(3*chi/2)/2 + 3*p_sigma**2*exp(-3*chi/2)/4 + tau**2*exp(3*chi/2)/(2*m)",
+            "-9*Lambda*N*m*exp(3*chi/2)/4 - 9*N*p_sigma**2*exp(-3*chi/2)/8 + 3*N*tau**2*exp(3*chi/2)/(4*m) - 3*tau_dot*exp(3*chi/2)/2"
+          ]
+        ],
+        "multipliers": [
+          [
+            "2*(3*m*p_sigma**2*tau_ddot - 4*tau*tau_dot**2*exp(3*chi))*exp(3*chi)/(9*m*p_sigma**4)"
+          ],
+          [
+            "-4*tau*tau_dot*exp(3*chi)/(9*m*p_sigma**2)"
+          ]
+        ],
+        "p_sigma": "p_sigma",
+        "poisson_matrix": [
+          [
+            0,
+            0,
+            0,
+            "3*Lambda*m*exp(3*chi/2)/2 - 3*p_sigma**2*exp(-3*chi/2)/4 - tau**2*exp(3*chi/2)/(2*m)"
+          ],
+          [
+            0,
+            0,
+            "3*Lambda*m*exp(3*chi/2)/2 - 3*p_sigma**2*exp(-3*chi/2)/4 - tau**2*exp(3*chi/2)/(2*m)",
+            "9*Lambda*N*m*exp(3*chi/2)/4 + 9*N*p_sigma**2*exp(-3*chi/2)/8 - 3*N*tau**2*exp(3*chi/2)/(4*m) + 3*tau_dot*exp(3*chi/2)/2"
+          ],
+          [
+            0,
+            "-3*Lambda*m*exp(3*chi/2)/2 + 3*p_sigma**2*exp(-3*chi/2)/4 + tau**2*exp(3*chi/2)/(2*m)",
+            0,
+            0
+          ],
+          [
+            "-3*Lambda*m*exp(3*chi/2)/2 + 3*p_sigma**2*exp(-3*chi/2)/4 + tau**2*exp(3*chi/2)/(2*m)",
+            "-9*Lambda*N*m*exp(3*chi/2)/4 - 9*N*p_sigma**2*exp(-3*chi/2)/8 + 3*N*tau**2*exp(3*chi/2)/(4*m) - 3*tau_dot*exp(3*chi/2)/2",
+            0,
+            0
+          ]
+        ],
+        "poisson_rank": 4,
+        "positive_lambda_lapse_drift": 0,
+        "preservation_residuals": [
+          0,
+          0
+        ],
+        "primary_constraints": [
+          "p_N",
+          "p_chi"
+        ],
+        "primary_multiple_removed": "-N*p_chi*(p_chi + 2*tau*exp(3*chi/2))*exp(-3*chi/2)/(3*m)",
+        "rho": "p_sigma**2*exp(-3*chi)/2",
+        "scope": "Exact nonlinear homogeneous canonical system, not the full nonlocal field-theory operator",
+        "second_class": 4,
+        "secondary_constraints": [
+          "-(6*Lambda*m**2*exp(3*chi) + 3*m*p_sigma**2 - 2*tau**2*exp(3*chi))*exp(-3*chi/2)/(6*m)",
+          "-(6*Lambda*N*m**2*exp(3*chi) - 3*N*m*p_sigma**2 - 2*N*tau**2*exp(3*chi) + 4*m*tau_dot*exp(3*chi))*exp(-3*chi/2)/(4*m)"
+        ],
+        "tau": "tau",
+        "tau_ddot": "tau_ddot",
+        "tau_dot": "tau_dot",
+        "vacuum": {
+          "count_claimed": null,
+          "raw_constraints": [
+            0,
+            0
+          ],
+          "reason": "Irregular vacuum surface; regular inverse rho is unavailable"
+        },
+        "volume": "exp(3*chi/2)",
+        "weak_hessian": [
+          [
+            0,
+            "-3*p_sigma**2*exp(-3*chi/2)/2"
+          ],
+          [
+            "-3*p_sigma**2*exp(-3*chi/2)/2",
+            "3*tau_dot*exp(3*chi/2)/2"
+          ]
+        ],
+        "weak_poisson_matrix": [
+          [
+            0,
+            0,
+            0,
+            "-3*p_sigma**2*exp(-3*chi/2)/2"
+          ],
+          [
+            0,
+            0,
+            "-3*p_sigma**2*exp(-3*chi/2)/2",
+            "3*tau_dot*exp(3*chi/2)/2"
+          ],
+          [
+            0,
+            "3*p_sigma**2*exp(-3*chi/2)/2",
+            0,
+            0
+          ],
+          [
+            "3*p_sigma**2*exp(-3*chi/2)/2",
+            "-3*tau_dot*exp(3*chi/2)/2",
+            0,
+            0
+          ]
+        ]
+      },
+      "full_field_count_proved": false
+    },
+    "infrared_domain": {
+      "actual_curvature": "2*(-Derivative(zeta(x, y, z), x)**2 - 2*Derivative(zeta(x, y, z), (x, 2)) - Derivative(zeta(x, y, z), y)**2 - 2*Derivative(zeta(x, y, z), (y, 2)) - Derivative(zeta(x, y, z), z)**2 - 2*Derivative(zeta(x, y, z), (z, 2)))*exp(-2*zeta(x, y, z))",
+      "all_nonlocal_theories_excluded": false,
+      "all_onshell_perturbations_excluded": false,
+      "amplitude_derivatives_orders_0_through_3": [
+        "0",
+        "0",
+        "0",
+        "0"
+      ],
+      "base_commit": "c759c46ac02e6c09cd0c7c3cb206b8c31bbc1b97",
+      "checks_passed": true,
+      "clock_time_scope": "The displayed action differences are densities per dT. A smooth epsilon(T)>0 on an interval where b*tau_T>0 gives a negative, nonzero integrated cutoff slope; the full time-integrated term then also diverges.",
+      "compact_projected_theories_excluded": false,
+      "compact_support_IBP": "Integral sqrt(h) R_h = 2 integral exp(zeta)|grad zeta|^2 > 0.",
+      "computable_profile": "psi=c exp[-1/(1-r^2)] for r<1, zero outside. c=1/sqrt(A_raw) gives A=integral r^2 psi'^2 dr=1 exactly.",
+      "curved_radial_laplacian": "(r*Derivative(V(r), r)*Derivative(zeta_radial(r), r) + r*Derivative(V(r), (r, 2)) + 2*Derivative(V(r), r))*exp(-2*zeta_radial(r))/r",
+      "domain": "N=1; smooth compact nonconstant conformal metric; unprojected decaying R^3 inverse; b*tau_T>0.",
+      "enclosed_charge": "-16*pi*r**2*exp(zeta_radial(r))*Derivative(zeta_radial(r), r) + 8*pi*Integral(_s**2*exp(zeta_radial(_s))*Derivative(zeta_radial(_s), _s)**2, (_s, 0, r))",
+      "exact_dipole_shell_squared_norm": "dipole_strength**2*(-L1 + L2)/(12*pi*L1*L2)",
+      "exact_dipole_tail_squared_norm": "dipole_strength**2/(12*pi*R)",
+      "exact_profile_charge": "32*pi*A_radial_energy*epsilon**2",
+      "exact_second_action_difference": "Q**2*b*tau_T*(L1 - L2)/(96*pi)",
+      "exact_shell_squared_norm": "Q**2*(-L1 + L2)/(4*pi)",
+      "explicit_path": "zeta=2 log(1+epsilon psi), h=(1+epsilon psi)^4 delta, epsilon>0, psi smooth nonnegative radial compact nonconstant.",
+      "exterior_monopole": "Q/(4*pi*r)",
+      "first_kernel_term_control": "I has compact support and V is regular there, so <I,V> is finite. Its cutoff stops changing beyond the support; it cannot cancel the second term's linear tail.",
+      "first_nonzero_amplitude_order": 4,
+      "fourth_amplitude_derivative": "-256*pi*A_radial_energy**2*b*tau_T",
+      "inverse_domain_alternative": "If K^-1 is defined only on zero-monopole/L2-compatible sources, these data are excluded from its domain rather than assigned a finite action.",
+      "monopole_gradient_tail": "Q**2/(4*pi*R)",
+      "neighborhood_conclusion": "No open compact-conformal off-shell neighborhood of the flat FLRW slice lies in this unprojected squared-inverse domain: the fixed-support smooth path approaches the background as epsilon tends to zero.",
+      "no_solution_theorem_claimed": false,
+      "norm_limit": "oo",
+      "normalization_integral": "A_raw=integral_0^1 4r^4 exp[-2/(1-r^2)]/(1-r^2)^4 dr, positive and finite.",
+      "profile_norm_cutoff_slope": "256*pi*A_radial_energy**2*epsilon**4",
+      "profile_second_action_cutoff_slope": "-32*pi*A_radial_energy**2*b*epsilon**4*tau_T/3",
+      "regular_solution": "M(r)=integral_Br sqrt(h)I; V'=-M/(4pi r^2 exp(zeta)); V(r)=integral_r^infinity M(s)/(4pi s^2 exp(zeta(s))) ds. Smooth radial data give M=O(r^3), so the center is regular.",
+      "scope_caveat": "No field equations are imposed. A compact torus, projected inverse, or explicit infrared prescription is a different domain and is not tested here.",
+      "second_action_limit": "-oo",
+      "shell_conditions": "L2>L1>support radius; the exterior metric is exactly Euclidean.",
+      "smooth_dipole_source": "Flat control I=partial_z rho0, rho0 smooth radial compact with integral dipole_strength; integral I=0.",
+      "source_sha256": "5324206274aa5bc5ea0208e7cfaf71c249bb7b73fb72c0e8386878e51ceeda7b",
+      "sufficient_finite_control": "With smooth regular interior and flat exterior, zero total monopole removes r^-1. Exterior dipole O(r^-2) and higher multipoles have finite squared norm.",
+      "sympy_version": "1.13.1",
+      "unprojected_R3_domain_gate": "FAIL"
+    },
+    "physical_cauchy": {
+      "annular_physical_initial_data": {
+        "initial_data_scope": "Compare background with these perturbed linear canonical data: lapse, spatial metric, shift, extrinsic curvature, trace/TF momenta, scalar field and momentum all coincide throughout r<1. Vector and TT data vanish in both. No independent nonlocal kernel potentials are adjoined as extra freely specifiable data. Constrained localized potentials such as W=L^-2(source), with L the localization's spatial elliptic operator, need not agree in the inner ball. The claim concerns the original metric/matter canonical data, not equality of every constrained auxiliary value in a localized reformulation.",
+        "initial_fields": {
+          "extrinsic_mixed": [
+            [
+              "-4*H*annulus_x*annulus_y*epsilon*(Subs(Derivative(chi(radial), (radial, 2)), radial, sqrt(annulus_x**2 + annulus_y**2 + annulus_z**2)) + 6*Subs(Derivative(chi(radial), radial), radial, sqrt(annulus_x**2 + annulus_y**2 + annulus_z**2))/sqrt(annulus_x**2 + annulus_y**2 + annulus_z**2))/q",
+              0,
+              0
+            ],
+            [
+              0,
+              "-4*H*annulus_x*annulus_y*epsilon*(Subs(Derivative(chi(radial), (radial, 2)), radial, sqrt(annulus_x**2 + annulus_y**2 + annulus_z**2)) + 6*Subs(Derivative(chi(radial), radial), radial, sqrt(annulus_x**2 + annulus_y**2 + annulus_z**2))/sqrt(annulus_x**2 + annulus_y**2 + annulus_z**2))/q",
+              0
+            ],
+            [
+              0,
+              0,
+              "-4*H*annulus_x*annulus_y*epsilon*(Subs(Derivative(chi(radial), (radial, 2)), radial, sqrt(annulus_x**2 + annulus_y**2 + annulus_z**2)) + 6*Subs(Derivative(chi(radial), radial), radial, sqrt(annulus_x**2 + annulus_y**2 + annulus_z**2))/sqrt(annulus_x**2 + annulus_y**2 + annulus_z**2))/q"
+            ]
+          ],
+          "lapse": "4*annulus_x*annulus_y*epsilon*(Subs(Derivative(chi(radial), (radial, 2)), radial, sqrt(annulus_x**2 + annulus_y**2 + annulus_z**2)) + 6*Subs(Derivative(chi(radial), radial), radial, sqrt(annulus_x**2 + annulus_y**2 + annulus_z**2))/sqrt(annulus_x**2 + annulus_y**2 + annulus_z**2))/q",
+          "lapse_dot": 0,
+          "matter_momentum": "9*a**3*annulus_x*annulus_y*epsilon*(Subs(Derivative(chi(radial), (radial, 2)), radial, sqrt(annulus_x**2 + annulus_y**2 + annulus_z**2)) + 6*Subs(Derivative(chi(radial), radial), radial, sqrt(annulus_x**2 + annulus_y**2 + annulus_z**2))/sqrt(annulus_x**2 + annulus_y**2 + annulus_z**2))",
+          "physical_density": "-3*annulus_x*annulus_y*epsilon*q*(Subs(Derivative(chi(radial), (radial, 2)), radial, sqrt(annulus_x**2 + annulus_y**2 + annulus_z**2)) + 6*Subs(Derivative(chi(radial), radial), radial, sqrt(annulus_x**2 + annulus_y**2 + annulus_z**2))/sqrt(annulus_x**2 + annulus_y**2 + annulus_z**2))",
+          "pi_mixed": [
+            [
+              "4*a**3*annulus_x*annulus_y*epsilon*tau*(Subs(Derivative(chi(radial), (radial, 2)), radial, sqrt(annulus_x**2 + annulus_y**2 + annulus_z**2)) + 6*Subs(Derivative(chi(radial), radial), radial, sqrt(annulus_x**2 + annulus_y**2 + annulus_z**2))/sqrt(annulus_x**2 + annulus_y**2 + annulus_z**2))/q",
+              0,
+              0
+            ],
+            [
+              0,
+              "4*a**3*annulus_x*annulus_y*epsilon*tau*(Subs(Derivative(chi(radial), (radial, 2)), radial, sqrt(annulus_x**2 + annulus_y**2 + annulus_z**2)) + 6*Subs(Derivative(chi(radial), radial), radial, sqrt(annulus_x**2 + annulus_y**2 + annulus_z**2))/sqrt(annulus_x**2 + annulus_y**2 + annulus_z**2))/q",
+              0
+            ],
+            [
+              0,
+              0,
+              "4*a**3*annulus_x*annulus_y*epsilon*tau*(Subs(Derivative(chi(radial), (radial, 2)), radial, sqrt(annulus_x**2 + annulus_y**2 + annulus_z**2)) + 6*Subs(Derivative(chi(radial), radial), radial, sqrt(annulus_x**2 + annulus_y**2 + annulus_z**2))/sqrt(annulus_x**2 + annulus_y**2 + annulus_z**2))/q"
+            ]
+          ],
+          "shift_potential": 0,
+          "spatial_conformal_metric": "4*annulus_x*annulus_y*epsilon*(Subs(Derivative(chi(radial), (radial, 2)), radial, sqrt(annulus_x**2 + annulus_y**2 + annulus_z**2)) + 6*Subs(Derivative(chi(radial), radial), radial, sqrt(annulus_x**2 + annulus_y**2 + annulus_z**2))/sqrt(annulus_x**2 + annulus_y**2 + annulus_z**2))/q",
+          "trace_multiplier": "-8*H*annulus_x*annulus_y*epsilon*(Subs(Derivative(chi(radial), (radial, 2)), radial, sqrt(annulus_x**2 + annulus_y**2 + annulus_z**2)) + 6*Subs(Derivative(chi(radial), radial), radial, sqrt(annulus_x**2 + annulus_y**2 + annulus_z**2))/sqrt(annulus_x**2 + annulus_y**2 + annulus_z**2))/q",
+          "z_dot": 0
+        },
+        "initial_inner_ball_Weyl_xy": "-3*epsilon*q/(4*m)",
+        "initial_inner_ball_fields": {
+          "extrinsic_mixed": [
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0
+            ]
+          ],
+          "lapse": 0,
+          "lapse_dot": 0,
+          "matter_momentum": 0,
+          "physical_density": 0,
+          "pi_mixed": [
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0
+            ]
+          ],
+          "scalar_field": 0,
+          "scalar_velocity": 0,
+          "shift_potential": 0,
+          "spatial_conformal_metric": 0,
+          "spatial_metric": [
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0
+            ]
+          ],
+          "trace_multiplier": 0,
+          "z_dot": 0
+        },
+        "kernel_potentials": {
+          "I1": "-32*epsilon*ghat*nonzero_k**4/(a**2*q)",
+          "K_inverse_I1": "-32*epsilon*ghat*nonzero_k**2/q",
+          "K_inverse_squared_I1": "-32*a**2*epsilon*ghat/q"
+        },
+        "physical_initial_support": "1<r<2; u(t0)=0 and ud(t0)=epsilon Delta[chi(r)xy].",
+        "physical_initial_velocity": "annulus_x*annulus_y*epsilon*(Subs(Derivative(chi(radial), (radial, 2)), radial, sqrt(annulus_x**2 + annulus_y**2 + annulus_z**2)) + 6*Subs(Derivative(chi(radial), radial), radial, sqrt(annulus_x**2 + annulus_y**2 + annulus_z**2))/sqrt(annulus_x**2 + annulus_y**2 + annulus_z**2))",
+        "primitive_initial_support": "g=chi(r)xy is nonzero throughout portions of r<1, even though Delta g=0 there.",
+        "profile": "annulus_x*annulus_y*chi(sqrt(annulus_x**2 + annulus_y**2 + annulus_z**2))",
+        "residuals": {
+          "first_kernel_potential": 0,
+          "inner_Weyl_mixed_derivative": 0,
+          "inner_harmonic_laplacian": 0,
+          "inner_physical_velocity_zero": 0,
+          "mean_zero_inverse_laplacian": 0,
+          "mean_zero_odd_x": 0,
+          "mean_zero_odd_y": 0,
+          "raw_cutoff_laplacian": 0,
+          "second_kernel_potential": 0
+        },
+        "torus_mean_zero_by_parity": true,
+        "torus_scope": "Centered flat torus of side L>4 with the radius-two ball inside one chart. Extend g periodically by zero. Its xy parity gives integral g=0; thus the mean-zero inverse has Delta^-1 Delta g=g exactly. Only linear perturbations and the early local chart are used."
+      },
+      "checks": {
+        "annular_fixture:first_kernel_potential": true,
+        "annular_fixture:inner_Weyl_mixed_derivative": true,
+        "annular_fixture:inner_harmonic_laplacian": true,
+        "annular_fixture:inner_physical_velocity_zero": true,
+        "annular_fixture:mean_zero_inverse_laplacian": true,
+        "annular_fixture:mean_zero_odd_x": true,
+        "annular_fixture:mean_zero_odd_y": true,
+        "annular_fixture:raw_cutoff_laplacian": true,
+        "annular_fixture:second_kernel_potential": true,
+        "background:Friedmann": true,
+        "background:Hubble": true,
+        "background:Hubble_dot": true,
+        "background:canonical_conservation": true,
+        "background:tau_dot": true,
+        "constraints:Weyl_parallel_reconstruction": true,
+        "constraints:Weyl_trace": true,
+        "constraints:action_constraint_0": true,
+        "constraints:action_constraint_1": true,
+        "constraints:action_constraint_2": true,
+        "constraints:physical_KG_matches_reduced_action": true,
+        "constraints:seed_boundary_identity": true,
+        "constraints:trace_momentum_constraint": true,
+        "fixture:dipole_exterior_Weyl": true,
+        "fixture:exact_positive_X_linear_density": true,
+        "fixture:initial_extrinsic_isotropic": true,
+        "fixture:initial_lapsedot_zero": true,
+        "fixture:initial_shift_zero": true,
+        "fixture:initial_zdot_zero": true,
+        "fixture:physical_profile_mean_zero": true,
+        "physical_cauchy:Green_bound_arithmetic": true,
+        "physical_cauchy:derived_initial_Y": true,
+        "physical_cauchy:derived_initial_Ydot": true,
+        "physical_cauchy:derived_moment_operator": true,
+        "physical_cauchy:initial_Weyl_matches_annular_fixture": true,
+        "physical_cauchy:light_cone_margin_arithmetic": true,
+        "physical_cauchy:matter_cone_margin_arithmetic": true,
+        "physical_cauchy:positive_Lambda_mass": true,
+        "physical_ward:Ward_spatial_1": true,
+        "physical_ward:Ward_spatial_2": true,
+        "physical_ward:Ward_spatial_3": true,
+        "physical_ward:Ward_time_including_delta_connection": true,
+        "physical_ward:canonical_anisotropic_stress": true,
+        "physical_ward:canonical_pressure_density": true,
+        "physical_ward:physical_density": true,
+        "physical_ward:physical_mixed_momentum": true,
+        "support:energy_balance_residual": true,
+        "support:harmonic_moment_integrand_residual": true,
+        "support:incoming_flux_square_residual": true,
+        "support:kernel_inverse_cancellation": true,
+        "support:laplacian_commutator": true,
+        "support:outgoing_flux_square_residual": true
+      },
+      "checks_passed": true,
+      "compact_first_jet_fixture_result": "INITIAL_TIDAL_TAIL_ALREADY_PRESENT",
+      "compact_laplacian_data_result": "NO_EXTERIOR_TAIL",
+      "constraints_and_cauchy_fields": {
+        "H": "H",
+        "L": "-(-16*a**2*k**2*m*v**2 - 48*a**2*k*q*u*v - 15*a**2*n**2*q**2 + 18*a**2*n*q**2*z + 48*a**2*n*q*ud + 9*a**2*q**2*z**2 - 144*a**2*q*ud*z - 24*a**2*ud**2 + 24*k**2*u**2)/(48*a**2)",
+        "Weyl_parallel": "q*(2*H*u - ud)/(2*m)",
+        "Weyl_tensor_fourier": [
+          [
+            "3*q*(2*H*u - ud)*(kx**2/(kx**2 + ky**2 + kz**2) - 1/3)/(4*m)",
+            "3*kx*ky*q*(2*H*u - ud)/(4*m*(kx**2 + ky**2 + kz**2))",
+            "3*kx*kz*q*(2*H*u - ud)/(4*m*(kx**2 + ky**2 + kz**2))"
+          ],
+          [
+            "3*kx*ky*q*(2*H*u - ud)/(4*m*(kx**2 + ky**2 + kz**2))",
+            "3*q*(2*H*u - ud)*(ky**2/(kx**2 + ky**2 + kz**2) - 1/3)/(4*m)",
+            "3*ky*kz*q*(2*H*u - ud)/(4*m*(kx**2 + ky**2 + kz**2))"
+          ],
+          [
+            "3*kx*kz*q*(2*H*u - ud)/(4*m*(kx**2 + ky**2 + kz**2))",
+            "3*ky*kz*q*(2*H*u - ud)/(4*m*(kx**2 + ky**2 + kz**2))",
+            "3*q*(2*H*u - ud)*(kz**2/(kx**2 + ky**2 + kz**2) - 1/3)/(4*m)"
+          ]
+        ],
+        "a": "a",
+        "acceleration": "-3*H*ud - u*(3*a**2*q**2 + 2*k**2*m)/(18*a**2*m)",
+        "constraint_scope": "All nonzero-mode linear scalar auxiliary constraints, their evolution-consistent first jets, trace primary and canonical momenta; homogeneous mean is absent; vectors and TT initial data zero. Not a nonlinear constraint completion.",
+        "delta_K_TF": [
+          [
+            "(-72*H*a**2*m*ud + 15*a**2*q**2*u - 8*k**2*m*u)/(18*a**2*m*q) + (72*H*a**2*m*ud + 3*a**2*q**2*u + 8*k**2*m*u)/(18*a**2*m*q)",
+            0,
+            0
+          ],
+          [
+            0,
+            "-2*(18*H*a**2*m*ud + 3*a**2*q**2*u + 2*k**2*m*u)/(9*a**2*m*q) + (72*H*a**2*m*ud + 3*a**2*q**2*u + 8*k**2*m*u)/(18*a**2*m*q)",
+            0
+          ],
+          [
+            0,
+            0,
+            "-2*(18*H*a**2*m*ud + 3*a**2*q**2*u + 2*k**2*m*u)/(9*a**2*m*q) + (72*H*a**2*m*ud + 3*a**2*q**2*u + 8*k**2*m*u)/(18*a**2*m*q)"
+          ]
+        ],
+        "delta_K_mixed": [
+          [
+            "(-72*H*a**2*m*ud + 15*a**2*q**2*u - 8*k**2*m*u)/(18*a**2*m*q)",
+            0,
+            0
+          ],
+          [
+            0,
+            "-2*(18*H*a**2*m*ud + 3*a**2*q**2*u + 2*k**2*m*u)/(9*a**2*m*q)",
+            0
+          ],
+          [
+            0,
+            0,
+            "-2*(18*H*a**2*m*ud + 3*a**2*q**2*u + 2*k**2*m*u)/(9*a**2*m*q)"
+          ]
+        ],
+        "delta_K_trace": "-(72*H*a**2*m*ud + 3*a**2*q**2*u + 8*k**2*m*u)/(6*a**2*m*q)",
+        "delta_pi_mixed": [
+          [
+            "a**3*(q**2*u + 8*tau*ud)/(2*q)",
+            0,
+            0
+          ],
+          [
+            0,
+            "-a**3*(q**2*u - 16*tau*ud)/(4*q)",
+            0
+          ],
+          [
+            0,
+            0,
+            "-a**3*(q**2*u - 16*tau*ud)/(4*q)"
+          ]
+        ],
+        "evolution_equation": "27*H*ud + 9*udd + u*(3*a**2*q**2 + 2*k**2*m)/(2*a**2*m)",
+        "frequency_numerator": "(3*a**2*q**2 + 2*k**2*m)/(2*a**2*m)",
+        "k": "k",
+        "kinetic": 9,
+        "m": "m",
+        "matter_momentum": "9*a**3*ud",
+        "n": "n",
+        "n_dot": "-2*u*(3*a**2*q**2 + 2*k**2*m)/(9*a**2*m*q)",
+        "physical_density": "-3*q*ud",
+        "q": "q",
+        "reduced_L": "-(-18*a**2*m*ud**2 + 3*a**2*q**2*u**2 + 2*k**2*m*u**2)/(4*a**2*m)",
+        "residuals": {
+          "Weyl_parallel_reconstruction": 0,
+          "Weyl_trace": 0,
+          "action_constraint_0": 0,
+          "action_constraint_1": 0,
+          "action_constraint_2": 0,
+          "physical_KG_matches_reduced_action": 0,
+          "seed_boundary_identity": 0,
+          "trace_momentum_constraint": 0
+        },
+        "shift_potential": "3*q*u/(2*k**2*m)",
+        "shift_potential_dot": "-3*q*(3*H*u - ud)/(2*k**2*m)",
+        "solution": {
+          "n": "4*ud/q",
+          "v": "-3*q*u/(2*k*m)",
+          "z": "4*ud/q"
+        },
+        "spatial_reconstruction": "B=\u22123q Delta^-1 u/(2m); Ehat_ij=3q D_ij Delta^-1(2Hu\u2212ud)/(4m), D_ij=partial_i partial_j\u2212delta_ij Delta/3",
+        "speed_squared": "1/9",
+        "tau": "tau",
+        "trace_multiplier_variation": "-(72*H*a**2*m*ud + 3*a**2*q**2*u + 8*k**2*m*u)/(9*a**2*m*q)",
+        "u": "u",
+        "ud": "ud",
+        "udd": "udd",
+        "v": "v",
+        "z": "z",
+        "z_dot": "-2*u*(3*a**2*q**2 + 2*k**2*m)/(9*a**2*m*q)"
+      },
+      "execution_scope": "Exact symbolic identities and an analytic energy/support argument. No finite PDE simulation, full nonlinear count, nonlinear initial-data existence theorem, or general causality certificate.",
+      "external_signed_probe_identified_with_canonical_delta_T": false,
+      "healthy_linear_cauchy_gate": "FAIL",
+      "initial_tail_fixture": {
+        "admissibility": "All listed scalar metric, extrinsic, momentum and multiplier first-jet perturbations are compact for compact w. Choosing w=epsilon partial_x eta gives a mean-zero physical mode. The nonlocal Bdot, hence electric Weyl, is already exterior at t0. Calling this initially tidal-tail-free would be false.",
+        "exact_initial_canonical_X": "(amplitude*point_w + q)**2/(2*(4*amplitude*point_w/q + 1)**2)",
+        "healthy_matter_scope": "For sufficiently small amplitude the lapse and scalar normal derivative stay nonzero, X>0 and total canonical energy is positive. Signed delta rho is a perturbation of positive background rho, not exotic negative-energy matter. This does not furnish a nonlinear gravitational constraint completion.",
+        "initial_exterior_Weyl_xx": "-9*bump_integral*epsilon*q/(8*pi*m*radius**4)",
+        "initial_first_jet": {
+          "extrinsic_mixed": [
+            [
+              "-4*H*compact_velocity_w/q",
+              0,
+              0
+            ],
+            [
+              0,
+              "-4*H*compact_velocity_w/q",
+              0
+            ],
+            [
+              0,
+              0,
+              "-4*H*compact_velocity_w/q"
+            ]
+          ],
+          "lapse": "4*compact_velocity_w/q",
+          "lapse_dot": 0,
+          "matter_momentum": "9*a**3*compact_velocity_w",
+          "physical_density": "-3*compact_velocity_w*q",
+          "pi_mixed": [
+            [
+              "4*a**3*compact_velocity_w*tau/q",
+              0,
+              0
+            ],
+            [
+              0,
+              "4*a**3*compact_velocity_w*tau/q",
+              0
+            ],
+            [
+              0,
+              0,
+              "4*a**3*compact_velocity_w*tau/q"
+            ]
+          ],
+          "shift_potential": 0,
+          "spatial_conformal_metric": "4*compact_velocity_w/q",
+          "trace_multiplier": "-8*H*compact_velocity_w/q",
+          "z_dot": 0
+        },
+        "initial_scalar_field": 0,
+        "initial_scalar_velocity": "compact_velocity_w",
+        "initial_shift_acceleration_potential": "3*compact_velocity_w*q/(2*k**2*m)",
+        "initial_tidal_data_compact": false,
+        "residuals": {
+          "dipole_exterior_Weyl": 0,
+          "exact_positive_X_linear_density": 0,
+          "initial_extrinsic_isotropic": 0,
+          "initial_lapsedot_zero": 0,
+          "initial_shift_zero": 0,
+          "initial_zdot_zero": 0,
+          "physical_profile_mean_zero": 0
+        },
+        "zero_past_realization": false
+      },
+      "input_sha256": {
+        "/Users/carlzimmerman/new_physics/zimmerman-formula/qwen_claude_field_theory/closure_2026/constraint_response_gate_2026/adaptive_endpoint.py": "a8311beda89e15fbb7d1c0bbc73ec5a52f421f7bfef73af71c737c25643a0f51",
+        "/Users/carlzimmerman/new_physics/zimmerman-formula/qwen_claude_field_theory/closure_2026/positive_lambda_response_2026/physical_initial_data.py": "3a8fe91d2af03c109355159e2e3349391daebbd382961b1c089b9fad42e4421f",
+        "/Users/carlzimmerman/new_physics/zimmerman-formula/qwen_claude_field_theory/closure_2026/vcdm_flrw_gate_2026/vcdm_flrw.py": "940d0b2eb80892abd00e31589795e560e0fb805c3866eb70283dee25c36c6850"
+      },
+      "interpretation": "The external signed zero-past witness has not been realized by unforced healthy canonical matter. A distinct unforced annular canonical-data fixture violates linear physical Cauchy domain dependence: Weyl is nonzero inside a ball whose original metric/matter canonical data equal background, before metric-light propagation can arrive. No independent nonlocal potentials are adjoined as initial data. A constrained localized potential W=L^-2(source) need not agree inside the ball, so this is nonlocal evolution of the original canonical data, not equality of all constrained localized auxiliary values. Compact-Laplacian data obey only an outer primitive-support envelope, not locality in holes of the physical support.",
+      "nonlinear_constraint_completion_claimed": false,
+      "physical_cauchy_response": {
+        "Y_initial": 0,
+        "Ydot_initial": "q0",
+        "a_initial": "a_initial",
+        "damping": "9*H_cauchy(cauchy_time)",
+        "external_source_used": false,
+        "green_derivative_lower_bound": "211/400",
+        "incoming_vector_or_tensor_data_used": false,
+        "initial_Weyl_is_independent_Cauchy_datum": false,
+        "inner_ball_Weyl_xy": "-3*epsilon*q0*(G*H_cauchy(cauchy_time) + Gdot)/(4*m)",
+        "inner_ball_abs_Weyl_lower_bound": "633*epsilon*q0/(1600*m)",
+        "inside_primitive_harmonic_region_margin": "11/12",
+        "local_amplitude_equation": "3*H_cauchy(cauchy_time)*Derivative(s_local(cauchy_time), cauchy_time) + Derivative(s_local(cauchy_time), (cauchy_time, 2)) + q_cauchy(cauchy_time)**2*s_local(cauchy_time)/(6*m)",
+        "mass": "2*(4*H_d**2 + 5*H_cauchy(cauchy_time)**2)",
+        "mass_upper_slack": "8*H_squared_excess",
+        "moment_variable": "Y=q*s",
+        "normalized_damping_bound": 9,
+        "normalized_mass_bound": 18,
+        "normalized_step": "1/20",
+        "outside_light_cone_margin_bound": "3/4",
+        "proof_steps": [
+          "The actual reduced equation is local for u and commutes with Delta. Set u=epsilon Delta F and F(t0)=0,Fdot(t0)=g=chi(r)xy. In the inner local domain, F=s(t)xy because xy is harmonic and local finite propagation gives uniqueness there.",
+          "The displayed transformation Y=q*s gives Y''+9H Y'+(10H^2+8Hd^2)Y=0, Y(t0)=0,Y'(t0)=q0. Thus Y=q0 G(t,t0), for the monic retarded homogeneous Green solution with initial slope one.",
+          "Let H0=H(t0), a_initial=a(t0), x=H0(t-t0), g_G=H0 G. The symbol a_initial is the initial scale factor, not the MOND acceleration scale. Since H decreases and Hd<=H<=H0, normalized damping lies in [0,9] and normalized mass in (0,18]. Before any first zero of g_G', one has 0<=g_G'<=1 and 0<=g_G<=x. Integration yields g_G'>=1-9x-9x^2, which stays >=211/400 for x<=1/20 and contradicts a first zero. Consequently G_t+HG>=211/400.",
+          "At the origin D_xy(xy)=1 and the action-derived orthonormal electric Weyl is \u22123epsilon(Y'+HY)/(4m). Its magnitude is at least 633epsilon q0/(1600m) for every 0<t-t0<=min[1/(20H0),a_initial/4].",
+          "The source annulus starts at coordinate distance one. The metric light distance is <=(t-t0)/a_initial<=1/4; the F propagation distance is <=1/12. Hence the event lies strictly outside the metric future of the differing initial canonical data, while F=s(t)xy is valid around the event.",
+          "Two solutions have identical full original canonical data in r<1, no external Sigma, and no incoming vector or tensor perturbations, but different gauge-invariant Weyl there at positive time. This is a linear physical Cauchy-domain-dependence failure. Initial curvature accelerations are derived observables, not independent data to add to that premise."
+        ],
+        "residuals": {
+          "Green_bound_arithmetic": 0,
+          "derived_initial_Y": 0,
+          "derived_initial_Ydot": 0,
+          "derived_moment_operator": 0,
+          "initial_Weyl_matches_annular_fixture": 0,
+          "light_cone_margin_arithmetic": 0,
+          "matter_cone_margin_arithmetic": 0,
+          "positive_Lambda_mass": 0
+        },
+        "response_interval": "Min(1/(20*H0), a_initial/4)",
+        "scope": "b=3/16,K=9; all m,Hd,t0>0 and scale normalizations on the expanding stiff-plus-positive-Lambda branch; sufficiently small canonical matter perturbations. R^3 and a flat torus admitting the cutoff chart. Linear Cauchy support only, not a nonlinear lift or a zero-past actuator realization.",
+        "transformed_equation": "18*H_cauchy(cauchy_time)**2*Y_local(cauchy_time) + 9*H_cauchy(cauchy_time)*Derivative(Y_local(cauchy_time), cauchy_time) + 8*Y_local(cauchy_time)*Derivative(H_cauchy(cauchy_time), cauchy_time)/3 + Derivative(Y_local(cauchy_time), (cauchy_time, 2))"
+      },
+      "physical_stress_and_ward": {
+        "B": "B(t)",
+        "H": "Derivative(a(t), t)/a(t)",
+        "a": "a(t)",
+        "background_divergence_delta_T": [
+          "(k**2*B(t)*a(t)**2*q(t) + 2*k**2*u(t) - 4*a(t)**2*q(t)*Derivative(n(t), t) + 2*a(t)**2*Derivative(u(t), (t, 2)) + 6*a(t)*n(t)*q(t)*Derivative(a(t), t) - 6*a(t)*q(t)*z(t)*Derivative(a(t), t) + 6*a(t)*Derivative(a(t), t)*Derivative(u(t), t))*q(t)*cos(k*x)/(2*a(t)**2)",
+          "-k*(B(t)*a(t)*Derivative(a(t), t) - a(t)**2*Derivative(B(t), t) - 2*n(t) - 2*z(t))*q(t)**2*sin(k*x)/(2*a(t)**2)",
+          0,
+          0
+        ],
+        "background_stress_upper": [
+          [
+            "q(t)**2/2",
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            "q(t)**2/(2*a(t)**2)",
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            "q(t)**2/(2*a(t)**2)",
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            "q(t)**2/(2*a(t)**2)"
+          ]
+        ],
+        "connection_correction": [
+          "(k**2*B(t)*a(t) + 2*a(t)*Derivative(n(t), t) + 6*a(t)*Derivative(z(t), t) - 6*n(t)*Derivative(a(t), t) + 6*z(t)*Derivative(a(t), t))*q(t)**2*cos(k*x)/(2*a(t))",
+          "k*(B(t)*a(t)*Derivative(a(t), t) - a(t)**2*Derivative(B(t), t) - 2*n(t) - 2*z(t))*q(t)**2*sin(k*x)/(2*a(t)**2)",
+          0,
+          0
+        ],
+        "convention": "T^{mu nu}=partial^mu sigma partial^nu sigma+g^{mu nu}X; delta(div T)=bar_div(delta T)+delta_Gamma*Tbar; B is N^i=partial_i B",
+        "delta_stress_covariant": [
+          [
+            "q(t)*cos(k*x)*Derivative(u(t), t)",
+            "-k*(B(t)*a(t)**2*q(t) + 2*u(t))*q(t)*sin(k*x)/2",
+            0,
+            0
+          ],
+          [
+            "-k*(B(t)*a(t)**2*q(t) + 2*u(t))*q(t)*sin(k*x)/2",
+            "(-n(t)*q(t) + q(t)*z(t) + Derivative(u(t), t))*a(t)**2*q(t)*cos(k*x)",
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            "(-n(t)*q(t) + q(t)*z(t) + Derivative(u(t), t))*a(t)**2*q(t)*cos(k*x)",
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            "(-n(t)*q(t) + q(t)*z(t) + Derivative(u(t), t))*a(t)**2*q(t)*cos(k*x)"
+          ]
+        ],
+        "delta_stress_mixed": [
+          [
+            "-(-n(t)*q(t) + Derivative(u(t), t))*q(t)*cos(k*x)",
+            "k*q(t)*u(t)*sin(k*x)",
+            0,
+            0
+          ],
+          [
+            "-k*(B(t)*a(t)**2*q(t) + u(t))*q(t)*sin(k*x)/a(t)**2",
+            "(-n(t)*q(t) + Derivative(u(t), t))*q(t)*cos(k*x)",
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            "(-n(t)*q(t) + Derivative(u(t), t))*q(t)*cos(k*x)",
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            "(-n(t)*q(t) + Derivative(u(t), t))*q(t)*cos(k*x)"
+          ]
+        ],
+        "delta_stress_upper": [
+          [
+            "(-2*n(t)*q(t) + Derivative(u(t), t))*q(t)*cos(k*x)",
+            "k*(B(t)*a(t)**2*q(t) + 2*u(t))*q(t)*sin(k*x)/(2*a(t)**2)",
+            0,
+            0
+          ],
+          [
+            "k*(B(t)*a(t)**2*q(t) + 2*u(t))*q(t)*sin(k*x)/(2*a(t)**2)",
+            "(-n(t)*q(t) - q(t)*z(t) + Derivative(u(t), t))*q(t)*cos(k*x)/a(t)**2",
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            "(-n(t)*q(t) - q(t)*z(t) + Derivative(u(t), t))*q(t)*cos(k*x)/a(t)**2",
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            "(-n(t)*q(t) - q(t)*z(t) + Derivative(u(t), t))*q(t)*cos(k*x)/a(t)**2"
+          ]
+        ],
+        "density": "(-n(t)*q(t) + Derivative(u(t), t))*q(t)",
+        "full_linear_ward": [
+          "(k**2*B(t)*a(t)**2*q(t) + k**2*u(t) - a(t)**2*q(t)*Derivative(n(t), t) + 3*a(t)**2*q(t)*Derivative(z(t), t) + a(t)**2*Derivative(u(t), (t, 2)) + 3*a(t)*Derivative(a(t), t)*Derivative(u(t), t))*q(t)*cos(k*x)/a(t)**2",
+          0,
+          0,
+          0
+        ],
+        "k": "k",
+        "metric": [
+          [
+            -1,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            "a(t)**2",
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            "a(t)**2",
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            "a(t)**2"
+          ]
+        ],
+        "metric_variation": [
+          [
+            "-2*n(t)*cos(k*x)",
+            "-k*B(t)*a(t)**2*sin(k*x)",
+            0,
+            0
+          ],
+          [
+            "-k*B(t)*a(t)**2*sin(k*x)",
+            "2*a(t)**2*z(t)*cos(k*x)",
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            "2*a(t)**2*z(t)*cos(k*x)",
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            "2*a(t)**2*z(t)*cos(k*x)"
+          ]
+        ],
+        "n": "n(t)",
+        "physical_Klein_Gordon_equation": "(k**2*B(t)*a(t)**2*q(t) + k**2*u(t) - a(t)**2*q(t)*Derivative(n(t), t) + 3*a(t)**2*q(t)*Derivative(z(t), t) + a(t)**2*Derivative(u(t), (t, 2)) + 3*a(t)*Derivative(a(t), t)*Derivative(u(t), t))/a(t)**2",
+        "pressure": "(-n(t)*q(t) + Derivative(u(t), t))*q(t)",
+        "q": "q(t)",
+        "residuals": {
+          "Ward_spatial_1": 0,
+          "Ward_spatial_2": 0,
+          "Ward_spatial_3": 0,
+          "Ward_time_including_delta_connection": 0,
+          "canonical_anisotropic_stress": 0,
+          "canonical_pressure_density": 0,
+          "physical_density": 0,
+          "physical_mixed_momentum": 0
+        },
+        "t": "t",
+        "u": "u(t)",
+        "z": "z(t)"
+      },
+      "positive_lambda_background": {
+        "H": "H_d*coth(3*H_d*proper_time)",
+        "Hd": "H_d",
+        "Lambda": "3*H_d**2",
+        "a": "scale_normalization*sinh(3*H_d*proper_time)**(1/3)",
+        "m": "m",
+        "q": "sqrt(6)*H_d*sqrt(m)/sinh(3*H_d*proper_time)",
+        "residuals": {
+          "Friedmann": 0,
+          "Hubble": 0,
+          "Hubble_dot": 0,
+          "canonical_conservation": 0,
+          "tau_dot": 0
+        },
+        "scale_normalization": "scale_normalization",
+        "scope": "Every H_d,m,A>0 on the expanding canonical stiff-plus-positive-Lambda branch, t>0. Negative q is related by sigma->\u2212sigma. The exact q=0 de Sitter stratum is excluded.",
+        "t": "proper_time",
+        "tau": "-3*H_d*m*coth(3*H_d*proper_time)"
+      },
+      "software": {
+        "python": "3.13.9",
+        "sympy": "1.13.1"
+      },
+      "support_proof": {
+        "boundary_scope": "R^3, smooth compact data, decaying inverse Laplacian; finite t intervals with a,q nonzero. No torus, q=0, nonlinear, or independently forced claim.",
+        "energy": "(Derivative(F(support_t, support_x, support_y, support_z), support_x)**2 + Derivative(F(support_t, support_x, support_y, support_z), support_y)**2 + Derivative(F(support_t, support_x, support_y, support_z), support_z)**2)/(18*scale(support_t)**2) + Derivative(F(support_t, support_x, support_y, support_z), support_t)**2/2 + F(support_t, support_x, support_y, support_z)**2*matter_q(support_t)**2/(12*m)",
+        "energy_balance": "-3*H*Derivative(F(support_t, support_x, support_y, support_z), support_t)**2 - H*Derivative(F(support_t, support_x, support_y, support_z), support_x)**2/(9*scale(support_t)**2) - H*Derivative(F(support_t, support_x, support_y, support_z), support_y)**2/(9*scale(support_t)**2) - H*Derivative(F(support_t, support_x, support_y, support_z), support_z)**2/(9*scale(support_t)**2) - H*F(support_t, support_x, support_y, support_z)**2*matter_q(support_t)**2/(2*m)",
+        "energy_balance_residual": 0,
+        "energy_dissipation": "-H*(Derivative(F(support_t, support_x, support_y, support_z), support_x)**2 + Derivative(F(support_t, support_x, support_y, support_z), support_y)**2 + Derivative(F(support_t, support_x, support_y, support_z), support_z)**2)/(9*scale(support_t)**2) - 3*H*Derivative(F(support_t, support_x, support_y, support_z), support_t)**2 - H*F(support_t, support_x, support_y, support_z)**2*matter_q(support_t)**2/(2*m)",
+        "energy_flux": [
+          "-Derivative(F(support_t, support_x, support_y, support_z), support_t)*Derivative(F(support_t, support_x, support_y, support_z), support_x)/(9*scale(support_t)**2)",
+          "-Derivative(F(support_t, support_x, support_y, support_z), support_t)*Derivative(F(support_t, support_x, support_y, support_z), support_y)/(9*scale(support_t)**2)",
+          "-Derivative(F(support_t, support_x, support_y, support_z), support_t)*Derivative(F(support_t, support_x, support_y, support_z), support_z)/(9*scale(support_t)**2)"
+        ],
+        "harmonic_moment_integrand_residual": 0,
+        "incoming_flux_square": "F**2*q**2/(12*m) + (Fn/(3*a) + Ft)**2/2 + (Ftangent1**2 + Ftangent2**2)/(18*a**2)",
+        "incoming_flux_square_residual": 0,
+        "kernel_inverse_cancellation": 0,
+        "laplacian_commutator": 0,
+        "outer_envelope_qualification": "The support bound is based on primitive f,g. Harmonic nonzero f or g in a hole have Delta f=Delta g=0 there but can source local curvature through the inverse Laplacian. This is not a physical Cauchy-locality theorem.",
+        "outgoing_flux_square": "F**2*q**2/(12*m) + (-Fn/(3*a) + Ft)**2/2 + (Ftangent1**2 + Ftangent2**2)/(18*a**2)",
+        "outgoing_flux_square_residual": 0,
+        "proof_steps": [
+          "For f,g in C_c^infinity(R^3), let F solve L F=0 with F(t0)=f, Fdot(t0)=g. The computed commutator gives u=Delta F with the required physical initial data.",
+          "The displayed positive local energy obeys d_t e+div j<=0 for H>0. Its normal flux satisfies |j.normal|<=e/(3a), by the displayed sums of squares. Integrating over the exterior moving boundary gives zero exterior energy if it is initially zero.",
+          "Thus supp F(t) lies within radius R+integral_t0^t ds/(3a(s)). Decaying-inverse uniqueness gives Delta^-1u=F. B, n, z, metric first jets, canonical momenta and Ehat_ij=3q D_ij(2HF\u2212Fdot)/(4m) all have the same finite support bound.",
+          "Integration by parts gives integral P Delta f=integral f Delta P=0 for every harmonic P; this excludes all harmonic moments, not merely the homogeneous mean.",
+          "For compact u,ud, compact initial K_TF forces Hessian(Delta^-1u)=0 outside a large ball. Harmonicity and decay then force Delta^-1u=0 there. If initial Weyl is compact as well, the same argument applied to 2Hu\u2212ud forces Delta^-1ud compact. This reduces that scalar class to the preceding f,g construction.",
+          "Zero unforced full initial data are the f=g=0 case. The same energy argument gives the unique zero solution; they cannot realize a nonzero retarded external signed source."
+        ]
+      },
+      "zero_past_unforced_nontrivial_matter_claimed": false
+    },
+    "positive_lambda_external": {
+      "actual_action_equation": "6*H_Lambda(t)*P(t)/q_Lambda(t) + 3*H_Lambda(t)*Derivative(u(t), t) + Derivative(u(t), (t, 2)) + Derivative(P(t), t)/q_Lambda(t) + k**2*u(t)/(K_scalar*a_Lambda(t)**2) + 18*H_Lambda(t)*P(t)/(K_scalar*q_Lambda(t)) - 24*H_Lambda(t)*R(t)/(K_scalar*q_Lambda(t)) + 3*Derivative(P(t), t)/(K_scalar*q_Lambda(t)) - 4*Derivative(R(t), t)/(K_scalar*q_Lambda(t)) - 3*j(t)*q_Lambda(t)/(2*K_scalar*m) + 3*q_Lambda(t)**2*u(t)/(2*K_scalar*m)",
+      "amplitude_scope": "An arbitrarily small common source amplitude scales the witness and all fields.",
+      "background": {
+        "H": "Hd*cosh(3*Hd*t)/sinh(3*Hd*t)",
+        "a": "sinh(3*Hd*t)**(1/3)",
+        "q": "sqrt(6)*Hd*sqrt(m)/sinh(3*Hd*t)",
+        "tau": "-3*Hd*m*cosh(3*Hd*t)/sinh(3*Hd*t)"
+      },
+      "background_residuals": [
+        "0",
+        "0",
+        "0",
+        "0",
+        "0"
+      ],
+      "base_commit": "c759c46ac02e6c09cd0c7c3cb206b8c31bbc1b97",
+      "boundary_scope": "R^3 spatial decay; linear conserved signed external probe. Compact-torus image kernels not evaluated.",
+      "causal_response_gate": "FAIL",
+      "checks_passed": true,
+      "contact_coefficient": "3/K_scalar",
+      "domain": "All finite K>=1, m>0, Hd>0, t0>0; canonical alpha=1, b=9/[2(K+15)].",
+      "event": "t=t0+delta; x=1+2delta/a(t0), y=z=0; source starts at t0 in r<1.",
+      "event_radius": "1 + 1/(10*H0*a_initial)",
+      "exterior_amplitude_decomposition": "H_Lambda(t)*Z(t) + Derivative(Z(t), t) + 3*H_Lambda(t)*j(t)/K_scalar + 3*Derivative(j(t), t)/K_scalar",
+      "green_definition": "G_tt+9H G_t+M(t)G=0, G(s,s)=0, G_t(s,s)=1, and G=0 for t<s.",
+      "green_derivative_lower_bound": "211/400",
+      "green_proof": "Normalize x=H0(t-s), g=H0G. Before a first zero of g', 0<=g'<=1 and 0<=g<=x; hence g'>=1-9x-9x^2. At x<=1/20 this excludes a first zero and gives G_t+HG>=211/400.",
+      "healthy_positive_energy_matter_realization_claimed": false,
+      "input_hashes": {
+        "qwen_claude_field_theory/closure_2026/constraint_response_gate_2026/causal_response.py": {
+          "base_sha256": "2492788f9d74c98ed72bcf87a2104c77fbaefef61fdc3b50d4abd3b738b2865d",
+          "current_sha256": "2492788f9d74c98ed72bcf87a2104c77fbaefef61fdc3b50d4abd3b738b2865d"
+        },
+        "qwen_claude_field_theory/closure_2026/vcdm_flrw_gate_2026/vcdm_flrw.py": {
+          "base_sha256": "940d0b2eb80892abd00e31589795e560e0fb805c3866eb70283dee25c36c6850",
+          "current_sha256": "940d0b2eb80892abd00e31589795e560e0fb805c3866eb70283dee25c36c6850"
+        }
+      },
+      "light_cone_radius_bound": "Integral_t0^t1 dt/a(t) <=delta/a(t0), since a is increasing.",
+      "mass_upper_slack_certificate": "9*H2_excess*w_nonnegative/(w_nonnegative + 1)",
+      "moment_damping": "9*H_Lambda(t)",
+      "moment_mass": "9*(Hd**2*K_scalar - Hd**2 + K_scalar*H_Lambda(t)**2 + H_Lambda(t)**2)/K_scalar",
+      "moment_source": "(K_scalar*(18*H_Lambda(t)**2*j(t) + 9*H_Lambda(t)*Derivative(j(t), t) + 3*j(t)*Derivative(H_Lambda(t), t) + Derivative(j(t), (t, 2))) + 90*H_Lambda(t)**2*j(t) + 12*H_Lambda(t)*R(t) + 39*H_Lambda(t)*Derivative(j(t), t) + 6*j(t)*Derivative(H_Lambda(t), t) + 3*Derivative(j(t), (t, 2)))/K_scalar",
+      "moment_variable": "Y=q(t) integral u0(t,x) dx; physical mean-zero matter u=partial_x u0.",
+      "no_incoming_completion": "Source jets and scalar metric auxiliaries vanish before t0. Longitudinal current and isotropic stress have zero transverse/TT projections; set the unsourced vector and TT sectors to zero.",
+      "nonlinear_constraint_count_or_global_causality_claimed": false,
+      "numerical_corroboration": [
+        {
+          "F": 49.79920067930039,
+          "Hd": 1,
+          "K": 1,
+          "duration": 0.04975273768433652,
+          "m": 1,
+          "nfev": 614,
+          "relative_refinement_change": 3.6369528200185155e-13,
+          "rigorous_F_lower_bound": 44.36492843937637,
+          "t0": 1
+        },
+        {
+          "F": 5.5333331040086495,
+          "Hd": 1,
+          "K": 9,
+          "duration": 0.04975273768433652,
+          "m": 1,
+          "nfev": 590,
+          "relative_refinement_change": 4.0642190094276344e-13,
+          "rigorous_F_lower_bound": 4.929436493264041,
+          "t0": 1
+        },
+        {
+          "F": 0.4980008862436339,
+          "Hd": 1,
+          "K": 100,
+          "duration": 0.04975273768433652,
+          "m": 1,
+          "nfev": 578,
+          "relative_refinement_change": 4.5211411387696086e-13,
+          "rigorous_F_lower_bound": 0.4436492843937638,
+          "t0": 1
+        }
+      ],
+      "numerics_are_not_the_inequality_proof": true,
+      "outside_cone_margin_lower_bound": "1/(20*H0*a_initial)",
+      "positive_certificates": [
+        "12*H/(w_nonnegative + 1)",
+        "9*(4*H**2*w_nonnegative + H**2 + 3*Hd**2)/(w_nonnegative + 1)**2",
+        "12*H/(w_nonnegative + 1)",
+        "3/(w_nonnegative + 1)",
+        "9*(H**2*w_nonnegative + 2*H**2 + Hd**2*w_nonnegative)/(w_nonnegative + 1)"
+      ],
+      "pulse_duration": "1/(20*H0)",
+      "remainder_source": "3*(12*K_scalar*H_Lambda(t)**2*j(t) + 4*K_scalar*H_Lambda(t)*R(t) + 4*K_scalar*H_Lambda(t)*Derivative(j(t), t) + 3*j(t)*Derivative(H_Lambda(t), t))/K_scalar**2",
+      "source": "g=partial_x eta, eta radial smooth supported r<1 with integral1; J=jg, p=Pg, rho=Rg+C Delta g.",
+      "source_pulse": "j=0 for t<=t0; exp[-delta^2/(t-t0)^2] through t0+delta; smooth cutoff may follow.",
+      "source_ward_odes": "P=-j_dot-3Hj; R_dot+3H(R+P)=0; C_dot+3HC=-j/a^2; retarded zero data.",
+      "stiff_background_response_reused": false,
+      "strict_Weyl_amplitude_lower_bound": "120*H0*exp(-1)/K_scalar",
+      "strict_abs_Ehat_xx_lower_bound": "1350000*H0**5*a_initial**4*exp(-1)/(pi*K_scalar*m*(10*H0*a_initial + 1)**4)",
+      "sympy_version": "1.13.1",
+      "ward_residuals": [
+        "0",
+        "0",
+        "0",
+        "0"
+      ],
+      "zero_mode_scope": "The physical fields are mean zero. The radial primitive moment is not a homogeneous physical-mode equation."
+    }
+  },
+  "full_closure_proved": false,
+  "full_theory_gates": {
+    "complete_PPN_and_measured_Newton_constant": null,
+    "controlled_zero_field_and_exact_vacuum_limit": null,
+    "full_nonlinear_gravitational_count": null,
+    "full_nonlinear_matter_and_clock_stability": null,
+    "healthy_linear_cauchy_locality": "FAIL",
+    "nonlinear_causal_constraint_completion": null,
+    "positive_lambda_external_response": "FAIL",
+    "unprojected_R3_nonlinear_action_domain": "FAIL"
+  },
+  "goal_status": "OPEN",
+  "interpretation": "Every finite positive-kinetic subluminal canonical member of this positive-Lambda family, including b=3/16, has a linear Cauchy-locality obstruction. The unprojected R3 action also has a quartic infrared domain obstruction. Neither result is a universal MOND no-go or a nonlinear existence theorem.",
+  "numerical_corroboration_consistent": true,
+  "same_action_scope": "S0+DeltaS_b from c759c46; canonical P(X)=X, tau=-3m Hd coth(3Hd T). Physical Cauchy witness fixes b=3/16 (derived kinetic coefficient 9). The external-response family permits finite K>=1 with b=9/[2(K+15)], so it includes that same member; it does not donate PPN or DOF counts from a different model."
+}
