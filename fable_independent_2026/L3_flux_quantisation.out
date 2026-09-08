@@ -1,0 +1,62 @@
+==============================================================================================================================
+L3 -- four-form flux quantisation and the coefficient ratio Z/beta^2
+==============================================================================================================================
+    rho_Lambda = 5.8444e-27 kg/m^3; rho_Lambda c^2 = 2.5191e-11 eV^4 = (2.240 meV)^4; footings kappa = {"canonical": 0.5, "alt": 0.6024}; M_Pl = 1.2209e+28 eV
+    kernel spans (k01): I(nu_RAR) = 0.4525 a0^2, I(exp carrier) = 0.0719 a0^2  =>  b = (2-K_B) I/(16 pi) = nu_RAR/K_B=0.0: 0.01801, nu_RAR/K_B=0.25: 0.01575, exp carrier/K_B=0.0: 0.00286, exp carrier/K_B=0.25: 0.00250
+    Q1: eps = q P_q - P = q**2*(Z/2 + b*beta**2);  at Z~ = 1: q**2/2 (BP's Lambda = c^2/2);  constant Lagrangian P_0: eps = -P_0;  boundary-shifted bulk Lagrangian P - q P_q = q**2*(-Z/2 - b*beta**2) = -eps
+  [PASS] Q1 [control, Duff-van Nieuwenhuizen] the Legendre energy gives +Z~q^2/2 for the four-form (= BP's c^2/2 at Z~ = 1) but -P_0 for a constant Lagrangian, i.e. the four-form's sign is opposite to a naive vacuum term, and the boundary term takes the bulk Lagrangian to -eps
+    Q2: q_n = e*n/(Z + 2*b*beta**2), eps_n = e**2*n**2/(2*(Z + 2*b*beta**2)), spacing = e**2*(n + 1/2)/(Z + 2*b*beta**2)  (quantisation is on P_q = Z~q, so eps_n ~ 1/Z~, not ~ Z~)
+    Q2: single flux with a Planckian charge e = M_Pl^2: the n = 1 level is 4.41e+122 x rho_Lambda c^2 (BP's motivation for many fluxes); J-flux shell count with e = 1e-2 M_Pl^2, |Lambda_0| = M_Pl^4 needs J >= 81
+  [PASS] Q2 [control, Bousso-Polchinski] the symbolic spectrum eps_n = n^2 e^2/(2 Z~) and spacing (2n+1)e^2/(2 Z~) match a brute-force numeric spectrum; the single-flux Planck-charge overshoot of rho_Lambda is 1e120-1e125; the shell count reproduces BP's J ~ 100   (overshoot 4.41e+122, J_req = 81)
+    Q3: rho_w^2 = 4*k**2/(4*H_p2*k**2 + (H_m2 - H_p2 + k**2)**2);  flat limit rho_w -> 3*T/Delta_eps (= 3T/Delta eps);  existence Delta eps >= 6*pi*G*T**2;  numeric root 0.065992088 vs closed form 0.065992088
+  [PASS] Q3 [control, Brown-Teitelboim] the de Sitter junction condition solves to rho_w^2 = 4k^2/[(H_+^2-H_-^2-k^2)^2+4k^2H_+^2] with the flat limit 3T/Delta eps and the nucleation bound Delta eps >= 6 pi G T^2; symbolic and numeric agree
+    Q4: terminal step Delta eps_n = e**2*(n - 1/2)/(Z + 2*b*beta**2) = 6 pi G T^2  =>  Z~ = e**2*(2*n - 1)/(12*pi*G*T**2),  q_n = 12*pi*G*T**2*n/(e*(2*n - 1)): both functions of (e, T, G, n) with NO beta.  Cascade stops at n = 10, closed form 10.00 (+/-1)
+  [PASS] Q4 [quantisation: what it DOES fix] the membrane sector determines the flux sector completely: q_n = n e/Z~ (quantisation on the momentum P_q, not on q) and, at the terminal step Delta eps = 6 pi G T^2, Z~ = (2n-1)e^2/(12 pi G T^2) -- functions of (e, T, G, n) alone
+    Q5: invariance of every membrane/geometry quantity under  beta -> mu beta,  Z -> Z + 2 b beta^2 (1 - mu^2):  Z~ (flux stiffness): inv, q_n (quantised flux): inv, eps (vacuum energy): inv, Lambda: inv, L_dS^2: inv, quantisation residual: inv, Delta eps (step): inv, boundary term -q P_q: inv, E_BY^2 (horizon): inv, rho_w^2 (junction radius): inv
+    Q5: under the same map kappa -> mu x kappa, and Z/beta^2 -> Z/(beta**2*mu**2) - 2*b + 2*b/mu**2
+  [PASS] Q5 [THEOREM, split degeneracy] every membrane- and geometry-sector quantity depends on (Z, beta) only through the SUM Z~ = Z + 2 b beta^2, while kappa^2 = 2 beta^2/Z~ needs the SPLIT: the one-parameter map beta -> mu beta, Z -> Z + 2 b beta^2 (1-mu^2) leaves all of them invariant and sends kappa -> mu kappa   (quantisation constrains the sum, kappa needs the split; Z > 0 bounds kappa only by 1/sqrt(b) = 7.45, a factor 15 window against the 8.5% that separates 1/2 from the horizon coefficient 0.461 (k03))
+    Q6: fix (e, T, G, n) = (1.0, 0.12, 1.0, 5) -> Z~ = 16.578640, q = 0.301593, eps = 0.753982 (all fixed).  Then:
+        kappa = 0.5000:  beta^2 = 2.072330, Z = 16.504014, Z/beta^2 = 7.9640, a0 = 0.434161  (identical membrane sector)
+        kappa = 0.6024:  beta^2 = 3.007960, Z = 16.470321, Z/beta^2 = 5.4756, a0 = 0.523067  (identical membrane sector)
+        kappa = 0.4607:  beta^2 = 1.759362, Z = 16.515284, Z/beta^2 = 9.3871, a0 = 0.400036  (identical membrane sector)
+        kappa = 2.0000:  beta^2 = 33.157280, Z = 15.384620, Z/beta^2 = 0.4640, a0 = 1.736643  (identical membrane sector)
+    Q6: the dual of a 2-brane in D = 4 would be a (D - p - 4) = -2 brane: no magnetic partner exists, so no Dirac condition pairs the MOND coupling beta with the membrane charge e; beta multiplies the gauge-invariant FIELD STRENGTH inside a nonlinear function (d^2 L_vac/dq^2 = 2 b beta^2 != 0), not the POTENTIAL A_3, so it carries no quantised charge.
+  [FAIL] Q6 [requirement] quantisation plus the membrane tension express Z/beta^2 in terms of (e, T, G, integers)   (counterexample: at fixed (e, T, G, n) and fixed Z~, q, eps, Lambda, L_dS, T, the ratio Z/beta^2 takes the values 7.964, 5.476, 9.387, 0.464 for kappa = 0.500, 0.602, 0.461, 2.000; beta enters the membrane sector ONLY through the sum Z~, never separately)
+    Q7: canonical (kappa = 0.5000, Z = 1 => Z~ = 1.00452, q = 7.0821e-06 eV^2): implied n = Z~q/e for Planck 4.77e-62, reduced 1.20e-60, GUT 7.11e-56, TeV^2 7.11e-30, QCD 1.78e-22, neutrino 7.11e-04, dark 1.42e+00
+    Q7: alt       (kappa = 0.6024, Z = 1 => Z~ = 1.00658, q = 7.0748e-06 eV^2): implied n = Z~q/e for Planck 4.78e-62, reduced 1.20e-60, GUT 7.12e-56, TeV^2 7.12e-30, QCD 1.78e-22, neutrino 7.12e-04, dark 1.42e+00
+    Q7: the terminal-membrane tension implied by the observed rho_Lambda, T = M_Pl sqrt((2n-1) eps/(6 pi n^2)):  n=1: T^(1/3) = 24.2 MeV, n=2: T^(1/3) = 23.0 MeV, n=10: T^(1/3) = 18.3 MeV, n=100: T^(1/3) = 12.6 MeV  -- sub-QCD, a real cost of the route, and identical on both footings because T depends on (eps, n, G) and not on beta.
+  [FAIL] Q7 [requirement] the observed rho_Lambda is reached with an integer n >= 1 for a membrane charge at an independently motivated scale (both footings)   (largest implied n over the motivated scales = 7.12e-04 (Planck: 4.78e-62); n >= 1 only when the charge is itself put at the dark-energy scale, sqrt(e) <= 2.66 meV: the Brown-Teitelboim/BP fine-tuning is transferred to e, not removed)
+    Q8: canonical footing (1/2)      Z/beta^2 = nu_RAR/K_B=0.0: 7.9640, nu_RAR/K_B=0.25: 7.9685, exp carrier/K_B=0.0: 7.9943, exp carrier/K_B=0.25: 7.9950
+    Q8: alt footing (0.6024)         Z/beta^2 = nu_RAR/K_B=0.0: 5.4756, nu_RAR/K_B=0.25: 5.4801, exp carrier/K_B=0.0: 5.5059, exp carrier/K_B=0.25: 5.5066
+    Q8: horizon 2pi form (0.4607)    Z/beta^2 = nu_RAR/K_B=0.0: 9.3871, nu_RAR/K_B=0.25: 9.3916, exp carrier/K_B=0.0: 9.4174, exp carrier/K_B=0.25: 9.4181
+    Q8: BTFR measured (0.465)        Z/beta^2 = nu_RAR/K_B=0.0: 9.2136, nu_RAR/K_B=0.25: 9.2181, exp carrier/K_B=0.0: 9.2439, exp carrier/K_B=0.25: 9.2446
+    Q8: distance-free measured (0.551) Z/beta^2 = nu_RAR/K_B=0.0: 6.5516, nu_RAR/K_B=0.25: 6.5561, exp carrier/K_B=0.0: 6.5819, exp carrier/K_B=0.25: 6.5826
+    Q8: kernel/K_B spread of the target at fixed footing = 0.0310 (0.4%); footing spread = 2.4884 (31%); a principle giving EXACTLY 8 predicts kappa = 1/sqrt(4+b) = 0.4989, 0.22% from 1/2 (below the 9.47% BTFR floor: unobservable)
+  [FAIL] Q8 [numerology guard] the target ratio is a footing- and kernel-robust integer that an integer-valued principle could plausibly hit   (it is 2/kappa^2 - 2b: 7.964 canonical, 5.476 alt (a 31% move), 9.387 for the horizon coefficient; the '8' is an artefact of the canonical footing)
+    Q9: S_GHY = K*sqrt(h)/(8*pi*G) (no matter coupling at all);  four-form boundary term = -e**2*n**2/(Z + 2*b*beta**2) = -2 eps_n: proportional to P_q = Z~ q, i.e. a function of Z~ ONLY.  It reproduces k04's F1 sign (Q1) and nothing else.
+  [FAIL] Q9 [alternative, boundary term] the Gibbons-Hawking-York term or the four-form's own boundary term relates Z to beta   (S_GHY contains only (h_ij, K) and no matter coupling; the four-form boundary term is -q P_q = -Z~ q^2, invariant under the Q5 map: it fixes the Legendre SIGN (k04 F1, re-derived in Q1) but sees only the sum Z~)
+    Q10: E_BY(Schwarzschild, r -> inf) = M (control);  E_BY at the dS horizon = L/G = c^4 L_dS/G;  volume integral eps x (4/3) pi L^3 = L/(2*G);  ratio = 2
+    Q10: GUARD -- that factor 2 relates two definitions of the SAME vacuum energy, both functions of Z~ alone; it contains no a0 and no beta, and adopting it as kappa's 1/2 would be exactly the convention-choosing the branch rule forbids.  Recorded so it is never adopted.
+  [FAIL] Q10 [alternative, Brown-York] the quasi-local energy at the de Sitter horizon relates Z to beta   (E_BY = c^4 L_dS/G is purely geometric (L_dS is fixed by eps = Z~q^2/2 alone) and is invariant under the Q5 map; the factor 2 between E_BY and the volume integral is a property of the horizon, not of a0)
+
+  OUTCOME: flux quantisation CANNOT fix Z/beta^2, and the obstruction is as sharp as k01's zero mode -- it is its multiplicative twin.
+           WHAT QUANTISATION DOES (Q4): the membrane makes the conjugate momentum P_q jump by e, so q_n = n e/Z~ and eps_n = n^2 e^2/(2 Z~);
+           adding the Brown-Teitelboim terminal condition Delta eps = 6 pi G T^2 fixes the flux sector COMPLETELY, Z~ = (2n-1)e^2/(12 pi G T^2).
+           WHAT IT CANNOT DO (Q5, the theorem): every membrane- and geometry-sector quantity -- the quantisation condition, the spectrum, the
+           step, the junction radius, Lambda, L_dS, the boundary term, E_BY -- is a function of the SUM Z~ = Z + 2 b beta^2 and of (e, T, G, n).
+           kappa^2 = 2 beta^2/Z~ needs the SPLIT of Z~ between the four-form's own stiffness Z and the MOND-promoted piece 2 b beta^2.
+           The map beta -> mu beta, Z -> Z + 2 b beta^2 (1 - mu^2) holds the entire quantised sector fixed and sends kappa -> mu kappa.
+           MECHANISM: charge quantisation constrains couplings to the POTENTIAL A_3 (a topological pairing, hence integer-valued); beta
+           multiplies the gauge-invariant FIELD STRENGTH q inside a nonlinear function, so it carries no charge, and a 2-brane in D = 4 has no
+           magnetic partner (a -2 brane) to pair with in a Dirac condition.  Positivity of Z bounds kappa only by 1/sqrt(b) = 7.45.
+           COST IMPORTED (Q7): quantisation forces the membrane charge to sit AT the scale it should explain, sqrt(e) <= 2.7 meV; a Planckian
+           charge overshoots rho_Lambda by 4e+122 at n = 1 -- BP's problem, which they solve with many flux directions (Q2: J >= 81, i.e.
+           an exponentially large landscape of levels), not with a coefficient.
+           GUARD (Q8): the '8' is not an integer target.  2/kappa^2 - 2b is 7.96 on the canonical footing but 5.48 on the alt footing (31%).
+           BOUNDARY SECTOR (Q9, Q10): the GHY term carries no matter coupling; the four-form boundary term re-derives k04's F1 sign and sees Z~ only;
+           Brown-York at the horizon gives E = c^4 L_dS/G, exactly 2x the volume integral -- a factor 2 that is NOT kappa and is logged as a guard.
+           STILL UNTESTED (the one adjacent door): a membrane that itself carries MOND charge, so that T or e depend on a0.  That is a different
+           model with a new coupling, not this one; it is not closed here and is not claimed to be.
+
+RESULT: 5 FAIL -> ['Q6 [requirement] quantisation plus the membrane tension express Z/beta^2 in terms of (e, T, G, integers)', 'Q7 [requirement] the observed rho_Lambda is reached with an integer n >= 1 for a membrane charge at an independently motivated scale (both footings)', 'Q8 [numerology guard] the target ratio is a footing- and kernel-robust integer that an integer-valued principle could plausibly hit', "Q9 [alternative, boundary term] the Gibbons-Hawking-York term or the four-form's own boundary term relates Z to beta", 'Q10 [alternative, Brown-York] the quasi-local energy at the de Sitter horizon relates Z to beta']
+rc=0

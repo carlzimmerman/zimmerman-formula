@@ -1,0 +1,174 @@
+==========================================================================================================================
+L2 -- the cluster inverse problem: the Delta(s) clusters require, and whether it is admissible
+==========================================================================================================================
+
+  inputs: 248 corrected X-COP rows, 12 clusters, radii [30, 40, 50, 75, 100, 150, 200, 300, 420, 750, 1000] kpc,
+          footings {'canonical': 9.3619e-11, 'alt': 1.1279e-10}; source: closure_2026/cluster_measurement_audit_2026/results.json (the lead's radius-unit audit)
+          R500 per cluster: 1054-1430 kpc (median 1242)
+
+  the kernel family and its bounded-boost ceilings C = sup_s Delta(s)  (PAPER5 B2 reports [0.250, 1.000]):
+      carrier (exp, completed)     C = 0.3679
+      nu_RAR (CARRIED)             C = 0.6476
+      simple mu                    C = 1.0000
+      standard mu                  C = 0.3003
+      deep-MOND sqrt (capped)      C = 0.2500
+      widest ceiling of the family: C_max = 1.0000
+  [PASS] C0 [machinery] a synthetic cluster set built from the CARRIED kernel and pushed through this inversion returns that kernel exactly (round trip)   (max |Delta_recovered - Delta_RAR| = 1.1e-16 over 124 rows)
+
+  the acceleration range clusters actually probe (canonical, seven with stellar profiles): s = g_bar/a0 from 0.088 to 0.909
+
+  C1  CONTROL: the carried kernel (nu_RAR) and the exponential carrier, run through this machinery, against the audited profile.
+      shortfall factor = M_HSE(<r) / M_pred(<r) = g_HSE / (g_bar + a0 Delta_kernel(g_bar/a0))   [enclosed mass ~ g r^2 at fixed r]
+      canonical stellar-7 : 30kpc 2.58x  40kpc 3.56x  50kpc 3.56x  75kpc 3.62x  100kpc 3.47x  150kpc 3.48x  200kpc 3.46x  300kpc 3.23x  420kpc 2.96x  750kpc 2.47x  1000kpc 2.07x
+      alt       stellar-7 : 30kpc 2.42x  40kpc 3.34x  50kpc 3.35x  75kpc 3.36x  100kpc 3.24x  150kpc 3.25x  200kpc 3.23x  300kpc 2.99x  420kpc 2.74x  750kpc 2.29x  1000kpc 1.92x
+  [PASS] C1 [control] the CARRIED kernel run through this inversion machinery reproduces the known cluster shortfall of about a factor 2 at the outermost audited radius, at both footings and both subsets   (M_HSE/M_pred at r = 1000 kpc = 0.80 R500(median): canonical/all 1.82x, canonical/stellar 2.07x, alt/all 1.68x, alt/stellar 1.92x)
+
+  SPARC: 144 galaxies, 2681 points (Q<3, i>30, eV/V<0.10); file real_research/data/sparc_data/*_rotmod.dat
+
+--------------------------------------------------------------------------------------------------------------------------
+  THE REQUIRED Delta(s).  Delta_req(s) = (g_HSE - g_bar)/a0 at s = g_bar/a0, per cluster per radius, binned in s.
+  This Delta reproduces the corrected X-COP enclosed-mass profile EXACTLY from the baryons alone, by construction.
+--------------------------------------------------------------------------------------------------------------------------
+
+  canonical footing, all 12 clusters:
+                s bin    N  ncl    med s   Delta_req  +/- (boot)       16-84 pct   D_nuRAR   D_carr  ratio/RAR   J_Y=s/D
+     0.0647- 0.0944   19    6   0.0805       0.802       0.070   [ 0.48, 0.85]     0.245    0.225       3.27    0.1004
+     0.0944- 0.1377   29   10   0.1095       0.892       0.143   [ 0.64, 1.58]     0.279    0.252       3.20    0.1228
+     0.1377- 0.2008   28   11   0.1589       1.462       0.151   [ 1.01, 1.95]     0.324    0.285       4.51    0.1087
+     0.2008- 0.2930   21    9   0.2371       2.009       0.138   [ 1.63, 2.12]     0.378    0.319       5.32    0.1180
+     0.2930- 0.4275   16    8   0.3356       2.312       0.128   [ 1.86, 2.70]     0.428    0.345       5.41    0.1451
+     0.4275- 0.6237    7    5   0.4874       3.006       0.420   [ 2.72, 4.01]     0.483    0.363       6.23    0.1621
+    power-law fit over the cluster range: Delta_req = (5.00 +/- 0.66) s^(0.726 +/- 0.068), rms 0.187 dex about the point cloud
+
+  canonical footing, stellar 7 clusters:
+                s bin    N  ncl    med s   Delta_req  +/- (boot)       16-84 pct   D_nuRAR   D_carr  ratio/RAR   J_Y=s/D
+     0.0876- 0.1224    8    4   0.1044       0.701       0.034   [ 0.58, 0.88]     0.274    0.247       2.56    0.1488
+     0.1224- 0.1710   14    7   0.1481       1.166       0.084   [ 0.83, 1.35]     0.316    0.278       3.69    0.1271
+     0.1710- 0.2389   15    7   0.2201       1.740       0.134   [ 1.52, 2.06]     0.368    0.313       4.73    0.1265
+     0.2389- 0.3338   16    7   0.2814       2.116       0.128   [ 1.70, 2.35]     0.402    0.332       5.26    0.1330
+     0.3338- 0.4663    9    6   0.3921       2.537       0.366   [ 2.31, 3.47]     0.450    0.354       5.63    0.1545
+     0.4663- 0.6514    7    4   0.5407       2.942       0.386   [ 2.44, 3.40]     0.498    0.366       5.91    0.1838
+    power-law fit over the cluster range: Delta_req = (5.47 +/- 0.83) s^(0.811 +/- 0.079), rms 0.094 dex about the point cloud
+
+  alt footing, all 12 clusters:
+                s bin    N  ncl    med s   Delta_req  +/- (boot)       16-84 pct   D_nuRAR   D_carr  ratio/RAR   J_Y=s/D
+     0.0537- 0.0783   19    6   0.0668       0.665       0.061   [ 0.40, 0.71]     0.227    0.210       2.94    0.1004
+     0.0783- 0.1143   29   10   0.0909       0.741       0.121   [ 0.53, 1.31]     0.258    0.236       2.87    0.1228
+     0.1143- 0.1667   28   11   0.1319       1.213       0.123   [ 0.84, 1.62]     0.301    0.268       4.03    0.1087
+     0.1667- 0.2432   21    9   0.1968       1.668       0.113   [ 1.35, 1.76]     0.352    0.303       4.73    0.1180
+     0.2432- 0.3548   16    8   0.2785       1.919       0.108   [ 1.55, 2.24]     0.401    0.331       4.79    0.1451
+     0.3548- 0.5177    7    5   0.4046       2.495       0.339   [ 2.26, 3.33]     0.455    0.355       5.48    0.1621
+    power-law fit over the cluster range: Delta_req = (4.75 +/- 0.68) s^(0.726 +/- 0.068), rms 0.187 dex about the point cloud
+
+  alt footing, stellar 7 clusters:
+                s bin    N  ncl    med s   Delta_req  +/- (boot)       16-84 pct   D_nuRAR   D_carr  ratio/RAR   J_Y=s/D
+     0.0727- 0.1016    8    4   0.0866       0.582       0.027   [ 0.48, 0.73]     0.253    0.231       2.30    0.1488
+     0.1016- 0.1419   14    7   0.1229       0.968       0.075   [ 0.69, 1.12]     0.293    0.262       3.31    0.1271
+     0.1419- 0.1983   15    7   0.1827       1.444       0.113   [ 1.26, 1.71]     0.343    0.297       4.22    0.1265
+     0.1983- 0.2770   16    7   0.2336       1.757       0.105   [ 1.41, 1.95]     0.376    0.318       4.67    0.1330
+     0.2770- 0.3870    9    6   0.3254       2.106       0.306   [ 1.91, 2.88]     0.423    0.342       4.98    0.1545
+     0.3870- 0.5407    7    4   0.4488       2.442       0.319   [ 2.03, 2.82]     0.470    0.360       5.19    0.1838
+    power-law fit over the cluster range: Delta_req = (5.28 +/- 0.87) s^(0.811 +/- 0.078), rms 0.094 dex about the point cloud
+
+  the fit is the headline of the lane: Delta_req = A s^p with p = 0.811 +/- 0.079 and A = 5.47 +/- 0.83.
+  Since g_phi = a0 Delta = A a0^(1-p) g_N^p, p = 1 makes a0 CANCEL: the requirement would then be g_phi = A g_N, a constant
+  rescaling of G by 1+A -- extra MASS tracing the baryons, not an interpolation function with an acceleration scale.
+  [PASS] C2 [function] the required Delta_req is single-valued in s to better than 0.30 dex: a necessary condition for ANY kernel Delta(s) of the class to reproduce clusters   (pooled within-bin rms across clusters = 0.147 dex (all bins, both footings, both subsets))
+  [PASS] C3 [stiffness] the required Delta_req is non-decreasing in s, so the longitudinal stiffness dg_N/dg_phi = 1/Delta'(s) stays positive and the static field problem stays well posed   (canonical/all worst step +1.30 sigma; canonical/stellar worst step +1.11 sigma; alt/all worst step +1.22 sigma; alt/stellar worst step +1.10 sigma)
+  [FAIL] C4 [bounded] the required Delta_req respects the bounded-boost ceiling of the kernel family, so some interpolation function of the class can supply it   (max required Delta = 3.01 (headline stellar-7 canonical 2.94) against the widest ceiling C_max = 1.000: over by 3.0x)
+
+--------------------------------------------------------------------------------------------------------------------------
+  C5  THE TEST.  Both sides are MEASUREMENTS of the same quantity Delta = (g_obs - g_bar)/a0 at the same s = g_bar/a0.
+      No kernel is assumed on either side.  If a single-valued Delta(s) exists, the two columns must agree.
+--------------------------------------------------------------------------------------------------------------------------
+
+  canonical footing, all 12 clusters vs SPARC galaxies, same s:
+                s bin    med s |   Delta_cluster  ncl |    Delta_galaxy  ngal   npt |   ratio        z
+     0.0647- 0.0944   0.0805 |    0.802 +/-0.070    6 |    0.266 +/-0.014    75   243 |    3.01     +7.5
+     0.0944- 0.1377   0.1095 |    0.892 +/-0.143   10 |    0.323 +/-0.015    80   245 |    2.76     +4.0
+     0.1377- 0.2008   0.1589 |    1.462 +/-0.151   11 |    0.368 +/-0.023    74   210 |    3.98     +7.2
+     0.2008- 0.2930   0.2371 |    2.009 +/-0.138    9 |    0.449 +/-0.026    70   174 |    4.47    +11.1
+     0.2930- 0.4275   0.3356 |    2.312 +/-0.128    8 |    0.521 +/-0.040    66   180 |    4.44    +13.4
+     0.4275- 0.6237   0.4874 |    3.006 +/-0.420    5 |    0.592 +/-0.043    63   187 |    5.08     +5.7
+
+  canonical footing, stellar 7 clusters vs SPARC galaxies, same s:
+                s bin    med s |   Delta_cluster  ncl |    Delta_galaxy  ngal   npt |   ratio        z
+     0.0876- 0.1224   0.1044 |    0.701 +/-0.034    4 |    0.312 +/-0.016    78   221 |    2.25    +10.3
+     0.1224- 0.1710   0.1481 |    1.166 +/-0.084    7 |    0.348 +/-0.021    70   180 |    3.35     +9.4
+     0.1710- 0.2389   0.2201 |    1.740 +/-0.134    7 |    0.407 +/-0.024    73   180 |    4.27     +9.8
+     0.2389- 0.3338   0.2814 |    2.116 +/-0.128    7 |    0.487 +/-0.026    68   153 |    4.34    +12.5
+     0.3338- 0.4663   0.3921 |    2.537 +/-0.366    6 |    0.574 +/-0.066    62   168 |    4.42     +5.3
+     0.4663- 0.6514   0.5407 |    2.942 +/-0.386    4 |    0.580 +/-0.036    62   158 |    5.08     +6.1
+
+  alt footing, all 12 clusters vs SPARC galaxies, same s:
+                s bin    med s |   Delta_cluster  ncl |    Delta_galaxy  ngal   npt |   ratio        z
+     0.0537- 0.0783   0.0668 |    0.665 +/-0.061    6 |    0.221 +/-0.011    75   243 |    3.01     +7.1
+     0.0783- 0.1143   0.0909 |    0.741 +/-0.121   10 |    0.268 +/-0.014    80   245 |    2.76     +3.9
+     0.1143- 0.1667   0.1319 |    1.213 +/-0.123   11 |    0.305 +/-0.018    74   210 |    3.98     +7.3
+     0.1667- 0.2432   0.1968 |    1.668 +/-0.113    9 |    0.373 +/-0.021    70   174 |    4.47    +11.3
+     0.2432- 0.3548   0.2785 |    1.919 +/-0.108    8 |    0.432 +/-0.034    66   180 |    4.44    +13.2
+     0.3548- 0.5177   0.4046 |    2.495 +/-0.339    5 |    0.491 +/-0.035    63   187 |    5.08     +5.9
+
+  alt footing, stellar 7 clusters vs SPARC galaxies, same s:
+                s bin    med s |   Delta_cluster  ncl |    Delta_galaxy  ngal   npt |   ratio        z
+     0.0727- 0.1016   0.0866 |    0.582 +/-0.027    4 |    0.259 +/-0.013    78   221 |    2.25    +10.6
+     0.1016- 0.1419   0.1229 |    0.968 +/-0.075    7 |    0.289 +/-0.017    70   180 |    3.35     +8.8
+     0.1419- 0.1983   0.1827 |    1.444 +/-0.113    7 |    0.338 +/-0.020    73   180 |    4.27     +9.6
+     0.1983- 0.2770   0.2336 |    1.757 +/-0.105    7 |    0.404 +/-0.023    68   153 |    4.34    +12.6
+     0.2770- 0.3870   0.3254 |    2.106 +/-0.306    6 |    0.477 +/-0.054    62   168 |    4.42     +5.2
+     0.3870- 0.5407   0.4488 |    2.442 +/-0.319    4 |    0.481 +/-0.032    62   158 |    5.08     +6.1
+  [FAIL] C5 [THE TEST] at the accelerations where clusters and galaxies overlap the required cluster Delta agrees with the measured galaxy Delta within 3 sigma in every bin, so ONE Delta(s) can serve both (a live candidate kernel)   (headline (canonical, stellar-7): ratios cluster/galaxy ['2.2', '3.3', '4.3', '4.3', '4.4', '5.1'], z = ['+10', '+9', '+10', '+12', '+5', '+6']; worst over all footings and subsets |z| = 13, ratio range 2.2-5.1)
+      the ratio is a ratio of two directly measured accelerations, so a0 cancels out of it entirely and it is the same
+      number at both footings; the external field, which differs between a cluster outskirt and an isolated disc, acts
+      to SUPPRESS the boost in the denser environment, so including it widens this gap rather than closing it.
+
+  C6  the Solar System.  Only the stiffness gate C3 is used, no extrapolation of the fit: Delta non-decreasing means
+      Delta(s) >= Delta(s_max,cluster) for every s above the cluster range, so the anomalous acceleration a0 Delta is
+      bounded BELOW by the cluster value all the way to Saturn.
+      canonical: s(Saturn) = g_N/a0 = 6.966e+05;  minimal admissible Delta = 2.94 -> anomalous a = 2.75e-10 m/s^2 = 3.9e+04x the cited bound 7.0e-15;  power-law continuation Delta = 3.01e+05 -> 4.0e+09x
+      alt      : s(Saturn) = g_N/a0 = 5.782e+05;  minimal admissible Delta = 2.44 -> anomalous a = 2.75e-10 m/s^2 = 3.9e+04x the cited bound 7.0e-15;  power-law continuation Delta = 2.50e+05 -> 4.0e+09x
+  [FAIL] C6 [solar] the minimal continuation the stiffness gate permits keeps the anomalous Solar-System acceleration under the cited Saturn residual bound 7.0e-15 m/s^2   (minimal anomalous acceleration at Saturn = 2.75e-10 m/s^2, i.e. 3.9e+04x the bound (no extrapolation of the fit is used))
+
+  C7  feeding the required Delta_req back to the SPARC points INSIDE the overlap band (log-log interpolation of the
+      binned cluster medians; no extrapolation): g_pred = g_bar + a0 Delta_req(g_bar/a0), compared with g_obs.
+      canonical all 12    : 974 SPARC points in 111 galaxies -> median offset +0.463 dex, rms 0.477 dex (the carried kernel on the same points: -0.046 dex)
+      canonical stellar 7 : 849 SPARC points in 102 galaxies -> median offset +0.453 dex, rms 0.463 dex (the carried kernel on the same points: -0.046 dex)
+      alt       all 12    : 974 SPARC points in 111 galaxies -> median offset +0.463 dex, rms 0.477 dex (the carried kernel on the same points: -0.013 dex)
+      alt       stellar 7 : 849 SPARC points in 102 galaxies -> median offset +0.453 dex, rms 0.463 dex (the carried kernel on the same points: -0.014 dex)
+  [FAIL] C7 [RAR feed] the required cluster Delta_req, fed back to the SPARC points inside the overlap band, reproduces the observed accelerations to better than 0.10 dex median offset   (canonical/all +0.463 dex (rms 0.477), canonical/stellar +0.453 dex (rms 0.463), alt/all +0.463 dex (rms 0.477), alt/stellar +0.453 dex (rms 0.463))
+
+  C8  the HSE escape, priced.  If the galaxy Delta is the true kernel, the HSE acceleration is over-estimated by
+      f = (g_bar + a0 Delta_gal)/g_HSE, and nonthermal support must carry the rest: sigma_1D^2 = (1-f)/f x kT/(mu m_p).
+      canonical: s=0.104: f=0.52, sigma_1D=857 km/s; s=0.148: f=0.38, sigma_1D=1137 km/s; s=0.220: f=0.32, sigma_1D=1292 km/s; s=0.281: f=0.32, sigma_1D=1290 km/s; s=0.392: f=0.33, sigma_1D=1263 km/s; s=0.541: f=0.32, sigma_1D=1287 km/s
+      alt      : s=0.087: f=0.52, sigma_1D=857 km/s; s=0.123: f=0.38, sigma_1D=1137 km/s; s=0.183: f=0.32, sigma_1D=1292 km/s; s=0.234: f=0.32, sigma_1D=1290 km/s; s=0.325: f=0.33, sigma_1D=1263 km/s; s=0.449: f=0.32, sigma_1D=1287 km/s
+  [FAIL] C8 [escape] the nonthermal support that would reconcile clusters with the measured galaxy Delta is available: it needs sigma_1D no more than twice the Hitomi Perseus measurement of 164 +/- 10 km/s   (the SMALLEST sigma_1D required in any overlap bin at either footing is 857 km/s = 5.2x Hitomi (kT = 5 keV, mu = 0.61))
+
+  C9  the SHAPE gate.  Any Delta = s[nu(s)-1] with a deep-MOND limit has d log Delta/d log s -> 1/2 as s -> 0 and
+      falling to 0 at its ceiling, so its log-slope never exceeds 1/2.  Measured on the family over the cluster range:
+      carrier (exp, completed)     max d log Delta/d log s over s in [0.088, 0.909] = 0.368
+      nu_RAR (CARRIED)             max d log Delta/d log s over s in [0.088, 0.909] = 0.422
+      simple mu                    max d log Delta/d log s over s in [0.088, 0.909] = 0.427
+      standard mu                  max d log Delta/d log s over s in [0.088, 0.909] = 0.327
+      deep-MOND sqrt (capped)      max d log Delta/d log s over s in [0.088, 0.909] = 0.289
+  [FAIL] C9 [shape] the required Delta_req has the log-slope of a kernel of the class: the fitted p is not more than 3 sigma above the class ceiling of 1/2 (a p near 1 instead means g_phi = A g_N with a0 cancelling -- a constant rescaling of G, i.e. extra mass tracing the baryons, not an interpolation function)   (family max log-slope over the cluster range = 0.427; required canonical/all p = 0.726 +/- 0.068 (+3.3 sigma above 1/2), canonical/stellar p = 0.811 +/- 0.079 (+3.9 sigma above 1/2), alt/all p = 0.726 +/- 0.068 (+3.3 sigma above 1/2), alt/stellar p = 0.811 +/- 0.078 (+4.0 sigma above 1/2))
+
+--------------------------------------------------------------------------------------------------------------------------
+  THE ANSWER TO THE INVERSE PROBLEM, in one place.
+  Over the acceleration range clusters probe, s = g_bar/a0 in [0.09, 0.91], the boost that reproduces the corrected
+  X-COP enclosed-mass profile exactly from the baryons alone is  Delta_req(s) = (5.5 +/- 0.8) s^(0.81 +/- 0.08)  (rms 0.09 dex,
+  seven clusters with measured stellar profiles, canonical footing; the alt footing returns the SAME exponent and A smaller
+  by 3.5%, since Delta a0 and s a0 are both measured accelerations and only the p != 1 residual sees the footing).  Equivalently J_Y = s/Delta_req = 0.126-0.184 over that range: nearly a
+  CONSTANT, i.e. G rescaled by 1/J_Y ~ 6.9.  It is single-valued (C2) and monotone (C3) -- so as a mathematical object it exists --
+  but it is 2.9x above the widest ceiling any kernel of the class can reach (C4), it is 4.0x the boost galaxies MEASURE at the
+  same accelerations (C5, worst |z| = 13), and its monotone continuation is 4e+04x the Saturn residual bound (C6).
+--------------------------------------------------------------------------------------------------------------------------
+
+  caveats: the cluster side inherits every caveat of the lead's audit (hydrostatic equilibrium, the FORW mass
+  reconstruction, sphericity, tabulated central profiles, no covariance) and the five clusters without a measured
+  stellar profile have gas-only baryons, which is why the seven-cluster subset carries the headline; the galaxy side
+  uses SPARC's fixed Upsilon at 3.6um, so a coherent stellar-normalisation shift moves Delta_galaxy, but the
+  Newtonian limit pins the coherent part to a few per cent (PAPER5) and the cluster/galaxy ratio here is far larger.
+  The inversion itself assumes only spherical symmetry and the programme's own static law; it is exact given those.
+  total 3s
+
+RESULT: 6 FAIL -> ['C4 [bounded] the required Delta_req respects the bounded-boost ceiling of the kernel family, so some interpolation function of the class can supply it', 'C5 [THE TEST] at the accelerations where clusters and galaxies overlap the required cluster Delta agrees with the measured galaxy Delta within 3 sigma in every bin, so ONE Delta(s) can serve both (a live candidate kernel)', 'C6 [solar] the minimal continuation the stiffness gate permits keeps the anomalous Solar-System acceleration under the cited Saturn residual bound 7.0e-15 m/s^2', 'C7 [RAR feed] the required cluster Delta_req, fed back to the SPARC points inside the overlap band, reproduces the observed accelerations to better than 0.10 dex median offset', 'C8 [escape] the nonthermal support that would reconcile clusters with the measured galaxy Delta is available: it needs sigma_1D no more than twice the Hitomi Perseus measurement of 164 +/- 10 km/s', 'C9 [shape] the required Delta_req has the log-slope of a kernel of the class: the fitted p is not more than 3 sigma above the class ceiling of 1/2 (a p near 1 instead means g_phi = A g_N with a0 cancelling -- a constant rescaling of G, i.e. extra mass tracing the baryons, not an interpolation function)']

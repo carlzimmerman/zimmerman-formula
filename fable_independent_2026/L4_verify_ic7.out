@@ -1,0 +1,53 @@
+======================================================================================================================
+L4 -- independent verification of the lead's IC6 principal obstruction and IC7 curvature-square repair
+======================================================================================================================
+
+-- controls (these would catch my own algebra being wrong) ------------------------------------------------
+  [PASS] L4-C1 [control, GR] the IC5/IC6 kinetic term (2E/m)(tau/J - rho^2/6) carries the GENERAL-RELATIVITY DeWitt supermetric, lambda = 1, so the extra scalar found below is NOT a Horava lambda-mode   (lambda_DeWitt = [1])
+  [PASS] L4-C2 [control] the lead's diagonal barred-curvature identity Rbar = -2e^{-2rho}/B3^2 [2 zeta_zz + 3 zeta_z^2 + gamma_z^2/4 - 2 rho_z zeta_z] reproduced from the Riemann tensor
+  [PASS] L4-C3 [control, GR] the same phase-space tensor reduction returns c_T^2 = 1 for pure ADM general relativity
+  [PASS] L4-C4 [control, GR] the same DOF-counting rule (2N - n_2nd - 2 n_1st)/2 returns 2 for ADM GR (6 metric pairs; H and H_i first class)   (count = 2)
+  [PASS] L4-C5 [control] the IC-4/IC-5 expanding witness (xi,u,rho,tau) = (1/4, 2/3, -3e^{-1/2}, 0) is an EXACT stationary point of my independently transcribed h -- this validates every frozen constant (ell, Tcal, sigma, A_R, B_R, a0^2, Lambda, U, b)   (|h_xi|,|h_u| = 3.11e-61, 3.11e-60; F = 0; r = 1)
+
+-- (a) the IC6 obstruction, re-derived --------------------------------------------------------------------
+  [PASS] L4-O1 auxiliary Hessian at the witness (normalised by m V e^{-1/2} h0^2) = -[[24,-27],[-27,2T+135/8]], det = 12(4T-27) > 0   (det = 476.952638525 vs 12(4T-27) = 476.952638525)
+  [PASS] L4-O2 branch tangent dq/dj|_1 = ( -(8T+27)/(4(4T-27)), -18/(4T-27) ) from my own implicit-function solve   ((-1.00948454914, -0.452875154791))
+  [PASS] L4-O3 dJ_T/dj = -4(5T-27)/(3(4T-27)) and dF/dj = -(5T-27)/(2 ell^2 (4T-27)): F is NOT forced to zero on nearby homogeneous solutions   (dJ/dj = -1.89310424406, dF/dj = -2.05478477334)
+  [PASS] L4-O4 the five witness coefficients of the obstruction: h_pp = E(1/J-1)/(6V) as an EXACT identity, h_p,chi = 2T/9, g_chi = -e^{1/6}(8T-27)/9, h_pp' = -e^{1/2}J'/6, g_p' = 2e^{2/3}J'/3
+  [PASS] L4-O5 det(M_star) = -4 T^2 h0^2/81, and it is NONZERO (the inverse in c_raw is not taken at a singular point)   (det(M*) = -13.750109935689)
+  [PASS] L4-O6 THE OBSTRUCTION: S_4'(1) = -e^{5/6}(5T-27)(8T-27)(8T+27)/(18 T^2 (4T-27)) and it is NEGATIVE for the frozen domain T > 27/4, so S_4 < 0 for every small j-1 > 0. IC6's boxed identity is CONFIRMED.   (S4'(1) = -11.1407711251147987  (lead's closed form -11.1407711251147987))
+  [PASS] L4-O7 the lead's j = 1.007 orientation state: xi = 0.24297809, u = 0.66347046, S_4 = -0.07526051653, lambda^2/k_z^4 -> 0.03456985650 -- all four reproduced by my own auxiliary solve   (xi=0.2429780883 u=0.663470458 S4=-0.0752605165258 lam2/k4=0.0345698565005)
+
+-- (b) the IC7 repair --------------------------------------------------------------------------------------
+  [PASS] L4-I1 c_7 built from MY M and v at the lead's last isotropic sample j = 1.007 equals its stated c7 ~ 0.00235189114143216   (c7 = 0.00235189114143216072)
+  [PASS] L4-I2 the sheared fixture: my auxiliary solve returns xi = 0.242752746344542675, u = 0.663589818477735377, J_T = 0.986102159712075428 (18 digits, IC6_EVEN) -- the state itself reproduces   (xi=0.2427527463445426753 u=0.6635898184777353775 J_T=0.9861021597120754279)
+  [PASS] L4-I3 the constraint algebra on that same state, from my own Hessians: K = {p_A,S_B} = V h_AB matches IC6's [[-14.9712400052,16.3722704813],[16.3722704813,-29.7446446103]], the secondary-secondary bracket is Omega_12 = 3 V tau (h_xr h_ut - h_xt h_ur) = 0.06402066864, and the full 4x4 Dirac matrix has IC6's singular values (40.31947, 40.31947, 4.396461, 4.396461): rank 4, no null direction   (Omega_12 = 0.06402066864; Dirac singular values 40.31946951, 40.31946951, 4.396460935, 4.396460935)
+  [PASS] L4-I4 IC7's residual sheared quartic: with IC6_EVEN's S4_11 = -0.0642323935174161, my independently built design coefficient predicts S4_11 + 32 c7 = 0.0151964888331 -- IC7's stated leftover reproduces to 12 digits   (c7(sheared) = 0.002482152573452157; S4_11 + 32 c7 = 0.0151964888331; the value that WOULD cancel it is c_RR = 0.00200726229741925)
+  [PASS] L4-I5 the central IC7 identity S_4 + 32 V c_7/B3^4 = 0 holds IDENTICALLY on the isotropic plateau -- but it holds because c_7 IS -S_4/32 by definition: the repair is an exactly tuned counterterm, not an independent prediction of the action   (symbolic: S4 + 32*c7 == 0 for all (rho,xi,u))
+  [PASS] L4-I6 c_raw = v^T M^{-1} v/8 is built ONLY from partial derivatives of the action density h and of the curvature coefficient c: no wave speed, no measured eigenvalue and no new fitted constant enters. IC7's sentence 'Neither measured eigenvalues nor a desired wave speed define it' is CONFIRMED as written.   (free symbols besides (xi,u,rho,tau): [])
+  [PASS] L4-I7 the cutoff's support EXCLUDES det(M) = 0: theta != 0 requires |D-1| < 1/2, i.e. |det M| >= |det M*|/2 = 6.875055 > 0, so the inverse in c_raw is never taken near a singular M
+  [PASS] L4-I8 the static branch rho = 0 is exactly where M degenerates (M12 = D_t h_rho/2 vanishes with rho, so det M = 0), and there theta = 0: the zero extension is doing real work, and c_7 is defined there   (det M(rho=0) = 0.0, D = 0.0, theta = 0)
+  [PASS] L4-I9 both cutoffs are genuinely C^infinity at their glue points: theta and its first three derivatives are flat to all orders at x = 0 and x = 1 (and eta likewise), and the |D-1| kink sits strictly inside the theta == 1 plateau, so no non-smoothness is introduced   (max |jet| at the glue = 9.611e-32)
+  [PASS] L4-I10 IC7's claim that the four sampled trace ratios j = 0.998, 1, 1.002, 1.007 'all lie inside both unit plateaux' is CONFIRMED (eta = theta = 1 at each, and at the sheared state)   (D = 0.998:0.99394275, 1:1.0, 1.002:1.0060852, 1.007:1.0214266)
+  [PASS] L4-I11 the repaired window is FINITE and small: along the same isotropic branch the theta == 1 plateau ends at j = 1.0736445 and theta reaches 0 at j = 1.1315852, where the UNREPAIRED S_4 = -0.73412523 is restored in full while eta is still 1. The repair covers |j-1| < 0.074 of the isotropic family, not the family.   (S_4 at the theta=0 edge = -0.73412523 (vs -0.0753 at j=1.007))
+  [PASS] L4-I12 [control + result] the same tensor reduction gives physical c_T^2 = 1 EXACTLY for IC6 (the 1/J_T cancels) and c_T^2 = J_T for the IC5 mutation -- reproducing TENSOR_BALANCE.md's table independently; and IC7's term contributes nothing to the tensor sector when the background Rbar_0 = 0
+  [PASS] L4-I13 [new liability, quantified] on any background with barred spatial curvature Rbar_0 != 0 the IC7 term DETUNES the tensor cone: c_T^2 = 1 - 4 c_7 Rbar_0 / c exactly. IC6's exact tensor luminality was a cancellation IC7 breaks off flat backgrounds. The lead flags the non-transfer qualitatively ('the earlier inhomogeneous odd-sector result is NOT transferred to IC7 when background bar R is nonzero'); this is its size.   (at the sheared state 4 c_7/c = 0.008570513 per unit Rbar_0)
+
+-- degree-of-freedom count ---------------------------------------------------------------------------------
+  [PASS] L4-D1 all four auxiliary constraints (p_xi, p_u, S_xi, S_u) are SECOND class: the ultralocal block K = V h_AB is invertible at the witness and at the sheared state, so the Dirac chain closes at the secondary level with no gauge generator and no tertiary constraint   (det(H_qq)_witness = 476.9526385; |K| eigenvalues at shear 4.3964665, 40.319418)
+  [FAIL] L4-D2 [PROGRAMME REQUIREMENT] exactly TWO propagating gravitational degrees of freedom. Local count for IC5/IC6/IC7 in unitary clock gauge: 8 canonical pairs (6 barred-metric + xi + u) = 16; MINUS 4 second-class auxiliary constraints; MINUS 2x3 first-class spatial-momentum constraints. The lapse N = e^xi is a field with a second-class constraint, NOT a Lagrange multiplier, so there is no local first-class Hamiltonian constraint. Count = (16-4-6)/2 = 3, i.e. 2 tensor + 1 gravitational scalar.   (count = 3: 2 tensor polarisations + 1 scalar -- the requirement is NOT met)
+  [PASS] L4-D3 the extra mode is identified and is a genuine propagating scalar, not a constrained one: the reduced scalar momentum Hessian A_0 = det M / M22 is POSITIVE and nondegenerate at the witness and at j = 1.007 (so zeta has a healthy kinetic term -- no ghost -- and cannot be gauged away). It is the lead's own even-sector zeta, which its reduced equation qddot + 3 qdot + e^{2/3} k^2 diag(1/3,1) q = 0 gives physical c_s^2 = 1/3.   (A_0(witness) = 0.4614531036, A_0(j=1.007) = 0.4593358921, M_0 = 1/A_0 = 2.177056087)
+  [PASS] L4-D4 IC7 does not change that count: c_7 Rbar^2 carries no time derivative of any field, so it alters the constraint content only through S_A and leaves the symplectic form and the four second-class constraints intact. IC7 makes the third mode WELL-POSED on an isotropic window; it does not remove it.   (count with IC7 = 3, unchanged)
+
+-- what this lane did NOT independently verify --------------------------------------------------------------
+    - the k_z^2 reduction that yields the witness speeds (1/3, 1) and IC7's quoted scalar c_s^2 = 0.388526918 at k = 1e5: that needs the background time derivatives (Mdot, Ndot) of the lead's reduced system;
+    - the sheared antisymmetric mixing N2_21 = 0.000563025148111 itself (the full anisotropic two-mode reduction); only its IC7 consequence S4_11 + 32 c7 was checked, via L4-I4;
+    - IC6_STRONG_AUXILIARY's Sobolev solvability, the odd-sector inhomogeneous geometry, and every empirical gate (PPN, galactic matching, measured G, cosmology) -- all remain as the lead states them: OPEN.
+
+======================================================================================================================
+L4 verification: 1 FAIL(S)
+    FAIL: L4-D2 [PROGRAMME REQUIREMENT] exactly TWO propagating gravitational degrees of freedom
+    every reproduction check of the lead's own numbers PASSES; the single FAIL is the programme's 2-DOF
+    requirement, which IC5/IC6/IC7 do not meet (count = 3). Exit 2 marks that designed outcome; exit 1 would
+    mean one of the lead's numbers failed to reproduce.
+======================================================================================================================
