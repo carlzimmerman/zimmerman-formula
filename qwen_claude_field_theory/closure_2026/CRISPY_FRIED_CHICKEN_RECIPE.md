@@ -13,14 +13,18 @@ obligation; it is not permission to conceal the failure or relax a requirement.
 Historical obstructions are reference material, not the main deliverable.
 
 **Current constructive checkpoint (2026-09-08):**
-[IC-4 action and local scalar-wave construction](integrable_clock_construction_2026/LOCAL_WAVE_REPORT.md)
-combine integrable auxiliary-clock mixing with a derived clock–curvature
-coupling. The same exact expanding branch now has positive scalar kinetic energy,
-a local scalar wave at a chosen speed c/sqrt(3), and independently recomputed
-quadratic Dirac closure. A restricted compact physical-packet construction is
-also derived. The static equations and background tensor sector are preserved;
-galactic matching, full nonlinear constraints, all-background health and PPN
-remain OPEN. No full-theory PASS or observational prediction is claimed.
+[IC-6 nonlinear construction and tensor balance](integrable_clock_construction_2026/TENSOR_BALANCE.md)
+extend the [explicit covariant IC-5 phase action](integrable_clock_construction_2026/IC5_ACTION.md).
+An exact auxiliary-gradient square gives a proved local weak-operator
+coercivity bound under stated conditions. The same-action tensor correction
+derives positive, luminal tensors on flat isotropic backgrounds with J_T>0,
+including nearby homogeneous solutions beyond the special witness. Its own
+nonuniform auxiliary equations are solved on refined grids. Explicit bridges
+preserve the static equations, flat isotropic homogeneous evolution and the
+IC-4 witness's quadratic scalar-wave/constraint results. Full nonlinear
+preservation, inhomogeneous physical characteristics, galactic matching,
+zero-field control and PPN remain OPEN. No full-theory PASS or observational
+prediction is claimed.
 Continue from this explicit action, not historical candidate labels below.
 
 **Methodological inspiration:** OpenAI's *NavierStokesAndEuler* repository,

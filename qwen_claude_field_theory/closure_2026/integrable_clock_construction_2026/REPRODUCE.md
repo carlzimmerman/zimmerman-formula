@@ -215,3 +215,125 @@ quadratic constraint closure and restricted finite-speed physical packets.
 Full theory: **OPEN**. Next: nonlinear functional constraint preservation and
 admissible-data correspondence, followed by the same action's galactic/FLRW
 matching and PPN. No empirical, Lean, global novelty or final-theory claim is made.
+
+## 2026-09-08: nonlinear Hamiltonian, auxiliary square, and IC-6 tensor balance
+
+Base `6708f1e3e695a99f3fc3f121e14528f68ace641c`. This is a later construction
+checkpoint, not a reinterpretation of the preceding frozen IC-4 evidence.
+The preceding turn only verified the blueprint; this turn changes the actual
+action and derives its connected comparisons.
+
+### Files and exact executed commands
+
+New scientific files in this directory:
+
+- `nonlinear_hamiltonian.py`, `test_nonlinear_hamiltonian.py`, `NONLINEAR_HAMILTONIAN.md`.
+- `nonlinear_auxiliary_symbol.py`, `test_nonlinear_auxiliary_symbol.py`, `AUXILIARY_SYMBOL.md`.
+- `nonlinear_square_completion.py`, `test_nonlinear_square_completion.py`, `IC5_ACTION.md`,
+  `NONLINEAR_SQUARE_REPORT.md`, `NONLINEAR_COMPLETION_REVIEW.md`.
+- `tensor_balance_completion.py`, `test_tensor_balance_completion.py`, `TENSOR_BALANCE.md`.
+- `nonlinear_contract.json`; `nonlinear_run_001/run_index.json`; the nine
+  `nonlinear_run_001/{hamiltonian,symbol,square,tensor,tests,hamiltonian_required,symbol_required,square_required,tensor_required}`
+  subdirectories, each containing `manifest.json`, `stdout.txt`, `stderr.txt`.
+
+Only this reproduction file and the recipe's current-checkpoint pointer are
+edited among pre-existing tracked files. All previously pinned calculation
+and action files remain unchanged; unrelated dirty work is preserved.
+
+[The executed run index](nonlinear_run_001/run_index.json) contains every
+exact primary and strict-gate runner argument, input path, child exit,
+wrapper exit, runtime, output locator and validator command. All nine runs
+pin the same 32 declared inputs. The commands actually executed by their
+children, from the repository root, were `python -B` followed by the
+directory prefix `qwen_claude_field_theory/closure_2026/integrable_clock_construction_2026/`
+and each of:
+
+```text
+nonlinear_hamiltonian.py
+nonlinear_auxiliary_symbol.py
+nonlinear_square_completion.py
+tensor_balance_completion.py
+nonlinear_hamiltonian.py --require-functional-closure
+nonlinear_auxiliary_symbol.py --require-full-nonlinear-closure
+nonlinear_square_completion.py --symbolic-only --require-full-closure
+tensor_balance_completion.py --symbolic-only --require-all-background-causality
+```
+
+The full test command was:
+
+```text
+python -B -m unittest discover -s qwen_claude_field_theory/closure_2026/integrable_clock_construction_2026 -p 'test*.py'
+```
+
+The existing regression command, separately executed, was:
+
+```text
+OPENBLAS_NUM_THREADS=1 python -B -m unittest discover -s qwen_claude_field_theory/closure_2026/lapse_braiding_gate_2026 -p 'test*.py'
+```
+
+Recorded runtime: Python 3.13.9, SymPy 1.13.1, NumPy 1.26.4; existing
+SciPy 1.14.1 and mpmath 1.3.0 remain dependencies of the regression suite.
+The bounded runner used 180 seconds per job, a 1 MiB log cap and one
+cooperative numerical-library thread. Independent jobs ran in parallel.
+No operating-system memory or affinity limit is claimed.
+
+### Important results and exits
+
+| Check | Actual result | Child exit |
+| --- | --- | --- |
+| Full construction suite | 121 passed, 58.717 seconds | 0 |
+| Existing lapse/closure suite | 32 passed, 2.397 seconds | 0 |
+| IC-4 full metric Legendre/auxiliary identities | 28 exact checks; source pin matches | 0 |
+| IC-4 auxiliary-symbol computation | 21 exact residual groups vanish | 0 |
+| IC-5 explicit nonlinear square construction | Exact bridges and separate 16/32/64-grid solves pass | 0 |
+| IC-6 tensor balance and nonlinear momentum elimination | 28 exact residual groups; its own grid solves pass | 0 |
+| IC-4 full functional closure requested | Not established | 2 |
+| IC-4 symbol/full nonlinear closure requested | Not established | 2 |
+| IC-5 full theory requested | Not established | 2 |
+| IC-6 all-background causality requested | Not established | 2 |
+| Nine provenance validators with `--root` | Hash/input checks pass; not proof certification | 0 each |
+| `git diff --check` | No whitespace errors | 0 |
+
+The four strict-gate runs have wrapper exit 1 and manifest status `failed`
+because their children correctly return 2. They are retained as unpassed
+requirements, not relabeled successful closure checks. All newly created
+scientific and test scripts were executed.
+
+Tests-first development exposed missing implementations before code was
+added. Root also fixed three return-key mismatches and replaced structural
+SymPy expression comparison with a zero-difference check. A generic-function
+second derivative retained dummy mixed-derivative substitutions; the test
+was implemented with unrestricted second jets, for which the same local
+identity is exact. The momentum-even activation and supplied-density solver
+each received a failing behavior test before implementation. None of these
+development errors is reported as a physical obstruction.
+
+### Strongest mathematical result and next calculation
+
+IC-6 has an explicit covariant phase action and a compact nonlinear
+Lagrangian on its regular plateau. Its exact auxiliary square admits a
+derived local weak-operator coercivity estimate; the stationary equations,
+flat isotropic homogeneous Hamiltonian and IC-4 witness quadratic sector
+have checked same-action bridges. The corrected action derives
+`K_T=G_T=J_T>0`, hence physical `c_T=c`, on flat homogeneous isotropic
+backgrounds beyond the special `F=0` witness. Its own nonlinear grid solves
+reach maximum residual `1.2568062232542204e-13`, with decreasing refinement
+differences. This is not empirical validation.
+
+Independent mathematical review confirmed the covariant normalization,
+momentum elimination, mixed-space coercivity and tensor balance. It required
+an explicit common-domain qualifier for the full Dirac-block inverse and
+an explicit static boundary prescription; both are included. The tensor
+review covers both polarizations by isotropy, not arbitrary inhomogeneous
+or anisotropic backgrounds. Agreement of reviewers is not a formal certificate.
+
+**Full theory: OPEN.** The next unavoidable calculation is the coupled
+inhomogeneous physical characteristic system and complete IC-6 multiplier
+drift, including domains of the secondary Poisson bracket. Establishing a
+weak auxiliary inverse does not by itself exclude instantaneous physical
+response or prove regular evolution. Then the same theory must meet galactic
+matching, full PPN, zero-field control and realistic cosmology. The original
+thirteen requirements are unchanged. No global novelty claim, empirical fit,
+first-principles a0-Lambda derivation, or project-specific Lean certificate is
+made; Mathlib's coercivity theorem was source-checked as a possible later
+formalization dependency, not executed here.
