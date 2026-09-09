@@ -1,0 +1,104 @@
+======================================================================================================================
+L72 -- the lead's TWO uncleared concerns: indefinite auxiliary Hessian, and the design-point knife-edge
+======================================================================================================================
+  a_0 footings: 9.3619e-11 (canonical) / 1.1279e-10 (alt) m/s^2
+  both concerns are symbol-level (a principal symbol; a coefficient-space map); the a_0 witness value
+  cancels from det G and from the dispersion ratio -- flagged explicitly per check.
+
+======================================================================================================================
+PART 0 -- CONTROLS.  If any fails, STOP: the machinery is not trustworthy and no verdict follows.
+======================================================================================================================
+    building the quadratic Einstein-Hilbert Lagrangian for the reference-theory controls ...
+    ADM general relativity: N_q=10, primaries=4, total=8, first class=8, second class=0  ->  DOF=2
+  [PASS] CTRL-1  Dirac counter returns 2 for ADM general relativity   (first class=8, second class=0)
+    GR + one scalar       : N_q=11, primaries=4, total=8, first class=8, second class=0  ->  DOF=3
+  [PASS] CTRL-2  Dirac counter returns 3 for GR + one minimally coupled scalar   (first class=8, second class=0)
+    Einstein-aether       : N_q=13, primaries=4, total=8, first class=8, second class=0  ->  DOF=5
+  [PASS] CTRL-3  Dirac counter returns 5 for Einstein-aether (c1..c4=1/5,1/7,1/11,1/13)   (first class=8, second class=0)
+    khronometric          : N_q=11, primaries=4, total=8, first class=8, second class=0  ->  DOF=3
+  [PASS] CTRL-4  Dirac counter returns 3 for khronometric theory   (first class=8, second class=0)
+
+    rebuilt IC4 scalar coefficients (symbolic in Tcal): Tcal = 16.686513 (> 27/4 = 6.75 : True)
+
+======================================================================================================================
+PART 1 -- CONCERN 1: is the indefinite auxiliary gradient Hessian a genuine ghost, or eliminated?
+======================================================================================================================
+  [PASS] C1-a1  [flagged #1 REPRODUCED] the rebuilt normalized auxiliary Hessian G(lambda) has, at pi=0 (lambda=0), det G = -4 u^2 xi^2 -- the lead's stated 'generically negative' determinant (a0 cancels: G is dimensionless)   (det G(pi=0) = -4*u**2*xi**2)
+  [PASS] C1-a2  at the expanding witness (lambda=1, xi=1/4, u=2/3) G_0 is RANK ONE: det G_0 = 0 exactly and (-b,1) with b=-Tcal/9-3/8 is its null vector -- a marginal direction, not an indefinite one   (det G_0 = 0; null-vector residual = 0 (both exact in Tcal))
+  [PASS] C1-a3  the rebuild reproduces the lead's THREE witness determinant derivatives (d_j, d_xi, d_u of det G) exactly -- confirms the independent rebuild is faithful, and that all three are nonzero on Tcal>27/4 (pi=0 is not an isolated stationary point of det G)   (d_j, d_xi, d_u match AUXILIARY_SYMBOL.md)
+
+  (a) IS pi = 0 A LOCUS THE THEORY OCCUPIES?  pi is the trace (scale-factor) momentum, proportional to the
+  extrinsic-curvature trace K (the expansion rate).  The expanding witness has pi_0 = -3 m V e^{-1/2} h != 0.
+  pi = 0 is a momentarily-STATIC slice, K = 0.  ACTION.md's static branch (K = W = 0, Q = 0, on which the
+  clock correction terms vanish and u^2 = 1 - exp(-|a|/a0) is the MOND relation) is EXACTLY such a slice.
+  A static galaxy / the solar system has K ~ 0 and, being weak-field, xi = ln N ~ Phi/c^2 != 0, u in (0,1)
+  nonzero -> u xi != 0 -> det G = -4 u^2 xi^2 < 0 STRICTLY.  So pi = 0 is NOT measure-zero: it is the
+  physically central quasi-static regime.  The concern therefore cannot be dismissed as 'never reached';
+  it must be settled by whether the indefinite direction PROPAGATES.
+
+  [PASS] C1-b  pi = 0 IS a locus the theory occupies (the K=0 static / quasi-static branch -- galaxies, solar system), NOT a measure-zero exact-field-zero the background avoids.  det G = -4u^2 xi^2 < 0 holds there strictly (u xi != 0 in any weak field).  The concern is real at a real locus and must be decided by the constraint algebra, not waved away   (K=0 static branch is central to MOND phenomenology; det G<0 there strictly)
+
+  (b) DOES THE INDEFINITE DIRECTION PROPAGATE?  The fields carrying G are phi=(xi,u)=(ln N, u): the CLOCK
+  LAPSE coordinate and the auxiliary.  In this action N=(2X)^{-1/2} is a FUNCTIONAL of the varied clock (not
+  an independent ADM lapse) and u is a pure auxiliary -- neither carries a kinetic (time-derivative) term in
+  the reduced Hamiltonian.  They are auxiliary fields.  AUXILIARY_SYMBOL.md gives the secondary constraints
+  chi_a = -delta H/delta phi_a with principal part chi_a = H_gg,ab (bar-Delta) delta phi_b, so the constraint
+  algebra is
+        {chi_a, p_b}_principal = -|k|^2 H_gg,ab .
+  If det H_gg != 0 the 2x2 bracket is INVERTIBLE, so (chi_xi, chi_u) and their momenta (p_xi, p_u) are a
+  SECOND-CLASS set: both auxiliary fields and both momenta are eliminated -> 0 propagating DOF from the
+  auxiliary sector.  The SIGN of det H_gg is irrelevant to second-class-ness; only det != 0 matters.  A
+  negative det is therefore the ORDINARY signature of a healthy second-class elimination, not a ghost.
+
+    toy: 1 physical + 2 indefinite-block auxiliaries: N_q=3, primaries=2, total=4, first class=0, second class=4  ->  DOF=1
+  [PASS] C1-c1  CONSTRAINT ALGEBRA: two auxiliary fields carrying the indefinite block (det = -1/9 < 0) give 0 propagating modes -- the Dirac count on the toy is DOF = 1 (only the physical field propagates).  The indefinite direction is SECOND-CLASS ELIMINATED, it does NOT propagate   (toy DOF = 1 (aux 2nd-class: n2 includes the auxiliary pair); det(aux block) = -1/9 < 0)
+  [PASS] C1-c2  the PROPAGATING field's gradient stiffness after eliminating the auxiliaries is the Schur complement s_pp - c^T G^{-1} c, whose SIGN is set by the elimination, NOT by det G.  det G < 0 does not make the physical stiffness negative -- this is the L44/L52/L54 resolution (an auxiliary Schur complement replaced a marginal zero)   (physical Schur stiffness = 9/32 (finite; det(aux)<0 did not ghost the physical mode))
+  [PASS] C1-c3  the PHYSICAL propagating Hessian M = M0 + x G0 (the Legendre-transformed (n,v) sector) is POSITIVE DEFINITE at the witness for every wavenumber: det M = 3(4Tcal-27)(8Tcal+x)/(2Tcal) > 0 since 4Tcal-27 = 39.75 > 0.  The rank-one marginal direction enters M with a POSITIVE x-coefficient; the physical mode is healthy at all k (a0 cancels from the ratio)   (det M = 3(4Tcal-27)(8Tcal+x)/(2Tcal), 4Tcal-27=39.75>0, 8Tcal+x>0 -> det M>0 all x>=0)
+  [PASS] C1-d  det G persists NEGATIVE for a finite neighbourhood of pi=0 (small lambda): det G(lambda) at xi=1/4,u=2/3 is -1/9 at lambda=0 and passes through the rank-one zero at the witness lambda=1.  So the indefiniteness is generic near the static branch -- but it lives entirely in the eliminated auxiliary sector (C1-c1), so it never reaches a propagating mode   (det G(lambda=0) = -0.1111 < 0; a real root of det G(lambda) sits at lambda=1 (witness rank-one))
+
+======================================================================================================================
+PART 2 -- CONCERN 2: is the certified-healthy region an OPEN SET (a window) or a KNIFE-EDGE (a tuning)?
+======================================================================================================================
+  [PASS] C2-a  [dispersion SIGN LAW, symbolic] omega^2/(e^{2S}k^2) -> cIR as k->0, and (M<0,B>0,cUV>0) it is positive for ALL k^2>=0 iff cIR>=0: its only numerator zero sits at k2*=M cIR/(2B cUV), which is positive (an in-range sign flip) exactly when cIR<0.  IR stability <=> cIR>0 (a0 cancels)   (k->0 limit = cIR; numerator zero at k2* = M*cIR/(2B*cUV))
+
+    rebuilt IR speed:  c0 (=cbase) = -0.457840118,  kappa_flow (=2 Cdot e/E) = -2.423638416
+    cIR(M) = c0 + kappa_flow/M .  Design M=-3: cIR = 0.350039354 (oracle: 0.350039354) ; M=-1000: cIR = -0.455416479 (oracle: -0.455416)
+  [PASS] C2-b  [design-point positivity REPRODUCED, = L66 LEAD-4a] at the design point H_SS=-3 the rebuilt cIR = 0.35004 and the ratio runs 0.350 (IR) -> 0.200 (UV), positive at every k   (cIR=0.350039; speed^2 in [0.2000,0.3500], all>0)
+  [PASS] C2-c  [flagged #2 REPRODUCED] the lead's adverse control: at the ADJACENT design choice H_SS=-1000, cIR = -0.4554 < 0, so the small-k omega^2 is NEGATIVE (IR gradient instability) while the UV speed stays +0.2.  This is IC20 section 7's recomputed k^2=1e-4 sign, and it matches the sign law   (cIR(-1000)=-0.455416<0 -> omega^2(k^2=1e-4) sign = -)
+
+    STABILITY BOUNDARY (H_SS direction): cIR(M)=0 at M* = -kappa_flow/c0 = -5.29363
+    healthy H_SS interval = (-5.2936, 0);  design point H_SS=-3 is INTERIOR;  margin to boundary = factor 1.765.
+  [PASS] C2-d  the healthy region is an OPEN SET (a genuine window), NOT a knife-edge: cIR>0 on the whole interval H_SS in (-5.294, 0), the design point H_SS=-3 sits INTERIOR with a factor-1.76 margin to the boundary, and the closed form cIR=c0+kappa_flow/M reproduces the entire offline oracle sweep (H_SS=-0.5..-1000) to <5e-6   (boundary M*=-5.2936; design interior; sweep reproduced (max resid 3.0e-07))
+  [PASS] C2-e  the design point is interior in ALL FOUR design directions, so the window is multi-dimensional (not a lower-dimensional locus): A_* healthy on (0,~0.21) [design 0.1, margin ~2.1x], cUV healthy across the whole subluminal range (0,1), E_* healthy up to construction validity ~0.3 [design 0.1].  L66's '-1000 is adjacent' OVERSTATES the fragility -- the true boundary is H_SS~-5.30 (factor 1.76), not -1000 (factor 333)   (modest bounded open window (a design freedom), design interior; NOT a knife-edge and NOT '-1000-adjacent')
+  [PASS] C2-f  the coefficient combination that crosses the stability boundary is the IR SCALAR SPEED^2 cIR = cbase + 2 Cdot H_SR/(e^{2S} H_SS) -> 0, driven negative by |H_SS| too large (>5.30) or A_* too large (>0.21).  It is a self-coupling within the clock/curvature scalar sector (H_SR curvature-lapse mixing + background flow), evaluated in VACUUM FLRW with NO matter source   (cIR is the crossing quantity; boundary set by cbase (=-0.458) vs the flow term kappa_flow/H_SS)
+
+======================================================================================================================
+PART 3 -- connect to the theorems: is either concern a new mechanism, or a face of L69's root?
+======================================================================================================================
+
+  L69's root is the SINGLE matter->MOND transmission channel that 'MOND from one metric' forces: the lapse
+  coupling lambda = C[n,phi] between a SEPARATE MOND scalar and a clock's acceleration, which is at once the
+  only static matter source for the scalar and the coefficient whose square is subtracted from its stiffness.
+  Both L72 concerns are checked against that root:
+
+  * CONCERN 1 lives in the CLOCK's OWN auxiliary block (xi,u), a fixed-metric VACUUM principal symbol with
+    NO separate scalar, NO matter sourcing, and NO lapse->scalar coupling lambda.  It is not a transmission
+    channel at all -- it is an eliminated second-class auxiliary.  NEITHER a new kill NOR a face of L69.
+
+  * CONCERN 2 is the CLOCK scalar's own IR speed^2 (cIR) staying positive -- an ordinary scalar-stability
+    design constraint in VACUUM FLRW, again with no separate scalar and no lambda.  It is DISTINCT from
+    L69's root (which needs H2: a separate AeST-coupled scalar, absent here) and is satisfied with margin.
+
+  [PASS] L69-1  CONCERN 1 is NOT L69's transmission-channel root and NOT a new kill: it is an eliminated second-class auxiliary of the clock's own sector (no separate scalar, no lambda, no matter source)   (vacuum auxiliary principal symbol; no matter->MOND channel present)
+  [PASS] L69-2  CONCERN 2 is NOT L69's root either: it is the clock scalar's own IR speed^2 health in vacuum FLRW (no separate scalar, no lambda).  It is a distinct, ordinary design constraint, satisfied with margin at the design point   (cIR>0 is a self-consistency of the clock sector, unrelated to H2)
+
+======================================================================================================================
+PART 4 -- VERDICTS
+======================================================================================================================
+  [PASS] V1  CONCERN 1 VERDICT = ARTEFACT (curable / non-propagating).  det G = -4u^2 xi^2 < 0 is the determinant of the ELIMINATED second-class auxiliary block (xi,u); by the constraint algebra {chi_a,p_b}=-|k|^2 H_gg it does not propagate (a negative det is the ordinary signature of a healthy elimination).  The PROPAGATING mode is the Schur complement M, positive-definite at the witness for all k.  RESIDUAL: M is verified only at the witness (pi!=0); at pi=0 the physical mode is UNCOMPUTED -- but that is the same L66-4b/L69 deep-MOND gap (L71's lane), NOT a new instability   (indefinite Hessian does NOT propagate; physical Schur complement positive at witness)
+  [PASS] V2  CONCERN 2 VERDICT = CURABLE / OPEN WINDOW (not a knife-edge).  Health is controlled by one number cIR = c0 + kappa_flow/H_SS; the healthy set is the OPEN interval H_SS in (-5.30, 0) (and open boxes in A_*, cUV, E_*), with the design point INTERIOR at factor ~1.76-2.1 margin.  It is a modest bounded design freedom, not a fine-tuning.  L66's '-1000-adjacent' overstated the fragility: the true boundary is -5.30, a factor 1.76 away, not -1000   (open set with margin; the crossing quantity is the IR scalar speed^2 cIR)
+  [PASS] V-COMBINED  with L71 deciding the galactic deep-MOND health SEPARATELY, these two concerns do NOT kill the lead's construction: concern 1 is a non-propagating eliminated-auxiliary artefact, concern 2 is a real but OPEN coefficient window with margin, and NEITHER is L69's transmission-channel root nor a new class-level mechanism.  The only surviving gap is the uncomputed deep-MOND propagating sector (L66-4b / L69 open item 1), which is L71's job -- not something these two concerns settle against it   (construction survives BOTH concerns this lane can reach; deep-MOND propagation left to L71)
+
+======================================================================================================================
+  23 PASS / 0 FAIL out of 23 checks    runtime 1 s
+======================================================================================================================

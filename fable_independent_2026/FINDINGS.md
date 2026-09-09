@@ -2911,3 +2911,33 @@ fires; and L66's structure identification reproduces.
 - **This does not touch L73's completeness verdict:** even a fully healthy version is complete only below
   a galaxy. L71 decides only whether it is a live *galaxy-scale* candidate, and the answer is "not yet
   decidable from the action as it stands."
+
+## L72 — astra's two flagged concerns both CLEAR: an eliminated auxiliary and an open window, not kills
+
+`L72_lead_two_concerns.py` + `L72_LEAD_TWO_CONCERNS.md` (**23 checks, 23 PASS**). The two instabilities L66
+flagged against the integrable-clock action and never resolved, run in parallel with L71.
+
+**Controls.** The counter returns 2/3/5/3; L66's design-point positivity reproduces; both flagged numbers
+reproduce from the lead's own files before judgement.
+
+- **⭐ Concern 1 — the indefinite auxiliary Hessian — is an ARTEFACT.** det G = −4u²ξ² < 0 is the
+  determinant of the clock's own auxiliary pair (ln N, u), **non-dynamical fields the constraint algebra
+  makes second-class and eliminates**. A negative determinant there is the ordinary signature of a
+  **healthy elimination, not a ghost** — confirmed by a faithful toy Dirac count (DOF = 1) and by the
+  physical Schur complement being **positive-definite at the witness for every wavenumber**. The verdict
+  rests on non-propagation, not on avoiding the locus: π = 0 is exactly the static regime galaxies and the
+  Solar System sit in, and det G < 0 there strictly — but the direction does not propagate.
+- **⭐ Concern 2 — the adjacent IR instability — is an OPEN WINDOW, not a knife-edge.** The whole question
+  collapses to one number, the infrared scalar speed² c_IR = c₀ + κ/H_SS. The healthy set is the **open
+  interval H_SS ∈ (−5.30, 0)**, with the design point interior at **~1.76× margin**, and interior in all
+  four design directions. **L66's "−1000 is adjacent" overstated it**: the true boundary is −5.30, a
+  factor 1.76 away, not 333.
+- **Neither is a new class-level mechanism, and neither is L69's root** — both are vacuum questions with no
+  separate scalar and no matter-sourcing, so a₀ cancels from both.
+- **⭐ SO THE LAST CONSTRUCTION SURVIVES EVERYTHING THIS LANE CAN REACH.** Combined with L66 and L71, the
+  integrable-clock action escapes all three class-level no-goes and both of its own flagged concerns.
+- **⚠️ THE ONE GAP LEFT IS THE SAME ONE L71 NAMED, and it is not a kill:** the physical propagating scalar
+  is verified positive only at the cosmological witness; its **deep-MOND galactic health is uncomputed**,
+  blocked by an uncalibrated coefficient sector that the lead's own files forbid extrapolating. **That is
+  astra's calibration to finish, not an instability this lane found.** And L73 stands regardless: even
+  fully healthy, the action is complete only below a galaxy.
