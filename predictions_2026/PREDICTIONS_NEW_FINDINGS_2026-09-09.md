@@ -50,8 +50,7 @@ unbounded halo contribution would exceed it. **Status: SHARPENED.**
 theory is "MOND below a galaxy + a distinct dust for clusters" (excess-spent-once, tested L61/L74–L77); in
 the F(Q)Θ completion that dust is the clock's **conserved charge** (a⁻³, pressureless). *Test:* merging
 clusters (Bullet-type). *Discriminator:* the lensing mass **separates from the gas and traces the
-galaxies** — like collisionless CDM, and **unlike pure MOND**, which fails the Bullet offset. **Status: NEW
-(mechanism identified L79/L80).**
+galaxies** — like collisionless CDM, and **unlike pure MOND**, which fails the Bullet offset. **Status: NEW — SUPPORTED qualitatively by L85: the collisionless Noether dust flips the Bullet lensing centroid to the galaxy side (x_c/d=0.15-0.36) where MOND fails (0.93); the clock's gas-boost competes but does not win (83% flip threshold vs 52% actual). Right sign/side/~Mpc magnitude, not the exact peak positions.**
 
 **P6 — The cluster dark component is NOT a thermal relic in the ~11–28 eV window.** The relic route is a
 pincer with no interior, and the clock's own MOND *deepens* galactic wells so phase-space capture rises,
