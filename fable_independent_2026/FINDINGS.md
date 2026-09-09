@@ -3117,3 +3117,28 @@ to a single well-posed question, using ONLY the framework's a₀–Λ relation a
   U(u²) support a HEALTHY coherent w=0 condensate of amount Ω_c, on top of its w=−1 a₀ sector?** Currently
   obstructed, not proven impossible, and astra's to answer with the cosmology. This is a genuine reduction
   of L77's door, derived from the a₀–Λ relation alone.
+
+## L79 — a candidate for the last door: the clock's conserved periodic charge as non-condensate w=0 dust
+
+`L79_topological_dust_candidate.py` + `.out` (**6 checks, 6 PASS**). L78 reduced the grand prize's last door
+to: the clock needs a HEALTHY w=0 dust of amount Ω_c, distinct from its w=−1 a₀ sector, and the CONDENSATE
+realisation is obstructed (tachyon g03w, c_s²∝ρ growth suppression g03x, P(k) deficit g04h). This lane
+proposes — **honestly as a candidate, not a result** — a mechanism outside the closed condensate class.
+
+- **⭐ THE CANDIDATE.** IC34 (periodic evolution of the same IC29/30 action) carries a **conserved charge**:
+  ∫Π dx is conserved on the periodic domain ("does not renormalize the charges"). A conserved charge dilutes
+  as **a⁻³** by expansion alone, so if its quanta are **non-relativistic** its energy density ∝ a⁻³ — **w=0
+  pressureless dust**, exactly what L78 requires, with **no oscillating condensate**.
+- **⭐ WHY IT DODGES THE OBSTACLE.** A cold conserved-charge dust has **c_s² ≈ 0** (no oscillation pressure,
+  no ghost-condensate background) — a *different object* from the g03x condensate whose **c_s²∝ρ_d** drove
+  the growth suppression. So the specific obstacle that blocked the condensate route does **not**
+  automatically apply. And it is a **new mechanism TYPE**, outside the closed Pauli/wave/four-condensate
+  list — the dark-sector no-go explicitly leaves room for a new type, so this does not violate it.
+- **⭐ THE SINGLE DECIDABLE CONDITION (astra's).** ¬(b) now reduces to one dispersion question: **are the
+  clock's conserved winding quanta non-relativistic** (→ w=0, c_s²≈0 dust) and can the conserved amount tune
+  to **Ω_c ≈ 0.26**? If yes, the last door opens through a mechanism the condensate obstacles don't touch;
+  if relativistic, it's radiation (w=1/3) and this candidate fails. Decidable from the clock's dispersion.
+- **⚠️ HONEST SCOPE — CLAIMS NOTHING.** This does NOT assert the theory works. It identifies a candidate for
+  the last door and its one condition. Whether the quanta are non-relativistic, the amount, and
+  lensing/perturbation transfer all remain astra's and are not addressed. Honest state: **a live candidate
+  for ¬(b), one dispersion calculation from a verdict.**
