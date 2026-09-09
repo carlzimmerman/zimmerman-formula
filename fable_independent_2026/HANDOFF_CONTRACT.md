@@ -293,3 +293,38 @@ Nothing is ever "theory closed".
 | D1 | **The frozen kernel disagrees between two governing documents.** `CRISPY_FRIED_CHICKEN_RECIPE.md` ingredient I1 freezes `mu(y) = 1 - e^(-y)`; `THE_ACTION_2026-09-05.md` section 3 carries `nu_RAR` (swapped 2026-09-06). The lead follows the recipe correctly. L11 shows the IC-series produces the exponential kernel — so it matches I1 and not THE_ACTION. | The two differ by up to 0.073 dex in the transition, and the exponential ceiling is exceeded 5x more often on the bulgeless SPARC control. Any cross-document comparison is currently ill-defined. **One document needs amending; this is the user's call.** |
 | D2 | `IC10_LOCAL_CLOCK.md` and `OPTICAL_ALIGNMENT.md` reuse the symbol `sigma` for an unrelated quantity (−1/4), while `sigma` elsewhere is the clock speed parameter of A15. | A symbol collision in the one parameter A15 shows is decisive. Worth renaming before it causes an error. |
 | D3 | `hunt_2026/u13_mass_efe_and_domain.py:334` carries the hydrostatic-bias sign backwards relative to `u02:565`; its C3 prose is wrong. | No published number moves (C7 overwrites `B = 0.0` immediately after), so this is a latent trap rather than an error in the record. Flagged, not edited. |
+
+## E. 2026-09-09 arc (L74–L79) — the two finishes that would close the theory, stated for the lead
+
+The independent lane spent 2026-09-09 reducing the whole completion question to **two concrete calculations
+that are yours to run** (they need the clock's calibrated coefficients / dispersion, which IC31 forbids the
+lane from extrapolating and the lane will not fake). Both are stated as pass conditions in advance.
+
+**E1 — GALACTIC PROPAGATING HEALTH (L74).** From your own reduced Hamiltonian h(S,q,z,R), the static-branch
+Hessian is **H_SS = −e^S P0 − v(S) R**, v(S)=e^{S+2wc}/2 > 0. The curvature term is strictly one-sided
+(halo R>0 ⇒ shift toward the −5.294 floor, never the safe ceiling at 0). With the baryonic part pinned by
+the design target (−e^{0.1}P0=−3 ⇒ P0=2.71), the galactic scalar is healthy **iff**
+> **v(S)·R < 5.294 − e^S P0 ≈ 2.58** (reduced, dimensionless) at every radius, peak exposure near r_M.
+
+Everything but D(S) and the H_SR/K/B/Ċ reduction at galactic S≈0 is closed-form known (A=0.1, E4=0.01 fixed;
+v,t exponentials). **PASS = extend the IC29 coefficient IVP down to S≈0 (below the current S=0.1 start) and
+evaluate c₀(S≈0)+κ_flow(S≈0)/(−P0−vR) > 0 at r_M.** A bounded downward extension of your own IVP.
+
+**E2 — THE LAST DOOR = ¬(b), sharpened (L77/L78/L79).** Of the excess-spent-once escape hatches, ¬(a)
+[emergent MOND] and every ¬(c) [ordering L61, winding-timing L76, free-streaming-relic L77 — the last one
+made *worse* by the clock's own deeper MOND wells] are closed. The complete theory reduces to **¬(b): the
+clock as its own CMB dark matter.** L78 sharpens this via the a₀–Λ relation (a₀ = c²/2πL_dS to ~5%): the a₀
+sector is w=−1 (dark energy, Ω_Λ), but the CMB cold amount is w=0 dust (Ω_c≈0.26). So the clock must carry
+a **second, w=0 mode of amount Ω_c, distinct from its a₀ sector.** The condensate realisation is your
+obstructed one (g03w tachyon, g03x c_s²∝ρ growth, g04h P(k) deficit).
+
+L79 offers a **candidate outside the closed condensate class**: your periodic construction's **conserved
+charge ∫Π dx (IC34)**. A conserved charge dilutes as a⁻³; if its winding quanta are **non-relativistic** it
+is w=0 dust with **c_s²≈0** — dodging the g03x growth obstacle, and a new mechanism type the dark-sector
+no-go leaves open.
+> **PASS = show the clock's conserved winding quanta are non-relativistic at/after recombination (energy per
+> charge ~ const ⇒ w=0, not w=1/3) AND the conserved amount tunes to Ω_c ≈ 0.26.** This is a dispersion /
+> mass-gap calculation on your action. If yes, ¬(b) opens and the theory is a genuine ΛCDM competitor;
+> lensing/transfer then remain. If the quanta are relativistic, this candidate is radiation and fails.
+
+The lane claims neither E1 nor E2 as won — both are yours, stated so you can settle them directly.
