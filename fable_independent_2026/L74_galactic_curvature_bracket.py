@@ -20,7 +20,7 @@ decidable from the action AS IT STANDS:
       H_SS = -e^S P0  -  v''(S) R,   v(S)=e^{S+2wc}/2 (at z=0),  so v''(S)=v(S) > 0.
   The BARYONIC part -e^S P0 is PINNED by the design target H_SS=-3 (at the flat-vacuum design point R~0).
   The CURVATURE part -v(S) R has v(S)>0 ALWAYS, and its sign is therefore set by -sign(R).
-  On the deep-MOND galactic background the phantom curvature R ~ 4 grad^2 Phi = 4 g/r > 0 (computed on the
+  On the deep-MOND galactic background the phantom curvature R ~ 2 grad^2 Phi = 2 g/r > 0 (computed on the
   solved background).  So the curvature shift is STRICTLY NEGATIVE: it can only push H_SS DOWN toward the
   -5.294 instability floor, NEVER up through the safe ceiling at 0.
 
@@ -180,7 +180,7 @@ sec("PART 2 -- THE CURVATURE SIGN on the solved deep-MOND background: R > 0, so 
 print("""
   The reduced R is the background value of the curvature that couples in -vR.  On a weak-field galactic
   metric h_ij = e^{-2Psi} delta_ij with no-slip Psi=Phi (IC30 sec 3), the spatial Ricci scalar is
-  R ~ 4 grad^2 Phi to leading order.  On the deep-MOND phantom potential (flat rotation, g=sqrt(GM a0)/r):
+  R ~ 2 grad^2 Phi to leading order.  On the deep-MOND phantom potential (flat rotation, g=sqrt(GM a0)/r):
       grad^2 Phi = (1/r^2)(r^2 Phi')' = (1/r^2)(r^2 g)' = g/r  > 0,   and it FALLS as 1/r^2 outward.
   So R > 0 throughout the deep-MOND halo (largest near r_M, -> 0 in the outskirts).
 """, flush=True)
@@ -193,7 +193,7 @@ print("    grad^2 Phi = g/r across radii (canonical), 1e-30 s^-2 units:")
 for x in bg["canonical"]["rows"]:
     tag = " (deep MOND)" if x["s"] < 0.4 else ""
     print(f"        r={x['rk']:4d} kpc   g/r = {x['lap']:.4e} s^-2   s=g_N/a0={x['s']:.4f}{tag}")
-check("SIGN-1  R ~ 4 grad^2 Phi = 4 g/r > 0 at every galactic radius on the solved deep-MOND background, on "
+check("SIGN-1  R ~ 2 grad^2 Phi = 2 g/r > 0 at every galactic radius on the solved deep-MOND background, on "
       "both footings.  The curvature is POSITIVE everywhere in the halo",
       R_positive and all(x["lap"] > 0 for x in bg["alt"]["rows"]),
       f"min g/r = {min(lap_all):.3e} s^-2 > 0")
