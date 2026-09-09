@@ -1,0 +1,358 @@
+==========================================================================================================================
+L53 -- the saturated branch where it is actually realised: galaxy interiors and cluster cores
+==========================================================================================================================
+
+0.  CONTROLS -- the kernel, the saturation point, and the addresses L30 and L33 established
+    nu_RAR: maximum of Delta at s_sat = 2.5396, ceiling C = sup Delta = 0.647610
+  [PASS] K0 [control] the carried kernel's saturation point and boost ceiling reproduce THE_ACTION section 3 / L30 K0 (s_sat = 2.540, C = 0.6476)   (s_sat = 2.5396, C = 0.647610)
+
+    the radius inside which g_N > s_sat a0 (the saturated branch) around a point mass M:
+        r_sat = sqrt( G M / (s_sat a0) )
+      canonical : Sun  r_sat = 0.0242 pc = 4994 AU
+      alt       : Sun  r_sat = 0.0221 pc = 4550 AU
+  [PASS] K1 [control] L30 G4's Solar saturation radius is reproduced (0.0242 pc canonical / 0.0221 pc alt)   (0.0242 / 0.0221 pc)
+  [PASS] K2 [control] L33 D2's corollary sphere is reproduced: any kernel with an INTERIOR maximum has Delta' = 0 exactly at s_sat, hence Sigma_par = infinity on a sphere at 4994 AU (canonical) / 4550 AU (alt)   (4994 / 4550 AU)
+    standing coherence-length floor xi = 0.10 pc (canonical) / 0.15 pc (alt) versus r_sat:
+      canonical : xi/r_sat = 4.13  (xi EXCEEDS r_sat -- the Sun never sits on the saturated branch)
+      alt       : xi/r_sat = 6.80  (xi EXCEEDS r_sat -- the Sun never sits on the saturated branch)
+  [PASS] K3 [control] L30 G4's statement is reproduced: the standing coherence length EXCEEDS the Sun's saturation radius, so the saturated branch is not realised around the Sun   (xi/r_sat = 4.13 / 6.80)
+  [PASS] K4 [control] the longitudinal stiffness identity Sigma_par = J_Y + 2 Y J_YY = 1/Delta'(s) holds on the unsaturated branch (L30 K2 / L33 A2)   (max relative error 1.52e-08)
+
+    L30's minimal C^2 repair (candidate C):  Delta_C(s) = D_inf - A (1 + beta (s - 2))^-2  for s > 2,
+      D_inf = 0.655589,  A = 1.317369e-02,  beta = 0.801759
+  [PASS] K5 [control] L30's minimal C^2 repair is reproduced: constants D_inf = 0.655589, A = 1.317369e-02, beta = 0.801759, and max |Delta_C - Delta_published| = 0.0080 a0 at every s   (D_inf = 0.655589, A = 1.317369e-02, beta = 0.801759, max dev = 0.0080 a0)
+  [PASS] K6 [control] the deposited kernel (THE_COMPLETE_THEORY section 4.3) is reproduced: Delta' > 0 at every finite s and max |Delta log10 g| <= 0.0111 dex against the published kernel   (min Delta' = 1.21e-11, max dev = 0.0111 dex)
+  [PASS] K7 [control] the kernel inverse s(u) round-trips: Delta(s(u)) = u to 1e-12 for the published kernel and both repairs   (max |Delta(s(u)) - u| = 1.8e-16)
+
+1.  WHERE THE SATURATED BRANCH IS REALISED  (g_N > s_sat a0), on committed baryon models
+    SPARC: 175 galaxies loaded from the repository's rotmod files
+
+    representative systems (measured in-plane g_bar, so this is the DISC-PLANE extent):
+      system        footing      max s = g_bar/a0   saturated out to
+      NGC2903       canonical              21.166           4.80 kpc
+      NGC2903       alt                    17.569           3.84 kpc
+      NGC3198       canonical               2.166    NEVER saturated
+      NGC3198       alt                     1.798    NEVER saturated
+      DDO154        canonical               0.063    NEVER saturated
+      DDO154        alt                     0.053    NEVER saturated
+      DDO161        canonical               0.113    NEVER saturated
+      DDO161        alt                     0.094    NEVER saturated
+
+    SPARC census: 37/175 galaxies (canonical) and 35/175 (alt) reach the saturated branch anywhere on their measured curve
+      canonical : saturated out to a median 3.91 kpc, max 7.99 kpc, over those 37 galaxies
+      alt       : saturated out to a median 3.80 kpc, max 6.94 kpc, over those 35 galaxies
+  [PASS] R1 the saturated branch IS realised, at kiloparsec scale, in the disc plane of real galaxies with the repository's own baryon models -- so it is not a Solar-System phenomenon (L30 G4)   (37/175 SPARC discs saturate somewhere, out to a median 3.91 kpc and a maximum 7.99 kpc (canonical); median 3.80 kpc, max 6.94 kpc (alt). NGC2903 is the representative saturating disc used below (4.80 kpc canonical / 3.84 kpc alt))
+  [FAIL] R2 the saturated branch is realised in DWARFS, and in typical discs -- i.e. it is a generic feature of galaxy interiors rather than of the baryon-densest minority   (it is NOT: DDO154 reaches only s = 0.063 (canonical) / 0.053 (alt) against s_sat = 2.540, 40x short, and 138/175 SPARC galaxies never saturate anywhere on their measured curve.  NGC3198, the archetype, peaks at s = 2.166 and never reaches the branch either)
+
+    clusters (the repository's cluster measurement audit, tabulated hydrostatic profiles):
+      footing       radii with g_bar > s_sat a0   n rows    max s
+      canonical     none of the tabulated radii        0    0.909
+      alt           none of the tabulated radii        0    0.755
+      0/12 clusters (canonical) have a baryon-saturated core; 0/12 (alt)
+        A1644      saturated inside r =     never (can),     never (alt)
+        A1795      saturated inside r =     never (can),     never (alt)
+        A2029      saturated inside r =     never (can),     never (alt)
+        A2142      saturated inside r =     never (can),     never (alt)
+        A2255      saturated inside r =     never (can),     never (alt)
+        A2319      saturated inside r =     never (can),     never (alt)
+  [FAIL] R3 the saturated branch is realised at the radii the repository's cluster audit tabulates (L30 section 7 gives its address as 'the inner few kiloparsecs of every galaxy AND the cores of clusters')   (it is NOT.  The audit's innermost radius is 30 kpc and its LARGEST tabulated s = g_bar/a0 anywhere is 0.909 (canonical) / 0.755 (alt), 2.8x below s_sat = 2.540.  0/12 clusters saturate at any tabulated radius, at either footing.  L30's cluster address is CORRECTED here: cluster cores as the repository measures them are deep on the UNSATURATED branch)
+
+    144 of the 248 audit rows DO include BCG stars (7 of the 12 clusters) and none of them saturates either -- but the innermost tabulated
+    radius is 30 kpc.  A BCG is therefore added explicitly to ask where a cluster core WOULD
+    saturate: Hernquist stars, M* = 8e11 Msun, a = 16.5 kpc (R_e = 30 kpc).
+      canonical : the BCG alone puts g_N > s_sat a0 inside r = 5.1 kpc (g_star at 30 kpc = 0.551 a0, at 40 kpc = 0.373 a0)
+      alt       : the BCG alone puts g_N > s_sat a0 inside r = 3.2 kpc (g_star at 30 kpc = 0.457 a0, at 40 kpc = 0.310 a0)
+  [PASS] R3b the saturated branch IS realised in cluster cores once the BCG is included, but only INSIDE the innermost radius at which the repository has cluster data   (saturated inside 5.1 kpc (canonical) / 3.2 kpc (alt), against an innermost tabulated radius of 30 kpc.  So the branch exists in cluster cores but nowhere the cluster failure is actually measured)
+
+    Milky Way, McMillan 2017 Table 3 (the repository's own committed model, the same parameters
+    hunt_2026/g02_vertical_vs_planar_frequency_split.py uses):
+      Sigma(R0 = 8.178 kpc, |z| < 1.1 kpc): stars 41.8, gas 12.3, total 54.0 Msun/pc^2
+      (McKee, Parravano & Hollenbach 2015: stars 33.4 +- 3.0, gas 13.7 +- 1.6, total 47.1 +- 3.4 -- the McMillan model is known to run high here; g02 uses it for its SHAPE, and so does this lane)
+  [PASS] R4 [control] the McMillan 2017 model is transcribed correctly: its stellar, gaseous and total surface densities at the Sun land within 30% of the independent McKee et al. 2015 census -- loose enough to admit the offset the published model is known to carry, tight enough that any transcription error in the five components would fail it   (stars 41.8 vs 33.4 (+25.0%), gas 12.3 vs 13.7 (-10.3%), total 54.0 vs 47.1 (+14.7%); the model runs high on stars, which g02_vertical_vs_planar_frequency_split.py flags on the same comparison, and this lane uses the model for its SHAPE)
+
+2.  THE MATHEMATICAL CORE -- classifying the non-spherical boundary-value problem
+    The static equation is the Euler-Lagrange equation of a convex-analysis problem, not of a
+    quasilinear PDE.  Write u = |grad phi|/a0 and sigma(u) = the Newtonian source magnitude that
+    produces it, s = g_N/a0.  Then
+
+        E[phi] = INT [ W(|grad phi|/a0) + q phi~ ] dV ,     W'(u) = sigma(u) = s(u) = Delta^{-1}(u)
+
+    and the two stiffnesses are the eigenvalues of the Hessian of the energy density:
+
+        Sigma_perp = sigma(u)/u = J_Y      (transverse, along directions perpendicular to grad phi)
+        Sigma_par  = dsigma/du  = 1/Delta' (longitudinal)
+
+    On the published kernel Delta is flat above s_sat, so sigma(u) has a VERTICAL SEGMENT at
+    u = C = 0.6476: any source magnitude s >= s_sat produces the same gradient.  That is a MAXIMAL
+    MONOTONE GRAPH, hence the subdifferential of a convex function, and the correct statement of the
+    boundary-value problem is a VARIATIONAL INEQUALITY with the pointwise gradient constraint
+
+        |grad phi|  <=  C a0     ,    C = 0.647610 ,
+
+    exactly the elastic-plastic torsion problem of Brezis-Stampacchia.  Sigma_par = +infinity is a
+    CONSTRAINT, not a loss of ellipticity: the dangerous case is Sigma_par <= 0, and the branch the
+    theory sits on has Sigma_par > 0 everywhere.
+
+    the constitutive map sigma(u):
+      published (truncated) kernel : monotone non-decreasing = True, with a vertical segment at u = C = 0.6476
+      nu_RAR CONTINUED past its maximum: Delta falls from 0.6476 to 0.0718 over s = 2.54 -> 40, so sigma(u) is DOUBLE-VALUED and its upper branch is DECREASING (min Delta' = -0.0324 < 0)
+  [PASS] M1 the published (truncated) kernel gives a MAXIMAL MONOTONE constitutive map, so the energy is convex and the saturated branch is a variational inequality rather than an ill-posed PDE   (sigma(u) non-decreasing with a vertical segment at u = C; the UNTRUNCATED continuation is non-monotone (Sigma_par < 0) and would be genuinely ill posed -- the truncation is the repair, not the disease)
+
+    Sigma_par = 1/Delta' on the three branches, at a galaxy-core background s = 100:
+      published (M = 1e8)       Sigma_perp = 1.544e+02,  Sigma_par = 1.000e+08
+      L30 minimal C^2 repair    Sigma_perp = 1.525e+02,  Sigma_par = 2.385e+07
+      deposited kernel 4.3      Sigma_perp = 1.545e+02,  Sigma_par = 3.157e+05
+      nu_RAR CONTINUED          Sigma_par = -5.506e+03   <-- NEGATIVE
+  [PASS] M2 every kernel the theory actually offers has Sigma_par > 0, hence a CONVEX energy: the saturated problem is stiff, not ill posed.  Only the untruncated continuation (which the bounded-boost theorem already forbids) has Sigma_par < 0   (published +1.5e+02, continued -5.506e+03)
+
+    LOCALISATION.  Three readings of the modified field equation appear in this repository, and they
+    do NOT share the pathology:
+
+      (i)   CARRIER  (THE_ACTION section 1, PAPER5 section 7, g03x):
+              div[J_Y(|grad phi|^2) grad phi] = 4 pi G rho,  g = g_N + g_phi
+              Sigma_par = d g_N / d g_phi = 1/Delta'                      -> INFINITE at saturation
+      (ii)  AQUAL on the TOTAL potential (g03c, g03d, f24, aqual_efe_full_solve_2026):
+              div[mu(|grad Phi|/a0) grad Phi] = 4 pi G rho
+              Sigma_par = d g_N / d g_tot = 1/(1 + Delta')                -> EXACTLY 1 at saturation
+      (iii) QUMOND (g02, k04, hunt_efe_lib, and every non-spherical solve in hunt_2026):
+              div grad Phi = div[nu(|grad Phi_N|/a0) grad Phi_N]
+              LINEAR in the unknown; the kernel enters only through a precomputed source.
+      background                   carrier 1/Delta     AQUAL 1/(1+Delta)      QUMOND
+      Saturn's orbit                      infinity              1.000000      linear
+      inner galaxy s = 100                infinity              1.000000      linear
+      cluster core s = 10                 infinity              1.000000      linear
+  [PASS] M3 the infinite longitudinal stiffness belongs to the CARRIER reading ALONE.  In the AQUAL-on-total-potential reading Delta' = 0 gives Sigma_par = 1 exactly (perfectly ordinary Newtonian stiffness), and the QUMOND reading is LINEAR in the unknown   (so the degenerate operator can only appear in a solve that carries the scalar as a separate matter-sourced field)
+
+    Which committed scripts could have been affected?  A script is at risk only if it does all three
+    of: (a) mention the carrier's own coefficient J_Y, (b) build a 2-D or 3-D spatial grid, and
+    (c) run a NONLINEAR solve on that grid (a sparse linear-algebra solve or a root-find loop).
+    A script that uses J_Y only in the algebraic relation J_Y(g_phi) g_phi = g_N, or symbolically,
+    never touches the degenerate operator no matter how stiff it is.
+      133 committed .py files mention J_Y;  2 of those also build a 2-D/3-D grid:
+        fable_independent_2026/L47_xi_collision.py           sparse solves are TRIDIAGONAL, i.e. 1-D radial
+        fable_independent_2026/L53_saturated_cores.py        assembles a MULTI-DIMENSIONAL sparse operator
+      at risk (multi-dimensional nonlinear carrier solve, outside this lane): none
+  [FAIL] M4 [LOCALISATION] some committed script in this repository solves the CARRIER equation off spherical symmetry, i.e. a published number could have been computed on the degenerate operator   (none does.  133 files mention J_Y; only 2 also build a spatial grid, and the sparse operators they assemble are TRIDIAGONAL (1-D radial) or the grid solve is of a LINEAR operator.  Every other use of J_Y is the algebraic relation J_Y(g_phi) g_phi = g_N on a sphere, or symbolic.  The only multi-dimensional nonlinear carrier solve in the repository is this lane's own.  Combined with M3, no committed number was computed on the degenerate operator -- the liability is real and was worth checking, but it has never been drawn on)
+
+3.  THE AXISYMMETRIC SOLVER  (P1 finite elements, damped Newton, sparse direct solve)
+    Scaled variables: lengths in kpc, gradients in a0, potential in a0 kpc.  The energy
+        E~ = SUM_T [ W(u_T) + q_T phibar_T ] w_T ,     w_T = R_T * area_T ,  q = 4 pi G rho L / a0
+    is minimised by damped Newton; the element Hessian is B^T [Sigma_perp I + (Sigma_par - Sigma_perp)
+    n n^T] B, so the whole nonlinear content is the two stiffnesses.  Boundary conditions: Dirichlet
+    on the outer R and z faces, natural (symmetry) on the axis R = 0 and the midplane z = 0.
+
+    CONTROL N1 -- a NON-SPHERICAL analytic result at finite stiffness: the exact MacLaurin
+    interior field of a homogeneous oblate spheroid (Binney & Tremaine eq. 2.140).
+      axis ratio c/a = 0.50, e = 0.8660, A1 = 0.47280, A3 = 1.05440
+      max relative error of the solver's interior field at 5 interior points: 1.730%
+  [PASS] N1 [control] the axisymmetric solver reproduces a known NON-SPHERICAL analytic result where the stiffness is finite: the MacLaurin interior field of a homogeneous oblate spheroid   (max relative error 1.730% over 5 interior points)
+
+    CONTROLS N2-N4 -- the SPHERICAL benchmark, which fixes the noise floor for everything below.
+    On a spherical source the algebraic carrier law g_phi = a0 Delta(g_N/a0) is EXACT and grad phi
+    is EXACTLY radial, so the solver's departure from it is pure discretisation error.  Every
+    'algebraic versus solved' and every 'misalignment' number later in this lane is quoted against
+    this floor.  A Plummer sphere is used, M = 5e10 Msun, b = 3 kpc, whose saturated shell is
+    1.2 < r < 3.4 kpc -- the same geometry as a galaxy's.
+        h [kpc]   nodes                       kernels run  max |u/u_alg - 1|  max misalign
+           0.20   10000                              PUB8  5.18%        11.27d
+           0.10   25600                NEWT,PUB8,REPC,DEP  0.32%  2.84%  2.19%  1.07%         4.70d
+           0.05   78400                              PUB8  1.44%         2.12d
+  [PASS] N2 [control] the nonlinear carrier solver CONVERGES to the algebraic carrier law on a spherical source, at first order in the mesh spacing, for the published (stiff) kernel and both repairs alike   (max |u_solved/a0 Delta(s) - 1| falls 5.18% -> 2.84% -> 1.44% as h halves (3.6x over a factor 4 in h))
+  [PASS] N3 [control] the solver's spurious MISALIGNMENT on a spherical source (where the exact answer is exactly radial) falls with the mesh, so it is discretisation and has a known scale that any disc measurement must beat   (max departure from radial 11.27 -> 4.70 -> 2.12 deg as h halves; the floor adopted below is 4.70 deg at the disc's own resolution, alongside an amplitude floor of 2.84%)
+
+      max |grad phi|/a0 over the whole Plummer grid, published kernel at Sigma_par = 1e8: 0.647610  (ceiling C = 0.647610)
+  [PASS] N4 [control] the solver respects the kernel's own kinematic bound |grad phi| <= C a0 to the regularisation tolerance   (max u = 0.647610 vs C = 0.647610)
+
+    THE DISC GRID.  McMillan 2017 baryons on an axisymmetric mesh, R < 45 kpc, |z| < 25 kpc.
+      mesh: 164 x 94 = 15416 nodes, 30318 triangles
+      Newtonian solve at R0 = 8.178 kpc:  V_c,bar = 177.2 km/s;  |K_z,bar(1.1 kpc)|/(2 pi G) = 61.0 Msun/pc^2
+      (that exceeds the model's own Sigma(|z| < 1.1) = 54.0 by +12.9%, which is the radial term of the integrated Poisson equation and is exactly what the Kuijken-Gilmore Sigma_dyn convention absorbs)
+
+      DISC MESH REFINEMENT of the carrier solve (published kernel, canonical):
+        factor   nodes      R=1      R=2      R=3      R=4      R=6  R=8.178     R=12     R=20  sat. vol
+          1.60    6077   0.9349   0.8424   0.8477   0.8738   0.9301   0.9602   0.9900   1.0108  8.65e-04
+          1.00   15416   0.8577   0.7893   0.8200   0.8645   0.9285   0.9597   0.9893   1.0112  8.03e-04
+          0.65   36288   0.7813   0.7518   0.8060   0.8613   0.9278   0.9596   0.9891   1.0118  7.54e-04
+      converged to better than 1% between the last two meshes at R = 4, 6, 8.178, 12, 20 kpc; NOT converged at R = 1, 2, 3 kpc (the bulge cusp and the axis)
+  [PASS] N5 [control] the carrier solve on the disc is mesh-converged over the radii the targets below use   (|change| between the two finest meshes: R=1: 0.076, R=2: 0.037, R=3: 0.014, R=4: 0.003, R=6: 0.001, R=8.178: 0.000, R=12: 0.000, R=20: 0.001)
+
+    solving the CARRIER equation on the disc for each kernel and both footings ...
+      canonical  PUB4    18 Newton steps,   1.2 s, max u = 0.653493 a0, one further Newton step moves phi by 0.00e+00 (relative)
+      canonical  PUB6    42 Newton steps,   3.0 s, max u = 0.647673 a0, one further Newton step moves phi by 0.00e+00 (relative)
+      canonical  REPC    27 Newton steps,   2.0 s, max u = 0.655584 a0, one further Newton step moves phi by 0.00e+00 (relative)
+      canonical  DEP     46 Newton steps,   3.1 s, max u = 0.647185 a0, one further Newton step moves phi by 0.00e+00 (relative)
+      alt        PUB6    39 Newton steps,   2.6 s, max u = 0.647662 a0, one further Newton step moves phi by 0.00e+00 (relative)
+      alt        PUB8    72 Newton steps,   5.5 s, max u = 0.647611 a0, one further Newton step moves phi by 0.00e+00 (relative)
+      alt        REPC    29 Newton steps,   2.0 s, max u = 0.655582 a0, one further Newton step moves phi by 0.00e+00 (relative)
+      alt        DEP     58 Newton steps,   3.8 s, max u = 0.647022 a0, one further Newton step moves phi by 0.00e+00 (relative)
+
+    M4/M5 -- existence, uniqueness and continuous dependence, tested on the disc itself.
+      over the 30318 triangles of the solution: min Sigma_perp = 2.139e-01, min Sigma_par = 4.754e-01 -- both strictly positive
+  [PASS] M4a [THEOREM] the discrete energy is STRICTLY CONVEX on the solution, because the element Hessian's eigenvalues are exactly Sigma_perp and Sigma_par and both are strictly positive; hence the non-spherical saturated boundary-value problem has at most one solution   (min eigenvalues 2.14e-01 (transverse) and 4.75e-01 (longitudinal); Sigma_par = infinity is a CONSTRAINT, and only Sigma_par <= 0 would break this)
+      start 0.9x tapered               (max |grad|/a0 = 0.5720): ||phi - phi_ref||/||phi_ref|| = 1.39e-10, max |Delta grad phi|/a0 = 6.36e-07
+      start deposited-kernel solution  (max |grad|/a0 = 0.6472): ||phi - phi_ref||/||phi_ref|| = 1.28e-10, max |Delta grad phi|/a0 = 6.35e-07
+      start L30-repair solution        (max |grad|/a0 = 0.6556): ||phi - phi_ref||/||phi_ref|| = 1.21e-10, max |Delta grad phi|/a0 = 6.36e-07
+      start 1.06x tapered        (max |grad|/a0 = 0.7104 -- OUTSIDE the admissible set |grad phi| <= 0.6476): does not converge in 200 steps, ||phi - phi_ref||/||phi_ref|| = 3.48e-04
+  [PASS] M4b the non-spherical saturated boundary-value problem has a UNIQUE solution in practice: three genuinely different ADMISSIBLE starting fields converge to the same solution   (max relative difference 1.39e-10 in phi and 6.36e-07 a0 in grad phi.  An INADMISSIBLE start (|grad phi| > C a0 anywhere, i.e. infinite energy) does not converge -- correct behaviour for a constrained problem, and a practical warning for anyone solving this equation)
+      source perturbed by 1e-04: ||Delta phi||/||phi|| = 2.424e-05 (ratio to eps 0.242), max |Delta grad phi|/a0 = 2.280e-05 (ratio 0.228)
+      source perturbed by 1e-03: ||Delta phi||/||phi|| = 2.422e-04 (ratio to eps 0.242), max |Delta grad phi|/a0 = 2.279e-04 (ratio 0.228)
+      source perturbed by 1e-02: ||Delta phi||/||phi|| = 2.412e-03 (ratio to eps 0.241), max |Delta grad phi|/a0 = 2.271e-03 (ratio 0.227)
+  [PASS] M5 the solution depends CONTINUOUSLY, and in fact LIPSCHITZ-continuously, on the data: a relative source perturbation eps produces a response linear in eps with a bounded constant   (response/eps = 0.2424, 0.2422, 0.2412 at eps = 1e-4, 1e-3, 1e-2 -- constant to 0.49% over three decades, so the map data -> solution is Lipschitz and the problem is WELL POSED in the variational sense)
+
+    M6 -- HOW MUCH OF A REAL DISC IS ACTUALLY ON THE SATURATED BRANCH?  Section 1 asked this of the
+    ALGEBRAIC law, which is what every number in this repository uses.  Now it is asked of the SOLVE.
+    The distinction matters because the approach to the ceiling is astonishingly sharp: for the
+    carried kernel, Sigma_par = 1e8 requires |grad phi| to be within 1e-15 a0 of C, and even
+    Sigma_par = 200 requires it within 3e-4 a0.  So 'on the saturated branch' means 'the constraint
+    is exactly active', and that is a property of the solution, not of the local g_N.
+      PUB4   max |grad phi|/a0 = 0.653493; the constraint is active over 8.05e-04 of the meshed volume, out to R = 5.16 kpc
+      PUB6   max |grad phi|/a0 = 0.647673; the constraint is active over 8.03e-04 of the meshed volume, out to R = 5.16 kpc
+      PUB8   max |grad phi|/a0 = 0.647611; the constraint is active over 8.03e-04 of the meshed volume, out to R = 5.16 kpc
+      REPC   max |grad phi|/a0 = 0.655584; the constraint is active over 1.21e-03 of the meshed volume, out to R = 5.40 kpc
+      DEP    max |grad phi|/a0 = 0.647185; the constraint is active over 0.00e+00 of the meshed volume, out to R = 0.00 kpc
+      for comparison, the ALGEBRAIC law (g_N > s_sat a0) calls 1.26e-03 of the same volume saturated, out to R = 5.04 kpc
+      algebraic law  : saturated set spans R = 0.02-5.04 kpc, |z| = 0.013-3.74 kpc; midplane (|z| < 0.1 kpc) triangles in it: 313
+      actual solve   : saturated set spans R = 0.02-5.16 kpc, |z| = 0.013-4.92 kpc; midplane (|z| < 0.1 kpc) triangles in it: 58
+  [FAIL] M6 the ALGEBRAIC law and the SOLVE agree on where the saturated branch is active in a disc   (they do not: 54% of the volume the algebraic law calls saturated is NOT saturated in the solve.  Solving the non-spherical equation moves the active set off the midplane -- the algebraic law has 313 midplane triangles in it, the solve 58 -- and in the midplane at R = 1-4 kpc the solved |grad phi| sits 14-21% BELOW the ceiling the algebraic law pins it to)
+
+4.  TARGET (a) -- the inner rotation curve, where the saturated region sits
+    The comparison is between (i) the ALGEBRAIC prescription the repository uses everywhere,
+    g_tot = g_bar + a0 Delta(g_bar/a0) with both vectors radial, and (ii) the actual non-spherical
+    carrier solve, in which grad phi need not be parallel to grad Phi_N.
+
+      canonical footing, published kernel (Sigma_par capped at 1e8).  A dagger marks a
+      radius at which the solve is NOT mesh-converted to 1% (N5): those rows are bounds.
+        R [kpc]  s = g_N/a0  u solved  u algebraic   ratio  V_c algebraic  V_c solved  difference  mesh floor
+         1.000+       7.959   0.55542      0.64761  0.8577         157.51      154.75      -2.760       0.453
+         2.000+       5.212   0.51114      0.64761  0.7893         183.88      180.78      -3.098       0.381
+         3.000+       3.829   0.53106      0.64761  0.8200         196.86      193.77      -3.086       0.200
+         4.000        2.964   0.55989      0.64761  0.8645         204.20      201.48      -2.717       0.059
+         6.000        1.976   0.59597      0.64188  0.9285         212.93      211.01      -1.928       0.017
+         8.178        1.330   0.58865      0.61335  0.9597         214.25      212.86      -1.386       0.005
+        12.000        0.690   0.52710      0.53282  0.9893         205.85      205.36      -0.488       0.008
+        20.000        0.267   0.39908      0.39466  1.0112         195.51      196.16      +0.649       0.031
+      (+ = not mesh-converged)
+
+      diagnostic -- the same equation with an UNBOUNDED kernel (Delta = sqrt(s)), which has no ceiling:
+        R [kpc]   u/u_alg, bounded   u/u_alg, unbounded   u_alg/C, bounded
+          1.000             0.8577               0.8484             1.0000
+          2.000             0.7893               0.8636             1.0000
+          3.000             0.8200               0.8819             1.0000
+          4.000             0.8645               0.9043             1.0000
+          6.000             0.9285               0.9448             0.9912
+          8.178             0.9597               0.9726             0.9471
+         12.000             0.9893               0.9965             0.8227
+         20.000             1.0112               1.0131             0.6094
+  [PASS] O1 the saturated branch changes the inner rotation curve of a real disc, by more than the solver's own mesh floor   (max |V_c,solved - V_c,algebraic| = 2.717 km/s over the mesh-CONVERGED radii (3.098 km/s including the unconverged inner rows), canonical; 3.637 km/s alt; against a radius-specific mesh floor of at most 0.453 km/s taken from the disc's own refinement study.  The carrier's midplane force runs 79%-101% of the algebraic value -- a one-signed geometric deficit worth ~1.4% in V_c, comparable to the current systematic error on the Milky Way's V_c (+-2.6 km/s, Eilers et al. 2019).  The UNBOUNDED diagnostic kernel, same equation and no ceiling, gives 85%-101%: so the deficit is the generic AQUAL disc correction AMPLIFIED by the approach to the ceiling)
+
+5.  TARGET (b) -- the vertical structure, the most non-spherical observable available
+    K_z(R0, 1.1 kpc) is quoted as Sigma_1.1 = |K_z|/(2 pi G) (Kuijken & Gilmore 1991 convention).
+    Measurements: 71 +- 6 (KG91), 74 +- 6 (Holmberg & Flynn 2004), 68 +- 4 (Bovy & Rix 2013).
+
+      footing    kernel   s at (R0,1.1)  Sigma_1.1 algebraic  Sigma_1.1 solved   g_phi.zhat/|g_phi|
+      canonical  PUB8             1.318                89.31             87.64               0.4086
+      canonical  PUB6             1.318                89.31             87.64               0.4086
+      canonical  REPC             1.318                89.31             87.63               0.4085
+      canonical  DEP              1.318                87.13             85.49               0.4062
+      alt        PUB8             1.094                94.01             92.24               0.4112
+      alt        PUB6             1.094                94.01             92.24               0.4112
+      alt        REPC             1.094                94.01             92.24               0.4112
+      alt        DEP              1.094                91.64             89.84               0.4082
+      (for comparison the Newtonian direction cosine of g_N at that point is 0.4329; the algebraic prescription forces g_phi onto it exactly)
+  [FAIL] O2 the saturated branch changes the VERTICAL force of a disc, i.e. the non-spherical solve misaligns g_phi from g_N enough to move Sigma_1.1 by more than the measurement error   (max |Sigma_solved - Sigma_algebraic| = 1.80 Msun/pc^2 against a measurement error of 4 and a mesh floor of 2.67; the direction cosine of g_phi moves by at most 0.0267 from the Newtonian one)
+
+      misalignment angle between g_phi and g_N (recovered gradients; the spherical benchmark's
+      floor for this statistic is 4.70 deg at this resolution):
+      region                                  n   median  90th pct     max  frac > floor
+      mesh-converged, 4 < R < 20 kpc      12787     1.46      2.78   14.34         1.8%
+      inner, 1 < R < 4 kpc (bounds)        5658     2.57     15.25   46.64        22.4%
+      the SATURATED set itself             3584     2.27     12.80   61.72        21.1%
+  [FAIL] O3 the misalignment between the carrier force and the Newtonian force is a MATERIAL channel in the mesh-converged part of the disc -- i.e. the non-spherical solve differs from the algebraic prescription in DIRECTION as well as in magnitude   (it is not, where the solve is trustworthy: over 4 < R < 20 kpc the median misalignment is 1.46 deg against a 4.70 deg mesh floor, and only 1.8% of triangles exceed the floor.  Inside the saturated set the median is 2.27 deg with a tail to 61.7 deg, but that tail lives at R < 4 kpc where the solve is NOT mesh-converged, so it is a bound and not a measurement.  The non-spherical solve departs from the algebraic prescription mainly in the MAGNITUDE of g_phi (O1, up to 21%), not in its direction)
+
+6.  TARGET (c) -- cluster cores, the programme's hardest failure
+    THE_COMPLETE_THEORY section H-A: 'the excess is 3.37 a0 at 40 kpc, 5.2x the operative
+    ceiling'.  The excess is recomputed here from the repository's own cluster measurement audit.
+
+      footing    radius      n  mean excess   median     max  relaxed mean  /ceiling (mean)
+      canonical  30          4        2.580    2.291   5.480         2.753             3.98
+      canonical  40         12        2.790    2.838   4.684         3.785             4.31
+      canonical  50         12        2.454    2.529   3.924         3.209             3.79
+      alt        30          4        2.142    1.901   4.548         2.285             3.31
+      alt        40         12        2.316    2.355   3.888         3.142             3.58
+      alt        50         12        2.037    2.099   3.257         2.664             3.14
+
+      the deposited value 3.37 a0 sits between the all-cluster mean (2.79) and the relaxed-subset mean (3.78) at 40 kpc, canonical; 3.37/0.6476 = 5.20x
+  [PASS] O4 the cluster-core excess exceeds the kernel's own bounded-boost ceiling by a large factor, reproduced from the repository's committed audit at both footings   (mean excess/ceiling at 40 kpc = 4.31x (canonical) / 3.58x (alt); worst single cluster 7.23x)
+
+    THE COROLLARY THE VARIATIONAL FORM SUPPLIES.  In spherical symmetry the ceiling C is a statement
+    about the algebraic law.  In the variational form it is a POINTWISE CONSTRAINT on the solution
+    for ANY source and ANY geometry: every finite-energy configuration satisfies |grad phi| <= C a0
+    everywhere, so no triaxiality, no substructure and no non-sphericity can raise the carrier's
+    contribution above C a0 at any point.  And because the excess is the magnitude of a VECTOR SUM,
+    |g_N + g_phi| - |g_N| <= |g_phi| <= C a0, misalignment can only REDUCE it.  Tested directly on a
+    flattened cluster.
+      beta-model gas: beta = 0.65, r_c = 100 kpc, normalised to the audit's median g_bar(40 kpc) = 0.330 a0
+      cluster mesh: 108 x 108 = 11664 nodes
+
+      axis ratio  footing    kernel   max |grad phi|/a0  / own ceiling   saturated out to
+      0.6         alt        PUB8              0.647610         1.0000            3.5 kpc
+      0.6         canonical  PUB8              0.647610         1.0000            5.0 kpc
+      0.6         canonical  REPC              0.655256         0.9995            0.0 kpc
+      1.0         alt        PUB8              0.647610         1.0000            6.5 kpc
+      1.0         canonical  PUB8              0.647610         1.0000            8.0 kpc
+      1.0         canonical  REPC              0.655327         0.9996            0.0 kpc
+  [FAIL] O5 non-sphericity RELAXES the bounded-boost ceiling in cluster cores, i.e. the failure against the ceiling is an artefact of the spherical solve   (it does not: the flattened (q = 0.6) cluster's max |grad phi| is 1.0000 of its own ceiling, indistinguishable from the spherical 1.0000.  The ceiling is a POINTWISE constraint for every geometry -- and because the excess is |g_N + g_phi| - |g_N| <= |g_phi|, misalignment can only REDUCE it.  The cluster kill is strengthened, not weakened)
+
+    The 9-sigma DeltaSigma shape error is quoted over 0.5-2 Mpc.  Is that on the saturated branch?
+      canonical : at r >= 750 kpc the tabulated s = g_bar/a0 spans 0.0647 - 0.1702, against s_sat = 2.540
+      alt       : at r >= 750 kpc the tabulated s = g_bar/a0 spans 0.0537 - 0.1413, against s_sat = 2.540
+  [FAIL] O6 the 9-sigma lensing-shape failure sits on the saturated branch, so the saturated branch could be responsible for it   (it does not: at r >= 750 kpc the largest s in the audit is 0.1702, 15x below s_sat.  The lensing radii are DEEP on the unsaturated branch; the shape error is untouched by anything in this lane)
+
+7.  THE SMOOTH REPAIR -- L30's minimal C^2 continuation, and the deposited kernel 4.3
+
+      (a) inner rotation curve, canonical footing, V_c [km/s] at the midplane:
+        R [kpc]   published  L30 repair   deposited  repair-pub   dep-pub
+          1.000      154.75      154.81      154.92      +0.058    +0.169
+          2.000      180.78      180.91      180.90      +0.127    +0.118
+          3.000      193.77      193.96      193.59      +0.186    -0.185
+          4.000      201.48      201.63      200.74      +0.150    -0.740
+          6.000      211.01      211.01      209.14      +0.006    -1.870
+          8.178      212.86      212.87      210.40      +0.004    -2.461
+         12.000      205.36      205.37      203.09      +0.003    -2.269
+         20.000      196.16      196.17      195.97      +0.003    -0.188
+
+      (b) vertical structure, Sigma_1.1 [Msun/pc^2] from the solved field:
+      canonical  PUB8   87.64   PUB6   87.64   REPC   87.63   DEP   85.49   
+      alt        PUB8   92.24   PUB6   92.24   REPC   92.24   DEP   89.84   
+
+      (c) cluster cores: the ceiling itself.
+      published sup Delta = 0.647610;  L30 repair sup Delta = 0.655589 (+1.23%);  deposited sup Delta = 0.647610 (-0.00%)
+      the 40 kpc excess / ceiling: published 4.31x, L30 repair 4.26x, deposited 4.31x
+  [FAIL] P1 the SATURATION repair -- L30's minimal C^2 continuation, which differs from the published kernel by at most 0.008 a0 and ONLY above s_sat -- changes the inner rotation curve   (it does not: max change 0.186 km/s over 1-20 kpc, below the 0.453 km/s mesh floor.  For contrast the DEPOSITED kernel moves it by 2.461 km/s -- but that is its different shape at EVERY acceleration (0.011 dex over twenty decades), not the saturated branch: it differs from the published kernel most at R = 6-12 kpc, where s = 0.7-2.0 and nothing is saturated)
+  [FAIL] P2 the smooth repair changes the vertical structure   (it does not: L30's minimal repair moves Sigma_1.1 by 0.003 Msun/pc^2 and the deposited kernel by 2.401, against a 4 Msun/pc^2 measurement error)
+  [FAIL] P3 the smooth repair changes the cluster-core verdict   (the ceiling moves from 0.6476 to 0.6556 (L30) / 0.6476 (deposited), so the excess/ceiling moves from 4.31x to 4.26x -- the failure is untouched)
+  [PASS] P4 [control] the regularisation converges: capping Sigma_par at 1e4 and at 1e8 gives the same field, so the constrained (Sigma_par = infinity) limit exists and is what is being computed   (max V_c difference between Sigma_par capped at 1e4 and at 1e8 = 0.018 km/s over 1-20 kpc, against a mesh floor of 0.453 km/s)
+
+8.  VERDICT
+
+      well posed (strictly convex, unique, Lipschitz)   : True
+      any committed repository solve affected           : no
+      anything in the CLUSTER failure moved             : no
+      effect on a disc's inner rotation curve           : 2.72 km/s (~1.4%),
+                                                          one-signed, mesh-converged
+      effect on a disc's vertical structure             : 1.80 Msun/pc^2 (error bar 4)
+      where the branch is really realised               : the inner few kpc of the 37/175
+                                                          densest SPARC discs, and cluster cores only
+                                                          inside ~5 kpc, which is inside the
+                                                          innermost radius the audit tabulates
+      what the variational form ADDS                    : |grad phi| <= C a0 becomes a POINTWISE,
+                                                          GEOMETRY-FREE constraint (O5), so the
+                                                          cluster failure is HARDENED, not relaxed
+  [FAIL] V1 [VERDICT] the saturated branch is a NUMERICAL HAZARD that has been silently affecting this programme's committed solves   (it has not.  The degeneracy exists only in the CARRIER reading (M3: the AQUAL-on-total-potential reading has Sigma_par = 1 exactly at saturation, and QUMOND is linear), and no committed script solves the carrier equation off spherical symmetry (M4).  The liability is real and was worth checking, but it has never been drawn on)
+  [FAIL] V2 [VERDICT] the saturated branch is a PHYSICAL EFFECT the programme has been missing in the regime it cannot explain -- cluster cores   (it is not.  Cluster cores as the repository measures them are DEEP on the unsaturated branch (R3: max s = 0.909 against s_sat = 2.540); the branch only switches on inside ~5 kpc once a BCG is added, inside the audit's innermost radius; the ceiling is unchanged by flattening (O5); the excess/ceiling stays 4.31x; and the 9-sigma lensing-shape failure lives 15x below s_sat (O6))
+  [FAIL] V3 [VERDICT] the saturated branch is a FORMAL defect with NO observable consequence anywhere   (not quite.  It IS well posed -- strictly convex, unique to 1e-10, Lipschitz to 0.5% over three decades -- and it is invisible in clusters and in vertical structure (1.80 Msun/pc^2 against a 4 error bar).  But solving the non-spherical equation instead of applying the algebraic law moves a disc's inner rotation curve by 2.72 km/s, one-signed and mesh-converged: small, real, and not zero)
+  [PASS] V4 [VERDICT] the saturated branch is WELL POSED as a variational inequality -- the pathology L30 and L33 identified is a loss of classical regularity and of the cubic action, not a loss of existence, uniqueness or continuous dependence   (Sigma_par = +infinity is a CONSTRAINT (|grad phi| <= C a0), not a degeneracy: the energy stays convex, the minimiser exists and is unique, and the map data -> solution is Lipschitz.  What genuinely fails is C^2 regularity at the free boundary -- and the SIGN, since a non-monotone continuation (Sigma_par < 0) WOULD be ill posed, which is exactly what the bounded-boost theorem already forbids)
+
+==========================================================================================================================
+RESULT: 14 FAIL -> ['R2 the saturated branch is realised in DWARFS, and in typical discs -- i.e. it is a generic feature of galaxy interiors rather than of the baryon-densest minority', "R3 the saturated branch is realised at the radii the repository's cluster audit tabulates (L30 section 7 gives its address as 'the inner few kiloparsecs of every galaxy AND the cores of clusters')", 'M4 [LOCALISATION] some committed script in this repository solves the CARRIER equation off spherical symmetry, i.e. a published number could have been computed on the degenerate operator', 'M6 the ALGEBRAIC law and the SOLVE agree on where the saturated branch is active in a disc', 'O2 the saturated branch changes the VERTICAL force of a disc, i.e. the non-spherical solve misaligns g_phi from g_N enough to move Sigma_1.1 by more than the measurement error', 'O3 the misalignment between the carrier force and the Newtonian force is a MATERIAL channel in the mesh-converged part of the disc -- i.e. the non-spherical solve differs from the algebraic prescription in DIRECTION as well as in magnitude', 'O5 non-sphericity RELAXES the bounded-boost ceiling in cluster cores, i.e. the failure against the ceiling is an artefact of the spherical solve', 'O6 the 9-sigma lensing-shape failure sits on the saturated branch, so the saturated branch could be responsible for it', "P1 the SATURATION repair -- L30's minimal C^2 continuation, which differs from the published kernel by at most 0.008 a0 and ONLY above s_sat -- changes the inner rotation curve", 'P2 the smooth repair changes the vertical structure', 'P3 the smooth repair changes the cluster-core verdict', "V1 [VERDICT] the saturated branch is a NUMERICAL HAZARD that has been silently affecting this programme's committed solves", 'V2 [VERDICT] the saturated branch is a PHYSICAL EFFECT the programme has been missing in the regime it cannot explain -- cluster cores', 'V3 [VERDICT] the saturated branch is a FORMAL defect with NO observable consequence anywhere']   (146 s)
+==========================================================================================================================

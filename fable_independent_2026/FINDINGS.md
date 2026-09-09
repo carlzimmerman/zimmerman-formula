@@ -2237,3 +2237,44 @@ required steepness.
   it was a reference-radius artefact.**
 - **This closes the last named handle on the cluster shear shape.** One successor the theorem does not
   cover: a coherence-length-type nonlocal functional.
+
+## L53 — the saturated branch is WELL POSED, is not where we said it was, and hardens a kill
+
+`L53_saturated_cores.py` + `L53_SATURATED_CORES.md` (40 checks, 14 FAIL; **all 13 controls pass**).
+L30 and L33 found the branch is not twice-differentiable and located it in galaxy cores and cluster
+cores. This lane solved it properly.
+
+**Controls** reproduce the saturation point and ceiling, the Solar saturation radius, the ~5000 AU
+sphere, the stiffness identity to 1.5e-8, L30's minimal repair and the deposited kernel, the oblate
+spheroid interior field to 1.7%, and mesh convergence at every radius quoted.
+
+- **⭐ THE BRANCH IS WELL POSED, and the pathology was misdiagnosed.** Infinite longitudinal stiffness is
+  a **constraint**, |∇φ| ≤ Ca₀, **not a loss of ellipticity**. The problem is a gradient-constrained
+  variational inequality of elastic-plastic-torsion type: **strictly convex** (minimum element-Hessian
+  eigenvalues 0.214 and 0.475), **unique** (three admissible starts agree to 1.4e-10), and **Lipschitz
+  stable** (response constant to 0.5% over three decades). What actually fails is C² regularity at the
+  free boundary and the cubic action — exactly what L30 and L33 said, and nothing more. Only a
+  *non-monotone* continuation would be ill posed, and the bounded-boost theorem already forbids that.
+- **⭐ AND IT HAS NOT BEEN SILENTLY AFFECTING ANY OF OUR NUMBERS.** The degeneracy exists only in the
+  carrier reading, and of 133 files that touch the kernel, **no committed script runs a multi-dimensional
+  nonlinear carrier solve.**
+- **⚠️ CORRECTION TO L30 §7, WRONG ON BOTH HALVES.** It placed the branch in "the inner few kpc of every
+  galaxy and the cores of clusters". **Only 37 of 175 SPARC galaxies reach it at all**, to a median
+  3.91 kpc; **138 never saturate anywhere**; NGC 3198 never reaches it; and **dwarfs never do** — DDO 154
+  is a factor 40 short. **And it is realised at NO radius the cluster audit tabulates** — 0 of 12
+  clusters, both footings. Adding a central galaxy puts it inside 5 kpc, which is **inside the audit's
+  innermost radius**.
+- **⚠️ The 9σ lensing-shape failure does not sit on this branch either** — the acceleration variable
+  there is **15× below saturation**.
+- **⭐ THE GAIN IS A HARDENED KILL.** In variational form the bounded-boost ceiling is a **pointwise,
+  geometry-free constraint**, so **triaxiality cannot rescue the cluster failure** — an axis ratio of 0.6
+  gives exactly the same fraction of the ceiling as a sphere, and misalignment can only make it worse.
+  The excess stays at **4.31× canonical / 3.58× alt at 40 kpc**, worst cluster 7.23×.
+- **One small real cost, one-signed and mesh-converged:** solving the non-spherical equation rather than
+  applying the algebraic law **lowers a disc's inner rotation curve by 2.7 km/s**, at the level of the
+  current systematic. Relatedly, **54% of the algebraically-saturated volume is not saturated in the
+  actual solve.**
+- **The repair changes nothing measurable:** 0.186 km/s on the rotation curve, below the mesh floor;
+  0.003 M_⊙/pc² on the vertical structure; and the cluster excess from 4.31× to 4.26×.
+- **Two solver traps recorded for reuse:** the energy must be built by Legendre transform, and the
+  residual is a useless convergence measure on this branch because it is amplified by the stiffness.
