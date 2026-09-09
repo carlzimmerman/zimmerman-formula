@@ -1932,3 +1932,55 @@ eight reproduced anchors, including a positive control showing the shear-shape g
   for a **footing-independent** quantity — both the identity and the published formula give **−4.00e-6** at
   the exhibited point. And its shear control is near-tautological on the cold side, load-bearing only
   against the framework's own phantom.
+
+## L47 — the coherence length is 4 pc, the registered ceilings are vacuous, and the paper and the preregistration are not the same theory
+
+`L47_xi_collision.py` + `L47_XI_COLLISION.md` (31 checks, 13 FAIL; **all 10 controls pass**, 135 s).
+L30 found that solving the action's own scalar equation forces ξ up 27×. This lane confirmed it, and
+went further in three directions L30 did not.
+
+**Controls.** The analytic Green's function is verified symbolically for arbitrary background stiffness,
+its interior force limit is the biharmonic cone with the stiffness cancelling, and the cone is constant
+over four decades of stiffness. An independent 3-D FFT solve reproduces it to 2.7%. The repository's own
+filtered-proxy machinery, imported unedited, reproduces the standing 0.10/0.15 pc floors. PAPER8's own
+screening formula reproduces the paper's printed numbers.
+
+- **⭐ ξ ≥ 4.00 pc is forced (Saturn), or ≥ 1.38 pc on the sunward gate alone — identical on both
+  footings.** Reproduced three independent ways: an exact symbolic Green's function, a 3-D FFT solve, and
+  a Newton boundary-value solve in a different variable from L30's.
+- **Two things L30 did not check, and both strengthen it.** The cone is **not a point-source artefact** —
+  six mass models, from a point through a polytropic Sun to the planets, interstellar medium and local
+  Oort density, reproduce the law to **0.24%, and every departure RAISES the phantom mass**. The
+  structural reason is that the operator inverts so the scalar responds to the enclosed **potential**, not
+  the local density. And **the 4 pc does not depend on L30's kernel repair**: no solve reaches more than
+  0.46 of the ceiling, so the repaired branch is never touched.
+- **⚠️ WHY THE STANDING FLOOR IS BLIND, QUANTIFIED RATHER THAN ASSERTED.** Three screening laws, same
+  observable, same ξ-scaling, normalisations in the ratio **1 : 262 : 5.37e5**. The factor to PAPER8 is
+  *exactly* g_N(Saturn)/(2Ca₀): **the paper suppresses the saturated residual, the equation suppresses the
+  Newtonian source.** The machinery that actually produced the standing floor contains **no fourth-order
+  operator at all**, and the one standing script that does solve one applies it to a field whose source is
+  suppressed by 9.3e-7 at Saturn.
+- **⚠️ ARM B'S REGISTERED CEILINGS ARE VACUOUS, NOT WRONG.** At the supported ξ the same registered
+  estimator returns **γ_v = 1.0000** against ceilings of 1.0450 / 1.0300 — the true value stays below them,
+  so they are not falsified, but they are **320× too loose and exclude nothing**.
+
+| | canonical | alt |
+|---|---|---|
+| registered ceiling | 1.0450 | 1.0300 |
+| at ξ ≥ 4.00 pc (Saturn gate) | **1.0000 ± 0.0025** | **1.0000 ± 0.0025** |
+| at ξ ≥ 1.38 pc (sunward only) | **1.0025 ± 0.0037** | **1.0025 ± 0.0037** |
+
+- **⚠️ AND THE DECISION RULE IS TOO LENIENT BY 0.045.** The kill-from-above threshold must move
+  **1.129 → 1.084**. A DR4 value in [1.084, 1.129] would kill Arm B **and the registered table would not
+  say so.** That is a real defect with about two months to fix it. **No preregistration file was edited.**
+- **⚠️ THE PAPER AND THE PREREGISTRATION DESCRIBE DIFFERENT THEORIES.** The deposited paper and the action
+  document both display the coherence operator **inside** the MOND function with a **carrier** source, and
+  Amendment 11 names that structure verbatim. But the registered wide-binary number comes from a solver
+  using the **outside** placement **and** an **AQUAL** source. Those placements give floors of **4 pc and
+  585 pc** and are not interchangeable. **There is no ξ in the carrier structure that both passes the
+  Solar System and returns the registered ceiling** — that needs 0.226 pc, excluded by 313×.
+- **⚠️ THE FORK, AND IT IS THE PROGRAMME'S TO DECIDE.** The one escape is to read the theory as **AQUAL**
+  instead. Then the Solar System screens itself, ξ is set by the Cassini quadrupole at 0.03/0.05 pc, and
+  the registered ceilings stand — **but PAPER5's bounded-boost theorem, the saturation, L34's
+  theorem-forced ξ and Arm B's registered structure all cease to exist.** That is a different theory, not
+  a rescue. **The programme has to pick one.**

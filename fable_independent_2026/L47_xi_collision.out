@@ -1,0 +1,245 @@
+==========================================================================================================================
+L47 -- the coherence-length collision: the standing 0.10/0.15 pc floor against the action's own fourth-order equation
+==========================================================================================================================
+
+0.  THE TWO STRUCTURES.  Everything below turns on ONE fork, so it is stated first, in the repository's
+    own words and symbols.
+
+    (i) THE CARRIER STRUCTURE.  PAPER5 section 7, g03x's docstring and L34's control A3 all assert that the
+        MOND scalar is sourced by MATTER:            div[ J_Y(Y) grad phi ] = 4 pi G rho ,
+        so on a sphere J_Y(g_phi) g_phi = g_N and g_phi = a0 Delta(g_N/a0).  This is the structure in which
+        the bounded-boost theorem, the saturation, and L34's "no kernel of the class can screen the Solar
+        System" corollary exist at all.  Amendment 11(b) registers arm B in exactly this structure
+        ("nu_RAR carried and saturated at its maximum").
+
+    (ii) THE AQUAL STRUCTURE.  g03c / g03d / g03g solve, for the SAME symbol,
+        div[ mu(|grad(Phi_0 + psi)|/a0) grad psi ] - xi^2 Laplacian^2 psi = -div[ (mu - 1) grad Phi_0 ] ,
+        i.e. psi is the CORRECTION to the Newtonian potential and its source is the (mu - 1)-suppressed
+        phantom flux, not the point mass.  g03d's own docstring: "no point source, no screening of Newton".
+
+    For a spherical monopole the two agree EXACTLY at xi = 0 -- that is what "the carried kernel" means, and
+    it is why the fork was invisible.  They cannot agree once the fourth-order operator is switched on,
+    because in (i) that operator has to fight the FULL point mass and in (ii) only (mu - 1) of it.  At
+    Saturn (mu - 1) = C a0 / g_N = 9.3e-7.  That single factor is the whole collision.
+
+    carried kernel nu_RAR: C = sup Delta = 0.647610 at s_sat = 2.5397; C a0 = 6.0629e-11 (canonical) / 7.3044e-11 (alt) m/s^2
+    gates: Pitjev-Pitjeva M_ph(<Saturn) < 6.7e-11 M_sun  ==  4.3667e-15 m/s^2 at r = 9.54 AU;  alpha = 1 sunward 3.6620e-14 m/s^2
+
+--------------------------------------------------------------------------------------------------------------------------
+1.  CONTROLS -- independent machinery, then L30's own controls reproduced with it
+--------------------------------------------------------------------------------------------------------------------------
+
+    1a  THE ANALYTIC GREEN'S FUNCTION.  Linearise the carrier equation about ANY background of stiffness
+        Sigma (the galactic field, a cluster, nothing at all):   Sigma grad^2 phi - xi^2 grad^4 phi = 4 pi G rho.
+        In Fourier  1/[k^2(Sigma + xi^2 k^2)] = (1/Sigma)[1/k^2 - 1/(k^2 + Sigma/xi^2)], i.e. Coulomb MINUS
+        Yukawa of range l = xi/sqrt(Sigma), so for a point mass
+
+            phi(r) = -(GM/Sigma)(1 - e^{-r/l})/r ,      w(r) = |phi'| = (GM/(Sigma r^2))[1 - e^{-r/l}(1 + r/l)]
+
+        and, expanding, w(r -> 0) = GM/(2 xi^2) EXACTLY: the Sigma cancels.  The biharmonic cone is
+        therefore not a property of the kernel, of the repair, of a0, or of the external field.
+  [PASS] K1a [control] the analytic Green's function satisfies Sigma grad^2 phi - xi^2 grad^4 phi = 0 away from the source, symbolically and for arbitrary Sigma   (sympy residual 0)
+  [PASS] K1b [control] its r -> 0 force limit is GM/(2 xi^2) exactly, with Sigma cancelling -- the biharmonic cone, derived without any kernel   (sympy limit GM/(2*xi2))
+  [PASS] K1c [control] the cone GM/(2 xi^2) is independent of the background stiffness Sigma over four decades (0.03 to 300), so it does not depend on the external field or on which kernel is carried   (worst relative spread 1.15e-11 over Sigma = 0.03 ... 300, evaluated at r = 1e-12 pc; the residual is the leading -2r sqrt(Sigma)/(3 xi) correction, which is what makes the cone the r -> 0 LIMIT rather than a plateau)
+  [PASS] K2 [control] an independent 3-D FFT solve of the same linear operator reproduces the analytic Green's function to better than 5% (discretisation-limited) -- a different dimensionality and a different code path from any 1-D solver   (max relative error 2.739e-02 at Sigma = 1.0 and 2.55, 160^3 box)
+
+    1c  THE NONLINEAR SOLVER.  The action's static scalar equation with the coherence operator OUTSIDE J,
+        in spherical symmetry, integrated once (u = r^2 w, w = |grad phi|):
+
+            J_Y(w) u  -  xi^2 ( u'' - 2 u'/r )  =  G M(<r) .
+
+        Nondimensionalised with r_M = sqrt(GM/a0), x = r/r_M, u_hat = u/(r_M^2 a0), eps = xi/r_M, and using
+        J_Y(w) w = a0 S(w_hat) with S the inverse of Delta:
+
+            S(u_hat/x^2) x^2  -  eps^2 ( u_hat_xx - 2 u_hat_x/x )  =  m(x) .
+
+        Solved by NEWTON in u_hat (L30 solved in q = s(w); the Jacobian, the variable and the linearisation
+        are therefore different), on a uniform grid in t = ln x with u_hat_xx - 2u_hat_x/x = (u_hat_tt -
+        3 u_hat_t)/x^2, boundary conditions u_hat(x_min) = 0 (regularity: this excludes the spurious
+        extra-point-mass 1/r^2 branch) and u_hat(x_max) = the algebraic carrier law.  Positive stiffness
+        S' = Sigma_par >= 0 makes the linear operator positive definite at every step.
+  [PASS] K3 [control] with the kernel switched off the solver's stencil reproduces the exact biharmonic cone w = GM/(2 xi^2) at three radii spanning two decades (reproduces L30's K4 with a different variable and a different discretisation)   (worst deviation 0.0064% at xi = 0.5 pc)
+  [PASS] K4 [control] at xi -> 0 the solver reproduces the algebraic carrier law w = a0 Delta(g_N/a0) at r = r_M, on both footings and three values of eps = xi/r_M (reproduces L30's K5)   (worst deviation 0.0036% over 6 solves)
+  [PASS] K5 [control] every one of the exact solves reproduces the analytic interior prediction min[GM/(2 xi^2), C a0] (reproduces L30's K6, with an independent solver)   (worst deviation 0.0372% over 18 solves, both footings, xi = 0.05 to 30 pc)
+  [PASS] K6 [control] no solve above ever enters the saturated branch, so the whole xi floor below is computed WITHOUT any continuation of the published kernel past s_sat: L30's repair is not what drives the number   (largest Delta reached anywhere in any solve is 0.4598 C (the plateau is never touched; at xi = 0.05 pc it comes closest))
+  [PASS] K7 [control] the repository's own filtered-proxy machinery (g02_filtered_efe.py imported unedited, driven exactly as g03x drives it) reproduces the STANDING floors for the carried kernel: 0.10 pc canonical / 0.15 pc alt -- the floors Amendment 11(b) and PAPER8 both carry   ({'canonical': 0.1, 'alt': 0.15})
+  [PASS] K8 [control] the gate constants rebuilt from g02/g03d's own numbers, and L34's published bare-kernel shortfall reproduced: 1.400e4x canonical / 1.687e4x alt against the binding Saturn phantom-mass gate   (C a0 / gate = 1.388e+04 (canonical), 1.673e+04 (alt); gate 4.367e-15 m/s^2)
+  [PASS] K9 [control] PAPER8's own Solar-System screening formula, residual C a0 / (1 + (xi/R_Sat)^2) (L43_assemble_theory.py line 540), reproduces the paper's printed numbers: suppression 4.6e6 and 3.0e-3 of the bound at xi = 0.10 pc   ((xi/R_Sat)^2 = 4.636e+06 (paper 4.6e6); screened/bound = 3.020e-03 (paper 3.0e-3))
+
+--------------------------------------------------------------------------------------------------------------------------
+2.  THE REALISTIC SOURCE -- the same fourth-order equation with six mass models, phantom mass read at Saturn against Pitjev-Pitjeva
+--------------------------------------------------------------------------------------------------------------------------
+      source model                   footing     xi [pc]  w(Saturn) [m/s^2]  M_ph(<Sat)/M  r^2/(2 xi^2)     ratio
+      point mass                     canonical      4.00        4.35539e-15   6.68269e-11   6.68483e-11   0.99968
+      point mass                     alt            4.00        4.35539e-15   6.68269e-11   6.68483e-11   0.99968
+      uniform ball R_sun             canonical      4.00        4.35539e-15   6.68269e-11   6.68483e-11   0.99968
+      uniform ball R_sun             alt            4.00        4.35539e-15   6.68269e-11   6.68483e-11   0.99968
+      n = 3 polytrope                canonical      4.00        4.35539e-15   6.68269e-11   6.68483e-11   0.99968
+      n = 3 polytrope                alt            4.00        4.35539e-15   6.68269e-11   6.68483e-11   0.99968
+      + eight planets                canonical      4.00        4.36010e-15   6.68992e-11   6.68483e-11   1.00076
+      + eight planets                alt            4.00        4.36009e-15   6.68991e-11   6.68483e-11   1.00076
+      + local ISM (1 cm^-3)          canonical      4.00        4.36268e-15   6.69388e-11   6.68483e-11   1.00135
+      + local ISM (1 cm^-3)          alt            4.00        4.36270e-15   6.69391e-11   6.68483e-11   1.00136
+      + Oort-limit 0.1 Msun/pc^3     canonical      4.00        4.36723e-15   6.70086e-11   6.68483e-11   1.00240
+      + Oort-limit 0.1 Msun/pc^3     alt            4.00        4.36732e-15   6.70100e-11   6.68483e-11   1.00242
+  [PASS] R1 the enclosed phantom-mass law M_ph(<r)/M = r^2/(2 xi^2) survives a realistic Solar-System source: a finite Sun (uniform and n = 3 polytrope), the eight planets, the local interstellar medium and the full Oort-limit local mass density all leave it unchanged to better than 1%   (worst departure from the point-source law over 12 solves is 0.242% (the Oort-limit background, which genuinely adds mass); the finite-Sun models are indistinguishable from the point mass at 0.032%, the leading correction being O((R_sun/R_Sat)^2) = 2.38e-07.  Every departure RAISES the phantom mass, so the floor moves up, not down)
+      why: the fourth-order operator inverts to xi^2 grad^2 phi = -Phi_N, so w(r) = (1/r^2) int_0^r [-Phi_N(r')] r'^2 dr'/xi^2 -- it responds to the enclosed POTENTIAL, and for any
+      mass distribution wholly inside r that is GM/(2 xi^2) up to O((R_source/r)^2).  At Saturn (R_sun/R_Sat)^2 = 2.4e-07 and the ISM inside Saturn's orbit is 1.4e-14 M_sun.
+      the nearest stars: alpha Cen (2 M_sun at 1.34 pc) contributes its own cone 8.71e-15 m/s^2 at the Sun, but it varies by only
+      2.00e-19 m/s^2 across Saturn's orbit (4.6e-05 of the gate), so it is an external field, not a monopole inside Saturn's orbit.
+
+--------------------------------------------------------------------------------------------------------------------------
+3.  THE STANDING FLOOR -- the three screening laws the repository actually uses, side by side on the same observable
+--------------------------------------------------------------------------------------------------------------------------
+
+    Same quantity in every row: the phantom mass inside Saturn's orbit as a fraction of the Pitjev-Pitjeva
+    bound, for the CARRIED nu_RAR kernel.
+
+      (A) PAPER8 / L43_assemble_theory.py line 540:  screened = C a0 / (1 + (xi/R_Sat)^2)     [a heuristic]
+      (B) g03x / g02_filtered_efe.py, the source of the standing 0.10/0.15 pc floor: the QUMOND phantom
+          density of an UNFILTERED point source, passed through ONE Helmholtz output filter of length xi.
+          There is no fourth-order operator anywhere in this machinery.                        [a filter]
+      (C) the action's own carrier equation with the coherence operator, solved:  w = GM/(2 xi^2).  [a solve]
+
+       xi [pc] |  (A) PAPER8 formula | (B) g03x filtered proxy | (C) fourth-order solve |       C/B |       C/A
+          0.05 |          1.1880e-02 |              2.8617e+00 |             6.3839e+03 |    2230.8 | 5.373e+05
+          0.10 |          2.9701e-03 |              7.9168e-01 |             1.5960e+03 |    2015.9 | 5.373e+05
+          0.15 |          1.3200e-03 |              3.6429e-01 |             7.0932e+02 |    1947.1 | 5.373e+05
+          0.30 |          3.3001e-04 |              9.4335e-02 |             1.7733e+02 |    1879.8 | 5.373e+05
+          1.00 |          2.9701e-05 |              8.7045e-03 |             1.5960e+01 |    1833.5 | 5.373e+05
+          4.00 |          1.8563e-06 |              5.4844e-04 |             9.9748e-01 |    1818.8 | 5.373e+05
+  [PASS] S1 the standing floor's machinery and the action's fourth-order equation give the SAME xi-scaling (both ~ 1/xi^2) and differ only by a constant factor, so the disagreement is a normalisation, not a different physical law   (C/B = ['2016', '1947', '1880', '1833'] over xi = 0.10 to 1.0 pc, spread 1.10x; mean 1919)
+  [PASS] S2 the factor between PAPER8's screening formula and the fourth-order solve is exactly g_N(Saturn)/(2 C a0) -- the paper applies the gradient-scale suppression (xi/R_Sat)^2 to the SATURATED RESIDUAL C a0, while the equation applies it to the FULL NEWTONIAN SOURCE   (measured 5.3735e+05 vs g_N(Sat)/(2 C a0) = 5.3735e+05)
+  [FAIL] S3 the machinery that produced the standing 0.10/0.15 pc floor evaluates the fourth-order coherence operator at all   (neither g02_filtered_efe.py nor g03x_nurar_carrier_and_cassini.py contains any fourth-order operator: the screening there is a linear Helmholtz filter applied to the QUMOND phantom DENSITY, and the scalar's own equation is never solved.  L30's diagnosis is confirmed by reading the files)
+  [FAIL] S4 the one standing script that DOES solve a fourth-order equation (g03d) applies it to a scalar that carries the point mass   (g03d's own docstring says the scalar has 'no point source, no screening of Newton': its source is -div[(mu-1) grad Phi_0], suppressed at Saturn by (mu - 1) = C a0/g_N = 9.30e-07.  The fourth-order operator there never sees the Sun)
+
+--------------------------------------------------------------------------------------------------------------------------
+4.  THE COHERENCE-LENGTH FLOOR the action's own equation forces
+--------------------------------------------------------------------------------------------------------------------------
+      M_ph(<r)/M = r^2/(2 xi^2)  =>  Pitjev-Pitjeva  xi >= r_Saturn/sqrt(2 x 6.7e-11) = 3.995 pc   (r_Sat = 9.54 AU; 9.58 AU gives 4.012 pc)
+      constant sunward acceleration GM/(2 xi^2) < 3.662e-14      =>  xi >= 1.380 pc
+      Saturn binds by 2.90x.  NEITHER number contains a0, so the two footings are identical -- which is itself a check: the standing floor 0.10/0.15 pc DOES differ between footings, because
+      it comes from a machinery in which a0 enters.
+  [FAIL] F1 the fourth-order carrier equation admits the repository's standing coherence-length floor (xi <= 0.15 pc)   (the smallest admissible tabulated xi is 4.0 pc (canonical) and 4.0 pc (alt); the analytic floor is 4.00 pc, 40x the canonical standing floor and 27x the alt one)
+  [PASS] F2 the floor xi >= 4.0 pc is the same on both footings, because the biharmonic cone contains neither a0 nor the kernel   (canonical 4.0 pc, alt 4.0 pc; analytic 3.995 pc for both)
+  [FAIL] F3 the 4 pc floor depends on L30's repair of the kernel past its saturation point   (it does not: no solve reaches more than 0.460 C, the interior sits at Delta = 4.65e-05 a0 (deep MOND), and the analytic derivation (K1a-K1c) uses no kernel at all.  The repair is needed to WRITE the equation, not to get this number)
+
+      THE OTHER PLACEMENT.  With the operator inside J, as the action and PAPER8 both display it,
+      the interior balance is  w = GM/(2 xi^2 J_Y(w))  with J_Y at the screened (deep-MOND) gradient,
+      so  w = sqrt(GM a0/2)/xi  and the Saturn bound reads  xi >= r_Sat^2 sqrt(a0/2GM)/6.7e-11.
+      canonical : xi >= 585 pc; at that floor w = 4.366e-15 m/s^2 = 4.66e-05 a0, J_Y there = 4.6633e-05 against the deep-MOND value 4.6631e-05 (ratio 1.0000)
+      alt       : xi >= 642 pc; at that floor w = 4.366e-15 m/s^2 = 3.87e-05 a0, J_Y there = 3.8707e-05 against the deep-MOND value 3.8705e-05 (ratio 1.0000)
+  [FAIL] F4 the two placements of the coherence operator, which the action document and PAPER8 both call equivalent, give the same Solar-System floor   (inside J: 585 pc canonical / 642 pc alt, against 4.00 pc outside J -- factors 146 and 161 apart.  BOTH exceed the standing floor by more than 25x, so the collision does not depend on which placement is adopted)
+
+--------------------------------------------------------------------------------------------------------------------------
+5.  ARM B -- the registered wide-binary ceilings recomputed at the xi the analysis supports
+--------------------------------------------------------------------------------------------------------------------------
+
+    Inside the healing length the scalar force of each star is the CONSTANT GM_i/(2 xi^2), so for a pair of
+    total mass M the relative radial acceleration is  G M/r^2 + G M/(2 xi^2)  and
+
+        gamma_force(r) = 1 + [1 - e^{-x}(1 + x)]/Sigma ,   x = r sqrt(Sigma)/xi   ->   1 + r^2/(2 xi^2)
+
+    independent of the masses, of the orientation, of the external field and of a0.  The largest DR4
+    separation, 30 kAU, is r/l = 0.058 at xi = 4 pc, so the fourth-order term dominates the kernel term by
+    (l/r)^2 = 300 and the nonlinear external-field machinery of g03g is irrelevant there: superposition of
+    the two cones is exact to the second decimal in the correction itself.
+      estimator control: g03g's original table -> gamma_v = 1.0325 / 1.0400  (g03h published 1.032 / 1.040)
+      estimator control: g03y's rar_carried table -> gamma_v = 1.0450 / 1.0300  (Amendment 11(b) registered 1.0450 / 1.0300)
+  [PASS] K10 [control] the estimator used below reproduces BOTH published numbers: g03h's 1.032/1.040 from g03g's original table and Amendment 11(b)'s registered 1.0450/1.0300 from g03y's carried-kernel table.  Anything reported afterwards is physics, not a re-implementation difference   (g03g: 1.0325/1.0400; g03y: 1.0450/1.0300)
+      external-field stiffnesses at y_e = 1.900 a0: Sigma_perp = 2.113, Sigma_par = 12.920 (canonical); 1.712 / 8.161 (alt)
+
+      case                              xi [pc] footing         3k      5k      7k     10k     15k     20k     30k   gamma_v (registered estimator)
+      Saturn phantom-mass floor           3.995 canonical  1.00001 1.00002 1.00004 1.00007 1.00016 1.00029 1.00064   1.00000 +/- 0.0025
+      Saturn phantom-mass floor           3.995 alt        1.00001 1.00002 1.00004 1.00007 1.00016 1.00029 1.00064   1.00000 +/- 0.0025
+      sunward-gate floor only             1.380 canonical  1.00006 1.00015 1.00030 1.00060 1.00132 1.00231 1.00502   1.00250 +/- 0.0037
+      sunward-gate floor only             1.380 alt        1.00006 1.00015 1.00030 1.00060 1.00133 1.00232 1.00507   1.00250 +/- 0.0037
+      standing floor 0.10 [diagnostic]    0.100 canonical  1.00920 1.02331 1.04173 1.07452 1.13500 1.19472 1.29535   1.12500 +/- 0.0037
+      standing floor 0.10 [diagnostic]    0.100 alt        1.00933 1.02385 1.04307 1.07788 1.14393 1.21148 1.33126   1.13500 +/- 0.0037
+      standing floor 0.15 [diagnostic]    0.150 canonical  1.00428 1.01118 1.02062 1.03843 1.07452 1.11456 1.19472   1.07750 +/- 0.0037
+      standing floor 0.15 [diagnostic]    0.150 alt        1.00432 1.01136 1.02106 1.03960 1.07788 1.12135 1.21148   1.08250 +/- 0.0037
+      the last two rows are a LINEAR-RESPONSE DIAGNOSTIC, not a solve: at xi = 0.10-0.15 pc the pair's
+      own field is not a small perturbation on the external field at 15-30 kAU, so the cone formula
+      overestimates there.  They are shown only to make the point that the carrier structure does NOT
+      return 1.0450/1.0300 at those lengths either -- and those lengths are excluded by 1600x anyway.
+      The first two rows ARE exact: at xi >= 1.38 pc every DR4 separation is deep inside the cone.
+      Sigma-sensitivity at the supported xi: varying the background stiffness from 1.0 to 12.9 (Sigma_perp to Sigma_par) moves gamma_force at 20 kAU by 9.74e-06 -- the cone is stiffness-free to that order.
+  [FAIL] B1 Amendment 11(b)'s registered arm-B ceilings, 1.0450 (canonical) / 1.0300 (alt), are still the right numbers at the coherence length the action's own Solar-System equation supports   (at xi = 4.00 pc the same registered estimator returns gamma_v = 1.0000 (canonical) / 1.0000 (alt), i.e. Newton to the estimator's own resolution.  In the force boost, which does not round: 2.876e-04 at 20 kAU against the registered ceiling's 9.202e-02 -- a factor 320)
+  [FAIL] B2 the corrected arm-B prediction still lies strictly between Newton and the registered ceiling, so the registered ceiling is not FALSIFIED by this -- it is vacuous   (1.0000 <= 1.0450 and 1.0000 <= 1.0300, and the boost is strictly positive (2.88e-04 at 20 kAU), so nothing registered is violated -- the ceiling is simply 320x too loose to exclude anything.  On the weaker sunward-only floor xi >= 1.38 pc the ceiling would be 1.0025 / 1.0025)
+  [FAIL] B3 Amendment 11(d)'s decision rule still kills arm B at the right place   (the registered kill-from-above threshold is ceiling + 3 sigma_tot = 1.129 (the table's 1.129).  At the supported xi the ceiling is 1.00000, so the threshold should be 1.084: a DR4 value in [1.084, 1.129] would kill arm B and the registered table would not say so)
+  [FAIL] B4 within the carrier structure there exists a coherence length that simultaneously passes the Solar System and returns the registered ceiling gamma_v = 1.0450   (gamma_v = 1.0450 at 20 kAU needs xi = 0.226 pc, which the same structure excludes by 313x on the Saturn phantom mass.  The registered ceiling and the Solar-System gate are mutually exclusive INSIDE the carrier structure, separated by a factor 18 in xi)
+
+--------------------------------------------------------------------------------------------------------------------------
+6.  WHICH EQUATION EACH DOCUMENT AND EACH SCRIPT ACTUALLY USES
+--------------------------------------------------------------------------------------------------------------------------
+      document / script                            placement of the coherence operator    source of the scalar
+      THE_ACTION_2026-09-05.md §1                  inside J                               carrier (AeST coupling 2(2-K_B) J^mu d_mu phi, statically div J = grad^2 Psi)
+      PAPER8 (DOI 22667688) eq. (1)                inside J                               carrier (PAPER5 §7's theorem is quoted as the reason xi exists)
+      g03d_exact_fourth_order_solar.py             outside J (bare xi^2 Delta^2 psi)      AQUAL correction: -div[(mu-1) grad Phi_0], 'no point source'
+      g03g_3d_pair_solver.py  [arm B's solver]     outside J (bare xi^2 Delta^2 psi)      AQUAL correction: -div[(mu-1) grad Phi_0]
+      g02/g03x  [the standing floor]               no fourth-order operator at all        QUMOND phantom density + one Helmholtz output filter
+      L43_assemble_theory.py line 540              no operator: heuristic C a0/(1+(xi/R_Sat)^2) n/a
+      L30 / L47 Gate 2                             outside J (bare xi^2 grad^4 phi)       carrier: 4 pi G rho
+  [PASS] D1 the deposited paper and the action document display the coherence operator INSIDE J   (THE_ACTION §1: J( Y + xi^2 q^(lambda sigma) q^(mu nu) grad_lambda V_mu grad_sigma V_nu ); PAPER8 eq. (1): the same, verbatim.  Both then add that it 'may equivalently sit outside J')
+  [FAIL] D2 the solver that produced the registered arm-B number uses the SAME placement as the deposited paper   (g03g_3d_pair_solver.py (via g03y) solves 'div[mu grad psi] - xi^2 Delta^2 psi', a bare fourth-order term with a constant coefficient -- the OUTSIDE-J placement.  The paper displays the inside-J one, and L30/L47 measure the two placements' Solar-System floors as 4.0 pc and ~590 pc: they are not interchangeable)
+  [FAIL] D3 the solver that produced the registered arm-B number uses the SAME source for the scalar as the structure Amendment 11(b) registers ('nu_RAR carried and saturated at its maximum')   (g03g solves the AQUAL correction equation, whose source is -div[(mu-1) grad Phi_0]; the carried structure the amendment names sources the scalar with 4 pi G rho.  The two agree exactly at xi = 0 and differ by (mu-1) = C a0/g_N once the fourth-order term is switched on)
+  [FAIL] D4 [record] Amendment 11(b) names the carrier structure and the 0.10/0.15 pc floor together, so the conflict is visible inside a single registered clause   (Amendment 11(b): 'the coherence operator ξ²|∇⊥V|² inside the kernel; ν_RAR carried and saturated at its maximum' and 'ξ ≥ 0.10 pc canonical / 0.15 pc alt ... (g03d_exact_fourth_order_solar.py)' -- the operator is named inside the kernel, the floor is taken from a solve that puts it outside AND removes the point source)
+
+--------------------------------------------------------------------------------------------------------------------------
+7.  VERDICT -- which coherence length the programme should carry
+--------------------------------------------------------------------------------------------------------------------------
+
+    In the CARRIER structure -- the one PAPER5's bounded-boost theorem needs, the one L34's screening
+    corollary is derived in, the one PAPER8 says is the reason xi exists at all, and the one Amendment
+    11(b) names -- the action's own static scalar equation gives
+
+        M_ph(<r)/M = r^2/(2 xi^2)      exactly, for any kernel, any a0, any external field, any mass, and
+                                       any realistic Solar-System mass distribution (12 solves, section 2)
+
+    so the Solar System forces  xi >= 4.00 pc  (Pitjev-Pitjeva) or  xi >= 1.38 pc
+    (the profile-appropriate constant-sunward-acceleration gate alone), on BOTH footings.  The standing
+    0.10/0.15 pc comes from a filtered proxy with no fourth-order operator in it, cross-checked against a
+    fourth-order solve of the OTHER structure and against a heuristic that suppresses the residual rather
+    than the source.  Nothing in the standing chain evaluates the equation the action writes.
+
+    In the AQUAL structure the residual vanishes in the Solar System by itself (PAPER8 §: "only the carrier
+    arm needs a coherence length at all"), xi is set by the Cassini QUADRUPOLE at 0.03/0.05 pc, and neither
+    the bounded-boost theorem nor arm B's saturation exists.  That is a DIFFERENT theory, not a rescue of
+    this one, and it is the theory the registered gamma_v solver actually solves.
+
+    The programme must pick one.  It cannot register arm B as the carrier structure and evaluate its
+    coherence length and its wide-binary boost in the AQUAL one.
+  [PASS] V1 [verdict] the coherence length the programme should carry, inside the structure it registers, is xi >= 4.0 pc (Saturn) / 1.38 pc (sunward gate alone) on both footings -- NOT 0.10/0.15 pc   (floors {'canonical': 4.0, 'alt': 4.0}; no continuation used (max Delta = 0.460 C); the law survives six source models to 0.242%; the standing machinery contains no fourth-order operator)
+  [FAIL] V2 [verdict] Amendment 11 needs no correction before DR4   (it does: the registered ceilings 1.0450/1.0300 become 1.00000/1.00000 at xi = 4.00 pc (and 1.00250/1.00250 at 1.38 pc), identical on both footings, and the kill-from-above threshold moves from 1.129 to 1.084.  NOT WRITTEN HERE -- reported for the owner)
+
+    WHAT AN AMENDMENT WOULD HAVE TO SAY (text is NOT written into the pre-registration by this lane):
+
+      (i)   Arm B's coherence-length floor, in the carrier structure Amendment 11(b) names, is
+            xi >= 4.00 pc from the Pitjev-Pitjeva Saturn phantom mass and xi >= 1.38 pc from the
+            alpha = 1 sunward gate alone, IDENTICAL on both footings because the biharmonic cone contains
+            no a0.  The floors 0.10 pc / 0.15 pc are superseded.
+      (ii)  Arm B's ceiling therefore becomes gamma_v <= 1.00014 (both footings) on the Saturn gate, or
+            gamma_v <= 1.0025 (both footings) if only the sunward gate is taken.  1.0450 / 1.0300 are
+            superseded and must not be scored.  They are not falsified -- the true value stays below them --
+            but they are 320x too loose in the force boost and no longer exclude anything.
+      (iii) Amendment 11(d)'s row "gamma >= 1.129 -> arm B falsified" must move to 1.084 on the Saturn
+            gate (1.086 on the sunward gate).  Amendment 11(e)'s statement that DR4 cannot
+            separate arm B from Newton becomes stronger, not weaker: the predicted boost at 20 kAU is
+            2.88e-04 in force, i.e. 0.0051 sigma_tot in gamma_v, so the wide-binary channel
+            stops being a test of arm B at all -- it can only kill it from above.
+      (iv)  The row "1.007 - 1.056 -> the arm question is decided for B" is no longer right: at the
+            supported xi, a measurement anywhere in that range is 0.2-2.0 sigma_tot ABOVE arm B, not
+            consistent with it as its own prediction.
+      (v)   PAPER8's parameter table entry "xi >= 0.10 pc canonical / 0.15 pc alt --- theorem-forced" and
+            its §"the operator's gradient-scale suppression (xi/R_Sat)^2" need the same correction: the
+            suppression applies to the Newtonian source, not to the saturated residual, a factor
+            g_N(Saturn)/(2 C a0) = 5.37e+05.
+      (vi)  The action document's "it may equivalently sit outside J" is false as a statement about the
+            Solar System: the two placements' floors are 4.0 pc and 585 pc.
+
+
+==========================================================================================================================
+RESULT: 13 FAIL -> ['S3 the machinery that produced the standing 0.10/0.15 pc floor evaluates the fourth-order coherence operator at all', 'S4 the one standing script that DOES solve a fourth-order equation (g03d) applies it to a scalar that carries the point mass', "F1 the fourth-order carrier equation admits the repository's standing coherence-length floor (xi <= 0.15 pc)", "F3 the 4 pc floor depends on L30's repair of the kernel past its saturation point", 'F4 the two placements of the coherence operator, which the action document and PAPER8 both call equivalent, give the same Solar-System floor', "B1 Amendment 11(b)'s registered arm-B ceilings, 1.0450 (canonical) / 1.0300 (alt), are still the right numbers at the coherence length the action's own Solar-System equation supports", 'B2 the corrected arm-B prediction still lies strictly between Newton and the registered ceiling, so the registered ceiling is not FALSIFIED by this -- it is vacuous', "B3 Amendment 11(d)'s decision rule still kills arm B at the right place", 'B4 within the carrier structure there exists a coherence length that simultaneously passes the Solar System and returns the registered ceiling gamma_v = 1.0450', 'D2 the solver that produced the registered arm-B number uses the SAME placement as the deposited paper', "D3 the solver that produced the registered arm-B number uses the SAME source for the scalar as the structure Amendment 11(b) registers ('nu_RAR carried and saturated at its maximum')", 'D4 [record] Amendment 11(b) names the carrier structure and the 0.10/0.15 pc floor together, so the conflict is visible inside a single registered clause', 'V2 [verdict] Amendment 11 needs no correction before DR4']    (136 s)
+==========================================================================================================================
+n) / 1.38 pc (sunward gate alone) on both footings -- NOT 0.10/0.15 pc', 'V2 [verdict] Amendment 11 needs no correction before DR4']    (135 s)
+==========================================================================================================================
