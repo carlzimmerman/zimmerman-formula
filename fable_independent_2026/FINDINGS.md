@@ -1984,3 +1984,52 @@ screening formula reproduces the paper's printed numbers.
   the registered ceilings stand — **but PAPER5's bounded-boost theorem, the saturation, L34's
   theorem-forced ξ and Arm B's registered structure all cease to exist.** That is a different theory, not
   a rescue. **The programme has to pick one.**
+
+## L52 — the technique has TWO arrangements, and the one the programme needs was never tried
+
+`L52_marginal_sweep.py` + `L52_MARGINAL_SWEEP.md` (**68 checks, 68 PASS**). L44 found that an auxiliary's
+Schur complement can replace a marginal zero with a positive number. This lane swept the action for
+everywhere else it applies, and found the reason it had never fired twice.
+
+**Controls.** The khronon quadratic Lagrangian is derived from the action's four aether terms; the tensor
+speed is confirmed exactly 1 as an **identity at every parameter value**; the machinery **flags** a
+negative kinetic coefficient and **flags** a tensor speed off 1, so it has teeth; and eleven of L44's own
+numbers reproduce, including its negative control at −192.49 and its tolerance of 3.66e-5.
+
+- **⭐ THE STRUCTURAL RESULT.** A holonomic auxiliary attaches **two ways, and they do opposite things.**
+  **Parallel**, mixing with the dangerous variable: stiffnesses add, so it **raises a floor** — that is
+  L44's case. **Series**, moving the dangerous nonlinearity onto the auxiliary and tying it back with a
+  spring: compliances add, so it **lowers a ceiling**. **Theorem: the parallel shift is finite for every
+  finite coupling, so it CANNOT repair a divergence** — forcing it to diverge makes the auxiliary a
+  multiplier that deletes the mode instead. **L44 stumbled onto the arrangement that raises floors; the
+  programme's sore point needs the one that lowers ceilings.**
+- **The sweep: 14 coefficients, complete two ways** — the helicity bookkeeping closes at four modes and
+  every action term is assigned. Seven marginal or sign-indefinite, two structural zeros, five strictly
+  positive. **And the deposited action's only field-field mixing is antisymmetric, so it offers no Schur
+  complement anywhere as written** — every repair must add an auxiliary.
+- **Five of the seven are not live:** two are window edges, one is a limit the theory does not occupy, one
+  is a structural zero by design, and one is removed by a placement choice. **Two repairs apply and buy
+  nothing:** the clock-sector repair is exactly a shift of c₄, so the preferred-frame lock moves *with*
+  it; the transverse repair is identical to an operator the action already has.
+- **⭐ THE ONE LIVE REPAIR, AND IT IS NEW.** The longitudinal stiffness is **sign-indefinite AND
+  divergent** — negative on the raw kernel beyond its maximum, and **infinite at every Solar-System
+  background and in every galaxy core** on the published splice. The series arrangement caps it: put the
+  MOND function on a spatial auxiliary carrying **no derivatives** and tie it back with a quadratic
+  spring. That gives Δ_eff = Δ + κs and **caps the stiffness at 1/κ everywhere**, as a ceiling rather
+  than a fit.
+- **Cost: zero modes and zero ephemeris signature.** The auxiliary is algebraic, so the count stays at
+  four. The added force is **exactly Newtonian in shape**, so its phantom density is **identically zero in
+  vacuum** and the planetary bound is untouched. The only trace is a (1+κ) shift in the *action's* a₀ and
+  G, both of which are fitted anyway, and at κ = 1e-4 that shift is **2000× smaller than the spread
+  between the two footings**.
+- **It discharges three separately recorded liabilities at once, with the published kernel left exactly as
+  printed:** the unwritable cubic action and non-C² Solar-System background; the strong coupling at every
+  planet (improving by 9.2e23× at Saturn); and the unwritable fourth-order static equation.
+- **⚠️ Caveats that must travel with it.** κ is a **new free parameter**. The bounded-boost statement must
+  be rewritten as the excess over the **measured** baryonic gravity, or its hypotheses read as violated —
+  computed, the supremum is **unchanged at 0.64761**. It does **not** make the published splice C², and it
+  does **not** reopen the decreasing-kernel arm. **It is verified at quadratic order and on the static
+  relation only: a constraint count of the full system has NOT been done, and that is the named next step
+  before it is called a repair rather than a proposal.**
+- **Negative control on the mode budget:** giving the same auxiliary a kinetic term adds three modes for a
+  vector or one for a scalar, taking four to seven or five. **"Holonomic" is the entire budget.**

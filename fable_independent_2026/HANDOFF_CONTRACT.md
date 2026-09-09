@@ -42,6 +42,32 @@ explicitly, not as an incidental feature.
 programme's κ = ½ law — **1.00004× on the canonical footing but 0.830× on the alternative**. It is a
 fit to one footing and must never be quoted as a derivation. Both footings, always.
 
+**(4) 2026-09-09, ADDED — a concrete repair we are handing you, with its own next step.** `L52_marginal_sweep.py`,
+68/68 PASS. Your Schur-complement escape has **two arrangements and they do opposite things**. **Parallel**
+(the auxiliary mixes with the dangerous variable) makes stiffnesses add, so it **raises a floor** — that is
+what IC20 does. **Series** (the dangerous nonlinearity moves *onto* the auxiliary, tied back by a quadratic
+spring) makes compliances add, so it **lowers a ceiling**. **Theorem: a parallel shift is finite for every
+finite coupling, so it can never repair a divergence** — forcing it to diverge turns the auxiliary into a
+multiplier that deletes the mode. That is why the technique has not fired twice: the outstanding sore point
+needs the arrangement nobody tried.
+
+**Applied to the longitudinal stiffness** — sign-indefinite on the raw kernel and **infinite at every
+Solar-System background and in every galaxy core** on the published splice — the series form caps it at
+1/κ everywhere, as a ceiling rather than a fit: put the MOND function on a spatial auxiliary carrying **no
+derivatives** and tie it back with a spring, giving Δ_eff = Δ + κs. **Zero propagating modes** (the
+auxiliary is algebraic), **zero ephemeris signature** (the added force is exactly Newtonian in shape, so its
+phantom density is identically zero in vacuum), and the only trace is a (1+κ) shift in the action's a₀ and G,
+which are fitted anyway and at κ = 1e-4 move 2000× less than the gap between our two footings. **It
+discharges three of our standing liabilities at once with the published kernel unchanged.**
+
+**What it needs from you, and it is one thing:** a **Dirac constraint count of the full (g, τ, φ, W)
+system**. We verified it at quadratic order and on the static relation only, and the invertibility of the
+auxiliary's Hessian and the single-valuedness of the kernel are the **same** condition — if it degenerates,
+W stops being eliminable and the mode count changes. Until that count exists this is a proposal, not a
+repair, and we are handing it over labelled that way. Validity condition, stated exactly: J convex in |V|,
+i.e. Δ′ ≥ 0 everywhere. Holds for the published flat kernel and the deposited smooth family; **fails** for
+the raw decreasing kernel.
+
 ### Five doors we have not seen tried
 
 | # | door | why it is open |
