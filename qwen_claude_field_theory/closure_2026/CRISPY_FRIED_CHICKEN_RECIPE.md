@@ -12,7 +12,18 @@ structure together. Checks remain honest: a failure identifies a construction
 obligation; it is not permission to conceal the failure or relax a requirement.
 Historical obstructions are reference material, not the main deliverable.
 
-**Current constructive checkpoint (2026-09-09, IC20):**
+**Current constructive checkpoint (2026-09-09, IC21):**
+[The explicit radiation calculation](integrable_clock_construction_2026/IC21_RADIATION.md)
+varies a minimally coupled radiation action with the unchanged IC20 gravity
+action. Its coupled scalar principal matrix yields explicit density-dependent
+positivity/light-cone inequalities, checked against the full time-dependent
+quadratic reduction and short sourced evolution. The five dilute aligned
+backgrounds have two positive subluminal scalar characteristics; this is not
+recombination, relative-flow stability or full cosmology. Next derive the
+degenerate dust sector and relative-flow constraints, while extending the
+healthy background. No new global theory or empirical pass is announced.
+
+**Previous constructive checkpoint (2026-09-09, IC20):**
 [The joint-action handoff](integrable_clock_construction_2026/IC20_HANDOFF.md)
 solves the kinetic/curvature and tensor-cone compatibility equations together.
 The varied analytic auxiliary has a computed regular local constraint matrix;
