@@ -114,6 +114,14 @@ fixed, q is a khronon written as a conformal factor, which is what I3a exists to
 Matter conservation itself is fine (**M3, PASS**): ∇_μ T^μν = 0 follows from the diffeomorphism invariance of
 S_m[g, ψ] alone and is untouched by anything in the gravity sector. The break is **compatibility**.
 
+*Scope of that PASS, so it is not read as contradicting the historical record.* It is a statement about the
+matter sector only. In the supplement branch the gravity side carries S_GR + ∫λ C_M, whose multiplier term is
+not diffeomorphism covariant (check Q4), so ∇_μT^μν = 0 does not propagate into a consistent gravitational
+field equation — it becomes an integrability condition on λ and the geometry, which is the same
+over-determination M1 exhibits seen from the Ward-identity side. In the other branch, where H_⊥ is deleted, it
+is the *effective source* that fails to be conserved — which is what the 2026-08-27 MMG withdrawal reports at
+Newtonian order. Both records are consistent; they are statements about different objects.
+
 Control C4 established that in the static weak field the ADM Hamiltonian constraint *already* fixes q:
 
     H_perp = 0 :  lap q                = 4 pi G rho / c^2

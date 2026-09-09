@@ -257,10 +257,9 @@ print("\n    Integrating the scalar out at large Sigma (its own inertia |K_2| om
 print("    screened regime) the khronon keeps omega^2 = c_2 k^2 / c_14_eff with")
 print("      c_14_eff(Sigma) = c_14 + (2-K_B)/Sigma + c_2 |K_2| / [ (2-K_B) Sigma ]        [derived from the same 2x2]")
 c14eff_sym = c14x + (2 - KBx) / Sg + c2x * K2x / ((2 - KBx) * Sg)
-small = sp.series(sp.simplify(C_ / B_), Sg, sp.oo, 2).removeO()      # smaller root = C/B at large Sigma
-lhs = sp.simplify(sp.series(c2x / c14eff_sym, Sg, sp.oo, 2).removeO() - small)
-check("C4d [control] that c_14_eff is the large-Sigma expansion of the exact 2x2 smaller root",
-      sp.simplify(lhs) == 0, "series in 1/Sigma agree to first order")
+small = sp.simplify(-C_ / B_)          # for A u^2 + B u + C = 0 with |B| large: small root = -C/B
+check("C4d [control] c_14_eff is EXACTLY the leading large-Sigma root of the 2x2: c_2/c_14_eff = -C/B identically",
+      sp.simplify(c2x / c14eff_sym - small) == 0, "exact rational identity, not a truncated series")
 
 # ------------------------------------------------------------------ 5.  the PPN-visible couplings
 head("5.  the PPN-visible preferred-frame couplings alpha_1, alpha_2 (Foster-Jacobson, Einstein-aether)")
@@ -275,12 +274,20 @@ a1_sym, a2_sym = ppn(KBs, c2s, -KBs, c14s - KBs)
 a1_sym = sp.simplify(a1_sym); a2_sym = sp.simplify(a2_sym)
 print(f"    alpha_1 = {a1_sym}          <-- EXACT, for every K_B and c_2")
 print(f"    alpha_2 = {sp.simplify(sp.factor(a2_sym))}")
-a2_ser = sp.simplify(sp.series(a2_sym, c14s, 0, 3).removeO())
-print(f"    alpha_2 = {a2_ser} + O(c_14^3)   (g03v's closed form: -c_14/2 + c_14^2/(2 c_2))")
+a2_ser = sp.expand(sp.simplify(sp.series(a2_sym, c14s, 0, 3).removeO()))
+rem = sp.simplify(a2_ser - (-c14s / 2 + c14s**2 / (2 * c2s)))
+print(f"    alpha_2 = {a2_ser} + O(c_14^3)")
+print(f"            = -c_14/2 + c_14^2/(2 c_2) + {rem}   -- g03v's closed form plus exactly the O(c_14^2)")
+print(f"              term it drops (the 1/c_2-enhanced piece is the one g03v keeps).")
+c2root = sp.solve(sp.numer(sp.together(a2_sym)), c2s)
 check("C5a [control] alpha_1 = -4 c_14 EXACTLY at c_1 = -c_3 = K_B, for every K_B and c_2",
       sp.simplify(a1_sym + 4 * c14s) == 0, f"alpha_1 = {a1_sym}")
-check("C5b [control] alpha_2 = -c_14/2 + c_14^2/(2 c_2) + O(c_14^3), reproducing g03v's closed form",
-      sp.simplify(a2_ser - (-c14s / 2 + c14s**2 / (2 * c2s))) == 0, f"{a2_ser}")
+check("C5b [control] alpha_2 = -c_14/2 + c_14^2/(2 c_2) + O(c_14^2), reproducing g03v's closed form with the "
+      "1/c_2-enhanced term identical and the dropped remainder equal to 3 c_14^2/4",
+      sp.simplify(rem - 3 * c14s**2 / 4) == 0, f"remainder = {rem}")
+check("C5b2 [control] alpha_2 vanishes EXACTLY on c_2* = c_14/(1 - 2 c_14), g03v's line -- solved from the exact "
+      "alpha_2, not from the expansion",
+      any(sp.simplify(r - c14s / (1 - 2 * c14s)) == 0 for r in c2root), f"roots in c_2: {c2root}")
 a1c, a2c = ppn(0.2, 1.0, -0.2, 1.18e-5 - 0.2)
 c2star = C14_V / (1 - 2 * C14_V); a1s_, a2s_ = ppn(0.2, c2star, -0.2, C14_V - 0.2)
 print(f"    g03v's corner (K_B=0.2, c_2=1, c_14=1.18e-5): alpha_1 = {a1c:.3e}, alpha_2 = {a2c:.3e}   (f33: -4.72e-5, -5.9e-6)")

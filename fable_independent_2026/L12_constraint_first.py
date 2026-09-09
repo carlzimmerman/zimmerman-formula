@@ -546,6 +546,14 @@ check("M3 [matter] matter conservation nabla_mu T^munu = 0 is intact for minimal
       True,
       "it is -- it follows from the diffeomorphism invariance of S_m[g,psi] alone and is untouched by "
       "anything in the gravity sector.  This one is a genuine PASS")
+print("""    SCOPE of that PASS, so it is not read as contradicting the historical record.  It is a statement
+    about the MATTER sector only.  In the supplement branch the gravity side carries S_GR + INT lambda C_M,
+    whose multiplier term is not diffeomorphism covariant (check Q4), so nabla_mu T^munu = 0 does not
+    propagate into a consistent gravitational field equation -- it becomes an integrability condition on
+    lambda and the geometry.  That is the same over-determination M1 exhibits, seen from the Ward-identity
+    side.  In the OTHER branch, where H_perp is deleted outright, the effective source is the thing that
+    fails to be conserved -- which is what the 2026-08-27 MMG withdrawal reports at Newtonian order.  Both
+    records are consistent; they are statements about different objects.""")
 
 # ==========================================================================================================
 print("\nSECTION 4 -- OPEN CHECK 3: COSMOLOGY.  Evaluate on FLRW.  Trivially satisfied, or forcing?")
