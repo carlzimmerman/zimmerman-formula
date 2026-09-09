@@ -82,7 +82,8 @@ S_SAT, D_SAT = 2.540, 0.6476
 
 def Delta(s):
     s = np.asarray(s, float)
-    d = np.where(s > 0, s/np.expm1(np.sqrt(np.maximum(s, 1e-300))), 0.0)
+    sc = np.clip(s, 1e-300, S_SAT)                       # saturated above S_SAT; clip keeps expm1 in range
+    d = np.where(s > 0, sc/np.expm1(np.sqrt(sc)), 0.0)
     return np.where(s > S_SAT, D_SAT, d)
 
 def dDelta(s):

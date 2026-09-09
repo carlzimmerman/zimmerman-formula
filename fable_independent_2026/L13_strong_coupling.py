@@ -128,10 +128,13 @@ print("      L_2 = M^2 [ c_14 (d_i chi_dot)^2 - c_2 (lap chi)^2 ]")
 print("      L_3 = M^2 [ c_14 ( -2 chi_dot (d_i chi_dot)^2 - 2 d_i chi_dot d_j chi d_i d_j chi - 2 chi_ddot d_i chi d_i chi_dot )")
 print("                  + c_2 ( 4 lap chi d_j chi d_j chi_dot + 2 chi_dot (lap chi)^2 ) ]")
 # verify those two claims against the exact expressions, order by order, at random points
-def order(expr, n):
-    return sp.simplify(sp.diff(expr, ep, n).subs(ep, 0) / sp.factorial(n))
+def order_at(expr, n, pt):
+    """coefficient of ep^n, evaluated at a spacetime point: substitute the point FIRST (cheap univariate diff)."""
+    e1 = expr.subs({k_: v for k_, v in pt.items() if k_ is not ep})
+    return sp.nsimplify(sp.radsimp(sp.diff(e1, ep, n).subs(ep, 0) / sp.factorial(n)))
 ok2 = ok3 = True; res2 = []; res3 = []
-for _ in range(2):
+for pt in ({t: sp.Rational(2, 5), x: sp.Rational(-1, 3), y: sp.Rational(5, 6), z: sp.Rational(-1, 2)},
+           {t: sp.Rational(-1, 4), x: sp.Rational(3, 5), y: sp.Rational(-2, 7), z: sp.Rational(4, 3)}):
     f = rand_poly(); chi = ep * f
     a2e, dn2e, _, _ = clock_scalars(chi)
     ft = sp.diff(f, t); ftt = sp.diff(f, t, 2)
@@ -145,9 +148,10 @@ for _ in range(2):
             - 2 * ftt * sum(di[i] * dit[i] for i in range(3)))
     dn2_2 = lap**2
     dn2_3 = -2 * lap * (2 * sum(di[i] * dit[i] for i in range(3)) + ft * lap)
-    pt = {t: sp.Rational(2, 5), x: sp.Rational(-1, 3), y: sp.Rational(5, 6), z: sp.Rational(-1, 2)}
-    r2 = sp.simplify((order(a2e, 2) - a2_2).subs(pt)), sp.simplify((order(dn2e, 2) - dn2_2).subs(pt))
-    r3 = sp.simplify((order(a2e, 3) - a2_3).subs(pt)), sp.simplify((order(dn2e, 3) - dn2_3).subs(pt))
+    sub_pt = lambda E: sp.nsimplify(sp.radsimp(E.subs(pt)))
+    r2 = (order_at(a2e, 2, pt) - sub_pt(a2_2), order_at(dn2e, 2, pt) - sub_pt(dn2_2))
+    r3 = (order_at(a2e, 3, pt) - sub_pt(a2_3), order_at(dn2e, 3, pt) - sub_pt(dn2_3))
+    r2 = tuple(sp.nsimplify(v) for v in r2); r3 = tuple(sp.nsimplify(v) for v in r3)
     res2.append(r2); res3.append(r3); ok2 = ok2 and r2 == (0, 0); ok3 = ok3 and r3 == (0, 0)
 check("C2a [control] the quadratic expansion of a.a and (div n)^2 is exactly (d_i chi_dot)^2 and (lap chi)^2",
       ok2, f"exact residuals {res2}")
@@ -165,8 +169,9 @@ check("C2c [control] every cubic monomial has derivative multiset {1,2,2}, so L_
 
 # ------------------------------------------------------------------ 3.  full unitary-gauge reduction with the metric constraints solved
 head("3.  independent route: unitary-gauge reduction with the lapse and shift integrated out (metric kept)")
-Ps, Bs, Fs = sp.Function('Psi')(t, x), sp.Function('Bsh')(t, x), sp.Function('Phi')(t, x)
 c2s, c14s, ks = sp.symbols('c2 c14 k', positive=True)
+Fc, Sc, Bc = sp.Function('Fc')(t), sp.Function('Sc')(t), sp.Function('Bc')(t)
+Fs = Fc * sp.cos(ks * x); Ps = Sc * sp.cos(ks * x); Bs = Bc * sp.cos(ks * x)   # single plane wave along x
 zeta = -ep * Fs                                    # gamma_ij = e^{2 zeta} delta_ij
 Nl = 1 + ep * Ps                                   # lapse
 Nd = [sp.diff(ep * Bs, v) for v in (x, y, z)]      # shift N_i = d_i B
@@ -191,20 +196,15 @@ a_i = [sp.diff(sp.log(Nl), v) for v in SP]
 a2q = sum(gami[i, j] * a_i[i] * a_i[j] for i in range(3) for j in range(3))
 Ldens = Nl * sg * (KK - (1 + c2s) * Ktr**2 + R3 + c14s * a2q)
 L2u = sp.expand(sp.diff(Ldens, ep, 2).subs(ep, 0) / 2)
-# plane wave along x, then average over a period (kills total x-derivatives, implements the Fourier reduction)
-Fc, Sc, Bc = sp.symbols('Fc Sc Bc', cls=sp.Function)
-sub = {Fs: Fc(t) * sp.cos(ks * x), Ps: Sc(t) * sp.cos(ks * x), Bs: Bc(t) * sp.cos(ks * x)}
-L2w = L2u
-for f_, g_ in sub.items(): L2w = L2w.subs(f_, g_)
-L2w = sp.expand(sp.doit(L2w) if hasattr(sp, 'doit') else L2w.doit())
-L2avg = sp.simplify(sp.integrate(L2w, (x, 0, 2 * sp.pi / ks)) / (2 * sp.pi / ks))
-Fd = sp.Derivative(Fc(t), t)
-L2avg = sp.expand(L2avg)
+print(f"    quadratic ADM Lagrangian built ({time.time()-T0:.0f}s)", flush=True)
+# average over one period in x: implements the Fourier reduction and discards total x-derivatives
+L2avg = sp.expand(sp.simplify(sp.integrate(sp.expand(L2u), (x, 0, 2 * sp.pi / ks)) / (2 * sp.pi / ks)))
+print(f"    x-averaged ({time.time()-T0:.0f}s)", flush=True)
 # integrate out the lapse Sc and shift Bc (both algebraic)
-solSB = sp.solve([sp.diff(L2avg, Sc(t)), sp.diff(L2avg, Bc(t))], [Sc(t), Bc(t)], dict=True)
-Lred = sp.simplify(L2avg.subs(solSB[0]))
-Akin = sp.simplify(Lred.coeff(sp.diff(Fc(t), t), 2))
-Vpot = sp.simplify(-Lred.coeff(Fc(t), 2))
+solSB = sp.solve([sp.diff(L2avg, Sc), sp.diff(L2avg, Bc)], [Sc, Bc], dict=True)
+Lred = sp.expand(sp.simplify(L2avg.subs(solSB[0])))
+Akin = sp.simplify(Lred.coeff(sp.diff(Fc, t), 2))
+Vpot = sp.simplify(-Lred.coeff(Fc, 2))
 cs2_u = sp.simplify(Vpot / (Akin * ks**2))
 print(f"    reduced kinetic coefficient of Phi_dot^2 :  {sp.simplify(Akin)}")
 print(f"    reduced potential coefficient of Phi^2   :  {sp.simplify(Vpot)}")
@@ -213,7 +213,7 @@ cs2_EA = c2s * (2 - c14s) / (c14s * (2 + 3 * c2s))     # Jacobson's Einstein-aet
 check("C3 [control] the unitary-gauge reduction reproduces Einstein-aether's PUBLISHED spin-0 speed "
       "c_s^2 = c_123(2-c_14)/[c_14(1-c_13)(2+c_13+3c_2)] at c_13 = 0",
       sp.simplify(cs2_u - cs2_EA) == 0, f"got {sp.simplify(cs2_u)}")
-lin_in_psi = sp.simplify(sp.diff(L2avg.subs(c14s, 0), Sc(t), 2)) == 0
+lin_in_psi = sp.simplify(sp.diff(L2avg.subs(c14s, 0), Sc, 2)) == 0
 check("C3b [GR control] with c_14 = 0 the lapse is a Lagrange multiplier (L_2 is linear in Psi), so there is no "
       "propagating scalar -- the khronon exists ONLY because c_14 != 0",
       lin_in_psi, "d^2 L_2 / d Psi^2 = 0 at c_14 = 0")

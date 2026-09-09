@@ -197,6 +197,13 @@ At the outermost audited radius (1000 kpc, 0.80 R500), across all twelve X-COP c
   signature of a kernel adding spurious support, not of a missing mass.
 - Control R0: the reconstructed baryon fraction lands in the observed cluster range.
 
+**CORRECTED 2026-09-08 by L18 (below): the "matches the cosmic ratio to 5%" headline is partly an
+artefact of ignoring the hydrostatic mass bias and is withdrawn.** Correcting for the measured
+(positive) bias moves the Newtonian ratio from 5.73 up to 9.04 across b in [0, 0.33]. What survives,
+and strengthens, is the 13-15 sigma residual against the framework's predicted zero and the 12%
+cluster-to-cluster universality. The cosmic *reading* of the cluster data is if anything better
+motivated with the bias included; the *five per cent agreement* is not a real number.
+
 **Reading it honestly.** This does not measure dark matter and does not touch the galaxy
 evidence, where baryons plus the kernel work at 0.108 dex and a cosmic-share halo would
 overshoot badly (g04k: 2.6 M_b inside 10 kpc against the 0.25 M_b the RAR tolerates). What
@@ -475,3 +482,39 @@ energy, which is why a universe that is ~50% matter still reproduces the distanc
 lane added the absolute BAO ruler, since supernovae marginalise their zero point and the acoustic
 scale is one number a refit can always hit. A bisection bug in the h-refitter was caught by the F = 1
 control and fixed.
+
+## L18 — the hydrostatic bias: not an escape, and it corrects one of my own numbers
+
+`L18_hse_bias.py` (7 FAIL of 10). Every cluster result tonight rests on hydrostatic X-ray masses,
+which carry a known systematic: M_HSE = (1 - b) M_true, with b measured in [0.00, 0.42] over the
+literature and [0.03, 0.17] for X-COP itself. Nobody had propagated it. This lane exists to attack
+this lane's own strongest claims.
+
+**Controls pass**: at b = 0 it reproduces L7 exactly (f_bar = 0.149, ratio 5.73, 12% scatter) and L2
+exactly (A = 5.47, p = 0.811, ratios 2.2-5.1).
+
+**The direction is confirmed and it runs against the framework (H2).** At b = 0.20 the framework's
+residual moves 3.09 -> 4.85 M_bar, the maximum required boost 2.94 -> 3.80, and the slope 0.811 ->
+0.818, i.e. further from the 1/2 that caps any kernel. All three move away.
+
+**The b that would rescue the framework is on the other side of zero:**
+
+| to rescue | required b | measured |
+|---|---|---|
+| L7's residual to zero at 0.80 R500 | **-0.82** canonical / -0.68 alt (all twelve clusters negative, -1.25 to -0.52) | [0.00, +0.42] |
+| L2's cluster/galaxy agreement | **-2.07** (bins -2.21 to -0.95, identical on both footings) | X-COP's own [0.03, +0.17] |
+| L2's slope down to 1/2 | ≈ -6.8 | |
+
+**And it is not physically available (H8).** A negative b means sigma^2 < 0 in twelve of twelve
+clusters — not turbulence but a demand that the measured thermal pressure gradient be overstated by
+1.82x. Even the *allowed* b = 0.20 already needs sigma_1D = 559 km/s, 3.4x Hitomi, and that
+correction hurts the framework rather than helping.
+
+**What this corrects in my own record (H6).** L7's headline "5.73 against cosmic 5.43, agrees to 5%"
+is partly an artefact of ignoring the bias, and is withdrawn above. The ratio runs to 9.04 by
+b = 0.33, leaving L7's own 30% depletion allowance (baryon retention 96% -> 64%). The 13-15 sigma
+residual and the 12% universality (H9) survive the whole range and strengthen.
+
+**Two items handed back.** (i) The L7 phrasing, corrected above. (ii) `hunt_2026/u13_mass_efe_and_domain.py`
+line 334 carries the bias sign backwards relative to `u02:565`, and its C3 prose is wrong; no published
+number moves because C7 overwrites B = 0.0 immediately after. Flagged, not edited.
