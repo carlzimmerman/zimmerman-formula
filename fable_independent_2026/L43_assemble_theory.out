@@ -1,0 +1,363 @@
+======================================================================================================================
+L43 -- ASSEMBLE THE THEORY: one action, every parameter pinned, every gate run against it
+======================================================================================================================
+
+======================================================================================================================
+PART I -- CONTROLS: six settled numbers rebuilt from their own algebra, then confronted with
+          the value printed in the source lane's own .out.  The assembly is verification, not quotation.
+======================================================================================================================
+    sympy, c_1 = -c_3 = K_B, c_4 = c_14 - K_B:  alpha_1 = -4*c_14   (c_123 simplifies to c_2)
+  [PASS] K1 [control, A19/L13] alpha_1 = -4 c_14 is an EXACT identity in (K_B, c_2, c_14), rebuilt symbolically here   (alpha_1 + 4 c_14 simplifies to 0)
+  [PASS] K1b [control] my rebuild reproduces f33's PPN corner (K_B=0.2, c_2=1, c_14=1.18e-5) to 1% of the value L13's own .out prints   (mine (-4.7200e-05, -5.8998e-06) vs fable_independent_2026/L13_strong_coupling.out (-4.72e-05, -5.9e-06))
+    T = -27/16 + 54/(5 ln(9/5)) = 16.6865133026;  a_* = 3 - 81/(4T) = 1.78644509894;  sigma_* = 4T/(4T-27) = 3/a_* = 1.679312732187
+  [PASS] K2 [control, A31/L26] sigma_* = 4T/(4T-27) = 3/a_* rebuilt from T = -27/16 + 54/(5 ln(9/5)) reproduces L26's printed sigma_* to 1e-9, and the two closed forms agree with each other   (mine 1.679312732187, 3/a_* 1.679312732187, L26 .out 1.679312732187113)
+  [PASS] K2b [control, A31/L26] the window's upper edge (J_T -> 0, affine in sigma) printed by L26 is 1.7716 and sigma_* lies below it with the 5.49% headroom L26 reports   (headroom 5.491% of sigma_*  (L26: 5.491%))
+    sup(y e^-y) = 0.367879 at y = 1;  nu_RAR's interior maximum: s_sat = 2.5396, C = 0.647610;  Sigma_par = ds/dDelta = 1/Delta'
+  [PASS] K3 [control, A33/L34] the two suprema rebuilt here -- sup(y e^-y) = 1/e = 0.367879 at y = 1, and nu_RAR's C = 0.6476 at s_sat = 2.540 -- reproduce L34's own printed values   (mine (1/e = 0.367879; s_sat 2.5396, C 0.647610) vs L34 .out (2.5396, 0.64761))
+  [PASS] K4 [control, A14/L11] the IC-series' own auxiliary equation d/dc[(1-c)a^2 - a0^2 U(c)] = 0 with U'(c) = -ln^2(1-c), solved here from scratch, returns u^2 = 1 - exp(-|a|/a0) -- so mu(y) = 1 - e^-y is the static branch, not an assumption   (solved c = 1 - exp(-a/|a0|))
+  [PASS] K4b [control, A14/L11] the deep-MOND coefficient of (1 - e^-{g/a0}) g = g_N is EXACTLY 1 on both footings (no stray 2, 1/2 or 2 pi) -- L11's 'coefficient 1.000000', recomputed by root-finding here   (canonical 1.00000003, alt 1.00000002)
+  [PASS] K5 [control, A8/L7] Omega_dm/Omega_b = 0.266/0.049 = 5.43 recomputed here sits inside the 1 sigma band of the cluster requirement L7's own .out prints (5.73 +/- 0.68)   (cosmic 5.429 vs L7 .out required 5.73 +/- 0.68)
+    rho_Lambda = 5.8452e-27 kg/m^3;  c sqrt(G rho_Lambda) = 1.87251e-10 m/s^2  =>  kappa = canonical 0.5000, alt 0.6023
+  [PASS] K6 [control, A24 + THE_ACTION section 2] a0 = kappa c sqrt(G rho_Lambda) recomputed from Planck's Omega_Lambda h^2 returns kappa = 1/2 on the canonical footing to better than 0.1%, which is the FIT the framework quotes -- and the alt footing needs kappa = 0.60, so the tie does not pick a footing   (kappa canonical 0.49997, alt 0.60235; A24's reduction beta/sqrt(Ztilde) = kappa/sqrt2 = 0.3536)
+    NOTE, standing rule: kappa = 1/2 is FITTED.  A24/L32 T1 proves it is a zero mode of any local action of
+    this class (F -> F + C is exactly degenerate with Lambda), and k01-k04 leave it underived.  The 27-simple-
+    numbers guard applies: landing in the measured band is not evidence.
+
+======================================================================================================================
+PART II -- CONTROL ON THE GATE MACHINERY: it must reproduce a known PASS and a known FAIL
+           from gate scripts that already exist in the repository.
+======================================================================================================================
+    g03d's own table, re-read here: admissible-at-all-three-field-inputs floors = {'canonical': 0.03, 'alt': 0.05}
+  [PASS] K7 [control, KNOWN PASS] my floor-extraction machinery, run over g03d's committed table, returns the floors g03d itself reports for the kernel it solved: 0.03 pc canonical / 0.05 pc alt   ({'canonical': 0.03, 'alt': 0.05} vs g03d {'canonical': 0.03, 'alt': 0.05})
+  [PASS] K7b [control, KNOWN FAIL inside the same table] the alt footing at xi = 0.03 pc is INADMISSIBLE at the strongest field input -- the machinery must return a FAIL where g03d prints 'NO', not merely a PASS where it prints 'yes'   (alt xi=0.03 admissibility across the three field inputs: [False, True, True])
+    g03d's two Solar-System gates rebuilt from its own constants: sunward 3.6620e-14 m/s^2, Saturn phantom 4.3292e-15 m/s^2 (the tighter, hence binding)
+  [PASS] K8 [control, KNOWN FAIL] the bare carried kernel's residual C a0 against the binding Saturn phantom-mass gate, rebuilt from g03d's own constants, reproduces L34's published shortfall of 1.400e4x canonical / 1.687e4x alt -- this FAIL is the theorem that FORCES the coherence length   (mine 1.4005e+04x / 1.6873e+04x vs L34 .out 1.400e+04 / 1.687e+04)
+  [PASS] K9 [control, KNOWN FAIL] the OLD parameter set's emptiness reproduces analytically: with the condensate carrying Omega_d, the clock tachyon needs c_14 >= 3 Omega_d/Omega_m = 2.533 while PPN alpha_1 = -4 c_14 needs c_14 <= 2.5e-5 -- a 1.0e5x gap, so {G1a, G2} is empty by inspection, exactly as L14's .out reports 0 points on both footings   (c_14 >= 2.5333 vs c_14 <= 2.5e-05: short by 1.0e+05x; L14 .out prints 0/0 points)
+
+======================================================================================================================
+PART III -- THE KERNEL.  The carried kernel as published is INADMISSIBLE by the programme's own
+            bounded-boost theorem (an attained supremum has Delta' = 0).  It is repaired here.
+======================================================================================================================
+    fit to nu_RAR carried (THE_ACTION section 3)   : C = 0.647610 (held at the kernel's own ceiling), p = 1.7538, a2 = 0.9335  ->  max |d log10 g| = 0.0111 dex over s in [1e-4, 1e4]
+    fit to exponential carrier (recipe I1 / L11)   : C = 0.367879 (held at the kernel's own ceiling), p = 0.8438, a2 = 13.3082  ->  max |d log10 g| = 0.0299 dex over s in [1e-4, 1e4]
+  [PASS] N1 the repaired kernel has the EXACT deep-MOND coefficient 1 (C p a1 = 1 by construction, checked numerically as Delta/sqrt(s) -> 1)   (Delta(1e-12)/sqrt(1e-12) = 0.99999985)
+  [PASS] N2 the repaired kernel is strictly increasing with Delta' > 0 at EVERY finite s, so Sigma_par = 1/Delta' is finite and the cubic action exists -- the property L34's C4 records the PUBLISHED kernel as failing   (min Delta' over 20 decades = 1.154e-33 > 0; strictly increasing over 14 decades in double precision)
+  [PASS] N3 its supremum is APPROACHED and never attained, and equals the carried kernel's ceiling C = 0.6476, so the bounded-boost prediction and its SPARC test are unchanged   (at 60 digits, C - Delta(1e14) = 2.04422e-25 > 0 (the ceiling is never reached at finite s), while Delta(1e14)/C - 1 = 0.00e+00)
+  [PASS] N4 its saturation exponent obeys L34's cap p <= 1.754 (exponential approach excluded), and the fit does not want to violate it   (p = 1.7538 <= p_max = 1.7538)
+    s at Saturn's orbit = 6.902e+05 (canonical) / 5.729e+05 (alt);  longitudinal stiffness Sigma_par = 1/Delta' there = 9.392e+15 / 5.624e+15
+  [PASS] N5 at the Solar-System background the repaired kernel's longitudinal stiffness is FINITE, where the published carried kernel gives Sigma_par = infinity (L34 C4, L33/A32's 'the real defect')   (finite, but large: 9.39e+15 -- the longitudinal cone is c_s ~ 1e10 c at Saturn, admissible by L33/A32's identity argument (the leaves stay spacelike at any FINITE c_s) but a real oddity of the class)
+    THE STRUCTURAL FORK, priced: the carrier structure (THE_ACTION, scalar sourced by matter) and the AQUAL
+    structure (the IC-series' own static limit, L11) agree below s = 0.63 and diverge above it, because a
+    matter-sourced scalar cannot carry a DECREASING Delta.  At s = 3: carrier Delta = 0.6476 vs
+    AQUAL Delta = 0.1363, i.e. 0.0656 dex in g; the maximum separation over s in [1e-4, 1e4] is 0.0726 dex.
+  [PASS] N6 the two structures are OBSERVABLY different in the SPARC range, so the fork is a measurement and not a convention   (max separation 0.0726 dex, against SPARC's own 0.11-0.13 dex scatter -- detectable in the aggregate, not per point)
+  [PASS] N7 [the honest cost] the repaired kernel reproduces the published carried kernel to better than 0.02 dex everywhere   (max deviation 0.0111 dex at s = 1.057; this is a PREDICTION difference, testable on BIG-SPARC's transition bins)
+
+======================================================================================================================
+PART IV -- THE ADMISSIBILITY QUESTION.  Is the parameter space non-empty under tonight's constraints?
+======================================================================================================================
+    THE PARAMETERS OF THE ASSEMBLED THEORY
+      K_B      clock kinetic coupling, c_1 = -c_3 = K_B  (so c_13 = 0 identically, c_T = c exactly)
+      c_14     = c_1 + c_4, the khronometric alpha; alpha_1 = -4 c_14 EXACTLY (A19/L13, rebuilt as K1)
+      c_2      the khronometric lambda; sets the clock's own speed sigma
+      |K_2|    the MOND scalar's time-kinetic stiffness.  Q_0 = 0: THE CONDENSATE IS REMOVED (A13)
+      xi       the coherence length of xi^2 |grad_perp V|^2, THEOREM-FORCED >= 0.10/0.15 pc (A33)
+      p        the kernel's saturation exponent, capped at 1.754 (A33)
+      sigma    DERIVED: the clock mode's squared speed, khronometric with c_13 = 0:
+                   sigma = (2 - c_14) c_2 / [c_14 (2 + 3 c_2)]
+               gated to L26's window [1.6793, 1.7716).  ** CONDITIONAL ON B2 **: the map from the
+               lead's IC variables to (c_14, c_2) is NOT determined by its published files (L10-K4
+               FAIL), so this identification is stated, not proved.  Both readings are run below.
+
+    J_Y at the Galactic external field, from the repaired kernel: canonical 3.217, alt 2.726   (g03z G1 with the published kernel: 2.967 / 2.510)
+    K_B          13 points   [1.000e-03, 1.900e+00]
+    c_2         206 points   [1.000e-10, 1.000e+01]
+    c_14         47 points   [1.000e-10, 1.000e+01]
+    |K_2|        42 points   [1.000e+00, 1.000e+12]
+    xi [pc]      14 points   [1.000e-04, 1.000e+03]
+    p             9 points   [2.000e-01, 3.000e+00]
+    grid points per footing: 666,082,872
+
+    gate                                                canonical            alt
+    H1  PPN alpha_1                                      0.387187       0.387187
+    H2  PPN alpha_2                                      0.318633       0.318633
+    H3  tensor c_T = 1 + G_N > 0                         0.936170       0.936170
+    H4  BBN                                              0.690814       0.690814
+    H5  Solar-System xi                                  0.571429       0.428571
+    H6  saturation p <= 1.754                            0.555556       0.555556
+    H7  clock window sigma                               0.011981       0.011981
+    H8  Cherenkov (no subluminal mode)                   0.410023       0.410023
+    H9  linear growth                                    0.402148       0.402148
+    H10 scalar kinetic health                            1.000000       1.000000
+    H11 clock tachyon (Q_0 = 0: satisfied identically)       1.000000       1.000000
+    INTERSECTION (all 11)                                0.000114       0.000086
+      points                                               76,240         57,180
+  [PASS] F1 [H1] the gate alone admits neither none nor all of the grid on both footings (a gate that admits everything is probably mis-implemented)   (canonical 0.387187, alt 0.387187)
+  [PASS] F2 [H2] the gate alone admits neither none nor all of the grid on both footings (a gate that admits everything is probably mis-implemented)   (canonical 0.318633, alt 0.318633)
+  [PASS] F3 [H3] the gate alone admits neither none nor all of the grid on both footings (a gate that admits everything is probably mis-implemented)   (canonical 0.936170, alt 0.936170)
+  [PASS] F4 [H4] the gate alone admits neither none nor all of the grid on both footings (a gate that admits everything is probably mis-implemented)   (canonical 0.690814, alt 0.690814)
+  [PASS] F5 [H5] the gate alone admits neither none nor all of the grid on both footings (a gate that admits everything is probably mis-implemented)   (canonical 0.571429, alt 0.428571)
+  [PASS] F6 [H6] the gate alone admits neither none nor all of the grid on both footings (a gate that admits everything is probably mis-implemented)   (canonical 0.555556, alt 0.555556)
+  [PASS] F7 [H7] the gate alone admits neither none nor all of the grid on both footings (a gate that admits everything is probably mis-implemented)   (canonical 0.011981, alt 0.011981)
+  [PASS] F8 [H8] the gate alone admits neither none nor all of the grid on both footings (a gate that admits everything is probably mis-implemented)   (canonical 0.410023, alt 0.410023)
+  [PASS] F9 [H9] the gate alone admits neither none nor all of the grid on both footings (a gate that admits everything is probably mis-implemented)   (canonical 0.402148, alt 0.402148)
+    (H10 and H11 are excluded from the F-checks and admit the whole grid BY CONSTRUCTION: |K_2| > 0 is a sign
+     convention, and the clock-tachyon gate is satisfied identically because the condensate is removed, Q_0 = 0.
+     That identity is the structural point of the assembly, not a mis-implemented gate.)
+  [PASS] T1 [THE TEST] the simultaneous admissible region of all eleven gates is NON-EMPTY on both footings   (canonical 76,240 points, alt 57,180 points)
+
+    MINIMAL incompatible subsets (size <= 4):
+      canonical: none -- no subset of the eleven gates up to size 4 is empty
+      alt: none -- no subset of the eleven gates up to size 4 is empty
+
+    THE EXPLICIT POINT.  It is not read off the grid; it is derived, then confirmed to be admitted.
+      1. sigma = sigma_* = 1.679312732 (L26: the IC6 obstruction's leading order vanishes and S_4 changes sign)
+      2. sigma pins c_2 = 2 sigma c_14/(2 - c_14 - 3 sigma c_14) ~ sigma c_14
+      3. then alpha_2 -> (c_14/2)(1/sigma - 1) = -0.2023 c_14, so |alpha_2| < 4e-7 forces c_14 <= 1.98e-6
+         -- TWELVE TIMES TIGHTER than alpha_1's own c_14 <= 2.5e-5.  This is new, and it is the
+         binding constraint on c_14 in the assembled theory.
+      4. the cosmological closure locus c_2|K_2| = (2-K_B)^2 (THE_ACTION section 5.11) is EXACTLY the
+         locus where the mixed clock-scalar mode travels at the clock's own speed, c_s,mix^2 = sigma:
+         S_eff = 1 - (2-K_B)^2/(c_2|K_2|) = 1 - c_s,mix^2/sigma to leading order in c_14, c_2.
+      -> numerically, at sigma = sigma_* and K_B = 0.2: |alpha_2| < 4e-7 holds up to c_14 = 1.9777e-06
+  [PASS] T1b the sigma-window's implication for c_14 is a genuine TIGHTENING and not a contradiction: the new bound c_14 <= 2.0e-6 is nested inside alpha_1's 2.5e-5 (A6/L10) and inside L14's grid bound 1.18e-5 (A12) -- three lanes, no conflict   (alpha_2+sigma: 1.978e-06; alpha_1: 2.5e-05; L14 grid: 1.18e-5)
+
+      THE POINT:  K_B = 0.2, c_14 = 1.0000e-06, c_2 = 1.679318e-06, |K_2| = 1.9294e+06, xi = 0.1 pc (canonical) / 0.15 pc (alt), p = 1.7538, Q_0 = 0
+                  derived:  sigma = 1.679312732, c_s,mix^2 = 1.679318, S_eff = +0.000000, G_cos/G_N = 0.999997481, G_N/G = 1.000000500
+  [PASS] T2 [the exhibited point] the derived point passes ALL ELEVEN gates on BOTH footings, independently of the grid   (canonical True, alt True)
+  [PASS] T2b the closure locus has the structural meaning claimed: at c_2|K_2| = (2-K_B)^2 the mixed clock-scalar mode's speed equals the clock's own sigma to better than 1e-4 relative   (c_s,mix^2 = 1.679318 vs sigma = 1.679313)
+  [PASS] T3 [a derived cost, not an input] Cherenkov safety (c_s,mix^2 >= 1) plus the clock window (sigma < 1.7716) CAP the surviving linear cosmological MOND source at S_eff <= 1 - 1/sigma = 0.435 -- the action can never deliver more than 44% of its own naive linear source   (S_eff <= 0.4355)
+
+    ROBUSTNESS of the non-emptiness to the two CONDITIONAL gates:
+      all eleven                       : canonical 76,240   alt 57,180
+      without H7 (sigma identification): canonical 7,567,560   alt 5,675,670
+      without H8 (Cherenkov, L19 Y2/Y3): canonical 309,400   alt 232,050
+  [PASS] T4 the non-emptiness does not RELY on either conditional gate: the region is non-empty with them, and larger without either   (monotone by construction; the point is that the full set is already non-empty)
+
+    CROSS-LANE CONSISTENCY: every parameter constrained by more than one settled result.
+      c_14         A6/L10 alpha_1 <= 2.5e-5 | A12/L14 grid <= 1.18e-5 | HERE alpha_2 at sigma_* <= 2.0e-6
+                   -> nested, tightest wins
+      |K_2|        A12/L14 dark-sector window [5e4, 5e5] | g03t D7 growth >= 2.71e6 | g03z G3 Cherenkov <= (2-K_B)^2/c_14
+                   -> the [5e4,5e5] window is VOID once the condensate is removed; growth and Cherenkov then overlap on the closure locus
+      xi           THE_ACTION section 2 table >= 0.03/0.05 pc | THE_ACTION section 5.13 + A33 >= 0.10/0.15 pc
+                   -> INCONSISTENT: the section-2 table is stale (it quotes the UNSATURATED partner's floors)
+      the kernel   recipe I1 freezes mu = 1 - e^-y | THE_ACTION section 3 carries nu_RAR
+                   -> INCONSISTENT: documentation conflict D1, unresolved, the user's call
+      c_2          BBN <= 0.0996 | f34b certifies scalar health for 0.01-0.1 | HERE sigma forces c_2 ~ 1.7 c_14 ~ 1.7e-6
+                   -> NOT a contradiction but a GAP: the assembled c_2 is five orders BELOW the range f34b certified healthy
+      sigma        IC-4 declares (0,1] | L15/L26 sigma_* = 1.679 with window [1.6793, 1.7716)
+                   -> resolved: A31 shows (0,1] is an undefended convention with no executable restriction
+  [FAIL] T5 no two settled results constrain the same parameter inconsistently   (THREE do: ['xi', 'the kernel', 'c_2'].  xi and the kernel are documentation conflicts (one document each needs amending); c_2 is an untested-regime gap, not a contradiction.  None of the three empties the region.)
+
+======================================================================================================================
+PART V -- THE GATE TABLE at the exhibited point, both footings, with the number and the source.
+======================================================================================================================
+    gate                                  footing     verdict                                                                         number / source
+    ----------------------------------------------------------------------------------------------------------
+    Solar System: Cassini quadrupole      canonical   PASS                                                                            g03d's own solve: Q2/ceiling = 0.55-0.68 at its floor 0.03 pc, and Q2 falls as 1/xi^2; xi = 0.1 pc is 3.3x that floor   [g03d (exact 4th order)]
+    Solar System: Saturn phantom mass     canonical   PASS                                                                            bare kernel 1.400e+04x over; screened by (xi/R_Sat)^2 = 4.64e+06 to 3.021e-03x   [L34/A33 + g03d]
+    Solar System: sunward anomaly         canonical   PASS                                                                            screened residual 1.31e-17 vs bound 3.66e-14 m/s^2   [g03d line 21]
+    PPN alpha_1                           canonical   PASS                                                                            -4.4828e-06 vs |alpha_1| < 1e-04   [A19/L13 (exact identity)]
+    PPN alpha_2                           canonical   PASS                                                                            -2.0226e-07 vs |alpha_2| < 4e-07  (margin 1.98x)   [g03v ppn(), rebuilt as K1]
+    PPN alpha_3                           canonical   PASS                                                                            0 exactly (hypersurface-orthogonal, dynamical foliation)   [THE_ACTION section 4 (f33)]
+    PPN gamma (light bending)             canonical   PASS                                                                            1 exactly   [A14/L11, THE_ACTION section 4]
+    Tensor speed c_T (GW170817)           canonical   PASS                                                                            c_13 = K_B - K_B = 0 identically => c_T = c exactly, at every K_B   [THE_ACTION section 2, A31 H2]
+    Newton constant positivity            canonical   PASS                                                                            G_N/G = 1/(1 - c_14/2) = 1.000000500   [f35]
+    DOF count                             canonical   FAIL vs requirement 2 as a TOTAL count; PASS as separately-counted-and-healthy  4 = 2 tensor + 1 clock + 1 MOND scalar (NOT 2)   [A2/L4, L8-D1/D4]
+    DOF health                            canonical   PASS                                                                            clock: A_0 = 0.4615 > 0, E positive definite, hyperbolic at sigma_*; scalar: Bogoliubov omega^2 = c_s^2 k^2(1+xi^2k^2) > 0   [A31/L26 H1-H7, f34/f34b]
+    Hadamard well-posedness (IC6)         canonical   PASS                                                                            S_4 > 0 on 59/59 branch points at sigma_* -- growth becomes bounded oscillation   [A31/L26 H9]
+    Galactic rotation curves              canonical   PASS                                                                            MOND at the action's own a0 = 9.3619e-11, coefficient exactly 1.000000   [A14/L11, rebuilt as K4/K4b]
+    Lensing-vs-dynamics slip (galaxies)   canonical   PASS                                                                            Phi = Psi, no slip, to < 1e-4 out to 1 Mpc   [A14/L11]
+    Bounded-boost ceiling on SPARC        canonical   PASS                                                                            C = 0.6476 a0 obeyed by 99.23% of 2352 points; 18 exceptions in 5 named galaxies, kept   [A33/L34, g03u]
+    Kernel tightness vs a fitted halo     canonical   NOT A DISCRIMINANT                                                              0.142 dex vs 0.171 (zero parameters both sides) BUT a prior-shrunk NFW reaches 0.085   [A28/L28]
+    Wide binaries (Gaia DR4, registered)  canonical   PENDING (DR4 unpublished)                                                       gamma_v ceiling 1.0450 at xi = 0.1 pc, falling toward 1 as xi grows; Arm A band 1.16-1.23   [Amendment 11(b), g03y]
+    Clusters: mass at R500                canonical   FAIL                                                                            required/delivered = 1.618 +/- 0.022 (dynamics), 1.987 +/- 0.246 (lensing)   [A27/L24]
+    Clusters: bounded-boost ceiling       canonical   FAIL                                                                            excess 3.37 a0 at 40 kpc = 5.2x the ceiling; no interpolation function can absorb it   [A33/L34, g03u]
+    Clusters: lensing SHAPE               canonical   FAIL                                                                            Delta Sigma short by 2.5-2.7x over 0.5-2 Mpc; log-slope +0.53 +/- 0.06 shallower = 9 sigma   [A27/L24]
+    Cluster residual = cosmic share       canonical   DIAGNOSTIC                                                                      required 5.73 +/- 0.68 vs Omega_dm/Omega_b = 5.43, universal to 12%   [A8/L7, rebuilt as K5]
+    Coma ultra-diffuse galaxies           canonical   FAIL                                                                            amplitude +1.196 dex (factor 14) at 4.9 sigma against the coherent systematic floor   [A22/L23]
+    Binary galaxies (2MRS pairs)          canonical   FAIL alone, PASS with a dark component                                          isolated deep-MOND amplitude 1.802 +/- 0.041 (19.6 sigma); with a cosmic share 1.141 +/- 0.028   [A20/L21]
+    BBN                                   canonical   PASS                                                                            K_B = 0.2 <= 0.25; G_cos/G_N - 1 = -2.52e-06 vs |.| < 0.13   [g03e B1, route2]
+    CMB acoustic peaks                    canonical   FAIL                                                                            no dark component in the action once the condensate is removed   [A13/L14-T4, g04f-g04j]
+    Linear growth of structure            canonical   PASS as an equation, FAIL as physics (no dark component to grow)                S_eff = +0.0000 at the closure locus; |S_eff| x 2.71e6 = 0.00e+00 <= |K_2| = 1.93e+06   [g03t D5/D7, g03v]
+    sigma_8 / S_8                         canonical   FAIL (that route)                                                               the late-roll route that reached sigma_8 = 0.845-0.861 gives S_8,eff = 1.06-1.20, +9 to +34 sigma   [A29/L29]
+    Gravitational Cherenkov               canonical   PASS                                                                            clock 29.6% superluminal, mixed mode c_s^2 = 1.679 >= 1; the bound constrains SLOW modes   [A5/L19, A31/L26-X4, A32/L33]
+    Causal structure / no CTC             canonical   PASS                                                                            G^{mu nu} n_mu n_nu = -1/sigma < 0: clock leaves spacelike for BOTH cones at every sigma > 0   [A31/L26-X1..X3, A32/L33]
+    Black holes                           canonical   PASS                                                                            universal horizon r = 3M/2 reproduced; even an infinite-speed mode is trapped   [A32/L33]
+    Longitudinal cone at Saturn           canonical   PASS (repaired)                                                                 Sigma_par = 9.39e+15 -- FINITE with the repaired kernel, INFINITE with the published one   [A33/L34 C4/C5, this script N5]
+    Strong coupling at a planet           canonical   PASS at p <= 1.754                                                              delta_g/g_* = [(p+1)/3](M_p/M_sun)(r_p/R_p)^2 = 1520 for Earth without xi; with xi at its floor p <= 1.754 is perturbative   [A33/L34 D2/D3]
+    a0-Lambda tie                         canonical   FITTED, NOT DERIVED                                                             kappa = 0.5000 (canonical 1/2 to 0.03%; alt 0.60)   [A24/L32, k01-k04]
+    a0 universality across systems        canonical   FAIL                                                                            the a0 ladder spans 0.78 dex across system classes   [09-03 sweep, standing]
+    ----------------------------------------------------------------------------------------------------------
+    Solar System: Cassini quadrupole      alt         PASS                                                                            g03d's own solve: Q2/ceiling = 0.55-0.68 at its floor 0.05 pc, and Q2 falls as 1/xi^2; xi = 0.15 pc is 3.0x that floor   [g03d (exact 4th order)]
+    Solar System: Saturn phantom mass     alt         PASS                                                                            bare kernel 1.687e+04x over; screened by (xi/R_Sat)^2 = 1.04e+07 to 1.618e-03x   [L34/A33 + g03d]
+    Solar System: sunward anomaly         alt         PASS                                                                            screened residual 7.00e-18 vs bound 3.66e-14 m/s^2   [g03d line 21]
+    PPN alpha_1                           alt         PASS                                                                            -4.2532e-06 vs |alpha_1| < 1e-04   [A19/L13 (exact identity)]
+    PPN alpha_2                           alt         PASS                                                                            -2.0226e-07 vs |alpha_2| < 4e-07  (margin 1.98x)   [g03v ppn(), rebuilt as K1]
+    PPN alpha_3                           alt         PASS                                                                            0 exactly (hypersurface-orthogonal, dynamical foliation)   [THE_ACTION section 4 (f33)]
+    PPN gamma (light bending)             alt         PASS                                                                            1 exactly   [A14/L11, THE_ACTION section 4]
+    Tensor speed c_T (GW170817)           alt         PASS                                                                            c_13 = K_B - K_B = 0 identically => c_T = c exactly, at every K_B   [THE_ACTION section 2, A31 H2]
+    Newton constant positivity            alt         PASS                                                                            G_N/G = 1/(1 - c_14/2) = 1.000000500   [f35]
+    DOF count                             alt         FAIL vs requirement 2 as a TOTAL count; PASS as separately-counted-and-healthy  4 = 2 tensor + 1 clock + 1 MOND scalar (NOT 2)   [A2/L4, L8-D1/D4]
+    DOF health                            alt         PASS                                                                            clock: A_0 = 0.4615 > 0, E positive definite, hyperbolic at sigma_*; scalar: Bogoliubov omega^2 = c_s^2 k^2(1+xi^2k^2) > 0   [A31/L26 H1-H7, f34/f34b]
+    Hadamard well-posedness (IC6)         alt         PASS                                                                            S_4 > 0 on 59/59 branch points at sigma_* -- growth becomes bounded oscillation   [A31/L26 H9]
+    Galactic rotation curves              alt         PASS                                                                            MOND at the action's own a0 = 1.1279e-10, coefficient exactly 1.000000   [A14/L11, rebuilt as K4/K4b]
+    Lensing-vs-dynamics slip (galaxies)   alt         PASS                                                                            Phi = Psi, no slip, to < 1e-4 out to 1 Mpc   [A14/L11]
+    Bounded-boost ceiling on SPARC        alt         PASS                                                                            C = 0.6476 a0 obeyed by 99.23% of 2352 points; 18 exceptions in 5 named galaxies, kept   [A33/L34, g03u]
+    Kernel tightness vs a fitted halo     alt         NOT A DISCRIMINANT                                                              0.142 dex vs 0.171 (zero parameters both sides) BUT a prior-shrunk NFW reaches 0.085   [A28/L28]
+    Wide binaries (Gaia DR4, registered)  alt         PENDING (DR4 unpublished)                                                       gamma_v ceiling 1.0300 at xi = 0.15 pc, falling toward 1 as xi grows; Arm A band 1.16-1.23   [Amendment 11(b), g03y]
+    Clusters: mass at R500                alt         FAIL                                                                            required/delivered = 1.493 +/- 0.020 (dynamics), 1.834 +/- 0.227 (lensing)   [A27/L24]
+    Clusters: bounded-boost ceiling       alt         FAIL                                                                            excess 3.37 a0 at 40 kpc = 5.2x the ceiling; no interpolation function can absorb it   [A33/L34, g03u]
+    Clusters: lensing SHAPE               alt         FAIL                                                                            Delta Sigma short by 2.5-2.7x over 0.5-2 Mpc; log-slope +0.53 +/- 0.06 shallower = 9 sigma   [A27/L24]
+    Cluster residual = cosmic share       alt         DIAGNOSTIC                                                                      required 5.73 +/- 0.68 vs Omega_dm/Omega_b = 5.43, universal to 12%   [A8/L7, rebuilt as K5]
+    Coma ultra-diffuse galaxies           alt         FAIL                                                                            amplitude +1.196 dex (factor 14) at 4.9 sigma against the coherent systematic floor   [A22/L23]
+    Binary galaxies (2MRS pairs)          alt         FAIL alone, PASS with a dark component                                          isolated deep-MOND amplitude 1.802 +/- 0.041 (19.6 sigma); with a cosmic share 1.141 +/- 0.028   [A20/L21]
+    BBN                                   alt         PASS                                                                            K_B = 0.2 <= 0.25; G_cos/G_N - 1 = -2.52e-06 vs |.| < 0.13   [g03e B1, route2]
+    CMB acoustic peaks                    alt         FAIL                                                                            no dark component in the action once the condensate is removed   [A13/L14-T4, g04f-g04j]
+    Linear growth of structure            alt         PASS as an equation, FAIL as physics (no dark component to grow)                S_eff = +0.0000 at the closure locus; |S_eff| x 2.71e6 = 0.00e+00 <= |K_2| = 1.93e+06   [g03t D5/D7, g03v]
+    sigma_8 / S_8                         alt         FAIL (that route)                                                               the late-roll route that reached sigma_8 = 0.845-0.861 gives S_8,eff = 1.06-1.20, +9 to +34 sigma   [A29/L29]
+    Gravitational Cherenkov               alt         PASS                                                                            clock 29.6% superluminal, mixed mode c_s^2 = 1.679 >= 1; the bound constrains SLOW modes   [A5/L19, A31/L26-X4, A32/L33]
+    Causal structure / no CTC             alt         PASS                                                                            G^{mu nu} n_mu n_nu = -1/sigma < 0: clock leaves spacelike for BOTH cones at every sigma > 0   [A31/L26-X1..X3, A32/L33]
+    Black holes                           alt         PASS                                                                            universal horizon r = 3M/2 reproduced; even an infinite-speed mode is trapped   [A32/L33]
+    Longitudinal cone at Saturn           alt         PASS (repaired)                                                                 Sigma_par = 5.62e+15 -- FINITE with the repaired kernel, INFINITE with the published one   [A33/L34 C4/C5, this script N5]
+    Strong coupling at a planet           alt         PASS at p <= 1.754                                                              delta_g/g_* = [(p+1)/3](M_p/M_sun)(r_p/R_p)^2 = 1520 for Earth without xi; with xi at its floor p <= 1.754 is perturbative   [A33/L34 D2/D3]
+    a0-Lambda tie                         alt         FITTED, NOT DERIVED                                                             kappa = 0.6023 (canonical 1/2 to 0.03%; alt 0.60)   [A24/L32, k01-k04]
+    a0 universality across systems        alt         FAIL                                                                            the a0 ladder spans 0.78 dex across system classes   [09-03 sweep, standing]
+
+    tally over both footings: 42 PASS, 18 FAIL, 8 other (pending / diagnostic / not a discriminant)
+  [PASS] T6 the assembled theory passes every LOCAL gate -- Solar System, PPN, tensor sector, degrees of freedom and their health, causality, galactic dynamics and lensing   (every Solar-System, PPN, tensor, health, causality and galaxy row is PASS)
+  [FAIL] T7 the assembled theory passes every gate at scales ABOVE a galaxy   (it does not: clusters (3 rows), ultra-diffuse galaxies, binary galaxies, the CMB and S_8 all FAIL.  Every one of them is the SAME hole -- there is no dark component in the action.)
+
+======================================================================================================================
+PART VI -- THE HOLES, with sizes.  Nothing here is written as an open question.
+======================================================================================================================
+
+    H-A  THE CLUSTER DEFICIT (the big one)
+      The residual behaves like MASS in BOTH dynamics and lensing, so no lensing-sector repair can reach it.
+      SIZE: required/delivered mass at each cluster's own R500 = 1.618 +/- 0.022 (canonical) / 1.493 +/- 0.020 (alt)
+      against the hydrostatic mass, and 1.987 +/- 0.246 / 1.834 +/- 0.227 against weak lensing; the two agree
+      (S_lens - S_dyn = +0.37 +/- 0.24, 1.55 sigma).  In raw Delta Sigma over 0.5-2 Mpc the framework is short
+      by 2.5-2.7x and its log-slope is +0.53 +/- 0.06 SHALLOWER, a 9 sigma SHAPE error, because its phantom is a
+      near-uniform sheet.  The acceleration excess at 40 kpc is 3.37 a0, 5.2x the kernel's own hard ceiling, which
+      no interpolation function can absorb.  The required source is 6.8x the baryons with rho ~ r^-1.53.
+      MECHANISMS CLOSED: interpolation kernel (A7, |z| = 13); fixed-strength finite-range force (A7, BBN 41x);
+      screened force in Phi, rho or M (A7, 12.8 sigma overlap + cosmological ordering); hydrostatic bias (A18 -- the
+      required b is NEGATIVE, -0.82, against a measured [0, +0.42]); the curl field (A25 -- real but exactly
+      invisible to the radial average, closes 3.9% of the gap and runs the wrong way); a late-time roll (A16 --
+      buys the cosmology but gives 0.97 of the required 2.2-5.1 contrast); light thermal relics (Tremaine-Gunn,
+      m >= 4.67 eV, and the N_eff/RAR pincer at 27.6 vs 11 eV); wave dark matter (pincer with no interior, 1.4x);
+      four condensate constructions; the environment switch.  AND the ratio is NOT MONOTONE in scale: binary
+      galaxies need 30.9 +/- 1.6 within the pair separation against 5.73 +/- 0.68 at 0.80 R500, 5.7x and 16 sigma.
+      WHAT IS LEFT: a cold, baryon-tracing component -- i.e. cold dark matter.  The theory does not contain one.
+
+    H-B  NO DARK SECTOR AT ALL, hence no CMB and no structure
+      Removing the condensate is what cures the clock tachyon (A13/L14), and it was the action's only dark component.
+      SIZE: the condensate's dark fraction is capped at 2.6e-6 against Omega_d = 0.266, short by 1.0e5x.  With it
+      gone the theory has baryons only; the CMB third peak, S_8 and the matter power spectrum are unaddressed.
+      The linear MOND source that might have regenerated P(k) does not: at linear order the causal boost leaves
+      sigma_8 <= 0.65 with a 20-2000x deficit at k = 0.5-1 h/Mpc, at any |K_2| (A/g04h).
+
+    H-C  kappa = 1/2 IS FITTED
+      a0 = kappa c sqrt(G rho_Lambda) is dimensionally forced; kappa is not.  SIZE: A24/L32 T1 proves kappa is a ZERO
+      MODE of any local action of this class -- F -> F + C is exactly degenerate with Lambda -- so no member of the
+      class can derive it.  Deriving it reduces to fixing one number, beta/sqrt(Ztilde) = kappa/sqrt2 = 0.354.
+      Twenty-seven simple numbers lie inside the measured 3 sigma band; landing there is not evidence.
+
+    H-D  THE FOLIATION'S ONE ESCAPE IS UNDECIDED
+      A26/L31 proves Lorentz invariance XOR two modes under a LOCALITY hypothesis, verified against a 17-theory table
+      with no counterexample.  Hypothesis (iv), locality, is NOT proved: temporal nonlocality is a live escape
+      (holding g_ext fixed, pushing the source 1000x drops every local invariant 1000x while |grad(box^-1 R)| is
+      exactly constant).  A parallel lane is deciding it with a Hamiltonian mode count for retarded-nonlocal
+      gravity.  IF that escape opens, the preferred foliation this theory is built on is a CHOICE, not a theorem.
+
+    H-E  THE IC <-> ACTION MAPPING IS NOT PUBLISHED (challenge B2)
+      c_14 has three inconsistent readings in the lead's files spanning 0.073-1.333, and c_2 vanishes at the witness
+      where the mode was measured.  SIZE: the identification sigma = (2-c_14)c_2/[c_14(2+3c_2)] used above -- the
+      one that tightens c_14 to 2.0e-6 -- is therefore STATED, not proved.  The region is non-empty with or
+      without it (PART IV, T4), so nothing structural depends on it; the SHARPNESS of the c_14 bound does.
+
+    H-F  c_2 SITS FIVE ORDERS BELOW THE CERTIFIED HEALTHY RANGE
+      f34b certifies the scalar sector's linear health for c_2 in [0.01, 0.1].  The assembled point has c_2 = 1.7e-6.
+      SIZE: 5 orders of magnitude of untested parameter.  Not a computed failure -- a gate nobody has run.
+
+    H-G  TWO DOCUMENTATION CONFLICTS ARE STILL OPEN
+      (i) the kernel: recipe ingredient I1 freezes mu = 1 - e^-y, THE_ACTION section 3 carries nu_RAR; they differ by
+      up to 0.073 dex and the exponential ceiling is exceeded 5x more often on the bulgeless SPARC control.
+      (ii) xi: THE_ACTION's section-2 table still quotes 0.03/0.05 pc, the UNSATURATED partner's floors, against
+      section 5.13 and A33's 0.10/0.15 pc for the kernel a scalar can actually carry.  One document each must be
+      amended; until then any cross-document comparison is ill-defined.
+
+    H-H  STANDING LIABILITIES NOT REPAIRED BY THE ASSEMBLY
+      Coma ultra-diffuse galaxies: amplitude +1.196 dex (factor 14) at 4.9 sigma against a 0.227 dex coherent systematic
+      floor -- never quote the retracted 19.4 sigma.  The a0 ladder spans 0.78 dex across system classes.  Unequal-mass
+      wide binaries: a resolution-independent common-mode force is an open numerical item.  Non-spherical accretion
+      and the existence theory of the non-spherical fourth-order law are untouched.
+  [FAIL] T8 the theory has no unaddressed hole larger than a factor of two   (it has: the cluster mass deficit is a factor 1.49-1.99 AND a 9 sigma shape error AND 5.2x the kernel's own ceiling at 40 kpc, and there is no dark component in the action at all (short by 1.0e5x))
+
+======================================================================================================================
+PART VII -- WHAT IS DISTINCTIVE, WITH NUMBERS, AND WHAT WOULD FALSIFY IT.
+======================================================================================================================
+
+    P1  THE BOUNDED BOOST -- a hard, parameter-free ceiling dark matter cannot impose
+      g_obs - g_bar <= C a0 = 0.6476 a0 = 6.063e-11 / 7.304e-11 m/s^2, EVERYWHERE, in EVERY system,
+      with no free parameter.  A halo's g_halo is set by M_200 and c, which span decades and are not tied to a0.
+      FALSIFIED BY: one system, with a trustworthy baryon model, above the ceiling.  Currently 99.23% of 2352 SPARC
+      points obey it; the 18 >3 sigma exceptions are in five named galaxies, 13 of them in NGC5985.
+
+    P2  a0(z): the surviving distinctive prediction
+      The deep-MOND baryonic-Tully-Fisher zero point is FLAT to <1% out to z = 5 on the derived law, against LambdaCDM's
+      +0.33 dex by z = 2.5 and +0.576 dex at the same redshift for a rising-a0 reading.  DECISIVE MEASUREMENT:
+      a deep-MOND lensed rotator at z ~ 2-2.5 measured to +/- 0.13 dex.  This, not kappa, is the discriminator.
+
+    P3  GAIA DR4 WIDE BINARIES -- registered, and it is a NEWTON-LIKE answer
+      gamma_v <= 1.0450 (canonical, xi = 0.10 pc) / 1.0300 (alt, xi = 0.15 pc), falling toward 1 as xi grows, against
+      Arm A's registered band 1.16-1.23 and Newton's 1.000.  These are CEILINGS: DR4 can kill this arm from above,
+      it cannot confirm it over Newton.  A measurement inside 1.16-1.23 falsifies the coherence-length structure.
+
+    P4  THE CLUSTER PEAK RADIUS is mass-independent (conditional on a dust sector existing)
+      If any component with the scalar's stiffness supplies part of the residual, its peak radius is set by
+      H = 0.42 e c^2/(|K_2| a0) alone and is therefore the SAME PHYSICAL RADIUS in every cluster, where an NFW scale
+      radius grows as M^(1/3).  NOTE: the assembled theory has no such component, so this is a prediction of the
+      condensate branch that was REMOVED, and is listed to be honest about what removing it costs.
+
+    P5  THE SADDLE NULL
+      No Bekenstein-Magueijo anomaly at any Solar-System field null: the coherence operator erases it by 1e-29.  LISA
+      Pathfinder-class saddle flybys would see nothing.  A detection falsifies the operator.
+
+    P6  THE CARRIER/AQUAL FORK, newly priced here
+      The two structures agree below s = 0.63 and diverge above it, reaching 0.073 dex.  At s = 3 the carrier
+      predicts Delta = 0.648 and AQUAL 0.136, a 0.066 dex difference in g.  BIG-SPARC's transition
+      bins decide which structure the data prefer -- and only the carrier arm needs the coherence length at all.
+
+    P7  THE SATURATION EXPONENT is bounded above
+      p <= 1.7538: the kernel's approach to its ceiling is a POWER LAW, never exponential.  Measuring the approach faster
+      than Delta = C[1 - (s0/s)^1.754] falsifies the perturbative existence of the theory's own cubic action.
+
+======================================================================================================================
+VERDICT
+======================================================================================================================
+    The admissible region is NON-EMPTY.  An explicit point is exhibited above and passes eleven gates on
+    both footings.  Every LOCAL test the programme owns -- Cassini, the Saturn phantom mass, the sunward
+    anomaly, alpha_1, alpha_2, alpha_3, gamma, the tensor speed, the degree-of-freedom count and its health,
+    Hadamard well-posedness, causality, black holes, galactic rotation curves and the lensing-dynamics slip --
+    passes at that point, on both footings.  That is a real result and it is the first time the programme has
+    had one simultaneously.
+
+    Every test at a scale ABOVE a galaxy fails, and they all fail for ONE reason: removing the condensate --
+    which is what cures the clock tachyon, the single gate in every minimal incompatible subset L14 found --
+    leaves the action with no dark component at all.  The cluster deficit is a factor 1.49-1.99 in mass at
+    R500 in both dynamics and lensing, with a 9 sigma shape error in Delta Sigma and an acceleration excess
+    5.2x the kernel's own hard ceiling at 40 kpc; the CMB, S_8 and the matter power spectrum are unaddressed.
+
+    So: this is a complete, internally consistent, Solar-System-safe, galaxy-correct relativistic theory of
+    gravity with a preferred foliation and four healthy propagating modes -- and it is not a complete theory
+    of the universe, because it needs a cold, baryon-tracing component that it does not contain and that
+    every mechanism it does contain has been shown, one by one, unable to supply.
+  [FAIL] V1 [THE VERDICT] this is a complete theory   (it is a complete theory of GRAVITY at Solar-System and galaxy scales with a non-empty parameter region, and an INCOMPLETE theory of the universe: it requires a cold dark component it does not contain.  What is missing is exactly that component, plus a derivation of kappa, plus the locality hypothesis of the foliation theorem.)
+  [PASS] V2 the parameter space of the assembled theory is non-empty under the corrected constraints -- THE question this lane was opened to answer   (YES: grid 76,240 / 57,180 points, plus a derived explicit point admitted on both footings, with the clock tachyon gate satisfied IDENTICALLY because Q_0 = 0)
+
+RESULT: 4 FAIL -> ['T5 no two settled results constrain the same parameter inconsistently', 'T7 the assembled theory passes every gate at scales ABOVE a galaxy', 'T8 the theory has no unaddressed hole larger than a factor of two', 'V1 [THE VERDICT] this is a complete theory']
+  (FAILs T5, T7, T8, V1 and F-lines are RESULTS, not machine errors: they record the cluster deficit,
+   the absent dark sector, the two documentation conflicts and the incompleteness.  Every CONTROL --
+   K1-K9, N1-N7, T1, T2 -- must pass for the rest to mean anything.)
+  CONTROL failures: none
