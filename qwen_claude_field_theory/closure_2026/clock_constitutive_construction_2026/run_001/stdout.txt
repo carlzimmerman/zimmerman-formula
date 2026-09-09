@@ -1,0 +1,156 @@
+{
+  "status": "CONSTRUCTED_STATIC_AND_FROZEN_PRINCIPAL_BRANCH; FULL_THEORY_OPEN",
+  "action": "S=(16 pi Gb)^-1 integral sqrt(-g) [R-2Lambda-ell theta^2+a0^2 f(a/a0)+eta V_i(-Delta_h)^-1 V^i+eta_U U^2]+Sm",
+  "primitive": "(2*y + (y**2 - 2)*exp(y) + 2)*exp(-y)",
+  "f": "-C*(2*y + (y**2 - 2)*exp(y) + 2)*exp(-y) + 2*y**2",
+  "auxiliary_vector": {
+    "u(y)": "y*(A - C*(1 - exp(-y)))/b",
+    "J(u(y)^2)": "(2*C*(y**2 + y + 1) + (-2*C + y**2*(A - C))*exp(y))*exp(-y)/b",
+    "J_Y": "b*exp(y)/(A*exp(y) - C*exp(y) + C)"
+  },
+  "static": {
+    "Psi_flux": "-4*gPhi + 4*gPsi",
+    "Phi_flux_on_matched_branch": "-2*C*gPhi + 2*C*gPhi*exp(-gPhi/a0)",
+    "measured_G": "2*Gbare/C",
+    "PDE": "div[mu grad Phi]=4 pi Gmeasured rho",
+    "boundary_requirement": "harmonic Psi-Phi fixed to zero"
+  },
+  "principal": {
+    "alpha_transverse": "-C + C*exp(-y) + 2",
+    "alpha_parallel": "-C*y*exp(-y) - C + C*exp(-y) + 2",
+    "reduced_L": "2*(alpha*ell*k**2*zeta**2 - 3*alpha*ell*trace_factor*zetadot**2 + 6*alpha*ell*zetadot**2 + 2*alpha*zetadot**2 - 2*ell*k**2*zeta**2)/(alpha*ell)",
+    "kinetic_hessian": "-4*(3*ell*trace_factor - 6*ell - 2)/ell",
+    "gradient_hessian": "-4*(alpha - 2)/alpha",
+    "sound_speed_squared": "ell*(alpha - 2)/(alpha*(3*ell*trace_factor - 6*ell - 2))",
+    "unreduced_characteristic": "16*k**6*(alpha*ell*k**2 + 3*alpha*ell*rate**2*trace_factor - 6*alpha*ell*rate**2 - 2*alpha*rate**2 - 2*ell*k**2)",
+    "count": {
+      "velocity_rank": 1,
+      "generations": [
+        2,
+        2
+      ],
+      "constraint_rows": [
+        "Matrix([[0, 0, 0, 0, 1, 0], [0, 0, 0, 0, 0, 1]])",
+        "Matrix([[-4*k**2, 2*alpha*k**2, 0, 0, 0, 0], [0, 0, -2*ell*k**4 - 4*k**4*(-18*ell - 12)*(3*ell + 2)**2/(324*ell**2 + 432*ell + 144), 2*k**2*(-18*ell - 12)*(3*ell + 2)/(324*ell**2 + 432*ell + 144), 0, 0]])"
+      ],
+      "poisson_matrix": "Matrix([[0, 0, -2*alpha*k**2, 0], [0, 0, 0, -4*k**4/3], [2*alpha*k**2, 0, 0, 4*k**4/3], [0, 4*k**4/3, -4*k**4/3, 0]])",
+      "poisson_rank": 4,
+      "first_class": 0,
+      "second_class": 4,
+      "dof": "1"
+    },
+    "tensor_speed_squared": "1"
+  },
+  "finite_scan": {
+    "C": "5/3",
+    "ell": "1/100",
+    "y_range": [
+      1e-08,
+      80
+    ],
+    "angle_cos2_range": [
+      0,
+      1
+    ],
+    "points": 3525,
+    "min_alpha": 0.10928084893192458,
+    "max_alpha": 1.9999999833333335,
+    "min_cs2": 4.1050903030171194e-11,
+    "max_cs2": 0.085228908218741
+  },
+  "FLRW": {
+    "lapse_equation": "-2*Lambda*scale**3 - adot**2*scale*(-9*ell - 6)/N**2",
+    "H_squared": "2*(8*pi*Gbare*rho + Lambda)/(3*(3*ell + 2))",
+    "Gcos": "2*Gbare/(3*ell + 2)",
+    "Gcos_over_Gmeasured": "C/(3*ell + 2)"
+  },
+  "transverse_repair": {
+    "definition": "V_i=P_T_i^j D^m K_jm; P_T=I-D Delta_h^-1 div, on zero-mean flat Fourier modes",
+    "computed_vector_L": "eta*k**2*shiftx**2/4 + eta*k**2*shifty**2/4 + k**2*shiftx**2/2 + k**2*shifty**2/2",
+    "scalar_V": "Matrix([[0], [0], [0]])",
+    "tensor_V": "Matrix([[0], [0], [0]])",
+    "shift_solution": "-32*pi*Gbare*momentum_density/(k**2*(eta + 2))",
+    "g0i_over_Vppn": "-4*C/(eta + 2)",
+    "alpha1_from_transverse_PPN_matching": "8*(C - eta - 2)/(eta + 2)",
+    "eta_for_alpha1_zero": "C - 2",
+    "repaired_vector_L": "C*k**2*(shiftx**2 + shifty**2)/4",
+    "vector_constraint_count": {
+      "velocity_rank": 0,
+      "generations": [
+        2,
+        2
+      ],
+      "constraint_rows": [
+        "Matrix([[0, 0, 1, 0], [0, 0, 0, 1]])",
+        "Matrix([[C*k**2/2, 0, 0, 0], [0, C*k**2/2, 0, 0]])"
+      ],
+      "poisson_matrix": "Matrix([[0, 0, -C*k**2/2, 0], [0, 0, 0, -C*k**2/2], [C*k**2/2, 0, 0, 0], [0, C*k**2/2, 0, 0]])",
+      "poisson_rank": 4,
+      "first_class": 0,
+      "second_class": 4,
+      "dof": "0"
+    },
+    "scope": "constant high-acceleration coefficients; full boosted scalar PPN alpha2 not inferred"
+  },
+  "scalar_response_repair": {
+    "definition": "U=K-mean(K)-Delta_h^-1 D_i D_j K^ij, zero homogeneous mode",
+    "source": "Tzz=-rate^2 rho/k^2; div(j)=-rate rho; src=16 pi Gb rho",
+    "computed_Rzz": "-src*(2*alpha*ell*rate**4 + alpha*k**2*rate**2 + 3*alpha*rate**4*trace_factor - 2*alpha*rate**4 + ell*k**4 + 3*ell*k**2*rate**2*trace_factor - 2*ell*k**2*rate**2)/(2*k**2*(alpha*ell*k**2 + 3*alpha*ell*rate**2*trace_factor - 6*alpha*ell*rate**2 - 2*alpha*rate**2 - 2*ell*k**2))",
+    "computed_Rxx": "rate**2*src*(alpha*ell*rate**2 + alpha*rate**2 + ell*k**2)/(2*k**2*(alpha*ell*k**2 + 3*alpha*ell*rate**2*trace_factor - 6*alpha*ell*rate**2 - 2*alpha*rate**2 - 2*ell*k**2))",
+    "GR_Rzz": "src*(k**2 + rate**2)/(2*C*k**2)",
+    "order_rate2_mismatch": "-src*(C**2 - 3*C*ell - 4*C - 6*ell*trace_factor + 12*ell + 4)/(2*C**2*ell*k**2)",
+    "trace_factor_match": "(C**2 - 4*C + 3*ell*(4 - C) + 4)/(6*ell)",
+    "eta_U": "(-C**2 + 3*C*ell + 4*C - 6*ell - 4)/(4*ell)",
+    "remaining_Rzz_difference": "-rate**4*src*(C - 2)*(C - ell - 2)**2/(2*C*ell*k**2*(C**2*rate**2 - 3*C*ell*rate**2 - 6*C*rate**2 + 2*ell*k**2 + 6*ell*rate**2 + 8*rate**2))",
+    "remaining_Rxx_difference": "rate**4*src*(C - 2)*(C - ell - 2)/(2*C*k**2*(C**2*rate**2 - 3*C*ell*rate**2 - 6*C*rate**2 + 2*ell*k**2 + 6*ell*rate**2 + 8*rate**2))",
+    "repaired_kinetic_hessian": "-2*C*(C - 3*ell - 4)/ell",
+    "repaired_clock_cs2": "2*ell*(alpha - 2)/(C*alpha*(C - 3*ell - 4))",
+    "repaired_count": {
+      "velocity_rank": 1,
+      "generations": [
+        2,
+        2
+      ],
+      "constraint_rows": [
+        "Matrix([[0, 0, 0, 0, 1, 0], [0, 0, 0, 0, 0, 1]])",
+        "Matrix([[-4*k**2, 2*alpha*k**2, 0, 0, 0, 0], [0, 0, 7090*k**4/16381, -1827*k**2/16381, 0, 0]])"
+      ],
+      "poisson_matrix": "Matrix([[0, 0, -2*alpha*k**2, 0], [0, 0, 0, -7090*k**4/16381], [2*alpha*k**2, 0, 0, 7308*k**4/16381], [0, 7090*k**4/16381, -7308*k**4/16381, 0]])",
+      "poisson_rank": 4,
+      "first_class": 0,
+      "second_class": 4,
+      "dof": "1"
+    },
+    "min_cs2": 4.231311697383513e-11,
+    "max_cs2": 0.08784948677892233,
+    "scope": "two conserved-source curvature components matched through rate^2; full alpha2,beta uncomputed"
+  },
+  "analytic_bounds": {
+    "stationary_y_of_mu_longitudinal": "[2]",
+    "C_ceiling": "2*exp(2)/(1 + exp(2))",
+    "witness_alpha_min": "(-5 + exp(2))*exp(-2)/3",
+    "witness_cs2_supremum": "18*(1 + exp(2))/(709*(-5 + exp(2)))",
+    "witness_cs2_supremum_float": 0.08914829072836318
+  },
+  "zero_field": {
+    "alpha_limit": "2",
+    "cs2_limit": "0",
+    "interpretation": "zero stiffness; nonlinear well-posedness/strong coupling not certified"
+  },
+  "open": [
+    "full covariant Dirac algebra and homogeneous constraints",
+    "PPN beta gamma alpha2 alpha3 and full-background alpha1 validation",
+    "curved-leaf projector, inverse domain and metric variation",
+    "causal response with clock and matter retained",
+    "zero-field strong coupling and regular centers",
+    "cluster, binary and cosmological data comparison",
+    "unscreened exact-AQUAL Solar-System external-field problem"
+  ],
+  "environment": {
+    "python": "3.9.6",
+    "sympy": "1.14.0",
+    "numpy": "1.26.2",
+    "lean": null,
+    "lake": null
+  }
+}
