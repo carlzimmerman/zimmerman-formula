@@ -138,6 +138,12 @@ kernel-checked in `RMMGCore.lean` and computed from the Python matrix in
 constraints remain first class in the full nonlinear algebra; that proof is
 still outstanding.
 
+The spatial part is now derived rather than assumed: treating
+\(s=|D u|\) and \(v=D^x r\) as metric-covariant scalar jets, the executable
+gate verifies \(\delta_\xi C=(\xi C)'\) for both divergence constraints.
+Thus the relay constraint ideal is preserved by spatial diffeomorphisms; only
+the time/Hamiltonian algebra remains to be solved.
+
 ## Exact obstruction still open
 
 The candidate has not yet passed the full nonlinear hypersurface-deformation
