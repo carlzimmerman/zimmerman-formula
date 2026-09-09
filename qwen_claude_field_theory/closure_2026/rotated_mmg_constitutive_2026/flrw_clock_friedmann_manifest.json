@@ -1,0 +1,80 @@
+{
+  "schema_version": 1,
+  "claim_id": "RMMG-evolving-DBI-clock-FLRW-Friedmann-2026-09-09",
+  "repository": {
+    "commit": "8116a156f21eb830e09705f514b79ebc62c4a510",
+    "dirty": true
+  },
+  "command": "PYTHONDONTWRITEBYTECODE=1 /Applications/Xcode.app/Contents/Developer/usr/bin/python3 qwen_claude_field_theory/closure_2026/rotated_mmg_constitutive_2026/flrw_clock_friedmann_gate.py",
+  "environment": {
+    "software": [
+      "Python 3.9.6 (Clang 21.0.0)",
+      "numpy 1.26.2",
+      "sympy 1.14.0"
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit",
+    "threads": 1
+  },
+  "mathematics": {
+    "assertion_tested": "The evolving DBI clock has an exact conserved-current solution with rho~a^-3 at early a, rho~constant at late a, and a positive expanding Friedmann witness.",
+    "coefficient_domain": "exact SymPy identities and deterministic binary64 bisection",
+    "conventions": "chi=dot(T)^2, z=chi/L, K=-A*sqrt(1-chi^2/L^2), p=K, rho=2chi K_chi-K",
+    "inputs": [
+      {
+        "path": "qwen_claude_field_theory/closure_2026/rotated_mmg_constitutive_2026/flrw_clock_friedmann_gate.py",
+        "sha256": "5415b44f31936623e1d65ca85f1d466b2146f29be7f8972688106fbe907a4624"
+      }
+    ],
+    "bounds": {
+      "a_interval": [0.02, 100.0],
+      "samples": 96,
+      "clock_parameters": "A=1, L=2, z(a=1)=0.5922633671067405",
+      "Friedmann_witness": "Omega_Lambda=0.7, Omega_clock=0.3"
+    },
+    "non_claims": [
+      "This is a minisuperspace existence witness, not the full covariant metric perturbation proof.",
+      "The acceleration constitutive term vanishes on homogeneous FLRW and is not tested here.",
+      "PPN, nonlinear Dirac closure, and the matter Ward identity remain open."
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-09-09T19:11:54-04:00",
+    "runtime_seconds": 0.50,
+    "exit_status": 0
+  },
+  "outputs": [
+    {
+      "path": "qwen_claude_field_theory/closure_2026/rotated_mmg_constitutive_2026/run_001/flrw_clock_friedmann_results.json",
+      "sha256": "b4ecb2d4f36ddd053cb39e362bdbe500e6530126d7a105c5f5cd14dd1a8baafa"
+    }
+  ],
+  "checks": [
+    {
+      "name": "continuity_identity_exact",
+      "passed": true
+    },
+    {
+      "name": "early_dust_asymptote",
+      "passed": true
+    },
+    {
+      "name": "late_vacuum_asymptote",
+      "passed": true
+    },
+    {
+      "name": "positive_H_witness",
+      "passed": true
+    }
+  ],
+  "result": "The finite symbolic/numerical gate constructs a healthy expanding minisuperspace clock branch interpolating between dust and vacuum behavior.",
+  "residual_risks": [
+    "Schema version 1 inherits legacy provenance limits.",
+    "The normalization is a dimensionless existence witness rather than a parameter fit.",
+    "Full metric stress and perturbative stability remain the decisive unresolved gates."
+  ]
+}

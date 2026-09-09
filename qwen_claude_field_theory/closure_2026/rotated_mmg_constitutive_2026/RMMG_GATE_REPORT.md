@@ -231,6 +231,65 @@ but it is not hidden: the scalar is explicitly propagating and must be
 counted separately from the two tensor modes.  Its metric mixing and preferred
 frame parameters remain open calculations.
 
+## Expanding-FLRW clock background gate
+
+The same covariant clock equation gives a stronger restriction on that repair.
+For \(T=t\) on flat FLRW, \(a_\mu=0\) and a shift-symmetric \(K(X)\) obeys
+
+\[
+\partial_t\!\left(a^3K_X\dot T\right)=0
+\quad\Longrightarrow\quad
+3H K_X(-1)=0
+\qquad (\dot T=1).
+\]
+
+The executable `flrw_clock_background_gate.py` evaluates this expression and
+the DBI witness \(K_X(-1)\ne0\).  Hence an expanding solution \(H\ne0\) is
+incompatible with \(T=t\) for the shift-symmetric DBI repair.  Setting
+\(K_X(-1)=0\) restores the background equation but removes the \(k^2\) clock
+gradient and returns the zero-speed sector.  A potential can cancel the
+residual only if \(V_T(t)=3H(t)K_X(-1)\), which is an additional time-dependent
+model input rather than the constant cosmological term.  This gate makes the
+remaining FLRW calculation unavoidable; the finite healthy-symbol scan alone
+does not establish cosmological viability.
+
+The (T=t) restriction is not a universal no-go.  The executable
+`flrw_clock_evolving_gate.py` solves the same shift-symmetric equation with an
+evolving \,\(\dot T(a)\).  Writing (z=\dot T^2/L\), the DBI current reduces to
+
+\[
+\frac{z^3}{1-z^2}=L\left(\frac{C}{A a^3}\right)^2,
+\]
+
+whose derivative is (z^2(3-z^2)/(1-z^2)^2>0) on (0<z<1).  Deterministic
+bisection finds one root at every tested (a\in[0.2,8]) for (H>0), and the
+computed current is constant to (7.1\times10^{-11}) relative spread.  The
+same samples have (K_\chi>0), \(\Sigma>0\), and (0<c_s^2<1).  This leaves a
+genuine evolving-clock FLRW branch open; the missing Friedmann stress and
+metric/clock constraint algebra are now the decisive calculations.
+
+## Minisuperspace Friedmann construction
+
+For the evolving branch, direct variation of the homogeneous minisuperspace
+lapse and scale factor gives
+
+\[
+\rho=2\chi K_\chi-K
+ =A\frac{1+z^2}{\sqrt{1-z^2}},\qquad
+p=K=-A\sqrt{1-z^2},\qquad
+w=-\frac{1-z^2}{1+z^2}.
+\]
+
+Using the conserved-current relation to eliminate (dz/d\ln a), the
+continuity residual (d\rho/d\ln a+3(\rho+p)) simplifies exactly to zero in
+`flrw_clock_friedmann_gate.py`.  A deterministic 96-point branch over
+\(a\in[0.02,100]\) has \(\rho a^3\) relative spread (1.53\times10^{-4}) in
+the early dust regime and \(\rho\) spread (3.11\times10^{-6}) in the late
+vacuum regime.  Adding positive dimensionless \(\Omega_\Lambda=0.7\) and
+\(\Omega_{\rm clock}=0.3\) produces (H>0) everywhere and a finite positive
+cosmic-time interval.  This is a concrete expanding-background witness,
+though not yet the full metric perturbation or nonlinear Friedmann closure.
+
 ## Exact obstruction still open
 
 The candidate has not yet passed the full nonlinear hypersurface-deformation

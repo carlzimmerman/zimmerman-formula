@@ -150,7 +150,42 @@ while adding (K(X)=-A\sqrt{1-X^2/L^2}) repairs the clock symbol on a finite
 scan at the price of one explicitly propagating clock scalar.  A full
 variation including metric/clock mixing, nonlinear constraint algebra, PPN,
 FLRW and the Ward identity is still required before this branch can be called
-a complete theory.
+a complete theory.  In particular, the `flrw_clock_background_gate.py` check
+shows that a shift-symmetric (K(X)) with (T=t) obeys
+(\partial_t(a^3K_X)=0); on an expanding background this forces
+(K_X(-1)=0), which removes the gradient repair.  A potential or explicit
+clock dependence must therefore be treated as part of the same action rather
+than appended after the fact.
+
+The (T=t) specialization is avoidable: on FLRW the conserved shift current
+can instead be carried by an evolving \,\(\dot T(a)\).  For the DBI choice and
+\(z=\dot T^2/L\), the current equation is
+
+\[
+\frac{z^3}{1-z^2}=L\left(\frac{C}{A a^3}\right)^2,
+\]
+
+which has one root in (0<z<1) for every positive (a).  The executable
+`flrw_clock_evolving_gate.py` verifies this branch and its positive,
+subluminal clock symbol.  The resulting homogeneous stress tensor and its
+back-reaction on (H(t)) still have to be derived from the same metric
+variation; that is the next cosmological closure gate.
+
+The homogeneous lapse variation is now evaluated in
+`flrw_clock_friedmann_gate.py`.  With (chi=\dot T^2) and
+(z=\chi/L), it gives
+
+\[
+\rho=2\chi K_\chi-K=A(1+z^2)/\sqrt{1-z^2},\qquad
+p=K=-A\sqrt{1-z^2},qquad
+w=-(1-z^2)/(1+z^2).
+\]
+
+The conserved current makes the continuity equation exact; the branch is
+dust-like as (a\to0) and vacuum-like as (a\to\infty), with a positive-(H)
+Friedmann witness.  This advances the FLRW gate, but the full covariant
+stress (T^a_{\mu\nu}), metric-clock mixing, and nonlinear constraint algebra
+remain to be calculated.
 
 For a fixed metric, the clock variation can already be written explicitly.
 Let (s=\sqrt{-X}), (P_\mu{}^\nu=\delta_\mu{}^\nu+n_\mu n^\nu),

@@ -35,4 +35,11 @@ theorem local_adm_count : admDof 4 = 2 := by
 theorem homogeneous_adm_count : admDof 0 = 4 := by
   decide
 
+/- On an expanding FLRW branch, the shift-symmetric clock equation reduces
+   (up to a nonzero factor) to H * K_X = 0.  This tiny theorem kernel-checks
+   the algebraic implication used by the executable FLRW gate. -/
+theorem flrw_expanding_forces_clock_gradient_zero
+    (H KX : Int) (hH : H ≠ 0) (hEq : H * KX = 0) : KX = 0 := by
+  exact (Int.mul_eq_zero.mp hEq).resolve_left hH
+
 end RMMGConstitutive

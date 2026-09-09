@@ -1,0 +1,74 @@
+{
+  "schema_version": 1,
+  "claim_id": "RMMG-shift-symmetric-clock-FLRW-background-2026-09-09",
+  "repository": {
+    "commit": "a081d4bdccf53f01c324e299b45211d5bd44cd7d",
+    "dirty": true
+  },
+  "command": "PYTHONDONTWRITEBYTECODE=1 /Applications/Xcode.app/Contents/Developer/usr/bin/python3 qwen_claude_field_theory/closure_2026/rotated_mmg_constitutive_2026/flrw_clock_background_gate.py",
+  "environment": {
+    "software": [
+      "Python 3.9.6 (Clang 21.0.0)",
+      "sympy 1.14.0"
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit",
+    "threads": 1
+  },
+  "mathematics": {
+    "assertion_tested": "For shift-symmetric K(X), T=t on flat FLRW with H != 0 forces K_X(-1)=0; the DBI repair has K_X(-1) != 0.",
+    "coefficient_domain": "exact SymPy differentiation with symbolic a(t), H, A, Ld",
+    "conventions": "X=g^{mu nu} d_mu T d_nu T<0; chi=-X=Tdot^2; Tdot=1; acceleration a_mu=0 on homogeneous FLRW",
+    "inputs": [
+      {
+        "path": "qwen_claude_field_theory/closure_2026/rotated_mmg_constitutive_2026/flrw_clock_background_gate.py",
+        "sha256": "61a506eaf22ba4846f6eef04d6437bc3d3640606a79a8126f87256b90a665528"
+      }
+    ],
+    "bounds": {
+      "background": "flat FLRW, arbitrary positive a(t), symbolic H != 0",
+      "clock": "T=t, chi=1",
+      "DBI_witness": "A=1, Ld=2"
+    },
+    "non_claims": [
+      "Does not derive the full metric stress tensor.",
+      "Does not rule out a non-shift-symmetric potential or a different clock background.",
+      "Does not by itself prove the full relativistic no-go theorem."
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-09-09T19:02:11-04:00",
+    "runtime_seconds": 0.24,
+    "exit_status": 0
+  },
+  "outputs": [
+    {
+      "path": "qwen_claude_field_theory/closure_2026/rotated_mmg_constitutive_2026/run_001/flrw_clock_background_results.json",
+      "sha256": "d7ca2bcbe52d2f8ba768cf003f2f83ca2eb0b7f55139c0ac5038247914028142"
+    }
+  ],
+  "checks": [
+    {
+      "name": "expanding_FLRW_residual",
+      "passed": true
+    },
+    {
+      "name": "DBI_K_X_nonzero",
+      "passed": true
+    },
+    {
+      "name": "potential_repair_not_fixed_constant",
+      "passed": true
+    }
+  ],
+  "result": "The finite symbolic gate verifies the shift-symmetric FLRW obstruction described above.",
+  "residual_risks": [
+    "Manifest is schema version 1 and inherits its legacy provenance limits.",
+    "The potential-repair sign depends on the explicit sign convention for the added potential.",
+    "Full metric-clock mixing and preferred-frame parameters remain open."
+  ]
+}

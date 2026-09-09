@@ -31,6 +31,12 @@ python3 -B covariant_clock_principal_gate.py
 python3 -B -m unittest -v test_covariant_clock_principal_gate.py
 python3 -B clock_gradient_repair_gate.py
 python3 -B -m unittest -v test_clock_gradient_repair_gate.py
+python3 -B flrw_clock_background_gate.py
+python3 -B -m unittest -v test_flrw_clock_background_gate.py
+python3 -B flrw_clock_evolving_gate.py
+python3 -B -m unittest -v test_flrw_clock_evolving_gate.py
+python3 -B flrw_clock_friedmann_gate.py
+python3 -B -m unittest -v test_flrw_clock_friedmann_gate.py
 python3 -B sparc_exact_exponential_fit.py
 python3 -B -m unittest -v test_sparc_exact_exponential_fit.py
 python3 -B run_lean_core.py
@@ -54,7 +60,7 @@ n_\mu=-\nabla_\mu T/\sqrt{-X},\quad X=g^{\mu\nu}\nabla_\mu T\nabla_\nu T,
 \quad a_\mu=n^\nu\nabla_\nu n_\mu,
 \]
 
-with an acceleration constitutive term (G(c^2\sqrt{a^2}/a_0)).  For
+with an acceleration constitutive term \(G(c^2\sqrt{a^2}/a_0)\).  For
 \(T=t+\pi\), its principal symbol is
 
 \[
@@ -69,8 +75,26 @@ either an additional clock-gradient operator or a demonstrated second-class
 gauge removal.
 
 The companion `clock_gradient_repair_gate.py` tests the minimal explicit
-k-essence repair (K(X)=-A\sqrt{1-X^2/L^2}).  It makes the combined scalar
-symbol positive and subluminal on a finite ((X,y,k,\theta)) scan, including
-the (y\to0) limit, but records the resulting clock as one explicitly
+k-essence repair \(K(X)=-A\sqrt{1-X^2/L^2}\).  It makes the combined scalar
+symbol positive and subluminal on a finite \((X,y,k,\theta)\) scan, including
+the \(y\to0\) limit, but records the resulting clock as one explicitly
 propagating scalar.  This keeps the branch scientifically live while making
 the required DOF accounting explicit.
+
+The FLRW gate then applies the same clock Euler equation to \(T=t\): for
+shift-symmetric \(K(X)\), \(\partial_t(a^3K_X)=0\) becomes
+\(3H K_X=0\).  Therefore \(H\ne0\) forces \(K_X=0\), undoing the gradient
+repair; a potential would have to track \(H(t)\) explicitly.
+
+The evolving-clock gate tests the live alternative \(\dot T(a)\ne1\), which
+solves the conserved-current equation on an expanding de Sitter witness.  The
+DBI current has a unique root \(z=\dot T^2/L\in(0,1)\) for every (a>0), with
+positive \(K_\chi\), \(\Sigma\), and subluminal sound speed on the tested
+range.  This is the current cosmological branch to carry into the full metric
+calculation; it is an existence witness, not yet a Friedmann solution.
+
+The minisuperspace Friedmann gate goes one step further: it derives
+\(\rho=A(1+z^2)/\sqrt{1-z^2}\), \(p=-A\sqrt{1-z^2}\), and
+\(w=-(1-z^2)/(1+z^2)\), verifies the continuity equation exactly, and finds a
+positive-\(H\) expanding witness.  The same branch is dust-like at early \(a\)
+and vacuum-like at late \(a\); metric perturbation/Dirac closure remains open.
