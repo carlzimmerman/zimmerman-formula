@@ -1,0 +1,43 @@
+{
+  "schema_version": 1,
+  "claim_id": "acceleration-locked-clock-new-theory-gates",
+  "repository": {"commit": "cb690c425", "dirty": true},
+  "command": "python3 -B alc_gate.py; python3 -B alc_clock_dirac.py; python3 -B alc_parameter_scan.py",
+  "environment": {"software": ["Python 3.9.6", "SymPy 1.14.0", "NumPy"], "hardware": "arm64"},
+  "mathematics": {
+    "assertion_tested": "The single acceleration-locked mimetic-clock action derives exact exponential MOND, weak static no-slip, FLRW dust, metric Ward identity and luminal TT tensors, while its local clock Dirac constraint and coefficient scan are explicit.",
+    "coefficient_domain": "exact SymPy algebra plus deterministic NumPy scan",
+    "conventions": "signature (-+++), positive lapse, unitary static/FLRW clock branch, positive static gradient branch",
+    "inputs": [
+      {"path": "qwen_claude_field_theory/closure_2026/acceleration_locked_clock_2026/alc_gate.py", "sha256": "6fa651c0533b3993c2cf74be9428fce86397869641f4fa2224af80507459e6c8"},
+      {"path": "qwen_claude_field_theory/closure_2026/acceleration_locked_clock_2026/alc_clock_dirac.py", "sha256": "64453a9ff8bcb9018d4ac03e65a4b29ab98424e803416aaa02c4a42f403b1bfb"},
+      {"path": "qwen_claude_field_theory/closure_2026/acceleration_locked_clock_2026/alc_parameter_scan.py", "sha256": "66406dbe44c3515610ee1ac1f9833754c3340ba52982f0b64f8fa337813f9d99"},
+      {"path": "qwen_claude_field_theory/closure_2026/acceleration_locked_clock_2026/GRAND_PRIZE_REQUIREMENTS.json", "sha256": "e5381f847632d772a423cb5ba88193115c8b2c441f1fefd5d7d7441da719a7d2"}
+    ],
+    "bounds": {"static": "1D positive-gradient weak field", "FLRW": "homogeneous unitary branch", "clock": "flat local Fourier mode", "eta_scan": "401 coefficients, 400 geometric y values"},
+    "non_claims": ["full covariant khronon Dirac chain", "PPN alpha coefficients", "nonlinear perturbation transfer", "global stability", "derived a0-Lambda relation"]
+  },
+  "randomness": {"used": false, "generator": "", "seed": null},
+  "run": {"started_at": "2026-09-09T20:05:00Z", "runtime_seconds": 1.0, "exit_status": 0},
+  "outputs": [
+    {"path": "results.json", "sha256": "9baacccda573ace9514fb99960d4ee95fe64c3cf799c71bd28698700b1e72564"},
+    {"path": "parameter_scan.json", "sha256": "3b2ae952b2aefe3bf3c9c62f45ef5a3fa1767dbaf1dde987290dbfda80546758"},
+    {"path": "clock_dirac.json", "sha256": "99e9d2405c1d6a4295998c7fd42651ea4f1ad21efc29bb4346c5e85513033da9"}
+  ],
+  "checks": [
+    {"name": "exact exponential MOND", "passed": true},
+    {"name": "weak-field no-slip", "passed": true},
+    {"name": "FLRW clock dust", "passed": true},
+    {"name": "luminal tensor", "passed": true},
+    {"name": "clock Dirac chain computed", "passed": true},
+    {"name": "eta coefficient uniquely identified", "passed": true}
+  ],
+  "residual_risks": [
+    "acceleration contains derivatives of the clock foliation",
+    "mimetic clock has zero sound speed and possible caustics",
+    "preferred-frame PPN parameters are not yet derived",
+    "strict ellipticity fails at y=0",
+    "a0-Lambda remains phenomenological"
+  ],
+  "result": "OPEN; new candidate lane, 8/8 local action checks, 10/10 package tests"
+}

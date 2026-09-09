@@ -1,0 +1,104 @@
+{
+  "action": "S=sqrt(-g)[M2(R-2Lambda)/2-sigma(X+1)/2-2M2*a0^2*(G(Z)-Z^2)]+S_m[g,psi]",
+  "definitions": "X=(dT)^2; n=-dT/sqrt(-X); a_mu=n^alpha nabla_alpha n_mu; Z=sqrt(a^2)/a0",
+  "static": {
+    "L_static": "-2*M2*a0**2*(-2 + 2*exp(-Derivative(Phi(x), x)/a0) + 2*exp(-Derivative(Phi(x), x)/a0)*Derivative(Phi(x), x)/a0) + M2*(-4*Derivative(Phi(x), x)*Derivative(Psi(x), x) + 2*Derivative(Psi(x), x)**2) - Phi(x)*rho(x)",
+    "correction_H": "-2 + 2*exp(-Derivative(Phi(x), x)/a0) + 2*exp(-Derivative(Phi(x), x)/a0)*Derivative(Phi(x), x)/a0",
+    "mu_identity": "0",
+    "Phi_Euler_Lagrange": "4*M2*Derivative(Psi(x), (x, 2)) - 4*M2*exp(-Derivative(Phi(x), x)/a0)*Derivative(Phi(x), (x, 2)) + 4*M2*exp(-Derivative(Phi(x), x)/a0)*Derivative(Phi(x), x)*Derivative(Phi(x), (x, 2))/a0 - rho(x)",
+    "Psi_Euler_Lagrange_div_4M2": "Derivative(Phi(x), (x, 2)) - Derivative(Psi(x), (x, 2))",
+    "no_slip_residual": "0",
+    "slip_AQUAL_residual": "0",
+    "AQUAL_equation_on_slip": "4 M2 d_x[(1-exp(-|Phi_x|/a0)) Phi_x] = rho",
+    "measured_G": "1/(16*pi*M2)"
+  },
+  "flrw": {
+    "X_unitary": "-1",
+    "acceleration_term_on_FLRW": "0",
+    "clock_reduced_L": "-N*a**3*sigma*(1 - Tdot**2/N**2)/2",
+    "clock_density": "sigma",
+    "clock_momentum_density": "Tdot*a**3*sigma/N",
+    "clock_charge": "a^3 sigma = constant",
+    "rho_scaling": "rho_clock = sigma_* a_*^3 / a^3",
+    "continuity_derivative_form": "d_t(a^3 sigma)=0",
+    "continuity_residual_after_charge": "0",
+    "H_nonzero_allowed": "True",
+    "continuity_check_placeholder": "0",
+    "friedmann_form": "3 M2 H^2 = M2 Lambda + rho_b + sigma_* a^-3"
+  },
+  "tensor": {
+    "tensor_L2": "(M2*a**3/8) gamma_dot_T^2 + (-M2*a/8) c^2 (D gamma_T)^2",
+    "tensor_kinetic_coefficient": "M2*a**3/8",
+    "tensor_gradient_coefficient": "-M2*a/8",
+    "c_T_squared": "c**2",
+    "positive_kinetic_if": "M2>0",
+    "luminal_if": "c is the metric light speed"
+  },
+  "limits": {
+    "mu_series_y0": "y**3/6 - y**2/2 + y",
+    "G_series_y0": "-y**4/4 + 2*y**3/3",
+    "correction_series_y0": "2*y**3/3 - y**2",
+    "mu_limit_y0": "0",
+    "mu_limit_yinf": "1",
+    "correction_limit_yinf": "-2",
+    "ellipticity_eigenvalues": "['lambda_perp=1-exp(-y)', 'lambda_parallel=1+(y-1)exp(-y)']",
+    "zero_field_warning": "lambda_perp -> 0 at y=0; the static operator loses strict ellipticity there"
+  },
+  "ward": {
+    "matter_coupling": "S_m[g,psi] only",
+    "ward_identity": "nabla_mu T_m^{mu nu}=0 on matter Euler-Lagrange equations",
+    "extra_force_on_baryons": "none (minimal single physical metric)"
+  },
+  "checks": [
+    {
+      "name": "exact exponential constitutive identity",
+      "passed": true
+    },
+    {
+      "name": "independent potential variation gives no slip",
+      "passed": true
+    },
+    {
+      "name": "on-slip equation is exact AQUAL",
+      "passed": true
+    },
+    {
+      "name": "clock has pressureless a^-3 homogeneous charge",
+      "passed": true
+    },
+    {
+      "name": "tensor speed is luminal and kinetic sign is metric sign",
+      "passed": true
+    },
+    {
+      "name": "controlled high-acceleration limit",
+      "passed": true
+    },
+    {
+      "name": "zero-field limit is explicitly flagged",
+      "passed": true
+    },
+    {
+      "name": "minimal-metric matter Ward identity recorded",
+      "passed": true
+    }
+  ],
+  "status": "OPEN",
+  "open_gates": [
+    "full covariant khronon Dirac chain and absence of additional modes",
+    "PPN beta,gamma,alpha1,alpha2,alpha3 on a screened Solar-System branch",
+    "clock perturbation health/caustics and MOND scalar principal symbol",
+    "nonlinear FLRW perturbation transfer and cluster phenomenology",
+    "a0-Lambda derivation (not inserted by this action)"
+  ],
+  "novel_predictions": [
+    "a0 is tied to the norm of the primordial-clock foliation acceleration; the static EFE inherits the exact exponential law",
+    "the clock density dilutes exactly as a^-3 while the MOND correction vanishes on homogeneous FLRW",
+    "the zero-field center has a controlled but non-strict elliptic limit with lambda_perp~y"
+  ],
+  "non_claims": [
+    "not a complete relativistic closure",
+    "mimetic clock is explicitly counted as one matter/clock scalar",
+    "the covariant acceleration term may excite a khronon mode; this is the next Dirac gate"
+  ]
+}
