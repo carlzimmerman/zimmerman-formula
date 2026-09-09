@@ -2802,3 +2802,47 @@ reproduced it independently, with its own symbolic machinery, and agrees on ever
   has both Lorentz invariance and two modes, and now every permitted escape has been run rather than
   enumerated.** This strengthens PAPER9 and is a v2 item — the deposited paper reported the branches as
   untested; two are now closed by gates and the third by this lane.
+
+## L69 — the deep-MOND kill is a THIRD class-level no-go, and the three no-goes share one root
+
+`L69_healthy_deepmond.py` + `L69_HEALTHY_DEEPMOND.md` (**31 checks, 31 PASS**). The constructive inverse of
+L60: not "is this action healthy" but "what must ANY action have to be healthy in deep MOND, and can
+anything have it?" Derived for a general coupling structure, so the answer is a theorem rather than an
+observation about two actions.
+
+**Controls.** The counter returns 2/3/5/3; L60's threshold 0.9000009 and its deep-MOND failure at
+s = 0.3985 reproduce; the static three-field energy-form route is **rebuilt from the action** and gives
+the sign change at (2−K_B)/(2−c₁₄); and J_Y = s/Δ → √s → 0 is confirmed.
+
+- **⭐ THE NECESSARY CONDITION, as an inequality on structural inputs:**
+  **Σ_⊥ > λ² / [κ_φ · χ_lapse]**, where Σ_⊥ is the transverse gradient stiffness, λ the lapse-scalar
+  coupling to the clock's acceleration, κ_φ the scalar normalisation, and **χ_lapse = g_H²/k_H − a_c**
+  the lapse's effective stiffness — whose leading piece **g_H²/k_H = 2 is the Einstein Hamiltonian
+  constraint**. In deep MOND Σ_⊥ → κ (a bare constant), so it holds through all of deep MOND **iff**
+  λ = 0, or χ_lapse ≤ 0, or κ ≥ λ²/(κ_φ χ_lapse).
+- **⭐ ALL THREE ESCAPES DIE, each for a stated reason.** (i) Removing the lapse coupling, λ = 0, kills
+  the matter source — the static amplitude is proportional to λ, so λ = 0 gives φ = 0, and sourcing from
+  a spatial current fails because static matter has no momentum density. (ii) A constant added stiffness
+  κ ≥ 0.9 turns deep MOND into **rescaled G** — G_eff/G = 3.0, **10× the BBN bound** and 0.15–0.56 dex
+  off the radial acceleration relation, i.e. exactly L5's fixed-strength long-range force. (iii) Moving
+  the threshold cannot help: it is bounded to **[0.875, 1.0]** over the BBN/PPN box and **J_Y → 0 beats
+  any positive threshold** — sharper than L60's own parameter scan. (iv) Flipping χ_lapse negative needs
+  c₁₄ > 2, giving α₁ ~ 8, PPN-excluded, or leaving the Einstein–Hilbert host.
+- **⭐⭐ SO IT IS A THIRD CLASS-LEVEL NO-GO**, hypotheses named: **H1** a soft bounded-boost kernel
+  (Σ_⊥ → 0), **H2** a separate MOND scalar coupled to a clock's acceleration through the lapse (λ ≠ 0),
+  **H3** a single-metric Einstein–Hilbert host (χ_lapse > 0, fixed by the Hamiltonian constraint). It
+  **derives, from the general coupling, what L66 reached from the other side** — astra's action escapes by
+  violating H2, keeping the MOND sector inside the clock.
+- **⭐⭐⭐ THE COMMON ROOT OF ALL THREE THEOREMS, and this is the pattern.** "MOND from one metric" forces
+  a **single matter-to-MOND transmission channel**, and the three no-goes are three faces of that one
+  channel:
+  - the **foliation theorem** — the channel needs a preferred-frame clock;
+  - the **excess-spent-once theorem** — the channel carries **one spendable number**, so a full cold
+    abundance and a working kernel cannot both use it;
+  - **L69** — the channel is a soft lapse coupling routed through the Einstein constraint, which is
+    unstable in deep MOND.
+  A theory escapes each face by the same move seen from three sides: **do not route MOND through a single
+  channel bolted onto one metric.** Astra's clock-internal construction is the one candidate that does
+  not, which is why it survives all three so far. **κ = ½ remains fitted throughout.**
+- **⚠️ This is a synthesis worth a paper of its own or a PAPER9 version two, NOT an unreviewed deposit.**
+  It should be attacked before it ships, exactly as the foliation paper was.
