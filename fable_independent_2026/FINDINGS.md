@@ -3255,3 +3255,26 @@ decides whether it threatens the CMB.
 - **VERDICT.** HIGH confidence the acoustic peaks are unaffected; MODERATE the lowest multipoles are safe
   pending full-system adiabaticity. Does not clear the candidate (khronon/aether, vector/tensor, PPN gates
   remain), but the biggest near-horizon worry is largely defused.
+
+## L84 — the dust=DM reading carries a severe BBN fine-tuning cost (the stiff a⁻⁶ term)
+
+`L84_stiff_bbn_bound.py` + `.out` (**13 checks, 13 PASS**). Verifying a cost as hard as a win: astra's FLRW
+density ρ = B + 3M²H² − (M²/3f²)(A+C/a³)² carries, besides the a⁻³ dust cross term (−2M²AC/3f²·a⁻³), a
+**stiff a⁻⁶ term −M²C²/(3f²)·a⁻⁶** from the SAME conserved charge C.
+
+- **Scaling & bound.** ρ_stiff/ρ_rad ∝ a⁻² grows toward early times, so BBN (T≈1 MeV, a≈2.3e−10) binds it:
+  **Ω_stiff,0 ≲ 4×10⁻²⁵** (ΔN_eff=0.5), a₀-independent (a₀ enters only the galaxy MOND term, shown
+  explicitly, both footings identical).
+- **⚠️ THE FINE-TUNING COST.** The same C sources dust (∝AC, linear) and stiff (∝C², quadratic), so
+  **Ω_stiff,0/Ω_dust,0 = |C|/(2|A|)**. Dust=observed-DM AND clearing BBN requires **|C|/|A| ≲ 3×10⁻²⁴** — C
+  tuned ~24 orders below A at fixed product. Untuned (|C|~|A|) overshoots BBN by ~20 orders. Nothing found
+  protects C² against AC, so this is a **genuine cost of the dust=DM reading**. Honest both-ways: the A=0
+  corner is tuning-free but supplies no dark matter.
+- **Sign.** ρ_stiff = −M²C²/(3f²a⁶) < 0 for either sign of C. Not by itself a ghost (a ghost is a wrong-sign
+  kinetic term, not negative background ρ), and at the saturated bound the breakdown scale sits below a_BBN,
+  so the observable universe stays positive/radiation-dominated — but it **compounds astra's open scalar
+  health warnings** (c_bare²=−1, G''→0), feeding the open ADM analysis, not an independent kill.
+- **VERDICT.** The F(Q)Θ dust=dark-matter reading is not free: it needs a ~24-order fine-tuning of the
+  charge to pass BBN, OR a mechanism protecting C from A. This tempers L80–L82's optimism honestly — the
+  dust clusters and is ghost-free, but its amount is fine-tuned against BBN unless a protection mechanism
+  is found. HIGH confidence on the bound; the sign feeds astra's still-open perturbative-health calculation.

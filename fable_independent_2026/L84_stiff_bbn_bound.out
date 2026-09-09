@@ -1,0 +1,98 @@
+======================================================================================================================
+L84 -- BBN/N_eff bound on the a^-6 stiff correction in astra's F(Q)Theta affine cosmology
+======================================================================================================================
+
+======================================================================================================================
+PART 0 -- CONTROLS FIRST.
+======================================================================================================================
+  [PASS] C0a  astra's rho = B + 3M^2 H^2 - (M^2/3f^2)(A + C/a^3)^2 expands to a Lambda-like constant [B - M^2 A^2/3f^2], the gravitational 3M^2 H^2, a dust cross term ~a^-3, and a stiff term ~a^-6 (reproduced faithfully before interpreting)   (dust coeff(C^1) = -2AM^2/(3f^2 a^3);  stiff coeff(C^2) = -M^2/(3f^2 a^6))
+  [PASS] C1  the stiff term -M^2 C^2/(3 f^2 a^6) scales as a^-6 (w=1) and is NEGATIVE-DEFINITE in C (~ -C^2): unlike the dust (~ -2AC, sign set by sign(AC)), the stiff piece carries a MINUS sign for EITHER sign of the charge C   (stiff ~ -C^2 a^-6 <= 0 for all real C)
+  [PASS] C2 [CONTROL]  the continuity equation a drho/da = -3(1+w)rho gives rho ~ a^{-3(1+w)}; at w=1 this is EXACTLY a^-6 -- confirming the -C^2/a^6 piece is a genuine STIFF (w=1) component, independent of astra's algebra   (w=1 => a^{-3(1+1)} = a^-6)
+  [PASS] C3 [CONTROL]  Stefan-Boltzmann at T0=2.7255 K gives Omega_gamma h^2 = 2.4730e-05, matching the accepted 2.473e-5 to <1%   (Omega_gamma h^2 = 2.4730e-05)
+
+    Omega_gamma,0 = 5.444e-05,  nu/gamma = 0.6918,  Omega_rad,0 = 9.210e-05  (h = 0.674)
+
+======================================================================================================================
+PART 1 -- the growth law: rho_stiff/rho_rad ~ a^-2, so BBN (earliest epoch) sets the bound.
+======================================================================================================================
+  [PASS] R1  rho_stiff/rho_rad = (Omega_stiff,0/Omega_rad,0) a^-2 : the ratio GROWS as a^-2 toward early times, so the tightest bound is at the EARLIEST well-tested epoch -- BBN.  (Relative to matter it grows even faster, a^-3; relative to Lambda, a^-6.)   (a^-6 / a^-4 = a^-2)
+
+======================================================================================================================
+PART 2 -- the BBN / N_eff bound on Omega_stiff,0 (both DeltaN_eff, both a_BBN choices, both footings).
+======================================================================================================================
+    R_max(rho_stiff/rho_rad at BBN):  DeltaN_eff=0.3 -> 0.0488,  DeltaN_eff=0.5 -> 0.0814   (= DeltaN_eff * (7/8)/(g*_BBN/2), g*_BBN=10.75)
+    a_BBN:  T=1 MeV simple = 2.349e-10,  entropy-corr = 1.676e-10;  T=0.07 MeV simple = 3.355e-09
+
+    DeltaN_eff  T_BBN[MeV]       a_BBN    Omega_stiff,0 bound
+           0.5         1.0   2.349e-10              4.135e-25
+           0.5        1.0e   1.676e-10              2.107e-25
+           0.5        0.07   3.355e-09              8.439e-23
+           0.3         1.0   2.349e-10              2.481e-25
+           0.3        1.0e   1.676e-10              1.264e-25
+           0.3        0.07   3.355e-09              5.063e-23
+
+    FIDUCIAL bound (DeltaN_eff=0.5, T_BBN=1 MeV):  Omega_stiff,0 <~ 4.14e-25
+    equivalently rho_stiff,0 <~ 3.53e-51 kg/m^3  (rho_crit,0 = 8.53e-27 kg/m^3)
+  [PASS] B1  the BBN/N_eff bound forces Omega_stiff,0 to be EXTRAORDINARILY small: Omega_stiff,0 <~ 1e-24 (fiducial 4.1e-25; the full grid over DeltaN_eff in [0.3,0.5] and T_BBN in [0.07,1] MeV spans ~1e-25 to ~1e-22) -- the a^-2 growth over ~20 e-folds crushes any present-day stiff density   (fiducial Omega_stiff,0 <~ 4.14e-25)
+  [PASS] B2  BOTH a0 footings (9.3619e-11 and 1.1279e-10 m/s^2) give the IDENTICAL Omega_stiff,0 bound: a0 enters astra's action only through the galaxy MOND term M^2 a0^2 G(|V|/a0), NOT the FLRW stiff term -M^2 C^2/(3f^2 a^6).  The BBN bound is a0-independent (demonstrated, not assumed)   (canonical = alt = 4.135e-25)
+
+======================================================================================================================
+PART 3 -- FINE-TUNING vs NATURAL: the same charge C sources BOTH dust (~AC) and stiff (~C^2).
+======================================================================================================================
+  [PASS] F1  the ratio (stiff density today)/(dust density today) = |C|/(2|A|), INDEPENDENT of M and f: dust is LINEAR in the charge (~A*C) while stiff is QUADRATIC (~C^2), so their split is governed by the single dimensionless number |C|/|A| (C/a^3 and A share units inside astra's (A + C/a^3))   (Omega_stiff,0/Omega_dust,0 = |C|/(2|A|))
+
+    If the F(Q)Theta dust IS the observed dark matter (Omega_dust,0 = 0.264):
+      Omega_stiff,0/Omega_dust,0 = |C|/(2|A|) <~ 1.57e-24  =>  |C|/|A| <~ 3.13e-24
+    Counterfactual |C| ~ |A| (no tuning): Omega_stiff,0 = 0.132, so at BBN rho_stiff/rho_rad = 2.60e+22
+      -- that OVERSHOOTS the allowed R_max = 0.081 by ~3.2e+23 (>20 orders of magnitude): BBN is CATASTROPHICALLY violated absent tuning.
+  [PASS] F2  absent tuning (natural |C| ~ |A|, dust = DM), the stiff term OVERSHOOTS the BBN radiation budget by >20 orders of magnitude: the stiff correction is NOT automatically safe -- BBN is violated unless the charge is tuned   (overshoot factor ~ 3.2e+23)
+  [PASS] F3 [VERDICT: FINE-TUNING]  to be BOTH the observed dark matter AND BBN-safe, the conserved charge must satisfy |C|/|A| <~ 3e-24 -- i.e. C tuned ~24 orders of magnitude below A while the PRODUCT |A*C| stays fixed at the DM abundance.  No shift-symmetry or other principle suppresses C^2 relative to A*C (C is an integration constant, A a Lagrangian coefficient of equal units), so this is a genuine fine-tuning cost, NOT a symmetry-protected/derived smallness   (required |C|/|A| <~ 3.13e-24 (unprotected => fine-tuned))
+
+    HONEST BOTH-WAYS NOTE.  There is a no-tuning CORNER: A = 0 kills the a^-3 dust cross term entirely, and
+    then only the stiff -C^2/a^6 survives, which BBN forces tiny with NO cost -- but that corner supplies NO
+    dark matter.  The fine-tuning is intrinsic to the *interesting* use case (dust = DM): the very charge C
+    that provides the dark matter unavoidably also sources the stiff term, and decoupling the two needs
+    |C|/|A| ~ 1e-24.  So the smallness of Omega_stiff is a REAL cost of the dust=DM reading, not automatic.
+
+======================================================================================================================
+PART 4 -- the SIGN: the stiff energy is NEGATIVE.  Is that a ghost / breakdown, honestly?
+======================================================================================================================
+    At the BBN-saturated bound (Omega_stiff,0 = 4.14e-25), |rho_stiff| = rho_rad at
+      a_crit = sqrt(Omega_stiff,0/Omega_rad,0) = 6.70e-11,  vs a_BBN = 2.35e-10  =>  a_crit < a_BBN
+  [PASS] S1  the stiff energy density is NEGATIVE (rho_stiff = -M^2 C^2/3f^2 a^6 < 0).  A negative component growing as a^-6 threatens rho_total < 0 (H^2 < 0: breakdown/bounce) at early times -- this is a genuine structural concern, honestly flagged   (rho_stiff < 0 for all real C)
+  [PASS] S2  at the BBN-saturated bound the crossover a_crit where |rho_stiff|=rho_rad sits at a_crit ~ 6.7e-11, BELOW a_BBN ~ 2.3e-10 -- so in the OBSERVABLE window (a_BBN .. today) rho_total stays radiation-dominated and positive; the negative-energy breakdown is pushed into the untested pre-BBN regime a < a_crit   (a_crit = 6.70e-11 < a_BBN = 2.35e-10)
+  [PASS] S3 [VERDICT: SIGN]  the negative sign is NOT by itself a ghost theorem (a ghost is a wrong-sign KINETIC term in the perturbation action, not a negative background rho -- e.g. spatial curvature also enters rho as a negative a^-2 piece).  BUT it COMPOUNDS astra's independently-flagged health warnings for this same scalar: the decoupling c_bare^2 = -1 (L80/REPORT) and the loss of longitudinal ellipticity G''(y)->0 as y->0 (astra's ACTUAL_PRINCIPAL_GATE).  Negative stiff energy is another face of the same open propagating-health question -- a concern to record, not an independent kill   (not a ghost proof; corroborates the open c^2<0 / ellipticity-loss warning)
+
+======================================================================================================================
+VERDICT
+======================================================================================================================
+
+  BOUND.  The separate stiff (w=1) correction -M^2 C^2/(3 f^2) a^-6 in astra's F(Q)Theta affine cosmology is
+  crushed by BBN/N_eff: rho_stiff/rho_rad grows as a^-2 over ~20 e-folds back to BBN, so the present-day
+  density is bounded to
+        Omega_stiff,0  <~  4.1e-25      (fiducial: DeltaN_eff = 0.5, T_BBN = 1 MeV),
+  and ~1e-25 .. 1e-22 across DeltaN_eff in [0.3,0.5] and T_BBN in [0.07,1] MeV.  a0 does NOT enter the FLRW
+  stiff term, so BOTH footings give the identical number.
+
+  FINE-TUNING (not natural).  The SAME conserved charge C sources both the dust (~A*C, linear) and the stiff
+  (~C^2, quadratic), with Omega_stiff,0/Omega_dust,0 = |C|/(2|A|).  For the dust to be the observed dark
+  matter AND the stiff to clear BBN, one needs |C|/|A| <~ 3e-24 -- C tuned ~24 orders below A at
+  fixed product |A*C|.  No symmetry protects C^2 against A*C, so this is a genuine fine-tuning cost of the
+  dust=DM reading (the A=0 corner is tuning-free but has no dark matter).  Absent tuning (|C|~|A|) BBN is
+  violated by >20 orders of magnitude.
+
+  SIGN.  rho_stiff < 0 (it enters with a minus sign for EITHER sign of C).  This is not, by itself, a ghost
+  theorem -- but it compounds astra's own open health warnings for this scalar (c_bare^2 = -1; ellipticity
+  loss G''->0).  At the BBN-saturated bound the negative-energy breakdown scale a_crit ~ 7e-11 sits
+  below a_BBN, so the observable universe is safe; the concern is structural and feeds the still-open ADM
+  propagating-health calculation that astra names as decisive.
+
+  CONFIDENCE.  HIGH on the bound and the a^-2 scaling (elementary cosmology + astra's verified formula).
+  HIGH that the smallness is a fine-tuning rather than a derived/protected number (C and A are independent).
+  MEDIUM on the sign verdict: negative background energy is a real concern but the decisive statement is the
+  perturbative-health/ADM analysis that remains open upstream -- this lane sharpens that question, it does
+  not settle it.  This is a COST recorded honestly, not a clean kill.
+
+======================================================================================================================
+L84 COMPLETE: 13/13 checks PASS (each PASS = the stated claim is TRUE).   [0.1s]
+======================================================================================================================
