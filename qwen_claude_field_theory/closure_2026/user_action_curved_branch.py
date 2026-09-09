@@ -33,15 +33,16 @@ flux_value=float(s.solve(energy.subs(params).subs(dict(zip(tuple(q)+tuple(vel),i
 def rhs(x,y):
     acceleration=np.linalg.solve(hfun(*y,flux_value),np.asarray(ffun(*y,flux_value)).ravel())
     return np.r_[y[3:],acceleration]
-rows=[]
-for tolerance in (1e-8,1e-10):
-    solution=solve_ivp(rhs,(0.,.1),initial,rtol=tolerance,atol=tolerance*1e-2,dense_output=True)
-    values=solution.sol(np.linspace(0,.1,101)) if solution.success else solution.y
-    residual=[abs(float(efun(*y,flux_value))) for y in values.T]
-    singular=[np.linalg.svd(hfun(*y,flux_value),compute_uv=False)[-1] for y in values.T]
-    rows.append(dict(success=solution.success,message=solution.message,rtol=tolerance,
-        energy_constraint_max=max(residual),minimum_sampled_spatial_hessian_singular_value=float(min(singular)),
-        final_state=solution.y[:,-1].tolist(),function_evaluations=solution.nfev))
-print(json.dumps(dict(full_theory='OPEN',scope=__doc__,parameters={str(k):str(w) for k,w in params.items()},
-    scalar_flux=flux_value,spatial_metric_constraint_plus_energy='0 (symbolically verified)',runs=rows),indent=2))
-raise SystemExit(0 if all(r['success'] for r in rows) else 1)
+if __name__=='__main__':
+    rows=[]
+    for tolerance in (1e-8,1e-10):
+        solution=solve_ivp(rhs,(0.,.1),initial,rtol=tolerance,atol=tolerance*1e-2,dense_output=True)
+        values=solution.sol(np.linspace(0,.1,101)) if solution.success else solution.y
+        residual=[abs(float(efun(*y,flux_value))) for y in values.T]
+        singular=[np.linalg.svd(hfun(*y,flux_value),compute_uv=False)[-1] for y in values.T]
+        rows.append(dict(success=solution.success,message=solution.message,rtol=tolerance,
+            energy_constraint_max=max(residual),minimum_sampled_spatial_hessian_singular_value=float(min(singular)),
+            final_state=solution.y[:,-1].tolist(),function_evaluations=solution.nfev))
+    print(json.dumps(dict(full_theory='OPEN',scope=__doc__,parameters={str(k):str(w) for k,w in params.items()},
+        scalar_flux=flux_value,spatial_metric_constraint_plus_energy='0 (symbolically verified)',runs=rows),indent=2))
+    raise SystemExit(0 if all(r['success'] for r in rows) else 1)
