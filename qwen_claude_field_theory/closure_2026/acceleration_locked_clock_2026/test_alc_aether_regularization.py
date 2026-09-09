@@ -22,6 +22,9 @@ class ALCAetherRegularizationTests(unittest.TestCase):
         self.assertEqual(branch["exact_tensor_substitution"]["c14"], 0)
         self.assertEqual(branch["exact_tensor_substitution"]["c123"], 0)
         self.assertEqual(branch["s0_limit_r_to_minus_one_from_above"], 0)
+        self.assertEqual(str(branch["exact_luminal_alpha1_numerator_after_c13"]), "d1*(d1 + d4)")
+        self.assertEqual(branch["exact_luminal_c14_after_alpha1"], 0)
+        self.assertEqual(branch["exact_luminal_alpha2_first_factor"], 0)
 
     def test_regular_passes_are_not_two_tensor_only(self):
         result = build_scan()

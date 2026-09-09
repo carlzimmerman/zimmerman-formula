@@ -54,3 +54,11 @@ preferred-frame problem into a falsifiable gate rather than assigning PPN
 values by hand.  The result is **OPEN**: the regular branch repairs the PPN
 corner only by reintroducing an extra gravitational mode, while the degenerate
 branch remains an explicit unresolved calculation.
+
+The same conclusion is not dependent on the scan parameterisation.  In the
+general constant-aether formulas, `c13=0` gives `c3=-c1`, and the `alpha1`
+numerator becomes `c1*(c1+c4)=c1*c14`.  If the PPN denominator is regular then
+`c1` is nonzero, so `alpha1=0` forces `c14=0`.  The first factor in `alpha2`
+then vanishes, but the scalar speed still has `c14` in its denominator.  Exact
+luminality plus PPN tuning therefore lands on a degenerate scalar branch in
+this entire constant-aether completion.

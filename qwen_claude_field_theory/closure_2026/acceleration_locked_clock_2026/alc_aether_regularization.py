@@ -60,6 +60,14 @@ def symbolic_branch():
         "s0_sq": sp.simplify(s0.subs(r, -1)),
     }
     s0_from_above = sp.limit(s0, r, -1, dir="+")
+    # General (not epsilon-r parameterised) exact-luminal implication.
+    d1, d2, d3, d4 = sp.symbols("d1 d2 d3 d4", real=True)
+    general_alpha1_num = sp.factor(d3**2 + d1 * d4)
+    exact_luminal_alpha1_num = sp.factor(general_alpha1_num.subs(d3, -d1))
+    exact_luminal_c14 = sp.factor((d1 + d4).subs(d4, -d1))
+    exact_luminal_alpha2_first_factor = sp.factor(
+        (d1 + 2 * d3 - d4).subs({d3: -d1, d4: -d1})
+    )
     return {
         "symbols": (e, r),
         "c1": c1, "c2": c2, "c3": c3, "c4": c4,
@@ -70,6 +78,10 @@ def symbolic_branch():
         "exact_c13_zero_roots": exact_c13_roots,
         "exact_tensor_substitution": exact_tensor_substitution,
         "s0_limit_r_to_minus_one_from_above": s0_from_above,
+        "general_exact_luminal_alpha1_numerator": general_alpha1_num,
+        "exact_luminal_alpha1_numerator_after_c13": exact_luminal_alpha1_num,
+        "exact_luminal_c14_after_alpha1": exact_luminal_c14,
+        "exact_luminal_alpha2_first_factor": exact_luminal_alpha2_first_factor,
     }
 
 
