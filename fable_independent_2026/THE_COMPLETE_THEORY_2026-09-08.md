@@ -28,6 +28,13 @@ Stated the way it should be quoted:
 
 Nothing here is closed. κ = ½ is **fitted**, not derived, and this document never says otherwise.
 
+**Significances in this document.** Every σ quoted below is labelled where it is a statistics-only figure on a sample
+carrying coherent systematics. An adversarial audit of the underlying record (`L36_record_audit.py`) re-ran all 22
+source scripts — every one reproduces its committed output to the character — and found 22 defects, **all of them
+errors of description rather than of computation**, of which three were significances computed as though correlated
+errors were independent. Those three are corrected inline here. In every case the direction survives and only the
+number falls.
+
 ---
 
 ## 1. The structural decision, and the theorem behind it
@@ -397,7 +404,7 @@ Verdicts at the exhibited point, both footings. Full table with sources in
 | **Clusters: lensing SHAPE** | **FAIL** | **FAIL** | ΔΣ short 2.5–2.7×; log-slope +0.53 ± 0.06 shallower = **9σ** |
 | Cluster residual = cosmic share | DIAGNOSTIC | DIAGNOSTIC | required 5.73 ± 0.68 vs Ω_dm/Ω_b = 5.43, universal to 12% |
 | **Coma ultra-diffuse galaxies** | **FAIL** | **FAIL** | +1.196 dex (factor 14) at **4.9σ** against the coherent systematic floor |
-| **Binary galaxies (2MRS)** | **FAIL alone** | **FAIL alone** | isolated deep-MOND amplitude 1.802 ± 0.041 (19.6σ); 1.141 ± 0.028 with a cosmic share |
+| **Binary galaxies (2MRS)** | **FAIL alone** | **FAIL alone** | isolated deep-MOND amplitude 1.802 ± 0.041; 1.141 ± 0.028 with a cosmic share. **Significance is statistics-only: 19.6σ falls to 7.2σ with a 0.10 dex mass-to-light floor and 3.0σ with the isolation band. Direction survives, number falls.** |
 | BBN | PASS | PASS | K_B = 0.2 ≤ 0.25; G_cos/G_N − 1 = −2.5e-6 vs 0.13 |
 | **CMB acoustic peaks** | **FAIL** | **FAIL** | no dark component in the action once Q₀ = 0 |
 | Linear growth | PASS as an equation | same | S_eff = 0 exactly on the closure locus — and nothing to grow |
@@ -423,7 +430,8 @@ The residual behaves like **mass** in dynamics *and* in lensing, so no lensing-s
 Five X-COP clusters with published weak lensing, at each cluster's own R₅₀₀: required/delivered against
 hydrostatic mass **1.618 ± 0.022 (canonical) / 1.493 ± 0.020 (alt)**; against weak lensing
 **1.987 ± 0.246 / 1.834 ± 0.227**; and the two probes agree with each other
-(S_lens − S_dyn = +0.37 ± 0.24, 1.55σ). Four independent lensing teams give 1.623 ± 0.080 / 1.499 ± 0.074,
+(S_lens − S_dyn = +0.37 ± 0.24, 1.55σ). **The shortfall's own 13–15σ is statistics-only: a 10% coherent X-ray mass
+calibration moves it 22%, giving 4.4σ. The shortfall itself is unaffected.** Four independent lensing teams give 1.623 ± 0.080 / 1.499 ± 0.074,
 1.4σ away.
 
 The information dynamics could not give is **shape**. In raw ΔΣ over 0.5–2 Mpc the framework is short by
@@ -450,7 +458,9 @@ no interior, factor 1.4 in mass); four separate condensate constructions; an env
 
 **And the required ratio is not monotone in scale**, which a scale-free kernel forbids: 1900 isolated 2MRS
 major pairs need M_dark/M_bar = **30.9 ± 1.6** within the pair separation against 5.73 ± 0.68 at 0.80 R₅₀₀
-— 5.7×, 16σ — and the deficit *grows* with mass at 3.9σ.
+— 5.7×. **The 16.3σ once quoted is against the cosmic 5.43, not against 5.73 ± 0.68 (which gives 14.5σ), and it is
+statistics-only on 1900 pairs sharing one mass-to-light scale, one distance scale and one isolation criterion; with a
+coherent floor it is 3.1σ.** The deficit *grows* with mass at 3.9σ, itself statistics-only.
 
 **What satisfies all four cluster requirements at once — the mass, the phase-space density, near-absence in
 galaxies, and a flat-or-falling enclosed ratio — is a cold, baryon-tracing component. The theory does not
