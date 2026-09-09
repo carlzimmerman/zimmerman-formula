@@ -1,0 +1,239 @@
+======================================================================================================================
+L28 -- the tightness claim: is the fixed-a_0 kernel really tighter than a LambdaCDM halo?
+======================================================================================================================
+  SPARC, L16's cuts verbatim (Upsilon_d = 0.5, Upsilon_b = 0.7, eV/V < 0.10, >= 3 pts): 155 galaxies, 2786 points
+  per-point log-space sigma = quadrature of 2 eV/(V ln10) and the h117 modelling floor 0.036 dex: median 0.0471 dex
+
+----------------------------------------------------------------------------------------------------------------------
+C [CONTROL] -- reproduce L16's three numbers before attacking anything
+----------------------------------------------------------------------------------------------------------------------
+  framework kernel (L6/L16 coded), a_0 alt       fixed, ZERO free parameters : rms 0.1421 dex, median offset +0.0034
+  framework kernel (L6/L16 coded), a_0 canonical fixed, ZERO free parameters : rms 0.1453 dex, median offset +0.0298
+  abundance-matched NFW halo (Moster+2013 x Dutton-Maccio 2014), ZERO free parameters : rms 0.1711 dex, median offset -0.0261
+  cosmic-ratio halo (lower bound)                                                     : rms 0.2449 dex
+  the same halo POPULATION with its own 0.25 dex M_200 and 0.11 dex c scatter switched on (40 draws) : rms 0.1980 +- 0.0077 dex
+  [PASS] C1 [control] L16's fixed-a_0 kernel scatter 0.142 dex reproduces   (here 0.1421 dex (alt 0.1421, canonical 0.1453) vs L16's 0.142)
+  [PASS] C2 [control] L16's abundance-matched halo scatter 0.171 dex reproduces   (here 0.1711 dex vs L16's 0.171)
+  [PASS] C3 [control] L16's halo-population-scatter number 0.198 dex reproduces   (here 0.1980 dex vs L16's 0.198)
+  external cross-check on the SAME cut hunt_2026/h117_rar_intrinsic_scatter.py used (Q <= 2, i >= 30, eV/V < 0.10): 141 galaxies, 2684 points -- h117 reports 2684
+       here: vertical rms 0.1362 (canonical) / 0.1319 (alt); h117 reports 0.1327 / 0.1326
+  [PASS] C5 [control] an INDEPENDENT script in this repository (h117, different loader, different author-pass) gets the same parameter-free vertical scatter on the same cut, to better than 0.005 dex   (canonical 0.1362 vs 0.1327, alt 0.1319 vs 0.1326; point counts 2684 vs 2684)
+
+----------------------------------------------------------------------------------------------------------------------
+C4 [control] -- is a_0 a hidden fit?  free the ONE global parameter and see what it buys
+----------------------------------------------------------------------------------------------------------------------
+  one global free a_0: log10 a = -9.9455 (a = 1.134e-10 m/s^2), rms 0.1421 dex
+     distance from the frozen footings: alt +0.002 dex, canonical +0.083 dex
+  [PASS] C4 [control] the FROZEN a_0 is not a hidden per-sample fit: freeing the one global scale buys less than 0.005 dex over the frozen alt footing   (frozen alt 0.1421 dex, free 0.1421 dex, gain 0.0000 dex.  NOTE AGAINST INTEREST: a_0 was originally calibrated on galaxy dynamics, so 'zero free parameters' means zero parameters RE-FITTED here, not a parameter never touched by data of this kind)
+
+----------------------------------------------------------------------------------------------------------------------
+F1 [LIKE-FOR-LIKE] -- let each galaxy's halo float within its REAL priors, as a LambdaCDM analysis would
+----------------------------------------------------------------------------------------------------------------------
+  Abundance matching predicts the halo POPULATION, never an individual curve.  The real LambdaCDM claim is
+  that a halo exists inside the population scatter that fits.  So the halo is refit per galaxy in three
+  regimes, and the kernel is given the SAME number of parameters in the last one.
+  (per-galaxy fits over 155 galaxies took 2.1 s)
+
+      model                                   par/gal  rms [dex]  vs kernel 0-par
+      framework kernel, a_0 fixed (alt)             0     0.1421               --
+      abundance-matched halo (L16)                  0     0.1711            1.20x
+      halo, M200+c within LCDM priors               2     0.0659            0.46x
+      halo, M200+c FREE                             2     0.0599            0.42x
+      halo, M200+c+Ups+offset, priors               4     0.0520            0.37x
+      kernel, Ups+offset, priors                    2     0.0602            0.42x
+      kernel, Ups+offset FREE                       2     0.0513            0.36x
+      the prior-constrained fit moves log M_200 by median -0.04 dex [-0.50, +0.24] and log c by -0.02 [-0.22, +0.16] (priors 0.25 / 0.11 dex)
+      the FREE fit moves log M_200 by median +0.07 dex [-0.67, +2.21] and log c by -0.03 [-0.81, +0.30] -- how far outside the population it has to go
+      IS THE FITTED HALO POPULATION STILL LambdaCDM's?  the prior-constrained fits scatter by 0.426 dex in log M_200 (prior 0.25) and 0.200 dex in log c (prior 0.11); 19% of galaxies sit beyond 2 sigma in M_200 and 28% beyond 2 sigma in c
+  [FAIL] F1d [is the fit legitimate?] the halo population the per-galaxy fit lands on is no broader than the LambdaCDM population it was supposed to be drawn from -- if it is broader, the 'fitted halo' beats the kernel only by leaving the population that predicted it   (fitted scatter 0.426 / 0.200 dex against priors 0.25 / 0.11 dex)
+      external reality check -- Li+2020's PUBLISHED per-galaxy fits to these same 175 curves (median reduced chi^2):
+          NFW-LCDM       2.22  (n = 165)
+          NFW-Flat       1.61  (n = 165)
+          DC14-LCDM      1.58  (n = 165)
+          Burkert-Flat   0.86  (n = 165)
+          i.e. a fitted NFW halo is a GOOD fit to individual SPARC curves; that has never been in dispute.
+  [FAIL] F1a [like-for-like] the fixed-a_0 kernel with ZERO free parameters is still tighter than a halo whose M_200 and c float within their REAL LambdaCDM priors (0.25 / 0.11 dex)   (kernel 0.1421 dex vs prior-constrained fitted halo 0.0659 dex)
+  [FAIL] F1b [like-for-like] ... and tighter than a FREELY fitted NFW halo   (kernel 0.1421 dex vs freely fitted halo 0.0599 dex)
+  [PASS] F1c [equal DOF] given the SAME two prior-constrained parameters per galaxy on each side (halo: M_200, c; kernel: Upsilon_*, distance/inclination offset), the kernel is tighter   (kernel+2 0.0602 dex vs halo+2 0.0659 dex)
+
+  F1e -- THE DECISIVE FAIR TEST that F1d implies.  A fitted halo is only a LambdaCDM halo if the population
+  it lands on has LambdaCDM's OWN width.  So tighten the priors by a common factor until the FITTED
+  population's scatter equals the 0.25 / 0.11 dex LambdaCDM predicts, and read off the tightness there.
+       prior shrink   sigma_M   sigma_c  fitted sd(logM)  fitted sd(logc)  rms [dex]
+                1.0     0.250     0.110            0.426            0.200     0.0659
+                1.5     0.167     0.073            0.354            0.166     0.0701
+                2.0     0.125     0.055            0.306            0.144     0.0743
+                2.5     0.100     0.044            0.272            0.128     0.0786
+                3.0     0.083     0.037            0.246            0.115     0.0828
+                4.0     0.062     0.028            0.209            0.096     0.0905
+                6.0     0.042     0.018            0.162            0.072     0.1037
+               10.0     0.025     0.011            0.107            0.046     0.1229
+          1000000.0     0.000     0.000            0.000            0.000     0.1711
+      interpolated: a fitted halo population carrying LambdaCDM's own sd(log M_200) = 0.25 reaches 0.0822 dex; one carrying sd(log c) = 0.11 reaches 0.0850 dex
+      (CONSERVATIVE towards LambdaCDM: MAP estimates carry estimation noise ON TOP of the true population
+       scatter, so matching the FITTED width to the predicted width lets the true width be smaller still)
+  [FAIL] F1e [THE DECISIVE FAIR TEST] once the fitted halo population is required to have LambdaCDM's OWN width in log M_200 and log c -- not merely to start from a LambdaCDM prior and then leave it -- the zero-parameter kernel is tighter than it   (kernel 0.1421 dex vs width-matched fitted halo 0.0850 dex (M_200-matched 0.0822, c-matched 0.0850); the unconstrained-width fit reached 0.0659 dex only by scattering 1.7x / 1.8x wider than LambdaCDM predicts)
+
+----------------------------------------------------------------------------------------------------------------------
+F2 [DEGREES OF FREEDOM] -- charge for the parameters: information criteria, then held-out prediction
+----------------------------------------------------------------------------------------------------------------------
+  chi^2 uses sigma = quadrature(2 eV/(V ln10), 0.036 dex).  Every prior-constrained parameter is counted
+  as a FULL parameter, which is the convention most favourable to the zero-parameter kernel.
+      model                                   k      rms      chi^2   chi^2/N        AIC        BIC
+      framework kernel, a_0 fixed             0   0.1421    19871.2      7.13    19871.2    19871.2
+      abundance-matched halo                  0   0.1711    34709.4     12.46    34709.4    34709.4
+      halo + 2/galaxy (LCDM priors)         310   0.0659     3748.2      1.35     4368.2     6207.2
+      halo + 2/galaxy (free)                310   0.0599     3244.2      1.16     3864.2     5703.2
+      halo + 4/galaxy (priors)              620   0.0520     2264.8      0.81     3504.8     7182.9
+      kernel + 2/galaxy (priors)            310   0.0602     3129.5      1.12     3749.5     5588.5
+      lowest BIC: kernel + 2/galaxy (priors) (Delta BIC to the zero-parameter kernel: +14283)
+  [FAIL] F2a [BIC] with the parameter count charged for, the zero-parameter kernel is the preferred model   (kernel BIC 19871; best rival kernel + 2/galaxy (priors) at 5589)
+
+  HELD-OUT PREDICTION -- the criterion that needs no convention.  Split each curve at its median radius,
+  fit the per-galaxy parameters on one half, and score the OTHER half.  The kernel has nothing to fit, so
+  its held-out score is simply its score.  Galaxies with >= 6 surviving points, >= 2 per half.
+      model                                fit inner -> score outer   fit outer -> score inner
+      framework kernel, 0 par                                0.1181                     0.1538
+      abundance-matched halo, 0 par                          0.1730                     0.1617
+      halo, 2/gal (LCDM priors)                              0.1289                     0.1172
+      halo, 2/gal (width-matched)                            0.1290                     0.1270
+      halo, 2/gal (free)                                     0.1591                     0.1237
+      halo, 4/gal (priors)                                   0.1182                     0.1205
+      kernel, 2/gal (priors)                                 0.0793                     0.1145
+      (133 galaxies, 1319 / 1375 held-out points)
+  [FAIL] F2b [held-out] the zero-parameter kernel predicts the held-out half of each rotation curve better than ANY fitted halo does, in BOTH directions   (in->out kernel 0.1181 vs best halo 0.1182; out->in kernel 0.1538 vs best halo 0.1172)
+  [FAIL] F2c [held-out, the classic test] fitting the OUTER half and predicting the INNER half -- the direction in which a cuspy halo is known to struggle -- the zero-parameter kernel beats a freely fitted NFW   (kernel 0.1538 dex vs free NFW 0.1237 dex)
+  [PASS] F2e [held-out, zero parameters both sides] the zero-parameter kernel predicts the held-out half better than the zero-parameter abundance-matched halo, in BOTH directions -- so L16's headline comparison is not an in-sample artefact   (in->out kernel 0.1181 vs halo 0.1730; out->in kernel 0.1538 vs halo 0.1617)
+  [PASS] F2d [held-out, EQUAL FREEDOM -- the fair predictive comparison] given the same two prior-constrained nuisance parameters per galaxy (Upsilon_*, distance/inclination offset) fitted on one half of each curve, the kernel predicts the other half better than a halo given those SAME nuisances PLUS its own M_200 and c, in both directions   (in->out kernel+2 0.0793 vs halo+2 0.1289 and halo+4 0.1182; out->in kernel+2 0.1145 vs halo+2 0.1172 and halo+4 0.1205)
+
+----------------------------------------------------------------------------------------------------------------------
+F3 [ERROR BUDGET] -- is 0.142 dex above or below the observational floor?
+----------------------------------------------------------------------------------------------------------------------
+  Forward Monte Carlo.  For each realisation the TRUE data are generated from the model itself with true
+  nuisance values drawn from SPARC's own quoted errors (per-point velocity, distance, inclination) plus a
+  0.11 dex stellar Upsilon, and then analysed with the NOMINAL values, exactly as the real analysis is.
+  The rms this induces is the floor: the scatter a PERFECT model would still show.
+                                                     observed      floor  obs/floor  excess (quad)
+      framework kernel, quoted errors                  0.1421     0.1349       1.05         0.0449
+      abundance-matched halo, quoted errors            0.1711     0.1288       1.33         0.1126
+      framework kernel, distance errors x0.6 (h117D)     0.1421     0.1154       1.23         0.0830
+      abundance-matched halo, distance errors x0.6 (h117D)     0.1711     0.1082       1.58         0.1326
+      the two floors differ by only -0.0061 dex (the halo's is marginally LOWER, because at these radii
+      a dark-dominated model is less sensitive to a stellar Upsilon error than a baryon-tracking kernel is),
+      so the floor is not what separates the two observed numbers.
+      cross-check against h117 (independent script): vertical rms 0.133 dex on the Lelli cut, within-galaxy
+      intrinsic 0.036 +- 0.008, between-galaxy intrinsic 0.078 +- 0.022 dex.
+  [PASS] F3a [floor] the kernel's residual is AT the observational error floor (within 25%), i.e. there is little room left for it to be wrong   (observed 0.1421 dex, floor 0.1349 dex, ratio 1.05; excess in quadrature 0.0449 dex)
+  [PASS] F3b [floor] the abundance-matched halo's residual is NOT at its floor, so the two models are distinguishable by these data rather than both being error-limited   (observed 0.1711 dex, floor 0.1288 dex, ratio 1.33; excess 0.1126 dex)
+
+----------------------------------------------------------------------------------------------------------------------
+F3c -- the same comparison split into the two channels h117 identified
+----------------------------------------------------------------------------------------------------------------------
+      model                                          between-galaxy   within-galaxy
+      framework kernel, a_0 fixed                            0.1505          0.0718
+      abundance-matched halo                                 0.1582          0.0944
+      halo + 2/galaxy (width-matched)                        0.0667          0.0701
+      halo + 2/galaxy (LCDM priors)                          0.0325          0.0612
+      halo + 2/galaxy (free)                                 0.0205          0.0568
+      kernel + 2/galaxy (priors)                             0.0286          0.0581
+      the WITHIN channel is the one immune to distance, inclination and Upsilon, which move a galaxy bodily.
+      h117 measured the same split on the data and found the BETWEEN channel is where the two theories
+      differ and where they are DEGENERATE: framework intrinsic 0.078 +- 0.022 dex against a LambdaCDM
+      halo-scatter prediction of 0.080 dex, i.e. 0.1 sigma.
+  [PASS] F3d [channels] against the PREDICTED halo the kernel's advantage is present in BOTH channels, not only in the normalisation channel where h117 showed the two theories are degenerate   (within: kernel 0.0718 vs halo 0.0944 (1.32x); between: kernel 0.1505 vs halo 0.1582 (1.05x))
+  [FAIL] F3e [channels, the hardest version] the kernel's SHAPE-channel advantage survives against a FITTED halo population carrying LambdaCDM's own width -- i.e. the kernel gets the shape of a rotation curve right with nothing fitted, better than a real halo population does with two parameters per galaxy   (within-galaxy: kernel 0.0718 dex (0 parameters) vs width-matched fitted halo 0.0701 dex (2 parameters per galaxy) -- a difference of +0.0016 dex, i.e. a dead heat)
+
+----------------------------------------------------------------------------------------------------------------------
+F4 [SELECTION] -- does the result depend on the quality cuts?
+----------------------------------------------------------------------------------------------------------------------
+      'kernel' and 'halo' are the ZERO-parameter models; 'halo+2' and 'kernel+2' each carry two
+      prior-constrained parameters per galaxy (halo: M_200, c; kernel: Upsilon_*, distance/inclination offset).
+      cut                                                   Ngal    Npt   kernel     halo   ratio   halo+2   kern+2
+      L16 baseline (Q<=3, no i cut, >=3 pts, eV/V<0.10)      155   2786   0.1421   0.1711    1.20   0.0659   0.0602
+      Lelli+2016/17 (Q<=2, i>=30)                            141   2684   0.1319   0.1637    1.24   0.0631   0.0582
+      Q<=1 only                                               95   1820   0.1292   0.1673    1.29   0.0594   0.0596
+      i >= 45 deg                                            128   2417   0.1395   0.1724    1.24   0.0681   0.0613
+      >= 6 points per galaxy                                 133   2694   0.1375   0.1673    1.22   0.0648   0.0594
+      >= 10 points per galaxy                                100   2449   0.1356   0.1677    1.24   0.0643   0.0583
+      eV/V < 0.05 (strict)                                   113   1946   0.1186   0.1603    1.35   0.0476   0.0420
+      eV/V < 1.00 (no accuracy cut)                          175   3382   0.1912   0.2374    1.24   0.1281   0.1137
+      strictest stack (Q<=2, i>=30, >=6, eV/V<0.05)           94   1860   0.1183   0.1618    1.37   0.0468   0.0419
+  [PASS] F4 [selection] the zero-parameter kernel is tighter than the zero-parameter halo under EVERY cut variation   (ratio range 1.20 to 1.37 over 9 cuts)
+  [FAIL] F4b [selection] ... and still tighter than the PRIOR-CONSTRAINED FITTED halo under every cut variation   (kernel 0-par vs halo+2: worst margin +0.0762 dex (kernel 0.118-0.191, halo+2 0.047-0.128))
+  [FAIL] F4c [selection, EQUAL FREEDOM] at two prior-constrained parameters per galaxy on BOTH sides the kernel is tighter than the halo under every cut variation   (kernel+2 0.0419-0.1137 vs halo+2 0.0468-0.1281; worst cut 'Q<=1 only' kernel+2 0.0596 vs halo+2 0.0594, margin +0.0002 dex)
+
+----------------------------------------------------------------------------------------------------------------------
+F5/F6 [WHICH KERNEL, BOTH FOOTINGS] -- HANDOFF_CONTRACT D1 is unresolved, so run all of them
+----------------------------------------------------------------------------------------------------------------------
+  The saturated form actually coded in L6/L16 is neither document's kernel: above y = 2.540 it holds the
+  boost at a CONSTANT 0.6476 a_0 instead of letting it die, which is a real difference at high acceleration.
+      on these data the saturation touches 342 of 2786 points and moves them by at most 0.0092 dex (rms 0.0019), so 'saturated' and nu_RAR are the same
+      model here; the exponential carrier differs from nu_RAR by up to 0.0726 dex (rms 0.0453) -- independently confirming D1's stated 0.073 dex
+      kernel                         footing      rms  vs halo 0.171  vs halo+2 fitted  held-out out->in
+      sat(L6/L16 coded)                  alt   0.1421          1.20x             0.46x            0.1538
+      sat(L6/L16 coded)            canonical   0.1453          1.18x             0.45x            0.1570
+      nu_RAR(THE_ACTION)                 alt   0.1421          1.20x             0.46x            0.1538
+      nu_RAR(THE_ACTION)           canonical   0.1453          1.18x             0.45x            0.1570
+      exp carrier(RECIPE I1)             alt   0.1507          1.14x             0.44x            0.1632
+      exp carrier(RECIPE I1)       canonical   0.1613          1.06x             0.41x            0.1731
+      simple(yardstick)                  alt   0.1422          1.20x             0.46x            0.1542
+      simple(yardstick)            canonical   0.1445          1.18x             0.46x            0.1564
+  [PASS] F5a [kernel] the tightness advantage over the zero-parameter halo holds for ALL THREE readings of the frozen kernel (saturated, nu_RAR, exponential carrier) on BOTH footings   (worst case 0.1613 dex vs halo 0.1711 dex)
+  [FAIL] F5b [kernel] ... and over the PRIOR-CONSTRAINED FITTED halo, for all three kernels and both footings   (worst case 0.1613 dex vs fitted halo 0.0659 dex)
+  [FAIL] F5c [kernel] the D1 documentation conflict does not matter for this claim: the spread across the three candidate kernels and both footings is less than half the kernel-halo gap it is used to argue   (kernel/footing spread 0.0192 dex vs the gap 0.0290 dex)
+
+----------------------------------------------------------------------------------------------------------------------
+V [VERDICT] -- what can honestly be claimed
+----------------------------------------------------------------------------------------------------------------------
+      the claim as stated -- 'the kernel describes SPARC rotation curves more tightly than a LambdaCDM
+      halo' with no condition attached -- requires the kernel to beat a FITTED halo as well as a predicted
+      one.  F1a FAIL, F1b FAIL, F2a FAIL, F2b FAIL.
+      NOTE AGAINST INTEREST, not tested here: NFW is the LEAST favourable LambdaCDM profile.  Li+2020's own
+      feedback-modified DC14 halo with a LambdaCDM prior fits these same curves better than NFW does
+      (median reduced chi^2 1.58 against 2.22), so every 'fitted halo' number above is an UPPER bound on
+      what a fitted LambdaCDM halo can do.
+  [FAIL] V1 [verdict] the tightness claim is publishable AS STATED, i.e. without a condition naming what the halo was and was not allowed to do   (kernel 0.1421 dex; predicted halo 0.1711; halo fitted within LambdaCDM priors 0.0659; halo fitted freely 0.0599)
+  [PASS] V2 [verdict] the CONDITIONED claim -- 'at zero free parameters per galaxy on both sides, with the halo's M_200 and c PREDICTED by abundance matching rather than fitted, the fixed-a_0 kernel is tighter, and it sits at the observational error floor' -- survives every attack in this lane   (zero-parameter comparison 0.1421 vs 0.1711 (1.20x), stable across 9 cut variations, all three kernels, both footings, and at 1.05x its own error floor)
+  [FAIL] V3 [verdict] the STRONGEST fair statement available -- 'given the same per-galaxy freedom, in-sample and out-of-sample, the kernel describes and PREDICTS these curves better than an NFW halo' -- survives   (in-sample equal-DOF 0.0602 vs 0.0659; held-out in->out 0.0793 vs 0.1289; held-out out->in 0.1145 vs 0.1172 -- but the in-sample margin is only 0.0057 dex and it REVERSES on the 'Q<=1 only' cut (0.0596 vs 0.0594), so the equal-DOF in-sample statement is a tie, not a win; only the held-out statement survives)
+  [PASS] V4 [verdict] the PREDICTIVE equal-freedom statement -- 'fitted on half of each rotation curve with the same two nuisance parameters per galaxy, the kernel predicts the other half better than an NFW halo given those same nuisances and its own M_200 and c as well' -- survives, in both directions   (held-out in->out 0.0793 vs halo+2 0.1289 / halo+4 0.1182; out->in 0.1145 vs 0.1172 / 0.1205; and at zero parameters both sides 0.1181/0.1538 vs 0.1730/0.1617)
+
+----------------------------------------------------------------------------------------------------------------------
+THE FAIR STATEMENT -- what a referee would let through
+----------------------------------------------------------------------------------------------------------------------
+  On the 155 SPARC galaxies and 2786 points that survive the standard accuracy cut, the framework's kernel
+  with a_0 frozen and Upsilon_* frozen -- nothing fitted per galaxy -- reproduces log10 g_obs to 0.142 dex,
+  against 0.171 dex for an NFW halo whose M_200 and c are PREDICTED by abundance matching, and
+  0.198 dex for a random draw from that halo population.  That advantage is stable across nine
+  selections (ratio 1.20-1.37), holds for all three candidate readings of the frozen kernel and both
+  a_0 footings, survives out of sample in both directions, and sits at 1.05x the scatter the quoted
+  observational errors alone would produce -- so it is close to the best any model could do on these data.
+  
+  It is NOT, however, a demonstration that the kernel beats LambdaCDM, and it must not be written as one.
+  Abundance matching predicts a halo POPULATION, not an individual rotation curve, and LambdaCDM has never
+  claimed otherwise.  Allowed to do what it does claim -- each galaxy's halo lying somewhere in a population
+  of width 0.25 dex in log M_200 and 0.11 dex in log c -- a fitted NFW halo reaches 0.085 dex, comfortably
+  tighter than the kernel, and its within-galaxy SHAPE residual, 0.070 dex, is a dead heat with the
+  kernel's 0.072 dex (-0.002 dex, the halo marginally ahead).
+  The kernel's real and defensible content is therefore predictive, not descriptive: it delivers that
+  shape-channel performance with zero parameters per galaxy where the halo needs two, it wins every
+  held-out comparison at equal per-galaxy freedom, and it is the only one of the two that says in advance
+  what any given curve will look like.  A referee will accept that sentence.  He will not accept '0.142
+  against 0.171' without the conditions attached, because the halo he has in mind is the fitted one.
+
+======================================================================================================================
+RESULT: 29 checks, 14 FAIL
+   FAIL: F1d [is the fit legitimate?] the halo population the per-galaxy fit lands on is no broader than the LambdaCDM population it was supposed to be drawn from -- if it is broader, the 'fitted halo' beats the kernel only by leaving the population that predicted it
+   FAIL: F1a [like-for-like] the fixed-a_0 kernel with ZERO free parameters is still tighter than a halo whose M_200 and c float within their REAL LambdaCDM priors (0.25 / 0.11 dex)
+   FAIL: F1b [like-for-like] ... and tighter than a FREELY fitted NFW halo
+   FAIL: F1e [THE DECISIVE FAIR TEST] once the fitted halo population is required to have LambdaCDM's OWN width in log M_200 and log c -- not merely to start from a LambdaCDM prior and then leave it -- the zero-parameter kernel is tighter than it
+   FAIL: F2a [BIC] with the parameter count charged for, the zero-parameter kernel is the preferred model
+   FAIL: F2b [held-out] the zero-parameter kernel predicts the held-out half of each rotation curve better than ANY fitted halo does, in BOTH directions
+   FAIL: F2c [held-out, the classic test] fitting the OUTER half and predicting the INNER half -- the direction in which a cuspy halo is known to struggle -- the zero-parameter kernel beats a freely fitted NFW
+   FAIL: F3e [channels, the hardest version] the kernel's SHAPE-channel advantage survives against a FITTED halo population carrying LambdaCDM's own width -- i.e. the kernel gets the shape of a rotation curve right with nothing fitted, better than a real halo population does with two parameters per galaxy
+   FAIL: F4b [selection] ... and still tighter than the PRIOR-CONSTRAINED FITTED halo under every cut variation
+   FAIL: F4c [selection, EQUAL FREEDOM] at two prior-constrained parameters per galaxy on BOTH sides the kernel is tighter than the halo under every cut variation
+   FAIL: F5b [kernel] ... and over the PRIOR-CONSTRAINED FITTED halo, for all three kernels and both footings
+   FAIL: F5c [kernel] the D1 documentation conflict does not matter for this claim: the spread across the three candidate kernels and both footings is less than half the kernel-halo gap it is used to argue
+   FAIL: V1 [verdict] the tightness claim is publishable AS STATED, i.e. without a condition naming what the halo was and was not allowed to do
+   FAIL: V3 [verdict] the STRONGEST fair statement available -- 'given the same per-galaxy freedom, in-sample and out-of-sample, the kernel describes and PREDICTS these curves better than an NFW halo' -- survives
+======================================================================================================================

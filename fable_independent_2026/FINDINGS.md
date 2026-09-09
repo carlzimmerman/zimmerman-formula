@@ -1042,3 +1042,49 @@ Five X-COP clusters with published weak lensing, at each cluster's own R500, inv
 - **⚠️ Flag for another lane, a genuine internal disagreement.** Famaey et al. 2024's lensing-derived
   residual is **cored** inside ~1 Mpc, while this repository's own X-ray inversion (g04a) reports
   ρ ~ r^(−1.53) and **not** cored. Those cannot both be right.
+
+## L28 — the tightness claim: the numbers are right, the sentence built on them is not
+
+`L28_tightness.py` + `L28_TIGHTNESS.md` (29 checks, 14 FAIL). L16's result was recorded as the
+programme's central surviving empirical claim. This lane attacked it and it does **not** survive as
+stated. **This corrects A17.**
+
+**Controls.** All three of L16's numbers reproduce to the fourth decimal — 0.142, 0.171, 0.198 dex —
+and an independent script in this repository with a different loader gets the same parameter-free
+scatter to better than 0.005 dex. Freeing the one global a₀ buys less than 0.005 dex, so the frozen
+scale is not a hidden fit.
+
+**What survives, and it survives everything.** At **zero** free parameters per galaxy on both sides,
+with the halo's mass and concentration **predicted** by abundance matching rather than fitted:
+
+| model | par/galaxy | rms (dex) |
+|---|---|---|
+| kernel, a₀ frozen | 0 | **0.142** |
+| abundance-matched NFW halo | 0 | 0.171 |
+| a random draw from that halo population | 0 | 0.198 ± 0.008 |
+
+Stable across nine selection cuts (ratio 1.20–1.37), holds for all three candidate kernels on both
+footings, survives out of sample in both directions, and sits at **1.05×** the observational error
+floor against the halo's 1.33× — so there is almost no room left in the kernel's residual, and the
+two floors differ by only 0.006 dex, so the floor is not what separates them.
+
+**⚠️ What does NOT survive, and it is the part that was overstated.** Abundance matching predicts a
+halo *population*, never an individual rotation curve. Allowed to do what it actually claims — each
+galaxy's halo lying somewhere in a population of ΛCDM's own width, 0.25 dex in log M₂₀₀ and 0.11 dex
+in log c — **a fitted NFW halo reaches 0.085 dex, comfortably tighter than the kernel's 0.142**, and
+ties it in the shape channel at 0.070 against 0.072. The lane found this by a prior-shrink scan: the
+naive prior-constrained fit reaches 0.066 only by landing on a population **1.7–1.8× wider than
+ΛCDM's**, and shrinking until the *fitted* population carries ΛCDM's own width gives 0.082–0.085.
+**The tightness result is not a discriminant against ΛCDM and must never be written as one.**
+- **What is left is real, and it is a parsimony-and-prediction claim.** The kernel delivers that
+  shape-channel performance with **zero** parameters per galaxy where the halo needs two. At equal
+  per-galaxy freedom it wins **every** held-out comparison: fitted on half of each rotation curve it
+  predicts the other half to 0.079 / 0.115 dex, against the halo's 0.129 / 0.117 given the same
+  nuisances **plus** its own mass and concentration. That is the argument MOND has always actually
+  had, and it is publishable with the conditions attached.
+- **⚠️ The D1 kernel conflict now matters for this claim.** On the recipe's own frozen exponential
+  carrier at the canonical footing the margin is **1.06×, not 1.20×** — the exponential carrier gives
+  0.1613 against the halo's 0.1711. The saturated and ν_RAR readings are identical to within 0.009 dex
+  (saturation touches only 342 of 2786 points), but the exponential carrier differs from ν_RAR by up
+  to 0.073 dex, independently confirming D1's own number. **The user must resolve D1 before this claim
+  is quoted with a margin.**
