@@ -12,7 +12,19 @@ structure together. Checks remain honest: a failure identifies a construction
 obligation; it is not permission to conceal the failure or relax a requirement.
 Historical obstructions are reference material, not the main deliverable.
 
-**Current constructive checkpoint (2026-09-09, IC21):**
+**Current constructive checkpoint (2026-09-09, IC22):**
+[The dust and pressure derivation](integrable_clock_construction_2026/IC22_DUST_AND_PRESSURE.md)
+varies the dust multiplier, computes the full local auxiliary matrix and
+retains leading frequency-dependent mixing. Its real fast wave coexists with
+an exactly derived defective zero-speed principal sector; no strong-hyperbolicity
+pass is claimed for ideal dust. An explicit positive-pressure matter action,
+with gravitational coefficients unchanged, gives two positive subluminal
+characteristics on tested points, including w=10^-8. Next combine radiation
+and this matter action in ONE three-scalar calculation, then test relative
+flow and extended evolution. Separate two-field results are not a mixed-fluid
+cosmology or a complete theory.
+
+**Previous constructive checkpoint (2026-09-09, IC21):**
 [The explicit radiation calculation](integrable_clock_construction_2026/IC21_RADIATION.md)
 varies a minimally coupled radiation action with the unchanged IC20 gravity
 action. Its coupled scalar principal matrix yields explicit density-dependent
