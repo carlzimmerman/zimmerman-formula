@@ -118,7 +118,7 @@ The local covariant-clock expansion (T=t+\tau) gives
 
 \[
 L_{\tau}^{(2)}=\frac12(\sigma_0+4M^2k^2)\dot\tau^2
- +\delta\sigma\,\dot\tau-rac12\sigma_0k^2\tau^2.
+ +\delta\sigma\,\dot\tau-\frac12\sigma_0k^2\tau^2.
 \]
 
 Direct Legendre transformation yields (p_{\delta\sigma}=0) and the
@@ -128,3 +128,26 @@ matrix in both (k=0) and (k\ne0) sectors.  On the constraint surface
 an additional wave, but the clock remains one explicitly counted
 zero-sound-speed matter degree of freedom.  This does not settle its caustic
 or metric-mixing health; those gates remain open.
+
+## Preferred-frame and stability audit
+
+The acceleration-only term lies at the formal Einstein--æther corner
+\(c_1=c_2=c_3=0,\ c_4\ne0\).  Substitution into the standard aether PPN
+expressions is singular: \(\alpha_2\) contains \(c_{123}\) in the denominator,
+and \(\alpha_1\) has path-dependent limits (\(-4c_4\) if \(c_3=0\) is taken
+first, versus \(-8\) if \(c_1=0\) is taken first).  Therefore ALC does **not**
+claim \(\alpha_1=\alpha_2=0\); a covariant PPN calculation or a controlled
+degenerate completion is mandatory.
+
+The exact constitutive Hessian is likewise nontrivial.  Around a nonzero
+acceleration background,
+
+\[
+\lambda_\perp=4M^2e^{-y},\qquad
+\lambda_\parallel=4M^2(1-y)e^{-y}.
+\]
+
+The longitudinal coefficient changes sign at \(y=1\).  The mimetic secondary
+can remove the associated clock velocity in the clock-only model, but only the
+full metric--clock principal symbol can decide whether the sign change is a
+physical gradient instability.
