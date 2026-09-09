@@ -2451,3 +2451,36 @@ count, its critical value 0.9000009, its slow-mode speed and its threshold s = 0
 - **⚠️⚠️ CONSEQUENCE FOR THE DEPOSITED PAPER (DOI 10.5281/zenodo.22667688): its central claim — a complete
   theory of gravity below the galaxy scale — is FALSE.** The theory is unstable in the regime it exists to
   explain. This is not an erratum item. It is a retraction-level correction of the headline.
+
+## L62 — the group channel cannot decide, and the mechanism's own decisive test is out of reach
+
+`L62_group_channel.py` + `L62_GROUP_CHANNEL.md` (24 checks, 14 FAIL; **all 8 controls pass**). L57 left
+its mechanism undecidable and named the group channel as the one place existing data could decide it.
+
+- **The prediction reproduces independently to 0.5%** — 21.6–45.2%, median 30.9%, own kernel, own
+  smoothing, own reference response.
+- **A direct measurement exists:** 34% ± 20% statistical, on 105 systems. **The measured value sits
+  inside the predicted band.** That is **not** evidence for the mechanism, because it is also where the
+  astrophysical hydrostatic bias puts it.
+- **⚠️ THE CHANNEL IS STRUCTURALLY UNABLE TO DECIDE, for two independent reasons.** The common-mode
+  systematic floor is **17.3% using only literature-quoted entries**, larger than the bottom of the band
+  and comparable to the whole of it; it is common-mode and **does not beat down with sample size**, so
+  more groups do not help. And **the ΛCDM baseline is 1.11, not 1.00** — a metric slip and hydrostatic bias
+  are **the same observable with the same sign and overlapping magnitude**, so even a perfect measurement
+  would not separate them.
+- **The one degeneracy-free route is where the estimator is worst:** lensing against a collisionless
+  tracer has the statistics already but carries a **≥ 20% estimator bias at group mass**. **The precise
+  channel is degenerate; the degeneracy-free channel is imprecise.**
+- **⚠️ The correlated-error trap was set and avoided, and it is written in as a control:** treating the
+  floor as independent per system would claim 2.7% and "exclude" the band at 6.5σ. The correct treatment
+  excludes nothing. **That factor of 10 is the fourth burn this lane was told not to add.**
+- **⚠️ L57's OWN decisive test is not reachable.** The 0.1% precision it named needs 180,000 matched
+  strong lenses against ~14,500 available in the Euclid/LSST era, and a matched cluster-versus-field
+  differential carries a **systematic floor of order 1.5%, fifteen times the target, which no survey
+  removes**. Only the **top** of the band, 2.3%, becomes a **marginal 1.5σ** test. Priced from the real
+  74-lens catalogue on disk.
+- **Reported against the mechanism, and deliberately not banked:** a cleaner collisionless cluster-scale
+  ratio of 1.047 ± 8.8% would tighten L51/L57's repair ceiling from 4.9σ to **5.8σ** — different sample,
+  different estimator, recorded because the standard is both directions.
+- **What would decide it, all three parts required:** a collisionless-tracer group ratio to better than
+  **5.9% total**, with that estimator's own bias validated below 5.9% at group mass.
