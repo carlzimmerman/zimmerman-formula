@@ -1,0 +1,157 @@
+======================================================================================================================
+L44 -- does the lead's collar construction escape L35's transition-ghost theorem?
+======================================================================================================================
+
+----------------------------------------------------------------------------------------------------------------------
+SECTION 0.  L35's hypotheses, stated exactly, from L35_TRANSITION_GHOST.md section 3
+----------------------------------------------------------------------------------------------------------------------
+   H1. SETTING: h = h_base + eta(r)*[delta_10 - B], i.e. the switch MULTIPLIES a term that depends on the metric momentum rho.
+   H2. h_base = -E rho^2/3 + (rho-independent).
+   H3. delta_10 = -E rho^2 G/3 with G = 1/J - 1 INDEPENDENT of rho.
+   H4. r = -rho E/3: the switch's ARGUMENT is proportional to the metric momentum rho.
+   H5. B is rho-independent (true for any pressure f(Xtilde), since Xtilde is fixed by (xi,u)).
+   H6. a_UV = E A/6 + h,rhorho/4 with trace kinetic factor A = 1 + eta G -- i.e. the UV scalar coefficient is the bare trace-free/trace pair alone, with NO auxiliary field to eliminate.
+   H7. eta is C^2 and non-constant on [r1,r2] with eta'(r1) = eta'(r2) = 0.
+   H8. G != 0 at the fixed (xi,u) -- otherwise the weight b degenerates.
+   H9. along a trajectory: b does not vanish on an open subinterval.
+
+   THEOREM. Under H1-H9, a_UV < 0 on a positive-measure subset of (r1,r2), for EVERY B in R.
+   COROLLARY (pressure-blind). At any interior r* with eta''(r*) = 0, a_UV = -(E G r*/3) eta'(r*),
+   containing no B at all.
+   DOOR LEFT OPEN (L35 section 6, verbatim intent): a redesign whose eta-multiplied correction's
+   second rho-derivative does NOT cancel E A/6, leaving a POSITIVE a_UV on the plateaus.
+  [PASS] L44-H0  L35's markdown states exactly these nine hypotheses (documentary)   (five load-bearing strings located verbatim)
+
+----------------------------------------------------------------------------------------------------------------------
+SECTION A.  CONTROL -- rebuild L35's central identity independently in sympy
+----------------------------------------------------------------------------------------------------------------------
+  [PASS] L44-A1  a_UV = -(E G r/3) eta' - (E G r^2/12 + B E^2/36) eta''  (symbolic, arbitrary eta)
+  [PASS] L44-A2  a_UV = -(1/b) d/dr[b^2 eta'] with b = E(G r^2 + B E/3)/12   (the total derivative)
+  [PASS] L44-A3  agrees with IC12's own stated aUV = -E(1/J-1)(4r eta_r + r^2 eta_rr)/12 - B E^2 eta_rr/36
+  [PASS] L44-A4  MARGINALITY: for ANY locally constant eta the coefficient is identically zero   (E*A/6 cancels the -2EA/3 inside h,rhorho/4 exactly)
+  [PASS] L44-A5  the pressure B multiplies ONLY eta'' -- so it drops out wherever eta'' = 0
+
+----------------------------------------------------------------------------------------------------------------------
+SECTION B.  CONTROL -- reproduce IC12's own transition numbers (independent transcription)
+----------------------------------------------------------------------------------------------------------------------
+  [PASS] L44-B1  analytic eta', eta'' agree with numerical differentiation of eta   (|d1|=2.71e-59 |d2|=1.13e-56)
+  [PASS] L44-B2  eta = 1 for |r^2-1| <= 1/4 and eta = 0 for |r^2-1| >= 1/2 (IC5's design)
+  [PASS] L44-B3  CONTROL: IC12's quoted (rho0,xi0,u0) solves h12,xi = h12,u = 0   (|h,xi|=1.86e-23  |h,u|=3.84e-24)
+  [PASS] L44-B4  CONTROL: that state has S = (2-u) xi = 0.2 exactly (IC11's '.2' witness)   (S = 0.2)
+
+     n |            eta (mine) |          eta (IC12) |          a_UV (mine) |        a_UV (IC12)
+   ----+-----------------------+---------------------+----------------------+--------------------
+      0 |                   1.0 |                   1 |   1.944692274332e-62 |                0.0
+    200 |     0.998768085275871 |      0.998768085276 |     0.05756806825315 |    0.0575680682531
+    205 |     0.998141100037156 |      0.998141100037 |     0.01917907027389 |    0.0191790702739
+    210 |     0.997729876649563 |       0.99772987665 |    -0.04479545146231 |   -0.0447954514623
+    220 |      0.99726400317076 |      0.997264003171 |     -0.2029719578236 |    -0.202971957824
+    500 |     0.995746896086384 |      0.995746896086 |      -7.040639641509 |     -7.04063964151
+  [PASS] L44-B5  CONTROL: eta reproduces IC12's table at n = 200,205,210,220,500
+  [PASS] L44-B6  CONTROL: a_UV reproduces IC12's table at n = 0,200,205,210,220,500
+  [PASS] L44-B7  CONTROL: ghost ONSET step is n = 207 (IC12's own number)   (onset = 207)
+  [PASS] L44-B8  CONTROL: the geometric switch boundary r^2 = 5/4 is crossed at n = 63 (IC11_TRANSITION)   (crossing at n = 63)
+  [PASS] L44-B9  CONTROL: deep sample a_UV(n=500) = -7.04063964151   (mine = -7.0406396415086)
+  [PASS] L44-B10 COROLLARY: where eta'' = 0 the coefficient is -(E G r/3) eta' -- B has dropped out   (d(a_UV)/dB = 0 identically at an inflection point)
+  [PASS] L44-B11 the b-weighted integral of a_UV across a complete C^2 transition is ZERO   (integral = 8.07767e-69)
+
+----------------------------------------------------------------------------------------------------------------------
+SECTION C.  CONTROL -- reproduce the lead's OWN stated collar quantities (IC28/IC35/IC37)
+----------------------------------------------------------------------------------------------------------------------
+  [PASS] L44-C1  IC35: det(M) = 16 v^2 u^2 exp(-4Q) for M = 4v e^{-2Q}[[1-u^2,1],[-(2-u^2),-2]]
+  [PASS] L44-C2  IC35: det(M1) = gamma det(M) for M1 = M diag(1,gamma)
+  [PASS] L44-C3  IC28: h_zz = -2D - 12 E4 z^2 exactly (no eta, no R, because v = v0)
+  [PASS] L44-C4  IC28: H_RR = 0 and h_zR = 0 identically (v = v0 makes h linear in R with no z)
+  [PASS] L44-C5  IC28: physical tensor normalisation M_T^2 = 2 exp(S-2wc)/t = m (= 1 in the run's units)   (M_T^2 = m, and the run sets m = 1)
+  [PASS] L44-C6  IC35: q(2) = -3 m h0 exp(3 wc)/sqrt(2) puts alpha^2 EXACTLY on the eta=0 edge 1/2
+  [PASS] L44-C7  IC35: the width-.006 collar's q range maps to alpha^2 = [.2455188040659, .8603357656613]   (mine [0.245518804065901, 0.860335765661288])
+  [PASS] L44-C8  that collar therefore spans BOTH plateaus: alpha^2 crosses 1/2 (eta=0) and 3/4 (eta=1)
+  [PASS] L44-C9  IC37: 1/eta = 1 + exp(1/x - 1/(1/4-x)) with x = alpha^2 - 1/2 (the one-sided switch)
+  [PASS] L44-C10 IC37: eta/x^p -> 0 for every real p > 0 (exponential flatness at the interface)   (eta(1e-3) = 2.81626e-433, beats x^p for p up to 39)
+  [PASS] L44-C11 IC29: D = h_z|_{D=0}/(2z) gives D0 = 0.13 at S=.1, q=-3, z=1, A=.1, E4=.01   (D0 = 0.13)
+
+----------------------------------------------------------------------------------------------------------------------
+SECTION D.  WHICH HYPOTHESIS DOES THE COLLAR VIOLATE?
+----------------------------------------------------------------------------------------------------------------------
+  [PASS] L44-D1  HYPOTHESIS (a) is NOT violated: IC35's collar profile 35x^4-84x^5+70x^6-20x^7 is C^3   (f, f', f'', f''' all match the plateaus at BOTH ends)
+  [PASS] L44-D2  HYPOTHESIS (a) is NOT violated: the switch eta itself is C^infinity (mollifier)   (all one-sided jets vanish at both edges; b^2 eta' still vanishes at both ends)
+  [PASS] L44-D3  every eta-derivative term in h_qq carries the factor (w - wc)   (eta enters h ONLY through -eta(alpha) exp(S) ell (w-wc))
+  [PASS] L44-D4  HYPOTHESIS (c) IS VIOLATED: on the pin (w = wc) the switch drops out of h_qq entirely   (h_qq = -t/3 with no eta, eta' or eta'' anywhere)
+  [PASS] L44-D5  ... and out of h_qz and h_zz as well (the switch has no z dependence at all)
+  [PASS] L44-D6  the pin is enforced wherever eta > 0, so w = wc holds on the WHOLE transition   (IC30's E_ell/J = eta exp(S)(w-wc); IC35 states the consequence verbatim)
+  [PASS] L44-D7  L35's HYPOTHESIS H8 (G != 0) FAILS IN THE STRONGEST WAY: G == 0 identically   (the eta-multiplied correction has NO momentum dependence, and vanishes on the pin)
+  [PASS] L44-D8  therefore L35's weight b = E(G r^2 + B E/3)/12 is identically ZERO on the pin   (the total-derivative structure a_UV = -(1/b) d/dr[b^2 eta'] cannot form)
+  [PASS] L44-D9  the BARE marginality of L35 SURVIVES unchanged: t/6 + h_qq/2 = 0 exactly   (L35's cancellation mechanism is intact -- it was not broken by editing it away)
+  [PASS] L44-D10 HYPOTHESIS (b) IS VIOLATED: a_UV = t/6 + H_qq/2 = A^2/(4D + 24 E4 z^2), NOT zero   (IC28's own stated identity, re-derived here from the action)
+  [PASS] L44-D11 ... but the term that breaks marginality is the AUXILIARY z Schur complement,   (-h_qz^2/(2 h_zz) from the A q z mixing -- NOT the 'finite multiplier' ell, which multiplies (w-wc)=0)
+  [PASS] L44-D12 the multiplier ell contributes EXACTLY ZERO to a_UV (d a_UV / d ell = 0)   (so 'finite multiplier' is NOT the escape mechanism, whatever else it buys)
+  [PASS] L44-D13 a_UV is independent of the switch: d a_UV/d eta = d a_UV/d eta' = d a_UV/d eta'' = 0   (the transition ghost has no place left to live in this coefficient)
+  [PASS] L44-D13b the INACTIVE side (eta = 0, w free) gives the SAME a_UV -- both plateaus and the whole transition carry one positive coefficient   (so the result is not an artefact of substituting w = wc)
+  [PASS] L44-D14 DOCUMENTARY: in IC12 the switch multiplies the kinetic term ('h12=hbase+eta(r)[delta h10-B]')
+  [PASS] L44-D15 DOCUMENTARY: in IC20 the switch appears ONCE, on the pin term '-eta exp(S)L(w-wc)'   (the redesign happened at IC20, fifteen steps BEFORE the collar)
+
+----------------------------------------------------------------------------------------------------------------------
+SECTION E.  COMPUTE, DO NOT ARGUE -- the coefficient across the collar
+----------------------------------------------------------------------------------------------------------------------
+  [PASS] L44-E1  the auxiliary branch equation is A q + 2 D z + 4 E4 z^3 = 0 (IC30's E_z/J)
+  [PASS] L44-E2  D-FREE FORM: on the branch, F_z = 2D + 12 E4 z^2 = -A q/z + 8 E4 z^2
+  [PASS] L44-E3  hence a_UV = A^2 z / (2(-A q + 8 E4 z^3)) -- POSITIVE for A>0, q<0, z>0, E4>=0,   (with NO knowledge of D(S) required -- the 81-node table cannot change the sign)
+  [PASS] L44-E4  z > 0 is FORCED on the collar (unique real root of the increasing odd cubic), not selected   (z in [0.0689412, 0.948959])
+
+     D(S)  |   q = -1.29078 (eta=1 end)            |   q = -0.68954 (eta=0 end)
+           |      z          a_UV                   |      z          a_UV
+   --------+---------------------------------------+------------------------------
+      0.05 |    0.94895897   0.02403120874       |    0.60219263   0.03483924433       |
+      0.09 |    0.65473137   0.02160379859       |    0.37167027   0.02543537029       |
+      0.13 |    0.47949446   0.01738587435       |    0.26242849    0.0186383392       |
+      0.20 |    0.31943618    0.0121287176       |    0.17187807   0.01239019044       |
+      0.35 |    0.18404133  0.007101621625       |   0.098451659  0.007131008183       |
+      0.50 |    0.12899243  0.004990036467       |   0.068941225   0.00499714989       |
+  [PASS] L44-E5  a_UV > 0 at EVERY sampled point of the collar, for every D in [0.05, 0.50]   (a_UV in [0.0049900365, 0.034839244])
+  [PASS] L44-E6  NEGATIVE CONTROL: reinstating a switched kinetic coefficient G reproduces L35's structure   (a_UV = -(t G/12)(4 alpha eta' + alpha^2 eta'') + A^2/(2 F_z): total derivative PLUS a positive term)
+  [PASS] L44-E7  the total-derivative piece alone integrates to ZERO against b (L35's identity holds)   (I_td = 2.12908e-65  vs  I_schur = 0.000136208)
+  [PASS] L44-E8  the b-weighted integral IS GENUINELY NONZERO once the Schur term is present   (integral = 0.0001362081682  =  A^2/(2 F_z) * int b  -- not a numerical near-miss)
+  [PASS] L44-E9  NEGATIVE CONTROL has teeth: with the Schur term REMOVED, a_UV goes negative on the collar   (min = -192.493, max = 184.889 -- L35's theorem fires)
+  [PASS] L44-E10 the Schur term does NOT rescue a NONZERO G: the escape needs G EXACTLY zero, not merely small   (at G = 0.4 the collar still reaches a_UV = -192.47527; the Schur term only covers |G| < 3.656e-5)
+  [PASS] L44-E10b ... which is exactly what IC20 delivers: G is a structural zero, not a small number   (the eta-multiplied correction has literally no momentum dependence)
+  [PASS] L44-E11 and in the ACTUAL action (G = 0) the coefficient is a positive constant in eta   (a_UV in [0.01759265, 0.018081865] across the whole collar)
+
+----------------------------------------------------------------------------------------------------------------------
+SECTION F.  PRICING THE ESCAPE -- what does the redesign cost elsewhere?
+----------------------------------------------------------------------------------------------------------------------
+  [PASS] L44-F1  the escape does NOT cost subluminality: c_g^2 = 2 a v0 u^2/[e^{2S}(1-u^2)] in (0,1]   (a = 0.01315789474, u = 0.66666667, c_g^2 = 0.009060084)
+  [PASS] L44-F2  ... and the headroom is large: a_UV may rise to the ceiling before c_g^2 hits 1   (ceiling a = 1.4522928, margin = 110.374x)
+
+   a0/(c H_Lambda):  IC20 model = 0.1727470747   IC5 model = 2.135144221
+        canonical: observed 0.17273956   IC20 ratio 1.00004x   IC5 ratio 12.3605x
+      alternative: observed 0.20811262   IC20 ratio 0.830065x   IC5 ratio 10.2596x
+  [PASS] L44-F3  CONTROL: IC5's a0-Lambda proportionality is off by 10-13x (L35's number, reproduced)   (IC5 model = 2.1351442 vs 0.1727/0.2081)
+  [PASS] L44-F4  BENEFIT (declared input, not derivation): IC20's imposed a0^2 = Lambda/(32 pi) is the framework's own kappa = 1/2 law   (sqrt(3/32pi) = 0.172747075 vs canonical 0.172739562 -- equivalent to a0 = (c/2) sqrt(G rho_Lambda))
+  [PASS] L44-F5  ... and it is 17% OFF on the alternative footing, so it is a fit to ONE footing   (ratio 0.830065x on the alternative footing)
+  [PASS] L44-F6  IC20's stated local count still gives 3 modes: (26 - 12 - 8)/2 = 3   (13 config pairs, 6 spatial first-class, 8 second-class auxiliary -- 2 tensors + 1 clock)
+  [PASS] L44-F7  PRICE: the IC10/IC11 pole-clock pressure -- and with it L20's backward ghost -- is GONE   (L20's Q_clock=0 edge at S=0.0267 belonged to a pressure this action no longer has)
+  [PASS] L44-F8  PRICE: the IC4 curvature-square sector -- and with it L26's sigma question -- is GONE   (sigma entered only through F, J, A_R, B_R; none survive)
+  [PASS] L44-F9  PRICE: IC28 explicitly does NOT inherit IC26's seven-e-fold history   (the escape is bought with a restart of the evolved-interval certification)
+  [PASS] L44-F10 PRICE: v = v0 makes H_RR = 0 -- the curvature Legendre chart is degenerate by design   (no-slip Phi=Psi follows from H_qR=H_RR=0; that is a degeneracy, stated by the lead)
+  [PASS] L44-F11 PRICE: D(S) is an INTEGRATED function held only as a C^2 81-node table   (positivity of a_UV needs only D + 6 E4 z^2 > 0, so the sign survives; higher jets do not)
+
+----------------------------------------------------------------------------------------------------------------------
+SECTION G.  WHERE THE OBSTRUCTION NOW LIVES (it is not the scalar UV coefficient)
+----------------------------------------------------------------------------------------------------------------------
+  [PASS] L44-G1  the collar's OWN gate FAILED at IC36: second preservation with ell''=0 is incompatible   (baseline peak residual ~56.1475, RMS 39.3344; best repaired datum leaves RMS 0.1064, peak 0.1748)
+  [PASS] L44-G2  IC37's exact obligation: bounded ell'' requires W_tt = O(eta) at the interface
+  [PASS] L44-G3  and eta beats every power, so a nonzero finite Taylor jet of W_tt forbids bounded ell''   (eta(1e-4)/x^8 = 6.20946e-4310 -- an INFINITE tower of vanishing conditions)
+  [PASS] L44-G4  the lead states the flatness counterexample itself: flatness alone is NOT sufficient   (E = exp(-1/(2x)) is power-flat yet E/eta -> infinity)
+  [PASS] L44-G5  the collar is NOT a matched solution: the lead forbids pooling its two families
+
+----------------------------------------------------------------------------------------------------------------------
+SECTION V.  VERDICT
+----------------------------------------------------------------------------------------------------------------------
+  [PASS] L44-V1  VERDICT: L35's theorem IS evaded by the action the collar is built on   (a_UV = A^2/(4D+24E4 z^2) > 0, switch-independent, on both plateaus AND through the transition)
+  [PASS] L44-V2  VERDICT: the violated hypotheses are (c) then (b) -- NOT (a), and NOT the multiplier   (H8/H1/H3/H4 fail (switch left the kinetic sector); marginality broken by the z-auxiliary)
+  [PASS] L44-V3  VERDICT: the escape is NOT the collar's -- it is IC20's, fifteen steps earlier
+  [PASS] L44-V4  VERDICT: the ghost is not relocated within this coefficient; the live obstruction is IC37's   (multiplier regularity at the moving interface, against an exponentially flat switch)
+
+======================================================================================================================
+L44: ALL CHECKS PASS
+======================================================================================================================
