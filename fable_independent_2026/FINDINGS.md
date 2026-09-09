@@ -3175,3 +3175,28 @@ Astra's action: S = ∫√−g [M²/2 R − ΛM² − K(Q) + F(Q)Θ + M²a₀²G
   crack in the last door: not a complete theory (the c_bare²=−1 health question is open and deciding), but
   the strongest position the programme has held — **one health calculation from a verdict**, and that
   calculation is astra's live next step.
+
+## L81 — first principles: astra's dust IS the shift-symmetry Noether charge (why it's pressureless, and unified with a₀)
+
+`L81_noether_dust_first_principles.py` + `.out` (**8 checks, 8 PASS**). A new first-principles angle on
+astra's F(Q)Θ dust, derived rather than assumed.
+
+- **⭐ THE DUST IS A NOETHER CHARGE.** The φ-sector −K(Q)+F(Q)Θ (Q=n·∂φ) is invariant under the shift
+  φ→φ+const, so it carries a **Noether current J^μ = (−K_Q + F_Q Θ)n^μ**, whose charge density is
+  **exactly astra's conserved charge a³(−K_Q+3HF_Q)=C** — derived here, not posited. astra's
+  "shift-symmetric scalar charge" *is* the shift-symmetry Noether charge.
+- **⭐ w=0 IS A CONSEQUENCE, NOT A FIT.** A conserved Noether number dilutes as a⁻³, and the C/a³ coefficient
+  of the pressure p = −K − F_Q Q̇ **vanishes identically** (verified in exact sympy on the affine locus) — so
+  the dust is exactly pressureless *because* the charge is conserved, the same reason a conserved particle
+  number is pressureless dust. This is *why* astra's F(Q)Θ dust is genuine CDM-like dust.
+- **⭐⭐ UNIFICATION: one symmetry underwrites both dark numbers.** The **same** shift symmetry that gives the
+  dust its conserved charge also protects the MOND scale a₀ from additive renormalization through its **Ward
+  identity** (repo idea I034). So the dark-matter abundance (a Noether charge) and the stability of a₀ are
+  **two faces of one symmetry** — the clock-scalar shift — and both descend from the clock/de Sitter sector
+  (a₀=c²/2πL_dS, L78), a structural handle on why the two dark numbers are comparable rather than an
+  unrelated coincidence.
+- **⭐ NEW PREDICTION (P16).** A Noether-conserved dust **cannot decay or annihilate** — the charge is exactly
+  conserved. The framework predicts **no dark-matter decay lines and no annihilation signal**, unlike a
+  WIMP/particle relic; a confirmed DM decay/annihilation detection would falsify it.
+- **⚠️ SCOPE.** This does NOT settle the propagating-health (cuscuton DOF) hinge (L80). It establishes, from
+  first principles, *why* the dust is symmetry-protected pressureless dust and ties it to a₀.

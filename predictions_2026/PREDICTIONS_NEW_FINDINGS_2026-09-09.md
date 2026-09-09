@@ -122,6 +122,11 @@ separations, registered and hash-frozen for Gaia DR4 (Amendment 11/12; a₀ ∝ 
 wide binaries. *Discriminator:* Newtonian γ_v = 1.00 vs the framework's registered band. **Status: STANDING
 (frozen preregistration).**
 
+**P16 — Dark matter cannot decay or annihilate.** The dust is the conserved Noether charge of the
+clock-scalar's shift symmetry (L81), so it is exactly stable. *Test:* indirect-detection searches (decay
+lines, annihilation excesses). *Discriminator:* the framework predicts **no** DM decay or annihilation
+signal, unlike a WIMP/particle relic — a confirmed detection of either would falsify it. **Status: NEW.**
+
 ---
 
 ## The single open item these predictions hinge on
