@@ -2113,7 +2113,9 @@ proved".
 
 ## L51 — the second scalar combination is real, moves the 9σ cluster number, and stays unspendable
 
-`L51_second_combination.py` + `L51_SECOND_COMBINATION.md` (34 checks, 11 FAIL; **all 9 controls pass**).
+`L51_second_combination.py` + `L51_SECOND_COMBINATION.md` (**36 checks, 25 PASS / 11 FAIL**; all 9 controls
+pass). ⚠️*The lane's own summary line said 34 checks / 23 PASS and undercounted its output by two; corrected
+2026-09-09 after a re-run reproduced the committed `.out` check-for-check. No verdict moves.*
 L39 proved that a frame-free theory has exactly one covariant scalar linear in the metric perturbation,
 and that adjoining one unit timelike vector makes it two. This theory has that vector. Nobody had spent
 the second combination on purpose.

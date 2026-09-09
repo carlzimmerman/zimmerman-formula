@@ -1,7 +1,7 @@
 # L51 — the second combination: the clock's operator freedom, priced
 
 2026-09-09. Lane L51. Script: [`L51_second_combination.py`](L51_second_combination.py) →
-[`L51_second_combination.out`](L51_second_combination.out). **34 checks, 23 PASS / 11 FAIL.**
+[`L51_second_combination.out`](L51_second_combination.out). **36 checks, 25 PASS / 11 FAIL.** ⚠️*Corrected 2026-09-09: this line originally read "34 checks, 23 PASS / 11 FAIL", which undercounts its own output by two passes. Re-running the script reproduces the committed `.out` check-for-check (25 PASS, 11 FAIL, exit 0). The FAIL count was always right and no verdict moves; the error was conservative, understating the passes.*
 Both a₀ footings (9.3619e-11 / 1.1279e-10 m s⁻²) on every dimensional number.
 
 Method: nothing under `closure_2026/` or the lead agent's directories was imported, executed or copied.

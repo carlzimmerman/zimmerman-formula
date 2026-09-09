@@ -1,0 +1,390 @@
+\documentclass[11pt,letterpaper]{article}
+\usepackage[margin=0.95in]{geometry}\usepackage{amsmath,amssymb,booktabs,array,longtable,microtype}\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue]{hyperref}
+\setlength{\parindent}{0pt}\setlength{\parskip}{5pt}
+\sloppy
+\newcolumntype{L}[1]{>{\raggedright\arraybackslash}p{#1}}
+\newtheorem{theorem}{Theorem}
+\newtheorem{corollary}{Corollary}
+\newtheorem{lemma}{Lemma}
+\newtheorem{proposition}{Proposition}
+\newcommand{\ms}{\,\mathrm{m\,s^{-2}}}
+\newcommand{\dal}{\Box}
+
+\title{A Preferred Frame Is Forced: Static Weak-Field MOND\\ with One Metric and Two Propagating Modes,\\ and the Lensing Lock That Discharges the Locality Hypothesis}
+\author{Carl P.\ Zimmerman\\ \small Briar Creek Tech --- AI-assisted research draft; not peer reviewed}
+\date{9 September 2026}
+
+\begin{document}\maketitle
+
+\begin{abstract}
+A theorem: if a relativistic theory of gravity (i) reduces to Milgrom's modified Newtonian dynamics in the static weak field, (ii) carries a single physical metric to which matter couples minimally, and (iii) propagates exactly two gravitational degrees of freedom, then it contains a distinguished timelike direction --- a \textbf{preferred frame}. Adding the elliptic boundary-value posing that Milgrom's equation actually uses, Frobenius makes that direction hypersurface-orthogonal: a \textbf{preferred foliation}, non-dynamical, with an instantaneous constraint. The proof is three steps, each with its own controls. \textbf{(E)} MOND's variable is not a local scalar of the metric: a uniform field leaves \emph{every} curvature invariant exactly unchanged while $y=|\nabla\Phi|/a_0$ changes by $1488\times$ at 1\,pc from a star, and a constant deepening of the potential is an \emph{exact isometry}, so no functional of the metric --- local or nonlocal, at any order --- can measure a depth. The lemma is proved against an adversarial control invariant that is exact on Schwarzschild to $3.6\times10^{-15}$ and then breaks by $87\%$ on a binary, $9\times$ on a disc and $11\times$ in a Plummer core, and is $0/0$ in a uniform field; physically, local curvature at the Sun's radius is nearest-star dominated over $99\%$ of the volume and misses the Galaxy by $1487\times$. \textbf{(Q)} A symmetric form annihilating \emph{all} timelike directions is identically zero (rank-10 solve); for \emph{one} distinguished direction the null space is nine-dimensional and is exactly the spatial projector, so MOND's squared gradient is a projector contraction. \textbf{(T)} The principal symbol of the required extra structure is hyperbolic (it propagates, $N\ge3$), degenerate (it needs the distinguished direction), or absent (local, so E applies; or matter-built, which fails in the vacuum where rotation curves are flat and lensing is measured); there is no fourth case for finite-order field equations. That finite-order proviso is the locality hypothesis, and it is then discharged \textbf{against the known nonlocal class} by a mechanism that never uses locality: with no preferred timelike vector there is \emph{exactly one} transverse symmetric operator, so every covariant scalar linear in the metric perturbation is a function of the d'Alembertian acting on the linearised Ricci scalar --- the \emph{inverse} d'Alembertian included, so nonlocality buys nothing --- and therefore, for any frame-free covariant addition, with any weight and any coupling, $\nabla^2(\Phi+\Psi)=8\pi G\rho$ \emph{exactly}: the lensing potential is welded to the baryons, and the rotation-curve and lensing equations cannot be modified separately. Adjoining one unit timelike vector makes the count two and unlocks them. This reproduces Soussa and Woodard's frame-free nonlocal result (``far too little lensing'') and an independent proof that null geodesics are conformally invariant. The escape was nonetheless real, and that is recorded: the mode count of retarded-nonlocal gravity is \textbf{2, not 4} --- the localised counting rule overcounts even general relativity, whose conformal mode carries a wrong-sign kinetic term --- so the nonlocal challenger satisfies (i), (ii) and (iii) at once. The theorem survives because the only nonlocal theory reproducing both MOND and lensing carries a unit timelike vector built as a normalised gradient, hence hypersurface-orthogonal, whose own authors describe its consequence as preferred-frame effects. A seventeen-theory control table (general relativity, RAQUAL, phase-coupling gravity, TeVeS, Einstein-aether MOND, AeST, khronometric, Ho\v{r}ava, BIMOND, MOG, Horndeski/DHOST, dRGT, modified inertia, the Deser--Woodard nonlocal class, and this programme's own three constructions) contains \textbf{no counterexample}; the pattern is an exclusive OR --- Lorentz invariance XOR two modes --- reported as an empirical observation over an enumeration, not as a proof. Mode-counting controls return $2$, $3$, $3$ and $5$ for general relativity, general relativity ${}+{}$ scalar, khronometric theory and Einstein-aether. \textbf{What is not proved is stated explicitly.} This is a statement about theories satisfying the three hypotheses and nothing more: it does not close MOND-like theories in general --- three or more propagating modes, two metrics, or a non-minimal matter coupling are all untouched --- the locality hypothesis is discharged against the known nonlocal class rather than in general, with the residual computation named; the strict conclusion is a frame, and the upgrade to a foliation is an added hypothesis; and nothing here says whether nature is MONDian, or whether a preferred-frame MOND theory is viable. Every number is produced by a committed script with checks that can fail (\texttt{fable\_independent\_2026/L31\_foliation\_nogo.py}, \texttt{L39\_nonlocal\_modes.py}, \texttt{L27\_foliation\_scalar.py} and their supporting lanes in the public repository). AI-assisted research draft; not peer reviewed.
+\end{abstract}
+
+\section{The result, first}
+
+\begin{theorem}[a preferred frame is forced]\label{thm:frame}
+Let a relativistic theory of gravity satisfy
+\begin{itemize}\itemsep2pt
+\item[\textbf{(i)}] \textbf{MOND phenomenology in the static weak field} --- its static weak-field limit is Milgrom's equation \cite{Milgrom1983,BekensteinMilgrom1984}, $\nabla\!\cdot\![\mu(|\nabla\Phi|/a_0)\nabla\Phi]=4\pi G\rho_b$, including the external field effect;
+\item[\textbf{(ii)}] \textbf{one physical metric}, to which matter couples minimally --- no second metric, no disformal or conformal factor on the matter sector;
+\item[\textbf{(iii)}] \textbf{exactly two propagating gravitational degrees of freedom}.
+\end{itemize}
+Then the theory contains a distinguished timelike direction $u$: a \textbf{preferred frame}.
+\end{theorem}
+
+\begin{corollary}[a preferred foliation]\label{cor:fol}
+Add \textbf{(v)}: the MOND equation is posed as an elliptic boundary-value problem on $3$-surfaces, with $\Phi\to0$ at infinity --- which is how Milgrom's equation is actually posed. Then $u^\perp$ is integrable, so by Frobenius $u$ is hypersurface-orthogonal and the theory has a \textbf{preferred foliation}; hypothesis (iii) then forbids $u$ from propagating, so the foliation is \textbf{non-dynamical} and the MOND field responds \textbf{instantaneously} on its leaves.
+\end{corollary}
+
+\textbf{Status, stated before anything else.} Theorem~\ref{thm:frame} is proved outright under one additional hypothesis, \textbf{(iv) locality} --- the field equations are differential equations of finite order (\S\ref{sec:E}--\S\ref{sec:T}; $53/53$ checks, \texttt{L31\_foliation\_nogo.py}). Hypothesis (iv) is then \textbf{discharged against the known nonlocal class} in \S\ref{sec:lock}, by a mechanism --- the lensing lock --- that never uses locality ($40/40$ checks, \texttt{L39\_nonlocal\_modes.py}). It is \emph{not} discharged in general; the one computation that would remove it outright is named in \S\ref{sec:notproved}. Everything in this paper is written so that the difference between those two statements is visible on every page.
+
+\textbf{The one-sentence physical content.}
+\begin{quote}
+MOND makes the acceleration a locally measurable quantity. The equivalence principle says acceleration is not locally measurable. The only way to make it measurable is to declare a rest frame --- and once two gravitational modes are demanded, that frame cannot itself propagate, so it degenerates into a non-dynamical foliation with an instantaneous constraint.
+\end{quote}
+
+\textbf{Why this is worth writing down.} The strong-equivalence-principle tension in MOND is old folklore, and it is not claimed here as new. What is new is the chain from that tension to the \emph{mode count}; the identification of temporal nonlocality as the unique escape; and the operator-counting form of the lensing obstruction, which covers the nonlocal case in one stroke and therefore removes the locality hypothesis against everything that has been built rather than merely re-deriving the local result. The theorem also explains, in one line, why forty-two years of relativistic MOND model-building keeps arriving at the same object: TeVeS's unit timelike $A^\mu$ \cite{Bekenstein2004}, the generalised-Einstein-aether and AeST aether \cite{Zlosnik2007,SkordisZlosnik2021}, the nonlocal class's $u^\mu[g]$ \cite{Deffayet2011} and the 2026 mimetic $\partial_\mu\varphi$ \cite{DeffayetWoodard2026} are the same structure, forced by the same requirement, wearing four different hats.
+
+\textbf{Conventions.} Throughout, $ds^2=-(1+2\Phi)dt^2+(1-2\Psi)\delta_{ij}dx^idx^j$ with $\Phi$ the dynamical (Newtonian) potential, $\Psi$ the curvature potential, lensing potential $(\Phi+\Psi)/2$, slip $s=\Phi-\Psi$, $\gamma_{\rm PPN}=\Psi/\Phi$. Both of the framework's acceleration footings are carried on every dimensional number, $a_0=9.3619\times10^{-11}\ms$ (canonical) and $1.1279\times10^{-10}\ms$ (alt); \textbf{no verdict in this paper depends on the choice}, and the two structural theorems (\S\ref{sec:E} step E1, \S\ref{sec:companion} T3--T4) contain no $a_0$ at all.
+
+\section{Step E: MOND's variable is not a local scalar of the metric}\label{sec:E}
+
+\subsection{The obvious argument is wrong, and the lemma has to be proved against it}
+The tempting argument --- \emph{``curvature is second derivatives of $\Phi$, and a potential is not''} --- is false as stated, and the proof begins by exhibiting the counterexample so that the real lemma is not confused with it. In geometric units the combination
+\begin{equation}
+G_{\rm loc}\;\equiv\;\frac{\sqrt3}{2}\,\frac{K^{3/2}}{|\nabla K|},\qquad K=R_{abcd}R^{abcd},
+\end{equation}
+is the unique dimensionally admissible acceleration built from the Kretschmann scalar and its first gradient. It is a fully covariant \emph{local} scalar, and on exact Schwarzschild it evaluates symbolically to
+\begin{equation}
+G_{\rm loc}=\frac{m}{r^2}\Big(1-\frac{2m}{r}\Big)^{-1/2}\;\longrightarrow\;\frac{m}{r^2}\quad\text{exactly in the weak field.}
+\end{equation}
+So on a one-parameter solution family a local invariant \emph{does} reproduce the Newtonian acceleration. Dimensional analysis is not a proof. $G_{\rm loc}$ must be broken instead, and it breaks five ways:
+
+\begin{center}\small
+\begin{tabular}{L{0.42\textwidth}L{0.46\textwidth}}\toprule
+configuration & $G_{\rm loc}/|\nabla\Phi|$ \\\midrule
+point mass \emph{(control)} & \textbf{exact}; maximum relative error $3.6\times10^{-15}$\\
+Plummer sphere, $r=0.2\,b$ & $10.99$ (and only $1.0017$ at $r=20\,b$)\\
+equal-mass binary & worst error \textbf{$87\%$}; at the centre the ratio diverges, $\nabla K\to0$\\
+Miyamoto--Nagai disc, $R=a$ & $9.00$; still $1.85$ at $R=30$\\
+pure uniform field & \textbf{$0/0$} --- $K\equiv0$ and $\nabla K\equiv0$\\\bottomrule
+\end{tabular}
+\end{center}
+
+\subsection{The sharp form}
+Proved symbolically: adding a uniform field, $\Phi\to\Phi+\mathbf{g}\!\cdot\!\mathbf{x}$, leaves the \emph{entire} Hessian $\partial_i\partial_j\Phi$ unchanged, hence every curvature tensor, every curvature invariant, and every local functional of the metric. A uniform field is flat spacetime in disguise. But MOND's variable $y=|\nabla\Phi|/a_0$ \emph{does} change --- and that change is not a technicality: it \emph{is} the external field effect, one of MOND's defining and most-tested signatures \cite{FamaeyMcGaugh2012}:
+\begin{center}\small
+\begin{tabular}{lccc}\toprule
+footing & star at 1\,pc, alone & with the Galaxy's $g_{\rm ext}$ & ratio\\\midrule
+canonical, $a_0=9.3619\times10^{-11}\ms$ & $y=0.0015$ & $y=2.2153$ & $\mathbf{1488.0\times}$\\
+alt, $a_0=1.1279\times10^{-10}\ms$ & $y=0.0012$ & $y=1.8388$ & $\mathbf{1488.0\times}$\\\bottomrule
+\end{tabular}
+\end{center}
+
+\begin{lemma}\label{lem:one}
+$y=|\nabla\Phi|/a_0$ is not a diffeomorphism-invariant local scalar of a single metric.
+\end{lemma}
+
+\textbf{The physical version, with real Galaxy numbers}, is the form worth carrying, because it says the obstruction is not an idealisation:
+\begin{center}\small
+\begin{tabular}{L{0.56\textwidth}L{0.34\textwidth}}\toprule
+smooth Galaxy tidal field at $R_\odot$ & $|\partial^2\Phi|=8.191\times10^{-31}\,\mathrm{s^{-2}}$\\
+the Sun's own tidal field at 1\,pc & $|\partial^2\Phi|=9.034\times10^{-30}\,\mathrm{s^{-2}}$ ($11.0\times$ the Galaxy's)\\
+distance at which a star's curvature equals the Galaxy's & $d_{\rm eq}=2.23$\,pc\\
+fraction of solar-neighbourhood volume within $d_{\rm eq}$ of a star & $\mathbf{99.0\%}$\\
+true galactic $y$ \emph{vs} $y$ read off the local curvature & $2.21$ \emph{vs} $1.49\times10^{-3}$ (canonical); $1.84$ \emph{vs} $1.24\times10^{-3}$ (alt) --- short by $\mathbf{1487\times}$\\\bottomrule
+\end{tabular}
+\end{center}
+Local curvature inside a galaxy is set by the \textbf{nearest star}, not by the galaxy. MOND's $y$ is the coherent, coarse-grained field. Over $99\%$ of the solar neighbourhood's volume the two differ by a factor of about $1500$.
+
+\subsection{The strengthening: a potential depth is an exact isometry}\label{sec:L56}
+Lemma~\ref{lem:one} is about a \emph{gradient}. The potential \emph{depth} carries a strictly stronger version of the same disease, and it is stronger than the original argument proved. Deepen the potential by a constant, $1+2\tilde\Phi=(1+2c_0)(1+2\Phi)$, and rescale $\tilde t=\sqrt{1+2c_0}\,t$. The pulled-back metric is \emph{identical}: the constant deepening is an \textbf{exact isometry}, not merely a degeneracy at linear order.
+
+\begin{lemma}\label{lem:depth}
+No functional of the metric and its derivatives --- of any order, \textbf{local or nonlocal} --- can measure a potential depth.
+\end{lemma}
+This closes the depth channel at every order at once, without any expansion, and it is the form in which step E survives contact with nonlocal constructions. (\texttt{L56\_potential\_trigger.py}, checks B1--B3; B2 independently reproduces the uniform-field result above for an arbitrary $\mathbf{g}$, all sixteen components of the linearised curvature identical.) The one object that is \emph{not} depth-blind is the ADM lapse --- which is the slicing, i.e.\ exactly the structure the theorem concludes must be there.
+
+\section{Step Q: a non-propagating MOND scalar requires a distinguished timelike direction}\label{sec:Q}
+
+Lemma~\ref{lem:one} forces an extra structure $\sigma$ to carry $a_0$. Hypothesis (iii) forbids it from propagating. Can a field whose gradient enters the action non-trivially fail to propagate, \emph{without} a preferred timelike direction?
+
+\textbf{Q1 (symbolic).} For $L=L(X)$ with $X=g^{\mu\nu}\partial_\mu\phi\,\partial_\nu\phi$, the kinetic Hessian is exactly
+\begin{equation}
+\frac{\partial^2L}{\partial\dot\phi^{\,2}}=2L_X\,g^{00}+4L_{XX}\big(g^{0n}\partial_n\phi\big)^2 .
+\end{equation}
+At a static configuration this is $2L_Xg^{00}$, and $g^{00}\ne0$ for every timelike observer, so demanding that it vanish forces $L_X\equiv0$ --- no gradient dependence at all, hence no MOND.
+
+\textbf{Q2 (linear algebra, run as an actual solve).} A symmetric $S^{\mu\nu}$ with $S^{\mu\nu}u_\mu u_\nu=0$ for \emph{every} timelike $u$ is identically zero: sampling $60$ timelike $u$ gives a rank-$10$ linear system on the ten components (smallest singular value $2.042$), so the solution is unique and is $S=0$. For a \emph{single} distinguished $u$ the solution space is \textbf{nine-dimensional} --- exactly the room a spatial projector needs, and no more.
+
+\textbf{Q3.} $h^{\mu\nu}=g^{\mu\nu}+u^\mu u^\nu$ annihilates $u$, is positive semi-definite of rank 3 (eigenvalues $0,1,1,1$), and $h^{\mu\nu}\partial_\mu\phi\,\partial_\nu\phi=|\nabla\phi|^2$.
+
+\begin{proposition}
+MOND's squared gradient is a projector contraction. A non-propagating MOND scalar requires a distinguished timelike $u$.
+\end{proposition}
+
+\section{Step T: the trichotomy, and whether it is exhaustive}\label{sec:T}
+
+The classifier is the principal symbol $S^{\mu\nu}k_\mu k_\nu$ of the extra structure's own field equation.
+
+\begin{center}\small
+\begin{tabular}{L{0.27\textwidth}L{0.24\textwidth}cL{0.06\textwidth}L{0.24\textwidth}}\toprule
+route & principal symbol & $N_{\rm grav}$ & pref.\ slicing & verdict\\\midrule
+R1 extra field, Lorentz-invariant kinetic term (RAQUAL, the TeVeS/AeST scalar) & $a\,g^{\mu\nu}k_\mu k_\nu$, hyperbolic & 3 & no & violates (iii)\\
+R2 extra field, degenerate kinetic term & $h^{\mu\nu}k_\mu k_\nu$, degenerate along $u$ & 2 & \textbf{yes} & Q2 forces $u$\\
+R3 modify the Hamiltonian constraint (Ho\v{r}ava-type) & deformed $\mathcal{H}_\perp[\gamma,K]$ & 2 & \textbf{yes} & $\mathcal{H}_\perp$ generates the slicing\\
+R4 nonlocal $\dal^{-1}$ & none --- not a finite-order PDE & \S\ref{sec:modes} & no & \textbf{the escape}; \S\ref{sec:lock}\\
+R5 higher-derivative local ($f(R)$, Horndeski, DHOST) & $(g^{\mu\nu}k_\mu k_\nu)^p$, hyperbolic & $\ge3$ & no & degeneracy removes the \emph{ghost}, not the \emph{mode}\\
+R6 matter-built scalar & algebraic & 2 & no & fails in vacuum\\\bottomrule
+\end{tabular}
+\end{center}
+
+Two supporting computations. \textbf{T1}: a symmetric two-tensor built from $g$ alone is $a\,g^{\mu\nu}$, and in \emph{vacuum} --- where MOND must work --- $R_{\mu\nu}=0$ kills every curvature correction to the symbol, so there the symbol is hyperbolic with no escape. \textbf{T4b}: an exponential disc with $R_d=3$\,kpc has $\Sigma(20\,\mathrm{kpc})/\Sigma(0)=1.3\times10^{-3}$, and lensing is measured entirely in vacuum, so a matter-built scalar has nothing to build from in exactly the region where the rotation curve is flat.
+
+\textbf{Exhaustiveness.} A symmetric form on a Lorentzian manifold is hyperbolic, degenerate, or absent. There is no fourth case --- \emph{for finite-order field equations}. That proviso is hypothesis (iv), and it is the whole of what steps E--T do not remove. It is what \S\ref{sec:lock} is for.
+
+\section{The lensing lock: what makes the theorem unconditional against the known nonlocal class}\label{sec:lock}
+
+\subsection{Why the escape is real}
+$\dal^{-1}$ reaches out to the source, which is precisely what a potential requires, so a nonlocal scalar is \emph{not} uniform-field blind. Quantified: holding $g_{\rm ext}=2.07\times10^{-10}\ms$ fixed while pushing the source from $8.2$\,kpc to $8200$\,kpc drops the local tidal invariant by $1000\times$ ($1.64\times10^{-30}\to1.64\times10^{-33}\,\mathrm{s^{-2}}$) while $|\nabla(\dal^{-1}R)|=2g_{\rm ext}$ stays \emph{exactly} constant. The escape is not a technicality, and it is not closed by step E.
+
+It is closed by the lensing.
+
+\subsection{The operator lemma}
+\begin{lemma}[one transverse structure without a preferred vector, two with]\label{lem:ops}
+Let $\mathcal{S}[g]$ be any generally covariant scalar functional of the metric alone --- local or nonlocal, any order in derivatives, inverse d'Alembertians allowed --- whose expansion about flat space begins at first order in $h_{\mu\nu}$. Diffeomorphism invariance of the action forces $\mathcal{S}^{(1)}=\int O^{\mu\nu}h_{\mu\nu}$ with $\partial_\mu O^{\mu\nu}=0$. Counting transverse symmetric operators in Fourier space, as an actual linear solve:
+\begin{center}\small
+\begin{tabular}{L{0.52\textwidth}L{0.40\textwidth}}\toprule
+available background structures & transverse solutions\\\midrule
+$\{\eta^{\mu\nu},k^\mu k^\nu\}$ --- \textbf{no preferred vector} & \textbf{one}-parameter family, $O^{\mu\nu}=B(\dal)(\partial^\mu\partial^\nu-\eta^{\mu\nu}\dal)$\\
+$\{\eta^{\mu\nu},k^\mu k^\nu,\bar u^\mu\bar u^\nu,\bar u^{(\mu}k^{\nu)}\}$ --- \textbf{one unit timelike $\bar u$} & \textbf{two}-parameter family\\\bottomrule
+\end{tabular}
+\end{center}
+\end{lemma}
+So without a preferred vector, \emph{every} such scalar is a function of $\dal$ acting on the linearised Ricci scalar $R^{(1)}$. And $\dal^{-1}$ is such a function. \textbf{Nonlocality buys nothing.}
+
+\subsection{The lock, in its normalisation-free form}
+The two combinations available, computed from the exact nonlinear static metric and then linearised:
+\begin{equation}
+S_1=R^{(1)}=2\nabla^2(2\Psi-\Phi),\qquad
+S_2=R^{(1)}_{\mu\nu}u^\mu u^\nu=\nabla^2\Phi .
+\end{equation}
+$S_1$ is the \emph{only} combination a frame-free theory has; $S_2$ needs the vector. The map $(\Phi,\Psi)\mapsto(S_1,S_2)$ is $\left[\begin{smallmatrix}-2&4\\1&0\end{smallmatrix}\right]$, determinant $-4$: $S_2$ isolates the Newtonian potential and $(S_1+2S_2)/4=\nabla^2\Psi$ isolates the lensing potential, and \emph{neither is reachable without $u$}.
+
+Now take $\Delta S=\int[w_1S_1[h]+w_2S_2[h]]$ --- the linearisation of an arbitrary $F(S_1,S_2)$, local or nonlocal, since a nonlocal $B(\dal)$ only renames the weight. Varying with the Euler--Lagrange operator on the ten independent components of a general static $h_{\mu\nu}$:
+\begin{center}\small
+\begin{tabular}{lccc}\toprule
+& $\delta/\delta h_{00}$ & $\delta/\delta h_{11}$ & $\delta/\delta h_{12}$ (traceless $ij$)\\\midrule
+frame-free $w_1S_1$ & $\nabla^2w_1$ & $-(\partial_y^2+\partial_z^2)w_1$ & $2\partial_x\partial_yw_1$ --- \textbf{nonzero}\\
+$u$-built $w_2S_2$ & $-\nabla^2w_2/2$ & \textbf{0} & \textbf{0}\\\bottomrule
+\end{tabular}
+\end{center}
+Eliminating between the modified $00$ and $ij$ equations gives
+\begin{equation}
+\boxed{\;\nabla^2(\Phi+\Psi)=8\pi G\rho+e\,\nabla^2w_2\;},\qquad \text{slip}=-c\,w_1 ,
+\end{equation}
+with $c,e$ undetermined coupling constants. Setting $w_2=0$ --- \emph{any} frame-free covariant addition, with any weight and any coupling:
+\begin{equation}
+\nabla^2(\Phi+\Psi)=8\pi G\rho\qquad\textbf{exactly.}
+\end{equation}
+\textbf{The lensing potential is welded to the baryons.} No frame-free term, local or nonlocal, can move it; $\dal^{-1}$ only renames $w_1$. This needs no normalisation at all, and it is the sharp form of the statement that the $00$ (Tully--Fisher) and $ij$ (lensing) sources of a frame-free addition are locked in a fixed nonzero ratio, $1:2$. Symmetrically: \emph{the lensing potential is moved only by the $u$-built piece, and the slip only by the frame-free piece} --- the slip is not a differential response to a weight, it \emph{is} the weight, algebraically.
+
+Adjoining one unit timelike $u$ supplies the missing independent combination $R_{\mu\nu}u^\mu u^\nu\to\nabla^2\Phi$: the Newtonian potential, separated from the lensing potential. That is precisely, and only, what the extra transverse structure buys.
+
+\subsection{A second, independent proof, for the case the literature actually hit}
+A modification acting on the metric only through a conformal factor cannot bend light at all. Verified symbolically from the Christoffels of $\Omega^2g$: for null $k$,
+\begin{equation}
+\tilde\Gamma^a_{\ bc}k^bk^c-\Gamma^a_{\ bc}k^bk^c-2k^a(k\!\cdot\!\partial\ln\Omega)=0,
+\end{equation}
+i.e.\ null geodesics are conformally invariant up to reparametrisation. That a conformally coupled scalar cannot lens is Bekenstein--Sanders folklore and is not claimed as new; what is new is Lemma~\ref{lem:ops}, which covers the \emph{nonlocal} case in one stroke. The programme's own prior obstruction map \cite{Zimmerman2026obstruction} priced the local version of this barrier; the present statement is the frame-free, normalisation-free one.
+
+\subsection{The literature record matches the lock line for line}
+\begin{itemize}\itemsep2pt
+\item \textbf{Soussa and Woodard 2003} \cite{SoussaWoodard2003}, the \emph{frame-free} nonlocal metric MOND model, report that the weak-field light deflection is the same as in general relativity, ``resulting in far too little lensing if no dark matter is present'', and note that their equations become conformally invariant in the MOND limit --- exactly the mechanism above.
+\item \textbf{Deffayet, Esposito-Far\`ese and Woodard 2011} \cite{Deffayet2011} identify the problem as simultaneously reproducing Tully--Fisher and giving sufficient weak lensing, and note that TeVeS surmounted it because a unit timelike vector field helps obtain the right light deflection. Their own fix is to build one out of the metric nonlocally, as the normalised gradient of the invariant volume of the past light-cone,
+\begin{equation}
+u^\mu[g](x)\;\equiv\;-\,\frac{g^{\mu\nu}\partial_\nu V[g](x)}{\sqrt{-g^{\alpha\beta}\partial_\alpha V\,\partial_\beta V}},
+\end{equation}
+so that it can pick out timelike components of a tensor ``just like the fundamental vector field $U_\mu$ of TeVeS''. They then write, in the same section, that this vector field \emph{will certainly introduce preferred frame effects}.
+\item \textbf{Deffayet and Woodard 2026} \cite{DeffayetWoodard2026}, the current state of the art in the class, use $u_\mu=\partial_\mu\varphi[g]$ with $g^{\mu\nu}\partial_\mu\varphi\partial_\nu\varphi=-1$ and $\varphi(0,\mathbf{x})=0$ at the end of inflation, and label the construction themselves as the Lagrangian for mimetic gravity.
+\end{itemize}
+
+\textbf{Frame or foliation?} Both $u\propto\nabla V$ and $u=\nabla\varphi$ are \emph{normalised gradients}. Checked directly, $u_{[\alpha}\partial_\beta u_{\gamma]}=0$ for all $64$ index triples; by Frobenius $u$ is hypersurface-orthogonal. The nonlocal challenger therefore realises Corollary~\ref{cor:fol}, a preferred foliation, and not merely Theorem~\ref{thm:frame}.
+
+\section{The escape was real: retarded-nonlocal gravity has two modes, not four}\label{sec:modes}
+
+This section is load-bearing and is reported in full, including the part that goes against the theorem's original formulation.
+
+\subsection{The counting rule overcounts general relativity}
+Localising the Deser--Woodard form $S=(1/16\pi G)\int\sqrt{-g}\,R[1+f(\dal^{-1}R)]$ \cite{DeserWoodard2007,DeserWoodard2013} with $\xi=\dal^{-1}R$ enforced by a multiplier $\psi$ produces the cross-term $-\sqrt{-g}\,g^{\mu\nu}\partial_\mu\psi\,\partial_\nu\xi$, whose kinetic matrix has eigenvalues $\mp\tfrac12$ and $\det K=-0.25$. The magnitude is a normalisation convention; the convention-independent statement is $\det K<0$: exactly one negative kinetic eigenvalue. It is tempting to read a propagating ghost off that sign. \textbf{The inference is false}, and the control that shows it is ordinary linearised general relativity. Computing $\sqrt{-g}R$ to second order from the metric and reducing modulo total derivatives:
+\begin{center}\small
+\begin{tabular}{L{0.52\textwidth}L{0.40\textwidth}}\toprule
+TT mode, $h_{11}=-h_{22}=\chi(t,z)$ & coefficient of $(\partial_t\chi)^2=\mathbf{+1/2}$\\
+conformal mode, $g_{\mu\nu}=(1+2\varphi(t))\eta_{\mu\nu}$ & coefficient of $(\partial_t\varphi)^2=\mathbf{-6}$\\\bottomrule
+\end{tabular}
+\end{center}
+General relativity has exactly two degrees of freedom and no ghost; the conformal mode is removed by the Hamiltonian constraint, not by a sign. So a counting rule that reads a ghost off a redefined kinetic matrix is unreliable \emph{before} it is applied to a nonlocal theory. The programme's own earlier Hamiltonian audit of causal nonlocal MOND \cite{Zimmerman2026carrier} reached the $\pm\tfrac12$ pair; this is the reason not to bank it as a ghost.
+
+Two further corrections belong on the record. The published model is bigger than the generic $\int Rf(\dal^{-1}R)$ suggests: as actually written \cite{TanWoodard2018} it carries \emph{four} auxiliary scalars in two off-diagonal kinetic pairs, so the localised reading gives $N=6$, not $4$.
+
+\subsection{The retarded reading, and the four tests it had to pass}
+The theory is defined not by an action but by field equations in which $\xi(x)=\int G_{\rm ret}(x;x')R(x')\,dx'$ with \emph{no} homogeneous piece relative to an initial-value surface $S$. On a slice, $(\xi,\dot\xi)$ is a functional of the past history of the metric, not free data; free data is the graviton's two. Whether that restriction is legitimate was tested four ways, each of which could have failed:
+\begin{center}\small
+\begin{tabular}{L{0.46\textwidth}L{0.46\textwidth}}\toprule
+test & result\\\midrule
+is the retarded set preserved by the dynamics? & \textbf{yes} --- restarting from its own slice data reproduces the remaining evolution, maximum relative difference $0.000\times10^{0}$: an invariant submanifold\\
+is it a Dirac constraint? & \textbf{no} --- two source histories identical for $t\ge8$ give $|R_A-R_B|=0$ on the slice at $t=16$ but $|\xi_A-\xi_B|=1.02$\\
+does it follow from a variational principle? & \textbf{no} --- the gradient kernel of $\int f\dal^{-1}f$ sits at distance $0.50$ from $G_{\rm ret}$ and $0.00$ from $(G_{\rm ret}+G_{\rm adv})/2$ \cite{Foffa2014}\\
+does it break conservation? & \textbf{no} --- the identity uses only $\dal\xi=-j$ and $\dal\psi=0$, which the retarded particular integral satisfies as much as any other solution\\\bottomrule
+\end{tabular}
+\end{center}
+The second row is the structural heart of the disagreement: the retarded condition is not a function on the instantaneous phase space, so Dirac's algorithm is structurally \emph{blind} to it. The two readings are not two answers to one question; they are answers to two questions. Combining the first and third rows, the retarded theory is not a different theory --- it is the localised theory restricted to an invariant submanifold of codimension $2n_{\rm aux}$, exactly the gap between the two counts.
+
+\begin{proposition}
+$N_{\rm grav}=2$ for retarded-nonlocal gravity.
+\end{proposition}
+Independently corroborated by the model's own authors, who report that although nonlocal, their equations do not appear to possess extra graviton solutions in weak-field perturbation theory \cite{SoussaWoodard2003}, and by the unitarity argument of \cite{Foffa2014}, which reaches the same conclusion and notes that treating the auxiliaries as propagating leads to the wrong conclusion that the vacuum of general relativity is unstable.
+
+\textbf{The price, which must always be quoted with the count.} The prescription does not follow from a variational principle; the theory cannot be quantised as written --- \cite{Foffa2014} state that there are no creation and annihilation operators associated with the auxiliary field and that such equations cannot be fundamental but are effective classical equations; and it requires a preferred initial surface. So the ghost is genuinely absent from the physical spectrum \emph{because there is no spectrum}. The class is a classical effective description whose ultraviolet completion is, on its own authors' reading, a local one. If that reading is right, hypothesis (iv) binds the underlying theory rather than the effective one --- but that is an argument from the literature, not a theorem, and it is labelled as one here.
+
+\subsection{So the challenger satisfies (i)--(iii), and the theorem still holds}
+\begin{center}\small\setlength{\tabcolsep}{4pt}
+\begin{tabular}{L{0.245\textwidth}L{0.095\textwidth}L{0.055\textwidth}L{0.05\textwidth}L{0.215\textwidth}L{0.135\textwidth}}\toprule
+theory & (i) MOND $+$ lensing & (ii) one metric & (iii) $N{=}2$ & preferred timelike structure & $N_{\rm grav}$\\\midrule
+Soussa--Woodard 2003, $f(\dal^{-1}R)$, \textbf{frame-free} \cite{SoussaWoodard2003} & \textbf{no} (GR-level) & yes & yes & \textbf{none} & 2\\
+Deffayet--Esposito-Far\`ese--Woodard 2011 \cite{Deffayet2011} & yes & yes & yes & \textbf{yes}, $u^\mu\propto\nabla V$ & 2 retarded / 6 localised\\
+Kim et al.\ 2016, cosmological branch \cite{Kim2016} & yes & yes & yes & \textbf{yes}, the same $u^\mu$ & 2 retarded / 6 localised\\
+Deffayet--Woodard 2026, mimetic-nonlocal \cite{DeffayetWoodard2026} & yes & yes & yes & \textbf{yes}, $u_\mu=\partial_\mu\varphi$ & 2 retarded / 3 localised\\
+RAQUAL \emph{(control)} \cite{BekensteinMilgrom1984} & \textbf{no} & yes & no & none & 3\\
+TeVeS \emph{(control)} \cite{Bekenstein2004} & yes & yes & no & \textbf{yes}, unit timelike $A^\mu$ & $\ge4$\\
+general relativity \emph{(control)} & no & yes & yes & none & 2\\\bottomrule
+\end{tabular}
+\end{center}
+\textbf{No row has (i) $+$ (ii) $+$ (iii) with no preferred structure.} The pattern is sharper than an exclusive OR: \emph{every frame-free MOND theory, local or nonlocal, fails on lensing} --- and Lemma~\ref{lem:ops} says why, in one line, without ever using locality.
+
+\textbf{The correction this forces on the theorem's own bookkeeping is recorded rather than buried.} The nonlocal class is not ``contested on (iii)''. It \emph{satisfies} (iii) with $N=2$, and it \emph{has} a preferred foliation. The row was in the wrong column, and moving it strengthens the table rather than weakening it.
+
+\section{The seventeen-theory control table}\label{sec:table}
+
+A row with (i) $+$ (ii) $+$ (iii) and no preferred frame refutes Theorem~\ref{thm:frame}. \textbf{There is none.}
+
+\begin{center}\footnotesize\setlength{\tabcolsep}{4pt}
+\begin{tabular}{L{0.255\textwidth}L{0.065\textwidth}L{0.06\textwidth}L{0.05\textwidth}L{0.255\textwidth}L{0.105\textwidth}}\toprule
+theory & (i) MOND & (ii) one metric & (iii) $N{=}2$ & preferred frame / foliation & $N_{\rm grav}$\\\midrule
+general relativity \emph{(control)} & no & yes & yes & none & 2\\
+RAQUAL \cite{BekensteinMilgrom1984} & yes & yes & \textbf{no} & \textbf{none} (Lorentz invariant) & $3=2+$scalar\\
+phase-coupling gravity \cite{Bekenstein1988} & yes & yes & \textbf{no} & none & $\ge3$\\
+TeVeS \cite{Bekenstein2004} & yes & yes & no & \textbf{yes}, unit timelike $A^\mu$ & $\ge4$\\
+generalised Einstein-aether \cite{Zlosnik2007} & yes & yes & no & \textbf{yes}, unit timelike aether & 5\\
+AeST \cite{SkordisZlosnik2021} & yes & yes & no & \textbf{yes}, unit timelike aether & $\ge5$\\
+khronometric MOND (this repository) & yes & yes & no & \textbf{yes}, khronon $=$ exact foliation & 3\\
+Ho\v{r}ava-type / projectable \cite{Horava2009,Jacobson2010} & yes & yes & no & \textbf{yes}, foliation & $\ge3$\\
+BIMOND \cite{Milgrom2009} & yes & \textbf{no} & no & none required & $\ge4$\\
+MOG / STVG \cite{Moffat2006} & no$^{*}$ & yes & no & vector with nonzero background & $\ge5$\\
+$f(R)$, Horndeski, DHOST, Galileon \cite{Horndeski1974} & no & yes & no & none & 3\\
+dRGT / Hassan--Rosen bigravity \cite{deRham2011} & no & no & no & none & 5 or 7\\
+modified inertia \cite{Milgrom1994} & yes & yes & no & \textbf{yes}, passive frame $u$ in $K(\dal_u)$ & ---\\
+\textbf{nonlocal metric MOND} \cite{Deffayet2011,DeffayetWoodard2026} & \textbf{yes} & \textbf{yes} & \textbf{yes} & \textbf{yes}, $u^\mu[g]$, hypersurface-orthogonal & \textbf{2} (\S\ref{sec:modes})\\
+this programme, khronon inside the metric sector (lane L4) & yes & yes & no & \textbf{yes}, khronon & 3\\
+this programme, clock outside the gravity sector (lane L8) & yes & yes & no & \textbf{yes}, the clock field & $2+1$ clock\\
+this programme, constraint-first on the conformal mode (lane L12) & yes & yes & \textbf{yes} & \textbf{yes} --- the slicing \emph{is} the content & 2\\\bottomrule
+\end{tabular}
+\end{center}
+$^{*}$ MOG is MOND-\emph{like}, not MOND: a running $G$ and a Yukawa vector, with no universal $a_0$ interpolation. The no-MOND entries for the Galileon and bigravity families rest on this programme's flux-scaling result (a spherical Galileon flux gives $r^{1-3/n}$, while MOND needs the non-integer $n=3/2$), cited and not re-derived here.
+
+\textbf{The pattern is an exclusive OR: Lorentz invariance XOR two modes. No row has both.} That statement is reported as an \textbf{empirical observation over an enumeration}, not as a proof --- it is what the theorem explains, not what establishes it. What removes the enumeration's dependence on somebody having thought of every theory is Lemma~\ref{lem:ops}, which is a mechanism.
+
+\textbf{Counting controls.} The degree-of-freedom rule used throughout is checked against four published counts before it is used on anything new: general relativity $2=(12-2\cdot4)/2$; general relativity plus one minimally coupled scalar $3=(14-8)/2$; khronometric theory $3$ (two tensor, one khronon) \cite{Blas2011}; Einstein-aether $5=(18-8)/2$ \cite{JacobsonMattingly2001,FosterJacobson2006}. \textbf{2, 3, 3, 5} --- all four reproduce the literature.
+
+\section{The constructive companion: no foliation-independent replacement exists}\label{sec:companion}
+
+Theorem~\ref{thm:frame} says the structure must be there. A separate, constructive lane asked the complementary question --- \emph{can the slice-dependent object be replaced by a foliation-independent scalar?} --- and found that it cannot, on four independent counts. Fourteen candidates were tested against six requirements, on a \textbf{three-member} slicing family of vacuum Schwarzschild (static, tilted, Painlev\'e--Gullstrand); a two-slicing test would have passed two of the losers by coincidence. Seven of the fourteen die on slice-dependence alone; the seven that survive it die on the requirement of reducing to the Newtonian potential for a \emph{general} source, or on vanishing in genuinely empty flat space.
+
+The two candidates that deserved a real fight, and how they died:
+\begin{itemize}\itemsep2pt
+\item \textbf{A ratio of curvature invariants.} $q_{\rm ratio}=-(720/48^{3/2})\sqrt{I_1^3}/I_2$ with $I_1$ the Kretschmann scalar and $I_2=\nabla_eR_{abcd}\nabla^eR^{abcd}$ is a genuine spacetime scalar and equals $-M/(r-2M)\to\Phi_N/c^2$ \emph{exactly} on Schwarzschild --- so a dimensionless local curvature scalar \emph{can} reproduce the Newtonian potential, contrary to the naive dimensional argument, because a ratio supplies its own length. It dies on superposition: for two equal $10^{10}M_\odot$ masses $10$\,kpc apart the predicted acceleration runs from $0.56\times$ to $3383\times$ the Newtonian one. And in genuinely empty flat space $I_1=I_2=0$, so the expression is $0/0$ --- undefined, not zero. Every curvature-ratio construction has this disease, because the ratio exists only where curvature does.
+\item \textbf{The Killing norm} $\ln\sqrt{-\xi\!\cdot\!\xi}$ is the only candidate to pass slice-independence, superposition and flat-space vanishing at once. It dies on existence and on counting: FLRW has no timelike Killing vector, so it is \emph{undefined} on cosmology and on any evolving galaxy; and $\xi$ is fixed by the whole spacetime rather than by data on one slice, so it removes no gravitational mode. Where it does exist it \emph{is} the static lapse --- the khronometric choice, arriving in geometric clothing.
+\end{itemize}
+
+Four theorems, each proved on computed geometry:
+\begin{itemize}\itemsep2pt
+\item \textbf{Derivative count.} The complete set of linear gauge invariants is the linearised Riemann tensor, exactly two derivatives of $h$. In vacuum the linearised Ricci tensor vanishes identically and the one surviving piece is $R^{(1)}_{0i0j}=\partial_i\partial_j\Phi$, of dimension $1/L^2$. Making it dimensionless needs an external length (giving $\ell^2\nabla^2\Phi$, not $\Phi$) or a ratio (not linear at all). The requirement asks for the zeroth-derivative object; covariance forces at least the second; \textbf{nothing sits in between.}
+\item \textbf{Slice-metric no-go.} The Painlev\'e--Gullstrand slice of vacuum Schwarzschild has $\gamma_{ij}$ \emph{exactly flat}. A functional of the spatial metric alone that vanishes in empty space therefore cannot distinguish it from a slice of Minkowski; slice-independence propagates that zero to the static slice, where the Newtonian acceleration is nonzero. Contradiction. This kills the entire structure, not one choice within it.
+\item \textbf{Curvature pincer.} A local curvature scalar splits into Ricci and Weyl parts and the halves fail on opposite sides. The Ricci half is proportional to $T_{\mu\nu}$, hence exactly zero in vacuum --- no field outside a galaxy's baryons, which is where the rotation curve is. The Weyl half vanishes wherever the spacetime is conformally flat: verified for FLRW and for the interior Schwarzschild solution, a uniform-density star, where $\max|{\rm Weyl}|=4.1\times10^{-143}$ against $\max|{\rm Riemann}|=2.3\times10^{-2}$ while $|\nabla\Phi|\neq0$. \textbf{No local curvature scalar works on both sides.}
+\item \textbf{Homogeneity}, and it needs no search at all. On an exactly homogeneous slice every spatial scalar is spatially constant, so the MOND operator's argument vanishes and, for a kernel with $\mu(0)=0$, the whole operator vanishes identically --- forcing $\rho=0$ against the measured $\rho_m=2.688\times10^{-27}\,\mathrm{kg\,m^{-3}}$ \cite{Planck2020}. \textbf{$a_0$ does not appear, so the statement is identical on both footings.}
+\end{itemize}
+Both escapes from this companion result are exactly the two structures the main theorem names: supply a preferred time direction and read the potential off the lapse (khronometric), or make the object nonlocal by solving an elliptic equation for it, which is AQUAL/QUMOND --- an auxiliary field, so it removes no gravitational mode and the two-mode count does not apply to it at all. (\texttt{L27\_foliation\_scalar.py}; $40$ checks, of which the $21$ \texttt{FAIL} lines \emph{are} the candidates dying, which is the result.)
+
+\section{What is not proved}\label{sec:notproved}
+
+This is a theorem paper, so the boundary matters more than the result.
+
+\begin{enumerate}\itemsep3pt
+\item \textbf{It is a statement about theories satisfying (i), (ii) and (iii), and nothing else.} A theory with three or more propagating gravitational modes, or two metrics, or a non-minimal matter coupling, is untouched --- and most published relativistic MOND theories are exactly that. \textbf{This does not close MOND-like theories in general.} What it does is say what such a theory must pay, and where.
+\item \textbf{It says nothing about whether nature is MONDian.} Hypothesis (i) is an assumption about a theory, not a claim about data. No observation is tested anywhere in this paper.
+\item \textbf{It says nothing about viability.} The theorem asserts that such a theory \emph{must} carry a preferred foliation with an instantaneous constraint; it does not re-derive the price. This programme's prior work puts that price at $\alpha_3=O(1)$ against the pulsar bound $|\alpha_3|<4\times10^{-20}$ \cite{Will2014}, i.e.\ some $2.5\times10^{19}$ times over --- \textbf{cited, not re-derived here}. And \textbf{no post-Newtonian computation exists for the nonlocal class at all}: whether that mechanism applies to a $u$ built nonlocally from the metric is a computation, and it is not made here. The 2011 authors' own estimate of their preferred-frame effects, $(v_{\rm pec}/c)^2\approx10^{-6}$, is offered by them as a belief, not a computed $\alpha_i$.
+\item \textbf{Hypothesis (iv) is discharged against the known nonlocal class, not in general.} The lensing lock (Lemma~\ref{lem:ops}) is proved for covariant scalars whose expansion about flat space begins at \emph{first} order in $h_{\mu\nu}$. Scalars beginning at second order --- Kretschmann, $R_{\mu\nu}R^{\mu\nu}$, $C^2$ --- do separate $\Phi$ from $\Psi$ and are \emph{not} covered. They are, however, exactly the objects step E showed to be uniform-field blind and nearest-star dominated. \textbf{The named residual computation:} \emph{is there a nonlocal scalar, quadratic or higher in curvature, that both separates the Newtonian from the lensing potential and remains sensitive to the coherent coarse-grained field rather than to the nearest star?} If no, hypothesis (iv) is removable outright. If yes, that object is a live candidate for a frame-free MOND theory and should be built.
+\item \textbf{The claim that the retarded theory's ultraviolet completion is local} is the model's authors' reading, and it is the reason hypothesis (iv) would bind the underlying theory. Argument from the literature, not a theorem.
+\item \textbf{Step Q1 is proved for $L=L(X)$.} The general $L(\phi,\partial\phi,g)$ case is handled only at the level of the linearised principal symbol. That is enough for the mode count, but it is a linearised statement and is labelled as one.
+\item \textbf{The strict conclusion is a preferred frame, not a foliation.} A non-dynamical background $u$ need not be hypersurface-orthogonal; hypothesis (v) --- the elliptic boundary-value posing --- is what upgrades frame to foliation. It is how MOND is actually posed, and it is still an assumption.
+\item \textbf{The exclusive-OR table is an enumeration.} Seventeen rows with no counterexample is evidence, not proof; the mechanism, not the table, is what carries the argument.
+\item \textbf{Nothing here is claimed as original folklore.} The strong-equivalence-principle tension in MOND is old; that a conformally coupled scalar cannot lens is Bekenstein--Sanders folklore. The new content is the chain to the mode count, the operator-counting form of the lock, and the correction to the nonlocal mode count.
+\item \textbf{This programme's own deposited theory is an instance, not a counterexample} \cite{Zimmerman2026paper8}: it carries a preferred foliation and \emph{four} propagating modes, so it fails hypothesis (iii) as a total count. The theorem predicts exactly that outcome, and predicts that the extra mode is not removable by a better construction inside the local single-metric class.
+\end{enumerate}
+
+\section{Reproduction and reproducibility}
+
+Every number above is produced by a committed script with checks that can fail. Nothing under the programme's other working directories was imported, executed or copied into these lanes: the curvature machinery (Christoffels $\to$ Riemann $\to$ Kretschmann), the transverse-operator bases, the quadratic actions and the conformal null-geodesic algebra were built from scratch in \texttt{sympy} in each file and checked against exact Schwarzschild, against gauge invariance, and against published mode counts before anything rested on them.
+
+\begin{center}\small
+\begin{tabular}{L{0.30\textwidth}L{0.16\textwidth}L{0.44\textwidth}}\toprule
+script & checks & what it establishes here\\\midrule
+\texttt{L31\_foliation\_nogo.py} & $53$ PASS / $0$ FAIL & steps E, Q, T; the seventeen-theory table; the counting controls $2,3,3,5$\\
+\texttt{L39\_nonlocal\_modes.py} & $40$ PASS / $0$ FAIL & the mode count $2$; the operator lemma; the lensing lock; hypersurface-orthogonality of $u^\mu[g]$\\
+\texttt{L27\_foliation\_scalar.py} & $40$ checks & the constructive companion; the four theorems of \S\ref{sec:companion} (the $21$ FAIL lines are the candidates dying)\\
+\texttt{L51\_second\_combination.py} & --- & the normalisation-free form $\nabla^2(\Phi+\Psi)=8\pi G\rho$; the two-combination map, determinant $-4$\\
+\texttt{L56\_potential\_trigger.py} & $30$ checks & the exact-isometry strengthening of step E (Lemma~\ref{lem:depth})\\\bottomrule
+\end{tabular}
+\end{center}
+Commits: \texttt{0d4148572} (L31), \texttt{7ebc0a048} (L39), \texttt{7415919e9} (L27), \texttt{b2bb4ef25} (L51), \texttt{540d88109} (L56), all in \texttt{fable\_independent\_2026/} of the public repository, each with its committed \texttt{.out}. Both $a_0$ footings ($9.3619\times10^{-11}$ and $1.1279\times10^{-10}\ms$) are carried on every dimensional number, and no verdict depends on the choice. Every number is produced by a committed script with checks that can fail. This is a preprint of an AI-assisted draft; it is not peer reviewed. It claims no derivation of $a_0$, no dark sector, and no empirical detection.
+
+% The machine-readable form of this bibliography, with the same keys, ships with the
+% deposit as PAPER9_references.bib.  Entries reused from the programme's existing
+% reference files are carried over unchanged; every entry added for this paper was
+% checked against the arXiv abstract page or the publisher record before use.
+\begin{thebibliography}{99}
+\bibitem{Milgrom1983} M.\ Milgrom, \emph{A modification of the Newtonian dynamics as a possible alternative to the hidden mass hypothesis}, ApJ \textbf{270}, 365 (1983). \href{https://doi.org/10.1086/161130}{10.1086/161130}.
+\bibitem{BekensteinMilgrom1984} J.\ Bekenstein and M.\ Milgrom, \emph{Does the missing mass problem signal the breakdown of Newtonian gravity?}, ApJ \textbf{286}, 7 (1984). \href{https://doi.org/10.1086/162570}{10.1086/162570}.
+\bibitem{Bekenstein2004} J.\ D.\ Bekenstein, \emph{Relativistic gravitation theory for the modified Newtonian dynamics paradigm}, Phys.\ Rev.\ D \textbf{70}, 083509 (2004). \href{https://doi.org/10.1103/PhysRevD.70.083509}{10.1103/PhysRevD.70.083509}.
+\bibitem{Zlosnik2007} T.\ G.\ Z\l{}o\'snik, P.\ G.\ Ferreira and G.\ D.\ Starkman, \emph{Modifying gravity with the aether: an alternative to dark matter}, Phys.\ Rev.\ D \textbf{75}, 044017 (2007), arXiv:astro-ph/0607411. \href{https://doi.org/10.1103/PhysRevD.75.044017}{10.1103/PhysRevD.75.044017}.
+\bibitem{SkordisZlosnik2021} C.\ Skordis and T.\ Z\l{}o\'snik, \emph{New relativistic theory for modified Newtonian dynamics}, Phys.\ Rev.\ Lett.\ \textbf{127}, 161302 (2021). \href{https://doi.org/10.1103/PhysRevLett.127.161302}{10.1103/PhysRevLett.127.161302}.
+\bibitem{Deffayet2011} C.\ Deffayet, G.\ Esposito-Far\`ese and R.\ P.\ Woodard, \emph{Nonlocal metric formulations of MOND with sufficient lensing}, Phys.\ Rev.\ D \textbf{84}, 124054 (2011), arXiv:1106.4984. \href{https://doi.org/10.1103/PhysRevD.84.124054}{10.1103/PhysRevD.84.124054}.
+\bibitem{DeffayetWoodard2026} C.\ Deffayet and R.\ P.\ Woodard, \emph{A nonlocal realization of MOND that interpolates from cosmology to gravitationally bound systems}, JCAP \textbf{04} (2026) 081, arXiv:2512.10513.
+\bibitem{FamaeyMcGaugh2012} B.\ Famaey and S.\ S.\ McGaugh, \emph{Modified Newtonian Dynamics (MOND): observational phenomenology and relativistic extensions}, Living Reviews in Relativity \textbf{15}, 10 (2012). \href{https://doi.org/10.12942/lrr-2012-10}{10.12942/lrr-2012-10}.
+\bibitem{Zimmerman2026obstruction} C.\ P.\ Zimmerman, \emph{An Obstruction Map for Relativistic MOND: the Conformal Lensing Barrier and the Cost of Its Repair}, Zenodo (2026), \href{https://doi.org/10.5281/zenodo.22135510}{10.5281/zenodo.22135510}.
+\bibitem{SoussaWoodard2003} M.\ E.\ Soussa and R.\ P.\ Woodard, \emph{A nonlocal metric formulation of MOND}, Class.\ Quantum Grav.\ \textbf{20}, 2737 (2003), arXiv:astro-ph/0302030. \href{https://doi.org/10.1088/0264-9381/20/13/321}{10.1088/0264-9381/20/13/321}.
+\bibitem{DeserWoodard2007} S.\ Deser and R.\ P.\ Woodard, \emph{Nonlocal cosmology}, Phys.\ Rev.\ Lett.\ \textbf{99}, 111301 (2007), arXiv:0706.2151. \href{https://doi.org/10.1103/PhysRevLett.99.111301}{10.1103/PhysRevLett.99.111301}.
+\bibitem{DeserWoodard2013} S.\ Deser and R.\ P.\ Woodard, \emph{Observational viability and stability of nonlocal cosmology}, JCAP \textbf{11} (2013) 036, arXiv:1307.6639. \href{https://doi.org/10.1088/1475-7516/2013/11/036}{10.1088/1475-7516/2013/11/036}.
+\bibitem{Zimmerman2026carrier} C.\ P.\ Zimmerman, \emph{Carrier No-Go Theorems for Two-Degree-of-Freedom MOND: the $F(A^2)$ Class, the Auxiliary-Legendre Escape, and a Hamiltonian Audit of Causal Nonlocal MOND}, Zenodo (2026), \href{https://doi.org/10.5281/zenodo.22132648}{10.5281/zenodo.22132648}.
+\bibitem{TanWoodard2018} L.\ Tan and R.\ P.\ Woodard, \emph{Structure formation in nonlocal MOND}, JCAP \textbf{05} (2018) 037, arXiv:1804.01669. \href{https://doi.org/10.1088/1475-7516/2018/05/037}{10.1088/1475-7516/2018/05/037}.
+\bibitem{Foffa2014} S.\ Foffa, M.\ Maggiore and E.\ Mitsou, \emph{Apparent ghosts and spurious degrees of freedom in non-local theories}, Phys.\ Lett.\ B \textbf{733}, 76 (2014), arXiv:1311.3421. \href{https://doi.org/10.1016/j.physletb.2014.04.024}{10.1016/j.physletb.2014.04.024}.
+\bibitem{Kim2016} M.\ Kim, M.\ H.\ Rahat, M.\ Sayeb, L.\ Tan, R.\ P.\ Woodard and B.\ Xu, \emph{Determining cosmology for a nonlocal realization of MOND}, Phys.\ Rev.\ D \textbf{94}, 104009 (2016), arXiv:1608.07858. \href{https://doi.org/10.1103/PhysRevD.94.104009}{10.1103/PhysRevD.94.104009}.
+\bibitem{Bekenstein1988} J.\ D.\ Bekenstein, \emph{Phase coupling gravitation: symmetries and gauge fields}, Phys.\ Lett.\ B \textbf{202}, 497 (1988). \href{https://doi.org/10.1016/0370-2693(88)91851-5}{10.1016/0370-2693(88)91851-5}.
+\bibitem{Horava2009} P.\ Ho\v{r}ava, \emph{Quantum gravity at a Lifshitz point}, Phys.\ Rev.\ D \textbf{79}, 084008 (2009), arXiv:0901.3775. \href{https://doi.org/10.1103/PhysRevD.79.084008}{10.1103/PhysRevD.79.084008}.
+\bibitem{Jacobson2010} T.\ Jacobson, \emph{Extended Ho\v{r}ava gravity and Einstein-aether theory}, Phys.\ Rev.\ D \textbf{81}, 101502 (2010) [Erratum: Phys.\ Rev.\ D \textbf{82}, 129901 (2010)], arXiv:1001.4823. \href{https://doi.org/10.1103/PhysRevD.81.101502}{10.1103/PhysRevD.81.101502}.
+\bibitem{Milgrom2009} M.\ Milgrom, \emph{Bimetric MOND gravity}, Phys.\ Rev.\ D \textbf{80}, 123536 (2009), arXiv:0912.0790. \href{https://doi.org/10.1103/PhysRevD.80.123536}{10.1103/PhysRevD.80.123536}.
+\bibitem{Moffat2006} J.\ W.\ Moffat, \emph{Scalar-tensor-vector gravity theory}, JCAP \textbf{03} (2006) 004, arXiv:gr-qc/0506021. \href{https://doi.org/10.1088/1475-7516/2006/03/004}{10.1088/1475-7516/2006/03/004}.
+\bibitem{Horndeski1974} G.\ W.\ Horndeski, \emph{Second-order scalar-tensor field equations in a four-dimensional space}, Int.\ J.\ Theor.\ Phys.\ \textbf{10}, 363 (1974). \href{https://doi.org/10.1007/BF01807638}{10.1007/BF01807638}.
+\bibitem{deRham2011} C.\ de Rham, G.\ Gabadadze and A.\ J.\ Tolley, \emph{Resummation of massive gravity}, Phys.\ Rev.\ Lett.\ \textbf{106}, 231101 (2011), arXiv:1011.1232. \href{https://doi.org/10.1103/PhysRevLett.106.231101}{10.1103/PhysRevLett.106.231101}.
+\bibitem{Milgrom1994} M.\ Milgrom, \emph{Dynamics with a nonstandard inertia-acceleration relation: an alternative to dark matter in galactic systems}, Annals of Physics \textbf{229}, 384 (1994), arXiv:astro-ph/9303012. \href{https://doi.org/10.1006/aphy.1994.1012}{10.1006/aphy.1994.1012}.
+\bibitem{Blas2011} D.\ Blas, O.\ Pujol\`as and S.\ Sibiryakov, \emph{Models of non-relativistic quantum gravity: the good, the bad and the healthy}, JHEP \textbf{04} (2011) 018. \href{https://doi.org/10.1007/JHEP04(2011)018}{10.1007/JHEP04(2011)018}.
+\bibitem{JacobsonMattingly2001} T.\ Jacobson and D.\ Mattingly, \emph{Gravity with a dynamical preferred frame}, Phys.\ Rev.\ D \textbf{64}, 024028 (2001). \href{https://doi.org/10.1103/PhysRevD.64.024028}{10.1103/PhysRevD.64.024028}.
+\bibitem{FosterJacobson2006} B.\ Z.\ Foster and T.\ Jacobson, \emph{Post-Newtonian parameters and constraints on Einstein-aether theory}, Phys.\ Rev.\ D \textbf{73}, 064015 (2006). \href{https://doi.org/10.1103/PhysRevD.73.064015}{10.1103/PhysRevD.73.064015}.
+\bibitem{Planck2020} Planck Collaboration (N.\ Aghanim et al.), \emph{Planck 2018 results.\ VI.\ Cosmological parameters}, A\&A \textbf{641}, A6 (2020). \href{https://doi.org/10.1051/0004-6361/201833910}{10.1051/0004-6361/201833910}.
+\bibitem{Will2014} C.\ M.\ Will, \emph{The confrontation between general relativity and experiment}, Living Reviews in Relativity \textbf{17}, 4 (2014), arXiv:1403.7377. \href{https://doi.org/10.12942/lrr-2014-4}{10.12942/lrr-2014-4}.
+\bibitem{Zimmerman2026paper8} C.\ P.\ Zimmerman, \emph{A Non-Empty Parameter Region for a Foliation-Based Relativistic MOND Theory: Eleven Gates Passed Below the Galaxy Scale, and a Factor $1.49$--$1.99$ Mass Deficit Above It}, Zenodo (2026), \href{https://doi.org/10.5281/zenodo.22667688}{10.5281/zenodo.22667688}.
+\end{thebibliography}
+
+\end{document}
