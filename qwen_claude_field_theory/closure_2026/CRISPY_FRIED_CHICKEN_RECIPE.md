@@ -12,7 +12,19 @@ structure together. Checks remain honest: a failure identifies a construction
 obligation; it is not permission to conceal the failure or relax a requirement.
 Historical obstructions are reference material, not the main deliverable.
 
-**Current constructive checkpoint (2026-09-08, IC19):**
+**Current constructive checkpoint (2026-09-09, IC20):**
+[The joint-action handoff](integrable_clock_construction_2026/IC20_HANDOFF.md)
+solves the kinetic/curvature and tensor-cone compatibility equations together.
+The varied analytic auxiliary has a computed regular local constraint matrix;
+the selected expanding vacuum point has positive scalar kinetic energy and an
+all-wavelength positive oscillator coefficient, including time-dependent
+curvature mixing. Short vacuum and small-matter background continuations are
+tested, not a viable cosmology. A longer-lived parameter control has negative
+finite-k scalar coefficients and cannot donate its longevity to the selected
+action. Next derive coupled matter perturbations and construct a healthy
+extended evolution from this same action. No full closure or PPN/galaxy pass.
+
+**Previous constructive checkpoint (2026-09-08, IC19):**
 [The normalized spatial handoff](integrable_clock_construction_2026/IC19_HANDOFF.md)
 imposes Carl's scale relation in the action and establishes an invariant
 expanding pole-clock plateau. Its cleaned spatial action has an explicitly
