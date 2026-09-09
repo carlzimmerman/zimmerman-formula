@@ -323,6 +323,61 @@ control near \(Y=0\), and the complete tensor/vector/scalar principal symbol
 are also uncomputed.  The scientifically defensible label is therefore
 `OPEN`, despite the finite gates above.
 
+## Direct lapse-variation obstruction in the displayed action
+
+The candidate defines \(u=\log N-\frac16\log h\) and simultaneously uses
+\(N\mathcal C_\perp\), with
+
+\[
+\mathcal C_\perp\supset D_i\!\left[\mu(|Du|)D^iu\right].
+\]
+
+At fixed \(h\), varying \(N\) therefore varies the constraint itself.  The
+executable `rmmg_lapse_constraint_variation_gate.py` computes the full
+higher-derivative Euler operator of \(-N D_i[\mu D^iu]\), rather than
+assuming \(\mathcal C_\perp=0\).  On the positive-slope affine witness
+\(N=e^{kx}\), \(u=kx\), \(a_0=1\), it derives
+
+\[
+D_x[\mu(k)k]=0,\qquad
+E_N=-k^2\left[1+(k-1)e^{-k}\right].
+\]
+
+The unit-slope value is exactly \(E_N=-1\), so the advertised MOND
+constraint and the actual lapse equation disagree even in this vacuum local
+witness.  This is an action/branch-scoped obstruction, not a universal
+relativistic MOND no-go.  Any repair must make \(u\) independent of the lapse
+or add a defining constraint and then repeat the full nonlinear Dirac/HDA
+analysis.
+
+## New weak-static action-angle prediction
+
+The independent finite-eccentricity quadrature code supplies a cleaner
+Kepler-style null than a radius-calibrated period law.  In the deep logarithmic
+branch, write
+
+\[
+T_r=F(e)R/v_\infty,\qquad \ell=J(e)Rv_\infty,
+\qquad v_\infty^4=G M_b a_0.
+\]
+
+The executable `action_angle_invariant.py` derives the exact cancellation
+
+\[
+\boxed{\frac{T_r\sqrt{G M_b a_0}}{\ell}=\frac{F(e)}{J(e)}}.
+\]
+
+For two tracers around the same source,
+\[
+\frac{T_{r,1}\ell_2}{T_{r,2}\ell_1}
+=\frac{F(e_1)/J(e_1)}{F(e_2)/J(e_2)},
+\]
+so the source mass, (a_0), common radius scale, and absolute time
+calibration cancel.  Four independent quadrature rows give
+\(F/J=4.48399852,4.84360236,6.67512492,19.94991699\) at
+\(e=0.1,0.3,0.6,0.9\).  This is a conditional weak-static prediction,
+not a relativistic closure or a novelty theorem.
+
 ## Lean witnesses
 
 `RMMGCore.lean` kernel-checks the integer determinant/rank-jump arithmetic and
@@ -335,3 +390,11 @@ kernel-checks the DBI identities \(\rho+p=2Az^2/s\),
 shift-symmetric implication \(H\ne0\Rightarrow K_X=0\).  These are formal
 witnesses for the computed finite gates, not a formalization of the unresolved
 nonlinear field theory or a proof that the candidate is a law of nature.
+It also proves, for every positive (A,L,C,a), existence and uniqueness of
+the branch root (z\in(0,1)) solving
+\[
+\frac{z^3}{1-z^2}=L\left(\frac{C}{Aa^3}\right)^2,
+\]
+using an exact monotonicity factorization plus the intermediate-value theorem.
+This upgrades the numerical root scan to a global homogeneous existence result,
+but it remains far short of covariant relativistic closure.

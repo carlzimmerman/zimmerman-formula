@@ -39,6 +39,10 @@ python3 -B flrw_clock_friedmann_gate.py
 python3 -B -m unittest -v test_flrw_clock_friedmann_gate.py
 python3 -B flrw_minisuperspace_dirac_gate.py
 python3 -B -m unittest -v test_flrw_minisuperspace_dirac_gate.py
+python3 -B rmmg_lapse_constraint_variation_gate.py
+python3 -B -m unittest -v test_rmmg_lapse_constraint_variation_gate.py
+python3 -B action_angle_invariant.py
+python3 -B -m unittest -v test_action_angle_invariant.py
 python3 -B sparc_exact_exponential_fit.py
 python3 -B -m unittest -v test_sparc_exact_exponential_fit.py
 python3 -B run_lean_core.py
@@ -114,7 +118,48 @@ obeys \(H\ne0\Rightarrow K_X=0\).  These are formal lemmas for the finite
 DBI/FLRW branch; they do not formalize the unresolved covariant metric
 variation or its full constraint algebra.
 
+The same Lean file now proves the all-(a>0) existence and uniqueness of the
+evolving clock speed: for positive (A,L,C,a), there is exactly one
+\(z\in(0,1)\) satisfying
+\[
+\frac{z^3}{1-z^2}=L\left(\frac{C}{Aa^3}\right)^2.
+\]
+The proof uses the exact positive factorization of the current-map difference
+and the intermediate-value theorem, upgrading the finite bisection scan to a
+global homogeneous-branch result.
+
 The homogeneous Dirac gate derives (p_N=0), its secondary Hamiltonian
 constraint (C=0), a rank-zero first-class bracket pair, and one physical
 clock scalar from \((6-2\times2)/2=1\).  The clock velocity Hessian is positive
 on the tested branch, so this scalar is explicit rather than hidden.
+
+The action-level `rmmg_lapse_constraint_variation_gate.py` exposes an
+additional defect in the displayed rotated constraint action.  Because
+\(u=\log N\) is also inside the \(N\)-weighted MOND constraint, the full
+higher-derivative lapse Euler operator is not the advertised constraint.  On
+\(N=e^{kx}\), \(u=kx\), the advertised divergence vanishes but the derived
+lapse residual is
+
+\[
+-k^2\bigl[1+(k-1)e^{-k}\bigr],
+\]
+
+which is exactly \(-1\) at \(k=1\).  The Lean witness
+`affine_lapse_residual_unit_slope_nonzero` checks that nonzero conclusion
+without hard-coding the exponential value.  This is a clean obstruction for
+the displayed rotated action; repairing it requires changing the constraint
+architecture and redoing the Dirac analysis.
+
+The new `action_angle_invariant.py` extracts a parameter-free weak-static
+prediction from the exact deep-MOND orbit quadratures:
+
+\[
+\frac{T_r\sqrt{G M_b a_0}}{\ell}=\frac{F(e)}{J(e)}.
+\]
+
+For two tracers around one source, the ratio
+\(T_{r,1}\ell_2/(T_{r,2}\ell_1)\) cancels (M_b\), (a_0), the common
+radius scale, and absolute time calibration.  The symbolic cancellation and
+four independent quadrature rows are tested by the accompanying unit gate.
+This is a conditional weak-static prediction, not evidence of relativistic
+closure.
