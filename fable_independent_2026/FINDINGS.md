@@ -3349,3 +3349,28 @@ behaviour of the MOND scale a₀ — the framework's most distinctive falsifiabl
 - **HONEST SCOPE.** Pinned for z≲5 (flat, robust per stage-17); only the recombination-era behaviour depends
   on possible clock modulation (astra's cosmology). The signature is now tied to a specific action, not an
   ansatz — a clean, distinctive, currently-untested prediction awaiting a deep-MOND rotator at z~2.
+
+## L87 — the fine-tuning is INTRINSIC: no stiff-free dust exists in the healthy family
+
+`L87_stiff_free_dust.py` + `.out` (**19 checks, 19 PASS**). The crispiest escape door for L84/L86: is there a
+dark-matter mechanism whose dust is LINEAR in the conserved charge (ρ∝a⁻³, no a⁻⁶ stiff partner)?
+**Answer: NO — the square is structural; the BBN fine-tuning is intrinsic, forced by health.**
+
+- **⭐ The clean origin.** Using the conserved charge, ρ = K − QK_Q + 3HQF_Q collapses to **ρ = K(Q) +
+  Q·(C/a³)** — the whole charge/H dependence is one explicit product.
+- **⭐⭐ The structural lock.** The background-independent velocity-Hessian degeneracy — the health condition
+  that keeps the clock free of a Boulware–Deser mode — forces F affine **and K_QQ = 3f²/(2M²) = const**,
+  i.e. **K exactly quadratic**. A quadratic K with Q entering linearly makes ρ **quadratic in C**; the stiff
+  coefficient is −M²/(3f²) ≠ 0 for any finite curvature. The dust (∝AC) and stiff (∝C²) are the cross term
+  and square of ONE perfect square. **The very degeneracy that lets the clock source a dust forbids that
+  dust from being linear.**
+- **⭐ Every linearisation kills the dust.** Linear K (k₂=0) → charge fixes the background, no dust; f=0 →
+  destroys the braiding AND keeps the square; cuscuton K∝|Q| → Q undetermined, no a⁻³ dust; engineered
+  ρ=m(C/a³) → Q pinned constant (constraint field). Stiff-free needs K_QQ→0 or →∞; both remove the
+  propagating charge that IS the dust.
+- **The only stiff-free dust is external CDM** — but that abandons the one-action structure and re-imports
+  the L61 excess-spent-once overshoot (~1.69×). It removes the square only by giving up everything.
+- **VERDICT.** This **elevates L84/L86 from "a fine-tuning cost" to an INTRINSIC fine-tuning forced by
+  health** — the ~24-order |C|/|A| tuning is a structural property of any healthy braided-clock dust, not a
+  removable blemish. Not a new kill (viable at the tuned point), but the constructive "linearise the dust"
+  door is definitively closed. HIGH confidence. A real, valuable negative.
