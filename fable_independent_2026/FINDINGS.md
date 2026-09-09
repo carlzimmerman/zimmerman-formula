@@ -3200,3 +3200,33 @@ astra's F(Q)Θ dust, derived rather than assumed.
   WIMP/particle relic; a confirmed DM decay/annihilation detection would falsify it.
 - **⚠️ SCOPE.** This does NOT settle the propagating-health (cuscuton DOF) hinge (L80). It establishes, from
   first principles, *why* the dust is symmetry-protected pressureless dust and ties it to a₀.
+
+## L82 — THE FINAL GATE: the Noether dust CLUSTERS like CDM at linear order (the g04h failure mode is absent)
+
+`L82_final_gate_dust_clustering.py` + `.out` (**9 checks, 9 PASS**). The one make-or-break question between the
+F(Q)Θ construction and a complete theory: does the Noether dust reproduce linear structure/P(k), or is it
+suppressed like the old condensate that failed g04h?
+
+- **⭐ THE STRUCTURAL KEY.** On the homogeneous cosmological background V=0, so y=|V|/a₀ is O(δφ) and the MOND
+  operator **G(y)≈⅔y³ is CUBIC** in δφ → it contributes **nothing to the quadratic action**. K(Q) (Q=n·∂φ, a
+  time derivative) and F(Q)Θ carry no spatial ∂φ. So the scalar's quadratic perturbation has a **positive
+  time-kinetic term (K_QQ=3f²/2M²>0, no ghost) and ZERO spatial gradient → c_s² = 0 exactly.**
+- **⭐⭐ IT CLUSTERS LIKE CDM.** Pressureless (c_s²=0) → the growth equation δ̈+2Hδ̇−(3/2)H²δ=0 has **no Jeans
+  term**, so all scales grow and δ∝a is an exact solution. **This is precisely the growth the old
+  c_s²∝ρ_d condensate could NOT deliver (g04h: deficit 20–2000×, σ₈≤0.65).** The g04h failure mode came from
+  pressure/Jeans suppression the Noether dust simply does not have.
+- **⭐⭐ AND GRAVITY IS STANDARD AT LINEAR ORDER.** Because the MOND operator is cubic, it also drops from the
+  linear gravitational equations → **G_eff = 1/8πM² = G (standard Einstein)**, not the nonlinear MOND
+  response. So the dust clusters **exactly as CDM**, not merely pressureless-with-modified-gravity.
+- **⭐⭐⭐ THE IDEAL STRUCTURE, FROM ONE OPERATOR.** The same cubic MOND operator is **negligible at small
+  gradients (linear cosmology → standard gravity + pressureless dust → CMB/P(k) like ΛCDM)** and **dominant
+  at large gradients (galaxies → MOND)**. Linear cosmology is CDM-like and galaxies are MOND, from one
+  action — exactly what a complete theory needs.
+- **⚠️ HONEST CAVEAT (astra's, reproduced).** astra's ADM principal gate found the scalar-metric symplectic
+  form ∝k²→0 and G''(y₀)→0 at the exact zero-field/k→0 point — a strong-coupling/non-uniform limit at the
+  **largest (near-horizon) scales**. That is an EFT-validity/normalization concern for the CMB's lowest
+  multipoles, distinct from the sub-horizon classical growth established here.
+- **NET.** The single biggest obstacle to completeness — linear structure/P(k) — is **cleared at sub-horizon
+  scales**: the F(Q)Θ Noether dust is the first dark sector in this programme that is simultaneously
+  **pressureless (clusters, L82), ghost-free (astra's Dirac chain), and symmetry-protected (L81)**. The
+  remaining open item is astra's near-horizon k→0 strong coupling.

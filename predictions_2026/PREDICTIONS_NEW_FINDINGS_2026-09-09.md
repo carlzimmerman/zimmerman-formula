@@ -75,7 +75,7 @@ framework predicts it scales with cosmological infall. **Status: NEW.**
 conserved-charge dust redshifts as a⁻³ with w = 0. *Ground:* L79/L80 (ρ ⊃ −2M²AC/3f²a³, pressureless).
 *Test:* CMB acoustic peaks and BAO. *Discriminator:* this is a **consistency requirement** — the F(Q)Θ dust
 must reproduce the CDM-like CMB/BAO fits; a failure of the third-peak/BAO fit would falsify it. Deviations
-appear only at nonlinear/small scales (see P11). **Status: NEW.**
+appear only at nonlinear/small scales (see P11). **Status: NEW — SUPPORTED by L82: the Noether dust is pressureless (c_s²=0) and clusters exactly like CDM at linear sub-horizon order, with standard G_eff; the g04h suppression mode is absent. Caveat: astra's near-horizon k→0 strong coupling bears on the lowest CMB multipoles.**
 
 **P9 — Dark energy is a pure cosmological constant, w_DE = −1 exactly, tied to a₀.** The a₀ sector is the
 w = −1 Λ scale (L78), not a separate quintessence field; a₀ and the dark-energy scale are the *same* scale.
@@ -92,7 +92,7 @@ requires astra's coefficient calibration).**
 **P11 — Small-scale structure carries a MOND imprint, not a pure-CDM one.** CONTINGENT on the scalar-health
 verdict: if the F(Q)Θ scalar is a non-propagating cuscuton, growth matches CDM at large scales while
 galaxy-scale dynamics are MOND-enhanced. *Test:* satellite counts, Lyman-α, small-scale P(k). *Ground:*
-L78/L80 + the pending cuscuton DOF count. **Status: CONTINGENT on the health calculation.**
+L78/L80/L82. **Status: SUPPORTED at linear order — L82 shows linear cosmology is standard gravity + pressureless dust (CDM-like large scales) while galaxies are MOND, both from the one cubic operator; the MOND imprint is a nonlinear/small-scale effect. Near-horizon k→0 remains astra's open item.**
 
 ---
 
