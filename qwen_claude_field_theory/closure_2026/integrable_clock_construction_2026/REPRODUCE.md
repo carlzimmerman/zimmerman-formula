@@ -455,3 +455,109 @@ coupled causal evolution and realistic cosmology remain required afterward.
 Mathbox auditing led to the explicit domain cutoff and the refusal to promote
 bounded computations to full closure. Lean/lake were unavailable on PATH;
 no Lean build, novelty proof or empirical test is claimed.
+
+## IC8–IC10: optical alignment and a local clock plateau, 2026-09-08
+
+Current result: [IC10_LOCAL_CLOCK.md](IC10_LOCAL_CLOCK.md), preceded by
+[OPTICAL_ALIGNMENT.md](OPTICAL_ALIGNMENT.md). Full theory **OPEN**.
+Scientific starting revision `0aa6e0cef`; the live checkout also acquired
+Fable commits `0e20cf937`, `aea949c58` and `9727a5083` during this work.
+Their histories and findings were inspected; L4's independent IC7 script
+was actually rerun. Its strict two-total-mode gate exits2 while its numerical
+reproduction checks pass. Fable's newer cluster claims are not adopted as
+universal screening no-go theorems or as empirical evidence for IC10.
+
+### Exact files created/changed
+
+New files in this directory:
+
+- `ic8_shear_integrability.py`, `test_ic8_shear_integrability.py`;
+- `ic9_lightcone_alignment.py`, `test_ic9_lightcone_alignment.py`;
+- `ic10_local_clock.py`, `test_ic10_local_clock.py`;
+- `OPTICAL_ALIGNMENT.md`, `IC10_LOCAL_CLOCK.md`, `IC10_REVIEW.md`;
+- `optical_contract.json`, `optical_run_001/run_index.json`.
+
+Each of the eight new directories below `optical_run_001/` contains exactly
+`manifest.json`, `stdout.txt`, `stderr.txt`:
+
+    ic8, ic9, ic10, ic8_required, ic9_required, ic10_required,
+    tests, closure_tests.
+
+Changed existing files: this reproduction record and
+`../CRISPY_FRIED_CHICKEN_RECIPE.md` (current pointer only). Its existing
+NavierStokesAndEuler attribution is retained. No prior frozen scientific
+file, prior manifest, or unrelated dirty file is changed by this checkpoint.
+
+### Exact commands and observed exits
+
+The complete executed runner argv is factored without omission into common
+prefix and per-run suffix arrays in
+[optical_run_001/run_index.json](optical_run_001/run_index.json). The index
+also records exact child and validator argv, child/wrapper exits and elapsed
+times. Each run pins its inputs and actual Git revision/dirty observation.
+
+Scientific commands, executed from the repository root:
+
+```bash
+python -B qwen_claude_field_theory/closure_2026/integrable_clock_construction_2026/ic8_shear_integrability.py
+python -B qwen_claude_field_theory/closure_2026/integrable_clock_construction_2026/ic9_lightcone_alignment.py
+python -B qwen_claude_field_theory/closure_2026/integrable_clock_construction_2026/ic10_local_clock.py
+python -B qwen_claude_field_theory/closure_2026/integrable_clock_construction_2026/ic8_shear_integrability.py --require-full-closure
+python -B qwen_claude_field_theory/closure_2026/integrable_clock_construction_2026/ic9_lightcone_alignment.py --require-full-closure
+python -B qwen_claude_field_theory/closure_2026/integrable_clock_construction_2026/ic10_local_clock.py --require-full-closure
+python -B -m unittest discover -s qwen_claude_field_theory/closure_2026/integrable_clock_construction_2026 -p 'test_*.py' -v
+python -B -m unittest discover -s qwen_claude_field_theory/closure_2026/lapse_braiding_gate_2026 -p 'test_*.py' -v
+OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 VECLIB_MAXIMUM_THREADS=1 python -B fable_independent_2026/L4_verify_ic7.py
+git diff --check
+```
+
+The recorded runner sets one cooperative numerical-library thread per child,
+180-second wall and 1MiB combined-log bounds. No memory/affinity guarantee
+or interval-arithmetic certificate is implied. All eight manifest validators
+were executed with `--root` and exited0, including the failed full-goal runs.
+
+| Important check | Result | Child exit |
+| --- | --- | --- |
+| IC8, IC9, IC10 default programs | Scoped derivations retained | 0 each |
+| Complete construction suite | 202 tests passed, 72.339 seconds | 0 |
+| Existing closure regression | 32 tests passed, 2.855 seconds | 0 |
+| Three full-theory gates | Incomplete requirements retained | 2 each |
+| Independent IC10 review | 7 tests; exact/numerical corroboration | 0 |
+| Fable L4 rerun | Numerical reproduction passes; strict mode gate fails | 2 |
+| All eight provenance validators | Current input/output hashes valid | 0 each |
+| Patch whitespace | No errors | 0 |
+
+The three strict gates have wrapper exit1 and manifest status `failed`.
+A valid failed-run record is not a physics PASS. A prior direct construction
+run also passed all 202 tests in 68.821 seconds. All three new scientific
+scripts and all three new test modules were executed. Development red/green
+tests and numerical-method corrections are recorded in the index.
+
+### Strongest result and exact next gate
+
+IC9's optical coordinate removes the tested shear/curvature obstruction
+and aligns its tensor cone, but its finite-wave scalar remains rational.
+The potential-only local-kinetic trial retains a nonzero pole residue.
+IC10 changes the trace kinetic term too: on eta=1, exact variation yields
+Einstein gravity plus the explicit local pressure P(Xtilde,w) constructed
+from the original U. Its regular vacuum auxiliary is algebraic; the clock
+is a separately identified propagating mode, not hidden as an auxiliary.
+Fresh background solves, actual fixed-momentum constraint brackets and
+finite homogeneous evolution pass the stated positive-energy and
+subluminality tests. Physical expansion is about 0.08216 e-folds over the
+tested interval—not a complete or realistic cosmology.
+
+The next boundary is now located on that actual solution:
+S=0.230723991364998, r²=5/4, cs²=0.242306706149330. The unavoidable next
+calculation is the **full phase-action evolution and characteristics across
+that boundary**, retaining eta derivatives. Neither the vacuum pressure nor
+the plateau count may be extrapolated through it. Galactic AQUAL, independent
+Phi/Psi, all PPN parameters, measured G, matter-coupled health, strong coupling
+and y=0/global-k=0 control remain open afterward.
+
+[The independent IC10 review](IC10_REVIEW.md) records the frozen input hashes,
+separate-runtime checks and their precise scope. Mathbox auditing prompted
+the exact finite-wave calculation, the fixed-canonical-momentum bracket,
+the separate homogeneous evolution and the refusal to promote a local
+construction to full closure. Lean/lake were unavailable on PATH; no Lean
+proof, new empirical prediction or global novelty certification is claimed.

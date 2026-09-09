@@ -13,21 +13,26 @@ obligation; it is not permission to conceal the failure or relax a requirement.
 Historical obstructions are reference material, not the main deliverable.
 
 **Current constructive checkpoint (2026-09-08):**
-[IC-7 action-derived isotropic repair](integrable_clock_construction_2026/IC7_CURVATURE_SQUARE.md)
-continues the explicit IC-6 phase action. A new strong local auxiliary theorem,
-actual homogeneous Dirac flow and symmetry-decoupled tensor proof strengthen
-the IC-6 analysis. Its full even-sector variation also reveals an exact scalar
-quartic obstruction on nearby isotropic solutions. IC-7 adds a smoothly
-defined curvature-square coefficient derived from that same action's Hessian;
-it cancels this isotropic obstruction on its regular plateau and preserves
-the static and flat homogeneous background equations. The sheared-background
-mixing remains nonzero: this revision is **not** a healthy all-background
-theory. The next construction must satisfy both momentum/curvature
-integrability and quartic cancellation, then derive the remaining physical
-cones. Full evolution, galactic matching, zero-field control and PPN remain
-OPEN. Exact derivations, failed gates and bounded numerical tests are linked
+[IC10 local Einstein–clock construction](integrable_clock_construction_2026/IC10_LOCAL_CLOCK.md)
+continues the explicit phase action while retaining its static exponential
+primitive. [IC8–IC9 optical alignment](integrable_clock_construction_2026/OPTICAL_ALIGNMENT.md)
+removes the tested shear/curvature mixing and aligns the tensor cone, but
+IC9's exact scalar response retains a rational spatial factor. IC10 aligns
+the trace kinetic term as well: its vacuum expanding plateau is exactly
+Einstein gravity plus a local clock pressure built from the same primitive.
+Fresh auxiliary solves and finite FLRW evolution have positive sampled clock
+kinetic energy, subluminal sampled clock propagation and expansion. The
+auxiliary carries no independent mode on this regular plateau; the genuine
+clock is explicitly counted separately from the two tensors.
+
+This is **not a complete gravity theory**. The next unavoidable calculation
+is full-action evolution through the located eta boundary near S=0.230724,
+including its momentum derivatives, constraint preservation and physical
+characteristics. Matter-coupled causality, strong coupling, galactic matching,
+zero-field control, measured G, PPN and realistic cosmology remain OPEN.
+Exact derivations, unsuccessful full-goal gates and bounded tests are linked
 in the [reproduction record](integrable_clock_construction_2026/REPRODUCE.md).
-No full-theory PASS or observational prediction is claimed.
+No full-theory PASS, novelty certification or empirical prediction is claimed.
 Continue from this explicit action, not historical candidate labels below.
 
 **Methodological inspiration:** OpenAI's *NavierStokesAndEuler* repository,
