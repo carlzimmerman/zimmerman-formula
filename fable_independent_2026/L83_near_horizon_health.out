@@ -1,0 +1,88 @@
+================================================================================================================
+L83 -- NEAR-HORIZON HEALTH of the F(Q)Theta scalar-metric strong coupling (Omega ~ k^2, G''(y0)->0)
+================================================================================================================
+
+================================================================================================================
+PART C -- CONTROLS: the horizon machinery reproduces known LCDM numbers before any verdict.
+================================================================================================================
+  [PASS] C-1  present comoving Hubble distance c/H0 = 4448 Mpc and k_H0 = 1/(c/H0) ~ 2.25e-4 /Mpc (standard LCDM; the largest observable comoving scale is the present horizon)   (c/H0 = 4448.0 Mpc, k_H0 = 2.248e-04 /Mpc)
+  [PASS] C-2  the comoving horizon at recombination is SMALLER (higher k) than today: k_Hrec ~ 4.8e-3 /Mpc, and k_Hrec/k_H0 ~ 21 (modes with k>k_Hrec were sub-horizon at recombination)   (k_Hrec = 4.788e-03 /Mpc, ratio k_Hrec/k_H0 = 21.3)
+  [PASS] C-3  the first acoustic peak (ell1 ~ 220) is DEEP sub-horizon at recombination: its comoving k_peak ~ 0.0165 /Mpc >> k_Hrec ~ 4.8e-3 /Mpc.  All CMB acoustic physics lives at k > k_Hrec   (k_peak/k_Hrec = 3.4, implied ell1 = 229)
+  [PASS] C-4  a c_s^2>0 component has a nonzero Jeans wavenumber k_J (pressure suppression, the g04h failure mode); a c_s^2=0 component has k_J=0 (no Jeans scale).  The L82 Noether dust has c_s^2=0   (k_J(c_s^2=0.1)=11.210 > 0 ; k_J(c_s^2=0)=0.0)
+  [PASS] C-5  [sympy] with Omega ~ k^2 AND reduced Hamiltonian ~ k^2, the classical Hamilton equations give a frequency whose k^2 CANCELS: omega^2 = Upp*Uzz/O0^2, INDEPENDENT of k.  (Reproduces astra's k-independent characteristic polynomial lambda^2 + Q0^2 U_pi_pi U_zz / U_nz^2 = 0.)   (omega^2 = Upp*Uzz/O0**2 (no k dependence))
+
+================================================================================================================
+PART G -- the MOND operator's second derivative: is the degeneration paired with an INSTABILITY?
+================================================================================================================
+  [PASS] G-1  [sympy] G''(y) = 2[1+(y-1)e^{-y}], and G''(0) = 0 EXACTLY.  On the homogeneous FLRW background the spatial gradient V=0 so y0 = |V|/a0 = 0, hence U_pi_pi = 2 M^2 G''(0) = 0 there (astra's zero-field point IS the cosmological background)   (G''(0)=0 -> U_pi_pi=0 on the FLRW background (V=0))
+  [PASS] G-2  [adversarial: fatal branch?] astra flagged an EXPONENTIAL instability IF U_pi_pi*U_zz < 0.  But for the EXACT exponential G, G''(y) >= 0 for ALL y >= 0 (min = 0 at y=0, -> 2 as y->inf).  With U_zz = 4 M^2 > 0, the product U_pi_pi U_zz = 8 M^4 G''(y) >= 0 ALWAYS -> lambda^2 <= 0 -> the mode OSCILLATES (gap) or is MARGINAL (y=0), NEVER exponentially unstable.  The fatal branch is empty   (min G'' on [0,60] = 0.00e+00 (>=0); G''(inf) -> 2.0000)
+  [PASS] G-3  [what the y0=0 point IS] at the cosmological background U_pi_pi=0 so the reduced characteristic polynomial is lambda^2 = 0: a MARGINAL (zero-frequency) mode, not a tachyon.  A marginal, positive-kinetic (U_zz=4M^2>0), c_s^2=0 mode is exactly pressureless dust (L82) -- it grows by gravitational coupling as delta~a, it does NOT blow up from the reduced kinetic sector   (lambda^2=0 at y0=0: marginal dust mode, kinetic U_zz>0, no exponential growth)
+
+================================================================================================================
+PART M -- WHERE is the degeneration, relative to the horizon?  (both a0 footings)
+================================================================================================================
+  [PASS] M-1  Omega(k) = O0 k^2 is STRICTLY MONOTONE in k, so the degeneration is WORST at k->0 (largest scales) and STRICTLY IMPROVES toward smaller scales.  There is NO interior worst-case: the minimum of the degeneration over any k-band is always at the band's LOWER edge   (Omega/Omega(k_H0) at k=[1e-6,kH0/10,kH0,kHrec,kpeak,0.2] = [1.98e-05 1.00e-02 1.00e+00 4.54e+02 5.39e+03 7.91e+05])
+  [PASS] M-2  [adversarial: interior minimum in the OBSERVABLE band?] within the observable band [k_H0, 0.2]/Mpc the minimum of Omega is at the LOWER edge k_H0 (present horizon), not at any interior/sub-horizon scale.  So the worst OBSERVABLE degeneration sits exactly at the present horizon; everything more observable (higher k) is progressively BETTER normalised   (argmin of Omega over the observable band = k_H0 (the horizon edge), no interior minimum)
+  [PASS] M-3 (canonical a0=9.3619e-11) the framework's OWN acceleration scale a0 corresponds to comoving k_a0 = a0/c^2 = 3.214e-05 /Mpc, which is BELOW the present horizon k_H0 = 2.248e-04 /Mpc (ratio k_a0/k_H0 ~ 1/2pi).  The MOND/a0 scale is itself SUPER-horizon today -- the regime where zeta is conserved -- so the framework's characteristic scale lands in the benign band   (k_a0/k_H0 = 0.143 (< 1: super-horizon; ~ 1/2pi = 0.159))
+  [PASS] M-3 (alternate a0=1.1279e-10) the framework's OWN acceleration scale a0 corresponds to comoving k_a0 = a0/c^2 = 3.872e-05 /Mpc, which is BELOW the present horizon k_H0 = 2.248e-04 /Mpc (ratio k_a0/k_H0 ~ 1/2pi).  The MOND/a0 scale is itself SUPER-horizon today -- the regime where zeta is conserved -- so the framework's characteristic scale lands in the benign band   (k_a0/k_H0 = 0.172 (< 1: super-horizon; ~ 1/2pi = 0.159))
+  [PASS] M-4  observable SUB-HORIZON scales are FAR from the degenerate point: relative to the present-horizon mode, Omega is enhanced by ~450x at the recombination horizon and ~5000x at the first acoustic peak. On the scales the CMB actually measures (the peaks), the symplectic form is well away from zero   (Omega enhancement: recomb horizon = 454x, first peak = 5386x)
+
+================================================================================================================
+PART Z -- the SHIELD: zeta conservation on super-horizon scales for the adiabatic Noether dust.
+================================================================================================================
+  [PASS] Z-1  the L82 Noether dust is ADIABATIC: w=0, c_s^2=0 -> delta_p = 0 and the non-adiabatic pressure delta_p_nad = delta_p - c_s^2_bg * delta_rho = 0.  A pressureless charge behaves exactly like CDM, which carries no non-adiabatic stress   (delta_p_nad = 0 for the pressureless Noether dust)
+  [PASS] Z-2  [the shield] on super-horizon scales (k/aH -> 0) with delta_p_nad = 0, zeta_dot -> 0: the comoving curvature perturbation is CONSERVED by causality (Weinberg / separate-universe), INDEPENDENTLY of the scalar pi's kinetic/symplectic microdynamics.  So the k->0 degeneration of Omega cannot alter the observable zeta on the very scales where it is worst   (zeta_dot = 0 super-horizon for the adiabatic mode, regardless of Omega(k))
+  [PASS] Z-3  the curvature perturbation zeta is carried by the HEALTHY Einstein sector (M^2 R gives zeta a standard quadratic kinetic term; the MOND operator is CUBIC (L82) so it does not touch zeta's quadratic action).  The degenerating d.o.f. is the EXTRA scalar pi, not zeta -- pi is sequestered from CMB observables on super-horizon scales exactly as in ghost-condensate/khronometric EFTs   (MOND term cubic -> zeta kinetic term is standard Einstein; pi is the degenerate (sequestered) mode)
+
+================================================================================================================
+PART V -- VERDICT synthesis and the honest residual.
+================================================================================================================
+  [PASS] V-1  [BENIGN synthesis] (i) the degeneration Omega~k^2 is monotone, worst at k->0, and every OBSERVABLE mode has k >= k_H0 so the worst observable case is the present horizon, with all sub-horizon scales progressively better; (ii) it is NOT paired with any instability (G''>=0 => lambda^2<=0 always); (iii) the classical EOM frequency is k-regular (k^2 cancels); (iv) on the super-horizon band where Omega is smallest, zeta is conserved for the adiabatic dust.  => BENIGN for the CMB acoustic peaks and for the low-ell plateau   (confined super-horizon + no instability + k-regular EOM + zeta-conservation shield)
+  [PASS] V-2  [adversarial: could it still be FATAL?] a fatal outcome would require the degeneration to bite at sub-horizon scales (k>k_Hrec) OR to pair with an exponential instability OR for pi to source non-adiabatic zeta super-horizon.  All three are FALSIFIED here: sub-horizon Omega is enhanced >=450x (M-4), the instability branch is empty (G-2), and the dust is adiabatic (Z-1).  No route to fatal survives on the derived quadratic structure   (no sub-horizon bite, no instability, adiabatic dust -> fatal route closed at this order)
+
+  HONEST RESIDUAL (NOT asserted as PASS -- the genuine open edge):
+    * The zeta-conservation shield (Z-2) requires the FULL perturbation to be adiabatic.  L82 shows the
+      Noether DUST alone is adiabatic (delta_p_nad=0).  But the complete theory also carries the khronon/
+      aether n^mu and its own perturbation; a relative (isocurvature) mode between the khronon sector and
+      the dust could in principle source zeta super-horizon and re-expose the small-Omega band at low ell.
+      Proving full-system adiabaticity is astra's next unavoidable calculation (khronon+scalar+dust ADM on
+      an expanding branch) and is OUT OF THIS LANE.  Recorded as UNDECIDED for the lowest multipoles.
+    * The ABSOLUTE strong-coupling cutoff on the marginal (present-horizon) modes needs the cubic/quartic
+      interaction coefficients and the EFT scale M; only the quadratic (kinetic/symplectic) structure is
+      in hand.  This lane establishes RELATIVE benignity + super-horizon confinement + the causal shield,
+      which is what decides the CMB acoustic physics; the absolute low-ell cutoff is not computed here.
+
+
+================================================================================================================
+SUMMARY
+================================================================================================================
+
+  VERDICT: BENIGN for the CMB acoustic physics; UNDECIDED (but plausibly benign) for the lowest multipoles.
+
+  KEY NUMBERS (Planck LCDM background; footing-independent):
+    present horizon        k_H0   = 2.248e-04 /Mpc   (c/H0 = 4448 Mpc)
+    recombination horizon  k_Hrec = 4.788e-03 /Mpc   (k_Hrec/k_H0 = 21.3)
+    first acoustic peak    k_peak ~ 1.650e-02 /Mpc   (ell1 ~ 229, deep sub-horizon)
+    a0 scale (canonical)   k_a0   = 3.214e-05 /Mpc   (k_a0/k_H0 = 0.143, super-horizon)
+    a0 scale (alternate)   k_a0   = 3.872e-05 /Mpc   (k_a0/k_H0 = 0.172, super-horizon)
+    Omega enhancement at:  recomb horizon = 454x , first peak = 5386x  (vs present horizon)
+
+  WHY BENIGN:
+    1. Omega_zeta_pi ~ k^2 is monotone -> worst at k->0 = LARGEST scales.  Every observable mode has
+       k >= k_H0; the acoustic peaks (k ~ 0.0165/Mpc) sit ~5000x away from the degenerate point.
+    2. The degeneration is NOT paired with a dynamical instability: for the exact exponential G,
+       G''(y) >= 0 for all y >= 0, so U_pi_pi U_zz >= 0 and lambda^2 <= 0 ALWAYS -- oscillation or a
+       marginal (y0=0, cosmological) zero-mode, never exponential growth.
+    3. The classical EOM frequency is k-independent (the k^2 cancels between Omega and H_red), so no
+       small-k classical pathology follows from the symplectic collapse.
+    4. On the super-horizon band where Omega is smallest, zeta is conserved for the adiabatic Noether dust
+       (delta_p_nad = 0), and zeta is carried by the healthy Einstein sector -- the degenerate d.o.f. is
+       the extra scalar pi, which is sequestered from CMB observables super-horizon.
+
+  HONEST RESIDUAL: full-system adiabaticity (khronon + dust) and the absolute low-ell EFT cutoff are not
+  established here; they are astra's khronon-ADM calculation.  Confidence: HIGH that the acoustic peaks are
+  unaffected; MODERATE that the lowest multipoles are safe (pending full-system adiabaticity).
+
+================================================================================================================
+L83 COMPLETE: 18/18 checks PASS.   [0.1s]
+================================================================================================================

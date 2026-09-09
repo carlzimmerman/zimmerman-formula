@@ -3230,3 +3230,28 @@ suppressed like the old condensate that failed g04h?
   scales**: the F(Q)Θ Noether dust is the first dark sector in this programme that is simultaneously
   **pressureless (clusters, L82), ghost-free (astra's Dirac chain), and symmetry-protected (L81)**. The
   remaining open item is astra's near-horizon k→0 strong coupling.
+
+## L83 — the near-horizon k→0 strong coupling is BENIGN for the CMB acoustic physics
+
+`L83_near_horizon_health.py` + `.out` (**18 checks, 18 PASS**). astra's principal gate left one open concern:
+the scalar-metric symplectic form Ω_ζπ ∝ k² → 0 as k→0, strong-coupling at the largest scales. This lane
+decides whether it threatens the CMB.
+
+- **⭐ CONFINED SUPER-HORIZON.** Ω(k) ∝ k² is monotone → worst at k→0 = largest scales. Every observable mode
+  has k ≥ k_H0 (present horizon); sub-horizon Ω is enhanced **454×** at the recombination horizon and **~5400×**
+  at the first acoustic peak. The measured scales are nowhere near the collapse.
+- **⭐⭐ THE FATAL BRANCH IS EMPTY.** astra flagged a possible exponential instability if U_ππU_zz < 0. For the
+  exact exponential G, **G''(y) = 2[1+(y−1)e⁻ʸ] ≥ 0 for all y≥0** (verified symbolically + on [0,60]); with
+  U_zz = 4M² > 0, λ² ≤ 0 always → oscillation or a marginal zero-mode, **never exponential growth**.
+- **⭐ k-REGULAR EOM + ζ-CONSERVATION SHIELD.** Both Ω and H_red ∝ k², so k² cancels: ω² is k-independent (no
+  small-k classical pathology). The L82 Noether dust is adiabatic (w=0, c_s²=0 ⟹ δp_nad=0), so ζ̇→0
+  super-horizon regardless of π's microdynamics, and ζ rides the healthy Einstein sector (MOND cubic). The
+  degenerate d.o.f. is the extra scalar π, sequestered from observables super-horizon (as in
+  ghost-condensate/khronometric EFTs). Both a₀ footings: the a₀ scale k_a0 ≈ 0.14–0.17 k_H0 is itself
+  super-horizon today — in the benign band.
+- **⚠️ HONEST RESIDUAL.** The ζ-shield needs full-system adiabaticity; L82 proved the dust alone is adiabatic,
+  but a khronon–dust isocurvature mode could re-expose the small-Ω band at the lowest multipoles. That, plus
+  the absolute EFT cutoff (needs cubic/quartic coefficients), is astra's khronon-ADM calculation.
+- **VERDICT.** HIGH confidence the acoustic peaks are unaffected; MODERATE the lowest multipoles are safe
+  pending full-system adiabaticity. Does not clear the candidate (khronon/aether, vector/tensor, PPN gates
+  remain), but the biggest near-horizon worry is largely defused.
