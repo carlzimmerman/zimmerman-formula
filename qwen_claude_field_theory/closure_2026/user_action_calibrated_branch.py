@@ -31,23 +31,24 @@ def kernel(U):
 def arguments(state,flux,length):
     P,B,v,pp,bp,vp=state
     return (*state,flux,length,*kernel(v*v+length**2*(vp*vp+2*bp*bp*v*v)))
-rows=[]
-for length in (.2,.1):
-    initial=np.array([0.,0.,.02*(.2+np.exp(-.02))/2,.02,-.02,0.])
-    zero=float(ef(*arguments(initial,0.,length)))
-    flux=-zero/(float(ef(*arguments(initial,1.,length)))-zero)
-    def rhs(x,state):
-        arg=arguments(state,flux,length)
-        return np.r_[state[3:],np.linalg.solve(hf(*arg),np.asarray(ff(*arg)).ravel())]
-    for tol in (1e-8,1e-10):
-        sol=solve_ivp(rhs,(0.,.02),initial,rtol=tol,atol=tol*1e-2,dense_output=True)
-        values=sol.sol(np.linspace(0,.02,101)) if sol.success else sol.y
-        energy=[abs(float(ef(*arguments(z,flux,length)))) for z in values.T]
-        # In the unscreened zero-flux approximation this difference vanishes.
-        mismatch=[float(arguments(z,flux,length)[-2]*z[2]-z[3]) for z in values.T]
-        rows.append(dict(xi=length,rtol=tol,success=sol.success,scalar_flux=flux,
-            constraint_max=max(energy),logarithmic_slip_max=float(max(abs(values[0]+values[1]))),
-            scalar_relation_mismatch_max=max(abs(z) for z in mismatch),final_state=sol.y[:,-1].tolist()))
-print(json.dumps(dict(full_theory='OPEN',scope=__doc__,runs=rows,
-    caution='Nonzero conserved scalar flux and finite curved vacuum data differ from calibration assumptions; mismatch is not isolated to xi.'),indent=2))
-raise SystemExit(0 if all(r['success'] for r in rows) else 1)
+if __name__=='__main__':
+    rows=[]
+    for length in (.2,.1):
+        initial=np.array([0.,0.,.02*(.2+np.exp(-.02))/2,.02,-.02,0.])
+        zero=float(ef(*arguments(initial,0.,length)))
+        flux=-zero/(float(ef(*arguments(initial,1.,length)))-zero)
+        def rhs(x,state):
+            arg=arguments(state,flux,length)
+            return np.r_[state[3:],np.linalg.solve(hf(*arg),np.asarray(ff(*arg)).ravel())]
+        for tol in (1e-8,1e-10):
+            sol=solve_ivp(rhs,(0.,.02),initial,rtol=tol,atol=tol*1e-2,dense_output=True)
+            values=sol.sol(np.linspace(0,.02,101)) if sol.success else sol.y
+            energy=[abs(float(ef(*arguments(z,flux,length)))) for z in values.T]
+            # In the unscreened zero-flux approximation this difference vanishes.
+            mismatch=[float(arguments(z,flux,length)[-2]*z[2]-z[3]) for z in values.T]
+            rows.append(dict(xi=length,rtol=tol,success=sol.success,scalar_flux=flux,
+                constraint_max=max(energy),logarithmic_slip_max=float(max(abs(values[0]+values[1]))),
+                scalar_relation_mismatch_max=max(abs(z) for z in mismatch),final_state=sol.y[:,-1].tolist()))
+    print(json.dumps(dict(full_theory='OPEN',scope=__doc__,runs=rows,
+        caution='Nonzero conserved scalar flux and finite curved vacuum data differ from calibration assumptions; mismatch is not isolated to xi.'),indent=2))
+    raise SystemExit(0 if all(r['success'] for r in rows) else 1)
