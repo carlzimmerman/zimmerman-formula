@@ -38,6 +38,9 @@ class FLRWClockFriedmannGateTests(unittest.TestCase):
     def test_expanding_friedmann_witness(self):
         self.assertTrue(self.data["positive_H_witness"])
         self.assertTrue(self.data["finite_positive_cosmic_time_span"])
+        self.assertTrue(self.data["positive_subluminal_clock_scan"])
+        self.assertGreater(self.data["c_s2_min"], 0)
+        self.assertLess(self.data["c_s2_max"], 1)
 
 
 if __name__ == "__main__":

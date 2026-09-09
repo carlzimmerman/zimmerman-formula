@@ -28,6 +28,7 @@ K_chi = sp.simplify(sp.diff(-A * sp.sqrt(1 - sp.symbols("q")**2 / Ld**2), sp.sym
 rho = sp.simplify(2 * chi * K_chi - K)
 p = sp.simplify(K)
 w = sp.simplify(p / rho)
+c_s2 = sp.simplify((1 - z**2) / (3 - z**2))
 
 current_shape = sp.simplify(z ** sp.Rational(3, 2) / sp.sqrt(1 - z**2))
 dcurrent_dz = sp.simplify(sp.diff(current_shape, z))
@@ -77,10 +78,12 @@ for aval in a_values:
     rhoval = float(rho.subs({A: A_value, Ld: Ld_value, z: zval}).evalf())
     pval = float(p.subs({A: A_value, Ld: Ld_value, z: zval}).evalf())
     wval = pval / rhoval
-    rows.append({"a": float(aval), "z": zval, "rho": rhoval, "p": pval, "w": wval, "rho_a3": rhoval * aval**3})
+    csval = float(c_s2.subs(z, zval).evalf())
+    rows.append({"a": float(aval), "z": zval, "rho": rhoval, "p": pval, "w": wval, "c_s2": csval, "rho_a3": rhoval * aval**3})
 
 rho_values = np.array([row["rho"] for row in rows])
 w_values = np.array([row["w"] for row in rows])
+c_s2_values = np.array([row["c_s2"] for row in rows])
 rho_a3 = np.array([row["rho_a3"] for row in rows])
 
 # Positive expanding Friedmann witness from the same minisuperspace action.
@@ -103,6 +106,7 @@ results = {
     "rho": str(rho),
     "pressure": str(p),
     "equation_of_state": str(w),
+    "clock_sound_speed_squared": str(c_s2),
     "current_shape": str(current_shape),
     "dcurrent_dz": str(dcurrent_dz),
     "dz_dln_a": str(dz_dln_a),
@@ -120,6 +124,9 @@ results = {
     "late_vacuum_rho_relative_spread": late_rho_spread,
     "w_min": float(np.min(w_values)),
     "w_max": float(np.max(w_values)),
+    "c_s2_min": float(np.min(c_s2_values)),
+    "c_s2_max": float(np.max(c_s2_values)),
+    "positive_subluminal_clock_scan": bool(np.all((c_s2_values > 0) & (c_s2_values < 1))),
     "Friedmann_equation": "3 M_P^2 H^2 = Lambda M_P^2 + rho_clock",
     "M_P_value": MP_value,
     "Lambda_value": Lambda_value,
@@ -141,6 +148,7 @@ assert results["lapse_variation_matches_rho"]
 assert results["scale_variation_matches_pressure"]
 assert results["positive_H_witness"]
 assert results["finite_positive_cosmic_time_span"]
+assert results["positive_subluminal_clock_scan"]
 assert -1 < results["w_min"] < results["w_max"] < 0
 assert early_rho_a3_spread < 0.01
 assert late_rho_spread < 0.01

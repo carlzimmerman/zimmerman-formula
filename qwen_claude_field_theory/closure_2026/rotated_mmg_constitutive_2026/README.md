@@ -99,7 +99,20 @@ The minisuperspace Friedmann gate goes one step further: it derives
 \(\rho=A(1+z^2)/\sqrt{1-z^2}\), \(p=-A\sqrt{1-z^2}\), and
 \(w=-(1-z^2)/(1+z^2)\), verifies the continuity equation exactly, and finds a
 positive-\(H\) expanding witness.  The same branch is dust-like at early \(a\)
-and vacuum-like at late \(a\); metric perturbation/Dirac closure remains open.
+and vacuum-like at late \(a\), with \(c_s^2=(1-z^2)/(3-z^2)\in(0,1/3)\) on
+the scan; metric perturbation/Dirac closure remains open.
+
+`RMMGFormal.lean` now also kernel-checks the exact algebraic identities
+
+\[
+\rho+p=2Az^2/s,\qquad
+0<\frac{1-z^2}{3-z^2}<1\quad(0<z<1),
+\]
+
+and the implication that a shift-symmetric clock on an expanding branch
+obeys \(H\ne0\Rightarrow K_X=0\).  These are formal lemmas for the finite
+DBI/FLRW branch; they do not formalize the unresolved covariant metric
+variation or its full constraint algebra.
 
 The homogeneous Dirac gate derives (p_N=0), its secondary Hamiltonian
 constraint (C=0), a rank-zero first-class bracket pair, and one physical

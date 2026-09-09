@@ -280,16 +280,18 @@ p=K=-A\sqrt{1-z^2},\qquad
 w=-\frac{1-z^2}{1+z^2}.
 \]
 
-Using the conserved-current relation to eliminate (dz/d\ln a), the
-continuity residual (d\rho/d\ln a+3(\rho+p)) simplifies exactly to zero in
+Using the conserved-current relation to eliminate \(dz/d\ln a\), the
+continuity residual \(d\rho/d\ln a+3(\rho+p)\) simplifies exactly to zero in
 `flrw_clock_friedmann_gate.py`.  A deterministic 96-point branch over
-\(a\in[0.02,100]\) has \(\rho a^3\) relative spread (1.53\times10^{-4}) in
-the early dust regime and \(\rho\) spread (3.11\times10^{-6}) in the late
-vacuum regime.  Adding positive dimensionless \(\Omega_\Lambda=0.7\) and
-\(\Omega_{\rm clock}=0.3\) produces (H>0) everywhere and a finite positive
-cosmic-time interval.  This is a concrete expanding-background witness,
-and the differentiated Friedmann equation gives the Raychaudhuri identity
-(2M_P^2\dot H+\rho+p=0) exactly.  It is not yet the full metric perturbation
+\(a\in[0.02,100]\) has \(\rho a^3\) relative spread
+\(1.53\times10^{-4}\) in the early dust regime and \(\rho\) spread
+\(3.11\times10^{-6}\) in the late vacuum regime.  Substitution into the
+same-action equation \(3M_P^2H^2=\Lambda M_P^2+\rho\), with \(M_P=1\) and
+\(\Lambda=0.1\), produces \(H>0\) everywhere and a finite positive
+cosmic-time interval.  The differentiated Friedmann equation gives the
+Raychaudhuri identity \(2M_P^2\dot H+\rho+p=0\) exactly.  The same samples
+have \(c_s^2=(1-z^2)/(3-z^2)\in(0,1/3)\), so the homogeneous clock sector is
+positive-gradient and subluminal.  It is not yet the full metric perturbation
 or nonlinear Friedmann closure.
 
 ## Homogeneous Dirac count
@@ -327,6 +329,9 @@ are also uncomputed.  The scientifically defensible label is therefore
 the conditional ADM count without axioms beyond Lean's imported core.  The
 minimal-Mathlib `RMMGFormal.lean` independently evaluates the explicit local
 four-by-four bracket determinant and the homogeneous zero determinant; it is
-compiled by `run_lean_formal.py` with exit status 0.  These are formal
+compiled by `run_lean_formal.py` with exit status 0.  The same file now
+kernel-checks the DBI identities \(\rho+p=2Az^2/s\),
+\(0<(1-z^2)/(3-z^2)<1\) for \(0<z<1\), and the expanding
+shift-symmetric implication \(H\ne0\Rightarrow K_X=0\).  These are formal
 witnesses for the computed finite gates, not a formalization of the unresolved
-nonlinear field theory.
+nonlinear field theory or a proof that the candidate is a law of nature.
