@@ -1,0 +1,376 @@
+======================================================================================================================
+L38 -- Type Ia supernovae re-examined for this framework: the a0(z) pipeline, SN-only, end to end
+======================================================================================================================
+  a0(z)/a0(0) = (1+z)^{1.5(1+w0+wa)} exp[-1.5 wa z/(1+z)]   -- EXACT closed form, never truncated
+  footings: canonical (rho_Lambda) = 9.3619e-11 m s^-2 / alt (rho_total) = 1.1279e-10 m s^-2   (ratio 1.2048 = 1/sqrt(Omega_Lambda))
+  host-mass-step lever: CLOSED (two null tests on the record); not re-opened anywhere below
+
+======================================================================================================================
+S1 -- data
+======================================================================================================================
+  Pantheon+ release table: 1701 light curves (real_research/data_cache/PantheonPlusSH0ES.dat)
+    byte-identical copies in the repo: 3 (real_research/data_cache/PantheonPlusSH0ES.dat, prep_2026/sne_lambda/pantheonplus_full.dat, qwen_claude_field_theory/closure_2026/supernova_reaudit_2026/release.dat)
+  official STAT+SYS covariance 1701x1701 (qwen_claude_field_theory/closure_2026/supernova_reaudit_2026/PantheonPlusSH0ES_STAT_SYS.cov.gz), max asymmetry 3.0e-08 (release rounding), symmetrised
+  cosmology cut zHD > 0.01 -> N = 1590, z in [0.0102, 2.2614]
+  C^-1 finite, condition number 2.977e+03; magnitude offset marginalised analytically
+
+======================================================================================================================
+A -- CONTROLS (nothing below is trusted unless these pass)
+======================================================================================================================
+  [PASS] A1 the fast distance integrator matches an independent 48-node Gauss-Legendre quadrature (the convention used by the repo's own full-covariance audit) to better than 1e-4 mag on both a LCDM and a DESI-CPL cosmology   (max |dmu| = 4.14e-06 (LCDM), 5.67e-06 (CPL))
+  flat LCDM, SN only: Omega_m = 0.3316 +/- 0.0182 (chi2 = 1402.920 / 1590 SNe)
+  published            Omega_m = 0.334 +/- 0.018  (Brout+2022, Pantheon+ SN-only)
+  [PASS] A2 the fitter reproduces the published Pantheon+ SN-only flat-LCDM constraint to well inside its quoted error   (pull 0.09 sigma, sigma 0.0182 vs 0.018)
+  injection (w0,wa) = (-0.85, -0.6);  12 synthetic realisations drawn from the real STAT+SYS covariance
+    recovered w0 median -0.818 (spread 0.134); wa median -1.083 (spread 1.509) -- SN-only, so very wide
+    COVERAGE of the truth: 9/12 inside the 68% region (dchi2 <= 2.30), 12/12 inside 95% (dchi2 <= 5.99); median dchi2 at the truth = 1.57
+  [PASS] A3 the cosmology fitter recovers injected (w0, wa) from synthetic supernova data generated with the real STAT+SYS covariance -- the profile-likelihood region covers the truth at the advertised rate   (68% coverage 9/12, 95% coverage 12/12)
+  repo-canonical DESI-DR2-ish (w0,wa) = (-0.83,-0.75): bump peak z = 0.293 at 1.0319 (+3.2%), a0(3)/a0(0) = 0.6961
+  [PASS] A4 the exact a0(z) law reproduces its own recorded behaviour -- a bump near z ~ 0.29 and 0.70 at z = 3 for the repo's DESI-DR2 parameters   (z_bump 0.293, ratio(3) 0.6961)
+  O(z^2) expansion:  residual / z^3 bounded by 0.649 over z <= 0.1 -> the claimed order holds
+  the DOCUMENTED failure mode (linear, wa dropped) is off by up to 0.50 in the ratio at z = 0.5-1.5 -- i.e. it turns a decline into a +45% rise
+  [PASS] A5 the low-redshift expansion matches the exact law to the order claimed (O(z^2)), AND the documented manufactured-win truncation (linear, wa dropped) is reproduced as a large ERROR rather than being silently adopted   (O(z^3) coefficient bound 0.65; truncation error 0.50)
+  a0(2.5)/a0(0) by DESI DR2 combination:  0.8217, DESY5 0.7956, Union3 0.7752
+  [PASS] A6 PAPER7's stated a0(2.5)/a0(0) = 0.82 is reproduced exactly, and the (w0,wa) fork behind it is identified as DESI DR2 + CMB + Pantheon+   (DESI DR2 + CMB + Pantheon+ -> 0.8217)
+
+======================================================================================================================
+B -- TARGET 1: does the REGISTERED 'flat 0.00 dex at z ~ 2.5' survive evolving dark energy?
+======================================================================================================================
+  the registered statistic (PAPER7, DOI 10.5281/zenodo.22563139; STANDING.md; README):
+    Delta_BTFR frozen against 0.00 dex (framework) and +0.33 dex (LCDM-native), one clean point at
+    +/-0.13 dex, quoted as 20:1 discrimination.
+
+  B1 -- SIGN CONVENTION.  In deep MOND V_f^4 = G a0 M_b exactly, so a change in a0 moves the zero
+        point.  Two conventions are in circulation and PAPER7 uses BOTH, in the same paragraph:
+  mass-side   Delta = log10 M_b - 4 log10 V_f - C0 = -log10[scale(z)/scale(0)]  ->  framework +0.085,  LCDM-native -0.328
+  vel.-side   Delta = 4 log10 V_f - log10 M_b - C0' = +log10[scale(z)/scale(0)]  ->  framework -0.085,  LCDM-native +0.328
+  PAPER7's PROSE defines the mass-side form; its DISPLAYED numbers (0.00 / -0.09 / +0.33) are the
+  velocity-side one.  The SEPARATION is identical either way, so the 20:1 is unaffected, but an
+  observer who applies the prose formula and compares to '+0.33' would score the LCDM hypothesis
+  with the wrong sign.  This is a documentation hazard in a frozen pre-registration, not a physics
+  error; it should be fixed by an append-only amendment, not by editing the frozen text.
+  [PASS] B1 the two Delta_BTFR sign conventions give the SAME separation between the two hypotheses (so the 20:1 is convention-independent), while the registered central values are quoted in the velocity-side convention and the registered FORMULA is the mass-side one   (separation 0.414 dex both ways)
+
+  B2 -- the framework's OWN z = 2.5 prediction with the full (w0, wa) covariance propagated.
+        (all values below in the velocity-side convention, to match the registered numbers)
+  (w0, wa) source                         a0(2.5)/a0(0)  Delta_fw [dex]  sigma [dex]  provenance
+  DESI DR2 + CMB + Pantheon+                     0.8217          -0.085        0.045   DR2 paper
+  DESI DR2 + CMB + DESY5                         0.7956          -0.099        0.044   DR2 paper
+  DESI DR2 + CMB + Union3                        0.7752          -0.111        0.058   DR2 paper
+  LCDM exactly (w = -1)                          1.0000           0.000           --   the kill limit
+  repo canonical DR2-ish                         0.7510          -0.124           --   repo
+  DESI BAO+CMB only (SN-free)                    0.7393          -0.131           --   SN-free
+  age-corrected BAO+CMB+P+ (Son25)               0.7782          -0.109           --   SN-syst fork
+  age-corrected BAO+CMB+DES5Y (Son25)            0.7450          -0.128           --   SN-syst fork
+
+  EVERY evolving-dark-energy fork on the record puts the framework's z = 2.5 zero point at
+    Delta_fw = -0.085 to -0.131 dex, with a within-fork 1-sigma of ~0.045 dex.
+    The registered central value 0.00 is recovered ONLY in the w = -1 limit.
+    |Delta_fw| is 66-101% of the registered total measurement
+    budget of 0.13 dex -- i.e. it is NOT negligible against the measurement it is registered against.
+  [FAIL] B2 the registered 'flat 0.00 dex' central value is UNCHANGED once evolving dark energy is propagated through the exact law with the full (w0, wa) covariance   (instead Delta_fw = -0.085 to -0.131 dex +/- 0.045; the registered 0.00 holds only if w = -1)
+
+  B3 -- the CROSS-TERM nobody has propagated: the LCDM-native rival's own scale contains E(z),
+        so the SAME (w0, wa) that move the framework also move the rival.  a0z_lcdm_native_
+        hypothesis_2026.py hardcodes E(z) at w = -1.
+  LCDM-native rise at z = 2.5:  w = -1 -> 2.126 (+0.328 dex);  DESI DR2+P+ background -> 2.104 (+0.323 dex)
+  the cross-term moves the RIVAL by only 0.0046 dex -- negligible against 0.13.  (The concentration-mass relation's own w-dependence via the growth history is NOT
+   included; it is a second-order effect on c(M,z) and is flagged, not computed, here.)
+  [PASS] B3 the evolving-dark-energy cross-term in the LCDM-native rival is negligible against the registered 0.13 dex budget, so the +0.33 side of the registered statistic does NOT need revising   (rival shifts -0.0046 dex; reproduces the registered +0.33)
+
+  B4 -- what the correction does to the registered 20:1.
+  as registered (0.00 vs +0.33, sigma 0.13):                   separation 0.328 dex -> 24:1
+  corrected     (-0.085 vs +0.32, sigma sqrt(0.13^2+0.045^2)):  separation 0.408 dex -> 82:1
+  so the correction cuts BOTH ways and both must be reported: the registered CENTRAL VALUE is wrong
+  under every evolving-DE fork (it is a band, not a point), while the registered DISCRIMINATION
+  against the LCDM-native rival is if anything better (82:1 rather than 24:1) because
+  the two predictions move apart.  The operational danger is the paper's own rule that 'a result
+  inconsistent with both values counts against both': a true framework universe with DESI dark
+  energy delivers -0.085 to -0.131 dex, and a measurement landing near -0.13 dex is
+  1.0 sigma from the registered 0.00 -- inside tolerance, but a deeper fork plus a 1-sigma downward
+  MEASUREMENT fluctuation of 0.13 dex reaches -0.26 dex, which that rule would score AGAINST the
+  framework although it is the framework's own prediction. The registered value needs an
+  append-only amendment stating the band, not a point.
+  [FAIL] B4 the registered statistic can be applied as frozen without any risk of scoring the framework's OWN evolving-dark-energy prediction as a falsification of the framework   (deepest fork -0.131 dex + 1 sigma 0.045 = 0.176 dex vs the 0.13 dex budget)
+
+  B5 -- WHERE THE BARE '0.00' IS ON THE RECORD (live grep, so this check is verifiable and can rot).
+  occurrences of the frozen pair (0.00 vs +0.33): 10 in 6 documents
+    QUALIFIED with the DESI value (-0.09): 2  -> STANDING.md:49, qwen_claude_field_theory/papers_2026/PAPER7_a0z_decisive_measurement_2026.tex:16
+    BARE 0.00, no dark-energy caveat:      8  -> README.md:60, README.md:162, STANDING.md:18, qwen_claude_field_theory/papers_2026/PAPER7_a0z_decisive_measurement_2026.tex:10, qwen_claude_field_theory/papers_2026/PAPER7_a0z_decisive_measurement_2026.tex:43, qwen_claude_field_theory/papers_2026/mnras_submission_2026/COVER_LETTER.md:13, qwen_claude_field_theory/closure_2026/TEN_HARDEST_QUESTIONS_FOR_THE_LEAD_2026-09-04.md:10, prep_2026/a0z_crossscale/FRAMEWORK_VS_LCDM_TEST_2026.md:49
+    and NOWHERE, in any of them, is there an uncertainty on the framework's own value.
+  [FAIL] B5 every place the registered pair (0.00 vs +0.33) appears on the record carries the evolving-dark-energy value alongside it   (8 of 10 occurrences quote a bare 0.00; the -0.09 survives in 2 of them and no occurrence anywhere carries an error bar)
+
+  B6 -- the band an append-only amendment should register, combining the three DESI DR2 combinations
+        with equal weight (the combination choice is itself a systematic, so it is sampled, not picked):
+    Delta_BTFR (framework, velocity-side convention) at z = 2.5 = -0.097 [-0.148, -0.049] dex (68%), on DESI DR2 evolving dark energy
+                                                                =  0.000 exactly, if w = -1
+    Delta_BTFR (LCDM-native, Dutton-Maccio 2014)               = +0.323 dex
+    registered measurement budget 0.13 dex; the two hypotheses are 0.420 dex apart
+    RECOMMENDED (not applied here -- frozen files are untouchable and amendments are the user's call):
+      an append-only amendment registering the framework side as a BAND, 0.00 (w = -1) to -0.148 dex
+      (DESI DR2 1-sigma low), with the decision rule stated over the band rather than a point.
+
+======================================================================================================================
+C -- TARGET 2: the SN-ONLY pipeline.  (w0, wa) from Pantheon+ alone, propagated through the exact law
+======================================================================================================================
+  grid 182,628 points over Omega_m in [0.02,0.72], w0 in [-2.6,0.2], wa in [-7.0,4.0] (flat priors, box stated)
+  SN-only best fit: Omega_m = 0.22, w0 = -0.85, wa = +0.50, chi2 = 1402.397
+  flat LCDM (w0 = -1, wa = 0):                              chi2 = 1402.920
+    -> Delta chi2 = 0.523 for TWO extra parameters.  Expected by chance under LCDM: 2.0.
+    -> p = 0.77 (2 d.o.f.) = 0.29 sigma.  Supernovae ALONE see no dark-energy evolution;
+       the improvement is SMALLER than the 2.0 expected from adding two free parameters to noise.
+
+  C2 -- the SN-ONLY a0(z) band, canonical (rho_Lambda) footing.  Two summaries, both reported:
+      z |       profile dchi2<=1 |           marginal 68% |             marginal 95% |  median
+   0.25 | [   0.962,    1.149] | [   0.910,    1.083] | [    0.837,     1.139] |   0.996
+   0.50 | [   0.885,    1.324] | [   0.740,    1.180] | [    0.574,     1.302] |   0.963
+   1.00 | [   0.707,    1.760] | [   0.440,    1.406] | [    0.214,     1.705] |   0.883
+   1.50 | [   0.558,    2.288] | [   0.258,    1.653] | [    0.076,     2.197] |   0.806
+   2.00 | [   0.446,    2.890] | [   0.155,    1.920] | [    0.029,     2.869] |   0.726
+   2.50 | [   0.362,    3.588] | [   0.097,    2.190] | [    0.012,     3.531] |   0.672
+   3.00 | [   0.299,    4.368] | [   0.063,    2.476] | [    0.005,     4.229] |   0.630
+  prior box: flat on Omega_m in [0.02,0.72], w0 in [-2.6,0.2], wa in [-7.0,4.0].  The marginal band is PRIOR-DOMINATED (see C3b).
+
+  prior sensitivity (halved prior box, w0 in [-1.6,-0.2], wa in [-3,2]):
+    z = 1.0: 68% [0.621, 1.458] median 0.990   vs wide box [0.440, 1.406] median 0.883
+    z = 2.5: 68% [0.256, 2.341] median 0.922   vs wide box [0.097, 2.190] median 0.672
+  the band moves by more than its own width when the prior box is halved -> the SN-only marginal band
+  is a statement about the PRIOR, not about the supernovae.  The profile band is the honest one.
+
+  C2b -- the SAME band on the ALT (rho_total) footing, where a0(z) is proportional to H(z), plus the
+         ABSOLUTE a0(z) on both footings.  (The RATIO is footing-independent WITHIN a branch; the two
+         branches are different functions, which is what section D measures.)
+      z |   canonical ratio, prof 1s |     alt ratio, prof 1s |   a0(z) canonical [m/s^2] |     a0(z) alt [m/s^2]
+   0.25 | [      0.962,       1.149] | [    1.117,     1.233] | [ 9.00e-11,  1.08e-10] | [1.26e-10, 1.39e-10]
+   0.50 | [      0.885,       1.324] | [    1.265,     1.504] | [ 8.29e-11,  1.24e-10] | [1.43e-10, 1.70e-10]
+   1.00 | [      0.707,       1.760] | [    1.692,     2.155] | [ 6.62e-11,  1.65e-10] | [1.91e-10, 2.43e-10]
+   1.50 | [      0.558,       2.288] | [    2.266,     2.917] | [ 5.22e-11,  2.14e-10] | [2.56e-10, 3.29e-10]
+   2.00 | [      0.446,       2.890] | [    2.940,     3.772] | [ 4.17e-11,  2.71e-10] | [3.32e-10, 4.25e-10]
+   2.50 | [      0.362,       3.588] | [    3.687,     4.725] | [ 3.39e-11,  3.36e-10] | [4.16e-10, 5.33e-10]
+   3.00 | [      0.299,       4.368] | [    4.497,     5.764] | [ 2.80e-11,  4.09e-10] | [5.07e-10, 6.50e-10]
+
+  C2c -- the SN-ONLY band against the BAO+CMB-driven values the record actually uses.
+      z     SN-only (this lane, prof 1s)     DESI DR2+CMB+P+ (1s, propagated)   repo record (DR1 chains)
+   1.00                   [0.707, 1.760]                 0.989 [0.957, 1.022]                         --
+   2.00                   [0.446, 2.890]                 0.874 [0.807, 0.946]                         --
+   2.50                   [0.362, 3.588]                 0.822 [0.742, 0.911]                         --
+   3.00                   [0.299, 4.368]                 0.775 [0.684, 0.878]        0.710 [0.594,0.833]
+  the SN-only band is 10-40x wider than the band the record quotes.  The record's band is a BAO+CMB
+  band that supernovae only help to close; it is not a supernova measurement of a0(z), and this lane
+  finds no way to make it one.
+
+  [FAIL] C3a supernovae ALONE can distinguish the framework's a0(z) from a constant, on the CANONICAL (rho_Lambda) footing   (Delta chi2 = 0.52 for 2 parameters (77% probability by chance); the SN-only 1-sigma profile band at z = 2.5 is [0.36, 3.59], width 3.23, and contains 1.000)
+  [PASS] C3b the SAME question on the ALT (rho_total) footing -- and here the answer FLIPS: because that branch says a0 is proportional to H(z), the supernovae pin it directly and to a few per cent   (SN-only profile 1-sigma a0(z)/a0(0) = [1.69, 2.15] at z = 1 and [3.69, 4.72] at z = 2.5, both excluding a constant by a wide margin)
+  Both footings, plainly, because the difference is the whole point: on the canonical footing the
+  supernovae say nothing about a0(z), because the ratio depends only on the dark-energy sector they
+  barely constrain.  On the alt footing they say a great deal -- but only because a0 proportional to
+  H(z) is the Hubble diagram itself, so the 'prediction' carries no content the expansion history did
+  not already have.  The alt footing converts supernovae from a spectator into a precision predictor,
+  and section D asks whether the galaxies agree.
+
+  C4 -- where the record's constraint actually comes from.  Add ONLY a CMB-like matter-density prior
+        (Omega_m = 0.315 +/- 0.007) to the same supernovae:
+  SN + Om prior best fit: w0 = -0.95, wa = -0.12; Delta chi2 vs w = -1 is 0.66 for 2 parameters
+    z = 1.0: profile 1-sigma a0(z)/a0(0) in [0.907, 1.115]  (SN-only was [0.707, 1.760])
+    z = 2.5: profile 1-sigma a0(z)/a0(0) in [0.654, 1.354]  (SN-only was [0.362, 3.588])
+    z = 3.0: profile 1-sigma a0(z)/a0(0) in [0.593, 1.430]  (SN-only was [0.299, 4.368])
+  even with the matter density pinned to CMB precision the supernovae do not exclude a constant a0.
+  The framework's a0(z) departure on the record is inherited from DESI's BAO geometry combined with
+  the CMB, NOT from supernovae; the SNe contribute by breaking the (Om, w0, wa) degeneracy, not by
+  detecting evolution themselves.  Stated against interest: this makes the whole distinctive
+  prediction hostage to a BAO+CMB preference that supernovae, on their own, do not corroborate.
+
+======================================================================================================================
+D -- TARGET 3: the rho_Lambda / rho_total footing fork inside the supernova redshift range
+======================================================================================================================
+  The headline equation a0 = kappa c sqrt(G rho) is ambiguous in rho.  The two readings are NOT two
+  normalisations of one curve -- they are two DIFFERENT functions of redshift:
+  z = 0:  a0 = 9.3619e-11 (rho_Lambda) vs 1.1279e-10 m/s^2 (rho_total) -- a fixed 0.0809 dex offset
+  z > 0:  the canonical branch is bump-then-decline; the alt branch is a0 proportional to H(z), a
+          monotone rise.  The separation grows without limit.
+
+      z |  canonical a0(z)/a0(0) |   alt a0(z)/a0(0) |  separation [dex]
+   0.33 |                 1.0354 |            1.2147 |             0.069
+   0.50 |                 1.0319 |            1.3389 |             0.113
+   0.90 |                 0.9996 |            1.6867 |             0.227
+   1.00 |                 0.9889 |            1.7860 |             0.257
+   1.44 |                 0.9381 |            2.2757 |             0.385
+   1.68 |                 0.9100 |            2.5750 |             0.452
+   2.00 |                 0.8739 |            3.0047 |             0.536
+   2.50 |                 0.8217 |            3.7374 |             0.658
+   3.00 |                 0.7750 |            4.5356 |             0.767
+  (evaluated on DESI DR2 + CMB + Pantheon+; on w = -1 the canonical column is exactly 1.000 and the
+   separation is log10 E(z), 0.253 dex at z = 1 -- the fork is not a dark-energy artefact.)
+
+  D2 -- can the supernova-era a0 measurements already in the repo separate the two branches?
+
+  MUSE-DARK III (Ciocan et al. 2026, A&A 709 L16): 79 galaxies, 0.33 < z < 1.44, a0(z) = a0(0)+a1 z,
+    a0(0) = 1.00 +/- 0.04, a1 = +1.59 (+0.11/-0.10) x 1e-10, a0(z~1) = 2.38 (+0.12/-0.10) x 1e-10,
+    intrinsic scatter 0.17 dex.  The authors state reconciliation to a constant a0 would need stellar
+    masses larger by +0.20 to +0.45 dex, which they say is NOT supported by their consistency checks.
+    at z = 1 the two branches predict 0.989 and 1.786, a separation of 0.257 dex.
+    MUSE's own formal error on a0(z~1)/a0(0) is 0.027 dex (including its a0(0) error) -- 10x smaller than
+    the separation, so on FORMAL errors the branches are separable and BOTH are rejected (the data sit
+    at 0.377 dex, above both).  But in deep MOND a0 = V^4/(G M_b), so d log a0 =
+    -d log M_b exactly: the authors' own disowned-but-required M/L offset of 0.20-0.45 dex
+    propagates 1:1 and is 0.8-1.8x the branch separation.
+    Adding the quoted 0.17 dex intrinsic scatter in quadrature, the systematic floor at z = 1 is
+    0.26-0.48 dex against a 0.26 dex separation.
+
+  MSA-3D (NIRSpec, this repo's inversion; 23 galaxies, 0.58 < z < 1.68): the raw a0-trend +2.1 splits
+    into +1.13 pure acceleration-selection and +1.00 from f_DM; controlling for g_obs the genuine
+    trend is +0.91 [+0.05, +1.63] per unit z in units of 1e-10, ~1.1 sigma from flat.
+    over its own 0.58 < z < 1.68 baseline the branches predict fractional slopes -0.10 (canonical)
+    and +0.76 (alt) per unit z: a 0.86 separation against MSA-3D's controlled
+    uncertainty of +/-0.79 -> 1.1 sigma.
+
+  [FAIL] D2 the supernova-era a0 measurements already in the repo (MUSE-DARK III, MSA-3D) can separate the rho_Lambda footing from the rho_total footing   (MUSE systematic floor 0.26-0.48 dex vs a 0.26 dex separation; MSA-3D 1.1 sigma on the slope. Formal errors say yes, the stated systematics say no.)
+  Direction stated: this is a FAIL on the systematics, not on the physics.  The branch separation at
+  z = 1 is large (a factor 1.8); it is the a0 = V^4/(G M_b) readout that hands the stellar-mass
+  systematic straight into the answer at 1:1.  A gas-dominated, rotation-dominated deep-MOND target
+  with an independent gas mass -- i.e. exactly the z ~ 2.5 object already pre-registered -- separates
+  the branches by 0.66 dex, five times the registered 0.13 dex budget.  The footing fork is the
+  EASIEST thing that measurement decides, and it is not what the pre-registration scores.
+
+  D3 -- WHICH WAY DOES THE SUPERNOVA-ERA ARCHIVE LEAN?  'Cannot separate' is not 'says nothing', so
+        the direction is reported -- but it MUST be reported over the whole archive, not over the two
+        measurements the lane brief named.  A first pass here used only the two SLOPE measurements and
+        produced a clean lean toward the rejected footing.  That was one-sided and is withdrawn: the
+        repo's own committed placement script already puts SIX points on this fork, and the RATIO
+        points go the other way.  Corrected version below.
+  point                                       currency  sigma from canonical  sigma from alt            nearer
+  MSA-3D selection-corrected  z 0.58-1.68        slope                  1.45            0.32               alt
+  MUSE-DARK III / Ciocan     z 0.33-1.44         slope                  4.10            1.50               alt
+  MUSE-DARK II / Jeanneau    z ~ 0.9             ratio                  0.00            1.10    canonical/flat
+  Ubler+17 KMOS3D            z ~ 0.9             ratio                  0.79            0.48               alt
+  Ubler+17 KMOS3D            z ~ 2.3             ratio                  0.68            1.05    canonical/flat
+  Amvrosiadis+25 DSFG        z ~ 2.4             ratio                  0.79            1.40    canonical/flat
+  (all six placements verbatim from the repo's own prep_2026/a0z_crossscale/highz_a0z_fork_placement_2026.py,
+   re-run 2026-09-08, exit 0.  Its own verdict on every one of them: UNDERPOWERED, excludes no branch.)
+  tally: 3 nearer the alt (rho_total) branch, 3 nearer canonical/flat; every point is below 1.5 sigma except Ciocan's slope on inflated systematics (4.1 sigma from canonical).
+  [FAIL] D3 the supernova-era a0 archive leans consistently toward ONE footing, so the fork can at least be given a direction   (it does not: 3 of 6 points sit nearer the alt branch and 3 nearer canonical, and the split is BY MEASUREMENT CURRENCY -- both SLOPE points lean alt, and the ratio points are 3-1 the other way)
+  What that pattern means, stated carefully and not over-read: a genuine a0(z) would move slope and
+  ratio estimators together.  A redshift-dependent SYSTEMATIC in the slope estimators -- pressure
+  support, beam smearing, or an M/L drift, all of which grow with z and all of which the systematics-
+  floor script already prices -- would move the slopes and leave the ratios alone.  The observed split
+  is the second pattern's signature, not the first's.  But every point is under 1.5 sigma, so this is
+  an OBSERVATION about the archive's shape and not a measurement of anything.  The two slope points the
+  lane brief named do lean toward the branch the record rejects (Ciocan 1.5 vs 4.1 sigma, MSA-3D 0.32
+  vs 1.45 sigma); the repo's MUSE confrontation document already records the SIGN match and calls the
+  rejected branch an undershoot.  Nothing here is new evidence for the rho_total footing, which the
+  coefficient-footing audit rejects on independent z = 0 grounds.
+
+  D4 -- the CONSTRUCTIVE consequence: where the fork becomes decidable with today's systematics.
+      z   branch separation [dex]   TODAY coherent floor [dex]   FUTURE floor [dex]   decidable?
+    0.5                     0.113                        0.215                0.141           no
+    1.0                     0.257                        0.253                0.160           no
+    2.0                     0.536                        0.315                0.197  yes, future
+    3.0                     0.767                        0.365                0.231    YES today
+  (coherent, non-averaging floor for a gas-dominated deep-MOND dwarf, read live from the repo's own
+   prep_2026/a0z_crossscale/highz_systematics_floor_results.json; 'decidable' = separation > 2x floor)
+  [PASS] D4 the rho_Lambda / rho_total footing fork is decidable somewhere inside the supernova redshift range with TODAY's coherent systematic floor   (yes, at z >= 3.0: the branches are 0.77 dex apart against a 0.36 dex coherent floor)
+  This is the lane's one constructive output: the supernovae give the alt branch a sharp, few-per-cent
+  prediction (C3b), the branches separate by 0.54-0.77 dex at z = 2-3, and that exceeds twice the
+  repo's own coherent floor at z = 3 (and twice the FUTURE floor already at z = 2).  The SAME z ~ 2.5
+  object already pre-registered for the 0.00-vs-+0.33 test settles the internal footing fork as a free
+  by-product: 0.66 dex of separation against the registered 0.13 dex budget (5x), or against the
+  generic uncurated-dwarf coherent floor of ~0.34 dex (2x).  Worth adding to the pre-registration's
+  stated deliverables by amendment -- it costs no extra observing time.
+
+======================================================================================================================
+E -- TARGET 4: the gravitational-lensing signal in supernova Hubble residuals
+======================================================================================================================
+  In this framework there are no dark haloes: the lensing convergence toward a supernova is sourced by
+  baryons plus the kernel.  Pantheon+ models the lensing scatter as sigma_lens = A x 0.055 z mag with
+  A = 1 (Jonsson et al. 2010).  If A is measurable, the mass distribution is probed on Mpc scales.
+  error budget decomposition (medians): the non-fit, non-peculiar-velocity variance is 0.0290 mag^2
+    = an intrinsic/bias-correction floor of ~0.170 mag; the lensing term (0.055 z)^2 is 0.00179 mag^2 at z > 0.7
+    z in [0.1,0.4): N =  652, lensing is  0.46% of the per-SN variance
+    z in [0.4,0.7): N =  233, lensing is  1.58% of the per-SN variance
+    z in [0.7,1.2): N =   56, lensing is  2.66% of the per-SN variance
+    z in [1.2,2.3): N =   19, lensing is  5.59% of the per-SN variance
+  profile likelihood on the lensing amplitude A (intrinsic floor free, 960 SNe at z > 0.1,
+    diagonal errors -- the covariance is a model for the MEAN, the scatter test is per-SN):
+    A_hat = 0.00 (at the physical boundary A >= 0);  1-sigma upper 0.52;  95% upper 1.02.
+    Nominal A = 1 is disfavoured by Delta chi2 = 3.94; A = 0 by Delta chi2 = 0.00 (0.0 sigma).
+    i.e. Pantheon+ does not DETECT its own assumed lensing term: against a single constant intrinsic
+    floor the data prefer NO lensing scatter and put the nominal A = 1 right at the 95% boundary.
+    The 1-sigma-equivalent width on A is 0.51 -- the amplitude is simply not measured.
+    (Read as a degeneracy, not a tension: Pantheon+'s own model uses a survey-dependent intrinsic
+     floor and a redshift-dependent bias-correction scatter, both of which absorb a rising term.
+     Allowing that freedom here would only WIDEN the interval on A, never narrow it.)
+  
+  what would have to be resolved:  the kernel is calibrated to reproduce galaxy-galaxy lensing on
+    exactly these scales (the KiDS radial-acceleration test, 0.601 sigma on the record), so the
+    framework's convergence field is CONSTRUCTED to sit close to LCDM's where the data already are.
+    A generous allowance for the remaining difference -- all matter clumped with baryons instead of
+    85% of it in smooth haloes -- is a change in sigma_kappa of order tens of percent, i.e. |A-1| ~ 0.3.
+  [FAIL] E2 the supernova lensing-magnification signal has ANY discriminating power between a baryons-plus-kernel convergence field and LCDM's   (the effect to be resolved is |A-1| ~ 0.3; Pantheon+ measures A to +/-0.51, 1.7x too coarse, and does not detect the lensing term itself (0.0 sigma from A = 0). Underpowered by a factor 3; stop here -- this is an honest power calculation, not a result)
+
+======================================================================================================================
+F -- BONUS: the low-redshift Hubble-diagram scatter as a direct bound on the peculiar-velocity field
+======================================================================================================================
+  This is the angle the repo's supernova work has never used.  hunt_2026/h85_bulk_flow_null.py records
+  that the framework's kernel, applied naively to the linear velocity field, boosts it by nu ~ 9 at the
+  Local Group acceleration -- while the framework's own relativistic completion carries a theorem
+  (delta Y^(1) = 0) that makes linear growth LCDM's.  Supernova magnitudes at z < 0.06 are dominated by
+  peculiar velocities, so the Hubble diagram bounds that boost independently of any reconstruction.
+
+  567 supernovae at 0.01 < z < 0.06; Pantheon+ assumes a residual peculiar-velocity
+    dispersion of 250 km/s after its 2M++ correction.
+    fitted multiplier on that dispersion: A_pec = 1.08, 95% upper limit 1.40
+    -> residual sigma_v < 350 km/s at 95%.
+    (fitted intrinsic floor at the same time: 0.103 mag)
+    a naive kernel boost of the velocity field by nu = 9 would give sigma_v ~ 2250 km/s and a magnitude scatter of 0.81 mag at z = 0.02 --
+    6x the supernova bound.
+    why the 2M++ correction does not rescue the boosted case (stated explicitly, because it is the
+    obvious objection): the correction is v_pred = beta x (reconstructed density), with beta
+    calibrated in LCDM.  A kernel-boosted velocity-density relation has a LARGER true beta, so
+    applying the LCDM beta removes only ~1/nu of the flow and leaves ~8x the LCDM residual --
+    which is the quantity the Hubble-diagram scatter measures.  The bound therefore applies to the
+    boosted world too; it is not an artefact of correcting the data with the null hypothesis.
+  [PASS] F1 the low-redshift supernova Hubble diagram is CONSISTENT with the framework's own linear-growth theorem (LCDM-like velocities) and independently EXCLUDES the naive kernel-boosted velocity field   (sigma_v < 350 km/s vs 2250 km/s for a naive nu = 9 boost; the framework's OWN prediction (delta Y^(1) = 0 -> LCDM growth) passes, the naive reading does not)
+  Both ways, plainly: this is a PASS for the framework's own relativistic completion and a KILL for the
+  naive modified-gravity reading of the velocity field.  It is a second, independent route to h85's
+  null, using a dataset h85 never touched.  It is NOT evidence for the framework over LCDM -- LCDM
+  makes the identical prediction and the test cannot separate them.
+
+======================================================================================================================
+G -- VERDICT
+======================================================================================================================
+  [FAIL] G1 supernova data, ON THEIR OWN, have live discriminating power for this framework -- i.e. some supernova measurement by itself can move a verdict on a0(z), on the footing fork, or on the kernel   (SN-only evolution 0.52 chi2 for 2 params (0.29 sigma); the SN-era a0 measurements cannot separate the footings through their stated systematics; SN lensing is not detected at all. On the canonical footing SNe enter as an INPUT to (w0, wa), never as a test.)
+  [PASS] G2 supernovae nevertheless SHARPEN a framework prediction that another instrument can then decide -- the constructive half of the same finding   (they pin the alt branch to a0(1)/a0(0) = [1.69, 2.15] and the canonical branch's z = 2.5 zero point to +/-0.045 dex; the two branches separate by 0.66 dex at z = 2.5, which the already-pre-registered object decides for free)
+
+  the three-sentence verdict:
+  1. Supernovae are an INPUT to this framework, not a test of it: on their own they show no dark-energy
+     evolution at all (Delta chi2 = 0.52 for two extra parameters, 77% by chance, 0.29 sigma), the
+     canonical-footing SN-only a0(z) band at z = 2.5 is [0.36, 3.59] -- consistent with constant and with
+     almost anything else -- and the record's much tighter band is BAO+CMB geometry that supernovae only
+     help to close, so the framework's distinctive prediction is hostage to a preference the supernovae
+     do not corroborate on their own.
+  2. The one place supernovae bite hard is the REGISTERED prediction: the deep-MOND zero point goes as
+     a0^{1/4} and a0 tracks rho_DE, so 'flat 0.00 dex at z ~ 2.5' holds only in the w = -1 limit -- under
+     every evolving-dark-energy fork on the record the framework's own value is -0.085 to -0.131 dex with a
+     0.045 dex within-fork error (66-101% of the registered 0.13 dex budget, and the deepest fork plus
+     one sigma reaches 0.176 dex, past it), it appears bare in 8 of 10 places on the record, and it should
+     be registered by append-only amendment as a BAND, -0.148 to 0.00 dex, not as a point.
+  3. Nothing here favours this framework over LCDM and nothing here is a win: the supernova lensing angle
+     is dead on arrival (Pantheon+ does not detect its own lensing term, 0.0 sigma, and is 1.7x too
+     coarse for the effect), the supernova-era a0 archive is split 3-3 on the internal footing fork with
+     the split falling along MEASUREMENT CURRENCY rather than redshift -- the signature of a z-dependent
+     systematic in the slope estimators, not of a0 evolution -- and the one clean new result, the low-z
+     Hubble diagram bounding any residual peculiar-velocity boost to under 1.4x, 6x below a naive
+     kernel-boosted field, confirms the framework's own linear-growth theorem while making exactly the
+     same prediction as LCDM.
+
+======================================================================================================================
+SUMMARY: 8 FAIL(s)
+  FAIL: B2 the registered 'flat 0.00 dex' central value is UNCHANGED once evolving dark energy is propagated through the exact law with the full (w0, wa) covariance
+  FAIL: B4 the registered statistic can be applied as frozen without any risk of scoring the framework's OWN evolving-dark-energy prediction as a falsification of the framework
+  FAIL: B5 every place the registered pair (0.00 vs +0.33) appears on the record carries the evolving-dark-energy value alongside it
+  FAIL: C3a supernovae ALONE can distinguish the framework's a0(z) from a constant, on the CANONICAL (rho_Lambda) footing
+  FAIL: D2 the supernova-era a0 measurements already in the repo (MUSE-DARK III, MSA-3D) can separate the rho_Lambda footing from the rho_total footing
+  FAIL: D3 the supernova-era a0 archive leans consistently toward ONE footing, so the fork can at least be given a direction
+  FAIL: E2 the supernova lensing-magnification signal has ANY discriminating power between a baryons-plus-kernel convergence field and LCDM's
+  FAIL: G1 supernova data, ON THEIR OWN, have live discriminating power for this framework -- i.e. some supernova measurement by itself can move a verdict on a0(z), on the footing fork, or on the kernel
+======================================================================================================================

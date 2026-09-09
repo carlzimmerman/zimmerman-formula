@@ -1,0 +1,231 @@
+==========================================================================================================================
+L30 -- J(Y) beyond saturation: conditions, explicit continuations, and the Solar-System price
+==========================================================================================================================
+
+0.  THE CARRIED KERNEL AND ITS SATURATION  (controls)
+    nu_RAR:  maximum of Delta at s_sat = 2.5397,  ceiling C = 0.6476
+  [PASS] K0 [control] the carried kernel's saturation point and boost ceiling reproduce THE_ACTION section 3 (s_sat = 2.540, C = 0.6476)   (s_sat = 2.5397, C = 0.6476)
+    PAPER5 Table 1, recomputed:  deep-MOND sqrt 0.2500 (ref 0.2500),  standard mu 0.3003 (ref 0.3003),  exponential 0.3679 (ref 0.3679),  nu_RAR 0.6476 (ref 0.6476),  simple mu 1.0000 (ref 1.0000)
+  [PASS] K1 [control] the five kernel ceilings of PAPER5 Table 1 are reproduced to 0.5%
+
+1.  THE STIFFNESSES AND THE CUBIC VERTEX, WRITTEN FROM J(Y)
+    Action:  L_phi = 2(2-K_B) J^mu d_mu phi - (2-K_B) J(Y),  Y = V.V = |grad phi|^2  (THE_ACTION s1).
+    Static variation (PAPER5 s7, g03x's own equation):   div[ J_Y(Y) grad phi ] = 4 pi G rho,
+    so on a sphere  J_Y(g_phi) g_phi = g_N.  With g_phi = a0 Delta(s), s = g_N/a0:
+
+        J_Y(s)      = s/Delta(s)                                  [the transverse stiffness Sigma_perp]
+        Sigma_par   = J_Y + 2 Y J_YY = d g_N/d g_phi = 1/Delta'(s)
+        L_2         = Sigma_par (d_par dphi)^2 + Sigma_perp |d_perp dphi|^2
+        L_3         = 2 J_YY (Vbar.d dphi) |d dphi|^2 + (4/3) J_YYY (Vbar.d dphi)^3
+        J_YY        = (Delta - s Delta') / (2 a0^2 Delta^3 Delta')
+
+    Every cubic coefficient carries J_YY, whose denominator is Delta'.  Delta' -> 0 is therefore not a
+    modelling nicety: it is the point at which the quadratic action degenerates (Sigma_par -> infinity,
+    the longitudinal mode becomes a constraint) and the cubic action ceases to exist.
+    Sigma_par two ways (5 points on the unsaturated branch): max relative difference 2.22e-16
+  [PASS] K2 [control] Sigma_par = J_Y + 2 Y J_YY and Sigma_par = 1/Delta'(s) agree to 1e-5, and Sigma_perp = J_Y = s/Delta   (max rel diff 2.22e-16)
+    the published carried kernel, at four backgrounds:
+        s =    6.96e+05  (Saturn (9.54 AU)            ):  Delta = 0.6476,  Delta' = 0.000e+00,  Sigma_par = INFINITE
+        s =   6.334e+07  (Earth (1 AU)                ):  Delta = 0.6476,  Delta' = 0.000e+00,  Sigma_par = INFINITE
+        s =          10  (inner galaxy (g_N = 10 a0)  ):  Delta = 0.6476,  Delta' = 0.000e+00,  Sigma_par = INFINITE
+        s =         100  (inner galaxy (g_N = 100 a0) ):  Delta = 0.6476,  Delta' = 0.000e+00,  Sigma_par = INFINITE
+  [FAIL] P1 the published carried kernel has a FINITE longitudinal stiffness Sigma_par = 1/Delta' at the Solar-System background (Saturn's orbit)   (Delta'(s = 6.96e+05) = 0.0e+00 exactly, so Sigma_par is infinite -- L13's P9 reproduced)
+  [FAIL] P2 the map s -> Y = (a0 Delta)^2 is injective, so J_Y is a genuine FUNCTION of Y over the whole acceleration range the theory must cover   (dY/ds = 0 on 100% of s > s_sat: J_Y(Y) is a VERTICAL SEGMENT at Y = (C a0)^2 = 3.676e-21 (m/s^2)^2, not a function)
+    the cubic vertex J_YY = (Delta - s Delta')/(2 a0^2 Delta^3 Delta'), approaching s_sat from BELOW on the
+    published nu_RAR branch (so this is not an artefact of the splice):
+        s = 0.9900 s_sat:  Delta' = 7.645e-04,  J_YY = 1.774e+23
+        s = 0.9990 s_sat:  Delta' = 7.436e-05,  J_YY = 1.829e+24
+        s = 0.9999 s_sat:  Delta' = 6.152e-06,  J_YY = 2.211e+25
+        s = 1.0000 s_sat:  Delta' = 0.000e+00,  J_YY = inf
+  [FAIL] P3 the cubic vertex coefficient J_YY is finite at the background the published carried kernel puts the Solar System on, so the MOND scalar's cubic action can be written there   (J_YY diverges like 1/Delta' and Delta' = 0 identically for s > s_sat; the divergence is the MAXIMUM of Delta, approached from below on nu_RAR's own branch, so no choice of 'what happens above s_sat' removes it without moving the maximum)
+
+2.  THE CONDITIONS A CONTINUATION MUST SATISFY, AND THE STRUCTURAL THEOREM
+    C1  bounded boost          Delta(s) <= C_max for all s          (PAPER5's theorem)
+    C2  single-valued carrier   s -> Delta(s) invertible               (the carrier theorem)
+    C3  positive stiffness      Delta'(s) > 0 strictly, all s          (well-posedness of the static PDE)
+    C4  C^2                     Delta in C^2, equivalently J in C^3 on its domain
+    C5  Newtonian limit         the residual force a0 Delta(s) must not GROW at high acceleration
+
+    THEOREM L30-1 (satisfiable, at a price).  C1 + C3 force Delta to be strictly increasing and bounded,
+    hence to converge to a finite limit C_inf = sup Delta > 0.  Therefore
+        (a) the conditions ARE mutually satisfiable (constructed below), and
+        (b) the residual scalar force tends to the CONSTANT C_inf a0, never to zero.
+    Corollary: NO kernel whose excess vanishes in the Newtonian limit -- nu_RAR itself included, whose
+    Delta -> 0 like s e^{-sqrt s} -- can be carried by a matter-sourced scalar, because Delta(1) > 0 and
+    Delta -> 0 force Delta' < 0 somewhere.  C5 is satisfied ("does not grow") but the stronger and more
+    natural reading ("vanishes") is INCOMPATIBLE with C3.  The published saturated kernel already pays
+    this price; the continuation does not add it.
+
+    THEOREM L30-2 (the shape of J).  C1 + C3 require J_Y(Y) -> +infinity as Y -> Y_max = (C_inf a0)^2,
+    because J_Y(g_phi) g_phi = g_N must run to infinity while g_phi stays below C_inf a0.  So J is defined
+    only on [0, Y_max) with a vertical asymptote at the endpoint: the scalar's gradient is bounded by
+    construction, a Born-Infeld-like structure, and |grad phi| < C_inf a0 is a hard kinematic bound.
+  [FAIL] T3 the kernel THE_ACTION carries satisfies all five conditions   (the PUBLISHED (saturated) kernel meets C1, C2 and C5 but violates C3 (Delta' = 0 identically above s_sat) and C4; the UNSATURATED nu_RAR meets C4 and C5 in its stronger form but violates C2 and C3 (Delta' < 0 on 33% of the range, minimum -0.0324). Neither is admissible, and they fail on complementary conditions)
+
+3.  THREE EXPLICIT CONTINUATIONS
+    A  pole family   J_Y(u) = u/(1 - (u/C_inf)^p)   ->  s(u) = u^2/(1 - (u/C_inf)^p)
+       fitted to nu_RAR over 1e-3 <= s <= s_sat:  C_inf = 0.7400, p = 1.600, max |Delta_A - Delta_RAR| = 0.0128 (in units of a0)
+    B  saturating tanh   Delta_B(s) = C_inf tanh(sqrt(s)/C_inf)   (exact deep-MOND limit by construction)
+       fitted C_inf = 0.6270,  max |Delta_B - Delta_RAR| over the same range = 0.0301
+    C  minimal C^2 repair:  Delta_C = Delta_RAR exactly for s <= s1 = 2.0;  above it
+       Delta_C(s) = D_inf - A (1 + beta (s - s1))^-2  with  D_inf = 0.655589, A = 1.317369e-02, beta = 0.801759
+       (the three constants are fixed uniquely by matching Delta, Delta', Delta'' at s1: Delta = 0.642415, Delta' = 2.112425e-02, Delta'' = -5.080967e-02)
+       max |Delta_C - Delta_RAR| over 1e-3 <= s <= s_sat = 0.0016;  max |Delta_C - Delta_published| over ALL s = 0.0080
+
+    Each candidate against the five conditions.  Delta' is the ANALYTIC derivative throughout (a finite
+    difference underflows once Delta' < 1e-16, which is not the same as Delta' = 0), and it is validated
+    against a central difference of Delta over 0.2 <= s <= 5, the window where the difference is
+    well conditioned (further out Delta' is small enough that the difference is pure round-off).  C^2 is
+    settled analytically, not by differencing: A and B are single closed-form expressions (A is the inverse
+    of a strictly monotone analytic map, so the inverse function theorem gives C^infinity wherever
+    ds/du > 0), and C is the only piecewise one, so for C the three matching conditions at s1 are checked
+    directly against both branch formulas.
+      A  pole       : C_inf = 0.7400 | bounded True | Delta' > 0 everywhere True (min log10 Delta' = -16.6 at s = 1e8) | C^2 True (closed form, C^infinity wherever ds/du > 0) | analytic vs finite-difference Delta' agree to 1.3e-09 | |Delta/sqrt(s) - 1| <= 5.1e-04 at s <= 1e-4 | residual at s = 1e8: 0.7400 a0
+  [PASS] E[A] the continuation satisfies C1 (bounded), C2/C3 (Delta' > 0 strictly everywhere), C4 (C^2) and C5 (residual does not grow)   (bounded True, monotone True, C2 True, deep-MOND error 5.1e-04, Delta' cross-check 1.3e-09, max |Delta - Delta_RAR| on the fitted range 0.0128)
+      B  tanh       : C_inf = 0.6270 | bounded True | Delta' > 0 everywhere True (min log10 Delta' = -13856.8 at s = 1e8) | C^2 True (closed form, C^infinity wherever ds/du > 0) | analytic vs finite-difference Delta' agree to 1.3e-08 | |Delta/sqrt(s) - 1| <= 8.5e-05 at s <= 1e-4 | residual at s = 1e8: 0.6270 a0
+  [PASS] E[B] the continuation satisfies C1 (bounded), C2/C3 (Delta' > 0 strictly everywhere), C4 (C^2) and C5 (residual does not grow)   (bounded True, monotone True, C2 True, deep-MOND error 8.5e-05, Delta' cross-check 1.3e-08, max |Delta - Delta_RAR| on the fitted range 0.0301)
+      C  minimal C2 : C_inf = 0.6556 | bounded True | Delta' > 0 everywhere True (min log10 Delta' = -25.4 at s = 1e8) | C^2 True (Delta, Delta', Delta'' match at s1 to 5.1e-09) | analytic vs finite-difference Delta' agree to 1.2e-08 | |Delta/sqrt(s) - 1| <= 5.0e-03 at s <= 1e-4 | residual at s = 1e8: 0.6556 a0
+  [PASS] E[C] the continuation satisfies C1 (bounded), C2/C3 (Delta' > 0 strictly everywhere), C4 (C^2) and C5 (residual does not grow)   (bounded True, monotone True, C2 True, deep-MOND error 5.0e-03, Delta' cross-check 1.2e-08, max |Delta - Delta_RAR| on the fitted range 0.0016)
+  [PASS] T1 [THEOREM L30-1a] the five conditions are mutually satisfiable: at least one bounded, strictly increasing, C^2 continuation exists   (3 of 3 constructed candidates satisfy all five; the minimal repair C reproduces the published kernel to within 0.0080 a0 at EVERY s)
+  [FAIL] T2 [THEOREM L30-1b] some admissible continuation has a residual force that VANISHES at high acceleration (Delta -> 0), i.e. a true Newtonian limit   (every admissible continuation has Delta -> C_inf >= 0.6270, a PERMANENT residual force of at least 5.870e-11 m/s^2 (canonical, 7.072e-11 alt); a vanishing residual needs Delta' < 0 somewhere, which C3 forbids.  The published saturated kernel already pays exactly this price, so the continuation does not add it)
+
+    the longitudinal stiffness each continuation implies, as log10 Sigma_par = -log10 Delta' (canonical footing):
+      background                                    s                A                B                C
+      Saturn (9.54 AU)                       6.96e+05             12.3           1158.3             18.9
+      Earth (1 AU)                          6.334e+07             16.2          11029.0             24.8
+      inner galaxy (g_N = 10 a0)                   10              2.6              4.6              4.3
+      inner galaxy (g_N = 100 a0)                 100              4.6             14.6              7.4
+      (the published kernel gives log10 Sigma_par = +infinity in every row with s > 2.540.  The RATE at which Delta
+       approaches its ceiling is a real physical output: a power-law approach gives Sigma_par ~ s^2-s^3, an
+       exponential approach gives Sigma_par ~ e^{2 sqrt s} -- formally finite, but at 10^1100 it is not an
+       effective field theory anyone can expand in.  Candidate B is admissible on the letter of C3-C4 and
+       useless in practice; A and C are not.)
+
+4.  GATE 1 -- the standing Solar-System gate (g02/g03b filtered-phantom machinery, imported unedited)
+      published        canonical xi =  0.07 pc: Q2/ceil   0.227 | M/bound   1.546 | g_r/gate   0.580  EXCLUDED
+      published        canonical xi =  0.10 pc: Q2/ceil   0.121 | M/bound   0.792 | g_r/gate   0.297  admissible
+      published        canonical xi =  0.15 pc: Q2/ceil   0.057 | M/bound   0.364 | g_r/gate   0.137  admissible
+      floors, published carried kernel: canonical 0.1 pc, alt 0.15 pc    (g03x published 0.1 and 0.15)
+  [PASS] K3 [control] the imported gate reproduces g03x's published floors for nu_RAR CARRIED (0.10 pc canonical, 0.15 pc alt)   ({'canonical': 0.1, 'alt': 0.15})
+      floors, continuation A  pole       : canonical 0.1 pc, alt 0.15 pc
+      floors, continuation B  tanh       : canonical 0.1 pc, alt 0.15 pc
+      floors, continuation C  minimal C2 : canonical 0.1 pc, alt 0.15 pc
+  [FAIL] G1 the standing Solar-System gate DISCRIMINATES between the published saturated kernel and the continuations that repair it   (every continuation returns the identical floor: this gate applies a linear filter to the QUMOND phantom density and never evaluates Delta' at all, so the term Delta' = 0 removed is not a term it uses)
+
+5.  GATE 2 -- the exact fourth-order equation the continuation makes writable for the first time
+    The action's static scalar equation with the coherence operator outside J (THE_ACTION s1, s4; the
+    placement g03c certifies as uniformly elliptic) is
+
+        div[ J_Y(Y) grad phi ] - xi^2 Laplacian^2 phi = 4 pi G rho .
+
+    In spherical symmetry, with u = r^2 w and w = |grad phi| = g_phi, one integration gives EXACTLY
+
+        J_Y(w) u  -  xi^2 ( u'' - 2 u'/r )  =  G M .
+
+    This equation requires J_Y as a FUNCTION of w.  The published saturated kernel does not supply one
+    (P2): J_Y is a vertical segment at w = C a0.  So this equation cannot be written down at all until a
+    continuation is chosen -- which is exactly the missing input L13 named.  It is solved here.
+    K4 pure biharmonic control (J_Y = 0), xi = 0.1 pc: w(Saturn) numerical 6.968873e-12, analytic GM/(2 xi^2) = 6.969061e-12 m/s^2
+  [PASS] K4 [control] with J_Y set to zero the solver's stencil reproduces the exact biharmonic cone w = GM/(2 xi^2) to 1%   (ratio 0.99997)
+    K5 xi -> 0 control at r = r_M: numerical w = 5.448407e-11, algebraic a0 Delta(s = 1.000) = 5.448408e-11 m/s^2
+  [PASS] K5 [control] at xi -> 0 the solver reproduces the algebraic carrier law w = a0 Delta(g_N/a0) to 1%   (ratio 1.00000)
+
+    the exact equation solved for each continuation.  Gates: Pitjev-Pitjeva M_ph(<Saturn) < 6.7e-11 M_sun,
+    and the alpha = 1 sunward ephemeris gate 3.66e-14 m/s^2 on the largest planetary residual.
+    Every row also reports w(Saturn) divided by min[ GM/(2 xi^2), C_inf a0 ] -- the analytic interior
+    prediction (the biharmonic cone, capped by Theorem L30-2's kinematic ceiling).  It is an internal
+    control on every single solve, not a fit.
+      continuation   footing     xi [pc]  w(Saturn) [m/s^2]  /analytic  M_ph/bound  g_r max/gate  verdict
+      A  pole        canonical      0.03         6.9278e-11     1.0000   1.587e+04     1.892e+03  EXCLUDED
+      A  pole        canonical      0.10         6.9680e-12     0.9999   1.596e+03     1.903e+02  EXCLUDED
+      A  pole        canonical      0.30         7.7427e-13     0.9999   1.774e+02     2.114e+01  EXCLUDED
+      A  pole        canonical      1.00         6.9684e-14     0.9999   1.596e+01     1.903e+00  EXCLUDED
+      A  pole        canonical      2.00         1.7421e-14     0.9999   3.991e+00     4.757e-01  EXCLUDED
+      A  pole        canonical      4.00         4.3552e-15     0.9999   9.976e-01     1.189e-01  admissible
+      A  pole        canonical      6.00         1.9357e-15     0.9999   4.434e-01     5.286e-02  admissible
+      A  pole        canonical     10.00         6.9683e-16     0.9999   1.596e-01     1.903e-02  admissible
+      A  pole        canonical     30.00         7.7425e-17     0.9999   1.774e-02     2.114e-03  admissible
+      A  pole        canonical  -> smallest admissible tabulated xi = 4.0 pc
+      A  pole        alt            4.00         4.3552e-15     0.9999   9.976e-01     1.189e-01  admissible
+      A  pole        alt            6.00         1.9357e-15     0.9999   4.434e-01     5.286e-02  admissible
+      A  pole        alt           10.00         6.9683e-16     0.9999   1.596e-01     1.903e-02  admissible
+      A  pole        alt           30.00         7.7425e-17     0.9999   1.774e-02     2.114e-03  admissible
+      A  pole        alt        -> smallest admissible tabulated xi = 4.0 pc
+      B  tanh        canonical      0.03         5.8699e-11     1.0000   1.345e+04     1.603e+03  EXCLUDED
+      B  tanh        canonical      0.10         6.9680e-12     0.9999   1.596e+03     1.903e+02  EXCLUDED
+      B  tanh        canonical      0.30         7.7427e-13     0.9999   1.774e+02     2.114e+01  EXCLUDED
+      B  tanh        canonical      1.00         6.9684e-14     0.9999   1.596e+01     1.903e+00  EXCLUDED
+      B  tanh        canonical      2.00         1.7421e-14     0.9999   3.991e+00     4.757e-01  EXCLUDED
+      B  tanh        canonical      4.00         4.3552e-15     0.9999   9.976e-01     1.189e-01  admissible
+      B  tanh        canonical      6.00         1.9357e-15     0.9999   4.434e-01     5.286e-02  admissible
+      B  tanh        canonical     10.00         6.9683e-16     0.9999   1.596e-01     1.903e-02  admissible
+      B  tanh        canonical     30.00         7.7425e-17     0.9999   1.774e-02     2.114e-03  admissible
+      B  tanh        canonical  -> smallest admissible tabulated xi = 4.0 pc
+      B  tanh        alt            4.00         4.3552e-15     0.9999   9.976e-01     1.189e-01  admissible
+      B  tanh        alt            6.00         1.9357e-15     0.9999   4.434e-01     5.286e-02  admissible
+      B  tanh        alt           10.00         6.9683e-16     0.9999   1.596e-01     1.903e-02  admissible
+      B  tanh        alt           30.00         7.7425e-17     0.9999   1.774e-02     2.114e-03  admissible
+      B  tanh        alt        -> smallest admissible tabulated xi = 4.0 pc
+      C  minimal C2  canonical      0.03         6.1376e-11     1.0000   1.406e+04     1.676e+03  EXCLUDED
+      C  minimal C2  canonical      0.10         6.9680e-12     0.9999   1.596e+03     1.903e+02  EXCLUDED
+      C  minimal C2  canonical      0.30         7.7427e-13     0.9999   1.774e+02     2.114e+01  EXCLUDED
+      C  minimal C2  canonical      1.00         6.9684e-14     0.9999   1.596e+01     1.903e+00  EXCLUDED
+      C  minimal C2  canonical      2.00         1.7421e-14     0.9999   3.991e+00     4.757e-01  EXCLUDED
+      C  minimal C2  canonical      4.00         4.3552e-15     0.9999   9.976e-01     1.189e-01  admissible
+      C  minimal C2  canonical      6.00         1.9357e-15     0.9999   4.434e-01     5.286e-02  admissible
+      C  minimal C2  canonical     10.00         6.9683e-16     0.9999   1.596e-01     1.903e-02  admissible
+      C  minimal C2  canonical     30.00         7.7425e-17     0.9999   1.774e-02     2.114e-03  admissible
+      C  minimal C2  canonical  -> smallest admissible tabulated xi = 4.0 pc
+      C  minimal C2  alt            4.00         4.3552e-15     0.9999   9.976e-01     1.189e-01  admissible
+      C  minimal C2  alt            6.00         1.9357e-15     0.9999   4.434e-01     5.286e-02  admissible
+      C  minimal C2  alt           10.00         6.9683e-16     0.9999   1.596e-01     1.903e-02  admissible
+      C  minimal C2  alt           30.00         7.7425e-17     0.9999   1.774e-02     2.114e-03  admissible
+      C  minimal C2  alt        -> smallest admissible tabulated xi = 4.0 pc
+  [PASS] K6 [control] every one of the 54 exact solves reproduces the analytic interior prediction min[GM/(2 xi^2), C_inf a0] to 1%   (worst deviation 0.126% over 54 solves)
+
+    the number is analytic and kernel-free.  Inside the healing length the source term dominates and the
+    equation degenerates to the biharmonic cone w = GM/(2 xi^2), so M_ph(<r)/M = r^2/(2 xi^2) EXACTLY --
+    independent of the kernel, of the continuation, of a0 and even of the Sun's mass.  The Pitjev-Pitjeva
+    bound then reads  xi >= r_Saturn/sqrt(2 x 6.7e-11) = 4.00 pc, against 1.38 pc from the
+    alpha = 1 sunward gate alone: SATURN BINDS, by a factor 2.9.  Neither number contains a0.
+
+    THE OTHER PLACEMENT.  THE_ACTION s1 writes the operator INSIDE J, as J(Y + xi^2 |grad_perp V|^2), and
+    calls the two placements "equivalent" (identical PPN; g03c notes only that the inside placement is
+    degenerate at zero field).  They are not equivalent here.  Inside J the interior balance is
+    -xi^2 J_Y(w) Laplacian^2 phi = 4 pi G rho with J_Y at the SCREENED (small) gradient, so
+        w = GM/(2 xi^2 J_Y(w)),  and on the deep-MOND branch J_Y = w/a0,  hence  w = sqrt(GM a0/2)/xi.
+    This is an asymptotic balance, not a solve; what is CHECKED is its self-consistency (that the resulting
+    w really does sit on the deep-MOND branch, where J_Y = w/a0) and the floor it implies.
+      canonical : floor xi = r_Sat^2 sqrt(a0/2GM)/6.7e-11 = 585 pc; at that floor w = 4.366e-15 m/s^2 = 4.66e-05 a0,
+                  J_Y there = 4.663e-05 against the deep-MOND value w/a0 = 4.663e-05 (ratio 1.0000)
+  [FAIL] S1 [canonical] the inside-J placement of the coherence operator is equivalent to the outside-J one, as THE_ACTION section 1 states   (its Saturn floor is 585 pc against 4.00 pc outside J, a factor 146; the deep-MOND identification is self-consistent to 0.00%, so the estimate stands.  BOTH placements fail the standing floor; the conclusion does not depend on which is adopted, but they are not interchangeable)
+      alt       : floor xi = r_Sat^2 sqrt(a0/2GM)/6.7e-11 = 642 pc; at that floor w = 4.366e-15 m/s^2 = 3.87e-05 a0,
+                  J_Y there = 3.871e-05 against the deep-MOND value w/a0 = 3.871e-05 (ratio 1.0000)
+  [FAIL] S1 [alt] the inside-J placement of the coherence operator is equivalent to the outside-J one, as THE_ACTION section 1 states   (its Saturn floor is 642 pc against 4.00 pc outside J, a factor 161; the deep-MOND identification is self-consistent to 0.00%, so the estimate stands.  BOTH placements fail the standing floor; the conclusion does not depend on which is adopted, but they are not interchangeable)
+  [FAIL] G2 the exact fourth-order carrier equation admits the repository's standing coherence-length floor (xi <= 0.15 pc) for at least one continuation   (the smallest admissible xi over all continuations and both footings is 4.0 pc, 27x the standing floor; analytic floor 4.00 pc from the Saturn bound alone)
+
+    consequence, stated not claimed: the wide-binary sample's largest separation is 30 kAU = 0.145 pc,
+    which is 27x SMALLER than this floor.  At xi >= 4 pc every pair in the DR4 window sits
+    deep inside the healing length, where the scalar force is the biharmonic cone rather than the MOND field.
+    The registered arm-B value gamma_v = 1.045/1.030 was computed at xi = 0.10/0.15 pc.  Recomputing it at this
+    floor is not done here; the direction is unambiguous (towards Newton), the magnitude is not asserted.
+
+6.  GATE 3 -- the SPARC Newtonian-limit statistic against the permanent residual force
+    SPARC: 2801 points (Upsilon_d = 0.5, Upsilon_b = 0.7, dV/V < 0.10)
+      canonical  g_bar >   10 a0  (n =   91, median s =   15.6):  measured median g_obs/g_bar = 1.0165 +- 0.0121
+                 predicted: published 1.0416,  nu_RAR unsat 1.0197,  A  pole 1.0465,  B  tanh 1.0402,  C  minimal C2 1.0421   |   tension of the carried class: 2.1 sigma, of unsaturated nu_RAR: 0.3 sigma
+  [PASS] G3 [canonical] the permanent residual C_inf a0 that EVERY carriable kernel leaves -- the published saturated one and all three continuations alike -- is consistent with the SPARC Newtonian-limit median at g_bar > 10 a0 (within 3 bootstrap sigma)   (measured 1.0165 +- 0.0121; carried class predicts 1.0416 (2.1 sigma high), unsaturated nu_RAR predicts 1.0197 (0.3 sigma). The bootstrap error excludes the 0.1 dex stellar-population spread and the Upsilon freedom, so this is a DIAGNOSTIC of the direction, not a fit-quality statement; it is reported because it is the ONE observable the permanent residual touches)
+      canonical  g_bar >   30 a0  (n =   13, median s =   39.5):  measured median g_obs/g_bar = 1.0795 +- 0.1193
+                 predicted: published 1.0164,  nu_RAR unsat 1.0019,  A  pole 1.0186,  B  tanh 1.0159,  C  minimal C2 1.0166   |   tension of the carried class: 0.5 sigma, of unsaturated nu_RAR: 0.7 sigma
+      alt        g_bar >   10 a0  (n =   68, median s =   15.6):  measured median g_obs/g_bar = 1.0157 +- 0.0133
+                 predicted: published 1.0415,  nu_RAR unsat 1.0196,  A  pole 1.0464,  B  tanh 1.0402,  C  minimal C2 1.0420   |   tension of the carried class: 1.9 sigma, of unsaturated nu_RAR: 0.3 sigma
+  [PASS] G3 [alt] the permanent residual C_inf a0 that EVERY carriable kernel leaves -- the published saturated one and all three continuations alike -- is consistent with the SPARC Newtonian-limit median at g_bar > 10 a0 (within 3 bootstrap sigma)   (measured 1.0157 +- 0.0133; carried class predicts 1.0415 (1.9 sigma high), unsaturated nu_RAR predicts 1.0196 (0.3 sigma). The bootstrap error excludes the 0.1 dex stellar-population spread and the Upsilon freedom, so this is a DIAGNOSTIC of the direction, not a fit-quality statement; it is reported because it is the ONE observable the permanent residual touches)
+
+7.  WHERE THE SATURATED BRANCH IS ACTUALLY REALISED
+    canonical : around the Sun, g_N > s_sat a0 only inside r = 0.0242 pc (4.99e+03 AU);
+                around a 1e11 M_sun galaxy, inside 7.7 kpc.
+    alt       : around the Sun, g_N > s_sat a0 only inside r = 0.0221 pc (4.55e+03 AU);
+                around a 1e11 M_sun galaxy, inside 7.0 kpc.
+  [FAIL] G4 the saturated branch is realised UNSCREENED around the Sun, i.e. the coherence-length floor is smaller than the radius inside which g_N > s_sat a0   (the standing floor xi = 0.10 pc already EXCEEDS r_sat(Sun) = 0.0242 pc, so the scalar never sits on the saturated branch near the Sun: L13's P9 background is the INNER GALAXY (r < 8 kpc for a 1e11 M_sun galaxy) and cluster cores, not the Solar System)
+
+RESULT: 10 FAIL -> ["P1 the published carried kernel has a FINITE longitudinal stiffness Sigma_par = 1/Delta' at the Solar-System background (Saturn's orbit)", 'P2 the map s -> Y = (a0 Delta)^2 is injective, so J_Y is a genuine FUNCTION of Y over the whole acceleration range the theory must cover', "P3 the cubic vertex coefficient J_YY is finite at the background the published carried kernel puts the Solar System on, so the MOND scalar's cubic action can be written there", 'T3 the kernel THE_ACTION carries satisfies all five conditions', 'T2 [THEOREM L30-1b] some admissible continuation has a residual force that VANISHES at high acceleration (Delta -> 0), i.e. a true Newtonian limit', 'G1 the standing Solar-System gate DISCRIMINATES between the published saturated kernel and the continuations that repair it', 'S1 [canonical] the inside-J placement of the coherence operator is equivalent to the outside-J one, as THE_ACTION section 1 states', 'S1 [alt] the inside-J placement of the coherence operator is equivalent to the outside-J one, as THE_ACTION section 1 states', "G2 the exact fourth-order carrier equation admits the repository's standing coherence-length floor (xi <= 0.15 pc) for at least one continuation", 'G4 the saturated branch is realised UNSCREENED around the Sun, i.e. the coherence-length floor is smaller than the radius inside which g_N > s_sat a0']   (79 s)

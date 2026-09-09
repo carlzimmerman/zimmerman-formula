@@ -1715,3 +1715,99 @@ and converges to it.
 - **The one door left open**, named precisely: a redesign that **breaks the cancellation making the
   plateaus marginal**, leaving a positive coefficient on the plateaus rather than zero. That is outside
   everything proved here.
+
+## L38 — supernovae are an INPUT, not a test, and the registered prediction must become a band
+
+`L38_supernova_reexam.py` + `L38_SUPERNOVA.md` (19 checks, 8 FAIL). Pantheon+, 1701 light curves and
+1590 after the official cut, with the **official STAT+SYS covariance**. The host-mass-step lever was
+left untouched, as it is closed.
+
+**Controls.** The distance integrator matches an independent 48-node quadrature to 6e-6 mag; the fitter
+reproduces the published supernova-only result to **0.09σ**; injected parameters are recovered from
+synthetic data built on the real covariance with correct coverage; the exact a₀(z) law reproduces its
+own recorded bump and decline; and **the documented manufactured-win truncation is reproduced as a
+large error rather than silently adopted.**
+
+- **⚠️ THE REGISTERED "FLAT 0.00 DEX" HOLDS ONLY IF w = −1.** Propagating evolving dark energy through
+  the exact law with the full covariance gives the framework's own value as **−0.085 to −0.131 dex,
+  ±0.045 within a fork**, with a combined recommendation of **−0.097, 68% interval [−0.148, −0.049]**.
+  That is **66% to 101% of the registered 0.13 dex measurement budget**, and the deepest fork plus one
+  sigma is **0.176 dex, past it.**
+- **⚠️ And that breaks the registration's own rule.** The preregistration says a result inconsistent
+  with both values "counts against both". **So a true framework universe with DESI's dark energy can
+  land exactly where that rule scores it AGAINST the framework.** This is the second lane tonight to
+  reach this independently.
+- **Three qualifiers, all checked, and two are good news.** The ΛCDM-native +0.33 side does **not** need
+  revising, its own cross-term being −0.0046 dex. The **discrimination actually improves**, 0.328 →
+  0.408 dex and 24:1 → 82:1, because the two hypotheses move apart. And PAPER7 does carry the DESI value
+  once — but a live grep finds **8 of 10 occurrences of the frozen pair on the record are a bare 0.00,
+  and no occurrence anywhere carries an error bar**, including PAPER7's own abstract, `STANDING.md`,
+  `README.md` twice, and the MNRAS cover letter.
+- **⚠️ A separate defect in PAPER7:** its **prose defines the statistic mass-side while its displayed
+  numbers are velocity-side**. The 20:1 odds are unaffected, but **an observer applying the stated
+  formula would score ΛCDM with the wrong sign.** Both items want append-only amendments. **This lane
+  made none.**
+- **Supernovae alone see no dark-energy evolution at all.** Best fit Ω_m = 0.22, w₀ = −0.85, and
+  **wₐ = +0.50, the opposite sign to DESI**; Δχ² = 0.523 for two extra parameters, **p = 0.77, i.e.
+  0.29σ** — less improvement than the 2.0 expected from adding two parameters to pure noise. The
+  supernova-only band at z = 2.5 is **[0.36, 3.59], ten to forty times wider than the record quotes**,
+  and it contains 1.000. **The framework's a₀(z) departure is BAO and CMB geometry that supernovae only
+  help to close.**
+- **On the alt footing the answer flips**, because there a₀ ∝ H(z) **is** the Hubble diagram: supernovae
+  pin it to [1.69, 2.15] at z = 1 and [3.69, 4.72] at z = 2.5, excluding a constant by a wide margin.
+- **⭐ One constructive by-product worth naming as a deliverable.** The z ≈ 2.5 object **already
+  pre-registered settles the internal footing fork for free** — the two branches separate by **0.66 dex
+  against a 0.13 dex budget.**
+- **Two doors closed honestly.** Supernova lensing magnification has **no** discriminating power:
+  Pantheon+ does not detect its own lensing term at all, and measures the relevant amplitude to ±0.51
+  against a ~0.3 effect, underpowered by a factor 3. And the supernova-era a₀ archive **splits 3–3 along
+  measurement CURRENCY rather than redshift** — both slope points lean one way and the ratio points the
+  other — **which is the signature of a redshift-dependent systematic in the slope estimators, not of
+  a₀ evolution.**
+- **One clean new result, and it confirms the framework's own theorem while making ΛCDM's prediction.**
+  The low-redshift Hubble scatter bounds any residual peculiar-velocity boost to under 1.4×, six times
+  below a naive kernel boost, so σ_v < 350 km/s against the 2250 km/s a naive reading requires.
+- **The lane corrected itself in the script text rather than quietly deleting:** a first pass used only
+  the two slope measurements and produced a clean lean toward the rejected footing. The repository's own
+  placement script already has six points and the ratio points go the other way. **That pass is
+  withdrawn on the record.**
+
+## L30 — the saturated branch: the repair is nearly free, and it forces the coherence length up 27×
+
+`L30_saturated_branch.py` + `L30_SATURATION.md` (23 checks, 10 FAIL; **all 7 controls pass**, 79 s).
+L13 found the published kernel is not twice differentiable at high acceleration: Δ′ = 0 beyond
+saturation makes the longitudinal stiffness infinite and the scalar's cubic action unwritable. This
+lane asked whether a repair exists.
+
+**Controls.** The saturation point and ceiling reproduce the action's own section 3; the five kernel
+ceilings of PAPER5 Table 1 reproduce to 0.5%; both forms of the stiffness agree to 1e-5; the imported
+gate reproduces the published coherence-length floors exactly; and **every one of 54 exact solves
+reproduces its analytic interior prediction to 1%**, with the solver returning the exact biharmonic
+cone and the algebraic carrier law in their respective limits.
+
+- **⭐ An admissible continuation exists, and it is nearly free.** Three were built and all three satisfy
+  bounded boost, strict monotonicity, twice-differentiability and a non-growing residual. **The minimal
+  C² repair differs from the published kernel by at most 0.008 a₀ at every acceleration**, so it is a
+  drop-in replacement.
+- **⚠️ But L13's hole is invisible to every gate the programme currently runs.** The standing
+  Solar-System gate returns **identical floors for all four kernels**, because it filters the phantom
+  density and **never evaluates Δ′ at all**.
+- **⭐ WHAT THE REPAIR BUYS, AND IT IS THE RESULT.** The action's own scalar equation becomes writable
+  and solvable **for the first time**. Solved, a point source drives the scalar gradient onto the
+  **biharmonic cone**, giving an enclosed phantom mass fraction of exactly r²/(2ξ²) — **kernel-free,
+  a₀-free and mass-free.** The planetary ephemerides then force **ξ ≥ 4.00 pc on both footings, 27×
+  the standing 0.15 pc floor**, with Saturn binding by 2.9× over the sunward gate alone.
+- **⚠️ AND THAT WOULD PUT EVERY GAIA DR4 WIDE BINARY DEEP INSIDE THE HEALING LENGTH**, which is where
+  the registered wide-binary prediction lives. This is a direct collision between two things the
+  programme carries, and it was invisible until the equation was actually solved.
+- **⚠️ A documentation claim is refuted.** `THE_ACTION` §1 states the two placements of the coherence
+  operator are equivalent. **They give floors 146× and 161× apart** — 585 and 642 pc for the inside
+  placement. They are not equivalent and the action must say which it means.
+- **⚠️ And L13's pathology is not where L13 put it.** The standing 0.10 pc floor already exceeds the
+  Sun's saturation radius of 0.024 pc, so **the saturated branch is not realised around the Sun at
+  all.** It is realised **in the inner ~8 kpc of galaxies and in cluster cores** — which is exactly
+  where an infinite longitudinal stiffness makes a non-spherical boundary-value problem ill-posed.
+- **One permanent feature, checked against data.** Every carriable kernel — the published one and all
+  three continuations alike — leaves a **permanent residual** at high acceleration rather than a true
+  Newtonian limit. That residual is **consistent with the SPARC Newtonian-limit median** within 3
+  bootstrap sigma on both footings.
