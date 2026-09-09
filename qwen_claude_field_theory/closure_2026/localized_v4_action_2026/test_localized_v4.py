@@ -7,6 +7,7 @@ from metric_variation_gate import metric_variation_gate
 from causal_response_gate import causal_response_gate
 from york_variation_gate import york_variation_gate
 from curved_york_variation_gate import curved_york_variation_gate
+from curved_localizer_dirac import curved_localizer_dirac_gate
 from flrw_ward_gate import flrw_ward_gate
 
 
@@ -75,6 +76,21 @@ class LocalizedV4ContractTests(unittest.TestCase):
         self.assertLess(result["constraint_residual"], 1e-10)
         self.assertEqual(result["constraint_rank"], 4)
         self.assertEqual(result["tt_dimension"], 2)
+
+    def test_full_tt_localizer_dirac_chain_closes_in_both_modes(self):
+        result = curved_localizer_dirac_gate()
+        for name in ("k_nonzero", "k_zero_raw", "k_zero_kernel_removed"):
+            sector = result[name]
+            self.assertEqual(
+                sector["first_class_count"] + sector["second_class_count"],
+                sector["independent_constraint_count"],
+            )
+            self.assertEqual(sector["auxiliary_configuration_dof"], 0)
+            self.assertEqual(sector["preservation_residual"], 0.0)
+            self.assertEqual(
+                tuple(sector["poisson_matrix_shape"]),
+                (sector["independent_constraint_count"],) * 2,
+            )
 
 
 if __name__ == "__main__":

@@ -95,6 +95,20 @@ This closes the previously omitted local connection-variation term at the
 tested curved metric jet.  It still does not prove global elliptic boundary
 compatibility, lower-order transport, or nonlinear multiplier preservation.
 
+The `curved_localizer_dirac.py` gate then keeps the full six real Q components
+and four real multiplier components instead of projecting Q in advance.  It
+derives the primary momenta, the Q and multiplier secondary constraints, an
+independent constraint set, and the actual Poisson-bracket matrix.  In the
+nonzero WKB sector the computed matrix is 40 by 40 and full rank, giving zero
+auxiliary configuration DOF.  In the raw homogeneous sector the elliptic
+operator loses rank; the independently selected constraint set has a 24 by 24
+matrix of rank 8 and still zero auxiliary DOF, with 16 first-class null
+directions.  Applying the stated TT harmonic-kernel convention removes that
+global representative as a separate 0 by 0 block.  Preservation produces no
+tertiary constraints in either branch.  This is the first actual all-Q/all-
+multiplier Dirac check in the localized route; it does not include the
+Einstein lapse/shift constraints or their nonlinear brackets.
+
 ## Requirement audit
 
 | Requirement | Current status |
@@ -102,7 +116,7 @@ compatibility, lower-order transport, or nonlinear multiplier preservation.
 | exact exponential MOND law | Derived on fixed-​a0 static branch |
 | Φ=Ψ and γPPN=1 | Leading static slip equation derived; full PPN open |
 | two gravitational tensor modes | Curved WKB TT block verified; full nonlinear count open |
-| no hidden auxiliary scalar | Flat localizer block has no extra scalar beyond clock; curved count open |
+| no hidden auxiliary scalar | Full TT localizer block has zero auxiliary DOF in both sectors; metric count open |
 | matter conservation | Minimal-matter Ward identity; coupled constraint consistency open |
 | α₁,α₂,α₃ | Only a restricted α₁ matching exists; full values open |
 | cT=c and stability | Flat/curved principal tensor checks; full nonlinear stability open |
@@ -111,7 +125,7 @@ compatibility, lower-order transport, or nonlinear multiplier preservation.
 | empirical galaxy/cluster/cosmology fit | Not performed by this checkpoint |
 | Lean proof | Lean unavailable; exact identities exported as JSON |
 
-The reproducibility record is `run_008/manifest.json`; it pins the local
+The reproducibility record is `run_009/manifest.json`; it pins the local
 modules and the two prior V3 dependency files used by the causal gate.
 
 The follow-up `flrw_ward_gate.py` independently varies the lapse before the
@@ -126,7 +140,7 @@ leaf, and verifies symbolically that the minimally coupled continuity equation
 (\dot\rho=-3H(\rho+p)) differentiates the Friedmann residual into the
 acceleration residual.  This is a background Ward/FLRW result, not a
 perturbation or nonlinear constraint proof.  The latest run is
-`run_008/manifest.json`.
+`run_009/manifest.json`.
 
 ## Verdict
 

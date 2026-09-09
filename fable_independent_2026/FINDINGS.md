@@ -2941,3 +2941,42 @@ reproduce from the lead's own files before judgement.
   blocked by an uncalibrated coefficient sector that the lead's own files forbid extrapolating. **That is
   astra's calibration to finish, not an instability this lane found.** And L73 stands regardless: even
   fully healthy, the action is complete only below a galaxy.
+
+## L74 — the galactic-health gap is BRACKETED: curvature is a one-sided danger, and the whole question is one inequality
+
+`L74_galactic_curvature_bracket.py` + `L74_galactic_curvature_bracket.out` (**15 checks, 15 PASS**). L71/L73
+left astra's integrable-clock action's galactic propagating health "underspecified, cannot be certified
+either way." This lane does not extrapolate any coefficient (IC31-respecting); it asks the one thing that
+**is** decidable from the action as it stands, and converts the formless gap into a single falsifiable target.
+
+**Controls.** L72's window reproduces exactly (c₀=−0.457840, κ_flow=−2.423638, M*=−5.2936, design
+c_IR(−3)=0.350039 interior at 1.76× margin — after the first run caught me fabricating the design
+coefficients; the real ones are copied verbatim from L72); L71's deep-MOND background reproduces (r_M=12.2
+kpc, 8 deep-MOND rows).
+
+- **⭐ THE CLOSED FORM, from astra's own reduced Hamiltonian h(S,q,z,R).** On the static galactic branch
+  (q=z=0) the reduced Hessian is **H_SS = −e^S·P0 − v(S)·R**, a baryonic/potential part plus a curvature
+  part, derived symbolically with P0,A,D,E4 kept free. **H_Sq = 0** there (L66/L71's absent-subtraction,
+  reproduced), so A,D,E4 drop out of H_SS entirely — only P0 and the curvature enter.
+- **⭐ v(S) = e^{S+2wc}/2 > 0 for ALL S**, so the curvature contribution −v(S)·R has its **sign fixed by
+  −sign(R)**. On the solved deep-MOND background **R ≈ 4∇²Φ = 4g/r > 0 everywhere** (and ∝1/r², largest
+  near r_M, →0 in the outskirts, both footings).
+- **⭐⭐ THE DANGER IS ONE-SIDED.** Since v>0 and R>0, the curvature shift is **strictly negative**: it can
+  only push H_SS toward the −5.294 instability floor, **never up through the safe ceiling at 0**. The upper
+  window boundary is curvature-safe. The deep-MOND outskirts (R→0) are asymptotically always healthy.
+- **⭐⭐⭐ THE WHOLE GAP = ONE INEQUALITY.** Pinning the baryonic part by the design target (−e^{0.1}P0=−3 at
+  the flat-vacuum point ⇒ P0=2.71, galactic baryonic H_SS=−2.71, interior, c_IR=0.435>0), health holds
+  **iff v(S)·R < 5.294 − 2.71 = 2.58** (reduced, dimensionless) at every radius. **Footing-independent**
+  (a₀ enters only through the uncalibrated R-map). Positive headroom exists, so a healthy calibration is
+  **not excluded**; the floor is reached only if the reduced curvature exceeds 2.58 near r_M.
+- **⭐ THE IRREDUCIBLE CORE IS NAMED, not formless.** At galactic S≈0: v,t are closed-form exponentials,
+  **A=0.1 and E4=0.01 are FIXED CONSTANTS (IC31 §1), not S-tables**, e^{2S}→1 — all KNOWN. **Only D(S)'s
+  fitted table and astra's IC20 Hessian reduction (H_SR,K,B,Ċ) at S≈0 remain.** Galactic S≈0 lies **below**
+  the represented interval (IC29 starts at S=0.1, history runs Q up to 7), so IC31 forbids the lookup here —
+  but the closure is a **bounded downward extension of astra's own IC29 coefficient IVP to S≈0**, plus the
+  one length calibration for R. Then astra runs one test: **c₀(S≈0) + κ_flow(S≈0)/(−P0−vR) > 0 near r_M.**
+- **⚠️ HONEST SCOPE.** Proved: the closed form, the sign, the one-sided danger, the single inequality, the
+  outskirt safety. NOT claimed: that it is healthy (the magnitude could exceed 2.58) nor killed (need not).
+  L72's window boundaries are themselves design-point quantities that could shift on a curved background;
+  this bracket holds them fixed and flows only the explicit −vR term (the leading R-dependence) — the
+  **sign result does not depend on that and is exact**. L73 stands: complete only below a galaxy.

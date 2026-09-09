@@ -1,0 +1,130 @@
+======================================================================================================================
+L74 -- bracketing the uncalibrated gap: the galactic curvature term has a decidable SIGN
+======================================================================================================================
+
+======================================================================================================================
+PART 0 -- CONTROLS: reproduce L72's window and L71's background BEFORE any galactic curvature claim.
+======================================================================================================================
+    rebuilt IR speed:  c0 = -0.457840118,  kappa_flow = -2.423638416
+    cIR(M) = c0 + kappa_flow/M ;  design M=-3: cIR = 0.350039354  (L72 oracle 0.350039354)
+    stability boundary  M* = -kappa_flow/c0 = -5.29363 ;  healthy H_SS in (-5.2936, 0)
+  [PASS] CTRL-1  [L72 design positivity REPRODUCED] the IR scalar speed^2 at the design point H_SS=-3 is c_IR = 0.3500 > 0 (healthy), from the closed form c_IR = c0 + kappa_flow/H_SS with L72's coefficients   (c_IR(-3) = 0.350039354)
+  [PASS] CTRL-2  [L72 window REPRODUCED] the healthy set is the open interval H_SS in (-5.294, 0): c_IR>0 at H_SS=-5.29 and c_IR<0 at H_SS=-5.30, and the design point -3 is interior at ~1.76x margin   (M* = -5.2936; c_IR(-5.29)=3.15e-04>0, c_IR(-5.30)=-5.50e-04<0; margin 1.76x)
+  [PASS] CTRL-3  [L71 background REPRODUCED] astra's own MOND field eq div[(1-e^{-y})gradPhi]=rho_b/2m gives a deep-MOND galactic background (g_N<0.4 a0) with g->sqrt(g_N a0) and near-flat v_c, on both footings -- the same s<0.4 regime where L60's kill fires on the DEPOSITED action   (8 deep-MOND rows; r_M=12.2 kpc)
+
+======================================================================================================================
+PART 1 -- H_SS ON THE STATIC GALACTIC BRANCH, DERIVED from astra's own reduced Hamiltonian h(S,q,z,R).
+======================================================================================================================
+
+  IC20 sec 3 reduced scalar Hamiltonian (rebuilt verbatim, as in L71 PART 2):
+      h(S,q,z,R) = -e^{2S} q^2/(6 v) - A(S) q z - e^{S} P0 - D(S) z^2 - E4(S) z^4 - v R,
+      v = e^{S+2wc}/2 + z^2.
+  The static galactic branch is q=z=0 (IC30 sec 2: E_q=E_s=E_z=0 with t>0,E4>=0,2D>3A^2/t force q=z=0).
+  Compute the reduced Hessian entries there, keeping R and P0 (and A,D,E4) as free symbols -- NO extrapolation.
+
+  [PASS] DERIV-1  H_Sq = 0 on the static branch (L66/L71's absent-subtraction result reproduced symbolically): the L60 lapse-channel mixing vanishes, so the deep-MOND kill's mechanism has NO analog here   (H_Sq(q=z=0) = 0)
+  [PASS] DERIV-2  [THE CLOSED FORM] H_SS on the static galactic branch = -e^S P0 - v''(S) R, DERIVED from astra's own h -- a BARYONIC/potential part -e^S P0 plus a CURVATURE part -v''(S) R.  No coefficient was extrapolated: P0, A, D, E4 kept symbolic, only the q=z=0 static branch imposed   (H_SS = (-P0 - R*exp(2*wc)/2)*exp(S))
+  [PASS] DERIV-3  v''(S) = v(S) = e^{S+2wc}/2 > 0 for ALL S (v is a pure exponential at z=0).  Therefore the curvature contribution to H_SS is -v(S)R, and its SIGN is fixed entirely by -sign(R) -- this is the load-bearing fact that makes the danger one-sided   (v''(S)=v(S)=e^(S+2wc)/2; at S=0: 0.4756 > 0)
+
+======================================================================================================================
+PART 2 -- THE CURVATURE SIGN on the solved deep-MOND background: R > 0, so the shift is DOWNWARD only.
+======================================================================================================================
+
+  The reduced R is the background value of the curvature that couples in -vR.  On a weak-field galactic
+  metric h_ij = e^{-2Psi} delta_ij with no-slip Psi=Phi (IC30 sec 3), the spatial Ricci scalar is
+  R ~ 4 grad^2 Phi to leading order.  On the deep-MOND phantom potential (flat rotation, g=sqrt(GM a0)/r):
+      grad^2 Phi = (1/r^2)(r^2 Phi')' = (1/r^2)(r^2 g)' = g/r  > 0,   and it FALLS as 1/r^2 outward.
+  So R > 0 throughout the deep-MOND halo (largest near r_M, -> 0 in the outskirts).
+
+    grad^2 Phi = g/r across radii (canonical), 1e-30 s^-2 units:
+        r=   5 kpc   g/r = 3.6238e-30 s^-2   s=g_N/a0=5.9568
+        r=  10 kpc   g/r = 5.4257e-31 s^-2   s=g_N/a0=1.4892
+        r=  20 kpc   g/r = 1.0971e-31 s^-2   s=g_N/a0=0.3723 (deep MOND)
+        r=  30 kpc   g/r = 4.5883e-32 s^-2   s=g_N/a0=0.1655 (deep MOND)
+        r=  50 kpc   g/r = 1.5783e-32 s^-2   s=g_N/a0=0.0596 (deep MOND)
+        r=  80 kpc   g/r = 6.0160e-33 s^-2   s=g_N/a0=0.0233 (deep MOND)
+        r= 120 kpc   g/r = 2.6385e-33 s^-2   s=g_N/a0=0.0103 (deep MOND)
+        r= 200 kpc   g/r = 9.3999e-34 s^-2   s=g_N/a0=0.0037 (deep MOND)
+        r= 320 kpc   g/r = 3.6506e-34 s^-2   s=g_N/a0=0.0015 (deep MOND)
+        r= 500 kpc   g/r = 1.4901e-34 s^-2   s=g_N/a0=0.0006 (deep MOND)
+  [PASS] SIGN-1  R ~ 4 grad^2 Phi = 4 g/r > 0 at every galactic radius on the solved deep-MOND background, on both footings.  The curvature is POSITIVE everywhere in the halo   (min g/r = 1.490e-34 s^-2 > 0)
+  [PASS] SIGN-2  the curvature falls as 1/r^2 outward, so it is LARGEST near r_M and -> 0 in the outskirts: the deep-MOND outskirts are asymptotically curvature-safe; any exposure is at intermediate radii near r_M   (g/r drops 736x from r=20 to 500 kpc)
+  [PASS] SIGN-3  [THE ONE-SIDED DANGER] since v(S)>0 (DERIV-3) and R>0 (SIGN-1), the curvature shift -v(S)R is STRICTLY NEGATIVE: it can only drive H_SS toward the -5.294 instability FLOOR, never up through the safe ceiling at 0.  The upper window boundary is curvature-safe on both footings -- the exposure is one-sided, the floor only   (-v(S)R < 0 everywhere: H_SS can only decrease from its baryonic value; ceiling at 0 is never approached)
+
+======================================================================================================================
+PART 3 -- THE BRACKET: pin the baryonic part by the design target, reduce the gap to ONE inequality.
+======================================================================================================================
+
+  The design target is H_SS=-3 at S=0.1 on the FLAT-VACUUM design point (R~0).  With R~0 there, the closed
+  form gives the baryonic constant:  -e^{0.1} P0 = -3  =>  P0 = 3 e^{-0.1} = 2.7145.
+  In a galaxy S=(2-u)Phi is a weak-field potential (Phi ~ 1e-6), so e^{S} ~ 1 and the baryonic part is -P0.
+  Then H_SS(galaxy, r) = -P0 - v(S) R(r), and health (L72's window) is H_SS in (-5.294, 0):
+      UPPER (<0):   -P0 - v R < 0    <=>   v R > -P0   -- ALWAYS true (v R >= 0).           [curvature-safe]
+      LOWER (>M*):  -P0 - v R > M*   <=>   v R < -M* - P0 = 5.294 - 2.7145 = 2.580.         [the ONE bound]
+
+    P0 (pinned by design H_SS=-3 at R~0) = 2.7145
+    baryonic H_SS(galaxy) = -P0 = -2.7145  (interior to (-5.294,0), c_IR = 0.4350 > 0)
+    HEALTH HOLDS  <=>  v(S) R  <  -M* - P0 = 2.5791   (reduced, dimensionless)
+  [PASS] BRACKET-1  the baryonic H_SS(galaxy) = -P0 = -2.71 is INTERIOR to the healthy window with c_IR = 0.4350 > 0: with zero curvature the galactic scalar is HEALTHY.  So the entire question is what the curvature term does   (-P0=-2.7145 in (-5.294,0))
+  [PASS] BRACKET-2  [THE DELIVERABLE] the galactic propagating scalar is healthy  <=>  v(S) R < 2.58 (dimensionless, reduced) at every radius.  This SINGLE falsifiable inequality on ONE calibration number REPLACES L71's 'underspecified, cannot be certified either way'.  Positive headroom exists (2.58 > 0), so a healthy calibration is NOT excluded; the floor is only reached if the reduced curvature exceeds 2.58 near r_M   (headroom to floor = 2.5791 reduced units (both footings share it: window & P0 are footing-free))
+  [PASS] BRACKET-3  the bound is FOOTING-INDEPENDENT: M*, P0, v(S) and the window are all built from dimensionless design coefficients, and a_0 enters only through the (uncalibrated) map to the reduced R -- so the 2.58 target is identical on canonical and alt footings   (both footings: same 2.58 reduced-unit target; footing enters only via astra's unfixed length calibration)
+
+======================================================================================================================
+PART 4 -- HONEST SCOPE: what is proved, what is astra's, and what this does NOT claim.
+======================================================================================================================
+
+  PROVED (decidable from the action as it stands, IC31-respecting -- no coefficient extrapolated):
+    * H_SS(static galaxy) = -e^S P0 - v(S) R, closed form from astra's own h.               (DERIV-2)
+    * v(S) > 0 always; R > 0 in the deep-MOND halo; hence the curvature danger is ONE-SIDED. (DERIV-3/SIGN-3)
+    * with zero curvature the galactic scalar is healthy (c_IR=0.36); outskirts are always safe.
+    * the whole gap = ONE inequality  v(S) R < 2.58  (reduced), footing-independent.          (BRACKET-2/3)
+  ASTRA's (this lane does NOT fake it):
+    * the MAGNITUDE of the reduced R -- needs the S<->galaxy length calibration IC31 has not fixed -- and
+      hence WHETHER 2.58 is actually satisfied at the peak-curvature radius near r_M.
+  NOT CLAIMED:
+    * that the theory is healthy (the magnitude could exceed 2.58); nor that it is killed (it need not).
+    * L72's window boundaries (c0, kappa_flow) are themselves design-point quantities; on a curved
+      background they could shift at higher order.  This bracket holds the window fixed and flows only the
+      explicit -vR term, which carries the leading R-dependence -- a leading-order bracket, not a proof of
+      health.  The SIGN result (SIGN-3) does not depend on that and is exact.
+  RELATION TO L73: unchanged.  Even a curvature-healthy version is complete only BELOW a galaxy
+    (excess-spent-once); clusters still need a separately-gravitating component.
+
+  [PASS] SCOPE-1  this lane converts L71's 'underspecified' into a single falsifiable target for astra, without extrapolating any coefficient: the sign is proved, the magnitude is named as astra's to calibrate, and the completeness verdict (L73) is untouched   (underspecified -> one inequality v(S)R<2.58; sign decidable, magnitude = astra's calibration)
+
+======================================================================================================================
+PART 5 -- WHAT ACTUALLY CLOSES THE GAP: the irreducible core is small and named, not formless.
+======================================================================================================================
+
+  The two window coefficients are c0 = cUV - 4 K H_SR^2/(B e^{2S}) and kappa_flow = 2 Cdot H_SR/e^{2S}.
+  Ask which of their ingredients are KNOWN in closed form at galactic S~0 and which need astra's tables:
+    * v(S)=e^{S+2wc}/2 and t=e^{2S}/v are explicit exponentials -> KNOWN at S~0 (v(0)=e^{2wc}/2=0.476).
+    * A and E4 are FIXED CONSTANTS in IC31 sec 1 (A=.1, E4=.01), NOT S-tables -> KNOWN at S~0.
+    * e^{2S} -> 1 at S~0 (vs e^{0.2}=1.22 at the design point) -> KNOWN.
+    * ONLY D(S) is a fitted quintic-Hermite table, and the Hessian reduction (H_SR, K, B, Cdot=flow-deriv of
+      H_Sq) is astra's IC20 all_wavelength_witness() reduction.  These are the WHOLE uncalibrated core.
+  And the represented S interval STARTS at S=0.1 (IC29 sec: 'initial S=.1,q=-3,z=1,Q=0'; the Q-history runs
+  Q up to 7), so galactic deep-MOND S~0 lies BELOW it.  Per IC31 that forbids a lookup HERE -- but it makes
+  the closure a BOUNDED, well-posed downward extension of astra's OWN IC29 coefficient IVP to S~0, plus the
+  one length calibration for the reduced R.  Not new physics, not something to fake in this lane.
+
+  [PASS] CLOSE-1  the uncalibrated core is SMALL and named: v,t are closed-form exponentials, A and E4 are FIXED CONSTANTS (IC31 sec 1), e^{2S}->1 -- all KNOWN at galactic S~0.  ONLY D(S)'s table and astra's IC20 Hessian reduction (H_SR,K,B,Cdot) at S~0 remain.  The gap is not formless; it is these   (known at S~0: v,t,A=.1,E4=.01,e^{2S}->1; unknown: D(S~0) and the H_SR/K/B/Cdot reduction at S~0)
+  [PASS] CLOSE-2  [THE CLOSURE RECIPE, astra's to run] galactic S~0 lies BELOW the represented interval (IC29 starts at S=0.1), so closure = extend astra's OWN IC29 coefficient IVP down to S~0 (bounded, well-posed) + calibrate the reduced R, then test c0(S~0) + kappa_flow(S~0)/(-P0 - v R) > 0 at the peak-curvature radius near r_M.  A finite computation on astra's construction -- NOT faked here   (extend IC29 IVP to S~0 + reduced-R calibration; then one inequality decides galactic health)
+
+======================================================================================================================
+VERDICT
+======================================================================================================================
+
+  The galactic propagating health of astra's integrable-clock action is NO LONGER a formless open gap.
+  From astra's OWN reduced Hamiltonian, the static-branch Hessian is H_SS = -e^S P0 - v(S) R, the baryonic
+  part is pinned by the design target to -2.71 (healthy, interior), and the curvature part -v(S) R is
+  STRICTLY NEGATIVE (v>0, R>0) -- so curvature can only endanger the theory through the LOWER floor, never
+  the ceiling.  The entire question reduces to ONE footing-independent inequality:  v(S) R < 2.58.
+  Positive headroom exists, so a healthy calibration is not excluded; the ONE number astra must supply is
+  the reduced curvature at the peak-curvature radius near r_M.  That is a concrete falsifiable target --
+  the bracket L71 could not yet draw -- and it is the honest edge of what is decidable without astra's
+  calibration.  L73 stands: complete only below a galaxy.
+
+======================================================================================================================
+L74 COMPLETE: 15/15 checks PASS.   [0.2s]
+======================================================================================================================
