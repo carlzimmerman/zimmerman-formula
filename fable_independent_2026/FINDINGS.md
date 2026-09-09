@@ -11,12 +11,14 @@ as a win that a check did not survive.
 Inverting the static law on the corrected X-COP profiles gives the boost that would
 reproduce the observed cluster masses from the baryons exactly. It exists and is
 well behaved: single-valued to 0.147 dex, monotone, so the stiffness stays positive.
-It is **Δ_req ≈ 5.5 s^0.81**, i.e. J_Y ≈ 0.13–0.18 nearly constant, i.e. **g_obs ≈ 6.9 g_N**.
+It is **Δ_req ≈ 5.5 s^0.81**, i.e. J_Y ≈ 0.13–0.18 nearly constant, i.e. **M_dark ≈ 6.9 M_bar and g_obs ≈ 7.9 g_N**.
+⚠️**AUDIT (L36-E1): this line previously read "g_obs ≈ 6.9 g_N", conflating the dark-to-baryon ratio with the boost.
+At 1000 kpc the measured values are 5.73 and 6.73. L2's own output was correct; this restatement introduced the error.**
 
 - Its log-slope, 0.81 ± 0.08, sits **3.9σ above the 1/2** that caps any kernel with a
   deep-MOND limit. A slope near 1 means gravity rescaled by a constant, i.e. extra
   mass tracing the baryons — not an interpolation function.
-- It exceeds the widest bounded-boost ceiling of the kernel family by 2.9×.
+- It exceeds the widest bounded-boost ceiling of the kernel family by **3.0×** (L36-E5 corrects 2.9×).
 - **The impossibility:** at the *same* accelerations, s = 0.09–0.65, clusters require
   **2.2–5.1× the boost galaxies are measured to have**; worst |z| = 13. The ratio is
   identical on both footings because a₀ cancels from a ratio of measured accelerations.
@@ -1451,3 +1453,57 @@ finding of 27 simple numbers in the band, 29 with the H₀ convention.
 - **Eight of the ten enumerated structures are now closed by theorem**, and the two survivors relocate
   the fit rather than removing it. **κ remains FITTED, nothing derives it, and nothing makes ½
   preferred over 0.461.**
+
+## L36 — the record audit: the computations are sound, the sentences were not
+
+`L36_record_audit.py` + `L36_RECORD_AUDIT.md` (13 checks, 6 FAIL). Commissioned after the owner said,
+correctly, that too many mistakes were reaching the record. **This lane's job was to break the record,
+and it did.**
+
+**Controls, and they are the point — the auditor can fail.** Exact-arithmetic machinery reproduces the
+boxed obstruction to 18 digits **and rejects a deliberately corrupted version of the same closed form**;
+the split-degeneracy theorem holds as an exact rational identity **and the corrupted map is rejected**;
+α₁ = −4c₁₄ is exact on its locus **and a corrupted Foster–Jacobson numerator is rejected**; the
+saturation point is verified as the true argmax **and a corrupted target rejected**; and the currency
+probe finds a real number while missing a one-digit corruption of it.
+
+- **⚠️ Nothing has drifted. All 22 lane scripts re-run today and reproduce their committed output TO THE
+  CHARACTER**, only timing lines differing. The four algebraic keystones re-derive independently of the
+  lane code. **Every one of the 22 defects is an error of DESCRIPTION. Every fix is a rewrite, not a
+  re-run.**
+- **The ledger: 25 verified · 4 wrong · 3 overclaimed · 8 footing-leaky · 3 statistics-only · 1 weak ·
+  8 unverified.**
+- **The worst one, and it is the entry the lead is told it may rely on (E7).** A14 said the galactic
+  matching item is "answered POSITIVELY". L11 has **three FAILs on exactly that question** — the limit
+  is the exponential carrier and not the carried kernel, it is disfavoured on the SPARC control, and the
+  far-field clock value is undetermined. L11's own verdict line says those "are NOT hidden inside this
+  verdict". **A14 hid them.** Corrected.
+- **The most consequential footing leak (E12).** A20's structural degeneracy said the two laws are
+  "11.5% apart in velocity, below the stellar mass-to-light systematic". On the alt footing the gap is
+  **16.5%, the same size as the systematic invoked to dismiss it.** Ten leaks across eight entries, and
+  in every case the script printed both numbers and the sentence took one.
+- **The L23 failure mode reintroduced, three times (E20–E22).** A20's 19.6σ is profile-likelihood,
+  statistics-only, on 1900 pairs sharing one mass-to-light scale, one distance scale and one isolation
+  criterion. **With a 0.10 dex floor it is 7.2σ; with the lane's own isolation band, 3.0σ.** A8's 13–15σ
+  becomes **4.4σ** under a 10% coherent X-ray mass calibration. A7's |z| = 13 is **unverified as a
+  significance**. **In every case the direction survives and only the number falls.**
+- **Four wrong arithmetic statements**, including "g_obs ≈ 6.9 g_N" which conflates the dark-to-baryon
+  ratio with the boost, and four miscounted lane FAIL headers. All corrected.
+- **Three cross-entry disagreements**, including one that matters: A3 says the counterterm **detunes**
+  the tensor speed while A15 states c_T² = 1 as an **identity** with no flat/curved qualifier — and
+  unrecorded anywhere, L15 finds the detuning **doubles** at σ = 1.
+- **⚠️ Eight entries are UNVERIFIED and are not passed by default**, including the convergence claim
+  behind L1, A20's isolation depth, A12's coarse 6-D grid, and the lead's anisotropic two-mode reduction
+  which **neither L4 nor L15 reproduces**.
+
+**On formal verification, which the owner asked about.** **Lean 4 would have caught none of the 22** —
+not one is a false proof. What is recommended instead, about five days of work, preventing 17 of 22: a
+typed reporting call that **refuses a scalar** where two footings were computed (all ten leaks originate
+in a print that took one float where two existed); results-file transclusion plus a numeric-literal
+linter; a required error-budget schema that **refuses a σ carrying only a statistical line**; and
+citation-linting so a cited FAIL must be mentioned or waived. **Two theorems are worth formalising** —
+not because they are at risk but because they are statements over parameter intervals that only a proof
+closes: the uniqueness of σ*, currently believed on one symbolic solve, and the α₁ = −4c₁₄ identity that
+everything downstream rests on. **Do not attempt** the degree-of-freedom count: Mathlib has no Poisson
+brackets on a constrained phase space, no ADM formalism and no Dirac algorithm. A second computer
+algebra system is the right hardening there.

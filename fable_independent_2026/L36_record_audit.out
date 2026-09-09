@@ -1,0 +1,537 @@
+==========================================================================================================================
+L36 -- adversarial audit of the lane's own standing record (HANDOFF_CONTRACT section A, A1-A23)
+==========================================================================================================================
+
+==========================================================================================================================
+X -- CONTROLS.  The auditor must be able to FAIL, or a clean verdict proves nothing.
+==========================================================================================================================
+
+X0  the boxed IC6 obstruction, from the closed form, in exact symbolic arithmetic
+---------------------------------------------------------------------------------
+    T = -27/16 + 54/(5 ln(9/5)) = 16.6865133025958774440606919139
+    S_4'(1)|sigma=1/3 = -11.14077112511479874098627921572918191163
+    record            = -11.1407711251147987   (A1, A15, L4-O6, L15-C6)
+    corrupted (5T-27 -> 5T-26) = -11.338188535194002595   [must be REJECTED]
+  [PASS] X0 [CONTROL] the exact-arithmetic machinery reproduces the record's boxed obstruction to 18 digits AND rejects a deliberately corrupted version of the same closed form   (true value -11.140771125114798741 agrees with the record's 18 digits; the corrupted form -11.3381885352 is correctly rejected)
+
+X1  the L3 split-degeneracy map, in exact rationals
+---------------------------------------------------
+    Z~ = Z + 2 b beta^2 invariant under (beta -> mu beta, Z -> Z + 2 b beta^2 (1-mu^2)) : True
+    kappa -> mu kappa                                                                  : True
+    corrupted map (1-mu) leaves Z~ invariant?  False   [must be False]
+  [PASS] X1 [CONTROL] the split-degeneracy theorem holds as an exact rational identity and the machinery REJECTS the corrupted map with (1-mu) in place of (1-mu^2)   (exact sympy identity, not a numerical coincidence)
+
+X2  the Foster-Jacobson preferred-frame coupling on the hypersurface-orthogonal locus
+-------------------------------------------------------------------------------------
+    alpha_1 (c_1 = -c_3 = K_B) = -4*c_14   -> == -4 c_14 : True
+    corrupted numerator gives  = -8*K_B + 4*c_14   [must NOT be -4 c_14]
+    alpha_2 zero at c_2* = c_14/(1-2c_14) : True
+  [PASS] X2 [CONTROL] alpha_1 = -4 c_14 is exact on the c_1 = -c_3 = K_B locus, c_2* = c_14/(1-2c_14) is its exact alpha_2 zero, and a corrupted Foster-Jacobson numerator is REJECTED   (A19/A6/L13-C5a and L10-K1 reproduce symbolically)
+
+X3  the carried kernel's saturation point, re-derived from scratch
+------------------------------------------------------------------
+    Delta(s) = s/(exp(sqrt(s)) - 1);  stationary at e^u (2-u) = 2, u = 1.5936242600
+    s_sat = u^2 = 2.539638   (record 2.540)      Delta_sat = 0.647610   (record 0.6476)
+  [PASS] X3 [CONTROL] the saturation point (s_sat, Delta_sat) = (2.540, 0.6476) shared by L6/L13/L21/L23 is the true argmax of the carried Delta, and the same machinery rejects a corrupted target   (s_sat = 2.5396, Delta_sat = 0.6476; a corrupted 2.640 is rejected)
+
+X4  the ledger's 'this number is in its own .out' probe
+-------------------------------------------------------
+  [PASS] X4 [CONTROL] the currency probe finds a number that IS in the source .out and does NOT find a one-digit corruption of it   (the F5 currency test below is therefore capable of failing)
+
+X5  live re-run of the cheap lane scripts against their committed .out
+----------------------------------------------------------------------
+    L2_cluster_inverse: identical
+    L3_flux_quantisation: identical
+    L5_long_range_G: identical
+    L6_screened_force: identical
+    L7_cosmic_ratio: identical
+  [PASS] X5 [CONTROL] the cheap lane scripts re-run today reproduce their committed .out exactly, so the stored outputs are current and the F5 test is reading live numbers   (L2_cluster_inverse: identical; L3_flux_quantisation: identical; L5_long_range_G: identical; L6_screened_force: identical; L7_cosmic_ratio: identical)
+
+    (the remaining 17 lane scripts were re-run out-of-band for this audit and diffed against
+     their committed .out: L1, L8-L21 and L23 all reproduce with only wall-clock timing lines
+     differing.  No stored number in this lane has drifted from its script.)
+
+==========================================================================================================================
+A -- FAILURE MODE 1: FOOTING LEAKAGE.  For every numeric claim in section A, is it footing-independent, and if not, are BOTH footings actually quoted?
+==========================================================================================================================
+
+A4 -- the exponential wall at Cassini.  A4 quotes ONE number and FINDINGS says 'on both footings'.
+--------------------------------------------------------------------------------------------------
+    canonical : |a|/a0 = 6.964e+05   above the 15.42 a0 threshold by 4.52e+04x   coupling ~ exp(-7e+05)
+    alt       : |a|/a0 = 5.781e+05   above the 15.42 a0 threshold by 3.75e+04x   coupling ~ exp(-5.8e+05)
+    A4 as written: 'Cassini 3.7e4x above the PPN threshold ... coupling e^(-5.8e5)'
+    -> 5.78e5 and 3.7e4 are the ALT column of L10's own table.  The CANONICAL values are 6.96e+05 a0 and 4.5e+04x, coupling e^(-7e+05).
+
+A5 -- the Cherenkov escape.  Three canonical-only numbers.
+----------------------------------------------------------
+    L19 prints BOTH footings for all three:
+      |a|/a0 in the cosmic ray's near field : 8.812e+38 canonical / 7.314e+38 alt   (A5 quotes 8.8e38)
+      D_loss / Hubble distance             : 33.23 canonical  / 27.58 alt          (A5 quotes 33)
+      l_M = c^2/a0                         : 31.11 Gpc can    / 25.82 Gpc alt      (A5 quotes neither)
+
+A19 -- c_14_eff/c_14 and the MOND-scalar cone.  L13 prints s on BOTH footings but computes c_14_eff from the CANONICAL column only (L13:357, jy = J_Y(s_can)).  Recomputed here on both.
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    site                                 c14_eff/c14 canonical     c14_eff/c14 alt    A19 quotes
+    Saturn orbit (Cassini monopole)                  1.1897846           1.2333075         1.190
+    Earth orbit, 1 AU                                1.0018429           1.0022209        1.0018
+    Cassini conjunction, b=1.6 R_sun                 1.0000001           1.0000001     1.0000001
+
+    A19's MOND-scalar cone: L13 prints BOTH footings and A19 quotes only canonical.
+      c_s/c at |K_2| = 5e5:  1 AU 18.76 canonical / 17.10 alt;  Cassini conj. 2522 / 2298
+      A19 says 'c_s >= 19c at 1 AU / 2522c at Cassini conjunction'  -- canonical only
+
+A12 -- the surviving region's |K_2| edge differs between footings and A12 quotes one interval.
+----------------------------------------------------------------------------------------------
+    L14 prints:  canonical |K_2| in [5.0000e+04, 5.0000e+05]
+                 alt       |K_2| in [5.0000e+04, 3.1623e+05]
+    A12 (and FINDINGS L14) say '|K2| in [5e4, 5e5]' with no footing split.
+
+A16 -- the late-roll prediction merges footings into single ranges.
+-------------------------------------------------------------------
+    L9 prints per footing and construction:
+      canonical (b):  H0 68.90-71.99   sigma_8 0.853-0.861
+      alt (a):        H0 67.36         sigma_8 0.858-0.861
+      alt (b):        H0 67.69-72.21   sigma_8 0.845-0.859
+    A16 says 'sigma_8 = 0.845-0.861 with H0 = 68-72'  -- a union across footings, and the H0
+    union is 67.4-72.2, not 68-72.
+
+A17 -- the head-to-head scatter is the ALT footing; L16 says so and A17 does not.
+---------------------------------------------------------------------------------
+    L16 A1: 'kernel 0.142 dex (best footing: alt) vs halo 0.171'
+    L16 prints:  a_0 alt fixed 0.142 dex;  a_0 canonical fixed 0.145 dex
+
+A18 -- the rescuing b.  FINDINGS gives both footings; the handoff entry gives one.
+----------------------------------------------------------------------------------
+    L18 H3: required b = -0.819 canonical / -0.681 alt.  A18 says 'the b ... is negative (-0.82 ...)'.
+
+A20 -- the structural-degeneracy percentage is canonical-only, and the alt value is 44% larger.
+-----------------------------------------------------------------------------------------------
+    canonical : nu_bar(e_N=0.01240) = 7.994 against 1 + 5.43 = 6.43  ->  velocity gap +11.5%
+    alt       : nu_bar(e_N=0.01027) = 8.733 against 1 + 5.43 = 6.43  ->  velocity gap +16.5%
+    A20 and L21-S0 say 'nu_bar = 7.99 against 6.43, 11.5% apart in velocity ... below the stellar-M/L
+    systematic'.  On the alt footing nu_bar = 8.733 and the gap is 16.5%, not 11.5%,
+    which is the SAME size as the M/L systematic the sentence uses to dismiss it.
+
+A20 -- the kernel+cosmic-share amplitude quotes canonical only where the first row quotes both.
+-----------------------------------------------------------------------------------------------
+    L21: framework isolated A = 1.802 +/- 0.041 can / 1.731 +/- 0.039 alt   (A20 gives both)
+         kernel + cosmic share A = 1.141 +/- 0.028 can / 1.099 +/- 0.025 alt  (A20 gives canonical only,
+         and the '5.0 sigma' is canonical; alt is 4.0 sigma)
+
+FOOTING-INDEPENDENT by construction -- verified, no split needed
+----------------------------------------------------------------
+    A7   cluster/galaxy ratio 2.2-5.1, |z| = 13               a ratio of two MEASURED accelerations; a0 cancels (L2 states this)
+    A7   density overlap 100% at 12.8 sigma                   an enhancement ratio at matched density; a0 cancels
+    A7   BBN factor 41x                                       G_cosmo/G_local = 9.21 identical on both footings (L5 prints both)
+    A8   5.73 +/- 0.68, 12%, f_bar = 0.149                    L7 prints both footings and they are identical to 3 s.f.
+    A9   0.92-1.45 M_b inside 10 kpc                          L1 runs both footings; the range spans them
+    A11  7.96 canonical / 5.48 alt / 9.39 horizon             EXEMPLARY: the entry names the footing dependence explicitly
+    A13  dark fraction 2.6e-6, short by 1e5x                  L14 prints the same value on both footings
+    A14  MOND coefficient exactly 1.000000, no slip < 1e-4    L11 B1b/B4b run both footings
+    A15  -20.194205022906776, sigma* = 1.679, ratios 1.81/1.78 pure algebra in T; no a0 anywhere
+    A21  2.50e-7 / 2.74e-7, l0 = 31.11/25.82 Gpc              EXEMPLARY: both footings quoted for both numbers
+    A22  +1.1961 canonical / +1.1679 alt, 4.9/4.7 sigma       EXEMPLARY: both arms quoted, and the a0 footing is itself a line in the systematic budget
+    A23  0.153984/h0, z = 0.1096, rho = 2.9084, 84.3%         internal units; the plateau carries no a0
+    A19  alpha_1 = -4 c_14, Lambda_sc = 1.54e16 GeV, c_14 < 7.3e-92 dimensionless / Planckian; no a0
+    A6   c_14 <= 2.5e-5, c_2* = c_14/(1-2c_14)                pure PPN algebra
+  [FAIL] F1 [FAILURE MODE 1, footing leakage] no entry in section A quotes one number where the two a0 footings give different values   (10 leaks across 8 entries (A4, A5, A12, A16, A17, A18, A19 x2, A20 x2). The most consequential is A20: the 11.5% structural-degeneracy gap is 16.5% on the alt footing, which is NOT 'below the stellar-M/L systematic'. The most clear-cut is A4, where the single quoted pair (5.78e5 a0, 3.7e4x) is the ALT column of L10's own two-footing table while FINDINGS says 'on both footings')
+
+==========================================================================================================================
+B -- FAILURE MODE 2: ARITHMETIC IN PROSE.  Every arithmetic statement recomputed from its own stated inputs, in exact arithmetic where the quantity is algebraic.
+==========================================================================================================================
+
+B1  FINDINGS L2: 'J_Y ~ 0.13-0.18 nearly constant, i.e. g_obs ~ 6.9 g_N'
+------------------------------------------------------------------------
+    J_Y = s/Delta_req, so 1/J_Y = (g_obs - g_bar)/g_bar = M_dark/M_bar, and g_obs/g_N = 1 + 1/J_Y.
+    headline J_Y range        : 0.1265 - 0.1838   (record '0.13-0.18'  OK)
+    1/J_Y = M_dark/M_bar      : 5.44 - 7.91
+    from the fitted law Delta = 5.47 s^0.811 over s in [0.09, 0.91]: 1/J_Y = 5.57 - 8.62, log-centre 6.93
+    -> L2's own '.out' sentence 'G rescaled by 1/J_Y ~ 6.9' is CORRECT as a dark-to-baryon ratio.
+    -> FINDINGS' restatement 'i.e. g_obs ~ 6.9 g_N' is NOT: g_obs/g_N = 1 + 1/J_Y = 7.93.
+
+B2  A17: 'scale bounded at <3.3e-13 (3.4 dex below a0)'
+-------------------------------------------------------
+    L16 prints 'bootstrap 95% upper limit a_eff < 3.29e-13 m/s^2'  and, separately, a point
+    estimate railed at the search floor 10^-13.5 = 3.162e-14, which is 3.471 dex below a0.
+      canonical : log10(a0/3.29e-13) = 2.454 dex;  log10(a0/10^-13.5) = 3.471 dex
+      alt       : log10(a0/3.29e-13) = 2.535 dex;  log10(a0/10^-13.5) = 3.552 dex
+
+B3  check-count arithmetic in FINDINGS' lane headers
+----------------------------------------------------
+    lane                              FINDINGS says         script prints today     verdict
+    L1_caustics_and_cap               3 FAIL of 12          3 FAIL of 11            WRONG
+    L2_cluster_inverse                6 FAIL of 10          6 FAIL of 10            ok
+    L3_flux_quantisation              5 FAIL of 10          5 FAIL of 10            ok
+    L4_verify_ic7                     1 FAIL of 24          1 FAIL of 29            WRONG
+    L5_long_range_G                   3 FAIL of 5           3 FAIL of 5             ok
+    L6_screened_force                 5 FAIL of 6           5 FAIL of 6             ok
+    L7_cosmic_ratio                   3 FAIL of 6           3 FAIL of 6             ok
+    L9_late_transition                1 FAIL of 9           1 FAIL of 9             ok
+    L10_khronon_gate                  5 FAIL of 10          5 FAIL of 10            ok
+    L11_galactic_limit                3 FAIL of 22          3 FAIL of 22            ok
+    L12_constraint_first              13 FAIL of 25         13 FAIL of 25           ok
+    L13_strong_coupling               22 PASS, 4 FAIL       4 FAIL of 26            ok
+    L14_parameter_sweep               2 FAIL of 24          2 FAIL of 24            ok
+    L15_sigma_one                     1 FAIL of 30          1 FAIL of 30            ok
+    L16_hybrid_inverse                5 FAIL of 11          5 FAIL of 12            WRONG
+    L17_elliptic_nonlocal             32 checks, 17 FAIL    17 FAIL of 32           ok
+    L18_hse_bias                      7 FAIL of 10          6 FAIL of 10            WRONG
+    L19_cherenkov_applicability       13 checks, 6 FAIL     6 FAIL of 13            ok
+    L20_ghost_past                    23 checks, 23 PASS    0 FAIL of 23            ok
+    L21_binary_galaxies               16 checks, 7 FAIL     7 FAIL of 16            ok
+    L23_udg_verify                    23 checks, 0 FAIL     0 FAIL of 23            ok
+
+B4  A9: '0.92-1.45 M_b inside 10 kpc, still 4-6x the 0.25 the RAR tolerates'
+----------------------------------------------------------------------------
+    0.92/0.25 = 3.68,  1.45/0.25 = 5.80   -> the range is 3.7-5.8x, not 4-6x
+    (L1 also produces a fourth run, mp_cons60a = 0.96, which FINDINGS' table omits; it lies inside
+     the quoted 0.92-1.45 so nothing moves, but the table is incomplete as a record of the runs.)
+
+B5  A15: 'verified ... numerically at six sigma to <1.7e-40'
+------------------------------------------------------------
+    L15_SIGMA_ONE.md quotes the TOLERANCE '< 1.7e-40'; the script's L15-G2 prints the ACHIEVED
+    agreement, max |closed - numeric| = 4.867e-51.  The record's number is true but 11 orders
+    of magnitude weaker than the check, and it reads as the achieved precision.
+
+B6  A20: 'against 5.73 +/- 0.68 at 0.80 R500 -- 5.7x, 16 sigma'
+---------------------------------------------------------------
+    L21-S1 computes 16.3 sigma against the COSMIC 5.43, not against L7's measured 5.73 +/- 0.68.
+      (30.9 - 5.43)/1.6                    = 15.9 sigma   <- the .out's number
+      (30.9 - 5.73)/sqrt(1.6^2 + 0.68^2)   = 14.5 sigma   <- what the sentence describes
+
+B7  FINDINGS L2: 'exceeds the widest bounded-boost ceiling by 2.9x'
+-------------------------------------------------------------------
+    L2-C4 states 'max required Delta = 3.01 (headline stellar-7 canonical 2.94) against C_max = 1.000:
+    over by 3.0x'.  FINDINGS quotes 2.9x, which is the headline subset, not the maximum the check used.
+  [FAIL] F2 [FAILURE MODE 2, arithmetic in prose] every arithmetic statement in section A and FINDINGS recomputes correctly from its own stated inputs   (10 slips. The two that matter: FINDINGS L2's 'g_obs ~ 6.9 g_N' is the DARK-TO-BARYON ratio, not the boost (correct: g_obs ~ 7.9 g_N, and 6.73 g_N at 1000 kpc); and A17's '<3.3e-13 (3.4 dex below a0)' welds a 95% upper limit to a different statistic's dex value (3.29e-13 is 2.45 dex below a0). Four FINDINGS lane headers also miscount their own checks)
+
+==========================================================================================================================
+C -- FAILURE MODE 3: SIGNIFICANCE WITH CORRELATED ERRORS.  L23 found 19.4 sigma -> 4.9 sigma in h9. Every sigma and every error bar in section A audited the same way.
+==========================================================================================================================
+
+C1  A8 -- 'the 13-15 sigma residual' against the framework's predicted zero
+---------------------------------------------------------------------------
+    recomputed from the audit JSON at r = 1000 kpc, 12 clusters:
+      median Newtonian M_dark/M_bar = 5.730   (A8 quotes 5.73)
+      cluster-to-cluster rms        = 0.681  = 12% (A8 quotes '+/- 0.68, 12%')
+
+    the framework residual: median 3.09 M_bar, cluster scatter 0.71
+      quoted 15 sigma  =  3.09/(0.71/sqrt(12)) = 15.1  -- STATISTICS ONLY
+    what is COHERENT across all twelve: one HSE estimator, one XMM calibration, one gas-density
+    deprojection, one stellar-mass prescription, one kernel, one a0.  None of these averages down.
+    a coherent X-ray mass calibration of only 10-15% moves the residual by a much larger fraction,
+    because the residual is a DIFFERENCE of two large numbers:
+      +/-5% coherent on M_HSE: residual 2.75 .. 3.43 M_bar   (fractional 11%)
+      +/-10% coherent on M_HSE: residual 2.42 .. 3.76 M_bar   (fractional 22%)
+      +/-15% coherent on M_HSE: residual 2.08 .. 4.10 M_bar   (fractional 33%)
+    with a 10% coherent M_HSE floor: residual 3.09 +/- 0.20(stat) +/- 0.67(syst) -> 4.4 sigma, not 15
+    DIRECTION MATTERS AND IT HELPS THE RECORD: L18 shows the ONE systematic that is actually
+    measured (hydrostatic bias b in [0.00, 0.42]) moves the residual AWAY from zero, 3.09 -> 4.85
+    at b = 0.20.  So the CONCLUSION (residual != 0) is robust; the NUMBER 13-15 sigma is not.
+
+C2  A20 -- the binary-galaxy amplitudes.  This is the h9 pattern, in this lane's newest entry.
+----------------------------------------------------------------------------------------------
+    L21's error bars come from ml_fit's profile likelihood (L21:417) -- statistics only.
+    The amplitude A = observed/predicted with predicted sigma_los ~ (G M a0)^(1/4), so a COHERENT
+    error in the K-band stellar M/L moves EVERY one of the 1900 pairs together:  dlnA = -(1/4) dlnUpsilon.
+    L21's own systematics note says the shape axis 'is immune to this' -- i.e. the amplitude axis is not.
+      Upsilon_K coherent at 0.10 dex -> dA = 0.104;  A = 1.802 +/- 0.041(stat) +/- 0.104(syst) -> 7.2 sigma  (quoted 19.6)
+      Upsilon_K coherent at 0.15 dex -> dA = 0.156;  A = 1.802 +/- 0.041(stat) +/- 0.156(syst) -> 5.0 sigma  (quoted 19.6)
+    AND the lane's own leading systematic is isolation depth: A falls 1.99 -> 1.51 as isolation
+    deepens, a coherent one-sided 14% band the record itself calls decisive.
+      combining stat + 0.10 dex M/L + the isolation band: A - 1 = 0.802 +/- 0.265 -> 3.0 sigma, not 19.6
+
+    Same treatment for the ladder: A20's 'pairs need 30.9 +/- 1.6' has M_dyn/M_bar ~ 1/Upsilon,
+      a 0.10 dex coherent Upsilon_K gives +/-8.0 on 30.9, so the gap to the cosmic 5.43 is
+      3.1 sigma, not 16.  The factor 5.7 becomes 4.5-7.2.
+
+C3  A7 -- '|z| = 13' (L2) and '12.8 sigma' (L6)
+-----------------------------------------------
+    These are z-scores between the cluster-required and galaxy-measured boost at matched acceleration
+    (or matched density).  a0 cancels, correctly.  But the two populations do NOT share systematics,
+    they have DIFFERENT ones, and neither is in the z: SPARC's Upsilon_disc = 0.5 / Upsilon_bulge = 0.7
+    (coherent, ~0.11 dex in the literature) on one side, and the hydrostatic mass bias on the other.
+    L18 prices the cluster side and finds it makes the gap WORSE (required b = -2.07 to close it).
+    The SPARC side is not priced anywhere in this lane.  A 0.11 dex coherent Upsilon moves the
+    galaxy boost by a factor 1.29 in g_bar, i.e. it cannot plausibly close a factor 2.2-5.1 --
+    so the conclusion is safe, but '|z| = 13' and '12.8 sigma' remain statistics-only numbers.
+
+C4  A22 -- the model case.  This is what the rest of section A should look like.
+--------------------------------------------------------------------------------
+    A22 quotes 4.9/4.7 sigma AFTER a 0.227 dex coherent floor built from a named line-item budget
+    (M/L+IMF 0.148, aperture/anisotropy 0.120, cluster model 0.088, instrument 0.052, estimator
+    0.047, a0 footing 0.047, distance 0.021), and it states the stat-only 19.4 sigma as the thing
+    being corrected.  Recomputed: sqrt(0.062^2 + 0.227^2) = 0.2353, 1.159/0.2353 = 4.93 sigma.
+
+C5  A17 -- '6 sigma below' the abundance-matching prediction
+------------------------------------------------------------
+    L16-R4b: a0 returns only at log M_200 -1.80 dex, called '6.0 sigma below' LambdaCDM's prediction.
+    The 0.30 dex denominator is the abundance-matching SPREAD (Moster vs Behroozi vs Kravtsov plus
+    the 0.1 dex Upsilon systematic), i.e. a systematic used as a sigma. That is the right currency
+    here -- it is a coherent modelling uncertainty, not a per-galaxy statistical error -- so this
+    one is defensible. Recorded because it is the only sigma in section A built on a systematic.
+  [FAIL] F3 [FAILURE MODE 3, correlated errors] every sigma and every error bar in section A either includes a coherent-systematic floor or is labelled statistics-only where it is quoted   (4 statistics-only significances presented without a floor: A8's 13-15 sigma (-> ~4 with a 10% coherent X-ray mass calibration), A20's whole amplitude table including 19.6 sigma (-> ~7 with a 0.10 dex Upsilon_K floor, ~3 including the lane's own isolation band) and its 16 sigma ladder gap (-> ~3), and A7's |z| = 13 / 12.8 sigma. In every case the DIRECTION of the conclusion survives and only the number falls. A22 is the counter-example and shows the lane knows how to do this)
+
+==========================================================================================================================
+D -- FAILURE MODE 4: OVERCLAIM.  Each section-A sentence against the actual PASS/FAIL lines and printed numbers of its script.
+==========================================================================================================================
+
+D1  A14 -- 'The lead's own galactic matching open item is answered POSITIVELY.'
+-------------------------------------------------------------------------------
+    L11 runs 22 checks and THREE fail, two of them on exactly this question:
+      [FAIL] B2b  the kernel produced is the EXPONENTIAL carrier, not the programme's carried nu_RAR
+                  (0.0726 dex apart; the ceiling is exceeded 5.2x more often on bulgeless SPARC)
+      [FAIL] B3   the IC kernel IS disfavoured relative to nu_RAR on that control
+      [FAIL] B5   the far-field boundary condition on u is NOT determined by the published files;
+                  if u must approach the cosmological value, 27%/38% of bulgeless SPARC points
+                  beyond 2 kpc sit below the implied universal external field
+    L11's own VERDICT line says 'the two open items above are scored separately as B2b and B5 and
+    are NOT hidden inside this verdict'.  A14 hides them: it mentions neither.  FINDINGS does not.
+
+D2  A16 -- 'A late-time roll CLEARS the cosmological gates ... predicting sigma_8 = 0.845-0.861'
+------------------------------------------------------------------------------------------------
+    L9 prints, in the same table as that prediction:
+      sigma_8  0.853-0.861   gate +/-10%   Planck 0.8111 +/- 0.0060  =>  7-8 sigma   [canonical]
+      sigma_8  0.845-0.859   gate +/-10%   Planck 0.8111 +/- 0.0060  =>  6-8 sigma   [alt]
+      RSD dchi2  +5.28 to +9.00   gate <= +9.00        [the canonical band runs right up to the gate]
+      Omega_Lambda 0.248-0.274    not gated            measured 0.685
+    So the 'prediction' is already 6-8 sigma from the measurement it is compared against in the very
+    same row, and it clears 'growth' only because that gate was set at +/-10% and dchi2 <= 9.
+    FINDINGS says 'every survivor sits at the top of the growth gate' and that 2 sigma empties the
+    canonical footing -- true, but the handoff entry the lead reads says only 'clears'.
+
+D3  A1 -- 'IC7's claim that c_7 is built from action derivatives alone is CONFIRMED as written'
+-----------------------------------------------------------------------------------------------
+    True, and L4-I6 checks it symbolically (no free symbols beyond the state).  But L4-I5, in the
+    same run, records something the record does not carry anywhere:
+      [PASS] L4-I5 ... the central IC7 identity S_4 + 32 V c_7/B3^4 = 0 holds IDENTICALLY on the
+             isotropic plateau -- BUT IT HOLDS BECAUSE c_7 IS -S_4/32 BY DEFINITION: the repair is
+             an exactly tuned counterterm, not an independent prediction of the action.
+    Neither A1 nor FINDINGS' L4 section states that. It is the single most important qualification
+    on the IC7 repair and it is the lane's own finding.
+
+D4  A5/A6 -- correctly scoped.  Recorded as the counter-example.
+----------------------------------------------------------------
+    A5 states three tiers with the deciding input named (IC10's open item 3) and A6 is explicitly
+    'SCOPED BY L19 to case Y1 only'. This is exactly the right shape for a conditional result and
+    it matches L19's C8a/C8b/C12 lines.  No overclaim.
+
+D5  the entries that check out clause by clause
+-----------------------------------------------
+    A2  DOF = 3 with A_0 = 0.4614531036 > 0, DeWitt lambda = 1, c_s^2 = 1/3 -- L4-D2/D3/D4/C1 verbatim.
+    A3  |j-1| < 0.074 (plateau ends 1.0736445) and 4 c_7/c = 0.008570513 -- L4-I11/I13 verbatim.
+    A10 the curl finding: 5.7e-03 of the path integral vs 1.3e-09 Newtonian, unbinds within 1 Gyr
+        at any timestep -- L1-V5a/V5b verbatim, and the method rule follows from it.
+    A12 no admissible point on either footing; minimal incompatible subsets all contain G2;
+        gamma_v ceilings 1.0450/1.0300; all ten gate controls C1-C10 PASS -- L14 verbatim.
+    A13 Omega_d,eff <= 2.6e-6 against Omega_d = 0.266, short by 1.0e5x -- L14-T4 verbatim.
+    A18 b = -0.819/-0.681 and -2.07, sigma^2 < 0 in 12/12, ratio 9.04 at b = 0.33, and the
+        SELF-CORRECTION of L7's own '5%' headline -- L18-H2/H3/H4/H6/H8/H9 verbatim. A18 is the
+        only entry in section A that exists to attack this lane's own strongest claim.
+    A20 the one clause that is unambiguously right and easy to get wrong: 'the closest separation
+        slope of any law (1.9 sigma)'. L21's table: 5.6, 6.1, 10.6, 10.6, 3.2, 1.9, 5.4 -- 1.9 is
+        indeed the minimum, and the shape axis is genuinely immune to the M/L.
+
+D6  A21, A23 -- checked against their scripts, no overclaim found
+-----------------------------------------------------------------
+    A21's five clauses each map onto a named L17 check (M4, M5, O1, O2, S2, the Dirac counter's
+    controls) and its verdict phrase is L17's own.  A23's seven clauses map onto L20-G1/G2/G3/S2/
+    F1-F4/F6/V2 and it carries the lane's own honest caveat ('relocates the problem').
+  [FAIL] F4 [FAILURE MODE 4, overclaim] no section-A sentence is stronger, broader or more general than what its script's PASS/FAIL lines and printed numbers support   (3 overclaims. A14 states the lead's galactic-matching item is 'answered POSITIVELY' while dropping the B2b/B3/B5 FAILs its own script insisted on keeping visible; A16 says the roll 'clears' growth when L9's own table annotates the surviving sigma_8 as 6-8 sigma from Planck; and A1 omits L4-I5's finding that IC7's c_7 is an exactly tuned counterterm rather than a prediction. All three are omissions of the script's own caveats, not fabrications)
+
+==========================================================================================================================
+E -- CURRENCY.  Does every section-A number match what its script prints TODAY?
+==========================================================================================================================
+    62 load-bearing numbers probed against the .out their entry names.
+    plus: all 22 lane scripts were re-run for this audit; every one reproduces its committed .out
+    with only wall-clock timing lines differing.  No number in this record has drifted.
+  [PASS] F5 [currency] every section-A number is present in the output its own entry names, and every lane script reproduces its committed .out today   (62 probes, 0 missing; live re-runs identical. THE RECORD IS CURRENT -- nothing has drifted from its script. Every error found by this audit is an error of DESCRIPTION, not of computation)
+
+==========================================================================================================================
+F -- CROSS-ENTRY CONSISTENCY.  Do any two section-A entries disagree on a shared quantity?
+==========================================================================================================================
+
+shared quantities
+-----------------
+    saturation point (s_sat, Delta_sat)
+        L6/L13/L21 code: 2.540 / 0.6476
+        L23-K1 re-derivation: 2.5396 / 0.6476 (true argmax)
+        -> CONSISTENT. every script that carries the kernel uses the same pair and it is the true stationary point
+    a0 footings
+        all 22 scripts: 9.3619e-11 / 1.1279e-10
+        CHARTER rule 3: 9.3619e-11 / 1.1279e-10
+        -> CONSISTENT. no script uses a third value
+    cosmic dark-to-baryon share
+        A8: Omega_dm/Omega_b = 5.43
+        A20 ladder: 5.43
+        -> CONSISTENT. 
+    cluster dark-to-baryon ratio at the outer radius
+        A7 (via L2's J_Y): 1/J_Y = 5.44-7.91 over s = 0.09-0.91 (stellar-7 headline)
+        A8 (L7 at 1000 kpc): 5.73
+        -> CONSISTENT. recomputed from the raw JSON: M_dark/M_bar at 1000 kpc = 5.73, inside L2's headline band. NOTE the all-12 subset of L2 gives J_Y down to 0.100 (1/J_Y = 10.0), which does NOT contain 5.73 -- the agreement holds on the headline stellar-7 subset only, and neither entry says so
+    c_14 ceiling
+        A6 (from alpha_1): <= 2.5e-5
+        A12 (sweep region): <= 1.18e-5
+        -> CONSISTENT. the sweep's grid edge is inside the PPN bound; A12 calls this 'agrees', which is containment not equality
+    cluster-to-galaxy boost contrast
+        A7 / A16 / A18: 2.2-5.1 in all three
+        L2/L9/L18 .out: 2.2-5.1 in all three
+        -> CONSISTENT. L18-H1 reproduces L2 exactly as a control
+    the +/- 0.68 on the cluster ratio
+        A8: quoted as the 12% cluster-to-cluster SCATTER
+        A20 ladder: used alongside '30.9 +/- 1.6' as if it were an uncertainty on the mean
+        -> DISAGREE. the same symbol is a population scatter in one entry and an error bar in the other; the error on the median of 12 would be 0.68/sqrt(12) = 0.20. A20's own 16.3 sigma in fact uses neither -- it compares to the cosmic 5.43 with only the 1.6
+    tensor cone c_T^2
+        A3: c_T^2 = 1 - 4 c_7 Rbar_0/c: IC7 DETUNES it off flat backgrounds
+        A15: 'c_T^2 = 1 ... is a sigma-INDEPENDENT identity'
+        -> DISAGREE. both are true of different backgrounds (A15 means the IC6 sector on flat backgrounds), but as written the handoff asserts luminality as an identity in one row and its violation in another with no qualifier. L15-R14 also finds the detuning roughly DOUBLES at sigma = 1 (0.00857 -> 0.02259), which A3's single number does not carry
+    alpha_2 closed form
+        L10-K1: identifies a 3 c_14^2/4 term OMITTED by g03v
+        A19 / L13-P2 detail: quotes 'alpha_2 = -c_14/2 + c_14^2/(2 c_2)' -- the uncorrected form
+        -> DISAGREE. verified symbolically here: the correct expansion is -c_14/2 + c_14^2/(2 c_2) + 3 c_14^2/4. Numerically irrelevant at c_14 ~ 1e-5, but the record repeats an error one of its own lanes corrected
+    Cassini |a|/a0
+        A4: 5.78e5 a0 (the alt column, presented as universal)
+        L10 table: 6.96e+05 canonical / 5.78e+05 alt
+        -> DISAGREE. already counted as a footing leak; it is also an internal inconsistency between the entry and its table
+  [FAIL] F6 [cross-entry] no two section-A entries disagree on a shared quantity   (4 disagreements: the +/- 0.68 is a scatter in A8 and an error bar in A20; A3 and A15 assert the tensor cone is detuned and is an identity with no qualifier distinguishing flat from curved backgrounds; A19 repeats an alpha_2 form that L10 itself corrected; and A4's Cassini number contradicts its own script's table. None changes a verdict; all are record defects)
+
+==========================================================================================================================
+G -- THE LEDGER
+==========================================================================================================================
+    entry                 verdict     claim
+    A10                   VERIFIED    algebraic nu(|g|)g has nonzero curl and unbinds within 1 Gyr
+                                      -> verbatim
+    A11                   VERIFIED    7.96 canonical / 5.48 alt / 9.39 horizon
+                                      -> footing-independent, verified
+    A12                   VERIFIED    no admissible point on either footing; every minimal subset contains G2
+                                      -> verbatim
+    A13                   VERIFIED    dark fraction 2.6e-6, short by 1e5x
+                                      -> footing-independent, verified
+    A13                   VERIFIED    condensate dark fraction capped at 2.6e-6, short by 1e5x
+                                      -> verbatim
+    A14                   VERIFIED    MOND coefficient exactly 1.000000, no slip < 1e-4
+                                      -> footing-independent, verified
+    A15                   VERIFIED    -20.194205022906776, sigma* = 1.679, ratios 1.81/1.78
+                                      -> footing-independent, verified
+    A18                   VERIFIED    hydrostatic bias is not an escape and runs the wrong way
+                                      -> verbatim
+    A19                   VERIFIED    alpha_1 = -4 c_14, Lambda_sc = 1.54e16 GeV, c_14 < 7.3e-92
+                                      -> footing-independent, verified
+    A2                    VERIFIED    local DOF = 3, healthy khronon (A_0 = 0.46, lambda = 1, c_s^2 = 1/3)
+                                      -> verbatim
+    A20                   VERIFIED    1.9 sigma separation slope is the closest of any law
+                                      -> minimum of 7, confirmed
+    A21                   VERIFIED    2.50e-7 / 2.74e-7, l0 = 31.11/25.82 Gpc
+                                      -> footing-independent, verified
+    A21                   VERIFIED    A5 is a seasoning not a protein; 0 DOF, dlng/dlnM = 1.000000, amplitude sh
+                                      -> every quoted number found in the .out on both footings
+    A22                   VERIFIED    +1.1961 canonical / +1.1679 alt, 4.9/4.7 sigma
+                                      -> footing-independent, verified
+    A22                   VERIFIED    +1.196 -> +1.159 dex, 19.4 sigma -> 4.9/4.7 sigma, floor 0.227 dex
+                                      -> 4.93 sigma reproduces exactly
+    A23                   VERIFIED    0.153984/h0, z = 0.1096, rho = 2.9084, 84.3%
+                                      -> footing-independent, verified
+    A23                   VERIFIED    IC10 plateau past-incomplete at a regular point; repair is not a coefficie
+                                      -> all thirteen quoted numbers found in the .out; internal units, footing-free
+    A3                    VERIFIED    repair window |j-1| < 0.074; c_T^2 = 1 - 4c_7 Rbar_0/c, 4c_7/c = 0.00857
+                                      -> verbatim
+    A5/A6                 VERIFIED    three-tier Cherenkov conditional, target region scoped to Y1
+                                      -> matches the script's own tiering; the deciding computation is named
+    A6                    VERIFIED    c_14 <= 2.5e-5, c_2* = c_14/(1-2c_14)
+                                      -> footing-independent, verified
+    A7                    VERIFIED    cluster/galaxy ratio 2.2-5.1, |z| = 13
+                                      -> footing-independent, verified
+    A7                    VERIFIED    density overlap 100% at 12.8 sigma
+                                      -> footing-independent, verified
+    A7                    VERIFIED    BBN factor 41x
+                                      -> footing-independent, verified
+    A8                    VERIFIED    5.73 +/- 0.68, 12%, f_bar = 0.149
+                                      -> footing-independent, verified
+    A9                    VERIFIED    0.92-1.45 M_b inside 10 kpc
+                                      -> footing-independent, verified
+    A12                   LEAKY       surviving region |K2| in [5e4, 5e5]
+                                      -> canonical [5e4, 5e5]; alt [5e4, 3.16e5]
+    A16                   LEAKY       sigma_8 = 0.845-0.861 with H0 = 68-72
+                                      -> canonical sigma_8 0.853-0.861, H0 68.9-72.0; alt 0.845-0.861, H0 67.4-72.2
+    A17                   LEAKY       fixed-a0 kernel 0.142 dex vs halo 0.171 dex
+                                      -> 0.145 canonical / 0.142 alt
+    A18                   LEAKY       the rescuing b is -0.82 for the residual
+                                      -> -0.819 canonical / -0.681 alt
+    A19                   LEAKY       c_14_eff/c_14 = 1.190 Saturn, 1.0018 at 1 AU, 1.0000001 at Cassini conjunc
+                                      -> Saturn 1.1898 can / 1.2333 alt
+    A20                   LEAKY       nu_bar = 7.99 vs 6.43, 11.5% apart in velocity (structural degeneracy)
+                                      -> canonical 11.5%; alt 16.5% (nu_bar 8.733)
+    A4                    LEAKY       Cassini 3.7e4x above the PPN threshold, coupling e^(-5.8e5)
+                                      -> canonical 4.5e+04x, e^(-7e+05); alt 3.7e+04x, e^(-5.8e+05)
+    A5                    LEAKY       |a|/a0 = 8.8e38, D_loss = 4.5 l_M = 33 Hubble distances
+                                      -> canonical 8.81e38 / 33.2 D_H; alt 7.31e38 / 27.6 D_H
+    A15                   WEAK        closed form verified numerically at six sigma to <1.7e-40
+                                      -> achieved 4.867e-51
+    A20                   STAT-ONLY   framework isolated A = 1.802 +/- 0.041, 19.6 sigma
+                                      -> reproduces; but stat-only. With a 0.10 dex coherent Upsilon_K: 7.2 sigma. With the l
+    A7                    STAT-ONLY   cluster/galaxy 2.2-5.1x, |z| = 13; density overlap 12.8 sigma
+                                      -> ratios reproduce exactly; the z-scores are stat-only and the SPARC Upsilon systemati
+    A8                    STAT-ONLY   5.73 +/- 0.68, 12% universal; 13-15 sigma residual
+                                      -> median 5.73, rms 0.68 reproduced from the raw JSON; 13-15 sigma is stat-only and bec
+    A1                    OVERCLAIM   the lead's IC5/6/7 algebra reproduces; c_7 built from action derivatives a
+                                      -> reproduces exactly (obstruction verified to 40 digits here, independently of L4); I5
+    A14                   OVERCLAIM   the IC-series reduces to MOND; galactic matching answered positively
+                                      -> the reduction verifies exactly (coefficient 1.000000, no slip <1e-4, same G); B2b/B3
+    A16                   OVERCLAIM   late roll clears BBN/CMB/growth/expansion; sigma_8 = 0.845-0.861, H0 = 68-
+                                      -> gates as defined do pass; but sigma_8 is 6-8 sigma from Planck in L9's own annotatio
+    A17                   WRONG       acceleration scale bounded at <3.3e-13, i.e. 3.4 dex below a0
+                                      -> 3.29e-13 = 2.45 dex below a0; the 3.47 dex figure belongs to the railed point estima
+    A7                    WRONG       the cluster residual is 'about seven baryonic masses', g_obs ~ 6.9 g_N
+                                      -> M_dark/M_bar = 6.9 (log-centre); g_obs/g_N = 7.9
+    A9                    WRONG       0.92-1.45 M_b inside 10 kpc, 4-6x over the 0.25 tolerance
+                                      -> 3.7-5.8x over; the four runs are 1.43/0.92/1.45/0.96
+    FINDINGS L1/L4/L16/L18WRONG       lane check counts in the FINDINGS headers
+                                      -> L1_caustics_and_cap: 3 FAIL of 11; L4_verify_ic7: 1 FAIL of 29; L16_hybrid_inverse: 
+
+    ledger verdicts: LEAKY 8, OVERCLAIM 3, STAT-ONLY 3, VERIFIED 25, WEAK 1, WRONG 4
+
+UNVERIFIED -- claims this audit could not recheck without a new expensive solve. Recorded as UNVERIFIED, NOT passed by default.
+-------------------------------------------------------------------------------------------------------------------------------
+    A9      that the M(<10 kpc) values are CONVERGED. L1's own note is that the trend rises with N (1.24 at 4000 -> 1.43 at 8000) and that the coarse timestep biases down; FINDINGS concludes 'the converged value is at or above these'. No run above N = 8000 exists, and L1's own line reads 'numbers RISING with N are particle noise, not caustics' -- which is a different claim. Settling it needs an N = 16000-32000 multipole run.
+    A9      the caveats L1 itself declines to repair: angle-averaged QUMOND rather than a solved field equation, an isolated vacuole with no tides, z_i = 20 against the shell model's 50.
+    A20     the isolation-depth systematic. Every amplitude is an UPPER limit and the lane says so; the size of the correction (1.99 -> 1.51 measured; how much further a 2-magnitude-deeper catalogue would take it) is not computable from 2MRS and is the single number the entry most needs.
+    A7      the SPARC-side Upsilon systematic on |z| = 13 and 12.8 sigma. Needs L2/L6 re-run with Upsilon_disc profiled rather than frozen at 0.5.
+    A16     whether the surviving late-roll region is a real region or a boundary artefact of the +/-10% sigma_8 gate and the dchi2 <= 9 RSD gate, which the canonical band runs right up to.
+    A12     the sweep's GRID resolution. 1.2e8 points is a coarse log grid in 6 dimensions (about 22 points per axis); 'no admissible point' is a statement about the grid, and the region is described in the .out itself as 'a thin sheet' where the marginal boxes are not independent.
+    A2/A3   the lead-side inputs. L4 rebuilds the lead's algebra independently and it reproduces, and the lead's c_7 = 0.00235189114143216, S4_11 = -0.0642323935174161 and leftover 0.0151964888331 are present in its files today. What is NOT verified is the lead's anisotropic two-mode reduction itself, which neither L4 nor L15 reproduces (L15 names it as missing).
+    A19     the MOND scalar's cubic action. L13-P9 FAILs because Delta' = 0 on the saturated branch, so Sigma_par = infinity; the strong-coupling scale of the SCALAR (as distinct from the khronon) cannot be computed from the action as published. A19 records this correctly.
+
+==========================================================================================================================
+H -- VERDICT
+==========================================================================================================================
+
+  WHAT SURVIVED.  Every computation in this record is CURRENT and REPRODUCIBLE.  All 22 lane scripts
+  re-run today produce their committed .out to the character (only wall-clock lines differ).  The four
+  algebraic keystones re-derive in exact arithmetic, independently of the lane's own code:
+      S_4'(1)|sigma=1/3 = -11.140771125114798741  (record's 18 digits correct)
+      S_4'(1)|sigma=1   = -20.194205022906776     (correct), sigma* = 4T/(4T-27) = 1.6793127 EXACT
+      alpha_1 = -4 c_14 EXACT on c_1 = -c_3 = K_B; c_2* = c_14/(1-2c_14) its exact alpha_2 zero
+      the split-degeneracy map is an exact rational identity; Z/beta^2 = 2/kappa^2 - 2b
+  A8's 5.73 and 12% were rebuilt from the raw cluster JSON and reproduce.  A11, A21, A22 and A23 are
+  clean as written; A22 is the model for how a significance should be reported in this programme.
+
+  WHAT DID NOT.  Every error found is an error of DESCRIPTION, not of computation.  That is the good
+  news and it is also the pattern: this record's failure mode is the sentence, not the solve.
+    7 entries are WRONG or OVERCLAIMED, 12 leak a footing or quote a statistics-only sigma,
+    8 claims are UNVERIFIED and must not be read as passed.
+
+  THE THREE THAT MUST BE FIXED BEFORE THE RECORD IS USED:
+    1. A20's significances are statistics-only on a sample sharing one Upsilon_K, one distance scale and
+       one isolation criterion -- the identical failure L23 corrected in h9, reintroduced in the newest
+       entry. 19.6 sigma -> ~7 sigma with a 0.10 dex M/L floor, ~3 sigma including the lane's own
+       isolation band. A > 1 survives; the number does not.
+    2. A14 tells the lead its galactic-matching item is 'answered POSITIVELY' while dropping the three
+       FAILs (B2b, B3, B5) that L11's own verdict line insisted be kept visible.
+    3. A4 quotes the ALT column of L10's two-footing table as though it were universal, while FINDINGS
+       says 'on both footings'. Canonical is 6.96e5 a0 and 4.5e4x, not 5.78e5 and 3.7e4x.
+
+  [FAIL] F7 [VERDICT] the standing record in HANDOFF_CONTRACT section A is sound AS WRITTEN and can be relied on without amendment   (it is not: 7 wrong/overclaimed, 12 leaky or statistics-only, 8 unverified, 25 verified. The UNDERLYING COMPUTATIONS are sound -- nothing has drifted and the algebra re-derives exactly -- so every fix is a rewrite of a sentence, not a re-run of a solve. The record is repairable in place)
+
+==========================================================================================================================
+RESULT: 6 FAIL -> ['F1 [FAILURE MODE 1, footing leakage] no entry in section A quotes one number where the two a0 footings give different values', 'F2 [FAILURE MODE 2, arithmetic in prose] every arithmetic statement in section A and FINDINGS recomputes correctly from its own stated inputs', 'F3 [FAILURE MODE 3, correlated errors] every sigma and every error bar in section A either includes a coherent-systematic floor or is labelled statistics-only where it is quoted', "F4 [FAILURE MODE 4, overclaim] no section-A sentence is stronger, broader or more general than what its script's PASS/FAIL lines and printed numbers support", 'F6 [cross-entry] no two section-A entries disagree on a shared quantity', 'F7 [VERDICT] the standing record in HANDOFF_CONTRACT section A is sound AS WRITTEN and can be relied on without amendment']
+==========================================================================================================================
