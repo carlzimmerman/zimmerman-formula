@@ -1,0 +1,412 @@
+======================================================================================================================
+L42 -- what actually decides between this framework and LambdaCDM?  A ranked forecast.
+======================================================================================================================
+
+======================================================================================================================
+SECTION 0 -- CONTROLS: registered numbers reproduced from their own source files
+======================================================================================================================
+    source: qwen_claude_field_theory/papers_2026/PAPER7_a0z_decisive_measurement_2026.tex
+    registered rise factors at z = 1, 2, 2.5, 3.25 : [1.23, 1.76, 2.13, 2.82]
+    recomputed (Dutton-Maccio 2014 c(M,z), M = 1e12 Msun, h = 0.674, Om = 0.315) : [1.233, 1.756, 2.126, 2.823]
+  [PASS] C1 [CONTROL] PAPER7's four registered LambdaCDM-native rise factors are reproduced independently from Dutton-Maccio 2014 and E(z)   (max |Delta| = 0.0040)
+    zero-point displacement at z = 2.5 : recomputed +0.3276 dex,  registered +0.33 dex
+  [PASS] C2 [CONTROL] the registered +0.33 dex LambdaCDM-native BTFR zero-point displacement at z = 2.5 follows from the same recomputation   (recomputed +0.3276 vs registered +0.33)
+
+    source: prep_2026/gaia_dr4_prep/PREREGISTRATION_DR4.md
+    parsed: Arm A band canonical (1.1614, 1.1814), alt (1.1917, 1.2267); Arm B ceilings 1.045 / 1.03
+    parsed: sigma_fit = 0.019 at N = 30,000, sigma_tot = 0.028; sigma_sys = 0.02 (Amdt 7c)
+    internal consistency of the document's own error model: sqrt(0.019^2 + 0.02^2) = 0.02759, quoted as 0.028 (rounding, reported not corrected)
+    Amendment 11(e) 'ceiling to floor is 0.116 = 4.2 sigma_tot (6.1 sigma_fit)' -> recomputed 0.1164 = 4.16 sigma_tot (6.13 sigma_fit)
+    Amendment 7(c) 'ceilings at z = 1.55 as N -> inf'            -> recomputed 1.550
+    section 1 '5.8 sigma_tot below the canonical band floor'      -> recomputed 5.76
+  [PASS] C3 [CONTROL] four derived quantities of the frozen DR4 error model are reproduced from the parsed band edges and sigma_sys alone (arm separation 4.2/6.1 sigma; Amdt 7 ceiling 1.55; Arm A vs Newton 5.8)   (sep 0.1164, 4.16/6.13 sigma; ceiling 1.55; A-vs-Newton 5.76)
+
+    a0 = kappa c sqrt(G rho_Lambda) with kappa = 1/2, Planck-2018 (Om = 0.315, h = 0.674) : 9.3624e-11 m/s^2   vs canonical footing 9.3619e-11
+  [PASS] C4 [CONTROL] the framework's own headline a0 is reproduced from the law to better than 1%   (ratio 1.0001)
+
+======================================================================================================================
+SECTION 0b -- the 3-sigma forecaster, controlled against published forecasts
+======================================================================================================================
+    Amendment 7(d) 'statistical-only 3 sigma needs N ~ 102,500' -> forecaster returns N = 101,426 (from sigma_fit = 0.0190 at N = 30,000, signal 0.0310)
+  [PASS] C5 [CONTROL] the forecaster reproduces the preregistration's own published statistical-only 3-sigma sample size, N ~ 102,500   (N = 101,426)
+    PAPER7 'total uncertainty 0.13 dex gives 20:1 discrimination' -> forecaster returns 25.1:1  (2.54 sigma)
+  [PASS] C6 [CONTROL] the forecaster reproduces PAPER7's published 20:1 odds at 0.13 dex (and shows it is 2.54 sigma frequentist, not 3)   (odds 25.1:1, 2.538 sigma)
+  [PASS] C7 [CONTROL] the forecaster returns the textbook N = (3 sigma_pop/Delta)^2 = 36 for a half-sigma mean shift   (N = 36.0)
+
+======================================================================================================================
+SECTION 1 -- the register: what the framework predicts, what LambdaCDM predicts, and the precision to separate them at 3 sigma
+======================================================================================================================
+
+  key   test                                                        sep/sigma (can)  sep/sigma (alt)  3-sig sigma req
+  --------------------------------------------------------------------------------------------------------------------
+  T1    Gaia DR4 wide binaries, Arm A (frozen phenomenological ban             5.76             6.85           0.0538
+  T2    Gaia DR4 wide binaries, Arm B (the covariant candidate tha             1.61             1.07            0.015
+  T3    Deep-MOND baryonic Tully-Fisher zero point at z = 2.5                  2.52             2.52           0.1092
+  T4    Cluster weak-lensing Delta-Sigma log-slope (L24's new quan             9.16             9.24            0.177
+  T5    Cluster residual vs the cosmic dark-to-baryon share                   15.00            13.00             1.03
+  T6    Binary galaxies on the ISOLATED branch (L21)                          17.40            15.92           0.2783
+  T7    Coma ultra-diffuse galaxies (L23's corrected row)                      4.93             4.73           0.3863
+  T8    s^TX SME boost dipole from planetary ephemerides                       0.67             0.81        2.893e-10
+  T9    Linear structure formation without cold dark matter (P(k),            16.20            16.20            0.054
+  T10   a0(z) from the Rubin/LSST supernova stream                             2.00             2.00            0.075
+  T11   Directional external-field effect in wide binaries                     2.19             2.19           0.9833
+  T12   alpha_M and c_T from LISA / Einstein Telescope standard si             0.00             0.00     n/a (no gap)
+  T13   the coefficient kappa                                                  0.00             0.00     n/a (no gap)
+  T14   SPARC rotation-curve tightness                                         0.00             0.00     n/a (no gap)
+
+======================================================================================================================
+SECTION 2 -- the forecast: (a) already achieved, (b) achievable with an existing or approved facility, (c) not achievable
+======================================================================================================================
+
+  T1  Gaia DR4 wide binaries, Arm A (frozen phenomenological band)
+       framework : gamma_v in 1.1614-1.1814 (can) / 1.1917-1.2267 (alt)
+       LambdaCDM : 1.0000 exactly (Newtonian; the local dark density contributes <1e-6 of a two-body force at 10 kAU)
+       separation 0.1614 ; 3-sigma needs sigma <= 0.0538 ; achieved 0.028 => 5.76 sigma (can) / 6.85 (alt)
+       systematic floor 0.02 => ceiling 8.07 sigma at INFINITE sample size
+       3-sigma sample size : N = 4,342 (have 30,000)  ** already sufficient **
+       STATUS (b) : Gaia DR4, scheduled ~Dec 2026; pipeline frozen and hash-stamped
+
+  T2  Gaia DR4 wide binaries, Arm B (the covariant candidate that passes Cassini)
+       framework : 1.000 < gamma_v <= 1.0450 (can) / <= 1.0300 (alt) -- CEILINGS, killable only from above
+       LambdaCDM : 1.0000 exactly
+       separation 0.045 ; 3-sigma needs sigma <= 0.015 ; achieved 0.028 => 1.61 sigma (can) / 1.07 (alt)
+       systematic floor 0.02 => ceiling 2.25 sigma at INFINITE sample size
+       3-sigma sample size : IMPOSSIBLE -- unreachable at any N: delta/sigma_sys = 2.25 < 3.0
+       STATUS (c) : Gaia DR4 -- but see the forecast: no N suffices
+
+  T3  Deep-MOND baryonic Tully-Fisher zero point at z = 2.5
+       framework : Delta_BTFR = 0.00 dex (-0.09 with DESI w0wa) on the rho_Lambda tie; -0.576 dex on the Hubble-horizon tie -- SEE THE CONDITIONALITY AUDIT
+       LambdaCDM : +0.33 dex (Dutton-Maccio 2014), +0.45 (Duffy 2008), ~+0.50 (Magneticum apparent)
+       separation 0.3276 ; 3-sigma needs sigma <= 0.1092 ; achieved 0.13 => 2.52 sigma (can) / 2.52 (alt)
+       systematic floor 0.07 => ceiling 4.68 sigma at INFINITE sample size
+       3-sigma sample size : N = 2 (have 1)
+       NOTE       : PAPER7 registers a TOTAL 0.13 dex and does not decompose it into the part that averages down over severa
+                    l objects and the part that does not.  This lane splits it: the coherent floor is the frozen local zero 
+                    point C0 plus the shared stellar-M/L and alpha_CO prescriptions, taken here as 0.07 dex; the rest (veloc
+                    ity, inclination, lens model, S/N) is per-object.  THE DECOMPOSITION IS THIS LANE'S ESTIMATE, NOT THE PA
+                    PER'S, and the gap is flagged: it decides whether a second qualifying object helps, and the paper does n
+                    ot say.
+       STATUS (b) : JWST NIRSpec IFU G235H/F170LP (1.66-3.17 um; H-alpha + [OIII] in one setting for 2.32<z<3.83) then ALMA Band 3 CO(3-2) (84-116 GHz => 1.98<z<3.12).  Both instruments exist and operate.  N = ONE object -- IF it passes the gates.  The committed 21-object ledger contains NONE.
+
+  T4  Cluster weak-lensing Delta-Sigma log-slope (L24's new quantity)
+       framework : log-slope 0.531 +- 0.058 (can) / 0.536 +- 0.058 (alt) SHALLOWER than measured -- the phantom is a near-uniform sheet
+       LambdaCDM : the measured NFW/Einasto slope, which the data already match by construction
+       separation 0.531 ; 3-sigma needs sigma <= 0.177 ; achieved 0.058 => 9.16 sigma (can) / 9.24 (alt)
+       systematic floor 0.058 => ceiling 9.16 sigma at INFINITE sample size
+       3-sigma sample size : N = 1 (have 5)  ** already sufficient **
+       STATUS (a) : ALREADY MEASURED -- five X-COP clusters with published weak lensing, data in hand
+
+  T5  Cluster residual vs the cosmic dark-to-baryon share
+       framework : M_resid/M_bar = 0 after its own kernel
+       LambdaCDM : Omega_dm/Omega_b = 5.43, fixed independently by CMB + BBN, universal across clusters
+       separation 3.09 ; 3-sigma needs sigma <= 1.03 ; achieved 0.206 => 15.00 sigma (can) / 13.00 (alt)
+       systematic floor 0.206 => ceiling 15.00 sigma at INFINITE sample size
+       3-sigma sample size : N = 1 (have 12)  ** already sufficient **
+       STATUS (a) : ALREADY MEASURED -- twelve X-COP clusters at 0.80 R500, data in hand
+
+  T6  Binary galaxies on the ISOLATED branch (L21)
+       framework : isolated deep-MOND A = 1.802 +- 0.041 (can) / 1.731 (alt); parameter-free sigma_los = 0.60679 (G m a0)^(1/4) = 107.7 / 112.9 km/s at ANY separation
+       LambdaCDM : abundance-matched halo A = 0.967 +- 0.024 (1.4 sigma from unity)
+       separation 0.835 ; 3-sigma needs sigma <= 0.2783 ; achieved 0.048 => 17.40 sigma (can) / 15.92 (alt)
+       systematic floor 0.24 => ceiling 3.48 sigma at INFINITE sample size
+       3-sigma sample size : N = 161 (have 1,900)  ** already sufficient **
+       STATUS (b) : DATA ALREADY PUBLIC.  1900 isolated 2MRS major pairs in hand; 3 sigma needs 384 pairs at 40 km/s, 122 at 10 km/s, or 65 on the shape axis.  The FIX is a deeper spectroscopic parent catalogue: DESI DR1 (~13 million extragalactic redshifts, public) against 2MRS (~45,000, K < 11.75).  No new observations required.
+
+  T7  Coma ultra-diffuse galaxies (L23's corrected row)
+       framework : the EFE-dominated prediction; measured dispersions sit +1.159 dex (can) / +1.112 (alt) above it, a factor 14.4 in acceleration
+       LambdaCDM : no prediction violated -- UDGs in a cluster carry halos
+       separation 1.159 ; 3-sigma needs sigma <= 0.3863 ; achieved 0.2353 => 4.93 sigma (can) / 4.73 (alt)
+       systematic floor 0.227 => ceiling 5.11 sigma at INFINITE sample size
+       3-sigma requirement : the lever is PRECISION, not sample size -- a factor 0.61 improvement on the achieved 0.2353  ** already achieved **
+       MODEL CAP  : 2.70 sigma -- the first-infall hypothesis, which the field's own MOND simulations endorse, drops the row to 2.7 sigma; the equilibrium reading alone gives 4.9
+       STATUS (b) : ALREADY 4.9 sigma (can) / 4.7 (alt) ON THE EQUILIBRIUM HYPOTHESIS; 2.7 sigma on first infall. Settling it needs (i) M/L to ~0.05 dex from IMF-sensitive resolved stellar populations and (ii) an independent equilibrium diagnostic.  ~10 objects x 30 hr of 8-10 m spectroscopy (DF44 alone took 33.3 hr of Keck/KCWI) plus JWST/HST imaging for tidal state.
+
+  T8  s^TX SME boost dipole from planetary ephemerides
+       framework : |s^TX| = 8.68e-10 (can) / 1.048e-9 (alt), sign locked NEGATIVE
+       LambdaCDM : s^TX = 0 exactly (GR has no preferred frame)
+       separation 8.68e-10 ; 3-sigma needs sigma <= 2.893e-10 ; achieved 1.3e-09 => 0.67 sigma (can) / 0.81 (alt)
+       3-sigma requirement : the lever is PRECISION, not sample size -- a factor 4.49 improvement on the achieved 1.3e-09
+       STATUS (b) : no new hardware.  Needs sigma(s^TX) <= 2.89e-10, a factor 4.5 on the published combined multi-planet fit (-0.2 +- 1.3)e-9 (Hees et al. 2016).  Route stated in the preregistration: INPOP/DE refits absorbing Gaia DR4 asteroid astrometry, plus BepiColombo-era Mercury ranging. The programme cannot do this alone -- it needs an ephemeris team to run the frozen template.
+
+  T9  Linear structure formation without cold dark matter (P(k), sigma_8)
+       framework : best computed case sigma_8 <= 0.648, rms |log R| >= 0.94 dex over 0.1-1 h/Mpc at ANY |K_2|
+       LambdaCDM : sigma_8 = 0.810, R(k) = 1
+       separation 0.162 ; 3-sigma needs sigma <= 0.054 ; achieved 0.01 => 16.20 sigma (can) / 16.20 (alt)
+       systematic floor 0.01 => ceiling 16.20 sigma at INFINITE sample size
+       3-sigma requirement : the lever is PRECISION, not sample size -- a factor 0.19 improvement on the achieved 0.01  ** already achieved **
+       STATUS (a) : ALREADY DECISIVE against every computed variant, data in hand (sigma_8 = 0.81 +- 0.01)
+
+  T10  a0(z) from the Rubin/LSST supernova stream
+       framework : R(z=3) = 0.775 on the DESI DR2 w0wa posterior; R = 1.000 if Lambda is a true constant
+       LambdaCDM : R = 1.000
+       separation 0.225 ; 3-sigma needs sigma <= 0.075 ; achieved 0.1125 => 2.00 sigma (can) / 2.00 (alt)
+       systematic floor 0.04787 => ceiling 4.70 sigma at INFINITE sample size
+       3-sigma requirement : the lever is PRECISION, not sample size -- a factor 1.50 improvement on the achieved 0.1125
+       STATUS (c) : Rubin/LSST operating; 2.0 sigma at z = 3 on the DESI DR2 posterior, 4.7 sigma at z >= 2 on a tight SN+CMB/BAO forecast covariance
+
+  T11  Directional external-field effect in wide binaries
+       framework : AQUAL-class directional signal; the kill switch has fired once, A-hat = +2.95, p = 0.029
+       LambdaCDM : exactly zero (as does pure MI -- this is an MI-vs-MG discriminator first)
+       separation 2.95 ; 3-sigma needs sigma <= 0.9833 ; achieved 1.347 => 2.19 sigma (can) / 2.19 (alt)
+       3-sigma sample size : N = 2,171 (have 1,157)
+       STATUS (b) : needs N ~ 1157 at maximum clustering; Gaia DR4 supplies it
+
+  T12  alpha_M and c_T from LISA / Einstein Telescope standard sirens
+       framework : alpha_M = 0 and c_T = 1 EXACTLY, for any free function, any K_B, both footings
+       LambdaCDM : alpha_M = 0 and c_T = 1 EXACTLY
+       separation 0 ; 3-sigma needs sigma <= 0 ; achieved 1 => 0.00 sigma (can) / 0.00 (alt)
+       3-sigma requirement : NONE EXISTS -- there is no gap between the two predictions to resolve, at any precision, from any facility
+       STATUS (c) : LISA ~2035, ET ~2035+
+
+  T13  the coefficient kappa
+       framework : kappa = 1/2 (fitted, and shown underivable by the candidate action)
+       LambdaCDM : LambdaCDM has no kappa -- there is no competing prediction to separate from
+       separation 0 ; 3-sigma needs sigma <= 0 ; achieved 0.037 => 0.00 sigma (can) / 0.00 (alt)
+       systematic floor 0.019 => ceiling 0.00 sigma at INFINITE sample size
+       3-sigma requirement : NONE EXISTS -- there is no gap between the two predictions to resolve, at any precision, from any facility
+       STATUS (c) : never, as a framework-vs-LambdaCDM test
+
+  T14  SPARC rotation-curve tightness
+       framework : 0.142 dex at zero parameters per galaxy
+       LambdaCDM : 0.085 dex from a fitted NFW halo whose population carries LambdaCDM's OWN width (0.25 dex in log M200, 0.11 in log c); shape channel tied 0.070 vs 0.072
+       separation 0 ; 3-sigma needs sigma <= 0 ; achieved 0.005 => 0.00 sigma (can) / 0.00 (alt)
+       systematic floor 0.005 => ceiling 0.00 sigma at INFINITE sample size
+       3-sigma requirement : NONE EXISTS -- there is no gap between the two predictions to resolve, at any precision, from any facility
+       STATUS (c) : removed as a discriminant by L28
+
+======================================================================================================================
+SECTION 3 -- the systematic that binds each test, and how large it is
+======================================================================================================================
+
+  T1  Gaia DR4 wide binaries, Arm A (frozen phenomenological band)
+       sigma_sys = 0.020 in gamma_v, irreducible in the frozen model (undetected hierarchical/triple companions and
+        the eccentricity distribution). 12% of the signal; NOT binding here -- the floor-only ceiling is 8.1 sigma 
+       canonical / 9.6 sigma alt.
+
+  T2  Gaia DR4 wide binaries, Arm B (the covariant candidate that passes Cassini)
+       the SAME sigma_sys = 0.020 floor, which alone caps the separation from Newton at 2.25 sigma (can) / 1.50 sig
+       ma (alt) at INFINITE N.  This is the whole story of the test.
+
+  T3  Deep-MOND baryonic Tully-Fisher zero point at z = 2.5
+       the apparent-a0 drift nuisance.  Magneticum calibrates p = 0.92, MSA-3D's own decomposition MEASURES an appa
+       rent component p = 1.22 in a real JWST sample.  At z = 2.5 that is +0.50 to +0.67 dex -- LARGER than the 0.3
+       3 dex signal.  It is neutralised only by a genuinely deep-MOND (g_bar < 0.3 a0), rotation-dominated, lens-co
+       ntrolled target, which is exactly why the binding item is target DISCOVERY, not telescope time.  Second: len
+       s magnification (two refereed models of the best current object disagree by 2.3x = 0.36 dex).
+
+  T4  Cluster weak-lensing Delta-Sigma log-slope (L24's new quantity)
+       sample size (5 clusters, per-cluster mass errors 20-60%) and miscentering.  NOT binding: control C10 pushes 
+       the MEASURED X-ray profile through the identical machinery and recovers the measured Delta-Sigma to a median
+        1.11, so even a 3x inflation of the error leaves 3.1 sigma. The honest caveat is that a lensing-sector slip
+        below ~15% is untested rather than excluded.
+
+  T5  Cluster residual vs the cosmic dark-to-baryon share
+       hydrostatic mass bias b.  L18 measured it and it moves the Newtonian ratio 5.73 -> 9.04 over b in [0, 0.33] 
+       -- i.e. the systematic STRENGTHENS the residual against the framework's zero. It cannot rescue.  (L7's separ
+       ate '5% agreement with the cosmic ratio' headline is withdrawn.)
+
+  T6  Binary galaxies on the ISOLATED branch (L21)
+       ISOLATION DEPTH, and it is large.  2MRS sees companions only above ~23% of the pair's mass, and the amplitud
+       e falls 1.99 -> 1.51 as the isolation deepens over the accessible range -- a 0.48 swing against a 0.835 fram
+       ework-vs-LambdaCDM separation, i.e. 57% of the signal. Every published A is an UPPER limit.  Statistics were
+        never the limitation.
+
+  T7  Coma ultra-diffuse galaxies (L23's corrected row)
+       stellar M/L and IMF at 0.148 dex, UNPROPAGATED by the source paper, dominating a 0.227 dex coherent floor th
+       at does not average down over the eleven galaxies.  AND the dynamical-state assumption, worth 2.2 of the 4.9
+        sigma by itself.
+
+  T8  s^TX SME boost dipole from planetary ephemerides
+       ABSORPTION into the ephemeris global fit.  At the preregistration's own conservative level 94.3% of the temp
+       late is absorbed by 6 Saturn ICs + 6 EMB ICs + GM_sun + bias + drift, and a real INPOP/DE refit absorbs MORE
+        -- so every quoted sensitivity is an upper limit.  Second: the interpretation guard -- any preferred-frame 
+       MG host gives a comparable s^TX, so a detection is a Lorentz-violation verdict shared across the MOND family
+       .
+
+  T9  Linear structure formation without cold dark matter (P(k), sigma_8)
+       none observational.  The binding limit is a MISSING CALCULATION on the theory side: the nonlinear top-down f
+       ragmentation loophole is uncomputed, not excluded, and the linear result was obtained for the thermal-relic 
+       sector that is separately dead.  Effort to close it is theoretical (an N-body/hydro calculation), not observ
+       ational.
+
+  T10  a0(z) from the Rubin/LSST supernova stream
+       the test is not about a0 at all.  The programme's OWN preregistration warns that z = 3 is a lever arm, not a
+        redshift where calibrated SNe exist, and that R(z=3) must not be read as a measured acceleration scale.  Wh
+       at is actually measured is whether w = -1.  If w = -1 the framework becomes EXACTLY degenerate with constant
+       -a0 MOND and with flat; if w != -1 the framework merely inherits a dark-energy measurement.  Either way it s
+       eparates nothing.
+
+  T11  Directional external-field effect in wide binaries
+       the same contamination and isolation systematics as T1/T6, and they are UNQUANTIFIED on this axis -- the 2.2
+        sigma hint has no systematic budget at all.  Until it has one the forecast is statistics-only and should no
+       t be relied on.
+
+  T12  alpha_M and c_T from LISA / Einstein Telescope standard sirens
+       NOT A SYSTEMATIC -- a degeneracy.  The ledger calls this 'the strongest prediction in the corpus' and it is,
+        against other modified-gravity theories.  Against LambdaCDM the two predictions are IDENTICAL, so its discr
+       iminating power in THIS comparison is exactly zero, at any precision, from any facility.
+
+  T13  the coefficient kappa
+       the H0-convention systematic, 3.8% against a 7.1% statistical error => 8.0% total.  Nothing in [0.40, 0.66] 
+       is rejectable at 3 sigma and 27 simple 'principle-shaped' numbers already sit inside the band.  Landing in t
+       he band is not evidence.
+
+  T14  SPARC rotation-curve tightness
+       the halo POPULATION WIDTH.  A prior-shrink scan shows the naive prior-constrained fit reaches 0.066 only by 
+       landing on a population 1.7-1.8x wider than LambdaCDM's; shrunk to LambdaCDM's own width it is 0.082-0.085 -
+       - still tighter than the kernel.  What survives is parsimony (zero parameters vs two) and held-out predictio
+       n, not a discriminant.
+
+======================================================================================================================
+SECTION 4 -- the DR4 crux: can DR4 reject Newton at 3 sigma AND leave a Cassini-consistent arm alive?
+======================================================================================================================
+
+  The two registered arms are not on the same footing with respect to the Solar System.
+    Arm A -- the frozen phenomenological band -- is the SAME kernel taken as strict AQUAL modified
+      gravity with no coherence length, and roadmap gate G01 (two independent solvers agreeing to
+      0.05%) has it failing the Cassini quadrupole by 4-5x.
+    Arm B -- the covariant candidate -- passes the static Solar-System gates precisely BECAUSE it
+      carries a coherence length at or above the Cassini floor (0.10 pc canonical / 0.15 pc alt),
+      and that same length is what lowers the wide-binary boost from A's band to B's ceiling.
+  So the question is not 'which arm wins' but 'is there any gamma_v that both kills Newton and is
+  consistent with a version of the framework the Solar System permits?'
+
+    canonical : Newton dead at gamma_v >= 1.0840; Arm B alive up to gamma_v <= 1.1290 => window width 0.0450 = 1.61 sigma_tot
+                P(landing in it | truth AT Arm B's ceiling 1.0450, its best case) = 8.0%
+    alt       : Newton dead at gamma_v >= 1.0840; Arm B alive up to gamma_v <= 1.1140 => window width 0.0300 = 1.07 sigma_tot
+                P(landing in it | truth AT Arm B's ceiling 1.0300, its best case) = 2.6%
+  [PASS] X1 the DR4 window in which Newton is rejected at 3 sigma AND the Cassini-consistent arm survives is narrow, and unlikely even at Arm B's most favourable point   (P = 8.0% canonical / 2.6% alt)
+  [FAIL] X2 Arm B can be separated from Newton at 3 sigma at SOME sample size (this FAILS: the frozen sigma_sys = 0.020 caps it at 2.25 sigma canonical / 1.50 sigma alt at infinite N)   (ceilings 2.25 / 1.50 sigma)
+
+    Amendment 11(e) states confirming Arm B at 3 sigma_tot 'needs sigma_tot <= 0.015 (about four times the frozen N
+    at unchanged systematics, or DR5)'.  Four times the frozen N gives sigma_fit = 0.0095 and sigma_tot = 0.0221,
+    which is 1.5x the stated requirement: sigma_tot >= sigma_sys = 0.02 by construction, so NO N reaches 0.015.
+  [FAIL] X3 Amendment 11(e)'s stated route to confirming Arm B ('about four times the frozen N at unchanged systematics') reaches sigma_tot <= 0.015 (this FAILS: sigma_tot >= sigma_sys = 0.020 at any N; the systematic itself must be reduced, and the amendment does not say so)   (4x N gives sigma_tot = 0.0221, floor 0.02)
+  [FAIL] X4 a Newtonian DR4 result would be evidence against the framework as a whole (this FAILS: it falsifies Arm A at >= 5.8 sigma_tot and leaves Arm B -- the arm the Solar System permits -- untouched, because Arm B's Newtonian limit is reached by raising xi above its floor)   (gamma-hat = 1.000 sits 1.61 sigma_tot from Arm B's canonical ceiling and 5.76 from Arm A's floor)
+
+======================================================================================================================
+SECTION 5 -- is any registered prediction conditional on an unstated assumption?
+======================================================================================================================
+
+  P1 -- PAPER7's Delta_BTFR^framework = 0.00 dex at z = 2.5.
+       The paper states the law a0 = kappa c sqrt(G rho_Lambda) and carries the DESI w0wa alternative
+       (-0.09 dex).  It does NOT state that WHICH HORIZON sources a0 is an open posit.  The repository's
+       own prep_2026/a0z_crossscale/desitter_unruh_horizon_fork_2026.py
+       says verbatim that the horizon choice 'is a POSIT'  -> True
+       and carries a second reading, a0(z)/a0(0) = H(z)/H0 (the Hubble/apparent horizon, credited to
+       McCulloch), which at z = 2.5 gives Delta log a0 = +0.576 dex, i.e. a BTFR zero point
+       displaced 0.576 dex the OTHER way from LambdaCDM's +0.33.
+       PAPER7 mentions that reading anywhere in its text -> False
+       CONSEQUENCE, and it is the serious part: PAPER7's scoring rule says a result inconsistent with
+       both 0.00 and +0.33 'counts against both'.  A measurement at -0.58 dex would therefore be scored
+       as falsifying the framework when it is EXACTLY what the framework's other horizon reading
+       predicts.  The registered number is conditional on a choice the programme has not made in the
+       paper.  (STANDING.md section 4 lists 'a rising a0 ~ H(z) with no dark field' among doors shut,
+       while L32's N7 and the fork script both still carry it as live -- the corpus is internally
+       inconsistent about whether the branch is closed, which is precisely why the paper must state it.)
+       SEPARATION AT STAKE: 0.576 dex = 4.4x PAPER7's own required
+       total uncertainty of 0.13 dex, and 1.76x the LambdaCDM separation the
+       measurement is designed to resolve.
+
+  [FAIL] P1 PAPER7's registered 0.00 dex is NOT conditional on an unstated assumption (this FAILS: the horizon choice is a posit by the repository's own script, the alternative reading moves the registered number by 0.576 dex, and the paper never names it)   (posit stated in the fork script = True; PAPER7 names the alternative = False)
+  P2 -- a0 = kappa c sqrt(G rho_Lambda): WHICH G, and WHICH rho_Lambda.
+       L29 found that L9's own closure 1 = F(Om + Or + OLambda) drives omega_Lambda down by a factor
+       0.38-0.54, moving a0 by -38% to -27% if the G in the law is the LOCAL one and by
+       -17% to -5% if it is the cosmological F G0.  Which G enters is NOT settled and both are carried.
+       That is a 27-38% ambiguity in the framework's
+       central formula, against a 9.47% BTFR floor on kappa and DR4's 21% reach.  It does not change a
+       RATIO like Delta_BTFR, so it does not touch the a0(z) registration -- but any registered
+       prediction quoted in ABSOLUTE a0 inherits it.
+
+  [FAIL] P2 the absolute normalisation of a0 in the framework's own law is unambiguous (this FAILS: the G entering a0 = kappa c sqrt(G rho_Lambda) is unsettled and the two readings differ by up to 38% under the programme's own late-time closure)   (L29: -38% to -27% vs -17% to -5%)
+  P3 -- Arm A's band and the unresolved kernel conflict (D1).
+       Amendment 11 registers Arm B for BOTH carriers -- nu_RAR 1.0450 / 1.0300 and the
+       superseded exponential 1.0375 / 1.0275 -- a spread of 0.0075 =
+       0.27 sigma_tot, and it says which is in force.  That is GOOD PRACTICE and is
+       credited here.  Arm A's band carries no such dual number, and L28 independently found the two
+       carriers differ by up to 0.073 dex on SPARC and change its own margin from 1.20x to 1.06x.  Arm A
+       is therefore registered for one kernel with no stated sensitivity to the conflict the corpus is
+       still carrying.  This is a documentation gap, 0.27 sigma_tot in size on the
+       comparable arm -- much smaller than P1, and it is flagged rather than scored as a defect.
+
+  [PASS] P3 Amendment 11 registers Arm B for both candidate kernels and names which is in force, so the kernel conflict is disclosed on that arm   (nu_RAR 1.045 in force; exponential 1.0375 recorded, spread 0.27 sigma_tot)
+
+======================================================================================================================
+SECTION 6 -- predictions the framework SHARES with LambdaCDM (power exactly zero)
+======================================================================================================================
+    D1  alpha_M = 0, c_T = 1 from standard sirens    -- the ledger's 'strongest prediction in the corpus'
+    A6  GW speed |c_T - 1| < 1e-15 (GW170817)        -- already measured; GR predicts it identically
+    A4  gamma_PPN = 1                                -- GR predicts it identically
+    A3  CMB power spectrum at 0.01 sigma             -- matched by construction to LambdaCDM's own spectrum
+    A7/D3  no Solar-System MOND signal               -- GR predicts none either
+    D2  binary-pulsar GR quadrupole decay            -- GR predicts it identically
+
+    6 of the ledger's flagged strengths and future tests predict EXACTLY what LambdaCDM+GR predicts.
+    They separate this framework from other modified-gravity theories.  Against LambdaCDM their
+    discriminating power is zero at any precision from any facility, and EMPIRICAL_TESTS.md does not say so.
+  [FAIL] S1 the corpus's ledger flags which of its 'strongest predictions' are shared with LambdaCDM and therefore carry zero power in that comparison (this FAILS: six do not carry the flag, including D1, which the ledger calls the strongest prediction in the corpus)   (6 shared predictions carry no such flag)
+
+======================================================================================================================
+SECTION 7 -- ranked by discriminating power per unit of effort
+======================================================================================================================
+
+  #   key   test                                             power  effort   score  status   direction              flag
+  --------------------------------------------------------------------------------------------------------------------
+  1   T9    Linear structure formation without cold dark m   16.20       0   16.20       a  AGAINST fw          LOOPHOLE
+  2   T5    Cluster residual vs the cosmic dark-to-baryon    15.00       0   15.00       a  AGAINST fw                  
+  3   T4    Cluster weak-lensing Delta-Sigma log-slope (L2    9.16       0    9.16       a  AGAINST fw         not novel
+  4   T1    Gaia DR4 wide binaries, Arm A (frozen phenomen    6.85       1    3.42       b     forward         scheduled
+  5   T6    Binary galaxies on the ISOLATED branch (L21)      3.48       1    1.74       b  AGAINST fw     cheapest gain
+  6   T11   Directional external-field effect in wide bina    2.19       1    1.09       b     forward    no syst budget
+  7   T2    Gaia DR4 wide binaries, Arm B (the covariant c    1.61       1    0.80       c     forward         one-sided
+  8   T7    Coma ultra-diffuse galaxies (L23's corrected r    2.70       3    0.68       b  AGAINST fw   state ambiguous
+  9   T10   a0(z) from the Rubin/LSST supernova stream        2.00       2    0.67       c        none measures w, not a0
+  10  T3    Deep-MOND baryonic Tully-Fisher zero point at     2.52       3    0.63       b     forward         NO TARGET
+  11  T8    s^TX SME boost dipole from planetary ephemerid    0.81       2    0.27       b     forward      needs a team
+  12  T14   SPARC rotation-curve tightness                    0.00       4    0.00       c  AGAINST fw    removed by L28
+  13  T12   alpha_M and c_T from LISA / Einstein Telescope    0.00       5    0.00       c        none  SHARED with LCDM
+  14  T13   the coefficient kappa                             0.00       5    0.00       c        none     no LCDM rival
+
+  power  = separation in sigma achievable at the BEST reachable precision, capped by the systematic floor
+  score  = power / (1 + effort);  effort levels: 0  data in hand | 1  data scheduled or public, no new observations | 2  no new hardware, needs an external team | 3  large approved-facility programme | 4  a survey or sample nobody has | 5  a facility nobody is building
+  direction: 'AGAINST fw' = the test is already returning a result adverse to the framework; 'forward' = not yet decided
+  flag 'LOOPHOLE' = decisive against every COMPUTED variant of the framework, but a named loophole (nonlinear
+       top-down fragmentation) is uncomputed rather than excluded, so it does not yet decide against the class.
+
+======================================================================================================================
+SECTION 8 -- verdicts
+======================================================================================================================
+  [PASS] D1 at least one live test is ALREADY decisive at 3 sigma with data in hand   (T4 (9.2 sigma), T5 (15.0 sigma), T9 (16.2 sigma))
+  [PASS] D2 at least one live test is decisive at 3 sigma with an existing or approved facility and a stated sample size   (T1 (6.8 sigma), T6 (3.5 sigma))
+  [PASS] D3 at least one UNDECIDED (forward-looking) test is decisive at 3 sigma with an existing or approved facility   (T1 (6.8 sigma, effort 1))
+  [FAIL] D4 every test in the register reaches 3 sigma at SOME precision (this FAILS: 9 do not, and 4 of those cannot at any precision from any facility)   (below 3 sigma at their best reachable precision: T2, T3, T7, T8, T10, T11, T12, T13, T14 | unreachable at ANY precision: T2, T12, T13, T14)
+  [PASS] V1 the framework is falsifiable in practice within five years -- at least one undecided test reaches 3 sigma with data already scheduled or public   (T1 (6.8 sigma, Gaia DR4, scheduled ~Dec 2026; pipeline ))
+  [FAIL] V2 the version of the framework that PASSES the Solar System is falsifiable in practice within five years (this FAILS: excluding the arm that fails the Cassini quadrupole by 4-5x, no undecided test at effort <= 2 reaches 3 sigma)   (0 candidates; the covariant candidate's only registered observable, Arm B, is capped at 2.25 sigma at infinite N)
+  [FAIL] V3 the framework can be CONFIRMED (not merely survive) at 3 sigma within five years by a test whose positive result LambdaCDM cannot produce (this FAILS: the only such test at effort <= 2 is Arm A, whose confirmation would confirm a model excluded in the Solar System)   (Arm A confirmation is internally inconsistent with gate G01)
+
+======================================================================================================================
+WHAT TO BET ON
+======================================================================================================================
+
+  1. GAIA DR4, ARM A (T1).  0.1614 against Newton at sigma_tot = 0.028 is
+     5.8 sigma canonical / 6.8 sigma alt,
+     on a scheduled date with a hash-frozen pipeline and a systematic floor that is not binding.  It is the
+     only forward test in the register that is decisive, cheap and dated.  Bet on it -- but bet knowing
+     what it can return: it kills Arm A or it confirms a model that fails the Cassini quadrupole by 4-5x,
+     and the window where it both kills Newton and leaves the Cassini-consistent arm alive is
+     8.0% / 2.6% wide even at that arm's most favourable point.
+
+  2. THE DESI-DEEP ISOLATION CUT ON BINARY GALAXIES (T6).  Cheapest live gain in the register: the data
+     are public, no new observations are needed, and it attacks the ONE systematic (isolation depth,
+     worth 57% of the framework-vs-LambdaCDM separation) that currently caps the result.  Statistics were
+     never the limitation; 1900 pairs against a 384-pair requirement.
+
+  3. DO NOT SPEND ON: the coefficient (T13 -- 27 candidates already in the band, no precision helps);
+     the Rubin a0(z) stream (T10 -- it measures w, and a null makes the framework degenerate with flat);
+     standard sirens (T12 -- LambdaCDM predicts the same thing); and the SPARC tightness claim as a
+     discriminant (T14 -- L28 removed it).  Four of these cannot reach 3 sigma at ANY precision from ANY
+     facility, and that is the single most useful line in this lane.
+
+======================================================================================================================
+RESULT: 9 FAIL -> ['X2 Arm B can be separated from Newton at 3 sigma at SOME sample size (this FAILS: the frozen sigma_sys = 0.020 caps it at 2.25 sigma canonical / 1.50 sigma alt at infinite N)', "X3 Amendment 11(e)'s stated route to confirming Arm B ('about four times the frozen N at unchanged systematics') reaches sigma_tot <= 0.015 (this FAILS: sigma_tot >= sigma_sys = 0.020 at any N; the systematic itself must be reduced, and the amendment does not say so)", "X4 a Newtonian DR4 result would be evidence against the framework as a whole (this FAILS: it falsifies Arm A at >= 5.8 sigma_tot and leaves Arm B -- the arm the Solar System permits -- untouched, because Arm B's Newtonian limit is reached by raising xi above its floor)", "P1 PAPER7's registered 0.00 dex is NOT conditional on an unstated assumption (this FAILS: the horizon choice is a posit by the repository's own script, the alternative reading moves the registered number by 0.576 dex, and the paper never names it)", "P2 the absolute normalisation of a0 in the framework's own law is unambiguous (this FAILS: the G entering a0 = kappa c sqrt(G rho_Lambda) is unsettled and the two readings differ by up to 38% under the programme's own late-time closure)", "S1 the corpus's ledger flags which of its 'strongest predictions' are shared with LambdaCDM and therefore carry zero power in that comparison (this FAILS: six do not carry the flag, including D1, which the ledger calls the strongest prediction in the corpus)", 'D4 every test in the register reaches 3 sigma at SOME precision (this FAILS: 9 do not, and 4 of those cannot at any precision from any facility)', 'V2 the version of the framework that PASSES the Solar System is falsifiable in practice within five years (this FAILS: excluding the arm that fails the Cassini quadrupole by 4-5x, no undecided test at effort <= 2 reaches 3 sigma)', 'V3 the framework can be CONFIRMED (not merely survive) at 3 sigma within five years by a test whose positive result LambdaCDM cannot produce (this FAILS: the only such test at effort <= 2 is Arm A, whose confirmation would confirm a model excluded in the Solar System)']
+======================================================================================================================

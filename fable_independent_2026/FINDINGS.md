@@ -1565,3 +1565,153 @@ absent from the physical spectrum **because there is no spectrum**.
   to be nearest-star-dominated. **The one missing computation: is there a nonlocal scalar, quadratic or
   higher in curvature, that both separates the Newtonian from the lensing potential and stays sensitive
   to the coherent field?** Also unmade anywhere: the preferred-frame PPN parameters for this class.
+
+## L41 — the cluster specification: assembled, and NOT self-consistent
+
+`L41_cluster_specification.py` + `L41_CLUSTER_SPEC.md` (21 checks, 11 FAIL). Seven lanes each closed a
+mechanism. This lane turned those negatives into a positive statement — the specification any successful
+completion must meet — and then asked whether anything could meet it.
+
+**Controls, all passing, so this is verification and not quotation.** An independent recomputation
+returns L7's cluster ratio 5.73 ± 0.68 and f_bar = 0.149; L2's slope 0.811 ± 0.079, amplitude 5.47 and
+boost-ratio range; L21's pair sample at N = 1900 with ratio 30.9 ± 1.5; and the projection machinery
+reproduces the analytic NFW shear to 1%. **And a positive control proves the shape gate is passable:**
+an NFW component returns a shear log-slope of −0.820 against the measured −0.851 ± 0.040, 0.5σ.
+
+- **⚠️ THE SPECIFICATION IS NOT SELF-CONSISTENT, and the incompatible pair is named.** Requirement R1
+  (clusters need 5.73 ± 0.68) and R6 (pairs need 30.9 ± 1.6) cannot both hold. **Holding radius fixed
+  removes the obvious escape:** at the pairs' own 132 kpc the twelve clusters measure **9.20 ± 1.30**
+  while the pairs need **30.9 ± 1.5** — a factor **3.4 at 11σ**. Scaling by R200, scanned from 250 to
+  600 kpc rather than assumed, makes it **worse**, 3.8–5.4×. So L21's factor 5.7 is not an artefact of
+  comparing different radii; it survives at 3.4 when the radius is held fixed.
+- **No single profile serves both scales, and the search was general.** The most general host-blind rule
+  M_X = C·M_bar^a·r^b contains every proposal this programme has made. The two anchors fix one line, and
+  35 members were scanned. Three gates open **three windows — and they are pairwise disjoint**: the
+  ratio profile wants a ∈ [+0.40, +0.50], the shear wants [+0.60, +0.70], and the galaxy non-overshoot
+  gate wants [−1.60, −0.80]. **The intersection is empty.**
+- **And the failure is vivid.** Every member of the galaxy-gate window has the source rising outward,
+  which gives **negative shear — lensing of the wrong sign.** The only way to keep the source out of a
+  2e9 M_⊙ dwarf while feeding the pairs is to destroy the lensing signal entirely.
+- **Independently, from the pair data alone:** the rule the pair sample measures internally in 3×3
+  mass/separation cells **over-predicts the cluster source by a factor 49 at 5.5σ.**
+- **L24's new shape constraint enters the specification VERIFIED**, reproduced here with different code
+  and a different baryon build: the framework's projected shear log-slope is −0.309 against the measured
+  −0.851 ± 0.040, **9σ**.
+- **The cored-versus-cuspy disagreement is NOT real.** A cored profile with a 200 kpc core radius, run
+  through the same single-power-law fit over 40–750 kpc, returns −1.573 against the −1.42/−1.53 the
+  X-ray inversion measures. **Same shape, two parametrisations, different ranges.** What survives is a
+  real constraint: the core radius must be ≲ 750 kpc, which excludes a relic at its phase-space floor.
+- **⚠️ NOTHING HERE CONSTRAINS ΛCDM, and the lane checked adversarially so the claim could not be made.**
+  Standard abundance matching at the pairs' own baryonic mass predicts 31.8 against the measured
+  30.9 ± 1.5 — **0.6σ, with nothing fitted.** The non-monotone ladder simply **is** the
+  stellar-to-halo-mass relation, which is a ΛCDM input.
+- **The one door left open, and its price.** Undetected baryons at pair scale: even 5× the K-band mass
+  spread inside 132 kpc puts only 0.0017 M_b inside 10 kpc against a tolerance of 0.408, so the
+  framework's own galaxy gate does **not** close it. But that is a new free function of host mass —
+  **ΛCDM's galaxy-formation sector under another name** — and adopting it is a cost, not a resolution.
+
+## L42 — what can actually decide: bet on Gaia DR4, and two registered predictions need repair
+
+`L42_what_decides.py` + `L42_WHAT_DECIDES.md` (22 checks, 9 FAIL; **all seven controls pass**,
+byte-identical across runs). Four lanes each removed a source of discriminating power. This lane asked
+what is left, ranked it, and forecast it.
+
+**Controls.** PAPER7's four registered rise factors reproduce independently to 0.004; its +0.33 dex
+zero-point displacement recomputes to +0.3276; four derived quantities of the frozen DR4 error model
+reproduce from the parsed band edges alone; and the forecaster reproduces the preregistration's own
+published sample size (101,426 against ~102,500) and PAPER7's 20:1 odds — **while showing those odds
+are 2.54σ frequentist, not 3σ.**
+
+**The ranked register.** Effort 0 means data in hand; 5 means a facility nobody is building.
+
+| test | power | effort | binding systematic |
+|---|---|---|---|
+| structure growth with no cold dark matter | 16.2σ | 0 | a **missing calculation**, not an observation |
+| cluster residual vs the cosmic share | 15.0σ | 0 | hydrostatic bias, which **strengthens** it |
+| cluster shear log-slope | 9.2σ | 0 | not binding; 3× inflation still leaves 3.1σ |
+| **Gaia DR4 Arm A** | **6.8σ** | **1** | **not binding**; ceiling 8.1–9.6σ |
+| binary galaxies, isolated branch | 3.5σ | 1 | **isolation depth = 57% of the signal** |
+| Gaia DR4 Arm B | 1.6σ | 1 | **capped at 2.25σ / 1.50σ at INFINITE N** |
+
+- **⚠️ The Arm B ceiling is a hard structural result.** The frozen systematic of 0.020 alone caps Arm B
+  at **2.25σ canonical / 1.50σ alt at infinite sample size.** No amount of data reaches 3σ.
+- **⚠️ Amendment 11(e) contains an arithmetic slip.** Its stated route to a total error of 0.015 —
+  "about four times the frozen N at unchanged systematics" — gives **0.0221**, because the total can
+  never fall below the systematic floor of 0.020. **No N reaches it; the systematic itself must be
+  reduced, and the amendment does not say so.** Reported only. **No preregistration file was edited.**
+- **⚠️ A Newtonian DR4 result would NOT be evidence against the framework as a whole.** It falsifies
+  Arm A at ≥ 5.8σ and leaves **Arm B — the arm the Solar System permits — untouched**, because Arm B's
+  Newtonian limit is reached by raising the coherence length above its floor. The window in which DR4
+  both kills Newton at 3σ **and** leaves the Cassini-consistent arm alive is **8.0% canonical / 2.6%
+  alt**, computed at Arm B's most favourable point.
+- **⚠️ PAPER7's registered 0.00 dex is conditional on an unstated posit.** This repository's own fork
+  script says verbatim that the horizon choice "is a POSIT". The alternative reading gives **−0.576 dex
+  at z = 2.5, which is 4.4× the registered 0.13 dex tolerance** — and PAPER7's own "counts against
+  both" rule would score that result as **falsifying** the framework. The paper never names it, and
+  `STANDING.md` calls the branch shut while two other files carry it live. **The corpus disagrees with
+  itself and this must be fixed before the measurement is made.**
+- **⚠️ Which G enters the headline law is unsettled**, a 27–38% ambiguity under the programme's own
+  late-time closure. Ratios are safe; **absolute-a₀ predictions inherit it.**
+- **⚠️ Six ledger rows predict exactly what ΛCDM and general relativity predict**, including the one the
+  ledger calls the strongest prediction in the corpus. **Zero power against ΛCDM at any precision**, and
+  the tests file carries no flag saying so.
+- **Credit where due:** Amendment 11 registers Arm B for **both** candidate kernels and names which is
+  in force, so the kernel conflict is disclosed on that arm. Arm A carries no such dual number.
+- **The bet, and it is dated.** **Gaia DR4 Arm A**: 5.8σ canonical / 6.8σ alt against Newton, a
+  scheduled release, a hash-frozen pipeline, and a systematic floor that is not binding. It is the only
+  forward test in the register that is decisive, cheap and dated. **Second bet:** re-cut the
+  binary-galaxy isolation using DESI's public redshifts, since the data exist and isolation depth caps
+  57% of that test's power. **Spend nothing further** on the coefficient, the supernova a₀(z) stream,
+  standard sirens, or the SPARC tightness claim as a discriminant — **four of them cannot reach 3σ at
+  any precision from any facility.**
+- **⚠️ The hardest sentence in the lane, and it is the honest one.** The framework as a whole is
+  **falsifiable but not confirmable** on a five-year horizon. And **the part of it that survives the
+  Solar System is neither** — Arm A fails the Cassini quadrupole by 4–5×, and the covariant candidate's
+  only registered observable is capped below 3σ at infinite N.
+
+## L35 — the transition ghost is GENERIC, and the theorem is a total derivative
+
+`L35_transition_ghost.py` + `L35_TRANSITION_GHOST.md` (**24 checks, 24 PASS**). The lead's IC12 found its
+combined action fails a positive-kinetic condition in the transition region, and explicitly declined to
+claim anything about other pressure functions. This lane answered that question.
+
+**The lead's negative reproduces to every digit** — the onset step, the coefficient at −7.04063964151,
+and the Hessian eigenvalue — from an independent rebuild that imported nothing. Three independent
+routes to the same coefficient agree, and a finite-difference derivative of the raw Hamiltonian
+confirms it, so **the identity IC12 states is confirmed rather than assumed**. The negative sign is not
+an artefact of the strict short-wavelength limit either: the finite-wavenumber version is negative too
+and converges to it.
+
+- **⭐ THE THEOREM, and it is clean.** Both plateaus are **exactly marginal** — one term cancels another
+  identically for *any* constant switch — so the entire coefficient is generated by the switch's own
+  derivatives, and it is **an exact total derivative in disguise**: a_UV = −(1/b)·d/dr[b²·η′]. Since
+  b²η′ **vanishes at both ends of any smooth interpolation**, the b-weighted integral of a_UV over any
+  complete transition is **exactly zero**. Where b has one sign, **a_UV cannot**.
+- **A second, independent proof at a point where the pressure cannot act.** At the switch's inflection
+  point the second derivative vanishes, so the coefficient carries **no pressure at all** — raising the
+  pressure by a factor 1e6 leaves it unchanged to 12 digits. The rising and falling branches have
+  opposite signs of η′ while the other factor is one number, so **one branch is always ghostly**.
+- **Confirmed numerically on 126 of 126 switch × pressure combinations**, including zero pressure,
+  negative pressure, and a pressure tuned to flip the weight's sign.
+- **⭐ But the pressure has real, verified power on the sliver the lead's run occupies.** The curing
+  condition is explicit, and **the cheapest route is geometric, not a pressure at all**: (1−u)ξ < 1/12.
+  **IC12's ghost onset is EXACTLY that crossing, at the same step.** An explicit admissible pressure
+  keeps the coefficient positive at **every** transition sample it solves, where IC12's own goes
+  negative at 294 of 419.
+- **⚠️ Reported as a deferral, not a cure, and the lane says so itself.** Every pressure whose solution
+  goes *deep* into the transition turns ghostly later — 501 of 637, 18 of 132, 78 of 159 — exactly as
+  the integral identity requires. And IC11's convexity requirement and the curing threshold **pull in
+  opposite directions**.
+- **⭐ Where the ghost actually lives, and this is the most useful physical result.** The switch's
+  argument is the metric-momentum trace, not a radius. A static system has zero momentum, so
+  **the Solar System and the galactic disc are exactly ghost-free** with all jets vanishing. The ghost
+  is a **turnaround shell** around every bound system: **1.50–1.72 Mpc, 0.22 Mpc thick, for the Milky
+  Way**, and 13.1–15.1 Mpc for a cluster.
+- **⚠️ It is not benign in its shell.** A wrong-sign *kinetic* coefficient gives a growth rate linear in
+  wavenumber and **unbounded**; the slowest mode that fits already e-folds in **0.115 Myr**. A finite
+  region does not regulate a UV problem.
+- **Side finding, both footings:** the model's own a₀-to-Λ proportionality is **10.3–12.4× off** the
+  observed value, which is the size of the input IC10 already flags as an input.
+- **The one door left open**, named precisely: a redesign that **breaks the cancellation making the
+  plateaus marginal**, leaving a positive coefficient on the plateaus rather than zero. That is outside
+  everything proved here.

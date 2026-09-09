@@ -1,0 +1,265 @@
+==========================================================================================================================
+L41 -- the cluster source as a SPECIFICATION: assembled, tested for self-consistency, searched for a satisfier
+==========================================================================================================================
+  sources are the committed products of this lane and of the repository; nothing below is retyped from prose.
+    clusters : closure_2026/cluster_measurement_audit_2026/results.json  (the lead's radius-unit audit)
+    clusters : real_research/data/xcop/<name>/*.fits                      (independent read, for projection)
+    galaxies : real_research/data/sparc_data/*_rotmod.dat
+    pairs    : real_research/data/2mrs_catalog.csv                        (rebuilt, not reused)
+
+==========================================================================================================================
+PART A -- CONTROLS.  Reproduce the three headline numbers this synthesis is built on, from their own data.
+==========================================================================================================================
+        alt: 12 clusters at 1000 kpc (0.80 R500 median) -- f_bar 0.149, Newtonian M_dark/M_bar 5.73 +/- 0.68 (12% scatter), framework residual 2.76 M_bar
+  canonical: 12 clusters at 1000 kpc (0.80 R500 median) -- f_bar 0.149, Newtonian M_dark/M_bar 5.73 +/- 0.68 (12% scatter), framework residual 3.09 M_bar
+  [PASS] K0 [control] an independent recomputation of L7 returns its published cluster ratio 5.73 +/- 0.68 and f_bar = 0.149 at the outermost audited radius, on both footings   (M_dark/M_bar = 5.73 +/- 0.68 vs L7's 5.73 +/- 0.68; f_bar = 0.149 vs 0.149)
+  required boost, canonical / stellar-7: Delta_req = (5.47) s^(0.811 +/- 0.071), rms 0.094 dex; the class ceiling on the log-slope is 1/2, so this is 4.4 sigma above it
+  SPARC: 2786 points from 155 galaxies (Upsilon_d = 0.5, Upsilon_b = 0.7, eV/V < 0.10)
+  cluster/galaxy required-boost ratio over the overlap, both footings: 2.3-5.3, worst |z| = 27 with pooled standard errors (L2 quotes 13 with a CLUSTER-level bootstrap, L6's control 25 with pooled errors; this is the pooled-error number and the conservative one to carry is L2's 13)
+  [PASS] K1 [control] an independent recomputation of L2 returns its published power-law slope 0.811 +/- 0.079, its amplitude 5.5, and its cluster/galaxy boost ratio range 2.2-5.1 with the kill firing at |z| > 9   (p = 0.811 vs 0.811; A = 5.47 vs 5.47; ratios 2.3-5.3 vs 2.2-5.1; worst |z| = 27 (pooled) bracketing L2's 13 and L6's 25)
+  pairs rebuilt: N = 1900, median r_p = 132 kpc, median M_b(pair) = 1.55e+11 Msun
+    Newtonian-on-baryons amplitude A = 5.645 +/- 0.136  =>  M_dark/M_bar within r_p = A^2 - 1 = 30.9 +/- 1.5
+  [PASS] K2 [control] an independent rebuild of the 2MRS pair sample reproduces L21's Newtonian amplitude 5.645 and its dark-to-baryon ratio 30.9 +/- 1.6 within the pair separation   (N = 1900 vs 1900; A = 5.645 vs 5.645; ratio 30.9 +/- 1.5 vs 30.9 +/- 1.6)
+  projection control: NFW DeltaSigma at 0.5 Mpc, numerical/analytic = 1.00210
+  projection control: NFW DeltaSigma at 1.0 Mpc, numerical/analytic = 1.00090
+  projection control: NFW DeltaSigma at 2.0 Mpc, numerical/analytic = 1.00035
+  [PASS] K3 [control] the projection machinery reproduces the analytic general-relativistic NFW DeltaSigma to 1%   (max |error| = 2.10e-03)
+
+==========================================================================================================================
+PART B -- THE SPECIFICATION, assembled.  Every requirement with its number, its tolerance and its source.
+==========================================================================================================================
+  measured weak-lensing shear log-slope d ln DeltaSigma / d ln R over 0.5-2 Mpc, recomputed from Herbonnet 2020's own M200 + Dutton-Maccio: -0.851 +/- 0.040 (per cluster -0.90, -0.81, -0.76, -0.80, -0.98)
+  galaxy-scale non-overshoot gate, recomputed: the carried kernel absorbs 0.408 M_b inside 10 kpc at L* (M_b = 8e10) and 0.589 M_b at a dwarf (M_b = 2e9) before g_obs moves by the RAR's own 0.11 dex scatter
+
+  requirement                  tolerance                  source
+  ----------------------------------------------------------------------------------------------------------------------
+  R1  amount, cluster          +/- 0.68 (12%)             L7_cosmic_ratio.py (K0 here)
+                                                          M_X/M_bar = 5.73 +/- 0.68 at 0.80 R500 (1000 kpc), 12% cluster-to-cluster; 1.06x the c
+                                                          osmic Omega_dm/Omega_b
+  R2  amount, bias-corrected   b in [0.00, 0.42] measured L18_hse_bias.py
+                                                          the same ratio runs 5.73 -> 9.04 over the measured hydrostatic bias b in [0, 0.33]; ev
+                                                          ery escape needs b < 0, which is sigma^2 < 0
+  R3  3-D shape, cluster       0.09 dex rms about the power law g04a (D2 here) + L2 (K1 here)
+                                                          rho_X ~ r^-1.5 over 40-750 kpc, i.e. not FLAT, with any core radius <~ 750 kpc (see PA
+                                                          RT D); the required boost is Delta_req = 5.5 s^0.81, log-slope 4.4 sigma above the 1/2
+                                                           that caps every kernel of the class
+  R4  projected shear shape    +/- 0.06 (9 sigma)         L24_lensing_vs_dynamics.py C11
+                                                          d ln DeltaSigma / d ln R = -0.851 +/- 0.040 over 0.5-2 Mpc; the framework's phantom gi
+                                                          ves -0.31, short by 0.53 at 9 sigma because it is a near-uniform sheet
+  R5  lensing == dynamics      1.55 sigma agreement       L24 C8
+                                                          S_lens - S_dyn = +0.37 +/- 0.24 (1.55 sigma): the source must gravitate identically in
+                                                           both probes, so no lensing sector can repair it
+  R6  mass-scale, NON-monotone +/- 1.6 (16 sigma)         L21_binary_galaxies.py S1 (K2 here)
+                                                          M_X/M_bar = 30.9 +/- 1.5 within 132 kpc of a 2e11 Msun pair against 5.73 at 1000 kpc o
+                                                          f a 6e13 Msun cluster: a factor 5.4 at 15 sigma
+  R7  galaxy non-overshoot     0.11 dex RAR scatter       L21 S6 + g04k/L1
+                                                          <= 0.41 M_b inside 10 kpc at L* and <= 0.59 M_b at a dwarf; an NFW cosmic share gives 
+                                                          0.34 (admissible) and 1.90 (3.2x over)
+  R8  phase-space floor        hard bound                 g04a R3/R4b
+                                                          Tremaine-Gunn m >= 4.67 eV from the cluster core at sigma = 886 km/s; a relic at its f
+                                                          loor is cored and fails R3; escaping needs m >~ 8.3 eV
+  R9  cosmological abundance   |G/G_0 - 1| < 0.2          L5_long_range_G.py, L6_screened_force.py
+                                                          Omega_X/Omega_b = 5.43 at cluster scale; if supplied by a force instead of mass, G_cos
+                                                          mo/G_local <= 1.2 from BBN, against the 9.2 a fixed-strength force needs (41x) and the
+                                                           1.82 monotone screening forces (4x)
+  R10 not a kernel             3 sigma per bin            L2 (K1 here) + L22_curl_field.py
+                                                          no single-valued Delta(s) serves both populations: at the same accelerations clusters 
+                                                          need 2.3-5.3x the galaxy boost, worst |z| = 27; the solenoidal field cannot help becau
+                                                          se div a_S = 0 makes it exactly invisible to the enclosed-mass inversion
+
+==========================================================================================================================
+PART C -- IS IT SELF-CONSISTENT?  The two anchors, and the family of profiles that could serve both.
+==========================================================================================================================
+  ANCHOR 1 (cluster): M_X = 4.002e+14 Msun inside 1000 kpc, where M_bar = 6.402e+13  =>  ratio 5.73
+  ANCHOR 2 (pair)   : M_X = 4.781e+12 Msun inside 132 kpc, where M_bar = 1.549e+11  =>  ratio 30.9
+
+  A1 -- can ONE law R(r) = M_X/M_bar in absolute radius serve both?  The clusters MEASURE R(r) at eleven
+       radii, so the pair's own radius is inside the measured cluster range and no extrapolation is needed:
+         r [kpc]      30      40      50      75     100     150     200     300     420     750    1000
+       R_cluster    3.89    6.96    7.62    8.37    8.78    9.39    9.45    8.77    8.07    6.47    5.73
+       +/- (sem)    4.42    2.29    2.23    1.96    1.66    1.17    0.82    0.57    0.45    0.33    0.20
+       at the pair's own 132 kpc the clusters measure R = 9.20 +/- 1.30; the pairs require 30.9 +/- 1.5
+       the cluster profile is itself NON-MONOTONE: it rises from 3.9 at 30 kpc to 9.5 at 200 kpc and falls to 5.73 at 1000 kpc
+  [FAIL] A1 a single radial law R(r) in ABSOLUTE radius serves both the cluster and the pair anchor   (at the same 132 kpc the clusters give 9.20 +/- 1.30 and the pairs need 30.9 +/- 1.5, a factor 3.4 at 11 sigma -- so the factor 5.7 of L21's S1 is NOT an artefact of comparing different radii; it survives at 3.4 when the radius is held fixed)
+  
+  A2 -- in SCALED radius.  The cluster anchor sits at r/R200 = 0.53 (R200 = 1879 kpc).
+       The pair's R200 is not measured, so it is SCANNED over the whole plausible range rather than assumed,
+       and the comparison is reported for every value:
+        pair R200 [kpc]   r_p/R200  matched cluster radius   cluster R there   factor
+                    250      0.529                  994 kpc              5.74     5.37
+                    300      0.441                  829 kpc              6.20     4.98
+                    350      0.378                  710 kpc              6.60     4.67
+                    400      0.331                  622 kpc              6.95     4.44
+                    450      0.294                  552 kpc              7.27     4.25
+                    500      0.265                  497 kpc              7.57     4.08
+                    600      0.220                  414 kpc              8.10     3.81
+  [FAIL] A2 a single radial law in SCALED radius r/R200 serves both anchors, for SOME admissible pair R200   (the gap is 3.8-5.4x over the whole range of pair R200 from 250 to 600 kpc; scaling the radius does not help and mostly makes it WORSE than A1's factor, because the cluster ratio profile is falling over the matched range)
+  
+  [FAIL] A3 a component that TRACES the baryons at ONE universal ratio (the cosmic-share reading taken literally) serves both anchors   (30.9 +/- 1.5 against 5.73 +/- 0.68, 15 sigma.  This is the single most important consequence of L7 + L21 together: the cosmic share is a CLUSTER-scale coincidence, not a universal component)
+
+--------------------------------------------------------------------------------------------------------------------------
+  THE SEARCH.  The most general host-blind rule mapping a system's baryons to the source is a function of
+  the enclosed baryon mass and the radius; its scale-free form is
+
+        M_X( < r )  =  C * M_bar( < r )^a * (r / 100 kpc)^b ,
+
+  which CONTAINS every proposal this programme has made: (a, b) = (1, 0) is 'X traces the baryons', a = 0
+  is a universal background halo, a = 1 with b < 0 is a kernel-like boost decaying outward.  The two
+  anchors fix one LINE in (a, b); the family is scanned along it and every other gate applied to each
+  member.  A member passing all of them would be a live candidate.
+--------------------------------------------------------------------------------------------------------------------------
+  the anchor line: 6.0240 a + 2.0227 b = 4.4272,  i.e.  b = 2.1887 - 2.9782 a
+  continuous baryon profiles built for the five weak-lensing clusters (A1795, A2029, A2142, A85, ZW1215) on a 700-point log grid, 2 kpc - 30 Mpc
+  P0 positive control: a dark component with an NFW shape, projected through THIS machinery, gives a shear log-slope -0.820 against the measured -0.851 +/- 0.040
+  [PASS] P0 [positive control] the shape gate is PASSABLE: a dark component with an NFW shape reproduces the measured shear log-slope, so a FAIL below is a statement about the candidate and not about the gate   (NFW gives -0.820, measured -0.851 +/- 0.040 (0.5 sigma))
+  P1 reproduction: the FRAMEWORK's own phantom, projected through the same machinery, gives a shear log-slope -0.309 (per cluster -0.37, -0.37, -0.27, -0.28, -0.26) against the measured -0.851 +/- 0.040
+  [FAIL] P1 [reproduction of L24 C11] the framework's own projected shear log-slope agrees with the measured one, i.e. its phantom has the right lensing SHAPE   (-0.309 against -0.851 +/- 0.040, a difference of +0.542 at 9 sigma on L24's quoted error -- independently reproducing L24 C11's +0.53 +/- 0.06 at 9 sigma, with different code and a different baryon build.  L24's new shape constraint therefore enters the specification VERIFIED)
+
+       a       b  rho_X slope  ratio-profile  shear slope   L* inside 10kpc  dwarf inside 10kpc
+                    (cluster)      rms [dex]    0.5-2 Mpc   [M_b], tol 0.41     [M_b], tol 0.59
+  --------------------------------------------------------------------------------------------------------
+   -1.60   6.954         1.64          2.605     NEGATIVE          2.73e-06                0.04
+   -1.40   6.358         1.33          2.351     NEGATIVE          1.12e-05               0.078
+   -1.20   5.763         1.02          2.098     NEGATIVE          4.55e-05               0.152
+   -1.00   5.167         0.72          1.845     NEGATIVE          0.000186               0.297
+   -0.80   4.571         0.41          1.592     NEGATIVE          0.000757               0.579
+   -0.60   3.976         0.10          1.339     NEGATIVE           0.00309                1.13
+   -0.40   3.380        -0.20          1.087       +0.128            0.0126                 2.2
+   -0.20   2.784        -0.51          0.835       +0.244            0.0514                 4.3
+    0.00   2.189        -0.81          0.585       +0.068              0.21                8.39
+    0.20   1.593        -1.11          0.341       -0.192             0.856                16.4
+    0.40   0.997        -1.41          0.134       -0.488              3.49                31.9
+    0.60   0.402        -1.71          0.221       -0.802              14.2                62.3
+    0.80  -0.194        -1.99          0.456       -1.122              58.1                 122
+    1.00  -0.789        -2.24          0.704       -1.460               237                 237
+    1.20  -1.385        -2.24          0.955       -1.773               967                 462
+    1.40  -1.981        -4.11          1.207       -1.993          3.95e+03                 902
+    1.60  -2.576        -4.25          1.460       -1.997          1.61e+04            1.76e+03
+    1.80  -3.172          nan          1.713       -1.997          6.57e+04            3.43e+03
+  (35 members scanned in steps of 0.10 in a over a = -1.6 to +1.8; every second is printed.
+   'NEGATIVE' means the source's density RISES outward, so DeltaSigma comes out negative -- weak-lensing
+   shear of the wrong SIGN, which fails R4 more badly than any slope mismatch could.)
+  [PASS] B1 the two-anchor family has a member reproducing the cluster's OWN measured ratio profile to 0.15 dex   (best rms = 0.132 dex at a = +0.50; admissible window a in [+0.40, +0.50])
+  [PASS] B2 it has a member whose projected shear log-slope agrees with the measured one within 3 sigma   (the family's positive-shear members span -2.00 to +0.26 against a measured -0.851 +/- 0.040; admissible window a in [+0.60, +0.70], closest member a = +0.60 at -0.802; every member with a < -0.6 produces shear of the WRONG SIGN)
+  [PASS] B3 it has a member passing the galaxy-scale non-overshoot gate at L* AND at the dwarf scale   (admissible window a in [-1.60, -0.80], and every member in it is one of the wrong-sign-shear members: the only way to keep the source out of a 2e9 Msun galaxy while feeding the pairs is to make it rise outward, which destroys the lensing signal)
+  [FAIL] B4 [THE SEARCH] some single member of the family passes B1, B2 and B3 at once, i.e. a single radial profile serves both the cluster and the pair scale and survives the shear and galaxy gates   (ratio-profile window a in [+0.40, +0.50], shear window a in [+0.60, +0.70], galaxy window a in [-1.60, -0.80]; the intersection is EMPTY.  The windows that DO open are disjoint: the member that reproduces the cluster's ratio profile is not the member that projects to the right shear slope, and neither is admissible inside a dwarf)
+
+  B5 -- the one escape the anchors leave: the pairs' baryons are UNDERCOUNTED.  For a component at the
+       cosmic share to give the observed pair kinematics, the true baryon mass inside 132 kpc must be 4.96x
+       the K-band stellar mass, i.e. 7.68e+11 Msun -- 6.13e+11 of it undetected.  Does the framework's
+       OWN galaxy-scale gate close that door?  Priced with the distribution that is MOST favourable to the
+       escape (uniform density inside the pair separation, which minimises what lands in the inner galaxy):
+         uniform: 2.65e+08 Msun inside 10 kpc = 0.002 M_b per galaxy (gate at 10 kpc: 0.41)
+         uniform: 2.12e+09 Msun inside 20 kpc = 0.014 M_b per galaxy (gate at 10 kpc: 0.41)
+         uniform: 7.15e+09 Msun inside 30 kpc = 0.046 M_b per galaxy (gate at 10 kpc: 0.41)
+  [FAIL] B5 the framework's own galaxy-scale gate CLOSES the undetected-baryon escape at pair scale   (it does not: even 5.0x the K-band baryons, spread uniformly inside 132 kpc, puts only 0.0017 M_b inside 10 kpc against a tolerance of 0.41.  This door is OPEN on this repository's data and is closed, if at all, by circumgalactic-medium mass budgets (the requirement is ~4 stellar masses of gas inside 130 kpc of an L* pair), which is a literature question this lane does not settle and does not claim to)
+
+--------------------------------------------------------------------------------------------------------------------------
+  THE INCOMPATIBLE PAIR.  Along the anchor line the surviving direction is a HOST-MASS law: the source's
+  abundance per baryon falls with host mass.  That exponent is not free -- the pair sample MEASURES it
+  internally, in quartiles of its own baryonic mass, with the same estimator.  NOT at fixed radius --
+  see the caveat below, and C2, which controls for separation and is the load-bearing version.
+--------------------------------------------------------------------------------------------------------------------------
+      log M_b = 10.87  N =  475  median r_p =   106 kpc  M_dark/M_bar within r_p =  26.3 +/- 2.9
+      log M_b = 11.11  N =  475  median r_p =   116 kpc  M_dark/M_bar within r_p =  26.5 +/- 2.9
+      log M_b = 11.27  N =  475  median r_p =   148 kpc  M_dark/M_bar within r_p =  31.3 +/- 3.7
+      log M_b = 11.42  N =  475  median r_p =   165 kpc  M_dark/M_bar within r_p =  38.4 +/- 4.0
+  
+      d log(M_X/M_bar) / d log M_bar measured INSIDE the pair sample : +0.298 +/- 0.113
+      the same exponent demanded by the cluster-to-pair anchors      : -0.280 +/- 0.008
+      the two have OPPOSITE SIGN and differ at 5.1 sigma
+  [FAIL] C1 [the incompatible pair, one dimension] the host-mass exponent the two anchors demand agrees with the host-mass exponent the pair sample measures internally, so a host-mass abundance law can serve both scales   (internal +0.298 +/- 0.113 against the anchors' -0.280 +/- 0.008: 5.1 sigma, and of OPPOSITE SIGN.  Within the pair population the source's abundance per baryon RISES with host mass; between pairs and clusters it must FALL by a factor 5.4.  CAVEAT, stated because it weakens this check: r_p correlates with M_b across these quartiles, so part of the +0.30 is radial.  C2 below controls for that and the mass exponent alone falls to +0.15 +/- 0.12; the robust statement is C2's joint one, not this one, and this check should be read as indicative)
+
+  C2 -- the same test in BOTH exponents at once.  The pair sample can measure the WHOLE rule internally:
+       split it three ways in baryonic mass and three ways in separation and fit
+          log R = const + alpha log M_bar + beta log r      (so a = 1 + alpha, b = beta),
+       then ask whether that (a, b) lies on the anchor line the cluster and pair scales together demand.
+                log M_b          log r_p      N     M_dark/M_bar
+                  10.91             1.60    267        16.4 +/- 2.1
+                  10.94             2.12    210        31.8 +/- 4.5
+                  10.93             2.52    156        59.7 +/-17.3
+                  11.18             1.64    203        14.1 +/- 1.9
+                  11.20             2.11    211        38.1 +/- 6.2
+                  11.19             2.51    220        56.3 +/- 8.5
+                  11.41             1.65    163        20.2 +/- 4.2
+                  11.40             2.13    213        38.1 +/- 5.1
+                  11.38             2.53    257        84.6 +/-12.0
+  
+       measured INSIDE the pairs : alpha = +0.150 +/- 0.123, beta = +0.686 +/- 0.065   =>   a = +1.150, b = +0.686
+       the anchor line requires  : 6.0240 a + 2.0227 b = 4.4272; this (a, b) gives 8.3152
+       residual +3.888 +/- 0.711 in ln M_X, i.e. the rule measured inside the pair population, extrapolated to a cluster, OVER-predicts the cluster source by a factor 49
+  [FAIL] C2 [the incompatible pair, both dimensions] the profile rule the pair sample measures internally, extrapolated to cluster scale, reproduces the measured cluster source   (it over-predicts it by a factor 49 (residual +3.888 +/- 0.711 in ln M_X, 5.5 sigma).  The pair population's own internal rule -- more source per baryon in more massive hosts, and more of it at larger radius -- points in exactly the direction the cluster anchor forbids.  No single host-blind rule of this form passes through both)
+
+==========================================================================================================================
+PART D -- the flagged internal disagreement: is the required source CORED (Famaey+2024) or CUSPY (g04a)?
+==========================================================================================================================
+  Famaey, Pizzuti & Saltas 2024 describe the MOND lensing residual inside ~1 Mpc as an inner CORE with an
+  outer slope steeper than about -3.5.  g04a fits a SINGLE POWER LAW to the X-ray-required source over
+  40-750 kpc and reports rho ~ r^-1.53, 'not cored'.  Those are different PARAMETRISATIONS over different
+  ranges, so before calling it a conflict the obvious test is whether a cored profile, fitted by g04a's own
+  procedure over g04a's own range, returns g04a's own slope.
+  [PASS] D1 [control] the power-law fitter recovers an injected density slope exactly over 40-750 kpc   (recovered -1.000, -1.530, -2.500)
+  
+    the required source rho_X = d(M_HSE - M_bar)/dr / 4 pi r^2, five clusters, single power law over 40-750 kpc: -1.415 (per cluster -1.63, -1.40, -1.34, -1.47, -1.23)
+  [PASS] D2 an independent read of the X-COP profiles reproduces g04a's required source slope rho ~ r^-1.53 over 40-750 kpc   (recomputed -1.415 against g04a's -1.53)
+  
+    now the decisive test.  A CORED profile with the outer slope Famaey+2024 describe,
+        rho(r) = rho_0 / [ 1 + (r/r_c)^2 ]^(n/2)   with n = 3.5 (cored inside r_c, r^-3.5 outside),
+    is passed through g04a's own single-power-law fit over 40-750 kpc:
+     r_c [kpc]    fitted slope 40-750 kpc   |slope - (-1.53)|
+           200                     -1.573               0.043
+           300                     -1.082               0.448
+           400                     -0.780               0.750
+           500                     -0.584               0.946
+           600                     -0.450               1.080
+    a core radius of 200 kpc returns a single-power-law slope of -1.573 over 40-750 kpc, against the -1.42 the X-ray inversion measures -- the SAME number.
+    the two statements are therefore not in conflict: 'rho ~ r^-1.53 over 40-750 kpc' is the mean
+    log-slope of exactly the cored-with-steep-outskirts shape Famaey+2024 report, and g04a's 'not cored'
+    is a statement that the fit is not FLAT, which a core radius comparable to the fitting range does not
+    make it.  What g04a's number does exclude is a core radius LARGE compared with 750 kpc:
+        r_c = 1000 kpc gives -0.197, i.e. far too flat
+        r_c = 1500 kpc gives -0.095, i.e. far too flat
+        r_c = 2000 kpc gives -0.055, i.e. far too flat
+  [FAIL] D3 the cored-versus-cuspy disagreement is REAL: no cored profile of the Famaey type reproduces the single-power-law slope the X-ray inversion measures over 40-750 kpc   (a core radius of 200 kpc reproduces it exactly (-1.573 against -1.415).  The disagreement is a PARAMETRISATION artefact, not a physical conflict: the two groups fit different functional forms over different radial ranges to the same shape.  What survives as a real constraint is that the core radius must be <~ 750 kpc, i.e. comparable to or smaller than the fitting range -- both descriptions agree on that, and BOTH exclude a relic sitting at its Tremaine-Gunn floor, whose core is the whole system)
+
+==========================================================================================================================
+PART E -- does the non-monotone ladder constrain LambdaCDM?  Checked in the direction that would say NO.
+==========================================================================================================================
+  The repository's standing rule is never to claim data favour this framework over LambdaCDM, so this is
+  tested adversarially: LambdaCDM's OWN abundance-matching relation is evaluated at the pair's measured
+  baryonic mass, with NO fitted parameter, and asked whether it already predicts the 30.9.
+  
+    pair median M_b = 1.55e+11 Msun, i.e. 7.75e+10 per galaxy
+    Moster+2013 abundance matching  =>  M200 = 5.63e+12 Msun per galaxy, R200 = 367 kpc
+    an NFW halo of that mass puts a fraction 0.451 of itself inside the pair's 132 kpc
+    => LambdaCDM predicts M_dark/M_bar within r_p = 31.8, against the measured 30.9 +/- 1.5
+    and at cluster scale the SAME framework needs no adjustment: clusters retain f_bar = 0.149 against the cosmic 0.156, so M_dark/M_bar = 5.73 follows with nothing fitted.
+    the ladder is therefore non-monotone in LambdaCDM BY CONSTRUCTION: galaxy-scale halos are
+    baryon-POOR (the stellar-to-halo-mass relation), cluster-scale halos are baryon-complete.  The
+    quantity L21 measured is the stellar-to-halo-mass relation, which is an INPUT to LambdaCDM fixed by
+    the galaxy stellar mass function, not a prediction this measurement tests.
+  [FAIL] E1 the non-monotone ladder is a constraint on LambdaCDM: its own abundance-matching relation, with no free parameter, FAILS to predict the pair ratio   (it predicts 31.8 against the measured 30.9 +/- 1.5 (0.6 sigma; L21's own forward model returns A = 0.967 +/- 0.024 for the same relation, 1.4 sigma from unity).  NOTHING HERE CONSTRAINS LambdaCDM, and this lane makes no such claim.  The non-monotone ladder is a problem ONLY for a completion that must supply the residual from a UNIVERSAL component with a single cosmological abundance, which is the framework's situation and not LambdaCDM's)
+
+==========================================================================================================================
+PART F -- the verdict
+==========================================================================================================================
+  [FAIL] V1 [VERDICT] the assembled specification is self-consistent -- some object could satisfy every requirement at once   (R1/R6 alone are incompatible: the source must be 5.73 baryonic masses at 1000 kpc of a cluster and 30.9 inside 132 kpc of a pair, and at the SAME radius the clusters measure 9.2 (11 sigma).  The only family direction that survives both anchors is a host-mass abundance law with exponent -0.28, and the full rule the pair sample measures internally, (a, b) = (+1.15, +0.69), misses the anchor line by a factor 49 at 5.5 sigma.  Independently, the 35-member family search closes with an EMPTY intersection: the ratio-profile window a in [+0.40, +0.50], the shear window a in [+0.60, +0.70] and the galaxy window a in [-1.60, -0.80] are PAIRWISE DISJOINT, and every member of the galaxy window produces weak-lensing shear of the wrong SIGN)
+
+  WHAT THIS DOES AND DOES NOT SAY.
+   * It does NOT say the cluster residual has no explanation.  It says no SINGLE UNIVERSAL COMPONENT with
+     ONE cosmological abundance and ONE host-blind profile rule can supply both the cluster requirement
+     and the pair requirement, on this repository's own measurements of both.
+   * It does NOT constrain LambdaCDM (E1).  LambdaCDM supplies exactly the missing ingredient -- a
+     host-mass-dependent BARYON retention -- and its abundance-matched halos land within 1.4 sigma of the
+     pair kinematics and reproduce the clusters with nothing fitted.
+   * The escape the specification leaves open, stated rather than closed: give the SOURCE a
+     host-mass-dependent abundance per baryon, or give the BARYONS a host-mass-dependent detection
+     efficiency (the pair would need 5.0x its K-band baryons inside 132 kpc for a cosmic-share component to work).  Either is a NEW FREE FUNCTION of host
+     mass, and the second is the stellar-to-halo-mass relation under another name.  A completion that
+     adopts it inherits LambdaCDM's galaxy-formation sector wholesale, which is a real cost and should be
+     stated as one.
+   * The specification is written out as a numbered checklist in L41_CLUSTER_SPEC.md.  Any future
+     proposal can be run against it; a proposal that fails R4 or R6 fails without further computation.
+
+RESULT: 11 FAIL -> ['A1 a single radial law R(r) in ABSOLUTE radius serves both the cluster and the pair anchor', 'A2 a single radial law in SCALED radius r/R200 serves both anchors, for SOME admissible pair R200', 'A3 a component that TRACES the baryons at ONE universal ratio (the cosmic-share reading taken literally) serves both anchors', "P1 [reproduction of L24 C11] the framework's own projected shear log-slope agrees with the measured one, i.e. its phantom has the right lensing SHAPE", 'B4 [THE SEARCH] some single member of the family passes B1, B2 and B3 at once, i.e. a single radial profile serves both the cluster and the pair scale and survives the shear and galaxy gates', "B5 the framework's own galaxy-scale gate CLOSES the undetected-baryon escape at pair scale", 'C1 [the incompatible pair, one dimension] the host-mass exponent the two anchors demand agrees with the host-mass exponent the pair sample measures internally, so a host-mass abundance law can serve both scales', 'C2 [the incompatible pair, both dimensions] the profile rule the pair sample measures internally, extrapolated to cluster scale, reproduces the measured cluster source', 'D3 the cored-versus-cuspy disagreement is REAL: no cored profile of the Famaey type reproduces the single-power-law slope the X-ray inversion measures over 40-750 kpc', 'E1 the non-monotone ladder is a constraint on LambdaCDM: its own abundance-matching relation, with no free parameter, FAILS to predict the pair ratio', 'V1 [VERDICT] the assembled specification is self-consistent -- some object could satisfy every requirement at once']
+[2 s]
