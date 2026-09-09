@@ -1,0 +1,146 @@
+==========================================================================================================================
+L20 -- the ghost in the past of IC10's plateau: reachable or not, and fatal or fixable
+==========================================================================================================================
+
+-- controls (each would catch my own algebra being wrong) ---------------------------------------
+  [PASS] L20-C1 [control, textbook k-essence] the S-dictionary I use throughout -- P_X = -P_S/(2X), Q_clock = (P_SS+P_S)/(2X) = P_X + 2X P_XX, rho = -P_S - P with X = e^{-2S}/2 -- returns the textbook answers for P = X^n: c_s^2 = 1/(2n-1), and 1 for the canonical scalar n = 1
+  [PASS] L20-C2 [control, my own derivation] differentiating the shift-symmetric charge Abar^3 P_X sqrt(2 Xtilde) = const gives dln(Abar)/dS = Q_clock/(3 P_X) = 1/(3 c_s^2), hence dS/dtau = 3 Htilde c_s^2 -- IC10's two evolution laws, re-derived here rather than assumed   (dln(Abar)/dS = Q/(3 P_X) identically)
+  [PASS] L20-C3 [CONTROL, mandated] the three plateau samples of L8/IC10 reproduce from my own pressure and my own root solve: c_s^2 = 0.368967645, 0.306362959, 0.265107813 at S = 0.1, 0.15, 0.2   (c_s^2 = 0.1:0.368967644535, 0.15:0.306362958541, 0.2:0.265107813209)
+  [PASS] L20-C4 [CONTROL, mandated] the two edge values L8 reported reproduce from my own algebra: Q_clock = 0 at S = 0.026664091 and c_s^2 = 1 at S = 0.037700985; and so do both eta = 1 edges, r^2 = 3/4 at S = 0.0016326245 and r^2 = 5/4 at S = 0.230723991   (S_eta_lo = 0.0016326245139, S_ghost = 0.026664091203, S_lum = 0.037700984755, S_eta_hi = 0.230723991365)
+  [PASS] L20-C5 [control, and the structural point] Q_clock is a property of ONE function of ONE variable: the ELIMINATED pressure P_eff(S) = P(S, wbar(S)).  Differentiating P_eff numerically along the root gives dP_eff/dS = P_S and d^2P_eff/dS^2 = P_SS - P_Sw^2/P_ww exactly, so Q_clock = (P_eff'' + P_eff')/(2X).  The ghost is therefore an honest k-essence statement about P_eff, not an artefact of the Schur formula or of the auxiliary elimination.   (checked at S = 0.12 and 0.16 by numerical differentiation along the root)
+  [PASS] L20-C6 [control] my quadratures of dln(Abar)/dS = 1/(3 c_s^2) and dtau = dS/(3 Htilde c_s^2) reproduce IC10's own S = 0.1 -> 0.2 numbers, 0.108584184534843401 barred e-folds and 0.110756742119829669 tilde proper-time units   (Nbar = 0.108584184534843401, tau = 0.110756742119829669)
+
+-- (H) mapping the history: how far back are the two edges? -------------------------------------
+      S          xi=S+w        u          P_X          Q_clock        c_s^2         rho          r^2
+    0.2307   0.16337304  0.5878943    1.4146515     5.8378445    0.24232428     2.133334   1.249964
+       0.2   0.13990115  0.5704192    1.5485147     5.8410751    0.26510781    2.2499451   1.204449
+      0.15   0.10249996  0.5365848    1.7559803     5.7316993    0.30636296    2.4544597   1.130464
+       0.1  0.066321482  0.4921929       1.9407     5.2598108    0.36896764     2.670339   1.052997
+      0.06  0.038502098  0.4416433    2.0509148     4.0113584    0.51127688    2.8322039   0.981933
+      0.05  0.031745215  0.4249595    2.0673483     3.3542561    0.61633585    2.8653678  0.9612093
+     0.045  0.028402349   0.415624    2.0727114      2.916312    0.71073033    2.8796562  0.9500721
+    0.0377  0.023568772  0.4004258    2.0759596     2.0758253     1.0000647    2.8965841  0.9325599
+     0.035  0.021796274  0.3942209    2.0754391     1.6809937     1.2346501    2.9013113   0.925611
+      0.03   0.01853763  0.3816701    2.0713209    0.77607694     2.6689633     2.907165  0.9118761
+     0.028   0.01724339  0.3761894    2.0682977    0.33112105     6.2463492    2.9082184  0.9060037
+     0.027  0.016598363  0.3733336    2.0664403   0.086074404     24.007605    2.9084171  0.9029723
+    0.0267  0.016405135  0.3724608    2.0658348  0.0092957001     222.23553    2.9084307  0.9020495
+    0.0266  0.016340754  0.3721681    2.0656279  -0.016648152     -124.0755    2.9084303  0.9017405
+     0.026  0.015954777   0.370394    2.0643314   -0.17612574    -11.720781    2.9083757  0.8998715
+      0.02  0.012125733  0.3506151    2.0452395    -2.2387086   -0.91358006    2.9019107  0.8794905
+      0.01 0.0058943463   0.303459    1.9707764    -10.241806   -0.19242469    2.8490712  0.8337153
+     0.005 0.0028782062  0.2628069    1.8828003    -23.797681  -0.079116967    2.7718681  0.7967054
+     0.002 0.0011219973  0.2174645    1.7692231    -56.942439  -0.031070377    2.6644996  0.7574857
+    0.0016 0.00089270102  0.2076866    1.7434656     -69.12691  -0.025221229    2.6395345  0.7492765
+  [PASS] L20-H1 nothing else goes singular before the clock does: rho > 0 (so Htilde is real and finite) and P_X > 0 (no separate degeneracy) at every sampled S from the Q_clock = 0 edge up to the eta = 1 upper edge.  The degeneracy is at FINITE energy density and FINITE Htilde -- it is not a curvature singularity and it is not the eta boundary.   (rho(S_ghost) = 2.90843081, Htilde(S_ghost) = 1.07018768, r^2(S_ghost) = 0.901938655 (inside eta = 1))
+
+  backward from the lead's latest sample S = 0.2:
+    superluminal onset  c_s^2 = 1      S = 0.0377009848  Delta tau = 0.152078211/h0  Nbar =  0.15180878  Nphys = 0.105841495  z = 0.1116457
+    ghost/degeneracy edge  Q = 0       S = 0.0266640912  Delta tau = 0.153983863/h0  Nbar = 0.153846101  Nphys = 0.104029328  z = 0.109633
+    forward to the eta = 1 upper edge  S =  0.230723991  Delta tau = 0.0435109425/h0  Nbar =    0.040404  Nphys = 0.0331703802
+    => TOTAL certified-healthy, subluminal plateau length: 0.139011875 physical e-folds (a factor 1.149138 in the physical scale factor)
+  [PASS] L20-H2 the two edges are BOTH very close in the past of the lead's own solution.  Measured on IC10's own dS/dtau = 3 Htilde c_s^2 and dln(Abar)/dS = 1/(3 c_s^2), the superluminal onset is 0.1058 physical e-folds back (z = 0.1116 relative to the S = 0.2 epoch) and the degeneracy is 0.1040 physical e-folds back (z = 0.1096).  The whole superluminal band is crossed in 1.2% of that time.  The ENTIRE certified healthy+subluminal plateau, past terminus to future eta exit, is 0.1390 physical e-folds -- a factor 1.149 in scale factor, not a cosmology.   (band crossing = 0.001906/h0 out of 0.153984/h0 total)
+
+  CONDITIONAL scale identification (IC10 explicitly does NOT make it; both a0 footings carried):
+    the IC-internal a0 = sqrt(9 kappa e^-1/2/(16 m l^2)) = 2.434128712 in h0 = c = 1 units
+    a0 = canonical 9.3619e-11: h0 = 1.28292e-19 s^-1 = 0.058735 H0; plateau Htilde = 0.055285 H0; ghost edge 38.035 Gyr back
+    a0 = alt       1.1279e-10: h0 = 1.54563e-19 s^-1 = 0.070762 H0; plateau Htilde = 0.066607 H0; ghost edge 31.57 Gyr back
+  [PASS] L20-H3 the backward interval CANNOT be honestly quoted as a cosmological redshift, and this is a finding rather than an evasion: the plateau is a vacuum toy with no matter, no normalisation to today, and an expansion rate that -- even under the most generous identification, IC-internal a0 = empirical a0 -- is 0.0553 H0 (canonical) / 0.0666 H0 (alt), i.e. 15-18x slower than the real universe.  The only defensible statement is the INTERNAL one: z = 0.110 relative to the lead's own S = 0.2 sample.  Both footings agree the toy is not a cosmology, so the ghost is not a statement about the real early universe either way.   (Htilde/H0 = 0.055285 / 0.066607; internal z = 0.109633)
+
+-- (G) is the ghost REACHABLE at finite past proper time, or is it an asymptotic floor? --------
+  [PASS] L20-G1 [THE CHECK] the Q_clock = 0 edge is reached at FINITE past proper time.  Because dtau/dS = Q_clock/(3 Htilde P_X) and Q_clock vanishes LINEARLY at the edge while Htilde and P_X stay finite and positive, the integrand vanishes there and the quadrature converges: the total backward interval from S = 0.2 is 0.153984/h0, and the remaining interval over a decade-shrinking sliver falls by ~100x per decade (the quadratic law of a linearly vanishing integrand).  This is possibility (a), not (b): there is NO asymptotic floor in S, and the ghost boundary is NOT a coordinate artefact of the continuation.   (Delta tau = 0.153983862606/h0; sliver ratios per decade = 97.926, 99.787)
+  Abar(S)/Abar(0.2) = (F(0.2)/F(S))^(1/3) with F = P_X e^{-S};  F is maximal at S = 0.0266 (= the Q = 0 edge), giving Abar_min/Abar(0.2) = 0.8574040385
+    S =      0.2   Abar/Abar(0.2) = 1.0
+    S =      0.1   Abar/Abar(0.2) = 0.8971033694
+    S =   0.0377   Abar/Abar(0.2) = 0.8591522704
+    S =   0.0267   Abar/Abar(0.2) = 0.8574039879
+    S =     0.02   Abar/Abar(0.2) = 0.8583532308
+    S =     0.01   Abar/Abar(0.2) = 0.866138483
+    S =    0.001   Abar/Abar(0.2) = 0.9085306172
+  [PASS] L20-G2 [the precise nature of the boundary, and this is the part that softens the verdict] the healthy branch does NOT pass through the ghost region -- it TERMINATES at its edge.  From my own charge relation Abar^3 P_X e^{-S} = const, dF/dS = -Q_clock e^{-S}, so F = P_X e^{-S} is maximal exactly where Q_clock = 0.  Since Htilde > 0 makes Abar monotone in tau, Abar can only fall to Abar_min = (F(0.2)/F_max)^(1/3) = 0.8574 of its S = 0.2 value; below that no S solves the charge relation.  The Q < 0 region is the SECOND branch through the same fold, running forward in time from the same point, not the past of this one.   (F_max = 2.011406497 at S = 0.0266; Abar rises again below the edge (0.86613848 at S = 0.01 vs 0.85740404 at the edge))
+  [PASS] L20-G3 what the past boundary IS, stated plainly: at finite proper time in the past, at FINITE energy density (rho = 2.9084), FINITE Htilde (1.0702) and with eta still exactly 1 (r^2 = 0.901939, inside |r^2-1| <= 1/4), the clock's principal symbol degenerates -- c_s^2 -> +inf and the coefficient of the time derivative vanishes.  The solution is PAST-INCOMPLETE at a regular point of the geometry.  That is a defect of the plateau, and it is NOT the eta boundary the lead's open item 1 is waiting for: eta = 1 continues 16x further down, to S = 0.0016326.   (c_s^2 = 24.00761 at S = 0.027 and 222.2355 at S = 0.0267; S_ghost/S_eta_lo = 16.332)
+
+-- (S) is S fixed by the construction, or a free initial condition? -----------------------------
+  [PASS] L20-S1 S is a FREE INITIAL CONDITION, not an output of the construction.  The plateau pressure depends on the clock only through Xtilde = -gtilde^{mu nu}T_mu T_nu/2, never on T itself, so the action has the shift symmetry T -> T + const; its Noether charge Abar^3 P_X sqrt(2 Xtilde) is conserved (L20-C2) and its VALUE is initial data.  Nothing in the action, the auxiliary equation P_w = 0, or the Friedmann constraint picks a value of S: given Abar, S is whatever the initial charge makes it.  Avoiding the ghost is therefore a restriction on INITIAL DATA, which is a much weaker problem than a defect of the theory -- and it must be said so plainly.   (free symbols of P = ['S', 'w'] (no T))
+  [PASS] L20-S2 the restriction, quantified, and it cuts BOTH ways.  In the clock variable, 84.3% of the eta = 1 plateau is healthy and subluminal (89.1% is merely non-ghost); the excluded sliver is the bottom 15.7%.  And the exclusion is one-sided in TIME: dS/dtau = 3 Htilde c_s^2 > 0 on the healthy branch, so {S > S_lum} is FORWARD-INVARIANT -- any initial datum that starts healthy stays healthy until it exits eta = 1 at the top.  A theory healthy only for restricted initial data is a weaker theory; but the restriction here is 'start above S = 0.0377', it is an open condition, and it is never violated by evolution.   (healthy+subluminal fraction of the eta = 1 range in S = 84.256%, non-ghost fraction = 89.074%)
+
+-- (L) does the superluminal band matter? -------------------------------------------------------
+    S =   0.0377   c_s^2 = 1.00006468
+    S =    0.037   c_s^2 = 1.04914808
+    S =    0.036   c_s^2 = 1.13199055
+    S =    0.035   c_s^2 = 1.23465012
+    S =    0.033   c_s^2 = 1.53695389
+    S =    0.031   c_s^2 = 2.11768867
+    S =    0.030   c_s^2 = 2.66896333
+    S =    0.029   c_s^2 = 3.69202576
+    S =    0.028   c_s^2 = 6.24634922
+    S =    0.027   c_s^2 = 24.0076051
+  [PASS] L20-L1 the band is not a marginal excursion: inside 0.0266641 < S < 0.0377010 the clock's sound cone opens WITHOUT BOUND (c_s^2 = 1.23 at S = 0.035, 2.67 at 0.030, 24.0 at 0.027, divergent at the edge), all with eta exactly 1 and the auxiliary root unique.  On a preferred foliation that is not by itself a causality violation -- the clock's own level sets T = const are a global time function for BOTH cones on this homogeneous background, so no closed causal curve arises here -- but 'not automatically fatal' is the most that can be said from this calculation.   (max sampled c_s^2 inside the band = 24.007605)
+  [PASS] L20-L2 [DEPENDENCY, not settled here] the sign of this question is inverted by the parallel gravitational-Cherenkov lane and this lane does not duplicate it.  IF the handoff's A5/A6 apply to this clock (bound 1 - c_s <= 2e-15, 'the lower edge is always Cherenkov => the khronon must be marginally superluminal'), then it is the lead's SUBLUMINAL samples that are excluded -- c_s^2 = 0.265-0.369 sits where A5 excludes c_s^2 = 1/3 by 2.1e14x -- and the only surviving point of the whole plateau is c_s^2 = 1, i.e. exactly the superluminal onset S = 0.0377010 this lane identifies as the edge of the healthy window.  Recorded as a conditional pincer, resolved by the other lane, not asserted here.   (the lead's samples span c_s^2 = 0.265108-0.368968; c_s^2 = 1 at S = 0.03770098476)
+
+-- (F) is there a modification that moves the ghost edge below any reachable S? -----------------
+  [PASS] L20-F1 kappa and m are NOT levers, and this closes the cheapest repair before it is tried.  The IC5 relations m a0^2 = 9 kappa e^{-1/2}/(16 l^2) and m Lambda = kappa e^{-1/2} - m a0^2 U(4/9) make P exactly proportional to kappa and independent of m; the activation r^2 = 2 e^{2S-4w-1/6} rho/kappa is then independent of BOTH.  So no rescaling of kappa or m moves the ghost edge, moves the eta window, or separates the two.   (P/kappa has free symbols {S, w} only -- kappa is an overall factor and m has cancelled)
+  (F2) the Lambda lever: scan g = Lambda/Lambda_IC5 and ask whether the ghost ever leaves the plateau
+      g        S_eta_lo      S_ghost      S_lum        S_eta_hi      ghost inside eta = 1?
+      0.6      no crossing    0.00317286   0.005766773    0.16421471   YES -- ghost inside
+      0.8      no crossing   0.011417002    0.01855268    0.22514878   YES -- ghost inside
+      0.9      no crossing   0.018021062   0.027394354    0.23164647   YES -- ghost inside
+      0.95   0.00038051558    0.02206841   0.032375156     0.2318603   YES -- ghost inside
+      1       0.0016326245   0.026664091   0.037700985    0.23072399   YES -- ghost inside
+      1.05    0.0039482595   0.031847477   0.043346627    0.22859337   YES -- ghost inside
+      1.1     0.0071752275    0.03765776   0.049283928    0.22573832   YES -- ghost inside
+      1.2      0.015249158   0.051309236   0.061908599    0.21862498   YES -- ghost inside
+      1.3      0.023863188   0.067887697    0.07530843    0.21050138   YES -- ghost inside
+      1.4      0.031837357   0.087573322   0.089205258     0.2020151   YES -- ghost inside
+  [PASS] L20-F2 tuning Lambda does NOT fix it.  Over g = Lambda/Lambda_IC5 in [0.6, 1.4] the ghost edge moves by a factor of 25 -- but so does the eta = 1 lower edge, and the ghost stays INSIDE the plateau at every point scanned.  Below g ~ 0.9 the plateau stops closing at the bottom at all (r^2 never falls to 3/4), so eta = 1 then runs all the way to the excluded chart locus with the ghost in it; above g ~ 1.4 the plateau closes up and c_s^2 goes negative at the top.  A one-coefficient tune is not the repair.   (ghost inside eta = 1 at 10/10 scanned values of g)
+  (F3) the clock kinetic lever: add  lam e^{2w} Xtilde^2  to P (only lam/kappa matters)
+      lam     S_ghost       c_s^2(0.1)   c_s^2(0.2)   S(c_s^2=1)     r^2(0.15)   plateau ok?
+      0        0.026664091   0.36896764   0.26510781   0.037700985    1.130464   yes
+      1        0.014633481   0.32600576   0.26743608   0.021065996    1.334271   NO -- outside eta=1
+      2       0.0090756294   0.30707495   0.26863264   0.013137016    1.538479   NO -- outside eta=1
+      5       0.0030657026    0.2845242   0.27001736  0.0044460743    2.153635   NO -- outside eta=1
+      10     0.00071597994   0.27211712   0.27029988  0.0010324301    3.188233   NO -- outside eta=1
+  [PASS] L20-F3 a higher-order clock kinetic term moves the edge a long way but does NOT change the structure.  lam/kappa = 0.83 pushes the ghost from S = 0.0267 to 0.00072 (37x) and drags the superluminal band down with it (the c_s^2 = 1 crossing moves from 0.0377 to 0.00103), but it does so by ADDING ENERGY, and the activation r^2 = 2 e^{2S-4w-1/6} rho/kappa then leaves the eta = 1 window entirely (r^2 = 3.19 at S = 0.15).  Every lam > 0 scanned that helps the ghost also breaks the plateau, and no (lam, Lambda) point in the grid keeps S = 0.15 inside eta = 1.  So a constitutive repair has to be ENERGY-NEUTRAL, and that is the constraint the lead has to design against.   (lam = 0 keeps r^2(0.15) inside eta = 1; every lam > 0 tried does not; S_ghost(lam/kappa=0.83) = 0.0007159799)
+  [PASS] L20-F4 [THE CONCRETE, CHECKABLE SUGGESTION] there IS a repair that costs the lead nothing numerically, and it lives in a place IC5 already declares free: the activation.  IC5 defines eta by 'a smooth, momentum-reversal-even activation' with eta = 1 for |r^2-1| <= 1/4.  That window is SYMMETRIC by choice, not by derivation.  Make its LOWER threshold r^2 >= 0.93256 instead of 0.75 -- still smooth, still even under momentum reversal -- and eta = 1 then coincides exactly with S in [0.0377010, 0.2307240], the healthy subluminal window.  Every published IC10 number survives untouched (r^2 = 1.0530, 1.1305, 1.2045 at the three samples, all interior), the upper edge r^2 = 5/4 is unchanged, and the backward handoff to the full eta-derivative equations then happens AT c_s^2 = 1 instead of after the degeneracy.  Stated honestly: this does not make the ghost go away, it makes it the transition sector's problem -- which is already the lead's open item 1 -- and that is exactly the right place for it.   (r^2 at the superluminal onset = 0.93256238; the three samples sit at 1.052997, 1.130464, 1.204449)
+  (F5) where a REAL constitutive repair has to act: Q_clock = (P_eff'' + P_eff')/(2X) and the
+       Schur subtraction P_Sw^2/P_ww is what drives it negative as the chart locus xi = 0 is
+       approached.  Q_bare stays hugely positive; the whole effect is in the elimination.
+        S          xi           Q_bare          Q_clock        subtraction
+         0.2   0.13990115      74.997444     5.84107512     69.1563688
+         0.1  0.066321482     218.796439     5.25981082     213.536628
+        0.05  0.031745215     635.138749     3.35425606     631.784493
+      0.0377  0.023568772     972.666257     2.07582534     970.590432
+        0.03   0.01853763     1367.81641    0.776076941     1367.04034
+      0.0267  0.016405135     1625.39973  0.00929570008     1625.39044
+        0.02  0.012125733     2483.36973    -2.23870858     2485.60844
+        0.01 0.0058943463     6718.41449    -10.2418064     6728.65629
+      0.0016 0.00089270102      82887.618    -69.1269096      82956.745
+  [PASS] L20-F6 the ghost is generic near the excluded chart locus, in every deformation tried.  Q_clock diverges to -infinity as xi = S + w -> 0 (local logarithmic slope ~0.78 over three decades in xi), for lam = 0 and for every lam and Lambda scanned: the deformations move the CROSSING, never the asymptotics.  So the repair cannot be a coefficient; it has to change the xi -> 0 structure of the auxiliary sector -- which is precisely the lead's own open item 4, 'global k = 0/y = 0 control'.  This liability and that open item are the same problem seen from two sides.   (Q(xi) local slopes = 0.7894, 0.7725, 0.7707; Q(S=1e-4) < 0 for lam/kappa in {0, 0.83, 1.67} and g in {0.6, 1, 1.3})
+
+-- verdict ---------------------------------------------------------------------------------------
+  [PASS] L20-V1 [VERDICT] the liability is REAL and NOT FATAL, and all four sub-claims are checked above. (i) It is real: the certified-healthy window is strictly inside eta = 1, and the boundary is reached at finite past proper time (0.153984/h0, 0.1040 physical e-folds, internal z = 0.1096) at finite density and finite Htilde, with eta exactly 1 -- so it is a genuine past boundary of the plateau and not a continuation artefact (L20-G1, L20-G3). (ii) It is milder than 'a ghost in the history': the healthy branch does not enter the ghost region, it terminates at a fold in Abar, and the Q < 0 region is a separate branch (L20-G2). (iii) S is a free initial condition, so avoiding the region is a restriction on initial data, that restriction is 84.3% of the plateau and it is forward-invariant (L20-S1, L20-S2). (iv) It is removable inside IC5's own declared design freedom, at zero cost to every published number, by making the activation window asymmetric (L20-F4) -- while a coefficient tune provably is NOT the repair (L20-F1, F2, F3, F6).   (not fatal; a past boundary of the plateau, removable by an activation retune, not by a coefficient tune)
+  [PASS] L20-V2 [the calibration that keeps this honest in the other direction] the ghost is NOT the binding limitation on IC10, and saying so is part of the answer.  The entire certified healthy subluminal plateau lasts 0.1390 physical e-folds -- a factor 1.149 in scale factor.  A construction that expands by 15% between its past degeneracy and its future eta exit is a local witness, exactly as IC10 labels it ('emphatically not a realistic full cosmology'), and the past boundary found here is a defect of that witness, not of a cosmological history it never claimed.   (total plateau = 0.1390119 physical e-folds = factor 1.149138 in the physical scale factor)
+
+==========================================================================================================================
+ALL CHECKS PASSED.
+
+SUMMARY FOR THE LEAD.
+  The ghost IS reachable: IC10's own dS/dtau = 3 Htilde c_s^2, integrated backwards from the S = 0.2
+  sample, hits the Q_clock = 0 degeneracy after 0.153984/h0 of proper time -- 0.1040 physical e-folds,
+  internal z = 0.1096 -- at rho = 2.9084, Htilde = 1.0702, r^2 = 0.901939 (eta still exactly 1), with the
+  auxiliary root still unique.  It is not an asymptotic floor.
+  But it is a TERMINATION, not a traversal: F = P_X e^{-S} is maximal exactly at Q_clock = 0, so the
+  barred scale factor bottoms out at 0.8574 of its S = 0.2 value and the Q < 0 region is a second branch
+  through the same fold, not the past of this solution.
+  S is free initial data (shift symmetry in T), so the exclusion is an open, forward-invariant condition
+  on initial data covering 84.3% of the eta = 1 plateau -- weaker than a defect of the theory, but a
+  restriction that should be stated.
+  The repair is NOT a coefficient: kappa and m cancel out of both the ghost edge and the activation;
+  Lambda moves both edges together and never separates them; a clock Xtilde^2 term moves the ghost edge down 37x
+  but drags the superluminal band with it and pushes r^2 out of eta = 1.  Q_clock -> -inf as xi -> 0 in every deformation.
+  The cheap repair is the ACTIVATION: raise eta's lower threshold from r^2 >= 3/4 to r^2 >= 0.93256, so
+  eta = 1 coincides with the healthy subluminal window S in [0.0377010, 0.2307240].  Costs nothing --
+  the three published samples sit at r^2 = 1.0530, 1.1305, 1.2045 -- and moves the past handoff to
+  c_s^2 = 1.  It relocates the problem into open item 1 rather than solving it, and should be reported
+  that way.
+

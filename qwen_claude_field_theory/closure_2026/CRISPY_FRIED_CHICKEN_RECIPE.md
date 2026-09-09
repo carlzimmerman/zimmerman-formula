@@ -12,7 +12,17 @@ structure together. Checks remain honest: a failure identifies a construction
 obligation; it is not permission to conceal the failure or relax a requirement.
 Historical obstructions are reference material, not the main deliverable.
 
-**Current constructive checkpoint (2026-09-08, IC11/IC12):**
+**Current constructive checkpoint (2026-09-08, IC13/IC14):**
+[The new handoff](integrable_clock_construction_2026/IC13_IC14_HANDOFF.md)
+records an explicit fold-free local matter response, a derived transition
+kinetic/curvature repair and its remaining superluminal scalar, a quantified
+early-history limitation, and the full-covariance supernova reanalysis.
+IC14 is the best local matter component, not a global MOND action. Its results
+cannot be pooled with IC13 as if a combined healthy theory had been derived.
+Full closure remains OPEN; the next construction and its early-universe and
+sourced-galaxy obligations are explicit in that handoff.
+
+**Previous constructive checkpoint (IC11/IC12):**
 [The shared handoff](integrable_clock_construction_2026/IC11_HANDOFF.md)
 records the new convex clock-pressure construction, matter-coupled response,
 full transition, combined action, and exact-law empirical source targets.

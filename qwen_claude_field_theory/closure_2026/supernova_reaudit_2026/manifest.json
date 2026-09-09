@@ -1,0 +1,94 @@
+{
+  "schema_version": 1,
+  "claim_id": "supernova-full-covariance-reaudit",
+  "repository": {
+    "commit": "7415919e9d91164ad41576377454d98808ff803a",
+    "dirty": true
+  },
+  "command": "/opt/homebrew/Caskroom/miniconda/base/bin/python -B qwen_claude_field_theory/closure_2026/supernova_reaudit_2026/audit.py",
+  "environment": {
+    "software": [
+      "Python 3.13.9",
+      "NumPy 1.26.4",
+      "SciPy 1.14.1"
+    ],
+    "hardware": "arm64"
+  },
+  "mathematics": {
+    "assertion_tested": "Published-correction baseline only: full-covariance flat/curved FLRW shape profiles conditional on the posited a0-Lambda law; no action-derived SNe prediction, significance conversion, or test of alternative age/redshift-frame corrections",
+    "coefficient_domain": "IEEE754 float64",
+    "conventions": "Official zHD integration and zHEL luminosity prefactor; full STAT+SYS covariance; analytic free magnitude intercept; GR FLRW; no radiation",
+    "inputs": [
+      {
+        "path": "qwen_claude_field_theory/closure_2026/supernova_reaudit_2026/audit.py",
+        "sha256": "86a33ed9ada82da7247c8600df307b8ad6dd52844a84ee73173d85722edb4f92"
+      },
+      {
+        "path": "qwen_claude_field_theory/closure_2026/supernova_reaudit_2026/release.dat",
+        "sha256": "1cb0fc379ef066afdc2ffd1857681cc478024570d8a3eba284fb645775198cf8"
+      },
+      {
+        "path": "qwen_claude_field_theory/closure_2026/supernova_reaudit_2026/PantheonPlusSH0ES_STAT_SYS.cov.gz",
+        "sha256": "1ddcdf8bb4b4c49a33cb81fc270facb00368b4383eec752e907c3e6c0706a217"
+      },
+      {
+        "path": "prep_2026/a0_line/fire_slope_results.json",
+        "sha256": "03f70d0cf4a41792f06b62b2b0934d7363b9b8e6b6eb26e3bd21cac705682934"
+      }
+    ],
+    "bounds": {
+      "total_rows": 1701,
+      "quadrature_order": 48,
+      "Omega_m_profile": [
+        0.01,
+        0.99
+      ],
+      "H0_choices": [
+        67.4,
+        73.0
+      ],
+      "w0_wa_fixed": [
+        -0.83,
+        -0.75
+      ]
+    },
+    "non_claims": [
+      "No standalone H0 or absolute a0 measurement from uncalibrated SNe",
+      "No diagonal-error significance",
+      "No new a0 measurement or jointly propagated galaxy distance calibration",
+      "No inferred IC13/14 cosmology"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-09-09T01:36:44.147300+00:00",
+    "runtime_seconds": 1.271373167001002,
+    "exit_status": 0
+  },
+  "outputs": [
+    {
+      "path": "qwen_claude_field_theory/closure_2026/supernova_reaudit_2026/results.json",
+      "sha256": "11f42003ec13d2a3072c77f0ac114bf38ec87585d8d17894b6e30946652f9f0a"
+    }
+  ],
+  "checks": [
+    {
+      "name": "covariance dimension, symmetry and Cholesky positive definiteness",
+      "passed": true
+    },
+    {
+      "name": "constant-intercept invariance",
+      "passed": true
+    }
+  ],
+  "result": "Conditional full-covariance shape and calibration profiles",
+  "residual_risks": [
+    "Legacy v1 manifest does not enforce resource caps",
+    "Galaxy footings inherited, not remeasured; distance and interpolation systematics need joint treatment",
+    "Curved profiles bounded to nonnegative matter fraction; no global cosmology exploration"
+  ]
+}
