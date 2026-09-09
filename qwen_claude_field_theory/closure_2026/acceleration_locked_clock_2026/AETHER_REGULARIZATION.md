@@ -62,3 +62,9 @@ numerator becomes `c1*(c1+c4)=c1*c14`.  If the PPN denominator is regular then
 then vanishes, but the scalar speed still has `c14` in its denominator.  Exact
 luminality plus PPN tuning therefore lands on a degenerate scalar branch in
 this entire constant-aether completion.
+The exact branch has a two-case split: if `c123 != 0`, the scalar gradient
+factor remains `2*c123` while the kinetic factor is zero, so the surviving
+channel is instantaneous/constraint-like; if `c123=0`, both principal factors
+vanish and the scalar sector is rank-degenerate/strongly coupled.  This is a
+bounded obstruction for this completion, not a universal theorem about every
+possible relativistic MOND action.

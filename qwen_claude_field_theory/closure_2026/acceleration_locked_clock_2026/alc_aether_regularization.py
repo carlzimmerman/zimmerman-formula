@@ -68,6 +68,11 @@ def symbolic_branch():
     exact_luminal_alpha2_first_factor = sp.factor(
         (d1 + 2 * d3 - d4).subs({d3: -d1, d4: -d1})
     )
+    exact_luminal_c123 = sp.factor((d1 + d2 + d3).subs(d3, -d1))
+    exact_luminal_scalar_kinetic = sp.Integer(0)
+    exact_luminal_scalar_gradient = sp.factor(
+        exact_luminal_c123 * (2 - exact_luminal_c14)
+    )
     return {
         "symbols": (e, r),
         "c1": c1, "c2": c2, "c3": c3, "c4": c4,
@@ -82,6 +87,9 @@ def symbolic_branch():
         "exact_luminal_alpha1_numerator_after_c13": exact_luminal_alpha1_num,
         "exact_luminal_c14_after_alpha1": exact_luminal_c14,
         "exact_luminal_alpha2_first_factor": exact_luminal_alpha2_first_factor,
+        "exact_luminal_c123": exact_luminal_c123,
+        "exact_luminal_scalar_kinetic_factor": exact_luminal_scalar_kinetic,
+        "exact_luminal_scalar_gradient_factor": exact_luminal_scalar_gradient,
     }
 
 
@@ -166,6 +174,7 @@ def build_scan(gw_bound=1e-15, speed_floor=1.0):
         },
         "interpretation": {
             "exact_luminal_tensor_implication": "On the alpha-tuned branch with epsilon nonzero, c13=0 solves r=-1 exactly; this simultaneously gives c14=c123=0, so exact tensor luminality is the degenerate scalar surface rather than a regular two-tensor point.",
+            "exact_luminal_two_case_split": "For the general exact-luminal branch, c14=0 makes the scalar kinetic factor vanish. If c123!=0 the gradient factor remains nonzero, giving an instantaneous/constraint scalar channel; if c123=0 both factors vanish and the scalar principal symbol is rank-degenerate/strongly coupled. Neither case is a regular healthy propagating-free closure.",
             "regular_branch": "alpha1=alpha2=0 is algebraically tunable and can coexist with c13≈0 and positive/superluminal principal speeds, but every such regular point has a nonzero scalar aether principal symbol; this violates N_grav=2 if that scalar is gravitational.",
             "degenerate_branch": "c14=0 or c123=0 is not a regular PPN solution; standard speed/PPN formulae lose their denominators and require a separate full Dirac calculation.",
             "status": "OPEN",
