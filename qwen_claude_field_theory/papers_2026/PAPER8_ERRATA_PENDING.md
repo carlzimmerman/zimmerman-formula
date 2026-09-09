@@ -1,5 +1,20 @@
 # PAPER8 — pending errata for a version 2
 
+> **⚠️⚠️ 2026-09-09, SUPERSEDES EVERYTHING BELOW: THE CENTRAL CLAIM IS FALSE.** `L60_anisotropic_health.py`
+> (64/64 PASS, three independent routes) finds the deposited scalar sector carries a **gradient instability
+> at every acceleration below ~0.4 a₀** — e-folding in 760 years at 0.7 pc, 0.74 Myr at 1 kpc, unbounded
+> beyond ~19 kpc in a normal galaxy, both footings, **no parameter escape** (BBN pins the threshold; ξ
+> would need 1.9 kpc; the AQUAL fork fails in the complementary regime). To within the 12.5% K_B can
+> buy, **the sector is healthy only where g_φ ≤ g_N, i.e. only where MOND is not operating.** The gate
+> table's "DOF health: PASS" was evaluated at solar-neighbourhood acceleration and never in deep MOND.
+> **"A complete theory of gravity below the galaxy scale" is therefore FALSE, and the version two is not
+> an erratum but a retraction-level correction of the headline.** The theorems the paper cites (the
+> foliation theorem, the excess-spent-once theorem) are class-level and unaffected; the static
+> rotation-curve phenomenology is unaffected because it does not depend on dynamical stability; the
+> action as a healthy field theory is dead as deposited.
+
+
+
 **Status: NOT PUBLISHED. This is a tracking list, not a deposit.** The live record is
 [DOI 10.5281/zenodo.22667688](https://doi.org/10.5281/zenodo.22667688) (concept 22667687), deposited
 2026-09-08. Issuing a version 2 mints a new version DOI under the same concept and requires the owner's

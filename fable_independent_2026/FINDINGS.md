@@ -2409,3 +2409,45 @@ the boost ceiling, and the bare kernel's Saturn overshoot. Three mutation contro
   **before** the lane that flagged it was written. The superluminality result and the gravitational-wave
   identity are **the same quantity from two sides**, so they never disagreed. **What is wrong is a stale
   PROSE paragraph in the ledger contradicting its own table** — corrected below.
+
+## L60 — IT IS A KILL: the deposited scalar sector has a gradient instability throughout deep MOND
+
+`L60_anisotropic_health.py` + `L60_ANISOTROPIC_HEALTH.md` (**64 checks, 64 PASS**). L46 found a health
+condition the deposited paper does not list, passing at the theory's own operating point but failing
+below a stated acceleration in a regime its flat-background analysis could not reach. L46 named the
+anisotropic calculation and did not do it. **This lane did it, and the condition fails.**
+
+**Controls.** The counter returns 2, 3, 5 and 3 on the four reference theories; Jacobson's three mode
+speeds and the khronometric scalar speed reproduce exactly at three random points each; L46's four-mode
+count, its critical value 0.9000009, its slow-mode speed and its threshold s = 0.3985 all reproduce.
+
+- **⚠️⚠️ KEEPING THE BACKGROUND GRADIENT DOES NOT RESCUE IT.** It improves the longitudinal branch by a
+  factor 4 in acceleration and leaves the transverse branch **exactly** where the flat calculation put it,
+  because Σ_∥ ≥ Σ_⊥ everywhere (minimum ratio 2.000 over sixteen decades). **The worst direction is
+  unchanged, so L46's threshold was exact, not conservative.** At s = 0.1 the unstable cone already covers
+  99.6% of directions.
+- **What it is:** not a ghost (all three kinetic normalisations positive and independent of the kernel),
+  not a loss of hyperbolicity (the coherence operator restores ω² > 0 above a cutoff). **A gradient
+  instability.** Fastest mode at 0.73 pc canonical / 1.10 pc alt, e-folding in **762 / 1142 years**; still
+  **0.74 Myr at 1 kpc**, where the neglected terms are 466× too small to matter. Not a UV artefact.
+- **Where it lives: everywhere MOND operates.** For a 1e11 M_⊙ galaxy, some direction is unstable beyond
+  **19.3 kpc canonical / 17.6 kpc alt**, and every direction beyond **38.7 / 35.3 kpc**, **unbounded
+  above**. A half-line, not a shell. **A finite region does not regulate a wrong-sign gradient term.**
+- **⚠️ NO PARAMETER ESCAPE.** K_B ≤ 0.25 from BBN keeps the threshold at or above 0.875, so **the condition
+  is essentially g_φ ≤ g_N: the sector is healthy only where MOND is not operating.** ξ would have to be
+  **1.9 kpc, 1.9e4× its floor**. The AQUAL fork fails in the **complementary** regime, with negative
+  longitudinal stiffness at every high acceleration, Solar System included.
+- **Three independent routes agree**, one sharing no machinery: the static energy form on (lapse, spatial
+  trace, δφ) changes sign at exactly the same critical value. **The lapse's effective stiffness is
+  dominated by the Einstein constraint, which is why the threshold carries a 2 and c₁₄ is irrelevant.**
+- **⚠️ RECONCILIATION WITH THE PASSING LANES, and this is the lesson.** The deposited gate table's "DOF
+  health: PASS" was evaluated at **the solar-neighbourhood acceleration, 3.6× above the threshold — and
+  never in deep MOND.** L13's coupled analysis carried the mixing through the **khronon only**; the
+  subtraction that produces the threshold comes through the **lapse**, and L13's one test point sat 11%
+  above the critical value, where the omission is invisible. L30/L53's well-posedness is about the
+  **static** operator on the **saturated** branch — a different operator in a different regime, no
+  conflict. **We warned, in the L52 brief, against health claims made at one background and quoted as
+  general. We then did exactly that in our own gate table.**
+- **⚠️⚠️ CONSEQUENCE FOR THE DEPOSITED PAPER (DOI 10.5281/zenodo.22667688): its central claim — a complete
+  theory of gravity below the galaxy scale — is FALSE.** The theory is unstable in the regime it exists to
+  explain. This is not an erratum item. It is a retraction-level correction of the headline.

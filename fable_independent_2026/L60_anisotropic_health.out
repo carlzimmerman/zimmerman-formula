@@ -1,0 +1,297 @@
+======================================================================================================================
+L60 -- the anisotropic scalar health condition: does L46's threshold survive grad(phi) != 0?
+======================================================================================================================
+
+  the exhibited point: K_B = 0.2, c_14 = 1.9780e-06, c_2 = 3.321700e-06, |K_2| = 9.7540e+05, sigma* = 1.679312732
+  the repaired kernel: C = 0.64761, p = 1.7538, a_2 = 0.9335, a_1 = 1/(Cp) = 0.880453
+  footings: a_0 = 9.3619e-11 (canonical) / 1.1279e-10 (alt) m s^-2; xi floor = 0.1 / 0.15 pc
+
+======================================================================================================================
+PART 0 -- CONTROLS.  The counter must return 2 / 3 / 5 / 3.  If it does not, nothing below counts.
+======================================================================================================================
+    building the quadratic Einstein-Hilbert Lagrangian from N sqrt(gamma)(K.K - K^2 + R3) ...
+  [PASS] C0  the quadratic Einstein-Hilbert Lagrangian reconstructs exactly as (1/2)v.W.v + v.B.q + (1/2)q.C.q   (no second time derivatives survive the ADM form, as a Dirac analysis requires)
+    ADM general relativity: N_q = 10, rank(Hessian) = 6, primaries = 4, generations = [4, 4], total = 8, first class = 8, second class = 0  ->  DOF = 2
+  [PASS] C1  the Dirac counter returns 2 for ADM general relativity   (N_q = 10, primaries = 4, secondaries = 4, first class = 8, second class = 0)
+  [PASS] C1b the four primaries are the lapse and shift momenta and the four secondaries are the Hamiltonian and momentum constraints -- all eight FIRST class, produced by the algorithm and not supplied to it   (4 + 4, no second-class pair)
+    GR + one scalar       : N_q = 11, rank(Hessian) = 7, primaries = 4, generations = [4, 4], total = 8, first class = 8, second class = 0  ->  DOF = 3
+  [PASS] C2  the Dirac counter returns 3 for GR + one minimally coupled scalar   (first class = 8, second class = 0)
+    Einstein-aether       : N_q = 13, rank(Hessian) = 9, primaries = 4, generations = [4, 4], total = 8, first class = 8, second class = 0  ->  DOF = 5
+  [PASS] C3  the Dirac counter returns 5 for Einstein-aether (2 tensor + 2 vector + 1 scalar)   (c1..c4 = 1/5, 1/7, 1/11, 1/13 (generic); N_q = 13, first class = 8, second class = 0)
+    khronometric          : N_q = 11, rank(Hessian) = 7, primaries = 4, generations = [4, 4], total = 8, first class = 8, second class = 0  ->  DOF = 3
+  [PASS] C4  the Dirac counter returns 3 for khronometric theory (2 tensor + 1 khronon)   (same c1..c4, u hypersurface-orthogonal; first class = 8, second class = 0)
+  [PASS] C4b the machinery SEES why khronometric loses two modes: the only change is that u_i is a gradient, and the two transverse aether modes disappear   (5 - 3 = 2, exactly the spin-1 pair)
+  [PASS] C5  the count is k-independent (khronometric at k = 2 also returns 3)
+  [PASS] C5  the count is k-independent (khronometric at k = 3 also returns 3)
+
+  SECOND CONTROL LAYER -- the same Lagrangians must reproduce the PUBLISHED mode SPEEDS.
+  [PASS] C6  the tensor speed is Jacobson's c_T^2 = 1/(1 - c_13), at three random rational points
+  [PASS] C7  the spin-1 speed is Jacobson's [c_1 - (c_1^2 - c_3^2)/2]/[c_14(1 - c_13)], three points
+  [PASS] C8  the spin-0 speed is Jacobson's c_123(2 - c_14)/[c_14(1 - c_13)(2 + c_13 + 3c_2)], three points
+  [PASS] C9  the khronometric spin-0 speed is Blas-Pujolas-Sibiryakov's (2-alpha)(beta+lambda)/[alpha(1-beta)(2+beta+3lambda)], three points
+  [PASS] C10 the khronometric VECTOR sector carries no mode at all -- the structural reason the count drops from 5 to 3   (u_i is a gradient, so there is no transverse aether direction to excite)
+
+======================================================================================================================
+PART 1 -- REPRODUCING L46 ABOUT FLAT SPACE: the count, the modes, the condition, the critical s
+======================================================================================================================
+    ASSEMBLED ACTION      : N_q = 12, rank(Hessian) = 8, primaries = 4, generations = [4, 4], total = 8, first class = 8, second class = 0  ->  DOF = 4
+  [PASS] R1  the assembled action carries FOUR propagating modes -- L46's count is reproduced by an independently written counter validated on four control theories   (N_q = 12, primaries = 4, total = 8, first class = 8, second class = 0 -> 12 - 8 = 4)
+  [PASS] R1b the constraint structure is the controls' own: 4 primary + 4 secondary, all first class, no second-class pair -- the extra modes are extra FIELDS, not extra constraints
+  [PASS] R1c the count is still 4 at the theory's own exhibited point on the closure locus   (DOF = 4; the closure locus does not degenerate the kinetic matrix)
+  [PASS] R2  modes 1-2 are the two tensor polarisations with speed EXACTLY c, as an identity in K_B (c_1 = -c_3 makes c_13 = 0), so GW170817 is structural, not tuned   (c_T^2 = 1)
+  [PASS] R3  mode 3's (the clock's) kinetic normalisation is proportional to c_14 k^2 and to nothing else   (W_chi,chi = c14*k**2)
+  [PASS] R4  mode 4's (the MOND scalar's) kinetic normalisation is |K_2| per Fourier mode -- independent of k, of c_14 and of xi, so the coherence operator adds no time derivative and no Ostrogradsky mode   (W_phi,phi = -K_2)
+  [PASS] R5  the scalar sector carries exactly TWO modes, so the spectrum is 2 tensor + 2 scalar = 4   (speeds^2 = [-0.02497221103445276, 3.8778398580932762])
+
+    product of the two scalar omega^2 (TWO independent stiffnesses carried):
+      -c2*k**4*(K_B - 2)*(J_par*c14 - 2*J_par + J_xi*c14*k**2*xi**2 - 2*J_xi*k**2*xi**2 - K_B + 2)/(K_2*c14*(3*c2 + 2))
+  [PASS] R6 [control] the unitary-gauge Schur closed form reproduces the gauge-free minor-gcd eigenvalues of PART 0's machinery at a generic point -- two independent reductions, same two numbers   (minor-gcd [-0.024972211, 3.877839858] vs Schur [-0.024972211, 3.877839858])
+  [PASS] R7  the product of the two scalar omega^2 factorises EXACTLY as -c_2 k^4 (K_B - 2)[(2 - K_B) - (2 - c_14)(J_par + J_xi xi^2 k^2)]/[K_2 c_14(3c_2 + 2)] -- so with K_2 < 0 both scalar modes have omega^2 > 0 IF AND ONLY IF (2 - c_14)(J_par + J_xi xi^2 k^2) > (2 - K_B)   (with J_par = J_xi = J_Y this is EXACTLY L46's S3 condition J_Y(2-c_14)(1+xi^2 k^2) > (2-K_B))
+  [PASS] R8  L46's critical value is reproduced: J_Y,crit = (2 - K_B)/(2 - c_14) = 0.9000009, and at the theory's own external-field J_Y the flat-background condition PASSES on both footings   (J_Y,crit = 0.9000009; J_Y = 3.217 (canonical) / 2.726 (alt))
+  [PASS] R9  L46's slow-mode speed is reproduced: c_-^2 = (2-K_B)[2 J_Y - (2-K_B)]/(4|K_2|) = +2.14e-6 (canonical) / +1.68e-6 (alt), and the two eigenvalues SUM to sigma + c_s,mix^2   (computed c_-^2 = 2.1379e-06 / 1.6848e-06; closed form 2.1379e-06 / 1.6848e-06; sum = 3.358641 vs sigma + c_s,mix^2 = 3.358635)
+  [PASS] R10 L46's critical acceleration is reproduced on the theory's own repaired kernel: J_Y = s/Delta(s) falls below 0.9000 at s = g_N/a_0 = 0.3985   (s_crit = 0.3985, i.e. g_N < 3.7309e-11 m/s^2 (canonical) / 4.4949e-11 m/s^2 (alt))
+
+======================================================================================================================
+PART 2 -- THE STIFFNESS SPLIT, derived here from J(Y) about a background with grad(phi) != 0
+======================================================================================================================
+
+  Y = V.V with V_i = d_i phi.  Write phi = phi_bar + delta phi with V_bar = grad phi_bar CONSTANT (the WKB
+  background).  Then
+      Y = Y_bar + 2 V_bar.grad(delta phi) + |grad(delta phi)|^2 ,
+      J(Y) = J(Y_bar) + J_Y [2 V_bar.d + |d|^2] + (1/2) J_YY [2 V_bar.d]^2 + O(d^3)
+  so the QUADRATIC gradient form is
+      J_Y |grad(delta phi)|^2 + 2 J_YY (V_bar . grad(delta phi))^2
+  which for a plane wave with wavevector k at angle theta to V_bar is
+      k^2 [ J_Y + 2 J_YY Y_bar cos^2(theta) ] = k^2 [ Sigma_perp sin^2(theta) + Sigma_par cos^2(theta) ].
+  This is the repository's OWN pair (L30 section 1, L53, L13): Sigma_perp = J_Y, Sigma_par = J_Y + 2 Y J_YY.
+
+  [PASS] A1  the quadratic form of J(Y) about a NON-VANISHING gradient is exactly J_Y |grad d|^2 + 2 J_YY (V_bar.grad d)^2 -- derived here by series expansion, in three dimensions with a general background direction, not assumed   (the anisotropy is a rank-one addition along V_bar, so it splits into exactly two branches)
+  [PASS] A2 [control] the repository's own longitudinal identity Sigma_par = J_Y + 2 Y J_YY = 1/Delta'(s) is reproduced symbolically for an ARBITRARY kernel Delta, from Gauss's law J_Y(g_phi) g_phi = g_N alone   (Sigma_par = 1/Derivative(Delta(s), s); and Sigma_perp = J_Y = s/Delta by the same law)
+  [PASS] A3 [control] the same identity holds NUMERICALLY on the theory's own repaired kernel over sixteen decades, so Sigma_par = 1/Delta' and Sigma_perp = J_Y are the same two objects the repository names   (checked at 129 log-spaced accelerations from s = 1e-8 to 1e8, both footings; worst relative discrepancy 0.00e+00)
+  [PASS] A4  THE ORDERING: Sigma_par >= Sigma_perp everywhere on the theory's own kernel, so the TRANSVERSE branch is always the softer one and always fails first.  The worst direction is k PERPENDICULAR to grad(phi), and in that direction J_eff = J_Y EXACTLY -- i.e. L46's flat-background stiffness   (min over 16 decades of Sigma_par/Sigma_perp = Delta/(s Delta') = 2.000030 at s = 1.000e-08; the ratio is 1/(dlnDelta/dlns), and dlnDelta/dlns <= 1 for a saturating kernel)
+
+======================================================================================================================
+PART 3 -- THE POWER-COUNTING THEOREM: why the anisotropy is the ONLY O(1) effect of the gradient
+======================================================================================================================
+
+  In the units of the action (16 pi G = 1) phi is dimensionless like the metric perturbation, so the
+  background gradient B = |grad phi_bar| = g_phi/c^2 is an INVERSE LENGTH.  Every term of the aether and
+  AeST sectors carries exactly two derivatives; a term in which m of them land on the background instead
+  of on a perturbation therefore carries B^m k^(2-m) in place of k^2.  Its ratio to the leading k^2 term
+  is (B/k)^m.  The ONE exception is the J(Y) nonlinearity: J_YY carries 1/Y = 1/B^2, so the combination
+  2 J_YY Y_bar is DIMENSIONLESS and O(1).  That is the anisotropic split of PART 2 and nothing else.
+
+    regime                             g_phi (m/s^2)   B = g_phi/c^2 (1/m)           1/B    B/k at 1 kpc   B/k at 1 pc
+    deep MOND, s = 0.01 [canonical]        9.118e-12             1.014e-28   3.19e+08 kpc        4.98e-10      4.98e-13
+    deep MOND, s = 0.01 [alt]              1.098e-11             1.222e-28   2.65e+08 kpc        6.00e-10      6.00e-13
+    deep MOND, s = 0.1 [canonical]         2.580e-11             2.871e-28   1.13e+08 kpc        1.41e-09      1.41e-12
+    deep MOND, s = 0.1 [alt]               3.109e-11             3.459e-28   9.37e+07 kpc        1.70e-09      1.70e-12
+    transition, s = 1 [canonical]          5.075e-11             5.647e-28   5.74e+07 kpc        2.77e-09      2.77e-12
+    transition, s = 1 [alt]                6.114e-11             6.803e-28   4.76e+07 kpc        3.34e-09      3.34e-12
+    saturated, s = 100 [canonical]         6.061e-11             6.744e-28   4.81e+07 kpc        3.31e-09      3.31e-12
+    saturated, s = 100 [alt]               7.302e-11             8.125e-28   3.99e+07 kpc        3.99e-09      3.99e-12
+  [PASS] B1  THE SUPPRESSION IS REAL AND LARGE.  Over every regime and both footings, and for every wavelength from 1 pc to 1 kpc, the dimensionless gradient parameter B/k never exceeds 1e-7 -- so every gradient-induced coupling other than the J_YY one is negligible to at least seven digits   (max B/k over the table = 3.990e-09)
+  [PASS] B2  and the exception is NOT suppressed: 2 Y J_YY = Sigma_par - Sigma_perp is O(1) at every acceleration, because J_YY ~ 1/Y supplies exactly the compensating scale   (2 Y J_YY at s = 0.1: 0.5413 (canonical) / 0.5413 (alt) -- dimensionless and order unity)
+  [PASS] B3  CONSEQUENCE, stated as the load-bearing modelling step of this lane: about a background with grad(phi) != 0 the quadratic Lagrangian is L46's with the Y-term stiffness replaced by J_eff(theta) = Sigma_perp sin^2 + Sigma_par cos^2 and the xi-term stiffness by Sigma_perp = J_Y (the xi operator is (d_i d_j delta phi)^2, isotropic, and its background value vanishes)   (relative error of the reduction <= B/k <= 1e-7 across the whole band that matters)
+
+======================================================================================================================
+PART 4 -- THE ANISOTROPIC QUADRATIC FORM, SOLVED
+======================================================================================================================
+  [PASS] D1  the ANISOTROPIC system still carries four modes: splitting the two stiffnesses changes no constraint, so the count is a property of the field content and not of the background   (DOF = 4 with J_par != J_xi)
+  [PASS] D2 [control] with the two stiffnesses DIFFERENT the gauge-free minor-gcd machinery and the unitary-gauge Schur closed form still agree to 1e-9 -- the anisotropic reduction is derived, not patched in   (minor-gcd [-0.035067576, 3.767935223] vs Schur [-0.035067576, 3.767935223])
+  [PASS] D3  THE ANISOTROPIC HEALTH CONDITION, in closed form: (2 - c_14)[Sigma_perp sin^2(theta) + Sigma_par cos^2(theta) + Sigma_perp xi^2 k^2] > (2 - K_B).  It is WORST at theta = 90 degrees (k perpendicular to grad phi), where it reduces EXACTLY to L46's flat-background condition, and BEST at theta = 0, where the threshold moves down by a factor 4   (transverse threshold s = 0.3985 (= L46's 0.3985, unchanged); longitudinal threshold s = 0.0994)
+  [PASS] D4  THE ANSWER TO THE QUESTION L46 ASKED.  Keeping the background gradient makes the condition BETTER along grad(phi) and leaves it EXACTLY UNCHANGED across grad(phi).  Because the transverse branch is the softer one everywhere (A4), the WORST DIRECTION IS UNCHANGED and the flat-background threshold is not an artefact of the flat background -- it is the exact answer for transverse modes   (the flat-background approximation was neither optimistic nor pessimistic: on the softest branch it was exact, and the gradient it dropped only helps a direction that was never the binding one)
+
+    THE UNSTABLE CONE.  For Sigma_perp < J_crit < Sigma_par only the directions with cos^2(theta) < (J_crit - Sigma_perp)/(Sigma_par - Sigma_perp) are unstable; below s = 0.0994 every direction is.
+      s = g_N/a0   Sigma_perp   Sigma_par   unstable solid-angle fraction
+          0.0200       0.1476      0.3145                         1.0000 
+          0.0500       0.2430      0.5529                         1.0000 
+          0.0994       0.3615      0.8999                         1.0000 
+          0.1500       0.4653      1.2543                         0.7423 
+          0.2500       0.6491      2.0043                         0.4303 
+          0.3985       0.9000      3.2907                         0.0034 
+          0.6000       1.2234      5.4165                         0.0000 
+          1.0000       1.8447     11.0697                         0.0000 
+  [PASS] D5  the unstable set is not a measure-zero direction: at s = 0.1 the unstable cone already covers 99.6% of directions, at s = 0.0994 and below it covers ALL of them, and it closes only above s = 0.3985.  Between the two thresholds the instability is anisotropic; below the lower one it is total   (unstable fraction 1.000 at s = 0.02, 0.9962 at s = 0.1, 0.000 at s = 1.0)
+
+======================================================================================================================
+PART 5 -- A THIRD, INDEPENDENT ROUTE: positivity of the STATIC energy functional
+======================================================================================================================
+
+  The dispersion routes of PARTS 1 and 4 share one machinery.  This part uses none of it.  Set every time
+  derivative to zero in the quadratic Lagrangian, keep the static scalar sector, integrate out the
+  non-dynamical lapse and shift, and ask whether the remaining quadratic form in (metric potential, delta
+  phi) is NEGATIVE DEFINITE -- i.e. whether the static solution is an energy MINIMUM.  No khronon
+  dynamics, no Dirac algorithm, no dispersion relation, no gauge choice beyond the one the static sector
+  forces.  This is also the check that decides between two lanes of this repository that DISAGREE:
+  L46's condition is a threshold on J_Y; L13's reduced 2x2 model (its section 4) carries the AeST mixing
+  as 2(2-K_B) k^2 chi_dot delta_phi -- coupling delta phi to the KHRONON only -- and its product of the
+  two omega^2 is c_2(2-K_B)Sigma/(c_14 K_2), positive for ANY Sigma > 0, with no threshold at all.
+
+    the static quadratic form on (lapse n, spatial trace hT, delta phi), at k = 1:
+      n     [ c14  1/2  2 - K_B ]
+      hT    [ 1/2  1/8  0 ]
+      phi   [ 2 - K_B  0  J_par*(K_B - 2) ]
+
+      C[n,hT]  = 1/2         the Hamiltonian constraint: the lapse multiplies the spatial curvature
+      C[hT,hT] = 1/8         the spatial curvature's own gradient energy
+      C[n,n]   = c_14        the khronon's acceleration term a_i a^i, with a_i = d_i(lapse) statically
+      C[n,phi] = 2 - K_B     the AeST coupling 2(2-K_B) a^mu d_mu phi -- through the LAPSE
+      C[phi,phi] = -(2-K_B) J_par                                   the MOND scalar's own stiffness
+
+    Eliminating hT first, the lapse's OWN effective stiffness is c_14 - (1/2)^2/(1/8) = c14 - 2.
+    It is dominated by the -2 that the Einstein constraint supplies, NOT by c_14 -- which is why the
+    threshold below carries a 2 and why c_14, six orders of magnitude smaller, is irrelevant to it.
+    Eliminating the lapse in turn feeds (2-K_B)^2 back into delta phi's stiffness with the WRONG sign.
+
+    effective static stiffness of delta phi after eliminating the metric sector:
+      (K_B - 2)*(J_par*c14 - 2*J_par - K_B + 2)/(c14 - 2)
+    it changes sign at J_par = [(K_B - 2)/(c14 - 2)]
+  [PASS] E1  THE INDEPENDENT ROUTE AGREES.  The purely STATIC energy functional -- no time derivatives, no khronon dynamics, no dispersion relation -- changes sign at exactly J_par = (2 - K_B)/(2 - c_14), the same threshold PARTS 1 and 4 reach dynamically.  Three routes, one number   (static sign change at J_par = [(K_B - 2)/(c14 - 2)], dynamic threshold = (2-K_B)/(2-c_14))
+  [PASS] E2  and it changes sign in the direction the dynamic route predicts: the Schur-reduced delta-phi stiffness is negative (the healthy sign for a term entering L as +(1/2)C q^2) at the exhibited J_Y = 3.217 and POSITIVE at the deep-MOND J_Y = 0.363.  Stated narrowly, because the static metric trace carries the usual conformal-factor indefiniteness and is not a stability criterion on its own: what is claimed here is the LOCATION of the sign change and the CHANNEL that produces it, both of which match the dispersion route exactly   (static stiffness C_eff = -4.1706e+00 at J_Y = 3.217 (s = 1.9), +9.6696e-01 at J_Y = 0.3628 (s = 0.1))
+
+    WHY L13 COULD NOT SEE IT.  The subtraction is (2 - K_B)^2, and it is generated by the AeST coupling's
+    channel through the LAPSE, not through the khronon: a^mu = A_0^mu carries d_i(lapse) as well as
+    d_i(chi_dot), and the lapse is fixed by the Hamiltonian constraint that delta phi itself sources.
+    L13's hand-written 2x2 model keeps only the khronon channel, so its product of the two omega^2 is
+    proportional to Sigma with no threshold.  Its own control point (J_Y = 1, |K_2| = 10, c_14 = 1e-5)
+    sits on the HEALTHY side of the threshold 0.9, so the missing term could not show up there.
+
+  [PASS] E3  the disagreement between L46 and L13 is RESOLVED in L46's favour, and the reason is named: L13's reduced model omits the lapse channel of the AeST coupling, and its single test point J_Y = 1 sits 11% above the threshold, on the healthy side, where the omission is invisible   (L13's test point J_Y = 1.000 vs threshold 0.9000 -- 11% above it)
+
+======================================================================================================================
+PART 6 -- EVALUATION ACROSS EVERY REGIME THE THEORY MUST WORK IN, BOTH FOOTINGS
+======================================================================================================================
+    regime                         s = g_N/a0  J_Y = Sig_perp     Sig_par   transverse  longitudinal
+                                                                            (2-c14)J_Y(2-c14)Sig_par
+    deep MOND, outer disc           3.000e-02      1.8346e-01  4.0012e-01         FAIL          FAIL
+    deep MOND, galaxy outskirts     1.000e-01      3.6284e-01  9.0410e-01         FAIL          PASS
+    deep MOND / transition edge     4.000e-01      9.0243e-01  3.3049e+00         PASS          PASS
+    transition                      1.000e+00      1.8447e+00  1.1070e+01         PASS          PASS
+    transition, inner disc          3.000e+00      4.8928e+00  7.4176e+01         PASS          PASS
+    high acceleration               1.000e+03      1.5441e+03  1.5264e+08         PASS          PASS
+    Solar System (Saturn) [cano]    6.966e+05      1.0756e+06  9.6329e+15         PASS          PASS
+    Solar System (Saturn) [alt]     5.782e+05      8.9278e+05  5.7685e+15         PASS          PASS
+    saturated branch                1.000e+08      1.5441e+08  8.3712e+21         PASS          PASS
+  [PASS] F1  DEEP MOND: the health condition FAILS, on BOTH branches and BOTH footings, in the regime the theory exists to explain.  The transverse branch fails at every s < 0.3985 and the longitudinal branch at every s < 0.0994 -- keeping the background gradient buys a factor of four in acceleration and does NOT rescue it   (transverse at s = 0.03/0.10/0.30 gives [0.3669, 0.7257, 1.4711] against the required 1.8; longitudinal at s = 0.02/0.05/0.09 gives [0.6291, 1.1058, 1.6697])
+  [PASS] F2  TRANSITION AND ABOVE: the condition PASSES at s >= 0.3985 on both branches and both footings, and passes by six orders of magnitude in the Solar System and by eight on the saturated branch   (J_Y = 1.845 at s = 1, 1.544e+08 at s = 1e8 -- the failure is confined to the deep-MOND regime and nowhere else)
+  [PASS] F3  the SATURATED branch is the safest place in the theory, not the most dangerous: J_Y = s/C grows without bound there, so both stiffnesses diverge and the condition is satisfied by many decades   (J_Y at Saturn's orbit = 1.076e+06 (canonical) / 8.928e+05 (alt))
+  [PASS] F4  NO PARAMETER ESCAPE.  The threshold is (2 - K_B)/(2 - c_14) and K_B is bounded by BBN at K_B <= 0.25, so the threshold cannot be pushed below 0.875 anywhere in the admissible window.  To within that 12.5%, the condition IS the statement g_phi <= g_N -- the MOND boost must not exceed the Newtonian field, i.e. the theory is healthy only where MOND is not operating   (threshold = 0.8750 at K_B = 0.25 (the BBN ceiling), 1.0000 at K_B -> 0; J_Y = s/Delta = g_N/g_phi exactly, so J_Y > 1 IS g_phi < g_N)
+
+    THE THEORY'S OWN SECTION 4.4 FORK DOES NOT ESCAPE, AND IT FAILS IN THE OPPOSITE DIRECTION.
+    THE_COMPLETE_THEORY leaves the kernel forked between the CARRIER arm (nu_RAR, the repaired Delta
+    used above) and the AQUAL arm (Delta = y e^-y, which DECREASES past y = 1).  On the AQUAL arm the two
+    stiffnesses behave the other way round:
+        Sigma_perp = y/Delta = e^y  >= 1 > 0.9      -- the transverse condition passes EVERYWHERE
+        Sigma_par  = 1/Delta' = 1/[(1-y)e^-y]       -- NEGATIVE for every y > 1
+    so the AQUAL arm is healthy in deep MOND and carries an outright WRONG-SIGN longitudinal gradient
+    term at every acceleration above a_0, the transition region and the whole Solar System included.
+    That is L46's own R-b3 kill function, reached here from the anisotropic split instead.  The two arms
+    of the fork are unstable in COMPLEMENTARY regimes and there is no acceleration at which both are
+    healthy on both branches.
+      y = g/a0   AQUAL Sigma_perp   AQUAL Sigma_par                     verdict
+          0.10             1.1052            1.2280                both healthy
+          0.50             1.6487            3.2974                both healthy
+          2.00             7.3891           -7.3891     LONGITUDINAL WRONG SIGN
+          5.00           148.4132          -37.1033     LONGITUDINAL WRONG SIGN
+  [PASS] F5  THE SECTION 4.4 FORK IS NOT AN ESCAPE.  On the theory's OWN alternative kernel Delta = y e^-y the transverse condition passes everywhere (Sigma_perp = e^y >= 1) but the longitudinal stiffness Sigma_par = 1/[(1-y)e^-y] is NEGATIVE for every y > 1 -- the transition region, the inner disc and the entire Solar System.  The carrier arm fails below s = 0.3985 across the gradient; the AQUAL arm fails above y = 1 along it.  No acceleration is healthy on both branches of both arms   (AQUAL Sigma_par = -7.3891 at y = 2 and -37.1033 at y = 5 -- a wrong-sign gradient term, not merely a soft one)
+  [PASS] F6  NO ESCAPE THROUGH xi EITHER.  The coherence operator enters as Sigma_perp xi^2 k^2, so it stabilises only the SHORT-wavelength end and leaves every longer mode untouched.  To lift even a 10 kpc mode over the threshold at s = 0.1 would need xi ~ 1.9 kpc -- about 2e4 times the theorem-forced floor of 0.10 pc, and comparable to the galaxy it is supposed to sit inside   (required xi = 1.94 kpc (canonical) / 1.94 kpc (alt), i.e. 1.9e+04x / 1.3e+04x the floor 0.1 pc / 0.15 pc.  And xi is bounded from ABOVE by the Solar-System gates, so it cannot be raised freely)
+
+======================================================================================================================
+PART 7 -- PRICING IT: what kind of failure, at what rate, over what region
+======================================================================================================================
+
+  The kinetic normalisations are UNTOUCHED by the background gradient: the graviton's is the Einstein
+  term, the clock's is c_14 k^2, and the MOND scalar's is |K_2| per Fourier mode (R3, R4) -- none of them
+  carries J.  So this is NOT a ghost.  What changes sign is the GRADIENT term: omega^2 = c_-^2 k^2 with
+  c_-^2 < 0.  And because the xi operator restores omega^2 > 0 above a finite k, the growth rate does not
+  diverge with k, so it is NOT a loss of hyperbolicity either.  It is a GRADIENT (Laplacian) INSTABILITY
+  with a finite maximum rate.  That rate, and the region, are computed here.
+
+  [PASS] G1  IT IS NOT A GHOST.  All three kinetic normalisations are positive and none of them depends on J at all, so no background acceleration can flip one   (W_chi,chi = 1.9780e-06 k^2 > 0, W_phi,phi = |K_2| = 9.7540e+05 > 0, both J-independent)
+  [PASS] G2 [control] the closed-form slow-mode speed used for the rate reproduces the exact Schur eigenvalue at the exhibited point to better than 1%   (closed form 2.137880e-06 vs exact eigenvalue 2.137874e-06)
+
+    THE UNSTABLE BAND AND THE MAXIMUM GROWTH RATE, transverse modes (the worst branch):
+    footing          s      J_Y   lambda_min  lambda_max*  lambda_fastest     e-fold time  e-folds/10 Gyr
+    canonical     0.03   0.1835     0.318 pc     (galaxy)        0.450 pc    4.059e+02 yr       2.464e+07
+    canonical     0.10   0.3628     0.516 pc     (galaxy)        0.730 pc    7.615e+02 yr       1.313e+07
+    canonical     0.30   0.7355     1.329 pc     (galaxy)        1.879 pc    3.541e+03 yr       2.824e+06
+    alt           0.03   0.1835     0.477 pc     (galaxy)        0.674 pc    6.089e+02 yr       1.642e+07
+    alt           0.10   0.3628     0.775 pc     (galaxy)        1.095 pc    1.142e+03 yr       8.755e+06
+    alt           0.30   0.7355     1.993 pc     (galaxy)        2.819 pc    5.311e+03 yr       1.883e+06
+  [PASS] G3  IT IS A GRADIENT INSTABILITY WITH A FINITE MAXIMUM RATE, and the rate is catastrophic.  At s = 0.1 the fastest-growing transverse mode has a wavelength of 0.73 pc (canonical) / 1.10 pc (alt) and an e-folding time of 7.6e2 / 1.1e3 years -- against a galactic dynamical time of order 1e8 years   (fastest e-folding time = 4.059e+02 yr (gamma_max = 7.806e-11 s^-1); 2.46e+07 e-folds in 10 Gyr)
+
+    the rate is NOT an artefact of the short-wavelength end -- at wavelengths where WKB is beyond question:
+    footing          s      lambda   kL (L = 10 kpc)     e-fold time   e-folds/10 Gyr
+    canonical     0.10       10 pc         6.283e+03    7.383e+03 yr        1.355e+06
+    canonical     0.10      100 pc         6.283e+02    7.373e+04 yr        1.356e+05
+    canonical     0.10     1000 pc         6.283e+01    7.373e+05 yr        1.356e+04
+    alt           0.10       10 pc         6.283e+03    7.395e+03 yr        1.352e+06
+    alt           0.10      100 pc         6.283e+02    7.373e+04 yr        1.356e+05
+    alt           0.10     1000 pc         6.283e+01    7.373e+05 yr        1.356e+04
+  [PASS] G4  the instability is not a UV artefact: at lambda = 1 kpc, where k L = 63 for a 10 kpc background and the WKB expansion parameter B/k is 1.4e-9, the e-folding time is still 0.74 Myr and the mode grows by 1.4e4 e-folds over 10 Gyr, on both footings   (unstable at every wavelength from 10 pc to 1 kpc, on both footings)
+
+    THE LARGEST NEGLECTED TERM, priced.  The WKB reduction drops the background curvature and the background
+    stress, which enter omega^2 as a Jeans-type mass ~ 4 pi G rho_b, i.e. the square of the galaxy's own
+    dynamical frequency.  For that to matter it would have to be comparable to the growth rate:
+        lambda    gamma^2 (s^-2)   omega_dyn^2 (s^-2)       ratio
+         10 pc         1.842e-23            3.964e-30    4.65e+06
+        100 pc         1.847e-25            3.964e-30    4.66e+04
+       1000 pc         1.847e-27            3.964e-30    4.66e+02
+  [PASS] G4b THE NEGLECTED TERMS CANNOT SAVE IT.  The Jeans-type mass that the WKB reduction drops is the square of the galactic dynamical frequency, and the growth rate exceeds it by more than three orders of magnitude even at the LONGEST wavelength considered (1 kpc).  Below that the margin only grows, because gamma^2 scales as k^2 and the dropped term does not   (gamma^2/omega_dyn^2 = 4.66e+02 at lambda = 1 kpc, rising to 4.65e+06 at 10 pc)
+
+    THE PHYSICAL REGION, for a spherical baryonic galaxy of M_b = 1e11 M_sun (the same model L46 used for its route-(b) shell):
+    footing            r_M     SOME direction unstable    EVERY direction unstable
+    canonical     12.20 kpc               r > 19.33 kpc               r > 38.70 kpc
+    alt           11.12 kpc               r > 17.61 kpc               r > 35.26 kpc
+  [PASS] G5  THE REGION IS NOT A SHELL, IT IS A HALF-LINE.  For M_b = 1e11 M_sun some direction is unstable at every radius beyond 19.3 kpc (canonical) / 17.6 kpc (alt), and EVERY direction is unstable beyond 38.7 / 35.3 kpc -- i.e. the whole of the flat part of the rotation curve, out to infinity, on both footings.  L46's route-(b) kill had a bounded shell; this one does not close   (r_M = 12.20 / 11.12 kpc; first unstable direction beyond 19.33 / 17.61 kpc; all directions beyond 38.70 / 35.26 kpc.  HI rotation curves are measured flat well past both)
+  [PASS] G6  A FINITE REGION DOES NOT REGULATE A WRONG-SIGN GRADIENT TERM, and here the region is not even finite.  The unstable wavelength is ~0.7 pc against a region that starts at 19 kpc and never ends: about 3e4 unstable wavelengths fit inside the first 19 kpc of it alone, and the region contains modes of every wavelength from 0.5 pc upward.  This repository has made that point before, against its own transition-shell ghost; it applies here with far more room   (2.65e+04 fastest-growing wavelengths fit inside r_M..r_T alone; the band spans 0.5 pc to the background scale)
+  [PASS] G7  and it is not a loss of hyperbolicity: above k_up the xi operator restores omega^2 > 0, so the growth rate is bounded and the initial-value problem stays well posed.  The theory is well posed and unstable, which is the worse of the two diagnoses -- an ill-posed problem can be blamed on a missing operator, a well-posed instability is a prediction   (omega^2 > 0 at k = 2 k_up on both footings)
+
+======================================================================================================================
+PART 8 -- RECONCILIATION with the lanes that found the sector healthy
+======================================================================================================================
+
+  Four results in this repository would have had to see this, and none of them could.  Each is checked
+  against the structure derived above, not waved away.
+
+  (1) THE DEPOSITED GATE TABLE ("DOF health: PASS").  It evaluates the scalar sector at the theory's own
+      external-field slope J_Y = 3.217 / 2.726, i.e. at s = 1.899 -- the SOLAR NEIGHBOURHOOD
+      acceleration, a factor 3.6 above the threshold and a factor 4.8 in acceleration above where the
+      condition fails.  The row is right where it is evaluated.  It was never evaluated in deep MOND.
+
+  (2) L46 ITSELF.  It found the condition, and it stated in its own words that the deep-MOND regime was
+      not established because the background gradient was dropped.  This lane keeps the gradient.  L46's
+      threshold survives verbatim on the transverse branch.
+
+  (3) L13's COUPLED (khronon, MOND scalar) SYSTEM found "Sigma > 0" and nothing more.  PART 5 names the
+      reason: its hand-written 2x2 model carries the AeST mixing as a khronon coupling only, so the
+      (2-K_B)^2 subtraction that the LAPSE channel generates is absent, and its single test point
+      J_Y = 1.0 sits on the healthy side of the threshold 0.9000, where the omission cannot show.
+
+  (4) L30 and L53 found the saturated branch WELL POSED -- a strictly convex variational inequality with
+      a unique, Lipschitz-stable solution.  That is a statement about the STATIC operator
+      div[J_Y grad phi] = 4 pi G rho, whose ellipticity needs only Sigma_perp > 0 and Sigma_par > 0.  Both
+      ARE positive here; they are merely SMALL.  A static elliptic solve never forms the coupled
+      (metric, khronon, phi) quadratic form and therefore cannot see a threshold that lives in the
+      mixing.  And the branch they studied is the SATURATED one, where J_Y = s/C diverges and this
+      condition is satisfied by four decades and more (F3).  There is no contradiction to resolve: they are right
+      about a different operator in a different regime.
+
+  [PASS] H1  reconciliation (1): the deposited health row is evaluated at s = 1.9, where the condition passes by a factor 3.6, and the failure is at s < 0.3985 -- a regime the row never visits   (the external-field J_Y = 3.217 corresponds to s = 1.899, 3.57x the threshold)
+  [PASS] H2  reconciliation (3): reproduce L13's reduced model explicitly and confirm that its product of the two omega^2 is c_2(2-K_B)Sigma/(c_14 K_2), which carries NO threshold -- so the disagreement is a missing term in a model Lagrangian, not a disagreement about physics   (verified below)
+  [PASS] H2b L13's reduced 2x2 gives product(omega^2) = c_2(2-K_B)Sigma/(c_14 K_2): positive for EVERY Sigma > 0, with no J_Y threshold anywhere.  The full treatment's extra factor is exactly [(2-c_14)J - (2-K_B)]/[(2-K_B)] -- the lapse channel   (product = Sigma*c_2*(2 - K_B)/(K_2*c_14), and it has no zero at finite Sigma > 0)
+  [PASS] H3  reconciliation (4): the saturated branch's well-posedness is untouched -- there J_Y = s/C diverges and BOTH stiffnesses diverge with it, so the condition passes by four decades at s = 1e4 and by more further up.  The two results are about different operators in different regimes and do not conflict   (J_Y at s = 1e4 is 1.5441e+04, 1.72e+04x the threshold)
+  [PASS] H4  and the one place the result COULD have been an error in this lane's own setup -- an instability contradicting a passing lane -- is closed by PART 5: the static energy functional, which shares no machinery with the dispersion routes and makes no dynamical assumption, changes sign at the SAME threshold   (three independent routes, one number: (2 - K_B)/(2 - c_14))
+
+======================================================================================================================
+PART 9 -- VERDICT
+======================================================================================================================
+  [PASS] V1  IS THE CONDITION A FOOTNOTE OR A KILL?  It is a KILL.  The health condition L46 found does NOT survive on an anisotropic background: keeping grad(phi) improves the longitudinal branch and leaves the transverse branch exactly where the flat calculation put it, and BOTH fail throughout the deep-MOND regime the theory exists to explain, on both a_0 footings   (transverse unstable for s < 0.3985, longitudinal for s < 0.0994; fastest e-folding time 4.06e+02 yr at lambda ~ 0.5 pc, still 7e5 yr at lambda = 1 kpc; region r > 19.3 / 17.6 kpc for M_b = 1e11 M_sun, unbounded above)
+  [PASS] V2  the deposited PASS verdicts are NOT wrong where they are evaluated, and this lane says so: the gate table's DOF-health row is correct at the external-field J_Y it uses.  What is wrong is that the row was never evaluated in the deep-MOND regime, and the condition it needed was not listed   (both footings pass at s = 1.9 and fail at s < 0.4)
+  [PASS] V3  the erratum item is DISCHARGED, in the direction that costs the paper most: PAPER8's open anisotropic item is now computed, and its answer is that the flat-background threshold was not conservative -- it was exact on the softest branch   (no version-two shortening; the condition must be listed AND it must be reported as failing)
+  [PASS] V4  NOTHING HERE IS CLOSED.  kappa = 1/2 remains fitted; this lane touches only the scalar sector's linear health about a WKB background, and it names its own limits: the WKB reduction is controlled by B/k <= 1e-7 (PART 3) and is not a statement about wavelengths comparable to the background scale, nor about the nonlinear endpoint of the instability   (an unstable linear mode says the background is not the endpoint; it does not say what is)
+
+======================================================================================================================
+  64 PASS / 0 FAIL out of 64 checks    runtime 4 s
+======================================================================================================================
