@@ -2731,3 +2731,41 @@ action without reproducing the kill first would have been untrustworthy, and the
 - **The consequence: the last live construction stays alive, but only by keeping the MOND sector inside
   the clock, and its own deep-MOND health is now the named next computation** — it needs a galactic
   quasi-static background, which does not yet exist, run through the L60 test.
+
+## L68 — dipolar dark matter PASSES the lensing gate that killed the superfluid, and dies in its internal sector
+
+`L68_dipolar_dm.py` + `L68_DIPOLAR_DM.md` (20 checks, 3 FAIL; **all 6 controls pass**). The last named
+member of the last open hatch — the emergent-MOND class that escapes the excess-spent-once theorem's
+hypothesis (a). The superfluid (L67) escaped (a) and died at lensing. Dipolar dark matter was built to
+avoid exactly that.
+
+**Controls** reproduce the counting, L61's overshoot and cold-fraction ceilings, the KiDS lensing
+relation, **L67's superfluid lensing numbers (measured 1.02, superfluid 5.6–6.5)**, and Blanchet &
+Le Tiec's own polarisation law reproducing Milgrom's μ-function from their action.
+
+- **⭐ IT ESCAPES HYPOTHESIS (a):** the MOND force vanishes identically with the medium off, so it is
+  genuinely emergent and outside L61's theorem.
+- **⭐⭐ AND IT PASSES THE LENSING GATE — a genuine structural difference from the superfluid.**
+  **M_dyn/M_lens = 1.00 predicted against the measured 1.02**, where the superfluid gave 5.6–6.5. The
+  reason is real and worth keeping: the polarisation charge −∇·Π is a **compression of the massive
+  medium**, i.e. ordinary T₀₀ mass, so it sources both potentials equally with only a ½(v/c)²
+  anisotropic-stress slip of median 4e-8. **The very (v/c)² that was the superfluid's entire failed
+  lensing signal is here a tiny correction to a ratio of one.** It tracks the universal relation across
+  the KiDS mass bins to 0.033 dex. Tensor speed passes (one metric, minimal coupling). The Solar System
+  is **marginal but computable** — μ → 1 with a simple-μ external-field residual of order the Saturn
+  bound — unlike the superfluid's effective-theory wall.
+- **⚠️ IT DIES IN THE INTERNAL SECTOR, and this is a NEW failure, not the theorem re-entering.**
+  Reproducing MOND forces the medium to **near-perfect anti-screening**, effective permittivity
+  ε = (2g/a₀)/(1+2g/a₀) → 0, so the monopole's self-gravity G_eff = G/ε **diverges** — 51× at 0.01 a₀.
+  **The smooth monopole that would let it spend the anomaly once is a fine-tuned unstable equilibrium.**
+  If it stays smooth it is unstable; if it clusters, L61's overshoot (1.69) fires. Caught either way.
+- **Its Gaia prediction sits outside both registered arms:** γ_v = 1.317, above Arm A, so **DR4 can only
+  kill it**, like the superfluid.
+- **⭐ THE HONEST POSITIVE, recorded precisely:** gravitational polarisation is **the one mechanism in
+  this programme whose anomaly carries its own gravitating mass and therefore lenses correctly.** That is
+  a real design fact, parallel to L66's "keep the MOND sector inside the clock" — the two survivors of the
+  night both teach what a working theory would need, even as they fail.
+- **Scope, stated exactly:** this closes the **two named members** of the emergent hatch, the superfluid at
+  lensing and the dipolar medium in its internal sector. It does **not** prove the emergent class empty in
+  general; a mechanism whose polarised medium is stable without anti-screening is untested and not
+  excluded.
