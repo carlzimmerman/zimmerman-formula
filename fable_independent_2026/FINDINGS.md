@@ -2067,3 +2067,46 @@ kernel amplifies the mass added to replace it. This lane sourced it on baryons i
 - **The only remaining move**, named: suppress the kernel where the cold component dominates, which needs
   the acceleration variable below ~0.5 at full abundance. That is a different lane and is already
   constrained by the cosmological-ordering theorem.
+
+## L46 — four is confirmed, three is the floor, and the deposited paper has a correction
+
+`L46_mode_floor.py` + `L46_MODE_FLOOR.md` (**59 checks, 59 PASS**). Rebuilt from scratch because the
+earlier lane **asserted** its constraint numbers rather than computing them: here the primaries are the
+Hessian's null vectors, the secondaries come from the consistency algorithm, and the classification is
+the rank of the constraint algebra.
+
+**Controls.** The counter returns **2 for ADM general relativity, 3 for GR plus a scalar, 5 for
+Einstein-aether and 3 for khronometric theory**, and reproduces Jacobson's closed-form mode speeds at
+three independent points. It also **derives** the clock speed the deposited paper calls "stated, not
+proved".
+
+- **The count is four, confirmed at the theory's own exhibited point.** Four primary and four secondary
+  constraints, **all first class, no second-class pair** — so the extra modes are extra **fields**, not
+  missing constraints. Mode by mode: two tensor polarisations at exactly light speed, a fast scalar that
+  is mostly the clock, and a slow scalar that is mostly the MOND field whose kinetic normalisation is
+  independent of wavenumber, of the aether coupling and of the coherence length — **which is why the
+  coherence operator adds no extra mode.**
+- **⚠️ CORRECTION TO THE DEPOSITED PAPER (DOI 10.5281/zenodo.22667688).** Its two quoted speeds are
+  **not eigenvalues** — their *sum* is the fast one, verified over three decades. **The slow mode travels
+  at 1.46e-3 c / 1.30e-3 c, not 1.68 c.** Two consequences, both verified: the gravitational-Cherenkov
+  row's premise, that there are no slow modes, is **false**; and the sector carries an **unlisted health
+  condition**. Both rows still hold at the theory's own values, so **no verdict flips — but they are right
+  for reasons the paper does not give.** The condition would fail below a stated acceleration, in a regime
+  where the flat-background linearisation does not apply; **the anisotropic calculation is named and not
+  done.** Also, read strictly, the paper's claim that it "passes the requirement as written" is wrong:
+  the requirement allows at most one clock scalar.
+- **⭐ FOUR IS NOT THE FLOOR — THREE IS, AND IT IS REACHABLE.** Making the MOND field a function of the
+  clock is an **exact kill**: the invariant vanishes identically and the whole MOND sector goes with it.
+  A single-scalar khronometric route reaches three but is blocked by a longitudinal instability found
+  **twice independently**. **Setting the scalar's time-kinetic coefficient to zero returns exactly three**
+  via a genuine second-class pair, leaving static MOND, the no-slip relation, the preferred-frame
+  parameters and Cassini **literally unchanged**.
+- **⚠️ But the price of that route is the one thing that cannot be spent.** It collapses the clock
+  parameter from the value at which the construction's own obstruction vanishes, by six orders of
+  magnitude. **It buys one integer and spends σ\*.**
+- **⭐ THE LANE'S RECOMMENDATION: the REQUIREMENT should give, not the theory.** Four healthy modes with a
+  theorem-forced foliation is not a physics failure, and every reason to want the integer two is already
+  a separate gate. Amend it to require that every degree of freedom be explicit, Dirac-counted and
+  healthy. **The real lesson: the integer was right and two of the physics rows were not, so the effort
+  belongs in tightening those rows** — starting with the anisotropic analysis, which decides whether the
+  unlisted health condition is a footnote or a kill.
