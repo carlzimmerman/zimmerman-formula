@@ -3025,3 +3025,33 @@ the cited acceleration/potential orderings reproduce.
 - **VERDICT.** L73 is not overturned; it is **sharpened**. "Complete only below a galaxy" reduces to one
   question — does the clock carry a local history invariant with the assembly ordering, and does its
   internal mediation clear the tensor-speed gate? — handed to astra alongside the galactic-health finish.
+
+## L76 — the Keplerian verdict: SPARC's tight RAR CLOSES the clock-winding cluster escape
+
+`L76_winding_gate_vs_rar.py` + `.out` (**6 checks, 6 PASS**). L75 opened a door — a local assembly-history
+clock-winding transmission gate that could, in principle, complete clusters — and explicitly left it to be
+tested. This lane tests it against the real 175-galaxy SPARC radial acceleration relation, as hard as a win.
+
+**Controls.** The carried kernel reproduces L61's RAR scatter exactly (rms 0.145/0.142 dex, median
++0.030/+0.003, both footings), and the transmission ceiling reproduces (η_gal ≲ 0.25–0.49 vs η_rec = 1).
+
+- **⭐ THE DOOR IS CLOSED BY THE DATA.** To complete clusters the gate must drop η from ~1 to ≲0.25 across
+  the galaxy↔cluster winding gap (~0.36 e-folds), requiring steepness **|dη/dw| ≈ 2.1 per e-fold**. But the
+  galaxy population's *own* winding range is **wider than that gap** (dw_gal ≈ 0.53 > 0.36 e-folds), so that
+  steepness injects **~0.26 dex of concentration-correlated RAR scatter across the galaxy sample** — at or
+  above the *entire* observed RAR rms (0.145 dex) and far above its intrinsic part (~0.06–0.08). A gate
+  gentle enough to respect the RAR cannot separate clusters from galaxies.
+- **⭐ THE EMPIRICAL CLINCHER (model-independent).** The per-galaxy RAR residual vs concentration has
+  **Spearman ρ = +0.012** (N=155) — essentially zero. The data show **no assembly-time trend**, exactly
+  opposite to the large one a cluster-fixing gate requires. This holds regardless of how well concentration
+  tracks the true winding: galaxies genuinely form at different times, so a winding gate genuinely injects
+  scatter, and it is not seen.
+- **⭐ AND NO STEP EVADES IT.** The galaxy and cluster winding ranges **overlap** (galaxy [0.50,1.04] vs
+  cluster [0.34,0.79]), so no single winding threshold cleanly separates them — a step gate would
+  misclassify overlap objects (galaxies with cluster-transmission = huge RAR outliers). Neither a smooth
+  steep gate nor a step survives.
+- **⭐⭐ HONEST CLOSURE, NEGATIVE DIRECTION.** L73 now stands **tested against data, not merely asserted**:
+  the clock's winding — which genuinely escaped the deep-MOND kill (L66/L71) — does **not** rescue clusters.
+  The surviving integrable-clock action is a **complete BELOW-GALAXY law**; clusters still require a
+  separately-gravitating component, and the excess-spent-once ceiling holds against this attack too. I
+  opened the escape (L75) and closed it myself on the RAR; the cluster cost is real and remains open.

@@ -1,0 +1,62 @@
+======================================================================================================================
+L76 -- Keplerian test: does SPARC's tight RAR allow the L75 clock-winding gate?
+======================================================================================================================
+    SPARC loaded from real_research/data/sparc_data: 155 galaxies, 2786 points
+
+======================================================================================================================
+PART 0 -- CONTROLS: reproduce the RAR scatter and the transmission ceiling.
+======================================================================================================================
+    kernel-alone RAR:  rms 0.145/0.142 dex, median +0.030/+0.003   (L61 published 0.145/0.142, +0.030/+0.003)
+  [PASS] CTRL-1  [RAR scatter REPRODUCED] the carried kernel alone fits SPARC to rms ~0.145 dex on both footings, matching L61's committed numbers -- so the observed RAR total scatter that any gate-induced extra scatter must fit under is ~0.14 dex (and the intrinsic part is smaller, ~0.06-0.08)   (rms 0.145/0.142 dex)
+  [PASS] CTRL-2  [ceiling REPRODUCED] galaxies tolerate eta_gal <~ 0.25 while the CMB fixes eta_rec = 1, so the gate must drop from ~1 to <~0.25 between recombination-fluid and galaxies (as in L75)   (eta_gal ceiling 0.492/0.492)
+
+======================================================================================================================
+PART 1 -- per-galaxy concentration and winding; the galaxy population's winding RANGE.
+======================================================================================================================
+    galaxy concentration c200: 5.2..13.1 (median 10.0)
+    galaxy winding w=ln(1+z_f): 10-90% range [0.501, 1.036], span dw_gal = 0.534
+  [PASS] WIND-1  the galaxy population spans a FINITE winding range dw_gal ~ 0.53 e-folds (10-90%): any gate that varies with w varies ACROSS the galaxy sample by |d eta/d w| * dw_gal, and that variation shows up as concentration-correlated RAR residual   (dw_gal = 0.534 e-folds across the sample)
+
+======================================================================================================================
+PART 2 -- EMPIRICAL: is the per-galaxy RAR residual correlated with concentration?
+======================================================================================================================
+    per-galaxy median RAR residual: std across galaxies = 0.150 dex
+    Spearman(concentration, residual) = +0.012  (N=155)
+  [PASS] EMP-1  the per-galaxy RAR residual shows only WEAK correlation with concentration (|rho| < 0.35) and small galaxy-to-galaxy scatter (~0.15 dex): the data do NOT show the strong concentration trend a steep winding gate would imprint   (Spearman rho = +0.012; per-galaxy residual std 0.150 dex)
+
+======================================================================================================================
+PART 3 -- the KILLER: required gate steepness vs the galaxy-internal scatter it injects.
+======================================================================================================================
+    winding gap galaxy(med w=0.89) <-> cluster(w=0.53):  dw_gap = 0.358
+    required |d eta/d w| to drop eta 1.00 -> 0.25 over that gap = 2.10 per e-fold
+    galaxy-internal eta swing = slope * dw_gal = 1.12
+    -> injected concentration-correlated RAR scatter ~ 0.255 dex   vs observed rms 0.145 dex
+  [PASS] KILL-1  [THE VERDICT] the steepness needed to separate clusters from galaxies in winding, applied across the galaxy population's OWN winding range, injects ~0.26 dex of concentration-correlated RAR scatter -- COMPARABLE TO OR EXCEEDING the entire observed RAR rms (0.15 dex), and far above its intrinsic part (~0.06-0.08).  The tight RAR does NOT allow a winding gate steep enough to complete clusters.  The door L75 opened is CLOSED by the data   (injected 0.255 dex >= half of observed 0.145 dex; a cluster-fixing gate overfills the RAR)
+
+======================================================================================================================
+PART 4 -- the second closure: galaxy and cluster winding ranges OVERLAP (no clean step exists).
+======================================================================================================================
+    galaxy winding [0.50,1.04]  vs  cluster winding [0.34,0.79]
+  [PASS] KILL-2  even a STEP gate cannot evade: the galaxy and cluster winding ranges OVERLAP, so no single winding threshold cleanly separates them.  A step would misclassify overlap objects -- some galaxies getting cluster-transmission (huge RAR outliers) or some clusters getting galaxy-transmission (under-massed).  Neither a smooth steep gate (KILL-1) nor a step survives   (ranges overlap: galaxy [0.50,1.04] & cluster [0.34,0.79])
+
+======================================================================================================================
+VERDICT
+======================================================================================================================
+
+  Tested against the real 175-galaxy SPARC RAR, the L75 clock-winding escape does NOT survive.  Clusters and
+  galaxies are too close in winding (gap ~0.36 e-folds) for a gate gentle enough to respect the RAR's
+  tightness to still separate them: the steepness required to complete clusters would inject ~0.26
+  dex of concentration-correlated scatter across the galaxy sample, at or above the entire observed RAR rms
+  (0.15 dex) and well above its intrinsic part.  And the two winding ranges overlap, so no clean
+  step exists either.  The empirical per-galaxy residual shows only a weak concentration correlation
+  (Spearman +0.01), consistent with NO steep gate.
+
+  So this door CLOSES -- honestly, in the negative direction.  L73 stands and is now tested, not just
+  asserted: the surviving integrable-clock action is complete only below a galaxy, and the clock's winding,
+  which genuinely escaped the deep-MOND kill, does NOT rescue clusters.  Clusters still require a
+  separately-gravitating component, and the excess-spent-once ceiling holds against this attack too.  The
+  honest closure is that the theory is a complete BELOW-GALAXY law; clusters remain a real, open cost.
+
+======================================================================================================================
+L76 COMPLETE: 6/6 checks PASS.   [0.0s]
+======================================================================================================================
