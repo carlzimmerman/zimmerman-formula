@@ -3330,3 +3330,22 @@ not excluded), not benign (one extra ~24-order hierarchy beyond ΛCDM along an u
   is a real blemish: the construction works (galaxies, lensing, clusters, Bullet, ghost-free, clusters like
   CDM) yet needs a ~24-order fine-tuning of its dark charge, with no protection mechanism found. HIGH
   confidence on the algebra; MEDIUM on "worse than ΛCDM" as a naturalness judgment (not a falsification).
+
+## L90 — the framework's signature prediction pinned: F(Q)Θ gives a FLAT a₀(z)
+
+`L90_a0z_prediction.py` + `.out` (**7 checks, 7 PASS**). What does the F(Q)Θ action predict for the redshift
+behaviour of the MOND scale a₀ — the framework's most distinctive falsifiable signature?
+
+- **⭐ a₀ IS CONSTANT (Λ-locked).** In the action, a₀ is a fixed Lagrangian constant (term M²a₀²G(|V|/a₀)),
+  tied to the de Sitter scale a₀ = c²/(2πL_dS) ∝ √Λ (verified to 5%, L78). With Λ a true cosmological
+  constant, **a₀ is constant in cosmic time ⇒ FLAT a₀(z)**. F(Q)Θ does NOT realise a naive a₀ ∝ H(z).
+- **⭐ STRONG HIGH-z DIVERGENCE.** At z=2, constant-a₀ gives a₀/a₀(0)=1.00 while a₀∝H(z) would give **3.03**
+  — a factor ~3, cleanly distinguishable by a deep-MOND probe at z~2.
+- **CONSISTENT with the derived law.** A flat prediction matches the repo's stage-17 derived a₀(z) law
+  (flat <1% for z≲5); the naive rising a₀∝H(z) is the reading F(Q)Θ excludes.
+- **⭐ DECISIVE TEST.** The deep-MOND BTFR zero-point at z~2.5: **FLAT (0.00 dex) for F(Q)Θ** vs +0.33 dex for
+  the ΛCDM expectation — a ~0.33 dex split a new high-z lensed rotator can resolve (existing archive
+  exhausted). FALSIFIER: a robustly RISING a₀ (tracking full H(z), ~3× by z=2) falsifies F(Q)Θ.
+- **HONEST SCOPE.** Pinned for z≲5 (flat, robust per stage-17); only the recombination-era behaviour depends
+  on possible clock modulation (astra's cosmology). The signature is now tied to a specific action, not an
+  ansatz — a clean, distinctive, currently-untested prediction awaiting a deep-MOND rotator at z~2.
