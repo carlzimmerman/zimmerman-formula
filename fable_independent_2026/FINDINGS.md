@@ -2154,3 +2154,43 @@ limit** — the first way this could have been illusory does not happen.
 - **⚠️ RECORD CORRECTION.** L24's statement that a slip changes lensing while leaving dynamics alone is
   **inverted** — a slip moves dynamics by its full size and lensing by half. L24's door still shuts, for
   a different reason than it gave.
+
+## L55 — the closure: a full cold abundance and a working MOND kernel are alternatives, not complements
+
+`L55_composition_kernel.py` + `L55_COMPOSITION_KERNEL.md` (28 checks, 19 FAIL; **all 6 controls pass**).
+Both L49 and L50 named the same last move. This lane ran it.
+
+**Controls** reproduce the cluster amount and post-kernel residual, the three parameter-free SPARC
+numbers, L50's two windows and its 1.72× gap with the intersection empty, the uniform suppression L50
+computed, **and both horns of L6's screened-force closure on their own terms.**
+
+- **⭐ THE MOVE IS GENUINELY OUTSIDE WHAT L6 CLOSED, on three independent grounds.** The baryon fraction
+  is **not** a single-valued function of any of L6's four variables — at the same acceleration, potential,
+  density or enclosed mass the two populations sit at different values, by up to 60σ. **L6's
+  cosmological-ordering horn does not fire**: cluster outskirts sit at 0.1486 and the homogeneous
+  background at 0.1556, a ratio of **1.05**, where in every one of L6's variables the background is orders
+  of magnitude beyond. **The chain galaxy → cluster → cosmos terminates in this variable.** And BBN is
+  blind to it. L6's own closing note had flagged this case as untested.
+- **⭐ AND THE INTERSECTION OPENS — a genuine first.** The galaxy ceiling rises from 0.582 to **1.372**,
+  clusters need **1.054 ± 0.126**, and that is **0.4σ from the CMB's 1.000**. Thirteen of fourteen gates
+  pass, **including the two that L49 and L50 failed outright** — the cold-matter density and linear
+  growth — and conservation survives.
+- **⚠️ IT OPENS ONLY BY DELETING THE PHENOMENOLOGY IT WAS MEANT TO PROTECT.** At full abundance the halo
+  alone already supplies **109%** of the observed deep-MOND anomaly, so the kernel's share falls from
+  0.888 to at best **0.344**. **Eleven suppression functions on two composition variables all collapse
+  onto one number**, the kernel's effective strength at the deep-MOND points, to within 0.12 — **so the
+  bound is universal, not a failed search.**
+- **And it brings a new failed gate that invalidates its own computation:** the composition dependence
+  gives the cold component an order-unity fifth force, so **the abundance-matched halo library every
+  number in the lane uses is not self-consistent under this action.**
+- **⭐⭐ THE THEOREM, and it is the closure.** **The galaxy anomaly is one number per point. A full cold
+  abundance already spends it. Every remaining move — re-sourcing, environmental screening, composition
+  dependence — is only a different way of choosing the one quantity the galaxy data see. So a full
+  abundance forces that quantity below 0.438 while MOND doing the work requires it near 1.**
+  **Within this action, a full cold abundance and a MOND kernel doing galaxy work are ALTERNATIVES, NOT
+  COMPLEMENTS, because they are two explanations of the same measured excess and the excess can only be
+  spent once.**
+- **⚠️ AND THE SCOPE IS STATED EXACTLY.** Nothing here favours this framework over ΛCDM **or constrains
+  ΛCDM** — the halo, its profile and its stellar-to-halo-mass relation are ΛCDM's, imported wholesale.
+  **This closes THIS action's kernel combined with a ΛCDM-profile cold abundance. It does not close
+  MOND-like theories in general.**

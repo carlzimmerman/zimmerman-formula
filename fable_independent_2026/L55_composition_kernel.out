@@ -1,0 +1,335 @@
+==========================================================================================================================
+L55 -- THE COMPOSITION KERNEL: can the MOND kernel be suppressed where cold matter dominates,
+       without reintroducing what L6 already closed?
+==========================================================================================================================
+  sources, all committed products of this repository; nothing below is retyped from prose:
+    clusters : closure_2026/cluster_measurement_audit_2026/results.json
+    galaxies : real_research/data/sparc_data/*_rotmod.dat  +  real_research/data/SPARC_Lelli2016c.mrt
+    controls : L50_BARYON_SOURCED.md (windows, gap, s<=0.495);  L6_screened_force.py (the closed class)
+    theory   : THE_COMPLETE_THEORY_2026-09-08.md sections 2-5;  L49_MINIMUM_ADDITION.md
+
+==========================================================================================================================
+PART A -- CONTROLS.  Rebuild L50's windows and gap, and reproduce L6's closure, before using either.
+==========================================================================================================================
+  canonical: 12 clusters at 1000 kpc, 122 usable rows -- f_bar 0.149, Newtonian M_dark/M_bar 5.73 +/- 0.68, post-kernel residual 3.09 M_bar
+        alt: 12 clusters at 1000 kpc, 122 usable rows -- f_bar 0.149, Newtonian M_dark/M_bar 5.73 +/- 0.68, post-kernel residual 2.76 M_bar
+  [PASS] X1 [control] an independent recomputation returns L49 X1 / L50 A1's cluster amount 5.73 +/- 0.68 and f_bar = 0.149 at 1000 kpc, and the post-kernel residual 3.09 / 2.76 M_bar   (M_dark/M_bar = 5.73 +/- 0.68, f_bar = 0.149, residual 3.09 / 2.76 M_bar)
+  SPARC: 155 galaxies, 2786 points (Upsilon_d = 0.5, Upsilon_b = 0.7, eV/V < 0.10)
+  [PASS] X2 [control] the SPARC machinery reproduces L49 X8 / L50 A3's three parameter-free numbers: kernel 0.145 / 0.142 dex at medians +0.030 / +0.003, abundance-matched halo alone 0.171 dex at -0.026   (kernel 0.145 / 0.142 dex, medians +0.030 / +0.003; halo 0.171 dex at -0.026)
+  
+  L50's baryon-sourced (eps = 0) windows, rebuilt here with independent code:
+      galaxies  (generous, |median| < 0.11 dex) : f <= 0.582 / 0.486
+      clusters  (self-consistent at 1000 kpc)   : f  = 0.569 +/- 0.130 / 0.508 +/- 0.133  at b = 0
+      the CMB   (Omega_c h^2 = 0.1200)       : f  = 1.000 +/- 0.010
+      gap to the CMB                            : 1.72x / 2.06x
+  [PASS] X3 [control] L50's two windows and its 1.72x / 2.06x gap are reproduced: galaxies f <= 0.582 / 0.486, clusters 0.569 +/- 0.130 / 0.508 +/- 0.133, and the intersection is EMPTY   (galaxies 0.582 / 0.486; clusters 0.569 +/- 0.130 / 0.508 +/- 0.133; gap 1.72x / 2.06x; at b = 0.20 clusters want 0.893 +/- 0.158, i.e. 0.7 sigma from the CMB)
+  [PASS] X4 [control] L50 D8's sharp form is reproduced: at f = 1 a UNIFORM suppression of the kernel to s <= 0.495 (canonical) / 0.439 (alt) is what the galaxy window requires   (s <= 0.495 / 0.439, i.e. the kernel must be suppressed by 2.0x / 2.3x where galaxies are measured)
+      L6 acceleration g_bar (control: this IS a kernel) overlap 100% of cluster rows, worst |z| =  24.9
+      L6 potential Phi_loc                            overlap  47% of cluster rows, worst |z| =  17.7
+      L6 baryon density rho_b                         overlap 100% of cluster rows, worst |z| =  12.8
+      L6 enclosed baryon mass M_b(<r)                 overlap  11% of cluster rows, worst |z| =   7.9
+  [PASS] X5 [control] L6's overlap horn is reproduced on its own terms: the control in acceleration kills at |z| ~ 25, and density screening dies with 100% overlap at |z| ~ 12.8   (acceleration |z| = 24.9 at 100% overlap; density |z| = 12.8 at 100%; potential |z| = 17.7 at 47%; mass |z| = 7.9 at 11%)
+  
+      L6 ordering: cluster outskirts rho_b = 4.42e-25 kg/m^3 against the cosmic 4.18e-28 (1057x LOWER); Phi_loc, g_bar -> 0 by homogeneity
+                   => any monotone S unscreening clusters unscreens the background at least as much, forcing G_cosmo/G_local >= E_out = 1.82 against BBN's 1.2
+  [PASS] X6 [control] L6's cosmological-ordering horn is reproduced: the homogeneous background lies BEYOND cluster outskirts in every one of L6's variables, forcing G_cosmo/G_local >= 1.82 = 4x the BBN bound   (density 1057x lower, potential and acceleration -> 0; E(cluster outskirts) = 1.82 / 1.68, i.e. 4x the BBN bound. L6's closure reproduces)
+
+==========================================================================================================================
+PART B -- THE CRUX: is a BARYON-FRACTION kernel outside L6's closed class, or does it collapse into it?
+==========================================================================================================================
+  The mechanism, stated precisely.  The deposited action's MOND term is J(Y) with Y = |grad phi|^2 and a coupling 2(2
+  - K_B) J^mu d_mu phi.  The proposal is to make the coupling -- equivalently the kernel's overall strength -- a
+  function of the LOCAL BARYON FRACTION f_b = rho_b/(rho_b + rho_c), so that the MOND term is at full strength where
+  baryons dominate and switched off where the cold component does:
+        g = g_bar + f g_halo + s(f_b) a_0 Delta( g_src / a_0 ) ,      s(1) = 1,   s(f_b -> 0) -> 0.
+  L6 closed S(X) for X a SINGLE environmental scalar: the potential, the baryon density, the acceleration, or the
+  enclosed mass.  f_b is a RATIO OF TWO SPECIES.  L6's own closing note records that 'a non-monotone S, or S of two
+  variables at once, is a fitted function rather than a screening mechanism.  Neither is claimed closed here.'  So the
+  class is formally untested; B1-B3 decide whether it is genuinely new or collapses in practice.
+
+      f_b at the CMB's own cold abundance f = 1:
+        SPARC, enclosed-mass reading  : median 0.335, 10-90% [0.146, 0.789]
+        SPARC, local-midplane reading : median 0.863, 10-90% [0.441, 0.947]   (h_z = 300 pc)
+        clusters, enclosed            : median 0.112; local: 0.107
+        the homogeneous background    : f_b = Omega_b/Omega_m = 0.1556
+
+    B1  does f_b collapse into a function of one of L6's variables?  At the SAME value of X, do clusters
+        and galaxies sit at the same f_b?  (If they do, s(f_b) IS an S(X) in disguise.)
+          X = gb    overlap 100%   cluster-vs-galaxy separation in f_b: |z| =   38.6
+          X = phi   overlap  47%   cluster-vs-galaxy separation in f_b: |z| =   59.7
+          X = rho   overlap 100%   cluster-vs-galaxy separation in f_b: |z| =   15.0
+          X = M     overlap  11%   cluster-vs-galaxy separation in f_b: |z| =    1.6
+  [FAIL] B1 f_b COLLAPSES into a single-valued function of one of L6's environmental variables, i.e. the mechanism is L6's screening under a new name   (it does not. At the same acceleration, potential, baryon density or enclosed baryon mass the two populations sit at DIFFERENT baryon fractions, separated by |z| up to 60. f_b is not a function of any single L6 variable, because it carries information about a SECOND species that none of L6's variables contains. This is a genuinely new function, as L6's own closing note anticipated)
+
+    B2  the cosmological ordering -- the horn that closed L6 without needing overlap.
+          L6's variables : the background is BEYOND cluster outskirts in ALL of them (rho_b 1057x lower; Phi, g_bar -> 0).
+          f_b            : cluster outskirts f_b = 0.1486 (enclosed) / 0.1916 (local); the background is f_b = 0.1556.
+                           ratio background/outskirts = 1.05 -- the background is NOT beyond cluster outskirts, it sits essentially AT them.
+        This is L7's measured fact read as a statement about the screening variable: clusters retain essentially the
+        cosmic baryon fraction (f_bar = 0.149 against 0.156), so the sequence galaxy-disc -> cluster-outskirts ->
+        background is NOT monotone in f_b; it TERMINATES at the cluster value. A monotone s(f_b) therefore assigns the
+        background the same suppression as cluster outskirts, and generates no runaway.
+  [FAIL] B2 the cosmological-ordering horn that closed L6 also fires on f_b, i.e. the background lies beyond cluster outskirts in the baryon fraction too   (it does not fire. In every L6 variable the background is orders of magnitude beyond cluster outskirts; in f_b it is a factor 1.05 away -- indistinguishable. The ordering argument needs the background to be MORE unscreened than clusters; in f_b it is EQUALLY screened, so the chain from cluster to cosmos is broken. This is L7's f_bar = 0.149 vs 0.156 read as a statement about the screening variable)
+
+    B3  the SIGN, and whether the BBN horn can bite at all.
+          L6's candidates were ENHANCEMENTS (E > 1) of a force whose unscreened value IS G_cosmo; the
+          kill was G_cosmo/G_local >= 1.82 against BBN's 1.2. Here s <= 1 by
+          construction: it is a SUPPRESSION, so the ratio moves the OTHER WAY.
+          And the kernel is an ADDITIVE a_0-scale term, not a rescaling of G: at any BBN-era
+          acceleration the fractional kernel contribution is a_0 Delta(g/a_0)/g <= 6.1e-05, so suppressing it changes G_eff by that much.
+  [FAIL] B3 the BBN horn that closed L6 can bite on this mechanism, i.e. suppressing the kernel moves G_cosmo/G_local outside |G/G_0 - 1| < 0.2   (it cannot. s <= 1 is a suppression, the opposite sign to L6's enhancement; and the kernel is an additive a_0-scale term whose fractional size at BBN-era accelerations is 6.1e-05, so switching it off entirely changes G_eff by 1 part in 2e+04. BBN is blind to it)
+  [FAIL] B4 [THE CRUX] a baryon-fraction-dependent kernel is INSIDE L6's closed class, so the lane is over before it starts   (it is NOT inside it, on three independent grounds: (i) f_b is not a single-valued function of any of L6's four variables (B1, |z| up to 60); (ii) the ordering horn does not fire because the background sits AT cluster outskirts in f_b rather than beyond them (B2, factor 1.05); (iii) the sign is a suppression, not an enhancement, and the additive a_0-scale kernel is invisible to BBN (B3). L6's own closing note already recorded that a function of two variables was untested. The mechanism therefore has to be tested on its own, which is Parts C-E -- and being outside a closed class is NOT evidence that it works)
+
+==========================================================================================================================
+PART C -- THE FUNCTION.  Can ONE s(f_b) be full strength in discs and suppressed at high cold fraction?
+==========================================================================================================================
+  This is where the brief says the mechanism is most likely to die, so it is checked directly and before any window is
+  recomputed.  At the cold abundance the CMB fixes, galaxy discs are baryon-dominated in the inner regions and cold-
+  dominated in the outer rotation curve -- which is exactly where MOND is needed.  Two readings of f_b are carried,
+  because they are the two horns of the mechanism and they answer this question oppositely.
+
+    C1  WHERE MOND IS NEEDED.  2059 of 2786 SPARC points (74%) have g_bar < a_0 -- the regime the kernel exists to explain.
+        At f = 1 those points sit at f_b = 0.255 (enclosed reading; 10-90% [0.130, 0.517])
+                                      f_b = 0.800 (local midplane; 10-90% [0.325, 0.922])
+  [FAIL] C1 [THE MOST LIKELY WAY THIS DIES] at the cold abundance the CMB fixes, the points where MOND is needed are still BARYON-DOMINATED, so a suppression keyed to f_b leaves them alone   (on the reading that actually sets the rotation curve -- the ENCLOSED-mass fraction -- they are not: the median deep-MOND SPARC point sits at f_b = 0.255, i.e. COLD-DOMINATED, and 89% of them are below one half. The suppression switches on exactly where the kernel is supposed to work. (On the LOCAL midplane reading the answer is the opposite, f_b = 0.800; that is the second horn, C3-C4))
+
+    C2  L6's own overlap machinery, run in the NEW variable (this is the fair test of the new class):
+          f_b enclosed : overlap 100% of cluster rows, cluster-vs-galaxy required enhancement differs at |z| = 20.7
+          f_b local    : overlap 100% of cluster rows, |z| = 9.8
+  [FAIL] C2 in the new variable the two populations at the same f_b require the SAME kernel strength, so a single-valued s(f_b) exists on the data   (at the same enclosed baryon fraction clusters and galaxies require kernel strengths differing at |z| = 20.7 over 100% overlap -- L6's overlap horn fires in the new variable too, for the SAME reason it fired in the old ones: the required enhancement is not a function of the environment. (Local reading: |z| = 9.8 at 100% overlap))
+
+        the exhibited functions.  Two one- and two-parameter families, both monotone, both s(1) = 1:
+          s_pow(p)    = f_b^p                       (gentle; one parameter)
+          s_sig(f*,n) = 1/(1 + (f*/f_b)^n)          (sharp; two parameters, n = sharpness)
+          s = f_b^1       median s at deep-MOND SPARC points: 0.255 (enclosed) / 0.800 (local);  at cluster outskirts: 0.112
+          s = f_b^3       median s at deep-MOND SPARC points: 0.017 (enclosed) / 0.512 (local);  at cluster outskirts: 0.001
+          s: f*=0.5,n=4   median s at deep-MOND SPARC points: 0.063 (enclosed) / 0.868 (local);  at cluster outskirts: 0.003
+          s: f*=0.2,n=8   median s at deep-MOND SPARC points: 0.874 (enclosed) / 1.000 (local);  at cluster outskirts: 0.010
+
+    C3  is there a THRESHOLD in f_b separating the deep-MOND galaxy points from cluster rows?
+          deep-MOND SPARC (enclosed): [0.025, 0.670], median 0.255
+          cluster rows    (enclosed): [0.030, 0.289], median 0.112
+          58% of the deep-MOND galaxy points lie INSIDE the cluster range
+  [FAIL] C3 ONE monotone function of f_b can be full strength where MOND is needed in galaxies AND suppressed at cluster outskirts -- i.e. the two requirements are separated by a threshold in f_b   (they are not separated on the enclosed reading: 58% of the deep-MOND galaxy points fall inside the cluster f_b range, so any monotone s that switches OFF at cluster outskirts switches off at those galaxy points too. The transition cannot be made sharp enough because there is no gap to be sharp about)
+
+    C4  the LOCAL horn, and its sensitivity.  A thin disc is locally baryon-dominated even where the
+        ENCLOSED mass is not, so a kernel keyed to the local density ratio would survive in discs.
+        Scale height h_z varied over the observed range for stellar+gas discs:
+          h_z = 0.15 kpc : median f_b at deep-MOND SPARC points = 0.889, fraction below 0.5 =  10%
+          h_z = 0.30 kpc : median f_b at deep-MOND SPARC points = 0.800, fraction below 0.5 =  16%
+          h_z = 0.60 kpc : median f_b at deep-MOND SPARC points = 0.667, fraction below 0.5 =  29%
+          h_z = 1.00 kpc : median f_b at deep-MOND SPARC points = 0.545, fraction below 0.5 =  43%
+  [PASS] C4 the LOCAL-density reading rescues the disc, i.e. deep-MOND galaxy points stay baryon-dominated locally across the observed range of disc scale heights   (it does across most of the range -- median local f_b at deep-MOND points is 0.89 at h_z = 0.15 kpc, 0.80 at h_z = 0.30 kpc, 0.67 at h_z = 0.60 kpc, 0.55 at h_z = 1.00 kpc. That is the SECOND HORN and it is a genuine escape from C1/C3: on this reading the kernel is NOT switched off where MOND is needed, and Part D shows it is the horn that both opens the pincer and keeps part of the phenomenology. Its cost is that the one number it must hit is set by h_z (E2))
+
+==========================================================================================================================
+PART D -- THE THREE WINDOWS, RE-RUN ON EACH HORN, AND THE GATES.
+==========================================================================================================================
+
+    D1  the three windows on each horn (generous galaxy criterion, |median RAR shift| < 0.11 dex):
+      variant                           gal can  gal alt       clusters b=0    clusters b=0.20    CMB
+      H1  enclosed f_b,  s = f_b^3        1.372    1.362     1.054 +/- 0.126     1.365 +/- 0.157  1.000
+      H1' enclosed f_b,  f*=0.5 n=8       1.286    1.273     1.055 +/- 0.125     1.365 +/- 0.157  1.000
+      H2  local f_b,     s = f_b^3        1.001    0.931     1.054 +/- 0.126     1.365 +/- 0.157  1.000
+      H2' local f_b,     s = f_b^4        1.073    1.018     1.055 +/- 0.125     1.365 +/- 0.157  1.000
+      L50 control (no suppression)        0.582    0.486     0.569 +/- 0.130     0.893 +/- 0.158  1.000
+  [PASS] D1 the galaxy window MOVES under a composition-dependent kernel, i.e. the mechanism does something L50's re-sourcing could not   (it does, on BOTH readings of f_b and by a large margin: the ceiling rises from L50's 0.582 / 0.486 to 1.372 / 1.362 (enclosed reading) and 1.073 / 1.018 (local reading, s = f_b^4). This is the first move in the L49-L50-L55 sequence that lifts the galaxy ceiling past f = 1, and it is reported as a positive result before it is priced)
+  [PASS] D2 [THE PINCER] the three-way intersection is non-empty on at least one exhibited function -- one cold fraction admissible to galaxies, to clusters AND to the CMB at once   (it is, and this is a genuine positive that the lane was set up to be able to find: on the H1  enclosed f_b,  s = f_b^3, H1' enclosed f_b,  f*=0.5 n=8, H2' local f_b,     s = f_b^4 variants the galaxy ceiling clears f = 1 on both footings, clusters need 1.054 +/- 0.126 at b = 0 (0.4 sigma from the CMB's 1.000) and 1.365 +/- 0.157 at b = 0.20, and the CMB fixes 1.000 +/- 0.010. The pincer that closed L49 and L50 OPENS. D3-D7 price what opening it costs, and that price is the actual finding)
+
+    D3  WHAT THE KERNEL IS STILL DOING.  Median over the deep-MOND SPARC points of the share of the
+        OBSERVED anomaly (g_obs - g_bar) that each term supplies:
+          the kernel, deposited theory at f = 0    W = 0.888   (the kernel IS the anomaly)
+          the LambdaCDM halo alone at f = 1        W = 1.090   (it already supplies 109% of it)
+          the kernel, H1 enclosed horn at f = 1    W = 0.016 / 0.019
+          the kernel, H2 local horn at f = 1       W = 0.425 (p = 3), 0.344 (p = 4)
+  [FAIL] D3 [THE WHOLE QUESTION] opening the pincer leaves the galaxy-scale MOND phenomenology INTACT, i.e. the kernel still supplies most of the observed deep-MOND anomaly at f = 1   (it does not. The halo at the CMB's own abundance already supplies 109% of the observed deep-MOND anomaly on its own, so the kernel's remaining room is whatever the tolerance allows. On the variants that clear f = 1 the kernel's share falls from 0.888 to 0.344 at best -- the suppression switches on exactly where MOND is needed, which is what C1 predicted. The window opens by removing between 61% and 98% of the kernel's work)
+
+    D4  THE TRADE-OFF, computed with a UNIFORM suppression so it cannot depend on which variable is
+        screened.  s is the kernel's strength at the deep-MOND points; f_max is the galaxy ceiling:
+            s  f_max can  f_max alt   W (kernel share)   rms at f=1
+        1.000      0.582      0.486              0.888        0.264
+        0.800      0.741      0.663              0.710        0.242
+        0.600      0.910      0.847              0.533        0.220
+        0.500      0.995      0.943              0.444        0.210
+        0.439      1.041      0.999              0.390        0.204
+        0.400      1.076      1.034              0.355        0.200
+        0.300      1.155      1.126              0.266        0.191
+        0.200      1.243      1.222              0.178        0.182
+        0.100      1.328      1.316              0.089        0.176
+        0.000      1.411      1.411              0.000        0.171
+      => f = 1 admissible on BOTH footings requires s <= 0.438 (the alt footing binds),
+         at which the kernel's share of the observed anomaly is W <= 0.389.
+
+        and the same table for ELEVEN genuine functions of f_b, on BOTH readings, against the uniform
+        curve evaluated at each one's own median deep-MOND strength s_eff:
+      function             s_eff  f_max can   uniform       W   uniform
+      s=f_b^0.5 enc        0.505      0.943     0.991   0.458     0.448
+      s=f_b^1 enc          0.255      1.164     1.194   0.234     0.226
+      s=f_b^2 enc          0.065      1.323     1.357   0.063     0.058
+      s=f_b^3 enc          0.017      1.372     1.397   0.016     0.015
+      f*=0.3,n=2 enc       0.419      1.013     1.058   0.369     0.372
+      f*=0.5,n=8 enc       0.005      1.286     1.408   0.005     0.004
+      s=f_b^1 loc          0.800      0.772     0.741   0.654     0.710
+      s=f_b^2 loc          0.640      0.896     0.877   0.522     0.568
+      s=f_b^3 loc          0.512      1.001     0.985   0.425     0.454
+      s=f_b^4 loc          0.409      1.073     1.067   0.344     0.363
+      s=f_b^6 loc          0.262      1.168     1.188   0.230     0.232
+  [FAIL] D4 [the general form] the galaxy ceiling and the kernel's share depend on WHICH variable the suppression is a function of, so a better choice of variable could still be found   (they do not. Every one of the eleven functions, on both readings of f_b, lands on the uniform curve at its own median deep-MOND strength to within 0.122 in f_max and 0.056 in W. The galaxy data see exactly ONE number -- the kernel's effective strength where the anomaly is -- and every choice of variable is only a different way of setting it. So the bound is universal: f = 1 on both footings requires s_eff <= 0.438, hence W <= 0.389. This generalises L50 D8 from a uniform suppression to ANY function of ANY variable, environmental or compositional)
+
+    D5  WHAT THE SURVIVING KERNEL IS.  In the deep-MOND limit Delta(x) -> sqrt(x), so
+        s * a_0 Delta(g/a_0) = sqrt(s^2 a_0 g) = a_0' Delta(g/a_0') with a_0' = s^2 a_0 EXACTLY:
+          verified numerically in the strict deep limit (g << s^2 a_0): max |s*kern(a_0)/kern(s^2 a_0)
+          - 1| = 1.3e-02 at s = 0.2, 0.3, 0.438. At the ACTUAL SPARC deep-MOND points the
+          degeneracy is only APPROXIMATE, median |ratio - 1| = 0.29-1.32, because
+          the interpolation is not yet asymptotic there. So this is an exact statement about the DEEP
+          LIMIT and a rough one on the data, and both are reported rather than the flattering one.
+        So the surviving kernel term, taken on its own, produces its MOND transition at a_0' = s^2 a_0 <= 0.192 a_0
+        = 1.80e-11 m/s^2 -- a factor 5.2 BELOW the acceleration at which the observed RAR turns over.
+        For that term to still account for the observed turnover the action's a_0 would have to be 5.2x larger,
+        i.e. kappa = 2.60 instead of the fitted 0.4998 -- outside every principle-shaped candidate the
+        coefficient programme carries. What actually happens instead is D7: at f = 1 the BTFR zero point is the
+        HALO's, so the framework's a_0 is no longer MEASURED by galaxy dynamics at all, and kappa loses the
+        empirical anchor (0.465 +/- 0.076 from the BTFR) from which it is quoted.
+  [FAIL] D5 the kernel that survives at f = 1 is still the deposited theory's kernel, i.e. it carries the same a_0 and the a_0-Lambda tie still refers to something that acts   (it is not. A partial suppression is EXACTLY degenerate with a smaller a_0 in the strict deep-MOND limit (verified to 1e-02) and roughly so on the data (29%-132% at the actual SPARC deep-MOND points, which are not yet asymptotic), so the surviving kernel has a MOND transition at a_0' = s^2 a_0 <= 0.192 a_0, a factor 5.2 below where the observed RAR turns over -- so the surviving term no longer sets the scale it was built to set. Making it do so would need kappa = 2.60 rather than the fitted 0.4998. The operative consequence is D7's: at f = 1 the BTFR zero point is the HALO's, so the framework's a_0 is not measured by galaxy dynamics any more and kappa loses the 0.465 +/- 0.076 BTFR anchor it is quoted from. Since kappa is FITTED rather than derived this is not a falsification -- it is the loss of the coincidence that motivated the tie)
+
+    D6  THE STRICT CRITERION, stated because the generous one is doing real work above.  L49/L50's
+        strict galaxy criterion is 'rms not degraded by more than 0.02 dex against the kernel's own
+        0.145 dex at f = 0'. At f = 1 with the kernel switched off ENTIRELY the rms is
+        0.171 dex, already 0.026 dex worse.
+  [FAIL] D6 f = 1 is admissible on the STRICT galaxy criterion too, so the opening does not depend on which of L49's two criteria is used   (it is not, and the reason has nothing to do with this mechanism: at f = 1 the abundance-matched halo ALONE gives 0.171 dex against the kernel's 0.145, so no kernel treatment whatever can meet the strict criterion at f = 1. That is a statement about the LambdaCDM halo library's scatter, not about the composition kernel, and it means the strict criterion cannot be used to test this mechanism. The generous criterion is therefore carried throughout, exactly as L49 and L50 carry it)
+
+    D7  the framework's THREE distinctive galaxy-scale statements, at the best variant that clears
+        f = 1 on both footings (H2', local f_b, s = f_b^4):
+          deep-MOND BTFR zero point log10[V^4/(G M_b a_0)] : +0.196 dex at f = 0 (the theory's own prediction) -> +0.410 at f = 1
+          bounded-boost ceiling g_obs - g_N <= C a_0 = 6.06e-11 m/s^2 : 36% of SPARC points have the HALO term alone above it, so the ceiling is no longer a statement about an observable
+          kernel above half strength in the deep-MOND regime : 41% of points
+  [FAIL] D7 the framework's distinctive galaxy-scale predictions survive at the variant that opens the pincer: the deep-MOND BTFR zero point, the bounded-boost ceiling, and a kernel that acts   (they do not survive as tests. The BTFR zero point moves from +0.196 to +0.410 dex and is now set by the halo, not by V^4 = G M_b a_0; 36% of SPARC points have the halo term alone above the bounded-boost ceiling, so the falsifier the programme calls the one LambdaCDM structurally cannot make becomes a statement about an unobservable (L49 N3, unchanged); and the kernel is above half strength at 41% of deep-MOND points. What survives is a kernel supplying at most 0.39 of the anomaly with an effective a_0 of 0.19 a_0)
+
+    D8  the deposited theory's gates, re-run at the exhibited point (H2', local f_b, s = f_b^4, f = 1):
+        Cassini / sunward / xi             PASS   aether-scalar sector untouched; f_b -> 1 in the Solar System so s -> 1 and the local kernel is the deposited theory's
+        Saturn phantom mass                PASS   a smooth cold halo puts 3.81e-15 M_sun inside Saturn's orbit against Pitjev-Pitjeva's 6.7e-11, margin 17603x
+        alpha_1, alpha_2, alpha_3, gamma   PASS   unchanged: alpha_1 = -4 c_14 = -4.00e-06, alpha_2 = (c_14/2)(1/sigma - 1) = -2.02e-07
+        c_T = c (GW170817)                 PASS   c_13 = 0; no disformal matter metric; s multiplies a scalar term only
+        mode count and health              PASS   2 tensor + 1 clock + 1 scalar + 1 matter DOF; s(f_b) adds no field
+        clock tachyon                      PASS   Qbar = 0 remains an exact solution: s multiplies the MOND term, which still has no homogeneous source (Y = 0 on a homogeneous slice)
+        lensing == dynamics                PASS   V-B retains the drag coupling, so Phi = Psi and M_dyn/M_lens = 1
+        BBN                                PASS   Delta N_eff = 0; and B3, the kernel's fractional size at BBN-era accelerations is 6.1e-05
+        rotation curves                    PASS   at f = 1, rms 0.202 dex, median -0.099 -- but D3 shows 109% of the anomaly is the halo's
+        cluster amount                     PASS   f = 1.055 +/- 0.125 at b = 0, 0.4 sigma from the CMB's 1.000
+        CMB cold-matter density            PASS   Omega_c h^2 = 0.1200 at f = 1 -- the gate L49 and L50 both FAIL
+        linear growth / sigma_8            PASS   S_eff = 0 on the closure locus, so growth is algebraically LambdaCDM's
+        conservation / Bianchi             PASS   diffeomorphism invariance of the Lagrangian is untouched by making J depend on two matter scalars, so grad.T(total) = 0 exactly as in L50 B2
+        cold component is dust             FAIL   NEW HERE -- see D9: ds/drho_c gives the cold component its own fifth force, so it is no longer the pressureless dust the halo library assumes
+  [FAIL] D8 every gate the deposited theory is run against still passes at the exhibited point   (13 of 14 do, including the two that L49 and L50 FAIL outright (the CMB cold-matter density and linear growth) and including conservation, which survives because diffeomorphism invariance does not care how many matter scalars J reads. The one that fails is NEW to this mechanism and is the subject of D9)
+
+    D9  THE GATE THIS MECHANISM CREATES.  If the kernel's strength depends on rho_c, then varying the
+        action with respect to the cold sector gives it a force it did not have:
+        delta S / delta rho_c  includes  (ds/drho_c) J(Y)   =>   the cold component feels a MOND-scale
+        fifth force of order (dln s / dln rho_c) x (the phantom acceleration the kernel supplies).
+          for s = f_b^p, dln s/dln rho_c = -p(1 - f_b): at p = 4 that is -3.40 at f_b = 0.15, -2.80 at f_b = 0.30, -2.00 at f_b = 0.50, -0.80 at f_b = 0.80
+          and the kernel supplies W = 0.34 of the anomaly there, so the extra acceleration on
+          the cold component is of order 0.69 of the anomaly itself -- an O(1)
+          effect, not a correction.
+  [FAIL] D9 the cold component remains pressureless dust under this action, so the abundance-matched LambdaCDM halo library used for every number in this lane is self-consistent   (it does not. A kernel whose strength reads rho_c gives the cold component a fifth force of order |dln s/dln rho_c| x W ~ 0.7 of the anomaly at p = 4 -- O(1). Every halo profile used here (Moster abundance matching, Dutton-Maccio concentration, NFW) is built for dust in Newtonian gravity, so under this action the halo library is NOT self-consistent and the cluster and galaxy windows would have to be recomputed with a re-equilibrated halo. This is an ESTIMATE of the size, not a solved profile: it is flagged as the mechanism's own unpaid bill, and it is the reason the D2 opening should not be read as a working theory)
+
+==========================================================================================================================
+PART E -- THE PRICE.
+==========================================================================================================================
+
+    E1  EQUIVALENCE PRINCIPLE.  A kernel whose STRENGTH depends on species composition violates the WEP
+        in the gravitational sector twice over, where L50's baryon sourcing violated it once:
+          (a) baryons feel the kernel and the cold component does not -- L50's violation, inherited;
+          (b) NEW HERE: the force on a BARYON depends on how much OTHER-species matter is nearby. Two
+              identical baryonic configurations with the same g_bar accelerate differently according
+              to the local cold density, so the field a test particle feels is not a functional of the
+              metric and the scalar alone -- the force law reads the matter census.
+          magnitude at f = 1: median kernel share of the total acceleration eta = 0.137 (L50 at f = 1 without suppression: 0.326).
+          Neither is a laboratory or Solar-System effect: it takes a cold overdensity comparable to
+          the local baryon density, and there is 3.8e-15 M_sun of cold matter inside Saturn's orbit
+          against Pitjev-Pitjeva's 6.7e-11 (17603x margin). Baryons and photons stay
+          minimally coupled to the single metric g, so gamma_PPN, Eotvos and MICROSCOPE are untouched.
+  [FAIL] E1 the equivalence-principle cost is confined to the dark sector and is no worse in kind than L50's single between-sector violation   (it is confined to the dark sector EMPIRICALLY -- no laboratory or Solar-System test fires, margin 17603x on the Saturn bound -- but it is worse IN KIND. L50's violation is that two species fall differently. This lane adds a second, sharper one: the acceleration of a baryon depends on the abundance of a species it is not made of, so the gravitational field is not determined by the total stress-energy even in principle. Magnitude eta = 0.14. Priced as a structural cost, not an empirical one)
+
+    E2  FREE FUNCTIONS AND PARAMETERS, counted against the deposited theory:
+          deposited theory       : kernel J(Y) fixed; a_0 = kappa c sqrt(G rho_Lambda), kappa FITTED
+          + L49's cold component : + M200(M_star), a free function of host mass (abundance matching),
+                                   i.e. LambdaCDM's galaxy-formation sector inherited wholesale
+          + L50's re-sourcing    : + one chosen coefficient (V-B's compensator); no exactness needed
+          + L55's s(f_b)         : + ONE NEW FREE FUNCTION of a composition variable, carrying a scale
+                                   (f*) and a sharpness (n or p), neither predicted by the action
+          and the value it must hit is not free either: D4 fixes s_eff <= 0.438, delivered on
+          the local reading only near p = 4 at h_z ~ 0.3 kpc. Across C4's observed range of disc
+          scale heights the same p = 4 gives s_eff from 0.62 (h_z = 0.15 kpc) to 0.09 (h_z = 1.0 kpc),
+          so the one number the mechanism must hit is set by an ASTROPHYSICAL nuisance parameter.
+  [FAIL] E2 the new function is fixed by the theory rather than fitted -- s(f_b) has a derivation and not merely a shape, and the value it must take is set by the action   (it is not. s(f_b) is a new free function introduced for the single purpose of suppressing the term the theory exists to produce; no symmetry of the deposited action selects it, and in L6's own words a function of two variables at once 'is a fitted function rather than a screening mechanism'. Worse, the number it has to hit (s_eff <= 0.438) is delivered on the local reading only for a particular disc thickness: at fixed p = 4, s_eff runs from 0.62 to 0.09 across h_z = 0.15-1.0 kpc, a factor 7.1, so the mechanism's success is controlled by disc scale height, about which the action says nothing)
+
+    E3  OBSERVABILITY.  Fraction of SPARC points at which the kernel contributes more than 10% of the
+        total acceleration:
+          deposited theory (f = 0)          93.4% of points
+          L50 (f = 1, no suppression)       91.6% of points
+          H1  (f = 1, enclosed, p = 3)       1.2% of points
+          H2' (f = 1, local, p = 4)         65.1% of points
+  [FAIL] E3 the kernel remains observationally distinguishable at the variant that opens the pincer   (partially, and this is the fairest statement of what survives. On the LOCAL horn the kernel is still above half strength at 41% of deep-MOND points and supplies W = 0.34 of the anomaly, so it is not switched off -- but D5 shows what survives is observationally a kernel with a_0' = 0.19 a_0, and D7 shows the three statements the framework calls distinctive (BTFR zero point, bounded-boost ceiling, RAR at zero parameters) are set by the halo at that abundance. On the ENCLOSED horn the kernel is above half strength at 0% of deep-MOND points and W = 0.016: switched off entirely)
+
+==========================================================================================================================
+PART V -- VERDICT, AND THE THEOREM.
+==========================================================================================================================
+  [FAIL] V1 [THE LANE'S QUESTION] the kernel can be suppressed where cold matter dominates in a way that lets the galaxy window reach f = 1 WHILE LEAVING THE GALAXY-SCALE MOND PHENOMENOLOGY INTACT   (NO, and the two halves separate cleanly. The mechanism IS outside L6's closed class (B1-B4), and it DOES open the three-way intersection (D2): on the local reading with s = f_b^4 the galaxy ceiling is 1.073 / 1.018, clusters need 1.055 +/- 0.125, the CMB fixes 1.000, and every gate the deposited theory passes still passes. But 'intact' fails: the kernel's share of the observed deep-MOND anomaly is capped at W <= 0.389 on both footings (D4), against 0.888 in the deposited theory, because the halo at the CMB's own abundance already supplies 109% of that anomaly. What survives is a kernel whose own MOND transition sits at a_0' <= 0.19 a_0 (D5), while the observed turnover, the BTFR zero point and the bounded-boost ceiling are all the halo's (D7) -- so the a_0-Lambda tie loses the galaxy measurement kappa is quoted from)
+  [FAIL] V2 the pincer can be opened while the MOND sector still does MOST of the galaxy-scale dynamical work, on ANY function of ANY variable, environmental or compositional   (it cannot, and D4 shows this is a bound rather than a failed search: eleven functions on two readings of f_b all land on the single uniform-suppression curve at their own median deep-MOND strength, to within 0.122 in the ceiling and 0.056 in W. The galaxy data constrain exactly ONE number, and f = 1 on both footings forces it below 0.438, hence W <= 0.389)
+
+    V3  THE THEOREM, stated generally because the programme deserves the statement rather than one
+        more dead mechanism:
+      The observed galaxy-scale anomaly is ONE number per point, g_obs - g_bar.  At the cold abundance the CMB fixes,
+      the abundance-matched LambdaCDM halo alone already supplies 109% of it and reproduces SPARC at 0.171 dex with
+      median -0.026.  Whatever the MOND kernel adds at that abundance is therefore an overshoot, and the galaxy window
+      can be reached only by suppressing the kernel to an effective strength s_eff <= 0.438 where the anomaly is
+      measured.  That bound is a statement about the DATA and the halo, not about the kernel's functional form: D4
+      verifies that eleven suppression functions, keyed to two different composition variables, all reduce to the same
+      one number as far as the galaxy data are concerned.  It is therefore invariant under every remaining move -- re-
+      sourcing the scalar (L50), screening on an environmental scalar (L6), or keying the kernel to the species
+      composition (this lane).  Each is only a different way of choosing s_eff.
+
+      HENCE, quantitatively: at Omega_c h^2 = 0.1200 the kernel may supply at most W = 0.39 of the observed deep-MOND
+      galaxy anomaly, against 0.89 in the theory without a cold component; and because a partial suppression is
+      exactly degenerate with a smaller a_0 in the deep-MOND limit, the surviving term's own MOND transition sits at
+      a_0' <= 0.19 a_0, a factor 5.2 below where the observed relation turns over, and the turnover, the BTFR zero
+      point and the bounded-boost ceiling are all set by the halo instead.  A FULL COLD ABUNDANCE AND A MOND KERNEL
+      DOING THE GALAXY WORK ARE ALTERNATIVES, NOT COMPLEMENTS -- not because the pincer stays shut, but because they
+      are two explanations of the SAME measured excess and the excess can only be spent once.  The theory can have the
+      CMB, the clusters and the growth of structure, at which point its kernel is at most a third-strength correction
+      whose own MOND scale is five times too small, and none of its distinctive predictions survives as a test; or it
+      can have the galaxy phenomenology at f = 0, at which point S_eff = 0 exactly and it fails the CMB and linear
+      growth outright.
+
+      What is NOT claimed.  Nothing here favours this framework over LambdaCDM and nothing here constrains LambdaCDM:
+      the cold component, its abundance-matched profile and its stellar-to-halo-mass relation are LambdaCDM's,
+      imported wholesale, and a per-galaxy NFW with two free parameters reaches 0.061 dex where the kernel reaches
+      0.145 (L28 / L49 W1).  Nor is this a closure of MOND-like theories in general: it closes the combination of THIS
+      action's kernel with a full cold abundance whose galaxy profile is LambdaCDM's.  A theory whose cold component
+      is distributed differently -- less in galaxies, more elsewhere -- is not covered, though L49's specification and
+      the 2026-09-06/07 dark-sector no-go between them close every mechanism so far proposed for making one.  And the
+      opening exhibited in D2 is a real result that should not be talked away: the pincer that closed L49 and L50 does
+      open, on a mechanism genuinely outside L6's class.  It is the price, not the arithmetic, that makes it not worth
+      taking.
+
+    CAVEATS, stated rather than buried:
+      1. The GENEROUS of L49's two galaxy criteria (|median| < 0.11 dex) is carried throughout, so the
+         candidate is not handed a manufactured deficit. D6 shows the strict criterion cannot be used
+         here at all: at f = 1 the halo ALONE already misses it, independently of any kernel.
+      2. The local-midplane f_b uses SBdisk/SBbul photometry for stars and a thin-disc inversion of
+         V_gas for gas, at a fixed scale height. C4 varies h_z over 0.15-1.00 kpc and E2 shows the
+         mechanism's key number s_eff swings by a large factor across that range -- so the local
+         horn's success is h_z-controlled and is reported as such, not as a robust result.
+      3. Abundance matching carries ~0.30 dex of systematic on log M200 (Moster vs Behroozi vs
+         Kravtsov). It moves the galaxy ceiling and the cluster requirement together. It does not
+         touch the theorem, which is about the halo ALREADY supplying the anomaly at f = 1.
+      4. D9's fifth force on the cold component is an ORDER-OF-MAGNITUDE estimate from dln s/dln rho_c,
+         not a solved profile. It is the mechanism's largest unpaid bill and it is flagged, not
+         resolved: every halo number in this lane assumes dust, which under this action it is not.
+      5. Cluster windows use the enclosed baryon fraction inside the same 1000 kpc aperture as L50, at
+         b = 0 and b = 0.20. The hydrostatic bias is not resolved here.
+      6. The kernel, its saturation constant and the closure locus are the deposited theory's,
+         unchanged; nothing here re-fits them, and kappa remains FITTED (0.4998 / 0.6023).
+
+==========================================================================================================================
+RESULT: 19 FAIL -> ["B1 f_b COLLAPSES into a single-valued function of one of L6's environmental variables, i.e. the mechanism is L6's screening under a new name", 'B2 the cosmological-ordering horn that closed L6 also fires on f_b, i.e. the background lies beyond cluster outskirts in the baryon fraction too', 'B3 the BBN horn that closed L6 can bite on this mechanism, i.e. suppressing the kernel moves G_cosmo/G_local outside |G/G_0 - 1| < 0.2', "B4 [THE CRUX] a baryon-fraction-dependent kernel is INSIDE L6's closed class, so the lane is over before it starts", 'C1 [THE MOST LIKELY WAY THIS DIES] at the cold abundance the CMB fixes, the points where MOND is needed are still BARYON-DOMINATED, so a suppression keyed to f_b leaves them alone', 'C2 in the new variable the two populations at the same f_b require the SAME kernel strength, so a single-valued s(f_b) exists on the data', 'C3 ONE monotone function of f_b can be full strength where MOND is needed in galaxies AND suppressed at cluster outskirts -- i.e. the two requirements are separated by a threshold in f_b', 'D3 [THE WHOLE QUESTION] opening the pincer leaves the galaxy-scale MOND phenomenology INTACT, i.e. the kernel still supplies most of the observed deep-MOND anomaly at f = 1', "D4 [the general form] the galaxy ceiling and the kernel's share depend on WHICH variable the suppression is a function of, so a better choice of variable could still be found", "D5 the kernel that survives at f = 1 is still the deposited theory's kernel, i.e. it carries the same a_0 and the a_0-Lambda tie still refers to something that acts", "D6 f = 1 is admissible on the STRICT galaxy criterion too, so the opening does not depend on which of L49's two criteria is used", "D7 the framework's distinctive galaxy-scale predictions survive at the variant that opens the pincer: the deep-MOND BTFR zero point, the bounded-boost ceiling, and a kernel that acts", 'D8 every gate the deposited theory is run against still passes at the exhibited point', 'D9 the cold component remains pressureless dust under this action, so the abundance-matched LambdaCDM halo library used for every number in this lane is self-consistent', "E1 the equivalence-principle cost is confined to the dark sector and is no worse in kind than L50's single between-sector violation", 'E2 the new function is fixed by the theory rather than fitted -- s(f_b) has a derivation and not merely a shape, and the value it must take is set by the action', 'E3 the kernel remains observationally distinguishable at the variant that opens the pincer', "V1 [THE LANE'S QUESTION] the kernel can be suppressed where cold matter dominates in a way that lets the galaxy window reach f = 1 WHILE LEAVING THE GALAXY-SCALE MOND PHENOMENOLOGY INTACT", 'V2 the pincer can be opened while the MOND sector still does MOST of the galaxy-scale dynamical work, on ANY function of ANY variable, environmental or compositional']
+==========================================================================================================================

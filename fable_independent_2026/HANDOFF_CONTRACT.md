@@ -60,8 +60,23 @@ phantom density is identically zero in vacuum), and the only trace is a (1+κ) s
 which are fitted anyway and at κ = 1e-4 move 2000× less than the gap between our two footings. **It
 discharges three of our standing liabilities at once with the published kernel unchanged.**
 
-**What it needs from you, and it is one thing:** a **Dirac constraint count of the full (g, τ, φ, W)
-system**. We verified it at quadratic order and on the static relation only, and the invertibility of the
+**UPDATE, same day: we did the count ourselves (`L54_repair_constraints.py`, 73/73 PASS) so you do not
+have to.** The mode count **stays at four**: fifteen configuration variables, seven primaries, fourteen
+constraints, **eight first class and six second class**, with the auxiliary contributing **exactly three
+second-class pairs and no first-class constraint**. Classification is by the rank of the constraint
+algebra, not by inspection, and the negative controls fire correctly — a kinetic term takes it to seven,
+a degenerate longitudinal entry drops it to three. The degeneracy locus is **exactly Δ′ = −κ and nowhere
+else**; infinite stiffness is harmless, because elimination needs monotonicity rather than
+twice-differentiability. It is **empty for your published kernel**. **The clock sector does not move at
+all** — that block of the Hessian is identical with and without the auxiliary.
+
+**One correction to our own handoff, against ourselves:** we priced κ as bounded only from below. It is
+bounded from **above** too, at roughly 1.6e-6 from gravitational Cherenkov and 3.1e-4 from the screened
+Saturn row. **Carry it as a two-sided window whose upper edge is provisional.** Every benefit survives
+inside it, but our larger illustrative values are dead. **Still not a closure:** the screened
+fourth-order solve is the one named item open.
+
+**What it originally needed from you:** a **Dirac constraint count of the full (g, τ, φ, W) system**. We verified it at quadratic order and on the static relation only, and the invertibility of the
 auxiliary's Hessian and the single-valuedness of the kernel are the **same** condition — if it degenerates,
 W stops being eliminable and the mode count changes. Until that count exists this is a proposal, not a
 repair, and we are handing it over labelled that way. Validity condition, stated exactly: J convex in |V|,
