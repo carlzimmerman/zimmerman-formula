@@ -753,3 +753,44 @@ that produces MOND, and as a **filter** inside an already-MOND term (PAPER4's ξ
   and the DOF result and the elliptic-vs-temporal contrast are worth keeping. Both failures rest on
   two independent legs — linearity, which involves no cosmological number at all, and the dimensional
   uniqueness of c²/a₀ — so they are generic to the class, not artefacts of a filter choice.
+
+## L23 — the Coma UDG liability: the amplitude stands, the 19.4σ does not
+
+`L23_udg_verify.py` + `L23_UDG.md` (23 checks, 0 FAIL — the whole lane is controls and corrections).
+
+`hunt_2026/h9` recorded the largest single-system failure in the programme: eleven Coma ultra-diffuse
+galaxies sitting **+1.195 dex** above the kernel's prediction, "19.4σ". This lane rebuilt it end to end
+from (L, M/L, R_e, σ) — own data reconstruction, own kernel, own NFW, own weighting — and audited it.
+
+- **The offset reproduces exactly** and survives everything: +1.1961 ± 0.0616 canonical (h9: +1.195),
+  +1.1679 alt (h9: +1.166), 11/11 galaxies the same sign. Controls: the same pipeline returns
+  −0.022 dex on ordinary SPARC dwarfs and 1.78e-15 dex on a mock built to the EFE prediction, so it
+  is not a machine that rejects everything.
+- **Two real errors in h9's external field, pointing opposite ways, nearly cancel.** Its NFW virial
+  radius does not follow from its own virial mass (2900 kpc used, 2292 kpc implied — dilutes the
+  profile, weakens the field); and it fed ν the *observed* external acceleration instead of inverting
+  to the Newtonian field the programme's own registered closure x = yν(y) requires (+0.140 dex per
+  galaxy in the framework's favour). Net: **+1.196 → +1.159 dex**. Against expectation, the external
+  field is **not** what decides this row.
+- **The significance does not survive.** 0.062 dex is a statistics-only error on the mean of eleven
+  objects that share one M/L scale, one estimator and one cluster model — every systematic that
+  matters is **coherent across all eleven and does not average down**. The floor is 0.227 dex,
+  dominated by the stellar M/L and IMF at 0.148 dex, which Freundlich et al. 2022 state they did not
+  propagate. **19.4σ → 4.9σ canonical / 4.7σ alt.**
+- **Two escapes tested and refused.** The scatter *is* consistent with the quoted errors
+  (χ²/dof = 1.53), so variance inflation only reaches 15.7σ and is not the route. And no admissible
+  M/L closes it: the EFE-dominated prediction is strictly linear in M/L, so it would need **×14.4**,
+  taking measured SSP values of 0.37–1.48 to 5.3–21.4 solar — no stellar population reaches that.
+  DF44 alone, 33.3 hr of Keck/KCWI, carries +0.938 ± 0.139 dex by itself. Tides were already excluded
+  by a dedicated MOND simulation (Nagesh et al. 2024, A&A 690, A149).
+- **One subsidiary claim withdrawn.** h9's "the offset tracks the external field, so it is the EFE and
+  not scatter" is largely tautological: +0.33 of the measured +0.68 slope is built in, and the
+  non-circular version gives p = 0.42. The diagnostic goes; the offset is unaffected.
+- **A flag worth recording:** the nine MMT/Binospec objects sit 2.2σ above the two Keck ones
+  (+1.242 ± 0.073 vs +0.951 ± 0.116). Not enough to move the verdict, but it is a handle.
+- **The one live escape is not a repair of the theory.** Freundlich et al.'s own reading is that these
+  are out-of-equilibrium first-infall objects; on that hypothesis the row drops to 2.7σ. But even at
+  9 Mpc — four virial radii, the turnaround scale — the EFE still costs +0.635 dex, and the isolated
+  floor of +0.396 dex is not reached at any radius a bound Coma member can occupy.
+- **Read the record as: a ~5σ liability with a factor-14 amplitude.** Still the framework's largest
+  single-system failure. Not a 19.4σ falsification, and not dissolved either.

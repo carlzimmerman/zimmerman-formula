@@ -1,0 +1,245 @@
+
+======================================================================================================================
+0. the carried kernel, verified before it is used anywhere
+======================================================================================================================
+  Delta max = 0.6476 at s = 2.54 (THE_ACTION section 3)
+  [PASS] K1 the saturation point is the maximum of Delta, not an imposed cut   (argmax Delta = 2.540 (declared 2.54); Delta(argmax) = 0.6476 (declared 0.6476))
+  [PASS] K2 below saturation the kernel IS nu_RAR = 1/(1 - exp(-sqrt(y)))   (max |nu - nu_RAR| < 1e-12 over y = 1e-3 to 2.5)
+  [PASS] K3 deep-MOND limit nu -> 1/sqrt(y) and the log-log slope -> -1/2   (nu(1e-8) sqrt(y) = 1.000050; L(1e-8) = -0.49998)
+  [PASS] K4 the closure inversion x = y nu(y) reproduces the programme's own registered value (aqual_efe_full_solve_2026.py: g_ext,obs/a0 = 1.8996 -> y_extN = 1.28903)   (my inverter: y_of_x(1.8996) = 1.28932 vs registered 1.28903 (2.3e-4 apart, the rounding of the published pair: 1.28903 x nu = 1.89917, not 1.89960))
+  the UDG problem lives at y_int ~ 0.004-0.015 and x_ext ~ 0.3-0.9, both far below s_sat = 2.54,
+  so the saturation branch is inert here and nu_RAR and the carried kernel are the same function.
+
+======================================================================================================================
+1. the data, rebuilt from the raw observables (NOT from h9's precomputed columns)
+======================================================================================================================
+  [PASS] D1 my independent reconstruction of g_bar and g_obs from (L, M/L, R_e, sigma) reproduces the published Freundlich+2022 Table 2 columns, so the transcription in the repository is sound and the estimator convention is identified: g_obs = 3 sigma^2/r_1/2, g_bar = G(M_*/2)/r_1/2^2, r_1/2 = 4R_e/3   (max |Delta log g_bar| = 0.0163 dex, max |Delta log g_obs| = 0.0124 dex over 11 galaxies)
+  11 UDGs; sigma 17-37 km/s; R_e 1.4-4.7 kpc; M/L 0.37-1.48
+  internal acceleration y_int = g_bar/a0 (canonical): 0.0041 - 0.0136  -- 1.5 dex below the lowest SPARC point, which is why this test is worth doing
+
+======================================================================================================================
+2. CONTROL A -- the machinery on SPARC, where the framework is known to work
+======================================================================================================================
+  canonical  SPARC all 147 galaxies (3140 points): median residual +0.022 dex, rms 0.176;   dwarfs V_flat < 80 km/s (29 galaxies, 467 points): -0.022 dex, rms 0.180
+  alt        SPARC all 147 galaxies (3140 points): median residual -0.004 dex, rms 0.177;   dwarfs V_flat < 80 km/s (29 galaxies, 467 points): -0.057 dex, rms 0.181
+  [PASS] A1 CONTROL -- the same kernel, the same a0 footings and the same log-residual machinery return AGREEMENT on ordinary SPARC dwarfs.  The pipeline is not a machine that rejects everything   (canonical median residual: SPARC dwarfs -0.022 dex, full sample +0.022 dex -- against the +1.195 dex the UDG row claims)
+
+======================================================================================================================
+3. CONTROL B -- synthetic round-trip: data built to BE the prediction must return zero
+======================================================================================================================
+  [PASS] B1 CONTROL -- a mock sample whose dispersions are exactly the EFE prediction is returned at zero offset by the same pipeline, so the +1.2 dex is not an artefact of the sigma -> acceleration conversion   (max |offset| on the round-trip = 1.78e-15 dex)
+
+======================================================================================================================
+4. CONTROL C -- reproduce h9's +1.195 dex / 19.4 sigma under h9's own stated assumptions
+======================================================================================================================
+  canonical  ISOLATED +0.397 +- 0.062 dex (6.4 sigma);   WITH THE EFE +1.196 +- 0.062 dex (19.4 sigma)
+  alt        ISOLATED +0.357 +- 0.062 dex (5.8 sigma);   WITH THE EFE +1.168 +- 0.062 dex (19.0 sigma)
+  [PASS] C1 CONTROL -- h9's headline reproduced INDEPENDENTLY (my own data reconstruction, my own kernel, my own NFW, my own weighting), so anything that differs later is attributable to a named assumption and not to a re-implementation   (canonical EFE +1.1961 +- 0.0616 = 19.4 sigma (h9: +1.195 +- 0.062 = 19.4 sigma); canonical isolated +0.3965 (h9: +0.396); alt EFE +1.1679 (h9: +1.166))
+  [PASS] C2 all eleven offsets carry the same sign, as recorded   (11/11 positive with the EFE, 11/11 positive isolated)
+  
+  DECOMPOSITION.  the EFE-on offset is the isolated offset plus the suppression the EFE imposes:
+     +1.196 dex  =  +0.397 dex (isolated, kernel vs data)  +  +0.800 dex (the EFE term, log10[nu(y_int)/nu(x_ext)])
+     these are DIFFERENT claims and must be priced separately: the first is a kernel-vs-data statement
+     that Freundlich+2022 read as agreement; the second is the framework's SEP violation.
+
+======================================================================================================================
+5. THE EXTERNAL-FIELD AUDIT -- three separable questions, each answerable yes or no
+======================================================================================================================
+  5a  R200 implied by M200 = 1.3e15 Msun at z = 0.0231: 2292 kpc.  h9 used 2900 kpc.
+  [PASS] E1 h9's NFW is NOT self-consistent: the virial radius it uses does not follow from the virial mass it uses.  The direction is stated: too large an R200 at fixed M200 and c DILUTES the profile, so this error made the external field WEAKER and the deficit SMALLER than h9's own model implies   (self-consistent R200 = 2292 kpc vs the 2900 kpc used -- 26% too large; g_ext at 1.13 Mpc: 0.665 a0 (h9) vs 0.840 a0 (self-consistent))
+  
+  5b  THE nu ARGUMENT.  In the framework's field equation nu acts on the NEWTONIAN field of the real
+      matter, not on the field that is observed: the programme's own registered convention is the
+      closure inversion x = y nu(y) (aqual_efe_full_solve_2026.py, PROVENANCE block: g_ext,obs/a0 =
+      1.8996 -> y_extN = 1.28903).  h9 took the acceleration implied by Coma's weak-lensing mass -- an
+      OBSERVED field -- and fed it to nu directly.  That is one closure inversion short.
+      at the sample's median field: h9 uses nu(0.660) = 1.798; the registered convention gives y_extN = 0.266 and nu = 2.481 (+0.140 dex)
+  [PASS] E2 the EFE was NOT applied by the programme's own registered convention: h9 used the OBSERVED external acceleration as the argument of nu instead of inverting it to the Newtonian field first.  The direction is stated: this OVERSTATES the suppression and therefore OVERSTATES the deficit   (nu(x_obs) = 1.7976 vs nu(y_extN) = 2.4814, a +0.1400 dex error per galaxy in the framework's favour)
+  
+  5c  THE ORIENTATION AVERAGE.  f01_efe_sphere_average.py established (numerical quadrature, no
+      expansion) that an ISOTROPIC velocity dispersion measures nu(1 + L/3), not nu.  Reproduced here
+      independently on the carried kernel:
+        x_e =  0.01:  numerical <S_r>/h =   8.8431   nu(1+L/3) =   8.8431   nu =  10.5083   nu(1+L) =   5.5125
+        x_e =  0.10:  numerical <S_r>/h =   3.1659   nu(1+L/3) =   3.1659   nu =   3.6886   nu(1+L) =   2.1206
+        x_e =  0.30:  numerical <S_r>/h =   2.0744   nu(1+L/3) =   2.0744   nu =   2.3712   nu(1+L) =   1.4808
+        x_e =  0.66:  numerical <S_r>/h =   1.6037   nu(1+L/3) =   1.6037   nu =   1.7979   nu(1+L) =   1.2152
+        x_e =  1.00:  numerical <S_r>/h =   1.4285   nu(1+L/3) =   1.4285   nu =   1.5820   nu(1+L) =   1.1216
+  [PASS] E3 the isotropic sphere-averaged EFE coupling is nu(1 + L/3), reproduced independently.  h9 used the bare nu, which is the LARGEST eigenvalue -- so on THIS axis h9 was generous to the framework and the correct treatment makes the deficit WORSE, not better   (max |numerical/nu(1+L/3) - 1| = 4.85e-09 across x_e = 0.01-1.0; at the sample median the correct coupling is -0.059 dex below the bare nu)
+
+======================================================================================================================
+6. THE COMA MASS MODEL AND THE 3-D POSITION -- the two inputs h9 had to guess
+======================================================================================================================
+  [PASS] F0 my beta-model reproduces Freundlich+2022's own Coma model: their MOND (Newtonian-equivalent) mass converges to 5.6e14 Msun at large radius   (M_N(4 Mpc) from the beta-model + closure inversion = 5.46e+14 Msun (published asymptote 5.6e14))
+  model                                           g_ext/a0 at 0.87 Mpc   at 1.13 Mpc   at 2.34 Mpc
+  h9 NFW, R200 = 2900 kpc (as used)                              0.846         0.665         0.301
+  NFW, self-consistent R200 = 2292 kpc                           1.094         0.840         0.360
+  Freundlich+2022 X-ray beta-model                               1.059         0.845         0.427
+  
+  the 3-D position.  h9 (following Freundlich+2022) used the MEAN 3-D distance from the van der Burg+2016
+  Einasto radial distribution.  The projected distance is the MINIMUM possible 3-D distance and gives the
+  STRONGEST field; a UDG on first infall sits near turnaround and gives the WEAKEST.  All three are run.
+
+======================================================================================================================
+7. THE CORRECTED EXTERNAL-FIELD CALCULATION, both footings, every arm
+======================================================================================================================
+  a0         Coma model                               position     nu arg     coupling   isolated    EFE-on
+  canonical  h9 NFW, R200 = 2900 kpc (as used)        projected    observed   bare         +0.396    +1.270
+  canonical  h9 NFW, R200 = 2900 kpc (as used)        projected    newtonian  sphere       +0.396    +1.213
+  canonical  h9 NFW, R200 = 2900 kpc (as used)        Einasto 3D   observed   bare         +0.396    +1.198
+  canonical  h9 NFW, R200 = 2900 kpc (as used)        Einasto 3D   newtonian  sphere       +0.396    +1.089
+  canonical  NFW, self-consistent R200 = 2292 kpc     projected    observed   bare         +0.396    +1.302
+  canonical  NFW, self-consistent R200 = 2292 kpc     projected    newtonian  sphere       +0.396    +1.264
+  canonical  NFW, self-consistent R200 = 2292 kpc     Einasto 3D   observed   bare         +0.396    +1.229
+  canonical  NFW, self-consistent R200 = 2292 kpc     Einasto 3D   newtonian  sphere       +0.396    +1.144
+  canonical  Freundlich+2022 X-ray beta-model         projected    observed   bare         +0.396    +1.292
+  canonical  Freundlich+2022 X-ray beta-model         projected    newtonian  sphere       +0.396    +1.252
+  canonical  Freundlich+2022 X-ray beta-model         Einasto 3D   observed   bare         +0.396    +1.237
+  canonical  Freundlich+2022 X-ray beta-model         Einasto 3D   newtonian  sphere       +0.396    +1.159
+  alt        h9 NFW, R200 = 2900 kpc (as used)        projected    observed   bare         +0.358    +1.246
+  alt        h9 NFW, R200 = 2900 kpc (as used)        projected    newtonian  sphere       +0.358    +1.171
+  alt        h9 NFW, R200 = 2900 kpc (as used)        Einasto 3D   observed   bare         +0.358    +1.170
+  alt        h9 NFW, R200 = 2900 kpc (as used)        Einasto 3D   newtonian  sphere       +0.358    +1.037
+  alt        NFW, self-consistent R200 = 2292 kpc     projected    observed   bare         +0.358    +1.280
+  alt        NFW, self-consistent R200 = 2292 kpc     projected    newtonian  sphere       +0.358    +1.228
+  alt        NFW, self-consistent R200 = 2292 kpc     Einasto 3D   observed   bare         +0.358    +1.202
+  alt        NFW, self-consistent R200 = 2292 kpc     Einasto 3D   newtonian  sphere       +0.358    +1.096
+  alt        Freundlich+2022 X-ray beta-model         projected    observed   bare         +0.358    +1.269
+  alt        Freundlich+2022 X-ray beta-model         projected    newtonian  sphere       +0.358    +1.213
+  alt        Freundlich+2022 X-ray beta-model         Einasto 3D   observed   bare         +0.358    +1.211
+  alt        Freundlich+2022 X-ray beta-model         Einasto 3D   newtonian  sphere       +0.358    +1.112
+  
+  canonical, registered nu argument + isotropic coupling, over all mass models x positions: +1.089 to +1.264 dex
+  [PASS] E4 the two errors in h9's external-field treatment point in OPPOSITE directions and very nearly cancel, so the external field is NOT what decides this result.  This is reported against the expectation that it would be   (h9 +1.196 dex -> corrected +1.159 dex (canonical, beta-model, Einasto 3-D), a net move of only -0.037 dex; alt footing +1.112)
+
+======================================================================================================================
+8. can the 3-D position dissolve the EFE?  the first-infall escape, computed
+======================================================================================================================
+  Nagesh+2024 (A&A 690, A149), simulating exactly these objects in MOND with Phantom of Ramses, found
+  that cluster tides CANNOT raise the dispersions to the observed values for UDGs in equilibrium, and
+  that the surviving MOND option is a first radial infall -- the dispersion then reflects the far weaker
+  external field near turnaround, not the field at the instantaneous position.  Priced here.
+    assumed 3-D radius   g_ext/a0    y_extN  nu(1+L/3)|ext   EFE offset
+                0.9 Mpc      1.059    0.5570          1.688       +1.258
+                1.5 Mpc      0.653    0.2612          2.180       +1.148
+                2.3 Mpc      0.427    0.1289          2.856       +1.035
+                4.0 Mpc      0.252    0.0509          4.217       +0.876
+                6.0 Mpc      0.168    0.0243          5.861       +0.751
+                9.0 Mpc      0.112    0.0114          8.328       +0.635
+               15.0 Mpc      0.067    0.0043         13.266       +0.520
+  [PASS] E5 the external field CANNOT be made to go away for a bound Coma member.  Even at 9 Mpc -- about four virial radii, i.e. the turnaround scale, which is the most generous first-infall geometry -- the EFE still costs the framework a real offset, and the isolated limit is not reached at any radius a Coma member can occupy   (EFE offset at 9 Mpc = +0.635 dex vs the isolated floor +0.396 dex; the equilibrium arm is +1.159 dex)
+
+======================================================================================================================
+9. THE SYSTEMATIC BUDGET -- every entry computed by re-running the pipeline
+======================================================================================================================
+  9a  M/L x 2 (Salpeter-like IMF)        -> EFE offset +0.861 dex
+  9a  M/L x 0.5                          -> EFE offset +1.459 dex
+  9a  M/L x 1.5                          -> EFE offset +0.985 dex
+  
+  9b  the sigma -> acceleration estimator: Wolf+2010 point estimate vs the exact deep-MOND virial
+      relation sigma^4 = (4/81) G M_b a0 (Milgrom 1994), on the ISOLATED prediction:
+        galaxy                  sigma_obs  Wolf-route pred  virial pred  ratio (dex in g)
+        DF44                         33.0             23.3         22.1            +0.044
+        DFX1                         30.0             20.8         19.7            +0.045
+        J125848.94+281037.1          18.0             14.0         13.2            +0.046
+        J125904.06+281422.4          25.0             14.9         14.1            +0.051
+        J125904.20+281507.7          17.0             14.9         14.1            +0.048
+        J125929.89+274303.0          21.0             17.9         17.0            +0.043
+        J125937.23+274815.2          22.0             14.5         13.7            +0.044
+        J130005.40+275333.0          37.0             14.6         13.8            +0.045
+        J130026.26+272735.2          19.0             17.7         16.9            +0.039
+        J130028.34+274820.5          23.0             14.3         13.6            +0.041
+        J130038.63+272835.3          27.0             14.7         13.9            +0.044
+      the two conventions differ by +0.045 +- 0.003 dex -- SMALL, so the estimator convention is not an escape.
+      what is NOT captured by either is the aperture/anisotropy correction: sigma_eff is measured inside
+      R_e while Wolf's derivation wants the global luminosity-weighted value, and Freundlich+2022 note
+      that radial anisotropy (beta = +0.5) improves their profile fits.  Both raise sigma_eff above the
+      global value, i.e. inflate g_obs.  Carried as 0.12 dex (a 15% coherent error in sigma).
+  
+  9c  Chilingarian+2019 measured sigma = 17-37 km/s at R ~ 4800, i.e. an instrumental sigma_inst = 26.5 km/s, at S/N 4-5 per pixel.  A 5% error in sigma_inst propagates as
+        d(sigma)/sigma = (sigma_inst/sigma)^2 x 0.05 :
+        J125848.94+281037.1    sigma =   18 km/s ->  10.9% in sigma = 0.094 dex in g_obs
+        J125904.06+281422.4    sigma =   25 km/s ->   5.6% in sigma = 0.049 dex in g_obs
+        J125904.20+281507.7    sigma =   17 km/s ->  12.2% in sigma = 0.106 dex in g_obs
+        J125929.89+274303.0    sigma =   21 km/s ->   8.0% in sigma = 0.069 dex in g_obs
+        J125937.23+274815.2    sigma =   22 km/s ->   7.3% in sigma = 0.063 dex in g_obs
+        J130005.40+275333.0    sigma =   37 km/s ->   2.6% in sigma = 0.022 dex in g_obs
+        J130026.26+272735.2    sigma =   19 km/s ->   9.7% in sigma = 0.085 dex in g_obs
+        J130028.34+274820.5    sigma =   23 km/s ->   6.6% in sigma = 0.058 dex in g_obs
+        J130038.63+272835.3    sigma =   27 km/s ->   4.8% in sigma = 0.042 dex in g_obs
+  
+  systematic                                                    1 sigma (dex)
+  stellar M/L and IMF (unpropagated by the source paper)                0.148
+  aperture + orbital anisotropy on sigma_eff                            0.120
+  Coma mass model + 3-D position (equilibrium arms)                     0.088
+  velocity-dispersion instrumental systematic (9 of 11)                 0.052
+  sigma -> acceleration estimator (Wolf point vs MOND virial)           0.047
+  a0 footing (canonical vs alt)                                         0.047
+  distance to Coma (+-5%)                                               0.021
+  quadrature sum of systematics                                         0.227
+  statistical (inverse-variance, as h9 quoted it)                       0.062
+  [PASS] S1 the 0.062 dex error bar that produced '19.4 sigma' is a STATISTICS-ONLY error on the mean.  Every systematic in the budget above is COHERENT across all eleven galaxies -- the same M/L scale, the same estimator, the same cluster model -- so none of them averages down with N, and the error on the mean cannot fall below their quadrature sum   (systematic floor 0.227 dex vs the quoted 0.062 dex, a factor 3.7; largest single entry: stellar M/L and IMF (unpropagated by the source paper) at 0.148 dex)
+
+======================================================================================================================
+10. THE STATISTICS AUDIT -- two further things the 19.4 sigma assumed
+======================================================================================================================
+  10a chi2 of the eleven EFE offsets about their weighted mean = 15.30 for 10 dof (chi2/dof = 1.53)
+  [PASS] S2 AGAINST THE ESCAPE -- the scatter of the eleven offsets IS consistent with the quoted measurement errors, so there is no unmodelled excess scatter and the STATISTICAL part of h9's error bar is not understated.  The 19.4 sigma does not fall to a variance-inflation argument   (chi2/dof = 1.53; inflating the error by sqrt(chi2/dof) would give 15.7 sigma, still large)
+  
+  10b h9's diagnostic: d log(g_obs/g_EFE)/d log x_ext = +0.68, read as proof that the EFE is the cause.  But the EFE term is BY CONSTRUCTION a decreasing function of x_ext with slope -L = +0.33,
+      so 49% of that diagnostic is arithmetic, not data.  The non-tautological test is the slope of the ISOLATED offset on x_ext: +0.41 (permutation p = 0.42, 4000 shuffles).
+  [PASS] S3 h9's 'the offset tracks the external field, so it is the EFE and not scatter' diagnostic is largely tautological, and the residual, non-circular version is not significant.  The claim must be withdrawn as evidence; the offset itself is unaffected   (built-in slope +0.33 of a measured +0.68; isolated-offset slope +0.41 at p = 0.42)
+  
+  subsample                                              N  EFE offset (corrected)  stat sigma
+  DF44 alone (Keck/KCWI, 33.3 hr; van Dokkum+2019)       1                  +0.938         6.7
+  van Dokkum objects only (DF44 + DFX1)                  2                  +0.951         8.2
+  Chilingarian+2019 nine (MMT/Binospec)                  9                  +1.242        17.1
+  all eleven                                            11                  +1.159        18.8
+  [PASS] S4 AGAINST THE ESCAPE -- a dispersion-measurement systematic does NOT explain this row.  DF44 alone -- 33.3 hr of Keck/KCWI, the best-measured ultra-diffuse galaxy in existence, with no Binospec resolution issue -- carries a large deficit on its own.  Reported the other way too: the nine MMT objects DO sit higher than the two Keck ones, by 2.2 sigma, which is a flag on the Chilingarian dispersions worth recording but not enough to move the verdict   (DF44 alone +0.938 +- 0.139; van Dokkum pair +0.951 +- 0.116; Chilingarian nine +1.242 +- 0.073; difference -0.291 +- 0.137 dex)
+
+======================================================================================================================
+11. THE RECOMPUTED SIGNIFICANCE
+======================================================================================================================
+  the EFE term's own systematic budget (g_obs cancels): M/L 0.070, mass model + position 0.088, a0 footing 0.009 dex -> 0.112 dex
+  arm                                                                 offset    sigma
+  h9 as recorded (statistics only, no systematic floor)               +1.196     19.4
+  corrected EFE, equilibrium at the Einasto mean 3-D radius, canonical    +1.159      4.9
+  corrected EFE, equilibrium, alt footing                             +1.112      4.7
+  corrected EFE, first infall at 9 Mpc (Nagesh+2024 resolution)       +0.635      2.7
+  the EFE term alone (isolated offset treated as a common nuisance)    +0.763      6.0
+  
+  in physical units the equilibrium arm is a factor 14.4 in acceleration and 3.8 in velocity dispersion;
+  the first-infall arm is a factor 4.3 and 2.1.
+  [PASS] V1 the recorded significance does NOT survive.  '19.4 sigma' is an inverse-variance error on the mean of eleven galaxies computed as if the eleven were statistically independent, when every systematic that matters is common to all eleven.  With the systematic floor included the same data on the same assumptions give a far smaller number   (19.4 sigma -> 4.9 sigma (canonical) / 4.7 sigma (alt), a factor 3.9 reduction; dominant systematic: stellar M/L and IMF (unpropagated by the source paper) (0.148 dex))
+  [PASS] V1b no admissible stellar mass-to-light ratio closes it.  In the EFE-dominated regime the prediction is strictly linear in M/L, so closing the offset needs every one of the eleven M/L values multiplied by the full factor -- taking the Chilingarian SSP values, which were measured from the spectra and not fitted to the dynamics, into a range no stellar population reaches   (required M/L multiplier = 14.4x, taking M/L from 0.37-1.48 to 5.3-21.4 in solar units)
+  [PASS] V2 AGAINST THE FRAMEWORK -- the OFFSET, as distinct from its significance, survives everything.  The external-field treatment was very nearly right (two errors of opposite sign), the estimator convention is not an escape, the best-measured object carries it alone, tides are excluded by a dedicated MOND simulation (Nagesh+2024), and no systematic in the budget is within a factor of five of closing it   (corrected offset +1.159 / +1.112 dex = a factor 14.4 in acceleration, against a total error of 0.235 dex)
+  [PASS] V3 the LIABILITY STANDS but the HEADLINE FALLS.  Recorded as '19.4 sigma', it is a 5-6 sigma result on the equilibrium hypothesis and about 3 sigma on the first-infall hypothesis that the field's own MOND simulations endorse.  Both the record's number and any claim that the row is dissolved would be wrong   (equilibrium 4.9 sigma, first infall 2.7 sigma, EFE term alone 6.0 sigma)
+
+======================================================================================================================
+VERDICT
+======================================================================================================================
+  REPRODUCED.  h9's +1.195 +- 0.062 dex = 19.4 sigma is reproduced exactly from an independent
+  rebuild of the data and the kernel (+1.1961 +- 0.0616), so the arithmetic on its own terms is sound.
+
+  THE EXTERNAL FIELD WAS NOT THE CRUX, contrary to expectation.  h9 made two real errors -- an NFW
+  virial radius inconsistent with its own virial mass (weakening the field), and feeding nu the
+  OBSERVED external acceleration instead of inverting it to the Newtonian field as the programme's
+  own registered closure requires (strengthening it).  They very nearly cancel: the corrected,
+  isotropically averaged, beta-model calculation gives +1.159 dex canonical / +1.112 dex alt.
+  Nor can the 3-D position dissolve it: at four virial radii, the most generous geometry a Coma
+  member can have, the EFE still costs +0.635 dex.
+
+  WHAT FALLS IS THE SIGMA, AND IT FALLS HARD.  0.062 dex is a statistics-only error on the mean of
+  eleven galaxies that share one M/L scale, one dispersion-to-acceleration estimator, one cluster
+  model and one deprojection.  Those systematics do not average down.  Their quadrature sum is
+  0.227 dex, 4x the quoted error, dominated by stellar M/L and IMF (unpropagated by the source paper).
+  Significance: 19.4 sigma -> 4.9 sigma (equilibrium) or 2.7 sigma (first infall).
+
+  WHAT SURVIVES.  A factor 14 in acceleration, 3.8 in velocity dispersion, all eleven
+  galaxies the same sign, carried on its own by DF44 -- 33.3 hr of Keck/KCWI, the best-measured
+  ultra-diffuse galaxy that exists.  Tides are excluded as the cause by a dedicated MOND simulation
+  (Nagesh+2024).  The escape the literature leaves open is that these are out-of-equilibrium
+  first-infall objects, which is a hypothesis about the sample, not a repair of the theory.
+
+  THE RECORD SHOULD READ: a 5 sigma liability with a factor-14 amplitude, not a 19.4 sigma kill.
+
+RESULT: 0 FAIL   rc=0
