@@ -154,6 +154,83 @@ so minimally coupled scalar matter is conserved on its own equations of
 motion.  This establishes the matter Ward gate for \(S_m[g,\psi]\); it does
 not repair the unresolved covariance of the gravitational relay.
 
+## Covariant clock/Stueckelberg principal-symbol gate
+
+The natural covariant completion of the ADM acceleration is obtained from a
+unit clock (T),
+
+\[
+X=g^{\mu\nu}\nabla_\mu T\nabla_\nu T,\qquad
+n_\mu=-\frac{\nabla_\mu T}{\sqrt{-X}},\qquad
+a_\mu=n^\nu\nabla_\nu n_\mu,
+\]
+
+and the same exponential constitutive function of (a^2).  In unitary gauge
+\(T=t\), (a_i=D_i\ln N), so this is the covariant route that could in
+principle replace the raw ADM (D_i u\) term.
+
+The executable `covariant_clock_principal_gate.py` expands (T=t+\pi) on a
+locally flat background.  At highest derivative order
+
+\[
+\delta a_i=-\partial_i\partial_t\pi,
+\]
+
+and the exact constitutive Jacobian has
+
+\[
+\lambda_\perp=1-e^{-y},\qquad
+\lambda_\parallel=1+(y-1)e^{-y}.
+\]
+
+Consequently the clock principal polynomial is
+
+\[
+P=\omega^2\bigl[\lambda_\parallel k_x^2
+ +\lambda_\perp(k_y^2+k_z^2)\bigr],
+\]
+
+with no (\omega^0 k^2) term.  The computed sound-speed numerator is exactly
+zero, while
+
+\[
+\lambda_\perp^2\lambda_\parallel\to0\quad(y\to0^+),
+\qquad
+\lambda_\perp/y\to1,\quad\lambda_\parallel/y\to2.
+\]
+
+Thus acceleration-only covariantization does not yet close the theory: it
+produces a zero-speed/strong-coupling clock principal sector and loses
+ellipticity at the exact MOND origin.  Adding a clock-gradient operator can
+repair this symbol only by introducing an explicitly propagating clock scalar;
+that operator must then be included in the full PPN, Ward, FLRW, and Dirac
+analysis.  The gate is therefore an obstruction to the simplest covariant
+completion, not a claim that every possible clock completion is impossible.
+
+## Healthy clock-gradient repair branch
+
+The executable `clock_gradient_repair_gate.py` adds the explicit clock sector
+
+\[
+K(X)=-A\sqrt{1-X^2/L^2},
+\qquad K_X>0,
+\qquad \Sigma=K_X+2XK_{XX}>0.
+\]
+
+The combined scalar principal polynomial becomes
+
+\[
+P=(\Sigma+\lambda_\parallel k_x^2
+ +\lambda_\perp(k_y^2+k_z^2))\omega^2-K_X|\mathbf k|^2.
+\]
+
+The actual scan over (X\in(10^{-3},0.95)), (y\in[10^{-8},8]), wave
+number and angle finds positive frequency coefficient and (0<c_s^2<1)
+everywhere tested.  This is a constructive repair of the zero-speed gate,
+but it is not hidden: the scalar is explicitly propagating and must be
+counted separately from the two tensor modes.  Its metric mixing and preferred
+frame parameters remain open calculations.
+
 ## Exact obstruction still open
 
 The candidate has not yet passed the full nonlinear hypersurface-deformation
@@ -163,3 +240,13 @@ covariance or the matter Ward identity \(\nabla_\mu T^{\mu\nu}=0\).  PPN
 control near \(Y=0\), and the complete tensor/vector/scalar principal symbol
 are also uncomputed.  The scientifically defensible label is therefore
 `OPEN`, despite the finite gates above.
+
+## Lean witnesses
+
+`RMMGCore.lean` kernel-checks the integer determinant/rank-jump arithmetic and
+the conditional ADM count without axioms beyond Lean's imported core.  The
+minimal-Mathlib `RMMGFormal.lean` independently evaluates the explicit local
+four-by-four bracket determinant and the homogeneous zero determinant; it is
+compiled by `run_lean_formal.py` with exit status 0.  These are formal
+witnesses for the computed finite gates, not a formalization of the unresolved
+nonlinear field theory.

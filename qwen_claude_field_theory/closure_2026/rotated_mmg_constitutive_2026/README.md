@@ -27,9 +27,14 @@ python3 -B spatial_diffeo_gate.py
 python3 -B -m unittest -v test_spatial_diffeo_gate.py
 python3 -B matter_ward_gate.py
 python3 -B -m unittest -v test_matter_ward_gate.py
+python3 -B covariant_clock_principal_gate.py
+python3 -B -m unittest -v test_covariant_clock_principal_gate.py
+python3 -B clock_gradient_repair_gate.py
+python3 -B -m unittest -v test_clock_gradient_repair_gate.py
 python3 -B sparc_exact_exponential_fit.py
 python3 -B -m unittest -v test_sparc_exact_exponential_fit.py
 python3 -B run_lean_core.py
+python3 -B run_lean_formal.py
 ```
 
 The result is intentionally marked `OPEN`: the local constitutive/slip gate,
@@ -41,3 +46,31 @@ still have to be derived from this same action.
 The spherical script derives the first finite-acceleration correction to the
 flat deep-MOND speed, \(v^2=\sqrt{G_bMa_0}+G_bM/(4r)+\cdots\), directly from
 the exact exponential law.
+
+The covariant-clock gate tests the natural Stückelberg completion
+
+\[
+n_\mu=-\nabla_\mu T/\sqrt{-X},\quad X=g^{\mu\nu}\nabla_\mu T\nabla_\nu T,
+\quad a_\mu=n^\nu\nabla_\nu n_\mu,
+\]
+
+with an acceleration constitutive term (G(c^2\sqrt{a^2}/a_0)).  For
+\(T=t+\pi\), its principal symbol is
+
+\[
+P(\omega,\mathbf k)=\omega^2[\lambda_\parallel k_x^2
+ +\lambda_\perp(k_y^2+k_z^2)],
+\]
+
+so the acceleration-only clock has no \(\omega^0 k^2\) term (zero sound
+speed) and its ellipticity determinant vanishes at \(y=0\).  This is a
+reproducible obstruction to calling the covariant completion healthy without
+either an additional clock-gradient operator or a demonstrated second-class
+gauge removal.
+
+The companion `clock_gradient_repair_gate.py` tests the minimal explicit
+k-essence repair (K(X)=-A\sqrt{1-X^2/L^2}).  It makes the combined scalar
+symbol positive and subluminal on a finite ((X,y,k,\theta)) scan, including
+the (y\to0) limit, but records the resulting clock as one explicitly
+propagating scalar.  This keeps the branch scientifically live while making
+the required DOF accounting explicit.

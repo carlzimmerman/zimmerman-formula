@@ -121,3 +121,67 @@ the nonlinear hypersurface-deformation algebra, the ordinary-matter Ward
 identity, boosted PPN \(\beta,\alpha_1,\alpha_2,\alpha_3\), full FLRW perturbation
 stability, or a controlled \(y\to0\) completion.  The candidate is therefore
 `OPEN`, not closed; these are the next unavoidable calculations.
+
+## Covariant branch now under test
+
+The direct route around the time-diffeomorphism residual is to replace the
+raw ADM gradient by a clock/Stueckelberg acceleration in the same action:
+
+\[
+S_{\rm cov}=\int d^4x\sqrt{-g}\left[
+ \frac{c^3}{16\pi G_b}(R-2\Lambda)
+ -\frac{c^3a_0^2}{8\pi G_b}
+ G\!\left(\frac{c^2\sqrt{a_\mu a^\mu}}{a_0}\right)
+ +M^4K(X)\right]+S_m[g,\psi],
+\]
+
+\[
+X=g^{\mu\nu}\nabla_\mu T\nabla_\nu T<0,\qquad
+n_\mu=-\frac{\nabla_\mu T}{\sqrt{-X}},\qquad
+a_\mu=n^\nu\nabla_\nu n_\mu.
+\]
+
+In unitary gauge (T=t), (a_i=D_i\ln N); the static variation therefore
+reduces to the exponential constitutive flux already derived above.  The
+clock equation is obtained by varying (T), and the metric equation by
+varying (g^{\mu\nu}); neither is imposed phenomenologically.  The principal
+symbol gates show that the acceleration term alone has zero clock sound speed,
+while adding (K(X)=-A\sqrt{1-X^2/L^2}) repairs the clock symbol on a finite
+scan at the price of one explicitly propagating clock scalar.  A full
+variation including metric/clock mixing, nonlinear constraint algebra, PPN,
+FLRW and the Ward identity is still required before this branch can be called
+a complete theory.
+
+For a fixed metric, the clock variation can already be written explicitly.
+Let (s=\sqrt{-X}), (P_\mu{}^\nu=\delta_\mu{}^\nu+n_\mu n^\nu),
+(F(a^2)=-(c^3a_0^2/8\pi G_b)G(c^2\sqrt{a^2}/a_0)), and
+(A^\mu=2F_{a^2}a^\mu).  Since
+
+\[
+\delta n_\mu=-s^{-1}P_\mu{}^\rho\nabla_\rho\delta T,
+\qquad
+\delta a_\mu=\delta n^\nu\nabla_\nu n_\mu+n^\nu\nabla_\nu\delta n_\mu,
+\]
+
+integration by parts gives the actual (T)-Euler equation
+
+\[
+\nabla_\rho\!\left(\frac{P_\mu{}^\rho}{s}
+ [A^\alpha\nabla^\mu n_\alpha-\nabla_\nu(A^\mu n^\nu)]\right)
+ -2M^4\nabla_\mu(K_X\nabla^\mu T)=0.
+\]
+
+The last term is the explicit k-essence clock equation.  The metric equation
+has the exact variational form
+
+\[
+G_{\mu\nu}+\Lambda g_{\mu\nu}
+ =\frac{8\pi G_b}{c^4}\bigl(T^{m}_{\mu\nu}+T^{K}_{\mu\nu}+T^{a}_{\mu\nu}\bigr),
+\quad
+T^{a}_{\mu\nu}=-\frac{2}{\sqrt{-g}}\frac{\delta S_a}{\delta g^{\mu\nu}},
+\]
+
+where the unresolved calculation is to expand (T^a_{\mu\nu}) and its
+constraint algebra.  The static weak-field variation is already fully
+expanded in `rmmg_constitutive_action.py`; the covariant metric variation,
+boosted PPN and FLRW reduction are deliberately not claimed closed.
