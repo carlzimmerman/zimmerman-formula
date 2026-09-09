@@ -9,6 +9,7 @@ from york_variation_gate import york_variation_gate
 from curved_york_variation_gate import curved_york_variation_gate
 from curved_localizer_dirac import curved_localizer_dirac_gate
 from physical_causality_gate import physical_causality_gate
+from retarded_carrier_pincer import retarded_carrier_pincer
 from flrw_ward_gate import flrw_ward_gate
 
 
@@ -98,6 +99,11 @@ class LocalizedV4ContractTests(unittest.TestCase):
         checks = result["checks"]
         self.assertTrue(all(checks.values()))
         self.assertIn("FAILS_STRICT_CAUSAL_GATE", result["status"])
+
+    def test_retarded_carrier_pincer_is_derived(self):
+        result = retarded_carrier_pincer()
+        self.assertTrue(all(result["checks"].values()))
+        self.assertIn("PINCER", result["status"])
 
 
 if __name__ == "__main__":

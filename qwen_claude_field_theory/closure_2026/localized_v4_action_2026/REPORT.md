@@ -131,6 +131,26 @@ no-instantaneous-physical-channel gate, even though its auxiliary Dirac block
 is clean.  Accepting preferred-foliation instantaneity would be a different
 target, not a pass of the stated one.
 
+The follow-up `retarded_carrier_pincer.py` tests the cheapest local rescue
+without assuming that a time derivative can be added for free.  Replacing the
+elliptic carrier symbol by
+
+\[
+P(\omega,k)=-\epsilon\omega^2+
+\lambda_\parallel k_\parallel^2+\lambda_\perp k_\perp^2
+\]
+
+preserves the exact static exponential MOND symbol for every \(\epsilon\), but
+the velocity Hessian has derived rank 0 at \(\epsilon=0\), rank 1 with a
+positive kinetic sign at \(\epsilon>0\), and rank 1 with the wrong sign at
+\(\epsilon<0\).  Thus the local retarded repair is a pincer: zero epsilon
+retains the physical instantaneous channel, positive epsilon introduces one
+propagating scalar carrier, and negative epsilon is a ghost.  This is a
+principal-symbol result, not yet a full covariant no-go: a positive branch
+would have to be promoted to an explicitly counted clock/matter sector and
+survive the complete lapse/shift Dirac algebra, PPN, Ward, FLRW, and nonlinear
+stability calculations.
+
 ## Requirement audit
 
 | Requirement | Current status |
@@ -148,7 +168,7 @@ target, not a pass of the stated one.
 | empirical galaxy/cluster/cosmology fit | Not performed by this checkpoint |
 | Lean proof | Lean unavailable; exact identities exported as JSON |
 
-The reproducibility record is `run_010/manifest.json`; it pins the local
+The reproducibility record is `run_012/manifest.json`; it pins the local
 modules and the two prior V3 dependency files used by the causal gate.
 
 The follow-up `flrw_ward_gate.py` independently varies the lapse before the
@@ -163,7 +183,7 @@ leaf, and verifies symbolically that the minimally coupled continuity equation
 (\dot\rho=-3H(\rho+p)) differentiates the Friedmann residual into the
 acceleration residual.  This is a background Ward/FLRW result, not a
 perturbation or nonlinear constraint proof.  The latest run is
-`run_010/manifest.json`.
+`run_012/manifest.json`.
 
 ## Verdict
 
@@ -176,3 +196,11 @@ and could only stay OPEN by explicitly accepting preferred-foliation
 instantaneity or by replacing the elliptic physical MOND carrier with a
 retarded sector (which must then be re-counted for extra DOF).  Neither is a
 pass of the stated target.
+
+The retarded-carrier pincer does not reopen this specific candidate: its
+zero-kinetic endpoint is the already-failed elliptic branch, its positive
+endpoint changes the DOF content, and its negative endpoint is a ghost.  The
+global research program remains OPEN because this only bounds one local
+second-order repair family; a genuinely nonlocal retarded action or an
+independently healthy physical clock would require a fresh full covariant
+constraint and characteristic analysis.
