@@ -9,6 +9,11 @@ different from the IC49/IC50 action; their successes cannot be combined.
 
 ## Static action gate
 
+Subsequent correction: `USER_ACTION_CONNECTION.md` shows that connection
+terms contribute at quadratic order about a fixed nonzero scalar gradient.
+The following truncation does not justify zero slip or the full physical
+response on that background. Its algebraic variation remains reproducible.
+
 For a static clock at rest and Q0=0, a leading planar weak-field reduction,
 with ca=c1+c4 and b=2-K_B in the submitted normalization, is
 

@@ -1,5 +1,11 @@
 # Physical-response gate for the submitted action
 
+**Scope correction:** `USER_ACTION_CONNECTION.md` computes omitted spatial
+connection terms on the nonzero-gradient background. Consequently this
+response is only that of the displayed truncated density, not a demonstrated
+response or no-go for the covariant submitted action. In particular its
+zero-slip elimination must be re-derived from the complete quadratic action.
+
 Status: conditional obstruction in the previously declared planar static
 weak-field reduction; not a universal no-go or a complete covariant audit.
 
