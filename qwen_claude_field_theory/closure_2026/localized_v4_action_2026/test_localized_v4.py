@@ -8,6 +8,7 @@ from causal_response_gate import causal_response_gate
 from york_variation_gate import york_variation_gate
 from curved_york_variation_gate import curved_york_variation_gate
 from curved_localizer_dirac import curved_localizer_dirac_gate
+from physical_causality_gate import physical_causality_gate
 from flrw_ward_gate import flrw_ward_gate
 
 
@@ -91,6 +92,12 @@ class LocalizedV4ContractTests(unittest.TestCase):
                 tuple(sector["poisson_matrix_shape"]),
                 (sector["independent_constraint_count"],) * 2,
             )
+
+    def test_exponential_physical_channel_is_separated_from_gr_control(self):
+        result = physical_causality_gate()
+        checks = result["checks"]
+        self.assertTrue(all(checks.values()))
+        self.assertIn("FAILS_STRICT_CAUSAL_GATE", result["status"])
 
 
 if __name__ == "__main__":

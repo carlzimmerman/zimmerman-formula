@@ -109,6 +109,28 @@ tertiary constraints in either branch.  This is the first actual all-Q/all-
 multiplier Dirac check in the localized route; it does not include the
 Einstein lapse/shift constraints or their nonlinear brackets.
 
+The decisive `physical_causality_gate.py` separates ellipticity from physical
+instantaneity.  Linearising the same exponential AQUAL equation around a
+regular external field y=1 gives
+
+\[
+ \lambda_\perp=1-e^{-y},\qquad
+ \lambda_\parallel=1+(y-1)e^{-y},\qquad
+ \delta\Phi_k=-{4\pi G\,\delta\rho_k\over
+ \lambda_\parallel k_\parallel^2+\lambda_\perp k_\perp^2}.
+\]
+
+The transfer has no frequency dependence and is nonzero for a separated
+source.  The local EFE observable O=1/\mu(y) has
+\(dO/dg_{\rm ext}=-e^y/[a_0(e^y-1)^2]\neq0\) at y=1, so their composed
+response is an actual equal-slice physical channel.  The GR control has
+constant \mu and zero EFE derivative.  The y\to0 rank loss and Newtonian
+suppression are reported separately rather than conflated with the regular
+witness.  Therefore this localized elliptic route fails the target's strict
+no-instantaneous-physical-channel gate, even though its auxiliary Dirac block
+is clean.  Accepting preferred-foliation instantaneity would be a different
+target, not a pass of the stated one.
+
 ## Requirement audit
 
 | Requirement | Current status |
@@ -118,6 +140,7 @@ Einstein lapse/shift constraints or their nonlinear brackets.
 | two gravitational tensor modes | Curved WKB TT block verified; full nonlinear count open |
 | no hidden auxiliary scalar | Full TT localizer block has zero auxiliary DOF in both sectors; metric count open |
 | matter conservation | Minimal-matter Ward identity; coupled constraint consistency open |
+| no instantaneous physical channel | **FAIL** on the regular exponential EFE branch; GR control passes |
 | α₁,α₂,α₃ | Only a restricted α₁ matching exists; full values open |
 | cT=c and stability | Flat/curved principal tensor checks; full nonlinear stability open |
 | FLRW with H≠0 | Prior V3 background exists; localized perturbations open |
@@ -125,7 +148,7 @@ Einstein lapse/shift constraints or their nonlinear brackets.
 | empirical galaxy/cluster/cosmology fit | Not performed by this checkpoint |
 | Lean proof | Lean unavailable; exact identities exported as JSON |
 
-The reproducibility record is `run_009/manifest.json`; it pins the local
+The reproducibility record is `run_010/manifest.json`; it pins the local
 modules and the two prior V3 dependency files used by the causal gate.
 
 The follow-up `flrw_ward_gate.py` independently varies the lapse before the
@@ -140,12 +163,16 @@ leaf, and verifies symbolically that the minimally coupled continuity equation
 (\dot\rho=-3H(\rho+p)) differentiates the Friedmann residual into the
 acceleration residual.  This is a background Ward/FLRW result, not a
 perturbation or nonlinear constraint proof.  The latest run is
-`run_009/manifest.json`.
+`run_010/manifest.json`.
 
 ## Verdict
 
-**OPEN.** This is a new action-derived constructive branch with a finite
-auxiliary-elimination and Dirac checkpoint.  It is not a certified complete
-theory.  The next decisive calculation is the full curved York-TT variation
-and preservation of all multiplier constraints; if that introduces an
-unpaired instantaneous channel or an extra mode, the localized branch fails.
+**DEAD AS A TEN-GATE CANDIDATE UNDER THE STRICT CAUSALITY REQUIREMENT.** The
+localized branch now has a finite auxiliary-elimination, curved York
+variation, and full TT-localizer Dirac checkpoint, but the independently
+derived physical-response gate finds an instantaneous EFE channel at regular
+y=1.  It remains mathematically useful as an action-derived static prototype,
+and could only stay OPEN by explicitly accepting preferred-foliation
+instantaneity or by replacing the elliptic physical MOND carrier with a
+retarded sector (which must then be re-counted for extra DOF).  Neither is a
+pass of the stated target.
