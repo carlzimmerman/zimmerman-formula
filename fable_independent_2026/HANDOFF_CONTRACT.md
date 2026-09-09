@@ -30,7 +30,8 @@ Every entry names its script and commit. Nothing here is a claim a check did not
 
 | # | challenge | passes if |
 |---|---|---|
-| B1 | **σ = 1 re-verification.** Cherenkov forces σ from 1/3 to 1 within 4e-15. σ shifts p_R, A_R, B_R, F. | the IC6 obstruction, the IC7 counterterm and the tensor balance all re-derive at σ = 1 |
+| B1 | ~~σ = 1 re-verification~~ **DISCHARGED by L15**: the obstruction does NOT vanish at σ = 1; it grows 1.81× to −20.194205022906776 and IC7 is needed 1.78× more strongly on a window half as wide. Theorem: S₄′(1;σ) has exactly one zero, at σ\* = 4T/(4T−27) = 1.679 (29.6% superluminal), above IC-4's whole admissible interval (0,1]. c_T² = 1 and the DOF count are σ-independent identities. | **CONDITIONAL NOW OPEN:** if L19 finds the Cherenkov bound does not apply to a k-essence clock, σ\* = 1.679 is reachable and IC7 becomes unnecessary |
+| B1-old | (original wording) **σ = 1 re-verification.** Cherenkov forces σ from 1/3 to 1 within 4e-15. σ shifts p_R, A_R, B_R, F. | the IC6 obstruction, the IC7 counterterm and the tensor balance all re-derive at σ = 1 |
 | B2 | **The mapping.** (c₁₄, c₂, \|K₂\|Q₀²) are not determined by the published IC files; c₁₄ has three readings spanning 0.073–1.333. | the PPN weak-field expansion of the IC action with the auxiliary constraint solved, plus the O(k⁰) mass term of the reduced scalar system |
 | B3 | **Galactic matching** (the lead's own open item). | the static weak-field limit yields MOND with the frozen μ(y) = 1 − e^(−y) and a₀ = 9.3619e-11 / 1.1279e-10 |
 | B4 | **P7 / A3.** Does the same coefficient control the PPN-visible coupling and the kinetic normalisation? A4's cost note says it may. | an independent finite kinetic normalisation is exhibited in the screened regime |

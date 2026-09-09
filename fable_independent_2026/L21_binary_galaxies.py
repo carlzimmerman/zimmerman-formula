@@ -88,7 +88,7 @@ def Delta(s):
 
 def dDelta(s):
     """dDelta/ds, analytic below saturation, 0 above."""
-    s = np.asarray(s, float); u = np.sqrt(np.maximum(s, 1e-300)); em = np.expm1(u)
+    s = np.asarray(s, float); u = np.sqrt(np.clip(s, 1e-300, S_SAT)); em = np.expm1(u)
     d = (2.0*em - u*np.exp(u))/(2.0*em*em)
     return np.where(s > S_SAT, 0.0, d)
 
@@ -229,22 +229,26 @@ check("C2 [CONTROL] at small separation, where the acceleration is high, the pre
                     f"(the residual is exactly 0.6476 a0/g_N and never vanishes -- that is the kernel's own structure)")
 
 # ---------------------------------------------------------------- CONTROL C3 (both limits, both footings)
-ok3 = True; det3 = []
+# The kernel approaches its deep-MOND limit as Delta(s) = sqrt(s)(1 - sqrt(s)/2 + ...), so the residual at
+# finite s is the kernel's OWN next-order term and must fall as sqrt(s), i.e. by 10x per 100x in radius.
+ok3 = True; det3 = []; scal = []
 for foot, a0 in A0.items():
     for (m1, m2) in ((5e10, 5e10), (1e11, 1e10), (1e9, 3e9)):
         rM = math.sqrt(G*(m1 + m2)*Msun/a0)
-        # deep-MOND limit
-        r = 1e5*rM
-        aF = float(a_rel_framework_isolated(m1, m2, r, a0)); aN = G*(m1 + m2)*Msun/r**2
-        exact = math.sqrt(G*float(M_eff(m1, m2))*Msun*a0)/r
-        e1 = abs((aF - aN)/exact - 1)
-        # Newtonian limit
+        exact = lambda r: math.sqrt(G*float(M_eff(m1, m2))*Msun*a0)/r
+        dev = []
+        for r in (1e5*rM, 1e7*rM):
+            aF = float(a_rel_framework_isolated(m1, m2, r, a0)); aN = G*(m1 + m2)*Msun/r**2
+            dev.append(abs((aF - aN)/exact(r) - 1))
         r = 1e-4*rM
         aF = float(a_rel_framework_isolated(m1, m2, r, a0)); aN = G*(m1 + m2)*Msun/r**2
         e2 = abs(aF/aN - 1)
-        ok3 &= (e1 < 1e-6) and (e2 < 1e-7); det3.append(max(e1, e2))
+        ok3 &= (dev[0] < 1e-5) and (dev[1] < 1e-7) and (e2 < 1e-7)
+        det3.append(max(dev[0], e2)); scal.append(dev[0]/max(dev[1], 1e-30))
 check("C3 [CONTROL] the bridge is exact in BOTH limits for equal, 10:1 and dwarf pairs on both footings",
-      ok3, f"worst relative deviation {max(det3):.1e} (deep-MOND against Milgrom, Newtonian against G M_tot/r^2)")
+      ok3, f"worst deviation {max(det3):.1e} at 1e5 r_M, falling by {np.median(scal):.0f}x for 100x in radius "
+           f"(the kernel's own O(sqrt(s)) approach to deep MOND, not a numerical residual); Newtonian arm exact "
+           f"to {max(e2, 0):.0e}")
 
 # ---------------------------------------------------------------- the external field
 P("")
@@ -434,25 +438,58 @@ P("")
 info("AMPLITUDE A = (observed dispersion)/(parameter-free prediction), fitted jointly with the interloper")
 info("fraction.  A = 1 means the law is right with no free parameter.  In deep MOND sigma ~ M^{1/4}, so an")
 info("amplitude A corresponds to a required mass A^4 M_b; in the Newtonian laws it is A^2 M_b.")
+def mass_factor(law, M1, M2, rp, a0, eN, A):
+    """The factor by which each member's mass would have to be multiplied for the law to give the observed
+    dispersion.  Solved numerically rather than assumed, because the deep-MOND (M^1/4) and quasi-Newtonian
+    (M^1/2) scalings differ and the carried framework straddles them."""
+    base = float(np.median(sigma_pred(law, M1, M2, rp, a0, eN)))
+    lo, hi = -3.0, 4.0
+    for _ in range(60):
+        mid = 0.5*(lo + hi); f = 10**mid
+        v = float(np.median(sigma_pred(law, f*M1, f*M2, rp, a0, eN)))
+        if v < A*base: lo = mid
+        else: hi = mid
+    return 10**(0.5*(lo + hi))
+
 AMP = {}
 for foot, a0 in A0.items():
     eN = E_N[foot]
     info(f"  --- footing {foot} ---")
-    info(f"      {'law':>34} {'A':>16} {'implied M_tot/M_b':>19} {'f_int':>7} {'sigma from 1':>13}")
+    info(f"      {'law':>34} {'A':>16} {'implied M/M_assumed':>21} {'f_int':>7} {'sigma from 1':>13}")
     for law in LAWS:
         sh = sigma_pred(law, S["M1"], S["M2"], S["rp"], a0, eN)
         A, eA, fi = ml_fit(S["dv"], shape=sh)
-        expo = 4.0 if law in ("fw_iso", "fw", "fw_cosmic") else 2.0
-        AMP[(foot, law)] = (A, eA, fi)
-        info(f"      {LABEL[law]:>34} {A:8.3f} +/-{eA:5.3f} {A**expo:19.2f} {fi:7.2f} {abs(A-1)/eA:13.1f}")
+        mf = mass_factor(law, S["M1"], S["M2"], S["rp"], a0, eN, A)
+        AMP[(foot, law)] = (A, eA, fi, mf)
+        info(f"      {LABEL[law]:>34} {A:8.3f} +/-{eA:5.3f} {mf:21.2f} {fi:7.2f} {abs(A-1)/eA:13.1f}")
 
 Ac, eAc = AMP[("canonical", "fw_iso")][0], AMP[("canonical", "fw_iso")][1]
 Aa = AMP[("alt", "fw_iso")][0]
 Acos = AMP[("canonical", "cosmic_pt")][0]; eAcos = AMP[("canonical", "cosmic_pt")][1]
 Acn = AMP[("canonical", "cosmic_nfw")][0]; eAcn = AMP[("canonical", "cosmic_nfw")][1]
 Afc = AMP[("canonical", "fw_cosmic")][0]; eAfc = AMP[("canonical", "fw_cosmic")][1]
+Afc_a = AMP[("alt", "fw_cosmic")][0]
 Alc = AMP[("canonical", "lcdm_am")][0]; eAlc = AMP[("canonical", "lcdm_am")][1]
 Afw = AMP[("canonical", "fw")][0]
+
+# ---- does the required boost depend on mass?  the ladder read INSIDE the pair sample
+P("")
+info("Does the deficit depend on the pair's baryonic mass?  Same fit, quartiles of M_b(pair):")
+info(f"{'log M_b(pair)':>18} {'N':>5} {'A(framework iso)':>18} {'A(cosmic share)':>17} {'A(LambdaCDM AM)':>17} "
+     f"{'M_dyn/M_b within r_p':>21}")
+Mb_pair = S["M1"] + S["M2"]; q = np.percentile(np.log10(Mb_pair), [0, 25, 50, 75, 100])
+a0 = A0["canonical"]; eN = E_N["canonical"]; MASSROWS = []
+for k in range(4):
+    s = (np.log10(Mb_pair) >= q[k]) & (np.log10(Mb_pair) <= q[k+1])
+    if s.sum() < 50: continue
+    r = {}
+    for law in ("fw_iso", "cosmic_pt", "lcdm_am", "newton"):
+        sh = sigma_pred(law, S["M1"][s], S["M2"][s], S["rp"][s], a0, eN)
+        r[law] = ml_fit(S["dv"][s], shape=sh)[:2]
+    MASSROWS.append((float(np.median(np.log10(Mb_pair[s]))), int(s.sum()), r))
+    info(f"{q[k]:8.2f} - {q[k+1]:6.2f} {s.sum():5d} {r['fw_iso'][0]:10.2f} +/-{r['fw_iso'][1]:5.2f} "
+         f"{r['cosmic_pt'][0]:10.2f} +/-{r['cosmic_pt'][1]:4.2f} {r['lcdm_am'][0]:10.2f} +/-{r['lcdm_am'][1]:4.2f} "
+         f"{r['newton'][0]**2 - 1:21.1f}")
 
 # ---------------------------------------------------------------- the separation-dependence axis
 P("")
@@ -569,11 +606,24 @@ gN = G*Mb*Msun/(rgrid*kpc)**2/a0
 for i, rr in enumerate(rgrid):
     info(f"{rr:10.0f} {gN[i]:10.4f} {sfw[i]:13.1f} {scp[i]:11.1f} {sfw[i]/scp[i]:8.3f} {sfwc[i]:12.1f} {sfwc[i]/scp[i]:8.3f}")
 icross = int(np.argmin(np.abs(np.log(sfw/scp))))
+msk = (rgrid >= 30) & (rgrid <= 1000); rsel = rgrid[msk]
+imax = int(np.argmax(np.abs(np.log10(sfw/scp))[msk]))
 info(f"the two curves CROSS at r_p ~ {rgrid[icross]:.0f} kpc (g_N = {gN[icross]:.3f} a0); below it the cosmic share")
-info(f"predicts more, above it the framework does.  Over an observable 30-1000 kpc the maximum divergence is")
-imax = int(np.argmax(np.abs(np.log10(sfw/scp))[(rgrid >= 30) & (rgrid <= 1000)]))
-rsel = rgrid[(rgrid >= 30) & (rgrid <= 1000)]
-info(f"{max(abs(np.log10(sfw/scp)[(rgrid >= 30) & (rgrid <= 1000)])):.3f} dex in velocity, at r_p = {rsel[imax]:.0f} kpc.")
+info(f"predicts more, above it the framework's ISOLATED branch does.  Over an observable 30-1000 kpc the maximum")
+info(f"divergence is {max(abs(np.log10(sfw/scp)[msk])):.3f} dex in velocity, at r_p = {rsel[imax]:.0f} kpc.")
+
+# THE DEGENERACY the run exposes: the framework's own EFE branch and the cosmic share are the SAME LAW
+nb = nu_efe(E_N["canonical"])[0]
+rat_far = float(np.median((sfwc/scp)[rgrid >= 300]))
+check("S0 [structure] the framework's honest external-field prediction is observationally DISTINCT from a "
+      "cosmic-share halo at large separation",
+      abs(rat_far - 1) > 0.30,
+      f"beyond ~200 kpc BOTH are quasi-Newtonian with a constant boost -- the framework's orientation-averaged "
+      f"nu_bar(e_N) = {nb:.2f} against the cosmic share's 1 + {F_COSMIC} = {1+F_COSMIC:.2f}.  The predicted "
+      f"dispersions differ by only {100*(rat_far-1):+.1f}% in velocity ({100*(rat_far**2-1):+.0f}% in mass) at every "
+      f"separation and every mass, an EXACT degeneracy in shape.  Where the external field dominates, this "
+      f"programme's EFE and LambdaCDM's cosmic dark share are the same law with the same slope, and only the "
+      f"9% amplitude gap separates them")
 
 # the dark-share ladder
 P("")
@@ -622,23 +672,43 @@ check("S5 existing published data ALREADY discriminate the three curves at 3 sig
       f"branch and {abs(sl - SLOPE['cosmic_pt'])/esl:.1f} sigma from the cosmic share.  The statistics are there; "
       f"what is NOT settled is the isolation-depth systematic (see below)")
 
-# ---- how extended must the component be?
+# ---- how extended must the component be?  The galaxy-side gate, computed here rather than reused.
 P("")
-info("IF the pair deficit is a real dark component, WHERE must it sit?  L1/g04k records that the RAR tolerates")
-info("at most about 0.25 M_b inside 10 kpc.  For an NFW halo carrying the cosmic share on each member:")
-info(f"{'M_b (each) [Msun]':>18} {'M_dark = 5.43 M_b':>18} {'c':>6} {'R200 [kpc]':>11} {'M_dark(<10 kpc)/M_b':>21}")
+info("IF the pair deficit is a real dark component, WHERE must it sit?  The galaxy-side gate is the radial")
+info("acceleration relation's 0.11 dex scatter: how much extra mass inside 10 kpc can the CARRIED kernel absorb")
+info("before g_obs moves by more than that?  Computed here directly, not reused:")
+def rar_tolerance(Mb_in, r_kpc, a0, tol_dex=0.11):
+    """Extra mass (in units of M_b) inside r that shifts the carried kernel's g_obs by tol_dex."""
+    gb = G*Mb_in*Msun/(r_kpc*kpc)**2
+    g0 = gb + a0*float(Delta(np.array([gb/a0]))[0])
+    lo, hi = 0.0, 50.0
+    for _ in range(80):
+        f = 0.5*(lo + hi); gbf = (1 + f)*gb
+        gf = gbf + a0*float(Delta(np.array([gbf/a0]))[0])
+        if math.log10(gf/g0) < tol_dex: lo = f
+        else: hi = f
+    return 0.5*(lo + hi)
+
+info(f"{'M_b (each) [Msun]':>18} {'RAR tolerance at 10 kpc':>24} {'NFW cosmic share <10 kpc':>26} {'over by':>9}")
+TOLROWS = []
 for mb in (2e9, 8e10):
     Mh = F_COSMIC*mb
-    c = float(nfw_c(Mh)); R200 = float((3*Mh/(4*math.pi*200*RHO_C))**(1/3.))*1000.0
+    tol = rar_tolerance(mb, 10.0, A0["canonical"])
     inner = float(nfw_enclosed(Mh, np.array([10.0]))[0])/mb
-    info(f"{mb:18.2e} {Mh:18.2e} {c:6.2f} {R200:11.0f} {inner:21.3f}")
-inner_L = float(nfw_enclosed(F_COSMIC*8e10, np.array([10.0]))[0])/8e10
-check("S6 a cosmic-share component with an NFW shape is excluded inside galaxies by the RAR tolerance of 0.25 M_b at 10 kpc",
-      inner_L > 0.25,
-      f"an NFW halo of 5.43 M_b puts only {inner_L:.3f} M_b inside 10 kpc, {0.25/inner_L:.1f}x BELOW the RAR "
-      f"tolerance.  So the galaxy-side objection is not to a cosmic share as such but to a CONCENTRATED one: "
-      f"g04k/L1's infall delivers 0.92-1.45 M_b inside 10 kpc, {0.92/inner_L:.0f}x more concentrated "
-      f"than NFW.  The constraint is on the SHAPE of the mechanism, not on the amount")
+    TOLROWS.append((mb, tol, inner))
+    info(f"{mb:18.2e} {tol:20.3f} M_b {inner:22.3f} M_b {inner/tol:9.2f}x")
+info(f"(L1/L7 quote a tolerance of 0.25 M_b at 10 kpc from the galaxy side; the direct computation above gives")
+info(f" {TOLROWS[1][1]:.2f} M_b for an L* galaxy and {TOLROWS[0][1]:.2f} M_b for a dwarf -- the same order, and the "
+     f"dwarf end is the tight one.)")
+over_L, over_d = TOLROWS[1][2]/TOLROWS[1][1], TOLROWS[0][2]/TOLROWS[0][1]
+check("S6 a cosmic-share dark component with an NFW shape is admissible inside galaxies on the RAR gate",
+      over_L < 1.0 and over_d < 1.0,
+      f"at L* an NFW cosmic share puts {TOLROWS[1][2]:.2f} M_b inside 10 kpc against a tolerance of "
+      f"{TOLROWS[1][1]:.2f} ({over_L:.2f}x, admissible); at the dwarf scale {TOLROWS[0][2]:.2f} against "
+      f"{TOLROWS[0][1]:.2f} ({over_d:.1f}x, EXCLUDED).  The galaxy-side objection therefore bites on SHAPE and on "
+      f"MASS SCALE, not on the amount: g04k/L1's cold infall delivers 0.92-1.45 M_b inside 10 kpc, "
+      f"{0.92/TOLROWS[1][2]:.1f}x more concentrated than NFW at L*, and no dark component with a cuspy NFW inner "
+      f"slope survives at 2e9 Msun")
 
 # ---- systematics
 P("")

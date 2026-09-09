@@ -518,3 +518,46 @@ residual and the 12% universality (H9) survive the whole range and strengthen.
 **Two items handed back.** (i) The L7 phrasing, corrected above. (ii) `hunt_2026/u13_mass_efe_and_domain.py`
 line 334 carries the bias sign backwards relative to `u02:565`, and its C3 prose is wrong; no published
 number moves because C7 overwrites B = 0.0 immediately after. Flagged, not edited.
+
+## L15 — the obstruction at σ = 1: does not vanish, and a theorem says nothing in range removes it
+
+`L15_sigma_one.py` (1 designed FAIL of 30). L10 showed Cherenkov forces the clock's speed parameter
+σ from 1/3 to 1. Every downstream result was derived at the wrong value, so this lane redid them.
+Mandatory control passed first: S₄′(1)|σ=1/3 = −11.1407711251147987, reproducing the lead's boxed
+identity exactly.
+
+**The obstruction survives and grows.** S₄′(1)|σ=1 = **−20.194205022906776**, same sign, **1.81×**
+the published magnitude. IC7's counterterm is not only still required but required 1.78× more
+strongly (c₇ ×1.785), on a window **half as wide** (|j−1| < 0.074 → 0.050), with its tensor detuning
+2.6× larger. The construction does not simplify.
+
+**The theorem, and it is the useful part.** σ's role is nowhere stated in the published files, so the
+lane determined it: σ reaches everything through one channel, p_R = 8/3 + 4a\*σ, which makes
+h|_{τ=0} exactly σ-free. That yields a new closed form, verified against the lead's identity at
+σ = 1/3 and against the numeric derivative at six values of σ to better than 1.7e-40:
+
+    S_4'(1;sigma) = e^{5/6} (p_R T - 9)(3 p_R + 4)(3 p_R - 44) / (216 (4T - 27)),   p_R = 8/3 + 4 a_* sigma
+
+It has **exactly one zero**, at **σ\* = 4T/(4T−27) = 1.679** — a mode 29.6% superluminal — and that
+lies above 1 for *every* T in the frozen domain. So **no σ in IC-4's own admissible interval (0, 1]
+would ever have removed the obstruction**, and Cherenkov happens to select the point where it is
+strongest (argmax at σ = 0.9807).
+
+**The positive half is real.** σ = 1 is a regular point with nothing degenerate. c_T² = 1 survives as
+a σ-**identity** rather than a tuning; the degree-of-freedom count stays 2 tensors + 1 clock; and the
+scalar kinetic normalisations (a\* = 1.786, A₀ = 0.4615) are exactly σ-independent. The healthy clock
+and the luminal tensor sector are robust to this entire class of parameter motion.
+
+**A conditional worth stating precisely, because it is now the whole game.** The obstruction vanishes
+only at σ\* = 1.679, i.e. a 29.6% superluminal clock. That is excluded *if* the gravitational-Cherenkov
+bound applies to this mode. L19 is testing exactly that, on the grounds that L8 showed the mode is no
+longer a gravitational khronon but a separately counted k-essence clock in an exactly Einstein metric
+sector. **If L19 finds the bound does not apply, σ\* = 1.679 becomes reachable and IC7 becomes
+unnecessary.** If it does apply, σ = 1 is forced and IC7 is required more strongly than published.
+
+**Corrections and handbacks.** A premise of the lane's own brief was wrong: the branch does not end at
+J_T = 0 but at a σ-independent **fold** of the auxiliary constraint surface at j = 1.216488, with J_T
+positive to it and its margin collapsing 0.727 → 0.390. Named missing input: S4₁₁(σ=1), the sheared
+reduced quartic, requires re-running the lead's anisotropic two-mode reduction with the new p_R.
+Also flagged: `IC10_LOCAL_CLOCK.md` and `OPTICAL_ALIGNMENT.md` reuse the symbol σ for an unrelated
+quantity (−1/4), which is worth renaming before it causes an error. Handoff challenge **B1 is discharged**.
