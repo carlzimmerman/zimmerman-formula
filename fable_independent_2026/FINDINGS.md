@@ -1184,3 +1184,127 @@ two headline results exactly.
 - **What survives unchanged:** L12's narrower residue, that an elliptic constraint on the conformal mode
   does leave two tensor polarisations, and that the exponential kernel does screen by a local
   acceleration with no 1/y.
+
+## L26 — σ > 1 IS admissible, and it removes the obstruction IC7 was invented to patch
+
+`L26_sigma_above_one.py` + `L26_SIGMA_ABOVE_ONE.md` (33 checks, 1 designed FAIL; bit-for-bit
+reproducible). **This is a positive result and the first genuine escape route of the night.**
+
+L15 proved the IC6 obstruction vanishes at exactly one value, σ* = 4T/(4T−27) = 1.679312732, which is
+29.6% superluminal — and recorded it as unreachable because IC-4 declares σ ∈ (0, 1]. **This lane asked
+where that interval comes from. It is an undefended convention.**
+
+- **The interval is stated once, in prose, with no derivation** — one sentence, immediately after the
+  construction's own admission that σ is a choice and not fitted to data. It appears 11 times in the
+  directory and every occurrence is that sentence or a copy of a metadata string. **No `assert`, `if`,
+  `while` or `raise` anywhere in the construction mentions σ.** The only executable restriction is
+  σ > 0. The one place a subluminality preference *is* executable sits a sector away, as a single
+  deletable conjunct beside five genuine positivity and rank conditions — **the construction's own code
+  already separates health from subluminality.**
+- **σ* = 1.679 passes all 14 of the construction's own health conditions.** No ghost, and the relevant
+  coefficient is exactly σ-free. Positive mode energy, symbolic in σ. A₀ = 0.4615 > 0. c_T² = 1 as a
+  σ-**identity**, with a control confirming IC5 does not have that property. T > 27/4, and T contains no
+  σ. **The fold does not move**: j = 1.216488 at every σ, because the constraints there are σ-free.
+  det M* unchanged. Hyperbolic with real characteristics. The constraint algebra is σ-blind. **Not one
+  condition has an upper edge at σ = 1.**
+- **It is a window, not a point.** The only internal ceiling anywhere is J_T > 0, which is exactly
+  affine in σ and vanishes at 1.7716. So σ ∈ **[1.6793, 1.7716)**, giving σ* a **5.49% margin**.
+- **⚠️ Two results the brief did not anticipate, and both matter.** First: **gravitational Cherenkov is
+  a LOWER bound** — it constrains *subluminal* modes. At σ* the mode is 29.6% superluminal and the
+  bound is satisfied with room. **So L19's answer changes the lower edge of the interval and never the
+  upper edge: σ* is reachable whichever way L19 rules.** Only half of that fork was ever load-bearing.
+  Second: **the sign of S₄ reverses across the entire branch, 59 of 59 points**, so IC6's real growth
+  rate λ ~ k² becomes a bounded oscillation. **The Hadamard ill-posedness is removed, not reduced.**
+- **The honest half, recorded as a designed FAIL.** S₄ ≠ 0 — it grows *away* from the witness, 3.8×
+  larger at j = 1.15 — so **IC7 is not made unnecessary**, only sign-flipped and locally smaller. The
+  lane had written "c₇ falls four orders of magnitude" before computing; it falls 5.4× and flips sign,
+  and the claim was corrected to the data rather than the reverse.
+- **Causality is clean and σ-uniform.** G^μν n_μ n_ν = −1/σ < 0 for every σ > 0, so the clock leaves
+  stay spacelike for the acoustic cone and the clock is a global time function for both cones
+  (Babichev, Mukhanov & Vikman 2008; Blas, Pujolàs & Sibiryakov 2011). **Costs named, not waved:** no
+  Lorentz-invariant UV completion is possible, and the mode's decay rate into ordinary quanta is
+  uncomputed.
+- **The single fastest next step for the lead**, named by the lane: re-run `ic6_even_characteristics.py`
+  with p_R = 44/3. The sheared conditions were untouched by anything computed here.
+- **⚠️ Flag.** The lead published `IC13_SHEAR_REPAIR.md` during this run and reached the same fork
+  independently on the IC12 branch, ending at c_s ≈ 2376c, which it calls vastly superluminal. The
+  causality argument above covers that number too, but **strong coupling, matter-cone alignment and the
+  decay gate all get worse with σ and were not tested. σ* is not licence for 5.6e6.**
+
+## L33 — the superluminal scalar cone: admissible, and forced by the ephemerides
+
+`L33_scalar_cone.py` + `L33_SCALAR_CONE.md` (32 checks, 5 FAIL; **all 12 controls pass**). L13 reported
+the MOND scalar's cone at c_s ≥ 19c at 1 AU and 2522c at Cassini conjunction and labelled it a cost
+rather than an exclusion. That label was reasonable and untested. This lane tested it.
+
+- **Admissible, and for a sharper reason than "there is a preferred foliation."** The scalar's cone is
+  built from the **same** clock scalar that defines the foliation, so G^μν n_μ n_ν = |K₂| > 0 is an
+  **identity independent of c_s**. The leaves are spacelike at any speed, no closed causal curve exists
+  because c_s is finite, and a control confirms the test has teeth: a mode tied to any boosted frame
+  fails it.
+- **Black holes still work.** Controls reproduce the published universal-horizon radius r = 3M/2 and
+  return the metric horizon exactly at c_s = 1. The 2522c mode is **trapped**, its horizon sitting
+  2.4e-4 M outside the universal horizon, and **an infinite-speed mode is trapped too** — r_h → r_UH.
+  Black-hole thermodynamics is not defeated.
+- **No observation is violated, and none bounds it.** GW170817 constrains the tensor speed, which this
+  action fixes to c independently of the scalar. And **gravitational Cherenkov constrains SLOW modes**:
+  the threshold v > c_s cannot be met when v < c < c_s, so **superluminality switches the channel off
+  entirely** — which is why the Cherenkov literature *requires* aether modes to be at or above c.
+- **⚠️ The cone is not a choice. The ephemerides FORCE it open.** c_s² = (2−K_B)g_N/(g_φ|K₂|) contains
+  no a₀ and no kernel shape, so a *subluminal* scalar at Venus's or Saturn's orbit would need an
+  anomalous sunward acceleration far above the measured bound. **c_s ≥ 714c at Venus, ≥ 182c at
+  Saturn, for any kernel and both footings.** Across simple ν, standard ν, n = 3/5/10/20, ν_RAR and the
+  exponential carrier, subluminality at 1 AU needs |K₂| ≥ 1.14e8 — **228× the dark-sector edge**. A
+  control confirms the result is about *boundedness*: an unbounded kernel is subluminal at |K₂| ≥ 1.8.
+- **⚠️ The one real defect is not the 2522.** The longitudinal stiffness is exactly (2−K_B)/Δ′(s), and
+  the carried kernel is flat beyond saturation, so the longitudinal Solar-System speed is not 2522c but
+  **infinite**. Not a closed causal curve, but not hyperbolic either — that sector becomes an elliptic
+  constraint on the leaf. **And a corollary a C² fix does not remove: any kernel with an interior
+  maximum has Δ′ = 0 exactly at the peak, i.e. an infinite longitudinal speed on a sphere at 4994 AU
+  (canonical) / 4550 AU (alt).**
+- **Three costs carried forward.** A **119 km/s frame-alignment margin**: if the cone were tied to any
+  frame boosted by more than c/c_s relative to the clock the leaves turn timelike and closed causal
+  curves appear, and 119 km/s is smaller than the Solar System's 370 km/s motion relative to the CMB.
+  It is safe only because both objects are built from the same clock, and **it tightens as the cone
+  widens — a new design constraint on any future operator introducing a second frame.** Second: the
+  strong-coupling check must not be re-run as a |K₂| pincer arm, since demanding subluminality demands
+  a Solar-System scalar force 3e4–5e5× the ephemeris bound. Third: **the Cherenkov margin in the
+  subluminal galactic corner is 35, not 1e7** — this action's cutoff sits a factor 424 inside Milgrom's
+  MOND radius, so worst-case loss distance is 35× the 10 kpc Galactic path and **would fail an
+  extragalactic 100 Mpc path by 289×**. Two omitted suppressions both lengthen it; the missing input is
+  the scalar–matter vertex normalisation.
+
+## L34 — auditing our own bounded-boost paper: sound, and stronger than it states
+
+`L34_boost_vs_cubic.py` + `L34_BOUNDED_BOOST_AUDIT.md` (32 checks, 11 FAIL; **all 17 controls pass**).
+This lane audited PAPER5, which this programme has already deposited. Controls reproduce its boxed
+equation, all five kernel suprema in its Table 1 to the quoted digits, its stiffness identity, both of
+its sign changes, and the Solar-System gates from their own constants.
+
+- **The theorem is SOUND and needs no erratum to its mathematics.** Its hypotheses admit a
+  twice-differentiable kernel, Δ = C[1 − (1+s/s₀)^(−p)], with finite positive stiffness and a
+  well-defined cubic action at every finite s. **The tension L13 found lives entirely in the carried
+  kernel's hard cutoff**, which an asymptotic continuation repairs at no cost to any published number.
+- **⚠️ But the paper needs three changes, and one is substantial.** **The screening corollary, which is
+  the real result:** monotonicity makes sup Δ = lim Δ, so the Solar-System residual is **at least** the
+  galactic boost. Against the binding phantom-mass ephemeris gate that is a shortfall of **1.400e4×
+  canonical / 1.687e4× alt**, and never below 6.49e3× for any kernel in the paper's own table. **So no
+  kernel of the class can screen the Solar System, and the coherence length ξ is theorem-FORCED, not a
+  design choice.** The anti-rig control makes it vivid: the paper's own unsaturated partner screens the
+  Solar System perfectly and fails **only** monotonicity — the object that screens is precisely the
+  object the theorem forbids.
+- **"Attained on a plateau" is inadmissible**, erratum-level wording: an attained supremum has Δ′ = 0,
+  infinite stiffness, and no cubic action. **The supremum must be approached and never attained.** Of
+  the paper's five kernels only the simple μ is admissible as written. sup Δ is the same number either
+  way, so **no empirical claim moves**.
+- **A new, weak, previously unstated constraint.** ξ buys a *bounded* amount of perturbative room:
+  the saturation exponent is capped at **p_max = 1.754** (Jupiter binding, both footings, robust to two
+  decades of convention at ±0.35 and independent of evaluation radius). **Exponential approach is
+  excluded.** It constrains the *rate*, never the ceiling — so **there is no pincer between the bounded
+  boost and the cubic action.**
+- **Two sharp closed forms.** g_*(s) = 3a₀Δ′²/|Δ″| = [3p/(p+1)](C a₀ − g_φ), so **the strong-coupling
+  amplitude equals the remaining gap to saturation**. And δg/g_* = [(p+1)/3](M_p/M_☉)(r_p/R_p)², in
+  which C, s₀ and a₀ all cancel, so **the bare kernel is strongly coupled at every planet** — 552(p+1)
+  at Earth, 3.8e4(p+1) at Jupiter — for every member of the class.
+- **Sections 3–6 stand exactly as published:** the ceiling, the SPARC test, the cluster violation. The
+  required changes are two sentences, one table caption, the coded kernel, and an upgraded section 9.

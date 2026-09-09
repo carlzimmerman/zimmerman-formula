@@ -1,0 +1,296 @@
+==========================================================================================================================
+L34 -- the bounded-boost theorem (PAPER5, DOI 10.5281/zenodo.22548669) vs perturbative well-definedness
+==========================================================================================================================
+
+--------------------------------------------------------------------------------------------------------------------------
+A -- CONTROLS.  The theorem reproduced from scratch, not quoted.
+--------------------------------------------------------------------------------------------------------------------------
+  Delta_exp(y) = y e^-y ;  dDelta/dy = (1 - y)*exp(-y) ;  critical points [1]
+  Delta(1) = 1/e = 0.367879 ;  Delta''(1) = -exp(-1) = -0.367879 ;  limits 0, 0
+  [PASS] A1 [control] sympy: Delta_exp = y e^-y has the UNIQUE critical point y = 1, value 1/e = 0.367879, Delta'' = -1/e < 0, and both endpoint limits vanish (PAPER5 section 2, boxed equation)   (crit [1], Delta_max 0.367879)
+  nu_RAR carried:  Delta(s) = s/(e^sqrt(s) - 1);  maximum at s_sat = 2.539638, Delta_sat = 0.647610
+  [PASS] A2 [control] the carried kernel's saturation point reproduces PAPER5's s_sat = 2.540 and Delta_sat = C = 0.6476 (Table 1, section 7)   (s_sat 2.5396, C 0.64761)
+  [PASS] A3 [control] sympy: Gauss's law on a sphere gives J(g_phi) g_phi = g_N exactly, with no expansion (PAPER5 section 7, first step)   (J g_phi = GM/r**2)
+  [PASS] A4 [control] sympy: the longitudinal stiffness J + 2 Y dJ/dY equals 1/Delta'(s) IDENTICALLY, for an arbitrary Delta (PAPER5 section 7: 'that stiffness is exactly 1/Delta'')   (Sigma_par = 1/Derivative(Delta(s), s))
+
+  PAPER5 Table 1, reproduced independently:
+    kernel              C = sup Delta     paper         at s     paper
+    deep-MOND sqrt             0.2500    0.2500       0.2500     0.250
+    standard mu                0.3003    0.3003       0.4859     0.486
+    exp carrier                0.3679    0.3679       0.6321     0.632
+    nu_RAR                     0.6476    0.6476       2.5396     2.540
+    simple mu                  1.0000    1.0000          inf       inf
+  [PASS] A5 [control] all five kernel suprema of PAPER5 Table 1 reproduce to the paper's quoted digits
+  [PASS] A6 [control] the longitudinal stiffness changes sign at g_N = 0.633 a0 (exp carrier) and 2.540 a0 (nu_RAR), 'exactly at the two maxima' (PAPER5 section 7)   (exp 0.6321, nu_RAR 2.5396)
+
+  Solar-System gates (g03d_exact_fourth_order_solar.py):
+    sunward ephemeris          3.6620e-14 m/s^2  = 3.9116e-04 a0 (canonical), 3.2467e-04 a0 (alt)
+    phantom mass inside Saturn 6.70e-11 Msun -> 4.3303e-15 m/s^2 = 4.6254e-05 a0 (canonical), 3.8392e-05 a0 (alt)   <-- BINDING
+    quadrupole ceiling         5.20e-27 s^-2 (not sourced by a constant radial residual; reported, not used)
+  [PASS] A7 [control] the g03d gates reproduce from their own constants; the Saturn phantom-mass bound (4.33e-15 m/s^2) is the tighter of the two and is the binding one   (sunward 3.6620e-14, Saturn-phantom 4.3303e-15)
+
+  s = g_N/a0 across the Solar System:
+    body                r    g_N [m/s^2]    s canonical          s alt
+    Mercury      0.387 AU     3.9595e-02     4.2294e+08     3.5105e+08
+    Earth        1.000 AU     5.9301e-03     6.3343e+07     5.2576e+07
+    Mars         1.524 AU     2.5532e-03     2.7273e+07     2.2637e+07
+    Jupiter      5.203 AU     2.1905e-04     2.3399e+06     1.9421e+06
+    Saturn       9.580 AU     6.4614e-05     6.9019e+05     5.7287e+05
+    Neptune     30.070 AU     6.5583e-06     7.0054e+04     5.8146e+04
+    Cassini    1.6 Rsun     1.0711e+02     1.1441e+12     9.4964e+11
+
+--------------------------------------------------------------------------------------------------------------------------
+B -- THE THREE REQUIREMENTS.  (i) bounded, (ii) Delta' > 0 everywhere, (iii) the Solar System screens.
+--------------------------------------------------------------------------------------------------------------------------
+  THE LEMMA.  (ii) => Delta strictly increasing => sup Delta = lim_{s->inf} Delta = C, and
+              Delta(s_gal) < Delta(s_sun) for EVERY galactic s_gal < every Solar-System s_sun.
+              So (iii), which caps Delta(s_sun) at B, caps Delta IN GALAXIES at the same B.
+
+  footing      binding gate B/a0   carried kernel C  measured in galaxies   shortfall (C/B)
+  canonical           4.6254e-05             0.6476                 1.190         1.400e+04
+  alt                 3.8392e-05             0.6476                 1.190         1.687e+04
+  [FAIL] B1 (i)+(ii)+(iii) are mutually satisfiable for the KERNEL ALONE -- some bounded, everywhere-increasing Delta both boosts galaxies and passes the Solar-System gates   (the carried ceiling C = 0.6476 exceeds the binding gate by 1.400e+04x (canonical) and 1.687e+04x (alt); against the MEASURED galactic excess it is 2.573e+04x / 3.100e+04x)
+
+  the same statement in physical units (canonical): the irreducible residual C a0 = 6.0629e-11 m/s^2 against
+    the Saturn phantom-mass gate 4.3303e-15 m/s^2  ->  1.4001e+04x over
+    the sunward ephemeris gate   3.6620e-14 m/s^2  ->  1.6556e+03x over
+    phantom mass inside Saturn from a constant C a0: 9.3807e-07 Msun vs the 6.7e-11 Msun bound
+
+  randomized scan, 40000 bounded strictly-increasing kernels (1-3 term mixtures, s_i in [1e-2,1e8], p_i in [1e-2,10], w_i in [1e-2,10]):
+    boost galaxies (max Delta >= 0.3 on Table 2's bins) : 9162
+    screen the Solar System (Delta <= 4.625e-05 at Neptune/Saturn/Earth) : 0
+    do BOTH : 0
+  [PASS] B2 [control] every member of the scanned family is in fact strictly increasing, so the scan tests the right class   (0 non-monotone members out of 40000)
+  [FAIL] B3 at least one bounded, everywhere-increasing kernel both boosts galaxies AND screens the Solar System   (0 of 40000; 9162 boost, 0 screen, the intersection is empty)
+
+  rigging control -- PAPER5's own 'exponential inverse partner (unsaturated)' (Table 3), Delta = s/(e^s - 1):
+    max Delta on Table 2's galactic bins = 0.4900   Delta at Neptune = 0.000e+00   Delta'(2) = -2.0551e-01
+  [PASS] B4 [control] the scan is not rigged: a DECAYING kernel satisfies (i) and (iii) and fails only (ii) -- PAPER5's own unsaturated partner screens the Solar System perfectly and has Delta' < 0   (Delta(Neptune) = 0.00e+00 << B = 4.63e-05, but Delta'(2) = -2.055e-01 < 0 => Sigma_par < 0, the very thing the theorem forbids)
+
+--------------------------------------------------------------------------------------------------------------------------
+C -- ASYMPTOTIC SATURATION.  Delta' > 0 at every finite s but Delta' -> 0: is the LIMIT divergence harmful?
+--------------------------------------------------------------------------------------------------------------------------
+  if Delta'(s) >= h > 0 for all s then Delta(S) - Delta(0) >= h S -> oo: Delta is unbounded.
+  hence bounded + increasing => inf_s Delta'(s) = 0 => sup_s Sigma_par(s) = +infinity, unavoidably.
+  [FAIL] C1 bounded + everywhere-increasing does NOT force Delta' -> 0 (i.e. an admissible kernel can keep Sigma_par uniformly bounded)   (Delta' >= h > 0 integrates to an unbounded Delta.  The stiffness divergence in the LIMIT is unavoidable for every member of the class; only its harmfulness is in question)
+  L2 coefficient  Sigma_par = W' + 2 g^2 W''            (checked as a polynomial identity)
+  L3 coefficient  kappa3    = 2 g W'' + (4/3) g^3 W'''
+  identity        kappa3    = (1/3) d Sigma_par / d g_phi
+  [PASS] C2 [control] sympy: the cubic coefficient of the action expansion is EXACTLY (1/3) dSigma_par/dg_phi, so the strong-coupling amplitude is g_* = 3 |d ln Sigma_par / d g_phi|^{-1}   (kappa3 - (1/3) dSigma/dg = 0)
+  g_*(s) = 3 Sigma_par / |dSigma_par/dg_phi| = 3 a0 Delta'(s)^2 / |Delta''(s)|
+  [PASS] C3 [control] sympy: g_*(s) = 3 a0 Delta'(s)^2 / |Delta''(s)|, exactly, for an arbitrary Delta   (residual 0)
+
+  the cubic action at Solar-System backgrounds (canonical footing):
+               s |    PUBLISHED (hard cut at 2.540) |         asymptotic p=1, s0=s_sat
+                 |     Delta_prime        Sigma_par |     Delta_prime        Sigma_par
+      1.0000e+02 |      0.0000e+00              inf |      1.5642e-04       6.3929e+03
+      1.0000e+04 |      0.0000e+00              inf |      1.6439e-08       6.0832e+07
+      7.0054e+04 |      0.0000e+00              inf |      3.3512e-10       2.9840e+09
+      6.9019e+05 |      0.0000e+00              inf |      3.4526e-12       2.8963e+11
+      6.3343e+07 |      0.0000e+00              inf |      4.0991e-16       2.4395e+15
+      1.1441e+12 |      0.0000e+00              inf |      1.2565e-24       7.9587e+23
+  [FAIL] C4 the PUBLISHED kernel's cubic action exists at the Solar-System background (Sigma_par finite beyond s_sat = 2.540)   (Delta' = 0 identically for s > 2.540 => Sigma_par = infinity, J(Y) has infinite slope at Y = (C a0)^2, L3 undefined.  Independent confirmation of L13's P9)
+  [PASS] C5 an ASYMPTOTICALLY-saturating kernel has finite positive Sigma_par and a well-defined cubic action at EVERY finite s, including every Solar-System background   (Delta' > 0 at every finite s for Delta = C[1-(1+s/s0)^-p], p > 0)
+
+  g_*(s) = 3 a0 Delta'^2/|Delta''| against the remaining gap to saturation (canonical, C = 0.6476, s0 = 2.540):
+         p            s         g_*/a0   3p/(p+1) x (C - Delta)     ratio
+      0.50   1.0000e+04     1.0319e-02               1.0319e-02  1.000000
+      0.50   6.9019e+05     1.2423e-03               1.2423e-03  1.000000
+      1.00   1.0000e+04     2.4664e-04               2.4664e-04  1.000000
+      1.00   6.9019e+05     3.5745e-06               3.5745e-06  1.000000
+      2.00   1.0000e+04     8.3496e-08               8.3496e-08  1.000000
+      2.00   6.9019e+05     1.7537e-11               1.7537e-11  1.000000
+  [PASS] C6 [control] for a power-law approach to saturation g_*(s) = [3p/(p+1)] (C a0 - g_phi(s)) exactly: the strong-coupling amplitude is proportional to the REMAINING GAP to saturation, so it closes as the kernel saturates
+
+  60-digit verification: rebuild W'(Y) = J(Y)/2 from J = s/Delta(s), Y = (a0 Delta)^2, take W'' and
+  W''' by the chain rule through s, and form Sigma_par = W' + 2Y W'' and kappa3 = 2gW'' + (4/3)g^3W''':
+  (W' = J/2, so the action's Sigma = W' + 2Y W'' is HALF the paper's Sigma_par = J + 2Y dJ/dY;
+   the factor cancels in g_* = Sigma/|kappa3|.)
+         p            s         2 Sigma (mp)        1/Delta_prime         g_* (mp)   3 a0 D1^2/|D2|
+      0.50   1.0000e+03        61515.2353409        61515.2353409  3.051496361e-12  3.051496361e-12
+      0.50   1.0000e+05        61283971.9119        61283971.9119  3.055329955e-13  3.055329955e-13
+      1.00   1.0000e+03        611107.398232        611107.398232  2.303770794e-13  2.303770794e-13
+      1.00   1.0000e+05        6080460825.39        6080460825.39  2.309562884e-15  2.309562884e-15
+      2.00   1.0000e+03        120619421.241        120619421.241  7.781231035e-16  7.781231035e-16
+      2.00   1.0000e+05    1.19714200733e+14    1.19714200733e+14   7.82040702e-20   7.82040702e-20
+  [PASS] C7 [control] at 60-digit precision the reconstructed action reproduces Sigma_par = J + 2Y dJ/dY = 1/Delta' and g_* = 3 a0 Delta'^2/|Delta''| to 1e-18
+
+--------------------------------------------------------------------------------------------------------------------------
+D -- THE SHARP VERSION.  Fastest saturation whose strong coupling stays above the Solar-System scale;
+    the resulting boost ceiling against what galaxies require; and what the xi operator changes.
+--------------------------------------------------------------------------------------------------------------------------
+  The Solar-System fluctuation the expansion must control is the scalar response to a PLANET on the
+  background of the Sun's field: div[Sigma grad psi] = 4 pi G drho => delta_g = G M_p/(Sigma_eff R_p^2)
+  at the planet's own surface.  Perturbativity needs delta_g << g_*.  Both shrink as Delta' -> 0; the
+  RATIO is what decides.
+
+  KERNEL ALONE (no xi), canonical footing.  Each planet's own scalar field at its own surface:
+    source                    p    delta_g [m/s^2]      g_* [m/s^2]    delta_g/g_*  perturbative?
+    Earth  at 1 AU         0.05         2.1422e-09       3.6960e-12     5.7960e+02             NO
+    Earth  at 1 AU         0.50         1.0052e-11       1.2140e-14     8.2800e+02             NO
+    Earth  at 1 AU         1.00         4.0255e-15       3.6462e-18     1.1040e+03             NO
+    Earth  at 1 AU         2.00         3.2279e-22       1.9492e-25     1.6560e+03             NO
+    Earth  at 1 AU         5.00         5.2010e-44       1.5703e-47     3.3120e+03             NO
+    Jupiter at 5.2 AU      0.05         1.7262e-07       4.3587e-12     3.9603e+04             NO
+    Jupiter at 5.2 AU      0.50         3.5736e-09       6.3164e-14     5.6576e+04             NO
+    Jupiter at 5.2 AU      1.00         7.4460e-12       9.8708e-17     7.5435e+04             NO
+    Jupiter at 5.2 AU      2.00         1.6164e-17       1.4285e-22     1.1315e+05             NO
+    Jupiter at 5.2 AU      5.00         5.1668e-35       2.2831e-40     2.2630e+05             NO
+    Saturn at 9.6 AU       0.05         2.6208e-07       4.6331e-12     5.6566e+04             NO
+    Saturn at 9.6 AU       0.50         9.3981e-09       1.1630e-13     8.0809e+04             NO
+    Saturn at 9.6 AU       1.00         3.6055e-11       3.3464e-16     1.0775e+05             NO
+    Saturn at 9.6 AU       2.00         2.6534e-16       1.6418e-21     1.6162e+05             NO
+    Saturn at 9.6 AU       5.00         3.3049e-32       1.0224e-37     3.2324e+05             NO
+
+    closed form: delta_g/g_* = G M_p (p+1)/(3 a0 R_p^2 s) = [(p+1)/3](M_p/M_sun)(r_p/R_p)^2
+                 = 1.1040e+03 for Earth at p = 1 (direct: 1.1040e+03)
+    -> the ceiling C, the saturation scale s0 and a0 all CANCEL.  Only p enters, linearly.
+       (both footings give the identical ratio: a0 cancels between delta_g and g_*)
+  [PASS] D1 [control] the closed form delta_g/g_* = [(p+1)/3](M_p/M_sun)(r_p/R_p)^2 reproduces the direct computation to 1%   (1.1040e+03 vs 1.1040e+03)
+  [FAIL] D2 the KERNEL ALONE is perturbative at a Solar-System source: some saturation exponent p > 0 keeps delta_g below g_* at a planet's surface   (the ratio is [(p+1)/3](M_p/M_sun)(r_p/R_p)^2 for EVERY kernel of the class -- 552(p+1) for Earth, 3.8e4(p+1) for Jupiter -- and never falls below 579.6 anywhere in the scan)
+
+  WITH the coherence operator xi^2|grad_perp V|^2 at PAPER5's own Solar-System floors (Table 3):
+    footing     xi [pc] source                    p   Sig_eff/Sig   delta_g [m/s^2]     g_* [m/s^2]   delta_g/g_*
+    canonical      0.10 Earth  at 1 AU         0.50    2.3490e+13        4.2792e-25      6.0706e-15    7.0491e-11
+    canonical      0.10 Earth  at 1 AU         1.00    9.4052e+09        4.2800e-25      2.4308e-18    1.7607e-07
+    canonical      0.10 Earth  at 1 AU         2.00    7.5518e+02        4.2744e-25      1.9492e-25    2.1929e+00
+    canonical      0.10 Jupiter at 5.2 AU      0.50    9.7142e+11        3.6787e-21      3.1598e-14    1.1642e-07
+    canonical      0.10 Jupiter at 5.2 AU      1.00    2.0220e+09        3.6826e-21      6.5805e-17    5.5961e-05
+    canonical      0.10 Jupiter at 5.2 AU      2.00    4.3902e+03        3.6817e-21      1.4285e-22    2.5774e+01
+    canonical      0.10 Saturn at 9.6 AU       0.50    2.5191e+12        3.7308e-21      5.8206e-14    6.4097e-08
+    canonical      0.10 Saturn at 9.6 AU       1.00    9.6458e+09        3.7379e-21      2.2309e-16    1.6755e-05
+    canonical      0.10 Saturn at 9.6 AU       2.00    7.0987e+04        3.7379e-21      1.6418e-21    2.2767e+00
+    alt            0.15 Earth  at 1 AU         0.50    5.8014e+13        2.2913e-25      8.0277e-15    2.8542e-11
+    alt            0.15 Earth  at 1 AU         1.00    2.5495e+10        2.2918e-25      3.5283e-18    6.4954e-08
+    alt            0.15 Earth  at 1 AU         2.00    2.4640e+03        2.2908e-25      3.4086e-25    6.7207e-01
+    alt            0.15 Jupiter at 5.2 AU      0.50    2.3993e+12        1.9696e-21      4.1788e-14    4.7133e-08
+    alt            0.15 Jupiter at 5.2 AU      1.00    5.4810e+09        1.9718e-21      9.5515e-17    2.0644e-05
+    alt            0.15 Jupiter at 5.2 AU      2.00    1.4335e+04        1.9717e-21      2.4980e-22    7.8932e+00
+    alt            0.15 Saturn at 9.6 AU       0.50    6.2224e+12        1.9973e-21      7.6978e-14    2.5946e-08
+    alt            0.15 Saturn at 9.6 AU       1.00    2.6147e+10        2.0015e-21      3.2381e-16    6.1810e-06
+    alt            0.15 Saturn at 9.6 AU       2.00    2.3183e+05        2.0015e-21      2.8710e-21    6.9715e-01
+  [PASS] D3 with xi at PAPER5's own Solar-System floor (0.10 pc canonical / 0.15 pc alt) there EXISTS a saturation rate that is perturbative at a Solar-System source
+
+  THE SHARP VERSION.  Largest saturation exponent p_max with delta_g = g_* (binding source per footing):
+    footing     xi [pc] source                   p_max
+    canonical      0.10 Earth  at 1 AU          1.9524
+    canonical      0.10 Jupiter at 5.2 AU       1.7538
+    canonical      0.10 Saturn at 9.6 AU        1.9315
+    alt            0.15 Earth  at 1 AU          2.0243
+    alt            0.15 Jupiter at 5.2 AU       1.8414
+    alt            0.15 Saturn at 9.6 AU        2.0305
+
+    binding p_max over both footings and all three sources: p_max = 1.7538
+    -> a kernel that reaches its ceiling FASTER than Delta = C[1 - (s0/s)^1.75] is strongly coupled
+       at a Solar-System body even with xi at its floor.  An exponential approach (p -> infinity) is excluded.
+  [FAIL] D4 the xi operator rescues perturbativity for EVERY saturation rate (the perturbative window in p is unbounded)   (it does not: xi buys a bounded amount, p_max = 1.754.  This is a NEW constraint on the kernel's approach to saturation, absent from PAPER5.  Slower saturation is safe; exponential saturation is not)
+
+    convention sensitivity of p_max (the strong-coupling criterion L3/L2 = threshold):
+      threshold 0.1 -> p_max = 1.5785 ;  1.0 -> 1.7538 ;  10 -> 1.9284
+  [PASS] D4b [control] p_max is robust to the O(1) ambiguity in the strong-coupling criterion: two decades of threshold move it by less than 0.4   (spread 0.350 over 0.1 <= L3/L2 <= 10, because the ratio runs ~7 decades per unit p)
+
+    is the screened ratio an artefact of taking k = 1/R_p?  In the xi-dominated regime
+    Sigma_eff -> J xi^2/R_p^2, so delta_g = G M_p/(J xi^2) and the R_p^2 CANCELS:
+      source radius used         delta_g [m/s^2]    delta_g/g_*
+      R_Jupiter                       3.6826e-21   5.596143e-05
+      10 R_Jupiter                    3.6826e-21   5.596143e-05
+      0.1 R_Jupiter                   3.6826e-21   5.596143e-05
+  [PASS] D4c [control] in the xi-screened regime the perturbativity ratio is INDEPENDENT of the radius at which the source's field is evaluated, so p_max is not an artefact of choosing the planet's surface   (spread 6.59e-08 over a 100x range of radius)
+
+  does the strong-coupling requirement touch the CEILING C?  Same p = 1, four different C, with xi:
+             C      g_* [m/s^2]    delta_g [m/s^2]      delta_g/g_*     p_max
+        0.1000       3.7535e-19         6.6090e-26     1.760737e-07    1.9524
+        0.6476       2.4308e-18         4.2800e-25     1.760737e-07    1.9524
+        1.0000       3.7535e-18         6.6090e-25     1.760737e-07    1.9524
+        3.0000       1.1261e-17         1.9827e-24     1.760737e-07    1.9524
+  [FAIL] D5 the strong-coupling requirement constrains the boost CEILING C -- perturbativity and the galactic boost are in conflict   (delta_g/g_* varies by only 1.4e-14 relative across a 30x range of C, and p_max is unchanged: perturbativity constrains the saturation RATE, never the ceiling.  There is NO pincer between the bounded boost and the cubic action)
+
+  which of PAPER5 Table 1's kernels satisfy the corrected theorem (Delta' > 0 at every finite s)?
+    kernel                    C   sup attained at   Delta_prime > 0 everywhere
+    deep-MOND sqrt       0.2500         s = 0.250                           NO
+    standard mu          0.3003         s = 0.486                           NO
+    exp carrier          0.3679         s = 0.632                           NO
+    nu_RAR               0.6476         s = 2.540                           NO
+    simple mu            1.0000     s -> infinity                          yes
+  [PASS] D6 [control] exactly one of PAPER5 Table 1's five kernels -- the simple mu, C = 1.000, approached as 1 - 1/y (p = 1) -- is admissible as written under the corrected theorem; the other four attain their supremum at finite s and must be continued past it rather than cut off there   (admissible: ['simple mu']; and its p = 1 sits below the binding p_max = 1.75)
+
+--------------------------------------------------------------------------------------------------------------------------
+E -- VERDICT
+--------------------------------------------------------------------------------------------------------------------------
+  [PASS] E1 the bounded-boost theorem's HYPOTHESES admit at least one kernel that is bounded, has Delta' > 0 at every finite s, and has a well-defined cubic action there -- i.e. the THEOREM is not in tension with perturbative well-definedness   (Delta = C[1 - (1+s/s0)^-p] is such a kernel, and PAPER5's own simple-mu entry is the p=1, C=1 member)
+  [FAIL] E2 the theorem's CONCLUSION AS PRINTED -- that the kernel 'must saturate at C a0 above' its maximum, with the bound 'attained on a plateau' -- is admissible   (an attained supremum has Delta' = 0, hence Sigma_par = infinity, an infinite-slope J(Y) at Y = (C a0)^2, and no cubic action.  The supremum must be APPROACHED and never attained.  Erratum-level, to the wording and to the carried kernel, NOT to the theorem)
+  [FAIL] E3 PAPER5 states the corollary its own hypotheses force -- that NO kernel of the class can screen the Solar System, so a second, non-kernel screening scale is mandatory rather than a design choice   (section 9 presents xi as the implementation ('which in this action is done by the coherence length xi'). Monotonicity makes it a theorem: sup Delta = lim Delta, so the residual at Solar-System accelerations is >= the galactic boost, 1.40e+04x the binding gate.  A STRENGTHENING, not a refutation)
+  [PASS] E4 the theorem's EMPIRICAL content -- the ceiling C, the SPARC test, the cluster violation (sections 3-6) -- survives both corrections unchanged   (sup Delta is the same number whether attained or approached, and the xi operator screens by GRADIENT SCALE (xi k ~ 2e4 at 1 AU, ~1e-4 at 1 kpc), so it is inert at galactic and cluster wavelengths.  Sections 3-6 stand as published)
+  [FAIL] E5 a genuine internal contradiction exists INSIDE the bounded-boost theorem, requiring an erratum to the theorem itself   (no.  The tension is between the theorem's hypotheses and the CARRIED KERNEL's hard cutoff, and between the paper's silence and the screening corollary its hypotheses force.  Both are repairs to the paper, not to the theorem)
+  [FAIL] E6 the corrected theorem leaves the kernel's approach to saturation FREE (any Delta with Delta' > 0 will do)   (it does not: perturbativity with xi at its floor caps the approach exponent at p_max = 1.754. This is a new, previously unstated constraint -- weak (it only excludes very fast approaches, exponential included) but real, and it is the one place where the cubic action does constrain the kernel)
+
+==========================================================================================================================
+THE CORRECTED STATEMENT OF THE BOUNDED-BOOST THEOREM
+==========================================================================================================================
+
+  Let a MOND-class modification be carried by one scalar phi minimally sourced by matter through a
+  first-order quasilinear action, div[J(Y) grad phi] = 4 pi G rho with Y = |grad phi|^2, and write the
+  scalar force as g_phi = a0 Delta(s), s = g_N/a0.  Then:
+
+  (1)  [unchanged]  Gauss's law forces J(g_phi^2) g_phi = g_N, so g_phi is a single-valued function of
+       g_N and the longitudinal stiffness is Sigma_par = J + 2 Y dJ/dY = 1/Delta'(s), identically.
+
+  (2)  [unchanged]  Well-posedness of the static problem -- equivalently, the absence of a longitudinal
+       ghost / gradient instability in the covariant completion -- requires Sigma_par > 0, hence
+       Delta'(s) > 0: Delta is STRICTLY INCREASING.
+
+  (3)  [SHARPENED]  Delta is bounded if and only if it has a finite limit C = lim_(s->inf) Delta(s)
+       = sup Delta, AND THE SUPREMUM IS NEVER ATTAINED AT FINITE s.  A kernel that attains its supremum
+       on a plateau has Delta' = 0 there, hence Sigma_par = infinity, an infinite-slope J(Y) at
+       Y = (C a0)^2, and no cubic action: it is not an admissible member of the class.  Saturation is
+       ASYMPTOTIC, not attained.  Of the five kernels in PAPER5's Table 1, only the simple mu
+       (C = 1.000, approached as 1 - 1/y) is admissible as written; the exponential carrier and nu_RAR
+       must be continued past their maxima, never cut off there.
+
+  (4)  [NEW COROLLARY -- the screening corollary]  Because Delta is increasing, Delta(s_sun) > Delta(s_gal)
+       for every Solar-System s_sun above every galactic s_gal.  The residual scalar force at Solar-System
+       accelerations is therefore AT LEAST the galactic boost, C a0 = 6.063e-11 m/s^2 for the carried
+       kernel, while the Pitjev-Pitjeva phantom-mass gate caps it at 4.330e-15 m/s^2
+       (4.625e-05 a0 canonical, 3.839e-05 a0 alt).  The shortfall is 1.400e+04x / 1.687e+04x for the
+       carried kernel, 2.573e+04x against the measured galactic excess, and never below
+       6.486e+03x even for the narrowest kernel in the paper's own Table 1.
+       Hence NO KERNEL OF THE CLASS CAN SCREEN THE SOLAR SYSTEM.  Screening must be supplied by an
+       operator OUTSIDE the class.  In this action that operator is the coherence length xi, which
+       screens by GRADIENT SCALE (xi k >> 1 in the Solar System, << 1 in galaxies) rather than by
+       acceleration.  The theorem does not merely permit xi; it REQUIRES it, or an equivalent second scale.
+
+  (5)  [SCOPE]  With such an operator present, J(g_phi^2) g_phi = g_N holds only in the long-wavelength
+       limit xi k -> 0.  That is exactly the regime of the galaxy and cluster tests, so the empirical
+       content of PAPER5 sections 3-6 is untouched.
+
+  (6)  [PERTURBATIVE STATUS]  For an asymptotically-saturating kernel the cubic action exists at every
+       finite s, with strong-coupling amplitude
+            g_*(s) = 3 a0 Delta'(s)^2/|Delta''(s)| = [3p/(p+1)] (C a0 - g_phi(s))   (power-law approach)
+       -- it shrinks in proportion to the REMAINING GAP to saturation.  The ratio of a Solar-System
+       source's own scalar field to g_* is [(p+1)/3](M_p/M_sun)(r_p/R_p)^2: the ceiling C, the saturation
+       scale s0 and a0 all cancel, so the kernel ALONE is strongly coupled at a planet by 5.5e2 (Earth)
+       to 3.8e4 (Jupiter) for EVERY member of the class.  With xi at the paper's own floor the same ratio
+       is small, and perturbative control in the Solar System is a property of xi, not of the kernel.
+
+  (7)  [NEW CONSTRAINT -- the saturation rate]  xi buys a BOUNDED amount of perturbative room: the
+       binding requirement delta_g < g_* at a Solar-System body caps the approach exponent at
+       p_max = 1.754 (both footings, xi at its floor).  A kernel that reaches its ceiling faster than
+       Delta = C[1 - (s0/s)^p_max] -- an exponential approach in particular -- is strongly coupled at a
+       Solar-System body even with the screening.  Perturbativity therefore constrains the saturation
+       RATE and never the ceiling C: there is NO pincer between the bounded boost and the cubic action.
+
+==========================================================================================================================
+L34 complete in 2.2 s.  11 FAIL(s).
+FAILED CHECKS (each is a substantive finding, not a machinery failure):
+   - B1 (i)+(ii)+(iii) are mutually satisfiable for the KERNEL ALONE -- some bounded, everywhere-increasing Delta both boos
+   - B3 at least one bounded, everywhere-increasing kernel both boosts galaxies AND screens the Solar System
+   - C1 bounded + everywhere-increasing does NOT force Delta' -> 0 (i.e. an admissible kernel can keep Sigma_par uniformly 
+   - C4 the PUBLISHED kernel's cubic action exists at the Solar-System background (Sigma_par finite beyond s_sat = 2.540)
+   - D2 the KERNEL ALONE is perturbative at a Solar-System source: some saturation exponent p > 0 keeps delta_g below g_* a
+   - D4 the xi operator rescues perturbativity for EVERY saturation rate (the perturbative window in p is unbounded)
+   - D5 the strong-coupling requirement constrains the boost CEILING C -- perturbativity and the galactic boost are in conf
+   - E2 the theorem's CONCLUSION AS PRINTED -- that the kernel 'must saturate at C a0 above' its maximum, with the bound 'a
+   - E3 PAPER5 states the corollary its own hypotheses force -- that NO kernel of the class can screen the Solar System, so
+   - E5 a genuine internal contradiction exists INSIDE the bounded-boost theorem, requiring an erratum to the theorem itsel
+   - E6 the corrected theorem leaves the kernel's approach to saturation FREE (any Delta with Delta' > 0 will do)
+==========================================================================================================================

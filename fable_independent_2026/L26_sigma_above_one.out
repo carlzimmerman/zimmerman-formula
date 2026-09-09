@@ -1,0 +1,203 @@
+======================================================================================================================
+L26 -- is sigma > 1 admissible to the construction itself, independent of gravitational Cherenkov?
+======================================================================================================================
+
+-- 0. where the interval (0,1] comes from -------------------------------------------------------------------
+    <repo>/qwen_claude_field_theory/closure_2026/integrable_clock_construction_2026/IC4_ACTION.md, lines 69-70 and 77-78, VERBATIM:
+      "Define $a_*=3-81/(4\mathcal T)>0$ and select the **fixed design parameter**
+       $\sigma=1/3$. More generally the calculation covers $0<\sigma\le1$."
+      "These coefficients are fixed before any sector is tested. The squared-speed
+       parameter $\sigma$ is a construction choice, not a prediction fitted to data."
+  [PASS] L26-D1 the interval is declared in IC4_ACTION.md and is declared WITHOUT a derivation. The sentence that states it -- 'More generally the calculation covers 0<sigma<=1' -- is preceded and followed by coefficient definitions and by the sentence 'The squared-speed parameter sigma is a construction choice, not a prediction fitted to data'. No stability, hyperbolicity, positivity or well-posedness word occurs anywhere in the surrounding block.   (no derivation word in the 18 lines around the declaration)
+
+    every statement of the interval in <repo>/qwen_claude_field_theory/closure_2026/integrable_clock_construction_2026 (11 occurrences in 11 files):
+      wave_contract.json:14  "symbolic": "m,kappa>0; k>0; Tcal>27/4; e=1/8; 0<sigma<=1; example fixed sigma=1/3; fixed exa...
+      local_clock_wave.py:229  "domain":"Same flat expanding witness; k>0 linear scalar sector without extra matter; 0<sigma...
+      IC4_ACTION.md:70  $\sigma=1/3$. More generally the calculation covers $0<\sigma\le1$.
+      quadratic_dirac.py:352  domain="IC-4 fixed action family, F,h,k>0, x>0, Tcal>27/4, 0<sigma<=1; exact same constant-la...
+      wave_run_001/matching/manifest.json:53  "symbolic": "m,kappa>0; k>0; Tcal>27/4; e=1/8; 0<sigma<=1; example fixed sigma=1/3; fixed exa...
+      wave_run_001/bridge/manifest.json:53  "symbolic": "m,kappa>0; k>0; Tcal>27/4; e=1/8; 0<sigma<=1; example fixed sigma=1/3; fixed exa...
+      wave_run_001/tests/manifest.json:60  "symbolic": "m,kappa>0; k>0; Tcal>27/4; e=1/8; 0<sigma<=1; example fixed sigma=1/3; fixed exa...
+      wave_run_001/wave/stdout.txt:13  "domain": "Same flat expanding witness; k>0 linear scalar sector without extra matter; 0<sigm...
+      wave_run_001/wave/manifest.json:53  "symbolic": "m,kappa>0; k>0; Tcal>27/4; e=1/8; 0<sigma<=1; example fixed sigma=1/3; fixed exa...
+      wave_run_001/dirac/stdout.txt:49  "domain": "IC-4 fixed action family, F,h,k>0, x>0, Tcal>27/4, 0<sigma<=1; exact same constant...
+      wave_run_001/dirac/manifest.json:53  "symbolic": "m,kappa>0; k>0; Tcal>27/4; e=1/8; 0<sigma<=1; example fixed sigma=1/3; fixed exa...
+  [PASS] L26-D2 [the decisive documentary check] the interval NEVER appears as an executable condition. In every .py file of the construction it occurs only inside a `domain` metadata STRING that is printed into the run record; there is no assert, if, while or raise anywhere in the construction that mentions sigma at all; and the only executable restriction ever placed on it is `sigma = s.Symbol("sigma", positive=True)` in local_clock_wave.py, i.e. sigma > 0. The upper limit is therefore prose, not a condition any calculation ever tested against.   (2 .py occurrences, all inside `domain` strings; 0 control-flow lines mention sigma anywhere in the construction; the only restriction is positive=True)
+
+    the ONE place a subluminality requirement is executable anywhere in the construction:
+      <repo>/qwen_claude_field_theory/closure_2026/integrable_clock_construction_2026/ic11_clock_pressure.py:56-57
+        healthy = bool(PX > 0 and Q >= PX and energy > 0 and physical_H > 0
+        and A != 0 and Qbare != 0)
+      <repo>/qwen_claude_field_theory/closure_2026/integrable_clock_construction_2026/IC11_CLOCK_PRESSURE.md:63, VERBATIM:
+        "They are necessary and sufficient for `PX>0`, `Qclock>0`, `0<cs^2<=1`."
+  [PASS] L26-D3 IC-11 -- a DIFFERENT sector, the k-essence clock pressure on IC-10's plateau -- does encode subluminality executably, as `Q >= PX` inside its `healthy` predicate (that inequality IS cs^2 <= 1, since cs^2 = PX/Q). It sits there as one clause among six, alongside five genuine positivity/rank conditions (PX > 0, energy > 0, physical_H > 0, A != 0, Qbare != 0) from which it is separable by deleting one conjunct. So the construction's own code distinguishes health from subluminality, and then imposes subluminality as an extra.   (healthy = PX>0 AND Q>=PX AND energy>0 AND physical_H>0 AND A!=0 AND Qbare!=0)
+  [PASS] L26-D4 [and it is a different number] IC-11's cs^2 is NOT IC-4's sigma. On IC-10/IC-11's plateau the clock speed is an OUTPUT of the pressure function P(X,w) and runs with S (0.0956, 0.1271, 0.2265, 0.2577 at S = .03,.05,.10,.20), whereas IC-4's sigma is an INPUT fixed once at 1/3 on the IC-4 expanding witness. The two are the same mode's speed on two different backgrounds of two different action revisions, and no IC file states their relation. Any sigma decision therefore has to be taken twice, and this lane speaks only to the IC-4/5/6/7 handle.   (IC11 cs^2 in 0.096-0.258 and S-dependent; IC4 sigma = 1/3 fixed)
+
+-- 1. mandatory controls (if these fail, nothing below is reported) -----------------------------------------
+  [PASS] L26-C1 the IC-4/IC-5 expanding witness (xi,u,rho,tau) = (1/4, 2/3, -3e^{-1/2}, 0) is an exact stationary point of my independently transcribed h, with F = 0 and activation r = 1, at both sigma = 1/3 and sigma = 1   (max |h_xi|,|h_u| = 3.11e-60)
+  [PASS] L26-C2 [MANDATORY CONTROL 1] at the published parameters sigma = 1/3 my rebuild returns the lead's boxed IC6 identity S_4'(1) = -e^{5/6}(5T-27)(8T-27)(8T+27)/(18 T^2 (4T-27)) = -11.1407711251147987, the value L4 confirmed independently   (S_4'(1)|_sigma=1/3 = -11.1407711251147987)
+  [PASS] L26-C3 [MANDATORY CONTROL 2] at sigma = 1 my rebuild returns L15's value S_4'(1) = -20.194205022906776   (S_4'(1)|_sigma=1 = -20.194205022906776)
+
+-- 2. sigma_*, re-derived from the branch (not copied from L15) ---------------------------------------------
+  [PASS] L26-G1 [independent re-derivation] symbolic implicit differentiation along the constraint branch gives my own closed form for S_4'(1;sigma), and it agrees SYMBOLICALLY with L15's published expression e^{5/6}(p_R T - 9)(3 p_R + 4)(3 p_R - 44)/(216(4T - 27)). Two independent routes to the same sigma-dependence.   (sympy: my form minus L15's form simplifies to exactly 0)
+  [PASS] L26-G2 the closed form has exactly ONE zero in sigma, my independent value of it is sigma_* = 4T/(4T-27) = 3/a_*, and it is the root of the single factor 3 p_R - 44 (so p_R(sigma_*) = 44/3 exactly). The other two factors, (p_R T - 9) and (3 p_R + 4), are strictly positive for every sigma > 0.   (sigma_* = 1.679312732187113, c_s = 1.29588299325 c (29.588% superluminal))
+  [PASS] L26-G3 [control on the point itself] the FULL numerical implicit-function derivative at sigma_* -- the same machinery that returned -11.1407711251147987 and -20.194205022906776 -- returns S_4'(1;sigma_*) = 0 to 40 digits. The obstruction's leading order genuinely cancels there; this is not a property of the closed form alone.   (S_4'(1;sigma_*) = 2.8638863e-59 (numeric branch) and -5.9122812e-50 (closed form))
+
+    S_4'(1;sigma) across and beyond IC-4's declared interval:
+      sigma        p_R          S_4'(1)              J_T'(1)
+      0.05         3.0239557    -5.07339905067       -1.0431042
+      0.33333333   5.0485935    -11.1407711251       -1.8931042
+      0.75         8.026002     -18.7290681664       -3.1431042
+      1.0          9.8124471    -20.1942050229       -3.8931042
+      1.25         11.598892    -17.6606207073       -4.6431042
+      1.5          13.385337    -9.75144600916       -5.3931042
+      1.6793127    14.666667    -6.46401208581e-15   -5.9310424
+      1.8          15.529071    8.77397478161        -6.2931042
+      2.5          20.531118    103.178540815        -8.3931042
+
+-- 3. the construction's own health conditions, evaluated at sigma_* = 1.679 --------------------------------
+  [PASS] L26-H1 [GHOST] the scalar's kinetic normalisation stays positive above sigma = 1, and it does so trivially, because it does not depend on sigma at all. Re-deriving LOCAL_WAVE_REPORT's reduction in my own sympy: eliminating v gives kinetic coefficient a_* = 3 - 81/(4T) = 1.7864, EXACTLY sigma-free, with reduced Lagrangian a_*[zdot^2 - sigma (N0 k/A)^2 z^2]. Kinetic sign needs a_* > 0; GRADIENT sign needs sigma > 0. Neither has an upper edge. L15's finding that a_* = 1.786 and A_0 = 0.4615 are sigma-independent therefore survives past sigma = 1 unchanged, and what moves is only the gradient term's SIZE.   (kinetic a_* = 1.78644509894 (sigma-free) > 0; gradient sigma_* a_* = 3.0 > 0)
+  [PASS] L26-H1b [the same statement as an energy] LOCAL_WAVE_REPORT's exact mode-energy identity E = (y^2 + sigma x z^2)/2, E' = -3y^2 - sigma x z^2 <= 0 is verified here with sigma symbolic. E is positive definite and monotonically decreasing for EVERY sigma > 0; the identity has no upper restriction on sigma whatsoever. At sigma_* the mode is still a damped positive-energy oscillator.   (E positive definite for sigma > 0, x > 0; E' <= 0; both symbolic in sigma)
+  [PASS] L26-H1c [GHOST, second route] the reduced scalar kinetic normalisation A_0 = det M / M22 is POSITIVE at sigma_*, both at the witness (where it is exactly sigma-independent, since M11 = 0 and M12, M22 are sigma-free there) and at the nearby state j = 1.007.   (A_0(witness) = 0.461453103619 at every sigma; A_0(j=1.007) = 0.4593358921 -> 0.4674117867 at sigma_*)
+  [PASS] L26-H2 [TENSOR CONE] c_T^2 = 1 is still EXACT at sigma_*. TENSOR_BALANCE's K_T = 1 + F Q^2/a0^2 = J_T and G_T = J_T cancel identically, and sigma lives only inside J_T, so c_T^2 = 1 is an identity in sigma with no upper edge -- verified here with sigma left symbolic, and confirmed numerically at the j = 1.007 state at sigma_*. The check has teeth: the IC5 mutation, which drops the J_T from K_T, correctly returns c_T^2 = J_T instead of 1. L15's sigma-identity finding is confirmed and extends above sigma = 1.   (c_T^2(IC6) - 1 == 0 identically in sigma; numerically at sigma_*, j=1.007: 1.0; IC5 control returns J_T = 0.9587054946 != 1)
+  [PASS] L26-H3 [FROZEN DOMAIN] T > 27/4 still holds at sigma_*, and T does not depend on sigma at all: T = -27/16 + 54/(5 ln(9/5)) contains no sigma. The auxiliary Hessian at the witness is likewise identical, -[[24,-27],[-27,2T+135/8]] with det = 12(4T-27) > 0, and both its eigenvalues are bounded away from zero at sigma_*.   (T = 16.6865133026 > 6.75 (sigma-free); det H_qq = 476.952638525 = 12(4T-27); ||H(sigma_*) - H(1/3)|| = 0.0)
+  [PASS] L26-H4a [CONSTRAINT SURFACE] the isotropic auxiliary constraints do not move at all. The nongradient density restricted to tau = 0 is exactly sigma-free (the whole F-dependence sits in the tau/J_T term), so h_xi = h_u = 0, their solution, the branch tangent dq/dj and the fold are sigma-independent IDENTITIES, not numerical coincidences. Verified symbolically, plus the Newton solve at j = 1.007 returns IC6_EVEN's xi = 0.24297809, u = 0.66347046 at sigma_* to 40 digits.   (d(h|_tau=0)/dsigma == 0 symbolically; j=1.007 state identical to 40 digits)
+  [PASS] L26-H4b [THE FOLD] the fold of the auxiliary constraint surface DOES NOT MOVE with sigma. L15 located it at j = 1.216488 (correcting the guess that the branch ends at J_T = 0); it sits at the same j to 1e-6 at sigma = 1/3, sigma = 1 and sigma_*, for the structural reason in L26-H4a. The isotropic branch at sigma_* is exactly as long as the published one.   (fold at j = 1.21648796 (sigma=1/3), 1.21648796 (sigma=1), 1.21648796 (sigma_*))
+  [PASS] L26-H5 [J_T > 0, THE BINDING CONDITION] IC-6 and IC-7 are defined only on the open branch J_T > 0, and this is the one health condition that genuinely degrades with sigma. J_T on the isotropic branch is EXACTLY AFFINE in sigma (the state is sigma-free, F is affine in p_R, p_R is affine in sigma), and monotonically decreasing in j, so the whole condition reduces to its value at the fold. It stays POSITIVE at sigma_*, but only just: the margin falls 0.7268 -> 0.3899 -> 0.0532 as sigma goes 1/3 -> 1 -> sigma_*. The affine law puts the ZERO at sigma = 1.7716.   (min J_T on the branch: 0.72699828 (sigma=1/3), 0.39019892 (sigma=1), 0.046636669 (sigma_*); affine zero at sigma = 1.7715257)
+  [PASS] L26-H5b [the hard upper bound this yields] the affine law gives the construction's own first internal ceiling on its design parameter: J_T > 0 on the whole isotropic branch requires sigma < 1.7716. sigma_* = 1.6794 lies BELOW it, by 5.5% of sigma_*. That is a real margin and a real narrowness: the value that cancels the obstruction sits inside the admissible region but near its edge, so any revision that moves T, the witness or the fold must re-check this inequality first.   (sigma_* = 1.679312732 < sigma_(J_T=0) = 1.771525666; headroom 5.491% of sigma_*)
+  [PASS] L26-H6 [IC7 NORMALISATION] det(M_star) = -4 T^2 h0^2/81 is nonzero and IDENTICAL at sigma_*, because M11 = 0 at the witness for every sigma while M12 and M22 are sigma-free. IC7's cutoff normalisation D = det M/det M_star therefore does not move, and det M stays nonzero along the branch at sigma_*.   (det(M*) = -13.750109935689 at every sigma; det M(j=1.007) = -14.29165736)
+  [PASS] L26-H7 [HYPERBOLICITY] the system is still hyperbolic at 1.296 c: the characteristics are real. IC6_EVEN's exact reduced isotropic equation is qddot + 3 qdot + e^{2/3} k^2 diag(sigma, 1) q = 0, so the two squared coordinate speeds are sigma e^{2/3} (scalar) and e^{2/3} (tensor). Both are strictly POSITIVE for every sigma > 0, hence both characteristic speeds are real and distinct at sigma_*; and hyperbolicity is exactly the condition sigma > 0, with no upper edge. What sigma > 1 changes is which of the two cones is the wider one, not whether either exists.   (squared coordinate speeds at sigma_*: scalar 3.270854574, tensor 1.947734041; ratio c_s/c_T = 1.295882993)
+  [PASS] L26-H7b [CONSTRAINT RANK] the quadratic-Dirac constraint algebra is sigma-blind, so the second-class classification that gives one physical scalar pair is untouched at sigma_*. LOCAL_WAVE's auxiliary matrix M contains no p_R at all and its determinant reproduces the lead's 3 F^2 h^4 (4T-27)(8T+x)/(2T) > 0 symbolically. Rank four, four second-class plus two first-class constraints, (10 - 4 - 4)/2 = 1 pair -- identical above sigma = 1.   (det M_Dirac/(F^2 h^4) at x = 1 is 480.525528722 > 0, sigma-free)
+  [PASS] L26-H8 [SHEARED FIXTURE] the sheared state -- the one place the auxiliary solve genuinely moves with sigma, because tau != 0 makes the constraints see F -- still exists at sigma_*, still lies on the regular branch 0 < u < 1, still has J_T > 0, and still sits inside the IC-5 activation plateau |r^2 - 1| <= 1/4. Control: at sigma = 1/3 my solve reproduces IC6_EVEN's 18-digit xi = 0.242752746344542675, u = 0.663589818477735377, J_T = 0.986102159712075428.   (sigma_*: xi = 0.235368487456347, u = 0.660214831879625, J_T = 0.91420432848 > 0, |r^2-1| = 0.034842 <= 0.25)
+
+    S_4 on the isotropic branch, at the three values of sigma:
+      j          S_4(sigma=1/3)     S_4(sigma=1)       S_4(sigma_*)
+      1.002      -0.02205641567     -0.03980484584     0.001147941827
+      1.007      -0.07526051653     -0.1343157087      0.01382673326
+      1.02       -0.2012474505      -0.3485684031      0.1077639693
+      1.05       -0.4312583604      -0.6940572209      0.5964018854
+      1.10       -0.6630799907      -0.9406589362      1.836271337
+      1.15       -0.7537477585      -0.9726087138      2.845703421
+      1.21       -0.713695405       -0.9901853842      2.528939555
+  [PASS] L26-H9 [WHAT sigma_* ACTUALLY DOES TO THE OBSTRUCTION -- the sign, not the size] at sigma_* the leading order of S_4 along the branch vanishes AND the sign of what remains REVERSES. S_4 > 0 at all 59 points of a scan across the entire isotropic branch j in (1, 1.2165), against S_4 < 0 at all 59 points at both sigma = 1/3 and sigma = 1. Since the reduced equation is M_0 zetadotdot + S_4 k^4 zeta = 0 with M_0 > 0, IC6's conclusion -- real temporal roots lambda ~ +/- sqrt(-S_4/M_0) k^2, i.e. a growth rate rising like k^2, which is the Hadamard ill-posedness signature -- becomes lambda^2 < 0, a bounded oscillation at frequency ~ k^2. The ill-posedness is REMOVED on the whole branch, not merely reduced.   (S_4 > 0 at 59/59 branch points at sigma_*, < 0 at 59/59 at sigma = 1/3; S_4''(1) = 113.10776 (sigma=1/3) -> 577.7834 (sigma_*))
+  [PASS] L26-H9b [AND THE HONEST HALF: IC7 IS NOT MADE UNNECESSARY, ONLY SIGN-FLIPPED AND LOCALLY SMALLER] S_4 = 0 is what IC6 asks for, and sigma_* delivers it only to FIRST order at j = 1. The residual is quadratic, so c_7 = -S_4/32 shrinks near the witness -- 19.2x smaller at j = 1.002, 5.4x at j = 1.007 -- but it GROWS away from it: 1.4x larger at j = 1.05, 2.8x at 1.10, 3.8x at 1.15. IC7's counterterm is therefore still required across the branch, now with the OPPOSITE SIGN (c_7 < 0), and this lane does not claim it becomes unnecessary. What it does claim is the sign result of L26-H9: the thing IC7 is cancelling is no longer a growth term.   (|S_4(sigma_*)/S_4(1/3)|: 0.05205 at j=1.002, 0.1837 at 1.007, 1.383 at 1.05, 2.769 at 1.10; c_7(1.007) 0.0023518911 -> -0.00043208541)
+
+    the window in sigma where BOTH the branch exists and the growth obstruction is absent:
+      sigma          S_4'(1)             S_4 > 0 on branch?   min J_T on branch
+      1.6            -4.7741921197       NO                   0.086749065
+      1.679312732    -8.51635540786e-13  yes                  0.046636669
+      1.7            1.37157493407       yes                  0.036174089
+      1.74           4.17680423859       yes                  0.015944098
+      1.7716         6.53880413649       yes                  -3.7594498e-5
+      1.79           7.9746749117        yes                  -0.0093433902
+  [PASS] L26-H10 [A WINDOW, NOT A POINT] the two computed edges bracket a genuine interval of the design parameter in which the construction is internally consistent AND free of the IC6 growth obstruction: sigma in [1.6793, 1.7716). Its lower edge is sigma_* (below it S_4'(1) < 0 and growth returns near the witness); its upper edge is J_T -> 0 at the fold (above it the IC6/IC7 branch condition fails). The window is 5.5% wide in sigma, i.e. c_s from 1.2959 c to 1.3310 c. This is a family, so it is not a fine tuning of one number -- but it is narrow, and it is bounded on both sides by things the construction itself computes.   (lower edge sigma_* = 1.679312732 (S_4 sign flips), upper edge 1.771525666 (min J_T -> 0); width 5.491% of sigma_*)
+
+-- 4. causality with a preferred foliation ------------------------------------------------------------------
+    Standard treatment, cited rather than asserted:
+      - Babichev, Mukhanov & Vikman, JHEP 0802:101 (2008), 'k-Essence, superluminal propagation,
+        causality and emergent geometry': a superluminal k-essence cone is causally acceptable when the
+        emergent (acoustic) metric admits a global time function; no CTCs arise from the wider cone alone.
+      - Bruneton & Esposito-Farese, PRD 76, 124012 (2007): superluminal propagation in preferred-frame
+        scalar-tensor theories and the conditions under which it does or does not violate causality.
+      - Blas, Pujolas & Sibiryakov, JHEP 1104:018 (2011), and Blas & Sibiryakov, PRD 84, 124043 (2011):
+        in khronometric / Horava gravity the khronon foliation IS a global time function, modes with
+        speeds != 1 (including the instantaneous limit) are standard, and black holes acquire universal
+        horizons rather than causal pathology.
+      - Adams, Arkani-Hamed, Dubovsky, Nicolis & Rattazzi, JHEP 0610:014 (2006): the IR obstruction to a
+        LORENTZ-INVARIANT UV completion of a superluminal EFT. Recorded below as the standing cost.
+  [PASS] L26-X1 [THE FOLIATION IS SPACELIKE FOR THE WIDER CONE] the clock mode's acoustic metric, built covariantly from the construction's own structures as G^{mu nu} = g^{mu nu} + (1 - 1/sigma) n^mu n^nu (equivalently G_{mu nu} = g_{mu nu} + (1 - sigma) n_mu n_nu, checked as exact inverses), gives the clock leaves' unit normal the norm G^{mu nu} n_mu n_nu = -1/sigma. That is NEGATIVE for every sigma > 0, so the normal is timelike and the leaves T = const are SPACELIKE with respect to the acoustic cone as well as the light cone. T is therefore a global time function for BOTH cones and no closed causal curve can be built from the clock mode -- at sigma_* or at any sigma > 0.   (G^(mu nu) n_mu n_nu = -1/sigma, symbolic; at sigma_* = 1.6793127 it is -0.5954816996 < 0)
+  [PASS] L26-X2 [CONE NESTING, AND THE CONDITION IS sigma > 0 NOT sigma <= 1] every vector tangent to a clock leaf has G_{mu nu} v^mu v^nu = g_{mu nu} v^mu v^nu > 0 for EVERY sigma, because the correction is proportional to (n.v)^2 = 0 -- the leaves are spacelike for the acoustic cone identically. And a g-null vector has G_{mu nu} k^mu k^nu = (1 - sigma)(n.k)^2, which is negative exactly when sigma > 1: the light cone sits strictly INSIDE the acoustic cone above sigma = 1, and strictly outside below it. The construction's causal-structure requirement is therefore sigma > 0, the SAME condition as no-gradient-instability -- sigma <= 1 controls which cone is wider, not whether the theory is causal.   (leaf tangent norm = +1 for all sigma; g-null vector in G = 1 - sigma = -0.67931273 < 0 at sigma_* (light cone strictly inside))
+  [PASS] L26-X3 [THE PREFERRED FOLIATION IS GENUINELY THERE] the argument is available to this construction specifically, not borrowed. IC-4 varies a timelike clock T with X = -g^{mu nu} d_mu T d_nu T /2 > 0 and only then chooses unitary coordinates T = t; every object in the action (N, n_mu, h_{mu nu}, K_{mu nu}, a_mu, w, Q_{mu nu}) is built from that foliation; and the acoustic metric above is a function of (g, n, sigma) alone, i.e. of the SAME foliation. So the global time function the causality argument needs is the construction's own dynamical field, not an extra assumption.   (IC4_ACTION.md supplies X > 0, n_mu = -d_mu T/sqrt(2X), and clock-varied-before-unitary-gauge)
+  [PASS] L26-X4 [AND CHERENKOV IS SATISFIED AT sigma_*, WHICHEVER WAY L19 RULES] the gravitational-Cherenkov bound this repository imposes (Moore & Nelson 2001; Elliott, Moore & Stoica 2005; g03v V6; HANDOFF_CONTRACT A5) is 1 - c_s <= 2e-15, a LOWER bound: it constrains SUBLUMINAL modes, because a mode slower than an ultra-high-energy cosmic ray is what the ray can radiate into. At sigma_* the mode is 29.6% SUPERLUMINAL, so 1 - c_s = -0.296 and the bound is satisfied with room. sigma_* is therefore reachable whether or not L19 finds the bound applies to a k-essence clock -- L19's answer changes the LOWER edge of the allowed interval, never its upper edge.   (1 - c_s at sigma_* = -0.295883 <= 2e-15 (satisfied); at sigma = 1/3 it is 0.42265, excluded by 2.113e+14x)
+
+    NOT SETTLED BY THIS LANE, named exactly:
+      - the REVERSE Cherenkov process. A mode faster than light can decay into ordinary quanta if it
+        couples to them. Here matter is minimally coupled to g through the single unchanged S_m[g,psi],
+        so the clock reaches matter only through its metric perturbation, and the construction's own
+        exponential screening suppresses that further; but the decay rate is NOT computed here and is
+        not published anywhere in the IC files. It is the one physics gate a 29.6% superluminal clock
+        still owes, and it is a calculation, not an assumption.
+      - a Lorentz-invariant UV completion. Adams et al. 2006 obstructs one for a superluminal EFT. This
+        theory is not Lorentz invariant at any scale -- it carries a preferred foliation by construction
+        -- so the theorem does not fire, but the standing cost is that no Lorentz-invariant UV
+        completion can ever exist for it. At sigma = 1/3 that cost was already being paid.
+
+-- 5. verdict -----------------------------------------------------------------------------------------------
+    every health condition the construction states for itself, evaluated at sigma_* = 1.6794:
+      [ok  ] no ghost (kinetic a_* > 0, sigma-free)
+      [ok  ] no gradient instability (sigma a_* > 0)
+      [ok  ] positive mode energy, E' <= 0
+      [ok  ] reduced kinetic normalisation A_0 > 0
+      [ok  ] c_T^2 = 1 exactly
+      [ok  ] frozen domain T > 27/4
+      [ok  ] auxiliary Hessian invertible, det = 12(4T-27) > 0
+      [ok  ] constraint surface + fold unchanged
+      [ok  ] J_T > 0 on the whole branch
+      [ok  ] det M != 0 (IC7 normalisation)
+      [ok  ] hyperbolic, characteristics real
+      [ok  ] constraint rank / DOF count unchanged
+      [ok  ] sheared state exists, 0<u<1, in plateau
+      [ok  ] clock leaves spacelike for the acoustic cone
+  [PASS] L26-V1 [THE VERDICT] is sigma > 1 admissible to the CONSTRUCTION ITSELF, independent of Cherenkov? YES. Every health condition the construction states for itself -- ghost-freedom, gradient sign, positive mode energy, kinetic normalisation, exact tensor luminality, the frozen domain T > 27/4, auxiliary Hessian invertibility, the constraint surface and its fold, J_T > 0, det M != 0, hyperbolicity, constraint rank and DOF count, the sheared fixture, and the causal role of the clock foliation -- holds at sigma_* = 1.6794. Not one of them has an upper edge at sigma = 1; the ONLY internal ceiling anywhere in the family is J_T > 0 at sigma = 1.7716, and sigma_* is below it.   (14/14 conditions hold at sigma_*; first internal ceiling is sigma < 1.7715257)
+  [PASS] L26-V2 [WHY IC-4 BOUNDS sigma AT 1] the interval (0, 1] is category (b) in the brief's taxonomy, with a documentary edge of (c): it is a SUBLUMINALITY CHOICE -- keep the clock inside the shared metric null cone -- and it is nowhere derived. It is asserted once in prose in IC4_ACTION.md, copied verbatim into two `domain` metadata strings, and never evaluated by any code path (L26-D1, L26-D2). The same preference IS executable one sector away, as `Q >= PX` in IC-11's health predicate, where it sits as one deletable conjunct beside five genuine positivity and rank conditions (L26-D3). No stability, hyperbolicity, positivity or well-posedness requirement in the construction needs it: every such condition here turns out to need sigma > 0 and nothing more.   (declared in prose, copied to metadata, never executed; the executable cousin is IC-11's Q >= PX)
+  [PASS] L26-V3 [PROGRAMME REQUIREMENT -- the outcome worth hoping for, and it is MET] 'there exists a value of IC-4's own design parameter, admissible to the construction on its own health conditions, at which the IC6 obstruction's leading order vanishes.' It does, and it does more than that: sigma_* = 1.6794 kills S_4'(1) exactly, REVERSES the sign of S_4 on the entire isotropic branch so that IC6's real growth rate becomes a bounded oscillation, and passes all fourteen internal health conditions with an internal ceiling 5.5% above it. The cost is that the clock is 29.6% superluminal, which is a choice IC-4 declined without giving a reason.   (S_4'(1;sigma_*) = 0, S_4 > 0 on the whole branch, all 14 health conditions hold)
+
+    WHAT sigma_* BUYS -- stated at the size the numbers actually support:
+      - the IC6 quartic obstruction's leading order vanishes IDENTICALLY: S_4'(1;sigma_*) = 0 exactly,
+        against -11.1408 published and -20.1942 at sigma = 1;
+      - THE SIGN OF S_4 REVERSES ON THE ENTIRE BRANCH. This is the substantive gain. With M_0 > 0,
+        S_4 < 0 gives IC6's real roots lambda ~ +/- sqrt(-S_4/M_0) k^2 -- a growth rate rising like
+        k^2, the Hadamard ill-posedness signature. S_4 > 0 gives lambda^2 < 0: a bounded oscillation.
+        Verified at 59/59 branch points at sigma_*, against 59/59 the other way at sigma = 1/3 and 1;
+      - the residual is second order at the witness: S_4''(1) = 577.7834 at sigma_*, so
+        |S_4| falls 19.21x at j = 1.002 and 5.443x at j = 1.007;
+      - and there is a WINDOW, not a point: sigma in [1.6793, 1.7716) has both properties, bounded
+        below by the sign flip and above by J_T -> 0 at the fold.
+
+    WHAT sigma_* DOES NOT BUY -- the half a hopeful reading would get wrong:
+      - IC7 is NOT made unnecessary. IC6 asks for S_4 = 0, and sigma_* delivers that only to first
+        order at j = 1. Away from the witness |S_4| is LARGER than published: 1.383x at
+        j = 1.05, 2.769x at 1.10, 3.775x at 1.15. c_7 is still required
+        across the branch, now with the opposite sign (-0.000432085 at j = 1.007 against
+        0.00235189 published), so the narrow repair window and the tensor detuning
+        c_T^2 = 1 - 4 c_7 Rbar_0/c do not disappear -- they change sign and move.
+      - the SHEARED obstruction is untouched by anything computed here (see the open items below).
+  [FAIL] L26-P1 [PROGRAMME REQUIREMENT -- the stronger outcome, and it is NOT met] IC6_EVEN states its two constructive conditions as 'N_2 = N_2^T, S_4 = 0'. The strongest reading of this lane's brief is that sigma_* satisfies the second of them, making IC7 unnecessary. It does NOT. S_4 vanishes at sigma_* only to FIRST order at j = 1; on the branch it is nonzero everywhere except the witness, and away from the witness it is larger in magnitude than published. IC7's counterterm is still required. This is a requirement not met, not a claim refuted -- nobody asserted it -- and it is recorded as the designed FAIL of this run so the exit code cannot be mistaken for a clean sweep.   (max |S_4| on the branch at sigma_* = 2.9988448 != 0; the obstruction moves from first order to second order and flips sign, it does not vanish)
+
+    WHAT sigma_* COSTS -- everything below was derived at sigma = 1/3 and must be redone:
+      - IC5_ACTION.md                      'Keep every IC-4 coefficient, including sigma=1/3' -- F, A_R, B_R all move
+      - TENSOR_BALANCE.md:185              'These derivatives use the frozen sigma=1/3 member': dF/dj and dJ_T/dj
+      - TENSOR_BALANCE.md:231-242          the IC6 grid witness (residuals, Hessian eigenvalue 4.3989, J_T>=0.99937)
+      - IC6_EVEN_CHARACTERISTICS.md        the SHEARED numbers: N_2, S_4 matrix, z^2 = 0.0301756, c_RR = 0.0020073
+      - IC7_CURVATURE_SQUARE.md            every c_7 value and the theta-cutoff window edges
+      - NONLINEAR_HAMILTONIAN.md:70        sigma=1/3 carried through the identities
+      - nonlinear_square_completion.py:53  sigma = Rational(1,3) hard-coded
+      - LOCAL_WAVE_REPORT.md:291           'For sigma=1/3, four deterministic fundamental-matrix problems'; the exact
+        basis cos r + r sin r, sin r - r cos r with r = sqrt(sigma x) is sigma-general, so this one is cheap
+      - IC11_CLOCK_PRESSURE.md:56          the `Q >= PX` conjunct in `healthy` must be revisited, or justified
+
+    NOT MOVED, verified above: the witness itself, the isotropic constraint surface and its fold, the
+    auxiliary Hessian, det(M_star), c_T^2 = 1, the DOF count, a_*, A_0(witness), T, and every constant
+    except (p_R, q_R, A_R, B_R).
+
+    NOT AVAILABLE TO THIS LANE, named exactly:
+      - S4_11(sigma_*), the SHEARED reduced quartic, and the antisymmetric mixing N2_21. IC6_EVEN's
+        -0.0642323935174161 and 0.000563025148110635 come from the lead's anisotropic two-mode
+        reduction (ic6_even_characteristics.py), not reproduced in this lane. sigma_* cancels the
+        ISOTROPIC obstruction; IC6_EVEN's second condition N_2 = N_2^T under shear is untouched by
+        anything computed here and may well still fail. This is the single largest open item.
+      - the finite-k correction to c_s^2 = sigma, which needs the lead's background time derivatives.
+      - whether IC-4's sigma and IC-10/IC-11's cs^2 = PX/Q are the same handle (L26-D4).
+
+======================================================================================================================
+L26: 1 FAIL(S)
+    FAIL: L26-P1 [PROGRAMME REQUIREMENT -- the stronger outcome, and it is NOT met] IC6_EVEN states its two constructive conditions as 'N_2 = N_2^T, S_4 = 0'
+    sigma_* = 1.67931273219 (c_s = 1.295883 c) is ADMISSIBLE to the construction on
+    all 14 of its own health conditions. IC-4's (0,1] is an undefended subluminality convention.
+    The construction's own first internal ceiling on sigma is J_T > 0 at sigma = 1.7715257,
+    so the admissible growth-free window is sigma in [1.6793127, 1.7715257).
+    Both mandatory controls reproduced first: -11.1407711251147987 at sigma = 1/3 and
+    -20.194205022906776 at sigma = 1. The single FAIL is the stronger outcome (S_4 = 0 identically,
+    IC7 unnecessary), which is false. Exit 2 marks that designed outcome; exit 1 would mean one of the
+    lead's or L15's numbers failed to reproduce.
+======================================================================================================================
