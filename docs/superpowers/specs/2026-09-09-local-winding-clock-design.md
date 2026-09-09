@@ -42,19 +42,23 @@ The proposed action is
 \end{aligned}
 \]
 
-where \(\Theta=\nabla_\mu n^\mu/3\),
+where \(\Theta=\nabla_\mu n^\mu/3\).  The primary candidate takes the
+signed winding rate \(\mathcal W(\Theta)=\Theta\); the absolute-value
+regularization below is a separately tested negative-control branch.
 
 \[
- \mathcal W(\Theta)=\sqrt{\Theta^2+\varepsilon_w^2}-\varepsilon_w,
+ \mathcal W_{\rm abs}(\Theta)=\sqrt{\Theta^2+\varepsilon_w^2}-\varepsilon_w,
  \qquad
  S_{\rm cold}=\int d^4x\sqrt{-g}\,e^{-\beta Q}\mathcal L_c(g,\chi_c).
 \]
 
-The smooth regulator \(\varepsilon_w>0\) is retained during variation and
-the \(\varepsilon_w\to0^+\) limit is a separate gate.  On an expanding
-homogeneous branch, \(\dot Q\simeq H\), so \(Q\) measures local integrated
-e-folding.  The exact exponential MOND primitive remains the IC1 primitive;
-the new terms are tested first on the baryon-only branch \(\chi_c=0\).
+On an expanding homogeneous branch, the primary equation is exactly
+\(\dot Q/N=H\), so \(Q\) measures local integrated e-folding.  The
+absolute-value branch is retained with \(\varepsilon_w>0\) to test whether
+making winding monotone changes the velocity Hessian; it is not silently
+identified with the primary theory.  The exact exponential MOND primitive
+remains the IC1 primitive; the new terms are tested first on the baryon-only
+branch \(\chi_c=0\).
 
 The cold Lagrangian is fixed at the first gate to the explicit canonical
 massive scalar
@@ -71,10 +75,10 @@ factor is dimensionless and positive for finite Q.
 
 ## Intended mechanism
 
-The memory equation is action-derived:
+The primary memory equation is action-derived:
 
 \[
- n^\mu\nabla_\mu Q=\mathcal W(\Theta).
+ n^\mu\nabla_\mu Q=\Theta.
 \]
 
 The cold stress is multiplied by \(e^{-\beta Q}\), but no direct
@@ -103,9 +107,10 @@ diagnostic, not a derivation from cosmological structure formation.
 
 ### Gate 1 — exact variation
 
-Derive the Euler–Lagrange equations for (g,T,u,Q,\lambda,\chi_c) from the
-displayed action.  Keep the regulator, boundary terms, and cold-sector
-variation explicit.  Confirm that the IC1 static primitive remains
+Derive the Euler–Lagrange equations for \(g,T,u,Q,\lambda,\chi_c\) from the
+displayed action.  Keep the signed branch, the absolute-value control,
+boundary terms, and cold-sector variation explicit.  Confirm that the IC1
+static primitive remains
 \(\mu(y)=1-e^{-y}\) when \(\chi_c=0\).
 
 ### Gate 2 — canonical/Dirac closure
