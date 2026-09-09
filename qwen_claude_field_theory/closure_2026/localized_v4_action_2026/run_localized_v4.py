@@ -9,6 +9,7 @@ from localized_dirac import dirac_report
 from metric_variation_gate import metric_variation_gate
 from causal_response_gate import causal_response_gate
 from york_variation_gate import york_variation_gate
+from curved_york_variation_gate import curved_york_variation_gate
 from flrw_ward_gate import flrw_ward_gate
 
 
@@ -25,6 +26,7 @@ def main():
         "metric_variation": metric_variation_gate(),
         "causal_response": causal_response_gate(),
         "york_variation": york_variation_gate(),
+        "curved_york_variation": curved_york_variation_gate(),
         "flrw_ward": flrw_ward_gate(),
     }
     out = Path(__file__).resolve().parent / args.output_dir / "localized_v4_results.json"

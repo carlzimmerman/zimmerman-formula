@@ -6,6 +6,7 @@ from localized_dirac import flat_scalar_blocks, dirac_report
 from metric_variation_gate import metric_variation_gate
 from causal_response_gate import causal_response_gate
 from york_variation_gate import york_variation_gate
+from curved_york_variation_gate import curved_york_variation_gate
 from flrw_ward_gate import flrw_ward_gate
 
 
@@ -66,6 +67,14 @@ class LocalizedV4ContractTests(unittest.TestCase):
         self.assertTrue(result["localizers_vanish_on_flrw"])
         self.assertTrue(result["lapse_equation_matches_friedmann"])
         self.assertTrue(result["continuity_implies_acceleration"])
+
+    def test_curved_york_connection_terms_are_metric_consistent(self):
+        result = curved_york_variation_gate()
+        self.assertLess(result["projector_finite_difference_error"], 1e-7)
+        self.assertLess(result["action_finite_difference_error"], 1e-7)
+        self.assertLess(result["constraint_residual"], 1e-10)
+        self.assertEqual(result["constraint_rank"], 4)
+        self.assertEqual(result["tt_dimension"], 2)
 
 
 if __name__ == "__main__":

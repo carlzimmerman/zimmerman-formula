@@ -83,23 +83,35 @@ idempotence, TT constraint, and weighted self-adjointness residuals are below
 spatially varying background derivatives, and full multiplier preservation are
 still not computed.
 
+The follow-up `curved_york_variation_gate.py` retains the first spatial jet
+of h_{ij}, its Christoffel symbols, the complex WKB divergence-plus-trace
+operator, and the complete metric variation of those connection terms.  At
+the same nonzero covector its actual constraint matrix has derived rank 4 and
+a two-dimensional TT kernel.  The analytic projector derivative agrees with
+centered finite differences at (2.0\times10^{-10}), while the TT action
+derivative agrees at (2.6\times10^{-11}); idempotence, weighted
+self-adjointness, and the constraint residual remain below (5\times10^{-16}).
+This closes the previously omitted local connection-variation term at the
+tested curved metric jet.  It still does not prove global elliptic boundary
+compatibility, lower-order transport, or nonlinear multiplier preservation.
+
 ## Requirement audit
 
 | Requirement | Current status |
 |---|---|
 | exact exponential MOND law | Derived on fixed-​a0 static branch |
 | Φ=Ψ and γPPN=1 | Leading static slip equation derived; full PPN open |
-| two gravitational tensor modes | One TT block verified; full nonlinear count open |
+| two gravitational tensor modes | Curved WKB TT block verified; full nonlinear count open |
 | no hidden auxiliary scalar | Flat localizer block has no extra scalar beyond clock; curved count open |
 | matter conservation | Minimal-matter Ward identity; coupled constraint consistency open |
 | α₁,α₂,α₃ | Only a restricted α₁ matching exists; full values open |
-| cT=c and stability | Flat principal tensor check; full nonlinear stability open |
+| cT=c and stability | Flat/curved principal tensor checks; full nonlinear stability open |
 | FLRW with H≠0 | Prior V3 background exists; localized perturbations open |
 | k=0 and y→0 | Separate k=0 block exists; y→0 strong-coupling/regularity open |
 | empirical galaxy/cluster/cosmology fit | Not performed by this checkpoint |
 | Lean proof | Lean unavailable; exact identities exported as JSON |
 
-The reproducibility record is `run_007/manifest.json`; it pins the local
+The reproducibility record is `run_008/manifest.json`; it pins the local
 modules and the two prior V3 dependency files used by the causal gate.
 
 The follow-up `flrw_ward_gate.py` independently varies the lapse before the
@@ -114,7 +126,7 @@ leaf, and verifies symbolically that the minimally coupled continuity equation
 (\dot\rho=-3H(\rho+p)) differentiates the Friedmann residual into the
 acceleration residual.  This is a background Ward/FLRW result, not a
 perturbation or nonlinear constraint proof.  The latest run is
-`run_007/manifest.json`.
+`run_008/manifest.json`.
 
 ## Verdict
 
