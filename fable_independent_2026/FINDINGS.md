@@ -2846,3 +2846,37 @@ the sign change at (2−K_B)/(2−c₁₄); and J_Y = s/Δ → √s → 0 is con
   not, which is why it survives all three so far. **κ = ½ remains fitted throughout.**
 - **⚠️ This is a synthesis worth a paper of its own or a PAPER9 version two, NOT an unreviewed deposit.**
   It should be attacked before it ships, exactly as the foliation paper was.
+
+## L73 — even a healthy astra action is complete only below a galaxy: excess-spent-once binds it too
+
+`L73_lead_completeness.py` + `L73_LEAD_COMPLETENESS.md` (**16 checks, 16 PASS**; most PASSes are negative
+for the construction). The "complete theory" question, separate from the health question L71/L72 decide:
+granting the lead's integrable-clock action is healthy, can it be **complete**, or is it capped at
+"complete below a galaxy" like the deposited action?
+
+**Controls.** The counter returns 2/3/5/3, L61's overshoot reproduces at median 1.692, the transmission
+ceilings reproduce exactly (0.582/0.486 baryon-sourced), the ordering closures reproduce, and the MOND
+kernel's own cluster under-prediction (2.07×) reproduces.
+
+- **⭐ THE MOND CHANNEL AND THE COLD-MATTER CHANNEL ARE GENUINELY DIFFERENT — and it does not matter.**
+  MOND rides the clock's own acceleration invariant; a cold component gravitates through the single
+  metric to which baryons are minimally coupled. **But the transmission factor lives entirely in the
+  cold-matter-to-baryon channel, which keeping MOND inside the clock leaves untouched.** So η = 1 in
+  galaxies, same as at recombination.
+- **⚠️ SO EXCESS-SPENT-ONCE BINDS IT, exactly as it binds every single-metric branch.** The construction
+  still needs a cold component for clusters and the CMB; that component reaches baryons at η = 1 and
+  overshoots rotation curves by **median 1.69**, while the admissible window is η ≤ 0.58. **Keeping MOND
+  inside the clock changed where the anomaly is PRODUCED — its escape from the deep-MOND kill (L66/L69) —
+  but not the factor by which a cold component's pull is TRANSMITTED.**
+- **The one route that could have differed fails too.** A dust-like clock sector is itself a cold
+  component at η = 1 and inherits the overshoot (the lead's own note admits this). A non-dust clock
+  structure sector would have to fake a ΛCDM cold-halo ladder and the CMB, and **the lead's own mixed
+  cosmology loses causality at 0.4% of an e-fold** — the same wall as the recorded dark-sector no-go, not
+  reopened without a new mechanism type.
+- **⭐⭐ THE VERDICT, conditional on L71/L72: even a healthy integrable-clock action is complete only
+  below a galaxy — the same ceiling as the deposited action.** Its escape from the deep-MOND kill keeps
+  it a live *galaxy-scale* candidate but does not make it a theory of the universe. **κ = ½ stays fitted;
+  nothing favours any framework over ΛCDM.**
+- **This closes the completeness question for the last candidate**, and it does so through the
+  branch-independent theorem rather than a new mechanism: single-metric minimal coupling is what fixes
+  η = 1, and no clock-internal arrangement of the MOND sector changes that.

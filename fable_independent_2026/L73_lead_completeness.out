@@ -1,0 +1,162 @@
+==================================================================================================================
+L73 -- CAN THE LEAD'S INTEGRABLE-CLOCK ACTION BE A COMPLETE THEORY, OR ONLY COMPLETE BELOW A GALAXY?
+==================================================================================================================
+The excess-spent-once theorem (L55/L61) is branch-independent.  L66 showed the lead escapes a DIFFERENT
+theorem (the deep-MOND lapse kill) by keeping MOND inside the clock.  This lane asks whether keeping MOND
+inside the clock also changes the TRANSMISSION FACTOR that excess-spent-once turns on -- or whether the
+cold component still reaches baryons through the single metric with eta=1, binding the theorem anyway.
+a0 footings: canonical 9.3619e-11 / alt 1.1279e-10 m/s^2 (both carried).  kappa=1/2 FITTED.
+
+==================================================================================================================
+PART A -- CONTROLS.  Reproduce L61's overshoot, its transmission argument, its ordering closures,
+==================================================================================================================
+                    the mode-count controls, and the cluster residual amount.  Stop if any fails.
+      mode counts from N=(P-2F-S)/2:  GR general=2 GR=3 Einstein-aether=5 khronometric=3
+  [PASS] A0  counting controls reproduce {GR 2, GR+scalar 3, Einstein-aether 5, khronometric 3}   (2 / 3 / 5 / 3)
+      SPARC loaded from real_research/data/sparc_data: 155 galaxies, 2786 points
+      eta=1, 2059 deep-MOND points, baryon-sourced kernel: median g_pred/g_obs = 1.692 (L61 B1: 1.692)
+  [PASS] A1  L61 overshoot reproduced: at eta=1 the theory overshoots deep-MOND rotation curves by median x1.69   (median g_pred/g_obs = 1.692 vs published 1.692)
+      eta ceiling, baryon-sourced (eps=0): 0.582 / 0.486  (L50: 0.582/0.486)
+      eta ceiling, total-sourced  (eps=1): 0.355 / 0.276  (L49: 0.355/0.276)
+      the CMB requires eta = 1.000 +- 0.010 at recombination (Omega_c h^2 = 0.1200)
+  [PASS] A2  transmission ceiling reproduced: galaxies admit eta<=0.58/0.49 (baryon-src) or 0.36/0.28 (total-src) while the CMB requires eta=1.00 -- the window is BELOW one on both footings   (max admissible eta = 0.582 < 1)
+      (range)   Yukawa tuned to eta(10kpc)=0.582 gives eta(r_s)=1.34e-07; tuned to eta(r_s)=0.90 gives eta(10kpc)=0.999206  -> suppresses LONG not short (wrong way)
+      (density) rho_rec/rho_gal = 498x: recombination is DENSER than a galaxy (wrong way)
+      (accel)   |log10(g_rec/g_gal)| = 0.99 dex: epochs do not separate; clusters at 0.33-0.58 a0 <= galaxies 0.73 a0 while needing MORE (wrong way)
+      (potent)  clusters 64x deeper and need MORE transmission (wrong way)
+  [PASS] A3  ordering closures reproduced: hypothesis (c) cannot be broken by a range or by monotone screening in density/acceleration/potential -- every candidate has the WRONG ordering   (range/density/acceleration/potential all fail on direction, not magnitude)
+      cluster audit (qwen_claude_field_theory/closure_2026/cluster_measurement_audit_2026/results.json): 124 canonical rows
+      MOND-kernel post-residual at r>=500 kpc: g_HSE/g_kernel median 2.07 (>1 => kernel under-predicts clusters); required source/baryon ratio median 6.96
+  [PASS] A4  cluster control: the MOND kernel UNDER-predicts clusters -- a residual source above baryons is required (the cluster amount ~5.7x baryons, L7/L41)   (g_HSE/g_kernel = 2.07 > 1 at cluster outskirts)
+
+      All five controls PASS.  Nothing below leans on a number not rebuilt here or cited from the record.
+
+==================================================================================================================
+PART B -- THE TRANSMISSION CHANNEL IN THE LEAD'S ACTION.  Is the MOND-producing channel the same as
+==================================================================================================================
+                    the cold-matter transmission channel, and does the difference change eta?
+
+Read from IC4_ACTION.md's own equations (offline; nothing imported).  The full action is
+
+   S4 = INT sqrt(-g) { (m/2)[ R4 - 2Lambda + 4KW - 6W^2 + 2(1-u^2) a.a - 2 a0^2 U(u^2)
+                              + (Q^2/a0^2)(J + Rhat F) ] + kappa X }  +  S_m[g,psi].
+
+Two facts are stated verbatim in the action file and fix the channels:
+  (1) 'The independently diffeomorphism-invariant S_m[g,psi] is unchanged.  Its own on-shell Ward
+      identity remains grad_mu T^{mu nu}=0.  No extra force on ordinary matter is inserted.'
+  (2) The MOND scale a0 enters the CLOCK's own acceleration invariant  2(1-u^2)a_mu a^mu - 2 a0^2 U,
+      with a_mu = D_mu ln N and N=(2X)^{-1/2} a functional of the clock T.  There is NO separate MOND
+      scalar phi and NO AeST coupling 2(2-K_B) a^mu d_mu phi  (this is exactly the L66 escape).
+
+B.1  The cold-matter transmission channel.  A pressureless component -- whatever supplies it -- enters
+     the field equations through its stress T^{mu nu}, which sources the SAME physical metric g via the
+     Einstein-Hilbert term (m/2)R4.  Baryons are minimally coupled to that SAME g (fact 1).  So a cold
+     component's Newtonian pull reaches a baryon by ORDINARY GRAVITY IN g -- the identical channel at
+     recombination and in a galaxy, because it is ONE metric at BOTH epochs.  The transmission factor is
+     therefore eta = 1 (pure gravity) at both, with no scale- or environment-dependence available.
+      channel(cold->baryon) = minimal gravitational coupling to the single metric g  ==>  eta_galaxy = eta_recomb = 1
+  [PASS] B1  the cold-matter transmission channel is minimal coupling to the SINGLE metric g, identical at recombination and in galaxies (single-metric + minimal matter coupling, from S_m[g,psi], no extra force)   (eta is epoch-independent: there is no second metric or non-minimal coupling to make it differ)
+
+B.2  The MOND-production channel.  The a0 scale rides the clock's acceleration invariant, NOT a separate
+     scalar's kernel.  This IS a different channel from B.1's -- which is precisely why the lead escapes
+     the L60/L69 lapse-channel kill (L66 LEAD-6).  The question this lane must answer is whether that
+     difference reaches the transmission factor eta.
+      channel(MOND) = clock acceleration invariant 2(1-u^2)a.a - 2a0^2 U(u^2)  =/=  channel(cold->baryon)
+  [PASS] B2  the MOND-producing channel and the cold-matter transmission channel are DIFFERENT channels in the lead's action (MOND in the clock; cold matter through g)   (confirmed from the action; the crux is whether that difference changes eta)
+
+B.3  THE CRUX.  Excess-spent-once needs eta SMALLER in galaxies than at recombination (A2: <=0.58 vs
+     1.00).  eta is a property of the cold-matter -> baryon channel ALONE (B.1).  Producing MOND in a
+     separate clock channel (B.2) changes A_K (the anomaly the kernel adds); it leaves the cold-matter
+     channel -- minimal coupling to the single metric g -- UNTOUCHED.  So the different MOND channel
+     does NOT change eta.  To make eta<1 in galaxies the lead would need to break B.1's channel itself:
+     a SECOND metric for the cold component (the action is explicitly single-metric: 'the barred metric
+     is a change of variables on the clock slices, NOT a second metric for matter or light'), or a
+     non-minimal coupling (fact 1 forbids it: no extra force on ordinary matter).  Neither exists here,
+     and the only environmental/range escapes are A3's four wrong orderings.
+      lever 'second metric for the cold component': not available / wrong ordering
+      lever 'non-minimal (disformal/conformal) matter coupling': not available / wrong ordering
+      lever 'a range / graviton mass (Yukawa)': not available / wrong ordering
+      lever 'monotone environmental screening (rho / g / Phi)': not available / wrong ordering
+  [PASS] B3  [THE CRUX]  keeping MOND inside the clock does NOT change the transmission factor eta: eta is set by the cold-matter->baryon channel (single metric, minimal coupling), which the clock leaves untouched -- so hypothesis (c) BINDS and no escape channel exists   (no single-metric, minimally-coupled lever suppresses the cold pull in galaxies)
+
+==================================================================================================================
+PART C -- THE DECISIVE TEST.  Two sub-cases, both run.
+==================================================================================================================
+
+C.(i)  DOES THE LEAD STILL NEED A COLD COMPONENT?  The MOND sector lives in the clock, but MOND -- in
+       the clock or anywhere -- under-predicts clusters (A4: g_HSE/g_kernel>1) and cannot make the CMB
+       third peak without a pressureless component in the amount Omega_c h^2=0.12.  The lead's own
+       VACUUM_DENSITY_RECOMBINATION.md says so verbatim: its z=1100 fractions 'use reference-model
+       matter, INCLUDING its inferred nonbaryonic component; it must not be presented as a baryon-only
+       IC cosmology prediction.'  So the lead needs a cold component for clusters+cosmology.
+      cluster kernel residual 2.07>1 and CMB needs Omega_c h^2=0.12: a cold component is required
+  [PASS] C-i-1  the lead's action still needs a cold component for clusters and cosmology (MOND-in-clock under-predicts clusters and cannot source the CMB peaks alone)   (clusters and the CMB both demand a pressureless component the clock's MOND does not supply)
+
+       Then the overshoot fires: that cold component, in the CMB amount, reaches baryons through the
+       single metric g with eta=1 (B.1), and MOND-in-clock does not lower eta (B.3).  Its pull adds
+       pointwise to the kernel that already fits the rotation curves.
+  [PASS] C-i-2  EXCESS-SPENT-ONCE FIRES: with the required cold component at eta=1 the lead overshoots the rotation curves by median x1.69, and the admissible galaxy window (eta<=0.58) excludes eta=1   (median overshoot 1.692 at eta=1; galaxy ceiling 0.582 < 1 = CMB value)
+
+C.(ii)  CAN THE CLOCK SECTOR SUPPLY STRUCTURE ITSELF, with NO separate cold component?  Three tests.
+
+        (ii-a)  A DUST-LIKE CLOCK IS A COLD COMPONENT.  The lead's own VACUUM_DENSITY_RECOMBINATION.md:
+                'A dust-like clock would behave gravitationally as an additional matter component;
+                 renaming it does not remove its abundance, lensing, perturbation and conservation
+                 obligations.'  A dust-like clock gravitates through g exactly like cold matter, so it
+                 IS the A_X of the theorem and inherits eta=1 -- the overshoot fires again (C-i-2).
+  [PASS] C-ii-a  a dust-like clock sector does NOT escape: it gravitates through g like cold matter (eta=1) and inherits the overshoot -- renaming a cold component 'the clock' does not change its transmission   (the lead's own note: a dust-like clock keeps its abundance/lensing/perturbation obligations)
+
+        (ii-b)  A NON-DUST CLOCK STRUCTURE SECTOR MUST REPRODUCE THE NON-MONOTONE LADDER AND THE CMB.
+                The pair/cluster ladder is non-monotone in scale: at a FIXED radius (132 kpc) pairs need
+                a boost ratio 30.9 +-1.5 while clusters measure 9.20 +-1.30 -- a factor 3.4 at 11 sigma
+                (L41/FINDINGS).  L41 proved no single host-blind profile M_X=C M_bar^a r^b serves both:
+                the ratio, shear, and galaxy-non-overshoot gates open THREE DISJOINT windows in the
+                exponent a.  And the ladder simply IS LambdaCDM's stellar-to-halo-mass relation
+                (abundance matching gives 31.8 vs 30.9, 0.6 sigma).  A clock structure sector would have
+                to reproduce a cold-DM-halo signature it has no cold-DM halo to produce.
+      non-monotone ladder at fixed 132 kpc: pairs 30.9 vs clusters 9.2 = factor 3.4 (11 sigma); L41's three exponent windows are pairwise disjoint
+  [PASS] C-ii-b  a non-dust clock structure sector must reproduce the non-monotone pair/cluster ladder (factor 3.4 at fixed radius, three disjoint profile windows) and the CMB -- a cold-DM-halo signature; no clock-supplied structure has been exhibited that does   (ladder factor 3.4; L41 windows disjoint; ladder = LambdaCDM SHMR)
+
+        (ii-c)  THE LEAD'S OWN COSMOLOGY ATTEMPT HITS THE WALL.  IC23_MIXTURE.md varies the IC20 action
+                with radiation + matter and NO separate CDM -- exactly the 'clock supplies structure'
+                route.  Its own continuation FAILS: a light-cone crossing (a scalar characteristic
+                exceeds the physical light cone) is bracketed at Q_cross ~ 0.00372 -- i.e. after only
+                ~0.4% of an e-fold of barred expansion.  'This falsifies a healthy extended-history
+                claim for this specified trajectory and coefficient choice.'  That is the SAME causality
+                wall the deposited action's dust doors hit (the recorded g03w-g04j dark-sector no-go:
+                wave DM, thermal relic, and four condensate constructions all closed).
+      IC23_MIXTURE.md: light-cone crossing bracketed at Q_cross = 0.003723 (~0.37% of an e-fold)
+      recorded dark-sector no-go (CITED, not re-run): g03w-g04j -- wave/de Broglie, thermal relic, four
+      condensate constructions, environment switch; no particle or condensate keeps a cold component out of galaxies
+  [PASS] C-ii-c  the clock-supplies-structure route hits a wall: the lead's own IC23 mixed cosmology loses causality at Q_cross~0.0037 (0.4% of an e-fold), the same wall as the recorded g03w-g04j dark-sector no-go -- and this lane does NOT reopen that no-go without a new mechanism type (none is exhibited)   (Q_cross = 0.00372; a clock structure sector is not a new mechanism type)
+
+==================================================================================================================
+PART D -- VERDICT.  Is the construction bound by excess-spent-once, and can even a healthy version
+==================================================================================================================
+                    be complete?  CONDITIONAL on L71/L72's health verdict.
+
+  [PASS] D1  the lead's integrable-clock action IS bound by excess-spent-once: it needs a cold component for clusters+cosmology, that component reaches baryons through the single metric with eta=1, and neither the dust-like nor the non-dust clock-structure route escapes   (same transmission factor as every single-metric minimally-coupled branch)
+  [PASS] D2  the MOND channel and the cold-matter transmission channel are DIFFERENT (MOND in the clock, cold matter through g) but that difference does NOT change eta -- so hypothesis (c) binds anyway   (different production channel, identical transmission factor eta=1)
+  [PASS] D3  even a HEALTHY version cannot be a complete theory: it is complete only below a galaxy, the SAME ceiling as the deposited action -- CONDITIONAL on L71/L72 establishing galactic health   (a working kernel and a full cold cosmology remain alternatives, not complements)
+
+==================================================================================================================
+THREE-SENTENCE VERDICT
+==================================================================================================================
+Even granting the lead's integrable-clock action is healthy at galaxy scale (L71/L72's question, not
+this lane's), it is bound by the excess-spent-once theorem exactly as every other single-metric branch
+is: because ordinary matter is minimally coupled to ONE physical metric g, a cold component in the CMB's
+amount -- which it still needs for clusters and the CMB -- transmits its Newtonian pull to baryons with
+eta=1 in galaxies, overshooting the rotation curves by median x1.69, and keeping MOND inside the clock
+changes WHERE the anomaly is produced (a different channel, which is how it escaped the L60/L69 kill) but
+NOT the transmission factor eta, which is a property of the cold-matter->baryon channel the clock leaves
+untouched.  The one route that could differ -- letting the clock sector supply cluster mass and structure
+with no separate cold component -- does not escape either: a dust-like clock is a cold component that
+inherits the same eta=1 overshoot, and a non-dust clock structure sector must reproduce the non-monotone
+pair/cluster ladder (a LambdaCDM cold-halo signature) and the CMB while the lead's OWN mixed cosmology
+(IC23) already loses causality at 0.4% of an e-fold, the same wall as the recorded g03w-g04j dark-sector
+no-go.  So even the last candidate is complete only below a galaxy: 'a healthy version is still not a
+complete theory' is the honest and load-bearing result, conditional on L71/L72; kappa=1/2 remains fitted
+and nothing here favours any framework over LambdaCDM.
+
+RESULT: 16 checks, 16 PASS / 0 FAIL  (every check is a statement; PASS = statement true)
+runtime 0.1 s
