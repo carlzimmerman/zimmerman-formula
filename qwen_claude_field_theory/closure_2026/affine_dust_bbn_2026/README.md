@@ -29,8 +29,7 @@ Run the dependency-light Lean companion:
 python3 -B run_lean_core.py
 ```
 
-The Lean file follows the Navier--Stokes project’s useful discipline—small
+The Lean file follows the [OpenAI Navier--Stokes and Euler formalization](https://github.com/openai/NavierStokesAndEuler)'s useful discipline—small
 definitions, explicit declarations, zero `sorry`, and a machine-checkable
 compiler result—but intentionally uses only Lean’s core omega arithmetic so
 the proof is not hidden behind a large dependency cache.
-
