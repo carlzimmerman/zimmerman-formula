@@ -3453,3 +3453,27 @@ predecessor AeST died because its preferred-frame α₁=−2(K_B+2) was un-tunab
   AeST**, structurally, via the same MOND-inside-the-clock feature that beats the deep-MOND kill. HIGH
   confidence it beats AeST; MODERATE-HIGH the α's pass outright (huge margin; exact O(w) is astra's
   uncomputed calibration). κ=½ stays fitted; nothing here favours the framework over ΛCDM.
+
+## L93 — linear structure growth is CDM-identical; σ₈ matches; the g04h deficit is ABSENT (quantified)
+
+`L93_linear_growth_sigma8.py` + `.out` (**19 checks, 19 PASS**). Makes L82's "clusters like CDM" quantitative.
+
+- **It's an identity, not an approximation.** Controls reproduce L82: MOND primitive G(y)≈⅔y³ is cubic ⟹
+  c_s²=0 (K_QQ=3f²/2M²>0) and it drops from the linear gravitational equations (G_eff=1/8πM²=G). So the
+  dust's linear growth equation IS CDM's, character-for-character: δ'' + 2Hδ' − 4πGρ_m δ = 0.
+- **D(z) vs ΛCDM.** Solved z=1090→0 (Ω_m=0.315, Ω_Λ=0.685): reproduces the analytic ΛCDM growing mode to
+  max frac error 7.8×10⁻⁹; growth index γ(0)=0.554; **D_model = D_ΛCDM to machine precision** (same equation).
+- **Jeans scale.** c_s²=0 ⟹ k_J→∞, λ_J→0 — **no observable scale suppressed** (a c_s=200 km/s test gives
+  finite k_J=0.34 h/Mpc, in the g04h band — showing the pipeline detects deficits).
+- **⭐ σ₈ and the g04h deficit.** σ₈(model)/σ₈(ΛCDM) = D_model(0)/D_ΛCDM(0) = **1 exactly, scale-independent**
+  ⟹ **σ₈=0.811 (=ΛCDM); the g04h deficit (σ₈≤0.65) is ABSENT.** S₈=0.831 → **−0.07σ from Planck, +1.0σ from
+  KiDS-Legacy** — inherits ΛCDM's mild S₈ tension exactly, no residual deficit, no manufactured improvement.
+- **Adversarial control (not rigged).** Fed a c_s²>0 sector, the same pipeline reproduces a genuine
+  scale-dependent deficit: σ₈→0.740 (c_s=150), 0.604 (300), 0.186 (g04h-like c_s²∝ρ_d). **The match is
+  specific to c_s²=0** — exactly the Noether dust's property.
+- **Open (separate, not growth deficits):** full CMB/pre-recombination transfer T(k) (astra's Boltzmann,
+  established CDM-like sub-horizon only); near-horizon k→0 (L83, bears on lowest multipoles not σ₈, kernel
+  peaks deep sub-horizon at k_eff=0.157 h/Mpc); dust abundance Ω_c≈0.264 fine-tuned (L84/L87), not predicted.
+  a₀ absent from all linear cosmology (both footings bit-identical).
+- **VERDICT.** HIGH confidence D(z) and σ₈ are ΛCDM-identical at linear sub-horizon order and the g04h
+  deficit is gone; the complete structure verdict (full CMB transfer + near-horizon health) remains astra's.

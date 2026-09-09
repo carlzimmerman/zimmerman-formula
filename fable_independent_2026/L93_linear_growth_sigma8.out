@@ -1,0 +1,106 @@
+==================================================================================================================
+L93 -- LINEAR GROWTH AND sigma_8: making the F(Q)Theta Noether dust's 'clusters like CDM' claim quantitative
+==================================================================================================================
+
+==================================================================================================================
+PART 0 (CONTROL) -- reproduce L82: MOND operator cubic => c_s^2 = 0 and G_eff = G (the growth eq is CDM's)
+==================================================================================================================
+  [PASS] C0  MOND primitive G(y) = y^2 + 2(1+y)e^-y - 2 ~ (2/3) y^3 is CUBIC in the perturbation on the homogeneous background (V=0 => y=|V|/a0 = O(dphi)); a cubic operator contributes NO quadratic (grad dphi)^2 term and NO linear-order gravitational source [reproduces L82 F-1/F-4]   (G(y) ~ 2/3 y^3 (cubic))
+  [PASS] C1  the scalar's quadratic action has time-kinetic K_QQ = 3f^2/2M^2 > 0 and spatial-gradient coefficient = 0, so c_s^2 = grad/kinetic = 0 EXACTLY at the FLRW background [reproduces L82 F-2]; and the linear Poisson coupling is standard Einstein G_eff = 1/(8 pi M^2) = G (MOND drops, cubic) [L82 F-4]. Hence the linear growth equation IS delta'' + 2H delta' - 4 pi G rho_m delta = 0 (CDM's)   (K_QQ = 3*f**2/(2*M**2) > 0, grad = 0, c_s^2 = 0; G_eff = G)
+
+==================================================================================================================
+PART 1 -- the Jeans scale: c_s^2 = 0 => k_J -> infinity (lambda_J -> 0), NO suppression at any observable k
+==================================================================================================================
+  [PASS] P1a [MODEL] with c_s^2 = 0 the Jeans wavenumber k_J = sqrt(1.5 Om0/a) H0/c_s -> INFINITY and the Jeans length lambda_J -> 0 at every epoch: NO comoving scale is Jeans-suppressed. Every observable mode (k <~ few h/Mpc) has k << k_J = inf, so all scales grow unsuppressed -- the g04h Jeans deficit is structurally absent   (k_J(c_s^2=0) = inf, lambda_J = 0)
+  [PASS] P1b [CONTRAST] a c_s^2 > 0 sector with a representative c_s = 200 km/s has a FINITE k_J(a=1) = 0.232/Mpc = 0.344 h/Mpc, sitting squarely in the observable / sigma_8 band (k ~ 0.1-1 h/Mpc). Modes with k > k_J are pressure-suppressed -- this is exactly where g04h lost power. c_s^2 = 0 removes this scale entirely   (k_J(200 km/s, a=1) = 0.344 h/Mpc (in band))
+
+==================================================================================================================
+PART 2 -- solve the linear growth recombination -> today; D(z), growth index; validate vs analytic LambdaCDM
+==================================================================================================================
+  [PASS] C2 [CONTROL] the growth ODE (pressureless, G_eff=G) integrated recombination->today reproduces the analytic LambdaCDM growing-mode integral D(a) = (5 Om0/2) E(a) int_0^a da'/(a' E)^3 to high precision -- the solver is validated on LambdaCDM before any model claim   (max|D_ODE/D_analytic - 1| = 7.77e-09 over z in (0, 544))
+  [PASS] C3 [CONTROL] the growth index at z=0 is gamma = ln f / ln Omega_m ~ 0.55 (the LambdaCDM GR value); f(0) = Omega_m0^gamma   (f(0) = 0.5271, gamma(0) = 0.5543 (LambdaCDM ~ 0.55))
+
+    D(z) (normalised D(0)=1), matter+Lambda, model == LambdaCDM (identical equation):
+      z =  0.0   D = 1.00000   f = dlnD/dlna = 0.5271   Omega_m(z) = 0.3150
+      z =  0.5   D = 0.76892   f = dlnD/dlna = 0.7610   Omega_m(z) = 0.6082
+      z =  1.0   D = 0.60675   f = dlnD/dlna = 0.8767   Omega_m(z) = 0.7863
+      z =  2.0   D = 0.41714   f = dlnD/dlna = 0.9586   Omega_m(z) = 0.9255
+      z =  5.0   D = 0.21117   f = dlnD/dlna = 0.9946   Omega_m(z) = 0.9900
+  [PASS] P2  [KEY] the F(Q)Theta dust growth D_model(z) equals the LambdaCDM growth D_LambdaCDM(z) to MACHINE precision across recombination->today, because it is character-for-character the SAME growth equation (c_s^2 = 0, G_eff = G, no Jeans term). This is the quantitative content of 'clusters like CDM at linear sub-horizon order'   (max|D_model - D_LambdaCDM| = 0.0e+00 (identical equation))
+
+==================================================================================================================
+PART 3 (ADVERSARIAL) -- stress-test the pipeline: a c_s^2>0 sector MUST show a scale-dependent deficit
+==================================================================================================================
+
+    z=0 growth amplitude |S(k)| = |D(k)/D_pressureless|   (1.0 = no deficit; power ~ |S|^2):
+      k[h/Mpc]   c_s^2=0 (MODEL)   c_s=150 km/s   c_s=300 km/s   c_s^2~rho_d(a^-3, capped)
+         0.05      1.000000       0.9958         0.9834         0.0029
+         0.10      1.000000       0.9834         0.9350         0.0012
+         0.20      1.000000       0.9350         0.7595         0.0004
+         0.50      1.000000       0.6452         0.1065         0.0003
+         1.00      1.000000       0.1065         0.0088         0.0003
+  [PASS] P3a [MODEL] the c_s^2 = 0 Noether dust has suppression S(k) == 1 at ALL k (max|S-1| tiny): NO scale-dependent deficit, at any wavenumber -- the g04h failure mode is quantitatively absent   (max|S(k)-1| = 3.4e-11)
+  [PASS] P3b [PIPELINE NOT RIGGED] the SAME pipeline, fed a c_s^2 > 0 sector, produces a genuine scale-dependent DEFICIT: the growth amplitude |S(k)| < 1 and FALLS with k above the Jeans scale (deep suppression by k = 0.5-1 h/Mpc), for both representative sound speeds. So 'match' is not an artefact of the machinery -- it is specific to c_s^2 = 0   (|S_150|(0.2,0.5 h/Mpc) = 0.935,0.645; |S_300| = 0.759,0.107 (falling deficits))
+
+==================================================================================================================
+PART 4 -- sigma_8: model = LambdaCDM (scale-independent); confront observed sigma_8 / S_8
+==================================================================================================================
+  [PASS] C4 [CONTROL] the Eisenstein-Hu transfer + top-hat sigma_8 machinery reproduces the LambdaCDM sigma_8 = 0.811 by construction of the amplitude A (normalisation control); the sigma_8 kernel peaks at a deep sub-horizon scale   (sigma_8(LambdaCDM) = 0.8110)
+  [PASS] C4b [sub-horizon] the sigma_8 kernel is dominated by deep sub-horizon scales (k_eff ~ 0.1-0.3 h/Mpc), FAR from the near-horizon k->0 strong-coupling point (L83): so L83 does not bear on sigma_8   (k_eff = 0.1060/Mpc = 0.1573 h/Mpc (deep sub-horizon))
+  [PASS] P4a [RESULT] sigma_8(model)/sigma_8(LambdaCDM) = D_model(0)/D_LambdaCDM(0) = 1 EXACTLY and scale-independently (c_s^2=0 => no k-dependent Jeans suppression; G_eff=G => same growth). So the F(Q)Theta dust predicts sigma_8 = sigma_8(LambdaCDM) ~ 0.81 -- the g04h deficit (sigma_8 <= 0.65) is ABSENT   (sigma_8(model) = 0.8110 (= LambdaCDM); ratio = 1.000000000000)
+  [PASS] P4b [CONTRAST, quantified] pushed through the SAME sigma_8 kernel, a c_s^2 > 0 sector gives a SUPPRESSED sigma_8 (a real deficit): c_s=150 -> sigma_8 = 0.740; c_s=300 -> 0.604; g04h-like c_s^2~rho_d -> 0.186 (the sigma_8<=0.65 g04h ballpark). The model (c_s^2=0) keeps sigma_8 = 0.811. This is exactly the deficit the Noether dust AVOIDS   (deficit sectors: 0.740 / 0.604 / 0.186  vs  model 0.811)
+
+    sigma_8(model) = 0.811  ->  S_8(model) = sigma_8 sqrt(Om_m/0.3) = 0.831
+    vs Planck  S_8 = 0.832 +/- 0.013  ->  -0.07 sigma
+    vs KiDS-Legacy S_8 = 0.815 +/- 0.016  ->  +1.00 sigma
+  [PASS] P4c [CONFRONT] S_8(model) = sigma_8 sqrt(Omega_m/0.3) matches Planck's S_8 = 0.832 +/- 0.013 essentially exactly (it IS the LambdaCDM value) and sits within ~1 sigma of KiDS-Legacy. The model inherits LambdaCDM's mild S_8 lensing tension EXACTLY -- neither creating a g04h deficit nor manufacturing an improvement   (S_8(model) = 0.831: -0.07s Planck, +1.00s KiDS-Legacy)
+
+==================================================================================================================
+PART 5 -- verdict, honest caveats (clean sub-horizon vs open near-horizon/transfer), a_0 independence
+==================================================================================================================
+  [PASS] P5a [CLEAN] the sub-horizon linear result is clean and quantitative: c_s^2 = 0 + G_eff = G => the growth equation IS CDM's => D(z) identical to LambdaCDM (machine precision) => sigma_8 = LambdaCDM's ~0.81 at every scale. The g04h growth-suppression deficit is ABSENT   (sub-horizon linear structure: CDM-like, no deficit)
+  [PASS] P5b [OPEN - transfer] the FULL CMB / pre-recombination transfer function T(k) is NOT derived here (that needs a Boltzmann integration through horizon crossing and the radiation era). This lane establishes it is CDM-like SUB-HORIZON (c_s^2=0, G_eff=G, no Jeans cutoff, no free-streaming); the acoustic-scale transfer is a separate open calculation -- recorded, not claimed as won   (transfer CDM-like sub-horizon; full T(k) open (astra's Boltzmann task))
+  [PASS] P5c [OPEN - near-horizon] astra's near-horizon k->0 strong coupling (L83) bears on the CMB's LOWEST multipoles, NOT on sigma_8 (whose kernel peaks at k_eff = 0.157 h/Mpc, deep sub-horizon). Separate concern   (L83 (k->0) is a low-ell concern; sigma_8 is deep sub-horizon)
+  [PASS] P5d [OPEN - abundance] the dust ABUNDANCE Omega_c ~ 0.264 is a fine-tuned input (L84/L86/L87: the |C|/|A| ~ 10^-24 charge tuning), NOT predicted. Given the amount, the SHAPE/GROWTH is CDM-like -- this lane addresses growth+amplitude-shape, not the abundance tuning   (abundance tuned (L84/L87); growth/shape CDM-like given the amount)
+  [PASS] P6  [both a_0 footings] a_0 (canonical 9.3619e-11 / alternate 1.1279e-10 m/s^2) is ABSENT from every linear-cosmology equation (background E(a), growth ODE, Jeans term, transfer, sigma_8) -- it enters only the galaxy MOND term, which is cubic and drops. Both footings give bit-identical D(0) and sigma_8 (demonstrated, not assumed)   (D(0): 0.7878126027 == 0.7878126027; sigma_8: 0.811000 == 0.811000)
+
+==================================================================================================================
+SUMMARY
+==================================================================================================================
+
+  L93 makes L82's 'clusters like CDM' QUANTITATIVE and confronts sigma_8.
+
+  CONTROLS (all PASS): MOND operator cubic => c_s^2 = 0 and G_eff = G (C0/C1, reproducing L82); the growth
+  solver reproduces the analytic LambdaCDM growing mode to |Delta| = 7.8e-09 (C2); growth index
+  gamma(0) = 0.554 ~ 0.55 (C3); the Eisenstein-Hu sigma_8 machinery reproduces sigma_8(LambdaCDM) =
+  0.811 and peaks at k_eff = 0.157 h/Mpc, deep sub-horizon (C4/C4b).
+
+  RESULT.  Because c_s^2 = 0 (Jeans scale k_J -> infinity, NO suppression at any observable k) and G_eff = G,
+  the F(Q)Theta Noether dust obeys character-for-character the CDM linear growth equation.  Its growth factor
+  D(z) is therefore IDENTICAL to LambdaCDM to machine precision (0e+00) from recombination to today
+  (P2), and sigma_8(model) = sigma_8(LambdaCDM) = 0.811 EXACTLY and scale-independently (P4a).
+  S_8(model) = 0.831: -0.07 sigma from Planck (it IS Planck's value) and +1.00 sigma
+  from KiDS-Legacy -- the model inherits LambdaCDM's mild S_8 lensing tension exactly, no better, no worse.
+
+  THE g04h DEFICIT IS ABSENT, quantified.  The old condensate failed because c_s^2 ~ rho_d put a Jeans scale
+  in the observable band, suppressing growth (sigma_8 <= 0.65).  The SAME pipeline, fed a c_s^2 > 0 sector,
+  reproduces that deficit: sigma_8 -> 0.740 (c_s=150) / 0.604 (c_s=300) / 0.186
+  (g04h-like c_s^2~rho_d), with the growth amplitude |S(k)| falling to 0.65 / 0.11 by
+  k = 0.5 h/Mpc (P3b/P4b).  The pipeline is therefore NOT rigged to report agreement -- the match is specific
+  to c_s^2 = 0, and the model has NO such deficit.
+
+  HONEST CAVEATS (all recorded, none a manufactured deficit).  (i) The full CMB / pre-recombination transfer
+  T(k) is not derived here -- CDM-like is established SUB-HORIZON; the acoustic-scale transfer is astra's open
+  Boltzmann task (P5b).  (ii) astra's near-horizon k->0 strong coupling (L83) bears on the lowest CMB
+  multipoles, not sigma_8 (P5c).  (iii) the dust ABUNDANCE Omega_c ~ 0.264 is a fine-tuned input
+  (L84/L86/L87), not a prediction; this lane addresses growth+shape given the amount (P5d).  a_0 is absent
+  from all linear cosmology, so both footings are bit-identical (P6).
+
+  BOTTOM LINE: at linear SUB-HORIZON order the F(Q)Theta Noether dust clusters EXACTLY like CDM (D(z) and
+  sigma_8 identical to LambdaCDM), so it clears the structure gate that killed the old condensate -- a clean,
+  quantitative win at that order.  The abundance tuning and the full CMB transfer / near-horizon health remain
+  the open, separately-tracked costs.
+
+==================================================================================================================
+L93 COMPLETE: 19/19 checks PASS.   [0.5s]
+==================================================================================================================
