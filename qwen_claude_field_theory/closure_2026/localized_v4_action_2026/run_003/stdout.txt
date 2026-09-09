@@ -1,0 +1,239 @@
+{
+  "action": {
+    "status": "LOCALIZED_V4_ACTION_SPECIFIED; FULL_THEORY_OPEN",
+    "coefficients": {
+      "C": "5/3",
+      "ell": "1/100",
+      "eta_U": "1/12",
+      "eta_X": "1/3",
+      "eta_V": "-1/3",
+      "eta_TT": "-1/6"
+    },
+    "constitutive_law": "mu(y) = 1 - exp(-y)",
+    "action_terms": [
+      "R - 2 Lambda - ell theta^2 + a0^2 f(a/a0)",
+      "eta_U U^2 + eta_X U chi, U = K - <K> - chi",
+      "eta_V (2 A_i J^i - A_i H1 A^i), J_i = D^m K_im",
+      "eta_TT (K_TT^ij K_TT_ij - 2 Q^ij R_TT_ij + Q^ij H_TT Q_ij)",
+      "lambda_chi (Delta_h chi - D_iD_j K^ij)",
+      "lambda_A^i D_i A_i",
+      "lambda_Q^ij (D^k Q_ki, Q^i_i)",
+      "S_m[g, psi_m]"
+    ],
+    "constraints": [
+      "Delta_h chi - D_iD_j K^ij",
+      "H1 A - P_T div K",
+      "H_TT Q - P_TT(3Ric)",
+      "D_i A^i",
+      "D^i Q_ij",
+      "Q^i_i"
+    ],
+    "kernel_conventions": {
+      "scalar": "Delta_h dagger removes the constant leaf mode",
+      "one_form": "H1 dagger removes harmonic one-forms",
+      "tt": "H_TT dagger removes the TT kernel"
+    },
+    "non_claims": [
+      "No nonlinear Dirac closure is assumed",
+      "No global causal prescription for a spatial inverse is assumed",
+      "No complete PPN or empirical fit is claimed"
+    ]
+  },
+  "static": {
+    "psi_gradient": [
+      "-4*p_x + 4*q_x",
+      "-4*p_y + 4*q_y",
+      "-4*p_z + 4*q_z"
+    ],
+    "phi_gradient": [
+      "2*p_x/3 + 10*p_x*exp(-sqrt(p_x**2 + p_y**2 + p_z**2)/a0)/3 - 4*q_x",
+      "2*p_y/3 + 10*p_y*exp(-sqrt(p_x**2 + p_y**2 + p_z**2)/a0)/3 - 4*q_y",
+      "2*p_z/3 + 10*p_z*exp(-sqrt(p_x**2 + p_y**2 + p_z**2)/a0)/3 - 4*q_z"
+    ],
+    "psi_target": [
+      "-4*p_x + 4*q_x",
+      "-4*p_y + 4*q_y",
+      "-4*p_z + 4*q_z"
+    ],
+    "phi_target": [
+      "2*p_x/3 + 10*p_x*exp(-sqrt(p_x**2 + p_y**2 + p_z**2)/a0)/3 - 4*q_x",
+      "2*p_y/3 + 10*p_y*exp(-sqrt(p_x**2 + p_y**2 + p_z**2)/a0)/3 - 4*q_y",
+      "2*p_z/3 + 10*p_z*exp(-sqrt(p_x**2 + p_y**2 + p_z**2)/a0)/3 - 4*q_z"
+    ],
+    "psi_equation_is_slip_laplacian": true,
+    "phi_equation_is_exponential_aqual": true,
+    "newton_coupling": "6/5",
+    "mu": "1 - exp(-sqrt(p_x**2 + p_y**2 + p_z**2)/a0)",
+    "scope": "independent fixed-a0 static variation with K_ij=0"
+  },
+  "elimination": {
+    "scalar_equation": "-2*S + 2*chi*k2",
+    "scalar_solution": "S/k2",
+    "scalar_on_shell": "-S**2/k2",
+    "scalar_target": "-S**2/k2",
+    "scalar_identity": true,
+    "vector_equations": [
+      "2*A1 - 2*Abar1*k2",
+      "2*A2 - 2*Abar2*k2"
+    ],
+    "vector_solution": {
+      "Abar1": "A1/k2",
+      "Abar2": "A2/k2"
+    },
+    "vector_on_shell": "(A1**2 + A2**2)/k2",
+    "vector_target": "(A1**2 + A2**2)/k2",
+    "vector_identity": true,
+    "tt_equations": [
+      "2*Q1*k2 - 2*R1",
+      "2*Q2*k2 - 2*R2"
+    ],
+    "tt_solution": {
+      "Q1": "R1/k2",
+      "Q2": "R2/k2"
+    },
+    "tt_on_shell": "-(R1**2 + R2**2)/k2",
+    "tt_target": "-(R1**2 + R2**2)/k2",
+    "tt_identity": true,
+    "scope": "flat nonzero Fourier mode; kernel modes excluded explicitly"
+  },
+  "dirac_nonzero": {
+    "mode": "k_nonzero",
+    "scalar": {
+      "velocity_rank": 1,
+      "generations": [
+        4,
+        4
+      ],
+      "constraint_rows": [
+        "Matrix([[0, 0, 0, 0, 0, 0, 1, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 1, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 1, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 1]])",
+        "Matrix([[-4*k**2, 2*k**2/3, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 4*k**4/3, 0, -2*k**2/3, -k**2/3, 0, 0, 0, 0], [0, 0, 0, -509/1068, 509/534, 25/534, 0, 0, 0, 0], [0, 0, -2*k**2/3, 509/534, 25/267, -25/267, 0, 0, 0, 0]])"
+      ],
+      "poisson_matrix": "Matrix([[0, 0, 0, 0, -2*k**2/3, 0, 0, 0], [0, 0, 0, 0, 0, -4*k**4/3, 0, 2*k**2/3], [0, 0, 0, 0, 0, 0, 509/1068, -509/534], [0, 0, 0, 0, 0, 2*k**2/3, -509/534, -25/267], [2*k**2/3, 0, 0, 0, 0, 4*k**4/3, -50*k**2/267, 100*k**2/267], [0, 4*k**4/3, 0, -2*k**2/3, -4*k**4/3, 0, 0, 0], [0, 0, -509/1068, 509/534, 50*k**2/267, 0, 0, 0], [0, -2*k**2/3, 509/534, 25/267, -100*k**2/267, 0, 0, 0]])",
+      "poisson_rank": 8,
+      "first_class": 0,
+      "second_class": 8,
+      "dof": "1"
+    },
+    "poisson_matrix": "Matrix([[0, 0, 0, 0, -2*k**2/3, 0, 0, 0], [0, 0, 0, 0, 0, -4*k**4/3, 0, 2*k**2/3], [0, 0, 0, 0, 0, 0, 509/1068, -509/534], [0, 0, 0, 0, 0, 2*k**2/3, -509/534, -25/267], [2*k**2/3, 0, 0, 0, 0, 4*k**4/3, -50*k**2/267, 100*k**2/267], [0, 4*k**4/3, 0, -2*k**2/3, -4*k**4/3, 0, 0, 0], [0, 0, -509/1068, 509/534, 50*k**2/267, 0, 0, 0], [0, -2*k**2/3, 509/534, 25/267, -100*k**2/267, 0, 0, 0]])",
+    "rank": 8,
+    "closure": [
+      4,
+      4
+    ],
+    "vector": {
+      "velocity_rank": 0,
+      "generations": [
+        2,
+        2
+      ],
+      "constraint_rows": [
+        "Matrix([[0, 0, 1, 0], [0, 0, 0, 1]])",
+        "Matrix([[k**2, -k**2/3, 0, 0], [-k**2/3, 2*k**2/3, 0, 0]])"
+      ],
+      "poisson_matrix": "Matrix([[0, 0, -k**2, k**2/3], [0, 0, k**2/3, -2*k**2/3], [k**2, -k**2/3, 0, 0], [-k**2/3, 2*k**2/3, 0, 0]])",
+      "poisson_rank": 4,
+      "first_class": 0,
+      "second_class": 4,
+      "dof": "0"
+    },
+    "tensor": {
+      "velocity_rank": 1,
+      "generations": [
+        1,
+        1
+      ],
+      "constraint_rows": [
+        "Matrix([[0, 0, 0, 1]])",
+        "Matrix([[k**2/6, -k**2/3, 0, 0]])"
+      ],
+      "poisson_matrix": "Matrix([[0, k**2/3], [-k**2/3, 0]])",
+      "poisson_rank": 2,
+      "first_class": 0,
+      "second_class": 2,
+      "dof": "1"
+    }
+  },
+  "dirac_zero": {
+    "mode": "k_zero",
+    "scalar": {
+      "velocity_rank": 1,
+      "generations": [
+        3,
+        2
+      ],
+      "constraint_rows": [
+        "Matrix([[0, 0, 0, 0, 0, 1, 0, 0], [0, 0, 0, 0, 0, 0, 1, 0], [0, 0, 0, 0, 0, 0, 0, 1]])",
+        "Matrix([[0, 0, 0, 1, 0, 0, 0, 0], [0, 0, 1, 0, 0, 0, 0, 0]])"
+      ],
+      "poisson_matrix": "Matrix([[0, 0, 0, 0, 0], [0, 0, 0, 0, -1], [0, 0, 0, -1, 0], [0, 0, 1, 0, 0], [0, 1, 0, 0, 0]])",
+      "poisson_rank": 4,
+      "first_class": 1,
+      "second_class": 4,
+      "dof": "1"
+    },
+    "poisson_matrix": "Matrix([[0, 0, 0, 0, 0], [0, 0, 0, 0, -1], [0, 0, 0, -1, 0], [0, 0, 1, 0, 0], [0, 1, 0, 0, 0]])",
+    "rank": 4,
+    "closure": [
+      3,
+      2
+    ]
+  },
+  "metric_variation": {
+    "status": "METRIC_HODGE_VARIATION_SURROGATE_VERIFIED; FULL_YORK_VARIATION_OPEN",
+    "rows": [
+      {
+        "grid": 3,
+        "max_finite_difference_error": 5.59278429124177e-10,
+        "omitted_inverse_error": 0.021917881934858413,
+        "omitted_projector_error": 0.015171384358461631,
+        "residuals": {
+          "projector_idempotence": 3.219646771412954e-15,
+          "projected_divergence": 7.413992067038489e-15,
+          "mean_removed": 1.6375228726492385e-14,
+          "scalar_kernel_dimension": 1,
+          "oneform_kernel_dimension": 3
+        }
+      },
+      {
+        "grid": 4,
+        "max_finite_difference_error": 2.3488400113791386e-10,
+        "omitted_inverse_error": 0.0,
+        "omitted_projector_error": 0.0,
+        "residuals": {
+          "projector_idempotence": 2.1094237467877974e-15,
+          "projected_divergence": 1.6042722705833512e-14,
+          "mean_removed": 2.842170943040401e-14,
+          "scalar_kernel_dimension": 1,
+          "oneform_kernel_dimension": 3
+        }
+      }
+    ],
+    "max_finite_difference_error": 5.59278429124177e-10,
+    "max_omitted_inverse_error": 0.021917881934858413,
+    "max_omitted_projector_error": 0.015171384358461631,
+    "identity": "delta(A^-1)=-A^-1(delta A)A^-1 plus moving-kernel terms",
+    "scope": [
+      "weighted finite periodic cochains at grids 3 and 4",
+      "moving Hodge inverse, measure, lapse, mean projector, and transverse projector",
+      "not a continuum nonlinear York-TT variation"
+    ]
+  },
+  "causal_response": {
+    "status": "SIX_SOURCE_CAUSAL_RESPONSE_GATE_VERIFIED; NONLINEAR_THEORY_OPEN",
+    "source_count": 6,
+    "curvature_entries": 36,
+    "v2_spatial_pole_count": 19,
+    "v3_spatial_pole_count": 0,
+    "v3_factor_failure_count": 0,
+    "v3_characteristic_factors": [
+      "kx**2 + kz**2 + rate**2",
+      "kx**2/50 + kz**2/50 + 509*rate**2/900"
+    ],
+    "scope": [
+      "constant high-acceleration Fourier coefficients",
+      "all six symmetric conserved seed polarizations",
+      "electric Riemann response only",
+      "no nonlinear or arbitrary-curved-background causality theorem"
+    ]
+  }
+}

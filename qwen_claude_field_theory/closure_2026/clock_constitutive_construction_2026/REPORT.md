@@ -293,3 +293,36 @@ kernel complement and the variations of that complement/leaf average.
 Then compute the conserved moving-source curvature response for general
 stresses and its finite propagation support. These are obligations of this
 explicit action, before any full-theory or novelty announcement.
+
+## V3 follow-up: coefficient-family selection
+
+The follow-up files `parameter_family_gate.py` and `PARAMETER_FAMILY_GATE.md`
+turn the V2/V3 coefficient choice into an exact algebraic gate. With free
+scalar coefficients `d,t`, order-r^2 matching gives
+
+\[
+t={C^2-4Cd-3C\ell+4d^2+12d\ell\over6\ell}.
+\]
+
+The independent isotropic-stress k->0 residue factors as
+
+\[
+-{F r^2(-C+2d)(-C+2d+3\ell)\over
+  2C\ell(-C+4d+3\ell)},
+\]
+
+so the scalar-only gate has two branches, `d=t=C/2` and
+`d=t=(C-3 ell)/2`. The tensor and transverse-vector equations independently
+force their measured-G normalizations to `C/2`. The complete six-symmetric-
+seed response is then evaluated for both scalar branches, not assumed from
+the witness: at `C=5/3`, `ell=1/100`, the first branch has zero spatial-pole
+and wave-factor failures, while the second has 15 of each. The full linear
+response therefore selects `d=t=C/2`; the TT repair is not an arbitrary extra
+coefficient once the all-polarization gate is imposed.
+
+This is a new structural checkpoint, not closure. It is exact in the stated
+constant-coefficient Fourier family, with a finite witness for the factor
+divisibility. It does not vary the nonlinear York-TT projector, perform full
+Dirac closure on curved leaves, derive boosted PPN, or fit data. The durable
+result and provenance are `run_002/parameter_family_results.json` and its
+manifest; the corrected package invocation runs all nine tests with rc=0.
