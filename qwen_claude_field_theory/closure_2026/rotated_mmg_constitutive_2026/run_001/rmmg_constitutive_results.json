@@ -1,0 +1,154 @@
+{
+  "candidate": "rotated_mmg_constitutive_2026",
+  "kernel": {
+    "mu": "1 - exp(-y)",
+    "mu_target": "1 - exp(-y)",
+    "mu_identity": true,
+    "lambda_perp": "1 - exp(-y)",
+    "lambda_parallel": "(y + exp(y) - 1)*exp(-y)",
+    "lambda_parallel_limit": true,
+    "lambda_perp_at_1": 0.6321205588285577
+  },
+  "weak_field_variation": {
+    "e_phi": "-rho + 4*Derivative(Psi(x), (x, 2)) - 4*exp(-Derivative(Phi(x), x)/a0)*Derivative(Phi(x), (x, 2)) + 4*exp(-Derivative(Phi(x), x)/a0)*Derivative(Phi(x), x)*Derivative(Phi(x), (x, 2))/a0",
+    "e_psi": "4*Derivative(Phi(x), (x, 2)) - 4*Derivative(Psi(x), (x, 2))",
+    "slip_eom": "0",
+    "phi_on_slip": "-rho + 4*Derivative(Phi(x), (x, 2)) - 4*exp(-Derivative(Phi(x), x)/a0)*Derivative(Phi(x), (x, 2)) + 4*exp(-Derivative(Phi(x), x)/a0)*Derivative(Phi(x), x)*Derivative(Phi(x), (x, 2))/a0",
+    "phi_target_residual": "0",
+    "slip_equation_is_laplacian": true,
+    "aqual_target_matches": true
+  },
+  "dirac_k_nonzero": {
+    "k": 1.0,
+    "constraints": [
+      "k**2*u*(1 - exp(-k*u/(2*a0))) - source",
+      "k**2*r",
+      "k**2*pu*(-2*a0*(1 - exp(k*u/(2*a0))) + k*u)*exp(-k*u/(2*a0))/(2*a0)",
+      "k**2*pr"
+    ],
+    "matrix": [
+      [
+        0.0,
+        0.0,
+        1.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      [
+        -1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        -1.0,
+        0.0,
+        0.0
+      ]
+    ],
+    "rank": 4,
+    "determinant": 1.0,
+    "phase_space_dimension": 4,
+    "second_class_constraints": 4,
+    "remaining_scalar_phase_dimension": 0,
+    "preservation_multiplier_matrix": [
+      [
+        -1.0,
+        0.0
+      ],
+      [
+        0.0,
+        -1.0
+      ]
+    ],
+    "preservation_multiplier_rank": 2,
+    "preservation_multiplier": [
+      -2.0,
+      -0.0
+    ],
+    "preservation_status": "uniquely_fixed"
+  },
+  "dirac_k_zero": {
+    "k": 0.0,
+    "constraints": [
+      "k**2*u*(1 - exp(-k*u/(2*a0))) - source",
+      "k**2*r",
+      "k**2*pu*(-2*a0*(1 - exp(k*u/(2*a0))) + k*u)*exp(-k*u/(2*a0))/(2*a0)",
+      "k**2*pr"
+    ],
+    "matrix": [
+      [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    ],
+    "rank": 0,
+    "determinant": 0.0,
+    "phase_space_dimension": 4,
+    "second_class_constraints": 0,
+    "remaining_scalar_phase_dimension": 4,
+    "preservation_multiplier_matrix": [
+      [
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0
+      ]
+    ],
+    "preservation_multiplier_rank": 0,
+    "preservation_multiplier": null,
+    "preservation_status": "rank_deficient"
+  },
+  "clock": {
+    "K_X": "A*X/(Ld*sqrt(Ld**2 - X**2))",
+    "Sigma": "A*X*(3*Ld**2 - X**2)/(Ld*(Ld**2 - X**2)**(3/2))",
+    "c_s_squared": "(Ld**2 - X**2)/(3*Ld**2 - X**2)",
+    "positive_K_X_on_scan": true,
+    "positive_Sigma_on_scan": true,
+    "positive_cs2_on_scan": true,
+    "max_cs2_on_scan": 0.33333311111103703
+  },
+  "gates": {
+    "exact_exponential_mu": true,
+    "positive_transverse_eigenvalue": true,
+    "weak_field_phi_equals_psi": true,
+    "weak_field_aqual": true,
+    "k_nonzero_scalar_pair_removed": true,
+    "k_zero_rank_jump_exposed": true,
+    "clock_witness_healthy": true
+  },
+  "open_gates": [
+    "nonlinear hypersurface-deformation/Dirac closure",
+    "ordinary matter Ward identity for the physical metric",
+    "boosted PPN beta and alpha_1, alpha_2, alpha_3",
+    "full FLRW perturbation stability and zero-field completion"
+  ]
+}

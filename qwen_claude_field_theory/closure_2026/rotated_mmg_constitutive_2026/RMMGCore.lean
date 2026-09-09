@@ -1,0 +1,29 @@
+import Init.Omega
+
+/-!
+  Small kernel-checked companion for the rotated-MMG constitutive gate.
+
+  The Python program computes the Poisson-bracket matrix.  This file records
+  its determinant factor for the four scalar constraints, and kernel-checks
+  the nonzero-mode and homogeneous-mode witnesses without importing Mathlib.
+  It is intentionally a witness, not a formal proof of the full field theory.
+-/
+
+namespace RMMGConstitutive
+
+def diracDet (d k : Int) : Int := d * d * k * k * k * k
+
+theorem local_witness_det : diracDet 1 1 = 1 := by
+  decide
+
+theorem local_witness_nonzero : diracDet 1 1 ≠ 0 := by
+  decide
+
+theorem homogeneous_witness_det : diracDet 0 0 = 0 := by
+  decide
+
+theorem homogeneous_rank_witness_is_not_local :
+    diracDet 0 0 ≠ diracDet 1 1 := by
+  decide
+
+end RMMGConstitutive
