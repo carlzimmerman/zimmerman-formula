@@ -78,6 +78,26 @@ exact exponential law.  The executable variation is in
 
 ## Dirac sector
 
+### Auxiliary-relay refinement
+
+The local (p^2) Hamiltonian used for the first witness is not the preferred
+completion.  The cleaner relay keeps (u,r) genuinely auxiliary:
+
+\[
+ S_{\rm relay}=\int[ p_u\dot u+p_r\dot r-N(\mathcal V_M+\mathcal V_R
+ +\mathcal H_m+\mathcal H_{TT}+\mathcal H_{\rm clock})
+ -\lambda_u p_u-\lambda_r p_r+\cdots],
+\]
+
+with \(\mathcal V_M=2a_0^2G(c^2|Du|/(2a_0))\) and
+\(\mathcal V_R=\tfrac12|Dr|^2\).  The primary constraints are
+\(p_u=p_r=0\); their preservation generates the constitutive and slip
+equations.  Thus the elliptic equations are secondary constraints of the
+same action, not phenomenological multiplier equations.  The script
+`auxiliary_relay_dirac.py` computes the resulting Hessian/Poisson matrix and
+continues preservation.  At the local witness it has full computed rank and
+zero scalar phase dimension; at \(k=0\) the rank drops to zero.
+
 For one Fourier mode the scalar constraints are
 
 \[

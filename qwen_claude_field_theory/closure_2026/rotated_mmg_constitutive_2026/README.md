@@ -15,6 +15,8 @@ python3 -B spherical_prediction.py
 python3 -B -m unittest -v test_spherical_prediction.py
 python3 -B hda_closure_gate.py
 python3 -B -m unittest -v test_hda_closure_gate.py
+python3 -B auxiliary_relay_dirac.py
+python3 -B -m unittest -v test_auxiliary_relay_dirac.py
 python3 -B sparc_exact_exponential_fit.py
 python3 -B -m unittest -v test_sparc_exact_exponential_fit.py
 python3 -B run_lean_core.py

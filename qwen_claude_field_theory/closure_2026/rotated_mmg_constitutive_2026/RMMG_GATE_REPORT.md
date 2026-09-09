@@ -51,12 +51,12 @@ For a local canonical pair with \(s=u'\),
 the exact smeared bracket contains
 
 \[
- \{H[N],H[M]\}=(NM'-MN'),pA(s)
+ \{H[N],H[M]\}=(NM'-MN')\,pA(s)
  \left[\tfrac12A'(s)p^2+\mu(s)s\right].
 \]
 
-Matching the standard spatial-diffeomorphism generator \(p,s\) first
-requires \(A\mu=1\), hence \(A=1/\mu).  But the same bracket then has the
+Matching the standard spatial-diffeomorphism generator \(p\,s\) first
+requires \(A\mu=1\), hence \(A=1/\mu\).  But the same bracket then has the
 nonzero cubic coefficient \(AA'/2\), because \(\mu'(s)=e^{-s/a_0}/a_0>0\).
 The executable gate computes this term and a finite witness at \(s=a_0\).
 This is a conditional obstruction for the *minimal one-pair* realization,
@@ -77,6 +77,18 @@ mass-to-light ratio (bulge tied to 1.4 times the disk value) gives
 
 This is a bounded catalogue consistency result, not a relativistic
 certification; the fit script and inverse residual test are reproducible.
+
+## Auxiliary-relay chain
+
+The preferred local realization now uses no \(p_u^2\) or \(p_r^2\) term:
+the primary constraints \(p_u=p_r=0\) are generated directly by the
+first-order action, and their preservation produces the MOND and slip
+elliptic equations.  The computed four-constraint matrix is full rank at
+\(k\neq0\), fixes the preservation multipliers, and leaves no scalar phase
+dimension.  Its rank-zero \(k=0\) output is retained as a genuine separate
+homogeneous sector.  This is the most promising local architecture in the
+current branch, but it still requires the full metric constraint algebra and
+the Ward identity.
 
 ## Exact obstruction still open
 
