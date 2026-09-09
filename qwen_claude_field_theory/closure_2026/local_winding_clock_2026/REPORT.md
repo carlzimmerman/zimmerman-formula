@@ -105,6 +105,18 @@ reported only as a negative control.
    action-derived zero-gradient/strong-coupling risk for the clock memory,
    not a healthy propagating scalar and not a pass of the stability gate.
 
+7. **Scoped architectural no-go.** For the exact local term
+   \(A\lambda(\dot Q-\delta\Theta)\), the action-derived momenta are
+   \(p_Q=A\lambda\) and \(p_\lambda=0\), with computed bracket
+   \(\{p_\lambda,p_Q-A\lambda\}=A\ne0\). The velocity Hessian has rank zero,
+   while the Fourier determinant is \(-A^2\omega^2\) for every \(k\). Adding
+   a standard \(Q\) kinetic/gradient regulator raises the computed Hessian rank
+   from 0 to 1 but leaves the \(\lambda\)-equation exactly unchanged. Therefore
+   the strict architecture cannot become a healthy hyperbolic clock without
+   changing the multiplier constraint or the field content. This is a scoped
+   no-go for this local realization, not a universal theorem about all
+   nonlocal/elliptic MOND actions.
+
 ## Exact files created
 
 - `action_variation.py`, `test_action_variation.py`
@@ -113,6 +125,7 @@ reported only as a negative control.
 - `flrw_winding_gate.py`, `test_flrw_winding_gate.py`
 - `winding_calibration.py`
 - `stability_causality_gate.py`, `test_stability_causality_gate.py`
+- `winding_no_go.py`, `test_winding_no_go.py`
 - `run_local_winding.py`, `test_local_winding.py`
 - `lean_ready_identities.json`, `lean_ready_identities.lean`
 - `contract.json`
@@ -131,7 +144,7 @@ contains unrelated dirty and untracked work from earlier research runs.
 | `python3 -B -m unittest -v test_weak_field_ward_gate.py` (package directory) | 0 |
 | `python3 -B -m unittest -v test_flrw_winding_gate.py` (package directory) | 0 |
 | `python3 -B -m unittest -v test_local_winding.py` (package directory) | 0 |
-| `python3 -B -m unittest discover -s qwen_claude_field_theory/closure_2026/local_winding_clock_2026 -p 'test_*.py' -v` | 0 (13 tests) |
+| `python3 -B -m unittest discover -s qwen_claude_field_theory/closure_2026/local_winding_clock_2026 -p 'test_*.py' -v` | 0 (15 tests) |
 | `python3 -B run_local_winding.py --output-dir run_001` | 0; report status OPEN |
 | `python3 /Users/carlzimmerman/.codex/plugins/cache/openai-curated-remote/mathbox/3.0.0/skills/computation-audit/scripts/validate_manifest.py qwen_claude_field_theory/closure_2026/local_winding_clock_2026/run_001/manifest.json` | 0; valid legacy manifest |
 | `python3 -B -m unittest -v test_integrable_clock.py` (IC1 directory) | 0 (9 tests) |
@@ -174,3 +187,9 @@ That calculation must determine whether the local winding clock leaves only
 the two tensor gravitational modes and whether its scalar exchange is healthy;
 only after that can a boosted PPN solve and empirical cluster gate be
 meaningful.
+
+The no-go makes the design fork explicit: either accept a pressureless,
+zero-gradient clock with a strong-coupling risk, or replace the exact
+multiplier transport law by a covariant higher-derivative/elliptic sector and
+recompute all constraints, PPN coefficients, and wave characteristics from
+that new action. There is no honest way to declare both branches equivalent.

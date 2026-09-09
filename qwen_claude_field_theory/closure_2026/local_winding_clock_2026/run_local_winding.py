@@ -17,6 +17,7 @@ from flrw_winding_gate import flrw_report
 from stability_causality_gate import stability_report
 from weak_field_ward_gate import ward_report, weak_field_report
 from winding_calibration import calibration_report
+from winding_no_go import no_go_report
 
 
 PACKAGE_ROOT = Path(__file__).resolve().parent
@@ -57,6 +58,7 @@ def build_results():
     flrw = flrw_report()
     calibration = calibration_report()
     stability = stability_report()
+    no_go = no_go_report()
 
     # This is intentionally OPEN: the missing gates are part of the result,
     # not silently treated as passing because the first gates are green.
@@ -66,6 +68,7 @@ def build_results():
         "nonlinear_stability",
         "causal_propagation",
         "memory_clock_stability",
+        "strict_local_winding_architecture",
         "full_metric_Ward_identity",
         "empirical_galaxy_cluster_fit",
     ]
@@ -97,6 +100,7 @@ def build_results():
         "flrw": flrw,
         "calibration": calibration,
         "stability": stability,
+        "no_go": no_go,
     }
 
 

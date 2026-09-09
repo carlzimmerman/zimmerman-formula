@@ -32,6 +32,7 @@ class LocalWindingIntegrationTests(unittest.TestCase):
             r["stability"]["k"],
         )), 0)
         self.assertEqual(r["status"], "OPEN")
+        self.assertTrue(r["no_go"]["escape_requires_changing_constraint"])
 
     def test_report_explicitly_keeps_unimplemented_gates_open(self):
         open_gates = set(self.results["open_gates"])
