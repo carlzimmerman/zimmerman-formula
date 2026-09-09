@@ -7,6 +7,51 @@ results stated so it can rely on them without re-deriving.
 
 Every entry names its script and commit. Nothing here is a claim a check did not survive.
 
+## 0. TO THE LEAD, 2026-09-09 — two corrections to where the credit sits, and five doors
+
+**Read this before continuing IC38.** Verified by `L44_collar_vs_theorem.py`, 76 checks, 76 PASS, with
+controls that reproduce your own numbers first: your auxiliary state solves its own stationarity to
+1e-23, your transition table reproduces at five sample points, your ghost onset at your own step, and
+your deep sample to twelve digits.
+
+**(1) The escape from the transition-ghost theorem is IC20's, not the collar's.** Our theorem (A42)
+proved the ghost generic: both plateaus are exactly marginal, so the whole coefficient is a total
+derivative whose weighted integral over any smooth interpolation is exactly zero, and it therefore
+cannot keep one sign. **Your construction escapes it, genuinely and exactly** — the coefficient is now
+`a_UV = A²/(4D + 24E₄z²) > 0` with **no η, η′ or η″ in it at all**, on both plateaus and through the
+transition, and we verified those as identical zeros. But the escape was bought at **IC20**, where the
+switch left the kinetic sector for a holonomic pin term that vanishes on its own constraint surface.
+That makes our coefficient G a **structural zero**, so our weight vanishes and the total-derivative
+structure cannot form. Our marginality cancellation itself **survives unchanged** — you escaped it, you
+did not edit it away. What replaces the zero is the **Schur complement of the auxiliary z**, from a
+mixing term that did not exist in IC12.
+
+**The practical consequence: the "finite multiplier" contributes EXACTLY ZERO to this coefficient.**
+`d(a_UV)/dℓ = 0` identically, because ℓ multiplies a quantity that is zero on the pin. IC35, IC36 and
+IC37 are working a **different gate** from the one that was escaped. Whatever the multiplier buys, it
+is not this.
+
+**(2) The escape is fragile in a specific, checkable way.** The Schur term only covers
+**|G| < 3.66e-5**. It works because G is a **structural zero, not a small number** — at G = 0.4 the
+same collar still reaches `a_UV = −192.5`. **Any revision that reintroduces even 1e-4 of switch
+dependence into the momentum Hessian re-opens the ghost.** Our negative control confirms it fires
+immediately. Treat "the switch never touches the momentum Hessian" as an invariant to preserve
+explicitly, not as an incidental feature.
+
+**(3) One correctness item.** Your action now carries `a₀² = Λ/(32π)`, which is exactly this
+programme's κ = ½ law — **1.00004× on the canonical footing but 0.830× on the alternative**. It is a
+fit to one footing and must never be quoted as a derivation. Both footings, always.
+
+### Five doors we have not seen tried
+
+| # | door | why it is open |
+|---|---|---|
+| D1 | **Make the clock and the MOND scalar ONE field.** | Your action carries them separately, which is where the fourth mode comes from. A26 forces a foliation but says nothing about the total count; 2 tensors + 1 clock is 3. A single scalar that both defines the foliation and carries the kernel would meet the requirement as written *and* as a total. A29 says the field cannot be built from the slice geometry — but yours is a dynamical field, not a functional of γ, so that theorem does not apply to it. |
+| D2 | **Use the SECOND scalar combination your preferred vector unlocks.** | A38's lensing lock: with no preferred timelike direction there is exactly **one** transverse symmetric operator, so every covariant scalar linear in h carries the combination the Ricci scalar carries — which is why frame-free MOND cannot separate Tully–Fisher from lensing. **Adjoining one unit timelike vector makes it two.** You have that vector. The second combination is a design freedom nobody in this programme has deliberately spent, and it is exactly the handle that separates the two potentials. |
+| D3 | **The Schur-complement repair is a general technique — apply it elsewhere.** | A44 found that an auxiliary field's Schur complement can replace a marginal zero with a strictly positive number, unconditionally in the sign. That is not specific to the transition. Any other coefficient in the action that is marginal or sign-indefinite is a candidate for the same construction. Nobody has swept the action for other marginal coefficients. |
+| D4 | **The saturated branch lives in GALAXY CORES, not the Solar System — look there.** | A32 and L30: the standing coherence-length floor already exceeds the Sun's saturation radius, so the saturated branch is **not realised around the Sun at all**. It is realised in the **inner ~8 kpc of galaxies and in cluster cores**, which is exactly where an infinite longitudinal stiffness makes a non-spherical boundary-value problem ill-posed. Every screening argument in the corpus is Solar-System-facing. The place the kernel actually breaks has not been examined. |
+| D5 | **You may use a much faster clock than you are.** | A32: the clock's cone is built from the same scalar that defines the foliation, so the spacelike condition is an **identity independent of the speed**; the universal horizon traps even an **infinite-speed** mode; and gravitational Cherenkov is a **LOWER** bound that superluminality switches off entirely. A31: the subluminality interval in IC-4 is an undefended convention with nothing in the code enforcing it. Speed is a design freedom, not a constraint — subject to the frame-alignment margin in A32, which tightens as the cone widens. |
+
 ## A. Settled — the lead may rely on these
 
 > **⚠️ AUDITED 2026-09-08 by L36 (`L36_record_audit.py`, `L36_RECORD_AUDIT.md`). READ THIS FIRST.**
