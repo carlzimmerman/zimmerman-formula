@@ -2364,3 +2364,48 @@ symbolic zero sector by sector**, not merely for the sum.
   functional form** — the slip tracks the **potential depth** and is mass-dependent, not a₀L — and it is
   **exceeded 4.26×** by the most massive clusters at 1 Mpc. **And the word "exactly" should not be
   attached to no slip in a paper whose metric sector is Einstein's.** No gate changes.
+
+## L61 — the excess-spent-once theorem GENERALISES, and two of three permitted branches are dead
+
+`L61_permitted_branches.py` + `L61_PERMITTED_BRANCHES.md` (47 checks, 10 FAIL; **all 11 controls pass**).
+The foliation theorem names three branches it does not close. This lane took all three, and found
+something larger than any of them.
+
+**Controls.** Mode counting returns **2, 3, 3, 5** on general relativity, GR + scalar, khronometric and
+Einstein-aether, and **7 healthy / 8 with the ghost** for two metrics. Five deposited gate numbers
+reproduce, including the preferred-frame margin, the closure locus, the SPARC scatter at zero parameters,
+the boost ceiling, and the bare kernel's Saturn overshoot. Three mutation controls fire correctly.
+
+- **⭐⭐ THE MAIN RESULT, AND IT IS A NEGATIVE: THE EXCESS-SPENT-ONCE ARGUMENT IS BRANCH-INDEPENDENT.**
+  Stated as a theorem with hypotheses: if a theory (a) reproduces the deep-MOND relation with its cold
+  component off, (b) contains a pressureless component in the amount the CMB fixes, and (c) transmits
+  that component's Newtonian pull to baryons with efficiency **not smaller in galaxies than at
+  recombination**, then it **overshoots the measured rotation curves pointwise**, by a median factor
+  **1.692** even with the weakest kernel. **Modes, metrics and matter coupling enter only through the
+  transmission factor.** The ceiling every branch must hit reproduces the earlier cold-fraction windows
+  exactly, which doubles as a control.
+- **⭐ AND HYPOTHESIS (c) IS CLOSED ON ORDERING RATHER THAN MAGNITUDE, IN ALL FOUR VARIABLES.** A mass or
+  range mechanism suppresses **long** range and not short, the opposite of what is needed. Density puts
+  recombination **498× denser** than a galaxy at 10 kpc, counting the disc's own midplane baryons.
+  Acceleration gives **no separation at all** (0.99 dex, both near a₀) and puts clusters **at or below**
+  galaxies while they require **more**. Potential puts clusters **64× deeper** and needing more.
+- **⚠️ Branch 1, three or more modes with Lorentz invariance: DEAD at the FIRST gate, generically.**
+  Derived symbolically from the deep-MOND normalisation alone, the scalar's own gravitating stress over
+  the phantom it must mimic is suppressed by the galaxy's own v²/c² — median **1.35e-8**, and
+  **kernel-independent to a factor 1.75** across three interpolating functions. It lenses like general
+  relativity on the baryons alone. **RAQUAL and phase-coupling gravity fail for the branch's reason, not
+  their own — which is why Bekenstein's sequence ended at TeVeS's unit timelike vector.**
+- **⚠️ Branch 3, non-minimal matter coupling: DEAD at the tensor-speed gate.** Conformal coupling cannot
+  bend light, reproved symbolically. And for the disformal repair the lane proved an identity for a
+  **general** unit vector, spacelike and timelike alike: **the slip repair IS the matter/graviton cone
+  tilt, with a lever ratio of exactly one.** A repair of size X costs a tilt of size X. The required tilt
+  is **1.3e-7** against GW170817's **4.13e-16**, exceeded by **3e5 to 1.6e6**.
+- **Branch 2, two metrics: OPEN, and deliberately not closed.** Standard bigravity has no MOND (the
+  helicity-zero sector needs a non-integer exponent). The repository's own ghost-free subspace stays
+  health-undecided, and two of its gates have **never been run**. The deciding calculation is the one the
+  record already names. **Note the branches overlap rather than being independent directions.**
+- **⭐ THE ADJUDICATION ASKED FOR: there is NO live contrary entry.** The ledger's own rows record the
+  disformal repair as killed and the causality claim as withdrawn, and the retractions file concurs, all
+  **before** the lane that flagged it was written. The superluminality result and the gravitational-wave
+  identity are **the same quantity from two sides**, so they never disagreed. **What is wrong is a stale
+  PROSE paragraph in the ledger contradicting its own table** — corrected below.

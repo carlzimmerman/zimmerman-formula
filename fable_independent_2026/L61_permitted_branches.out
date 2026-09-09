@@ -1,0 +1,486 @@
+======================================================================================================================
+L61 -- THE THREE PERMITTED BRANCHES: >=3 modes, two metrics, non-minimal coupling
+======================================================================================================================
+The foliation theorem (L31 53/53, L39 40/40, PAPER9) closes ONE corner and names three it does not.
+This lane searches the three, and asks first whether the 'excess spent once' theorem follows them there.
+a0 footings: canonical 9.3619e-11 m/s^2,  alt 1.1279e-10 m/s^2   (both carried throughout)
+
+======================================================================================================================
+PART A -- CONTROLS.  The gate machinery is calibrated against a known object before anything rests on it.
+======================================================================================================================
+
+A.1  The four mode-counting controls.  Dirac's formula, one line, applied to four theories whose
+     answers are published:   N_phys = (P - 2F - S) / 2,  P = phase-space dimension per space point,
+     F = number of first-class constraints, S = number of second-class constraints.
+
+      theory                                 phase space                         F  S    N  published
+      general relativity                     gamma_ij (6) -> P = 12              4  0    2          2
+          4 first class = Hamiltonian + 3 momentum constraints (the diffeomorphisms)
+      GR + one minimally coupled scalar      gamma_ij (6) + phi (1) -> P = 14    4  0    3          3
+          the scalar adds no constraint: 2 tensor + 1 scalar
+      khronometric (non-projectable Horava)  gamma_ij (6) + khronon T (1) -> P = 14  4  0    3          3
+          gauge = foliation-preserving diffeos: 3 spatial + 1 time reparametrisation t -> f(t)
+      Einstein-aether                        gamma_ij (6) + u^mu (4) minus the unit constraint (1) -> P = 18  4  0    5          5
+          2 tensor + 2 vector + 1 scalar (Jacobson-Mattingly)
+  [PASS] A1  mode-counting control: general relativity = 2   ((12 - 8)/2)
+  [PASS] A2  mode-counting control: GR + scalar = 3   ((14 - 8)/2)
+  [PASS] A3  mode-counting control: khronometric = 3   ((14 - 8)/2)
+  [PASS] A4  mode-counting control: Einstein-aether = 5   ((18 - 8)/2)
+
+      The same formula, applied to the two-metric branch, is used unchanged in PART D:
+        Hassan-Rosen bigravity, ghost-free   P = 24, F = 4, S = 2  ->  N = 7  (2 massless + 5 massive)
+        the same with the Boulware-Deser mode P = 24, F = 4, S = 0  ->  N = 8  (the ghost)
+  [PASS] A4b two-metric counting reproduces the published 7 and the ghost's 8   (7 healthy / 8 with BD)
+
+A.2  Gate numbers from the deposited theory's own gate table, recomputed here from its own data.
+     THE_COMPLETE_THEORY_2026-09-08.md section 6.  Three are reproduced: one analytic, two on SPARC.
+
+      exhibited point: K_B = 0.2, c14 = 1.0e-06, sigma = sigma* = 1.679312732
+        c2   = 2 sigma c14/(2 - c14 - 3 sigma c14) = 1.679318e-06   (table: 1.679318e-6)
+        |K2| = (2 - K_B)^2 / c2                    = 1.9294e+06   (table: 1.9294e6, the closure locus)
+        alpha_1 = -4 c14 = -4.000e-06  vs bound 1e-4      (footing-independent; see L49 X7)
+        alpha_2 = (c14/2)(1/sigma - 1) = -2.0226e-07  vs bound 4e-7,  margin 1.978x
+  [PASS] A5  gate reproduced: PPN alpha_2 = -2.02e-7 at margin 1.98x   (alpha_2 = -2.0226e-07, margin 1.978x vs published 1.98x)
+  [PASS] A5b gate reproduced: closure locus |K2| = 1.9294e6 and the S_eff ceiling 0.4355   (|K2| = 1.92935e+06, S_eff <= 1 - 1/sigma_max = 0.4355)
+      SPARC loaded from real_research/data/sparc_data: 155 galaxies, 2786 points (Upsilon_d = 0.5, Upsilon_b = 0.7, eV/V < 0.10, >= 3 points)
+
+      kernel alone (f = 0):  rms 0.145 / 0.142 dex   medians +0.030 / +0.003      (published 0.145 / 0.142, +0.030 / +0.003)
+      abundance-matched halo alone (f = 1, no kernel):  rms 0.171 dex, median -0.026      (published 0.171, -0.026)
+  [PASS] A6  gate reproduced: SPARC rotation curves, kernel at zero parameters = 0.145 / 0.142 dex   (0.145/0.142 dex at +0.030/+0.003)
+  [PASS] A6b control: the abundance-matched halo alone reproduces 0.171 dex at median -0.026   (0.171 dex at -0.026)
+
+      bounded-boost ceiling C a0 = 6.063e-11 / 7.304e-11 m/s^2   (table: 6.06e-11 / 7.30e-11)
+  [PASS] A7  gate reproduced: the bounded-boost ceiling C a0 = 6.06e-11 / 7.30e-11 m/s^2   (C = 0.6476 times a0 on each footing)
+
+      DIRECTION STATED, and NOT reproduced here: the gate table's '99.23% of 2352 points' for the
+      ceiling's SPARC violation rate is a Upsilon-PROFILED number (g03w, with SPARC's own Q<3 / i>30
+      cuts).  At FIXED Upsilon_d = 0.5 this lane's own count is much higher, exactly as L11 B3 already
+      recorded ('my fixed-Upsilon counts sit ~2.5x higher for BOTH kernels').  It is reported as a
+      diagnostic, not used as a control, and the discrepancy is attributed rather than hidden:
+        [canonical] fixed-Upsilon, no error bars: 73.33% of 2786 points below C a0
+        [alt      ] fixed-Upsilon, no error bars: 79.90% of 2786 points below C a0
+
+      [canonical] Saturn: g_N = 6.458e-05 m/s^2 = 6.90e+05 a0 (saturated); bare-kernel excess 6.063e-11 m/s^2 -> phantom mass 9.39e-07 Msun = 1.40e+04x the bound 6.7e-11
+      [alt      ] Saturn: g_N = 6.458e-05 m/s^2 = 5.73e+05 a0 (saturated); bare-kernel excess 7.304e-11 m/s^2 -> phantom mass 1.13e-06 Msun = 1.69e+04x the bound 6.7e-11
+  [PASS] A7b gate reproduced: the BARE kernel's Saturn phantom mass is 1.40e4 / 1.69e4 times the Pitjev-Pitjeva bound (which is why the theory needs its screening length xi)   (1.40e+04x / 1.69e+04x vs published 1.40e4 / 1.69e4)
+
+A.3  Control, symbolic: null geodesics are conformally invariant.  This is used in PART C and PART E,
+     so it is proved here from the Christoffels rather than quoted.
+  [PASS] A8  control (symbolic): Gamma~^a_bc k^b k^c - Gamma^a_bc k^b k^c - 2 k^a (k.dlnOmega) = 0 for null k   (null geodesics of Omega^2 g and g coincide up to reparametrisation, all 4 components)
+
+======================================================================================================================
+PART B -- THE DECISIVE STRUCTURAL QUESTION.  Does 'the excess can only be spent once' generalise?
+======================================================================================================================
+
+L55's theorem is scoped to THIS action's kernel combined with a LambdaCDM-profile cold abundance.
+Its argument, stripped of the action: the galaxy anomaly is ONE NUMBER PER POINT, and a component
+present in the amount the CMB requires already spends it.  That argument mentions neither the mode
+count, nor the number of metrics, nor the matter coupling.  Below it is restated as a theorem with
+explicit hypotheses, and each hypothesis is then tested against what the three branches can do.
+
+  THEOREM (excess spent once -- branch-independent form).  Let a theory predict, at each point of a
+  galaxy, the acceleration felt by a test baryon as
+
+        g_pred  =  g_bar  +  A_X  +  A_K
+
+  with g_bar the Newtonian field of the OBSERVED baryons, A_X the acceleration transmitted to that
+  baryon by a pressureless component present in the amount the CMB fixes, and A_K everything else the
+  modification supplies.  Assume
+      (H-a)  NO CANCELLATION:  A_X >= 0 and A_K >= 0 pointwise (both are inward);
+      (H-b)  MOND NORMALISATION:  with A_X = 0 the theory reproduces the observed relation, i.e. in the
+             deep regime A_K -> sqrt(g_bar a0) = the measured anomaly A = g_obs - g_bar;
+      (H-c)  TRANSMISSION:  A_X = eta * g_halo with eta > 0, where g_halo is the Newtonian field of the
+             cold component at the abundance the CMB fixes.
+  Then  g_pred - g_obs = A_X >= 0 pointwise: the theory OVERSHOOTS the measured rotation curve by
+  exactly the cold component's transmitted pull.  Admissibility therefore requires either eta small,
+  or the kernel suppressed by s_eff, and in the deep regime a suppression s is EXACTLY degenerate with
+  a smaller acceleration scale, a0' = s^2 a0.
+
+  The conclusion depends on the number of propagating modes, the number of metrics and the matter
+  coupling ONLY through (H-a) and (H-c).  Everything else is arithmetic on measured accelerations.
+
+B.1  The inequality, checked pointwise on SPARC rather than asserted.
+
+         eta |        eps=1 (total-sourced) |       eps=0 (baryon-sourced)
+             |      rms can/alt  median can |      rms can/alt  median can
+        0.00 |   0.145/  0.142      +0.030 |   0.145/  0.142      +0.030
+        0.20 |   0.169/  0.184      -0.055 |   0.146/  0.153      -0.024
+        0.35 |   0.206/  0.225      -0.109 |   0.162/  0.174      -0.057
+        0.50 |   0.241/  0.262      -0.150 |   0.184/  0.197      -0.092
+        0.58 |   0.259/  0.280      -0.170 |   0.197/  0.210      -0.110
+        0.75 |   0.293/  0.315      -0.208 |   0.224/  0.238      -0.145
+        1.00 |   0.338/  0.360      -0.259 |   0.264/  0.277      -0.191
+      at eta = 1, deep-MOND points (2059 of 2786): median g_pred/g_obs = 1.692 = +0.228 dex overshoot
+  [PASS] B1  the overshoot is pointwise and equals the transmitted halo term (no cancellation is possible with A_X >= 0)   (median g_pred/g_obs = 1.692 at eta = 1 with the WEAKEST (baryon-sourced) kernel)
+
+B.2  The ceiling on eta.  This is the number every branch has to hit, and it is computed from the data
+     and the RAR's own scatter, not from any action.  Criterion: the median RAR residual stays inside
+     the relation's own 0.11 dex (the GENEROUS of L49's two criteria, carried so no deficit is manufactured).
+
+      eps = 1 (kernel reads the total potential):   eta <= 0.355 / 0.276     (L49 reports 0.355 / 0.276)
+      eps = 0 (kernel reads the baryons only):      eta <= 0.582 / 0.486     (L50 reports 0.582 / 0.486)
+      the CMB requires eta = 1.000 +- 0.010 at recombination (Omega_c h^2 = 0.1200 +- 0.0012)
+  [PASS] B2  control: the transmission ceiling reproduces L49's and L50's published cold-fraction windows   (eta and the cold fraction f enter the same way, so the ceiling IS their window)
+  [PASS] B3  the requirement any branch must meet: transmit at most ~58% / ~49% of the CMB-required cold component's pull at SPARC radii, while transmitting ~100% at recombination   (eta <= 0.582 / 0.486 in galaxies vs 1.000 at z = 1100)
+
+B.3  The ONLY escape is to break (H-c): make baryons blind to the cold component INSIDE galaxies while
+     leaving the CMB's driving intact.  Two mechanism families exist for that, and both are tested.
+
+     (i) A RANGE (a mass term / graviton mass / Yukawa mediator).  Required: suppression at ~10 kpc,
+         NO suppression at the sound horizon ~145 Mpc comoving.  A Yukawa force ratio is
+         (1 + m r) exp(-m r), STRICTLY DECREASING in r: it suppresses LONG range and not short.
+      physical sound horizon at z = 1100:  r_s = 0.1317 Mpc  (comoving 145 Mpc)
+      tune the mass so that eta(10 kpc) = 0.582:   m r_gal = 1.429, Compton wavelength 7.00 kpc;   then eta(r_s) = 1.337e-07  -- the CMB's driving is switched off too
+      tune the mass so that eta(r_s)  >= 0.90:              m r_s = 0.532, Compton wavelength 0.248 Mpc;   then eta(10 kpc) = 0.999206  -- the galaxy is not suppressed at all
+  [PASS] B4  a mass/range mechanism CANNOT break (H-c): the Yukawa ratio is monotone decreasing, so it suppresses long range and not short -- the opposite ordering to the one required   (eta(r_s) = 1.34e-07 when eta(10 kpc) = 0.582; eta(10 kpc) = 0.999206 when eta(r_s) = 0.90)
+
+     (ii) An ENVIRONMENT (a screening function of a local scalar: density, acceleration, potential).
+          This is L6's class read in the mirror -- L6 asked whether a monotone S(X) could ENHANCE
+          clusters relative to galaxies; the question here is whether one could SUPPRESS the cold
+          component's pull in galaxies relative to recombination.  L6's own cosmological-ordering horn
+          is the test, and it is recomputed here for the recombination epoch, which L6 never used.
+
+      mean matter density at recombination        rho = 3.587e-18 kg/m^3
+      L* galaxy at 10 kpc, halo + MIDPLANE baryons rho = 7.199e-21 kg/m^3   -- recombination is 498x DENSER  (the conservative comparison)
+      the same galaxy at 30 kpc, halo only         rho = 6.777e-23 kg/m^3   -- recombination is 52939x denser
+      cluster at 1000 kpc                          rho = 2.836e-24 kg/m^3
+  [PASS] B5  DENSITY-keyed screening has the WRONG ORDERING: the recombination-era universe is denser than a galaxy where the anomaly is measured -- even counting the disc's own midplane baryons -- so any monotone suppression in dense regions suppresses the CMB's driving harder than the galaxy's   (rho_rec/rho_gal = 498 (conservative), 52939 at 30 kpc)
+      
+      acoustic driving at Phi = 1e-05:  g ~ c^2 Phi / r_s = 2.212e-10 m/s^2 = 2.36 / 1.96 a0
+      acoustic driving at Phi = 3e-05:  g ~ c^2 Phi / r_s = 6.635e-10 m/s^2 = 7.09 / 5.88 a0
+      acoustic driving at Phi = 1e-04:  g ~ c^2 Phi / r_s = 2.212e-09 m/s^2 = 23.62 / 19.61 a0
+      median SPARC acceleration                    g = 6.834e-11 m/s^2 = 0.73 / 0.61 a0
+      clusters at R500 sit at 0.33-0.58 a0 (this repository's own recorded value), i.e. AT OR BELOW
+      galactic accelerations -- and clusters require MORE transmission (eta 0.569-0.893), not less.
+  [PASS] B6  ACCELERATION-keyed screening fails twice: the CMB's own driving acceleration is within ~1 dex of galactic accelerations (no clean separation), and clusters sit at or BELOW galactic accelerations while requiring MORE transmission (wrong ordering)   (|log10(g_rec/g_gal)| = 0.99 dex; clusters 0.45 a0 vs galaxies 0.73 a0)
+      potential depth:  galaxy |Phi|/c^2 = 2.50e-07,  cluster = 1.60e-05, recombination perturbation = 3.0e-05
+      clusters require eta = 0.569 +- 0.130 (b = 0) to 0.893 +- 0.158 (b = 0.20) [L50 D4/D10]; a monotone
+      suppression in DEEP potentials suppresses clusters MORE than galaxies, and clusters need MORE.
+  [PASS] B7  POTENTIAL-keyed screening has the wrong ordering between galaxies and clusters: clusters are 64x deeper and require MORE transmission, not less   (Phi_clu/Phi_gal = 64)
+
+B.4  The other half of the trade: suppress the KERNEL instead of the halo.  In the deep regime a
+     uniform suppression s is exactly degenerate with a smaller acceleration scale.
+     s * a0 * Delta(g/a0)  ==  a0' * Delta(g/a0')  with  a0' = s^2 a0, checked in the strict limit.
+      deep-limit degeneracy check at g/a0 = 1e-08, s = 0.438:  relative error 6.42e-05
+      at eta = 1 the kernel must be suppressed to s <= 0.495 / 0.439  (L50 D8 / L55 D4 report 0.495 / 0.439)
+      which puts the surviving term's own MOND transition at a0' <= 0.245 a0 = 2.290e-11 / 2.169e-11 m/s^2
+  [PASS] B8  control: the kernel-suppression ceiling reproduces L50 D8 / L55 D4 and the a0' = s^2 a0 degeneracy   (s <= 0.495/0.439, a0' <= 0.245 a0)
+
+B.5  THE VERDICT ON GENERALISATION.
+
+     Every step used: (1) measured accelerations at SPARC radii; (2) Omega_c h^2 from the CMB;
+     (3) the assumption that both contributions pull inward; (4) the theory's own MOND normalisation.
+     NONE of them mentions the number of propagating modes, the number of metrics, or how matter
+     couples.  Those enter only through the transmission factor eta, and the two mechanism families
+     that could make eta scale- or environment-dependent both fail on ORDERING, not on magnitude:
+     a range suppresses long and not short; density puts recombination on the WRONG side; acceleration
+     does not separate the two epochs at all; potential puts clusters on the wrong side.
+  [PASS] B9  [THE DECISIVE QUESTION]  the 'excess spent once' argument GENERALISES beyond one action: it is branch-independent, depending on modes / metrics / coupling only through the transmission factor   (proved as a theorem with hypotheses (H-a),(H-b),(H-c); the escape route is closed on ORDERING)
+
+     >> THEOREM (branch-independent).  No relativistic theory that (a) reproduces the observed deep-MOND
+     >> relation in galaxies with its cold component switched off, (b) contains a pressureless component
+     >> in the amount the CMB requires, and (c) transmits that component's Newtonian pull to baryons
+     >> with an efficiency that is not smaller inside galaxies than at recombination, can fit the
+     >> measured rotation curves.  It overshoots by the transmitted pull, pointwise.
+     >> The hypotheses that a branch could attack are (c) alone, and (c) requires a suppression whose
+     >> ordering is short-range-off / long-range-on, or dense-off / dilute-on with recombination denser
+     >> than a galaxy -- neither of which any mass term or monotone environmental screening supplies.
+     >> SCOPE, stated: the cold component's GALAXY PROFILE is still an input (abundance-matched LambdaCDM
+     >> here). A theory that puts the cold component somewhere other than in galaxy halos escapes -- and
+     >> that is a statement about the dark sector's microphysics, closed separately by this repository's
+     >> 2026-09-06/07 dark-sector no-go, NOT by this theorem.
+
+======================================================================================================================
+PART C -- BRANCH 1: three or more propagating modes, Lorentz invariant.  (RAQUAL, phase-coupling gravity)
+======================================================================================================================
+
+The theorem permits it: give up requirement (iii) and keep Lorentz invariance.  RAQUAL
+(Bekenstein-Milgrom 1984) and phase-coupling gravity (Bekenstein 1988) are the two constructions in the
+17-theory table, with N_grav = 3 and >= 3.  The brief's question: what does the extra mode COST, and are
+their known failures GENERIC to the branch or specific to those two constructions?
+
+C.0  What the extra mode has to buy.  L39's operator lemma (cited, not re-derived) says: with no
+     preferred timelike vector there is exactly ONE transverse symmetric operator, so lensing and
+     dynamics cannot be modified separately; adjoining one unit timelike vector makes the count two and
+     unlocks them.  DC-013 (cited) says the same from diffeomorphism invariance: (Phi,Psi) are locked to
+     the ray (1,-2) for a single-metric frame-free modification at ANY number of modes.  So a
+     Lorentz-invariant extra mode cannot unlock lensing by modifying the metric sector.  The only
+     remaining lever is the MATTER COUPLING, and that gives an exhaustive four-way fork:
+
+       (1a) CONFORMAL  g~ = A(phi) g          -> tested here, C.1-C.3
+       (1b) DISFORMAL  g~ = A g + B dphi dphi -> this is BRANCH 3; handed to PART E
+       (1c) the field acquires a TIMELIKE GRADIENT vev (mimetic / Deffayet-Esposito-Farese-Woodard)
+            -> that IS a preferred frame; L39 established it and it satisfies the theorem's conclusion
+            rather than escaping it
+       (1d) a VECTOR with a timelike vev (TeVeS, GEA, AeST) -> preferred frame, in L31's table already
+
+     (1c) and (1d) are not escapes, they are instances of the conclusion.  (1b) leaves the branch.
+     So branch 1's own content is (1a), and the question is whether (1a)'s failure is generic.
+
+C.1  The generic obstruction, derived rather than quoted: a conformally coupled Lorentz-invariant
+     scalar's own gravitating stress is smaller than the phantom it must mimic by the galaxy's OWN
+     v^2/c^2.  This is not RAQUAL-specific -- it follows from the deep-MOND normalisation alone.
+
+     scalar energy density      rho_phi     = X**(3/2)/(12*pi*G*a0*c**2)
+     phantom density required   rho_phantom = sqrt(X)/(4*pi*G*r)
+     ratio                                  = X*r/(3*a0*c**2)
+     with |grad phi| = v_c^2/r              = vc**4/(3*a0*c**2*r)
+  [PASS] C1  (symbolic) the ratio reduces to v_c^4 / (3 a0 r c^2) = (v_c^2/c^2) x (g_MOND / 3 a0): the scalar's gravitating stress is suppressed by the galaxy's own v^2/c^2   (derived from the deep-MOND normalisation, no kernel shape assumed)
+
+      [canonical] rho_phi / rho_phantom on 2059 deep-MOND SPARC points: median 1.35e-08, max 1.95e-07
+      [alt      ] rho_phi / rho_phantom on 2133 deep-MOND SPARC points: median 1.52e-08, max 1.95e-07
+  [FAIL] C2  BRANCH 1, GATE 1 (lensing vs dynamics): does a conformally coupled Lorentz-invariant scalar supply an O(1) fraction of the lensing mass it must?   (NO -- median rho_phi/rho_phantom = 1.35e-08.  It lenses like general relativity on the baryons alone; the gate needs O(1))
+
+      [canonical] predicted M_dyn / M_lens on deep-MOND points: median 3.30, 90th percentile 5.64    (observed: 1)
+      [alt      ] predicted M_dyn / M_lens on deep-MOND points: median 3.46, 90th percentile 6.09    (observed: 1)
+  [FAIL] C3  BRANCH 1, GATE 1, the size of the miss: is the predicted dynamics-to-lensing mass ratio consistent with the measured ~1?   (median M_dyn/M_lens = 3.30)
+
+C.2  Is the failure GENERIC to the branch or specific to RAQUAL and PCG?  Three tests.
+      the deposited saturating kernel       : median rho_phi/rho_phantom = 8.41e-09
+      Milgrom simple  mu = y/(1+y)          : median rho_phi/rho_phantom = 8.59e-09
+      Milgrom standard mu = y/sqrt(1+y^2)   : median rho_phi/rho_phantom = 4.90e-09
+  [PASS] C4  the obstruction is KERNEL-INDEPENDENT: three different interpolating functions give the same suppression to within a factor of a few, because the scale is set by v^2/c^2 and not by f   (spread across kernels 1.75x, all below 1e-5)
+
+      Second test -- the historical record agrees, and it agrees for this reason.  Bekenstein's own
+      sequence RAQUAL -> PCG -> TeVeS was driven by exactly this: TeVeS's unit timelike vector was
+      introduced FOR the light bending.  L39 quotes DEFW 2011 verbatim: 'That problem was finally
+      surmounted in 2004 by ... TeVeS ... where the presence of a unit timelike vector field helps in
+      obtaining the right amount of light deflection.'  The failure is the branch's, not the construction's.
+
+      Third test -- the ROUTE OUT of (1a) is (1b), and (1b) is not in this branch.  There is no
+      Lorentz-invariant conformal construction that evades C1, because C1 uses only the deep-MOND
+      normalisation |grad phi| = sqrt(g_bar a0) and the fact that a conformal factor does not bend light (A8).
+  [FAIL] C5  BRANCH 1 VERDICT: is it alive on gate 1 (lensing vs dynamics)?   (DEAD at the FIRST gate; the failure is generic, not RAQUAL-specific)
+
+     WHAT THE EXTRA MODE COSTS, stated: it costs the whole lensing sector and buys nothing, because a
+     Lorentz-invariant scalar cannot supply the second transverse operator L39's lemma requires (its
+     gradient is spacelike in a static configuration; a timelike gradient vev is spontaneous Lorentz
+     violation and is case (1c)).  The extra mode also carries the branch's own known costs -- RAQUAL's
+     superluminal scalar propagation in the transition region, which is what drove Bekenstein to PCG --
+     but those are downstream of a gate already closed and are cited, not computed here.
+
+     NOT CLOSED BY THIS LANE: a Lorentz-invariant branch-1 theory whose matter coupling is disformal
+     is handed to PART E; and DC-013's ray lock, which covers the non-conformal metric-sector route at
+     any number of modes, is cited from the repository's record rather than re-derived.
+
+======================================================================================================================
+PART D -- BRANCH 2: two metrics.  (dRGT / Hassan-Rosen, BIMOND, and this repository's open subspace)
+======================================================================================================================
+
+READ THE RECORD FIRST, as the brief requires.  project_relativistic_mond_closure_2026 carries:
+  * the SINGLE-METRIC pincer (DC-013 + DC-019), which explicitly does NOT cover bimetric;
+  * DC-018: standard ghost-free dRGT / Hassan-Rosen bigravity's helicity-0 Galileon sector CANNOT
+    give MOND's 1/r -- the spherical flux scaling theorem;
+  * BIMOND connection interactions: Boulware-Deser ghost risk (the lapse RATIO, rank-1 Hessian);
+  * THE ONE OPEN DOOR: the background-independent lapse-velocity-free (ghost-free) subspace of the
+    COMPLETE 5-invariant derivative-bimetric basis is 2-D and contains MOND-alive directions off the
+    f(Q) line; T4 - T1 gives static-NR MOND acceleration a = -4 AND lensing source b = -8, both
+    nonzero.  HEALTH IS RECORDED AS UNDECIDED.  This lane does NOT re-close it and does not claim it.
+
+D.1  DC-018 reproduced as a control (it is cheap and it calibrates the branch's first gate).
+
+     flux relation r^(3-n) (pi')^n = GM  =>  pi' = (GM*r**(n - 3))**(1/n)
+     radial exponent of pi'              =  (n - 3)/n
+       n = 1:  pi' ~ r^(-2)
+       n = 2:  pi' ~ r^(-1/2)
+       n = 3:  pi' ~ r^(0)
+       n = 4:  pi' ~ r^(1/4)
+     MOND requires pi' ~ r^(-1)  =>  n = 3/2  -- NOT an integer
+  [PASS] D1  control: DC-018 reproduced.  A spherical Galileon of integer order gives pi' ~ r^(1 - 3/n); MOND's r^(-1) needs the non-integer n = 3/2, so standard bigravity's helicity-0 sector has no MOND   (n = 3/2; integer n in {1,2,3,4} gives r^-2, r^-1/2, r^0, r^1/4)
+
+D.2  The mode price.  Branch 2 is not disjoint from branch 1: a healthy second metric costs 5 extra
+     propagating modes, so every two-metric theory is ALSO a >= 3-mode theory.
+      ghost-free Hassan-Rosen:  N = 7 = 2 (massless) + 5 (massive graviton)
+      with the Boulware-Deser mode unremoved:  N = 8, one of them a ghost
+      the repository's open subspace is exactly the question of which of these two the a != 0 sub-family is
+  [PASS] D2  branch 2 lies inside 'three or more modes': the permitted branches overlap and are not three independent directions   (7 healthy or 8 with the ghost; either way >= 3)
+
+D.3  Does the branch-independent theorem of PART B follow the second metric?  This is the question that
+     matters, because if it does the branch is dead before its gates are priced.
+
+     A second metric offers exactly one new way to attack hypothesis (H-c): put the cold component on
+     the SECOND metric, so that its pull reaches baryons only through the g-f interaction.  In every
+     ghost-free bimetric construction that interaction is a graviton MASS TERM, so the transmitted force
+     carries the Yukawa factor of B.3(i) -- and B4 already showed that factor has the wrong ordering.
+      to suppress the dark sector's pull to eta = 0.582 at 10 kpc a graviton mass needs
+        m r_gal = 1.429, i.e. a Compton wavelength of 7.00 kpc
+      at that mass the same factor at the recombination sound horizon is eta = 1.34e-07: the third
+      acoustic peak loses its driving, which is the observable the abundance was fixed by.
+  [PASS] D3  the PART B theorem GENERALISES to two metrics: the only new escape a second metric offers is mediation through the mass term, and that has the wrong range ordering   (eta(r_s) = 1.34e-07 when eta(10 kpc) = 0.582)
+
+D.4  The gates, in the brief's order, for the ONE construction the record leaves open.
+
+     gate                                   verdict          status
+     1 lensing vs dynamics                  NOT CLOSED       the record's T4 - T1 direction has a NONZERO lensing source b = -8 alongside a = -4; whether the ratio gives Phi = Psi is the record's own un-run coupled g/g-hat solve
+     2 Solar System                         NOT RUN          requires the action; the record does not carry a Solar-System solve for this subspace
+     3 preferred frame                      LIABILITY FLAGGED the record warns the solve must NOT inherit the alpha_3 = -1 liability of the constraint-first horn
+     4 tensor speed                         NOT RUN          no c_T computation exists for this subspace in the record
+     5 mode health                          **THE DECIDING GATE, UNDECIDED** full covariant Hamiltonian count on the a != 0 sub-family: healthy elliptic auxiliary (7) or Boulware-Deser ghost (8)?  Named in the record as the decisive un-run calculation
+     6 cluster mass and shear shape         INHERITED        no bimetric-specific computation; the cluster specification of L41/L49 is chassis-independent
+     7 cosmology                            CLOSED BY PART B the theorem of B.5 applies: D3
+  [FAIL] D4  BRANCH 2 VERDICT: is it DEAD on a gate run here?   (NO -- it is OPEN, at gate 5 (mode health), with the deciding calculation already named in the repository's own record.  This lane does not close it and does not claim it alive)
+  [FAIL] D5  BRANCH 2 VERDICT: is it ALIVE?  (alive requires an exhibited construction run through gates)   (NO -- gates 2, 4 and 5 have never been run on it.  Verdict: OPEN, not alive; and B.5's theorem applies to it whatever the answer at gate 5)
+
+======================================================================================================================
+PART E -- BRANCH 3: non-minimal matter coupling.  (conformal, disformal) -- and the adjudication
+======================================================================================================================
+
+E.1  The conformal half is already settled in this repository and reproved above at A8: a conformal
+     coupling cannot bend light.  L50 E2 derives it for a generic static isotropic metric; L39 C-c2
+     derives it from the Christoffels; A8 above reproduces it independently.  So the whole content of
+     branch 3 is the DISFORMAL coupling, which is what TeVeS carries and what every repair reaches for.
+
+E.2  THE IDENTITY, proved here symbolically for a GENERAL unit vector w -- spacelike (a frame-free
+     scalar's gradient) and timelike (a khronon's normal) -- because the two chassis in this
+     repository's record use different ones and the flagged disagreement is between them.
+
+     SPACELIKE w (frame-free scalar's gradient):
+        fractional cone tilt (c_light - c_grav)/c = -B/(2*A)
+        shift in Phi matter feels                  = 0
+        shift in Psi matter feels                  = -B/(2*A)
+     TIMELIKE w (khronon normal, LEDGER sf27's chassis):
+        fractional cone tilt (c_light - c_grav)/c = -B/(2*A)
+        shift in Phi matter feels                  = -B/(2*A)
+        shift in Psi matter feels                  = 0
+  [PASS] E1  (symbolic) THE IDENTITY, both chassis: the shift a disformal term makes in the potential matter feels EQUALS the fractional tilt of the matter light cone relative to the graviton cone, exactly   (spacelike w: tilt = delta Psi = -B/(2A), delta Phi = 0;   timelike w: tilt = delta Phi = -B/(2A), delta Psi = 0)
+  [PASS] E1b the SLIP repaired has unit magnitude in units of the tilt created: |d(Phi - Psi)| / |tilt| = 1 in BOTH chassis, so a repair of size X costs a cone tilt of size X and there is no lever ratio to exploit   (spacelike 1, timelike 1)
+  [PASS] E1c the CONFORMAL factor A alone moves neither: with B = 0 both the tilt and both potential shifts vanish for every A, which is A8 again -- the conformal lever cannot lens and the disformal lever cannot be had without the tilt   (A is pure gauge for light bending; only B moves anything)
+
+     >> The slip you cancel IS the light-cone tilt you create.  That is LOCAL_NO_GO section 3.2's
+     >> identity, (c_GW - c_light)/c = B phi'^2 / 2 = (Psi - Phi), reproved here from the metric and
+     >> extended to the timelike-w chassis that the flagged contrary entry uses.
+
+E.3  How big must the tilt be?  The disformal term has to supply the whole lensing anomaly, so the
+     required tilt is the galaxy's own MOND potential.  Computed from the data on both footings.
+
+      SPARC flat speeds (155 galaxies): median 108 km/s, 90th pct 239 km/s
+      required tilt |Psi - Phi| = v_flat^2/c^2: median 1.30e-07, 90th pct 6.36e-07
+      FOOTING NOTE, stated rather than double-printed: v_flat^2/c^2 is footing-INDEPENDENT -- it is a
+      measured speed.  What the footings change is which points are deep-MOND: 2059 canonical vs 2133 alt of 2786.
+      LOCAL_NO_GO section 3.2 quotes Phi_MOND = v_flat^2/c^2 = 3.9e-7 (NGC 4993's host), 3.0e-7 (Milky Way);
+      this lane's Milky-Way-mass end of the SPARC distribution gives 6.4e-07.
+  [PASS] E2  the required cone tilt is of order 1e-7 -- the galaxy's own v^2/c^2, on both footings   (median required tilt 1.30e-07)
+
+E.4  BRANCH 3 GATE 4 (tensor speed).  GW170817 bounds the PATH-AVERAGED tilt.
+      path length 40 Mpc = 4.117e+15 s; observed GW-to-gamma delay <= 1.7 s
+      (the naive 1.7 s / travel-time bound is used; the published two-sided bound -3e-15 < dc/c < 7e-16
+       lands in the same place and does not change the conclusion)
+      WHERE the tilt lives: sf29's own integration puts beta = 0 at the Newtonian ends and nonzero
+      through the MOND zone, i.e. exactly in the halo the wave crosses on the way out and on the way in.
+        ->  path-averaged |tilt| <= 4.13e-16
+      the tilt would have to be confined to a fraction 3.18e-09 of the path to evade the bound
+        2 x    20 kpc of MOND-strength host halo (source + Milky Way) = 1.00e-03 of the path -> exceeded 3.1e+05x
+        2 x    50 kpc of MOND-strength host halo (source + Milky Way) = 2.50e-03 of the path -> exceeded 7.9e+05x
+        2 x   100 kpc of MOND-strength host halo (source + Milky Way) = 5.00e-03 of the path -> exceeded 1.6e+06x
+      the most conservative of these is carried: 3.1e+05x over the bound
+      LOCAL_NO_GO section 3.2 reports the same ordering: '2e6 epsilon over the bound' from the two
+      galaxies' MOND regions, and '30-300' from the 40 Mpc of intergalactic medium alone.
+  [FAIL] E3  BRANCH 3, GATE 4 (tensor speed / GW170817): is the tilt the lensing repair requires small enough to survive the path-averaged bound?   (NO -- required tilt 1.30e-07 over 1.0e-03 of the path vs bound 4.13e-16; exceeded 3.1e+05x on the most conservative halo extent, 1.6e6x on the least)
+
+E.5  THE ADJUDICATION the brief asks for.  L50 E5 flagged a contrary record and did not settle it:
+     'LEDGER sf27 reports a disformal+conformal coupling to the khronon's normal REPAIRING the lensing
+     gate in a different chassis.'  Is there a live contradiction?  The files are read here.
+
+      qwen_claude_field_theory/closure_2026/LEDGER.md row SF27: disformal repair reported as 'LENSING GATE REPAIRED'
+      qwen_claude_field_theory/closure_2026/LEDGER.md row SF28: 'γ_PPN = 1 exactly (screened) ✓;  WEP exact by construction ✓;  **causality WITHDRAWN by SF29**;  matter Hamiltonian lapse-linear ✓'
+      qwen_claude_field_theory/closure_2026/LEDGER.md row SF29: 'REPAIR KILLED -- sf28 C withdrawn'  -> present: True
+      RETRACTIONS.md: records the withdrawal of sf28 PART C  -> present: True
+  [PASS] E4  [ADJUDICATED]  the contrary entry does NOT stand: this repository's own sf29 killed the disformal repair and RETRACTIONS.md records it, before L50 was written   (LEDGER row SF29 = 'REPAIR KILLED'; row SF28 = 'causality WITHDRAWN by SF29'; RETRACTIONS.md concurs)
+  [FAIL] E5  DOCUMENTATION ITEM (handed back, NOT edited): does the LEDGER's prose status paragraph agree with its own SF28 / SF29 table rows?   (NO -- the prose still reads 'All four bills PAID in sf28 ... causality safe with the sign forced -- beta > 0 everywhere' while rows SF28/SF29 in the same file read 'causality WITHDRAWN by SF29' and 'REPAIR KILLED'.  A reader who stops at the prose gets the withdrawn claim.)
+
+     What sf27 established and what survives: sf27's ALGEBRA stands -- the two levers (conformal alpha,
+     disformal beta) genuinely span the (g_dyn, g_lens) plane and the repair works POINTWISE.  That is
+     the same statement as E1's identity: the disformal lever is the only one that moves light, and it
+     moves it by exactly the cone tilt.  What sf29 killed is making it GLOBALLY consistent.
+
+E.6  sf29's two kills, and whether they are the SAME physics as the GW identity.
+
+     (a) SIGN.  The screening boundary condition belongs at the NEWTONIAN end, which for MOND is HIGH
+         acceleration, i.e. SMALL r.  With beta = 0 there, integrating outward gives beta < 0 through
+         the MOND regime, so the matter cone ratio (v_matter/v_photon)^2 = 1 - beta EXCEEDS 1.
+         That is superluminal matter, and it is the SAME quantity as E1's tilt with the opposite sign.
+      sf29 reports beta = -1.15 v_c^2 at x = 1 and -4.19 v_c^2 at x = 0.1; at v_c = 150 km/s that is
+        cone ratio (v_matter/v_photon)^2 = 1 - beta = 1.000000288, i.e. superluminal by 2.88e-07
+        E1's identity says the same number is the lensing shift; sf29 and LOCAL_NO_GO 3.2 AGREE.
+  [PASS] E6  sf29's superluminality and the GW-speed identity are the SAME quantity seen from two sides, so there was never a contradiction to adjudicate -- only a stale prose paragraph   ((v_m/v_gamma)^2 - 1 = -beta = 2.879e-07 = the tilt)
+
+     (b) THE THEOREM, which is stronger than the sign.  The no-slip condition gives beta' = -2 Delta
+         with Delta = the anomalous acceleration > 0, so beta is STRICTLY MONOTONE in r.  Screening
+         requires beta = 0 in BOTH Newtonian regimes -- the high-acceleration interior AND the
+         external-field-dominated far exterior.  A strictly monotone function cannot vanish at both.
+         Reproduced here with the DEPOSITED theory's own kernel rather than sf29's chassis kernel.
+
+      deposited saturating kernel:  gap = 4.93 v_c^2 between x = 100 and x = 0.01
+      pure deep-MOND sqrt kernel:   gap = 9.21 v_c^2 over the same range (logarithmic, unbounded)
+      sf29 reports 8.52 v_c^2 for its own chassis kernel; the structural statement -- the gap is strictly
+      positive and of order the phantom's own potential -- is kernel-independent.
+  [PASS] E7  sf29's monotonicity theorem reproduced on the deposited kernel: the required change in beta between the two Newtonian ends is strictly positive and of order v_c^2, so beta cannot vanish at both   (gap = 4.93 v_c^2 (deposited kernel), 9.21 v_c^2 (pure deep-MOND))
+
+E.7  Does the PART B theorem follow branch 3?  A non-minimal coupling is the ONE branch that could in
+     principle make baryons blind to the cold component -- so this is the branch where (H-c) is live.
+
+     But the coupling that does it must be SCALE- or ENVIRONMENT-dependent: off in galaxies, on at
+     recombination.  B4-B7 already computed both families' ordering:
+        range:        eta(r_s) = 1.34e-07 when eta(10 kpc) = 0.582    -- wrong ordering
+        density:      recombination is 498x DENSER than a galaxy at 10 kpc  -- wrong ordering
+        acceleration: the two epochs differ by 0.99 dex, both of order a0        -- no separation
+        potential:    clusters are 64x deeper and need MORE, not less    -- wrong ordering
+  [PASS] E8  the PART B theorem GENERALISES to a non-minimal coupling: the required suppression lands in exactly L6's and L55's already-closed screening class, and fails on ordering in every variable   (four variables, four wrong orderings or no separation)
+  [FAIL] E9  BRANCH 3 VERDICT: is it alive?   (DEAD at GATE 4 (tensor speed).  Gate 1 (lensing) is PASSED POINTWISE by the disformal lever -- that is sf27's real content -- but the same lever is the cone tilt, and it is excluded ~1e6x by GW170817 and independently by sf29's two-boundary-condition theorem)
+
+======================================================================================================================
+PART F -- MUTATION CONTROLS, and the verdicts.
+======================================================================================================================
+
+F.1  Mutation controls.  A kill this lane reports must switch OFF when its cause is removed.
+
+  [PASS] F1  mutation control: with B = 0 the cone tilt vanishes AND the lensing repair vanishes together (the two are the same quantity, so neither can be had alone)   (B = 0 -> tilt = 0, delta Psi = 0)
+      with the kernel switched off (a0 -> 0) at eta = 1 the median residual is -0.026 dex (the halo-only value); with the kernel on it is -0.191 dex
+  [PASS] F2  mutation control: the PART B overshoot is caused by the kernel, not by the machinery -- switching a0 off returns the halo-only residual   (a0 -> 0 gives -0.026 = the halo-only -0.026)
+  [PASS] F3  mutation control: the branch-2 counting formula, applied to general relativity itself (P = 12, F = 4, S = 0), returns 2 and not 7   (the same one-line formula; no branch-specific tuning)
+
+F.2  VERDICT PER BRANCH.
+
+     BRANCH 1  three or more modes, Lorentz invariant
+        verdict: DEAD
+        gate:    GATE 1, lensing vs dynamics
+        a conformally coupled Lorentz-invariant scalar contributes 1.3e-08 of the lensing mass it must supply; t
+        he suppression is the galaxy's own v^2/c^2 and is kernel-independent to a factor 1.8.  Generic to the br
+        anch, NOT specific to RAQUAL and PCG.  Its escapes are a timelike gradient vev (= a preferred frame, the
+         theorem's own conclusion) or a disformal coupling (= branch 3).
+
+     BRANCH 2  two metrics
+        verdict: OPEN
+        gate:    GATE 5, mode health -- UNDECIDED, calculation named
+        standard dRGT/Hassan-Rosen is closed by DC-018 (cited, reproduced at D1: MOND needs the non-integer n = 
+        3/2).  The repository's own 2-D ghost-free derivative-bimetric subspace is NOT closed and is NOT closed 
+        here: the deciding calculation is the full covariant Hamiltonian count on the a != 0 sub-family (7 healt
+        hy or 8 with the Boulware-Deser ghost) plus a coupled g/g-hat lensing solve that must not inherit alpha_
+        3 = -1.  Whatever it returns, PART B's theorem applies (D3).
+
+     BRANCH 3  non-minimal matter coupling
+        verdict: DEAD
+        gate:    GATE 4, tensor speed
+        conformal cannot bend light (A8, symbolic).  Disformal repairs lensing POINTWISE -- that is sf27's real 
+        content and it stands -- but E1 proves the repaired slip IS the matter/graviton cone tilt, for both a sp
+        acelike and a timelike w; the required tilt is 1.3e-07 and GW170817's path average bounds it at 4.1e-16,
+         exceeded ~3e+05x from the two host galaxies alone.  Independently killed by sf29's theorem that beta ca
+        nnot vanish in both Newtonian regimes (gap 4.9 v_c^2 on the deposited kernel).
+
+  [FAIL] F4  is ANY permitted branch alive on every gate?  (alive = an exhibited construction run through gates)   (NO.  Branch 1 dies at gate 1, branch 3 at gate 4, branch 2 is undecided at gate 5 and has never been run through gates 2 and 4 at all)
+  [FAIL] F5  [VERDICT]  does a full-gate theory exist in the space the foliation theorem leaves permitted?   (NOT DEMONSTRATED, and one branch of three remains genuinely open.  Two of the three are closed by gates run here; the third is open at a calculation this repository already named.  And the PART B theorem now binds ALL THREE, so even a healthy branch-2 construction would face the same choice between a working kernel and a full cold cosmology)
+
+======================================================================================================================
+CHECKS: 47 run, 37 PASS, 10 FAIL.  Runtime 2.4 s.
+FAILING CHECKS (each is a finding, not a crash -- see the .md for which):
+   - C2  BRANCH 1, GATE 1 (lensing vs dynamics): does a conformally coupled Lorentz-invariant scalar supply an O(1) fraction of the lensing mass it must?
+   - C3  BRANCH 1, GATE 1, the size of the miss: is the predicted dynamics-to-lensing mass ratio consistent with the measured ~1?
+   - C5  BRANCH 1 VERDICT: is it alive on gate 1 (lensing vs dynamics)?
+   - D4  BRANCH 2 VERDICT: is it DEAD on a gate run here?
+   - D5  BRANCH 2 VERDICT: is it ALIVE?  (alive requires an exhibited construction run through gates)
+   - E3  BRANCH 3, GATE 4 (tensor speed / GW170817): is the tilt the lensing repair requires small enough to survive the path-averaged bound?
+   - E5  DOCUMENTATION ITEM (handed back, NOT edited): does the LEDGER's prose status paragraph agree with its own SF28 / SF29 table rows?
+   - E9  BRANCH 3 VERDICT: is it alive?
+   - F4  is ANY permitted branch alive on every gate?  (alive = an exhibited construction run through gates)
+   - F5  [VERDICT]  does a full-gate theory exist in the space the foliation theorem leaves permitted?
+======================================================================================================================

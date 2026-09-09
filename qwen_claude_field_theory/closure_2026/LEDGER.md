@@ -35,7 +35,9 @@ sf26 then KILLED the two-piece repair and exposed a **trilemma**: any energy-den
 be quadratic to gravitate and lapse-linear to stay HR-safe, and a square root cannot be both.
 sf27 then took that direction and **it works**: a disformal+conformal coupling to the khronon's own
 normal repairs the lensing gate with no new field, α′ = β′ = −2Δ, full anomaly in both observables.
-**All four bills PAID in sf28**: γ_PPN = 1 exactly in the screened regime (residual priced against
+**⚠️**STALE — CORRECTED 2026-09-09 (L61 E5): this paragraph contradicts rows SF28/SF29 of this file's own table, which read 'causality WITHDRAWN by SF29' and 'REPAIR KILLED'. RETRACTIONS.md concurs. The disformal repair is DEAD: the slip repair IS the matter/graviton cone tilt with a lever ratio of exactly one, and the required tilt exceeds GW170817 by 3e5–1.6e6. Read the table, not this sentence.**
+
+All four bills were said to be PAID in sf28**: γ_PPN = 1 exactly in the screened regime (residual priced against
 Cassini 2.3e-5); WEP exact by construction since A,B depend on the field alone (η ≡ 0, stronger than
 MICROSCOPE's bound); causality safe with the sign **forced** — β > 0 everywhere because the anomaly is
 an enhancement, so matter is subluminal, β ~ 8e-7; and the matter Hamiltonian stays lapse-linear
