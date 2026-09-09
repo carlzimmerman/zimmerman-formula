@@ -1,0 +1,181 @@
+========================================================================================================================
+L11 -- the IC-series' galactic limit: MOND or not, at what scale, with what interpolation function
+========================================================================================================================
+
+------------------------------------------------------------------------------------------------------------------------
+A. SYMBOLIC REDUCTION (sympy; the lead's scripts are neither imported nor rerun)
+------------------------------------------------------------------------------------------------------------------------
+  A1  sqrt(-g)R4 (static, isotropic, spherical) computed from the metric; per solid angle it is
+      2 e^(Phi-Psi) r^2 [ Psi'^2 - 2 Phi' Psi' ]  +  (a total r-derivative)
+      Euler-Lagrange residual of the difference:  d/dPhi -> 0,   d/dPsi -> 0
+  [PASS] A1 the exact static reduction of sqrt(-g)R4 is 2 A_s (|grad Psi|^2 - 2 grad Phi . grad Psi) up to a total derivative  [the lapse-gradient square CANCELS in GR: any |grad Phi|^2 must come from elsewhere]   (both EL residuals of the difference vanish identically)
+
+  A2  CONTROL, general relativity + minimally coupled static dust:
+      lapse variation      ->   -RH0 + 4*S1*m/r + 2*S2*m = 0     i.e.  2 m lap(Psi) = rho,  lap(Psi) = 4 pi G rho, G = 1/(8 pi m)
+      conformal variation  ->   4*P1*m/r + 2*P2*m - 4*S1*m/r - 2*S2*m = 0     i.e.  lap(Phi - Psi) = 0   (no-slip; dust has no pressure source)
+  [PASS] A2 [CONTROL] the reduction machinery applied to ordinary GR + a minimally coupled static source returns the Newtonian Poisson equation with G_N = 1/(8 pi m)   (lapse eq gives rho = 2m lap(Psi); conformal eq gives lap(Phi-Psi) = 0, hence lap(Phi) = 4 pi G rho)
+
+  A3  U(c) = (1-c)[ln^2(1-c) - 2 ln(1-c) + 2] - 2   =>   U'(c) = -log(1 - c)**2
+  [PASS] A3a U'(c) = -ln^2(1-c) exactly  [this single identity is what makes the exponential law come out]   (sympy differentiation of U)
+      auxiliary equation  d/dc[(1-c)a^2 - a0^2 U(c)] = 0  =>  a^2 = a0^2 ln^2(1-c)  =>  u^2 = 1 - exp(-|a|/a0)
+      residual at the branch: 0;   d^2/dc^2 there: 2*a_0**2*y*exp(y)  (>0 for y>0: a nondegenerate minimum)
+  [PASS] A3b the regular static branch is u^2 = 1 - exp(-|a|/a0), y = |a|/a0, derived here from U and not assumed  [independently reproduces IC1 REPORT.md section 2]   (exact residual 0; Hessian 2 a0^2 y e^y > 0, so the stationary point is nondegenerate for y>0)
+      NOTE (branch selection): the u-equation carries an overall factor u, so u = 0 solves it for ANY a.
+      On that branch the operator below degenerates to 0 = rho and no sourced solution exists, which is
+      what selects the regular branch; the published files flag this as requiring separate treatment.
+
+  A4  IC static density (per solid angle):  m A_s r^2 F - m B_s r^2 C + (kappa/2) e^(-Phi-3Psi) r^2 + L_m,
+      F = |grad Psi|^2 - 2 grad Phi . grad Psi + (1-u^2)|grad Phi|^2,   C = Lambda + a0^2 U(u^2).
+      lapse variation reproduces IC1 REPORT.md eq (3.1) with the clock source 4 kappa X retained: True
+  [PASS] A4a the independently varied lapse equation agrees term by term with the lead's published static equation, clock/vacuum sources retained   (2m div[A_s(grad Psi - (1-u^2) grad Phi)] + m A_s F - m B_s C = B_s(rho + kappa X))
+      exact auxiliary equation: -2*U0*(P1**2*exp(P0 - S0) - a_0**2*exp(P0 - 3*S0)*log(1 - U0**2)**2) = 0
+      i.e.  e^(2Psi) Phi'^2 = a0^2 ln^2(1-u^2), and e^(2Psi)Phi'^2 IS the covariant |a|^2 = h^ij a_i a_j,
+      so u^2 = 1 - exp(-|a|/a0) holds EXACTLY on the static branch, with no weak-field step.
+  [PASS] A4b the constitutive law u^2 = 1 - exp(-|a|/a0) is EXACT on the static branch (covariant leaf norm), not a weak-field approximation   (the exact u-variation has the covariant e^(2Psi)Phi'^2 = |a|^2)
+      weak-field conformal equation: 4*P1*m/r + 2*P2*m - 4*S1*m/r - 2*S2*m = 0   ->   lap(Phi - Psi) = 0
+  [PASS] A4c the conformal equation still gives no slip, lap(Phi - Psi) = 0, once the clock term is added [Phi = Psi is what lets lensing and dynamics share one potential]   (the (1-u^2)|grad Phi|^2 term is second order in the potentials and drops out of this equation)
+      weak-field lapse equation with Phi = Psi:  4*P1*U0**2*m/r + 4*P1*U0*U1*m + 2*P2*U0**2*m - RH0 = 0   ==   2 m div[u^2 grad Phi] - rho
+  [PASS] A4d the weak-field static equation is  div[ u^2 grad Phi ] = rho/(2m) = 4 pi G_N rho,  G_N = 1/(8 pi m)   (exact match to 2m div[u^2 grad Phi] - rho)
+
+  A5  eliminating u on the regular branch gives the clock's AQUAL function
+      f(a^2) = 2*a_0**2*(-y + exp(y) - 1)*exp(-y)  = 2 a0^2 [1 - (1+y) e^-y]      [IC1 REPORT.md section 2]
+      d f/d(a^2) = exp(-y) = 1 - u^2   (envelope theorem: the clock piece alone)
+      total on-shell function  Ftot(a^2) = -a^2 + f(a^2)  (the -a^2 is GR's, from A1 with Phi = Psi)
+      -d Ftot/d(a^2) = 1 - exp(-y)  =  u^2  =  mu(y)   <-- the interpolation function
+  [PASS] A5a eliminating the auxiliary gives the clock's AQUAL function f(a^2) = 2 a0^2 [1 - (1+y) e^-y] with df/d(a^2) = 1 - u^2 = e^-y, exactly as the lead publishes   (sympy elimination)
+  [PASS] A5b the interpolation function -- the coefficient multiplying grad Phi inside the divergence, equivalently -dFtot/d(a^2) -- is mu(y) = u^2 = 1 - e^-y (NOT 1-u^2 = e^-y): mu -> 1 at high acceleration and mu -> y at low acceleration, which is what makes it MOND rather than a constant renormalisation of G   (mu(y) = 1-e^-y; mu(y->inf) = 1; mu(y->0) = y + O(y^2))
+
+  A6  the transfer chain IC1 -> IC4 -> IC5 -> IC10 on the static branch, checked here, not quoted:
+      (a) IC10/IC5 activation eta on 0 <= r <= 0.707 (static side): max|eta| = 0.000e+00, max|d eta/dr| = 0.000e+00
+  [PASS] A6a IC10's added block (all of it proportional to eta) and IC5's (1-eta) assignment are EXACT on a neighbourhood of the static configuration p = 0, so the static sector tested here is IC10's own, not a measure-zero limit of it   (eta and its derivative are identically 0 for r <= 0.707 (eta = 0 whenever |r^2-1| >= 1/2))
+      (b) (m/2)N sqrt(h)[Rhat - R3] - m N sqrt(h)(1-u^2)a.a + m N sqrt(h)[2 u xi a.Du + xi^2|Du|^2]
+          EL residuals in (Phi, Psi, u): (0, 0, 0)  -- a pure spatial divergence
+  [PASS] A6b IC5's static Hamiltonian (H_b's barred curvature plus its G term at eta = 0) is EXACTLY IC1's static density (m/2)[R3 + 2(1-u^2)a.a], differing only by the declared spatial divergence -- so the reduction above is the CURRENT construction's galactic limit, verified here rather than inherited   (all three Euler-Lagrange residuals of the difference vanish identically (null Lagrangian))
+      (c) IC4's extra term is (m/2)(Q^2/a0^2)(J + Rhat F) with Q = K - 3W; a static configuration has
+          K = 0 and W = n.grad w = 0, so Q vanishes IDENTICALLY in time.  A term quadratic in Q with
+          no derivative of Q contributes 2 Q (dQ/d.) to every first variation, hence nothing at Q = 0.
+
+------------------------------------------------------------------------------------------------------------------------
+B. NUMERICS: the force law, its scale, its kernel, and everything the weak-field limit dropped
+------------------------------------------------------------------------------------------------------------------------
+
+  B1 -- the deep-acceleration and low-acceleration limits of  (1 - e^(-g/a0)) g = g_N
+    canonical a0 = 9.3619e-11 m/s^2
+       deep-MOND   g/sqrt(gN a0) at gN/a0 = 1e-12 ... 1e-4 : 1.000000250 1.000002500 1.000025001 1.000250073 1.002507313
+       the scale   g^2/gN                                  : 1.000000500 a0 1.000005000 a0 1.000050002 a0 1.000500208 a0 1.005020912 a0
+       Newtonian   g/gN at gN/a0 = 1e2 ... 1e6             : 1.000000000 1.000000000 1.000000000 1.000000000
+    alt       a0 = 1.1279e-10 m/s^2
+       deep-MOND   g/sqrt(gN a0) at gN/a0 = 1e-12 ... 1e-4 : 1.000000250 1.000002500 1.000025001 1.000250073 1.002507313
+       the scale   g^2/gN                                  : 1.000000500 a0 1.000005000 a0 1.000050002 a0 1.000500208 a0 1.005020912 a0
+       Newtonian   g/gN at gN/a0 = 1e2 ... 1e6             : 1.000000000 1.000000000 1.000000000 1.000000000
+  [PASS] B1a a MOND limit EXISTS: g -> sqrt(g_N a_scale) as g_N -> 0, on both footings   (g/sqrt(gN a0) -> 1 to <1e-5 by gN = 1e-12 a0)
+  [PASS] B1b the acceleration scale in that limit is 1.000000 x the a0 that appears in the action's a0^2 U(u^2) term -- no factor 2, 1/2 or 2pi -- so setting the action's a0 to 9.3619e-11 (canonical) or 1.1279e-10 (alt) reproduces the programme's scale EXACTLY.  [a0 is an INPUT to the construction, permitted; what is tested here is the numerical coefficient the theory attaches to it]   (g^2/g_N -> 1.000000 a0 on both footings)
+  [PASS] B1c the Newtonian limit is recovered at high acceleration with the SAME G: mu -> 1, so lap(Phi) = 4 pi G_N rho with G_N = 1/(8 pi m), the same m that normalises R4 and the tensor sector (REPORT.md section 5: S_T = (m/8) int ...), so G_dyn = G_lens = G_tensor at eta = 0   (g/g_N -> 1 to <1e-5 by g_N = 1e6 a0)
+    canonical M = 5e10 Msun: v^4/(G M a0) at r = 50,100,300,1000 kpc = 1.092920 1.044747 1.014556 1.004330
+    alt       M = 5e10 Msun: v^4/(G M a0) at r = 50,100,300,1000 kpc = 1.084085 1.040634 1.013247 1.003944
+
+  B2 -- which interpolation function, compared with the two the programme names
+    IC-series kernel (derived above):   mu(y) = 1 - e^-y,  y = g/a0   [Delta(s) = y e^-y, ceiling a0/e = 0.367879 a0]
+    lead's PATH_FORWARD.md target:      mu(y) = 1 - exp(-y)                       -> IDENTICAL
+    programme's CARRIED kernel:         nu_RAR, g = g_N/(1-e^-sqrt(g_N/a0)), saturated at s = 2.540, Delta = 0.6476
+    max |dlog10 g| between them over s = 1e-3..1e3 : 0.0726 dex at s = 1.673
+    max |dlog10 g| over the SPARC range s = 1e-2..1e2: 0.0726 dex
+    both agree in BOTH asymptotic limits (deep-MOND sqrt(s), Newtonian s); they differ only in the transition:
+        s =  0.10:  g_IC/a0 =   0.3438   g_nuRAR/a0 =   0.3689   dlog10 = -0.0306
+        s =  0.30:  g_IC/a0 =   0.6369   g_nuRAR/a0 =   0.7113   dlog10 = -0.0480
+        s =  1.00:  g_IC/a0 =   1.3500   g_nuRAR/a0 =   1.5820   dlog10 = -0.0689
+        s =  3.00:  g_IC/a0 =   3.1363   g_nuRAR/a0 =   3.6476   dlog10 = -0.0656
+        s = 10.00:  g_IC/a0 =  10.0005   g_nuRAR/a0 =  10.6476   dlog10 = -0.0272
+  [PASS] B2a the interpolation function the IC-series produces IS the lead's own stated target, mu(y) = 1 - exp(-y) with y = |grad Phi|/a0 (PATH_FORWARD.md line 23)   (derived in A5, not assumed; U(c) is the primitive designed to give exactly this)
+  [FAIL] B2b the interpolation function the IC-series produces is the programme's CARRIED kernel, nu_RAR (THE_ACTION_2026-09-05 section 3)   (max |dlog10 g| = 0.0726 dex over s = 1e-2..1e2 -- it is the EXPONENTIAL CARRIER, the kernel the programme swapped AWAY from on 2026-09-06)
+
+  B3 -- the one place the two kernels are observationally distinguishable without fitting:
+        the bounded-boost ceiling.  Delta = (g_obs - g_bar)/a0 <= max Delta:  1/e = 0.3679 for the
+        IC-series' kernel, 0.6476 for nu_RAR.  Fixed-Upsilon DIAGNOSTIC (not the programme's
+        controlled g03w test, which profiles Upsilon and applies SPARC's own Q/i cuts).
+    bulgeless control: 143 galaxies, 1475 points beyond 2 kpc with eV/V < 0.10, Upsilon_d = 0.5
+    canonical ceiling IC-series (exponential), 1/e    : 16.34% of points exceed it at >3 sigma; a0 would have to be 2.90x larger for that to fall to 1%
+    canonical ceiling nu_RAR carried, 0.6476          :  3.12% of points exceed it at >3 sigma; a0 would have to be 1.65x larger for that to fall to 1%
+    alt       ceiling IC-series (exponential), 1/e    : 10.51% of points exceed it at >3 sigma; a0 would have to be 2.41x larger for that to fall to 1%
+    alt       ceiling nu_RAR carried, 0.6476          :  1.83% of points exceed it at >3 sigma; a0 would have to be 1.37x larger for that to fall to 1%
+    the programme's own controlled numbers (g03w: Upsilon profiled, SPARC Q<3 and i>30 cuts; quoted, not recomputed here): exponential carrier 7.3% / 3.5%, nu_RAR 1.2% / 0.6%.  My fixed-Upsilon counts sit
+    ~2.5x higher for BOTH kernels, so the cut/Upsilon difference is common-mode; the RATIO between the
+    two kernels is the robust content, and it agrees with the programme's (about 5-6x).
+    Direction stated: this ceiling test is ONE-SIDED and Upsilon-sensitive.  The programme's own global
+    comparison with a0 and Upsilon profiled jointly (f25/g03l) finds exponential-vs-RAR UNDECIDED, so
+    this is a DISFAVOURING, not an exclusion, of the kernel the IC-series produces.
+  [FAIL] B3 the IC-series' kernel is not disfavoured relative to the programme's carried kernel by the bounded-boost ceiling on the bulgeless SPARC control (same points, same Upsilon, same cuts)   (IC 16.34%/10.51% vs nu_RAR 3.12%/1.83% (canonical/alt) exceeding at >3 sigma -- a factor 5.2; the programme's controlled test (g03w) finds the same ordering at 7.3%/3.5% vs 1.2%/0.6%)
+
+  B4 -- the terms the ordered weak-field limit DROPPED, at the construction's own parameter values.
+        IC1/IC4 expanding witness: a0^2 = 9 kappa e^(-1/2)/(16 m l^2), l = ln(9/5), Lambda = kappa e^(-1/2)/m - a0^2 U(4/9)
+        kappa/m = 1.0127 a0^2 (geometric),  U(4/9) = -0.04385,  X = 1/(2N0^2) = 0.30327
+        total dropped source  S_vac = 0.4826 a0^2 (geometric units, 1/length^2)
+    canonical:
+        L = 10 kpc          : dropped/retained = 1.551e-07,  spurious g = 2.274e-04 a0,  |Phi-Psi|/|Phi| = 5.357e-08
+        L = 100 kpc         : dropped/retained = 1.551e-06,  spurious g = 7.191e-04 a0,  |Phi-Psi|/|Phi| = 5.357e-07
+        L = 1 Mpc           : dropped/retained = 1.551e-05,  spurious g = 2.274e-03 a0,  |Phi-Psi|/|Phi| = 5.357e-06
+        L = c^2/a0 (Hubble) : dropped/retained = 4.826e-01,  spurious g = 4.011e-01 a0,  |Phi-Psi|/|Phi| = 1.667e-01
+    alt:
+        L = 10 kpc          : dropped/retained = 1.869e-07,  spurious g = 2.496e-04 a0,  |Phi-Psi|/|Phi| = 6.454e-08
+        L = 100 kpc         : dropped/retained = 1.869e-06,  spurious g = 7.893e-04 a0,  |Phi-Psi|/|Phi| = 6.454e-07
+        L = 1 Mpc           : dropped/retained = 1.869e-05,  spurious g = 2.496e-03 a0,  |Phi-Psi|/|Phi| = 6.454e-06
+        L = c^2/a0 (Hubble) : dropped/retained = 4.826e-01,  spurious g = 4.011e-01 a0,  |Phi-Psi|/|Phi| = 1.667e-01
+  [PASS] B4a the clock/vacuum sources the weak-field limit drops (kappa X, Lambda, a0^2 U, and the quadratic F) really are negligible on galaxy-to-cluster scales at the construction's OWN kappa/m: the lead's stated ordering is satisfied, it is not an assumption smuggled in   (out to 1 Mpc: dropped/retained <= 1.87e-05, spurious acceleration <= 2.50e-03 a0, slip <= 6.45e-06; the ordering only breaks at L ~ c^2/a0)
+  [PASS] B4b no-slip survives the dropped terms, so lensing and dynamics see the SAME potential to <1e-4 out to 1 Mpc  [the framework's lensing requirement]   (|Phi-Psi|/|Phi| <= 6.45e-06 at 1 Mpc)
+
+  B5 -- THE MISSING INPUT: the far-field boundary condition on u.
+        The static (eta = 0) branch fixes u POINTWISE from the local field: u^2 = 1 - e^(-|a|/a0),
+        so u -> 0 as |a| -> 0, which is the isolated-MOND boundary condition and is what the deep-MOND
+        asymptotics above assume.  The expanding (eta = 1) plateau fixes u by P_w = 0 instead:
+        IC10's own solution has u = 0.492193, 0.536585, 0.570419 at S = 0.10, 0.15, 0.20, and the
+        IC4/IC5 witness has u = 2/3.  A galaxy sits inside the eta = 0 plateau and the cosmology inside
+        eta = 1; the two are separated by the eta transition, which IC10's own 'What remains' item 1
+        says has not been varied.  If u must approach its cosmological value at large r, the static law
+        reads that as an external field:
+        u_cosmo = 0.492193 (IC10 S=0.10    )  ->  equivalent y_ext = 0.2774, i.e. g_ext = 0.277 a0
+        u_cosmo = 0.570419 (IC10 S=0.20    )  ->  equivalent y_ext = 0.3936, i.e. g_ext = 0.394 a0
+        u_cosmo = 0.666667 (IC4/IC5 witness)  ->  equivalent y_ext = 0.5878, i.e. g_ext = 0.588 a0
+        canonical: 27.0% of the bulgeless SPARC points beyond 2 kpc sit at g_obs < 0.28 a0, i.e. BELOW the smallest such floor
+        alt      : 37.6% of the bulgeless SPARC points beyond 2 kpc sit at g_obs < 0.28 a0, i.e. BELOW the smallest such floor
+  [FAIL] B5 the galactic branch's far-field boundary condition on u is DETERMINED by the published files (i.e. the eta = 0 static branch and the eta = 1 cosmological branch are matched, so an isolated galaxy's deep-MOND asymptotics is fixed)   (not determined: the static law gives u -> 0, the exhibited cosmological solutions give u = 0.49-0.67 (equivalent to a universal external field 0.28-0.59 a0), and the eta transition between them has not been varied (IC10 'What remains' item 1))
+
+  B6 -- two informational diagnostics (flagged, not scored; both need the frame/branch matching the
+        lead has not done, so neither is treated here as a failure of the construction).
+        (i) a0 vs the expansion rate ON THE ONE EXHIBITED BRANCH.  With m = h0 = 1, kappa = 6 (IC10's own
+            numbers) the witness relation gives a0 = 2.4341 h0 while IC10's solution has
+            H_phys = 0.719-0.808 h0, so a0/(cH) = 3.01-3.39.
+            observed a0/(cH0) = 0.1430 (canonical) -- the exhibited branch is 22x off.
+            observed a0/(cH0) = 0.1722 (alt) -- the exhibited branch is 19x off.
+            Lambda and kappa are free OFF that branch, so this is a property of the exhibited solution,
+            not a theorem; the lead already labels it 'not a viable cosmology'.
+        (ii) G_cos vs G_local.  At eta = 0 the Planck mass is m; on IC10's eta = 1 plateau it is
+            m* = m e^(-1/6), a ratio e^(1/6) = 1.1814.  Whether that is a real 18% G_cos/G_N
+            shift (BBN allows ~10-20%) depends on the conformal factor e^(2w) that matter carries and on
+            the transition; it cannot be settled from the published files and is flagged, not scored.
+
+------------------------------------------------------------------------------------------------------------------------
+VERDICT
+------------------------------------------------------------------------------------------------------------------------
+    The static, weak-field limit of the IC-series IS a genuine AQUAL-type MOND theory:
+        div[ mu(|grad Phi|/a0) grad Phi ] = 4 pi G_N rho_b,   mu(y) = 1 - e^-y,   G_N = 1/(8 pi m),
+    with Phi = Psi (so lensing and dynamics share one potential), the Newtonian limit at high acceleration
+    with the same G that normalises R4 and the tensor sector, the deep-MOND law g = sqrt(g_N a0) with
+    coefficient exactly 1.000000 x the action's own a0, and every clock/vacuum term the limit drops below
+    2e-5 of the retained ones out to 1 Mpc at the construction's own kappa/m.  The constitutive law
+    u^2 = 1 - e^(-|a|/a0) is EXACT on the static branch, and that branch is verified here (A6) to be IC5's
+    and IC10's own, not only IC1's.  a0 enters as an input, which the programme's rules permit; what the
+    theory supplies is the numerical coefficient 1 in front of it, and that is right.
+    Two things it is NOT.  (1) The kernel is the framework's EXPONENTIAL CARRIER -- the kernel the programme
+    swapped away from on 2026-09-06 in favour of nu_RAR on the bounded-boost ceiling test; it differs from
+    the carried kernel by up to 0.073 dex in the transition and violates its own ceiling ~5x more often on
+    the bulgeless SPARC control.  (2) The far-field boundary condition on u is not fixed by the published
+    files, and the only values the exhibited cosmological solutions offer would read as a universal external
+    field of 0.28-0.59 a0.
+  [PASS] VERDICT the IC-series, as published, is a candidate host for this framework's galaxy phenomenology -- its static weak-field limit is MOND, at the action's own a0, with one potential and the measured G   (PASS on the reduction; the two open items above are scored separately as B2b and B5 and are not hidden inside this verdict)
+
+========================================================================================================================
+FAILED CHECKS (3):
+   - B2b the interpolation function the IC-series produces is the programme's CARRIED kernel, nu_RAR (THE_ACTION_2026-09-05 section 3)
+   - B3 the IC-series' kernel is not disfavoured relative to the programme's carried kernel by the bounded-boost ceiling on the bulgeless SPARC control (same points, same Upsilon, same cuts)
+   - B5 the galactic branch's far-field boundary condition on u is DETERMINED by the published files (i.e. the eta = 0 static branch and the eta = 1 cosmological branch are matched, so an isolated galaxy's deep-MOND asymptotics is fixed)
+========================================================================================================================

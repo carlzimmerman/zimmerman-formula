@@ -23,6 +23,9 @@ Every entry names its script and commit. Nothing here is a claim a check did not
 | A10 | **Method rule.** The algebraic multiplier ν(\|g\|)g has nonzero curl on non-radial fields and unbinds the system within 1 Gyr. Any non-radial MOND infall calculation needs a genuine QUMOND field solve. | same | bcd2cb921 |
 | A11 | κ is not fixed by flux quantisation or by any boundary term: split-degeneracy theorem, β → μβ with Z compensating leaves every quantised and geometric quantity invariant while κ → μκ. The target ratio is footing-dependent (7.96 canonical, 5.48 alt). | `L3_flux_quantisation.py` | 0e20cf937 |
 
+| A12 | **No globally admissible point** for the candidate action on either footing (10 gates, 1.2e8 points each, all controls reproduced). The obstruction is **two gates deep** and every minimal incompatible subset contains the clock tachyon G2. Drop G2 and the other nine admit a real region: K_B <= 0.25, c2 ~ c2*(c14), c14 <= 1.18e-5, \|K2\| in [5e4, 5e5], Q0 <= 1 H0, xi >= 0.10/0.15 pc — which predicts gamma_v in (1.0000, 1.0450] / (1.0000, 1.0300], exactly Amendment 11's Arm B ceilings, and whose c14 bound agrees with A6's independently derived one. | `L14_parameter_sweep.py` | (this commit) |
+| A13 | The condensate **cannot be the dark sector**: freeing its amplitude to cure the tachyon caps its dark fraction at 2.6e-6, short of Omega_d by 1e5x. Since its background is also what makes the clock tachyonic, **removing it costs nothing and cures the one fatal gate.** The IC-series has already removed it. | same | (this commit) |
+
 ## B. Open challenges — pass conditions stated in advance
 
 | # | challenge | passes if |

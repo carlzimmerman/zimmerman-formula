@@ -308,3 +308,49 @@ sector, not c₂), c₁₄ has three inconsistent readings spanning 0.073–1.33
 counterpart because there is no condensate in the IC action. Missing inputs named: the PPN
 weak-field expansion of the IC action with the auxiliary constraint solved, and the O(k⁰) mass
 term of the reduced scalar system.
+
+## L14 — the global parameter sweep: no admissible point, and the obstruction is two gates deep
+
+`L14_parameter_sweep.py` (2 FAIL of 24). Individual pincers were known; the simultaneous
+admissible region had never been computed. Ten gates, each rebuilt from its source script and
+each reproducing that script's published verdict as a control, swept over 120,065,220 grid points
+per footing in (K_B, c₂, c₁₄, |K₂|, Q₀, ξ).
+
+| gate | canonical | alt |
+|---|---|---|
+| G1a PPN α₁ | 0.369 | 0.358 |
+| G1b PPN α₂ | 0.278 | 0.278 |
+| G2 clock tachyon | 0.091 | 0.091 |
+| G2b condensate ε₀ | 0.274 | 0.274 |
+| G3 linear growth | 0.800 | 0.800 |
+| G4 dark-sector window | 0.172 | 0.138 |
+| G5 Solar-System ξ | 0.529 | 0.471 |
+| G6 BBN | 0.599 | 0.599 |
+| G7 tensor + G_N > 0 | 0.808 | 0.808 |
+| G8 Cherenkov | 0.386 | 0.386 |
+| **intersection** | **0 points** | **0 points** |
+
+**The obstruction is exactly two gates deep, not ten.** Minimal incompatible subsets, identical on
+both footings: **{G1a, G2}**, **{G1b, G2}**, **{G2, G7}**, and {G2, G4, G8}. Every one contains G2.
+The condensate's background makes the clock tachyonic at a rate needing c₁₄ ≥ 3Ω_d/Ω_m = 2.533,
+while a positive Newton constant needs c₁₄ < 2 and PPN α₁ needs c₁₄ ≤ 2.5e-5 — a five-order
+shortfall that closes only if one tolerates a k-independent mode growing ~300 e-folds per Hubble time.
+
+**Drop G2 and the other nine open a real region** — 299,547 canonical / 221,544 alt points —
+containing the programme's own fiducial corner: K_B ≤ 0.25, c₂ ≈ c₂\*(c₁₄), c₁₄ ≤ 1.18e-5,
+|K₂| ∈ [5e4, 5e5], Q₀ ≤ 1 H₀, ξ ≥ 0.10/0.15 pc. Two cross-checks worth noting: that region
+predicts **γ_v ∈ (1.0000, 1.0450] canonical / (1.0000, 1.0300] alt**, i.e. exactly Amendment 11's
+registered Arm B ceilings; and its c₁₄ ≤ 1.18e-5 is consistent with L10's independently derived
+target region c₁₄ ≤ 2.5e-5. Two lanes, different machinery, same corner.
+
+**Two costs the individual pincers did not show.** G3 and G4 together cap S_eff at 0.185/0.153, so
+every survivor sits on the fast-clock branch with the action's linear scalar source screened off
+(T3 FAIL). And the obvious escape from the tachyon — freeing the dust amplitude — caps the
+condensate's dark fraction at 2.6e-6, **1e5× too small to be the dark sector G4 exists to supply** (T4).
+
+**The synthesis, and it is actionable.** The condensate was introduced to be the dark sector. It
+cannot be, by five orders of magnitude. And its background is precisely what makes the clock
+tachyonic, which is the single gate blocking every other one. So removing the condensate costs
+nothing that was ever going to work and cures the one fatal conflict — and the lead agent's IC-series
+has already removed it (L10's K4 records that the IC action has no condensate counterpart at all).
+**A cure for the tachyon is necessary and sufficient for this action to have a home.**

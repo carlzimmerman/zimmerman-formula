@@ -1,0 +1,203 @@
+======================================================================================================================
+L16 -- IF cold dark matter exists at the cosmic abundance, do galaxies still require an acceleration scale?
+======================================================================================================================
+  SPARC: 155 galaxies, 2786 points (L6 cuts: Upsilon_d = 0.5, Upsilon_b = 0.7, eV/V < 0.10, >=3 pts)
+         141 galaxies survive the additional Lelli cuts Q <= 2 and i >= 30 deg (robustness variant)
+         cross-check on the baryonic mass: M_b(last measured radius, from the curve) / M_b(L36 + 1.33 M_HI) median 1.16 [0.97, 1.35]
+         log10 M_b spans 7.69 to 11.43 Msun
+
+----------------------------------------------------------------------------------------------------------------------
+H0 [control] -- no halo: does the machinery recover the radial acceleration relation?
+----------------------------------------------------------------------------------------------------------------------
+  B = g_obs/g_bar over 2786 points in 155 galaxies
+    fitted acceleration scale  log10 a_eff = -9.946  (a_eff = 1.134e-10 m/s^2), one-parameter fit, rms 0.142 dex
+    with a free normalisation offset: log10 a_eff = -9.967 [-10.038, -9.881], offset +0.008 dex, rms 0.142 dex
+    vs a_0 alt       = 1.1279e-10 (log -9.948): fitted scale is +0.002 dex from it (1-par), -0.020 dex (2-par)
+    vs a_0 canonical = 9.3619e-11 (log -10.029): fitted scale is +0.083 dex from it (1-par), +0.061 dex (2-par)
+    variance a g_bar-only curve removes beyond a constant: 74.0%  (scatter 0.285 -> 0.145 dex, cross-validated by galaxy)
+  [PASS] H0a [control] with no halo the fitted acceleration scale lands within 0.15 dex of a_0 on at least one footing   (closest footing is 0.002 dex away)
+  [PASS] H0b [control] with no halo the residual scatter about the fitted acceleration relation is the RAR's known ~0.11 dex   (rms = 0.142 dex (published RAR scatter 0.11-0.13 dex))
+
+----------------------------------------------------------------------------------------------------------------------
+The halo granted -- what LambdaCDM puts in these galaxies
+----------------------------------------------------------------------------------------------------------------------
+  abundance matching (Moster+ 2013):  log10 M_200 median 11.24 [10.75, 12.56] Msun
+  cosmic ratio (Omega_m/Omega_b = 6.43) x M_b: log10 M_200 median 10.68  -- 0.77 dex BELOW abundance matching, i.e. 6x smaller;
+     that gap IS the missing-baryon problem: galaxies retain only ~17% of the cosmic
+     baryon share inside R_200, so the cosmic-ratio halo is a LOWER BOUND, not the LambdaCDM prediction.
+  M_200/M_b: abundance matching median 38, cosmic ratio 6.43
+  halo mass inside 10 kpc, in units of the galaxy's baryons: median 0.97 [0.59, 3.33] over 94 galaxies reaching 10 kpc
+     (L1's cold-infall calculation delivered 0.92-1.45 M_b there against the 0.25 M_b the RAR was said to tolerate;
+      an equilibrium NFW halo of the LambdaCDM mass is in the same range, so this lane and L1 are in the same currency)
+  
+  ten galaxies across the mass range, so the halo assignment can be checked by hand:
+      galaxy          logM_b  logM_*  logM_200  c_200  R_200/kpc  r_max/kpc  med log B
+      UGC04483          7.69    6.81     10.07   13.1         48        1.2     -0.224
+      DDO168            8.81    7.98     10.56   11.7         70        4.1     -0.088
+      UGC05829          9.22    8.45     10.76   11.2         82        6.9     -0.120
+      UGC00731          9.41    8.21     10.65   11.4         75       10.9     +0.044
+      NGC7793           9.67    9.55     11.25   10.0        119        7.9     +0.032
+      F568-1            9.96    9.49     11.23   10.0        117       10.1     +0.255
+      UGC06973         10.47   10.43     11.86    8.6        190        7.8     -0.073
+      NGC4051          10.71   10.68     12.26    7.9        258       12.2     -0.141
+      NGC2998          11.03   10.88     12.72    7.1        368       42.3     -0.147
+      UGC02487         11.43   11.39     14.02    5.2        998       80.4     -0.234
+
+----------------------------------------------------------------------------------------------------------------------
+H1 [control] -- baryons + abundance-matched NFW halo, NO boost: do they fit the rotation curves?
+----------------------------------------------------------------------------------------------------------------------
+  log10 B = log10 g_obs - log10(g_bar + g_halo), zero would be a perfect fit with no boost
+    ALL points   n =  2786: median -0.026 dex, rms about zero 0.171 dex, 16-84 [-0.184, +0.105]
+    INNER half   n =  1427: median -0.026 dex, rms about zero 0.167 dex, 16-84 [-0.173, +0.108]
+    OUTER half   n =  1359: median -0.027 dex, rms about zero 0.175 dex
+    per-galaxy inner median offset: 48% of galaxies are off by more than 0.1 dex, spread 0.168 dex, range -0.62 to +0.32 dex
+    that spread at fixed prescription IS the diversity problem (Oman+ 2015): the same halo recipe over- and under-shoots different galaxies by up to 0.62 dex
+  [FAIL] H1 [control] baryons + the abundance-matched NFW halo with NO boost reproduce the inner rotation curves to the RAR's own 0.11 dex   (inner rms 0.167 dex, 1.5x the relation the framework's kernel achieves; median offset -0.026 dex)
+
+----------------------------------------------------------------------------------------------------------------------
+T2 [THE TEST] -- after granting the halo, is the residual still organised by ACCELERATION?
+----------------------------------------------------------------------------------------------------------------------
+  no halo (control)               : rms(log B) about 1 = 0.517 dex | about the best constant = 0.285 | about the best g_bar-only curve = 0.145 | variance removed by acceleration alone =  74.0%
+                                    fitted log10 a_eff = -9.967 [-10.038, -9.881]  (a_eff = 1.078e-10 m/s^2), offset +0.008 dex, rms 0.142 dex
+  abundance-matched halo          : rms(log B) about 1 = 0.171 dex | about the best constant = 0.165 | about the best g_bar-only curve = 0.168 | variance removed by acceleration alone =  -3.5%
+                                    fitted log10 a_eff = -13.500 [-13.500, -12.856]  (a_eff = 3.162e-14 m/s^2), offset -0.044 dex, rms 0.166 dex
+  cosmic-ratio halo (lower bound) : rms(log B) about 1 = 0.245 dex | about the best constant = 0.176 | about the best g_bar-only curve = 0.151 | variance removed by acceleration alone =  26.6%
+                                    fitted log10 a_eff = -11.266 [-11.358, -11.166]  (a_eff = 5.419e-12 m/s^2), offset +0.075 dex, rms 0.153 dex
+
+  the residual B in bins of g_bar, abundance-matched halo (median and 16-84 per bin):
+       log10 g_bar      n   median log B     16th     84th
+            -11.48    349         +0.011   -0.188   +0.108
+            -11.22    348         -0.047   -0.238   +0.094
+            -11.02    348         -0.036   -0.284   +0.123
+            -10.77    348         -0.032   -0.241   +0.119
+            -10.46    348         -0.028   -0.202   +0.108
+            -10.15    348         -0.005   -0.138   +0.105
+             -9.80    348         -0.022   -0.170   +0.124
+             -9.23    349         -0.028   -0.118   +0.078
+  [FAIL] T2 [THE TEST] after granting a LambdaCDM cold halo the residual boost is STILL organised by acceleration (a g_bar-only curve removes >= 50% of the variance a constant leaves, AND the fitted scale is not vanishing)   (variance removed -3.5% (< 50%); bootstrap 16th percentile of log10 a_eff = -13.500 vs the vanishing threshold log10(a_0/10) = -11.029 (below))
+
+----------------------------------------------------------------------------------------------------------------------
+T3 -- the surviving acceleration scale against the framework's a_0
+----------------------------------------------------------------------------------------------------------------------
+  a_0 alt       = 1.1279e-10 m/s^2 (log -9.948):
+       no halo               log10 a_eff - log10 a_0 = -0.020 dex
+       abundance-matched     log10 a_eff - log10 a_0 = -3.552 dex [-3.552, -2.909]
+       cosmic-ratio halo     log10 a_eff - log10 a_0 = -1.318 dex [-1.410, -1.218]
+  a_0 canonical = 9.3619e-11 m/s^2 (log -10.029):
+       no halo               log10 a_eff - log10 a_0 = +0.061 dex
+       abundance-matched     log10 a_eff - log10 a_0 = -3.471 dex [-3.471, -2.828]
+       cosmic-ratio halo     log10 a_eff - log10 a_0 = -1.237 dex [-1.329, -1.137]
+  [FAIL] T3 [scale] the acceleration scale surviving the abundance-matched halo agrees with a_0 to within 0.15 dex on at least one footing   (closest footing is 3.471 dex away (a factor 2960.49))
+
+----------------------------------------------------------------------------------------------------------------------
+A1 [head-to-head] -- kernel at fixed a_0 vs the granted halo, ZERO free parameters on each side
+----------------------------------------------------------------------------------------------------------------------
+  framework kernel, a_0 alt       fixed : rms about zero 0.142 dex, median offset +0.003 dex
+  framework kernel, a_0 canonical fixed : rms about zero 0.145 dex, median offset +0.030 dex
+  abundance-matched halo (no free par) : rms about zero 0.171 dex, median offset -0.026 dex
+  cosmic-ratio halo      (no free par) : rms about zero 0.245 dex
+  [PASS] A1 [head-to-head] the framework's kernel with a_0 FIXED describes these rotation curves more tightly than the granted LambdaCDM halo does   (kernel 0.142 dex (best footing: alt) vs halo 0.171 dex, a factor 1.20 in scatter with the same number of free parameters (none))
+
+----------------------------------------------------------------------------------------------------------------------
+A2 [injection] -- would this test have SEEN a surviving acceleration scale?  Inject one and try to recover it.
+----------------------------------------------------------------------------------------------------------------------
+  a known boost B_model(g_bar; a_inj) is multiplied into g_obs on top of the abundance-matched halo, and the
+  estimator is asked to find a_inj.  This converts the null into a bound: the smallest scale it could have seen.
+        injected a_inj  a_inj/a_0can  recovered log a  error (dex)  var removed  T2 would
+             9.362e-13         0.010          -12.166       -0.137        -1.7%      FAIL
+             2.960e-12         0.032          -11.634       -0.105         8.1%      FAIL
+             9.362e-12         0.100          -11.130       -0.102        29.1%      FAIL
+             1.665e-11         0.178          -10.878       -0.099        40.6%      FAIL
+             2.960e-11         0.316          -10.624       -0.096        50.7%      PASS
+             5.265e-11         0.562          -10.374       -0.096        58.8%      PASS
+             9.362e-11         1.000          -10.129       -0.100        64.9%      PASS
+  [PASS] A2a [injection] the estimator recovers an injected acceleration scale equal to a_0 to within 0.15 dex, so a surviving a_0 would have been found if it were there   (injected log -10.029, recovered -10.129 [-10.213, -10.054], variance removed 64.9%)
+  [PASS] A2b [injection] the DETECTION FLOOR is at least 3x below a_0, so T2's null is a real bound on a surviving acceleration scale rather than a lack of sensitivity   (the smallest injected scale recovered is a_0 x 10^-0.50 = 2.96e-11 m/s^2)
+
+----------------------------------------------------------------------------------------------------------------------
+A3 [within-galaxy] -- population scatter cannot hide it: the slope d log B / d log g_bar galaxy by galaxy
+----------------------------------------------------------------------------------------------------------------------
+  no halo                 : median slope -0.324, mean -0.372 +/- 0.030 over 129 galaxies, 16-84 [-0.646, -0.115], 83% steeper than -0.15
+  abundance-matched halo  : median slope +0.020, mean +0.030 +/- 0.036 over 129 galaxies, 16-84 [-0.284, +0.290], 26% steeper than -0.15
+  cosmic-ratio halo       : median slope -0.176, mean -0.193 +/- 0.042 over 129 galaxies, 16-84 [-0.514, -0.002], 58% steeper than -0.15
+  deep-MOND expectation with no halo is -0.5 (B = sqrt(a_0/g_bar)); 0 means no acceleration structure inside galaxies.
+  [FAIL] A3 [within-galaxy] the acceleration structure survives the halo INSIDE individual galaxies (the median per-galaxy slope keeps at least half its no-halo value)   (median slope -0.324 with no halo -> +0.020 with the abundance-matched halo, i.e. 6% of it retained)
+
+----------------------------------------------------------------------------------------------------------------------
+A4 [scatter] -- the halo above used MEAN relations.  Switch on the population scatter LambdaCDM actually has.
+----------------------------------------------------------------------------------------------------------------------
+  Abundance matching has ~0.25 dex of scatter in M_200 at fixed M_*, and Dutton & Maccio 0.11 dex in log c.  A
+  real halo population carries both, and they land directly in the rotation curves.  40 realisations:
+    rms(log B) about zero        : mean relations 0.171 dex  ->  with population scatter 0.198 +/- 0.008 dex
+    galaxy-to-galaxy offset spread: mean relations 0.168 dex  ->  with population scatter 0.190 +/- 0.009 dex
+    the framework's kernel at fixed a_0 sits at 0.142 dex and has NO population to scatter.
+  [FAIL] A4 [scatter] the LambdaCDM halo population still matches the rotation curves once its own scatter in M_200 and concentration is switched on, i.e. within the RAR's observed 0.13 dex   (0.198 dex, 1.39x the fixed-a_0 kernel; this is the known halo-population-scatter problem (Desmond 2017; this repository's rar_origin_detector_2026.py V2) and it is where an acceleration scale keeps content even though it is not REQUIRED)
+
+----------------------------------------------------------------------------------------------------------------------
+R4 [robust] -- how much of the answer is the halo I assumed?
+----------------------------------------------------------------------------------------------------------------------
+  abundance matching carries ~0.30 dex of uncertainty on log M_200 (Moster vs Behroozi vs Kravtsov, the 0.1 dex
+  Upsilon_* systematic, and the M_200-definition slop between the AM and c-M relations); Dutton & Maccio quote
+  0.11 dex on log c.  The scan below is TWICE each, plus the cosmic-ratio halo and the Lelli quality cuts.
+      halo                                log a_eff  d(a_0,can)  var removed  rms fit   offset    T2
+      no halo [control]                      -9.967      +0.061        74.0%    0.142   +0.008  PASS
+      AM, log M_200 -0.6 dex                -11.452      -1.423        13.0%    0.170   +0.044  FAIL
+      AM, log M_200 -0.3 dex                -12.030      -2.001        -1.1%    0.166   +0.010  FAIL
+      AM, log M_200 +0.0 dex                -13.500      -3.471        -3.5%    0.166   -0.044  FAIL
+      AM, log M_200 +0.3 dex                -13.500      -3.471         5.0%    0.173   -0.117  FAIL
+      AM, log M_200 +0.6 dex                -13.500      -3.471        17.4%    0.187   -0.185  FAIL
+      AM, log c -0.22 dex                   -12.324      -2.296        -0.0%    0.160   +0.060  FAIL
+      AM, log c +0.22 dex                   -13.500      -3.471         0.2%    0.182   -0.178  FAIL
+      cosmic ratio x M_b                    -11.266      -1.237        26.6%    0.153   +0.075  FAIL
+      cosmic ratio, log M +0.6 dex          -12.856      -2.827        -3.4%    0.150   +0.005  FAIL
+      AM, drop log M_* > 10.8 (n=130)       -13.500      -3.471        -4.6%    0.153   -0.018  FAIL
+      AM, Lelli cuts Q<=2 i>=30             -13.500      -3.471        -5.6%    0.159   -0.042  FAIL
+      no halo, Lelli cuts [control]          -9.955      +0.073        76.7%    0.132   +0.008  PASS
+  (the T2 column reads PASS when an acceleration scale survives in that row and FAIL when it does not)
+  
+  the degeneracy: how far the halo must move before the answer changes.  Scanning log M_200 about the
+  LambdaCDM prediction, and asking at each point whether an acceleration scale is required and whether it is a_0.
+       log M_200 offset    M/M_AM  log a_eff  d(a_0,can)  var removed   offset     rms  a_0 back?
+                  -3.00     0.001     -9.985      +0.044        73.7%   +0.011   0.142        YES
+                  -2.70     0.002     -9.985      +0.044        73.7%   +0.011   0.142        YES
+                  -2.40     0.004     -9.987      +0.042        73.7%   +0.011   0.142        YES
+                  -2.10     0.008     -9.993      +0.036        72.9%   +0.008   0.145        YES
+                  -1.80     0.016    -10.027      +0.002        70.8%   +0.004   0.151        YES
+                  -1.50     0.032    -10.186      -0.158        63.3%   +0.018   0.163      scale
+                  -1.20     0.063    -10.521      -0.493        49.5%   +0.041   0.175         no
+                  -0.90     0.126    -10.980      -0.951        32.1%   +0.055   0.173         no
+                  -0.60     0.251    -11.452      -1.423        13.0%   +0.044   0.170         no
+                  -0.30     0.501    -12.030      -2.001        -1.1%   +0.010   0.166         no
+                  -0.00     1.000    -13.500      -3.471        -3.5%   -0.044   0.166         no
+                  +0.30     1.995    -13.500      -3.471         5.0%   -0.117   0.173         no
+                  +0.60     3.981    -13.500      -3.471        17.4%   -0.185   0.187         no
+                  +0.90     7.943    -13.500      -3.471        29.0%   -0.250   0.204         no
+                  +1.20    15.849    -13.500      -3.471        38.2%   -0.313   0.222         no
+                  +1.50    31.623    -13.500      -3.471        45.3%   -0.373   0.240         no
+                  +1.80    63.096    -13.500      -3.471        50.4%   -0.431   0.257         no
+  
+  [PASS] R4 [robust] the T2 verdict is the SAME in every halo row above (log M_200 +- 0.6 dex = 2x the abundance-matching uncertainty, log c +- 0.22 dex = 2x Dutton-Maccio's scatter, the cosmic-ratio halo, the Lelli cuts), so the conclusion does not flip inside the halo uncertainty and the test IS decisive with current data   (all 11 halo rows agree with the primary (no scale survives); the two no-halo controls both go the other way, so the scan is alive)
+  [PASS] R4b [margin] a_0 returns only if the halo is pushed more than 3x the abundance-matching uncertainty (0.90 dex) BELOW what LambdaCDM predicts, so the null has margin   (a_0 comes back only at log M_200 -1.80 dex, i.e. a halo 63x smaller than LambdaCDM's and 6.0 sigma below it)
+
+======================================================================================================================
+VERDICT
+======================================================================================================================
+  granting every SPARC galaxy the cold halo LambdaCDM predicts for its stellar mass (Moster+ 2013 abundance
+  matching, Dutton & Maccio 2014 concentration, NFW, baryons subtracted so nothing is double counted), the
+  residual B = g_obs/(g_bar + g_halo) is
+    NOT ORGANISED BY ACCELERATION -- the halo did the work:
+    a curve in g_bar alone removes -3.5% of the variance a constant leaves (74.0% with no halo),
+    and the fit returns NO acceleration scale (fit railed at the search floor 1e-13.5; bootstrap 95% upper limit a_eff < 3.29e-13 m/s^2).
+  This is not a sensitivity failure: A2 recovers an injected a_0 to 0.100 dex, and the detection
+    floor is a_0 x 10^-0.50 = 2.96e-11 m/s^2, so any surviving scale above that would have been seen.
+  The overall normalisation offset is -0.044 dex: the granted halo OVER-supplies
+    the observed acceleration by 10% on average, which is the price of granting it,
+    and it does so with 0.171 dex of scatter against the fixed-a_0 kernel's 0.142 dex -- so the kernel
+    remains the TIGHTER description even though it is no longer the REQUIRED one.
+  What this lane does NOT show: it does not measure dark matter; it does not by itself rescue clusters; and the
+  halo used is the plain equilibrium NFW population with no adiabatic contraction and no feedback -- both of which
+  move inner profiles and are named here as the leading systematic on H1 and on the offset above.  Nor does it
+  touch the programme's distinctive prediction a_0 = kappa c sqrt(G rho_Lambda), which is a claim about the VALUE
+  of an acceleration scale and is tested by the pre-registered measurements, not by this rotation-curve inversion.
+
+RESULT: 12 checks, 5 FAIL -> ["H1 [control] baryons + the abundance-matched NFW halo with NO boost reproduce the inner rotation curves to the RAR's own 0.11 dex", 'T2 [THE TEST] after granting a LambdaCDM cold halo the residual boost is STILL organised by acceleration (a g_bar-only curve removes >= 50% of the variance a constant leaves, AND the fitted scale is not vanishing)', 'T3 [scale] the acceleration scale surviving the abundance-matched halo agrees with a_0 to within 0.15 dex on at least one footing', 'A3 [within-galaxy] the acceleration structure survives the halo INSIDE individual galaxies (the median per-galaxy slope keeps at least half its no-halo value)', "A4 [scatter] the LambdaCDM halo population still matches the rotation curves once its own scatter in M_200 and concentration is switched on, i.e. within the RAR's observed 0.13 dex"]

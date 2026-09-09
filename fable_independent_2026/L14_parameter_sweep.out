@@ -1,0 +1,167 @@
+======================================================================================================================
+L14 -- the candidate action's full parameter space against every established gate, simultaneously
+======================================================================================================================
+
+  carried kernel nu_RAR: J_Y at the Galactic external field = canonical 2.967, alt 2.510   (g03z G1: 2.967 / 2.510)
+
+----------------------------------------------------------------------------------------------------------------------
+  THE GATE FUNCTIONS AND THEIR CONTROLS (each control evaluates the gate at its own source's parameters)
+----------------------------------------------------------------------------------------------------------------------
+    G1a  alpha_1(K_B = 0.2, c_14 = 1e-5, xi = 0.10 pc, canonical) = -4.0519e-05   [g03z G2 table: -4.052e-05]
+    G1a  alpha_1(K_B = 0.2, c_14 = 1e-5, xi = 0.15 pc, alt)       = -4.0273e-05   [g03z G2 table: -4.027e-05]
+  [PASS] C1 [control, G1a] the alpha_1 formula reproduces g03z's G2 table at both floors to 1%   (-4.0519e-05, -4.0273e-05)
+    G1b  (alpha_1, alpha_2) at f33's corner (K_B = 0.2, c_2 = 1, c_14 = 1.18e-5) = (-4.720e-05, -5.900e-06)   [f33: -4.72e-5, -5.9e-6]
+    G1b  alpha_2 vanishes at c_2* = c_14/(1 - 2 c_14) = 1.0000e-05: alpha_2 = 2.11e-17
+  [PASS] C2 [control, G1b] the Foster-Jacobson alpha_2 reproduces f33's corner within 20% and vanishes at c_2* = c_14/(1 - 2 c_14)   (alpha_2(corner) = -5.90e-06, alpha_2(c_2*) = 2.1e-17)
+    G2   rate/H_0 at (c_14 = 1e-5, |K_2| = 2.5e5, Q_0 = H_0): a = 1 -> 282, a = 0.01 -> 2.8e+05   [g03w: 282 H_0 and 2.8e+05 H_0]
+    G2   |K_2| and Q_0 CANCEL (eps_0 = 3 H_0^2 Omega_d/(|K_2| Q_0^2)); the gate is c_14 >= 3 Omega_d/Omega_m = 2.5333
+  [PASS] C3 [control, G2] the tachyonic rate reproduces g03w's 282 H_0 today and 2.8e5 H_0 at a = 0.01 to 1%   (282.5 H_0, 2.82e+05 H_0)
+    G2b  eps_0 at |K_2| = 2.5e5, Q_0/H_0 = 0.1/1/10: 3.2e-04, 3.2e-06, 3.2e-08   [g03v V6: 3.2e-04, 3.2e-06, 3.2e-08]
+  [PASS] C4 [control, G2b] eps_0 reproduces g03v's V6 table (only Q_0 = 0.1 H_0 clears 1e-5 at |K_2| = 2.5e5)   (3.19e-04, 3.19e-06)
+    G3   S_eff(K_B = 0.2, c_2 = 0.05, |K_2| = 2.5e5) = 0.999741   [g03t D5: 0.999741];  K2_growth = 2.71e+06   [g03t D7: 2.71e+06]
+  [PASS] C5 [control, G3] S_eff and the growth floor reproduce g03t's D5 and D7 numbers, and the corner FAILS the gate (D7's pincer)   (S_eff = 0.999741, K2_growth = 2.707e+06, corner admitted = False)
+    G4   H(|K_2| = 1e5) = 355 kpc canonical, 295 kpc alt   [g03r line 20: 355 / 295 kpc]
+    G4   window H in [71.0, 710.4] kpc  ==  |K_2| in [5.0e+04, 5.0e+05] canonical, [4.2e+04, 4.2e+05] alt   [g03r D: [5e4, 5e5] both footings on its coarse grid]
+  [PASS] C6 [control, G4] the hydrostatic length reproduces g03r's tabulated H, and the canonical window edges are exactly 5e4 and 5e5   (H(1e5) = 355.2 / 294.8 kpc; 1e6 rejected)
+    G5   g03d's own table gives the exponential carrier's floors {'canonical': 0.03, 'alt': 0.05}   [g03d .out: 0.03 / 0.05 pc]
+    G5   the gate in force uses the CARRIED (nu_RAR) floors {'canonical': 0.1, 'alt': 0.15} pc   [g03z XI_FLOOR, Amendment 11(b)]
+  [PASS] C7 [control, G5] g03d's published admissibility table gives floors 0.03 pc canonical / 0.05 pc alt for the carrier it solved   ({'canonical': 0.03, 'alt': 0.05})
+    G6   G_cos/G_N at c_2 = 0.05 / 0.1 / 1: -7.0%, -13.0%, -60.0%   [g03e B1: -7%, -13.0%, -60%]
+  [PASS] C8 [control, G6] G_cos/G_N reproduces g03e's B1 numbers: c_2 = 0.05 admitted (-7%), c_2 = 0.1 at the edge (-13.0%), c_2 = 1 killed (-60%)   (c_2 = 0.05: -7.0%, c_2 = 0.1: -13.0%, c_2 = 1.0: -60.0%)
+    G7   c_13 = c_1 + c_3 = K_B - K_B = 0 identically  =>  c_T = 1 exactly at every K_B (GW170817 satisfied structurally)
+    G7   G_N/G = 1/(1 - c_14/2): c_14 = 1e-5 -> 1.000005;  c_14 = 2 -> singular;  c_14 = 3 -> -2.000 (negative Newton constant)
+  [PASS] C9 [control, G7] c_13 vanishes identically (c_T = 1) and G_N = G/(1 - c_14/2) is positive only for c_14 < 2   (G_N/G(1e-5) = 1.000005, G_N/G(3) = -2.000)
+    G8   (2 - K_B)^2/c_14 at (K_B = 0.2, c_14 = 1e-5) = 3.24e+05   [g03z G3: 3.24e+05]
+  [PASS] C10 [control, G8] the Cherenkov bound reproduces g03z's 3.24e5 and admits |K_2| = 2.5e5 while rejecting 1e6 at the same corner   (3.240e+05)
+    gv   Arm-B ceilings {'canonical': (0.1, 1.045), 'alt': (0.15, 1.03)} (xi [pc], gamma_v)  [Amendment 11(b)];  fitted falloff exponent p = canonical 0.778, alt 1.184  [extrapolated from g03y's exponential-carrier pairs]
+
+----------------------------------------------------------------------------------------------------------------------
+  THE GRID (logarithmic, generous; the action's own sign conventions restrict every axis to positive values)
+----------------------------------------------------------------------------------------------------------------------
+    K_B         18 points   [1.000e-03, 5.000e+00]
+    c_2         41 points   [1.000e-09, 1.000e+01]
+    c_14        22 points   [1.000e-09, 1.000e+01]
+    |K_2|       29 points   [1.000e+00, 1.000e+12]
+    Q_0/H_0     15 points   [1.000e-04, 1.000e+04]
+    xi [pc]     17 points   [1.000e-04, 1.000e+03]
+    grid points per footing: 120,065,220   (2 footings -> 240,130,440)
+
+----------------------------------------------------------------------------------------------------------------------
+  PER-GATE ADMITTED FRACTIONS AND THE INTERSECTION
+----------------------------------------------------------------------------------------------------------------------
+    gate                            canonical            alt
+    G1a  PPN alpha_1                 0.368687       0.358437
+    G1b  PPN alpha_2                 0.278271       0.278271
+    G2   clock tachyon               0.090909       0.090909
+    G2b  condensate eps_0            0.273563       0.273563
+    G3   linear growth               0.800486       0.800486
+    G4   dark-sector window          0.172414       0.137931
+    G5   Solar-System xi             0.529412       0.470588
+    G6   BBN                         0.598916       0.598916
+    G7   tensor + G_N > 0            0.808081       0.808081
+    G8   Cherenkov                   0.386015       0.386015
+    INTERSECTION (all 10)            0.000000       0.000000
+      points                                0              0
+  [PASS] F1 [G1a] the gate alone admits neither 0 nor 1 of the grid at both footings   (canonical 0.368687, alt 0.358437)
+  [PASS] F2 [G1b] the gate alone admits neither 0 nor 1 of the grid at both footings   (canonical 0.278271, alt 0.278271)
+  [PASS] F3 [G2] the gate alone admits neither 0 nor 1 of the grid at both footings   (canonical 0.090909, alt 0.090909)
+  [PASS] F4 [G2b] the gate alone admits neither 0 nor 1 of the grid at both footings   (canonical 0.273563, alt 0.273563)
+  [PASS] F5 [G3] the gate alone admits neither 0 nor 1 of the grid at both footings   (canonical 0.800486, alt 0.800486)
+  [PASS] F6 [G4] the gate alone admits neither 0 nor 1 of the grid at both footings   (canonical 0.172414, alt 0.137931)
+  [PASS] F7 [G5] the gate alone admits neither 0 nor 1 of the grid at both footings   (canonical 0.529412, alt 0.470588)
+  [PASS] F8 [G6] the gate alone admits neither 0 nor 1 of the grid at both footings   (canonical 0.598916, alt 0.598916)
+  [PASS] F9 [G7] the gate alone admits neither 0 nor 1 of the grid at both footings   (canonical 0.808081, alt 0.808081)
+  [PASS] F10 [G8] the gate alone admits neither 0 nor 1 of the grid at both footings   (canonical 0.386015, alt 0.386015)
+
+----------------------------------------------------------------------------------------------------------------------
+  THE TEST
+----------------------------------------------------------------------------------------------------------------------
+  [FAIL] T1 [THE TEST] the simultaneous admissible region of all 10 gates is non-empty on at least one footing   (canonical 0 points, alt 0 points)
+
+    MINIMAL incompatible subsets (no proper subset of any listed set is itself empty):
+      canonical:
+        {G1a, G2}   (size 2)
+        {G1b, G2}   (size 2)
+        {G2, G7}   (size 2)
+        {G2, G4, G8}   (size 3)
+      alt:
+        {G1a, G2}   (size 2)
+        {G1b, G2}   (size 2)
+        {G2, G7}   (size 2)
+        {G2, G4, G8}   (size 3)
+  [PASS] T2 [minimal subset] where the full intersection is empty, a minimal incompatible subset of size <= 3 exists (the sharp statement, not 'everything fails together')   (canonical: smallest incompatible subset has 2 gates, alt: smallest incompatible subset has 2 gates)
+
+----------------------------------------------------------------------------------------------------------------------
+  THE SURVIVING REGION
+----------------------------------------------------------------------------------------------------------------------
+
+    [all gates EXCEPT G2]
+      canonical: 299,547 grid points of 120,065,220  (2.495e-03)
+          K_B       in [1.0000e-03, 2.5000e-01]
+          c_2       in [1.0000e-09, 3.1625e-05]
+          c_14      in [1.0000e-09, 1.1800e-05]
+          |K_2|     in [5.0000e+04, 5.0000e+05]
+          Q_0/H_0   in [2.1544e-03, 1.0000e+00]
+          xi [pc]   in [1.0000e-01, 1.0000e+03]
+          c_2/c_2*(c_14) over the region: [0.1, 3.162e+04]; restricted to c_14 >= 1e-6, where the
+            alpha_2 bound actually bites (below c_14 ~ ALPHA2_BOUND/2 = 2e-07, |alpha_2| ~ 2 c_14 clears it at any c_2):
+            [1, 3.162] -- there the marginal boxes are NOT independent and the region is a thin sheet
+          S_eff over the region: [-7.992e+04, 0.06282] (grid);  ANALYTIC ceiling from G3 and G4 alone: S_eff <= |K_2|_max/K2_growth = 0.1847
+            i.e. the surviving cosmology keeps at most 18% of the action's own linear scalar source; points with S_eff > 0.5: 0
+          predicted gamma_v (Arm B, extrapolated in xi): [1.0000, 1.0450]   ceiling at the floor 1.0450
+          representative point (closest to the programme's fiducial corner): K_B = 0.2, c_2 = 1e-05, c_14 = 1e-05, |K_2| = 2.5e+05, Q_0 = 0.1 H_0, xi = 0.1 pc
+            -> alpha_1 = -4.052e-05, alpha_2 = +1.000e-10, S_eff = -0.296, H = 142.1 kpc, eps_0 = 3.19e-04, gamma_v = 1.0450
+      alt      : 221,544 grid points of 120,065,220  (1.845e-03)
+          K_B       in [1.0000e-03, 2.5000e-01]
+          c_2       in [1.0000e-09, 3.1625e-05]
+          c_14      in [1.0000e-09, 1.1800e-05]
+          |K_2|     in [5.0000e+04, 3.1623e+05]
+          Q_0/H_0   in [2.1544e-03, 1.0000e+00]
+          xi [pc]   in [1.5000e-01, 1.0000e+03]
+          c_2/c_2*(c_14) over the region: [0.1, 3.162e+04]; restricted to c_14 >= 1e-6, where the
+            alpha_2 bound actually bites (below c_14 ~ ALPHA2_BOUND/2 = 2e-07, |alpha_2| ~ 2 c_14 clears it at any c_2):
+            [1, 3.162] -- there the marginal boxes are NOT independent and the region is a thin sheet
+          S_eff over the region: [-7.992e+04, 0.06282] (grid);  ANALYTIC ceiling from G3 and G4 alone: S_eff <= |K_2|_max/K2_growth = 0.1533
+            i.e. the surviving cosmology keeps at most 15% of the action's own linear scalar source; points with S_eff > 0.5: 0
+          predicted gamma_v (Arm B, extrapolated in xi): [1.0000, 1.0300]   ceiling at the floor 1.0300
+          representative point (closest to the programme's fiducial corner): K_B = 0.2, c_2 = 1e-05, c_14 = 1e-05, |K_2| = 2.5e+05, Q_0 = 0.1 H_0, xi = 0.15 pc
+            -> alpha_1 = -4.027e-05, alpha_2 = +1.000e-10, S_eff = -0.296, H = 117.9 kpc, eps_0 = 3.19e-04, gamma_v = 1.0300
+  [FAIL] T3 [what the survivor costs] in the region that opens when the tachyon gate is dropped, is the action's linear scalar source more than half alive anywhere (S_eff > 0.5)?  A PASS would mean the escape keeps the cosmological MOND source; a FAIL means every survivor sits on the fast-clock branch where G3 and G4 together screen the source off (analytic ceiling S_eff <= 0.185 canonical / 0.153 alt)   (canonical: 0 of 299,547 points, S_eff max 0.06282, alt: 0 of 221,544 points, S_eff max 0.06282)
+
+----------------------------------------------------------------------------------------------------------------------
+  SENSITIVITY OF THE KILLING GATE (how far a bound would have to move for the region to open)
+----------------------------------------------------------------------------------------------------------------------
+    the tachyon gate is c_14 >= 3 Omega_d/Omega_m = 2.5333 for rate <= H; tolerating rate <= N H gives c_14 >= 2.5333/N^2:
+       N =    1 e-folds per Hubble time tolerated  ->  c_14 >= 2.533e+00   (PPN alpha_1 allows c_14 <= 2.50e-05: short by 1.0e+05x)
+       N =    3 e-folds per Hubble time tolerated  ->  c_14 >= 2.815e-01   (PPN alpha_1 allows c_14 <= 2.50e-05: short by 1.1e+04x)
+       N =   10 e-folds per Hubble time tolerated  ->  c_14 >= 2.533e-02   (PPN alpha_1 allows c_14 <= 2.50e-05: short by 1.0e+03x)
+       N =   30 e-folds per Hubble time tolerated  ->  c_14 >= 2.815e-03   (PPN alpha_1 allows c_14 <= 2.50e-05: short by 1.1e+02x)
+       N =  100 e-folds per Hubble time tolerated  ->  c_14 >= 2.533e-04   (PPN alpha_1 allows c_14 <= 2.50e-05: short by 1.0e+01x)
+       N =  300 e-folds per Hubble time tolerated  ->  c_14 >= 2.815e-05   (PPN alpha_1 allows c_14 <= 2.50e-05: short by 1.1e+00x)
+    the rate is independent of |K_2| and Q_0 only because eps_0 is fixed by the condensate carrying Omega_d;
+    at a smaller dark fraction Omega_d the threshold falls as 3 Omega_d/Omega_m:
+       Omega_d =  0.266  ->  c_14 >= 2.533e+00   (1.0e+05x the PPN ceiling)
+       Omega_d =  0.100  ->  c_14 >= 9.524e-01   (3.8e+04x the PPN ceiling)
+       Omega_d =  0.010  ->  c_14 >= 9.524e-02   (3.8e+03x the PPN ceiling)
+       Omega_d =  0.001  ->  c_14 >= 9.524e-03   (3.8e+02x the PPN ceiling)
+
+    THE ONE ESCAPE, computed: free the condensate's dust amplitude (g03e: a free initial datum).
+    rate <= H at every a  <=>  Omega_d,eff = |K_2| Q_0^2 eps_0/(3 H_0^2) <= Omega_m c_14/3.
+    at the largest PPN-allowed c_14 = 2.50e-05 this is Omega_d,eff <= 2.625e-06,
+    i.e. 1.01e+05 times SMALLER than the dark component the dark-sector window G4 and the cluster
+    atmosphere (g03u: M_d/M_b ~ 6.8 at 100 kpc) require the condensate to be.  The escape exists and it
+    empties G4 of content: a tachyon-free clock and a condensate dark sector cannot both be had.
+  [PASS] T4 [the escape is not free] freeing eps_0 removes the tachyon only by shrinking the condensate's dust fraction below what the dark-sector gate G4 needs; check that the two are numerically incompatible at the PPN-allowed c_14   (Omega_d,eff <= 2.625e-06 against Omega_d = 0.266 needed: short by 1.01e+05x)
+
+  caveats, stated: (i) the 'fraction of the grid' is a measure over the stated logarithmic grid and has no
+  prior meaning -- only the emptiness/non-emptiness statements are grid-independent, and those were also
+  checked analytically where noted; (ii) the tachyon gate uses the ANALYTIC term g03w identifies in the clock
+  equation (re-derived here from g03t's printed coefficients), not g03w's numerical eigenmode, whose separation
+  from a constraint-differentiation artefact g03w itself records as open; (iii) G3 extends g03t's D7 floor by
+  the D5 screening factor, which is an interpolation between D7 (S_eff = 1) and g03v's fast-branch V4 (S_eff <= 0);
+  (iv) G4's window edges come from g03r's coarse |K_2| grid, re-expressed on H so that the alt footing is
+  consistent; (v) gamma_v's xi-dependence is extrapolated from g03y's exponential-carrier pairs and is an
+  OUTPUT, never a cut; (vi) the grid is positive in every parameter, as THE_ACTION section 2 fixes the signs.
+
+RESULT: 2 FAIL -> ['T1 [THE TEST] the simultaneous admissible region of all 10 gates is non-empty on at least one footing', "T3 [what the survivor costs] in the region that opens when the tachyon gate is dropped, is the action's linear scalar source more than half alive anywhere (S_eff > 0.5)?  A PASS would mean the escape keeps the cosmological MOND source; a FAIL means every survivor sits on the fast-clock branch where G3 and G4 together screen the source off (analytic ceiling S_eff <= 0.185 canonical / 0.153 alt)"]
+rc=1
