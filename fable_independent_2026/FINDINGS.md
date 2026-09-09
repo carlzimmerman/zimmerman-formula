@@ -2110,3 +2110,47 @@ proved".
   healthy. **The real lesson: the integer was right and two of the physics rows were not, so the effort
   belongs in tightening those rows** — starting with the anisotropic analysis, which decides whether the
   unlisted health condition is a footnote or a kill.
+
+## L51 — the second scalar combination is real, moves the 9σ cluster number, and stays unspendable
+
+`L51_second_combination.py` + `L51_SECOND_COMBINATION.md` (34 checks, 11 FAIL; **all 9 controls pass**).
+L39 proved that a frame-free theory has exactly one covariant scalar linear in the metric perturbation,
+and that adjoining one unit timelike vector makes it two. This theory has that vector. Nobody had spent
+the second combination on purpose.
+
+**The two combinations, exhibited.** One is the linearised Ricci scalar, the only one a frame-free theory
+has. The other needs the clock and **isolates the Newtonian potential exactly**. The map between them has
+determinant −4, and the static transverse count stays at two, so **there is no degeneracy in the static
+limit** — the first way this could have been illusory does not happen.
+
+- **⭐ THE LOCK IS SHARPENED FROM A RATIO TO AN IDENTITY.** L39 reported a 1:2 ratio. It is stronger:
+  for **any** frame-free covariant addition, with **any** weight and **any** coupling, the lensing
+  combination obeys ∇²(Φ+Ψ) = 8πGρ **exactly**. Normalisation-free, so it is a statement about the class.
+  **Corollary: the lensing sector rides entirely on the clock, and the dynamical sector never needed it.**
+- **A term built from the second combination changes the slip by NOTHING on its own** — its static
+  variation is time-time only, with every spatial component vanishing identically. It moves the *lensing*.
+  The slip comes from the frame-free partner, and **the slip IS the weight** rather than a differential
+  response.
+- **⚠️ AND THE DEPOSITED THEORY ALREADY SPENDS THIS FREEDOM.** Its AeST-type coupling carries **exactly**
+  the same time-time-only operator. **That is why it gets Milgrom's law with no slip.** The handle was
+  already in use and nobody had named it.
+- **⭐ IT IS THE FIRST MECHANISM TO MOVE THE CLUSTER SHEAR FAILURE.** Inside the 3σ
+  lensing-versus-dynamics budget it takes the shape residual from **8.8σ to 4.9σ** canonical and
+  **9.0σ to 4.7σ** alt. Nothing else in this programme has moved that number at all.
+- **⚠️ But it cannot be switched on at clusters alone.** **100% of the cluster weak-lensing rows sit
+  inside the SPARC acceleration range**, and in shared bins the required weight overshoots the theory's
+  own no-slip bound by **3.2e6**, and a generous empirical 20% bound by **1.6e3**. The same on baryon
+  density. Buying the whole shape breaks the lensing-to-dynamics agreement at **4.5σ**.
+- **⭐ ONE DOOR LEFT EXPLICITLY OPEN, and priced rather than closed.** A **potential-depth** trigger does
+  **not** overlap SPARC over 0.5–2 Mpc. It needs a logarithmic slope of 16 against the theory's own bound,
+  or 6.5 against the empirical one, across a factor 2.22. **Steep, but not excluded.**
+- **⚠️ AND THE TEST THAT MIGHT HAVE SHUT IT IS NOISE-LIMITED AND IS NOT QUOTED AS A KILL.** The required
+  weight scatters by 1.16 dex across the five clusters, but the fractional error is 1.41, so the scatter
+  is **not separable from the published lensing-mass errors**. The lane says so explicitly rather than
+  banking it.
+- **The mode cost is zero if the term is linear** in the second combination; nonlinear costs one. A
+  realisation exists that keeps the tensor speed safe, so the gravitational-wave constraint survives, and
+  the preferred-frame parameters are preserved in form.
+- **⚠️ RECORD CORRECTION.** L24's statement that a slip changes lensing while leaving dynamics alone is
+  **inverted** — a slip moves dynamics by its full size and lensing by half. L24's door still shuts, for
+  a different reason than it gave.

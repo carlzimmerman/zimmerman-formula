@@ -1,0 +1,421 @@
+======================================================================================================================
+L51 -- the second combination: what one unit timelike vector buys, and whether it can be spent
+======================================================================================================================
+    a0 footings: canonical 9.3619e-11 m/s^2, alt 1.1279e-10 m/s^2
+    sign convention throughout PART A/B:  ds^2 = -(1+2 Phi) dt^2 + (1-2 Psi) delta_ij dx^i dx^j
+      Phi = the dynamical (Newtonian) potential, Psi = the curvature potential,
+      lensing potential = (Phi+Psi)/2, slip s = Phi - Psi, PPN gamma = Psi/Phi.
+
+======================================================================================================================
+PART A -- CONTROLS: reproduce the operator count from scratch, and exhibit both combinations
+======================================================================================================================
+    A1: linearised Ricci built from first-order Christoffels of a GENERAL symmetric h_mn (10 functions of t,x,y,z),
+        compared component by component with the closed-form expression.
+  [PASS] A1 [control] the linearised Ricci machinery built here reproduces the standard expression for a general h_mn   (all 16 components agree identically)
+  [PASS] A2 [control] R^(1)_mn is invariant under h -> h + d_m xi_n + d_n xi_m, so every contraction of it with a CONSTANT vector is a gauge-invariant scalar about flat space   (the background Ricci vanishes, so the Lie-derivative term is absent; verified for a general xi_m(t,x,y,z))
+
+    A3: from the EXACT nonlinear two-potential metric, expanded to first order:
+        R^(1)_00 = Derivative(Phi(x, y, z), (x, 2)) + Derivative(Phi(x, y, z), (y, 2)) + Derivative(Phi(x, y, z), (z, 2))
+        R^(1)    = -2*Derivative(Phi(x, y, z), (x, 2)) - 2*Derivative(Phi(x, y, z), (y, 2)) - 2*Derivative(Phi(x, y, z), (z, 2)) + 4*Derivative(Psi(x, y, z), (x, 2)) + 4*Derivative(Psi(x, y, z), (y, 2)) + 4*Derivative(Psi(x, y, z), (z, 2))
+        G^(1)_00 = 2*Derivative(Psi(x, y, z), (x, 2)) + 2*Derivative(Psi(x, y, z), (y, 2)) + 2*Derivative(Psi(x, y, z), (z, 2))
+        G^(1)_12 = -Derivative(Phi(x, y, z), x, y) + Derivative(Psi(x, y, z), x, y)
+  [PASS] A3 [control] the static two-potential curvature: R^(1)_00 = lap Phi, R^(1) = 2 lap(2 Psi - Phi), G^(1)_00 = 2 lap Psi, G^(1)_12 = d_1 d_2 (Psi - Phi)   (so the 00 equation determines the CURVATURE potential Psi and the traceless ij equation determines the SLIP Phi - Psi)
+
+    A4: in L39's own convention  ds^2 = -(1+2 PsiL) dt^2 + (1+2 PhiL) dx^2 :
+        R^(1) = -2 lap(PsiL) + -4 lap(PhiL)  ->  the single combination (PsiL + 2 PhiL)
+  [PASS] A4 [control] L39's locked ratio is reproduced: the frame-free scalar carries PsiL + 2 PhiL, both coefficients nonzero, ratio 1 : 2   (ratio 1 : 2)
+
+    A5: transverse symmetric operators.  Diffeomorphism invariance of the action forces any
+        covariant scalar linear in h to have the form S^(1) = int O^{mn} h_mn with k_m O^{mn} = 0.
+        The available background structures are enumerated and k_m O^{mn} = 0 is SOLVED.
+        basis {eta, k k}                (NO preferred vector) : 1-parameter family
+        basis {eta, k k, u u, u k}      (one unit TIMELIKE u)  : 2-parameter family
+        basis {eta, k k, v v, v k}      (one unit SPACELIKE v) : 2-parameter family
+  [PASS] A5 [control] with no preferred background vector there is exactly ONE transverse symmetric operator; adjoining one unit timelike vector makes it TWO   (no vector 1, one unit timelike 2; u is unit timelike (eta u u = -1))
+
+    A6: the two static solutions, exhibited:
+        O_1^{mn} = k^m k^n - eta^{mn} k^2   (transverse: [0, 0, 0, 0])
+        O_2^{mn} = u^m u^n                  (transverse when k.u = 0: [0, 0, 0, 0])
+  [PASS] A6 [control] both static solutions are transverse and linearly independent   (det of the (00,11) block = ky**2 + kz**2, nonzero for k != 0)
+
+======================================================================================================================
+PART B -- THE TWO COMBINATIONS, AND WHAT A TERM BUILT FROM EACH ONE SOURCES
+======================================================================================================================
+
+  B1.  BOTH COMBINATIONS EXHIBITED IN THE STATIC WEAK FIELD.  O_1 contracted with h is the linearised
+  Ricci scalar; O_2 contracted with h is the linearised Ricci tensor twice contracted with the clock's
+  unit timelike vector.  Evaluated on the two-potential metric:
+
+        S_1 = R^(1)              = -2*Derivative(Phi(x, y, z), (x, 2)) - 2*Derivative(Phi(x, y, z), (y, 2)) - 2*Derivative(Phi(x, y, z), (z, 2)) + 4*Derivative(Psi(x, y, z), (x, 2)) + 4*Derivative(Psi(x, y, z), (y, 2)) + 4*Derivative(Psi(x, y, z), (z, 2))      <- the ONLY combination a frame-free theory has
+        S_2 = R^(1)_mn u^m u^n   = Derivative(Phi(x, y, z), (x, 2)) + Derivative(Phi(x, y, z), (y, 2)) + Derivative(Phi(x, y, z), (z, 2))      <- the one that needs the clock
+
+        map (Phi, Psi) -> (S_1, S_2) in units of lap:  [[-2, 4], [1, 0]],  determinant = -4
+        S_1 alone spans one line in the (lap Phi, lap Psi) plane; S_1 and S_2 together span the plane.
+        In particular  (S_1 + 2 S_2)/4 = lap Psi  and  S_2 = lap Phi : the second combination
+        ISOLATES THE NEWTONIAN POTENTIAL, and only with it can the curvature potential be reached.
+  [PASS] B1 [test] is the second combination genuinely INDEPENDENT of the first in the STATIC weak field?   (determinant -4 != 0; S_2 = lap Phi exactly (Newtonian), (S_1+2S_2)/4 = lap Psi exactly (lensing/curvature))
+
+  B2.  DOES THE SECOND COMBINATION DEGENERATE IN THE STATIC LIMIT?  This is the first of the three ways
+  the freedom could be illusory.  Two things are checked: that S_2 is not a multiple of S_1 for static
+  fields, and that the transverse count is still 2 when the preferred vector is orthogonal to k (k.u = 0,
+  i.e. exactly the static sector) -- the count could in principle have collapsed there.
+
+        transverse count in the STATIC sector (k.u = 0)     : 2
+        rank of the static coefficient map (Phi,Psi) -> (S_1,S_2) : 2 of 2
+        is S_2 = lambda S_1 for a constant lambda?           : NO
+  [PASS] B2 [test] the second combination does NOT reduce to the first in the static limit   (the static transverse count is still 2, and lap Phi is not a multiple of lap(2 Psi - Phi) for independent Phi, Psi)
+
+  B3.  WHAT A TERM BUILT FROM EACH ONE SOURCES.  Any addition to the action built from these blocks has,
+  at linear order in h, the form  Delta S = int [ w_1 S_1[h] + w_2 S_2[h] ], with w_i = dF/dS_i evaluated
+  on the background (this is exactly the linearisation of an arbitrary F, local or nonlocal -- for a
+  nonlocal B(Box) the weight is simply replaced by B(Box) w).  The variation is taken here by the
+  Euler-Lagrange operator on the 10 independent components of a general STATIC h_mn.
+
+        frame-free term  w_1 S_1 :  dS/dh_00 = Derivative(w1(x, y, z), (x, 2)) + Derivative(w1(x, y, z), (y, 2)) + Derivative(w1(x, y, z), (z, 2))
+                                    dS/dh_11 = -Derivative(w1(x, y, z), (y, 2)) - Derivative(w1(x, y, z), (z, 2))
+                                    dS/dh_12 = 2*Derivative(w1(x, y, z), x, y)      <- traceless ij source, NONZERO
+        u-built term     w_2 S_2 :  dS/dh_00 = -Derivative(w2(x, y, z), (x, 2))/2 - Derivative(w2(x, y, z), (y, 2))/2 - Derivative(w2(x, y, z), (z, 2))/2
+                                    dS/dh_11 = 0
+                                    dS/dh_12 = 0      <- traceless ij source
+  [PASS] B3a [test] a term built from the SECOND combination alone sources ONLY the 00 equation statically, so BY ITSELF it does not change the slip   (every spatial component of its variation vanishes identically; the source is -lap(w_2)/2 in the 00 equation alone)
+  [PASS] B3b [control] the FRAME-FREE term sources both the 00 equation and the traceless ij equation   (d/dh_12 = d_1 d_2 w_1 (nonzero), d/dh_00 = lap w_1 (nonzero) -- L39's lock)
+
+  B4.  THE FRAME-FREE LOCK, SHARPENED.  L39 states the lock as a fixed 1 : 2 ratio between the 00 and ij
+  sources.  Its physical content is stronger and can be stated without ever fixing a normalisation.  Write
+  the modified static equations with an UNDETERMINED coupling constant c:
+
+        (00)   2 lap Psi          = 8 pi G rho  -  c lap w
+        (ij)   d_i d_j (Psi-Phi)  =            -  c d_i d_j w        =>   Psi - Phi = -c w
+
+  and eliminate.  If the result is independent of BOTH c and w, the lock is a theorem about the class and
+  not about any particular coefficient.
+
+        lap(Phi + Psi) = 8*pi*G*rho(x, y, z)
+  [PASS] B4 [test] THE FRAME-FREE LOCK, sharpened: for ANY frame-free covariant addition and ANY weight, lap(Phi + Psi) = 8 pi G rho EXACTLY -- the lensing potential is rigidly tied to the baryons   (independent of the coupling constant c and of the weight w; this is the exact quantitative form of Soussa-Woodard's 'far too little lensing' and of the conformal-invariance argument, and it covers the nonlocal case because Box^{-1} only renames the weight)
+
+  B5.  WITH THE CLOCK.  Add the second combination's source, which B3a showed enters the 00 equation only:
+
+        (00)   2 lap Psi          = 8 pi G rho  -  c lap w_1  +  e lap w_2
+        (ij)   Psi - Phi          = -c w_1
+
+        lap(Phi + Psi) = 8*pi*G*rho(x, y, z) + e*Derivative(w2(x, y, z), (x, 2)) + e*Derivative(w2(x, y, z), (y, 2)) + e*Derivative(w2(x, y, z), (z, 2))
+        slip  Phi - Psi = -c*w1(x, y, z)
+  [PASS] B5 [test] with one unit timelike vector the 00 source and the slip become INDEPENDENT: the lensing potential is moved ONLY by the u-built piece, the slip ONLY by the frame-free piece   (lap(Phi+Psi) depends on w_2 and not on w_1; the slip depends on w_1 and not on w_2.  The slip is not a differential response to the weight -- it IS the weight, algebraically)
+
+  B6.  THE LEVER.  What a modification does to the two observables is fixed by the pair (source, slip).
+  Write the added lensing potential as P (so lap P = 4 pi G rho_P for an added lensing phantom rho_P) and
+  the slip as s.  Then
+
+        added lensing potential      = P
+        added dynamical potential    = P + s/2                (dynamics feels Phi = (Phi+Psi)/2 + s/2)
+
+  A FRAME-FREE addition has P = 0 identically (B4), so its lever d(lensing)/d(dynamics) is PINNED AT ZERO
+  -- it can move galaxy rotation curves and can never move lensing.  That is the whole of L39's result.
+  With the clock, P is free, so the lever spans the entire real line.  Two special points are worth
+  naming: s = 0 gives the deposited theory (no slip, lensing and dynamics move together, lever 1); and
+  s = -2P gives lensing moved with dynamics EXACTLY UNCHANGED, which is the configuration this lane tests
+  against the cluster shear shape.
+
+        frame-free (P = 0):  lever = 0  (pinned)
+        with the clock:      lever = 2*P/(2*P + s)  (free: any value as s/P varies)
+        dynamics exactly unchanged requires  s = -2*P
+  [PASS] B6 [test] THE LEVER: frame-free it is pinned at zero, with the clock it is a free function; 'lensing moved, dynamics untouched' requires slip = -2 x (added lensing potential)   (this is the new handle, and it is the only new handle: the dynamical sector was already reachable frame-free, the lensing sector was not)
+
+  B7.  WHERE THIS ALREADY SITS IN THE DEPOSITED THEORY -- the freedom is NOT entirely unused.  The carried
+  action contains  2(2 - K_B) J^mu d_mu phi  with  J^mu = n^nu grad_nu n^mu  the clock congruence's
+  acceleration.  For a static field a_i = d_i Phi, so  int a.grad(w) = - int Phi lap w, whose variation
+  with respect to h_00 is the SAME operator B3a found for S_2 and whose spatial variation vanishes
+  identically.  By the Raychaudhuri identity grad_mu a^mu = R_mn n^m n^n at linear order about a static
+  background, so the theory's MOND source term IS the second combination, carrying weight 2(2-K_B) phi.
+  That is precisely why the deposited theory gets Milgrom's equation in the 00 equation with Phi = Psi and
+  no slip -- exactly the B3a/B5 structure with w_1 = 0.  What has never been used is a SECOND, independent
+  weight, i.e. the frame-free partner that would make the slip nonzero.
+
+        d/dh_00 of int a.grad(w_2) = Derivative(w2(x, y, z), (x, 2))/2 + Derivative(w2(x, y, z), (y, 2))/2 + Derivative(w2(x, y, z), (z, 2))/2;  all other components zero: True
+        ratio to the d/dh_00 of int w_2 S_2 : -1  (a pure number: the same operator)
+  [PASS] B7 [control] the deposited theory's AeST coupling J^mu d_mu phi IS the second combination: its static variation is the same 00-only operator, up to a constant   (so the second combination is already spent, on the MOND source with weight 2(2-K_B) phi, which is why the theory has no slip)
+
+======================================================================================================================
+PART C -- POINTED AT THE PROGRAMME'S OPEN PROBLEMS, ON DATA
+======================================================================================================================
+
+  Order fixed in advance:  (a) the cluster lensing SHAPE, the sharpest failure -- projected shear
+  log-slope +0.53 +/- 0.06 shallower than measured, 9 sigma;  (b) the lensing-versus-dynamics agreement,
+  which holds at 1.55 sigma and must be PRESERVED, not broken;  (c) the cluster/galaxy-pair separation.
+  Then the crux: whether the required weight can act at cluster accelerations and not at galaxy ones.
+
+
+  C1 -- CONTROL: the projection machinery against the analytic NFW convergence and shear.
+      R = 0.50 Mpc : Sigma num/ana = 1.000000   DeltaSigma num/ana = 1.000001
+      R = 1.00 Mpc : Sigma num/ana = 1.000000   DeltaSigma num/ana = 1.000001
+      R = 2.00 Mpc : Sigma num/ana = 0.999999   DeltaSigma num/ana = 1.000002
+  [PASS] C1 [control] the projection machinery reproduces the analytic NFW Sigma and DeltaSigma to 0.5%   (max |Sigma err| 1.23e-06, max |DeltaSigma err| 2.15e-06)
+
+      X-COP profiles read for the five clusters with published weak lensing (measured stellar profiles present: True)
+
+  C2 -- CONTROL: reproduce L24's C11, the 9 sigma cluster shear-SHAPE failure, from scratch.
+      canonical: framework log-slope -0.307, measured -0.823, difference +0.516 +/- 0.058 (8.8 sigma)
+      alt      : framework log-slope -0.302, measured -0.823, difference +0.521 +/- 0.058 (9.0 sigma)
+  [PASS] C2 [control] the 9-sigma cluster shear-shape failure is reproduced independently (L24 C11: +0.531 +/- 0.058 canonical, +0.536 alt)   (canonical +0.516 +/- 0.058 (8.8 sigma), alt +0.521 +/- 0.058 (9.0 sigma))
+
+  C3 -- (a) THE CLUSTER LENSING SHAPE.  B5/B6 say the second combination can add a lensing phantom rho_P
+  with the dynamics left exactly alone, at the price of a slip s = -2P.  The required rho_P is fixed by
+  the data with no freedom: rho_P = rho_lensing(measured NFW) - rho_framework.  Projection is linear, so
+  a scaling rho_P -> f rho_P gives DeltaSigma = (1-f) DeltaSigma_fw + f DeltaSigma_WL exactly.
+
+      ---- canonical footing
+      cluster   slope fw  slope WL  M_P(<R500)/M_fw  |slip| at R500  |s|/2|Phi_L|
+      A85         -0.262    -0.838            0.668       7.825e-06          0.21
+      A1795       -0.356    -0.772            1.645       3.493e-05          1.12
+      A2029       -0.375    -0.748            1.259       3.262e-05          0.72
+      A2142       -0.273    -0.788            0.806       1.570e-05          0.31
+      ZW1215      -0.268    -0.969            0.205       4.726e-06          0.13
+      median required M_P(<R500)/M_fw(<R500) = 0.806; median required |slip| at R500 = 1.570e-05 (= 0.31 x the framework's own lensing potential)
+      ---- alt footing
+      cluster   slope fw  slope WL  M_P(<R500)/M_fw  |slip| at R500  |s|/2|Phi_L|
+      A85         -0.258    -0.838            0.539       4.509e-06          0.11
+      A1795       -0.350    -0.772            1.439       3.219e-05          0.95
+      A2029       -0.370    -0.748            1.086       2.866e-05          0.58
+      A2142       -0.268    -0.788            0.669       1.128e-05          0.20
+      ZW1215      -0.264    -0.969            0.111       7.937e-06          0.20
+      median required M_P(<R500)/M_fw(<R500) = 0.669; median required |slip| at R500 = 1.128e-05 (= 0.20 x the framework's own lensing potential)
+  [PASS] C3 [test] a slip profile exists that reproduces the measured DeltaSigma shape with the dynamics exactly unchanged   (yes, and it is unique: rho_P = rho_NFW(measured) - rho_framework, slip s = -2 P.  The operator freedom is sufficient; everything below is about whether that slip is ADMISSIBLE)
+  [FAIL] C4 [test] the required slip at cluster radii is a SMALL perturbation (< 10% of the potential)   (canonical |Phi-Psi| / |Phi+Psi| = 0.31 at R500, alt |Phi-Psi| / |Phi+Psi| = 0.20 at R500 -- the required slip is of order the potential itself, not a perturbation on it)
+
+  C5 -- (b) THE LENSING-VERSUS-DYNAMICS AGREEMENT, WHICH MUST BE PRESERVED.  M_HSE and M_WL are not two
+  masses; they are measurements of two accelerations, g_dyn and g_lens.  Their ratio is a direct
+  measurement of the cluster slip.  The deposited theory predicts the ratio 1.000 (no slip); adding rho_P
+  to the lensing sector alone makes it 1 + M_P/M_fw.  The measured ratio for this sample is computed here
+  from the same tables L24 used.
+
+      cluster  R500 [kpc]      M_HSE       M_WL  g_lens/g_dyn
+      A85            1235      5.406      5.768     1.067 +/- 0.413
+      A1795          1153      4.238      7.507     1.772 +/- 0.423
+      A2029          1414      7.915     10.989     1.388 +/- 0.292
+      A2142          1424      9.200      9.608     1.044 +/- 0.249
+      ZW1215         1358      7.629      4.451     0.583 +/- 0.368
+      inverse-variance mean over the five clusters (masses in 1e14 Msun): 1.148 +/- 0.146
+      (L24 C5 reports 1.154 +/- 0.147 for the same sample from the same tables; agreement is the control)
+      canonical: predicted g_lens/g_dyn after buying the shape = 1.806  -> 4.5 sigma from the measurement
+      alt      : predicted g_lens/g_dyn after buying the shape = 1.669  -> 3.6 sigma from the measurement
+  [PASS] C5 [control] the measured cluster lensing/dynamical ratio is reproduced (L24 C5: 1.154 +/- 0.147)   (1.148 +/- 0.146 here)
+  [FAIL] C6 [test] buying the cluster shear shape PRESERVES the lensing-versus-dynamics agreement (currently 1.55 sigma)   (canonical 4.5 sigma, alt 3.6 sigma -- the slip needed for the full shape fix is itself a measurable lensing/dynamics discrepancy, and it is larger than the measured one)
+
+  C7 -- HOW MUCH OF THE SHAPE CAN BE BOUGHT INSIDE THAT BUDGET?  Scan the amplitude f of the added lensing
+  phantom, cap it at the 3 sigma ceiling of the measured lensing/dynamical ratio, and report the residual
+  shape error.  This is the honest maximum the freedom could deliver even if it were perfectly
+  scale-selective.
+
+      canonical: 3-sigma ceiling on the added lensing phantom f <= 0.73 (full fix needs f = 1); at f = 0.72 the residual shape error is +0.073 +/- 0.015 (4.9 sigma, from 8.8 sigma)
+      alt      : 3-sigma ceiling on the added lensing phantom f <= 0.88 (full fix needs f = 1); at f = 0.86 the residual shape error is +0.036 +/- 0.008 (4.7 sigma, from 9.0 sigma)
+  [FAIL] C8 [test] inside the 3-sigma lensing/dynamics budget the freedom removes the shape failure (residual under 3 sigma)   (canonical 8.8 sigma -> 4.9 sigma at f = 0.72, alt 9.0 sigma -> 4.7 sigma at f = 0.86 -- this is what the freedom would be WORTH if it could be made scale-selective; C9-C11 test whether it can)
+
+  C9 -- THE CRUX.  The slip IS the weight (B5), so s = W(X) for a single-valued function W of some local
+  invariant X.  Two things must then be true at once: W must be the required O(1e-5) at cluster radii, and
+  it must be small enough at galaxy conditions to keep the deposited theory's Phi = Psi to 1e-4.  Because
+  W is a FUNCTION of X, a galaxy point at the same X gets the SAME dimensionless slip -- and a galaxy's
+  entire potential is four to five orders of magnitude shallower than a cluster's.  Candidate triggers:
+  the acceleration g_bar/a0, the baryon density, and the local potential depth g_bar r.
+
+      SPARC: 2495 points (Upsilon_d = 0.5, Upsilon_b = 0.7, eV/V < 0.10)
+
+      TRIGGER g_bar  (the acceleration -- the natural MOND variable, and the argument of the theory's own J(Y))
+        alt      : cluster lensing range 4.34e-12-1.94e-11 m/s^2; SPARC 8.32e-13-6.54e-09 m/s^2
+                   overlap 4.34e-12-1.94e-11 m/s^2, 100% of the cluster lensing-range rows inside
+             4.34e-12- 5.85e-12  n_cl   6 n_gal  172   slip needed 1.26e-05   galaxy v^2/c^2 6.30e-08   induced galaxy slip  2.01e+02 x its own potential
+             5.85e-12-  7.9e-12  n_cl   9 n_gal  185   slip needed 7.69e-06   galaxy v^2/c^2 7.50e-08   induced galaxy slip  1.02e+02 x its own potential
+              7.9e-12- 1.07e-11  n_cl  17 n_gal  205   slip needed 1.04e-05   galaxy v^2/c^2 8.10e-08   induced galaxy slip  1.28e+02 x its own potential
+             1.07e-11- 1.44e-11  n_cl  18 n_gal  148   slip needed 2.12e-05   galaxy v^2/c^2 1.38e-07   induced galaxy slip  1.53e+02 x its own potential
+             1.44e-11- 1.94e-11  n_cl   9 n_gal  131   slip needed 4.14e-05   galaxy v^2/c^2 1.47e-07   induced galaxy slip  2.81e+02 x its own potential
+        canonical: cluster lensing range 4.34e-12-1.94e-11 m/s^2; SPARC 8.32e-13-6.54e-09 m/s^2
+                   overlap 4.34e-12-1.94e-11 m/s^2, 100% of the cluster lensing-range rows inside
+             4.34e-12- 5.85e-12  n_cl   6 n_gal  172   slip needed 1.22e-05   galaxy v^2/c^2 6.30e-08   induced galaxy slip  1.94e+02 x its own potential
+             5.85e-12-  7.9e-12  n_cl   9 n_gal  185   slip needed 5.43e-06   galaxy v^2/c^2 7.50e-08   induced galaxy slip  7.24e+01 x its own potential
+              7.9e-12- 1.07e-11  n_cl  17 n_gal  205   slip needed 1.43e-05   galaxy v^2/c^2 8.10e-08   induced galaxy slip  1.77e+02 x its own potential
+             1.07e-11- 1.44e-11  n_cl  18 n_gal  148   slip needed 2.62e-05   galaxy v^2/c^2 1.38e-07   induced galaxy slip  1.89e+02 x its own potential
+             1.44e-11- 1.94e-11  n_cl   9 n_gal  131   slip needed 4.78e-05   galaxy v^2/c^2 1.47e-07   induced galaxy slip  3.25e+02 x its own potential
+        single-valuedness of W across the five clusters at fixed g_bar: canonical 0.65 dex, alt 1.16 dex
+
+      TRIGGER rho_b  (the baryon density)
+        alt      : cluster lensing range 5.69e-26-2.26e-24 kg/m^3; SPARC 3.73e-27-1.34e-18 kg/m^3
+                   overlap 5.69e-26-2.26e-24 kg/m^3, 100% of the cluster lensing-range rows inside
+             5.69e-26- 1.19e-25  n_cl   5 n_gal   10   slip needed 8.21e-06   galaxy v^2/c^2 5.48e-07   induced galaxy slip  1.50e+01 x its own potential
+             1.19e-25- 2.48e-25  n_cl   9 n_gal   13   slip needed 8.07e-06   galaxy v^2/c^2 5.10e-07   induced galaxy slip  1.58e+01 x its own potential
+             2.48e-25- 5.19e-25  n_cl  13 n_gal   19   slip needed 1.13e-05   galaxy v^2/c^2 5.58e-07   induced galaxy slip  2.02e+01 x its own potential
+             5.19e-25- 1.08e-24  n_cl  17 n_gal   41   slip needed 2.14e-05   galaxy v^2/c^2 5.34e-07   induced galaxy slip  4.01e+01 x its own potential
+             1.08e-24- 2.26e-24  n_cl  15 n_gal   61   slip needed 3.73e-05   galaxy v^2/c^2 3.57e-07   induced galaxy slip  1.05e+02 x its own potential
+        canonical: cluster lensing range 5.69e-26-2.26e-24 kg/m^3; SPARC 3.73e-27-1.34e-18 kg/m^3
+                   overlap 5.69e-26-2.26e-24 kg/m^3, 100% of the cluster lensing-range rows inside
+             5.69e-26- 1.19e-25  n_cl   5 n_gal   10   slip needed 5.58e-06   galaxy v^2/c^2 5.48e-07   induced galaxy slip  1.02e+01 x its own potential
+             1.19e-25- 2.48e-25  n_cl   9 n_gal   13   slip needed 9.65e-06   galaxy v^2/c^2 5.10e-07   induced galaxy slip  1.89e+01 x its own potential
+             2.48e-25- 5.19e-25  n_cl  13 n_gal   19   slip needed 1.57e-05   galaxy v^2/c^2 5.58e-07   induced galaxy slip  2.81e+01 x its own potential
+             5.19e-25- 1.08e-24  n_cl  17 n_gal   41   slip needed 2.68e-05   galaxy v^2/c^2 5.34e-07   induced galaxy slip  5.01e+01 x its own potential
+             1.08e-24- 2.26e-24  n_cl  15 n_gal   61   slip needed 4.35e-05   galaxy v^2/c^2 3.57e-07   induced galaxy slip  1.22e+02 x its own potential
+        single-valuedness of W across the five clusters at fixed rho_b: canonical 0.69 dex, alt 1.25 dex
+
+      TRIGGER Phi_loc  (the local potential depth g_bar r (chameleon/symmetron-like))
+        alt      : cluster lensing range 1.87e+11-4.67e+11 m^2/s^2; SPARC 1.57e+07-8.42e+10 m^2/s^2
+                   NO OVERLAP -> this trigger is NOT excluded by the overlap argument, and is reported as such
+        canonical: cluster lensing range 1.87e+11-4.67e+11 m^2/s^2; SPARC 1.57e+07-8.42e+10 m^2/s^2
+                   NO OVERLAP -> this trigger is NOT excluded by the overlap argument, and is reported as such
+        single-valuedness of W across the five clusters at fixed Phi_loc: canonical 0.63 dex, alt 0.91 dex
+  [FAIL] C9 [CRUX] the required weight can act at cluster accelerations WITHOUT acting at galaxy accelerations   (100% of the cluster weak-lensing rows sit inside the SPARC acceleration range; worst overshoot of the theory's own 1e-4 no-slip bound in a shared bin: 3.2e+06 x)
+  [FAIL] C10 [test] the required weight preserves the deposited theory's no-slip result Phi = Psi to 1e-4 in galaxies, on the triggers the overlap argument can test   (worst overshoot g_bar 3.2e+06 x, rho_b 1.2e+06 x, Phi_loc NOT TESTED (no overlap))
+  [FAIL] C11 [test] it survives even a generous EMPIRICAL galaxy-lensing tolerance of 20% fractional slip   (worst overshoot g_bar 1.6e+03 x, rho_b 6.1e+02 x, Phi_loc NOT TESTED)
+
+  C12 -- THE TRIGGER THAT SURVIVES THE OVERLAP ARGUMENT, AND WHAT KILLS IT INSTEAD.  Over the weak-lensing
+  fitting range 0.5-2 Mpc the potential depth g_bar r does NOT overlap SPARC: clusters are deeper than any
+  rotation curve reaches, so a potential-triggered weight is not excluded by the overlap argument and is
+  reported as surviving it.  Two things are then said about it, neither of them an overlap argument:
+    (i)  g_bar r is not a covariant local scalar.  The covariant candidate this theory actually has is the
+         clock's lapse, whose zero point is fixed by the cosmological boundary condition, so a lapse-
+         triggered weight is external-field dependent -- the same objection that L6's S1 door carries.
+    (ii) SINGLE-VALUEDNESS, an internal test with no galaxies in it at all: W must be ONE function, so two
+         clusters at the same trigger value must need the same slip.  The scatters printed above are the
+         test, and they are on both footings.
+
+      g_bar    : worst cluster-to-cluster scatter of the required slip at fixed trigger = 1.16 dex  (NOT single-valued)
+      rho_b    : worst cluster-to-cluster scatter of the required slip at fixed trigger = 1.25 dex  (NOT single-valued)
+      Phi_loc  : worst cluster-to-cluster scatter of the required slip at fixed trigger = 0.91 dex  (NOT single-valued)
+
+      C12b -- WHAT THE SURVIVING TRIGGER WOULD ACTUALLY REQUIRE.  The potential-depth trigger is not
+      excluded by the overlap argument, so the honest thing is to price it.  Between the deepest SPARC
+      point and the shallowest point of the cluster weak-lensing range the trigger changes by a factor
+      printed below, while the weight must change by the ratio of the required cluster slip to the galaxy
+      bound.  The logarithmic slope that demands is the number to quote.
+
+      canonical: trigger rises by 2.22x from the deepest SPARC point to the shallowest cluster lensing point,
+                 while W must rise from <= 7.81e-11 (theory 1e-4) or <= 1.56e-07 (data 20%) to 2.71e-05
+                 => required logarithmic slope d ln W / d ln Phi_loc = 16.0 (theory) / 6.5 (data)
+      alt      : trigger rises by 2.22x from the deepest SPARC point to the shallowest cluster lensing point,
+                 while W must rise from <= 7.81e-11 (theory 1e-4) or <= 1.56e-07 (data 20%) to 2.24e-05
+                 => required logarithmic slope d ln W / d ln Phi_loc = 15.8 (theory) / 6.2 (data)
+  [FAIL] C12b [test] the surviving (potential-depth) trigger needs only a moderate weight, logarithmic slope under 4 -- a STATED convention, chameleon/symmetron screening is a power ~1-3 in the potential; the number itself is what matters   (canonical slope 16.0 (theory 1e-4) / 6.5 (data 20%), alt slope 15.8 (theory 1e-4) / 6.2 (data 20%) -- steep, but NOT excluded: this trigger is the one door this lane leaves open, and it is left open explicitly)
+  [FAIL] C13a [test] the required weight is single-valued across the five clusters at fixed trigger (scatter under 0.15 dex) on at least one trigger, including the one that survives the overlap argument   (g_bar 1.16 dex, rho_b 1.25 dex, Phi_loc 0.91 dex -- WHETHER THIS FAIL MAY BE QUOTED IS DECIDED BY C13b, NOT HERE)
+
+      C13b -- and the control that decides whether C13a may be QUOTED.  Herbonnet's per-cluster M500 errors
+      are 21-63%, and the required slip is a DIFFERENCE (lensing minus framework), so its fractional error
+      is inflated by |Phi_WL| / |Phi_WL - Phi_fw|.  If the propagated error accounts for the observed
+      scatter, C13a is noise-limited and is NOT a kill.  Both footings.
+
+      canonical: median propagated fractional error on the required slip = 1.01 (= 0.30 dex); observed scatter 1.16 dex
+      alt      : median propagated fractional error on the required slip = 1.41 (= 0.38 dex); observed scatter 1.16 dex
+  [FAIL] C13b [control] the observed scatter is separable from the published weak-lensing mass errors, so C13a may be quoted as evidence against a single-valued W   (propagated >= 0.38 dex against an observed 1.25 dex, and the propagated FRACTIONAL error is 1.41 -- at order unity the log-scatter is unbounded below, so with five clusters the two cannot be separated.  C13a is NOISE-LIMITED and MUST NOT be quoted as a kill; the crux stays C9-C11, which never uses the cluster-to-cluster scatter)
+
+  C14 -- (c) CAN IT SEPARATE THE CLUSTER AND GALAXY-PAIR SCALES?  Two answers, and the first is structural.
+  B6 showed the NEW freedom is entirely in the LENSING sector: the dynamical sector was already reachable
+  by a frame-free term.  Binary galaxies fail in DYNAMICS (L21: velocity dispersions low by A = 1.74 +/-
+  0.06), and no lensing-sector handle touches them.  The acceleration ranges are reported anyway.
+
+      canonical: cluster weak-lensing range 0.5-2 Mpc spans g_bar/a0 = 0.046 - 0.207; binary galaxies span 1e-4 - 1e-1 (L21)
+      alt      : cluster weak-lensing range 0.5-2 Mpc spans g_bar/a0 = 0.038 - 0.172; binary galaxies span 1e-4 - 1e-1 (L21)
+      added dynamical potential from a FRAME-FREE term (P = 0): s/2  -- nonzero, so the
+      dynamical sector never needed the clock, and the new freedom adds nothing there
+  [FAIL] C14 [test] the second combination reaches the galaxy-pair failure   (binary galaxies fail in DYNAMICS; a frame-free term already moves the dynamical potential by s/2, so the clock's extra combination buys nothing there -- and it is the frame-free (kernel) door that L2/L6 already closed.  The acceleration ranges also overlap (yes))
+
+======================================================================================================================
+PART D -- THE PRICES: propagating modes, GW170817, and the preferred-frame parameters
+======================================================================================================================
+
+  D1.  DOES A TERM BUILT FROM THE SECOND COMBINATION ADD A PROPAGATING MODE?  This is the second of the
+  three ways the freedom could be illusory.  R_mn n^m n^n contains a SECOND time derivative of the spatial
+  metric through n.grad(theta), so the answer depends on whether the term is linear in it.  The ADM
+  identity is derived here, symbolically, on a hypersurface-orthogonal family with a lapse and a
+  time-dependent spatial metric.
+
+      R_mn n^m n^n  -  [theta^2 - K_mn K^mn - div(theta n) + div(a)]  =  0
+  [PASS] D1a [control] the ADM identity R_mn n^m n^n = theta^2 - K_mn K^mn - div(theta n) + div(a) is verified symbolically on a hypersurface-orthogonal family with a lapse   (so the second combination's ONLY second-time-derivative content sits in the total divergence div(theta n))
+      linear term, after removing the total divergence: residual = 0
+      second time derivatives of the spatial metric remaining -- linear in S_2 : False
+                                                              -- quadratic in S_2 : True
+  [PASS] D1b [test] a term LINEAR in the second combination adds no propagating mode: the second time derivatives are a total divergence and integrate away   (what remains is first order in the extrinsic curvature, so the field equations stay second order; the only new mode is the weight field itself, and if the weight is the MOND scalar the theory already carries, there is NO new mode)
+  [PASS] D1c [control] a term NONLINEAR in the second combination DOES add one: the second time derivatives survive, so the theory is Ostrogradsky-higher-derivative   (F(S_2) with F'' != 0 keeps (n.grad theta)^2; this is why the admissible realisation is linear, which is exactly the AeST form the theory already uses)
+
+  D2.  GW170817, THROUGH c_13.  The deposited theory sets c_1 = -c_3 = K_B so that c_13 = 0 IDENTICALLY,
+  making c_T = c structurally rather than by tuning.  The K-quadratic part of a weighted second
+  combination shifts exactly that combination.  Matching w(theta^2 - K_mn K^mn) against the aether
+  decomposition c_13 K_mn K^mn + c_2 theta^2 + c_14 a^2 (verified here for hypersurface-orthogonal n):
+
+      (grad_m n_n)(grad^m n^n) - (K_mn K^mn - a^2) = 0
+      (grad_m n_n)(grad^n n^m) - K_mn K^mn         = 0
+      => c_1 (grad n)^2 + c_2 theta^2 + c_3 (grad_m n_n)(grad^n n^m) + c_4 a^2
+         = (c_1 + c_3) K_mn K^mn + c_2 theta^2 + (c_4 - c_1) a^2 :  c_13 is the K_mn K^mn coefficient
+  [PASS] D2a [control] for a hypersurface-orthogonal unit n the aether invariants reduce to K_mn K^mn, theta^2 and a^2, with c_13 = c_1 + c_3 multiplying K_mn K^mn   (so a weight on theta^2 - K_mn K^mn shifts exactly the combination the deposited theory sets identically to zero for GW170817)
+      => effective c_13 = -w along any line of sight; GW170817 requires |c_T/c - 1| < 1e-15,
+         so |w| < 2e-15 in the intergalactic propagation background.
+      The AeST realisation the theory already carries, int a.grad(w), has NO K-quadratic part at
+      all (D1b's identity: the acceleration piece is div(a), whose weighted form is -a.grad w),
+      so it leaves c_13 = 0 exactly.  A safe realisation therefore EXISTS.
+  [PASS] D2b [test] a c_13-safe realisation of the second combination exists, so GW170817 is not a structural obstruction   (use the acceleration form int a.grad(w) (the AeST coupling), not the full curvature form int w R_mn n^m n^n; the latter shifts c_13 by -w and would need |w| < 2e-15 in the propagation background)
+
+  D3.  THE PREFERRED-FRAME PARAMETERS AND CASSINI.  This is the third of the three ways the freedom could
+  be illusory.  The slip is a direct PPN gamma: gamma - 1 = (Psi - Phi)/Phi = -s/Phi.  The bound is
+  Cassini's |gamma - 1| < 2.3e-5 evaluated at the tracking geometry.  Both footings, and both the
+  acceleration scale and the required weight are carried through.
+
+      Solar-System tracking geometry: Phi = 1.039e-09, so |s| < 2.390e-14
+      canonical: g/a0 at Saturn = 7.020e+05; cluster lensing range g/a0 = 0.046-0.207; required |s| at clusters = 1.57e-05, contrast needed = 6.6e+08
+      alt      : g/a0 at Saturn = 5.827e+05; cluster lensing range g/a0 = 0.038-0.172; required |s| at clusters = 1.13e-05, contrast needed = 4.7e+08
+  [PASS] D3a [test] the Cassini gamma bound is compatible with the required cluster slip, because the Solar System and cluster trigger values are separated by many orders of magnitude   (g/a0 at Saturn is 7.0e+05 against 0.046-0.207 in the cluster lensing range; any monotone weight satisfies Cassini.  Cassini is NOT the binding constraint -- galaxies are (C9-C11))
+      alpha_1 = -4 c_14 and alpha_2 = -0.2023 c_14 in the deposited theory come from the aether
+      sector, which the acceleration realisation does not touch: int a.grad(w) is LINEAR in a and so
+      cannot renormalise c_14 (which multiplies a^2).  It is the same structure the theory already carries
+      with weight 2(2-K_B) phi, and the published alpha_1 = -4.48e-6 / -4.25e-6 and alpha_2 = -2.02e-7 were
+      computed with that term present.  A second copy with a different weight adds no new PPN structure.
+  [PASS] D3b [test] the preferred-frame parameters alpha_1, alpha_2 are preserved in form by the acceleration realisation   (the added term is linear in the clock's acceleration, so it does not renormalise c_14; alpha_1 = -4 c_14 and alpha_2 = -0.2023 c_14 are untouched, subject to the same screening C9-C11 already requires and does not get)
+
+======================================================================================================================
+PART E -- VERDICT
+======================================================================================================================
+
+  THE FREEDOM IS REAL AND IT IS NOT ILLUSORY IN ANY OF THE THREE WAYS THE BRIEF NAMED.
+    - it does NOT degenerate in the static limit: the transverse count is still 2 at k.u = 0, and
+      S_2 = lap Phi is exactly independent of S_1 = 2 lap(2 Psi - Phi)                       [B1, B2]
+    - it does NOT have to cost a propagating mode: linear in S_2 is second order after one integration
+      by parts, and if the weight is the MOND scalar the theory already carries, nothing is added [D1]
+    - it does NOT have to break the preferred-frame parameters: the acceleration realisation is linear
+      in a and leaves c_14, alpha_1, alpha_2 and c_13 untouched                             [D2, D3]
+
+  WHAT IT BUYS, STATED EXACTLY.  With no preferred vector, lap(Phi + Psi) = 8 pi G rho identically, for
+  every weight and every coupling -- the lensing potential is welded to the baryons and NO frame-free term
+  can move it.  The clock breaks that weld and nothing else does.  The lensing sector of this programme
+  rides entirely on the clock; the dynamical sector never needed it.
+
+  AND THE PROGRAMME HAS ALREADY SPENT IT ONCE.  The AeST coupling 2(2-K_B) J^mu d_mu phi in the deposited
+  action IS the second combination, with weight 2(2-K_B) phi.  That is exactly why the theory delivers
+  Milgrom's equation with Phi = Psi and no slip.  What is unused is a SECOND, independent weight -- the
+  frame-free partner that would make the slip nonzero.
+
+  POINTED AT THE CLUSTER SHEAR SHAPE, IT FAILS ON ONE THING AND ONE THING ONLY: SCALE SELECTIVITY.
+  The slip is not a differential response to the weight, it IS the weight, so a galaxy sitting at the same
+  value of the trigger gets the same dimensionless slip as a cluster -- and a galaxy's whole potential is
+  four to five orders of magnitude shallower.  Acceleration and baryon density are both dead on overlap:
+  100% of the cluster weak-lensing rows sit inside the SPARC range in both, and in the shared bins the
+  required weight overshoots the theory's own no-slip bound by 1e6 and the empirical one by 1e3.
+
+  WHAT THIS LANE DOES NOT CLOSE, STATED PLAINLY.  The POTENTIAL-DEPTH trigger is NOT excluded here: over
+  0.5-2 Mpc the clusters are deeper than any SPARC point, so the overlap argument is vacuous for it.  It
+  is priced instead (C12b) and it is expensive -- and it carries two objections that are not proofs:
+  g_bar r is not a covariant local scalar, and the covariant candidate this theory has (the clock's lapse)
+  has its zero fixed cosmologically, so the slip would depend on a cluster's environment rather than its
+  own structure.  That is a door, and it is left open on the record rather than argued shut.  The internal
+  single-valuedness test that might have shut it is noise-limited at five clusters (C13b) and is not
+  quoted as a kill.
+
+  [FAIL] E1 [VERDICT] the second combination is a USABLE new handle on the cluster shear shape   (it is a genuine operator freedom that does not degenerate, does not have to cost a mode and does not have to break the preferred-frame parameters, and it is worth 8.8 sigma -> 4.9 sigma on the shape inside the lensing/dynamics budget; but the required weight overshoots the theory's own 1e-4 no-slip bound by 3.2e+06 x at galaxy conditions on both triggers the overlap argument can test, so it cannot be switched on at clusters alone)
+
+======================================================================================================================
+L51: 11 FAIL of the checks above.
+FAIL lines (each one is a result, not an error):
+   - C4 [test] the required slip at cluster radii is a SMALL perturbation (< 10% of the potential)
+   - C6 [test] buying the cluster shear shape PRESERVES the lensing-versus-dynamics agreement (currently 1.55 sigma)
+   - C8 [test] inside the 3-sigma lensing/dynamics budget the freedom removes the shape failure (residual under 3 sigma)
+   - C9 [CRUX] the required weight can act at cluster accelerations WITHOUT acting at galaxy accelerations
+   - C10 [test] the required weight preserves the deposited theory's no-slip result Phi = Psi to 1e-4 in galaxies, on the triggers the overlap argument can test
+   - C11 [test] it survives even a generous EMPIRICAL galaxy-lensing tolerance of 20% fractional slip
+   - C12b [test] the surviving (potential-depth) trigger needs only a moderate weight, logarithmic slope under 4 -- a STATED convention, chameleon/symmetron screening is a power ~1-3 in the potential; the number itself is what matters
+   - C13a [test] the required weight is single-valued across the five clusters at fixed trigger (scatter under 0.15 dex) on at least one trigger, including the one that survives the overlap argument
+   - C13b [control] the observed scatter is separable from the published weak-lensing mass errors, so C13a may be quoted as evidence against a single-valued W
+   - C14 [test] the second combination reaches the galaxy-pair failure
+   - E1 [VERDICT] the second combination is a USABLE new handle on the cluster shear shape
+======================================================================================================================
