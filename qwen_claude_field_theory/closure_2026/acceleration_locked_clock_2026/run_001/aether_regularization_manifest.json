@@ -1,0 +1,44 @@
+{
+  "schema_version": 1,
+  "claim_id": "alc-aether-regularization-ppn-gw-mode-gate",
+  "command": "python3 -B alc_aether_regularization.py --output run_001/aether_regularization.json",
+  "environment": {
+    "software": ["Python 3.9.6", "SymPy 1.14.0"],
+    "hardware": "arm64"
+  },
+  "mathematics": {
+    "assertion_tested": "The regular constant-aether branch can be tuned to alpha_1=alpha_2=0 and c_13 approximately zero, but a finite regular principal symbol retains an extra spin-0 gravitational mode.",
+    "coefficient_domain": "exact SymPy branch plus deterministic epsilon-r scan",
+    "conventions": "standard constant-aether PPN and principal-symbol speed formulas; speed floor is a necessary Cherenkov-avoidance filter",
+    "inputs": [
+      {"path": "alc_aether_regularization.py", "sha256": "acf07eb249a2d74e5618faa80f5e23e2cfe9a7c0e8ebd468afb3bd408fffed6a"},
+      {"path": "test_alc_aether_regularization.py", "sha256": "322cce96aece4067ff90cec008467a537beb5d0fd8a7167bb3aa00894f507e67"}
+    ],
+    "bounds": {
+      "epsilon": "10^-2 through 10^-16",
+      "r": "-1.2,-1,-0.9,-0.5,0,0.5,0.6,1,2",
+      "gw_bound_on_c13": 1e-15,
+      "speed_floor_squared": 1.0
+    },
+    "non_claims": [
+      "full nonlinear Einstein-aether stability",
+      "a proof that every modified-gravity action has the same mode count",
+      "a closure of the degenerate c14=0 or c123=0 branch"
+    ]
+  },
+  "outputs": [
+    {"path": "aether_regularization.json", "sha256": "7ef07a8afd74feaaeccd7af82988f5ee2d6346c1300570e00b723a4f98c8970e"},
+    {"path": "AETHER_REGULARIZATION.md", "sha256": "c1ed729b6b485a92da95f64735084922a64d8a8ab0048e17a1afca2809973de8"},
+    {"path": "ALC_ACTION.md", "sha256": "63e7d516ca7bc806b735f177b2e8721334b4fcf44551472bc60892d9594d4cc0"},
+    {"path": "RESEARCH_FLOW.md", "sha256": "dd658f7d273d54ca5081da69eda968fec7c657949d745789c1c8d2f4a55c9036"},
+    {"path": "LITERATURE_BRIDGE.md", "sha256": "a6d49307ef802ac9ba9f1768a775f66dcc2277f9b6eeb518e55117aaa48216e8"}
+  ],
+  "checks": [
+    {"name": "symbolic alpha_1 tuning", "passed": true},
+    {"name": "symbolic alpha_2 tuning", "passed": true},
+    {"name": "regular PPN/GW-speed points found", "passed": true},
+    {"name": "all regular necessary-gate points carry extra scalar", "passed": true},
+    {"name": "degenerate surfaces separated", "passed": true}
+  ],
+  "result": "OPEN; regularization can repair the preferred-frame corner only with an extra gravitational scalar, while the two-tensor degenerate branch remains unresolved"
+}

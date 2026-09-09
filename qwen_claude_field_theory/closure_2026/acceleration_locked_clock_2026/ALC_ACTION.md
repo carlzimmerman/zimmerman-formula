@@ -151,3 +151,26 @@ The longitudinal coefficient changes sign at \(y=1\).  The mimetic secondary
 can remove the associated clock velocity in the clock-only model, but only the
 full metric--clock principal symbol can decide whether the sign change is a
 physical gradient instability.
+
+## Controlled aether regularisation gate
+
+To test whether the singular preferred-frame corner can be repaired, the
+repository now solves the standard constant-aether PPN equations rather than
+assigning `alpha_1` and `alpha_2`.  With `c_3=r c_1` and `c_1=epsilon`,
+
+\[
+c_4=-c_3^2/c_1,
+\qquad
+c_2=(-2c_1^2-c_1c_3+c_3^2)/(3c_1),
+\]
+
+the PPN expressions simplify symbolically to `alpha_1=alpha_2=0` wherever
+their denominators are regular.  The principal-symbol scan in
+`alc_aether_regularization.py` finds regular points with `|c_13|` below
+`10^-15` and positive mode speeds, but every regular point has
+`c_14*c_123 != 0`, hence a nonzero aether spin-0 principal symbol.  That is
+an additional gravitational scalar, so this completion fails `N_grav=2`.
+The only route toward a two-tensor limit is the degenerate surface
+`c_14=0` or `c_123=0`; there the PPN and speed formulae are singular and a new
+full Dirac chain is mandatory.  The gate therefore sharpens the obstruction
+but leaves the ALC lane **OPEN**, not certified.

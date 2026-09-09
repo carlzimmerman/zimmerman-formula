@@ -37,6 +37,14 @@ following papers are directly relevant inputs, not evidence that ALC works.
    retaining one physical metric.
    https://arxiv.org/abs/astro-ph/0403694
 
+5. **“Einstein--Aether primordial universe with radiation and dark energy,”
+   Eur. Phys. J. C (2026).**  This recent action-level analysis records the
+   constant-aether PPN combinations and the spin-0, spin-1 and spin-2 mode
+   speeds used by the regularisation gate.  It is a formula source for a
+   bounded necessary-condition test, not evidence that the ALC completion is
+   healthy or two-tensor-only.
+   https://link.springer.com/article/10.1140/epjc/s10052-026-15788-9
+
 The ALC calculation keeps these lessons as explicit gates.  In particular,
 the new action is not called complete until its covariant clock Dirac chain,
 preferred-frame PPN coefficients, scalar stability, and transfer functions

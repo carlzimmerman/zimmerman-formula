@@ -20,6 +20,9 @@ in the repository as evidence and are not deleted.
    screened branch; no values are inserted.
 8. **Wave/stability gate:** derive tensor/vector/scalar principal symbols,
    kinetic signs, gradient signs, causal cones, and strong-coupling scales.
+   The ALC-specific regularisation gate is `alc_aether_regularization.py`: it
+   solves the PPN tuning equations symbolically, scans the luminal-GW branch,
+   and separates regular extra-scalar points from singular degenerate limits.
 9. **FLRW gate:** vary before specializing, require H≠0, derive all density/
    pressure components and perturbation transfer through recombination.
 10. **Empirical gate:** fit the fixed law to rotation curves, binaries,
