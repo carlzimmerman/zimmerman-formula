@@ -3055,3 +3055,41 @@ tested. This lane tests it against the real 175-galaxy SPARC radial acceleration
   The surviving integrable-clock action is a **complete BELOW-GALAXY law**; clusters still require a
   separately-gravitating component, and the excess-spent-once ceiling holds against this attack too. I
   opened the escape (L75) and closed it myself on the RAR; the cluster cost is real and remains open.
+
+## L77 — pinning the grand prize: the free-streaming-relic escape is closed, and the clock's own MOND makes it worse
+
+`L77_pin_the_grand_prize.py` + `.out` (**7 checks, 7 PASS**). The grand prize is a single covariant theory
+doing galaxies (MOND), clusters, AND the CMB, healthy, no preferred frame — a ΛCDM replacement. This lane
+does not claim it; it accounts rigorously for which door it can still come through, by closing one more
+escape from the excess-spent-once theorem and pinning the rest.
+
+**Controls.** g04i's thermal-relic pincer reproduces to its exact numbers on both footings: the
+Tremaine-Gunn ceiling at 11.4 eV is ~0.28 M_b inside 10 kpc (g04i: 0.28, only marginally protected) and at
+the N_eff-compatible 27.6 eV is ~9.7 M_b (g04i: 9.7). The 27.6 eV relic is dynamically cold once galaxies
+form (v_rms/v_esc = 0.10), so the phase-space ceiling — not free-streaming — must protect galaxies, and it
+fails.
+
+- **⭐ THE CLOCK'S OWN MOND TIGHTENS THE PINCER.** The Tremaine-Gunn ceiling M_TG ∝ v_esc³, and the clock's
+  flat-rotation (MOND) well is **deeper** than the Newtonian baryon well at 10 kpc (v_esc 433 vs Newtonian).
+  So the ceiling is **~5× larger** in the MOND well — the phase space admits MORE relic. The
+  protection mass **drops to 11.1 eV (MOND) from 16.7 eV (Newtonian)**, widening the gap to the 27.6 eV
+  N_eff floor. The survivor's own MOND makes the galaxy-protection arm **stricter**, not looser.
+- **⭐ THE GENERAL SCALE-SEPARATION ARGUMENT.** Any component that gravitates in clusters (Mpc) but is
+  absent from galaxies (kpc) needs a clustering scale between them, set by a velocity/pressure balance
+  against the local well depth (particle phase space or wave pressure — both closed in the repo's
+  dark-sector no-go). Mechanism-independently, the clock's MOND **deepens every well below a₀**, so whatever
+  escapes the Newtonian galaxy escapes the MOND galaxy **less** — the clusters-not-galaxies window can only
+  **close** under a deeper well, never open.
+- **⭐⭐ THE ESCAPE-STRUCTURE ACCOUNTING — the grand prize is pinned to ONE door.** Of the excess-spent-once
+  theorem's escape hatches: ¬(a) emergent MOND — DEAD (L67/L68 lensing); ¬(c) by ordering — DEAD (L61);
+  ¬(c) by transmission timing — DEAD (L76 on the SPARC RAR); ¬(c) by spatial absence — **DEAD (this lane,
+  and MOND tightens it).** Exactly one remains: **¬(b) — the clock acting as its OWN CMB dark matter**
+  (pressureless dust at recombination, MOND in galaxies, healthy throughout).
+- **⚠️ ¬(b) IS NOT CLOSED HERE AND NOT CLAIMED.** It lives in the clock's cosmology — astra's territory,
+  heavily explored, with documented obstacles (FLRW source survival, growth pincers, the clock tachyon,
+  ghost-condensate instability). Honest state: **obstructed but not proven impossible.** The complete
+  theory, if it exists, turns on this single well-posed question and no other.
+- **VERDICT.** No manufactured completion. What is established: the grand prize is now a **single, sharply-
+  posed target** — can the integrable clock be pressureless dust at recombination AND MOND today, healthily?
+  — not a diffuse hope. Every other route into a complete theory is closed. That is the truth, and it is as
+  far as it can honestly be carried without astra's cosmology.
