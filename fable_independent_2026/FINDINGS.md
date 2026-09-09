@@ -173,3 +173,45 @@ are now closed on this programme's own gates: an interpolation kernel (L2), a fi
 finite-range force (L5), and a screened force in potential, density or mass (L6). Together
 with the 2026-09-06/07 dark-sector no-go and its 3D confirmation, no mechanism in or adjacent
 to this action supplies it. The coefficient's geometric/boundary door is closed too (L3).
+
+## L7 — the decisive diagnostic: the cluster residual IS the cosmic dark-to-baryon share
+
+`L7_cosmic_ratio.py` (3 FAIL of 6). With every mechanism closed (L2, L5, L6 and the
+2026-09-06/07 dark-sector no-go), one question becomes decisive and had not been asked in
+this form: is the required source quantitatively the *cosmic* ratio? It is.
+
+At the outermost audited radius (1000 kpc, 0.80 R500), across all twelve X-COP clusters:
+
+| quantity | measured | expectation |
+|---|---|---|
+| baryon fraction f_bar | **0.149** [0.115, 0.160] | cosmic Ω_b/Ω_m = 0.156 |
+| Newtonian M_dark/M_bar | **5.73 ± 0.68 (12% scatter)** | cosmic Ω_dm/Ω_b = **5.43** |
+| framework M_resid/M_bar | 2.76 (alt) / 3.09 (canonical) | framework predicts **0** |
+
+- **R1 PASS, R2 PASS.** The Newtonian reading matches the cosmic ratio to 5% and is
+  universal across clusters to 12%. Clusters retain essentially the cosmic baryon fraction.
+- **R3 FAIL.** The framework's residual after its own kernel is 2.8–3.1 baryonic masses,
+  **13–15σ from the zero it predicts**.
+- **R4 FAIL.** That residual *decreases* with radius at −1.9 per dex, which is what
+  "constant cosmic dark ratio minus a kernel boost that grows outward" looks like — the
+  signature of a kernel adding spurious support, not of a missing mass.
+- Control R0: the reconstructed baryon fraction lands in the observed cluster range.
+
+**Reading it honestly.** This does not measure dark matter and does not touch the galaxy
+evidence, where baryons plus the kernel work at 0.108 dex and a cosmic-share halo would
+overshoot badly (g04k: 2.6 M_b inside 10 kpc against the 0.25 M_b the RAR tolerates). What
+it shows is that the number clusters ask for is one ΛCDM fixes independently, from the CMB
+and BBN, rather than fits — while the framework must supply it from a mechanism that six
+independent lanes have now failed to find.
+
+## The programme's central problem, stated as sharply as the data allow
+
+- **Clusters** say: cosmic dark-to-baryon share, universal to 12%, exactly the ΛCDM number.
+- **Galaxies** say: baryons plus the kernel, with no room for that share — a cosmic halo
+  overshoots the rotation curves by an order of magnitude.
+
+Both cannot be simply true, and this is the classical MOND-plus-halos tension, not a defect
+peculiar to this action. What survives either resolution is the programme's distinctive and
+independently testable content: the tie a₀ = κ c√(Gρ_Λ) with κ fitted, and the two
+pre-registered measurements (Gaia DR4's two arms, the deep-MOND Tully–Fisher zero point at
+z ≈ 2.5).

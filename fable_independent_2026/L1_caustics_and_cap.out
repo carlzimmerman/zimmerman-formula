@@ -1,0 +1,36 @@
+============================================================================================================================
+L1 -- cold collisionless infall onto a MOND-boosted disc, with CAUSTICS RESOLVED (l <= 6) and the ACCELERATION CAP REPAIRED
+============================================================================================================================
+
+  --- validating the force solver ---
+    spherical config, SOFT = 0.5 kpc: binned-mean |a_r| deviation from the monopole = N=3000: 0.00007, N=12000: 0.00002, N=48000: 0.00000
+    per-particle scatter (the expansion's own Poisson noise) = N=3000: 5.4%, N=12000: 2.5%, N=48000: 1.2%; N^-1/2 would give ratios 2.00, 2.00; measured 2.15, 2.02
+  [PASS] V1 [solver] the multipole solver reproduces the monopole for a spherically symmetric configuration (binned-mean radial acceleration within 1%, at every N) and its per-particle residual falls as N^-1/2   (max binned deviation 0.00007)
+  [PASS] V2 [solver] the multipole solver reproduces a case the monopole CANNOT -- the analytic interior field of a homogeneous oblate spheroid (q = 0.5) -- to better than 10%, where the monopole is wrong by >30%   (median relative error: multipole 5.9%, monopole 38.3%, direct O(N^2) at the same N 20.8% (direct is noisier here: its error is particle noise, not truncation))
+
+  --- validating the repaired multiplier ---
+    sweep of gN_int through exact cancellation with g_ext = 0.02 a0 (7209 points, offsets 1e-8..3 of g_ext):
+    max added acceleration |g - gN_int|/a0 :  g04k rule 1.41e+03   repaired rule 0.3486   (intended cap Delta_max = 0.6476; the repaired bound is 2 Delta_max = 1.2952)
+  [PASS] V3 [cap] the repaired multiplier's added acceleration stays below 1.30 a0 through exact internal/external cancellation, while the g04k rule exceeds 100 a0 on the same sweep   (repaired 0.3486 a0, g04k 1.41e+03 a0)
+  [PASS] V3b [kernel] the repaired rule is IDENTICAL to g04k's with no external field, and the disc alone still gives the deep-MOND flat speed (G M_b a0)^1/4 at 30 kpc to 10%   (168 vs 158 km/s)
+
+  --- is the algebraic MOND step usable once the field stops being radial? ---
+    |circulation|/int|F||dl| around a 10 x 9 kpc loop in the disc's own (non-radial) Newtonian field:
+    Newtonian 1.27e-09   g04k algebraic 5.68e-03   repaired algebraic 1.46e-02   conservative scheme 7.37e-10
+  [PASS] V5a [conservativity] the algebraic MOND multiplier does net work around a closed loop once the Newtonian field is non-radial (>1e-3 of the path integral), while the Newtonian field and the conservative scheme do not (<1e-6)   (Newton 1.3e-09, conservative 7.4e-10, g04k 5.7e-03, repaired 1.5e-02)
+
+  --- V5b: the same defect, dynamically (multipole solver + the algebraic rule, two step floors) ---
+    MULTIPOLE + algebraic repaired cap, floor 3e-3 Gyr    : M/M_b(<10,30,100,200 kpc) =   0.00,   0.00,    0.0,    0.0   (disc 0.00 M_b0, N=8000, 945 steps, drift 0.0 kpc, 17s)
+    MULTIPOLE + algebraic, floor 3e-4 Gyr                 : M/M_b(<10,30,100,200 kpc) =   0.00,   0.00,    0.0,    0.0   (disc 0.00 M_b0, N=8000, 3890 steps, drift 0.0 kpc, 71s)
+  [PASS] V5b [conservativity] with the non-radial solver the algebraic rule unbinds the system (nothing left inside 200 kpc), and it is not a timestep artefact -- a 10x finer step floor gives the same   (M(<200 kpc)/M_b = 0.00 and 0.00; the monopole runs below keep 30-40)
+
+  --- monopole (g04k's own solver): the anchor, and the cap repair inside a conservative scheme ---
+    MONOPOLE + g04k algebraic cap (the anchor)            : M/M_b(<10,30,100,200 kpc) =   2.69,   9.38,   27.5,   37.1   (disc 1.00 M_b0, N=8000, 4539 steps, drift 0.8 kpc, 6s)
+    MONOPOLE + conservative, g04k cap                     : M/M_b(<10,30,100,200 kpc) =   2.82,   9.63,   28.1,   37.0   (disc 1.00 M_b0, N=8000, 4539 steps, drift 0.9 kpc, 9s)
+    MONOPOLE + conservative, REPAIRED cap                 : M/M_b(<10,30,100,200 kpc) =   2.77,   9.73,   27.5,   36.7   (disc 1.00 M_b0, N=8000, 4539 steps, drift 0.6 kpc, 8s)
+    MONOPOLE + conservative, REPAIRED cap, sigma_i=60     : M/M_b(<10,30,100,200 kpc) =   1.46,   8.29,   27.3,   37.8   (disc 1.00 M_b0, N=8000, 4539 steps, drift 1.4 kpc, 8s)
+    MONOPOLE, NEWTON control                              : M/M_b(<10,30,100,200 kpc) =   0.35,   0.92,    2.1,    3.4   (disc 0.23 M_b0, N=8000, 4539 steps, drift 1.0 kpc, 5s)
+  [PASS] V4 [anchor] monopole + g04k multiplier at this N reproduces g04k's published 60k result M(<10 kpc)/M_b = 2.58 within a factor 1.5   (2.69 vs 2.58)
+  [PASS] V6 [surrogate] making the scheme conservative does not by itself move the answer: monopole + conservative(g04k cap) reproduces monopole + g04k algebraic within 30%   (2.82 vs 2.69)
+
+  --- MULTIPOLE l <= 6: caustics resolved, cap repaired, conservative.  THE TEST. ---

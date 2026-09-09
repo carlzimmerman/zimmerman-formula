@@ -1,0 +1,54 @@
+======================================================================================================================
+L7 -- is the cluster residual the cosmic dark-to-baryon share?
+======================================================================================================================
+    cosmic Omega_dm/Omega_b = 5.43; clusters retain 70-100% of the cosmic baryon share at R500,
+    so the LambdaCDM expectation for M_dark/M_bar is 5.4-7.8, and it should be nearly universal.
+
+    alt: 12 clusters at r = 1000 kpc median (0.80 R500)
+      baryon fraction f_bar        : median 0.149  [0.115, 0.160]
+      NEWTONIAN  M_dark/M_bar      : median 5.73  +/- 0.68  (12% scatter)   [cosmic 5.43]
+      FRAMEWORK  M_resid/M_bar     : median 2.76  +/- 0.72  (26% scatter)   [framework predicts 0]
+      framework residual radial trend d(ratio_F)/dlog r: median -1.97 per dex
+        ZW1215                 r =   1000 kpc  f_bar 0.115   Newtonian  7.66   framework  4.49
+        A644                   r =   1000 kpc  f_bar 0.128   Newtonian  6.79   framework  3.70
+        RXC1825                r =   1000 kpc  f_bar 0.136   Newtonian  6.36   framework  2.80
+        A2029                  r =   1000 kpc  f_bar 0.140   Newtonian  6.16   framework  3.58
+        A1644                  r =   1000 kpc  f_bar 0.148   Newtonian  5.76   framework  1.92
+        A3158                  r =   1000 kpc  f_bar 0.148   Newtonian  5.76   framework  2.45
+        A85                    r =   1000 kpc  f_bar 0.149   Newtonian  5.70   framework  2.71
+        A2319                  r =   1000 kpc  f_bar 0.151   Newtonian  5.64   framework  3.22
+        A2255                  r =   1000 kpc  f_bar 0.152   Newtonian  5.58   framework  2.52
+        A2142                  r =   1000 kpc  f_bar 0.152   Newtonian  5.57   framework  3.15
+        A1795                  r =   1000 kpc  f_bar 0.156   Newtonian  5.42   framework  2.20
+        A3266                  r =   1000 kpc  f_bar 0.160   Newtonian  5.26   framework  2.54
+
+    canonical: 12 clusters at r = 1000 kpc median (0.80 R500)
+      baryon fraction f_bar        : median 0.149  [0.115, 0.160]
+      NEWTONIAN  M_dark/M_bar      : median 5.73  +/- 0.68  (12% scatter)   [cosmic 5.43]
+      FRAMEWORK  M_resid/M_bar     : median 3.09  +/- 0.71  (23% scatter)   [framework predicts 0]
+      framework residual radial trend d(ratio_F)/dlog r: median -1.90 per dex
+        ZW1215                 r =   1000 kpc  f_bar 0.115   Newtonian  7.66   framework  4.81
+        A644                   r =   1000 kpc  f_bar 0.128   Newtonian  6.79   framework  4.02
+        RXC1825                r =   1000 kpc  f_bar 0.136   Newtonian  6.36   framework  3.16
+        A2029                  r =   1000 kpc  f_bar 0.140   Newtonian  6.16   framework  3.85
+        A1644                  r =   1000 kpc  f_bar 0.148   Newtonian  5.76   framework  2.31
+        A3158                  r =   1000 kpc  f_bar 0.148   Newtonian  5.76   framework  2.79
+        A85                    r =   1000 kpc  f_bar 0.149   Newtonian  5.70   framework  3.01
+        A2319                  r =   1000 kpc  f_bar 0.151   Newtonian  5.64   framework  3.47
+        A2255                  r =   1000 kpc  f_bar 0.152   Newtonian  5.58   framework  2.83
+        A2142                  r =   1000 kpc  f_bar 0.152   Newtonian  5.57   framework  3.40
+        A1795                  r =   1000 kpc  f_bar 0.156   Newtonian  5.42   framework  2.52
+        A3266                  r =   1000 kpc  f_bar 0.160   Newtonian  5.26   framework  2.83
+  [PASS] R0 [control] the baryon fraction recovered from these rows lands in the observed cluster range 0.08-0.18   (median f_bar = 0.149, range [0.115, 0.160])
+  [PASS] R1 [cosmic] the Newtonian dark-to-baryon ratio at the outermost radius is consistent with the cosmic value allowing 0-30% baryon depletion (5.4-8.0)   (alt median 5.73, canonical median 5.73; cosmic 5.43, depleted-30% 7.76)
+  [PASS] R2 [universal] that ratio is nearly universal across clusters (fractional scatter below 30%)   (alt 12%, canonical 12%)
+  [FAIL] R3 [framework] the framework's residual is consistent with its own prediction of zero   (alt median 2.76 M_bar, 13 sigma from 0, canonical median 3.09 M_bar, 15 sigma from 0)
+  [FAIL] R4 [trend] the framework's residual does not grow systematically with radius (a residual that tracks acceleration is a wrong kernel, not a mass)   (alt -1.97 per dex, canonical -1.90 per dex)
+  [FAIL] R5 [verdict] the framework's reading of clusters is at least as economical as the cosmic-share reading   (the Newtonian reading needs ONE number that is not fitted here -- the cosmic ratio, known independently from the CMB and BBN -- and reproduces the clusters with the scatter quoted in R2; the framework's reading needs a residual it predicts to be zero)
+
+  what this does and does not show: it does NOT measure dark matter, and it does not touch the galaxy-scale
+  evidence, where baryons plus the kernel work and a cosmic-share halo would overshoot (g04k: 2.6 M_b inside 10 kpc
+  against the 0.25 M_b the RAR tolerates).  It shows only which reading of the CLUSTER rows is the more economical,
+  and that the number clusters ask for is one that LambdaCDM fixes independently rather than fits.
+
+RESULT: 3 FAIL -> ["R3 [framework] the framework's residual is consistent with its own prediction of zero", "R4 [trend] the framework's residual does not grow systematically with radius (a residual that tracks acceleration is a wrong kernel, not a mass)", "R5 [verdict] the framework's reading of clusters is at least as economical as the cosmic-share reading"]

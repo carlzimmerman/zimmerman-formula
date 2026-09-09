@@ -298,7 +298,8 @@ ex = -2*math.pi*G*rho_b*np.stack([A1*xs[:, 0], A1*xs[:, 1], A3*xs[:, 2]], axis=1
 sel = np.linalg.norm(xs, axis=1) < 0.6*Aax; nex = np.linalg.norm(ex, axis=1)
 e_mp = float(np.median(np.linalg.norm(multipole_acc(xs, mps)[0] - ex, axis=1)[sel]/nex[sel]))
 e_mo = float(np.median(np.linalg.norm(monopole_acc(xs, mps)[0] - ex, axis=1)[sel]/nex[sel]))
-e_di = float(np.median(np.linalg.norm(direct_acc(xs, mps)[0] - ex, axis=1)[sel]/nex[sel]))
+nd = min(Nv, 6000)                                                        # direct is O(N^2) in memory; subsample the same spheroid
+e_di = float(np.median(np.linalg.norm(direct_acc(xs[:nd], Mtot/nd)[0] - ex[:nd], axis=1)[sel[:nd]]/nex[:nd][sel[:nd]]))
 check("V2 [solver] the multipole solver reproduces a case the monopole CANNOT -- the analytic interior field of a homogeneous "
       "oblate spheroid (q = 0.5) -- to better than 10%, where the monopole is wrong by >30%",
       e_mp < 0.10 and e_mo > 0.30, f"median relative error: multipole {e_mp*100:.1f}%, monopole {e_mo*100:.1f}%, "
