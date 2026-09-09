@@ -2880,3 +2880,34 @@ kernel's own cluster under-prediction (2.07×) reproduces.
 - **This closes the completeness question for the last candidate**, and it does so through the
   branch-independent theorem rather than a new mechanism: single-metric minimal coupling is what fixes
   η = 1, and no clock-internal arrangement of the MOND sector changes that.
+
+## L71 — astra's action escapes the deep-MOND kill in a galaxy too, but its health is UNDERSPECIFIED, not cleared
+
+`L71_lead_galactic_health.py` + `L71_LEAD_GALACTIC_HEALTH.md` (**18 checks, 18 PASS**). The named next
+computation: build the lead's integrable-clock action's static galactic background in deep MOND and run
+the L60 health test there, rather than at the cosmological design point L66 was restricted to.
+
+**Controls.** The counter returns 2/3/5/3; **L60's kill is reproduced on the deposited action** —
+threshold 0.9000009, threshold acceleration 0.3985, 1 kpc e-folding 0.737 Myr — so the test provably
+fires; and L66's structure identification reproduces.
+
+- **⭐ THE L60 KILL IS ESCAPED IN THE GALAXY, confirmed on the actual solve rather than the design point.**
+  The galactic background is built from the lead's own field equation, a MOND field riding the clock's
+  acceleration, with a flat rotation curve and the right MOND radius. On the static branch the
+  lapse-channel subtraction is **identically zero** (no separate scalar), and the clock-lapse coefficient
+  **stays O(1) in deep MOND** where the deposited action's transverse stiffness softens to 0.06. Both
+  ingredients of the kill are absent, and L69's condition collapses to the satisfied Σ_⊥ > 0. **Outcome
+  (c), now confirmed on the galactic solve.**
+- **⚠️ BUT IT IS NOT A CLEARED CANDIDATE, for two reasons the lane states plainly.** First, **the
+  propagating health is underspecified by the lead's own action**: the perturbation coefficients are
+  pinned only at the cosmological design point, the lead's own IC31 forbids extrapolating them, and there
+  is no calibration relating the action's internal variable to a galactic potential. **The honest state
+  is "cannot be certified either way," not "healthy."** Second, **the IC-4 auxiliary gradient Hessian is
+  indefinite — det G = −4u²ξ² < 0 — exactly on the static galactic branch**, with its repair matched only
+  at the cosmological witness. That is a distinct concern, and it is precisely what L72 is resolving.
+- **The verdict, precisely:** L60's specific mechanism is escaped in the galaxy, so the last construction
+  is **neither healthy nor killed** there. It is **blocked by an uncalibrated coefficient sector and an
+  unresolved indefinite auxiliary symbol** — not by an instability, and not by a clean bill of health.
+- **This does not touch L73's completeness verdict:** even a fully healthy version is complete only below
+  a galaxy. L71 decides only whether it is a live *galaxy-scale* candidate, and the answer is "not yet
+  decidable from the action as it stands."
