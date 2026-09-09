@@ -2695,3 +2695,39 @@ the test point. **The lead was right, and it is confirmed here.**
   value is now conditional: it transfers to astra's action **only if** L66 finds that action survives the
   L60 kill. **Not a closure** on its own terms either — the metric/clock Dirac closure about the nonlinear
   background is not done, the upper κ edge rests on a soft bound, and the Saturn mesh convergence is 2%.
+
+## L66 — astra's action ESCAPES the deep-MOND kill, and L60 is a third class-level no-go
+
+`L66_lead_action_health.py` + `L66_LEAD_ACTION_HEALTH.md` (**18 checks, 18 PASS**). L60 killed the
+deposited action's scalar sector in deep MOND. This lane asked whether the lead's genuinely-different
+construction shares it. **It does not, and the reason is structural.**
+
+**Controls.** The counter returns 2/3/5/3 on the four reference theories, and **reproduces the kill on the
+action it was found on** before touching the lead's: the deposited threshold 0.9000009, the threshold
+acceleration s = 0.3985, and the 1 kpc e-folding time 0.737 Myr on both footings. Clearing the lead's
+action without reproducing the kill first would have been untrustworthy, and the lane refused to.
+
+- **⭐ THE LEAD'S INTEGRABLE-CLOCK ACTION (door 4) DOES NOT SHARE THE KILL — outcome (c), a genuine
+  structural escape.** L60's instability comes from a separate MOND scalar coupled to the clock's
+  acceleration through the lapse, feeding a wrong-sign (2−K_B)²/(2−c₁₄) term off the Einstein
+  constraint. **The lead's action has no separate MOND scalar.** The lapse is a functional of the varied
+  clock, and the MOND scale rides the clock's own acceleration, so the separate-scalar / independent-lapse
+  pair that generates the subtraction **does not exist**. The clock-lapse Schur term it does carry has a
+  vanishing off-diagonal by design and a negative diagonal, so it **stabilises** rather than destabilises.
+- **⚠️ THE SUBMITTED AeST-like action (door 2) IS the deposited family and shares the kill verbatim.** So
+  the escape is specific to the integrable-clock construction, not to the lead's work in general.
+- **⭐⭐ THIS MAKES L60 A THIRD CLASS-LEVEL NO-GO**, alongside the foliation theorem and the
+  excess-spent-once theorem. Its hypotheses, stated: **H1** a soft (bounded-boost) kernel stiffness,
+  **H2** an AeST-type coupling of a separate MOND scalar to a clock's acceleration, **H3** a clock that
+  fixes an Einstein-constrained lapse. The deposited and submitted actions satisfy all three. **The
+  integrable-clock action evades it by violating H2** — keeping the MOND sector inside the clock rather
+  than in a separately-coupled scalar.
+- **⚠️ ESCAPE IS NOT EXONERATION, and the lane says so in three ways.** The integrable-clock action's
+  deep-MOND transverse health is **uncomputed** — it is certified positive only at a flat-vacuum
+  cosmological design point of ~0.0006 e-folds, and clearing it on that background would repeat exactly
+  the error L60 caught. An **adjacent coefficient choice already gives an infrared ω² < 0**. And the
+  construction carries **its own generically-indefinite auxiliary gradient Hessian** (det G = −4u²ξ² < 0
+  at vanishing field), which is a distinct, uncleared concern of type (b).
+- **The consequence: the last live construction stays alive, but only by keeping the MOND sector inside
+  the clock, and its own deep-MOND health is now the named next computation** — it needs a galactic
+  quasi-static background, which does not yet exist, run through the L60 test.
