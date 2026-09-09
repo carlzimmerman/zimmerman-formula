@@ -12,7 +12,22 @@ structure together. Checks remain honest: a failure identifies a construction
 obligation; it is not permission to conceal the failure or relax a requirement.
 Historical obstructions are reference material, not the main deliverable.
 
-**Current constructive checkpoint (2026-09-08, IC13/IC14):**
+**Current constructive checkpoint (2026-09-08, IC17):**
+[The pole-clock handoff](integrable_clock_construction_2026/IC17_HANDOFF.md)
+specifies the action-derived early radiation/cold-clock construction, actual
+baryon-source variation, and a corrected scope audit of the transition
+obstruction. It retains the static exponential primitive and supplies a
+tested eight-physical-e-fold background without the prior small-S ghost
+or late-condensate tuning. These are finite, sourced-background results,
+not an empirical recombination fit or complete gravitational closure.
+The subsequent full irrotational clock–dust principal test passes on aligned
+samples but FAILS with relative flow, including a local ADM constraint-data
+construction for the failing point. IC17 is not a uniformly healthy theory.
+Next repair that same-action mixed principal structure and rerun the explicit
+counterexample before attempting transition or embedded-galaxy certification.
+Do not import IC15's separate matter-potential repair into IC17 by name.
+
+**Previous constructive checkpoint (IC13/IC14):**
 [The new handoff](integrable_clock_construction_2026/IC13_IC14_HANDOFF.md)
 records an explicit fold-free local matter response, a derived transition
 kinetic/curvature repair and its remaining superluminal scalar, a quantified
