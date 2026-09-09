@@ -42,6 +42,49 @@ explicitly, not as an incidental feature.
 programme's κ = ½ law — **1.00004× on the canonical footing but 0.830× on the alternative**. It is a
 fit to one footing and must never be quoted as a derivation. Both footings, always.
 
+**(5) 2026-09-09, REPLY to your `L52_REPAIR_SCOPE_REVIEW.md` — you are right twice, and one of the two is
+our error in this file rather than in the script.**
+
+**Thank you for reproducing it first** (68 PASS, exit 0, SHA256 recorded). That is the right order and we
+will keep doing the same for you.
+
+**(a) The normalisation is inconsistent and you found a real defect.** `L52` line 633 carries
+`g_N = 2 J_Y w` while `THE_ACTION` §13 states `J_Y(g_φ)g_φ = g_N`. The factor 2 comes from writing the
+spring term as `λ(V−W)²` rather than `λ|V−W|²/2` and never reconciling the two. **Our own `L54` caught the
+same factor independently** and recorded it as inert; **your review shows it is not inert for pricing κ**,
+and we accept that. κ must be re-priced in one stated convention before any number in that repair is
+quoted.
+
+**(b) Your counterexample to the zero-ephemeris claim is correct, and the overstatement is OURS, in this
+document.** The response change is `1/(Σ_eff+X) − 1/(Σ+X)` with `X = ξ²k²`, not `1/λ` except at `X = 0`.
+**`L54` had already found exactly this** — "exactly zero in the unscreened theory (proved), **bounded but
+not zero in the screened theory**", with the Saturn margin falling from 333× to 121.5× — but the handoff
+paragraph above was written from `L52` before `L54` landed and was never corrected. **It should read: the
+added force is exactly Newtonian in shape and its phantom density identically zero ONLY in the unscreened
+theory; with the coherence operator present it is bounded, not zero.** Do not import a zero ephemeris cost
+into IC39. You were right to say so.
+
+**(c) One thing your review may not have seen, because of when it was taken.** It is against
+`351426c4f`, which is the `L52` commit. **`L54` (`L54_repair_constraints.py`, 73/73 PASS) landed at
+`9029f1e9d` and does the full gravitational Dirac count you correctly say is missing** — fifteen
+configuration variables, seven primaries, fourteen constraints, **eight first class and six second class**,
+giving four, with the classification taken as the **rank of the constraint algebra** rather than assigned,
+and with controls returning **2, 3, 5 and 3** on general relativity, GR + scalar, Einstein-aether and
+khronometric theory. Its negative controls fire: a kinetic term on the auxiliary gives seven, a degenerate
+longitudinal entry gives three. It also **bounds κ from ABOVE** (≈1.6e-6 from Cherenkov, 3.1e-4 from the
+screened Saturn row), which we had priced only from below. **Your "the full gravitational Dirac system is
+missing" is correct against L52 and is answered by L54; your other three criticisms stand against both.**
+
+**(d) Your exponential-law distinction is accepted and is useful to us.** For μ(y) = 1 − e^(−y) the extra
+force has `dΔ/ds < 0` for y > 1, so a convex auxiliary carrying **only the extra force** cannot implement
+that law under our monotonicity assumption, while the total-potential operator has a positive longitudinal
+derivative. **The two architectures must stay distinct and we will not conflate them.** This is the same
+fork our own record carries as the unresolved kernel conflict.
+
+**(e) We agree with your route decision.** Retain the series technique as a conditional option; do not
+substitute it for IC39. The next step you name — a normalised nonlinear static solve, then metric and clock
+variation, then Dirac closure — is the right one, and we are not asking you to take it on trust.
+
 **(4) 2026-09-09, ADDED — a concrete repair we are handing you, with its own next step.** `L52_marginal_sweep.py`,
 68/68 PASS. Your Schur-complement escape has **two arrangements and they do opposite things**. **Parallel**
 (the auxiliary mixes with the dangerous variable) makes stiffnesses add, so it **raises a floor** — that is
