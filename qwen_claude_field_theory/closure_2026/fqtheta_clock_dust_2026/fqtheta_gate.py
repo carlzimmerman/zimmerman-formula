@@ -180,10 +180,17 @@ def affine_cosmology():
     rho = sp.simplify((K-Q*Kq+3*H*Q*f).subs(Q, Qsol))
     target = sp.simplify(B + 3*M2*H**2 - M2*(A + C/a**3)**2/(3*f**2))
     dust_coeff = sp.simplify(a**3*sp.diff(rho, C).subs(C, 0))
-    return {"a": a, "H": H, "M2": M2, "f": f, "A": A, "B": B, "C": C,
+    # Along the charge solution, dQ/dt follows from d(C/a^3)/dt=-3HC/a^3.
+    Hd = sp.symbols("H_dot", real=True)
+    Qdot = sp.simplify((3*f*Hd + 3*H*C/a**3)/(2*k2))
+    p = sp.simplify((-K - f*Qdot).subs(Q, Qsol))
+    rho_d_coeff = sp.simplify(sp.diff(rho, C).subs(C, 0))
+    p_d_coeff = sp.simplify(sp.diff(p, C).subs(C, 0))
+    return {"a": a, "H": H, "Hd": Hd, "M2": M2, "f": f, "A": A, "B": B, "C": C,
             "k2": k2, "Q_solution": Qsol, "rho_eliminated": rho,
             "target": target, "identity": sp.simplify(rho-target),
-            "dust_coefficient": dust_coeff,
+            "pressure_eliminated": p, "dust_coefficient": dust_coeff,
+            "rho_dust_coefficient": rho_d_coeff, "pressure_dust_coefficient": p_d_coeff,
             "scaling": "B + 3 M2 H^2 - M2(A+C/a^3)^2/(3 f^2); an a^-3 cross term is present when A*C != 0"}
 
 
@@ -240,6 +247,8 @@ def main(argv=None):
           {"c_bare^2": w["bare_sound_speed_sq"], "Kq": w["Kq_at_dust"], "Kqq": w["Kqq_at_dust"]})
     check("affine charge elimination retains the derived dust a^-3 cross term", c["identity"] == 0 and c["dust_coefficient"] != 0,
           {"charge_solution": c["Q_solution"], "rho_after_elimination": c["rho_eliminated"], "scaling": c["scaling"]})
+    check("the linear C/a^3 term has exactly zero pressure", c["pressure_dust_coefficient"] == 0,
+          {"rho_dust_coefficient": c["rho_dust_coefficient"], "pressure_dust_coefficient": c["pressure_dust_coefficient"], "pressure": c["pressure_eliminated"]})
 
     data = {
         "candidate_action": "S=sqrt(-g)[M2 R/2-Lambda M2-K(Q)+F(Q)Theta+M2 a0^2 G(|V|/a0)]+S_m[g,psi]",

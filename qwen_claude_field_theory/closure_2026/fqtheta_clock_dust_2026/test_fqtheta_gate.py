@@ -52,6 +52,7 @@ class FQThetaTests(unittest.TestCase):
         r = gate.affine_cosmology()
         self.assertEqual(r["identity"], 0)
         self.assertNotEqual(r["dust_coefficient"], 0)
+        self.assertEqual(r["pressure_dust_coefficient"], 0)
 
     def test_cli_records_open_not_certified(self):
         with tempfile.TemporaryDirectory() as d:

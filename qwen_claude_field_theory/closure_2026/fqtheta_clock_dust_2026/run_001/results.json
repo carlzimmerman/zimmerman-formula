@@ -118,6 +118,7 @@
   "affine_cosmology": {
     "a": "a",
     "H": "H",
+    "Hd": "H_dot",
     "M2": "M2",
     "f": "f",
     "A": "A",
@@ -128,7 +129,10 @@
     "rho_eliminated": "-A**2*M2/(3*f**2) - 2*A*C*M2/(3*a**3*f**2) + B - C**2*M2/(3*a**6*f**2) + 3*H**2*M2",
     "target": "B + 3*H**2*M2 - M2*(A*a**3 + C)**2/(3*a**6*f**2)",
     "identity": "0",
+    "pressure_eliminated": "A**2*M2/(3*f**2) - B - C**2*M2/(3*a**6*f**2) - 3*H**2*M2 - 2*H_dot*M2",
     "dust_coefficient": "-2*A*M2/(3*f**2)",
+    "rho_dust_coefficient": "-2*A*M2/(3*a**3*f**2)",
+    "pressure_dust_coefficient": "0",
     "scaling": "B + 3 M2 H^2 - M2(A+C/a^3)^2/(3 f^2); an a^-3 cross term is present when A*C != 0"
   },
   "checks": [
@@ -237,6 +241,15 @@
         "charge_solution": "-2*M2*(C + a**3*(A - 3*H*f))/(3*a**3*f**2)",
         "rho_after_elimination": "-A**2*M2/(3*f**2) - 2*A*C*M2/(3*a**3*f**2) + B - C**2*M2/(3*a**6*f**2) + 3*H**2*M2",
         "scaling": "B + 3 M2 H^2 - M2(A+C/a^3)^2/(3 f^2); an a^-3 cross term is present when A*C != 0"
+      }
+    },
+    {
+      "name": "the linear C/a^3 term has exactly zero pressure",
+      "passed": true,
+      "evidence": {
+        "rho_dust_coefficient": "-2*A*M2/(3*a**3*f**2)",
+        "pressure_dust_coefficient": "0",
+        "pressure": "A**2*M2/(3*f**2) - B - C**2*M2/(3*a**6*f**2) - 3*H**2*M2 - 2*H_dot*M2"
       }
     }
   ],

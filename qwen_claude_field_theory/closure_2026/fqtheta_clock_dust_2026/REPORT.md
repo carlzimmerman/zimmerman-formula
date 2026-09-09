@@ -70,9 +70,12 @@ gives
 \]
 Crucially, the cross term
 \(-2M^2AC/(3f^2a^3)\) is a genuine dust-scaling contribution when
-\(A C\neq0\). An earlier run omitted \(A\); that was an implementation bug,
-now caught by the regression test and corrected. This route is therefore
-**OPEN**, not dead at the homogeneous dust gate.
+\(A C\neq0\). Direct differentiation of the varied pressure gives zero for
+the coefficient of \(C/a^3\), so this piece is exactly pressureless at this
+order; the \(C^2/a^6\) term is a separate stiff correction. An earlier run
+omitted \(A\); that was an implementation bug, now caught by the regression
+test and corrected. This route is therefore **OPEN and constructive** at the
+homogeneous dust gate.
 
 The explicit affine witness
 \[
