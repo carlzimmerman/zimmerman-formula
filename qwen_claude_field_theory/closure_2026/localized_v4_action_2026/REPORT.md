@@ -72,6 +72,17 @@ with finite differences to below (6.4\times10^{-8}) on grids 3 and 4; omitting
 the inverse or projector variations changes the derivative by (1.5\times10^{-2})
 or more.
 
+The new `york_variation_gate.py` extends this to a metric-dependent TT
+principal symbol.  For a positive non-Euclidean (h_{ij}) and nonzero covector
+(k_i=(1,2,3)), the computed divergence-plus-trace constraint matrix has
+derived rank 4 and a two-dimensional TT kernel.  The analytic derivative of
+the weighted York projector and of (R_{TT}{\cal H}_{TT}^{\dagger}R_{TT})
+agrees with centered finite differences at (3.6\times10^{-10}); projector
+idempotence, TT constraint, and weighted self-adjointness residuals are below
+(5\times10^{-16}).  This is a principal-symbol check only: connection terms,
+spatially varying background derivatives, and full multiplier preservation are
+still not computed.
+
 ## Requirement audit
 
 | Requirement | Current status |
@@ -88,8 +99,22 @@ or more.
 | empirical galaxy/cluster/cosmology fit | Not performed by this checkpoint |
 | Lean proof | Lean unavailable; exact identities exported as JSON |
 
-The reproducibility record is `run_003/manifest.json`; it pins the local
+The reproducibility record is `run_007/manifest.json`; it pins the local
 modules and the two prior V3 dependency files used by the causal gate.
+
+The follow-up `flrw_ward_gate.py` independently varies the lapse before the
+cosmic-time gauge.  It derives
+
+\[
+3(2+3\ell)H^2=16\pi G_b\rho+2\Lambda,
+\]
+
+shows that all localized fields vanish on an exactly homogeneous isotropic
+leaf, and verifies symbolically that the minimally coupled continuity equation
+(\dot\rho=-3H(\rho+p)) differentiates the Friedmann residual into the
+acceleration residual.  This is a background Ward/FLRW result, not a
+perturbation or nonlinear constraint proof.  The latest run is
+`run_007/manifest.json`.
 
 ## Verdict
 

@@ -5,6 +5,8 @@ from eliminate_localizers import eliminate_localizers
 from localized_dirac import flat_scalar_blocks, dirac_report
 from metric_variation_gate import metric_variation_gate
 from causal_response_gate import causal_response_gate
+from york_variation_gate import york_variation_gate
+from flrw_ward_gate import flrw_ward_gate
 
 
 class LocalizedV4ContractTests(unittest.TestCase):
@@ -51,6 +53,19 @@ class LocalizedV4ContractTests(unittest.TestCase):
         self.assertEqual(result["v3_spatial_pole_count"], 0)
         self.assertEqual(result["v3_factor_failure_count"], 0)
         self.assertGreater(result["v2_spatial_pole_count"], 0)
+
+    def test_york_tt_projector_variation_is_metric_consistent(self):
+        result = york_variation_gate()
+        self.assertLess(result["projector_finite_difference_error"], 1e-7)
+        self.assertLess(result["action_finite_difference_error"], 1e-7)
+        self.assertLess(result["constraint_residual"], 1e-10)
+        self.assertGreater(result["tt_dimension"], 0)
+
+    def test_flrw_and_matter_ward_identity_are_derived(self):
+        result = flrw_ward_gate()
+        self.assertTrue(result["localizers_vanish_on_flrw"])
+        self.assertTrue(result["lapse_equation_matches_friedmann"])
+        self.assertTrue(result["continuity_implies_acceleration"])
 
 
 if __name__ == "__main__":
