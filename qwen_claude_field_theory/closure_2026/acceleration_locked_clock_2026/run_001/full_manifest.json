@@ -2,7 +2,7 @@
   "schema_version": 1,
   "claim_id": "acceleration-locked-clock-new-theory-gates",
   "repository": {"commit": "working-tree", "dirty": true},
-  "command": "python3 -B alc_gate.py; python3 -B alc_clock_dirac.py; python3 -B alc_parameter_scan.py; python3 -B alc_ppn_stability.py; python3 -B alc_aether_regularization.py",
+  "command": "python3 -B alc_gate.py; python3 -B alc_clock_dirac.py; python3 -B alc_parameter_scan.py; python3 -B alc_ppn_stability.py; python3 -B alc_aether_regularization.py; python3 -B alc_degenerate_dirac.py; python3 -B test_alc_degenerate_dirac.py",
   "environment": {"software": ["Python 3.9.6", "SymPy 1.14.0", "NumPy"], "hardware": "arm64"},
   "mathematics": {
     "assertion_tested": "The single acceleration-locked mimetic-clock action derives exact exponential MOND, weak static no-slip, FLRW dust, metric Ward identity and luminal TT tensors, while its local clock Dirac constraint and coefficient scan are explicit.",
@@ -14,11 +14,13 @@
       {"path": "qwen_claude_field_theory/closure_2026/acceleration_locked_clock_2026/alc_parameter_scan.py", "sha256": "66406dbe44c3515610ee1ac1f9833754c3340ba52982f0b64f8fa337813f9d99"},
       {"path": "qwen_claude_field_theory/closure_2026/acceleration_locked_clock_2026/ALC_ACTION.md", "sha256": "63e7d516ca7bc806b735f177b2e8721334b4fcf44551472bc60892d9594d4cc0"},
       {"path": "qwen_claude_field_theory/closure_2026/acceleration_locked_clock_2026/alc_ppn_stability.py", "sha256": "0934c760d26284b305d4d1d75d524c8c0aaf9ad26db67044cef6cc4c258c94f2"},
-      {"path": "qwen_claude_field_theory/closure_2026/acceleration_locked_clock_2026/GRAND_PRIZE_REQUIREMENTS.json", "sha256": "4e4011b40ee2c9fbf6ff996049b016d4eeaad766f1d9904817466117e3b9d9dc"},
+      {"path": "qwen_claude_field_theory/closure_2026/acceleration_locked_clock_2026/GRAND_PRIZE_REQUIREMENTS.json", "sha256": "22901586401a7d399727379664f87e7b92d0f8298f50452d0e838c6b9d339ffd"},
       {"path": "qwen_claude_field_theory/closure_2026/acceleration_locked_clock_2026/alc_aether_regularization.py", "sha256": "a5867cd1991b55b86b2960284f5ebca4d1e44decc9291dabbb224ea83cd93419"},
-      {"path": "qwen_claude_field_theory/closure_2026/acceleration_locked_clock_2026/test_alc_aether_regularization.py", "sha256": "e8d9f8c204ad4e1f1094877c942e237e864b62a58f838ed2b2b40a03be877055"}
+      {"path": "qwen_claude_field_theory/closure_2026/acceleration_locked_clock_2026/test_alc_aether_regularization.py", "sha256": "e8d9f8c204ad4e1f1094877c942e237e864b62a58f838ed2b2b40a03be877055"},
+      {"path": "qwen_claude_field_theory/closure_2026/acceleration_locked_clock_2026/alc_degenerate_dirac.py", "sha256": "824dde35c8809719749f7f615e1131e355b78e7740d4e16640f2125bbafc4f5a"},
+      {"path": "qwen_claude_field_theory/closure_2026/acceleration_locked_clock_2026/test_alc_degenerate_dirac.py", "sha256": "684ebb75145d8f67be42d019237a51a1b91e0cd542f7357937056ef04cac4ef1"}
     ],
-    "bounds": {"static": "1D positive-gradient weak field", "FLRW": "homogeneous unitary branch", "clock": "flat local Fourier mode", "eta_scan": "401 coefficients, 400 geometric y values", "aether_scan": "135 deterministic epsilon-r points; exact alpha tuning and regular/degenerate split"},
+    "bounds": {"static": "1D positive-gradient weak field", "FLRW": "homogeneous unitary branch", "clock": "flat local Fourier mode", "eta_scan": "401 coefficients, 400 geometric y values", "aether_scan": "135 deterministic epsilon-r points; exact alpha tuning and regular/degenerate split", "degenerate_dirac": "symbolic local ADM contraction; exact-luminal k!=0 and independent k=0 scalar sectors"},
     "non_claims": ["full covariant khronon Dirac chain", "PPN alpha coefficients", "nonlinear perturbation transfer", "global stability", "derived a0-Lambda relation"]
   },
   "randomness": {"used": false, "generator": "", "seed": null},
@@ -28,7 +30,8 @@
     {"path": "parameter_scan.json", "sha256": "3b2ae952b2aefe3bf3c9c62f45ef5a3fa1767dbaf1dde987290dbfda80546758"},
     {"path": "clock_dirac.json", "sha256": "99e9d2405c1d6a4295998c7fd42651ea4f1ad21efc29bb4346c5e85513033da9"},
     {"path": "ppn_stability.json", "sha256": "7edf4cf662d11c5ac6241dcd904a37e9a45632b7c4871d1a3f7a540f373c9cab"},
-    {"path": "aether_regularization.json", "sha256": "9392769d5421b4deb3e6c37529e697811e5761fe7957455e3747eaf88884c73a"}
+    {"path": "aether_regularization.json", "sha256": "9392769d5421b4deb3e6c37529e697811e5761fe7957455e3747eaf88884c73a"},
+    {"path": "degenerate_dirac.json", "sha256": "80bd44d2328a03f133c76d81d62855b703eded8833239b8dc9f4bc89b1f43c93"}
   ],
   "checks": [
     {"name": "exact exponential MOND", "passed": true},
@@ -39,7 +42,8 @@
     {"name": "eta coefficient uniquely identified", "passed": true},
     {"name": "PPN singular corner explicitly audited", "passed": true},
     {"name": "constitutive Hessian sign crossing explicitly audited", "passed": true},
-    {"name": "regular aether PPN/GW-speed branch explicitly separated from degenerate branch", "passed": true}
+    {"name": "regular aether PPN/GW-speed branch explicitly separated from degenerate branch", "passed": true},
+    {"name": "exact-luminal ADM/Dirac split computed", "passed": true}
   ],
   "residual_risks": [
     "acceleration contains derivatives of the clock foliation",
@@ -47,7 +51,7 @@
     "preferred-frame PPN parameters are not yet derived",
     "strict ellipticity fails at y=0",
     "a0-Lambda remains phenomenological",
-    "regular PPN/GW aether completion carries an extra scalar; degenerate surface requires a fresh Dirac chain"
+    "regular PPN/GW aether completion carries an extra scalar; exact-luminal surface is instantaneous or rank-degenerate in the local ADM gate; nonlinear metric-clock closure remains open"
   ],
   "result": "OPEN; local action checks pass, regular PPN/GW branch has an extra scalar, and degenerate branch remains unresolved"
 }

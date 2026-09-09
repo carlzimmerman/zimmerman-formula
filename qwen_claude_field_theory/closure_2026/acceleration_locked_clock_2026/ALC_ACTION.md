@@ -174,3 +174,32 @@ The only route toward a two-tensor limit is the degenerate surface
 `c_14=0` or `c_123=0`; there the PPN and speed formulae are singular and a new
 full Dirac chain is mandatory.  The gate therefore sharpens the obstruction
 but leaves the ALC lane **OPEN**, not certified.
+
+## Exact-luminal ADM/Dirac follow-up
+
+`alc_degenerate_dirac.py` evaluates the covariant aether contractions in a
+local orthonormal ADM frame instead of treating the singular corner as a
+formal limit.  The derived decomposition is
+
+\[
+\mathcal L_{\rm EA} = c_{13}K_{ij}K^{ij}+c_2K^2-c_{14}a_i a^i
+ +(c_1-c_3)\omega_{ij}\omega^{ij}.
+\]
+
+For the hypersurface-orthogonal clock \(\omega_{ij}=0\).  Exact tensor
+luminality gives \(c_{13}=0\), and the regular PPN equation \(\alpha_1=0\)
+then gives \(c_{14}=0\).  A Fourier-mode variation gives
+
+\[
+L_k=c_{123}k^4\tau^2-c_{14}k^2\dot\tau^2.
+\]
+
+The actual Dirac matrix has rank 2 when \(c_{123}\ne0\): the primary
+\(p_\tau=0\) is paired with a secondary and the multiplier is fixed, leaving
+an instantaneous elliptic channel.  At \(c_{123}=0\) the secondary vanishes,
+the quadratic Hamiltonian and Poisson rank both vanish, and the branch is
+rank-degenerate/strongly coupled.  The \(k=0\) sector is separately zero at
+this order.  Thus the exact-luminal regularisation does not produce a healthy
+propagating-free scalar; it produces either an unacceptable instantaneous
+channel or a degenerate strong-coupling corner.  This is a bounded obstruction
+for the constant-aether completion, not a universal no-go for nonlocal actions.

@@ -23,6 +23,14 @@ in the repository as evidence and are not deleted.
    The ALC-specific regularisation gate is `alc_aether_regularization.py`: it
    solves the PPN tuning equations symbolically, scans the luminal-GW branch,
    and separates regular extra-scalar points from singular degenerate limits.
+   The follow-up `alc_degenerate_dirac.py` derives the local ADM contraction,
+   then computes the exact-luminal (k\ne0) primary/secondary chain and
+   Poisson matrix.  It finds the two branches without prescribing a rank:
+   (c_{123}\ne0) is an instantaneous constraint channel, while
+   (c_{123}=0) is rank-degenerate.  The homogeneous (k=0) mode is evaluated
+   separately.  The exact exponential primitive is differentiated in the same
+   file, so a finite-acceleration completion has a nonzero longitudinal
+   constitutive Hessian.
 9. **FLRW gate:** vary before specializing, require H≠0, derive all density/
    pressure components and perturbation transfer through recombination.
 10. **Empirical gate:** fit the fixed law to rotation curves, binaries,
