@@ -1,0 +1,500 @@
+{
+  "action": {
+    "cold_lagrangian": "(-m_c**2*N(t)*chi(t)**2/2 + Derivative(chi(t), t)**2/(2*N(t)))*a(t)**3*exp(-beta*Q(t))",
+    "cold_scalar_equation": "-beta*a(t)**3*exp(-beta*Q(t))*Derivative(Q(t), t)*Derivative(chi(t), t)/N(t) + m_c**2*N(t)*a(t)**3*chi(t)*exp(-beta*Q(t)) + a(t)**3*exp(-beta*Q(t))*Derivative(chi(t), (t, 2))/N(t) + 3*a(t)**2*exp(-beta*Q(t))*Derivative(a(t), t)*Derivative(chi(t), t)/N(t) - a(t)**3*exp(-beta*Q(t))*Derivative(N(t), t)*Derivative(chi(t), t)/N(t)**2",
+    "cold_scalar_residual": "0",
+    "memory_adjoint_residual": "0",
+    "memory_lagrangian": "(Derivative(Q(t), t) - Derivative(a(t), t)/a(t))*a(t)**3*lambda(t)",
+    "memory_lambda_equation": "(Derivative(Q(t), t) - Derivative(a(t), t)/a(t))*a(t)**3",
+    "memory_q_equation": "-beta*m_c**2*N(t)*a(t)**3*chi(t)**2*exp(-beta*Q(t))/2 + beta*a(t)**3*exp(-beta*Q(t))*Derivative(chi(t), t)**2/(2*N(t)) + a(t)**3*Derivative(lambda(t), t) + 3*a(t)**2*lambda(t)*Derivative(a(t), t)",
+    "memory_q_target": "beta*(-m_c**2*N(t)*chi(t)**2/2 + Derivative(chi(t), t)**2/(2*N(t)))*a(t)**3*exp(-beta*Q(t)) + a(t)**3*Derivative(lambda(t), t) + 3*a(t)**2*lambda(t)*Derivative(a(t), t)",
+    "memory_residual": "0",
+    "memory_target": "Derivative(Q(t), t) - Derivative(a(t), t)/a(t)",
+    "mu": "1 - exp(-y)",
+    "primitive": "y**2 + (2*y + 2)*exp(-y) - 2",
+    "primitive_residual": "0",
+    "static": {
+      "conformal_equation": "-m*(-2*Derivative(Phi(x), (x, 2)) + 2*Derivative(Psi(x), (x, 2)))",
+      "conformal_equation_slip": "0",
+      "constitutive_law": "1 - exp(-Derivative(Phi(x), x)/a0)",
+      "coordinate": "x",
+      "density": "m*(-a0**2*((1 - u(x)**2)*(log(1 - u(x)**2)**2 - 2*log(1 - u(x)**2) + 2) - 2) + (1 - u(x)**2)*Derivative(Phi(x), x)**2 - 2*Derivative(Phi(x), x)*Derivative(Psi(x), x) + Derivative(Psi(x), x)**2) - Phi(x)*rho(x)",
+      "fields": {
+        "Phi": "Phi(x)",
+        "Psi": "Psi(x)",
+        "rho": "rho(x)",
+        "u": "u(x)"
+      },
+      "lapse_equation": "-m*(2*(1 - u(x)**2)*Derivative(Phi(x), (x, 2)) - 4*u(x)*Derivative(Phi(x), x)*Derivative(u(x), x) - 2*Derivative(Psi(x), (x, 2))) - rho(x)",
+      "lapse_equation_exponential_branch": "2*m*Derivative(Phi(x), (x, 2)) - 2*m*exp(-Derivative(Phi(x), x)/a0)*Derivative(Phi(x), (x, 2)) - rho(x) + 2*m*exp(-Derivative(Phi(x), x)/a0)*Derivative(Phi(x), x)*Derivative(Phi(x), (x, 2))/a0",
+      "lapse_equation_slip": "2*m*u(x)**2*Derivative(Phi(x), (x, 2)) + 4*m*u(x)*Derivative(Phi(x), x)*Derivative(u(x), x) - rho(x)",
+      "measured_G": "1/(8*pi*m)",
+      "mond_equation": "2*m*((1 - exp(-Derivative(Phi(x), x)/a0))*Derivative(Phi(x), (x, 2)) + exp(-Derivative(Phi(x), x)/a0)*Derivative(Phi(x), x)*Derivative(Phi(x), (x, 2))/a0) - rho(x)",
+      "mond_residual": "0",
+      "slip_residual": "0"
+    },
+    "symbols": {
+      "N": "N(t)",
+      "Q": "Q(t)",
+      "a": "a(t)",
+      "beta": "beta",
+      "chi_c": "chi(t)",
+      "lambda": "lambda(t)",
+      "m_c": "m_c",
+      "t": "t"
+    }
+  },
+  "calibration": {
+    "Q_cl": "log(17/10)",
+    "Q_gal": "log(3)",
+    "Q_rec": "0",
+    "beta_interval": "beta >= -log((31/125)**(1/log(3)))",
+    "beta_min": "-log((31/125)**(1/log(3)))",
+    "eta_ceiling": "31/125",
+    "eta_cl_at_beta_min": "(31/125)**(log(17/10)/log(3))",
+    "eta_gal_at_beta_min": "31/125",
+    "eta_rec_at_beta_min": "1",
+    "ordering_residual": "-31/125 + (31/125)**(log(17/10)/log(3))",
+    "source": "fable_independent_2026/L75_clock_winding_transmission.py"
+  },
+  "dirac": {
+    "k_nonzero": {
+      "absolute_winding_control": {
+        "epsilon_w": "epsilon_w",
+        "mode": "absolute_control",
+        "regular_point": {
+          "N": 1,
+          "a": 1,
+          "adot": 1,
+          "epsilon_w": 1,
+          "lambda": 1
+        },
+        "velocity_hessian": [
+          [
+            "-a*lambda/(N*sqrt(epsilon_w**2 + adot**2/(N**2*a**2))) + adot**2*lambda/(N**3*a*(epsilon_w**2 + adot**2/(N**2*a**2))**(3/2))",
+            "0"
+          ],
+          [
+            "0",
+            "0"
+          ]
+        ],
+        "velocity_hessian_rank": 1
+      },
+      "constraints": [
+        "p_N",
+        "p_lambda",
+        "-a**3*lambda + p_Q",
+        "-(12*Lambda*a**6*m**2 + 6*a**6*chi**2*m*m_c**2 - a**6*lambda**2 + 6*a**4*chi**2*k**2*m - 2*a**4*lambda*p_a - a**2*p_a**2 + 6*m*p_chi**2*exp(Q*beta))/(12*a**3*m)",
+        "N*a*(a**2*lambda + p_a)/(6*m)",
+        "N*(a**6*lambda**2 + a**4*lambda*p_a - beta*m*p_chi**2*exp(Q*beta))/(2*a**3*m)"
+      ],
+      "coordinates": [
+        "a",
+        "N",
+        "Q",
+        "lambda",
+        "chi"
+      ],
+      "first_class": 0,
+      "hamiltonian": "N*(12*Lambda*a**6*m**2 + 6*a**6*chi**2*m*m_c**2 - a**6*lambda**2 + 6*a**4*chi**2*k**2*m - 2*a**4*lambda*p_a - a**2*p_a**2 + 6*m*p_chi**2*exp(Q*beta))/(12*a**3*m)",
+      "mode": "k_nonzero",
+      "momenta": [
+        "p_a",
+        "p_N",
+        "p_Q",
+        "p_lambda",
+        "p_chi"
+      ],
+      "multiplier_solution": [
+        [
+          "-6*a**3*beta*m**2*p_chi**2*(-3*Lambda*N**2*a**3*lambda/2 - 3*N**2*a**3*chi**2*lambda*m_c**2/(4*m) - N**2*a**3*lambda**3/(8*m**2) - N**2*a*chi**2*k**2*lambda/(4*m) - N**2*a*lambda**2*p_a/(4*m**2) + N**2*beta*chi*m_c**2*p_chi*exp(Q*beta) - N**2*lambda*p_a**2/(8*a*m**2) + N**2*beta*chi*k**2*p_chi*exp(Q*beta)/a**2 - N**2*beta*lambda*p_chi**2*exp(Q*beta)/(4*a**3*m) + 3*N**2*lambda*p_chi**2*exp(Q*beta)/(4*a**3*m) - N**2*beta*p_a*p_chi**2*exp(Q*beta)/(4*a**5*m))*exp(Q*beta)/(3*a**12*lambda**4 + 9*a**10*lambda**3*p_a + 9*a**8*lambda**2*p_a**2 + a**6*beta**2*lambda**2*m*p_chi**2*exp(Q*beta) - 3*a**6*beta*lambda**2*m*p_chi**2*exp(Q*beta) + 3*a**6*lambda*p_a**3 + 2*a**4*beta**2*lambda*m*p_a*p_chi**2*exp(Q*beta) - 6*a**4*beta*lambda*m*p_a*p_chi**2*exp(Q*beta) + a**2*beta**2*m*p_a**2*p_chi**2*exp(Q*beta) - 3*a**2*beta*m*p_a**2*p_chi**2*exp(Q*beta) - 3*beta**2*m**2*p_chi**4*exp(2*Q*beta)) - (-Lambda*N**2*a**3/2 - N**2*a**3*chi**2*m_c**2/(4*m) - N**2*a**3*lambda**2/(24*m**2) - N**2*a*chi**2*k**2/(12*m) - N**2*a*lambda*p_a/(12*m**2) - N**2*p_a**2/(24*a*m**2) + N**2*p_chi**2*exp(Q*beta)/(4*a**3*m))*(18*a**9*lambda**3*m + 36*a**7*lambda**2*m*p_a + 18*a**5*lambda*m*p_a**2 + 6*a**3*beta**2*lambda*m**2*p_chi**2*exp(Q*beta) - 36*a**3*beta*lambda*m**2*p_chi**2*exp(Q*beta) + 6*a*beta**2*m**2*p_a*p_chi**2*exp(Q*beta) - 18*a*beta*m**2*p_a*p_chi**2*exp(Q*beta))/(3*a**12*lambda**4 + 9*a**10*lambda**3*p_a + 9*a**8*lambda**2*p_a**2 + a**6*beta**2*lambda**2*m*p_chi**2*exp(Q*beta) - 3*a**6*beta*lambda**2*m*p_chi**2*exp(Q*beta) + 3*a**6*lambda*p_a**3 + 2*a**4*beta**2*lambda*m*p_a*p_chi**2*exp(Q*beta) - 6*a**4*beta*lambda*m*p_a*p_chi**2*exp(Q*beta) + a**2*beta**2*m*p_a**2*p_chi**2*exp(Q*beta) - 3*a**2*beta*m*p_a**2*p_chi**2*exp(Q*beta) - 3*beta**2*m**2*p_chi**4*exp(2*Q*beta))"
+        ],
+        [
+          "-(6*a**9*lambda**3*m + 12*a**7*lambda**2*m*p_a + 6*a**5*lambda*m*p_a**2 - 6*a**3*beta*lambda*m**2*p_chi**2*exp(Q*beta) - 6*a*beta*m**2*p_a*p_chi**2*exp(Q*beta))*(-3*Lambda*N**2*a**3*lambda/2 - 3*N**2*a**3*chi**2*lambda*m_c**2/(4*m) - N**2*a**3*lambda**3/(8*m**2) - N**2*a*chi**2*k**2*lambda/(4*m) - N**2*a*lambda**2*p_a/(4*m**2) + N**2*beta*chi*m_c**2*p_chi*exp(Q*beta) - N**2*lambda*p_a**2/(8*a*m**2) + N**2*beta*chi*k**2*p_chi*exp(Q*beta)/a**2 - N**2*beta*lambda*p_chi**2*exp(Q*beta)/(4*a**3*m) + 3*N**2*lambda*p_chi**2*exp(Q*beta)/(4*a**3*m) - N**2*beta*p_a*p_chi**2*exp(Q*beta)/(4*a**5*m))/(3*N*a**12*lambda**4 + 9*N*a**10*lambda**3*p_a + 9*N*a**8*lambda**2*p_a**2 + N*a**6*beta**2*lambda**2*m*p_chi**2*exp(Q*beta) - 3*N*a**6*beta*lambda**2*m*p_chi**2*exp(Q*beta) + 3*N*a**6*lambda*p_a**3 + 2*N*a**4*beta**2*lambda*m*p_a*p_chi**2*exp(Q*beta) - 6*N*a**4*beta*lambda*m*p_a*p_chi**2*exp(Q*beta) + N*a**2*beta**2*m*p_a**2*p_chi**2*exp(Q*beta) - 3*N*a**2*beta*m*p_a**2*p_chi**2*exp(Q*beta) - 3*N*beta**2*m**2*p_chi**4*exp(2*Q*beta)) - (-18*a**12*lambda**4*m - 36*a**10*lambda**3*m*p_a - 18*a**8*lambda**2*m*p_a**2 + 36*a**6*beta*lambda**2*m**2*p_chi**2*exp(Q*beta) + 36*a**4*beta*lambda*m**2*p_a*p_chi**2*exp(Q*beta) - 18*beta**2*m**3*p_chi**4*exp(2*Q*beta))*(-Lambda*N**2*a**3/2 - N**2*a**3*chi**2*m_c**2/(4*m) - N**2*a**3*lambda**2/(24*m**2) - N**2*a*chi**2*k**2/(12*m) - N**2*a*lambda*p_a/(12*m**2) - N**2*p_a**2/(24*a*m**2) + N**2*p_chi**2*exp(Q*beta)/(4*a**3*m))/(3*N*a**15*lambda**4 + 9*N*a**13*lambda**3*p_a + 9*N*a**11*lambda**2*p_a**2 + N*a**9*beta**2*lambda**2*m*p_chi**2*exp(Q*beta) - 3*N*a**9*beta*lambda**2*m*p_chi**2*exp(Q*beta) + 3*N*a**9*lambda*p_a**3 + 2*N*a**7*beta**2*lambda*m*p_a*p_chi**2*exp(Q*beta) - 6*N*a**7*beta*lambda*m*p_a*p_chi**2*exp(Q*beta) + N*a**5*beta**2*m*p_a**2*p_chi**2*exp(Q*beta) - 3*N*a**5*beta*m*p_a**2*p_chi**2*exp(Q*beta) - 3*N*a**3*beta**2*m**2*p_chi**4*exp(2*Q*beta))"
+        ],
+        [
+          "-(-2*a**9*lambda**2*m - 4*a**7*lambda*m*p_a - 2*a**5*m*p_a**2)*(-3*Lambda*N**2*a**3*lambda/2 - 3*N**2*a**3*chi**2*lambda*m_c**2/(4*m) - N**2*a**3*lambda**3/(8*m**2) - N**2*a*chi**2*k**2*lambda/(4*m) - N**2*a*lambda**2*p_a/(4*m**2) + N**2*beta*chi*m_c**2*p_chi*exp(Q*beta) - N**2*lambda*p_a**2/(8*a*m**2) + N**2*beta*chi*k**2*p_chi*exp(Q*beta)/a**2 - N**2*beta*lambda*p_chi**2*exp(Q*beta)/(4*a**3*m) + 3*N**2*lambda*p_chi**2*exp(Q*beta)/(4*a**3*m) - N**2*beta*p_a*p_chi**2*exp(Q*beta)/(4*a**5*m))/(3*N*a**12*lambda**4 + 9*N*a**10*lambda**3*p_a + 9*N*a**8*lambda**2*p_a**2 + N*a**6*beta**2*lambda**2*m*p_chi**2*exp(Q*beta) - 3*N*a**6*beta*lambda**2*m*p_chi**2*exp(Q*beta) + 3*N*a**6*lambda*p_a**3 + 2*N*a**4*beta**2*lambda*m*p_a*p_chi**2*exp(Q*beta) - 6*N*a**4*beta*lambda*m*p_a*p_chi**2*exp(Q*beta) + N*a**2*beta**2*m*p_a**2*p_chi**2*exp(Q*beta) - 3*N*a**2*beta*m*p_a**2*p_chi**2*exp(Q*beta) - 3*N*beta**2*m**2*p_chi**4*exp(2*Q*beta)) - (6*a**9*lambda**3*m + 12*a**7*lambda**2*m*p_a + 6*a**5*lambda*m*p_a**2 - 6*a**3*beta*lambda*m**2*p_chi**2*exp(Q*beta) - 6*a*beta*m**2*p_a*p_chi**2*exp(Q*beta))*(-Lambda*N**2*a**3/2 - N**2*a**3*chi**2*m_c**2/(4*m) - N**2*a**3*lambda**2/(24*m**2) - N**2*a*chi**2*k**2/(12*m) - N**2*a*lambda*p_a/(12*m**2) - N**2*p_a**2/(24*a*m**2) + N**2*p_chi**2*exp(Q*beta)/(4*a**3*m))/(3*N*a**12*lambda**4 + 9*N*a**10*lambda**3*p_a + 9*N*a**8*lambda**2*p_a**2 + N*a**6*beta**2*lambda**2*m*p_chi**2*exp(Q*beta) - 3*N*a**6*beta*lambda**2*m*p_chi**2*exp(Q*beta) + 3*N*a**6*lambda*p_a**3 + 2*N*a**4*beta**2*lambda*m*p_a*p_chi**2*exp(Q*beta) - 6*N*a**4*beta*lambda*m*p_a*p_chi**2*exp(Q*beta) + N*a**2*beta**2*m*p_a**2*p_chi**2*exp(Q*beta) - 3*N*a**2*beta*m*p_a**2*p_chi**2*exp(Q*beta) - 3*N*beta**2*m**2*p_chi**4*exp(2*Q*beta))"
+        ]
+      ],
+      "parameters": {
+        "Lambda": "Lambda",
+        "beta": "beta",
+        "k": "k",
+        "m": "m",
+        "m_c": "m_c"
+      },
+      "phase_space_dimension": 4,
+      "poisson_matrix": [
+        [
+          "0",
+          "0",
+          "0",
+          "0",
+          "-a*(a**2*lambda + p_a)/(6*m)",
+          "-(a**6*lambda**2 + a**4*lambda*p_a - beta*m*p_chi**2*exp(Q*beta))/(2*a**3*m)"
+        ],
+        [
+          "0",
+          "0",
+          "a**3",
+          "-a*(a**2*lambda + p_a)/(6*m)",
+          "-N*a**3/(6*m)",
+          "-N*a*(2*a**2*lambda + p_a)/(2*m)"
+        ],
+        [
+          "0",
+          "-a**3",
+          "0",
+          "-(a**6*lambda**2 + a**4*lambda*p_a - beta*m*p_chi**2*exp(Q*beta))/(2*a**3*m)",
+          "-N*a**3*lambda/(2*m)",
+          "-N*(3*a**6*lambda**2 - beta**2*m*p_chi**2*exp(Q*beta))/(2*a**3*m)"
+        ],
+        [
+          "0",
+          "a*(a**2*lambda + p_a)/(6*m)",
+          "(a**6*lambda**2 + a**4*lambda*p_a - beta*m*p_chi**2*exp(Q*beta))/(2*a**3*m)",
+          "0",
+          "-N*(12*Lambda*a**6*m**2 + 6*a**6*chi**2*m*m_c**2 + a**6*lambda**2 + 2*a**4*chi**2*k**2*m + 2*a**4*lambda*p_a + a**2*p_a**2 - 6*m*p_chi**2*exp(Q*beta))/(24*a**3*m**2)",
+          "-N*(12*Lambda*a**8*lambda*m**2 + 6*a**8*chi**2*lambda*m*m_c**2 + a**8*lambda**3 + 2*a**6*chi**2*k**2*lambda*m + 2*a**6*lambda**2*p_a - 8*a**5*beta*chi*m**2*m_c**2*p_chi*exp(Q*beta) + a**4*lambda*p_a**2 - 8*a**3*beta*chi*k**2*m**2*p_chi*exp(Q*beta) + 2*a**2*beta*lambda*m*p_chi**2*exp(Q*beta) - 6*a**2*lambda*m*p_chi**2*exp(Q*beta) + 2*beta*m*p_a*p_chi**2*exp(Q*beta))/(8*a**5*m**2)"
+        ],
+        [
+          "a*(a**2*lambda + p_a)/(6*m)",
+          "N*a**3/(6*m)",
+          "N*a**3*lambda/(2*m)",
+          "N*(12*Lambda*a**6*m**2 + 6*a**6*chi**2*m*m_c**2 + a**6*lambda**2 + 2*a**4*chi**2*k**2*m + 2*a**4*lambda*p_a + a**2*p_a**2 - 6*m*p_chi**2*exp(Q*beta))/(24*a**3*m**2)",
+          "0",
+          "-N**2*beta*p_chi**2*exp(Q*beta)/(4*a**3*m)"
+        ],
+        [
+          "(a**6*lambda**2 + a**4*lambda*p_a - beta*m*p_chi**2*exp(Q*beta))/(2*a**3*m)",
+          "N*a*(2*a**2*lambda + p_a)/(2*m)",
+          "N*(3*a**6*lambda**2 - beta**2*m*p_chi**2*exp(Q*beta))/(2*a**3*m)",
+          "N*(12*Lambda*a**8*lambda*m**2 + 6*a**8*chi**2*lambda*m*m_c**2 + a**8*lambda**3 + 2*a**6*chi**2*k**2*lambda*m + 2*a**6*lambda**2*p_a - 8*a**5*beta*chi*m**2*m_c**2*p_chi*exp(Q*beta) + a**4*lambda*p_a**2 - 8*a**3*beta*chi*k**2*m**2*p_chi*exp(Q*beta) + 2*a**2*beta*lambda*m*p_chi**2*exp(Q*beta) - 6*a**2*lambda*m*p_chi**2*exp(Q*beta) + 2*beta*m*p_a*p_chi**2*exp(Q*beta))/(8*a**5*m**2)",
+          "N**2*beta*p_chi**2*exp(Q*beta)/(4*a**3*m)",
+          "0"
+        ]
+      ],
+      "preservation_drift": [
+        [
+          "0"
+        ],
+        [
+          "-Lambda*N**2*a**3/2 - N**2*a**3*chi**2*m_c**2/(4*m) - N**2*a**3*lambda**2/(24*m**2) - N**2*a*chi**2*k**2/(12*m) - N**2*a*lambda*p_a/(12*m**2) - N**2*p_a**2/(24*a*m**2) + N**2*p_chi**2*exp(Q*beta)/(4*a**3*m)"
+        ],
+        [
+          "-3*Lambda*N**2*a**3*lambda/2 - 3*N**2*a**3*chi**2*lambda*m_c**2/(4*m) - N**2*a**3*lambda**3/(8*m**2) - N**2*a*chi**2*k**2*lambda/(4*m) - N**2*a*lambda**2*p_a/(4*m**2) + N**2*beta*chi*m_c**2*p_chi*exp(Q*beta) - N**2*lambda*p_a**2/(8*a*m**2) + N**2*beta*chi*k**2*p_chi*exp(Q*beta)/a**2 - N**2*beta*lambda*p_chi**2*exp(Q*beta)/(4*a**3*m) + 3*N**2*lambda*p_chi**2*exp(Q*beta)/(4*a**3*m) - N**2*beta*p_a*p_chi**2*exp(Q*beta)/(4*a**5*m)"
+        ]
+      ],
+      "preservation_matrix": [
+        [
+          "0",
+          "a**3*lambda/(6*m) + a*p_a/(6*m)",
+          "a**3*lambda**2/(2*m) + a*lambda*p_a/(2*m) - beta*p_chi**2*exp(Q*beta)/(2*a**3)"
+        ],
+        [
+          "a**3*lambda/(6*m) + a*p_a/(6*m)",
+          "N*a**3/(6*m)",
+          "N*a**3*lambda/(2*m)"
+        ],
+        [
+          "a**3*lambda**2/(2*m) + a*lambda*p_a/(2*m) - beta*p_chi**2*exp(Q*beta)/(2*a**3)",
+          "N*a**3*lambda/m + N*a*p_a/(2*m)",
+          "3*N*a**3*lambda**2/(2*m) - N*beta**2*p_chi**2*exp(Q*beta)/(2*a**3)"
+        ]
+      ],
+      "preservation_residuals": [
+        "0",
+        "0",
+        "0"
+      ],
+      "primary_constraints": [
+        "p_N",
+        "p_lambda",
+        "-a**3*lambda + p_Q"
+      ],
+      "primary_names": [
+        "p_N",
+        "p_lambda",
+        "C_Q"
+      ],
+      "rank": 6,
+      "second_class": 6,
+      "secondary_constraints": [
+        "-(12*Lambda*a**6*m**2 + 6*a**6*chi**2*m*m_c**2 - a**6*lambda**2 + 6*a**4*chi**2*k**2*m - 2*a**4*lambda*p_a - a**2*p_a**2 + 6*m*p_chi**2*exp(Q*beta))/(12*a**3*m)",
+        "N*a*(a**2*lambda + p_a)/(6*m)",
+        "N*(a**6*lambda**2 + a**4*lambda*p_a - beta*m*p_chi**2*exp(Q*beta))/(2*a**3*m)"
+      ],
+      "secondary_names": [
+        "C_N",
+        "C_lambda",
+        "C_Qadjoint"
+      ]
+    },
+    "k_zero": {
+      "absolute_winding_control": {
+        "epsilon_w": "epsilon_w",
+        "mode": "absolute_control",
+        "regular_point": {
+          "N": 1,
+          "a": 1,
+          "adot": 1,
+          "epsilon_w": 1,
+          "lambda": 1
+        },
+        "velocity_hessian": [
+          [
+            "-a*lambda/(N*sqrt(epsilon_w**2 + adot**2/(N**2*a**2))) + adot**2*lambda/(N**3*a*(epsilon_w**2 + adot**2/(N**2*a**2))**(3/2))",
+            "0"
+          ],
+          [
+            "0",
+            "0"
+          ]
+        ],
+        "velocity_hessian_rank": 1
+      },
+      "constraints": [
+        "p_N",
+        "p_lambda",
+        "-a**3*lambda + p_Q",
+        "-(12*Lambda*a**6*m**2 + 6*a**6*chi**2*m*m_c**2 - a**6*lambda**2 - 2*a**4*lambda*p_a - a**2*p_a**2 + 6*m*p_chi**2*exp(Q*beta))/(12*a**3*m)",
+        "N*a*(a**2*lambda + p_a)/(6*m)",
+        "N*(a**6*lambda**2 + a**4*lambda*p_a - beta*m*p_chi**2*exp(Q*beta))/(2*a**3*m)"
+      ],
+      "coordinates": [
+        "a",
+        "N",
+        "Q",
+        "lambda",
+        "chi"
+      ],
+      "first_class": 0,
+      "hamiltonian": "N*(12*Lambda*a**6*m**2 + 6*a**6*chi**2*m*m_c**2 - a**6*lambda**2 - 2*a**4*lambda*p_a - a**2*p_a**2 + 6*m*p_chi**2*exp(Q*beta))/(12*a**3*m)",
+      "mode": "k_zero",
+      "momenta": [
+        "p_a",
+        "p_N",
+        "p_Q",
+        "p_lambda",
+        "p_chi"
+      ],
+      "multiplier_solution": [
+        [
+          "-6*a**3*beta*m**2*p_chi**2*(-3*Lambda*N**2*a**3*lambda/2 - 3*N**2*a**3*chi**2*lambda*m_c**2/(4*m) - N**2*a**3*lambda**3/(8*m**2) - N**2*a*lambda**2*p_a/(4*m**2) + N**2*beta*chi*m_c**2*p_chi*exp(Q*beta) - N**2*lambda*p_a**2/(8*a*m**2) - N**2*beta*lambda*p_chi**2*exp(Q*beta)/(4*a**3*m) + 3*N**2*lambda*p_chi**2*exp(Q*beta)/(4*a**3*m) - N**2*beta*p_a*p_chi**2*exp(Q*beta)/(4*a**5*m))*exp(Q*beta)/(3*a**12*lambda**4 + 9*a**10*lambda**3*p_a + 9*a**8*lambda**2*p_a**2 + a**6*beta**2*lambda**2*m*p_chi**2*exp(Q*beta) - 3*a**6*beta*lambda**2*m*p_chi**2*exp(Q*beta) + 3*a**6*lambda*p_a**3 + 2*a**4*beta**2*lambda*m*p_a*p_chi**2*exp(Q*beta) - 6*a**4*beta*lambda*m*p_a*p_chi**2*exp(Q*beta) + a**2*beta**2*m*p_a**2*p_chi**2*exp(Q*beta) - 3*a**2*beta*m*p_a**2*p_chi**2*exp(Q*beta) - 3*beta**2*m**2*p_chi**4*exp(2*Q*beta)) - (-Lambda*N**2*a**3/2 - N**2*a**3*chi**2*m_c**2/(4*m) - N**2*a**3*lambda**2/(24*m**2) - N**2*a*lambda*p_a/(12*m**2) - N**2*p_a**2/(24*a*m**2) + N**2*p_chi**2*exp(Q*beta)/(4*a**3*m))*(18*a**9*lambda**3*m + 36*a**7*lambda**2*m*p_a + 18*a**5*lambda*m*p_a**2 + 6*a**3*beta**2*lambda*m**2*p_chi**2*exp(Q*beta) - 36*a**3*beta*lambda*m**2*p_chi**2*exp(Q*beta) + 6*a*beta**2*m**2*p_a*p_chi**2*exp(Q*beta) - 18*a*beta*m**2*p_a*p_chi**2*exp(Q*beta))/(3*a**12*lambda**4 + 9*a**10*lambda**3*p_a + 9*a**8*lambda**2*p_a**2 + a**6*beta**2*lambda**2*m*p_chi**2*exp(Q*beta) - 3*a**6*beta*lambda**2*m*p_chi**2*exp(Q*beta) + 3*a**6*lambda*p_a**3 + 2*a**4*beta**2*lambda*m*p_a*p_chi**2*exp(Q*beta) - 6*a**4*beta*lambda*m*p_a*p_chi**2*exp(Q*beta) + a**2*beta**2*m*p_a**2*p_chi**2*exp(Q*beta) - 3*a**2*beta*m*p_a**2*p_chi**2*exp(Q*beta) - 3*beta**2*m**2*p_chi**4*exp(2*Q*beta))"
+        ],
+        [
+          "-(6*a**9*lambda**3*m + 12*a**7*lambda**2*m*p_a + 6*a**5*lambda*m*p_a**2 - 6*a**3*beta*lambda*m**2*p_chi**2*exp(Q*beta) - 6*a*beta*m**2*p_a*p_chi**2*exp(Q*beta))*(-3*Lambda*N**2*a**3*lambda/2 - 3*N**2*a**3*chi**2*lambda*m_c**2/(4*m) - N**2*a**3*lambda**3/(8*m**2) - N**2*a*lambda**2*p_a/(4*m**2) + N**2*beta*chi*m_c**2*p_chi*exp(Q*beta) - N**2*lambda*p_a**2/(8*a*m**2) - N**2*beta*lambda*p_chi**2*exp(Q*beta)/(4*a**3*m) + 3*N**2*lambda*p_chi**2*exp(Q*beta)/(4*a**3*m) - N**2*beta*p_a*p_chi**2*exp(Q*beta)/(4*a**5*m))/(3*N*a**12*lambda**4 + 9*N*a**10*lambda**3*p_a + 9*N*a**8*lambda**2*p_a**2 + N*a**6*beta**2*lambda**2*m*p_chi**2*exp(Q*beta) - 3*N*a**6*beta*lambda**2*m*p_chi**2*exp(Q*beta) + 3*N*a**6*lambda*p_a**3 + 2*N*a**4*beta**2*lambda*m*p_a*p_chi**2*exp(Q*beta) - 6*N*a**4*beta*lambda*m*p_a*p_chi**2*exp(Q*beta) + N*a**2*beta**2*m*p_a**2*p_chi**2*exp(Q*beta) - 3*N*a**2*beta*m*p_a**2*p_chi**2*exp(Q*beta) - 3*N*beta**2*m**2*p_chi**4*exp(2*Q*beta)) - (-Lambda*N**2*a**3/2 - N**2*a**3*chi**2*m_c**2/(4*m) - N**2*a**3*lambda**2/(24*m**2) - N**2*a*lambda*p_a/(12*m**2) - N**2*p_a**2/(24*a*m**2) + N**2*p_chi**2*exp(Q*beta)/(4*a**3*m))*(-18*a**12*lambda**4*m - 36*a**10*lambda**3*m*p_a - 18*a**8*lambda**2*m*p_a**2 + 36*a**6*beta*lambda**2*m**2*p_chi**2*exp(Q*beta) + 36*a**4*beta*lambda*m**2*p_a*p_chi**2*exp(Q*beta) - 18*beta**2*m**3*p_chi**4*exp(2*Q*beta))/(3*N*a**15*lambda**4 + 9*N*a**13*lambda**3*p_a + 9*N*a**11*lambda**2*p_a**2 + N*a**9*beta**2*lambda**2*m*p_chi**2*exp(Q*beta) - 3*N*a**9*beta*lambda**2*m*p_chi**2*exp(Q*beta) + 3*N*a**9*lambda*p_a**3 + 2*N*a**7*beta**2*lambda*m*p_a*p_chi**2*exp(Q*beta) - 6*N*a**7*beta*lambda*m*p_a*p_chi**2*exp(Q*beta) + N*a**5*beta**2*m*p_a**2*p_chi**2*exp(Q*beta) - 3*N*a**5*beta*m*p_a**2*p_chi**2*exp(Q*beta) - 3*N*a**3*beta**2*m**2*p_chi**4*exp(2*Q*beta))"
+        ],
+        [
+          "-(-2*a**9*lambda**2*m - 4*a**7*lambda*m*p_a - 2*a**5*m*p_a**2)*(-3*Lambda*N**2*a**3*lambda/2 - 3*N**2*a**3*chi**2*lambda*m_c**2/(4*m) - N**2*a**3*lambda**3/(8*m**2) - N**2*a*lambda**2*p_a/(4*m**2) + N**2*beta*chi*m_c**2*p_chi*exp(Q*beta) - N**2*lambda*p_a**2/(8*a*m**2) - N**2*beta*lambda*p_chi**2*exp(Q*beta)/(4*a**3*m) + 3*N**2*lambda*p_chi**2*exp(Q*beta)/(4*a**3*m) - N**2*beta*p_a*p_chi**2*exp(Q*beta)/(4*a**5*m))/(3*N*a**12*lambda**4 + 9*N*a**10*lambda**3*p_a + 9*N*a**8*lambda**2*p_a**2 + N*a**6*beta**2*lambda**2*m*p_chi**2*exp(Q*beta) - 3*N*a**6*beta*lambda**2*m*p_chi**2*exp(Q*beta) + 3*N*a**6*lambda*p_a**3 + 2*N*a**4*beta**2*lambda*m*p_a*p_chi**2*exp(Q*beta) - 6*N*a**4*beta*lambda*m*p_a*p_chi**2*exp(Q*beta) + N*a**2*beta**2*m*p_a**2*p_chi**2*exp(Q*beta) - 3*N*a**2*beta*m*p_a**2*p_chi**2*exp(Q*beta) - 3*N*beta**2*m**2*p_chi**4*exp(2*Q*beta)) - (6*a**9*lambda**3*m + 12*a**7*lambda**2*m*p_a + 6*a**5*lambda*m*p_a**2 - 6*a**3*beta*lambda*m**2*p_chi**2*exp(Q*beta) - 6*a*beta*m**2*p_a*p_chi**2*exp(Q*beta))*(-Lambda*N**2*a**3/2 - N**2*a**3*chi**2*m_c**2/(4*m) - N**2*a**3*lambda**2/(24*m**2) - N**2*a*lambda*p_a/(12*m**2) - N**2*p_a**2/(24*a*m**2) + N**2*p_chi**2*exp(Q*beta)/(4*a**3*m))/(3*N*a**12*lambda**4 + 9*N*a**10*lambda**3*p_a + 9*N*a**8*lambda**2*p_a**2 + N*a**6*beta**2*lambda**2*m*p_chi**2*exp(Q*beta) - 3*N*a**6*beta*lambda**2*m*p_chi**2*exp(Q*beta) + 3*N*a**6*lambda*p_a**3 + 2*N*a**4*beta**2*lambda*m*p_a*p_chi**2*exp(Q*beta) - 6*N*a**4*beta*lambda*m*p_a*p_chi**2*exp(Q*beta) + N*a**2*beta**2*m*p_a**2*p_chi**2*exp(Q*beta) - 3*N*a**2*beta*m*p_a**2*p_chi**2*exp(Q*beta) - 3*N*beta**2*m**2*p_chi**4*exp(2*Q*beta))"
+        ]
+      ],
+      "parameters": {
+        "Lambda": "Lambda",
+        "beta": "beta",
+        "k": "k",
+        "m": "m",
+        "m_c": "m_c"
+      },
+      "phase_space_dimension": 4,
+      "poisson_matrix": [
+        [
+          "0",
+          "0",
+          "0",
+          "0",
+          "-a*(a**2*lambda + p_a)/(6*m)",
+          "-(a**6*lambda**2 + a**4*lambda*p_a - beta*m*p_chi**2*exp(Q*beta))/(2*a**3*m)"
+        ],
+        [
+          "0",
+          "0",
+          "a**3",
+          "-a*(a**2*lambda + p_a)/(6*m)",
+          "-N*a**3/(6*m)",
+          "-N*a*(2*a**2*lambda + p_a)/(2*m)"
+        ],
+        [
+          "0",
+          "-a**3",
+          "0",
+          "-(a**6*lambda**2 + a**4*lambda*p_a - beta*m*p_chi**2*exp(Q*beta))/(2*a**3*m)",
+          "-N*a**3*lambda/(2*m)",
+          "-N*(3*a**6*lambda**2 - beta**2*m*p_chi**2*exp(Q*beta))/(2*a**3*m)"
+        ],
+        [
+          "0",
+          "a*(a**2*lambda + p_a)/(6*m)",
+          "(a**6*lambda**2 + a**4*lambda*p_a - beta*m*p_chi**2*exp(Q*beta))/(2*a**3*m)",
+          "0",
+          "-N*(12*Lambda*a**6*m**2 + 6*a**6*chi**2*m*m_c**2 + a**6*lambda**2 + 2*a**4*lambda*p_a + a**2*p_a**2 - 6*m*p_chi**2*exp(Q*beta))/(24*a**3*m**2)",
+          "-N*(12*Lambda*a**8*lambda*m**2 + 6*a**8*chi**2*lambda*m*m_c**2 + a**8*lambda**3 + 2*a**6*lambda**2*p_a - 8*a**5*beta*chi*m**2*m_c**2*p_chi*exp(Q*beta) + a**4*lambda*p_a**2 + 2*a**2*beta*lambda*m*p_chi**2*exp(Q*beta) - 6*a**2*lambda*m*p_chi**2*exp(Q*beta) + 2*beta*m*p_a*p_chi**2*exp(Q*beta))/(8*a**5*m**2)"
+        ],
+        [
+          "a*(a**2*lambda + p_a)/(6*m)",
+          "N*a**3/(6*m)",
+          "N*a**3*lambda/(2*m)",
+          "N*(12*Lambda*a**6*m**2 + 6*a**6*chi**2*m*m_c**2 + a**6*lambda**2 + 2*a**4*lambda*p_a + a**2*p_a**2 - 6*m*p_chi**2*exp(Q*beta))/(24*a**3*m**2)",
+          "0",
+          "-N**2*beta*p_chi**2*exp(Q*beta)/(4*a**3*m)"
+        ],
+        [
+          "(a**6*lambda**2 + a**4*lambda*p_a - beta*m*p_chi**2*exp(Q*beta))/(2*a**3*m)",
+          "N*a*(2*a**2*lambda + p_a)/(2*m)",
+          "N*(3*a**6*lambda**2 - beta**2*m*p_chi**2*exp(Q*beta))/(2*a**3*m)",
+          "N*(12*Lambda*a**8*lambda*m**2 + 6*a**8*chi**2*lambda*m*m_c**2 + a**8*lambda**3 + 2*a**6*lambda**2*p_a - 8*a**5*beta*chi*m**2*m_c**2*p_chi*exp(Q*beta) + a**4*lambda*p_a**2 + 2*a**2*beta*lambda*m*p_chi**2*exp(Q*beta) - 6*a**2*lambda*m*p_chi**2*exp(Q*beta) + 2*beta*m*p_a*p_chi**2*exp(Q*beta))/(8*a**5*m**2)",
+          "N**2*beta*p_chi**2*exp(Q*beta)/(4*a**3*m)",
+          "0"
+        ]
+      ],
+      "preservation_drift": [
+        [
+          "0"
+        ],
+        [
+          "-Lambda*N**2*a**3/2 - N**2*a**3*chi**2*m_c**2/(4*m) - N**2*a**3*lambda**2/(24*m**2) - N**2*a*lambda*p_a/(12*m**2) - N**2*p_a**2/(24*a*m**2) + N**2*p_chi**2*exp(Q*beta)/(4*a**3*m)"
+        ],
+        [
+          "-3*Lambda*N**2*a**3*lambda/2 - 3*N**2*a**3*chi**2*lambda*m_c**2/(4*m) - N**2*a**3*lambda**3/(8*m**2) - N**2*a*lambda**2*p_a/(4*m**2) + N**2*beta*chi*m_c**2*p_chi*exp(Q*beta) - N**2*lambda*p_a**2/(8*a*m**2) - N**2*beta*lambda*p_chi**2*exp(Q*beta)/(4*a**3*m) + 3*N**2*lambda*p_chi**2*exp(Q*beta)/(4*a**3*m) - N**2*beta*p_a*p_chi**2*exp(Q*beta)/(4*a**5*m)"
+        ]
+      ],
+      "preservation_matrix": [
+        [
+          "0",
+          "a**3*lambda/(6*m) + a*p_a/(6*m)",
+          "a**3*lambda**2/(2*m) + a*lambda*p_a/(2*m) - beta*p_chi**2*exp(Q*beta)/(2*a**3)"
+        ],
+        [
+          "a**3*lambda/(6*m) + a*p_a/(6*m)",
+          "N*a**3/(6*m)",
+          "N*a**3*lambda/(2*m)"
+        ],
+        [
+          "a**3*lambda**2/(2*m) + a*lambda*p_a/(2*m) - beta*p_chi**2*exp(Q*beta)/(2*a**3)",
+          "N*a**3*lambda/m + N*a*p_a/(2*m)",
+          "3*N*a**3*lambda**2/(2*m) - N*beta**2*p_chi**2*exp(Q*beta)/(2*a**3)"
+        ]
+      ],
+      "preservation_residuals": [
+        "0",
+        "0",
+        "0"
+      ],
+      "primary_constraints": [
+        "p_N",
+        "p_lambda",
+        "-a**3*lambda + p_Q"
+      ],
+      "primary_names": [
+        "p_N",
+        "p_lambda",
+        "C_Q"
+      ],
+      "rank": 6,
+      "second_class": 6,
+      "secondary_constraints": [
+        "-(12*Lambda*a**6*m**2 + 6*a**6*chi**2*m*m_c**2 - a**6*lambda**2 - 2*a**4*lambda*p_a - a**2*p_a**2 + 6*m*p_chi**2*exp(Q*beta))/(12*a**3*m)",
+        "N*a*(a**2*lambda + p_a)/(6*m)",
+        "N*(a**6*lambda**2 + a**4*lambda*p_a - beta*m*p_chi**2*exp(Q*beta))/(2*a**3*m)"
+      ],
+      "secondary_names": [
+        "C_N",
+        "C_lambda",
+        "C_Qadjoint"
+      ]
+    }
+  },
+  "flrw": {
+    "Lambda": "Lambda",
+    "beta": "beta",
+    "cold_kinetic_coefficient": "exp(-beta)/2",
+    "cold_scalar_equation": "-beta*a_f(t)**3*exp(-beta*Q_f(t))*Derivative(Q_f(t), t)*Derivative(chi_f(t), t)/N_f(t) + m_c**2*N_f(t)*a_f(t)**3*chi_f(t)*exp(-beta*Q_f(t)) + a_f(t)**3*exp(-beta*Q_f(t))*Derivative(chi_f(t), (t, 2))/N_f(t) + 3*a_f(t)**2*exp(-beta*Q_f(t))*Derivative(a_f(t), t)*Derivative(chi_f(t), t)/N_f(t) - a_f(t)**3*exp(-beta*Q_f(t))*Derivative(N_f(t), t)*Derivative(chi_f(t), t)/N_f(t)**2",
+    "expanding_solution": {
+      "H": "sqrt(3)*sqrt(Lambda)/3",
+      "N": "1",
+      "Q": "sqrt(3)*sqrt(Lambda)*t/3 + Q0",
+      "a": "a_ref*exp(sqrt(3)*sqrt(Lambda)*t/3 + Q0)",
+      "chi_c": "0",
+      "equation_residuals": {
+        "cold_scalar": "0",
+        "lapse": "0",
+        "memory": "0",
+        "multiplier": "0",
+        "scale": "0"
+      },
+      "lambda": "lambda0*exp(-sqrt(3)*sqrt(Lambda)*t)"
+    },
+    "lagrangian": "-Lambda*m*N_f(t)*a_f(t)**3 - 3*m*a_f(t)*Derivative(a_f(t), t)**2/N_f(t) + (-m_c**2*N_f(t)*chi_f(t)**2/2 + Derivative(chi_f(t), t)**2/(2*N_f(t)))*a_f(t)**3*exp(-beta*Q_f(t)) + (Derivative(Q_f(t), t) - Derivative(a_f(t), t)/a_f(t))*a_f(t)**3*lambda_f(t)",
+    "lapse_equation": "-Lambda*m*a_f(t)**3 + 3*m*a_f(t)*Derivative(a_f(t), t)**2/N_f(t)**2 - m_c**2*a_f(t)**3*chi_f(t)**2*exp(-beta*Q_f(t))/2 - a_f(t)**3*exp(-beta*Q_f(t))*Derivative(chi_f(t), t)**2/(2*N_f(t)**2)",
+    "m": "m",
+    "m_c": "m_c",
+    "memory_equation": "(-beta*m_c**2*N_f(t)**2*a_f(t)*chi_f(t)**2 + beta*a_f(t)*Derivative(chi_f(t), t)**2 + 2*(a_f(t)*Derivative(lambda_f(t), t) + 3*lambda_f(t)*Derivative(a_f(t), t))*N_f(t)*exp(beta*Q_f(t)))*a_f(t)**2*exp(-beta*Q_f(t))/(2*N_f(t))",
+    "memory_integral_residual": "0",
+    "multiplier_equation": "(a_f(t)*Derivative(Q_f(t), t) - Derivative(a_f(t), t))*a_f(t)**2",
+    "scale_equation": "3*Lambda*m*N_f(t)*a_f(t)**2 - 6*m*a_f(t)*Derivative(a_f(t), (t, 2))/N_f(t) - 3*m*Derivative(a_f(t), t)**2/N_f(t) + 6*m*a_f(t)*Derivative(N_f(t), t)*Derivative(a_f(t), t)/N_f(t)**2 + 3*m_c**2*N_f(t)*a_f(t)**2*chi_f(t)**2*exp(-beta*Q_f(t))/2 - 3*a_f(t)**2*lambda_f(t)*Derivative(Q_f(t), t) - a_f(t)**2*Derivative(lambda_f(t), t) - 3*a_f(t)**2*exp(-beta*Q_f(t))*Derivative(chi_f(t), t)**2/(2*N_f(t))",
+    "time": "t"
+  },
+  "implemented_gates": [
+    "action_variation",
+    "static_exponential_branch",
+    "homogeneous_Dirac_chain",
+    "weak_field_Ward_representative",
+    "expanding_FLRW_branch",
+    "assembly_history_calibration"
+  ],
+  "non_claims": {
+    "Lean_compilation": true,
+    "PPN_certification": true,
+    "full_closure": true,
+    "stability_certification": true
+  },
+  "open_gates": [
+    "full_ADM_DOF",
+    "PPN_alpha",
+    "nonlinear_stability",
+    "causal_propagation",
+    "full_metric_Ward_identity",
+    "empirical_galaxy_cluster_fit"
+  ],
+  "python": "3.9.6",
+  "source_hashes": {
+    "action_variation.py": "63961e478200f7ad9391de544b35b87eb4d89c221465dd13e10e985e2a79fa4a",
+    "dirac_gate.py": "dde2e02f381483e4884890f6b2c20accb0481b2021ccacb5c2a696d95787eb4b",
+    "flrw_winding_gate.py": "184f7a0401d1e7af2a5de2fe9b9889da309a71a755a4b30e65353f1846fcfad8",
+    "run_local_winding.py": "1f48db5541332128847b521b9858703a54ed5628a7b6238b91952b3ee7b85902",
+    "weak_field_ward_gate.py": "758270804b885d5c788ec5340f242c0cf8b6771321d8a75350629df3d887bf23",
+    "winding_calibration.py": "f2a100783923c732eeaf9fe49dd68cb5b54fd341ec0e5b558a3717a46451444e"
+  },
+  "status": "OPEN",
+  "sympy": "1.14.0",
+  "ward": {
+    "baryon_divergence_on_shell": "0",
+    "baryon_eom": "Derivative(V_b(psi_b(t)), psi_b(t)) + Derivative(psi_b(t), (t, 2))",
+    "baryon_stress_representative": "V_b(psi_b(t)) + Derivative(psi_b(t), t)**2/2",
+    "baryon_ward_residual": "0",
+    "beta": "beta",
+    "cold_eom": "-beta*exp(-beta*Q_w(t))*Derivative(Q_w(t), t)*Derivative(chi_c_w(t), t) + m_c**2*chi_c_w(t)*exp(-beta*Q_w(t)) + exp(-beta*Q_w(t))*Derivative(chi_c_w(t), (t, 2))",
+    "cold_exchange_residual": "beta*(-m_c**2*chi_c_w(t)**2 + Derivative(chi_c_w(t), t)**2)*exp(-beta*Q_w(t))*Derivative(Q_w(t), t)/2",
+    "cold_ward_residual": "0",
+    "mc": "m_c",
+    "q_equation_source_term": "beta*(-m_c**2*chi_c_w(t)**2 + Derivative(chi_c_w(t), t)**2)*exp(-beta*Q_w(t))/2"
+  },
+  "weak_field": {
+    "a0": "a0",
+    "cold_source_term": "-rho_c_phi",
+    "constitutive_law": "1 - exp(-Derivative(Phi_w(x), x)/a0)",
+    "coordinate": "x",
+    "m": "m",
+    "measured_G": "1/(8*pi*m)",
+    "mond_equation": "2*m*((1 - exp(-Derivative(Phi_w(x), x)/a0))*Derivative(Phi_w(x), (x, 2)) + exp(-Derivative(Phi_w(x), x)/a0)*Derivative(Phi_w(x), x)*Derivative(Phi_w(x), (x, 2))/a0) - rho_b",
+    "mond_residual": "0",
+    "phi_equation": "2*m*u_w(x)**2*Derivative(Phi_w(x), (x, 2)) + 4*m*u_w(x)*Derivative(Phi_w(x), x)*Derivative(u_w(x), x) - 2*m*Derivative(Phi_w(x), (x, 2)) + 2*m*Derivative(Psi_w(x), (x, 2)) - rho_b - rho_c_phi",
+    "phi_equation_exponential_branch": "2*m*Derivative(Phi_w(x), (x, 2)) - 2*m*exp(-Derivative(Phi_w(x), x)/a0)*Derivative(Phi_w(x), (x, 2)) - rho_b - rho_c_phi + 2*m*exp(-Derivative(Phi_w(x), x)/a0)*Derivative(Phi_w(x), x)*Derivative(Phi_w(x), (x, 2))/a0",
+    "phi_equation_slip": "2*m*u_w(x)**2*Derivative(Phi_w(x), (x, 2)) + 4*m*u_w(x)*Derivative(Phi_w(x), x)*Derivative(u_w(x), x) - rho_b - rho_c_phi",
+    "psi_equation": "2*m*Derivative(Phi_w(x), (x, 2)) - 2*m*Derivative(Psi_w(x), (x, 2)) - rho_c_psi",
+    "rho_b": "rho_b",
+    "rho_c_phi": "rho_c_phi",
+    "rho_c_psi": "rho_c_psi"
+  }
+}
