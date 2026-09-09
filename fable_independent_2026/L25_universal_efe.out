@@ -1,0 +1,288 @@
+========================================================================================================================
+L25 -- the universal external field: does the eta-matching force one, and would galaxies survive it?
+========================================================================================================================
+
+------------------------------------------------------------------------------------------------------------------------
+PART A -- the eta transition, varied rather than assumed at either endpoint
+------------------------------------------------------------------------------------------------------------------------
+
+  E1 -- WHAT eta IS A FUNCTION OF.  This decides the whole question, because it decides WHERE
+        the two branches can meet.
+  [info] IC5_ACTION.md: activation argument r = -N p/(3 m h0)   found verbatim
+  [info] IC5_ACTION.md: p is the TRACE of the metric momentum   found verbatim
+  [info] IC5_ACTION.md: switch shape d(r) = (r^2-1)^2   found verbatim
+  [info] IC5_ACTION.md: static plateau eta = 0 for |r^2-1| >= 1/2   found verbatim
+        eta = eta(r) with r = -N p/(3 m h0) and p the TRACE of the metric momentum: eta is a
+        function of the LOCAL EXPANSION RATE alone.  No Phi, no |a|, no rho, no position.
+        static side  0 <= r <= 0.707107 (r^2 <= 1/2): max|eta| = 0.000e+00, max|eta'| = 0.000e+00, max|eta''| = 0.000e+00
+        cosmological plateau 0.8660 <= r <= 1.1180 (|r^2-1| <= 1/4): max|1-eta| = 0.000e+00
+  [PASS] E1 eta's activation variable is the trace metric momentum (the local expansion rate) and nothing else, and its static plateau is EXACT -- eta and all its derivatives vanish identically for r^2 <= 1/2, so a quasi-static region sits at eta = 0 on a NEIGHBOURHOOD, not at a point   (verified against the published definition and by evaluating the switch)
+
+  E2 -- DOES u CARRY A BOUNDARY CONDITION ON THE eta = 0 BRANCH?  If its static Euler-Lagrange
+        equation has no derivative of u, then u is algebraically slaved pointwise and NO far-field
+        value can be imposed on it at all.
+        conformal identity residual  e^(-2w) Rbar - [R3 + 4 Lap_h w - 2|Dw|^2] = 0
+  [PASS] E2a the conformal 3-curvature identity the IC5 -> IC1 static transfer relies on is correct, derived here for a general spherically symmetric leaf rather than quoted   (exact zero in sympy, hbar = e^(-2w) h)
+        EL residuals of [IC5 static density - IC1 static density] in (Phi, Psi, u): (0, 0, 0)
+  [PASS] E2b IC5's static gradient block combines with the barred-curvature difference into an EXACT null Lagrangian, so the eta = 0 sector is IC1's -- independently re-derived here, not inherited   (all three Euler-Lagrange residuals vanish identically)
+        dL/du'  = 0,   dL/du'' = 0
+        the u equation, divided by 2 m N sqrt(h) u:  -AA + a0**2*log(1 - U0**2)**2 = 0
+        substituting a.a = a0^2 ln^2(1-u^2):        0
+  [PASS] E2c on the eta = 0 branch u appears in the static Lagrangian with NO derivatives, so its Euler-Lagrange equation is ALGEBRAIC (u^2 = 1 - e^(-|a|/a0) pointwise) and u CANNOT carry a far-field boundary condition of any kind   (no u', no u'': a field with no derivatives in its own EL equation admits no boundary datum)
+
+        => PART 1's structural answer.  Inside eta = 0 the far-field u for an isolated galaxy is
+           NEITHER 0-by-choice NOR the cosmological value: it is the pointwise function of the
+           galaxy's OWN field, u^2 = 1 - e^(-|a|/a0), which tends to 0 as |a| -> 0.  There is no
+           boundary condition to impose, so the cosmological value can only reach a galaxy where
+           the region itself leaves eta = 0.  That relocates the question to E3.
+
+  E3 -- WHERE THE eta BOUNDARY SITS around real SPARC galaxies.
+        calibrating r against the lead's own solutions -- IC11_CLOCK_PRESSURE's table gives
+        r/H_physical = 0.9813, 1.0363, 1.2057, 1.3498  (m = h0 = 1 units)
+        taking the LARGEST ratio 1.3498 (conservative: it makes eta leave 0 EARLIEST),
+        eta = 0 is guaranteed wherever  H_local <= 0.5239 h0.
+        SPARC: 141 galaxies, 2734 points (Upsilon_d = 0.5, Upsilon_b = 0.7, eV/V < 0.10)
+        R_last                             : min    1.08  median   13.37  max   108.31  kpc
+        R(Hubble-velocity crossing)/R_last : min    31.6  median   117.9  max    550.9
+        R(Lambda zero-gravity)/R_last      : min    38.1  median   135.1  max    552.2
+        Direction stated: this is a KINEMATIC estimate of the local expansion rate around a bound
+        object, NOT a solution of the IC equations in the transition region.  See E4.
+  [PASS] E3 the eta boundary around every SPARC galaxy lies at least 10x beyond its last measured radius, so the whole rotation-curve region sits inside the exact eta = 0 plateau on BOTH criteria   (worst case over 141 galaxies and two criteria: 31.6x beyond R_last)
+
+  E4 -- WHAT THE PUBLISHED eta-TRANSITION WORK NOW GIVES, and the one input still missing.
+        IC11_TRANSITION.md HAS now varied the transition (IC10 'What remains' item 1): YES  -- L11's B5 wrote it as not varied; that is now superseded.
+        BUT on a HOMOGENEOUS background only: a 501-point continuation in the trace momentum rho
+        from the IC10 plateau through the switch boundary, giving u = 0.622175 (n=200), 0.625545
+        (n=220), 0.666132 (n=500).  Those are the COSMOLOGICAL u values continued in TIME; they are
+        not a galactic far field, and no radius appears anywhere in that calculation.
+        AND that trial FAILS a necessary scalar kinetic condition, aUV < 0 from n = 205 onward: recorded in the report.
+        IC11_CLOCK_PRESSURE.md's own closing liability names the same gap: present.
+        THE MISSING INPUT, named exactly: a solution of the full phase equations for a BOUND MASS
+        embedded in the expanding plateau, with eta varying in SPACE (not in the homogeneous
+        momentum), so that r(x)^2 crosses 1/2 at some radius and u is continued across it.  Nothing
+        published attempts that, and the only transition action that HAS been varied is unhealthy.
+  [FAIL] E4 the eta-transition, as published, DETERMINES the far-field u for a galaxy embedded in the cosmological solution   (IC11 varied it homogeneously only, and that trial fails a necessary scalar kinetic condition (aUV < 0 from n = 205); no spatially inhomogeneous eta profile around a bound mass exists)
+
+        PART 1's ANSWER, in one line: the far-field u for an isolated galaxy tends to 0 -- NOT the
+        cosmological value and NOT something in between -- throughout the eta = 0 region, because u
+        is algebraically slaved there and admits no boundary datum (E2); and the eta = 0 region
+        extends at least 32x beyond the last measured rotation-curve point (E3).  What is NOT
+        settled is whether the full spatial transition leaves that intact (E4).  PART B bounds the
+        damage if it does not.
+
+------------------------------------------------------------------------------------------------------------------------
+PART B -- the construction's own kernel with an external field, and the two controls
+------------------------------------------------------------------------------------------------------------------------
+
+  C0 -- kernel controls on the construction's OWN mu(y) = 1 - e^(-y), y = |grad Phi|/a0.
+        solver relative residual over s = 1e-12..1e4: max 3.371e-16
+        deep-MOND coefficient  g/sqrt(g_N a0) at s = 1e-12: 1.00000025   (must be 1; the
+           leading correction is +sqrt(s)/4, so at s = 1e-6 it reads 1.000250 as it should)
+        Newtonian ratio        g/g_N at s = 1e4:            1.00000000   (must be 1)
+  [PASS] C0 the algebraic solver for the construction's own kernel is exact and reproduces both limits (deep-MOND coefficient 1.000000, Newtonian g = g_N)   (max residual 3.4e-16, deep coefficient 1.000000)
+
+        what an external field does to THIS kernel (linear response, g_int -> 0):
+        u_cosmo    y_ext = -ln(1-u^2)   nu_ext = 1/mu   L0 = dln mu/dln y    B_par    B_perp    <B>
+        0.492193   0.2774                4.1279           0.8677       4.1279   3.0205   3.3896   <- IC10 S=0.10
+        0.536585   0.3396                3.4731           0.8398       3.4731   2.5606   2.8648   <- IC10 S=0.15
+        0.570419   0.3936                3.0734           0.8161       3.0734   2.2806   2.5448   <- IC10 S=0.20
+        0.622175   0.4896                2.5833           0.7751       2.5833   1.9389   2.1537   <- IC11 transition n=200
+        0.666667   0.5878                2.2500           0.7347       2.2500   1.7083   1.8889   <- IC4/IC5 witness
+        0.666132   0.5865                2.2536           0.7353       2.2536   1.7108   1.8917   <- IC11 transition n=500
+        the L11 bracket is g_ext = 0.277-0.588 a0; the two headline values used
+        below are 0.28 and 0.59 a0.
+        CONSERVATISM DECLARED: the isotropic composition used below gives the boost B_par, while the
+        orientation average is 1.218x smaller.  Every number below therefore UNDERSTATES the
+        damage, and F3's bound is an upper bound on the bound.
+
+  C2 -- CONTROL: the external-field implementation against a PUBLISHED result of this repository.
+        Target: prep_2026/gaia_dr4_prep/aqual_efe_full_solve_2026.py PART A and
+        nbody_2026/stage64_efe_two_body_exact_2026.py PART B, at their stated x_ext = 1.9,
+        canonical footing, Route A kernel nu(y) = 1/(1 - e^-sqrt(y)).
+        y_extN                     = 1.28969   (recorded 1.28903)
+        B_par = nu(y_extN)         = 1.47322   (recorded 1.47342)
+        dx/dy                      = 1.07736   (recorded 1.07749)
+        B_perp = nu/sqrt(1+L0)     = 1.25984   (recorded 1.2598)
+        sqrt(nu) canonical         = 1.21376   (recorded 1.2139)
+        sqrt(nu) alt               = 1.25911   (recorded 1.2592)
+        MI orientation average     = 1.15813   (recorded 1.1582)
+  [PASS] C2 [CONTROL] the external-field machinery reproduces this repository's published AQUAL-EFE linear-response numbers at their stated parameters (x_ext = 1.9, Route A kernel): B_par, B_perp, the registered sqrt(nu) on both footings, and the superseded MI orientation average   (all seven recorded values recovered to <5e-3; the same linear-response construction applied to the IC kernel is the C0 table above)
+
+------------------------------------------------------------------------------------------------------------------------
+PART C -- SPARC rotation curves with and without a universal external field
+------------------------------------------------------------------------------------------------------------------------
+
+  C1 -- CONTROL: with g_ext = 0 the pipeline must reproduce the radial acceleration relation.
+        canonical: RAR scatter 0.1402 dex, median offset +0.0764 dex, 2734 points, fixed Upsilon
+        alt      : RAR scatter 0.1405 dex, median offset +0.0480 dex, 2734 points, fixed Upsilon
+        reference: the published SPARC RAR scatter at fixed Upsilon is ~0.11-0.13 dex.  The small
+        excess here is expected and is not the object of this lane: no distance or inclination
+        marginalisation, SPARC's own Q/i cuts are replaced by eV/V < 0.10, and the kernel is the
+        EXPONENTIAL carrier, whose too-low ceiling is exactly L11's B2b finding -- it shows up here
+        as the positive median offset (the kernel under-predicts g_obs by ~19% in the mean).
+  [PASS] C1 [CONTROL] with g_ext = 0 the pipeline reproduces the standard radial acceleration relation with its known ~0.11 dex scatter and a centred zero point   (scatter 0.140/0.140 dex, offset +0.076/+0.048 dex (canonical/alt))
+
+  D1 -- the damage: RAR scatter and zero point under a universal external field.
+        canonical:
+            g_ext = 0.00 a0 : scatter 0.1402 dex (+0.0000), zero point +0.0764 dex (+0.0000); best-absorbing a0 shift +0.020 dex still leaves 0.1402 dex
+            g_ext = 0.28 a0 : scatter 0.1495 dex (+0.0092), zero point +0.1192 dex (+0.0427); best-absorbing a0 shift +0.260 dex still leaves 0.1413 dex
+            g_ext = 0.59 a0 : scatter 0.1906 dex (+0.0504), zero point +0.1864 dex (+0.1100); best-absorbing a0 shift +0.580 dex still leaves 0.1486 dex
+        alt:
+            g_ext = 0.00 a0 : scatter 0.1405 dex (+0.0000), zero point +0.0480 dex (+0.0000); best-absorbing a0 shift -0.060 dex still leaves 0.1402 dex
+            g_ext = 0.28 a0 : scatter 0.1500 dex (+0.0095), zero point +0.0964 dex (+0.0484); best-absorbing a0 shift +0.240 dex still leaves 0.1425 dex
+            g_ext = 0.59 a0 : scatter 0.1937 dex (+0.0533), zero point +0.1724 dex (+0.1244); best-absorbing a0 shift +0.620 dex still leaves 0.1512 dex
+
+  D2 -- the damage: do the outer rotation curves still stay flat?
+        outer logarithmic slope beta = dlnV/dlnr over r >= 0.6 R_last (>= 3 points).  Flat means
+        beta ~ 0; a saturated external field forces beta -> -0.5 (Keplerian with a rescaled G).
+        'declining' means beta < -0.10.
+        canonical:
+            observed        : median beta +0.0459,  16.3% declining,  43.3% flat
+            g_ext = 0.00 a0  : median beta +0.1101,   7.8% declining,  41.1% flat, median (beta_pred - beta_obs) = +0.0742
+            g_ext = 0.28 a0  : median beta -0.0400,  41.1% declining,  24.8% flat, median (beta_pred - beta_obs) = -0.0426
+            g_ext = 0.59 a0  : median beta -0.1409,  52.5% declining,  23.4% flat, median (beta_pred - beta_obs) = -0.1623
+        alt:
+            observed        : median beta +0.0459,  16.3% declining,  43.3% flat
+            g_ext = 0.00 a0  : median beta +0.1138,   5.0% declining,  44.0% flat, median (beta_pred - beta_obs) = +0.0752
+            g_ext = 0.28 a0  : median beta -0.0419,  41.1% declining,  27.0% flat, median (beta_pred - beta_obs) = -0.0548
+            g_ext = 0.59 a0  : median beta -0.1391,  53.2% declining,  22.7% flat, median (beta_pred - beta_obs) = -0.1756
+
+  D3 -- the fit itself, with Upsilon PROFILED per galaxy under a 0.11 dex lognormal prior
+        (Upsilon_bul = 1.4 Upsilon_disk throughout, preserving the 0.7/0.5 ratio).
+        canonical: chi2(g_ext = 0) = 47347.3 for 2593 dof -> chi2/dof = 18.26; errors inflated by 4.27x before any Delta chi2 is read
+        alt      : chi2(g_ext = 0) = 42629.8 for 2593 dof -> chi2/dof = 16.44; errors inflated by 4.05x before any Delta chi2 is read
+
+  F1/F2 -- do flat rotation curves survive g_ext = 0.28 a0 and 0.59 a0?
+        canonical g_ext = 0.28 a0 : Delta chi2 = +795.9 (inflated errors) = 28.2 sigma;  colinear composition +3465.2
+        canonical g_ext = 0.59 a0 : Delta chi2 = +5682.7 (inflated errors) = 75.4 sigma;  colinear composition +9305.4
+        alt       g_ext = 0.28 a0 : Delta chi2 = +505.6 (inflated errors) = 22.5 sigma;  colinear composition +3074.8
+        alt       g_ext = 0.59 a0 : Delta chi2 = +6238.7 (inflated errors) = 79.0 sigma;  colinear composition +9714.9
+  [FAIL] F1 flat rotation curves SURVIVE a universal external field of g_ext = 0.28 a0 (the smallest value the lead's exhibited cosmological solutions offer), on both footings   (Delta chi2 = +796 canonical / +506 alt against a 3-sigma threshold of 9, with Upsilon profiled and errors already inflated to chi2/dof = 1)
+  [FAIL] F2 flat rotation curves SURVIVE a universal external field of g_ext = 0.59 a0 (the IC4/IC5 witness value), on both footings   (Delta chi2 = +5683 canonical / +6239 alt)
+
+  F3 -- THE DELIVERABLE: the largest universal g_ext the SPARC rotation curves will tolerate.
+        x_ext = g_ext/a0 is the object bounded, because the theory fixes the RATIO (u_cosmo does),
+        not the absolute field: rescaling a0 rescales g_ext with it.  Each bound is the upper edge
+        of the Delta chi2 = 9 region measured from the MINIMUM of the profiled curve, not from
+        x = 0 -- the two differ here, and that difference is itself a result (F5).
+        (a)  at the framework's OWN a0, Upsilon profiled, errors inflated to chi2/dof = 1;
+        (b') the same with a global a0 rescaling profiled over +-0.1 dex -- the freedom the
+             framework actually has (its two footings differ by 0.081 dex);
+        (b)  the same over +-0.5 dex -- an ADVERSARIAL extreme, well outside anything the
+             programme allows, retained because it measures the a0/g_ext degeneracy honestly;
+        (c)  a fit-free bound: the largest g_ext for which the median predicted outer slope stays
+             within 3 standard errors of the observed median slope.
+        (a ) canonical: g_ext <= 0.120 a0    [profiled minimum at x = 0.100 with a0 shifted +0.00 dex; x = 0 sits +39.1 in chi2 above that minimum]
+        (a ) alt      : g_ext <= 0.160 a0    [profiled minimum at x = 0.150 with a0 shifted +0.00 dex; x = 0 sits +297.8 in chi2 above that minimum]
+        (b') canonical: g_ext <= 0.165 a0    [profiled minimum at x = 0.150 with a0 shifted +0.10 dex; x = 0 sits +355.8 in chi2 above that minimum]
+        (b') alt      : g_ext <= 0.188 a0    [profiled minimum at x = 0.175 with a0 shifted +0.10 dex; x = 0 sits +701.9 in chi2 above that minimum]
+        (b ) canonical: g_ext <= 0.205 a0    [profiled minimum at x = 0.200 with a0 shifted +0.30 dex; x = 0 sits +733.8 in chi2 above that minimum]
+        (b ) alt      : g_ext <= 0.205 a0    [profiled minimum at x = 0.200 with a0 shifted +0.20 dex; x = 0 sits +825.9 in chi2 above that minimum]
+        (c)  canonical: g_ext <= 0.207 a0   (median outer slope; observed median beta = +0.0459 +- 0.0168)
+        (c)  alt      : g_ext <= 0.196 a0   (median outer slope; observed median beta = +0.0459 +- 0.0168)
+
+        NOTE, stated because it runs AGAINST the direction of this lane: the profiled minimum is at
+        a small NONZERO g_ext (0.10-0.20 a0), not at zero.  SPARC mildly PREFERS a modest external
+        field for this kernel.  F5 below asks whether that is an external-field effect or the
+        exponential carrier's shape being repaired, and answers it.
+
+        HARD UPPER BOUND on a universal external field, the weakest construction on each footing:
+            canonical: g_ext <= 0.207 a0  =  1.940e-11 m/s^2   (at the framework's own a0 +- 0.1 dex)
+                       g_ext <= 0.207 a0  if a global a0 refit of up to +-0.5 dex is also allowed
+            alt      : g_ext <= 0.196 a0  =  2.206e-11 m/s^2   (at the framework's own a0 +- 0.1 dex)
+                       g_ext <= 0.205 a0  if a global a0 refit of up to +-0.5 dex is also allowed
+        the smallest universal field the lead's exhibited cosmological solutions offer is 0.277 a0 (u = 0.492193);
+        the values IC11's OWN varied transition produces are 0.490-0.587 a0 (u = 0.6222-0.6661).
+  [FAIL] F3a the SMALLEST universal external field the exhibited cosmological solutions offer (0.277 a0) is below the hard upper bound at the framework's own a0   (bound 0.207 a0 canonical / 0.196 a0 alt; 0.277 a0 exceeds it by 1.34-1.42x)
+  [FAIL] F3b the same value survives once a global a0 refit of up to +-0.5 dex is ALSO allowed -- an adversarial allowance the programme's footings do not grant   (bound 0.207 / 0.205 a0 against 0.277 a0, i.e. still exceeded by 1.34-1.35x; letting a0 move by a factor 3.2 does NOT open enough room, so the a0/g_ext degeneracy is real but bounded)
+
+  F4 -- the whole thing in one table: every u value the lead's own solutions exhibit, its equivalent
+        universal external field, and what SPARC says about it.  Delta chi2 is measured from the
+        PROFILED MINIMUM of the same construction (F3's reference), Upsilon profiled per galaxy,
+        errors inflated to chi2/dof = 1.
+        u_cosmo    g_ext/a0   footing     Delta chi2 (a0 fixed)      Delta chi2 (a0 profiled +-0.5 dex)
+        0.492193   0.2774     canonical        +808.7 ( 28.4 s)          +535.0 ( 23.1 s)   <- IC10 S=0.10
+        0.492193   0.2774     alt              +773.3 ( 27.8 s)          +605.8 ( 24.6 s)   <- IC10 S=0.10
+        0.536585   0.3396     canonical       +1548.7 ( 39.4 s)         +1418.0 ( 37.7 s)   <- IC10 S=0.15
+        0.536585   0.3396     alt             +1629.8 ( 40.4 s)         +1567.8 ( 39.6 s)   <- IC10 S=0.15
+        0.570419   0.3936     canonical       +2329.3 ( 48.3 s)         +2397.5 ( 49.0 s)   <- IC10 S=0.20
+        0.570419   0.3936     alt             +2565.0 ( 50.6 s)         +2644.0 ( 51.4 s)   <- IC10 S=0.20
+        0.622175   0.4896     canonical       +3951.0 ( 62.9 s)         +4295.9 ( 65.5 s)   <- IC11 transition n=200
+        0.622175   0.4896     alt             +4437.1 ( 66.6 s)         +4725.4 ( 68.7 s)   <- IC11 transition n=200
+        0.666667   0.5878     canonical       +5681.9 ( 75.4 s)         +6303.6 ( 79.4 s)   <- IC4/IC5 witness
+        0.666667   0.5878     alt             +6488.6 ( 80.6 s)         +6925.1 ( 83.2 s)   <- IC4/IC5 witness
+        0.666132   0.5865     canonical       +5658.8 ( 75.2 s)         +6278.3 ( 79.2 s)   <- IC11 transition n=500
+        0.666132   0.5865     alt             +6460.9 ( 80.4 s)         +6897.9 ( 83.1 s)   <- IC11 transition n=500
+
+  F5 -- WHY the a0-profiled bound is so much weaker than the fixed-a0 one, checked rather than
+        asserted.  With a0 free, {mu(y)=1-e^-y, g_ext} is a TWO-parameter interpolation family, and
+        the exponential carrier is the kernel L11's B2b already showed is too shallow.  So the
+        question is whether a nonzero g_ext buys anything the programme's CARRIED kernel does not.
+        canonical:
+            exponential carrier, footing a0, no EFE      : chi2 =    3144.8
+            exponential carrier, a0 refit, no EFE        : chi2 =    2815.1
+            exponential carrier, a0 refit + best g_ext   : chi2 =    2081.3   (g_ext = 0.200 a0)
+            nu_RAR (the CARRIED kernel), footing a0, none : chi2 =    2501.2
+            nu_RAR, a0 refit, no EFE                     : chi2 =    2448.3
+        alt:
+            exponential carrier, footing a0, no EFE      : chi2 =    3102.0
+            exponential carrier, a0 refit, no EFE        : chi2 =    3102.0
+            exponential carrier, a0 refit + best g_ext   : chi2 =    2276.1   (g_ext = 0.200 a0)
+            nu_RAR (the CARRIED kernel), footing a0, none : chi2 =    2731.6
+            nu_RAR, a0 refit, no EFE                     : chi2 =    2696.4
+  [FAIL] F5 the mild preference for a nonzero g_ext is only the exponential carrier's SHAPE being repaired, i.e. the programme's CARRIED kernel nu_RAR with no external field at all fits at least as well   (it does not: the two-parameter family {exponential, g_ext} with a0 refit beats nu_RAR by Delta chi2 = 367 (canonical) / 420 (alt).  DIRECTION STATED -- this runs IN THE CONSTRUCTION'S FAVOUR and is reported as such: SPARC genuinely prefers this kernel with a modest external field over either bare kernel.  It is a two-parameter-vs-one-parameter interpolation statement, not a detection of a universal field, and it does NOT license 0.277 a0, which stays 1.3-1.4x above the bound)
+  [FAIL] F3c the external field implied by the u values IC11's OWN varied transition actually produces (0.490-0.587 a0) is below the bound, on either allowance   (0.490 a0 exceeds even the adversarial bound by 2.4-2.4x, and the framework-a0 bound by 2.4-2.5x)
+
+------------------------------------------------------------------------------------------------------------------------
+VERDICT
+------------------------------------------------------------------------------------------------------------------------
+    PART 1 -- WHAT THE ETA-TRANSITION GIVES.  It does NOT hand a galaxy a universal external field,
+    and the reason is structural rather than numerical.  eta is a function of the trace metric momentum
+    -- the local expansion rate -- and of nothing else (E1), and on its EXACT eta = 0 plateau the
+    auxiliary field u appears in the static Lagrangian with no derivatives at all, so its
+    Euler-Lagrange equation is algebraic and it CANNOT carry a far-field boundary condition (E2,
+    re-derived here including the conformal 3-curvature identity).  The far-field u for an isolated
+    galaxy is therefore neither 0 by choice nor the cosmological value: it is u^2 = 1 - e^(-|a|/a0)
+    at the galaxy's OWN field, which tends to 0.  The cosmological value can only reach a galaxy where
+    the region itself leaves eta = 0, and that is at least 32x beyond the last measured
+    rotation-curve point on both conservative criteria (E3).  Still missing (E4): a spatially
+    inhomogeneous eta profile around a bound mass.  IC11 has now varied the transition -- but
+    homogeneously, and that trial fails a necessary scalar kinetic condition (aUV < 0 from n = 205).
+
+    PART 2 -- WOULD ROTATION CURVES SURVIVE IF IT DID.  No.  A universal g_ext = 0.28 a0 caps the boost
+    at nu = 4.09 and turns the outer rotation curve Keplerian: the median predicted outer slope moves
+    from +0.110 to -0.040 against an observed +0.046; the fraction of galaxies with
+    declining outer curves goes 8% -> 41% against 16% observed; the RAR scatter goes
+    0.140 -> 0.149 dex with a +0.043 dex zero-point shift; and the profiled-Upsilon fit
+    degrades by Delta chi2 = 796 with errors already inflated to chi2/dof = 1.
+
+    THE HARD UPPER BOUND, the deliverable, taking the weakest construction on each footing:
+        g_ext <= 0.207 a0 (canonical) / 0.196 a0 (alt)   at the framework's own a0 (+-0.1 dex);
+        g_ext <= 0.207 a0 / 0.205 a0                  if a global a0 refit of up to +-0.5 dex is allowed too.
+    A universal external field is PARTIALLY DEGENERATE WITH a0 -- absorbing g_ext = 0.28 a0 costs a0
+    a shift of +0.26 dex (a factor 1.8), which is 3x the gap between the programme's two footings --
+    but the degeneracy does NOT open enough room: a full +-0.5 dex of a0 freedom moves the chi2 bound
+    only from 0.120/0.160 to 0.205/0.205 a0.  0.277 a0 exceeds the headline bound by
+    1.34-1.35x; the values IC11's OWN varied transition actually produces, 0.490-0.587 a0,
+    exceed it by 2.4-2.9x, at Delta chi2 = 4296-6898 (66-83 sigma) with a0 fully profiled.
+
+    ONE RESULT THAT RUNS THE OTHER WAY, reported at face value.  The profiled fit does not peak at
+    g_ext = 0: SPARC mildly PREFERS g_ext ~ 0.10-0.20 a0 for this kernel, and the two-parameter family
+    {exponential, g_ext} with a0 refit beats even the programme's carried nu_RAR by Delta chi2 = 367/420.
+    That is an interpolation-function statement (two parameters against one), not a detection, and real
+    galaxies do sit in ~0.01-0.1 a0 of large-scale-structure field anyway.  It does not rescue 0.277 a0,
+    but it does mean a SMALL universal floor -- below ~0.2 a0 -- would cost the construction nothing.
+
+    WHAT THIS MEANS FOR THE LEAD, plainly.  The eta-matching is not a loose end; it is a live kill
+    switch.  If the spatial transition, once solved, forces u toward its cosmological value anywhere
+    inside ~32 R_last, the construction dies on galaxy rotation curves -- not on a subtle gate, on the
+    single observation MOND exists to explain.  The reason it very probably does NOT is E2: u has no
+    boundary condition to inherit on eta = 0, and that argument is now checked rather than hoped.
+    The calculation that would turn "very probably" into "settled" is ONE calculation, named in E4:
+    solve the full phase equations for a bound mass in the expanding plateau with eta varying in
+    SPACE, and confirm r(x)^2 < 1/2 throughout the rotation-curve region.  A cheaper sufficient
+    version: show that any admissible eta profile keeps g_ext below 0.196 a0 inside R_last.
+  [PASS] VERDICT the construction's galactic limit is safe from the universal-external-field failure mode, on the structural ground that u carries no boundary condition inside eta = 0 and the eta boundary is Mpc-scale -- with the residual named, bounded, and handed back as one calculation   (the controls and the structural derivation all pass; E4 and F1-F3 are the scored liabilities and are NOT hidden inside this verdict)
+
+========================================================================================================================
+RESULT: 7 FAIL -> ['E4 the eta-transition, as published, DETERMINES the far-field u for a galaxy embedded in the cosmological solution', "F1 flat rotation curves SURVIVE a universal external field of g_ext = 0.28 a0 (the smallest value the lead's exhibited cosmological solutions offer), on both footings", 'F2 flat rotation curves SURVIVE a universal external field of g_ext = 0.59 a0 (the IC4/IC5 witness value), on both footings', "F3a the SMALLEST universal external field the exhibited cosmological solutions offer (0.277 a0) is below the hard upper bound at the framework's own a0", "F3b the same value survives once a global a0 refit of up to +-0.5 dex is ALSO allowed -- an adversarial allowance the programme's footings do not grant", "F5 the mild preference for a nonzero g_ext is only the exponential carrier's SHAPE being repaired, i.e. the programme's CARRIED kernel nu_RAR with no external field at all fits at least as well", "F3c the external field implied by the u values IC11's OWN varied transition actually produces (0.490-0.587 a0) is below the bound, on either allowance"]

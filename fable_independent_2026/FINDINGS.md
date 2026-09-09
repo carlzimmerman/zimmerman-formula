@@ -1363,3 +1363,49 @@ limits; BTFR v⁴ = GMa₀ to 0.4%; and the Sachs–Wolfe amplitude Φ/3 = 9.79e
   drives g/a₀ from 8.1 to 1348–3948, further Newtonian — and stage 17's own sentence is the
   programme's own action-side kill of the rival footing. **A real labelling contradiction in the
   shorthand, none in the derivation.**
+
+## L25 — the universal external field: safe by a structural theorem, with a live kill switch
+
+`L25_universal_efe.py` + `L25_UNIVERSAL_EFE.md` (15 checks, 7 FAIL). If the lead's construction hands
+every galaxy the cosmological value of its clock field, the external field effect would apply
+universally and flat rotation curves would not survive. This lane asked whether it does.
+
+**Controls.** The algebraic solver reproduces both kernel limits (deep-MOND coefficient 1.000000,
+max residual 3.4e-16); with no external field the pipeline returns the standard radial acceleration
+relation at 0.140 dex; and the external-field machinery reproduces **seven** of this repository's own
+published AQUAL results to better than 5e-3.
+
+- **It does not, and the reason is structural rather than numerical.** The activation's argument is the
+  **trace metric momentum**, i.e. the local expansion rate and nothing else, and its static plateau is
+  **exact** — the switch and all its derivatives vanish identically on a neighbourhood. Inside that
+  plateau, IC5's gradient block combines with the barred-curvature difference into an **exact null
+  Lagrangian** (re-derived here, including the conformal 3-curvature identity, not inherited), leaving
+  a static density in which **u appears with no derivatives at all**. Its field equation is therefore
+  **algebraic**, u² = 1 − e^(−|a|/a₀) pointwise, so **u cannot carry a far-field boundary condition of
+  any kind.**
+- **And the boundary is far away.** On both conservative criteria the activation boundary sits
+  **31.6× to 552× beyond the last measured radius** of every SPARC galaxy — 0.3 to 3 Mpc against
+  1 to 108 kpc. The entire rotation-curve region is inside the exact plateau.
+- **⚠️ But this is a live kill switch, not a loose end.** If the *spatial* transition — which nobody
+  has solved — pushes u toward its cosmological value anywhere inside ~32 R_last, the construction
+  dies on flat rotation curves at **28σ to 83σ**, not on a subtle gate. At g_ext = 0.28 a₀ the boost
+  caps at ν = 4.09, the median outer slope goes +0.110 → −0.040 against an observed +0.046, declining
+  outer curves go 8% → 41% against 16% observed, and Δχ² = +796 / +506 with the mass-to-light profiled
+  and errors already inflated to χ²/dof = 1.
+- **The hard bound the lead needs: g_ext ≤ 0.207 a₀ canonical / 0.196 a₀ alt.** The a₀ degeneracy is
+  real but bounded — absorbing 0.28 a₀ costs a₀ +0.26 dex — and even allowing a global a₀ refit of
+  ±0.5 dex, a factor 3.2, does **not** open enough room. The smallest field the exhibited cosmological
+  solutions offer, 0.277 a₀, exceeds the bound by 1.34–1.42×, and IC11's own transition values,
+  0.490–0.587 a₀, exceed it by 2.4–2.9× at Δχ² = 4296–6898.
+- **Correction to L11's B5:** IC11 **has** now varied the transition, but **homogeneously** — a
+  501-point continuation in the trace momentum — and that trial fails a necessary scalar kinetic
+  condition. The missing input is a spatially inhomogeneous activation profile around a bound mass,
+  and nothing published attempts it.
+- **One finding running the other way, reported at face value.** The profiled fit does **not** peak at
+  zero: SPARC mildly *prefers* g_ext ≈ 0.10–0.20 a₀ for this kernel, and the two-parameter family
+  {exponential carrier, g_ext} with a₀ refit beats ν_RAR by Δχ² = 367 / 420. That is a
+  two-parameter-versus-one interpolation statement and **not** a detection of a universal field, but it
+  means **a small universal floor below ~0.2 a₀ would cost the construction nothing.**
+- **The cheapest way to close this**, named by the lane: do not solve for u(x) at all. Show instead
+  that **any** admissible activation profile keeps the effective external field under 0.196 a₀ inside
+  R_last.
