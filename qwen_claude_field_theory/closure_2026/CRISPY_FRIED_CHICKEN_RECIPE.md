@@ -12,7 +12,17 @@ structure together. Checks remain honest: a failure identifies a construction
 obligation; it is not permission to conceal the failure or relax a requirement.
 Historical obstructions are reference material, not the main deliverable.
 
-**Current constructive checkpoint (2026-09-09, IC25):**
+**Current constructive checkpoint (2026-09-09, IC26):**
+[The finite-band construction](integrable_clock_construction_2026/IC26_FINITE_BAND_REPAIR.md)
+reconstructs A,D,E4 together and independently controls the negative lapse
+Schur coefficient and high-frequency response. The IC25 amplification near
+2.26e5 is reduced to order-unity values in preliminary same-action propagators;
+refined and independent precision checks are recorded in ic26_run_001.
+Residual long-wave modes, nonlinear interaction scales, same-function
+off-trajectory tests, global/static/nonlinear closure and empirical gates
+remain OPEN. A background or sampled-wave success is not full stability.
+
+**Previous constructive checkpoint (2026-09-09, IC25):**
 [The joint coefficient construction](integrable_clock_construction_2026/IC25_COUPLED_RECONSTRUCTION.md)
 reconstructs A(S) and D(S) together, then varies their actual S-only jets.
 Scaling the construction clock drift with exp(-3Q) removes the automatic
