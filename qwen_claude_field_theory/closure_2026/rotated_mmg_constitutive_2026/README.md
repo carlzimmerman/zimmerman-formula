@@ -25,6 +25,8 @@ python3 -B full_adm_dof_count.py
 python3 -B -m unittest -v test_full_adm_dof_count.py
 python3 -B spatial_diffeo_gate.py
 python3 -B -m unittest -v test_spatial_diffeo_gate.py
+python3 -B matter_ward_gate.py
+python3 -B -m unittest -v test_matter_ward_gate.py
 python3 -B sparc_exact_exponential_fit.py
 python3 -B -m unittest -v test_sparc_exact_exponential_fit.py
 python3 -B run_lean_core.py

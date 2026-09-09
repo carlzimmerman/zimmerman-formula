@@ -144,6 +144,16 @@ gate verifies \(\delta_\xi C=(\xi C)'\) for both divergence constraints.
 Thus the relay constraint ideal is preserved by spatial diffeomorphisms; only
 the time/Hamiltonian algebra remains to be solved.
 
+For ordinary matter, a separate two-dimensional symbolic calculation verifies
+the exact identity
+\[
+ \nabla_\mu T^{\mu}{}_{\nu}
+ =(\Box\varphi-V_{,\varphi})\,\nabla_\nu\varphi,
+\]
+so minimally coupled scalar matter is conserved on its own equations of
+motion.  This establishes the matter Ward gate for \(S_m[g,\psi]\); it does
+not repair the unresolved covariance of the gravitational relay.
+
 ## Exact obstruction still open
 
 The candidate has not yet passed the full nonlinear hypersurface-deformation
