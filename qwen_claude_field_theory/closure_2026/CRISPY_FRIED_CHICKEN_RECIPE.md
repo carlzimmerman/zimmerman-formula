@@ -12,7 +12,18 @@ structure together. Checks remain honest: a failure identifies a construction
 obligation; it is not permission to conceal the failure or relax a requirement.
 Historical obstructions are reference material, not the main deliverable.
 
-**Current constructive checkpoint (2026-09-09, IC24):**
+**Current constructive checkpoint (2026-09-09, IC25):**
+[The joint coefficient construction](integrable_clock_construction_2026/IC25_COUPLED_RECONSTRUCTION.md)
+reconstructs A(S) and D(S) together, then varies their actual S-only jets.
+Scaling the construction clock drift with exp(-3Q) removes the automatic
+dilution factor from the homogeneous lapse Schur equation. The exploratory
+mixed branch reaches seven barred-scale e-folds with sampled causal margins;
+this is not a recombination fit or an infinite-time theorem. Full Hamiltonian
+perturbation transport now supplements instantaneous roots. Same-function
+off-trajectory tests, limiting jets, global/static matching, nonlinear closure,
+PPN, interaction scales and empirical gates remain OPEN.
+
+**Previous constructive checkpoint (2026-09-09, IC24):**
 [The integrated potential construction](integrable_clock_construction_2026/IC24_INTEGRATED_POTENTIAL.md)
 turns the pointwise repair into one local D(S) via a constrained initial-value
 problem, with independent checks of both coefficient-integrability identities.
