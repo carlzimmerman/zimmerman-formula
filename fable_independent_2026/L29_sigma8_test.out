@@ -1,0 +1,289 @@
+============================================================================================================================
+L29 -- is L9's surviving late-roll region already excluded by the measured S_8?
+============================================================================================================================
+
+  C0 -- reproducing L9's surviving region with L9's own machinery, before any new data are touched.
+    canonical F = 1.819: coarse 21/3645, refined 146/3721;  z_t in [0.003333, 0.3743], W in [0.3757, 0.5651]
+              sigma_8 0.853-0.861   H0 68.90-71.99   Omega_m 0.276-0.301   Omega_Lambda 0.248-0.274   f(0) 0.585-0.630   t0 13.70-13.74 Gyr
+              constructions used: ['b'];  BAO dchi2 +0.24 to +8.95;  RSD dchi2 +5.28 to +9.00
+    alt       F = 1.681: coarse 48/3645, refined 269/3721;  z_t in [0.003333, 0.4406], W in [0.3363, 0.6036]
+              sigma_8 0.845-0.861   H0 67.36-72.21   Omega_m 0.274-0.315   Omega_Lambda 0.280-0.321   f(0) 0.567-0.636   t0 13.68-13.80 Gyr
+              constructions used: ['a', 'b'];  BAO dchi2 -1.56 to +9.00;  RSD dchi2 +3.10 to +8.98
+  [PASS] C0 [control] this file's machinery reproduces L9's published surviving region to the digit -- counts, (z_t, W) box and the (sigma_8, H0, Omega_m) margins on both footings   (canonical 146/3721 and alt 269/3721 recovered; sigma_8 [0.853, 0.861] / [0.845, 0.861]; LambdaCDM control D/a within 0.11% of Carroll-Press-Turner, theta_* within 0.07%, t0 13.796 Gyr)
+
+============================================================================================================================
+  the measurements, with their sources.  Every number is either already in this repository at the cited line
+  or is the published value that line quotes.
+============================================================================================================================
+    Planck 2018 TT,TE,EE+lowE    S_8 = 0.832 +/- 0.013   [cmb]
+        real_research/reviews/mi_cosmo_perturbations_2026.py:166 (S8_PLANCK); Planck 2018 VI, A&A 641 A6
+    KiDS-1000 3x2pt (2021)       S_8 = 0.759 +0.024/-0.021   [shear]
+        reviews/gc_consequences/w_gradient_cmb_calc.py:131 + mi_cosmo_perturbations_2026.py:1008; Heymans+2021 A&A 646 A140
+    DES Y3 3x2pt (2022)          S_8 = 0.776 +/- 0.017   [shear]
+        reviews/gc_consequences/w_gradient_cmb_calc.py:130; DES Collaboration 2022 PRD 105 023520
+    DES Y3 + KiDS-1000 joint     S_8 = 0.790 +0.018/-0.014   [shear]
+        reviews/gc_consequences/w_gradient_cmb_calc.py:132 ('KiDS+DES (joint, 2023) S8 ~ 0.79'); DES+KiDS 2023 OJAp 6 36
+    HSC Y3 cosmic shear          S_8 = 0.769 +/- 0.031   [shear]
+        ai_slop/research/predictions/02_DESI_STRUCTURE_GROWTH.py:110 and ai_slop/examples/09_s8_tension/run.py:89; Li+2023 PRD 108 123518
+    KiDS-Legacy (2025)           S_8 = 0.815 +/- 0.016   [shear]
+        real_research/reviews/mi_cosmo_perturbations_2026.py:1009; Wright+2025 -- the revision that eased the tension
+    2026 lensing compilation     S_8 = 0.819 +/- 0.007   [shear]
+        real_research/reviews/dm_candidate_test.py:32 (2026 review 2602.12238)
+    DESI DR9 galaxy x lensing    S_8 = 0.840 +/- 0.020   [cross]
+        reviews/GHOST_CONDENSATE_CONSEQUENCES_2026-06-19.md:68
+    eRASS1 cluster counts        S_8 = 0.860 +/- 0.010   [cluster]
+        reviews/cluster_measurement/routeB_dynamical_mass_calibration_eta.py:31,65; Ghirardini+2024 A&A 689 A298
+    NOTE, stated because it runs against the direction this lane is testing: the corpus's own
+    THE_HONEST_LCDM_STRESS_BRIEF.md:69 lists S_8 on the DO-NOT-CITE list -- as a LambdaCDM stress, because
+    KiDS-Legacy and HSC-Y3 moved UP toward Planck.  That is a warning against claiming a low-S_8 deficit.
+    It cuts BOTH ways here: the upward revision makes the shear constraint LESS hostile to a high-sigma_8
+    model, so this lane uses KiDS-Legacy and the 2026 compilation as the primary shear comparison rather
+    than the older, lower KiDS-1000 and DES Y3, which would manufacture a harsher verdict.
+    NOTE on eRASS1: the same repository (routeB_dynamical_mass_calibration_eta.py:184-197) records that
+    eRASS1's HIGH S_8 may be a weak-lensing mass-calibration artefact, and this lane's own L18 shows the
+    hydrostatic bias runs against the framework.  eRASS1 is reported, not leaned on.
+
+============================================================================================================================
+  C1 -- CONTROL: the S_8 machinery on numbers whose answers are already known
+============================================================================================================================
+    concordance:  sigma_8 = 0.8111, Omega_m = 0.31525  ->  S_8 = sigma_8 sqrt(Omega_m/0.3) = 0.8315   against the published Planck S_8 = 0.832 +/- 0.013 (0.04 sigma)
+    Planck vs KiDS-1000 3x2pt (2021)      : Delta S_8 = +0.073, 2.67 sigma (lensing LOWER than the CMB)
+    Planck vs DES Y3 3x2pt (2022)         : Delta S_8 = +0.056, 2.62 sigma (lensing LOWER than the CMB)
+    Planck vs DES Y3 + KiDS-1000 joint    : Delta S_8 = +0.042, 1.89 sigma (lensing LOWER than the CMB)
+    Planck vs HSC Y3 cosmic shear         : Delta S_8 = +0.063, 1.87 sigma (lensing LOWER than the CMB)
+    Planck vs KiDS-Legacy (2025)          : Delta S_8 = +0.017, 0.82 sigma (lensing LOWER than the CMB)
+    Planck vs 2026 lensing compilation    : Delta S_8 = +0.013, 0.88 sigma (lensing LOWER than the CMB)
+    Planck vs DESI DR9 galaxy x lensing   : Delta S_8 = -0.008, 0.34 sigma (HIGHER than the CMB)
+    Planck vs eRASS1 cluster counts       : Delta S_8 = -0.028, 1.71 sigma (HIGHER than the CMB)
+  [PASS] C1 [control] the S_8 conversion reproduces the concordance value AND the known size and SIGN of the S_8 tension: ~3 sigma low for KiDS-1000, ~2.6 sigma low for DES Y3, ~0.7 sigma after the KiDS-Legacy revision, and ABOVE the CMB for cluster counts   (S_8(concordance) = 0.8315 vs published 0.832 (0.04 sigma); KiDS-1000 2.67 sigma, DES Y3 2.62 sigma, KiDS-Legacy 0.82 sigma, eRASS1 -1.71 sigma)
+
+============================================================================================================================
+  converting L9's region into S_8, TWO ways
+============================================================================================================================
+    Limber control: at F = 1 a different transition pair (z_t = 0.2, W = 1.7) returns sqrt(C/C_LCDM) = 1.000000000000 (exactly 1 required);
+                    a 10% boost in the growth amplitude gives 1.100000 (1.100000 required)
+
+    canonical F = 1.819, 146 survivors
+      (i)  NAIVE, L9's own quoted pair: S_8 = sigma_8 sqrt(Omega_m/0.3) = 0.8177 - 0.8622
+           (sigma_8 0.853-0.861 pulled DOWN by Omega_m 0.276-0.301 < the concordance 0.3153)
+      (i') the SAME region through the Limber integral with g REMOVED from the lensing kernel: 0.8319 - 0.8462
+           this is the physically correct 'no roll in lensing' number -- the Weyl source is the PHYSICAL
+           omega_m, which is CMB-fixed and identical to LambdaCDM's, so the sqrt(Omega_m/0.3) discount the
+           naive formula applies is partly spurious.  The naive formula is low by up to 2.2% at the bottom of the
+           region, i.e. reading (i) is OPTIMISTIC for the model even before the roll is put back.
+      (ii) LENSING-CONSISTENT (uniform g multiplies the Weyl potential): 1.1180 - 1.1991
+           the kernel-weighted roll factor is g_eff = 1.338 - 1.441 (g(0) = F = 1.819, and the shear kernel peaks near z ~ 0.35 where the roll is partly done)
+
+    alt       F = 1.681, 269 survivors
+      (i)  NAIVE, L9's own quoted pair: S_8 = sigma_8 sqrt(Omega_m/0.3) = 0.8077 - 0.8823
+           (sigma_8 0.845-0.861 pulled DOWN by Omega_m 0.274-0.315 < the concordance 0.3153)
+      (i') the SAME region through the Limber integral with g REMOVED from the lensing kernel: 0.8283 - 0.8511
+           this is the physically correct 'no roll in lensing' number -- the Weyl source is the PHYSICAL
+           omega_m, which is CMB-fixed and identical to LambdaCDM's, so the sqrt(Omega_m/0.3) discount the
+           naive formula applies is partly spurious.  The naive formula is low by up to 3.1% at the bottom of the
+           region, i.e. reading (i) is OPTIMISTIC for the model even before the roll is put back.
+      (ii) LENSING-CONSISTENT (uniform g multiplies the Weyl potential): 1.0603 - 1.1745
+           the kernel-weighted roll factor is g_eff = 1.273 - 1.415 (g(0) = F = 1.681, and the shear kernel peaks near z ~ 0.35 where the roll is partly done)
+  [PASS] C1b [control] the Limber machinery is an identity on LambdaCDM at F = 1 for any (z_t, W), is exactly linear in the growth amplitude, and its g-free evaluation of L9's own region agrees with the naive S_8 = sigma_8 sqrt(Omega_m/0.3) formula to better than 10%   (identity 1.000000000000, 1.1x boost 1.100000, naive-vs-Limber agreement 5.6% (the naive formula runs LOW by up to 3.1%, because it discounts by Omega_m while the Weyl source carries the CMB-fixed omega_m).  Readings (i') and (ii) therefore differ ONLY by the roll factor g_eff, and (i) is the optimistic edge of (i'))
+
+============================================================================================================================
+  C2/C3 -- the comparison done properly: every surviving grid point against every measurement
+============================================================================================================================
+    Each survivor carries a model error of 0.74% (Planck's sigma_8 = 0.8111 +/- 0.0060, which
+    L9's normalisation multiplies through) added in quadrature to the measurement error.  This is generous to
+    the model: it can only move points TOWARD compatibility.
+
+    canonical (146 survivors).  f(2s)/f(3s) = fraction of the SURVIVING REGION inside 2/3 sigma.
+      measurement                |           (i) NAIVE           |     (i') LIMBER, no roll      |     (ii) LENS-CONSISTENT      
+                                 |          z range    f2s    f3s|          z range    f2s    f3s|          z range    f2s    f3s
+      Planck 2018 TT,TE,EE+lowE  |   -1.00..  +2.09    99%   100%|   -0.01..  +0.99   100%   100%|  +18.56.. +23.33     0%     0%
+      KiDS-1000 3x2pt (2021)     |   +2.37..  +4.16     0%    41%|   +2.94..  +3.52     0%     3%|  +14.14.. +17.20     0%     0%
+      DES Y3 3x2pt (2022)        |   +2.31..  +4.75     0%    31%|   +3.09..  +3.88     0%     0%|  +18.09.. +22.07     0%     0%
+      DES Y3 + KiDS-1000 joint   |   +1.46..  +3.78    23%    79%|   +2.20..  +2.95     0%   100%|  +16.56.. +20.39     0%     0%
+      HSC Y3 cosmic shear        |   +1.54..  +2.95    38%   100%|   +1.99..  +2.44     1%   100%|  +10.88.. +13.34     0%     0%
+      KiDS-Legacy (2025)         |   +0.16..  +2.74    83%   100%|   +0.99..  +1.82   100%   100%|  +16.82.. +21.00     0%     0%
+      2026 lensing compilation   |   -0.14..  +4.56    50%    79%|   +1.38..  +2.90    38%   100%|  +27.59.. +33.64     0%     0%
+      DESI DR9 galaxy x lensing  |   -1.07..  +1.06   100%   100%|   -0.39..  +0.30   100%   100%|  +12.84.. +16.41     0%     0%
+      eRASS1 cluster counts      |   -3.62..  +0.19    52%    82%|   -2.39..  -1.17    72%   100%|  +19.88.. +25.37     0%     0%
+
+    alt (269 survivors).  f(2s)/f(3s) = fraction of the SURVIVING REGION inside 2/3 sigma.
+      measurement                |           (i) NAIVE           |     (i') LIMBER, no roll      |     (ii) LENS-CONSISTENT      
+                                 |          z range    f2s    f3s|          z range    f2s    f3s|          z range    f2s    f3s
+      Planck 2018 TT,TE,EE+lowE  |   -1.70..  +3.45    77%    97%|   -0.26..  +1.32   100%   100%|  +15.04.. +21.91     0%     0%
+      KiDS-1000 3x2pt (2021)     |   +1.97..  +4.96     1%    35%|   +2.80..  +3.71     0%    12%|  +11.93.. +16.28     0%     0%
+      DES Y3 3x2pt (2022)        |   +1.76..  +5.84     3%    31%|   +2.90..  +4.14     0%     1%|  +15.19.. +20.88     0%     0%
+      DES Y3 + KiDS-1000 joint   |   +0.93..  +4.82    28%    56%|   +2.02..  +3.21     0%    86%|  +13.77.. +19.24     0%     0%
+      HSC Y3 cosmic shear        |   +1.23..  +3.58    34%    86%|   +1.88..  +2.60     4%   100%|   +9.11.. +12.60     0%     0%
+      KiDS-Legacy (2025)         |   -0.43..  +3.89    61%    90%|   +0.78..  +2.10    95%   100%|  +13.77.. +19.75     0%     0%
+      2026 lensing compilation   |   -1.23..  +6.61    42%    56%|   +1.00..  +3.41    36%    86%|  +22.95.. +31.87     0%     0%
+      DESI DR9 galaxy x lensing  |   -1.55..  +2.01   100%   100%|   -0.56..  +0.53   100%   100%|  +10.26.. +15.34     0%     0%
+      eRASS1 cluster counts      |   -4.49..  +1.86    62%    80%|   -2.70..  -0.75    68%   100%|  +15.76.. +23.74     0%     0%
+
+    CAVEAT on the six shear rows: they are NOT six independent measurements.  KiDS-1000 and KiDS-Legacy
+    are the same survey before and after its 2025 revision, DES Y3 enters twice (alone and in the joint), and
+    the 2026 compilation re-analyses them.  Requiring all six at once is OVER-strict, so the checks below
+    are decided on the SINGLE most favourable modern set (KiDS-Legacy, 0.815 +/- 0.016), with the
+    all-six number reported alongside as the strict end of the range.  The 2026 compilation is itself a
+    re-analysis of the same surveys, not a seventh dataset.
+  [FAIL] C2 [2 sigma] some part of L9's surviving region is compatible with the cosmic-shear S_8 at 2 sigma on EVERY reading of the model, including the one that is self-consistent for a spatially uniform g(z)   ((i) NAIVE: KiDS-Legacy canonical 121/146, alt 164/269 | all six canonical 0/146, alt 3/269; (i') LIMBER, no roll: KiDS-Legacy canonical 146/146, alt 256/269 | all six canonical 0/146, alt 0/269; (ii) LENS-CONSISTENT: KiDS-Legacy canonical 0/146, alt 0/269 | all six canonical 0/146, alt 0/269)
+  [FAIL] C3 [3 sigma] some part of L9's surviving region is compatible with the cosmic-shear S_8 at 3 sigma on EVERY reading of the model, including the one that is self-consistent for a spatially uniform g(z)   ((i) NAIVE: KiDS-Legacy canonical 146/146, alt 242/269 | all six canonical 45/146, alt 84/269; (i') LIMBER, no roll: KiDS-Legacy canonical 146/146, alt 269/269 | all six canonical 0/146, alt 2/269; (ii) LENS-CONSISTENT: KiDS-Legacy canonical 0/146, alt 0/269 | all six canonical 0/146, alt 0/269)
+
+============================================================================================================================
+  C4 -- the H0 angle: can a single point fit a high H0 AND an acceptable S_8?
+============================================================================================================================
+    L9's region predicts H0 = 68-72, which straddles Planck (67.36 +/- 0.54) and
+    SH0ES (73.04 +/- 1.04).  The question is whether the SAME point can do both jobs.
+    canonical: H0 68.90-71.99;  within 2 sigma of Planck 0/146, of SH0ES 57/146, of NEITHER 89/146   -- the region CANNOT sit at the Planck H0
+               S_8 (i) NAIVE              within 2 sigma of KiDS-Legacy:  121/146;  JOINT with SH0ES   57;  JOINT with Planck-H0    0
+               S_8 (i') LIMBER, no roll   within 2 sigma of KiDS-Legacy:  146/146;  JOINT with SH0ES   57;  JOINT with Planck-H0    0
+               S_8 (ii) LENS-CONSISTENT   within 2 sigma of KiDS-Legacy:    0/146;  JOINT with SH0ES    0;  JOINT with Planck-H0    0
+               correlation of H0 with S_8 across the region: r = -0.999 -- a higher H0 also LOWERS S_8, so the two do NOT pull against each other here
+    alt      : H0 67.36-72.21;  within 2 sigma of Planck 38/269, of SH0ES 58/269, of NEITHER 173/269
+               S_8 (i) NAIVE              within 2 sigma of KiDS-Legacy:  164/269;  JOINT with SH0ES   58;  JOINT with Planck-H0    0
+               S_8 (i') LIMBER, no roll   within 2 sigma of KiDS-Legacy:  256/269;  JOINT with SH0ES   58;  JOINT with Planck-H0   27
+               S_8 (ii) LENS-CONSISTENT   within 2 sigma of KiDS-Legacy:    0/269;  JOINT with SH0ES    0;  JOINT with Planck-H0    0
+               correlation of H0 with S_8 across the region: r = -0.999 -- a higher H0 also LOWERS S_8, so the two do NOT pull against each other here
+  [FAIL] C4 [H0+S8] a SINGLE surviving point sits within 2 sigma of a measured H0 (Planck or SH0ES) and within 2 sigma of the most favourable modern cosmic-shear S_8 at the same time, on EVERY reading   ((i) NAIVE: canonical 57/146, alt 58/269; (i') LIMBER, no roll: canonical 57/146, alt 85/269; (ii) LENS-CONSISTENT: canonical 0/146, alt 0/269.  The internal tension is NOT between H0 and S_8 -- they are anti-correlated across the region, so the high-H0 end is also the low-S_8 end -- it is that the canonical footing cannot reach the Planck H0 at all)
+
+============================================================================================================================
+  C5 -- L9's internal growth gate replaced by the measurements themselves
+============================================================================================================================
+    L9 gated growth on Delta chi^2_RSD <= +9 RELATIVE to LambdaCDM (its own 3 sigma) plus |sigma_8/0.8111 - 1|
+    <= 10%, and reported that tightening to 2 sigma empties the canonical footing.  That is a gate against a
+    reference model.  Here the gate is the DATA: the ABSOLUTE chi^2 of the model's own f*sigma_8 against the
+    7 RSD points (7 d.o.f., no parameters refitted at this stage), plus S_8.
+    chi^2 tail control: p(14.067, 7) = 0.05000 [0.05], p(24.322, 7) = 0.00100 [0.001], p(9.488, 4) = 0.04999 [0.05], p(3.841, 1) = 0.05001 [0.05]  -- max error 1.4e-05
+    LambdaCDM's own absolute chi^2 on the same 7 points is 6.06 (p = 0.532).
+
+    canonical -- absolute RSD chi^2 over the region: 11.34 - 15.06 (p = 0.124 down to 3.5e-02)
+      L9's own gate (Delta chi^2_RSD <= 9 + 10% on sigma_8)           146/146  (100.0%)   z_t in [0.003333, 0.3743], W in [0.3757, 0.5651]
+      absolute RSD fit acceptable at p > 0.05                         115/146  ( 78.8%)   z_t in [0.003333, 0.282], W in [0.4077, 0.5425]
+      absolute RSD fit acceptable at p > 0.003                        146/146  (100.0%)   z_t in [0.003333, 0.3743], W in [0.3757, 0.5651]
+      + S_8 within 2 sigma of KiDS-Legacy      (i) NAIVE              115/146  ( 78.8%)   z_t in [0.003333, 0.282], W in [0.4077, 0.5425]
+      + S_8 within 3 sigma of all six shear   (i) NAIVE                45/146  ( 30.8%)   z_t in [0.003333, 0.1325], W in [0.4608, 0.5208]
+      + S_8 within 2 sigma of KiDS-Legacy      (i') LIMBER, no roll   115/146  ( 78.8%)   z_t in [0.003333, 0.282], W in [0.4077, 0.5425]
+      + S_8 within 3 sigma of all six shear   (i') LIMBER, no roll      0/146  (  0.0%)   EMPTY
+      + S_8 within 2 sigma of KiDS-Legacy      (ii) LENS-CONSISTENT     0/146  (  0.0%)   EMPTY
+      + S_8 within 3 sigma of all six shear   (ii) LENS-CONSISTENT      0/146  (  0.0%)   EMPTY
+
+    alt -- absolute RSD chi^2 over the region: 9.16 - 15.04 (p = 0.241 down to 3.6e-02)
+      L9's own gate (Delta chi^2_RSD <= 9 + 10% on sigma_8)           269/269  (100.0%)   z_t in [0.003333, 0.4406], W in [0.3363, 0.6036]
+      absolute RSD fit acceptable at p > 0.05                         236/269  ( 87.7%)   z_t in [0.003333, 0.4406], W in [0.3363, 0.6036]
+      absolute RSD fit acceptable at p > 0.003                        269/269  (100.0%)   z_t in [0.003333, 0.4406], W in [0.3363, 0.6036]
+      + S_8 within 2 sigma of KiDS-Legacy      (i) NAIVE              164/269  ( 61.0%)   z_t in [0.003333, 0.361], W in [0.368, 0.577]
+      + S_8 within 3 sigma of all six shear   (i) NAIVE                84/269  ( 31.2%)   z_t in [0.003333, 0.2193], W in [0.4211, 0.5274]
+      + S_8 within 2 sigma of KiDS-Legacy      (i') LIMBER, no roll   236/269  ( 87.7%)   z_t in [0.003333, 0.4406], W in [0.3363, 0.6036]
+      + S_8 within 3 sigma of all six shear   (i') LIMBER, no roll      2/269  (  0.7%)   z_t in [0.361, 0.4406], W in [0.3363, 0.368]
+      + S_8 within 2 sigma of KiDS-Legacy      (ii) LENS-CONSISTENT     0/269  (  0.0%)   EMPTY
+      + S_8 within 3 sigma of all six shear   (ii) LENS-CONSISTENT      0/269  (  0.0%)   EMPTY
+  [FAIL] C5 [growth on real data] with L9's internal Delta chi^2 gate replaced by the absolute goodness of fit to the RSD points and by the measured S_8, part of the region still survives on EVERY reading   ((i) NAIVE: canonical 115/146, alt 164/269; (i') LIMBER no roll: canonical 115/146, alt 236/269; (ii) LENS-CONSISTENT: canonical 0/146, alt 0/269.  L9's own 3-sigma-to-2-sigma squeeze is reproduced by the data as a MILDER cut: the absolute RSD p-value alone leaves 115/146 canonical and 236/269 alt, because L9's Delta chi^2 gate is measured against LambdaCDM's own chi^2 = 6.06 rather than against the 7 d.o.f.)
+
+============================================================================================================================
+  C6 -- the coefficient question: kappa_closure/k03 vs L9's cosmology
+============================================================================================================================
+    k03 established that the framework's own relation a0 = kappa c sqrt(G rho_Lambda) scales as H0 at fixed
+    Omega_Lambda, so 'the coefficient is degenerate with the H0 tension': kappa = 1/2 on Planck's H0 and
+    kappa = 0.461 on SH0ES's H0 give the same a0 to better than 1%.  L9's cosmology does NOT hold
+    Omega_Lambda fixed -- the closure 1 = F(Omega_m + Omega_r + Omega_Lambda) forces it DOWN to 0.25-0.32.
+    Since rho_Lambda is proportional to omega_Lambda = Omega_Lambda h^2, that is a first-order change in a0.
+    canonical: omega_Lambda 0.1179-0.1418 against LambdaCDM 0.3107 (a factor 0.379-0.456)
+      reading 1, the G in a0 = kappa c sqrt(G rho_L) is the LOCAL G_0:
+        a0 would move by a factor 0.616-0.676, i.e. -38.4% to -32.4% (0.210-0.170 dex), against a 9.47% BTFR floor and DR4's 21% reach
+        to hold a0 at its measured value the coefficient must be kappa = 0.740-0.812, which is 3.6-6.1 sigma from the two measured values (0.465 +/- 0.076 and 0.551 +/- 0.043)
+      reading 2, that G is the COSMOLOGICAL F G_0 (the roll enters rho_Lambda's gravity too):
+        a0 moves by 0.831-0.911 (-16.9% to -8.9%), and kappa = 0.549-0.602 (0.1-1.8 sigma)
+    alt      : omega_Lambda 0.1269-0.1671 against LambdaCDM 0.3107 (a factor 0.408-0.538)
+      reading 1, the G in a0 = kappa c sqrt(G rho_L) is the LOCAL G_0:
+        a0 would move by a factor 0.639-0.733, i.e. -36.1% to -26.7% (0.194-0.135 dex), against a 9.47% BTFR floor and DR4's 21% reach
+        to hold a0 at its measured value the coefficient must be kappa = 0.682-0.782, which is 2.9-5.4 sigma from the two measured values (0.465 +/- 0.076 and 0.551 +/- 0.043)
+      reading 2, that G is the COSMOLOGICAL F G_0 (the roll enters rho_Lambda's gravity too):
+        a0 moves by 0.828-0.951 (-17.2% to -4.9%), and kappa = 0.526-0.604 (0.6-1.8 sigma)
+
+    fraction of the surviving region that keeps a0 inside k03's 9.47% BTFR mass-budget floor:
+      canonical  reading 1 (local G):     0/146      reading 2 (cosmological G):   18/146
+      alt        reading 1 (local G):     0/269      reading 2 (cosmological G):   96/269
+  [FAIL] C6 [kappa] L9's surviving cosmology leaves the framework's own a0 = kappa c sqrt(G rho_Lambda) relation intact -- every surviving point stays inside the 9.47% BTFR mass-budget floor that k03 identified as the precision limit, on both readings of which G enters   (the shift runs 4.9% to 38.4%: on reading 1 (the local G) NO point is inside the 9.47% floor and none is inside DR4's 21% reach either; on reading 2 (the cosmological F G_0) canonical 18/146, alt 96/269 are.  The two questions DO interact: L9's closure lowers rho_Lambda by a factor 0.38-0.54 and drags a0 with it, which k03's H0 degeneracy (stated at FIXED Omega_Lambda) does not cover)
+
+============================================================================================================================
+  C7 -- the verdict
+============================================================================================================================
+    canonical: of 146 L9 survivors, the number keeping an acceptable absolute RSD fit, an S_8 within
+               2 sigma of KiDS-Legacy AND an H0 within 2 sigma of Planck or SH0ES:
+                 (i) NAIVE                57/146
+                 (i') LIMBER no roll      57/146
+                 (ii) LENS-CONSISTENT      0/146
+               THE CORNER on reading (i) NAIVE: z_t in [0.003333, 0.1325], W in [0.4608, 0.5208]
+                 sigma_8 0.853-0.856, S_8(i) 0.818-0.833, S_8(i') 0.835-0.839, H0 70.97-71.99, Omega_m 0.276-0.284
+                 RSD p-value 0.080-0.124, f(0) 0.585-0.598, t0 13.70-13.72 Gyr, and its lensing-consistent S_8 would be 1.118-1.140
+               THE CORNER on reading (i') LIMBER no roll: z_t in [0.003333, 0.1325], W in [0.4608, 0.5208]
+                 sigma_8 0.853-0.856, S_8(i) 0.818-0.833, S_8(i') 0.835-0.839, H0 70.97-71.99, Omega_m 0.276-0.284
+                 RSD p-value 0.080-0.124, f(0) 0.585-0.598, t0 13.70-13.72 Gyr, and its lensing-consistent S_8 would be 1.118-1.140
+    alt      : of 269 L9 survivors, the number keeping an acceptable absolute RSD fit, an S_8 within
+               2 sigma of KiDS-Legacy AND an H0 within 2 sigma of Planck or SH0ES:
+                 (i) NAIVE                58/269
+                 (i') LIMBER no roll      66/269
+                 (ii) LENS-CONSISTENT      0/269
+               THE CORNER on reading (i) NAIVE: z_t in [0.003333, 0.1797], W in [0.4405, 0.5274]
+                 sigma_8 0.845-0.849, S_8(i) 0.808-0.826, S_8(i') 0.832-0.838, H0 70.96-72.21, Omega_m 0.274-0.284
+                 RSD p-value 0.164-0.241, f(0) 0.567-0.583, t0 13.70-13.72 Gyr, and its lensing-consistent S_8 would be 1.060-1.089
+               THE CORNER on reading (i') LIMBER no roll: z_t in [0.003333, 0.4406], W in [0.3518, 0.5516]
+                 sigma_8 0.845-0.857, S_8(i) 0.808-0.869, S_8(i') 0.830-0.846, H0 68.06-72.21, Omega_m 0.274-0.309
+                 RSD p-value 0.052-0.241, f(0) 0.567-0.624, t0 13.70-13.76 Gyr, and its lensing-consistent S_8 would be 1.060-1.162
+
+    HOW MUCH the roll would have to be removed from lensing for reading (i)/(i') to be legitimate.
+    The largest S_8 that stays within 2 sigma of KiDS-Legacy is 0.8492, so the shear-kernel roll factor
+    would have to satisfy g_eff <= that divided by the model's own no-roll amplitude:
+      canonical: allowed g_eff <= 1.006-1.024 against the actual 1.338-1.441, i.e. the roll must be suppressed in the LENSING
+                 potential by 94-98% relative to the DYNAMICAL one.
+      alt      : allowed g_eff <= 1.000-1.028 against the actual 1.273-1.415, i.e. the roll must be suppressed in the LENSING
+                 potential by 92-100% relative to the DYNAMICAL one.
+    A suppression that large is exactly a lensing/dynamics decoupling of order F, and the same decoupling
+    would make cluster weak-lensing masses disagree with X-ray hydrostatic masses by of order F ~ 1.7-1.8.
+    They are observed to agree to tens of percent (L9's own open item (ii)), so this escape is not free.
+  [FAIL] C7 [verdict] the late-roll mechanism survives current data on the reading that is SELF-CONSISTENT for a spatially uniform g(z), namely with the roll multiplying the Weyl potential that lenses light   (canonical: 0/146, alt: 0/269.  On the maximally favourable reading, where an unspecified screening removes the roll from the shear signal entirely, canonical: 57/146, alt: 58/269 survive, so the mechanism is ALIVE ONLY IN A CORNER and only under that assumption)
+
+============================================================================================================================
+  THE VERDICT OF THIS LANE
+============================================================================================================================
+  1. sigma_8 = 0.845-0.861 is high, but S_8 is NOT, and that is the first real finding.  L9's survivors
+     carry Omega_m = 0.274-0.315, at or below the concordance 0.3153, so S_8 = sigma_8 sqrt(Omega_m/0.3) turns the high
+     sigma_8 into S_8 = 0.808-0.882, which STRADDLES Planck's 0.832 +/- 0.013.  It sits +1.2 to +5.8 sigma from the older
+     shear values (KiDS-1000, DES Y3, HSC Y3) but within 2 sigma of the revised KiDS-Legacy 0.815 +/- 0.016
+     over most of the region, and inside 1 sigma of DESI DR9 lensing and eRASS1 cluster counts.  So the
+     naive reading is NOT a kill: the S_8 tension running the other way does not by itself close it.
+     One caveat AGAINST the model, from its own numbers: the naive formula discounts by Omega_m while the
+     Weyl source carries the CMB-fixed omega_m, so the physically correct no-roll amplitude is HIGHER,
+     S_8 = 0.828-0.851 -- the Omega_m discount is partly an artefact of the parametrisation.
+  2. The kill is elsewhere, and it is the gate L9 said it did not run.  In MODEL A the roll multiplies the
+     Poisson source, so with no slip it multiplies the Weyl potential.  The cosmic-shear amplitude is then
+     larger than LambdaCDM's by the kernel-weighted g_eff = 1.27-1.44, giving an effective S_8 = 1.06-1.20
+     against measurements at 0.76-0.86 with errors of 0.01-0.03.  That is not a tension, it is an exclusion
+     by tens of sigma, and it does not depend on which shear survey is used.
+  3. The escape is exactly the thing L9's own T8 already showed is unavailable.  Reading (i) survives only
+     if a screening removes the roll from the shear signal while leaving it in the cluster masses -- i.e.
+     the density-dependent screening L6 excluded at 12.8 sigma with 100% baryon-density overlap.  So the
+     two halves close on each other: with the screening, L6 kills it; without it, cosmic shear does.
+  4. And the framework's own coefficient moves with it.  L9's closure drives omega_Lambda down by a factor
+     0.38-0.54, so a0 = kappa c sqrt(G rho_Lambda) moves by -38% to -27% if the G in that
+     relation is the LOCAL one -- outside k03's 9.47% BTFR floor at EVERY surviving point, and outside
+     DR4's 21% reach as well -- or -17% to -5% if it is the COSMOLOGICAL F G_0, which stays
+     inside the floor for 18/146 canonical and 96/269 alt points.  Holding a0 fixed on the first reading would need
+     kappa = 0.68-0.81, 2.9-6.1 sigma from both measured values.  This is a NEW constraint and not a restatement
+     of k03: k03's degeneracy was with H0 at FIXED Omega_Lambda, and L9's closure is precisely a mechanism
+     that MOVES Omega_Lambda.  Which G enters is not settled here, so both readings are carried.
+  5. What this does NOT show.  It does not rescue anything and it does not close the cluster problem, which
+     L9's T8 already left fatal on its own terms.  It does not exclude a NON-uniform or non-monotone
+     coupling, or a model where the lensing and dynamical potentials differ -- but such a model is no longer
+     the MODEL A tested here, owes an action, and inherits L9's own item (ii): if lensing and hydrostatic
+     cluster masses differ by of order F they are observed to agree to tens of percent.
+
+  WHAT DRIVES EACH FAIL, stated so nothing is over-read: C2, C3, C4, C5 and C7 all fail on reading (ii)
+  and ONLY on reading (ii).  On reading (i)/(i') -- the roll removed from the shear signal -- every one of
+  them passes, and the mechanism is alive in a corner:
+    canonical corner: z_t <= 0.132, W in [0.461, 0.521]  (57/146 of L9's region)
+              sigma_8 0.853-0.856, S_8 0.818-0.833, H0 71.0-72.0, Omega_m 0.276-0.284, Omega_Lambda 0.266-0.274
+    alt       corner: z_t <= 0.180, W in [0.441, 0.527]  (58/269 of L9's region)
+              sigma_8 0.845-0.849, S_8 0.808-0.826, H0 71.0-72.2, Omega_m 0.274-0.284, Omega_Lambda 0.311-0.321
+  C6 fails on its own terms and independently of the lensing question.
+
+RESULT: 6 FAIL -> ["C2 [2 sigma] some part of L9's surviving region is compatible with the cosmic-shear S_8 at 2 sigma on EVERY reading of the model, including the one that is self-consistent for a spatially uniform g(z)", "C3 [3 sigma] some part of L9's surviving region is compatible with the cosmic-shear S_8 at 3 sigma on EVERY reading of the model, including the one that is self-consistent for a spatially uniform g(z)", 'C4 [H0+S8] a SINGLE surviving point sits within 2 sigma of a measured H0 (Planck or SH0ES) and within 2 sigma of the most favourable modern cosmic-shear S_8 at the same time, on EVERY reading', "C5 [growth on real data] with L9's internal Delta chi^2 gate replaced by the absolute goodness of fit to the RSD points and by the measured S_8, part of the region still survives on EVERY reading", "C6 [kappa] L9's surviving cosmology leaves the framework's own a0 = kappa c sqrt(G rho_Lambda) relation intact -- every surviving point stays inside the 9.47% BTFR mass-budget floor that k03 identified as the precision limit, on both readings of which G enters", 'C7 [verdict] the late-roll mechanism survives current data on the reading that is SELF-CONSISTENT for a spatially uniform g(z), namely with the roll multiplying the Weyl potential that lenses light']

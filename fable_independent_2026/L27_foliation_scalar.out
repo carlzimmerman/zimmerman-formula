@@ -1,0 +1,221 @@
+======================================================================================================================
+L27 -- is there a scalar, foliation-independent replacement for q = -(1/6) ln det gamma?
+======================================================================================================================
+
+SECTION 0 -- CONTROLS: is the machinery right, and does it reproduce L12's kill?
+----------------------------------------------------------------------------------------------------------------------
+  [PASS] C0 [control] my 3-curvature machinery returns R3 = 0 for flat space in BOTH Cartesian and spherical coordinates   (R3_cart = 0, R3_sph = 0, both exact)
+
+    Building the slicing family.  Same spacetime, three cuts, labelled by the areal radius r.
+      lam=0   static:  N = sqrt(-2*M + r)/sqrt(r),  gamma_rr = r/(-2*M + r)
+      lam=1/2 tilted:  N = sqrt(2)*sqrt((2*M - r)/(M - 2*r)),  gamma_rr = (M/2 - r)/(2*M - r)
+      lam=1   PG:  N = 1,  gamma_rr = 1
+  [PASS] C1 [control] the three cuts are ONE spacetime: R_munu = 0 and Kretschmann = 48 M^2/r^6 for lam = 0, 1/2, 1 (vacuum Schwarzschild in all three)   (Kretschmann = 48*M**2/r**6 / 48*M**2/r**6 / 48*M**2/r**6)
+  [PASS] C2 [control] the three cuts are genuinely DIFFERENT slices: the lapse and the spatial metric move with lam (lam=1 is Painleve-Gullstrand, gamma exactly flat, N = 1)   (N(lam=0) = sqrt(-2*M + r)/sqrt(r), N(lam=1) = 1, gamma(lam=1) flat = True)
+
+    L12's kill, reproduced:  static slice, isotropic fiducial : c^2|Dq| = c^2 * M/rbar**2  = g_Newton
+                             Painleve-Gullstrand slice        : q = 0, c^2|Dq| = 0
+  [PASS] C3 [CONTROL, reproduces L12] q = -(1/6) ln det gamma gives g_Newton on the static slice and EXACTLY 0 on the Painleve-Gullstrand slice of the same vacuum Schwarzschild spacetime   (reproduced: g_N vs 0, the L12 kill stands)
+  [PASS] C3b [CONTROL, reproduces L12] in EMPTY flat space written in spherical coordinates the operator is C_M = -1/(3 r^2), demanding fictitious matter   (C_M = -1/(3*r**2); rho_fict = -1.596e+03 kg/m^3 at 1 AU (denser than granite), identical on both footings because mu = 1 there)
+  [PASS] C4 [control] linearised R4 = 2 grad^2 Phi, is invariant under h -> h + d_(mu xi_nu), and agrees with the FULL nonlinear Ricci scalar at O(Phi)   (R^(1)/grad^2 Phi = 2, gauge shift = 0, full-nonlinear O(eps) term = 2*Derivative(varphi(x), (x, 2)))
+  [PASS] C5 [control] the curvature-ratio construction reproduces the Newtonian potential of a POINT MASS exactly, both in exact GR and in its weak-field surrogate   (exact GR: -(720/48^1.5) sqrt(I1^3)/I2 = M/(2*M - r) = -M/(r-2M) -> -M/r; surrogate/Phi = 1.000000000000)
+         (I1 = 48*M**2/r**6, I2 = nabla_e R_abcd nabla^e R^abcd = 720*M**2*(-2*M + r)/r**9)
+
+SECTION 1 -- REQUIREMENT (b), APPLIED FIRST AND TO EVERY CANDIDATE
+    Same vacuum Schwarzschild spacetime, three slicings.  A candidate that moves with lam is dead.
+----------------------------------------------------------------------------------------------------------------------
+  [PASS] C6 [control] every slice of the family satisfies the VACUUM ADM Hamiltonian constraint R3 + K^2 - K_ij K^ij = 0 (my extrinsic-curvature machinery is right)   (exact 0 on all three cuts)
+  [FAIL] b01 (b) q = -(1/6) ln(det gamma / det gamma-bar)  [L12's own choice, flat fiducial]   (|Dq| to O(M) = M/(3*r**2) / M/(4*r**2) / 0  (static / tilted / PG); multiply by c^2 for the acceleration -- the same vacuum spacetime hands back a different MOND field on every cut, and 0 on PG)
+  [FAIL] b02 (b) the spatial Ricci scalar R3   (R3 = 0 / -6*M**2/(r**2*(M - 2*r)**2) / 0  -- the two-slicing test would have PASSED this candidate; the third cut kills it)
+  [FAIL] b03 (b) the trace of the extrinsic curvature K (the York time)   (K = 0 / 3*sqrt(M)*(M*r + (M - 2*r)*(2*M - r))/(2*r**(3/2)*sqrt((2*M - r)/(M - 2*r))*(M - 2*r)**2) / 3*sqrt(2)*sqrt(M)/(2*r**(3/2)))
+  [FAIL] b04 (b) K_ij K^ij   (K_ijK^ij = 0 / M*(8*(M - 2*r)**2*(2*M - r)**2 + (3*M*r - (M - 2*r)*(2*M - r))**2)/(4*r**3*(M - 2*r)**3*(2*M - r)) / 9*M/(2*r**3))
+  [FAIL] b05 (b) the trace-free part A_ij A^ij   (A_ijA^ij = 0 / 3*M*(M*r - (M - 2*r)*(2*M - r))**2/(2*r**3*(M - 2*r)**3*(2*M - r)) / 3*M/r**3)
+  [FAIL] b06 (b) ln N, the ADM lapse  [this is the khronometric choice and it reintroduces a preferred foliation by construction -- the test confirms it quantitatively]   (ln N = log(sqrt(-2*M/r + 1)) / log(2*(2*M - r)/(M - 2*r))/2 / 0)
+  [FAIL] b07 (b) c^2 |D ln N|, the proper acceleration of the slice-normal observers  [the MOND field taken to BE an acceleration rather than a potential gradient]   (|D ln N| to O(M) = M/r**2 / 3*M/(4*r**2) / 0; times c^2 that is g_N on the static cut and exactly 0 on PG, because the PG normal observers are in free fall)
+  [PASS] b08 (b) the four-dimensional Ricci scalar R4   (R4 = 0 / 0 / 0 -- SURVIVES (b))
+  [PASS] b09 (b) the Kretschmann scalar I1 = R_abcd R^abcd   (I1 = 48*M**2/r**6 on all three cuts -- SURVIVES (b))
+      I2 on lam=0   static: 720*M**2*(-2*M + r)/r**9
+      I2 on lam=1/2 tilted: 720*M**2*(-2*M + r)/r**9
+      I2 on lam=1   PG: 720*M**2*(-2*M + r)/r**9
+  [PASS] b10 (b) the derivative invariant I2 = nabla_e R_abcd nabla^e R^abcd   (I2 = 720*M**2*(-2*M + r)/r**9 on all three cuts -- SURVIVES (b))
+  [PASS] b11 (b) the electric Weyl invariant E_ij E^ij with E_ij = C_(a i b j) n^a n^b, n the slice normal   (E^2 = 6*M**2/r**6 on all three cuts -- SURVIVES (b), and it is NOT trivially so: the normal observer is static at lam=0 and free-falling at lam=1)
+  [PASS] b12 (b) ln sqrt(-xi.xi), the norm of the timelike KILLING vector  [not the ADM lapse: xi is a property of the spacetime, so this is the geometrically-defined 'potential']   (ln sqrt(-xi.xi) = log((-2*M + r)/r)/2 on all three cuts, and xi is verified Killing (nabla_(a xi_b) = 0) in all three coordinate systems -- SURVIVES (b))
+  [PASS] b13 (b) q_ratio = -(720/48^{3/2}) sqrt(I1^3)/I2  [the construction that DOES give -M/r out of local curvature alone]   (q_ratio = M/(2*M - r) on all three cuts -- SURVIVES (b))
+  [PASS] b14 (b) a matter-built scalar, e.g. T = T^mu_mu  [vacuously equal on the family, so it is carried forward rather than dismissed]   (T = 0 on all three cuts (vacuum) -- SURVIVES (b) vacuously; decided by (c) below)
+
+    REQUIREMENT-(b) TABLE  (vacuum Schwarzschild; static / tilted / Painleve-Gullstrand)
+    ----------------------------------------------------------------------------------------------------------------
+    candidate                                    (b)    what happened
+    ----------------------------------------------------------------------------------------------------------------
+    q_det = -(1/6) ln(det gamma/det gbar)        FAIL   slice-dependent: g_N/3 (areal fiducial) -> 0; g_N with the isotropic fiducial, control C3
+    R3 (spatial Ricci scalar)                    FAIL   0 on static AND PG by coincidence, nonzero on the third cut
+    K = gamma^ij K_ij                            FAIL   0 on static, nonzero on PG
+    K_ij K^ij                                    FAIL   0 on static, nonzero on PG
+    A_ij A^ij (trace-free)                       FAIL   0 on static, nonzero on PG
+    ln N (ADM lapse)                             FAIL   (1/2)ln f -> 0; N IS the slicing
+    c^2|D ln N| (normal-observer acceleration)   FAIL   g_N on static, exactly 0 on PG (free-fallers feel nothing)
+    R4 (spacetime Ricci scalar)                  PASS   0 = 0 = 0, but see (c)
+    I1 = Kretschmann                             PASS   48 M^2/r^6 on all three
+    I2 = grad-Riemann squared                    PASS   720 M^2(r-2M)/r^9 on all three
+    E_ij E^ij (electric Weyl)                    PASS   6 M^2/r^6 on all three -- radial boosts leave type-D E_ij alone
+    ln sqrt(-xi.xi) (Killing norm)               PASS   (1/2)ln(1-2M/r) on all three -- SURVIVES
+    q_ratio = -(720/48^1.5) sqrt(I1^3)/I2        PASS   -M/(r-2M) on all three -- SURVIVES
+    T = T^mu_mu (matter scalar)                  PASS   0 = 0 = 0 in vacuum, vacuous here
+    ----------------------------------------------------------------------------------------------------------------
+    7 of 14 candidates die on requirement (b) alone.  7 survive to (a), (c), (d).
+
+SECTION 2 -- REQUIREMENTS (a), (c), (d) ON THE (b)-SURVIVORS
+----------------------------------------------------------------------------------------------------------------------
+  [FAIL] a1 (a) q_det transforms as a spatial SCALAR under spatial diffeomorphisms, delta_xi q = xi.dq   (it does not.  Computing delta_xi q = -(1/6) gamma^ij (Lie_xi gamma)_ij directly gives delta_xi q - xi.dq + (1/3) d_k xi^k = 0 exactly, i.e. the anomaly delta_xi q_det = xi.dq - (1/3) d_k xi^k that L12 reports, reproduced here independently)
+  [PASS] a2 (a) a curvature scalar really is anomaly-free: R3 of the SAME 3-geometry written in two radial charts (r and rho = r - M) gives the same number at the same point, while q_det does not   (R3 agrees exactly under the chart change (True); q_det does not (False).  Every (b)-survivor here (R4, I1, I2, E^2, Killing norm, q_ratio, T) is a spacetime scalar and so satisfies (a) by the same argument -- requirement (a) is not what decides this search)
+
+    (c) THE STATIC WEAK FIELD.  Does the survivor reduce to the Newtonian potential, for a
+        GENERAL source (i.e. does it superpose), so that |D qt| is an acceleration?
+        reference system: M_b = 6e10 Msun at 10 kpc, g_N = 8.365e-11 m/s^2
+          canonical : a0 = 9.3619e-11, y = g_N/a0 = 0.894, deep-MOND g_obs ~ sqrt(g_N a0) = 8.849e-11 m/s^2
+          alt       : a0 = 1.1279e-10, y = g_N/a0 = 0.742, deep-MOND g_obs ~ sqrt(g_N a0) = 9.713e-11 m/s^2
+  [FAIL] c08 (c) R4 (and every Ricci-built scalar: R_munu R^munu, T, rho) reduces to the Newtonian potential in the static weak field   (it does not: R4^(1) = 2 grad^2 Phi (control C4), so R4 = 0 identically in VACUUM -- outside the baryons, which is exactly where the rotation curve lives.  c^2|D R4| = 0 against a required 8.849e-11 (canonical) / 9.713e-11 (alt) m/s^2 at 10 kpc: the deficit is total, on both footings)
+  [FAIL] c09 (c) I1 = Kretschmann, I2 = grad-Riemann squared (equivalently E_ij E^ij, C^2) reduce to the Newtonian potential   (it does not: I1 = 48 M^2/r^6 is TIDAL.  The only dimensionless combination with the right radial fall-off is I1^{1/6} ~ M^(1/3)/r, so c^2|D qt| ~ M^(1/3)/r^2 -- calibrate on a 6e10 Msun spiral and a 6e8 Msun dwarf is predicted 22x too strong; v_c^2 = g r ~ M^(1/3)/r still falls off, so there is no flat rotation curve and no BTFR on either footing.  I2 = 720 M^2(r-2M)/r^9 carries the same disease: both are quadratic in the TIDAL field, not linear in the potential)
+  [FAIL] c11 (c) E_ij E^ij, the electric Weyl, reduces to the Newtonian potential   (it does not, for the same reason (E_ij = d_i d_j Phi in the weak field is the TIDAL tensor, two derivatives of the potential, not the potential); and it additionally vanishes wherever the spacetime is conformally flat -- see T5 below)
+
+        c13 THE SUPERPOSITION TEST for q_ratio.  It is exact for ONE point mass by construction
+            (control C5).  Requirement (c) is about a GENERAL static source, so: two point masses.
+            field point                        c^2 q_ratio           Phi     q/Phi  c^2|Dq_ratio|   |grad Phi|     ratio
+            midpoint, 0.5 kpc off-axis         -2.8256e+11   -1.7122e+10    16.502     3.7170e-08   1.0988e-11   3382.76
+            on-axis, 2 kpc from centre         -1.9279e+10   -2.0486e+10     0.941     7.0233e-11   1.2645e-10      0.56
+            perpendicular, 8 kpc out           -8.1570e+09   -9.1202e+09     0.894     4.5936e-11   2.6567e-11      1.73
+            far field, 200 kpc out             -4.3047e+08   -4.3006e+08     1.001     6.9839e-14   6.9643e-14      1.00
+  [FAIL] c13 (c) q_ratio superposes, i.e. reduces to the Newtonian potential for a GENERAL static source and not merely for the single Schwarzschild solution it was tuned on   (it does not: for two equal 1e10 Msun masses 10 kpc apart, q_ratio/Phi runs from 0.894 to 16.502 across the field and the predicted ACCELERATION runs from 0.56x to 3383x the Newtonian one.  It is exact only in the far field, where the two-body system looks like the single point mass it was tuned on.  A ratio of curvature invariants is not additive, so it is not a potential)
+
+        c12 THE KILLING-NORM CANDIDATE.  ln sqrt(-xi.xi) = (1/2) ln(1 - 2M/r) -> -M/r = Phi/c^2,
+            and because it EQUALS Phi/c^2 at linear order it superposes exactly.
+  [PASS] c12 (c) ln sqrt(-xi.xi) reduces to the Newtonian potential in the static weak field, for a general static source   (yes: log((-2*M + r)/r)/2 = -M/r + O(M^2) = Phi/c^2, and Phi obeys a linear Poisson equation so it superposes by construction -- this candidate PASSES (c))
+
+    (d) EMPTY FLAT SPACE, IN EVERY COORDINATE SYSTEM.
+  [PASS] d1 (d) the (b)-surviving GEOMETRIC scalars (R4, I1, I2, E^2, Killing norm) vanish in genuinely empty flat space in BOTH Cartesian and spherical coordinates   (yes -- R4 = I1 = 0 exactly in both charts, and ln sqrt(-xi.xi) = ln 1 = 0.  This is the requirement q_det fails catastrophically (control C3b, -1.6e3 kg/m^3 at 1 AU))
+  [FAIL] d2 (d) q_ratio is well defined and vanishes in genuinely empty flat space   (it is not: I1 = I2 = 0 in flat space, so sqrt(I1^3)/I2 is 0/0 -- undefined, not zero.  Every curvature-RATIO construction has this disease, because the ratio exists only where curvature does)
+
+SECTION 3 -- THE STRUCTURAL TENSION, ADDRESSED HEAD ON: IS IT A THEOREM?
+----------------------------------------------------------------------------------------------------------------------
+
+    The tension the assignment names is real and it has now been made precise.  Three statements, each
+    proved on the geometry above rather than asserted.
+
+    T1  THE DERIVATIVE-COUNT THEOREM.  Requirement (c) asks for the ZEROTH-derivative object Phi;
+        requirements (a)+(b) force at least the SECOND.  Nothing sits in between.
+        vacuum weak field (Phi harmonic): linearised R_munu = 0 -> True;
+        the only surviving linear invariant is R^(1)_(0i0j) = d_i d_j Phi -> True
+  [FAIL] T1 [theorem] some natural dimensionless scalar has a part LINEAR in h_munu that equals Phi itself, i.e. zero derivatives of the potential   (none does.  A natural scalar's linear part must be invariant under h -> h + d_(mu xi_nu) (control C4), and the complete set of such invariants is the LINEARISED RIEMANN TENSOR, which is exactly two derivatives of h.  Computed here: in vacuum the linearised Ricci tensor vanishes identically (True), so every Ricci-built scalar is zero there, and the one surviving piece is R^(1)_(0i0j) = d_i d_j Phi (True) -- the TIDAL tensor, dimension 1/L^2.  Making it dimensionless needs either an external length (giving l^2 grad^2 Phi, not Phi) or a RATIO of invariants, which is not linear at all -- and the ratio branch is exactly candidate b13, killed on superposition (c13) and on 0/0 in flat space (d2).  Both horns are closed)
+
+    T4  THE SLICE-METRIC NO-GO.  Any qt = F[gamma] built from the SPATIAL METRIC ALONE fails.
+        Proof, using only objects computed above:
+          1. the lam = 1 (PG) slice of vacuum Schwarzschild has gamma_ij EXACTLY FLAT (control C2),
+             i.e. isometric to a slice of Minkowski;
+          2. requirement (d) then forces F[gamma_PG] = F[flat] = 0 -- F cannot tell the PG slice of
+             a black hole from a slice of empty space, because it sees only gamma;
+          3. requirement (b) propagates that zero to EVERY slice of the same spacetime, so qt = 0
+             on the static slice too;
+          4. requirement (c) demands c^2|D qt| = g_Newton /= 0 there.  Contradiction.
+  [FAIL] T4 [theorem] a functional of the spatial metric alone can satisfy (b), (c) and (d) simultaneously   (it cannot: PG's gamma is exactly flat while the spacetime is not, so (d) forces qt = 0 there, (b) propagates the zero to the static slice, and (c) is then violated.  This kills A1's ENTIRE structure -- a MOND constraint on the conformal mode of gamma -- not merely the choice ln det gamma)
+
+    e1  WHERE THE (b)-SURVIVORS LIVE, and what that does to the count.
+        On the PG slice: R3 = 0 exactly, while K = 3*sqrt(2)*sqrt(M)/(2*r**(3/2)) and K_ijK^ij = 9*M/(2*r**3).
+        Gauss-Codazzi then says the whole of I1 = 48 M^2/r^6 there is built out of K_ij, i.e. out
+        of the gravitational MOMENTUM pi^ij.  So on that slice every (b)-survivor is a function of
+        pi alone.
+  [FAIL] e1 (e) a (b)-surviving qt leaves C_M momentum-free, so A1's rank-2 argument -- the SOLE source of its 2-DOF claim -- still applies   (it does not: on the PG slice R3 = 0 and all of the curvature sits in K_ij, so delta C_M / delta pi^ij /= 0.  A1's count assumed C_M contains no gravitational momentum; that hypothesis is false for every candidate that passes (b).  A constraint on pi alone is a SLICING condition (the CMC/York type), which is the preferred foliation arriving by the other door)
+
+    e2  THE KILLING-NORM CANDIDATE, judged as hard as the others.  It passes (a), (b), (c), (d).
+  [FAIL] e2 (e)+(f) ln sqrt(-xi.xi) is available as a replacement for q: it exists on the spacetimes the theory must describe, and it removes a gravitational degree of freedom   (neither.  (i) EXISTENCE: FLRW has no timelike Killing vector -- nabla_(a xi_b) for xi = d/dt is a(t)*Derivative(a(t), t) /= 0 whenever adot /= 0 -- so the candidate is UNDEFINED on cosmology and on any evolving galaxy; the conformal Killing vector that does exist gives ln a, spatially constant, which is L12's cosmology failure verbatim.  (ii) COUNT: xi is fixed by the whole spacetime, not by (gamma, pi) on one slice, so C_M is not a constraint on the gravitational phase space at all -- it removes NO mode and merely over-determines the lapse, which is a khronon written in geometric clothing.  On the spacetimes where xi does exist, ln sqrt(-xi.xi) IS the static lapse, i.e. candidate b06)
+
+    T5  THE CURVATURE PINCER.  A local curvature scalar splits into Ricci and Weyl parts, and the
+        two halves fail on OPPOSITE sides of the problem.
+        FLRW: Weyl tensor identically zero = True
+        interior Schwarzschild (uniform-density star): max|Weyl| = 4.100e-143 against max|Riemann| = 2.260e-02
+  [FAIL] T5 [theorem] some LOCAL curvature scalar can serve as the MOND potential everywhere the theory must work   (no, and the two halves fail on opposite sides.  RICCI half (R4, R_munu R^munu, T, rho): proportional to T_munu, hence exactly ZERO in vacuum -- no field outside a galaxy's baryons, where the rotation curve is.  WEYL half (I1, E^2, C^2, and every ratio built from them): exactly ZERO wherever the spacetime is conformally flat -- verified here for FLRW (Weyl = 0 identically) and for the interior Schwarzschild solution, a uniform-density star (max|Weyl| = 4.1e-143 vs max|Riemann| = 2.3e-02), where |grad Phi| = (4 pi G rho/3) r /= 0.  Newtonianly: inside any homogeneous region the traceless part of d_i d_j Phi vanishes while the force does not)
+
+    T3  THE HOMOGENEITY THEOREM.  This one needs no search at all, and it is the sharpest result
+        of the lane: it is INDEPENDENT of what q is.
+  [FAIL] T3 [theorem] the constraint C_M = D_i[mu(y) D^i qt] - S ~ 0 admits a nonzero matter density on a homogeneous background, for SOME scalar qt   (for NO scalar qt.  On an exactly homogeneous slice every spatial scalar is spatially constant, so D_i qt = 0, y = 0 and the frozen kernel gives mu(0) = 1 - e^0 = 0: the whole operator vanishes identically (verified symbolically, C_M = 0), leaving C_M = -S and therefore rho = 0 against rho_m = 2.688e-27 kg/m^3 today.  a0 does not appear, so the statement is IDENTICAL on both footings (9.3619e-11 and 1.1279e-10).  A1's cosmology failure is a property of its CONSTRAINT FORM, not of ln det gamma, and no replacement for q can repair it)
+
+    f1  COMPATIBILITY (L12's matter failure), inherited by ANY candidate that satisfies (c).
+        canonical : H_perp wants g = 1.3942e-11, C_M wants g = 4.0053e-11 m/s^2 -- factor 2.873
+        alt       : H_perp wants g = 1.3942e-11, C_M wants g = 4.3537e-11 m/s^2 -- factor 3.123
+  [FAIL] f1 (f) a (c)-satisfying qt is compatible with GR's own Hamiltonian constraint rather than over-determining it   (it is not, and the failure is inherited from (c) itself: any qt that reduces to Phi/c^2 in the static weak field ALREADY obeys grad^2 qt = 4 pi G rho/c^2 by H_perp.  Imposing C_M as well leaves div[e^{-y} grad qt] = 0 with e^{-y} > 0 strictly, whose only decaying solution is qt = const, i.e. g = 0.  The two constraints demand accelerations differing by 2.87x (canonical) / 3.12x (alt) for 1e10 Msun at 10 kpc.  Requirement (c) and requirement (f) are in direct conflict for ANY q)
+
+SECTION 4 -- VERDICT
+----------------------------------------------------------------------------------------------------------------------
+    candidate                                dies on  how
+    ----------------------------------------------------------------------------------------------------------------
+    q_det = -(1/6) ln(det gamma/det gbar)    b        slice-dependent: g_N/3 / g_N/4 / 0 across three cuts (g_N with the isotropic fiducial)
+    R3, spatial Ricci scalar                 b        0 on static AND PG by coincidence; nonzero on the third cut
+    K, the York time                         b        0 on static, (3/2) sqrt(2M/r^3) on PG (sign per convention)
+    K_ij K^ij                                b        0 on static, nonzero on PG
+    A_ij A^ij, trace-free part               b        0 on static, nonzero on PG
+    ln N, the ADM lapse                      b        the khronometric choice; N IS the slicing, 0 on PG
+    c^2 |D ln N|, normal-observer accel.     b        g_N on static, exactly 0 on PG
+    R4, spacetime Ricci scalar               c        survives (b); = 0 in ALL vacuum, so no field outside baryons
+    I1 = Kretschmann                         c        survives (b); tidal, M^(1/3)/r scaling, no BTFR; 0 in conformally flat regions
+    I2 = grad-Riemann squared                c        survives (b); same tidal disease
+    E_ij E^ij, electric Weyl                 c        survives (b) even under radial boost; tidal, and 0 inside uniform density
+    T = T^mu_mu, matter scalar               c        survives (b) vacuously; = 0 in vacuum, no field outside baryons
+    q_ratio = -(720/48^1.5) sqrt(I1^3)/I2    c,d      survives (b) and gives -M/r EXACTLY for one point mass; does not superpose (0.6x-3400x the Newtonian force on a two-body field); 0/0 in genuinely flat space
+    ln sqrt(-xi.xi), Killing norm            e,f      survives (a),(b),(c),(d); no timelike xi on FLRW or any evolving system; not a functional of (gamma,pi) so removes no mode; where xi exists it IS the static lapse
+    ----------------------------------------------------------------------------------------------------------------
+  [FAIL] V1 [VERDICT] a scalar, foliation-independent replacement for q = -(1/6) ln det gamma EXISTS that meets requirements (a)-(f)   (no.  7 of 14 candidates die on (b) alone; the 7 that survive (b) die on (c) or (d); the single candidate that reaches (e) is the Killing norm, which does not exist on the backgrounds the theory must describe and removes no gravitational mode.  L12's construction obligation is not merely unmet -- it is unmeetable in this class)
+  [PASS] V2 [VERDICT] the failure is GENERIC -- a theorem about the class rather than an obstacle this lane could not get past   (yes, on four independent counts.  T1: a natural scalar's linear part is built from the linearised Riemann tensor, hence at least two derivatives of Phi, while (c) asks for Phi itself; the only escape is a ratio, which is not linear and dies on superposition.  T4: (b)+(d) force any gamma-only qt to vanish on Schwarzschild, killing A1's structure and not just its choice of q.  T5: local curvature scalars split into a Ricci half that vanishes in vacuum and a Weyl half that vanishes in conformally flat regions, so no local curvature scalar works on both sides.  T3: on a homogeneous background EVERY spatial scalar has D_i qt = 0, so mu(0) = 0 forces rho = 0 -- q-independent, and fatal on its own)
+
+======================================================================================================================
+L27 SUMMARY: 21 FAIL
+   FAIL: b01 (b) q = -(1/6) ln(det gamma / det gamma-bar)  [L12's own choice, flat fiducial]
+   FAIL: b02 (b) the spatial Ricci scalar R3
+   FAIL: b03 (b) the trace of the extrinsic curvature K (the York time)
+   FAIL: b04 (b) K_ij K^ij
+   FAIL: b05 (b) the trace-free part A_ij A^ij
+   FAIL: b06 (b) ln N, the ADM lapse  [this is the khronometric choice and it reintroduces a preferred foliation by construction -- the test confirms it quantitatively]
+   FAIL: b07 (b) c^2 |D ln N|, the proper acceleration of the slice-normal observers  [the MOND field taken to BE an acceleration rather than a potential gradient]
+   FAIL: a1 (a) q_det transforms as a spatial SCALAR under spatial diffeomorphisms, delta_xi q = xi.dq
+   FAIL: c08 (c) R4 (and every Ricci-built scalar: R_munu R^munu, T, rho) reduces to the Newtonian potential in the static weak field
+   FAIL: c09 (c) I1 = Kretschmann, I2 = grad-Riemann squared (equivalently E_ij E^ij, C^2) reduce to the Newtonian potential
+   FAIL: c11 (c) E_ij E^ij, the electric Weyl, reduces to the Newtonian potential
+   FAIL: c13 (c) q_ratio superposes, i.e. reduces to the Newtonian potential for a GENERAL static source and not merely for the single Schwarzschild solution it was tuned on
+   FAIL: d2 (d) q_ratio is well defined and vanishes in genuinely empty flat space
+   FAIL: T1 [theorem] some natural dimensionless scalar has a part LINEAR in h_munu that equals Phi itself, i.e. zero derivatives of the potential
+   FAIL: T4 [theorem] a functional of the spatial metric alone can satisfy (b), (c) and (d) simultaneously
+   FAIL: e1 (e) a (b)-surviving qt leaves C_M momentum-free, so A1's rank-2 argument -- the SOLE source of its 2-DOF claim -- still applies
+   FAIL: e2 (e)+(f) ln sqrt(-xi.xi) is available as a replacement for q: it exists on the spacetimes the theory must describe, and it removes a gravitational degree of freedom
+   FAIL: T5 [theorem] some LOCAL curvature scalar can serve as the MOND potential everywhere the theory must work
+   FAIL: T3 [theorem] the constraint C_M = D_i[mu(y) D^i qt] - S ~ 0 admits a nonzero matter density on a homogeneous background, for SOME scalar qt
+   FAIL: f1 (f) a (c)-satisfying qt is compatible with GR's own Hamiltonian constraint rather than over-determining it
+   FAIL: V1 [VERDICT] a scalar, foliation-independent replacement for q = -(1/6) ln det gamma EXISTS that meets requirements (a)-(f)
+======================================================================================================================
+
+THE ANSWER TO THE LANE'S QUESTION: NO.
+
+The structural tension the assignment names is a THEOREM, not an obstacle.  Stated in one line: a
+foliation-independent scalar built from the geometry is a curvature, and a curvature is at least two
+derivatives of the potential; a quantity that behaves like a potential is at most one derivative of the
+metric and is therefore a property of the cut.  Requirement (c) asks for the ZEROTH-derivative object;
+requirements (a) and (b) together force at least the SECOND.  Nothing sits in between, because there is
+no diffeomorphism-invariant object linear in h with fewer than two derivatives -- the linearised Riemann
+tensor is the complete set of gauge invariants of linearised gravity (control C4 verifies its gauge
+invariance and its value 2 grad^2 Phi; check T1 verifies the consequence, that in vacuum the linearised
+Ricci tensor vanishes identically and the sole surviving invariant is the tidal tensor d_i d_j Phi).
+
+The two escapes that remain are exactly the two the requirement I3a exists to forbid:
+  * supply a preferred time direction -- a khronon, or a Killing vector where one happens to exist -- and
+    read the potential off the lapse.  That is candidate b06/b12, and it is the khronometric theory;
+  * make qt NONLOCAL: solve an elliptic equation for it, i.e. introduce an auxiliary potential field.
+    That is AQUAL/QUMOND, whose constraint is a condition on the auxiliary field and NOT on the
+    gravitational phase space, so it removes no conformal mode and A1's 2-DOF count does not apply to it.
+
+And T3 stands over all of it: even a perfect qt would force rho = 0 on FLRW, because the frozen kernel
+has mu(0) = 0 and every spatial scalar is spatially constant on a homogeneous slice.  A1's cosmology
+failure was never about ln det gamma.
+
+WHAT SURVIVES AND SHOULD BE CARRIED FORWARD, unchanged from L12 and independent of q: an elliptic
+constraint whose principal part acts on the conformal mode does leave exactly two tensor polarisations,
+and the exponential kernel inside such a constraint screens the Solar System by a local acceleration with
+no 1/y.  What is now settled is that the object the kernel acts on cannot be built out of the geometry of
+a slice.
+

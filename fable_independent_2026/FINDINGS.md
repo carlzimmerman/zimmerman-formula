@@ -1088,3 +1088,99 @@ naive prior-constrained fit reaches 0.066 only by landing on a population **1.7�
   (saturation touches only 342 of 2786 points), but the exponential carrier differs from ν_RAR by up
   to 0.073 dex, independently confirming D1's own number. **The user must resolve D1 before this claim
   is quoted with a margin.**
+
+## L29 — is L9's late-roll prediction already excluded by the measured S₈? Yes, but not by σ₈
+
+`L29_sigma8_test.py` (3 PASS, 6 FAIL; all three controls PASS). L9 left the programme with one mechanism that
+had cleared the gate it was proposed against, and a sharp prediction: σ₈ = 0.845–0.861, H₀ = 68–72,
+Ω_m = 0.27–0.31. This lane asks whether that prediction is allowed by data. Full detail in
+[L29_SIGMA8.md](L29_SIGMA8.md).
+
+**The premise the lane was given is wrong, and correcting it is the first result.** σ₈ = 0.845–0.861 is high,
+but the lensing observable is S₈ = σ₈√(Ω_m/0.3), and L9's survivors carry Ω_m = 0.274–0.315 — below
+concordance. The conversion gives **S₈ = 0.808–0.882, which straddles Planck's 0.832 ± 0.013**, sits within 2σ
+of the revised KiDS-Legacy (0.815 ± 0.016) over **61–83%** of the region, and inside 1σ of DESI DR9 lensing and
+eRASS1 cluster counts. **The S₈ tension running the other way does not by itself close the mechanism.** (It is
++1.2 to +5.8σ from the older KiDS-1000 / DES Y3 / HSC Y3 values, which the corpus's own DO-NOT-CITE note
+records as superseded upward.)
+
+**The kill is the gate L9 said it did not run.** In MODEL A the roll multiplies the Poisson source, so with no
+slip it multiplies the Weyl potential that lenses light. A Limber calculation (controlled to an exact identity
+on ΛCDM and to exact linearity in amplitude) gives a kernel-weighted roll factor ḡ = **1.27–1.44** and
+**S₈,eff = 1.06–1.20 against every survey at +9.1 to +33.6σ**, on both footings, independent of which survey.
+For the favourable reading to be legitimate the roll would have to be suppressed in the *lensing* potential by
+**92–100%** relative to the dynamical one — a decoupling of order F, which is L6's excluded density-dependent
+screening and which would break the observed agreement of cluster lensing and hydrostatic masses. **With the
+screening, L6 kills it; without it, cosmic shear does.**
+
+**Three side results, two of them corrections to L9's own framing.**
+1. **H₀ and S₈ are anti-correlated at r = −0.999**, so the region does *not* have to choose between them. The
+   real internal tension is sharper: **the canonical footing cannot reach the Planck H₀ at all** (0/146 within
+   2σ; H₀ ≥ 68.90). The mechanism, if real, is intrinsically a high-H₀ (SH0ES-like, 71–72) model.
+2. **L9's growth-gate squeeze is harsher than the data require.** Replacing its Δχ²_RSD ≤ 9 (measured against
+   ΛCDM's own χ² = 6.06) by the *absolute* fit to the same 7 points leaves 115/146 canonical and 236/269 alt at
+   p > 0.05, and 100% at p > 0.003. The binding cut is S₈, not RSD.
+3. **A new constraint on the coefficient, independent of the lensing question.** k03's degeneracy of κ with the
+   H₀ tension was stated at *fixed* Ω_Λ. L9's closure 1 = F(Ω_m + Ω_r + Ω_Λ) drives ω_Λ down by a factor
+   **0.38–0.54**, so a₀ = κ c √(G ρ_Λ) moves by **−38% to −27%** if the G there is the local one — outside
+   k03's 9.47% BTFR floor at **every** surviving point and outside DR4's 21% reach — needing κ = 0.68–0.81,
+   2.9–6.1σ from both measured values. On the other reading (the cosmological F G₀) the shift is −17% to −5%
+   and 18/146 + 96/269 points stay inside the floor. Which G enters is not settled; both are carried.
+
+**Verdict: alive only in a corner, and only under an assumption the programme has already excluded.** The
+corner (z_t ≤ 0.13/0.18, W ≈ 0.44–0.53; σ₈ 0.845–0.856, S₈ 0.808–0.833, H₀ 71–72, Ω_m 0.274–0.284) survives
+the RSD fit, KiDS-Legacy S₈ and a measured H₀ — but only if something removes the roll from the shear signal
+entirely. **It does not deserve a preregistration.** And none of this touches the cluster problem: L9's T8
+already left that fatal on its own terms, and this lane neither weakens nor strengthens it.
+
+## L27 — no foliation-independent replacement for q exists, on four independent counts
+
+`L27_foliation_scalar.py` + `L27_FOLIATION_SCALAR.md` (40 checks, 21 FAIL; every control passes, output
+byte-identical across runs). L12 killed the recipe's A1 route because its MOND field was built from
+det γ, a property of the slice. The obvious repair is to find a different scalar. **There is none, and
+this lane proves it four separate ways.** This is the constructive companion to L31's theorem.
+
+**The test that matters, and a trap it caught.** Requirement (b) was tested on a **three-member**
+slicing family of vacuum Schwarzschild — static, tilted, and Painlevé–Gullstrand — not two. That
+mattered: **the spatial Ricci scalar R3 vanishes on the static AND the PG slice by coincidence and
+would have passed L12's own two-slicing test.** The third cut kills it. Controls confirm all three cuts
+are one spacetime (R_μν = 0, Kretschmann 48M²/r⁶) and genuinely different slices, and reproduce L12's
+two headline results exactly.
+
+**Fourteen candidates, seven dead on slice-dependence alone.**
+
+| candidate | dies on | how |
+|---|---|---|
+| −(1/6)ln(det γ/det γ̄) | slice | g_N/3, g_N/4, **0** across the three cuts |
+| R3 | slice | **the coincidence trap** — 0, nonzero, 0 |
+| K, K_ijK^ij, A_ijA^ij | slice | 0 on static, nonzero on PG |
+| ln N, c²\|D ln N\| | slice | N **is** the slicing; the khronometric choice, confirmed quantitatively |
+| R4, Kretschmann, ∇R·∇R, Weyl E², T^μ_μ | Newtonian limit | survive slicing, then fail to be a potential |
+| **√(I1³)/I2 ratio** | limit + flat space | **= −M/(r−2M) → Φ_N/c² EXACTLY**, then breaks |
+| **ln√(−ξ·ξ), Killing norm** | availability | passes (a)–(d) cleanly, then fails |
+
+- **The two that fought hardest are instructive.** The curvature *ratio* reproduces −M/r **exactly** on
+  Schwarzschild, so the naive dimensional argument against curvature-built potentials is **wrong** — a
+  ratio supplies its own length. But for two 1e10 M_⊙ masses 10 kpc apart it gives **0.56× to 3383×**
+  the Newtonian force, and it is 0/0 in flat space. The Killing norm passes everything until you notice
+  it is **undefined on FLRW** and, where it exists, **is** the static lapse — the khronon in geometric
+  clothing.
+- **T1:** a natural scalar's part linear in the metric perturbation is built from the linearised Riemann
+  tensor, hence carries at least two derivatives of Φ, while the requirement asks for Φ itself. The only
+  escape is a ratio, which is non-additive and singular.
+- **T4:** because the Painlevé–Gullstrand spatial metric is **exactly flat**, slice-independence plus
+  vanishing-in-flat-space force any γ-only scalar to vanish on Schwarzschild. **This kills A1's entire
+  structure, not merely its choice of ln det γ.**
+- **T5:** local curvature scalars split into a Ricci half that vanishes in vacuum and a Weyl half that
+  vanishes in conformally flat regions. Verified exactly on FLRW and on the Schwarzschild interior, with
+  max|Weyl| = 4.1e-143 against max|Riemann| = 2.3e-2.
+- **⚠️ T3 stands above all of it and needed no search, because it is q-INDEPENDENT.** On a homogeneous
+  slice every spatial scalar is spatially constant, so μ(0) = 0 and the constraint forces ρ = 0 against
+  the measured 2.688e-27 kg/m³, identically on both footings. **A1's cosmology failure was never about
+  ln det γ, and no replacement could ever have repaired it.**
+- **The only escapes are the two the recipe's own requirement exists to forbid:** supply a preferred
+  time, which is khronometric, or make the field nonlocal, which is AQUAL/QUMOND and to which A1's
+  degree-of-freedom count does not apply. **This is L31's theorem reached from the constructive side.**
+- **What survives unchanged:** L12's narrower residue, that an elliptic constraint on the conformal mode
+  does leave two tensor polarisations, and that the exponential kernel does screen by a local
+  acceleration with no 1/y.
