@@ -490,6 +490,36 @@ for k in range(4):
     info(f"{q[k]:8.2f} - {q[k+1]:6.2f} {s.sum():5d} {r['fw_iso'][0]:10.2f} +/-{r['fw_iso'][1]:5.2f} "
          f"{r['cosmic_pt'][0]:10.2f} +/-{r['cosmic_pt'][1]:4.2f} {r['lcdm_am'][0]:10.2f} +/-{r['lcdm_am'][1]:4.2f} "
          f"{r['newton'][0]**2 - 1:21.1f}")
+lo_, hi_ = MASSROWS[0][2]["fw_iso"], MASSROWS[-1][2]["fw_iso"]
+z_trend = (hi_[0] - lo_[0])/math.hypot(hi_[1], lo_[1])
+check("M0 the framework's deficit is INDEPENDENT of the pair's baryonic mass, as a kernel with no scale in it "
+      "requires",
+      abs(z_trend) < 3.0,
+      f"A(framework) climbs from {lo_[0]:.2f} +/- {lo_[1]:.2f} in the lowest mass quartile to {hi_[0]:.2f} +/- "
+      f"{hi_[1]:.2f} in the highest, {z_trend:.1f} sigma, over {MASSROWS[-1][0]-MASSROWS[0][0]:.2f} dex in M_b; "
+      f"LambdaCDM's abundance-matched halos move the OTHER way ({MASSROWS[0][2]['lcdm_am'][0]:.2f} -> "
+      f"{MASSROWS[-1][2]['lcdm_am'][0]:.2f}).  This is h48_h69's 69d (sigma ~ M^1/2 not M^1/4) seen as a trend in "
+      f"the residual, and it is the axis a deeper sample should attack")
+
+# ---------------------------------------------------------------- mutation controls on the estimator
+P("")
+rngm = np.random.default_rng(517)
+perm = rngm.permutation(len(S["dv"]))
+dv_scr = cz_cmb[ii[keep]] - cz_cmb[jj[keep]][perm]
+sh_ref = sigma_pred("fw_iso", S["M1"], S["M2"], S["rp"], A0["canonical"], E_N["canonical"])
+_, _, f_real = ml_fit(S["dv"], shape=sh_ref)
+_, _, f_scr = ml_fit(dv_scr, shape=sh_ref)
+check("M1 [mutation control] scrambling which galaxy each pair member is paired with drives the fitted PAIR "
+      "fraction to the floor",
+      (1 - f_real) > 0.6 and (1 - f_scr) < 0.15,
+      f"pair fraction 1 - f_int: real {1-f_real:.2f}, scrambled {1-f_scr:.2f}")
+sh_100 = sigma_pred("fw_iso", S["M1"], S["M2"], S["rp"], 100*A0["canonical"], E_N["canonical"])
+A100 = ml_fit(S["dv"], shape=sh_100)[0]
+check("M2 [mutation control] the amplitude responds to a0 exactly as v ~ a0^{1/4} demands, so the offsets above "
+      "are a statement about the physics and not an insensitive estimator",
+      abs(math.log10(AMP[("canonical", "fw_iso")][0]/A100) - 0.5) < 0.02,
+      f"a0 x 100 moves log10(A) by {math.log10(AMP[('canonical','fw_iso')][0]/A100):+.3f} against the predicted "
+      f"+0.500")
 
 # ---------------------------------------------------------------- the separation-dependence axis
 P("")
@@ -622,8 +652,8 @@ check("S0 [structure] the framework's honest external-field prediction is observ
       f"nu_bar(e_N) = {nb:.2f} against the cosmic share's 1 + {F_COSMIC} = {1+F_COSMIC:.2f}.  The predicted "
       f"dispersions differ by only {100*(rat_far-1):+.1f}% in velocity ({100*(rat_far**2-1):+.0f}% in mass) at every "
       f"separation and every mass, an EXACT degeneracy in shape.  Where the external field dominates, this "
-      f"programme's EFE and LambdaCDM's cosmic dark share are the same law with the same slope, and only the "
-      f"9% amplitude gap separates them")
+      f"programme's EFE and LambdaCDM's cosmic dark share are the same law with the same slope, separated only by "
+      f"that {100*(rat_far-1):.0f}% in velocity -- below the stellar-M/L systematic")
 
 # the dark-share ladder
 P("")
@@ -640,7 +670,8 @@ info(f"cosmic Omega_dm/Omega_b = {F_COSMIC}")
 
 check("S1 the dark-to-baryon ratio the pair data require is the SAME cosmic share the clusters require",
       abs(ratio_pairs - F_COSMIC) < 3*e_ratio_pairs,
-      f"pairs need {ratio_pairs:.1f} +/- {e_ratio_pairs:.1f} against the cosmic {F_COSMIC} -- "
+      f"pairs need {ratio_pairs:.1f} +/- {e_ratio_pairs:.1f} WITHIN THE PAIR SEPARATION against the cosmic "
+      f"{F_COSMIC} -- "
       f"{abs(ratio_pairs - F_COSMIC)/e_ratio_pairs:.1f} sigma away, a factor {ratio_pairs/F_COSMIC:.1f}.  "
       f"The cosmic share is a CLUSTER-scale statement, not a universal one; at pair separations galaxies are "
       f"baryon-poor relative to cosmic and need several times more")
@@ -656,7 +687,7 @@ check("S3 the framework's carried kernel reproduces the pair kinematics on its o
       abs(Afw - 1) < 3*AMP[("canonical", "fw")][1],
       f"carried (with the computed 2M++ external field) A = {Afw:.2f}; the framework's BEST CASE, the isolated "
       f"deep-MOND branch no external field can raise, A = {Ac:.2f} +/- {eAc:.2f} canonical / {Aa:.2f} alt, "
-      f"{abs(Ac-1)/eAc:.0f} sigma above 1, needing {Ac**4:.1f}x the K-band baryonic mass")
+      f"{abs(Ac-1)/eAc:.0f} sigma above 1, needing {AMP[('canonical','fw_iso')][3]:.1f}x the K-band baryonic mass")
 
 check("S4 the framework's kernel PLUS the cluster-scale cosmic share reproduces the pair kinematics",
       abs(Afc - 1) < 3*eAfc,
@@ -727,6 +758,38 @@ info("    Upsilon^{1/2} in the Newtonian laws, so closing the framework's gap ne
 info("    stellar population; the SHAPE axis of PART 4 is immune to this.")
 info(" 5. Pairs beyond ~500 kpc may not be bound; the interloper term removes chance projections, not")
 info("    physically associated unbound pairs.  Every amplitude above is dominated by r_p < 500 kpc.")
+
+P(""); P("-"*122)
+P("THE PRE-REGISTERABLE STATEMENT")
+P("-"*122)
+a0 = A0["canonical"]; eN = E_N["canonical"]
+info("For a pair of galaxies of baryonic masses M1, M2 at 3-D separation r, on a circular relative orbit, the")
+info("framework's carried kernel predicts a line-of-sight velocity difference with dispersion")
+info("     sigma_los = sqrt(a_rel(r) r / 3),   a_rel = min[ G M_tot/r^2 + a0 Delta(G M_eff/(a0 r^2)),")
+info("                                                      nu_bar(e_N) G M_tot/r^2 ],")
+info("     M_eff = (2/3)^2 [(M1+M2)^{3/2} - M1^{3/2} - M2^{3/2}]^2 / mu^2,  mu = M1 M2/M_tot,")
+info(f"     Delta(s) = s/(exp(sqrt(s)) - 1) saturated at {D_SAT} for s > {S_SAT}, "
+     f"nu_bar({E_N['canonical']:.5f}) = {nu_efe(E_N['canonical'])[0]:.3f} / "
+     f"nu_bar({E_N['alt']:.5f}) = {nu_efe(E_N['alt'])[0]:.3f}.")
+info("For equal masses in the isolated branch this is the parameter-free")
+info(f"     sigma_los = (1.05099/sqrt(3)) (G m a0)^{{1/4}} = {1.05099/math.sqrt(3):.5f} (G m a0)^{{1/4}}, "
+     f"INDEPENDENT OF SEPARATION,")
+for foot, aa in A0.items():
+    v_ = (1.05099/math.sqrt(3))*(G*8e10*Msun*aa)**0.25/1e3
+    info(f"     i.e. {v_:.1f} km/s for two 8e10 Msun galaxies on the {foot} footing, at ANY separation beyond ~30 kpc.")
+info("PREDICTIONS THAT LOSE:")
+info(f"  P1 amplitude.  A = 1.  Measured on 1900 isolated 2MRS major pairs: A = {Ac:.2f} +/- {eAc:.2f} "
+     f"(canonical) / {Aa:.2f} (alt).  FALSIFIED at {abs(Ac-1)/eAc:.0f} sigma unless the isolation systematic "
+     f"carries it.")
+info(f"  P2 shape.  d log sigma / d log r_p = {SLOPE['fw_iso']:+.3f} on the isolated branch. Measured "
+     f"{sl:+.3f} +/- {esl:.3f}: {abs(sl-SLOPE['fw_iso'])/esl:.1f} sigma.  This axis is immune to the stellar M/L "
+     f"and needs only N = {N3_slope:.0f} pairs.")
+info(f"  P3 mass.  d log sigma / d log M_b = +0.25 (deep MOND). The residual instead climbs with mass at "
+     f"{z_trend:.1f} sigma across the sample.")
+info(f"  P4 the decisive future sample.  {FCAST[('fw_iso','cosmic_pt',10.0)]:.0f} pairs with 10 km/s velocities "
+     f"separate the framework from a cosmic-share halo at 3 sigma on amplitude; DESI and 4MOST pair samples with "
+     f"HI or spectroscopic velocities reach that by two orders of magnitude.  What they must ALSO do is isolate "
+     f"against a catalogue two magnitudes deeper than 2MRS -- that, not statistics, is what is missing.")
 
 P(""); P("=" * 122)
 P(f"RESULT: {len(FAILS)} FAIL -> {FAILS}" if FAILS else "RESULT: 0 FAIL")

@@ -561,3 +561,44 @@ positive to it and its margin collapsing 0.727 → 0.390. Named missing input: S
 reduced quartic, requires re-running the lead's anisotropic two-mode reduction with the new p_R.
 Also flagged: `IC10_LOCAL_CLOCK.md` and `OPTICAL_ALIGNMENT.md` reuse the symbol σ for an unrelated
 quantity (−1/4), which is worth renaming before it causes an error. Handoff challenge **B1 is discharged**.
+
+## L12 — the constraint-first route (recipe A1): count confirmed, foliation kills it
+
+`L12_constraint_first.py` (13 FAIL of 25). A1 is the one "acceptable protein" in the frozen recipe
+claiming exactly two gravitational degrees of freedom — no khronon — via a constraint
+`C_M = D_i[mu(y) D^i q] − S ≈ 0` with `q = −(1/6) ln det γ`. Its three open checks (foliation, matter,
+cosmology) had never been run. They have now, and all three fail for one shared reason.
+
+**The count is right, and so is the phenomenology.** C_M is momentum-free, so the constraint matrix
+has rank 2, giving one second-class pair and (12 − 2 − 6)/2 = **2** — control returns 2 for ADM GR
+by the same rule. The removed mode is genuinely the conformal one (the coefficients of a″, b″, c″ in
+δC_M are symbolically identical). The static weak-field limit is **exactly Milgrom's equation** with
+the recipe's frozen kernel μ = 1 − e^(−y), reproducing v⁴ = GMa₀ on both footings; screening is by a
+local acceleration per I4 (y > 1e5 out to Neptune); recovery is exponential with no 1/y per I5.
+
+**And then it dies, on the cleanest possible test.** Vacuum Schwarzschild in Painlevé–Gullstrand
+slicing has exactly flat spatial metric, so q ≡ 0 and the MOND field is **exactly zero** — while the
+static slice of the *same spacetime* gives g_Newton. The field is a property of the slice, not of the
+geometry.
+
+It is worse than non-covariant slicing. Taken literally q is not a spatial scalar at all (anomaly
+δ_ξq = ξ·∂q − ⅓∂·ξ), so **empty flat space in spherical coordinates demands −1.6×10³ kg/m³ of
+fictitious matter at 1 AU**. The standard fiducial repair restores scalarity but not uniqueness: the
+areal fiducial gives g_N/3 and the isotropic one g_N, a factor 3 in the field and **9 in a₀**, with
+nothing in A1 selecting between them.
+
+- **Matter (M1 FAIL):** general relativity's own Hamiltonian constraint already gives ∇²q = 4πGρ/c²,
+  so imposing C_M as well leaves div[e^(−y)∇q] = 0, and since max g·e^(−g/a₀) = a₀/e no nonzero flux
+  survives r → 0. **g ≡ 0 for any matter.** The two constraints want accelerations differing by
+  2.87× (canonical) / 3.12× (alt) at 10 kpc. Matter conservation itself is fine (M3 PASS).
+- **Cosmology (K1, K2 FAIL):** on FLRW, D_i q = 0, so μ(0) = 0 and C_M reduces to −S, **forcing
+  ρ = 0**. At linear order the operator starts at second order (measured slope 2.0000), so it
+  constrains δρ rather than the metric and removes no mode.
+- **F4 FAIL, the P7 pattern again:** the lapse-fixing coefficient is ∝ μK, and |K|/ω = 3×10⁻¹¹ in the
+  Solar System — the second-class pairing that buys the count is nearly degenerate exactly where the
+  theory must work.
+
+**Verdict: A1 as written is dead as a route to N_grav = 2 without a preferred foliation.** The
+surviving obligation is to find a scalar, foliation-independent quantity to put in q's place; this
+lane found none. That is an open construction problem, not a closed door — but the recipe's A1 entry
+should be amended to record that its three open checks have now been run and failed.

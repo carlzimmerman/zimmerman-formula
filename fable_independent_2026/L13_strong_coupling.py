@@ -325,37 +325,60 @@ check("P3 [A3, MOND-scalar sector] the MOND scalar's kinetic normalisation |K_2|
 
 # ------------------------------------------------------------------ 7.  the screened limit, quantified
 head("7.  the screened limit: what the screening actually does to the kinetic normalisation")
-def c14_eff(Sig, c2v=None, K2v=2.5e5, KBv=KB_V, c14v=C14_V):
-    c2v = c2star if c2v is None else c2v
-    return c14v + (2 - KBv) / Sig + c2v * K2v / ((2 - KBv) * Sig)
 g_earth = GM_SUN / AU**2
 g_cassini = GM_SUN / (1.6 * RSUN)**2
 g_saturn = GM_SUN / (9.5826 * AU)**2
-print("    the screening variable is s = g_N/a0; the scalar's stiffness is Sigma_perp = J_Y = s/Delta(s) exactly")
-print("    (from the static law itself), and Sigma_par = 1/Delta'(s), which is INFINITE on the saturated branch.")
-print(f"    {'environment':<34}{'s (canonical)':>16}{'s (alt)':>16}{'J_Y (can)':>14}{'c_14_eff (can)':>16}{'c_14_eff/c_14':>15}")
+K2_USE, C2_USE = 2.5e5, c2star
+def branch(Sgv, KBv=KB_V, c2v=None, c14v=C14_V, K2v=K2_USE):
+    """exact roots u = omega^2/k^2 of the 2x2, with each mode's CANONICAL composition |dphi_c|/|chi_c|."""
+    c2v = C2_USE if c2v is None else c2v
+    a = c14v * K2v; b = -(c14v * (2 - KBv) * Sgv + c2v * K2v + (2 - KBv)**2); c = c2v * (2 - KBv) * Sgv
+    d = math.sqrt(b * b - 4 * a * c); us = sorted([(-b - d) / (2 * a), (-b + d) / (2 * a)])
+    out = []
+    for u in us:
+        frac = math.sqrt(K2v / c14v) * abs(c2v - c14v * u) / ((2 - KBv) * math.sqrt(u))   # |dphi_c| / |chi_c|
+        out.append((u, frac))
+    return out
+print("    The kinetic Hessian is diag(2 M^2 c_14 k^2, 2 M^2 |K_2|) at EVERY value of the screening variable: the")
+print("    AeST mixing carries one time derivative, so it is antisymmetric and drops out of the Hessian entirely.")
+print("    The screening's ONLY footprint on the frame sector is in the effective one-field description obtained")
+print("    by integrating out the stiff scalar, valid where the khronon branch is khronon-dominated:")
+print("      c_14_eff(Sigma) = c_14 + (2-K_B)/Sigma + c_2 |K_2|/[(2-K_B) Sigma]   (exact leading large-Sigma root)")
+print(f"    Parameters used: K_B = {KB_V}, c_14 = {C14_V:g}, c_2 = c_2* = {C2_USE:.5e} (the alpha_2 = 0 line PPN")
+print(f"    forces), |K_2| = {K2_USE:g}.  Sigma = J_Y = s/Delta(s), the CONSERVATIVE (transverse) stiffness; the")
+print("    longitudinal one is 1/Delta'(s) = infinity on the saturated branch, for which the drag is exactly zero.")
 rows = [("deep MOND, galaxy outskirt", 0.1), ("MOND transition", 1.0), ("galaxy inner disc", 10.0),
         ("Saturn orbit (Cassini monopole)", g_saturn / A0['canonical']), ("Earth orbit", g_earth / A0['canonical']),
         ("Cassini conjunction, b = 1.6 R_sun", g_cassini / A0['canonical'])]
+print(f"\n    {'environment':<34}{'s (can)':>12}{'s (alt)':>12}{'J_Y':>12}{'u_khronon':>12}{'|dphi_c/chi_c|':>16}{'c_14_eff':>12}{'/c_14':>10}")
 ratios = {}
 for nm, s_can in rows:
-    if nm.startswith(("deep", "MOND", "galaxy")):
-        s_alt = s_can
-    else:
-        s_alt = s_can * A0['canonical'] / A0['alt']
-    jy = J_Y(s_can); ce = c14_eff(jy); ratios[nm] = (s_can, s_alt, jy, ce)
-    print(f"    {nm:<34}{s_can:>16.4g}{s_alt:>16.4g}{jy:>14.4g}{ce:>16.6g}{ce/C14_V:>15.4g}")
-gal = ratios["MOND transition"][3]; ss = ratios["Earth orbit"][3]
-print(f"\n    => the screening cuts the khronon's kinetic normalisation by a factor {gal/ss:.3g} between the MOND")
-print(f"       transition and Earth's orbit, and the reduction is a POWER LAW in y (c_14_eff - c_14 ~ 1/J_Y ~ Delta/s),")
-print(f"       NOT the exponential e^{{-y}} A3 asks for.")
-print(f"    => but it does NOT go to zero: it stops at the bare floor c_14 = {C14_V:g}, reached to "
-      f"{100*(ss/C14_V-1):.3f}% at Earth's orbit.")
-check("P4 [P7 mechanism] the screening leaves the khronon kinetic normalisation UNCHANGED (no P7 mechanism present)",
-      abs(gal / ss - 1) < 1.0, f"it cuts it by {gal/ss:.3g}: the P7 mechanism IS present and operating")
-check("P5 [P7 escape clause] an INDEPENDENT FINITE NORMALISATION exists in the screened limit "
-      "(c_14_eff does not go to zero with the screening)",
-      ss > 0.9 * C14_V, f"c_14_eff -> c_14 = {C14_V:g} exactly; floor reached to {100*(ss/C14_V-1):.3f}% at 1 AU")
+    s_alt = s_can if s_can < 1e3 else s_can * A0['canonical'] / A0['alt']
+    jy = J_Y(s_can); br = branch(jy)
+    kh = min(br, key=lambda p: p[1])                       # the khronon branch = the chi-dominated one
+    mixed = kh[1] > 0.2
+    ce = C2_USE / kh[0]
+    ratios[nm] = (s_can, s_alt, jy, kh[0], kh[1], ce, mixed)
+    tag = "  <- strongly mixed" if mixed else ""
+    print(f"    {nm:<34}{s_can:>12.4g}{s_alt:>12.4g}{jy:>12.4g}{kh[0]:>12.5g}{kh[1]:>16.4g}{ce:>12.5g}{ce/C14_V:>10.4f}{tag}")
+ss = ratios["Earth orbit"][5]; cas = ratios["Cassini conjunction, b = 1.6 R_sun"][5]
+sat = ratios["Saturn orbit (Cassini monopole)"][5]
+print(f"\n    => in the SCREENED regime the khronon branch is clean (the MOND scalar's canonical admixture is"
+      f" {ratios['Earth orbit'][4]:.2e} at 1 AU),")
+print(f"       and its effective normalisation is c_14_eff = {ss:.6g} = c_14 x {ss/C14_V:.5f} at 1 AU,"
+      f" {sat/C14_V:.5f} at Saturn, {cas/C14_V:.7f} at Cassini conjunction.")
+print(f"    => the screening does not multiply the normalisation: it REMOVES a positive correction to it. The")
+print(f"       correction falls as a POWER LAW 1/J_Y ~ Delta/s, not as the exponential e^{{-y}} A3 asks for, and it")
+print(f"       is +{100*(ss/C14_V-1):.3f}% of c_14 at 1 AU and +{100*(cas/C14_V-1):.5f}% at Cassini conjunction.")
+print(f"    => in the UNSCREENED rows the khronon is NOT a separate mode: the canonical admixture is O(1), and the")
+print(f"       'c_14_eff' there is a mixed clock-scalar quantity, not a khronon normalisation. Reported, not used.")
+check("P4 [P7 mechanism] the screening drives the khronon's kinetic normalisation toward ZERO",
+      ss < 0.5 * C14_V, f"it drives it UP to the bare floor c_14 = {C14_V:g} (+{100*(ss/C14_V-1):.3f}% residual at "
+                        f"1 AU): the screening removes a correction, it never multiplies the normalisation")
+check("P5 [P7 escape clause] an INDEPENDENT FINITE NORMALISATION exists in the screened limit",
+      ss > 0.9 * C14_V and cas > 0.99 * C14_V,
+      f"c_14_eff -> c_14 = {C14_V:g} exactly; the exact kinetic Hessian 2 M^2 c_14 k^2 carries NO screening "
+      f"variable at any Sigma")
 
 # ------------------------------------------------------------------ 8.  Lambda_sc
 head("8.  the strong-coupling scale on the ACTUAL Solar-System background (recipe gate G8)")
@@ -363,23 +386,27 @@ def lam_sc(c14eff):
     """Lambda_5 = 2 M_pl sqrt(c_14_eff) in GeV, from the derived dim-5 operator; returns (GeV, metres)."""
     L = 2 * MPL * math.sqrt(max(c14eff, 0.0))
     return L, (HBARC / L if L > 0 else float('inf'))
+print("    Lambda_sc = 2 M_pl sqrt(c_14_eff) from the dim-5 operator derived in section 2 (c_s = 1 on the PPN-forced")
+print("    line, so no sound-speed enhancement enters). Screened rows only: the mixed rows have no khronon branch.")
 print(f"    {'environment':<34}{'c_14_eff':>14}{'Lambda_sc [GeV]':>20}{'1/Lambda_sc [m]':>20}{'AU / (1/Lambda)':>18}")
 for nm, _ in rows:
-    ce = ratios[nm][3]; L, ell = lam_sc(ce)
+    if ratios[nm][6]: continue
+    ce = ratios[nm][5]; L, ell = lam_sc(ce)
     print(f"    {nm:<34}{ce:>14.5g}{L:>20.4e}{ell:>20.4e}{AU/ell:>18.4e}")
 L_ss, ell_ss = lam_sc(ss)
 print(f"\n    Classical criterion (normalisation-free): L_3/L_2 = -2 chi_dot exactly for the dominant monomial, so the")
 print(f"    classical expansion parameter is the khronon's own time-shift rate.  In the Solar System the aether is")
 print(f"    tilted by the CMB-frame velocity w/c = 1.2e-3, giving |d_i chi| ~ 1.2e-3 and |chi_dot| ~ O(w^2/c^2, Phi) <= 1e-6.")
-check("P6 [G8, the P7 verdict] the strong-coupling length in the Solar System is LONGER than the system the theory "
-      "must predict (1 AU), i.e. P7 is fatal",
-      ell_ss > AU, f"1/Lambda_sc = {ell_ss:.3e} m against 1 AU = {AU:.3e} m -- SHORTER by a factor {AU/ell_ss:.2e}")
+check("P6 [G8, the P7 verdict] the strong-coupling length in the Solar System is SHORTER than the system the theory "
+      "must predict (1 AU), so the perturbative expansion is under control there",
+      ell_ss < AU, f"1/Lambda_sc = {ell_ss:.3e} m against 1 AU = {AU:.3e} m -- shorter by a factor {AU/ell_ss:.2e}; "
+                   f"P7 does NOT fire")
 c14_fatal = (HBARC / AU / (2 * MPL))**2
 print(f"    For P7 to be fatal here the theory would need c_14 < {c14_fatal:.2e}, i.e. {C14_V/c14_fatal:.1e}x below its")
 print(f"    working value -- and alpha_1 = -4 c_14 would then be {4*c14_fatal:.1e}, unmeasurably far inside the bound.")
 # the historical candidate, for contrast
 print("\n    CONTRAST -- the historical khronometric-MOND candidate the recipe was written about (eta = c_14 = 2 e^{-y}):")
-for nm, ylab in (("MOND transition", 1.0), ("Earth orbit", ratios["Earth orbit"][0]), ):
+for _nm, ylab in (("MOND transition", 1.0), ("Earth orbit", ratios["Earth orbit"][0]), ):
     ce_old = 2 * math.exp(-min(ylab, 700.0))
     L, ell = lam_sc(ce_old)
     if ylab > 700:
@@ -392,9 +419,11 @@ log10_ell_old = math.log10(HBARC) - math.log10(2 * MPL * math.sqrt(2)) + y_e / (
 print(f"      at Earth's orbit y = {y_e:.4g}: log10(1/Lambda_sc / m) = {log10_ell_old:.4g}  -- P7 fired with an")
 print(f"      unbounded margin.  THE CURRENT ACTION ESCAPES P7 ONLY BY MAKING THE COEFFICIENT CONSTANT, i.e. by")
 print(f"      abandoning A3's screened-alpha_PF mechanism and passing PPN by choosing c_14 = 1e-5 instead.")
-check("P7 [historical control] the recipe's own khronometric-MOND candidate with eta = 2 e^{-y} keeps a usable "
-      "strong-coupling length in the Solar System", log10_ell_old < math.log10(AU),
-      f"log10(1/Lambda_sc/m) = {log10_ell_old:.4g} against log10(AU/m) = {math.log10(AU):.3g} -- P7 fires there, catastrophically")
+check("C6 [control, historical] the SAME machinery detects P7 firing catastrophically for the recipe's own "
+      "khronometric-MOND candidate (eta = 2 e^{-y}), i.e. this test is not blind to the failure it is looking for",
+      log10_ell_old > math.log10(AU),
+      f"log10(1/Lambda_sc/m) = {log10_ell_old:.4g} against log10(AU/m) = {math.log10(AU):.3g} -- P7 fires there by "
+      f"{log10_ell_old - math.log10(AU):.3g} decades")
 
 # ------------------------------------------------------------------ 9.  what the screening costs instead
 head("9.  what the screening DOES cost: the MOND scalar's cone, and what the published action does not define")
@@ -412,10 +441,11 @@ for nm, s_can in rows[3:]:
 K2_need = (2 - KB_V) * J_Y(g_earth / A0['canonical'])
 print(f"\n    Subluminality at 1 AU would need |K_2| >= (2-K_B) J_Y = {K2_need:.3e}, which is {K2_need/K2_HI:.3g}x above the")
 print(f"    dark sector's window edge |K_2| <= 5e5 (g03r/g03u) and {K2_need/2.7e6:.3g}x above the growth pincer's 2.7e6 (g03t).")
-check("P8 the MOND scalar stays inside the metric light cone in the Solar System at any |K_2| the dark sector allows",
+check("P8 [diagnostic, NOT a kill] the MOND scalar stays inside the metric light cone in the Solar System at any "
+      "|K_2| the dark sector allows",
       worst <= 1.0, f"worst case c_s/c = {worst:.3g} at |K_2| = 5e5; forced by J_Y = s/Delta with Delta <= C. "
-                    f"NOTE: in a khronometric theory with a preferred foliation superluminal propagation is not by "
-                    f"itself acausal -- this is reported as a quantified cost, not as a kill")
+                    f"IN A KHRONOMETRIC THEORY WITH A PREFERRED FOLIATION SUPERLUMINAL PROPAGATION IS NOT BY ITSELF "
+                    f"ACAUSAL -- this FAIL is a quantified cost of the screening, not an exclusion")
 dprime_sat = 0.0
 print(f"\n    The longitudinal stiffness is Sigma_par = 1/Delta'(s).  On the carried kernel's saturated branch "
       f"(s > {S_SAT:.3f})")
@@ -440,14 +470,20 @@ print("     parameter choice.  A3's viable pattern alpha_PF ~ (1 - mu) = e^{-y} 
 print("     The screening reaches the frame sector only through the sub-leading drag (2-K_B)/J_Y, which falls")
 print("     as a POWER LAW 1/y, and is 0.3% of c_14 at 1 AU (consistent with, and independently bounding,")
 print("     THE_ACTION's '<2% of alpha_1').")
-print("  3. Does the screened limit kill the normalisation?  It cuts it by ~1e5 between the MOND transition")
-print("     and 1 AU -- the P7 mechanism is real and operating -- but it stops at the bare floor c_14, which")
-print("     is an independent finite normalisation.  P7's own escape clause is satisfied.")
+print("  3. Does the screened limit kill the normalisation?  NO.  The kinetic Hessian diag(2 M^2 c_14 k^2, 2 M^2|K_2|)")
+print("     carries no screening variable at any Sigma -- the AeST mixing is antisymmetric and drops out of it.  The")
+print("     screening's only footprint is a POSITIVE correction (2-K_B)/Sigma + c_2|K_2|/[(2-K_B)Sigma] to c_14 in")
+print("     the effective one-field description, which the screening REMOVES: +%.3f%% at 1 AU, +%.5f%% at Cassini" % (100*(ss/C14_V-1), 100*(cas/C14_V-1)))
+print("     conjunction.  The normalisation is never multiplied by a vanishing factor.  P7's escape clause holds.")
 print("  4. Strong-coupling scale.  Lambda_sc = 2 M_pl sqrt(c_14) = %.2e GeV, i.e. %.2e m: %.0e times SHORTER" % (L_ss, ell_ss, AU / ell_ss))
 print("     than 1 AU.  Not fatal.  The classical expansion parameter is chi_dot <= 1e-6 in the Solar System.")
+print("     The P7 direction EXISTS in parameter space -- c_14 -> 0 sends alpha_1 and the normalisation to zero")
+print("     together -- but it is %.0e times below the working value, so the theory is safe by a number, not by" % (C14_V / c14_fatal))
+print("     a design separation.  C6 shows the test is not blind: the same machinery kills the eta = 2 e^{-y} version.")
 print("  5. The price is paid elsewhere: PPN is passed by TUNING c_14 and c_2 (to within 8% of c_2* for alpha_2),")
 print("     not by screening; and the screening that does the Solar-System work drives the MOND scalar's cone to")
-print("     c_s >= %.0f c at 1 AU, forced by J_Y = s/Delta with Delta bounded." % worst)
+print("     c_s >= %.0f c at 1 AU, forced by J_Y = s/Delta with Delta bounded (not a kill in a preferred-foliation" % worst)
+print("     theory, but it is what the screening buys PPN with).")
 print()
 print(f"RESULT: {len(FAILS)} FAIL" + (f" -> {FAILS}" if FAILS else ""))
 print(f"({time.time()-T0:.0f}s)")
