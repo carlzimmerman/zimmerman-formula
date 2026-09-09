@@ -43,7 +43,7 @@ theorem Gpp_zero : Gpp 0 = 0 := by
 /-- Away from zero field the scalar is a stable massive mode: G''(y) > 0 for all y > 0. -/
 theorem Gpp_pos {y : ℝ} (hy : 0 < y) : 0 < Gpp y := by
   have he : 0 < Real.exp (-y) := Real.exp_pos _
-  have hexp_ge : 1 + y ≤ Real.exp y := Real.add_one_le_exp y
+  have hexp_ge : y + 1 ≤ Real.exp y := Real.add_one_le_exp y
   have hfac : 0 < Real.exp y + y - 1 := by nlinarith
   have hinv : Real.exp (-y) * Real.exp y = 1 := by
     rw [← Real.exp_add]; simp

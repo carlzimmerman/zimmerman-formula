@@ -13,6 +13,8 @@ python3 -B rmmg_constitutive_action.py
 python3 -B -m unittest -v test_rmmg_constitutive_action.py
 python3 -B spherical_prediction.py
 python3 -B -m unittest -v test_spherical_prediction.py
+python3 -B hda_closure_gate.py
+python3 -B -m unittest -v test_hda_closure_gate.py
 python3 -B run_lean_core.py
 ```
 
