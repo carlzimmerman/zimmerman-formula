@@ -794,3 +794,56 @@ from (L, M/L, R_e, σ) — own data reconstruction, own kernel, own NFW, own wei
   floor of +0.396 dex is not reached at any radius a bound Coma member can occupy.
 - **Read the record as: a ~5σ liability with a factor-14 amplitude.** Still the framework's largest
   single-system failure. Not a 19.4σ falsification, and not dissolved either.
+
+## L20 — the ghost in the past: real, reachable, and not fatal
+
+`L20_ghost_past.py` + `L20_GHOST_PAST.md` (23 checks, **23 PASS**). L8 found that the lead's IC10 plateau
+is healthy and subluminal only on part of its own η = 1 window, with the clock's kinetic coefficient
+Q_clock passing through zero at S = 0.0266641 and c_s² reaching 1 at S = 0.0377010. It did not ask
+whether the lead's own solution actually **runs into** that region going backwards. It does.
+
+Nothing under the lead's directory was imported: the pressure was re-transcribed, re-differentiated,
+the auxiliary root re-solved, and both FLRW evolution laws re-derived from the shift-symmetric Noether
+charge rather than assumed. Controls reproduce IC10's three plateau samples, both edges, and its two
+published quadratures to 18 digits, plus textbook k-essence c_s² = 1/(2n−1).
+
+- **The edge is reached at finite past proper time**, Δτ = 0.153984/h₀ = 0.1040 physical e-folds,
+  internal z = 0.1096 — at **finite** density (ρ = 2.9084), **finite** H̃ (1.0702), and with η still
+  exactly 1 (r² = 0.9019). Q_clock vanishes *linearly*, so the integrand vanishes and the quadrature
+  converges; the residual sliver falls ~100× per decade. **No asymptotic floor, no continuation
+  artefact.** The solution is past-incomplete at a regular point of the geometry.
+- **This is not the η boundary the lead's open item 1 is waiting for.** η = 1 continues 16× further
+  down, to S = 0.0016326. The degeneracy is strictly interior to the plateau.
+- **But it is a termination, not a traversal.** From the charge relation, F = P_X e^(−S) is maximal
+  exactly where Q_clock = 0, so Ā bottoms out at 0.8574 of its S = 0.2 value and the Q < 0 region is
+  the **second branch through the same fold**, running forward from the same point. The healthy branch
+  never enters the ghost region.
+- **S is free initial data, not an output.** The plateau pressure depends on the clock only through
+  X̃, so the action has a shift symmetry and S is whatever the initial charge makes it. Avoiding the
+  region is therefore a restriction on initial data covering **84.3% of the plateau**, and it is
+  **forward-invariant**: dS/dτ = 3H̃c_s² > 0, so anything that starts healthy stays healthy until it
+  exits η = 1 at the top.
+- **The repair is not a coefficient, and this is proved four ways.** κ and m are not levers at all —
+  IC5's relations make P exactly proportional to κ and independent of m, and the activation is
+  independent of both. Tuning Λ over [0.6, 1.4]× moves the ghost edge by 25× but moves the η edge with
+  it, and the ghost stays inside the plateau at 10/10 scanned values. A higher-order clock kinetic term
+  moves the edge 37× but only by **adding energy**, which throws the activation out of the η = 1 window
+  entirely. And Q_clock → −∞ as ξ = S + w → 0 with local slope 0.78 over three decades, in every
+  deformation tried — so the repair must change the ξ → 0 structure of the auxiliary sector, which is
+  the lead's own open item 4. **This liability and that open item are the same problem from two sides.**
+- **One concrete, checkable suggestion, at zero numerical cost.** IC5 defines η by a smooth,
+  momentum-reversal-even activation with |r²−1| ≤ 1/4. That window is symmetric **by choice, not by
+  derivation**. Making the lower threshold r² ≥ 0.93256 instead of 0.75 — still smooth, still even —
+  makes η = 1 coincide exactly with the healthy subluminal window S ∈ [0.0377010, 0.2307240]. Every
+  published IC10 number survives untouched (the three samples sit at r² = 1.0530, 1.1305, 1.2045, all
+  interior), the upper edge is unchanged, and the backward handoff moves to c_s² = 1. **Honest caveat
+  from the lane itself: this relocates the problem into the transition sector rather than solving it.**
+- **Cross-lane resolution.** L20-L2 recorded a conditional pincer: if the Cherenkov bound applied to
+  this clock, it would exclude the lead's *subluminal* samples and leave only c_s² = 1, exactly the
+  edge of the healthy window. **L19 resolves it favourably** — the bound does not apply on the η = 1
+  plateau, so the subluminal samples stand and the pincer does not close.
+- **The calibration that keeps this honest the other way.** The entire certified healthy subluminal
+  plateau lasts 0.1390 physical e-folds, a factor 1.149 in scale factor. IC10 labels itself a local
+  witness and not a cosmology, and the expansion rate here is 0.055–0.067 H₀ on the two footings,
+  15–18× slower than the real universe. **This is a defect of the witness, not of a cosmological
+  history it never claimed**, and the ghost is not IC10's binding limitation.
