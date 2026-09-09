@@ -12,7 +12,19 @@ structure together. Checks remain honest: a failure identifies a construction
 obligation; it is not permission to conceal the failure or relax a requirement.
 Historical obstructions are reference material, not the main deliverable.
 
-**Current constructive checkpoint (2026-09-09, IC23):**
+**Current constructive checkpoint (2026-09-09, IC24):**
+[The integrated potential construction](integrable_clock_construction_2026/IC24_INTEGRATED_POTENTIAL.md)
+turns the pointwise repair into one local D(S) via a constrained initial-value
+problem, with independent checks of both coefficient-integrability identities.
+The sampled causal mixture extends past the old crossing to Q~.04860087,
+where a new light-cone event occurs; no long healthy cosmology is claimed.
+The negative lapse Schur design removes spatial auxiliary zeros on the regular
+pinned branch. The next construction must integrate a second coefficient A(S)
+alongside D(S), derive its characteristic response, and retain the same action
+in all tests. Global/static extension, nonlinear closure and empirical gates
+remain OPEN.
+
+**Previous constructive checkpoint (2026-09-09, IC23):**
 [The simultaneous matter calculation](integrable_clock_construction_2026/IC23_MIXTURE.md)
 derives the three-scalar clock/radiation/positive-pressure system from one
 summed action. Exact combined cone inequalities and full frequency checks
