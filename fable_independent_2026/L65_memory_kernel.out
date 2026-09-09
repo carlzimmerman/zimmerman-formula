@@ -1,0 +1,315 @@
+========================================================================================================================
+L65 -- the wake/memory architecture: can a causal memory kernel have a VARIATIONAL origin, and what does it cost?
+========================================================================================================================
+a0 footings: canonical 9.3619e-11 m/s^2   alt 1.1279e-10 m/s^2
+1/H0 = 4.5782e+17 s = 14.51 Gyr    c/H0 = 4448 Mpc
+    canonical : c/a0 = 3.2023e+18 s = 101.5 Gyr = 6.99/H0   |   c^2/a0 = 9.6001e+26 m = 31112 Mpc = 6.99 c/H0
+    alt       : c/a0 = 2.6580e+18 s = 84.2 Gyr = 5.81/H0   |   c^2/a0 = 7.9684e+26 m = 25824 Mpc = 5.81 c/H0
+
+========================================================================================================================
+PART 0 -- CONTROLS.  L39's three central results, reproduced independently, plus the standard mode counts.
+========================================================================================================================
+  ADM general relativity : (gamma_ij, pi^ij) = 12 phase-space functions ; first class H_perp, H_i = 4 ; N = (12 - 8)/2 = 2
+  GR + one minimally coupled scalar : 12 + (phi, p_phi) = 14 ; same 4 first class ; N = (14 - 8)/2 = 3
+  Einstein-aether (u.u = -1 leaves 3 components) : 12 + 6 = 18 ; 4 first class ; N = (18 - 8)/2 = 5
+  [PASS] C1  the Dirac counting rule returns 2 for ADM general relativity   (2 tensor polarisations)
+  [PASS] C2  the Dirac counting rule returns 3 for GR + one minimally coupled scalar   (2 tensor + 1 scalar)
+  [PASS] C3  the Dirac counting rule returns 5 for Einstein-aether   (2 tensor + 2 vector + 1 scalar (Jacobson-Mattingly))
+
+  C4.  L39's DECISIVE control, recomputed from the metric.  Apply the inference 'a negative kinetic
+  eigenvalue means a propagating ghost' to ordinary linearised general relativity, which has N = 2
+  and no ghost.  Compute sqrt(-g) R to second order for a transverse-traceless mode and for the
+  conformal mode, and reduce modulo total derivatives by averaging over one wave period.
+    L^(2) unreduced, TT h_11 = -h_22 = chi(t,z) :  -2*chi(t, z)*Derivative(chi(t, z), (t, 2)) + 2*chi(t, z)*Derivative(chi(t, z), (z, 2)) - 3*Derivative(chi(t, z), t)**2/2 + 3*Derivative(chi(t, z), z)**2/2
+    L^(2) unreduced, conformal g = (1+2 phi(t)) eta :  -6*Derivative(phi(t), t)**2
+    reduced by period average:  TT  coefficient of (d_t chi)^2 = 1/2 , of (d_z chi)^2 = -1/2
+                                conformal  coefficient of (d_t phi)^2 = -6
+  [PASS] C4  linearised GR's CONFORMAL mode carries the opposite-sign kinetic term to its graviton   (TT = +1/2, conformal = -6 -- matches L39's +1/2 and -6 exactly)
+  [PASS] C4b THEREFORE 'a negative kinetic eigenvalue means a propagating ghost' is a FALSE inference   (GR has N = 2 and no ghost; the conformal mode is removed by the Hamiltonian constraint, not by a sign)
+  [PASS] C4c the localised nonlocal theory's auxiliary kinetic matrix has exactly one negative eigenvalue   (K = [[0,1/2],[1/2,0]], eigenvalues [-1/2, 1/2], det = -1/4 -- L39's convention-independent form)
+
+  C5.  Is the retarded restriction preserved by the dynamics?  Solve Box xi = j in 1+1 with a
+  compact source, take the RETARDED solution (xi = xi_dot = 0 on the initial surface S), restart it
+  from its own slice data at a later time, and compare.  A CONTROL that L39 did not print is added:
+  the same restart applied to a solution WITH a homogeneous piece.
+    retarded solution restarted from its own slice data at t = 10:      max rel difference = 0.000e+00
+    CONTROL, a solution WITH a homogeneous piece, same restart:         max rel difference = 0.000e+00
+    the two solutions differ from each other by                          4.775e-01  (so the restriction is not vacuous)
+  [PASS] C5  the retarded prescription IS preserved by the dynamics (an invariant submanifold)   (0.0e+00; 'no homogeneous piece relative to S' is a boundary condition AT S, not re-imposed each instant)
+  [PASS] C5b CONTROL: restart-invariance alone is NOT the discriminator -- every solution has it   (the non-retarded solution restarts just as exactly (0.0e+00) while differing from the retarded one by 0.48; what C5 establishes is where the condition is imposed, not that retardation is singled out dynamically)
+    two source histories identical for t >= 8.0 and different before, probed at t = 16:
+      |j_A - j_B| on the slice = 2.894e-63      |xi_A - xi_B| on the slice = 2.9603e+00
+  [PASS] C5c the retarded condition is NOT a function on the instantaneous slice (Dirac's algorithm is blind to it)   (identical instantaneous source, |Delta xi| = 2.960 -- reproduces L39's A3)
+
+  C6.  Does variation of a nonlocal action produce the causal kernel?  Build a discrete retarded
+  Green matrix for d^2/dt^2 on a 1-D time lattice and vary S[f] = f^T G_ret f.
+    varying  S[f] = f^T G_ret f  gives the kernel (G + G^T)/2 :
+      distance from G_ret, in units of ||G_ret||           = 0.6983   (0 would mean 'retarded is variational')
+      distance from (G_ret + G_adv)/2, in units of ||G_ret|| = 0.0000
+      position on the segment G_ret -> G_adv                = 0.5000   (exactly the midpoint; this is the
+        normalisation in which L39 reports 0.50 from G_ret and 0.00 from the average, and it is reproduced exactly.
+        The 0.70 above is the same fact in the ||G_ret|| normalisation, which is discretisation-dependent.)
+  [PASS] C6  variation of a nonlocal action symmetrises the Green function; retarded-only is NOT variational   (the varied kernel sits at exactly 0.5000 of the way from G_ret to G_adv and 0.0e+00 from their average -- reproduces L39's A4 (0.50 / 0.00))
+
+  C6b.  THE SHARPER STATEMENT, which L39 did not make and which is what actually closes the
+  single-field route.  The bilinear argument of C6 only covers actions QUADRATIC in the field, so a
+  nonlinear nonlocal action -- which is what MOND needs (see M1) -- is not yet excluded by it.  The
+  general statement is the Poincare lemma / Helmholtz condition: a field equation E[f] = 0 arises
+  from SOME action if and only if its linearisation dE/df is SYMMETRIC.  So the obstruction to a
+  variational origin is measurable directly, as ||J - J^T|| / ||J||, with no action to guess.
+    obstruction ||J - J^T||/||J||  for the intended LINEAR causal equation   D f + G_ret f      = 0.7030
+    obstruction                    for a NONLINEAR causal equation           D f + G_ret f^3    = 0.8726
+    CONTROL, the time-symmetrised equation  D f + (G_ret + G_adv)/2 f                            = 0.000e+00
+    CONTROL, an operator that really is delta S / delta f (numerical Hessian of a quartic
+             nonlocal functional built on the SAME causal kernel)                                = 0.000e+00
+  [PASS] C6c RECIPROCITY / HELMHOLTZ OBSTRUCTION: no action, linear or nonlinear, local or nonlocal, yields a causal kernel   (the causal equation's linearisation is asymmetric by 0.703 (linear) and 0.873 (nonlinear), so no S exists with delta S/delta f equal to it; both controls sit at zero (0e+00, 0e+00), confirming the estimator can tell the two apart. This closes ROUTE 1 for NONLINEAR nonlocal actions too, which C6's bilinear argument does not reach)
+
+========================================================================================================================
+PART A -- the routes to a causal kernel with a variational origin, enumerated, using what is known.
+========================================================================================================================
+
+  ROUTE 1  a single-field action, local or nonlocal.  CLOSED by C6c: the response kernel is a second
+           functional derivative and is therefore symmetric.  No boundary condition, no i-epsilon and no
+           choice of contour repairs this, because the symmetry is a property of the derivative, not of
+           the domain.  This is the obstruction the lead's door names, in its strongest form.
+
+  ROUTE 2  DOUBLED FIELDS.  The in-in (Schwinger-Keldysh) effective action, and its purely classical
+           counterpart -- Galley's variational principle for nonconservative systems -- double the
+           variables, vary, and only then impose the physical limit.  Tested below (V1-V3).
+
+  ROUTE 3  INTEGRATING OUT A GENUINE DYNAMICAL SECTOR.  The memory is then the retarded propagator of
+           fields that really exist.  Tested constructively in PART B.
+
+  ROUTE 4  OPEN-SYSTEM / DISSIPATIVE formulations (a Rayleigh dissipation function, a GKSL generator).
+           These are not action principles for the system alone; they are the reduced description of
+           ROUTE 3 with the environment already traced out.  Their causal kernel is ROUTE 3's kernel.
+           They add no new possibility and are folded into PART B.
+
+  V1.  ROUTE 2, tested.  A bilinear in TWO fields,  S[a,b] = a^T G_ret b.  Vary with respect to each.
+      delta S / delta a  ->  kernel at distance 0.0000 from G_ret   (EXACTLY retarded)
+      delta S / delta b  ->  kernel at distance 1.3966 from G_ret and 0.0000 from G_adv   (EXACTLY advanced)
+  [PASS] V1  a genuinely CAUSAL kernel DOES come out of a variational principle -- with a second field   (one field's equation is exactly retarded, the other's exactly advanced; the pair is the price)
+
+      This is not a trick and it is not new: it is the structure of the closed-time-path effective action
+      (a = the response/'quantum' field, b = the 'classical' field) and of Galley's classical doubling
+      (a = q_-, b = q_+).  In both the physical limit a -> 0 / q_1 = q_2 is imposed AFTER variation, and
+      the surviving equation is the retarded one.  Note what the advanced half means: the second field's
+      own equation of motion is anti-causal.  Causality is not created by the doubling; it is DISTRIBUTED,
+      one causal equation and one anti-causal one, and the prescription then keeps the causal half.
+
+  V2.  The kinetic structure of the doubling, computed rather than asserted.
+      S[q_+] - S[q_-] in the Keldysh basis q_+- = q_cl +- q_q/2 :  L_kin = v_cl*v_q
+      kinetic matrix K (L_kin = K_ab v^a v^b) = [[0, 1/2], [1/2, 0]],  eigenvalues [-1/2, 1/2],  det = -1/4
+  [PASS] V2  the doubled-field kinetic matrix is EXACTLY the off-diagonal +-1/2 pair L31 flagged as a ghost   (K = [[0,1/2],[1/2,0]] identically -- the 'ghost pair' of the localised nonlocal action IS the Keldysh doubling, which is why C4b's false inference matters: the pair is a response field, not a propagating ghost)
+
+      This identification is the load-bearing structural result of PART A, and it cuts both ways.  It
+      EXONERATES the +-1/2: a field/response-field pair always has an off-diagonal kinetic form, and no
+      counting rule that reads a ghost off that form can be trusted (C4b).  But it also means the causal
+      variational principle and the localised nonlocal action are THE SAME OBJECT in two notations, so
+      whatever the localised reading counts, the causal variational principle also has.
+
+  V3.  Is the physical limit a constraint, or a prescription?  It has exactly the structure of C5/C5c:
+      an invariant submanifold that Dirac's algorithm cannot see, imposed once on the initial surface.
+  [PASS] V3  the physical limit a = 0 (q_1 = q_2) is a prescription on solutions of the same type as the retarded restriction   (so ROUTE 2 relocates the L39 cost from 'not variational' to 'variational, with a second field and a prescription' -- it does not remove it)
+
+========================================================================================================================
+PART B -- is the memory FUNDAMENTAL, or bookkeeping for hidden degrees of freedom?  This is the whole question.
+========================================================================================================================
+
+  If the kernel is the retarded propagator of something real, its states must be counted and the two-mode
+  claim evaporates.  Three computations decide it: an explicit bath whose retarded propagator IS a chosen
+  memory kernel (H1-H2); the spectral trichotomy that says there is no third option (H3-H5); and the
+  residue-sign test for the case where the hidden sector is finite (H6).
+
+  H1.  Caldeira-Leggett with a counterterm.  Integrating out N oscillators started at rest gives
+       EXACTLY  q_ddot + w0^2 q + int_0^t gamma(t-s) q_dot(s) ds = 0  with  gamma(tau) = sum_n (c_n^2/w_n^2) cos(w_n tau).
+       N = 600 oscillators, Ohmic J(w) = eta w exp(-w/w_c), eta = 0.35, w_c = 4.0.  Refinement test:
+         dt = 0.004    max relative difference (full bath vs memory equation) = 2.943e-03
+         dt = 0.002    max relative difference (full bath vs memory equation) = 1.469e-03
+         dt = 0.001    max relative difference (full bath vs memory equation) = 7.339e-04
+         dt = 0.0005   max relative difference (full bath vs memory equation) = 3.668e-04
+  [PASS] H1  the memory equation and the full (system + bath) dynamics are the SAME dynamics   (difference falls from 2.9e-03 to 3.7e-04 under 8x refinement (first-order convolution quadrature), i.e. it is discretisation, not physics)
+
+  H2.  Now give the bath NONZERO initial data.  The memory equation cannot see it.
+       bath initial data of amplitude 0.02  :  max |q_full - q_memory| / max|q_memory| = 0.055
+       bath initial data of amplitude 0.1   :  max |q_full - q_memory| / max|q_memory| = 0.185
+       bath initial data of amplitude 0.4   :  max |q_full - q_memory| / max|q_memory| = 1.003
+  [PASS] H2  the retarded/memory equation is the full theory RESTRICTED TO ONE STATE of the hidden sector   (other hidden-sector data changes the trajectory by 118%; 'no homogeneous piece' is a CHOICE OF STATE for the hidden sector, not the absence of one)
+
+  H3-H5.  The spectral trichotomy: given a real causal kernel K(s) (K = 0 for s < 0), let
+          Ktilde(w) = int_0^inf K(s) e^{i w s} ds.  There are exactly three possibilities.
+       causal kernel K(s) = e^{-s/tau}/tau :  Kramers-Kronig gives Re = 0.670729, true Re = 0.671141  (rel err 6.13e-04)
+       CONTROL, the time-symmetric kernel e^{-|s|/tau}/(2 tau) :  KK gives Re = 0.000000, true Re = 0.671141  -> KK FAILS, as it must
+  [PASS] H3  a causal memory kernel obeys the Kramers-Kronig dispersion relation; a time-symmetric one does not   (rel err 6.1e-04 causal vs 0.67 absolute failure symmetric -- causality IS a spectral statement, so the kernel has a spectral density)
+       the sine transform on (0, inf) has trivial kernel: discrete rank 400 of 400  (singular values all equal to 14.1598, condition number 1.0000)
+  [PASS] H4  if the spectral density vanishes the kernel is LOCAL -- there is no 'memory without states' option   (Im Ktilde == 0 on the real axis means the sine transform of K vanishes; the sine transform is injective, so K(s) = 0 for s > 0 and K is a contact term -- a local operator, with a local theory's mode count and Ostrogradsky problem)
+       CASE (ii) rho >= 0 : the kernel is the retarded propagator of a positive-norm sector -- H1 constructs it explicitly.
+       CASE (iii) rho of either sign : some of those oscillators carry negative norm.  H6 exhibits it.
+  [PASS] H5  TRICHOTOMY: a memory kernel is LOCAL, or the retarded propagator of healthy hidden states, or of ghosts   (there is no fourth option: the three cases are rho == 0, rho >= 0, rho sign-indefinite, and they are exhaustive)
+
+  H6.  The finite case, where the hidden sector is a single field rather than a continuum.  Add a
+       rational memory to the graviton kinetic operator and locate the poles of the propagator.
+       D(s) = -s + k^2 + g^2 M^2/(M^2 - s),  s = omega^2 ;  poles at s = 0.41883 and 0.93117
+       residues of 1/D :  -1.13434  and  +0.13434
+  [PASS] H6  a rational (finite-state) memory kernel adds poles whose residues have OPPOSITE signs -- one ghost per extra pole   (residue product -0.1524; the finite-memory case is the Pais-Uhlenbeck/Lee-Wick situation and is NOT ghost-free)
+  [FAIL] [GATE] H7  the memory is FUNDAMENTAL rather than bookkeeping for hidden degrees of freedom   (H1 builds a bath whose retarded propagator IS the kernel; H2 shows the retarded prescription is a choice of that bath's state; H4 shows a stateless kernel is local; H6 shows the finite case is a ghost.  MEMORY == HIDDEN STATES, with no exception)
+
+========================================================================================================================
+PART C -- THE PHYSICS TEST, before any phenomenology.  MOND must appear in the STATIC weak field.
+========================================================================================================================
+
+  Rotation curves and the solar system are both STATIC: nothing is changing, so the memory integral has
+  run to its asymptote and the response is the kernel's zero-frequency limit.  This is the sharpest
+  internal check available.  Three requirements are extracted and each is tested against data.
+
+  SPARC: 2786 points from real_research/data/sparc_data (Upsilon_d = 0.5, Upsilon_b = 0.7, eV/V < 0.10)
+
+  M1.  Is a LINEAR memory kernel enough?  A linear response is  Phi = int K rho, so g_obs is
+       proportional to the baryonic source.  The deep-MOND branch is not.
+       canonical : deep regime g_bar < a0/10 ->  846 points, d log g_obs / d log g_bar = 0.504 +- 0.027   (linear response requires 1.000; deep MOND requires 0.500)
+       alt       : deep regime g_bar < a0/10 ->  977 points, d log g_obs / d log g_bar = 0.528 +- 0.023   (linear response requires 1.000; deep MOND requires 0.500)
+  [FAIL] [GATE] M1  a LINEAR memory kernel can reproduce the observed static law   (the measured deep-regime slope is 0.50/0.53, which is 20 sigma from the linear-response value 1.  A memory kernel that gives MOND must be NONLINEAR in the field -- superposition is broken by the data)
+
+  M2.  What does a purely TEMPORAL kernel K(t - t') do to a static configuration?  It multiplies it
+       by the single number Ktilde(0) = int_0^inf K(s) ds.  The same number for every static system.
+       galaxy outskirts (g_bar < a0):  median g_obs/g_bar = 3.48 (canonical) / 3.39 (alt)   -- static
+       Saturn's orbit (9.54 AU):       g = 6.516e-05 m/s^2, and g_obs/g_bar - 1 < 1e-05 (a deliberately loose bound)  -- also static
+  [FAIL] [GATE] M2  a purely temporal memory kernel can produce the observed static modification   (both systems sit at omega = 0, so a K(t-t') kernel applies the SAME factor Ktilde(0) to both; the data demand 3.39 in galaxies and 1 + 1e-05 in the solar system, a separation of 2e+05 in units of the bound. The kernel must therefore be a function of the full d'Alembertian, not of time alone)
+
+  M3.  So the kernel is F(Box), and in the static limit Box -> -grad^2, i.e. F(k^2).  The transition
+       between 'on' and 'off' is then a LENGTH.  Where must it lie, and is it the MOND length?
+       must be ON  at galaxy outskirts:   median radius 2.768e+20 m = 9.0 kpc
+       must be OFF at the solar system:   1.427e+12 m = 9.54 AU
+       canonical : MOND length c^2/a0 = 9.6001e+26 m = 31112 Mpc = 3.47e+06 x the galactic radius, 6.73e+14 x the solar-system radius
+       alt       : MOND length c^2/a0 = 7.9684e+26 m = 25824 Mpc = 2.88e+06 x the galactic radius, 5.58e+14 x the solar-system radius
+  [FAIL] [GATE] M3  the length at which a memory kernel F(Box) must switch on IS the MOND length c^2/a0   (c^2/a0 is 2.9e+06-3.5e+06 times LARGER than the galactic radii where the modification is required, and 7.0 times the Hubble radius. A kernel whose only scale is a0 has its transition OUTSIDE the observable universe and is on the same side of it in galaxies and in the solar system alike; the discriminating length is a NEW free parameter, not a0.  (This is the same length the repository's own f30/f33 line calls xi and calibrates at 0.03-0.15 pc.))
+
+  M4.  Grant the kernel a temporal scale anyway, and ask whether the STATIC limit has been reached.
+       The retarded prescription needs a preferred initial surface (L39), and cosmology supplies one.
+       cosmic time: t(z=0) = 13.80 Gyr, t(z=1) = 5.85 Gyr, t(z=5) = 1.17 Gyr
+       canonical : memory time tau = c/a0 = 101.5 Gyr, so t0/tau = 0.136
+                   accumulated static response 1 - exp(-t/tau):  0.1271 of its asymptote TODAY
+                   => a0_eff(z=1)/a0_eff(0) = 0.440 ,  a0_eff(z=5)/a0_eff(0) = 0.090
+       alt       : memory time tau = c/a0 = 84.2 Gyr, so t0/tau = 0.164
+                   accumulated static response 1 - exp(-t/tau):  0.1511 of its asymptote TODAY
+                   => a0_eff(z=1)/a0_eff(0) = 0.444 ,  a0_eff(z=5)/a0_eff(0) = 0.091
+  [FAIL] [GATE] M4  the static memory response has converged, so the MOND coefficient is time-independent   (only 12.7-15.1% of the asymptotic response has accumulated since the big bang, so a0_eff would still be rising roughly linearly in cosmic time: 56% lower at z = 1 than today. The repository's own recorded standing (stage-17 derived law) is FLAT to < 1% for z <= 5, and the MUSE front records a0 RISING with redshift -- both quoted as standing, not re-derived here.  The memory transient has the wrong magnitude against one and the wrong SIGN against the other)
+  [PASS] M5  the three requirements a memory kernel must meet for static MOND are now explicit   (nonlinear in the field (M1); nonlocal in SPACE as well as time (M2); and carrying a transition length that is NOT c^2/a0 (M3), with a temporal tail short enough to have converged (M4).  No kernel meets M3 and M4 with a0 as its only scale)
+
+========================================================================================================================
+PART D -- THE LENSING LOCK.  A memory kernel is a function of the d'Alembertian.  Does it escape, or is it caught?
+========================================================================================================================
+
+  L39 proved that with no preferred timelike vector every covariant scalar linear in h carries ONE
+  transverse combination, the inverse d'Alembertian included, so the rotation-curve and lensing equations
+  are locked together.  Reproduced here from scratch, and then pushed one step further into an identity
+  that makes the mechanism unmistakable.
+
+  X1.  transverse symmetric operators, background structures {eta, k k} (NO preferred vector) : {1}
+       transverse symmetric operators, adding a unit timelike u : {2}
+  [PASS] X1  with no preferred timelike vector the transverse structure is a ONE-parameter family; a unit timelike u makes it TWO   (solved by SVD at five random momenta; the single frame-free structure is B(Box)(d^mu d^nu - eta^{mu nu} Box), and B may contain Box^{-1})
+
+  X2.  static weak field ds^2 = -(1+2 Psi) dt^2 + (1+2 Phi) dx^2 :  R^(1) = -2 grad^2 Psi - 4 grad^2 Phi  -> True
+       R_00^(1) = grad^2 Psi  -> True   (both computed from the metric here)
+  [PASS] X2  the unique frame-free block R^(1) mixes Psi and Phi in the FIXED ratio 1 : 2   (so any Lagrangian addition built from functions of that block -- a memory kernel F(Box) acting on it included -- contributes to the Newtonian and lensing equations in a ratio it cannot choose)
+
+  X3.  THE IDENTITY.  The unique frame-free transverse structure (d_mu d_nu - eta_{mu nu} Box) sigma is,
+       up to a factor, the LINEARISED EINSTEIN TENSOR OF A PURE CONFORMAL PERTURBATION h = 2 sigma eta :
+         G^(1)[2 sigma eta] = 2 (eta Box sigma - d d sigma)   ->  True
+  [PASS] X3  every frame-free addition to the field equations is, at linear order, a CONFORMAL redefinition of the metric   (verified symbolically from the definition of G^(1); this is the mechanism behind the lock, not a restatement of it)
+
+  X4.  And a conformal factor cannot bend light:  Gamma~ k k - Gamma k k - 2 k (k . d ln Omega) = 0 for null k  ->  True
+  [PASS] X4  null geodesics are conformally invariant up to reparametrisation (computed from the Christoffels here)   (so the entire frame-free addition contributes ZERO extra light deflection)
+  [FAIL] [GATE] X5  a frame-free memory kernel ESCAPES the lensing lock   (it is caught by it, and by a mechanism: a memory kernel is a function of Box, Box^{-1} included, so X1 puts it in the one-parameter frame-free family, X3 makes that family a conformal shift and X4 makes a conformal shift invisible to light. The deflection stays at the GR-with-baryons-only value while dynamics demand 3.39-3.48x in SPARC outskirts (computed above) and ~6.8x in clusters (repository standing, g04a, quoted not re-derived).  Escaping requires adjoining a unit timelike u -- X1's second structure -- which is exactly the preferred-frame object the programme's single-metric pincer already constrains)
+
+========================================================================================================================
+PART E -- the mode count and ALL independent initial data.  Memory hides initial data easily.
+========================================================================================================================
+  E1.  Rank of the map (hidden-sector initial data) -> (observable trajectory), for a bath of 30 oscillators:
+       58 independent directions out of 60 possible, against the ONE observable's own 2.
+       (the shortfall from 60 is numerical, not structural: the smallest singular values are 1.20e-06, 1.38e-07, 2.30e-08 against a largest of 3.19e+01, i.e. the weakest-coupled oscillators at the edge of the spectral density.)
+  [PASS] E1  the memory hides initial data, and the amount hidden is the hidden sector's, not the observable's   (rank 58 >> 2; for a kernel with a branch cut rather than 30 poles this is a CONTINUUM per space point)
+
+  E2.  The count, stated for each reading, with the price attached to each.
+
+       reading                                            N_grav   free initial data on the slice
+       ---------------------------------------------------------------------------------------------
+       (a) retarded / physical-limit prescription            2      graviton 2 x 2 = 4 functions
+           price: the prescription is not a constraint (C5c), needs a preferred initial surface,
+           and by H2 it is a CHOICE OF STATE for the hidden sector -- the states are still there.
+       (b) the causal VARIATIONAL formulation (V1-V2)      2 + 2    + (a, a_dot) or (q_q, q_q_dot)
+           price: the second field is exactly the +-1/2 off-diagonal pair (V2).  Under the retarded
+           prescription it is set to zero on S; without the prescription it is free data.
+       (c) the localised nonlocal action                   2 + n_aux (n_aux = 4 for the published
+           DEFW MOND model, so N = 6; L39's C6, not recomputed here)
+       (d) the honest count once H1-H6 are admitted        2 + (the hidden sector's), which is a
+           CONTINUUM per space point for a branch-cut kernel and a GHOST for a rational one (H6).
+
+  [PASS] E2  the mode count is 2 only under a prescription, and the prescription is a choice of state for a sector that exists   (readings (a)-(d) are the same theory with different amounts of the hidden sector made explicit)
+  [FAIL] [GATE] E3  a memory architecture delivers N_grav = 2 with no additional propagating states   (it delivers N_grav = 2 in reading (a) exactly as L39 found, and that remains more than any local construction in this programme has managed -- but H7 shows the 2 is bought by fixing the state of a sector whose initial data is measured at rank 58 in E1.  The two-mode claim survives as a statement about the classical effective theory and fails as a statement about the states)
+
+========================================================================================================================
+PART F -- verdict
+========================================================================================================================
+
+  1. A VARIATIONAL CAUSAL FORMULATION EXISTS.  V1 exhibits it: vary  S[a,b] = a^T G_ret b  and one field's
+     equation is EXACTLY retarded (distance 0.0000 from G_ret), the other's exactly advanced.  This is the
+     in-in / Galley doubling, and it meets the lead's stated pass condition -- the causal kernel comes OUT
+     of the variation rather than being prescribed afterwards.  That is a genuine advance over L39's A4,
+     which reported only that the single-field variation symmetrises.  C6c strengthens L39's obstruction at
+     the same time, and this matters because MOND needs a NONLINEAR kernel (M1) that the bilinear argument
+     never reached: by the Helmholtz condition an equation is variational iff its linearisation is
+     symmetric, and the intended causal equation's linearisation is asymmetric by 0.70 (linear) and 0.87
+     (nonlinear) while both controls sit at zero.  So the doubling is not one option among several -- it is
+     the ONLY way out, and it costs a second field whose own equation is anti-causal.
+
+  2. THE MEMORY IS BOOKKEEPING.  H1 constructs a bath whose retarded propagator IS the kernel and integrates
+     it against the memory equation to agreement limited only by the quadrature (3.7e-04 at the finest step,
+     falling as the step falls).  H2 shows the retarded prescription is a CHOICE OF STATE for that bath:
+     other bath data changes the observable trajectory by 118%.  H4 shows a kernel with no spectral density is
+     a contact term, i.e. local.  H6 shows the finite-state case has opposite-sign residues, i.e. a ghost.
+     The trichotomy is exhaustive: local, healthy hidden states, or ghosts.  V2 makes the same point
+     structurally -- the causal variational principle's kinetic matrix is IDENTICALLY the [[0,1/2],[1/2,0]]
+     of the localised nonlocal action, so the two are one object and whatever one counts the other has.
+
+  3. IT DOES NOT ESCAPE THE LENSING LOCK.  A memory kernel is a function of Box.  X1 reproduces the
+     one-parameter frame-free transverse family, X3 identifies that family with the linearised Einstein
+     tensor of a pure conformal perturbation, and X4 shows a conformal factor cannot bend light.  So a
+     frame-free memory architecture predicts GR-with-baryons-only deflection while dynamics require
+     3.39-3.48x in SPARC outskirts.  Escape requires a unit timelike u, which is the preferred-frame
+     structure the programme's pincer already constrains.
+
+  4. AND IT FAILS THE PHYSICS TEST BEFORE ANY OF THAT.  M1: the deep-regime slope is 0.50/0.53, not 1, so a
+     linear memory is excluded by the data.  M2: galaxies and the solar system are BOTH static, so a purely
+     temporal kernel applies one number to both.  M3: a kernel F(Box) discriminates by LENGTH, and c^2/a0 is
+     2.9e+06x too long -- 7.0 Hubble radii, outside the observable universe -- so the discriminating length
+     is a new free parameter and a0 is not derived.  M4: with tau = c/a0 only 12.7-15.1% of the static response has
+     accumulated since the big bang, predicting an a0 that is 56% lower at z = 1 than today.
+
+  WHAT SURVIVES OF THE OWNER'S INTUITION, stated without inflation and without dismissal.  The paddle
+  picture is the correct picture of what a retarded kernel is -- and that is exactly the point.  Water
+  keeps pushing the paddle because the water is there, carrying energy and its own degrees of freedom.  The
+  analogy does not license ignoring the medium; computed out, it INSISTS on one.  L39's finding stands
+  unchanged and is not weakened by this lane: the retarded reading really does give N_grav = 2, and the
+  localised counting rule really is unreliable (C4b, reproduced).  What this lane adds is that the 2 is the
+  count of the EFFECTIVE description, that the causal variational principle exists but is the doubling
+  whose second field is the very pair L31 flagged, and that the architecture is caught by the lensing lock
+  it was hoped to evade.
+
+  [PASS] Z1  a variational principle producing a genuinely CAUSAL kernel exists   (V1: doubled fields, in-in / Galley; the causal kernel comes out of the variation, not from a prescription afterwards)
+  [FAIL] [GATE] Z2  that formulation makes the memory FUNDAMENTAL rather than bookkeeping for hidden states   (H1/H2/H4/H6: memory <=> hidden states, exhaustively; V2: the doubling IS the localised auxiliary pair)
+  [FAIL] [GATE] Z3  VERDICT -- the memory architecture is a viable route to the non-negotiable destination   (it fails four independent gates: H7 (the memory hides states), M2/M3/M4 (no static MOND from a kernel whose scale is a0) and X5 (the lensing lock).  Outcome (b) of the lane's three: a variational causal formulation EXISTS, at the price of hidden dynamical states -- an oscillator continuum per space point for a branch-cut kernel, a ghost for a rational one)
+
+========================================================================================================================
+RESULT: 0 non-gate FAIL, 9 GATE FAIL (a gate FAIL is a result, not a bug).
+  gates not met by the memory architecture:
+    - [GATE] H7  the memory is FUNDAMENTAL rather than bookkeeping for hidden degrees of freedom
+    - [GATE] M1  a LINEAR memory kernel can reproduce the observed static law
+    - [GATE] M2  a purely temporal memory kernel can produce the observed static modification
+    - [GATE] M3  the length at which a memory kernel F(Box) must switch on IS the MOND length c^2/a0
+    - [GATE] M4  the static memory response has converged, so the MOND coefficient is time-independent
+    - [GATE] X5  a frame-free memory kernel ESCAPES the lensing lock
+    - [GATE] E3  a memory architecture delivers N_grav = 2 with no additional propagating states
+    - [GATE] Z2  that formulation makes the memory FUNDAMENTAL rather than bookkeeping for hidden states
+    - [GATE] Z3  VERDICT -- the memory architecture is a viable route to the non-negotiable destination
+  all controls and all structural checks PASS.

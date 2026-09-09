@@ -2484,3 +2484,52 @@ its mechanism undecidable and named the group channel as the one place existing 
   different estimator, recorded because the standard is both directions.
 - **What would decide it, all three parts required:** a collisionless-tracer group ratio to better than
   **5.9% total**, with that estimator's own bias validated below 5.9% at group mass.
+
+## L65 — the memory architecture: a causal variational principle exists, and memory is hidden states without exception
+
+`L65_memory_kernel.py` + `L65_MEMORY_KERNEL.md` (37 checks, 9 FAIL; **every FAIL is a marked gate, zero
+non-gate failures**). The lead's door 6, from the owner's own paddle-and-wake intuition: a gravitational
+response with memory. Nobody had given it a variational formulation.
+
+**Controls** reproduce L39 exactly — the conformal mode at −6 against the graviton's +½, the retarded
+restart at 0.000e+00, the varied kernel at 0.5000 of the way from retarded to advanced — plus two L39 did
+not print: a **non-retarded** solution restarts just as exactly, so restart-invariance is not the
+discriminator; and the Helmholtz estimator returns exactly zero on two genuine gradients.
+
+- **⭐ A VARIATIONAL PRINCIPLE PRODUCING A GENUINELY CAUSAL KERNEL EXISTS** — the doubled-field in-in
+  construction, in which one field's equation comes out exactly retarded and the other's exactly advanced.
+  **It meets the door's own pass condition.** And it is the **only** route: the Helmholtz obstruction
+  closes every single-field action, **nonlinear and nonlocal included** (asymmetry 0.70 linear, 0.87
+  nonlinear, both controls at zero). That extension was necessary because MOND needs a nonlinear kernel —
+  the deep-regime slope is 0.50, **20σ from the linear-response value of 1.**
+- **⭐ AND IT UNIFIES THREE LANES.** The doubled-field kinetic matrix is **identically** the ±½ pair L31
+  flagged as a ghost. **The "ghost pair" of the localised nonlocal action IS the Keldysh doubling — a
+  response field, not a propagating ghost.** That is why L39's correction of the false inference mattered.
+- **⭐ THE TRICHOTOMY, exhaustive.** A memory kernel is **local** (zero spectral density ⇒ a contact term,
+  with a local theory's mode count and Ostrogradsky problem), or the retarded propagator of **healthy
+  hidden states** (non-negative spectral density), or of **ghosts** (sign-indefinite; a rational kernel
+  gives residues −1.13 / +0.13, one ghost per extra pole). **There is no fourth option. Memory equals
+  hidden states, without exception.** An explicit bath was built whose retarded propagator is the kernel
+  and integrated against the memory equation (agreement 3.7e-4, converging with the step); other bath data
+  changes the trajectory by **118%**, so the retarded prescription is a **choice of state**, not the absence
+  of one. Initial data: rank 58 of 60 for a 30-oscillator bath — **a continuum per space point** for a
+  branch-cut kernel.
+- **It also fails the physics test before any of that.** A purely temporal kernel applies the **same**
+  factor at zero frequency to a galaxy and to the Solar System, which need 3.39 and 1 + 1e-5. A kernel in
+  the d'Alembertian whose only scale is a₀ has its transition at **c²/a₀ = 7 Hubble radii, outside the
+  observable universe** — the discriminating length is a new free parameter, not a₀. And only 13–15% of
+  the static response has accumulated since the big bang, so a₀ would still be rising in cosmic time,
+  **56% lower at z = 1**, which has the wrong magnitude against the recorded flat law and the wrong sign
+  against the recorded MUSE rise.
+- **⭐ AND IT IS CAUGHT BY THE LENSING LOCK, WITH A CLEANER MECHANISM THAN WE HAD.** Every frame-free
+  addition to the field equations is, at linear order, **a conformal redefinition of the metric** —
+  verified symbolically — and **a conformal factor cannot bend light**. A memory kernel is a function of
+  the d'Alembertian, inverse included, so it sits in the one-parameter frame-free family and contributes
+  zero extra deflection. Escaping requires the unit timelike vector, which is the theorem's own conclusion.
+- **Mode count:** 2 under the retarded prescription, exactly as L39 found, and **that remains more than any
+  local construction here has managed** — but the 2 is bought by fixing the state of a sector whose
+  initial data is measured at rank 58. The two-mode claim survives as a statement about the classical
+  effective theory and fails as a statement about the states.
+- **One caveat kept explicit:** a memory architecture built on a unit timelike u is **not** excluded here.
+  It is thrown back onto the preferred-frame constraints, where it must be tested separately. **Door 6 is
+  closed on the gates the door itself names, not declared dead.**
