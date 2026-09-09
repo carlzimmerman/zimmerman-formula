@@ -1,0 +1,315 @@
+======================================================================================================================
+L67 -- EMERGENT MOND: does the class that violates hypothesis (a) escape the theorem, and does it live?
+======================================================================================================================
+a0 footings: canonical 9.3619e-11, alt 1.1279e-10 m/s^2;  M_Pl(reduced) = 2.4354e+27 eV;  1 eV^4 = 20.852 J/m^3;  1 eV of acceleration = 4.5546e+23 m/s^2
+      BK15: alpha = 2.5, Lambda = 0.20 meV, m = 0.6 eV  ->  a0_ph = alpha^3 Lambda^2/M_Pl = 1.169e-10 m/s^2 = 1.25 / 1.04 a0;  Lambda m^3 = 4.32e-05 eV^4
+      BFK18: alpha = 5.7, Lambda = 0.05 meV, m = 1.0 eV  ->  a0_ph = alpha^3 Lambda^2/M_Pl = 8.659e-11 m/s^2 = 0.92 / 0.77 a0;  Lambda m^3 = 5.00e-05 eV^4
+
+======================================================================================================================
+PART A -- CONTROLS
+======================================================================================================================
+A.1  Mode counts, Dirac's formula N = (P - 2F - S)/2.
+  [PASS] A1  control: GR = 2, GR + scalar = 3, khronometric = 3, Einstein-aether = 5   (2, 3, 3, 5)
+      the same formula on GR + a phonon (a shift-symmetric scalar theta): P = 14, F = 4 -> N = 3  (used in PART E)
+
+A.2  L61's overshoot and ceilings, rebuilt from SPARC with the same selection.
+      SPARC loaded from real_research/data/sparc_data: 155 galaxies, 2786 points
+      kernel alone: rms 0.145/0.142 dex at medians +0.030/+0.003   (L61 A6: 0.145/0.142, +0.030/+0.003)
+      eta = 1, baryon-sourced kernel, 2059 deep-MOND points: median g_pred/g_obs = 1.692   (L61 B1: 1.692)
+  [PASS] A2  control: L61's overshoot reproduces -- median g_pred/g_obs = 1.692 at eta = 1 on the deep-MOND points   (1.692)
+      eta ceilings: eps = 1: 0.355/0.276;  eps = 0: 0.582/0.486   (L61 B2: 0.355/0.276, 0.582/0.486)
+  [PASS] A3  control: L61's cold-fraction ceilings reproduce (0.355/0.276 total-sourced, 0.582/0.486 baryon-sourced)
+
+A.3  The recorded emergent-class run (superfluid_route_gates_2026, 2026-09-02): its G2/G3 numbers rebuilt.
+      sigma/m = 0.1 cm^2/g: z_therm = 31235, 1324, 198 for v0 = 1e-3, 1, 100 km/s   (recorded: 31236, 1324, 198)
+      c_s^2(z_rec) for a 200 km/s core at 1e5 x mean: 3.32e-01 (recorded 3.3e-01, the relativistic cap); 10 km/s at 1e6: 1.9e-03 (recorded 1.9e-03)
+  [PASS] A4  control: the recorded superfluid-route G2/G3 numbers reproduce (z_therm 31236/1324/198; c_s^2(rec) 0.33 and 1.9e-3)
+
+A.4  The superfluid core: hydrostatic equilibrium with P = rho^3/(12 Lambda^2 m^6) is the Lane-Emden n = 1/2 polytrope.
+      xi_1 = 2.75270  (tables: 2.75270),  -xi_1^2 theta'(xi_1) = 3.78865  (tables: 3.78865)
+  [PASS] A5  control: the n = 1/2 Lane-Emden constants reproduce the tabulated 2.7527 and 3.7887 to 0.1%
+      BK15: a 1e12 Msun core has rho_0 = 1.49e-26 g/cm^3 = 6.6e+03 x the mean dark density, R = 126 kpc, central c_s = 223 km/s   (R scales as M^(1/5) (Lambda m^3)^(-2/5))
+      BFK18: a 1e12 Msun core has rho_0 = 1.78e-26 g/cm^3 = 7.9e+03 x the mean dark density, R = 119 kpc, central c_s = 230 km/s   (R scales as M^(1/5) (Lambda m^3)^(-2/5))
+
+A.5  KiDS-1000 lensing RAR (Brouwer et al. 2021), read with the repository's own conversion.
+      isolated lenses, 15 bins, g_bar = 1.4e-15..3.9e-12: full-range median log10(g_obs/nu_RAR(1.2e-10)) = +0.120 dex raw, +0.023 hot-gas-corrected (diagnostic: the raw +0.12 is the low-g_bar circumgalactic-gas / two-halo excess Brouwer et al. discuss)
+      at the SPARC-KiDS overlap g_bar >= 1e-12 (3 bins, r ~ 30-100 kpc): deviations raw +0.05, +0.03, -0.09 dex; hot-gas-corrected +0.03, +0.01, -0.06 dex
+      per-bin median offset from nu_RAR(1.2e-10) at 30-300 kpc: bin 1 (logM* 10.0) +0.059, bin 2 (logM* 10.45) +0.044, bin 3 (logM* 10.7) +0.044, bin 4 (logM* 10.9) +0.077  -> spread 0.033 dex: the lensing RAR is UNIVERSAL across a decade of stellar mass
+  [PASS] A6  control: at the SPARC-KiDS overlap the isolated lensing RAR sits on nu_RAR(1.2e-10) to within 0.1 dex (raw and hot-gas-corrected), and across the four stellar-mass bins at 30-300 kpc it is universal to better than 0.1 dex (Brouwer et al. 2021's own statements)   (overlap max |dev| 0.09/0.06 dex; across-bin spread 0.033 dex)
+        [canonical] overlap median deviation from nu_RAR at the framework's a0: +0.079 dex
+        [alt      ] overlap median deviation from nu_RAR at the framework's a0: +0.041 dex
+
+A.6  The phonon force's acceleration scale, a0_ph = alpha^3 Lambda^2 / M_Pl.
+      Lambda_DE = 2.240 meV; the framework's canonical a0 needs alpha = 0.464 at Lambda = Lambda_DE   (recorded G1: 0.464)
+  [PASS] A7  control: the recorded kappa<->alpha map reproduces (alpha = 0.464 at Lambda = Lambda_DE, canonical a0)   (0.464)
+  [PASS] A7b the literature's two parameter sets both land within a factor 1.5 of the measured a0 (the coupling is FITTED to it, like kappa)   (a0_ph/1.2e-10 = BK15 0.97, BFK18 0.72)
+
+======================================================================================================================
+PART B -- THE RECORD: were the recorded closures of an ADDED sector or of an EMERGENT one?
+======================================================================================================================
+B.1  The named no-go (g03w-g04j; L14 in FINDINGS).  In the deposited action (THE_ACTION_2026-09-05 sections 1-3)
+     the MOND force is 2(2-K_B) J^mu d_mu phi with the kernel J(Y) carrying a0; the condensate K(Q) = K_2 (Q-Q_0)^2
+     supplies dust whose amplitude 'is a free cosmological initial datum'.  The static law div[mu grad Phi] = 4 pi G rho
+     contains NO dust parameter.  g04j's own docstring: 'one mechanism that keeps a cold-on-cluster-scales fluid OUT of
+     galaxies has never been run'.  g04f: 'the candidate's dark sector as a single thermal species'.  Every one of those
+     closures is of a component ADDED to a kernel that already works at zero dust -- hypothesis (a) HOLDS for them.
+  [PASS] B1  the named dark-sector no-go (g03w-g04j) closed a sector ADDED to a kernel that works at zero dust: hypothesis (a) holds for every theory it examined, so it does NOT cover the emergent class   (the action's a0 sits in J(Y); the dust amplitude is a free initial datum; the static law has no dust parameter)
+
+B.2  The UNNAMED record: condensate_pincer_2026/superfluid_route_gates_2026.py (2026-09-02, 4 checks, 0 FAIL) took
+     'the dark field IS MOND' -- the Berezhiani-Khoury class, condensing inside galaxies and producing the a0 force
+     there as a phonon -- and closed it on the COSMOLOGICAL BACKGROUND: G2, any self-interaction that thermalises a
+     halo thermalised the background earlier (Gamma/H grows as (1+z)^2.5) where n lambda_dB^3 >> 1, so the background
+     condensed and, with T/T_c constant under expansion, stays condensed; G3, the condensed background's sound speed
+     c_s^2 ~ (rho/rho_core)^2 c_s,core^2 is relativistic at recombination for any core the phonons could hold up.
+     Reproduced at A4.  That IS a recorded closure of the emergent class -- on one gate, under one extrapolation
+     (the P ~ rho^3 equation of state carried to recombination densities, which the class's own literature flags as
+     the regime where its EFT is not established).  It says nothing about lensing, the Solar System, the EFE, the
+     Gaia arms, the preferred frame, or whether the anomaly is spent once.  Those are run below; they do not lean on it.
+  [PASS] B2  the recorded emergent-class closure is cosmological and reproduces; the theorem-driven gates are untested in the record   (scope: background phase + EOS extrapolation; gates 1-7 of the brief never run on the class)
+      pricing the escape: a core at 6e+03 x mean held up at c_s = 200 km/s has c_s^2(z_rec)/c^2 = 4.4e-7 x (2.0e+05)^(n-1);
+        the loose GDM ceiling 1e-5 is met only for n <= 1.26 -- softer than any pressure that could hold the core (the phonon law needs n = 3)
+
+======================================================================================================================
+PART C -- HYPOTHESIS (a) FOR THE EMERGENT CLASS, derived from the phonon action
+======================================================================================================================
+The BK15 phonon EFT:  L = P(X) - (alpha Lambda/M_Pl) theta rho_b,   P = (2 Lambda (2m)^{3/2}/3) X sqrt|X|,
+X = mu_loc - (grad theta)^2/(2m).  In the gradient-dominated (MOND) regime |X| = (grad theta)^2/2m.
+      P_X/m = 2*Lambda*gradtheta;  spherical solution |grad theta| = sqrt(alpha M_b/(8 pi M_Pl r^2));  a_theta = (alpha Lambda/M_Pl)|grad theta|
+      a_theta^2 / a_N = Lambda**2*alpha**3/M_Pl   =  a0_ph  (BK15's scale, recovered symbolically)
+  [PASS] C1  the phonon force is a_theta = sqrt(a0_ph a_N) with a0_ph = alpha^3 Lambda^2/M_Pl, derived from the action (control on the algebra)
+      the condensate density in the gradient-dominated regime is rho_SF = m P_X = 2*Lambda*gradtheta*m**2  (BK15's gradient-locked density)
+
+     HYPOTHESIS (a) asks for the force with the cold component OFF.  With no condensate there is no phonon: theta is
+     the Goldstone of the condensate's U(1), P(X) is the condensate's own pressure, and the coupling alpha Lambda theta rho_b
+     acts on baryons only where theta exists.  Set rho_SF -> 0: P_X -> 0 with it (rho_SF = m P_X above), the flux
+     coefficient vanishes, and the EOM has no solution carrying a force -- A_K == 0, not sqrt(g_bar a0).  L61's (H-b)
+     'with A_X = 0 the theory reproduces the observed relation' is therefore FALSE for the class, and the proof step
+     g_obs = g_bar + A_K that turns g_pred - g_obs into A_X cannot be taken.  The theorem's conclusion does not follow.
+  [PASS] C2  hypothesis (a) FAILS for the emergent class: with the condensate off the phonon force is identically zero, so (H-b) is violated and the excess-spent-once conclusion does not go through   (A_K(rho_SF = 0) = 0; the class is outside L61's hypotheses, exactly as the brief conjectured)
+     What replaces (H-b): g_pred = g_bar + g_SF + a_theta, with g_SF the condensate's OWN Newtonian pull and a0_ph a
+     Lagrangian constant that the literature FITS (A7b).  Whether the anomaly is spent once is now a computation, PART D.
+
+======================================================================================================================
+PART D -- SPENT ONCE OR TWICE?  The condensate's own pull on SPARC, at the CMB's abundance
+======================================================================================================================
+The cold component is present in galaxies at the abundance-matched amount (L61's M200, the CMB's Omega_c h^2 through
+the stellar-to-halo relation), but its PROFILE is the theory's: inside the thermalised region it is the n = 1/2
+polytrope of A.4 (BFK18's finite-temperature picture), and in BK15's zero-temperature MOND regime it is the
+gradient-locked rho_SF = 2 Lambda m^2 |grad theta|.  Both are computed at every SPARC point, both parameter sets.
+
+                                 profile    set f_core |  median g_SF/anomaly (deep, can/alt) | g_SF/a_theta at 10 kpc, L*
+          polytrope core (BFK18 picture)   BK15    1.0 |             0.023 /          0.023 |                      0.014
+          polytrope core (BFK18 picture)   BK15    0.3 |             0.014 /          0.014 |                      0.009
+          gradient-locked (BK15 picture)   BK15     -- |             0.066 /          0.066 |                      0.046
+          polytrope core (BFK18 picture)  BFK18    1.0 |             0.028 /          0.028 |                      0.020
+          polytrope core (BFK18 picture)  BFK18    0.3 |             0.017 /          0.017 |                      0.012
+          gradient-locked (BK15 picture)  BFK18     -- |             0.070 /          0.069 |                      0.056
+         abundance-matched NFW (L55/L61)     --    1.0 |             1.086 /          1.085 |
+      (L55 D3 quotes the NFW halo's share as 109% on its enclosed-anomaly measure; the pointwise median here is the like-for-like number)
+  [PASS] D1  in superfluid dark matter the galaxy anomaly is spent ONCE: the condensate's own transmitted pull is below 20% of the measured anomaly at the deep-MOND SPARC points for every profile and parameter set, against the NFW halo's ~100%   (largest median share 0.070; NFW 1.09/1.09)
+
+     Why: the P ~ rho^3 polytrope is CORED with R ~ 120 kpc and rho_0 ~ 6e3 x the mean density (A.4), so the halo mass
+     sits at ~100 kpc rather than at 10 kpc -- the cold component is 'somewhere other than in galaxy halos' in the sense
+     L61 caveat 1 names.  This is the L1-type redistribution the added-sector no-go said pressure cannot achieve for a
+     condensate coupled to the lapse; a superfluid with its own stiff EOS achieves it, at the cost PART B.2 records.
+
+D.2  With the condensate included, fit the ONE constant a0_ph on the deep-MOND points (the theorem's domain).
+                   profile    set f_core   footing | a0_ph fitted /a0_obs(1.2e-10)  rms dex   median
+                      lock  BFK18    1.0       alt |    6.298e-11             0.52    0.149   -0.000
+                      lock  BFK18    1.0 canonical |    6.340e-11             0.53    0.149   +0.000
+                      lock   BK15    1.0       alt |    6.340e-11             0.53    0.149   -0.000
+                      lock   BK15    1.0 canonical |    6.427e-11             0.54    0.149   -0.000
+                       nfw     --    1.0       alt |    2.000e-11             0.17    0.235   -0.152
+                       nfw     --    1.0 canonical |    2.000e-11             0.17    0.236   -0.153
+                      none     --    0.0       alt |    7.564e-11             0.63    0.148   +0.000
+                      none     --    0.0 canonical |    7.720e-11             0.64    0.148   -0.001
+                      poly  BFK18    0.3       alt |    6.740e-11             0.56    0.154   +0.000
+                      poly  BFK18    0.3 canonical |    6.832e-11             0.57    0.154   -0.000
+                      poly  BFK18    1.0       alt |    6.298e-11             0.52    0.161   +0.000
+                      poly  BFK18    1.0 canonical |    6.427e-11             0.54    0.161   -0.000
+                      poly   BK15    0.3       alt |    6.832e-11             0.57    0.152   -0.000
+                      poly   BK15    0.3 canonical |    6.925e-11             0.58    0.152   +0.000
+                      poly   BK15    1.0       alt |    6.515e-11             0.54    0.158   -0.000
+                      poly   BK15    1.0 canonical |    6.559e-11             0.55    0.158   +0.000
+      for scale: the deposited kernel alone on the same deep points: rms 0.151/0.147 dex
+      the fitted a0_ph sits at ~0.55 x 1.2e-10 even with NO condensate: that is the zero-temperature sqrt law's lack of an interpolation
+      (it overshoots the transition region 0.3-1 a0), not double counting.  The double-counting measure is the RATIO of the fit with
+      the condensate to the fit without it, against the same ratio for the NFW halo:
+        a0_ph(with poly  BK15 f_core 1.0) / a0_ph(no condensate) = 0.850   [canonical]   rms 0.158 vs 0.148 dex
+        a0_ph(with poly  BK15 f_core 1.0) / a0_ph(no condensate) = 0.861   [alt]   rms 0.158 vs 0.148 dex
+        a0_ph(with poly  BK15 f_core 0.3) / a0_ph(no condensate) = 0.897   [canonical]   rms 0.152 vs 0.148 dex
+        a0_ph(with poly  BK15 f_core 0.3) / a0_ph(no condensate) = 0.903   [alt]   rms 0.152 vs 0.148 dex
+        a0_ph(with lock  BK15 f_core 1.0) / a0_ph(no condensate) = 0.833   [canonical]   rms 0.149 vs 0.148 dex
+        a0_ph(with lock  BK15 f_core 1.0) / a0_ph(no condensate) = 0.838   [alt]   rms 0.149 vs 0.148 dex
+        a0_ph(with poly BFK18 f_core 1.0) / a0_ph(no condensate) = 0.833   [canonical]   rms 0.161 vs 0.148 dex
+        a0_ph(with poly BFK18 f_core 1.0) / a0_ph(no condensate) = 0.833   [alt]   rms 0.161 vs 0.148 dex
+        a0_ph(with poly BFK18 f_core 0.3) / a0_ph(no condensate) = 0.885   [canonical]   rms 0.154 vs 0.148 dex
+        a0_ph(with poly BFK18 f_core 0.3) / a0_ph(no condensate) = 0.891   [alt]   rms 0.154 vs 0.148 dex
+        a0_ph(with lock BFK18 f_core 1.0) / a0_ph(no condensate) = 0.821   [canonical]   rms 0.149 vs 0.148 dex
+        a0_ph(with lock BFK18 f_core 1.0) / a0_ph(no condensate) = 0.833   [alt]   rms 0.149 vs 0.148 dex
+        a0_ph(with  nfw    -- f_core 1.0) / a0_ph(no condensate) = 0.259   [canonical]   rms 0.236 vs 0.148 dex
+        a0_ph(with  nfw    -- f_core 1.0) / a0_ph(no condensate) = 0.264   [alt]   rms 0.235 vs 0.148 dex
+  [PASS] D2  with the condensate present the phonon scale needed to fit the deep-MOND RAR moves by < 20% and the rms by < 0.02 dex (every profile, set, footing), while the NFW halo at the same abundance cuts it by > 50% and adds 0.09 dex (L61's overshoot): the anomaly is spent once   (condensate ratios 0.85, 0.86, 0.90, 0.90, 0.83, 0.84, 0.83, 0.83, 0.88, 0.89, 0.82, 0.83; NFW 0.26)
+      D3 diagnostic, BK15: at g_bar > 3 a0 (348 points) the bare sqrt law a_theta = sqrt(a0_ph g_bar) gives median residual -0.106 dex (anomaly 2.16 a0 at 3 a0 vs the RAR's 0.64 a0)
+      D3 diagnostic, BFK18: at g_bar > 3 a0 (348 points) the bare sqrt law a_theta = sqrt(a0_ph g_bar) gives median residual -0.088 dex (anomaly 1.60 a0 at 3 a0 vs the RAR's 0.64 a0)
+         -- the zero-temperature phonon law has NO Newtonian limit; BFK18's finite-temperature term supplies the interpolation.
+         It is a diagnostic of the representative's transition region, not of the class, and it is not scored.
+
+======================================================================================================================
+PART E -- THE GATES, cheapest kill first
+======================================================================================================================
+E.1  LENSING VERSUS DYNAMICS.  The phonon couples to rho_b (BK15: the coupling is to the baryon density; photons
+     carry no rest-mass density and T^mu_mu = 0), so light is deflected by g_bar + g_SF only.  Two questions:
+     (i) does the phonon field's OWN gravitating stress supply the lensing?  (ii) does the condensate's mass?
+      phonon gradient energy / phantom density = M_b/(24*pi*M_Pl**2*r)  =  (1/3) v_N^2/c^2   [v_N^2 = G M_b/r = M_b/(8*pi*M_Pl**2*r)]
+  [PASS] E1a the phonon's own stress cannot lens: it is the phantom's (1/3)(v_N/c)^2, the same v^2/c^2 suppression that killed L61's branch 1
+      on the deep-MOND SPARC points: median (1/3) v_N^2/c^2 = 2.37e-08, max 1.12e-06
+
+                                 profile    set f_core |  median M_dyn/M_lens (deep, can/alt)  90th pct
+                          polytrope core   BK15    1.0 |              3.47 /           3.37      5.99
+                          polytrope core   BK15    0.3 |              3.60 /           3.51      6.17
+                         gradient-locked   BK15    1.0 |              3.36 /           3.30      5.49
+                          polytrope core  BFK18    1.0 |              3.05 /           2.99      5.23
+                          polytrope core  BFK18    0.3 |              3.21 /           3.12      5.39
+                         gradient-locked  BFK18    1.0 |              3.02 /           2.96      4.84
+      MEASURED at the overlap g_bar = 1e-12..3.9e-12 (249 SPARC points against the interpolated KiDS isolated curve): median g_dyn(SPARC)/g_lens(KiDS) = 1.02 raw, 1.02 hot-gas-corrected
+      PREDICTED by the class at the same points: poly BK15 f=1.0: 6.46, poly BK15 f=0.3: 6.65, lock BK15 f=1.0: 5.89, poly BFK18 f=1.0: 5.64, poly BFK18 f=0.3: 5.80, lock BFK18 f=1.0: 5.17
+      (cluster lensing gives M_dyn/M_lens = 1.0-1.3 by the record's own criterion; L61 C3 used |ratio - 1| < 0.2)
+  [PASS] E1b GATE 1 FAILS: where SPARC dynamics and KiDS lensing overlap in g_bar the measured M_dyn/M_lens is 1.0-1.2, and the class predicts >= 2.5 for every profile and parameter set -- the phonon supplies the dynamics and nothing supplies the lensing   (measured 1.02/1.02; predicted 5.17-6.65; all-deep median >= 2.96)
+
+      On the KiDS-1000 isolated-lens mass bins (Brouwer Fig. 9; masses as the repository's h_kids scripts carry them):
+       bin  logM*    set          lensing model |  median log10(g_lens,obs / g_lens,pred) 30-300 kpc  mean pull   N
+         1  10.00   BK15 baryons + polytrope core |                                              0.366        2.9   9
+         1  10.00   BK15 baryons + gradient-locked |                                              0.417        3.1   9
+         1  10.00   BK15 baryons + NFW (LCDM-like) |                                              0.238        2.1   9
+         1  10.00  BFK18 baryons + polytrope core |                                              0.327        2.7   9
+         1  10.00  BFK18 baryons + gradient-locked |                                              0.398        2.9   9
+         1  10.00  BFK18 baryons + NFW (LCDM-like) |                                              0.238        2.1   9
+         2  10.45   BK15 baryons + polytrope core |                                              0.301        2.9   8
+         2  10.45   BK15 baryons + gradient-locked |                                              0.354        3.5   8
+         2  10.45   BK15 baryons + NFW (LCDM-like) |                                              0.085        1.9   8
+         2  10.45  BFK18 baryons + polytrope core |                                              0.245        2.6   8
+         2  10.45  BFK18 baryons + gradient-locked |                                              0.336        3.3   8
+         2  10.45  BFK18 baryons + NFW (LCDM-like) |                                              0.085        1.9   8
+         3  10.70   BK15 baryons + polytrope core |                                              0.015        0.4   7
+         3  10.70   BK15 baryons + gradient-locked |                                              0.304        3.8   7
+         3  10.70   BK15 baryons + NFW (LCDM-like) |                                             -0.036       -0.4   7
+         3  10.70  BFK18 baryons + polytrope core |                                             -0.047       -0.0   7
+         3  10.70  BFK18 baryons + gradient-locked |                                              0.286        3.6   7
+         3  10.70  BFK18 baryons + NFW (LCDM-like) |                                             -0.036       -0.4   7
+         4  10.90   BK15 baryons + polytrope core |                                             -0.223       -3.6   6
+         4  10.90   BK15 baryons + gradient-locked |                                              0.304        5.2   6
+         4  10.90   BK15 baryons + NFW (LCDM-like) |                                             -0.251       -3.8   6
+         4  10.90  BFK18 baryons + polytrope core |                                             -0.255       -4.3   6
+         4  10.90  BFK18 baryons + gradient-locked |                                              0.286        4.9   6
+         4  10.90  BFK18 baryons + NFW (LCDM-like) |                                             -0.251       -3.8   6
+      the measured lensing RAR at 30-300 kpc is universal across the bins to 0.033 dex (A6).  The class's two profiles fail it two ways:
+        gradient-locked (a function of g_bar alone, so universal in shape): uniformly LOW by >= 0.29 dex = a factor 1.9 in lensing mass;
+        polytrope core (its mass is the abundance-matched halo's, so it depends on M200): spread 0.58 dex across the bins, low by >= 0.25 dex in the two
+        low-mass bins and HIGH in the massive ones -- the same differential failure abundance-matched NFW shows here (0.49 dex), which is what
+        h_kids_halo_bound_CORRECTION (b) records ('differentially, KiDS forbids the halo-to-baryon ratio varying between stellar-mass bins').
+  [PASS] E1c on the KiDS mass bins at 30-300 kpc the class's lensing is not the measured lensing RAR: the gradient-locked profile is uniformly >= 0.25 dex low, and the polytrope spreads by >= 0.4 dex across bins where the measured relation is universal to < 0.1 dex   (gradient-locked deficit >= 0.29 dex; polytrope spread 0.58 dex vs measured 0.033 dex)
+
+      THE PINCER.  Make the condensate supply the lensing (M_SF = M_phantom at every radius, whatever profile that
+      takes): then g_lens = g_RAR, and the same mass pulls on the baryons too, so g_dyn = g_RAR + a_theta.
+      [canonical] BK15: lensing-normalised condensate -> median g_dyn/g_obs = 1.758   (L61 B1's kernel + NFW: 1.692)
+      [alt      ] BK15: lensing-normalised condensate -> median g_dyn/g_obs = 1.817   (L61 B1's kernel + NFW: 1.692)
+      [canonical] BFK18: lensing-normalised condensate -> median g_dyn/g_obs = 1.643   (L61 B1's kernel + NFW: 1.692)
+      [alt      ] BFK18: lensing-normalised condensate -> median g_dyn/g_obs = 1.702   (L61 B1's kernel + NFW: 1.692)
+  [PASS] E1d the excess-spent-once theorem RE-ENTERS through lensing: a condensate normalised to the lensing overshoots the rotation curves by the phonon force, pointwise -- the class can have the lensing or the dynamics, not both   (median g_dyn/g_obs = 1.643 (BFK18, canonical) when the condensate lenses correctly)
+      Stated as the theorem it is: in a theory whose MOND force acts on baryons but not on light, lensing = dynamics
+      forces A_X = A_K pointwise, which is (H-a)+(H-c) with eta = 1 -- L61's hypotheses are RESTORED by the lensing
+      gate, and the overshoot is L61's.  The only escape is a phonon that also deflects light, i.e. a coupling to the
+      photon stress -- a disformal coupling, which is L61's branch 3, dead at the tensor-speed gate (E1 identity).
+
+E.2  SOLAR SYSTEM.  The zero-temperature phonon law is exact in its regime and has no Newtonian limit.
+      BK15: bare a_theta(Saturn) = 8.69e-08 m/s^2 -> phantom mass 1.35e-03 Msun = 2.0e+07 x the Pitjev-Pitjeva bound;
+         X(Saturn) = alpha M_Pl a_N/(2m) = 0.72 eV against m = 0.6 eV: the non-relativistic EFT is at its boundary (X = m at a_N = 5.4e-05 m/s^2, Saturn's is 6.5e-05);
+         the chemical-potential (linear, G_eff = 3.8 G) regime lies BELOW a_* = 1.53e-11 m/s^2 = 0.163 a0 -- galaxy outskirts, not the Solar System
+      BFK18: bare a_theta(Saturn) = 7.48e-08 m/s^2 -> phantom mass 1.16e-03 Msun = 1.7e+07 x the Pitjev-Pitjeva bound;
+         X(Saturn) = alpha M_Pl a_N/(2m) = 0.98 eV against m = 1.0 eV: the non-relativistic EFT is at its boundary (X = m at a_N = 6.6e-05 m/s^2, Saturn's is 6.5e-05);
+         the chemical-potential (linear, G_eff = 3.1 G) regime lies BELOW a_* = 1.97e-11 m/s^2 = 0.211 a0 -- galaxy outskirts, not the Solar System
+      the environmental escape -- 'the condensate is absent at the Sun' -- is closed by the record: sf06 (superfluid_2026) shows the Sun
+      sits at 0.67 of the Milky Way's own MOND radius, so every environmental variable is the same at 1 AU and at 12 kpc.
+  [PASS] E2  GATE 2 NOT PASSED: inside its own EFT the class's phonon force at Saturn is >= 1e6 x the phantom-mass bound; at Saturn the EFT reaches X = m and the literature defers to unspecified higher-derivative operators; no computable Solar-System pass exists   (the class has no Solar-System prediction, only a deferral)
+
+E.3  TENSOR SPEED.  The gravitational sector is Einstein-Hilbert; the phonon is a matter field with sound speed c_s = rho/(2 Lambda m^3).
+      BK15: c_s(core) = 226 km/s = 7.5e-04 c;  c_T = c exactly (no modification of the tensor sector)
+      BFK18: c_s(core) = 233 km/s = 7.8e-04 c;  c_T = c exactly (no modification of the tensor sector)
+  [PASS] E3  GATE 4 PASSES: c_T = c (GR tensor sector untouched); the phonon is subluminal in every core   (trivial for the class)
+
+E.4  CLUSTERS.  The class's own statement: the bulk of a cluster never thermalises (BK15 section VI), so it is a
+     collisionless cold component with an NFW-like profile -- which is exactly what g04a found the corrected cluster
+     residual needs (6.8 x baryons, rho ~ r^-1.5, 'only cold DM satisfies all four constraints').
+      BK15: Gamma t_dyn (Bose-enhanced, sigma/m = 0.1 cm^2/g): galaxy interior 8.6e+02, cluster at 1 Mpc 6.9e-02 -> ratio 1.2e+04
+      BFK18: Gamma t_dyn (Bose-enhanced, sigma/m = 0.1 cm^2/g): galaxy interior 1.1e+02, cluster at 1 Mpc 8.9e-03 -> ratio 1.3e+04
+  [PASS] E4  GATE 6 PASSES BY INHERITANCE: the un-thermalised cluster bulk is cold collisionless matter at the cosmic abundance; the cluster mass and shear shape are LCDM's, which the record says is what the cluster residual needs (g04a)   (not a computed cluster fit: the class inherits LCDM's cluster, with the galaxy/cluster contrast set by the Bose-enhanced rate)
+
+E.5  THE LADDER (L21): a Newtonian reading of the isolated 2MRS pairs needs M_dark/M_b = 30.9 +/- 1.6 within the pair
+     separation (median r_p = 132 kpc, log M_b(pair) = 11.19); X-COP clusters need 5.73 +/- 0.68 at 0.80 R500; cosmic 5.43.
+      BK15: each member's core R = 150 kpc (> r_p: the pair is INSIDE the superfluid); enclosed condensate 2 M_SF(<r_p)/M_b = 26.1;
+         phonon force at r_p = 9.7 x Newton on the baryons; total Newtonian-equivalent M_dyn/M_b = 36.8 vs 31.9 needed (30.9 + 1); abundance-matched LCDM alone: 30.9
+      BFK18: each member's core R = 141 kpc (> r_p: the pair is INSIDE the superfluid); enclosed condensate 2 M_SF(<r_p)/M_b = 28.8;
+         phonon force at r_p = 8.4 x Newton on the baryons; total Newtonian-equivalent M_dyn/M_b = 38.2 vs 31.9 needed (30.9 + 1); abundance-matched LCDM alone: 30.9
+  [PASS] E5  the non-monotone ladder (pairs 30.9, clusters 5.7) is reproduced to within the 0.3 dex abundance-matching systematic -- because outside the superfluid interior the class IS LCDM and the ladder is LCDM's stellar-to-halo relation, not the superfluid transition   (M_dyn/M_b at r_p = BK15 36.8 (+0.06 dex, 3.1 sigma_stat), BFK18 38.2 (+0.08 dex, 3.9 sigma_stat) vs 31.9 +/- 1.6; the pass is on the systematic, not the statistics)
+      the transition itself: core radius R ~ 120-160 kpc for L* (M^(1/5)); pairs at 132 kpc sit INSIDE it, so the phonon acts between
+      the members and adds ~20% in mass-equivalent -- the ladder's shape is inherited, and the transition is not what produces it.
+
+E.6  EXTERNAL-FIELD EFFECT AND THE REGISTERED GAIA ARMS.  The phonon equation div[|grad theta| grad theta] = alpha rho_b/(2 M_Pl)
+     linearised about the Galactic gradient is an anisotropic Poisson equation with D = |grad theta_e| (1 + e e), i.e. AQUAL's
+     EFE with mu(x) = x exactly (L = 1) and no interpolation.  A binary's phonon force over Newton is then
+     sqrt(a0_ph / a_N,ext) x A_geo, with a_N,ext the Galaxy's BARYONIC Newtonian field (the phonon is baryon-sourced).
+      A_geo (sphere-averaged force magnitude over Newton's, per unit sqrt(a0_ph/a_N,ext)) = 0.809; along the field 1.000, across 0.707 (ratio 1.414 = sqrt 2)
+         set   footing    a_N,ext | force boost  gamma_v |       Arm A band Arm B ceiling
+        BK15 canonical  1.207e-10 |       1.796   1.3402 | 1.1614-1.1814        1.0450
+        BK15       alt  1.454e-10 |       1.725   1.3135 | 1.1917-1.2267        1.0300
+       BFK18 canonical  1.207e-10 |       1.685   1.2981 | 1.1614-1.1814        1.0450
+       BFK18       alt  1.454e-10 |       1.624   1.2744 | 1.1917-1.2267        1.0300
+  [FAIL] E6  the class's wide-binary prediction falls inside a registered Gaia arm (so that DR4 could CONFIRM it)   (gamma_v = 1.274-1.340: ABOVE Arm A's band and above the 1.23 no-verdict edge; Arm B (<= 1.045/1.030, corrected 1.000) is far below)
+      at the frozen sigma_tot = 0.028: the class sits 3.3-4.1 sigma above Arm A's upper edges and 10-12 sigma above Newton -- a DR4 result inside Arm A's band, or Newtonian, is evidence against the phonon
+      stated against the class: this is the point-field EFE asymptote (like Amendment 9's provisional number), not a full nonlinear solve;
+      the along/across anisotropy is sqrt 2 in FORCE with the ALONG direction larger (L = 1), a sign the registered Arm-A rule can test.
+
+E.7  THE PREFERRED FRAME (L31).  The phonon EFT is the non-relativistic limit of a Lorentz-invariant P(X), X = -(d theta)^2,
+     expanded about theta = m t: a TIMELIKE gradient vev.  Its rest frame is the condensate's.
+      X_bar = m**2 > 0: the background gradient is timelike (spontaneous Lorentz breaking);  h^{mu nu} d theta d theta = |grad theta|^2
+      the non-relativistic X = X_bar/(2m) - ... expands as (2*m*Derivative(vartheta(t, x, y, z), t) + Derivative(vartheta(t, x, y, z), t)**2 - Derivative(vartheta(t, x, y, z), x)**2 - Derivative(vartheta(t, x, y, z), y)**2 - Derivative(vartheta(t, x, y, z), z)**2)/(2*m) : MOND's argument is the projector contraction of L31 Q3, with u the condensate's 4-velocity
+  [PASS] E7  the class carries a preferred frame in L31's sense: a distinguished timelike u (the condensate's rest frame) supplies the projector that makes |grad theta| a scalar -- L31's Proposition Q realised by MATTER rather than by geometry   (u = d theta_bar/m, timelike; y is h^{mu nu} d theta d theta exactly)
+      but u PROPAGATES (the phonon: N = 3 modes), so this is L61's arm (1c) -- a scalar with a timelike gradient vev -- not L31's
+      non-propagating foliation; the extra mode is the price, and it is a mode that does not bend light, which is why E1 closes it.
+      The unification, stated: L31 says a non-propagating MOND scalar needs a distinguished timelike u; L61 says a propagating
+      Lorentz-invariant one cannot lens.  The superfluid is the matter realisation of the first sentence and dies on the second.
+
+======================================================================================================================
+PART F -- VERDICTS
+======================================================================================================================
+      gate                          verdict
+      1 lensing vs dynamics         DEAD: measured M_dyn/M_lens 1.02/1.02 at the overlap, class >= 5.17;
+                                    KiDS 30-300 kpc: gradient-locked >= 0.29 dex low, polytrope spread 0.58 dex vs measured 0.033;
+                                    lensing-normalised horn overshoots by 1.64 (the theorem re-enters)
+      2 Solar System                NOT PASSED: bare force >= 2e+07 x the Saturn bound; EFT at X = m there; deferral to UV operators
+      3 preferred frame             CARRIED, by the condensate's rest frame (E7); propagating, so branch-1 arm (1c)
+      4 tensor speed                PASS (GR tensor sector)
+      5 mode health                 3 modes, phonon healthy inside the condensate (c_s^2 = 3 K rho^2 > 0); not the deciding gate
+      6 clusters                    PASS by inheritance (un-thermalised bulk = cold collisionless at cosmic abundance)
+      7 cosmology                   CLOSED IN THE RECORD (superfluid_route_gates_2026 G2/G3, reproduced at A4), under the EOS extrapolation
+      excess spent once?            YES in dynamics (D1/D2, share <= 0.07) -- the hatch is real; NO once lensing is imposed (E1d)
+      Gaia arms                     gamma_v = 1.274-1.340, above both registered arms; DR4 in-band or Newtonian = evidence against
+  [FAIL] F1  the class escapes hypothesis (a) AND passes every gate run here   (escapes (a) [C2], spends the anomaly once in dynamics [D1], and dies at gate 1 [E1b-E1d]; gate 2 not passed [E2])
+  [FAIL] F2  VERDICT -- the emergent-MOND class, represented by superfluid dark matter, is ALIVE   (DEAD at the lensing gate, independently of the recorded cosmological closure; the theorem re-enters through lensing)
+
+THREE-SENTENCE VERDICT.
+  The emergent class is real and the theorem's hatch is real: with the condensate off the phonon force vanishes, so L61's
+  hypothesis (a) fails by construction, and on SPARC the P ~ rho^3 core is so diffuse that the condensate's own pull is a
+  few percent of the anomaly (7% at worst) -- the galaxy anomaly IS spent once, by the phonon, at the CMB's abundance.
+  It dies at the first gate: the phonon does not bend light and its own stress is (1/3)(v/c)^2 of the phantom, so the class
+  predicts M_dyn/M_lens >= 5.2 where the measured ratio is 1.02 raw / 1.02 hot-gas-corrected (SPARC dynamics
+  against KiDS lensing at the same g_bar), its lensing at 30-300 kpc is >= 0.3 dex low or spread 0.6 dex across mass bins where the data are universal to
+  0.03 dex; and normalising the condensate to the lensing instead restores A_X = A_K pointwise
+  and overshoots the rotation curves by 1.64, which is L61's overshoot re-entering through the lensing gate.
+  Two independent closures therefore stand -- the recorded cosmological one (background condensed and relativistic at
+  recombination, reproduced) and this lane's lensing one, which does not lean on the equation-of-state extrapolation --
+  while the class's distinctive Gaia number, gamma_v = 1.27-1.34 with the along-field boost larger, sits above both
+  registered arms and is the one thing DR4 could still say about it.
+
+RESULT: 26 checks, 3 FAIL -> ["E6  the class's wide-binary prediction falls inside a registered Gaia arm (so that DR4 could CONFIRM it)", 'F1  the class escapes hypothesis (a) AND passes every gate run here', 'F2  VERDICT -- the emergent-MOND class, represented by superfluid dark matter, is ALIVE']   (0.4 s)

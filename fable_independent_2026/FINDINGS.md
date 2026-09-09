@@ -2575,3 +2575,48 @@ away**: the Hessian has exactly four zero rows and they are the lapse and three 
   else in the action can supply a mixed null direction.
 - **The reduced theory's own health threshold comes out at J_Y > 0.9000005 — L46's number, from a
   different calculation.** So the K₂ = 0 branch inherits the deep-MOND instability L60 found.
+
+## L67 — the emergent-MOND class escapes the theorem's hypothesis and dies at lensing, where the theorem re-enters
+
+`L67_emergent_mond.py` + `L67_EMERGENT_MOND.md` (26 checks, 3 FAIL; **all 8 controls pass**). L61's theorem
+leaves one hatch by its own hypothesis (a): a theory in which MOND **emerges from** the dark sector, with
+no kernel that works with the dark component off. Superfluid dark matter is the representative.
+
+**Controls** reproduce the counting, L61's overshoot at 1.692 and both its cold-fraction ceilings, the
+recorded superfluid-route cosmological numbers, the Lane–Emden constants to 0.1%, the measured isolated
+lensing relation to 0.1 dex, and the literature's two parameter sets both landing within 1.5× of a₀
+(**the coupling is fitted to it, like κ**).
+
+- **⭐ THE RECORDED NO-GO DOES NOT COVER THIS CLASS, settled in two parts.** The **named** dark-sector no-go
+  closed a sector **added** to a kernel that works at zero dust — hypothesis (a) holds throughout it. But
+  an **unnamed earlier run** (2026-09-02, `superfluid_route_gates_2026.py`, 4/4) did run this class itself
+  and closed it **cosmologically**: a thermalised halo implies a thermalised, condensed background with a
+  relativistic sound speed at recombination. Reproduced here, and priced: only an equation of state far
+  softer than the phonon law would evade it. **That run never touched lensing, the Solar System, the
+  external field, the Gaia arms, the preferred frame or spent-once. This lane ran those.**
+- **⭐ THE HATCH IS REAL.** With the condensate off the phonon force is **identically zero**, so hypothesis
+  (a) fails by construction and the excess-spent-once step cannot be taken. **And the anomaly IS spent
+  once in dynamics:** the polytropic core is so diffuse that the condensate's own pull is **2–7%** of the
+  deep-MOND anomaly on SPARC, against a standard halo's 109% at the same abundance. The fitted phonon
+  scale moves by only 10–18% when the condensate is present, against a 74% cut for the halo.
+- **⚠️ IT DIES AT THE FIRST GATE, AND THE THEOREM RE-ENTERS THROUGH LENSING.** Phonons do not bend light,
+  and the phonon's own stress is **(1/3)(v/c)²** of the phantom it must mimic — **the same suppression
+  that killed L61's branch one**. Where dynamics and lensing overlap, the measured ratio is **1.02** and
+  the class predicts **5.2 to 6.7**. On the lensing mass bins the profile is ≥ 0.29 dex low and spreads
+  0.58 dex where the data are universal to 0.033. **Normalise the condensate to the lensing instead, and
+  it overshoots the rotation curves by 1.64 — L61's overshoot, re-entering.** The class can have the
+  lensing or the dynamics, not both.
+- **The Solar System is not passed, and not computable:** the phonon force at Saturn is ≥ 1e6× the
+  phantom-mass bound inside the class's own effective theory, which reaches its cutoff there and defers to
+  unspecified higher operators. **A deferral, not a prediction.**
+- **Clusters pass by inheritance**, since outside the superfluid interior the class **is** ΛCDM — and the
+  non-monotone pair/cluster ladder is reproduced to within the abundance-matching systematic **for that
+  reason**, not because of the superfluid transition.
+- **⭐ ITS DISTINCTIVE PREDICTION SITS OUTSIDE BOTH GAIA ARMS.** γ_v = **1.27 to 1.34**, above Arm A's band
+  and above the no-verdict edge. **DR4 can only kill it.**
+- **⭐ AND IT CARRIES A PREFERRED FRAME IN L31's SENSE, REALISED BY MATTER.** The condensate's rest frame
+  supplies exactly the projector that makes the phonon gradient a scalar — L31's step Q by a fluid rather
+  than by geometry. But the frame **propagates**, so this is the three-mode arm, not the foliation.
+- **Dipolar dark matter is in the class and is recorded as untested, not dead.**
+- **Two independent closures now stand on this class**, the recorded cosmological one and this lane's
+  lensing one. Nothing here favours any framework over ΛCDM, and κ remains fitted.
