@@ -2280,3 +2280,50 @@ spheroid interior field to 1.7%, and mesh convergence at every radius quoted.
   0.003 M_⊙/pc² on the vertical structure; and the cluster excess from 4.31× to 4.26×.
 - **Two solver traps recorded for reuse:** the energy must be built by Legendre transform, and the
   residual is a useless convergence measure on this branch because it is amplified by the stiffness.
+
+## L57 — the nonlocal functional WORKS, halves the 9σ, and is undecidable on current data
+
+`L57_nonlocal_functional.py` + `L57_NONLOCAL_FUNCTIONAL.md` (35 checks, 12 FAIL; **all 13 controls
+pass**). L56 closed every local trigger and named this as the one successor its theorem does not cover.
+**It is a live mechanism, so L56's theorem does NOT become unconditional.**
+
+**Controls** reproduce the analytic shear to 1.2e-6, the 9σ shape failure, the measured mass ratio,
+**L56's convention-free crux to three digits** (0.803 / 0.666 against its 0.806 / 0.669), L51's ceiling,
+the exact-isometry obstruction, and the smoothing machinery as an identity on a uniform density.
+
+- **⭐ IT MAKES THE DISTINCTION NO LOCAL FIELD CAN MAKE.** The suppression of a compact source inside an
+  extended one is **exactly the cube of the scale ratio**, worth a factor **3.3e3** against L56's crux —
+  entirely by **scale**, not by depth. That is the whole point: a galaxy averages away, a cluster does not.
+- **⭐ AND THE WEIGHT IS GENTLE, which no previous attempt managed.** Logarithmic slope **0.60–0.68**,
+  where L51 needed 6.5–16.0 and L56 needed 5.4–22.4. **Cassini and the wide-binary regime are safe by 15
+  to 25 orders of magnitude with no steepness assumed, so L56's from-below pincer is LIFTED.**
+- **Which nonlocal quantities are admissible, settled cleanly.** Only the **smoothed curvatures** — the
+  smoothed baryon density and the smoothed tidal invariant — which are blind both to a constant deepening
+  and to a uniform field. **The smoothed DEPTH is dead twice over**: by L56's exact isometry for anything
+  metric-built, and by the **linearity of smoothing** for the clock-carried version, which commutes with
+  superposition to 2.2e-16. The smoothed **acceleration** passes the depth test and then **dies on
+  Newton's theorem** — the enclosed mass returns to its unsmoothed value within 5% by five smoothing
+  lengths, so the smoothing is invisible to it.
+- **⚠️ But it lands a factor 2.4 short of the theory's OWN no-slip bound**, and that is a **floor no
+  kernel order and no length beats** — the floor scales as the cube of the scale ratio times L56's crux.
+  It clears a generous 20% empirical bound at every probe radius and on both footings, but not the
+  theory's own 1e-4. **The verdict flips at 50 kpc**, so it depends on where galaxy lensing and dynamics
+  are compared.
+- **⚠️ And the length is not the theory's.** It needs **0.6 to 2 Mpc**, against a coherence length of
+  4.00 pc — a factor **1.5e5**. The closest fixed candidate among the theory's own constants is **3.0 dex
+  away**. The two lengths **can** differ, since they act through different operators, and it is essential
+  that they do: forcing them equal **kills galactic MOND by a factor 2.1e3**. So it is a **second, new,
+  fitted scale.**
+- **Best improvement subject to all gates: 8.8 → 4.9σ / 9.0 → 4.7σ** on the empirical arm, which is
+  exactly L51's ceiling, **now actually reachable** because the embedded gate no longer binds. On the
+  theory's own arm it reaches 5.7σ only at an unrealisable smoothing length.
+- **⭐ THE VERDICT IS "UNDECIDABLE ON CURRENT DATA", NOT OPEN AND NOT CLOSED.** It halves the 9σ rather
+  than curing it, and a length fitted to five clusters is not a mechanism — **but this one is a
+  mechanism**, with a gentle weight and a structural suppression law.
+- **⭐ AND IT NAMES THE MEASUREMENT THAT DECIDES IT.** The lensing-versus-dynamical mass of galaxies
+  **inside** clusters, to 0.1%: this predicts **0.02% to 2%** there against **essentially zero** for the
+  same galaxies in the field. **That is a new, specific, falsifiable prediction and it is the only live
+  one on the cluster front.**
+- **Two channels left open rather than banked:** X-ray groups take 20–45% and are extended, so the
+  mechanism does not hide them, but that channel is estimator-limited and **not decided here**; and the
+  reference cosmological slip on 10 Mpc scales is 2.6e-3, **an open channel, neither a kill nor a pass.**
