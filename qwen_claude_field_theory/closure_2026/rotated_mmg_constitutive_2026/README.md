@@ -37,6 +37,8 @@ python3 -B flrw_clock_evolving_gate.py
 python3 -B -m unittest -v test_flrw_clock_evolving_gate.py
 python3 -B flrw_clock_friedmann_gate.py
 python3 -B -m unittest -v test_flrw_clock_friedmann_gate.py
+python3 -B flrw_minisuperspace_dirac_gate.py
+python3 -B -m unittest -v test_flrw_minisuperspace_dirac_gate.py
 python3 -B sparc_exact_exponential_fit.py
 python3 -B -m unittest -v test_sparc_exact_exponential_fit.py
 python3 -B run_lean_core.py
@@ -98,3 +100,8 @@ The minisuperspace Friedmann gate goes one step further: it derives
 \(w=-(1-z^2)/(1+z^2)\), verifies the continuity equation exactly, and finds a
 positive-\(H\) expanding witness.  The same branch is dust-like at early \(a\)
 and vacuum-like at late \(a\); metric perturbation/Dirac closure remains open.
+
+The homogeneous Dirac gate derives (p_N=0), its secondary Hamiltonian
+constraint (C=0), a rank-zero first-class bracket pair, and one physical
+clock scalar from \((6-2\times2)/2=1\).  The clock velocity Hessian is positive
+on the tested branch, so this scalar is explicit rather than hidden.

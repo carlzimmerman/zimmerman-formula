@@ -187,6 +187,13 @@ Friedmann witness.  This advances the FLRW gate, but the full covariant
 stress (T^a_{\mu\nu}), metric-clock mixing, and nonlinear constraint algebra
 remain to be calculated.
 
+The homogeneous canonical reduction is now explicit: the lapse momentum is
+(p_N=0), its preservation gives the Hamiltonian constraint (C=0), and the
+two-constraint bracket vanishes on the constraint surface.  With six
+homogeneous phase variables this leaves one physical clock scalar.  The
+calculation is in `flrw_minisuperspace_dirac_gate.py`; it does not replace the
+full spatial Dirac analysis needed to establish (N_{\rm grav}=2).
+
 For a fixed metric, the clock variation can already be written explicitly.
 Let (s=\sqrt{-X}), (P_\mu{}^\nu=\delta_\mu{}^\nu+n_\mu n^\nu),
 (F(a^2)=-(c^3a_0^2/8\pi G_b)G(c^2\sqrt{a^2}/a_0)), and

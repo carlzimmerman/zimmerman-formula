@@ -290,6 +290,25 @@ vacuum regime.  Adding positive dimensionless \(\Omega_\Lambda=0.7\) and
 cosmic-time interval.  This is a concrete expanding-background witness,
 though not yet the full metric perturbation or nonlinear Friedmann closure.
 
+## Homogeneous Dirac count
+
+The minisuperspace action was also Legendre-analyzed in
+`flrw_minisuperspace_dirac_gate.py`.  Its velocity Hessian has the single
+lapse null direction (p_N=0); the ((a,T)) block is nondegenerate whenever
+(K_\chi+2\chi K_{\chi\chi}\ne0).  The canonical Hamiltonian factors as
+(H=N C), so preservation of (p_N) produces (C=0).  The computed bracket
+matrix of ((p_N,C)) vanishes on the constraint surface, giving two
+first-class constraints and
+
+\[
+N_{\rm phys}^{\rm homogeneous}=(6-2\times2)/2=1.
+\]
+
+The DBI clock Hessian coefficient is positive on the scanned branch.  Thus
+the homogeneous sector contains one explicitly propagating clock scalar, not
+an uncounted auxiliary mode; the spatial metric-clock Dirac algebra is still
+the decisive unresolved count.
+
 ## Exact obstruction still open
 
 The candidate has not yet passed the full nonlinear hypersurface-deformation
