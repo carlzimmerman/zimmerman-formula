@@ -1867,3 +1867,68 @@ transition is **8.1e-69**, i.e. zero.
   requirement that a coefficient vanish to the order of an **exponentially flat** switch is an
   **infinite tower of vanishing conditions** — an analyticity question about the coefficient functions,
   which a C²-only table cannot settle either way. The lead states the counterexample itself.
+
+## L45 — the undetected-baryon door is CLOSED by observation, on six independent probes
+
+`L45_cgm_baryons.py` + `L45_CGM.md` (18 checks, 10 FAIL). L41 left exactly one door open on clusters and
+explicitly declined to settle it, because it turns on circumgalactic gas budgets. **Settled: closed.**
+
+**Controls.** The pair ratio 30.9 ± 1.5 and L41's fixed-radius cluster value 9.20 ± 1.30 both reproduce
+exactly; the budget machinery returns Planck's cosmic baryon fraction and agrees with the fast-radio-burst
+measurement of Ω_b to 0.9σ; and two published galaxy-scale baryon deficits reproduce.
+
+**The requirement.** Inside the pair separation of 132 kpc, the framework's own best case needs
+**5.68e11 M_⊙ of undetected baryons**, 8.34× the K-band stellar mass (7.29× alt). The mean column is fixed
+by the mass alone, so **no profile choice evades it**.
+
+- **The galaxy plausibly owns that many baryons somewhere** — 73% of its entire cosmic allotment. That arm
+  passes and is reported as passing.
+- **But six independent local probes exclude their being THERE**, by factors of **4× to 700×**, on both
+  footings and on every reading: ultraviolet absorption, X-ray emission, the thermal Sunyaev-Zel'dovich
+  signal, ram-pressure stripping of the Magellanic Cloud, fast-radio-burst dispersion, and the Milky Way's
+  own stellar-halo dynamics. Adding them makes the framework's own kernel over-predict the measured
+  enclosed mass at 100 kpc by **2.2× at 5.8σ**, where the same kernel on the *detected* baryons lands at
+  0.5σ.
+- **⚠️ THE JOINT TEST FAILS 1 OF 4, AND THE TWO DECIDING ARMS FAIL IN OPPOSITE DIRECTIONS.** Pairs need
+  more gas than is observed; **clusters cannot absorb any** — the same host-blind rule drives the cluster
+  baryon fraction to **1.35× cosmic in 7 of 7 clusters**, and a cluster cannot hold more baryons per unit
+  mass than the universe does. The only surviving phase, cold molecular clumps, is closed independently by
+  that baryon fraction, which is blind to phase.
+- **⚠️ AND THIS CONSTRAINS ΛCDM NOT AT ALL.** ΛCDM's missing baryons are **ejected to the intergalactic
+  medium**, which is where the burst partition, the SZ profile and the X-ray extrapolation find them. The
+  framework needs them **bound at 100 kpc**. Different requirement, different verdict.
+- **The one observation that would reopen it:** a stacked fast-radio-burst dispersion excess behind
+  isolated L\* galaxies at 100–150 kpc, at a level current samples do not reach.
+
+## L49 — the minimum addition is cold collisionless matter, and the binding constraint is the CMB
+
+`L49_minimum_addition.py` + `L49_MINIMUM_ADDITION.md` (41 checks, 15 FAIL; **all 8 controls pass** on
+eight reproduced anchors, including a positive control showing the shear-shape gate is passable).
+
+- **⭐ A MINIMUM ADDITION EXISTS: a cold collisionless component in the matter sector, minimally coupled to
+  the metric and decoupled from the clock.** It satisfies the cluster amount, the 3-D shape, the projected
+  shear shape, lensing-equals-dynamics, the pair ratio, the phase-space floor and the cosmological
+  abundance; leaves the clock tachyon satisfied **identically**, the mode count and health untouched, the
+  Solar System untouched with a 15,300× margin, the preferred-frame parameters untouched and
+  nucleosynthesis untouched; **and repairs the CMB and linear growth exactly.**
+- **A new derivation explains why it is safe.** Expanding the clock's kinetic invariant to second order
+  gives an induced gradient-mass coefficient **exactly proportional to the condensate background**, so it
+  vanishes identically once the condensate is removed. **The tachyon came from the clock's COUPLING to the
+  condensate, not from its energy density.** The decoupling must be **exact** to 3.9e-7 — a symmetry, not
+  smallness.
+- **⚠️ IT IS NOT FREE, AND THE REASON IS ONE SENTENCE: the MOND scalar is sourced by the TOTAL potential,
+  so the kernel amplifies the very mass added to replace it.** At full abundance the galaxy overshoot is a
+  median residual of **−0.259 dex, a factor 1.82 in acceleration**.
+- **The three admissible cold fractions have an empty intersection:** galaxies **≤ 0.355 / 0.276**,
+  clusters **0.32 ± 0.10**, the CMB **1.00 ± 0.01**.
+- **⭐ BUT THE BINDING CONSTRAINT IS THE CMB, NOT THE CLUSTERS, AND THAT IS A GENUINE POSITIVE.**
+  **Galaxies and clusters CAN be reconciled at f ≈ 0.3** — the pair of scales this programme has spent
+  eighteen months failing to reconcile. The remaining gap is a factor **2.8**.
+- **⚠️ THE HARD PART. With a cold component at the CMB's abundance the MOND sector does no identifiable
+  work in galaxy dynamics.** The parsimony claim is not a discriminant (a per-galaxy halo reaches 0.061
+  dex), the bounded-boost falsifier is **voided** (36% of SPARC points have the halo term alone above the
+  ceiling), and a₀(z) stops testing the theory. What remains is the a₀–Λ tie with κ still fitted.
+- **⚠️ TWO ITEMS AGAINST THE DEPOSITED PAPER.** Its α₁ is quoted as footing-dependent (−4.48e-6 / −4.25e-6)
+  for a **footing-independent** quantity — both the identity and the published formula give **−4.00e-6** at
+  the exhibited point. And its shear control is near-tautological on the cold side, load-bearing only
+  against the framework's own phantom.
