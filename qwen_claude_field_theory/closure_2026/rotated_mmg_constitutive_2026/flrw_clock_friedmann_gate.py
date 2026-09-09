@@ -34,6 +34,9 @@ dcurrent_dz = sp.simplify(sp.diff(current_shape, z))
 dz_dln_a = sp.simplify(-3 * current_shape / dcurrent_dz)
 drho_dz = sp.simplify(sp.diff(rho, z))
 continuity_residual = sp.simplify(drho_dz * dz_dln_a + 3 * (rho + p))
+raychaudhuri_residual = sp.simplify(
+    2 * sp.symbols("MP") ** 2 * (drho_dz * dz_dln_a) / (6 * sp.symbols("MP") ** 2) + (rho + p)
+)
 
 # Derive the same rho and p directly from a homogeneous lapse/scale-factor
 # minisuperspace action, rather than inserting the perfect-fluid formulas.
@@ -80,12 +83,11 @@ rho_values = np.array([row["rho"] for row in rows])
 w_values = np.array([row["w"] for row in rows])
 rho_a3 = np.array([row["rho_a3"] for row in rows])
 
-# Positive expanding Friedmann witness in dimensionless units.  The clock
-# density is normalized at a=1 and a positive Lambda component is included.
-rho_ref = float(rho.subs({A: A_value, Ld: Ld_value, z: z_at_a1}).evalf())
-omega_lambda = 0.7
-omega_clock = 0.3
-H_values = np.sqrt(omega_lambda + omega_clock * rho_values / rho_ref)
+# Positive expanding Friedmann witness from the same minisuperspace action.
+# Units are M_P=1, with a positive bare Lambda retained in the action.
+MP_value = 1.0
+Lambda_value = 0.1
+H_values = np.sqrt((Lambda_value * MP_value**2 + rho_values) / (3 * MP_value**2))
 ln_a = np.log(a_values)
 cosmic_time_span = float(np.trapz(1.0 / H_values, ln_a))
 
@@ -106,6 +108,8 @@ results = {
     "dz_dln_a": str(dz_dln_a),
     "continuity_residual": str(continuity_residual),
     "continuity_identity_exact": continuity_residual == 0,
+    "raychaudhuri_residual": str(raychaudhuri_residual),
+    "raychaudhuri_identity_exact": raychaudhuri_residual == 0,
     "rho_from_lapse_variation": str(rho_from_lapse),
     "pressure_from_scale_variation": str(p_from_scale),
     "lapse_variation_matches_rho": sp.simplify(rho_from_lapse - rho) == 0,
@@ -116,6 +120,9 @@ results = {
     "late_vacuum_rho_relative_spread": late_rho_spread,
     "w_min": float(np.min(w_values)),
     "w_max": float(np.max(w_values)),
+    "Friedmann_equation": "3 M_P^2 H^2 = Lambda M_P^2 + rho_clock",
+    "M_P_value": MP_value,
+    "Lambda_value": Lambda_value,
     "positive_H_witness": bool(np.all(H_values > 0)),
     "H_min": float(np.min(H_values)),
     "H_max": float(np.max(H_values)),
@@ -129,6 +136,7 @@ out = Path(__file__).parent / "run_001" / "flrw_clock_friedmann_results.json"
 out.write_text(json.dumps(results, indent=2, sort_keys=True) + "\n")
 
 assert results["continuity_identity_exact"]
+assert results["raychaudhuri_identity_exact"]
 assert results["lapse_variation_matches_rho"]
 assert results["scale_variation_matches_pressure"]
 assert results["positive_H_witness"]

@@ -25,6 +25,7 @@ class FLRWClockFriedmannGateTests(unittest.TestCase):
 
     def test_continuity_is_exact(self):
         self.assertTrue(self.data["continuity_identity_exact"])
+        self.assertTrue(self.data["raychaudhuri_identity_exact"])
         self.assertTrue(self.data["lapse_variation_matches_rho"])
         self.assertTrue(self.data["scale_variation_matches_pressure"])
 

@@ -288,7 +288,9 @@ the early dust regime and \(\rho\) spread (3.11\times10^{-6}) in the late
 vacuum regime.  Adding positive dimensionless \(\Omega_\Lambda=0.7\) and
 \(\Omega_{\rm clock}=0.3\) produces (H>0) everywhere and a finite positive
 cosmic-time interval.  This is a concrete expanding-background witness,
-though not yet the full metric perturbation or nonlinear Friedmann closure.
+and the differentiated Friedmann equation gives the Raychaudhuri identity
+(2M_P^2\dot H+\rho+p=0) exactly.  It is not yet the full metric perturbation
+or nonlinear Friedmann closure.
 
 ## Homogeneous Dirac count
 
