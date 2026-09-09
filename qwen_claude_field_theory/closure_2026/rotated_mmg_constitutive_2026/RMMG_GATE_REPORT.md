@@ -90,6 +90,38 @@ homogeneous sector.  This is the most promising local architecture in the
 current branch, but it still requires the full metric constraint algebra and
 the Ward identity.
 
+## Covariance residual
+
+The ADM relay is not automatically a four-dimensional action.  On a flat
+background a space-dependent time diffeomorphism gives
+\(\delta u=\partial_t\xi(t,x)\), hence
+\(\delta(Du)=\partial_x\partial_t\xi\).  Direct variation of the exponential
+constitutive density gives the nonzero witness
+
+\[
+ \delta\mathcal L\big|_{u_x=a_0,\,\partial_x\partial_t\xi=1}
+ =\frac{2(1-e^{-1})}{a_0}\neq0.
+\]
+
+The executable covariance gate therefore rejects any claim that the current
+ADM form already implies \(\nabla_\mu T^{\mu\nu}=0\).  A covariant
+clock/Stueckelberg completion must cancel this residual while retaining the
+relay's second-class elliptic chain; that cancellation is the next decisive
+construction calculation.
+
+## Laplacian-multiplier upgrade
+
+The relay has also been run with the recent Laplacian-multiplier mechanism of
+Sangtawee, De Felice & Karwan, *Minimally modified gravity with Laplacian
+auxiliary constraints and an inflationary realization*, arXiv:2607.26031
+([primary source](https://arxiv.org/abs/2607.26031)).  Multiplying the relay
+constraint block by \(D^2\) scales the local Dirac matrix by \(k^4\): its
+computed rank is unchanged for every tested nonzero mode, while the
+homogeneous multiplier block vanishes identically.  This is the correct
+mechanism for preventing arbitrary homogeneous multipliers from contaminating
+FLRW tensor coefficients, but it does not by itself restore the missing
+four-dimensional Ward identity.
+
 ## Exact obstruction still open
 
 The candidate has not yet passed the full nonlinear hypersurface-deformation
