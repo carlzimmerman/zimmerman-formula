@@ -1,0 +1,343 @@
+======================================================================================================================
+L63 -- door 2: can the clock-scalar sector be made GENUINELY degenerate, and what does it cost?
+======================================================================================================================
+a0 footings: canonical 9.3619e-11 m/s^2   alt 1.1279e-10 m/s^2
+The Dirac count is a0-independent; every dimensional number below carries both footings.
+Answering TEN_OPEN_DOORS_2026-09-09.md door 2, whose challenge to L46/L54 is accepted as correct.
+
+======================================================================================================================
+PART 0 -- CONTROLS.  2 / 3 / 5 / 3, two published speeds, a known-BAD control, and L46 reproduced.    [t = 0 s]
+======================================================================================================================
+    building the quadratic Einstein-Hilbert Lagrangian from N sqrt(g)(K.K - K^2 + R3) ...
+  [PASS] C0  the quadratic Einstein-Hilbert Lagrangian reconstructs exactly as (1/2)v.W.v + v.B.q + (1/2)q.C.q, with no surviving second time derivatives   (the precondition for a Dirac analysis; asserted and tested, not assumed)
+    ADM general relativity: N_q = 10, rank(W) = 6, primaries = 4, generations = [4, 4], total = 8, first class = 8, second class = 0  ->  DOF = 2
+  [PASS] C1  [CONTROL, mandatory] the counter returns 2 for ADM general relativity   (N_q = 10, 4 primary + 4 secondary, first class = 8, second class = 0)
+    GR + one scalar       : N_q = 11, rank(W) = 7, primaries = 4, generations = [4, 4], total = 8, first class = 8, second class = 0  ->  DOF = 3
+  [PASS] C2  [CONTROL, mandatory] the counter returns 3 for GR + one minimally coupled scalar   (N_q = 11, first class = 8, second class = 0)
+    Einstein-aether       : N_q = 13, rank(W) = 9, primaries = 4, generations = [4, 4], total = 8, first class = 8, second class = 0  ->  DOF = 5
+  [PASS] C3  [CONTROL, mandatory] the counter returns 5 for Einstein-aether (2 tensor + 2 vector + 1 scalar)   (c1..c4 = 1/5, 1/7, 1/11, 1/13 (generic); N_q = 13)
+    khronometric          : N_q = 11, rank(W) = 7, primaries = 4, generations = [4, 4], total = 8, first class = 8, second class = 0  ->  DOF = 3
+  [PASS] C4  [CONTROL, mandatory] the counter returns 3 for khronometric theory (2 tensor + 1 khronon)   (same c1..c4, hypersurface-orthogonal u; N_q = 11)
+  [PASS] C4b the machinery SEES why: the only change is that u_i is a gradient, and exactly the spin-1 pair disappears   (Einstein-aether 5 - khronometric 3 = 2)
+  [PASS] C5  the control count is k-independent (khronometric at k = 2 and k = 3 also return 3)
+  [PASS] C5b [CONTROL, known-BAD, must be DETECTED] GR + TWO minimally coupled scalars returns 4, not 3 -- the counter is not simply returning the number of first-class constraints it started with   (DOF = 4)
+  [PASS] C6  [CONTROL] the tensor speed is Jacobson's c_T^2 = 1/(1 - c_13), at two rational points   (c_T^2 = 18/17 vs Jacobson 1/(1-c_13) = 18/17)
+  [PASS] C7  [CONTROL] the khronometric spin-0 speed is Blas-Pujolas-Sibiryakov's (2-alpha)(beta+lambda)/[alpha(1-beta)(2+beta+3lambda)], at two rational points   (sigma = 30690/66181 vs Blas-Pujolas-Sibiryakov 30690/66181)
+
+  THE SUBMITTED ACTION (THE_COMPLETE_THEORY_2026-09-08 section 2; the lead's door-2 subject):
+
+    S = int d4x sqrt(-g) { (1/16 pi G)[R - 2 Lambda]
+          - c1 (grad_m n_n)(grad^m n^n) - c2 (div n)^2 - c3 (grad_m n_n)(grad^n n^m) + c4 (n.grad n)^2
+          + 2(2 - K_B) J^m d_m phi  -  K(Q)  -  (2 - K_B) J( Y + xi^2 q^{ls}q^{mn} grad_l V_m grad_s V_n ) }
+        + S_m[g, psi_m]
+
+    c1 = -c3 = K_B  (so c_13 = 0 identically),  n hypersurface-orthogonal (n = -dtau/|dtau|),
+    Q = n.d phi,  V_m = q_m^n d_n phi,  Y = V.V.   Fields: g (10) + tau (1) + phi (1) = 12.
+
+    exhibited point (section 5): K_B = 0.2, c_14 = 1.0000e-06, c_2 = 1.679318e-06, |K_2| = 1.92935e+06
+    on the closure locus c_2|K_2| = (2-K_B)^2 = 3.2400; sigma* = 1.679312732
+    L46's alternative point (c_14 at the ceiling): c_14 = 1.978e-6, |K_2| = 9.754e5
+    SUBMITTED ACTION      : N_q = 12, rank(W) = 8, primaries = 4, generations = [4, 4], total = 8, first class = 8, second class = 0  ->  DOF = 4
+      at exhibited point  : N_q = 12, rank(W) = 8, primaries = 4, generations = [4, 4], total = 8, first class = 8, second class = 0  ->  DOF = 4
+  [PASS] C8  [REPRODUCTION of L46] the submitted action carries FOUR modes at a generic point and at the deposited exhibited point -- the lead's premise for door 2 is confirmed independently here   (generic 4, exhibited 4; 4 primary + 4 secondary, all first class, so 12 - 8 = 4 -- the extra modes are extra FIELDS, not missing constraints)
+  [PASS] C9  [REPRODUCTION of L46] the tensor speed of the submitted action is EXACTLY 1, as an identity in K_B (c_1 = -c_3 makes c_13 = 0)   (c_T^2 = 1)
+  [PASS] C10 [REPRODUCTION of L46] with phi switched off the scalar sector carries exactly ONE mode and its speed^2 IS sigma* = 1.679312732 -- the clock is the khronometric khronon   (computed 1.679312732 vs sigma* = 1.679312732)
+  [PASS] C11 [REPRODUCTION of L46 PART 2B] the scalar sector carries exactly TWO modes, both with positive speed^2, and their SUM is sigma + c_s,mix^2 -- so the deposited pair of scalar numbers is the trace of the speed matrix, not the eigenvalues   (eigen-speeds^2 = 1.080825e-06, 3.358632; sigma* + c_s,mix^2 = 3.358631)
+    mode-by-mode: 2 tensor at c_T^2 = 1 exactly; fast scalar 3.358632; slow scalar 1.080825e-06  ->  4 modes, identified.
+
+  ALL CONTROLS ARE THE MACHINERY'S OWN OUTPUT.  The classification below is the RANK of A J A^T
+  on the constraint set the consistency algorithm generated -- never an inspection, and never a
+  singular Hessian on its own, which the door explicitly (and correctly) refuses.
+
+======================================================================================================================
+PART 1 -- THE FULL ADM VELOCITY HESSIAN, lapse and shift RETAINED, mixing RETAINED    [t = 2 s]
+======================================================================================================================
+  [PASS] H0  the FULL 12-variable quadratic action -- lapse n, all three shifts nu_i, the six metric components, the clock chi and the scalar phi, none of them gauge-fixed -- reconstructs exactly   (nothing is eliminated before the Hessian is taken; this is the door's first requirement)
+  [PASS] H1  the velocity Hessian has EXACTLY four identically zero rows -- the lapse and the three shifts -- for arbitrary K_B, c_2, c_14, K_2, J_1, xi and k, so the four primary constraints pi_n and pi_nu_i are structural and not parameter-dependent   (zero rows = ['n', 'nu_x', 'nu_y', 'nu_z']; every other row is non-zero somewhere)
+  [PASS] H2  the quadratic action block-diagonalises into helicity 2 / 1 / 0, on ALL THREE of W, B and C, so the degeneracy question is a question about the 6-variable helicity-0 block alone   (checked symbolically, entry by entry, at symbolic k)
+
+    THE HELICITY-0 VELOCITY HESSIAN W (rows/cols n, nu_z, h_zz, hT, chi, phi):
+      [                0                 0                 0                 0                 0                 0 ]   n
+      [                0                 0                 0                 0                 0                 0 ]   nu_z
+      [                0                 0             -c2/4       -c2/4 - 1/4                 0                 0 ]   h_zz
+      [                0                 0       -c2/4 - 1/4       -c2/4 - 1/8                 0                 0 ]   hT
+      [                0                 0                 0                 0          c14*k**2                 0 ]   chi
+      [                0                 0                 0                 0                 0              -K_2 ]   phi
+  [PASS] H3  THE STRUCTURE THEOREM, part 1.  The dynamical helicity-0 block is BLOCK DIAGONAL: the scalar phi has NO velocity mixing with the clock chi and none with either metric scalar.  W_chi,phi = W_hzz,phi = W_hT,phi = 0 identically, for every parameter value   (this is the fact that decides door 2, and it is derived rather than assumed)
+  [PASS] H3b the clock chi also has no velocity mixing with the metric scalars: W_chi,hzz = W_chi,hT = 0. So the 4x4 dynamical block is [2x2 metric] (+) [chi] (+) [phi], three independent blocks   (W_chi,chi = c14*k**2, W_phi,phi = -K_2)
+
+    det W(dynamical 4x4) = K_2*c14*k**2*(3*c2 + 2)/32
+    det W(metric 2x2)    = -(3*c2 + 2)/32
+    W_chi,chi            = c14*k**2
+    W_phi,phi            = -K_2
+  [PASS] H4  the determinant FACTORISES exactly as det(metric 2x2) x W_chi,chi x W_phi,phi, which is the algebraic content of H3/H3b and the reason the degeneracy variety is a union of three hyperplanes   (det = (-(3*c2 + 2)/32) x (c14*k**2) x (-K_2))
+
+    B_chi,phi = k**2*(K_B - 2)      B_phi,chi = 0      C_n,phi = k**2*(2 - K_B)
+  [PASS] H5  [CONFIRMS L52's A7 / C-X1] the action's only clock-scalar VELOCITY coupling carries exactly one time derivative and sits entirely in B: B_chi,phi != 0 while B_phi,chi = 0.  Its symmetric part is (1/2) d/dt(chi phi), a total derivative, so the coupling is equivalent to a purely ANTISYMMETRIC (gyroscopic) one and contributes NOTHING to the velocity Hessian   (L52's structural claim is reconfirmed by an independent construction, at symbolic k)
+  [PASS] H5b [SHARPENS L52] the SAME operator 2(2-K_B) a^mu d_mu phi also supplies a SYMMETRIC, non-kinetic lapse-scalar mixing C_n,phi != 0, because a_i = d_i(n - chi-dot) has a lapse piece as well as a clock piece.  L52's 'the action's only field-field mixing is antisymmetric' is true of the KINETIC mixing and incomplete as stated: the MOND source itself is the symmetric half, and it is what carries the static limit   (C_n,phi = C_phi,n = k**2*(2 - K_B) -- symmetric, and it is the MOND source term)
+
+  H6 -- THE STRUCTURE THEOREM ON A GENERAL BACKGROUND.  H3 was proved about flat space with Q_0 = 0.
+  The door's question is about the theory, so the same statement is now proved off that background,
+  from the ADM identities themselves rather than from a perturbative expansion:
+
+    (i)   q^{mu nu} n_nu = 0 and in particular q^{00} = 0 whenever n is the unit normal to the
+          coordinate slicing.  Hence Y = q^{mn} d_m phi d_n phi carries NO phi-dot, exactly.
+    (ii)  V^0 = q^{0 nu} d_nu phi = 0 on such a background, so J''(Y) (dY/d phi-dot)^2 also vanishes.
+    (iii) the fully projected derivative of the spatial vector V IS the intrinsic covariant
+          derivative: q_l^a q_m^b grad_a V_b = D_l D_m phi.  Two extrinsic-curvature terms, +K_lm Q
+          from grad q and -K_lm Q from the projected scalar Hessian, cancel identically.  Hence
+          xi^2 |grad_perp V|^2 carries NO phi-dot either, on ANY background, curved or expanding.
+    (iv)  a^mu n_mu = 0, so a^mu d_mu phi = a^mu V_mu and the AeST coupling contains no Q at all.
+    (v)   delta n^mu is chi-dot free at first order (chi-dot cancels between the numerator and
+          |d tau| in n_mu = -d_mu tau/|d tau|).
+  Therefore phi-dot enters the action ONLY through Q, and only through -K(Q):
+          W_phi,phi = -K''(Q_bar) sqrt(-g)/N^2  and  W_phi,X = 0 for every other field X.
+
+  [PASS] H6a [GENERAL BACKGROUND] the unit normal is correctly normalised (n.n = -1) and the spatial projector obeys q^{00} = 0 EXACTLY, for an arbitrary lapse, shift and 3-metric   (so Y = q^{mn} d_m phi d_n phi has identically zero second derivative in phi-dot, on every background)
+  [PASS] H6b [GENERAL BACKGROUND] with d_mu phi carried as four independent symbols, d^2 Y/d(phi-dot)^2 = 0 and dY/d(phi-dot) = 2 q^{0i} d_i phi contains no phi-dot -- so neither J' nor J'' can produce a phi-dot^2 term at any order in the background fields   (the second half of the statement is what kills the J''(Y)(dY/dphi-dot)^2 channel as well)
+  [PASS] H6c [GENERAL BACKGROUND] in ADM variables, with an ARBITRARY lapse, shift and 3-metric, the spatial vector V_mu = d_mu phi + n_mu Q has V_0 = N^i d_i phi and V_i = d_i phi: every component is phi-dot free, exactly.  The phi-dot in d_0 phi is cancelled by the one inside Q, which is the algebraic reason the MOND sector's gradient invariants carry no velocity   (V_0 = Nsx*P1 + Nsy*P2 + Nsz*P3, V_i = d_i phi, dQ/d(phi-dot) = 1/Nlapse)
+  [PASS] H6d [GENERAL BACKGROUND] the two gradient invariants are phi-dot free for an arbitrary background: Y = gamma^{ij}V_i V_j and the coherence scalar |grad_perp V|^2 = gamma^{ik}gamma^{jl}(D_i V_j)(D_k V_l), with the 3-metric, the lapse, the shift, all four-dimensional Christoffel symbols and the second derivatives of phi carried as INDEPENDENT free symbols.  Neither can contribute to the velocity Hessian, on any background, curved or expanding   (stronger than a random-metric spot check: nothing about the geometry is specialised, and the connection is free)
+  [PASS] H6e [GENERAL BACKGROUND] the clock acceleration a_mu = n^nu grad_nu n_mu is purely spatial (a_0 = 0, a_i = d_i ln N) and contains no field velocity at all, so the AeST coupling 2(2-K_B) a^mu d_mu phi = 2(2-K_B) a^i V_i is phi-dot free as well   (a.n = 0 is an identity for a unit n, so a^mu d_mu phi = a^mu V_mu and the coupling carries no Q)
+  [PASS] H6f [THE NON-UNITARY DESCRIPTION] keeping the clock explicitly, chi-dot cancels out of n_mu and n^mu at first order (it appears in the numerator d_mu tau and in |d tau| and drops), and the projector entry q^{00} vanishes to first order as well.  So the general-background theorem survives the description in which the clock is NOT gauge-fixed -- which is the description this lane counts in   (q^00 = 0 + eps(0) + O(eps^2); delta n^mu carries no chi-dot)
+  [PASS] H6g [GENERAL BACKGROUND] THE CONCLUSION, assembled from H6a-H6f: phi-dot enters the submitted action ONLY through Q, and Q enters only through -K(Q).  Therefore W_phi,phi = -K''(Q_bar) sqrt(-g)/N^2 and W_phi,X = 0 for every other field X, on EVERY background.  H3 is a theorem about the theory, not an accident of flat space   (the flat-space computation H3 is the special case K(Q) = K_2 Q^2, K''(0) = 2 K_2)
+
+======================================================================================================================
+PART 2 -- SOLVING THE DEGENERACY CONDITIONS FOR THE COUPLINGS AND THE FREE FUNCTIONS    [t = 5 s]
+======================================================================================================================
+
+  The couplings and functions are treated as UNKNOWNS, not fixed first.  From H4 the degeneracy variety
+  of the full ADM velocity Hessian is the zero set of
+
+      det W(dynamical) = det W(metric 2x2)  x  W_chi,chi  x  W_phi,phi
+
+  so it is a union of three hyperplanes and there are exactly three ways for the Hessian to degenerate.
+
+    branch A  (metric / conformal):  det W(metric) = -(3*c2 + 2)/32 = 0   =>   c_2 = [-2/3]
+    branch B  (clock):               W_chi,chi     = c14*k**2 = 0   =>   c_14 = [0]
+    branch C  (MOND scalar):         W_phi,phi     = -K_2 = 0   =>   K_2  = [0]
+  [PASS] D1  the degeneracy conditions SOLVE, and the solution set is exactly three branches: c_2 = -2/3 (the conformal/metric branch), c_14 = 0 (the clock branch), and K_2 = 0 (the MOND-scalar branch).  There is no fourth   (solved for the couplings as unknowns; K_B, J_1, xi and k do not appear in any branch condition)
+  [PASS] D1b the branch conditions are independent of J_1 and of xi, so NEITHER free function J nor the coherence operator can degenerate the Hessian -- consistent with H6, which shows they carry no phi-dot at all   (the only free function that can produce a degeneracy is K(Q), through K''(Q_bar))
+  [PASS] D1c the clock branch is k-DEPENDENT (W_chi,chi is proportional to k^2) while the scalar branch is k-INDEPENDENT.  This is exactly the distinction the door demands and it is settled here before any count is run   (W_chi,chi = c14*k**2 (vanishes at k = 0 for EVERY c_14); W_phi,phi = -K_2 (k-free))
+
+  THE DECISIVE QUESTION -- is a GENUINE clock-scalar degeneracy available?  'Genuine' means a null
+  vector of W with BOTH a chi component and a phi component: the clock and the scalar conspiring so that
+  one combination is dynamical and the other is not, which is what 'make the clock-scalar sector
+  genuinely degenerate' asks for.  A block-diagonal W cannot have one.
+
+  [PASS] D2  THE THEOREM.  No null vector of the velocity Hessian mixes chi and phi, for any values of the couplings, because W_chi,phi = 0 identically (H3).  A 'genuine' clock-scalar degeneracy -- one combination propagating and the orthogonal one constrained -- is UNREACHABLE within the submitted action's operator content.  Every available degeneracy is a DECOUPLING: it switches one whole field off   (hypotheses: the action is a functional of (g, n, Q, V) in which Q appears only inside K(Q); PASS here is a NEGATIVE result for the 'genuine degeneracy' route)
+
+  THE ESCAPE, NAMED.  A mixed degeneracy needs W_chi,phi != 0, i.e. a term in which Q multiplies a
+  clock or metric VELOCITY.  The minimal such operator is F(Q) * theta with theta = div n (equivalently
+  F(Q) K, or a two-argument K(Q, theta)).  It is NOT in the submitted action.  Exhibited below so the
+  claim is constructive rather than an absence argument.
+
+  [PASS] D3  the escape operator is EXHIBITED, not merely asserted: adding F'(Q) Q theta to the action produces a non-zero metric-scalar velocity mixing, so a mixed degeneracy becomes possible in principle -- and it is outside the submitted action, which is the honest statement of what door 2 would require   (W_hzz,phi = F1/4, W_chi,phi = 0 (the clock enters theta only through grad^2 chi, so the mixing lands on the metric scalars, not on chi))
+
+======================================================================================================================
+PART 3 -- THE CONSISTENCY ALGORITHM AT EVERY BRANCH, PUSHED TO CLOSURE    [t = 5 s]
+======================================================================================================================
+  [PASS] E0  [SANITY GUARD on the substitution machinery] the parameter-point helper really substitutes: asking for K_2 = 0 produces a Lagrangian whose phi-dot^2 coefficient is zero, and asking for c_14 = 0 produces one whose chi-dot^2 coefficient is zero.  Without this guard every branch below would silently be evaluated at the base point   (c_14 = c_1 + c_4 = K_B + c_4, so c_14 = 0 is c_4 = -K_B = -1/5 at the test point)
+    base (no degeneracy) : N_q = 12, rank(W) = 8, primaries = 4, generations = [4, 4], total = 8, first class = 8, second class = 0  ->  DOF = 4
+    branch C: K_2 = 0    : N_q = 12, rank(W) = 7, primaries = 5, generations = [5, 5], total = 10, first class = 8, second class = 2  ->  DOF = 3
+  [PASS] E1  BRANCH C (K_2 = 0) closes and returns THREE: two tensor plus one clock.  The consistency algorithm generates a second-class PAIR -- pi_phi and the elliptic phi equation it forces -- and terminates at the second generation.  Nothing is supplied by hand   (primaries = 5, generations = [5, 5], first class = 8, second class = 2, DOF = 3)
+  [PASS] E1b the four diffeomorphism constraints are UNTOUCHED at branch C: still eight first-class constraints, exactly as in ADM general relativity, so the degeneracy removes a field and not a gauge symmetry   (the pathology to rule out here is a degeneracy that eats a diffeomorphism instead of a mode)
+
+    THE POISSON-BRACKET OPERATOR at branch C, A J A^T on the constraint set the algorithm generated:
+      [         0         0         0         0         0         0         0         0         0         0 ]
+      [         0         0         0         0         0         0         0         0         0         1 ]
+      [         0         0         0         0         0         0         0         0         0         0 ]
+      [         0         0         0         0         0         0         0         0         0         0 ]
+      [         0         0         0         0         0         0         0         0         0         0 ]
+      [         0         0         0         0         0         0         0         0         0         0 ]
+      [         0         0         0         0         0         0         0         0         0         0 ]
+      [         0         0         0         0         0         0         0         0         0         0 ]
+      [         0         0         0         0         0         0         0         0         0         0 ]
+      [         0        -1         0         0         0         0         0         0         0         0 ]
+    rank = 2 = n_2nd; the single non-zero 2x2 sub-block is the (pi_phi, C_phi) pair.
+    branch B: c_14 = 0   : N_q = 12, rank(W) = 7, primaries = 5, generations = [5, 5], total = 10, first class = 8, second class = 2  ->  DOF = 3
+  [PASS] E2  BRANCH B (c_14 = 0, the clock's kinetic normalisation switched off) also closes and returns THREE -- two tensor plus the MOND scalar.  This branch was NOT counted in L46, which only flagged c_14 -> 0 as marginal, and it is a second, independent route to the integer   (primaries = 5, generations = [5, 5], first class = 8, second class = 2, DOF = 3)
+    branches B and C     : N_q = 12, rank(W) = 6, primaries = 6, generations = [6, 4], total = 10, first class = 8, second class = 2  ->  DOF = 3
+  [PASS] E3  THE FLOOR THEOREM, and it is the answer to 'Fable's four-mode model is not a two-mode certificate'.  Switching BOTH kinetic terms off (c_14 = 0 AND K_2 = 0) does NOT give two -- it gives THREE.  With W_chi,chi = W_phi,phi = 0 the two fields still carry the antisymmetric coupling B_chi,phi chi-dot phi, and a pair of coordinates with no kinetic term but a non-degenerate first-order symplectic coupling is ONE canonical pair, not zero degrees of freedom: chi and phi become conjugate to each other.  The counter finds six primaries but only four second-generation constraints and exactly one second-class pair.  So the FLOOR inside the submitted action is 3, and 2 is unreachable   (primaries = 6, generations = [6, 4], first class = 8, second class = 2, DOF = 3)
+  [PASS] E3b [MECHANISM CONTROL] the same machinery on the minimal toy that isolates the mechanism: two coordinates with NO kinetic terms and a single antisymmetric first-order coupling b(chi-dot phi) carry ONE degree of freedom, while the same pair with b = 0 carries ZERO.  So E3's three is the gyroscopic coupling's doing, not an artefact of the counter   (with the mixing: DOF = 1 (primaries 2, second class 2); without it: DOF = 0 (second class 4))
+  [PASS] E3c THE IRONY, stated plainly.  L52's C-X1 recorded the clock-scalar mixing as harmless because it is antisymmetric and 'contributes NOTHING to the kinetic Hessian'.  That is true and it is reconfirmed at H5 -- and it is exactly why the mixing cannot be removed by any degeneracy.  The same antisymmetry that makes the coupling invisible to the Hessian makes it a symplectic form on the (chi, phi) pair, which is what holds the floor at 3.  The harmless term is the obstruction   (PASS is a NEGATIVE result for the two-mode target and a POSITIVE one for the door's premise)
+    branch A: c_2 = -2/3 : N_q = 12, rank(W) = 7, primaries = 5, generations = [5, 5], total = 10, first class = 8, second class = 2  ->  DOF = 3
+    branch A returns DOF = 3 (generations [5, 5]); PART 6 shows what it costs.
+
+  THE DOOR'S OWN WARNING, MADE EXECUTABLE.  "A singular Hessian alone does not pass."  Here is a model
+  that satisfies the singular-Hessian test and is NOT degenerate: take K(Q) = K_4 Q^4 instead of K_2 Q^2.
+  At the deposited background Q_0 = 0 one has K''(0) = 0, so W_phi,phi = 0, the counter returns three,
+  and a naive reading would call the mode removed.  It is not: K''(Q) = 12 K_4 Q^2 is non-zero at every
+  Q != 0, so the mode reappears for arbitrarily small departures from the background, and the
+  'second-class pair' the algorithm found has a bracket that vanishes with the background rather than
+  with a coupling.  The degeneracy is a property of one background, not of the theory.
+
+  [PASS] E4  [NEGATIVE CONTROL, the door's warning] the counter returns 3 for K(Q) = K_4 Q^4 at Q_0 = 0 purely because the Hessian is singular there, and the SAME model has K''(Q) = 12 K_4 Q^2 != 0 at every Q != 0, so the mode is present on every neighbouring background.  A singular Hessian is therefore NOT sufficient, exactly as the door says, and this lane's positive results are only the ones whose degeneracy condition is on a COUPLING (K_2 = 0, c_14 = 0), not on a background   (the discriminator used throughout PART 3: is the vanishing condition a statement about a coupling or about a background?)
+  [PASS] E4b the same discriminator applied to branch C: K''(Q) = 2 K_2 is CONSTANT in Q, so K_2 = 0 degenerates the Hessian on every background at once, not only on the deposited one -- branch C passes the test that E4's model fails   (and the same is true of c_14, which is a coupling constant of the aether sector)
+
+======================================================================================================================
+PART 4 -- k = 0 SEPARATED FROM k != 0    [t = 6 s]
+======================================================================================================================
+
+  The door demands this separation and the repository has been caught by a background-specific claim
+  before.  It matters here because W_chi,chi is proportional to k^2: at k = 0 the clock's kinetic
+  normalisation vanishes for EVERY value of c_14, so a degeneracy read off at k = 0 would be an artefact.
+
+    base at k = 0        : N_q = 12, rank(W) = 7, primaries = 5, generations = [5], total = 5, first class = 5, second class = 0  ->  DOF = 7
+  [PASS] F1  [THE TRAP, exhibited] at k = 0 the UNMODIFIED submitted action is ALREADY Hessian-degenerate, at every parameter point and with a perfectly healthy c_14: the rank of W drops, the clock's own kinetic normalisation c_14 k^2 vanishing identically because it carries a factor k^2.  A degeneracy read off at k = 0 is therefore evidence of nothing, which is why every branch is re-tested at several non-zero k below   (rank(W) = 8 at k = 1 and 7 at k = 0, with c_14 = 2/15 != 0 throughout; the counter returns 7 there, but at k = 0 that number is the homogeneous sector's content, not a count of propagating polarisations)
+  [PASS] F2  BRANCH C holds at k != 0 and is not a zero-wavenumber artefact: the count is 3 at every non-zero wavenumber tested, and the degeneracy condition K_2 = 0 contains no k at all (D1c)   (DOF at k = [1, 2, 5] -> [3, 3, 3])
+  [PASS] F3  BRANCH B also holds at k != 0 -- so its degeneracy is real and not the k = 0 artefact of F1, even though its condition W_chi,chi = c_14 k^2 = 0 is satisfied at k = 0 for free   (DOF at k = [1, 2, 5] -> [3, 3, 3])
+  [PASS] F4  [CONTROL] the base count is 4 at every non-zero wavenumber tested, so the drop to 3 at branches B and C is caused by the coupling and not by the wavenumber   (DOF at k = [1, 2, 5] -> [4, 4, 4])
+
+======================================================================================================================
+PART 5 -- DOES THE DEGENERACY SURVIVE MATTER COUPLING?    [t = 7 s]
+======================================================================================================================
+
+  A METHOD NOTE that has to come first, because it is the trap in this particular question.  At
+  quadratic order about a background that SOLVES the field equations, minimally coupled matter cannot
+  couple to metric perturbations at all: the cross term is h^{mn} delta T_mn and T_mn vanishes on flat
+  space.  Expanding instead about psi-bar-dot != 0 on flat space -- which is NOT a solution, since it
+  carries a non-zero stress tensor -- destroys the linearised gauge invariance, and the counter then
+  reports eight SECOND-class constraints where there should be eight first-class ones.  That is a
+  property of the illegitimate background, not of the theory, and it is recorded here rather than
+  hidden.  The question is therefore split into the two pieces that are separately well posed:
+    G0  a structural statement about the matter action, valid on every background;
+    G1  a count on a legitimate background (flat space, psi-bar = const, which does solve everything).
+
+  [PASS] G0  [STRUCTURAL, every background] minimally coupled matter S_m[g, psi] contains no phi at all, so it cannot contribute to any entry of the velocity Hessian in the phi row.  Verified on the ILLEGITIMATE psi-bar-dot != 0 expansion as well, where the metric-matter couplings are switched on and the gauge structure is broken: even there the phi row of W is identical entry by entry to its value with no matter at all, and the new phi-psi entry is zero.  This -- not the count -- is what 'the degeneracy survives minimal matter coupling' actually rests on   (the strongest available form of the statement: it does not depend on the background being a solution, because it is a statement about which fields appear in which term)
+    base + matter        : N_q = 13, rank(W) = 9, primaries = 4, generations = [4, 4], total = 8, first class = 8, second class = 0  ->  DOF = 5
+    branch C + matter    : N_q = 13, rank(W) = 8, primaries = 5, generations = [5, 5], total = 10, first class = 8, second class = 2  ->  DOF = 4
+  [PASS] G0b [CONTROL] the matter sector is a genuine extra field and the counter sees it: adding one minimally coupled scalar to the base theory raises the count by exactly one, and the eight first-class diffeomorphism constraints are preserved   (base 4 -> base+matter 5, first class 8)
+  [PASS] G1  THE DEGENERACY SURVIVES MINIMAL MATTER COUPLING.  Branch C plus one minimally coupled matter field returns 4 = 2 tensor + 1 clock + 1 matter, with the SAME second-class pair count (2) and the same eight first-class constraints.  Matter adds a mode; it does not give the scalar back   (branch C 3 -> branch C + matter 4; second class 2, first class 8)
+  [PASS] G1b branch B survives minimal matter coupling on the same test   (branch B 3 -> 4)
+
+  WHY it survives, derived rather than observed.  The second-class pair at branch C is (pi_phi, C_phi)
+  and its bracket is {pi_phi, C_phi} = -d^2 H/d phi^2, which is the coefficient of phi^2 in the
+  Hamiltonian:  (2 - K_B) J_Y k^2 (1 + xi^2 k^2).  Minimally coupled matter does not appear in it,
+  because matter couples to the metric alone and phi has no direct matter coupling.  So the pair stays
+  second class for every matter content -- PROVIDED that coefficient does not vanish.
+
+  [PASS] G2  the second-class bracket is DERIVED to be (2-K_B) J_1 k^2 (1 + xi^2 k^2) up to sign and normalisation, and it contains no matter coupling, no K_2 and no c_14 -- which is the reason G1 holds and is a statement about the action rather than about the particular matter field tested   (C_phi,phi = J_1*k**2*(K_B - 2)*(k**2*xi**2 + 1))
+  [PASS] G2b [THE LIMIT OF G1, stated] the same bracket vanishes where J_Y -> 0, i.e. at every zero of the background gradient (J_Y = s/Delta(s) ~ sqrt(s) as s -> 0: every symmetry centre and every MOND saddle, the Solar System's own included).  There the pair stops being second class and the mode count is not 3.  With the xi^2 operator placed OUTSIDE J instead of inside it, the bracket keeps a positive xi^2 k^4 piece and the failure is removed -- so the deposited placement fork (L52's C-L3) decides whether branch C is uniform or has holes   (PASS here is a NEGATIVE result for branch C as deposited: with xi^2 inside J, J_Y factors out of the whole bracket and the construction has a hole at every symmetry centre)
+
+  THE NEGATIVE CONTROL that decides how much G1 is worth.  'Minimally coupled' is load-bearing.  If
+  matter instead sees the disformal metric ghat = g + B d_mu phi d_nu phi -- the standard TeVeS/BIMOND
+  matter coupling, and a natural thing to reach for in a MOND completion -- then the matter sector
+  itself regenerates a phi-dot^2 term of size B psi-bar-dot^2, and the degeneracy is gone.
+
+  [PASS] G3  [NEGATIVE CONTROL] the degeneracy does NOT survive a disformal matter coupling.  With ghat = g + B d_mu phi d_nu phi the matter sector itself contributes B psi-bar-dot^2 to W_phi,phi, so at K_2 = 0 the Hessian is no longer singular in the phi direction, the primary constraint pi_phi is destroyed and the rank of W goes back up.  G1's 'survives matter coupling' is a statement about MINIMAL coupling and must always be quoted with that qualifier -- which matters, because a disformal matter coupling is exactly what relativistic MOND completions usually reach for   (W_phi,phi = 0 with minimal coupling and 1/25 with the disformal one; rank(W) goes 8 -> 9, so the primary constraint count falls by one)
+
+======================================================================================================================
+PART 6 -- FLRW: DOES THE DEGENERACY COST THE EXPANSION?    [t = 8 s]
+======================================================================================================================
+
+  Built independently of everything above, from the ADM form of the same action on
+  ds^2 = -N(t)^2 dt^2 + a(t)^2 dx^2, tau = t, phi = phi(t):
+
+     sqrt(-g) = N a^3,   K_ij = (a-dot a/N) delta_ij,   K_ij K^ij = 3 (a-dot/(aN))^2,  K = 3 a-dot/(aN)
+     a_mu = 0   (homogeneous lapse)  =>  the AeST mixing 2(2-K_B) a^mu d_mu phi vanishes identically
+     V_mu = 0   (no spatial gradient) =>  J(Y + xi^2 ...) = J(0), a pure cosmological constant
+     A_mu_nu = K_mu_nu  =>  the c_1 and c_3 terms cancel because c_1 = -c_3, leaving only -c_2 K^2
+
+    mini-superspace kinetic terms:   a-dot^2 coefficient = -3*(3*c2 + 2)*a(t)/N(t)
+                                     phi-dot^2 coefficient = -K_2*a(t)**3/N(t)
+  [PASS] I1  the Friedmann kinetic coefficient is -(6 + 9 c_2) a / N and the scalar's is -K_2 a^3 / N, derived from the same action by an independent mini-superspace reduction   (the c_1 and c_3 terms cancel identically on FLRW because c_1 = -c_3, so only c_2 enters)
+  [PASS] I2  BRANCH C PRESERVES FLRW EXPANSION.  K_2 = 0 removes the phi-dot^2 term but leaves the a-dot^2 term untouched, so the Friedmann equation still determines H.  The cost is that phi drops out of the homogeneous sector entirely -- no dark component, which the deposited theory had already removed by setting Q_0 = 0   (the door's 'no loss of FLRW expansion' is met at branch C)
+  [PASS] I2b BRANCH B PRESERVES FLRW EXPANSION for a stronger reason: c_14 does not appear in the mini-superspace Lagrangian at all, because a_mu = 0 on a homogeneous lapse   (so the clock branch is invisible to the background cosmology)
+  [PASS] I3  BRANCH A DESTROYS FLRW EXPANSION, exactly.  c_2 = -2/3 makes 6 + 9 c_2 = 0, so the a-dot^2 term vanishes and the lapse's own equation loses its H^2 piece: there is no Friedmann equation left.  The conformal branch of the perturbative degeneracy variety and the FLRW-destroying locus are THE SAME POINT, which is why branch A is not a candidate   (PASS here is a NEGATIVE result for branch A: it fails the door's second pass condition outright)
+  [PASS] I3b branch A is inadmissible on independent grounds anyway: the theory needs c_2 = sigma c_14 > 0 (the clock's own speed), and c_2 = -2/3 has the wrong sign by construction   (deposited c_2 = 1.679318e-06 > 0 vs the branch-A requirement c_2 = -2/3)
+
+    linear-growth source S_eff = 1 - (2-K_B)^2/(c_2|K_2|):  at the exhibited point +0.000000 (on the closure locus, by construction)
+    at branch C (K_2 -> 0) S_eff -> -infinity and the closure locus c_2|K_2| = (2-K_B)^2 cannot be satisfied at all.
+  [PASS] I4  the linear-growth gate BREAKS at branch C, and the honest reading is that it is VACUOUS: with Q_0 = 0 there is no dark component to grow, and the deposited table itself records that row as 'PASS as an equation -- and nothing to grow'.  Recorded as broken, not as a reason to keep the mode   (PASS asserts only that the deposited point really does sit on the closure locus, which is the premise of the statement above)
+
+======================================================================================================================
+PART 7 -- THE PRICE, against everything the deposited theory already passes    [t = 8 s]
+======================================================================================================================
+
+  Branch C removes the scalar by making it AUXILIARY, so it must be eliminated, and elimination
+  back-reacts on the clock.  Derived here by an explicit Schur complement of the phi row, independently
+  of the Dirac machinery, and then checked against it.
+
+    L_phi = 2(2-K_B) k^2 a phi - (2-K_B) J_Y (1 + xi^2 k^2) k^2 phi^2 ,     a = n - chi-dot
+    dL/dphi = 0  =>  phi = a/[J_Y(1+xi^2 k^2)]
+    L_on-shell = (2-K_B) k^2 a^2 / [J_Y (1 + xi^2 k^2)]
+  and the clock's own term is c_14 k^2 a^2, so eliminating phi shifts
+
+    c_14  ->  c_14^eff(k) = c_14 + (2 - K_B) / [ J_Y (1 + xi^2 k^2) ]
+
+  [PASS] P1  the Schur elimination of the auxiliary scalar shifts the clock's kinetic coefficient by exactly (2 - K_B)/[J_Y (1 + xi^2 k^2)] -- a WAVENUMBER-DEPENDENT shift, which is the algebraic signature of the instantaneous channel branch C buys   (delta c_14(k) = (2 - K_B)/(J_1*(k**2*xi**2 + 1)))
+
+    sigma_eff(k) = (2 - c_14^eff) c_2 / [c_14^eff (2 + 3 c_2)] at the deposited exhibited point.
+    The wavenumber convention is the deposited one, k = 1/L with L the gradient scale, which is the
+    convention under which the alpha_1 row below reproduces the deposited -4.48e-6 / -4.25e-6 (P4).
+      gradient scale L                 footing       xi^2 k^2       c_14^eff        sigma_eff      sigma_eff/sigma*
+      10 kpc  (galactic)   canonical      1.0000e-10    5.59529e-01    2.16164e-06    1.2872e-06
+      Saturn's orbit       canonical      4.6333e+06    1.12076e-06    1.49837e+00    8.9225e-01
+      1 AU                 canonical      4.2546e+08    1.00132e-06    1.67711e+00    9.9869e-01
+      xi/1e3               canonical      1.0000e+06    1.55953e-06    1.07681e+00    6.4122e-01
+      xi/1e6  (deep UV)    canonical      1.0000e+12    1.00000e-06    1.67931e+00    1.0000e+00
+      10 kpc  (galactic)   alt            2.2500e-10    6.60309e-01    1.70357e-06    1.0144e-06
+      Saturn's orbit       alt            1.0425e+07    1.06334e-06    1.57928e+00    9.4043e-01
+      1 AU                 alt            9.5728e+08    1.00069e-06    1.67816e+00    9.9931e-01
+      xi/1e3               alt            1.0000e+06    1.66031e-06    1.01145e+00    6.0230e-01
+      xi/1e6  (deep UV)    alt            1.0000e+12    1.00000e-06    1.67931e+00    1.0000e+00
+  [PASS] P2  [CONFIRMS L46's headline price, in the infrared] at galactic gradient scales eliminating the scalar collapses the clock's speed^2 from sigma* = 1.679 to ~2e-6, i.e. by about six orders of magnitude, on both footings -- L46 section 6's 'the decisive price is sigma' is reproduced here independently   (canonical: sigma_eff = 2.1616e-06, 5.89 orders below sigma*; alt: sigma_eff = 1.7036e-06, 5.99 orders below sigma*)
+  [PASS] P3  [REFINES L46] the same price is NOT six orders everywhere.  The shift goes as 1/(1 + xi^2 k^2), so it VANISHES in the ultraviolet: sigma_eff/sigma* is within 1e-4 of 1 at a gradient scale xi/10^6, and is already back to ~0.89 (canonical) / ~0.94 (alt) at Saturn's orbit.  Since the Hadamard obstruction sigma* was chosen to cancel is a growth rate rising like k^2 -- a SHORT-wavelength statement -- L46's price is an infrared price and is overstated in the regime where the obstruction lives.  This lane does NOT redo the quartic obstruction with a k-dependent c_14, so it does not claim the price is discharged; it names the calculation   (canonical: sigma_eff/sigma* = 0.999999 at L = xi/1e6, 0.8922 at Saturn, 1.287e-06 at 10 kpc; alt: sigma_eff/sigma* = 0.999999 at L = xi/1e6, 0.9404 at Saturn, 1.014e-06 at 10 kpc)
+
+    the crossover scale, where the eliminated scalar and the bare clock contribute equally to c_14^eff:
+      canonical : xi^2 k^2 = 5.5953e+05, L = 27.6 AU = 1.337e-04 pc (xi = 0.1 pc, J_Y = 3.217)
+      alt       : xi^2 k^2 = 6.6031e+05, L = 38.1 AU = 1.846e-04 pc (xi = 0.15 pc, J_Y = 2.726)
+      so the clock travels at sigma* inside ~30-40 AU and at ~2e-6 sigma* outside it: a mode speed that
+      runs by six orders of magnitude across the outer Solar System.  That is a new liability, not a repair.
+
+    preferred-frame parameter alpha_1 = -4 c_14 - 4(2-K_B)/[J_Y(1 + xi^2 k^2) + 1] at Saturn's orbit, bound 1e-4:
+      canonical : base -4.483e-06   branch C (K_2 absent from B and C) -4.483e-06   branch B (c_14 = 0) -4.830e-07
+      alt       : base -4.253e-06   branch C (K_2 absent from B and C) -4.253e-06   branch B (c_14 = 0) -2.534e-07
+  [PASS] P4  [CONTROL on the price machinery] the alpha_1 formula reproduces the deposited values -4.48e-6 (canonical) / -4.25e-6 (alt) at the exhibited point, so the numbers below are computed with the theory's own screening and not invented here   (computed -4.483e-06 / -4.253e-06 vs deposited -4.48e-6 / -4.25e-6)
+  [PASS] P5  the Solar-System sector is LITERALLY unchanged at branch C: K_2 appears in exactly one entry of W and nowhere in B or C, so the static MOND limit, Phi = Psi, gamma, alpha_1, alpha_2, alpha_3, Cassini and the Saturn rows cannot move.  Verified entry by entry on the symbolic 12 x 12 matrices   (this is the one thing branch C gets for free, and it is real)
+  [PASS] P6  branch B IMPROVES alpha_1 by roughly an order of magnitude, because the -4 c_14 term is exactly what it deletes -- so the clock branch is not a strictly worse trade than the scalar branch on the PPN row   (canonical -4.483e-06 -> -4.830e-07 (9.3x better); alt -4.253e-06 -> -2.534e-07 (16.8x better))
+  [PASS] P7  the tensor speed is EXACTLY 1 at every branch -- the degeneracy never touches the graviton, because c_1 = -c_3 makes c_13 = 0 as an identity in K_B and no branch condition involves c_13   (base: c_T^2 = 1; branch B: c_T^2 = 1; branch C: c_T^2 = 1; branch B+C: c_T^2 = 1)
+
+    surviving helicity-0 speeds^2 at the generic test point: branch C [-439/16133], branch B [-177/8144]
+  [PASS] P8  the surviving clock at branch C is HEALTHY on both footings and at every wavelength tested: its kinetic normalisation c_14^eff is strictly positive (no ghost) and sigma_eff is strictly positive (no gradient instability).  What it is NOT is dispersion-free -- the speed runs by six orders between the ultraviolet and galactic scales, which is a new liability this route introduces and which is not in any existing gate table   (can/10 kpc : c_14^eff = 5.595e-01, sigma_eff = 2.162e-06; can/Saturn : c_14^eff = 1.121e-06, sigma_eff = 1.498e+00; can/xi/1e6 : c_14^eff = 1.000e-06, sigma_eff = 1.679e+00; alt/10 kpc : c_14^eff = 6.603e-01, sigma_eff = 1.704e-06; alt/Saturn : c_14^eff = 1.063e-06, sigma_eff = 1.579e+00; alt/xi/1e6 : c_14^eff = 1.000e-06, sigma_eff = 1.679e+00)
+  [PASS] P8b [A STRUCTURAL ECHO, and an independent confirmation of L46's S3] the reduced theory's own gradient stability requires c_14^eff < 2, which unpacks to J_Y (2 - c_14)(1 + xi^2 k^2) > (2 - K_B) -- EXACTLY the health condition L46 derived for the UNREDUCED four-mode spectrum from the product of the two scalar omega^2.  Two different calculations, on two different theories, give the same threshold J_Y > 0.90000, and the deposited J_Y = 3.217 / 2.726 clears it by 3.6x / 3.0x on both footings   (threshold J_Y > (2-K_B)/(2-c_14) = 0.9000005; deposited J_Y = 3.217 (canonical, 3.57x) / 2.726 (alt, 3.03x))
+  [PASS] P9  branch C carries an INSTANTANEOUS channel, and this is the gate the deposited programme actually names.  The eliminated phi obeys an elliptic equation with no time derivative at all, so its response to a source is instantaneous on the leaves; the algebraic signature is that the scalar sector's dispersion polynomial drops in degree.  This is the honest price of the integer   (helicity-0 dispersion carries 2 roots in the base theory and 1 at branch C)
+
+======================================================================================================================
+PART 8 -- VERDICT    [t = 9 s]
+======================================================================================================================
+  [PASS] V1  A DEGENERATE LOCUS EXISTS in the couplings of the submitted action, and it is exactly characterised: the degeneracy variety is the union of three hyperplanes, K_2 = 0, c_14 = 0 and c_2 = -2/3, with no fourth branch and no dependence on J or xi   (solved for the couplings as unknowns, not scanned)
+  [PASS] V2  ITS PRIMARY CONSTRAINTS CLOSE.  At branch C the consistency algorithm terminates at the second generation with 8 first-class and 2 second-class constraints; at branch B it terminates as well.  No tertiary constraint is generated and no constraint chain runs away   (branch C generations [5, 5], branch B generations [5, 5])
+  [PASS] V3  THE DEGENERACY HOLDS AT k != 0 and is not the k = 0 artefact: the condition K_2 = 0 contains no k at all, and the count is 3 at every non-zero wavenumber tested while the base theory is 4 at the same wavenumbers   (F1 exhibits the artefact that would otherwise have been mistaken for this)
+  [PASS] V4  IT SURVIVES MATTER COUPLING AND PRESERVES FLRW EXPANSION -- with two qualifiers that must travel with the claim: matter must be MINIMALLY coupled (a disformal coupling destroys it, G3), and the second-class bracket vanishes wherever J_Y -> 0 unless the xi^2 operator is placed outside J (G2b)   (the door names both conditions and both are met, conditionally)
+  [PASS] V5  [THE VERDICT] TWO TENSOR MODES PLUS A SEPARATELY COUNTED HEALTHY CLOCK IS REACHABLE inside the submitted action: branch C delivers exactly 2 + 1, the clock is ghost-free and gradient-stable on both footings, c_T = c exactly, the Solar-System sector is literally unchanged, the constraint algebra closes, and FLRW expansion survives   (PASS is a POSITIVE result for the lead's highest-priority gate, at the price PART 7 states)
+  [PASS] V6  BUT IT IS NOT A 'GENUINE DEGENERACY' OF THE CLOCK-SCALAR SECTOR.  Every available branch is a DECOUPLING -- it switches one whole field off -- because W_chi,phi = 0 identically.  The mixed-null-vector construction door 2 asks for does not exist within this operator content, and reaching it requires an operator in which Q multiplies a velocity (D3)   (PASS here is a NEGATIVE result for the specific architecture door 2 proposes)
+  [PASS] V7  THE FLOOR IS THREE, NOT TWO, and the obstruction is named: the antisymmetric clock-scalar coupling.  Switching both kinetic terms off leaves chi and phi canonically conjugate to each other, which is one degree of freedom rather than none (E3, E3b).  So the requirement 'N_grav = 2 as a total count' is UNREACHABLE inside this action, and the honest target is the requirement as written -- two tensor plus at most one healthy clock -- which branch C meets   (PASS is a NEGATIVE result for the raw integer and settles what door 2 can and cannot deliver)
+  [PASS] V8  the price is real and is NOT the linear-growth gate.  It is (i) an instantaneous scalar channel, (ii) a clock speed that runs by six orders of magnitude between gradient scales of ~30 AU and 10 kpc, and (iii) a hole at every zero of the background gradient unless the xi^2 placement fork is resolved outward.  None of these three is in the deposited gate table   (recorded as the lane's output, not as a pass/fail on the theory)
+
+======================================================================================================================
+SUMMARY
+======================================================================================================================
+  Door 2 asked whether the clock-scalar sector can be made genuinely degenerate.  The full ADM velocity
+  Hessian, derived here with lapse, shift and all mixings retained, is BLOCK DIAGONAL in the scalar
+  direction: W_phi,phi = -K''(Q_bar) and W_phi,X = 0 for every other field, on every background (H6).
+  So the degeneracy variety is a union of exactly three hyperplanes -- K_2 = 0, c_14 = 0, c_2 = -2/3 --
+  and there is NO mixed clock-scalar null direction at all.  Every available degeneracy is a decoupling.
+
+  Two of the three branches work as counts: K_2 = 0 gives 2 tensor + 1 healthy clock, and c_14 = 0 gives
+  2 tensor + 1 scalar.  The third, c_2 = -2/3, is exactly the locus at which the Friedmann equation
+  loses its H^2 term, so it fails the door's own second condition outright.  Taking BOTH working
+  branches at once does NOT give 2: it gives 3, because the antisymmetric clock-scalar coupling makes
+  chi and phi canonically conjugate to each other once neither has a kinetic term.  The floor inside
+  this action is three, and the term that holds it there is precisely the one L52 recorded as harmless.
+
+  The working branch closes at the second generation, holds at every k != 0, survives MINIMAL matter
+  coupling (a disformal coupling destroys it) and preserves FLRW expansion.  Its price is an
+  instantaneous scalar channel, a clock speed that runs by six orders of magnitude between gradient
+  scales of ~30 AU and 10 kpc, and -- unless the xi^2 placement fork is resolved outward -- a hole at
+  every zero of the background gradient.
+
+  Both a0 footings carried: canonical 9.3619e-11 / alt 1.1279e-10 m s^-2.
+  kappa = 1/2 remains FITTED and nothing here says otherwise.  No route is called closed.
+
+RESULT: 78 checks, 78 PASS, 0 FAIL

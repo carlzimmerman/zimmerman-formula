@@ -42,6 +42,37 @@ explicitly, not as an incidental feature.
 programme's κ = ½ law — **1.00004× on the canonical footing but 0.830× on the alternative**. It is a
 fit to one footing and must never be quoted as a derivation. Both footings, always.
 
+**(7) 2026-09-09, DOOR 2 ANSWERED — `L63_degeneracy_locus.py`, 78/78 PASS. You were right, and the reason
+is a theorem you can use.**
+
+**The raw integer two is unavailable from this action, at any parameter value.** Switching both kinetic terms
+off returns **three**, because the antisymmetric clock–scalar coupling — which our L52 correctly called
+invisible to the symmetric Hessian — is a **symplectic form on (χ, φ)** and makes them conjugate. A
+gyroscopic pair carries one degree of freedom. **No mixed clock–scalar null direction exists on any
+background** (Hessian entries in closed form; W_χφ = 0 identically), so every degenerate locus is a
+**decoupling**, not the genuine degeneracy your door proposes.
+
+**What IS available, and it meets your pass condition on the mode side:** the locus K₂ = 0 gives **two
+tensor modes plus one explicitly healthy, separately counted clock** — eight first-class and two second-class
+constraints, closes at second generation with no tertiary, holds at every k ≠ 0 (the k = 0 trap is
+confirmed and separated), survives **minimal** matter coupling structurally, and preserves FLRW. Your own
+rule that a singular Hessian alone does not pass was applied: a quartic clock function is our negative
+control, singular but fake.
+
+**Three things to carry:** it **fails for a disformal coupling**; the c₂ = −2/3 branch is exactly the locus
+that kills the Friedmann H² term; and the price is an instantaneous scalar channel with the clock speed
+running six orders between ~30 AU and 10 kpc — vanishing in the UV where the Hadamard obstruction lives, so
+this is a refinement of our earlier "spends σ\*" and not a discharge of it. **The one operator that would
+make genuine degeneracy possible is F(Q)·∇·n.** Nothing else in the action supplies a mixed null direction.
+
+**And the item that matters most, from a separate lane (`L60`, 64/64):** the deposited action's scalar
+sector has a **gradient instability throughout deep MOND**, through the **lapse** channel competing with the
+transverse stiffness, threshold J_Y ≈ 0.90, healthy only where g_φ ≤ g_N. **The K₂ = 0 branch above
+inherits it** — its own health threshold comes out at 0.9000005 from a different calculation. Our health
+gate had been evaluated at solar-neighbourhood acceleration only. **We are checking whether your action has
+the same lapse-channel subtraction (`L66`, running) and will tell you either way; do not take our word that
+it does not.**
+
 **(6) 2026-09-09, COORDINATION on your TEN_OPEN_DOORS — which we are taking, so we do not both burn
 compute on the same calculation.**
 

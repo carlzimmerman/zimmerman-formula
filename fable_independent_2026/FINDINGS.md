@@ -2533,3 +2533,45 @@ discriminator; and the Helmholtz estimator returns exactly zero on two genuine g
 - **One caveat kept explicit:** a memory architecture built on a unit timelike u is **not** excluded here.
   It is thrown back onto the preferred-frame constraints, where it must be tested separately. **Door 6 is
   closed on the gates the door itself names, not declared dead.**
+
+## L63 — the lead's door 2: the floor is three, and the reason is a symplectic form
+
+`L63_degeneracy_locus.py` + `L63_DEGENERACY.md` (**78 checks, 78 PASS**). The lead named door 2 as its
+highest priority for architectural viability and correctly said our four-mode count is not a two-mode
+certificate. This lane asked whether one is available. **It is not, and the reason is a theorem.**
+
+**Controls.** 2, 3, 5, 3 on the four reference theories; a **known-bad** control (GR plus two scalars
+returns 4); Jacobson's and the khronometric closed forms; L46's four modes at the exhibited point, σ\*
+with the scalar off, and the two eigen-speeds summing correctly. Lapse and shift were **never gauge-fixed
+away**: the Hessian has exactly four zero rows and they are the lapse and three shifts.
+
+- **⭐ THE FLOOR THEOREM: switching BOTH kinetic terms off returns THREE, not two.** The antisymmetric
+  clock–scalar coupling that L52 correctly called invisible to the symmetric Hessian is a **symplectic form
+  on (χ, φ)** — it makes them **conjugate**. A gyroscopic pair carries one degree of freedom; the toy
+  control confirms it (1 with the mixing, 0 without). **No two-mode certificate is available from this
+  action, at any parameter value.**
+- **⭐ The degenerate locus exists, is unique, and is exactly three hyperplanes:** c₂ = −2/3, c₁₄ = 0, and
+  K₂ = 0. **No mixed clock–scalar null direction exists at all**, on any background — proved as a theorem
+  with the Hessian entries in closed form. So every branch is a **decoupling**, not the genuine
+  clock–scalar degeneracy door 2 proposes.
+- **The working branch is K₂ = 0.** It gives **two tensor modes plus one explicitly healthy, separately
+  counted clock**: five primaries, two generations, **eight first-class plus two second-class**, no
+  tertiary, no runaway, the bracket matrix printed at rank 2. It holds at **every k ≠ 0** (the k = 0 trap
+  is confirmed and separated: rank drops 8 → 7 there at every parameter point). It **survives minimal
+  matter coupling structurally**, not merely by count, and **preserves FLRW**. A c₁₄ = 0 branch, which L46
+  never counted, also gives 3.
+- **⚠️ It FAILS for a disformal matter coupling**, and the c₂ = −2/3 branch is exactly the locus that
+  kills the Friedmann H² term. A quartic clock function is a **negative control**: singular Hessian, fake
+  degeneracy.
+- **A sharpening of L52.** The same operator that gives the antisymmetric velocity mixing also gives a
+  **symmetric** term — the MOND source itself. L52's sentence should read "one field–field **velocity**
+  mixing".
+- **The price of the working branch, confirmed and refined.** An instantaneous scalar channel, and the
+  clock speed running **six orders** between roughly 28 AU canonical / 38 AU alt and 10 kpc. L46's
+  "spends σ\* by six orders" is **confirmed in the infrared and refined**: the shift goes as 1/(1 + ξ²k²)
+  and **vanishes in the ultraviolet, which is where the Hadamard obstruction actually lives**. A
+  refinement, not a discharge. The Solar System is literally unchanged and c_T = c exactly.
+- **⭐ THE ONE OPERATOR THAT WOULD MAKE GENUINE DEGENERACY POSSIBLE IS EXHIBITED:** F(Q)·∇·n. Nothing
+  else in the action can supply a mixed null direction.
+- **The reduced theory's own health threshold comes out at J_Y > 0.9000005 — L46's number, from a
+  different calculation.** So the K₂ = 0 branch inherits the deep-MOND instability L60 found.
