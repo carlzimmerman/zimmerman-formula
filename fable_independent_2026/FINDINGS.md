@@ -2327,3 +2327,40 @@ the exact-isometry obstruction, and the smoothing machinery as an identity on a 
 - **Two channels left open rather than banked:** X-ray groups take 20–45% and are extended, so the
   mechanism does not hide them, but that channel is estimator-limited and **not decided here**; and the
   reference cosmological slip on 10 Mpc scales is 2.6e-3, **an open channel, neither a kill nor a pass.**
+
+## L58 — no slip survives, and the relayed identity names only one of two blocks
+
+`L58_anisotropic_stress.py` + `L58_ANISOTROPIC_STRESS.md` (30 checks, 1 designed FAIL). Prompted by an
+identity the lead derived and the owner relayed. **Both mandatory controls pass**, and the lane went
+further: it verified the lead's **displayed planar density itself** against its own covariant reduction of
+the action, correct up to a total derivative, and reproduced the lead's Noether identity as an **exact
+symbolic zero sector by sector**, not merely for the sum.
+
+- **⭐ THE RELAYED IDENTITY IS CORRECT AS STATED**, and it is **not uncommitted** — it appears verbatim in
+  the lead's own `USER_ACTION_BACKGROUND.md`. In its display convention it is exactly g·g_φ/(4πG), i.e. a
+  genuine anisotropic stress.
+- **⭐ BUT IT NAMES ONLY ONE OF THE TWO BLOCKS THAT CARRY ONE, AND THE OMITTED ONE IS LARGER AND OPPOSITE.**
+  The AeST coupling carries **−4 g g_φ** against the MOND block's **+2 g g_φ**. Net MOND sector:
+  **−2 g g_φ**, which then **partially cancels general relativity's own second-order term +2 g²**, leaving
+  **2 g g_N**. **So the scalar makes the slip SMALLER than general relativity's, by a factor g_N/g** —
+  which in the deep-MOND regime is the small quantity √(g_N/a₀). Kept exactly, the MOND sector *subtracts*
+  from the slip rather than adding to it.
+- **The normalisation dispute is settled and neither side was right.** Carrying both normalisations free,
+  the action's own static reduction gives the kernel times the gradient proportional to the **total**
+  acceleration, not the Newtonian one. **It does not matter**: the physical stress is invariant under both
+  normalisations, because the kernel's derivative and the gradient rescale inversely.
+- **No slip survives, and it is a scope statement rather than a symmetry statement.** It is exact at
+  **Newtonian order**, and it holds in **planar symmetry as much as spherical** — the anisotropy neither
+  vanishes on spherical symmetry nor appears only off it. Its standing is exactly that of γ_PPN = 1, whose
+  own residual is Φ_N/4, and the lane's slip equation **reproduces the exact isotropic-Schwarzschild
+  answer** as a control.
+- **The deposited claim stands with a 3.6× margin at the genuine worst case**, on both footings and both
+  kernels: median disc 7.4e-9, worst of 175 discs 5.2e-7, worst cluster 2.4e-6, and a 2e15 M_⊙ cluster at
+  1 Mpc gives 2.8e-5 against pure general relativity's own 2.4e-5.
+- **The coherence operator is irrelevant here**, contributing nothing on a uniform-gradient background and
+  suppressed by (ξ/L)² ≈ 2e-8 on galactic scales — **it can neither rescue nor ruin anything.**
+- **The load-bearing result is untouched:** the lensing-versus-dynamics agreement moves by **1.6e-5 σ**.
+- **⚠️ ONE AMENDMENT OWED, TO THE ERROR BAR AND NOT THE RESULT.** L11's stated bound has the **wrong
+  functional form** — the slip tracks the **potential depth** and is mass-dependent, not a₀L — and it is
+  **exceeded 4.26×** by the most massive clusters at 1 Mpc. **And the word "exactly" should not be
+  attached to no slip in a paper whose metric sector is Einstein's.** No gate changes.

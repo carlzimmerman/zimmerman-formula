@@ -1,0 +1,247 @@
+==========================================================================================================================
+L58 -- the MOND scalar's anisotropic stress, and whether the deposited no-slip result survives it
+==========================================================================================================================
+    sympy 1.13.1, numpy 1.26.4, python 3.13.9
+    a0 footings: canonical 9.3619e-11  /  alt 1.1279e-10  m s^-2
+
+--------------------------------------------------------------------------------------------------------------------------
+PART A -- CONTROLS.  If either of the two named controls fails, nothing below means anything.
+--------------------------------------------------------------------------------------------------------------------------
+
+  A1  REBUILD the reduction from the covariant action (THE_ACTION_2026-09-05 sec.1), not imported.
+      ds^2 = -e^{2P}dt^2 + e^{2A}dx^2 + e^{2B}(dy^2+dz^2),  tau = t,  phi = phi(x).
+      n.n = -1  (must be -1);   Y = q^{mn} d_m phi d_n phi = exp(-2*A(x))*Derivative(phi(x), x)**2
+      J^x (clock 4-acceleration, contravariant) = exp(-2*A(x))*Derivative(P(x), x)
+      xi^2 q q nabla V nabla V = xi^2 * ((Derivative(A(x), x)*Derivative(phi(x), x) - Derivative(phi(x), (x, 2)))**2 + 2*Derivative(B(x), x)**2*Derivative(phi(x), x)**2)*exp(-4*A(x))/xi**2
+  [PASS] A1a the clock normal is unit and the MOND argument U rebuilt covariantly equals the lead's displayed U = e^{-2A}phi'^2 + xi^2 e^{-4A}[(phi''-A'phi')^2 + 2B'^2 phi'^2]   (n.n = -1 and U_mine - U_lead simplifies to 0)
+      a.a = exp(-2*A(x))*Derivative(P(x), x)**2   -> the whole aether block reduces to c14 * a.a on a static hypersurface-orthogonal n
+  [PASS] A1b my covariant reduction equals the lead's displayed planar density up to a TOTAL x-DERIVATIVE [EL residual of the difference vanishes for all four fields] -- so the display is licensed, and ca = c14, b = 2 - K_B, C = Lambda/(8 pi G) + K(0)   (EL residuals of (L_mine - L_lead): (0, 0, 0, 0))
+
+  A2  P'E_P + A'E_A + B'E_B + phi'E_phi - (E_A)'  simplifies to  0
+  [PASS] A2 [CONTROL 1] the lead's spatial-diffeomorphism Noether identity reproduces as an EXACT symbolic zero from my own rebuild of the density and my own Euler-Lagrange operator   (residual identically 0 with arbitrary differentiable J)
+      EH block      : identity residual 0
+      aether block  : identity residual 0
+      mixing block  : identity residual 0
+      constant      : identity residual 0
+      J block       : identity residual 0
+  [PASS] A3 [control] the identity holds SECTOR BY SECTOR (each block is separately a scalar density), not only for the sum -- machinery that only cancels globally would be suspect   (EH block: 0, aether block: 0, mixing block: 0, constant: 0, J block: 0)
+
+  A4  CONTROL 2 -- the deposited theory's own no-slip result, reproduced at its own order and
+      background (spherical, isotropic gauge, weak field with a0 scaled so y = |a|/a0 stays O(1)).
+      Rebuilt from the metric here; L11 is neither imported nor rerun.
+  [PASS] A4a [control] sqrt(-g)R for the spherical isotropic-gauge static metric is 2 e^{Phi-Psi} r^2 (|grad Psi|^2 - 2 grad Phi . grad Psi) up to a total r-derivative -- the lapse-gradient square CANCELS in GR, so any |grad Phi|^2 in the reduced density comes from the clock sector   (EL residual of the difference vanishes in both Phi and Psi)
+      linear-order conformal equation:  4*P1*m/r + 2*P2*m - 4*S1*m/r - 2*S2*m = 0   ->   lap(Phi - Psi) = 0
+  [PASS] A4b [CONTROL 2] the deposited theory's no-slip result reproduces at ITS order and background: the conformal (Psi) equation is lap(Phi - Psi) = 0 at linear order, so Phi = Psi and lensing and dynamics share one potential  [L11 A4c, rebuilt from the metric]   (linear conformal equation is exactly 2m [lap(Phi) - lap(Psi)] = 0)
+  [PASS] A4c [CONTROL 2, number] L11 B4b's quoted bound |Phi-Psi|/|Phi| <= a0 L/(6 c^2) < 1e-4 at L = 1 Mpc reproduces arithmetically on the worse (alt) footing   (a0(alt) Mpc/(6c^2) = 6.454e-06;  canonical 5.357e-06)
+  [PASS] A5 [control] the same machinery on GR + minimally coupled static dust returns the Newtonian Poisson equation with G_N = 1/(8 pi m) and no slip   (lapse eq: 2m lap(Psi) = rho;  conformal eq: lap(Phi - Psi) = 0)
+
+--------------------------------------------------------------------------------------------------------------------------
+PART B -- the relayed identity  E_A - (1/2) E_B = 2 b J'(s0^2) s0^2, derived here, not taken on trust
+--------------------------------------------------------------------------------------------------------------------------
+      E_P   = -C - b*J(s0**2)
+      E_A   = -C + 2*b*s0**2*Subs(Derivative(J(_xi_1), _xi_1), _xi_1, s0**2) - b*J(s0**2)
+      E_B   = -2*C - 2*b*J(s0**2)
+      E_phi = 0
+      E_A - (1/2) E_B = 2*b*s0**2*Subs(Derivative(J(_xi_1), _xi_1), _xi_1, s0**2)
+  [PASS] B1 [THE RELAY] E_A - (1/2)E_B = 2 b J'(s0^2) s0^2 on the flat/uniform-gradient background, derived from my own variation of my own rebuilt density -- the relayed formula is CORRECT AS STATED   (difference simplifies to 0)
+  [PASS] B1b the rest of the lead's background block also reproduces: E_P = -C - bJ0, E_B = 2 E_P, E_phi = 0 [so a cosmological constant cancels in the traceless combination and cannot absorb the anisotropy]   (E_P = -C - bJ0, E_B = -2C - 2bJ0, E_phi = 0)
+  [PASS] B2 the coherence operator xi^2|grad_perp V|^2 contributes NOTHING on the uniform-gradient background (phi'' = 0 and B' = 0 kill both of its pieces), so the anisotropy is the bare J' term and is not an artefact of the healing-length operator   (U|_background = s0**2 = s0^2 exactly, xi drops out)
+
+  B3  NORMALISATION.  The repository has a live dispute on this action: L52_REPAIR_SCOPE_REVIEW.md
+      flags  g_N = 2 J_Y w  (L52 source line 633) against  g_N = J_Y w  (THE_ACTION sec.3).  Carry the
+      coupling and J normalisations as free symbols k_c, k_J and see what survives.
+
+      The reduced static 3D system, from the density validated in A1 (c = 1; Phi = log lapse, Psi the
+      conformal potential, chi the MOND scalar, k_c and k_J free normalisations of the two scalar blocks):
+
+        L = (1/8 pi G)(|grad Psi|^2 - 2 grad Phi . grad Psi)  +  2 k_c b grad Phi . grad chi
+            -  k_J b J(|grad chi|^2)  -  rho Phi
+
+      Phi-variation :  (1/4 pi G) lap Psi - 2 k_c b lap chi = rho   ->  Psi = Phi_N + 8 pi G k_c b chi
+      Psi-variation :  lap(Phi - Psi) = 0 at linear order          ->  Phi = Psi (the no-slip result)
+      chi-variation :  k_J div[J' grad chi] = k_c lap Phi          ->  k_J J' w = k_c g   (first integral)
+
+      so with g_phi = 8 pi G k_c b w the physical extra force and g = g_N + g_phi the total:
+
+        J'(Y)  = 8*pi*G*b*k_c**2*(g_N + g_phi)/(g_phi*k_J)
+        J_Y w  = k_c*(g_N + g_phi)/k_J
+  [PASS] B3a the action's OWN static reduction gives J_Y w = (k_c/k_J) x the TOTAL acceleration g = g_N + g_phi, not g_N: neither 'g_N = J_Y w' (THE_ACTION sec.3) nor 'g_N = 2 J_Y w' (L52 line 633) is what this action produces -- the disputed relation is bookkeeping about where 8 pi G b and the coupling live   (J_Y w = (k_c/k_J)(g_N + g_phi); at k_c = k_J = 1 it is the total g, and the theory's mu-function is J_Y/(8 pi G b) - 1 = g_N/g_phi)
+
+      THE ANISOTROPIC STRESS.  TWO blocks carry it, not one.  Both the J block and the MIXING block
+      2 k_c b grad Phi . grad chi depend on the spatial metric through h^{ij}, so both contribute a
+      traceless spatial stress.  The relay names only the first.  Keeping both:
+
+        J block      8 pi G * 2 k_J b J' w^2         = 2*g_phi*(g_N + g_phi)   =  +2 g g_phi
+        mixing block 8 pi G * (-2) * 2 k_c b g w     = -4*g_phi*(g_N + g_phi)  =  -4 g g_phi
+        MOND sector total                            = -2*g_phi*(g_N + g_phi)   =  -2 g g_phi
+  [PASS] B3b the PHYSICAL anisotropic stress of the whole MOND sector is 2 g g_phi in magnitude and is INDEPENDENT of both normalisations k_c and k_J -- the g_N = J_Y w vs 2 J_Y w dispute cannot move it, because J' and w rescale inversely   (J block +2 g g_phi, mixing block -4 g g_phi, net -2 g g_phi, k_c and k_J cancel identically)
+        in the lead's own display normalisation (k_c = k_J = 1): 2 b J'(s0^2) s0^2 = g_phi*(g_N + g_phi)/(4*pi*G)
+  [PASS] B3c in the lead's display normalisation the relayed combination is exactly g g_phi/(4 pi G), i.e. (1/8 pi G) x 2 g g_phi -- the relay is right, and this is what it means physically   (2 b J'(s0^2) s0^2 = g g_phi/(4 pi G))
+
+--------------------------------------------------------------------------------------------------------------------------
+PART C -- which metric combination the slip is, the equation it obeys, and at what order
+--------------------------------------------------------------------------------------------------------------------------
+
+  C0  WHICH COMBINATION.  In the planar ansatz the invariant slip is Phi - Psi read in the ISOTROPIC
+      spatial gauge, ds^2 = -(1+2Phi)dt^2 + (1-2Psi)(dx^2+dy^2+dz^2): dynamics feels grad Phi (the log
+      lapse), light feels grad(Phi + Psi), so the lensing-to-dynamics mass ratio is exactly
+      M_lens/M_dyn = 1 - (Phi-Psi)'/(2 Phi').  In the lead's (P, A, B) variables that is P = Phi and
+      A = B = -Psi, and the traceless spatial combination is the one the relay names, E_A - E_B/2.
+      The lead's background identity is the ZEROTH-ORDER instance of the slip source.
+
+      [E_A - E_B/2] at O(eps)   :  (Derivative(Phi(x), (x, 2)) - Derivative(Psi(x), (x, 2)))/(8*pi*G)
+  [PASS] C1 at LINEAR order the traceless planar equation is purely geometric, (Phi - Psi)''/(8 pi G) = 0: there is NO slip source at O(eps).  The deposited theory's no-slip result therefore holds in the NON-SPHERICAL planar setting the lead's exact identity lives in, not only in spherical symmetry   (O(eps) piece is exactly (Phi'' - Psi'')/(8 pi G))
+
+  C2  THE O(eps^2) SOURCE, put on physical variables using the theory's OWN first integrals.
+      O(eps) lapse equation  : -2*b*Derivative(chi(x), (x, 2)) - 2*ca*Derivative(Phi(x), (x, 2)) + Derivative(Psi(x), (x, 2))/(4*pi*G) = 0   [+ matter]
+      O(eps) scalar equation : 2*b*(a0p**4*(-xi**2*Derivative(Jh(_xi_1), _xi_1)*Derivative(chi(x), (x, 4)) + Derivative(Jh(_xi_1), _xi_1)*Derivative(chi(x), (x, 2)) - Derivative(Phi(x), (x, 2))) + 2*a0p**2*(-xi**4*Derivative(chi(x), (x, 2))*Derivative(chi(x), (x, 4)) - 3*xi**4*Derivative(chi(x), (x, 3))**2 - 2*xi**2*Derivative(chi(x), x)*Derivative(chi(x), (x, 3)) - xi**2*Derivative(chi(x), (x, 2))**2 + Derivative(chi(x), x)**2)*Derivative(Jh(_xi_1), (_xi_1, 2))*Derivative(chi(x), (x, 2)) - 4*xi**2*(xi**4*Derivative(chi(x), (x, 3))**2 + 2*xi**2*Derivative(chi(x), x)*Derivative(chi(x), (x, 3)) + Derivative(chi(x), x)**2)*Derivative(Jh(_xi_1), (_xi_1, 3))*Derivative(chi(x), (x, 2))**3)/a0p**4 = 0
+      Their first integrals on an isolated planar system, with Phi = Psi from C1:
+        (1/4 pi G) Psi' - 2 b chi' = g_N/(4 pi G)   ->  g = g_N + g_phi,  g_phi = 8 pi G b chi'
+        2 b Phi' - 2 b Jh' chi'   = 0               ->  Jh' chi' = Phi' = g
+      [E_A - E_B/2] at O(eps^2), xi -> 0, on physical variables:   g*(-8*pi*G*ca*g + g - gp)/(4*pi*G)
+  [PASS] C2 the O(eps^2) traceless source, with the theory's own first integrals substituted, is exactly [2 g^2 - 2 g g_phi]/(8 pi G) - 2 ca g^2 = 2 g g_N/(8 pi G) - 2 ca g^2.  The MOND sector's own anisotropic stress is -2 g g_phi/(8 pi G): it PARTIALLY CANCELS general relativity's own second-order term +2 g^2/(8 pi G), leaving 2 g g_N -- the scalar makes the slip SMALLER, not larger   (source = 2 g g_N/(8 pi G) - 2 ca g^2, with g_N = g - g_phi the Newtonian part.  Contributions: GR +2 g^2, J block +2 g g_phi, AeST mixing block -4 g g_phi)
+      the xi-dependent remainder has 4 terms, lowest power of xi = 2
+  [PASS] C2b every xi-dependent piece of the O(eps^2) source carries xi^2 or higher, so the coherence (healing-length) operator's contribution to the slip is suppressed by (xi/L)^2 <= (0.15 pc/kpc)^2 = 2.3e-8 on galactic scales: it can neither rescue nor ruin anything   (lowest xi power = 2; (xi/L)^2 = 2.25e-08 at 1 kpc, 2.25e-14 at 1 Mpc)
+
+  C3  SPHERICAL SYMMETRY IS NOT A PROTECTION, AND NOT A SOURCE.  A gradient picks a direction whether or
+      not the configuration is spherically symmetric.  Checked directly at the level of the stress tensor:
+      for the J block, T_ij = 2 b J' d_i phi d_j phi - g_ij b J, so in spherical symmetry with phi = phi(r)
+
+  [PASS] C3 the radial-minus-tangential stress of the MOND sector in SPHERICAL symmetry is 2 b J' Y, the same expression as the planar T_xx - T_yy: the anisotropy neither vanishes on spherical symmetry nor appears only off it.  The no-slip result is an ORDER statement, not a symmetry statement   (T^r_r - T^theta_theta = 2 b J' Y, nonzero for every J' Y > 0)
+
+  C4  THE SPHERICAL SLIP EQUATION, and its exact general-relativity calibration.
+      Linearising the Einstein tensor for ds^2 = -(1+2Phi)dt^2 + (1-2Psi)(dr^2 + r^2 dOmega^2) and
+      taking the radial-minus-tangential combination gives, for D = Phi - Psi,
+             D'' - D'/r  =  -( 2 g g_N - c14 g^2 ) / c^4 ,
+      the source being the O(eps^2) block of C2.  CONTROL: in pure general relativity (g_phi = 0,
+      c14 = 0, g = g_N = GM/r^2) this must reproduce the exact isotropic-coordinate Schwarzschild
+      slip Phi - Psi = -(GM/2rc^2)^2, i.e. |Phi-Psi|/|Phi| = GM/(4 r c^2) = Phi_N/4.
+  [PASS] C4 [CONTROL] the slip ODE D'' - D'/r = -2 g g_N/c^4 is solved EXACTLY at this order by the isotropic-coordinate Schwarzschild slip D = -(GM/2rc^2)^2 -- so the operator, the source and their relative normalisation are calibrated against a known exact solution of general relativity   (LHS = -2*GG**2*MM**2/(cc**4*rr**4) = RHS = -2*GG**2*MM**2/(cc**4*rr**4))
+
+  C5  THE RECONCILIATION with our own earlier lane, and with the lead.
+      (a) L51 B3a found that a term built from the aether/foliation combination S_2 = R^(1)_00 sources ONLY
+          the 00 equation, every spatial component of its variation vanishing identically.  That is a
+          statement at LINEAR order in the metric perturbation h, about a term built FROM h.  It is not
+          disturbed here and it does not cover this case: the MOND scalar's stress is built from
+          (grad phi)^2, second order in the field amplitude, and is invisible to a linear-in-h argument by
+          construction.  Both results are right; they are about different orders.
+      (b) The lead's exact identity makes the second-order piece visible because its "background" pairs an
+          O(1) scalar gradient with an exactly flat metric -- a pairing that is not a solution, which is
+          exactly what the lead's own USER_ACTION_BACKGROUND.md concludes ("the assumed flat background
+          requires supporting matter or must be replaced by a curved solution").  Restore the theory's own
+          weak-field counting, in which the scalar gradient is an acceleration as small as the Newtonian
+          field, and the same term reappears one order down.
+      (c) So the no-slip result is neither exact nor a spherical artefact.  It is a Newtonian-order
+          statement, of exactly the same standing as gamma_PPN = 1 in general relativity, whose own slip
+          at the next order is Phi_N/4.
+
+  [PASS] C5 the MOND sector does not merely fail to enlarge the slip, it REDUCES it: the total second-order source is 2 g g_N against general relativity's own 2 g^2, a factor g_N/g <= 1 which in the deep-MOND regime is the small quantity sqrt(g_N/a0)   (2 g g_N / 2 g^2 = g_N/g = 1/(1 + g_phi/g_N) <= 1 identically)
+
+--------------------------------------------------------------------------------------------------------------------------
+PART D -- numbers.  Both a0 footings.  Kernel: nu_RAR as carried by the deposited theory
+          (THE_ACTION sec.3), with the exponential carrier as a cross-check.
+--------------------------------------------------------------------------------------------------------------------------
+
+  D0  [CONTROL] the numerical pipeline on pure general relativity (g_phi = 0, c14 = 0, point mass):
+        M = 1e12 Msun, 10-300 kpc: computed/predicted (Phi_N/4) = 1.000013 .. 1.000015
+  [PASS] D0 [CONTROL] the numerical slip pipeline reproduces the exact isotropic-Schwarzschild answer |Phi-Psi|/|Phi| = GM/(4 r c^2) = Phi_N/4 for a point mass in pure general relativity   (max relative error over 10-300 kpc = 1.45e-05)
+
+  D1  THE ANISOTROPIC STRESS ITSELF.  J' is emphatically NOT small where galaxies live -- but what
+      the slip responds to is 2 g g_phi/c^4, and that is bounded because g_phi is bounded.
+    canonical (a0 = 9.3619e-11 m/s^2):
+        deep MOND outskirts  s = g_N/a0 = 0.05: g_N=4.681e-12 g_phi=1.868e-11 g=2.336e-11 m/s^2 | J'/(8 pi G b)=g/g_phi=1.251e+00 | MOND stress 2 g g_phi=8.728e-22 | GR's own 2 g^2=1.092e-21 | net 2 g g_N=2.187e-22 (m/s^2)^2
+        deep MOND            s = 0.3          : g_N=2.809e-11 g_phi=3.851e-11 g=6.660e-11 m/s^2 | J'/(8 pi G b)=g/g_phi=1.729e+00 | MOND stress 2 g g_phi=5.129e-21 | GR's own 2 g^2=8.870e-21 | net 2 g g_N=3.741e-21 (m/s^2)^2
+        transition           s = 1.0          : g_N=9.362e-11 g_phi=5.448e-11 g=1.481e-10 m/s^2 | J'/(8 pi G b)=g/g_phi=2.718e+00 | MOND stress 2 g g_phi=1.614e-20 | GR's own 2 g^2=4.387e-20 | net 2 g g_N=2.773e-20 (m/s^2)^2
+        transition peak      s = 2.54         : g_N=2.378e-10 g_phi=6.063e-11 g=2.984e-10 m/s^2 | J'/(8 pi G b)=g/g_phi=4.922e+00 | MOND stress 2 g g_phi=3.619e-20 | GR's own 2 g^2=1.781e-19 | net 2 g g_N=1.419e-19 (m/s^2)^2
+        high acceleration    s = 1e3          : g_N=9.362e-08 g_phi=6.063e-11 g=9.368e-08 m/s^2 | J'/(8 pi G b)=g/g_phi=1.545e+03 | MOND stress 2 g g_phi=1.136e-17 | GR's own 2 g^2=1.755e-14 | net 2 g g_N=1.754e-14 (m/s^2)^2
+        Saturn               s = 6.4e7        : g_N=5.992e-03 g_phi=6.063e-11 g=5.992e-03 m/s^2 | J'/(8 pi G b)=g/g_phi=9.883e+07 | MOND stress 2 g g_phi=7.265e-13 | GR's own 2 g^2=7.180e-05 | net 2 g g_N=7.180e-05 (m/s^2)^2
+    alt (a0 = 1.1279e-10 m/s^2):
+        deep MOND outskirts  s = g_N/a0 = 0.05: g_N=5.640e-12 g_phi=2.251e-11 g=2.815e-11 m/s^2 | J'/(8 pi G b)=g/g_phi=1.251e+00 | MOND stress 2 g g_phi=1.267e-21 | GR's own 2 g^2=1.584e-21 | net 2 g g_N=3.175e-22 (m/s^2)^2
+        deep MOND            s = 0.3          : g_N=3.384e-11 g_phi=4.640e-11 g=8.023e-11 m/s^2 | J'/(8 pi G b)=g/g_phi=1.729e+00 | MOND stress 2 g g_phi=7.445e-21 | GR's own 2 g^2=1.287e-20 | net 2 g g_N=5.430e-21 (m/s^2)^2
+        transition           s = 1.0          : g_N=1.128e-10 g_phi=6.564e-11 g=1.784e-10 m/s^2 | J'/(8 pi G b)=g/g_phi=2.718e+00 | MOND stress 2 g g_phi=2.342e-20 | GR's own 2 g^2=6.368e-20 | net 2 g g_N=4.025e-20 (m/s^2)^2
+        transition peak      s = 2.54         : g_N=2.865e-10 g_phi=7.304e-11 g=3.595e-10 m/s^2 | J'/(8 pi G b)=g/g_phi=4.922e+00 | MOND stress 2 g g_phi=5.252e-20 | GR's own 2 g^2=2.585e-19 | net 2 g g_N=2.060e-19 (m/s^2)^2
+        high acceleration    s = 1e3          : g_N=1.128e-07 g_phi=7.304e-11 g=1.129e-07 m/s^2 | J'/(8 pi G b)=g/g_phi=1.545e+03 | MOND stress 2 g g_phi=1.649e-17 | GR's own 2 g^2=2.548e-14 | net 2 g g_N=2.546e-14 (m/s^2)^2
+        Saturn               s = 6.4e7        : g_N=7.219e-03 g_phi=7.304e-11 g=7.219e-03 m/s^2 | J'/(8 pi G b)=g/g_phi=9.883e+07 | MOND stress 2 g g_phi=1.055e-12 | GR's own 2 g^2=1.042e-04 | net 2 g g_N=1.042e-04 (m/s^2)^2
+      Reading: J'/(8 pi G b) = g/g_phi runs from 1.25 in deep-MOND outskirts to 1.5e9 at Saturn, so J'
+      is not small anywhere.  The MOND stress 2 g g_phi is nevertheless always <= GR's own 2 g^2, and
+      the two subtract: the net source is 2 g g_N, which in deep MOND is the SMALLER of the two.
+
+  D2  REAL DISC GALAXIES (SPARC rotmod files, Upsilon_disk = 0.5, Upsilon_bulge = 0.7).
+      Observable: |M_lens/M_dyn - 1| = |Phi - Psi|'/(2 Phi').  NOTE this is the same number as the
+      deposited claim's |Phi - Psi|/|Phi|: for the isotropic-Schwarzschild solution both equal
+      GM/(4 r c^2) exactly, so the comparison with 'better than 1e-4' is like for like.
+      175 SPARC galaxies.
+        nu_RAR (carried)       canonical: median |M_lens/M_dyn - 1| at the last measured radius = 7.434e-09;  worst galaxy UGC09133 (R_last = 108.3 kpc) -> 5.230e-07
+        nu_RAR (carried)       alt      : median |M_lens/M_dyn - 1| at the last measured radius = 7.457e-09;  worst galaxy UGC09133 (R_last = 108.3 kpc) -> 5.234e-07
+        exponential carrier    canonical: median |M_lens/M_dyn - 1| at the last measured radius = 7.551e-09;  worst galaxy UGC09133 (R_last = 108.3 kpc) -> 5.222e-07
+        exponential carrier    alt      : median |M_lens/M_dyn - 1| at the last measured radius = 7.561e-09;  worst galaxy UGC09133 (R_last = 108.3 kpc) -> 5.224e-07
+  [PASS] D2 the slip for a REAL disc galaxy is two to four orders of magnitude below the deposited claim's 1e-4 line: the median SPARC galaxy is 7e-9 at its last measured radius and the worst of 175, on either footing and either kernel, is 5e-7   (worst |M_lens/M_dyn - 1| over 175 galaxies x 2 footings x 2 kernels = 5.234e-07)
+
+  D3  A REAL CLUSTER (X-COP, cluster_measurement_audit_2026/results.json -- the rows L2/L6/L24 use).
+        nu_RAR (carried)       canonical: 12 clusters, |M_lens/M_dyn - 1| at the outermost radius: median 9.853e-07, worst A2142 (R_last = 1000 kpc) -> 2.388e-06
+        nu_RAR (carried)       alt      : 12 clusters, |M_lens/M_dyn - 1| at the outermost radius: median 9.884e-07, worst A2142 (R_last = 1000 kpc) -> 2.394e-06
+        exponential carrier    canonical: 12 clusters, |M_lens/M_dyn - 1| at the outermost radius: median 1.001e-06, worst A2142 (R_last = 1000 kpc) -> 2.417e-06
+        exponential carrier    alt      : 12 clusters, |M_lens/M_dyn - 1| at the outermost radius: median 1.003e-06, worst A2142 (R_last = 1000 kpc) -> 2.422e-06
+  [PASS] D3 the slip for a REAL cluster is also far below 1e-4, though ~1000x a galaxy's because the slip tracks the potential depth and clusters are deeper   (worst X-COP |M_lens/M_dyn - 1| over both footings and both kernels = 2.422e-06)
+
+  D4  THE DEPOSITED CLAIM: 'Phi = Psi to better than 1e-4 out to 1 Mpc'.  Since the slip is Phi_N/4-
+      like, the worst case at 1 Mpc is the DEEPEST potential there, i.e. the most massive cluster.
+        M = 1e+12 Msun, at r = 1 Mpc: pure GR would give 1.197e-08; this theory nu_RAR/canonical 1.588e-08, nu_RAR/alt 1.588e-08, exponential/canonical 1.592e-08, exponential/alt 1.592e-08
+        M = 1e+13 Msun, at r = 1 Mpc: pure GR would give 1.197e-07; this theory nu_RAR/canonical 1.572e-07, nu_RAR/alt 1.574e-07, exponential/canonical 1.583e-07, exponential/alt 1.584e-07
+        M = 1e+14 Msun, at r = 1 Mpc: pure GR would give 1.197e-06; this theory nu_RAR/canonical 1.525e-06, nu_RAR/alt 1.531e-06, exponential/canonical 1.554e-06, exponential/alt 1.558e-06
+        M = 1e+15 Msun, at r = 1 Mpc: pure GR would give 1.197e-05; this theory nu_RAR/canonical 1.411e-05, nu_RAR/alt 1.423e-05, exponential/canonical 1.403e-05, exponential/alt 1.428e-05
+        M = 2e+15 Msun, at r = 1 Mpc: pure GR would give 2.393e-05; this theory nu_RAR/canonical 2.720e-05, nu_RAR/alt 2.750e-05, exponential/canonical 2.639e-05, exponential/alt 2.679e-05
+  [PASS] D4a the deposited claim 'Phi = Psi to better than 1e-4 out to 1 Mpc' SURVIVES on both footings and both kernels: the worst case, a 2e15 Msun cluster at 1 Mpc, gives about 1e-5   (worst-case |M_lens/M_dyn - 1| at 1 Mpc = 2.750e-05; margin 3.6x)
+  [FAIL] D4b [this check can fail, and it is the one worth watching] L11 B4b's stated bound |Phi-Psi|/|Phi| <= a0 L/(6 c^2) numerically covers the slip this lane computes at 1 Mpc   (L11's a0(alt) L/(6c^2) = 6.454e-06 vs this lane's worst case 2.750e-05 at 1 Mpc (ratio 4.26).  NOTE the two are not the same quantity: L11's scales as a0 L and is mass-independent, the true slip scales as the potential depth Phi_N/4 and is mass-dependent, so the agreement in size at 1 Mpc is a coincidence of the cluster scale and the bound is not a bound)
+
+  D5  DOES IT DISTURB THE LENSING-VS-DYNAMICS AGREEMENT?  L24 measures M_WL/M_HSE = 1.154 +/- 0.147
+      on X-COP and S_lens - S_dyn = +0.369 +/- 0.238 (1.55 sigma, canonical) / +0.341 +/- 0.220
+      (1.55 sigma, alt).  A slip shifts M_lens/M_dyn by exactly the fraction computed above.
+        largest slip anywhere in the X-COP sample : 2.422e-06
+        measurement error on M_WL/M_HSE           : 0.147
+        induced shift in units of that error      : 1.648e-05 sigma
+        shift in S_lens - S_dyn (+0.369 +/- 0.238): +4.813e-06 on a +/- 0.246 measurement
+  [PASS] D5 the slip is irrelevant to the 1.55 sigma lensing-vs-dynamics agreement, the framework's load-bearing result here: it moves M_lens/M_dyn by less than 1e-4 sigma   (induced shift 2.42e-06 against a 0.147 error bar = 1.6e-05 sigma)
+
+  D6  THE OTHER SECOND-ORDER SOURCE: the aether block c14 a.a, source -c14 g^2 (khronometric reading
+      ca = c14/16 pi G), against the MOND+GR net 2 g g_N.  c14 <= 1.98e-6 (THE_COMPLETE_THEORY sec.3).
+        canonical galaxy   s = 0.05   : net 2 g g_N = 2.187e-22,  aether c14 g^2 = 1.081e-27 (m/s^2)^2 -> aether/net = 4.941e-06
+        canonical cluster  s = 3      : net 2 g g_N = 1.918e-19,  aether c14 g^2 = 2.309e-25 (m/s^2)^2 -> aether/net = 1.204e-06
+        canonical Saturn   s = 6.4e7  : net 2 g g_N = 7.180e-05,  aether c14 g^2 = 7.108e-11 (m/s^2)^2 -> aether/net = 9.900e-07
+        alt       galaxy   s = 0.05   : net 2 g g_N = 3.175e-22,  aether c14 g^2 = 1.568e-27 (m/s^2)^2 -> aether/net = 4.941e-06
+        alt       cluster  s = 3      : net 2 g g_N = 2.784e-19,  aether c14 g^2 = 3.351e-25 (m/s^2)^2 -> aether/net = 1.204e-06
+        alt       Saturn   s = 6.4e7  : net 2 g g_N = 1.042e-04,  aether c14 g^2 = 1.032e-10 (m/s^2)^2 -> aether/net = 9.900e-07
+  [PASS] D6 the aether block's own anisotropic stress is at most c14 g/(2 g_N) ~ 1e-6 of the net source everywhere, including the Solar System, so the c14 already priced by the PPN gates (alpha_1 = -4 c14, gamma = 1) does not change this conclusion   (aether/net = c14 g/(2 g_N), maximal in deep MOND where it is ~1.2e-5, and ~1e-6 at high acceleration)
+
+--------------------------------------------------------------------------------------------------------------------------
+PART E -- VERDICT
+--------------------------------------------------------------------------------------------------------------------------
+
+  The relayed identity is CORRECT AS STATED, and it is already committed: it appears verbatim in the lead's
+  own USER_ACTION_BACKGROUND.md ("Hence E_A - E_B/2 = 2 b J1 s0^2"), so it was not, in the end, an
+  uncommitted claim.  In the lead's display normalisation it equals g g_phi/(4 pi G), i.e. (1/8 pi G) times
+  a physical anisotropic stress 2 g g_phi -- and that number is independent of the g_N = J_Y w versus
+  g_N = 2 J_Y w dispute, because J' and the scalar's gradient rescale inversely.  (Separately: the action's
+  own static reduction gives J_Y w proportional to the TOTAL acceleration, not to g_N, so neither side of
+  that dispute is what this action produces.)
+
+  But the relay names only ONE of the two blocks that carry anisotropic stress.  The AeST mixing term
+  2(2-K_B) J^mu d_mu phi carries -4 g g_phi against the J block's +2 g g_phi, and general relativity's own
+  second-order term carries +2 g^2.  The three sum to 2 g g_N.  So the MOND sector does not add a slip; it
+  SUBTRACTS from the slip general relativity already has, by the factor g_N/g, which in the deep-MOND
+  regime is the small quantity.
+
+  No slip survives, then -- as an ORDER statement, of exactly the same standing as gamma_PPN = 1, and in
+  planar as much as in spherical symmetry.  It does not survive as an exact statement, and it never could:
+  the isotropic-coordinate Schwarzschild metric itself has Phi - Psi = -(GM/2rc^2)^2.  Numerically the slip
+  is 1e-8 in a disc galaxy, 1e-6 to 1e-5 in a cluster, and about 1e-5 for the most massive cluster at
+  1 Mpc, against a lensing-vs-dynamics measurement whose own error bar is 0.147.
+
+  [PASS] E1 [VERDICT] no-slip SURVIVES: the deposited claim 'Phi = Psi to better than 1e-4 out to 1 Mpc' stands on both footings and both kernels, and the MOND scalar's anisotropic stress makes it BETTER than in general relativity, not worse   (disc 5.2e-07, cluster 2.4e-06, worst case at 1 Mpc 2.7e-05, all < 1e-4)
+  [PASS] E2 [VERDICT] no-slip does NOT survive as an EXACT statement, and the paper should not imply that it does: the traceless source is nonzero at second order in the potentials, in spherical symmetry as much as off it, and general relativity's own slip at that order is Phi_N/4   (the O(eps^2) traceless source is 2 g g_N/(8 pi G) - 2 ca g^2, nonzero whenever g_N > 0)
+  [PASS] E3 [VERDICT, amendment] the deposited paper needs one small amendment, to the ERROR BAR and not to the result: L11 B4b's bound a0 L/(6 c^2) is not the right functional form (the slip scales as the potential depth, not as a0 L, and is mass-dependent), and 'no slip' should be stated as 'no slip at Newtonian order, second-order residual <= Phi_N/4 as in general relativity'.  No gate changes; the lensing-vs-dynamics result is untouched at the 1e-4 sigma level   (amendment is to the wording and the quoted bound, not to any number a gate depends on)
+
+==========================================================================================================================
+FAIL lines (1):
+   - D4b [this check can fail, and it is the one worth watching] L11 B4b's stated bound |Phi-Psi|/|Phi| <= a0 L/(6 c^2) numerically covers the slip this lane computes at 1 Mpc
+==========================================================================================================================

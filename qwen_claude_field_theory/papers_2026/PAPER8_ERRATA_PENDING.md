@@ -59,6 +59,25 @@ the published formula give **−4.00e-6** at the exhibited point. The gate passe
 
 The longitudinal cone figure in §4.3 is a **speed squared**, not a speed. Cosmetic; no verdict moves.
 
+## E5 — the no-slip error bar has the wrong functional form (`L58_anisotropic_stress.py`, 30 checks)
+
+**The result stands; the error bar does not.** Prompted by an exact planar identity from the lead agent,
+an independent rebuild confirms `Φ = Ψ to better than 1e-4 out to 1 Mpc` on both footings and both
+kernels, with a **3.6× margin** at the genuine worst case. Median disc slip 7.4e-9, worst of 175 discs
+5.2e-7, worst cluster 2.4e-6.
+
+Two statements need fixing. **The quoted bound `a₀L/(6c²)` has the wrong functional form** — the slip
+tracks the **potential depth** and is **mass-dependent**, not `a₀L` — and it is **exceeded 4.26×** by the
+most massive clusters at 1 Mpc. And **"exactly" should not be attached to no slip** in a paper whose
+metric sector is Einstein's: the correct statement is *no slip at Newtonian order, with a second-order
+residual of at most Φ_N/4, exactly as in general relativity* — a scope statement of the same standing as
+γ_PPN = 1.
+
+**One result to ADD rather than correct, and it runs in the theory's favour:** kept exactly, the MOND
+sector's anisotropic stress **partially cancels general relativity's own second-order term**, so the
+scalar makes the slip **smaller** than GR's by a factor g_N/g. No gate changes; the lensing-versus-
+dynamics agreement moves by 1.6e-5 σ.
+
 ---
 
 ## Two things a v2 should ADD rather than correct
