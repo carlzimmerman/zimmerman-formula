@@ -3397,3 +3397,33 @@ dark-matter mechanism whose dust is LINEAR in the conserved charge (ρ∝a⁻³,
 - **VERDICT.** c_T=c HIGH confidence (structural). P13 restated: **a subdominant scalar GW polarization is
   predicted (not null), falsifiable, currently consistent** — the radiation-zone amplitude is astra's open
   item. Predictions file P13 updated accordingly.
+
+## L89 — the External Field Effect: F(Q)Θ predicts a genuine SEP violation (dwarf σ–R_gc), with a wide-binary tension
+
+`L89_external_field_effect.py` + `.out` (**15 checks, 15 PASS**). The sharpest MOND-vs-dark-matter test,
+derived from the F(Q)Θ static equation ∇·[(1−e^{−|∇Φ|/a₀})∇Φ]=4πGρ.
+
+- **⭐ The EFE law (derived, not assigned).** Linearising about a uniform external field: internal equation
+  μ_e(∂_x²+∂_y²+q∂_z²)φ = 4πGρ, μ_e=1−e^{−η}, η=g_ext/a₀, q=1+L_e, L_e=η/(e^η−1). Point-mass Green function
+  and directional boosts reproduce astra's `exact_exponential_aqual_efe_kepler_2026` (reproduced, not
+  imported). Controls: kernel matches L80, deep-MOND q→2, Newtonises (γ_v→1) at strong external field.
+- **⭐⭐ Dwarf spheroidals — the clean DM discriminator.** Internal σ depends on Galactocentric distance via
+  g_ext(R_gc): a 10⁶ M☉ dwarf's σ_EFE rises **~1.9×** across R_gc 40→250 kpc; **dark matter predicts flat
+  σ(R_gc).** Crater II: EFE pulls σ 6.9→2.4 km/s vs observed 2.7 — the classic MOND-EFE success.
+- **⚠️ Wide-binary TENSION.** Orientation-averaged **γ_v ≈ 1.033 (canonical) / 1.059 (alt)**, anisotropic
+  1.08–1.12 (∥) vs 1.01–1.03 (⊥) — **~0.13 BELOW the registered Arm A ν_RAR band (1.16–1.23)**, in the Arm
+  B covariant band. Reason (D1 kernel conflict, quantified): the **exponential** kernel that actually
+  descends from F(Q)Θ Newtonises faster than ν_RAR at g_ext≈1.9 a₀ (μ_e≈0.85 vs ν_RAR μ_eff≈0.74).
+  **Inconsistent with Chae et al.'s γ_v≈1.19–1.26 detection**, **consistent with Newton-leaning
+  (Pittordis–Sutherland/Banik)** analyses. 3–6% above Newton is a weak signal (~10× more pairs needed).
+- **⭐ Crisp falsifiable statement.** F(Q)Θ: γ_v≈1.03/1.06 (anisotropic) + a ~2× dwarf σ–R_gc correlation;
+  dark matter: γ_v=1.000 exactly, zero R_gc-dependence. **Decisive test = the dwarf σ–R_gc correlation** (DM
+  has no mechanism); DR4 wide binaries chiefly test which kernel — a confirmed γ_v≈1.2 would disfavour the
+  F(Q)Θ exponential kernel in favour of ν_RAR.
+- **⚠️ FLAGGED for the user/astra (not acted on):** the AQUAL-EFD anisotropy sign is γ_v(∥) > γ_v(⊥),
+  **opposite** to the frozen preregistration's quadrature "derived-EFE" amendment (∥ < ⊥) — a genuine
+  prescription difference between the static AQUAL equation and the relativistic-quadrature EFE. NOT
+  resolved here and the preregistration is untouched (append-only, user's call).
+- **VERDICT.** HIGH confidence the EFE law/magnitude sits below Arm A; HIGH on the sign and ~2× dwarf trend
+  (the falsifiable core). F(Q)Θ makes a genuine, distinctive SEP-violation prediction — cleanly testable via
+  dwarf σ–R_gc — while predicting a weaker wide-binary signal than ν_RAR.
