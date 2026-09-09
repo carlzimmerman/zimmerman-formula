@@ -1,0 +1,332 @@
+==========================================================================================================================
+L50 -- BARYON SOURCING: if the MOND scalar is sourced by the baryons alone, does L49's pincer open?
+==========================================================================================================================
+  sources, all committed products of this repository; nothing below is retyped from prose:
+    clusters : closure_2026/cluster_measurement_audit_2026/results.json
+    galaxies : real_research/data/sparc_data/*_rotmod.dat  +  SPARC_Lelli2016c.mrt
+    theory   : THE_COMPLETE_THEORY_2026-09-08.md sections 2-5;  L49_MINIMUM_ADDITION.md (the control)
+    prior    : closure_2026/LOCAL_NO_GO_AND_FORK_PAPER_2026-09-03.md 3.2 (the disformal identity), 3.3
+               (the alpha_1 lock);  closure_2026/CRISPY_FRIED_CHICKEN_RECIPE.md I2 (one physical metric)
+
+==========================================================================================================================
+PART A -- CONTROLS.  Rebuild L49's pincer from its own data before touching anything.
+==========================================================================================================================
+  canonical: 12 clusters at 1000 kpc -- f_bar 0.149, Newtonian M_dark/M_bar 5.73 +/- 0.68, post-kernel residual 3.09 M_bar
+        alt: 12 clusters at 1000 kpc -- f_bar 0.149, Newtonian M_dark/M_bar 5.73 +/- 0.68, post-kernel residual 2.76 M_bar
+  [PASS] A1 [control] an independent recomputation returns L49 X1's cluster amount 5.73 +/- 0.68 and f_bar = 0.149 at 1000 kpc, on both footings   (M_dark/M_bar = 5.73 +/- 0.68 (a_0-independent), f_bar = 0.149)
+  [PASS] A2 [control] the framework's OWN post-kernel cluster residual reproduces L49 X6's 3.09 M_bar (canonical) / 2.76 M_bar (alt)   (3.09 / 2.76 M_bar)
+  SPARC: 155 galaxies, 2786 points (Upsilon_d = 0.5, Upsilon_b = 0.7, eV/V < 0.10)
+  parameter-free anchors: kernel at f = 0 -> 0.145 dex median +0.030 (canonical), 0.142 / +0.003 (alt); abundance-matched halo alone at f = 1 -> 0.171 / -0.026
+  [PASS] A3 [control] the SPARC machinery reproduces L49 X8's three parameter-free numbers (kernel 0.145 / 0.142 dex with medians +0.030 / +0.003; abundance-matched halo 0.171 dex with median -0.026)   (kernel 0.145 / 0.142 dex, medians +0.030 / +0.003; halo 0.171 dex, median -0.026)
+  [PASS] A4 [control] L49 N1's overshoot at the abundance the CMB fixes is reproduced: median RAR residual -0.259 dex (canonical) / -0.283 (alt), an overshoot of 1.82x in acceleration   (median -0.259 / -0.283 dex, i.e. 1.82x / 1.92x; rms 0.145 -> 0.338)
+  
+  L49's three windows, rebuilt here with independent code:
+      galaxies  (generous, |median| < 0.11 dex): f <= 0.355 / 0.276      (strict, rms not degraded by 0.02: 0.185 / 0.120)
+      clusters  (self-consistent at 1000 kpc) : f  = 0.316 +/- 0.100 / 0.261 +/- 0.093   at b = 0
+      the CMB   (Omega_c h^2 = 0.1200 +/- 0.0012) : f = 1.000 +/- 0.010
+  [PASS] A5 [control] L49's THREE admissible cold-fraction windows are reproduced: galaxies f <= 0.355 / 0.276, clusters f = 0.316 +/- 0.100 / 0.261 +/- 0.093, CMB f = 1.000 +/- 0.010   (galaxies 0.355 / 0.276 (strict 0.185 / 0.120); clusters 0.316 +/- 0.100 / 0.261 +/- 0.093)
+  [PASS] A6 [control] L49's intersection is EMPTY and the BINDING constraint is the CMB rather than the clusters -- galaxies and clusters overlap, and the CMB is a factor 2.8 / 3.6 away   (galaxies and clusters overlap (0.355 >= 0.216); the galaxy ceiling corresponds to Omega_c h^2 = 0.0426 / 0.0331 against Planck's 0.1200, short by 2.8x / 3.6x)
+  [PASS] A7 [control] at zero cold fraction the baryon-sourced machinery is BIT-IDENTICAL to the total-sourced one -- i.e. eps is a genuine one-parameter deformation and not a different model   (|difference| < 1e-12 dex at eps = 0, 0.25, 1 on both footings; both return the deposited theory's 0.145 / 0.142 dex at medians +0.030 / +0.003)
+  
+  deep-MOND limit of the carried kernel, g_pred/sqrt(a_0 g_bar) at g_bar/a_0 = 1e-4, 1e-3, 1e-2: 1.0050, 1.0159, 1.0508   (Milgrom: 1)
+  high-acceleration limit, (g_pred - g_bar)/a_0 at g_bar/a_0 = 1e3, 1e4, 1e5: 0.6476, 0.6476, 0.6476   (the bounded boost C = 0.6476)
+  [PASS] A9 [control] the machinery returns the STANDARD MOND result at zero cold fraction: the deep-MOND asymptote g -> sqrt(a_0 g_bar) and the action's own bounded-boost ceiling C = 0.6476 a_0   (deep-MOND ratio 1.0050 at g_bar = 1e-4 a_0 (1.0 exact in the limit), and the excess saturates at exactly 0.6476 a_0)
+  [PASS] A8 [control] the kernel's own contribution in a cluster is recovered as the difference between the measured amount and the post-kernel residual   (the kernel supplies 2.64 M_bar (canonical) / 2.97 (alt) of the missing 5.73; the addition must supply the remaining 3.09 / 2.76)
+
+==========================================================================================================================
+PART B -- THE MODIFICATION, WRITTEN AT THE LEVEL OF THE LAGRANGIAN, AND CONSERVATION.
+          Conservation is checked FIRST because a source that is not the total stress tensor is the
+          one thing that can kill this outright.
+==========================================================================================================================
+  
+  the clock's 4-acceleration on a static weak-field metric ds^2 = -(1+2Phi)dt^2 + (1-2Phi)dx^2, to
+  first order:   J^i = Derivative(Phi(x, y, z), x), Derivative(Phi(x, y, z), y), Derivative(Phi(x, y, z), z)   (i.e. J^i = grad^i Phi)
+  and its divergence:   grad_mu J^mu = Derivative(Phi(x, y, z), (x, 2)) + Derivative(Phi(x, y, z), (y, 2)) + Derivative(Phi(x, y, z), (z, 2))   =  grad^2 Phi
+  [PASS] B1 the AeST drag coupling's source IS the total gravitating density: grad.J = grad^2 Psi statically, and grad^2 Psi is fixed by the Einstein equation to 4 pi G times EVERYTHING minimally coupled to g   (derived symbolically, not quoted: J^i = grad^i Phi exactly at first order and grad.J = grad^2 Phi. Integrating 2(2-K_B) J^mu d_mu phi by parts therefore gives -2(2-K_B) phi grad^2 Psi = -8 pi G (2-K_B) phi rho_total. THIS IS THE DESIGN CHOICE L49 NAMED, and it is a choice: the term is written in the action)
+
+  THE TWO BARYON-SOURCED VARIANTS, written out.
+    V-A  REPLACEMENT.  Delete the drag coupling and couple phi to the baryon trace instead:
+         2(2 - K_B) J^mu d_mu phi   ->   -8 pi G (2 - K_B) phi T_b ,   T_b = g_mn T^mn_baryon (= -rho_b for dust).
+         The coefficient is not free: it is fixed by demanding the SAME static limit, and with it the scalar
+         equation becomes grad.[J'(Y) grad phi] = 4 pi G rho_b exactly, with the 2(2-K_B) cancelling as it does in
+         the deposited theory. This is the RAQUAL / Bekenstein-Milgrom conformal coupling.
+    V-B  COMPENSATION.  KEEP the drag coupling and add ONE term coupling phi to the cold sector:
+         Delta L = +8 pi G (2 - K_B) phi rho_c ,   rho_c = n_mu n_nu T^mn_cold.
+         Its coefficient is fixed by ONE condition -- that it cancel rho_c out of the scalar's source -- and the net
+         scalar equation is grad.[(J' - 1) grad phi] = 4 pi G rho_b: Milgrom sourced by the baryons alone, with the
+         drag coupling intact. This matters, and E3 is why.
+    BOTH variants change the scalar's SOURCE and nothing else, so both predict the same thing for everything
+    measured with baryons and with light. They differ only in whether the phantom gravitates (E3), so they are
+    carried together as eps = 0 and separated only where they differ.
+
+  B2 -- CONSERVATION.  The brief's first kill condition: does a source that is not the total stress
+       tensor break the Bianchi identity?  Checked symbolically on FRW with the coupled sector present.
+       total continuity residual, d(rho_tot)/dt + 3H(rho_tot + p_tot), on shell:  0
+  [PASS] B2 [THE FIRST KILL CONDITION] baryon sourcing preserves conservation / the Bianchi identity   (IT DOES, and the reason is structural rather than lucky. The modification is made in the ACTION, and the action remains a diffeomorphism-invariant functional of (g, tau, phi, psi_b, psi_c); the Einstein equation is untouched (G_mn = 8 pi G T^total_mn), so grad_mu T^mu_nu(total) = 0 follows from the Bianchi identity exactly as before. What is NOT conserved is the coupled species alone: grad_mu T^mu_nu(coupled) = -beta T d_nu phi, an exchange term that the scalar's own equation cancels identically -- verified here to be zero symbolically. The threat is real only for a source inserted by hand into the FIELD EQUATION; it does not arise for a source written into the LAGRANGIAN)
+  [FAIL] B3 the compensating term of V-B is a free knob that could be tuned away, i.e. the construction has a hidden parameter   (it is not free: one condition (cancel rho_c out of the scalar's source) fixes one coefficient, -8 pi G (2 - K_B), and it is the SAME (2 - K_B) that generates MOND. But it is chosen rather than forced by a symmetry, and that is a real cost recorded here: the deposited action's source is a consequence of the geometric coupling, whereas the baryon-sourced one is an imposed selection of which matter the scalar sees. Unlike L49 P3's lambda <= 3.9e-7 it needs no EXACTNESS -- a mismatch just moves eps continuously off 0 -- which is why the whole family is carried as eps below)
+
+  B4 -- what the change does to the prediction, which is the only thing the data see:
+       total sourcing  (eps = 1, L49): g = g_bar + f g_halo + a_0 Delta( [g_bar + f g_halo] / a_0 )
+       baryon sourcing (eps = 0, L50): g = g_bar + f g_halo + a_0 Delta(  g_bar              / a_0 )
+       and since Delta is monotonically INCREASING (0 -> 0.6476 at the ceiling), baryon sourcing gives a
+       STRICTLY SMALLER kernel term whenever f > 0.  So the effect has the right sign; PART D asks how big.
+  [PASS] B4 the kernel term is monotone in its argument, so removing the cold component from the source can only DECREASE the kernel's contribution -- the change has the sign the lane needs   (Delta(s) is strictly increasing on 0 < s < 2.54 and constant at 0.6476 above it, so Delta(g_bar/a_0) <= Delta([g_bar + f g_halo]/a_0) pointwise for every f >= 0)
+
+==========================================================================================================================
+PART C -- A NEW RISK THE LANE ITSELF CREATES: does the clock tachyon come back?
+          On FRW the deposited action has NO homogeneous source for phi -- which is exactly why Q_0 = 0
+          is an exact solution and the tachyon is cured.  Any DIRECT MATTER coupling supplies one.
+==========================================================================================================================
+  
+  C1  L49 P1 reproduced independently: the clock's induced gradient-mass coefficient is K2*Qbar**2/a**2,
+      i.e. exactly K_2 Qbar^2 / a^2 -- tachyonic at K_2 = -|K_2| and vanishing IDENTICALLY at Qbar = 0.
+  [PASS] C1 [control] the clock tachyon's coefficient is exactly K_2 Qbar^2/a^2, reproducing L49 P1 with independent code -- so any mechanism that forces Qbar away from zero revives it   (coefficient of (dT/dx)^2 = K2*Qbar**2/a**2, zero at Qbar = 0)
+  
+  C2  On an exactly homogeneous slice: J^mu = n^nu grad_nu n^mu = 0 (the comoving congruence is
+      geodesic) and Y = q^ab d_a phi d_b phi = 0 (no spatial gradients).  So in the DEPOSITED action the
+      phi equation on FRW is d/dt[a^3 K'(Qbar)] = 0, which admits Qbar = 0 exactly -- the cure.
+      A direct coupling  -8 pi G (2 - K_B) phi rho_s  supplies a homogeneous source that does not vanish:
+          d/dt[a^3 K'(Qbar)] = -8 pi G (2 - K_B) rho_s a^3   =>   Qbar = -4 pi G (2-K_B) rhobar_s t / |K_2|
+  [PASS] C2 the forced condensate is solved rather than asserted: a^3 Qbar = C t solves the sourced clock equation exactly for a constant comoving source density   (d/dt(a^3 Qbar)/a^3 = C/a(t)**3 = C/a^3, which is the constant comoving source rho_s a^3 divided by a^3 -- so Qbar is NOT zero once any matter couples directly to phi, and by C1 the clock tachyon is revived)
+  
+  C3  In matter domination Qbar = -H f_s (2 - K_B)/|K_2| with f_s = rho_s/rho_total, so the induced
+      condensate carries Omega_K = f_s^2 (2-K_B)^2/(6|K_2|), and ON THE CLOSURE LOCUS c_2|K_2| = (2-K_B)^2
+      BOTH |K_2| AND (2-K_B) CANCEL:   Omega_K = f_s^2 c_2/6,   rate/H = f_s sqrt(c_2/2c_14) = f_s sqrt(sigma/2).
+      The exhibited point has c_2 = 1.6793e-06, |K_2| = 1.9294e+06, sigma = 1.679313, c_14 = 1.0e-06.
+        V-A, source = baryons  : f_s = Omega_b/Omega_m = 0.1556  ->  Omega_K = 6.773e-09, rate/H = 0.1425
+        V-B, source = the cold : f_s = Omega_c/Omega_m = 0.8444  ->  Omega_K = 1.996e-07, rate/H = 0.7738
+      Stability (the programme's own criterion, L49 P3 / g03w) is rate <= H at every a, i.e. f_s^2 sigma <= 2, i.e. f_s <= sqrt(2/sigma) = 1.0913.
+  [PASS] C4 the revived clock condensate does NOT violate the tachyon gate -- and it cannot, for any source, because f_s = rho_s/rho_total <= 1 while the bound is sqrt(2/sigma) > 1 across the whole clock window   (rate/H = 0.143 (V-A, margin 7.0x) and 0.774 (V-B, margin 1.29x); the bound f_s <= sqrt(2/sigma) is 1.091 at sigma* = 1.6793 and 1.063 at the top of the clock window sigma < 1.7716, both above 1, so the gate is structurally safe -- c_14 cancels entirely and the margin is a pure number set by sigma alone. THIS IS A REAL COST NONETHELESS: the deposited theory satisfies the gate IDENTICALLY (Qbar = 0 exactly), and V-B satisfies it with a margin of only 1.29x)
+  
+  C5  V-B makes the cold particles' mass depend on phi, so Omega_c could drift between recombination and
+      today, which would move the CMB window.  The cosmological amplitude is phi ~ Qbar/H = f_c (2-K_B)/|K_2| = 7.88e-07,
+      so the fractional mass drift is (2-K_B) phi/2 = 7.09e-07.
+  [PASS] C5 the compensating coupling leaves the cold component pressureless and its comoving density constant to better than 1e-5, so the CMB window f = 1.000 +/- 0.010 is unchanged by the modification   (fractional drift 7.09e-07, five orders below the CMB's 1% error on Omega_c h^2; the cold component still scales as a^-3 and the third-peak determination is untouched)
+
+==========================================================================================================================
+PART D -- THE THREE WINDOWS RECOMPUTED UNDER BARYON SOURCING.  This is the whole question.
+==========================================================================================================================
+
+  D1  SPARC under the two sourcings, side by side.  f is in units of the LambdaCDM abundance-matched halo.
+       f | eps=1 (L49) rms   median | eps=0 (L50) rms   median | halo alone rms   median
+    --- canonical ---
+   0.000 |           0.145   +0.030 |           0.145   +0.030 |          0.517   +0.435
+   0.050 |           0.142   +0.002 |           0.142   +0.014 |          0.455   +0.383
+   0.100 |           0.148   -0.020 |           0.141   -0.000 |          0.406   +0.335
+   0.200 |           0.169   -0.055 |           0.146   -0.024 |          0.331   +0.264
+   0.350 |           0.206   -0.109 |           0.162   -0.057 |          0.253   +0.184
+   0.500 |           0.241   -0.150 |           0.184   -0.092 |          0.202   +0.127
+   0.582 |           0.259   -0.170 |           0.197   -0.110 |          0.184   +0.099
+   0.750 |           0.293   -0.208 |           0.224   -0.145 |          0.164   +0.043
+   1.000 |           0.338   -0.259 |           0.264   -0.191 |          0.171   -0.026
+    --- alt ---
+   0.000 |           0.142   +0.003 |           0.142   +0.003 |          0.517   +0.435
+   0.050 |           0.146   -0.022 |           0.142   -0.010 |          0.455   +0.383
+   0.100 |           0.157   -0.044 |           0.144   -0.021 |          0.406   +0.335
+   0.200 |           0.184   -0.083 |           0.153   -0.047 |          0.331   +0.264
+   0.350 |           0.225   -0.133 |           0.174   -0.080 |          0.253   +0.184
+   0.500 |           0.262   -0.174 |           0.197   -0.113 |          0.202   +0.127
+   0.582 |           0.281   -0.194 |           0.211   -0.130 |          0.184   +0.099
+   0.750 |           0.315   -0.232 |           0.238   -0.164 |          0.164   +0.043
+   1.000 |           0.360   -0.283 |           0.277   -0.208 |          0.171   -0.026
+
+  D2  the overshoot at the abundance the CMB fixes (f = 1):
+        total sourcing  : median -0.259 / -0.283 dex  = 1.82x / 1.92x in acceleration
+        baryon sourcing : median -0.191 / -0.208 dex  = 1.55x / 1.61x in acceleration
+        so baryon sourcing removes 26% / 27% of the overshoot in dex, and 74% of it SURVIVES.
+  [FAIL] D5 [THE FIRST OF THE LANE'S OWN QUESTIONS] the galaxy overshoot VANISHES when the scalar is blind to the cold component   (it does not. At f = 1 the median RAR residual falls from -0.259 to -0.191 dex (canonical) and -0.283 to -0.208 (alt), an overshoot of 1.55x rather than 1.82x. Only 26% of the overshoot was the AMPLIFICATION L49 named; the other 74% is the kernel evaluated on the BARYONS ALONE, which is the MOND anomaly itself and is exactly what the theory cannot switch off. L49's diagnosis is correct but it is the smaller half of the effect)
+
+  D3  THE THREE WINDOWS, total sourcing (L49) against baryon sourcing (L50):
+                                           eps = 1  (L49)               eps = 0  (L50)
+          galaxies, generous           f <= 0.355 / 0.276           f <= 0.582 / 0.486
+            galaxies, strict           f <= 0.185 / 0.120           f <= 0.375 / 0.270
+             clusters, b = 0 0.316+/-0.100 / 0.261+/-0.093 0.569+/-0.130 / 0.508+/-0.133
+          clusters, b = 0.20 0.527+/-0.134 / 0.455+/-0.127 0.893+/-0.158 / 0.832+/-0.159
+                     the CMB              1.000 +/- 0.010              1.000 +/- 0.010   (C5: unchanged)
+  [PASS] D3 [control] the baryon-sourced cluster window agrees with its own closed form, f = (post-kernel residual)/(cosmic dark-to-baryon share) -- because with the scalar blind to the cold component the kernel's contribution no longer depends on f   (solved numerically 0.569 / 0.508 against the closed form 3.09/5.4286 = 0.569 and 2.76/5.4286 = 0.508)
+  [PASS] D4 [the second of the lane's own questions] the cluster window MOVES under baryon sourcing   (it does, and UPWARD: from 0.316 +/- 0.100 to 0.569 +/- 0.130 (canonical) and from 0.261 to 0.508 (alt), a factor 1.80. Clusters need MORE cold matter when the kernel no longer amplifies it, which is the correct direction and moves them TOWARD the CMB)
+
+  [PASS] D6 galaxies and clusters remain mutually admissible under baryon sourcing -- and now at a HIGHER cold fraction than L49's f ~ 0.3   (they do, and the agreement is sharper than L49's: the galaxy ceiling is 0.582 / 0.486 and clusters need 0.569 +/- 0.130 / 0.508 +/- 0.133 -- the two central values differ by 0.1 sigma (canonical). At the allowed hydrostatic bias b = 0.20 clusters want 0.89 +/- 0.16 and the window is CLOSED; on the STRICT galaxy criterion (f <= 0.375) it is CLOSED on both footings)
+  [FAIL] D10 clusters and the CMB are still in tension under baryon sourcing once the measured hydrostatic bias is allowed   (they are NOT, and this reframes what is left of the pincer. At the allowed b = 0.20 the baryon-sourced cluster requirement is 0.893 +/- 0.158 (canonical) / 0.832 +/- 0.159 (alt), which is 0.7 / 1.1 sigma from the CMB's f = 1.000. So under baryon sourcing CLUSTERS AND THE CMB ARE COMPATIBLE at the measured bias, and the entire surviving obstruction is GALAXIES -- the ceiling f <= 0.582 / 0.486. That is a cleaner statement of the problem than L49's three-way pincer, and it points at exactly one gate)
+
+  D-VERDICT  the three-way intersection:
+      galaxies allow   f <= 0.582 (canonical) / 0.486 (alt)
+      clusters need    f  = 0.569 +/- 0.130 / 0.508 +/- 0.133
+      the CMB fixes    f  = 1.000 +/- 0.010
+      the galaxy ceiling corresponds to Omega_c h^2 = 0.0698 / 0.0583 against Planck's 0.1200 +/- 0.0012
+  [FAIL] D7 [THE WHOLE QUESTION] the three-way intersection is NON-EMPTY under baryon sourcing -- i.e. there is one cold fraction admissible to galaxies, to clusters AND to the CMB at once   (it is not. The pincer NARROWS but does not open: the gap between the galaxy ceiling and the CMB's f = 1 falls from a factor 2.82 / 3.63 (total sourcing) to 1.72 / 2.06 (baryon sourcing), a reduction of 39%, and the binding constraint is STILL the CMB and still by a wide margin. Clusters, which L49 already found were not the obstacle, move further out of the way)
+
+  D8  the obstruction stated sharply, and it is source-INDEPENDENT.  Ask instead: at f = 1, what
+      fraction s of the kernel may survive before galaxies break?  (s = 1 is the action; s = 0 is no MOND.)
+        s <= 0.495 (canonical) / 0.439 (alt) on the generous criterion.
+      So at the abundance the CMB fixes, the action's MOND kernel must be suppressed by a factor
+      2.0x / 2.3x in galaxies. Re-sourcing the
+      scalar cannot do that: it only removes the halo-driven part of the kernel, and the baryon-driven
+      part IS the MOND anomaly the theory exists to produce.
+  [FAIL] D9 re-sourcing the scalar is capable IN PRINCIPLE of reaching f = 1, i.e. the obstruction is about WHICH matter sources the scalar rather than about the kernel existing at all   (it is not: even with the scalar completely blind to the cold component (eps = 0, the most that re-sourcing can achieve) the galaxy ceiling is 0.582. Reaching f = 1 requires the KERNEL ITSELF to be suppressed to s <= 0.495 of its value where galaxies are measured -- a screening of the MOND term by the cold component, which is L49's option (b) and not this lane, and which L6's cosmological-ordering theorem already constrains)
+
+==========================================================================================================================
+PART E -- THE PRICE.  Baryon-sourced modified gravity has known costs; which of them actually bite here?
+==========================================================================================================================
+
+  E1  EQUIVALENCE PRINCIPLE.  In BOTH variants the cold component and the baryons no longer fall
+      identically: baryons feel the MOND kernel and the cold component does not. At f = 0.582 the
+      median fractional difference across SPARC is eta = kernel/total = 0.391, i.e. an O(1) violation
+      BETWEEN SECTORS. Two things it is NOT:
+        (i) it is not a violation within the Standard Model. In V-B baryons stay minimally coupled to g,
+            so there is NO composition dependence and MICROSCOPE/Eotvos are untouched. In V-A the
+            conformal coupling is to the TRACE T_b, so electromagnetic binding energy (traceless)
+            decouples and a composition dependence DOES appear -- one more reason V-B is the variant to
+            carry;
+        (ii) it is not inconsistent with the LambdaCDM halo used throughout. In V-B the cold component
+            feels only the Newtonian field of rho_b + rho_c, which is exactly the gravity under which
+            abundance-matched NFW halos are built -- so the halo library is self-consistent, and MORE
+            so than under total sourcing, where the halo would itself have been MOND-boosted.
+  [PASS] E1 the equivalence-principle cost is confined to the DARK sector and does not touch any laboratory or Solar-System test   (in V-B it is: baryons and photons remain minimally coupled to the single metric g (the programme's own requirement I2), so gamma_PPN, Eotvos and MICROSCOPE are untouched, and the violation is between the visible and dark sectors alone, where it is unobservable except through the halo's equilibrium -- which is the LambdaCDM one by construction. Magnitude eta = 0.39 (median across SPARC). In V-A it is NOT confined: the conformal coupling to T_b is composition-dependent through the traceless electromagnetic binding energy)
+
+  E2  LENSING, and this is where the two variants part company.
+      In V-A the drag coupling is DELETED, so the only thing the MOND sector contributes to the Einstein
+      equation is its own gradient energy. Deep-MOND AQUAL has energy density ~ |grad phi|^3/(8 pi G a_0),
+      against a phantom density ~ |grad phi|/(4 pi G r); the ratio is |grad phi|^2 r/(2 a_0 c^2) =
+      1.61e-07 at 10 kpc in a galaxy and 1.61e-05 at 1 Mpc in a cluster. The phantom therefore
+      does not gravitate: light is deflected by the baryons and the cold component ONLY.
+      and that is not a modelling choice. Derived here rather than quoted: for a generic static isotropic
+      metric g = diag(-N^2, B^2, B^2, B^2) with arbitrary N(x), B(x), and a conformal rescaling
+      gtilde = A(x)^2 g, the Christoffel difference contracted on a vector k that is NULL with respect to
+      g satisfies  D^mu k^nu - D^nu k^mu = 0 for every mu, nu -- i.e. the extra acceleration is PARALLEL
+      to k, so the null curve is unchanged up to reparametrisation. A conformally coupled scalar cannot
+      bend light, whatever it does to matter.  (This is why TeVeS carries a DISFORMAL matter metric and a
+      vector, and why AeST couples its scalar to the aether's acceleration instead of to matter: both
+      couplings are UNIVERSAL, which is what buys the equivalence principle and lensing at once.)
+  [FAIL] E2 a conformally baryon-coupled MOND scalar still lenses   (it does not, and this is derived rather than asserted: with a generic static isotropic metric and an arbitrary conformal factor, the connection difference contracted on a g-null k comes out parallel to k (all sixteen antisymmetric combinations vanish identically), so null geodesics are unchanged. Combined with the energy-density ratio (1.6e-07 in a galaxy, 1.6e-05 in a cluster) this says V-A predicts M_dyn/M_lens > 1 by the FULL phantom -- the failure mode that the repository's own record puts at 21.2 sigma for the un-completed kernel and that the AeST drag coupling cures to 0.601 sigma)
+  
+  E3  how badly does V-A's lensing failure bite ONCE the cold component is present? At f = 0.569:
+        clusters: M_dyn/M_lens = (1 + 3.09 + 2.64)/(1 + 3.09) = 1.646, against the observed 1.0-1.3;
+        in L24 C8's own statistic that predicts S_lens - S_dyn = +0.899 against the measured +0.369 +/- 0.238 = 2.2 sigma;
+        galaxies: the median SPARC point has M_dyn/M_lens = 1.65, i.e. rotation curves and
+        galaxy-galaxy lensing would disagree by 65% at the SAME radius.
+  [FAIL] E3 V-A survives the lensing-equals-dynamics gate once a cold component is present (the cold mass lenses, so the discrepancy is diluted)   (it does not. The dilution is real -- the ratio falls from the un-completed kernel's 1/f_bar ~ 6.4 to 1.65 in clusters -- but it is still 1.65 at the median SPARC radius and 2.2 sigma in L24's cluster statistic, against a gate the deposited theory passes STRUCTURALLY (Phi = Psi, M_dyn/M_lens = 1 exactly). NOTE the cluster significance alone is not a kill: L24's error is 5-cluster weak-lensing noise. The load-bearing statement is structural, not statistical -- V-A predicts a definite inequality where the deposited theory predicts an identity)
+  [PASS] E4 V-B survives the lensing-equals-dynamics gate   (it does, and this is why V-B is the variant to carry: the drag coupling 2(2-K_B)J^mu d_mu phi is RETAINED, so the phantom continues to enter the Einstein equation exactly as in the deposited theory, and baryons and photons both remain minimally coupled to the single metric g. Phi = Psi, M_dyn/M_lens = 1 and gamma_PPN = 1 are untouched; only the scalar's SOURCE is changed, by a term that couples to the cold sector alone)
+
+  E5  THE DISFORMAL REPAIR OF V-A IS ALREADY CLOSED IN THIS REPOSITORY, and it is worth saying because it
+      is the standard fix. Repairing a conformally coupled scalar's lensing needs a disformal piece,
+      gtilde = g + B d_mu phi d_nu phi (this is why TeVeS carries a vector). LOCAL_NO_GO 3.2's identity:
+          (c_GW - c_light)/c = B phi'^2/2 = (Psi - Phi)_uncancelled,
+      i.e. the slip cancelled IS the light-cone tilt created. Along GW170817's path the two host galaxies'
+      MOND regions exceed the bound by ~2e6 eps, and the 40 Mpc of intergalactic medium alone by 30-300x.
+      A CONTRARY RECORD IS FLAGGED RATHER THAN RESOLVED: LEDGER sf27 reports a disformal+conformal
+      coupling to the khronon's normal REPAIRING the lensing gate in a different chassis. The two are not
+      the same construction and this lane does not adjudicate them; V-B needs neither.
+  [FAIL] E5 the disformal repair is available to V-A as an unencumbered option   (it is not: the repository's own LOCAL_NO_GO 3.2 identity ties the cancelled slip to a light-cone tilt excluded by GW170817 by 30-300x from the intergalactic path alone, and the programme's I2 requirement (one physical metric, no disformal matter metric) forbids it by construction. A contrary record (LEDGER sf27, a different chassis) is flagged, not resolved. This is a reason to carry V-B, which needs no repair, rather than a kill of the lane)
+
+  E6  PREFERRED-FRAME PARAMETERS. LOCAL_NO_GO 3.3's closed form is alpha_1 = -4 c_14 - 4(2-K_B)/(J_Y+1),
+      and the drag coefficient (2 - K_B) IS the MOND-generating coupling. The deposited theory clears
+      alpha_1 because the coherence length xi screens the Solar System (J_Y -> large there), giving
+      alpha_1 -> -4 c_14 = -4.00e-06 against the 1e-4 bound.
+        V-B keeps the drag coupling, so alpha_1, alpha_2, alpha_3 and gamma are LITERALLY unchanged.
+        V-A deletes it, so the MOND piece -3.60 (at J_Y = 1) disappears identically and
+        alpha_1 = -4 c_14 with no screening needed -- a genuine GAIN for V-A, and moot given E3.
+  [PASS] E6 baryon sourcing leaves the preferred-frame parameters at or better than the deposited theory's values   (it does. V-B changes nothing in the aether/scalar sector (the added term couples phi to the cold sector, which is absent from the Solar System), so alpha_1 = -4 c_14 = -4.00e-06 and alpha_2 = (c_14/2)(1/sigma - 1) = -2.02e-07 stand. V-A removes the MOND piece of alpha_1 entirely, which is an improvement it cannot cash because of E3)
+  [PASS] E7 the Solar-System phantom-mass bound survives the exhibited cold fraction   (a smooth cold halo at f = 0.569 of the locally measured density puts 2.48e-15 Msun inside Saturn's orbit against Pitjev-Pitjeva's 6.7e-11 Msun, a margin of 26967x)
+
+==========================================================================================================================
+PART F -- AN EXHIBITED POINT, RUN AGAINST THE GATES THE DEPOSITED THEORY PASSES.
+==========================================================================================================================
+
+  THE POINT: variant V-B, cold fraction f = 0.569 of the abundance-matched LambdaCDM halo, on the
+  deposited theory's own exhibited parameters K_B = 0.2, c_14 = 1.0e-06, sigma = 1.679313,
+  c_2 = 1.6793e-06, |K_2| = 1.9294e+06 (closure locus), xi and p unchanged.
+  
+  gate                                         verdict                                  number
+  ----------------------------------------------------------------------------------------------------------------------
+  Cassini / sunward / coherence length xi      PASS                                     the aether-scalar sector is untouched; the cold component adds no fiel
+                                                                                        d gradient and 2.5e-15 Msun inside Saturn (E7)
+  Saturn phantom mass                          PASS                                     2.48e-15 vs 6.7e-11 Msun, margin 26967x
+  alpha_1, alpha_2, alpha_3, gamma             PASS                                     unchanged: alpha_1 = -4.00e-06, alpha_2 = -2.02e-07 (E6)
+  c_T = c (GW170817)                           PASS                                     c_13 = 0 identically; no disformal matter metric is introduced (E5)
+  mode count and health                        PASS                                     2 tensor + 1 clock + 1 MOND scalar unchanged; the cold component adds 
+                                                                                        at most one matter degree of freedom and the compensating term adds
+                                                                                        none
+  clock tachyon                                PASS, with a NEW and much thinner margin the deposited theory satisfies it IDENTICALLY (Qbar = 0); V-B forces Q
+                                                                                        bar =/= 0 and satisfies it at rate/H = 0.774, margin 1.29x (C4)
+  lensing == dynamics (Phi = Psi)              PASS                                     structurally, because the drag coupling is retained (E4)
+  BBN                                          PASS                                     Delta N_eff = 0; and the cold component supplies Omega_m, which the de
+                                                                                        posited theory could not
+  rotation curves (non-overshoot)              PASS at this f                           median RAR residual -0.107 / -0.128 dex, rms 0.195 / 0.208
+  cluster amount                               PASS at this f                           0.0 sigma / 0.5 sigma from the required 0.569 +/- 0.130 / 0.508 +/- 0.
+                                                                                        133
+  conservation / Bianchi                       PASS                                     verified symbolically (B2)
+  CMB cold-matter density                      FAIL                                     Omega_c h^2 = 0.0683 against Planck's 0.1200 +/- 0.0012, short by a fa
+                                                                                        ctor 1.76
+  linear growth / sigma_8                      FAIL, by the same factor                 S_eff = 0 exactly, so growth is algebraically LambdaCDM's -- but with 
+                                                                                        only Omega_c h^2 = 0.0683 of cold matter
+  [PASS] F1 an admissible point exists that survives every gate the DEPOSITED theory already passes   (it does: 11 of 13 gates pass at f = 0.569 in variant V-B, including the two the lane put at risk -- conservation (B2) and lensing-equals-dynamics (E4) -- and including the clock tachyon, at a margin of 1.29x rather than identically)
+  [FAIL] F2 that point also repairs the two gates the deposited theory FAILS outright -- the CMB cold-matter density and linear growth   (it does not: f = 0.569 gives Omega_c h^2 = 0.0683 against 0.1200 +/- 0.0012, short by a factor 1.76. This is the same failure L49 found, reduced from a factor 2.8 to 1.8 but not removed)
+  [PASS] F3 the exhibited point is at least a strict improvement on L49's -- the admissible cold fraction is higher and every gate L49's point passed is still passed   (it is: f = 0.569 against L49's 0.316, a factor 1.80, with the CMB deficit falling from 2.8x to 1.8x and no gate lost)
+
+==========================================================================================================================
+PART G -- VERDICT
+==========================================================================================================================
+  [PASS] V1 [the brief's first kill condition] conservation survives baryon sourcing   (YES. The modification is written into the Lagrangian, so diffeomorphism invariance gives grad_mu T^mu_nu(total) = 0 identically; only the individually coupled species is non-conserved, and its exchange term cancels against the scalar's own equation (B2, verified symbolically). The lane is not killed at step one)
+  [FAIL] V2 the galaxy overshoot vanishes under baryon sourcing   (NO. It falls from -0.259 to -0.191 dex at f = 1 (1.82x -> 1.55x in acceleration), removing 26% of it. The surviving 74% is the kernel evaluated on the baryons alone)
+  [PASS] V3 the cluster window moves   (YES, upward, from 0.316 +/- 0.100 to 0.569 +/- 0.130 (canonical) and 0.261 to 0.508 (alt) -- toward the CMB, and into near-exact agreement with the galaxy ceiling)
+  [FAIL] V4 [THE LANE'S QUESTION] the three-way intersection is non-empty: the pincer OPENS   (NO. Galaxies allow f <= 0.582 / 0.486, clusters need 0.569 +/- 0.130 / 0.508 +/- 0.133, the CMB fixes 1.000 +/- 0.010. The interior is still empty and the binding constraint is still the CMB. What DID change: the gap narrowed from 2.82x to 1.72x (canonical) and 3.63x to 2.06x (alt), and galaxies and clusters now agree to 0.1 sigma at f ~ 0.57 instead of ~0.3)
+  [PASS] V5 an admissible point survives the gates the deposited theory passes   (YES: 11 of 13 at f = 0.569 in variant V-B (F1), with two new costs -- the clock tachyon margin falls from IDENTICAL to 1.29x (C4), and the compensating coefficient is chosen rather than forced (B3). It does not repair the CMB (F2))
+  [FAIL] V6 [VERDICT] baryon sourcing is the calculation that decides L49's pincer in the theory's favour   (NO, and the reason is a theorem rather than a number. THE WINDOW THAT CANNOT MOVE IS THE CMB'S: it is a statement about the pressureless gravitating density at recombination, and on the closure locus the MOND sector contributes EXACTLY ZERO to linear growth (S_eff = 0), so changing which matter sources a field that contributes nothing changes nothing (C5 confirms the coupling-induced drift is 1e-7). AND THE GALAXY WINDOW CANNOT REACH 1: at f = 1 the abundance-matched halo ALONE already reproduces SPARC at 0.171 dex with median -0.026, so any further acceleration is an overshoot; the kernel adds a_0 Delta(g_bar/a_0), which in the deep-MOND regime IS the observed anomaly. Re-sourcing removes only the part of the kernel driven by the added halo -- 26% of the overshoot in dex -- and the remaining 74% is the theory's own reason for existing. Reaching f = 1 requires suppressing the kernel itself to s <= 0.495 where galaxies are measured (D8).)
+
+==========================================================================================================================
+THE THREE WINDOWS, BEFORE AND AFTER
+==========================================================================================================================
+                                    L49 (total-sourced)           L50 (baryon-sourced)        moved
+  ----------------------------------------------------------------------------------------------------------------------
+     galaxies (generous)             f <= 0.355 / 0.276             f <= 0.582 / 0.486  +64% / +76%
+        clusters (b = 0)                  0.316 / 0.261                  0.569 / 0.508  +80% / +94%
+                 the CMB                1.000 +/- 0.010                1.000 +/- 0.010           0%
+          gap to the CMB                  2.82x / 3.63x                  1.72x / 2.06x  -39% / -43%
+
+==========================================================================================================================
+THREE-SENTENCE VERDICT
+==========================================================================================================================
+  Baryon sourcing is a legitimate action-level modification and it survives the test that could have killed it
+  outright -- conservation and the Bianchi identity are untouched, because the change is made in the Lagrangian and
+  diffeomorphism invariance then guarantees grad_mu T^mu_nu(total) = 0, with only the individually coupled species
+  exchanging energy with the scalar -- and in the variant that keeps the drag coupling (V-B) it also keeps lensing =
+  dynamics, the preferred-frame parameters, c_T = c and the mode count, at the cost of one chosen coefficient, an
+  O(1) equivalence-principle violation confined to the dark sector, and a clock-tachyon margin that falls from
+  IDENTICAL to 1.29x.
+
+  It moves both of the windows it was supposed to move: the galaxy ceiling rises from f <= 0.355 / 0.276 to 0.582 /
+  0.486 and the cluster requirement rises from 0.316 +/- 0.100 / 0.261 +/- 0.093 to 0.569 +/- 0.130 / 0.508 +/-
+  0.133, so that galaxies and clusters now agree to 0.1 sigma at f ~ 0.57 -- but the CMB does not move at all, and
+  the intersection stays EMPTY with the gap narrowed from 2.8x to 1.7x (canonical) and 3.6x to 2.1x (alt).
+
+  What closes it is a theorem, not a number: the CMB window cannot move because on the closure locus the MOND sector
+  contributes exactly zero to linear growth, so re-sourcing a field that contributes nothing changes nothing; and
+  the galaxy window cannot reach f = 1 because at that abundance the LambdaCDM halo alone already reproduces SPARC
+  to 0.171 dex, leaving no room for the kernel evaluated on the baryons -- which is 74% of the overshoot, is the
+  MOND anomaly itself, and is the one thing re-sourcing cannot touch. The only remaining move is to suppress the
+  kernel where the cold component dominates (s <= 0.495 at f = 1), which is L49's option (b) and a different lane.
+
+  CAVEATS, stated rather than buried:
+   (i)   nothing here favours this framework over LambdaCDM and nothing here constrains LambdaCDM. The
+         cold component and its abundance-matched profile are LambdaCDM's, imported wholesale; the
+         stellar-to-halo-mass relation remains a free function of host mass (L49 M5).
+   (ii)  f_gal is the GENEROUS criterion (median RAR shift inside the RAR's own 0.11 dex), carried so the
+         candidate is not handed a manufactured deficit. The strict criterion gives 0.375 / 0.270, on which
+         even the galaxy-cluster overlap closes. The full table at nine values of f is printed.
+   (iii) abundance matching carries ~0.30 dex of systematic on log M200; it moves f_gal and the cluster
+         requirement together and cannot close a gap of 1.7x.
+   (iv)  V-B's compensating coefficient is fixed by one condition but chosen rather than forced by a
+         symmetry (B3). Whether the SAME coefficient also exactly cancels the MOND force on the cold
+         component is a weak-field question this lane does not settle; it does not affect any number here,
+         because every window is computed from what BARYONS and LIGHT feel, and it would only alter the
+         cold component's own equilibrium profile -- for which the LambdaCDM library is already assumed.
+   (v)   the induced-condensate calculation is matter-domination scaling on a flat FRW background,
+         calibrated against g03w's published rate through the same formula L49 X5 uses. It fixes the
+         STRUCTURE (rate/H = f_s sqrt(sigma/2), with c_14 and |K_2| cancelling on the closure locus); it is
+         not a full cosmological-perturbation calculation.
+   (vi)  E3's cluster significance for V-A rests on 5-cluster weak-lensing noise and is NOT a kill on its
+         own; the load-bearing statement there is structural (a conformal coupling cannot bend light).
+
+RESULT: 12 FAIL -> ['B3 the compensating term of V-B is a free knob that could be tuned away, i.e. the construction has a hidden parameter', "D5 [THE FIRST OF THE LANE'S OWN QUESTIONS] the galaxy overshoot VANISHES when the scalar is blind to the cold component", 'D10 clusters and the CMB are still in tension under baryon sourcing once the measured hydrostatic bias is allowed', 'D7 [THE WHOLE QUESTION] the three-way intersection is NON-EMPTY under baryon sourcing -- i.e. there is one cold fraction admissible to galaxies, to clusters AND to the CMB at once', 'D9 re-sourcing the scalar is capable IN PRINCIPLE of reaching f = 1, i.e. the obstruction is about WHICH matter sources the scalar rather than about the kernel existing at all', 'E2 a conformally baryon-coupled MOND scalar still lenses', 'E3 V-A survives the lensing-equals-dynamics gate once a cold component is present (the cold mass lenses, so the discrepancy is diluted)', 'E5 the disformal repair is available to V-A as an unencumbered option', 'F2 that point also repairs the two gates the deposited theory FAILS outright -- the CMB cold-matter density and linear growth', 'V2 the galaxy overshoot vanishes under baryon sourcing', "V4 [THE LANE'S QUESTION] the three-way intersection is non-empty: the pincer OPENS", "V6 [VERDICT] baryon sourcing is the calculation that decides L49's pincer in the theory's favour"]
+[2 s]

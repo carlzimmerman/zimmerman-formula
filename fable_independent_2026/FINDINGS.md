@@ -2033,3 +2033,37 @@ numbers reproduce, including its negative control at −192.49 and its tolerance
   before it is called a repair rather than a proposal.**
 - **Negative control on the mode budget:** giving the same auxiliary a kinetic term adds three modes for a
   vector or one for a scalar, taking four to seven or five. **"Holonomic" is the entire budget.**
+
+## L50 — baryon sourcing is legitimate, moves both windows it should, and still cannot open the pincer
+
+`L50_baryon_sourced.py` + `L50_BARYON_SOURCED.md` (40 checks, 12 FAIL; **all 9 controls pass**,
+bit-identical on re-run). L49 named the door: the MOND scalar is sourced by the total potential, so the
+kernel amplifies the mass added to replace it. This lane sourced it on baryons instead.
+
+- **⭐ IT SURVIVES THE TEST THAT COULD HAVE KILLED IT OUTRIGHT.** Conservation and the Bianchi identity
+  are untouched, because the change is made **in the Lagrangian** rather than inserted into the field
+  equation: the action stays diffeomorphism invariant, the Einstein equation is unchanged, and the FRW
+  continuity residual evaluates symbolically to **exactly zero**. Only the individually coupled species
+  is non-conserved, and its exchange term cancels against the scalar's own equation.
+- **Both windows move, and by a lot.** Galaxies go from ≤ 0.355 to **≤ 0.582** and clusters from
+  0.316 ± 0.100 to **0.569 ± 0.130**, canonical. **Galaxies and clusters now agree to 0.1σ**, and at the
+  measured hydrostatic bias **clusters reach the CMB at 0.7σ**. The surviving obstruction is **galaxies
+  alone.**
+- **⚠️ But the CMB window does not move at all**, and the intersection stays empty. The gap narrows from
+  2.82× to **1.72×** canonical, 3.63× to 2.06× alt.
+- **⭐ AND THE LANE FOUND A THEOREM FOR WHY, RATHER THAN A NUMBER.** The CMB window cannot move because
+  **on the closure locus the MOND sector contributes exactly zero to linear growth** — re-sourcing a field
+  that contributes nothing changes nothing. And the galaxy window cannot reach full abundance because
+  **at that abundance the ΛCDM halo ALONE already reproduces SPARC to 0.171 dex, leaving no room for the
+  kernel evaluated on the baryons** — which is **74% of the overshoot** and is the MOND anomaly itself.
+  **Re-sourcing cannot touch it.**
+- The variant that keeps the drag coupling passes **11 of 13 gates**, keeps lensing equal to dynamics,
+  keeps the preferred-frame parameters and the tensor speed, and keeps the mode count. Its costs: one
+  **chosen** compensating coefficient not forced by a symmetry, an order-unity equivalence-principle
+  violation **confined to the dark sector**, and a clock-tachyon margin falling from *identical* to 1.29×.
+- **Two adjacent doors closed on the way.** A conformal coupling **cannot bend light** — derived, and the
+  phantom's own energy is 1.6e-7 of what it would need to mimic. And the disformal repair is closed by the
+  gravitational-wave speed identity, with a contrary entry in the ledger flagged rather than adjudicated.
+- **The only remaining move**, named: suppress the kernel where the cold component dominates, which needs
+  the acceleration variable below ~0.5 at full abundance. That is a different lane and is already
+  constrained by the cosmological-ordering theorem.
