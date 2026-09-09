@@ -64,6 +64,20 @@ not a no-go for the full candidate: a successful RMMG completion must add
 constrained fields whose brackets cancel this cubic term while preserving the
 two tensor degrees of freedom.
 
+## SPARC empirical gate
+
+Using the repository's 175-galaxy SPARC rotation files (3,389 usable points),
+the exact implicit exponential law was inverted numerically with fixed
+\(a_0=9.36\times10^{-11}\,\mathrm{m\,s^{-2}}\).  Scanning only the disk
+mass-to-light ratio (bulge tied to 1.4 times the disk value) gives
+
+\[
+ \Upsilon_{\rm disk}=0.73,\qquad \sigma_{\log g}=0.105\ {\rm dex}.
+\]
+
+This is a bounded catalogue consistency result, not a relativistic
+certification; the fit script and inverse residual test are reproducible.
+
 ## Exact obstruction still open
 
 The candidate has not yet passed the full nonlinear hypersurface-deformation
