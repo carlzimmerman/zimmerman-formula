@@ -3278,3 +3278,28 @@ density ρ = B + 3M²H² − (M²/3f²)(A+C/a³)² carries, besides the a⁻³ d
   charge to pass BBN, OR a mechanism protecting C from A. This tempers L80–L82's optimism honestly — the
   dust clusters and is ghost-free, but its amount is fine-tuned against BBN unless a protection mechanism
   is found. HIGH confidence on the bound; the sign feeds astra's still-open perturbative-health calculation.
+
+## L85 — the Bullet Cluster: the collisionless Noether dust reproduces the lensing offset (where pure MOND fails)
+
+`L85_bullet_cluster_lensing.py` + `.out` (**17 checks, 17 PASS**). Projected centroid test on the merger axis:
+x_c/d > 0.5 = lensing on the gas (MOND failure), < 0.5 = lensing on the galaxies (observed).
+
+- **Control (MOND fails), reproduced.** Gas dominates the baryons (M_gas=22.3e13 vs M_stars=1.7e13 M☉,
+  ~13:1; Clowe 2006), so MOND lensing lands **on the gas**: x_c/d = 0.93 (textbook), 0.61 even under the
+  QUMOND-favourable reading — ~669 kpc from the observed lensing, the classic 8σ failure.
+- **⭐ F(Q)Θ passes.** The collisionless Noether dust (total dark 6.8× baryons; g04a/L7) passes through with
+  the galaxies and flips the centroid to the **galaxy side**: x_c/d = 0.15–0.36, ~460 kpc from the gas —
+  matching the observed offset, on both footings and across the dark-ratio band [5.7, 9.0].
+- **⭐ The clock's gas-MOND competes but does not win.** The clock also boosts the gas (phantom ~2× gas
+  mass, on the gas), but the centroid reverses only if >83% of the clock phantom lands on the gas, whereas
+  the physical split is ~52% (compact galaxies source a more peaked phantom than diffuse gas). Two negative
+  controls confirm: zeroing the dust returns lensing to the gas; turning off the gas-boost pushes further
+  onto the galaxies.
+- **⚠️ HONEST CAVEAT.** Qualitative, not exact: the F(Q)Θ centroid is not precisely on the galaxies (~250
+  kpc residual toward the gas in the MOND-strong case; ΛCDM shares much of this from the real gas). This is
+  a centroid/geometry test — the dust amount is taken from cluster lanes (g04a/L7), not re-derived; the 8σ
+  convergence-map statistic is not reproduced, only the **sign, side, and ~Mpc magnitude** of the offset.
+- **VERDICT.** A genuine qualitative reproduction of the defining Bullet feature (dust flips lensing to the
+  galaxy side, unlike MOND) — moderate-to-high confidence on the direction, lower on exact coincidence. A
+  parameter-free match would need the phantom split and dust distribution computed from the action in the
+  merger geometry. **Prediction P5 supported at the qualitative level.**
