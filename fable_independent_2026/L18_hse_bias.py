@@ -390,6 +390,10 @@ for foot in sorted(DAT):
           f"mass by {100*((1-bb)-1):.0f}%)")
     print(f"                    at that b, f_bar = {S['fbar']:.3f} ({100*S['fbar']/FBAR_COSMIC:.0f}% of cosmic) and "
           f"M_dark/M_bar = {S['rN']:.2f} vs cosmic {COSMIC:.2f}")
+    print(f"                    -- a SECOND cost, independent of any bias measurement: at the b the framework needs, all")
+    print(f"                    twelve would hold {100*S['fbar']/FBAR_COSMIC:.0f}% of the universal baryon share.  The lead's CLUSTER_AUDIT.md correctly")
+    print(f"                    disproves the naive claim that the cosmic fraction is a hard per-object CEILING, so this is")
+    print(f"                    not a proof; it is a global-budget bill that the missing-baryon route would have to pay.")
 # per-cluster spread of the required b
 percl = {}
 for foot in sorted(DAT):
@@ -427,6 +431,11 @@ for key in [HEAD, ("canonical", "all")]:
     A_, p_, rms_, n_ = fit_pl(d["s"], d["gh"]/(1-bb) - d["s"])
     lbl = f"{key[0]}/{'stellar 7' if key[1]=='stellar' else 'all 12'}"
     print(f"         {lbl:22s}: b(p = 1/2) = {bb:+.3f}   (there A = {A_:.2f}, rms {rms_:.3f} dex, {n_} of {len(d['s'])} rows still positive)")
+print(f"         Read (c) as an order of magnitude only: at such a b a third of the rows have g_true < g_bar, so the")
+print(f"         power law is fitted to a mutilated cloud (rms 1.4-1.9 dex).  The usable statement is the derivative,")
+print(f"         reported in section 3: dp/db > 0, so no POSITIVE b can ever bring p down to 1/2.")
+print(f"         (b) is identical at both footings by construction -- it equates two directly measured accelerations,")
+print(f"         from which a0 cancels, which is the same invariance L2 records for its cluster/galaxy ratio.")
 
 print(f"\n    THE COMPARISON, which is the whole point of the lane:")
 print(f"         required   b = {BREQ_L7['canonical']:+.2f} (L7, canonical) / {BREQ_L7['alt']:+.2f} (L7, alt) / "

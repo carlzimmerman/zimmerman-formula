@@ -699,7 +699,7 @@ print("  cosmological-ordering horn that closed the screened force is genuinely 
 print("  (z_t, W) then survives BBN, the CMB, the growth of structure, the expansion history -- acoustic scale, q0,")
 print("  the SNe distance-modulus shape and the absolute BAO ladder -- and still delivers the enhancement at the")
 print("  redshifts where the clusters are measured.  It survives on ONE construction, (b): h refitted so the acoustic")
-print("  scale matches exactly, giving H0 near 69-72 km/s/Mpc with Omega_Lambda near 0.25-0.32.  What makes that")
+print("  scale matches exactly, giving H0 near 68-72 km/s/Mpc with Omega_Lambda near 0.25-0.32.  What makes that")
 print("  possible is that the roll's own dln g/dln a term in H(z) partly MIMICS dark energy, so a universe that is")
 print("  about half matter by energy density can still reproduce the observed distances.  This is the first mechanism")
 print("  in this programme to reach the cluster residual without being excluded by the gate it was proposed against.")

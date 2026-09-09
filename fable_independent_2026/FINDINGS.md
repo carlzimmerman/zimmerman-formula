@@ -396,3 +396,44 @@ with Φ = Ψ. Every load-bearing feature checks out:
 
 3. The verdict PASSES on the reduction itself: the IC-series is a candidate host for this framework's
    galaxy phenomenology.
+
+## L16 — the hybrid rescue: not available, but something real survives
+
+`L16_hybrid_inverse.py` (5 FAIL of 11). This lane went looking for the rescue: if cold dark matter
+exists at the abundance ΛCDM predicts, does the galaxy data still *require* an acceleration scale?
+
+**No, and it is bounded rather than merely unfitted.** Granting each SPARC galaxy the halo ΛCDM
+actually predicts for it (Moster+2013 abundance matching, Dutton & Macciò 2014 concentrations — the
+relation already in this repository):
+
+| | no halo | with the ΛCDM halo |
+|---|---|---|
+| variance in the residual explained by acceleration | **74.0%** | **−3.5%** |
+| median within-galaxy slope | −0.324 | +0.020 (6% retained) |
+| fitted acceleration scale | a₀ to 0.002 dex | **< 3.3e-13 m/s², i.e. 3.4 dex below a₀** |
+
+The controls make the null real rather than a failure of sensitivity: an injected a₀ is recovered to
+0.100 dex, the detection floor reaches a₀/3.2, and the verdict is identical across all eleven halo
+rows spanning **twice** the abundance-matching and concentration uncertainties. a₀ returns only for a
+halo 63× smaller than ΛCDM predicts, 6σ below it.
+
+**What survives, and it is not nothing.** With zero free parameters on each side, the framework's
+kernel at fixed a₀ still describes these rotation curves **more tightly than the granted halo does**:
+
+| description | scatter |
+|---|---|
+| fixed-a₀ kernel (no free parameters) | **0.142 dex** |
+| abundance-matched ΛCDM halo (no free parameters) | 0.171 dex |
+| the same halo once its own M₂₀₀ and concentration scatter is switched on | **0.198 dex** |
+
+That last row is the known halo-population-scatter problem (Desmond 2017, and this repository's own
+`rar_origin_detector_2026.py` V2), and it is where an acceleration scale keeps content even though
+the data do not *require* one. Baryons plus an NFW halo with no boost also miss the inner curves at
+0.167 dex, 1.5× the relation the kernel achieves.
+
+**The synthesis with L7.** Dark matter accounts for clusters (L7) *and* suffices for galaxies (here).
+The kernel accounts for galaxies and cannot account for clusters (L2, L5, L6). So the hybrid in which
+each does half the job is not available in the direction the framework needed. What the programme
+keeps is narrower, real, and quantified: the **tightness** of the relation and the **value** of a₀
+tied to ρ_Λ — neither of which rotation curves settle, and both of which the two pre-registered
+measurements were built to test.

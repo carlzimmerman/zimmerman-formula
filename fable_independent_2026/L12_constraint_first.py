@@ -573,21 +573,43 @@ mu_pert = 1 - sp.exp(-C_LIGHT ** 2 * epsp * W / a0sym)
 CM_pert = sp.diff(mu_pert * epsp * sp.diff(Qp, xp), xp)
 ser = sp.series(CM_pert, epsp, 0, 3).removeO()
 lead = sp.simplify(ser.coeff(epsp, 1))
-order2 = sp.simplify(ser.coeff(epsp, 2))
-print(f"\n    Linear perturbations about ANY homogeneous background (|Dq| = 0 there, so mu = 0 there):")
-print(f"        C_M expanded in the perturbation amplitude eps:")
-print(f"          O(eps^1) coefficient = {lead}      (no term linear in the metric perturbation)")
-print(f"          O(eps^2) coefficient = {order2}")
-print(f"          (that is exactly d/dx[(c^2/a0)|Q'| Q'], the leading deep-MOND operator, at SECOND order)")
+print(f"\n    Linear perturbations about ANY homogeneous background (|Dq| = 0 there, so mu = 0 there).")
+print(f"    Take a single mode q = eps cos(k x) on a flat slice and expand C_M in the amplitude eps:")
+print(f"        symbolic O(eps^1) coefficient = {lead}      (no term linear in the perturbation at all)")
+# independent numerical confirmation of the order: measure d log|C_M| / d log eps
+kmode = 1.0 / (10 * KPC)
+a0n = A0["canonical"]
+
+
+def CM_mode(e, x):
+    """d/dx [ mu(c^2|q'|/a0) q' ] for q = e cos(kx), analytically (expm1 keeps the small-y limit exact)."""
+    s, cth = math.sin(kmode * x), math.cos(kmode * x)
+    qp = -e * kmode * s
+    qpp = -e * kmode ** 2 * cth
+    y = C_LIGHT ** 2 * abs(qp) / a0n
+    mu = -math.expm1(-y)
+    dy = C_LIGHT ** 2 * e * kmode ** 2 * cth / a0n          # d|q'|/dx * c^2/a0, valid for 0 < kx < pi
+    return math.exp(-y) * dy * qp + mu * qpp
+
+
+xtest = 0.7 / kmode
+es = [1e-10, 1e-11, 1e-12]
+vals = [abs(CM_mode(e, xtest)) for e in es]
+slope = (math.log(vals[0]) - math.log(vals[2])) / (math.log(es[0]) - math.log(es[2]))
+print(f"        numerical order at k = 1/(10 kpc): |C_M| = {vals[0]:.4e}, {vals[1]:.4e}, {vals[2]:.4e} for "
+      f"eps = 1e-10, 1e-11, 1e-12")
+print(f"        d log|C_M| / d log eps = {slope:.4f}   (1 would be linear; 2 is the degenerate deep-MOND "
+      f"operator)")
 print("        mu(y) = 1 - e^-y ~ y = c^2|Dq|/a0 makes D_i[mu D^i q] quadratic in Dq -- a degenerate")
 print("        (3-Laplacian-type) operator.  At linear order the constraint therefore contains no metric")
 print("        perturbation at all and reduces to delta S = 0, i.e. delta rho = 0: no linear growth of")
 print("        structure, and the mode A3 was supposed to remove is not removed on these backgrounds.")
 check("K2 [cosmology] the linearised constraint about a homogeneous background constrains the METRIC "
       "perturbation (as A3 requires), rather than the matter",
-      lead != 0,
-      "it does not: mu(0) = 0 makes the operator start at O(eps^2), so at linear order C_M = -delta S and "
-      "the constraint forces delta rho = 0.  A3's mode removal fails on every background with |Dq| = 0")
+      lead != 0 and abs(slope - 1) < 0.05,
+      f"it does not: mu(0) = 0 makes the operator start at O(eps^2) (measured slope {slope:.4f}), so at "
+      f"linear order C_M = -delta S and the constraint forces delta rho = 0.  A3's mode removal fails on "
+      f"every background with |Dq| = 0")
 
 # ==========================================================================================================
 print("\nSECTION 5 -- THE TWO PHENOMENOLOGY GATES.  Is this the framework's theory at all?")
