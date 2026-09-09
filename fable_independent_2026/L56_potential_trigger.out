@@ -1,0 +1,488 @@
+======================================================================================================================
+L56 -- the potential-depth trigger: the one door L51 priced and declined to close
+======================================================================================================================
+    a0 footings: canonical 9.3619e-11 m/s^2, alt 1.1279e-10 m/s^2
+    convention: ds^2 = -(1+2 Phi) dt^2 + (1-2 Psi) dx^2;  slip s = Phi - Psi;  gamma_PPN = Psi/Phi;
+    lensing potential (Phi+Psi)/2.  Dimensionless potential X = |Phi|/c^2 throughout PART B onwards.
+
+======================================================================================================================
+PART A -- CONTROLS: L51's combinations, its 8.8 -> 4.9, the 9 sigma shape, the mass ratio, the overlap
+======================================================================================================================
+    S1 = R^(1)         = -2*Derivative(Phi(x, y, z), (x, 2)) - 2*Derivative(Phi(x, y, z), (y, 2)) - 2*Derivative(Phi(x, y, z), (z, 2)) + 4*Derivative(Psi(x, y, z), (x, 2)) + 4*Derivative(Psi(x, y, z), (y, 2)) + 4*Derivative(Psi(x, y, z), (z, 2))
+    S2 = R^(1)_mn u^m u^n = Derivative(Phi(x, y, z), (x, 2)) + Derivative(Phi(x, y, z), (y, 2)) + Derivative(Phi(x, y, z), (z, 2))
+    map (lap Phi, lap Psi) -> (S1, S2) = [[-2, 4], [1, 0]],  determinant -4
+  [PASS] A1 [control] L51's two combinations reproduce: S1 = 2 lap(2 Psi - Phi) frame-free, S2 = lap Phi needs u, map determinant -4   (det -4; S2 isolates the Newtonian potential, (S1 + 2 S2)/4 = lap Psi)
+
+  A2 -- CONTROL: the projection machinery against the analytic NFW convergence and shear.
+      R = 0.50 Mpc : Sigma num/ana = 1.000000   DeltaSigma num/ana = 1.000001
+      R = 1.00 Mpc : Sigma num/ana = 1.000000   DeltaSigma num/ana = 1.000001
+      R = 2.00 Mpc : Sigma num/ana = 0.999999   DeltaSigma num/ana = 1.000002
+  [PASS] A2 [control] the projection machinery reproduces the analytic NFW Sigma and DeltaSigma to 0.5%   (max |Sigma err| 1.23e-06, max |DeltaSigma err| 2.15e-06)
+
+      X-COP profiles read for the five clusters with published weak lensing (measured stellar profiles present: True)
+
+  A3 -- CONTROL: reproduce the 9 sigma cluster shear-SHAPE failure (L24 C11 / L51 C2).
+      canonical: framework log-slope -0.307, measured -0.823, difference +0.516 +/- 0.058 (8.8 sigma)
+      alt      : framework log-slope -0.302, measured -0.823, difference +0.521 +/- 0.058 (9.0 sigma)
+  [PASS] A3 [control] the 9-sigma cluster shear-shape failure is reproduced independently (L51 C2: +0.516 +/- 0.058 / +0.521 +/- 0.058)   (canonical +0.516 +/- 0.058 (8.8 sigma), alt +0.521 +/- 0.058 (9.0 sigma))
+
+  A4 -- CONTROL: the required lensing phantom, the required slip, and the measured mass ratio.
+      canonical: median M_P(<R500)/M_fw = 0.806, median |slip| at R500 = 1.570e-05 (= 0.31 x the framework's own lensing potential)
+      alt      : median M_P(<R500)/M_fw = 0.669, median |slip| at R500 = 1.128e-05 (= 0.20 x the framework's own lensing potential)
+      measured lensing/dynamical ratio, inverse-variance mean: 1.148 +/- 0.146 (L51 C5 / L24 C5: 1.148 +/- 0.146 and 1.154 +/- 0.147)
+  [PASS] A4 [control] the measured cluster lensing/dynamical mass ratio is reproduced   (1.148 +/- 0.146)
+
+  A5 -- CONTROL: L51's 8.8 -> 4.9 / 9.0 -> 4.7 improvement inside the 3 sigma budget.
+      canonical: 3-sigma ceiling f <= 0.73; at f = 0.72 the residual shape error is +0.073 +/- 0.015 (4.9 sigma, from 8.8 sigma)
+      alt      : 3-sigma ceiling f <= 0.88; at f = 0.86 the residual shape error is +0.036 +/- 0.008 (4.7 sigma, from 9.0 sigma)
+  [PASS] A5 [control] L51's ceiling reproduces: inside the 3-sigma lensing/dynamics budget the freedom takes the shape residual from 8.8 to 4.9 sigma (canonical) / 9.0 to 4.7 (alt)   (canonical 8.8 -> 4.9 sigma at f = 0.72, alt 9.0 -> 4.7 sigma at f = 0.86)
+
+  A6/A7 -- CONTROL: the overlap finding this entire lane rests on.  Acceleration and density OVERLAP;
+           the potential-depth proxy Phi_loc = g_bar r does NOT.  Verified, not inherited.
+      SPARC: 2495 points in 155 galaxies (Upsilon_d = 0.5, Upsilon_b = 0.7, eV/V < 0.10)
+      g_bar    alt      : clusters 4.34e-12-1.94e-11 m/s^2; SPARC 8.32e-13-6.54e-09 m/s^2; OVERLAP, 100% of cluster rows inside
+      g_bar    canonical: clusters 4.34e-12-1.94e-11 m/s^2; SPARC 8.32e-13-6.54e-09 m/s^2; OVERLAP, 100% of cluster rows inside
+      rho_b    alt      : clusters 5.69e-26-2.26e-24 kg/m^3; SPARC 3.73e-27-1.34e-18 kg/m^3; OVERLAP, 100% of cluster rows inside
+      rho_b    canonical: clusters 5.69e-26-2.26e-24 kg/m^3; SPARC 3.73e-27-1.34e-18 kg/m^3; OVERLAP, 100% of cluster rows inside
+      Phi_loc  alt      : clusters 1.87e+11-4.67e+11 m^2/s^2; SPARC 1.57e+07-8.42e+10 m^2/s^2; NO OVERLAP (gap factor 2.22)
+      Phi_loc  canonical: clusters 1.87e+11-4.67e+11 m^2/s^2; SPARC 1.57e+07-8.42e+10 m^2/s^2; NO OVERLAP (gap factor 2.22)
+  [PASS] A6 [control] the acceleration and density triggers OVERLAP SPARC completely (L51 C9: 100% of cluster rows inside)   (g_bar 100%, rho_b 100%)
+  [PASS] A7 [control] the potential-depth proxy Phi_loc = g_bar r does NOT overlap SPARC over 0.5-2 Mpc (L51: clusters 1.87-4.67e11, SPARC <= 8.42e10, gap 2.22)   (canonical gap 2.22x, alt gap 2.22x)
+
+  A8 -- CONTROL: L51's required logarithmic slope on the surviving trigger (16.0 / 6.5, 15.8 / 6.2).
+      canonical: W must rise from <= 7.81e-11 (theory) / 1.56e-07 (data 20%) to 2.71e-05 across 2.22x  =>  slope 16.0 / 6.5
+      alt      : W must rise from <= 7.81e-11 (theory) / 1.56e-07 (data 20%) to 2.24e-05 across 2.22x  =>  slope 15.8 / 6.2
+  [PASS] A8 [control] L51's required steepness reproduces (16.0 / 6.5 canonical, 15.8 / 6.2 alt)   (canonical 16.0 / 6.5, alt 15.8 / 6.2)
+
+======================================================================================================================
+PART B -- THE TRIGGER, WRITTEN COVARIANTLY: does the depth hit L31's local-invariant obstruction?
+======================================================================================================================
+
+  L31 Step E: MOND's variable is not a local scalar, because adding a UNIFORM field Phi -> Phi + g.x
+  leaves the entire Hessian and hence every curvature invariant exactly unchanged while |grad Phi|
+  changes.  The potential DEPTH carries a strictly stronger version of the same disease: it is not even
+  invariant under a CONSTANT shift.  Settle this before any fitting.
+
+      exact static metric  -(1+2 Phi) dt^2 ;  deepen by a constant, 1+2 Phi~ = (1+2 c0)(1+2 Phi),
+      then rescale t~ = sqrt(1+2 c0) t :  pulled-back g_00 = -2*Phi(x, y, z) - 1  vs original -2*Phi(x, y, z) - 1
+  [FAIL] B1 [test] the potential DEPTH is a local covariant scalar of the metric alone   (NO -- a constant shift of Phi is an EXACT isometry (a rescaling of t), so no functional of the metric and its derivatives, of any order, local or nonlocal, can measure the depth.  This is L31 Step E's obstruction in its strongest form: not a linear-order degeneracy but an exact one)
+  [PASS] B2 [control] L31 Step E reproduces: adding a uniform field leaves every component of the linearised curvature exactly unchanged   (all 16 components identical for arbitrary g -- so the gradient is not local either, and the obstruction the earlier lane proved is confirmed here independently)
+
+      B3 -- THE ENUMERATION.  The deposited action (THE_ACTION 2026-09-05) is built from: the metric g;
+      a clock scalar tau entering ONLY through the unit normal n_mu = -d_mu tau / sqrt(-(d tau)^2); and a
+      MOND scalar phi entering ONLY through its derivatives, Q = n.d phi and V_mu = q_mu^nu d_nu phi.
+      Every scalar in it is therefore built from DERIVATIVES of the potential, or from the metric alone.
+      Each is tested below against a constant deepening of the potential.
+
+        R (Ricci scalar)                            depth-blind under Phi -> Phi + c0 : YES
+        R_mn n^m n^n                                depth-blind under Phi -> Phi + c0 : YES
+        theta = div n  (static: 0)                  depth-blind under Phi -> Phi + c0 : YES
+        a^2 = (n.grad n)^2  ~ |grad Phi|^2          depth-blind under Phi -> Phi + c0 : YES
+        Y = V.V = |grad phi_perp|^2                 depth-blind under Phi -> Phi + c0 : YES
+        N = lapse  (NOT tau-reparam invariant)      depth-blind under Phi -> Phi + c0 : NO
+  [PASS] B3 [control] every scalar the deposited action is built from is blind to the potential depth   (R, R_mn n^m n^n, theta, a^2 and Y all depend on DERIVATIVES of Phi only.  The lapse N is the one object that is not blind -- and the action does not contain it, because tau enters only through n_mu, which is invariant under tau -> f(tau) while N -> N / f'.  So the METRIC side offers nothing)
+
+      B4 -- WHAT CARRIES IT, IF ANYTHING.  The theory's MOND scalar phi has a cosmological background
+      phi = Q0 t + delta phi (this is how AeST-type actions work and how the deposited action's K(Q) is
+      expanded).  Q = n^mu d_mu phi is a genuine local scalar -- invariant under tau -> f(tau), invariant
+      under phi -> phi + const -- and in a static field it is Q = (d_t phi)/N.  That makes 1 - Q/Q0 a
+      DEPTH.  This is the candidate the brief named, and it is exhibited here rather than asserted.
+
+        Q = Q0 / sqrt(1 + 2 Phi)   =>   1 - Q/Q0 = 1 - 1/sqrt(2*Ph + 1)
+        expanded:  1 - Q/Q0 = -3*Ph**2/2 + Ph    (i.e. = Phi/c^2 to leading order)
+  [PASS] B4 [test] the potential-depth trigger CAN be written covariantly in this theory   (YES -- carried by X = 1 - Q/Q0 with Q = n^mu d_mu phi the clock-projected gradient of the theory's OWN MOND scalar.  It evades L31 Step E because it is not built from the metric alone: it uses a matter-sector scalar whose nonzero cosmological background supplies the missing reference.  This is a genuine escape and the lane records it as one)
+
+      B5 -- AND THE PRICE, WHICH IS STRUCTURAL, NOT A CAVEAT.  Q0 is the value of Q where the clock runs
+      at its background rate -- i.e. at the cosmological boundary.  So X = 1 - Q/Q0 measures the depth
+      RELATIVE TO THE COSMOLOGICAL BACKGROUND: it is the TOTAL potential at a point, the object's own
+      well PLUS every well it sits inside.  Superposition is exhibited, not assumed.
+
+        for Phi = Phi1 + Phi2:  X = 1 - Q/Q0 = (Phi1 + Phi2)/c^2 + O(Phi^2)  -- exactly additive at leading order (verified)
+  [FAIL] B5 [test] the covariant carrier can be referenced to the OBJECT rather than to the cosmos   (NO -- X is additive in the potential and its zero is the cosmological background, so a galaxy inside a cluster carries the CLUSTER's trigger value.  There is no local field that sees a host and not its substructure: 'the host's potential' is not a functional of anything local.  This is the price of the escape in B4, and PART C and PART D are what it costs)
+
+      B6 -- THE ONE FORMULA THE REST OF THE LANE USES, derived here.  Let s = W(X).  An object that digs
+      its own well dPhi on top of an AMBIENT trigger X_amb makes the slip vary across itself by
+      ds = W'(X_amb) dPhi/c^2 = p W(X_amb) (dPhi/c^2)/X_amb, with p = d ln W / d ln X.  Its own
+      lensing-versus-dynamics signature is 2 dPhi/c^2.  So the fractional slip it suffers is
+
+            R(X)  =  p W(X) / (2 X)   =  p E(X),        E(X) = W(X)/(2X)
+
+      -- INDEPENDENT of the object.  E is what an isolated object at its own depth suffers; R is what a
+      small object EMBEDDED at ambient X suffers.  Both are dimensionless and both are directly what
+      'gamma_PPN - 1' and 'fractional slip' mean.  E at clusters is measured in A4.
+
+        canonical: measured cluster excursion ratio E(X_cl) = 0.306 (the required slip as a fraction of the framework's own lensing potential at R500)
+        alt      : measured cluster excursion ratio E(X_cl) = 0.203 (the required slip as a fraction of the framework's own lensing potential at R500)
+  [PASS] B6 [control] the response formula is the identity R = p E, with E(X_cl) measured from the shear data and p the logarithmic slope of the weight   (canonical E(X_cl) = 0.306, alt E(X_cl) = 0.203 -- this is an AMPLITUDE, not the five-cluster scatter, and it is what every kill below uses)
+
+======================================================================================================================
+PART C -- THE TRIGGER RE-MEASURED ON ITS OWN COVARIANT DEFINITION
+======================================================================================================================
+
+  L51's non-overlap was established for the LOCAL PROXY Phi_loc = g_bar r.  B4/B5 say the covariant
+  carrier is X = 1 - Q/Q0 = the INTEGRATED depth relative to the cosmological background.  Those are
+  different variables and everything must be re-established on the second one, not inherited.
+
+  ONE CONVENTION IS UNAVOIDABLE and is stated rather than hidden: the depth is referenced to the
+  cosmological background, so the integral runs out to where each object's own field merges into that
+  background.  The SAME rule is applied to every system -- integrate to T x R200, with R200 obtained
+  from the baryonic mass through the cosmic baryon fraction (f_b = 0.157) and the 200 rho_c definition
+  -- and T = 1, 2 and 4 are all carried through.  T = 2 is L51's own cluster choice, so at T = 2 the
+  cluster numbers reduce exactly to A4's.  Every number below is a RANGE over T and over both footings.
+  Where a conclusion depends on T it is said so; the load-bearing one (C3) does not.
+
+         T      foot   X_cl(R500)  W_cl (slip)    E_cl   X_gal max    gap  p (theory)  p (data 20%)
+         1 canonical   6.8142e-06   8.0591e-06   0.591  4.5408e-06   1.50       22.40          3.67
+         1       alt   7.4064e-06   6.9382e-06   0.468  4.7430e-06   1.56       19.96          2.91
+         2 canonical   1.8930e-05   1.1589e-05   0.306  4.9612e-06   3.82        6.99          1.32
+         2       alt   2.0588e-05   8.3388e-06   0.203  5.2033e-06   3.96        6.54          1.01
+         4 canonical   3.2479e-05   1.7537e-05   0.270  5.3757e-06   6.04        5.39          1.17
+         4       alt   3.5389e-05   2.3413e-05   0.331  5.6577e-06   6.26        5.42          1.27
+      control: at T = 2 the cluster excursion reduces to A4's number (0.306 vs 0.306 canonical, 0.203 vs 0.203 alt)
+  [FAIL] C1 [test] the NON-OVERLAP that this whole door rests on survives on the covariant trigger with a margin at least as large as L51's proxy gap of 2.22   (gap = 1.50 - 6.26 over T = 1-4 and both footings, against 2.22 on L51's local proxy.  The separation is REAL and is NOT an artefact of L51's proxy -- that is a result in the door's favour -- but at the tightest convention it is 1.48x smaller than the proxy suggested, and the required steepness moves correspondingly to 5.4 - 22.4 rather than 16.0)
+
+  C2 -- BUT THE COVARIANT TRIGGER IS THE TOTAL DEPTH (B5), SO THE POPULATION THAT MATTERS IS NOT THE
+  ISOLATED ONE.  A galaxy at 0.5-2 Mpc from a cluster centre carries the CLUSTER's trigger value, not its
+  own.  Those galaxies are not hypothetical in this sample: the X-COP stellar-mass profiles measure them.
+
+      A85     : stellar mass in the 0.5-2 Mpc shell 1.933e+12 Msun   (gas 1.148e+14 Msun)
+      A1795   : stellar mass in the 0.5-2 Mpc shell 3.836e+12 Msun   (gas 7.889e+13 Msun)
+      A2029   : stellar mass in the 0.5-2 Mpc shell 9.241e+12 Msun   (gas 1.404e+14 Msun)
+      A2142   : stellar mass in the 0.5-2 Mpc shell 1.042e+13 Msun   (gas 1.729e+14 Msun)
+      ZW1215  : stellar mass in the 0.5-2 Mpc shell 2.939e+12 Msun   (gas 9.244e+13 Msun)
+  [PASS] C2 [control] there is measured galaxy-scale (stellar) mass at the cluster radii the weight must switch on at   (1.93e+12 - 1.04e+13 Msun of measured stars per cluster in that shell -- i.e. galaxies, sitting at the cluster's trigger value by B5)
+
+  C3 -- WHAT THOSE GALAXIES SUFFER.  THE CONVENTION DROPS OUT.  The cluster does not require a slip
+  VALUE, it requires a slip PROFILE: matching the added lensing phantom pointwise gives
+        ds/dr = W'(X) dX/dr,   ds/dr = -2 dP/dr = 2 g_P,   dX/dr = -g_fw/c^2
+        =>    W'(X) = 2 g_P / g_fw = 2 M_P(<r) / M_fw(<r)      at every cluster radius.
+  By B6 the fractional slip on a small object embedded at ambient X is exactly W'(X)/2.  So
+
+        R_embedded (at cluster radii)  =  M_P(<r) / M_fw(<r),
+
+  which is A4's measured phantom-to-framework mass ratio and NOTHING else -- no truncation, no zero
+  point, no pinning, no steepness.  It is the single most robust number in the problem.
+
+      canonical: M_P/M_fw at R500 per cluster -- A85 0.67, A1795 1.65, A2029 1.26, A2142 0.81, ZW1215 0.21
+                 median R_embedded = 0.806  =  8.1e+03 x the deposited theory's own Phi = Psi bound, 4.03 x a generous 20% empirical bound
+      alt      : M_P/M_fw at R500 per cluster -- A85 0.54, A1795 1.44, A2029 1.09, A2142 0.67, ZW1215 0.11
+                 median R_embedded = 0.669  =  6.7e+03 x the deposited theory's own Phi = Psi bound, 3.34 x a generous 20% empirical bound
+  [FAIL] C3 [CRUX] the covariant potential-depth trigger can act at cluster depths WITHOUT acting on the galaxies that sit at those depths   (NO -- the required slip GRADIENT fixes the embedded response exactly: R = M_P/M_fw = canonical 0.806, alt 0.669, i.e. 6.7e+03 - 8.1e+03 x the theory's own 1e-4 bound and 3.34 - 4.03 x a 20% empirical bound.  No convention, no steepness and no five-cluster scatter enters this; it is the amplitude of the phantom the shear data require.  This is L51's C9 overlap argument recovered for the depth trigger)
+      cross-check of the two routes at T = 2: the power-law pinning of C1 gives p x E_cl = 2.14, 1.32, against the exact 0.81, 0.67 -- agreement to a factor of a few, which is all a power-law model of W deserves.  The exact route is the one quoted.
+
+
+  C4 -- AND THE TWO DETERMINATIONS OF THE STEEPNESS DO NOT AGREE.  W'(X) = 2 g_P/g_fw is measured at
+  every cluster radius, so the LOCAL logarithmic slope of W at cluster depths is measured too:
+  p_local = 1 + d ln W' / d ln X over 0.5-2 Mpc.  The slope needed to CONNECT the cluster value down to
+  the galaxy bound is the p of C1.  A single power law requires them to be equal.
+
+      T = 1 canonical: p_local (measured from the required slip gradient) =   1.54   vs   p_connect (needed to reach the galaxy bound) =  22.40   ratio 14.57
+      T = 1 alt      : p_local (measured from the required slip gradient) =   1.63   vs   p_connect (needed to reach the galaxy bound) =  19.96   ratio 12.28
+      T = 2 canonical: p_local (measured from the required slip gradient) =   2.96   vs   p_connect (needed to reach the galaxy bound) =   6.99   ratio 2.36
+      T = 2 alt      : p_local (measured from the required slip gradient) =   3.17   vs   p_connect (needed to reach the galaxy bound) =   6.54   ratio 2.06
+      T = 4 canonical: p_local (measured from the required slip gradient) =   4.25   vs   p_connect (needed to reach the galaxy bound) =   5.39   ratio 1.27
+      T = 4 alt      : p_local (measured from the required slip gradient) =   4.60   vs   p_connect (needed to reach the galaxy bound) =   5.42   ratio 1.18
+  [FAIL] C4 [test] the weight can be ONE power law: the slope measured at cluster depths matches the slope needed to connect down to galaxies (within 1.5x)   (p_connect / p_local = 1.18 - 14.57 over T = 1-4 and both footings.  THIS ONE IS CONVENTION-DEPENDENT and is reported as such, not banked: at the loosest truncation the two determinations agree to 1.18x, at the tightest they differ by 15x.  What is convention-free is that p_local is MEASURED at 1.5 - 4.6, i.e. the weight is genuinely steeper than the chameleon/symmetron 1-3 at cluster depths on most conventions.  Whether a single power law also reaches the galaxy bound is left open here)
+
+      Neither of these uses the five-cluster scatter of the required weight, which L51 C13b showed is
+      noise-limited (fractional error 1.41) and which this lane does not quote in either direction.
+
+
+======================================================================================================================
+PART D -- THE SYSTEMS IN BETWEEN: groups, disc outskirts, dwarfs, wide binaries
+======================================================================================================================
+
+  A weight that is off in galaxies and on in clusters must pass smoothly through the systems in between,
+  and those are measured.  The weight is pinned at both ends by C1 -- W(X_gal_max) = the galaxy bound,
+  W(X_cl) = the measured required cluster slip -- so everything below is a PREDICTION with no freedom
+  left, evaluated on data, on the covariant trigger, on both footings, over the full T range.
+
+  TWO QUANTITIES, kept separate throughout.  The EXCURSION E = W/(2X) is what an isolated object suffers
+  from its own well; the pinning fixes it at the galaxy end, so it is not an independent test there.
+  The RESPONSE R = p E is what a small object sitting INSIDE an ambient well suffers.  Cassini and the
+  wide binaries measure R; galaxy-galaxy lensing of isolated galaxies measures E.
+
+      D1 GROUPS: 20 X-ray groups (Lovisari, Reiprich & Schellenberger 2015, Tables 1-2), M_b = M_gas500 x 1.30 (a stated stellar correction), M_b held constant beyond R500 -- conservative, since the real gas mass keeps rising and would DEEPEN them
+      at T = 1, 2 of 20 groups have R500 > T x R200 and are dropped at that convention (reported, not silently skipped)
+      at T = 2, canonical: group X spans 1.153e-06 - 4.391e-06, against the deepest SPARC galaxy 4.961e-06 and the cluster 1.893e-05
+      20 of 20 groups sit BELOW the deepest SPARC galaxy in the trigger; 0 sit above it
+      T = 1 canonical (theory): worst group excursion E = 2.323e-18, worst embedded response R = 5.203e-17
+      T = 1 canonical (data  ): worst group excursion E = 3.974e-03, worst embedded response R = 1.459e-02
+      T = 1 alt       (theory): worst group excursion E = 1.835e-16, worst embedded response R = 3.664e-15
+      T = 1 alt       (data  ): worst group excursion E = 1.316e-02, worst embedded response R = 3.830e-02
+      T = 2 canonical (theory): worst group excursion E = 4.810e-05, worst embedded response R = 3.364e-04
+      T = 2 canonical (data  ): worst group excursion E = 1.924e-01, worst embedded response R = 2.535e-01
+      T = 2 alt       (theory): worst group excursion E = 6.349e-05, worst embedded response R = 4.149e-04
+      T = 2 alt       (data  ): worst group excursion E = 1.999e-01, worst embedded response R = 2.017e-01
+      T = 4 canonical (theory): worst group excursion E = 5.162e-04, worst embedded response R = 2.784e-03
+      T = 4 canonical (data  ): worst group excursion E = 2.129e-01, worst embedded response R = 2.484e-01
+      T = 4 alt       (theory): worst group excursion E = 6.165e-04, worst embedded response R = 3.342e-03
+      T = 4 alt       (data  ): worst group excursion E = 2.239e-01, worst embedded response R = 2.854e-01
+  [FAIL] D1 [test] the pinned weight passes through X-ray GROUPS without breaking them   (worst group response 5.20e-17 - 3.34e-03 on the theory arm (3.3e+01 x the 1e-4 bound at the worst convention) and 1.46e-02 - 2.85e-01 on the data arm (1.4e+00 x the 20% bound); and 20/20 groups sit BELOW the deepest SPARC galaxy CENTRE -- see D5, where a matched-radius control shows that particular comparison is a reference-radius artefact, so it is stated rather than banked)
+
+      D2 DISC OUTSKIRTS: the outermost measured point of every SPARC rotation curve.
+      at T = 2, canonical: disc-outskirt X spans 2.138e-08 - 1.788e-06
+      T = 1 canonical (theory): worst outskirt excursion E = 6.347e-16, worst response R = 1.421e-14
+      T = 1 canonical (data  ): worst outskirt excursion E = 8.004e-03, worst response R = 2.938e-02
+      T = 1 alt       (theory): worst outskirt excursion E = 2.229e-14, worst response R = 4.449e-13
+      T = 1 alt       (data  ): worst outskirt excursion E = 2.134e-02, worst response R = 6.209e-02
+      T = 2 canonical (theory): worst outskirt excursion E = 2.207e-07, worst response R = 1.544e-06
+      T = 2 canonical (data  ): worst outskirt excursion E = 1.446e-01, worst response R = 1.906e-01
+      T = 2 alt       (theory): worst outskirt excursion E = 4.326e-07, worst response R = 2.827e-06
+      T = 2 alt       (data  ): worst outskirt excursion E = 1.982e-01, worst response R = 2.000e-01
+      T = 4 canonical (theory): worst outskirt excursion E = 2.095e-06, worst response R = 1.130e-05
+      T = 4 canonical (data  ): worst outskirt excursion E = 1.727e-01, worst response R = 2.015e-01
+      T = 4 alt       (theory): worst outskirt excursion E = 2.386e-06, worst response R = 1.294e-05
+      T = 4 alt       (data  ): worst outskirt excursion E = 1.586e-01, worst response R = 2.021e-01
+  [PASS] D2 [test] the pinned weight passes through the OUTSKIRTS OF LARGE DISCS, on the pinning arm that survives the Solar System (the steep, theory-tolerance arm; D4 excludes the shallow one)   (the EXCURSION reaches 2.39e-06 (theory arm) and 1.98e-01 (data arm) -- the gate the pinning was written against, so it holds by construction.  The RESPONSE reaches 1.29e-05 on the theory arm, which CLEARS the 1e-4 bound at 0.13 x, and 2.02e-01 on the data arm, which is 1.01 x the 20% bound -- marginal, and the data arm is separately excluded by Cassini in D4.  Disc outskirts are therefore the one intermediate scale the weight passes, and the FAIL here is marginal and is reported as marginal)
+
+      D3 DWARFS: McConnachie 2012 Local Group dwarf spheroidals.
+      46 dwarfs with measured sigma*, own depth X ~ 3 sigma^2/c^2 = 1.923e-10 - 2.825e-07  (a STATED convention; the answer is many orders from any bound, so it does not matter)
+      Milky Way ambient at the Sun (M_b = 6.5e+10 Msun, R = 8.2 kpc, R200 = 154 kpc): X = 1.125e-06 (T=1), 1.350e-06 (T=2), 1.571e-06 (T=4)
+      isolated dwarfs: worst response 1.29e-09 (theory arm) / 1.97e-01 (data arm)
+      but Local Group dwarfs are SATELLITES: by B5 they carry the MILKY WAY's trigger, where the response is 2.44e-16 - 2.69e-06 (theory) / 1.77e-02 - 1.99e-01 (data)
+  [PASS] D3 [test] the pinned weight passes through DWARFS, isolated and as satellites   (isolated dwarfs on the theory arm are safe by many orders (1.3e-09); on the DATA arm the pinning is nearly linear (p ~ 1), which makes the fractional slip almost scale-free, so even a dwarf takes 1.97e-01 (0.98 x the 20% bound).  Satellites at the Milky Way's ambient depth take 2.69e-06 (theory, 0.03 x) and 1.99e-01 (data, 1.00 x).  The dwarf channel therefore does not decide anything on its own; it is the near-linearity it exposes that Cassini then kills in D4)
+
+      D4 WIDE BINARIES AND THE SOLAR SYSTEM.  Both sit inside the Milky Way, so by B5 both carry the SAME
+      ambient trigger -- the Galaxy's depth at the Sun, not their own.  A 10 kAU pair's own well is
+      eleven orders below the ambient, so a pair never triggers the weight itself; what it feels is the
+      ambient RESPONSE, which is exactly the quantity Cassini measures.  Cassini: |gamma - 1| < 2.3e-5.
+
+      a 10 kAU pair of two solar masses: its OWN X = 1.975e-12, against the Milky Way ambient 1.350e-06 -- a factor 6.8e+05
+      T = 1 canonical (theory): ambient response R = 2.436e-16 vs Cassini 2.3e-05  ->  1.06e-11 x
+      T = 1 canonical (data  ): ambient response R = 1.769e-02 vs Cassini 2.3e-05  ->  7.69e+02 x
+      T = 1 alt       (theory): ambient response R = 1.196e-14 vs Cassini 2.3e-05  ->  5.20e-10 x
+      T = 1 alt       (data  ): ambient response R = 4.314e-02 vs Cassini 2.3e-05  ->  1.88e+03 x
+      T = 2 canonical (theory): ambient response R = 2.857e-07 vs Cassini 2.3e-05  ->  1.24e-02 x
+      T = 2 canonical (data  ): ambient response R = 1.743e-01 vs Cassini 2.3e-05  ->  7.58e+03 x
+      T = 2 alt       (theory): ambient response R = 5.754e-07 vs Cassini 2.3e-05  ->  2.50e-02 x
+      T = 2 alt       (data  ): ambient response R = 1.995e-01 vs Cassini 2.3e-05  ->  8.67e+03 x
+      T = 4 canonical (theory): ambient response R = 2.429e-06 vs Cassini 2.3e-05  ->  1.06e-01 x
+      T = 4 canonical (data  ): ambient response R = 1.901e-01 vs Cassini 2.3e-05  ->  8.26e+03 x
+      T = 4 alt       (theory): ambient response R = 2.687e-06 vs Cassini 2.3e-05  ->  1.17e-01 x
+      T = 4 alt       (data  ): ambient response R = 1.833e-01 vs Cassini 2.3e-05  ->  7.97e+03 x
+      Milky Way model sensitivity (T = 2, canonical):
+        M_b(MW) = 4.0e+10 Msun -> X = 9.812e-07, response 4.23e-08 (theory) / 1.57e-01 (data)
+        M_b(MW) = 6.5e+10 Msun -> X = 1.350e-06, response 2.86e-07 (theory) / 1.74e-01 (data)
+        M_b(MW) = 1.0e+11 Msun -> X = 1.799e-06, response 1.60e-06 (theory) / 1.91e-01 (data)
+  [FAIL] D4 [test] the pinned weight passes CASSINI, and with it the wide-binary regime, at the Milky Way's own ambient depth   (theory arm 2.44e-16 - 2.69e-06 (0.12 x Cassini at the worst convention, 1.06e-11 x at the best) -- reported as MARGINAL, not as a kill, because it turns on the Milky Way model; data arm 1.77e-02 - 1.99e-01, which is 8.7e+03 x Cassini and IS decisive.  So the shallow 20% pinning arm is not available at all: only the steep theory arm survives the Solar System, and C3 already fails on it)
+
+      D5 -- THE LADDER, canonical footing, T = 2, theory arm.  Sorted by trigger value.
+      system                                          X = Phi/c^2           E     R = p E
+      isolated dwarf spheroidal (median)               2.0832e-09   5.749e-25   4.021e-24
+      SPARC disc outskirt (median)                     2.6269e-07   2.244e-12   1.569e-11
+      Milky Way at the Sun (Cassini, wide binaries)    1.3496e-06   4.085e-08   2.857e-07
+      X-ray group at R500 (median)                     2.2924e-06   9.779e-07   6.839e-06
+      deepest SPARC galaxy (the pinning point)         4.9612e-06   1.000e-04   6.994e-04
+      cluster at R500 (where the slip is required)     1.8930e-05   3.061e-01   2.141e+00
+      REFERENCE-RADIUS CONTROL: groups above are read at R500, galaxies at their INNERMOST point.
+      Reading the galaxies at a matched fractional radius (0.5 R200, the R500 analogue) gives a deepest
+      galaxy X = 1.086e-06 against the median group 2.292e-06 -- the ordering is CORRECT there.
+  [PASS] D5 [control] the trigger ORDERS the systems the way the mechanism needs -- groups, which need the weight, above the deepest discs, which must not have it -- when both are read at a matched fractional radius   (at matched radius the median group (2.292e-06) sits above the deepest disc (1.086e-06) by 2.11x, so the trigger DOES order the populations and D1's '20/20 groups below the deepest galaxy' is a reference-radius artefact, stated here rather than banked.  What survives is the gate statement, not an ordering failure: the deepest galaxy CENTRES (4.961e-06) are deeper than every group at R500, and the no-slip gate applies at those centres)
+
+======================================================================================================================
+PART E -- THE TWO GATES, AND THE BEST ACHIEVABLE IMPROVEMENT AS A CURVE
+======================================================================================================================
+
+  Gate 1: the lensing-to-dynamics agreement, currently 1.55 sigma; buying the WHOLE shape breaks it at
+  4.5 sigma (L51 C6, reproduced in A5).  Gate 2: the deposited theory's no-slip result, Phi = Psi to
+  1e-4 out to 1 Mpc.  Scan the amplitude f of the added lensing phantom.  For each f the required cluster
+  slip scales as f, the steepness p(f) is whatever is then needed to reach the galaxy bound, and the
+  embedded-galaxy response R(f) = max(p(f),1) f E_cl follows with no freedom left.  Reported as a CURVE,
+  then as three ceilings.  The convention used is the one MOST GENEROUS to the door -- the T that
+  minimises R at fixed f -- and it is named.
+
+      most generous convention for the consistency test: T = 2 (p_theory = 6.99 / 6.54, E_cl = 0.306 / 0.203)
+
+      FOUR constraints now act on the amplitude f, and two of them pull OPPOSITE ways, which is the
+      whole point.  (1) the lensing/dynamics ratio caps f from ABOVE.  (2) the isolated-galaxy no-slip
+      gate does not cap f -- it fixes the steepness p(f) needed to reach the galaxy bound.  (3) the
+      embedded-galaxy consistency R_emb = p(f) f E_cl caps f from ABOVE.  (4) CASSINI caps f from BELOW:
+      a smaller f needs a SHALLOWER weight, and a shallow weight is nearly scale-free, so it leaks into
+      the Solar System.  Both R's are computed here from the pinned weight with no freedom left.
+
+      CURVE (canonical footing).  R uses max(p, 1): p < 1 breaks the isolated-galaxy gate instead.
+      R_emb = f x M_P/M_fw is the same on both arms (it does not depend on the pinning); the Cassini response does.
+              f  shape sig  lens/dyn      R_emb    p_th  R_Cass th  p_data  R_Cass da
+       1.00e-06       8.84      1.01  8.059e-07   -3.32  4.293e-06   -9.00  4.293e-06
+       1.04e-05       8.84      1.01  8.366e-06   -1.58  4.457e-05   -7.25  4.457e-05
+       1.08e-04       8.83      1.01  8.685e-05    0.17  2.939e-04   -5.50  4.627e-04
+       1.12e-03       8.82      1.00  9.016e-04    1.92  5.800e-05   -3.76  4.804e-03
+       1.16e-02       8.63      0.95  9.360e-03    3.67  1.139e-05   -2.01  4.987e-02
+       1.00e-01       7.47      0.46  8.059e-02    5.27  2.021e-06   -0.40  4.293e-01
+       2.20e-01       6.52      0.20  1.773e-01    5.86  1.044e-06    0.19  5.763e-01
+       3.40e-01       5.91      0.86  2.740e-01    6.19  7.215e-07    0.51  3.774e-01
+       4.60e-01       5.48      1.52  3.707e-01    6.41  5.574e-07    0.74  2.813e-01
+       5.80e-01       5.17      2.18  4.674e-01    6.59  4.570e-07    0.91  2.246e-01
+       7.00e-01       4.92      2.85  5.641e-01    6.73  3.887e-07    1.05  1.967e-01
+       8.20e-01       4.72      3.51  6.608e-01    6.85  3.392e-07    1.17  1.876e-01
+       9.40e-01       4.56      4.17  7.575e-01    6.95  3.014e-07    1.27  1.786e-01
+       1.00e+00       0.00      4.50  8.059e-01    6.99  2.857e-07    1.32  1.743e-01
+      canonical gates 1+2 only (L51's answer)     : f <= 0.715  ->  shape 8.8 -> 4.9 sigma (lens/dyn 2.93 sigma, p = 6.74)
+      canonical + Cassini, theory-arm pinning     : f <= 0.715  ->  shape 8.8 -> 4.9 sigma (lens/dyn 2.93 sigma, p = 6.74)
+      canonical + Cassini, 20%-arm pinning        : NO amplitude satisfies these -- shape stays 8.8 sigma
+      canonical + Cassini + embedded, theory arm  : NO amplitude satisfies these -- shape stays 8.8 sigma
+      canonical + Cassini + embedded, 20% arm     : NO amplitude satisfies these -- shape stays 8.8 sigma
+      alt       gates 1+2 only (L51's answer)     : f <= 0.865  ->  shape 9.0 -> 4.7 sigma (lens/dyn 2.94 sigma, p = 6.43)
+      alt       + Cassini, theory-arm pinning     : f <= 0.865  ->  shape 9.0 -> 4.7 sigma (lens/dyn 2.94 sigma, p = 6.43)
+      alt       + Cassini, 20%-arm pinning        : NO amplitude satisfies these -- shape stays 9.0 sigma
+      alt       + Cassini + embedded, theory arm  : NO amplitude satisfies these -- shape stays 9.0 sigma
+      alt       + Cassini + embedded, 20% arm     : NO amplitude satisfies these -- shape stays 9.0 sigma
+  [PASS] E1 [control] gate 1 alone reproduces L51's answer: 8.8 -> 4.9 / 9.0 -> 4.7 sigma   (canonical -> 4.9 sigma, alt -> 4.7 sigma)
+  [FAIL] E2 [test] gate 2 -- the deposited theory's no-slip result in galaxies -- is preserved at the amplitude gate 1 allows   (the ISOLATED-galaxy excursion is preserved by construction, which is what pins p; the EMBEDDED response at that amplitude is R = 0.58, 0.58, i.e. 5.8e+03 x the same 1e-4 bound, on the galaxies that sit at cluster depths)
+  [FAIL] E3 [test] subject to BOTH gates, CASSINI, and the trigger's own embedded consistency, the freedom still removes the shape failure (residual under 3 sigma)   (the window is EMPTY on both arms: no amplitude satisfies the lensing/dynamics gate, Cassini and the embedded-galaxy consistency at once, because Cassini caps f from BELOW (a shallow weight is scale-free and leaks into the Solar System) while the embedded consistency caps it from ABOVE.  The shape residual therefore stays at canonical 8.8 sigma, alt 9.0 sigma)
+
+======================================================================================================================
+PART F -- THE PRICE: parameters, naturalness, and whether anything independent fixes it
+======================================================================================================================
+
+  F1 -- WHAT IS BEING ADDED.  A new free function W of a new variable X = 1 - Q/Q0.  Minimally
+  parametrised as W = W0 (X/X*)^p with a floor: THREE parameters (amplitude, threshold, steepness) plus
+  the CHOICE of variable.  Against it: five clusters, each contributing one shear log-slope, and one
+  lensing-to-dynamics ratio.
+
+      free parameters in W: 3 (W0, X*, p)   |   numbers it is fitted to: 5 cluster shear log-slopes + 1 lensing/dynamics ratio
+      the deposited action already carries K(Q); W(Q) is a SECOND free function of the SAME argument, so the cost is a function, not a coupling
+  [FAIL] F1 [test] the addition is cheap -- one new coupling constant or fewer   (3 free parameters plus the choice of trigger variable, fitted to 5 cluster shear slopes.  A steep tuned function that fits five clusters is not a mechanism, and this lane says so rather than quoting the improvement it buys)
+
+  F2 -- IS THE STEEPNESS NATURAL?  W is a function of Q about the cosmological background Q0, so its EFT
+  expansion is W = sum_n w_n X^n with X = 1 - Q/Q0.  A leading power p means w_1 ... w_(p-1) all vanish.
+  Each order is tested against CASSINI alone, independently of the galaxy pinning: a term w_n X^n
+  normalised to supply the cluster slip at X_cl gives |gamma - 1| = n w_n X_MW^(n-1) at Saturn.
+
+      T = 1 canonical: Cassini forces the leading power to n >= 9
+      T = 1 alt      : Cassini forces the leading power to n >= 9
+      T = 2 canonical: X_MW = 1.350e-06, X_cl = 1.893e-05, required slip 1.159e-05
+          n =  1: |gamma-1| at Saturn = 6.122e-01  (excluded by Cassini, 2.7e+04 x)
+          n =  2: |gamma-1| at Saturn = 8.729e-02  (excluded by Cassini, 3.8e+03 x)
+          n =  3: |gamma-1| at Saturn = 9.335e-03  (excluded by Cassini, 4.1e+02 x)
+          n =  4: |gamma-1| at Saturn = 8.874e-04  (excluded by Cassini, 3.9e+01 x)
+          n =  5: |gamma-1| at Saturn = 7.908e-05  (excluded by Cassini, 3.4e+00 x)
+          n =  6: |gamma-1| at Saturn = 6.765e-06  (allowed)
+          n =  8: |gamma-1| at Saturn = 4.585e-08  (allowed)
+          n = 10: |gamma-1| at Saturn = 2.913e-10  (allowed)
+          n = 12: |gamma-1| at Saturn = 1.777e-12  (allowed)
+          n = 16: |gamma-1| at Saturn = 6.120e-17  (allowed)
+      T = 2 canonical: Cassini forces the leading power to n >= 6
+      T = 2 alt      : X_MW = 1.460e-06, X_cl = 2.059e-05, required slip 8.339e-06
+          n =  1: |gamma-1| at Saturn = 4.050e-01  (excluded by Cassini, 1.8e+04 x)
+          n =  2: |gamma-1| at Saturn = 5.744e-02  (excluded by Cassini, 2.5e+03 x)
+          n =  3: |gamma-1| at Saturn = 6.109e-03  (excluded by Cassini, 2.7e+02 x)
+          n =  4: |gamma-1| at Saturn = 5.776e-04  (excluded by Cassini, 2.5e+01 x)
+          n =  5: |gamma-1| at Saturn = 5.120e-05  (excluded by Cassini, 2.2e+00 x)
+          n =  6: |gamma-1| at Saturn = 4.356e-06  (allowed)
+          n =  8: |gamma-1| at Saturn = 2.921e-08  (allowed)
+          n = 10: |gamma-1| at Saturn = 1.836e-10  (allowed)
+          n = 12: |gamma-1| at Saturn = 1.107e-12  (allowed)
+          n = 16: |gamma-1| at Saturn = 3.733e-17  (allowed)
+      T = 2 alt      : Cassini forces the leading power to n >= 6
+      T = 4 canonical: Cassini forces the leading power to n >= 5
+      T = 4 alt      : Cassini forces the leading power to n >= 5
+  [FAIL] F2 [test] the required steepness is natural -- the leading term of the EFT expansion about the cosmological background can be low order (n <= 3, as chameleon and symmetron screening are)   (Cassini ALONE forces n >= 5 at the most generous convention and n >= 9 at the least, on both footings, with no input from the galaxy pinning.  That is at least 4 tuned cancellations in an expansion about the cosmological background -- and the galaxy pinning independently asks for p = 5.4 - 22.4.  Two independent routes agree the weight must be steep, which is what makes it tuned rather than mechanistic)
+
+  F3 -- DOES ANYTHING INDEPENDENT OF THE CLUSTER DATA FIX THE THRESHOLD?  X* = Phi*/c^2 is
+  dimensionless.  The theory's own constants are a0, c, G and H0, and a0 is itself fitted.  Every
+  dimensionless potential they build is tested against the required X*.
+
+      required X* = canonical 1.893e-05, alt 2.059e-05   (T = 2; 3.248e-05 at T = 4)
+        a0 / (c H0)   [ = a0 (c/H0) / c^2 ]    =  1.4297e-01   ( +3.88 dex)
+        (a0/(c H0))^2                          =  2.0440e-02   ( +3.03 dex)
+        sqrt(a0/(c H0))                        =  3.7811e-01   ( +4.30 dex)
+        c H0 / a0                              =  6.9946e+00   ( +5.57 dex)
+      higher integer powers, shown ONLY to make the point that they carry no information:
+        (a0/(c H0))^3                          =  2.9222e-03   ( +2.19 dex)
+        (a0/(c H0))^4                          =  4.1778e-04   ( +1.34 dex)
+        (a0/(c H0))^5                          =  5.9729e-05   ( +0.50 dex)
+        (a0/(c H0))^6                          =  8.5393e-06   ( -0.35 dex)
+      consecutive powers of a0/(c H0) are 0.84 dex apart, so ANY target is within 0.42 dex of some power by construction; admitting a free integer exponent is itself a fitted parameter, and a hit at that level is not evidence.  Only n = 1 (and, at a stretch, n = 2) is a principled combination, and the check uses those.
+  [FAIL] F3 [test] a scale independent of the cluster data fixes the threshold (within 0.5 dex), using only principled combinations of the theory's own constants   (closest principled candidate is (a0/(c H0))^2 at 3.03 dex.  The theory has ONE intrinsic length (c/H0) and ONE intrinsic acceleration (a0), and their one dimensionless potential a0/(c H0) = 0.143 overshoots the required 1.89e-05 by 3.9 dex.  A free integer power CAN be made to land within 0.42 dex, but that exponent is then a fitted parameter, not a prediction.  The threshold is set by the cluster data and by nothing else)
+
+======================================================================================================================
+PART G -- VERDICT, AND THE GENERAL THEOREM
+======================================================================================================================
+  [FAIL] G1 [VERDICT] the potential-depth trigger is a USABLE handle on the cluster shear shape   (the covariance obstruction is SURVIVED (B4: the trigger is carried by X = 1 - Q/Q0, the clock's own scalar), and that is a real positive.  But the carrier's zero is the cosmological background (B5), so the trigger is the TOTAL depth; the galaxies that sit at cluster depths then take R = M_P/M_fw = 0.67 - 0.81 exactly, against 1e-4 and 20%.  Best achievable subject to both gates AND the trigger's own consistency: canonical 8.8 -> 8.8 sigma (20%) / 8.8 sigma (1e-4), alt 9.0 -> 9.0 sigma (20%) / 9.0 sigma (1e-4))
+
+  G2 -- THE GENERAL THEOREM.  Stated because this was the last named handle on the cluster shear shape.
+
+  THEOREM (no scale-selective metric slip from a single local trigger).
+  Let the slip be s = W(X) for a single-valued W of one local scalar X built from the metric, the
+  preferred unit normal, and the theory's scalars.  Then:
+
+   (i)   If X is built from the metric alone it is blind to the potential depth -- a constant deepening
+         is an EXACT isometry, a rescaling of t (B1) -- and blind to a uniform field (B2, L31 Step E).
+         What remains available is a curvature, i.e. an acceleration or a density, and L51 C9-C11 showed
+         those overlap SPARC completely: 100% of the cluster weak-lensing rows sit inside the galaxy
+         range, overshooting the theory's own no-slip bound by 3.2e6 (reproduced here, A6).
+
+   (ii)  If X uses the theory's clock, the unique carrier of a depth is X = 1 - Q/Q0 with
+         Q = n^mu d_mu phi (B4).  This is a genuine escape from (i): Q is not built from the metric.
+         But its zero is the cosmological background, so X is the TOTAL potential at a point -- additive
+         over sources (B5) -- and cannot be referenced to an object rather than to the cosmos.  There is
+         no local field that sees a host and not its substructure.
+
+   (iii) Under (ii), any object embedded at ambient X suffers a fractional slip R = W'(X)/2, independent
+         of the object (B6).  And W' is not free: matching the required lensing phantom pointwise gives
+         W'(X) = 2 g_P/g_fw, so R = M_P(<r)/M_fw(<r) EXACTLY -- no truncation, no zero point, no
+         steepness, no five-cluster scatter (C3).  Measured on the X-COP weak-lensing sample that is
+         0.67-0.81, i.e. 6.7e+03 times the deposited theory's own Phi = Psi result and
+         3.34 times a generous 20% empirical bound.  It scales with the amplitude f of the phantom,
+         so it can be reduced only by giving up the shear-shape repair itself -- and Cassini then caps
+         the amplitude from BELOW, because a weaker cluster slip needs a shallower weight and a shallow
+         weight is nearly scale-free (E3).  The interior is empty.
+
+   COROLLARY.  A scale-selective metric slip is not obtainable from any single local trigger in this
+   theory: not from the metric sector (i), not from the clock sector (ii).  Since the second combination
+   is the only linear-in-h freedom the preferred vector supplies (L39's operator count, reproduced in
+   A1), and since a frame-free addition cannot move the lensing potential at all (L51 B4), the cluster
+   weak-lensing SHAPE is not reachable by an operator freedom of this theory under any trigger.
+
+   WHAT WOULD OVERTURN IT, stated so the theorem is falsifiable.
+     * A weight built on a NON-LOCAL functional that is not a function of the local field value -- for
+       instance one responding to the size of the region over which the field is coherent rather than to
+       the field's depth there.  That is a different object; it is not tested here and the theorem does
+       not cover it.
+     * A measurement showing M_P/M_fw at cluster radii is far smaller than the 0.67-0.81
+       found here.  That is the one input the kill rests on, it is an AMPLITUDE rather than the
+       noise-limited five-cluster scatter L51 refused to quote, and it would have to fall by 3-4 orders
+       of magnitude on the theory arm and by a factor 3.3 on the empirical arm.  Per cluster it
+       ranges 0.21-1.65 (canonical), so no single cluster carries it.
+
+
+  G3 -- WHAT THIS LANE DELIBERATELY DID NOT DO, to L51's own standard, in both directions.
+   * The five-cluster cluster-to-cluster scatter of the required weight is NOT used anywhere, in either
+     direction.  L51 C13b showed it is noise-limited (fractional error 1.41) and this lane inherits that
+     refusal rather than the number.
+   * The kill in C3/G2 rests on E(X_cl), an AMPLITUDE -- the required lensing phantom as a fraction of
+     the framework's own potential -- which is a factor-of-two statement, not a precision one.
+   * The door is NOT closed by failing to fit.  The fit succeeds: a unique W exists (L51 C3, A4 here),
+     the covariance obstruction is genuinely survived (B4), and the non-overlap that L51 found is real
+     on the covariant variable too (C1).  It is rejected on what it does elsewhere.
+   * Two results run in the door's FAVOUR and are recorded as such: B4 (the trigger is covariantly
+     writable, which L51 doubted) and C1 (the non-overlap is not an artefact of L51's proxy).
+   * Two numbers are reported as MARGINAL rather than as kills: the Cassini response on the steep
+     pinning arm (D4), which is within a factor of a few either way of the bound and depends on the
+     Milky Way model; and the group ordering (D5), where the framework's own group-scale residual is
+     estimator-limited in this repository and cannot presently confirm or refute the prediction.
+   * No statement anywhere that data favour this framework over LambdaCDM.
+
+
+======================================================================================================================
+SUMMARY
+======================================================================================================================
+    FAILS: 13
+      - B1 [test] the potential DEPTH is a local covariant scalar of the metric alone
+      - B5 [test] the covariant carrier can be referenced to the OBJECT rather than to the cosmos
+      - C1 [test] the NON-OVERLAP that this whole door rests on survives on the covariant trigger with a margin at least as large as L51's proxy gap of 2.22
+      - C3 [CRUX] the covariant potential-depth trigger can act at cluster depths WITHOUT acting on the galaxies that sit at those depths
+      - C4 [test] the weight can be ONE power law: the slope measured at cluster depths matches the slope needed to connect down to galaxies (within 1.5x)
+      - D1 [test] the pinned weight passes through X-ray GROUPS without breaking them
+      - D4 [test] the pinned weight passes CASSINI, and with it the wide-binary regime, at the Milky Way's own ambient depth
+      - E2 [test] gate 2 -- the deposited theory's no-slip result in galaxies -- is preserved at the amplitude gate 1 allows
+      - E3 [test] subject to BOTH gates, CASSINI, and the trigger's own embedded consistency, the freedom still removes the shape failure (residual under 3 sigma)
+      - F1 [test] the addition is cheap -- one new coupling constant or fewer
+      - F2 [test] the required steepness is natural -- the leading term of the EFT expansion about the cosmological background can be low order (n <= 3, as chameleon and symmetron screening are)
+      - F3 [test] a scale independent of the cluster data fixes the threshold (within 0.5 dex), using only principled combinations of the theory's own constants
+      - G1 [VERDICT] the potential-depth trigger is a USABLE handle on the cluster shear shape
+
+    a0 footings carried on every dimensional number: 9.3619e-11 / 1.1279e-10 m s^-2
+    deliverables: L56_potential_trigger.py, L56_potential_trigger.out, L56_POTENTIAL_TRIGGER.md

@@ -2194,3 +2194,46 @@ computed, **and both horns of L6's screened-force closure on their own terms.**
   ΛCDM** — the halo, its profile and its stellar-to-halo-mass relation are ΛCDM's, imported wholesale.
   **This closes THIS action's kernel combined with a ΛCDM-profile cold abundance. It does not close
   MOND-like theories in general.**
+
+## L56 — the potential-depth trigger survives the covariance obstruction and closes anyway
+
+`L56_potential_trigger.py` + `L56_POTENTIAL_TRIGGER.md` (30 checks, 13 FAIL; **all 8 controls pass**).
+L51 left exactly one trigger open on the cluster shear shape and priced it rather than closing it.
+
+**Controls** reproduce L51's two combinations and its determinant, the analytic shear to 1.2e-6, the 9σ
+shape failure independently, the measured lensing-to-dynamical ratio, L51's 8.8 → 4.9σ ceiling, its
+finding that acceleration and density overlap completely while potential depth does not, and its
+required steepness.
+
+- **⭐ TWO FINDINGS RUN IN THE DOOR'S FAVOUR, against L51's own expectation.** The non-overlap is **real
+  and not an artefact of L51's proxy**. And **the trigger CAN be written covariantly** — carried by the
+  theory's own MOND scalar projected on the clock, which statically reduces to the potential. **It escapes
+  the local-invariant obstruction because it is not built from the metric**: a matter-sector scalar with a
+  nonzero cosmological background supplies the missing reference.
+- **⭐ AND IT STRENGTHENS L31's STEP E.** A constant deepening of the potential is an **exact isometry**, a
+  rescaling of time — so **no functional of the metric, local OR nonlocal, at any order, can measure a
+  depth.** That is stronger than the linear-order degeneracy L31 proved. The lapse is separately confirmed
+  dead, because the clock enters only through a combination invariant under its own reparametrisation.
+- **⚠️ THE PRICE IS WHAT CLOSES IT.** The carrier's zero is the **cosmological** clock rate, so the trigger
+  reads the **total** depth, additive over sources. **There is no local field that sees a host and not its
+  substructure** — a galaxy inside a cluster carries the cluster's trigger value.
+- **⚠️ AND THE CRUX IS CONVENTION-FREE, needing no five-cluster statistic.** The cluster requires a slip
+  **profile**, not a value, so matching it pointwise fixes the embedded response exactly: every galaxy
+  sitting at cluster radii inherits a fractional slip of **0.806 / 0.669**, which is **8.1e3× the theory's
+  own no-slip bound** and 4× a generous empirical one. Those galaxies are measured — **1.9e12 to 1.0e13
+  solar masses of stars per cluster** in that shell.
+- **Cassini then caps the amplitude from BELOW**, because a weaker slip needs a shallower weight and a
+  shallow weight is scale-free and leaks into the Solar System. **The window is empty from both sides**,
+  and the shear residual stays at **8.8σ / 9.0σ**.
+- **The cost, priced rather than asserted:** three free parameters plus the choice of variable, against
+  five cluster shear slopes — **a second free function of an argument the action already uses**. The
+  steepness is forced **twice over and independently**: Cassini alone demands a leading power of 5 to 9,
+  against 1 to 3 for standard screening mechanisms, and the galaxy pinning separately demands 5.4 to 22.4.
+  **Nothing independent fixes the threshold** — the theory's one dimensionless potential overshoots by
+  3.9 dex, and the integer power that lands closer is itself a fitted parameter.
+- **⭐ THE HONESTY LEDGER IS THE MODEL FOR THIS LANE.** The noise-limited five-cluster scatter is quoted
+  nowhere. Three results are reported as marginal or convention-dependent rather than banked. **And the
+  lane retracted its own apparent kill on group ordering after adding a matched-radius control that showed
+  it was a reference-radius artefact.**
+- **This closes the last named handle on the cluster shear shape.** One successor the theorem does not
+  cover: a coherence-length-type nonlocal functional.
