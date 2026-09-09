@@ -2980,3 +2980,48 @@ kpc, 8 deep-MOND rows).
   L72's window boundaries are themselves design-point quantities that could shift on a curved background;
   this bracket holds them fixed and flows only the explicit −vR term (the leading R-dependence) — the
   **sign result does not depend on that and is exact**. L73 stands: complete only below a galaxy.
+
+## L75 — the cluster ceiling is not flat for the survivor: a clock-winding transmission gate the theorem never tested
+
+`L75_clock_winding_transmission.py` + `.out` (**10 checks, 10 PASS**). L61's excess-spent-once theorem makes
+the surviving integrable-clock action "complete only below a galaxy." This lane asks whether the clock —
+which the theorem never modelled — has a way through, the cluster-scale analog of L74's galactic-health
+bracket. It does NOT claim completion; it converts a flat ceiling into a named, falsifiable escape.
+
+**Controls.** The overshoot STRUCTURE reproduces (adding a transmitted cold pull on top of a MOND-complete
+baryon fit overshoots pointwise, 2.16 at g_bar=0.1a₀; L61's pipeline median is 1.69); the galaxy ceiling
+(η_gal ≲ 0.25 vs the CMB's η_rec = 1.00±0.01) reproduces; the density ordering (recombination ≫ denser) and
+the cited acceleration/potential orderings reproduce.
+
+- **⭐ THE OBSERVATION.** L61 closed hypothesis (c) on **instantaneous local variables** — density,
+  acceleration, potential. A clock carries a variable none of those tests touch: a **cumulative winding**,
+  an integrated history. The winding recombination→today is **ln(1+z_rec) = 6.99 e-folds = exactly IC29's
+  represented Q∈[0,7]** — the clock winds ~once per cosmic e-fold. So the survivor has a transmission-gate
+  variable outside the theorem's closure.
+- **⚠️ A GLOBAL cosmic-winding gate half-works.** η(N) decreasing in cosmic winding evades the
+  recombination-vs-galaxy ordering (N_rec=0, η~1, CMB ✓; N_today~7, η small, galaxies suppressed) — but
+  **fails the cluster-vs-galaxy separation**: both sit at z~0, same N, same η, so it cannot give clusters
+  the *more* they need. Global time-gating is not enough.
+- **⭐⭐ THE LIVE DOOR: a LOCAL assembly-history winding gate.** Winding since a system's turnaround is
+  w=ln(1+z_form). Hierarchical assembly puts galaxy halos earlier (z_f~1–3) than cluster halos (z_f~0.5–1),
+  and the smooth recombination fluid is unbound (w≈0). So **w_galaxy(1.10) > w_cluster(0.53) > w_recomb(0)**,
+  and a gate DECREASING in local winding gives **η_recomb(~1) > η_cluster > η_galaxy** — CMB satisfied,
+  clusters transmit MORE than galaxies (they need more), galaxies most suppressed (below the ceiling). **All
+  three requirements the instantaneous variables could not meet, met at once.** This ordering lies OUTSIDE
+  L61's closure — the cluster-scale analog of how the clock escaped the deep-MOND kill, by carrying a
+  history the single-metric class does not have.
+- **⚠️ TWO THINGS THIS MUST CLEAR, both astra's, neither faked here.** (1) The clock must actually furnish a
+  **local cumulative invariant** (integrated winding since turnaround), NOT one slaved to the instantaneous
+  acceleration — if it collapses onto the acceleration invariant, it inherits L61's already-closed
+  acceleration ordering and there is no escape. (2) A history-gated transmission is a **composition/history-
+  dependent coupling of the cold sector to baryons**, so it must clear the **tensor-speed gate that killed
+  L61's branch 3** (disformal repair = cone tilt, lever ratio 1, vs GW170817 4e-16). The reason it plausibly
+  can — the clock mediates it *internally through the lapse*, not via a second metric or disformal tilt — is
+  the **same structural reason the clock escaped L69**. But that is a computation astra must do, not a claim
+  made here.
+- **⭐ AND IT IS FALSIFIABLE.** A local-assembly-winding gate predicts **RAR/dark-transmission scatter
+  correlated with halo assembly time** — early-forming galaxies more suppressed than late-forming ones at
+  fixed mass. That is a real, testable exposure, not a free parameter.
+- **VERDICT.** L73 is not overturned; it is **sharpened**. "Complete only below a galaxy" reduces to one
+  question — does the clock carry a local history invariant with the assembly ordering, and does its
+  internal mediation clear the tensor-speed gate? — handed to astra alongside the galactic-health finish.
