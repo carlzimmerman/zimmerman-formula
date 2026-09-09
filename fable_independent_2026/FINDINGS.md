@@ -263,6 +263,15 @@ conservative scheme, verified not to move the answer on its own (2.82 vs 2.69 wi
 
 ## L10 — the khronon gate: one design parameter, and a target region
 
+> **⚠ PARTLY WITHDRAWN 2026-09-08 by L19.** The Cherenkov arm below is wrong in two places and its
+> conclusion "σ = 1 within 4e-15" does not stand. The bound 2e-15 applies to a mode that couples to
+> the emitter's T⁰⁰ ~ E²; on the IC10 η = 1 plateau the clock reaches matter only through the
+> conformal factor, so the vertex is T^μ_μ and the bound loosens by 7.2e5× to 1 − c_s ≤ 1.4e-9.
+> Larger: the exponential wall was evaluated along the ambient Galactic path where |a| ~ a₀, when the
+> radiation is generated in the cosmic ray's own near field where |a|/a₀ = 8.8e38. **Cherenkov does
+> not force σ = 1.** The PPN arm (K6) and the target-region table are untouched. See L19.
+
+
 `L10_khronon_gate.py` (5 FAIL of 10). L4 found the lead's construction propagates a healthy
 khronon-type scalar with c_s² = 1/3. This lane put that mode through the preferred-frame and
 stability gates this repository already established for a khronon in this action class.
@@ -602,3 +611,145 @@ nothing in A1 selecting between them.
 surviving obligation is to find a scalar, foliation-independent quantity to put in q's place; this
 lane found none. That is an open construction problem, not a closed door — but the recipe's A1 entry
 should be amended to record that its three open checks have now been run and failed.
+
+## L21 — binary galaxies: the regime between a galaxy and a cluster
+
+`L21_binary_galaxies.py` + `L21_BINARY_GALAXIES.md` (16 checks, 7 FAIL; every control passes). This lane
+CHECKS AND EXTENDS existing work rather than opening a front: `hunt_2026/h48_h69_binary_galaxies.py`,
+`h48_h69b_relative_isolation.py` and `h47_dwarf_pairs.py` already measured these samples, and
+`closure_2026/g02c_two_body_force.py` already verified Milgrom's deep-MOND two-body force by an independent
+QUMOND field solve. What is new: the CARRIED saturated kernel instead of the pure deep-MOND limit, the
+external field COMPUTED from 2M++ (e_N = 0.01240/0.01027) with an orientation-averaged anisotropic EFE, the
+cosmic-share curve L7 implies, and a forecast on an axis immune to the stellar M/L.
+
+On 1900 isolated 2MRS major pairs (rebuilt independently; N and σ reproduce h48_h69b to 4% and 0.3%):
+
+| law | A (canonical) | A (alt) | σ from 1 |
+|---|---|---|---|
+| framework, isolated deep-MOND (its **best case**) | 1.802 ± 0.041 | 1.731 | 19.6 |
+| framework, carried with the EFE | 2.311 ± 0.053 | 2.219 | 24.9 |
+| **cosmic share (5.43 M_b), point mass / NFW** | **2.222 / 2.319** | — | 22 / 25 |
+| **framework kernel + cosmic share** | **1.141 ± 0.028** | **1.099** | 5.0 |
+| ΛCDM abundance-matched | 0.967 ± 0.024 | — | 1.4 |
+
+- **The cosmic share does not extend downward.** A Newtonian reading of the pairs needs M_dark/M_bar =
+  **30.9 ± 1.6 within the pair separation**, against 5.73 ± 0.68 at 0.80 R500 — a factor 5.7, 16σ. The
+  ladder is not monotone; there is no radius at which "the cosmic share turns on".
+- **A cosmic-share halo alone is worse than the kernel** here (2.22–2.32 against 1.80), against expectation.
+- **The two together very nearly work and neither does alone**: A = 1.10–1.14, and its separation slope is
+  the closest of any law to the measured −0.170 ± 0.029 (1.9σ). The amount the framework is short at pair
+  separations is, to ~10% in velocity, the amount the cluster residual is — four decades apart in mass.
+- **Structural degeneracy (S0 FAIL).** Beyond ~200 kpc the framework's EFE branch and a cosmic-share halo
+  are the SAME law: ν̄(e_N) = 7.99 against 1 + 5.43 = 6.43, identical in shape, **11.5% apart in velocity**.
+  All discriminating power lives on the isolated branch. The curves cross at r_p ≈ 70 kpc (0.049 a₀); the
+  maximum divergence over 30–1000 kpc is 0.546 dex at 1000 kpc.
+- **The deficit grows with mass** (M0 FAIL, 3.9σ over 0.56 dex), which a kernel with no scale in it forbids;
+  ΛCDM's abundance-matched halos move the other way.
+- **The galaxy-side gate bites on shape and mass scale, not amount** (S6 FAIL, computed here not reused):
+  the carried kernel tolerates 0.41 M_b inside 10 kpc at L\* and 0.59 at a dwarf; an NFW cosmic share puts
+  0.34 M_b (admissible) and 1.90 M_b (excluded, 3.2×). L1/g04k's exclusion is of a *concentrated* component.
+- **Forecast, pre-registerable.** Parameter-free: σ_los = 0.60679 (G m a₀)^{1/4} = 107.7 / 112.9 km/s for
+  two 8e10 M_⊙ galaxies at ANY separation. 3σ separation from a cosmic-share halo needs **384 pairs at
+  40 km/s, 122 at 10 km/s**, or **65 pairs on the shape axis** — all far below the 1900 in hand.
+  **Statistics are not the limitation; isolation depth is** (2MRS sees only companions above ~23% of the
+  pair's mass, and the amplitude falls 1.99 → 1.51 as the isolation deepens, so every A here is an
+  UPPER limit). The unresolved cross-scale tension with ALFALFA's dwarf pairs (1.12 ± 0.29) stands.
+
+## L13 — the strong-coupling wound (recipe P7): does not fire, but the design principle does
+
+`L13_strong_coupling.py` + `L13_STRONG_COUPLING.md` (22 PASS, 4 FAIL; all 13 controls pass).
+
+The recipe's P7 says the khronon's kinetic normalisation is proportional to c₁₄, so the exponential
+screening that buys the PPN pass also drives the mode to strong coupling exactly where the theory
+must work. This lane computed the kinetic Hessian directly rather than arguing from the normalisation.
+
+- **P7 does not fire.** The Hessian is diag(2M²c₁₄k², 2M²|K₂|) at *every* value of the screening
+  variable. The AeST-type mixing 2(2−K_B)J^μ∂_μφ carries one time derivative, is antisymmetric, and
+  drops out of the symmetric part entirely. c₁₄_eff/c₁₄ = 1.190 at Saturn, 1.0018 at 1 AU,
+  1.0000001 at Cassini conjunction. The screening does **not** feed back on the normalisation.
+- **The strong-coupling scale is astronomically safe:** Λ_sc = 2M_pl√c₁₄ = 1.54e16 GeV = 1.28e−32 m,
+  10⁴³× shorter than 1 AU. P7 would need c₁₄ < 7.3e−92 to bite.
+- **But A3's design principle is violated as an identity.** α₁ = −4c₁₄ exactly, and the khronon
+  kinetic term is 2M²c₁₄k², so the ratio is identically −4 for every (K_B, c₂, c₁₄) — the two cannot
+  be separated by choosing parameters. The recipe's α_PF ∝ e^(−y) is refuted outright: α₁ and α₂
+  contain no screening variable at all. Whatever buys the PPN pass, it is not a screened α₁.
+- **Two costs, quantified and new.** The MOND scalar's own cone is c_s ≥ 19c at 1 AU and 2522c at
+  Cassini conjunction, forced by J_Y = s/Δ with Δ bounded (this is L33's lane). And on the saturated
+  branch Δ′ = 0 exactly, so Σ_∥ = 1/Δ′ is infinite and the scalar's cubic action **cannot be written**
+  — the action as published is not twice differentiable at the Solar-System background (L30's lane).
+
+## L19 — does the Cherenkov bound apply to the clock? Partly not, and L10 is corrected
+
+`L19_cherenkov_applicability.py` + `L19_CHERENKOV.md` (13 checks, 6 FAIL; every control passes,
+including an independent re-derivation of Moore & Nelson's coefficient and the published 2e-15 bound).
+
+L10 excluded c_s² = 1/3 by gravitational Cherenkov and concluded the clock must be luminal to 4e-15.
+This lane asked the question L10 assumed: **does that bound apply to this mode?** It largely does not.
+
+- **The bound constrains the coupling, not the speed.** Moore & Nelson's 2e-15 is for a mode coupling
+  to the emitter's T⁰⁰ ~ E². On IC10's η = 1 plateau the clock never appears in S_m and reaches matter
+  **only through the conformal factor**, so ∂S_m/∂w = −√(−g)T^μ_μ exactly and the vertex is the trace.
+  That loosens the bound by **7.2e5×, to 1 − c_s ≤ 1.4e-9**.
+- **That alone does not save c_s² = 1/3** (still fails by 2.9e8×). What saves it is L10's second and
+  larger error: the exponential wall was evaluated along the ambient 10 kpc Galactic path where
+  |a| ~ a₀, when the radiation is generated **in the cosmic ray's own near field**, where
+  |a|/a₀ = 8.8e38. Applying Milgrom's own high-acceleration GR limit (arXiv:1102.1818) there gives
+  D_loss = 4.5 ℓ_M — 1.4e7× the path length and **33 Hubble distances** — for any subluminal speed,
+  on both footings and at full tensor coupling. **L10's "the exp wall cannot rescue this gate" is
+  withdrawn**, and with it "σ = 1 within 4e-15".
+- **A three-tier conditional, with the deciding input named.** Y1, a gravitational-sector mode with
+  preferred-frame mixing (IC5/6/7, and IC10 off the η = 1 plateau where L8 found λ ≠ 1): vertex ~E²,
+  bound 2e-15, L10 stands. Y2, a k-essence clock in an exactly Einstein sector with conformal coupling
+  only (IC10 at η = 1 as published): bound 1.4e-9. Y3, Y2 plus the high-acceleration limit holding in
+  the emitter's near field: **no bound at all**. The deciding computation is IC10's own open item 3 —
+  expand P_w + e^{4w}T^μ_μ = 0 on the static branch and evaluate ∂w/∂X̃ as |a|/a₀ → ∞.
+- **One correction cutting the other way (C5 FAIL).** "Conformal scalars decouple from radiation" is
+  **false** at Cherenkov kinematics: the emitted quantum is spacelike (2p·k = k²), and for a spin-0
+  primary the trace coupling reproduces the tensor bound to four digits. The protection here is
+  entirely the Dirac structure ⟨T^μ_μ⟩ = M ū(p′)u(p), not conformal invariance.
+- **Confirmed in L10:** the PPN arm (K6) is untouched, the speed is the invariant that matters, and
+  without screening c_s² = 1/3 does fail. **Consequence for the handoff:** A5 becomes a conditional,
+  A6 is scoped to Y1, and L15's σ* = 1.679 obstruction drops off the critical path.
+- Causality control (C9): the subluminal clock cone lies inside the metric null cone, so no closed
+  causal curve can form. No photon, neutrino, graviton, binary-pulsar or CMB channel binds it.
+
+## L17 — the nonlocal elliptic door (recipe A5): a seasoning, not a protein
+
+`L17_elliptic_nonlocal.py` + `L17_ELLIPTIC.md` (32 checks, 17 FAIL; all 7 controls pass, both footings).
+
+A5 proposes a spatially nonlocal elliptic operator f(−D²/a₀²) — nonlocal enough to change the force
+law, elliptic so it adds no initial data. This lane tested it in both placements: as the **mechanism**
+that produces MOND, and as a **filter** inside an already-MOND term (PAPER4's ξ²|∇⊥V|²).
+
+- **A5's own central claim is TRUE, and this lane confirms it independently.** The localisation
+  L = λ[(1−ℓ²Δ)w − u] adds **exactly zero** degrees of freedom (four second-class constraints). The
+  same localisation with a *temporal* operator adds 2, with kinetic eigenvalues −2/+2 — a ghost pair,
+  which is the recipe's P6 reproduced from the same machinery. At a zero of the symbol the quartet
+  collapses to 2 first class, so **ellipticity is load-bearing**, not the word "auxiliary". Controls:
+  the Dirac counter returns 1, 0, 2, 3, **2 for linearised GR**, and 5 for massive Fierz–Pauli.
+- **As the mechanism it dies on linearity, and the argument is generic.** A filter is a linear
+  operator, so superposition forces g ∝ M for every symbol and every length:
+  **d ln g/d ln M = 1.000000** against MOND's required 0.5, re-verified on an arbitrary 200×200 dense
+  nonlocal positive-definite operator to 1e-11. μ(y) = 1 − e^(−y) is unreachable in principle —
+  A5-L's μ_eff = 1/(1 + 2r/πℓ) depends on r alone and is identical to six digits for two galaxies
+  whose required μ differ by 8.6×.
+- **A5's own caveat fires exactly, and is quantified.** g_A5L/g_MOND = (2/π)(v_flat/c)² = **2.50e-7**
+  (canonical) / 2.74e-7 (alt), r-independent — short by ~4e6. Under a density rescaling the extra
+  force is O(ε^1.000000) while the frozen kernel's phantom is O(ε^0.498), non-analytic and dominant.
+  The momentum scaling really *is* changed, 1/r² → 1/r (O1 PASS), so the recipe's note is confirmed
+  in both halves: the mechanism works and the amplitude is six orders short.
+- **Root cause, and the deliverable.** The only length a₀ and c admit is ℓ₀ = c²/a₀ = 31.11 / 25.82
+  Gpc, and ℓ₀/r_M = (c/v_flat)² ≈ 8e5–8e7. In PAPER4's filtered placement that length annihilates
+  MOND from either side — smoothing suppresses the argument by 1.4e19 (Gaussian) / 4.8e12 (Helmholtz)
+  at 20 kpc, sharpening saturates it at y = 6.9e15. Both give Newton. **A nonlocal operator is
+  triggered by a length; MOND is triggered by an acceleration**, and the only dictionary between them
+  is r_M = |Φ|/a₀ — the potential, which the recipe's I4 forbids by name, which is not a local
+  invariant, and which is mass-dependent and therefore not an operator at all.
+- **The price A5 does not pay.** There is no covariant elliptic operator on a Lorentzian manifold, so
+  the filter needs a foliation; the A5 term is built from γ_ij with N only in the measure, so its
+  khronon kinetic matrix is **exactly zero**. Either the host supplies c₁₄ ≠ 0 (and the count is 3)
+  or nothing does and the foliation scalar is strongly coupled — the recipe's P7, verbatim.
+- **Verdict: admissible as a seasoning, excluded as a protein.** The Solar-System gate passes (S2),
+  and the DOF result and the elliptic-vs-temporal contrast are worth keeping. Both failures rest on
+  two independent legs — linearity, which involves no cosmological number at all, and the dimensional
+  uniqueness of c²/a₀ — so they are generic to the class, not artefacts of a filter choice.

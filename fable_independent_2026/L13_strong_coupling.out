@@ -1,0 +1,200 @@
+==========================================================================================================================
+L13 -- P7: does the screening that buys PPN kill the scalar's kinetic normalisation?
+==========================================================================================================================
+
+0.  the carried kernel (THE_ACTION section 3), recomputed here
+--------------------------------------------------------------
+    nu_RAR saturates at s_sat = 2.5396 with Delta_max = C = 0.64761   (THE_ACTION: 2.540 and 0.6476)
+  [PASS] K0 [control] the carried kernel's saturation point and ceiling reproduce THE_ACTION section 3 (s_sat = 2.540, C = 0.6476)   (s_sat = 2.5396, C = 0.64761)
+
+1.  the clock sector at c_13 = 0: the ONLY surviving frame coefficient is c_14, and it multiplies a^2
+-----------------------------------------------------------------------------------------------------
+    for a hypersurface-orthogonal n, (grad_m n_n)(grad^m n^n) - (grad_m n_n)(grad^n n^m) = -a_m a^m  identically,
+    so with c_1 = -c_3 = K_B the K_B terms cancel and -c_1 A - c_3 C + c_4 a^2 = (c_1 + c_4) a^2 = c_14 a^2.
+    Tested at exact rational points on two random polynomial clock profiles: residuals [0, 0]
+  [PASS] C1 [control] the hypersurface-orthogonal identity A - C = -a^2 holds exactly, so the clock sector reduces to -c_2 (div n)^2 + c_14 a^2 and K_B drops out of it   (exact residuals [0, 0])
+
+2.  the khronon's own quadratic and cubic Lagrangian (flat space, decoupling limit)
+-----------------------------------------------------------------------------------
+    In the decoupling limit the Einstein-Hilbert term is identically zero (R = 0 for the flat metric at any
+    foliation), so the WHOLE khronon Lagrangian is L = M^2 [ c_14 a.a - c_2 (div n)^2 ], M^2 = 1/(16 pi G),
+    exact to all orders in chi.  Expanding tau = t + chi:
+      L_2 = M^2 [ c_14 (d_i chi_dot)^2 - c_2 (lap chi)^2 ]
+      L_3 = M^2 [ c_14 ( -2 chi_dot (d_i chi_dot)^2 - 2 d_i chi_dot d_j chi d_i d_j chi - 2 chi_ddot d_i chi d_i chi_dot )
+                  + c_2 ( 4 lap chi d_j chi d_j chi_dot + 2 chi_dot (lap chi)^2 ) ]
+  [PASS] C2a [control] the quadratic expansion of a.a and (div n)^2 is exactly (d_i chi_dot)^2 and (lap chi)^2   (exact residuals [(0, 0), (0, 0)])
+  [PASS] C2b [control] the cubic expansion of a.a and (div n)^2 matches the five monomials quoted above   (exact residuals [(0, 0), (0, 0)])
+    => KHRONON KINETIC NORMALISATION (flat, decoupling): the coefficient of chi_dot^2 is  2 M^2 c_14 k^2.
+       Sound speed from L_2 alone: c_s^2 = c_2/c_14  (the exact value is checked in section 3).
+    => EVERY cubic monomial carries the derivative multiset {1,2,2}: L_3 = M^2 c_14 (d chi)(d^2 chi)^2 uniformly.
+       With the canonical field chi_c = sqrt(2 M^2 c_14) d chi this is  L_3 = chi_c (d chi_c)^2 / (2^{3/2} M sqrt(c_14)),
+       a single dimension-5 operator with suppression scale  Lambda_5 = 2^{3/2} M sqrt(c_14) = 2 M_pl sqrt(c_14).
+  [PASS] C2c [control] every cubic monomial has derivative multiset {1,2,2}, so L_3 is a single dim-5 operator and Lambda_5 = 2 M_pl sqrt(c_14) with no other parameter   (five monomials, derivative orders (1,2,2) each)
+
+3.  independent route: unitary-gauge reduction with the lapse and shift integrated out (metric kept)
+----------------------------------------------------------------------------------------------------
+    quadratic ADM Lagrangian built (6s)
+    x-averaged (6s)
+    reduced kinetic coefficient of Phi_dot^2 :  3 + 2/c2
+    reduced potential coefficient of Phi^2   :  k**2*(2 - c14)/c14
+    => c_s^2 = c2*(2 - c14)/(c14*(3*c2 + 2))
+  [PASS] C3 [control] the unitary-gauge reduction reproduces Einstein-aether's PUBLISHED spin-0 speed c_s^2 = c_123(2-c_14)/[c_14(1-c_13)(2+c_13+3c_2)] at c_13 = 0   (got c2*(2 - c14)/(c14*(3*c2 + 2)))
+  [PASS] C3b [GR control] with c_14 = 0 the lapse is a Lagrange multiplier (L_2 is linear in Psi), so there is no propagating scalar -- the khronon exists ONLY because c_14 != 0   (d^2 L_2 / d Psi^2 = 0 at c_14 = 0)
+    Note the two routes agree where they must: c_s^2 = c_2/c_14 x (2-c_14)/(2+3c_2) -> c_2/c_14 for small c_2, c_14,
+    and the c_14 -> 0 limit is singular in BOTH: the mode's kinetic term is bought entirely by c_14.
+
+4.  the coupled (khronon, MOND scalar) system with the AeST mixing 2(2-K_B) J^m d_m phi
+---------------------------------------------------------------------------------------
+    Around a background with V_bar = grad phi, writing Sigma for the scalar's gradient stiffness
+    (transverse Sigma_perp = J_Y ; longitudinal Sigma_par = J_Y + 2 Y J_YY = 1/Delta'(s)):
+      L_2/M^2 = c_14 k^2 chi_dot^2 - c_2 k^4 chi^2 + |K_2| dphi_dot^2 - (2-K_B) Sigma k^2 dphi^2 + 2(2-K_B) k^2 chi_dot dphi
+    The mixing carries ONE time derivative, so it is antisymmetric and contributes NOTHING to the kinetic
+    Hessian, which is therefore block diagonal and screening-independent:
+      H_kin = diag( 2 M^2 c_14 k^2 ,  2 M^2 |K_2| ) .
+    dispersion (u = omega^2/k^2):  K_2*c_14 u^2 + (-K_2*c_2 - K_B**2 + K_B*Sigma*c_14 + 4*K_B - 2*Sigma*c_14 - 4) u + -Sigma*c_2*(K_B - 2) = 0
+  [PASS] C4a [control] the unscreened limit Sigma -> 0 reproduces THE_ACTION's fast-clock mode c_s^2 = c_2/c_14 + (2-K_B)^2/(c_14 |K_2|), hence the published rigid/fast threshold c_2 = (2-K_B)^2/|K_2|   (got (K_2*c_2 + K_B**2 - 4*K_B + 4)/(K_2*c_14))
+    threshold c_2 = (2-K_B)^2/|K_2| at K_B = 0.2, |K_2| = 2.5e5 : 1.30e-05   (THE_ACTION section 5.7: 1.3e-5)
+  [PASS] C4b [control] that threshold is the published 1.3e-5   (1.296e-05)
+    at f34's parameter point (K_B=1/5, c_2=1/10, c_14=1e-5, |K_2|=10, J_Y=1): MOND scalar c_s^2 = 4.2453e-02, khronon c_s^2 = 4.2400e+04   (f34 full metric + xi^2 operator: 4.1899e-02 and 4.1096e+04)
+  [PASS] C4c [control] the reduced 2x2 system reproduces f34's TWO full-metric mode speeds within 5%   (4.2453e-02 vs 4.1899e-02 (1.3%), 4.2400e+04 vs 4.1096e+04 (3.2%))
+
+    Integrating the scalar out at large Sigma (its own inertia |K_2| omega^2 << Sigma k^2, i.e. exactly the
+    screened regime) the khronon keeps omega^2 = c_2 k^2 / c_14_eff with
+      c_14_eff(Sigma) = c_14 + (2-K_B)/Sigma + c_2 |K_2| / [ (2-K_B) Sigma ]        [derived from the same 2x2]
+  [PASS] C4d [control] c_14_eff is EXACTLY the leading large-Sigma root of the 2x2: c_2/c_14_eff = -C/B identically   (exact rational identity, not a truncated series)
+
+5.  the PPN-visible preferred-frame couplings alpha_1, alpha_2 (Foster-Jacobson, Einstein-aether)
+-------------------------------------------------------------------------------------------------
+    alpha_1 = -4*c14          <-- EXACT, for every K_B and c_2
+    alpha_2 = c14*(-2*c14*c2 - c14 + c2)/(c2*(c14 - 2))
+    alpha_2 = 3*c14**2/4 + c14**2/(2*c2) - c14/2 + O(c_14^3)
+            = -c_14/2 + c_14^2/(2 c_2) + 3*c14**2/4   -- g03v's closed form plus exactly the O(c_14^2)
+              term it drops (the 1/c_2-enhanced piece is the one g03v keeps).
+  [PASS] C5a [control] alpha_1 = -4 c_14 EXACTLY at c_1 = -c_3 = K_B, for every K_B and c_2   (alpha_1 = -4*c14)
+  [PASS] C5b [control] alpha_2 = -c_14/2 + c_14^2/(2 c_2) + O(c_14^2), reproducing g03v's closed form with the 1/c_2-enhanced term identical and the dropped remainder equal to 3 c_14^2/4   (remainder = 3*c14**2/4)
+  [PASS] C5b2 [control] alpha_2 vanishes EXACTLY on c_2* = c_14/(1 - 2 c_14), g03v's line -- solved from the exact alpha_2, not from the expansion   (roots in c_2: [-c14/(2*c14 - 1)])
+    g03v's corner (K_B=0.2, c_2=1, c_14=1.18e-5): alpha_1 = -4.720e-05, alpha_2 = -5.900e-06   (f33: -4.72e-5, -5.9e-6)
+    alpha_2 = 0 exactly on c_2* = c_14/(1-2 c_14) = 1.00002e-05: alpha_2(c_2*) = 2.11e-17
+  [PASS] C5c [control] reproduces g03v/f33's PPN corner (alpha_1 = -4.72e-5, alpha_2 = -5.9e-6) and the alpha_2 = 0 line   (alpha_1 = -4.720e-05, alpha_2 = -5.900e-06, alpha_2(c_2*) = 2.1e-17)
+  [PASS] C5d [control] the recipe's historical khronometric-MOND candidate (eta = c_14 = 2 e^{-y}) gives its quoted alpha_1 = -8 e^{-y}   (at y = 3: alpha_1 = -3.982965e-01 vs -8 e^-3 = -3.982965e-01)
+    On the alpha_2 = 0 line the khronon is exactly luminal: c_s^2 = (1+2c_14)(2-c_14)/(2+3c_14) = 1 + O(c_14^2).
+  [PASS] C5e on the PPN-forced line c_2 = c_2* the khronon sound speed is 1 to O(c_14^2), so no large-c_s enhancement is available to rescue or to worsen the normalisation   (c_s^2 = 1.000000000000)
+
+6.  THE P7 QUESTION: is the PPN-visible coupling controlled by the SAME coefficient as the kinetic normalisation?
+-----------------------------------------------------------------------------------------------------------------
+    (a) PPN-visible preferred-frame coupling      alpha_1 = -4 c_14         (exact)
+    (b) khronon kinetic normalisation             H_kin(chi) = 2 M^2 c_14 k^2
+    (c) MOND-scalar kinetic normalisation         H_kin(dphi) = 2 M^2 |K_2|
+    ratio (-alpha_1/4) / (khronon kinetic coefficient) = 1  -- identically 1, for every K_B, c_2, c_14.
+  [FAIL] P1 [A3 mandatory design principle, clock sector] the PPN-visible coupling and the khronon kinetic normalisation are controlled by DIFFERENT coefficients   (they are the SAME coefficient c_14: alpha_1 = -4 x (kinetic normalisation), identically)
+  [FAIL] P2 [A3 healthy pattern] alpha_PF is proportional to (1 - mu) = e^{-y}, i.e. the PPN coupling is SCREENED   (alpha_1 and alpha_2 contain no screening variable at all: they are constants -4 c_14 and -c_14/2 + c_14^2/(2c_2), y-independent)
+  [PASS] P3 [A3, MOND-scalar sector] the MOND scalar's kinetic normalisation |K_2| is independent of every PPN-visible coefficient and of the screening variable   (H_kin(dphi) = 2 M^2 |K_2|; |K_2| appears in no PPN alpha and does not depend on J_Y -- A3 IS satisfied here)
+
+7.  the screened limit: what the screening actually does to the kinetic normalisation
+-------------------------------------------------------------------------------------
+    The kinetic Hessian is diag(2 M^2 c_14 k^2, 2 M^2 |K_2|) at EVERY value of the screening variable: the
+    AeST mixing carries one time derivative, so it is antisymmetric and drops out of the Hessian entirely.
+    The screening's ONLY footprint on the frame sector is in the effective one-field description obtained
+    by integrating out the stiff scalar, valid where the khronon branch is khronon-dominated:
+      c_14_eff(Sigma) = c_14 + (2-K_B)/Sigma + c_2 |K_2|/[(2-K_B) Sigma]   (exact leading large-Sigma root)
+    Parameters used: K_B = 0.2, c_14 = 1e-05, c_2 = c_2* = 1.00002e-05 (the alpha_2 = 0 line PPN
+    forces), |K_2| = 250000.  Sigma = J_Y = s/Delta(s), the CONSERVATIVE (transverse) stiffness; the
+    longitudinal one is 1/Delta'(s) = infinity on the saturated branch, for which the drag is exactly zero.
+
+    environment                            s (can)     s (alt)         J_Y   u_khronon  |dphi_c/chi_c|    c_14_eff     /c_14
+    deep MOND, galaxy outskirt                 0.1         0.1      0.3719       2.296          0.7513  4.3554e-06    0.4355  <- strongly mixed
+    MOND transition                              1           1       1.718       2.296          0.7513  4.3554e-06    0.4355  <- strongly mixed
+    galaxy inner disc                           10          10       15.44      2.2961          0.7513  4.3553e-06    0.4355  <- strongly mixed
+    Saturn orbit (Cassini monopole)      6.898e+05   5.726e+05   1.065e+06      0.8405          0.1528  1.1898e-05    1.1898
+    Earth orbit                          6.334e+07   5.258e+07   9.781e+07     0.99818        0.001617  1.0018e-05    1.0018
+    Cassini conjunction, b = 1.6 R_sun   1.144e+12   9.496e+11   1.767e+12           1       8.972e-08       1e-05    1.0000
+
+    => in the SCREENED regime the khronon branch is clean (the MOND scalar's canonical admixture is 1.62e-03 at 1 AU),
+       and its effective normalisation is c_14_eff = 1.00184e-05 = c_14 x 1.00184 at 1 AU, 1.18979 at Saturn, 1.0000001 at Cassini conjunction.
+    => the screening does not multiply the normalisation: it REMOVES a positive correction to it. The
+       correction falls as a POWER LAW 1/J_Y ~ Delta/s, not as the exponential e^{-y} A3 asks for, and it
+       is +0.184% of c_14 at 1 AU and +0.00001% at Cassini conjunction.
+    => in the UNSCREENED rows the khronon is NOT a separate mode: the canonical admixture is O(1), and the
+       'c_14_eff' there is a mixed clock-scalar quantity, not a khronon normalisation. Reported, not used.
+  [PASS] P4 [P7 mechanism] the screened-limit kinetic normalisation is NOT below the bare floor c_14, i.e. the screening does not multiply the normalisation by a vanishing factor   (current action: c_14_eff/c_14 = 1.00184 >= 1 at 1 AU (the screening removes a POSITIVE correction). Discriminating: the historical eta = 2 e^{-y} action gives eta/c_14 = 10^{-2.75e+07} there, which is what P7 was written about)
+  [PASS] P5 [P7 escape clause] an INDEPENDENT FINITE NORMALISATION exists in the screened limit   (c_14_eff -> c_14 = 1e-05 exactly; the exact kinetic Hessian 2 M^2 c_14 k^2 carries NO screening variable at any Sigma)
+
+8.  the strong-coupling scale on the ACTUAL Solar-System background (recipe gate G8)
+------------------------------------------------------------------------------------
+    Lambda_sc = 2 M_pl sqrt(c_14_eff) from the dim-5 operator derived in section 2 (c_s = 1 on the PPN-forced
+    line, so no sound-speed enhancement enters). Screened rows only: the mixed rows have no khronon branch.
+    environment                             c_14_eff     Lambda_sc [GeV]     1/Lambda_sc [m]   AU / (1/Lambda)
+    Saturn orbit (Cassini monopole)       1.1898e-05          1.6800e+16          1.1745e-32        1.2737e+43
+    Earth orbit                           1.0018e-05          1.5417e+16          1.2800e-32        1.1688e+43
+    Cassini conjunction, b = 1.6 R_sun         1e-05          1.5402e+16          1.2811e-32        1.1677e+43
+
+    Classical criterion (normalisation-free): L_3/L_2 = -2 chi_dot exactly for the dominant monomial, so the
+    classical expansion parameter is the khronon's own time-shift rate.  In the Solar System the aether is
+    tilted by the CMB-frame velocity w/c = 1.2e-3, giving |d_i chi| ~ 1.2e-3 and |chi_dot| ~ O(w^2/c^2, Phi) <= 1e-6.
+  [PASS] P6 [G8, the P7 verdict] the strong-coupling length in the Solar System is SHORTER than the system the theory must predict (1 AU), so the perturbative expansion is under control there   (1/Lambda_sc = 1.280e-32 m against 1 AU = 1.496e+11 m -- shorter by a factor 1.17e+43; P7 does NOT fire)
+    For P7 to be fatal here the theory would need c_14 < 7.33e-92, i.e. 1.4e+86x below its
+    working value -- and alpha_1 = -4 c_14 would then be 2.9e-91, unmeasurably far inside the bound.
+
+    CONTRAST -- the historical khronometric-MOND candidate the recipe was written about (eta = c_14 = 2 e^{-y}):
+      y = 1: c_14 = 0.7358, Lambda_sc = 4.178e+18 GeV, 1/Lambda_sc = 4.723e-35 m
+      y = 6.33e+07: c_14 = 2 e^-y = 10^(-2.75e+07), Lambda_sc = 0 to every working precision, 1/Lambda_sc = 10^(1.38e+07) m
+      at Earth's orbit y = 6.334e+07: log10(1/Lambda_sc / m) = 1.375e+07  -- P7 fired with an
+      unbounded margin.  THE CURRENT ACTION ESCAPES P7 ONLY BY MAKING THE COEFFICIENT CONSTANT, i.e. by
+      abandoning A3's screened-alpha_PF mechanism and passing PPN by choosing c_14 = 1e-5 instead.
+  [PASS] C6 [control, historical] the SAME machinery detects P7 firing catastrophically for the recipe's own khronometric-MOND candidate (eta = 2 e^{-y}), i.e. this test is not blind to the failure it is looking for   (log10(1/Lambda_sc/m) = 1.375e+07 against log10(AU/m) = 11.2 -- P7 fires there by 1.38e+07 decades)
+
+9.  what the screening DOES cost: the MOND scalar's cone, and what the published action does not define
+-------------------------------------------------------------------------------------------------------
+    The MOND scalar's kinetic normalisation is |K_2| (constant) but its gradient stiffness is J_Y = s/Delta(s),
+    which the static law forces to grow linearly with s.  Its sound speed is therefore FORCED:
+        c_s,perp^2 = (2-K_B) J_Y c^2 / |K_2|  >=  (2-K_B) s c^2 / (C |K_2|),   C = Delta_max = 0.6476
+    environment                            footing             s    c_s/c at |K_2|=5e5    c_s/c at |K_2|=2e5
+    Saturn orbit (Cassini monopole)      canonical     6.898e+05                 1.958                 3.096
+    Saturn orbit (Cassini monopole)            alt     5.726e+05                 1.784                 2.821
+    Earth orbit                          canonical     6.334e+07                 18.76                 29.67
+    Earth orbit                                alt     5.258e+07                  17.1                 27.03
+    Cassini conjunction, b = 1.6 R_sun   canonical     1.144e+12                  2522                  3987
+    Cassini conjunction, b = 1.6 R_sun         alt     9.496e+11                  2298                  3633
+
+    Subluminality at 1 AU would need |K_2| >= (2-K_B) J_Y = 1.761e+08, which is 352x above the
+    dark sector's window edge |K_2| <= 5e5 (g03r/g03u) and 65.2x above the growth pincer's 2.7e6 (g03t).
+  [FAIL] P8 [diagnostic, NOT a kill] the MOND scalar stays inside the metric light cone in the Solar System at any |K_2| the dark sector allows   (worst case c_s/c = 2.52e+03 at |K_2| = 5e5; forced by J_Y = s/Delta with Delta <= C. IN A KHRONOMETRIC THEORY WITH A PREFERRED FOLIATION SUPERLUMINAL PROPAGATION IS NOT BY ITSELF ACAUSAL -- this FAIL is a quantified cost of the screening, not an exclusion)
+
+    The longitudinal stiffness is Sigma_par = 1/Delta'(s).  On the carried kernel's saturated branch (s > 2.540)
+    Delta' = 0 identically, so Sigma_par = infinity: the scalar is PINNED at g_phi = C a0 and J(Y) has an
+    infinite slope at Y = (C a0)^2.  The published action therefore does not supply a C^2 kernel at the
+    Solar-System background, and the CUBIC action for delta phi there is not defined by the action as written.
+  [FAIL] P9 the published kernel is C^2 at the Solar-System background, so the MOND scalar's own strong-coupling scale can be computed from the action as published   (Delta'(s) = 0 exactly for s > s_sat; Sigma_par = 1/Delta' = infinity. WHAT IS MISSING: J(Y) beyond saturation as a genuine C^2 function (equivalently, the smooth continuation of Delta(s) past its maximum with Delta' > 0))
+
+VERDICT
+-------
+  P7 does NOT fire in the candidate action, but A3's mandatory design principle IS violated.
+
+  1. Same coefficient?  YES.  alpha_1 = -4 c_14 exactly, and the khronon's kinetic normalisation is
+     2 M^2 c_14 k^2.  The ratio is identically -4 for every K_B, c_2, c_14.  A3's 'PPN-visible coupling
+     != kinetic normalization' is violated as an identity, not as an approximation.
+  2. Screened?  NO.  alpha_1 and alpha_2 carry no screening variable.  They are constants fixed by
+     parameter choice.  A3's viable pattern alpha_PF ~ (1 - mu) = e^{-y} is REFUTED for this action.
+     The screening reaches the frame sector only through the sub-leading drag (2-K_B)/J_Y, which falls
+     as a POWER LAW 1/y, and is 0.18% of c_14 at 1 AU (consistent with, and independently bounding,
+     THE_ACTION's '<2% of alpha_1' -- and this is without the xi^2 operator, which screens it further).
+  3. Does the screened limit kill the normalisation?  NO.  The kinetic Hessian diag(2 M^2 c_14 k^2, 2 M^2|K_2|)
+     carries no screening variable at any Sigma -- the AeST mixing is antisymmetric and drops out of it.  The
+     screening's only footprint is a POSITIVE correction (2-K_B)/Sigma + c_2|K_2|/[(2-K_B)Sigma] to c_14 in
+     the effective one-field description, which the screening REMOVES: +0.184% at 1 AU, +0.00001% at Cassini
+     conjunction.  The normalisation is never multiplied by a vanishing factor.  P7's escape clause holds.
+  4. Strong-coupling scale.  Lambda_sc = 2 M_pl sqrt(c_14) = 1.54e+16 GeV, i.e. 1.28e-32 m: 1e+43 times SHORTER
+     than 1 AU.  Not fatal.  The classical expansion parameter is chi_dot <= 1e-6 in the Solar System.
+     The P7 direction EXISTS in parameter space -- c_14 -> 0 sends alpha_1 and the normalisation to zero
+     together -- but it is 1e+86 times below the working value, so the theory is safe by a number, not by
+     a design separation.  C6 shows the test is not blind: the same machinery kills the eta = 2 e^{-y} version.
+  5. The price is paid elsewhere: PPN is passed by TUNING c_14 and c_2 (to within 8% of c_2* for alpha_2),
+     not by screening; and the screening that does the Solar-System work drives the MOND scalar's cone to
+     c_s >= 19 c at 1 AU and 2522 c at Cassini conjunction (|K_2| = 5e5), forced by J_Y = s/Delta with
+     Delta bounded -- not a kill in a preferred-foliation theory, but it is what buys the PPN pass.
+  6. What the action as published does NOT determine: J(Y) on the saturated branch. Delta' = 0 there, so
+     Sigma_par = 1/Delta' is infinite and the MOND scalar's own cubic action on the Solar-System
+     background cannot be written down. A C^2 continuation of Delta past its maximum is the missing input.
+
+RESULT: 4 FAIL -> ['P1 [A3 mandatory design principle, clock sector] the PPN-visible coupling and the khronon kinetic normalisation are controlled by DIFFERENT coefficients', 'P2 [A3 healthy pattern] alpha_PF is proportional to (1 - mu) = e^{-y}, i.e. the PPN coupling is SCREENED', 'P8 [diagnostic, NOT a kill] the MOND scalar stays inside the metric light cone in the Solar System at any |K_2| the dark sector allows', "P9 the published kernel is C^2 at the Solar-System background, so the MOND scalar's own strong-coupling scale can be computed from the action as published"]
+(6s)

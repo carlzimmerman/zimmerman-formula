@@ -124,8 +124,7 @@ same_kmax = sp.simplify(kmax_from_cos - kmax_closed) == 0
 print(f"          k_max      = {kmax_closed}         (the value at cos(theta) = 1)")
 # threshold: k_max > 0  <=>  p > E v  <=>  E > M/sqrt(1-v^2)
 thr = sp.solve(sp.Eq(p_expr, E*v), E)[0]
-thr_ok = all(abs(float(thr.subs({M: 1.3, v: vt})) - 1.3/math.sqrt(1 - vt**2)) < 1e-12
-             for vt in (0.1, 0.5, 0.5773502691896258, 0.9, 1 - 1e-9))
+thr_ok = sp.simplify(thr**2 - M**2/(1 - v**2)) == 0        # squared, to sidestep sympy's branch form
 print(f"          threshold  : k_max > 0  <=>  p > E v  <=>  E > M/sqrt(1-v^2)   [sympy: {thr}]")
 # on-shell identity 2 p.k = k^2  (mostly-minus); k^2 = omega^2 - |k|^2 = -(1-v^2)|k|^2
 pdotk = E*(v*k) - p_*k*cos_closed
@@ -183,46 +182,47 @@ print("    sin^2(theta) from section A.  This is the standard structure Moore & 
 print("    Stoica use; the Lorentz-violating polarisation basis differs in O(1) factors, which is exactly")
 print("    what this control is checking.")
 
-def cos_theta(vv, kk, EE, MM):
-    pp = math.sqrt(EE*EE - MM*MM)
-    return (EE*vv + kk*(1 - vv*vv)/2.0)/pp
+# Everything below is parametrised by dd = delta = 1 - v rather than by v, and every difference
+# (p - E), (p - E v), (1 - cos theta) is formed WITHOUT cancelling large numbers -- at delta ~ 1e-20 and
+# E ~ 1e11 GeV a naive "1 - v*v" underflows to zero and the whole calculation is silently wrong.
+def _om2(dd):   return dd*(2.0 - dd)                     # 1 - v^2, exact
+def _p(EE, MM): return math.sqrt(EE*EE - MM*MM)
+def _pmEv(dd, EE, MM):
+    """p - E v = (p - E) + E delta, with p - E = -M^2/(p+E) formed exactly."""
+    return EE*dd - MM*MM/(_p(EE, MM) + EE)
 
-def k_max(vv, EE, MM):
-    pp = math.sqrt(EE*EE - MM*MM)
-    return 2.0*(pp - EE*vv)/(1 - vv*vv)
+def k_max(dd, EE, MM):
+    num = _pmEv(dd, EE, MM)
+    return 2.0*num/_om2(dd) if num > 0 else 0.0
 
-def amp2_tensor(vv, kk, EE, MM):
-    """Sum_pol |M|^2 for the tensor coupling, GeV^0 (dimensionless amplitude squared)."""
-    pp = math.sqrt(EE*EE - MM*MM); c = cos_theta(vv, kk, EE, MM)
-    s2 = max(0.0, 1.0 - c*c)
-    return 2.0*pp**4*s2*s2/MPL2_RED
+def sin2_theta(dd, kk, EE, MM):
+    """1 - cos^2(theta), formed as u(2-u) with u = 1 - cos(theta) computed without cancellation."""
+    u = (_pmEv(dd, EE, MM) - kk*_om2(dd)/2.0)/_p(EE, MM)
+    return max(0.0, u*(2.0 - u))
 
-def amp2_trace(vv, kk, EE, MM, beta=1.0):
+def amp2_tensor(dd, kk, EE, MM):
+    """Sum_pol |M|^2 for the tensor coupling: 2 p^4 sin^4(theta)/M_Pl^2."""
+    s2 = sin2_theta(dd, kk, EE, MM)
+    return 2.0*_p(EE, MM)**4*s2*s2/MPL2_RED
+
+def amp2_trace(dd, kk, EE, MM, beta=1.0):
     """Sum_spins |M|^2, averaged over the initial spin, for a conformal (trace) coupling
        L = (beta/M_Pl) phi T^mu_mu on a DIRAC primary:
             <p'|T^mu_mu|p> = M ubar(p') u(p),  Sum/2 = 2 M^2 (p.p' + M^2),
-            p.p' = M^2 + (1-v^2)k^2/2  (from 2 p.k = k^2)."""
-    return beta*beta*MM*MM*(4.0*MM*MM + (1 - vv*vv)*kk*kk)/MPL2_RED
+            p.p' = M^2 + (1-v^2)k^2/2  (from the on-shell identity 2 p.k = k^2)."""
+    return beta*beta*MM*MM*(4.0*MM*MM + _om2(dd)*kk*kk)/MPL2_RED
 
-def amp2_trace_scalarprimary(vv, kk, EE, MM, beta=1.0):
+def amp2_trace_scalarprimary(dd, kk, EE, MM, beta=1.0):
     """the same for a SPIN-0 primary: <T^mu_mu> = 2M^2 + k^2_inv = 2M^2 - (1-v^2)k^2."""
-    return beta*beta*(2.0*MM*MM - (1 - vv*vv)*kk*kk)**2/MPL2_RED
+    return beta*beta*(2.0*MM*MM - _om2(dd)*kk*kk)**2/MPL2_RED
 
-def loss_inv(vv, EE, MM, amp2, kcut=None, **kw):
+def loss_inv(dd, EE, MM, amp2, kcut=None, **kw):
     """D_loss^-1 = (1/E)(1/(16 pi E p)) Int_0^min(kmax,kcut) dk k |M|^2, in GeV."""
-    pp = math.sqrt(EE*EE - MM*MM); km = k_max(vv, EE, MM)
+    km = k_max(dd, EE, MM)
     if km <= 0: return 0.0
     if kcut is not None: km = min(km, kcut)
-    integ = quad(lambda kk: float(kk)*amp2(vv, float(kk), EE, MM, **kw), [0, km])
-    return float(integ)/(16*math.pi*EE*EE*pp)
-
-def rate(vv, EE, MM, amp2, kcut=None, **kw):
-    """Gamma = (1/(16 pi E p v)) Int dk |M|^2, in GeV."""
-    pp = math.sqrt(EE*EE - MM*MM); km = k_max(vv, EE, MM)
-    if km <= 0: return 0.0
-    if kcut is not None: km = min(km, kcut)
-    integ = quad(lambda kk: amp2(vv, float(kk), EE, MM, **kw), [0, km])
-    return float(integ)/(16*math.pi*EE*pp*vv)
+    integ = quad(lambda kk: float(kk)*amp2(dd, float(kk), EE, MM, **kw), [0, km/2, km])
+    return float(integ)/(16*math.pi*EE*EE*_p(EE, MM))
 
 # (a) the analytic small-delta limit and Milgrom's transcription of Moore & Nelson
 print(f"\n    B.1  the analytic small-delta limit of the derived integral.  With M << E and delta = 1 - v << 1,")
@@ -233,7 +233,7 @@ print(f"         Milgrom 2011 (arXiv:1102.1818) eq. (2) transcribes Moore & Nels
 print(f"         with Q ~ 1e-3 (n-1)^2 where n = 1/v; the 1e-3 is their PARTONIC factor (each parton carries")
 print(f"         ~0.1 p).  Stripping it, Q_coherent = delta^2, i.e. D_loss^-1 = G delta^2 E^3.")
 delta_t = 1e-15
-num_coeff = loss_inv(1 - delta_t, E_MN, M_PROTON, amp2_tensor)/(G_N*delta_t**2*E_MN**3)
+num_coeff = loss_inv(delta_t, E_MN, M_PROTON, amp2_tensor)/(G_N*delta_t**2*E_MN**3)
 print(f"         numerically, from the full integral at delta = {delta_t:.0e}, E = {E_MN:.1e} GeV:")
 print(f"             D_loss^-1 / (G delta^2 E^3) = {num_coeff:.6f}    (analytic 1/3 = {1/3:.6f};  "
       f"Moore & Nelson coherent: 1)")
@@ -243,8 +243,8 @@ coeff_ok = abs(num_coeff - 1/3) < 0.02 and (1/5 < num_coeff/1.0 < 5)
 def bound_delta(EE, MM, amp2, D, extra=1.0, **kw):
     """solve D_loss(delta) = D for delta = 1 - v, by bisection on log delta."""
     def f(logd):
-        vv = 1 - math.exp(logd)
-        Li = loss_inv(vv, EE, MM, amp2, **kw)*extra
+        dd = math.exp(logd)
+        Li = loss_inv(dd, EE, MM, amp2, **kw)*extra
         return (1.0/Li if Li > 0 else 1e300) - D
     lo, hi = math.log(1e-22), math.log(0.9)
     for _ in range(200):
@@ -349,16 +349,16 @@ print("         decouple from ultra-relativistic matter because T^mu_mu = -M^2/E
 print("         suppression relative to the graviton's T^00 ~ E.  That is TRUE for soft/forward emission and")
 print("         FALSE at Cherenkov kinematics, because the emitted quantum is spacelike with |q^2| =")
 print("         (1-v^2)k^2, and the trace vertex picks that up.  This lane checked it rather than assuming it:")
-vv13 = math.sqrt(1/3.0)
+d13 = 1.0 - math.sqrt(1/3.0)          # delta = 1 - c_s at the measured c_s^2 = 1/3
 for lab, EE in (("E = 1e20 eV", E_TASK), ("E = 3e20 eV", E_MN)):
-    kk = 0.5*k_max(vv13, EE, M_PROTON)
-    at, atr = amp2_tensor(vv13, kk, EE, M_PROTON), amp2_trace(vv13, kk, EE, M_PROTON)
+    kk = 0.5*k_max(d13, EE, M_PROTON)
+    at, atr = amp2_tensor(d13, kk, EE, M_PROTON), amp2_trace(d13, kk, EE, M_PROTON)
     naive = (M_PROTON/EE)**4
     print(f"         {lab}, c_s^2 = 1/3, at k = k_max/2:  |M_trace|^2/|M_tensor|^2 = {atr/at:.3e},"
           f"   naive (M/E)^4 = {naive:.3e}   (naive too small by {naive/(atr/at):.1e}x)")
 naive_ratio = (M_PROTON/E_MN)**4
-kk_mid = 0.5*k_max(vv13, E_MN, M_PROTON)
-true_ratio = amp2_trace(vv13, kk_mid, E_MN, M_PROTON)/amp2_tensor(vv13, kk_mid, E_MN, M_PROTON)
+kk_mid = 0.5*k_max(d13, E_MN, M_PROTON)
+true_ratio = amp2_trace(d13, kk_mid, E_MN, M_PROTON)/amp2_tensor(d13, kk_mid, E_MN, M_PROTON)
 check("C5 [vertex] the trace vertex is (M/E)^2-suppressed relative to the tensor vertex at Cherenkov kinematics, "
       "as the standard conformal-decoupling argument would have it",
       abs(true_ratio/naive_ratio - 1) < 0.5,
@@ -381,13 +381,22 @@ for lab, val in (("proton (Dirac), E = 1e20 eV", d_trace_task),
                  ("proton (Dirac), E = 3e20 eV", d_trace_MN),
                  ("spin-0 primary (not physical), E = 3e20 eV", d_trace_s)):
     print(f"           {lab:<42} {val:>28.3e} {val/CHER_PUB:>15.1e}x")
+d_tensor_coh = bound_delta(E_MN, M_PROTON, amp2_tensor, D_GAL)          # no partonic factor, for comparison
+print(f"         Note the third row, and it is not a rounding coincidence: for a SPIN-0 primary the trace")
+print(f"         coupling gives NUMERICALLY THE SAME bound as the tensor coupling treated the same way")
+print(f"         ({d_trace_s:.3e} vs the coherent tensor bound {d_tensor_coh:.3e}) -- both integrals reduce to")
+print(f"         (2/3) delta^2 E^6 in the small-delta limit.  So the suppression found here is NOT a generic")
+print(f"         property of conformal coupling: it is entirely the DIRAC structure <T^mu_mu> = M ubar(p')u(p),")
+print(f"         which carries one power of M^2 that the spin-0 trace 2M^2 - (1-v^2)k^2 does not.  The physical")
+print(f"         primary is a proton, so the fermionic row is the one that counts -- but the mechanism has to be")
+print(f"         named correctly, and 'conformal scalars decouple from radiation' is NOT the mechanism.")
 print(f"         No partonic factor is applied here, and that is deliberate: the trace charge of a proton is")
 print(f"         its MASS (<p|T^mu_mu|p> = 2M_p^2 exactly for the hadron state), so the coherent treatment is")
-print(f"         the right one.  The proton's trace form factor at |q^2| ~ ({math.sqrt((1-1/3.)*k_max(vv13,E_MN,M_PROTON)**2):.1e} GeV)^2 would")
+print(f"         the right one.  The proton's trace form factor at |q^2| ~ ({math.sqrt((1-1/3.)*k_max(d13,E_MN,M_PROTON)**2):.1e} GeV)^2 would")
 print(f"         suppress it enormously further; omitting it is CONSERVATIVE, i.e. generous to the exclusion.")
 cs2 = 1/3.0; cs = math.sqrt(cs2); one_minus = 1 - cs
-Dl_trace = 1.0/loss_inv(cs, E_MN, M_PROTON, amp2_trace)
-Dl_tensor = 1.0/loss_inv(cs, E_MN, M_PROTON, amp2_tensor)
+Dl_trace = 1.0/loss_inv(one_minus, E_MN, M_PROTON, amp2_trace)
+Dl_tensor = 1.0/loss_inv(one_minus, E_MN, M_PROTON, amp2_tensor)
 print(f"\n         At the measured c_s^2 = 1/3 (1 - c_s = {one_minus:.4f}), E = {E_MN:.0e} GeV:")
 print(f"           trace coupling  (beta = 1):  D_loss = {Dl_trace/GEV_PER_INV_M:.3e} m = {Dl_trace/GEV_PER_INV_M/KPC_M:.3e} kpc"
       f"  -> D/D_loss = {D_GAL/Dl_trace:.2e}")
@@ -399,7 +408,8 @@ check("C6 [bound] 1 - c_s <= 2e-15, the number L10 imposed, is the bound that ap
       abs(d_trace_MN/CHER_PUB - 1) < 0.5,
       f"it is NOT.  The bound that applies to a trace-coupled clock at gravitational strength is "
       f"1 - c_s <= {d_trace_MN:.2e} at 3e20 eV / {d_trace_task:.2e} at 1e20 eV -- L10's number is too tight by "
-      f"{d_trace_MN/CHER_PUB:.1e}x (a factor {Dl_trace/Dl_tensor:.1e} in the loss rate).  L10's stated exclusion "
+      f"{d_trace_MN/CHER_PUB:.1e}x in the speed, equivalently {Dl_trace/Dl_tensor:.1e}x in the loss rate AT "
+      f"c_s^2 = 1/3 (the two differ because the tensor rate goes as delta^2 and the trace rate as delta).  L10's stated exclusion "
       f"factor 2.1e14 should read {one_minus/d_trace_MN:.1e}.  THIS FAIL IS L10 BEING CORRECTED, and the correction "
       f"is 5.9 orders of magnitude -- but see C8a: it does not by itself save c_s^2 = 1/3")
 
@@ -427,9 +437,13 @@ for nm, a0v in FOOT:
         lM = C_LIGHT**2/a0v
         print(f"      {nm:<11} {EE*1e9:9.1e} {r_M:12.4e} {l_dB:13.4e} {(r_M/l_dB)**2:14.4e} {a_dB/a0v:21.4e} {lM:19.4e}")
         mondnum[(nm, EE)] = (r_M, l_dB, lM)
+print(f"      columns 5 and 6 are equal BY THE IDENTITY a(r)/a_0 = (r_M/r)^2 -- that is what r_M means.")
 print(f"      Milgrom's quoted values, for comparison: r_M ~ 3e-12 (cp/GeV)^(1/2) cm = "
       f"{3e-12*math.sqrt(E_MN)*1e-2:.3e} m at 3e20 eV; (r_M k_dB)^2 ~ 1e39 at cp = 3e11 GeV;")
-print(f"      l_M ~ 2 pi D_H = {2*math.pi*D_HUBBLE_M:.3e} m.")
+print(f"      l_M ~ 2 pi D_H = {2*math.pi*D_HUBBLE_M:.3e} m.  Milgrom uses a_0 = 1.2e-10 m/s^2; rescaling his r_M to")
+print(f"      the canonical footing gives {3e-12*math.sqrt(E_MN)*1e-2*math.sqrt(1.2e-10/A0_CANON):.3e} m, "
+      f"{abs(3e-12*math.sqrt(E_MN)*1e-2*math.sqrt(1.2e-10/A0_CANON)/mondnum[('canonical', E_MN)][0] - 1)*100:.0f}% "
+      f"from this lane's value -- the residual is his ~ sign.")
 
 print(f"\n    E.2  CONTROL -- feeding that cutoff into the SAME rate formula reproduces Milgrom's result")
 print(f"         independently.  For k << k_max, sin^2(theta) -> 1 - v^2, so with k_cut = 1/r_M and")
@@ -445,7 +459,7 @@ for nm, a0v in FOOT:
     for EE in (E_TASK, E_MN):
         r_M, l_dB, lM = mondnum[(nm, EE)]
         kcut = 1.0/(r_M*GEV_PER_INV_M)                     # GeV
-        Li = loss_inv(cs, EE, M_PROTON, amp2_tensor, kcut=kcut)
+        Li = loss_inv(one_minus, EE, M_PROTON, amp2_tensor, kcut=kcut)
         Dl_m = (1.0/Li)/GEV_PER_INV_M
         q_meas = Dl_m/lM
         print(f"      {nm:<11} {EE*1e9:9.1e} {q_pred:12.4f} {q_meas:12.4f} {Dl_m:13.4e} {Dl_m/D_GAL_M:14.4e} "
@@ -500,7 +514,7 @@ for nm, a0v in FOOT:
         r_M, l_dB, lM = mondnum[(nm, EE)]
         kcut = 1.0/(r_M*GEV_PER_INV_M)
         for cl, fn in (("tensor", amp2_tensor), ("trace", amp2_trace)):
-            Li = loss_inv(cs, EE, M_PROTON, fn, kcut=kcut)
+            Li = loss_inv(one_minus, EE, M_PROTON, fn, kcut=kcut)
             Dl_m = (1.0/Li)/GEV_PER_INV_M
             ok = Dl_m > D_GAL_M
             if not ok: mond_ok = False
@@ -531,7 +545,6 @@ check("C9 [causality] the subluminal clock cone is causal -- it lies inside the 
 
 print(f"\n    G.2  OTHER EMITTERS.  Cherenkov by something other than a hadron:")
 m_nu = 0.1e-9                                              # GeV, a generous neutrino mass
-Dl_nu = 1.0/loss_inv(cs, 1e-2, m_nu, amp2_trace) if loss_inv(cs, 1e-2, m_nu, amp2_trace) > 0 else math.inf
 print(f"      photons:    T^mu_mu = 0 identically in 4D (C2), so a photon CANNOT emit a conformally coupled")
 print(f"                  clock quantum at tree level, at any speed.  LHAASO's PeV photons give nothing.")
 print(f"      neutrinos:  the vertex is proportional to m_nu^2; against a proton the rate is down by")

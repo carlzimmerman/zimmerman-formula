@@ -1,0 +1,265 @@
+==========================================================================================================================
+L21 -- binary galaxies: does the kernel or the cosmic dark share govern the regime between galaxies and clusters?
+==========================================================================================================================
+
+--------------------------------------------------------------------------------------------------------------------------
+PART 1 -- the two-body machinery.  Milgrom's exact deep-MOND two-body force, reused (not re-derived), and
+          bridged to the carried kernel so both limits are exact.
+--------------------------------------------------------------------------------------------------------------------------
+  Milgrom's two-body force in the form g02c grades it, F2/(M2 a_1) with a_1 = sqrt(G M1 a0)/d:
+      1:1 ratio  0.55228   10:1 ratio  0.81378
+      the repository's independent QUMOND field solve (g02c D1, both footings): 0.5579, 0.8205
+  [PASS] C1 [CONTROL] the two-body machinery reproduces the programme's verified deep-MOND two-body force before it is used   (analytic 0.55229/0.81379 exact; vs g02c's field solve 1.01% and 0.82% (both < 1.1%))
+  [PASS] C1b [CONTROL] the bridge's deep-MOND limit is Milgrom's own: v_rel -> 1.05099 (G m a0)^{1/4} for an equal pair   (recovered 1.05096 against the analytic 1.05099)
+
+  Newtonian control -- the carried kernel is SATURATED, so at high acceleration it leaves a constant
+  residual 0.6476 a0.  The relative acceleration must return to Newton as that residual becomes negligible:
+    M_b(pair) [Msun]  r_M [kpc]    r/r_M    d [kpc]       g_N/a0   a_rel/a_Newton - 1
+            2.00e+09       1.73     1.00      1.726            1            5.153e-01
+            2.00e+09       1.73     0.10      0.173          100            6.476e-03
+            2.00e+09       1.73     0.01      0.017        1e+04            6.476e-05
+            1.60e+11      15.44     1.00     15.436            1            5.153e-01
+            1.60e+11      15.44     0.10      1.544          100            6.476e-03
+            1.60e+11      15.44     0.01      0.154        1e+04            6.476e-05
+  [PASS] C2 [CONTROL] at small separation, where the acceleration is high, the prediction reduces to Newtonian   (at d = 0.01 r_M the carried kernel's saturated residual is 6.48e-05 of the Newtonian force (the residual is exactly 0.6476 a0/g_N and never vanishes -- that is the kernel's own structure))
+  [PASS] C3 [CONTROL] the bridge is exact in BOTH limits for equal, 10:1 and dwarf pairs on both footings   (worst deviation 4.3e-06 at 1e5 r_M, falling by 100x for 100x in radius (the kernel's own O(sqrt(s)) approach to deep MOND, not a numerical residual); Newtonian arm exact to 6e-09)
+
+  THE EXTERNAL FIELD, and the value used.  h81_h82_mw_external_fields.py computes it from the 2M++
+  reconstruction (Carrick+2015) rather than assuming it: the Newtonian large-scale-structure field at the
+  Local Group is g = 1.161e-12 m/s^2, i.e.
+       canonical: e_N = 0.01240 a0;  QUMOND response nu_par = 5.004, nu_perp = 9.490, orientation-averaged nu_bar = 7.994
+             alt: e_N = 0.01027 a0;  QUMOND response nu_par = 5.447, nu_perp = 10.376, orientation-averaged nu_bar = 8.733
+  The pair scripts already in the repository used a nominal e_N = 0.02-0.03; the computed value is smaller,
+  which pushes the isolated/EFE crossover OUT and is therefore the choice generous to the framework.
+       canonical: for the median 2MRS pair (M_b = 1.6e11 Msun, r_M = 15.4 kpc) the isolated branch gives way
+                  to the external-field branch at r = 144 kpc = 9.3 r_M
+             alt: for the median 2MRS pair (M_b = 1.6e11 Msun, r_M = 14.1 kpc) the isolated branch gives way
+                  to the external-field branch at r = 145 kpc = 10.3 r_M
+
+--------------------------------------------------------------------------------------------------------------------------
+PART 2 -- the prediction.  sigma_los for a circular relative orbit, random orientation: <dv_los^2> = v_rel^2/3.
+--------------------------------------------------------------------------------------------------------------------------
+
+  L* major pair, M_b = 1.6e11 Msun (2MRS sample median)   sigma_los [km/s] against projected separation
+    --- footing canonical (a0 = 9.3619e-11 m/s^2, e_N = 0.01240) ---
+   r_p [kpc]  framework (isolated, B  framework (carried, wi       Newton on baryons  cosmic share, point ma       cosmic share, NFW  framework kernel + cos  LambdaCDM abundance-ma
+          20                   130.5                   129.8                    86.9                   220.3                   133.1                   256.9                   201.3
+          50                   117.2                   113.3                    54.9                   139.3                   111.3                   207.2                   228.2
+         100                   112.5                   102.0                    38.8                    98.5                    95.0                   186.3                   229.8
+         200                   110.2                    77.7                    27.5                    69.7                    78.5                   169.2                   214.7
+         400                   109.0                    54.9                    19.4                    49.3                    62.7                   139.3                   188.2
+         700                   108.4                    41.5                    14.7                    37.2                    50.6                   105.3                   162.9
+        1000                   108.2                    34.7                    12.3                    31.2                    42.6                    88.1                   146.1
+    --- footing alt (a0 = 1.1279e-10 m/s^2, e_N = 0.01027) ---
+   r_p [kpc]  framework (isolated, B  framework (carried, wi       Newton on baryons  cosmic share, point ma       cosmic share, NFW  framework kernel + cos  LambdaCDM abundance-ma
+          20                   134.7                   133.9                    86.9                   220.3                   133.1                   262.0                   201.3
+          50                   121.9                   117.9                    54.9                   139.3                   111.3                   213.8                   228.2
+         100                   117.5                   106.5                    38.8                    98.5                    95.0                   193.5                   229.8
+         200                   115.2                    81.2                    27.5                    69.7                    78.5                   176.4                   214.7
+         400                   114.0                    57.4                    19.4                    49.3                    62.7                   145.6                   188.2
+         700                   113.5                    43.4                    14.7                    37.2                    50.6                   110.0                   162.9
+        1000                   113.3                    36.3                    12.3                    31.2                    42.6                    92.1                   146.1
+
+  dwarf pair,    M_b = 2.8e9 Msun (ALFALFA sample median)   sigma_los [km/s] against projected separation
+    --- footing canonical (a0 = 9.3619e-11 m/s^2, e_N = 0.01240) ---
+   r_p [kpc]  framework (isolated, B  framework (carried, wi       Newton on baryons  cosmic share, point ma       cosmic share, NFW  framework kernel + cos  LambdaCDM abundance-ma
+          20                    40.3                    32.5                    11.5                    29.1                    26.6                    64.1                    66.1
+          50                    39.7                    20.5                     7.3                    18.4                    20.3                    52.1                    58.7
+         100                    39.4                    14.5                     5.1                    13.0                    16.0                    36.8                    50.3
+         200                    39.3                    10.3                     3.6                     9.2                    12.1                    26.1                    41.1
+         400                    39.2                     7.3                     2.6                     6.5                     8.5                    18.4                    32.2
+         700                    39.2                     5.5                     1.9                     4.9                     6.5                    13.9                    24.7
+        1000                    39.2                     4.6                     1.6                     4.1                     5.4                    11.7                    20.7
+    --- footing alt (a0 = 1.1279e-10 m/s^2, e_N = 0.01027) ---
+   r_p [kpc]  framework (isolated, B  framework (carried, wi       Newton on baryons  cosmic share, point ma       cosmic share, NFW  framework kernel + cos  LambdaCDM abundance-ma
+          20                    42.2                    34.0                    11.5                    29.1                    26.6                    66.7                    66.1
+          50                    41.5                    21.5                     7.3                    18.4                    20.3                    54.5                    58.7
+         100                    41.3                    15.2                     5.1                    13.0                    16.0                    38.5                    50.3
+         200                    41.2                    10.7                     3.6                     9.2                    12.1                    27.2                    41.1
+         400                    41.1                     7.6                     2.6                     6.5                     8.5                    19.3                    32.2
+         700                    41.1                     5.7                     1.9                     4.9                     6.5                    14.6                    24.7
+        1000                    41.1                     4.8                     1.6                     4.1                     5.4                    12.2                    20.7
+
+  THE THREE SHAPES, which is what makes them separable without trusting the stellar M/L:
+     framework, isolated deep MOND : sigma_los INDEPENDENT of separation, sigma ~ M_b^{1/4}
+     framework, external-field branch and Newton and cosmic share : sigma ~ r^{-1/2}, sigma ~ M_b^{1/2}
+     LambdaCDM abundance-matched   : nearly flat in r over 100-1000 kpc (the NFW halo grows with r), M_b^{~0.9}
+
+--------------------------------------------------------------------------------------------------------------------------
+PART 3 -- the data.  An isolated major-pair sample rebuilt independently from 2MRS (Huchra+2012), with the
+          RELATIVE isolation criterion h48_h69b established is the one that matters.
+--------------------------------------------------------------------------------------------------------------------------
+  2MRS galaxies with cz and a total Ks magnitude: 43507 (K < 11.75)
+  candidate MAJOR close pairs (10-1000 kpc, |dv| < 2000 km/s, cz 3000-12000, L_K ratio < 6): 41635
+  nearest third 2MRS galaxy at |dv| < 1000 km/s (k = 80 neighbours searched): median 224 kpc; 0.0% have none in the k nearest
+  STRICT SAMPLE (no third 2MRS galaxy inside 5 r_p of the midpoint): N = 1900, median r_p = 132 kpc, median log M_b(pair) = 11.19
+    maximum-likelihood dispersion: sigma_los = 201.3 +/- 5.3 km/s, interloper fraction 0.18
+    h48_h69b (independent build, same criterion) reported N = 1830, median r_p = 141 kpc, sigma = 200.7 +/- 5.3 km/s
+  [PASS] C4 [CONTROL] this lane's independent rebuild of the pair sample reproduces the repository's published one   (N = 1900 vs 1830 (+4%); sigma = 201.3 vs 200.7 km/s (+0.3%); median r_p = 132 vs 141 kpc)
+
+  AMPLITUDE A = (observed dispersion)/(parameter-free prediction), fitted jointly with the interloper
+  fraction.  A = 1 means the law is right with no free parameter.  In deep MOND sigma ~ M^{1/4}, so an
+  amplitude A corresponds to a required mass A^4 M_b; in the Newtonian laws it is A^2 M_b.
+    --- footing canonical ---
+                                       law                A   implied M/M_assumed   f_int  sigma from 1
+           framework (isolated, BEST CASE)    1.802 +/-0.041                  8.34    0.17          19.6
+             framework (carried, with EFE)    2.311 +/-0.053                 10.03    0.18          24.9
+                         Newton on baryons    5.645 +/-0.138                 31.86    0.19          33.6
+                  cosmic share, point mass    2.222 +/-0.054                  4.94    0.19          22.4
+                         cosmic share, NFW    2.319 +/-0.053                  7.67    0.18          25.0
+           framework kernel + cosmic share    1.141 +/-0.028                  1.48    0.17           5.0
+               LambdaCDM abundance-matched    0.967 +/-0.024                  0.96    0.17           1.4
+    --- footing alt ---
+                                       law                A   implied M/M_assumed   f_int  sigma from 1
+           framework (isolated, BEST CASE)    1.731 +/-0.039                  7.29    0.17          18.6
+             framework (carried, with EFE)    2.219 +/-0.050                  8.98    0.18          24.1
+                         Newton on baryons    5.645 +/-0.138                 31.86    0.19          33.6
+                  cosmic share, point mass    2.222 +/-0.054                  4.94    0.19          22.4
+                         cosmic share, NFW    2.319 +/-0.053                  7.67    0.18          25.0
+           framework kernel + cosmic share    1.099 +/-0.025                  1.32    0.17           4.0
+               LambdaCDM abundance-matched    0.967 +/-0.024                  0.96    0.17           1.4
+
+  Does the deficit depend on the pair's baryonic mass?  Same fit, quartiles of M_b(pair):
+       log M_b(pair)     N   A(framework iso)   A(cosmic share)   A(LambdaCDM AM)  M_dyn/M_b within r_p
+     10.22 -  11.02   475       1.59 +/- 0.08       2.07 +/-0.11       1.23 +/-0.07                  26.8
+     11.02 -  11.19   475       1.67 +/- 0.08       2.06 +/-0.11       0.99 +/-0.05                  26.3
+     11.19 -  11.34   475       1.90 +/- 0.09       2.26 +/-0.13       0.92 +/-0.04                  31.6
+     11.34 -  11.85   475       2.10 +/- 0.10       2.47 +/-0.13       0.83 +/-0.04                  38.1
+  [FAIL] M0 the framework's deficit is INDEPENDENT of the pair's baryonic mass, as a kernel with no scale in it requires   (A(framework) climbs from 1.59 +/- 0.08 in the lowest mass quartile to 2.10 +/- 0.10 in the highest, 3.9 sigma, over 0.56 dex in M_b; LambdaCDM's abundance-matched halos move the OTHER way (1.23 -> 0.83).  This is h48_h69's 69d (sigma ~ M^1/2 not M^1/4) seen as a trend in the residual, and it is the axis a deeper sample should attack)
+
+  [PASS] M1 [mutation control] scrambling which galaxy each pair member is paired with drives the fitted PAIR fraction to the floor   (pair fraction 1 - f_int: real 0.83, scrambled 0.00)
+  [PASS] M2 [mutation control] the amplitude responds to a0 as v ~ a0^{1/4} demands, so the offsets above are a statement about the physics and not an insensitive estimator   (a0 x 100 moves log10(A) by +0.477, tracking the forward model's own +0.488.  It is not exactly the deep-MOND +0.500 because the CARRIED kernel keeps the Newtonian term G M_tot/r^2, which is 6% of the pair force at the median separation and does not scale with a0 -- an expected departure, and the pure deep-MOND limit used by the earlier scripts returns +0.500 exactly)
+
+     r_p bin [kpc]     N  f_int      sigma_los [km/s]  log M_b,pair
+       10 -     60   461   0.08          248.0 +/- 12.2         11.13
+       60 -    120   409   0.12          220.2 +/- 10.8         11.17
+      120 -    220   479   0.19          185.6 +/- 10.4         11.22
+      220 -    400   313   0.23          184.8 +/- 12.9         11.23
+      400 -    650   139   0.27          173.5 +/- 18.2         11.28
+      650 -   1000    99   0.39          123.7 +/- 16.5         11.23
+  measured d log sigma_los / d log r_p = -0.170 +/- 0.029 over 6 bins
+                                 law    predicted d log sigma / d log r_p  sigma away
+     framework (isolated, BEST CASE)                               -0.010         5.6
+       framework (carried, with EFE)                               -0.344         6.1
+                   Newton on baryons                               -0.472        10.6
+            cosmic share, point mass                               -0.472        10.6
+                   cosmic share, NFW                               -0.263         3.2
+     framework kernel + cosmic share                               -0.224         1.9
+         LambdaCDM abundance-matched                               -0.017         5.4
+
+--------------------------------------------------------------------------------------------------------------------------
+PART 4 -- the discriminator: how large a sample, at what velocity precision, separates the curves at 3 sigma?
+--------------------------------------------------------------------------------------------------------------------------
+  mock pairs drawn from the real (M_b, r_p) distribution of the strict sample at r_p < 500 kpc, with a
+  20% interloper fraction, fitted with the same estimator.  Velocity precision scanned.
+                               truth                     tested against   v_err  ln offset  N for 3 sigma
+     framework (isolated, BEST CASE)           cosmic share, point mass      40      0.197            384
+     framework (isolated, BEST CASE)           cosmic share, point mass      10      0.282            122
+     framework (isolated, BEST CASE)                  cosmic share, NFW      40      0.236            192
+     framework (isolated, BEST CASE)                  cosmic share, NFW      10      0.278             93
+     framework (isolated, BEST CASE)                  Newton on baryons      40      1.134             11
+     framework (isolated, BEST CASE)                  Newton on baryons      10      1.185              8
+     framework (isolated, BEST CASE)        LambdaCDM abundance-matched      40      0.654             23
+     framework (isolated, BEST CASE)        LambdaCDM abundance-matched      10      0.581             24
+     framework kernel + cosmic share    framework (isolated, BEST CASE)      40      0.459             34
+     framework kernel + cosmic share    framework (isolated, BEST CASE)      10      0.483             38
+            cosmic share, point mass        LambdaCDM abundance-matched      40      0.784             22
+            cosmic share, point mass        LambdaCDM abundance-matched      10      0.806             15
+
+  THE SHAPE AXIS.  An overall error in the stellar M/L (or in the gas fraction) moves every amplitude
+  together and cannot be calibrated away; the SEPARATION SLOPE is immune to it.  Forecast error on
+  d log sigma / d log r_p for a sample of N pairs spread over 30-1000 kpc at the measured dispersions:
+     N pairs    v_err = 40 km/s    v_err = 10 km/s
+         500              0.056              0.047
+        2000              0.028              0.024
+       10000              0.012              0.011
+       50000              0.006              0.005
+  the framework's isolated branch and the cosmic-share point mass differ by 0.462 in slope, so a
+  3-sigma separation on the SHAPE axis alone needs N = 65 pairs at this data quality.
+  [PASS] D1 the framework's prediction and the cosmic-share prediction are distinguishable at all, and by how much   (amplitude axis: N = 384 pairs for 3 sigma at 40 km/s (122 at 10 km/s); shape axis: slopes differ by 0.46, N = 65 for 3 sigma.  Both are far below the 1900 pairs already in hand)
+
+--------------------------------------------------------------------------------------------------------------------------
+PART 5 -- the scale question: where does the kernel stop working, and is the cosmic share what takes over?
+--------------------------------------------------------------------------------------------------------------------------
+
+  Where the framework and the cosmic share diverge, for the median 2MRS pair (M_b = 1.6e11 Msun):
+   r_p [kpc]     g_N/a0   fw isolated   cosmic pt    ratio   fw carried    ratio
+          20     0.5957         130.5       220.3    0.592        129.8    0.589
+          40     0.1489         118.7       149.9    0.791        115.3    0.769
+          70     0.0486         114.7       118.9    0.965        108.0    0.908
+         100     0.0238         112.2        95.1    1.180         99.3    1.044
+         150     0.0106         110.9        79.8    1.389         89.0    1.115
+         200     0.0060         110.0        67.2    1.637         74.9    1.115
+         300     0.0026         109.4        57.2    1.912         63.8    1.115
+         500     0.0010         108.7        43.5    2.498         48.5    1.115
+         700     0.0005         108.4        35.7    3.040         39.8    1.115
+        1000     0.0002         108.2        30.8    3.515         34.3    1.115
+        1500     0.0001         108.0        24.4    4.422         27.2    1.115
+        2000     0.0001         108.0        22.9    4.726         25.5    1.115
+  the two curves CROSS at r_p ~ 70 kpc (g_N = 0.049 a0); below it the cosmic share
+  predicts more, above it the framework's ISOLATED branch does.  Over an observable 30-1000 kpc the maximum
+  divergence is 0.546 dex in velocity, at r_p = 1000 kpc.
+  [FAIL] S0 [structure] the framework's honest external-field prediction is observationally DISTINCT from a cosmic-share halo at large separation   (beyond ~200 kpc BOTH are quasi-Newtonian with a constant boost -- the framework's orientation-averaged nu_bar(e_N) = 7.99 against the cosmic share's 1 + 5.43 = 6.43.  The predicted dispersions differ by only +11.5% in velocity (+24% in mass) at every separation and every mass, an EXACT degeneracy in shape.  Where the external field dominates, this programme's EFE and LambdaCDM's cosmic dark share are the same law with the same slope, separated only by that 12% in velocity -- below the stellar-M/L systematic)
+
+  THE LADDER.  In one currency -- the dark-to-baryon mass ratio a Newtonian reading of the data requires --
+  across the three regimes this programme has now measured:
+                                regime    M_dark/M_bar required    framework residual after its kernel
+          galaxy interiors (SPARC RAR) 0 (kernel suffices, 0.108 dex)                                      0
+       isolated major pairs, this lane             30.9 +/- 1.6                     9.5 M_b (A = 1.80)
+      X-COP clusters at 0.80 R500 (L7)            5.73 +/- 0.68      2.76 (alt) / 3.09 (canonical) M_b
+  cosmic Omega_dm/Omega_b = 5.43
+  [FAIL] S1 the dark-to-baryon ratio the pair data require is the SAME cosmic share the clusters require   (pairs need 30.9 +/- 1.6 WITHIN THE PAIR SEPARATION against the cosmic 5.43 -- 16.3 sigma away, a factor 5.7.  The cosmic share is a CLUSTER-scale statement, not a universal one; at pair separations galaxies are baryon-poor relative to cosmic and need several times more)
+  [FAIL] S2 a cosmic-share halo -- the exact quantity L7 found clusters demand -- reproduces the pair kinematics   (cosmic share as a point mass A = 2.22 +/- 0.05 (22 sigma high), as an NFW halo A = 2.32 +/- 0.05 (25 sigma high).  Both UNDER-predict the observed dispersion; abundance-matched LambdaCDM, which puts 34x the baryons rather than 6.4x, lands at A = 0.97 +/- 0.02)
+  [FAIL] S3 the framework's carried kernel reproduces the pair kinematics on its own   (carried (with the computed 2M++ external field) A = 2.31; the framework's BEST CASE, the isolated deep-MOND branch no external field can raise, A = 1.80 +/- 0.04 canonical / 1.73 alt, 20 sigma above 1, needing 8.3x the K-band baryonic mass)
+  [FAIL] S4 the framework's kernel PLUS the cluster-scale cosmic share reproduces the pair kinematics   (A = 1.14 +/- 0.03, 5.0 sigma from 1 -- against 1.80 for the kernel alone and 2.22 for the cosmic share alone.  The combination is much closer to the data than either piece, and it is the only one of the three with no fitted parameter that lands within a factor 1.14)
+  [PASS] S5 existing published data ALREADY discriminate the three curves at 3 sigma   (amplitudes: framework 20 sigma, cosmic share 22 sigma; separation slope -0.170 +/- 0.029 is 5.6 sigma from the framework's isolated branch and 10.6 sigma from the cosmic share.  The statistics are there; what is NOT settled is the isolation-depth systematic (see below))
+
+  IF the pair deficit is a real dark component, WHERE must it sit?  The galaxy-side gate is the radial
+  acceleration relation's 0.11 dex scatter: how much extra mass inside 10 kpc can the CARRIED kernel absorb
+  before g_obs moves by more than that?  Computed here directly, not reused:
+   M_b (each) [Msun]  RAR tolerance at 10 kpc   NFW cosmic share <10 kpc   over by
+            2.00e+09                0.589 M_b                  1.895 M_b      3.22x
+            8.00e+10                0.408 M_b                  0.337 M_b      0.82x
+  (L1/L7 quote a tolerance of 0.25 M_b at 10 kpc from the galaxy side; the direct computation above gives
+   0.41 M_b for an L* galaxy and 0.59 M_b for a dwarf -- the same order, and the dwarf end is the tight one.)
+  [FAIL] S6 a cosmic-share dark component with an NFW shape is admissible inside galaxies on the RAR gate   (at L* an NFW cosmic share puts 0.34 M_b inside 10 kpc against a tolerance of 0.41 (0.82x, admissible); at the dwarf scale 1.90 against 0.59 (3.2x, EXCLUDED).  The galaxy-side objection therefore bites on SHAPE and on MASS SCALE, not on the amount: g04k/L1's cold infall delivers 0.92-1.45 M_b inside 10 kpc, 2.7x more concentrated than NFW at L*, and no dark component with a cuspy NFW inner slope survives at 2e9 Msun)
+
+  SYSTEMATICS, restated because they bound everything above and were established by the prior lanes:
+   1. ISOLATION DEPTH is the leading one.  2MRS at the sample's median distance sees only M_b > 3.6e10 Msun,
+      so 'isolated' means 'no companion above ~23% of the pair's own mass'.  h48_h69 measured the amplitude
+      falling from 1.99 in the far velocity shell to 1.51 in the near one, where the isolation reaches four
+      times further down the luminosity function -- so every amplitude here is an UPPER limit on the real one.
+   2. The ALFALFA dwarf pairs (h47, N = 138, velocities good to 4.4 km/s) give A(deep-MOND) = 1.79 +/- 0.20
+      unrelatively isolated and 1.12 +/- 0.29 under the relative criterion -- 2.6 sigma from this sample's
+      1.89 +/- 0.05.  The cross-scale tension is UNRESOLVED and this lane does not resolve it.
+   3. Circular relative orbits are assumed.  Eccentric orbits at the same energy spend more time near
+      apocentre at LOWER speed, so the assumption is generous to the framework.
+   4. Upsilon_K = 0.6 and no gas in M_b.  The amplitude moves as Upsilon^{1/4} in the framework and
+      Upsilon^{1/2} in the Newtonian laws, so closing the framework's gap needs Upsilon ~ 7, outside any
+      stellar population; the SHAPE axis of PART 4 is immune to this.
+   5. Pairs beyond ~500 kpc may not be bound; the interloper term removes chance projections, not
+      physically associated unbound pairs.  Every amplitude above is dominated by r_p < 500 kpc.
+
+--------------------------------------------------------------------------------------------------------------------------
+THE PRE-REGISTERABLE STATEMENT
+--------------------------------------------------------------------------------------------------------------------------
+  For a pair of galaxies of baryonic masses M1, M2 at 3-D separation r, on a circular relative orbit, the
+  framework's carried kernel predicts a line-of-sight velocity difference with dispersion
+       sigma_los = sqrt(a_rel(r) r / 3),   a_rel = min[ G M_tot/r^2 + a0 Delta(G M_eff/(a0 r^2)),
+                                                        nu_bar(e_N) G M_tot/r^2 ],
+       M_eff = (2/3)^2 [(M1+M2)^{3/2} - M1^{3/2} - M2^{3/2}]^2 / mu^2,  mu = M1 M2/M_tot,
+       Delta(s) = s/(exp(sqrt(s)) - 1) saturated at 0.6476 for s > 2.54, nu_bar(0.01240) = 7.994 / nu_bar(0.01027) = 8.733.
+  For equal masses in the isolated branch this is the parameter-free
+       sigma_los = (1.05099/sqrt(3)) (G m a0)^{1/4} = 0.60679 (G m a0)^{1/4}, INDEPENDENT OF SEPARATION,
+       i.e. 107.7 km/s for two 8e10 Msun galaxies on the canonical footing, at ANY separation beyond ~30 kpc.
+       i.e. 112.9 km/s for two 8e10 Msun galaxies on the alt footing, at ANY separation beyond ~30 kpc.
+  PREDICTIONS THAT LOSE:
+    P1 amplitude.  A = 1.  Measured on 1900 isolated 2MRS major pairs: A = 1.80 +/- 0.04 (canonical) / 1.73 (alt).  FALSIFIED at 20 sigma unless the isolation systematic carries it.
+    P2 shape.  d log sigma / d log r_p = -0.010 on the isolated branch. Measured -0.170 +/- 0.029: 5.6 sigma.  This axis is immune to the stellar M/L and needs only N = 65 pairs.
+    P3 mass.  d log sigma / d log M_b = +0.25 (deep MOND). The residual instead climbs with mass at 3.9 sigma across the sample.
+    P4 the decisive future sample.  122 pairs with 10 km/s velocities separate the framework from a cosmic-share halo at 3 sigma on amplitude; DESI and 4MOST pair samples with HI or spectroscopic velocities reach that by two orders of magnitude.  What they must ALSO do is isolate against a catalogue two magnitudes deeper than 2MRS -- that, not statistics, is what is missing.
+
+==========================================================================================================================
+RESULT: 7 FAIL -> ["M0 the framework's deficit is INDEPENDENT of the pair's baryonic mass, as a kernel with no scale in it requires", "S0 [structure] the framework's honest external-field prediction is observationally DISTINCT from a cosmic-share halo at large separation", 'S1 the dark-to-baryon ratio the pair data require is the SAME cosmic share the clusters require', 'S2 a cosmic-share halo -- the exact quantity L7 found clusters demand -- reproduces the pair kinematics', "S3 the framework's carried kernel reproduces the pair kinematics on its own", "S4 the framework's kernel PLUS the cluster-scale cosmic share reproduces the pair kinematics", 'S6 a cosmic-share dark component with an NFW shape is admissible inside galaxies on the RAR gate']
+(28 s)
+==========================================================================================================================

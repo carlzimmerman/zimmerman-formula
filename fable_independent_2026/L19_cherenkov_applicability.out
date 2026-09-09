@@ -1,0 +1,311 @@
+======================================================================================================================
+L19 -- does the gravitational-Cherenkov bound apply to IC10's shift-symmetric k-essence clock?
+======================================================================================================================
+
+======================================================================================================================
+A -- the process, from first principles: kinematics and the emission rate
+======================================================================================================================
+    A primary of mass M and energy E, momentum p = sqrt(E^2 - M^2), emits one quantum of a mode
+    with dispersion omega = v |k|, v < 1, at angle theta to its momentum.  Energy-momentum
+    conservation with the final primary on shell gives
+          cos(theta) = (E*v - k*(v**2 - 1)/2)/p   [= (E v + k(1-v^2)/2)/p]
+          k_max      = (-2*E*v + 2*p)/(1 - v**2)         (the value at cos(theta) = 1)
+          threshold  : k_max > 0  <=>  p > E v  <=>  E > M/sqrt(1-v^2)   [sympy: M*sqrt(-1/(v - 1))/sqrt(v + 1)]
+          on shell   : 2 p.k = k**2*(v**2 - 1) = k^2_inv = -(1-v^2)|k|^2   (the emitted quantum is SPACELIKE, |q^2| = (1-v^2)|k|^2)
+
+    The 1 -> 2 rate, with relativistic state normalisation and the azimuthal integral done:
+          Gamma      = (1/(16 pi E p v)) Integral_0^k_max dk  |M|^2
+          dE/dx      = (1/(16 pi E p))   Integral_0^k_max dk  k |M|^2      (each quantum carries v k)
+          D_loss^-1  = (1/E) dE/dx                                          (the survival criterion)
+  [PASS] C1 [CONTROL] the Cherenkov kinematics derive symbolically: cos(theta), k_max = 2(p - Ev)/(1-v^2), the threshold E > M/sqrt(1-v^2), and the on-shell identity 2 p.k = k^2 = -(1-v^2)|k|^2   (cos(theta) matches; k_max matches; threshold matches; 2p.k - k^2 = 0)
+
+    Matrix-element controls, with explicit Dirac matrices and an explicit random F_mu_nu:
+      Tr[(p'+M)(p+M)] = 10.6854380242  vs  4(p.p' + M^2) = 10.6854380242
+      Maxwell T^mu_mu = 8.882e-16  (identically zero in 4D: a photon cannot emit a conformally
+                        coupled scalar at tree level, whatever that scalar's speed)
+  [PASS] C2 [CONTROL] Tr[(p'+M)(p+M)] = 4(p.p' + M^2) with explicit gamma matrices, and Maxwell's stress tensor is traceless identically   (Dirac trace rel. err 0.00e+00; Maxwell trace 8.88e-16)
+
+======================================================================================================================
+B -- CONTROL: the rate for a mode with GRAVITATIONAL-strength (tensor) coupling
+======================================================================================================================
+    Interaction L = -(kappa/2) h_mu_nu T^mu_nu with kappa = sqrt(32 pi G).  For a primary at E >> M
+    the TT polarisation sum gives  Sum_pol |M|^2 = 2 p^4 sin^4(theta) / M_Pl^2  (M_Pl reduced), with
+    sin^2(theta) from section A.  This is the standard structure Moore & Nelson and Elliott, Moore &
+    Stoica use; the Lorentz-violating polarisation basis differs in O(1) factors, which is exactly
+    what this control is checking.
+
+    B.1  the analytic small-delta limit of the derived integral.  With M << E and delta = 1 - v << 1,
+         sin^2(theta) = 2 delta (1 - k/E) - M^2/E^2 and k_max -> E, so
+             D_loss^-1 = (1/E)(1/(16 pi E^2)) Int_0^E dk k 2E^4 [2 delta (1-k/E)]^2 / M_Pl^2
+                       = delta^2 E^3/(24 pi M_Pl^2)  =  (1/3) G delta^2 E^3.
+         Milgrom 2011 (arXiv:1102.1818) eq. (2) transcribes Moore & Nelson as D_loss^-1 = G p^3 Q,
+         with Q ~ 1e-3 (n-1)^2 where n = 1/v; the 1e-3 is their PARTONIC factor (each parton carries
+         ~0.1 p).  Stripping it, Q_coherent = delta^2, i.e. D_loss^-1 = G delta^2 E^3.
+         numerically, from the full integral at delta = 1e-15, E = 3.0e+11 GeV:
+             D_loss^-1 / (G delta^2 E^3) = 0.333333    (analytic 1/3 = 0.333333;  Moore & Nelson coherent: 1)
+
+    B.2  the bound this rate imposes, with Moore & Nelson's own partonic factor 1e-03 and a 10 kpc path:
+           E = 3.0e+11 GeV (3e20 eV, the energy MN quote):  1 - v <= 3.254e-15
+           E = 1.0e+11 GeV (1e20 eV, this lane's brief):   1 - v <= 1.691e-14
+         published (Moore & Nelson 2001, Galactic; the number L10 used):  1 - v <= 2.0e-15
+         ratio derived/published at MN's energy: 1.63x
+  [PASS] C3 [CONTROL] the tensor-coupled energy-loss rate derived here reproduces BOTH Moore & Nelson's coefficient (as transcribed by Milgrom 2011 eq. 2) and the published Galactic bound 1 - c <= 2e-15   (coefficient D_loss^-1/(G delta^2 E^3) = 0.3333 vs analytic 1/3 and MN-coherent 1 (agreement to a factor 1.0 / 3.0); derived Galactic bound 3.25e-15 vs published 2.0e-15, a factor 1.63. The machinery is calibrated against the literature it is about to be used to overturn)
+
+======================================================================================================================
+C -- what IC10's clock actually couples to, read off the action as published
+======================================================================================================================
+    IC10_LOCAL_CLOCK.md, the eta = 1 plateau (hand-transcribed):
+        S10|eta=1 = Int sqrt(-gtilde) [ m* Rtilde/2 + P(Xtilde, w) ] + S_m[e^(2w) gtilde, psi],
+        m* = m e^(-1/6),  Xtilde = -gtilde^{mu nu} T_mu T_nu / 2,  P_w = 0 the ALGEBRAIC w equation,
+    and the frozen ingredient I2 (CRISPY_FRIED_CHICKEN_RECIPE.md): S_m = S_m[g, psi], ONE physical
+    metric.  IC10 says the same: 'all ordinary matter still uses the single original physical metric g'
+    with g = e^(2w) gtilde.
+
+    C.1  THE STRUCTURAL FACT.  The clock field T does not appear in S_m AT ALL.  Matter sees only
+         g = e^(2w) gtilde.  The clock reaches matter ONLY because w is slaved to Xtilde by P_w = 0.
+         So the entire clock-matter vertex is carried by delta w, and delta w enters S_m as a
+         CONFORMAL rescaling -- which couples to the TRACE of the matter stress tensor and to
+         nothing else.  Derived symbolically, with a scalar matter field:
+           d(S_m density)/dw = 2*(-2*V*exp(2*w) + Xtilde_psi)*exp(2*w)
+           sqrt(-g)/sqrt(-gt) * T^mu_mu = 2*(2*V*exp(2*w) - Xtilde_psi)*exp(2*w)
+           => dS_m/dw = -sqrt(-g) T^mu_mu   [exact]  -- the whole
+           coupling, with no free structure left over.  The w field equation with matter present is
+           therefore  P_w + e^(4w) T^mu_mu = 0, and matter's TRACE is the only thing that sources it.
+
+    C.2  POSITIVE CONTROL: the test has teeth.  If the matter metric carried a DISFORMAL piece,
+         g_mu_nu = e^(2w) gtilde_mu_nu + B T_mu T_nu, the clock WOULD appear in S_m explicitly.
+           conformal metric:  g^ab dpsi_a dpsi_b = (a_0**2 - a_1**2)*exp(-2*w);   d/dT_0 = 0
+           disformal metric:  d/dT_0 = -2*B*a_0**2*t_0/(B*t_0**2 + exp(2*w))**2  -- NONZERO, a vertex proportional to
+           T^mu T^nu dpsi_mu dpsi_nu, i.e. to T^mu_nu contracted with the clock gradient, NOT to the trace.
+  [PASS] C4 [coupling] IC10's clock couples to ordinary matter ONLY through the conformal factor -- the vertex is to T^mu_mu and to nothing else -- and the test detects a direct coupling when one is present (disformal positive control)   (dS_m/dw = -sqrt(-g) T^mu_mu exactly; the clock field T is absent from S_m for the conformal metric (d/dT_0 = 0) and present for a disformal one (d/dT_0 = -2*B*a_0**2*t_0/(B*t_0**2 + exp(2*w))**2), so the check is not vacuous.  ASSUMPTIONS, stated: (i) IC10's S_m[e^(2w)gtilde,psi] is the complete matter action -- IC10 itself flags 'matter-coupled clock kinetic mixing must still be varied'; (ii) w remains auxiliary (P_ww != 0), which L8-P6/P7/P8 verified on the sampled window)
+
+    C.3  WHY THIS IS THE WHOLE QUESTION.  In Einstein-aether / khronometric theory -- which is what
+         IC5/IC6/IC7 were, and what Elliott, Moore & Stoica (2005) bound -- the spin-0 mode lives
+         INSIDE the gravitational sector: the aether supplies a preferred vector u_mu, the scalar's
+         effective polarisation carries a u_mu u_nu piece, and e_mu_nu T^mu_nu then picks out
+         T^00 ~ E^2.  That is why the spin-0 bound is as strong as the spin-2 one.  On IC10's eta = 1
+         plateau there is no such structure: L8 verified the DeWitt supermetric is lambda = 1
+         IDENTICALLY and m* = m e^(-1/6) > 0, so the graviton kinetic operator is Einstein's, with no
+         preferred-frame mixing to inherit.  The clock's polarisation is a SCALAR: it contracts with
+         g_mu_nu, not with u_mu u_nu.  The mode's character genuinely changed, and with it the vertex.
+
+======================================================================================================================
+D -- the bound a TRACE-coupled clock at gravitational strength actually has to satisfy
+======================================================================================================================
+    The on-shell trace vertices, all three derived above:
+      Dirac primary (a proton):   <p'|T^mu_mu|p> = M ubar(p')u(p);  Sum/2 = 2M^2 (p.p' + M^2)
+                                  with p.p' = M^2 + (1-v^2)k^2/2   =>  M^2 [4M^2 + (1-v^2)k^2]
+      spin-0 primary:             <T^mu_mu> = 2M^2 + k^2_inv = 2M^2 - (1-v^2)k^2
+      photon:                     <T^mu_mu> = 0 identically (C2)
+      massless conformal scalar:  0 (the xi = 1/6 improvement cancels the k^2 piece)
+
+    D.1  THE NAIVE ARGUMENT, TESTED AND CORRECTED.  A conformally coupled scalar is usually said to
+         decouple from ultra-relativistic matter because T^mu_mu = -M^2/E per particle, a (M/E)^2
+         suppression relative to the graviton's T^00 ~ E.  That is TRUE for soft/forward emission and
+         FALSE at Cherenkov kinematics, because the emitted quantum is spacelike with |q^2| =
+         (1-v^2)k^2, and the trace vertex picks that up.  This lane checked it rather than assuming it:
+         E = 1e20 eV, c_s^2 = 1/3, at k = k_max/2:  |M_trace|^2/|M_tensor|^2 = 8.255e-23,   naive (M/E)^4 = 7.750e-45   (naive too small by 9.4e-23x)
+         E = 3e20 eV, c_s^2 = 1/3, at k = k_max/2:  |M_trace|^2/|M_tensor|^2 = 9.172e-24,   naive (M/E)^4 = 9.568e-47   (naive too small by 1.0e-23x)
+  [FAIL] C5 [vertex] the trace vertex is (M/E)^2-suppressed relative to the tensor vertex at Cherenkov kinematics, as the standard conformal-decoupling argument would have it   (it is NOT: the true ratio of |M|^2 at c_s^2 = 1/3 is 9.17e-24, the naive (M/E)^4 is 9.57e-47, too small by 1.0e-23x.  The reason is the on-shell identity 2p.k = k^2 of C1: for a SUBLUMINAL mode the emitted quantum is spacelike, so p.p' = M^2 + (1-v^2)k^2/2 grows with k and the trace does not vanish.  This FAIL is this lane correcting its own first-pass reasoning, and it cuts AGAINST the clock -- the suppression is real but far smaller than 'conformal scalars do not couple to radiation' suggests)
+
+    D.2  the bound.  Coupling L = (beta/M_Pl) phi T^mu_mu, beta = 1 the gravitational-strength
+         benchmark (Brans-Dicke has beta = 1/sqrt(2 omega+3); f(R) has beta = 1/sqrt6 = 0.408).
+         Analytic small-delta limit of the same integral:  D_loss^-1 = (1/4) beta^2 G M^2 delta E,
+         LINEAR in delta, not quadratic -- so the bound scales quite differently from the tensor one.
+           primary / energy                            bound on 1 - c_s (beta = 1)     vs L10 2e-15
+           proton (Dirac), E = 1e20 eV                                   4.331e-09         2.2e+06x
+           proton (Dirac), E = 3e20 eV                                   1.444e-09         7.2e+05x
+           spin-0 primary (not physical), E = 3e20 eV                    1.029e-16         5.1e-02x
+         Note the third row, and it is not a rounding coincidence: for a SPIN-0 primary the trace
+         coupling gives NUMERICALLY THE SAME bound as the tensor coupling treated the same way
+         (1.029e-16 vs the coherent tensor bound 1.029e-16) -- both integrals reduce to
+         (2/3) delta^2 E^6 in the small-delta limit.  So the suppression found here is NOT a generic
+         property of conformal coupling: it is entirely the DIRAC structure <T^mu_mu> = M ubar(p')u(p),
+         which carries one power of M^2 that the spin-0 trace 2M^2 - (1-v^2)k^2 does not.  The physical
+         primary is a proton, so the fermionic row is the one that counts -- but the mechanism has to be
+         named correctly, and 'conformal scalars decouple from radiation' is NOT the mechanism.
+         No partonic factor is applied here, and that is deliberate: the trace charge of a proton is
+         its MASS (<p|T^mu_mu|p> = 2M_p^2 exactly for the hadron state), so the coherent treatment is
+         the right one.  The proton's trace form factor at |q^2| ~ (3.1e+11 GeV)^2 would
+         suppress it enormously further; omitting it is CONSERVATIVE, i.e. generous to the exclusion.
+
+         At the measured c_s^2 = 1/3 (1 - c_s = 0.4226), E = 3e+11 GeV:
+           trace coupling  (beta = 1):  D_loss = 5.171e+11 m = 1.676e-08 kpc  -> D/D_loss = 5.97e+08
+           tensor coupling (L10's):     D_loss = 1.489e-11 m = 4.825e-31 kpc  -> D/D_loss = 2.07e+31
+           the trace coupling weakens the LOSS RATE by 3.47e+22x and the SPEED BOUND by 7.22e+05x
+  [FAIL] C6 [bound] 1 - c_s <= 2e-15, the number L10 imposed, is the bound that applies to IC10's clock   (it is NOT.  The bound that applies to a trace-coupled clock at gravitational strength is 1 - c_s <= 1.44e-09 at 3e20 eV / 4.33e-09 at 1e20 eV -- L10's number is too tight by 7.2e+05x in the speed, equivalently 3.5e+22x in the loss rate AT c_s^2 = 1/3 (the two differ because the tensor rate goes as delta^2 and the trace rate as delta).  L10's stated exclusion factor 2.1e14 should read 2.9e+08.  THIS FAIL IS L10 BEING CORRECTED, and the correction is 5.9 orders of magnitude -- but see C8a: it does not by itself save c_s^2 = 1/3)
+
+======================================================================================================================
+E -- where the exponential wall is actually evaluated: the MOND radius of the cosmic ray
+======================================================================================================================
+    L10 section D asked whether the construction's own screening u^2 = 1 - exp(-|a|/a_0) could
+    suppress the Cherenkov coupling, evaluated it at the AMBIENT galactic acceleration along the
+    10 kpc path (|a| ~ a_0 there), and concluded no.  That is the wrong place to evaluate it, and
+    the reason is published: Milgrom, 'Gravitational Cherenkov losses in MOND theories',
+    arXiv:1102.1818 (2011).  Radiation of wavenumber k is generated coherently at distance ~1/k
+    from the primary, and THERE the field is the primary's OWN, not the Galaxy's.  A high-energy
+    hadron carries a bubble of radius r_M = (G p / c a_0)^(1/2) inside which |a| >> a_0 and a
+    GR-compatible MOND theory is simply GR; waves with k > 1/r_M are not produced.
+
+    E.1  the numbers, on BOTH footings (M_p = 0.9383 GeV):
+      footing        E [eV]      r_M [m]   k_dB^-1 [m]   (r_M k_dB)^2  |a| at k_dB^-1 / a_0   l_M = c^2/a_0 [m]
+      canonical     1.0e+20   1.1273e-08    1.9733e-27     3.2638e+37            3.2638e+37          9.6001e+26
+      canonical     3.0e+20   1.9526e-08    6.5776e-28     8.8122e+38            8.8122e+38          9.6001e+26
+      alt           1.0e+20   1.0271e-08    1.9733e-27     2.7090e+37            2.7090e+37          7.9684e+26
+      alt           3.0e+20   1.7789e-08    6.5776e-28     7.3143e+38            7.3143e+38          7.9684e+26
+      columns 5 and 6 are equal BY THE IDENTITY a(r)/a_0 = (r_M/r)^2 -- that is what r_M means.
+      Milgrom's quoted values, for comparison: r_M ~ 3e-12 (cp/GeV)^(1/2) cm = 1.643e-08 m at 3e20 eV; (r_M k_dB)^2 ~ 1e39 at cp = 3e11 GeV;
+      l_M ~ 2 pi D_H = 8.168e+26 m.  Milgrom uses a_0 = 1.2e-10 m/s^2; rescaling his r_M to
+      the canonical footing gives 1.860e-08 m, 5% from this lane's value -- the residual is his ~ sign.
+
+    E.2  CONTROL -- feeding that cutoff into the SAME rate formula reproduces Milgrom's result
+         independently.  For k << k_max, sin^2(theta) -> 1 - v^2, so with k_cut = 1/r_M and
+         k_cut^2 = a_0/(G E) (c = 1):
+             D_loss^-1 = (1/2) G E (1-v^2)^2 k_cut^2 = (1/2)(1-v^2)^2 a_0
+             => D_loss  = q l_M   with   q = 2/(1-v^2)^2   and   l_M = c^2/a_0,
+         E CANCELS EXACTLY -- Milgrom's eq. (4), derived here from scratch.  Numerically:
+      footing        E [eV]  q predicted   q measured    D_loss [m]   D_loss/10kpc   D_loss/D_H
+      canonical     1.0e+20       4.5000       4.4998    4.3199e+27     1.4000e+07   3.3230e+01
+      canonical     3.0e+20       4.5000       4.4998    4.3199e+27     1.4000e+07   3.3230e+01
+      alt           1.0e+20       4.5000       4.4998    3.5856e+27     1.1620e+07   2.7582e+01
+      alt           3.0e+20       4.5000       4.4998    3.5856e+27     1.1620e+07   2.7582e+01
+  [PASS] C7 [CONTROL] the derived rate, cut off at the primary's MOND radius, reproduces Milgrom 2011 eq. (4) D_loss = q l_M with the cosmic-ray energy cancelling exactly, q = 2/(1-v^2)^2 -- on both a_0 footings   (predicted q = 2/(1-c_s^2)^2 = 4.500 at c_s^2 = 1/3; measured from the full integral at all four (footing, energy) combinations to within 40%; E cancels because k_cut^2 = a_0/(G E) exactly undoes the E-dependence of the rate.  This is an INDEPENDENT re-derivation of a published, refereed result, from the same machinery that reproduced Moore & Nelson in C3)
+
+    E.3  the framework's own wall is STRONGER than Milgrom's sharp cutoff.  IC5/IC10 define
+         w = (u-1) xi, and the static regular branch (IC-4, retained at eta = 0: 'the old exponential
+         constitutive equation therefore survives') has u^2 = 1 - exp(-|a|/a_0), so
+             1 - u  ~  (1/2) exp(-|a|/a_0)   =>   w ~ -(xi/2) exp(-|a|/a_0)   =>   e^(2w) -> 1
+         and the ENTIRE clock-matter vertex, which is carried by w alone (C.1), switches off
+         exponentially in |a|/a_0.  In the cosmic ray's own near field at the de Broglie radius,
+             canonical : |a|/a_0 = 8.812e+38   =>   coupling ~ exp(-8.81e+38)
+             alt       : |a|/a_0 = 7.314e+38   =>   coupling ~ exp(-7.31e+38)
+         which is not a factor of 1e-39, it is zero for every purpose.  The residual emission comes
+         only from k < 1/r_M, and E.2 shows that is D_loss ~ 4.5 l_M -- longer than a Hubble
+         distance.  Note this is with the FULL tensor coupling; the trace coupling of section D makes
+         it 3e+22x safer still.
+
+======================================================================================================================
+F -- the verdict on c_s^2 = 1/3, arm by arm
+======================================================================================================================
+    F.1  trace coupling alone, NO screening, point-like proton, beta = 1, 10 kpc:
+           D/D_loss = 5.968e+08   ->  c_s^2 = 1/3 is EXCLUDED by this arm alone, by 5.97e+08x in the loss rate
+           (required suppression of the coupling: beta^2 <= 1.68e-09, i.e. beta <= 4.09e-05)
+  [FAIL] C8a [verdict] c_s^2 = 1/3 survives gravitational Cherenkov on the CORRECTED coupling alone, with no screening applied   (it does not: D/D_loss = 5.97e+08 at beta = 1.  The corrected bound is 1 - c_s <= 1.44e-09, and 1 - c_s = 0.4226 exceeds it by 2.9e+08x.  So L10's CONCLUSION survives on this arm even though its NUMBER was wrong by 7.2e+05x)
+
+    F.2  with the framework's own high-acceleration GR limit applied where the radiation is generated:
+      footing        E [eV]  coupling    D_loss [m]   D_loss / 10 kpc    verdict
+      canonical     1.0e+20    tensor    4.3199e+27        1.4000e+07       SAFE
+      canonical     1.0e+20     trace    1.2386e+71        4.0141e+50       SAFE
+      canonical     3.0e+20    tensor    4.3199e+27        1.4000e+07       SAFE
+      canonical     3.0e+20     trace    1.0033e+73        3.2515e+52       SAFE
+      alt           1.0e+20    tensor    3.5856e+27        1.1620e+07       SAFE
+      alt           1.0e+20     trace    1.0281e+71        3.3319e+50       SAFE
+      alt           3.0e+20    tensor    3.5856e+27        1.1620e+07       SAFE
+      alt           3.0e+20     trace    8.3276e+72        2.6988e+52       SAFE
+  [PASS] C8b [verdict] c_s^2 = 1/3 survives gravitational Cherenkov once the high-acceleration GR limit is applied where the radiation is generated (Milgrom 2011), on BOTH a_0 footings and BOTH couplings   (yes, and not marginally: even with the FULL gravitational-strength tensor coupling the loss distance is 4.5 l_M, 1.40e+07x the Galactic path and 33.2x the Hubble distance.  With the trace coupling of section D it is safer by a further 3e+22x.  Footing-independent)
+
+======================================================================================================================
+G -- the other constraints that could bite on a subluminal, minimally coupled clock
+======================================================================================================================
+    G.1  CAUSALITY.  Subluminal is the easy direction: the clock cone lies strictly INSIDE the metric
+         null cone, so the causal future of the coupled system is contained in the metric light cone
+         and no closed causal curve can be built from it.  The preferred foliation is not even needed
+         for this -- it is needed only for the SUPERLUMINAL case, where the clock's own level sets
+         T = const provide a global time function that all cones respect.  Worth recording because
+         L8-D7 found a superluminal band 0.0267 < S < 0.0377 inside eta = 1, in this solution's PAST:
+         that band needs the foliation argument, this one does not.
+  [PASS] C9 [causality] the subluminal clock cone is causal -- it lies inside the metric null cone, so no closed causal curve can be formed   (c_s = 0.577350 < 1, cone strictly inside; the preferred foliation is a spare argument here, and is the one that would be needed for L8-D7's superluminal band at S < 0.0377)
+
+    G.2  OTHER EMITTERS.  Cherenkov by something other than a hadron:
+      photons:    T^mu_mu = 0 identically in 4D (C2), so a photon CANNOT emit a conformally coupled
+                  clock quantum at tree level, at any speed.  LHAASO's PeV photons give nothing.
+      neutrinos:  the vertex is proportional to m_nu^2; against a proton the rate is down by
+                  (m_nu/M_p)^4 = 1.29e-40.  IceCube's PeV events give nothing.
+      gravitons:  the tensor mode is exactly luminal here (c_T = 1, an exact action identity, IC9/IC10,
+                  verified L8-A2/A3), so the channel Elliott, Moore & Stoica actually bound is closed at
+                  zero.  A graviton could emit a clock quantum only via the background clock gradient
+                  Tbar_mu, and there is no observed ultra-high-energy graviton flux to constrain it
+                  (GW170817's quanta are ~1e-13 eV).  Vacuous, not passed.
+  [FAIL] C10 [channels] photons, neutrinos or gravitons impose a Cherenkov bound on this clock that is stronger than the hadronic one   (none of them do: photon vertex identically zero (Maxwell trace = 8.9e-16), neutrino rate down by 1.3e-40, no UHE graviton flux exists.  This FAIL means 'no additional constraint found', which is the honest reading -- the hadronic channel is the binding one and it is the one computed above)
+
+    G.3  BINARY PULSARS.  A conformally coupled scalar generically radiates DIPOLE energy from an
+         asymmetric binary, and PSR J0348+0432 / J1738+0333 bound the scalar-charge difference at the
+         |alpha_A - alpha_B|^2 ~ 1e-6 level.  Two things are true and both must be said:
+           (i) this is a HIGH-acceleration system, so the same exponential wall applies, and it applies
+               HERE at the right place (the binary's own field, not an ambient one).  Milgrom 2011 makes
+               exactly this point: 'constraints on solar-system and binary-pulsar limits on preferred-
+               frame parameters are easily satisfied by GR-compatible MOND theories, inasmuch as these
+               limits pertain to experiments in high-acceleration systems'.  L10's own K6 is the same
+               statement in the Solar System (Cassini at 5.8e5 a_0).
+          (ii) the dipole coefficient is NOT computed here and cannot be, because IC10's clock-matter
+               sector is one of its own stated open items ('matter-coupled clock kinetic mixing must
+               still be varied').  It is a live constraint, not a passed one.
+    G.4  CMB.  c_s^2 = 1/3 is exactly the radiation sound speed; a component with that sound speed does
+         not cluster below its sound horizon and its perturbations are CMB-degenerate with a smooth
+         relativistic fluid.  The CMB constrains the clock's ENERGY DENSITY (N_eff), not its speed --
+         which is L10's K5b arm, unchanged and still open.  No bound on c_s from the CMB.
+  [FAIL] C11 [pulsar/CMB] binary pulsars or the CMB impose a bound on the clock's SOUND SPEED that is binding at c_s^2 = 1/3   (neither does.  The CMB constrains the clock's density, not c_s -- c_s^2 = 1/3 is the radiation value and is perturbatively degenerate.  Binary-pulsar dipole radiation constrains the COUPLING, not the speed, is subject to the same high-acceleration wall that Cassini already passes by 3.7e4x (L10 K6), and its coefficient is uncomputed here because IC10's matter-coupled clock sector is an open item.  Recorded as the constraint that actually deserves the lead's next calculation)
+
+======================================================================================================================
+H -- VERDICT, as a conditional, with the deciding input named
+======================================================================================================================
+    THE BOUND APPLIES AT STRENGTH X IF THE CLOCK COUPLES IN WAY Y:
+      Y1  the mode propagates in the GRAVITATIONAL sector with preferred-frame mixing (DeWitt
+          lambda != 1, no first-class Hamiltonian constraint, an aether vector u_mu in the mode's
+          polarisation): the vertex is e_mu_nu T^mu_nu with e ~ u_mu u_nu, hence ~E^2, and
+          X = 1 - c_s <= 2e-15.  This is IC5/IC6/IC7, it is what Elliott, Moore & Stoica bound, and it
+          is what L10 assumed.  It is ALSO what IC10 becomes OFF the eta = 1 plateau: L8-P9/P10 found
+          IC9's lambda = 1/3 + 2/(3 J9) != 1 and a residual e^(2w) once eta != 1.
+      Y2  the mode is a shift-symmetric k-essence clock in an EXACTLY Einstein metric sector, coupled
+          to matter only through a conformal factor (IC10 at eta = 1, as published, plus frozen
+          ingredient I2): the vertex is T^mu_mu, and X = 1 - c_s <= 1.4e-09 at beta = 1 --
+          7e+05x weaker than L10's number, but STILL violated by c_s^2 = 1/3.
+      Y3  the same, plus the theory's high-acceleration GR limit holding in the cosmic ray's own near
+          field (Milgrom 2011): NO BOUND AT ALL -- D_loss = 4.5 l_M > 2 pi D_H, for any
+          0 < c_s <= 1, on both footings, even at full gravitational-strength coupling.
+
+    THE DECIDING INPUT, stated so the lead can settle it from its own action and nothing else:
+      Does the clock-matter conformal coupling switch off in the high-acceleration limit?  Concretely:
+      expand IC10's w equation with matter present,  P_w + e^(4w) T^mu_mu = 0, on the STATIC branch,
+      and evaluate  dw/dXtilde  as |a|/a_0 -> infinity.  If  dw/dXtilde -> 0 at least as fast as
+      (a_0/|a|)^(1/2) -- and IC-4's u^2 = 1 - exp(-|a|/a_0) with w = (u-1) xi says it goes as
+      exp(-|a|/a_0), vastly faster -- then Y3 holds, there is no Cherenkov bound, and sigma = 1/3
+      SURVIVES.  If instead the coupling stays O(1) at high acceleration (i.e. the theory is not
+      GR-compatible in Milgrom's sense on the branch the cosmic ray's near field probes), Y2 holds and
+      sigma = 1 is forced.  One calculation decides it, and it is the same calculation IC10 already
+      lists as open item 3 (the sourced galactic branch and PPN).
+
+    WHAT L10 GOT WRONG, quantified, since it is this lane's own result:
+      (a) it used the bound for a mode with GRAVITATIONAL-sector coupling on a mode L8 later showed is
+          not one.  The applicable bound is 1.4e-09, not 2e-15: too tight by 7.2e+05x in speed,
+          3.5e+22x in rate.  Its 'excluded by 2.1e14x' should read '2.9e+08x'.
+      (b) its escape analysis (K8) evaluated the exponential wall at the AMBIENT galactic acceleration
+          along the cosmic-ray path.  That is the wrong place.  The cosmic ray is the SOURCE, and the
+          radiation of wavenumber k is generated at ~1/k from it, where its own field gives |a|/a_0 =
+          8.8e+38, not ~1.  K8's conclusion 'the exp wall cannot rescue this gate' is
+          WITHDRAWN; the wall does rescue it, by the published mechanism this lane re-derived in E.2.
+      (c) what L10 got RIGHT and this lane confirms: the mode's speed is the invariant that matters,
+          the tensor sector is not the issue, and if the coupling does NOT screen then c_s^2 = 1/3 is
+          still excluded -- by 3e+08x rather than 2e14x.  The PPN arm (K6) is untouched.
+  [FAIL] C12 [VERDICT] L10's exclusion of c_s^2 = 1/3 by gravitational Cherenkov is correct AS STATED (bound 2e-15, exclusion 2.1e14x, exp wall cannot rescue)   (it is not.  The bound is 7e+05x weaker than stated, and the exp wall DOES rescue the gate once it is evaluated where the radiation is generated rather than along the ambient path.  Handoff A5 must be rewritten as a conditional.  The lead's construction is ALIVE with a subluminal clock IF its clock-matter coupling screens at high acceleration -- which its own static branch says it does -- and only then; sigma = 1 is NOT forced by Cherenkov as things stand)
+
+  Caveats, stated in the direction they cut:
+  * AGAINST the clock: C5.  The naive 'conformal scalars decouple from radiation' argument is FALSE at
+    Cherenkov kinematics, because 2p.k = k^2 makes the emitted quantum spacelike.  Without screening the
+    trace coupling still excludes c_s^2 = 1/3 by 3e+08x.  Do not quote the trace
+    coupling alone as a rescue.
+  * AGAINST the clock: everything here is the eta = 1 plateau.  L8-P10 showed the Einstein form is a
+    statement about that plateau, not the theory; off it, lambda != 1 and Y1 applies again with the full
+    2e-15.  A transition that spends any time off the plateau at low acceleration reopens this.
+  * AGAINST the clock: the dipole/pulsar arm (G.3) is a genuine live constraint that this lane has NOT
+    computed, and it constrains exactly the coupling beta that the Cherenkov verdict now hangs on.
+  * FOR the clock: the proton trace form factor at |q^2| ~ (2e11 GeV)^2 is omitted entirely, which is
+    conservative by many orders of magnitude in the direction of exclusion.
+  * FOR the clock: the TT polarisation sum used in the tensor control is the Lorentz-invariant one; a
+    Lorentz-violating basis changes O(1) factors.  C3 shows those factors are within a factor 1.6.
+  * The Milgrom cutoff is imported, not re-derived from IC10: E.2 re-derives its CONSEQUENCE
+    (D_loss = q l_M) from this lane's own rate formula, but the premise -- that the coupling is switched
+    off inside r_M -- is the deciding input named above and is NOT established for IC10's clock.
+  total 5s
+
+RESULT: 6 FAIL -> ['C5 [vertex] the trace vertex is (M/E)^2-suppressed relative to the tensor vertex at Cherenkov kinematics, as the standard conformal-decoupling argument would have it', "C6 [bound] 1 - c_s <= 2e-15, the number L10 imposed, is the bound that applies to IC10's clock", 'C8a [verdict] c_s^2 = 1/3 survives gravitational Cherenkov on the CORRECTED coupling alone, with no screening applied', 'C10 [channels] photons, neutrinos or gravitons impose a Cherenkov bound on this clock that is stronger than the hadronic one', "C11 [pulsar/CMB] binary pulsars or the CMB impose a bound on the clock's SOUND SPEED that is binding at c_s^2 = 1/3", "C12 [VERDICT] L10's exclusion of c_s^2 = 1/3 by gravitational Cherenkov is correct AS STATED (bound 2e-15, exclusion 2.1e14x, exp wall cannot rescue)"]

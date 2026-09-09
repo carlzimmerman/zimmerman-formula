@@ -1,0 +1,224 @@
+======================================================================================================================
+L17 -- the A5 lane: can a spatially nonlocal ELLIPTIC operator build MOND?
+======================================================================================================================
+
+0. THE FROZEN KERNEL (I1), used unchanged everywhere below
+    mu(y) = 1 - e^-y ;  s = y mu(y) ;  nu(s) = y/s ;  deep limit y = sqrt(s)(1 + sqrt(s)/4 + ...)
+    s = 1e-12:  y/sqrt(s) - 1 = +2.5000e-07   (series: sqrt(s)/4 = +2.5000e-07)
+    s = 1e-16:  y/sqrt(s) - 1 = +2.5000e-09   (series: sqrt(s)/4 = +2.5000e-09)
+    s = 1e-20:  y/sqrt(s) - 1 = +2.5000e-11   (series: sqrt(s)/4 = +2.5000e-11)
+  [PASS] C0 [control] the kernel inversion follows its own deep-MOND series y = sqrt(s)(1 + sqrt(s)/4) to 1e-7   (worst departure from the series 7.29e-14)
+
+1. THE CONSTRUCTION A5 LICENSES
+    Two placements of one filter F = f(-l^2 Delta), l the filter length:
+
+      (A5-L)  div[ F grad Phi ] = -4 pi G rho          <=>   sigma(k) Phi_k = -4 pi G rho_k,  sigma = k^2 f(l k)
+              from  I = int { L_m - rho Phi - (1/8 pi G) grad(Phi).F grad(Phi) }.
+              Best case, chosen to be as MOND-like as a linear operator can be:
+                  f(x) = x/(1+x)   =>   sigma(k) = l k^3/(1 + l k),
+              which is  k^2 (Newton) at l k >> 1 and l k^3 (a logarithmic potential, flat rotation
+              curve) at l k << 1.  sigma > 0 for every k > 0: uniformly elliptic away from k = 0.
+
+      (A5-F)  PAPER4's filtered action with xi -> l:
+              Delta u = 4 pi G rho,   Delta Phi = 4 pi G rho + S grad.[(nu - 1) grad(S u)],  S = e^{l^2 Delta/2}.
+
+    A5's own dimensional instruction, f(-D^2/a0^2), fixes l: the argument must be dimensionless, so the
+    operator's length is the unique length built from a0 and c.  Section 2 solves for it.
+
+2. L -- THE LENGTH GATE: what length does A5 have, and is it the length MOND needs?
+  [PASS] C1 [control] the dimensional solver returns the Planck length from {G, hbar, c} to 1e-9   (exponents (+0.500,+0.500,-1.500) -> 1.6162e-35 m)
+    a0^alpha c^beta G^gamma = a length  =>  (alpha,beta,gamma) = (-1.0000,+2.0000,-0.0000); null space dimension 0
+  [PASS] L1 the length A5's operator must use is UNIQUE (no free family), i.e. f(-D^2/a0^2) has one scale   (it is l0 = c^2/a0; G cannot enter without a mass, so no other length exists)
+    canonical: a0 = 9.3619e-11 m/s^2  ->  l0 = c^2/a0 = 9.6001e+26 m = 31.11 Gpc  (Hubble radius c/H0 = 4.45 Gpc)
+    alternate: a0 = 1.1279e-10 m/s^2  ->  l0 = c^2/a0 = 7.9684e+26 m = 25.82 Gpc  (Hubble radius c/H0 = 4.45 Gpc)
+
+    the length MOND actually needs around a mass M is the MOND radius r_M = sqrt(GM/a0):
+    canonical:
+        M = 1e+08 Msun:  r_M =     0.39 kpc,  v_flat =   33.4 km/s,  l0/r_M = 8.062e+07   [(c/v_flat)^2 = 8.062e+07]
+        M = 1e+09 Msun:  r_M =     1.22 kpc,  v_flat =   59.4 km/s,  l0/r_M = 2.549e+07   [(c/v_flat)^2 = 2.549e+07]
+        M = 1e+10 Msun:  r_M =     3.86 kpc,  v_flat =  105.6 km/s,  l0/r_M = 8.062e+06   [(c/v_flat)^2 = 8.062e+06]
+        M = 1e+11 Msun:  r_M =    12.20 kpc,  v_flat =  187.8 km/s,  l0/r_M = 2.549e+06   [(c/v_flat)^2 = 2.549e+06]
+        M = 1e+12 Msun:  r_M =    38.59 kpc,  v_flat =  333.9 km/s,  l0/r_M = 8.062e+05   [(c/v_flat)^2 = 8.062e+05]
+    alternate:
+        M = 1e+08 Msun:  r_M =     0.35 kpc,  v_flat =   35.0 km/s,  l0/r_M = 7.345e+07   [(c/v_flat)^2 = 7.345e+07]
+        M = 1e+09 Msun:  r_M =     1.11 kpc,  v_flat =   62.2 km/s,  l0/r_M = 2.323e+07   [(c/v_flat)^2 = 2.323e+07]
+        M = 1e+10 Msun:  r_M =     3.52 kpc,  v_flat =  110.6 km/s,  l0/r_M = 7.345e+06   [(c/v_flat)^2 = 7.345e+06]
+        M = 1e+11 Msun:  r_M =    11.12 kpc,  v_flat =  196.7 km/s,  l0/r_M = 2.323e+06   [(c/v_flat)^2 = 2.323e+06]
+        M = 1e+12 Msun:  r_M =    35.16 kpc,  v_flat =  349.8 km/s,  l0/r_M = 7.345e+05   [(c/v_flat)^2 = 7.345e+05]
+  [FAIL] L2 A5's length is the length MOND needs (within a factor 10 of r_M for any real galaxy)   (smallest l0/r_M over 1e8-1e12 Msun and both footings is 7.345e+05; l0/r_M = c^2/sqrt(GMa0) = (c/v_flat)^2 exactly, so the mismatch IS the ratio of the speed of light to a rotation speed, squared)
+  [FAIL] L3 a SINGLE fixed filter length can serve the observed galaxy mass range   (the length a linear filter must have to match mass M is proportional to r_M ~ M^1/2, so over 1e8-1e12 Msun the required length spans a factor 100; one operator cannot have 100 lengths)
+
+    A filter could instead take its length from a LOCAL quantity, which is what I4 asks of a
+    screening trigger.  Every local length available, at the solar circle (r = 8.2 kpc,
+    g = 2.15e-10 m/s^2, |Phi| ~ v^2 = 5.4e10 m^2/s^2, M_b = 6e10 Msun).  A length is only useful
+    if it (a) is I4-legal, (b) CARRIES a0 -- otherwise it sets no transition -- and (c) equals r_M:
+      canonical: r_M(MW) = 9.45 kpc
+        c^2/a0     the A5 operator itself =    3.111e+07 kpc =  3.291e+06 r_M   I4-legal: NO    carries a0: yes
+        c^2/g      Rindler, acceleration =    1.355e+07 kpc =  1.433e+06 r_M   I4-legal: yes   carries a0: NO
+        g/|grad g| scale-free derivative =          8.2 kpc =  8.675e-01 r_M   I4-legal: yes   carries a0: NO
+        |Phi|/a0   the potential         =        18.79 kpc =  1.988e+00 r_M   I4-legal: NO    carries a0: yes
+      alternate: r_M(MW) = 8.61 kpc
+        c^2/a0     the A5 operator itself =    2.582e+07 kpc =  2.999e+06 r_M   I4-legal: NO    carries a0: yes
+        c^2/g      Rindler, acceleration =    1.355e+07 kpc =  1.573e+06 r_M   I4-legal: yes   carries a0: NO
+        g/|grad g| scale-free derivative =          8.2 kpc =  9.522e-01 r_M   I4-legal: yes   carries a0: NO
+        |Phi|/a0   the potential         =         15.6 kpc =  1.811e+00 r_M   I4-legal: NO    carries a0: yes
+  [FAIL] L4 some length that is I4-legal AND carries a0 AND equals r_M exists   (no candidate satisfies all three. c^2/a0 carries a0 but is not local and overshoots by (c/v)^2; c^2/g is local and legal but a0-free, so it sets no transition, and it overshoots by the same (c/v)^2; g/|grad g| is legal but is just the local radius, a0-free and therefore scale-free; |Phi|/a0 hits r_M EXACTLY (v^2 = GM/r_M makes |Phi|/a0 = r_M identically) and is the only one that does -- and it is the potential, which I4 forbids by name and which is not a local invariant)
+
+3. M -- THE MOND GATE on A5-L (the elliptic operator used as the protein)
+    sigma(k) = l k^3/(1 + l k) splits exactly: Phi_k = -4 pi G M [ 1/k^2 + 1/(l k^3) ], so the
+    point-mass solution is EXACT and elementary,
+        Phi(r) = -GM/r + (2GM/(pi l)) ln r + const,      g(r) = GM/r^2 + 2GM/(pi l r).
+    The 1/r piece is what A5 buys: the momentum scaling IS changed, exactly as the recipe says.
+  [PASS] C2 [control] the inverse transform behind the log term integrates to its closed form (-1)   (quadrature to u = 400 plus the analytic tail gives -1.000000000000 vs exact -1; this integral is the entire content of g_asym = 2GM/(pi l r))
+    canonical: exponential-kernel AQUAL point mass, d ln g/d ln M = 0.5030 at 300 kpc (deep MOND) and 1.0000 at 10 pc (Newtonian)
+    alternate: exponential-kernel AQUAL point mass, d ln g/d ln M = 0.5028 at 300 kpc (deep MOND) and 1.0000 at 10 pc (Newtonian)
+  [PASS] C3 [control] the mass-scaling estimator returns 1/2 on the frozen kernel's own deep-MOND limit   (0.5 asymptotically, 1.0 in the Newtonian regime, both footings)
+
+    A5-L's own mass scaling and amplitude (both footings, at r = 20 kpc and asymptotically):
+    canonical: d ln g/d ln M = 1.000000  (MOND needs 0.5);  asymptotic g_A5L/g_MOND = 2.4971e-07  [predicted (2/pi)(v_f/c)^2 = 2.4971e-07]
+    alternate: d ln g/d ln M = 1.000000  (MOND needs 0.5);  asymptotic g_A5L/g_MOND = 2.7408e-07  [predicted (2/pi)(v_f/c)^2 = 2.7408e-07]
+  [FAIL] M1 A5-L reproduces the MOND mass scaling g ~ M^(1/2) (equivalently the BTFR)   (it returns exactly 1.0000. A filter is a LINEAR operator, so the field equation obeys superposition and g is exactly proportional to M for every f, every l and every symbol. This is independent of the length and kills the linear placement of A5 outright)
+  [FAIL] M2 A5-L's asymptotic amplitude matches sqrt(GMa0)/r within a factor 2   (it is short by 4.005e+06 (canonical) and 3.649e+06 (alternate); the deficit is exactly (2/pi)(v_flat/c)^2 and is r-INDEPENDENT, so no radius rescues it)
+    canonical: A5-L transition radius (where the two terms balance) = 48.87 Gpc; r_M = 12.20 kpc; ratio 4.005e+06
+    alternate: A5-L transition radius (where the two terms balance) = 40.56 Gpc; r_M = 11.12 kpc; ratio 3.649e+06
+  [FAIL] M3 A5-L's transition happens at the MOND radius (within a factor 10)   (it happens at pi l0/2 ~ 49 Gpc, past the observable universe; the model is Newtonian everywhere a measurement exists)
+
+    I1 test -- is the effective mu a function of the ACCELERATION?
+    canonical: at r = 20 kpc,
+        M = 1e+09 Msun: y = g/a0 =   0.0620;  I1 requires mu = 0.060083;  A5-L gives mu_eff = 0.999999591
+        M = 1e+11 Msun: y = g/a0 =   0.7232;  I1 requires mu = 0.514798;  A5-L gives mu_eff = 0.999999591
+    alternate: at r = 20 kpc,
+        M = 1e+09 Msun: y = g/a0 =   0.0564;  I1 requires mu = 0.054815;  A5-L gives mu_eff = 0.999999507
+        M = 1e+11 Msun: y = g/a0 =   0.6480;  I1 requires mu = 0.476896;  A5-L gives mu_eff = 0.999999507
+  [FAIL] M4 [I1] A5-L's effective mu is a function of y = g/a0, as the frozen kernel requires   (mu_eff = 1/(1 + 2r/(pi l)) depends on r ALONE and is identical (0.999999590752 vs 0.999999590752) for two masses whose required mu differ by 8.6x. A linear operator cannot see an amplitude, so no f produces any mu(y), let alone 1 - e^-y)
+
+    generality over the SYMBOL, not just this f.  For any pure power sigma(k) = l^(a-2) k^a the
+    point-mass solution is Phi ~ r^(a-3) (log at a = 3), so g ~ r^(a-4):
+        a = 1:  g ~ r^-3   d ln g/d ln M = 1   (-D^2)^-1-type insertion
+        a = 2:  g ~ r^-2   d ln g/d ln M = 1   Newton
+        a = 3:  g ~ r^-1   d ln g/d ln M = 1   flat rotation curve
+        a = 4:  g ~ r^+0   d ln g/d ln M = 1   constant force -- the alpha=1 sunward anomaly
+    numerical test of the same statement on an ARBITRARY nonlocal positive-definite operator (200x200,
+    dense kernel, not a differential operator): source x100 gives field x100.0000000000, error 1.02e-11
+  [FAIL] M5 some elliptic symbol gives BOTH the flat-rotation force law AND a mass scaling other than 1   (a = 3 is the unique exponent with g ~ 1/r (verified exactly by C2 at a = 3 and by Newton at a = 2), and EVERY nonlocal positive-definite operator has d ln g/d ln M = 1 to 1e-11 because the equation is linear in rho. The symbol has one free function and it buys the radial slope only; the mass slope is not for sale at any price)
+
+4. N -- THE NEWTONIAN GATE (I5, G2): recovery with the MEASURED G
+    canonical: at    1 AU, g_A5L/g_Newton - 1 = 9.920e-17
+    canonical: at  30 kAU, g_A5L/g_Newton - 1 = 2.976e-12
+    canonical: at   1 kpc, g_A5L/g_Newton - 1 = 2.046e-08
+    alternate: at    1 AU, g_A5L/g_Newton - 1 = 1.195e-16
+    alternate: at  30 kAU, g_A5L/g_Newton - 1 = 3.586e-12
+    alternate: at   1 kpc, g_A5L/g_Newton - 1 = 2.465e-08
+  [PASS] N1 [I5] A5-L recovers Newton with the measured G at high acceleration   (largest fractional deviation inside 1 kpc is 2.47e-08; the bare coupling IS the measured G because the correction is additive and vanishes as r -> 0)
+    at r = 2.73 kpc (y = 20) and 2r, fractional correction:  A5-L 5.584e-08 -> 1.117e-07,  frozen kernel 2.061e-09 -> 6.563e-03
+    local index d ln(g/g_N - 1)/d ln r:  A5-L +1.0000 (pure power law),  frozen kernel +21.60 (exponential: e^-y with y ~ r^-2)
+  [FAIL] N2 [I5] the correction is exponentially small in the Newtonian regime, with no singular 1/y   (the A5-L correction is a POWER law, g_extra/g_N = 2r/(pi l0), index exactly +1.0, while the frozen kernel's index at the same radius is +22 and grows. Harmless at 1e-16, but the wrong shape: I5's 'exponentially small' is a property of the kernel, and a linear filter has no exponentials to give)
+
+5. F -- THE FILTERED GATE: A5-F, PAPER4's placement with xi -> l0 = c^2/a0
+    Gaussian filter S = e^{xi^2 Delta/2}: for a point mass S u = -GM erf(r/(sqrt2 xi))/r, so
+        |grad(S u)|(r) = GM | erf(x)/r^2 - sqrt(2/pi) e^{-x^2}/(xi r) |,  x = r/(sqrt2 xi),
+    which tends to GM/r^2 for x >> 1 and to 0.2660 GM r/xi^3 for x << 1 (the smoothed cloud's interior).
+  [PASS] C4 [control] at PAPER4's own filter length xi = 0.03 pc the filter is inert at 20 kpc   (|grad(S u)|/|grad u| = 1.000000000000)
+  [PASS] C5 [control] both filter shapes reproduce their analytic interior limits and are inert at PAPER4's xi   (Gaussian interior sqrt(2)/(3 sqrt(pi)): 0.26594 vs 0.26596; Helmholtz interior GM/(2 xi^2): ratio 0.999968; Helmholtz at xi = 0.03 pc: 1.000000000000)
+
+    A5-F with xi = l0, evaluated on a 1e11 Msun galaxy at 20 kpc:
+    canonical: unfiltered s = g_N/a0 = 0.3723 -> y = 0.7232, phantom = 3.285e-11 m/s^2
+               filtered   s = 2.628e-20 -> y = 1.621e-10, phantom = 1.518e-20 m/s^2   (argument suppressed 1.42e+19x, phantom 2.16e+09x)
+    alternate: unfiltered s = g_N/a0 = 0.3090 -> y = 0.6480, phantom = 3.823e-11 m/s^2
+               filtered   s = 3.809e-20 -> y = 1.952e-10, phantom = 2.201e-20 m/s^2   (argument suppressed 8.11e+18x, phantom 1.74e+09x)
+    canonical: suppression of |grad(S u)| at 20 kpc -- Gaussian 1.42e+19x, Helmholtz 4.84e+12x (both filter shapes PAPER4 names)
+    alternate: suppression of |grad(S u)| at 20 kpc -- Gaussian 8.11e+18x, Helmholtz 3.33e+12x (both filter shapes PAPER4 names)
+  [FAIL] F1 A5-F keeps the MOND argument within a factor 2 of its unfiltered value on galactic scales   (the a0-scaled filter suppresses |grad(S u)| by 1.42e+19 (Gaussian) and 4.84e+12 (Helmholtz) at 20 kpc -- it smooths the galaxy over 31 Gpc -- and the deep-MOND phantom by the square root of that. The two shapes differ by orders of magnitude and neither is remotely survivable: the MOND effect is not modified, it is annihilated)
+
+    the opposite sign: a SHARPENING elliptic filter S^-1 = 1 - xi^2 Delta.  For an exponential
+    disc (M_b = 6e10 Msun, R_d = 3 kpc, z_0 = 300 pc) S^-1 u = u - 4 pi G xi^2 rho, so
+    canonical: rho(R=8.2 kpc) = 7.78e-21 kg/m^3, |grad rho| = 8.41e-40;  4 pi G xi^2 |grad rho| = 6.498e+05 m/s^2  =>  y = 6.941e+15
+    alternate: rho(R=8.2 kpc) = 7.78e-21 kg/m^3, |grad rho| = 8.41e-40;  4 pi G xi^2 |grad rho| = 4.477e+05 m/s^2  =>  y = 3.969e+15
+  [FAIL] F2 the sharpening filter at the a0 scale leaves y in the MOND range somewhere in a real disc   (y = 6.94e+15 inside the disc, so mu = 1 to machine precision and the theory is exactly Newtonian)
+
+    the pincer: the window of filter lengths that are merely HARMLESS on a galaxy
+    smoothing branch needs xi << r_gal ~ 20 kpc = 1.00e+04 pc
+    sharpening branch needs xi << sqrt(a0/(4 pi G |grad rho|)) = 3.73e+02 pc
+    PAPER4's Solar-System-fixed xi = 0.02-0.05 pc sits inside that window; l0 = 3.11e+10 pc is outside it by 8.33e+07
+  [FAIL] F3 [pincer] SOME monotone filter at the a0 scale has its transition inside 1 Mpc   (both branches require xi below ~3.7e+02 pc; l0 exceeds that by 8.3e+07. Smoothing gives Newton by killing the argument, sharpening gives Newton by saturating it; there is no third sign)
+
+6. D -- THE DOF GATE (I3a, G4, P4): an actual Hamiltonian count, controls first
+    controls (textbook counts my machinery must reproduce before it is used on the candidate):
+      free scalar                    n= 1  primary= 0  constraints= 0  (1st  0 / 2nd  0)  ->  DOF = 1.0   [want 1]
+      scalar + Lagrange multiplier   n= 2  primary= 1  constraints= 4  (1st  0 / 2nd  4)  ->  DOF = 0.0   [want 0]
+      Maxwell                        n= 4  primary= 1  constraints= 2  (1st  2 / 2nd  0)  ->  DOF = 2.0   [want 2]
+      Proca                          n= 4  primary= 1  constraints= 2  (1st  0 / 2nd  2)  ->  DOF = 3.0   [want 3]
+      ADM/Fierz-Pauli GR             n=10  primary= 4  constraints= 8  (1st  8 / 2nd  0)  ->  DOF = 2.0   [want 2]
+      massive Fierz-Pauli            n=10  primary= 4  constraints=10  (1st  0 / 2nd 10)  ->  DOF = 5.0   [want 5]
+  [PASS] C6 [control] the Dirac counter returns the textbook DOF on six known systems, including 2 for GR   (free scalar 1, scalar+multiplier 0, Maxwell 2, Proca 3, linearised GR 2, massive Fierz-Pauli 5)
+
+    the candidate's own sector.  The filter is localised the only way it can be localised in an
+    action, with an auxiliary w and a multiplier lam:  L_f = lam[(1 - l^2 Delta) w - u].
+      spatial/elliptic   (1 - l^2 Delta): constraints=4 (1st 0 / 2nd 4)  ->  DOF = 0.0
+      temporal           (1 - l^2 Box)  : constraints=0 (1st 0 / 2nd 0)  ->  DOF = 2.0, kinetic eigenvalues -2.0, +2.0 (one ghost)
+      elliptic at a ZERO of the symbol   : constraints=2 (1st 2 / 2nd 0) -- the four second-class constraints degenerate; the auxiliary stops being determined by u
+  [PASS] D1 [A5's central claim] the spatial elliptic localisation adds NO canonical initial data   (four second-class constraints (pi_w, pi_lam, (1-l^2 Delta)w - u, (1-l^2 Delta)lam) remove the pair exactly; this is the one part of A5 that is simply true, and it is true for any positive symbol)
+  [PASS] D2 [P6 contrast] the SAME localisation with a temporal operator does add propagating modes, which is what makes P6 closed and A5 open   (it adds 2 with kinetic eigenvalues -2/+2 -- a ghost pair. P6's warning reproduced quantitatively from the same machinery that gives D1)
+  [PASS] D3 [contrast] ellipticity is load-bearing in D1, i.e. the count changes at a zero of the symbol   (at a zero of the symbol the second-class quartet collapses to 2 first-class constraints: the auxiliary stops being determined by u and its evolution becomes undetermined. Positivity of the symbol, not the word 'auxiliary', is what makes D1 true (P4))
+
+    the price A5 does not pay in D1: the filter needs a FOLIATION.  There is no covariant elliptic
+    operator on a Lorentzian manifold -- D^2 built from g alone is Box, which is hyperbolic -- so
+    'spatial' requires a unit timelike n_mu, i.e. a khronon tau with n_mu = -d_mu tau/|d tau|.
+    Two toy Lagrangians settle whether the A5 term itself can pay for that khronon.  In unitary
+    gauge the Stuckelberg field enters through the lapse, ln N ~ pi_dot:
+      A5 term, N only in the measure  L = N sqrt(gamma) Q(gamma): pi_dot enters LINEARLY, kinetic matrix = 0.00  ->  khronon DOF = 0.0
+      host's acceleration term        L = c14 (d_i ln N)^2      : kinetic matrix = 2 c14 k^2 = 0.60  ->  khronon DOF = 1.0
+  [FAIL] D4 the A5 term supplies the kinetic normalisation of the foliation mode it requires   (the filter is built from gamma_ij alone and N appears only in the measure, so its khronon kinetic matrix is exactly ZERO. Either the host supplies c14 != 0 -- and then N_grav = 3, failing I3a -- or nothing does and the foliation scalar is infinitely strongly coupled, which is P7 verbatim. A5 is kinetically inert, and inertness is not the same as being free)
+      => N_grav = 2 (tensor, control) + 0 (filter pair, D1) + 1 (the foliation the filter needs) = 3
+  [FAIL] D5 [I3a] the A5 construction delivers exactly two gravitational modes   (3. The count is 2 only if the foliation is a NON-DYNAMICAL background structure, which is not a diffeomorphism-invariant theory; with a dynamical khronon it is 3, the same count the lead's parallel construction has (L4_VERIFICATION.md). A5's 'no temporal mode' is true of the filter and false of the theory the filter has to live in)
+
+7. S -- THE SCREENING GATE (I4): is the trigger a local ACCELERATION?
+    two systems of the SAME size and 100x different acceleration; I4 demands they be screened
+    differently, since one is deep-MOND and the other is not:
+    canonical: M = 1e+09 Msun, g_N/a0 =  0.0037:  MOND boost = 16.644,   A5-L boost = 1.000000409248
+    canonical: M = 1e+11 Msun, g_N/a0 =  0.3723:  MOND boost =  1.943,   A5-L boost = 1.000000409248
+    alternate: M = 1e+09 Msun, g_N/a0 =  0.0031:  MOND boost = 18.243,   A5-L boost = 1.000000493052
+    alternate: M = 1e+11 Msun, g_N/a0 =  0.3090:  MOND boost =  2.097,   A5-L boost = 1.000000493052
+  [FAIL] S1 [I4] the A5 modification is controlled by a local acceleration   (the two boosts are identical to 4.4e-16: a filter is triggered by a LENGTH (a wavenumber), never by an amplitude. This is I4's exact prohibition -- the trigger is a scale label, not a dynamical acceleration)
+    canonical: A5-L anomalous sunward acceleration at Saturn = 6.142e-20 m/s^2 (repository gate 3.66e-14) -> 1.7e-06 of the bound
+    alternate: A5-L anomalous sunward acceleration at Saturn = 7.400e-20 m/s^2 (repository gate 3.66e-14) -> 2.0e-06 of the bound
+  [PASS] S2 [Solar System] A5-L passes the Solar-System gate   (it passes by six orders of magnitude, but VACUOUSLY: it passes for the same reason it fails the MOND gate -- the modification is ~1e-16 of Newton everywhere inside 1 Mpc. A gate that a theory passes by doing nothing is not evidence of screening)
+
+8. O -- A5's OWN CAVEAT (G0): 'changes momentum scaling, NEVER perturbative amplitude order'
+    momentum scaling: the point-mass force law
+    canonical: at r = 1 kpc   , local slope d ln g/d ln r = -2.0000
+    canonical: at r = 1 Gpc   , local slope d ln g/d ln r = -1.9714
+    canonical: at r = 100 Gpc , local slope d ln g/d ln r = -1.2587
+    canonical: at r = 1e6 Gpc , local slope d ln g/d ln r = -1.0000
+    alternate: at r = 1 kpc   , local slope d ln g/d ln r = -2.0000
+    alternate: at r = 1 Gpc   , local slope d ln g/d ln r = -1.9657
+    alternate: at r = 100 Gpc , local slope d ln g/d ln r = -1.2248
+    alternate: at r = 1e6 Gpc , local slope d ln g/d ln r = -1.0000
+  [PASS] O1 the elliptic operator CAN change the momentum scaling (1/r^2 -> 1/r)   (asymptotic slope -1.0000, i.e. exactly the flat-rotation-curve force law -- the first half of A5's note is correct)
+
+    amplitude order: G0's rescaling rho -> eps rho (equivalently Phi -> eps Phi)
+    canonical: order of the EXTRA (non-Newtonian) force in eps:  A5-L 1.000000,  frozen kernel 0.497932
+    alternate: order of the EXTRA (non-Newtonian) force in eps:  A5-L 1.000000,  frozen kernel 0.498118
+  [FAIL] O2 [A5's caveat, the decisive one] the elliptic operator can supply the MOND amplitude order   (A5-L's extra force is O(eps^1.000) -- exactly first order, as any linear operator must be -- while the frozen kernel's is O(eps^0.498). MOND's phantom is NON-ANALYTIC in the source and DOMINATES at small eps; a linear map cannot lower the order of anything. A5's note is not a caveat about precision, it is a theorem about the class)
+
+9. VERDICT
+  [FAIL] V1 A5 can be used as a PROTEIN -- a spatially nonlocal elliptic operator that produces MOND   (both placements close. Linear (A5-L): superposition forces g ~ M^1 where MOND needs M^1/2, for every symbol and every length (M1, O2) -- GENERIC to the class, not specific to this realisation. Filtered (A5-F): the length A5 licenses is c^2/a0 = 31 Gpc, 2.6e6 times the MOND radius, and it annihilates MOND from either side (F1-F3) -- generic to the a0-SCALED version, not to PAPER4's xi)
+  [PASS] V2 A5 survives as a SEASONING -- a filter inside an already-MOND nonlinear term, with a length imported from somewhere other than a0   (PAPER4's construction is exactly that and it works: its filter length 0.02-0.05 pc is fixed by the Solar System, not by a0 (C4 shows it is inert where it must be), and the nonlinear q -- not the filter -- carries the MOND kernel. A5's DOF claim (D1) is also simply true, and the elliptic/temporal contrast (D1 vs D2) is a clean quantitative statement of why P6 is closed)
+
+  WHY, in one line: a nonlocal operator is triggered by a LENGTH; MOND is triggered by an
+  ACCELERATION; the dictionary between them is r_M = |Phi|/a0, i.e. the POTENTIAL -- which I4
+  forbids by name, which is not a local invariant, and which is mass-dependent and therefore not
+  an operator at all.  With only a0 and c the dictionary gives c^2/a0 instead, too long by
+  (c/v_flat)^2 ~ 2.6e6.  That is A5's amplitude clause, derived rather than quoted.
+
+  WHAT IS NOT CLOSED here, stated rather than hidden: (i) a filter whose length is a FIELD, 
+  l = l[u], is not an operator and is not what A5 licenses, but it is also not tested here -- the 
+  one such length that works is |Phi|/a0, which I4 forbids, and any other would have to be 
+  exhibited; (ii) a nonlocal operator acting on something OTHER than the potential (on the metric 
+  determinant, on a matter current) is outside this construction; (iii) the DOF statement D5 
+  assumes the foliation is carried by a khronon -- a non-dynamical preferred frame gives 2, at 
+  the price of general covariance, and that trade is not evaluated here.
+
+RESULT: 17 FAIL -> ["L2 A5's length is the length MOND needs (within a factor 10 of r_M for any real galaxy)", 'L3 a SINGLE fixed filter length can serve the observed galaxy mass range', 'L4 some length that is I4-legal AND carries a0 AND equals r_M exists', 'M1 A5-L reproduces the MOND mass scaling g ~ M^(1/2) (equivalently the BTFR)', "M2 A5-L's asymptotic amplitude matches sqrt(GMa0)/r within a factor 2", "M3 A5-L's transition happens at the MOND radius (within a factor 10)", "M4 [I1] A5-L's effective mu is a function of y = g/a0, as the frozen kernel requires", 'M5 some elliptic symbol gives BOTH the flat-rotation force law AND a mass scaling other than 1', 'N2 [I5] the correction is exponentially small in the Newtonian regime, with no singular 1/y', 'F1 A5-F keeps the MOND argument within a factor 2 of its unfiltered value on galactic scales', 'F2 the sharpening filter at the a0 scale leaves y in the MOND range somewhere in a real disc', 'F3 [pincer] SOME monotone filter at the a0 scale has its transition inside 1 Mpc', 'D4 the A5 term supplies the kinetic normalisation of the foliation mode it requires', 'D5 [I3a] the A5 construction delivers exactly two gravitational modes', 'S1 [I4] the A5 modification is controlled by a local acceleration', "O2 [A5's caveat, the decisive one] the elliptic operator can supply the MOND amplitude order", 'V1 A5 can be used as a PROTEIN -- a spatially nonlocal elliptic operator that produces MOND']
+        0 of them CONTROL failures
+        With the controls clean, the gate failures ARE the finding: A5 is not a protein.

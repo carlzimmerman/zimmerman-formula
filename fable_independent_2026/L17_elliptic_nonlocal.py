@@ -47,12 +47,14 @@ THE GATES, each a check that can fail:
   S  the screening gate   -- controlled by a LOCAL acceleration, not a scale or a label (I4)
   O  A5's own caveat      -- "changes momentum scaling, NEVER perturbative amplitude order" (G0)
 
-CONTROLS.  Twelve checks guard my own algebra: a dimensional solver that must reproduce the Planck
-length; an oscillatory integral with an exact closed form; the mass-scaling estimator run on the exact
-exponential-kernel AQUAL point mass, where it must return 1/2; the Gaussian filter at PAPER4's own xi,
-where it must be inert on galactic scales; and seven textbook Dirac counts (scalar 1, Maxwell 2, Proca 3,
-massless Fierz-Pauli 2, massive Fierz-Pauli 5, scalar-plus-multiplier 0, and the elliptic/temporal
-localisation pair).  A CONTROL failure invalidates the run and exits 3; a GATE failure is the finding.
+CONTROLS, C0-C6.  Seven checks guard my own algebra before any of it is used against A5: the kernel
+inversion against its own deep-MOND series; a dimensional solver that must reproduce the Planck length;
+the oscillatory integral behind the log potential against its exact closed form; the mass-scaling
+estimator run on the exact exponential-kernel AQUAL point mass, where it must return 1/2 and 1; the
+Gaussian filter at PAPER4's own xi, where it must be inert on galactic scales, and its interior limit;
+and (C6) six textbook Dirac counts at once -- free scalar 1, scalar-plus-multiplier 0, Maxwell 2,
+Proca 3, linearised GR 2, massive Fierz-Pauli 5.  A CONTROL failure invalidates the run and exits 3;
+a GATE failure is the finding.
 
 Both footings a0 = 9.3619e-11 (canonical) and 1.1279e-10 m s^-2 (alternate) throughout.
 """
@@ -85,21 +87,28 @@ print("L17 -- the A5 lane: can a spatially nonlocal ELLIPTIC operator build MOND
 print("=" * 118, flush=True)
 
 # ================================================================ 0. the frozen kernel
-def mu_exp(y):      return 1.0 - np.exp(-y)
+def mu_exp(y):      return -np.expm1(-np.asarray(y, float))  # 1 - e^-y, accurate for tiny y
 def s_of_y(y):      return y*mu_exp(y)                       # s = y mu(y) = |grad u|/a0
 def y_of_s(s):
     """invert s = y(1 - e^{-y});  y = g/a0 given the Newtonian s = g_N/a0."""
     s = float(s)
     if s <= 0: return 0.0
-    lo, hi = 1e-300, max(4.0, 2.0*s + 4.0)
+    if s < 1e-3:                                   # tight bracket: the deep branch is y ~ sqrt(s)
+        lo, hi = 0.5*math.sqrt(s), 2.0*math.sqrt(s) + 4.0*s
+    else:
+        lo, hi = 1e-30, max(4.0, 2.0*s + 4.0)
     while s_of_y(hi) < s: hi *= 2.0
-    return brentq(lambda y: s_of_y(y) - s, lo, hi, rtol=1e-14, maxiter=300)
+    return brentq(lambda y: s_of_y(y) - s, lo, hi, xtol=1e-300, rtol=1e-15, maxiter=400)
 
 print("\n0. THE FROZEN KERNEL (I1), used unchanged everywhere below")
-print(f"    mu(y) = 1 - e^-y ;  s = y mu(y) ;  nu(s) = y/s ;  deep limit y = sqrt(s) + O(s), i.e. g = sqrt(a0 g_N)")
-_y = y_of_s(1e-8)
-check("C0 [control] the kernel inversion reproduces the deep-MOND branch y = sqrt(s) to 1e-6",
-      abs(_y/math.sqrt(1e-8) - 1) < 1e-6, f"y(s=1e-8)/sqrt(s) = {_y/math.sqrt(1e-8):.9f}")
+print(f"    mu(y) = 1 - e^-y ;  s = y mu(y) ;  nu(s) = y/s ;  deep limit y = sqrt(s)(1 + sqrt(s)/4 + ...)")
+_dev = []
+for _s in (1e-12, 1e-16, 1e-20):
+    _y = y_of_s(_s)
+    _dev.append(abs(_y/math.sqrt(_s) - 1 - math.sqrt(_s)/4))
+    print(f"    s = {_s:.0e}:  y/sqrt(s) - 1 = {_y/math.sqrt(_s) - 1:+.4e}   (series: sqrt(s)/4 = {math.sqrt(_s)/4:+.4e})")
+check("C0 [control] the kernel inversion follows its own deep-MOND series y = sqrt(s)(1 + sqrt(s)/4) to 1e-7",
+      max(_dev) < 1e-7, f"worst departure from the series {max(_dev):.2e}")
 
 # ================================================================ 1. the construction, written out
 print("\n1. THE CONSTRUCTION A5 LICENSES")
@@ -175,23 +184,31 @@ check("L3 a SINGLE fixed filter length can serve the observed galaxy mass range"
                   f"so over 1e8-1e12 Msun the required length spans a factor {spread:.0f}; one operator "
                   f"cannot have {spread:.0f} lengths")
 
-print("\n    the three lengths a LOCAL quantity can build, evaluated at the solar circle"
-      "\n    (r = 8.2 kpc, g = 2.15e-10 m/s^2, |Phi| ~ v^2 = 5.4e10 m^2/s^2, M_b = 6e10 Msun):")
+print("\n    A filter could instead take its length from a LOCAL quantity, which is what I4 asks of a")
+print("    screening trigger.  Every local length available, at the solar circle (r = 8.2 kpc,")
+print("    g = 2.15e-10 m/s^2, |Phi| ~ v^2 = 5.4e10 m^2/s^2, M_b = 6e10 Msun).  A length is only useful")
+print("    if it (a) is I4-legal, (b) CARRIES a0 -- otherwise it sets no transition -- and (c) equals r_M:")
 r_sun = 8.2*kpc; g_sun = 2.15e-10; Phi_sun = (233e3)**2; Mb_MW = 6e10*MSUN
+CAND = []
 for f in A0:
     rM_MW = math.sqrt(G*Mb_MW/A0[f])
-    lengths = [("c^2/g          (Rindler, I4-legal)", c*c/g_sun),
-               ("g/|grad g|     (scale-free, no a0)", r_sun),
-               ("|Phi|/a0       (I4-FORBIDDEN)     ", Phi_sun/A0[f])]
+    lengths = [("c^2/a0     the A5 operator itself", L0[f],          False, True),
+               ("c^2/g      Rindler, acceleration", c*c/g_sun,       True,  False),
+               ("g/|grad g| scale-free derivative", r_sun,           True,  False),
+               ("|Phi|/a0   the potential        ", Phi_sun/A0[f],   False, True)]
     print(f"      {f}: r_M(MW) = {rM_MW/kpc:.2f} kpc")
-    for nm, LL in lengths:
-        print(f"        {nm} = {LL/kpc:12.4g} kpc   = {LL/rM_MW:10.3e} r_M")
-    lam_phi = Phi_sun/A0[f]
-check("L4 some I4-LEGAL local quantity (an acceleration or a derivative) builds the MOND length r_M",
-      abs(c*c/g_sun/math.sqrt(G*Mb_MW/A0['canonical']) - 1) < 1.0,
-      "the only local quantity that builds r_M is the POTENTIAL: |Phi|/a0 = v^2/a0 = r_M identically "
-      "(since v^2 = GM/r_M). I4 forbids potential screening by name, and Phi is not a local invariant. "
-      "c^2/g overshoots by (c/v)^2; g/|grad g| carries no a0 and so sets no transition")
+    for nm, LL, legal, hasa0 in lengths:
+        print(f"        {nm} = {LL/kpc:12.4g} kpc = {LL/rM_MW:10.3e} r_M   "
+              f"I4-legal: {'yes' if legal else 'NO ':<3}   carries a0: {'yes' if hasa0 else 'NO'}")
+        CAND.append((nm, legal, hasa0, LL/rM_MW))
+good = [x for x in CAND if x[1] and x[2] and 0.5 < x[3] < 2.0]
+check("L4 some length that is I4-legal AND carries a0 AND equals r_M exists",
+      len(good) > 0,
+      "no candidate satisfies all three. c^2/a0 carries a0 but is not local and overshoots by (c/v)^2; "
+      "c^2/g is local and legal but a0-free, so it sets no transition, and it overshoots by the same "
+      "(c/v)^2; g/|grad g| is legal but is just the local radius, a0-free and therefore scale-free; "
+      "|Phi|/a0 hits r_M EXACTLY (v^2 = GM/r_M makes |Phi|/a0 = r_M identically) and is the only one "
+      "that does -- and it is the potential, which I4 forbids by name and which is not a local invariant")
 
 # ================================================================ 3. M -- the MOND gate on A5-L
 print("\n3. M -- THE MOND GATE on A5-L (the elliptic operator used as the protein)")
@@ -203,10 +220,15 @@ print("""    sigma(k) = l k^3/(1 + l k) splits exactly: Phi_k = -4 pi G M [ 1/k^
 def g_A5L(r, M, l):  return G*M/r**2 + 2*G*M/(math.pi*l*r)
 
 # control: the oscillatory integral behind the log term, int_0^inf [cos u/u - sin u/u^2] du = -1
-I_osc = quad(lambda u: math.cos(u)/u - math.sin(u)/u**2, 0, 200, limit=800)[0] \
-      + quad(lambda u: math.cos(u)/u - math.sin(u)/u**2, 200, np.inf, limit=800)[0]
+def _osc(u):
+    if u < 1e-3: return -u/3.0 + u**3/30.0            # series, avoids 0/0
+    return math.cos(u)/u - math.sin(u)/u**2
+U_CUT = 400.0
+I_osc = quad(_osc, 0.0, U_CUT, limit=4000)[0] - math.sin(U_CUT)/U_CUT   # tail = [sin u/u] from U to inf
 check("C2 [control] the inverse transform behind the log term integrates to its closed form (-1)",
-      abs(I_osc + 1) < 1e-6, f"numeric {I_osc:.9f} vs exact -1 (d/du[sin u/u] telescopes)")
+      abs(I_osc + 1) < 1e-8,
+      f"quadrature to u = {U_CUT:.0f} plus the analytic tail gives {I_osc:.12f} vs exact -1; this integral "
+      f"is the entire content of g_asym = 2GM/(pi l r)")
 
 # control: the mass-scaling estimator on the exact exponential-kernel AQUAL point mass
 def g_MOND(r, M, a0): return a0*y_of_s(G*M/r**2/a0)
@@ -277,10 +299,36 @@ mreq_lo = {f: mu_exp(y_of_s(G*1e9*MSUN/(20*kpc)**2/A0[f])) for f in A0}
 mreq_hi = {f: mu_exp(y_of_s(G*1e11*MSUN/(20*kpc)**2/A0[f])) for f in A0}
 check("M4 [I1] A5-L's effective mu is a function of y = g/a0, as the frozen kernel requires",
       all(abs(mu_lo[f]/mu_hi[f] - mreq_lo[f]/mreq_hi[f]) < 0.1 for f in A0),
-      f"mu_eff = 1/(1 + 2r/(pi l)) depends on r ALONE and is identical ({mu_lo['canonical']:.6f} vs "
-      f"{mu_hi['canonical']:.6f}) for two masses whose required mu differ by "
+      f"mu_eff = 1/(1 + 2r/(pi l)) depends on r ALONE and is identical ({mu_lo['canonical']:.12f} vs "
+      f"{mu_hi['canonical']:.12f}) for two masses whose required mu differ by "
       f"{mreq_hi['canonical']/mreq_lo['canonical']:.1f}x. A linear operator cannot see an amplitude, so "
       f"no f produces any mu(y), let alone 1 - e^-y")
+
+print("\n    generality over the SYMBOL, not just this f.  For any pure power sigma(k) = l^(a-2) k^a the")
+print("    point-mass solution is Phi ~ r^(a-3) (log at a = 3), so g ~ r^(a-4):")
+for a in (1, 2, 3, 4):
+    tag = {1: "(-D^2)^-1-type insertion", 2: "Newton", 3: "flat rotation curve",
+           4: "constant force -- the alpha=1 sunward anomaly"}[a]
+    print(f"        a = {a}:  g ~ r^{a-4:+d}   d ln g/d ln M = 1   {tag}")
+rng = np.random.default_rng(20260908)
+Ngr = 200
+Lap = np.diag(2.0*np.ones(Ngr)) + np.diag(-np.ones(Ngr-1), 1) + np.diag(-np.ones(Ngr-1), -1)
+Ker = rng.normal(size=(Ngr, Ngr)); Ker = 0.5*(Ker + Ker.T)                 # arbitrary NONLOCAL kernel
+src = rng.normal(size=Ngr)
+with np.errstate(all="ignore"):        # stale LAPACK IEEE flags again; results are checked below
+    Op = Lap + Ker @ Ker.T / Ngr
+    x1 = np.linalg.solve(Op, src); x2 = np.linalg.solve(Op, 100.0*src)
+assert np.isfinite(x1).all() and np.isfinite(x2).all()
+lin_err = float(np.max(np.abs(x2/x1 - 100.0)))
+print(f"    numerical test of the same statement on an ARBITRARY nonlocal positive-definite operator "
+      f"(200x200,\n    dense kernel, not a differential operator): source x100 gives field x"
+      f"{100.0 + lin_err:.10f}, error {lin_err:.2e}")
+check("M5 some elliptic symbol gives BOTH the flat-rotation force law AND a mass scaling other than 1",
+      lin_err > 1e-6,
+      f"a = 3 is the unique exponent with g ~ 1/r (verified exactly by C2 at a = 3 and by Newton at a = 2), "
+      f"and EVERY nonlocal positive-definite operator has d ln g/d ln M = 1 to {lin_err:.0e} because the "
+      f"equation is linear in rho. The symbol has one free function and it buys the radial slope only; "
+      f"the mass slope is not for sale at any price")
 
 # ================================================================ 4. N -- the Newtonian gate
 print("\n4. N -- THE NEWTONIAN GATE (I5, G2): recovery with the MEASURED G")
@@ -293,10 +341,23 @@ dev_worst = max(2*kpc/(math.pi*L0[f]) for f in A0)
 check("N1 [I5] A5-L recovers Newton with the measured G at high acceleration",
       dev_worst < 1e-6, f"largest fractional deviation inside 1 kpc is {dev_worst:.2e}; the bare coupling "
                         f"IS the measured G because the correction is additive and vanishes as r -> 0")
+_M = 1e11*MSUN
+_r = math.sqrt(G*_M/(20.0*A0['canonical']))            # radius where y = g_N/a0 = 20, deep in Newton
+_dev = lambda rr: 2*rr/(math.pi*L0['canonical'])
+idx_A5 = math.log(_dev(2*_r)/_dev(_r))/math.log(2.0)
+d1 = g_MOND(_r, _M, A0['canonical'])/(G*_M/_r**2) - 1.0
+d2 = g_MOND(2*_r, _M, A0['canonical'])/(G*_M/(2*_r)**2) - 1.0
+idx_kernel = math.log(d2/d1)/math.log(2.0)
+print(f"    at r = {_r/kpc:.2f} kpc (y = 20) and 2r, fractional correction:  A5-L {_dev(_r):.3e} -> "
+      f"{_dev(2*_r):.3e},  frozen kernel {d1:.3e} -> {d2:.3e}")
+print(f"    local index d ln(g/g_N - 1)/d ln r:  A5-L {idx_A5:+.4f} (pure power law),  "
+      f"frozen kernel {idx_kernel:+.2f} (exponential: e^-y with y ~ r^-2)")
 check("N2 [I5] the correction is exponentially small in the Newtonian regime, with no singular 1/y",
-      False, "it is POWER law, g_extra/g_N = 2r/(pi l0), not exponentially small. Harmless at 1e-16, but "
-             "structurally it is the wrong shape: I5's 'exponentially small' is a property of the frozen "
-             "kernel, and a linear filter cannot produce it")
+      idx_A5 > 5.0,
+      f"the A5-L correction is a POWER law, g_extra/g_N = 2r/(pi l0), index exactly {idx_A5:+.1f}, while "
+      f"the frozen kernel's index at the same radius is {idx_kernel:+.0f} and grows. Harmless at 1e-16, "
+      f"but the wrong shape: I5's 'exponentially small' is a property of the kernel, and a linear filter "
+      f"has no exponentials to give")
 
 # ================================================================ 5. F -- the filtered gate (A5-F)
 print("\n5. F -- THE FILTERED GATE: A5-F, PAPER4's placement with xi -> l0 = c^2/a0")
@@ -308,6 +369,12 @@ def grad_Su(r, M, xi):
     x = r/(math.sqrt(2.0)*xi)
     return abs(G*M*(math.erf(x)/r**2 - math.sqrt(2.0/math.pi)*math.exp(-x*x)/(xi*r)))
 
+def grad_Su_helm(r, M, xi):
+    """the other filter PAPER4 names, S = (1 - xi^2 Delta)^-1: S u = -GM(1 - e^{-r/xi})/r,
+       verified by (1 - xi^2 Delta)[(1-e^{-r/xi})/r] = 1/r; interior limit GM/(2 xi^2)."""
+    e = math.exp(-r/xi) if r/xi < 700 else 0.0
+    return abs(G*M*(e/(xi*r) - (1.0 - e)/r**2))
+
 # control: PAPER4's own xi must be inert on galactic scales
 r_test = 20*kpc; M_test = 1e11*MSUN
 inert = grad_Su(r_test, M_test, 0.03*pc)/(G*M_test/r_test**2)
@@ -316,8 +383,14 @@ check("C4 [control] at PAPER4's own filter length xi = 0.03 pc the filter is ine
 # control: the small-x interior coefficient
 xi_big = 1e6*r_test
 coef = grad_Su(r_test, M_test, xi_big)/(G*M_test*r_test/xi_big**3)
-check("C5 [control] the interior limit of the Gaussian filter reproduces sqrt(2)/(3 sqrt(pi)) = 0.26596",
-      abs(coef - math.sqrt(2)/(3*math.sqrt(math.pi))) < 1e-3, f"numeric {coef:.5f}")
+coef_h = grad_Su_helm(r_test, M_test, xi_big)/(G*M_test/(2*xi_big**2))
+inert_h = grad_Su_helm(r_test, M_test, 0.03*pc)/(G*M_test/r_test**2)
+check("C5 [control] both filter shapes reproduce their analytic interior limits and are inert at "
+      "PAPER4's xi",
+      abs(coef - math.sqrt(2)/(3*math.sqrt(math.pi))) < 1e-3 and abs(coef_h - 1) < 1e-3
+      and abs(inert_h - 1) < 1e-6,
+      f"Gaussian interior sqrt(2)/(3 sqrt(pi)): {coef:.5f} vs 0.26596; Helmholtz interior GM/(2 xi^2): "
+      f"ratio {coef_h:.6f}; Helmholtz at xi = 0.03 pc: {inert_h:.12f}")
 
 print("\n    A5-F with xi = l0, evaluated on a 1e11 Msun galaxy at 20 kpc:")
 for f in A0:
@@ -330,16 +403,21 @@ for f in A0:
     print(f"    {f}: unfiltered s = g_N/a0 = {s_un:.4f} -> y = {y_un:.4f}, phantom = {ph_un:.3e} m/s^2")
     print(f"    {'':>{len(f)}}  filtered   s = {s_fl:.3e} -> y = {y_fl:.3e}, phantom = {ph_fl:.3e} m/s^2"
           f"   (argument suppressed {s_un/s_fl:.2e}x, phantom {ph_un/ph_fl:.2e}x)")
-sup = {}
+sup, sup_h = {}, {}
 for f in A0:
     sup[f] = (G*M_test/r_test**2)/grad_Su(r_test, M_test, L0[f])
+    sup_h[f] = (G*M_test/r_test**2)/grad_Su_helm(r_test, M_test, L0[f])
+    print(f"    {f}: suppression of |grad(S u)| at 20 kpc -- Gaussian {sup[f]:.2e}x, "
+          f"Helmholtz {sup_h[f]:.2e}x (both filter shapes PAPER4 names)")
 check("F1 A5-F keeps the MOND argument within a factor 2 of its unfiltered value on galactic scales",
-      all(sup[f] < 2 for f in sup),
-      f"the a0-scaled filter suppresses |grad(S u)| by {sup['canonical']:.2e} at 20 kpc (it smooths the "
-      f"galaxy over {L0['canonical']/Gpc:.0f} Gpc), and the deep-MOND phantom by the square root of that. "
-      f"The MOND effect is not modified, it is annihilated")
+      all(sup[f] < 2 and sup_h[f] < 2 for f in sup),
+      f"the a0-scaled filter suppresses |grad(S u)| by {sup['canonical']:.2e} (Gaussian) and "
+      f"{sup_h['canonical']:.2e} (Helmholtz) at 20 kpc -- it smooths the galaxy over "
+      f"{L0['canonical']/Gpc:.0f} Gpc -- and the deep-MOND phantom by the square root of that. The two "
+      f"shapes differ by orders of magnitude and neither is remotely survivable: the MOND effect is not "
+      f"modified, it is annihilated")
 
-print("\n    the opposite sign: a SHARPENING elliptic filter S^-1 = 1 - xi^2 Delta.  For an exponential "
+print("\n    the opposite sign: a SHARPENING elliptic filter S^-1 = 1 - xi^2 Delta.  For an exponential"
       "\n    disc (M_b = 6e10 Msun, R_d = 3 kpc, z_0 = 300 pc) S^-1 u = u - 4 pi G xi^2 rho, so")
 Rd = 3*kpc; z0 = 300*pc
 rho_disc = (Mb_MW/(4*math.pi*Rd**2*z0))*math.exp(-8.2/3.0)
@@ -371,8 +449,16 @@ check("F3 [pincer] SOME monotone filter at the a0 scale has its transition insid
 print("\n6. D -- THE DOF GATE (I3a, G4, P4): an actual Hamiltonian count, controls first")
 
 def dirac_count(M, C, K, tol=1e-9, maxit=60):
+    # LAPACK/BLAS leave stale IEEE flags that numpy then attributes to later matmuls; every array is
+    # asserted finite inside, so the suppression cannot hide a real division by zero.
+    with np.errstate(all="ignore"):
+        return _dirac_count(M, C, K, tol=tol, maxit=maxit)
+
+def _dirac_count(M, C, K, tol=1e-9, maxit=60):
     """Dirac constraint analysis for L = 1/2 qdot^T M qdot + qdot^T C q + 1/2 q^T K q.
-       Returns the physical DOF (2n - 2*first_class - second_class)/2."""
+       Returns the physical DOF (2n - 2*first_class - second_class)/2.
+       Primary constraints from ker(M); the chain propagates only those combinations whose bracket with
+       the PRIMARY set vanishes (the others fix multipliers instead of generating constraints)."""
     M = np.asarray(M, float); C = np.asarray(C, float); K = np.asarray(K, float)
     n = M.shape[0]; M = 0.5*(M + M.T); K = 0.5*(K + K.T)
     w, V = np.linalg.eigh(M)
@@ -380,6 +466,7 @@ def dirac_count(M, C, K, tol=1e-9, maxit=60):
     Mp = (V[:, keep]*(1.0/w[keep])) @ V[:, keep].T if keep.any() else np.zeros((n, n))
     NL = V[:, ~keep]
     A = np.block([[C.T@Mp@C - K, -C.T@Mp], [-Mp@C, Mp]]); A = 0.5*(A + A.T)
+    assert np.isfinite(Mp).all() and np.isfinite(A).all(), "singular pseudo-inverse in dirac_count"
     J = np.block([[np.zeros((n, n)), np.eye(n)], [-np.eye(n), np.zeros((n, n))]])
     B = np.zeros((2*n, 0))
     def add(vec):
@@ -506,42 +593,46 @@ check("D1 [A5's central claim] the spatial elliptic localisation adds NO canonic
       r_ell['dof'] == 0.0,
       "four second-class constraints (pi_w, pi_lam, (1-l^2 Delta)w - u, (1-l^2 Delta)lam) remove the pair "
       "exactly; this is the one part of A5 that is simply true, and it is true for any positive symbol")
-check("D2 [P6 control] the same localisation with a TEMPORAL operator also adds none",
-      r_tem['dof'] == 0.0,
-      f"it adds {r_tem['dof']:.0f} modes with kinetic eigenvalues {kin_t[0]:+.0f}/{kin_t[1]:+.0f}, i.e. a "
-      f"ghost pair -- P6 reproduced quantitatively. The FAIL here is the correct physics: it is what "
-      f"separates admissible A5 from closed P6")
-check("D3 ellipticity is decorative rather than load-bearing in D1",
-      r_deg['second_class'] == 4,
-      "at a zero of the symbol the second-class quartet collapses to two first-class constraints and the "
-      "auxiliary is no longer fixed by u; positivity of the symbol is what makes D1 work")
+check("D2 [P6 contrast] the SAME localisation with a temporal operator does add propagating modes, which "
+      "is what makes P6 closed and A5 open",
+      r_tem['dof'] >= 1.0 and kin_t[0] < 0 < kin_t[1],
+      f"it adds {r_tem['dof']:.0f} with kinetic eigenvalues {kin_t[0]:+.0f}/{kin_t[1]:+.0f} -- a ghost "
+      f"pair. P6's warning reproduced quantitatively from the same machinery that gives D1")
+check("D3 [contrast] ellipticity is load-bearing in D1, i.e. the count changes at a zero of the symbol",
+      r_deg['second_class'] < 4,
+      f"at a zero of the symbol the second-class quartet collapses to {r_deg['first_class']} first-class "
+      f"constraints: the auxiliary stops being determined by u and its evolution becomes undetermined. "
+      f"Positivity of the symbol, not the word 'auxiliary', is what makes D1 true (P4)")
 
 print("\n    the price A5 does not pay in D1: the filter needs a FOLIATION.  There is no covariant elliptic")
 print("    operator on a Lorentzian manifold -- D^2 built from g alone is Box, which is hyperbolic -- so")
 print("    'spatial' requires a unit timelike n_mu, i.e. a khronon tau with n_mu = -d_mu tau/|d tau|.")
 print("    Two toy Lagrangians settle whether the A5 term itself can pay for that khronon.  In unitary")
 print("    gauge the Stuckelberg field enters through the lapse, ln N ~ pi_dot:")
-r_meas = dirac_count([[0.0]], [[0.0]], [[0.0]])                        # L = V * N: linear in pi_dot
-Vv = 1.0
-M1 = np.array([[0.0]]); C1 = np.array([[0.0]]); K1 = np.array([[0.0]])
-r_measure = dirac_count(M1, C1, K1)
 c14 = 0.3
-r_a2 = dirac_count(np.array([[2*c14*kk**2]]), np.array([[0.0]]), np.array([[0.0]]))
-print(f"      A5 term, N only in the measure  L = N sqrt(g) Q(gamma):  pi_dot appears LINEARLY, "
-      f"kinetic matrix = 0  ->  DOF = {r_measure['dof']:.1f}")
-print(f"      host's acceleration term        L = c14 (d_i ln N)^2   :  kinetic matrix = 2 c14 k^2 = "
-      f"{2*c14*kk**2:.2f}  ->  DOF = {r_a2['dof']:.1f}")
-check("D4 the A5 term supplies its own foliation mode's kinetic normalisation",
-      False,
+K_A5   = np.array([[0.0]])                     # L = V N sqrt(gamma) Q(gamma): pi_dot enters LINEARLY
+K_host = np.array([[2*c14*kk**2]])             # L = c14 (d_i ln N)^2 -> c14 (d_i pi_dot)^2
+r_A5pi   = dirac_count(K_A5,   np.array([[0.0]]), np.array([[0.0]]))
+r_hostpi = dirac_count(K_host, np.array([[0.0]]), np.array([[0.0]]))
+print(f"      A5 term, N only in the measure  L = N sqrt(gamma) Q(gamma): pi_dot enters LINEARLY,"
+      f" kinetic matrix = {K_A5[0,0]:.2f}  ->  khronon DOF = {r_A5pi['dof']:.1f}")
+print(f"      host's acceleration term        L = c14 (d_i ln N)^2      : kinetic matrix = 2 c14 k^2 ="
+      f" {K_host[0,0]:.2f}  ->  khronon DOF = {r_hostpi['dof']:.1f}")
+check("D4 the A5 term supplies the kinetic normalisation of the foliation mode it requires",
+      K_A5[0, 0] > 0.0,
       "the filter is built from gamma_ij alone and N appears only in the measure, so its khronon kinetic "
       "matrix is exactly ZERO. Either the host supplies c14 != 0 -- and then N_grav = 3, failing I3a -- "
-      "or nothing does and the foliation scalar is infinitely strongly coupled, which is P7 verbatim")
+      "or nothing does and the foliation scalar is infinitely strongly coupled, which is P7 verbatim. "
+      "A5 is kinetically inert, and inertness is not the same as being free")
+N_grav = ctl[4][1]['dof'] + r_ell['dof'] + r_hostpi['dof']
+print(f"      => N_grav = {ctl[4][1]['dof']:.0f} (tensor, control) + {r_ell['dof']:.0f} (filter pair, D1)"
+      f" + {r_hostpi['dof']:.0f} (the foliation the filter needs) = {N_grav:.0f}")
 check("D5 [I3a] the A5 construction delivers exactly two gravitational modes",
-      False,
-      "2 tensor + 0 from the filter pair (D1, genuinely) + 1 from the foliation the filter requires. "
-      "The count is 2 ONLY if the foliation is a non-dynamical background structure, which is not a "
-      "diffeomorphism-invariant theory; with a dynamical khronon it is 3, the same count the lead's "
-      "parallel construction has (L4_VERIFICATION.md)")
+      N_grav == 2.0,
+      f"{N_grav:.0f}. The count is 2 only if the foliation is a NON-DYNAMICAL background structure, which "
+      f"is not a diffeomorphism-invariant theory; with a dynamical khronon it is 3, the same count the "
+      f"lead's parallel construction has (L4_VERIFICATION.md). A5's 'no temporal mode' is true of the "
+      f"filter and false of the theory the filter has to live in")
 
 # ================================================================ 7. S -- the screening gate
 print("\n7. S -- THE SCREENING GATE (I4): is the trigger a local ACCELERATION?")
@@ -580,11 +671,12 @@ print("\n8. O -- A5's OWN CAVEAT (G0): 'changes momentum scaling, NEVER perturba
 print("    momentum scaling: the point-mass force law")
 for f in A0:
     l = L0[f]; M = 1e11*MSUN
-    for rr in (1*kpc, 1*Gpc, 100*Gpc):
+    for rr, un in ((1*kpc, "1 kpc   "), (1*Gpc, "1 Gpc   "), (100*Gpc, "100 Gpc "), (1e6*Gpc, "1e6 Gpc ")):
         gg = g_A5L(rr, M, l); gg2 = g_A5L(2*rr, M, l)
-        print(f"    {f}: at r = {rr/kpc:12.4g} kpc, local slope d ln g/d ln r = "
+        print(f"    {f}: at r = {un}, local slope d ln g/d ln r = "
               f"{math.log(gg2/gg)/math.log(2.0):+.4f}")
-sl_far = math.log(g_A5L(2*100*Gpc, 1e11*MSUN, L0['canonical'])/g_A5L(100*Gpc, 1e11*MSUN, L0['canonical']))/math.log(2)
+R_FAR = 1e6*Gpc
+sl_far = math.log(g_A5L(2*R_FAR, 1e11*MSUN, L0['canonical'])/g_A5L(R_FAR, 1e11*MSUN, L0['canonical']))/math.log(2)
 check("O1 the elliptic operator CAN change the momentum scaling (1/r^2 -> 1/r)",
       abs(sl_far + 1) < 0.05, f"asymptotic slope {sl_far:+.4f}, i.e. exactly the flat-rotation-curve force "
                               f"law -- the first half of A5's note is correct")
@@ -609,30 +701,39 @@ check("O2 [A5's caveat, the decisive one] the elliptic operator can supply the M
 
 # ================================================================ 9. verdict
 print("\n9. VERDICT")
+_failed = set(FAILS)
+def failed(pref): return any(x.startswith(pref) for x in _failed)
+protein_ok = not (failed("M1") or failed("M2") or failed("M4") or failed("F1") or failed("O2"))
+season_ok  = (not failed("D1")) and (not failed("C4"))
 check("V1 A5 can be used as a PROTEIN -- a spatially nonlocal elliptic operator that produces MOND",
-      False,
-      "both placements close. Linear (A5-L): superposition forces g ~ M^1, MOND needs M^1/2, for every "
-      "symbol and every length (M1, O2) -- generic to the class. Filtered (A5-F): the length A5 licenses "
-      "is c^2/a0 = 31 Gpc, 2.6e6 times the MOND radius, and it annihilates MOND from either side (F1-F3) "
-      "-- generic to the a0-scaled version, not to PAPER4's xi")
-check("V2 A5 survives as a SEASONING -- a filter inside an already-MOND nonlinear term, with an "
-      "imported length",
-      True,
-      "PAPER4's construction is exactly that and it works: the filter length 0.02-0.05 pc is fixed by the "
-      "Solar System, not by a0, and the nonlinear q -- not the filter -- carries the MOND kernel. A5's "
-      "DOF claim (D1) is also simply true, and the elliptic/temporal contrast (D1 vs D2) is a clean "
-      "quantitative statement of why P6 is closed and A5 is not")
+      protein_ok,
+      "both placements close. Linear (A5-L): superposition forces g ~ M^1 where MOND needs M^1/2, for "
+      "every symbol and every length (M1, O2) -- GENERIC to the class, not specific to this realisation. "
+      "Filtered (A5-F): the length A5 licenses is c^2/a0 = 31 Gpc, 2.6e6 times the MOND radius, and it "
+      "annihilates MOND from either side (F1-F3) -- generic to the a0-SCALED version, not to PAPER4's xi")
+check("V2 A5 survives as a SEASONING -- a filter inside an already-MOND nonlinear term, with a length "
+      "imported from somewhere other than a0",
+      season_ok,
+      "PAPER4's construction is exactly that and it works: its filter length 0.02-0.05 pc is fixed by the "
+      "Solar System, not by a0 (C4 shows it is inert where it must be), and the nonlinear q -- not the "
+      "filter -- carries the MOND kernel. A5's DOF claim (D1) is also simply true, and the "
+      "elliptic/temporal contrast (D1 vs D2) is a clean quantitative statement of why P6 is closed")
 
 print("\n  WHY, in one line: a nonlocal operator is triggered by a LENGTH; MOND is triggered by an")
 print("  ACCELERATION; the dictionary between them is r_M = |Phi|/a0, i.e. the POTENTIAL -- which I4")
 print("  forbids by name, which is not a local invariant, and which is mass-dependent and therefore not")
 print("  an operator at all.  With only a0 and c the dictionary gives c^2/a0 instead, too long by")
 print("  (c/v_flat)^2 ~ 2.6e6.  That is A5's amplitude clause, derived rather than quoted.")
+print("\n  WHAT IS NOT CLOSED here, stated rather than hidden: (i) a filter whose length is a FIELD, "
+      "\n  l = l[u], is not an operator and is not what A5 licenses, but it is also not tested here -- the "
+      "\n  one such length that works is |Phi|/a0, which I4 forbids, and any other would have to be "
+      "\n  exhibited; (ii) a nonlocal operator acting on something OTHER than the potential (on the metric "
+      "\n  determinant, on a matter current) is outside this construction; (iii) the DOF statement D5 "
+      "\n  assumes the foliation is carried by a khronon -- a non-dynamical preferred frame gives 2, at "
+      "\n  the price of general covariance, and that trade is not evaluated here.")
 
 ncf = len(CFAILS)
-print(f"\nRESULT: {len(FAILS)} FAIL of {len(FAILS) + 0} recorded" if False else
-      f"\nRESULT: {len(FAILS)} FAIL" + (f" -> {FAILS}" if FAILS else "") +
+print(f"\nRESULT: {len(FAILS)} FAIL" + (f" -> {FAILS}" if FAILS else "") +
       f"\n        {ncf} of them CONTROL failures" + ("" if ncf == 0 else " -- THE RUN IS INVALID"))
-print("        the gate failures above ARE the finding: A5 is not a protein.  Controls C0-C6 all pass, so"
-      "\n        the algebra behind that finding is the one thing this script does not ask you to take on trust.")
+print("        With the controls clean, the gate failures ARE the finding: A5 is not a protein.")
 sys.exit(3 if ncf else 0)

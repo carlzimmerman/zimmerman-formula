@@ -372,9 +372,13 @@ print(f"       correction falls as a POWER LAW 1/J_Y ~ Delta/s, not as the expon
 print(f"       is +{100*(ss/C14_V-1):.3f}% of c_14 at 1 AU and +{100*(cas/C14_V-1):.5f}% at Cassini conjunction.")
 print(f"    => in the UNSCREENED rows the khronon is NOT a separate mode: the canonical admixture is O(1), and the")
 print(f"       'c_14_eff' there is a mixed clock-scalar quantity, not a khronon normalisation. Reported, not used.")
-check("P4 [P7 mechanism] the screening drives the khronon's kinetic normalisation toward ZERO",
-      ss < 0.5 * C14_V, f"it drives it UP to the bare floor c_14 = {C14_V:g} (+{100*(ss/C14_V-1):.3f}% residual at "
-                        f"1 AU): the screening removes a correction, it never multiplies the normalisation")
+old_screened = 2 * math.exp(-min(ratios["Earth orbit"][0], 700.0))     # the historical eta = 2 e^{-y} at 1 AU
+check("P4 [P7 mechanism] the screened-limit kinetic normalisation is NOT below the bare floor c_14, i.e. the "
+      "screening does not multiply the normalisation by a vanishing factor",
+      ss >= C14_V and old_screened < C14_V,
+      f"current action: c_14_eff/c_14 = {ss/C14_V:.5f} >= 1 at 1 AU (the screening removes a POSITIVE correction). "
+      f"Discriminating: the historical eta = 2 e^{{-y}} action gives eta/c_14 = 10^{{{math.log10(2)-ratios['Earth orbit'][0]/math.log(10):.3g}}} "
+      f"there, which is what P7 was written about")
 check("P5 [P7 escape clause] an INDEPENDENT FINITE NORMALISATION exists in the screened limit",
       ss > 0.9 * C14_V and cas > 0.99 * C14_V,
       f"c_14_eff -> c_14 = {C14_V:g} exactly; the exact kinetic Hessian 2 M^2 c_14 k^2 carries NO screening "
@@ -431,12 +435,13 @@ print("    The MOND scalar's kinetic normalisation is |K_2| (constant) but its g
 print("    which the static law forces to grow linearly with s.  Its sound speed is therefore FORCED:")
 print("        c_s,perp^2 = (2-K_B) J_Y c^2 / |K_2|  >=  (2-K_B) s c^2 / (C |K_2|),   C = Delta_max = %.4f" % C_SAT)
 print(f"    {'environment':<34}{'footing':>12}{'s':>14}{'c_s/c at |K_2|=5e5':>22}{'c_s/c at |K_2|=2e5':>22}")
-worst = 0.0
+worst = 0.0; cs_au = 0.0
 for nm, s_can in rows[3:]:
     for foot in ('canonical', 'alt'):
         s_ = s_can * A0['canonical'] / A0[foot]
         v1 = math.sqrt((2 - KB_V) * J_Y(s_) / K2_HI); v2 = math.sqrt((2 - KB_V) * J_Y(s_) / K2_LO)
         worst = max(worst, v1)
+        if nm.startswith("Earth"): cs_au = max(cs_au, v1)
         print(f"    {nm:<34}{foot:>12}{s_:>14.4g}{v1:>22.4g}{v2:>22.4g}")
 K2_need = (2 - KB_V) * J_Y(g_earth / A0['canonical'])
 print(f"\n    Subluminality at 1 AU would need |K_2| >= (2-K_B) J_Y = {K2_need:.3e}, which is {K2_need/K2_HI:.3g}x above the")
@@ -468,8 +473,8 @@ print("     != kinetic normalization' is violated as an identity, not as an appr
 print("  2. Screened?  NO.  alpha_1 and alpha_2 carry no screening variable.  They are constants fixed by")
 print("     parameter choice.  A3's viable pattern alpha_PF ~ (1 - mu) = e^{-y} is REFUTED for this action.")
 print("     The screening reaches the frame sector only through the sub-leading drag (2-K_B)/J_Y, which falls")
-print("     as a POWER LAW 1/y, and is 0.3% of c_14 at 1 AU (consistent with, and independently bounding,")
-print("     THE_ACTION's '<2% of alpha_1').")
+print("     as a POWER LAW 1/y, and is %.2f%% of c_14 at 1 AU (consistent with, and independently bounding," % (100*(ss/C14_V-1)))
+print("     THE_ACTION's '<2% of alpha_1' -- and this is without the xi^2 operator, which screens it further).")
 print("  3. Does the screened limit kill the normalisation?  NO.  The kinetic Hessian diag(2 M^2 c_14 k^2, 2 M^2|K_2|)")
 print("     carries no screening variable at any Sigma -- the AeST mixing is antisymmetric and drops out of it.  The")
 print("     screening's only footprint is a POSITIVE correction (2-K_B)/Sigma + c_2|K_2|/[(2-K_B)Sigma] to c_14 in")
@@ -482,8 +487,11 @@ print("     together -- but it is %.0e times below the working value, so the the
 print("     a design separation.  C6 shows the test is not blind: the same machinery kills the eta = 2 e^{-y} version.")
 print("  5. The price is paid elsewhere: PPN is passed by TUNING c_14 and c_2 (to within 8% of c_2* for alpha_2),")
 print("     not by screening; and the screening that does the Solar-System work drives the MOND scalar's cone to")
-print("     c_s >= %.0f c at 1 AU, forced by J_Y = s/Delta with Delta bounded (not a kill in a preferred-foliation" % worst)
-print("     theory, but it is what the screening buys PPN with).")
+print("     c_s >= %.0f c at 1 AU and %.0f c at Cassini conjunction (|K_2| = 5e5), forced by J_Y = s/Delta with" % (cs_au, worst))
+print("     Delta bounded -- not a kill in a preferred-foliation theory, but it is what buys the PPN pass.")
+print("  6. What the action as published does NOT determine: J(Y) on the saturated branch. Delta' = 0 there, so")
+print("     Sigma_par = 1/Delta' is infinite and the MOND scalar's own cubic action on the Solar-System")
+print("     background cannot be written down. A C^2 continuation of Delta past its maximum is the missing input.")
 print()
 print(f"RESULT: {len(FAILS)} FAIL" + (f" -> {FAILS}" if FAILS else ""))
 print(f"({time.time()-T0:.0f}s)")
