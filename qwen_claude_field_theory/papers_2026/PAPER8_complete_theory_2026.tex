@@ -1,0 +1,407 @@
+\documentclass[11pt,letterpaper]{article}
+\usepackage[margin=0.95in]{geometry}\usepackage{amsmath,amssymb,booktabs,array,longtable,microtype}\usepackage[T1]{fontenc}\usepackage{lmodern}
+\usepackage[colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue]{hyperref}
+\setlength{\parindent}{0pt}\setlength{\parskip}{5pt}
+\sloppy
+\newcolumntype{L}[1]{>{\raggedright\arraybackslash}p{#1}}
+\newtheorem{theorem}{Theorem}
+\newcommand{\ms}{\,\mathrm{m\,s^{-2}}}
+\title{A Non-Empty Parameter Region for a Foliation-Based Relativistic MOND Theory:\\ Eleven Gates Passed Below the Galaxy Scale,\\ and a Factor $1.49$--$1.99$ Mass Deficit Above It}
+\author{Carl P.\ Zimmerman\\ \small Briar Creek Tech --- AI-assisted research draft; not peer reviewed}
+\date{8 September 2026}
+\begin{document}\maketitle
+\begin{abstract}
+A search over $666{,}082{,}872$ grid points per acceleration footing finds, for the first time in this programme, a non-empty admissible region for a covariant modified-gravity action built on a preferred foliation: general relativity's metric sector exactly, a khronometric clock scalar, and a MOND scalar sourced by the clock's acceleration and carrying a coherence (healing-length) operator. An explicit point in that region --- $K_B=0.2$, $c_{14}=1.0\times10^{-6}$, $\sigma=1.6793$, $c_2=1.68\times10^{-6}$, $|K_2|=1.93\times10^{6}$, $\xi=0.10$\,pc (canonical) / $0.15$\,pc (alt), $p=1.7538$, and no condensate --- passes all eleven admissibility gates on both of the framework's acceleration footings ($a_0=9.3619\times10^{-11}$ and $1.1279\times10^{-10}\ms$), and no subset of those gates up to size four is empty. The theory reproduces Milgrom's law at the action's own $a_0$ with coefficient exactly $1.000000$, and with $\Phi=\Psi$ to better than $10^{-4}$ out to 1\,Mpc, so lensing and dynamics share one potential with no slip and nothing fitted to make them do so. It passes the Solar-System gates (the Cassini quadrupole, the Pitjev--Pitjeva Saturn phantom-mass bound, the sunward-acceleration bound), the preferred-frame gates ($\alpha_1=-4.5\times10^{-6}$, $\alpha_2=-2.0\times10^{-7}$, $\alpha_3=0$, $\gamma=1$), the tensor-speed gate ($c_{13}\equiv0$, so $c_T=c$ exactly at every $K_B$), Hadamard well-posedness, gravitational Cherenkov, and causality --- the clock's leaves are spacelike for both cones, so no closed causal curve can be built even though the clock mode is $29.6\%$ superluminal. It carries four propagating modes, all healthy, against the programme's own requirement of two; that requirement, read as a total count, fails. \textbf{Above a galaxy the theory fails.} Its single fatal instability was a clock tachyon sourced by the scalar condensate's background; curing it required setting the condensate amplitude to zero, and the condensate was the action's only dark component. The theory is consequently short in mass at $R_{500}$ by a factor $1.618\pm0.022$ (canonical) / $1.493\pm0.020$ (alt) against hydrostatic masses and $1.987\pm0.246$ / $1.834\pm0.227$ against weak lensing, the two probes agreeing with each other at $1.55\sigma$, so no lensing-sector repair can reach the deficit; its $\Delta\Sigma$ log-slope is $+0.53\pm0.06$ shallower than measured, a $9\sigma$ error in the shape of the shear; the cluster-core acceleration excess of $3.37\,a_0$ at 40\,kpc exceeds the kernel's own parameter-free ceiling by $5.2\times$; and with no dark component the CMB acoustic peaks, $\sigma_8$/$S_8$ and the matter power spectrum are unaddressed. Significances taken from samples that carry coherent systematics are labelled statistics-only and their systematics-floor values are given: the cluster shortfall's $13$--$15\sigma$ becomes $4.4\sigma$, the isolated binary-galaxy amplitude's $19.6\sigma$ becomes $7.2\sigma$ or $3.0\sigma$, and the Coma ultra-diffuse-galaxy amplitude (a factor of 14) is $4.9\sigma$, not the $19.4\sigma$ once quoted; in each case the direction survives and only the number falls. The relation $a_0=\kappa c\sqrt{G\rho_\Lambda}$ is fitted, not derived \cite{z22559892}: $\kappa=0.4998$ canonical and $0.6023$ alt, so the tie does not even select a footing. Distinctive predictions are stated with numbers and falsifiers, among them a parameter-free ceiling on the acceleration excess and a deep-MOND baryonic Tully--Fisher zero point flat to better than $1\%$ out to $z=5$. Every number is produced by a committed script with checks that can fail (\texttt{fable\_independent\_2026/L43\_assemble\_theory.py} and its supporting lanes in the public repository). AI-assisted research draft; not peer reviewed.
+\end{abstract}
+
+\section{The headline, first}
+\textbf{The parameter space is non-empty.} After eighteen months in which no single point satisfied every constraint at once, there is now a region, and an explicit point inside it that passes eleven independent gates on both of the framework's acceleration footings. The point is exhibited in \S\ref{sec:nonempty} and every gate is tabulated in \S\ref{sec:gates}.
+
+\textbf{What that region buys is a complete relativistic theory of gravity for the Solar System and for galaxies, and nothing above a galaxy.} Cassini, the Saturn phantom-mass bound, the sunward-acceleration bound, $\alpha_1$, $\alpha_2$, $\alpha_3$, $\gamma$, the tensor speed, the mode count and its health, Hadamard well-posedness, causality, black holes, rotation curves and the lensing/dynamics slip --- all pass, at one point, on both footings. Clusters, ultra-diffuse galaxies, binary galaxies, the CMB and $S_8$ all fail, and they fail for one reason: the price of curing the theory's single fatal instability was deleting its only dark component.
+
+Stated the way it should be quoted:
+
+\begin{quote}
+\textbf{A complete theory of gravity that works everywhere except above a galaxy, where it is short by a factor of $1.49$--$1.99$ in mass at $R_{500}$ --- in lensing and in dynamics alike --- with a $9\sigma$ error in the shape of $\Delta\Sigma$, and where its own hard acceleration ceiling is exceeded by $5.2\times$ at 40\,kpc in cluster cores.}
+\end{quote}
+
+Nothing here is closed. $\kappa=\tfrac12$ is \textbf{fitted}, not derived, and this paper never says otherwise.
+
+\textbf{Significances in this paper.} Every $\sigma$ quoted below is labelled where it is a statistics-only figure on a sample carrying coherent systematics. An adversarial audit of the underlying record (\texttt{L36\_record\_audit.py}) re-ran all 22 source scripts --- every one reproduces its committed output to the character --- and found 22 defects, \textbf{all of them errors of description rather than of computation}, of which three were significances computed as though correlated errors were independent. Those three are corrected inline here. In every case the direction survives and only the number falls.
+
+\section{The structural decision, and the theorem behind it}
+For a long time the extra propagating scalar in this class of theories \cite{aest,bekenstein04} was treated as a defect to be engineered away. Two results say it cannot be, and the theory is therefore built \emph{on} a preferred foliation with a healthy clock mode, stated as a consequence rather than apologised for.
+
+\begin{theorem}[Lorentz invariance XOR two modes]
+Under four hypotheses --- (i) the static weak-field limit is Milgrom's equation \cite{milgrom83,bm84}, (ii) one metric, minimally coupled to matter, (iii) exactly two propagating gravitational modes, (iv) \emph{locality} --- a distinguished timelike vector field $u$ is forced; adding the elliptic boundary-value posing of Milgrom's equation, Frobenius makes it hypersurface-orthogonal, i.e.\ a foliation.
+\end{theorem}
+Verified against a seventeen-theory control table (GR, Brans--Dicke, $f(R)$, TeVeS, Einstein-aether \cite{jacobson01}, khronometric \cite{blas11}, Ho\v{r}ava, AeST, \dots): \textbf{no row has both Lorentz invariance and exactly two modes}, and no counterexample was found. Controls return the right mode counts $2/3/3/5$ for GR, GR${}+{}$scalar, khronometric and Einstein-aether. $53/53$ checks pass. \texttt{L31\_foliation\_nogo.py}.
+
+\textbf{Companion theorem.} No foliation-independent scalar can replace the slice-built field, on four independent counts. Fourteen candidates were tested on a \emph{three-member} slicing family of vacuum Schwarzschild (static / tilted / Painlev\'e--Gullstrand) --- a two-slicing test would have passed two of the losers by coincidence. Seven candidates die on slice-dependence alone. The decisive count (T3) is field-independent: on a homogeneous slice every spatial scalar is constant, so $\mu(0)=0$ forces $\rho=0$ against the measured $2.688\times10^{-27}$\,kg\,m$^{-3}$. That kills the \emph{structure}, not a choice within it. \texttt{L27\_foliation\_scalar.py}.
+
+\textbf{The one escape, named and left open.} Hypothesis (iv), locality, is not proved. Temporal nonlocality is a genuine escape: holding the external field fixed and pushing the source $1000\times$ further away drops every local curvature invariant by $1000\times$ while $|\nabla(\Box^{-1}R)|$ is exactly constant. Deciding it requires a definitive Hamiltonian mode count for retarded-nonlocal gravity, which is being done elsewhere and is \textbf{not} claimed here. \textbf{If that escape opens, the foliation below is a choice, not a theorem.} Everything else in this paper is unaffected.
+
+Consequence: the theory has \textbf{four} propagating modes --- two tensor, one clock, one MOND scalar --- not two. All four are healthy. That is recorded as a cost against the programme's own ``$N_{\rm grav}=2$'' requirement in \S\ref{sec:gates}, not hidden.
+
+\section{The action}
+Fields: a metric $g_{\mu\nu}$; a clock scalar $\tau$, with unit normal $n_\mu=-\partial_\mu\tau/\sqrt{-g^{\alpha\beta}\partial_\alpha\tau\,\partial_\beta\tau}$ and spatial projector $q_{\mu\nu}=g_{\mu\nu}+n_\mu n_\nu$; a MOND scalar $\phi$, with $Q=n^\mu\partial_\mu\phi$, $V_\mu=q_\mu^{\ \nu}\partial_\nu\phi$, $Y=V\!\cdot\!V$. Matter is \textbf{minimally coupled to $g_{\mu\nu}$} --- one metric, no disformal or conformal factor on the matter sector.
+\begin{align}
+S=\int\! d^4x\sqrt{-g}\,\Big\{\;&\frac{1}{16\pi G}\big[R-2\Lambda\big]\nonumber\\
+&-c_1(\nabla_\mu n_\nu)(\nabla^\mu n^\nu)-c_2(\nabla\!\cdot\!n)^2-c_3(\nabla_\mu n_\nu)(\nabla^\nu n^\mu)+c_4(n\!\cdot\!\nabla n)^2\nonumber\\
+&+2(2-K_B)\,J^\mu\partial_\mu\phi\;-\;K(Q)\nonumber\\
+&-(2-K_B)\,J\!\left(\,Y+\xi^2\,q^{\lambda\sigma}q^{\mu\nu}\nabla_\lambda V_\mu\nabla_\sigma V_\nu\right)\Big\}\;+\;S_m[g,\psi_m],
+\end{align}
+with $J^\mu\equiv n^\nu\nabla_\nu n^\mu$. Line by line:
+
+\begin{center}\small
+\begin{tabular}{L{0.19\textwidth}L{0.30\textwidth}L{0.40\textwidth}}\toprule
+term & what it is & what it does\\\midrule
+$\frac{1}{16\pi G}(R-2\Lambda)$ & Einstein--Hilbert with a cosmological constant & the metric sector is \textbf{exactly Einstein} on the operative branch (DeWitt $\lambda=1$ identically, first-class Hamiltonian constraint)\\
+$c_1\dots c_4$ & the aether/khronometric kinetic sector, with $c_1=-c_3=K_B$ so $c_{13}=0$ identically & $c_{13}=0$ makes $c_T=c$ \emph{exactly}, at every $K_B$ --- GW170817 \cite{gw170817} is satisfied structurally, not by tuning\\
+$2(2-K_B)J^\mu\partial_\mu\phi$ & the AeST coupling of the scalar gradient to the clock's 4-acceleration & \textbf{this is what sources the MOND scalar with matter}: statically $\nabla\!\cdot\!J=\nabla^2\Psi$\\
+$K(Q)$ & the clock-direction kinetic function of the MOND scalar, $K(Q)=K_2Q^2$ & sets the scalar's time-kinetic stiffness. \textbf{$Q_0=0$: there is no condensate} (\S\ref{sec:q0})\\
+$J(Y+\xi^2|\nabla_\perp V|^2)$ & the MOND function of the \emph{spatial} gradient, plus the coherence (healing-length) operator \cite{z22347632} & $J$ gives Milgrom's law; $\xi$ screens the Solar System. Both are forced, neither is chosen (\S\ref{sec:kernel})\\\bottomrule
+\end{tabular}
+\end{center}
+
+With $c_{13}=0$ and hypersurface-orthogonal $n$, the clock sector \emph{is} khronometric theory with $\alpha=c_{14}$, $\lambda=c_2$, $\beta=0$.
+
+\textbf{The static weak-field limit is Milgrom's equation at the action's own $a_0$, with coefficient exactly $1.000000$ and no slip.} Independently re-derived: the clock's auxiliary equation $d/dc\,[(1-c)a^2-a_0^2U(c)]=0$ with $U'(c)=-\ln^2(1-c)$ solves to $u^2=1-e^{-|a|/a_0}$ \emph{exactly} on the static branch (not as a weak-field approximation), giving
+\begin{equation}
+\nabla\!\cdot\!\big[\mu(|\nabla\Phi|/a_0)\,\nabla\Phi\big]=4\pi G_N\rho_b,\qquad \Phi=\Psi,\qquad G_{\rm dyn}=G_{\rm lens}=G_{\rm tensor}.
+\end{equation}
+$\Phi=\Psi$ to better than $10^{-4}$ out to 1\,Mpc, so lensing and dynamics share one potential --- the framework's lensing requirement, met structurally rather than fitted. \texttt{L11\_galactic\_limit.py}; re-derived from scratch in \texttt{L43\_assemble\_theory.py} checks K4/K4b.
+
+\section{The parameters, with the constraint that fixes each}
+Both footings are carried on every dimensional number: \textbf{$a_0=9.3619\times10^{-11}\ms$ (canonical) and $1.1279\times10^{-10}\ms$ (alt)}.
+
+\begin{center}\small
+\begin{tabular}{L{0.155\textwidth}L{0.285\textwidth}L{0.30\textwidth}L{0.15\textwidth}}\toprule
+parameter & admissible window & what fixes it & script\\\midrule
+$K_B\ (=c_1=-c_3)$ & $0<K_B\le0.25$ & BBN on the cosmological Newton constant & \texttt{route2}, \texttt{g03e} B1\\
+$c_{13}=c_1+c_3$ & \textbf{0 exactly} & $c_T=c$ (GW170817). Identically zero by $K_B-K_B$ & structural\\
+$c_{14}=c_1+c_4$ & $\le1.98\times10^{-6}$ & see the tightening below & \texttt{L13}, \texttt{L26}, this script\\
+$c_2$ (khronometric $\lambda$) & fixed by $\sigma$: $c_2=2\sigma c_{14}/(2-c_{14}-3\sigma c_{14})\approx\sigma c_{14}$ & the clock's own speed & \texttt{L26}, this script\\
+$\sigma=$ clock speed$^2$ & $[1.6793,\,1.7716)$, with $\sigma_*=1.679312732$ & see below & \texttt{L26\_sigma\_}\allowbreak\texttt{above\_one.py}\\
+$|K_2|$ & on the closure locus $c_2|K_2|=(2-K_B)^2$ & linear growth $\wedge$ Cherenkov & \texttt{g03t} D5/D7, \texttt{g03v}\\
+$\xi$ (coherence length) & $\ge0.10$\,pc canonical / $0.15$\,pc alt --- theorem-forced & \S\ref{sec:kernel} & \texttt{L34}, \texttt{g03d}, \texttt{g03z}\\
+$p$ (saturation exponent) & $0<p\le1.754$ & perturbativity of the cubic action at a planet & \texttt{L34\_boost\_}\allowbreak\texttt{vs\_cubic.py}\\
+$Q_0$ (condensate rate) & \textbf{0 --- the condensate is removed} & see below & \texttt{L14}, this script\\
+$a_0$ & $9.3619\times10^{-11}$ / $1.1279\times10^{-10}\ms$ & measurement, two footings & ---\\
+$\kappa$ in $a_0=\kappa c\sqrt{G\rho_\Lambda}$ & \textbf{$0.4998$ canonical / $0.6023$ alt --- FITTED} & nothing. See \S\ref{sec:kappa} & \texttt{L32\_kappa\_}\allowbreak\texttt{necessary.py}\\\bottomrule
+\end{tabular}
+\end{center}
+
+\subsection{$\sigma$, and why it is above 1}
+The construction that generates the clock sector carries a design parameter $\sigma$ --- the clock mode's squared speed --- declared over $(0,1]$ in its own documentation. That declaration turns out to be an \textbf{undefended convention}: it appears once in prose, is copied ten more times, and no \texttt{assert}, \texttt{if}, \texttt{while} or \texttt{raise} anywhere in the construction mentions $\sigma$. The only executable restriction is $\sigma>0$.
+
+There is exactly one value of $\sigma$ at which the construction's quartic obstruction --- which otherwise produces a Hadamard-ill-posed growth rate rising like $k^2$ --- has its leading order vanish:
+\begin{equation}
+\sigma_*=\frac{4T}{4T-27}=\frac{3}{a_*},\qquad T=-\frac{27}{16}+\frac{54}{5\ln(9/5)}=16.6865133026,\qquad a_*=3-\frac{81}{4T},
+\end{equation}
+\begin{equation}
+\sigma_*=1.679312732187113\qquad\text{(a clock $29.6\%$ superluminal).}
+\end{equation}
+At $\sigma_*$ the obstruction's leading order is zero \emph{and the sign of the residual reverses on all 59 tested branch points}, so the real growth rate becomes a bounded oscillation: \textbf{the ill-posedness is removed, not reduced}. All fourteen of the construction's own health conditions hold there --- no ghost (the coefficient is exactly $\sigma$-free), positive mode energy, $A_0=0.4615>0$, $c_T^2=1$ as a $\sigma$-identity, hyperbolicity, an unmoved constraint fold, an unchanged $\det M_*$. The \textbf{only} internal ceiling anywhere in the family is $J_T>0$, which is exactly affine in $\sigma$ and vanishes at $\sigma=1.7716$; $\sigma_*$ sits $5.49\%$ below it. So the admissible set is a \emph{window}, $[1.6793,1.7716)$, not a tuned point.
+
+Superluminality is not a problem here, and this is worth stating clearly, because it is usually assumed to be one:
+\begin{itemize}
+\item \textbf{Causality.} The clock mode's acoustic metric is $G^{\mu\nu}=g^{\mu\nu}+(1-1/\sigma)n^\mu n^\nu$, so $G^{\mu\nu}n_\mu n_\nu=-1/\sigma<0$ for every $\sigma>0$. The clock's own leaves are spacelike for \emph{both} cones, so $\tau$ is a global time function for both and no closed causal curve can be built. This is available to \emph{this} theory specifically, because the acoustic metric is built from the same foliation the theory already varies.
+\item \textbf{Gravitational Cherenkov.} The $2\times10^{-15}$ bound \cite{moore01,cherenkov} is a \textbf{lower} bound: it constrains modes \emph{slower} than an ultra-high-energy cosmic ray, because that is what a ray can radiate into. A $29.6\%$ superluminal mode switches the channel off. (Independently, the bound's applicability to a conformally coupled $k$-essence clock loosens by $7.2\times10^{5}\times$ even for subluminal modes, and vanishes entirely once the high-acceleration limit \cite{milgrom11} is applied in the cosmic ray's own near field.)
+\item \textbf{Black holes.} The universal horizon at $r=3M/2$ is reproduced; even an infinite-speed mode is trapped.
+\end{itemize}
+
+\textbf{A new consequence, derived in the assembly.} Tying $c_2$ to $c_{14}$ through $\sigma$ makes the preferred-frame PPN parameter
+\begin{equation}
+\alpha_2\simeq\frac{c_{14}}{2}\Big(\frac1\sigma-1\Big)=-0.2023\,c_{14}\quad\text{at }\sigma=\sigma_*,
+\end{equation}
+so the Solar-System bound $|\alpha_2|<4\times10^{-7}$ \cite{will14} forces \textbf{$c_{14}\le1.978\times10^{-6}$} --- twelve times tighter than the bound $\alpha_1=-4c_{14}$ imposes on its own ($2.5\times10^{-5}$), and six times tighter than a previous global grid scan found ($1.18\times10^{-5}$). The three bounds are \textbf{nested, not in conflict}: three lanes, different machinery, same corner.
+
+\emph{Caveat, stated:} the identification $\sigma=(2-c_{14})c_2/[c_{14}(2+3c_2)]$ between the construction's design parameter and the khronometric sound speed is \textbf{stated, not proved} --- the mapping from the construction's variables to $(c_{14},c_2,|K_2|)$ is not determined by its published files. The non-emptiness of the parameter region does \textbf{not} depend on it (\S\ref{sec:nonempty}); only the \emph{sharpness} of the $c_{14}$ bound does.
+
+\subsection{$Q_0=0$: the condensate is removed, and why that is the right move}\label{sec:q0}
+A previous global sweep over $1.2\times10^{8}$ grid points per footing, with ten gates each reproducing its own source script's published verdict as a control, found \textbf{no admissible point at all}. The obstruction was exactly two gates deep, and \emph{every} minimal incompatible subset contained the same gate: the clock tachyon. The condensate's background contributes a positive gradient term for the clock's time shift, giving a $k$-independent instability with rate$^2=|K_2|Q_0^2\varepsilon_0a^{-3}/c_{14}$ --- about $280\,H_0$ today, $2.8\times10^{5}\,H_0$ at $z=100$. Stability needs $c_{14}\ge3\Omega_d/\Omega_m=2.533$; PPN needs $c_{14}\le2.5\times10^{-5}$. A $10^{5}\times$ gap.
+
+The escape is not parametric, it is structural, and it is free: \textbf{the condensate cannot be the dark sector anyway.} Freeing its amplitude to cure the tachyon caps its dark fraction at $2.6\times10^{-6}$ against $\Omega_d=0.266$ --- short by a factor $10^{5}$. So the object whose background creates the fatal instability is an object that was never going to do the job it was introduced for. Setting $Q_0=0$ removes it, and the tachyon gate is then satisfied \textbf{identically}.
+
+\textbf{The price is the whole of \S\ref{sec:HA} and \S\ref{sec:HB}.} This is the trade the theory makes, and it should be read as a trade, not as a repair.
+
+\section{The kernel, and the repair the theorem forces}\label{sec:kernel}
+\subsection{The bounded-boost theorem}
+
+The theorem itself is prior work of this programme \cite{z22548669}; what follows uses it and does not re-derive it.
+Write the acceleration excess as $\Delta\equiv(g_{\rm obs}-g_{\rm bar})/a_0$. Because the MOND scalar is \emph{sourced by matter}, Gauss's law on a sphere gives $J_Y(g_\phi)\cdot g_\phi=g_N$ exactly, with no expansion, so $g_\phi$ must be a single-valued monotone function of $g_N$. Writing $g_\phi=a_0\Delta(s)$, $s=g_N/a_0$, the longitudinal stiffness is exactly $\Sigma_\parallel=1/\Delta'(s)$ --- an identity, verified symbolically for arbitrary $\Delta$.
+
+Since $\Delta$ is bounded for every kernel of the class, \textbf{there is a hard ceiling on the acceleration excess, with no free parameter}:
+
+\begin{center}
+\begin{tabular}{lc}\toprule
+kernel & ceiling $C=\sup\Delta$\\\midrule
+deep-MOND $\sqrt{\ }$ & $0.250$\\
+standard $\mu$ & $0.300$\\
+exponential carrier, $y\,e^{-y}$ & $1/e=0.367879$\\
+\textbf{$\nu_{\rm RAR}$ (the operative kernel)} \cite{rar} & \textbf{$0.647610$}, at $s=2.5396$\\
+simple $\mu$ & $1.000$\\\bottomrule
+\end{tabular}
+\end{center}
+
+$\Lambda$CDM structurally cannot make this prediction: a halo \cite{nfw} contributes $g_{\rm obs}-g_{\rm bar}=g_{\rm halo}$, set by $M_{200}$ and concentration, which span decades and are not tied to $a_0$. \textbf{One system above the ceiling, with a trustworthy baryon model, falsifies the kernel with no fitting freedom.} Currently $99.23\%$ of 2352 SPARC \cite{sparc} points beyond 2\,kpc obey the widest bound at both footings; the eighteen $>3\sigma$ exceptions lie in five named galaxies, thirteen of them in NGC\,5985 alone, and are kept and reported rather than cut.
+
+\subsection{The corollary that forces $\xi$, and the repair that fixes the published kernel}
+Monotonicity makes $\sup\Delta=\lim\Delta$, so \textbf{the Solar-System residual is at least as large as the galactic boost.} Against the binding Solar-System gate --- the Pitjev--Pitjeva bound \cite{pitjev13} of $6.7\times10^{-11}\,M_\odot$ of phantom mass inside Saturn's orbit, i.e.\ $4.329\times10^{-15}\ms$ --- the bare kernel is over by
+\begin{equation}
+1.4005\times10^{4}\times\ \text{(canonical)},\qquad 1.6873\times10^{4}\times\ \text{(alt)},
+\end{equation}
+and never by less than $6.49\times10^{3}\times$ for \emph{any} kernel in the class. \textbf{No kernel of the class can screen the Solar System.} The coherence length $\xi$ is therefore a theorem, not a design choice. At $\xi=0.10$\,pc the operator's gradient-scale suppression $(\xi/R_{\rm Sat})^2=4.6\times10^{6}$ brings the residual to $3.0\times10^{-3}$ of the bound; at $\xi=0.15$\,pc (alt) to $1.6\times10^{-3}$.
+
+Two further corrections, both made here:
+\begin{enumerate}
+\item \textbf{An attained supremum is inadmissible.} The published kernel is $\nu_{\rm RAR}$ up to $s=2.540$ and then held \emph{flat}. A flat branch has $\Delta'=0$, hence $\Sigma_\parallel=\infty$, hence $J(Y)$ of infinite slope and \textbf{no cubic action} at any Solar-System background. The supremum must be \textbf{approached and never attained}. Of the five kernels above, only the simple $\mu$ is admissible as printed.
+\item \textbf{The approach rate is capped.} Perturbativity at a planetary source, with $\xi$ at its floor, caps the saturation exponent at \textbf{$p_{\max}=1.754$} (both footings; robust to $\pm0.35$ over two decades of the $O(1)$ strong-coupling convention, and independent of the radius at which the field is evaluated). Exponential approach is excluded. This constrains the \emph{rate}, never the ceiling --- so there is \textbf{no} pincer between the bounded boost and the cubic action.
+\end{enumerate}
+
+\subsection{The kernel the theory actually carries}
+\begin{equation}
+\Delta(s)=C\left[1-W(u)^{-p}\right],\qquad u=\sqrt s,\qquad W(u)=1+a_1u+a_2u^2,\qquad a_1=\frac{1}{Cp},
+\end{equation}
+with, fitted to the published carried kernel at its own ceiling,
+\begin{equation}
+C=0.647610,\quad p=1.7538,\quad a_2=0.9335\ \longrightarrow\ \max|\Delta\log_{10}g|=0.0111\ \text{dex over }s\in[10^{-4},10^{4}].
+\end{equation}
+Properties, each checked:
+\begin{itemize}
+\item \textbf{exact deep-MOND coefficient 1} --- $Cpa_1=1$ by construction, so $\Delta\to\sqrt s$ and $g\to\sqrt{g_Na_0}$ with no stray 2, $\tfrac12$ or $2\pi$;
+\item $\Delta'>0$ at every finite $s$ (minimum $1.15\times10^{-33}$ over twenty decades), so $\Sigma_\parallel$ is finite everywhere and the cubic action exists --- the property the published kernel fails;
+\item \textbf{the ceiling is approached, never attained}: at 60 digits, $C-\Delta(10^{14})=2.04\times10^{-25}>0$, while $\Delta(10^{14})/C-1$ is zero to double precision. The bounded-boost prediction and its SPARC test are unchanged;
+\item $p=1.7538\le1.754$, at the cap and not beyond it;
+\item at Saturn's orbit $\Sigma_\parallel=9.4\times10^{15}$ (canonical) / $5.6\times10^{15}$ (alt) --- \textbf{finite}, where the published kernel gives $\infty$. Large, and the corresponding longitudinal cone is ${\sim}10^{10}c$; that is admissible (the clock's leaves stay spacelike at any \emph{finite} speed, by the identity above) but it is a real oddity of the class and is recorded as one.
+\end{itemize}
+The same family fitted to the exponential kernel instead gives $C=1/e$, $p=0.844$, $a_2=13.31$ and $0.0299$ dex.
+
+\subsection{A fork that is a measurement, not a convention}
+Two structures are in play and they are \textbf{not} the same theory:
+\begin{itemize}
+\item the \textbf{carrier} structure of the action above, where the MOND scalar is sourced by matter, $\Delta(s)$ is monotone, and the boost saturates at $C\!\cdot\!a_0$;
+\item the \textbf{AQUAL} structure \cite{bm84} of the construction's own static limit, where $\mu(y)=1-e^{-y}$ acts on the total potential and $\Delta(s)=y\,e^{-y}$ \emph{decreases} past $s=0.63$.
+\end{itemize}
+They agree below $s=0.63$ and diverge above it, because a matter-sourced scalar cannot carry a decreasing $\Delta$. At $s=3$ the carrier predicts $\Delta=0.648$ and AQUAL predicts $\Delta=0.136$ --- \textbf{0.066 dex in $g$}, with a maximum separation of \textbf{0.073 dex} over $s\in[10^{-4},10^{4}]$, against SPARC's own $0.11$--$0.13$ dex scatter. Detectable in the aggregate, not point by point. And only the carrier arm needs a coherence length at all: the AQUAL arm screens the Solar System by itself.
+
+\textbf{This fork is unresolved and it is the author's call.} It is also a live documentation conflict: the programme's frozen recipe names $\mu(y)=1-e^{-y}$ as \emph{the} kernel while the action document carries $\nu_{\rm RAR}$. Until one is amended, any comparison that crosses the two documents is ill-defined.
+
+\section{Is the parameter space non-empty? Yes.}\label{sec:nonempty}
+Six free parameters ($K_B$, $c_2$, $c_{14}$, $|K_2|$, $\xi$, $p$), with $\sigma$ derived and gated. Eleven gates, each taken verbatim from its source script. $666{,}082{,}872$ grid points per footing, plus the $\alpha_2=0$ and $\sigma$-window loci added explicitly to the $c_2$ axis so that no narrow band can be stepped over.
+
+\begin{center}
+\begin{tabular}{lc}\toprule
+gate & admitted fraction (canonical / alt)\\\midrule
+H1 PPN $\alpha_1$ & $0.387$ / $0.387$\\
+H2 PPN $\alpha_2$ & $0.319$ / $0.319$\\
+H3 tensor $c_T=1$ and $G_N>0$ & $0.936$ / $0.936$\\
+H4 BBN & $0.691$ / $0.691$\\
+H5 Solar-System $\xi$ & $0.571$ / $0.429$\\
+H6 saturation $p\le1.754$ & $0.556$ / $0.556$\\
+H7 clock window $\sigma\in[1.6793,1.7716)$ & $0.0120$ / $0.0120$\\
+H8 Cherenkov (no subluminal mode) & $0.410$ / $0.410$\\
+H9 linear growth & $0.402$ / $0.402$\\
+H10 scalar kinetic health & $1$ / $1$ (sign convention)\\
+H11 clock tachyon & \textbf{$1$ / $1$ --- satisfied identically, because $Q_0=0$}\\\midrule
+\textbf{INTERSECTION (all eleven)} & \textbf{$76{,}240$ / $57{,}180$ points}\\\bottomrule
+\end{tabular}
+\end{center}
+
+\textbf{No subset of the eleven gates up to size four is empty}, on either footing. Compare the previous answer, reproduced here as a control: with the condensate present, the intersection was \textbf{0 points} on both footings and every minimal incompatible subset contained the clock tachyon.
+
+\subsection*{The explicit point}
+\begin{align*}
+K_B &= 0.2\\
+c_{14} &= 1.0000\times10^{-6}\\
+\sigma &= \sigma_*=1.679312732 &&\text{(a design choice inside the window, at its lower edge)}\\
+c_2 &= 1.679318\times10^{-6} &&= 2\sigma c_{14}/(2-c_{14}-3\sigma c_{14}),\ \text{determined by }\sigma\\
+|K_2| &= 1.9294\times10^{6} &&= (2-K_B)^2/c_2,\ \text{exactly on the closure locus}\\
+\xi &= 0.10\ \text{pc (canonical) / }0.15\ \text{pc (alt)} &&\text{--- at the theorem-forced floor}\\
+p &= 1.7538 &&\text{--- at the cap}\\
+Q_0 &= 0 &&\text{--- no condensate}
+\end{align*}
+Derived:
+\begin{align*}
+\alpha_1 &= -4.48\times10^{-6}\ \text{(canonical) / }-4.25\times10^{-6}\ \text{(alt)} &&\text{bound }10^{-4}\\
+\alpha_2 &= -2.02\times10^{-7}\ \text{(both)} &&\text{bound }4\times10^{-7}\ (\text{margin }1.98\times)\\
+\alpha_3 &= 0,\quad \gamma=1,\quad c_T=c\ \text{exactly}\\
+c_{s,\rm mix}^2 &= 1.679318,\qquad S_{\rm eff}=0.000000\\
+G_{\rm cos}/G_N &= 0.999997481,\qquad G_N/G=1.000000500
+\end{align*}
+This point is \textbf{derived}, not read off the grid, and then confirmed admitted by all eleven gates on both footings.
+
+\subsection*{Two structural results that fell out of the assembly}
+\textbf{(a) The ``closure locus'' has a meaning.} The relation $c_2|K_2|=(2-K_B)^2$, previously reported as a tuning that must hold to between $4\%$ and $38\%$, is \emph{exactly} the locus on which the mixed clock--scalar mode travels at the clock's own speed: $S_{\rm eff}=1-c_{s,\rm mix}^2/\sigma$ to leading order in $c_{14}$ and $c_2$ (verified to $3\times10^{-6}$ relative at the exhibited point). It is still a relation between two otherwise-free parameters and is still reported as a tuning --- but it is a \emph{speed-matching} condition, not an arbitrary one.
+
+\textbf{(b) A derived ceiling on the theory's own cosmology.} Cherenkov safety ($c_{s,\rm mix}^2\ge1$) together with the clock window ($\sigma<1.7716$) cap the surviving linear cosmological MOND source at
+\begin{equation}
+S_{\rm eff}\le1-\frac1\sigma=0.4355,
+\end{equation}
+so \textbf{the action can never deliver more than $44\%$ of its own naive linear source}, whatever the parameters. This was an input to nothing; it is a consequence.
+
+\subsection*{Robustness}
+Two of the eleven gates are conditional. Dropping either only enlarges the region:
+
+\begin{center}
+\begin{tabular}{L{0.62\textwidth}cc}\toprule
+gate set & canonical & alt\\\midrule
+all eleven & $76{,}240$ & $57{,}180$\\
+without H7 (the $\sigma$ identification, conditional on the unpublished variable map) & $7{,}567{,}560$ & $5{,}675{,}670$\\
+without H8 (Cherenkov, which may not apply at all to a conformally coupled clock) & $309{,}400$ & $232{,}050$\\\bottomrule
+\end{tabular}
+\end{center}
+
+\textbf{The non-emptiness does not rest on either conditional.}
+
+\section{The gate table}\label{sec:gates}
+Verdicts at the exhibited point, both footings. Full table with sources in \texttt{L43\_assemble\_theory.out}, Part V. Tally over both footings: \textbf{42 PASS, 18 FAIL, 8 other} (pending / diagnostic / not a discriminant).
+
+\begin{small}
+\begin{longtable}{L{0.205\textwidth}L{0.145\textwidth}L{0.14\textwidth}L{0.37\textwidth}}
+\toprule
+gate & canonical & alt & number\\\midrule
+\endfirsthead
+\toprule
+gate & canonical & alt & number\\\midrule
+\endhead
+Cassini quadrupole & PASS & PASS & $\xi$ is $3.3\times$ / $3.0\times$ the exact fourth-order solve's own floor\\
+Saturn phantom mass & PASS & PASS & bare kernel $1.40\times10^{4}\times$ / $1.69\times10^{4}\times$ over; screened to $3.0\times10^{-3}\times$ / $1.6\times10^{-3}\times$\\
+Sunward anomaly & PASS & PASS & $1.3\times10^{-17}$ / $7.0\times10^{-18}$ vs bound $3.66\times10^{-14}\ms$\\
+PPN $\alpha_1$ & PASS & PASS & $-4.48\times10^{-6}$ / $-4.25\times10^{-6}$ vs $10^{-4}$\\
+PPN $\alpha_2$ & PASS & PASS & $-2.02\times10^{-7}$ vs $4\times10^{-7}$ (margin $1.98\times$)\\
+PPN $\alpha_3$ & PASS & PASS & 0 exactly\\
+PPN $\gamma$ & PASS & PASS & 1 exactly\\
+Tensor speed (GW170817) & PASS & PASS & $c_{13}\equiv0\Rightarrow c_T=c$ exactly at every $K_B$\\
+Newton constant positivity & PASS & PASS & $G_N/G=1.0000005$\\
+\textbf{DOF count} & \textbf{FAIL vs ``$N_{\rm grav}=2$'' as a total count} & same & \textbf{4} $=$ 2 tensor $+$ 1 clock $+$ 1 scalar. Passes the requirement as written (separately counted and healthy); fails it read as a total\\
+DOF health & PASS & PASS & clock $A_0=0.4615>0$, positive mode energy, hyperbolic at $\sigma_*$; scalar Bogoliubov $\omega^2=c_s^2k^2(1+\xi^2k^2)>0$\\
+Hadamard well-posedness & PASS & PASS & $S_4>0$ at 59/59 branch points at $\sigma_*$; growth $\to$ bounded oscillation\\
+Galactic rotation curves & PASS & PASS & MOND at the action's own $a_0$, coefficient exactly $1.000000$\\
+Lensing/dynamics slip (galaxies) & PASS & PASS & $\Phi=\Psi$ to $<10^{-4}$ out to 1\,Mpc\\
+Bounded-boost ceiling on SPARC & PASS & PASS & $99.23\%$ of 2352 points; 18 exceptions in 5 named galaxies\\
+Kernel tightness vs a fitted halo & \textbf{NOT A DISCRIMINANT} & same & $0.142$ vs $0.171$ dex at zero parameters, but a prior-shrunk NFW reaches $0.085$\\
+Gaia DR4 wide binaries & PENDING & PENDING & $\gamma_v$ ceiling $1.0450$ / $1.0300$, registered; Arm A band $1.16$--$1.23$\\
+\textbf{Clusters: mass at $R_{500}$} & \textbf{FAIL} & \textbf{FAIL} & required/delivered $1.618\pm0.022$ / $1.493\pm0.020$ (dynamics); $1.987\pm0.246$ / $1.834\pm0.227$ (lensing)\\
+\textbf{Clusters: bounded-boost ceiling} & \textbf{FAIL} & \textbf{FAIL} & excess $3.37\,a_0$ at 40\,kpc $=5.2\times$ the ceiling\\
+\textbf{Clusters: lensing SHAPE} & \textbf{FAIL} & \textbf{FAIL} & $\Delta\Sigma$ short $2.5$--$2.7\times$; log-slope $+0.53\pm0.06$ shallower $=$ \textbf{$9\sigma$}\\
+Cluster residual $=$ cosmic share & DIAGNOSTIC & DIAGNOSTIC & required $5.73\pm0.68$ vs $\Omega_{\rm dm}/\Omega_b=5.43$, universal to $12\%$\\
+\textbf{Coma ultra-diffuse galaxies} & \textbf{FAIL} & \textbf{FAIL} & $+1.196$ dex (factor 14) at \textbf{$4.9\sigma$} against the coherent systematic floor\\
+\textbf{Binary galaxies (2MRS)} & \textbf{FAIL alone} & \textbf{FAIL alone} & isolated deep-MOND amplitude $1.802\pm0.041$; $1.141\pm0.028$ with a cosmic share. \textbf{Significance is statistics-only: $19.6\sigma$ falls to $7.2\sigma$ with a $0.10$ dex mass-to-light floor and $3.0\sigma$ with the isolation band. Direction survives, number falls.}\\
+BBN & PASS & PASS & $K_B=0.2\le0.25$; $G_{\rm cos}/G_N-1=-2.5\times10^{-6}$ vs $0.13$\\
+\textbf{CMB acoustic peaks} & \textbf{FAIL} & \textbf{FAIL} & no dark component in the action once $Q_0=0$\\
+Linear growth & PASS as an equation & same & $S_{\rm eff}=0$ exactly on the closure locus --- and nothing to grow\\
+\textbf{$\sigma_8$ / $S_8$} & \textbf{FAIL} (for the late-roll route) & \textbf{FAIL} & $S_{8,\rm eff}=1.06$--$1.20$, $+9\sigma$ to $+34\sigma$\\
+Gravitational Cherenkov & PASS & PASS & clock $29.6\%$ superluminal; the bound constrains slow modes\\
+Causality / no CTC & PASS & PASS & $G^{\mu\nu}n_\mu n_\nu=-1/\sigma<0$ for every $\sigma>0$\\
+Black holes & PASS & PASS & universal horizon $r=3M/2$; even an infinite-speed mode trapped\\
+Longitudinal cone at Saturn & PASS (repaired) & PASS (repaired) & $\Sigma_\parallel=9.4\times10^{15}$ / $5.6\times10^{15}$ --- finite, where the published kernel gives $\infty$\\
+Strong coupling at a planet & PASS at $p\le1.754$ & same & $\delta g/g_*=1520$ for Earth without $\xi$; perturbative with $\xi$ at its floor\\
+$a_0$--$\Lambda$ tie & \textbf{FITTED} & \textbf{FITTED} & $\kappa=0.4998$ / $0.6023$\\
+\textbf{$a_0$ universality} & \textbf{FAIL} & \textbf{FAIL} & the ladder spans $0.78$ dex across system classes\\
+\bottomrule
+\end{longtable}
+\end{small}
+
+Read the table this way: \textbf{every row that lives inside a galaxy or the Solar System passes; every row above a galaxy fails}, and the failures are not independent.
+
+\section{The holes, with sizes}
+\subsection{H-A The cluster deficit --- the big one}\label{sec:HA}
+The residual behaves like \textbf{mass} in dynamics \emph{and} in lensing, so no lensing-sector repair can reach it. Five X-COP clusters \cite{eckert19,ettori19} with published weak lensing \cite{herbonnet20}, at each cluster's own $R_{500}$: required/delivered against hydrostatic mass \textbf{$1.618\pm0.022$ (canonical) / $1.493\pm0.020$ (alt)}; against weak lensing \textbf{$1.987\pm0.246$ / $1.834\pm0.227$}; and the two probes agree with each other ($S_{\rm lens}-S_{\rm dyn}=+0.37\pm0.24$, $1.55\sigma$). \textbf{The shortfall's own $13$--$15\sigma$ is statistics-only: a $10\%$ coherent X-ray mass calibration moves it $22\%$, giving $4.4\sigma$. The shortfall itself is unaffected.} Four independent lensing teams give $1.623\pm0.080$ / $1.499\pm0.074$, $1.4\sigma$ away. A cored lensing-derived residual has been reported for MOND-class kernels \cite{famaey24}; \S\ref{sec:holes} finds that disagreement to be a parametrisation artefact rather than a physical conflict.
+
+The information dynamics could not give is \textbf{shape}. In raw $\Delta\Sigma$ over $0.5$--$2$\,Mpc the framework is short by \textbf{$2.5$--$2.7\times$} and its $\Delta\Sigma$ log-slope is \textbf{$+0.53\pm0.06$ shallower --- a $9\sigma$ error} --- because its phantom is a near-uniform sheet. Machinery validated by pushing the \emph{measured} X-ray profile through it, which reproduces measured $\Delta\Sigma$ to a median $1.11$; analytic NFW $\Sigma/\Delta\Sigma$ to $1.3\times10^{-6}$. The NFW-refit shape systematic is $0.43$, so the quoted shortfall \textbf{understates} the disagreement.
+
+And the kernel's own ceiling is violated: the excess is $3.37\,a_0$ at 40\,kpc, \textbf{$5.2\times$ the operative ceiling}, so no interpolation function can absorb it. Both escapes are closed quantitatively --- non-thermal support would need $\sigma_{\rm 1D}=673$--$1155$\,km\,s$^{-1}$ against Hitomi/XRISM's $164\pm10$\,km\,s$^{-1}$ in Perseus \cite{hitomi}; unseen baryons would need $3.9$--$5.2\times$ the imaged X-ray gas.
+
+\textbf{Every mechanism the programme owns has been closed against it, one at a time:} an interpolation kernel (clusters need $2.2$--$5.1\times$ the galaxy boost at the same acceleration, $|z|=13$); a fixed-strength finite-range force (BBN, $41\times$); a screened force in $\Phi$, $\rho$ or $M$ ($100\%$ density overlap at $12.8\sigma$, plus a cosmological ordering argument); hydrostatic bias (the required $b$ is \textbf{negative}, $-0.82$, against a measured $[0,+0.42]$; a negative $b$ means $\sigma^2<0$ in 12 of 12 clusters); the solenoidal field (real, $14$--$27\%$ locally inside a merging pair, but $\mathrm{div}\,a_S=0$ forces $\langle a_S\!\cdot\!\hat r\rangle\equiv0$ at every radius --- it closes $3.9\%$ of the gap and runs the wrong way); a late-time roll of the coupling (gives $0.97$ of the required $2.2$--$5.1$ contrast, and cancels exactly from the growth source in a consistent scalar--tensor model); light thermal relics (Tremaine--Gunn floor \cite{tg79} $m\ge4.67$\,eV, and an $N_{\rm eff}$-vs-RAR pincer with no interior at $27.6$ vs $11$\,eV); wave dark matter (pincer with no interior, factor $1.4$ in mass); four separate condensate constructions; an environment switch.
+
+\textbf{And the required ratio is not monotone in scale}, which a scale-free kernel forbids: 1900 isolated 2MRS \cite{twomrs} major pairs need $M_{\rm dark}/M_{\rm bar}=\mathbf{30.9\pm1.6}$ within the pair separation against $5.73\pm0.68$ at $0.80\,R_{500}$ --- $5.7\times$. \textbf{The $16.3\sigma$ once quoted is against the cosmic $5.43$, not against $5.73\pm0.68$ (which gives $14.5\sigma$), and it is statistics-only on 1900 pairs sharing one mass-to-light scale, one distance scale and one isolation criterion; with a coherent floor it is $3.1\sigma$.} The deficit \emph{grows} with mass at $3.9\sigma$, itself statistics-only.
+
+\textbf{What satisfies all four cluster requirements at once --- the mass, the phase-space density, near-absence in galaxies, and a flat-or-falling enclosed ratio --- is a cold, baryon-tracing component. The theory does not contain one.} That is recorded as a real cost to the modified-gravity programme, not as an open question.
+
+\subsection{H-B No dark sector at all, hence no CMB and no structure}\label{sec:HB}
+Removing the condensate is what cures the clock tachyon, and it was the action's only dark component. Size: the condensate's dark fraction caps at $2.6\times10^{-6}$ against $\Omega_d=0.266$ --- short by $10^{5}\times$. With it gone the theory has baryons only; the CMB third peak \cite{planck18}, $S_8$, and the matter power spectrum are unaddressed. The MOND scalar's own causal growth boost does \textbf{not} regenerate $P(k)$ at linear order: $\sigma_8\le0.65$ with a $20$--$2000\times$ deficit at $k=0.5$--$1\,h\,$Mpc$^{-1}$, at any $|K_2|$, on both footings. The one untested route is nonlinear top-down fragmentation, which a per-mode linear calculation cannot represent.
+
+\subsection{H-C $\kappa=\tfrac12$ is fitted}\label{sec:kappa}
+$a_0=\kappa c\sqrt{G\rho_\Lambda}$ is dimensionally forced; $\kappa$ is not. Recomputed here from Planck's $\Omega_\Lambda$ \cite{planck18}: $c\sqrt{G\rho_\Lambda}=1.87251\times10^{-10}\ms$, so \textbf{$\kappa=0.4998$ (canonical) and $0.6023$ (alt)} --- the tie does not even pick a footing.
+
+Six theorems constrain any derivation. The decisive one: in \textbf{any} local action whose MOND function multiplies $\sqrt{-g}$ with a field-independent coefficient, $F\to F+C$ adds exactly $C\sqrt{-g}$ and is exactly degenerate with $\Lambda$. \textbf{$\kappa$ is a zero mode of the whole class} --- verified on four structurally different Lagrangians, independent of the function, the field count and the coefficient. No curvature polynomial takes a half-integer power of $\Lambda$ on de Sitter, so $a_0\propto\sqrt\Lambda$ \emph{requires} an order parameter of odd mass dimension whose square is the vacuum energy; any 4-volume average of a gradient sector is driven to zero in a $\Lambda$-dominated future ($10^{-8}$ by $10\,t_0$), closing the global-constraint class; boundary and Brown--York terms see only $J(0)$, which the zero-mode theorem already makes pure $\Lambda$. Deriving $\kappa$ reduces to fixing one number, $\beta/\sqrt{\tilde Z}=\kappa/\sqrt2=0.354$. \textbf{A binding guard: 27 simple numbers lie inside the measured $3\sigma$ band. Landing in the band is not evidence --- only a derivation is.} And $\kappa$ is not the discriminating observable: total comparison uncertainty is $8.0\%$ and nothing in $[0.40,0.66]$ is rejectable at $3\sigma$.
+
+\subsection{H-D The foliation's escape is undecided}
+See \S2. If temporal nonlocality survives a Hamiltonian mode count, the preferred foliation is a choice rather than a theorem. Being decided in a parallel effort; \textbf{not} claimed here either way.
+
+\subsection{H-E The variable map is unpublished}
+$c_{14}$ has three inconsistent readings in the construction's files spanning $0.073$--$1.333$, and $c_2$ vanishes at the state where the mode was measured. The $\sigma\leftrightarrow(c_{14},c_2)$ identification of \S4.1 is therefore stated, not proved. The region is non-empty with or without it; the sharpness of $c_{14}\le2.0\times10^{-6}$ is what depends on it.
+
+\subsection{H-F $c_2$ sits five orders below the certified healthy range}
+The scalar sector's linear health was certified for $c_2\in[0.01,0.1]$. The exhibited point has $c_2=1.7\times10^{-6}$. Five orders of untested parameter. Not a computed failure --- a gate nobody has run.
+
+\subsection{H-G Two documentation conflicts are open}
+(i) the kernel: the frozen recipe names $\mu=1-e^{-y}$, the action document carries $\nu_{\rm RAR}$; they differ by up to $0.073$ dex and the exponential ceiling is exceeded ${\sim}5\times$ more often on the bulgeless SPARC control. (ii) $\xi$: the action document's parameter table still quotes $0.03$/$0.05$\,pc --- the \emph{unsaturated} partner's floors --- against $0.10$/$0.15$\,pc for the kernel a scalar can actually carry. One document each needs amending.
+
+\subsection{H-H Standing liabilities the assembly does not repair}
+Coma ultra-diffuse galaxies \cite{freundlich22}: the amplitude stands at $+1.196\pm0.062$ dex (a factor of 14), but the significance is \textbf{$4.9\sigma$, not the $19.4\sigma$ once quoted} --- the $0.062$ dex bar is statistics-only on eleven objects sharing one $M/L$ scale, one estimator and one cluster model, and the coherent systematic floor is $0.227$ dex. Closing it needs $M/L\times14.4$, and tides are excluded by a dedicated MOND simulation \cite{nagesh24}. The $a_0$ ladder spans $0.78$ dex across system classes. Unequal-mass wide binaries carry an open numerical item. Non-spherical accretion and the existence theory of the non-spherical fourth-order law are untouched.
+
+\section{What is distinctive, with numbers, and what would falsify it}
+\begin{enumerate}
+\item \textbf{The bounded boost.} $g_{\rm obs}-g_{\rm bar}\le Ca_0=6.06\times10^{-11}$ / $7.30\times10^{-11}\ms$, \emph{everywhere, in every system, with no free parameter}. $\Lambda$CDM cannot make this prediction. \textbf{Falsified by one system above the ceiling with a trustworthy baryon model.}
+\item \textbf{$a_0(z)$ --- the surviving distinctive prediction.} The deep-MOND baryonic Tully--Fisher zero point is flat to $<1\%$ out to $z=5$ on the derived law, against $\Lambda$CDM's $+0.33$ dex by $z=2.5$. \textbf{Decisive measurement: a deep-MOND lensed rotator at $z\approx2$--$2.5$ to $\pm0.13$ dex}, pre-registered in \cite{z22563139}. This, not $\kappa$, is the discriminator.
+\item \textbf{Gaia DR4 wide binaries --- and it is a Newton-like answer.} $\gamma_v\le\mathbf{1.0450}$ (canonical, $\xi=0.10$\,pc) / $\mathbf{1.0300}$ (alt, $\xi=0.15$\,pc), falling toward 1 as $\xi$ grows, against a separately registered band of $1.16$--$1.23$ \cite{chae23,banik24} and Newton's $1.000$. These are \textbf{ceilings}: DR4 can kill this arm from above, it cannot confirm it over Newton. \textbf{A measurement inside $1.16$--$1.23$ falsifies the coherence-length structure.}
+\item \textbf{The saddle null.} No Bekenstein--Magueijo anomaly \cite{bm06} at any Solar-System field null --- the coherence operator erases it by $10^{-29}$. A LISA-Pathfinder-class saddle flyby detecting one falsifies the operator.
+\item \textbf{The saturation exponent is bounded above.} $p\le1.754$: the approach to the ceiling is a power law, never exponential. Measuring a faster approach falsifies the perturbative existence of the theory's own cubic action.
+\item \textbf{The carrier/AQUAL fork, priced here for the first time.} $0.073$ dex maximum separation, $0.066$ dex at $s=3$. BIG-SPARC's transition bins decide which structure the data prefer --- and only the carrier arm needs a coherence length at all.
+\item \textbf{A prediction the removed branch would have made, listed to be honest about what removing it costs.} If any component with the scalar's stiffness supplied part of the cluster residual, its peak radius would be set by $H=0.42\,e\,c^2/(|K_2|a_0)$ alone and would therefore be \textbf{the same physical radius in every cluster}, where an NFW scale radius grows as $M^{1/3}$. The assembled theory has no such component.
+\end{enumerate}
+
+\section{Verdict, in three sentences}
+The admissible region is non-empty, and at an explicit point inside it this is a complete, internally consistent, Solar-System-safe, galaxy-correct relativistic theory of gravity --- one metric, matter minimally coupled, exactly Einstein in the metric sector, $c_T=c$ exactly, four healthy propagating modes, a preferred foliation forced by a theorem rather than assumed, and Milgrom's law at the framework's own $a_0$ with coefficient exactly 1 and no lensing/dynamics slip.
+
+It is \textbf{not} a complete theory of the universe: curing its one fatal instability required deleting its only dark component, so it is short by a factor of $1.49$--$1.99$ in mass at $R_{500}$ in both lensing and dynamics, wrong by $9\sigma$ in the shape of $\Delta\Sigma$, over its own hard acceleration ceiling by $5.2\times$ in cluster cores, and silent on the CMB, $S_8$ and the matter power spectrum.
+
+What is missing is exactly three things and they should be named that plainly: a cold, baryon-tracing component that every mechanism this action contains has been shown one by one unable to supply; a derivation of $\kappa$, which a zero-mode theorem proves no local action of this class can give; and a decision on the locality hypothesis that the foliation theorem rests on.
+
+\section*{Reproduction and reproducibility}
+The assembly is one committed script, run as
+\begin{verbatim}
+python3 fable_independent_2026/L43_assemble_theory.py
+\end{verbatim}
+Exit 0. Nine controls (K1--K9) rebuild six settled numbers from their own algebra and confront them with the value printed in the source lane's own \texttt{.out}; two more reproduce a known PASS and a known FAIL from existing gate scripts. Seven kernel checks (N1--N7), thirteen gate-fraction checks, and the admissibility test (T1, T2) follow. Every control passes. The four FAIL lines --- T5, T7, T8, V1 --- are results, not machine errors: the documentation conflicts, the failures above a galaxy, the cluster deficit, and the incompleteness itself.
+
+Supporting lanes, each with its own script and \texttt{.out} in the same directory of the public repository: \texttt{L4}, \texttt{L8} (verification of the construction), \texttt{L11} (the MOND limit), \texttt{L13} ($\alpha_1=-4c_{14}$), \texttt{L14} (the previous, empty sweep), \texttt{L19} (Cherenkov applicability), \texttt{L21} (binary galaxies), \texttt{L22} (the curl field), \texttt{L23} (Coma UDGs), \texttt{L24} (lensing vs dynamics), \texttt{L26} ($\sigma>1$), \texttt{L27}/\texttt{L31} (the foliation theorems), \texttt{L28} (tightness), \texttt{L29} ($S_8$), \texttt{L32} ($\kappa$), \texttt{L33} (the scalar cone), \texttt{L34} (the bounded-boost audit). The adversarial record audit is \texttt{L36\_record\_audit.py} (commit \texttt{fc47e26ca}); the assembly is commit \texttt{94c41856e} and the significance corrections carried into this paper are commit \texttt{e8ae735f1}. Both $a_0$ footings ($9.3619\times10^{-11}$ and $1.1279\times10^{-10}\ms$) are carried throughout. Every number is produced by a committed script with checks that can fail. This is a preprint of an AI-assisted draft; it is not peer reviewed. It claims no derivation of $a_0$ or of $\kappa=\tfrac12$, no dark sector, and no empirical detection.
+
+\begin{thebibliography}{99}
+\bibitem{milgrom83} M.\ Milgrom, \emph{A modification of the Newtonian dynamics as a possible alternative to the hidden mass hypothesis}, ApJ \textbf{270}, 365 (1983).
+\bibitem{bm84} J.\ D.\ Bekenstein and M.\ Milgrom, \emph{Does the missing mass problem signal the breakdown of Newtonian gravity?}, ApJ \textbf{286}, 7 (1984).
+\bibitem{bekenstein04} J.\ D.\ Bekenstein, \emph{Relativistic gravitation theory for the modified Newtonian dynamics paradigm}, Phys.\ Rev.\ D \textbf{70}, 083509 (2004).
+\bibitem{aest} C.\ Skordis and T.\ Z\l{}o\'snik, \emph{New relativistic theory for modified Newtonian dynamics}, Phys.\ Rev.\ Lett.\ \textbf{127}, 161302 (2021).
+\bibitem{jacobson01} T.\ Jacobson and D.\ Mattingly, \emph{Gravity with a dynamical preferred frame}, Phys.\ Rev.\ D \textbf{64}, 024028 (2001).
+\bibitem{blas11} D.\ Blas, O.\ Pujol\`as and S.\ Sibiryakov, \emph{Models of non-relativistic quantum gravity: the good, the bad and the healthy}, JHEP \textbf{04}, 018 (2011).
+\bibitem{gw170817} B.\ P.\ Abbott et al.\ (LIGO/Virgo and Fermi/INTEGRAL), \emph{Gravitational waves and gamma-rays from a binary neutron star merger: GW170817 and GRB 170817A}, ApJL \textbf{848}, L13 (2017).
+\bibitem{will14} C.\ M.\ Will, \emph{The confrontation between general relativity and experiment}, Living Reviews in Relativity \textbf{17}, 4 (2014).
+\bibitem{cherenkov} J.\ W.\ Elliott, G.\ D.\ Moore and H.\ Stoica, \emph{Constraining the new aether: gravitational Cherenkov radiation}, JHEP \textbf{08}, 066 (2005).
+\bibitem{pitjev13} N.\ P.\ Pitjev and E.\ V.\ Pitjeva, \emph{Constraints on dark matter in the Solar System}, Astronomy Letters \textbf{39}, 141 (2013).
+\bibitem{sparc} F.\ Lelli, S.\ S.\ McGaugh and J.\ M.\ Schombert, \emph{SPARC: Mass models for 175 disk galaxies with Spitzer photometry and accurate rotation curves}, AJ \textbf{152}, 157 (2016).
+\bibitem{rar} S.\ S.\ McGaugh, F.\ Lelli and J.\ M.\ Schombert, \emph{Radial acceleration relation in rotationally supported galaxies}, Phys.\ Rev.\ Lett.\ \textbf{117}, 201101 (2016).
+\bibitem{nfw} J.\ F.\ Navarro, C.\ S.\ Frenk and S.\ D.\ M.\ White, \emph{A universal density profile from hierarchical clustering}, ApJ \textbf{490}, 493 (1997).
+\bibitem{eckert19} D.\ Eckert et al., \emph{Non-thermal pressure support in X-COP galaxy clusters}, A\&A \textbf{621}, A40 (2019).
+\bibitem{ettori19} S.\ Ettori et al., \emph{Hydrostatic mass profiles in X-COP galaxy clusters}, A\&A \textbf{621}, A39 (2019).
+\bibitem{hitomi} Hitomi Collaboration, \emph{The quiescent intracluster medium in the core of the Perseus cluster}, Nature \textbf{535}, 117 (2016).
+\bibitem{tg79} S.\ Tremaine and J.\ E.\ Gunn, \emph{Dynamical role of light neutral leptons in cosmology}, Phys.\ Rev.\ Lett.\ \textbf{42}, 407 (1979).
+\bibitem{twomrs} J.\ P.\ Huchra et al., \emph{The 2MASS Redshift Survey --- description and data release}, ApJS \textbf{199}, 26 (2012).
+\bibitem{planck18} Planck Collaboration, \emph{Planck 2018 results.\ VI.\ Cosmological parameters}, A\&A \textbf{641}, A6 (2020).
+\bibitem{chae23} K.-H.\ Chae, \emph{Breakdown of the Newton--Einstein standard gravity at low acceleration in internal dynamics of wide binary stars}, ApJ \textbf{952}, 128 (2023).
+\bibitem{banik24} I.\ Banik et al., \emph{Strong constraints on the gravitational law from Gaia DR3 wide binaries}, MNRAS \textbf{527}, 4573 (2024).
+\bibitem{bm06} J.\ D.\ Bekenstein and J.\ Magueijo, \emph{MOND habitats within the solar system}, Phys.\ Rev.\ D \textbf{73}, 103513 (2006).
+\bibitem{z22548669} C.\ P.\ Zimmerman, \emph{A Ceiling Dark Matter Cannot Impose: the Bounded-Boost Theorem for MOND-Class Kernels, and What It Says About Galaxies and Clusters}, Zenodo (2026), v4, \href{https://doi.org/10.5281/zenodo.22548669}{10.5281/zenodo.22548669}.
+\bibitem{z22559892} C.\ P.\ Zimmerman, \emph{The Coefficient of the a0--$\Lambda$ Relation: a Zero-Mode Theorem for Local MOND Actions, Two Failed Repairs, a Four-Form Reframing, and an H0 Degeneracy}, Zenodo (2026), \href{https://doi.org/10.5281/zenodo.22559892}{10.5281/zenodo.22559892}.
+\bibitem{z22347632} C.\ P.\ Zimmerman, \emph{The Filtered MOND Action: a Central Tidal Identity, Comparable-Mass Forces, a First Covariant Clock Action, and the Operator That Screens the Solar System}, Zenodo (2026), \href{https://doi.org/10.5281/zenodo.22347632}{10.5281/zenodo.22347632}.
+\bibitem{z22563139} C.\ P.\ Zimmerman, \emph{Does the MOND Acceleration Scale Evolve? A Pre-Registered Decisive Measurement: the Deep-MOND Tully--Fisher Zero Point of One Lensed Rotator at z $\simeq$ 2.5, with a Two-Stage JWST/ALMA Funnel}, Zenodo (2026), \href{https://doi.org/10.5281/zenodo.22563139}{10.5281/zenodo.22563139}.
+\bibitem{moore01} G.\ D.\ Moore and A.\ E.\ Nelson, \emph{Constraining the Lorentz-violating graviton}, JHEP \textbf{09}, 023 (2001), arXiv:hep-ph/0106220.
+\bibitem{milgrom11} M.\ Milgrom, \emph{Gravitational Cherenkov losses in theories based on modified Newtonian dynamics}, Phys.\ Rev.\ Lett.\ \textbf{106}, 111101 (2011), arXiv:1102.1818.
+\bibitem{freundlich22} J.\ Freundlich et al., \emph{Probing the radial acceleration relation and the strong equivalence principle with the Coma cluster ultra-diffuse galaxies}, A\&A \textbf{658}, A26 (2022).
+\bibitem{nagesh24} S.\ T.\ Nagesh et al., \emph{MOND simulations of Coma cluster ultra-diffuse galaxies}, A\&A \textbf{690}, A149 (2024).
+\bibitem{herbonnet20} R.\ Herbonnet et al., \emph{CCCP and MENeaCS: (updated) weak-lensing masses for 100 galaxy clusters}, MNRAS \textbf{497}, 4684 (2020), arXiv:1912.04414.
+\bibitem{famaey24} B.\ Famaey, L.\ Pizzuti and I.\ D.\ Saltas, \emph{On the cluster residual in MOND}, (2024), arXiv:2410.02612.
+\end{thebibliography}
+\end{document}
