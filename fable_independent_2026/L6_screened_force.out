@@ -1,0 +1,83 @@
+======================================================================================================================
+L6 -- the screened-force door: can a density- or potential-dependent force supply the cluster residual?
+======================================================================================================================
+    clusters, canonical: 122 usable rows; E = g_HSE/g_kernel median 3.20
+    clusters, alt: 122 usable rows; E = g_HSE/g_kernel median 2.97
+    SPARC: 2495 points (Upsilon_d = 0.5, Upsilon_b = 0.7, eV/V < 0.10)
+
+  S0 control -- screening in the ACCELERATION (this IS a kernel; must fail):
+    S0 g_bar alt: overlap 6.06e-12-8.51e-11 m/s^2, 100% of cluster rows inside
+         6.06e-12- 9.41e-12  n_cl  26 n_gal  288   E_cluster  2.44   E_galaxy  0.95   ratio 2.56   z   +4.7
+         9.41e-12- 1.46e-11  n_cl  35 n_gal  238   E_cluster  2.85   E_galaxy  1.03   ratio 2.78   z   +6.1
+         1.46e-11- 2.27e-11  n_cl  27 n_gal  179   E_cluster  3.02   E_galaxy  1.03   ratio 2.93   z  +11.3
+         2.27e-11- 3.53e-11  n_cl  18 n_gal  170   E_cluster  3.24   E_galaxy  1.05   ratio 3.08   z  +25.0
+         3.53e-11- 5.48e-11  n_cl  11 n_gal  199   E_cluster  3.25   E_galaxy  1.07   ratio 3.04   z   +9.1
+         5.48e-11- 8.51e-11  n_cl   4 n_gal  201   E_cluster  2.91   E_galaxy  1.01   ratio 2.89   z   +7.4
+    S0 g_bar canonical: overlap 6.06e-12-8.51e-11 m/s^2, 100% of cluster rows inside
+         6.06e-12- 9.41e-12  n_cl  26 n_gal  288   E_cluster  2.65   E_galaxy  1.03   ratio 2.56   z   +4.7
+         9.41e-12- 1.46e-11  n_cl  35 n_gal  238   E_cluster  3.09   E_galaxy  1.11   ratio 2.78   z   +6.2
+         1.46e-11- 2.27e-11  n_cl  27 n_gal  179   E_cluster  3.25   E_galaxy  1.11   ratio 2.93   z  +11.3
+         2.27e-11- 3.53e-11  n_cl  18 n_gal  170   E_cluster  3.48   E_galaxy  1.13   ratio 3.07   z  +24.9
+         3.53e-11- 5.48e-11  n_cl  11 n_gal  199   E_cluster  3.48   E_galaxy  1.14   ratio 3.05   z   +9.1
+         5.48e-11- 8.51e-11  n_cl   4 n_gal  201   E_cluster  3.10   E_galaxy  1.07   ratio 2.89   z   +7.4
+  [PASS] S0 [control] in bins of acceleration the machinery reproduces L2's kill: clusters require more than galaxies at the SAME g_bar   (worst |z| = 25.0)
+
+  S1 -- screening in the POTENTIAL (chameleon, symmetron):
+    S1 Phi_loc alt: overlap 1.09e+10-8.42e+10 m^2/s^2, 47% of cluster rows inside
+         1.54e+10- 2.16e+10  n_cl   6 n_gal  179   E_cluster  5.18   E_galaxy  1.07   ratio 4.86   z   +2.5
+         2.16e+10- 3.03e+10  n_cl   8 n_gal  246   E_cluster  2.97   E_galaxy  1.10   ratio 2.70   z   +2.8
+         3.03e+10- 4.26e+10  n_cl  12 n_gal  182   E_cluster  3.08   E_galaxy  1.02   ratio 3.01   z   +7.9
+         4.26e+10- 5.99e+10  n_cl  11 n_gal  295   E_cluster  3.36   E_galaxy  1.01   ratio 3.34   z  +10.0
+         5.99e+10- 8.42e+10  n_cl  18 n_gal   98   E_cluster  3.36   E_galaxy  0.97   ratio 3.47   z  +17.5
+    S1 Phi_loc canonical: overlap 1.09e+10-8.42e+10 m^2/s^2, 47% of cluster rows inside
+         1.54e+10- 2.16e+10  n_cl   6 n_gal  179   E_cluster  5.62   E_galaxy  1.14   ratio 4.92   z   +2.5
+         2.16e+10- 3.03e+10  n_cl   8 n_gal  246   E_cluster  3.20   E_galaxy  1.16   ratio 2.76   z   +2.8
+         3.03e+10- 4.26e+10  n_cl  12 n_gal  182   E_cluster  3.31   E_galaxy  1.06   ratio 3.12   z   +7.9
+         4.26e+10- 5.99e+10  n_cl  11 n_gal  295   E_cluster  3.62   E_galaxy  1.04   ratio 3.49   z  +10.3
+         5.99e+10- 8.42e+10  n_cl  18 n_gal   98   E_cluster  3.60   E_galaxy  0.99   ratio 3.65   z  +17.7
+  [FAIL] S1 [potential] clusters and galaxies at the same potential depth require the SAME enhancement, so a potential-screened force is admissible   (worst |z| = 17.7)
+
+  S2 -- screening in the DENSITY:
+    S2 rho_b alt: overlap 3.66e-25-1.17e-22 kg/m^3, 100% of cluster rows inside
+         3.66e-25- 9.57e-25  n_cl  20 n_gal   37   E_cluster  1.86   E_galaxy  0.95   ratio 1.96   z  +11.4
+         9.57e-25-  2.5e-24  n_cl  15 n_gal   83   E_cluster  2.59   E_galaxy  0.99   ratio 2.62   z  +12.8
+          2.5e-24- 6.54e-24  n_cl  30 n_gal  121   E_cluster  3.03   E_galaxy  0.98   ratio 3.08   z  +11.5
+         6.54e-24- 1.71e-23  n_cl  29 n_gal  213   E_cluster  3.35   E_galaxy  1.04   ratio 3.21   z   +6.4
+         1.71e-23- 4.47e-23  n_cl  19 n_gal  318   E_cluster  3.23   E_galaxy  1.02   ratio 3.16   z  +11.1
+         4.47e-23- 1.17e-22  n_cl   8 n_gal  372   E_cluster  3.46   E_galaxy  1.00   ratio 3.45   z   +8.4
+    S2 rho_b canonical: overlap 3.66e-25-1.17e-22 kg/m^3, 100% of cluster rows inside
+         3.66e-25- 9.57e-25  n_cl  20 n_gal   37   E_cluster  2.02   E_galaxy  1.03   ratio 1.95   z  +11.4
+         9.57e-25-  2.5e-24  n_cl  15 n_gal   83   E_cluster  2.80   E_galaxy  1.07   ratio 2.62   z  +12.8
+          2.5e-24- 6.54e-24  n_cl  30 n_gal  121   E_cluster  3.27   E_galaxy  1.06   ratio 3.08   z  +11.4
+         6.54e-24- 1.71e-23  n_cl  29 n_gal  213   E_cluster  3.60   E_galaxy  1.13   ratio 3.20   z   +6.4
+         1.71e-23- 4.47e-23  n_cl  19 n_gal  318   E_cluster  3.47   E_galaxy  1.10   ratio 3.15   z  +11.0
+         4.47e-23- 1.17e-22  n_cl   8 n_gal  372   E_cluster  3.67   E_galaxy  1.08   ratio 3.41   z   +8.3
+  [FAIL] S2 [density] clusters and galaxies at the same baryon density require the SAME enhancement, so a density-screened force is admissible   (worst |z| = 12.8)
+
+  S3 -- screening in the ENCLOSED MASS (Vainshtein-like):
+    S3 M_b(<r) alt: overlap 2.02e+41-7.23e+41 kg, 11% of cluster rows inside
+         3.82e+41- 4.73e+41  n_cl   4 n_gal   51   E_cluster  4.39   E_galaxy  0.87   ratio 5.05   z   +2.0
+         4.73e+41- 5.85e+41  n_cl   3 n_gal   13   E_cluster  2.41   E_galaxy  1.01   ratio 2.39   z   +1.2
+         5.85e+41- 7.23e+41  n_cl   3 n_gal   13   E_cluster  2.64   E_galaxy  1.36   ratio 1.94   z   +7.9
+    S3 M_b(<r) canonical: overlap 2.02e+41-7.23e+41 kg, 11% of cluster rows inside
+         3.82e+41- 4.73e+41  n_cl   4 n_gal   51   E_cluster  4.73   E_galaxy  0.94   ratio 5.04   z   +2.0
+         4.73e+41- 5.85e+41  n_cl   3 n_gal   13   E_cluster  2.57   E_galaxy  1.08   ratio 2.38   z   +1.2
+         5.85e+41- 7.23e+41  n_cl   3 n_gal   13   E_cluster  2.83   E_galaxy  1.46   ratio 1.93   z   +7.9
+  [FAIL] S3 [mass] clusters and galaxies at the same enclosed baryonic mass require the SAME enhancement, so a mass-screened force is admissible   (worst |z| = 7.9)
+
+  S4 -- the cosmological ordering (does not need overlap):
+    alt: cluster outskirts  rho_b = 4.42e-25 kg/m^3, Phi_loc = 2.75e+11 m^2/s^2, g_bar = 8.93e-12 m/s^2, E = 1.68
+           cosmic background  rho_b = 4.18e-28 kg/m^3 (1057x LOWER), Phi_loc -> 0, g_bar -> 0 (homogeneous)
+    canonical: cluster outskirts  rho_b = 4.42e-25 kg/m^3, Phi_loc = 2.75e+11 m^2/s^2, g_bar = 8.93e-12 m/s^2, E = 1.82
+           cosmic background  rho_b = 4.18e-28 kg/m^3 (1057x LOWER), Phi_loc -> 0, g_bar -> 0 (homogeneous)
+    => a monotone S(X) that unscreens clusters relative to galaxies unscreens the BACKGROUND at least as much,
+       so G_cosmo/G_local >= E(cluster outskirts) = 1.82; BBN allows |G/G_0 - 1| < 0.2, i.e. 4x the bound.
+  [FAIL] S4 [cosmology] the homogeneous background is NOT beyond cluster outskirts in every candidate variable, so monotone screening can decouple G_cosmo from G_cluster   (it is beyond in all of them (density 1057x lower, potential and acceleration -> 0), forcing G_cosmo/G_local >= 1.82)
+  [FAIL] S5 [verdict] the screened-force route survives the overlap tests AND the cosmological ordering   (the ordering argument is independent of which variable is screened and of whether the populations overlap)
+
+  what remains open, stated rather than closed: (i) a TIME-dependent transition (a field that rolls late) evades the
+  ordering argument because the background value at BBN and today differ -- that is not screening, it is a cosmological
+  history, and it must then face the CMB and growth of structure; (ii) a non-monotone S, or S of two variables at once,
+  is a fitted function rather than a screening mechanism.  Neither is claimed closed here.
+
+RESULT: 5 FAIL -> ['S1 [potential] clusters and galaxies at the same potential depth require the SAME enhancement, so a potential-screened force is admissible', 'S2 [density] clusters and galaxies at the same baryon density require the SAME enhancement, so a density-screened force is admissible', 'S3 [mass] clusters and galaxies at the same enclosed baryonic mass require the SAME enhancement, so a mass-screened force is admissible', 'S4 [cosmology] the homogeneous background is NOT beyond cluster outskirts in every candidate variable, so monotone screening can decouple G_cosmo from G_cluster', 'S5 [verdict] the screened-force route survives the overlap tests AND the cosmological ordering']

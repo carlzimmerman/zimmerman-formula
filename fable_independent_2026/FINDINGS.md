@@ -126,3 +126,50 @@ If accepted, the next gate is its preferred-frame phenomenology — and this rep
 already has a pincer there: g03v's α₂ = −c₁₄/2 + c₁₄²/(2c₂) with |α₂| < 4×10⁻⁷, and
 g03w's clock-tachyon pincer between PPN (c₁₄ ≲ 10⁻⁵) and stability (c₁₄ ~ 1). That is the
 connection worth handing to the lead.
+
+## L6 — the screened-force door: closed
+
+`L6_screened_force.py` (5 FAIL of 6). L5 left this door open explicitly: a chameleon,
+symmetron or Vainshtein-type force whose strength depends on a local variable, so that the
+cluster and cosmological values are decoupled by construction. It is the last structural
+candidate for the cluster residual. A screening mechanism is operationally a monotone
+function S(X) of one local variable, so it dies two ways.
+
+**Overlap.** Where clusters and SPARC galaxies occupy the same X but need different
+enhancement, no single-valued S(X) exists. Enhancement here is what a screened force must
+add *on top of* the framework's kernel, E = g_obs/[g_bar + a₀Δ(g_bar/a₀)].
+
+| screening variable X | cluster/galaxy overlap | worst z |
+|---|---|---|
+| acceleration g_bar (control — this *is* a kernel, must fail) | 100% | 25.0 |
+| potential Φ_loc = g_bar·r (chameleon, symmetron) | 47% | 17.7 |
+| baryon density ρ_b (density-dependent coupling) | **100%** | 12.8 |
+| enclosed mass M_b(<r) (Vainshtein-like) | 11% | 7.9 |
+
+The density row is the decisive one: clusters and galaxies overlap **completely** in baryon
+density and require enhancements differing at 12.8σ. The spherical-equivalent density used
+for SPARC understates a disc's true density, so correcting it separates the populations
+further and cannot merge them.
+
+**The cosmological ordering — independent of which variable is screened, and of overlap.**
+The homogeneous background lies beyond cluster outskirts in every candidate variable:
+baryon density 1057× lower, and both the local potential and the acceleration go to zero
+by homogeneity. So any monotone S that unscreens clusters relative to galaxies unscreens
+the *background* at least as much, forcing G_cosmo/G_local ≥ E(cluster outskirts) = 1.82,
+which is 4× the conservative BBN bound. This reaches L5's kill without assuming a range.
+
+Control: the machinery reproduces L2's kill in acceleration bins at |z| = 25.
+
+**Untested, stated rather than closed:** (i) a *time-dependent* transition — a field that
+rolls late — evades the ordering argument because the background value at nucleosynthesis
+and today differ; that is a cosmological history rather than screening, and it must then
+face the CMB and the growth of structure. (ii) A non-monotone S, or S of two variables at
+once, is a fitted function rather than a screening mechanism.
+
+## Standing after L2, L3, L5, L6
+
+For the cluster residual — about seven baryonic masses tracing the baryons — the following
+are now closed on this programme's own gates: an interpolation kernel (L2), a fixed-strength
+finite-range force (L5), and a screened force in potential, density or mass (L6). Together
+with the 2026-09-06/07 dark-sector no-go and its 3D confirmation, no mechanism in or adjacent
+to this action supplies it. The coefficient's geometric/boundary door is closed too (L3).
