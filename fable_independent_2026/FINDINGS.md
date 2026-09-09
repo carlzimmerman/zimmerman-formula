@@ -3093,3 +3093,27 @@ fails.
   posed target** — can the integrable clock be pressureless dust at recombination AND MOND today, healthily?
   — not a diffuse hope. Every other route into a complete theory is closed. That is the truth, and it is as
   far as it can honestly be carried without astra's cosmology.
+
+## L78 — sharpening the last door: the equation-of-state dichotomy the clock must straddle
+
+`L78_grand_prize_eos_dichotomy.py` + `.out` (**6 checks, 6 PASS**). L77 pinned the complete theory to one
+door, ¬(b): the clock as its own CMB dark matter. This lane sharpens ¬(b) from "the clock's whole cosmology"
+to a single well-posed question, using ONLY the framework's a₀–Λ relation and FRW equation-of-state scaling
+— no astra coefficient, nothing faked.
+
+- **⭐ a₀ IS the Λ scale.** With Λ from Ω_Λ, the de Sitter length is L_dS = 5.18 Gpc, and **a₀/(c²/2πL_dS) =
+  1.05** (canonical) — the clock's MOND scale sits at the de Sitter/Λ energy scale to a few percent (the
+  framework's own central ansatz, a₀∝H_Λ).
+- **⭐ THE DICHOTOMY.** A field at the Λ scale as vacuum energy has **w = −1** (dark energy): it does not
+  redshift, so at recombination its density is the same tiny Ω_Λ-scale value it has today — **negligible
+  next to the matter making the CMB peaks. A w=−1 field cannot BE the CMB cold amount.** The CMB cold amount
+  is **w = 0 dust**, Ω_c h² = 0.120, ~5.4× the baryons, redshifting as a⁻³ back to (1+z)³ ≈ 1.3e9× its value
+  today. Different equation of state **and** different amount (Ω_Λ=0.69 vs Ω_c=0.26).
+- **⭐⭐ SO THE CLOCK MUST DO DOUBLE DUTY.** ¬(b) requires a **second, w=0 condensate mode carrying ~Ω_c,
+  distinct from the w=−1 a₀ sector.** A single field gives w=0 only in a coherent-oscillation/condensate
+  phase — exactly the regime astra's cosmology already probed and found obstructed: the **clock tachyon**
+  (g03w), **c_s²∝ρ growth suppression** (g03x), the **P(k) deficit** (g04h). None re-run here (astra's).
+- **⭐ THE REDUCTION.** The grand prize turns on one sharply-posed question: **does the clock's potential
+  U(u²) support a HEALTHY coherent w=0 condensate of amount Ω_c, on top of its w=−1 a₀ sector?** Currently
+  obstructed, not proven impossible, and astra's to answer with the cosmology. This is a genuine reduction
+  of L77's door, derived from the a₀–Λ relation alone.
