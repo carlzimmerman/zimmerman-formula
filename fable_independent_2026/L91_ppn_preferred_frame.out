@@ -1,0 +1,87 @@
+============================================================================================================
+L91 -- PPN / PREFERRED-FRAME GATE for F(Q)Theta: does it pass where the AeST completion (alpha_1) died?
+============================================================================================================
+
+============================================================================================================
+CONTROLS -- reproduce the AeST alpha_1 kill FIRST, so the gate provably has teeth.
+============================================================================================================
+  [PASS] C1a  the two-piece form -4c14 -4(2-K_B)/(J_Y+1) at c14=K_B equals the banked -4(2+K_B J_Y)/(1+J_Y)   (identity holds symbolically for all K_B,J_Y)
+  [PASS] C1b  at J_Y = 1 the AeST alpha_1 = -2(K_B + 2)  (memory / STANDING.md line 45)   (alpha_1(J_Y=1) = -2*K_B - 4)
+  [PASS] C2a  over the physical box (c14>=0, K_B in [0,0.25], J_Y in [0.5,2]) min |alpha_1| >> 1e-4 (AeST cannot be tuned below the bound)   (min |alpha_1| = 2.333  (>> 1e-4 bound; ~2e+04x over))
+  [PASS] C2b  alpha_1 = 0 forces c14 = -(2-K_B)/(J_Y+1) < 0  -- a SPIN-1 GHOST (the 'lock', f31); so the zero is un-physical, not a tuning   (most-favourable c14* = -0.5833 < 0 (ghost); L69(iv): the alt escape needs c14>2 => alpha_1~8)
+  [PASS] C3  AeST alpha_3 = 0 (semi-conservative: covariant Lagrangian, no prior geometry; f31 confirms) => the pulsar bound |alpha_3|<~1e-20 is satisfied by AeST too -- AeST died on alpha_1, NOT alpha_3   (so the DISCRIMINATOR is alpha_1; the gate's teeth are alpha_1, confirmed above)
+
+============================================================================================================
+MAIN M-gamma -- gamma = 1 from the static no-slip Phi = Psi (reproduced from astra's static branch).
+============================================================================================================
+  [PASS] M-gamma  static branch: Psi'' - Phi'' = 0 (no scalar anisotropic stress in the QUMOND source) => Phi = Psi with regular BC => gamma = Phi/Psi = 1   (dsolve gives C1 + C2*r + Phi(r) ; regular BC => Psi=Phi (L80 verified 'Phi=Psi no-slip'))
+
+============================================================================================================
+MAIN M-beta -- beta = 1 in the deep-Newtonian Solar-System limit (MOND kernel mu -> 1). Both footings.
+============================================================================================================
+  [PASS] M-beta (canonical a0=9.36e-11): at 1 AU x=g/a0=6.337e+07 >> 1, so 1-mu = e^-x = 9.9e-305 ~ 0 => standard Poisson => beta = 1 (GR value; MOND is negligible in the Solar System)   (fractional MOND deviation from Newton at 1 AU = 9.9e-305)
+  [PASS] M-beta (alternate a0=1.13e-10): at 1 AU x=g/a0=5.249e+07 >> 1, so 1-mu = e^-x = 9.9e-305 ~ 0 => standard Poisson => beta = 1 (GR value; MOND is negligible in the Solar System)   (fractional MOND deviation from Newton at 1 AU = 9.9e-305)
+
+============================================================================================================
+MAIN M-a3 -- alpha_3 = 0 by the semi-conservative theorem (covariant Lagrangian, no prior geometry).
+============================================================================================================
+  [PASS] M-a3  astra's action is a covariant Lagrangian with NO prior geometry => semi-conservative => alpha_3 = 0 identically; the pulsar bound |alpha_3| <~ 1e-20 is satisfied structurally   (same theorem that gives Einstein-aether/khronometric alpha_3=0 (f31: AeST alpha_3=0))
+
+============================================================================================================
+MAIN M-clock -- STRUCTURAL: the clock enters Theta LINEARLY => NO bare kinetic term => no -4 c14 piece.
+============================================================================================================
+  [PASS] M-clock-1  F(Q)Theta at O(eps^2) has NO (delta Theta)^2 term (the clock's expansion enters F(Q)Theta LINEARLY) and NO (delta Q)^2 term; only the braid f (delta Q)(delta Theta)   (O(eps^2) F(Q)Theta = dQ*dTheta*f ; cross coeff = f)
+  [PASS] M-clock-2  the only (delta Q)^2 (scalar time-kinetic) comes from K(Q) with the DEGENERACY-LOCKED k2 = 3f^2/4M^2 -- so f and the scalar norm are LOCKED, not independent (fewer knobs than AeST)   (k2 = 3 f^2 / (4 M^2) fixed by background-independent degeneracy (REPORT; L80))
+  [PASS] M-clock-3  CONSEQUENCE: no bare clock kinetic term (no (div n)^2, a^2, shear^2) => NO Einstein-aether vector sector => the AeST alpha_1 piece  -4 c14  is STRUCTURALLY ABSENT   (the clock is a constrained khronon (HSO, zero vorticity), not a kinetic aether)
+
+============================================================================================================
+MAIN M-drag -- STRUCTURAL: no separate scalar coupled through the lapse => (2-K_B) drag piece ABSENT.
+============================================================================================================
+  [PASS] M-drag  the AeST drag -4(2-K_B)/(J_Y+1) IS the alpha_1 face of C[n,phi]=2-K_B (a separate scalar through the lapse, H2).  Integrable clock violates H2 (MOND inside the clock, L66/L69) => C[n,phi]=0 => drag piece = 0.  Same feature that escaped the deep-MOND kill removes it   (AeST drag = -4*(2 - K_B)/(J_Y + 1)  ->  integrable-clock drag = 0)
+
+============================================================================================================
+MAIN M-a1 -- the residual alpha_1: NOT the AeST killer; ~ f Q0 / M^2 ~ H0/M for natural f. CONDITIONAL.
+============================================================================================================
+  [PASS] M-a1-scale  the residual alpha_1 ~ f Q0 / M^2 ~ H0/M for NATURAL f; H0/M_Pl ~ 1e-61 << 1e-4 by ~57 orders of magnitude -- the residual is generically NEGLIGIBLE, the OPPOSITE of AeST's O(1)   (H0/M_Pl ~ 8e-62  vs bound 1e-4)
+  [PASS] M-a1-adversarial  driving alpha_1 to O(1) needs a FINE-TUNED enormous f ~ M^2/Q0 ~ M_Pl^2/H0 (~1e61), which is NOT forced by a0 (a0 is in the separate M^2 a0^2 G term) nor by the dust   (so a violation requires an un-natural tuning AWAY from the natural value, unlike AeST)
+  [PASS] M-a1-verdict  alpha_1 is NOT the AeST killer (both AeST pieces gone); the residual is CONDITIONAL on astra's local Q0.  PASS CONDITION: |f Q0 / M^2| <~ 1e-4  (equivalently: local clock rate Q0 not fine-tuned up by ~1e57 over H0)   (UNDECIDED in exact magnitude; leans PASS; needs astra's quasi-static Q0 calibration + O(w) solve)
+  [PASS] M-a2  alpha_2: the AeST alpha_2 kill (1e4-1e5x over 1e-7) used the SAME absent sector; the residual alpha_2 is governed by the same braid f Q0/M^2 => same CONDITIONAL (leans PASS) verdict   (bound |alpha_2|<~1e-7; not the AeST kill; needs the same local-Q0 calibration)
+
+============================================================================================================
+SUMMARY -- PPN table for F(Q)Theta, and the verdict vs the AeST alpha_1 kill.
+============================================================================================================
+
+  PPN parameters of F(Q)Theta (both a0 footings; a0 enters only the deep-Newtonian check M-beta):
+    gamma   = 1        (no-slip Phi=Psi on the static branch; L80)                 PASS, bound |gamma-1|<~2e-5
+    beta    = 1        (deep-Newtonian: mu=1-e^-x -> 1 at 1 AU, 1-mu ~ e^-6e7 ~ 0) PASS, bound |beta-1|<~1e-4
+    alpha_3 = 0        (semi-conservative theorem: covariant Lagrangian, no prior geometry)
+                                                                                    PASS, bound |alpha_3|<~1e-20
+    alpha_1 = residual, NOT the AeST killer.  Both AeST pieces are STRUCTURALLY ABSENT:
+                * -4 c14  gone: the clock has NO bare kinetic term (enters Theta linearly) => no
+                  Einstein-aether vector sector.
+                * -4(2-K_B)/(J_Y+1) gone: MOND is INSIDE the clock (no separate scalar through the
+                  lapse; H2 violated) -- the SAME feature that escaped the deep-MOND kill (L66/L69).
+              Residual ~ f Q0 / M^2 ~ H0/M ~ 1e-61 for natural f (bound |alpha_1|<~1e-4).
+              CONDITIONAL on astra's LOCAL clock-rate Q0 calibration (only done cosmologically).
+    alpha_2 = residual, same structure; AeST's 1e4-1e5x kill does NOT transfer.  CONDITIONAL, bound 1e-7.
+
+  ---------------------------------------------------------------------------------------------------
+  DOES IT BEAT AeST?  YES, and structurally, not by tuning.  AeST's alpha_1 = -2(K_B+2) was O(1) and
+  un-tunable because BOTH of its pieces are forced: the -4c14 vector-kinetic piece and the
+  -4(2-K_B)/(J_Y+1) separate-scalar-through-the-lapse drag.  F(Q)Theta has NEITHER sector -- the clock
+  is a constrained khronon with no kinetic term, and the MOND scalar lives inside the clock, not in a
+  separately lapse-coupled field.  So the O(1) un-tunable kill is GONE.
+
+  VERDICT: NOT A KILL.  CONDITIONAL PASS (leans PASS).  gamma=1, beta=1, alpha_3=0 pass outright; the
+  fierce pulsar bound |alpha_3|<~1e-20 is satisfied STRUCTURALLY (it is NOT the discriminator -- AeST
+  died on alpha_1, not alpha_3).  alpha_1 and alpha_2 are not the AeST killers and are generically
+  negligible (~1e-61) for natural couplings, but their EXACT values need astra's quasi-static local Q0
+  calibration and the O(w) braid solve, which astra has NOT published.  PASS CONDITION for alpha_1:
+    |f Q0 / M^2| <~ 1e-4  (natural f gives ~1e-61; violated only by fine-tuning f up ~1e57).
+  CONFIDENCE: HIGH that F(Q)Theta beats the AeST alpha_1 kill (structural, matches L66/L69);
+              MODERATE-HIGH that alpha_1,alpha_2 pass outright (dimensional estimate is enormous margin,
+              but the exact O(w) coefficient is astra's uncomputed calibration, so strictly UNDECIDED).
+
+============================================================================================================
+L91 COMPLETE: 17/17 checks PASS   (PASS = the printed statement is true).   [0.2s]
+============================================================================================================

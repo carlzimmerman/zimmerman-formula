@@ -3427,3 +3427,29 @@ derived from the F(Q)Θ static equation ∇·[(1−e^{−|∇Φ|/a₀})∇Φ]=4�
 - **VERDICT.** HIGH confidence the EFE law/magnitude sits below Arm A; HIGH on the sign and ~2× dwarf trend
   (the falsifiable core). F(Q)Θ makes a genuine, distinctive SEP-violation prediction — cleanly testable via
   dwarf σ–R_gc — while predicting a weaker wide-binary signal than ν_RAR.
+
+## L91 — F(Q)Θ PASSES the PPN gate that KILLED AeST (conditional, leans pass)
+
+`L91_ppn_preferred_frame.py` + `.out` (**17 checks, 17 PASS**). The decisive Solar-System gate: the
+predecessor AeST died because its preferred-frame α₁=−2(K_B+2) was un-tunable and ~2×10⁴ over the bound.
+
+- **Control has teeth:** the AeST kill is reproduced exactly — α₁ = −4c₁₄ − 4(2−K_B)/(J_Y+1) = −2(K_B+2)
+  at J_Y=1; over the physical box **min|α₁|=2.33 ≈ 2×10⁴ over |α₁|≲1e-4**; α₁=0 forces c₁₄<0 (spin-1
+  ghost). Un-tunable, confirmed.
+- **⭐⭐ F(Q)Θ beats it — both AeST α₁ pieces are STRUCTURALLY ABSENT:** (1) **−4c₁₄ gone** — F(Q)Θ=fQΘ
+  gives only the cross term f·δQ·δΘ (no (δΘ)², no bare kinetic), so the clock enters Θ **linearly** = a
+  constrained hypersurface-orthogonal khronon, **not an Einstein-aether vector** → no c₁₄ sector. (2)
+  **−4(2−K_B)/(J_Y+1) gone** — that drag is the α₁-face of a separate MOND scalar coupled through the lapse
+  (L69's H2); the integrable clock **violates H2** (MOND inside the clock) → C[n,φ]=0 → drag→0. **The same
+  structural feature by which L66/L69 escape the deep-MOND kill removes the α₁ drag from the PPN side.**
+- **PPN table:** γ=1 (no-slip, PASS), β=1 (deep-Newtonian μ→1 at 1 AU, PASS), α₃=0 (semi-conservative
+  theorem, PASS — satisfies the fierce pulsar bound 1e-20 structurally), α₁,α₂ CONDITIONAL.
+- **No tuning — the opposite.** Residual α₁ ~ f·Q₀/M² ~ H₀/M ~ **10⁻⁶¹** for natural f — far below 1e-4;
+  reaching O(1) would need a fine-tuned enormous f~10⁶¹, which a₀ and the dust do NOT force.
+- **⚠️ HONEST LIMIT.** α₁,α₂ are strictly CONDITIONAL: the exact O(w) residual needs astra's quasi-static
+  local clock-rate Q₀ calibration + the boosted weak-field solve (the REPORT's omitted khronon/PPN sector).
+  **PASS CONDITION: |f Q₀/M²| ≲ 1e-4** — satisfied by ~57 orders for a natural clock.
+- **VERDICT.** NOT A KILL — conditional pass, leaning strongly pass. **F(Q)Θ survives the gate that killed
+  AeST**, structurally, via the same MOND-inside-the-clock feature that beats the deep-MOND kill. HIGH
+  confidence it beats AeST; MODERATE-HIGH the α's pass outright (huge margin; exact O(w) is astra's
+  uncomputed calibration). κ=½ stays fitted; nothing here favours the framework over ΛCDM.
