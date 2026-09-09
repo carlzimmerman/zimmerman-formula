@@ -2769,3 +2769,36 @@ Le Tiec's own polarisation law reproducing Milgrom's μ-function from their acti
   lensing and the dipolar medium in its internal sector. It does **not** prove the emergent class empty in
   general; a mechanism whose polarised medium is stable without anti-screening is untested and not
   excluded.
+
+## L70 — the two-metric branch is CLOSED: the Boulware–Deser ghost returns the instant MOND is switched on
+
+`L70_bimetric_branch.py` + `L70_BIMETRIC_BRANCH.md` (19 checks, 3 FAIL; **all 8 controls pass**). The one
+branch of the foliation theorem L61 left genuinely open. **Now closed, and the exclusive-OR table has no
+counterexample.**
+
+**Controls.** The counter returns 2/3/5/3 on the four reference theories, **7 for ghost-free
+Hassan–Rosen bimetric and 8 with the Boulware–Deser ghost**, reproduces L61's no-MOND-in-standard-bigravity
+(needs the non-integer n = 3/2), and confirms the pure-Einstein graviton and vector sectors healthy. The
+record was read first, and the lead **ran the deciding calculation in parallel today** — this lane
+reproduced it independently, with its own symbolic machinery, and agrees on every number.
+
+- **⭐ THE BOULWARE–DESER GHOST RETURNS WITH a ≠ 0.** On the ghost-free 2-D subspace the transverse
+  Stückelberg vector acquires a **degree-4 Ostrogradsky operator** whose prefactor is **exactly the factor
+  (2u₀+u₁) that carries the MOND acceleration a = −2(2u₀+u₁)**. So **a ≠ 0 ⟺ the ghost**. The kinetic
+  matrix has det W = −9 at the representative point against the pure-Einstein zero point's +½, and
+  det W = −8M′² < 0 for every nonzero MOND background. **The ghost-free tuning holds only at a = 0, the
+  MOND-dead point.** Done by the constraint algebra, not by inspection.
+- **Even granting health, it fails lensing the same way the single-metric branches did.** The
+  lensing-to-dynamics ratio is **2, not ≈1**, and γ = 1 forces a = 0: enhancement and slip are **locked**,
+  which is exactly the single-metric failure a second metric was supposed to escape.
+- **The one gate it passes is the tensor speed:** c_T² = 1 exactly, independent of a₀, both polarisations
+  healthy, no GW170817 tension despite the massive graviton. And it avoids the MMG α₃ = −1.
+- **The excess-spent-once theorem still binds it:** the only new escape, a Yukawa mass term, has the wrong
+  range ordering — tuning the galaxy transmission to the L61 ceiling gives a Compton wavelength of ~6 kpc
+  and switches off the CMB driving that fixed the abundance.
+- **⭐ THIS COMPLETES THE FOLIATION THEOREM'S EXCLUSIVE-OR TABLE.** All three permitted branches are now
+  closed: three-or-more modes with Lorentz invariance dead at lensing generically (L61), non-minimal
+  coupling dead at the tensor speed (L61), and two metrics dead at mode health (here). **No known theory
+  has both Lorentz invariance and two modes, and now every permitted escape has been run rather than
+  enumerated.** This strengthens PAPER9 and is a v2 item — the deposited paper reported the branches as
+  untested; two are now closed by gates and the third by this lane.

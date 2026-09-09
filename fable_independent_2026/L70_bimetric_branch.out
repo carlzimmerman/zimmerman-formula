@@ -1,0 +1,156 @@
+
+==============================================================================================================
+PART A -- CONTROLS.  Calibrate the counter and the ghost detector before anything rests on them.
+==============================================================================================================
+A.1  Dirac mode-count controls  N = (P - 2F - S)/2.
+      theory                                   phase space P                   F  S   N  published
+      general relativity                       gamma_ij(6) -> 12               4  0   2          2
+      GR + one minimal scalar                  gamma_ij(6)+phi(1) -> 14        4  0   3          3
+      khronometric (non-proj Horava)           gamma_ij(6)+khronon(1) -> 14    4  0   3          3
+      Einstein-aether                          gamma_ij(6)+u^mu(4)-|u|(1) -> 18  4  0   5          5
+  [PASS] A1  mode counter: GR = 2   ((12-8)/2)
+  [PASS] A2  mode counter: GR + scalar = 3   ((14-8)/2)
+  [PASS] A3  mode counter: khronometric = 3   ((14-8)/2 (foliation-preserving diffeo))
+  [PASS] A4  mode counter: Einstein-aether = 5   ((18-8)/2 = 2 tensor + 2 vector + 1 scalar)
+
+A.2  The SAME counter on two metrics.  Two metrics = 24 phase-space functions (each gamma_ij(6) + its
+     momentum).  Overall diffeomorphism = 4 first-class.  The Boulware-Deser constraint PAIR (primary +
+     secondary) is 2 second-class; when the ghost-free tuning provides it, it removes 1 DOF (7); when a
+     detuning destroys it, that DOF propagates and one polarisation is a ghost (8).
+      ghost-free Hassan-Rosen : P=24 F=4 S=2  ->  N = 7   (2 massless + 5 massive graviton)
+      with the BD mode        : P=24 F=4 S=0  ->  N = 8   (the sixth mode is the ghost)
+  [PASS] A5  two-metric counter: ghost-free bimetric (Hassan-Rosen) = 7   (S=2 removes the BD pair)
+  [PASS] A6  two-metric counter: with the Boulware-Deser mode = 8   (S=0, sixth mode propagates)
+
+A.3  DC-018 reproduced: standard ghost-free dRGT / Hassan-Rosen bigravity has NO MOND in its helicity-0
+     Galileon sector.  Spherical flux r^(3-n)(pi')^n = GM  =>  pi' ~ r^(1-3/n).
+     pi' = (GM*r**(n - 3))**(1/n),  radial exponent = (n - 3)/n
+       n = 1:  pi' ~ r^(-2)
+       n = 2:  pi' ~ r^(-1/2)
+       n = 3:  pi' ~ r^(0)
+       n = 4:  pi' ~ r^(1/4)
+     MOND needs pi' ~ r^(-1)  =>  n = 3/2  (NOT an integer Galileon operator)
+  [PASS] A7  DC-018: standard bigravity's Galileon sector gives no MOND (needs non-integer n = 3/2)   (integer n in {1,2,3,4} -> r^-2, r^-1/2, r^0, r^1/4)
+
+A.4  Einstein-Hilbert calibration of the ghost detector (momentum space, k = (omega,0,0,kappa)).
+     pure-EH TT graviton form (1/2)(T4-T5) = (-(kappa - omega)*(kappa + omega)/4) h^2:  coeff w^2 = 1/4, coeff kappa^2 = -1/4
+  [PASS] A8a EH calibration: the pure-EH TT graviton is healthy and luminal (w^2 = kappa^2, positive kinetic)   (w^2 coeff 1/4 > 0, dispersion w^2 = kappa^2)
+     pure-EH transverse-vector time-kinetic matrix W = [[0, 0], [0, 1/2]],  eigenvalues [0, 1/2]
+  [PASS] A8b EH calibration: the pure-EH transverse-vector sector has NO negative time-kinetic eigenvalue   (one auxiliary (0) + one healthy (1/2): the detector's zero point)
+
+==============================================================================================================
+PART B -- THE CRUX.  Does the Boulware-Deser ghost return when the MOND coupling a != 0?
+==============================================================================================================
+B.1  Re-derive the ghost-free subspace independently.  The c_i are ACTION CONSTANTS, so lapse-velocity
+     freedom must hold for a GENERIC FRW pair (treat N_g,N_f,a_g,a_f and their rates as independent).
+     background-independent lapse-velocity conditions on (c1..c5): 8;  Jacobian rank 3
+     => ghost-free (lapse-velocity-free) subspace dimension = 2
+     nullspace / subspace element (c1..c5) = [-u0, -u1/2, -u1/2, u0, u1]
+  [PASS] B1  the ghost-free subspace is 2-D and equals the recorded (c1..c5) = (-u0,-u1/2,-u1/2,u0,u1)   (dim = 2, spans the recorded basis)
+
+B.2  Static weak-field (a,b,x) of each invariant, independently expanded, then on the subspace.
+     per-invariant (a,b,x):  T1=(3,7,0)  T2=(1,1,-2)  T3=(1,9,-6)  T4=(-1,-1,0)  T5=(-1,-3,4)
+     on the ghost-free subspace:  a(u0,u1) = -4*u0 - 2*u1,  b = -8*u0 - 8*u1,  x = 8*u1
+     MOND-alive T4-T1 (u0=1,u1=0):  a = -4, b = -8, x = 0   (record: a=-4, b=-8)
+  [PASS] B2  static-NR coefficients reproduce the recorded a = -4, b = -8 at T4 - T1, with a = -2(2u0+u1)   (a = -4u0-2u1, b = -8(u0+u1), x = 8u1)
+
+B.3  DECISIVE.  The interaction Int = sum c_i T_i ADDS to the relative graviton's EH kinetic operator.
+     Relative-diffeomorphism Stuckelberg: eps_01 = omega*A1, eps_13 = kappa*A1 is the transverse vector
+     (the EH operator annihilates it -- it is pure gauge for EH).  Its induced operator is the test.
+     EH on the Stuckelberg vector direction (expect 0, pure gauge): 0
+     induced vector operator  L_A1 = (-lam*(kappa - omega)**2*(kappa + omega)**2*(2*u0 + u1)/2) A1^2
+     momentum degree of L_A1 = 4   (2 = healthy Maxwell/auxiliary; 4 = higher-derivative Ostrogradsky)
+     L_A1 = (-lam*(2*u0 + u1)/2) (omega^2 - kappa^2)^2 A1^2 ;  a = -2(2u0+u1)  =>  a != 0  <=>  degree-4 operator
+     L_A1 prefactor / (2u0+u1) = -lam/2  and  a / (2u0+u1) = -2   (both u-independent => shared factor)
+  [PASS] B3  MOND-alive (a != 0) FORCES a fourth-order (Ostrogradsky) transverse-vector operator   (both L_A1's prefactor and a are proportional to (2u0+u1), so they vanish together)
+
+B.4  What a degree-4 operator MEANS for the Hamiltonian count (constraint algebra, not inspection).
+     A Lagrangian  L ~ -(1/2)(box A)^2  has, by Ostrogradsky's theorem, a phase space of dimension 4 per
+     field component (A, A', A'', A''' as independent canonical data), with a Hamiltonian LINEAR in one
+     conjugate momentum -- unbounded below.  In the ghost-free (a = 0) tuning that operator is ABSENT and
+     the BD second-class pair holds N = 7; switching on a != 0 turns the transverse vector into a
+     higher-derivative field, the BD pair is destroyed (S: 2 -> 0), and the sixth (ghost) mode propagates.
+     transverse-vector time-kinetic matrix at T4-T1:  W = [[-2, 0], [0, 9/2]],  eigenvalues [-2, 9/2],  det = -9
+     (pure-EH detector zero point was W = [[0, 0], [0, 1/2]]: one auxiliary + one healthy, det 0, no ghost)
+     negative kinetic eigenvalues on the MOND-alive direction: 1
+  [FAIL] B5  [CRUX] the ghost-free tuning STAYS ghost-free when a != 0 (no revived Boulware-Deser mode)   (det W = -9 < 0 and a degree-4 vector operator => the BD sixth mode RETURNS: count 7 -> 8)
+
+B.5  Strengthen from Minkowski to a MOND background.  Freeze a static field (p = d_z Phi, q = d_z Psi)
+     and expand T4 - T1 around it; the transverse-vector principal (time-kinetic) matrix is
+     W = diag(-2 M', 4 M')  =>  det W = -8 M'^2 < 0 for EVERY background with M'(Tbar) != 0.
+     general nonzero background: W = diag(-2 M', 4 M'), det W = -8*M1**2  (indefinite for M' != 0)
+     deep-MOND M=(-T)^(3/2), Tbar = -4(p^2+2q^2):  W = diag(6*sqrt(p**2 + 2*q**2), -12*sqrt(p**2 + 2*q**2)),  det = -72*p**2 - 144*q**2
+  [PASS] B6  the ghost is NOT a Minkowski artefact: every MOND background (M' != 0) has an indefinite vector principal symbol   (det W = -8 M'^2 <= 0 (=0 only at M'=0, the degenerate no-MOND point); deep-MOND det = -216.0 < 0)
+
+==============================================================================================================
+PART C -- THE GATES.  Run them anyway: a count alone does not close a branch (honesty rule).
+==============================================================================================================
+C.1  Lensing vs dynamics.  Matter couples to g; dynamics feels Phi, lensing feels (Phi + Psi)/2, so
+     M_dyn / M_lens = 2 Phi / (Phi + Psi) = 2 / (1 + gamma) with gamma = Psi/Phi in the g sector.
+     In the interaction-dominated (MOND-alive) branch the unsourced relative Psi-equation gives
+     gamma = Q'/P' = -x/(2b) = u1 / (2(u0+u1)).
+     gamma(int) = -x/(2b) = -x/(2*b) = u1/(2*(u0 + u1)) on the subspace ;  at T4-T1: gamma = 0
+     => M_dyn/M_lens at T4-T1 = 2/(1+gamma) = 2   (measurement wants ~ 1)
+     gamma = 1 (lensing tracks dynamics) needs u1 = [-2*u0], where the MOND accel a = 0 => MOND-DEAD
+     EH-dominated far exterior: the linear EH force P'~1/r^2 dominates the quadratic MOND force => Newtonian,
+     gamma -> 1 but NO MOND enhancement at all (DC-018 in the 5-invariant setting).
+  [FAIL] C1  lensing gate: the a=-4,b=-8 subspace gives M_dyn/M_lens ~ 1 (lensing tracks dynamics in the MOND regime)   (M_dyn/M_lens = 2 at T4-T1 (under-lenses 2x); gamma=1 only at a=0 (MOND-dead) => enhancement<=>slip LOCKED)
+
+C.2  Tensor speed.  The bimetric interaction is the graviton MASS term; check c_T for the TT modes on
+     the a != 0 direction (u0=1,u1=0) against GW170817.
+     CROSS: coeff w^2 = 9/4, coeff kappa^2 = -9/4  =>  c_T^2 = 1,  kinetic/EH = 9
+     PLUS: coeff w^2 = 9/4, coeff kappa^2 = -9/4  =>  c_T^2 = 1,  kinetic/EH = 9
+     c_T^2 - 1 = 0  (exact, independent of lam = a0^2)
+  [PASS] C2  tensor-speed gate: c_T = 1 within GW170817 (|c_T/c - 1| <~ 1e-15), massive graviton notwithstanding   (c_T^2 = 1 exactly for both polarisations, positive kinetic term => PASSES (unlike branch 3))
+
+C.3  Preferred frame.  The longitudinal helicity-0 (A0,A3) block prefactor is (2u0+u1)(kappa^2 - omega^2):
+     the relative sector PROPAGATES with dispersion omega^2 = kappa^2 (luminal, hyperbolic/RETARDED), and
+     both metrics are dynamical with an EH term each -- no prior/absolute geometry.
+     longitudinal block prefactor = (kappa**2 - omega**2)*(2*u0 + u1); at T4-T1 (2u0+u1 = 2) => propagates, omega^2 = kappa^2
+     Fully-conservative Lagrangian theories with only dynamical fields have alpha_3 = 0 (Will/Lee-Ni);
+     contrast the constraint-first MMG horn (DC-019), whose INSTANTANEOUS elliptic response pins alpha_3 = -3.
+  [PASS] C3  preferred-frame gate: the response is hyperbolic/retarded, so it does NOT inherit the MMG alpha_3 = -1   (omega^2 = kappa^2 propagating; two dynamical metrics, no absolute element => alpha_3 = 0 (but MOOT given B5))
+
+C.4  Excess-spent-once (L61 PART B, branch-independent).  A second metric offers exactly ONE new escape:
+     put the cold component on g-hat so its pull reaches baryons only through the g/g-hat interaction --
+     which in every ghost-free bimetric IS a graviton mass term, i.e. a Yukawa (1 + m r) e^{-m r}, and a
+     Yukawa is STRICTLY DECREASING: it suppresses LONG range, not short.  The requirement is the opposite.
+     physical sound horizon at z = 1089:  r_s = 0.1330 Mpc
+     [canonical] a0 = 9.3619e-11 m/s^2:  tune eta(10 kpc) = 0.582  =>  Compton wavelength 7.00 kpc, and then eta(r_s) = 1.12e-07
+     [alt] a0 = 1.1279e-10 m/s^2:  tune eta(10 kpc) = 0.486  =>  Compton wavelength 5.80 kpc, and then eta(r_s) = 2.64e-09
+     => to leave galaxies un-over-fed you switch OFF the CMB driving that fixed the cold abundance:
+        the ordering is short-range-off / long-range-on, which no mass term supplies.  The theorem binds.
+  [PASS] C4  excess-spent-once binds this subspace: the only two-metric escape (mass-term mediation) has the wrong range ordering (eta(r_s) << eta(galaxy))   (eta(r_s) <= 1.12e-07 when eta(10 kpc) is at the L61 ceiling -- both footings; L61 D3)
+
+==============================================================================================================
+VERDICT
+==============================================================================================================
+  B5 CRUX -- Boulware-Deser ghost with a != 0:
+     the transverse vector acquires a degree-4 (Ostrogradsky) operator L_A1 = -(1/2)(2u0+u1)(w^2-k^2)^2 A1^2,
+     and the MOND acceleration is a = -2(2u0+u1): they vanish together, so a != 0 <=> the ghost.
+     direct time-kinetic matrix at T4-T1: W = [[-2, 0], [0, 9/2]], det = -9 < 0 (EH zero point det 0, healthy);
+     nonlinear MOND background: det W = -8 M'^2 < 0 for every M' != 0.  THE BD SIXTH MODE RETURNS: count 7 -> 8.
+
+  GATES (run anyway):
+     lensing   : M_dyn/M_lens = 2 at T4-T1 (NOT ~1); gamma = 1 only at a = 0 => enhancement<=>slip LOCKED.
+     tensor c_T: c_T^2 = 1 exactly (PASSES GW170817) -- the one gate this subspace passes.
+     alpha_3   : hyperbolic/retarded => alpha_3 = 0, does NOT inherit the MMG -1 liability (PASSES, but MOOT).
+     excess-spent-once: binds (mass-term Yukawa has the wrong range ordering; eta(r_s) <= 1.1e-07).
+
+  [FAIL] VERDICT  the two-metric branch is ALIVE (ghost-free with a != 0 AND passes the gates run here)   (it is NOT: the BD ghost returns with a != 0 (B5); the branch is CLOSED at the mode-health gate)
+
+  Independent-verification note.  This lane reproduces, with its own symbolic machinery, the lead's
+  qwen_claude_field_theory WF2 suite (WF2_DERIVATIVE_BIMETRIC_GATE_REPORT_2026-09-09.md and
+  wf2_vecghost_hel1.py / wf2_coupledlens_alpha3.py / wf2_tensor_cT_gate.py /
+  wf2_nonlinear_vector_background.py).  AGREEMENT is complete on every number: the vector operator
+  -(1/2)(2u0+u1)(w^2-k^2)^2, W = diag(-2,9/2) det -9 at T4-T1, gamma = u1/(2(u0+u1)), c_T^2 = 1,
+  and the nonlinear det W = -8 M'^2.  No disagreement to report.
+
+  This CLOSES the last open branch of L61's foliation theorem: the exclusive-OR table gains no
+  counterexample.  Both a0 footings carried on the one dimensional number (C.4).  Nothing here favours
+  this framework over LambdaCDM (the cold component, its abundance and profile are LambdaCDM's).
+
+RESULT: 3 check(s) marked FAIL (each a finding, verified as hard as a pass):
+   - B5  [CRUX] the ghost-free tuning STAYS ghost-free when a != 0 (no revived Boulware-Deser mode)
+   - C1  lensing gate: the a=-4,b=-8 subspace gives M_dyn/M_lens ~ 1 (lensing tracks dynamics in the MOND regime)
+   - VERDICT  the two-metric branch is ALIVE (ghost-free with a != 0 AND passes the gates run here)
