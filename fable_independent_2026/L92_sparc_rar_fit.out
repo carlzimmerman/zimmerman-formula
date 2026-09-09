@@ -1,0 +1,83 @@
+====================================================================================================
+L92 -- does the F(Q)Theta EXPONENTIAL kernel mu(x)=1-e^{-x} fit the SPARC radial acceleration relation?
+====================================================================================================
+a0 footings: canonical 9.3619e-11 m/s^2,  alt 1.1279e-10 m/s^2   (both carried throughout)
+
+====================================================================================================
+PART A -- CONTROLS.  Load SPARC by the L61 recipe; validate the RAR machinery on a committed number.
+====================================================================================================
+      SPARC loaded from real_research/data/sparc_data: 155 galaxies, 2786 points (Upsilon_d=0.5, Upsilon_b=0.7, eV/V<0.10, >=3 points)
+
+      carried bounded-boost kernel:  rms 0.1453 / 0.1421 dex   medians +0.030 / +0.003   (L61 committed: 0.145/0.142, +0.030/+0.003)
+  [PASS] A1  CONTROL: SPARC loading + RAR machinery reproduce L61's bounded-boost gate 0.145/0.142 dex   (0.1453/0.1421 at +0.030/+0.003)
+      exponential carrier (AQUAL):   rms 0.1613 / 0.1507 dex   medians +0.075 / +0.047   (FINDINGS L1087: 0.1613 canonical)
+  [PASS] A2  CONTROL: the exponential-carrier canonical RAR scatter reproduces FINDINGS L1087's 0.1613 dex   (0.1613 vs 0.1613)
+  [PASS] A3  CONTROL: 'mu in AQUAL variable' and 'nu=x/y boost in g_bar variable' are the same relation   (max |dlog10| = 9.6e-17 dex)
+  [PASS] A4  CONTROL: exponential AQUAL and nu_RAR both -> sqrt(a0 g_bar) in deep MOND (same BTFR zero-point)   (at y<=1e-4: exp within 0.251%, nu_RAR within 0.501% of sqrt(a0 g_bar))
+
+====================================================================================================
+PART B -- THE EXPONENTIAL F(Q)Theta KERNEL ON THE FULL MASKED SPARC SAMPLE (155 of 175 curves) (RAR residuals, both footings).
+====================================================================================================
+
+      [canonical] exponential kernel g_obs=a0*x with x(1-e^{-x})=g_bar/a0:  rms 0.1613 dex, median +0.0746 dex,  N=2786 points
+      [alt      ] exponential kernel g_obs=a0*x with x(1-e^{-x})=g_bar/a0:  rms 0.1507 dex, median +0.0467 dex,  N=2786 points
+  [PASS] B1  the exponential kernel produces a finite, MOND-like RAR fit on the full masked sample (rms < 0.20 dex)   (0.1613 / 0.1507 dex)
+      per-galaxy rms (canonical): exponential median 0.1217, 90th pct 0.2753; nu_RAR median 0.1037, 90th pct 0.2657
+
+====================================================================================================
+PART C -- HEAD-TO-HEAD vs nu_RAR (McGaugh/Lelli).  Is the exponential fit comparable or worse?
+====================================================================================================
+
+      footing     nu_RAR rms   exp rms   d(rms)    nu_RAR med   exp med
+      canonical       0.1453    0.1613  +0.0160       +0.0302   +0.0746
+      alt             0.1421    0.1507  +0.0086       +0.0049   +0.0467
+      maximum point-level divergence exp-carrier vs nu_RAR = 0.0726 dex (FINDINGS D1: 'up to 0.073 dex'); the two kernels are NOT interchangeable
+  [PASS] C1  the exponential kernel fits the RAR MEASURABLY WORSE than nu_RAR on BOTH footings   (exp is worse by +0.0160/+0.0086 dex)
+  [PASS] C2  the gap is within the ~0.01-0.02 dex 'comparable' band (worse, but not a different regime)   (|d(rms)| = 0.0160/0.0086 dex)
+  [PASS] C3  CROSS-CHECK: the two kernels diverge by ~0.07 dex at a point (reproduces the D1 number)   (0.0726 dex)
+
+====================================================================================================
+PART D -- THE NAIVE g_bar-VARIABLE READING (the D1 documentation trap).  How badly does it break?
+====================================================================================================
+
+      [canonical] literal g_obs=g_bar/(1-e^{-g_bar/a0}):  rms 0.3883 dex, median -0.2047 dex
+      [alt      ] literal g_obs=g_bar/(1-e^{-g_bar/a0}):  rms 0.4403 dex, median -0.2731 dex
+      deep-MOND probe (y=1e-3): correct sqrt(a0 g_bar)=2.960e-12, AQUAL exp=2.984e-12, literal=9.367e-11 (-> a0=9.362e-11, WRONG)
+  [PASS] D1  the naive g_bar-variable reading is CATASTROPHIC (rms worse than the correct AQUAL reading)   (literal 0.3883 vs AQUAL 0.1613 dex)
+
+====================================================================================================
+PART E -- THE BTFR.  Deep-MOND V^4 = G M a0 zero-point and scatter under the exponential kernel.
+====================================================================================================
+
+      BTFR sample: 139 galaxies with a flat V_flat (Q<3, inc>=30 deg); M/L fixed at 0.5
+      free-slope BTFR: slope alpha = 3.387 (deep-MOND predicts 4.00; sub-4 here is a fixed-M/L + coarse-V_flat regression effect, not a kernel property), scatter 0.219 dex
+      footing    implied a0 [m/s^2]  log d vs footing  zero-pt offset(dex)   rms(dex)
+      canonical           1.406e-10            +0.177               -0.177      0.324
+      alt                 1.406e-10            +0.096               -0.096      0.286
+      the data's own deep-MOND normalisation a0 = 1.406e-10 m/s^2 sits +0.177 dex from canonical and +0.096 dex from alt
+      exp-vs-nu_RAR difference over the BTFR flat points: worst-case 0.0726 dex; even over the 92 deep-MOND (g_bar<0.3a0) galaxies it is 0.0476 dex (they converge only as y->0)
+      but the BTFR scatter is 0.219 dex, so this 0.073 dex kernel difference is buried below the noise
+  [PASS] E1  a MOND-like power-law BTFR exists under the kernel (slope 3.0 <= alpha <= 4.5)   (alpha = 3.387)
+  [PASS] E2  the deep-MOND BTFR zero-point recovers a0 to within 0.25 dex of BOTH footings   (implied a0 = 1.406e-10; +0.177/+0.096 dex)
+  [PASS] E3  the BTFR cannot discriminate the kernels: their max BTFR difference is well below the scatter   (kernel difference 0.073 dex vs BTFR scatter 0.219 dex (asymptote is identical, A4))
+
+====================================================================================================
+PART F -- VERDICT.
+====================================================================================================
+
+      FOUNDATIONAL QUESTION: does the F(Q)Theta exponential kernel FIT galaxies?  YES -- with the
+      CORRECT (AQUAL) reading it delivers a MOND-like RAR at ZERO per-galaxy parameters:
+          exponential kernel:  rms 0.1613 / 0.1507 dex   (medians +0.075 / +0.047)
+          nu_RAR (McGaugh):    rms 0.1453 / 0.1421 dex
+          carried boundedboost:rms 0.1453 / 0.1421 dex   (= saturated nu_RAR)
+      RANKING: exponential is WORSE than nu_RAR by +0.0160/+0.0086 dex -- inside the
+      ~0.01-0.02 'comparable' band, so it FITS, but it is the poorest of the three MOND kernels tested.
+      BTFR: MOND-like power law (slope 3.39; sub-4 from fixed M/L + coarse V_flat, not the kernel), scatter 0.22 dex,
+      deep-MOND zero-point a0 = 1.41e-10 m/s^2 (within 0.10 dex of alt, 0.18 of canonical).
+      The exponential and nu_RAR kernels give the SAME BTFR (identical deep-MOND limit), so galaxies do NOT
+      decide the D1 kernel conflict -- the external-field / wide-binary scale (L89) does.
+      The naive g_bar-variable reading (g_obs=g_bar/(1-e^{-y})) is deep-MOND-broken and must never be used.
+
+====================================================================================================
+RESULT: 12/12 PASS.
+====================================================================================================

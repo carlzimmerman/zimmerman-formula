@@ -3477,3 +3477,26 @@ predecessor AeST died because its preferred-frame α₁=−2(K_B+2) was un-tunab
   a₀ absent from all linear cosmology (both footings bit-identical).
 - **VERDICT.** HIGH confidence D(z) and σ₈ are ΛCDM-identical at linear sub-horizon order and the g04h
   deficit is gone; the complete structure verdict (full CMB transfer + near-horizon health) remains astra's.
+
+## L92 — the exponential kernel FITS the SPARC galaxies (foundational claim holds; ranks just below ν_RAR)
+
+`L92_sparc_rar_fit.py` + `.out` (**12 checks, 12 PASS**; 155 galaxies / 2786 points).
+
+- **Convention resolved.** The static equation carries μ on the physical field, so the correct reading is
+  the AQUAL implicit solve μ(x)·x=y, x=g_obs/a₀, μ(x)=1−e^{−x} (numerically identical to the QUMOND boost
+  ν(y)=x/y to 1e-16 dex, right deep-MOND limit). The naive literal g_obs=g_bar/(1−e^{−g_bar/a₀}) is
+  deep-MOND-broken (0.39/0.44 dex) — a documentation trap, excluded.
+- **Controls** reproduce two committed cross-checks: bounded-boost kernel 0.1453/0.1421 dex (=L61's
+  0.145/0.142) and exponential-carrier 0.1613 dex (=FINDINGS L1087).
+- **⭐ Exponential-kernel RAR:** rms **0.161 / 0.151 dex** (medians +0.075/+0.047) — the **foundational
+  galaxy fit HOLDS at zero per-galaxy parameters.**
+- **Head-to-head vs ν_RAR** (0.145/0.142): exponential is worse by **+0.016 / +0.009 dex** — measurably
+  worse but inside the ~0.01–0.02 dex "comparable" band; the kernels diverge ≤0.073 dex point-wise (the D1
+  number). L89's "Newtonises faster" slightly hurts the RAR fit too, not only the EFE scale.
+- **BTFR:** MOND-consistent — deep-MOND zero-point implies a₀=1.41e-10 (within 0.10 dex of the alt footing);
+  slope 3.39 and 0.22 dex scatter are fixed-M/L + coarse-V_flat systematics, not the kernel. **The BTFR is
+  kernel-blind** (exp and ν_RAR share V⁴=GMa₀ exactly; their 0.073 dex gap ≪ 0.22 dex scatter).
+- **VERDICT.** The foundational galaxy fit holds; the exponential kernel ranks **below ν_RAR** by ≤0.016 dex
+  (comparable). **Galaxies cannot decide the D1 kernel conflict** (RAR gap small, BTFR kernel-blind) — only
+  the wide-binary/EFE scale (L89) discriminates. HIGH confidence on the RAR numbers/ranking (two committed
+  cross-checks reproduced).
