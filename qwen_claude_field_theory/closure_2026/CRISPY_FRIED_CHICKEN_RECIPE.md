@@ -12,7 +12,21 @@ structure together. Checks remain honest: a failure identifies a construction
 obligation; it is not permission to conceal the failure or relax a requirement.
 Historical obstructions are reference material, not the main deliverable.
 
-**Current constructive checkpoint (2026-09-08):**
+**Current constructive checkpoint (2026-09-08, IC11/IC12):**
+[The shared handoff](integrable_clock_construction_2026/IC11_HANDOFF.md)
+records the new convex clock-pressure construction, matter-coupled response,
+full transition, combined action, and exact-law empirical source targets.
+IC11 improves the healthy vacuum plateau; its balanced auxiliary response also
+passes weak-matter cone tests. The separately completed tensor/auxiliary
+transition and the IC12 combined action still fail a scalar kinetic condition.
+Clusters and galaxy pairs supply required source targets, not successful
+predictions of the clock. Carl's paddle/wake history-dependence suggestion is
+[credited explicitly](integrable_clock_construction_2026/CARL_CLOCK_MEMORY_INSIGHT.md).
+The next construction must repair the full transition and matter-domain
+limitations, then predict the same physical-metric galaxy/cluster forces.
+No complete theory, empirical confirmation, or novelty certification is claimed.
+
+**Previous constructive checkpoint (IC10):**
 [IC10 local Einstein–clock construction](integrable_clock_construction_2026/IC10_LOCAL_CLOCK.md)
 continues the explicit phase action while retaining its static exponential
 primitive. [IC8–IC9 optical alignment](integrable_clock_construction_2026/OPTICAL_ALIGNMENT.md)
@@ -26,7 +40,7 @@ auxiliary carries no independent mode on this regular plateau; the genuine
 clock is explicitly counted separately from the two tensors.
 
 This is **not a complete gravity theory**. The next unavoidable calculation
-is full-action evolution through the located eta boundary near S=0.230724,
+was full-action evolution through the located eta boundary near S=0.230724,
 including its momentum derivatives, constraint preservation and physical
 characteristics. Matter-coupled causality, strong coupling, galactic matching,
 zero-field control, measured G, PPN and realistic cosmology remain OPEN.
