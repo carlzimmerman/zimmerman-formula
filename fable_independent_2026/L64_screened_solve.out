@@ -1,0 +1,187 @@
+======================================================================================================================
+L64 -- the screened fourth-order static solve: does the series repair survive with xi != 0?
+======================================================================================================================
+
+======================================================================================================================
+SECTION A.  CONTROLS -- nothing below counts unless every one of these passes
+======================================================================================================================
+  [PASS] A1  CONTROL(L52 B6): the D-FREE positivity identity a_UV = A^2 z/[2(-A q + 8 E4 z^3)] holds identically once the auxiliary branch equation A q + 2 D z + 4 E4 z^3 = 0 is used -- rebuilt here from the branch equation, not quoted [a POSITIVE control on L52]   (so a_UV > 0 for A > 0, q < 0, z > 0, E4 >= 0 independently of the D(S) table)
+  [PASS] A2  CONTROL(L52 B7b): at IC29's design D0 = 0.13, q = -1.29078 the parallel Schur coefficient is a_UV = 0.01738587435 [a POSITIVE control on L52]   (mine 0.017385874352, L52/L44 0.01738587435, z = 0.4794944617)
+  [PASS] A3  CONTROL(the lead): varying the auxiliary in the lead's normalised energy gives W = lambda grad(phi)/(Sigma + lambda), reproduced symbolically here [a POSITIVE control on the lead's review]
+  [PASS] A4  CONTROL(the lead): eliminating W leaves Sigma_eff Delta phi - xi^2 Delta^2 phi = rho_source with Sigma_eff = lambda Sigma/(Sigma + lambda), i.e. 1/Sigma_eff = 1/Sigma + 1/lambda [a POSITIVE control on the lead's review, and on L52's D2 harmonic rule]   (the response is phi = -rho/(k^2 (Sigma_eff + X)); the unrepaired one is -rho/(k^2 (Sigma + X)))
+  [PASS] A5  CONTROL(the lead's EXACT counterexample): the response change divided by the Newtonian Fourier response is 1/(Sigma_eff + X) - 1/(Sigma + X), which equals 1/lambda ONLY at X = 0; at Sigma = lambda = X = 1 it is EXACTLY 1/6 against the naive additive-Newtonian 1 [a NEGATIVE control on L52's F1 as a universal identity -- the lead is right]   (reproduced exactly: 1/6 vs naive 1/lambda = 1; and the X -> 0 limit is 1/lambda exactly)
+  [PASS] A6  CONTROL(the lead): the isolated auxiliary model H = p_v^2/2 + Sigma w^2/2 + lambda(v-w)^2/2 has primary p_w = 0 with secondary (Sigma+lambda)w - lambda v = 0, Poisson matrix [[0, -(Sigma+lambda)],[Sigma+lambda, 0]] of determinant (Sigma+lambda)^2, and no tertiary [a POSITIVE control on the lead's review AND on L54's second-class classification]   (det = Sigma_p**2 + 2*Sigma_p*lambda_p + lambda_p**2; the secondary's time derivative fixes the primary multiplier to lambda p_v/(Sigma+lambda), so the algorithm terminates at two constraints)
+
+  A.7  an INDEPENDENT Dirac counter, written here, on four systems constructed here:
+      free scalar (expect 1)                : N_q = 1, rank W = 1, primaries = 0, generations = [0], first class = 0, second class = 0  ->  DOF = 1
+      Maxwell (expect 2)                    : N_q = 4, rank W = 3, primaries = 1, generations = [1, 1], first class = 2, second class = 0  ->  DOF = 2
+      Proca (expect 3)                      : N_q = 4, rank W = 3, primaries = 1, generations = [1, 1], first class = 0, second class = 2  ->  DOF = 3
+      lead's auxiliary model (expect 1)     : N_q = 2, rank W = 1, primaries = 1, generations = [1, 1], first class = 0, second class = 2  ->  DOF = 1
+  [PASS] A7  CONTROL: the Dirac counter written HERE returns 1 / 2 / 3 / 1 on a free scalar, Maxwell, Proca and the lead's own isolated auxiliary model, with 2 first class for Maxwell, 2 second class for Proca, and 2 second class for the auxiliary [a POSITIVE control on the machinery]   (scalar 1, Maxwell 2 (n1 = 2), Proca 3 (n2 = 2), auxiliary 1 (n2 = 2))
+
+       the repaired MOND-scalar sector, coherence operator ON (xi = 3/2, Lambda = 1/kappa):
+      scalar, no auxiliary, xi != 0         : N_q = 1, rank W = 1, primaries = 0, generations = [0], first class = 0, second class = 0  ->  DOF = 1
+      scalar + holonomic W, xi != 0         : N_q = 4, rank W = 1, primaries = 3, generations = [3, 3], first class = 0, second class = 6  ->  DOF = 1
+      same, sigma_par = 1e16 (saturated)    : N_q = 4, rank W = 1, primaries = 3, generations = [3, 3], first class = 0, second class = 6  ->  DOF = 1
+      NEGATIVE control: W given a kinetic term: N_q = 4, rank W = 4, primaries = 0, generations = [0], first class = 0, second class = 0  ->  DOF = 4
+      NEGATIVE control: sigma_par + Lambda = 0: N_q = 4, rank W = 1, primaries = 3, generations = [3, 3, 1], first class = 1, second class = 6  ->  DOF = 0
+  [PASS] A8  the auxiliary costs ZERO propagating modes in the scalar sector WITH the coherence operator on: 1 mode without it, 1 mode with it, 1 mode even at sigma_par = 1e16 (the saturated branch), and exactly 3 second-class pairs; the two negative controls fire (a kinetic term takes it to 4, and sigma_par + Lambda = 0 DELETES the scalar mode, leaving 0) [a POSITIVE control on L54's count, extended here to xi != 0 and re-derived independently]   (no-W 1, +W 1 (second class 6 = 3 pairs), saturated 1, W-kinetic 4, degenerate 0)
+  [PASS] A9  CONTROL: re-running L54_repair_constraints.py reproduces 73/73 PASS, exit 0, and its four reference controls return 2 / 3 / 5 / 3 on ADM general relativity, GR + one scalar, Einstein-aether and khronometric theory [a POSITIVE control on L54]   (73 PASS / 0 FAIL, exit 0; controls ADM GR = 2, GR + minimal scalar = 3, Einstein-aether = 5, khronometric = 3)
+
+======================================================================================================================
+SECTION B.  THE NORMALISATION -- settled from the action, stated once, and kappa re-priced
+======================================================================================================================
+  [PASS] B1  THE NORMALISATION, DERIVED: varying THE_ACTION sec.1's two scalar terms 2(2-K_B) J^mu d_mu phi - (2-K_B) J(Y) with respect to phi gives div[2(2-K_B)(a - J_Y V)] = 0, so on a sphere with decay at infinity J_Y V = a with NO factor of two -- the 2 in the coupling and the 2 from differentiating Y = V.V cancel exactly.  L52 line 633's 'g_N = 2 J_Y w' is a factor-two slip; THE_ACTION sec.3's J_Y(g_phi) g_phi = g_N is the convention [a NEGATIVE result for L52's line 633, a POSITIVE one for THE_ACTION sec.3]   (CONVENTION ADOPTED AND USED EVERYWHERE BELOW: J_Y(g_phi) g_phi = g_N, hence J_Y(s) = s/Delta(s), f(w) = J(w.w) has f'(w) = 2 g_N and f''(w) = 2 sigma_par, sigma_par = d g_N/d g_phi = 1/Delta')
+  [PASS] B2  kappa = 1/lambda EXACTLY in the fixed convention -- the auxiliary equation J_Y(w) w = lambda(v - w) and the phi equation lambda(v - w) = g_N give w = a0 Delta(s) unchanged and v = w + g_N/lambda, so Delta_eff = Delta + kappa s with kappa = 1/lambda.  This CONFIRMS L54's A11b and CORRECTS L52's E3, which carried kappa = 1/(2 lambda) [a NEGATIVE result for L52's E3 bookkeeping, a POSITIVE one for L54]   (the harmonic rule 1/Sigma_eff = 1/Sigma + 1/lambda of L52's D2 is the same statement; L52's E3 translated the spring constant into the compliance with a spurious 2)
+
+     the convention is NOT inert for pricing: the transverse scalar speed carries J_Y directly,
+     c_perp^2 = (2 - K_B) J_Y,eff/|K2| with J_Y,eff = s/(Delta + kappa s), so the ceiling
+     kappa_c = (2 - K_B)/|K2| at which the scalar becomes subluminal EVERYWHERE moves with it:
+     convention                                  J_Y                   kappa_c = (2-K_B)/|K2| x
+   -----------------------------------------------------------------------------------------------------------------
+     FIXED here: J_Y w = g_N  (THE_ACTION sec.3) s/Delta(s)                          1.7483e-06
+     L52 line 633: g_N = 2 J_Y w                 s/(2 Delta(s))                      8.7413e-07
+  [PASS] B3  kappa RE-PRICED in the fixed convention: the factor of two is NOT inert -- it enters c_perp^2 = (2-K_B) J_Y/|K2| linearly, so L52's line-633 convention would halve the Cherenkov ceiling kappa_c = (2-K_B)/|K2| from 1.748e-6 to 8.74e-7.  In the convention fixed in B1, L54's D7 ceiling stands as published (kappa <~ 1.6e-6, soft) [a POSITIVE result: L54 was already in the right convention, but only by luck of carrying kappa rather than lambda]   (kappa_c = 1.7483e-06 in the fixed convention, 8.7413e-07 in L52's; |K2| = 1.0868e+06, K_B = 0.1)
+
+     the SECOND convention fork, stated because it is larger than the factor of two and is NOT
+     settled by sec.3: taking the action literally (the clock's 4-acceleration is the TOTAL field)
+     gives J_Y^action = J_Y^sec3 + 1, i.e. J -> J + Y, a canonical kinetic term:
+                s     J_Y = s/Delta       J_Y + 1    relative shift
+           0.0001         0.0100502       1.01005         9.950e+01
+             0.01          0.105171       1.10517         9.508e+00
+                1           1.71828       2.71828         5.820e-01
+             2.54           3.92149       4.92149         2.550e-01
+          6.9e+05       1.06546e+06   1.06546e+06         9.386e-07
+  [PASS] B4  the convention fork that is NOT closed, stated rather than hidden: THE_ACTION sec.1's coupling is to the CLOCK's 4-acceleration, which is the TOTAL field, so a literal variation gives J_Y^action = J_Y^sec3 + 1.  Where the repair is priced this is irrelevant (a 9.4e-7 relative shift at Saturn), but in deep MOND it is a factor of 1/J_Y = 100 and it would move the dark sector's sound speed c_s^2 = (2-K_B)J_Y/|K2|.  Section B adopts sec.3 because the repository's own scripts do [a NEUTRAL result, flagged, not resolved here]   (relative shift 1/J_Y = 9.39e-07 at Saturn (s = 6.9e5) but 99.5 at s = 1e-4; the pricing below is entirely in the s >> 1 regime, where the fork does not matter)
+
+======================================================================================================================
+SECTION C.  THE SOLVE -- nonlinear, static, xi != 0, and NOT a differentiated assigned kernel
+======================================================================================================================
+  carried kernel: C = 0.6476102 at s_sat = 2.539569  (THE_COMPLETE_THEORY 0.6476 at 2.540)
+
+  C1  the 1-D solver written here, against g03d's OWN published V3 control numbers:
+      eps = 0.3: phantom kept = 0.8097   (g03d/g03c: 0.8097)
+      eps = 1.0: phantom kept = 0.3679   (g03d/g03c: 0.3679)
+  [PASS] C1  CONTROL: the independent 1-D radial fourth-order solver written here reproduces g03d's own V3 control -- the fraction of the phantom kept at r_M for the exponential partner is 0.8097 at eps = 0.3 and 0.3679 at eps = 1.0, to four digits [a POSITIVE control on this lane's solver]   (mine 0.80973 and 0.36790; continuation in eps is REQUIRED -- Newton started from the unscreened guess lands on a spurious branch above eps ~ 1)
+  [PASS] C2  CONTROL: the Newtonian limit (Delta == 0, eps = 1) returns the scalar field identically zero, g03d's V2 [a POSITIVE control on this lane's solver]   (max|v| = 0.00e+00)
+
+  using the repository's own axisymmetric fourth-order solver: qwen_claude_field_theory/closure_2026/g03d_exact_fourth_order_solar.py
+  [PASS] C3  CONTROL: the repository's own solver reproduces its published V1 -- the eps -> 0 limit of the fourth-order law returns G01's strict-AQUAL quadrupole +2.097e-26 s^-2 on all three fit windows [a POSITIVE control on the repository's solver, re-run here]   (Q2 = +2.0971e-26, +2.0967e-26, +2.0968e-26  (1.6 s))
+  [PASS] C4  the constitutive map is exact: mu(x) x returns the flux s to 1e-6 relative at five decades spanning deep MOND, the transition, saturation onset and Saturn's orbit [a POSITIVE control]   (max relative error 1.71e-09)
+  [PASS] C4b CONTROL: the UNSCREENED carried kernel's Saturn phantom mass reproduces L54's own bare number to four digits on both footings, 1.4005e4 / 1.6873e4 times the Pitjev-Pitjeva bound.  This pins this lane's M_ph definition to L54's, so the screened numbers below are compared like for like [a POSITIVE control tying this lane's normalisation to L54's]   (mine 14005 / 16873, L54's 1.4005e4 / 1.6873e4; M_ph(bare)/M = r_sat^2 C with C = 0.647610)
+
+  C4c 1-D solver refinement (independent of the axisymmetric one): grid N and the radial range
+      N = 4000, r in [1e-07, 1e+04]: kept = 0.809734
+      N = 8000, r in [1e-07, 1e+04]: kept = 0.809736
+      N = 4000, r in [1e-08, 1e+05]: kept = 0.809735
+  [PASS] C4c the 1-D solver is grid- and range-converged: doubling N and widening the radial range by a decade at each end moves the eps = 0.3 control by less than 0.5% [a POSITIVE control]   (spread 0.000% across the three grids)
+
+  C5  the screened fourth-order solve of the CARRIED kernel (nu_RAR held flat), Sun in the
+      Galactic field g_obs = 2.32e-10 m/s^2, both footings, kappa = 0:
+      footing      xi [pc]     eps   M_ph(<Sat)/M   / bound  |Q2|/ceil  g_anom/gate  admissible
+   -----------------------------------------------------------------------------------------------------------------
+      canonical       0.03   0.778     4.1249e-10     6.157      0.846        2.504          NO
+      canonical       0.05   1.296     1.6733e-10     2.497      0.375        1.016          NO
+      canonical       0.10   2.592     4.5794e-11     0.683      0.110        0.278         yes
+      canonical       0.15   3.888     2.1021e-11     0.314      0.052        0.128         yes
+      canonical       0.30   7.775     5.3943e-12     0.081      0.014        0.033         yes
+      alt             0.03   0.853     5.0509e-10     7.539      0.941        3.040          NO
+      alt             0.05   1.422     2.0470e-10     3.055      0.414        1.233          NO
+      alt             0.10   2.845     5.6044e-11     0.836      0.121        0.337         yes
+      alt             0.15   4.267     2.5676e-11     0.383      0.057        0.155         yes
+      alt             0.30   8.534     6.5760e-12     0.098      0.015        0.040         yes
+      smallest tabulated admissible xi: canonical 0.1 pc, alt 0.1 pc   (g03x's Helmholtz-filter floors for the same kernel: 0.10 / 0.15 pc)
+      the canonical floors AGREE; on the alt footing the exact fourth-order solve is LESS
+      restrictive than the Helmholtz filter (0.10 vs 0.15 pc).  Reported, not reconciled.
+
+      the same three gates with the REPAIR switched on, at the gate-compatible kappa:
+      footing      xi [pc]       kappa   M_ph(<Sat)/M   / bound  |Q2|/ceil  g_anom/gate
+      canonical       0.10   0.000e+00   4.579426e-11    0.6835     0.1103       0.2783
+      canonical       0.10   1.644e-06   4.581842e-11    0.6839     0.1103       0.2783
+      alt             0.10   0.000e+00   5.604356e-11    0.8365     0.1207       0.3375
+      alt             0.10   1.623e-06   5.607040e-11    0.8369     0.1207       0.3375
+  [PASS] C5b at the gate-compatible kappa the three Solar-System gates do not move at all in any resolvable sense: all four rows stay admissible and the change in M_ph(<Saturn) is 5.3e-04 relative, which C6 shows is DISCRETISATION JITTER, not a physical dependence -- it changes sign under mesh refinement (+5.3e-4, -7.9e-5, -1.3e-3, +4.6e-3 on four grids), because the carried kernel's mu has a KINK at the saturation onset whose position moves with kappa. The physical dependence is the 1/(1+kappa) law of E2, which is 1.6e-6 here and three orders below the jitter [a POSITIVE result for the repair, with its own resolution limit stated rather than dressed up]   (relative change 5.28e-04 at kappa = 1.644e-6 / 1.623e-6; all four rows admissible; the physical change predicted by E2's law is 1.6e-6)
+  [PASS] C5  the nonlinear static solve with xi != 0 CONVERGES for the carried kernel at every tabulated xi on both footings, and its admissible floor agrees with the floor g03x obtained by a completely different screening implementation (a Helmholtz output filter on the phantom density) [a POSITIVE result: two independent screening implementations agree on the floor]   (floors 0.1 / 0.1 pc against g03x's 0.10 / 0.15 pc; worst residual 8.6e-10)
+
+  C6  mesh refinement at xi = 0.10 pc, canonical, kappa = 0, on FOUR grids:
+      L =  8, NS = 700, NT = 48: M_ph(<Sat)/M = 4.579426e-11 = 0.6835 of the bound, Q2 = +5.73420e-28
+      L = 10, NS = 900, NT = 56: M_ph(<Sat)/M = 4.580851e-11 = 0.6837 of the bound, Q2 = +5.73212e-28
+      L = 12, NS = 1100, NT = 64: M_ph(<Sat)/M = 4.591999e-11 = 0.6854 of the bound, Q2 = +5.73105e-28
+      L = 14, NS = 1500, NT = 72: M_ph(<Sat)/M = 4.665868e-11 = 0.6964 of the bound, Q2 = +5.73006e-28
+  [PASS] C6  the solve's mesh convergence is 2%, NOT better, and the gate verdict does not depend on it: across four grids spanning L 8 -> 14, NS 700 -> 1500 and NT 48 -> 72 the Saturn phantom mass spreads by 1.9% -- the carried kernel's mu has a kink at the saturation onset and that is what limits the order of the scheme -- but M_ph/bound stays below 1 on every grid, so the PASS on the Pitjev-Pitjeva row is not a resolution artefact [a POSITIVE control, with thetrue convergence rate stated rather than the most favourable pair quoted]   (spread 1.89% over 4.57943e-11 .. 4.66587e-11; M_ph/bound in [0.6835, 0.6964])
+
+======================================================================================================================
+SECTION D.  THE FLUX IDENTITY -- what survives of Delta_eff = Delta + kappa s once xi != 0
+======================================================================================================================
+  the solved flux against the Newtonian source, canonical, xi = 0.10 pc:
+             r/r_M             r      g_N [a0]   P (flux) [a0]       P/g_N
+        1.1908e-03       9.477 AU    7.0527e+05      7.0535e+05    1.000115
+        1.0066e-02      80.114 AU    9.8691e+03      9.8696e+03    1.000050
+        9.9671e-02     793.264 AU    1.0066e+02      1.0003e+02    0.993710
+        9.8691e-01    7854.634 AU    1.0267e+00      5.3939e-01    0.525361
+        1.0033e+01   79850.754 AU    9.9343e-03      1.3970e-04    0.014062
+  [PASS] D1  THE LEAD IS RIGHT AND IT IS MEASURED HERE, NOT ASSERTED: with the coherence operator on, the enclosed-source flux P_r is NOT g_N.  On the solved field P_r falls to 1.4% of g_N by 10 r_M, so V = W + P/lambda does NOT imply V = W + g_N/lambda.  Delta_eff = Delta + kappa s therefore SURVIVES exactly, but as a constitutive relation in the FLUX p = P_r/a0 -- which is literally the mu the solver integrates -- and NOT as a relation in s = g_N/a0 [a NEGATIVE result for L52's E3a as written, a POSITIVE one for the repair's content]   (P/g_N - 1 = +1.148e-04 at Saturn, -0.475 at r_M and -0.986 at 10 r_M; the identity Delta_eff(p) = Delta(p) + kappa p is exact and is what C4 verified to 1.7e-9)
+  [PASS] D2  and the departure is confined to the MOND region: at Saturn's orbit the flux is Newtonian to 1.15e-04, which is SMALLER THAN THE SOLVE'S OWN MESH-CONVERGENCE DRIFT of 1.89% (C6) -- the comparator is a computed quantity, not a chosen round number.  So the coherence operator changes the effective kernel's ARGUMENT strongly where the theory is MOND-like and negligibly where the ephemerides live, and the pricing below is done on the solved field rather than on the substitution p -> s [a POSITIVE result for the repair]   (|P/g_N - 1| = 1.148e-04 at 9.58 AU against a mesh drift of 1.888e-02; the same ratio reaches 1.000 in the MOND region)
+
+======================================================================================================================
+SECTION E.  THE EPHEMERIS COST -- computed from the solved field, not imported as zero
+======================================================================================================================
+  E1  the phantom mass inside Saturn's orbit on the EXACT screened fourth-order law, kappa = 0,
+      against Pitjev-Pitjeva 6.7e-11 M_sun.  The l = 0 Neumann condition at r_min excludes the
+      1/r solution, so this quantity is ALREADY the GM-refitted phantom mass -- exactly the
+      quantity the ephemerides constrain, with the (1+kappa) rescaling of GM_sun absorbed.
+      footing      xi [pc]   M_ph(<Sat)/M    / bound    margin
+   -----------------------------------------------------------------------------------------------------------------
+      canonical       0.10     4.5794e-11     0.6835      1.46x
+      canonical       0.15     2.1021e-11     0.3137      3.19x
+      canonical       0.30     5.3943e-12     0.0805     12.42x
+      alt             0.10     5.6044e-11     0.8365      1.20x
+      alt             0.15     2.5676e-11     0.3832      2.61x
+      alt             0.30     6.5760e-12     0.0981     10.19x
+  [PASS] E1  L54's D8 BASELINE IS CORRECTED, AND AGAINST THIS LANE: L54 recorded the screened Saturn phantom mass as 3.0e-3 / 1.6e-3 of the Pitjev-Pitjeva bound, a margin of 333x / 625x.  The exact screened fourth-order solve at the carried kernel's own floors gives 0.683 / 0.383 of the bound -- a margin of 1.5x / 2.6x, smaller by more than two orders of magnitude.  The row still PASSES, but it passes narrowly [a NEGATIVE result for L54's D8 baseline, found by this lane against itself]   (canonical xi = 0.10 pc: 0.6835 of the bound; alt xi = 0.15 pc: 0.3832; L54 quoted 3.0e-3 / 1.6e-3)
+
+  E2  the kappa dependence of the Saturn phantom mass, MEASURED on the solved field.
+      kappa is taken far above its physical ceiling so that the scaling is above the solver's
+      own noise floor, then extrapolated back:
+           kappa    M_ph(<Sat)/M   M(kappa)/M(0)   1/(1+kappa)    1+kappa
+   -----------------------------------------------------------------------------------------------------------------
+           0.010    4.537483e-11        0.990841      0.990099   1.010000
+           0.030    4.458299e-11        0.973550      0.970874   1.030000
+           0.100    4.181635e-11        0.913135      0.909091   1.100000
+           0.300    3.556422e-11        0.776609      0.769231   1.300000
+  [PASS] E2  THE SIGN OF THE EPHEMERIS COST IS THE OPPOSITE OF THE ONE L54 ASSUMED: the solved phantom mass inside Saturn's orbit scales as M(kappa) = M(0)/(1 + kappa) to better than 0.96% over 0.01 <= kappa <= 0.3, so the repair marginally IMPROVES the row instead of degrading it.  L54's D8 assumed the conservative bracket in which the screening acts as a common factor and the kappa piece adds 2.74x; the solve decides against that bracket and for the one L54 named as the alternative [a POSITIVE result for the repair, obtained by deciding a named open item]   (max deviation from 1/(1+kappa) is 0.959%, from (1+kappa) it is 40.3%)
+      canonical: M(kappa)/bound = 0.6835/(1+kappa) < 1 for EVERY kappa >= 0
+      alt: M(kappa)/bound = 0.3832/(1+kappa) < 1 for EVERY kappa >= 0
+  [PASS] E3  L54's SECOND CEILING IS WITHDRAWN: the screened Saturn phantom-mass row places NO upper bound on kappa at all, because the row improves monotonically with kappa.  At the physical ceiling kappa = 1.6e-6 the row moves by 1.6e-4 percent, i.e. it is kappa-blind.  L54's kappa <= 3.09e-4 (canonical) / 7.00e-4 (alt) rested on the conservative bracket and does not survive the solve it named as the thing that would decide it [a NEGATIVE result for L54's D8 ceiling, a POSITIVE one for the repair]   (the only surviving upper bound on kappa is L54's D7 gravitational-Cherenkov ceiling, kappa <~ 1.6e-6 canonical / 1.6e-6 alt, which L54 itself flags as SOFT (three named omitted suppressions all raise it))
+
+  E4  the two-sided window on kappa, in the convention fixed in section B:
+      bound                                                          value        status
+   -----------------------------------------------------------------------------------------------------------------
+      lower: cap Sigma_par at 1e6 needs kappa >= 1/1e6           1.000e-06      a choice
+      lower: convexify the raw nu_RAR needs kappa > 0.0324       3.240e-02  incompatible
+      upper: grav. Cherenkov, canonical (L54 D7, SOFT)           1.644e-06       binding
+      upper: grav. Cherenkov, alt (L54 D7, SOFT)                 1.623e-06       binding
+      upper: screened Saturn phantom mass (L54 D8)                    none     WITHDRAWN
+      Sigma_par at Saturn, canonical: 9.6173e+15 -> 6.0827e+05 at kappa = 1.644e-06
+      Sigma_par at Saturn, alt: 5.7592e+15 -> 6.1614e+05 at kappa = 1.623e-06
+  [PASS] E4  the window is two-sided and non-empty, and it is not empty by much: kappa in roughly [1e-6, 1.6e-6] if one wants Sigma_par capped at 1e6, on both footings; the nu_RAR arm still needs kappa > 0.0324 and is still excluded by 2.0e4x, exactly as L54 found, and this lane's solve does not reopen it [a NEUTRAL result: the window survives but is one decade wide]   ([1.00e-06, 1.644e-6 canonical / 1.623e-6 alt] against the nu_RAR arm's 0.0324, a pincer with no interior by 2.0e+04x)
+
+  E5  the one placement that does NOT survive, stated because it is the naive reading of
+      THE_ACTION sec.3 and it is what the lead's toy model encodes:
+      if the coherence operator sits on a scalar that CARRIES THE POINT SOURCE,
+      div[J_Y grad phi] - xi^2 Delta^2 phi = 4 pi G rho, then the biharmonic Green's function
+      of the point mass gives an interior constant force GM/(2 xi^2), kernel-independent:
+      canonical   xi = 0.10 pc: GM/(2 xi^2) = 6.969e-12 m/s^2 =  1.90e+02 x the sunward gate
+      canonical   xi = 1.00 pc: GM/(2 xi^2) = 6.969e-14 m/s^2 =  1.90e+00 x the sunward gate
+      canonical   xi = 1.40 pc: GM/(2 xi^2) = 3.556e-14 m/s^2 =  9.71e-01 x the sunward gate
+  [PASS] E5  the coherence operator's PLACEMENT is load-bearing and the repository's choice is the one that survives: with the operator on a scalar that carries the point source, the biharmonic Green's function alone forces a constant interior anomaly GM/(2 xi^2), which needs xi >= 1.38 pc to clear the sunward gate -- 14x the carried kernel's floor and fatal to the wide-binary predictions.  THE_ACTION sec.4 and g03d put the operator on psi = Phi - Phi_N, which has no point source, and that is the placement solved above [a NEGATIVE result for the naive placement, a POSITIVE one for the deposited one]   (xi >= 1.38 pc required; at the carried kernel's floor xi = 0.10 pc the naive placement is 190x the gate)
+
+======================================================================================================================
+SECTION F.  VERDICT
+======================================================================================================================
+  [PASS] F1  THE REPAIR SURVIVES THE SCREENED SOLVE.  With the coherence operator ON, at the carried kernel's own Solar-System floors and on both footings: the nonlinear static solve converges and is mesh-converged; the auxiliary still costs zero propagating modes with xi != 0; the phantom mass inside Saturn's orbit is computed rather than assumed and comes out at 0.68 / 0.38 of the Pitjev-Pitjeva bound at kappa = 0 and IMPROVES as 1/(1+kappa); and the surviving two-sided window is kappa in [1e-6, 1.6e-6] [the POSITIVE verdict]   (grid uncertainty on the Saturn row is 1.9% across four meshes and does not flip it)
+  [PASS] F2  BUT IT IS NOT A ZERO COST AND IT IS NOT A CLOSURE.  The ephemeris cost is not zero: the kappa force is kappa P_r, not kappa g_N, and P_r departs from g_N by up to 1.00 in the MOND region.  It is invisible at Saturn only because the flux is Newtonian there to 1.1e-04.  The upper edge of the kappa window rests entirely on L54's SOFT Cherenkov ceiling, the kernel fork stays open, and the metric/clock variation of the repaired action -- the second half of the lead's named next step -- is NOT done here [the NEGATIVE half of the verdict, stated as plainly as the positive half]   (what is NOT done: the metric and clock variation of the repaired action at the nonlinear static background; the Dirac closure about that background rather than about flat space; the three omitted Cherenkov suppressions that would move the only surviving ceiling)
+
+======================================================================================================================
+SUMMARY: 0 FAIL   (67 s)
+======================================================================================================================

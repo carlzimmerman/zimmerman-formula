@@ -2657,3 +2657,41 @@ locked identity ∇²(Φ+Ψ) = 8πGρ, and Step E's 1488× on both footings.
 - **Genuinely open, and labelled in the paper:** the degree-1 theorem assumes asymptotic homogeneity, so
   a never-power-law interpolating form factor is uncovered; η = 3/4 is linear-response; and **cubic and
   higher invariants were not enumerated**, though the method extends to them.
+
+## L64 — the screened stiffness repair is a RESULT, corrects two of our own numbers, and repairs a sector L60's kill does not touch
+
+`L64_screened_solve.py` + `L64_SCREENED_SOLVE.md` (**31 checks, 31 PASS**, two independent solvers, 67 s).
+The last named open item on the L52/L54 stiffness repair, and the item astra independently named: a
+normalised nonlinear static solve with the coherence operator on, and the ephemeris cost computed rather
+than assumed.
+
+**Controls.** L52's D-free positivity identity rebuilt not quoted; L54 re-run at **73/73 PASS** with its
+controls 2/3/5/3; a Dirac counter returning **1/2/3/1** on free scalar, Maxwell, Proca and the lead's
+auxiliary model; g03d's three Solar-System values reproduced; and **the lead's exact counterexample
+reproduced as a negative control** — the response change is 1/(Σ_eff+X) − 1/(Σ+X), exactly 1/6 not 1 at
+the test point. **The lead was right, and it is confirmed here.**
+
+- **⭐ THE REPAIR SURVIVES THE SCREENED SOLVE.** With ξ ≠ 0 in two independently validated solvers it
+  still costs **zero propagating modes** (both negative controls fire: a kinetic term takes it to 4, and
+  degenerating the entry deletes the mode to 0), and its effective kernel Δ_eff = Δ + κp holds **exactly**
+  — verified to 1.7e-9 — **but in the flux, not in g_N**. The coherence operator changes the kernel's
+  **argument, not its form**.
+- **⚠️ IT CORRECTS TWO OF L54's OWN NUMBERS, one each way.** The ephemeris cost is **computed**: the
+  phantom mass inside Saturn's orbit is **0.68 of the bound canonical, margin 1.5×**, not L54's 333×. And
+  the κ-dependence is **M_ph(κ) = M_ph(0)/(1+κ)** — the repair **improves** the row — so **the Saturn row
+  gives no κ ceiling at all, and L54's 3.1e-4 / 7.0e-4 ceiling is WITHDRAWN.** The only surviving upper
+  bound is L54's soft Cherenkov one, giving **κ ∈ [1e-6, 1.6e-6]**.
+- **The normalisation dispute is settled from the action:** J_Y V = a with **no factor of two**, so
+  L52 line 633's g_N = 2 J_Y w is a slip and §3 is right, and **κ = 1/λ**, correcting L52's 1/(2λ). The
+  re-pricing is **not inert** — it enters the transverse speed linearly — but L54's ceiling was carried in
+  κ, so it stands. **A second, larger normalisation fork (J_Y^action = J_Y^§3 + 1) is flagged and not
+  closed.**
+- **⚠️ The operator placement is load-bearing, and would have killed the repair had the repository not
+  already chosen right.** Stated, not buried.
+- **⚠️⚠️ THE CONTEXT THAT MATTERS MOST: this repairs a sector ORTHOGONAL to the one L60 killed.** L64
+  fixes the **longitudinal** stiffness, the unwritable cubic action and the Solar-System screening. L60's
+  deep-MOND kill is in the **transverse** gradient term, through the lapse-channel subtraction, and L64
+  does not touch it. **The deposited action remains dead in deep MOND regardless of this repair.** L64's
+  value is now conditional: it transfers to astra's action **only if** L66 finds that action survives the
+  L60 kill. **Not a closure** on its own terms either — the metric/clock Dirac closure about the nonlinear
+  background is not done, the upper κ edge rests on a soft bound, and the Saturn mesh convergence is 2%.
