@@ -1186,6 +1186,96 @@ gamma by −0.0150 (flagged systematic, §1.5). DR3 dry run: §1.6 numbers,
 > `GAMMA_B_CEIL = 1.0450` / `GAMMA_B_CEIL_ALT = 1.0300` and `report_7e` prints the distances
 > to them; no registered number of Arm A moved; the readiness audit re-run.
 
+> ### 🚨 AMENDMENT 12 — 2026-09-09, ADDED IN THE OPEN BEFORE DR4. READ BEFORE SCORING.
+>
+> **AMENDMENT 11(b) REGISTERED ARM B AT A COHERENCE LENGTH THAT IS WRONG FOR THE STRUCTURE
+> AMENDMENT 11(b) NAMES. THIS AMENDMENT CORRECTS THE LENGTH, THE ARM B PREDICTION AND THE
+> KILL THRESHOLD, DECLARES WHICH STRUCTURE IS IN FORCE, AND STATES AGAINST INTEREST THAT ARM B
+> IS NOT A TESTABLE ARM.**  It adds; it moves nothing already registered, and **Arm A is
+> untouched.**
+>
+> **(a) The defect.**  Amendment 11(b) cited ξ ≥ 0.10 pc canonical / 0.15 pc alt from
+> `g03d_exact_fourth_order_solar.py`.  The error is one of **scope, not arithmetic**: the
+> machinery that produced that floor **never evaluates the fourth-order coherence operator on
+> the point mass at all**.  `g02_filtered_efe.py` and `g03x` (the floor's actual source) contain
+> no fourth-order operator; `g03d` and `g03g` do, but apply it to a field whose source is
+> suppressed by 9.3e-7 at Saturn.  Quantified: three screening laws share the observable and the
+> ξ-scaling and differ in normalisation by **1 : 262 : 5.37e5**, and the factor to the deposited
+> paper's formula is *exactly* g_N(Saturn)/(2Ca₀) — the paper suppresses the **saturated
+> residual**, the equation suppresses the **Newtonian source**.
+>
+> **(b) The corrected coherence length.**  Solving the registered structure's own scalar
+> equation drives the scalar gradient onto the **biharmonic cone**, giving an enclosed
+> phantom-mass fraction of exactly **r²/(2ξ²)** — kernel-free, a₀-free and mass-free.  The
+> Pitjev–Pitjeva Saturn phantom-mass bound then forces
+>
+> > **ξ ≥ 4.00 pc** (Saturn gate), or **ξ ≥ 1.38 pc** on the sunward gate alone, **identical on
+> > both footings.**
+>
+> Reproduced three independent ways — an exact symbolic Green's function verified for arbitrary
+> background stiffness, a 3-D FFT solve, and a Newton boundary-value solve in a different
+> variable.  **Robust to a realistic source**: six mass models from a point through a polytropic
+> Sun to the planets, interstellar medium and local Oort density reproduce the law to **0.24%**,
+> and **every departure RAISES the phantom mass**.  **Independent of any kernel continuation**:
+> no solve reaches even half the boost ceiling.
+>
+> **(c) Corrected Arm B prediction — evaluated with the SAME frozen estimator Amendment 11
+> registers** (control: it reproduces both published numbers, `g03g` 1.0325/1.0400 and `g03y`
+> 1.0450/1.0300).
+>
+> | | canonical | alt |
+> |---|---|---|
+> | Amendment 11(b) as registered | 1.0450 | 1.0300 |
+> | **corrected, at ξ ≥ 4.00 pc (Saturn gate)** | **1.0000 ± 0.0025** | **1.0000 ± 0.0025** |
+> | corrected, at ξ ≥ 1.38 pc (sunward gate only) | 1.0025 ± 0.0037 | 1.0025 ± 0.0037 |
+>
+> γ_force = 1 + r²/(2ξ²): mass-free, orientation-free, external-field-free and a₀-free.  The
+> boost at 20 kAU is **2.876e-4** against the registered ceiling's 9.2e-2, a factor **320**.
+>
+> **The registered ceilings are NOT falsified — the corrected value stays below them.**  They are
+> **vacuous**: 320× too loose, excluding nothing.  **Stated against interest: this makes Arm B
+> WEAKER than registered, not stronger.**  There is **no coherence length inside the registered
+> structure that both passes the Solar System and returns 1.0450** — that needs ξ = 0.226 pc,
+> excluded by **313×** on the Saturn phantom mass.
+>
+> **(d) Corrected decision rule — the operative change.**  Amendment 11(d)'s kill-from-above
+> threshold moves:
+>
+> > **≥ 1.129 → ≥ 1.084.**
+>
+> **As registered, a DR4 result in [1.084, 1.129] would kill Arm B and the table would not say
+> so.**  Amendment 11(d)'s row "1.007–1.056 → decided for B" is also wrong at the supported ξ,
+> since the corrected prediction is 1.0000 and that interval no longer contains it.  **Every
+> other row of the section-1 table, and every Arm A reading, is unchanged.**
+>
+> **(e) Structure declaration — CARRIER, decided 2026-09-09.**  The deposited paper
+> (DOI 10.5281/zenodo.22667688) and `THE_ACTION_2026-09-05.md` both display the coherence
+> operator **inside** the MOND function with a **carrier** source, and Amendment 11(b) names that
+> structure verbatim.  The registered γ_v was nonetheless computed by a solver using the
+> **outside** placement **and** an **AQUAL** source; those placements give floors of **4 pc and
+> 585 pc** and are not interchangeable.  **The programme is hereby declared to be the CARRIER
+> reading**, so the ambiguity cannot be resolved after the data.
+>
+> **(f) What is NOT corrected.**  **Arm A is untouched** — its band (1.1614–1.1814 /
+> 1.1917–1.2267) comes from the frozen kernel taken as modified gravity with **no** coherence
+> length, so nothing above bears on it.  Every clause of Amendments 10 and 11(a) stands.  The
+> estimator, the cut table, the error model, the frozen N, both footings, and the no-verdict edge
+> 1.23 are unchanged.  **κ = ½ remains FITTED, not derived.**  No measurement moves.
+>
+> **(g) Declared cost, against interest.**  Arm B was already the arm DR4 cannot confirm over
+> Newton.  At the corrected ξ it becomes **indistinguishable from Newton by this estimator**.
+> Combined with the separate finding that the frozen σ_sys = 0.020 caps Arm B at **2.25σ
+> canonical / 1.50σ alt at INFINITE N**, **Arm B is not a testable arm of this preregistration**,
+> and this amendment says so rather than leaving it to be discovered after the data.
+>
+> **(h) Provenance.**  `fable_independent_2026/L47_xi_collision.py` (31 checks, 13 FAIL, all 10
+> controls pass; the three independent solves, the realistic-source robustness, the corrected
+> estimator readings and the placement conflict), corroborating
+> `fable_independent_2026/L30_saturated_branch.py` (23 checks, all 7 controls pass; 54 exact
+> solves each matching an analytic interior prediction to 1%).  Filed on the owner's explicit
+> instruction; the draft that preceded it is retained at `AMENDMENT12_DRAFT_NOT_FILED.md`.
+>
+
 ---
 
 ## SECTION 2 — s^TX SME boost-dipole template (Door 4B, Front A)
