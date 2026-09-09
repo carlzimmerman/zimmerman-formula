@@ -1,23 +1,29 @@
 # Lean 4 formalization of the F(Q)Θ MOND-completion lemmas
 
+> **Scope — what Lean certifies here.** Lean proves *mathematical theorems*, not physical laws. This file
+> machine-checks the internal mathematics the F(Q)Θ theory rests on (kernel, health-sign dichotomy, the
+> cuscuton degeneracy, the dust/stiff density structure, the MOND limits). Whether the theory is a *law of
+> nature* is decided by its falsifiable predictions (dwarf σ–R_gc EFE, flat a₀(z), subdominant scalar GW)
+> confronting data — not by Lean, and not while the intrinsic BBN fine-tuning (L84/L87) and astra's open
+> ADM/khronon gates stand. A green Lean build guarantees the math is sound; it does not certify the physics.
+
+
 `Mondlean.lean` formalizes, in Lean 4 (toolchain `leanprover/lean4:v4.34.0-rc2`) against mathlib, the
 load-bearing **mathematical** lemmas behind the de Sitter–MOND F(Q)Θ completion (lanes L80–L82; astra's
 F(Q)Θ construction). It formalizes the mathematics, not the physics.
 
-## Theorems
+## Theorems (all machine-verified: exit 0, zero `sorry`, axioms ⊆ {propext, Classical.choice, Quot.sound})
 
-- `kernel_identity` — the exact-exponential primitive gives the MOND kernel: `Gp y / (2y) = 1 − exp(−y)`,
-  where `Gp y = 2y(1 − exp(−y))`. (`Gp = dG/dy` is the symbolically verified derivative from L80/L82.)
-- `Gpp_zero` — `G''(0) = 0`: the longitudinal stiffness vanishes at the zero-field point — astra's
-  strong-coupling / loss-of-ellipticity obstruction, formalized.
-- `Gpp_pos` — `∀ y > 0, G''(y) > 0`: a **stable massive scalar wherever the field is nonzero** (no ghost off
-  the zero-field point). This is the exact health dichotomy astra's ADM principal gate found.
-- `cubic_leading` — `G(0) = Gp(0) = Gpp(0) = 0`: G's Taylor expansion begins at the **cube**, which is why
-  the MOND operator is cubic in the perturbation and drops from the quadratic cosmological action (L82),
-  leaving standard gravity + a pressureless dust.
-- `affine_degeneracy` — `K_QQ = 3 F_Q²/(2M²) ⟺ 2M²K_QQ − 3F_Q² = 0`: the cuscuton / det-W degeneracy.
-- `sound_speed_zero` — gradient coefficient 0 with positive kinetic coefficient ⟹ `c_s² = 0` (the L82
-  pressureless-clustering key).
+- `hasDerivAt_G`, `hasDerivAt_Gp` — **Gp = dG/dy and Gpp = d²G/dy² proven as derivatives** (not merely asserted).
+- `kernel_identity` — the MOND kernel G'(y)/(2y) = 1 − e^{-y}.
+- `Gpp_zero`, `Gpp_pos` — the **health dichotomy**: G''(0)=0 (zero-field obstruction), G''(y) > 0 ∀ y>0 (stable massive scalar, no ghost off zero field).
+- `cubic_leading` — G(0)=G'(0)=G''(0)=0 ⇒ MOND term is cubic (drops from the linear cosmological action).
+- `affine_degeneracy` — the cuscuton/det-W degeneracy K_QQ = 3F_Q²/(2M²) ⟺ 2M²K_QQ − 3F_Q² = 0.
+- `density_affine` — the FLRW density = (Λ-const + back-reaction) + a⁻³ **DUST** cross term + a⁻⁶ **STIFF** term (the L84/L87 structure, an exact identity).
+- `stiff_coeff_ne_zero` — the a⁻⁶ stiff coefficient −M²/(3f²) ≠ 0 for M,f ≠ 0 (the intrinsic BBN fine-tuning, L87).
+- `sound_speed_zero` — c_s² = 0 (pressureless dust; the L82 clustering key).
+- `mu_deep_slope` — deep-MOND: μ(η)=1−e^{-η} has slope 1 at η=0 (μ ≈ η).
+- `mu_newton_limit` — EFE/strong-field: μ(η) → 1 as η → ∞ (Newtonisation; the L89 External Field Effect saturating to the GR/DM baseline).
 
 ## Build
 
@@ -26,7 +32,7 @@ lake exe cache get      # download prebuilt mathlib oleans
 lake build Mondlean
 ```
 
-## Status (2026-09-09) — GREEN, MACHINE-VERIFIED
+## Status (2026-09-09) — GREEN, MACHINE-VERIFIED (12 theorems)
 
 `lake build Mondlean` compiles **clean (exit 0), zero `sorry`/`admit`**, and `#print axioms` shows every
 theorem (`kernel_identity`, `Gpp_pos`, `Gpp_zero`, `cubic_leading`, `affine_degeneracy`, `sound_speed_zero`)
