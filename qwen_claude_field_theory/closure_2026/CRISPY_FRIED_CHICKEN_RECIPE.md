@@ -12,7 +12,23 @@ structure together. Checks remain honest: a failure identifies a construction
 obligation; it is not permission to conceal the failure or relax a requirement.
 Historical obstructions are reference material, not the main deliverable.
 
-**Current constructive checkpoint (2026-09-08, IC17):**
+**Current constructive checkpoint (2026-09-08, IC18):**
+[The pinned-clock handoff](integrable_clock_construction_2026/IC18_HANDOFF.md)
+removes the mixed clock–matter principal coupling by a varied auxiliary
+constraint, preserving a positive causal clock and radiation/dust expansion
+on its exact Einstein plateau. It adds no propagating auxiliary. The same
+global action's homogeneous transition has now been varied: a located
+primary/secondary rank-loss point fails the next preservation condition.
+Retain the working pin mechanism; repair or rigorously exclude that transition
+branch before claiming a global theory. No PPN, matched MOND galaxy, empirical
+fit or full closure is certified. Exact checks and strict refusals are linked
+in the new computation record.
+The next discriminating input is Carl's original a0–Lambda normalization,
+which the obsolete tuned witness did not implement. A separate finite probe
+removes the sampled homogeneous transition roots, not the obligation to
+construct a regular spatial connection. It is not counted as closure.
+
+**Previous constructive checkpoint (2026-09-08, IC17):**
 [The pole-clock handoff](integrable_clock_construction_2026/IC17_HANDOFF.md)
 specifies the action-derived early radiation/cold-clock construction, actual
 baryon-source variation, and a corrected scope audit of the transition
