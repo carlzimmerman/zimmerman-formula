@@ -1,0 +1,377 @@
+==========================================================================================================================
+L49 -- the MINIMUM ADDITION: what must be added to the deposited action, and what does adding it cost?
+==========================================================================================================================
+  sources, all committed products of this repository; nothing below is retyped from prose:
+    clusters : qwen_claude_field_theory/closure_2026/cluster_measurement_audit_2026/results.json
+    galaxies : real_research/data/sparc_data/*_rotmod.dat  +  SPARC_Lelli2016c.mrt
+    pairs    : real_research/data/2mrs_catalog.csv   (rebuilt here, not reused)
+    theory   : THE_COMPLETE_THEORY_2026-09-08.md section 3.2 (the tachyon), section 5 (the eleven gates)
+
+==========================================================================================================================
+PART A -- CONTROLS.  Four of L41's specification anchors, the framework's own residual, the tachyon rate,
+          and the exhibited point's PPN parameters, each recomputed from its own data with new code.
+==========================================================================================================================
+        alt: 12 clusters at 1000 kpc -- f_bar 0.149, Newtonian M_dark/M_bar 5.73 +/- 0.68 (12% scatter), post-kernel residual 2.76 M_bar
+  canonical: 12 clusters at 1000 kpc -- f_bar 0.149, Newtonian M_dark/M_bar 5.73 +/- 0.68 (12% scatter), post-kernel residual 3.09 M_bar
+  [PASS] X1 [control, anchor R1] an independent recomputation returns L7/L41's cluster amount 5.73 +/- 0.68 and f_bar = 0.149 at 1000 kpc (0.80 R500), on both footings   (M_dark/M_bar = 5.73 +/- 0.68 (a_0-independent), f_bar = 0.149)
+  [PASS] X6 [control] the framework's OWN post-kernel cluster residual reproduces THE_COMPLETE_THEORY's 3.09 M_bar (canonical) / 2.76 M_bar (alt) -- the amount any addition must actually supply   (3.09 (canonical) / 2.76 (alt) M_bar; the kernel therefore already supplies 2.64 / 2.97 M_bar of the missing 5.73)
+  required source rho_X = d(M_HSE - M_bar)/dr / 4 pi r^2 over 40-750 kpc, 12 clusters: -1.436 (per cluster -1.22, -1.64, -1.47, -1.35, -1.16, -1.43, -1.54, -1.39, -1.51, -1.51, -1.72, -1.27)
+  [PASS] X3 [control, anchor R3] an independent read of the audited cluster profiles reproduces g04a/L41's required source density slope rho_X ~ r^-1.5 over 40-750 kpc   (recomputed -1.436 against g04a's -1.53 and L41 D2's -1.42)
+  projected shear log-slope d ln DeltaSigma / d ln R over 0.5-2 Mpc, from Herbonnet's own M200 + Dutton-Maccio: -0.851 +/- 0.040 (per cluster -0.90, -0.81, -0.76, -0.80, -0.98)
+  [PASS] X4 [control, anchor R4] the shear-shape gate is reproduced AND shown passable: a dark component with an NFW shape gives the measured projected shear log-slope, so any later FAIL is about the candidate and not about the gate   (NFW gives -0.851 against L24's measured -0.851 +/- 0.040, and the framework's phantom gives -0.309, short by +0.542 at 9 sigma. HONESTY NOTE, because this control is weaker than it looks: the 'measured' slope is itself an NFW-from-M200 construction (Herbonnet's published masses pushed through Dutton-Maccio), so an NFW cold component agreeing with it is close to tautological. What is NOT tautological, and is the load-bearing half of R4, is that the framework's own near-uniform phantom misses it by 9 sigma)
+  pairs rebuilt: N = 1900, median r_p = 132 kpc, median M_b(pair) = 1.55e+11 Msun; Newtonian-on-baryons A = 5.645 +/- 0.136  =>  M_dark/M_bar = A^2 - 1 = 30.9 +/- 1.5
+  [PASS] X2 [control, anchor R6] an independent rebuild of the 2MRS pair sample reproduces L21/L41's pair amount 30.9 +/- 1.6 within the pair separation   (N = 1900 vs 1900; A = 5.645 vs 5.645; ratio 30.9 +/- 1.5 vs 30.9 +/- 1.6)
+  clock tachyon, from THE_COMPLETE_THEORY 3.2 / g03w: rate^2 = |K_2| Q_0^2 eps_0 a^-3 / c_14, and with the
+    condensate carrying Omega_d this is |K_2| Q_0^2 eps_0 = 3 H_0^2 Omega_d, so |K_2| and Q_0 CANCEL:
+    rate/H_0 at c_14 = 1e-5: 282 today, 2.82e+05 at a = 0.01 [published 282 H_0 and 2.8e5 H_0]
+    stability rate <= H at every a needs c_14 >= 3 Omega_d/Omega_m = 2.5333; PPN alpha_1 = -4 c_14 needs c_14 <= 2.5e-05  =>  a gap of 1.0e+05
+  [PASS] X5 [control] the clock-tachyon rate that killed the original condensate is reproduced, together with the 1e5x gap between its stability requirement and the PPN bound   (282.5 H_0 today, 2.82e+05 H_0 at a = 0.01; c_14 >= 2.533 vs <= 2.5e-05, gap 1.0e+05x)
+  exhibited point: K_B = 0.2, c_14 = 1.0000e-06, sigma = 1.679312732, c_2 = 1.679318e-06, |K_2| = 1.9294e+06
+    alpha_1: the identity -4 c_14 gives -4.000e-06; the full Foster-Jacobson expression at the same point gives -4.000e-06 (they agree to 2.9e-11); bound 1e-4
+    alpha_2 = (c_14/2)(1/sigma - 1) = -2.023e-07, bound 4e-7, margin 1.98x; Foster-Jacobson gives -2.023e-07
+    S_eff on the closure locus = 0.000000; ceiling S_eff <= 1 - 1/sigma_max = 0.4355 at the top of the clock window sigma < 1.7716
+  [PASS] X7 [control] the exhibited point's preferred-frame parameters, its exactly-vanishing linear MOND source and the derived cosmological ceiling reproduce THE_COMPLETE_THEORY section 5   (alpha_2 = -2.023e-07 vs the document's -2.02e-7 with margin 1.98x vs 1.98x; S_eff = 0.0e+00 exactly; ceiling 0.4355 vs 0.4355.  ONE DOCUMENTATION ITEM FLAGGED, not resolved here: the document quotes alpha_1 = -4.48e-6 (canonical) / -4.25e-6 (alt), but alpha_1 = -4 c_14 is footing-INDEPENDENT and both the identity and the full Foster-Jacobson expression give -4.00e-06 at the exhibited c_14 = 1e-6; the quoted pair is 12%/6% away and appears to be read off a grid point rather than the exhibited point.  The bound is cleared either way by a factor 22-25)
+
+==========================================================================================================================
+PART B -- THE TARGET, stated from the data.  L41's ten requirements, with the two COSMOLOGICAL entries
+          L41 did not carry (the CMB cold-matter density, and linear growth) added as R12 and R13.
+==========================================================================================================================
+  R7 recomputed: the carried kernel absorbs 0.408 M_b (canonical) / 0.419 (alt) inside 10 kpc at L* (M_b = 8e10) and 0.589 / 0.594 at a dwarf (M_b = 2e9), before g_obs moves by 0.11 dex
+
+  requirement                        established by
+  ----------------------------------------------------------------------------------------------------------------------
+  R1  amount, cluster                X1, X6 here
+                                     M_X/M_bar = 5.73 +/- 0.68 at 0.80 R500 (1000 kpc), universal to 12%; the framewo
+                                     rk's kernel already supplies 2.64, so the ADDITION must supply 3.09 / 2.76 M_bar
+  R2  under the HSE bias             L18
+                                     the requirement runs 5.73 -> 9.04 over the measured b in [0, 0.33]; every escape
+                                      needs b < 0, i.e. sigma^2 < 0 in twelve of twelve clusters
+  R3  3-D shape                      X3 here
+                                     rho_X ~ r^-1.44 over 40-750 kpc, not flat; any core radius <~ 750 kpc
+  R4  projected shear                X4 here / L24 C11
+                                     d ln DeltaSigma/d ln R = -0.851 +/- 0.040 over 0.5-2 Mpc, DeltaSigma > 0; an NFW
+                                      shape gives -0.851 and PASSES
+  R5  lensing == dynamics            L24 C8
+                                     S_lens - S_dyn = +0.37 +/- 0.24 (1.55 sigma): the source gravitates identically 
+                                     in both probes, so no lensing sector can repair a dynamical shortfall
+  R6  mass-scale, NON-monotone       X2 here / L21 S1
+                                     M_X/M_bar = 30.9 +/- 1.5 within 132 kpc of a 1.5e+11 Msun pair against 5.73 at 1
+                                     000 kpc of a cluster
+  R7  galaxy non-overshoot           here / L21 S6
+                                     <= 0.408 M_b inside 10 kpc at L* and <= 0.589 M_b at a 2e9 Msun dwarf, ON TOP of
+                                      the kernel
+  R8  phase-space floor              g04a R3/R4b
+                                     Tremaine-Gunn m >= 4.67 eV at sigma = 886 km/s for a fermionic relic, and not si
+                                     tting at that floor (which cores it and fails R3)
+  R9  abundance if a FORCE           L5, L6
+                                     Omega_X/Omega_b = 5.43; a force instead of mass needs G_cosmo/G_local <= 1.2 fro
+                                     m BBN against 9.2 (fixed-range) and 1.82 (monotone screening)
+  R10 not a kernel                   L2, L22
+                                     no single-valued Delta(s) serves both populations (2.2-5.1x, |z| = 13); the sole
+                                     noidal field is exactly invisible to the enclosed-mass inversion
+  R11 one host-blind rule            L41 B4, C2
+                                     R1 and R6 with ONE rule M_X = C M_b^a r^b: the three admissible windows are pair
+                                     wise DISJOINT and the pairs' own internal rule over-predicts clusters by 49x
+  R12 CMB cold-matter density  [NEW HERE] Planck 2018
+                                     Omega_c h^2 = 0.1200 +/- 0.0012 (Planck), i.e. Omega_X/Omega_b = 5.36; a pressur
+                                     eless component with this density and no coupling to photons is what sets the th
+                                     ird acoustic peak and the odd/even peak ratio
+  R13 linear growth            [NEW HERE] g04h, L29, THE_COMPLETE_THEORY 5(b)
+                                     delta must grow from ~1e-5 at recombination to O(1) today, which needs a pressur
+                                     eless component; the action's own linear MOND source is capped at S_eff <= 1 - 1
+                                     /sigma = 0.4355 and returns sigma_8 <= 0.65 with a 20-2000x P(k) deficit at k = 
+                                     0.5-1 h/Mpc at ANY |K_2|
+
+  S1 -- do the cluster requirement and the CMB requirement name the SAME number?  Clusters measure 5.73 +/- 0.68; Planck's Omega_c h^2 / Omega_b h^2 = 5.36.
+  [PASS] S1 the amount clusters require and the cold-matter density the CMB fixes are the same number within the cluster scatter -- so ONE component can serve both, which is what makes a minimum addition possible at all   (5.73 +/- 0.68 against 5.36, 0.5 sigma. NOTE the honest caveat carried from L18: with the measured hydrostatic bias b in [0, 0.33] the cluster number runs to 9.04, so the agreement is at b = 0 and degrades with b (it needs 40% baryon depletion at b = 0.33). This check does NOT claim a measurement of dark matter)
+  [FAIL] S2 the action's own linear MOND source could supply R13 without any new component   (it cannot: the derived ceiling is S_eff <= 1 - 1/sigma = 0.4355 and at the exhibited point S_eff = 0.0e+00 EXACTLY (the closure locus), so the linear source is not merely small but zero; g04h/L29 measure sigma_8 <= 0.65 and a 20-2000x P(k) deficit at any |K_2|)
+
+==========================================================================================================================
+PART C -- CANDIDATE A: a cold collisionless component added directly to the matter sector.
+          Treated as a candidate, not as a defeat.  Does it satisfy the specification?
+==========================================================================================================================
+  M1 amount.  A component at the cosmic share supplies 5.43 M_bar; clusters measure 5.73 +/- 0.68.
+  [PASS] M1 [R1] a cold component at the cosmic dark-to-baryon share supplies the cluster amount   (5.43 against 5.73 +/- 0.68, 0.4 sigma)
+  M2 3-D shape.  An NFW halo of M200 = 1.0e+15 Msun (c = 4.11, r_s = 492 kpc) has a single-power-law slope -1.559 over 40-750 kpc; the X-ray inversion measures -1.436 (g04a -1.53).
+  [PASS] M2 [R3] a cold component with an NFW shape reproduces the required 3-D density log-slope over 40-750 kpc   (NFW -1.559 against the measured -1.436; and its core radius, r_s = 492 kpc, is inside the <~750 kpc that both the cored and the cuspy description of the residual agree on (L41 D3))
+  [PASS] M3 [R4] a cold component with an NFW shape reproduces the measured projected shear log-slope, i.e. the shape channel that kills the framework's own phantom at 9 sigma   (-0.851 against -0.851 +/- 0.040, reproduced as X4 -- with X4's honesty note attached: the comparison is close to tautological on the cold side and load-bearing only on the framework's side)
+  M4 pair anchor.  Moster+2013 abundance matching at the pair's OWN measured K-band mass (7.75e+10 Msun per galaxy) with Dutton-Maccio concentrations and NO fitted parameter:
+      M200 = 5.63e+12 Msun per galaxy, R200 = 376 kpc, predicted M_dark/M_bar inside 132 kpc = 31.0, measured 30.9 +/- 1.5
+  [PASS] M4 [R6] a cold component whose abundance follows the stellar-to-halo-mass relation reproduces the pair anchor as well as the cluster anchor -- i.e. it serves the NON-MONOTONE ladder that no host-blind profile can   (predicted 31.0 against measured 30.9 +/- 1.5 (0.1 sigma), with nothing fitted)
+  [FAIL] M5 [R11] the cold component serves R1 and R6 with ONE HOST-BLIND rule, i.e. without importing a free function of host mass   (it does not, and this is the cost L41 named: the abundance that works is M200(M_star), the stellar-to-halo-mass relation, which is a FREE FUNCTION OF HOST MASS fixed by the galaxy stellar mass function. It carries the cluster-to-pair ratio 5.4x that L41's 35-member host-blind search could not. A completion adopting it inherits LambdaCDM's galaxy-formation sector wholesale, and that is a real cost, not a technicality)
+  M6 phase space.  The Tremaine-Gunn floor m >= 4.67 eV is a bound on a species whose primordial phase-space density is set by a thermal (or thermal-like) distribution. A COLD component -- a WIMP-like relic, an axion, or a macroscopic object -- has coarse-grained phase-space density many orders above the floor, so R8 is satisfied trivially and R3 is not forced to be cored.
+  [PASS] M6 [R8] a cold component satisfies the phase-space floor without being pushed onto a core that would fail R3   (the floor binds a light thermal relic (m >= 4.67 eV, cored at its floor); it does not bind a cold component. This is exactly the constraint that closed the thermal-relic and wave branches of the recorded no-go, and it is the one a COLD component evades by definition)
+  [PASS] M7 [VERDICT on the specification] a cold collisionless component satisfies the FULL cluster specification R1-R10, once its abundance is allowed to follow the stellar-to-halo-mass relation   (R1 0.4 sigma; R3 -1.56 vs -1.44; R4 -0.851 vs -0.851; R5 it IS mass; R6 31.0 vs 30.9; R8 no floor; R9 mass not force; R10 not a kernel. R11 costs the SHMR (M5). R2 (the bias) is the one it does not clear cleanly: at b = 0.33 the requirement is 9.04, which needs ~36% baryon depletion in clusters. R7 is the gate that breaks, and PART D prices it)
+
+==========================================================================================================================
+PART D -- THE COST.  The action's MOND scalar is sourced by the TOTAL matter potential (statically
+          div J = grad^2 Psi), so added cold mass is AMPLIFIED by the kernel.  Adding it is not free.
+==========================================================================================================================
+  SPARC: 155 galaxies, 2786 points (Upsilon_d = 0.5, Upsilon_b = 0.7, eV/V < 0.10, >=3 pts)
+  abundance-matched halos (Moster+2013 inverted, Dutton-Maccio c): log10 M200 median 11.24 [10.75, 12.56]; M200/M_b median 38 against the cosmic 6.43
+
+  D-1  SPARC, self-consistently: g_pred = g_N + a_0 Delta(g_N/a_0) with g_N = g_bar + f x (the
+       abundance-matched NFW halo).  f = 0 is the deposited theory; f = 1 is LambdaCDM's own halo.
+        f   kernel+halo rms    median    |   halo only rms    median
+    --- canonical ---
+     0.00             0.145    +0.030    |           0.517    +0.435
+     0.01             0.144    +0.023    |           0.503    +0.426
+     0.02             0.143    +0.016    |           0.490    +0.415
+     0.05             0.142    +0.002    |           0.455    +0.383
+     0.10             0.148    -0.020    |           0.406    +0.335
+     0.20             0.169    -0.055    |           0.331    +0.264
+     0.35             0.206    -0.109    |           0.253    +0.184
+     0.50             0.241    -0.150    |           0.202    +0.127
+     0.75             0.293    -0.208    |           0.164    +0.043
+     1.00             0.338    -0.259    |           0.171    -0.026
+    --- alt ---
+     0.00             0.142    +0.003    |           0.517    +0.435
+     0.01             0.142    -0.002    |           0.503    +0.426
+     0.02             0.143    -0.008    |           0.490    +0.415
+     0.05             0.146    -0.022    |           0.455    +0.383
+     0.10             0.157    -0.044    |           0.406    +0.335
+     0.20             0.184    -0.083    |           0.331    +0.264
+     0.35             0.225    -0.133    |           0.253    +0.184
+     0.50             0.262    -0.174    |           0.202    +0.127
+     0.75             0.315    -0.232    |           0.164    +0.043
+     1.00             0.360    -0.283    |           0.171    -0.026
+  controls inside this table: f = 0 with the kernel reproduces L16/L28's parameter-free kernel scatter (0.145 canonical / 0.142 alt, published 0.145 / 0.142, with median offsets +0.030 / +0.003 against published +0.030 / +0.003); f = 1 with NO kernel reproduces their abundance-matched halo scatter 0.171 dex with median -0.026 (published 0.171 and -0.026)
+  [PASS] X8 [control] the SPARC machinery reproduces L16/L28's three parameter-free numbers -- the kernel at frozen a_0 on both footings, and the abundance-matched halo with no kernel   (kernel 0.145 / 0.142 dex against 0.145 / 0.142; abundance-matched halo 0.171 dex against 0.171)
+  
+  the largest cold fraction the galaxy gate tolerates ON TOP of the kernel:
+      GENEROUS (median RAR shift inside the RAR's own 0.11 dex) : f_gal <= 0.355 (canonical) / 0.276 (alt)   <-- carried below
+      STRICT   (RAR scatter not degraded by more than 0.02 dex) : f_gal <= 0.185 (canonical) / 0.120 (alt)
+  the cold fraction CLUSTERS need, solved self-consistently through the kernel at 1000 kpc (so the kernel's amplification of the added mass is included):
+      canonical: f_clu = 0.316 +/- 0.100 at b = 0, 0.527 +/- 0.134 at the allowed b = 0.20
+            alt: f_clu = 0.261 +/- 0.093 at b = 0, 0.455 +/- 0.127 at the allowed b = 0.20
+  the cold fraction the CMB fixes: f_CMB = 1.000 +/- 0.010 (Omega_c h^2 = 0.1200 +/- 0.0012)
+
+  [FAIL] N1 the galaxy-scale non-overshoot gate survives adding the cold component at the abundance the CMB fixes (f = 1) on top of the kernel the action cannot switch off   (it does not: at f = 1 the median RAR residual is -0.259 dex (canonical) / -0.283 (alt), i.e. the prediction overshoots the measured rotation curves by 1.82x in acceleration, and the rms goes 0.145 -> 0.338 dex. This is DOUBLE COUNTING: the kernel is sourced by the total potential, so it amplifies the mass that was added to replace it)
+  
+  the three-way comparison, and it does NOT come out where one would guess:
+      galaxies allow      f <= 0.355 (canonical) / 0.276 (alt)
+      clusters need       f  = 0.316 +/- 0.100 / 0.261 +/- 0.093   at b = 0
+                          f  = 0.527 +/- 0.134 / 0.455 +/- 0.127   at the allowed b = 0.20
+      the CMB fixes       f  = 1.000 +/- 0.010
+  [PASS] N2a there is a cold fraction admissible to GALAXIES and to CLUSTERS at the same time -- i.e. the two scales this programme has spent eighteen months failing to reconcile CAN be reconciled by a PARTIAL cold component sitting alongside the kernel   (there is, and this is a POSITIVE result that must be reported as hard as the negatives: at f ~ 0.29 the kernel plus about a THIRD of the LambdaCDM halo satisfies the cluster amount self-consistently AND stays inside the RAR's own scatter in galaxies (galaxy ceiling 0.355 / 0.276 against the cluster requirement 0.316 / 0.261). It holds only at b = 0: at the allowed hydrostatic bias b = 0.20 the cluster requirement rises to 0.53 / 0.46 and the window closes (CLOSED on canonical). And on the STRICT galaxy criterion (f <= 0.185) it is closed on both footings)
+  [FAIL] N2 there is a single cold fraction f admissible to galaxies, to clusters and to the CMB AT ONCE   (there is not, and the killer is the CMB rather than the clusters. Scaling every halo by f scales Omega_c h^2 by f, so the galaxy ceiling corresponds to Omega_c h^2 = 0.0426 (canonical) / 0.0331 (alt) against Planck's 0.1200 +/- 0.0012 -- short by a factor 2.8 / 3.6. (Against Planck's 1% error alone that is 64 / 72 sigma, but that number is STATISTICS-ONLY: f_gal carries the abundance-matching systematic of ~0.3 dex, so the FACTOR is the load-bearing statement and the sigma is not.) THE COLD COMPONENT AT THE ABUNDANCE THE CMB FIXES AND THE KERNEL CANNOT BOTH BE ACTIVE WHERE GALAXIES ARE MEASURED, and the partial-cold solution N2a exhibits is a cosmology with a third of the observed cold-matter density)
+
+  the same statement in L21 S6's units -- what an abundance-matched halo puts inside 10 kpc, against what the kernel can absorb:
+  system                       M_b [Msun]   RAR tolerance   AM halo <10 kpc   over by
+  dwarf                          2.00e+09       0.589 M_b          6.12 M_b     10.4x
+  L*                             8.00e+10       0.408 M_b          0.73 M_b      1.8x
+  (for comparison L21 S6 reports the COSMIC-SHARE NFW at 0.34 M_b at L* and 1.90 M_b at the dwarf; abundance matching is WORSE at both ends because it gives low-mass hosts far more halo than the cosmic share)
+
+==========================================================================================================================
+PART E -- CANDIDATE B: a second scalar with a stable condensate, DECOUPLED FROM THE CLOCK.
+          The tachyon came from the clock's coupling to the condensate; is the decoupled version safe?
+==========================================================================================================================
+  Derived symbolically here rather than asserted.  Perturb the clock, tau = t + T, on a flat FRW
+  background with scale factor a.  Then
+      X = -g^{ab} d_a tau d_b tau,   n_mu = -d_mu tau / sqrt(X),   Q = n^mu d_mu phi,
+  and the point is that Q -- and therefore ANY function K(Q) -- depends on T.  Expand to second order in
+  the perturbations (T, dphi) and read off the coefficient of the T-gradient squared.
+  
+      Q to second order:    Q = Qbar + Qbar*epsilon**2*vT**2/(2*a**2) + epsilon*up - epsilon**2*vT*vp/a**2
+      the quadratic action from K(Q) = K_2 Q^2 contains:
+          coefficient of (dT/dx)^2      :  K2*Qbar**2/a**2      <-- THE CLOCK MASS TERM
+          coefficient of (dT/dx)(dphi/dx):  -2*K2*Qbar/a**2
+          coefficient of (dphi/dt)^2    :  K2
+  
+      So the clock's induced gradient-mass coefficient is EXACTLY K_2 Qbar^2 / a^2: proportional to the
+      square of the CONDENSATE BACKGROUND, and vanishing identically when that background is zero.  With
+      K_2 = -|K_2| the sign is tachyonic, and the clock's own kinetic operator carries the same k^2, which
+      is why the rate is k-independent -- reproducing rate^2 = |K_2| Qbar^2 (...) / c_14 of g03w.
+      THIS DERIVES, rather than asserts, why setting Q_0 = 0 cures the tachyon.
+  [PASS] P1 the clock tachyon's coefficient is exactly proportional to the condensate background Qbar^2, so it is the CLOCK'S COUPLING to the condensate -- not the condensate's energy density -- that creates it   (coefficient of (dT/dx)^2 = K2*Qbar**2/a**2, which is K_2 Qbar^2/a^2 exactly and vanishes identically at Qbar = 0.  This reproduces THE_COMPLETE_THEORY 3.2's cure (Q_0 = 0) from the algebra rather than from its conclusion)
+
+  NOW THE LANE'S QUESTION.  Give the new component a kinetic function that is a mixture: a fraction lambda
+  built from the clock-projected derivative Q_chi = n^mu d_mu chi, and (1 - lambda) built from the fully
+  covariant X_chi = -g^{ab} d_a chi d_b chi.  lambda = 1 is the original condensate; lambda = 0 is a field
+  whose action does not contain the clock's normal at all.
+      coefficient of (dT/dx)^2 in the MIXED kinetic function: K2*Qbar**2*lambda/a**2
+      the covariant piece X_chi = (Qbar + epsilon*up)**2 - epsilon**2*vp**2/a**2 contains no T at all: dX_chi/d(dT/dt) = 0, dX_chi/d(dT/dx) = 0
+  [PASS] P2 a component DECOUPLED FROM THE CLOCK (lambda = 0, i.e. a covariant kinetic term with no n) evades the tachyon by construction -- the mechanism that killed the original condensate does not act on it   (the clock mass coefficient is lambda K_2 Qbar^2/a^2, exactly zero at lambda = 0, and the covariant kinetic scalar is identically independent of the clock. So YES: the specific mechanism that killed the original condensate is evaded, and it is evaded structurally rather than by tuning)
+      at the exhibited point c_14 = 1e-6: rate <= H at every a needs lambda Omega_chi <= Omega_m c_14/3, i.e. lambda <= 3.947e-07
+      at the PPN ceiling c_14 = 2.5e-5: rate <= H at every a needs lambda Omega_chi <= Omega_m c_14/3, i.e. lambda <= 9.868e-06
+  [FAIL] P3 an APPROXIMATE decoupling is enough -- a component that is mostly, but not exactly, decoupled from the clock is still safe   (it is not: the clock-coupled fraction must satisfy lambda <= 3.95e-07 at the exhibited point and <= 9.87e-06 even at the loosest PPN-allowed c_14. The decoupling must therefore be EXACT to parts in 1e6-1e7, i.e. enforced by a symmetry, not merely small. Any operator that mixes the new field with the clock at loop level or through the metric at O(1) reopens the tachyon)
+  
+  P4.  A stable scalar condensate with V = m^2 chi^2/2 oscillating with m >> H behaves as pressureless dust; the only thing that distinguishes it from cold matter is its de Broglie scale.
+       confining it inside the cluster core (sigma = 886 km/s, r <~ 200 kpc, which R3/L41 D3 require) needs m >= 1.08e-26 eV;
+       confining it inside a classical dwarf (sigma = 10 km/s, r ~ 1 kpc) needs m >= 1.92e-22 eV.
+       Above ~1e-21 eV the soliton core is sub-parsec and every observable in the specification is identical to that of cold collisionless matter.
+  [FAIL] P4 the clock-decoupled condensate is OBSERVATIONALLY DISTINCT from candidate A, i.e. it is a different addition rather than the same one in different clothing   (it is not: the specification's own requirements force m >= 1.9e-22 eV (dwarf) and m >= 1.1e-26 eV (cluster core), and above that mass the component is pressureless, collisionless, has no phase-space floor and carries an NFW-like profile -- i.e. it IS candidate A. It also fails N1 for exactly the same reason, because N1 is about the kernel double-counting the added mass and does not care what the mass is made of. Candidate B is therefore a REALISATION of candidate A, not a cheaper alternative, and it costs one extra parameter (m) and one exactness assumption (P3))
+
+==========================================================================================================================
+PART F -- CANDIDATE C: a component sourced by the MOND scalar rather than by the clock.
+==========================================================================================================================
+  The MOND sector is J(Y + xi^2 |grad_perp V|^2) with Y = q^{ab} d_a phi d_b phi, i.e. a function of the
+  SPATIAL gradient of phi on the clock's leaves.  Two readings, both tested.
+  
+    (i) the HOMOGENEOUS piece.  On an FRW slice every spatial gradient vanishes, so Y = 0 identically and
+        the sector contributes rho = J(0), p = -J(0): an exact w = -1.  L32/L40's zero-mode theorem is the
+        same statement at the level of the action -- J -> J + C is exactly degenerate with Lambda.  A
+        component that is exactly a cosmological constant cannot cluster and cannot be the cold component.
+  [FAIL] Q1 the MOND sector's homogeneous piece can supply a clustering cold component   (it cannot: Y = 0 on a homogeneous slice, so the sector's equation of state is exactly w = -1.0 and its density is a_-independent. Its perturbation is second order in gradients (Y = |grad dphi|^2), so it cannot source the background either. This is the zero-mode theorem of L32/H-C read as a cosmology rather than as a statement about kappa)
+  
+    (ii) the GRADIENT piece.  This is not a new candidate at all -- it is the framework's EXISTING phantom,
+        already measured: short by 1.49-1.99x at R500 in lensing and dynamics alike, with a projected
+        shear log-slope of -0.309 against the measured -0.851 (X4), and exceeding the kernel's
+        own bounded-boost ceiling by 5.2x at 40 kpc in cluster cores.
+  [FAIL] Q2 the MOND sector's gradient piece supplies the cluster amount and shape   (it does not, and this is the deposited theory's own measured failure rather than a new result: shear log-slope -0.309 against -0.851, a difference of +0.542 +/- 0.060 = 9 sigma, because a matter-sourced scalar's phantom is a near-uniform sheet. A species whose MASS depends on phi is a different proposal, but it still has to carry the mass itself -- the coupling redistributes the source, it does not create it -- so it is candidate A plus a coupling, i.e. strictly more than the minimum)
+
+==========================================================================================================================
+PART G -- CANDIDATE D: structures the recorded no-go never tested, because they are neither a particle
+          nor a condensate.
+==========================================================================================================================
+    (i) MACROSCOPIC DARK OBJECTS (primordial black holes, or any compact relic).  The recorded no-go
+        closes Pauli-limited fermions, wave dark matter, four condensate constructions and the thermal
+        relic -- every one of which is a bound on a LIGHT species' phase-space density or free-streaming.
+        A macroscopic object has neither: at M = 1e-12 Msun its de Broglie wavelength is 5.98e-59 m and the Tremaine-Gunn floor is inapplicable by ~60 orders of magnitude.
+  [FAIL] T1 a macroscopic dark component (PBH-like) satisfies the specification AND is a genuinely different addition from candidate A   (it satisfies the specification -- it is cold, collisionless, has no phase-space floor, carries an NFW profile and the same abundance -- but on every requirement R1-R11 it is INDISTINGUISHABLE from candidate A, and it fails N1 identically. It is a realisation of the minimum addition, not an alternative to it, and it inherits its own mass-window constraints (microlensing, CMB accretion) which this lane does not evaluate)
+  
+    (ii) UNDETECTED BARYONS.  L41's B5 left this door OPEN at pair scale (5.0x the K-band mass spread
+        inside 132 kpc puts only 0.0017 M_b inside 10 kpc, well within the galaxy gate).  It is closed at
+        CLUSTER scale, and closed by the clusters' own measured baryon fraction rather than by BBN:
+        making the cluster residual baryonic drives f_bar from 0.149 to 1.000, i.e. clusters would be 100% baryons against the cosmic 0.156.
+  [FAIL] T2 undetected baryons can supply the cluster amount   (they cannot: f_bar would have to be 1.00 against the cosmic 0.156, a factor 6.4. The pair-scale door L41 left open therefore cannot be the SAME mechanism as the cluster source, so taking it would require TWO additions rather than one -- which is not a minimum addition. (Whether the circumgalactic budget allows it at pair scale remains, as L41 said, a literature question this repository does not settle))
+
+==========================================================================================================================
+PART H -- THE COST AGAINST THE ELEVEN GATES THE DEPOSITED THEORY PASSES.
+==========================================================================================================================
+  [PASS] N4 [gate H11, the one that killed the original condensate] adding a cold component minimally coupled to g leaves the clock-tachyon gate satisfied   (it does: by P1 the clock's induced mass term is lambda K_2 Qbar^2/a^2, and a component in the matter sector (or any component with lambda = 0) contributes exactly zero to it. The gate stays satisfied IDENTICALLY, as it is with Q_0 = 0 -- adding mass to S_m does not reintroduce the instability that deleting the condensate cured. This is the single most important cost that is NOT paid)
+  [PASS] N5 [mode count and health] adding a cold component leaves the gravitational sector's mode count and health unchanged   (it does: the gravitational sector remains 2 tensor + 1 clock + 1 MOND scalar = 4 healthy modes, and the 'N_grav = 2' requirement was already recorded as FAIL read as a total. A cold component adds at most one matter degree of freedom (zero, for a fluid or a macroscopic relic), which is not a gravitational mode and does not touch A_0 = 0.4615 > 0, the hyperbolicity at sigma*, or the scalar's Bogoliubov dispersion)
+  N6 Solar System.  A smooth cold halo of the locally measured density puts
+      M_DM(< Saturn) = 0.0104 Msun/pc^3 x (4pi/3)(9.583 AU)^3 = 4.37e-15 Msun against Pitjev-Pitjeva's 6.7e-11 Msun -- 15338x below the bound.
+  [PASS] N6 [Solar-System bounds] adding a cold component leaves the Saturn phantom-mass bound intact   (4.37e-15 Msun against the 6.7e-11 Msun bound, a margin of 15338x. The Cassini quadrupole, the sunward-acceleration bound and the coherence length xi are untouched because a cold component adds no new field gradient)
+  [PASS] N7 [preferred-frame parameters] adding a cold component leaves alpha_1, alpha_2, alpha_3 and gamma unchanged   (it does: alpha_1 = -4 c_14 = -4.00e-06 and alpha_2 = (c_14/2)(1/sigma - 1) = -2.02e-07 are functions of (c_14, c_2, sigma) alone, and a component minimally coupled to g enters PPN only as source mass. The one thing it DOES change is the preferred-frame velocity budget: the cold component shares the matter frame, so no new alpha_1 v^2 term appears)
+  [PASS] N8 [BBN] adding a cold component leaves the BBN gate intact   (it does: a cold component contributes Delta N_eff = 0 and does not move K_B <= 0.25 or G_cos/G_N - 1 = -2.5e-6. It DOES set Omega_m = 0.315, which is an input the deposited theory previously had no way to supply at all)
+  [PASS] N9 [CMB and linear growth] adding a cold component repairs the two gates the deposited theory fails outright, at no cost in the growth sector   (it does, and this is the payoff: on the closure locus c_2|K_2| = (2 - K_B)^2 the linear MOND source is S_eff = 0.0e+00 EXACTLY, so the linear growth equation with a cold component is ALGEBRAICALLY IDENTICAL to LambdaCDM's. The third acoustic peak, sigma_8, S_8 and P(k) follow. Nothing here is a prediction: it is LambdaCDM's cosmology imported wholesale, and it should be stated as that)
+  
+  N3 the bounded boost.  The action predicts g_obs - g_N <= C a_0 = 6.06e-11 / 7.30e-11 m/s^2 with no free parameter, and THE_COMPLETE_THEORY calls it the falsifier that LambdaCDM structurally cannot make. It is a statement about g_N, and it is TESTABLE only while g_N = g_bar.
+      with an abundance-matched cold component present, 36% of SPARC points have g_halo alone ABOVE C a_0, so the observed g_obs - g_bar is dominated by the halo and carries no information about the ceiling.
+  [FAIL] N3 the bounded-boost ceiling remains a testable prediction once a cold component is present   (it does not: the ceiling survives as a statement about g_N, but g_N is no longer observable -- 36% (canonical) / 30% (alt) of SPARC points have the halo term alone above C a_0. The programme's sharpest falsifier is converted from a prediction into a statement about an unobservable, and that is a real loss that must be stated as one)
+
+==========================================================================================================================
+PART I -- THE SHARP QUESTION: with a cold component present, is the MOND sector still doing work?
+==========================================================================================================================
+  W1 the tightness claim, reproduced and then corrected as L28 corrects it:
+      kernel at frozen a_0, ZERO parameters per galaxy : 0.145 dex  [L16/L28: 0.142]
+      abundance-matched NFW, ZERO parameters per galaxy: 0.171 dex  [L16/L28: 0.171]
+      NFW with M200 and c FREE, TWO parameters/galaxy  : 0.061 dex  [L28's prior-shrunk 0.085]
+  [FAIL] W1 the kernel's tightness is a discriminant against a cold component -- i.e. the halo cannot reach the kernel's scatter even when allowed its own freedom   (it is not, and L28 already said so: a per-galaxy NFW reaches 0.061 dex against the kernel's 0.145. What survives is a PARSIMONY claim -- the kernel achieves 0.145 dex with ZERO parameters per galaxy where the halo needs two -- and it must never be written as a discriminant against LambdaCDM)
+  [PASS] W2 the parsimony claim survives the addition   (it does, and it is the one thing that does: at zero parameters per galaxy on both sides the kernel gives 0.145 dex against the abundance-matched halo's 0.171 (ratio 1.18x). But note what it is a claim ABOUT: it is a statement that the RAR is tight, not that the kernel causes it, and N1 shows the kernel cannot be present at the same time as the mass that would explain the rest)
+  
+  W3 a_0(z).  THE_COMPLETE_THEORY's surviving distinctive prediction is that the deep-MOND baryonic Tully-Fisher zero point is flat to <1% to z = 5 against LambdaCDM's +0.33 dex by z = 2.5. That is a prediction about a regime in which the KERNEL sets the dynamics. With a cold component at f = 1 the high-z rotators are halo-dominated (N1/N3), so the deep-MOND zero point is not the theory's prediction any more; it becomes LambdaCDM's, plus a bounded kernel correction of at most C a_0.
+  [FAIL] W4 the a_0(z) prediction survives the addition as a discriminant   (it does not survive as a CLEAN one. The prediction is a statement about a system whose dynamics the kernel sets; with a cold component the same rotator is halo-dominated and the BTFR zero point is set by the halo, with the kernel adding at most C a_0 = 6.1e-11 m/s^2 on top. The measurement (a deep-MOND lensed rotator at z ~ 2-2.5 to +-0.13 dex) remains worth making -- it discriminates the NO-addition theory from LambdaCDM -- but it stops being a test of the theory once the addition is made)
+  [FAIL] W5 [THE SHARP QUESTION] with a cold collisionless component present at the abundance the CMB fixes, the MOND sector is still doing identifiable work in galaxy dynamics   (it is not, and the reason is specific rather than generic. At f = 1 the kernel plus the halo overshoots the measured rotation curves by 1.82x in acceleration (N1), and the galaxy ceiling f <= 0.355 is 2.8x below the CMB's f = 1 (64 sigma, N2). The one place the MOND sector DOES still do work is the partial-cold cosmology N2a exhibits, f ~ 0.29, where the kernel supplies the rest at both galaxy and cluster scale -- but that cosmology has a third of the observed cold-matter density and is excluded by the CMB. So, listed in full and without padding, what the MOND sector still supplies once the addition is made at f = 1: (i) the a_0-Lambda TIE, a_0 = kappa c sqrt(G rho_Lambda), with kappa = 0.4998/0.6023 FITTED -- a numerological relation, not a derivation, by L32's zero-mode theorem; (ii) a PARSIMONY claim, 0.145 / 0.142 dex at zero parameters per galaxy against the halo's 0.171, which W1 shows is NOT a discriminant because a per-galaxy halo reaches 0.061; (iii) a BOUNDED-BOOST ceiling that N3 shows is no longer testable; and (iv) the fact that WITHOUT the addition it is a complete, Solar-System-safe, galaxy-correct relativistic theory. That is the whole list, and (i)-(iii) are the parsimony claim, the tie and a ceiling -- not dynamical work)
+
+==========================================================================================================================
+PART J -- VERDICT
+==========================================================================================================================
+  [PASS] V1 [VERDICT] a MINIMUM ADDITION exists: some single component supplies everything the deposited theory is missing above a galaxy   (it does, and it is a COLD COLLISIONLESS COMPONENT IN THE MATTER SECTOR, minimally coupled to g and decoupled from the clock. It satisfies R1 (0.4 sigma), R3 (-1.56 vs -1.44), R4 (-0.851 vs -0.851), R5, R6 (31.0 vs 30.9), R8, R9, R10, R12 and R13; it leaves the clock tachyon satisfied identically (N4), the mode count and health untouched (N5), the Solar System untouched (N6), the preferred-frame parameters untouched (N7) and BBN untouched (N8); and it repairs the CMB and linear growth exactly (N9). Candidates B, C and D are either realisations of it or already closed)
+  [FAIL] V2 the minimum addition is FREE -- it can be made without breaking any gate the deposited theory currently passes   (it cannot. It breaks the galaxy-scale non-overshoot gate outright (N1: median RAR residual -0.259 dex at f = 1, an overshoot of 1.82x in acceleration), because the action's MOND scalar is sourced by the TOTAL potential and therefore amplifies the very mass that was added to replace it. The three admissible cold fractions have an EMPTY intersection: galaxies <= 0.355, clusters 0.32 +/- 0.10, CMB 1.00 +/- 0.01 -- and the binding constraint is the CMB, a factor 2.8 away, not the clusters, which N2a shows can actually be reconciled with galaxies at f ~ 0.3. It also voids the bounded-boost falsifier (N3), blunts a_0(z) (W4), and costs the stellar-to-halo-mass relation as a new free function of host mass (M5))
+
+==========================================================================================================================
+THE CANDIDATE TABLE, with costs
+==========================================================================================================================
+  candidate                        cluster specification                        clock tachyon
+  ----------------------------------------------------------------------------------------------------------------------
+  A  cold collisionless in S_m     SATISFIES R1-R10, R12, R13 (M1-M7)           SAFE, identically (N4)
+                                   cost -> breaks the galaxy gate at f = 1 (median -0.259 dex, 1.82x overshoot); voids the bounded-boost
+                                   cost -> falsifier (N3); blunts a_0(z) (W4); costs the stellar-to-halo-mass relation as a free function of
+                                   cost -> host mass (M5); R2's hydrostatic bias unresolved
+  
+  B  clock-decoupled condensate    = A once m >= 1.9e-22 eV (P4)                SAFE only if lambda <= 3.9e-07, EXACTLY (P2, P3)
+                                   cost -> every cost of A, plus one new parameter (m) and one exactness assumption that must be enforced by a
+                                   cost -> symmetry rather than by smallness
+  
+  C  sourced by the MOND scalar    homogeneous piece is w = -1 exactly (Q1)     n/a
+                                   cost -> the gradient piece IS the framework's existing phantom: 9 sigma in shear shape, 1.49-1.99x short at
+                                   cost -> R500, 5.2x over its own ceiling. Not a new candidate
+  
+  D1 macroscopic / PBH-like        SATISFIES the spec; no phase-space floor     SAFE, identically
+                                   cost -> indistinguishable from A on every requirement and fails N1 identically; a realisation of the minimum
+                                   cost -> addition, not an alternative, and it inherits its own mass-window constraints
+  
+  D2 undetected baryons            CLOSED at cluster scale: f_bar -> 1.00 (T2)  n/a
+                                   cost -> open only at pair scale (L41 B5), so it would need a SECOND addition for clusters -- not minimal
+  
+
+==========================================================================================================================
+THE RECOMMENDATION
+==========================================================================================================================
+  PURSUE: candidate A -- a cold collisionless component in the matter sector, minimally coupled to g and
+          DECOUPLED FROM THE CLOCK.  It is the only candidate that satisfies the specification; B and D1
+          are realisations of it; C is the failure the theory already has; D2 needs a second addition.
+          The decoupling is not a detail -- P1/P2/P3 show it is the whole reason the addition is safe,
+          and that it must be EXACT to lambda <= 3.9e-07, i.e. enforced by a symmetry.
+  
+  THE GATE MOST LIKELY TO KILL IT: the galaxy-scale non-overshoot gate (N1), through the CMB (N2).
+          Galaxies tolerate f <= 0.355 of the LambdaCDM halo on top of a kernel the
+          action cannot switch off; the CMB fixes f = 1.00 +/- 0.01, a factor 2.8 away (64 sigma on Planck's error alone, which is a
+          STATISTICS-ONLY figure -- carry the factor).
+          NOTE the direction of the surprise, which runs AGAINST the expected story: clusters need only
+          f = 0.32 +/- 0.10, so galaxies and clusters CAN be
+          reconciled by a partial cold component (N2a). It is the CMB that forbids the partial solution.
+  
+  THE CALCULATION THAT WOULD DECIDE, and it is one calculation rather than a programme:
+          does the action admit a source for the MOND scalar that is NOT the total matter potential?
+          The coupling 2(2 - K_B) J^mu d_mu phi gives statically div J = grad^2 Psi, and Psi is sourced by
+          EVERYTHING minimally coupled to g -- which is exactly why the kernel amplifies the added cold
+          mass. Two concrete replacements, both computable with the machinery already in this directory:
+            (a) source the MOND scalar by the BARYON current alone (a direct coupling to T^mu_nu of the
+                visible sector). Compute: the galaxy overshoot then falls from the self-consistent
+                factor to g_bar + g_halo + a_0 Delta(g_bar/a_0), and the price is that matter is no longer
+                universally coupled -- so it must be run against the equivalence principle, against
+                alpha_1/alpha_2 with two matter sectors, and against L27's foliation-scalar theorem.
+            (b) let J's argument carry the TOTAL density, so the kernel switches off where the cold
+                component dominates. L6's cosmological-ordering theorem already constrains this and it
+                must be shown not to be a monotone screening function in disguise.
+          If (a) survives, the addition is affordable and the MOND sector keeps its galaxy-scale work.
+          If neither does, the honest conclusion is the one below.
+
+==========================================================================================================================
+THREE-SENTENCE VERDICT
+==========================================================================================================================
+  A minimum addition exists and it is cold collisionless matter in the matter sector: it satisfies the full
+  cluster specification (R1 at 0.4 sigma, R3 at -1.56 against -1.44, R4 at -0.851 against -0.851, R6 at 31.0 against 30.9), leaves the clock tachyon satisfied identically because the
+  mechanism that killed the original condensate is the clock's coupling to it and not its energy density,
+  and repairs the CMB and linear growth exactly.
+  
+  It is not free: the action's MOND scalar is sourced by the TOTAL matter potential, so the kernel
+  amplifies the mass added to replace it, and the three admissible cold fractions have an empty
+  intersection -- galaxies allow f <= 0.355, clusters need 0.32 +/- 0.10, the CMB fixes 1.00 +/- 0.01 -- so at the
+  abundance the CMB requires the addition overshoots the measured rotation curves by 1.82x in
+  acceleration, and the binding constraint is the CMB -- short by a factor 2.8 -- rather than the
+  clusters, which can in fact be reconciled with galaxies by a partial cold component at f ~ 0.3.
+  
+  With the cold component present the MOND sector does no identifiable work in galaxy dynamics: its
+  parsimony claim (0.145 dex at zero parameters per galaxy) is not a discriminant because a
+  per-galaxy halo reaches 0.061 dex, its bounded-boost falsifier is voided because 36% of
+  SPARC points have the halo term alone above the ceiling, a_0(z) stops being a test of the theory, and
+  what is left is the a_0-Lambda tie with kappa still FITTED.
+
+  CAVEATS, stated rather than buried:
+   (i)   nothing in this lane favours this framework over LambdaCDM, and nothing in it constrains LambdaCDM;
+         L41 E1 shows LambdaCDM's own abundance matching predicts the pair anchor to 0.6 sigma with nothing
+         fitted, and the non-monotone ladder IS the stellar-to-halo-mass relation, an input rather than a
+         prediction.
+   (ii)  f_gal is defined by the MEDIAN RAR residual crossing the RAR's own 0.11 dex -- the GENEROUS of the
+         two criteria computed, chosen so the candidate is not handed a manufactured deficit. The strict
+         criterion (scatter not degraded by 0.02 dex) gives 0.185 / 0.120, three times smaller. The full table
+         of rms and median at ten values of f is printed so the reader can pick another. No choice in the
+         printed range reaches f = 1.
+   (iii) the abundance-matching relation carries ~0.30 dex of systematic on log M200 (Moster vs Behroozi vs
+         Kravtsov). That shifts f_gal and the R7 overshoot by the same factor and cannot close a gap of
+         3x.
+   (iv)  the symbolic tachyon derivation is done on a FLAT FRW background with one Fourier direction; it
+         fixes the STRUCTURE of the coefficient (proportional to lambda K_2 Qbar^2/a^2), which is what the
+         lane's question needs, and it reproduces g03w's published rate through X5. It is not a full
+         cosmological-perturbation calculation and does not claim to be.
+   (v)   R2's hydrostatic bias is the one requirement candidate A does not clear cleanly: at the allowed
+         b = 0.20-0.33 the cluster requirement runs to 9.04, which needs ~36% baryon depletion. That is a
+         cost of the cold reading and it is not resolved here.
+
+RESULT: 15 FAIL -> ["S2 the action's own linear MOND source could supply R13 without any new component", 'M5 [R11] the cold component serves R1 and R6 with ONE HOST-BLIND rule, i.e. without importing a free function of host mass', 'N1 the galaxy-scale non-overshoot gate survives adding the cold component at the abundance the CMB fixes (f = 1) on top of the kernel the action cannot switch off', 'N2 there is a single cold fraction f admissible to galaxies, to clusters and to the CMB AT ONCE', 'P3 an APPROXIMATE decoupling is enough -- a component that is mostly, but not exactly, decoupled from the clock is still safe', 'P4 the clock-decoupled condensate is OBSERVATIONALLY DISTINCT from candidate A, i.e. it is a different addition rather than the same one in different clothing', "Q1 the MOND sector's homogeneous piece can supply a clustering cold component", "Q2 the MOND sector's gradient piece supplies the cluster amount and shape", 'T1 a macroscopic dark component (PBH-like) satisfies the specification AND is a genuinely different addition from candidate A', 'T2 undetected baryons can supply the cluster amount', 'N3 the bounded-boost ceiling remains a testable prediction once a cold component is present', "W1 the kernel's tightness is a discriminant against a cold component -- i.e. the halo cannot reach the kernel's scatter even when allowed its own freedom", 'W4 the a_0(z) prediction survives the addition as a discriminant', 'W5 [THE SHARP QUESTION] with a cold collisionless component present at the abundance the CMB fixes, the MOND sector is still doing identifiable work in galaxy dynamics', 'V2 the minimum addition is FREE -- it can be made without breaking any gate the deposited theory currently passes']
+[2 s]

@@ -1,0 +1,284 @@
+==========================================================================================================================
+L45 -- undetected baryons at pair separation: L41's last open door, settled against the measured CGM
+==========================================================================================================================
+  data used by this lane (paths relative to the repository root):
+    pairs    : real_research/data/2mrs_catalog.csv                       (rebuilt, not reused)
+    clusters : qwen_claude_field_theory/closure_2026/cluster_measurement_audit_2026/results.json
+    clusters : real_research/data/xcop/<name>/*.fits                     (independent read)
+    galaxies : real_research/data/sparc_data/*_rotmod.dat                (the RAR gate)
+    literature: the eleven references listed in this file's docstring, searched and read for this lane
+
+==========================================================================================================================
+PART A -- CONTROLS.  Every number this lane leans on, recomputed from its own data before it is used.
+==========================================================================================================================
+  A1: pairs rebuilt: N = 1900, median r_p = 132 kpc, median M_b(pair) = 1.55e+11 Msun (= 7.75e+10 per galaxy, Upsilon_K = 0.6, no gas)
+      Newtonian-on-baryons amplitude A = 5.645 +/- 0.136  =>  M_dark/M_bar within r_p = A^2 - 1 = 30.9 +/- 1.5
+  [PASS] A1 [CONTROL] an independent rebuild of the 2MRS pair sample reproduces L21's Newtonian amplitude 5.645 and its dark-to-baryon ratio 30.9 +/- 1.6 inside the pair separation   (N = 1900 vs 1900; A = 5.645 vs 5.645; ratio 30.9 +/- 1.5 vs 30.9 +/- 1.6)
+  A2: at the pair's own 132 kpc the twelve X-COP clusters measure M_dark/M_bar = 9.20 +/- 1.30; at 1000 kpc they measure 5.73 +/- 0.68
+      the pairs need 30.9 +/- 1.5 at the SAME radius: a factor 3.4 at 11 sigma -- L41's A1, reproduced
+  [PASS] A2 [CONTROL] this lane reproduces L41's fixed-radius cluster value 9.20 +/- 1.30 at 132 kpc and its 3.4x/11 sigma gap against the pairs, from the same cluster data   (9.20 +/- 1.30 vs L41's 9.20 +/- 1.30; gap 3.4x at 11 sigma vs L41's 3.4x at 11 sigma)
+  A3: Planck 2018 VI: Omega_b h^2 = 0.02237, Omega_m h^2 = 0.143, h = 0.6736
+      => Omega_b = 0.0493, Omega_m = 0.3152, f_bar,cosmic = Omega_b/Omega_m = 0.1564, Omega_dm/Omega_b = 5.39
+      independent check against the FRB measurement: Omega_b h70 = 0.0457 here against Connor+ 2025's 0.051 +/- 0.006 (0.9 sigma)
+  [PASS] A3 [CONTROL] this lane's baryon-budget machinery reproduces a published cosmic baryon fraction: Planck's Omega_b/Omega_m = 0.156 and Omega_dm/Omega_b = 5.4, and agrees with the FRB-measured Omega_b   (f_bar,cosmic = 0.1564 vs 0.156; Omega_dm/Omega_b = 5.39 vs 5.43; Omega_b h70 = 0.0457 vs 0.051 +/- 0.006)
+  A4: Bregman+ 2022's own accounting, reassembled: hot 9.80e+10 + stars 5.0e+10 + disc gas 1.0e+10 + their stated missing 1.4e+11 = 2.98e+11 Msun
+      => the hot phase is 33% of that total against their quoted ~30%, and the implied halo is 1.90e+12 Msun
+      abundance matching (Moster+ 2013) at the pair's own per-galaxy M_* = 7.75e+10: M200 = 5.63e+12 Msun, R200 = 376 kpc, and the STARS are only 9% of that halo's cosmic baryon share
+      the same at an L* / Milky-Way M_* = 5.0e+10: M200 = 2.00e+12, stars = 16% of the cosmic share -- the published 'galaxies retain ~20% of their baryons in stars' deficit, reproduced
+  [PASS] A4 [CONTROL] this lane's baryon-budget machinery reproduces a published galaxy-scale baryon deficit: Bregman+ 2022's ~30% hot-halo share of the cosmic budget and abundance matching's ~20% stellar share   (hot phase = 33% vs their ~30%; stellar share at L* = 16% (published range 15-25%); implied halo 1.90e+12 vs abundance matching's 2.00e+12)
+  A5: the framework's own amplitudes on this rebuild (A = observed / parameter-free prediction):
+      canonical  framework isolated (BEST CASE)   A = 1.802 +/- 0.039   implied M/M_K = 8.34
+      canonical  framework carried, with the EFE  A = 2.319 +/- 0.056   implied M/M_K = 10.14
+            alt  framework isolated (BEST CASE)   A = 1.731 +/- 0.038   implied M/M_K = 7.29
+            alt  framework carried, with the EFE  A = 2.219 +/- 0.049   implied M/M_K = 8.98
+  [PASS] A5 [CONTROL] the forward model reproduces L21's published framework amplitudes 1.802 (canonical) / 1.731 (alt) and its implied mass factors 8.3 (isolated) and 10.0 (carried)   (A = 1.802 / 1.731 vs 1.802 / 1.731; M/M_K = 8.34 (isolated) and 10.14 (carried) vs 8.3 and 10.0)
+
+==========================================================================================================================
+PART B -- THE REQUIREMENT, stated precisely and recomputed from L21's own numbers.
+==========================================================================================================================
+  How much extra baryonic mass, inside what radius, would the pair kinematics need?  Three readings,
+  because they differ and the difference matters:
+
+  reading                                                         M_b,true/M_K   M_b,true [Msun]   undetected [Msun]
+  ----------------------------------------------------------------------------------------------------------------------
+  Newton on baryons alone (no kernel, no dark component)                 31.86         2.468e+12           2.391e+12
+  the framework's carried kernel, ISOLATED branch (its best case)          8.34         6.458e+11           5.683e+11
+  the framework's carried kernel with the computed external field         10.14         7.856e+11           7.081e+11
+  baryons PLUS a cosmic-share dark component (L41's B5 reading)           4.96         3.838e+11           3.064e+11
+  ----------------------------------------------------------------------------------------------------------------------
+  all per GALAXY, inside the pairs' own median separation r_p = 132 kpc, against a K-band stellar mass of 7.75e+10 Msun.
+  both footings: the framework's isolated requirement is 8.34x (canonical) / 7.29x (alt); the Newtonian and cosmic-share readings are footing-free (a0 cancels).
+
+  THE OPERATIVE NUMBER, and it is the framework's own BEST case: 5.683e+11 Msun of undetected baryons inside 132 kpc
+  of an L* galaxy whose detected stellar mass is 7.75e+10 -- i.e. 7.3 stellar masses of invisible gas (6.3 on the alt footing).
+  L41's own B5 quoted 4.96x for the cosmic-share reading; this lane reproduces 4.96x and adds the framework's own 8.3x, which is the larger and the one that matters here.
+
+  THE PROFILE FREEDOM.  M(<r_p) is fixed by the kinematics; the SHAPE is free.  Take rho ~ r^-alpha
+  truncated at r_p, the one-parameter family that contains every proposal, and price the extremes.
+        alpha   M(<10kpc)/M_K     N_H(b=29kpc)     DM(b=29kpc)    <n>(<10kpc)    <n>(<r_p)   [cm^-2 / pc cm^-3 / cm^-3]
+          0.0           0.003        1.349e+21           518.7      2.009e-03    2.009e-03
+          0.5           0.012        1.639e+21           630.4      7.309e-03    2.009e-03
+          1.0           0.042        2.027e+21           779.3      2.658e-02    2.009e-03
+          1.5           0.152        2.482e+21           954.5      9.669e-02    2.009e-03
+          2.0           0.555        2.838e+21          1091.3      3.517e-01    2.009e-03
+
+      PROFILE-FREE, and this is what carries the argument: every gram inside r_p projects inside r_p, so
+      the MEAN column over the disc of radius r_p is fixed by the MASS alone, at any alpha:
+          <N_H> = 9.218e+20 cm^-2,   <DM> = 354 pc cm^-3,   <n_e>(<r_p) = 2.009e-03 cm^-3
+      at b -> 0 the whole family spans only a factor 3: the uniform sphere gives 1.5x the mean and the
+      least-detectable configuration there -- a thin shell at r_p -- gives exactly 0.5x the mean, 4.61e+20 cm^-2.
+      No choice of profile hides the column, because the column is fixed by the mass.
+
+==========================================================================================================================
+PART C -- THE CONFRONTATION, three ways, because they can differ.
+==========================================================================================================================
+
+  (a) IS THE REQUIRED MASS INSIDE THE TOTAL BARYON BUDGET?  Does the galaxy have that many baryons at all?
+  C1: abundance matching at M_* = 7.75e+10 gives M200 = 5.63e+12 Msun (R200 = 376 kpc); its ENTIRE cosmic baryon allotment is 8.806e+11 Msun.
+      required inside 132 kpc = 0.35 R200: 6.458e+11 Msun = 73% of the WHOLE allotment,
+      the stellar-to-halo relation is uncertain, so bracket it: M200 = 5.6e+12 Msun (Moster+ 2013, the GENEROUS end) gives 73%,
+      M200 = 2.5e+12 Msun (the value abundance matching gives this M_* at the conservative end) gives 165% -- i.e. MORE than the halo owns.
+      framework-agnostic version: gathering 6.46e+11 Msun of baryons needs a comoving Lagrangian sphere of radius 2.92 Mpc swept to 100% efficiency,
+      against the 3.23 Mpc the halo's own total mass corresponds to.
+  [PASS] C1 (a) the required mass is inside the system's total baryon budget -- the galaxy has that many baryons to hide   (6.46e+11 against the halo's whole cosmic share 8.81e+11: 73% of it, all of it inside 0.35 R200 and none of it anywhere else in the halo.  It PASSES on the generous halo mass and reaches 165% on the conservative one, so this arm is at the ceiling, not comfortably inside it)
+
+  (b) IS IT CONSISTENT WITH THE OBSERVED RADIAL DISTRIBUTION?  Can that much sit at ~130 kpc?
+      measurement                                                              as published   scaled to 132 kpc
+      ---------------------------------------------------------- -------------------------- -------------------
+      Werk+ 2014 COS-Halos cool phase (its own n_H profile)            >6.5e10 within R_vir            5.56e+10
+      Bregman+ 2018 X-ray hot halo (its own rho ~ r^-1.5)              5.0e09 within 50 kpc            2.15e+10
+      Bregman+ 2022 SZ (thermal pressure, density-linear)        9.8+/-2.8e10 within 250kpc            3.77e+10
+      sum of the detected phases                                                                       7.71e+10
+      REQUIRED (framework carried kernel, best case)                                                   5.68e+11
+      the requirement exceeds the summed measured CGM at the same radius by 7x; even against the
+      MOST generous possible reading -- the full SZ mass at 250 kpc PLUS the full COS-Halos cool mass within R_vir, 1.63e+11 Msun
+      at twice the radius -- it is over by 3.5x (17 sigma on the SZ statistical error alone).
+  [FAIL] C2 (b) the required mass is consistent with the observed radial distribution: that much CGM is measured at ~130 kpc   (required 5.68e+11 Msun against a summed measured 7.71e+10 at the same radius (7x over) and against the most generous reading 1.63e+11 at twice the radius (3.5x over).  Three independent probes -- UV absorption, X-ray emission and the thermal SZ -- agree on the amount and none of them leaves room)
+
+  (c) IS IT EXCLUDED BY NON-DETECTION?  If that much gas were there, would we have seen it?
+      c-i  DISPERSION MEASURE (free electrons; the most model-independent channel).
+        required DM at the FRB's own impact parameter b = 29 kpc:
+          uniform sphere 519 pc cm^-3;  rho ~ r^-1 779;  rho ~ r^-1.5 954;  thin shell at r_p (the family MINIMUM) 182
+        and the profile-FREE mean over the whole disc of radius r_p: <DM> = 354 pc cm^-3
+        measured, Prochaska+ 2019 (FRB 181112 through a log M* = 10.69 foreground galaxy, MORE massive than this pair's members and at a SMALLER impact parameter, where a halo's DM is LARGER):
+          DM_FG = 50-120 pc cm^-3, and n_e < 2e-03 cm^-3 for hot virialised halo gas
+        the Milky Way's own halo, Prochaska & Zheng 2019: DM = 50-80 pc cm^-3 out to 200 kpc, against a required 354 inside only 132 kpc.
+  [FAIL] C3 (c-i) the implied dispersion measure is consistent with the FRB constraints on foreground galaxy halos and on the Milky Way's own halo   (required 519 pc cm^-3 at b = 29 kpc against a measured 50-120 (4.3x over), and the family MINIMUM -- a thin shell at r_p, the least detectable configuration there is -- still gives 182, 1.5x over.  The mean density 2.01e-03 cm^-3 also sits at Prochaska+ 2019's own ceiling n_e < 2e-03 for hot halo gas, which any centrally concentrated profile then exceeds)
+      c-ii X-RAY EMISSION (emissivity ~ n^2, so this is the sharpest channel if the gas is hot).
+        at the SAME shape and temperature the surface brightness scales as the SQUARE of the gas mass, so
+        the required halo would be (5.68e+11/2.15e+10)^2 = 697x brighter than the hot halos
+        Bregman+ 2018 detect and eROSITA now resolves by stacking out to R_vir.  A FLOOR that grants the
+        escape the minimum-emission configuration there is -- uniform density, which minimises int n^2 dV at fixed
+        mass and volume -- against the observed rho ~ r^-1.5 still leaves 167x.  The virial
+        temperature of this halo is 2.34e+06 K, so the gas would be in exactly the band those surveys observe,
+        and a COOLER phase radiates MORE per unit emission measure in the soft band, so that direction does not help.
+  [FAIL] C4 (c-ii) the implied X-ray emission is consistent with the measured hot halos of L* galaxies   (the required gas would be 697x brighter in X-rays at matched shape and temperature than the halos Bregman+ 2018 and eROSITA measure, and 167x even granting it the minimum-emission uniform configuration.  This is a ratio of emission measures and needs no cooling function; it fails by two to three orders of magnitude, not marginally)
+      c-iii ABSORPTION COLUMN (works for any phase that is not fully neutral AND not fully molecular).
+        required MEAN total-hydrogen column inside r_p, which is profile-free: 9.22e+20 cm^-2
+        per-profile at the FRB's b = 29 kpc: 1.35e+21 (uniform), 2.48e+21 (rho ~ r^-1.5); thin-shell central column 4.61e+20
+        measured, Werk+ 2014 COS-Halos: mean log N_H = 19.6 i.e. 4.0e+19 cm^-2 for L* galaxies inside 160 kpc,
+        AFTER the ionisation correction that already multiplies N_HI by ~100.  The requirement is 23x that, over the SAME aperture.
+  [FAIL] C5 (c-iii) the implied absorption column is consistent with the measured circumgalactic hydrogen column at these radii   (required mean 9.22e+20 cm^-2 against COS-Halos' measured mean 4.0e+19 cm^-2 over the same aperture (23x over), and 12x over even for the thin shell.  The mean column is fixed by the mass alone, so no profile choice reaches the measured value)
+      c-iv IN-SITU DENSITY, where it has been measured directly rather than inferred from a column.
+        Salem+ 2015 measure the Milky Way's halo density from the ram-pressure stripping of the LMC's disc:
+          n = 1.10e-04 +/- 4.40e-05 cm^-3 at r = 48.2 kpc
+        the requirement, uniform (the shallowest and therefore most favourable profile), gives 2.01e-03 cm^-3 there: 18x higher.
+  [FAIL] C6 (b/c) the implied in-situ gas density agrees with the one place it is measured directly, the Milky Way's halo at ~50 kpc   (required 2.01e-03 cm^-3 at 48 kpc against Salem+ 2015's measured 1.10e-04 +/- 4.40e-05 (18x over).  A ram-pressure measurement is a direct dynamical weighing of the gas and does not depend on ionisation state, temperature or metallicity.  STATED AGAINST INTEREST: this one arm alone IS evadable, by a hollow configuration that puts nothing at 48 kpc -- but the hollow limit is the thin shell, which C3 and C5 then catch at 1.5x and 12x, and which C4 catches worst of all because a shell maximises int n^2 dV)
+      c-v  GLOBAL CLOSURE.  If EVERY galaxy carried this, how much of the cosmic baryon budget would sit
+           inside 132 kpc of a galaxy, and does the measured baryon partition allow it?
+        Omega_*/Omega_b today = 0.05 +/- 0.01, so a host-blind rule of 8.3x the stellar mass puts
+          Omega(<132 kpc of a galaxy)/Omega_b = 0.42 +/- 0.08 of ALL cosmic baryons
+        measured non-IGM fraction: Connor+ 2025 f_IGM = 0.76 +/- 0.10 leaves 0.24 +/- 0.10 for ALL halos (clusters and groups included);
+                                   FLIMFLAM DR1 f_igm = 0.59 +/- 0.10 leaves 0.41 +/- 0.10
+        tension: +1.3 sigma against Connor+ 2025, +0.1 sigma against FLIMFLAM DR1 -- and the FRB measurements disagree with each other by more than that, so this arm is real but NOT decisive.
+  [PASS] C7 (c-v) the global baryon partition measured by fast radio bursts allows this much mass inside 132 kpc of galaxies   (required 0.42 +/- 0.08 of all baryons against a measured non-IGM budget of 0.41 +/- 0.10 (FLIMFLAM, +0.1 sigma) and 0.24 +/- 0.10 (Connor+ 2025, +1.3 sigma).  This arm PASSES on the more permissive of the two FRB analyses and is stated as a tension, not a kill -- the kill is C2-C6, which are local and much sharper)
+
+      c-vi THE MILKY WAY, tested inside the framework's OWN kernel.  This is the one galaxy where the
+           enclosed mass at ~100 kpc is measured directly, so the escape can be run against it.
+        canonical: framework kernel on the DETECTED baryons (6.00e+10 Msun) predicts M(<100 kpc) = 6.65e+11 Msun
+                   the same kernel with the escape's 1.58e+11 Msun added predicts 1.32e+12 Msun
+              alt: framework kernel on the DETECTED baryons (6.00e+10 Msun) predicts M(<100 kpc) = 7.27e+11 Msun
+                   the same kernel with the escape's 1.58e+11 Msun added predicts 1.44e+12 Msun
+        measured, Deason+ 2021 from halo stars: M(<100 kpc) = 6.07e+11 +/- 1.24e+11 Msun (stat + sys)
+        AGAINST INTEREST: L21's M0 found the framework's deficit GROWS with host mass (A = 1.59 in the lowest mass bin against 1.80 for the sample).
+        The Milky Way sits at the LOW-mass end, so the fair requirement there is 5.36x rather than 8.34x, giving 9.41e+10 Msun and a predicted
+        M(<100 kpc) = 1.10e+12: 1.8x measured at 3.9 sigma.  Weaker, and still a fail; the check below carries the SAMPLE value and this line is the honest floor.
+        => with the detected baryons the framework's kernel lands at 0.5 sigma (this is a genuine success of the KERNEL and is recorded as one,
+           though it is not a discriminant: LambdaCDM's own halo fits the same number by construction).  With the escape's baryons it over-predicts by
+           2.2x, at 5.8 sigma, on BOTH footings.
+  [FAIL] C8 (b) the required baryons are compatible with the Milky Way's directly measured enclosed mass at 100 kpc, run through the framework's own kernel   (the kernel plus the escape's baryons predicts M(<100 kpc) = 1.32e+12 Msun against Deason+ 2021's measured 6.07e+11 +/- 1.24e+11: 2.2x over at 5.8 sigma, and 1.8x at 3.9 sigma on the low-mass-bin amplitude that is fairer to the Milky Way.  The same kernel on the DETECTED baryons lands at 0.5 sigma, so this is a statement about the escape and not about the kernel)
+
+  WHICH PHASE COULD IT BE?  Every phase has a detection channel; the table names the channel and the
+  factor by which the requirement exceeds what that channel measures.
+      phase                              channel                             requirement exceeds by
+      ---------------------------------- ---------------------------------- -----------------------
+      hot, T ~ 10^6.3 K (virial)         X-ray emission (n^2)                                  167x
+      warm-hot, 10^5-10^6 K              dispersion measure + O VI/O VII                       4.3x
+      cool photoionised, 10^4 K          Lyman-alpha + metal columns                            23x
+      cold neutral atomic                N_HI: every sightline a DLA                           4.6x
+      cold molecular clumps              NONE of the above directly               not excluded here
+      compact objects (MACHOs)           microlensing (EROS-2, Tisserand+07)          < 8% of a halo
+      (the 'cold neutral atomic' row is the ratio of the required column to the damped-Lyman-alpha threshold 2e20 cm^-2:
+       a fully neutral phase would make EVERY sightline within 132 kpc of an L* galaxy a DLA, and none is seen.)
+      the ONE surviving phase is cold, dense, neutral molecular gas with a tiny volume filling factor.
+      Prochaska+ 2019's same sightline bounds exactly that: f_V < 1e-4 for cool clumps embedded in hot
+      halo gas.  And it is closed independently at cluster scale by D1 below, which does not care about
+      the phase at all -- only about the amount.
+
+==========================================================================================================================
+PART D -- THE CONSEQUENCES.  Undetected baryons at pair scale are not free.  Can ONE distribution serve
+          the pairs, the clusters, the rotation curves and the lensing shape together?
+==========================================================================================================================
+
+  D1 CLUSTERS.  The rule is host-blind by construction, so it must also apply to the galaxies IN clusters,
+     where the baryon fraction is measured and is near-cosmic.  X-COP publishes both M_gas and M_star.
+      cluster         M_gas      M_star       M_HSE    f_bar  f_bar with the rule  / cosmic
+      A1795       5.512e+13   3.778e+12   3.784e+14    0.156                0.229      1.46
+      A2029       8.060e+13   6.115e+12   6.210e+14    0.140                0.212      1.35
+      A2142       9.062e+13   5.995e+12   6.348e+14    0.152                0.221      1.42
+      A2319       9.162e+13   5.349e+12   6.435e+14    0.151                0.212      1.35
+      A644        5.927e+13   4.283e+12   4.953e+14    0.128                0.192      1.23
+      A85         6.471e+13   2.370e+12   4.497e+14    0.149                0.188      1.20
+      ZW1215      5.726e+13   3.545e+12   5.265e+14    0.115                0.165      1.05
+      median measured f_bar = 0.149 (cosmic 0.156); with the host-blind rule applied to the clusters' OWN stellar mass it becomes 0.212,
+      i.e. 1.35x the cosmic baryon fraction, in 7 of 7 clusters, and the framework's own reading makes it WORSE:
+      the framework's kernel says the true gravitating mass is BELOW M_HSE, which raises f_bar further.
+  [FAIL] D1 the same host-blind rule, applied to the clusters' own measured stellar mass, keeps the cluster baryon fraction at or below the cosmic value   (it does not: f_bar runs 0.149 -> 0.212 = 1.35x cosmic (worst cluster 1.46x, best 1.05x).  A cluster cannot hold more baryons per unit mass than the universe does.  The only repair is to make the rule environment-dependent -- gas retained in the field, stripped and already-counted in clusters -- which is a SECOND free function on top of the first)
+
+  D2 ROTATION CURVES.  The framework's kernel already fits SPARC with the DETECTED baryons; the escape
+     must not put enough inside 10 kpc to break that.  L21's own tolerance, recomputed here.
+       tolerance on extra mass inside 10 kpc: 0.408 M_b at L* (M_b = 8e10) and 0.589 M_b at a dwarf (M_b = 2e9), from the RAR's own 0.11 dex scatter
+       the escape's truncation radius at a dwarf is scaled as M_*^(1/3) at fixed mean density, which is the choice generous to the escape.
+         alpha   L*: inside 10 kpc  dwarf: inside 10 kpc   rho_X log-slope   verdict
+          0.00               0.003                 0.127             -0.00      pass
+          0.25               0.006                 0.178             -0.25      pass
+          0.50               0.012                 0.249             -0.50      pass
+          0.75               0.022                 0.350             -0.75      pass
+          1.00               0.042                 0.490             -1.00      pass
+          1.25               0.080                 0.688             -1.25      FAIL
+          1.50               0.152                 0.964             -1.50      FAIL
+          1.75               0.291                 1.352             -1.75      FAIL
+          2.00               0.555                 1.897             -2.00      FAIL
+          2.25               1.058                 2.660             -2.25      FAIL
+          2.50               2.017                 3.730             -2.50      FAIL
+       admissible: alpha in [0.00, 1.00]
+  [PASS] D2 some member of the profile family puts little enough inside 10 kpc to leave the rotation-curve fit intact at BOTH L* and dwarf scale   (admissible alpha in [0.00, 1.00] -- the gate is passable, and by SHALLOW profiles only.  This arm does NOT close the door; L41 already found this and it is reproduced here)
+
+  D3 LENSING SHAPE.  L24 measures d ln DeltaSigma / d ln R = -0.851 +/- 0.040 over 0.5-2 Mpc, against the
+     framework's own -0.309: short by 0.54 at 9 sigma.  Does the escape move it?
+       the escape adds mass in proportion to the STELLAR profile, which X-COP already measures and which
+       is already inside M_bar.  Its enclosed-mass log-slope over 0.5-2 Mpc, from the same X-COP stellar
+       profiles used in D1:
+         d ln M_star / d ln r = +0.876, d ln M_bar / d ln r = +1.256 over 0.5-2 Mpc
+       the escape's added component is (F-1) x M_star(r), so it changes M_bar's log-slope from +1.256 to
+       +1.147 -- a move of -0.109 in the enclosed-mass slope.  The measured shear
+       slope needs the SOURCE to be NFW-like (-0.309 is what the framework's near-uniform phantom gives, against -0.851 measured).
+       But the escape's component is BARYONIC and in a cluster the baryons are DIRECTLY MEASURED: adding
+       undetected baryons to a cluster is exactly what D1 forbids.  So the escape cannot repair R4 -- it
+       is barred from acting in clusters at all, and R4 is a statement about clusters.
+  [FAIL] D3 the escape repairs, or even moves, L24's 9 sigma cluster lensing-shape failure   (it does not: the added component moves the cluster baryon enclosed-mass slope by only -0.109, and the amount needed to matter is precisely the amount D1 excludes.  The escape fixes the pairs and leaves the cluster residual, its 3-D shape (R3) and its projected shear shape (R4) exactly where L41 found them)
+
+  D4 THE JOINT TEST.  One distribution, four constraints.
+       [FAIL] pairs  -- supplies 30.9 M_bar inside 132 kpc     needs 5.7e+11 Msun; the measured CGM at that radius is 7.7e+10
+       [FAIL] clusters -- keeps f_bar at or below cosmic       f_bar 0.149 -> 0.212 = 1.35x cosmic
+       [pass] rotation curves -- under 0.41 M_b inside 10 kpc  passable for alpha <= 1.00
+       [FAIL] lensing shape -- reaches -0.851 +/- 0.040        untouched at -0.309, 9 sigma short
+  [FAIL] D4 [THE JOINT TEST] a single undetected-baryon distribution serves the pairs, the clusters, the rotation curves and the lensing shape at once   (1 of 4 arms pass.  Only the rotation-curve arm is satisfiable, and it is the one L41 had already shown does not close the door.  The two arms that DECIDE -- the measured CGM mass at pair separation and the cluster baryon fraction -- fail in OPPOSITE directions: the pairs need more gas than is observed, and the clusters cannot absorb any)
+
+==========================================================================================================================
+PART E -- THE VERDICT.
+==========================================================================================================================
+
+  E0 SENSITIVITY.  The verdict is quoted for the framework's own best case.  Does it depend on that
+     choice?  Every reading of the requirement, against every local arm:
+      reading                                       M_b/M_K  M_hid [Msun]  /CGM(132)  /CGM(gen)    <DM>  <N_H>/obs  EM floor
+      -------------------------------------------------------------------------------------------------------------------
+      Newton on baryons alone                         31.86     2.391e+12      31.0x      14.7x    1491        97x     2950x
+      framework kernel, carried with the EFE          10.14     7.081e+11       9.2x       4.3x     442        29x      259x
+      framework kernel, isolated (its BEST case)       8.34     5.683e+11       7.4x       3.5x     354        23x      167x
+      baryons + a cosmic-share halo (L41's B5)         4.96     3.064e+11       4.0x       1.9x     191        12x       48x
+      -------------------------------------------------------------------------------------------------------------------
+      measured for comparison: CGM(132 kpc) = 7.71e+10 Msun, most generous reading 1.63e+11, DM_FG = 50-120 pc cm^-3,
+      <N_H> = 4.0e+19 cm^-2.  EVERY reading fails EVERY local arm, including L41's own cosmic-share reading, which is the smallest of the four.
+
+      arm                            verdict   the number
+      ---------------------------- ---------   ----------------------------------------------------------------------
+      budget (a)                        PASS   73% of the halo's whole cosmic baryon allotment on the generous halo mass, 165% on the conservative one
+      radial distribution (b)       EXCLUDED   7x the summed measured CGM at 132 kpc; 3.5x the most generous reading at 250 kpc
+      dispersion measure (c)        EXCLUDED   519 pc cm^-3 against a measured 50-120 at b = 29 kpc (4.3x); 182 even for the family minimum
+      X-ray emission (c)            EXCLUDED   697x brighter than the detected hot halos at matched shape, 167x even in the minimum-emission configuration
+      absorption column (c)         EXCLUDED   mean N_H = 9.2e+20 against COS-Halos' 4.0e+19 cm^-2 (23x), profile-free
+      in-situ density (b)           EXCLUDED   2.0e-03 cm^-3 at 48 kpc against Salem+ 2015's 1.1e-04 (18x)
+      global partition (c)              PASS   0.42 +/- 0.08 of all baryons against 0.41 +/- 0.10 (FLIMFLAM) and 0.24 +/- 0.10 (Connor+)
+      Milky Way (b)                 EXCLUDED   2.2x Deason+ 2021's measured M(<100 kpc), 6 sigma, both footings; 1.8x / 4 sigma on the fairer low-mass amplitude
+  [FAIL] E1 [VERDICT] the undetected-baryon escape survives the observational confrontation, i.e. L41's last door remains OPEN   (6 of 8 arms EXCLUDE it, and they are independent probes of different physics: UV absorption, X-ray emission, the thermal SZ, ram-pressure stripping, FRB dispersion, and the Milky Way's own stellar-halo dynamics.  It survives only the TOTAL budget (at the ceiling) and the global FRB partition (on the more permissive of two analyses).  The door is CLOSED)
+
+--------------------------------------------------------------------------------------------------------------------------
+  WHAT THIS DOES AND DOES NOT SAY, stated plainly:
+  1. This is a COST for the framework and NOT a result in its favour.  Had the escape survived, that would
+     also have been a cost -- a free function of host mass and environment, i.e. LambdaCDM's galaxy-
+     formation sector imported wholesale, exactly as L41 wrote.  There was no outcome here that was a win.
+  2. Nothing here constrains LambdaCDM.  LambdaCDM does not need the escape: its missing baryons are
+     EJECTED to large radii and to the IGM by feedback, which is what the FRB partition, the SZ profile
+     and the eROSITA extrapolation to ~3 R_vir all measure.  The framework needs them BOUND and INSIDE
+     132 kpc, and that is the specific thing the data exclude.
+  3. The framework's kernel passes the Milky Way's M(<100 kpc) on the DETECTED baryons at well under
+     1 sigma (C8).  That is a real success of the kernel and it is recorded as one -- but it is not a
+     discriminant, because a LambdaCDM halo fits the same number by construction.
+  4. Systematics that bound this, and they run the RIGHT way for the escape, so they are priced.  The pair
+     amplitudes are UPPER limits (L21's isolation-depth caveat: A falls 1.99 -> 1.51 as the isolation
+     deepens), so the required mass is an upper limit too.  Taking L21's own deepest-isolation A = 1.51
+     lowers the requirement to 4.5x the K-band mass (2.70e+11 Msun), which is still 4x the measured CGM at 132 kpc,
+     1.7x the most generous reading, and 169 pc cm^-3 in mean
+     dispersion measure against a measured 50-120.  Even L21's most pessimistic amplitude does not reach
+     the observations.  Also priced: circular orbits are assumed, which is generous to the framework and
+     therefore generous to the escape; and the stellar mass uses Upsilon_K = 0.6 with no gas, so raising
+     the detected baryons by the ~15% a gas term adds moves nothing at these ratios.
+  5. The one phase not excluded by absorption, emission or dispersion -- cold dense molecular clumps with
+     a filling factor below ~1e-4 -- is closed by D1 instead, which is blind to phase and counts only
+     mass.  Naming the observation that WOULD find it, if anyone wants to reopen this: a stacked FRB
+     dispersion excess behind isolated L* galaxies at 100-150 kpc, at the ~10 pc cm^-3 level, which the
+     current samples do not yet reach.  That, not a theoretical argument, is what would move this verdict.
+--------------------------------------------------------------------------------------------------------------------------
+
+RESULT: 10 FAIL -> ['C2 (b) the required mass is consistent with the observed radial distribution: that much CGM is measured at ~130 kpc', "C3 (c-i) the implied dispersion measure is consistent with the FRB constraints on foreground galaxy halos and on the Milky Way's own halo", 'C4 (c-ii) the implied X-ray emission is consistent with the measured hot halos of L* galaxies', 'C5 (c-iii) the implied absorption column is consistent with the measured circumgalactic hydrogen column at these radii', "C6 (b/c) the implied in-situ gas density agrees with the one place it is measured directly, the Milky Way's halo at ~50 kpc", "C8 (b) the required baryons are compatible with the Milky Way's directly measured enclosed mass at 100 kpc, run through the framework's own kernel", "D1 the same host-blind rule, applied to the clusters' own measured stellar mass, keeps the cluster baryon fraction at or below the cosmic value", "D3 the escape repairs, or even moves, L24's 9 sigma cluster lensing-shape failure", 'D4 [THE JOINT TEST] a single undetected-baryon distribution serves the pairs, the clusters, the rotation curves and the lensing shape at once', "E1 [VERDICT] the undetected-baryon escape survives the observational confrontation, i.e. L41's last door remains OPEN"]
