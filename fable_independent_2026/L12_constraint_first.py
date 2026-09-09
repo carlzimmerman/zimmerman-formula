@@ -267,8 +267,7 @@ for f, nm in ((a_, "a"), (b_, "b"), (c_, "c")):
     coef2[nm] = sp.simplify(lin.coeff(sp.Derivative(f, (xv, 2))))
 same = sp.simplify(coef2["a"] - coef2["b"]) == 0 and sp.simplify(coef2["b"] - coef2["c"]) == 0
 # evaluate the common coefficient on an explicit background with |Dq| =/= 0, with the frozen kernel
-bg = {A_: xv, B_: 2 * xv, C_: -sp.Rational(1, 2) * xv}
-mu_num = sp.Lambda(sp.Symbol("yy"), 1 - sp.exp(-sp.Symbol("yy")))   # a0 = 1 units for this structural test
+# (a0 = 1 units: this test is structural -- which MODE is removed, not with what strength)
 coef_num = {}
 for nm in ("a", "b", "c"):
     e = coef2[nm]
@@ -365,38 +364,30 @@ CM_flat_cart = C_M_operator(q_flat_cart, g_cart, xc, A0["canonical"])
 q_flat_sph = q_of(g_sph)
 # in empty flat space the acceleration artefact is |Dq| = sqrt(4 + cot^2 th)/(3 r); at every radius inside
 # the observable universe c^2|Dq| >> a0, so mu = 1 to machine precision.  Verify that, then use mu = 1.
-modDq_sph = sp.simplify(sp.sqrt(grad_sq(q_flat_sph, g_sph, xs)))
-modDq_eq = sp.simplify(modDq_sph.subs(th, sp.pi / 2))
+modDq_sph = sp.sqrt(grad_sq(q_flat_sph, g_sph, xs, simp=False))
+modDq_eq = sp.simplify(modDq_sph.subs(th, sp.pi / 2))                # -> 2/(3 r), no tan/cot artefacts
 y_1AU = float(C_LIGHT ** 2 * modDq_eq.subs(r, AU) / A0["canonical"])
-_yf = sp.lambdify(r, C_LIGHT ** 2 * modDq_eq / A0["canonical"] - 1, "math")
-_lo, _hi = 1e18, 1e40
-for _ in range(300):
-    _mid = math.sqrt(_lo * _hi)
-    if _yf(_mid) > 0:
-        _lo = _mid
-    else:
-        _hi = _mid
-r_y1 = math.sqrt(_lo * _hi)
-CM_flat_sph = C_M_operator(q_flat_sph, g_sph, xs, A0["canonical"], mu_is_one=True)
+r_y1 = float(sp.solve(sp.Eq(C_LIGHT ** 2 * modDq_eq / A0["canonical"], 1), r)[0])
+CM_flat_sph = sp.simplify(C_M_operator(q_flat_sph, g_sph, xs, A0["canonical"], mu_is_one=True).subs(th, sp.pi / 2))
 print(f"        Cartesian : det gamma = 1, q = {q_flat_cart}, C_M = {CM_flat_cart}")
 print(f"        spherical : det gamma = r^4 sin^2(theta), q = {sp.simplify(q_flat_sph)}")
-print(f"                    |Dq| = {modDq_sph}  (= {modDq_eq} on the equator)")
+print(f"                    |Dq|^2 = {sp.simplify(grad_sq(q_flat_sph, g_sph, xs))};  |Dq| = {modDq_eq} on the equator")
 print(f"                    c^2|Dq|/a0 at 1 AU (equator) = {y_1AU:.3e}  => mu = 1 to machine precision")
 print(f"                    y = 1 only at r = {r_y1:.3e} m = {r_y1/MPC/1e3:.1f} Gpc -- beyond the observable "
       f"universe, so the artefact sits in the mu = 1 (Newtonian) regime everywhere")
 print(f"                    C_M = D_i[mu D^i q] = {CM_flat_sph}   (nonzero)")
 rho_fake = {}
 for nm, a0 in A0.items():
-    rho_fake[nm] = C_LIGHT ** 2 * float(CM_flat_sph.subs({r: AU, th: sp.pi / 2})) / (4 * math.pi * G_N)
+    rho_fake[nm] = C_LIGHT ** 2 * float(CM_flat_sph.subs(r, AU)) / (4 * math.pi * G_N)
 print(f"        with source S = 4 pi G rho/c^2, C_M = 0 demands a fictitious density")
 print(f"          at 1 AU   : rho = {rho_fake['canonical']:+.4g} kg/m^3   (denser than granite, and negative)")
-rho_10kpc = C_LIGHT ** 2 * float(CM_flat_sph.subs({r: 10 * KPC, th: sp.pi / 2})) / (4 * math.pi * G_N)
+rho_10kpc = C_LIGHT ** 2 * float(CM_flat_sph.subs(r, 10 * KPC)) / (4 * math.pi * G_N)
 print(f"          at 10 kpc : rho = {rho_10kpc:+.4g} kg/m^3   (~1e5 x the mean baryon density of a galaxy)")
 print(f"        Both a0 footings give the identical number here because mu = 1 in both.")
 check("F2 [spatial covariance] C_M vanishes in empty flat space in every spatial coordinate system, as any "
       "physical field equation must",
       CM_flat_cart == 0 and CM_flat_sph == 0,
-      f"Cartesian gives 0, spherical gives {sp.simplify(CM_flat_sph)} =/= 0; the same empty space demands "
+      f"Cartesian gives 0, spherical gives {CM_flat_sph} =/= 0; the same empty space demands "
       f"rho = {rho_fake['canonical']:.3g} kg/m^3 at 1 AU.  q is a log-DENSITY, not a scalar (check A4)")
 
 # --- F3: the standard repair -- q relative to a fiducial flat density.  Does it make q unique?
@@ -418,10 +409,11 @@ gbar_iso = sp.diag(1, rb ** 2, rb ** 2 * sp.sin(th) ** 2)
 q_iso = sp.simplify(q_of(g_iso, gbar_iso))
 gI_grad = sp.simplify(sp.sqrt(grad_sq(q_iso, g_iso, xs_iso)))
 g_field_iso = sp.simplify(sp.series(C_LIGHT ** 2 * gI_grad, M, 0, 2).removeO())
-print(f"         areal radius     : q = {sp.simplify(q_areal)}   ->  c^2|Dq| = {g_field_areal} + O(M^2)")
-print(f"         isotropic radius : q = {sp.simplify(sp.series(q_iso, M, 0, 2).removeO())}   "
-      f"->  c^2|Dq| = {g_field_iso} + O(M^2)")
-print("         (units: M is the geometric mass GM/c^2, so c^2 M/r^2 = g_Newton and c^2 M/(3 r^2) = g_Newton/3)")
+print(f"         areal radius     : q = {sp.simplify(q_areal)}  = -M/(3r) + O(M^2)")
+print(f"                            ->  c^2|Dq| = {g_field_areal} + O(M^2)   = (c^2/3) M/r^2 = g_Newton / 3")
+print(f"         isotropic radius : q = {sp.simplify(sp.series(q_iso, M, 0, 2).removeO())}")
+print(f"                            ->  c^2|Dq| = {g_field_iso} + O(M^2)   = c^2 M/rbar^2 = g_Newton")
+print(f"         (M is the geometric mass GM/c^2; c^2 = {C_LIGHT**2:.6e}, c^2/3 = {C_LIGHT**2/3:.6e})")
 ratio_gauge = sp.simplify(g_field_areal.subs(r, rb) / g_field_iso)
 check("F3 [fiducial repair] with the fiducial repair the MOND field c^2|Dq| is unique -- independent of "
       "which flat fiducial is chosen",
@@ -571,18 +563,22 @@ check("K1 [cosmology] there is an expanding FLRW solution with rho > 0",
       "K-terms, i.e. C_M replacing H_perp) escapes, and that branch is the one F1/HKT close")
 
 # perturbations: mu(0) = 0 makes the constraint operator degenerate at linear order
-epsp = sp.Symbol("epsp")
-Qp = sp.Function("Q")(*xc)
+epsp = sp.Symbol("epsp", positive=True)
+a0sym = sp.Symbol("a0", positive=True)
+xp = sp.Symbol("xp", real=True)                       # one Fourier direction is enough for the order count
+Qp = sp.Function("Q")(xp)
 q_pert = epsp * Qp
-mod = sp.sqrt(sum(sp.diff(q_pert, v) ** 2 for v in xc))
-mu_pert = 1 - sp.exp(-C_LIGHT ** 2 * mod / sp.Symbol("a0", positive=True))
-Vp = [sp.simplify(mu_pert * sp.diff(q_pert, v)) for v in xc]
-CM_pert = sum(sp.diff(Vp[i], xc[i]) for i in range(3))
-lead = sp.simplify(sp.limit(CM_pert / epsp, epsp, 0))
-order2 = sp.simplify(sp.limit(CM_pert / epsp ** 2, epsp, 0))
+W = sp.Abs(sp.diff(Qp, xp))                           # |dQ| ; epsp > 0 factors out
+mu_pert = 1 - sp.exp(-C_LIGHT ** 2 * epsp * W / a0sym)
+CM_pert = sp.diff(mu_pert * epsp * sp.diff(Qp, xp), xp)
+ser = sp.series(CM_pert, epsp, 0, 3).removeO()
+lead = sp.simplify(ser.coeff(epsp, 1))
+order2 = sp.simplify(ser.coeff(epsp, 2))
 print(f"\n    Linear perturbations about ANY homogeneous background (|Dq| = 0 there, so mu = 0 there):")
-print(f"        lim_(eps->0) C_M/eps   = {lead}      (no term linear in the metric perturbation)")
-print(f"        lim_(eps->0) C_M/eps^2 = {sp.simplify(order2)}   (the operator starts at SECOND order)")
+print(f"        C_M expanded in the perturbation amplitude eps:")
+print(f"          O(eps^1) coefficient = {lead}      (no term linear in the metric perturbation)")
+print(f"          O(eps^2) coefficient = {order2}")
+print(f"          (that is exactly d/dx[(c^2/a0)|Q'| Q'], the leading deep-MOND operator, at SECOND order)")
 print("        mu(y) = 1 - e^-y ~ y = c^2|Dq|/a0 makes D_i[mu D^i q] quadratic in Dq -- a degenerate")
 print("        (3-Laplacian-type) operator.  At linear order the constraint therefore contains no metric")
 print("        perturbation at all and reduces to delta S = 0, i.e. delta rho = 0: no linear growth of")

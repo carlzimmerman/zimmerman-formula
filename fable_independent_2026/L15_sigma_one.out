@@ -15,4 +15,96 @@ L15 -- the IC6 obstruction at the Cherenkov-forced value of its own design param
   [PASS] L15-C3 branch tangent dq/dj|_1 = ( -(8T+27)/(4(4T-27)), -18/(4T-27) ) from my own implicit-function solve, identical at sigma = 1/3 and sigma = 1. It is EXACTLY along the auxiliary null direction chi = (partial_u - b partial_xi), i.e. dq/dj = -18/(4T-27) * (-b, 1).   (dq/dj = (-1.00948454914, -0.452875154791))
   [PASS] L15-C4 the five witness coefficients of IC6_EVEN reproduce at sigma = 1/3: h_pp = E(1/J-1)/(6V) as an exact identity, h_p,chi = 2T/9, g_chi = -e^{1/6}(8T-27)/9, h_pp' = -e^{1/2}J'/6, g_p' = 2e^{2/3}J'/3
   [PASS] L15-C5 det(M_star) = -4 T^2 h0^2/81, nonzero, and IDENTICAL at sigma = 1/3 and sigma = 1 (M11 = 0 at the witness for every sigma, and M12, M22 are sigma-free) -- so IC7's cutoff normalisation does not move   (det(M*) = -13.750109935689 at both)
-  [PASS] L15-C6 [MANDATORY CONTROL] at the PUBLISHED parameters (sigma = 1/3) my independent rebuild returns S_4'(1) = -e^{5/6}(5T-27)(8T-27)(8T+27)/(18 T^2 (4T-27)) = -11.1407711251147987, L4's confirmed value. Nothing below is trustworthy without this.   (S_4
+  [PASS] L15-C6 [MANDATORY CONTROL] at the PUBLISHED parameters (sigma = 1/3) my independent rebuild returns S_4'(1) = -e^{5/6}(5T-27)(8T-27)(8T+27)/(18 T^2 (4T-27)) = -11.1407711251147987, L4's confirmed value. Nothing below is trustworthy without this.   (S_4'(1)|_sigma=1/3 = -11.1407711251147987  (lead's closed form -11.1407711251147987))
+
+-- 2. the obstruction as a closed function of sigma --------------------------------------------------------
+  [PASS] L15-G1 [control] my general-sigma closed form S_4'(1;sigma) = e^{5/6}(p_R T - 9)(3 p_R + 4)(3 p_R - 44) / (216 (4T - 27)),  p_R = 8/3 + 4 a_* sigma, reduces SYMBOLICALLY to the lead's boxed identity at sigma = 1/3   (sympy: difference simplifies to exactly 0)
+  [PASS] L15-G2 [control] the closed form agrees with the full numerical implicit-function derivative of S_4 at sigma = 1/5, 1/3, 1/2, 9/10, 1, 3/2 -- so it is the correct sigma-dependence, not a fit at one point   (max |closed - numeric| = 4.867e-51)
+
+-- 3. the answer at sigma = 1 ------------------------------------------------------------------------------
+    a_*    = 1.78644509894   T = 16.6865133026   (both sigma-free)
+    p_R:   5.04859346525  (sigma=1/3)  ->  9.81244706242  (sigma=1)
+    q_R:   -2.89322254947  ->  -4.67966764841
+    A_R:   2.73988424349  ->  5.32523945163
+    B_R:   -1.57015908109  ->  -2.53966728415
+    dF/dj: -2.05478477334  ->  -4.22559473247
+    dJ_T/dj: -1.89310424406  ->  -3.89310424406
+
+    S_4'(1) at sigma = 1/3 : -11.1407711251147987
+    S_4'(1) at sigma = 1   : -20.194205022906776
+    ratio                  : 1.81263978912
+  [PASS] L15-R1 [THE QUESTION] does the IC6 quartic obstruction VANISH at sigma = 1? It does not. S_4'(1) is nonzero, has the SAME NEGATIVE SIGN, and is LARGER in magnitude than at the published sigma = 1/3. S_4(1) = 0 still holds at the witness, so S_4 < 0 for every small j - 1 > 0 exactly as at sigma = 1/3, and M_0 zeta_tt + S_4 k^4 zeta = 0 still has real growth ~ k^2.   (S_4'(1)|_sigma=1 = -20.194205022906776, i.e. 1.81264x the sigma = 1/3 value)
+  [PASS] L15-R2 the answer is uniform across the ENTIRE Cherenkov-allowed window. 1 - c_s <= 2e-15 with c_s^2 = sigma gives sigma >= 1 - 4e-15; over that whole window S_4'(1) moves by less than 1e-12, so no choice inside the window changes the verdict.   (dS_4'/dsigma at sigma=1 = 1.218982111; window swing = 4.876e-15)
+
+-- 4. can any admissible sigma remove the obstruction? ------------------------------------------------------
+  [PASS] L15-R3 [THEOREM] S_4'(1;sigma) has exactly ONE zero in sigma, at sigma_* = 4T/(4T-27) = 3/a_*, and sigma_* > 1 for EVERY T in the frozen domain T > 27/4. The other two factors (p_R T - 9) and (3 p_R + 4) are strictly positive for all sigma > 0. Therefore S_4'(1;sigma) < 0 for the WHOLE of IC-4's own design interval 0 < sigma <= 1: no admissible choice of the design parameter removes the obstruction, and the one value that would is outside the interval.   (sigma_* = 4T/(4T-27) = 1.67931273219, i.e. c_s = 1.295882993 c (29.59% superluminal))
+  [PASS] L15-R4 the frozen domain condition does NOT move. T = -27/16 + 54/(5 ln(9/5)) contains no sigma, so T > 27/4 holds at sigma = 1 exactly as at sigma = 1/3, and det H_qq = 12(4T-27) > 0 is unchanged. What the published factorisation (5T-27)(8T-27)(8T+27) hid is that the sign is really controlled by 3 p_R - 44 < 0, i.e. by sigma < sigma_*, and the design interval sits entirely inside that region.   (T = 16.6865133026 > 6.75; 3 p_R - 44 = -14.56265881 < 0 at sigma = 1)
+
+    S_4'(1;sigma) across the design interval and beyond:
+      sigma        p_R          S_4'(1)
+      0.05         3.0239557    -5.07339905067
+      0.2          4.0958227    -8.21548002461
+      0.33333333   5.0485935    -11.1407711251
+      0.5          6.2395569    -14.6420793481
+      0.75         8.026002     -18.7290681664
+      1.0          9.8124471    -20.1942050229
+      1.25         11.598892    -17.6606207073
+      1.5          13.385337    -9.75144600916
+      1.6793127    14.666667    -6.46401208581e-15
+      1.8          15.529071    8.77397478161
+  [PASS] L15-R3b [sharpest form of the result] S_4'(1;sigma) is not monotone: it is most negative at sigma = 0.9806905448, essentially AT the Cherenkov-forced value. Of the whole interval 0 < sigma <= 1 that IC-4 declares admissible, the gravitational-Cherenkov bound selects the point where the IC6 obstruction is at its strongest. The published sigma = 1/3 was, by this measure, the mildest part of the interval that the construction could have been tested on.   (argmax|S_4'| at sigma = 0.9806905448, value -20.2059210941; at sigma = 1 it is -20.1942050229, i.e. 99.942% of the worst value in the interval)
+
+-- 5. is IC7's counterterm still required? -----------------------------------------------------------------
+  [PASS] L15-R5 [control + result] the isotropic auxiliary solve is literally the same at both sigma: at j = 1.007 my Newton solve gives xi = 0.24297809, u = 0.66347046 (IC6_EVEN's quoted values) at sigma = 1/3 AND at sigma = 1, agreeing to 40 digits. Only J_T, S_4 and c_7 move.   (j=1.007: S_4 = -0.0752605165258 (sigma=1/3) -> -0.13431570871 (sigma=1); growth lambda^2/k^4 = 0.0345698565 -> 0.06222544909)
+  [PASS] L15-R6 [THE SECOND QUESTION] IC7's curvature-square counterterm is STILL REQUIRED at sigma = 1, and it is required MORE strongly: the coefficient it must supply, c_7 = -S_4/32, is nonzero and larger in magnitude at every isotropic sample. The construction does NOT simplify at sigma = 1.   (c_7 at j=1.007: 0.00235189114143216 (sigma=1/3) -> 0.00419736589718309 (sigma=1), a factor 1.7846769)
+  [PASS] L15-R7 IC7's repaired window SHRINKS by a factor ~2 at sigma = 1. L4 measured the theta == 1 plateau ending at j = 1.0736 and theta reaching 0 at j = 1.1316 for sigma = 1/3. Because dJ_T/dj is ~2x larger at sigma = 1, det M leaves its witness value ~2x faster and both edges move in. The unrepaired S_4 restored at the theta = 0 edge is also larger.   (theta=1 edge: j = 1.0736445 -> 1.0499108; theta=0 edge: j = 1.1315852 -> 1.0855286 (S_4 there -0.734125 -> -0.900624))
+  [PASS] L15-R8 [corrected premise -- the obvious guess was wrong] the branch does NOT end because J_T reaches 0. The isotropic family itself terminates at a FOLD of the auxiliary constraint surface at j = 1.2165, where the real root of h_xi = h_u = 0 is lost and u is on its way out of the regular window 0 < u < 1. That fold is sigma-INDEPENDENT, because the tau = 0 constraints are sigma-free (L15-S5). J_T stays positive all the way to it at BOTH sigma -- but its margin at the fold collapses from 0.727 to 0.390, a factor 1.9. IC6's and IC7's stated precondition J_T > 0 therefore still holds on the whole branch at sigma = 1, with much less room.   (branch fold at j = 1.216488 (both sigma; u there = 0.50720085); J_T at the fold = 0.72736543 (sigma=1/3) -> 0.39019892 (sigma=1))
+
+-- 6. tensor cone, degree-of-freedom count, ghost ----------------------------------------------------------
+  [PASS] L15-R9 [THE TENSOR QUESTION] the IC6 tensor sector still gives c_T^2 = 1 EXACTLY at sigma = 1. The result is sigma-independent as an identity, not numerically: TENSOR_BALANCE's K_T = 1 + F Q^2/a0^2 = J_T and G_T = J_T cancel, and sigma lives only inside J_T. Reproduced here with sigma left symbolic, both polarisations, plus the IC5 mutation returning c_T^2 = J_T. So Cherenkov's tensor arm stays clean.   (symbolic in sigma: c_T^2(IC6) - 1 == 0 identically)
+  [PASS] L15-R10 [THE DOF QUESTION] the local degree-of-freedom count is UNCHANGED at sigma = 1: 8 canonical pairs (6 barred-metric + xi + u) = 16, minus 4 second-class auxiliary constraints, minus 2x3 first-class spatial-momentum constraints = 3 -- two tensor polarisations plus one khronon-type clock scalar. The second-class classification rests on the invertibility of K = V h_AB, whose witness Hessian is sigma-independent (L15-C2), and on LOCAL_WAVE's sigma-free constraint matrix (L15-S4).   (count = 3; |eig H_qq| at sigma=1: 4.3084046, 40.7253 (identical to sigma=1/3))
+  [PASS] L15-R11 [THE GHOST QUESTION] the reduced scalar's kinetic normalisation stays POSITIVE at sigma = 1 -- and at the witness it is exactly sigma-independent, because A_0 = det M/M22 = -M12^2/M22 there and both M12 and M22 are sigma-free. It is still positive at j = 1.007. Independently, LOCAL_WAVE's reduced scalar Lagrangian has kinetic coefficient a_* = 3 - 81/(4T) > 0 with NO sigma in it (L15-S2). No ghost at sigma = 1, by two separate routes.   (A_0(witness) = 0.461453103619 at both sigma; A_0(j=1.007) = 0.4593358921 -> 0.463277525; a_* = 1.786445099)
+
+-- 7. is sigma = 1 a singular or degenerate point of the construction? --------------------------------------
+  [PASS] L15-R12 [THE DEGENERACY QUESTION] sigma = 1 is a REGULAR point of the construction, not a singular one. Every coefficient that could have vanished there is bounded away from zero: p_R, q_R, A_R, B_R, a_*, C = 1 + a_* sigma, det M_star, M12, M22, det H_qq, J_T(witness), and all three factors of the obstruction. The construction's ONE degeneracy in sigma is the obstruction's zero at sigma_* = 4T/(4T-27) = 1.679, which is 29.6% superluminal -- not 'marginally' superluminal, and outside IC-4's declared 0 < sigma <= 1. Luminality does not sit where a coefficient vanishes here.   (smallest |coefficient| at sigma=1 is J_T_witness = 1.0)
+
+-- 8. the sheared state ------------------------------------------------------------------------------------
+  [PASS] L15-R13 the sheared fixture DOES move with sigma, unlike the isotropic branch, because its tau != 0 makes the auxiliary constraints see F. At sigma = 1/3 my solve returns IC6_EVEN's xi = 0.242752746344542675, u = 0.663589818477735377, J_T = 0.986102159712075428 (18 digits); at sigma = 1 the state and IC7's coefficient there both shift.   (sigma=1: xi = 0.2393681032383679757, u = 0.6620462811292859172, J_T = 0.9586764465793523735; c_7 = 0.00248215257345216 -> 0.00634459691365548)
+  [PASS] L15-R14 [new liability at sigma = 1] IC7's tensor detuning off flat backgrounds gets WORSE. The exact form c_T,physical^2 = 1 - 4 c_7 Rbar_0 / c (L4 finding 2) is unchanged, but c_7 grows with sigma while c stays near 1, so the per-unit-Rbar_0 detuning at the sheared state roughly doubles. Whatever fixes the sheared mixing must now protect an exactly luminal tensor cone against a larger counterterm.   (4 c_7/c per unit Rbar_0: 0.008570513 (sigma=1/3) -> 0.022592699 (sigma=1))
+
+    NOT AVAILABLE TO THIS LANE, named exactly:
+      - S4_11(sigma=1), the sheared reduced quartic. IC6_EVEN's -0.0642323935174161 and IC7's leftover
+        0.0151964888331 are outputs of the lead's ANISOTROPIC two-mode reduction (ic6_even_characteristics.py),
+        which is not reproduced in this lane and whose sigma-dependence is not published in closed form.
+        The sheared leftover at sigma = 1 therefore requires re-running that reduction with
+        p_R = 8/3 + 4 a_* sigma at sigma = 1. Same for the antisymmetric mixing N2_21 = 0.000563025148111.
+      - the k^2 reduction giving the witness speeds (sigma, 1) and IC7's quoted c_s^2 = 0.388526918 at
+        k = 1e5: that needs the background time derivatives (Mdot, Ndot) of the lead's reduced system.
+        The identification c_s^2 = sigma is read from LOCAL_WAVE_REPORT's boxed z'' + 3z' + sigma x z = 0
+        and re-derived here (L15-S2); the finite-k correction to it is not.
+      - IC10_LOCAL_CLOCK / OPTICAL_ALIGNMENT use the symbol 'sigma' for a DIFFERENT, unrelated quantity
+        (sigma = -1/4 in the s8/K8/J8/c8 optical block). Nothing in this lane touches that symbol.
+
+-- 9. the requirement ---------------------------------------------------------------------------------------
+  [PASS] L15-B1 [HANDOFF_CONTRACT open challenge B1, as literally written] 'the IC6 obstruction, the IC7 counterterm and the tensor balance all re-derive at sigma = 1'. They do: the obstruction re-derives (L15-R1), the counterterm re-derives and is still well defined (L15-R6), the tensor balance re-derives exactly (L15-R9). B1 is DISCHARGED. Its answer is negative for the construction.
+  [FAIL] L15-P1 [PROGRAMME REQUIREMENT -- the outcome that was worth hoping for] 'moving sigma to the Cherenkov-forced value removes the IC6 obstruction, so IC7's counterterm becomes unnecessary and the construction SIMPLIFIES.' It does not. The obstruction persists with the same sign, is 1.81x larger, IC7 is needed 1.78x more strongly, its repair window halves, and no sigma in IC-4's own admissible interval (0,1] would have helped (L15-R3). This is a requirement not met, not a claim refuted: the lead never asserted that sigma = 1 would repair anything.   (S_4'(1)|_sigma=1 = -20.194205022906776 != 0; the construction does NOT simplify at sigma = 1)
+
+-- verdict --------------------------------------------------------------------------------------------------
+    S_4'(1) at sigma = 1/3 (published)  : -11.1407711251147987
+    S_4'(1) at sigma = 1   (Cherenkov)  : -20.194205022906776
+    zero of S_4'(1;sigma)               : sigma_* = 4T/(4T-27) = 1.67931273219  (c_s = 1.295883 c), OUTSIDE (0,1]
+    obstruction at sigma = 1            : PERSISTS, same sign, 1.81264x larger
+    IC7 counterterm                     : STILL REQUIRED, and larger (c_7 x1.78468)
+    tensor cone c_T^2 = 1               : SURVIVES exactly, sigma-independent identity
+    DOF count                           : UNCHANGED, 2 tensor + 1 clock scalar
+    ghost                               : NONE; kinetic normalisation a_* and A_0(witness) are sigma-free
+    sigma = 1 degenerate?               : NO, regular point
+
+======================================================================================================================
+L15: 1 FAIL(S)
+    FAIL: L15-P1 [PROGRAMME REQUIREMENT -- the outcome that was worth hoping for] 'moving sigma to the Cherenkov-forced value removes the IC6 obstruction, so IC7's counterterm becomes unnecessary and the construction SIMPLIFIES
+    Every reproduction check of the lead's own numbers PASSES, including the mandatory control L15-C6,
+    which returned L4's confirmed S_4'(1) = -11.1407711251147987 before any sigma was moved. The single
+    FAIL is the hoped-for outcome (sigma = 1 repairs the construction), which is false. Exit 2 marks that
+    designed outcome; exit 1 would mean one of the lead's numbers failed to reproduce.
+======================================================================================================================

@@ -458,13 +458,20 @@ for name, pts in sorted(DAT[foot].items()):
     if s2_rq < 0: negcnt += 1
     print(f"      {name[:10]:10s} {ag:8.2f} | {math.sqrt(s2_20)/1e3:19.0f} km/s | "
           f"{s2_rq/1e6:16.2e} km^2/s^2  {'(NEGATIVE: impossible)' if s2_rq < 0 else ''}")
+KT_TYP = 6.0*1.602176634e-16; MU_MP = 0.61*1.67262192e-27                   # a typical X-COP temperature, stated as an assumption
+f_nth_20 = (np.median(sig20)*1e3)**2/((np.median(sig20)*1e3)**2 + KT_TYP/MU_MP)
 print(f"\n      a measured b = 0.20 at 0.80 R500 corresponds to sigma_1D = {np.median(sig20):.0f} km/s (median), "
       f"{np.median(sig20)/SIG_HITOMI:.1f}x Hitomi's")
-print(f"      Perseus measurement of {SIG_HITOMI:.0f} km/s -- already large, and it is a correction that makes the framework's")
-print(f"      job HARDER.  The b the framework needs is negative in {negcnt} of {len(DAT[foot])} clusters, i.e. it is not a")
-print(f"      non-thermal support at all but its opposite: the thermal pressure gradient would have to be OVER-stated")
-print(f"      by a factor {1/(1-BREQ_L7['canonical']) if False else (1-BREQ_L7['canonical']):.2f}.  This is exactly the branch the lead's own CLUSTER_AUDIT.md proves impossible with")
-print(f"      a non-negative outer boundary pressure ('the required inner nonthermal pressure is negative').", flush=True)
+print(f"      Perseus measurement of {SIG_HITOMI:.0f} km/s.  Cross-check that this conversion is sane: at a typical kT = 6 keV that")
+print(f"      dispersion is a non-thermal pressure fraction f_nth = rho sigma^2/(rho sigma^2 + P_th) = {100*f_nth_20:.0f}%, against the")
+print(f"      {100*f_nelson(0.8/2.0):.0f}% Nelson+2014 simulate at this radius -- so b = 0.20 and the simulated turbulence are the same")
+print(f"      statement, and both are a correction that makes the framework's job HARDER.  (sigma is model-dependent:")
+print(f"      constant sigma with rho_g ~ r^-alpha_g; a rising sigma(r) would need less at this radius and more outside.)")
+print(f"\n      The b the framework needs is NEGATIVE in {negcnt} of {len(DAT[foot])} clusters, so sigma^2 < 0: it is not a non-thermal")
+print(f"      support at all but its opposite.  Written without turbulence, it is the demand that the measured thermal")
+print(f"      pressure gradient be OVER-stated by a factor {(1-BREQ_L7['canonical']):.2f}.  This is exactly the branch the lead's own")
+print(f"      CLUSTER_AUDIT.md proves impossible with a non-negative outer boundary pressure ('with zero nonthermal")
+print(f"      pressure at the outer endpoint the required inner nonthermal pressure is negative').", flush=True)
 
 # ================================================================ 6. CROSS-CHECK AGAINST THE LEAD'S OWN FIELD
 print("\n" + "-" * 122)
@@ -527,7 +534,7 @@ check("H3 [KEY, L7] there is a b inside the measured range [0.00, 0.42] that bri
       f"required b = {BREQ_L7['canonical']:+.3f} (canonical) / {BREQ_L7['alt']:+.3f} (alt); every one of the twelve clusters needs a "
       f"negative b ({percl['canonical'].min():+.2f} to {percl['canonical'].max():+.2f}); the measured range is [{B_MEAS_LO:+.2f}, {B_MEAS_HI:+.2f}] and "
       f"X-COP's own is [{B_XCOP_LO:+.2f}, {B_XCOP_HI:+.2f}] -- the required value is on the OPPOSITE SIDE OF ZERO, "
-      f"{abs(BREQ_L7['canonical'] - B_XCOP_LO)/0.10:.1f} times the single-cluster scatter away from the nearest measured value")
+      f"{abs(BREQ_L7['canonical'] - B_XCOP_LO)/0.10:.1f} single-cluster scatters (taking sigma_b = 0.10) below the X-COP median")
 
 b2 = float(np.median([b for _, b, _ in BREQ_L2[HEAD]]))
 b2all = [b for k in BREQ_L2 for _, b, _ in BREQ_L2[k]]
@@ -544,11 +551,13 @@ check("H5 [L2 slope] there is a b inside the measured range for which the requir
 
 r33 = [L7B[(f, b)]["rN"] for f in DAT for b in BGRID if b <= 0.33]
 surv = all(COSMIC <= v <= COSMIC/0.7 for v in r33)
+B_R1_EDGE = solve_b(lambda b: l7_summary(l7_at('canonical', b))['rN'] - COSMIC/0.7, lo=-0.5, hi=0.9)
 check("H6 [L7 cosmic] L7's cosmic-ratio agreement survives the measured bias range: across 0 <= b <= 0.33 the Newtonian M_dark/M_bar stays inside R1's depletion-allowed 5.4-8.0",
       surv, f"ratio_N runs {min(r33):.2f} to {max(r33):.2f} over b in [0, 0.33] (R1 band {COSMIC:.2f}-{COSMIC/0.7:.2f}); it leaves the band above "
-            f"b = {solve_b(lambda b: l7_summary(l7_at('canonical', b))['rN'] - COSMIC/0.7, lo=-0.5, hi=0.9):.2f}. "
-            f"f_bar falls {C0['fbar']:.3f} -> {L7B[('canonical',0.33)]['fbar']:.3f}, i.e. cluster baryon RETENTION "
-            f"{100*C0['fbar']/FBAR_COSMIC:.0f}% -> {100*L7B[('canonical',0.33)]['fbar']/FBAR_COSMIC:.0f}%, which is where measured gas fractions actually sit")
+            f"b = {B_R1_EDGE:.2f}, so R1 as WRITTEN survives X-COP's own b <= 0.17 and the population median 0.20 but not the "
+            f"population 80th percentile 0.33.  What is leaving is R1's 30% DEPLETION ALLOWANCE, not the cosmic reading: "
+            f"f_bar falls {C0['fbar']:.3f} -> {L7B[('canonical',0.33)]['fbar']:.3f}, i.e. baryon retention {100*C0['fbar']/FBAR_COSMIC:.0f}% -> "
+            f"{100*L7B[('canonical',0.33)]['fbar']/FBAR_COSMIC:.0f}%")
 
 check("H7 [CROSS] this script's required-b solve reproduces the lead's own HSE_multiplicative_factor_for_exact_match on the lead's exact exponential law",
       worst < 1e-6, f"independent re-solve of all {len(ROWS)} stored rows agrees to {worst:.2e} relative; converted, the audit's "
@@ -557,8 +566,9 @@ check("H7 [CROSS] this script's required-b solve reproduces the lead's own HSE_m
 check("H8 [PHYSICAL] the required b is physically available: it is a non-thermal support with the right sign (P_nt >= 0, increasing outward) and sigma_1D at most 2x Hitomi's 164 km/s",
       negcnt == 0 and np.median(sig20) <= 2*SIG_HITOMI,
       f"the required b is negative in {negcnt} of {len(DAT['canonical'])} clusters, so sigma^2 < 0 -- it is not turbulence but a demand that the "
-      f"measured thermal pressure gradient be over-stated by a factor {1/(1-BREQ_L7['canonical']):.2f}^-1 = {(1-BREQ_L7['canonical']):.2f}; "
-      f"even the ALLOWED b = 0.20 already needs sigma_1D = {np.median(sig20):.0f} km/s = {np.median(sig20)/SIG_HITOMI:.1f}x Hitomi, and it hurts the framework")
+      f"measured thermal pressure gradient be OVER-stated by a factor {(1-BREQ_L7['canonical']):.2f}; even the ALLOWED b = 0.20 already needs "
+      f"sigma_1D = {np.median(sig20):.0f} km/s = {np.median(sig20)/SIG_HITOMI:.1f}x Hitomi (f_nth = {100*f_nth_20:.0f}% at kT = 6 keV, matching Nelson+2014's "
+      f"{100*f_nelson(0.8/2.0):.0f}%), and that correction hurts the framework rather than helping it")
 
 scat_all = [L7B[(f, b)]["rN_scat"] for f in DAT for b in BGRID]
 check("H9 [SCATTER] the 12% cluster-to-cluster universality of the Newtonian ratio (L7's R2) survives the bias correction across the measured range",
@@ -580,19 +590,23 @@ print(f"""
       PATTERN 3 and contradicts u13's C3 line 334, which applies the same magnitude with the opposite sign.)
 
   2.  THE REQUIRED b IS NEGATIVE AND LARGE.  To zero L7's residual: b = {BREQ_L7['canonical']:+.3f} canonical, {BREQ_L7['alt']:+.3f} alt --
-      X-ray masses would have to OVER-state the truth by {100*(1/(1-BREQ_L7['canonical'])**-1 - 1) if False else 100*((1-BREQ_L7['canonical'])-1):.0f}%.  To close L2's overlap: b = {b2:+.2f}
+      X-ray masses would have to OVER-state the truth by {100*((1-BREQ_L7['canonical'])-1):.0f}%.  To close L2's overlap: b = {b2:+.2f}
       (bins {min(b for _, b, _ in BREQ_L2[HEAD]):+.2f} to {max(b for _, b, _ in BREQ_L2[HEAD]):+.2f}).  To bring the slope to 1/2: b = {bp:+.2f}.  Measured: b in
-      [{B_MEAS_LO:+.2f}, {B_MEAS_HI:+.2f}] for the population, [{B_XCOP_LO:+.2f}, {B_XCOP_HI:+.2f}] for X-COP itself.  Opposite sign, and 4-10x the
-      magnitude of anything measured.  No radial model helps: the X-COP-anchored radial law makes b SMALLER at
-      L7's 0.80 R500 than at R500, and even the most aggressive simulation profile stays positive everywhere.
+      [{B_MEAS_LO:+.2f}, {B_MEAS_HI:+.2f}] for the population, [{B_XCOP_LO:+.2f}, {B_XCOP_HI:+.2f}] for X-COP itself.  Opposite sign, and in magnitude
+      {abs(BREQ_L7['canonical'])/B_MEAS_HI:.1f}x (L7) to {abs(b2)/B_MEAS_HI:.1f}x (L2) the largest number in the measured range, {abs(BREQ_L7['canonical'])/B_XCOP_HI:.0f}x to {abs(b2)/B_XCOP_HI:.0f}x X-COP's own.
+      No radial model helps: the X-COP-anchored radial law makes b SMALLER at L7's 0.80 R500 than at R500
+      ({0.80**BETA_XCOP:.2f} b500), and every simulation profile carried here stays positive at every radius.
 
-  3.  L7's COSMIC-RATIO READING IS NOT DAMAGED -- it is slightly improved.  A positive b lowers f_bar and raises
-      M_dark/M_bar off the exact 5.43, but into the depletion band where independently measured cluster gas
-      fractions actually live: retention {100*C0['fbar']/FBAR_COSMIC:.0f}% at b = 0 (higher than X-COP's own gas-fraction work reports)
-      becomes {100*L7B[('canonical',0.20)]['fbar']/FBAR_COSMIC:.0f}% at b = 0.20.  The 12% universality is essentially invariant.  So the honest
-      correction to L7 is that the numerical coincidence with 5.43 at b = 0 is partly an artefact of ignoring
-      the bias, while the CONCLUSION it supports -- clusters carry close to the cosmic dark share, universally --
-      survives the whole measured range and is if anything better motivated with the bias included.
+  3.  L7's COSMIC-RATIO READING SURVIVES AS PHYSICS; ITS EXACT NUMERICAL COINCIDENCE DOES NOT.  This is the one
+      place the bias costs L7 something, and it is reported as a correction to my own result.  A positive b
+      lowers f_bar and raises M_dark/M_bar off the exact 5.43: at X-COP's own b <= 0.17 the ratio is {L7B[('canonical',0.17)]['rN']:.2f} and at
+      the population median b = 0.20 it is {L7B[('canonical',0.20)]['rN']:.2f}, both still inside the 5.4-8.0 R1 band; at b = 0.33 it is
+      {L7B[('canonical',0.33)]['rN']:.2f} and R1 as literally written FAILS above b = {B_R1_EDGE:.2f}.  What leaves the band is R1's own 30%
+      depletion allowance, not the cosmic reading: retention goes {100*C0['fbar']/FBAR_COSMIC:.0f}% -> {100*L7B[('canonical',0.20)]['fbar']/FBAR_COSMIC:.0f}% -> {100*L7B[('canonical',0.33)]['fbar']/FBAR_COSMIC:.0f}%, and the 12%
+      universality is invariant to within 1 point.  So the honest correction to L7 is: the closeness of 5.73 to
+      5.43 at b = 0 is partly an artefact of ignoring the bias and should not be quoted as a 5% agreement;
+      what the bias cannot touch is the universality and the fact that the required ratio is of order the
+      cosmic one for every cluster, which is L7's actual argument.
 
   4.  L2's IMPOSSIBILITY IS ROBUST AND STRENGTHENED.  Nothing in the measured range of b weakens it; the whole
       measured range makes it worse.  The escape L2 already priced in a physical variable (C8: sigma_1D = 857 km/s,

@@ -428,7 +428,9 @@ for foot in ("canonical", "alt"):
         print(f"      {ZTf[i]:8.3g} {WWf[i]:6.3g} | {R['g_bbn'][i]-1:9.2e} {R['g_rec'][i]:7.3f} {R['g_cl'][i]/F:8.3f} | "
               f"{A['s8'][i]:7.4f} {A['dchi2'][i]:+7.1f} | {100*A['dtheta'][i]:+8.2f}% {A['q0'][i]:+7.3f} "
               f"{A['sne'][i]:6.3f} | {('%7.4f' % hf) if np.isfinite(hf) else '   none'} |  {gates}  {R['which'][i]}")
-    print(f"      (gates column: the digit is shown when that gate PASSES at this point, '.' when it fails)", flush=True)
+    print(f"      (the 'gates' column shows each gate INDIVIDUALLY; 'which' names the construction meeting the growth AND")
+    print(f"       expansion gates TOGETHER, and '-' means no single construction does both -- so '12345' in the gates")
+    print(f"       column does NOT by itself make a T6 survivor.)", flush=True)
 
 # ================================================================= T1..T5, each gate alone
 print(f"\n{'='*124}\n  the gates, each asked ALONE: is there ANY (z_t, W) on the grid that satisfies it?\n{'='*124}", flush=True)
@@ -538,11 +540,13 @@ for f in RES:
     print(f"    {f:9s} F = {F:.3f}:  {n}/{P} models pass all five")
     print(f"      of the {int(base.sum())} passing BBN + CMB + delivery, {int((base & R['T3']).sum())} also pass growth, "
           f"{int((base & R['T4']).sum())} also pass the expansion history, and {n} pass BOTH ON THE SAME CONSTRUCTION")
-    if R["T4"].any() and R["T3"].any():
-        print(f"      the pincer, in z_t: the expansion gate is met only for z_t in "
-              f"[{ZTf[R['T4']].min():.4g}, {ZTf[R['T4']].max():.4g}] -- a roll still happening now, whose dln g/dln a term")
-        print(f"      mimics acceleration -- while the growth gate is met only for z_t in "
-              f"[{ZTf[R['T3']].min():.4g}, {ZTf[R['T3']].max():.4g}].  A roll still happening is a roll not yet delivered.")
+    if R["T4"].any():
+        print(f"      what does the narrowing: the EXPANSION gate confines z_t to "
+              f"[{ZTf[R['T4']].min():.4g}, {ZTf[R['T4']].max():.4g}] and W to "
+              f"[{WWf[R['T4']].min():.4g}, {WWf[R['T4']].max():.4g}] -- the roll must still be finishing recently enough")
+        print(f"      that its own dln g/dln a term in H(z) stands in for the dark energy the closure took away.  The")
+        print(f"      growth gate is broad on its own ({int(R['T3'].sum())}/{P}); it is the requirement that ONE construction meet")
+        print(f"      BOTH that cuts {int(R['T4'].sum())} down to {n}.")
     if not n:
         REFINED[f] = None; continue
     i = np.where(JOINT[f])[0]
@@ -689,4 +693,30 @@ for lab, m in (("BBN alone", Rc["T1"]), ("CMB alone", Rc["T2"]), ("growth alone"
     if i.size: print(f"    {lab:24s}: {i.size:5d}/{P}   z_t in [{ZTf[i].min():.4g}, {ZTf[i].max():.4g}], "
                      f"W in [{WWf[i].min():.4g}, {WWf[i].max():.4g}]")
     else:      print(f"    {lab:24s}: {i.size:5d}/{P}   EMPTY")
+print(f"\n{'='*124}\n  THE VERDICT OF THIS LANE, as the pair (T6, T8)\n{'='*124}")
+print("  T6 PASSES.  The roll does what L6 said it might: because g(z_BBN) = 1 exactly while g(0) = F, the")
+print("  cosmological-ordering horn that closed the screened force is genuinely evaded, and a narrow region of")
+print("  (z_t, W) then survives BBN, the CMB, the growth of structure, the expansion history -- acoustic scale, q0,")
+print("  the SNe distance-modulus shape and the absolute BAO ladder -- and still delivers the enhancement at the")
+print("  redshifts where the clusters are measured.  It survives on ONE construction, (b): h refitted so the acoustic")
+print("  scale matches exactly, giving H0 near 69-72 km/s/Mpc with Omega_Lambda near 0.25-0.32.  What makes that")
+print("  possible is that the roll's own dln g/dln a term in H(z) partly MIMICS dark energy, so a universe that is")
+print("  about half matter by energy density can still reproduce the observed distances.  This is the first mechanism")
+print("  in this programme to reach the cluster residual without being excluded by the gate it was proposed against.")
+print("  It is a BOUNDARY result and is reported as one: every survivor sits at the top of the growth gate (best RSD")
+print("  Delta chi^2 +5.3 canonical, +3.1 alt, against a gate of +9), with sigma_8 = 0.85-0.86 and f(0) = 0.57-0.64")
+print("  against LambdaCDM's 0.527.  Tightening the growth gate from 3 sigma to 2 sigma empties the canonical footing")
+print("  entirely and leaves 3 models of 3645 on the alt one.")
+print()
+print("  T8 FAILS, and it is the decisive half.  L6 closed the screened force on TWO horns and the roll addresses only")
+print("  one.  The other is that clusters and galaxies overlap completely in baryon density while requiring")
+print("  enhancements 12.8 sigma apart -- a SPATIAL contrast between populations observed at z = 0.004 and z = 0.09.")
+print("  A spatially uniform g(z) supplies a factor 0.93-0.97 between those epochs, in the WRONG direction, against a")
+print("  required 2.2-5.1.  So the late-time transition buys the cosmology and not the mechanism: it still needs the")
+print("  density-dependent screening that L6 excluded, and it does not weaken that exclusion by anything.")
+print()
+print("  Stated as an open door rather than a closure: the surviving cosmology is a real object worth naming.  A model")
+print("  with G_cosmo/G_local rolling to about 1.7-1.8 since z ~ 0.1-0.4 is not cosmologically excluded on these gates,")
+print("  and it predicts sigma_8 = 0.85-0.86 with H0 = 68-72 -- a sharp, falsifiable pair that current RSD already")
+print("  strains and the next generation of growth measurements will settle.  What it does NOT do is explain clusters.")
 print(f"\nRESULT: {len(FAILS)} FAIL" + (f" -> {FAILS}" if FAILS else "")); sys.exit(0)

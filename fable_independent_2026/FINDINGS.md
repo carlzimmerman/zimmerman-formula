@@ -354,3 +354,45 @@ tachyonic, which is the single gate blocking every other one. So removing the co
 nothing that was ever going to work and cures the one fatal conflict — and the lead agent's IC-series
 has already removed it (L10's K4 records that the IC action has no condensate counterpart at all).
 **A cure for the tachyon is necessary and sufficient for this action to have a home.**
+
+## L11 — does the IC-series give MOND? Yes, at the framework's own a₀
+
+`L11_galactic_limit.py` (3 FAIL of 22). The lead agent's own status file lists "galactic matching"
+as open. It is not open any more, and the answer is a genuine positive.
+
+**The derived limit.** The published static branch reduces exactly to
+
+    div[ mu(|grad Phi|/a0) grad Phi ] = 4 pi G_N rho_b,   mu(y) = 1 - e^(-y),   G_N = 1/(8 pi m)
+
+with Φ = Ψ. Every load-bearing feature checks out:
+- **A MOND limit exists**: g → √(g_N a_scale) as g_N → 0, on both footings.
+- **The scale is exactly the action's own a₀**, coefficient 1.000000 — no stray 2, ½ or 2π — so
+  setting the action's a₀ to 9.3619e-11 or 1.1279e-10 reproduces the programme's scale exactly.
+- **No slip**: ∇²(Φ − Ψ) = 0 survives the clock terms, so lensing and dynamics share one potential
+  to better than 1e-4 out to 1 Mpc. That is the framework's lensing requirement, met structurally.
+- **The Newtonian limit uses the same G** that normalises the tensor sector, so G_dyn = G_lens = G_tensor.
+- The mechanism is exact, not perturbative: U′(c) = −ln²(1−c) gives u² = 1 − exp(−|a|/a₀) exactly on
+  the static branch, and static GR's lapse-gradient square cancels, leaving μ = u².
+- Every clock/vacuum term the limit drops is ≤ 1.9e-5 of the retained ones out to 1 Mpc.
+- Control: the same machinery returns the Newtonian Poisson equation for GR plus a minimal source.
+
+**Three things scored separately rather than hidden in the verdict.**
+
+1. **It produces the exponential carrier, not ν_RAR (B2b FAIL).** μ = 1 − e^(−y) is the kernel this
+   programme swapped *away from* on 2026-09-06. They differ by up to 0.073 dex, and on the bulgeless
+   SPARC control the exponential ceiling is exceeded 5× more often (16.3%/10.5% against 3.1%/1.8%;
+   the programme's own controlled count in g03w gives the same ordering at 7.3%/3.5% vs 1.2%/0.6%).
+   Disfavouring, not exclusion — f25/g03l find exponential-vs-RAR undecided once a₀ and Υ are profiled.
+   **Note a documentation conflict this exposes:** the recipe's frozen ingredient I1 names
+   μ(y) = 1 − e^(−y) as *the* kernel, while THE_ACTION §3 carries ν_RAR. The lead is following the
+   recipe correctly; the two documents disagree and one of them needs amending.
+
+2. **The far-field boundary condition on u is not determined by the published files (B5 FAIL)**, and
+   this is the one that matters. The η = 0 static branch gives u → 0 (isolated MOND); the η = 1
+   plateau gives u = 0.49–0.67. Matching them needs the varied η-transition, which IC10's own "What
+   remains" lists as undone. **Stakes:** if u must approach the cosmological value, the static law
+   reads it as a universal external field of 0.28–0.59 a₀, and 27%/38% of bulgeless SPARC points
+   beyond 2 kpc sit below even the smallest of those — precisely where flat rotation curves live.
+
+3. The verdict PASSES on the reduction itself: the IC-series is a candidate host for this framework's
+   galaxy phenomenology.

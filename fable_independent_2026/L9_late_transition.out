@@ -1,0 +1,111 @@
+============================================================================================================================
+L9 -- the late-time transition: can a rolling G supply the cluster residual and survive cosmology?
+============================================================================================================================
+
+  the required late-time factor F, read from the committed cluster audit (not retyped):
+    canonical a0 = 9.3619e-11:  F = g_HSE/g_kernel at the OUTERMOST audited radius, median 1.819 [1.52, 2.25] over 12 clusters
+                              (all audited radii 3.20;  purely Newtonian g_HSE/g_bar 8.92)
+    alt       a0 = 1.1279e-10:  F = g_HSE/g_kernel at the OUTERMOST audited radius, median 1.681 [1.40, 2.08] over 12 clusters
+                              (all audited radii 2.97;  purely Newtonian g_HSE/g_bar 8.92)
+    The OUTERMOST-radius value is used as the gate: it is the SMALLEST of the three and therefore the most
+    favourable to the model.  The other two are strictly harder and are priced where that matters.
+
+  T0 -- control: with g == 1 the machinery must return the standard cosmology.
+    growth suppression D(a=1)/a = 0.78797   Carroll-Press-Turner 0.78708   (0.11% apart)
+    growth rate f(z=0)          = 0.52737   Omega_m^0.55 = 0.52998         (0.49% apart)
+    sound horizon r_s           = 144.27 Mpc (Planck 144.43)   comoving D_A(z*) = 13868 Mpc (Planck 13872)
+    acoustic scale 100 theta_*  = 1.04031 (Planck 1.04109)    (0.07% apart)
+    drag-epoch sound horizon r_drag = 146.93 Mpc (Planck 147.09)   (0.11% apart)
+    age of the universe t0      = 13.796 Gyr (Planck 13.797)      (0.01% apart)
+    LambdaCDM chi^2: 6.06 on the 7 RSD f*sigma_8 points, 12.04 on the 12 BAO points
+    MODEL-A source cancellation 4 pi G_eff rho_m/H^2: varies by 0.0e+00 as g runs 1 -> 50 (exact 0 predicted)
+    the h-refitter, run at F = 1, returns h = 0.67360 against the input 0.67360 (0.001% apart)
+  [PASS] T0 [control] with g == 1 the growth integrator, the background code and the h-refitter reproduce the standard cosmology, and the Model-A source cancellation is exact   (D/a within 0.11% of CPT, f(0) within 0.49% of Omega_m^0.55, theta_* within 0.07% of Planck, r_s within 0.11%, r_drag within 0.11%, t0 within 0.01%, h-refit within 0.001%, cancellation 0e+00, LambdaCDM chi^2 6.1/7 RSD and 12.0/12 BAO)
+    sigma_8 is NORMALISED, not predicted: every model is CMB-anchored at z = 999 with delta = a and reported as
+    sigma_8 = 0.8111 x D_model(1)/D_LCDM(1).  With g == 1 that ratio is 1 identically, so the control is exact.
+    The acoustic scale is compared DIFFERENTIALLY throughout (model / this code's own LambdaCDM), so the 0.07%
+    absolute offset from Planck cancels rather than eating a quarter of the T4 tolerance.
+
+----------------------------------------------------------------------------------------------------------------------------
+  MODEL A, footing = canonical:  F = 1.819   grid = 81 z_t x 45 widths = 3645 models
+----------------------------------------------------------------------------------------------------------------------------
+    THE ALGEBRAIC CEILING, before any dynamics.  Closure at a = 1 reads 1 = F(Omega_m + Omega_r + Omega_Lambda)
+    with the physical densities fixed by the CMB, so at the measured H0, Omega_Lambda = 1/F - Omega_m - Omega_r >= 0
+    forces F <= h^2/(omega_m + omega_r) = 3.171.  This is a property of F ALONE: (z_t, W) cannot touch it.
+      F =  1.82 (outermost radius) -> Omega_Lambda = +0.2343 (LambdaCDM 0.6847); matter is 57.4% of the total energy density (LambdaCDM 31.5%)
+      F =  3.20 (all audited radii )-> Omega_Lambda = -0.0025   ALREADY EXCLUDED at the measured H0: no positive cosmological constant exists
+      F =  8.92 (purely Newtonian  )-> Omega_Lambda = -0.2033   ALREADY EXCLUDED at the measured H0: no positive cosmological constant exists
+
+    representative models (construction (a), the measured H0; 'which' names the construction, if any, that
+    meets the growth AND expansion gates TOGETHER):
+           z_t      W |  g(BBN)-1   g(z*) g(.09)/F | sigma_8   dchi2 |  dtheta_*      q0    SNe | h_refit | gates which
+        0.0484  0.102 |  0.00e+00   1.000    0.750 |  0.9071   +28.7 |    -4.21%  -1.391  0.121 |  0.8643 |  123..  -
+         0.146  0.522 |  0.00e+00   1.000    0.943 |  0.8695   +13.3 |    -0.30%  -0.461  0.004 |  0.6870 |  12345  -
+         0.321  0.316 |  0.00e+00   1.000    0.957 |  0.8730   +13.2 |    -1.03%  -0.348  0.017 |  0.7210 |  123.5  -
+          0.44  0.316 |  0.00e+00   1.000    0.972 |  0.8672   +11.5 |    -0.35%  -0.269  0.018 |  0.6897 |  123.5  -
+         0.967  0.522 |  0.00e+00   1.000    0.988 |  0.8476   +13.4 |    +3.28%  -0.199  0.061 |  0.5320 |  12..5  -
+          2.92  0.978 |  0.00e+00   1.000    0.995 |  0.8313   +18.6 |    +9.90%  -0.166  0.086 |    none |  12..5  -
+            31  0.978 |  2.44e-15   1.001    1.000 |  0.8225   +21.3 |   +21.29%  -0.140  0.098 |    none |  12..5  -
+           995   2.08 |  3.30e-06   1.392    1.000 |  0.8787   +36.4 |   +15.69%  -0.140  0.098 |    none |  1.3.5  -
+      (the 'gates' column shows each gate INDIVIDUALLY; 'which' names the construction meeting the growth AND
+       expansion gates TOGETHER, and '-' means no single construction does both -- so '12345' in the gates
+       column does NOT by itself make a T6 survivor.)
+
+----------------------------------------------------------------------------------------------------------------------------
+  MODEL A, footing = alt:  F = 1.681   grid = 81 z_t x 45 widths = 3645 models
+----------------------------------------------------------------------------------------------------------------------------
+    THE ALGEBRAIC CEILING, before any dynamics.  Closure at a = 1 reads 1 = F(Omega_m + Omega_r + Omega_Lambda)
+    with the physical densities fixed by the CMB, so at the measured H0, Omega_Lambda = 1/F - Omega_m - Omega_r >= 0
+    forces F <= h^2/(omega_m + omega_r) = 3.171.  This is a property of F ALONE: (z_t, W) cannot touch it.
+      F =  1.68 (outermost radius) -> Omega_Lambda = +0.2796 (LambdaCDM 0.6847); matter is 53.0% of the total energy density (LambdaCDM 31.5%)
+      F =  2.97 (all audited radii )-> Omega_Lambda = +0.0210
+      F =  8.92 (purely Newtonian  )-> Omega_Lambda = -0.2033   ALREADY EXCLUDED at the measured H0: no positive cosmological constant exists
+
+    representative models (construction (a), the measured H0; 'which' names the construction, if any, that
+    meets the growth AND expansion gates TOGETHER):
+           z_t      W |  g(BBN)-1   g(z*) g(.09)/F | sigma_8   dchi2 |  dtheta_*      q0    SNe | h_refit | gates which
+        0.0484  0.102 |  0.00e+00   1.000    0.775 |  0.8951   +21.6 |    -3.73%  -1.331  0.107 |  0.8367 |  123..  -
+         0.146  0.522 |  0.00e+00   1.000    0.949 |  0.8632   +10.1 |    -0.40%  -0.494  0.005 |  0.6910 |  12345  b
+         0.321  0.316 |  0.00e+00   1.000    0.961 |  0.8662   +10.1 |    -1.01%  -0.393  0.016 |  0.7186 |  123.5  -
+          0.44  0.316 |  0.00e+00   1.000    0.975 |  0.8612    +8.6 |    -0.43%  -0.321  0.014 |  0.6925 |  123.5  -
+         0.967  0.522 |  0.00e+00   1.000    0.989 |  0.8439    +9.9 |    +2.70%  -0.259  0.050 |  0.5603 |  12..5  -
+          2.92  0.978 |  0.00e+00   1.000    0.996 |  0.8295   +14.0 |    +8.38%  -0.229  0.073 |    none |  12..5  -
+            31  0.978 |  2.22e-15   1.001    1.000 |  0.8214   +16.0 |   +18.14%  -0.205  0.084 |    none |  123.5  -
+           995   2.08 |  2.74e-06   1.326    1.000 |  0.8693   +26.8 |   +13.62%  -0.205  0.084 |    none |  1.3.5  -
+      (the 'gates' column shows each gate INDIVIDUALLY; 'which' names the construction meeting the growth AND
+       expansion gates TOGETHER, and '-' means no single construction does both -- so '12345' in the gates
+       column does NOT by itself make a T6 survivor.)
+
+============================================================================================================================
+  the gates, each asked ALONE: is there ANY (z_t, W) on the grid that satisfies it?
+============================================================================================================================
+  [PASS] T1 [BBN] some (z_t, W) has G_eff = G_0 at nucleosynthesis within the conservative 20% bound   (canonical: 3645/3645, best |g-1| = 0.0e+00, alt: 3645/3645, best |g-1| = 0.0e+00  -- passes BY CONSTRUCTION, as the header says; stated explicitly so the construction is honest.  This is exactly the L6 horn the roll was invoked to escape, and the roll does escape it)
+  [PASS] T2 [CMB] some (z_t, W) has G_eff = G_0 at recombination within 10%, so the microwave background does not see it   (canonical: 3038/3645, alt: 3079/3645; the transition must be over by z_t <~ 995 even for the widest roll on the grid, and the sound-horizon shift across the passing set is at most 3.15%)
+  [PASS] T3 [growth] some (z_t, W) keeps sigma_8 within 10% of 0.8111 and the RSD f*sigma_8 within Delta chi^2 <= 9, on at least one background construction   (canonical: 1509/3645, best Delta chi^2_RSD over all constructions +0.00, alt: 3346/3645, best Delta chi^2_RSD over all constructions +0.00)
+  [PASS] T4 [expansion] some (z_t, W) keeps the expansion history on at least one background construction (measured H0; h refitted to the acoustic scale; or rho_Lambda held)   (canonical: 63/3645 (a: 25, b: 63, c: 0), alt: 77/3645 (a: 31, b: 77, c: 0))
+  [PASS] T5 [delivers] some (z_t, W) actually delivers 90% of the enhancement at the highest X-COP redshift z = 0.090   (canonical: 3259/3645, alt: 3282/3645)
+
+  T3 and T4 in detail (canonical footing, F = 1.819).
+    GROWTH.  The g-cancellation in the source is exact, so the boost does NOT drive growth directly.  What moves
+    growth is the background normalisation the closure forces, and the two consistent normalisations push it in
+    OPPOSITE directions -- so growth alone does not uniquely kill the model, and both readings are reported:
+      (a) measured H0, Omega_Lambda forced to 0.234 : sigma_8 in [0.822, 0.924] -- ENHANCED (the universe is 57% matter, so rho_m/rho_tot is larger)
+      (b) h refitted to the acoustic scale                : sigma_8 in [0.812, 0.942]
+      (c) rho_Lambda held, H0 floats                      : sigma_8 in [0.722, 0.811] -- SUPPRESSED (the source is LambdaCDM's exactly, so only the extra friction (1/2) dln g/dln a acts)
+      best RSD Delta chi^2 over every (z_t, W) and every construction: +0.00 on 7 f*sigma_8 points (gate <= +9.00)
+    EXPANSION.  At the measured H0, Omega_Lambda = 1/F - Omega_m - Omega_r = 0.2343 is
+    (z_t, W)-INDEPENDENT: g(a = 1) = F is fixed by the clusters, and closure at a = 1 does not know when the roll
+    happened.  The transition parameters cannot buy it back.  The three constructions, all offered to the model:
+      (a) H0 = 67.36 fixed, densities CMB-fixed : Omega_Lambda = 0.2343 (measured 0.685); d(theta_*) -5.08% to +27.69% (gate 0.30%, Planck 0.030%); BAO Delta chi^2 -1.8 to +1072.9;
+          q0 -6.218 to -0.139 (SNe -0.55 +/- 0.10); SNe rms 0.002-0.171 mag -- 25/3645 pass
+      (b) h refitted, acoustic scale exact      : H0 = 51.0-90.0 km/s/Mpc where a root exists (2641/3645 have NO root at any h: the acoustic scale is unreachable);
+          there Omega_m = 0.177-0.549 and Omega_Lambda = 0.000-0.373 (measured 0.315, 0.685), BAO Delta chi^2 -1.8 to +425.7 -- 63/3645 pass
+      (c) rho_Lambda held, H0 floats            : H0 = sqrt(F) x 67.36 = 90.9 km/s/Mpc, against 67.4-73.0 measured -- 0/3645 pass
+      the gate allows the whole band H0 = 60-80 km/s/Mpc, which brackets Planck and SH0ES with margin.
+    NOT GATED, reported because it is real and adverse: a rolling G also drifts the type-Ia absolute magnitude,
+    M_B propto -(15/4) log10 G through the Chandrasekhar mass -- 0.97 mag across the transition,
+    against a ~0.03 mag systematic floor.  Including it makes T4 strictly worse; it is left out to keep the gate
+    favourable to the model.  Likewise the SNe check marginalises over an absolute offset, which is favourable.
+
+============================================================================================================================
+  T6 -- the verdict: is there ANY (z_

@@ -1,0 +1,238 @@
+==========================================================================================================================
+L18 -- the hydrostatic mass bias b propagated through L7 (the cosmic ratio) and L2 (the impossibility)
+==========================================================================================================================
+
+  the measured hydrostatic bias, M_HSE = (1-b) M_true:
+      b = +0.03   X-COP, median of the sample (Ettori & Eckert 2022, A&A 657 L1)
+      b = +0.17   X-COP, 80th percentile of the sample (Ettori & Eckert 2022)
+      b = +0.15   X-COP gas-fraction SZ calibration 1-b = 0.85 +/- 0.05 (Eckert+2019 A&A 621 A40)
+      b = +0.22   CCCP weak lensing, 1-b = 0.78 +/- 0.09 (Hoekstra+2015)
+      b = +0.20   local cluster population median (Ettori & Eckert 2022)
+      b = +0.20   FLAMINGO simulations at R500c, cluster scale (Kugel+2024)
+      b = +0.31   Weighing the Giants weak lensing, 1-b = 0.69 +/- 0.07 (von der Linden+2014)
+      b = +0.33   local cluster population 80th percentile (Ettori & Eckert 2022)
+      b = +0.42   Planck 2015 XXIV counts-vs-CMB, 1-b ~ 0.58 (an upper envelope, not a measurement of b)
+      ADOPTED measured range b in [0.00, 0.42]; X-COP's own sample b in [0.03, 0.17]; single-cluster empirical floor b = -0.20
+
+  inputs: 248 corrected X-COP rows, 12 clusters, radii [30, 40, 50, 75, 100, 150, 200, 300, 420, 750, 1000] kpc; source closure_2026/cluster_measurement_audit_2026/results.json
+
+--------------------------------------------------------------------------------------------------------------------------
+  1.  L7 UNDER A CONSTANT BIAS.  Only g_HSE moves: g_true = g_HSE/(1-b).  g_bar (X-ray emission measure +
+      stellar profile) and therefore s, M_bar and M_kernel do not depend on the temperature GRADIENT and are
+      untouched.  f_bar = M_bar/M_true = (1-b) f_bar(b=0): a positive bias pushes f_bar DOWN, away from cosmic.
+--------------------------------------------------------------------------------------------------------------------------
+
+    alt footing, twelve clusters at 1000 kpc = 0.80 R500:
+           b  1/(1-b) |   f_bar  vs cosmic  retained |  M_dark/M_bar  scatter  vs 5.43 |  M_resid/M_bar  sigma from 0
+        0.00    1.000 |   0.149     -0.007       96% |          5.73      12%    +0.30 |           2.76          13.2
+        0.03    1.031 |   0.144     -0.011       93% |          5.94      12%    +0.51 |           2.97          13.9
+        0.10    1.111 |   0.134     -0.022       86% |          6.48      12%    +1.05 |           3.54          15.6
+        0.15    1.176 |   0.126     -0.029       81% |          6.92      12%    +1.49 |           4.00          16.8
+        0.17    1.205 |   0.123     -0.032       79% |          7.11      12%    +1.68 |           4.20          17.3
+        0.20    1.250 |   0.119     -0.037       76% |          7.41      11%    +1.98 |           4.51          18.1
+        0.22    1.282 |   0.116     -0.040       75% |          7.63      11%    +2.20 |           4.74          18.6
+        0.31    1.449 |   0.103     -0.053       66% |          8.75      11%    +3.32 |           5.91          20.8
+        0.33    1.493 |   0.100     -0.056       64% |          9.04      11%    +3.62 |           6.20          21.2
+        0.42    1.724 |   0.086     -0.069       55% |         10.60      11%    +5.17 |           7.73          23.1
+
+    canonical footing, twelve clusters at 1000 kpc = 0.80 R500:
+           b  1/(1-b) |   f_bar  vs cosmic  retained |  M_dark/M_bar  scatter  vs 5.43 |  M_resid/M_bar  sigma from 0
+        0.00    1.000 |   0.149     -0.007       96% |          5.73      12%    +0.30 |           3.09          15.1
+        0.03    1.031 |   0.144     -0.011       93% |          5.94      12%    +0.51 |           3.31          15.8
+        0.10    1.111 |   0.134     -0.022       86% |          6.48      12%    +1.05 |           3.87          17.4
+        0.15    1.176 |   0.126     -0.029       81% |          6.92      12%    +1.49 |           4.33          18.5
+        0.17    1.205 |   0.123     -0.032       79% |          7.11      12%    +1.68 |           4.53          18.9
+        0.20    1.250 |   0.119     -0.037       76% |          7.41      11%    +1.98 |           4.85          19.6
+        0.22    1.282 |   0.116     -0.040       75% |          7.63      11%    +2.20 |           5.07          20.1
+        0.31    1.449 |   0.103     -0.053       66% |          8.75      11%    +3.32 |           6.19          21.9
+        0.33    1.493 |   0.100     -0.056       64% |          9.04      11%    +3.62 |           6.48          22.3
+        0.42    1.724 |   0.086     -0.069       55% |         10.60      11%    +5.17 |           8.01          24.1
+
+    the direction, stated as an identity: f_bar(b) = (1-b) f_bar(0) and M_dark/M_bar(b) = [1 + M_dark/M_bar(0)]/(1-b) - 1.
+    So a positive b moves f_bar DOWN, AWAY from the cosmic 0.156, and moves the Newtonian ratio UP, away from
+    5.43 -- but it moves both INTO the depletion band L7 itself allowed.  L7's R1 was written around 'clusters
+    retain 70-100% of the cosmic baryon share at R500'; at b = 0 these twelve retain 96%, the very top of
+    that window, and b = 0.20 brings them to 76%, its middle.  Read as a physical statement the bias
+    therefore makes the cosmic-share reading MORE self-consistent; read as L7's literal numerical coincidence
+    with 5.43 it degrades it, and check H6 below finds where the band is left.
+
+--------------------------------------------------------------------------------------------------------------------------
+  2.  RADIAL DEPENDENCE.  Three models the literature supports, all evaluated at L7's radius 0.80 R500.
+--------------------------------------------------------------------------------------------------------------------------
+    (i)   X-COP-anchored power law b(r) = b500 (r/R500)^beta with beta = 1.26 from the measured 6%->10%
+          non-thermal fraction between R500 and R200 (Eckert+2019).  At 0.80 R500 it gives b = 0.755 b500,
+          i.e. the radial form REDUCES the bias at L7's radius relative to R500 -- the direction adverse to this lane.
+    (ii)  Nelson+2014 fraction through the exact gradient relation, dlnP_th/dlnr = -2.0: b(0.80 R500) = 0.122, b(R500) = 0.134, b(1.5 R500) = 0.183
+    (ii)  Nelson+2014 fraction through the exact gradient relation, dlnP_th/dlnr = -3.0: b(0.80 R500) = 0.154, b(R500) = 0.178, b(1.5 R500) = 0.248
+    (ii)  Nelson+2014 fraction through the exact gradient relation, dlnP_th/dlnr = -4.0: b(0.80 R500) = 0.170, b(R500) = 0.198, b(1.5 R500) = 0.277
+          (sanity: at dlnP = -3 the value b(0.8 R500) = 0.154 sits below X-COP's 80th-percentile bound
+          b < 0.17 but well above its median b < 0.03 (Ettori & Eckert 2022), i.e. the simulation-based profile is at
+          the PESSIMISTIC end for this sample -- the direction adverse to this lane, which is why it is carried.
+          Setting b = f_nth outright would give 0.213, which the lead's audit correctly warns against.)
+
+      radial model                              b @0.8R500 |   f_bar  M_dark/M_bar  M_resid/M_bar  sigma from 0
+      X-COP-anchored b500 = 0.17, beta = 1.26        0.129 |   0.128          6.81           4.11          20.0
+      population b500 = 0.20, beta = 1.26            0.152 |   0.124          7.04           4.30          20.8
+      WtG-anchored b500 = 0.31, beta = 1.26          0.236 |   0.113          7.87           5.16          23.6
+      Nelson+2014 fraction, dlnP = -3                0.155 |   0.125          7.01           4.38          19.8
+      Nelson+2014 fraction, dlnP = -2 (worst)        0.122 |   0.130          6.69           4.09          18.6
+      (b = 0 reference)                              0.000 |   0.149          5.73           3.09          15.1
+
+--------------------------------------------------------------------------------------------------------------------------
+  3.  L2 UNDER A BIAS.  The required boost is Delta_req(s) = (g_true - g_bar)/a0 = (g_HSE/(1-b) - g_bar)/a0
+      at s = g_bar/a0, which is unchanged.  The galaxy side (SPARC rotation curves) carries no hydrostatic
+      assumption at all, so it does not move: the bias acts on ONE side of L2's comparison only.
+--------------------------------------------------------------------------------------------------------------------------
+
+    SPARC: 144 galaxies, 2681 points (Q<3, i>30, eV/V<0.10) -- the same cut L2 uses
+
+    the L2 headline (canonical, stellar-7) as a function of b:
+           b |       A       p  rms(dex) | max Delta_req |                  cluster/galaxy ratio by bin | worst |z|
+        0.00 |    5.47   0.811     0.094 |          2.94 |                      2.2 3.3 4.3 4.3 4.4 5.1 |      11.8
+        0.10 |    6.19   0.815     0.092 |          3.32 |                      2.5 3.8 4.8 4.9 5.0 5.7 |      12.6
+        0.17 |    6.80   0.817     0.091 |          3.64 |                      2.8 4.1 5.3 5.3 5.5 6.3 |      14.1
+        0.20 |    7.09   0.818     0.091 |          3.80 |                      2.9 4.3 5.5 5.6 5.7 6.5 |      13.1
+        0.31 |    8.39   0.821     0.089 |          4.48 |                      3.4 5.0 6.5 6.5 6.7 7.7 |      14.7
+        0.42 |   10.18   0.824     0.088 |          5.41 |                      4.1 6.1 7.8 7.9 8.1 9.3 |      15.2
+
+    the same in words: at b = 0 clusters need 2.2-5.1x the galaxy boost; at the population
+    median b = 0.20 they need 2.9-6.5x; at the Weighing-the-Giants b = 0.31 they need 3.4-7.7x.
+    The fitted log-slope moves from p = 0.811 to 0.818 to 0.821: the bias pushes p TOWARDS 1,
+    which is exactly the 'constant rescaling of G, i.e. extra mass tracing the baryons' end of L2's C9 and
+    further from the 1/2 that caps a kernel with a deep-MOND limit.
+
+--------------------------------------------------------------------------------------------------------------------------
+  4.  THE KEY QUESTION: SOLVE FOR THE b THAT WOULD RESCUE THE FRAMEWORK, then lay it beside the measured range.
+--------------------------------------------------------------------------------------------------------------------------
+
+    (a)  L7's residual to zero at 0.80 R500.  Requires  g_HSE/(1-b) = g_bar + a0 Delta(g_bar/a0)  at that radius.
+         alt      : b_required = -0.681   (1-b = 1.681, i.e. M_HSE would have to OVER-state the true mass by 68%)
+                    at that b, f_bar = 0.250 (161% of cosmic) and M_dark/M_bar = 3.00 vs cosmic 5.43
+         canonical: b_required = -0.819   (1-b = 1.819, i.e. M_HSE would have to OVER-state the true mass by 82%)
+                    at that b, f_bar = 0.270 (174% of cosmic) and M_dark/M_bar = 2.70 vs cosmic 5.43
+         alt      : per-cluster required b spans -1.08 to -0.40 (median -0.68) -- every one of the twelve is negative
+         canonical: per-cluster required b spans -1.25 to -0.52 (median -0.82) -- every one of the twelve is negative
+
+    (b)  L2's overlap to agreement.  Requires  median[g_HSE/(1-b)] - s  =  Delta_galaxy  in each overlap bin.
+         canonical/stellar 7   : b_required by bin = -0.95, -1.64, -2.10, -2.16, -2.03, -2.11   (median -2.07)
+         alt/stellar 7         : b_required by bin = -0.95, -1.64, -2.10, -2.16, -2.03, -2.11   (median -2.07)
+         canonical/all 12      : b_required by bin = -1.56, -1.31, -2.06, -2.18, -2.07, -2.21   (median -2.07)
+         alt/all 12            : b_required by bin = -1.56, -1.31, -2.06, -2.18, -2.07, -2.21   (median -2.07)
+
+    (c)  L2's shape gate.  The b for which the fitted log-slope p of Delta_req falls to the class ceiling 1/2.
+         canonical/stellar 7   : b(p = 1/2) = -6.793   (there A = 5.06, rms 1.865 dex, 45 of 72 rows still positive)
+         canonical/all 12      : b(p = 1/2) = -6.062   (there A = 0.22, rms 1.382 dex, 99 of 124 rows still positive)
+
+    THE COMPARISON, which is the whole point of the lane:
+         required   b = -0.82 (L7, canonical) / -0.68 (L7, alt) / -2.07 (L2 overlap) / -6.79 (L2 slope)
+         measured   b in [+0.00, +0.42] for the population, [+0.03, +0.17] for X-COP itself,
+                    with a single-cluster empirical floor near -0.20
+         The required value is NEGATIVE and the measured value is POSITIVE.  They are not merely different in
+         size; they are on opposite sides of zero, so no amount of tightening the measured range can reach it.
+
+--------------------------------------------------------------------------------------------------------------------------
+  5.  IS THE REQUIRED b PHYSICALLY AVAILABLE?  A bias b>0 is non-thermal support: M_true - M_HSE = 
+      -(r^2/G rho_g) d(rho_g sigma^2)/dr.  With rho_g ~ r^-alpha_g and sigma roughly constant this is
+      sigma^2 = [b/(1-b)] g_HSE r / alpha_g, so b<0 needs sigma^2 < 0 -- not turbulence at all.
+--------------------------------------------------------------------------------------------------------------------------
+
+      cluster     alpha_g |  sigma needed at b=+0.20 |  sigma^2 needed at b_req
+      A1644          1.29 |                 495 km/s |        -3.34e+05 km^2/s^2  (NEGATIVE: impossible)
+      A1795          1.80 |                 475 km/s |        -3.55e+05 km^2/s^2  (NEGATIVE: impossible)
+      A2029          1.79 |                 610 km/s |        -8.01e+05 km^2/s^2  (NEGATIVE: impossible)
+      A2142          1.62 |                 648 km/s |        -8.70e+05 km^2/s^2  (NEGATIVE: impossible)
+      A2255          1.35 |                 583 km/s |        -5.84e+05 km^2/s^2  (NEGATIVE: impossible)
+      A2319          1.45 |                 690 km/s |        -9.96e+05 km^2/s^2  (NEGATIVE: impossible)
+      A3158          1.74 |                 486 km/s |        -3.90e+05 km^2/s^2  (NEGATIVE: impossible)
+      A3266          1.26 |                 652 km/s |        -7.67e+05 km^2/s^2  (NEGATIVE: impossible)
+      A644           1.80 |                 544 km/s |        -6.10e+05 km^2/s^2  (NEGATIVE: impossible)
+      A85            1.69 |                 534 km/s |        -5.13e+05 km^2/s^2  (NEGATIVE: impossible)
+      RXC1825        1.56 |                 503 km/s |        -4.35e+05 km^2/s^2  (NEGATIVE: impossible)
+      ZW1215         1.72 |                 574 km/s |        -7.33e+05 km^2/s^2  (NEGATIVE: impossible)
+
+      a measured b = 0.20 at 0.80 R500 corresponds to sigma_1D = 559 km/s (median), 3.4x Hitomi's
+      Perseus measurement of 164 km/s.  Cross-check that this conversion is sane: at a typical kT = 6 keV that
+      dispersion is a non-thermal pressure fraction f_nth = rho sigma^2/(rho sigma^2 + P_th) = 25%, against the
+      21% Nelson+2014 simulate at this radius -- so b = 0.20 and the simulated turbulence are the same
+      statement, and both are a correction that makes the framework's job HARDER.  (sigma is model-dependent:
+      constant sigma with rho_g ~ r^-alpha_g; a rising sigma(r) would need less at this radius and more outside.)
+
+      The b the framework needs is NEGATIVE in 12 of 12 clusters, so sigma^2 < 0: it is not a non-thermal
+      support at all but its opposite.  Written without turbulence, it is the demand that the measured thermal
+      pressure gradient be OVER-stated by a factor 1.82.  This is exactly the branch the lead's own
+      CLUSTER_AUDIT.md proves impossible with a non-negative outer boundary pressure ('with zero nonthermal
+      pressure at the outer endpoint the required inner nonthermal pressure is negative').
+
+--------------------------------------------------------------------------------------------------------------------------
+  6.  CROSS-CHECK.  The lead's audit already stores, per row, `HSE_multiplicative_factor_for_exact_match` --
+      the factor F on M_HSE that makes the baryons alone satisfy its EXACT exponential law g_b = g_H(1-e^-g_H/a0).
+      That factor IS 1/(1-b) for that law, so b_lead = 1 - 1/F.  Re-deriving it here independently must agree.
+--------------------------------------------------------------------------------------------------------------------------
+
+      independent re-solve of every one of 248 stored rows agrees to 2.50e-15 (relative)
+      A1795    at 300 kpc: stored F = 0.282  ->  b_lead = -2.540
+      A2029    at 300 kpc: stored F = 0.264  ->  b_lead = -2.783
+      A2142    at 300 kpc: stored F = 0.307  ->  b_lead = -2.254
+      The audit's published table (0.282 / 0.264 / 0.307) therefore already contains this lane's answer, in
+      a different notation and for a different kernel: b = -2.55 / -2.79 / -2.26 at 300 kpc.  L18's own
+      solve, on the framework's carried kernel and at L7's radius, gives the milder -0.82; both are
+      negative and both are far outside anything measured.
+
+==========================================================================================================================
+  CHECKS
+==========================================================================================================================
+  [PASS] H0 [CONTROL] at b = 0 this pipeline reproduces L7's published numbers (f_bar = 0.149, Newtonian ratio 5.73, 12% scatter)   (f_bar = 0.149 [0.115, 0.160], ratio_N = 5.73 +/- 0.68 (12% scatter), ratio_F = 3.09 (15 sigma from 0); alt footing ratio_N = 5.73)
+  [PASS] H1 [CONTROL] at b = 0 it also reproduces L2's published numbers (Delta_req = 5.47 s^0.811 and cluster/galaxy ratios 2.2-5.1)   (A = 5.47 (L2: 5.47), p = 0.811 (L2: 0.811), rms 0.094 dex (L2: 0.094), ratios 2.2-5.1 (L2: 2.2-5.1))
+  [FAIL] H2 [DIRECTION] correcting the masses for the MEASURED (positive) hydrostatic bias REDUCES the framework's required residual   (at b = 0.20 the framework residual moves 3.09 -> 4.85 M_bar (+1.76), the maximum required boost 2.94 -> 3.80 (+0.85) and the slope 0.811 -> 0.818 (+0.006): ALL THREE MOVE AWAY FROM THE FRAMEWORK.  u02's E2 sign is right and u13's C3 line 334 sign is wrong)
+  [FAIL] H3 [KEY, L7] there is a b inside the measured range [0.00, 0.42] that brings the framework's residual at 0.80 R500 to zero   (required b = -0.819 (canonical) / -0.681 (alt); every one of the twelve clusters needs a negative b (-1.25 to -0.52); the measured range is [+0.00, +0.42] and X-COP's own is [+0.03, +0.17] -- the required value is on the OPPOSITE SIDE OF ZERO, 8.5 single-cluster scatters (taking sigma_b = 0.10) below the X-COP median)
+  [FAIL] H4 [KEY, L2] there is a b inside the measured range that brings the cluster boost down to the measured galaxy boost at the same acceleration   (required b by bin (canonical/stellar-7): -0.95, -1.64, -2.10, -2.16, -2.03, -2.11; median -2.07, over all footings and subsets -2.21 to -0.95; measured [+0.00, +0.42])
+  [FAIL] H5 [L2 slope] there is a b inside the measured range for which the required Delta_req acquires the log-slope of a kernel of the class, p <= 1/2   (b(p = 1/2) = -6.793; a POSITIVE b moves p the wrong way, 0.811 -> 0.818 at b = 0.20 and 0.824 at b = 0.42, i.e. towards the p = 1 'constant rescaling of G' end)
+  [FAIL] H6 [L7 cosmic] L7's cosmic-ratio agreement survives the measured bias range: across 0 <= b <= 0.33 the Newtonian M_dark/M_bar stays inside R1's depletion-allowed 5.4-8.0   (ratio_N runs 5.73 to 9.04 over b in [0, 0.33] (R1 band 5.43-7.76); it leaves the band above b = 0.23, so R1 as WRITTEN survives X-COP's own b <= 0.17 and the population median 0.20 but not the population 80th percentile 0.33.  What is leaving is R1's 30% DEPLETION ALLOWANCE, not the cosmic reading: f_bar falls 0.149 -> 0.100, i.e. baryon retention 96% -> 64%)
+  [PASS] H7 [CROSS] this script's required-b solve reproduces the lead's own HSE_multiplicative_factor_for_exact_match on the lead's exact exponential law   (independent re-solve of all 248 stored rows agrees to 2.50e-15 relative; converted, the audit's published 300 kpc factors 0.282/0.264/0.307 are b = -2.55/-2.79/-2.26)
+  [FAIL] H8 [PHYSICAL] the required b is physically available: it is a non-thermal support with the right sign (P_nt >= 0, increasing outward) and sigma_1D at most 2x Hitomi's 164 km/s   (the required b is negative in 12 of 12 clusters, so sigma^2 < 0 -- it is not turbulence but a demand that the measured thermal pressure gradient be OVER-stated by a factor 1.82; even the ALLOWED b = 0.20 already needs sigma_1D = 559 km/s = 3.4x Hitomi (f_nth = 25% at kT = 6 keV, matching Nelson+2014's 21%), and that correction hurts the framework rather than helping it)
+  [PASS] H9 [SCATTER] the 12% cluster-to-cluster universality of the Newtonian ratio (L7's R2) survives the bias correction across the measured range   (fractional scatter runs 11%-12% over b in [0, 0.42], both footings (a constant b cannot change the ordering, and it slightly TIGHTENS the fractional scatter because the ratio grows))
+
+==========================================================================================================================
+  WHAT THIS LANE FOUND
+==========================================================================================================================
+
+  1.  THE SIGN, settled from the profiles rather than assumed.  M_HSE = (1-b) M_true with b > 0 means the true
+      mass is LARGER than the X-ray one.  g_bar and the kernel prediction do not move, so every framework
+      shortfall grows: at the population median b = 0.20 the L7 residual goes 3.09 -> 4.85 baryonic masses,
+      the L2 cluster/galaxy discrepancy goes 2.2-5.1x -> 2.9-6.5x, and the required log-slope goes
+      0.811 -> 0.818, further above the 1/2 that caps a kernel of the class.  The one systematic that was
+      not propagated makes the adverse conclusion STRONGER, not weaker.  (This confirms u02's E2 and u01's
+      PATTERN 3 and contradicts u13's C3 line 334, which applies the same magnitude with the opposite sign.)
+
+  2.  THE REQUIRED b IS NEGATIVE AND LARGE.  To zero L7's residual: b = -0.819 canonical, -0.681 alt --
+      X-ray masses would have to OVER-state the truth by 82%.  To close L2's overlap: b = -2.07
+      (bins -2.16 to -0.95).  To bring the slope to 1/2: b = -6.79.  Measured: b in
+      [+0.00, +0.42] for the population, [+0.03, +0.17] for X-COP itself.  Opposite sign, and in magnitude
+      2.0x (L7) to 4.9x (L2) the largest number in the measured range, 5x to 12x X-COP's own.
+      No radial model helps: the X-COP-anchored radial law makes b SMALLER at L7's 0.80 R500 than at R500
+      (0.75 b500), and every simulation profile carried here stays positive at every radius.
+
+  3.  L7's COSMIC-RATIO READING SURVIVES AS PHYSICS; ITS EXACT NUMERICAL COINCIDENCE DOES NOT.  This is the one
+      place the bias costs L7 something, and it is reported as a correction to my own result.  A positive b
+      lowers f_bar and raises M_dark/M_bar off the exact 5.43: at X-COP's own b <= 0.17 the ratio is 7.11 and at
+      the population median b = 0.20 it is 7.41, both still inside the 5.4-8.0 R1 band; at b = 0.33 it is
+      9.04 and R1 as literally written FAILS above b = 0.23.  What leaves the band is R1's own 30%
+      depletion allowance, not the cosmic reading: retention goes 96% -> 76% -> 64%, and the 12%
+      universality is invariant to within 1 point.  So the honest correction to L7 is: the closeness of 5.73 to
+      5.43 at b = 0 is partly an artefact of ignoring the bias and should not be quoted as a 5% agreement;
+      what the bias cannot touch is the universality and the fact that the required ratio is of order the
+      cosmic one for every cluster, which is L7's actual argument.
+
+  4.  L2's IMPOSSIBILITY IS ROBUST AND STRENGTHENED.  Nothing in the measured range of b weakens it; the whole
+      measured range makes it worse.  The escape L2 already priced in a physical variable (C8: sigma_1D = 857 km/s,
+      5.2x Hitomi) is the same escape as a negative b, and this lane confirms it is not merely large but of the
+      wrong TYPE: sigma^2 < 0 in 12 of 12 clusters.  It is the branch the lead's CLUSTER_AUDIT.md already
+      proved impossible with a non-negative outer boundary pressure.
+
+  LIMITS, stated.  b is applied here as a multiplicative correction to the tabulated g_HSE; it is not a refit of
+  the X-ray spectra, and it does not carry the covariance of the temperature reconstruction.  A per-cluster b
+  drawn from the measured scatter could put ONE system near b = -0.2, but the solve needs -0.82 in ALL TWELVE
+  simultaneously.  Nothing here tests a bias in the BARYON census, which is a different systematic and is the
+  door the lead's audit deliberately left open ('an additional, as-yet-unidentified baryonic component').
+
+RESULT: 6 FAIL -> ["H2 [DIRECTION] correcting the masses for the MEASURED (positive) hydrostatic bias REDUCES the framework's required residual", "H3 [KEY, L7] there is a b inside the measured range [0.00, 0.42] that brings the framework's residual at 0.80 R500 to zero", 'H4 [KEY, L2] there is a b inside the measured range that brings the cluster boost down to the measured galaxy boost at the same acceleration', 'H5 [L2 slope] there is a b inside the measured range for which the required Delta_req acquires the log-slope of a kernel of the class, p <= 1/2', "H6 [L7 cosmic] L7's cosmic-ratio agreement survives the measured bias range: across 0 <= b <= 0.33 the Newtonian M_dark/M_bar stays inside R1's depletion-allowed 5.4-8.0", "H8 [PHYSICAL] the required b is physically available: it is a non-thermal support with the right sign (P_nt >= 0, increasing outward) and sigma_1D at most 2x Hitomi's 164 km/s"]    [1.8 s]
