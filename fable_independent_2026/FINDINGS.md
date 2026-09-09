@@ -1409,3 +1409,45 @@ published AQUAL results to better than 5e-3.
 - **The cheapest way to close this**, named by the lane: do not solve for u(x) at all. Show instead
   that **any** admissible activation profile keeps the effective external field under 0.196 a₀ inside
   R_last.
+
+## L40 — nothing derives the coefficient, and nothing could carry the argument if it did
+
+`L40_coefficient_rigidity.py` + `L40_RIGIDITY.md` (21 checks, 15 FAIL, deterministic). L32 closed
+seven of ten structural routes and left three named survivors. This lane tested them, derivation-first.
+
+**Controls.** The reduction reproduces independently — κ = √2β/√Z̃ with the amplitude and G cancelling
+identically, and κ = ½ ⟺ Z̃/β² = 8 exactly. The combined measurement returns 0.5301 ± 0.0374 with an
+8.0% total comparison uncertainty. And the candidate-set counter is **calibrated** against L32's own
+finding of 27 simple numbers in the band, 29 with the H₀ convention.
+
+| structure | free choices | candidate set | in band | verdict |
+|---|---|---|---|---|
+| horizon thermodynamics | 1 | 104 | 7 | **EXCLUDED** — zero-choice form refuted at 56σ |
+| two-condensate transmutation | 6 | continuum | continuum | **RELOCATES**, into a continuum |
+| coset / nonlinear realisation | 5 | 557 | 97 | **RELOCATES** — zero-choice form refuted at 21σ |
+| a₀-dependent membrane | 3 | — | — | **EXCLUDED** by new theorem T7 |
+
+- **The horizon candidate is an identification, and this is now settled.** The 2π in the Unruh formula
+  and the 2π in the Gibbons–Hawking formula are **the same 2π and cancel** when the temperatures are
+  equated. The identity therefore forces a₀ = c²/L_dS, i.e. **κ = √(8π/3) = 2.894, which is 56σ out**.
+  Reaching 0.4607 requires setting the Unruh temperature to the de Sitter temperature **divided by
+  2π** — an assignment, not an identity. Of eight enumerated horizon routes, every identity-forced one
+  gives a prefactor of 0.5 or 1.0 and **none is in the band**. Confirming k03: κ = ½ at Planck's H₀ and
+  κ = 0.4607 at the SH0ES H₀ agree to **0.21%**, i.e. 1.11 convention-spans.
+- **New theorem T7 closes L3's last surviving door.** An a₀-dependent membrane charge or tension cannot
+  fix the coefficient while preserving the lock. One branch gives rigidity only at a single exponent,
+  and there d ln a₀/d ln Λ = **1, not ½** — the lock breaks. The other keeps the lock but makes the
+  coefficient continuous in a ratio of scales, with a₀ moving at *fixed* Λ. A pincer with no interior.
+- **⚠️ THE TRAP FIRED, AND WAS CAUGHT — this is the most useful warning in the lane.** The target
+  1/√8 = 0.353553 is hit **exactly nine ways** by standard group theory: as √(T(F)/T(adj)) for SU(4),
+  SO(10) and Sp(6); as √(k/(k+h^∨)) for SU(7)₁, SO(9)₁, Sp(12)₁ and SO(16)₂; as 1/√8; and as
+  √(rank/dim) for SU(7). **Each of these reads as a derivation of κ = ½ if quoted alone.** Reported,
+  not adopted.
+- **⚠️ AND THE CEILING, WHICH REDIRECTS EFFORT.** The 3σ band maps to Z̃/β² ∈ [4.62, 12.35], which
+  **contains 8 integers**. So even a flawless zero-freedom integer derivation of 8 is worth **2.0 bits,
+  i.e. 1.7σ-equivalent.** **The coefficient could not carry the argument even if something derived it.**
+- **The footing guard.** Z̃/β² = 8.001 canonical but **5.512 alt**, which is 0.488 from the nearest
+  integer — maximally non-integer. **"8" is a canonical-footing statement**, exactly as L3 warned.
+- **Eight of the ten enumerated structures are now closed by theorem**, and the two survivors relocate
+  the fit rather than removing it. **κ remains FITTED, nothing derives it, and nothing makes ½
+  preferred over 0.461.**
