@@ -12,7 +12,17 @@ structure together. Checks remain honest: a failure identifies a construction
 obligation; it is not permission to conceal the failure or relax a requirement.
 Historical obstructions are reference material, not the main deliverable.
 
-**Current constructive checkpoint (2026-09-08, IC18):**
+**Current constructive checkpoint (2026-09-08, IC19):**
+[The normalized spatial handoff](integrable_clock_construction_2026/IC19_HANDOFF.md)
+imposes Carl's scale relation in the action and establishes an invariant
+expanding pole-clock plateau. Its cleaned spatial action has an explicitly
+varied lapse operator and a regular expanding curved constraint witness.
+The next scalar-energy calculation fails despite that regularity. The derived
+trace/curvature compatibility now specifies what the next construction must
+satisfy; a local Hessian solution is not a completed theory. Do not repeat
+the same switch-shape scan or import PPN and galaxy passes from another model.
+
+**Previous constructive checkpoint (2026-09-08, IC18):**
 [The pinned-clock handoff](integrable_clock_construction_2026/IC18_HANDOFF.md)
 removes the mixed clock–matter principal coupling by a varied auxiliary
 constraint, preserving a positive causal clock and radiation/dust expansion
