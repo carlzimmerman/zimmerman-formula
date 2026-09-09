@@ -99,13 +99,11 @@ L78/L80/L82. **Status: SUPPORTED at linear order — L82 shows linear cosmology 
 
 **P12 — GW speed equals c exactly, with no dispersion.** The tensor sector is standard Einstein–Hilbert
 (M²/2 R), so c_T = c. *Ground:* L80 (the action's gravitational term). *Test:* multi-messenger GW timing
-(GW170817-type). *Discriminator:* any measured c_T ≠ c falsifies it. **Status: SHARPENED (now from the
-explicit F(Q)Θ action).**
+(GW170817-type). *Discriminator:* any measured c_T ≠ c falsifies it. **Status: CONFIRMED (L88): c_T=c exactly and structurally — scalar/MOND terms contribute no graviton kinetic term; footing-independent.**
 
-**P13 — No scalar (breathing) GW polarization.** CONTINGENT: if the affine degeneracy makes the scalar a
-non-propagating cuscuton, there is **no extra scalar polarization** in gravitational waves. *Ground:* the
+**P13 — A subdominant, near-luminal scalar GW polarization (REVISED by L88).** astra's principal gate shows the scalar PROPAGATES (not a cuscuton), and its ~10⁻³³ eV de-Sitter-scale mass does not screen it at any GW band, so the framework predicts a **subdominant, effectively-massless breathing/longitudinal polarization** (amplitude ∝ F_Q), currently consistent with LVK/PTA bounds — a falsifiable target, not a null. *Ground:* the
 det W = 0 degeneracy (L80) + the pending DOF count. *Test:* polarization content in GW networks
-(LISA/ET/pulsar timing). *Discriminator:* detection of a scalar mode would falsify the cuscuton structure
+(LISA/ET/pulsar timing). *Discriminator:* detection of a scalar mode is now EXPECTED (not forbidden)
 (and would mean a propagating scalar whose c² = −1 warning becomes a real problem). **Status: CONTINGENT.**
 
 ---

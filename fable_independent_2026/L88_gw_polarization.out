@@ -1,0 +1,110 @@
+================================================================================================================
+L88 -- GW DOOR: tensor speed c_T and scalar polarization of the F(Q)Theta action
+================================================================================================================
+
+================================================================================================================
+PART C -- CONTROLS: the GW machinery reproduces textbook results before any verdict.
+================================================================================================================
+  [PASS] C1  linearized EH: delta R_xx = -1/2 (d_z^2 - d_t^2) hp  =>  vacuum eq d_t^2 hp = d_z^2 hp  =>  c_T=1   (delta R_xx(e^1) = Derivative(hp(t, z), (t, 2))/2 - Derivative(hp(t, z), (z, 2))/2)
+  [PASS] C1b two polarizations: delta R_xy gives the SAME wave op for hc  =>  {+,x}, both luminal   (hc obeys d_t^2 hc = d_z^2 hc identically)
+  [PASS] C2  positive control: a phi*R (Brans-Dicke) coupling gives breathing amplitude 1/(2 w_BD+3) != 0, -> 0 only as w_BD->inf (GR). Our detector-response logic CAN see a scalar mode when one is present   (breathing = 1/(2 w_BD+3); GR limit w_BD->inf gives 0)
+  [PASS] C3a massive scalar: k=sqrt(omega^2-m^2) is REAL (propagating) for omega>m, IMAGINARY (evanescent, Yukawa e^{-m r}) for omega<m -> mass gap frequency f_gap = m c^2/(2 pi hbar)   (omega=2m: real k;  omega=m/2: pure imaginary k (Yukawa))
+  [PASS] C3b group velocity v_g = k/omega -> c as omega/m -> inf (a de-Sitter-light scalar is ultra-relativistic at detector bands, NOT quasi-static)   (v_g -> 1 (=c) for omega >> m)
+
+================================================================================================================
+PART 1 -- TENSOR SPEED c_T: only M^2/2 R contributes a kinetic (d h)^2 term.  (P12)
+================================================================================================================
+  [PASS] M1a  sqrt(-g) = sqrt(1 - e^2(hp^2+hc^2)): NO linear-in-h term (TT traceless) -> scalar terms cannot give a LINEAR graviton source   (sqrt(-g) = sqrt(-e**2*hc(t, z)**2 - e**2*hp(t, z)**2 + 1))
+  [PASS] M1b  Theta = d_t ln sqrt(-g) = -1/2 d_t(hp^2+hc^2) + O(e^3): O(e^2) and a pure TOTAL time-derivative   (Theta starts at O(e^2), no linear piece)
+  [PASS] M1c  Lambda M^2 term -> hp EOM = mass term (no hp_tt/hp_zz): a de-Sitter-scale graviton mass, not a c_T shift   (EOM_Lambda = 0)
+  [PASS] M1d  K(Q) term -> hp EOM = mass term only (Q=phi_dot is h-independent): no kinetic contribution   (EOM_K = 0)
+  [PASS] M1e  F(Q)Theta term -> hp EOM contributes NOTHING (const-Q0 total derivative) / at most a phi_ddot mass term: no kinetic contribution   (EOM_FTheta = 0)
+  [PASS] M1f  MOND term M^2 a0^2 G(|V|/a0) = 0 on a homogeneous background (|V|=transverse grad of phi(t) =0; G(0)=0): zero contribution to the TT sector   (G(0)=0)
+  [PASS] M1g  VERDICT c_T = c EXACTLY: EH is the sole kinetic term; c_T^2 = (grad coeff)/(time coeff) = 1; GW170817 |c_T/c-1|<~1e-15 passed STRUCTURALLY (footing-independent, dimensionless)   (2 tensor polarizations, no dispersion, no modification)
+
+================================================================================================================
+PART 2 -- SCALAR MODE: mass scale from omega_0^2 = Q0^2 G''(y0)/2, both a0 footings.
+================================================================================================================
+  [PASS] M2a  re-derive G''(y) = 2[1+(y-1)e^{-y}] (independent of astra/qwen), and G''(y)>=0 for y>=0 (L80/L83)   (G''(y) = 2*(y + exp(y) - 1)*exp(-y))
+  [PASS] M2b  regime dependence: G''(y0->inf)=2 (deep-Newtonian/detector), G''(1)=2, G''(0+)=0 (cosmological zero-field, massless & strongly coupled). omega_0 = Q0 sqrt(G''/2) spans H_Lambda ... 0   (G''(inf)=2.0, G''(1)=2.0000, G''(0+)=0.0000)
+
+  Scalar mass (Q0 identified with the de Sitter clock rate H_Lambda; deep-Newtonian G''=2 => omega_0=H_Lambda):
+    canonical  a0=9.3619e-11:  H_Lambda=1.9621e-18/s  omega_0=1.9621e-18/s  m_phi c^2=1.2915e-33 eV  lambda_C=1.5279e+26 m (4.952 Gpc)  f_gap=3.1228e-19 Hz
+    alternate  a0=1.1279e-10:  H_Lambda=2.3639e-18/s  omega_0=2.3639e-18/s  m_phi c^2=1.5559e-33 eV  lambda_C=1.2682e+26 m (4.110 Gpc)  f_gap=3.7623e-19 Hz
+  [PASS] M2c  scalar mass is the de Sitter scale: m_phi c^2 ~ 1.3e-33 eV (canonical) / 1.6e-33 eV (alternate); reduced Compton wavelength = c/H_Lambda = the de Sitter radius (~4-5 Gpc)   (m_can=1.291e-33 eV, m_alt=1.556e-33 eV, lambda_C=4.95 Gpc)
+
+================================================================================================================
+PART 3 -- YUKAWA SCREENING AT DETECTOR BANDS (adversarial: verify the answer, both footings).
+================================================================================================================
+  f_detector / f_gap  (>>1 => far above the mass gap => propagating & luminal, NOT Yukawa-screened):
+    [canonical]  f_gap = 3.123e-19 Hz
+        PTA (nHz)     : f/f_gap = 9.607e+09
+        LISA (mHz)    : f/f_gap = 3.202e+15
+        LVK (~100 Hz) : f/f_gap = 3.202e+20
+    [alternate]  f_gap = 3.762e-19 Hz
+        PTA (nHz)     : f/f_gap = 7.974e+09
+        LISA (mHz)    : f/f_gap = 2.658e+15
+        LVK (~100 Hz) : f/f_gap = 2.658e+20
+  [PASS] M3a  ADVERSARIAL: at EVERY detector band (PTA nHz, LISA mHz, LVK ~100Hz) f/f_gap ~ 1e10..1e20 >> 1 => the mode is far above its mass gap => Yukawa screening does NOT apply to radiation. 'massive => screened' is FALSE for this de-Sitter-light scalar   (min f/f_gap = 7.97e+09 (PTA), max = 3.20e+20 (LVK))
+  [PASS] M3b  sensitivity: to Yukawa-screen even the LOWEST band (PTA), the clock rate Q0 would need to exceed the de Sitter rate H_Lambda by ~1e10x -- implausible for a cosmological clock => the scalar is robustly EFFECTIVELY MASSLESS at all GW bands   (Q0/H_Lambda needed ~ 9.61e+09)
+
+================================================================================================================
+PART 4 -- COUPLING: does the scalar reach a detector?  (clean protections vs honest residual)
+================================================================================================================
+  [PASS] M4a  no phi*R non-minimal term => scalar does NOT mix into the TT graviton at linear order (M1a-M1e); the 2 tensor modes are pure GR, uncontaminated => c_scalar may differ from c_T=c with no tensor leak   (TT sector is clean (verified in Part 1))
+  [PASS] M4b  ordinary matter S_m[psi,g] is minimally coupled: dS_m/dphi = dS_m/dn = 0 => astrophysical GW sources (compact/SMBH binaries) carry NO scalar charge => no scalar monopole/dipole radiation at linear order (unlike Brans-Dicke, where matter has scalar charge via phi*R)   (scalar emission is only metric-mediated (gravitational), not direct)
+  [PASS] M4c  HONEST RESIDUAL: F(Q)Theta mixes n/phi into the metric-SCALAR sector (Theta = div n couples to the potentials Phi,Psi) => the breathing channel is NOT identically closed; a clean 'no scalar polarization' is NOT established by decoupling. Amplitude ~ F_Q, uncomputed in the radiation zone   (metric-mediated breathing possible; amplitude is the live unknown)
+  [PASS] M4d  astra's k->0 symplectic collapse (Omega_zeta_pi ~ k^2, L83) suppresses the scalar only at SUPER-HORIZON (cosmological) k, NOT at detector-band k (LVK k~2e-6/m, PTA k~1e-25/m are far from k->0) => the k^2 collapse does NOT protect the detector band   (detector-band modes are not in the strongly-coupled k->0 corner)
+
+================================================================================================================
+SYNTHESIS -- the two predictions.
+================================================================================================================
+
+  P12 (c_T = c, no dispersion):  SOLID / PASS.
+     The graviton is pure Einstein-Hilbert M^2/2 R. K(Q), F(Q)Theta and the MOND term are scalar functions
+     of the clock n and phi with NO transverse-traceless piece: they add only a de-Sitter-scale graviton
+     MASS (~sqrt(Lambda) ~ H_Lambda ~ 1e-33 eV) and total-derivatives, never a kinetic (d h)^2 term. So
+     c_T = c EXACTLY, 2 polarizations, no dispersion. GW170817 (|c_T/c-1| < ~1e-15) is passed STRUCTURALLY,
+     footing-independent. This SHARPENS P12 from the explicit action.
+
+  P13 (scalar polarization):  the written form ("NO scalar breathing mode, contingent on a non-propagating
+     cuscuton") is NOT delivered by astra's current gate and should be RESTATED. Adversarial findings:
+       - astra's ACTUAL_PRINCIPAL_GATE finds the scalar PROPAGATES (one local DOF for generic k, omega_0^2
+         = Q0^2 G''(y0)/2 > 0 for y0>0) -> the cuscuton premise of P13 is CONTRADICTED.
+       - the mode is de-Sitter-LIGHT (m_phi c^2 ~ 1.3-1.6e-33 eV; Compton wavelength = de Sitter radius,
+         ~4-5 Gpc). At every GW band f/f_gap ~ 1e10..1e20, so it is FAR above its mass gap -> NOT
+         Yukawa-screened. "massive => screened" FAILS here.
+       - the operative SUPPRESSION is structural, not kinematic: ordinary matter carries no scalar charge
+         (minimal S_m[g], no phi*R), so binaries excite the scalar only through the metric (gravitationally,
+         amplitude ~ F_Q) -> a SUBDOMINANT breathing/longitudinal mode, propagating at ~c, effectively
+         massless at detector bands. The F(Q)Theta metric-scalar mixing keeps the channel OPEN; its
+         radiation-zone amplitude is uncomputed (astra's open item), and the k^2 symplectic collapse
+         protects only super-horizon scales.
+
+  FALSIFIABLE STATEMENT (P13, restated honestly):
+     The framework predicts a SUBDOMINANT, gravitationally-sourced scalar GW polarization (transverse
+     breathing +/- longitudinal), NOT Yukawa-screened (effectively massless at all detector bands, mass gap
+     ~3e-19 Hz), whose amplitude relative to the tensor modes is set by the F(Q)Theta coupling F_Q. It is
+     NOT a clean "no scalar mode". Discriminators:
+       * detection of an extra polarization consistent with a massless-to-de-Sitter-mass scalar -> CONSISTENT
+         with the propagating clock scalar (and would fix F_Q);
+       * a confirmed pure-tensor result (only {+,x}) at improving PTA/LVK/LISA polarization sensitivity ->
+         drives F_Q down / pressures the F(Q)Theta mixing;
+       * the mode's speed ~ c (astra P12 c_T=c; the scalar is near-luminal at high omega) -> NO gravitational
+         Cherenkov violation, unlike sub-luminal khronon modes.
+     CONSISTENCY WITH CURRENT BOUNDS: LVK GWTC polarization tests and PTA (NANOGrav 15yr / EPTA) correlation
+     analyses do NOT require extra polarizations and set only weak upper limits on scalar/longitudinal
+     admixtures, so a subdominant scalar mode is presently ALLOWED. No current tension; no current detection.
+
+  CONFIDENCE:
+     c_T = c : HIGH (structural, symbolically verified; robust to both footings).
+     m_phi ~ de Sitter scale : MEDIUM-HIGH (rests on Q0 ~ H_Lambda; even a generous Q0 cannot reach any
+        detector band, so 'effectively massless at GW bands' is robust).
+     P13 'no detectable scalar mode' : NOT SUPPORTED as a clean absence. Honest verdict = a suppressed,
+        near-luminal, effectively-massless scalar polarization, amplitude ~ F_Q (uncomputed) -- currently
+        consistent with data but a genuine falsifiable target, not a guaranteed null. MEDIUM confidence that
+        it sits below present bounds; the radiation-zone amplitude is astra's open calculation.
+
+================================================================================================================
+L88 COMPLETE: 21/21 checks PASS.   [0.5s]
+================================================================================================================

@@ -3374,3 +3374,26 @@ dark-matter mechanism whose dust is LINEAR in the conserved charge (ρ∝a⁻³,
   health** — the ~24-order |C|/|A| tuning is a structural property of any healthy braided-clock dust, not a
   removable blemish. Not a new kill (viable at the tuned point), but the constructive "linearise the dust"
   door is definitively closed. HIGH confidence. A real, valuable negative.
+
+## L88 — GW sector: c_T = c exactly (P12 solid); a subdominant near-luminal scalar polarization (P13 revised)
+
+`L88_gw_polarization.py` + `.out` (**21 checks, 21 PASS**).
+
+- **⭐ c_T = c EXACTLY (P12, structural).** On the Minkowski TT plane wave, the scalar/MOND terms contribute
+  NO kinetic (∂h)²: √−g has no linear TT term (traceless), Q=φ̇ is h-independent, Θ is a pure total
+  derivative (F(Q)Θ → zero EOM contribution), the MOND term vanishes (|V|=0 on homogeneous background). Only
+  M²/2 R is kinetic → δR_xx = −½(∂_z²−∂_t²)h₊ → **c_T²=1, two polarizations**. GW170817 passed structurally,
+  footing-independent.
+- **Scalar mass.** ω₀ = Q₀√(G''(y₀)/2); tying Q₀ to the de Sitter clock rate H_Λ=2πa₀/c gives m_φc² ≈
+  **1.3×10⁻³³ eV** (Compton wavelength = de Sitter radius ~5 Gpc), massless at the zero-field point.
+- **⚠️ P13 CORRECTED (honest).** The earlier "no scalar polarization (cuscuton)" is **NOT supported** —
+  astra's principal gate finds the scalar **propagates** (one local DOF, ω₀²=Q₀²G''/2>0), contradicting the
+  cuscuton premise. The de-Sitter-scale mass does **not** Yukawa-screen it (f/f_gap ~ 10¹⁰–10²⁰ at PTA–LVK
+  bands → effectively massless/luminal). So the framework predicts a **subdominant, near-luminal,
+  effectively-massless scalar polarization** (breathing/longitudinal), amplitude ∝ F_Q (matter carries no
+  scalar charge, so binaries excite it only gravitationally, but F(Q)Θ mixes the clock into the metric so
+  the channel is not cleanly closed). **Consistent with current bounds** (LVK GWTC / NANOGrav-EPTA), no
+  tension, no detection; speed ~c → no gravitational-Cherenkov problem.
+- **VERDICT.** c_T=c HIGH confidence (structural). P13 restated: **a subdominant scalar GW polarization is
+  predicted (not null), falsifiable, currently consistent** — the radiation-zone amplitude is astra's open
+  item. Predictions file P13 updated accordingly.
