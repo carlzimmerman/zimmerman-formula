@@ -1,4 +1,4 @@
-# The \(F(Q)\Theta\) grand-prize door — bounded result
+# The \(F(Q)\Theta\) grand-prize door — corrected bounded result
 
 This lane tests the only operator identified by the latest Fable degeneracy
 analysis as capable of mixing the MOND scalar with metric velocities:
@@ -18,56 +18,61 @@ in.
 ## Derived homogeneous equations
 
 On flat FLRW in unitary clock gauge,
-
 \[
 L_h=-3M^2a\dot a^2/N-2\Lambda M^2Na^3-Na^3K(Q)
  +3a^2\dot aF(Q),\qquad Q=\dot\varphi/N.
 \]
-
-The velocity Hessian in \((\dot a,\dot\varphi)\) is computed directly:
-
+The directly varied velocity Hessian obeys
 \[
 \det W=\frac{3a^4}{N^2}
 \left(2M^2K_{QQ}-3F_Q^2-6M^2H F_{QQ}\right),
 \qquad H=\dot a/(aN).
 \]
-
-Thus the generic mixed-degeneracy condition is
+Thus a generic background-dependent degeneracy requires
 \[
 K_{QQ}=\frac{3F_Q^2}{2M^2}+3H F_{QQ}.
 \]
-Because a fixed action cannot be degenerate only at one selected Hubble rate,
-degeneracy on a family of expanding backgrounds forces \(F_{QQ}=0\): \(F\)
-is affine. Taking \(F(0)=0\), the background-independent condition is
-\(K_{QQ}=3F_Q^2/(2M^2)\). The mixed entry is
-\(W_{a\varphi}=3a^2F_Q/N\), so this is a genuine architectural opening rather
-than an asserted rank.
+For an action to remain degenerate on a family of expanding backgrounds,
+\(F_{QQ}=0\) is forced, so \(F\) is affine. With \(F(0)=0\), the
+background-independent condition is \(K_{QQ}=3F_Q^2/(2M^2)\); the mixed
+entry \(W_{a\varphi}=3a^2F_Q/N\) is nonzero.
 
 The lapse and scale variations give the auxiliary stress
 \[
 \rho=K-QK_Q+3HQF_Q,\qquad p=-K-F_Q\dot Q,
 \]
-and the shift-symmetric scalar charge obeys
+and the shift-symmetric scalar charge is
 \[
 \frac{d}{dt}\left[a^3(-K_Q+3HF_Q)\right]=0.
 \]
 
 ## Static branch
 
-For a stationary foliation \(Q=0=\Theta\), choosing \(F(0)=0\) leaves the
-static weak-field action unchanged. Independent variation of the two metric
-potentials gives
+For a stationary foliation \(Q=0=\Theta\), \(F(0)=0\) removes the new term.
+Independent variation of the two metric potentials gives
 \[
-\Psi''-\Phi''=0\quad\Rightarrow\quad\Phi=\Psi
+\Psi''-\Phi''=0\quad\Rightarrow\quad\Phi=\Psi,
 \]
-under regular isolated boundary data. Variation of \(\Phi\) gives
+and variation of \(\Phi\) gives
 \[
 4M^2\nabla\!\cdot\!\left[(1-e^{-|\nabla\Phi|/a_0})\nabla\Phi\right]=\rho,
 \]
-with \(G_{\rm measured}=1/(16\pi M^2)\) in this normalization. Thus the
-operator preserves the exact exponential/no-slip static gate.
+with \(G_{\rm measured}=1/(16\pi M^2)\) in this normalization.
 
-## The bounded obstruction found
+## Corrected affine cosmology result
+
+On the affine locus write \(F=fQ\) and
+\(K=k_2Q^2+A Q+B\), with \(k_2=3f^2/(4M^2)\). The exact charge equation
+is \(a^3(-2k_2Q-A+3fH)=C\). Eliminating \(Q\) in the varied lapse stress
+gives
+\[
+\rho=B+3M^2H^2-\frac{M^2}{3f^2}\left(A+\frac{C}{a^3}\right)^2.
+\]
+Crucially, the cross term
+\(-2M^2AC/(3f^2a^3)\) is a genuine dust-scaling contribution when
+\(A C\neq0\). An earlier run omitted \(A\); that was an implementation bug,
+now caught by the regression test and corrected. This route is therefore
+**OPEN**, not dead at the homogeneous dust gate.
 
 The explicit affine witness
 \[
@@ -75,46 +80,13 @@ F(Q)=Q,\qquad K(Q)=\tfrac34Q^2-3Q+\tfrac94
 \]
 at \(Q_*=1,M^2=1\) satisfies the background-independent degeneracy relation,
 has \(K(Q_*)=0\), \(\rho_{\rm bare}=K-Q_*K_Q=3/2>0\), and \(p_{\rm bare}=0\).
-Its fixed-metric (decoupling) sound-speed square is
+Its fixed-metric decoupling sound-speed square is
 \[
 c_{\rm bare}^2=\frac{p_Q}{\rho_Q}
 =\frac{K_Q}{QK_{QQ}}=-1.
 \]
-
-This is a real warning: positive pressureless dust on the mixed-degenerate
-locus drives the bare scalar kinetic/gradient ratio negative. Since
-\(F(Q)\Theta\) braids metric and scalar, this is **not yet a full
-inhomogeneous ghost theorem**; the complete ADM reduction could change the
-physical eigenmode; independently, the exact homogeneous charge elimination
-below kills the dust route. The (F(Q)\Theta) candidate is therefore **DEAD for
-clock-as-CMB-dust**, though this is not a universal no-go for other actions.
-
-## Exact homogeneous dust obstruction
-
-On the affine locus write (F=fQ) and
-(K=k_2Q^2+A Q+B), with (k_2=3f^2/(4M^2)). The varied scalar equation
-integrates to
-
-\[
-a^3(-2k_2Q+3fH)=C.
-\]
-
-Substituting this derived charge solution into the varied lapse stress gives
-
-\[
-\rho=B+3M^2H^2-\frac{M^2C^2}{3f^2a^6}.
-\]
-
-The (C/a^3) cross term cancels exactly. This degeneracy operator therefore
-cannot make its homogeneous scalar carry an independent pressureless (a^{-3})
-component: it only renormalizes the gravitational (H^2) term and supplies a
-stiff (a^{-6}) contribution. The affine witness also has
-(c_{\rm bare}^2=-1).
-
-This closes the clock-as-CMB-dust route for the background-independent
-(F(Q)\Theta) degeneracy architecture. It is not a universal no-go for every
-nonlocal or preferred-frame action; a surviving theory must change the operator
-content and repeat all gates from one action.
+That negative decoupling value is a warning, not a full inhomogeneous ghost
+theorem, because \(F(Q)\Theta\) braids metric and scalar.
 
 ## Reproducibility
 
@@ -124,12 +96,12 @@ python3 -B -m unittest discover -s qwen_claude_field_theory/closure_2026/fqtheta
 ~~~
 
 The script derives the Hessian, determinant, degeneracy relation, static
-Euler–Lagrange equations, FLRW stress/charge and witness in exact SymPy
-arithmetic. It does not hard-code a rank, PPN parameter or degree-of-freedom
-count.
+Euler–Lagrange equations, FLRW stress/charge, corrected affine charge
+elimination and witness in exact SymPy arithmetic. It does not hard-code a
+rank, PPN parameter or degree-of-freedom count.
 
 **Next unavoidable calculation:** retain lapse, shift, the khronon and the
 spatial MOND gradient in the full ADM quadratic action, then run the actual
 Dirac chain and principal-symbol eigenanalysis on an expanding \(H\ne0\)
-branch. Only that calculation can decide whether the braiding turns this
-opening into a healthy two-tensor-plus-clock theory.
+branch. This is the calculation that decides whether the \(a^{-3}\) term and
+the mixed degeneracy can coexist with a healthy two-tensor-plus-clock theory.

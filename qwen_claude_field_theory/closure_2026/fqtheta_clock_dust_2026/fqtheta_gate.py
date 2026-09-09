@@ -167,23 +167,24 @@ def affine_cosmology():
     """Eliminate the exact homogeneous shift charge on the affine locus.
 
     With F=f Q and K=k2 Q^2+A Q+B, k2=3 f^2/(4 M2), the scalar equation
-    gives a^3(-2 k2 Q+3 f H)=C.  Substitution into the varied lapse stress
-    is done symbolically; the C/a^3 cross term cancels identically.
+    gives a^3(-2 k2 Q-A+3 f H)=C.  Substitution into the varied lapse stress
+    is done symbolically; the A*C/a^3 cross term is retained.
     """
     a, H, M2, f, A, B, C = sp.symbols("a H M2 f A B C", positive=True)
     k2 = 3*f**2/(4*M2)
     D = C/a**3
-    Qsol = sp.simplify((3*f*H-D)/(2*k2))
+    Qsol = sp.simplify((3*f*H-A-D)/(2*k2))
     Q = sp.symbols("Q", real=True)
     K = k2*Q**2 + A*Q + B
     Kq = sp.diff(K, Q)
     rho = sp.simplify((K-Q*Kq+3*H*Q*f).subs(Q, Qsol))
-    target = sp.simplify(B + 3*M2*H**2 - M2*C**2/(3*f**2*a**6))
+    target = sp.simplify(B + 3*M2*H**2 - M2*(A + C/a**3)**2/(3*f**2))
+    dust_coeff = sp.simplify(a**3*sp.diff(rho, C).subs(C, 0))
     return {"a": a, "H": H, "M2": M2, "f": f, "A": A, "B": B, "C": C,
             "k2": k2, "Q_solution": Qsol, "rho_eliminated": rho,
             "target": target, "identity": sp.simplify(rho-target),
-            "dust_coefficient": sp.Integer(0),
-            "scaling": "B + 3 M2 H^2 - M2 C^2/(3 f^2 a^6); no C/a^3 term"}
+            "dust_coefficient": dust_coeff,
+            "scaling": "B + 3 M2 H^2 - M2(A+C/a^3)^2/(3 f^2); an a^-3 cross term is present when A*C != 0"}
 
 
 def plain(value):
@@ -237,7 +238,7 @@ def main(argv=None):
           w)
     check("witness bare scalar sound-speed square is negative", w["bare_sound_speed_sq"] < 0,
           {"c_bare^2": w["bare_sound_speed_sq"], "Kq": w["Kq_at_dust"], "Kqq": w["Kqq_at_dust"]})
-    check("affine charge elimination has no dust a^-3 term", c["identity"] == 0 and c["dust_coefficient"] == 0,
+    check("affine charge elimination retains the derived dust a^-3 cross term", c["identity"] == 0 and c["dust_coefficient"] != 0,
           {"charge_solution": c["Q_solution"], "rho_after_elimination": c["rho_eliminated"], "scaling": c["scaling"]})
 
     data = {

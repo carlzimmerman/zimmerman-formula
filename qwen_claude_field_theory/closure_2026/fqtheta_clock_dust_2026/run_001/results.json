@@ -124,12 +124,12 @@
     "B": "B",
     "C": "C",
     "k2": "3*f**2/(4*M2)",
-    "Q_solution": "-2*C*M2/(3*a**3*f**2) + 2*H*M2/f",
-    "rho_eliminated": "B - C**2*M2/(3*a**6*f**2) + 3*H**2*M2",
-    "target": "B - C**2*M2/(3*a**6*f**2) + 3*H**2*M2",
+    "Q_solution": "-2*M2*(C + a**3*(A - 3*H*f))/(3*a**3*f**2)",
+    "rho_eliminated": "-A**2*M2/(3*f**2) - 2*A*C*M2/(3*a**3*f**2) + B - C**2*M2/(3*a**6*f**2) + 3*H**2*M2",
+    "target": "B + 3*H**2*M2 - M2*(A*a**3 + C)**2/(3*a**6*f**2)",
     "identity": "0",
-    "dust_coefficient": "0",
-    "scaling": "B + 3 M2 H^2 - M2 C^2/(3 f^2 a^6); no C/a^3 term"
+    "dust_coefficient": "-2*A*M2/(3*f**2)",
+    "scaling": "B + 3 M2 H^2 - M2(A+C/a^3)^2/(3 f^2); an a^-3 cross term is present when A*C != 0"
   },
   "checks": [
     {
@@ -231,12 +231,12 @@
       }
     },
     {
-      "name": "affine charge elimination has no dust a^-3 term",
+      "name": "affine charge elimination retains the derived dust a^-3 cross term",
       "passed": true,
       "evidence": {
-        "charge_solution": "-2*C*M2/(3*a**3*f**2) + 2*H*M2/f",
-        "rho_after_elimination": "B - C**2*M2/(3*a**6*f**2) + 3*H**2*M2",
-        "scaling": "B + 3 M2 H^2 - M2 C^2/(3 f^2 a^6); no C/a^3 term"
+        "charge_solution": "-2*M2*(C + a**3*(A - 3*H*f))/(3*a**3*f**2)",
+        "rho_after_elimination": "-A**2*M2/(3*f**2) - 2*A*C*M2/(3*a**3*f**2) + B - C**2*M2/(3*a**6*f**2) + 3*H**2*M2",
+        "scaling": "B + 3 M2 H^2 - M2(A+C/a^3)^2/(3 f^2); an a^-3 cross term is present when A*C != 0"
       }
     }
   ],

@@ -48,10 +48,10 @@ class FQThetaTests(unittest.TestCase):
         self.assertTrue(r["Fq_at_dust"] != 0)
         self.assertEqual(sp.diff(r["F"], sp.Symbol("Q"), 2), 0)
 
-    def test_affine_charge_elimination_has_no_dust_term(self):
+    def test_affine_charge_elimination_retains_dust_cross_term(self):
         r = gate.affine_cosmology()
         self.assertEqual(r["identity"], 0)
-        self.assertEqual(r["dust_coefficient"], 0)
+        self.assertNotEqual(r["dust_coefficient"], 0)
 
     def test_cli_records_open_not_certified(self):
         with tempfile.TemporaryDirectory() as d:

@@ -2,7 +2,7 @@
   "schema_version": 1,
   "claim_id": "fqtheta-clock-dust-degeneracy-gate",
   "repository": {
-    "commit": "7179dd24fbeaafe470cc50040c603363340dd979",
+    "commit": "c6363fd9f2fa3f3f18588422c8cae05ffe594f37",
     "dirty": true
   },
   "command": "python3 -B qwen_claude_field_theory/closure_2026/fqtheta_clock_dust_2026/fqtheta_gate.py --output-dir <output-directory>",
@@ -20,11 +20,11 @@
     "inputs": [
       {
         "path": "qwen_claude_field_theory/closure_2026/fqtheta_clock_dust_2026/fqtheta_gate.py",
-        "sha256": "cc4ac0384c0d7f936d6dbc213bef1f4e099fbf3963bb57ef3e374c1481dd1e6a"
+        "sha256": "7b4f9a5b51bf49d10ab037d557c85d4c585998fd6973b415b4ecef63b9cf91ec"
       },
       {
         "path": "qwen_claude_field_theory/closure_2026/fqtheta_clock_dust_2026/test_fqtheta_gate.py",
-        "sha256": "2036b3b37cea6e5a6daf5eaac3382b55ba2e177a88d9ac751ea970d6c79a29c1"
+        "sha256": "815e53b2413be8a4a135f0b5eb79009b13be824c1715efcf33c734ecc871a698"
       }
     ],
     "bounds": {
@@ -48,14 +48,14 @@
     "seed": null
   },
   "run": {
-    "started_at": "2026-09-09T19:22:28Z",
-    "runtime_seconds": 1.1865270137786865,
+    "started_at": "2026-09-09T19:25:41Z",
+    "runtime_seconds": 1.2037851810455322,
     "exit_status": 0
   },
   "outputs": [
     {
       "path": "results.json",
-      "sha256": "1e22fbfa990b4a8bf1e80a78387794c8839b89cc3ead834e76d0f4a11bf662ac"
+      "sha256": "ad83c754c63b5e246da9668534a6e697837338884588afc9736afb0f1b8bc6cc"
     }
   ],
   "checks": [
@@ -158,12 +158,12 @@
       }
     },
     {
-      "name": "affine charge elimination has no dust a^-3 term",
+      "name": "affine charge elimination retains the derived dust a^-3 cross term",
       "passed": true,
       "evidence": {
-        "charge_solution": "-2*C*M2/(3*a**3*f**2) + 2*H*M2/f",
-        "rho_after_elimination": "B - C**2*M2/(3*a**6*f**2) + 3*H**2*M2",
-        "scaling": "B + 3 M2 H^2 - M2 C^2/(3 f^2 a^6); no C/a^3 term"
+        "charge_solution": "-2*M2*(C + a**3*(A - 3*H*f))/(3*a**3*f**2)",
+        "rho_after_elimination": "-A**2*M2/(3*f**2) - 2*A*C*M2/(3*a**3*f**2) + B - C**2*M2/(3*a**6*f**2) + 3*H**2*M2",
+        "scaling": "B + 3 M2 H^2 - M2(A+C/a^3)^2/(3 f^2); an a^-3 cross term is present when A*C != 0"
       }
     }
   ],
