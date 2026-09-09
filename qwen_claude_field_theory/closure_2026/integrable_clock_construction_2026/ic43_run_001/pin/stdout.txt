@@ -1,0 +1,106 @@
+{
+  "bulk": {
+    "constraints": [
+      "p_w",
+      "p_ell",
+      "ell*(w - w_c)*Derivative(F(Q, P, w), w) + ell*F(Q, P, w) + Derivative(H0(Q, P, w), w)",
+      "(w - w_c)*F(Q, P, w)"
+    ],
+    "poisson_matrix": [
+      [
+        "0",
+        "0",
+        "-Derivative(H0(Q, P, w_c), (w_c, 2)) + 2*Derivative(F(Q, P, w_c), w_c)*Derivative(H0(Q, P, w_c), w_c)/F(Q, P, w_c)",
+        "-F(Q, P, w_c)"
+      ],
+      [
+        "0",
+        "0",
+        "-F(Q, P, w_c)",
+        "0"
+      ],
+      [
+        "Derivative(H0(Q, P, w_c), (w_c, 2)) - 2*Derivative(F(Q, P, w_c), w_c)*Derivative(H0(Q, P, w_c), w_c)/F(Q, P, w_c)",
+        "F(Q, P, w_c)",
+        "0",
+        "0"
+      ],
+      [
+        "F(Q, P, w_c)",
+        "0",
+        "0",
+        "0"
+      ]
+    ],
+    "determinant": "F(Q, P, w_c)**4",
+    "matrix_rank": 4,
+    "first_class": 0,
+    "second_class": 4,
+    "canonical_pairs_remaining": "1",
+    "multipliers": {
+      "u_ell": "-Derivative(H0(Q, P, w_c), P)*Derivative(H0(Q, P, w_c), Q, w_c)/F(Q, P, w_c) + Derivative(H0(Q, P, w_c), Q)*Derivative(H0(Q, P, w_c), P, w_c)/F(Q, P, w_c) - Derivative(F(Q, P, w_c), P)*Derivative(H0(Q, P, w_c), Q)*Derivative(H0(Q, P, w_c), w_c)/F(Q, P, w_c)**2 + Derivative(F(Q, P, w_c), Q)*Derivative(H0(Q, P, w_c), P)*Derivative(H0(Q, P, w_c), w_c)/F(Q, P, w_c)**2",
+      "u_w": "0"
+    },
+    "physical_bracket_error": "0",
+    "reduced_H_error": "0",
+    "preservation_error": "0"
+  },
+  "repo_pin_identity": "0",
+  "example": {
+    "H0": "P**4/2 + P**2*w + P**2/2 + Q**2/2 + w**2/2",
+    "ell_on": "-1/P**2",
+    "weighted_multiplier": "-P**2",
+    "weighted_multiplier_error": "0",
+    "w_off": "-P**2",
+    "H_on": "P**4/2 + P**2/2 + Q**2/2",
+    "H_off": "P**2/2 + Q**2/2",
+    "zero_phase_constraints": [
+      "p_w",
+      "p_ell",
+      "P**2 + w"
+    ],
+    "zero_phase_poisson_matrix": [
+      [
+        "0",
+        "0",
+        "-1"
+      ],
+      [
+        "0",
+        "0",
+        "0"
+      ],
+      [
+        "1",
+        "0",
+        "0"
+      ]
+    ],
+    "zero_phase_rank": 2,
+    "zero_phase_first_class": 1,
+    "zero_phase_second_class": 2,
+    "zero_phase_canonical_pairs": "1",
+    "zero_phase_preservation_error": "0",
+    "global_replacement_error": "P**4/2",
+    "crossing_force_jump": "0",
+    "energy_flow_error": "0",
+    "positive_Hpp_both_sides": true,
+    "Hpp_on": "6*P**2 + 1",
+    "Hpp_off": "1",
+    "third_derivative_jump": "0",
+    "fourth_derivative_jump": "12"
+  },
+  "orbit": {
+    "solver_success": true,
+    "crossing_times": [
+      0.24461512987021095
+    ],
+    "relative_energy_drift": 4.4366288420860656e-11,
+    "final_Q": -0.1895383062469273,
+    "final_P": -1.0151263372046986,
+    "samples": 401,
+    "scope": "Mechanical reduced-action completion, not a relativistic gravity solution"
+  },
+  "full_theory": "OPEN",
+  "non_claim": "No global equivalence, full gravitational DOF count, or empirical prediction"
+}
