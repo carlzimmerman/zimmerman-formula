@@ -191,6 +191,7 @@ Enforced by the scripts, not by trust.
 
 ## Publication record
 
+[![Foliation Theorem](https://img.shields.io/badge/A%20Preferred%20Frame%20Is%20Forced%20%E2%80%94%20Foliation%20Theorem%20for%20Two--Mode%20MOND%20(Sep%209%202026)-10.5281%2Fzenodo.22679408-blue)](https://doi.org/10.5281/zenodo.22679408)
 [![Complete Theory](https://img.shields.io/badge/A%20Non--Empty%20Parameter%20Region%20for%20a%20Foliation--Based%20Relativistic%20MOND%20Theory%20(Sep%208%202026)-10.5281%2Fzenodo.22667688-blue)](https://doi.org/10.5281/zenodo.22667688)
 [![a0(z) Decisive Measurement](https://img.shields.io/badge/Does%20the%20MOND%20Scale%20Evolve%3F%20Pre--Registered%20z%E2%89%832.5%20Measurement%20(Sep%206%202026)-10.5281%2Fzenodo.22563139-black)](https://doi.org/10.5281/zenodo.22563139)
 [![Kappa No-Go](https://img.shields.io/badge/The%20Coefficient%20of%20the%20a0%E2%80%93%CE%9B%20Relation%20%E2%80%94%20Zero--Mode%20Theorem%20(Sep%206%202026)-10.5281%2Fzenodo.22559892-red)](https://doi.org/10.5281/zenodo.22559892)
@@ -252,6 +253,7 @@ Plain text on purpose, so that titles and DOIs are searchable. Versions of one r
 
 | date | DOI | title | version |
 |---|---|---|---|
+| 2026-09-09 | [10.5281/zenodo.22679408](https://doi.org/10.5281/zenodo.22679408) (concept 22679407) | A Preferred Frame Is Forced: Static Weak-Field MOND with One Metric and Two Propagating Modes, and the Lensing Lock That Discharges the Locality Hypothesis | v1 |
 | 2026-09-08 | [10.5281/zenodo.22667688](https://doi.org/10.5281/zenodo.22667688) (concept 22667687) | A Non-Empty Parameter Region for a Foliation-Based Relativistic MOND Theory: Eleven Gates Passed Below the Galaxy Scale, and a Factor 1.49–1.99 Mass Deficit Above It | v1 |
 | 2026-09-06 | [10.5281/zenodo.22563139](https://doi.org/10.5281/zenodo.22563139) (concept 22563138) | Does the MOND Acceleration Scale Evolve? A Pre-Registered Decisive Measurement: the Deep-MOND Tully–Fisher Zero Point of One Lensed Rotator at z ≃ 2.5, with a Two-Stage JWST/ALMA Funnel | v1 |
 | 2026-09-06 | [10.5281/zenodo.22559892](https://doi.org/10.5281/zenodo.22559892) (concept 22559891) | The Coefficient of the a0–Λ Relation: a Zero-Mode Theorem for Local MOND Actions, Two Failed Repairs, a Four-Form Reframing, and an H0 Degeneracy | v1 |

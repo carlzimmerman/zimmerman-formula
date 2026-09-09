@@ -67,7 +67,7 @@ export default function Home() {
           <div className="flex flex-wrap items-center gap-4 text-sm text-gray-500 mb-8 pb-8 border-b border-gray-200">
             <span className="font-medium text-gray-700">Carl P. Zimmerman</span>
             <span className="text-gray-300">|</span>
-            <span>Standing revision 8 &mdash; 6 September 2026</span>
+            <span>Standing revision 9 &mdash; 8 September 2026</span>
             <span className="text-gray-300">|</span>
             <a
               href="https://github.com/carlzimmerman/zimmerman-formula/blob/main/STANDING.md"
@@ -78,6 +78,39 @@ export default function Home() {
               STANDING.md
             </a>
           </div>
+
+          {/* Standing rev. 9 headline */}
+          <section className="bg-blue-50 border border-blue-200 rounded-lg p-6 mb-6">
+            <h2 className="text-base font-semibold text-gray-900 mb-2">
+              8 September 2026 &mdash; the parameter region is non-empty, and the theory is written down
+            </h2>
+            <p className="text-sm text-gray-700 mb-3">
+              A search over 666,082,872 grid points per acceleration footing finds, for the first time in this
+              programme, a <span className="font-medium">non-empty admissible region</span> for a covariant action
+              built on a preferred foliation: general relativity&rsquo;s metric sector exactly, a khronometric clock
+              scalar, and a MOND scalar carrying a coherence operator. An explicit point passes{' '}
+              <span className="font-medium">all eleven gates on both footings</span>. Earlier sweeps returned zero
+              points; the entire difference is that the scalar condensate is removed, which satisfies the
+              clock-tachyon gate identically and costs nothing, the condensate having been 10⁵&times; too small to
+              be the dark sector.
+            </p>
+            <p className="text-sm text-gray-700 mb-3">
+              It reproduces Milgrom&rsquo;s law at the action&rsquo;s own a₀ with coefficient exactly 1.000000, with
+              Φ = Ψ to better than 10⁻⁴ out to 1 Mpc, so lensing and dynamics share one potential with nothing
+              fitted to make them do so &mdash; and it passes Cassini, the Saturn phantom-mass bound, the
+              preferred-frame parameters, the tensor speed exactly, well-posedness, Cherenkov and causality.
+            </p>
+            <p className="text-sm text-gray-700">
+              <span className="font-medium">Above a galaxy it fails</span>, and for one reason: curing the single
+              fatal instability required deleting the only dark component. It is short in mass at R₅₀₀ by
+              1.49&ndash;1.99&times; in lensing <em>and</em> dynamics alike, wrong by 9σ in the shape of ΔΣ, and over
+              its own parameter-free ceiling by 5.2&times; in cluster cores. A complete theory of gravity below the
+              galaxy scale; an incomplete theory of the universe above it. κ remains{' '}
+              <span className="font-medium">fitted, not derived</span> (
+              <a href="https://doi.org/10.5281/zenodo.22667688" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">DOI 10.5281/zenodo.22667688</a>
+              ).
+            </p>
+          </section>
 
           {/* The equation */}
           <section className="bg-gray-50 border border-gray-200 rounded-lg p-8 mb-4">
@@ -265,8 +298,11 @@ export default function Home() {
                 each one a committed script with checks that can fail. On 6 September 2026 the last particle candidate, a
                 thermal relic at the mass the N_eff bound allows (about 28 eV), closed as a pincer with no interior: N_eff needs
                 at least 27.6 eV, the radial acceleration relation needs at most 11 eV, and the cluster profile worked only at
-                11.4 eV. Four condensate constructions are closed on the action&rsquo;s own terms. The dark-sector hunt is frozen
-                behind the coefficient question. This is the programme&rsquo;s blocking problem, and it is the same one
+                11.4 eV. Four condensate constructions are closed on the action&rsquo;s own terms, and the last scale-selective
+                mechanism, wave dark matter near 10⁻²⁴ eV, closed the same evening: a wave sea responds to a galaxy well exactly like a
+                classical one, and the minimum size the uncertainty principle imposes on the captured mass pinches the Tully&ndash;Fisher
+                and lensing bounds against cluster formation with no interior. No particle or condensate mechanism keeps the
+                action&rsquo;s dark fluid out of galaxies. This is the programme&rsquo;s blocking problem, and it is the same one
                 MOND-plus-halos always had.
               </p>
             </div>
@@ -377,6 +413,8 @@ export default function Home() {
           <h2 className="text-lg font-semibold text-gray-900 mb-4">Papers, September 2026 (Zenodo; AI-assisted drafts, not peer reviewed)</h2>
           <ul className="space-y-2 text-sm text-gray-700">
             {[
+              ['10.5281/zenodo.22679408', 'A Preferred Frame Is Forced: Static Weak-Field MOND with One Metric and Two Propagating Modes, and the Lensing Lock That Discharges the Locality Hypothesis (9 Sep)'],
+              ['10.5281/zenodo.22667688', 'A Non-Empty Parameter Region for a Foliation-Based Relativistic MOND Theory: Eleven Gates Passed Below the Galaxy Scale, and a Factor 1.49–1.99 Mass Deficit Above It (8 Sep)'],
               ['10.5281/zenodo.22563139', 'Does the MOND Acceleration Scale Evolve? A Pre-Registered Decisive Measurement: the Deep-MOND Tully–Fisher Zero Point of One Lensed Rotator at z ≃ 2.5, with a Two-Stage JWST/ALMA Funnel (6 Sep)'],
               ['10.5281/zenodo.22559892', 'The Coefficient of the a₀–Λ Relation: a Zero-Mode Theorem for Local MOND Actions, Two Failed Repairs, a Four-Form Reframing, and an H₀ Degeneracy (6 Sep)'],
               ['10.5281/zenodo.22548669', 'A Ceiling Dark Matter Cannot Impose: the Bounded-Boost Theorem for MOND-Class Kernels, and What It Says About Galaxies and Clusters (v4, 6 Sep)'],
@@ -447,7 +485,7 @@ export default function Home() {
             . Where a claim has been corrected, the correction and its direction are recorded rather
             than quietly dropped.
           </p>
-          <p>Carl P. Zimmerman &middot; Standing revision 8, 6 September 2026</p>
+          <p>Carl P. Zimmerman &middot; Standing revision 9, 8 September 2026</p>
         </footer>
       </div>
     </main>
