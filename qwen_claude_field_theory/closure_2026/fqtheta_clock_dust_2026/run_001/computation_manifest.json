@@ -1,0 +1,165 @@
+{
+  "schema_version": 1,
+  "claim_id": "fqtheta-clock-dust-degeneracy-gate",
+  "repository": {
+    "commit": "753decad60bb99e260ce8bd6585726e89ba25b3d",
+    "dirty": true
+  },
+  "command": "python3 -B qwen_claude_field_theory/closure_2026/fqtheta_clock_dust_2026/fqtheta_gate.py --output-dir <output-directory>",
+  "environment": {
+    "software": [
+      "Python 3.9.6",
+      "SymPy 1.14.0"
+    ],
+    "hardware": "arm64"
+  },
+  "mathematics": {
+    "assertion_tested": "F(Q)Theta mixes homogeneous metric/scalar velocities; its Hessian degeneracy and static exponential branch are derived",
+    "coefficient_domain": "exact SymPy",
+    "conventions": "signature (-+++), unitary FLRW clock, Q=phidot/N, Theta=3 adot/(a N), positive tensor coefficient M2",
+    "inputs": [
+      {
+        "path": "qwen_claude_field_theory/closure_2026/fqtheta_clock_dust_2026/fqtheta_gate.py",
+        "sha256": "c3c3ba7f4e460de4385840931e292727db75c4e7c0b09e45d528911275bb4450"
+      },
+      {
+        "path": "qwen_claude_field_theory/closure_2026/fqtheta_clock_dust_2026/test_fqtheta_gate.py",
+        "sha256": "e3addddefc0b1e948e583c5f172d6a662f9c166126638f1d411209452641daef"
+      }
+    ],
+    "bounds": {
+      "homogeneous": "symbolic",
+      "static": "1D weak field",
+      "witness_Q": [
+        1
+      ]
+    },
+    "non_claims": [
+      "full nonlinear ADM Dirac closure",
+      "full PPN alpha_1 alpha_2 alpha_3",
+      "full inhomogeneous scalar symbol",
+      "empirical CMB/galaxy fit",
+      "universal no-go for all F(Q)Theta theories"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-09-09T19:17:21Z",
+    "runtime_seconds": 1.1089658737182617,
+    "exit_status": 0
+  },
+  "outputs": [
+    {
+      "path": "results.json",
+      "sha256": "5cfd2adf6d34236f9ddec67ff3e46533b8e3be58ad9a3dc8798106973ad574d7"
+    }
+  ],
+  "checks": [
+    {
+      "name": "covariant F(Q)Theta action reduces to the varied homogeneous Lagrangian",
+      "passed": true,
+      "evidence": "L_h=-3 M2 a adot^2/N-2 Lambda M2 N a^3-N a^3 K(Q)+3 a^2 adot F(Q), Q=phidot/N"
+    },
+    {
+      "name": "actual velocity Hessian has a mixed F_Q entry",
+      "passed": true,
+      "evidence": {
+        "W_a_phi": "3*a**2*Derivative(F(Q), Q)/N",
+        "W": [
+          [
+            "-6*M2*a/N",
+            "3*a**2*Derivative(F(Q), Q)/N"
+          ],
+          [
+            "3*a**2*Derivative(F(Q), Q)/N",
+            "a**2*(-N*a*Derivative(K(Q), (Q, 2)) + 3*a_dot*Derivative(F(Q), (Q, 2)))/N**2"
+          ]
+        ]
+      }
+    },
+    {
+      "name": "degeneracy condition is solved from det(W), not hard-coded",
+      "passed": true,
+      "evidence": {
+        "detW": "-3*a**3*(-2*M2*N*a*Derivative(K(Q), (Q, 2)) + 6*M2*a_dot*Derivative(F(Q), (Q, 2)) + 3*N*a*Derivative(F(Q), Q)**2)/N**3",
+        "generic_solution": "Eq(Derivative(K(Q), (Q, 2)), 3*a_dot*Derivative(F(Q), (Q, 2))/(N*a) + 3*Derivative(F(Q), Q)**2/(2*M2))",
+        "affine_solution": "Eq(Derivative(K(Q), (Q, 2)), 3*Derivative(F(Q), Q)**2/(2*M2))"
+      }
+    },
+    {
+      "name": "background-independent degeneracy forces F_QQ=0",
+      "passed": true,
+      "evidence": {
+        "difference": "3*a_dot*Derivative(F(Q), (Q, 2))/(N*a)",
+        "required": "F_QQ=0 for the same action to be degenerate on a family with varying H"
+      }
+    },
+    {
+      "name": "exact exponential primitive yields mu=1-exp(-y)",
+      "passed": true,
+      "evidence": {
+        "G": "y**2 + (2*y + 2)*exp(-y) - 2",
+        "identity": "0"
+      }
+    },
+    {
+      "name": "independent static Phi/Psi variation gives no slip",
+      "passed": true,
+      "evidence": {
+        "Psi_Euler_Lagrange": "Derivative(Phi(x), (x, 2)) - Derivative(Psi(x), (x, 2))",
+        "expected": "Derivative(Phi(x), (x, 2)) - Derivative(Psi(x), (x, 2))",
+        "flux_on_slip": "4*M2*Derivative(Phi(x), x) - 4*M2*exp(-Derivative(Phi(x), x)/a0)*Derivative(Phi(x), x)"
+      }
+    },
+    {
+      "name": "F(Q)Theta vanishes on the stationary Q=0,Theta=0 branch",
+      "passed": true,
+      "evidence": "requires F(0)=0; F_Q(0)=0 preserves the linear static branch"
+    },
+    {
+      "name": "FLRW lapse/scale variation derives rho and p",
+      "passed": true,
+      "evidence": {
+        "rho": "3*H*Q*Derivative(F(Q), Q) - Q*Derivative(K(Q), Q) + K(Q)",
+        "p": "-Q_dot*Derivative(F(Q), Q) - K(Q)",
+        "charge": "3*H*Derivative(F(Q), Q) - Derivative(K(Q), Q)"
+      }
+    },
+    {
+      "name": "mixed-degenerate dust witness has positive density and p=0",
+      "passed": true,
+      "evidence": {
+        "Qstar": "1",
+        "M2": "1",
+        "F": "Q",
+        "K": "3*Q**2/4 - 3*Q + 9/4",
+        "Fq_at_dust": "1",
+        "Kq_at_dust": "-3/2",
+        "Kqq_at_dust": "3/2",
+        "degeneracy_rhs": "3/2",
+        "degenerate": true,
+        "rho_bare": "3/2",
+        "pressure_bare": "0",
+        "bare_sound_speed_sq": "-1",
+        "interpretation": "positive bare dust density + p=0 + mixed degeneracy has c_bare^2<0; full braiding ADM symbol remains open"
+      }
+    },
+    {
+      "name": "witness bare scalar sound-speed square is negative",
+      "passed": true,
+      "evidence": {
+        "c_bare^2": "-1",
+        "Kq": "-3/2",
+        "Kqq": "3/2"
+      }
+    }
+  ],
+  "result": "OPEN",
+  "residual_risks": [
+    "derive the full ADM scalar/vector/tensor principal symbol and Dirac chain on expanding FLRW with F(Q)Theta retained"
+  ]
+}
