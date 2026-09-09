@@ -95,6 +95,16 @@ reported only as a negative control.
    is a bounded calibration diagnostic, not a derivation of the coupling or
    halo formation history.
 
+6. **Principal-symbol stress test.** The quadratic fixed-FLRW patch derives
+   the memory equations \(\dot{\delta\lambda}=0\) and
+   \(\dot{\delta Q}-\delta\Theta=0\). With the metric perturbation held fixed,
+   the actual Fourier matrix has determinant
+   \(D_{Q\lambda}(\omega,k)=-\omega^2\), independent of \(k\), and the
+   velocity Hessian has computed rank zero. The cold scalar, by contrast, has
+   \(D_c=f_Q(k^2-\omega^2)\) and kinetic coefficient \(f_Q/2>0\). This is an
+   action-derived zero-gradient/strong-coupling risk for the clock memory,
+   not a healthy propagating scalar and not a pass of the stability gate.
+
 ## Exact files created
 
 - `action_variation.py`, `test_action_variation.py`
@@ -102,6 +112,7 @@ reported only as a negative control.
 - `weak_field_ward_gate.py`, `test_weak_field_ward_gate.py`
 - `flrw_winding_gate.py`, `test_flrw_winding_gate.py`
 - `winding_calibration.py`
+- `stability_causality_gate.py`, `test_stability_causality_gate.py`
 - `run_local_winding.py`, `test_local_winding.py`
 - `lean_ready_identities.json`, `lean_ready_identities.lean`
 - `contract.json`
@@ -120,7 +131,7 @@ contains unrelated dirty and untracked work from earlier research runs.
 | `python3 -B -m unittest -v test_weak_field_ward_gate.py` (package directory) | 0 |
 | `python3 -B -m unittest -v test_flrw_winding_gate.py` (package directory) | 0 |
 | `python3 -B -m unittest -v test_local_winding.py` (package directory) | 0 |
-| `python3 -B -m unittest discover -s qwen_claude_field_theory/closure_2026/local_winding_clock_2026 -p 'test_*.py' -v` | 0 (11 tests) |
+| `python3 -B -m unittest discover -s qwen_claude_field_theory/closure_2026/local_winding_clock_2026 -p 'test_*.py' -v` | 0 (13 tests) |
 | `python3 -B run_local_winding.py --output-dir run_001` | 0; report status OPEN |
 | `python3 /Users/carlzimmerman/.codex/plugins/cache/openai-curated-remote/mathbox/3.0.0/skills/computation-audit/scripts/validate_manifest.py qwen_claude_field_theory/closure_2026/local_winding_clock_2026/run_001/manifest.json` | 0; valid legacy manifest |
 | `python3 -B -m unittest -v test_integrable_clock.py` (IC1 directory) | 0 (9 tests) |
@@ -139,7 +150,7 @@ contains unrelated dirty and untracked work from earlier research runs.
 | reduced memory constraints, both k sectors | computed closure |
 | full gravitational \(N_{\rm grav}=2\) | OPEN: finite block is not full ADM |
 | \(\gamma_{\rm PPN},\beta,\alpha_1,\alpha_2,\alpha_3\) | OPEN |
-| \(c_T=c\), no ghost/gradient/strong coupling | OPEN |
+| \(c_T=c\), no ghost/gradient/strong coupling | OPEN; clock block has zero-gradient risk |
 | full nonlinear metric Ward identity | OPEN |
 | empirical galaxy/cluster fit | OPEN |
 | Lean-checked proof | OPEN; Lean unavailable |
@@ -151,7 +162,10 @@ can be action-varied, has an explicitly computed closed reduced constraint
 chain, preserves baryon conservation, retains the exact exponential MOND
 static branch, and supports \(H\ne0\) FLRW. This is a real opening, not a
 complete theory: the finite rank-6 result cannot be promoted to
-\(N_{\rm grav}=2\).
+\(N_{\rm grav}=2\), and the independently computed \(D_{Q\lambda}=-\omega^2\)
+principal symbol flags a zero-gradient/strong-coupling obstruction unless the
+full IC1 metric sector supplies a demonstrably healthy gradient without adding
+an unwanted scalar mode.
 
 The next unavoidable calculation is the **full covariant ADM/Dirac analysis of
 the combined IC1 metric-clock action plus the \((Q,\lambda,\chi_c)\) sector,

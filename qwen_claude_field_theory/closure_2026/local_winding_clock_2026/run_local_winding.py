@@ -14,6 +14,7 @@ import sympy as sp
 from action_variation import derive_action, static_branch
 from dirac_gate import dirac_report
 from flrw_winding_gate import flrw_report
+from stability_causality_gate import stability_report
 from weak_field_ward_gate import ward_report, weak_field_report
 from winding_calibration import calibration_report
 
@@ -55,6 +56,7 @@ def build_results():
     ward = ward_report()
     flrw = flrw_report()
     calibration = calibration_report()
+    stability = stability_report()
 
     # This is intentionally OPEN: the missing gates are part of the result,
     # not silently treated as passing because the first gates are green.
@@ -63,6 +65,7 @@ def build_results():
         "PPN_alpha",
         "nonlinear_stability",
         "causal_propagation",
+        "memory_clock_stability",
         "full_metric_Ward_identity",
         "empirical_galaxy_cluster_fit",
     ]
@@ -75,6 +78,7 @@ def build_results():
             "weak_field_Ward_representative",
             "expanding_FLRW_branch",
             "assembly_history_calibration",
+            "principal_symbol_stress_test",
         ],
         "open_gates": open_gates,
         "non_claims": {
@@ -92,6 +96,7 @@ def build_results():
         "ward": ward,
         "flrw": flrw,
         "calibration": calibration,
+        "stability": stability,
     }
 
 

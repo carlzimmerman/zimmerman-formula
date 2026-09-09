@@ -441,7 +441,8 @@
     "homogeneous_Dirac_chain",
     "weak_field_Ward_representative",
     "expanding_FLRW_branch",
-    "assembly_history_calibration"
+    "assembly_history_calibration",
+    "principal_symbol_stress_test"
   ],
   "non_claims": {
     "Lean_compilation": true,
@@ -454,6 +455,7 @@
     "PPN_alpha",
     "nonlinear_stability",
     "causal_propagation",
+    "memory_clock_stability",
     "full_metric_Ward_identity",
     "empirical_galaxy_cluster_fit"
   ],
@@ -462,9 +464,47 @@
     "action_variation.py": "63961e478200f7ad9391de544b35b87eb4d89c221465dd13e10e985e2a79fa4a",
     "dirac_gate.py": "dde2e02f381483e4884890f6b2c20accb0481b2021ccacb5c2a696d95787eb4b",
     "flrw_winding_gate.py": "184f7a0401d1e7af2a5de2fe9b9889da309a71a755a4b30e65353f1846fcfad8",
-    "run_local_winding.py": "1f48db5541332128847b521b9858703a54ed5628a7b6238b91952b3ee7b85902",
+    "run_local_winding.py": "adf01edfe1ff90086330b8c542a44865c81206796728b6e800b1565827dd88dc",
+    "stability_causality_gate.py": "025387458a229bcfd359ea74468ef54fa14dfbc7389df8c08a8a6e4e9e5b3b83",
     "weak_field_ward_gate.py": "758270804b885d5c788ec5340f242c0cf8b6771321d8a75350629df3d887bf23",
     "winding_calibration.py": "f2a100783923c732eeaf9fe49dd68cb5b54fd341ec0e5b558a3717a46451444e"
+  },
+  "stability": {
+    "cold_characteristic_determinant": "f_Q*(k - omega)*(k + omega)",
+    "cold_euler_equation": "f_Q*Derivative(delta_chi(t, x), (t, 2)) - f_Q*Derivative(delta_chi(t, x), (x, 2))",
+    "cold_kinetic_coefficient": "f_Q/2",
+    "interpretation": "The Q-lambda block has a k-independent zero-frequency principal symbol and vanishing velocity Hessian; this is a strong-coupling risk, not a healthy propagating scalar.",
+    "k": "k",
+    "memory_characteristic_determinant": "-omega**2",
+    "memory_equations": [
+      "Derivative(delta_lambda(t, x), t)",
+      "-delta_Theta(t, x) + Derivative(delta_Q(t, x), t)"
+    ],
+    "memory_matrix": [
+      [
+        "I*omega",
+        "0"
+      ],
+      [
+        "0",
+        "I*omega"
+      ]
+    ],
+    "memory_spatial_gradient_coefficient": "0",
+    "memory_velocity_hessian": [
+      [
+        "0",
+        "0"
+      ],
+      [
+        "0",
+        "0"
+      ]
+    ],
+    "memory_velocity_hessian_rank": 0,
+    "mode": "fixed_FLRW_principal_patch",
+    "omega": "omega",
+    "zero_gradient_flag": true
   },
   "status": "OPEN",
   "sympy": "1.14.0",

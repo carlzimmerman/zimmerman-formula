@@ -26,6 +26,11 @@ class LocalWindingIntegrationTests(unittest.TestCase):
         self.assertEqual(sp.simplify(r["ward"]["baryon_ward_residual"]), 0)
         self.assertEqual(sp.simplify(r["ward"]["baryon_divergence_on_shell"]), 0)
         self.assertEqual(sp.simplify(r["flrw"]["memory_integral_residual"]), 0)
+        self.assertTrue(r["stability"]["zero_gradient_flag"])
+        self.assertEqual(sp.simplify(sp.diff(
+            r["stability"]["memory_characteristic_determinant"],
+            r["stability"]["k"],
+        )), 0)
         self.assertEqual(r["status"], "OPEN")
 
     def test_report_explicitly_keeps_unimplemented_gates_open(self):
