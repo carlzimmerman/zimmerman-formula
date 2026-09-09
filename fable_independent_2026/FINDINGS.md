@@ -437,3 +437,41 @@ each does half the job is not available in the direction the framework needed. W
 keeps is narrower, real, and quantified: the **tightness** of the relation and the **value** of a₀
 tied to ρ_Λ — neither of which rotation curves settle, and both of which the two pre-registered
 measurements were built to test.
+
+## L9 — the late-time transition: buys the cosmology, not the mechanism
+
+`L9_late_transition.py` (1 FAIL of 9). L6 closed screened forces on two horns and explicitly left one
+escape: a field that rolls late, so the coupling at nucleosynthesis and today differ. This tests it.
+
+**It genuinely defeats L6's cosmological horn (T6 PASS).** With g(z_BBN) = 1 exactly and g(0) = F, a
+narrow region survives nucleosynthesis, the microwave background, structure growth AND the full
+expansion history including the absolute BAO ruler, while still delivering the enhancement at the
+X-COP redshifts. This is the **first mechanism in the programme to reach the cluster residual without
+being excluded by the gate it was proposed against.**
+
+| footing | surviving region | construction |
+|---|---|---|
+| canonical | z_t ∈ [0.0033, 0.374], W ∈ [0.376, 0.565] — 146/3721 | h refitted to the acoustic scale |
+| alt | z_t ∈ [0.0033, 0.441], W ∈ [0.336, 0.604] — 269/3721 | same, plus 6 at measured H₀ |
+
+It makes a **sharp falsifiable prediction**: σ₈ = 0.845–0.861 with H₀ = 68–72, Ω_m = 0.27–0.31,
+t₀ = 13.7 Gyr. Every survivor sits at the top of the growth gate; tightening that gate from 3σ to 2σ
+empties the canonical footing entirely.
+
+**But T8 is the decisive half, and it fails.** L6 killed the screened force on *two* horns, and the
+roll addresses only the first. The second is the spatial contrast: clusters and galaxies overlap
+**100% in baryon density** while requiring enhancements 12.8σ apart. Those two populations are
+observed at z = 0.0037 and z = 0.090 — essentially the same epoch — so a spatially uniform g(z)
+supplies a factor of **0.97, in the wrong direction**, against a required 2.2–5.1. The roll therefore
+buys the cosmology and not the mechanism: the model still needs exactly the density-dependent
+screening L6 excluded at 12.8σ, and weakens that exclusion by nothing.
+
+**Two corrections the lane made by computing rather than assuming, one of them to my own framing.**
+First, in a consistent scalar-tensor model the factor g **cancels exactly** from the growth source,
+4πG_eff ρ_m/H² = (3/2)ρ_m/ρ_tot, so my premise that a 2–7× boost in G would "drive growth hard" was
+wrong; growth moves only through the closure-forced Ω_Λ, and the two consistent normalisations push
+σ₈ in opposite directions. Second, the roll's own d ln g/d ln a term in H(z) partly mimics dark
+energy, which is why a universe that is ~50% matter still reproduces the distances — this is why the
+lane added the absolute BAO ruler, since supernovae marginalise their zero point and the acoustic
+scale is one number a refit can always hit. A bisection bug in the h-refitter was caught by the F = 1
+control and fixed.

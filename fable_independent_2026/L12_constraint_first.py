@@ -31,11 +31,10 @@ acceleration ratio.  Section 0 check C4 verifies q = Phi/c^2 in the weak field, 
 Both a0 footings on every dimensional number: 9.3619e-11 (canonical) and 1.1279e-10 (alt).
 
 THE CHECKS.  Five controls (C0-C4) guard the machinery; a failure there means MY algebra is wrong, not A1's.
-Then the algebra + count (A1-A5), open check 1 foliation (F1-F4), open check 2 matter (M1-M3), open check 3
+Then the algebra + count (Q1-Q6), open check 1 foliation (F1-F4), open check 2 matter (M1-M3), open check 3
 cosmology (K1-K2), and the two phenomenology gates (P1-P3), then the verdict (V).
 """
 import sympy as sp
-import numpy as np
 import math
 import sys
 
@@ -222,7 +221,7 @@ print("""
         cannot be the generator of normal hypersurface deformations (time evolution): whatever else it is,
         C_M cannot BE the Hamiltonian constraint of the theory.  A1 must be the branch in which C_M is
         imposed IN ADDITION to H_perp -- unless the unspecified source S carries pi (see section 6).""")
-check("A1 [algebra] C_M generates a nonzero evolution of gamma_ij, so it can serve as the theory's "
+check("Q1 [algebra] C_M generates a nonzero evolution of gamma_ij, so it can serve as the theory's "
       "Hamiltonian constraint (evolution generator)",
       False, "delta C_M/delta pi^ij = 0 identically => it generates zero metric evolution; C_M can only "
              "SUPPLEMENT H_perp, unless the source S is given pi-dependence (missing input, section 6)")
@@ -236,9 +235,14 @@ print("""
         PAIR does not exist there: the Dirac matrix degenerates and the count is not the generic one.
         The leading (two-derivative) piece is D_i[mu-hat^ij D_j (N K / 3)], from delta q = (1/3) N K, so the
         lapse-fixing equation d C_M/dt = 0 is elliptic with coefficient proportional to  mu * K.
-        It degenerates twice over: at K -> 0 (quasi-static systems) and at mu -> 0 (deep-MOND field nulls).""")
-check("A2 [algebra] the bracket {C_M, H_perp} that makes the pair second class is nonvanishing on "
-      "time-symmetric (K_ij = 0) data, so the second-class structure exists on the branch where MOND is applied",
+        It degenerates twice over: at K -> 0 (quasi-static systems) and at mu -> 0 (deep-MOND field nulls).
+        PRECISION, so this is not over-read: with matter present the bracket also picks up {S, H_matter},
+        the flow of the source itself.  The exact statement is therefore -- the GRAVITATIONAL part of
+        {C_M, H_perp} is exactly proportional to K_ij, and on time-symmetric VACUUM data (or a momentarily
+        static matter configuration) the whole bracket vanishes identically.""")
+check("Q2 [algebra] the bracket {C_M, H_perp} that makes the pair second class is nonvanishing on "
+      "time-symmetric vacuum data (K_ij = 0), so the second-class structure exists on the branch where "
+      "MOND is applied",
       False, "the bracket is exactly proportional to K_ij and vanishes identically at K_ij = 0")
 
 # --- A3: which mode does the constraint remove?  principal-symbol test in an explicit inhomogeneous model
@@ -279,7 +283,7 @@ print(f"        d(delta C_M)/d(b'') - d(delta C_M)/d(c'') = {sp.simplify(coef2['
 print(f"        common coefficient on the background A=x, B=2x, C=-x/2 at x=0.2 with mu = 1 - e^-y : "
       f"a'' {coef_num['a']:.6f}, b'' {coef_num['b']:.6f}, c'' {coef_num['c']:.6f}  (equal and nonzero)")
 nonzero = abs(coef_num["a"]) > 1e-12
-check("A3 [structure] every two-derivative term in the variation of C_M is proportional to the TRACE "
+check("Q3 [structure] every two-derivative term in the variation of C_M is proportional to the TRACE "
       "variation, so the mode C_M removes is the conformal mode and the survivors are the two tensor "
       "polarisations",
       same and nonzero, "the three coefficients are equal and nonzero on a background with |Dq| =/= 0")
@@ -306,7 +310,7 @@ anomaly_pred = sp.simplify(-sp.Rational(1, 3) * sum(sp.diff(xiv[k], xc[k]) for k
 ok_anom = sp.simplify(anomaly - anomaly_pred) == 0
 print(f"        computed anomaly delta q - xi.dq = {anomaly}")
 print(f"        predicted  -(1/3) d_k xi^k      = {anomaly_pred}    [{'match' if ok_anom else 'MISMATCH'}]")
-check("A4 [algebra] q transforms as a spatial scalar, so C_M is diffeomorphism-covariant and "
+check("Q4 [algebra] q transforms as a spatial scalar, so C_M is diffeomorphism-covariant and "
       "{C_M, H_i} closes on the constraint surface",
       not ok_anom or anomaly == 0,
       "it does not: the anomaly -(1/3) d_k xi^k is nonzero for any volume-changing diffeomorphism, so "
@@ -337,11 +341,11 @@ print(f"        fiducial-repaired q, generic K:            rank = {rank_repaired
 print(f"        time-symmetric branch K_ij = 0, repaired q: rank = {rank_both} -> C_M first class "
       f"-> n_1st = 5 -> DOF = {dof(12, 5, 0)}")
 print(f"        time-symmetric branch, anomaly present:     rank = {rank_static} -> DOF = {d_generic}")
-check("A5 [count] on the generic branch the constraint matrix has rank 2, giving one second-class pair "
+check("Q5 [count] on the generic branch the constraint matrix has rank 2, giving one second-class pair "
       "and (12 - 2 - 6)/2 = 2 gravitational degrees of freedom, as A1 claims",
       rank_generic == 2 and d_generic == 2,
-      "the arithmetic is correct: 2 DOF, and A3 shows they are the two tensor polarisations")
-check("A6 [count] that count is uniform -- the constraint matrix keeps its rank on the branches A1 "
+      "the arithmetic is correct: 2 DOF, and Q3 shows they are the two tensor polarisations")
+check("Q6 [count] that count is uniform -- the constraint matrix keeps its rank on the branches A1 "
       "restricts itself away from, so the Dirac procedure is well defined across phase space",
       rank_both == rank_generic,
       f"it does not: once q is repaired into a scalar (F3, which covariance forces) the anomaly A_i "
@@ -388,7 +392,7 @@ check("F2 [spatial covariance] C_M vanishes in empty flat space in every spatial
       "physical field equation must",
       CM_flat_cart == 0 and CM_flat_sph == 0,
       f"Cartesian gives 0, spherical gives {CM_flat_sph} =/= 0; the same empty space demands "
-      f"rho = {rho_fake['canonical']:.3g} kg/m^3 at 1 AU.  q is a log-DENSITY, not a scalar (check A4)")
+      f"rho = {rho_fake['canonical']:.3g} kg/m^3 at 1 AU.  q is a log-DENSITY, not a scalar (check Q4)")
 
 # --- F3: the standard repair -- q relative to a fiducial flat density.  Does it make q unique?
 print("\n    F3 -- THE REPAIR, and what it costs.  Take q = -(1/6) ln(det gamma / det gamma-bar) with a")
@@ -456,7 +460,7 @@ check("F1 [foliation] the MOND field c^2|Dq| built from det gamma is a property 
       "gives exactly 0.  A1 is therefore a statement about a preferred foliation, not about geometry")
 
 # --- F4: the lapse equation, and where it degenerates
-print("\n    F4 -- WHAT FIXES THE FOLIATION, and how strongly.  Preservation d C_M/dt = 0 uses A2's bracket:")
+print("\n    F4 -- WHAT FIXES THE FOLIATION, and how strongly.  Preservation d C_M/dt = 0 uses Q2's bracket:")
 print("         an elliptic equation for the lapse with principal part (1/3) D_i[mu K D^i N].  The lapse is")
 print("         DETERMINED, not free -- that IS the preferred foliation -- and the equation is elliptic, so")
 print("         N responds instantaneously across the slice.  Its coefficient is mu K.  Cosmologically")
@@ -469,22 +473,23 @@ for nm, R_, v_ in rows:
     print(f"           {nm:22s}  omega = {om:.3e} s^-1   |K|/omega = {Kcos/om:.2e}")
     worst = min(worst, Kcos / om)
 check("F4 [foliation/strong coupling] the lapse-fixing equation stays non-degenerate in the quasi-static "
-      "regime where MOND is applied (its coefficient mu*K is not parametrically small)",
+      "regime where MOND is applied (criterion, stated: |K|/omega > 1e-3 in all three systems)",
       worst > 1e-3,
       f"the coefficient is proportional to K = -3H; |K|/omega = {Kcos/(29.78e3/AU):.1e} in the Solar System "
-      f"and {Kcos/(200e3/(10*KPC)):.1e} in a galaxy.  The second-class pairing that buys the count is "
-      f"nearly degenerate exactly where the theory must work (warning P7 pattern)")
+      f"and {Kcos/(200e3/(10*KPC)):.1e} in a galaxy -- the Solar-System value is eight orders below any "
+      f"threshold one could pick, so the verdict does not depend on the 1e-3 convention.  The second-class "
+      f"pairing that buys the count is nearly degenerate exactly where the theory must work (P7 pattern)")
 
 # ==========================================================================================================
 print("\nSECTION 3 -- OPEN CHECK 2: MATTER.  Couple S_m[g, psi] minimally (I2).  Does the constraint survive?")
 print("-" * 118)
 # ==========================================================================================================
 print("""    Minimally coupled matter conserves itself by construction: nabla_mu T^munu = 0 follows from the
-    diffeomorphism invariance of S_m[g,psi] alone, and section A4's anomaly lives in the GRAVITY sector.
+    diffeomorphism invariance of S_m[g,psi] alone, and check Q4's anomaly lives in the GRAVITY sector.
     So the matter Ward identity is not where this breaks.  The break is COMPATIBILITY: control C4 showed
     that the ADM Hamiltonian constraint by itself already fixes the same function q that C_M fixes.""")
 print("""
-    Static weak field, both constraints imposed (A1's only available branch, per check A1):
+    Static weak field, both constraints imposed (A1's only available branch, per check Q1):
         H_perp = 0 :   lap q          = 4 pi G rho / c^2        (control C4)
         C_M    = 0 :   div[mu(y) grad q] = 4 pi G rho / c^2
     Subtract:          div[(1 - mu) grad q] = 0,   1 - mu = e^-y > 0 strictly.
@@ -558,7 +563,7 @@ print("    the constraint is NOT trivially satisfied on FLRW -- it FORCES an emp
 print("    a0 does not appear anywhere in this statement: it holds on both footings identically.")
 check("K1 [cosmology] there is an expanding FLRW solution with rho > 0",
       False,
-      "not in the branch A1 leaves available (check A1): D_i q = 0 on any homogeneous slice, so C_M "
+      "not in the branch A1 leaves available (check Q1): D_i q = 0 on any homogeneous slice, so C_M "
       "reduces to -S = 0 and the physical density is forced to vanish.  Only the P3 branch (S carrying "
       "K-terms, i.e. C_M replacing H_perp) escapes, and that branch is the one F1/HKT close")
 
@@ -603,12 +608,12 @@ print(f"        d log|C_M| / d log eps = {slope:.4f}   (1 would be linear; 2 is 
 print("        mu(y) = 1 - e^-y ~ y = c^2|Dq|/a0 makes D_i[mu D^i q] quadratic in Dq -- a degenerate")
 print("        (3-Laplacian-type) operator.  At linear order the constraint therefore contains no metric")
 print("        perturbation at all and reduces to delta S = 0, i.e. delta rho = 0: no linear growth of")
-print("        structure, and the mode A3 was supposed to remove is not removed on these backgrounds.")
+print("        structure, and the mode Q3 was supposed to remove is not removed on these backgrounds.")
 check("K2 [cosmology] the linearised constraint about a homogeneous background constrains the METRIC "
-      "perturbation (as A3 requires), rather than the matter",
+      "perturbation (as Q3 requires), rather than the matter",
       lead != 0 and abs(slope - 1) < 0.05,
       f"it does not: mu(0) = 0 makes the operator start at O(eps^2) (measured slope {slope:.4f}), so at "
-      f"linear order C_M = -delta S and the constraint forces delta rho = 0.  A3's mode removal fails on "
+      f"linear order C_M = -delta S and the constraint forces delta rho = 0.  Q3's mode removal fails on "
       f"every background with |Dq| = 0")
 
 # ==========================================================================================================
@@ -681,7 +686,7 @@ print("-" * 118)
 print("""    A1 is one sentence.  Four inputs it does not supply, stated precisely rather than guessed:
       (i)   THE SOURCE S.  Is it 4 pi G rho/c^2 alone, or does it contain extrinsic-curvature terms
             (K^2 - K_ij K^ij)?  This decides everything downstream: with the first, C_M can only supplement
-            H_perp (check A1) and is over-determined (M1) and empty on FLRW (K1); with the second, C_M is a
+            H_perp (check Q1) and is over-determined (M1) and empty on FLRW (K1); with the second, C_M is a
             deformed Hamiltonian constraint -- warning P3 -- and F1/HKT decide it instead.
       (ii)  THE FIDUCIAL.  det gamma is a density.  Without a fiducial density, C_M is not even
             coordinate-covariant (F2).  With one, its value depends on which fiducial (F3).
@@ -696,7 +701,7 @@ print("""    A1 is one sentence.  Four inputs it does not supply, stated precise
 print("\nSECTION 7 -- VERDICT")
 print("-" * 118)
 d_final = dof(12, 3, 2)
-print(f"    Degree-of-freedom count on A1's generic branch: (12 - 2 - 2*3)/2 = {d_final}, and check A3 shows")
+print(f"    Degree-of-freedom count on A1's generic branch: (12 - 2 - 2*3)/2 = {d_final}, and check Q3 shows")
 print(f"    the removed mode is the conformal one, so the survivors ARE the two tensor polarisations.")
 print(f"    A1's arithmetic is CORRECT.  What it costs is what the three open checks measure.")
 print(f"      OPEN CHECK 1 foliation : FAIL  (F1 Painleve-Gullstrand gives zero MOND field for the same")

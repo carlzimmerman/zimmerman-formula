@@ -95,7 +95,7 @@ def clock_scalars(chi_expr):
     divn = sum(ETA[m] * D[m][m] for m in range(4))
     A = sum(ETA[m] * ETA[n] * D[m][n]**2 for m in range(4) for n in range(4))          # (grad_m n_n)(grad^m n^n)
     Cq = sum(ETA[m] * ETA[n] * D[m][n] * D[n][m] for m in range(4) for n in range(4))  # (grad_m n_n)(grad^n n^m)
-    return sp.simplify(a2), sp.simplify(divn**2), sp.simplify(A), sp.simplify(Cq)
+    return a2, divn**2, A, Cq
 
 import random
 random.seed(20260908)
@@ -106,11 +106,12 @@ def rand_poly():
         ter += c * t**random.randint(0, 2) * x**random.randint(0, 2) * y**random.randint(0, 1) * z**random.randint(0, 1)
     return ter
 ok_id = True; wit = []
-for _ in range(2):
+PTS = [{t: sp.Rational(1, 3), x: sp.Rational(-2, 5), y: sp.Rational(1, 7), z: sp.Rational(3, 4), ep: sp.Rational(1, 11)},
+       {t: sp.Rational(-3, 7), x: sp.Rational(5, 4), y: sp.Rational(-2, 9), z: sp.Rational(1, 6), ep: sp.Rational(2, 13)}]
+for pt in PTS:
     chi = ep * rand_poly()
     a2e, dn2e, Ae, Ce = clock_scalars(chi)
-    pt = {t: sp.Rational(1, 3), x: sp.Rational(-2, 5), y: sp.Rational(1, 7), z: sp.Rational(3, 4), ep: sp.Rational(1, 11)}
-    r = sp.simplify((Ae - Ce + a2e).subs(pt)); wit.append(r)
+    r = sp.nsimplify(sp.radsimp((Ae - Ce + a2e).subs(pt))); wit.append(r)
     ok_id = ok_id and (r == 0)
 print("    for a hypersurface-orthogonal n, (grad_m n_n)(grad^m n^n) - (grad_m n_n)(grad^n n^m) = -a_m a^m  identically,")
 print(f"    so with c_1 = -c_3 = K_B the K_B terms cancel and -c_1 A - c_3 C + c_4 a^2 = (c_1 + c_4) a^2 = c_14 a^2.")
