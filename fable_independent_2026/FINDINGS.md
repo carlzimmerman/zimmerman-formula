@@ -910,3 +910,135 @@ independently.
 - **Two honest limits.** The lock is a condition a theory must *meet*, not a fact about nature, so
   "two independent constants that happen to coincide" remains live. And even a successful derivation
   would be near-untestable on the coefficient alone.
+
+## L22 — the curl field: real, locally large, and invisible to exactly the quantity L2 used
+
+`L22_curl_field.py` + `L22_CURL.md` (16 checks, 2 FAIL; every control passes, both footings).
+L1 found that the algebraic MOND multiplier used in the cold-infall work has nonzero curl, so it is
+not a force field. L2's cluster impossibility result was recorded with a caveat that it might be
+neglecting the solenoidal piece. This lane solved the QUMOND field properly and settled it.
+
+**Two independent solvers.** Multipole Green's functions on a log-r/Legendre grid, and a zero-padded
+Cartesian FFT sharing no code. They agree to 8.4% on the local solenoidal fraction. Controls reproduce
+the analytic Hernquist and Miyamoto–Nagai Newtonian fields to 0.3%, return the algebraic answer for a
+spherical source, return Newton when the source is scaled up by 1e6, and confirm the solved field is
+conservative at the interpolation floor while **the algebraic multiplier circulates 9.4e-3 per closed
+loop, 2179× larger — independently reproducing L1's defect.**
+
+- **The solenoidal field is real and not small locally:** |a_S|/|a| is 0.9% at cluster axis ratio
+  q = 0.9, 3.1% at 0.7, 7.1% at 0.4, and 2.6% for a genuinely triaxial 1:0.85:0.65 shape. **Inside a
+  merging pair it is large** — 14% at 0.3 separations, 27% at 0.14.
+- **But its contribution to the inferred enclosed mass is exactly zero, not merely small.** div a_S = 0
+  forces its flux through every sphere to vanish, so ⟨a_S·r̂⟩ ≡ 0 at every radius, every axis ratio,
+  and in every merger. Measured at 1e-4, the solver's own round-trip floor. **L2 did not neglect a
+  small term — it used the one quantity the term cannot touch.**
+- The residual mass offset comes entirely from the nonlinear angular average of ν(|g_N|)g_N, and it is
+  **0.0001 dex at q = 0.9, 0.0012 at 0.7, 0.0074 at 0.4**.
+- **L2 does not move.** Correcting both sides — clusters at q = 0.9–0.5 and each of 144 SPARC galaxies
+  with its own Miyamoto–Nagai model — the cluster/galaxy boost ratio goes 2.25–5.08 → **2.20–4.77**.
+  Worst bin moves 8.6%, median −3.4%, **3.9% of the gap closed**, worst |z| still 12–14.
+- **The sign was determined, not assumed, and it runs the wrong way.** ν(|g_N|)|g_N| is concave, so the
+  true field is *weaker* than the algebraic multiplier on both sides. The boost clusters **require goes
+  up** by 0.27% median and 1.16% worst. The ratio falls slightly only because the same effect is larger
+  for the flatter discs on the galaxy side.
+- **FINDINGS' stated caveat on L2 is discharged. L2's impossibility result stands**, and L1's warning
+  that non-radial work in this programme needs a real field solve is now independently confirmed.
+
+## L31 — the foliation theorem: Lorentz invariance XOR two modes
+
+`L31_foliation_nogo.py` + `L31_FOLIATION_NOGO.md` (**53 checks, 53 PASS**). Three lanes converged on the
+same structure without anyone stating it as a theorem. This lane states and proves it.
+
+**THEOREM.** (i) static-weak-field MOND, plus (ii) one minimally coupled metric, plus (iii) exactly two
+gravitational degrees of freedom, plus **(iv) LOCALITY** — finite-order field equations — imply the
+theory contains a distinguished timelike direction, i.e. **a preferred frame**.
+**COROLLARY.** Add (v), that the MOND equation is posed as an elliptic boundary-value problem on
+3-surfaces, which is how Milgrom's equation is posed, and Frobenius makes that direction
+hypersurface-orthogonal: **a preferred foliation, non-dynamical, with an instantaneous constraint.**
+
+Three steps, each with its own controls. The counting rule returns 2 for ADM general relativity, 3 for
+GR plus a scalar, 3 for khronometric, and 5 for Einstein-aether, matching the published values.
+
+- **Step E — MOND's variable is not a local scalar.** Adding a uniform field Φ → Φ + g·x leaves the
+  entire Hessian, hence every curvature invariant, **exactly** unchanged, while y = |∇Φ|/a₀ changes by
+  1488× at 1 pc from a star. Proved against an adversarial control: the covariant local invariant
+  G_loc = (√3/2)K^(3/2)/|∇K| reproduces m/r² **exactly** on Schwarzschild to 3.6e-15, then breaks by
+  **87% on a binary, 9× on a disc at R = a, 11× in a Plummer core**, and is 0/0 in a uniform field.
+  Physically: at the Sun's radius local curvature is nearest-star-dominated over 99% of the volume and
+  **misses the Galaxy by 1487×**.
+- **Step Q — a non-propagating MOND scalar requires a distinguished u.** A symmetric form annihilating
+  *all* timelike u is identically zero (rank-10 solve, smallest singular value 2.04); for a *single*
+  distinguished u the solution space is 9-dimensional, exactly room for the projector h = g + u⊗u.
+  **MOND's |∇Φ|² is a projector contraction.**
+- **Step T — the enumeration is exhaustive.** The principal symbol of a symmetric form on a Lorentzian
+  manifold is hyperbolic (it propagates, N ≥ 3), degenerate (it needs u), or absent (local, so Step E
+  applies; or matter-built, which fails in the vacuum where curves are flat, Σ(20 kpc)/Σ(0) = 1.3e-3,
+  and where lensing is measured). There is no fourth case.
+- **The physical content, in one line.** MOND makes acceleration a locally measurable quantity; the
+  equivalence principle says it is not; the only repair is to declare a rest frame; and that frame
+  cannot itself propagate once two modes are demanded, so it collapses to a non-dynamical foliation
+  with an instantaneous constraint. This reaches the repository's own α₃ horn from kinematics rather
+  than from PPN, and that horn carries a **2.5e19×** violation of the pulsar bound.
+- **Control table: 17 theories, no counterexample.** RAQUAL, Phase-Coupling Gravity, TeVeS, GEA, AeST,
+  khronometric MOND, Hořava, BIMOND, MOG, Horndeski/DHOST, dRGT, this programme's MI arm, and the
+  lead's IC5–IC7, IC8–IC10 and A1 constructions. **The pattern is an exclusive OR: Lorentz invariance
+  XOR two modes. No row has both.** Every frame-free MOND theory pays in modes; every 2-mode MOND
+  theory pays in a foliation.
+- **⚠️ What is NOT proved: hypothesis (iv).** Temporal nonlocality is a genuine escape and was tested,
+  not waved away. With □⁻¹ reaching the source, holding the external field fixed while pushing the
+  source from 8.2 to 8200 kpc drops every local invariant by 1000× while |∇(□⁻¹R)| stays **exactly
+  constant**. The lane's own candidate obstruction — sign-indefiniteness of the nonlocal kinetic term —
+  was tested and **FAILED**, the flip being at c/H₀ = 4448 Mpc, and is withdrawn rather than banked.
+- **The single challenger, and the one calculation that would settle everything.** Deser–Woodard-class
+  nonlocal metric MOND has no preferred frame and a contested mode count: this lane independently
+  reproduced its off-diagonal kinetic eigenvalues **±½**, one healthy mode and one ghost, giving
+  **N = 4 under the localised reading and N = 2 under the retarded-nonlocal reading**. The lane
+  deliberately does not settle which is right. **A definitive Hamiltonian mode count for
+  retarded-nonlocal gravity turns this into a theorem or into a refutation, and nothing else in the
+  chain is open.**
+- **The reframe this forces.** On this reading the lead's IC8–IC10 result — 2 gravitational modes plus
+  one separately counted healthy clock — is **not a near-miss. It is the generic outcome the theorem
+  predicts.** The clock is not a defect to be engineered away; it is what the theorem says must be
+  there, unless locality is given up.
+
+## L24 — lensing versus dynamics in clusters: the residual behaves like mass, and the shape is 9σ wrong
+
+`L24_lensing_vs_dynamics.py` + `L24_LENSING.md` (13 checks, 5 FAIL; all six controls pass, 62 s).
+Every cluster result in this lane so far used the hydrostatic mass. If the residual were an artefact of
+the dynamical probe, or if a lensing sector could be tuned, lensing would show it. It does not.
+
+**Controls.** The convergence machinery reproduces the analytic general-relativistic NFW Σ and ΔΣ to
+1.3e-6, the singular isothermal sphere to 3.4e-13, an independent read of the X-COP FITS to 0.00, and
+the measured lensing-to-dynamical ratio lands in the published hydrostatic-bias range,
+1 − b = 0.867 ± 0.111.
+
+Five X-COP clusters with published weak lensing, at each cluster's own R500, inverse-variance weighted:
+
+| comparison | canonical | alt |
+|---|---|---|
+| framework vs measured **dynamics** | 1.618 ± 0.022 | 1.493 ± 0.020 |
+| framework vs measured **lensing** | 1.987 ± 0.246 | 1.834 ± 0.227 |
+| measured lensing vs measured dynamics | 1.154 ± 0.147 | a₀ cancels |
+
+- **The two shortfalls agree.** S_lens − S_dyn = +0.37 ± 0.24, **1.55σ**, on both footings. The residual
+  behaves like **mass** in both probes. The carried arm has γ_PPN = 1 and predicts M_lens ≡ M_dyn, so
+  **no choice of lensing sector can repair a shortfall already present in the dynamical probe.** That
+  escape door is now closed rather than merely unopened.
+- **Independent confirmation.** Four independent weak-lensing teams at fixed 1.0/1.5 Mpc give
+  S_lens = 1.623 ± 0.080 / 1.499 ± 0.074, 1.4σ from the Herbonnet-based numbers.
+- **The genuinely new part is SHAPE, which dynamics could not see.** In the raw shear observable ΔΣ
+  over 0.5–2 Mpc the framework is short by **2.5–2.7×**, not 2×, and its ΔΣ log-slope is
+  **+0.53 ± 0.06 shallower than measured, 9σ** — because its phantom is a near-uniform sheet.
+  Validated by control C10: the *measured* X-ray profile pushed through the identical machinery
+  reproduces the measured ΔΣ to a median 1.11, so the deficit is a statement about the framework's own
+  shape, not about the pipeline.
+- **And the comparison is generous to the framework.** Comparing its true M(<R500) against a published
+  NFW-fit mass carries a shape systematic of 0.43, so **C6's shortfall understates the disagreement.**
+- **Two honest caveats.** Only five of twelve X-COP clusters have published weak-lensing masses and the
+  per-cluster errors are 20–60%, so a lensing-sector slip below ~15% is **untested rather than
+  excluded**. And this is the cluster-lensing counterpart of a known MOND result (Natarajan & Zhao
+  2008; Famaey, Pizzuti & Saltas 2024), new here only in being run on this framework's own carried
+  kernel, sample and both footings.
+- **⚠️ Flag for another lane, a genuine internal disagreement.** Famaey et al. 2024's lensing-derived
+  residual is **cored** inside ~1 Mpc, while this repository's own X-ray inversion (g04a) reports
+  ρ ~ r^(−1.53) and **not** cored. Those cannot both be right.

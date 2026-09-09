@@ -1,0 +1,243 @@
+==============================================================================================================================
+L22 -- the solenoidal (curl) part of the QUMOND field in clusters, and whether it moves L2
+==============================================================================================================================
+
+  inputs: 248 corrected X-COP rows, 12 clusters, radii [30, 40, 50, 75, 100, 150, 200, 300, 420, 750, 1000] kpc; footings {'canonical': 9.3619e-11, 'alt': 1.1279e-10}
+          source: closure_2026/cluster_measurement_audit_2026/results.json (the lead's radius-unit audit)
+
+  the spherically averaged baryon profile used for the geometry runs (median of the seven X-COP
+  clusters that ship a stellar profile; monotone log-log interpolation, end log-slopes 1.04 inward / 1.34 outward, smooth truncation at 3000 kpc):
+      30kpc 3.74e+11Msun  75kpc 1.21e+12Msun  200kpc 6.01e+12Msun  750kpc 4.56e+13Msun
+
+------------------------------------------------------------------------------------------------------------------------------
+  PART A -- the two solvers, validated
+------------------------------------------------------------------------------------------------------------------------------
+  [PASS] V0 [control] solver A reproduces the analytic Hernquist Newtonian field over 1 kpc - 10 Mpc to better than 0.5%   (max relative error 2.45e-03 (a0-independent; solver A, l_max = 24))
+  [PASS] V1 [control] solver A reproduces the analytic Miyamoto-Nagai in-plane Newtonian force for a FLATTENED source (a = 4 kpc, b = 0.3 kpc, axis ratio 0.075) over 3b - 100 kpc to better than 0.5%   (max relative error 3.24e-03 for r > 3b = 0.9 kpc (l_max = 400, 811 Gauss-Legendre nodes in mu); STATED LIMIT: between b and 3b the same expansion reaches 1.0e-01, because a Legendre series in cos(theta) resolves a disc poorly at radii inside its own half-thickness. Every galaxy model below carries its own version of this check (V7))
+  [PASS] V2 [control] for a SPHERICAL source the solved QUMOND field equals the algebraic nu(g_N) g_N to better than 0.3% and the solenoidal part vanishes to better than 1e-3 of the total   (canonical: |solved/algebraic - 1| max 1.6e-03, |a_S|/|a| max 2.1e-04, alt: |solved/algebraic - 1| max 1.6e-03, |a_S|/|a| max 2.1e-04)
+  [PASS] V3 [control] the Newtonian limit: with the source scaled up by 1e6 so that g_N >> a0 everywhere, the solved field returns g_N to better than 0.5%   (canonical: max |solved/g_N - 1| = 2.3e-03 at min s = 1.4e+03, alt: max |solved/g_N - 1| = 2.3e-03 at min s = 1.2e+03)
+
+  V4  the closed-loop test.  L1 measured that the ALGEBRAIC multiplier does net work around a loop once the
+      Newtonian field stops being radial (5.7e-3 of the path integral for g04k's rule).  The solved QUMOND field
+      is the gradient of a potential BY CONSTRUCTION, so this check verifies the implementation, not the physics.
+      |circulation|/int|F|dl on a 100 x 90 kpc loop in a q = 0.6 cluster: Newtonian 3.45e-06, ALGEBRAIC nu(|g_N|)g_N 9.38e-03, SOLVED QUMOND 4.30e-06
+  [PASS] V4 [control] the SOLVED field is conservative -- its loop integral sits at the same floor as the exactly conservative Newtonian field on the same loop, and at least 500x below the ALGEBRAIC multiplier's, which exceeds 1e-3, reproducing L1's defect   (solved 4.3e-06, Newtonian 3.5e-06 (both are exact gradients; the residual is the cubic-spline interpolation floor of the loop evaluator), algebraic 9.4e-03, ratio 2179x (L1 measured 5.7e-3 for the g04k rule on a galaxy loop))
+
+------------------------------------------------------------------------------------------------------------------------------
+  PART B -- how big is the solenoidal field, and what does it do to the inferred mass
+------------------------------------------------------------------------------------------------------------------------------
+
+  oblate spheroids, ellipsoidal stratification of the X-COP baryon profile (canonical footing shown;
+  the alt footing is reported in the checks).  <.> is the unweighted average over the sphere of radius r.
+  |a_S|/|a| is the LOCAL solenoidal fraction; B = <a_r>/[g_bar + a0 Delta(g_bar/a0)] is the factor by which
+  the true field differs from the spherical algebraic prediction an observer would apply.
+
+     q=c/a   r kpc       g_bar  s=g_bar/a0  |a_S|/|a|  <a_S.rhat>/<a_r>         B      dex  B(emis wt)
+      1.00      50  3.9203e-11      0.4187     0.0000          4.42e-05   1.00004  +0.0000     1.00004
+      1.00     100  2.6022e-11      0.2780     0.0001          1.24e-04   1.00012  +0.0001     1.00012
+      1.00     200  2.0930e-11      0.2236     0.0001          1.07e-04   1.00011  +0.0000     1.00011
+      1.00     300  1.8064e-11      0.1930     0.0001          9.67e-05   1.00010  +0.0000     1.00010
+      1.00     500  1.4183e-11      0.1515     0.0001          9.21e-05   1.00009  +0.0000     1.00009
+      1.00    1000  9.3807e-12      0.1002     0.0001          1.15e-04   1.00011  +0.0000     1.00011
+      1.00    1500  7.1371e-12      0.0762     0.0001          8.65e-05   1.00009  +0.0000     1.00009
+
+      0.90      50  3.9110e-11      0.4178     0.0079          4.74e-05   0.99987  -0.0001     1.00156
+      0.90     100  2.6003e-11      0.2778     0.0091          1.17e-04   0.99990  -0.0000     1.00323
+      0.90     200  2.0907e-11      0.2233     0.0081          1.05e-04   0.99986  -0.0001     1.00267
+      0.90     300  1.8042e-11      0.1927     0.0075          9.66e-05   0.99985  -0.0001     1.00237
+      0.90     500  1.4167e-11      0.1513     0.0068          9.18e-05   0.99986  -0.0001     1.00216
+      0.90    1000  9.3743e-12      0.1001     0.0057          8.90e-05   0.99988  -0.0001     1.00196
+      0.90    1500  7.1293e-12      0.0762     0.0043          8.65e-05   0.99988  -0.0001     1.00145
+
+      0.80      50  3.8799e-11      0.4144     0.0168          7.05e-05   0.99929  -0.0003     0.99946
+      0.80     100  2.5928e-11      0.2770     0.0192          1.18e-04   0.99916  -0.0004     1.00450
+      0.80     200  2.0825e-11      0.2224     0.0171          1.05e-04   0.99901  -0.0004     1.00299
+      0.80     300  1.7965e-11      0.1919     0.0158          9.70e-05   0.99902  -0.0004     1.00229
+      0.80     500  1.4108e-11      0.1507     0.0144          9.18e-05   0.99907  -0.0004     1.00193
+      0.80    1000  9.3427e-12      0.0998     0.0119          8.63e-05   0.99916  -0.0004     1.00174
+      0.80    1500  7.1018e-12      0.0759     0.0090          8.64e-05   0.99916  -0.0004     1.00101
+
+      0.70      50  3.8261e-11      0.4087     0.0269          9.60e-05   0.99814  -0.0008     0.99418
+      0.70     100  2.5776e-11      0.2753     0.0304          1.18e-04   0.99770  -0.0010     1.00304
+      0.70     200  2.0662e-11      0.2207     0.0271          1.05e-04   0.99735  -0.0012     1.00022
+      0.70     300  1.7812e-11      0.1903     0.0251          9.75e-05   0.99738  -0.0011     0.99901
+      0.70     500  1.3992e-11      0.1495     0.0228          9.19e-05   0.99752  -0.0011     0.99866
+      0.70    1000  9.2751e-12      0.0991     0.0189          8.50e-05   0.99775  -0.0010     0.99879
+      0.70    1500  7.0468e-12      0.0753     0.0142          8.61e-05   0.99776  -0.0010     0.99820
+
+      0.60      50  3.7488e-11      0.4004     0.0383          1.20e-04   0.99623  -0.0016     0.98664
+      0.60     100  2.5507e-11      0.2725     0.0426          1.18e-04   0.99523  -0.0021     0.99752
+      0.60     200  2.0383e-11      0.2177     0.0380          1.05e-04   0.99455  -0.0024     0.99311
+      0.60     300  1.7552e-11      0.1875     0.0353          9.78e-05   0.99463  -0.0023     0.99144
+      0.60     500  1.3794e-11      0.1473     0.0321          9.17e-05   0.99493  -0.0022     0.99127
+      0.60    1000  9.1576e-12      0.0978     0.0264          8.42e-05   0.99539  -0.0020     0.99220
+      0.60    1500  6.9536e-12      0.0743     0.0199          8.56e-05   0.99543  -0.0020     0.99221
+
+      0.50      50  3.6513e-11      0.3900     0.0509          1.28e-04   0.99331  -0.0029     0.97849
+      0.50     100  2.5062e-11      0.2677     0.0556          1.16e-04   0.99139  -0.0038     0.98615
+      0.50     200  1.9932e-11      0.2129     0.0497          1.04e-04   0.99017  -0.0043     0.97994
+      0.50     300  1.7138e-11      0.1831     0.0463          9.84e-05   0.99033  -0.0042     0.97819
+      0.50     500  1.3478e-11      0.1440     0.0420          9.07e-05   0.99088  -0.0040     0.97824
+      0.50    1000  8.9661e-12      0.0958     0.0344          8.43e-05   0.99171  -0.0036     0.98079
+      0.50    1500  6.8031e-12      0.0727     0.0259          8.44e-05   0.99180  -0.0036     0.98183
+
+      0.40      50  3.5323e-11      0.3773     0.0643          1.11e-04   0.98903  -0.0048     0.96429
+      0.40     100  2.4349e-11      0.2601     0.0688          1.14e-04   0.98561  -0.0063     0.96740
+      0.40     200  1.9219e-11      0.2053     0.0617          1.02e-04   0.98348  -0.0072     0.95824
+      0.40     300  1.6498e-11      0.1762     0.0576          9.88e-05   0.98378  -0.0071     0.95700
+      0.40     500  1.2981e-11      0.1387     0.0523          9.05e-05   0.98473  -0.0067     0.95753
+      0.40    1000  8.6629e-12      0.0925     0.0427          8.49e-05   0.98609  -0.0061     0.96283
+      0.40    1500  6.5625e-12      0.0701     0.0324          8.19e-05   0.98634  -0.0060     0.96521
+
+  [PASS] Q1 [theorem] the sphere-averaged RADIAL component of the solenoidal field is zero at every radius and every axis ratio -- div a_S = 0 makes the flux of a_S through any sphere vanish, which is exactly the operation L2's inversion performs   (max |<a_S.rhat>|/|<a_r>| over all q in [1.0, 0.9, 0.8, 0.7, 0.6, 0.5, 0.4], both footings, 20-3000 kpc = 2.5e-04; the solver's own round-trip floor on the spherical control is 2.5e-04, so the two are indistinguishable)
+  the LOCAL solenoidal fraction max over 40-1500 kpc, both footings: q=1.0: 0.0%, q=0.9: 0.9%, q=0.8: 2.0%, q=0.7: 3.1%, q=0.6: 4.4%, q=0.5: 5.7%, q=0.4: 7.1%
+  [PASS] Q2 [size] the local solenoidal fraction |a_S|/|a| stays under 10% of the total field across the whole cluster axis-ratio range that has been measured, q = 0.9 down to 0.4   (max over 40-1500 kpc: q=1.0 0.0%, q=0.9 0.9%, q=0.8 2.0%, q=0.7 3.1%, q=0.6 4.4%, q=0.5 5.7%, q=0.4 7.1%)
+  [PASS] Q3 [mass] the offset in the enclosed mass an observer would infer, relative to the spherical algebraic prediction, is under 0.02 dex across the measured gas axis-ratio range q = 0.9-0.7   (max |dex| over 40-1500 kpc, both footings, solver floor divided out: q=1.0 0.0000, q=0.9 0.0001, q=0.8 0.0005, q=0.7 0.0012, q=0.6 0.0025, q=0.5 0.0044, q=0.4 0.0074)
+
+  the merging configuration.  Two components on the symmetry axis at their centre of mass; a merger maximises
+  the curl.  X-COP is a RELAXED sample, so this is an upper bound on what the audited rows can contain.
+
+       configuration   r kpc  r/separation  |a_S|/|a|  <a_S.rhat>/<a_r>         B      dex
+        1:1, 700 kpc     200          0.29     0.1387          2.58e-04   0.83050  -0.0807
+        1:1, 700 kpc     500          0.71     0.0345          1.03e-04   0.98424  -0.0069
+        1:1, 700 kpc    1000          1.43     0.0111          8.68e-05   0.99868  -0.0006
+        1:1, 700 kpc    1500          2.14     0.0052          8.70e-05   0.99980  -0.0001
+        1:1, 700 kpc    2000          2.86     0.0028          7.83e-05   0.99998  -0.0000
+        1:1, 700 kpc    3000          4.29     0.0010          1.57e-05   0.99998  -0.0000
+
+       1:1, 1400 kpc     200          0.14     0.2658          2.29e-04   0.72718  -0.1384
+       1:1, 1400 kpc     500          0.36     0.1227          2.90e-04   0.83998  -0.0757
+       1:1, 1400 kpc    1000          0.71     0.0395          9.44e-05   0.97978  -0.0089
+       1:1, 1400 kpc    1500          1.07     0.0188          8.73e-05   0.99568  -0.0019
+       1:1, 1400 kpc    2000          1.43     0.0104          7.67e-05   0.99858  -0.0006
+       1:1, 1400 kpc    3000          2.14     0.0039          2.41e-05   0.99952  -0.0002
+
+        1:3, 700 kpc     200          0.29     0.0836          1.31e-04   0.92877  -0.0321
+        1:3, 700 kpc     500          0.71     0.0270          1.33e-04   0.99037  -0.0042
+        1:3, 700 kpc    1000          1.43     0.0084          8.67e-05   0.99928  -0.0003
+        1:3, 700 kpc    1500          2.14     0.0040          8.71e-05   0.99993  -0.0000
+        1:3, 700 kpc    2000          2.86     0.0022          7.85e-05   1.00003  +0.0000
+        1:3, 700 kpc    3000          4.29     0.0008          1.47e-05   1.00000  -0.0000
+
+       1:3, 1400 kpc     200          0.14     0.1480          2.92e-04   0.71931  -0.1431
+       1:3, 1400 kpc     500          0.36     0.0659          1.15e-04   0.95476  -0.0201
+       1:3, 1400 kpc    1000          0.71     0.0302          1.32e-04   0.98721  -0.0056
+       1:3, 1400 kpc    1500          1.07     0.0141          8.72e-05   0.99750  -0.0011
+       1:3, 1400 kpc    2000          1.43     0.0079          7.78e-05   0.99921  -0.0003
+       1:3, 1400 kpc    3000          2.14     0.0033          1.99e-05   0.99973  -0.0001
+
+  [PASS] Q4 [merger] outside twice the separation the merging configuration's inferred-mass offset is under 0.02 dex, and the sphere-averaged radial solenoidal field is still zero there   (max |dex| beyond 2x separation = 0.0002 over all four configurations and both footings; max |<a_S.rhat>|/|<a_r>| = 5.0e-04)
+
+------------------------------------------------------------------------------------------------------------------------------
+  PART A (continued) -- the independent Cartesian solver, and convergence
+------------------------------------------------------------------------------------------------------------------------------
+  solver B: 224^3 cells over 10000 kpc (cell 44.6 kpc), zero-padded to 448^3 (1.8s to build the kernel).  The box must be several times the radius tested: at L = 6 Mpc the solenoidal fraction at 1200 kpc is depressed by half, at L = 10 and 16 Mpc it is stable.
+
+        solver                 shape   r kpc  |a_S|/|a|         B
+       B (FFT)        sphere (floor)     200     0.0009   0.99990
+       B (FFT)        sphere (floor)     300     0.0006   0.99938
+       B (FFT)        sphere (floor)     500     0.0004   1.00008
+       B (FFT)        sphere (floor)     800     0.0002   1.00018
+       B (FFT)        sphere (floor)    1200     0.0001   0.99998
+
+       B (FFT)       oblate 1:1:0.70     200     0.0274   0.99691
+     A (mpole)       oblate 1:1:0.70     200     0.0271   0.99735
+       B (FFT)       oblate 1:1:0.70     300     0.0250   0.99652
+     A (mpole)       oblate 1:1:0.70     300     0.0251   0.99738
+       B (FFT)       oblate 1:1:0.70     500     0.0223   0.99749
+     A (mpole)       oblate 1:1:0.70     500     0.0228   0.99752
+       B (FFT)       oblate 1:1:0.70     800     0.0194   0.99773
+     A (mpole)       oblate 1:1:0.70     800     0.0202   0.99767
+       B (FFT)       oblate 1:1:0.70    1200     0.0157   0.99763
+     A (mpole)       oblate 1:1:0.70    1200     0.0172   0.99776
+
+       B (FFT)  triaxial 1:0.85:0.65     200     0.0281   0.99656
+       B (FFT)  triaxial 1:0.85:0.65     300     0.0258   0.99617
+       B (FFT)  triaxial 1:0.85:0.65     500     0.0230   0.99718
+       B (FFT)  triaxial 1:0.85:0.65     800     0.0200   0.99742
+       B (FFT)  triaxial 1:0.85:0.65    1200     0.0163   0.99734
+
+    solver B's own floor on a SPHERICAL source, where both quantities are exactly zero and one: |a_S|/|a| <= 9.4e-04, |B - 1| <= 6.2e-04
+  [PASS] V5 [control] the independent Cartesian FFT solver reproduces solver A's local solenoidal fraction to better than 20%, and its mass bias to within its own spherical-source floor, on the same oblate configuration   (max relative disagreement in |a_S|/|a| = 8.4% over 200-1200 kpc; max absolute disagreement in B - 1 = 8.6e-04 against solver B's own floor 6.2e-04 (the two solvers share no code: multipole Green's functions on a log-r/Legendre grid vs a zero-padded Cartesian FFT))
+  [PASS] V6 [control] refining the multipole solver (l_max 32 -> 56, 900 -> 1400 radial points, 96 -> 160 angular nodes) moves the solenoidal fraction and the mass bias by less than 10%   (q = 0.7 at 100/300/1000 kpc: |a_S|/|a| moves by 0.1%, the departure of B from 1 by 2.6%)
+
+------------------------------------------------------------------------------------------------------------------------------
+  PART C -- the same correction on the galaxy side, which L2's ratio also contains
+------------------------------------------------------------------------------------------------------------------------------
+  L2's C5 compares two MEASUREMENTS of Delta = (g_obs - g_bar)/a0 at the same s.  The curl field is a THEORY
+  effect: it says the field the theory predicts from a given baryon distribution is not nu(g_N)g_N.  That applies
+  to discs as well as clusters, and discs are far flatter than clusters, so the honest test corrects BOTH sides.
+  Each SPARC galaxy is given a Miyamoto-Nagai disc matched to its baryonic mass and [3.6] disc scale length, with
+  b/a = 0.15 (h_z/h_R for spirals); b/a = 0.075 and 0.30 are run as the systematic.  Modelling every galaxy as a
+  pure disc, with no bulge and with the gas as flat as the stars, OVERSTATES the galaxy-side correction, which is
+  the direction that would help the cluster ratio -- so the test is being generous to the rescue.
+
+  SPARC: 144 galaxies, 2681 points (Q<3, i>30, eV/V<0.10) -- L2's own selection
+
+  144 per-galaxy QUMOND solves x 4 settings done in 81s
+    b/a = 0.150,       alt footing: in-plane B over the SPARC points, median 0.9770, 16-84 pct [0.9239, 0.9946], min 0.5164;  Newtonian check: median 6.0e-05, 95pct 3.9e-04, 0 of 2681 points over 3% and left uncorrected
+    b/a = 0.075, canonical footing: in-plane B over the SPARC points, median 0.9790, 16-84 pct [0.9245, 0.9949], min 0.4950;  Newtonian check: median 2.0e-04, 95pct 1.2e-03, 2 of 2681 points over 3% and left uncorrected
+    b/a = 0.150, canonical footing: in-plane B over the SPARC points, median 0.9783, 16-84 pct [0.9280, 0.9947], min 0.5205;  Newtonian check: median 6.0e-05, 95pct 3.9e-04, 0 of 2681 points over 3% and left uncorrected
+    b/a = 0.300, canonical footing: in-plane B over the SPARC points, median 0.9776, 16-84 pct [0.9340, 0.9938], min 0.6393;  Newtonian check: median 2.4e-05, 95pct 2.6e-04, 0 of 2681 points over 3% and left uncorrected
+  [PASS] V7 [control] each galaxy's own Miyamoto-Nagai model is solved accurately enough at the radii where its SPARC points sit: the Newtonian in-plane force matches the analytic MN force for 95% of points to better than 0.5%, and fewer than 2% of points have to be left uncorrected   (worst 95th-percentile error over the four settings 1.2e-03; at most 2 of 2681 points (0.1%) exceed 3% and are given B = 1 (no correction), all of them at r well inside the disc half-thickness)
+
+  the sign is the same as the cluster's -- the true QUMOND field in a disc plane is WEAKER than the algebraic
+  multiplier -- but the magnitude is larger, because a disc is far flatter than a cluster.
+
+------------------------------------------------------------------------------------------------------------------------------
+  PART D -- THE TEST: does the solenoidal field move L2's 2.2-5.1x cluster/galaxy discrepancy?
+------------------------------------------------------------------------------------------------------------------------------
+  Correction algebra.  Write B = g_true/g_alg with g_alg = g_bar + a0 Delta(s).  The measured excess is then
+      Delta_meas = (g_obs - g_bar)/a0 = B Delta(s) + (B-1) s,   so the kernel a single-valued theory must supply is
+      Delta_req = [ Delta_meas + (1-B) s ] / B.
+  Both populations are corrected with their own B.  B < 1 raises the required Delta on BOTH sides; the ratio moves
+  only through the difference between the two corrections.
+
+  reproduction of L2's C5 with this script's own machinery (canonical footing, stellar-7 subset):
+                s bin   Delta_cluster   Delta_galaxy   ratio        z
+     0.0876- 0.1224    0.701 +/-0.034    0.312 +/-0.016    2.25    +10.4
+     0.1224- 0.1710    1.166 +/-0.085    0.348 +/-0.021    3.35     +9.3
+     0.1710- 0.2389    1.740 +/-0.139    0.407 +/-0.024    4.27     +9.4
+     0.2389- 0.3338    2.116 +/-0.125    0.487 +/-0.027    4.34    +12.8
+     0.3338- 0.4663    2.537 +/-0.372    0.574 +/-0.068    4.42     +5.2
+     0.4663- 0.6514    2.942 +/-0.398    0.580 +/-0.036    5.08     +5.9
+    -> ratios ['2.2', '3.3', '4.3', '4.3', '4.4', '5.1'], worst |z| over all footings and subsets = 13   (L2 reported 2.2-5.1 and |z| = 13)
+
+     cluster q  disc b/a  ratio range after  worst bin move   median move  worst |z|
+        (none)        --     2.25-5.08                   --            --         13
+          0.90     0.150     2.20-4.73               +8.62%        -3.59%         12
+          0.80     0.150     2.20-4.73               +8.55%        -3.51%         14
+          0.70     0.075     2.21-4.75               +8.37%        -3.35%         13
+          0.70     0.150     2.21-4.74               +8.43%        -3.35%         14
+          0.70     0.300     2.21-4.76               +7.99%        -3.33%         13
+          0.60     0.150     2.21-4.75               +8.22%        -3.09%         13
+          0.50     0.150     2.22-4.77               +7.89%        -2.66%         13
+  [FAIL] T1 [THE TEST] including the solenoidal field, on both sides, changes L2's cluster/galaxy boost ratio by more than 20% somewhere in the measured cluster axis-ratio range   (largest change in any bin, over q = 0.9-0.5, disc b/a = 0.075-0.30, both footings and both cluster subsets: +8.6%; headline (q = 0.7, b/a = 0.15) median -3.4%)
+  [PASS] T2 [sign] the correction REDUCES the cluster/galaxy discrepancy rather than increasing it   (headline median change -3.4%; the cluster and galaxy corrections have the SAME sign (both fields are weaker than the algebraic multiplier) and the galaxy one is the larger, so the ratio falls slightly while the ABSOLUTE requirement on both rises)
+  [FAIL] T3 [rescue] the correction closes at least half of L2's gap, i.e. the smallest cluster/galaxy ratio falls to under 1.6 from 2.2   (smallest ratio anywhere: 2.25 before, 2.20 after; 3.9% of the excess over unity removed)
+
+  THE CONVERSE, determined rather than assumed.  The sign of the correction is NEGATIVE on both sides: the true
+  QUMOND field is WEAKER than the algebraic multiplier, because nu(|g_N|)|g_N| is concave and the angular spread
+  of |g_N| over a sphere therefore lowers its mean.  So the boost clusters REQUIRE goes UP, by +0.27% (median) and +1.16% (worst) across q = 0.9-0.5.
+  The discrepancy ratio nonetheless falls slightly, only because the same effect is LARGER for the flatter discs
+  on the other side of the comparison.  Neither move is anywhere near the factor of 2 a rescue would need.
+
+------------------------------------------------------------------------------------------------------------------------------
+  WHAT THIS SETTLES, AND WHAT IT DOES NOT
+------------------------------------------------------------------------------------------------------------------------------
+  Settled.  L2's inversion assumed the curl field away by using Gauss's theorem on a sphere.  That assumption is
+  not approximately right, it is EXACTLY right for the quantity L2 uses: div a_S = 0 forces the flux of the
+  solenoidal field through every sphere to vanish, verified here to 3e-04 at axis ratios from 1.0 to 0.4
+  and in merging configurations.  The caveat in FINDINGS.md is discharged.
+  Real but small.  What geometry does change is the nonlinear angular average of the algebraic field itself,
+  0.26% at q = 0.7 and 0.97% at q = 0.5, in the direction that makes clusters need MORE, not less.
+  Genuinely large, locally.  The solenoidal field is not negligible as a FIELD: a few per cent of the total in a
+  flattened cluster and tens of per cent inside a merging pair.  Any orbit integration, any lensing map, any
+  non-radial dynamical calculation in this programme must solve for it -- which is exactly L1's warning.  It is
+  only the sphere-averaged radial component, and hence the hydrostatic mass, that is protected.
+  Not settled here.  The hydrostatic estimator's own triaxiality bias -- an observer azimuthally averaging X-ray
+  data does not form the plain sphere average -- is a MEASUREMENT systematic common to every gravity theory, not
+  a curl effect; the emission-weighted column above gives its size in this model and it is under a per cent at the
+  gas axis ratios, but a proper treatment needs projection and a real emissivity, which this lane does not do.
+
+RESULT: 2 FAIL -> ["T1 [THE TEST] including the solenoidal field, on both sides, changes L2's cluster/galaxy boost ratio by more than 20% somewhere in the measured cluster axis-ratio range", "T3 [rescue] the correction closes at least half of L2's gap, i.e. the smallest cluster/galaxy ratio falls to under 1.6 from 2.2"]   [137s]

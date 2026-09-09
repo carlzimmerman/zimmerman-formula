@@ -1,0 +1,215 @@
+======================================================================================================================
+L24 -- cluster lensing versus cluster dynamics: does the residual behave like mass in BOTH probes?
+======================================================================================================================
+
+----------------------------------------------------------------------------------------------------------------------
+C1/C2 -- CONTROLS: does the projection machinery reproduce known general-relativistic convergences?
+----------------------------------------------------------------------------------------------------------------------
+    NFW  R = 0.20 Mpc : Sigma num/ana = 1.000000   DeltaSigma num/ana = 1.000000
+    NFW  R = 0.50 Mpc : Sigma num/ana = 1.000000   DeltaSigma num/ana = 1.000000
+    NFW  R = 1.00 Mpc : Sigma num/ana = 1.000000   DeltaSigma num/ana = 1.000001
+    NFW  R = 2.00 Mpc : Sigma num/ana = 0.999999   DeltaSigma num/ana = 1.000001
+    potential->density route (M = g r^2/G, rho = M'/4 pi r^2) reproduces rho_NFW to 2.47e-07
+  [PASS] C1 [control] the kernel-to-convergence machinery reproduces the analytic general-relativistic NFW convergence and shear to 0.5%   (max |Sigma error| = 1.30e-06, max |DeltaSigma error| = 1.09e-06, density-route error = 2.47e-07)
+    SIS  R = 0.20 Mpc : Sigma num/ana = 1.000000  (untruncated limit sigma^2/2GR ratio 0.9987)
+    SIS  R = 0.50 Mpc : Sigma num/ana = 1.000000  (untruncated limit sigma^2/2GR ratio 0.9987)
+    SIS  R = 1.00 Mpc : Sigma num/ana = 1.000000  (untruncated limit sigma^2/2GR ratio 0.9987)
+    SIS  R = 2.00 Mpc : Sigma num/ana = 1.000000  (untruncated limit sigma^2/2GR ratio 0.9987)
+  [PASS] C2 [control] the machinery reproduces the analytic convergence of a singular isothermal sphere (rho ~ r^-2, the framework's deep-MOND shape) to 0.5%   (max |Sigma error| = 3.41e-13)
+
+----------------------------------------------------------------------------------------------------------------------
+C3 -- CONTROL: the NFW + Dutton-Maccio machinery, and the as-observed refitter, against known input
+----------------------------------------------------------------------------------------------------------------------
+    A85      M200 =   8.4e14 -> c200(DM14) = 4.19, r500 = 1.251 Mpc, M500 predicted  5.87e14 vs published  5.70e14  ( 2.9%)
+    A1795    M200 =  13.9e14 -> c200(DM14) = 3.98, r500 = 1.471 Mpc, M500 predicted  9.61e14 vs published  9.30e14  ( 3.3%)
+    A2029    M200 =  18.1e14 -> c200(DM14) = 3.87, r500 = 1.596 Mpc, M500 predicted 12.43e14 vs published 12.10e14  ( 2.8%)
+    A2142    M200 =  14.5e14 -> c200(DM14) = 3.94, r500 = 1.477 Mpc, M500 predicted 10.00e14 vs published  9.70e14  ( 3.1%)
+    ZW1215   M200 =   5.1e14 -> c200(DM14) = 4.38, r500 = 1.056 Mpc, M500 predicted  3.59e14 vs published  3.50e14  ( 2.7%)
+    as-observed refitter on an injected NFW: recovers M200 = 12.00e14 (input 12.00e14), M500 = 8.31e14 (true 8.31e14), error 0.00%
+  [PASS] C3 [control] the NFW + Dutton-Maccio machinery reproduces Herbonnet 2020's own published M500 from their M200, and the as-observed refitter recovers an injected NFW mass, both to 5%   (max deviation 3.3%)
+
+----------------------------------------------------------------------------------------------------------------------
+C4 -- CONTROL: an independent read of the on-disk X-COP profiles against the committed audit
+----------------------------------------------------------------------------------------------------------------------
+    124 audited (cluster, radius) rows compared, canonical footing
+    g_bar/a0 : median |diff| = 0.00e+00, max = 0.00e+00
+    g_HSE/a0 : median |diff| = 0.00e+00, max = 0.00e+00
+  [PASS] C4 [control] an independent read of the on-disk X-COP FITS reproduces the committed audit's g_bar/a0 and g_HSE/a0 to 2%   (max |diff| 0.00e+00)
+
+----------------------------------------------------------------------------------------------------------------------
+C5/C6/C7/C8 -- the three-way comparison at FIXED physical radii, five X-COP clusters with weak lensing
+----------------------------------------------------------------------------------------------------------------------
+    structural note: in the framework's modified-gravity arm gamma_PPN = 1 (THE_ACTION section 4), so its
+    predicted lensing mass EQUALS its predicted dynamical mass identically.  The two shortfalls therefore
+    differ if and only if the two MEASURED masses differ: S_lens/S_dyn = M_WL/M_HSE exactly.  That identity
+    is why the lensing observable cannot rescue a shortfall already present in the dynamical probe.
+
+    ---- canonical footing, a0 = 9.3619e-11 m/s^2 ; radius = each cluster's X-ray R500
+    cluster   r [kpc]   M_bar    M_fw    M_HSE             M_WL  S_dyn  S_lens  WL/HSE
+    A85          1235    8.78   34.59    54.06     57.98+/-22.38   1.56    1.68    1.07
+    A1795        1153    6.87   28.35    42.38     75.69+/-17.90   1.49    2.67    1.79
+    A2029        1414   12.98   48.58    79.15    110.63+/-22.86   1.63    2.28    1.40
+    A2142        1424   15.04   53.19    92.00     96.61+/-22.91   1.73    1.82    1.05
+    ZW1215       1358    8.53   36.96    76.29     44.59+/-28.03   2.06    1.21    0.58
+    (masses in 1e13 Msun; M_fw = [g_bar + a0 Delta(g_bar/a0)] r^2/G; M_WL = Herbonnet's NFW at the X-ray R500)
+
+    ---- alt footing, a0 = 1.1279e-10 m/s^2 ; radius = each cluster's X-ray R500
+    cluster   r [kpc]   M_bar    M_fw    M_HSE             M_WL  S_dyn  S_lens  WL/HSE
+    A85          1235    8.78   37.50    54.06     57.98+/-22.38   1.44    1.55    1.07
+    A1795        1153    6.87   30.75    42.38     75.69+/-17.90   1.38    2.46    1.79
+    A2029        1414   12.98   52.63    79.15    110.63+/-22.86   1.50    2.10    1.40
+    A2142        1424   15.04   57.57    92.00     96.61+/-22.91   1.60    1.68    1.05
+    ZW1215       1358    8.53   40.11    76.29     44.59+/-28.03   1.90    1.11    0.58
+    (masses in 1e13 Msun; M_fw = [g_bar + a0 Delta(g_bar/a0)] r^2/G; M_WL = Herbonnet's NFW at the X-ray R500)
+
+    canonical: inverse-variance mean over the 5 clusters at their X-ray R500
+      M_WL / M_HSE (measured lensing / measured dynamics) = 1.154 +/- 0.147  [stacked 1.121; with Herbonnet's aperture masses instead 1.364]  => 1-b = 0.867
+      S_dyn  = M_HSE / M_framework                       = 1.618 +/- 0.022  (cluster scatter 2.746)
+      S_lens = M_WL  / M_framework                       = 1.987 +/- 0.246  (cluster scatter 0.866)
+
+    alt: inverse-variance mean over the 5 clusters at their X-ray R500
+      M_WL / M_HSE (measured lensing / measured dynamics) = 1.154 +/- 0.147  [stacked 1.121; with Herbonnet's aperture masses instead 1.364]  => 1-b = 0.867
+      S_dyn  = M_HSE / M_framework                       = 1.493 +/- 0.020  (cluster scatter 2.758)
+      S_lens = M_WL  / M_framework                       = 1.834 +/- 0.227  (cluster scatter 0.866)
+
+    published range for 1-b = M_HSE/M_WL: X-COP's own gas-fraction calibration 0.85 +/- 0.05 (Eckert+2019 A&A 621 A40);
+    Eckert+2022 A&A 662 A123 concludes X-COP hydrostatic masses are biased < 10% out to R500; CCCP weak lensing
+    0.78 +/- 0.09 (Hoekstra+2015); Weighing the Giants 0.69 +/- 0.07 (von der Linden+2014).  Admissible band [0.60, 1.05].
+  [PASS] C5 [control] the MEASURED lensing-to-dynamical mass ratio lands in the published hydrostatic-bias range   (canonical 1-b = 0.867 +/- 0.111, alt 1-b = 0.867 +/- 0.111)
+  [FAIL] C6 [test] the framework's prediction matches the measured LENSING mass (shortfall consistent with 1)   (canonical S_lens = 1.99 +/- 0.25 (4.0 sigma from 1), alt S_lens = 1.83 +/- 0.23 (3.7 sigma from 1))
+  [FAIL] C7 [test] the framework's prediction matches the measured DYNAMICAL mass (the L2/L7 control, same radii)   (canonical S_dyn = 1.62 +/- 0.02 (28.0 sigma from 1), alt S_dyn = 1.49 +/- 0.02 (24.2 sigma from 1))
+
+    canonical: S_lens - S_dyn = +0.369 +/- 0.238  (1.55 sigma).  Identity check: S_lens/S_dyn = 1.2278 vs M_WL/M_HSE = 1.1536
+
+    alt: S_lens - S_dyn = +0.341 +/- 0.220  (1.55 sigma).  Identity check: S_lens/S_dyn = 1.2281 vs M_WL/M_HSE = 1.1536
+  [FAIL] C8 [THE TEST] the shortfall against LENSING differs from the shortfall against DYNAMICS at > 3 sigma (a lensing-sector signature)   (canonical 1.55 sigma, alt 1.55 sigma -- a FAIL means the two agree: the residual behaves like MASS in both probes and no lensing sector can repair it)
+
+----------------------------------------------------------------------------------------------------------------------
+C9 -- INDEPENDENT weak-lensing teams, at fixed physical radii 1.0 and 1.5 Mpc (Sereno 2015 LC2)
+----------------------------------------------------------------------------------------------------------------------
+    1000 kpc is also L7's outermost audited radius, so the S_dyn column here is directly comparable to L7.
+
+    ---- canonical footing
+    cluster  reference                               r    M_fw   M_HSE           M_WL  S_dyn  S_lens  WL/HSE
+    A85      Cypriano+04      2004ApJ...613...95C   1000   24.75   44.97   39.43+/- 7.25   1.82    1.59    0.88
+    A85      Cypriano+04      2004ApJ...613...95C   1500   46.34   64.90   59.15+/-10.87   1.40    1.28    0.91
+    A2029    Cypriano+04      2004ApJ...613...95C   1000   28.73   62.10   50.38+/- 6.18   2.16    1.75    0.81
+    A2029    Cypriano+04      2004ApJ...613...95C   1500   53.07   83.56   75.57+/- 9.28   1.57    1.42    0.90
+    A2142    Umetsu+09        2009ApJ...694.1643U   1000   30.61   63.48   65.60+/- 6.27   2.07    2.14    1.03
+    A2142    Umetsu+09        2009ApJ...694.1643U   1500   57.57   96.24   96.79+/-10.33   1.67    1.68    1.01
+    A2142    Okabe&Umetsu08   2008PASJ...60..345O   1000   30.61   63.48   61.49+/-14.46   2.07    2.01    0.97
+    A2142    Okabe&Umetsu08   2008PASJ...60..345O   1500   57.57   96.24   94.83+/-24.72   1.67    1.65    0.99
+    ZW1215   Kubo+09          2009ApJ...702L.110K   1000   23.40   52.65   21.40+/-14.01   2.25    0.91    0.41
+    ZW1215   Kubo+09          2009ApJ...702L.110K   1500   42.49   87.60   29.94+/-21.14   2.06    0.70    0.34
+    canonical: independent-team S_lens = 1.623 +/- 0.080, mean S_dyn = 1.876, M_WL/M_HSE = 0.900 +/- 0.044
+
+    ---- alt footing
+    cluster  reference                               r    M_fw   M_HSE           M_WL  S_dyn  S_lens  WL/HSE
+    A85      Cypriano+04      2004ApJ...613...95C   1000   26.81   44.97   39.43+/- 7.25   1.68    1.47    0.88
+    A85      Cypriano+04      2004ApJ...613...95C   1500   50.28   64.90   59.15+/-10.87   1.29    1.18    0.91
+    A2029    Cypriano+04      2004ApJ...613...95C   1000   31.06   62.10   50.38+/- 6.18   2.00    1.62    0.81
+    A2029    Cypriano+04      2004ApJ...613...95C   1500   57.51   83.56   75.57+/- 9.28   1.45    1.31    0.90
+    A2142    Umetsu+09        2009ApJ...694.1643U   1000   33.07   63.48   65.60+/- 6.27   1.92    1.98    1.03
+    A2142    Umetsu+09        2009ApJ...694.1643U   1500   62.33   96.24   96.79+/-10.33   1.54    1.55    1.01
+    A2142    Okabe&Umetsu08   2008PASJ...60..345O   1000   33.07   63.48   61.49+/-14.46   1.92    1.86    0.97
+    A2142    Okabe&Umetsu08   2008PASJ...60..345O   1500   62.33   96.24   94.83+/-24.72   1.54    1.52    0.99
+    ZW1215   Kubo+09          2009ApJ...702L.110K   1000   25.36   52.65   21.40+/-14.01   2.08    0.84    0.41
+    ZW1215   Kubo+09          2009ApJ...702L.110K   1500   46.15   87.60   29.94+/-21.14   1.90    0.65    0.34
+    alt: independent-team S_lens = 1.499 +/- 0.074, mean S_dyn = 1.732, M_WL/M_HSE = 0.900 +/- 0.044
+  [PASS] C9 [indep] the independent weak-lensing teams give the same framework shortfall as the Herbonnet-based comparison   (canonical S_lens indep 1.62+/-0.08 vs Herbonnet 1.99+/-0.25 (1.4 sigma), alt S_lens indep 1.50+/-0.07 vs Herbonnet 1.83+/-0.23 (1.4 sigma))
+
+----------------------------------------------------------------------------------------------------------------------
+C10/C11/C12 -- the raw weak-lensing observable: DeltaSigma over the fitting range, its shape, and the refit
+----------------------------------------------------------------------------------------------------------------------
+    kappa = Sigma_eff/Sigma_crit with Sigma_crit from each cluster's own <beta> = <D_LS/D_S> (Herbonnet Table 2).
+    DeltaSigma = Sigmabar(<R) - Sigma(R) is what a shear survey actually measures, and it is blind to a uniform
+    sheet -- which is why it is insensitive to where the phantom is truncated (C13).
+
+    C10 control: project the measured X-ray hydrostatic mass profile and compare with the measured lensing signal
+    cluster            DS_WL/DS_HSE at R = 0.5, 0.9, 1.4, 2.0 Mpc
+    A85             1.12         1.04         1.06         1.20
+    A1795           1.36         1.39         1.90         2.27
+    A2029           1.11         1.03         1.33         1.63
+    A2142           1.11         1.15         1.03         1.06
+    ZW1215          0.93         0.73         0.72         0.56
+    median over 5 clusters x 4 radii: DS_WL/DS_HSE = 1.11  (scatter 0.40; the two probes differ by the hydrostatic bias, C5, and by weak-lensing noise)
+  [PASS] C10 [control] projecting the MEASURED dynamical mass profile through the same machinery reproduces the MEASURED weak-lensing DeltaSigma to 30%   (median DS_WL/DS_HSE = 1.11; so any DeltaSigma deficit found below is a statement about the framework's own shape, not about this pipeline)
+
+    ---- canonical footing   (phantom truncated at 2 R200)
+    cluster  kappa_fw(R500) kappa_WL(R500)  DS_WL/DS_fw  slope fw  slope WL  M500 as-obs  M500 true
+    A85              0.0084         0.0074         2.52     -0.26     -0.85        14.84      34.59
+    A1795            0.0079         0.0141         3.40     -0.36     -0.79        15.08      28.35
+    A2029            0.0113         0.0154         3.14     -0.38     -0.76        21.65      48.58
+    A2142            0.0144         0.0142         2.68     -0.27     -0.80        22.43      53.19
+    ZW1215           0.0085         0.0051         1.81     -0.27     -0.98        15.52      36.96
+    mean log-slope difference (framework - measured NFW) over the fitting range: +0.531 +/- 0.058
+    median DeltaSigma deficit in the RAW observable: DS_measured/DS_framework = 2.68
+    median (M500 an observer would report for the framework's own signal) / (framework's true M(<R500)) = 0.429
+
+    ---- alt footing   (phantom truncated at 2 R200)
+    cluster  kappa_fw(R500) kappa_WL(R500)  DS_WL/DS_fw  slope fw  slope WL  M500 as-obs  M500 true
+    A85              0.0091         0.0074         2.33     -0.26     -0.85        16.62      37.50
+    A1795            0.0086         0.0141         3.14     -0.35     -0.79        16.89      30.75
+    A2029            0.0123         0.0154         2.91     -0.37     -0.76        24.23      52.63
+    A2142            0.0157         0.0142         2.48     -0.27     -0.80        25.09      57.57
+    ZW1215           0.0092         0.0051         1.68     -0.26     -0.98        17.38      40.11
+    mean log-slope difference (framework - measured NFW) over the fitting range: +0.536 +/- 0.058
+    median DeltaSigma deficit in the RAW observable: DS_measured/DS_framework = 2.48
+    median (M500 an observer would report for the framework's own signal) / (framework's true M(<R500)) = 0.443
+  [FAIL] C11 [shape] the framework's predicted lensing profile SHAPE is consistent with the measured one over the weak-lensing fitting range   (canonical Delta(dlnDeltaSigma/dlnR) = +0.531 +/- 0.058 (9.1 sigma), DS deficit 2.68x, alt Delta(dlnDeltaSigma/dlnR) = +0.536 +/- 0.058 (9.2 sigma), DS deficit 2.48x)
+  [FAIL] C12 [as-obs] the NFW-refit shape systematic is under 15%, so comparing the framework's true M(<R500) with a published NFW-fit mass is a fair comparison   (canonical as-observed/true = 0.429, alt as-observed/true = 0.443; a FAIL means C6's shortfall UNDERSTATES the disagreement by that factor)
+    shape-corrected lensing shortfall, canonical: S_lens/(as-observed/true) = 4.63x (uncorrected 1.99x; raw-observable deficit 2.68x)
+    shape-corrected lensing shortfall, alt: S_lens/(as-observed/true) = 4.14x (uncorrected 1.83x; raw-observable deficit 2.48x)
+
+----------------------------------------------------------------------------------------------------------------------
+C13 -- SYSTEMATICS: phantom truncation, outer baryon slope, and whether the mass comparison extrapolates
+----------------------------------------------------------------------------------------------------------------------
+    A85      outer gas d lnM/d lnr = 0.78; gas data reach 1.87 R500 = 2311 kpc; R500 = 1235 kpc, R200 = 1921 kpc => M(<R500) and M(<1500 kpc) use NO extrapolation
+    A1795    outer gas d lnM/d lnr = 0.71; gas data reach 1.61 R500 = 1852 kpc; R500 = 1153 kpc, R200 = 1755 kpc => M(<R500) and M(<1500 kpc) use NO extrapolation
+    A2029    outer gas d lnM/d lnr = 0.91; gas data reach 1.56 R500 = 2213 kpc; R500 = 1414 kpc, R200 = 2173 kpc => M(<R500) and M(<1500 kpc) use NO extrapolation
+    A2142    outer gas d lnM/d lnr = 1.00; gas data reach 1.65 R500 = 2353 kpc; R500 = 1424 kpc, R200 = 2224 kpc => M(<R500) and M(<1500 kpc) use NO extrapolation
+    ZW1215   outer gas d lnM/d lnr = 0.76; gas data reach 1.51 R500 = 2053 kpc; R500 = 1358 kpc, R200 = 2200 kpc => M(<R500) and M(<1500 kpc) use NO extrapolation
+    DeltaSigma(1 Mpc) moves by at most 0.3% when the truncation is varied 1.5 -> 3 R200,
+    and by at most 0.1% when the outer gas density slope is varied -3 -> -5.
+  [PASS] C13 [syst] the framework's projected prediction is insensitive (< 10%) to the phantom truncation and the outer baryon slope, and the mass comparison needs no baryon extrapolation   (truncation 0.3%, outer slope 0.1%, all five gas profiles reach beyond 1500 kpc: True)
+
+----------------------------------------------------------------------------------------------------------------------
+WHERE THIS SITS IN THE PUBLISHED LITERATURE (stated so the result is not mistaken for a discovery)
+----------------------------------------------------------------------------------------------------------------------
+    The cluster residual surviving in LENSING is a known MOND result, not a new one.  Natarajan & Zhao 2008
+    (MNRAS 389, 250) showed MOND plus classical neutrinos cannot supply cluster lensing; Angus, Famaey & Buote
+    2008 (MNRAS 387, 1470) found unexplained mass on the group scale from X-ray profiles; and Famaey, Pizzuti &
+    Saltas 2024 (arXiv:2410.02612) characterised the residual MOND missing mass directly from CLASH strong- and
+    weak-lensing profiles, finding it 'in line with results obtained in the literature from the hydrostatic
+    equilibrium of hot gas' -- an inner core with an outer slope steeper than -3.5 inside ~1 Mpc.
+    What is new here is only that the test is run on THIS framework's own carried kernel (nu_RAR saturated),
+    on THIS repository's own cluster sample and baryon budget, on both a0 footings, with the shortfall against
+    lensing and against dynamics measured side by side at the same radii.  Note also that Famaey+2024's lensing
+    shape is CORED, while this repository's own X-ray inversion (g04a) reports rho ~ r^-1.53 and NOT cored --
+    a difference over different radial ranges and kernels, flagged here, not settled here.
+
+----------------------------------------------------------------------------------------------------------------------
+READING THE PATTERN
+----------------------------------------------------------------------------------------------------------------------
+    canonical: framework short of DYNAMICS by 1.62x, short of LENSING by 1.99x (4.63x with the shape correction, 2.68x in the raw observable), lensing/dynamics = 1.15 +/- 0.15
+    alt: framework short of DYNAMICS by 1.49x, short of LENSING by 1.83x (4.14x with the shape correction, 2.48x in the raw observable), lensing/dynamics = 1.15 +/- 0.15
+    Because the carried arm has gamma_PPN = 1, its lensing and dynamical predictions are the SAME number, so the
+    two shortfalls can only differ by the amount the two MEASUREMENTS differ.  They differ by the hydrostatic bias
+    and nothing else.  Three consequences, all structural:
+      (a) the cluster residual is present at the same size in a probe with orthogonal systematics, so it is NOT an
+          artefact of hydrostatic equilibrium -- L2/L5/L6/L7 do not rest on the HSE assumption;
+      (b) NO choice of lensing sector can repair it.  A slip changes lensing and leaves dynamics alone; the
+          shortfall is already present in dynamics.  The modified-inertia arm moves the wrong way besides:
+          `prep_2026/mi_lensing_final/` derives g_lens <= g_bar for ANY baryonic source, i.e. M_lens <= M_bar here;
+          for this sample that is a factor M_WL/M_bar = 6.6x, against the 1.8x the
+          modified-gravity arm carries -- so cluster lensing excludes the MI arm independently of Brouwer 2021;
+      (c) the SHAPE is a second, amplitude-free discriminator, and it is the framework's weakest point here: its
+          phantom is far more extended than the measured convergence, so the observable an actual survey measures
+          (DeltaSigma over 0.5-2 Mpc) is missed by more than the enclosed-mass comparison suggests.
+
+  what this lane does NOT establish: it does not measure dark matter; it does not touch the galaxy-scale evidence,
+  where baryons plus the kernel work; and with five clusters and 20-60% per-cluster weak-lensing errors it
+  constrains a lensing-sector difference only at the ~15% level, so a slip smaller than that is untested, not
+  excluded.  Seven of the twelve X-COP clusters have no published weak-lensing mass at all.
+
+RESULT: 5 FAIL -> ["C6 [test] the framework's prediction matches the measured LENSING mass (shortfall consistent with 1)", "C7 [test] the framework's prediction matches the measured DYNAMICAL mass (the L2/L7 control, same radii)", 'C8 [THE TEST] the shortfall against LENSING differs from the shortfall against DYNAMICS at > 3 sigma (a lensing-sector signature)', "C11 [shape] the framework's predicted lensing profile SHAPE is consistent with the measured one over the weak-lensing fitting range", "C12 [as-obs] the NFW-refit shape systematic is under 15%, so comparing the framework's true M(<R500) with a published NFW-fit mass is a fair comparison"]

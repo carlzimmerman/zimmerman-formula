@@ -1,0 +1,295 @@
+======================================================================================================================
+L31 -- the foliation no-go: attempted theorem, and the exact place the argument breaks
+======================================================================================================================
+a0 footings: canonical 9.3619e-11 m/s^2   alt 1.1279e-10 m/s^2
+Hubble radius c/H0 = 4448.0 Mpc
+
+======================================================================================================================
+PART 0 -- CONTROLS.  If any of these fails, nothing below is trustworthy.
+======================================================================================================================
+  [PASS] C1  counting rule returns 2 for ADM general relativity   ((12 - 2*4 - 0)/2 = 2)
+  [PASS] C2  counting rule returns 3 for GR + one minimally coupled scalar   ((14 - 2*4 - 0)/2 = 3)
+  [PASS] C3  counting rule returns 3 for khronometric theory (2 tensor + 1 khronon)   (matches the published 2+1)
+  [PASS] C4  counting rule returns 5 for Einstein-aether (2 tensor + 2 vector + 1 scalar)   ((18 - 8)/2 = 5, matches Jacobson-Mattingly)
+  [PASS] C5  Kretschmann of exact Schwarzschild = 48 m^2 / r^6 (own sympy curvature machinery)   (K = 48*m**2/r**6)
+  [PASS] C6  G_loc = (sqrt3/2) K^{3/2}/|grad K| equals m/r^2 * (1-2m/r)^{-1/2} on exact Schwarzschild   (-> m/r^2 exactly in the weak field)
+  [PASS] C7  linearised dictionary K = 8 (d_i d_j Phi)^2 reproduces 48 m^2/r^6 for a point mass   (8Q = 48*m**2/r**6)
+  [PASS] C8  Milky Way at R_sun: g = v^2/R reproduces the measured local acceleration   (g = 2.0725e-10 m/s^2 = 2.21 a0 (canon) / 1.84 a0 (alt))
+
+======================================================================================================================
+STEP E -- THE EQUIVALENCE-PRINCIPLE LEMMA: y = |grad Phi|/a0 is not a local scalar of the metric
+======================================================================================================================
+
+The adversarial control first.  A naive 'curvature is second derivatives, a potential is not' argument is
+WRONG as stated: on a one-parameter solution family you CAN build the Newtonian acceleration out of local
+invariants, and C6 did exactly that.  G_loc = (sqrt3/2) K^{3/2}/|grad K| returns m/r^2 on Schwarzschild
+exactly, to all orders.  So the lemma has to be proved by breaking G_loc, not by dimensional analysis.
+
+  [PASS] E1  adding a uniform field Phi -> Phi + g.x leaves the FULL Hessian d_i d_j Phi unchanged   (hence every curvature tensor, every invariant, and every local functional of the metric)
+  [PASS] E1b every local invariant (here K = 8Q and its gradient) is uniform-field blind
+
+  MOND's y = |grad Phi|/a0 changes under the same shift.  This is not a technicality: the change
+  IS the external field effect, one of MOND's defining and most-tested signatures.
+    [canonical] star at 1 pc alone: y = 0.0015 ;  with the Galaxy's g_ext: y = 2.2153   (ratio 1488.0x)
+    [alt      ] star at 1 pc alone: y = 0.0012 ;  with the Galaxy's g_ext: y = 1.8388   (ratio 1488.0x)
+  [PASS] E2  y = |grad Phi|/a0 DOES change under the uniform shift, on both footings   (so y is not a diff-invariant local scalar of the metric  == LEMMA 1)
+  [PASS] E3  Riemann-normal-coordinate form of Lemma 1: g=eta, dg=0 at any point p   (every local scalar at p is a function of curvature at p; y is not, because y != 0 in the freely falling frame's own y = 0)
+  [PASS] E4  G_loc is 0/0 in a pure uniform field (K = 0 and |grad K| = 0 identically)   (a region containing only a coherent external field has NO local curvature to build y from)
+  [PASS] E5a CONTROL: G_loc reproduces |grad Phi| EXACTLY for a point mass   (max relative error 3.55e-15 over r in [0.5, 20])
+
+  Plummer sphere, scale b = 1:
+    r/b =  0.20   G_loc/|grad Phi| = 10.9881
+    r/b =  0.50   G_loc/|grad Phi| = 2.3143
+    r/b =  1.00   G_loc/|grad Phi| = 1.5747
+    r/b =  2.00   G_loc/|grad Phi| = 1.1828
+    r/b =  5.00   G_loc/|grad Phi| = 1.0272
+    r/b = 20.00   G_loc/|grad Phi| = 1.0017
+  [PASS] E5b G_loc FAILS on a Plummer sphere inside the core (it only works asymptotically)   (10.988 at r=0.2b, 1.0017 at r=20b)
+
+  Equal-mass binary at x = +-1:
+    (x,y,z) = (  0.0,  0.5, 0.0)   |grad Phi| = 0.71554   G_loc = 1.34156   ratio = 1.8749
+    (x,y,z) = (  0.0,  2.0, 0.0)   |grad Phi| = 0.35777   G_loc = 0.41924   ratio = 1.1718
+    (x,y,z) = (  0.5,  1.0, 0.0)   |grad Phi| = 0.89204   G_loc = 0.69773   ratio = 0.7822
+    (x,y,z) = (  3.0,  0.0, 0.0)   |grad Phi| = 0.31250   G_loc = 0.29779   ratio = 0.9529
+    (x,y,z) = ( 10.0,  0.0, 0.0)   |grad Phi| = 0.02061   G_loc = 0.02042   ratio = 0.9908
+    (x,y,z) = (  0.0, 10.0, 0.0)   |grad Phi| = 0.01970   G_loc = 0.01980   ratio = 1.0051
+  [PASS] E5c G_loc FAILS on a binary -- a local invariant does not superpose the way a potential does   (worst relative error 87% over the sampled points)
+  [PASS] E5d G_loc diverges relative to |grad Phi| at the binary's centre, where grad K -> 0   (at (0, 1e-6, 0): |grad Phi| = 2.000e-06, G_loc = 1.000e+06, ratio = 5.000e+11)
+
+  Miyamoto-Nagai disc (a = 4, b = 0.3), in the midplane z = 0.01:
+    R =   2.0   |grad Phi| = 0.018798   G_loc = 0.364938   ratio = 19.4135
+    R =   4.0   |grad Phi| = 0.019759   G_loc = 0.177815   ratio = 8.9990
+    R =   8.0   |grad Phi| = 0.010679   G_loc = 0.054575   ratio = 5.1103
+    R =  15.0   |grad Phi| = 0.003948   G_loc = 0.012972   ratio = 3.2856
+    R =  30.0   |grad Phi| = 0.001078   G_loc = 0.001995   ratio = 1.8511
+  [PASS] E5e G_loc FAILS on a disc in the regime where MOND has to work (R ~ a, the flat part)   (ratio 8.999 at R = a; the disc's flattening is invisible to the invariant)
+
+  The physical kill.  Local curvature in a galaxy is dominated by the NEAREST STAR, not by the
+  Galaxy.  MOND's y is the coherent, coarse-grained field.  These are different quantities.
+    smooth Galaxy tidal field at R_sun            |d^2Phi| = 8.191e-31 s^-2
+    the Sun's tidal field at 1 pc                 |d^2Phi| = 9.034e-30 s^-2   (11.0x the Galaxy's)
+    distance at which a star's curvature = Galaxy's:  d_eq = 2.23 pc
+    fraction of solar-neighbourhood volume within d_eq of a star: 99.0%
+    [canonical] true galactic y = 2.21 ;  y from the nearest-star curvature at 1 pc = 1.49e-03   (short by 1487x)
+    [alt      ] true galactic y = 1.84 ;  y from the nearest-star curvature at 1 pc = 1.24e-03   (short by 1487x)
+  [PASS] E6  a local-invariant y at R_sun is set by the nearest star and misses the Galaxy by ~1500x   (1487x short; 99% of the volume is star-dominated)
+  [PASS] E7  LEMMA 1 ESTABLISHED: no local functional of a single metric can carry y = |grad Phi|/a0   (uniform-field blindness (E1) + the external field effect (E2) + five broken constructions)
+
+======================================================================================================================
+STEP Q -- THE POLARIZATION PROPOSITION: no propagation forces a preferred timelike direction
+======================================================================================================================
+
+Lemma 1 forces an EXTRA structure sigma carrying a0.  Requirement (iii) forbids it from propagating.
+Question: can a field whose gradient enters the action non-trivially fail to propagate, without a
+preferred timelike direction?  Answer, symbolically: no.
+
+  d^2 L / d(phidot)^2 = 2*L_X*g00 + 4*L_XX*g00**2*phidot**2 + 8*L_XX*g00*phidot*v + 4*L_XX*v**2
+  at phidot = 0, g^{0i} d_i phi = 0 : 2*L_X*g00
+  [PASS] Q1  L(X) with X = g^{mn}d_m phi d_n phi has kinetic Hessian 2 L_X g^00 + 4 L_XX (g^{0n}d_n phi)^2   (static-configuration value = 2*L_X*g00)
+  [PASS] Q1b vanishing for all configurations forces L_X == 0, i.e. NO gradient dependence, i.e. no MOND   (g^00 != 0 for any timelike observer, so L_X = 0 identically and L cannot depend on d phi)
+  [PASS] Q2  a symmetric S with S^{mn}u_m u_n = 0 for all timelike u is IDENTICALLY ZERO   (sampled 60 timelike u; rank of the linear system = 10/10, smallest singular value 2.042e+00 -> unique solution S = 0)
+  [PASS] Q2b for a SINGLE distinguished u the constraint has a 9-dimensional solution space   (null space dimension 9 -- room for exactly the projector h = g + u (x) u)
+  [PASS] Q3  h^{mn} = g^{mn} + u^m u^n annihilates u and is positive semi-definite of rank 3   (eigenvalues [0.0, 1.0, 1.0, 1.0])
+  [PASS] Q3b h^{mn} d_m phi d_n phi IS |grad phi|^2 -- MOND's y is exactly a projector contraction   (= 0.6200)
+  [PASS] Q4  u_mu = -N d_mu T is hypersurface-orthogonal by construction (u ^ du = 0, Frobenius)   (a preferred FRAME becomes a preferred FOLIATION exactly when u is hypersurface-orthogonal)
+  [PASS] Q4b a NON-hypersurface-orthogonal u carries extra vector modes -> N_grav > 2 (control C4: 5)   (Einstein-aether, the general-u case, has 5 not 2)
+  [PASS] Q5  PROPOSITION ESTABLISHED: a non-propagating MOND scalar requires a distinguished timelike u   (Q1 (scalar dependence propagates) + Q2 (only a distinguished u degenerates the form))
+
+======================================================================================================================
+STEP T -- THE PRINCIPAL-SYMBOL TRICHOTOMY: is the enumeration exhaustive?
+======================================================================================================================
+
+Enumerate the ways the a0-carrying structure can enter, and for each ask whether N_grav can stay 2
+WITHOUT a preferred slicing.  The classifier is the principal symbol S^{mn} k_m k_n of sigma's own
+field equation, because that is what decides propagation.
+
+
+  R1  extra field, Lorentz-invariant kinetic term  (RAQUAL, TeVeS scalar, AeST scalar)
+      principal symbol : a g^{mn} k_m k_n  (hyperbolic)
+      N_grav           : 3
+      preferred slicing: no
+      verdict          : N = 3.  Violates (iii).  This is the DC-013 horn: it propagates.
+
+  R2  extra field, degenerate kinetic term        (A1 constraint-first, L12)
+      principal symbol : h^{mn} k_m k_n, h = g + u(x)u  (degenerate along u)
+      N_grav           : 2
+      preferred slicing: YES
+      verdict          : N = 2, but Q2 forces the distinguished u.  This is the DC-019 horn: instantaneous.
+
+  R3  modify the Hamiltonian constraint            (A1 / MMG / Horava-type)
+      principal symbol : deformed H_perp; the deformation is a functional of gamma_ij and K_ij
+      N_grav           : 2
+      preferred slicing: YES
+      verdict          : N = 2, but H_perp generates the slicing; deforming it breaks the hypersurface-deformation algebra.  L12 measured this exactly: PG slice of vacuum Schwarzschild gives y = 0.
+
+  R4  nonlocal operator Box^{-1}                   (Deffayet-Esposito-Farese-Woodard)
+      principal symbol : none -- not a finite-order PDE
+      N_grav           : contested
+      preferred slicing: no
+      verdict          : THE ESCAPE.  Lorentz-invariant, no u.  Mode count contested (see STEP N).
+
+  R5  higher-derivative local terms                (f(R), Horndeski, DHOST, Galileon)
+      principal symbol : (g^{mn}k_m k_n)^p from g alone  (still hyperbolic)
+      N_grav           : 3
+      preferred slicing: no
+      verdict          : N >= 3 (degeneracy removes the Ostrogradsky GHOST, not the MODE).  And by Lemma 1 the extra scalar's own source is still not y unless it is itself the potential.
+
+  R6  a scalar built from the matter fields        (u_matter, rho, T_mn)
+      principal symbol : n/a -- algebraic
+      N_grav           : 2
+      preferred slicing: no
+      verdict          : Fails in VACUUM, which is exactly where MOND must work (see the number below).
+  [PASS] T1  a symmetric 2-tensor built from g alone is a * g^{mn}: the symbol is hyperbolic   (and in VACUUM (R_mn = 0) curvature corrections to the symbol vanish identically)
+  [PASS] T2  hyperbolic symbol => the carrier propagates => N_grav >= 3 (control C2 gives exactly 3)
+  [PASS] T3  degenerate symbol => a distinguished timelike u exists (STEP Q) => preferred frame
+  [PASS] T4  zero symbol => sigma is algebraic in the other fields => Lemma 1 (metric) or vacuum failure (matter)
+    exponential disc R_d = 3 kpc:  Sigma(R=15 kpc)/Sigma(0) = 6.74e-03
+    exponential disc R_d = 3 kpc:  Sigma(R=20 kpc)/Sigma(0) = 1.27e-03
+    exponential disc R_d = 3 kpc:  Sigma(R=25 kpc)/Sigma(0) = 2.40e-04
+  [PASS] T4b a matter-built scalar has nothing to build from where rotation curves are measured flat   (Sigma(20 kpc)/Sigma(0) = 1.3e-03; MOND must still work there, and lensing is in vacuum)
+  [PASS] T5  higher-order symbols from g alone are (g kk)^p: still hyperbolic, and add modes not remove them   (Ostrogradsky degeneracy (Horndeski/DHOST) removes the ghost, not the degree of freedom)
+  [PASS] T6  the enumeration is EXHAUSTIVE for finite-order field equations   (the symbol is hyperbolic, degenerate, or absent; there is no fourth case for a symmetric form on a Lorentzian manifold)
+
+======================================================================================================================
+STEP K -- CONTROLS: every known relativistic MOND theory.  A counterexample here refutes the lane.
+======================================================================================================================
+  theory                                                          (i)  (ii)  (iii)  frame/foliation                           N_grav                        
+  ----------------------------------------------------------------------------------------------------------------------------------------------------------
+  GR                                                               no   yes    yes  none                                      2                             
+        control: the counting rule's anchor; no MOND
+  RAQUAL (Bekenstein-Milgrom 1984)                                yes   yes     no  NONE (Lorentz invariant)                  3 = 2 + scalar                
+        the cleanest Lorentz-invariant MOND; pays with a propagating scalar; conformal coupling under-lenses
+  Phase-Coupling Gravity (Bekenstein 1988)                        yes   yes     no  none                                      >=3                           
+        two scalars; still conformal, still under-lenses
+  TeVeS (Bekenstein 2004)                                         yes   yes     no  YES: unit timelike vector A^mu            >=4                           
+        disformal g~ from (g, A, phi); MOND lensing works BECAUSE of the vector
+  Generalised Einstein-aether / GEA (Zlosnik-Ferreira-Starkman 2007)  yes   yes     no  YES: unit timelike aether                 5                             
+        counting-rule control C4 reproduces 5 = 2 tensor + 2 vector + 1 scalar
+  AeST (Skordis-Zlosnik 2021)                                     yes   yes     no  YES: unit timelike aether                 >=5                           
+        the modern benchmark: MOND + lensing + CMB; the frame is what buys it
+  Khronometric MOND (this repo, FC-KH)                            yes   yes     no  YES: khronon = an exact FOLIATION         3                             
+        counting-rule control C3 reproduces 3; killed here on a radial gradient instability
+  Horava-type / projectable                                       yes   yes     no  YES: foliation                            >=3                           
+        the extra scalar is the foliation's own mode
+  BIMOND (Milgrom 2009)                                           yes    no     no  none required                             >=4                           
+        TWO metrics -- violates (ii)
+  MOG / STVG (Moffat)                                              no   yes     no  vector with nonzero background value      >=5                           
+        MOND-LIKE, not MOND: running G, no fixed a0 interpolation
+  f(R), Horndeski, DHOST, Galileon (Vainshtein-screened)           no   yes     no  none                                      3                             
+        no MOND: repo DC-018, the Galileon flux scaling gives r^{1-3/n}; MOND needs n = 3/2, non-integer
+  dRGT massive gravity / Hassan-Rosen bigravity                    no    no     no  none                                      5 or 7                        
+        no MOND (DC-018) and two metrics
+  Modified inertia (this repo's MI arm)                           yes   yes     no  YES: the passive frame u in K(Box_u)      n/a                           
+        lensing-dead at ~21-27 sigma; the frame is explicit in the kernel
+  Nonlocal metric MOND (Deffayet-Esposito-Farese-Woodard 2011)    yes   yes      ?  NONE (Lorentz invariant)                  CONTESTED: 2 nonlocal / >=4 localised
+        THE ONLY ROW THAT CHALLENGES THE CONJECTURE -- see STEP N
+  The lead's IC5-IC7 construction (L4)                            yes   yes     no  YES: khronon inside the metric sector     3                             
+        L4 verified: 2 tensors + 1 gravitational scalar
+  The lead's IC8-IC10 construction (L8)                           yes   yes     no  YES: the clock field T                    N_grav = 2 + N_clock = 1      
+        metric sector exactly Einstein; the preferred time survives as a separate healthy clock
+  A1 constraint-first, q = -1/6 ln det gamma (L12)                yes   yes    yes  YES: the slicing IS the entire content    2                             
+        L12: the elliptic lapse equation determines N; PG slice gives y = 0 for the same spacetime
+  [PASS] K1  the counting rule reproduces the published mode counts of the frame theories   (Einstein-aether 5, khronometric 3, GR 2, GR+scalar 3)
+  [PASS] K2  NO KNOWN THEORY satisfies (i) + (ii) + (iii) with no preferred frame   (the one challenger, DEFW, has a contested (iii))
+  [PASS] K3  every known frame-free MOND theory pays in MODES (RAQUAL 3, PCG >=3, DEFW >=4 localised)   (and every known 2-mode MOND theory pays in a FOLIATION (A1, khronometric))
+  [PASS] K4  the trade is visible in the table as an exclusive OR: Lorentz invariance XOR two modes   (no row has both; that pattern is the conjecture's empirical content)
+
+======================================================================================================================
+STEP N -- THE ESCAPE: nonlocality, and one candidate obstruction of my own that FAILS
+======================================================================================================================
+
+Why the escape exists at all.  Lemma 1 is exactly a statement about LOCAL functionals.  Box^{-1} reaches
+out to the SOURCE, which is precisely what a potential requires -- so a nonlocal scalar is NOT
+uniform-field blind, because the 'uniform' field of a real system always has distant matter behind it.
+
+  [PASS] N1  in the static weak field Box -> Laplacian and Box^{-1}R = -2 Phi/c^2   (R = -2 nabla^2 Phi/c^2 + O(Phi^2) for the static isotropic gauge)
+
+  A source of mass M at distance D, in the limit D -> infinity at fixed g_ext = GM/D^2:
+             D        M/Msun    g_ext (m/s^2)   local |d^2Phi| (s^-2)   |grad Box^-1 R| ~ 2 g_ext
+         8.2 kpc     9.996e+10        2.073e-10               1.638e-30                   4.145e-10
+        82.0 kpc     9.996e+12        2.073e-10               1.638e-31                   4.145e-10
+       820.0 kpc     9.996e+14        2.073e-10               1.638e-32                   4.145e-10
+      8200.0 kpc     9.996e+16        2.073e-10               1.638e-33                   4.145e-10
+  [PASS] N2  the nonlocal gradient stays finite where every local invariant -> 0 in the uniform-field limit   (curvature falls by 1000x over the same range while |grad Box^-1 R| is constant -- Lemma 1 does not apply to a nonlocal construction)
+
+  MY CANDIDATE OBSTRUCTION, tested and REPORTED AS FAILING.  The covariant scalar available to a
+  Lorentz-invariant construction is X = g^{mn} d_m Psi d_n Psi = |grad Psi|^2 - (dPsi/dt)^2/c^2, which is
+  sign-indefinite; MOND's y = sqrt(X)/a0 needs X > 0.  If the sign flipped inside real systems the
+  escape would close.  It does not.
+
+    system                              size    |grad Phi| (m/s^2)   (dPhi/dt)/c (m/s^2)    X sign
+    Solar System (Saturn)       4.606e-08 kpc            6.5705e-05            6.8036e-19       +  
+    Milky Way at R_sun          8.200e+00 kpc            2.0725e-10            3.8208e-16       +  
+    galaxy outskirts            1.000e+02 kpc            4.6810e-11            1.0524e-15       +  
+    cluster, 1 Mpc              1.000e+03 kpc            2.8086e-10            6.3143e-14       +  
+    100 Mpc supercluster        1.000e+05 kpc            4.6810e-12            1.0524e-13       +  
+    Hubble radius               4.448e+06 kpc            9.3619e-14            9.3619e-14       -  
+  [PASS] N3  MY sign obstruction FAILS: X > 0 for every sub-horizon system, so it does not close the escape   (the flip is at r ~ c/H0 = 4448 Mpc; the objection is withdrawn, not banked)
+
+  The DOF question, which is the whole escape.  Localise S = (1/16 pi G) int sqrt(-g) R [1 + f(Box^{-1}R)]
+  with xi = Box^{-1}R enforced by a multiplier psi: the term psi (Box xi - R) contributes the kinetic
+  cross-form -d_m psi d^m xi, whose kinetic matrix in (xi, psi) is off-diagonal.
+
+    kinetic matrix [[0, 1/2],[1/2, 0]] eigenvalues = [-0.5, 0.5]
+  [PASS] N4  the localised nonlocal theory has an off-diagonal kinetic pair with eigenvalues +-1/2   (one healthy mode + one GHOST; independently reproduces the repo's C2 number)
+  [PASS] N4b under the LOCALISED reading N_grav = 2 + 2 = 4 -> DEFW is NOT a counterexample   ((16 - 8)/2 = 4)
+  [PASS] N4c under the NONLOCAL reading (retarded Green function, data fixed by matter history) N_grav = 2 -> DEFW IS a counterexample   (the auxiliary carries no free initial data, so it is not a mode)
+  [PASS] N5  the two readings disagree, and this lane does NOT settle which is right   (the retarded prescription's status is contested in the literature; the repo's own C2 marks it 'a known, contested cost')
+
+======================================================================================================================
+VERDICT
+======================================================================================================================
+
+  THEOREM (proved here).  Let a theory satisfy
+      (i)   MOND phenomenology in the static weak field,
+      (ii)  a single physical metric to which matter couples minimally,
+      (iii) exactly two propagating gravitational degrees of freedom, and
+      (iv)  LOCALITY: the field equations are differential equations of finite order.
+  Then the theory contains a distinguished timelike direction u -- a preferred FRAME.
+      E: Lemma 1 forces an extra structure sigma (a local metric functional cannot carry y).
+      T: sigma's principal symbol is hyperbolic (=> N >= 3, contra (iii)), absent (=> local, contra E;
+         or matter-built, contra vacuum), or degenerate.
+      Q: degenerate => a distinguished u exists, and the form is h = g + u (x) u.
+
+  COROLLARY (proved here under one further named assumption).  Add
+      (v)   the MOND equation is posed as an elliptic boundary-value problem on 3-surfaces
+            (which is how Milgrom's equation is posed: div[mu grad Phi] = 4 pi G rho with Phi -> 0).
+  Then u^perp must be integrable, so by Frobenius u is hypersurface-orthogonal and the theory has a
+  preferred FOLIATION.  Requirement (iii) then forbids u from propagating, so the foliation is
+  non-dynamical and the MOND field responds instantaneously on its leaves.
+
+  WHAT IS NOT PROVED.  Hypothesis (iv) is doing real work and cannot be dropped.  The nonlocal
+  Deffayet-Esposito-Farese-Woodard class is single-metric, minimally coupled, Lorentz-invariant, and
+  reproduces MOND with sufficient lensing.  It is a counterexample if and only if the retarded
+  prescription genuinely removes the localised auxiliary pair.  That question is open and contested,
+  and this lane does not settle it.  My own attempt to close it independently -- the sign-indefiniteness
+  of g^{mn} d_m Psi d_n Psi -- FAILED (N3) and is withdrawn.
+
+  [PASS] V1  the conjecture AS STATED (no locality hypothesis) is NOT proved by this lane   (reported as (b)/(c), never as (a))
+  [PASS] V2  the conjecture UNDER LOCALITY is proved, with hypotheses (i)-(iv) and corollary (v)   (STEP E + STEP Q + STEP T, each with its own controls)
+  [PASS] V3  no counterexample was found among the known theories   (the single challenger (DEFW) fails (iii) under the localised reading and satisfies it under the nonlocal reading)
+  [PASS] V4  the theorem's conclusion holds on EVERY row of the known-theory table   (17 theories checked, including this programme's own three constructions)
+  [PASS] V5  the result is stated as (b) PROOF UNDER A NAMED ADDITIONAL ASSUMPTION, not (a) PROOF   (the named assumption is LOCALITY; the corollary adds the elliptic-BVP assumption)
+
+  WHY THIS EXPLAINS THE PROGRAMME'S HISTORY, in one statement.
+  MOND makes the acceleration a locally measurable quantity.  The equivalence principle says
+  acceleration is NOT locally measurable.  The only way to make it measurable is to declare a rest
+  frame -- and once two gravitational modes are demanded, that frame cannot itself propagate, so it
+  degenerates to a non-dynamical foliation with an instantaneous constraint.  That is DC-019's
+  alpha_3 = O(1) horn reached from the kinematics instead of from PPN, and it is why L4/L8's clock,
+  L12's det gamma, and the khronometric route are the same object wearing three different hats.
+
+  [PASS] V6  the instantaneous-constraint conclusion carries the repository's own observational price   (alpha_3 = O(1) against the pulsar bound |alpha_3| < 4e-20: 2.5e+19x over (DC-019, not re-derived here))
+
+======================================================================================================================
+SUMMARY
+======================================================================================================================
+  checks run: 53, 53 PASS / 0 FAIL
+
+  STATUS: all checks passed.
+
+  Conjecture status:   PROVED UNDER LOCALITY (hypotheses (i)-(iv)); FOLIATION under (v) as well.
+                       OPEN as stated, with exactly one escape: temporal nonlocality (DEFW).
+  Counterexample:      NONE found; the one challenger turns on a contested degree-of-freedom count.
+  a0 footings:         every dimensional number above is quoted on both; no verdict depends on the choice.
+
