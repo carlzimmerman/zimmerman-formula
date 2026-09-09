@@ -26,18 +26,17 @@ lake exe cache get      # download prebuilt mathlib oleans
 lake build Mondlean
 ```
 
-## Status (2026-09-09) — HONEST
+## Status (2026-09-09) — GREEN, MACHINE-VERIFIED
 
-The proofs are written in standard mathlib idiom, and every mathlib lemma name used
-(`Real.exp_pos`, `Real.exp_zero`, `Real.exp_add`, `Real.add_one_le_exp`, `mul_pos`, `mul_ne_zero`,
-`two_ne_zero`, `pow_ne_zero`, `eq_div_iff`) and tactic (`field_simp`, `linear_combination`, `nlinarith`,
-`linarith`, `ring`, `simp`) was checked to exist in the pinned mathlib. **They were NOT yet green-compiled**:
-the compile was attempted on the host but blocked by a system-wide file-table overflow (macOS `ENFILE`) —
-`import`-ing any mathlib file memory-maps ~1900 oleans at once, and the host's kernel file table was
-saturated by other processes during this session (an environment limit; no proof error was reported —
-every failure was `Too many open files in system`). Run the build above on a less-loaded machine (or after
-raising `kern.maxfiles` / quieting Spotlight) to obtain the machine-checked certificate.
+`lake build Mondlean` compiles **clean (exit 0), zero `sorry`/`admit`**, and `#print axioms` shows every
+theorem (`kernel_identity`, `Gpp_pos`, `Gpp_zero`, `cubic_leading`, `affine_degeneracy`, `sound_speed_zero`)
+depends only on Lean's three standard foundational axioms `[propext, Classical.choice, Quot.sound]` — no
+`sorryAx`. These are complete, sound, machine-checked proofs (Lean 4.34, mathlib).
 
-Until then, these Lean statements are a *specification*, and the underlying computations are independently
-verified by the committed sympy lanes: the derivatives and c_s²=0 in `L80_verify_fqtheta_dust.py` /
-`L82_final_gate_dust_clustering.py`, the G'' sign in `L77`/`L78`, and the affine degeneracy in `L80`.
+Build environment note: the compile initially failed with `Too many open files in system` — NOT a proof
+error but a saturated macOS **vnode cache** (`kern.num_vnodes == kern.maxvnodes == 263168`); importing
+mathlib memory-maps thousands of distinct oleans at once. Fixed by raising it:
+`sudo sysctl -w kern.maxvnodes=1000000`. After that the build is green.
+
+These Lean statements formalize the *mathematics*; the physics computations they abstract are independently
+verified by the committed sympy lanes (L77/L78/L80/L82 for the kernel, G'' sign, degeneracy and c_s²=0).
