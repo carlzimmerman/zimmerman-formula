@@ -1,0 +1,151 @@
+{
+  "result": {
+    "S": "S",
+    "w": "w",
+    "beta": "beta",
+    "speed": "Rdot",
+    "reaction": "lambda",
+    "Fz": "12*z**2*E4(S) + 2*D(S)",
+    "q_boundary": "q_boundary",
+    "qprime_on": "qprime_on",
+    "activation_gradient_off": "(2*Rdot*qprime_on + 2*beta*qprime_on - lambda)/(2*q_boundary*(Rdot + beta))",
+    "equation_order": [
+      "lapse",
+      "inactive_clock",
+      "spatial_metric",
+      "momentum",
+      "radial_q",
+      "radial_shear"
+    ],
+    "unknown_order": [
+      "dS_rr",
+      "dw_rr",
+      "dQ_rr",
+      "dq_r",
+      "dshear_r",
+      "dbeta_rr"
+    ],
+    "matrix": [
+      [
+        "2*m*(2*S*w + 3*w**2)*exp(-2*Q + S + 2*w)/(S**2 + 2*S*w + w**2)",
+        "2*m*(-S**2 + 2*w**2)*exp(-2*Q + S + 2*w)/(S**2 + 2*S*w + w**2)",
+        "2*m*(-S**2 - 2*S*w - w**2)*exp(-2*Q + S + 2*w)/(S**2 + 2*S*w + w**2)",
+        "0",
+        "0",
+        "0"
+      ],
+      [
+        "2*m*(-S**2 + 2*w**2)*exp(-2*Q + S + 2*w)/(S**2 + 2*S*w + w**2)",
+        "2*m*(-3*S**2 - 4*S*w)*exp(-2*Q + S + 2*w)/(S**2 + 2*S*w + w**2)",
+        "2*m*(-2*S**2 - 4*S*w - 2*w**2)*exp(-2*Q + S + 2*w)/(S**2 + 2*S*w + w**2)",
+        "0",
+        "0",
+        "0"
+      ],
+      [
+        "-2*m*exp(-2*Q)*exp(S + 2*w)",
+        "-4*m*exp(-2*Q)*exp(S + 2*w)",
+        "-2*m*exp(-2*Q)*exp(S + 2*w)",
+        "2*(Rdot*exp(2*Q) + beta*exp(2*Q))*exp(-2*Q)",
+        "0",
+        "0"
+      ],
+      [
+        "0",
+        "0",
+        "0",
+        "2/3",
+        "4/3",
+        "0"
+      ],
+      [
+        "0",
+        "0",
+        "-(6*Rdot + 6*beta)*exp(-3*Q - S - 2*w)*exp(3*Q + S + 2*w)/3",
+        "(-3*m*A(S)**2*exp(3*Q + S + 2*w) + 4*(6*z**2*E4(S) + D(S))*exp(3*Q + 2*S))*exp(-3*Q - S - 2*w)/(6*m*(6*z**2*E4(S) + D(S)))",
+        "0",
+        "-2*exp(-3*Q - S - 2*w)*exp(3*Q + S + 2*w)/3"
+      ],
+      [
+        "0",
+        "0",
+        "0",
+        "0",
+        "-8*exp(S - 2*w)/(3*m)",
+        "-4/3"
+      ]
+    ],
+    "rhs": [
+      [
+        "0"
+      ],
+      [
+        "lambda"
+      ],
+      [
+        "0"
+      ],
+      [
+        "0"
+      ],
+      [
+        "0"
+      ],
+      [
+        "0"
+      ]
+    ],
+    "determinant": "-256*m**2*(Rdot + beta)**2*(S + 2*w)**2*exp(-4*Q)*exp(2*S)*exp(4*w)/(9*(S + w)**2)",
+    "generic_rank": 6,
+    "jumps": {
+      "S_rr": "lambda*(-24*Rdot**2*S**2*z**2*E4(S)*exp(2*Q) - 4*Rdot**2*S**2*D(S)*exp(2*Q) + 48*Rdot**2*w**2*z**2*E4(S)*exp(2*Q) + 8*Rdot**2*w**2*D(S)*exp(2*Q) - 48*Rdot*S**2*beta*z**2*E4(S)*exp(2*Q) - 8*Rdot*S**2*beta*D(S)*exp(2*Q) + 96*Rdot*beta*w**2*z**2*E4(S)*exp(2*Q) + 16*Rdot*beta*w**2*D(S)*exp(2*Q) - 24*S**2*beta**2*z**2*E4(S)*exp(2*Q) - 4*S**2*beta**2*D(S)*exp(2*Q) + S**2*m*A(S)**2*exp(S)*exp(2*w) + 4*S*m*w*A(S)**2*exp(S)*exp(2*w) + 48*beta**2*w**2*z**2*E4(S)*exp(2*Q) + 8*beta**2*w**2*D(S)*exp(2*Q) + 4*m*w**2*A(S)**2*exp(S)*exp(2*w))*exp(-S)*exp(-2*w)/(8*m*(Rdot + beta)**2*(S + 2*w)**2*(6*z**2*E4(S) + D(S)))",
+      "w_rr": "-lambda*(48*Rdot**2*S*w*z**2*E4(S)*exp(2*Q) + 8*Rdot**2*S*w*D(S)*exp(2*Q) + 72*Rdot**2*w**2*z**2*E4(S)*exp(2*Q) + 12*Rdot**2*w**2*D(S)*exp(2*Q) + 96*Rdot*S*beta*w*z**2*E4(S)*exp(2*Q) + 16*Rdot*S*beta*w*D(S)*exp(2*Q) + 144*Rdot*beta*w**2*z**2*E4(S)*exp(2*Q) + 24*Rdot*beta*w**2*D(S)*exp(2*Q) + S**2*m*A(S)**2*exp(S)*exp(2*w) + 48*S*beta**2*w*z**2*E4(S)*exp(2*Q) + 8*S*beta**2*w*D(S)*exp(2*Q) + 4*S*m*w*A(S)**2*exp(S)*exp(2*w) + 72*beta**2*w**2*z**2*E4(S)*exp(2*Q) + 12*beta**2*w**2*D(S)*exp(2*Q) + 4*m*w**2*A(S)**2*exp(S)*exp(2*w))*exp(-S)*exp(-2*w)/(8*m*(Rdot + beta)**2*(S + 2*w)**2*(6*z**2*E4(S) + D(S)))",
+      "Q_rr": "lambda*A(S)**2/(8*(Rdot + beta)**2*(6*z**2*E4(S) + D(S)))",
+      "q_r": "-lambda/(2*(Rdot + beta))",
+      "shear_r": "lambda/(4*(Rdot + beta))",
+      "beta_rr": "-lambda*exp(S)*exp(-2*w)/(2*m*(Rdot + beta))"
+    },
+    "residual": [
+      [
+        "0"
+      ],
+      [
+        "0"
+      ],
+      [
+        "0"
+      ],
+      [
+        "0"
+      ],
+      [
+        "0"
+      ],
+      [
+        "0"
+      ]
+    ],
+    "zero_reaction_jumps": [
+      [
+        "0"
+      ],
+      [
+        "0"
+      ],
+      [
+        "0"
+      ],
+      [
+        "0"
+      ],
+      [
+        "0"
+      ],
+      [
+        "0"
+      ]
+    ],
+    "scope": "Exact finite radial transmission jets for Fz !=0, S+w !=0, u !=0, r*m !=0 and Rdot+beta !=0; no evolved free-boundary solution"
+  },
+  "full_theory": "OPEN"
+}
