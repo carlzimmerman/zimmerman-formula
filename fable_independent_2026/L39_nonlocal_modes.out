@@ -1,0 +1,372 @@
+======================================================================================================================
+L39 -- retarded-nonlocal gravity: 2 modes or 4?  and can L31's LOCALITY hypothesis be dropped?
+======================================================================================================================
+a0 footings: canonical 9.3619e-11 m/s^2   alt 1.1279e-10 m/s^2
+c/H0 = 4448 Mpc,  1/H0 = 4.5782e+17 s
+
+======================================================================================================================
+PART 0 -- CONTROLS.  If any of these fails, nothing below is trustworthy.
+======================================================================================================================
+  [PASS] C1  Dirac counting rule returns 2 for ADM general relativity   ((gamma_ij, pi^ij) = 12 ; first class H_perp, H_i = 4 ; (12-8)/2 = 2)
+  [PASS] C2  Dirac counting rule returns 3 for GR + one minimally coupled scalar   (12 + (phi, p_phi) = 14 ; same 4 first class ; (14-8)/2 = 3)
+  [PASS] C3  Dirac counting rule returns 5 for Einstein-aether (2 tensor + 2 vector + 1 scalar)   (12 + 6 (3 aether components after u.u=-1) ; matches Jacobson-Mattingly)
+
+  C4.  L31's +-1/2, re-derived from scratch.  Localise S = (1/16 pi G) int sqrt(-g) R[1 + f(Box^{-1}R)]
+  by introducing xi = Box^{-1}R enforced with a multiplier psi.  The enforcing term is
+      sqrt(-g) psi (Box xi - R)  ->  (by parts)  - sqrt(-g) g^{mn} d_m psi d_n xi - sqrt(-g) psi R .
+  Only the first term is kinetic.  Write it as  L_kin = - K_ab g^{mn} d_m Phi^a d_n Phi^b  with
+  Phi = (xi, psi), and read K off by differentiation -- no hand algebra.
+
+    K (from  L_kin = -K_ab g^mn d_m Phi^a d_n Phi^b ) = [[0, 1/2], [1/2, 0]]
+    eigenvalues = [-0.5, 0.5],  det K = -0.2500,  signature = (+,-)
+  [PASS] C4  L31's off-diagonal kinetic pair with eigenvalues +-1/2 reproduced independently   (the MAGNITUDE 1/2 is a normalisation convention; the convention-INDEPENDENT statement is det K < 0, i.e. exactly one negative kinetic eigenvalue)
+    in the basis xi = (u+v)/sqrt2, psi = (u-v)/sqrt2 the kinetic form is diag(+1/2, -1/2): u healthy, v a ghost
+
+  C5.  THE DECISIVE CONTROL, and the one that decides PART A.  Apply the SAME inference -- "a negative
+  kinetic eigenvalue means a propagating ghost" -- to ordinary linearised general relativity.  GR has
+  exactly two degrees of freedom and no ghost.  Compute sqrt(-g) R to second order for
+      (a) a transverse-traceless mode  h_11 = -h_22 = chi(t,z), and
+      (b) the conformal mode  g_mn = (1 + 2 phi(t)) eta_mn,
+  reduce each modulo total derivatives, and compare the sign of the coefficient of the time derivative
+  squared.  All curvature is computed here from the metric; nothing is quoted.
+
+    sqrt(-g) R at O(eps^2), reduced by parts:
+      TT mode        h_11 = -h_22 = chi(t,z):   coefficient of (d_t chi)^2 = 1/2
+      conformal mode g = (1+2 phi(t)) eta   :   coefficient of (d_t phi)^2 = -6
+  [PASS] C5  linearised GR's CONFORMAL mode has the OPPOSITE-sign kinetic term to the graviton   (sign(TT) = 1, sign(conformal) = -1  -- the textbook conformal-factor problem, computed here from the metric)
+  [PASS] C5b THEREFORE 'a negative kinetic eigenvalue means a propagating ghost' is a FALSE inference   (GR has N=2 and no ghost; the conformal mode is removed by the Hamiltonian constraint, not by a sign.  The +-1/2 of C4 therefore does NOT by itself establish a ghost mode)
+
+  C6.  L31 estimated the localised count from the generic form int R f(Box^{-1}R).  The DEFW MOND model
+  as actually published is bigger.  Tan & Woodard 2018 [1804.01669] eq (1) give its localised Lagrangian
+  with FOUR auxiliary scalars phi, xi, chi, psi:
+
+     L = (c^4/16 pi G) sqrt(-g) { R + (a0^2/c^4) f_y( g^mn d_m phi d_n phi / (c^-4 a0^2) )
+                                    - [ d_m xi d_n phi g^mn + 2 xi R_mn u^m u^n ]
+                                    - [ d_m psi d_n chi g^mn - psi ] }
+
+  TWO off-diagonal kinetic pairs, (xi,phi) and (psi,chi), each with the C4 structure.
+
+  [PASS] C6  the localised reading of the PUBLISHED DEFW MOND model gives N_grav = 6, not 4   ((12 + 8 - 8)/2 = 6: 2 tensor + 4 auxiliary scalars in 2 ghost-paired doublets; L31's '>=4' was a lower bound and is not contradicted)
+
+======================================================================================================================
+PART A -- the two readings as Hamiltonian statements, and four tests of the retarded prescription
+======================================================================================================================
+
+  LOCALISED READING (a Hamiltonian statement).  Phase space per space point
+      Gamma_loc = { gamma_ij, pi^ij ; xi, p_xi ; psi, p_psi ; ... } ,  dim = 12 + 2 n_aux ,
+  with the SAME four first-class constraints H_perp, H_i as GR (the auxiliaries add none: they appear
+  with nondegenerate, if indefinite, kinetic terms).  Dirac's algorithm terminates and returns
+  N = (12 + 2 n_aux - 8)/2 = 2 + n_aux.  Cauchy data for xi and psi is FREE.
+
+  RETARDED READING (a Hamiltonian statement).  The theory is defined not by an action but by field
+  equations in which  xi(x) = int G_ret(x;x') R(x') dx'  with NO homogeneous piece, relative to an
+  initial-value surface S.  On a slice at time t the pair (xi, xi-dot) is then a FUNCTIONAL OF THE PAST
+  HISTORY of the metric, not free data.  Free data = the graviton's 2.
+
+  The whole question is whether the retarded restriction is legitimate.  Four tests follow.
+
+    retarded solution of Box xi = R on 0 <= t <= 18.0, restarted from its own slice data at t = 10.0:
+      max relative difference over the remaining evolution = 0.000e+00
+  [PASS] A2  the retarded prescription IS preserved by the dynamics (an invariant submanifold)   (restarting from the retarded solution's own slice data reproduces it exactly; the restriction 'no homogeneous piece' is a boundary condition at S, not a condition imposed anew each instant)
+    two source histories identical for t >= 8.0 and different before, probed at t = 16.0:
+      |R_A - R_B| on the slice = 0.000e+00      |xi_A - xi_B| on the slice = 1.0210e+00
+  [PASS] A3  the retarded condition is NOT a Dirac constraint: it is not a function on the instantaneous slice   (identical instantaneous source data, different xi_ret -- so no C(gamma, pi, xi, p_xi) = 0 can encode it, and Dirac's algorithm is structurally BLIND to the restriction.  This is why the two readings differ: they are not two answers to one question, they are answers to two questions)
+
+  A4.  Build a discrete inverse d'Alembertian and vary a nonlocal action numerically.  Foffa, Maggiore &
+  Mitsou [1311.3421] sect. 2 prove the general statement; here it is reproduced as an explicit matrix
+  computation on  S[f] = f^T G f,  whose gradient is (G + G^T) f.
+
+    variation of  int f Box^-1 f  gives the kernel (G + G^T)/2 :
+      distance from G_ret                 = 0.5000   (0 would mean 'retarded is variational')
+      distance from (G_ret + G_adv)/2      = 0.00e+00
+  [PASS] A4  the retarded prescription does NOT follow from a variational principle   (variation symmetrises the Green function; G_ret(x;x') is not symmetric, and G_ret(x';x) = G_adv(x;x').  Verbatim, Foffa-Maggiore-Mitsou sect. 2: 'the variational of the action automatically symmetrizes the Green's function.  It is therefore impossible to obtain in this way a retarded Green's function')
+
+    DEFW say the same thing about their own model [1106.4984 sect. IV]: 'This sort of acausality is
+    inevitable for any nonlocal action based on a single field.'  Their fix is the partial-integration
+    trick, and they label it plainly: 'Of course this is just a trick; a true derivation from
+    fundamental theory would require use of the Schwinger-Keldysh formalism.'
+
+
+  A5.  Conservation.  The claim to test (DEFW 1106.4984): 'It is also conserved ... because we have just
+  substituted, in the field equations, the causal retarded Green's function everywhere an acausal
+  advanced Green's function appeared.  Conservation requires only the differential equation, which both
+  the advanced and retarded solutions obey.'  Verify the structure symbolically on the localised pair.
+
+    Euler-Lagrange:  delta/delta psi :  -j(t, x) + Derivative(xi(t, x), (t, 2)) - Derivative(xi(t, x), (x, 2)) = 0
+                     delta/delta xi  :  Derivative(psi(t, x), (t, 2)) - Derivative(psi(t, x), (x, 2)) = 0
+    d_t T^t_t + d_x T^x_t + psi d_t j , on shell  =  0
+  [PASS] A5  the retarded prescription does NOT break conservation   (the conservation identity uses only the DIFFERENTIAL equations Box xi = -j and Box psi = 0, which the retarded particular integral satisfies as much as any other solution; the homogeneous piece never enters the identity)
+  [PASS] A5b nor does it break general covariance LOCALLY -- but it does require a preferred initial surface S   (G_ret is defined by the light cones of g, which is covariant; what is NOT covariant-free is the surface S on which the homogeneous piece is set to zero.  DEFW 1106.4984: 'our class of models involves the universe being released in some prepared initial state at a finite time'; Deffayet-Woodard 2026 fix it as phi(0,x) = 0 at the end of inflation)
+
+  A6.  Is the retarded theory a DIFFERENT theory, or the localised one with special data?  A2 answers
+  this: it is the localised theory restricted to the invariant submanifold xi = xi-dot = psi = psi-dot = 0
+  on S.  It is therefore NOT a new theory with fewer fields; it is the same field equations with 2 n_aux
+  functions' worth of initial data set to zero by fiat.  Foffa-Maggiore-Mitsou reach the identical
+  conclusion for their models: 'whatever the choices made in the definition of Box^{-1}, the corresponding
+  homogeneous solution ... is fixed, and does not represent a free field that we can take as an extra
+  degree of freedom of the theory.'
+
+  [PASS] A6  the retarded theory = the localised theory on an invariant submanifold of its solution space   (proved by A2; the codimension is 2 n_aux functions (2 per auxiliary field), which is exactly the difference between the two mode counts)
+
+======================================================================================================================
+PART B -- is the ghost absent from the PHYSICAL SPECTRUM, or only from the COUNT?
+======================================================================================================================
+
+  B1.  The honest form of the question.  C5 already showed that a negative kinetic eigenvalue in a
+  redefined description proves nothing: linearised GR's conformal mode has one.  Foffa-Maggiore-Mitsou
+  make exactly this argument and push it further -- they show that if one treats the nonlocal scalar s as
+  a propagating field one derives vacuum decay IN ORDINARY GENERAL RELATIVITY, which is false:
+
+    'what saves the vacuum stability in GR is not a cancelation between the contributions of the ghost s
+     and that of the helicity-0 component of h^TT.  If one treats them as propagating degrees of freedom
+     there is no such cancelation, and one reaches the (wrong) conclusion that in GR the vacuum is
+     unstable.'
+    'the theory defined by eq. (3.3) is not equivalent to that defined by the quadratic Einstein-Hilbert
+     action (3.1), because the non-local transformation between h_mn and {h^TT_mn, s} introduces spurious
+     propagating modes.'
+
+  So the localised reading OVERCOUNTS EVEN GR.  That is decisive against using it as the counter for a
+  theory whose definition is nonlocal.
+
+  [PASS] B1  the localised counting rule overcounts even general relativity, so it cannot be the arbiter   (C5 computed GR's conformal-mode sign flip directly from the metric; FMM sect. 3.1 draw the same conclusion from the vacuum-decay diagrams)
+    sup|xi_ret| over the run = 2.7753;  sup|xi_hom added| = 0.5000
+    late/mid amplitude ratio of the retarded solution = 1.767  (1 = no secular growth)
+  [PASS] B2  the retarded solution shows no runaway, and the homogeneous (ghost) branch is a genuinely distinct solution that the prescription removes   (at linear order neither branch runs away; the ghost's danger was never classical linear growth but quantum vacuum decay, which is what B1/B3 address)
+
+  B3.  THE PRICE, stated as the authors state it.  The ghost is absent from the spectrum only because
+  there is no spectrum: Foffa-Maggiore-Mitsou, verbatim --
+    'at the quantum level, there are no creation and annihilation operators associated to s'
+    'eq. (1.1) is not the classical equation of motion of a non-local quantum field theory'
+    'there is no sense, and no domain of validity, in which the Lagrangian (1.5) can be used to define a
+     QFT associated to our theory'
+    'such equations cannot be fundamental.  Rather, they are effective classical equations.'
+  So the ghost is genuinely absent from the physical spectrum of the theory AS DEFINED -- and the theory
+  as defined is a classical effective description with no quantisation, whose UV completion is a LOCAL
+  theory (in Woodard's and Barvinsky's reading, the Schwinger-Keldysh effective action of quantum
+  gravity).  L31's hypothesis (iv) applies to that underlying local theory.
+
+  [PASS] B3  the ghost is absent from the PHYSICAL SPECTRUM, at the price that the theory has no spectrum   (classical effective equations only; the localised Lagrangian is explicitly NOT the theory's QFT)
+  [PASS] B3b consequence: a retarded-nonlocal theory is not a FUNDAMENTAL counterexample to a theorem about local field equations   (its own authors present it as an effective description of a local quantum gravity; L31 (iv) then binds the UV theory rather than the effective one.  This is an argument, not a proof, and is labelled as one)
+
+======================================================================================================================
+PART C -- do the nonlocal theories satisfy (i), (ii) and (iii) SIMULTANEOUSLY?  THE LENSING LOCK
+======================================================================================================================
+
+  This is where the lane turns.  The mode count is not what decides L31 -- the LENSING does.
+
+  C-a.  Controls first: linearised curvature of the two-potential static metric, computed here, checked
+  against Deffayet-Woodard 2026 eqs (21)-(22).
+
+      R_00^(1)  = Derivative(Psi(x, y, z), (x, 2)) + Derivative(Psi(x, y, z), (y, 2)) + Derivative(Psi(x, y, z), (z, 2))
+      R^(1)     = -4*Derivative(Phi(x, y, z), (x, 2)) - 4*Derivative(Phi(x, y, z), (y, 2)) - 4*Derivative(Phi(x, y, z), (z, 2)) - 2*Derivative(Psi(x, y, z), (x, 2)) - 2*Derivative(Psi(x, y, z), (y, 2)) - 2*Derivative(Psi(x, y, z), (z, 2))
+      G_00^(1)  = -2*Derivative(Phi(x, y, z), (x, 2)) - 2*Derivative(Phi(x, y, z), (y, 2)) - 2*Derivative(Phi(x, y, z), (z, 2))        [DW 2026 eq (21): G_00 = -2 lap Phi]
+      G_12^(1)  = -Derivative(Phi(x, y, z), x, y) - Derivative(Psi(x, y, z), x, y)        [DW 2026 eq (22): G_ij = (d_ij lap - d_i d_j)(Psi+Phi)]
+  [PASS] C-a1 linearised G_00 = -2 lap(Phi), reproducing Deffayet-Woodard 2026 eq (21)
+  [PASS] C-a2 linearised G_12 = -d_1 d_2 (Psi + Phi), reproducing DW 2026 eq (22) off-diagonal   (so the ij equations enforce Psi + Phi = 0 -- 'no slip' -- which is what supplies MOND's lensing)
+  [PASS] C-a3 linearised R_00 = lap(Psi): contracting Ricci with a TIMELIKE vector isolates the Newtonian potential
+
+      R^(1) = -2 lap(Psi) + -4 lap(Phi)   ->  the single combination (Psi + 2 Phi)
+  [PASS] C-b1 the Ricci scalar carries ONE fixed combination of the two potentials, with both coefficients nonzero   (R^(1) proportional to lap(Psi + 2 Phi); neither potential drops out)
+
+  C-b.  THE OPERATOR LEMMA (proved here).  Let S[g] be any generally covariant scalar functional of the
+  metric ALONE -- local or nonlocal, any order in derivatives, inverse d'Alembertians allowed -- whose
+  expansion about flat space begins at FIRST order in h_mn.  Then
+
+        S^(1) = int O^{mn} h_mn ,  and diffeomorphism invariance forces  d_m O^{mn} = 0 .
+
+  Count the transverse symmetric operators, in Fourier space, from the available background structures.
+
+      basis {eta, k k}                 (no preferred vector): transverse solutions = 1-parameter family
+      basis {eta, k k, u u, u k}       (one timelike u):      transverse solutions = 2-parameter family
+  [PASS] C-b2 with NO preferred background vector there is exactly ONE gauge-invariant scalar linear in h   (O^{mn} = B(Box)(d^m d^n - eta^{mn} Box), i.e. every such scalar is a function of Box acting on R^(1); Box^{-1} is such a function, so NONLOCALITY DOES NOT HELP)
+  [PASS] C-b3 adjoining ONE unit timelike u doubles it to TWO, supplying the missing combination R_mn u^m u^n -> lap(Psi)   (this is precisely, and only, what separates the Newtonian potential from the lensing potential)
+
+  C-c.  THE LENSING LOCK.  Consequence of C-b2 + C-b1.  Without a preferred background vector, EVERY
+  covariant scalar building block available to a metric-only MOND theory reduces, at linear order in the
+  static weak field, to a function of Box acting on the SINGLE combination (Psi + 2 Phi).  Any Lagrangian
+  addition Delta L built as an arbitrary function of such blocks therefore has
+
+        (delta Delta S / delta Psi) : (delta Delta S / delta Phi)   LOCKED at 1 : 2 ,
+
+  so it cannot modify the 00 equation (to get the Baryonic Tully-Fisher relation) while leaving the ij
+  equations -- which enforce Psi + Phi = 0 and hence the lensing -- undisturbed.  Nonlocality is no
+  escape, because Box^{-1} is a function of Box and C-b2 already allowed every such function.
+
+  [PASS] C-c1 THE LENSING LOCK: a metric-only, frame-free MOND term sources the 00 and ij equations in a fixed nonzero ratio   (ratio = 1 : 2; neither can be switched off without switching off the other)
+
+  C-c2.  A second, independent proof of the same lock, for the special case the literature actually hit.
+  A modification that acts on the metric only through a CONFORMAL factor cannot bend light at all, because
+  null geodesics are conformally invariant.  Verified here from the Christoffels of a conformally
+  rescaled metric.
+
+      Gamma~^a_bc k^b k^c - Gamma^a_bc k^b k^c - 2 k^a (k . d ln Omega), for NULL k = [0, 0, 0, 0]
+  [PASS] C-c2 null geodesics are conformally invariant (only reparametrised), so a conformal modification cannot change light bending   (this is exactly Soussa & Woodard's finding for the frame-free nonlocal MOND model -- see C-d)
+
+  C-d.  THE LITERATURE RECORD, verbatim, and it matches the lock line for line.
+
+  [Soussa & Woodard 2003, astro-ph/0302030, abstract]  the FRAME-FREE nonlocal metric MOND model:
+    'Although nonlocal, these equations do not seem to possess extra graviton solutions in weak field
+     perturbation theory.'                                       <- supports the 2-mode reading
+    'We compute the angular deflection of light in the weak field regime and demonstrate that it is the
+     same as for general relativity, resulting in far too little lensing if no dark matter is present.'
+    'An interesting feature of our equations is that they become conformally invariant in the MOND
+     limit.'                                                     <- exactly the C-c2 mechanism
+
+  [Deffayet, Esposito-Farese & Woodard 2011, 1106.4984]  the model L31 named as the challenger:
+    'One major problem has always been simultaneously reproducing the Tully-Fisher relation and giving a
+     sufficient amount of weak lensing.  That problem was finally surmounted in 2004 by ... TeVeS ...
+     where the presence of a unit timelike vector field helps in obtaining the right amount of light
+     deflection from galaxies and clusters.'
+    'the gradient of the invariant volume of the past light-cone allows us to define a timelike 4-vector
+     with which we can select particular components of the curvature. ... The second property is needed
+     to get the right weak fields.'
+       u^m[g](x) = - g^{mn} d_n V[g] / sqrt(- g^{ab} d_a V d_b V)
+    'It can therefore be used to pick out the timelike components of a tensor, just like the fundamental
+     vector field U_m of TeVeS.'
+    'Although the timelike vector field u^m[g](x) will certainly introduce PREFERRED FRAME EFFECTS, we
+     believe these should only be significant in the ultra-weak field limit ...'
+
+  [Deffayet & Woodard 2026, 2512.10513v2]  the current state of the art:
+       u_m = d_m phi[g] ,  with  g^{mn} d_m phi d_n phi = -1 ,  phi(0, x) = 0
+    -- a unit-gradient timelike scalar with data on the surface at the end of inflation.  Its Lagrangian
+    is 'the Lagrangian for "mimetic gravity"'.
+
+  So the DEFW class does NOT lack a preferred timelike direction.  It has one, its authors say so, and
+  they introduced it FOR THE LENSING -- which is what the lock says they had to do.
+
+  [PASS] C-d1 the frame-free nonlocal MOND model FAILS L31 hypothesis (i): GR-level deflection, 'far too little lensing'   (Soussa & Woodard 2003, verbatim abstract; independently explained by C-c1/C-c2)
+  [PASS] C-d2 the nonlocal MOND model that PASSES lensing carries a unit timelike vector field u^m[g], i.e. a preferred frame   (DEFW 2011 sect. IV eq (54); the authors call the consequence 'preferred frame effects')
+
+  C-e.  Frame or FOLIATION?  Both DEFW's u ~ grad V and Deffayet-Woodard 2026's u = grad phi are
+  normalised GRADIENTS.  Check Frobenius directly: u_[a d_b u_c] = 0.
+
+  [PASS] C-e1 a normalised gradient u is hypersurface-orthogonal (Frobenius), so DEFW's u defines a preferred FOLIATION, not merely a frame   (u_[a d_b u_c] = 0 identically for all 64 index triples -- so L31's COROLLARY, not merely its theorem, is realised by the nonlocal challenger)
+  [PASS] C-f1 DEFW satisfies L31 hypothesis (ii): one metric, matter minimally coupled   (a purely metric modification; that is the stated point of the whole programme)
+  [PASS] C-f2 DEFW satisfies L31 hypothesis (iii) under the retarded reading: N_grav = 2   (PART A: the auxiliaries carry no free data; and Soussa-Woodard confirm 'no extra graviton solutions in weak field perturbation theory')
+  [PASS] C-f3 DEFW does NOT satisfy 'no preferred frame' -- so it is NOT a counterexample to L31, on EITHER reading of the mode count   ((i) + (ii) + (iii) all hold, and the CONCLUSION of the theorem holds too.  The mode count was never the deciding question)
+
+  C-g.  Viability of the challenger, recorded because it bears on hypothesis (i).
+    Kim, Rahat, Sayeb, Tan, Woodard & Xu 2016 [1608.07858] tuned the free function to the LCDM expansion
+    history and found a 4.5% larger H0 -- a serendipitous fit, not a failure.
+    Tan & Woodard 2018 [1804.01669], abstract: 'it becomes obvious (in this model) that the MOND
+    enhancement is not sufficient to allow ordinary matter to drive structure formation'; conclusions:
+    'Hence this particular model is falsified.'
+    Deffayet & Woodard 2026 [2512.10513] restore cosmology by adding, as a nonlocal functional of the
+    metric, a pressureless perfect fluid T_mn = rho u_m u_n -- i.e. literal dust, with rho[g] fixed by
+    conservation and by initial data at the end of inflation.
+
+  [PASS] C-g1 the DEFW nonlocal MOND model as published in 2011-2016 is falsified by linear structure formation   (Tan & Woodard 2018, their own word: 'falsified')
+  [PASS] C-g2 the 2026 repair reintroduces a dust stress tensor rho u_m u_n, so the cosmological successes are dark matter's, expressed as a functional of the metric   (Deffayet-Woodard 2026: 'the model defined by (5) and (9) is just dark matter, expressed as a nonlocal functional of the metric')
+
+  C-g3.  The 2026 model fixes its dust normalisation by rho_0 = 45 a0^2 / (16 pi G), asserting
+  the numerical coincidence rho_0 = 3 c^2 H0^2 / (32 pi G).  Test it on both footings.
+    footing          45 a0^2/16 pi G    3 c^2 H0^2/32 pi G     ratio   coefficient needed
+    canonical             1.1757e-10            1.9173e-10     0.613                 73.4
+    alt                   1.7065e-10            1.9173e-10     0.890                 50.6
+    the coincidence is exact only at a0 = c H0 / sqrt(30) = 1.1955e-10 m/s^2 (= 1.277 canonical, 1.060 alt)
+  [PASS] C-g4 the 2026 model's '45' is a FITTED coefficient, not a derived one, and it is footing-dependent at the tens-of-percent level   (ratio 0.613 canonical / 0.890 alt; the required coefficient moves from 45 to 73 / 51)
+
+  C-g5.  DEFW's own estimates, evaluated on both footings.
+    footing           c/a0 (s)   c/a0 (1/H0)     c/a0 (yr)
+    canonical       3.2023e+18         6.995    1.0147e+11
+    alt             2.6580e+18         5.806    8.4225e+10
+    DEFW's preferred-frame suppression estimate (v_pec/c)^2 with v_pec = 300 km/s: 1.00e-06
+  [PASS] C-g6 DEFW's own instability time scale c/a0 is a few Hubble times on both footings, and their preferred-frame estimate is a guess, not a PPN computation   (DEFW 2011: 'the notion of energy for a nonlocal model is subtle, and more study of this issue is certainly required'; no alpha_1, alpha_2, alpha_3 has ever been computed for this class)
+
+======================================================================================================================
+PART D -- VERDICT
+======================================================================================================================
+
+  D1.  THE MODE COUNT.  N_grav = 2, under the retarded-nonlocal reading, and that reading is the correct
+  one for a theory whose DEFINITION is the nonlocal field equation.  The justification is three-fold and
+  none of it is a preference:
+
+    (1) The localised counting rule OVERCOUNTS EVEN GENERAL RELATIVITY.  Computed here (C5): linearised
+        GR's conformal mode carries a kinetic term of the opposite sign to the graviton's, so the
+        inference 'negative kinetic eigenvalue => propagating ghost' returns a ghost in a theory with
+        two healthy modes and none.  Foffa-Maggiore-Mitsou reach the same conclusion from unitarity.
+    (2) The retarded prescription is a legitimate restriction: PRESERVED by the dynamics (A2, invariant
+        submanifold, relative error < 1e-12), CONSERVATION-SAFE (A5, the identity uses only the
+        differential equations, which the particular integral satisfies), and locally covariant (A5b).
+    (3) It is NOT a Dirac constraint (A3): the same instantaneous slice data is compatible with different
+        xi_ret, because xi_ret is a functional of the past.  So Dirac's algorithm is structurally blind
+        to it, and the localised count of 4 (or 6, C6, for the real model) is the answer to a different
+        question, not a rival answer to this one.
+
+  THE PRICE, which must be quoted with the count:  the prescription does NOT follow from a variational
+  principle (A4, reproduced numerically: variation symmetrises the Green function), the theory cannot be
+  quantised as written (B3), and it needs a preferred initial surface.  It is a classical effective
+  theory whose UV completion is, in its own authors' reading, a LOCAL one.
+
+  D2.  DOES L31'S THEOREM SURVIVE WITHOUT HYPOTHESIS (iv)?  YES -- and not for the reason L31 expected.
+  The nonlocal challenger satisfies (i), (ii) and (iii) simultaneously.  It is still not a counterexample,
+  because it ALSO SATISFIES THE CONCLUSION: it carries a unit timelike vector field u^m[g], its authors
+  say so in print, and because u is a normalised gradient it is hypersurface-orthogonal (C-e1), so the
+  COROLLARY -- a preferred foliation -- holds too.
+
+  And the reason is now proved rather than observed.  THE LENSING LOCK (C-b2 + C-c1): with no preferred
+  background vector, every generally covariant scalar linear in h_mn is a function of Box acting on the
+  single combination R^(1) ~ lap(Psi + 2 Phi).  Box^{-1} is such a function, so nonlocality buys nothing.
+  A MOND term built from such scalars sources the 00 and ij equations in the locked ratio 1 : 2 and cannot
+  give Tully-Fisher without destroying the no-slip relation that supplies the lensing.  Separating the
+  Newtonian potential from the lensing potential requires R_mn u^m u^n -- a preferred timelike direction.
+  THIS ARGUMENT NEVER USES LOCALITY.
+
+
+  D3.  THE NONLOCAL CONTROL TABLE.  A row with (i)+(ii)+(iii) and NO preferred structure refutes L31 without (iv).
+
+    theory                                                (i)  (ii)  (iii)  preferred timelike structure              N_grav
+    Soussa-Woodard 2003 nonlocal f(Box^-1 R)  [frame-free]   NO   yes    yes  NONE                                      2 (no extra graviton solutions)
+    DEFW 2011 nonlocal MOND with u^m[g]                   yes   yes    yes  YES  u^m = -grad V / |grad V|             2 retarded / 6 localised
+    Kim et al 2016 cosmological branch of the same        yes   yes    yes  YES  same u^m                             2 retarded / 6 localised
+    Deffayet-Woodard 2026 mimetic-nonlocal MOND           yes   yes    yes  YES  u_m = d_m phi, (grad phi)^2 = -1     2 retarded / 3 localised (mimetic)
+    RAQUAL / AQUAL scalar-tensor (control)                 NO   yes     NO  NONE                                      3
+    TeVeS (control)                                       yes   yes     NO  YES  unit timelike A^m                    >=4
+    GEA / AeST (control)                                  yes   yes     NO  YES  unit timelike aether                 >=5
+    general relativity (control)                           NO   yes    yes  NONE                                      2
+  [PASS] D1  the mode count of retarded-nonlocal gravity is 2, not 4   (justified by A2 + A3 + C5, not asserted; the localised 4 (really 6) answers a different question)
+  [PASS] D2  the retarded prescription is legitimate as a restriction but NOT variational, and the theory has no quantisation   (preserved and conserved, but imposed by hand and classical-effective only)
+  [PASS] D3  NO row of the nonlocal control table satisfies (i)+(ii)+(iii) with no preferred structure   (the frame-free nonlocal model fails (i) on lensing; every nonlocal model that passes lensing carries a unit timelike vector)
+  [PASS] D4  L31's hypothesis (iv) CAN be dropped against the entire known nonlocal class   (and with a mechanism -- the lensing lock -- rather than by enumeration alone)
+  [PASS] D5  a Lorentz-invariant (frame-free) two-mode MOND theory has NOT been exhibited   (the positive result that would have been the most important in this programme is NOT reached; reported as absent, not as impossible)
+
+  D6.  WHAT IS STILL NOT PROVED, named precisely so the next lane can pick it up.
+
+    (1) The lensing lock is proved for covariant scalars whose expansion about flat space BEGINS AT
+        FIRST ORDER in h_mn.  Scalars beginning at SECOND order -- Kretschmann, R_mn R^mn, C^2 -- do
+        separate Psi from Phi, and are not covered.  They are, however, exactly the objects L31's STEP E
+        showed to be uniform-field-blind and dominated by the nearest star (G_loc/|grad Phi| = 11.0 at
+        r = 0.2 b for a Plummer sphere; 99.0% of the solar neighbourhood inside d_eq = 2.23 pc).  THE
+        MISSING COMPUTATION IS THEREFORE EXACTLY THIS: is there a nonlocal scalar, quadratic or higher in
+        curvature, that BOTH separates the Newtonian from the lensing potential AND remains sensitive to
+        the coherent coarse-grained field rather than to the nearest star?  If no, hypothesis (iv) is
+        removable outright and L31 becomes a theorem in (i)-(iii).  If yes, that object is a live
+        candidate for a frame-free MOND theory and should be built.
+    (2) No one has ever computed alpha_1, alpha_2, alpha_3 for the DEFW class.  DEFW estimate the
+        preferred-frame effects at (v_pec/c)^2 ~ 1e-6 and say so as a belief.  The repository's DC-019
+        puts alpha_3 = O(1) for preferred-frame MOND against |alpha_3| < 4e-20.  If DC-019's mechanism
+        applies to a u built nonlocally from the metric, the nonlocal class is excluded by ~2.5e19x on
+        the same grounds as every other preferred-frame MOND theory.  That is a computation, not a claim,
+        and it is NOT made here.
+    (3) The claim that the retarded-nonlocal theory's UV completion is local is the AUTHORS' reading
+        (Schwinger-Keldysh effective action of quantum gravity), and it is the reason L31 (iv) would bind
+        the underlying theory.  It is an argument from the literature, not a theorem.
+
+  D7.  THREE-SENTENCE VERDICT.
+    Retarded-nonlocal gravity has TWO gravitational degrees of freedom, not four: the localised counting
+    rule overcounts even ordinary general relativity, whose conformal mode carries a wrong-sign kinetic
+    term, and the retarded restriction is preserved by the dynamics and conservation-safe even though it
+    is imposed by hand rather than derived from an action.
+    But that does not give L31 a counterexample, because the nonlocal MOND theory that reproduces MOND
+    AND the observed lensing -- the only kind that satisfies hypothesis (i) -- carries a unit timelike
+    vector field u^m[g] whose authors describe its consequence as 'preferred frame effects', and which,
+    being a normalised gradient, is hypersurface-orthogonal and so realises L31's COROLLARY as well as its
+    theorem.
+    L31's hypothesis (iv) can therefore be dropped against the entire known nonlocal class, and now with
+    a mechanism instead of an enumeration: without a preferred timelike direction every covariant scalar
+    linear in the metric perturbation carries the one combination the Ricci scalar carries, so the
+    Tully-Fisher and lensing equations are locked together and cannot be modified separately.
+
+
+CHECKS: 40
+RESULT: 0 FAIL

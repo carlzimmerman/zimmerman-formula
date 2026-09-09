@@ -1507,3 +1507,61 @@ closes: the uniqueness of σ*, currently believed on one symbolic solve, and the
 everything downstream rests on. **Do not attempt** the degree-of-freedom count: Mathlib has no Poisson
 brackets on a constrained phase space, no ADM formalism and no Dirac algorithm. A second computer
 algebra system is the right hardening there.
+
+## L39 — the nonlocal mode count: it IS 2, and the theorem survives anyway, with a mechanism
+
+`L39_nonlocal_modes.py` + `L39_NONLOCAL_MODES.md` (**40 checks, 40 PASS**). L31 named exactly one open
+computation that would turn its result into a theorem or refute it. This is that computation. **Two
+checks genuinely failed on earlier runs and were fixed, so the checks can fail.**
+
+**The mode count is 2, not 4.** Three reasons, none a preference.
+1. **The localised counting rule overcounts even general relativity.** Computed here from the metric:
+   at second order the transverse-traceless mode's kinetic coefficient is **+1/2** and the conformal
+   mode's is **−6**. GR has two modes and no ghost. **So "a negative kinetic eigenvalue means a
+   propagating ghost" is a FALSE inference** — and it is exactly the inference behind the localised
+   count. Foffa, Maggiore and Mitsou reach the same conclusion from unitarity.
+2. **The retarded restriction is legitimate.** It is preserved by the dynamics (restarting from its own
+   slice data reproduces the evolution to relative error 0.000e+00) and conservation-safe symbolically,
+   using only the differential equations, so the homogeneous piece never enters.
+3. **It is invisible to Dirac's algorithm.** Two source histories identical on the slice differ by 1.02
+   in the auxiliary. So the localised count — **really 6, not 4, for the actually published model,
+   which has four auxiliary scalars** — answers a different question.
+
+**Price, quoted with the count:** the prescription is **not variational** (variation symmetrises the
+Green function; the distance from the retarded one is 0.50 and from the time-symmetric average is
+0.00), there is **no quantisation**, and it needs a preferred initial surface. The ghost is genuinely
+absent from the physical spectrum **because there is no spectrum**.
+
+- **⚠️ AND YET L31'S THEOREM SURVIVES, because the counterexample satisfies its CONCLUSION.** The
+  nonlocal MOND theory carries a unit timelike vector built as a normalised gradient, and its own
+  authors write that it "will certainly introduce **preferred frame effects**". Being a normalised
+  gradient it is **hypersurface-orthogonal** — verified on all 64 index triples — so **L31's corollary
+  holds too, not just its theorem**. The 2026 version is explicitly mimetic, i.e. a khronon.
+- **⭐ THE NEW RESULT, AND IT IS THE IMPORTANT ONE — THE LENSING LOCK.** With no preferred background
+  vector there is **exactly one** transverse symmetric operator, so every covariant scalar linear in the
+  metric perturbation is a function of □ acting on the linearised Ricci scalar — **and □⁻¹ is included,
+  so nonlocality buys nothing.** Adjoining one unit timelike vector makes it **two**, supplying the
+  missing combination. Therefore **a frame-free, metric-only MOND term sources the 00 and ij equations
+  in a locked nonzero ratio and cannot produce Tully-Fisher while leaving the no-slip relation that
+  supplies the lensing alone.** **This argument never uses locality.**
+- **Independently corroborated, verbatim from the literature:** Soussa and Woodard's frame-free nonlocal
+  MOND found GR-level deflection, "far too little lensing", and "conformally invariant in the MOND
+  limit". A second and independent proof is verified here: **null geodesics are conformally invariant**,
+  so a conformal modification cannot change light bending at all.
+- **⭐ SO L31'S HYPOTHESIS (iv) CAN BE DROPPED against the entire known nonlocal class — and now with a
+  MECHANISM rather than an enumeration.** Without a preferred timelike direction, every covariant scalar
+  linear in the perturbation carries the one combination the Ricci scalar carries, so the Tully-Fisher
+  and lensing equations are **locked together and cannot be modified separately**.
+- **Two corrections L31 must absorb.** Its ±½ kinetic eigenvalues are **arithmetically right but
+  inferentially void** and should be retired as an argument — L31 had already declined to bank it. And
+  its control-table row for the nonlocal model is **in the wrong column**: that model **satisfies** the
+  two-mode hypothesis and **has** a preferred foliation.
+- **The published nonlocal MOND model is separately falsified** by linear structure formation, and its
+  2026 repair **reintroduces a dust stress tensor**, so its cosmological successes are dark matter's,
+  expressed as a functional of the metric. Its headline coefficient is **fitted, not derived**, and is
+  footing-dependent at the tens-of-percent level.
+- **⚠️ Residual gap, named honestly.** Scalars beginning at *second* order in the perturbation do
+  separate the two potentials and are **not** covered — but those are exactly what L31's step E showed
+  to be nearest-star-dominated. **The one missing computation: is there a nonlocal scalar, quadratic or
+  higher in curvature, that both separates the Newtonian from the lensing potential and stays sensitive
+  to the coherent field?** Also unmade anywhere: the preferred-frame PPN parameters for this class.
