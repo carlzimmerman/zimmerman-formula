@@ -1,0 +1,38 @@
+{
+  "schema_version": 1,
+  "claim_id": "fqtheta-affine-local-scalar-dirac-gate",
+  "repository": {"commit": "8a3e5a329", "dirty": true},
+  "command": "python3 -B qwen_claude_field_theory/closure_2026/fqtheta_clock_dust_2026/fqtheta_adm_scalar_dirac.py --output <output>",
+  "environment": {
+    "software": ["Python 3.9.6", "SymPy 1.14.0"],
+    "hardware": "arm64"
+  },
+  "mathematics": {
+    "assertion_tested": "On the affine F(Q)Theta degeneracy locus, the exact local scalar Dirac chain leaves one configuration degree of freedom for generic k != 0 and changes rank at k = 0.",
+    "coefficient_domain": "exact SymPy polynomial/rational algebra",
+    "conventions": "signature (-+++), scalar ADM variables zeta, pi, beta, n, alpha=F_Q/(2 M2), Q0 nonzero",
+    "inputs": [
+      {"path": "qwen_claude_field_theory/closure_2026/fqtheta_clock_dust_2026/fqtheta_adm_scalar_dirac.py", "sha256": "7831ece158f04c710b7d55bbee938f570e30e093aa01c21801067bc36c8505b8"},
+      {"path": "qwen_claude_field_theory/closure_2026/fqtheta_clock_dust_2026/test_fqtheta_adm_scalar_dirac.py", "sha256": "900cade406b2e43890fd6d1e24c17354c988fa8e09d585286475e3e8214d92c5"},
+      {"path": "qwen_claude_field_theory/closure_2026/fqtheta_clock_dust_2026/ADM_SCALAR_DIRAC.md", "sha256": "ea7aa9a1fe3d903b18672415deb2710e973d18aea468a5c1f96a2a14771d8f5f"}
+    ],
+    "bounds": {"sectors": ["k=0", "generic k!=0"], "constraint_count": 6, "randomness": false},
+    "non_claims": ["full khronon/aether sector", "universal no-go for all relativistic MOND actions", "PPN or tensor/vector health" ]
+  },
+  "randomness": {"used": false, "generator": "", "seed": null},
+  "run": {"started_at": "2026-09-09T19:41:20Z", "runtime_seconds": 0.5, "exit_status": 0, "tests": "5 new tests plus 7 existing FQTheta tests passed"},
+  "outputs": [
+    {"path": "adm_scalar_dirac.json", "sha256": "26a2681b2d3c998b91760a1beb570347457600f123feb99828f088e8b2711e39"}
+  ],
+  "checks": [
+    {"name": "affine velocity Hessian", "passed": true, "evidence": "det(W)=0 from direct differentiation"},
+    {"name": "generic nonzero-k Dirac rank", "passed": true, "evidence": "exact sample bracket rank is reported by the runner"},
+    {"name": "separate k=0 sector", "passed": true, "evidence": "active constraints and rank are recomputed after k=0 substitution"}
+  ],
+  "residual_risks": [
+    "full khronon/aether scalar and vector sectors are not included",
+    "the local no-velocity jet is not a global nonlinear action",
+    "PPN, tensor speed, matter Ward identity and cosmological transfer remain open"
+  ],
+  "result": "OPEN; generic local k!=0 scalar DOF remains"
+}

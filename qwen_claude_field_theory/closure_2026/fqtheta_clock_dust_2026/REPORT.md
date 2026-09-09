@@ -91,6 +91,24 @@ c_{\rm bare}^2=\frac{p_Q}{\rho_Q}
 That negative decoupling value is a warning, not a full inhomogeneous ghost
 theorem, because \(F(Q)\Theta\) braids metric and scalar.
 
+## New local ADM Dirac gate (2026-09-09)
+
+The follow-up `fqtheta_adm_scalar_dirac.py` now varies the affine principal
+scalar ADM action, constructs all primary and secondary constraints, and
+computes the actual six-by-six Poisson-bracket matrix. For a generic local
+MOND jet with nonzero Einstein lapse-curvature mixing and `k != 0`, the matrix
+has full rank six: all constraints are second class and one scalar
+configuration degree of freedom remains. At `k = 0` the shift and spatial
+gradient constraints vanish and the displayed multiplier jet has zero scalar
+DOF. The reduced symplectic coefficient is proportional to `k^2`, exposing
+the non-uniform zero-mode limit. The detailed formulas and scope are in
+`ADM_SCALAR_DIRAC.md` and the executable JSON artifact.
+
+This is an obstruction to treating the MOND field as a non-propagating
+auxiliary on the local branch. It is not a universal no-go: the full
+khronon/aether sector and all relativistic health/PPN gates remain to be
+derived.
+
 ## Reproducibility
 
 ~~~

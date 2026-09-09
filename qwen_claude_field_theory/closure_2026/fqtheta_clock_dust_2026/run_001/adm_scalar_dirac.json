@@ -1,0 +1,147 @@
+{
+  "variables": [
+    "z",
+    "p",
+    "beta",
+    "n",
+    "p_z",
+    "p_p",
+    "p_beta",
+    "p_n"
+  ],
+  "alpha": "Fq/(2*M2)",
+  "quadratic_L": "2*M2*beta*k**2*(-Fq*(-Q0*n + pdot)/(2*M2) + zdot) - 3*M2*(-Fq*(-Q0*n + pdot)/(2*M2) + zdot)**2 + Unn*n**2/2 + Unp*k**2*n*p + Unz*k**2*n*z + Upp*k**2*p**2/2 + Uzz*k**2*z**2/2",
+  "velocity_hessian": [
+    [
+      "-6*M2",
+      "3*Fq"
+    ],
+    [
+      "3*Fq",
+      "-3*Fq**2/(2*M2)"
+    ]
+  ],
+  "velocity_hessian_determinant": "0",
+  "affine_degeneracy_check_at_unit_sample": true,
+  "canonical_H": "(-6*Fq*Q0*n*p_z + 6*M2*(-Unn*n**2 - 2*Unp*k**2*n*p - 2*Unz*k**2*n*z - Upp*k**2*p**2 - Uzz*k**2*z**2) - (2*M2*beta*k**2 - p_z)**2)/(12*M2)",
+  "primary_constraints": [
+    "p_beta",
+    "p_n",
+    "Fq*p_z/(2*M2) + p_p"
+  ],
+  "secondary_constraints": [
+    "k**2*(2*M2*beta*k**2 - p_z)/3",
+    "Fq*Q0*p_z/(2*M2) + Unn*n + Unp*k**2*p + Unz*k**2*z",
+    "k**2*(Fq*(Unz*n + Uzz*z)/2 + M2*(Unp*n + Upp*p))/M2"
+  ],
+  "poisson_matrix": [
+    [
+      "0",
+      "0",
+      "0",
+      "-2*M2*k**4/3",
+      "0",
+      "0"
+    ],
+    [
+      "0",
+      "0",
+      "0",
+      "0",
+      "-Unn",
+      "k**2*(-Fq*Unz/2 - M2*Unp)/M2"
+    ],
+    [
+      "0",
+      "0",
+      "0",
+      "0",
+      "k**2*(-Fq*Unz/2 - M2*Unp)/M2",
+      "k**2*(-Fq**2*Uzz/4 - M2**2*Upp)/M2**2"
+    ],
+    [
+      "2*M2*k**4/3",
+      "0",
+      "0",
+      "0",
+      "Unz*k**4/3",
+      "Fq*Uzz*k**4/(6*M2)"
+    ],
+    [
+      "0",
+      "Unn",
+      "k**2*(Fq*Unz/2 + M2*Unp)/M2",
+      "-Unz*k**4/3",
+      "0",
+      "-Fq**2*Q0*Uzz*k**2/(4*M2**2)"
+    ],
+    [
+      "0",
+      "k**2*(Fq*Unz/2 + M2*Unp)/M2",
+      "k**2*(Fq**2*Uzz/4 + M2**2*Upp)/M2**2",
+      "-Fq*Uzz*k**4/(6*M2)",
+      "Fq**2*Q0*Uzz*k**2/(4*M2**2)",
+      "0"
+    ]
+  ],
+  "poisson_antisymmetric": true,
+  "poisson_determinant": "k**12*(-Fq**2*Unn*Uzz + Fq**2*Unz**2*k**2 + 4*Fq*M2*Unp*Unz*k**2 - 4*M2**2*Unn*Upp + 4*M2**2*Unp**2*k**2)**2/(36*M2**2)",
+  "poisson_determinant_factor": "-4*Unn*Upp - Unn*Uzz + 4*Unp**2*k**2 + 4*Unp*Unz*k**2 + Unz**2*k**2",
+  "local_sample": {
+    "M2": "1",
+    "Fq": "1",
+    "Q0": "1",
+    "k": "1",
+    "Uzz": "2",
+    "Upp": "-1",
+    "Unz": "2",
+    "Unp": "0",
+    "Unn": "0"
+  },
+  "local_k_nonzero": {
+    "constraint_count": 6,
+    "constraint_jacobian_rank": 6,
+    "poisson_rank": 6,
+    "second_class_count": 6,
+    "first_class_count": 0,
+    "configuration_dof": "1",
+    "closure": "all multipliers are fixed when the displayed PB determinant is nonzero; no tertiary constraint is generated on this open stratum"
+  },
+  "k_zero": {
+    "active_constraints": [
+      "p_beta",
+      "p_n",
+      "Fq*p_z/(2*M2) + p_p",
+      "Fq*Q0*p_z/(2*M2)"
+    ],
+    "constraint_jacobian_rank": 4,
+    "poisson_rank": 0,
+    "second_class_count": 0,
+    "first_class_count": 4,
+    "configuration_dof": "0",
+    "closure": "the beta and spatial-gradient secondaries vanish identically; the remaining constraints are first class for Unn=0"
+  },
+  "reduced_Unn_Unnp_zero": {
+    "symplectic_coefficient_dz_wedge_dp": "Unz*k**2/Q0",
+    "Hamiltonian": "-k**2*(Upp*p**2 + Uzz*z**2)/2",
+    "flow_matrix": [
+      [
+        "0",
+        "Q0*Upp/Unz"
+      ],
+      [
+        "-Q0*Uzz/Unz",
+        "0"
+      ]
+    ],
+    "characteristic_polynomial": "(Q0**2*Upp*Uzz + Unz**2*lambda**2)/Unz**2",
+    "interpretation": "the local reduced symplectic form is proportional to k^2 and therefore collapses in the homogeneous limit"
+  },
+  "status": "OPEN",
+  "scope": [
+    "principal scalar ADM sector only",
+    "full khronon/aether perturbation and vector sector omitted",
+    "U is a local no-velocity jet; only the kinetic/constraint rank is universal",
+    "this is not a universal no-go for other actions"
+  ]
+}
