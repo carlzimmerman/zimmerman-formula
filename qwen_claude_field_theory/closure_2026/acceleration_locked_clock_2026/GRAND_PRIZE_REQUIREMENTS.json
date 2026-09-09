@@ -2,9 +2,9 @@
   "theory_lane": "acceleration_locked_clock_2026",
   "action": "S=sqrt(-g)[M2(R-2Lambda)/2-sigma(X+1)/2-2M2*a0^2*(G(Z)-Z^2)]+S_m[g,psi]",
   "requirements": [
-    {"id": 1, "name": "exact exponential MOND law", "status": "PASS_STATIC", "evidence": "alc_gate.py varies Phi and derives 4 M2 div[(1-exp(-|grad Phi|/a0)) grad Phi]=rho"},
-    {"id": 2, "name": "N_grav=2", "status": "OPEN", "evidence": "The regular PPN/GW aether completion has a nonzero spin-0 principal symbol. alc_degenerate_dirac.py derives the hypersurface-orthogonal ADM form and exact-luminal Dirac split: c123!=0 leaves an instantaneous scalar constraint, while c123=0 has a rank-degenerate quadratic Hamiltonian. Neither is a regular healthy two-tensor closure."},
-    {"id": 3, "name": "Phi=Psi and gamma_PPN", "status": "PASS_STATIC_OPEN_NONLINEAR", "evidence": "independent Psi equation gives Phi-Psi harmonic; nonlinear/PPN branch remains"},
+    {"id": 1, "name": "exact exponential MOND law", "status": "FAIL_ON_SHELL", "evidence": "alc_gate.py derives the exact law only on an unconstrained static lapse branch. alc_mimetic_acceleration_nogo.py varies sigma, derives X=-1, and proves a_mu=0 for the gradient unit normal, so the same action has no on-shell MOND source."},
+    {"id": 2, "name": "N_grav=2", "status": "DEAD_CANDIDATE", "evidence": "The displayed ALC action is already dead on its own mimetic constraint: its acceleration carrier vanishes on shell. The regular PPN/GW completion separately has an extra spin-0 mode; the exact-luminal branch is instantaneous or rank-degenerate."},
+    {"id": 3, "name": "Phi=Psi and gamma_PPN", "status": "FORMAL_OFF_SHELL_ONLY", "evidence": "The independent Phi/Psi variation gives no slip only before the mimetic constraint is imposed; no physical MOND branch survives the on-shell acceleration no-go."},
     {"id": 4, "name": "beta and alpha_1,alpha_2,alpha_3", "status": "OPEN", "evidence": "The regularisation gate derives an exact alpha_1=alpha_2=0 branch, but the actual ALC corner is singular; alpha_3/beta and the nonlinear degenerate limit remain unclosed. The ADM gate proves the exact-luminal branch is instantaneous or rank-degenerate in its hypersurface-orthogonal scalar sector."},
     {"id": 5, "name": "ordinary matter Ward identity", "status": "PASS_FORMAL", "evidence": "single minimally coupled metric and diffeomorphism Noether identity"},
     {"id": 6, "name": "c_T=c and positive tensor kinetic", "status": "PASS_PRINCIPAL", "evidence": "acceleration term vanishes in TT sector; EH coefficient M2>0"},
@@ -16,5 +16,7 @@
     {"id": 12, "name": "preserve exponential constitutive law", "status": "PASS", "evidence": "G'(y)/(2y)=1-exp(-y), scanned coefficient is forced to unity"},
     {"id": 13, "name": "a0-Lambda relation", "status": "INPUT_OPEN", "evidence": "a0-Lambda relation is not derived by this action"}
   ],
+  "lane_status": "DEAD_FOR_ALC_ACTION_AS_WRITTEN",
+  "death_certificate": "The sigma Euler equation enforces a unit-norm gradient clock, whose four-acceleration is identically zero; the acceleration-only MOND carrier therefore vanishes on shell.",
   "research_policy": "Keep failed constructions as evidence; add new lanes and do not relabel an OPEN gate as PASS."
 }

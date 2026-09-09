@@ -5,6 +5,10 @@ be called passed while an earlier one is only asserted.  Failed lanes remain
 in the repository as evidence and are not deleted.
 
 1. **Action and variation:** write one covariant action and vary every field.
+   For the displayed ALC action, the sigma variation gives (X=-1); the
+   dedicated `alc_mimetic_acceleration_nogo.py` gate then proves the gradient
+   clock has (a_\mu=0) identically.  This kills its acceleration-only MOND
+   carrier before later gates can be combined.
 2. **Static constitutive law:** derive the exact exponential μ and the
    Newtonian/high-acceleration limit from the same variation.
 3. **Independent lensing potentials:** solve Φ and Ψ separately and derive
@@ -40,6 +44,7 @@ in the repository as evidence and are not deleted.
 
 The machine-readable status of the current acceleration-locked-clock lane is
 in `GRAND_PRIZE_REQUIREMENTS.json`; exact local calculations are in
-`alc_gate.py` and `alc_parameter_scan.py`.  The current lane is **OPEN** and
-must not be advertised as a completed theory until every gate reaches a
-derived PASS.
+`alc_gate.py`, `alc_parameter_scan.py`, and the on-shell no-go gate.  The
+displayed ALC lane is **DEAD_FOR_ALC_ACTION_AS_WRITTEN**; any non-mimetic or
+non-gradient successor must be treated as a new theory and re-run through all
+gates.

@@ -1,7 +1,7 @@
 # Acceleration-locked primordial-clock action
 
-This is a new construction lane, not a certification of the full gravity
-programme.  The action is
+This is an explicit construction/falsification lane, not a certification of
+the full gravity programme.  The action is
 
 \[
 S_{\rm ALC}=\int d^4x\sqrt{-g}\left[
@@ -29,7 +29,7 @@ unitary gauge on a static foliation, (a_i=D_i\ln N), so it is elliptic in the
 lapse rather than a propagating MOND scalar.  A full covariant khronon Dirac
 analysis is still an open gate.
 
-## Variations that are already closed
+## Formal unconstrained static variation (not an on-shell solution)
 
 The acceleration momentum is obtained directly from the action:
 
@@ -65,6 +65,13 @@ Thus the exact exponential law is derived, not assigned, and
 of (Z^2) is essential: it removes the Newtonian quadratic piece from the
 MOND correction at (Z\gg1), leaving only the irrelevant constant
 \(4M^2a_0^2).
+
+This static calculation varies the lapse and spatial potential before imposing
+the sigma equation.  It is therefore only a formal off-shell branch.  The
+on-shell constraint and its consequence are derived in
+`alc_mimetic_acceleration_nogo.py`: X=-1 makes the gradient clock geodesic,
+a_mu=0, so the displayed AQUAL equation cannot describe a solution of the same
+action.
 
 For a homogeneous FLRW clock, (a_i=0) exactly.  The acceleration sector
 therefore vanishes on the background, while the mimetic constraint and clock
@@ -107,10 +114,11 @@ preferred-frame PPN coefficients \(\alpha_1,\alpha_2,\alpha_3\) are also not
 derived by the static no-slip result.  The exact (a_0\)-\(\Lambda\) relation
 is an input in this action, not a consequence.
 
-The candidate is therefore **OPEN**.  Its value is that it puts the requested
-MOND law, lensing/no-slip branch, conserved clock dust, matter Ward identity,
-and luminal tensor sector in one explicit action, while making the remaining
-failure modes concrete and executable.
+The candidate is therefore **DEAD_FOR_ALC_ACTION_AS_WRITTEN**.  The formal
+off-shell static branch, conserved FLRW clock dust, matter Ward identity, and
+luminal tensor calculation remain useful diagnostics, but the action cannot
+simultaneously satisfy its own mimetic constraint and carry a nonzero
+acceleration MOND source.
 
 ## Clock-sector Dirac check
 
@@ -173,7 +181,9 @@ an additional gravitational scalar, so this completion fails `N_grav=2`.
 The only route toward a two-tensor limit is the degenerate surface
 `c_14=0` or `c_123=0`; there the PPN and speed formulae are singular and a new
 full Dirac chain is mandatory.  The gate therefore sharpens the obstruction
-but leaves the ALC lane **OPEN**, not certified.
+but the displayed ALC action is already **DEAD_FOR_ALC_ACTION_AS_WRITTEN**:
+its mimetic equation forces the acceleration source to vanish.  A non-mimetic
+successor would be a new theory, not a repair that can inherit this result.
 
 ## Exact-luminal ADM/Dirac follow-up
 
