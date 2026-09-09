@@ -34,3 +34,45 @@ L1 -- cold collisionless infall onto a MOND-boosted disc, with CAUSTICS RESOLVED
   [PASS] V6 [surrogate] making the scheme conservative does not by itself move the answer: monopole + conservative(g04k cap) reproduces monopole + g04k algebraic within 30%   (2.82 vs 2.69)
 
   --- MULTIPOLE l <= 6: caustics resolved, cap repaired, conservative.  THE TEST. ---
+    MULTIPOLE + conservative REPAIRED, sigma=20, canonical: M/M_b(<10,30,100,200 kpc) =   1.43,   9.32,   28.7,   37.1   (disc 1.00 M_b0, N=8000, 4539 steps, drift 1.2 kpc, 94s)
+    MULTIPOLE + conservative REPAIRED, sigma=60, canonical: M/M_b(<10,30,100,200 kpc) =   0.92,   7.79,   27.5,   37.5   (disc 1.00 M_b0, N=8000, 4539 steps, drift 0.6 kpc, 96s)
+    MULTIPOLE + conservative REPAIRED, sigma=20, alt      : M/M_b(<10,30,100,200 kpc) =   1.45,   9.37,   29.1,   37.4   (disc 1.00 M_b0, N=8000, 4539 steps, drift 1.0 kpc, 91s)
+    MULTIPOLE + conservative REPAIRED, sigma=60, alt      : M/M_b(<10,30,100,200 kpc) =   0.96,   8.09,   28.0,   38.0   (disc 1.00 M_b0, N=8000, 4539 steps, drift 2.1 kpc, 86s)
+    MULTIPOLE + conservative, g04k cap (cap effect)       : M/M_b(<10,30,100,200 kpc) =   1.42,   9.22,   28.9,   37.3   (disc 1.00 M_b0, N=8000, 4539 steps, drift 1.9 kpc, 86s)
+    MULTIPOLE, NEWTON control                             : M/M_b(<10,30,100,200 kpc) =   0.39,   1.05,    2.0,    2.7   (disc 0.27 M_b0, N=8000, 4539 steps, drift 1.1 kpc, 83s)
+    MULTIPOLE + conservative REPAIRED, half N             : M/M_b(<10,30,100,200 kpc) =   1.24,   8.77,   29.5,   37.2   (disc 1.00 M_b0, N=4000, 4539 steps, drift 2.0 kpc, 40s)
+
+  --- direct O(N^2) cross-check: every scale resolved, but the particle noise biases it toward a PASS ---
+    DIRECT + conservative REPAIRED, N=1500                : M/M_b(<10,30,100,200 kpc) =   1.03,   8.96,   28.1,   36.7   (disc 1.00 M_b0, N=1500, 4539 steps, drift 1.0 kpc, 42s)
+    DIRECT + conservative REPAIRED, N=3000                : M/M_b(<10,30,100,200 kpc) =   1.09,   8.83,   29.0,   37.3   (disc 1.00 M_b0, N=3000, 4539 steps, drift 3.0 kpc, 167s)
+
+  --- timestep control (a coarse global step leaks mass OUT of the aperture, i.e. toward a PASS) ---
+    MONOPOLE + conservative REPAIRED, floor / 3           : M/M_b(<10,30,100,200 kpc) =   2.90,   9.78,   28.3,   36.9   (disc 1.00 M_b0, N=8000, 13617 steps, drift 0.6 kpc, 25s)
+
+  --- the numbers ---
+    run                                                     M(<10)  M(<30)  M(<100)
+    mono_g04k                                                 2.69    9.38     27.5
+    mono_consg                                                2.82    9.63     28.1
+    mono_cons                                                 2.77    9.73     27.5
+    mono_cons60                                               1.46    8.29     27.3
+    mp_consg20                                                1.42    9.22     28.9
+    mp_cons20                                                 1.43    9.32     28.7
+    mp_cons60                                                 0.92    7.79     27.5
+    mp_cons20a                                                1.45    9.37     29.1
+    mp_cons60a                                                0.96    8.09     28.0
+    mp_newton                                                 0.39    1.05      2.0
+    dir_hi                                                    1.09    8.83     29.0
+
+    cap repair alone (monopole, conservative): M(<10) 2.82 -> 2.77  (-2%)
+    caustics alone (g04k cap, conservative)  : M(<10) 2.82 -> 1.42  (-49%)
+    both repairs                             : M(<10) 2.69 (g04k) -> 1.43   (-47%)
+    the resolved state IS non-radial: median |a_tangential|/|a_radial| (dust, 2-100 kpc) = 0.372; inner-30 kpc axis ratios b/a, c/a = 0.73/0.61
+    resolution: M(<10) = 1.43 at N=8000 vs 1.24 at N=4000 (multipole); direct O(N^2) 1.03 at N=1500 -> 1.09 at N=3000. Numbers RISING with N are particle noise, not caustics.
+    timestep: M(<10) = 2.77 at floor 0.003 Gyr vs 2.90 at floor 1.0e-03 Gyr (monopole); the coarse step biases DOWN, i.e. toward a PASS.
+  [FAIL] P3 [THE TEST] with caustics resolved (multipole l <= 6), the acceleration cap repaired and the MOND step made conservative, the dust inside 10 kpc is below 25% of the baryons -- sigma_i = 20 and 60 km/s, both a0 footings   ({"mp_cons20": 1.43, "mp_cons60": 0.92, "mp_cons20a": 1.45, "mp_cons60a": 0.96})
+  [FAIL] P4 [BTFR] the same inside 30 kpc   ({"mp_cons20": 9.32, "mp_cons60": 7.79, "mp_cons20a": 9.37, "mp_cons60a": 8.09})
+  [FAIL] P5 [KiDS] the repaired MOND runs hold less than 14% of the Newtonian control's mass inside 100 kpc   (MOND/Newton inside 100 kpc = 14.45, 13.86)
+
+  caveats carried over from g04k and NOT repaired here: algebraic/angle-averaged QUMOND rather than a solved field equation; an isolated vacuole of 8 cosmic shares with no tides beyond it; z_i = 20 against the shell model's 50; the baryonic disc is an analytic Miyamoto-Nagai pinned at the origin, not live.  New to this script: the expansion truncates at l = 6, so angular structure below ~25 deg is still smoothed (the direct O(N^2) runs are the noise-limited check on that), and the conservative phantom is spherical, so caustics do not locally suppress nu -- that omission pushes toward MORE infall, i.e. toward a FAIL, and is the main thing a real QUMOND field solve would change.  total 933s
+
+RESULT: 3 FAIL -> ['P3 [THE TEST] with caustics resolved (multipole l <= 6), the acceleration cap repaired and the MOND step made conservative, the dust inside 10 kpc is below 25% of the baryons -- sigma_i = 20 and 60 km/s, both a0 footings', 'P4 [BTFR] the same inside 30 kpc', "P5 [KiDS] the repaired MOND runs hold less than 14% of the Newtonian control's mass inside 100 kpc"]

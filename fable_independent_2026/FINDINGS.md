@@ -215,3 +215,41 @@ peculiar to this action. What survives either resolution is the programme's dist
 independently testable content: the tie a₀ = κ c√(Gρ_Λ) with κ fitted, and the two
 pre-registered measurements (Gaia DR4's two arms, the deep-MOND Tully–Fisher zero point at
 z ≈ 2.5).
+
+## L1 — the caustics lane: my own load-bearing number, corrected
+
+`L1_caustics_and_cap.py` (3 FAIL of 12). This lane attacked the number every other verdict
+rests on, using the two best objections to it: g04k's dust self-gravity was a **monopole**,
+which is radial by construction and smooths over exactly the caustics cold collisionless
+infall forms; and its MOND multiplier **lost the acceleration cap** where the internal and
+external fields cancel (a criticism the lead agent raised independently).
+
+**The number falls by a factor of two, and the conclusion survives.**
+
+| run | <10 kpc | <30 kpc | <100 kpc |
+|---|---|---|---|
+| monopole + g04k rule (anchor, reproduces g04k's 2.58) | 2.69 | 9.38 | 27.5 |
+| multipole + repaired, σ = 20 km/s, canonical | **1.43** | 9.32 | 28.7 |
+| multipole + repaired, σ = 60 km/s, canonical | **0.92** | 7.79 | 27.5 |
+| multipole + repaired, σ = 20, alt footing | **1.45** | 9.37 | 29.1 |
+| direct O(N²), independent solver | 1.09 | 8.83 | 29.0 |
+| Newtonian control | 0.39 | 1.05 | 2.0 |
+
+Caustics account for essentially the whole change (−49%); the cap repair costs 2%. Against
+the 0.25 M_b the radial acceleration relation tolerates, the delivered mass is still **4–6×
+over**, on both footings, both dispersions and two independent force solvers. The resolution
+trend *rises* with N (1.24 at N = 4000 → 1.43 at 8000) and the coarse timestep biases *down*,
+so the converged value is at or above these.
+
+Solver validation: the multipole reproduces the monopole in spherical symmetry to 0.007%, and
+reproduces the analytic interior field of an oblate spheroid to 5.9% where the monopole is
+wrong by 38%. The final state is genuinely non-radial (median |a_tan|/|a_rad| = 0.372).
+
+**A third defect, named by neither critique, and it matters for future work.** The algebraic
+multiplier ν(|g|)g has **nonzero curl** the moment the field stops being radial: it does net
+work around a closed loop (5.7e-3 of the path integral for the g04k rule, against 1.3e-9 for
+the Newtonian field), and with the non-radial solver switched on it pumps energy and unbinds
+the entire system within 1 Gyr, at any timestep. g04k never saw this because a monopole force
+is radial by construction. **Any future non-radial MOND infall calculation in this programme
+needs a genuine QUMOND field solve, not a per-particle multiplier.** The L1 runs above use a
+conservative scheme, verified not to move the answer on its own (2.82 vs 2.69 with the monopole).

@@ -63,6 +63,21 @@ HONESTY CONTROLS, all reported next to the answer with the direction they push
   * a coarse global timestep leaks mass out of the aperture -> toward a PASS.  Measured by re-running at a 3x finer floor.
   * the conservative scheme's phantom is spherical, so it does not feel caustics suppressing nu locally -> toward a FAIL.
     Bounded by comparing against the (uncontrolled) algebraic runs that do.
+
+OUTCOME (2026-09-08 run, 933 s; 6 validations PASS, P3/P4/P5 FAIL).  V1 the multipole solver matches the monopole in spherical
+symmetry to 7e-5, 2e-5, <1e-5 at N = 3k/12k/48k with a residual that halves as N^-1/2; V2 it gets the oblate spheroid to 5.9%
+where the monopole is 38.3% wrong; V3 the repaired cap peaks at 0.35 a0 through exact cancellation where g04k's reaches
+1.4e3 a0; V5a the algebraic rules circulate 5.7e-3 (g04k) and 1.5e-2 (repaired) of the path integral on a non-radial field,
+against 1.3e-9 Newtonian and 7.4e-10 for the conservative scheme; V5b with the multipole solver both algebraic rules leave
+NOTHING inside 200 kpc at either step floor; V4 the anchor reproduces g04k (2.69 vs 2.58); V6 conservatising alone moves it by
++5% (2.82).  THE ANSWER: caustics are worth a factor 2 and the cap repair essentially nothing -- M(<10 kpc)/M_b goes 2.82 ->
+1.42 for the caustics and 2.82 -> 2.77 for the cap, landing at 1.43 (sigma 20, canonical), 0.92 (sigma 60), 1.45 / 0.96 on the
+alt footing, against the 0.25 the RAR tolerates; inside 30 kpc 7.8-9.4; inside 100 kpc 27.5-29.1, i.e. 14x the Newtonian
+control.  The independent direct O(N^2) sum gives 1.09 at N = 3000 and both resolution trends RISE with N (multipole 1.24 at
+4000 -> 1.43 at 8000; direct 1.03 -> 1.09), so the converged number is at or above these.  The dark-sector door does not
+reopen: caustic-quenched dust is now tested and does not quench.  What did NOT survive is the METHOD -- the algebraic
+multiplier is unusable outside spherical symmetry, so any future non-radial MOND infall calculation in this programme needs a
+real QUMOND field solve, not nu(|g|)g per particle.
 """
 import numpy as np, math, json, sys, time
 FAILS = []
