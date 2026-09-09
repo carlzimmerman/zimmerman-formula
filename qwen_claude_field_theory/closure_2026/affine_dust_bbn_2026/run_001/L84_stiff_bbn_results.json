@@ -1,0 +1,49 @@
+{
+  "gate": "L84-affine-dust-bbn",
+  "status": "ROUTE_CLOSED",
+  "checks": [
+    {
+      "name": "scaling_ratio",
+      "pass": true,
+      "detail": "the stiff/dust density ratio scales as a^-3 toward early times"
+    },
+    {
+      "name": "charge_split",
+      "pass": true,
+      "detail": "Omega_stiff/Omega_dust = r/2 from the exact C^2 versus 2AC coefficients"
+    },
+    {
+      "name": "natural_ratio_fails_bbn",
+      "pass": true,
+      "detail": "r=1 gives Omega_stiff=33/250; BBN overshoot=2200000000000000000000000/7 > 10^20"
+    },
+    {
+      "name": "overshoot_scale",
+      "pass": true,
+      "detail": "exact overshoot factor=2200000000000000000000000/7 (~3.143e+23)"
+    },
+    {
+      "name": "derived_ratio_bound",
+      "pass": true,
+      "detail": "r <= 7/2200000000000000000000000 = 3.181818e-24"
+    },
+    {
+      "name": "integer_10e_minus24_units",
+      "pass": true,
+      "detail": "in units of 10^-24, q <= 3 with exact residual 2/11"
+    }
+  ],
+  "inputs": {
+    "omega_dust": "33/125",
+    "omega_stiff_max": "21/50000000000000000000000000",
+    "delta_neff": "0.5",
+    "T_BBN_MeV": "1"
+  },
+  "derived": {
+    "omega_stiff_at_r1": "33/250",
+    "overshoot": "2200000000000000000000000/7",
+    "r_max": "7/2200000000000000000000000",
+    "q_max_in_1e-24_units": 3
+  },
+  "scope": "This closes only the affine F(Q)Theta dust=DM reading; it is not a no-go theorem for all relativistic MOND actions."
+}
