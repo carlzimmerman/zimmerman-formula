@@ -269,11 +269,33 @@ Primary sources checked 2026-09-09 through the web reader; no local copies
 were saved. The search covered the named f(a)/khronometric papers only,
 not a comprehensive novelty search for projector operators.
 
-Lean and lake were not found in PATH or the usual .elan/Homebrew locations.
-No Lean proof is claimed. SymPy identities and the exact rational Dirac
-calculation provide reproducible algebra, not a formal theorem-prover proof.
+The new `lean_formalization_2026/` package follows the reproducible Lake/cache
+layout used by OpenAI's Navier--Stokes and Euler Lean certificate repository:
+the compiler and Mathlib revision are pinned, the formal target is declared,
+and the runner records compiler status. The file proves the constitutive
+identity, positivity of both principal eigenvalues for y>0, the flat-wave
+determinant factorization, and the exact witness clock speed 18/509 when the
+local Lean kernel can load the dependency closure. This host has Lean
+4.34.0-rc2 installed, but the Mathlib cache/build currently hits macOS
+`file table overflow`; `run_lean_gate.py` records that as
+`LEAN_COMPILE_FAILED` (not a proof pass). SymPy identities and the exact
+rational Dirac calculation remain reproducible algebra, not a substitute for
+the missing formal covariant variation.
 
 ## Reproduction and next calculation
+
+## V3 follow-up: zero-mode sector split
+
+The new `sector_rank_gate.py` explicitly recomputes the selected Euler-symbol
+matrix at `k=0`, a nonzero static mode, and the derived clock characteristic.
+At the recorded witness its actual ranks are respectively 0 (homogeneous
+static), 1 (homogeneous dynamic), 3 (nonzero-k static), and 2 (clock
+characteristic); these values are outputs of the matrix rank algorithm, not
+inserted targets. The determinant factorization is independently rederived.
+Thus the local nonzero-k constraint count cannot be extrapolated to FLRW's
+homogeneous sector. The result is recorded in
+`run_002/sector_rank_results.json` with its audit manifest. It is a concrete
+zero-mode gate, not a curved-background closure theorem.
 
 Run construct.py and test_construct.py via unittest discovery in this folder.
 The Mathbox run_001 manifest records source hashes, actual command, environment,

@@ -1,0 +1,66 @@
+{
+  "schema_version": 2,
+  "claim_id": "CLOCK_CONSTITUTIVE_K0_KNEQ_SECTOR_GATE",
+  "repository": {"commit": "be840d4ea", "dirty": true},
+  "command": [
+    "python3", "-B",
+    "qwen_claude_field_theory/closure_2026/clock_constitutive_construction_2026/sector_rank_gate.py",
+    "--output",
+    "qwen_claude_field_theory/closure_2026/clock_constitutive_construction_2026/run_002/sector_rank_results.json"
+  ],
+  "environment": {
+    "software": [
+      {"name": "Python", "version": "3.9.6"},
+      {"name": "SymPy", "version": "1.14.0"}
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "The selected flat linear equation matrix has distinct homogeneous and nonzero-k sectors; its exact determinant factorization and actual witness ranks are computed rather than prescribed.",
+    "coefficient_domain": "Exact SymPy rational and algebraic complex arithmetic.",
+    "conventions": "c=1, signature -+++, K=kx^2+kz^2, rate=-i omega; k=0 is treated by direct matrix evaluation, not inverse-Laplacian division.",
+    "inputs": ["sector_rank_gate.py"],
+    "bounds": {
+      "witness": {"C": "5/3", "ell": "1/100"},
+      "sectors": ["k0_static", "k0_dynamic", "kneq_static", "clock_characteristic"]
+    },
+    "non_claims": [
+      "No curved FLRW homogeneous constraint theorem",
+      "No nonlinear pseudoinverse/domain variation",
+      "No full Dirac closure or boosted PPN"
+    ]
+  },
+  "randomness": {"used": false, "generator": "", "seed": null},
+  "run": {
+    "started_at": "2026-09-09T17:48:00-04:00",
+    "runtime_seconds": 0.31,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 60.0,
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "qwen_claude_field_theory/closure_2026/clock_constitutive_construction_2026/sector_rank_gate.py"
+  ],
+  "input_artifacts": [
+    {"path": "qwen_claude_field_theory/closure_2026/clock_constitutive_construction_2026/sector_rank_gate.py", "sha256": "8a1872c67f0b84a845c251bf9ef0d362a9ae9f7bb74d4a56b532f829ca34eedb", "sha256_after": "8a1872c67f0b84a845c251bf9ef0d362a9ae9f7bb74d4a56b532f829ca34eedb"}
+  ],
+  "output_directory": "qwen_claude_field_theory/closure_2026/clock_constitutive_construction_2026/run_002",
+  "declared_results": ["qwen_claude_field_theory/closure_2026/clock_constitutive_construction_2026/run_002/sector_rank_results.json"],
+  "outputs": [
+    {"path": "qwen_claude_field_theory/closure_2026/clock_constitutive_construction_2026/run_002/sector_rank_results.json", "sha256": "18c83f631601c99b8cb2cf649ee8af781b0b2e51573a4be7b84fde2b7273b0af", "kind": "result"}
+  ],
+  "checks": [
+    {"check": "determinant factorization derived", "passed": true},
+    {"check": "homogeneous static sector is degenerate", "passed": true},
+    {"check": "nonzero-k static sector is regular", "passed": true},
+    {"check": "clock characteristic rank drop derived", "passed": true},
+    {"check": "k=0 and k!=0 sectors differ", "passed": true}
+  ],
+  "result": "OPEN: the zero-mode sector is mathematically distinct and cannot inherit the nonzero-k Dirac count; this is a gate result, not full closure.",
+  "residual_risks": [
+    "The direct witness is finite-dimensional and flat; continuum and curved-background preservation remain open.",
+    "The homogeneous action and projector kernel complement still require independent variation."
+  ]
+}
