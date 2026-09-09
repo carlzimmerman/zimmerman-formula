@@ -85,8 +85,36 @@ This is a real warning: positive pressureless dust on the mixed-degenerate
 locus drives the bare scalar kinetic/gradient ratio negative. Since
 \(F(Q)\Theta\) braids metric and scalar, this is **not yet a full
 inhomogeneous ghost theorem**; the complete ADM reduction could change the
-physical eigenmode. The candidate is therefore **OPEN**, not certified and
-not universally killed.
+physical eigenmode; independently, the exact homogeneous charge elimination
+below kills the dust route. The (F(Q)\Theta) candidate is therefore **DEAD for
+clock-as-CMB-dust**, though this is not a universal no-go for other actions.
+
+## Exact homogeneous dust obstruction
+
+On the affine locus write (F=fQ) and
+(K=k_2Q^2+A Q+B), with (k_2=3f^2/(4M^2)). The varied scalar equation
+integrates to
+
+\[
+a^3(-2k_2Q+3fH)=C.
+\]
+
+Substituting this derived charge solution into the varied lapse stress gives
+
+\[
+\rho=B+3M^2H^2-\frac{M^2C^2}{3f^2a^6}.
+\]
+
+The (C/a^3) cross term cancels exactly. This degeneracy operator therefore
+cannot make its homogeneous scalar carry an independent pressureless (a^{-3})
+component: it only renormalizes the gravitational (H^2) term and supplies a
+stiff (a^{-6}) contribution. The affine witness also has
+(c_{\rm bare}^2=-1).
+
+This closes the clock-as-CMB-dust route for the background-independent
+(F(Q)\Theta) degeneracy architecture. It is not a universal no-go for every
+nonlocal or preferred-frame action; a surviving theory must change the operator
+content and repeat all gates from one action.
 
 ## Reproducibility
 

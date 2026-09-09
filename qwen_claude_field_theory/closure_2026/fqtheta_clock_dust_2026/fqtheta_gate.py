@@ -163,6 +163,29 @@ def witness():
     }
 
 
+def affine_cosmology():
+    """Eliminate the exact homogeneous shift charge on the affine locus.
+
+    With F=f Q and K=k2 Q^2+A Q+B, k2=3 f^2/(4 M2), the scalar equation
+    gives a^3(-2 k2 Q+3 f H)=C.  Substitution into the varied lapse stress
+    is done symbolically; the C/a^3 cross term cancels identically.
+    """
+    a, H, M2, f, A, B, C = sp.symbols("a H M2 f A B C", positive=True)
+    k2 = 3*f**2/(4*M2)
+    D = C/a**3
+    Qsol = sp.simplify((3*f*H-D)/(2*k2))
+    Q = sp.symbols("Q", real=True)
+    K = k2*Q**2 + A*Q + B
+    Kq = sp.diff(K, Q)
+    rho = sp.simplify((K-Q*Kq+3*H*Q*f).subs(Q, Qsol))
+    target = sp.simplify(B + 3*M2*H**2 - M2*C**2/(3*f**2*a**6))
+    return {"a": a, "H": H, "M2": M2, "f": f, "A": A, "B": B, "C": C,
+            "k2": k2, "Q_solution": Qsol, "rho_eliminated": rho,
+            "target": target, "identity": sp.simplify(rho-target),
+            "dust_coefficient": sp.Integer(0),
+            "scaling": "B + 3 M2 H^2 - M2 C^2/(3 f^2 a^6); no C/a^3 term"}
+
+
 def plain(value):
     if isinstance(value, dict):
         return {str(k): plain(v) for k, v in value.items()}
@@ -186,6 +209,7 @@ def main(argv=None):
     s = static_variation()
     f = flrw_stress()
     w = witness()
+    c = affine_cosmology()
     checks = []
 
     def check(name, passed, evidence):
@@ -206,19 +230,21 @@ def main(argv=None):
     check("independent static Phi/Psi variation gives no slip", s["psi_eom"] == s["psi_eom_expected"],
           {"Psi_Euler_Lagrange": s["psi_eom"], "expected": s["psi_eom_expected"], "flux_on_slip": s["phi_flux_on_slip"]})
     check("F(Q)Theta vanishes on the stationary Q=0,Theta=0 branch", s["Ftheta_static"] == 0,
-          "requires F(0)=0; F_Q(0)=0 preserves the linear static branch")
+          "requires F(0)=0; F_Q(0) may be nonzero because Theta=0")
     check("FLRW lapse/scale variation derives rho and p", f["rho"] == h["K"]-h["Q"]*h["Kq"]+3*f["H"]*h["Q"]*h["Fq"] and
           f["pressure"] == -h["K"]-h["Fq"]*f["Qdot"], {"rho": f["rho"], "p": f["pressure"], "charge": f["charge"]})
     check("mixed-degenerate dust witness has positive density and p=0", w["degenerate"] and w["rho_bare"] > 0 and w["pressure_bare"] == 0,
           w)
     check("witness bare scalar sound-speed square is negative", w["bare_sound_speed_sq"] < 0,
           {"c_bare^2": w["bare_sound_speed_sq"], "Kq": w["Kq_at_dust"], "Kqq": w["Kqq_at_dust"]})
+    check("affine charge elimination has no dust a^-3 term", c["identity"] == 0 and c["dust_coefficient"] == 0,
+          {"charge_solution": c["Q_solution"], "rho_after_elimination": c["rho_eliminated"], "scaling": c["scaling"]})
 
     data = {
         "candidate_action": "S=sqrt(-g)[M2 R/2-Lambda M2-K(Q)+F(Q)Theta+M2 a0^2 G(|V|/a0)]+S_m[g,psi]",
-        "homogeneous": plain(h), "static": plain(s), "flrw": plain(f), "witness": plain(w),
+        "homogeneous": plain(h), "static": plain(s), "flrw": plain(f), "witness": plain(w), "affine_cosmology": plain(c),
         "checks": checks, "theory_status": "OPEN",
-        "route_verdict": "MIXED_DEGENERACY_EXISTS_BUT_HEALTHY_CLOCK_AS_DUST_NOT_ESTABLISHED",
+        "route_verdict": "DEAD_FOR_CLOCK_AS_CMB_DUST_UNDER_BACKGROUND_INDEPENDENT_FQTHETA_DEGENERACY",
         "non_claims": ["full nonlinear ADM Dirac closure", "full PPN alpha_1 alpha_2 alpha_3", "full inhomogeneous scalar symbol", "empirical CMB/galaxy fit", "universal no-go for all F(Q)Theta theories"],
         "next_gate": "derive the full ADM scalar/vector/tensor principal symbol and Dirac chain on expanding FLRW with F(Q)Theta retained",
     }

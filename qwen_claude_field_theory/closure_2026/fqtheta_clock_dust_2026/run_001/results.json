@@ -115,6 +115,22 @@
     "bare_sound_speed_sq": "-1",
     "interpretation": "positive bare dust density + p=0 + mixed degeneracy has c_bare^2<0; full braiding ADM symbol remains open"
   },
+  "affine_cosmology": {
+    "a": "a",
+    "H": "H",
+    "M2": "M2",
+    "f": "f",
+    "A": "A",
+    "B": "B",
+    "C": "C",
+    "k2": "3*f**2/(4*M2)",
+    "Q_solution": "-2*C*M2/(3*a**3*f**2) + 2*H*M2/f",
+    "rho_eliminated": "B - C**2*M2/(3*a**6*f**2) + 3*H**2*M2",
+    "target": "B - C**2*M2/(3*a**6*f**2) + 3*H**2*M2",
+    "identity": "0",
+    "dust_coefficient": "0",
+    "scaling": "B + 3 M2 H^2 - M2 C^2/(3 f^2 a^6); no C/a^3 term"
+  },
   "checks": [
     {
       "name": "covariant F(Q)Theta action reduces to the varied homogeneous Lagrangian",
@@ -175,7 +191,7 @@
     {
       "name": "F(Q)Theta vanishes on the stationary Q=0,Theta=0 branch",
       "passed": true,
-      "evidence": "requires F(0)=0; F_Q(0)=0 preserves the linear static branch"
+      "evidence": "requires F(0)=0; F_Q(0) may be nonzero because Theta=0"
     },
     {
       "name": "FLRW lapse/scale variation derives rho and p",
@@ -213,10 +229,19 @@
         "Kq": "-3/2",
         "Kqq": "3/2"
       }
+    },
+    {
+      "name": "affine charge elimination has no dust a^-3 term",
+      "passed": true,
+      "evidence": {
+        "charge_solution": "-2*C*M2/(3*a**3*f**2) + 2*H*M2/f",
+        "rho_after_elimination": "B - C**2*M2/(3*a**6*f**2) + 3*H**2*M2",
+        "scaling": "B + 3 M2 H^2 - M2 C^2/(3 f^2 a^6); no C/a^3 term"
+      }
     }
   ],
   "theory_status": "OPEN",
-  "route_verdict": "MIXED_DEGENERACY_EXISTS_BUT_HEALTHY_CLOCK_AS_DUST_NOT_ESTABLISHED",
+  "route_verdict": "DEAD_FOR_CLOCK_AS_CMB_DUST_UNDER_BACKGROUND_INDEPENDENT_FQTHETA_DEGENERACY",
   "non_claims": [
     "full nonlinear ADM Dirac closure",
     "full PPN alpha_1 alpha_2 alpha_3",
