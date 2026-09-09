@@ -1,0 +1,393 @@
+======================================================================================================================
+L59 -- second-order covariant scalars: does a NONLOCAL quadratic-curvature invariant separate
+       the two potentials AND see the coherent field?  (the computation L39/PAPER9 name as open)
+======================================================================================================================
+  a0 footings: canonical 9.3619e-11 / alt 1.1279e-10 m s^-2
+  Milky Way at R_sun = 8.2 kpc, v = 229 km/s  ->  g_gal = 2.0725e-10 m/s^2 = 2.21 a0 (canon) / 1.84 a0 (alt)
+
+======================================================================================================================
+A -- CONTROLS.  If any of these fails, the lane stops and says so.
+======================================================================================================================
+
+  A1.  L39's operator lemma.  A covariant scalar functional of the metric alone whose expansion begins
+  at FIRST order in h has S^(1) = int O^{mn} h_mn with d_m O^{mn} = 0.  Count the transverse symmetric
+  O^{mn}(k) available from the background structures.  L39 solved this symbolically; done here instead
+  as a NUMERICAL RANK COMPUTATION at random k, which is an independent method.
+
+      basis {eta, k k}            (NO preferred vector): transverse solutions = 1-parameter family
+      basis {eta, k k, u u, u k}  (one unit timelike u): transverse solutions = 2-parameter family
+  [PASS] A1 [control] exactly ONE transverse symmetric operator with no preferred vector, TWO with one   (reproduces L39 C-b2/C-b3 and L51 A5 by an independent (numerical rank) method)
+
+  A2.  The static two-potential metric, from the EXACT nonlinear metric in sympy.  Convention (L51's):
+        ds^2 = -(1 + 2 Phi) dt^2 + (1 - 2 Psi) delta_ij dx^i dx^j
+  Phi is the dynamical (Newtonian) potential, Psi the spatial-curvature potential, lensing (Phi+Psi)/2,
+  slip s = Phi - Psi, gamma_PPN = Psi/Phi.
+
+  [PASS] A2a [control] linearised R_00 = lap(Phi) for the static two-potential metric   (L51 A3)
+  [PASS] A2b [control] linearised R^(1) = 2 lap(2 Psi - Phi)   (R^(1) = -2*Derivative(Phi(x, y, z), (x, 2)) - 2*Derivative(Phi(x, y, z), (y, 2)) - 2*Derivative(Phi(x, y, z), (z, 2)) + 4*Derivative(Psi(x, y, z), (x, 2)) + 4*Derivative(Psi(x, y, z), (y, 2)) + 4*Derivative(Psi(x, y, z), (z, 2)))
+  [PASS] A2c [control] linearised G_00 = 2 lap(Psi)   (L51 A3; so 2 lap Psi = 8 pi G rho -> lap Psi = 4 pi G rho)
+
+      S1 = R^(1)            = -2*Derivative(Phi(x, y, z), (x, 2)) - 2*Derivative(Phi(x, y, z), (y, 2)) - 2*Derivative(Phi(x, y, z), (z, 2)) + 4*Derivative(Psi(x, y, z), (x, 2)) + 4*Derivative(Psi(x, y, z), (y, 2)) + 4*Derivative(Psi(x, y, z), (z, 2))
+      S2 = R^(1)_mn u^m u^n = Derivative(Phi(x, y, z), (x, 2)) + Derivative(Phi(x, y, z), (y, 2)) + Derivative(Phi(x, y, z), (z, 2))
+      map (Phi,Psi) -> (S1,S2) = [[-2, 4], [1, 0]],  determinant = -4
+  [PASS] A3 [control] L51's exhibited pair and its determinant -4   (S2 = lap(Phi) isolates the Newtonian potential; (S1+2S2)/4 = lap(Psi) isolates the lensing one; neither is reachable without u)
+  [PASS] A3b [control] L39's lock ratio 1:2 -- R^(1) carries ONE fixed combination, both coefficients nonzero   (in L39's own sign convention (Psi <-> Phi, opposite spatial sign) this is the ratio 1 : 2)
+
+  A4.  THE LOCKED IDENTITY, re-derived from an action rather than quoted.  Expand sqrt(-g) R to SECOND
+  order in the static two-potential metric, drop total derivatives, and vary with respect to Phi and Psi.
+  This is the machine the whole lane runs on, so it is validated on general relativity first.
+
+      Euler-Lagrange of the O(h^2) Einstein-Hilbert Lagrangian:
+        dL2/dPhi = 4 lap(Psi)   [+ 0 lap(Phi)]
+        dL2/dPsi = -4 lap(Psi) + 4 lap(Phi)
+  [PASS] A4a [control] the O(h^2) Einstein-Hilbert Lagrangian varies to  dL/dPhi = k1 lap(Psi) with NO lap(Phi), and dL/dPsi = k2 lap(Psi) + k3 lap(Phi) with k3 = -k2  (so vacuum forces Phi = Psi)   (k1 = 4, k2 = -4, k3 = 4)
+
+      With S = (1/16 pi G) int L2 - int rho Phi + Delta S, and D_Phi = d(Delta S)/dPhi,
+      D_Psi = d(Delta S)/dPsi, the two static field equations are
+
+          (4/16 pi G) lap Psi                  = rho - D_Phi
+          (-4/16 pi G) lap Psi + (4/16 pi G) lap Phi = - D_Psi
+
+      i.e.    lap Psi      = 4 pi G (rho - D_Phi)
+              lap(Phi-Psi) = -4 pi G D_Psi
+          =>  lap(Phi+Psi) = 8 pi G rho - 4 pi G ( D_Psi + 2 D_Phi )
+              lap Phi      = 4 pi G (rho - D_Phi - D_Psi)
+
+      TWO CRITERIA, used throughout:
+        LOCKED IDENTITY  lap(Phi+Psi) = 8 pi G rho          <=>  D_Psi + 2 D_Phi = 0
+        CORRECT LENSING  lap(Phi+Psi)/2 = lap Phi           <=>  D_Psi = 0
+
+  [PASS] A4a2 [control] the normalisation is GR's: k1 = 4 gives lap Psi = 4 pi G rho and lap(Phi-Psi) = 0   (vacuum: Phi = Psi, gamma_PPN = 1, lensing potential = dynamical potential)
+      frame-free  Delta S = int w R^(1):   D_Phi = -2*Derivative(w(x, y, z), (x, 2)) - 2*Derivative(w(x, y, z), (y, 2)) - 2*Derivative(w(x, y, z), (z, 2)),  D_Psi = 4*Derivative(w(x, y, z), (x, 2)) + 4*Derivative(w(x, y, z), (y, 2)) + 4*Derivative(w(x, y, z), (z, 2))
+  [PASS] A4b [control] THE LOCKED IDENTITY: for the frame-free first-order addition, with ANY weight w, D_Psi + 2 D_Phi = 0 identically, so lap(Phi+Psi) = 8 pi G rho EXACTLY   (reproduces L51 sec.3 and L39's lensing lock from an independent action computation)
+  [PASS] A4c [control] the u-built block int w R_mn u^m u^n does NOT satisfy it -- it moves the lensing potential, and it is the only thing that can   (D_Psi + 2 D_Phi = 2*Derivative(w(x, y, z), (x, 2)) + 2*Derivative(w(x, y, z), (y, 2)) + 2*Derivative(w(x, y, z), (z, 2)))
+
+  A5-A7.  STEP E, re-derived.  A uniform field leaves every curvature invariant exactly unchanged while
+  MOND's y = |grad Phi|/a0 changes by ~1488x at 1 pc from a star.
+
+  [PASS] A5 [control] Phi -> Phi + g.x leaves the FULL Hessian d_i d_j Phi unchanged, hence every curvature tensor and every local functional of the metric   (L31 E1)
+      [canonical] star at 1 pc alone: y = 0.0015 ;  with the Galaxy's g_ext: y = 2.2153   (1488x)
+      [alt      ] star at 1 pc alone: y = 0.0012 ;  with the Galaxy's g_ext: y = 1.8388   (1488x)
+  [PASS] A6 [control] STEP E's central number: the ratio is 1488x on BOTH footings   (canonical 1487.6x, alt 1487.6x)
+      smooth Galaxy tidal field at R_sun   |d^2Phi| = 8.191e-31 s^-2
+      the Sun's tidal field at 1 pc        |d^2Phi| = 9.036e-30 s^-2  (11.0x the Galaxy's)
+      d_eq = 2.23 pc ;  fraction of solar-neighbourhood volume inside d_eq = 99.0%
+  [PASS] A7 [control] STEP E's physical numbers: 8.19e-31 s^-2, 9.03e-30 s^-2, d_eq = 2.23 pc, 99.0%   (8.191e-31, 9.036e-30, 2.23 pc, 99.0%)
+
+  A8.  L57's suppression law, re-derived.  Smoothing a compact source of mass m and radius R on a length
+  l suppresses the QUADRATIC functional int rho^2 as (R/l)^3 -- the cube of the scale ratio.
+
+  [PASS] A8 [control] L57's cube law: the smoothed compact source's int rho^2 scales as l^-3   (measured log-log slope -3.000000)
+
+  ALL CONTROLS PASS.  Proceeding.
+
+======================================================================================================================
+B -- ENUMERATION.  The complete space of covariant scalars beginning at SECOND order in h.
+======================================================================================================================
+
+  The first-order lemma counts transverse symmetric OPERATORS O^{mn}(k).  At second order the object to
+  count is a symmetric BILINEAR kernel M^{mn,ab}(k): a covariant scalar whose expansion begins at second
+  order has S^(2) = int h_mn M^{mn,ab} h_ab, and because its FIRST-order piece vanishes identically its
+  second-order piece is invariant under LINEARISED gauge transformations by itself, which forces
+  k_m M^{mn,ab} = 0.  So the same transversality condition applies -- but to a 4-index object, and the
+  answer is not 1.
+
+  B1.  Build the most general symmetric M^{mn,ab} from the available background structures and impose
+  transversality by an explicit rank computation.
+
+      symmetric bilinear kernels from {eta, k}      (NO preferred vector): transverse solutions = 2
+      symmetric bilinear kernels from {eta, k, u}   (one unit timelike u): transverse solutions = 5
+  [PASS] B1 the second-order space is TWO-dimensional with no preferred vector (the spin-2 and spin-0 transverse projectors), against ONE at first order   (first order 1 -> 2 with u;  second order 2 -> 5 with u.  So a frame-free theory DOES gain a second structure at second order -- this is exactly the gap L39 names)
+
+  B2.  The four classical quadratic-curvature invariants, computed here from the exact metric at
+  O(eps^2), and resolved on the SIX independent structures a static two-potential field admits:
+        P2 = (d_i d_j Phi)^2   S2 = (d_i d_j Psi)^2   X = (d_i d_j Phi)(d_i d_j Psi)
+        LP = (lap Phi)^2       LS = (lap Psi)^2       LX = (lap Phi)(lap Psi)
+
+                   invariant      P2    S2     X    LP    LS    LX
+                         R^2       0     0     0     4    16   -16
+                   R_mn R^mn       1     1    -2     1     5    -2
+      Riemann^2 (Kretschmann)       4     4     0     0     4     0
+                Gauss-Bonnet       0     0     8     0     0    -8
+  [PASS] B2 every quadratic-curvature invariant resolves EXACTLY on the six-structure basis, so the basis is complete for the static weak field   (the enumeration below is therefore exhaustive, not a sample)
+  [PASS] B2b [control] K = 4 P2 + 4 S2 + 4 LS, which on Phi = Psi in vacuum (lap Phi = 0) collapses to 8 (d_i d_j Phi)^2 -- L31's linearised dictionary, reproduced   (K = 4 P2 + 4 S2 + 0 X + 0 LP + 4 LS + 0 LX)
+  [PASS] B3 Gauss-Bonnet is a total derivative UNWEIGHTED (it drops out of the field equations) but NOT when multiplied by a weight -- so the weighted/nonlinear enumeration carries THREE invariants, not two   (this is why the second-order space is larger than the naive 'two form factors' count; it is counted in full below)
+
+  B4.  THE COMPLETE ENUMERATION, stated.  In four dimensions the parity-even covariant scalars quadratic
+  in the curvature are exactly three -- R^2, R_mn R^mn, R_mnab R^mnab -- and every "new" candidate is one
+  of them dressed:
+
+     * Weyl^2 = K - 2 R_mn R^mn + R^2/3                     in the span
+     * Gauss-Bonnet = R^2 - 4 R_mn R^mn + K                 in the span (and Euler-trivial unweighted)
+     * R F(Box) R, R_mn F(Box) R^mn, R_mnab F(Box) R^mnab, with F ANY function including Box^{-1},
+       Box^{-2}, exp(l^2 Box), (1 - l^2 Box)^{-n}           three invariants x one form factor each
+     * F(Q1, Q2, Q3) for any function F, analytic or not    reduces at linear response to a WEIGHT
+     * the parity-odd Pontryagin density R*R                identically zero on any static
+                                                            two-potential (or any conformally static)
+                                                            configuration -- carried, not ignored
+
+  Every one of them enters the static field equations in the SAME algebraic shape: an invariant Q
+  multiplied by a scalar WEIGHT w(x).  For a nonlinear F the weight is w = F'(Q); for a nonlocal
+  dressing F(Box) the weight is w = F(Box) applied to the partner; for Box^{-1} it is w = Box^{-1}F'.
+  So the space of achievable additions to the field equations is exactly
+
+        Delta S = int w * ( l1 R^2 + l2 R_mn R^mn + l3 K ) ,   w ARBITRARY, l1,l2,l3 arbitrary,
+
+  and the two criteria of A4 can be applied to it in closed form.  That is done now.
+
+      solutions of  D_Psi + 2 D_Phi == 0  (the locked identity survives): [{lam2: 0, lam3: 0}]
+      solutions of  D_Psi == 0            (lensing stays correct)      : [{lam1: 0, lam2: 0, lam3: 0}]
+  [PASS] B4 SECOND-ORDER SCALARS DO SEPARATE THE TWO POTENTIALS.  The frame-free locked identity lap(Phi+Psi) = 8 pi G rho, exact at first order, FAILS for the generic quadratic-curvature invariant: the lock-preserving subspace is a proper subspace of the three-parameter family   (lock-preserving subspace has dimension 1 of 3;  a generic (l1,l2,l3) breaks it.  This CONFIRMS L39 sec.7's own statement and is the gap this lane had to enter)
+  [PASS] B5 ...BUT THE SEPARATION GOES THE WRONG WAY.  Correct lensing needs D_Psi = 0, i.e. the addition must be blind to the spatial-curvature potential Psi.  No frame-free quadratic-curvature combination is: the only solution is the trivial one   (solution space of D_Psi == 0 has dimension 0; l1 = l2 = l3 = 0 only.  Picking out Phi alone is exactly what R_mn u^m u^n does and exactly what no frame-free scalar can do)
+      the lock-preserving direction, exhibited: (l1,l2,l3) = (lam1, 0, 0)  with [lam1] free
+      i.e. the invariant  4*Derivative(Phi(x, y, z), (x, 2))**2 + 8*Derivative(Phi(x, y, z), (x, 2))*Derivative(Phi(x, y ...
+  [PASS] B5b the lock-preserving direction is the SQUARE OF THE LOCKED COMBINATION (an R^2-type term), which is why it cannot separate: it carries the same single combination the first-order lemma already locked   (resolved on the basis: ['0', '0', '0', '4', '16', '-16'] -- a perfect square in (d_i d_j Phi, d_i d_j Psi) and in (lap Phi, lap Psi))
+
+======================================================================================================================
+C -- THE CANDIDATE, AND THE FIRST SURPRISE: nonlocal quadratic scalars are NOT nearest-star dominated
+======================================================================================================================
+
+  L39 sec.7 and PAPER9 sec.'not proved' dismiss second-order scalars with one sentence: "They are,
+  however, exactly the objects step E showed to be uniform-field blind and nearest-star dominated."
+  That sentence is true of the LOCAL ones.  It is FALSE of the nonlocal ones, and the reason is an exact
+  identity that this lane found and had to verify before anything else.
+
+  C1.  The identity.  For the tidal invariant Q = (d_i d_j Phi)(d^i d^j Phi),
+
+        Q  =  (1/2) lap( |grad Phi|^2 )  -  grad Phi . grad( lap Phi )
+
+  so, applying the INVERSE Laplacian with decaying boundary conditions,
+
+        U  ==  lap^{-1} Q  =  (1/2)|grad Phi|^2  -  4 pi G lap^{-1}( grad Phi . grad rho ) .
+
+  The first term is MOND's variable.  Box^{-1} of a quadratic curvature invariant RECONSTRUCTS the
+  square of the coherent acceleration -- which no LOCAL invariant can do.  So nonlocality does buy
+  something at second order that it did not buy at first order.
+
+  [PASS] C1 the exact identity Q = (1/2) lap|grad Phi|^2 - grad Phi . grad(lap Phi), symbolically   (true for ANY Phi; it is the whole reason a nonlocal quadratic invariant can see a coherent field)
+  [PASS] C2 the identity verified numerically on a grid (FFT, two overlapping sources); the threshold is 1e-5, set by spectral round-off on a 64^3 grid, and a wrong identity would give O(1)   (max relative residual 1.87e-07)
+  [PASS] C2b for a point mass the DECAYING solution of lap U = Q is exactly U = (1/2)|grad Phi|^2   (Q = 6*m**2/r**6, (1/2)|grad Phi|^2 = m**2/(2*r**4) -> 0 at infinity)
+  [PASS] C2c the source term's monopole is int grad Phi . grad rho = -4 pi G int rho^2 < 0, so it ADDS a positive, compact-object-weighted piece to U   (grid: -4.573377e+01 vs -int rho^2 (units 4 pi G = 1): -4.573377e+01)
+
+  C3.  THE HOLE IN THE STATED REASON.  Put STEP E's own configuration to the nonlocal invariant: a solar
+  mass at 1 pc, sitting in the Milky Way at R_sun.  The Galaxy is a BOUNDED source, so its field decays
+  at infinity and the decaying solution of lap U = Q sees it.  Compare what the LOCAL invariant sees with
+  what the NONLOCAL one sees.
+
+                                                star at 1 pc   coherent Galaxy         ratio
+      LOCAL invariant (tidal, s^-2)                9.036e-30         8.191e-31         11.0x star
+      NONLOCAL U = lap^-1 Q, vacuum part           9.718e-27         2.148e-20     2.21e+06x coh
+      [canonical] sqrt(2U_coherent)/a0 = 2.2138  = the TRUE galactic y (2.2138); the local invariant returns 1.49e-03
+      [alt      ] sqrt(2U_coherent)/a0 = 1.8375  = the TRUE galactic y (1.8375); the local invariant returns 1.24e-03
+  [PASS] C4 THE NONLOCAL INVARIANT IS COHERENT-DOMINATED, NOT NEAREST-STAR DOMINATED.  Its vacuum part returns |grad Phi|^2 of the TOTAL field, so it recovers MOND's y exactly, on both footings, where the local invariant misses it by 1488x   (coherent beats the nearest star by 2.21e+06x in the nonlocal invariant, while the nearest star beats the Galaxy by 11.0x in the local one -- an 2.4e+07x reversal.  PAPER9's stated reason for dismissing second-order scalars does NOT apply to the nonlocal members)
+
+  C5.  What DOES survive of step E: a genuinely UNIFORM external field.  Shifting Phi -> Phi + g.x leaves
+  Q unchanged (A5), while |grad Phi|^2 changes by 2 g.grad Phi + g^2 -- and that difference is exactly
+  HARMONIC, so it lives entirely in the kernel of lap and is invisible to U.  The nonlocal invariant
+  therefore reconstructs the field of BOUNDED sources and is blind to a strictly uniform one.  Real
+  external fields are sourced, so this costs the external field effect at infinite source distance, not
+  the coherent field of a real galaxy.
+
+  [PASS] C5 the uniform-field piece of |grad Phi|^2 is harmonic wherever lap Phi = 0, so U cannot see it: step E's uniform-field blindness survives EXACTLY, its nearest-star domination does NOT   (lap(2 g.grad Phi + g^2) = 2 g.grad(lap Phi) = 0 in vacuum)
+
+======================================================================================================================
+D -- THE OBSTRUCTION THAT REPLACES STEP E: the compact-interior term, and the length it demands
+======================================================================================================================
+
+  Step E's obstruction does not apply (C4).  A DIFFERENT one does, and it comes from the second term of
+  the same identity:
+
+        U = (1/2)|grad Phi|^2  -  4 pi G lap^{-1}( grad Phi . grad rho ) ,
+        with   int grad Phi . grad rho  =  -4 pi G int rho^2                        (C2c)
+
+  so every compact object of mass m contributes a monopole 4 pi G^2 (int rho^2) / d to U at distance d.
+  int rho^2 is enormous inside a star: the invariant is dominated by STELLAR INTERIORS, not by the
+  nearest star's exterior tidal field.  This is a new obstruction, not step E's, and it is what
+  L57's smoothing is for.
+
+  D1.  Unsmoothed, at the Sun.  Summing over the whole stellar population (the 1/d kernel weights the
+  whole Galaxy, not just the nearest star): sum_i 1/d_i = |Phi_*| / (G m), so
+
+        U_grain  =  4 pi G^2 (int rho^2 per star) |Phi_*| / (G m)
+                 =  4 pi G m |Phi_*| / V_eff ,      V_eff = 8 pi^{3/2} l^3 (Gaussian) or (4/3) pi R^3.
+
+      int rho^2 for a uniform Sun (a conservative LOWER bound: real stars are centrally concentrated) = 2.805e+33 kg^2 m^-3
+      U_grain (unsmoothed)  = 6.202e+04 m^2 s^-4
+      U_coherent            = 2.148e-20 m^2 s^-4
+      graininess / coherent = 2.888e+24
+  [PASS] D1 UNSMOOTHED, the nonlocal quadratic invariant is dominated by compact-object INTERIORS by ~1e25 -- so it does not see the coherent field either, for a reason step E never states   (2.89e+24x;  the escape, if there is one, must be L57's smoothing)
+
+  D2.  Smoothing.  Replace rho by its Gaussian smoothing on a length l.  Then int rho_l^2 = m^2 /
+  (8 pi^{3/2} l^3) for l >> R (A8's cube law), and the coherence condition U_grain(l) <= U_coherent is
+
+        l_crit^3  =  G m |Phi_pop| / ( sqrt(pi) g^2 ) .
+
+  With |Phi_pop| ~ G M / r and g ~ G M / r^2 this is l_crit = r (m / (sqrt(pi) M))^{1/3}: THE MEAN
+  SEPARATION BETWEEN THE DISCRETE MASSES.  That is not a constant of nature -- it is a property of the
+  system's granularity, and it runs over five orders of magnitude across the systems MOND is applied to.
+  Computed here for five, on both footings (a0 enters through the MOND acceleration g = g_N nu(g_N/a0)).
+
+                       environment     g_N/a0 (can/alt)     g (can)    l_crit can    l_crit alt
+            MW solar neighbourhood      2.21/1.84        2.773e-10      1.202 pc      1.171 pc
+             MW outer disc, 30 kpc    0.0993/0.0824      3.451e-11      2.641 pc      2.505 pc
+                 dSph (Draco-like)    0.0112/0.00927     1.043e-11      0.533 pc      0.502 pc
+        globular cluster (NGC2419)      3.35/2.78        3.892e-10      0.148 pc      0.145 pc
+         galaxy cluster (galaxies)     0.149/0.124       4.376e-11  38542.016 pc  36631.255 pc
+      [canonical] l_crit spans 0.148 pc to 3.85e+04 pc  =  a factor 2.6e+05
+      [alt      ] l_crit spans 0.145 pc to 3.66e+04 pc  =  a factor 2.52e+05
+  [PASS] D2 the smoothing length that makes the coherent term win IS THE LOCAL MEAN SEPARATION between the discrete masses, so it is environment-dependent by a factor >1e4, not a constant of nature   (canonical 2.6e+05x, alt 2.52e+05x, over five environments)
+
+      the theory's own coherence length (L47, outside-J placement) is xi = 4.00 pc on both footings.
+      [canonical] xi = 4.00 pc is sufficient in 4/5 environments (MW solar neighbourhood, MW outer disc, 30 kpc, dSph (Draco-like), globular cluster (NGC2419)); short by 9.64e+03x at the worst
+      [alt      ] xi = 4.00 pc is sufficient in 4/5 environments (MW solar neighbourhood, MW outer disc, 30 kpc, dSph (Draco-like), globular cluster (NGC2419)); short by 9.16e+03x at the worst
+  [PASS] D3 the theory's own length does not do the job: a single fixed l fails wherever the granularity is coarser, and the galaxy-cluster case (granules = galaxies) needs 1e4-1e5 times more   (xi = 4.00 pc short by 9.64e+03x (canonical) / 9.16e+03x (alt);  L57 independently needed l_rms >= 600 kpc for the same clusters, from the shear data rather than from graininess)
+
+  D4.  And the smoothing has to be COVARIANT.  A spatial smoothing needs a slicing (L57 B4) -- which is
+  exactly the preferred foliation the theorem is about, so a frame-free theory cannot use one.  The
+  covariant options and their mode price:
+
+                      covariant smoother    poles added              static action                         cost
+                      (1 - l^2 Box)^{-1} 1 (at Box=1/l^2)         elliptic smoothing a propagating mode; tachyonic
+                (1 - l^2 Box)^{-n}, n>=2              n         elliptic smoothing n modes, alternating ghost signs
+                  exp(l^2 Box)  (entire)              0         Gaussian smoothing anti-diffusive in TIME; no Cauchy problem
+                          Box^{-1} alone              0                 1/r kernel NO suppression of compact sources
+  [PASS] D4 no covariant smoother is free: the elliptic family adds poles (propagating modes, so hypothesis (iii) N=2 fails), the entire family exp(l^2 Box) adds none but is anti-diffusive in time and has no well-posed Cauchy problem, and Box^{-1} alone does not suppress compact sources at all   (the entire (infinite-derivative) family is the only ghost-free one, and it is the DEFW-class cost L39 already priced: an effective classical equation with no variational/causal definition)
+
+======================================================================================================================
+E -- THE TWO-SIDED TEST: separation AND coherence at ONE smoothing length, and the price
+======================================================================================================================
+
+  E1.  THE HOMOGENEITY PINCER, and it does not need the smoothing at all.
+
+  A flat rotation curve is Phi = alpha ln r with alpha = v^2, and MOND fixes alpha^2 = G M a0, so the
+  SAME vacuum equation must admit the log potential for EVERY alpha, with alpha set by the source.  The
+  Einstein-Hilbert term contributes lap Phi = alpha / r^2: linear in alpha, and going as r^-2.
+
+  Let the addition be F = prod_n U_n^{d_n}, where U_n = Box^{-n}(a quadratic curvature invariant) --
+  the complete dressed family enumerated in B4, with n = 0 the local invariant, n = 1 the one that
+  reconstructs |grad Phi|^2, and n >= 2 the deeper inverse powers.  On the log potential
+  U_n ~ alpha^2 r^{2n-4}, and the weight in slot n is w_n = Box^{-n}(dF/dU_n).  Two conditions, and
+  they over-determine the exponents.
+
+  [PASS] E1a [control] lap(r^{s+2}) = (s+2)(s+3) r^s at s = -1, 1, 2, 7/2, -9/2, so lap^{-1} raises a power-law exponent by exactly 2   (the exponent arithmetic below is exact, not an estimate)
+      condition on the radial profile : sum_n (2n-4) d_n = -2
+      condition on the mass scaling   : 2 sum_n d_n - 1 = 1   =>   sum_n d_n = 1
+      solution set: [{d0: d2 + 2*d3, d1: -2*d2 - 3*d3 + 1}]
+  [PASS] E1 THE PINCER: the two conditions force the total degree sum_n d_n = 1 for EVERY dressing -- so the addition is EXACTLY QUADRATIC in h and the field equations are LINEAR.  No nonlinear frame-free second-order term can carry a flat rotation curve at more than one mass   (total degree forced to 1; the local corner (d = e_0) needs sum(2n-4)d = -4d_0 = -2, i.e. d_0 = 1/2, which violates sum d = 1; the nonlocal corner (d = e_1) needs d_1 = 1 and satisfies BOTH -- and d_1 = 1 IS the linear one)
+
+  E2.  What a linear theory costs.  Exactly-quadratic-in-h means the field equations superpose, so
+  g_obs is a LINEAR functional of rho.  Two consequences, both measured:
+
+      [canonical] MOND transition radius r_M = sqrt(GM/a0): 0.386 kpc, 3.86 kpc, 38.6 kpc   -> spans 100x over 4 dex in mass; a linear theory has ONE fixed length, so the ratio is 1
+      [canonical] BTFR v^4 = G M a0 gives v = 33.4, 105.6, 333.9 km/s (slope v^4 ~ M^1); a linear theory gives v^2 ~ M, i.e. v^4 ~ M^2
+      [alt      ] MOND transition radius r_M = sqrt(GM/a0): 0.352 kpc, 3.52 kpc, 35.2 kpc   -> spans 100x over 4 dex in mass; a linear theory has ONE fixed length, so the ratio is 1
+      [alt      ] BTFR v^4 = G M a0 gives v = 35.0, 110.6, 349.8 km/s (slope v^4 ~ M^1); a linear theory gives v^2 ~ M, i.e. v^4 ~ M^2
+  [PASS] E2 the linear survivor has NO acceleration scale: its transition radius is mass-independent (ratio 1) where MOND's spans 100x over four decades of mass, and its Tully-Fisher slope is v^4 ~ M^2 instead of M^1   (so the unique member surviving the pincer is not a MOND theory at all -- it is a linear modification with a length, which is the L5/L17 class this programme already closed)
+
+  E3.  And setting the pincer aside: HOW WRONG is the lensing?  For a spherical power-law configuration
+  Phi = alpha ln r, Psi = beta ln r, w = A r^p, every contribution is a pure power, so the lensing
+  efficiency
+
+        eta  =  [ lap(Phi+Psi)/2 ]_added / [ lap Phi ]_added  =  (D_Psi + 2 D_Phi) / (2 (D_Phi + D_Psi))
+
+  is a NUMBER.  eta = 1 is correct lensing (what dark matter and TeVeS deliver); eta < 1 under-lenses.
+  E1 already fixed the weight the flat rotation curve needs: w ~ r^2, i.e. p = 2.  Evaluated to first
+  order in the addition, i.e. on the no-slip (Phi = Psi) background it perturbs:
+
+        p  beta/alpha   numerator (D_Psi + 2 D_Phi)        denominator 2(D_Phi + D_Psi)
+        0           1   202500*(lam2 + 4*lam3)/63001       405000*(lam1 + lam2 + 3*lam3)/63001
+        0           2   303750*(lam2 + 4*lam3)/63001       405000*(3*lam1 + 2*lam2 + 5*lam3)/63001
+        2           1   -10800*lam3/251                    -14400*lam3/251
+        2           2   900*(lam2 - 16*lam3)/251           -21600*lam3/251
+        3           1   120*sqrt(502)*(lam2 - 14*lam3)/251 240*sqrt(502)*(lam1 + lam2 - 9*lam3)/251
+        3           2   360*sqrt(502)*(lam2 - 6*lam3)/251  240*sqrt(502)*(3*lam1 + 2*lam2 - 13*lam3)/251
+        4           1   48*(lam2 - 8*lam3)                 96*(lam1 + lam2 - 5*lam3)
+        4           2   120*(lam2 - 4*lam3)                96*(3*lam1 + 2*lam2 - 7*lam3)
+
+      AT THE WEIGHT THE FLAT ROTATION CURVE REQUIRES (p = 2), on the no-slip background:
+        eta = 3/4  at sample point 1,   eta = 3/4  at sample point 2
+        -- INDEPENDENT of (l1,l2,l3): lam1 and lam2 drop out of BOTH forms entirely.
+  [PASS] E3 AT THE PINCER-REQUIRED WEIGHT THE WHOLE FRAME-FREE FAMILY GIVES THE SAME LENSING EFFICIENCY eta = 3/4: every second-order frame-free term UNDER-LENSES BY EXACTLY 25%, and the deficit cannot be tuned away because all three couplings give the same number (or no effect at all)   (eta = 3/4 at two independent sample points; the only free coupling left is lam3 (Kretschmann), and it cancels in the ratio.  lam3 = 0 gives no modification at all)
+
+      stacking the eta = 1 conditions over 8 configurations: rank = 3 of 3
+  [PASS] E3b eta = 1 CAN be arranged on any single configuration, but the conditions from different profiles are independent: stacked over the sampled configurations the rank is 3, so the only frame-free term with correct lensing everywhere is the zero one -- the numerical form of B5   (rank 3/3 over 8 configurations; a surviving direction would have needed rank < 3)
+
+  E4.  BOTH CONDITIONS AT ONE SMOOTHING LENGTH?  The separation test (B4) is algebraic and holds at
+  every l.  The coherence test (D2) holds for l >= l_crit, and l_crit is the local mean separation.  So
+  for a SINGLE system both can be met at one l -- and that is the honest answer to the brief's question.
+  What cannot be met is the pair of them with ONE l across systems (D2/D3: a factor 2.6e5), and what
+  cannot be met at ANY l is the third requirement neither test contains: that the separation go in the
+  direction lensing needs (B5, E3) and that the term be nonlinear enough to carry an acceleration scale
+  (E1, E2).
+
+  [PASS] E4 both conditions CAN hold at one smoothing length for one system, and CANNOT for all systems with a single covariant length   (single system: yes (any l >= l_crit);  all five systems with one l: no, l_crit spans 2.6e+05x (canonical) / 2.5e+05x (alt))
+
+  E5.  THE MODE PRICE of the one member that survives E1 -- the linear, exactly-quadratic action
+  Delta S = int h [ a(Box) P^(2) + c(Box) P^(0s) ] h  with the two form factors B1 counted.
+
+                     form factor  extra poles     ghost?                                      verdict
+      polynomial (Stelle R+R^2+C^2)            2 yes, spin-2   massive spin-2 ghost -- the classic result
+        a(Box)=c(Box)=1+m^-2 Box            1        yes                       Ostrogradsky; excluded
+       entire, e.g. exp(Box/M^2)            0         no    ghost-free, but acausal/no Cauchy problem
+      with Box^{-1} (IR nonlocal)        0 new         no           L39's retarded reading: N_grav = 2
+  [PASS] E5 the surviving member need NOT add a propagating mode -- an entire or purely-IR-nonlocal form factor is ghost-free and keeps N_grav = 2 under L39's retarded reading -- so the route is NOT closed on Ostrogradsky, and this lane does not claim it is   (the mode count is the one gate this candidate passes; it fails on E1, B5/E3 and D2/D3 instead)
+
+======================================================================================================================
+F -- VERDICT.  The requirements ledger, stated from the CANDIDATE's side so a FAIL is a real cost.
+======================================================================================================================
+
+  THE CANDIDATE, in full:  a frame-free covariant addition
+        Delta S = int sqrt(-g) F( Box^{-1} Q_smoothed ),   Q a quadratic curvature invariant,
+  smoothed with an entire covariant form factor on a length l.  It is the ONLY object the enumeration
+  of B1-B4 leaves, it is exactly what L39 sec.7 asks for, and it is not a straw man: it defeats the
+  obstruction L39 and PAPER9 cite against it.  Six requirements; it meets three.
+
+  [PASS] R1 it SEPARATES Phi from Psi (the first-order lock's exact identity fails at second order)   (B4: the lock-preserving subspace is 1 of 3; the generic invariant breaks lap(Phi+Psi) = 8 pi G rho)
+  [PASS] R2 it is COHERENT-dominated, not nearest-star dominated -- step E's obstruction does NOT apply   (C4: Box^{-1}Q returns (1/2)|grad Phi|^2 of the total field, coherent by 2.21e+06x where the local invariant is star-dominated by 11.0x)
+  [PASS] R3 it does not add a propagating mode   (E5: an entire or purely-IR-nonlocal form factor is ghost-free; N_grav = 2 under L39's retarded reading)
+  [FAIL] R4 the separation goes in the direction LENSING needs (eta = 1)   (E3: at the weight a flat rotation curve requires, eta = 3/4 EXACTLY for the entire three-parameter family -- a 25% lensing deficit that no coupling can tune away.  B5/E3b: eta = 1 as an identity has only the trivial solution)
+  [FAIL] R5 it is nonlinear enough to carry an ACCELERATION scale (a flat rotation curve at every mass)   (E1: the radial-profile and mass-scaling conditions force total degree 1, i.e. an exactly quadratic action and LINEAR field equations.  E2: v^4 ~ M^2 not M^1, and one fixed length instead of r_M ~ sqrt(M) spanning 100x over four decades)
+  [FAIL] R6 ONE fixed covariant smoothing length makes the coherent term win in every system   (D2/D3: l_crit is the local mean separation between the discrete masses and spans 2.6e+05x (canonical) / 2.5e+05x (alt) from a globular cluster to a galaxy cluster; the theory's own xi = 4.00 pc is short by 9.6e+03x / 9.2e+03x)
+  [PASS] F1 VERDICT ON THE GAP: no exhibited frame-free nonlocal scalar, quadratic or higher in curvature, separates the Newtonian from the lensing potential in the direction lensing needs while carrying an acceleration scale.  THE LENSING LOCK SURVIVES at second order   (3/6 requirements met; the three that fail are independent of each other and any one is fatal.  The lock is no longer an exact identity at second order -- it is a 25% deficit plus a linearity theorem)
+  [FAIL] F2 PAPER9 MUST BE AMENDED BEFORE DEPOSIT.  Its stated reason for setting second-order scalars aside -- 'they are, however, exactly the objects step E showed to be uniform-field blind and nearest-star dominated' -- is FALSE for the nonlocal members, by 2e6 in the wrong direction.  The conclusion stands; the argument for it does not   (the correct statement is the one this lane proves: nonlocal second-order scalars DO see the coherent field, and they are excluded instead by (i) eta = 3/4, (ii) the degree-1 pincer, and (iii) a graininess length that is not a constant of nature)
+
+  WHAT IS STILL NOT PROVED, named as precisely as L39 named its own gap:
+
+   1. E1's pincer assumes the deep-MOND asymptotics are an exact power law and that F is asymptotically
+      homogeneous in the invariants.  A genuinely non-homogeneous F (an interpolation that never
+      reaches a power law) is not covered.  THE MISSING COMPUTATION: does the flat-rotation-curve
+      requirement, imposed over a FINITE range of radii and masses rather than asymptotically, still
+      force total degree 1?  This is a strictly smaller target than L39's.
+   2. eta = 3/4 is a first-order (linear-response) result about the no-slip background.  Its
+      backreacted, fully nonlinear value is not computed here.  The sign and the O(1) size are robust;
+      the exact 3/4 is not claimed beyond linear response.
+   3. Cubic and higher invariants (R^3, R_mn R^na R_a^m, Box^{-1} of them) are NOT enumerated here.
+      They begin at third order in h, so they are outside both the first-order lemma and this lane's
+      second-order enumeration.  B1's counting method extends to them; the count was not run.
+   4. Nothing here says whether nature is MONDian, and nothing here tests the deposited theory.
+
+
+======================================================================================================================
+SUMMARY
+======================================================================================================================
+  checks: 46 run;  42 PASS / 4 FAIL
+    FAIL  R4 the separation goes in the direction LENSING needs (eta = 1)
+    FAIL  R5 it is nonlinear enough to carry an ACCELERATION scale (a flat rotation curve at every mass)
+    FAIL  R6 ONE fixed covariant smoothing length makes the coherent term win in every system
+    FAIL  F2 PAPER9 MUST BE AMENDED BEFORE DEPOSIT.  Its stated reason for setting second-order scalars aside -- 'they are, however, exactly the objects step E showed to be uniform-field blind and nearest-star dominated' -- is FALSE for the nonlocal members, by 2e6 in the wrong direction.  The conclusion stands; the argument for it does not
+
+  Three sentences.
+    A nonlocal quadratic-curvature scalar DOES defeat the obstruction PAPER9 cites against it: the exact
+    identity Q = (1/2)lap|grad Phi|^2 - grad Phi.grad(lap Phi) makes Box^{-1}Q return the square of the
+    COHERENT acceleration, so it beats the nearest star by 2.2e6 where the local invariant loses to it by
+    1488x, and PAPER9's stated reason must be amended before deposit.
+    It is excluded anyway, three times over and independently: at the weight a flat rotation curve
+    requires it under-lenses by exactly 25% for every coupling in the family; the radial-profile and
+    mass-scaling conditions together force the addition to be exactly quadratic in h, hence linear, hence
+    without an acceleration scale; and the smoothing length that would make it see the coherent field is
+    the local mean separation between the discrete masses, which is not a constant of nature and spans
+    2.6e5 from a globular cluster to a galaxy cluster.
+    So the lensing lock survives at second order and PAPER9's theorem is unchanged -- but it survives for
+    a different reason than the paper gives, and the paper says the wrong thing on the way to the right
+    answer.
+

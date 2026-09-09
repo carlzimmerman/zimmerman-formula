@@ -2620,3 +2620,40 @@ lensing relation to 0.1 dex, and the literature's two parameter sets both landin
 - **Dipolar dark matter is in the class and is recorded as untested, not dead.**
 - **Two independent closures now stand on this class**, the recorded cosmological one and this lane's
   lensing one. Nothing here favours any framework over ΛCDM, and κ remains fitted.
+
+## L59 — the lensing lock SURVIVES at second order, but PAPER9 said the wrong thing on the way there
+
+`L59_second_order_scalars.py` + `L59_SECOND_ORDER.md` (46 checks, 4 FAIL; **all 13 controls pass**,
+byte-identical on rerun). This lane attacked the theorem paper's central mechanism at the exact gap the
+paper declares open, **before deposit**. The theorem is unchanged; the paper's stated reason was false.
+
+**Controls** reproduce the one/two transverse-operator count, L51's pair and its determinant −4, the
+locked identity ∇²(Φ+Ψ) = 8πGρ, and Step E's 1488× on both footings.
+
+- **⭐ SECOND-ORDER SCALARS DO SEPARATE THE TWO POTENTIALS**, so the lock's proof genuinely does not
+  cover them — the paper was right to flag it. The parity-even quadratic curvature invariants resolve
+  exactly on a complete six-structure basis: three of them, one lock-preserving.
+- **⚠️ AND THE PAPER'S DISMISSAL OF THEM WAS FALSE, BY 2.4e7 IN THE WRONG DIRECTION.** The paper said
+  second-order scalars are "nearest-star dominated". The **local** invariant is, by 11×. But its
+  inverse-d'Alembertian **dressing is coherent-dominated by 2.2e6**. The exact identity □⁻¹Q = ½|∇Φ|²
+  returns √(2U)/a₀ = 2.21 canonical / 1.84 alt at Step E's own configuration — **exactly the true
+  galactic y**, where the local invariant misses by 1488×. Step E's uniform-field blindness survives
+  exactly; its nearest-star corollary was local-only.
+- **⭐ SO THE OBJECT THE PAPER CALLED OPEN AND WORTH BUILDING EXISTS — AND IS EXCLUDED THREE INDEPENDENT
+  WAYS**, which is why the lock survives anyway. (a) At the weight a flat rotation curve requires, the
+  whole family gives a slip factor **η = 3/4 identically**, a fixed 25% under-lensing no coupling can
+  tune, rank 3/3 over eight stacked configurations. (b) The radial-profile and mass-scaling conditions
+  **force the d'Alembertian degree to 1**, hence exactly quadratic, hence **linear field equations**,
+  hence v⁴ ∝ M² and one fixed length where the MOND radius must span 100× over four decades. (c) The
+  smoothing length that makes the coherent term win is **the local mean separation between the discrete
+  masses**, 0.15 pc to 38 kpc, a property of the source population and not a constant of nature; the
+  theory's own ξ = 4.00 pc is short by ~1e4.
+- **The mode count is the one gate this candidate passes** — an entire or IR-nonlocal form factor keeps
+  N_grav = 2, and the lane does **not** claim it closed on Ostrogradsky.
+- **⚠️ PAPER9 WAS AMENDED BEFORE DEPOSIT.** The "nearest-star dominated" sentence is corrected, the open
+  question is replaced with the completed computation and its three-way exclusion, and the abstract now
+  says the residual is carried out rather than merely named. **The theorem and the lensing-lock verdict
+  are unchanged; only the reasoning is.**
+- **Genuinely open, and labelled in the paper:** the degree-1 theorem assumes asymptotic homogeneity, so
+  a never-power-law interpolating form factor is uncovered; η = 3/4 is linear-response; and **cubic and
+  higher invariants were not enumerated**, though the method extends to them.
