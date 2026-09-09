@@ -1308,3 +1308,58 @@ its sign changes, and the Solar-System gates from their own constants.
   at Earth, 3.8e4(p+1) at Jupiter — for every member of the class.
 - **Sections 3–6 stand exactly as published:** the ceiling, the SPARC test, the cluster violation. The
   required changes are two sentences, one table caption, the coded kernel, and an upgraded section 9.
+
+## L37 — the density footing at recombination: the canonical reading survives, the rival dies
+
+`L37_recombination_footing.py` + `L37_RECOMBINATION.md` (35 checks, 10 FAIL, all designed fork
+outcomes). The programme's headline a₀ = κc√(Gρ) has two readings of which density that is, and they
+agree only today. This lane evaluated the fork where cosmology is measured best.
+
+**Controls, all passing:** z_eq = 3402 against Planck's 3387; r_drag = 147.10 Mpc against
+147.09 ± 0.26; 100θ\* = 1.03959 against 1.04109; both kernels return the Newtonian and deep-MOND
+limits; BTFR v⁴ = GMa₀ to 0.4%; and the Sachs–Wolfe amplitude Φ/3 = 9.79e-6 against the observed
+1.1e-5.
+
+- **⚠️ FIRST, A CORRECTION TO THIS LANE'S OWN BRIEF.** The brief asserted that at recombination
+  g/a₀ ≈ 2.3, i.e. that the CMB sits exactly at the MOND transition. **That is wrong.** Computed as
+  |∇Φ| = (k/a)Φ with a transfer-function potential, g/a₀ is **4.0–9.0 per mode across the subhorizon
+  Planck range and 15.6 for the point rms.** Getting 2.3 requires using the wavelength in place of the
+  wavenumber, a factor 2π, **and** a mode at l ≈ 20–40, which is two to three times **outside the
+  horizon** at last scattering (l_H = 67), where quasi-static MOND is undefined. This lane
+  independently reproduced a retraction the repository had already made on 2026-06-06 and identified
+  the missing 2π. Sanders' literature value near 20 is matched to a factor 1.3.
+- **The canonical footing ρ = ρ_Λ SURVIVES.** Nothing at nucleosynthesis is within eleven orders of
+  a₀ (g/a₀ = 1.19e13), and AeST (Skordis & Złośnik 2021) already fits Planck with exactly this
+  constant a₀, via a dust-like cosmological sector and a quasi-static MOND limit. **But the defence is
+  structural, not a consequence of g/a₀ being large:** a literal AQUAL implementation would tilt the
+  spectrum at **5.1–6.1σ**, and the dust that saves the CMB is the programme's known double-counting
+  cost. Recorded as a cost, not a clean pass.
+- **The rival footing ρ = ρ_total DIES.** Boosts of 55–85× at recombination, **27σ in n_s**, a Jeans
+  length shrunk 7× so acoustic oscillation becomes collapse. And the failure is **structural, not an
+  accident of one epoch**: g/a₀ at horizon crossing is 1.07e-4 and **epoch-independent to machine
+  precision**, because both g and a₀ scale as H.
+- **⚠️ BBN does NOT decide this fork and must not be cited as the rival's kill.** a₀ is a constant of
+  the action's free function in every relativistic MOND completion, so the Friedmann equation is
+  a₀-blind, and homogeneity forbids a background MOND effect independently — the deep-MOND shell force
+  goes as √r, not r. The rival **passes** the helium gate. The conditional Y_p = 0.824 against 0.270,
+  163σ, applies only if the boost reached the background, and is flagged as conditional throughout.
+- **Shifts against Planck's own precision**, canonical / rival, with an honest factor-3 estimator
+  error on every entry. r_drag and θ\* are untouched on both footings because a₀ is absent from the
+  Friedmann equation.
+
+| observable | Planck precision | canonical | rival |
+|---|---|---|---|
+| odd/even ratio | 0.67% | +1.84% | +11.4% |
+| third/first ratio | 1.0% | −1.33% | −7.52% |
+| damping tail at l ≈ 2200 | 1.5% | +4.46% | +24.6% |
+| effective Δn_s, l ≥ 220 | σ = 0.0042 | **5.1σ** | **27σ** |
+
+- **⚠️ THE RECORD CONTRADICTS ITSELF IN SHORTHAND, and this needs fixing.** **Three different a₀(z)
+  laws circulate under one headline.** The banked "0.002–0.006 at recombination" reproduces from the
+  stage-17 *pressure* law, a₀² = κ²G(−p_Q), over its committed window. The canonical ρ_Λ reading gives
+  exactly 1.0000. **The two differ by 167× to 490× at z = 1100 and coincide only at z = 0.** The README
+  and stage 17 are explicit that the pressure law is operative and that a₀ = κc√(Gρ_Λ) is its z = 0
+  boundary condition; the index-level shorthand loses that. It changes no verdict here — the off-switch
+  drives g/a₀ from 8.1 to 1348–3948, further Newtonian — and stage 17's own sentence is the
+  programme's own action-side kill of the rival footing. **A real labelling contradiction in the
+  shorthand, none in the derivation.**

@@ -1,0 +1,325 @@
+======================================================================================================================
+L37 -- which density is in a0 = kappa c sqrt(G rho)?  Recombination and BBN decide.
+======================================================================================================================
+  cosmology: h=0.6736, Om=0.3138, Ob h^2=0.02237, Or=9.2198e-05, OL=0.6861, T_CMB=2.7255 K, N_eff=3.046
+  a0 footings carried: canonical 9.3619e-11 m/s^2, alt 1.1279e-10 m/s^2 (ratio 1.2048 = 1/sqrt(Omega_Lambda_eff))
+
+======================================================================================================================
+C0  CONTROL -- does the background cosmology reproduce standard numbers?
+======================================================================================================================
+  [PASS] C0a  matter-radiation equality z_eq within 5% of Planck 3387   (z_eq = 3402)
+  [PASS] C0b  sound horizon at drag within 1% of Planck 147.09 Mpc   (r_drag = 147.10 Mpc  (Planck 147.09 +- 0.26))
+  [PASS] C0c  acoustic angular scale 100 theta_* within 1% of Planck 1.04109   (100 theta_* = 1.03959,  r_s(z_*) = 144.44 Mpc, D_M = 13894 Mpc)
+  [info] C0d  E(2.5) computed 3.762 vs brief 3.769   deviation 0.18%
+  [info] C0d  E(1100) computed 2.354e+04 vs brief 2.358e+04   deviation 0.16%
+  [info] C0d  E(4e+08) computed 1.536e+15 vs brief 1.538e+15   deviation 0.11%
+  [PASS] C0d  the brief's H(z)/H0 table reproduced independently to 2%
+  [info]      NOTE on E(4e8): pure a^-4 radiation scaling is used, as the brief does.  Across e+e-
+  [info]      annihilation g_* changes, so the true E at T ~ 0.09 MeV differs by <~20%; this does not
+  [info]      move any decimal order in what follows and is flagged, not hidden.
+
+======================================================================================================================
+C1  CONTROL -- does the g/a0 estimator return the known Newtonian and deep-MOND limits?
+======================================================================================================================
+  [PASS] C1a  nu_RAR -> 1 (Newtonian) at g/a0 = 1e8   (nu = 1.00000000)
+  [PASS] C1a  nu_simple -> 1 (Newtonian) at g/a0 = 1e8   (nu = 1.00000001)
+  [PASS] C1b  nu_RAR * sqrt(y) -> 1 (deep MOND) at g/a0 = 1e-8   (nu sqrt(y) = 1.000050)
+  [PASS] C1b  nu_simple * sqrt(y) -> 1 (deep MOND) at g/a0 = 1e-8   (nu sqrt(y) = 1.000050)
+  [PASS] C1c  [canonical] kernel reproduces BTFR v^4 = G M a0 at r = 3 Mpc to 3%   (v_flat = 187.9 km/s, v^4/(G M a0) = 1.0041)
+  [PASS] C1c  [alt] kernel reproduces BTFR v^4 = G M a0 at r = 3 Mpc to 3%   (v_flat = 196.9 km/s, v^4/(G M a0) = 1.0037)
+  [PASS] C1d  [canonical] g/a0 = 1 exactly at the MOND radius sqrt(GM/a0)   (r_M = 12.2 kpc)
+  [PASS] C1d  [alt] g/a0 = 1 exactly at the MOND radius sqrt(GM/a0)   (r_M = 11.1 kpc)
+
+======================================================================================================================
+S1  THE FORK -- a0(z) on both readings, both normalisations (exact, no expansions)
+======================================================================================================================
+  CANONICAL  rho = rho_Lambda, w = -1  =>  a0(z) = a0(0)             [EXACTLY constant]
+  RIVAL      rho = rho_tot            =>  a0(z) = a0(0) E(z)        [propto c H(z)]
+
+             z      H(z)/H0 |   a0 canon rhoL  a0 canon rhotot |   a0 alt rhoL   a0 alt rhotot
+             0            1 |       9.362e-11        9.362e-11 |     1.128e-10       1.128e-10
+           2.5        3.762 |       9.362e-11        3.522e-10 |     1.128e-10       4.243e-10
+          1100    2.354e+04 |       9.362e-11        2.204e-06 |     1.128e-10       2.655e-06
+         4e+08    1.536e+15 |       9.362e-11        1.438e+05 |     1.128e-10       1.733e+05
+  [PASS] S1a  the brief's a0 table reproduced independently (canonical and rival, both to 3%)
+  [info] S1b  the two a0 NORMALISATIONS differ by exactly 1/sqrt(Omega_Lambda)   1.2048 vs 1.2085 -- the 'both footings' pair IS the rho_Lambda/rho_tot fork evaluated TODAY
+
+======================================================================================================================
+S2  THE ESTIMATOR FORK -- what IS 'g' at recombination?  Three answers, six decades apart
+======================================================================================================================
+  The interpolating function's argument is NOT a matter of taste; it is fixed by which arm of
+  the fork the theory is on.
+    MODIFIED GRAVITY (the operative arm since 2026-08-08): AQUAL/QUMOND modify the POISSON
+      equation, div[mu(|grad Phi|/a0) grad Phi] = 4 pi G rho.  The argument is the GRAVITATIONAL
+      field |grad Phi| of the perturbation.  For a Fourier mode, |grad Phi| = (k/a) Phi.
+    MODIFIED INERTIA (closed arm, excluded 21 sigma by lensing): the argument is the TOTAL
+      acceleration of the fluid element, which in a tightly-coupled photon-baryon plasma is
+      dominated by the PRESSURE gradient, a_ac ~ c_s^2 / r_s(phys), not by gravity.
+    THE BRIEF'S ESTIMATOR, g ~ Phi/lambda, is the MG estimator with the 2 pi of |grad| dropped
+      (lambda instead of k) and a hand-set Phi.  It is not a third physical reading.
+  [info] S2a  comoving Hubble radius at z = 1100   208.1 Mpc  =>  k_H = 0.0048 Mpc^-1  =>  l_H = 67   (multipoles below this are SUPERHORIZON at last scattering)
+  [info] S2b  the brief's estimator g = Phi c^2 / lambda_phys   lambda_phys = 0.1362 Mpc, g = 2.138e-10 m/s^2  => g/a0(canon) = 2.28  [the brief's 2.3]
+  [PASS] S2c  the brief's g ~ 2.1e-10 and g/a0 ~ 2.3 reproduced exactly (control on the premise)   (g = 2.138e-10, g/a0 = 2.284)
+  [info] S2d  the SAME 150 Mpc scale with |grad Phi| = k Phi, k = 2 pi/lambda, Phi from EH98   k = 0.0419 Mpc^-1, Delta_Phi = 6.253e-06, g = 8.399e-10 m/s^2 => g/a0(canon) = 9.0
+  [info] S2e  the factor between them   3.9x = 2pi (from lambda->k) x 0.63 (transfer-function Phi vs the hand-set 1e-5)
+  [info] S2f  the MODIFIED-INERTIA estimator a_ac = c_s^2 / r_s(phys)   7.401e-06 m/s^2  =>  g/a0(canon) = 7.91e+04  [this is what mi_cmb_a0_horizon_2026.py uses]
+
+  MODIFIED-GRAVITY g/a0 ACROSS THE PLANCK MULTIPOLE RANGE at z = 1100
+       l   k [1/Mpc]     T(k)   Delta_Phi    g [m/s2] |   y canon     y alt |  y RIVAL c  y RIVAL a |  sub-hor?
+       2     0.00014   0.9996   3.046e-05   1.406e-11 |      0.15      0.12 |  6.379e-06  5.294e-06 |        NO
+      10     0.00072   0.9912   2.936e-05   6.776e-11 |      0.72      0.60 |  3.075e-05  2.552e-05 |        NO
+      30     0.00216   0.9485   2.756e-05   1.908e-10 |      2.04      1.69 |  8.658e-05  7.186e-05 |        NO
+      70     0.00504   0.8455   2.420e-05   3.910e-10 |      4.18      3.47 |  1.774e-04  1.473e-04 |       yes
+     100     0.00720   0.7727   2.198e-05   5.073e-10 |      5.42      4.50 |  2.302e-04  1.911e-04 |       yes
+     220     0.01583   0.5293   1.485e-05   7.540e-10 |      8.05      6.69 |  3.421e-04  2.840e-04 |       yes
+     340     0.02447   0.3745   1.043e-05   8.182e-10 |      8.74      7.25 |  3.712e-04  3.081e-04 |       yes
+     537     0.03865   0.2457   6.787e-06   8.412e-10 |      8.99      7.46 |  3.817e-04  3.168e-04 |       yes
+     810     0.05830   0.1592   4.364e-06   8.159e-10 |      8.72      7.23 |  3.702e-04  3.073e-04 |       yes
+    1120     0.08061   0.1085   2.959e-06   7.650e-10 |      8.17      6.78 |  3.471e-04  2.881e-04 |       yes
+    1450     0.10436   0.0781   2.120e-06   7.094e-10 |      7.58      6.29 |  3.219e-04  2.672e-04 |       yes
+    1800     0.12955   0.0584   1.580e-06   6.563e-10 |      7.01      5.82 |  2.978e-04  2.472e-04 |       yes
+    2200     0.15834   0.0441   1.189e-06   6.040e-10 |      6.45      5.35 |  2.740e-04  2.275e-04 |       yes
+    2500     0.17993   0.0367   9.880e-07   5.701e-10 |      6.09      5.05 |  2.587e-04  2.147e-04 |       yes
+  [PASS] S2g  [canonical] MG g/a0 stays ABOVE 1 everywhere subhorizon at recombination   (min g/a0 = 4.03 at l = 67, max = 8.99)
+  [PASS] S2g  [alt] MG g/a0 stays ABOVE 1 everywhere subhorizon at recombination   (min g/a0 = 3.34 at l = 67, max = 7.46)
+  [info] S2h  TOTAL rms |grad Phi| at a point (all subhorizon modes, k_H to 100 Mpc^-1)   g_rms = 1.460e-09 m/s^2  =>  g/a0 = 15.6 (canonical), 12.9 (alt).  The integral converges because g propto k T(k) propto ln k / k in the UV
+  [PASS] S2i  the brief's premise g/a0 ~ 2.3 is NOT reproduced by any defensible subhorizon estimator (PASS = the premise does not survive)   (confirmed not reproduced.  per-mode range 4.0-9.0; point rms 15.6; MI estimator 7.9e+04.  The value 2.3 requires lambda in place of k (a factor 2 pi) AND a superhorizon mode (l < 67))
+  [info] S2j  vs the literature   Sanders (astro-ph/0509532) quotes g/a0 ~ 20 at recombination; the point rms computed here is 16-13.  Agreement to a factor 1.3, i.e. the same order and the same conclusion, but the literature value is NOT reproduced to better than ~40% and is not claimed to be
+  [info] S2k  WHERE the brief's g/a0 ~ 2 actually lives   at l ~ 20-40 (the table above), i.e. 2-3x OUTSIDE the horizon at last scattering (l_H = 67), where the quasi-static MOND limit is not defined at all and where the CMB is cosmic-variance limited to 15-50% per multipole
+  [PASS] S2l  CONTROL on the potential normalisation: Sachs-Wolfe Delta T/T = Phi/3 at l = 10 reproduces the observed plateau ~1.1e-5 to 30%   (Phi/3 = 9.786e-06 vs observed Delta T/T ~ 1.1e-5 (33 uK / 2.725 K))
+  [info] S2m  stated systematic on Phi at z = 1100   the (3/5) matter-era factor is used while rho_r/rho_m = 0.33 still, and T(k) is the matter transfer function; treat Delta_Phi as +-30%, which moves g/a0 to 3-12 per mode and does not reach either 2.3 or 20
+
+======================================================================================================================
+S3  CANONICAL FOOTING -- what the surviving boost does, vs Planck's measured precision
+======================================================================================================================
+  Method.  In AQUAL the same source produces a boosted field: g = nu(g_N/a0) g_N, so at linear
+  order Phi -> nu(k) Phi and C_l -> nu(k_l)^2 C_l.  A SCALE-INDEPENDENT boost is exactly
+  degenerate with A_s and is unobservable; only the SCALE DEPENDENCE bites.  So the honest
+  observable is (i) the effective tilt Delta n_s of nu^2 over the fitted multipole range, against
+  Planck's sigma(n_s) = 0.0042, and (ii) the residual after that tilt is marginalised away.
+  The background (r_s, theta_*) is untouched because a0 does not enter the Friedmann equation in
+  ANY relativistic MOND completion -- verified as a statement, not assumed, in S7.
+  HONEST ERROR: this is a linear-response estimate applied to a driven oscillator.  The acoustic
+  observable is Theta_0 + Phi and the boost also alters the driving, so treat every fractional
+  shift below as good to a factor ~3, quoted.
+
+  CANONICAL footing (a0 constant): effective tilt of the AQUAL boost
+      kernel  a0 footing      l range    nu(lo)    nu(hi)   Delta n_s  sigma(n_s)  in sigma  resid rms
+      nu_RAR   canonical horizon-2500    1.1554    1.0926     -0.0226      0.0042       5.4      3.86%
+      nu_RAR   canonical     220-2500    1.0622    1.0926      0.0215      0.0042       5.1      1.30%
+      nu_RAR         alt horizon-2500    1.1915    1.1181     -0.0262      0.0042       6.2      4.50%
+      nu_RAR         alt     220-2500    1.0815    1.1181      0.0256      0.0042       6.1      1.54%
+   nu_simple   canonical horizon-2500    1.2060    1.1436     -0.0221      0.0042       5.3      3.82%
+   nu_simple   canonical     220-2500    1.1117    1.1436      0.0220      0.0042       5.2      1.32%
+   nu_simple         alt horizon-2500    1.2411    1.1692     -0.0250      0.0042       6.0      4.33%
+   nu_simple         alt     220-2500    1.1321    1.1692      0.0251      0.0042       6.0      1.51%
+  [FAIL] S3a  CANONICAL footing, naive AQUAL applied literally to linear perturbations: is the induced tilt BELOW Planck's sigma(n_s)?   (conservative (l>=220, comfortably subhorizon) range 5.1-6.1 sigma; with the factor-3 estimator error, 1.7-18.3 sigma)
+  READ S3a CORRECTLY -- it is NOT 'the canonical footing is excluded at 5 sigma'.  Three
+  reasons, all of which shrink it and all of which are stated because the lane must not
+  manufacture a kill:
+    (i)   only A_s and n_s are marginalised here.  A real fit would also move Omega_b h^2,
+          Omega_c h^2 and H_0, which absorb a smooth few-percent scale-dependent boost far better
+          than a two-parameter fit does.  The number is an UPPER bound on the naive implementation.
+    (ii)  the estimator is linear response on a driven oscillator; factor ~3 either way.
+    (iii) S7: the relativistic completion that actually fits Planck does NOT implement AQUAL at
+          cosmological scales, so this boost is not what the theory does.
+  What S3a DOES establish, and it is the useful part: 'g >> a0 at recombination' is NOT by itself
+  a sufficient defence.  A residual boost of a few percent that VARIES ACROSS THE PEAKS is at the
+  edge of Planck's reach.  The canonical footing's safety comes from the completion's structure,
+  not from the size of g/a0.
+
+  CANONICAL footing: FRACTIONAL SHIFT PER OBSERVABLE vs Planck precision (nu_RAR kernel; nu_simple in brackets)
+                          observable   Planck precision    canon shift      alt shift   verdict
+                sound horizon r_drag              0.18%          0.00%          0.00%        ok
+          acoustic scale 100 theta_*             0.030%          0.00%          0.00%        ok
+  peak-1 amplitude (absorbed by A_s)               1.4%         12.82%         16.96%       n/a
+  odd/even peak ratio -> Omega_b h^2              0.67%          1.84%          2.22%      FAIL
+   3rd/1st peak ratio -> Omega_c h^2               1.0%         -1.33%         -1.59%      FAIL
+     damping tail l~2200 rel. peak 1    1.5% (per band)          4.46%          5.28%      FAIL
+  [FAIL] S3b  CANONICAL footing: every individual CMB observable shifted by less than Planck measures it (naive AQUAL, no marginalisation)   (over-shifted: odd/even peak ratio -> Omega_b h^2, 3rd/1st peak ratio -> Omega_c h^2, damping tail l~2200 rel. peak 1)
+
+======================================================================================================================
+S4  RIVAL FOOTING -- a0 = a0(0) E(z) at recombination, boost of order 50
+======================================================================================================================
+  [info] S4a  a0 at z = 1100 on the rival footing   canonical-normalised 2.204e-06 m/s^2, alt 2.655e-06 m/s^2 (2.354e+04x today)
+
+      kernel  a0 footing      l range    nu(lo)    nu(hi)   Delta n_s  sigma(n_s)  in sigma  resid rms
+      nu_RAR   canonical horizon-2500    76.977    62.680     -0.0983      0.0042      23.4     17.85%
+      nu_RAR   canonical     220-2500    54.566    62.680      0.1148      0.0042      27.3      6.88%
+      nu_RAR         alt horizon-2500    84.443    68.750     -0.0983      0.0042      23.4     17.86%
+      nu_RAR         alt     220-2500    59.844    68.750      0.1149      0.0042      27.4      6.89%
+   nu_simple   canonical horizon-2500    76.977    62.681     -0.0983      0.0042      23.4     17.85%
+   nu_simple   canonical     220-2500    54.567    62.681      0.1148      0.0042      27.3      6.88%
+   nu_simple         alt horizon-2500    84.443    68.750     -0.0983      0.0042      23.4     17.86%
+   nu_simple         alt     220-2500    59.845    68.750      0.1149      0.0042      27.4      6.89%
+
+  RIVAL footing: FRACTIONAL SHIFT PER OBSERVABLE vs Planck precision (nu_RAR)
+                          observable   Planck precision    canon shift      alt shift   verdict
+                sound horizon r_drag              0.18%          0.00%          0.00%        ok
+          acoustic scale 100 theta_*             0.030%          0.00%          0.00%        ok
+  peak-1 amplitude (absorbed by A_s)               1.4%     297650.13%     358034.55%       n/a
+  odd/even peak ratio -> Omega_b h^2              0.67%         11.44%         11.45%      FAIL
+   3rd/1st peak ratio -> Omega_c h^2               1.0%         -7.52%         -7.52%      FAIL
+     damping tail l~2200 rel. peak 1    1.5% (per band)         24.60%         24.62%      FAIL
+  [info] S4b  the boost is not a percent-level shift, it is a change of regime   G_eff/G = nu = 54.6 at the first peak  =>  the photon-baryon Jeans length lambda_J propto 1/sqrt(G_eff) shrinks by 7.4x, i.e. gravitational collapse beats photon pressure down to r_s/7.4: the acoustic oscillations across most of the peak range are replaced by instability, not shifted
+  [FAIL] S4c  RIVAL footing: is the induced tilt below Planck's sigma(n_s)?   (27 sigma even on the conservative l >= 220 range; 23 sigma including the horizon scale)
+  [FAIL] S4d  RIVAL footing: every individual CMB observable shifted by less than Planck measures it   (over-shifted: odd/even peak ratio -> Omega_b h^2, 3rd/1st peak ratio -> Omega_c h^2, damping tail l~2200 rel. peak 1)
+
+======================================================================================================================
+S5  BBN -- the cleaner test.  Is anything near a0 at T ~ 1 MeV?  And what happens to Y_p?
+======================================================================================================================
+                         epoch            z     H [1/s]   k_H [1/Mpc]  g_max [m/s2] |    y canon      y alt |   y RIVAL c   y RIVAL a
+      n/p freeze-out T=0.8 MeV    3.406e+09   2.432e-01          7349     1.114e+03 |  1.190e+13  9.874e+12 |   1.068e-04   8.863e-05
+      D bottleneck T=0.094 MeV    4.002e+08   3.358e-03         863.5     1.538e+01 |  1.642e+11  1.363e+11 |   1.068e-04   8.863e-05
+           the brief's z = 4e8        4e+08   3.354e-03           863     1.536e+01 |  1.641e+11  1.362e+11 |   1.068e-04   8.863e-05
+  [info] S5a  Phi at horizon crossing in radiation domination   Phi_hc = 0.5 x (2/3) sqrt(A_s) = 1.528e-05; g is MAXIMAL at the horizon scale (superhorizon g propto k, subhorizon Phi decays as k^-2), so g_max above bounds EVERY mode
+  [PASS] S5a2  STRUCTURAL: on the rival footing g/a0 at horizon crossing is the SAME at every epoch, because g_hc = c H Phi and a0 = a0(0) E(z) both scale as H   (g_hc/a0_rival = c H0 Phi_hc / a0(0) = 1.068e-04 exactly, identical at all three epochs (spread 0.0e+00).  The rival footing is deep-MOND by ~10^4 at the horizon scale at EVERY time in radiation domination -- not a coincidence of one epoch)
+  [PASS] S5b  CANONICAL footing at BBN: is every perturbation deep in the Newtonian regime?   (g/a0 = 1.19e+13 at n/p freeze-out -- a0 is 11 orders below anything)
+  [FAIL] S5c  RIVAL footing at BBN: is every perturbation deep in the Newtonian regime?   (g/a0 = 1.07e-04 -- DEEP MOND for every mode; boost nu = 97)
+
+  DOES a0 CHANGE THE EXPANSION RATE, AND HENCE Y_p?  The honest answer, stated against the
+  lane's interest.  In EVERY relativistic MOND completion (RAQUAL, TeVeS, BIMOND, AeST), a0 is a
+  constant of the free function in the ACTION.  The Friedmann equation is sourced by the energy
+  densities of the fields, not by a0; the MOND modification lives in the quasi-static,
+  gradient-dominated sector.  Homogeneity forbids a background MOND effect anyway: the Newtonian-
+  analogue FRW acceleration of a shell is r_ddot = -(4 pi G/3) rho r, and its deep-MOND version
+  r_ddot = -sqrt((4 pi G/3) rho a0 r) scales as sqrt(r), NOT as r, so it is inconsistent with
+  homogeneous expansion.  Therefore Y_p is a0-BLIND at the background level on BOTH footings, and
+  the rival footing is NOT killed by helium.  That is the check that could have gone the other way
+  and did not, and it is recorded as such.
+  [PASS] S5d  RIVAL footing: is the observed helium abundance a decisive test of it? (PASS = the rival survives Y_p)   (a0 does not enter the Friedmann equation in any relativistic MOND completion, and a deep-MOND background force scales as sqrt(r) which is incompatible with homogeneity; Y_p is a0-blind.  The rival footing SURVIVES BBN.  Do not cite BBN as its kill.)
+
+  THE CONDITIONAL VERSION, since the rival footing is by construction a statement that a0
+  tracks the BACKGROUND density: if one nonetheless lets the deep-MOND boost act on the expansion
+  (the Felten/Sanders Newtonian-analogue reading, the only reading in which 'a0 = kappa c
+  sqrt(G rho_tot)' says anything about the background), then G_eff -> nu G at BBN and Y_p moves.
+  [info] S5e  the crude Y_p estimator calibrated on standard BBN   Y_p(lambda=1) = 0.270 vs the true standard value 0.2470 -- the estimator is 1.09x high, so shifts below are quoted as RATIOS to this baseline
+                       footing   H boost lambda       Y_p   Y_p/Y_p(std)   sigma vs Aver 0.2453+-0.0034
+          canonical (a0 const)                1     0.270          1.000                            0.0
+          rival (a0 propto cH)            97.27     0.824          3.052                            163
+  [FAIL] S5f  CONDITIONAL: if the deep-MOND boost reached the background, would the rival footing survive Y_p?   (Y_p = 0.824 vs 0.270 baseline, 163 sigma -- excluded IF the boost reaches the background, which S5d says it does not.  Conditional, not a kill.)
+  [info] S5g  what BBN DOES bound   Delta N_eff <~ 0.25 => Delta H/H <= 1.7% => G_eff/G - 1 <= 3.4%.  The rival footing's perturbation-sector boost is 97, i.e. 94x the bound -- but only IF it leaks.
+
+======================================================================================================================
+S6  THE RECORD -- is 'off at recombination' consistent with the canonical footing?
+======================================================================================================================
+  The repository states (README.md line 54, STANDING, and the memory index) that the derived
+  a0(z) law is "constant to <1% everywhere MOND is tested (z <= 5), OFF AT RECOMBINATION as an
+  output (a0 falls to 0.002-0.006 of today's value)".  The canonical footing rho = rho_Lambda
+  with w = -1 gives a0(z) = a0(0) EXACTLY, at every redshift, forever.  These cannot both be the
+  same law.  Which is it?
+  [info] S6a  stage17 / README pressure law at z = 1100 over its committed nu_0 window   nu_0 in [2.1e-05, 1.8e-04]  =>  a0(rec)/a0(0) = 0.0020 to 0.0060
+  [PASS] S6b  the README's banked '0.002-0.006' is reproduced by the stage17 pressure law   (computed 0.0020-0.0060 vs banked 0.002-0.006)
+  [FAIL] S6c  is the record's 'off at recombination' the SAME law as the headline a0 = kappa c sqrt(G rho_Lambda)?   (NO.  The canonical rho_Lambda reading gives a0(rec)/a0(0) = 1.0000 exactly; the record's derived law gives 0.0020-0.0060.  They differ by 167x-490x at recombination and agree only at z = 0)
+  RESOLUTION, and it is a labelling finding, not a physics error.  The README is internally
+  explicit: the promotion it makes is a0^2 = kappa^2 G (-K(Q)) = kappa^2 G (-p_Q), the dark
+  sector's PRESSURE, and it states that -K = rho_Lambda TODAY.  So a0 = kappa c sqrt(G rho_Lambda)
+  is the law's BOUNDARY CONDITION at z = 0, not the law.  stage17 explicitly rejects the density
+  promotion:  "the naive promotion is a0^2 propto rho_Q ... with the charge turned on, rho_Q =
+  M^4 + dust GROWS into the past => a0 RISES toward recombination => MOND ON at the CMB => fatal."
+  That sentence is, verbatim, the programme's own kill of the RIVAL footing, filed in August 2026
+  and reached from the action rather than from the data.
+  WHAT IS THEREFORE INCONSISTENT is the SHORTHAND -- "the headline equation is a0 = kappa c
+  sqrt(G rho), canonical reading rho = rho_Lambda" -- which, taken at face value, forces a0 to be
+  constant and cannot produce the off-switch the same documents advertise as a prediction.  Three
+  distinct a0(z) laws circulate under one headline: constant (rho_Lambda), rising as E(z)
+  (rho_tot), and the stage17 pressure law that declines as (1+z)^{-3/2} above z_t ~ 17-35.
+  [PASS] S6d  does the stage17 off-switch change the recombination verdict?   (g/a0 at the first peak goes from 8.1 (constant a0) to 1348-3948 -- the off-switch moves the CMB FURTHER into the Newtonian regime.  It is safe, and it buys nothing: constant a0 was already Newtonian there.  This confirms the June-2026 retraction ('no CMB win') independently)
+
+======================================================================================================================
+S7  DOES A RELATIVISTIC MOND THEORY ALREADY PASS THE CMB?  (the anti-manufactured-kill check)
+======================================================================================================================
+  YES, and the mechanism has to be stated plainly or S3 would be a manufactured kill.
+  Skordis & Zlosnik 2021 (PRL 127:161302) construct Aether-Scalar-Tensor (AeST) and show it
+  reproduces the Planck TT/TE/EE spectra and the linear matter power spectrum at LCDM quality.
+  It does this NOT by making a0 small at recombination -- a0 in AeST is a constant of the free
+  function K(Q), the same constant that sets galactic MOND -- but by the following structure:
+
+   (1) K(Q) has a quadratic minimum, K = K_2 (Q - Q_0)^2.  On the FRW background the shift-
+       symmetric charge redshifts as a^-3, so the scalar sector's energy density behaves as
+       PRESSURELESS DUST with vanishing sound speed.  At recombination the gravitational source is
+       therefore dust + baryons + radiation -- i.e. numerically LCDM -- and the acoustic peaks,
+       including the third-peak forcing, come out standard.
+   (2) The MOND behaviour is a QUASI-STATIC, GRADIENT-DOMINATED limit: it requires the |grad Q|^2
+       terms to dominate over Q_dot^2.  On cosmological scales at recombination the time
+       derivatives dominate, so the AQUAL/QUMOND boost computed in S3 is NOT what the theory does
+       there.  The AQUAL estimate is an UPPER BOUND on the modification, and the completion
+       evades it by construction.
+   (3) Consequently the "g/a0 ~ 1 at recombination is fatal" argument does not go through for a
+       CONSTANT a0, and this lane must not claim it does.
+
+  WHAT THAT RESCUE DOES NOT COVER, and this is the asymmetry that decides the fork:
+   (a) The rescue is available because a0 is a CONSTANT OF THE ACTION.  The rival footing demands
+       a0 = a0(0) E(z), i.e. the free function must depend on the background density.  That is
+       exactly the density promotion stage17 proves fatal from the action's own side (S6), and it
+       is the promotion whose backreaction into the Q equation is UNSUPPRESSED (Q K'' = O(mu^2))
+       rather than charge-suppressed.  There is no AeST-shaped theory with a0 propto H.
+   (b) The dust component that saves the CMB is the same cold component the programme's own
+       matching theorem shows falls into galaxies and double-counts with the MOND boost by
+       2.7-4.4x.  The CMB rescue is real and it is not free.
+  [PASS] S7a  is 'g/a0 of order a few at recombination' by itself fatal to a constant-a0 MOND theory?   (NO -- AeST (Skordis & Zlosnik 2021) fits Planck with the same a0 that does galaxies, because its cosmological sector is dust-like and its MOND limit is quasi-static. S3's tilt is an upper bound on a naive AQUAL implementation, not a kill of the canonical footing.)
+  [FAIL] S7b  is the same rescue available to the rival footing a0 propto c H(z)?   (NO -- it requires a0 to be a constant of the action.  a0 propto sqrt(rho_tot) is the density promotion stage17 kills from the action (unsuppressed backreaction, and 'MOND ON at the CMB'), and STANDING.md already records the same footing closed ('recombination is deep-MOND, growth on an attractor tilted x300').)
+
+======================================================================================================================
+S8  VERDICT -- which footing, if either, survives?
+======================================================================================================================
+  CANONICAL (rho = rho_Lambda, a0 constant).  SURVIVES.
+    - g/a0 at recombination, computed properly as |grad Phi| = (k/a) Phi with a transfer-function
+      potential, is 4.0-9.0 per mode across the whole subhorizon Planck range and 16 for the
+      point rms.  It is NOT of order unity, and it is NOT the literature's 20 either -- that value
+      (Sanders astro-ph/0509532) is recovered only to a factor 1.3 and is quoted, not claimed.
+      The brief's g/a0 ~ 2.3 uses lambda in place of k (a factor 2 pi) and a hand-set Phi; the
+      value 2 only occurs at l ~ 20-40, 2-3x OUTSIDE the horizon at last scattering, where
+      quasi-static MOND is undefined and the CMB is cosmic-variance limited to 15-50% per
+      multipole.  This is numerically the same claim the repository already retracted 2026-06-06.
+    - The residual boost is 6.2% at the first peak.  Applied literally as AQUAL it would
+      mimic Delta n_s ~ 0.022 (5.1 sigma), so 'g >> a0' is NOT by itself sufficient --
+      the safety comes from the completion's structure (S7), not from the ratio.
+    - BBN: g/a0 ~ 1.2e+13.  Nothing is within eleven orders of a0.  Untouched.
+
+  RIVAL (rho = rho_tot, a0 propto c H(z)).  DOES NOT SURVIVE.
+    - At recombination a0 = 2.2e-06-2.66e-06 m/s^2, g/a0 ~ 2e-4 to 6e-4, boost 55-84.
+      Effective tilt 0.115 = 27 sigma in n_s on the conservative range; the Jeans length
+      shrinks 7x so the acoustic oscillations are replaced by collapse.  Not a shift, a regime change.
+    - It is killed independently by the programme's OWN action-side theorem (stage17: the density
+      promotion makes a0 rise into the past, 'MOND ON at the CMB => fatal') and is already recorded
+      closed in STANDING.md.  Three independent routes, one verdict.
+    - BBN does NOT kill it.  a0 is absent from the Friedmann equation, so Y_p is a0-blind; the
+      helium abundance is not a discriminator on this fork and must not be cited as one.
+
+  THE RECORD contradicts itself in SHORTHAND only.  'a0 = kappa c sqrt(G rho_Lambda)' (constant)
+  and 'off at recombination' (a0 -> 0.002-0.006 a0(0)) are two different laws that coincide at
+  z = 0.  The README and stage17 are explicit that the operative law is the PRESSURE promotion and
+  that the headline is its z = 0 boundary condition; the index-level shorthand loses that.  The
+  off-switch moves the CMB further into the Newtonian regime, so it changes no verdict here.
+
+  [PASS] S8a  VERDICT: does the CANONICAL footing (rho = rho_Lambda) survive recombination and BBN?   (YES.  subhorizon g/a0 = 3.3-9.0 (never in the transition region on either a0 footing), BBN g/a0 = 1.2e+13, and a relativistic completion with exactly this constant a0 already fits Planck (S7).  Cost: the residual AQUAL boost is at the edge of Planck's reach (S3a), so the defence is structural, not the size of g/a0)
+  [FAIL] S8b  VERDICT: does the RIVAL footing (rho = rho_tot, a0 propto c H(z)) survive?   (NO.  boost 55x at the first peak, tilt 27 sigma in n_s, Jeans length shrunk 7x, and g/a0 = 1.1e-04 at horizon crossing at EVERY radiation-era epoch. Killed on the CMB and independently by the programme's own stage17 action theorem. NOT killed by BBN helium (S5d))
+  [FAIL] S8c  VERDICT: is the record's 'off at recombination' statement consistent with the canonical rho_Lambda footing?   (NO -- they are two different laws (constant vs 0.002-0.006) that coincide only at z = 0. The README and stage17 are explicit that the operative law is the PRESSURE promotion; the index-level shorthand 'a0 = kappa c sqrt(G rho_Lambda)' loses that and is inconsistent with the advertised off-switch.  A labelling contradiction, not a physics error, and it changes no verdict (S6d))
+
+======================================================================================================================
+SUMMARY
+======================================================================================================================
+  checks run: 35   failed: 10
+    FAIL: S3a  CANONICAL footing, naive AQUAL applied literally to linear perturbations: is the induced tilt BELOW Planck's sigma(n_s)?
+    FAIL: S3b  CANONICAL footing: every individual CMB observable shifted by less than Planck measures it (naive AQUAL, no marginalisation)
+    FAIL: S4c  RIVAL footing: is the induced tilt below Planck's sigma(n_s)?
+    FAIL: S4d  RIVAL footing: every individual CMB observable shifted by less than Planck measures it
+    FAIL: S5c  RIVAL footing at BBN: is every perturbation deep in the Newtonian regime?
+    FAIL: S5f  CONDITIONAL: if the deep-MOND boost reached the background, would the rival footing survive Y_p?
+    FAIL: S6c  is the record's 'off at recombination' the SAME law as the headline a0 = kappa c sqrt(G rho_Lambda)?
+    FAIL: S7b  is the same rescue available to the rival footing a0 propto c H(z)?
+    FAIL: S8b  VERDICT: does the RIVAL footing (rho = rho_tot, a0 propto c H(z)) survive?
+    FAIL: S8c  VERDICT: is the record's 'off at recombination' statement consistent with the canonical rho_Lambda footing?
+
+  The FAILs above are the intended output of a fork test, not defects.  S3a/S3b record that a
+  naive AQUAL implementation of the CANONICAL footing would already exceed Planck's precision --
+  which is why the relativistic completion cannot be AQUAL at cosmological scales (S7), and NOT a
+  claim that the canonical footing is excluded.  S4c/S4d/S5c/S7b/S8b are the RIVAL footing failing
+  the acoustic observables by two to four orders of magnitude, failing on its own action-side
+  theorem, and having no AeST-shaped rescue.  S5f is the CONDITIONAL BBN row and is explicitly not
+  a kill.  S6c/S8c record that the record's 'off at recombination' is not the canonical rho_Lambda
+  law.  S8a PASSES: the canonical footing survives.
+  S5d PASSES and is the result most against this lane's interest: the observed helium abundance
+  does NOT decide this fork, and BBN must not be cited as the rival footing's kill.
+======================================================================================================================
