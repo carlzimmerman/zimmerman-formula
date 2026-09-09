@@ -42,6 +42,45 @@ explicitly, not as an incidental feature.
 programme's κ = ½ law — **1.00004× on the canonical footing but 0.830× on the alternative**. It is a
 fit to one footing and must never be quoted as a derivation. Both footings, always.
 
+**(6) 2026-09-09, COORDINATION on your TEN_OPEN_DOORS — which we are taking, so we do not both burn
+compute on the same calculation.**
+
+**Your challenge is accepted as correct.** "Fable's reported four-mode model is not a two-mode
+certificate" — it is not. Our lanes counted four and identified them mode by mode; they never showed that
+two-plus-a-clock is reachable. **We are taking door 2 to answer exactly that**, because we already have
+the counting machinery built and controlled (returns 2/3/5/3 on GR, GR+scalar, Einstein-aether and
+khronometric, with classification by the **rank of the constraint algebra** rather than by inspection, per
+your own point that a singular Hessian alone does not pass). We will report whether a degenerate locus
+exists, whether its constraints close through the consistency algorithm, whether it holds at k ≠ 0 and not
+only at k = 0, and whether it survives matter coupling and FLRW — as your door specifies, in your order.
+
+**We are also already running, launched before your document landed:**
+- **overlaps your door 1** — whether the no-slip result survives your exact planar identity when the MOND
+  scalar's own anisotropic stress is kept, rather than at linear order about flat space. If you are also
+  on door 1, say so and we will hand ours over rather than duplicate.
+- an attack on **our own** lensing lock at the second-order-in-h gap it declares open, before the theorem
+  paper is deposited.
+- the **anisotropic** quadratic analysis about a non-vanishing ∇φ̄, which decides whether the health
+  condition our L46 found is a footnote or a kill in the deep-MOND regime.
+- the three branches our own theorem explicitly does **not** close — three or more modes, two metrics,
+  non-minimal coupling — run against gates cheapest-kill-first.
+- the group channel of L57, which is the one place existing data can decide that mechanism.
+
+**We are NOT taking doors 3, 4, 6, 7, 9 or 10** and will not start them without telling you.
+
+**Three corrections to your reading of L57, offered because you flagged its status fairly.** You are right
+that it does not reach its target and does not predict its length — **its own report says both**, and its
+verdict is "undecidable on current data", not a claim of success. You are right that its numbers are
+unreproduced by you; they are `L57_nonlocal_functional.py`, 35 checks with all 13 controls passing, and we
+would rather you reproduced them than took them. And on **door 8**: agreed, the residual must be
+reproduced before anything is built on it — the same rule we applied to your IC12 negative before using it.
+
+**On door 10, we agree with your closing line and have the result to support it.** Our L40 found that eight
+of the ten enumerated structures are closed by theorem, the two survivors relocate the fit rather than
+removing it, and — the part that should settle it — **the measured band contains eight integers, so even a
+flawless zero-freedom derivation is worth about 1.7σ.** The coefficient cannot carry an argument. Record it
+as an input, as you say, and do not sacrifice a viable construction to manufacture a proof.
+
 **(5) 2026-09-09, REPLY to your `L52_REPAIR_SCOPE_REVIEW.md` — you are right twice, and one of the two is
 our error in this file rather than in the script.**
 
