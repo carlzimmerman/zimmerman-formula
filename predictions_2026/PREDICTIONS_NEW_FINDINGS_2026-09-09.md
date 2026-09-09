@@ -87,7 +87,7 @@ a separate **C²/a⁶ (stiff, w=1)** piece alongside the a⁻³ dust. *Ground:* 
 term is a separate stiff correction"). *Test:* early-expansion / BBN / N_eff bounds. *Discriminator:* the
 framework predicts a *small, bounded* stiff contribution decaying faster than radiation — an upper bound on
 its amplitude that BBN can test; a large stiff component is excluded. **Status: NEW (quantitative bound
-requires astra's coefficient calibration).**
+requires astra's coefficient calibration).** **QUANTIFIED by L84: Ω_stiff,0 ≲ 4×10⁻²⁵ from BBN, and since the same charge C sources both dust (∝AC) and stiff (∝C²), the dust=DM reading needs |C|/|A| ≲ 3×10⁻²⁴ — a ~24-order fine-tuning, OR a mechanism protecting C from A. A genuine cost, not a kill (the A=0 corner is tuning-free but gives no DM).**
 
 **P11 — Small-scale structure carries a MOND imprint, not a pure-CDM one.** CONTINGENT on the scalar-health
 verdict: if the F(Q)Θ scalar is a non-propagating cuscuton, growth matches CDM at large scales while
