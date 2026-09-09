@@ -8,6 +8,16 @@ relativistic theory. In particular, the full functional ADM algebra, PPN
 parameters, nonlinear perturbation stability, causal propagation, and an
 empirical galaxy/cluster likelihood remain open.
 
+The separate cold-scalar transmission route audited here is nevertheless
+**DEAD as a complete galaxy+cluster+CMB route** against the repository's
+latest empirical controls. Fable L76 finds that the winding dependence needed
+to separate clusters from galaxies would add about 0.26 dex of RAR scatter
+versus the observed 0.145 dex and is unsupported by the near-zero
+concentration correlation. Fable L77 then closes the free-streaming-relic
+alternative. The only remaining grand-prize door is the clock itself
+supplying recombination-era dust while its MOND sector operates in galaxies;
+that cosmological construction is not derived here.
+
 ## Candidate action
 
 The audited reduced action is the IC1 exponential sector together with
@@ -117,6 +127,12 @@ reported only as a negative control.
    no-go for this local realization, not a universal theorem about all
    nonlocal/elliptic MOND actions.
 
+8. **Latest-repository synthesis.** L75 opened a local assembly-history idea,
+   but the committed L76 SPARC analysis closes it empirically, and L77 closes
+   the thermal-relic scale-separation arm. Those results are not silently
+   folded into the symbolic gates; they set the route verdict: separate cold
+   transmission is dead, while clock-as-CMB-dust remains open.
+
 ## Exact files created
 
 - `action_variation.py`, `test_action_variation.py`
@@ -142,10 +158,13 @@ contains unrelated dirty and untracked work from earlier research runs.
 | `python3 -B -m unittest -v test_action_variation.py` (package directory) | 0 |
 | `python3 -B -m unittest -v test_dirac_gate.py` (package directory) | 0 |
 | `python3 -B -m unittest -v test_weak_field_ward_gate.py` (package directory) | 0 |
-| `python3 -B -m unittest -v test_flrw_winding_gate.py` (package directory) | 0 |
+| `python3 -B -m unittest -v test_flrw_winding_gate.py` (package directory) | 0 (3 tests) |
+| `python3 -B -m unittest -v test_stability_causality_gate.py` (package directory) | 0 (2 tests) |
+| `python3 -B -m unittest -v test_winding_no_go.py` (package directory) | 0 (2 tests) |
 | `python3 -B -m unittest -v test_local_winding.py` (package directory) | 0 |
 | `python3 -B -m unittest discover -s qwen_claude_field_theory/closure_2026/local_winding_clock_2026 -p 'test_*.py' -v` | 0 (15 tests) |
 | `python3 -B run_local_winding.py --output-dir run_001` | 0; report status OPEN |
+| `python3 -B winding_no_go.py` (package directory) | 0; scoped no-go expressions emitted |
 | `python3 /Users/carlzimmerman/.codex/plugins/cache/openai-curated-remote/mathbox/3.0.0/skills/computation-audit/scripts/validate_manifest.py qwen_claude_field_theory/closure_2026/local_winding_clock_2026/run_001/manifest.json` | 0; valid legacy manifest |
 | `python3 -B -m unittest -v test_integrable_clock.py` (IC1 directory) | 0 (9 tests) |
 | `python3 -B -m unittest -v test_localized_v4.py` (localized V4 directory) | 0 (13 tests) |
@@ -165,7 +184,8 @@ contains unrelated dirty and untracked work from earlier research runs.
 | \(\gamma_{\rm PPN},\beta,\alpha_1,\alpha_2,\alpha_3\) | OPEN |
 | \(c_T=c\), no ghost/gradient/strong coupling | OPEN; clock block has zero-gradient risk |
 | full nonlinear metric Ward identity | OPEN |
-| empirical galaxy/cluster fit | OPEN |
+| empirical galaxy/cluster fit for separate cold transmission | DEAD (L76/L77 repository controls) |
+| clock-as-CMB-dust cosmology | OPEN; not derived here |
 | Lean-checked proof | OPEN; Lean unavailable |
 
 ## Strongest result and next unavoidable calculation

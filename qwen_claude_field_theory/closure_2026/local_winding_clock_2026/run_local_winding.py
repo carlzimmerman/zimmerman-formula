@@ -70,10 +70,11 @@ def build_results():
         "memory_clock_stability",
         "strict_local_winding_architecture",
         "full_metric_Ward_identity",
-        "empirical_galaxy_cluster_fit",
+        "empirical_own_clock_cosmology",
     ]
     return {
         "status": "OPEN",
+        "route_verdict": "DEAD_FOR_SEPARATE_COLD_TRANSMISSION; OWN_CLOCK_CMB_DOOR_OPEN",
         "implemented_gates": [
             "action_variation",
             "static_exponential_branch",
