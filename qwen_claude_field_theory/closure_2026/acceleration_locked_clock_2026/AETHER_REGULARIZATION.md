@@ -33,6 +33,11 @@ s_2^2=\frac1{1-c_{13}}.
 
 These formulas make the architectural split explicit:
 
+* On the exact PPN-tuned branch with nonzero (epsilon), the equation
+  (c_{13}=0) has the unique solution (r=-1).  Substitution then gives
+  (c_{14}=c_{123}=0), and (s_0^2	o0) when approached from the regular
+  (r>-1) side.  Thus exact tensor luminality is the scalar-degenerate
+  surface, not an ordinary regular point.
 * There are regular points with exact algebraic (alpha_1=alpha_2=0),
   (|c_{13}|\ll1), and positive/superluminal principal speeds.
 * At every such regular point (c_{14}c_{123}\ne0), so the scalar aether

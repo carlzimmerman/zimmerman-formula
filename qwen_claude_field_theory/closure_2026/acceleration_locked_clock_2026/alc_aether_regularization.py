@@ -52,6 +52,14 @@ def symbolic_branch():
     s1 = sp.factor((2 * c1 - c1**2 + c3**2)
                    / (2 * c14 * (1 - c13)))
     s2 = sp.factor(1 / (1 - c13))
+    exact_c13_roots = sp.solve(sp.Eq(c13, 0), r)
+    exact_tensor_substitution = {
+        "c13": sp.simplify(c13.subs(r, -1)),
+        "c14": sp.simplify(c14.subs(r, -1)),
+        "c123": sp.simplify(c123.subs(r, -1)),
+        "s0_sq": sp.simplify(s0.subs(r, -1)),
+    }
+    s0_from_above = sp.limit(s0, r, -1, dir="+")
     return {
         "symbols": (e, r),
         "c1": c1, "c2": c2, "c3": c3, "c4": c4,
@@ -59,6 +67,9 @@ def symbolic_branch():
         "alpha1": alpha1, "alpha2": alpha2,
         "s0_sq": s0, "s1_sq": s1, "s2_sq": s2,
         "s0_minus_one": sp.factor(sp.together(s0 - 1)),
+        "exact_c13_zero_roots": exact_c13_roots,
+        "exact_tensor_substitution": exact_tensor_substitution,
+        "s0_limit_r_to_minus_one_from_above": s0_from_above,
     }
 
 
@@ -142,6 +153,7 @@ def build_scan(gw_bound=1e-15, speed_floor=1.0):
             "degenerate_or_singular_points": len(degenerate_limits),
         },
         "interpretation": {
+            "exact_luminal_tensor_implication": "On the alpha-tuned branch with epsilon nonzero, c13=0 solves r=-1 exactly; this simultaneously gives c14=c123=0, so exact tensor luminality is the degenerate scalar surface rather than a regular two-tensor point.",
             "regular_branch": "alpha1=alpha2=0 is algebraically tunable and can coexist with c13≈0 and positive/superluminal principal speeds, but every such regular point has a nonzero scalar aether principal symbol; this violates N_grav=2 if that scalar is gravitational.",
             "degenerate_branch": "c14=0 or c123=0 is not a regular PPN solution; standard speed/PPN formulae lose their denominators and require a separate full Dirac calculation.",
             "status": "OPEN",
