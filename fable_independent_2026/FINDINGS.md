@@ -3303,3 +3303,30 @@ x_c/d > 0.5 = lensing on the gas (MOND failure), < 0.5 = lensing on the galaxies
   galaxy side, unlike MOND) — moderate-to-high confidence on the direction, lower on exact coincidence. A
   parameter-free match would need the phantom split and dust distribution computed from the action in the
   merger geometry. **Prediction P5 supported at the qualitative level.**
+
+## L86 — the BBN fine-tuning is GENUINE and NOT REMOVABLE (but not a kill)
+
+`L86_fine_tuning_assessment.py` + `.out` (**16 checks, 16 PASS**). Assessing L84's cost as hard as a win.
+**Verdict: genuine fine-tuning, not removable — not fatal (BBN satisfied at the tuned point, so unnatural
+not excluded), not benign (one extra ~24-order hierarchy beyond ΛCDM along an unstable direction).**
+
+- **Worse than ΛCDM by one tuning.** ΛCDM fixes Ω_Λ, Ω_dm as two relic/IC numbers, neither tuned against a
+  pathology. F(Q)Θ fixes the same two (Ω_Λ ↔ B−M²A²/3f²; Ω_dm ↔ product |A·C|) **plus** the BBN-forced
+  **|C|/|A| ≲ 3×10⁻²⁴** — extra, and along an unstable direction (natural |C|~|A| overshoots BBN by >20
+  orders). Mitigation: C is a conserved Noether integration constant (initial data), so its smallness can
+  be framed as an IC choice — but conservation forbids dynamical relaxation, and hitting Ω_dm re-imports a
+  coefficient tuning.
+- **Large A relocates, doesn't remove (≈1:1 cost).** Large |A| is degeneracy-compatible (k₂=3f²/4M² is
+  A-blind) and positivity-safe (ρ_bare=B−k₂Q², A-independent), but forces B to cancel M²A²/(3f²) to
+  precision **δ_CC = 2(Ω_Λ/Ω_dm)(|C|/|A|) ≲ 1.6×10⁻²³** — the same ~23-order tuning moved into the
+  cosmological-constant sector — and drives the decoupling c_bare² = 1+A/(2k₂Q) large, aggravating astra's
+  open health warning. No shift/scaling symmetry caps C/A.
+- **A=0 has no dark matter.** A=0 kills the a⁻³ dust identically; survivors are B (w=−1, no clustering),
+  3M²H² (back-reaction), the stiff −C²/a⁶ (w=+1, negligible). The degeneracy caps K at quadratic (no Q³
+  term), and the MOND term vanishes on the homogeneous background. So the theory is **forced** into A≠0
+  (the tuned corner) to have cosmological dark matter.
+- **VERDICT.** The F(Q)Θ dust=dark-matter reading carries a genuine naturalness cost that no escape in the
+  action-as-it-stands removes. It is NOT a falsification (the theory is viable at the tuned point), but it
+  is a real blemish: the construction works (galaxies, lensing, clusters, Bullet, ghost-free, clusters like
+  CDM) yet needs a ~24-order fine-tuning of its dark charge, with no protection mechanism found. HIGH
+  confidence on the algebra; MEDIUM on "worse than ΛCDM" as a naturalness judgment (not a falsification).
