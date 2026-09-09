@@ -26,4 +26,13 @@ theorem homogeneous_rank_witness_is_not_local :
     diracDet 0 0 ≠ diracDet 1 1 := by
   decide
 
+def admDof (secondClassScalar : Nat) : Nat :=
+  (20 - 2 * 6 - secondClassScalar) / 2
+
+theorem local_adm_count : admDof 4 = 2 := by
+  decide
+
+theorem homogeneous_adm_count : admDof 0 = 4 := by
+  decide
+
 end RMMGConstitutive

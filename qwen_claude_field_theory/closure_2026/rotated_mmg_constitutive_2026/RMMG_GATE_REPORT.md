@@ -122,6 +122,22 @@ mechanism for preventing arbitrary homogeneous multipliers from contaminating
 FLRW tensor coefficients, but it does not by itself restore the missing
 four-dimensional Ward identity.
 
+## Conditional full-ADM count
+
+Using the actual local scalar rank together with the six spatial first-class
+constraints, the standard ADM phase-space formula gives
+
+\[
+ N_{\rm dof}=\frac{20-2(6)-4}{2}=2
+\]
+
+on the nonzero-mode branch.  The same calculation gives 4 at \(k=0\), exactly
+because the elliptic constraint rank vanishes there.  The arithmetic is
+kernel-checked in `RMMGCore.lean` and computed from the Python matrix in
+`full_adm_dof_count.py`.  This is conditional on proving the six spatial
+constraints remain first class in the full nonlinear algebra; that proof is
+still outstanding.
+
 ## Exact obstruction still open
 
 The candidate has not yet passed the full nonlinear hypersurface-deformation
