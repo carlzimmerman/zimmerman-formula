@@ -1811,3 +1811,59 @@ cone and the algebraic carrier law in their respective limits.
   three continuations alike — leaves a **permanent residual** at high acceleration rather than a true
   Newtonian limit. That residual is **consistent with the SPARC Newtonian-limit median** within 3
   bootstrap sigma on both footings.
+
+## L44 — the lead's construction ESCAPES L35's theorem, and the credit belongs fifteen steps earlier
+
+`L44_collar_vs_theorem.py` + `L44_COLLAR.md` (**76 checks, 76 PASS**). L35 proved the transition ghost is
+generic to switch-based constructions and named exactly one door out. Overnight the lead advanced from
+IC17 to IC37 and arrived at the activation interface. This lane asked whether it walked through that
+door. **It did.**
+
+**Controls, and they are extensive.** L35's total-derivative identity is rebuilt symbolically for an
+arbitrary switch and agrees with IC12's own stated form; the marginality cancellation is confirmed
+exact; IC12's quoted auxiliary state solves its own stationarity to 1e-23; its transition table
+reproduces at five sample points; the ghost onset reproduces at IC12's own step; the deep sample
+reproduces to twelve digits; and the b-weighted integral of the old coefficient across a complete
+transition is **8.1e-69**, i.e. zero.
+
+- **⭐ THE ESCAPE IS GENUINE, AND IT IS EXACT RATHER THAN NUMERICAL.** In the action the collar is
+  built on, the entire scalar ultraviolet kinetic coefficient is **a_UV = A²/(4D + 24E₄z²) > 0**, with
+  **no switch, no switch derivative and no second derivative anywhere in it**, on both plateaus and
+  through the whole transition. Verified: d(a_UV)/dη = d/dη′ = d/dη″ = 0 identically.
+- **A D-free identity makes the sign unconditional.** On the auxiliary branch,
+  a_UV = A²z / [2(−Aq + 8E₄z³)] > 0 whenever A > 0, q < 0, z > 0, E₄ ≥ 0 — **no knowledge of the
+  C²-only 81-node table for D is required**, and z > 0 is *forced* as the unique real root of an
+  increasing odd cubic rather than selected. Across the lead's own reported collar the coefficient sits
+  in [0.0176, 0.0181].
+- **⚠️ WHICH HYPOTHESIS BREAKS, AND IT IS NOT THE ONE ANYONE EXPECTED.** Not smoothness — the collar
+  profile is C³ and the switch is a C^∞ mollifier, so b²η′ still vanishes at both ends. The violation
+  is that **the switch left the kinetic sector entirely at IC20**: it now appears in the action
+  **exactly once**, on a holonomic pin term that vanishes on its own constraint surface, and the pin is
+  enforced wherever the switch is active. So L35's coefficient G is **identically zero**, its weight b
+  is identically zero, and **the total-derivative structure cannot form**. L35's marginality
+  cancellation itself **survives unchanged** — it was escaped, not edited away.
+- **What replaces the zero is the new auxiliary's Schur complement**, −h_qz²/(2h_zz), from a mixing
+  term that did not exist in IC12.
+- **⚠️ THE CREDIT BELONGS TO IC20, FIFTEEN STEPS BEFORE THE COLLAR, AND THE "FINITE MULTIPLIER"
+  CONTRIBUTES EXACTLY NOTHING.** d(a_UV)/dℓ = 0 identically, because the multiplier multiplies a
+  quantity that is zero on the pin. IC35, IC36 and IC37 are working a **different gate**. This should
+  be told to the lead plainly, because it changes where effort is worth spending.
+- **⚠️ AND A SHARP CAVEAT THAT FELL OUT OF THE NEGATIVE CONTROL.** The Schur term only covers
+  **|G| < 3.66e-5**. The escape works because G is a **structural zero, not a small number**. At
+  G = 0.4 the same collar still reaches a_UV = −192.5. **Any revision that reintroduces even 1e-4 of
+  switch dependence into the momentum Hessian re-opens the ghost.** The negative control has teeth:
+  remove the Schur term and L35's theorem fires immediately.
+- **The price, and it is a restart with one input swap.** The pole-clock pressure is gone, which takes
+  **L20's backward ghost with it** but also takes its plateau certification and its eight e-folds. The
+  curvature-square sector is gone, which takes **L26's σ question** with it. IC26's seven e-folds are
+  explicitly **not** inherited. The no-slip result now follows from a **degenerate** Legendre chart
+  rather than from a cancellation.
+- **⚠️ AND THE a₀–Λ RELATION IS NOW IMPOSED RATHER THAN DERIVED — ON ONE FOOTING.** The action now
+  carries a₀² = Λ/(32π), which is **exactly the programme's own κ = ½ law**: 1.00004× on the canonical
+  footing but **0.830× on the alternative**. It is a fit to one footing, never a prediction, and it must
+  be quoted that way.
+- **The live obstruction has moved rather than vanished.** IC36's second preservation **fails**
+  (baseline peak residual 56.15; the best repaired datum still leaves RMS 0.106), and IC37's own
+  requirement that a coefficient vanish to the order of an **exponentially flat** switch is an
+  **infinite tower of vanishing conditions** — an analyticity question about the coefficient functions,
+  which a C²-only table cannot settle either way. The lead states the counterexample itself.
