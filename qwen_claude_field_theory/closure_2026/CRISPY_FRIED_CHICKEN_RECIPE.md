@@ -12,7 +12,18 @@ structure together. Checks remain honest: a failure identifies a construction
 obligation; it is not permission to conceal the failure or relax a requirement.
 Historical obstructions are reference material, not the main deliverable.
 
-**Current constructive checkpoint (2026-09-09, IC22):**
+**Current constructive checkpoint (2026-09-09, IC23):**
+[The simultaneous matter calculation](integrable_clock_construction_2026/IC23_MIXTURE.md)
+derives the three-scalar clock/radiation/positive-pressure system from one
+summed action. Exact combined cone inequalities and full frequency checks
+give a local positive subluminal mixed branch. Continuing that SAME branch
+crosses the light cone near .00372333 e-folds while auxiliaries remain regular.
+The next construction is an integrated potential coefficient D(S), using
+the derived lapse-curvature control equation, not another isolated tuning or
+an imported cosmology. Pointwise replacement jets are not yet a new global
+action. Full closure remains OPEN.
+
+**Previous constructive checkpoint (2026-09-09, IC22):**
 [The dust and pressure derivation](integrable_clock_construction_2026/IC22_DUST_AND_PRESSURE.md)
 varies the dust multiplier, computes the full local auxiliary matrix and
 retains leading frequency-dependent mixing. Its real fast wave coexists with
