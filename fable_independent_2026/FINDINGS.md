@@ -3142,3 +3142,36 @@ proposes — **honestly as a candidate, not a result** — a mechanism outside t
   the last door and its one condition. Whether the quanta are non-relativistic, the amount, and
   lensing/perturbation transfer all remain astra's and are not addressed. Honest state: **a live candidate
   for ¬(b), one dispersion calculation from a verdict.**
+
+## L80 — independent verification of astra's F(Q)Θ affine dust: the last door has a constructive crack
+
+`L80_verify_fqtheta_dust.py` + `.out` (**8 checks, 8 PASS**). While this lane pinned the grand prize to ¬(b)
+(L77/L78) and proposed a conserved-charge dust candidate (L79), **astra — active again — built the explicit
+action realising exactly that**, and pushed it to the repo (fqtheta_clock_dust_2026). This lane
+independently reproduces astra's result in exact sympy (imports nothing from astra's directory): the support
+role, reproduce before amplifying.
+
+Astra's action: S = ∫√−g [M²/2 R − ΛM² − K(Q) + F(Q)Θ + M²a₀²G(|V|/a₀)], Θ=∇·n, Q=n·∂φ, G(y)=y²+2(1+y)e⁻ʸ−2.
+
+- **⭐ VERIFIED (i): the exponential MOND kernel** G′(y)/(2y) = 1−e⁻ʸ exactly — same kernel as the galaxy
+  analyses.
+- **⭐ VERIFIED (ii): the velocity-Hessian degeneracy** det W = (3a⁴/N²)(2M²K_QQ − 3F_Q² − 6M²H F_QQ)
+  reproduced exactly; background-independence forces **F affine** (F_QQ=0), K_QQ = 3F_Q²/(2M²). The mixed
+  a-φ entry 3a²F_Q/N is nonzero — F(Q)Θ genuinely braids metric and scalar.
+- **⭐⭐ VERIFIED (iii)+(iv): the conserved charge and the dust.** The shift-symmetric charge
+  **a³(−K_Q+3HF_Q)=C** (astra's explicit form of L79's conserved charge). Eliminating Q gives
+  **ρ = B + 3M²H² − (M²/3f²)(A+C/a³)²** exactly, whose cross term **−2M²AC/(3f²a³) is a genuine pressureless
+  a⁻³ (dust) contribution** when AC≠0 — a w=0 component sourced by the CONSERVED CHARGE, **not a condensate**,
+  so it structurally sidesteps the g03x growth obstacle **exactly as L79 argued.** One action does MOND in
+  galaxies (with Φ=Ψ no-slip ⇒ correct lensing on the static branch) AND supplies a cosmological dust.
+- **⭐ VERIFIED (v): the witness** F=Q, K=¾Q²−3Q+9/4 at Q*=1, M²=1: ρ_bare=3/2>0, p_bare=0 (dust).
+- **⚠️ THE OPEN HEALTH WARNING, reproduced honestly.** The witness has decoupling **c_bare² = K_Q/(Q K_QQ)
+  = −1** — negative. Astra flags this as a warning, not a ghost theorem, because F(Q)Θ braids metric and
+  scalar so the decoupling limit is not decisive. **The deciding calculation, named by astra:** the full ADM
+  quadratic action + Dirac chain + principal-symbol eigenanalysis on an expanding H≠0 branch — does the a⁻³
+  dust coexist with a HEALTHY two-tensor-plus-clock spectrum?
+- **⭐⭐⭐ NET.** Two independent lines — fable's L79 conserved-charge dust and astra's F(Q)Θ affine charge —
+  **converge on the same mechanism, and it is verified at the background level.** This is a real constructive
+  crack in the last door: not a complete theory (the c_bare²=−1 health question is open and deciding), but
+  the strongest position the programme has held — **one health calculation from a verdict**, and that
+  calculation is astra's live next step.
