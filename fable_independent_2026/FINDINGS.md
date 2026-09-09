@@ -847,3 +847,66 @@ published quadratures to 18 digits, plus textbook k-essence c_s² = 1/(2n−1).
   witness and not a cosmology, and the expansion rate here is 0.055–0.067 H₀ on the two footings,
   15–18× slower than the real universe. **This is a defect of the witness, not of a cosmological
   history it never claimed**, and the ghost is not IC10's binding limitation.
+
+## L32 — necessary conditions for a₀ ∝ √(Gρ_Λ): six theorems and a checklist
+
+`L32_kappa_necessary.py` + `L32_NECESSARY_CONDITIONS.md` (20 checks, 10 FAIL — every FAIL is an
+obstruction established, not a defect). The `kappa_closure` series proved κ undERIVable **for one
+action**. This lane asks the general question: what must ANY theory satisfy?
+
+**Controls first.** c√(Gρ_Λ) on Planck parameters returns 1.8725e-10 against the known 1.872e-10
+(0.03%), and the generalised zero-mode argument applied to k01's own action reproduces k01's K1 and K2
+independently.
+
+- **The tie cannot be a force (N1).** Λ's direct dynamical effect at galactic radii is 1.1e-5 a₀, five
+  orders down. It must be a relation between **constants** — between the vacuum structures of the two
+  sectors at zeroth order in the fields.
+- **T1, and it is the important one: the zero-mode obstruction is GENERIC.** In *any* local action
+  whose MOND function F multiplies √(−g) with a field-independent coefficient, F → F + C adds exactly
+  C√(−g), which **is** a cosmological-constant term, so every field equation depends on C only through
+  Λ_eff. Verified on four structurally different Lagrangians; independent of the form of the function,
+  the number of fields, and the coefficient. k01's results are corollaries. The degeneracy breaks if
+  and only if the additive constant fails to multiply the metric volume element alone, and of the four
+  ways that can happen, **only promoting a₀ to a dynamical amplitude removes it** — which lands in k04,
+  where the split degeneracy takes over.
+- **T5/N2, the cleanest structural statement in the lane.** No polynomial curvature scalar takes a
+  half-integer power of Λ on de Sitter; they are all Λ^n with n integer, and pairing an integer power
+  with an independent mass scale gives d ln a₀/d ln Λ = k, never ½. So **a₀ ∝ √Λ requires an order
+  parameter of odd mass dimension whose square is the vacuum energy.** This excludes the anomaly route
+  and every curvature-invariant route in one stroke, and it explains exactly why the four-form
+  (ε ~ q², a₀ ~ q) is the structure that works.
+- **T3 closes the whole global-constraint class**, not just sequestering: in a Λ-dominated future the
+  4-volume grows as e^(3H_Λt) while the peculiar field freezes, so **any** 4-volume average of a
+  gradient sector is driven to zero. Measured: 1.1e-8 of the average to t₀ by 10t₀. Independent of
+  k02's separate 1e-5 magnitude miss.
+- **T4 closes the boundary sector generally.** The MOND sector is a *gradient* sector, so a homogeneous
+  background sets its invariant identically to zero and the only thing it can hand a boundary term is
+  J(0), which T1 has already shown is pure cosmological constant. L3's GHY and Brown–York results are
+  structural, not features of that model.
+- **T2 generalises L3's split-degeneracy theorem:** every quantity the cosmological or membrane sector
+  can measure is a function of the total stiffness alone, because that is the full stiffness of the
+  order parameter; β couples the *same* order parameter to a *different* sector, and no equation of
+  the first sector can see it.
+- **T6:** a 3-form gauge field in D = 4 has zero propagating modes, so its stiffness receives no loop
+  correction from its own sector and cannot flow to a fixed point. Caveat stated and not closed:
+  matter loops can still renormalise it if the four-form couples to charged matter.
+- **What the whole problem reduces to.** Once a₀ is a dynamical order parameter the form is structural
+  and κ collapses to a **single dimensionless coupling**, κ = √2 β/√Z̃, equivalently the canonically
+  normalised β/√Z̃ = κ/√2 = **0.354**. Deriving κ is exactly the problem of fixing that one number.
+- **Three structures survive all six theorems**, and they are real candidates rather than loopholes:
+  horizon thermodynamics as an identification, dimensional transmutation with two condensates in one
+  strongly coupled sector, and a nonlinear realisation / coset normalisation. The last is the only one
+  that could supply rigidity. L3's a₀-dependent membrane sharpens to "e or T must depend on β at
+  fixed Z̃".
+- **⚠️ THE NUMEROLOGY GUARD, and it binds every future candidate (D3).** **27 simple
+  "principle-shaped" numbers lie inside the measured 3σ band**, 29 once the H₀ convention is included.
+  **Landing in the band is NOT evidence.** Only a derivation is evidence. Quote the derivation, never
+  the proximity.
+- **And κ is not the discriminating observable (D2, N7).** The H₀-convention systematic is 3.8%
+  against a 7.1% statistical error, so the total comparison uncertainty is 8.0% and **nothing inside
+  [0.40, 0.66] can be rejected at 3σ today**. Combined measurement 0.530 ± 0.037. By contrast, if a₀
+  tracks H(z) the deep-MOND Tully-Fisher zero point moves **+0.576 dex by z = 2.5**, which is
+  decisive. This is why the registered a₀(z) measurement, not the coefficient, is the live test.
+- **Two honest limits.** The lock is a condition a theory must *meet*, not a fact about nature, so
+  "two independent constants that happen to coincide" remains live. And even a successful derivation
+  would be near-untestable on the coefficient alone.
