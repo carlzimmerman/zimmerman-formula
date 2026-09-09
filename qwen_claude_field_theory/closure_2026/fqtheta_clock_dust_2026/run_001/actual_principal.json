@@ -1,0 +1,178 @@
+{
+  "action": "M2 R/2 - K(Q) + F(Q) Theta + 2 M2 a0^2 G(|V|/a0)",
+  "jet": {
+    "L2_mode": "2*M2*k**2*(pA**2*(y0 + exp(y0) - 1) - zA*(2*nA - zA)*exp(y0))*exp(-y0)",
+    "Uzz": "4*M2",
+    "Unz": "-4*M2",
+    "Upp": "4*M2*(y0 + exp(y0) - 1)*exp(-y0)",
+    "Unn": "0",
+    "Unp": "0",
+    "Gpp": "2*(yy + exp(yy) - 1)*exp(-yy)"
+  },
+  "dirac": {
+    "quadratic_L": "2*M2*beta*k**2*(-Fq*(-Q0*n + pdot)/(2*M2) + zdot) - 4*M2*k**2*n*z + 2*M2*k**2*p**2*(y0 + exp(y0) - 1)*exp(-y0) + 2*M2*k**2*z**2 - 3*M2*(-Fq*(-Q0*n + pdot)/(2*M2) + zdot)**2",
+    "velocity_hessian": [
+      [
+        "-6*M2",
+        "3*Fq"
+      ],
+      [
+        "3*Fq",
+        "-3*Fq**2/(2*M2)"
+      ]
+    ],
+    "velocity_hessian_determinant": "0",
+    "primary_constraints": [
+      "p_beta",
+      "p_n",
+      "Fq*p_z/(2*M2) + p_p"
+    ],
+    "secondary_constraints": [
+      "k**2*(2*M2*beta*k**2 - p_z)/3",
+      "Fq*Q0*p_z/(2*M2) - 4*M2*k**2*z",
+      "2*k**2*(-Fq*(n - z)*exp(y0) + 2*M2*p*(y0 + exp(y0) - 1))*exp(-y0)"
+    ],
+    "poisson_matrix": [
+      [
+        "0",
+        "0",
+        "0",
+        "-2*M2*k**4/3",
+        "0",
+        "0"
+      ],
+      [
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "2*Fq*k**2"
+      ],
+      [
+        "0",
+        "0",
+        "0",
+        "0",
+        "2*Fq*k**2",
+        "k**2*(-Fq**2*exp(y0) + 4*M2**2*(-y0 - exp(y0) + 1))*exp(-y0)/M2"
+      ],
+      [
+        "2*M2*k**4/3",
+        "0",
+        "0",
+        "0",
+        "-4*M2*k**4/3",
+        "2*Fq*k**4/3"
+      ],
+      [
+        "0",
+        "0",
+        "-2*Fq*k**2",
+        "4*M2*k**4/3",
+        "0",
+        "-Fq**2*Q0*k**2/M2"
+      ],
+      [
+        "0",
+        "-2*Fq*k**2",
+        "k**2*(Fq**2*exp(y0) + 4*M2**2*(y0 + exp(y0) - 1))*exp(-y0)/M2",
+        "-2*Fq*k**4/3",
+        "Fq**2*Q0*k**2/M2",
+        "0"
+      ]
+    ],
+    "poisson_determinant": "64*Fq**4*M2**2*k**16/9",
+    "poisson_determinant_constitutive_derivative": "0",
+    "poisson_determinant_independent_of_y0": true,
+    "sample": {
+      "M2": "1",
+      "Fq": "1",
+      "Q0": "1",
+      "k": "1",
+      "y0": "1",
+      "H0": "1"
+    },
+    "expanding_branch": {
+      "H0": "1",
+      "Q0": "1",
+      "y0": "1",
+      "k": "1"
+    },
+    "local_k_nonzero": {
+      "constraint_count": 6,
+      "constraint_jacobian_rank": 6,
+      "poisson_rank": 6,
+      "second_class_count": 6,
+      "first_class_count": 0,
+      "configuration_dof": "1"
+    },
+    "k_zero": {
+      "active_constraints": [
+        "p_beta",
+        "p_n",
+        "Fq*p_z/(2*M2) + p_p",
+        "Fq*Q0*p_z/(2*M2)"
+      ],
+      "constraint_jacobian_rank": 4,
+      "poisson_rank": 0,
+      "second_class_count": 0,
+      "first_class_count": 4,
+      "configuration_dof": "0"
+    },
+    "reduced": {
+      "symplectic_coefficient": "-4*M2*k**2/Q0",
+      "Hamiltonian": "-2*M2*k**2*(p**2*y0 + p**2*exp(y0) - p**2 + z**2*exp(y0))*exp(-y0)",
+      "flow_matrix": [
+        [
+          "0",
+          "Q0*(-y0 - exp(y0) + 1)*exp(-y0)"
+        ],
+        [
+          "Q0",
+          "0"
+        ]
+      ],
+      "characteristic_polynomial": "(Q0**2*y0 + Q0**2*exp(y0) - Q0**2 + lambda**2*exp(y0))*exp(-y0)",
+      "frequency_square": "Q0**2*(y0 + exp(y0) - 1)*exp(-y0)"
+    },
+    "symbols": {
+      "M2": "M2",
+      "Fq": "Fq",
+      "Q0": "Q0",
+      "k": "k",
+      "y0": "y0",
+      "H0": "H0"
+    }
+  },
+  "dust_braiding_dichotomy": {
+    "affine_K": "A*Q + B + 3*Q**2*f**2/(4*M2)",
+    "charge": "a**3*(-M2*(A - 3*H*f) - 3*Q*f**2/2)/M2",
+    "rho": "B + 3*H*Q*f - 3*Q**2*f**2/(4*M2)",
+    "f_zero_charge": "-A*a**3",
+    "f_zero_density": "B",
+    "f_zero_charge_time_derivative_on_FLRW": "-3*A*H*a**3",
+    "f_zero_expanding_requires_A_zero": true,
+    "f_zero_has_no_dust_term": true,
+    "interpretation": "For H!=0, f=0 makes C=-A a^3 and conservation forces A=0, hence C=0; rho=B has no a^-3 component. A nonzero affine dust charge therefore requires f!=0, which is exactly the branch with a nonzero local Poisson determinant for k!=0."
+  },
+  "constitutive_limits": {
+    "Gpp": "2*(yy + exp(yy) - 1)*exp(-yy)",
+    "Gpp_at_y0_1": "2",
+    "Gpp_limit_y0_to_0": "0",
+    "lambda_parallel": "(yy + exp(yy) - 1)*exp(-yy)",
+    "lambda_parallel_limit_y0_to_0": "0"
+  },
+  "status": "OPEN",
+  "verdict": "The actual exponential action has one local scalar for generic k!=0, while k=0 has zero scalar DOF; its reduced symplectic coefficient collapses as k^2 and G''(y)->0 removes longitudinal ellipticity as y->0. The determinant is independent of the constitutive stiffness. On the affine dust locus, f=0 makes the expanding conserved charge trivial, so the nonzero dust branch necessarily has f!=0 and the one-scalar local sector. This closes the displayed dust mechanism as a two-tensor-plus-auxiliary theory, but is not a universal no-go.",
+  "non_claims": [
+    "does not certify the omitted khronon/aether tensor/vector sectors",
+    "does not derive PPN coefficients or an inhomogeneous galactic solution",
+    "does not turn a finite exact-rank sample into a theorem for every action"
+  ],
+  "provenance": {
+    "python": "3.9.6",
+    "sympy": "1.14.0",
+    "script": "/Users/carlzimmerman/new_physics/zimmerman-formula/qwen_claude_field_theory/closure_2026/fqtheta_clock_dust_2026/fqtheta_actual_principal_gate.py"
+  }
+}

@@ -109,11 +109,44 @@ auxiliary on the local branch. It is not a universal no-go: the full
 khronon/aether sector and all relativistic health/PPN gates remain to be
 derived.
 
+## Actual exponential principal jet (2026-09-09)
+
+The follow-up `fqtheta_actual_principal_gate.py` removes the remaining
+generic-jet loophole. It differentiates the weak-field action itself and
+obtains
+
+\[
+U_{\zeta\zeta}=4M^2,\qquad U_{n\zeta}=-4M^2,
+\qquad U_{\pi\pi}=2M^2G''(y_0),\qquad U_{nn}=U_{n\pi}=0.
+\]
+
+These coefficients are fed into a fresh Dirac chain. At the exact expanding
+sample \(H_0=Q_0=y_0=k=M^2=F_Q=1\), the six constraints are independent, the
+actual Poisson matrix has rank six, and one local scalar configuration degree
+of freedom remains. Recomputing the \(k=0\) sector gives four first-class
+constraints and zero scalar degrees of freedom. The reduced characteristic
+polynomial is
+
+\[
+\lambda^2+Q_0^2G''(y_0)/2=0,
+\]
+
+while \(\Omega_{\zeta\pi}=-4M^2k^2/Q_0\). Therefore the local mode is not a
+non-propagating auxiliary on generic nonzero modes, and its symplectic form
+collapses in the homogeneous limit. Moreover
+\(G''(y)=2[1+(y-1)e^{-y}]\to0\) as \(y\to0^+\), so the exact exponential
+constitutive operator loses longitudinal ellipticity at the zero-field point.
+This is a concrete non-uniform-limit/strong-coupling obstruction, not a
+universal no-go for all covariant MOND actions. The route remains **OPEN**;
+the omitted full khronon/aether and nonlinear galactic sectors are still
+decisive.
+
 ## Reproducibility
 
 ~~~
 python3 -B qwen_claude_field_theory/closure_2026/fqtheta_clock_dust_2026/fqtheta_gate.py --output-dir qwen_claude_field_theory/closure_2026/fqtheta_clock_dust_2026/run_001
 python3 -B -m unittest discover -s qwen_claude_field_theory/closure_2026/fqtheta_clock_dust_2026 -p 'test_*.py' -v
+python3 -B qwen_claude_field_theory/closure_2026/fqtheta_clock_dust_2026/fqtheta_actual_principal_gate.py --output qwen_claude_field_theory/closure_2026/fqtheta_clock_dust_2026/run_001/actual_principal.json
 ~~~
 
 The script derives the Hessian, determinant, degeneracy relation, static
