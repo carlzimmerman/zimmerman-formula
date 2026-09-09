@@ -1,0 +1,220 @@
+======================================================================================================================
+L10 -- the khronon gate: does the IC-series scalar survive the preferred-frame, tachyon and Cherenkov gates?
+======================================================================================================================
+
+======================================================================================================================
+A -- CONTROLS: independent re-derivation of the two gate formulas this repository already owns
+======================================================================================================================
+    on the locus c_1 = -c_3 = K_B, c_4 = c_14 - K_B:
+      alpha_1 = -4*c_14
+      alpha_2 = -c_14*(2*c_14*c_2 + c_14 - c_2)/(c_2*(c_14 - 2))
+      alpha_2 expanded to O(c_14^2) at fixed c_2:  3*c_14**2/4 + c_14**2/(2*c_2) - c_14/2  =  3*c_14**2/4 + c_14**2/(2*c_2) - c_14/2
+      g03v's comment asserts alpha_2 = -c_14/2 + c_14^2/(2 c_2) + O(c_14^2); the exact expansion carries one more
+      quadratic term, 3*c_14**2/4, which the comment folds into its O(c_14^2).  Reported as a refinement, not a discrepancy:
+      the two-term form is exact in the limit c_2 << 1, which is the regime the closure locus lives in.
+      alpha_2 = 0 exactly at c_2* = -c_14/(2*c_14 - 1)  (= c_14/(1 - 2 c_14))
+      at g03v's corner (K_B = 0.2, c_2 = 1, c_14 = 1.18e-5): alpha_1 = -4.720e-05, alpha_2 = -5.900e-06   (g03v / f33 published: -4.72e-5, -5.90e-6)
+      at c_2 = c_2*(c_14 = 1e-5) = 1.000020e-05: alpha_2 = -0.00e+00  (numerically zero)
+  [PASS] K1 [CONTROL] the independent symbolic derivation reproduces g03v's closed form for alpha_2 (with its omitted 3c_14^2/4 term identified), its exact zero c_2* = c_14/(1-2c_14), and both published numbers   (exact alpha_2 = -c_14(2c_14c_2 + c_14 - c_2)/(c_2(c_14-2)); expansion = -c_14/2 + c_14^2/(2c_2) + 3c_14^2/4 (confirmed); c_2* identical; alpha_1 = -4.720e-05 vs -4.72e-5, alpha_2 = -5.900e-06 vs -5.90e-6, alpha_2(c_2*) = -0.0e+00)
+      d(alpha_1)/dK_B = 0, d(alpha_2)/dK_B = 0   -> K_B is pure gauge for a hypersurface-orthogonal clock, as it must be
+      at c_14 = 0: alpha_1 = 0, alpha_2 = 0  (GR limit of the preferred-frame sector)
+  [PASS] K2 [CONTROL] alpha_1 and alpha_2 are exactly K_B-free on the locus c_13 = 0 (K_B is pure gauge for a hypersurface-orthogonal clock) and both vanish identically at c_14 = 0   (dK_B derivatives both zero; alpha_1(c_14=0) = 0, alpha_2(c_14=0) = 0)
+
+    g03w's clock tachyon: T'' = (|K_2| Q_0^2 eps_0 a^-3 / c_14) T.  g03v fixes the background offset by
+    Omega_d:  eps_0 = 3 H_0^2 Omega_d / (|K_2| Q_0^2), so the product |K_2| Q_0^2 eps_0 = 3 Omega_d H_0^2 is
+    a FIXED number and the stiffness CANCELS.  The rate therefore depends on c_14 and Omega_d alone:
+        rate/H_0 = sqrt(3 Omega_d a^-3 / c_14);  at c_14 = 1e-5:  a = 1 -> 282.5 H_0,  a = 0.01 -> 2.82e+05 H_0
+        g03w published:                                                   282 H_0            2.8e+05 H_0
+  [PASS] K3 [CONTROL] the independently re-derived tachyon rate reproduces g03w's two published numbers and shows the rate is set by c_14 and Omega_d alone -- |K_2| Q_0^2 cancels against the Omega_d normalisation of eps_0   (a = 1: 282.5 vs 282 H_0; a = 0.01: 2.825e+05 vs 2.8e5 H_0)
+
+======================================================================================================================
+B -- THE MAPPING: what plays c_14, c_2 and |K_2| Q_0^2 in the lead's IC5/IC6/IC7 action?
+======================================================================================================================
+    IC-4 frozen constants (hand-transcribed): ell = 0.587786664902, T = 16.686513302596, alpha = 0.036363345627, b = -2.229057033622,
+                                              a_* = 1.786445099, sigma = 0.3333333333333333, A_R = 2.739884243, B_R = -1.570159081
+    witness: (xi, u) = (0.25, 0.666667);  F = A_R(xi - 1/4) + B_R(u - 2/3) = 0 there, exactly.
+
+    B.1  The khronometric dictionary.  For a hypersurface-orthogonal clock, grad_mu n_nu = K_mu_nu - n_mu a_nu, so
+         the Einstein-aether Lagrangian collapses to    L = (m/2)[ (1 - c_13) K_ij K^ij - (1 + c_2) K^2 + R^(3) + c_14 a^2 ],
+         i.e. in ADM trace/trace-free variables          L = (m/2)[ (1 - c_13) K_TF^2 - (2/3 + c_2) K^2 + R^(3) + c_14 a^2 ].
+         Only the three combinations (c_13, c_2, c_14) are physical: K_B drops out (proved in K2).
+
+    B.2  c_13 = 0 -- DETERMINED.  IC-5's exact canonical map gives H_b = (2 e^(..)/(mV))(pi_TF^2 - pi^2/6), and
+         GR's ADM Hamiltonian is (16 pi G/sqrt(h))(pi_ij pi^ij - pi^2/2) = (2/(m sqrt(h)))(pi_TF^2 - pi^2/6) at m = 1/(8 pi G),
+         since pi_ij pi^ij = pi_TF^2 + pi^2/3.  IC-6's plateau Lagrangian L_6 = (m/2)[Q_TF^2 + Rhat - (2/3)Q^2/K_6 - 2C + ...]
+         carries UNIT coefficient on Q_TF^2, so c_13 = 0 exactly -- consistent with c_T = 1 (TENSOR_BALANCE) and with L4's
+         DeWitt lambda = 1.  This is the one clean, unambiguous entry in the dictionary.
+
+    B.3  c_2 -- DERIVED FORMULA, but it VANISHES where the mode was measured.  Matching the K^2 coefficient of L_6,
+         2/3 + c_2 = (2/3)/K_6  with  K_6 = 1 + 3 F Y/(2 a_0^2),  Y = Rhat + Q_TF^2,  gives
+                 c_2 = (2/3)(1/K_6 - 1) = - F Y / (a_0^2 K_6).
+         At the expanding witness F = 0 (by construction) and Y = 0 (homogeneous, isotropic), so c_2 = 0 EXACTLY there.
+         c_2 = 0 with c_14 > 0 sits on the c_123 = c_1 + c_2 + c_3 = 0 locus, which is the POLE of alpha_2 and the point
+         where the khronometric spin-0 speed s_0^2 = c_2(2 - c_14)/(c_14(2 + 3c_2)) -> 0.  L4 measured c_s^2 = 1/3, NOT 0.
+         => the pure khronometric dictionary is INCONSISTENT with the IC construction: the IC scalar takes its gradient
+         energy from the AUXILIARY sector (the barred curvature Rhat = R^(3)[h] + 4 Delta w - 2|Dw|^2 with w = (u-1)xi,
+         and the alpha|D(xi + b u)|^2 term), not from c_2.  There is no c_2 to read off at the witness.
+
+    B.4  c_14 -- NOT DETERMINED: three internally consistent readings of the same published action disagree.
+         (i)   IC-4's explicit term (m/2)*2(1-u^2) a_mu a^mu           ->  c_14 = 2(1 - u^2)  = 1.111111 at u = 2/3
+         (ii)  IC-5/IC-6 on the eta = 1 plateau, (m/2)*2 alpha|D(xi+bu)|^2 ->  c_14 = 2 alpha    = 0.072727
+         (iii) IC-4 rewritten in the barred variables IC-5 actually uses.  Rhat = R^(3)[h] + 4 Delta w - 2|Dw|^2 with
+               w = (u-1)xi, so trading R^(3) for Rhat moves m|Dw|^2 = m[(u-1)^2 a^2 + 2(u-1)xi a.Du + xi^2|Du|^2] into
+               the a^2 slot: c_14 = 2[(u-1)^2 + (1-u^2)] = 4(1 - u) = 1.333333 at u = 2/3
+         All three are O(0.07 - 1.4).  They differ by up to a factor 18.3, so the published files do not fix c_14;
+         what is ROBUST is only the order of magnitude: c_14 = O(10^-1 - 1) at the expanding witness.
+         One structural note that matters below: readings (i) and (iii) both carry the u-dependence and so both
+         asymptote to 2 exp(-|a|/a_0) on the static regular branch; reading (ii) is u-INDEPENDENT and does not screen
+         at all.  (ii) is the eta = 1 plateau, and IC-5 puts the static regime at eta = 0 (r = 0 gives |r^2-1| = 1 >= 1/2),
+         so (ii) is not the branch operative where PPN is measured.  The exp wall in section D is therefore legitimate.
+
+    B.5  |K_2| Q_0^2 -- NO COUNTERPART AT ALL.  g03w's tachyon needs a CONDENSATE: a second scalar phi with a
+         stiffness K(Q) whose background charge Qbar sits a fraction eps_0 off its minimum, supplying the dust
+         density 2|K_2| Q_0^2 eps_0 a^-3.  The IC action has no such field: its only extra scalar is the auxiliary u,
+         which carries a potential a_0^2 U(u^2) and NO independent kinetic term (IC-4: 'the correction has no
+         independent Ndot or udot').  The dust/tachyon arm therefore CANNOT be evaluated from the published files.
+         MISSING INPUT, named precisely: the mass matrix of the propagating scalar zeta on the expanding witness --
+         i.e. the O(k^0) term of the same reduced system that gave L4 its A_0 = 0.4615 and c_s^2 = 1/3.  If that mass
+         term is negative the IC construction has its own tachyon and this gate fires; if positive it does not.  L4
+         explicitly lists that reduction as OUT OF SCOPE, and IC7 quotes only the k -> large speed 0.388526918.
+
+    B.6  WHAT IS DETERMINED, AND IT IS THE ONE THAT DECIDES.  The scalar's SPEED is an invariant of the mode, not a
+         parametrisation choice, and L4 measured it: c_s^2 = 1/3 at the witness (IC7 with its counterterm: 0.3886).
+         In this class the khronon speed is c_s^2 = c_2/c_14 to leading order (the relation g03v_k2_pincer_closure V5
+         uses).  Inverting it gives the EFFECTIVE ratio the IC construction must be carrying:
+                 c_2^eff / c_14^eff = c_s^2 = 0.333333   (IC7 variant 0.388527)
+         and then alpha_2 collapses to a ONE-parameter function of c_14 alone:  alpha_2 = -2*c_14*(c_14 + 1)/(c_14 - 2)
+                 -> alpha_2 = +c_14 + O(c_14^2)  (the c_14^2/(2c_2) term is 3c_14/2 and OVERTURNS the sign of -c_14/2)
+         |alpha_2| < 4e-7 then requires   c_14 <= 4.0000e-07   -- the binding PPN requirement on the IC mode.
+         (alpha_1 = -4 c_14 with |alpha_1| < 1e-4 gives only c_14 <= 2.5e-5, so alpha_2 is 63x tighter here.)
+  [FAIL] K4 [mapping] the (c_14, c_2, |K_2| Q_0^2) mapping is determined by the lead's published files   (c_13 = 0 DETERMINED; c_2 = -F Y/(a_0^2 K_6) DERIVED but identically 0 at the witness where the mode was measured, which contradicts c_s^2 = 1/3 and shows the scalar's gradient energy is auxiliary-sector, not c_2; c_14 has THREE inconsistent readings spanning 0.073-1.333; |K_2| Q_0^2 has NO counterpart (no condensate in the IC action). Missing inputs: (a) the PPN/weak-field expansion of the IC action with the auxiliary constraint solved -- IC-5 states its full metric/clock variation 'has not been expanded in this package'; (b) the O(k^0) mass term of the reduced scalar system)
+
+======================================================================================================================
+C -- THE ALLOWED REGION any successful clock construction must land in (the deliverable)
+======================================================================================================================
+    Constraints, all three already established in this repository, restated as one region in (c_14, c_2, M) with
+    M = |K_2| Q_0^2 eps_0 / H_0^2  (the clock/condensate sector's background off-minimum energy, in H_0^2 units):
+      (1) PPN alpha_1 = -4 c_14,  |alpha_1| < 1e-04       ->  c_14 <= 2.50e-05   (tighter 4e-05: 1.00e-05)
+      (2) PPN alpha_2 exact (section A),  |alpha_2| < 4e-07   ->  a band in c_2 about c_2* = c_14/(1 - 2 c_14)
+      (3) gravitational Cherenkov (g03v_k2_pincer_closure V6): the khronon must not be subluminal,
+          c_s^2 = c_2/c_14 >= 1 - 2e-15        ->  c_2 >= c_14  to within 2e-15
+      (4) no clock tachyon faster than expansion: rate = sqrt(M a^-3/c_14) H_0 <= H_0 at a = 1  ->  M <= c_14
+
+    THE REGION.  For each c_14 the admissible c_2 is [max(c_14, alpha_2 lower edge), alpha_2 upper edge]:
+            c_14      c_2 lower      c_2 upper   binds below   c_s^2 = c_2/c_14      M_max   Omega_off,max
+         1.0e-08    1.00000e-08            inf     Cherenkov       [1.000, inf]    1.0e-08        3.33e-09
+         1.0e-07    1.00000e-07            inf     Cherenkov       [1.000, inf]    1.0e-07        3.33e-08
+         4.0e-07    4.00000e-07            inf     Cherenkov       [1.000, inf]    4.0e-07        1.33e-07
+         1.0e-06    1.00000e-06    5.00004e-06     Cherenkov     [1.000, 5.000]    1.0e-06        3.33e-07
+         4.0e-06    4.00000e-06    5.00005e-06     Cherenkov     [1.000, 1.250]    4.0e-06        1.33e-06
+         1.0e-05    1.00000e-05    1.08698e-05     Cherenkov     [1.000, 1.087]    1.0e-05        3.33e-06
+         2.5e-05    2.50000e-05    2.58278e-05     Cherenkov     [1.000, 1.033]    2.5e-05        8.33e-06
+
+    In words, the target: c_14 <= 2.5e-05; c_2 in a narrow collar just ABOVE c_14, of fractional width
+    ~ 2 * 4e-07 / c_14 about c_2* = c_14/(1 - 2c_14) -- for c_14 <= 8e-7 the collar opens upward without limit,
+    for c_14 > 8e-7 it closes to a band; and M <= c_14, i.e. the clock's off-minimum background may carry at most
+    Omega_off = M/3 <= 8.3e-06 of the critical density.
+  [PASS] K5a [region] with the clock's background offset free, a nonempty (c_14, c_2, M) region satisfies PPN alpha_1, PPN alpha_2, Cherenkov and no-tachyon SIMULTANEOUSLY   (nonempty for every c_14 <= 2.5e-05; Cherenkov (c_2 >= c_14) and the alpha_2 zero (c_2* = c_14/(1-2c_14) > c_14) are compatible because c_2* exceeds c_14 by the factor 1/(1-2c_14); the region is a thin collar just above the Cherenkov line)
+
+    Now the second arm.  If the clock/condensate sector must supply the dark component, g03v's normalisation fixes
+    M = 3 Omega_d = 0.7980, whereas the region above allows M <= c_14 <= 2.5e-05.
+    Shortfall in M: 3.19e+04x;  equivalently the rate at a = 1 is 179 H_0 at the largest allowed c_14.
+  [FAIL] K5b [region] the region is still nonempty if the clock sector must carry Omega_d = 0.266   (M required = 3 Omega_d = 0.798, M allowed <= c_14 <= 2.5e-05: EMPTY by 3.2e+04x. This is g03w's pincer restated exactly: PPN pushes c_14 down, the tachyon rate ~ 1/sqrt(c_14) pushes it up. The IC construction is NOT caught by this arm as published, because it has no condensate carrying Omega_d (B.5) -- its own mass term is the missing input)
+
+======================================================================================================================
+D -- the exponential wall, and where it does and does not work
+======================================================================================================================
+    The IC construction's escape from c_14 = O(1) is its own static regular branch (IC-4, unchanged in IC-5):
+          u^2 = 1 - exp(-|a|/a_0),   so   c_14 = 2(1 - u^2) = 2 exp(-|a|/a_0).
+    This screens c_14 exponentially in the strong-field regime -- the 'exp wall'.  Required: c_14 <= 4.00e-07
+    (section B.6, the c_s^2 = 1/3 mapping), i.e. |a|/a_0 >= ln(2/4.00e-07) = 15.42.
+
+      site                                |a| [m/s^2]   |a|/a_0 canonical   |a|/a_0 alt     c_14 = 2exp(-|a|/a_0)
+      Earth orbit, 1 AU                     5.930e-03           6.334e+07     5.258e+07 2 exp(-5.26e+07)  [underflow]
+      Cassini at Saturn, 9.54 AU            6.520e-05           6.964e+05     5.781e+05 2 exp(-5.78e+05)  [underflow]
+      Solar System edge, 100 AU             5.930e-07                6334          5258 2 exp(-5.26e+03)  [underflow]
+      Milky Way at R_sun (v_c=220km/s)      1.913e-10               2.043         1.696                 3.669e-01
+      Milky Way at 10 kpc                   1.569e-10               1.675         1.391                 4.978e-01
+  [PASS] K6 [exp wall] the IC construction's own screening puts the Solar System inside the PPN-allowed region on BOTH a_0 footings   (the PPN threshold is |a| >= 15.4 a_0 = 1.44e-09 (canonical) / 1.74e-09 (alt) m/s^2; Cassini sits at 5.78e+05 a_0, 3.7e+04x above threshold, so c_14 there is exp(-5.8e5) -- zero for every practical purpose.  The PPN arm PASSES, and it passes by an enormous margin. Reported cost, not a check: c_14 -> 0 is also the strong-coupling limit of a khronometric clock (the mode's kinetic normalisation is proportional to c_14), so the Solar System is where this mode becomes infinitely strongly coupled)
+
+    But note WHERE the wall stops working: it is a function of |a|/a_0, so it is fully OFF exactly in the MOND regime.
+    Preferred-frame effects in this construction are unscreened below |a| ~ 15 a_0 = 1.44e-09 / 1.74e-09 m/s^2,
+    which is the whole of a galaxy outside ~1 kpc.  That is where the next gate is evaluated.
+
+======================================================================================================================
+E -- gravitational Cherenkov on the measured c_s^2 = 1/3
+======================================================================================================================
+    THE BOUND AND ITS SOURCE.  A gravitational-sector mode that propagates SUBluminally lets an ultra-relativistic
+    particle radiate into it (gravitational Cherenkov).  Moore & Nelson, JHEP 0109:023 (2001), 'Lower bound on the
+    propagation speed of gravity from gravitational Cherenkov radiation': the survival of cosmic-ray primaries at
+    E ~ 1e11 GeV over a Galactic path L ~ 10 kpc requires 1 - v_g <~ 2e-15 for a mode coupled with gravitational
+    strength (extragalactic sources tighten this to ~1e-19).  Elliott, Moore & Stoica, JHEP 0508:066 (2005), applied
+    it to Einstein-aether and bounded ALL THREE aether mode speeds -- spin-2, spin-1 and spin-0 -- the same way.
+    THIS REPOSITORY ALREADY USES THIS GATE: g03v_k2_pincer_closure.py V6 turns 'the healthy corner needs
+    c_khronon >= c, i.e. c_2 >= c_14' into the standing bound |K_2| <= (2 - K_B)^2/c_14 = 3.24e5.  Same gate, same mode.
+      L4, at the witness              : c_s^2 = 0.333333333, c_s = 0.577350269, 1 - c_s = 0.422650  -> exceeds the bound by 2.11e+14x
+      IC7 with its c_7 counterterm    : c_s^2 = 0.388526918, c_s = 0.623319275, 1 - c_s = 0.376681  -> exceeds the bound by 1.88e+14x
+  [FAIL] K7 [Cherenkov] the L4 mode's sound speed c_s^2 = 1/3 is admissible for a gravitational-sector mode in this class   (1 - c_s = 0.4226 against the bound 1 - c_s <= 2e-15 (Moore & Nelson 2001; Elliott, Moore & Stoica 2005; the same gate g03v_k2_pincer_closure V6 already imposes on this repository's khronon): EXCLUDED by 2.1e+14x.  IC7's own 0.3886 fails by 1.9e+14x)
+
+    THE ONE ESCAPE, PRICED.  The Cherenkov rate is linear in the mode's effective Newton coupling, so a coupling
+    suppressed by a factor s relaxes the bound to 1 - c_s <= 2e-15/s.  Tolerating 1 - c_s = 0.4226 needs
+          s <= 4.73e-15.
+    The IC construction's only suppression parameter is the same exp wall, and the MOST FAVOURABLE reading of it
+    gives s ~ c_14/2 = exp(-|a|/a_0).  (This is generous to the construction: the mode's kinetic normalisation is
+    proportional to c_14, so canonically normalising it makes the coupling scale as 1/sqrt(c_14) and grow as the wall
+    screens -- the honest expectation is that small c_14 makes this WORSE, not better.)  Even so it requires
+          |a|/a_0 >= 33.0  EVERYWHERE along the cosmic-ray path.
+      footing       required |a| [m/s^2]    MW radius where reached   path length available
+      canonical                3.088e-09              r <= 0.51 kpc                0.51 kpc
+      alt                      3.720e-09              r <= 0.42 kpc                0.42 kpc
+    A 10 kpc Galactic path needs the whole path inside that radius.  It is not: the Galaxy reaches 33 a_0 only
+    within a few tenths of a kpc of the centre, and the cosmic-ray path is 10 kpc.  The exp wall CANNOT rescue this gate,
+    and the reason is structural: the wall is a function of |a|/a_0 and the Cherenkov gate is evaluated exactly where
+    |a| ~ a_0.  The gate that PPN escapes and the gate that Cherenkov imposes are read at opposite ends of the same variable.
+  [FAIL] K8 [escape] the IC screening can suppress the Cherenkov coupling along a 10 kpc Galactic ultra-high-energy cosmic-ray path (both a_0 footings)   (the required suppression s <= 4.7e-15 needs |a| >= 33 a_0 = 3.09e-09 / 3.72e-09 m/s^2 along the whole path; a v_c = 220 km/s Galaxy reaches that only within 0.42-0.51 kpc of the centre, 20x short of the 10 kpc path)
+
+    THE REPAIR, AND IT IS INSIDE THE PUBLISHED DESIGN SPACE.  IC4_ACTION.md calls sigma 'the squared-speed parameter',
+    sets sigma = 1/3 as a 'fixed design parameter', and states 'more generally the calculation covers 0 < sigma <= 1'.
+    L4 measured c_s^2 = 1/3 = sigma exactly.  If c_s^2 = sigma (a hypothesis this lane cannot verify without the lead's
+    reduced system, and which the lead should confirm or refute), then the Cherenkov gate collapses the design interval
+    0 < sigma <= 1 to the single endpoint
+          sigma in [1 - 4e-15, 1],   i.e. sigma = 1 to within 4e-15,
+    a set of measure 4e-15 inside the published domain, with sigma > 1 (superluminal, Cherenkov-safe by the repository's
+    own precedent) lying outside it.  sigma = 1/3 is excluded by 2.1e+14x.  Note that sigma enters
+    p_R = 8/3 + 4 a_* sigma and hence A_R, B_R, F -- so moving sigma is NOT free: it moves the IC6 obstruction, the IC7
+    counterterm and the tensor balance, all of which L4 verified only at sigma = 1/3.  That re-verification is the work.
+      sigma = 1/3 (published):  p_R = 5.048593465, A_R = 2.739884243, B_R = -1.570159081
+      sigma = 1   (required):   p_R = 9.812447062, A_R = 5.325239452, B_R = -2.539667284   (A_R changes by 1.944x)
+
+======================================================================================================================
+F -- VERDICT
+======================================================================================================================
+    Arm by arm, on the lead's construction as published:
+      PPN alpha_1, alpha_2 ...... PASSES, via the exp wall.  c_14 = 2 exp(-|a|/a_0) is 2 exp(-5.8e5) at Cassini, i.e.
+                                  ~250,000 decades below the requirement c_14 <= 4.0e-07 that the mapping generates.
+                                  Cost recorded: that limit is also the mode's strong-coupling limit.
+      clock tachyon ............. UNDETERMINED.  The IC action has no condensate, so g03w's rate has no image in it.
+                                  The missing input is the O(k^0) mass term of the same reduced scalar system that
+                                  produced A_0 = 0.4615 and c_s^2 = 1/3.  This is a real open door, not a pass.
+      gravitational Cherenkov ... FAILS, by 2.1e+14x, on a gate this repository already imposes on its own
+                                  khronon.  The failure is NOT screened, because it is read where |a| ~ a_0.
+    So the IC mode does NOT land in g03v/g03w's pincer -- it escapes the PPN arm outright and the tachyon arm is not
+    even defined for it -- but it lands in a THIRD gate the same class already carries, and that one it does not survive.
+  [FAIL] K9 [VERDICT] the lead's IC-series scalar is viable as the programme's allowed clock mode, as published   (NOT viable as published: subluminal c_s^2 = sigma = 1/3 violates gravitational Cherenkov by 2.1e+14x and the construction's own exp wall cannot suppress the coupling where the bound is set.  The failure is ONE DESIGN PARAMETER deep -- sigma, already free in IC-4 over (0, 1] -- and the target is sigma >= 1 rather than 1/3.  The PPN arm genuinely passes; the tachyon arm is undetermined.  Nothing here contradicts a claim the lead has made: IC-4 states sigma is a construction choice, and no IC file claims a Cherenkov, PPN or causality pass)
+
+  Caveats, stated in the direction they cut:
+  * The khronometric dictionary (B.1) is exact only for an action whose scalar sector is the clock's; the IC action has a
+    second constrained field u, so 'c_2^eff = c_14^eff c_s^2' in B.6 is an EFFECTIVE identification through the observable
+    mode speed, not a term-by-term match.  It is used only to convert c_s^2 into a PPN requirement, and the Cherenkov
+    verdict (E) does not use it at all -- that one needs only the measured c_s^2 and the mode's gravitational coupling.
+  * c_s^2 = 1/3 is L4's value AT THE EXPANDING WITNESS.  If the IC scalar's speed runs to >= 1 in the Galactic MOND regime
+    the Cherenkov verdict is void; nothing in the published files says it does, and sigma is a constant of the action.
+    Establishing c_s^2(|a|/a_0) along a Galactic path is the single calculation that would overturn E.
+  * The Cherenkov bound assumes the mode couples to the matter stress tensor with gravitational strength.  A cancellation
+    in the mode's overlap with h_mu_nu would evade it; the required size of that cancellation is priced in E as s <= 5e-15.
+  * c_s^2 = sigma is INFERRED from IC-4's own naming plus L4's measured 1/3; it is not derived here.  If it is false, the
+    sigma = 1 repair is void but the Cherenkov failure at c_s^2 = 1/3 stands.
+  * The alpha_2 bound 4e-7 and alpha_1 bound 1e-4 are the repository's standing values (g03v, THE_ACTION section 2).
+  total 0s
+
+RESULT: 5 FAIL -> ["K4 [mapping] the (c_14, c_2, |K_2| Q_0^2) mapping is determined by the lead's published files", 'K5b [region] the region is still nonempty if the clock sector must carry Omega_d = 0.266', "K7 [Cherenkov] the L4 mode's sound speed c_s^2 = 1/3 is admissible for a gravitational-sector mode in this class", 'K8 [escape] the IC screening can suppress the Cherenkov coupling along a 10 kpc Galactic ultra-high-energy cosmic-ray path (both a_0 footings)', "K9 [VERDICT] the lead's IC-series scalar is viable as the programme's allowed clock mode, as published"]

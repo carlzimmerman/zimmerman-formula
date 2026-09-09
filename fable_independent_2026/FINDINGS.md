@@ -253,3 +253,58 @@ the entire system within 1 Gyr, at any timestep. g04k never saw this because a m
 is radial by construction. **Any future non-radial MOND infall calculation in this programme
 needs a genuine QUMOND field solve, not a per-particle multiplier.** The L1 runs above use a
 conservative scheme, verified not to move the answer on its own (2.82 vs 2.69 with the monopole).
+
+## L10 — the khronon gate: one design parameter, and a target region
+
+`L10_khronon_gate.py` (5 FAIL of 10). L4 found the lead's construction propagates a healthy
+khronon-type scalar with c_s² = 1/3. This lane put that mode through the preferred-frame and
+stability gates this repository already established for a khronon in this action class.
+
+**Controls.** An independent symbolic derivation reproduces g03v's closed form for α₂ (and
+identifies a 3c₁₄²/4 term omitted there), its exact zero c₂\* = c₁₄/(1−2c₁₄), both published
+numbers, and g03w's two tachyon rates.
+
+**The PPN arm genuinely passes, by an enormous margin.** The construction's own exponential
+screening puts Cassini at 5.78e5 a₀, some 3.7e4× above the PPN threshold of 15.4 a₀, so the
+preferred-frame coupling there is e^(−5.8e5) — zero for any practical purpose, on both footings.
+That is a real win. Its recorded cost: c₁₄ → 0 is also the strong-coupling limit, since the
+mode's kinetic normalisation is proportional to c₁₄. That is exactly the recipe's P7 wound.
+
+**What fires is gravitational Cherenkov, and it is one design parameter deep.** A subluminal
+gravitational-sector mode radiates Cherenkov gravitons off ultra-high-energy cosmic rays; the
+bound is 1 − c_s ≤ 2e-15 (Moore & Nelson 2001; Elliott, Moore & Stoica 2005), the same gate this
+repository already imposes on its own khronon in `g03v_k2_pincer_closure` V6. With c_s² = 1/3,
+1 − c_s = 0.4226 — **excluded by 2.1e14×**; IC7's own 0.3886 fails by 1.9e14×. The exponential
+wall cannot rescue it, because the wall is a function of |a|/a₀ while the Cherenkov bound is read
+exactly where |a| ~ a₀: suppressing it along a 10 kpc Galactic path would need |a| ≥ 33 a₀, which
+a 220 km/s Galaxy reaches only within 0.5 kpc of the centre, 20× short.
+
+**The actionable part.** c_s² appears to be σ, a free construction choice in IC-4 over (0, 1].
+Cherenkov collapses that interval to **σ = 1 within 4e-15** — the mode must be marginally
+luminal, not 1/3. Moving σ shifts p_R, A_R, B_R and F, so the IC6 obstruction, the IC7
+counterterm and the tensor balance all need re-verifying at the new value. Nothing here
+contradicts a claim the lead has made: IC-4 states σ is a choice, and no IC file claims a
+Cherenkov, PPN or causality pass.
+
+**The target region, for any clock construction in this class:**
+
+| c₁₄ | c₂ range | binding constraint | Ω_off max |
+|---|---|---|---|
+| 1e-8 | ≥ 1.000e-8 (open above) | Cherenkov | 3.3e-9 |
+| 4e-7 | ≥ 4.000e-7 (open above) | Cherenkov | 1.3e-7 |
+| 1e-6 | 1.000e-6 – 5.000e-6 | Cherenkov | 3.3e-7 |
+| 1e-5 | 1.000e-5 – 1.087e-5 | Cherenkov | 3.3e-6 |
+| 2.5e-5 | 2.500e-5 – 2.583e-5 | Cherenkov | 8.3e-6 |
+
+c₁₄ ≤ 2.5e-5 from α₁; c₂ in a thin collar just above c₁₄ about c₂\* = c₁₄/(1−2c₁₄); and
+M ≡ |K₂|Q₀²ε₀/H₀² ≤ c₁₄. **The lower edge is always Cherenkov, never α₂, so a successful
+construction is pinned to a marginally superluminal khronon.** The region is nonempty — and
+becomes empty only if the clock sector must itself carry Ω_d = 0.266, where it is short by 3.2e4×.
+
+**Honest limitation (K4 FAIL).** The mapping from the lead's variables to (c₁₄, c₂, |K₂|Q₀²) is
+not determined by its published files: c₁₃ = 0 is clean, but c₂ = −FY/(a₀²K₆) vanishes at the
+witness where the mode was measured (so the scalar's gradient energy comes from the auxiliary
+sector, not c₂), c₁₄ has three inconsistent readings spanning 0.073–1.333, and |K₂|Q₀² has no
+counterpart because there is no condensate in the IC action. Missing inputs named: the PPN
+weak-field expansion of the IC action with the auxiliary constraint solved, and the O(k⁰) mass
+term of the reduced scalar system.
