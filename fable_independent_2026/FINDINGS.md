@@ -5019,3 +5019,38 @@ footing ratio squared = 1/Ω_Λ exactly; the ΛCDM-native scale squared rises as
 uncomputed simulations (two-species Lyα hydro; baryon+MOND growth in the c_ad 300–537 km/s sliver; N-body mass-dependent kick)
 and of empirical gates that Lean cannot check. This is NOT a complete theory. Anyone presenting a "complete Lean-certified theory"
 should be checked for: empirical gates encoded as axioms/hypotheses, literal-True passes, single-footing checks.
+
+## L167 — THE N-BODY KICK TEST (L163 TEST 1), run (2026-09-10)
+
+`L167_nbody_kick_test.py` / `.out` — 8/8 checks, none literal-True; 162 runs, N = 20000 cold particles per run, leapfrog dt = 0.5 Myr,
+2–13.8 Gyr, spherical MOND galaxy (RAR ν, 1-D EFE truncation g_extN = 0.01 a₀), cold component = COSMIC × baryons, Jeans-relaxed 2 Gyr,
+control runs without kicks (η is a ratio to the control), both a₀ footings, both kernel readings (eps=0 kernel reads baryons only; eps=1 reads total).
+Integrator check is real (test-particle energy 1e-6 median). Limits: spherical static baryons, no daughter infall, no v_k redshift inside the galaxy,
+S₈/Lyα side taken from L160/L164 and NOT recomputed.
+
+**The crossing.** η(3 R_d) = 0.582 (canonical, eps=0) at v_k/v_flat = 1.81 / 1.93 / 2.23 for 80 / 110 / 220 km/s hosts (145 / 212 / 490 km/s).
+eps=1 ceiling 0.355: 2.74 / 2.83 / 3.10. Median host sensitivities: alt footing 2.09 (ceiling 0.486), g_extN = 0.03 a₀ 1.92, NFW-shaped
+initial profile 1.69; total spread 1.24×. Retention is mass-dependent in the required direction (C5), which is the necessary condition
+certified in L166.
+
+**Reading.** By L163's own rule (above ~2 closes, below ~1.5 real) the number 1.93 is UNDETERMINED. Substantively the N-body sits on the
+STEP-SHALLOW criterion (analytic 1.85): it is neither the orbit-averaged 1.04 that L163's live window relied on, nor the step-deep 2.81 that
+L160's triple scan used to kill the galaxy gate. Bound-but-heated daughters on wide orbits contribute little to g at 3 R_d, which is why the
+answer is softer than step-deep; but the MOND+EFE well is deep enough that ~2 v_flat is still needed.
+
+**Cosmological cells (exponential decay, eps=0).** τ = 5 Gyr: galaxy gate passes for v_k ≥ 300 km/s (median host) and ≥ 600 km/s (220 km/s
+host). τ = 20 Gyr: ≥ 450 / ≥ 994 km/s. eps=1: τ = 5 needs 450 / 800 km/s; τ = 20 fails at every v_k ≤ 994 for the massive host.
+Against L160 (S₈ on the GENEROUS growth bound: 0.787 at τ = 5, v_k = 600, OK; 0.709 at v_k = 1000, dead) the cell **(τ ≈ 5 Gyr, v_k ≈ 600 km/s,
+eps=0)** now passes galaxies (this run) + clusters (L160, f = 1.00) + S₈-generous. L160's step-deep closure of that cell is superseded for
+the galaxy gate; the eps=1 reading stays dead for the massive tail.
+
+**What still binds, all on the same cell.** (i) Lyα: L164 puts the strict-upper-bound suppression at 9–22% at k = 5 h/Mpc, z = 3, at or just
+beyond the ~10% tolerance, and the suppression is WORST at the shortest lifetime — τ = 5 Gyr is exactly the cell the galaxies now select.
+(ii) The standard growth treatment (L160 column A) gives S₈ far below the generous bound; the cell lives only on bound B. (iii) Cluster profile
+shape (L163 TEST 3) untested. (iv) The massive spirals need 600 km/s while dwarfs need 145: the kick is a single number, so the dwarf end is
+evacuated to η ≈ 0.04, which the RAR at low mass would have to tolerate (not checked here).
+
+**Verdict.** NOT closed by the N-body, NOT opened: the two-body decay window narrows to one cell (τ ~ 5 Gyr, v_k ~ 450–600 km/s, baryon-read
+kernel) that is simultaneously the Lyα forest's worst case and dependent on the generous growth bound. Decisive test unchanged: a flux-power
+run at (τ = 5 Gyr, v_k = 600 km/s). This test DERIVES nothing; it bounds a phenomenological patch. The derivation target remains the
+single-metric kinetic-mixed action with α₁ screening.

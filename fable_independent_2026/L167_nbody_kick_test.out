@@ -1,0 +1,89 @@
+
+======================================================================================================================
+L167  N-BODY KICK TEST -- retained cold contribution to g at the SPARC radii vs v_k / v_flat
+======================================================================================================================
+  N = 20000 cold particles, dt = 0.50 Myr, t = 2.0-13.8 Gyr, relax 2.0 Gyr, kick epoch (delta) t = 4.0 Gyr; COSMIC = 5.364; softening 0.1 kpc
+  [PASS] C1 integrator: test particles in the baryon-only MOND potential conserve energy over 2 Gyr
+           (median |dE/E| = 1.26e-06, max = 4.81e-05)
+  launching 162 runs on 16 cores ...
+  done in 463s
+
+======================================================================================================================
+CONTROL RUNS (no kick): equilibrium of the cold component
+======================================================================================================================
+    v_flat    80 eps=0 canonical gext=0.01 tracks: M_cold(<3R_d) end/kick = 1.001, R_d = 1.36 kpc, M_b = 3.30e+09
+    v_flat    80 eps=1 canonical gext=0.01 tracks: M_cold(<3R_d) end/kick = 1.004, R_d = 1.36 kpc, M_b = 3.30e+09
+    v_flat   110 eps=0 canonical gext=0.01 tracks: M_cold(<3R_d) end/kick = 0.998, R_d = 2.12 kpc, M_b = 1.18e+10
+    v_flat   110 eps=1 canonical gext=0.01 tracks: M_cold(<3R_d) end/kick = 0.999, R_d = 2.12 kpc, M_b = 1.18e+10
+    v_flat   220 eps=0 canonical gext=0.01 tracks: M_cold(<3R_d) end/kick = 1.005, R_d = 5.59 kpc, M_b = 1.89e+11
+    v_flat   220 eps=1 canonical gext=0.01 tracks: M_cold(<3R_d) end/kick = 1.001, R_d = 5.59 kpc, M_b = 1.89e+11
+    v_flat   110 eps=0 alt       gext=0.01 tracks: M_cold(<3R_d) end/kick = 1.002, R_d = 1.98 kpc, M_b = 9.78e+09
+    v_flat   110 eps=0 canonical gext=0.03 tracks: M_cold(<3R_d) end/kick = 0.996, R_d = 2.12 kpc, M_b = 1.18e+10
+    v_flat   110 eps=0 canonical gext=0.01 nfw   : M_cold(<3R_d) end/kick = 1.015, R_d = 2.12 kpc, M_b = 1.18e+10
+  [PASS] C2 controls: cold mass inside 3 R_d drifts by < 30% between the kick epoch and z = 0 (relaxed ICs)
+
+======================================================================================================================
+DELTA KICK at t = 4 Gyr: eta(3 R_d), eta(6 R_d) vs v_k / v_flat   [canonical a0, g_extN = 0.01 a0, tracks-baryons]
+======================================================================================================================
+    v_flat   80 km/s, eps=0: 0.50:0.964/0.983  0.75:0.923/0.957  1.00:0.864/0.918  1.25:0.792/0.864  1.50:0.705/0.794  2.00:0.508/0.615  2.50:0.311/0.409  3.00:0.157/0.225  4.00:0.024/0.038
+        -> eta(3R_d) = 0.582 at v_k/v_flat = 1.81  (v_k = 145 km/s)
+    v_flat   80 km/s, eps=1: 0.50:0.975/0.991  0.75:0.945/0.979  1.00:0.902/0.959  1.25:0.846/0.929  1.50:0.781/0.890  2.00:0.619/0.773  2.50:0.437/0.608  3.00:0.263/0.413  4.00:0.043/0.082
+        -> eta(3R_d) = 0.355 at v_k/v_flat = 2.74  (v_k = 219 km/s)
+    v_flat  110 km/s, eps=0: 0.50:0.970/0.985  0.75:0.934/0.964  1.00:0.883/0.932  1.25:0.818/0.885  1.50:0.741/0.823  2.00:0.557/0.661  2.50:0.370/0.466  3.00:0.212/0.286  4.00:0.041/0.064
+        -> eta(3R_d) = 0.582 at v_k/v_flat = 1.93  (v_k = 212 km/s)
+    v_flat  110 km/s, eps=1: 0.50:0.977/0.992  0.75:0.949/0.980  1.00:0.909/0.961  1.25:0.856/0.934  1.50:0.794/0.894  2.00:0.638/0.783  2.50:0.466/0.630  3.00:0.296/0.446  4.00:0.064/0.117
+        -> eta(3R_d) = 0.355 at v_k/v_flat = 2.83  (v_k = 311 km/s)
+    v_flat  220 km/s, eps=0: 0.50:0.979/0.989  0.75:0.949/0.975  1.00:0.910/0.950  1.25:0.861/0.916  1.50:0.802/0.871  2.00:0.657/0.747  2.50:0.492/0.590  3.00:0.333/0.418  4.00:0.099/0.145
+        -> eta(3R_d) = 0.582 at v_k/v_flat = 2.23  (v_k = 490 km/s)
+    v_flat  220 km/s, eps=1: 0.50:0.982/0.992  0.75:0.957/0.982  1.00:0.922/0.964  1.25:0.879/0.940  1.50:0.824/0.906  2.00:0.694/0.812  2.50:0.538/0.684  3.00:0.381/0.528  4.00:0.126/0.213
+        -> eta(3R_d) = 0.355 at v_k/v_flat = 3.10  (v_k = 682 km/s)
+  [PASS] C3 eta(3 R_d) decreases monotonically with v_k in every delta-kick series (2% noise tolerance)
+  [PASS] C4 the ceiling crossing is bracketed by the scanned v_k/v_flat grid for every host and reading
+           ((80,eps0)=1.81, (80,eps1)=2.74, (110,eps0)=1.93, (110,eps1)=2.83, (220,eps0)=2.23, (220,eps1)=3.10)
+  [PASS] C5 mass dependence: the absolute kick needed to reach the ceiling rises with v_flat (80 < 110 < 220 km/s hosts)
+           (v_k needed = 145, 212, 490 km/s)
+  [PASS] C6 the N-body crossing lies inside the analytic envelope [0.42 (isothermal), 2.81 (step, deep)]
+           (eps=0 crossings 1.81, 1.93, 2.23)
+
+======================================================================================================================
+SENSITIVITIES on the median host (110 km/s, eps=0, delta kick)
+======================================================================================================================
+    alt a0 footing                    : 0.50:0.968  0.75:0.927  1.00:0.871  1.25:0.798  1.50:0.714  2.00:0.522  2.50:0.329  3.00:0.171  4.00:0.027   -> crossing 2.09 (ceiling 0.486)
+    g_extN = 0.03 a0                  : 0.50:0.969  0.75:0.932  1.00:0.881  1.25:0.815  1.50:0.736  2.00:0.553  2.50:0.362  3.00:0.199  4.00:0.035   -> crossing 1.92 (ceiling 0.582)
+    NFW-shaped initial cold profile   : 0.50:0.950  0.75:0.885  1.00:0.813  1.25:0.747  1.50:0.654  2.00:0.466  2.50:0.309  3.00:0.183  4.00:0.052   -> crossing 1.69 (ceiling 0.582)
+  [PASS] C7 the crossing is robust: footing / external field / initial profile move it by less than a factor 1.6
+           (max/min crossing = 1.24)
+
+======================================================================================================================
+EXPONENTIAL DECAY (cosmological cells of the L163 window): N-body f_gal = eta(3 R_d) vs L163's analytic criteria
+======================================================================================================================
+    L163 live window: tau 5-20 Gyr, v_k 203-994 km/s, galaxy gate needs eta <= 0.582 (canon eps=0) / 0.355 (canon eps=1)
+    tau    5 Gyr, v_flat   80, eps=0: 200:0.345  300:0.098  450:0.044  600:0.042  800:0.042  994:0.042   -> gate passes for v_k >= 200 km/s
+    tau    5 Gyr, v_flat   80, eps=1: 200:0.466  300:0.150  450:0.058  600:0.054  800:0.054  994:0.054   -> gate passes for v_k >= 300 km/s
+    tau    5 Gyr, v_flat  110, eps=0: 200:0.639  300:0.318  450:0.088  600:0.044  800:0.040  994:0.040   -> gate passes for v_k >= 300 km/s
+    tau    5 Gyr, v_flat  110, eps=1: 200:0.711  300:0.418  450:0.127  600:0.060  800:0.052  994:0.051   -> gate passes for v_k >= 450 km/s
+    tau    5 Gyr, v_flat  220, eps=0: 200:0.931  300:0.855  450:0.666  600:0.447  800:0.215  994:0.102   -> gate passes for v_k >= 600 km/s
+    tau    5 Gyr, v_flat  220, eps=1: 200:0.938  300:0.867  450:0.693  600:0.487  800:0.248  994:0.124   -> gate passes for v_k >= 800 km/s
+    tau   20 Gyr, v_flat   80, eps=0: 200:0.677  300:0.495  450:0.436  600:0.434  800:0.434  994:0.434   -> gate passes for v_k >= 300 km/s
+    tau   20 Gyr, v_flat   80, eps=1: 200:0.747  300:0.571  450:0.493  600:0.488  800:0.489  994:0.488   -> gate FAILS at every v_k <= 994
+    tau   20 Gyr, v_flat  110, eps=0: 200:0.821  300:0.658  450:0.483  600:0.436  800:0.428  994:0.427   -> gate passes for v_k >= 450 km/s
+    tau   20 Gyr, v_flat  110, eps=1: 200:0.866  300:0.721  450:0.547  600:0.485  800:0.473  994:0.473   -> gate FAILS at every v_k <= 994
+    tau   20 Gyr, v_flat  220, eps=0: 200:0.966  300:0.925  450:0.838  600:0.730  800:0.595  994:0.490   -> gate passes for v_k >= 994 km/s
+    tau   20 Gyr, v_flat  220, eps=1: 200:0.970  300:0.933  450:0.851  600:0.752  800:0.619  994:0.527   -> gate FAILS at every v_k <= 994
+
+    median host: smallest passing v_k (tau 5, tau 20) = eps0 [300.0, 450.0], eps1 [450.0, nan] km/s
+  [PASS] C8 [VERDICT INPUT] for the median host, is there a tau in {5,20} Gyr whose galaxy-gate kick v_k lies below the L160 S_8 ceiling (~600 km/s at tau <= 13.8 Gyr)?  (a FAIL here means the window is CLOSED by the N-body; a PASS means it stays open)
+           (eps=0 passing kicks under 600 km/s: [300.0, 450.0]; eps=1: [450.0])
+
+======================================================================================================================
+VERDICT
+======================================================================================================================
+    eta(3 R_d) = 0.582 crossing on the median host: v_k/v_flat = 1.93 (212 km/s); L163 rule -> UNDETERMINED (crossing between 1.5 and 2)
+    all hosts eps=0: [1.81, 1.93, 2.23];  eps=1: [2.74, 2.83, 3.1]
+    LIMITS: spherical static baryons; cold tracks baryons initially (NFW sensitivity above); no daughter infall; no v_k redshift inside
+    the galaxy; S_8 / Lyman-alpha side taken from L160/L164, not recomputed. This test DERIVES nothing: it decides whether a
+    phenomenological decay patch is admissible at all.
+
+======================================================================================================================
+L167 COMPLETE: 8/8 checks PASS.   [463s]
+======================================================================================================================
