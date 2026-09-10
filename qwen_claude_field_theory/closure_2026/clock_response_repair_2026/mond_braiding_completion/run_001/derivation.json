@@ -1,0 +1,41 @@
+{
+  "bare": {
+    "extra_bracket_integrand": "eta*((-(-pa - pb + pc)*exp(-a(x) - b(x) - c(x))/(2*M2) - (-pa + pb - pc)*exp(-a(x) - b(x) - c(x))/(2*M2) + (pa - pb - pc)*exp(-a(x) - b(x) - c(x))/(2*M2))*Derivative(chi(x), x) - Derivative(Q(x), x))*(L(x)*Derivative(N(x), x) - N(x)*Derivative(L(x), x))*exp(a(x) + b(x) + c(x))*exp(-2*a(x))",
+    "boundary_term_checked": true,
+    "hamiltonian_constraint_witness": "0",
+    "witness": "flat metric; chi spatially constant; Q=q+epsilon sin(x); N=1; L=sin(x); p_a=P0!=0; p_b=p_c=P0/4+M2*(rho+M2*Lambda)/P0",
+    "weak_bracket_integral": "pi*epsilon*eta",
+    "conclusion": "Lapse affinity of the bare acceleration mixing does not preserve C self-closure."
+  },
+  "completion": {
+    "covariant_action": "S_clock + integral sqrt(-g) gamma X Box(chi), constant gamma; X=-grad(chi)^2",
+    "ADM_density_over_Nsqrt_h": "gamma[-2Q^3 K/3+2Q Kij chi^i chi^j+2Q^2 D^2 chi+chi^i D_i Y]",
+    "exact_plane_boundary_identity": true,
+    "time_boundary": "-gamma*(Q(x, t)**3/3 - Q(x, t)*exp(-2*a(x, t))*Derivative(chi(x, t), x)**2)*exp(a(x, t) + b(x, t) + c(x, t))",
+    "spatial_boundary": "-gamma*(Q(x, t)**2 + exp(-2*a(x, t))*Derivative(chi(x, t), x)**2)*N(x, t)*exp(a(x, t) + b(x, t) + c(x, t))*exp(-2*a(x, t))*Derivative(chi(x, t), x)",
+    "metric_hessian_determinant": "-16*M2**6",
+    "full_hessian_determinant": "32*M2**5*(2*K11*M2*Q*gamma + 2*K22*M2*Q*gamma + 2*K33*M2*Q*gamma - 2*M2*Q**2*Subs(Derivative(P(_xi_1), (_xi_1, 2)), _xi_1, Q**2 - Y) - 2*M2*gamma*lap_chi - M2*Subs(Derivative(P(_xi_1), _xi_1), _xi_1, Q**2 - Y) - 3*Q**4*gamma**2 + 2*Q**2*Y*gamma**2 + Y**2*gamma**2)",
+    "schur_complement": "-2*(2*K11*M2*Q*gamma + 2*K22*M2*Q*gamma + 2*K33*M2*Q*gamma - 2*M2*Q**2*Subs(Derivative(P(_xi_1), (_xi_1, 2)), _xi_1, Q**2 - Y) - 2*M2*gamma*lap_chi - M2*Subs(Derivative(P(_xi_1), _xi_1), _xi_1, Q**2 - Y) - 3*Q**4*gamma**2 + 2*Q**2*Y*gamma**2 + Y**2*gamma**2)/M2",
+    "nonclaim": "Velocity regularity and lapse affinity do not prove the combined clock Dirac chain, energy positivity, or MOND."
+  },
+  "static": {
+    "spatial_Ricci": "2*(-Derivative(Psi(x), x)**2 + 2*Derivative(Psi(x), (x, 2)))*exp(2*Psi(x))",
+    "quadratic_static_Euler": {
+      "Phi(x)": "2*M2*Derivative(Psi(x), (x, 2)) - 2*gamma*q**2*Derivative(sigma(x), (x, 2)) - rho",
+      "Psi(x)": "2*M2*(Derivative(Phi(x), (x, 2)) - Derivative(Psi(x), (x, 2)))",
+      "sigma(x)": "2*C*Derivative(sigma(x), (x, 2)) - 2*gamma*q**2*Derivative(Phi(x), (x, 2))"
+    },
+    "mixing_coefficient": "b=2 gamma q^2",
+    "slip_scope": "Psi=Phi from its own spatial Euler equation at nonzero k with matched homogeneous boundary; not full PPN",
+    "radial_Lagrangian": "-4*gamma*r*u**3/3 + r**2*(-M2*g**2 + b*g*u - F(u**2))",
+    "radial_scalar_current": "-4*gamma*r*u**2 + r**2*(b*g - 2*u*Subs(Derivative(F(_xi_1), _xi_1), _xi_1, u**2))",
+    "radial_metric_current": "r**2*(-2*M2*g + b*u)",
+    "scalar_zero_flux_equation": "-F_Y*u + b*g/2 - 2*gamma*u**2/r",
+    "MOND_required_u": "2*M2*g*exp(-g/a0)/b",
+    "required_FY": "b*g/(2*u) - 2*gamma*u/r",
+    "two_radius_mismatch": "2*gamma*u*(r1 - r2)/(r1*r2)",
+    "result": "For this reduced local radial model, nonzero constant gamma cannot give a universal acceleration-only exponential law across different source masses.",
+    "exclusions": "Not a no-go for all KGB: potential-dependent coefficients, singular weak-field scaling, nonzero source-dependent scalar charge, time-dependent branches and extra operators are not covered."
+  },
+  "full_theory_status": "OPEN"
+}

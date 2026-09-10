@@ -1,0 +1,18 @@
+{
+  "claim_id": "LAPSE_RESIDUAL_AUDIT_81EF75087",
+  "mathematics": {
+    "assertion_tested": "At amplitude 0.05 and 8/16/32 modes, the existing lapse matrix solve has roundoff residual while the sampled differential preservation residual decreases at approximately second order.",
+    "coefficient_domain": "IEEE float64 with SymPy-derived coefficient functions",
+    "conventions": "Periodic x in [0,2pi); -Delta N = -(a2 N')' + sqrt(h)*mass*N = sqrt(h)*F0; FFT spatial derivatives; original flux matrix unchanged.",
+    "inputs": ["Original logarithmic/square-root clock action at A=m=0.1, v=0.5; Q_c=M^2=1, Lambda=0.7", "Constraint-satisfying plane data reconstructed by constraint_data.solve_case"],
+    "bounds": {"amplitude": 0.05, "modes": [8,16,32], "meshes": [64,128,256], "epochs": 1, "derivative_control_tolerance": 1e-11, "matrix_residual_tolerance": 1e-11, "observed_order_interval": [1.9,2.1]},
+    "non_claims": ["No certified continuum norm", "No independent validation of reused source and mass coefficient", "No finite-time or 3D closure", "No MOND derivation or observational claim"]
+  },
+  "execution_artifacts": [
+    "qwen_claude_field_theory/closure_2026/clock_response_repair_2026/lapse_residual_audit/check_residual.py",
+    "qwen_claude_field_theory/closure_2026/clock_response_repair_2026/dirac_operator/constraint_data.py",
+    "qwen_claude_field_theory/closure_2026/clock_response_repair_2026/dirac_operator/lapse_source.py"
+  ],
+  "software": [{"name":"Python","version":"3.9.6"},{"name":"NumPy","version":"1.26.2"},{"name":"SciPy","version":"1.11.4"},{"name":"SymPy","version":"1.14.0"}],
+  "randomness": {"used":false,"generator":"","seed":null}
+}
