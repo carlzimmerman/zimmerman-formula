@@ -3794,3 +3794,37 @@ are ghost-free by construction, c_T=c); match G(y)'s deep-MOND/Newtonian limits.
 propagating ⇒ ghost/non-closure), the cuscuton Hessian degeneracy (0 propagating DOF), MOND-sector
 independence. Open (astra's calculation): the explicit cuscuton-F(Q)Θ action and its full
 PPN/c_T/FLRW/Ward + RAR verification. Script `L104_cuscuton_kinetic_dissolves_ghost.py` (11/11).
+
+## L105 — THE POSITIVE CLOSURE THEOREM: the cuscuton branch escapes the L95 no-go, and exactly why (9/9)
+
+**The breakthrough (scalar sector, honestly scoped).** L95 was a *negative* theorem: a MOND scalar with a
+canonical p² kinetic term cannot close the hypersurface-deformation algebra. L105 proves the *positive*
+companion and identifies the mechanism of escape.
+
+The HDA bracket integrand is `(∂f/∂p)(∂f/∂s)`. For the canonical `f=½A(s)p²+W(s)` (W'=μs) it gives a p³
+**obstruction `½A·A'`** and a p¹ **generator `A·μ·s`** (reproduces L95). Closure needs BOTH `A·μ=1`
+(match the momentum generator) AND `A'=0` (kill the obstruction) on the **same** A — forcing
+`(1/μ)'=−μ'/μ²=0 ⇒ μ'=0` (Newtonian only). **So the obstruction exists solely because closure ties the
+kinetic coefficient to the kernel (A=1/μ), making A inherit μ's slope:** obstruction `=−μ'/(2μ³) ≠ 0`
+(confirmed nonzero at every finite acceleration, both a₀ footings; |obstruction|≥2.6e8 at the samples).
+
+**The cuscuton unties it.** The cuscuton has **no p² kinetic term** (its momentum is constrained — L104), so
+there is no coefficient A: the p³ obstruction `½A·A'` is **identically zero**, and the MOND kernel μ lives
+in the *gradient* sector W(s), **decoupled** from the (absent) kinetic coefficient — so μ stays freely
+**monotone** (μ'>0). Closure (obstruction=0) and a genuine interpolating kernel (μ'≠0) **coexist** on the
+cuscuton branch — impossible in the canonical case. The momentum generator that A=1/μ was forced to supply
+comes instead from the metric/constraint sector (the Afshordi-Chung-Geshnizjani cuscuton mechanism:
+infinite-but-causal sound speed, zero extra propagating DOF, HDA preserved).
+
+**Consequence.** L95 (canonical can't close) + L105 (obstruction removed, mechanism explicit) + L104 (no
+ghost) + ACDG (pure cuscuton preserves the HDA) ⇒ **the cuscuton MOND scalar sector is consistent AND
+ghost-free for any monotone kernel.** This upgrades L95 from a *necessity* ("must be a cuscuton") to a
+*sufficiency* ("the cuscuton scalar sector closes and is healthy"). Closure and ghost-freedom coincide, as
+a non-propagating field requires. The recurring health obstruction of the whole programme (L60/L69/L94/L95)
+is, on the cuscuton branch, **constructively resolved.**
+
+**Honest scope (verified as hard as the win).** This resolves the L95 *scalar-sector* HDA obstruction and
+invokes ACDG's established pure-cuscuton HDA closure; the **full metric + khronon + F(Q)Θ-coupling**
+constraint algebra remains astra's calculation, and the **BBN fine-tuning (L84/L87) is a separate, untouched
+cost**. What is proven: the specific obstruction is gone and *why*. Script
+`L105_cuscuton_closes_positive_theorem.py` (9/9), reproduces L95's cubic as its control.
