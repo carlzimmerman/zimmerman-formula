@@ -134,3 +134,35 @@ theorem mu_newton_limit : Tendsto (fun η : ℝ => 1 - Real.exp (-η)) atTop (�
     Real.tendsto_exp_neg_atTop_nhds_zero
   have h := (tendsto_const_nhds (x := (1 : ℝ))).sub h0
   simpa using h
+
+/-! ### Cuscuton-closure theorem (L95): a p²-kinetic MOND scalar cannot close the constraint algebra. -/
+
+/-- The MOND interpolating kernel μ(y)=1−e^{-y} has derivative μ'(y)=e^{-y} (strictly positive: monotone). -/
+theorem mu_kernel_deriv (y : ℝ) : HasDerivAt (fun t : ℝ => 1 - Real.exp (-t)) (Real.exp (-y)) y := by
+  have h := (hasDerivAt_const y (1 : ℝ)).sub (hasDerivAt_expNeg y)
+  have hv : (0 : ℝ) - Real.exp (-y) * (-1) = Real.exp (-y) := by ring
+  rwa [hv] at h
+
+/-- μ'(y) = e^{-y} > 0 for all y: the kernel is strictly monotone (the fact that drives the obstruction). -/
+theorem mu_kernel_deriv_pos (y : ℝ) : 0 < Real.exp (-y) := Real.exp_pos _
+
+/-- The p³ closure obstruction: matching the diffeomorphism generator forces A = 1/μ, and the cubic bracket
+    coefficient (1/2) A A' equals −μ'/(2 μ³). -/
+theorem closure_obstruction (mu mup : ℝ) (hmu : mu ≠ 0) :
+    (1 / mu) * (-(mup) / mu ^ 2) / 2 = -mup / (2 * mu ^ 3) := by
+  field_simp
+
+/-- Closure requires the obstruction to vanish; with μ ≠ 0 that happens iff μ' = 0 — a flat (non-MOND) kernel. -/
+theorem closure_needs_flat_kernel (mu mup : ℝ) (hmu : mu ≠ 0) :
+    (-mup / (2 * mu ^ 3) = 0) ↔ mup = 0 := by
+  have hb : (2 : ℝ) * mu ^ 3 ≠ 0 := mul_ne_zero two_ne_zero (pow_ne_zero 3 hmu)
+  rw [div_eq_zero_iff]; simp [hb]
+
+/-- CUSCUTON FORCED: for the exponential MOND kernel μ=1−e^{-y}, μ'=e^{-y} ≠ 0, so the closure obstruction
+    −μ'/(2 μ³) is nonzero wherever μ ≠ 0. A p²-kinetic MOND scalar cannot close the constraint algebra; the
+    non-propagating (cuscuton) branch is forced. -/
+theorem cuscuton_forced (y : ℝ) (hmu : 1 - Real.exp (-y) ≠ 0) :
+    -(Real.exp (-y)) / (2 * (1 - Real.exp (-y)) ^ 3) ≠ 0 := by
+  intro hcontra
+  rw [closure_needs_flat_kernel (1 - Real.exp (-y)) (Real.exp (-y)) hmu] at hcontra
+  exact (Real.exp_pos (-y)).ne' hcontra
