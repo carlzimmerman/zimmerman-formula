@@ -4164,3 +4164,32 @@ mechanism** keeping φ non-dynamical + its full nonlinear Dirac closure, PPN β,
 unless a dark component is added), and the a₀ coefficient. So the recurring health killer is, for the first
 time, **structurally threaded** rather than relocated — the next step is the phenomenology on this branch.
 Script `L119_health_passing_architecture.py` (6/6).
+
+## L120 — the health branch = RAQUAL healed by a cuscuton; superluminality evaded (6/6)
+
+The health branch (L119) is relativistic AQUAL (RAQUAL, Bekenstein-Milgrom 1984) with the scalar made a
+cuscuton. RAQUAL died on scalar **superluminality** (→ forced TeVeS). Verified: a *propagating* power-law
+AQUAL scalar has c_s²=1/(2n−1), which is **>1 (superluminal) for 1/2<n<1** — a band inside the MOND→Newton
+transition (n=3/5→5, n=3/4→2, n=9/10→5/4). The health branch makes φ **non-propagating** (cuscuton: c_s
+formally ∞ but 0 DOF ⇒ carries no signal ⇒ causal, ACDG 2007), so no finite-c_s>1 signal mode exists —
+**RAQUAL's acausality is evaded without TeVeS's vector+two-metrics.** Causality sub-gate secured. Script
+`L120_raqual_causality_cuscuton_evasion.py` (6/6).
+
+## Phase E (cosmology) + Phase F (a₀ coefficient) — fleet verdicts (agent-computed, banked)
+
+**Phase E — the CMB is a PROBABLE KILLER of the pure-MOND health branch (decisive).** MOND is *off* at
+recombination: a₀/cH(z_rec) ≈ 8×10⁻⁶, so the pure-MOND CMB ≈ the **baryon-only GR CMB**. Baryons-only gives
+z_eq≈539 < z_rec≈1090 (radiation-dominated at last scattering) and a **suppressed third peak** — the wrong
+CMB. The ONLY relativistic MOND that fits the CMB (AeST, Skordis-Złośnik 2021) does so via a field energy
+density that redshifts as **a⁻³ (dust-like)** — which is *exactly* Branch I's shift-charge dust (2AC/a³, L110)
+that the health branch **deleted** to kill the ghost + BBN tuning. So the health branch removed the one
+mechanism relativistic MOND has ever used to fit the CMB. The only substitute (hot ν) is **pincered**: CMB
+needs ≳27 eV cold, RAR/clusters need ≲11 eV — no overlap (g04i). LSS growth also fails (σ₈≤0.65, g04h);
+clusters mildest (~11 eV ν in isolation). **This is the heaviest cost in the programme.**
+
+**Phase F — a₀ coefficient still FITTED on the new architecture.** The cuscuton-clock + elliptic-φ opens no
+new derivation route: the zero-mode theorem (a₀ enters only via W′, additive constant undetermined) + additive
+Λ carry over; every horizon/sequestering/order-parameter route was already closed (L40, k01-k04, PAPER6).
+Worse, the health fix (decoupling MOND from the clock) *removes* the one structural a₀∝cH link (which lived
+on the ghost-sick "MOND-from-the-clock" branch) — **ghost-avoidance and a₀-derivation pull opposite ways.**
+Surviving distinctive prediction remains a₀∝H(z), not a derived coefficient.
