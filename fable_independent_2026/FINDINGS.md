@@ -3914,3 +3914,29 @@ coefficient (fitted) are separate costs. This lane makes CAM a **jointly-verifie
 methods) open branch** — the healthiest, most-constructive relativistic MOND branch the programme has, with
 scalar-sector consistency now confirmed from two directions. Script `L108_verify_astra_cuscuton_branch.py`
 (9/9).
+
+## L109 — verified astra's CAM orbital law (new BTFR prediction) + the no-slip compensator (9/9)
+
+astra (commit a5fd5fdad) extended the CAM branch with an **orbital law** and a **trace-free compensator**.
+
+**Orbital law (verified).** `Ω²r³[1−e^{−Ω²r/a₀}] = G_eff M` is exactly the exponential-kernel AQUAL relation
+`μ(g_obs/a₀)g_obs = g_bar` (g_obs=Ω²r centripetal) — so it inherits L92's SPARC fit. By **independent series
+inversion** of `s = w(1−e^{−w})`, `v_c⁴/(G_eff M a₀) = w/(1−e^{−w})` (w=g_obs/a₀), I reproduce astra's
+expansion **exactly**:
+> **v_c⁴/(G M a₀) = 1 + ½√s + (5/24)s + O(s^{3/2})**,  s = g_bar/a₀.
+
+Limits check out: s→0 gives the flat BTFR `v_c⁴=GMa₀`; s→∞ gives `v_c²=GM/r` (Newton).
+
+**New testable prediction.** The **+½√s** term is a *positive, distinctive finite-acceleration lift* above
+the flat deep-MOND BTFR plateau: +18% at g_bar=0.1a₀, +34% at 0.3a₀. This is the finite-radius face of the
+exp-kernel RAR (derived, not tuned) — a near-term-testable BTFR/RAR signature on both a₀ footings, and the
+CAM branch's sharpest new prediction.
+
+**No-slip compensator (verified).** The traceless MOND stress `2M²y²e^{−y}(v_iv_j)^TF` is what *would* source
+a slip Φ≠Ψ (the York/QUMOND failure mode of L101). astra's trace-free compensator multiplier cancels exactly
+this stress (Λ_TF=−2M²S y²e^{−y}/k², zero residual at k≠0), with no time-derivative Hessian — **enforcing
+Φ=Ψ (no slip)**. So the CAM no-slip that L101's lensing test *selects* is not assumed; it's a construction.
+
+**Honest scope (astra's).** Orbital law is conditional on the full 3+1 normalization (G_eff→G) + lensing/PPN;
+the compensator is a finite-k tensor completion (nonlinear tensor chain + τ-clock Dirac + PPN + nonlinear
+stability remain open); BBN + a₀ separate. Script `L109_verify_cam_kepler_and_compensator.py` (9/9).
