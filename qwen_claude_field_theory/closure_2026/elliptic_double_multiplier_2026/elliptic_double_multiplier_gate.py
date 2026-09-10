@@ -85,7 +85,10 @@ def main() -> int:
     # gradient patch.  The multiplier gradients cancel in the scalar branch,
     # so this is the remaining load-bearing obstruction.
     M2, y = sp.symbols("M2 y", positive=True, real=True)
-    tf_residual = sp.simplify(-2 * M2 * (1 - sp.exp(-y)))
+    # Direct inverse-metric variation of the Q primitive gives the residual
+    # carried by Candidate B: -2 M2*y^2*exp(-y) (up to the common 16 pi G
+    # normalization).  It vanishes in both y->0 and y->infinity limits.
+    tf_residual = sp.simplify(-2 * M2 * y**2 * sp.exp(-y))
     tensor_kinetic = M2
     tensor_gradient = M2
     cT2 = sp.simplify(tensor_gradient / tensor_kinetic)

@@ -14,7 +14,7 @@ static weak-field limit the multiplier equation is the trace-free Hessian
 form
 
 \[
-2M^2\mu(y)(v_iv_j)^{TF}+k^2\Lambda_{ij}^{TF}=0,
+2M^2 y^2e^{-y}(v_iv_j)^{TF}+k^2\Lambda_{ij}^{TF}=0,
 \]
 
 so, for (k\ne0), (Lambda_{ij}^{TF}) is solved elliptically and cancels
@@ -32,10 +32,37 @@ The nonlinear covariant Dirac chain for the tensor multiplier, the complete
 3-D metric variation, PPN parameters, FLRW perturbations, and stability remain
 to be derived from this action.  The branch is status OPEN, not certified.
 
+The homogeneous background gate is nevertheless explicit: on flat FLRW,
+({}^{(3)}R,D_i\chi,\mathcal A_n)=(0,0,0), so Q(0)=0 and the multiplier
+constraints are satisfied without forcing H=0.  With positive rho+M^2 Lambda,
+the background Friedmann equation has an expanding branch
+
+\[
+ H^2=\frac{\rho+M^2\Lambda}{3M^2}>0,
+ \qquad c_T^2=1.
+\]
+
+This is only a background pass; homogeneous clock perturbations and the full
+FLRW scalar/vector stability analysis remain open.
+
+The generated quadratic Dirac audit separates the sectors.  For k!=0 it finds
+six primary and six secondary constraints, an actual Poisson-bracket rank of
+10, two first-class and ten second-class constraints, and therefore zero
+physical scalar DOF from a 14-dimensional scalar phase space.  At k=0 the
+same computation gives rank 0 and one homogeneous scalar DOF; this is retained
+as an explicit unresolved zero-mode obstruction rather than being discarded.
+The Lean certificate proves the exponential TF multiplier solution, the
+opposite-shift cancellation, the finite-k DOF arithmetic, and the expanding
+FLRW branch implication.
+
 ## Reproduction
 
 ```text
 python3 -B tensor_compensated_branch_gate.py
 python3 -B run_lean.py
 python3 -B -m unittest -v test_tensor_compensated_branch.py
+python3 -B tensor_compensated_dirac_gate.py
+python3 -B -m unittest -v test_tensor_compensated_dirac.py
+python3 -B flrw_tensor_compensated_gate.py
+python3 -B -m unittest -v test_flrw_tensor_compensated.py
 ```

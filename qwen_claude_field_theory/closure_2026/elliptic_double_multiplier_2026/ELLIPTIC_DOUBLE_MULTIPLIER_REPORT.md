@@ -36,7 +36,7 @@ The branch is not yet closed: the full three-dimensional Hilbert variation
 still leaves the anisotropic residual
 
 \[
-T_{ij}^{TF}\propto -2M^2\mu(y)(v_iv_j)_{TF},
+T_{ij}^{TF}\propto -2M^2 y^2e^{-y}(v_iv_j)_{TF},
 \]
 
 so a tensorial spatial compensator is the next unavoidable ingredient.  The

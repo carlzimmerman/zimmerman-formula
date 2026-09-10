@@ -33,9 +33,9 @@ theorem luminal_ratio (M2 : ℝ) (hM2 : 0 < M2) : M2 / M2 = 1 := by
   exact div_self (ne_of_gt hM2)
 
 theorem tf_residual_nonzero (M2 y : ℝ) (hM2 : 0 < M2) (hy : 0 < y) :
-    -2 * M2 * (1 - Real.exp (-y)) ≠ 0 := by
-  have hmu : 0 < 1 - Real.exp (-y) := exponential_mu_pos y hy
-  have hprod : 0 < 2 * M2 * (1 - Real.exp (-y)) := by positivity
+    -2 * M2 * y ^ 2 * Real.exp (-y) ≠ 0 := by
+  have hsq : 0 < y ^ 2 := sq_pos_of_pos hy
+  have hprod : 0 < 2 * M2 * y ^ 2 * Real.exp (-y) := by positivity
   nlinarith
 
 end EllipticDoubleMultiplier
