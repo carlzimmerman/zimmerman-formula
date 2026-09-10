@@ -1,0 +1,54 @@
+# Exact checkpoint inventory
+
+All 49 files below are NEW. No pre-existing source file was modified by this checkpoint.
+Runtime writer-lock files are ignored and are not committed. Unrelated dirty work is preserved.
+
+- `qwen_claude_field_theory/closure_2026/kgb_joint_tangency_2026/COMMANDS.json`
+- `qwen_claude_field_theory/closure_2026/kgb_joint_tangency_2026/EXECUTION.md`
+- `qwen_claude_field_theory/closure_2026/kgb_joint_tangency_2026/FILES.md`
+- `qwen_claude_field_theory/closure_2026/kgb_joint_tangency_2026/PLAN.md`
+- `qwen_claude_field_theory/closure_2026/kgb_joint_tangency_2026/README.md`
+- `qwen_claude_field_theory/closure_2026/kgb_joint_tangency_2026/audit_contract.json`
+- `qwen_claude_field_theory/closure_2026/kgb_joint_tangency_2026/candidate_health.py`
+- `qwen_claude_field_theory/closure_2026/kgb_joint_tangency_2026/clock_joint.py`
+- `qwen_claude_field_theory/closure_2026/kgb_joint_tangency_2026/continue_y.py`
+- `qwen_claude_field_theory/closure_2026/kgb_joint_tangency_2026/derivatives/README.md`
+- `qwen_claude_field_theory/closure_2026/kgb_joint_tangency_2026/derivatives/RUN.md`
+- `qwen_claude_field_theory/closure_2026/kgb_joint_tangency_2026/derivatives/contract.json`
+- `qwen_claude_field_theory/closure_2026/kgb_joint_tangency_2026/derivatives/fast.py`
+- `qwen_claude_field_theory/closure_2026/kgb_joint_tangency_2026/derivatives/run_001/manifest.json`
+- `qwen_claude_field_theory/closure_2026/kgb_joint_tangency_2026/derivatives/run_001/stderr.txt`
+- `qwen_claude_field_theory/closure_2026/kgb_joint_tangency_2026/derivatives/run_001/stdout.txt`
+- `qwen_claude_field_theory/closure_2026/kgb_joint_tangency_2026/derivatives/test_fast.py`
+- `qwen_claude_field_theory/closure_2026/kgb_joint_tangency_2026/parametric.py`
+- `qwen_claude_field_theory/closure_2026/kgb_joint_tangency_2026/refine_joint.py`
+- `qwen_claude_field_theory/closure_2026/kgb_joint_tangency_2026/run_001/manifest.json`
+- `qwen_claude_field_theory/closure_2026/kgb_joint_tangency_2026/run_001/results.json`
+- `qwen_claude_field_theory/closure_2026/kgb_joint_tangency_2026/run_001/stderr.txt`
+- `qwen_claude_field_theory/closure_2026/kgb_joint_tangency_2026/run_001/stdout.txt`
+- `qwen_claude_field_theory/closure_2026/kgb_joint_tangency_2026/run_suite.py`
+- `qwen_claude_field_theory/closure_2026/kgb_joint_tangency_2026/scaling/PositiveScaling.lean`
+- `qwen_claude_field_theory/closure_2026/kgb_joint_tangency_2026/scaling/REPORT.md`
+- `qwen_claude_field_theory/closure_2026/kgb_joint_tangency_2026/scaling/scaling_identities.py`
+- `qwen_claude_field_theory/closure_2026/kgb_joint_tangency_2026/scaling/test_scaling.py`
+- `qwen_claude_field_theory/closure_2026/kgb_joint_tangency_2026/search.py`
+- `qwen_claude_field_theory/closure_2026/kgb_joint_tangency_2026/sweep/.gitignore`
+- `qwen_claude_field_theory/closure_2026/kgb_joint_tangency_2026/sweep/README.md`
+- `qwen_claude_field_theory/closure_2026/kgb_joint_tangency_2026/sweep/parallel_sweep.py`
+- `qwen_claude_field_theory/closure_2026/kgb_joint_tangency_2026/sweep/smoke_001.jsonl`
+- `qwen_claude_field_theory/closure_2026/kgb_joint_tangency_2026/sweep/smoke_002.jsonl`
+- `qwen_claude_field_theory/closure_2026/kgb_joint_tangency_2026/sweep/test_sweep.py`
+- `qwen_claude_field_theory/closure_2026/kgb_joint_tangency_2026/test_candidate_health.py`
+- `qwen_claude_field_theory/closure_2026/kgb_joint_tangency_2026/test_parametric.py`
+- `qwen_claude_field_theory/closure_2026/kgb_joint_tangency_2026/test_search.py`
+- `qwen_claude_field_theory/closure_2026/kgb_joint_tangency_2026/zero_braiding/.gitignore`
+- `qwen_claude_field_theory/closure_2026/kgb_joint_tangency_2026/zero_braiding/REPORT.md`
+- `qwen_claude_field_theory/closure_2026/kgb_joint_tangency_2026/zero_braiding/ZeroBraiding.lean`
+- `qwen_claude_field_theory/closure_2026/kgb_joint_tangency_2026/zero_braiding/audit_contract.json`
+- `qwen_claude_field_theory/closure_2026/kgb_joint_tangency_2026/zero_braiding/run_001/manifest.json`
+- `qwen_claude_field_theory/closure_2026/kgb_joint_tangency_2026/zero_braiding/run_001/results.json`
+- `qwen_claude_field_theory/closure_2026/kgb_joint_tangency_2026/zero_braiding/run_001/stderr.txt`
+- `qwen_claude_field_theory/closure_2026/kgb_joint_tangency_2026/zero_braiding/run_001/stdout.txt`
+- `qwen_claude_field_theory/closure_2026/kgb_joint_tangency_2026/zero_braiding/run_zero_gamma.py`
+- `qwen_claude_field_theory/closure_2026/kgb_joint_tangency_2026/zero_braiding/test_zero_gamma.py`
+- `qwen_claude_field_theory/closure_2026/kgb_joint_tangency_2026/zero_braiding/zero_gamma.py`
