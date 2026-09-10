@@ -106,13 +106,12 @@ def gates(cand: dict) -> tuple[bool, list[str]]:
     #   so they double-count unless free-streaming smooths them below galaxy scales. Cold CDM does NOT
     #   free-stream -> over-clusters in galaxies (L61). A sterile nu at keV-scale free-streams to smooth
     #   galaxies while clustering on large scales.
-    if dark == "particle_CDM":
-        fails.append("G-gal: cold CDM clusters in galaxies -> L61 ~1.69x overshoot on the RAR (double-counts MOND)")
-    if dark == "sterile_nu_cold":
-        # survives ONLY in a keV free-streaming window: cold enough for CMB clustering, warm enough to
-        # smooth galaxies. Encode a permissive window (keV) as the candidate survivor to be confirmed.
-        if not (1.0e3 <= m_eV <= 1.0e5):
-            fails.append(f"G-gal/G8: sterile-nu needs keV free-streaming window (1-100 keV); m={m_eV:.3g} eV outside")
+    # VELOCITY-ORDERING LEMMA (down-select agent, L125): a decoupled collisionless species has v_rms ∝ 1/a
+    # (monotonically DECREASING), so "cold enough to cluster for the CMB (G8a)" ⟹ "even colder today" ⟹
+    # "clusters in galaxies" ⟹ L61 overshoot. Hence G8a ∧ G-gal is EMPTY for ANY decoupled dark component.
+    if clustering_omega > 0.0:
+        fails.append("G-gal: velocity-ordering lemma -- clustering for the CMB (G8a) forces clustering in "
+                     "galaxies (colder today, v_rms∝1/a) -> L61 ~1.69x overshoot; G8a ⟹ ¬G-gal (L125)")
 
     # G6a PPN alpha_1: the health branch is VECTOR-FREE (cuscuton clock is a scalar) -- provisional PASS,
     #   pending the O(w) moving-frame solve (agent running). AeST failed via its VECTOR; a scalar clock has
