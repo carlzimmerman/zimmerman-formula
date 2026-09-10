@@ -3500,3 +3500,28 @@ predecessor AeST died because its preferred-frame α₁=−2(K_B+2) was un-tunab
   (comparable). **Galaxies cannot decide the D1 kernel conflict** (RAR gap small, BTFR kernel-blind) — only
   the wide-binary/EFE scale (L89) discriminates. HIGH confidence on the RAR numbers/ranking (two committed
   cross-checks reproduced).
+
+## L94 — independent verification of astra's RMMG health-gate results + a new falsifiable prediction
+
+`L94_verify_rmmg.py` + `.out` (**7 checks, 7 PASS**). astra opened a new local architecture (RMMG, rotated-MMG
+constitutive) pushing at the open HEALTH gate; this lane independently verifies its two most checkable claims
+in exact sympy (imports nothing from qwen).
+
+- **⭐ NEW PREDICTION verified.** Inverting the exact implicit law (1−e^{−x})x=ε², ε=√(g_N/a₀), gives
+  **g/a₀ = ε + ¼ε² + (7/96)ε³ + O(ε⁴)** (c₂=1/4, c₃=7/96 reproduced exactly), hence the point-mass rotation
+  law **v² = √(G_b M a₀) + G_b M/(4r) + 7(G_b M)^{3/2}/(96 r²√a₀) + O(r⁻³)** — a clean, **falsifiable 1/r
+  correction to the flat rotation velocity** from the exact exponential kernel (prediction P17).
+- **⭐ CONSTRAINT-ALGEBRA OBSTRUCTION reproduced.** For the minimal one-pair realization, matching the
+  spatial-diffeomorphism generator forces **A=1/μ**; then {H[N],H[M]} carries a nonzero cubic coefficient
+  **A A'/2 = −μ'/(2μ³) ≠ 0** (since μ'=e^{−s/a₀}/a₀>0), with a finite witness at s=a₀. The algebra does NOT
+  close by itself — astra's obstruction confirmed.
+- **HONEST STATUS.** astra's RMMG Dirac block shows **rank 4, ZERO remaining scalar phase dimension at k≠0**
+  (a non-propagating scalar = the healthy cuscuton structure the whole search wanted), rank 0 at k=0 (a
+  genuine separate sector, no false closure), and the clock kinetic/sound witness passes a 32-point scan —
+  **real progress on the health gate the F(Q)Θ branch left open.** It also fits SPARC (Υ_disk=0.73, 0.105
+  dex, consistent with L92). **BUT** the minimal-pair cubic obstruction (OBS-2) means the constraint algebra
+  isn't closed: a completion must add constrained fields to cancel A A'/2 while keeping 2 tensor DOF, and the
+  full metric constraint algebra is still to be run.
+- **VERDICT.** RMMG is **health-PROMISING, not health-CLOSED** — the most promising local architecture in the
+  branch (zero propagating scalar DOF at k≠0, fits galaxies, new falsifiable prediction), with a specific,
+  named remaining obstruction that is astra's live next calculation.

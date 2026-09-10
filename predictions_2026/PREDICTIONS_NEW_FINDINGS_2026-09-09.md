@@ -124,6 +124,12 @@ clock-scalar's shift symmetry (L81), so it is exactly stable. *Test:* indirect-d
 lines, annihilation excesses). *Discriminator:* the framework predicts **no** DM decay or annihilation
 signal, unlike a WIMP/particle relic — a confirmed detection of either would falsify it. **Status: NEW.**
 
+**P17 — A specific 1/r correction to flat rotation curves (RMMG/exponential kernel).** Inverting the exact
+implicit law gives v² = √(G_b M a₀) + G_b M/(4r) + 7(G_b M)^{3/2}/(96 r²√a₀) + O(r⁻³) (L94, verifying astra's
+RMMG). *Test:* precise rotation curves in the transition region (where g ~ a₀) should show this exact,
+parameter-free 1/r fall-off above the flat asymptote. *Discriminator:* a dark-matter halo gives a
+profile-dependent (fittable) correction; this one is fixed by the kernel with no freedom. **Status: NEW.**
+
 ---
 
 ## The single open item these predictions hinge on
