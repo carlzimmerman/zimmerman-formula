@@ -4137,3 +4137,30 @@ mass-dependent (non-fixed-power) kinetic structure for BTFR; then re-run all gat
 **Honest scope:** a specification + empirical pattern (astra's obstructions are conditional per branch), NOT
 a universal no-go — a threading coupling may exist (astra's open KGB/curvature-clock work). This makes the
 search precise. Script `L118_gate_spec_and_transition_pathology.py` (6/6).
+
+## L119 — THE HEALTH-PASSING ARCHITECTURE: source MOND from a non-propagating field, not the lapse (6/6)
+
+The fleet pinned two killers: CAM's **conformal ghost** (from sourcing MOND off the *lapse* acceleration
+∇lnN → lapse dynamical → H_⊥ second-class) and KGB's **transition-regime scalar pathology** (a *propagating*
+MOND scalar goes wrong-sign at y≥2). **Both are avoided by ONE structural choice** — verified here:
+
+Source MOND from a **separate, non-propagating (elliptic) field φ's spatial gradient** W(|∇φ|²/a₀²), with the
+preferred time in a healthy cuscuton clock (agent 1). Then:
+- **No conformal ghost:** the lapse Hessian of a `|∇φ|` MOND term is **identically zero** (vs *nonzero* for
+  CAM's `|∇N|` term) ⇒ the lapse stays a Lagrange multiplier ⇒ **H_⊥ first-class** (GR-like) ⇒ conformal mode
+  non-dynamical. The CAM killer is structurally removed.
+- **No transition scalar pathology:** φ non-propagating (no time-kinetic term) ⇒ **0 scalar DOF** ⇒ no mode
+  to go wrong-sign/non-hyperbolic at y≥2. The KGB killer cannot arise.
+- **HDA preserved:** the momentum-independent MOND potential (dW/dp=0) keeps the structure function γ^{xx}
+  (agent 1's clock identity); W enters the momentum constraint H_i, not an anomaly.
+
+This threads the **health gates G1 (ghost), G2 (closure), G3 (elliptic/hyperbolic)** — the ones that killed
+every prior attempt.
+
+**Honest scope — NOT a complete theory.** What remains: the **phenomenology** (an elliptic, non-propagating
+φ sourced by baryons must reproduce deep-MOND + the mass-dependent BTFR + interpolation — the classic
+Bekenstein-Milgrom AQUAL structure, but here realized covariantly with φ non-dynamical), the **covariant
+mechanism** keeping φ non-dynamical + its full nonlinear Dirac closure, PPN β, cosmology (still pure-MOND
+unless a dark component is added), and the a₀ coefficient. So the recurring health killer is, for the first
+time, **structurally threaded** rather than relocated — the next step is the phenomenology on this branch.
+Script `L119_health_passing_architecture.py` (6/6).
