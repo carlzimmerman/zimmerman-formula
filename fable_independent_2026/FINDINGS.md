@@ -4478,3 +4478,60 @@ likelihood was evaluated — no sigma is quoted from this lane**, only fractiona
 precision. (iii) The fluid's early ICs are outside CLASS's intended regime (it guards `w≥0`); both runs use
 the same `w` so the error is common-mode, but a CAMB cross-check remains worthwhile. (iv) This closes the
 **smooth**-dust route, not every field-dust route — finite-`c_s` field-dust is the stated, unproven pincer.
+
+## L130 — LITERATURE GATE MAP: TWO OF MY OWN CLAIMS ARE CORRECTED (17 theories × 12 gates, 58 sources)
+
+Report: `RELATIVISTIC_MOND_GATE_MAP.md`. Every non-trivial cell cited by arXiv ID or DOI.
+
+**CORRECTION 1 — "the gate that killed AeST" was overstated.** There is **no published PPN calculation for
+AeST at all** — not γ, not β, not α₁, not α₂. arXiv:2304.05134 only asserts "parametrically small
+post-Newtonian corrections." So AeST's G6 is **NOT-ADDRESSED, not FAIL**. The repo's internal
+α₁ = −2(K_B+2) is an *internal* result; it would be the **first published AeST PPN number**. Do not state
+"AeST is killed by α₁" as an established literature fact — state it as this programme's own calculation,
+which is a stronger and more honest claim anyway (it is novel).
+
+**CORRECTION 2 — "no published theory passes G6 and G8 together" is REFUTED.** Relativistic Khronon theory,
+JCAP 11 (2024) 040 = **arXiv:2404.06584**, and its successor **arXiv:2507.00912**, claim both, verbatim:
+"the same parametrized post-Newtonian (PPN) limit as GR … viable in the Solar System and for binary pulsar
+tests" (§3), and "it can be arbitrarily close to the Λ-CDM cosmological model at the level of linear
+cosmological perturbations, where it retrieves the full observed spectrum of CMB anisotropies" (§7).
+It is a **foliation clock scalar** — architecturally close to this programme's own branch.
+
+**What remains genuinely ours.** Their α₁=0 is **asymptotic**, not exact: α₁ = −8(α−β)/(1−β) with α→0 only in
+the *high-acceleration* regime, and **α→1 in deep MOND** — a pointwise read gives α₁→−8 exactly where MOND is
+tested. This branch's α₁=0 is *exact and structural* (the cuscuton clock is shift-independent to all orders).
+Their documented qualifications, from their own paper: α₂ is **formally singular** at β=λ=0 (eq. 6.6b has β+λ
+in the denominator); **ω² < 0 for k < µ** (linear-in-t at β=λ=0, *exponential* once λ≠0, needing Γ_max < H₀);
+and MOND holds **only for stationary systems** (their restriction #2).
+
+**THE CORRECTED FRONTIER (what is actually unachieved):**
+- **G1-clean + G6 + G8 — NEVER ACHIEVED.** Both CMB-capable theories buy G8 with the *same* IR instability,
+  because both use the same ghost-condensate/dust mechanism (AeST: unbounded Hamiltonian for k<µ,
+  arXiv:2109.13287; Khronon: §6.2).
+- **G2-published + G6 + G8 — NEVER ACHIEVED.** Only AeST has a published nonlinear Dirac analysis
+  (PRD 110, 044015: 4 first-class + 4 second-class, **6 DOF nonlinearly** vs 3 on Minkowski); the theory with
+  G6+G8 explicitly defers its Hamiltonian analysis.
+- **G8 without an a⁻³ component — NEVER ACHIEVED.**
+
+**This CONFIRMS the L128/L129 pincer with published examples.** Every theory that has ever fit the CMB does it
+with an effective pressureless a⁻³ clustering component (AeST via the K(Q) minimum; **Khronon maps onto
+Generalized Dark Matter — dust with a small but FINITE sound speed**; mimetic = exactly dust; superfluid DM =
+literally CDM). The one distinct mechanism ever demonstrated — growth from a Lorentz-violating *vector*
+perturbation in TeVeS (PRL 96, 011301) — never reached the third peak without adding real ≈2 eV neutrinos,
+and its host was ruled out by Planck (PRD 92, 083505). So: **finite-c_s field-dust is exactly what the
+CMB-capable theories use, and the price they pay is exactly the IR instability** — which is the pincer L128
+stated (clustering ⇒ finite c_s ⇒ propagating ⇒ health problem), now confirmed structurally by two
+independent published constructions rather than merely conjectured.
+
+**Flag against a repo claim:** ApJ 958, 129 (2023) finds khronometric MOND stationary solutions **stable** in
+deep MOND for spherical/cylindrical/planar symmetry — a direct counter to any *blanket* khronometric-
+instability claim, and worth checking against the 09-09 PAPER8 retraction (which may need scoping to
+non-stationary/flat-space perturbations rather than "throughout deep MOND").
+
+**Literature silences worth having:** no BBN analysis for AeST or Khronon anywhere despite G̃=(1−K_B/2)Ĝ; **no
+preferred-frame analysis in the low-acceleration regime for any theory**; no Cauchy well-posedness proof for
+any RMOND passing G7+G8; no σ₈ reported as a falsifiable number anywhere; and **no published cuscuton-MOND
+application at all** (so L128's cuscuton lane is novel territory).
+
+*Note: the report identifies sources by arXiv/DOI only — the no-personal-names rule was applied literally to
+scholarly citations too. Fully verifiable as-is; author names can be added if wanted.*
