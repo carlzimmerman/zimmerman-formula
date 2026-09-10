@@ -1,0 +1,993 @@
+{
+  "schema_version": 2,
+  "claim_id": "COMMON_MASS_PRESERVATION_AND_CONFORMAL_CLOCK_INVERSE_2026_09_10",
+  "repository": {
+    "commit": "3b41b064a2b686c1305179d4d875759f951645f2",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "-B",
+    "qwen_claude_field_theory/closure_2026/kgb_mass_compatibility_2026/run_suite.py"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "SymPy",
+        "version": "1.14.0"
+      },
+      {
+        "name": "NumPy",
+        "version": "1.26.2"
+      },
+      {
+        "name": "SciPy",
+        "version": "1.11.4"
+      },
+      {
+        "name": "mpmath",
+        "version": "1.3.0"
+      },
+      {
+        "name": "Lean",
+        "version": "4.34.0-rc2 commit6a10ac8c22beadecabdbb0919c2b50214762f91d"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Solve a higher-order triple-mass KGB seed then test preservation using the SAME action; derive and continue affine-conformal clock action for prescribed MOND/no-slip exterior; compute actual inverse determinants, test fold and zero-norm-gradient obstruction; independently verify variation, transformed scalar principal and precision; formalize conditional algebra in Lean. Audit incoming L119 inference shortcuts.",
+    "coefficient_domain": "SymPy exact rational/function algebra; Lean real arithmetic/exp positivity; NumPy/SciPy double and complex-step ODE; independent mpmath80digits.",
+    "conventions": "Signature -+++; X=-grad(phi)^2/2; phi=-t+psi(r); physical minimal matter; no dark-matter particles; explicitly retained scalar clock. F is entire Ricci coefficient. kappa=P_X in structure is not empirical kappa. Inverse matrices are NOT canonical Poisson matrices.",
+    "inputs": [
+      "fable_independent_2026/L118_gate_spec_and_transition_pathology.py",
+      "fable_independent_2026/L119_health_passing_architecture.py",
+      "qwen_claude_field_theory/closure_2026/clock_constitutive_construction_2026/lean_formalization_2026/lake-manifest.json",
+      "qwen_claude_field_theory/closure_2026/clock_constitutive_construction_2026/lean_formalization_2026/lakefile.toml",
+      "qwen_claude_field_theory/closure_2026/clock_constitutive_construction_2026/lean_formalization_2026/lean-toolchain",
+      "qwen_claude_field_theory/closure_2026/cuscuton_acceleration_mond_2026/ACTION.md",
+      "qwen_claude_field_theory/closure_2026/cuscuton_acceleration_mond_2026/CuscutonAccelerationMondFormal.lean",
+      "qwen_claude_field_theory/closure_2026/cuscuton_acceleration_mond_2026/PhysicalActionAuditFormal.lean",
+      "qwen_claude_field_theory/closure_2026/cuscuton_acceleration_mond_2026/REPORT.md",
+      "qwen_claude_field_theory/closure_2026/cuscuton_acceleration_mond_2026/clock_principal_gate.py",
+      "qwen_claude_field_theory/closure_2026/cuscuton_acceleration_mond_2026/computation_manifest.json",
+      "qwen_claude_field_theory/closure_2026/cuscuton_acceleration_mond_2026/cuscuton_acceleration_mond_gate.py",
+      "qwen_claude_field_theory/closure_2026/cuscuton_acceleration_mond_2026/eh_static_reduction_gate.py",
+      "qwen_claude_field_theory/closure_2026/cuscuton_acceleration_mond_2026/kepler_prediction_gate.py",
+      "qwen_claude_field_theory/closure_2026/cuscuton_acceleration_mond_2026/physical_action_audit.py",
+      "qwen_claude_field_theory/closure_2026/cuscuton_acceleration_mond_2026/run_cuscuton_acceleration_lean.py",
+      "qwen_claude_field_theory/closure_2026/cuscuton_acceleration_mond_2026/run_physical_audit_suite.py",
+      "qwen_claude_field_theory/closure_2026/cuscuton_acceleration_mond_2026/test_cuscuton_acceleration_mond.py",
+      "qwen_claude_field_theory/closure_2026/cuscuton_acceleration_mond_2026/test_physical_action_audit.py",
+      "qwen_claude_field_theory/closure_2026/elliptic_curvature_clock_2026/CompensatorFormal.lean",
+      "qwen_claude_field_theory/closure_2026/elliptic_curvature_clock_2026/REPORT.md",
+      "qwen_claude_field_theory/closure_2026/elliptic_curvature_clock_2026/compensator.py",
+      "qwen_claude_field_theory/closure_2026/elliptic_curvature_clock_2026/run_suite.py",
+      "qwen_claude_field_theory/closure_2026/elliptic_curvature_clock_2026/test_compensator.py",
+      "qwen_claude_field_theory/closure_2026/g03_global_kernel_bridge_2026/METRIC_CONSTRAINT.md",
+      "qwen_claude_field_theory/closure_2026/g03_global_kernel_bridge_2026/METRIC_STATIC_BACKGROUND.md",
+      "qwen_claude_field_theory/closure_2026/g03_global_kernel_bridge_2026/metric_constraint.py",
+      "qwen_claude_field_theory/closure_2026/kgb_joint_action_2026/REPORT.md",
+      "qwen_claude_field_theory/closure_2026/kgb_joint_action_2026/audit/AUDIT.md",
+      "qwen_claude_field_theory/closure_2026/kgb_joint_action_2026/audit/SharedPreservationFormal.lean",
+      "qwen_claude_field_theory/closure_2026/kgb_joint_action_2026/audit/test_independent_audit.py",
+      "qwen_claude_field_theory/closure_2026/kgb_joint_action_2026/joint_static.py",
+      "qwen_claude_field_theory/closure_2026/kgb_joint_action_2026/lensing/REPORT.md",
+      "qwen_claude_field_theory/closure_2026/kgb_joint_action_2026/lensing/lensing.py",
+      "qwen_claude_field_theory/closure_2026/kgb_joint_action_2026/lensing/test_lensing.py",
+      "qwen_claude_field_theory/closure_2026/kgb_joint_action_2026/precision/REPORT.md",
+      "qwen_claude_field_theory/closure_2026/kgb_joint_action_2026/precision/precision_check.py",
+      "qwen_claude_field_theory/closure_2026/kgb_joint_action_2026/precision/test_precision.py",
+      "qwen_claude_field_theory/closure_2026/kgb_joint_action_2026/run_suite.py",
+      "qwen_claude_field_theory/closure_2026/kgb_joint_action_2026/test_joint.py",
+      "qwen_claude_field_theory/closure_2026/kgb_joint_action_2026/third_mass.py",
+      "qwen_claude_field_theory/closure_2026/kgb_mass_compatibility_2026/conformal_dictionary.py",
+      "qwen_claude_field_theory/closure_2026/kgb_mass_compatibility_2026/conformal_flow.py",
+      "qwen_claude_field_theory/closure_2026/kgb_mass_compatibility_2026/conformal_inverse.py",
+      "qwen_claude_field_theory/closure_2026/kgb_mass_compatibility_2026/extension/conformal_extension.py",
+      "qwen_claude_field_theory/closure_2026/kgb_mass_compatibility_2026/extension/ef_principal.py",
+      "qwen_claude_field_theory/closure_2026/kgb_mass_compatibility_2026/extension/inverse_audit.py",
+      "qwen_claude_field_theory/closure_2026/kgb_mass_compatibility_2026/extension/test_extension.py",
+      "qwen_claude_field_theory/closure_2026/kgb_mass_compatibility_2026/gradient_inverse.py",
+      "qwen_claude_field_theory/closure_2026/kgb_mass_compatibility_2026/l119_scope.py",
+      "qwen_claude_field_theory/closure_2026/kgb_mass_compatibility_2026/run_suite.py",
+      "qwen_claude_field_theory/closure_2026/kgb_mass_compatibility_2026/structure/CompatibilityAlgebra.lean",
+      "qwen_claude_field_theory/closure_2026/kgb_mass_compatibility_2026/structure/ConformalInverseAlgebra.lean",
+      "qwen_claude_field_theory/closure_2026/kgb_mass_compatibility_2026/structure/test_conformal_inverse_structure.py",
+      "qwen_claude_field_theory/closure_2026/kgb_mass_compatibility_2026/structure/test_derivative_curvature_variation.py",
+      "qwen_claude_field_theory/closure_2026/kgb_mass_compatibility_2026/structure/test_structure.py",
+      "qwen_claude_field_theory/closure_2026/kgb_mass_compatibility_2026/test_conformal_inverse.py",
+      "qwen_claude_field_theory/closure_2026/kgb_mass_compatibility_2026/test_dictionary.py",
+      "qwen_claude_field_theory/closure_2026/kgb_mass_compatibility_2026/test_gradient_inverse.py",
+      "qwen_claude_field_theory/closure_2026/kgb_mass_compatibility_2026/test_runner.py",
+      "qwen_claude_field_theory/closure_2026/kgb_mass_compatibility_2026/test_triple.py",
+      "qwen_claude_field_theory/closure_2026/kgb_mass_compatibility_2026/triple_flow.py",
+      "qwen_claude_field_theory/closure_2026/kgb_mass_compatibility_2026/triple_seed.py",
+      "qwen_claude_field_theory/closure_2026/kgb_shared_pressure_2026/PressureWindowFormal.lean",
+      "qwen_claude_field_theory/closure_2026/kgb_shared_pressure_2026/REPORT.md",
+      "qwen_claude_field_theory/closure_2026/kgb_shared_pressure_2026/jet_steering.py",
+      "qwen_claude_field_theory/closure_2026/kgb_shared_pressure_2026/jet_window.py",
+      "qwen_claude_field_theory/closure_2026/kgb_shared_pressure_2026/precision_check.py",
+      "qwen_claude_field_theory/closure_2026/kgb_shared_pressure_2026/regular_clock.py",
+      "qwen_claude_field_theory/closure_2026/kgb_shared_pressure_2026/run_suite.py",
+      "qwen_claude_field_theory/closure_2026/kgb_shared_pressure_2026/shared_pressure.py",
+      "qwen_claude_field_theory/closure_2026/kgb_shared_pressure_2026/steered_profile.py",
+      "qwen_claude_field_theory/closure_2026/kgb_shared_pressure_2026/test_pressure.py",
+      "qwen_claude_field_theory/closure_2026/linear_curvature_clock_2026/LinearClockFormal.lean",
+      "qwen_claude_field_theory/closure_2026/linear_curvature_clock_2026/REPORT.md",
+      "qwen_claude_field_theory/closure_2026/linear_curvature_clock_2026/linear_clock.py",
+      "qwen_claude_field_theory/closure_2026/linear_curvature_clock_2026/run_suite.py",
+      "qwen_claude_field_theory/closure_2026/linear_curvature_clock_2026/test_linear_clock.py",
+      "qwen_claude_field_theory/closure_2026/tensor_compensated_branch_2026/AEPpnTuningFormal.lean",
+      "qwen_claude_field_theory/closure_2026/tensor_compensated_branch_2026/FullTensorMultiplierFormal.lean",
+      "qwen_claude_field_theory/closure_2026/tensor_compensated_branch_2026/LinearSectorStabilityFormal.lean",
+      "qwen_claude_field_theory/closure_2026/tensor_compensated_branch_2026/MatterWardFormal.lean",
+      "qwen_claude_field_theory/closure_2026/tensor_compensated_branch_2026/PPNTunedAetherDiracFormal.lean",
+      "qwen_claude_field_theory/closure_2026/tensor_compensated_branch_2026/TENSOR_COMPENSATED_BRANCH_REPORT.md",
+      "qwen_claude_field_theory/closure_2026/tensor_compensated_branch_2026/TensorCompensatedBranchFormal.lean",
+      "qwen_claude_field_theory/closure_2026/tensor_compensated_branch_2026/ae_ppn_tuning_gate.py",
+      "qwen_claude_field_theory/closure_2026/tensor_compensated_branch_2026/flrw_tensor_compensated_gate.py",
+      "qwen_claude_field_theory/closure_2026/tensor_compensated_branch_2026/flrw_zero_mode_dirac_gate.py",
+      "qwen_claude_field_theory/closure_2026/tensor_compensated_branch_2026/full_tensor_multiplier_dirac_gate.py",
+      "qwen_claude_field_theory/closure_2026/tensor_compensated_branch_2026/linear_sector_stability_gate.py",
+      "qwen_claude_field_theory/closure_2026/tensor_compensated_branch_2026/matter_ward_gate.py",
+      "qwen_claude_field_theory/closure_2026/tensor_compensated_branch_2026/ppn_tuned_aether_dirac_gate.py",
+      "qwen_claude_field_theory/closure_2026/tensor_compensated_branch_2026/run_ae_ppn_lean.py",
+      "qwen_claude_field_theory/closure_2026/tensor_compensated_branch_2026/run_full_tensor_multiplier_lean.py",
+      "qwen_claude_field_theory/closure_2026/tensor_compensated_branch_2026/run_lean.py",
+      "qwen_claude_field_theory/closure_2026/tensor_compensated_branch_2026/run_linear_sector_lean.py",
+      "qwen_claude_field_theory/closure_2026/tensor_compensated_branch_2026/run_matter_ward_lean.py",
+      "qwen_claude_field_theory/closure_2026/tensor_compensated_branch_2026/run_ppn_tuned_aether_lean.py",
+      "qwen_claude_field_theory/closure_2026/tensor_compensated_branch_2026/tensor_compensated_branch_gate.py",
+      "qwen_claude_field_theory/closure_2026/tensor_compensated_branch_2026/tensor_compensated_dirac_gate.py",
+      "qwen_claude_field_theory/closure_2026/tensor_compensated_branch_2026/test_ae_ppn_tuning.py",
+      "qwen_claude_field_theory/closure_2026/tensor_compensated_branch_2026/test_flrw_tensor_compensated.py",
+      "qwen_claude_field_theory/closure_2026/tensor_compensated_branch_2026/test_flrw_zero_mode_dirac.py",
+      "qwen_claude_field_theory/closure_2026/tensor_compensated_branch_2026/test_full_tensor_multiplier_dirac.py",
+      "qwen_claude_field_theory/closure_2026/tensor_compensated_branch_2026/test_linear_sector_stability.py",
+      "qwen_claude_field_theory/closure_2026/tensor_compensated_branch_2026/test_matter_ward.py",
+      "qwen_claude_field_theory/closure_2026/tensor_compensated_branch_2026/test_ppn_tuned_aether_dirac.py",
+      "qwen_claude_field_theory/closure_2026/tensor_compensated_branch_2026/test_tensor_compensated_branch.py",
+      "qwen_claude_field_theory/closure_2026/tensor_compensated_branch_2026/test_tensor_compensated_dirac.py",
+      "qwen_claude_field_theory/closure_2026/theory_discovery/KHRONOMETRIC_MOND_GAUNTLET.md",
+      "qwen_claude_field_theory/closure_2026/theory_discovery/khronometric_mond_gauntlet_2026.py",
+      "qwen_claude_field_theory/closure_2026/ticking_kgb_inverse_2026/KGBFormal.lean",
+      "qwen_claude_field_theory/closure_2026/ticking_kgb_inverse_2026/REPORT.md",
+      "qwen_claude_field_theory/closure_2026/ticking_kgb_inverse_2026/SOURCES.md",
+      "qwen_claude_field_theory/closure_2026/ticking_kgb_inverse_2026/kgb_inverse.py",
+      "qwen_claude_field_theory/closure_2026/ticking_kgb_inverse_2026/mond_profile.py",
+      "qwen_claude_field_theory/closure_2026/ticking_kgb_inverse_2026/run_suite.py",
+      "qwen_claude_field_theory/closure_2026/ticking_kgb_inverse_2026/test_kgb.py",
+      "qwen_claude_field_theory/closure_2026/trace_variance_mond_2026/REPORT.md",
+      "qwen_claude_field_theory/closure_2026/trace_variance_mond_2026/TraceVarianceFormal.lean",
+      "qwen_claude_field_theory/closure_2026/trace_variance_mond_2026/run_suite.py",
+      "qwen_claude_field_theory/closure_2026/trace_variance_mond_2026/test_trace_variance.py",
+      "qwen_claude_field_theory/closure_2026/trace_variance_mond_2026/trace_variance.py"
+    ],
+    "bounds": {
+      "triple_seed": "40 attempts: b .05,.1,.2,.25,.4,.6,.8,1.2,2,4; starts(.3,.16),(.7,.3),(2,1),(6,4); y1=.1; y2/y3 in .02..20; eps(1e-6,2e-6,1.5e-6)",
+      "triple_flow": "b .05,.1,.2,.25,.4,.6,.8; next derivative steps1e-4,1e-5,1e-6; selectedb.25 t±.05 andhalfstep",
+      "conformal_scan": "320: eps1e-6,X.5; y .1,1,2,10,20; sigma1e-6,1e-3,.1,1; b.25,.75,1.25,4; d.5,1,1.5,2; GR-connected pressure root",
+      "conformal_flow": "18 attempted decade continuations: y0 .1,1,10; sigma1e-6,.1,1; b.25,d1.5,sign±; health events; plus8 pressure/gradient chartandhalfstep refinements of selectedy0.1sigma.1; plus4 further gradient-chart attempts toward y1e-5 for sigma.1,1 atsteps.02,.01, with boundaryrefinement",
+      "precision": "Five independent 80digit inverse jets including one healthy and four unhealthy; older60/80digit tests retained",
+      "formal": "8 new conditional Lean theorems in2files, plus existing closure proofs",
+      "resource_wall_seconds": 450
+    },
+    "non_claims": [
+      "No full universally healthy action or new empirically established law",
+      "Target spherical exponential law and B=1+2rg are imposed exterior data, not derived baryon-interior matching or full nonspherical PDE",
+      "No full physical-frame Dirac count, PPN, cosmology, strong-coupling, k0/y0, or measured G certification",
+      "No proof all branches/all parameter space fail; finite tests and conditional obstruction only",
+      "No first-principles empirical kappa=.5 derivation",
+      "Known derivative-conformal action family, not a globally novel class",
+      "Local Einstein-frame diagnostic is not nonlinear physical-Hamiltonian stability",
+      "Angular metric residual algebraically follows other inverse equations; no double-counted independent gate",
+      "One optional asymptotic subagent failed on usage limit and supplied no evidence"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-09-10T14:58:07.869730+00:00",
+    "runtime_seconds": 119.196583,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 450.0,
+    "max_output_bytes": 4194304,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": null,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "fable_independent_2026/L118_gate_spec_and_transition_pathology.py",
+    "fable_independent_2026/L119_health_passing_architecture.py",
+    "qwen_claude_field_theory/closure_2026/clock_constitutive_construction_2026/lean_formalization_2026/lake-manifest.json",
+    "qwen_claude_field_theory/closure_2026/clock_constitutive_construction_2026/lean_formalization_2026/lakefile.toml",
+    "qwen_claude_field_theory/closure_2026/clock_constitutive_construction_2026/lean_formalization_2026/lean-toolchain",
+    "qwen_claude_field_theory/closure_2026/cuscuton_acceleration_mond_2026/ACTION.md",
+    "qwen_claude_field_theory/closure_2026/cuscuton_acceleration_mond_2026/CuscutonAccelerationMondFormal.lean",
+    "qwen_claude_field_theory/closure_2026/cuscuton_acceleration_mond_2026/PhysicalActionAuditFormal.lean",
+    "qwen_claude_field_theory/closure_2026/cuscuton_acceleration_mond_2026/REPORT.md",
+    "qwen_claude_field_theory/closure_2026/cuscuton_acceleration_mond_2026/clock_principal_gate.py",
+    "qwen_claude_field_theory/closure_2026/cuscuton_acceleration_mond_2026/computation_manifest.json",
+    "qwen_claude_field_theory/closure_2026/cuscuton_acceleration_mond_2026/cuscuton_acceleration_mond_gate.py",
+    "qwen_claude_field_theory/closure_2026/cuscuton_acceleration_mond_2026/eh_static_reduction_gate.py",
+    "qwen_claude_field_theory/closure_2026/cuscuton_acceleration_mond_2026/kepler_prediction_gate.py",
+    "qwen_claude_field_theory/closure_2026/cuscuton_acceleration_mond_2026/physical_action_audit.py",
+    "qwen_claude_field_theory/closure_2026/cuscuton_acceleration_mond_2026/run_cuscuton_acceleration_lean.py",
+    "qwen_claude_field_theory/closure_2026/cuscuton_acceleration_mond_2026/run_physical_audit_suite.py",
+    "qwen_claude_field_theory/closure_2026/cuscuton_acceleration_mond_2026/test_cuscuton_acceleration_mond.py",
+    "qwen_claude_field_theory/closure_2026/cuscuton_acceleration_mond_2026/test_physical_action_audit.py",
+    "qwen_claude_field_theory/closure_2026/elliptic_curvature_clock_2026/CompensatorFormal.lean",
+    "qwen_claude_field_theory/closure_2026/elliptic_curvature_clock_2026/REPORT.md",
+    "qwen_claude_field_theory/closure_2026/elliptic_curvature_clock_2026/compensator.py",
+    "qwen_claude_field_theory/closure_2026/elliptic_curvature_clock_2026/run_suite.py",
+    "qwen_claude_field_theory/closure_2026/elliptic_curvature_clock_2026/test_compensator.py",
+    "qwen_claude_field_theory/closure_2026/g03_global_kernel_bridge_2026/METRIC_CONSTRAINT.md",
+    "qwen_claude_field_theory/closure_2026/g03_global_kernel_bridge_2026/METRIC_STATIC_BACKGROUND.md",
+    "qwen_claude_field_theory/closure_2026/g03_global_kernel_bridge_2026/metric_constraint.py",
+    "qwen_claude_field_theory/closure_2026/kgb_joint_action_2026/REPORT.md",
+    "qwen_claude_field_theory/closure_2026/kgb_joint_action_2026/audit/AUDIT.md",
+    "qwen_claude_field_theory/closure_2026/kgb_joint_action_2026/audit/SharedPreservationFormal.lean",
+    "qwen_claude_field_theory/closure_2026/kgb_joint_action_2026/audit/test_independent_audit.py",
+    "qwen_claude_field_theory/closure_2026/kgb_joint_action_2026/joint_static.py",
+    "qwen_claude_field_theory/closure_2026/kgb_joint_action_2026/lensing/REPORT.md",
+    "qwen_claude_field_theory/closure_2026/kgb_joint_action_2026/lensing/lensing.py",
+    "qwen_claude_field_theory/closure_2026/kgb_joint_action_2026/lensing/test_lensing.py",
+    "qwen_claude_field_theory/closure_2026/kgb_joint_action_2026/precision/REPORT.md",
+    "qwen_claude_field_theory/closure_2026/kgb_joint_action_2026/precision/precision_check.py",
+    "qwen_claude_field_theory/closure_2026/kgb_joint_action_2026/precision/test_precision.py",
+    "qwen_claude_field_theory/closure_2026/kgb_joint_action_2026/run_suite.py",
+    "qwen_claude_field_theory/closure_2026/kgb_joint_action_2026/test_joint.py",
+    "qwen_claude_field_theory/closure_2026/kgb_joint_action_2026/third_mass.py",
+    "qwen_claude_field_theory/closure_2026/kgb_mass_compatibility_2026/conformal_dictionary.py",
+    "qwen_claude_field_theory/closure_2026/kgb_mass_compatibility_2026/conformal_flow.py",
+    "qwen_claude_field_theory/closure_2026/kgb_mass_compatibility_2026/conformal_inverse.py",
+    "qwen_claude_field_theory/closure_2026/kgb_mass_compatibility_2026/extension/conformal_extension.py",
+    "qwen_claude_field_theory/closure_2026/kgb_mass_compatibility_2026/extension/ef_principal.py",
+    "qwen_claude_field_theory/closure_2026/kgb_mass_compatibility_2026/extension/inverse_audit.py",
+    "qwen_claude_field_theory/closure_2026/kgb_mass_compatibility_2026/extension/test_extension.py",
+    "qwen_claude_field_theory/closure_2026/kgb_mass_compatibility_2026/gradient_inverse.py",
+    "qwen_claude_field_theory/closure_2026/kgb_mass_compatibility_2026/l119_scope.py",
+    "qwen_claude_field_theory/closure_2026/kgb_mass_compatibility_2026/run_suite.py",
+    "qwen_claude_field_theory/closure_2026/kgb_mass_compatibility_2026/structure/CompatibilityAlgebra.lean",
+    "qwen_claude_field_theory/closure_2026/kgb_mass_compatibility_2026/structure/ConformalInverseAlgebra.lean",
+    "qwen_claude_field_theory/closure_2026/kgb_mass_compatibility_2026/structure/test_conformal_inverse_structure.py",
+    "qwen_claude_field_theory/closure_2026/kgb_mass_compatibility_2026/structure/test_derivative_curvature_variation.py",
+    "qwen_claude_field_theory/closure_2026/kgb_mass_compatibility_2026/structure/test_structure.py",
+    "qwen_claude_field_theory/closure_2026/kgb_mass_compatibility_2026/test_conformal_inverse.py",
+    "qwen_claude_field_theory/closure_2026/kgb_mass_compatibility_2026/test_dictionary.py",
+    "qwen_claude_field_theory/closure_2026/kgb_mass_compatibility_2026/test_gradient_inverse.py",
+    "qwen_claude_field_theory/closure_2026/kgb_mass_compatibility_2026/test_runner.py",
+    "qwen_claude_field_theory/closure_2026/kgb_mass_compatibility_2026/test_triple.py",
+    "qwen_claude_field_theory/closure_2026/kgb_mass_compatibility_2026/triple_flow.py",
+    "qwen_claude_field_theory/closure_2026/kgb_mass_compatibility_2026/triple_seed.py",
+    "qwen_claude_field_theory/closure_2026/kgb_shared_pressure_2026/PressureWindowFormal.lean",
+    "qwen_claude_field_theory/closure_2026/kgb_shared_pressure_2026/REPORT.md",
+    "qwen_claude_field_theory/closure_2026/kgb_shared_pressure_2026/jet_steering.py",
+    "qwen_claude_field_theory/closure_2026/kgb_shared_pressure_2026/jet_window.py",
+    "qwen_claude_field_theory/closure_2026/kgb_shared_pressure_2026/precision_check.py",
+    "qwen_claude_field_theory/closure_2026/kgb_shared_pressure_2026/regular_clock.py",
+    "qwen_claude_field_theory/closure_2026/kgb_shared_pressure_2026/run_suite.py",
+    "qwen_claude_field_theory/closure_2026/kgb_shared_pressure_2026/shared_pressure.py",
+    "qwen_claude_field_theory/closure_2026/kgb_shared_pressure_2026/steered_profile.py",
+    "qwen_claude_field_theory/closure_2026/kgb_shared_pressure_2026/test_pressure.py",
+    "qwen_claude_field_theory/closure_2026/linear_curvature_clock_2026/LinearClockFormal.lean",
+    "qwen_claude_field_theory/closure_2026/linear_curvature_clock_2026/REPORT.md",
+    "qwen_claude_field_theory/closure_2026/linear_curvature_clock_2026/linear_clock.py",
+    "qwen_claude_field_theory/closure_2026/linear_curvature_clock_2026/run_suite.py",
+    "qwen_claude_field_theory/closure_2026/linear_curvature_clock_2026/test_linear_clock.py",
+    "qwen_claude_field_theory/closure_2026/tensor_compensated_branch_2026/AEPpnTuningFormal.lean",
+    "qwen_claude_field_theory/closure_2026/tensor_compensated_branch_2026/FullTensorMultiplierFormal.lean",
+    "qwen_claude_field_theory/closure_2026/tensor_compensated_branch_2026/LinearSectorStabilityFormal.lean",
+    "qwen_claude_field_theory/closure_2026/tensor_compensated_branch_2026/MatterWardFormal.lean",
+    "qwen_claude_field_theory/closure_2026/tensor_compensated_branch_2026/PPNTunedAetherDiracFormal.lean",
+    "qwen_claude_field_theory/closure_2026/tensor_compensated_branch_2026/TENSOR_COMPENSATED_BRANCH_REPORT.md",
+    "qwen_claude_field_theory/closure_2026/tensor_compensated_branch_2026/TensorCompensatedBranchFormal.lean",
+    "qwen_claude_field_theory/closure_2026/tensor_compensated_branch_2026/ae_ppn_tuning_gate.py",
+    "qwen_claude_field_theory/closure_2026/tensor_compensated_branch_2026/flrw_tensor_compensated_gate.py",
+    "qwen_claude_field_theory/closure_2026/tensor_compensated_branch_2026/flrw_zero_mode_dirac_gate.py",
+    "qwen_claude_field_theory/closure_2026/tensor_compensated_branch_2026/full_tensor_multiplier_dirac_gate.py",
+    "qwen_claude_field_theory/closure_2026/tensor_compensated_branch_2026/linear_sector_stability_gate.py",
+    "qwen_claude_field_theory/closure_2026/tensor_compensated_branch_2026/matter_ward_gate.py",
+    "qwen_claude_field_theory/closure_2026/tensor_compensated_branch_2026/ppn_tuned_aether_dirac_gate.py",
+    "qwen_claude_field_theory/closure_2026/tensor_compensated_branch_2026/run_ae_ppn_lean.py",
+    "qwen_claude_field_theory/closure_2026/tensor_compensated_branch_2026/run_full_tensor_multiplier_lean.py",
+    "qwen_claude_field_theory/closure_2026/tensor_compensated_branch_2026/run_lean.py",
+    "qwen_claude_field_theory/closure_2026/tensor_compensated_branch_2026/run_linear_sector_lean.py",
+    "qwen_claude_field_theory/closure_2026/tensor_compensated_branch_2026/run_matter_ward_lean.py",
+    "qwen_claude_field_theory/closure_2026/tensor_compensated_branch_2026/run_ppn_tuned_aether_lean.py",
+    "qwen_claude_field_theory/closure_2026/tensor_compensated_branch_2026/tensor_compensated_branch_gate.py",
+    "qwen_claude_field_theory/closure_2026/tensor_compensated_branch_2026/tensor_compensated_dirac_gate.py",
+    "qwen_claude_field_theory/closure_2026/tensor_compensated_branch_2026/test_ae_ppn_tuning.py",
+    "qwen_claude_field_theory/closure_2026/tensor_compensated_branch_2026/test_flrw_tensor_compensated.py",
+    "qwen_claude_field_theory/closure_2026/tensor_compensated_branch_2026/test_flrw_zero_mode_dirac.py",
+    "qwen_claude_field_theory/closure_2026/tensor_compensated_branch_2026/test_full_tensor_multiplier_dirac.py",
+    "qwen_claude_field_theory/closure_2026/tensor_compensated_branch_2026/test_linear_sector_stability.py",
+    "qwen_claude_field_theory/closure_2026/tensor_compensated_branch_2026/test_matter_ward.py",
+    "qwen_claude_field_theory/closure_2026/tensor_compensated_branch_2026/test_ppn_tuned_aether_dirac.py",
+    "qwen_claude_field_theory/closure_2026/tensor_compensated_branch_2026/test_tensor_compensated_branch.py",
+    "qwen_claude_field_theory/closure_2026/tensor_compensated_branch_2026/test_tensor_compensated_dirac.py",
+    "qwen_claude_field_theory/closure_2026/theory_discovery/KHRONOMETRIC_MOND_GAUNTLET.md",
+    "qwen_claude_field_theory/closure_2026/theory_discovery/khronometric_mond_gauntlet_2026.py",
+    "qwen_claude_field_theory/closure_2026/ticking_kgb_inverse_2026/KGBFormal.lean",
+    "qwen_claude_field_theory/closure_2026/ticking_kgb_inverse_2026/REPORT.md",
+    "qwen_claude_field_theory/closure_2026/ticking_kgb_inverse_2026/SOURCES.md",
+    "qwen_claude_field_theory/closure_2026/ticking_kgb_inverse_2026/kgb_inverse.py",
+    "qwen_claude_field_theory/closure_2026/ticking_kgb_inverse_2026/mond_profile.py",
+    "qwen_claude_field_theory/closure_2026/ticking_kgb_inverse_2026/run_suite.py",
+    "qwen_claude_field_theory/closure_2026/ticking_kgb_inverse_2026/test_kgb.py",
+    "qwen_claude_field_theory/closure_2026/trace_variance_mond_2026/REPORT.md",
+    "qwen_claude_field_theory/closure_2026/trace_variance_mond_2026/TraceVarianceFormal.lean",
+    "qwen_claude_field_theory/closure_2026/trace_variance_mond_2026/run_suite.py",
+    "qwen_claude_field_theory/closure_2026/trace_variance_mond_2026/test_trace_variance.py",
+    "qwen_claude_field_theory/closure_2026/trace_variance_mond_2026/trace_variance.py"
+  ],
+  "input_artifacts": [
+    {
+      "path": "fable_independent_2026/L118_gate_spec_and_transition_pathology.py",
+      "sha256": "f26b1b5930aa123d9f57ad37891c08cc30625c81679a2babd0988db06c05d086",
+      "sha256_after": "f26b1b5930aa123d9f57ad37891c08cc30625c81679a2babd0988db06c05d086"
+    },
+    {
+      "path": "fable_independent_2026/L119_health_passing_architecture.py",
+      "sha256": "05fcf6a133b90bc520e3681a04f2f0bae802165706cecb60245ca0dd02eb3ca6",
+      "sha256_after": "05fcf6a133b90bc520e3681a04f2f0bae802165706cecb60245ca0dd02eb3ca6"
+    },
+    {
+      "path": "qwen_claude_field_theory/closure_2026/clock_constitutive_construction_2026/lean_formalization_2026/lake-manifest.json",
+      "sha256": "3a26f46585ebc32f7badd703e66099cea2b25e58e4595308a67c0be805ebff24",
+      "sha256_after": "3a26f46585ebc32f7badd703e66099cea2b25e58e4595308a67c0be805ebff24"
+    },
+    {
+      "path": "qwen_claude_field_theory/closure_2026/clock_constitutive_construction_2026/lean_formalization_2026/lakefile.toml",
+      "sha256": "751c281ce59591ef5e83c658fb49294beda5e04084d93889f4481677bb4b1fc1",
+      "sha256_after": "751c281ce59591ef5e83c658fb49294beda5e04084d93889f4481677bb4b1fc1"
+    },
+    {
+      "path": "qwen_claude_field_theory/closure_2026/clock_constitutive_construction_2026/lean_formalization_2026/lean-toolchain",
+      "sha256": "8190e75a201741065fe508b28955dd64dd72d090babe5f70ce6848879d68ae88",
+      "sha256_after": "8190e75a201741065fe508b28955dd64dd72d090babe5f70ce6848879d68ae88"
+    },
+    {
+      "path": "qwen_claude_field_theory/closure_2026/cuscuton_acceleration_mond_2026/ACTION.md",
+      "sha256": "3b1b6acfab2ee7b444839b9758a12cdc994501434c01838df97539f34a4db8c0",
+      "sha256_after": "3b1b6acfab2ee7b444839b9758a12cdc994501434c01838df97539f34a4db8c0"
+    },
+    {
+      "path": "qwen_claude_field_theory/closure_2026/cuscuton_acceleration_mond_2026/CuscutonAccelerationMondFormal.lean",
+      "sha256": "4a01c59e3f9cc415e3f6bc1c5375771508bc430c6314aecf3fcbae8f99b12dfa",
+      "sha256_after": "4a01c59e3f9cc415e3f6bc1c5375771508bc430c6314aecf3fcbae8f99b12dfa"
+    },
+    {
+      "path": "qwen_claude_field_theory/closure_2026/cuscuton_acceleration_mond_2026/PhysicalActionAuditFormal.lean",
+      "sha256": "fab8b5c23531f6ac664ac6bb6ee6d9dfb44742fd6fe337f930ff142f986d546b",
+      "sha256_after": "fab8b5c23531f6ac664ac6bb6ee6d9dfb44742fd6fe337f930ff142f986d546b"
+    },
+    {
+      "path": "qwen_claude_field_theory/closure_2026/cuscuton_acceleration_mond_2026/REPORT.md",
+      "sha256": "1299280145d200249fc2f0c58f183c64b0cccc2b5219ed1ee3bf4b4b2521c7dc",
+      "sha256_after": "1299280145d200249fc2f0c58f183c64b0cccc2b5219ed1ee3bf4b4b2521c7dc"
+    },
+    {
+      "path": "qwen_claude_field_theory/closure_2026/cuscuton_acceleration_mond_2026/clock_principal_gate.py",
+      "sha256": "7f6fa5b2b7fc7ec2da35eaf4a7acaf5f07934baf9cc3b8f57ede77e138eb37da",
+      "sha256_after": "7f6fa5b2b7fc7ec2da35eaf4a7acaf5f07934baf9cc3b8f57ede77e138eb37da"
+    },
+    {
+      "path": "qwen_claude_field_theory/closure_2026/cuscuton_acceleration_mond_2026/computation_manifest.json",
+      "sha256": "8fad0e023b38a1ba0804b43b6e16562e2c8cc3091efa5df6853aa4ed2858d412",
+      "sha256_after": "8fad0e023b38a1ba0804b43b6e16562e2c8cc3091efa5df6853aa4ed2858d412"
+    },
+    {
+      "path": "qwen_claude_field_theory/closure_2026/cuscuton_acceleration_mond_2026/cuscuton_acceleration_mond_gate.py",
+      "sha256": "e7e247ca61b4da9bc3148c23652b2f2b0030cf8c5bb7b9b865ae17d5c057d83a",
+      "sha256_after": "e7e247ca61b4da9bc3148c23652b2f2b0030cf8c5bb7b9b865ae17d5c057d83a"
+    },
+    {
+      "path": "qwen_claude_field_theory/closure_2026/cuscuton_acceleration_mond_2026/eh_static_reduction_gate.py",
+      "sha256": "c2b2cf65917115b7b084fc981e6180d18f476ec5248bdfd924557d2dc0dde08f",
+      "sha256_after": "c2b2cf65917115b7b084fc981e6180d18f476ec5248bdfd924557d2dc0dde08f"
+    },
+    {
+      "path": "qwen_claude_field_theory/closure_2026/cuscuton_acceleration_mond_2026/kepler_prediction_gate.py",
+      "sha256": "48ba8eb8f870a7a852da102f27238c40ad8c1c3a6d67e7305b408b61c18ae612",
+      "sha256_after": "48ba8eb8f870a7a852da102f27238c40ad8c1c3a6d67e7305b408b61c18ae612"
+    },
+    {
+      "path": "qwen_claude_field_theory/closure_2026/cuscuton_acceleration_mond_2026/physical_action_audit.py",
+      "sha256": "48594aa7b8634a93da1242db2c6896a3e448366c3e5a365776fac81152c33b32",
+      "sha256_after": "48594aa7b8634a93da1242db2c6896a3e448366c3e5a365776fac81152c33b32"
+    },
+    {
+      "path": "qwen_claude_field_theory/closure_2026/cuscuton_acceleration_mond_2026/run_cuscuton_acceleration_lean.py",
+      "sha256": "fe00ce837688e3582d77189fe2077f66715f45cf2dd9e3df9b741d0c793b70ff",
+      "sha256_after": "fe00ce837688e3582d77189fe2077f66715f45cf2dd9e3df9b741d0c793b70ff"
+    },
+    {
+      "path": "qwen_claude_field_theory/closure_2026/cuscuton_acceleration_mond_2026/run_physical_audit_suite.py",
+      "sha256": "255e0e4339f315c7d11b8b00f3d1eb11be07504dc55c4e5f0e6ae4f29b66841e",
+      "sha256_after": "255e0e4339f315c7d11b8b00f3d1eb11be07504dc55c4e5f0e6ae4f29b66841e"
+    },
+    {
+      "path": "qwen_claude_field_theory/closure_2026/cuscuton_acceleration_mond_2026/test_cuscuton_acceleration_mond.py",
+      "sha256": "18751ccafb6ec952c1a3f3f6787927a3743d47034e68228a7fd75c6eb3c379fa",
+      "sha256_after": "18751ccafb6ec952c1a3f3f6787927a3743d47034e68228a7fd75c6eb3c379fa"
+    },
+    {
+      "path": "qwen_claude_field_theory/closure_2026/cuscuton_acceleration_mond_2026/test_physical_action_audit.py",
+      "sha256": "4e777169b659a2371bc435a9e98edd470cf30d66ba4c5031631fec12236cf8d8",
+      "sha256_after": "4e777169b659a2371bc435a9e98edd470cf30d66ba4c5031631fec12236cf8d8"
+    },
+    {
+      "path": "qwen_claude_field_theory/closure_2026/elliptic_curvature_clock_2026/CompensatorFormal.lean",
+      "sha256": "925acfa3758091f86d03c586622edf0e19fd02fce06d4f33b3262cd5cf3d6098",
+      "sha256_after": "925acfa3758091f86d03c586622edf0e19fd02fce06d4f33b3262cd5cf3d6098"
+    },
+    {
+      "path": "qwen_claude_field_theory/closure_2026/elliptic_curvature_clock_2026/REPORT.md",
+      "sha256": "4c3a545b3a04faaf7dc562f8d9dab1681f58a11fdeda68adc5d0bb465c95323e",
+      "sha256_after": "4c3a545b3a04faaf7dc562f8d9dab1681f58a11fdeda68adc5d0bb465c95323e"
+    },
+    {
+      "path": "qwen_claude_field_theory/closure_2026/elliptic_curvature_clock_2026/compensator.py",
+      "sha256": "c6bd5ca9ea187b936a9e176e8fcab31cba6962369fb5f98f69cb5db32afcfe6a",
+      "sha256_after": "c6bd5ca9ea187b936a9e176e8fcab31cba6962369fb5f98f69cb5db32afcfe6a"
+    },
+    {
+      "path": "qwen_claude_field_theory/closure_2026/elliptic_curvature_clock_2026/run_suite.py",
+      "sha256": "9b17c7d8b2b1c9afcf63a35792bca3578314c17cfcb0fcbaf4a3d2d6cba21f41",
+      "sha256_after": "9b17c7d8b2b1c9afcf63a35792bca3578314c17cfcb0fcbaf4a3d2d6cba21f41"
+    },
+    {
+      "path": "qwen_claude_field_theory/closure_2026/elliptic_curvature_clock_2026/test_compensator.py",
+      "sha256": "837ab6422ccbd4e6b23b964b36e95ec6707480eb8d520e7c2ec1622c0fb6a571",
+      "sha256_after": "837ab6422ccbd4e6b23b964b36e95ec6707480eb8d520e7c2ec1622c0fb6a571"
+    },
+    {
+      "path": "qwen_claude_field_theory/closure_2026/g03_global_kernel_bridge_2026/METRIC_CONSTRAINT.md",
+      "sha256": "7bdcb5f73c8a9386536cfd1f80a35fb5057f8cebfca2fdc35572e3e524d04b7b",
+      "sha256_after": "7bdcb5f73c8a9386536cfd1f80a35fb5057f8cebfca2fdc35572e3e524d04b7b"
+    },
+    {
+      "path": "qwen_claude_field_theory/closure_2026/g03_global_kernel_bridge_2026/METRIC_STATIC_BACKGROUND.md",
+      "sha256": "75a9ee93e823f3895424f6ecd531a07d79da26e43f51c1916c79b9ead7c78004",
+      "sha256_after": "75a9ee93e823f3895424f6ecd531a07d79da26e43f51c1916c79b9ead7c78004"
+    },
+    {
+      "path": "qwen_claude_field_theory/closure_2026/g03_global_kernel_bridge_2026/metric_constraint.py",
+      "sha256": "2fa6c254ac528266d1aed2c56653fb63fadef8ce80ab34d3e9a5449d305c348a",
+      "sha256_after": "2fa6c254ac528266d1aed2c56653fb63fadef8ce80ab34d3e9a5449d305c348a"
+    },
+    {
+      "path": "qwen_claude_field_theory/closure_2026/kgb_joint_action_2026/REPORT.md",
+      "sha256": "a71d5daa333dfbb95fecd572c13a8123771264e8cd611397718fb4ab3a00ba7a",
+      "sha256_after": "a71d5daa333dfbb95fecd572c13a8123771264e8cd611397718fb4ab3a00ba7a"
+    },
+    {
+      "path": "qwen_claude_field_theory/closure_2026/kgb_joint_action_2026/audit/AUDIT.md",
+      "sha256": "a01c2c70bc362817c93cd676dc17aa18f8a061acacee37f09192e4f5cc383090",
+      "sha256_after": "a01c2c70bc362817c93cd676dc17aa18f8a061acacee37f09192e4f5cc383090"
+    },
+    {
+      "path": "qwen_claude_field_theory/closure_2026/kgb_joint_action_2026/audit/SharedPreservationFormal.lean",
+      "sha256": "71ea47f6c2e3773a8f4b1f3df6a156c14dc27ca89146175c91c07054b36d706c",
+      "sha256_after": "71ea47f6c2e3773a8f4b1f3df6a156c14dc27ca89146175c91c07054b36d706c"
+    },
+    {
+      "path": "qwen_claude_field_theory/closure_2026/kgb_joint_action_2026/audit/test_independent_audit.py",
+      "sha256": "58ed6e2e081677ee731ccb7c8604ecf9a1115d0c70f115c7d1b9d8e268d1aac6",
+      "sha256_after": "58ed6e2e081677ee731ccb7c8604ecf9a1115d0c70f115c7d1b9d8e268d1aac6"
+    },
+    {
+      "path": "qwen_claude_field_theory/closure_2026/kgb_joint_action_2026/joint_static.py",
+      "sha256": "920921c4b1e9057ae035a7c4171868448f4c6c3ab3e5f92989a9c4a1ad48b190",
+      "sha256_after": "920921c4b1e9057ae035a7c4171868448f4c6c3ab3e5f92989a9c4a1ad48b190"
+    },
+    {
+      "path": "qwen_claude_field_theory/closure_2026/kgb_joint_action_2026/lensing/REPORT.md",
+      "sha256": "72f5bb93981cc824fe47588ea129edf153a8f316f5a0064afc32d17fb255fec7",
+      "sha256_after": "72f5bb93981cc824fe47588ea129edf153a8f316f5a0064afc32d17fb255fec7"
+    },
+    {
+      "path": "qwen_claude_field_theory/closure_2026/kgb_joint_action_2026/lensing/lensing.py",
+      "sha256": "1704e28267f8674df813e9f38094cdac66e72087b11e1bf1f9984f4949f31a05",
+      "sha256_after": "1704e28267f8674df813e9f38094cdac66e72087b11e1bf1f9984f4949f31a05"
+    },
+    {
+      "path": "qwen_claude_field_theory/closure_2026/kgb_joint_action_2026/lensing/test_lensing.py",
+      "sha256": "e7527471d2004144ba5a0909be4a2fb45560da3e0bd0573f05fcf40e3d5f01c5",
+      "sha256_after": "e7527471d2004144ba5a0909be4a2fb45560da3e0bd0573f05fcf40e3d5f01c5"
+    },
+    {
+      "path": "qwen_claude_field_theory/closure_2026/kgb_joint_action_2026/precision/REPORT.md",
+      "sha256": "3e31617f77339d379d47dd5a16c0c529941705e8acf66c5e9ed7587a0e41dc32",
+      "sha256_after": "3e31617f77339d379d47dd5a16c0c529941705e8acf66c5e9ed7587a0e41dc32"
+    },
+    {
+      "path": "qwen_claude_field_theory/closure_2026/kgb_joint_action_2026/precision/precision_check.py",
+      "sha256": "0f1b5b070b5bd3262a5efc7f5ac97a23d5c5464c12c589e2c5e3ffb36220f90e",
+      "sha256_after": "0f1b5b070b5bd3262a5efc7f5ac97a23d5c5464c12c589e2c5e3ffb36220f90e"
+    },
+    {
+      "path": "qwen_claude_field_theory/closure_2026/kgb_joint_action_2026/precision/test_precision.py",
+      "sha256": "4dce2f9eea555214c7774216a945ec010e27e7b8706cc8d046e82bda9ef9af73",
+      "sha256_after": "4dce2f9eea555214c7774216a945ec010e27e7b8706cc8d046e82bda9ef9af73"
+    },
+    {
+      "path": "qwen_claude_field_theory/closure_2026/kgb_joint_action_2026/run_suite.py",
+      "sha256": "91908d7f29ed0944a569e87576c40013d973bc633a8baf10a9fde93065ce6d53",
+      "sha256_after": "91908d7f29ed0944a569e87576c40013d973bc633a8baf10a9fde93065ce6d53"
+    },
+    {
+      "path": "qwen_claude_field_theory/closure_2026/kgb_joint_action_2026/test_joint.py",
+      "sha256": "ac778d9884a8efde14e1c11a2ef1eab5bedf29e4e224754538aa45c7afac656c",
+      "sha256_after": "ac778d9884a8efde14e1c11a2ef1eab5bedf29e4e224754538aa45c7afac656c"
+    },
+    {
+      "path": "qwen_claude_field_theory/closure_2026/kgb_joint_action_2026/third_mass.py",
+      "sha256": "13348a81faa8c0d4179b2d949a896a4216b36033c2022caa3bcd4b5e8fde3e09",
+      "sha256_after": "13348a81faa8c0d4179b2d949a896a4216b36033c2022caa3bcd4b5e8fde3e09"
+    },
+    {
+      "path": "qwen_claude_field_theory/closure_2026/kgb_mass_compatibility_2026/conformal_dictionary.py",
+      "sha256": "829a5e5365aa2abdfed4f8db7e7a8eaff4f237ca83df3972e3173f847b2a46fa",
+      "sha256_after": "829a5e5365aa2abdfed4f8db7e7a8eaff4f237ca83df3972e3173f847b2a46fa"
+    },
+    {
+      "path": "qwen_claude_field_theory/closure_2026/kgb_mass_compatibility_2026/conformal_flow.py",
+      "sha256": "b509f7df4196497766320cdd0b418b972e1776d3f508ba18002001d87f7cff59",
+      "sha256_after": "b509f7df4196497766320cdd0b418b972e1776d3f508ba18002001d87f7cff59"
+    },
+    {
+      "path": "qwen_claude_field_theory/closure_2026/kgb_mass_compatibility_2026/conformal_inverse.py",
+      "sha256": "d8629d79b04cac4b60c24187134d23580c93314b6a687d4d8df2cc1551a720f5",
+      "sha256_after": "d8629d79b04cac4b60c24187134d23580c93314b6a687d4d8df2cc1551a720f5"
+    },
+    {
+      "path": "qwen_claude_field_theory/closure_2026/kgb_mass_compatibility_2026/extension/conformal_extension.py",
+      "sha256": "3da930d7e9b02f5f418eec00e42dfc37bc1fa9936499c346ac6051d3b5a6f298",
+      "sha256_after": "3da930d7e9b02f5f418eec00e42dfc37bc1fa9936499c346ac6051d3b5a6f298"
+    },
+    {
+      "path": "qwen_claude_field_theory/closure_2026/kgb_mass_compatibility_2026/extension/ef_principal.py",
+      "sha256": "6275747991097df51f8e228da3643806e0a873858a3f82245ff3026b2cf7d0e7",
+      "sha256_after": "6275747991097df51f8e228da3643806e0a873858a3f82245ff3026b2cf7d0e7"
+    },
+    {
+      "path": "qwen_claude_field_theory/closure_2026/kgb_mass_compatibility_2026/extension/inverse_audit.py",
+      "sha256": "18d734893513102d78ba67262d5b09dad70b83589d8de6887a5f217383487205",
+      "sha256_after": "18d734893513102d78ba67262d5b09dad70b83589d8de6887a5f217383487205"
+    },
+    {
+      "path": "qwen_claude_field_theory/closure_2026/kgb_mass_compatibility_2026/extension/test_extension.py",
+      "sha256": "eab3d1d3e36913d036ce7f9cc4f275898cce866a531a02c2a0742256761c1ff8",
+      "sha256_after": "eab3d1d3e36913d036ce7f9cc4f275898cce866a531a02c2a0742256761c1ff8"
+    },
+    {
+      "path": "qwen_claude_field_theory/closure_2026/kgb_mass_compatibility_2026/gradient_inverse.py",
+      "sha256": "3cc958baf44b3a38d8d0aa8fc433eaf7a339ae394ed8f5d4acf66305dab0e31a",
+      "sha256_after": "3cc958baf44b3a38d8d0aa8fc433eaf7a339ae394ed8f5d4acf66305dab0e31a"
+    },
+    {
+      "path": "qwen_claude_field_theory/closure_2026/kgb_mass_compatibility_2026/l119_scope.py",
+      "sha256": "20ae12ee185b0f64b60c8f4700e735dc9141b89f7020097ff7ff2a69a91b6817",
+      "sha256_after": "20ae12ee185b0f64b60c8f4700e735dc9141b89f7020097ff7ff2a69a91b6817"
+    },
+    {
+      "path": "qwen_claude_field_theory/closure_2026/kgb_mass_compatibility_2026/run_suite.py",
+      "sha256": "0396205fc0f62d974f4cb3f51b6bb8354bce954b1160d7958bfe96f613e284ad",
+      "sha256_after": "0396205fc0f62d974f4cb3f51b6bb8354bce954b1160d7958bfe96f613e284ad"
+    },
+    {
+      "path": "qwen_claude_field_theory/closure_2026/kgb_mass_compatibility_2026/structure/CompatibilityAlgebra.lean",
+      "sha256": "f0ae6f37dba4d0596d97619d10670f463098cbcc2f938a7583c051f738b821af",
+      "sha256_after": "f0ae6f37dba4d0596d97619d10670f463098cbcc2f938a7583c051f738b821af"
+    },
+    {
+      "path": "qwen_claude_field_theory/closure_2026/kgb_mass_compatibility_2026/structure/ConformalInverseAlgebra.lean",
+      "sha256": "5e0f1fa4375364cb0182c096d150b4c1129214e57e52c35707063a7698fdef59",
+      "sha256_after": "5e0f1fa4375364cb0182c096d150b4c1129214e57e52c35707063a7698fdef59"
+    },
+    {
+      "path": "qwen_claude_field_theory/closure_2026/kgb_mass_compatibility_2026/structure/test_conformal_inverse_structure.py",
+      "sha256": "f34095193f86c79db0937dd25140911c728ea1a6ccd882a0e8243065617917ee",
+      "sha256_after": "f34095193f86c79db0937dd25140911c728ea1a6ccd882a0e8243065617917ee"
+    },
+    {
+      "path": "qwen_claude_field_theory/closure_2026/kgb_mass_compatibility_2026/structure/test_derivative_curvature_variation.py",
+      "sha256": "f779d4862dd71b4c0ccee0232a94d824bcc949c0cb8b8811d8a7b19afba61634",
+      "sha256_after": "f779d4862dd71b4c0ccee0232a94d824bcc949c0cb8b8811d8a7b19afba61634"
+    },
+    {
+      "path": "qwen_claude_field_theory/closure_2026/kgb_mass_compatibility_2026/structure/test_structure.py",
+      "sha256": "a5bb0af1b015862cee438e6f79ddb1be521c7bdb578cefab3d1e7ba94f3b6303",
+      "sha256_after": "a5bb0af1b015862cee438e6f79ddb1be521c7bdb578cefab3d1e7ba94f3b6303"
+    },
+    {
+      "path": "qwen_claude_field_theory/closure_2026/kgb_mass_compatibility_2026/test_conformal_inverse.py",
+      "sha256": "28ff12d3223c4796bd467799b98fc33fe5a620952b52fc3988f00a8925a826cf",
+      "sha256_after": "28ff12d3223c4796bd467799b98fc33fe5a620952b52fc3988f00a8925a826cf"
+    },
+    {
+      "path": "qwen_claude_field_theory/closure_2026/kgb_mass_compatibility_2026/test_dictionary.py",
+      "sha256": "3d3bdd69f90214e67fa0c2bca1d1612e419760de31c825e7cd7be2d1edfde901",
+      "sha256_after": "3d3bdd69f90214e67fa0c2bca1d1612e419760de31c825e7cd7be2d1edfde901"
+    },
+    {
+      "path": "qwen_claude_field_theory/closure_2026/kgb_mass_compatibility_2026/test_gradient_inverse.py",
+      "sha256": "a5120f644634b21428777084abfebe09863ba1ea761e8e7fdea93fe7cd8b0f3b",
+      "sha256_after": "a5120f644634b21428777084abfebe09863ba1ea761e8e7fdea93fe7cd8b0f3b"
+    },
+    {
+      "path": "qwen_claude_field_theory/closure_2026/kgb_mass_compatibility_2026/test_runner.py",
+      "sha256": "0514b5eda8cb2d8b77ce8d9ac03eae2f4bd66c33ba2f1ea222114d2d547dbf3d",
+      "sha256_after": "0514b5eda8cb2d8b77ce8d9ac03eae2f4bd66c33ba2f1ea222114d2d547dbf3d"
+    },
+    {
+      "path": "qwen_claude_field_theory/closure_2026/kgb_mass_compatibility_2026/test_triple.py",
+      "sha256": "ae6e67422cfaa5a25d2d24cb4e1407f759062b7cec291a18ebfa4ae39711b7ea",
+      "sha256_after": "ae6e67422cfaa5a25d2d24cb4e1407f759062b7cec291a18ebfa4ae39711b7ea"
+    },
+    {
+      "path": "qwen_claude_field_theory/closure_2026/kgb_mass_compatibility_2026/triple_flow.py",
+      "sha256": "0bf2a492d4e5bf62c62c992b7b2de99785e1f3b6a58feb4328cc04e8dfb9569f",
+      "sha256_after": "0bf2a492d4e5bf62c62c992b7b2de99785e1f3b6a58feb4328cc04e8dfb9569f"
+    },
+    {
+      "path": "qwen_claude_field_theory/closure_2026/kgb_mass_compatibility_2026/triple_seed.py",
+      "sha256": "a5642cda9af47a64ce3f373250d0953ed288635b41b7210ea4b486a967d9a9d1",
+      "sha256_after": "a5642cda9af47a64ce3f373250d0953ed288635b41b7210ea4b486a967d9a9d1"
+    },
+    {
+      "path": "qwen_claude_field_theory/closure_2026/kgb_shared_pressure_2026/PressureWindowFormal.lean",
+      "sha256": "0f7c7aa4b74a0ffea1ae4e0fe5f11d8036040e26fbbfa934bd49841c6ca2824a",
+      "sha256_after": "0f7c7aa4b74a0ffea1ae4e0fe5f11d8036040e26fbbfa934bd49841c6ca2824a"
+    },
+    {
+      "path": "qwen_claude_field_theory/closure_2026/kgb_shared_pressure_2026/REPORT.md",
+      "sha256": "6f9b5867b7c92d17ce5f2753f639b2a2e1123de3bc72bb974cb1885cb38f417b",
+      "sha256_after": "6f9b5867b7c92d17ce5f2753f639b2a2e1123de3bc72bb974cb1885cb38f417b"
+    },
+    {
+      "path": "qwen_claude_field_theory/closure_2026/kgb_shared_pressure_2026/jet_steering.py",
+      "sha256": "06c99134ef59bb1105a3d1f12e9812dbba3b7f48b47bd2649e04e19f970d40d9",
+      "sha256_after": "06c99134ef59bb1105a3d1f12e9812dbba3b7f48b47bd2649e04e19f970d40d9"
+    },
+    {
+      "path": "qwen_claude_field_theory/closure_2026/kgb_shared_pressure_2026/jet_window.py",
+      "sha256": "8128de35f0fdcf95f0360e2b776ada8e75444420d1c368c00c88ce6c012c3834",
+      "sha256_after": "8128de35f0fdcf95f0360e2b776ada8e75444420d1c368c00c88ce6c012c3834"
+    },
+    {
+      "path": "qwen_claude_field_theory/closure_2026/kgb_shared_pressure_2026/precision_check.py",
+      "sha256": "e7aeb06910d418cc5c0225b3abbf565f19b169c74d1fa593396ab8f7c8166437",
+      "sha256_after": "e7aeb06910d418cc5c0225b3abbf565f19b169c74d1fa593396ab8f7c8166437"
+    },
+    {
+      "path": "qwen_claude_field_theory/closure_2026/kgb_shared_pressure_2026/regular_clock.py",
+      "sha256": "597933027519aeffa33784b32be1b11d15afeba5abc5a3b27e5479510088999d",
+      "sha256_after": "597933027519aeffa33784b32be1b11d15afeba5abc5a3b27e5479510088999d"
+    },
+    {
+      "path": "qwen_claude_field_theory/closure_2026/kgb_shared_pressure_2026/run_suite.py",
+      "sha256": "d625415c20cbe2ea7f59323cb5edffde27e6f18edb2899708e3ccdebac9d9f0f",
+      "sha256_after": "d625415c20cbe2ea7f59323cb5edffde27e6f18edb2899708e3ccdebac9d9f0f"
+    },
+    {
+      "path": "qwen_claude_field_theory/closure_2026/kgb_shared_pressure_2026/shared_pressure.py",
+      "sha256": "2b17d12330a6727d2d24edf48e716875870ff71ad0fd420e324fc9deadd36e60",
+      "sha256_after": "2b17d12330a6727d2d24edf48e716875870ff71ad0fd420e324fc9deadd36e60"
+    },
+    {
+      "path": "qwen_claude_field_theory/closure_2026/kgb_shared_pressure_2026/steered_profile.py",
+      "sha256": "357428862dad77a1312c29c2bf7361be3426cd8b0bde1f0150e5cfd60eef6ce6",
+      "sha256_after": "357428862dad77a1312c29c2bf7361be3426cd8b0bde1f0150e5cfd60eef6ce6"
+    },
+    {
+      "path": "qwen_claude_field_theory/closure_2026/kgb_shared_pressure_2026/test_pressure.py",
+      "sha256": "009a0e2bbaea3704822212ca78d3c16c9f5143541a8025d91d4f2ea00ff06392",
+      "sha256_after": "009a0e2bbaea3704822212ca78d3c16c9f5143541a8025d91d4f2ea00ff06392"
+    },
+    {
+      "path": "qwen_claude_field_theory/closure_2026/linear_curvature_clock_2026/LinearClockFormal.lean",
+      "sha256": "467e88887110e26d6838cbc888cac311a6ca6997be9258d2bdd5c853054b8731",
+      "sha256_after": "467e88887110e26d6838cbc888cac311a6ca6997be9258d2bdd5c853054b8731"
+    },
+    {
+      "path": "qwen_claude_field_theory/closure_2026/linear_curvature_clock_2026/REPORT.md",
+      "sha256": "ac042292491775ebeeebfd06f91f604c8fcd177c266b08d21c33820d74f438b3",
+      "sha256_after": "ac042292491775ebeeebfd06f91f604c8fcd177c266b08d21c33820d74f438b3"
+    },
+    {
+      "path": "qwen_claude_field_theory/closure_2026/linear_curvature_clock_2026/linear_clock.py",
+      "sha256": "efa34995f5b1224339d71559befc0092c3dbc2e6987c2b8263171433414928b2",
+      "sha256_after": "efa34995f5b1224339d71559befc0092c3dbc2e6987c2b8263171433414928b2"
+    },
+    {
+      "path": "qwen_claude_field_theory/closure_2026/linear_curvature_clock_2026/run_suite.py",
+      "sha256": "1769dc76f7c877d442d4d19e141e74c3b919d32c915bcc10b9eb04a70f703bc9",
+      "sha256_after": "1769dc76f7c877d442d4d19e141e74c3b919d32c915bcc10b9eb04a70f703bc9"
+    },
+    {
+      "path": "qwen_claude_field_theory/closure_2026/linear_curvature_clock_2026/test_linear_clock.py",
+      "sha256": "14773f01d098167a265aed479c9efd82002ecda4be8318e1d8e0e6e7ebf85048",
+      "sha256_after": "14773f01d098167a265aed479c9efd82002ecda4be8318e1d8e0e6e7ebf85048"
+    },
+    {
+      "path": "qwen_claude_field_theory/closure_2026/tensor_compensated_branch_2026/AEPpnTuningFormal.lean",
+      "sha256": "d82274a9172e69d8d3a06a84efe6364bb148494c369a308e4cdcce55cfa3eeaf",
+      "sha256_after": "d82274a9172e69d8d3a06a84efe6364bb148494c369a308e4cdcce55cfa3eeaf"
+    },
+    {
+      "path": "qwen_claude_field_theory/closure_2026/tensor_compensated_branch_2026/FullTensorMultiplierFormal.lean",
+      "sha256": "fa7e6f91e9a3bb71ad6be9586809badbc9916337fd08c28997940eaf4cdc7328",
+      "sha256_after": "fa7e6f91e9a3bb71ad6be9586809badbc9916337fd08c28997940eaf4cdc7328"
+    },
+    {
+      "path": "qwen_claude_field_theory/closure_2026/tensor_compensated_branch_2026/LinearSectorStabilityFormal.lean",
+      "sha256": "4251c84514b2c3d9f8d3ca988fb0d00f9800864e8fa3bc515789f54aa52be5bd",
+      "sha256_after": "4251c84514b2c3d9f8d3ca988fb0d00f9800864e8fa3bc515789f54aa52be5bd"
+    },
+    {
+      "path": "qwen_claude_field_theory/closure_2026/tensor_compensated_branch_2026/MatterWardFormal.lean",
+      "sha256": "8b22f07a4d6d6d817b93a2a42bb88ecce86874f6f71bc779162ca3a058a4e390",
+      "sha256_after": "8b22f07a4d6d6d817b93a2a42bb88ecce86874f6f71bc779162ca3a058a4e390"
+    },
+    {
+      "path": "qwen_claude_field_theory/closure_2026/tensor_compensated_branch_2026/PPNTunedAetherDiracFormal.lean",
+      "sha256": "ba35d0c794cfde98e742c30a3c7cd0671c7289194701e4f018ba41591a0010c0",
+      "sha256_after": "ba35d0c794cfde98e742c30a3c7cd0671c7289194701e4f018ba41591a0010c0"
+    },
+    {
+      "path": "qwen_claude_field_theory/closure_2026/tensor_compensated_branch_2026/TENSOR_COMPENSATED_BRANCH_REPORT.md",
+      "sha256": "f27f5f3253c6ddb37c1cc111e31f8b48abd2fe6e1601bcb50d61e355b037aaa7",
+      "sha256_after": "f27f5f3253c6ddb37c1cc111e31f8b48abd2fe6e1601bcb50d61e355b037aaa7"
+    },
+    {
+      "path": "qwen_claude_field_theory/closure_2026/tensor_compensated_branch_2026/TensorCompensatedBranchFormal.lean",
+      "sha256": "78bddd7d342eca0f2a5ee25d13e4041937d525bd5506dbbcb88a5e20ae16d4ea",
+      "sha256_after": "78bddd7d342eca0f2a5ee25d13e4041937d525bd5506dbbcb88a5e20ae16d4ea"
+    },
+    {
+      "path": "qwen_claude_field_theory/closure_2026/tensor_compensated_branch_2026/ae_ppn_tuning_gate.py",
+      "sha256": "96ad5e0fb2b00bdcc04969e00bb9795390341906b4049cefb40de440ba722d8f",
+      "sha256_after": "96ad5e0fb2b00bdcc04969e00bb9795390341906b4049cefb40de440ba722d8f"
+    },
+    {
+      "path": "qwen_claude_field_theory/closure_2026/tensor_compensated_branch_2026/flrw_tensor_compensated_gate.py",
+      "sha256": "684d81e25701d26937b9aa92b6b8c9a11beb9c66a9a8de2b9aaf3ee893f14888",
+      "sha256_after": "684d81e25701d26937b9aa92b6b8c9a11beb9c66a9a8de2b9aaf3ee893f14888"
+    },
+    {
+      "path": "qwen_claude_field_theory/closure_2026/tensor_compensated_branch_2026/flrw_zero_mode_dirac_gate.py",
+      "sha256": "1a6a01105ecb62245cf4658d6e340e6ecf3786263cb67f38a53860b063f140b8",
+      "sha256_after": "1a6a01105ecb62245cf4658d6e340e6ecf3786263cb67f38a53860b063f140b8"
+    },
+    {
+      "path": "qwen_claude_field_theory/closure_2026/tensor_compensated_branch_2026/full_tensor_multiplier_dirac_gate.py",
+      "sha256": "5b911f44e027bcf20f7a3daa92d18ec54b2c123e36388b95183964c3221fc8cf",
+      "sha256_after": "5b911f44e027bcf20f7a3daa92d18ec54b2c123e36388b95183964c3221fc8cf"
+    },
+    {
+      "path": "qwen_claude_field_theory/closure_2026/tensor_compensated_branch_2026/linear_sector_stability_gate.py",
+      "sha256": "a23f86b6d944220af0f7ef9a06966e9489aa3a7eb5dfbcb455a10583a87baa7a",
+      "sha256_after": "a23f86b6d944220af0f7ef9a06966e9489aa3a7eb5dfbcb455a10583a87baa7a"
+    },
+    {
+      "path": "qwen_claude_field_theory/closure_2026/tensor_compensated_branch_2026/matter_ward_gate.py",
+      "sha256": "d732145214047ccab00357f4ae354c5cdd56dc8d1fd2b4044898708fa99a8124",
+      "sha256_after": "d732145214047ccab00357f4ae354c5cdd56dc8d1fd2b4044898708fa99a8124"
+    },
+    {
+      "path": "qwen_claude_field_theory/closure_2026/tensor_compensated_branch_2026/ppn_tuned_aether_dirac_gate.py",
+      "sha256": "bb58e10571bc77194aa70c5e2f97cc8891b9e00300e3b0bcfe4631d3243ce4d5",
+      "sha256_after": "bb58e10571bc77194aa70c5e2f97cc8891b9e00300e3b0bcfe4631d3243ce4d5"
+    },
+    {
+      "path": "qwen_claude_field_theory/closure_2026/tensor_compensated_branch_2026/run_ae_ppn_lean.py",
+      "sha256": "1331275189eaf1cad8188733a37950d0de4077e7612aa867dde161afcf9e8506",
+      "sha256_after": "1331275189eaf1cad8188733a37950d0de4077e7612aa867dde161afcf9e8506"
+    },
+    {
+      "path": "qwen_claude_field_theory/closure_2026/tensor_compensated_branch_2026/run_full_tensor_multiplier_lean.py",
+      "sha256": "88eb1d49862dca580c46a432e26ecc1e76e94b33c0db4c3d26c62601c1fff085",
+      "sha256_after": "88eb1d49862dca580c46a432e26ecc1e76e94b33c0db4c3d26c62601c1fff085"
+    },
+    {
+      "path": "qwen_claude_field_theory/closure_2026/tensor_compensated_branch_2026/run_lean.py",
+      "sha256": "3079afbeb6d30eb3cbe67a8c497cfbf41358505d70fa99f9c58d16eb4d40ca2f",
+      "sha256_after": "3079afbeb6d30eb3cbe67a8c497cfbf41358505d70fa99f9c58d16eb4d40ca2f"
+    },
+    {
+      "path": "qwen_claude_field_theory/closure_2026/tensor_compensated_branch_2026/run_linear_sector_lean.py",
+      "sha256": "48a85ef5e253ca637b7f99464d599df2b9a20e20e2efbb4744359f16cbe7ae74",
+      "sha256_after": "48a85ef5e253ca637b7f99464d599df2b9a20e20e2efbb4744359f16cbe7ae74"
+    },
+    {
+      "path": "qwen_claude_field_theory/closure_2026/tensor_compensated_branch_2026/run_matter_ward_lean.py",
+      "sha256": "ab83b909743dfebda425e1c3607f028a025d4ea0dd5a9e31b903e64aee7c1da9",
+      "sha256_after": "ab83b909743dfebda425e1c3607f028a025d4ea0dd5a9e31b903e64aee7c1da9"
+    },
+    {
+      "path": "qwen_claude_field_theory/closure_2026/tensor_compensated_branch_2026/run_ppn_tuned_aether_lean.py",
+      "sha256": "5c280d434eb26053043549e9649225d05189d1ae1bdbc47855285079245725f0",
+      "sha256_after": "5c280d434eb26053043549e9649225d05189d1ae1bdbc47855285079245725f0"
+    },
+    {
+      "path": "qwen_claude_field_theory/closure_2026/tensor_compensated_branch_2026/tensor_compensated_branch_gate.py",
+      "sha256": "bbc9032b1e8353f6ae58c7d6893e4e3cd0ea19baa4f0c2843e0fe564e5dff1e7",
+      "sha256_after": "bbc9032b1e8353f6ae58c7d6893e4e3cd0ea19baa4f0c2843e0fe564e5dff1e7"
+    },
+    {
+      "path": "qwen_claude_field_theory/closure_2026/tensor_compensated_branch_2026/tensor_compensated_dirac_gate.py",
+      "sha256": "030f91387d8bac1773758bd839080b55ef3078741778989020e3568086e2e651",
+      "sha256_after": "030f91387d8bac1773758bd839080b55ef3078741778989020e3568086e2e651"
+    },
+    {
+      "path": "qwen_claude_field_theory/closure_2026/tensor_compensated_branch_2026/test_ae_ppn_tuning.py",
+      "sha256": "88360a8d8473cd4994ff1dba2f08e452cc5e4f919d5d01dc510c2fc49ba0cb32",
+      "sha256_after": "88360a8d8473cd4994ff1dba2f08e452cc5e4f919d5d01dc510c2fc49ba0cb32"
+    },
+    {
+      "path": "qwen_claude_field_theory/closure_2026/tensor_compensated_branch_2026/test_flrw_tensor_compensated.py",
+      "sha256": "8ae84cdab126d9690eedec2757605f940d8f53eae7e3212027522d97930e3952",
+      "sha256_after": "8ae84cdab126d9690eedec2757605f940d8f53eae7e3212027522d97930e3952"
+    },
+    {
+      "path": "qwen_claude_field_theory/closure_2026/tensor_compensated_branch_2026/test_flrw_zero_mode_dirac.py",
+      "sha256": "000030925814dd8e26ee14ee9d23ad0acc12a19fde5ab9d5936b0dafcf2088b7",
+      "sha256_after": "000030925814dd8e26ee14ee9d23ad0acc12a19fde5ab9d5936b0dafcf2088b7"
+    },
+    {
+      "path": "qwen_claude_field_theory/closure_2026/tensor_compensated_branch_2026/test_full_tensor_multiplier_dirac.py",
+      "sha256": "c99734d866a77cf8adf892a12b45633c63426f7ac7b9b365cef3c18e620bf1e9",
+      "sha256_after": "c99734d866a77cf8adf892a12b45633c63426f7ac7b9b365cef3c18e620bf1e9"
+    },
+    {
+      "path": "qwen_claude_field_theory/closure_2026/tensor_compensated_branch_2026/test_linear_sector_stability.py",
+      "sha256": "80da860d91b1ba3850a87a1d6ed722cf016bfd9f04b50543dce1fab0566160a9",
+      "sha256_after": "80da860d91b1ba3850a87a1d6ed722cf016bfd9f04b50543dce1fab0566160a9"
+    },
+    {
+      "path": "qwen_claude_field_theory/closure_2026/tensor_compensated_branch_2026/test_matter_ward.py",
+      "sha256": "13bfadab99f3088553556f034776275150c5541323a2cf2f1a3745ff0ae720b4",
+      "sha256_after": "13bfadab99f3088553556f034776275150c5541323a2cf2f1a3745ff0ae720b4"
+    },
+    {
+      "path": "qwen_claude_field_theory/closure_2026/tensor_compensated_branch_2026/test_ppn_tuned_aether_dirac.py",
+      "sha256": "bc73f3453a6dcfe6bc3617d695003f951bdd4992463de351cd6dac6fff1e450a",
+      "sha256_after": "bc73f3453a6dcfe6bc3617d695003f951bdd4992463de351cd6dac6fff1e450a"
+    },
+    {
+      "path": "qwen_claude_field_theory/closure_2026/tensor_compensated_branch_2026/test_tensor_compensated_branch.py",
+      "sha256": "03b4898c8ec7bc983d38d77942cfc166e994c0080a38b9347afed8d0e0f5d26f",
+      "sha256_after": "03b4898c8ec7bc983d38d77942cfc166e994c0080a38b9347afed8d0e0f5d26f"
+    },
+    {
+      "path": "qwen_claude_field_theory/closure_2026/tensor_compensated_branch_2026/test_tensor_compensated_dirac.py",
+      "sha256": "872bc961585d4b228b57ed512a278e22e3ea6fb6e5e58540e1408271a04a4cee",
+      "sha256_after": "872bc961585d4b228b57ed512a278e22e3ea6fb6e5e58540e1408271a04a4cee"
+    },
+    {
+      "path": "qwen_claude_field_theory/closure_2026/theory_discovery/KHRONOMETRIC_MOND_GAUNTLET.md",
+      "sha256": "459392fa5d132cf379e0248737ece608dababe7824dac9ece8273bda3bef02d4",
+      "sha256_after": "459392fa5d132cf379e0248737ece608dababe7824dac9ece8273bda3bef02d4"
+    },
+    {
+      "path": "qwen_claude_field_theory/closure_2026/theory_discovery/khronometric_mond_gauntlet_2026.py",
+      "sha256": "8fe6ebce48b9061ba133b5dcc30e5d8559cdf2bf1026bf96181762e907781dc2",
+      "sha256_after": "8fe6ebce48b9061ba133b5dcc30e5d8559cdf2bf1026bf96181762e907781dc2"
+    },
+    {
+      "path": "qwen_claude_field_theory/closure_2026/ticking_kgb_inverse_2026/KGBFormal.lean",
+      "sha256": "c777c1dd260a7866174da96fd4091aeedaaa3bf8c1a9cfdb4ac94b4ab32498a1",
+      "sha256_after": "c777c1dd260a7866174da96fd4091aeedaaa3bf8c1a9cfdb4ac94b4ab32498a1"
+    },
+    {
+      "path": "qwen_claude_field_theory/closure_2026/ticking_kgb_inverse_2026/REPORT.md",
+      "sha256": "f67d92afd3f8213e13ab1c52e15cda9082c3d5e173f0248c010674ca52160dee",
+      "sha256_after": "f67d92afd3f8213e13ab1c52e15cda9082c3d5e173f0248c010674ca52160dee"
+    },
+    {
+      "path": "qwen_claude_field_theory/closure_2026/ticking_kgb_inverse_2026/SOURCES.md",
+      "sha256": "64d2bbcc0c1df3bbf1e603674b1c6d454b271347efcfe6bc1f1c212d559a24bb",
+      "sha256_after": "64d2bbcc0c1df3bbf1e603674b1c6d454b271347efcfe6bc1f1c212d559a24bb"
+    },
+    {
+      "path": "qwen_claude_field_theory/closure_2026/ticking_kgb_inverse_2026/kgb_inverse.py",
+      "sha256": "e62a7b14332fe17ddf7e84cfe4229c909283ec81634fe097bdcafa491ad138b8",
+      "sha256_after": "e62a7b14332fe17ddf7e84cfe4229c909283ec81634fe097bdcafa491ad138b8"
+    },
+    {
+      "path": "qwen_claude_field_theory/closure_2026/ticking_kgb_inverse_2026/mond_profile.py",
+      "sha256": "293dfb4ffe2ab1db7d9ac507e4379becb9f5133737b8c1e0136b60d6f0122d78",
+      "sha256_after": "293dfb4ffe2ab1db7d9ac507e4379becb9f5133737b8c1e0136b60d6f0122d78"
+    },
+    {
+      "path": "qwen_claude_field_theory/closure_2026/ticking_kgb_inverse_2026/run_suite.py",
+      "sha256": "f4c78b867efd3dec05387fc5fd144476b8bf5e3dd64ae3819d230c6db0ec66d9",
+      "sha256_after": "f4c78b867efd3dec05387fc5fd144476b8bf5e3dd64ae3819d230c6db0ec66d9"
+    },
+    {
+      "path": "qwen_claude_field_theory/closure_2026/ticking_kgb_inverse_2026/test_kgb.py",
+      "sha256": "b87d33ee3fbd352a18c870aba1cb1d8384a9e1700c42c1e49dfd1a94b9f601d7",
+      "sha256_after": "b87d33ee3fbd352a18c870aba1cb1d8384a9e1700c42c1e49dfd1a94b9f601d7"
+    },
+    {
+      "path": "qwen_claude_field_theory/closure_2026/trace_variance_mond_2026/REPORT.md",
+      "sha256": "50efea25f1f808a7f9ea5d372fa7d5ed64e1c60a6b63ce9c48dcb6b94b9c8f97",
+      "sha256_after": "50efea25f1f808a7f9ea5d372fa7d5ed64e1c60a6b63ce9c48dcb6b94b9c8f97"
+    },
+    {
+      "path": "qwen_claude_field_theory/closure_2026/trace_variance_mond_2026/TraceVarianceFormal.lean",
+      "sha256": "c70b4911f9362ece66fa67c776c6233e35f73c45a9ca6edd633991d7865b725f",
+      "sha256_after": "c70b4911f9362ece66fa67c776c6233e35f73c45a9ca6edd633991d7865b725f"
+    },
+    {
+      "path": "qwen_claude_field_theory/closure_2026/trace_variance_mond_2026/run_suite.py",
+      "sha256": "b8f77aad1c9466be0cb1f816c88f067170c54229e47521ed30d8152fff033f4d",
+      "sha256_after": "b8f77aad1c9466be0cb1f816c88f067170c54229e47521ed30d8152fff033f4d"
+    },
+    {
+      "path": "qwen_claude_field_theory/closure_2026/trace_variance_mond_2026/test_trace_variance.py",
+      "sha256": "5fb443526e3e39428347c44b7750cec052ac212ce65622de30f63ef3bdaff4ae",
+      "sha256_after": "5fb443526e3e39428347c44b7750cec052ac212ce65622de30f63ef3bdaff4ae"
+    },
+    {
+      "path": "qwen_claude_field_theory/closure_2026/trace_variance_mond_2026/trace_variance.py",
+      "sha256": "2ac6a8ae535918ff6e43ad80744466c776b43c2011a6ef604971faa9e7e20e1b",
+      "sha256_after": "2ac6a8ae535918ff6e43ad80744466c776b43c2011a6ef604971faa9e7e20e1b"
+    }
+  ],
+  "output_directory": "qwen_claude_field_theory/closure_2026/kgb_mass_compatibility_2026/run_002",
+  "declared_results": [],
+  "outputs": [
+    {
+      "path": "qwen_claude_field_theory/closure_2026/kgb_mass_compatibility_2026/run_002/stdout.txt",
+      "sha256": "f00d4822f8915495d4ba01ed631bf26311e4463fbad2efe2a9bdb024daca4b93",
+      "kind": "log"
+    },
+    {
+      "path": "qwen_claude_field_theory/closure_2026/kgb_mass_compatibility_2026/run_002/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them."
+  ]
+}
