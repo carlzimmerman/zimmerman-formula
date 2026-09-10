@@ -1,0 +1,72 @@
+============================================================================================================
+L98 -- the cuscuton prediction: the RAR has ZERO intrinsic (halo-to-halo) scatter -- it is a LAW, not a correlation
+============================================================================================================
+a0 footings: canonical 9.3619e-11 m/s^2,  alt 1.1279e-10 m/s^2   (both carried throughout)
+
+============================================================================================================
+PART A -- CONTROLS.  Load SPARC by the L61 recipe; reproduce L61's total-scatter gate and L76's null.
+============================================================================================================
+      SPARC loaded from real_research/data/sparc_data: 155 galaxies, 2786 points (Upsilon_d=0.5, Upsilon_b=0.7, eV/V<0.10, >=3 points)
+
+      total RAR scatter (carried kernel, zero parameters): rms 0.1453 / 0.1421 dex, medians +0.030 / +0.003   (L61 committed 0.145/0.142, +0.030/+0.003)
+  [PASS] A1  CONTROL: SPARC loader + RAR machinery reproduce L61's total-scatter gate 0.145/0.142 dex   (0.1453/0.1421 at +0.030/+0.003)
+      per-galaxy median RAR residual: std across 155 galaxies = 0.150 dex  (L76 committed 0.150)
+      Spearman(concentration, per-galaxy residual) = +0.012  (L76 committed +0.012, N=155)
+  [PASS] A2  CONTROL: reproduce L76's assembly null -- per-galaxy std 0.150 dex and Spearman(c,res)=+0.012   (std 0.150 dex, Spearman +0.012)
+
+============================================================================================================
+PART B -- THE DERIVATION MADE CONCRETE: same baryons => IDENTICAL g_obs (cuscuton) vs a SPREAD (LCDM).
+============================================================================================================
+
+      [canonical] cuscuton: two identical-baryon galaxies -> max |dlog10 g_obs| between them = 0.0e+00 dex
+      [alt      ] cuscuton: two identical-baryon galaxies -> max |dlog10 g_obs| between them = 0.0e+00 dex
+  [PASS] B1  cuscuton determinism: identical baryons give identical g_obs (halo-to-halo spread is exactly 0)   (the RAR map has no free halo DOF -> zero intrinsic scatter by construction)
+      LCDM: same baryons, concentration c=6.2 scattered by +-0.11 dex -> 1-sigma g_obs spread up to 0.089 dex on galaxy 'UGC02953' (a NONZERO intrinsic scatter)
+  [PASS] B2  LCDM contrast: identical baryons + scattered halo concentration give a NONZERO g_obs spread   (up to 0.089 dex from sigma_log c=0.11 at fixed baryons -- the intrinsic scatter DM must have)
+
+============================================================================================================
+PART C -- THE OBSERVATIONAL ERROR BUDGET (forward Monte-Carlo).  Zero-intrinsic mock + real errors.
+============================================================================================================
+
+      footing     distance   inclin.       M/L    V_meas  COMBINED  observed  intrinsic
+      canonical     0.0877    0.0759    0.0524    0.0426    0.1355    0.1453     0.0524
+      alt           0.0884    0.0769    0.0517    0.0411    0.1353    0.1421     0.0436
+      quadrature: intrinsic = sqrt(observed^2 - observational^2).  Literature RAR intrinsic scatter ~0.057-0.08 dex (Lelli+2017), itself dominated by distance/inclination/M/L, not halo assembly.
+  [PASS] C1  the observational budget accounts for the BULK of the observed RAR scatter (>= 60% of variance)   (observational 0.136/0.135 of observed 0.145/0.142 dex)
+  [PASS] C2  the residual intrinsic RAR scatter is <= the literature value ~0.08 dex on BOTH footings (consistent with the cuscuton's zero halo-to-halo scatter, not with a large dark contribution)   (intrinsic 0.0524/0.0436 dex)
+
+============================================================================================================
+PART D -- THE LCDM CONTRAST.  Intrinsic RAR scatter injected by concentration variation alone.
+============================================================================================================
+
+      LCDM concentration-only intrinsic RAR scatter (sigma_log c = 0.11): 0.067 dex over all points, 0.074 dex over the deep regime (g_bar<a0)
+      this is a FLOOR (mass scatter at fixed M_baryon adds more) and it is CONCENTRATION-CORRELATED by construction; the observed correlation is the A2 null Spearman=+0.012
+      cuscuton predicts EXACTLY 0.000 dex intrinsic + 0 correlation; the measured intrinsic is 0.052/0.044 dex (mostly observational), uncorrelated with assembly
+  [PASS] D1  LCDM predicts a NONZERO, concentration-correlated intrinsic RAR scatter (floor > 0.02 dex); the cuscuton predicts zero and zero correlation -- these are DISTINCT, testable predictions   (LCDM floor 0.074 dex (deep) vs cuscuton 0.000 dex; observed correlation +0.012 (null))
+  [PASS] D2  the observed intrinsic residual does NOT exceed what observation+baryons explain, so the data do not REQUIRE the LCDM concentration scatter (they are consistent with the cuscuton, and with LCDM only if its concentration scatter hides inside the observational budget)   (intrinsic 0.052 dex <= max(0.08, LCDM floor 0.074))
+
+============================================================================================================
+PART E -- THE FALSIFIER, and the verdict.
+============================================================================================================
+
+  [PASS] E1  the cuscuton falsifier does NOT fire on SPARC: no assembly-correlated intrinsic scatter beyond the observational budget (|Spearman| < 0.35 AND intrinsic < 0.10 dex on both footings)   (|Spearman|=0.012<0.35, intrinsic 0.052/0.044<0.10)
+
+      VERDICT (both footings).  L95 forces the MOND field to be a cuscuton: a non-propagating constraint
+      solved on each slice from the baryons, Phi = F[rho_b].  With no independent halo degree of freedom,
+      two galaxies with identical baryons have identical rotation curves, so the RAR is a single-valued LAW
+      and its INTRINSIC (halo-to-halo) scatter is ZERO -- demonstrated bit-for-bit in Part B.
+      On SPARC: the observed total scatter 0.145 dex is accounted for to 0.136 dex by distance+inclination+M/L+velocity errors alone, leaving an
+      intrinsic residual 0.052/0.044 dex -- at or below the literature
+      ~0.057-0.08 dex, itself observational -- and UNCORRELATED with concentration (Spearman +0.012, L76).
+      LCDM's concentration scatter alone injects a floor of 0.074 dex of intrinsic,
+      concentration-CORRELATED scatter; that correlation is not seen.  The distinctive prediction stands:
+      the RAR's tightness and its NULL assembly correlation are exactly what cuscuton determinism requires.
+      HONEST CAVEATS: (1) the assembly proxy is the abundance-matching mean concentration c(M), monotone in
+      mass -- so A2 rules out a MASS-trend in residuals, not every hidden assembly variable; a decisive test
+      needs an INDEPENDENT per-galaxy concentration.  (2) LCDM is not excluded here -- its predicted scatter
+      can hide inside the observational budget; the data are CONSISTENT WITH the cuscuton, and only DISFAVOUR
+      LCDM to the extent its scatter would have to be assembly-correlated (which is not observed).
+
+============================================================================================================
+RESULT: 9/9 PASS.
+============================================================================================================

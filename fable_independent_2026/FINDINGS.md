@@ -3624,3 +3624,24 @@ structure (L95).
   perturbers specifically; GD-1's perturber's baryonic origin is not currently excluded.
 - **VERDICT.** HIGH confidence on the structural chain (phantom vanishes with baryons ⇐ L95) and the ΛCDM
   slope contrast; medium on the count normalizations. Prediction P20.
+
+## L98 — NEW PHYSICS: zero intrinsic (halo-assembly) RAR scatter (the cuscuton is a deterministic law)
+
+`L98_zero_intrinsic_rar_scatter.py` + `.out` (**9 checks, 9 PASS**; 155 galaxies, 2786 pts, both footings).
+
+- **⭐ THE DERIVATION.** L95 ⇒ the MOND field is a cuscuton, Φ = F[ρ_b] solved uniquely on each slice from
+  the baryons — no free halo DOF. So the RAR is a single-valued **law**, not a correlation: identical
+  baryons give identical rotation curves (**demonstrated bit-for-bit: 0.0 dex**). Intrinsic halo-to-halo
+  scatter at fixed baryons is exactly zero.
+- **SPARC budget.** Controls reproduce the total scatter (0.145/0.142 dex) and L76's assembly null
+  (Spearman(c, residual)=+0.012). A forward Monte-Carlo (zero-intrinsic mock + real per-object errors)
+  gives an observational budget 0.136/0.135 dex (distance 0.088, inclination 0.076, M/L 0.052, velocity
+  0.043), leaving intrinsic ≈ **0.05/0.04 dex**, at/below the literature ~0.057–0.08 and **uncorrelated with
+  assembly**.
+- **ΛCDM contrast.** σ_log c = 0.11 dex through abundance-matched NFW injects a ~**0.074 dex**
+  concentration-**correlated** floor — vs the cuscuton's 0.000 dex and the observed +0.012 null.
+- **⚠️ HONEST.** The residual intrinsic is ~0.05 dex, not literally zero — the verified claim is "no
+  *halo-assembly* contribution" (carried by the null correlation), not "zero total residual." The proxy is
+  the mass-monotone c(M), so this rules out a *mass-trend*, not every hidden variable (a decisive test needs
+  independent per-galaxy concentration). **ΛCDM is not excluded** on magnitude alone (its ~0.07 dex can hide
+  in the observational budget) — the data *disfavour* it only on the correlation axis. Prediction P21.

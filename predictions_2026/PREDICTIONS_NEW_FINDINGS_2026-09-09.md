@@ -154,6 +154,14 @@ starless perturber at ~10⁷–10⁹ M☉ (where baryons should be visible) fals
 satellites DO perturb, with a boosted effective mass, so the test is specifically about *starless*
 perturbers. **Status: NEW — derived from the cuscuton structure.**
 
+**P21 — Zero intrinsic (halo-assembly) RAR scatter.** The cuscuton MOND field is a deterministic functional
+of the baryons (L95/L98), so the radial-acceleration relation is a law: identical baryons ⇒ identical
+rotation curve, no halo-to-halo scatter. *Test:* the RAR intrinsic scatter vs an independent per-galaxy halo
+proxy. *Discriminator:* ΛCDM injects ~0.07 dex concentration-*correlated* scatter; the cuscuton predicts
+0.000 dex and a null correlation (SPARC: +0.012). *Caveat:* current data disfavour ΛCDM on the *correlation*
+axis, not on scatter magnitude (degenerate with observational errors); needs independent per-galaxy
+concentrations to be decisive. **Status: NEW — derived from the cuscuton structure.**
+
 ---
 
 ## The single open item these predictions hinge on
