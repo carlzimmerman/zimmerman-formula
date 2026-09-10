@@ -4193,3 +4193,20 @@ new derivation route: the zero-mode theorem (a₀ enters only via W′, additive
 Worse, the health fix (decoupling MOND from the clock) *removes* the one structural a₀∝cH link (which lived
 on the ghost-sick "MOND-from-the-clock" branch) — **ghost-avoidance and a₀-derivation pull opposite ways.**
 Surviving distinctive prediction remains a₀∝H(z), not a derived coefficient.
+
+## Phase C (galaxy phenomenology) — PASS: elliptic AQUAL φ gives deep-MOND + mass-dependent BTFR + SPARC fit
+
+Fleet agent, banked. Solving the elliptic non-propagating field ∇·[μ(|∇φ|/a₀)∇φ]=4πGρ_b (exp kernel) both
+via the Gauss first integral and a finite-volume nonlinear solve:
+- **Deep-MOND:** g_obs→√(g_bar a₀) to <0.8%; v_c⁴/(GMa₀)→1 (+ the expected ½√s lift).
+- **Mass-dependent BTFR — the KGB failure is AVOIDED:** solving across M=10⁷–10¹² M_⊙ gives log v_flat vs
+  log M slope = **0.2503 (=¼), M∝v⁴**, robust — because the enclosed baryonic mass enters Gauss's law
+  *inside* the nonlinear μ, so each mass gets its own flat speed (exactly what KGB's fixed power lacked).
+- **SPARC RAR (real data, 155 galaxies, 2786 points, zero per-galaxy params):** **0.1613 dex (canonical) /
+  0.1507 dex (alt)** — reproduces L92's exp-kernel number.
+
+Honest caveats: the exp kernel is the *weakest* standard kernel (ν_RAR fits ~0.016 dex better; galaxies
+can't discriminate); only the **static/spherical** regime is tested (not time-dependent/non-spherical
+dynamics, lensing, PPN, clusters, cosmology); a₀ fitted. **Key structural point: galaxy rotation is a static
+problem, so φ's non-propagation costs nothing for the phenomenology** — the health branch keeps standard MOND
+galaxy phenomenology while threading its health gates. Phase C = PASS for the static galaxy phenomenology.
