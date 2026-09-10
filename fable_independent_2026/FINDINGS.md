@@ -4292,7 +4292,7 @@ cuscuton-clock realization is open) + a real Boltzmann third-peak run. **No clea
 free rescue of pure MOND — the viable target is now precisely defined.** Script `L123_cmb_pincer_tightness.py`
 (7/7). Mondlean.lean → 39 theorems.
 
-## parameter_space_bruteforce.py — the reduced space scanned in parallel; 98.6% eliminated, one corner survives
+## parameter_space_scan.py — the reduced space scanned in parallel; 98.6% eliminated, one corner survives
 
 A parallel (multiprocessing, all cores) brute-force screening of the 6-axis architecture space + dark-sector
 mass + a₀ coefficient against the gate battery (gates encode the distilled findings L87-L123). Result:
@@ -4311,4 +4311,4 @@ warm enough to free-stream out of galaxies and avoid the L61 double-count).
 sterile-ν survivor is "the candidate that passes every distilled constraint," pending the full CMB Boltzmann
 run, the O(w) α₁ solve, and a real sterile-ν structure-formation check (the down-select + PPN agents are doing
 the rigorous versions). This is a fast SCREENING tool (runnable/refinable on the M4 Max), not a proof.
-Script `parameter_space_bruteforce.py`; survivors in `parameter_space_survivors.json`.
+Script `parameter_space_scan.py`; survivors in `parameter_space_survivors.json`.
