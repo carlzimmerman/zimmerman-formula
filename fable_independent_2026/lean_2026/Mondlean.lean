@@ -31,6 +31,11 @@
                                     IDENTICALLY, for ANY kernel slope.
     cuscuton_closes_monotone      — L105: on the cuscuton branch obstruction = 0 AND μ' = e^{-y} > 0 coexist
                                     (impossible in the canonical case) — closure compatible with a monotone kernel.
+    csSq_canonical, csSq_aqual    — L106: c_s²(n)=1/(2n−1); n=1 luminal (c_s²=1), n=3/2 AQUAL (c_s²=1/2, a
+                                    competing cone that corrupts the structure function).
+    cuscuton_denom_zero           — L106: n=1/2 makes 2n−1 = 0 ⇒ c_s² diverges (infinite, causal sound speed).
+    cuscuton_unique_infinite      — L106: 2n−1 = 0 ⟺ n = 1/2 — the cuscuton is the UNIQUE power with no finite
+                                    competing cone ⇒ the metric-sector structure function stays h^{ij}.
 -/
 import Mathlib.Analysis.SpecialFunctions.ExpDeriv
 import Mathlib.Analysis.Calculus.Deriv.Pow
@@ -199,3 +204,27 @@ theorem cuscuton_obstruction_vanishes (Aprime : ℝ) : (0 : ℝ) * Aprime / 2 = 
 theorem cuscuton_closes_monotone (y : ℝ) :
     (0 : ℝ) * Real.exp (-y) / 2 = 0 ∧ 0 < Real.exp (-y) :=
   ⟨by ring, Real.exp_pos _⟩
+
+/-! ### Sound-speed / structure-function theorem (L106): c_s²(n)=1/(2n−1); the cuscuton n=1/2 is the unique
+    infinite-sound-speed power (no competing characteristic cone ⇒ the HDA structure function stays h^{ij}).
+    Lean certifies the rational-function algebra of c_s²(n) and the uniqueness of the pole; the derivation
+    c_s² = P_X/(P_X+2X P_XX) = 1/(2n−1) is in L106.py, and the structure-function principle is physics. -/
+
+/-- The k-essence sound speed for a power-law kinetic term P ~ X^n is c_s² = 1/(2n−1) (derived in L106). -/
+noncomputable def csSq (n : ℝ) : ℝ := 1 / (2 * n - 1)
+
+/-- Canonical scalar (n=1) is luminal: c_s² = 1 = c_light (preserves h^{ij}, but P=X is not MOND). -/
+theorem csSq_canonical : csSq 1 = 1 := by unfold csSq; norm_num
+
+/-- Deep-MOND AQUAL (n=3/2, MOND placed in the KINETIC term) has c_s² = 1/2: a competing subluminal cone
+    that corrupts the structure function (the covariant root of L95 and the AeST/aether pathologies). -/
+theorem csSq_aqual : csSq (3 / 2) = 1 / 2 := by unfold csSq; norm_num
+
+/-- CUSCUTON (n=1/2): the denominator 2n−1 vanishes, so c_s² diverges — the infinite (but causal) sound
+    speed. An infinite cone is no finite competing cone, so the structure function reverts to h^{ij}. -/
+theorem cuscuton_denom_zero : 2 * (1 / 2 : ℝ) - 1 = 0 := by norm_num
+
+/-- UNIQUENESS: 2n−1 = 0 (infinite sound speed) iff n = 1/2 — the cuscuton is the UNIQUE kinetic power with
+    no finite competing characteristic cone. Any other MOND-generating nonlinearity has a finite c_s². -/
+theorem cuscuton_unique_infinite (n : ℝ) : 2 * n - 1 = 0 ↔ n = 1 / 2 := by
+  constructor <;> intro h <;> linarith

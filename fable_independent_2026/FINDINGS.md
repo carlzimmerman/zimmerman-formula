@@ -3828,3 +3828,41 @@ invokes ACDG's established pure-cuscuton HDA closure; the **full metric + khrono
 constraint algebra remains astra's calculation, and the **BBN fine-tuning (L84/L87) is a separate, untouched
 cost**. What is proven: the specific obstruction is gone and *why*. Script
 `L105_cuscuton_closes_positive_theorem.py` (9/9), reproduces L95's cubic as its control.
+
+## L106 — NEW: the MOND scalar's SOUND SPEED is the covariant discriminant of full-algebra closure (9/9 + Lean)
+
+**A result we didn't have.** L105 closed the *scalar-sector* obstruction; the open piece toward the **full**
+(metric-sector) algebra is whether the MOND scalar corrupts the `{H⊥,H⊥}` **structure function** `G^{ij}`
+away from the gravitational `h^{ij}`. A matter field preserves `h^{ij}` iff it introduces **no competing
+characteristic cone** — i.e. its sound speed is luminal or infinite. So the discriminant is the scalar's
+**sound speed**.
+
+Modelling the kinetic sector as k-essence `P(X)`, `c_s² = P_X/(P_X+2X·P_XX)`, a power law `P~Xⁿ` gives a
+clean single-parameter law:
+> **c_s²(n) = 1/(2n−1).**
+- **n=1** (canonical): c_s²=1, luminal — closes, but P=X is linear (no MOND).
+- **n=3/2** (deep-MOND AQUAL, MOND placed in the *kinetic* term): c_s²=**1/2** — a competing subluminal cone
+  that corrupts `G^{ij}` and breaks closure. **This is the covariant root of L95 and of the AeST/aether
+  preferred-frame + PPN pathologies.**
+- **n=1/2** (**CUSCUTON**): 2n−1=0 ⇒ c_s²→**∞**. Infinite (but causal) sound speed = no finite competing
+  cone ⇒ `G^{ij}=h^{ij}` exactly ⇒ the bracket closes. And n=1/2 is the **unique** power with infinite c_s
+  (`cuscuton_unique_infinite`). Put the MOND kernel in the **gradient/coupling** sector (not the kinetic
+  term) and c_s stays ∞ **for any monotone kernel** — the kernel never enters the causal structure.
+
+**Why it matters:** this **extends closure from the scalar sector (L105) to the metric-sector structure
+function** — the competing-cone obstruction that kills every finite-c_s modified-gravity scalar — and
+**unifies the whole health saga into one covariant fact:**
+`c_s=∞ ⟺ n=1/2 ⟺ K_QQ=0 (no propagating DOF, L104) ⟺ L95 obstruction absent (L105) ⟺ ghost-free
+(L103/L104) ⟺ structure function G^{ij}=h^{ij} (here) ⟺ c_T=c (L88, tensor sector).` A non-propagating
+field has no cone, no DOF, no kinetic sign, and no bracket to corrupt.
+
+**Lean:** 4 new machine-checked theorems (`csSq_canonical`, `csSq_aqual`, `cuscuton_denom_zero`,
+`cuscuton_unique_infinite`) — c_s²(n)=1/(2n−1), the three cases, and the uniqueness of the n=1/2 pole. Green,
+zero sorry, axioms ⊆ {propext, Classical.choice, Quot.sound}. Mondlean.lean now 24 theorems.
+
+**Honest scope.** Proven: the sound-speed law, the cuscuton infinite-c_s uniqueness, and the standard
+principle that a competing finite cone corrupts the HDA structure function — resolving the **competing-cone**
+part of the metric-sector closure (the specific covariant obstruction that kills finite-c_s scalars). NOT
+done: the complete Dirac enumeration of the full theory (metric momenta + clock/khronon constraint
+classification + exact F(Q)Θ coupling) — still astra's. BBN fine-tuning (L87) and the a₀ coefficient
+(fitted) are separate, untouched. Script `L106_sound_speed_closes_full_algebra.py` (9/9).

@@ -32,6 +32,9 @@ F(Q)Θ construction). It formalizes the mathematics, not the physics.
 - `obstruction_coeff` — the constraint-bracket obstruction coefficient is (1/2)·A·A' in the p²-kinetic coefficient A.
 - `cuscuton_obstruction_vanishes` — **L105 (sufficiency):** a cuscuton has A ≡ 0, so the obstruction (1/2)A A' vanishes **identically**, for any kernel slope.
 - `cuscuton_closes_monotone` — **L105:** on the cuscuton branch the obstruction is 0 **and** the kernel stays strictly monotone (μ'=e^{-y}>0) — the two coexist, impossible in the canonical case (`closure_needs_flat_kernel`). This is the positive companion to `cuscuton_forced`: the cuscuton scalar sector escapes the L95 obstruction.
+- `csSq_canonical`, `csSq_aqual` — **L106:** the k-essence sound speed of a power-law kinetic term is c_s²(n)=1/(2n−1); n=1 (canonical) is luminal (c_s²=1), n=3/2 (deep-MOND AQUAL, MOND in the kinetic term) gives c_s²=1/2 — a competing subluminal cone that corrupts the {H⊥,H⊥} structure function (the covariant root of L95 and the AeST/aether pathologies).
+- `cuscuton_denom_zero` — **L106:** n=1/2 makes the denominator 2n−1 vanish, so c_s² diverges — the infinite-but-causal cuscuton sound speed (no finite competing cone).
+- `cuscuton_unique_infinite` — **L106:** 2n−1=0 ⟺ n=1/2, so the cuscuton is the **unique** kinetic power with infinite sound speed; the MOND kernel, sitting in the gradient sector, never enters the causal structure ⇒ the metric-sector structure function stays h^{ij}. This extends the closure result from the scalar sector (L105) to the metric-sector structure function.
 
 ## Build
 
@@ -40,7 +43,7 @@ lake exe cache get      # download prebuilt mathlib oleans
 lake build Mondlean
 ```
 
-## Status (2026-09-09) — GREEN, MACHINE-VERIFIED (20 theorems)
+## Status (2026-09-09) — GREEN, MACHINE-VERIFIED (24 theorems)
 
 `lake build Mondlean` compiles **clean (exit 0), zero `sorry`/`admit`**, and `#print axioms` shows every
 theorem (`kernel_identity`, `Gpp_pos`, `Gpp_zero`, `cubic_leading`, `affine_degeneracy`, `sound_speed_zero`)
