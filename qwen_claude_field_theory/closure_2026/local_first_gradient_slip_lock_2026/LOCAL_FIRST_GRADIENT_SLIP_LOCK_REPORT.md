@@ -32,6 +32,12 @@ cuscuton and acceleration-khronon failures and identifies the remaining escape
 space: a genuinely nonlocal metric operator or a higher-rank compensator whose
 full covariant constraint algebra must still be constructed.
 
+The Lean theorem `anisotropic_no_slip_contradiction` closes the final local
+component: if the traceless field equation contains
+`C*(p1^2-p2^2)=0` on a patch with `p1^2 != p2^2`, equal MOND fluxes imply a
+contradiction for every `y>0`.  This is derived from the field-equation
+component, not from an assumed PPN parameter.
+
 This is not a universal no-go for all relativistic MOND theories: the theorem
 does not cover nonlocal kernels, independent tensor auxiliaries, or multiple
 physical metrics.

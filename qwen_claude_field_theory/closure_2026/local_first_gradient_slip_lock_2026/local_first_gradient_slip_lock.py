@@ -60,6 +60,7 @@ def main() -> int:
     y = sp.symbols("y", positive=True)
     mu_exp = 1 - sp.exp(-y)
     tf_exp = sp.simplify(C_on_equal_flux.subs(mu, mu_exp))
+    anisotropic_component = sp.simplify(tf_exp * (sp.Integer(1) ** 2 - sp.Integer(0) ** 2))
     ys = np.geomspace(1e-10, 1e3, 240)
     mu_values = 1.0 - np.exp(-ys)
 
@@ -84,6 +85,7 @@ def main() -> int:
         check("the exact exponential TF lock is C=1-exp(-y)", sp.simplify(tf_exp - mu_exp) == 0),
         check("the exponential common flux is positive for y>0", bool(np.all(mu_values > 0.0))),
         check("a nonzero MOND flux therefore cannot have zero TF stress", tf_exp.subs(y, sp.Rational(1, 2)) != 0),
+        check("an anisotropic gradient component remains nonzero", anisotropic_component.subs(y, sp.Rational(1, 2)) != 0),
     ]
     print("\n[VERDICT]")
     print("  Within any local rotationally invariant first-gradient carrier,")
@@ -101,6 +103,7 @@ def main() -> int:
         "C_on_equal_flux": str(C_on_equal_flux),
         "exponential_TF_lock": str(tf_exp),
         "scope": "rotationally invariant local first-gradient static carriers; not universal",
+        "anisotropic_component_p1_1_p2_0": str(anisotropic_component),
     }
     print("RESULT_JSON=" + json.dumps(result, sort_keys=True))
     return 0 if all(checks) else 1
