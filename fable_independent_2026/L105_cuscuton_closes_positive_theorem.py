@@ -7,8 +7,8 @@ deformation algebra -- the smeared bracket integrand is (df/dp)(df/ds) with f = 
 W'(s)=mu(s)s, giving a p^3 obstruction (1/2)A A' and a p^1 generator A mu s; matching the momentum
 generator forces A=1/mu, whence A'=-mu'/mu^2 != 0 for any monotone kernel, so the obstruction cannot cancel.
 
-THIS LANE proves the POSITIVE companion -- the breakthrough Carl asked for -- and identifies the exact
-mechanism of escape:
+THIS LANE proves the POSITIVE companion -- the breakthrough the health saga was missing -- and identifies
+the exact mechanism of escape:
 
   THE ROOT of the L95 obstruction is that closure TIES the kinetic coefficient to the kernel: A = 1/mu.
   That identification is what makes A carry mu's slope (A' = -mu'/mu^2 != 0). The obstruction is therefore
