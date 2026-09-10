@@ -4041,3 +4041,37 @@ specifically the +½√s law**.
 **Honest scope:** c₁ is the clean *point-mass* leading coefficient; the per-galaxy RAR test needs the full
 baryonic profile (L92's SPARC comparison smears the point-mass law). Script
 `L114_btfr_lift_kernel_discriminator.py` (5/5).
+
+## L115 — HONEST CORRECTION: astra's CAM physical-action audit; L111/L112/L113 over-claims retracted (6/6)
+
+astra (commit 5943d5325, `AUDIT_HANDOFF.md`) ran a full physical-action audit of CAM and found real
+obstructions — **and correctly flagged my L111/L112/L113 as over-reaches.** astra is right on every point;
+this lane verifies each independently and **retracts** the over-claims.
+
+**astra's verified obstructions (minimal sign-corrected CAM):**
+- **Nonelliptic lapse:** with F=2M²a₀²[1−(1+y)e^{−y}], the lapse principal symbol ∝ exp(−y)[k_⊥²+(1−y)k_∥²]
+  — elliptic for y<1, degenerate at y=1, **nonelliptic for y>1** (verified: (1−y)<0; characteristic covector
+  (1,√(y−1)) exists). The minimal Einstein-clock CAM can't have a uniformly elliptic lapse across all
+  accelerations.
+- **Retained scalar pair:** the full ADM keeps a metric-scalar canonical pair (ζ,p) with a nonzero cubic
+  Hamiltonian — **not** a clean 0-DOF sector; health undetermined.
+- Historical CAM (the +Q sign) is **DEAD** (wrong attractive-gravity sign); the repaired action is in the
+  known **Blanchet–Marsat khronometric class** — no new architecture, no κ=½ derived.
+
+**Retractions (verified independently here):**
+- **L111** "full linearized DOF=2=GR" — my toy (u,ℓ,φ) omitted the retained metric-scalar pair ⇒ does **not**
+  certify full DOF. Corrected: the (u,ℓ,φ) sub-sector is 0-DOF; the full CAM scalar DOF is undetermined.
+- **L112** α₁ "linear clock" suppression — **wrong**: `n_μ~∇τ/√X` is degree-0 (nonlinear), so `a_μ=n·∇n` and
+  F(a) are nonlinear in the clock (verified). γ=1 still follows from static no-slip, but α₁ is not shown
+  suppressed.
+- **L113** β=1 — **not derived**: β multiplies Φ², invisible at Newtonian order (verified); and the
+  nonelliptic lapse (y>1) undercuts "CAM→GR in the Solar System."
+
+**What still stands:** L106 (sound-speed principle, general), L108/L109 **static** no-slip + exp-MOND flux
+law (astra's obstructions are in the lapse/scalar canonical sector, not the static flux; note astra's sign
+fix: source is −ρΦ, η=1, σ=−1), L110 (BBN/background), L114 (kinematic kernel fingerprint).
+
+**Corrected CAM status:** historical CAM DEAD; minimal sign-corrected CAM **OPEN with two real obstructions**
+(nonelliptic lapse + retained scalar pair) — **not a complete theory**; astra now exploring KGB /
+curvature-clock extensions to remove them. Lean docstrings + README corrected accordingly. Script
+`L115_correction_astra_cam_audit.py` (6/6, a correction lane).

@@ -255,8 +255,11 @@ theorem canonical_scalar_dof : diracDOF 2 0 0 = 1 := by decide
     the momentum is constrained, not evolved — the machine-checked DOF face of L104/L105/L106. -/
 theorem cuscuton_scalar_dof : diracDOF 2 0 2 = 0 := by decide
 
-/-- astra's CAM auxiliary sector at finite k: phase dim 6 (fields u, ℓ, Φ), 0 first-class, 6 second-class
-    ⇒ (6 − 0 − 6)/2 = 0 physical DOF — no propagating MOND scalar (the scalar-sector closure count). -/
+/-- The CAM AUXILIARY sub-sector (fields u, ℓ, Φ) at finite k: phase dim 6, 0 first-class, 6 second-class
+    ⇒ (6 − 0 − 6)/2 = 0 physical DOF. SCOPE (corrected per astra's physical audit, commit 5943d5325, and
+    L115): this counts ONLY the (u,ℓ,Φ) auxiliary toy sector; the FULL ADM additionally RETAINS a metric-
+    scalar canonical pair (ζ, p) with a nonzero cubic Hamiltonian, so this does NOT certify the full CAM
+    scalar DOF. It remains a correct count for the stated sub-sector. -/
 theorem cam_auxiliary_zero_dof : diracDOF 6 0 6 = 0 := by decide
 
 /-- General: a fully second-class-constrained sector (S = P, no first-class) has ZERO physical DOF — the
@@ -264,7 +267,9 @@ theorem cam_auxiliary_zero_dof : diracDOF 6 0 6 = 0 := by decide
 theorem fully_constrained_zero_dof (P : ℤ) : diracDOF P 0 P = 0 := by
   unfold diracDOF; simp
 
-/-- L111: the FULL linearized DOF count of the CAM sector = graviton (2) + CAM scalar (diracDOF 6 0 6 = 0)
-    = 2, exactly General Relativity — CAM propagates only the two graviton polarizations, no extra mode and
-    no ghost. (The independent finite-k Dirac reconstruction is in L111; Lean certifies the DOF arithmetic.) -/
+/-- Arithmetic identity 2 + diracDOF 6 0 6 = 2. SCOPE (corrected per astra 5943d5325 + L115): this was
+    ORIGINALLY read as "CAM full linearized DOF = 2 = GR", but that interpretation is RETRACTED — it omitted
+    the retained metric-scalar pair (ζ, p) that the full ADM keeps (with a nonzero cubic Hamiltonian, health
+    undetermined). Lean certifies only the arithmetic (2 + 0 = 2); it does NOT certify that CAM's full
+    linearized DOF equals GR's. Kept as an honest arithmetic fact, not a closure certificate. -/
 theorem cam_total_linear_dof : (2 : ℤ) + diracDOF 6 0 6 = 2 := by decide
