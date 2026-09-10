@@ -1,0 +1,86 @@
+
+================================================================================================================
+A1 -- the quadratic 'Higgs phase' background: Lambda + a^-3 DUST + a^-6 STIFF (SZ21 eq 3,4 + background)
+================================================================================================================
+  8 pi Gt rhobar = I_0**2/(4*K_2*a**6) + I_0*Q_0/a**3 + 2*Lambda
+  8 pi Gt Pbar   = I_0**2/(4*K_2*a**6) - 2*Lambda
+  [PASS] A1-1  rho carries a constant (CC) piece 2*Lambda   (coeff a^0 = 2*Lambda)
+  [PASS] A1-2  rho carries an a^-3 DUST piece with coefficient Q_0*I_0 (= SZ21's 8 pi Gt rhobar_0)   (coeff a^-3 = I_0*Q_0)
+  [PASS] A1-3  rho carries an a^-6 STIFF piece with coefficient I_0^2/(4 K_2), NONZERO for any finite K_2   (coeff a^-6 = I_0**2/(4*K_2))
+  [PASS] A1-4  the pressure is PURE stiff (plus -2Lambda): Pbar = -2Lambda + (I_0^2/4K_2) a^-6  [SZ21: P = w_0 rho_0/a^6]   (P = I_0**2/(4*K_2*a**6) - 2*Lambda)
+  [PASS] A1-5  DUST is LINEAR in the charge I_0, STIFF is QUADRATIC in I_0 -- one perfect square, exactly the repo's L84/L87 structure (dust ~ A*C, stiff ~ C^2), here in the PUBLISHED theory
+
+================================================================================================================
+A2 -- SZ21's published w_0 formula re-derived from A1 (independent cross-check of the algebra)
+================================================================================================================
+  [PASS] A2-1  our w_0 = P_stiff(1)/rho_dust(1) equals SZ21's published w_0 = 8 pi Gt rho_0/(4 Q_0^2 K_2)   (w_0 = I_0/(4*K_2*Q_0))
+  [PASS] A2-2  c_ad^2 = (dK/dQ)/(Q d^2K/dQ^2) reduces to SZ21's quoted 2 w_0/a^3 in the LATE-time limit   (lim_(a->inf) a^3 c_ad^2 = I_0/(2*K_2*Q_0) = 2 w_0)
+  [PASS] A2-3  and it SATURATES at c_ad^2 -> 1 in the early universe (the stiff regime travels at the speed of light): the a^-3 growth of c_ad^2 is a late-time expansion, it does not diverge   (lim_(a->0) c_ad^2 = 1)
+
+================================================================================================================
+A3 -- the repo's L84 ratio IS SZ21's w_0 (the same physical object, found independently)
+================================================================================================================
+  [PASS] A3-1  L84's own structure reproduces its stated ratio Omega_stiff/Omega_dust = C/(2A)   (stiff/dust = C/(2*A))
+  [PASS] A3-2  in AeST the same ratio is I_0/(4 K_2 Q_0) = w_0 -- so SZ21's 'equation of state today' and the repo's 'BBN fine-tuning ratio' are ONE number. The published theory carries the repo's cost.   (AeST stiff/dust = I_0/(4*K_2*Q_0))
+
+================================================================================================================
+A4 -- SZ21's OWN internal pincer on the quadratic model, reproduced numerically
+================================================================================================================
+  K_B=0.10:  galaxies (mu^-1 >= 1 Mpc) force w_0 >= 1.291e-08
+  K_B=1.00:  galaxies (mu^-1 >= 1 Mpc) force w_0 >= 2.453e-08
+  K_B=1.90:  galaxies (mu^-1 >= 1 Mpc) force w_0 >= 2.453e-07
+  [PASS] A4-1  the galaxy floor on w_0 reproduces SZ21's quoted '>~ 1e-8'   (w_0 >= 2.45e-08 (SZ21 say >~1e-8))
+  [PASS] A4-2  the matter-era ceiling on w_0 reproduces SZ21's quoted '<~ 2e-14'   (w_0 <= 2.00e-14 (SZ21 say <~2e-14))
+  [PASS] A4-3  THE PUBLISHED THEORY'S QUADRATIC TRUNCATION IS INTERNALLY INCONSISTENT by ~6 orders of magnitude -- SZ21 state this themselves ('the Higgs phase cannot be extended too long in the past, and higher terms in (4) must be taken into consideration')   (floor/ceiling = 1.23e+06 (~6.1 dex conflict))
+
+================================================================================================================
+A5 -- the BBN form of the same bound (the repo's L84 number) applied to AeST
+================================================================================================================
+  [PASS] A5-1  BBN (L84's Omega_stiff,0 <~ 4e-25) translates into w_0 <~ 1.5e-24 for AeST's quadratic model -- i.e. the SAME ~24-order tuning the repo found, now expressed in the published theory's variable   (w_0 <= 1.54e-24)
+  [PASS] A5-2  and the galaxy floor exceeds it by ~16 orders => the QUADRATIC AeST is BBN-dead, not merely tuned   (floor/BBN-ceiling = 1.6e+16)
+
+================================================================================================================
+A6 -- THE ESCAPE SZ21 THEMSELVES USE: 'Cosh' and 'Exp' K(Q). Does the a^-6 stiff tail survive?
+================================================================================================================
+  parameters: Q_0=1.0, K_2=1.0, I_0=1.0;  Z_0 = 1e-3 Q_0 for cosh/exp
+  quad : dln(rho)/dln(a) at a=1e-10 ->  -6.000 ;  at a=1e-4 ->  -6.000 ;  w(a=1e-4) = 1.000e+00
+  cosh : dln(rho)/dln(a) at a=1e-10 ->  -3.003 ;  at a=1e-4 ->  -3.003 ;  w(a=1e-4) = 9.675e-04
+  exp  : dln(rho)/dln(a) at a=1e-10 ->  -3.000 ;  at a=1e-4 ->  -3.000 ;  w(a=1e-4) = 8.860e-05
+  [PASS] A6-1  QUADRATIC K: the early-time density slope is -6 (STIFF dominates) -- the repo's L87 behaviour   (dln rho/dln a = -6.0000)
+  [PASS] A6-2  COSH K (SZ21's own choice): the early-time slope is -3, NOT -6 -- an a^-3 DUST with NO a^-6 stiff partner, from a shift-symmetric k-essence   (dln rho/dln a = -3.0028)
+  [PASS] A6-3  EXP K (SZ21's other choice): same -- slope -3, no stiff tail   (dln rho/dln a = -3.0002)
+  [PASS] A6-4  and the cosh model's equation of state at a=1e-4 satisfies the Kopp/Ilic bound w <~ 0.02 with Z_0/Q_0 = 1e-3 -- a MILD parameter choice, not a 24-order tuning   (w(1e-4) = 9.67e-04 <= 0.02)
+  [PASS] A6-5  the cosh model passes the BBN era too (w stays ~ Z_0/Q_0, log-suppressed, never a^-3-divergent)   (w(a_BBN=2.3e-10) = 9.32e-04)
+  [PASS] A6-6  ==> THE REPO'S L87/L123 CLAIM ('no stiff-free dust exists'; "'no stiff' <=> 'no dust' for a scalar") IS REFUTED AS A GENERAL STATEMENT about shift-symmetric k-essence. It survives only under the extra hypothesis K exactly quadratic (which the repo's OWN health degeneracy imposes, but which AeST does not obey).
+
+================================================================================================================
+A7 -- WHY: rho(n) = int Q dn. Stiff <=> Q LINEAR in the charge; log-growing Q gives dust with log
+================================================================================================================
+  [PASS] A7-1  quadratic K: Q is LINEAR in n => rho ~ Q_0 n + n^2/(4K_2): the n^2 piece is the a^-6 stiff term   (rho(n) = Q_0*n + n**2/(4*K_2))
+  [PASS] A7-2  cosh/exp K: Q grows only LOGARITHMICALLY in n => rho ~ n log n ~ a^-3 log(1/a): still dust (slope -3 up to a log), NO n^2 stiff term. The genericity argument needs 'Q linear in n', not merely 'd^2 rho/dn^2 != 0'.   (rho/(n log n) -> Z_0)
+  [PASS] A7-3  the honest general statement: a shift-symmetric k-essence has an a^-6 stiff partner IFF dK/dQ is asymptotically LINEAR (K quadratic at large |Q-Q_0|). Any K whose derivative grows faster than linearly (cosh, exp, DBI-like) has Q(n) sublinear and gives stiff-free dust.
+
+================================================================================================================
+VERDICT (A)
+================================================================================================================
+
+  1. AeST's CMB success is NOT a counterexample to 'the third peak needs a clustering a^-3 gravitating
+     density'. It is a CONSTRUCTION OF EXACTLY THAT: SZ21 name the a^-3 law as a phenomenological
+     REQUIREMENT, pick shift-symmetric k-essence BECAUSE Scherrer 2004 shows it yields rho ~ a^-3, and state
+     that the CMB fit works "because c_ad^2 and w are small enough so that Pi -> 0 and we get dustlike
+     evolution as deltadot = 3 Phidot - (k^2/a^2) theta and thetadot = Psi" -- which are LITERALLY the CDM
+     perturbation equations. The dust is supplied by a FIELD instead of a PARTICLE; the premise is untouched.
+
+  2. The a^-6 stiff partner that the repo found (L84/L87) is present in AeST's quadratic model, and SZ21
+     independently hit the SAME cost: their galaxy requirement (mu^-1 >~ 1 Mpc) forces w_0 >~ 1e-8 while the
+     matter era forces w_0 <~ 2e-14 -- a ~6-order internal conflict they flag in the paper.
+
+  3. BUT AeST ESCAPES IT, and the escape refutes the repo's L87/L123 generalisation: with SZ21's own Cosh or
+     Exp K(Q), dln(rho)/dln(a) stays at -3 into the BBN era with a MILD parameter (Z_0/Q_0 ~ 1e-3). A
+     shift-symmetric k-essence CAN carry stiff-free dust. The repo's 'no stiff-free dust' is true only under
+     the extra hypothesis 'K exactly quadratic' -- which the repo's own velocity-Hessian health degeneracy
+     imposes on ITS family, and which AeST simply does not obey.
+
+================================================================================================================
+A COMPLETE: 24/24 checks PASS.   [0.9s]
+================================================================================================================

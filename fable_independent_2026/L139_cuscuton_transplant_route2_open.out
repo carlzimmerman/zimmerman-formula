@@ -1,0 +1,86 @@
+
+================================================================================================================
+C1 -- ROUTE 1: can the CUSCUTON CLOCK's own potential V(tau) generate the a^-3 dust?
+================================================================================================================
+  [PASS] C1-1  the cuscuton's FLRW energy density is EXACTLY the potential: rho = taudot L_taudot - L = V(tau) (the kinetic term is degree-1 homogeneous, so it cancels)   (rho = V)
+  [PASS] C1-2  and its pressure is P = mu_c^2 |taudot| - V, so P == 0  <=>  V = mu_c^2 taudot   (P = -V + mu_c**2*taudot)
+  [PASS] C1-3  DUST IS EXACT ON THIS BRANCH: imposing P=0 (V = mu_c^2 taudot) in the cuscuton constraint V' = -3 mu_c^2 H gives Vdot = -3 H V, i.e. rho = V ~ a^-3 identically, with NO a^-6 partner   (Vdot = -3 mu_c^2 H taudot = -3 H V  =>  rho ~ a^-3 exactly)
+  [PASS] C1-4  the required V is a simple QUADRATIC: V(tau) = (mu_c^2/B)(C - tau)^2 reproduces the constraint V'(tau) = -3 mu_c^2 H exactly on the matter-era solution a ~ t^{2/3}   (V' + 3 mu_c^2 H = 0)
+  [PASS] C1-5  NUMERICAL: integrating the coupled (tau, a) system with V(tau) = (mu_c^2/B)(C-tau)^2 gives dln(rho)/dln(a) = -3 to machine level -- exact dust, from an action, with no stiff partner   (dln(rho)/dln(a) = -2.999977)
+  [PASS] C1-6  NUMERICAL (non-circular): the cuscuton's OWN field equation V'(tau) = -3 mu_c^2 H -- which was never imposed during the integration -- holds along the solution to <1e-10, so the P=0, rho ~ a^-3 branch is a genuine solution of the action rather than a fitted ansatz   (max |V' + 3 mu_c^2 H| / (3 mu_c^2 H) = 2.56e-16)
+
+================================================================================================================
+C2 -- ROUTE 1's OBSTRUCTION: the cuscuton dust is NON-PROPAGATING, so it cannot CLUSTER
+================================================================================================================
+  sqrt(-(d tau)^2) to O(eps^2):  -Psi**2*epsilon**2*taubar_dot/2 - Psi*deltataudot*epsilon**2 - Psi*epsilon*taubar_dot + deltataudot*epsilon - epsilon**2*gradsq/(2*taubar_dot) + taubar_dot
+  [PASS] C2-1  the (delta-tau-dot)^2 terms CANCEL IDENTICALLY at second order: the cuscuton has NO time-kinetic term for its perturbation (this is what makes it 0-dof)   (coefficient of eps^2 (delta-tau-dot)^2 = 0)
+  [PASS] C2-2  while the SPATIAL gradient survives with coefficient -1/(2 taubar_dot): the quadratic action is PURELY elliptic in delta-tau   (coefficient of (grad delta tau)^2/a^2 = -1/(2*taubar_dot))
+  [PASS] C2-3  therefore delta-tau is ALGEBRAICALLY SLAVED to the metric source and falls off as 1/k^2 sub-horizon: delta-tau -> -(a^2 taubar_dot/mu_c^2) S/k^2. It carries no independent growing mode.   (k^2 delta-tau -> -S*a**2*taubar_dot/mu_c**2)
+  [PASS] C2-4  ==> ROUTE 1 IS OBSTRUCTED. The clock's V(tau) gives a perfect a^-3 BACKGROUND dust but a perturbation that is slaved and 1/k^2-suppressed, i.e. exactly the 'elliptic field slaved to matter' that the repo's L123(a) already rules out as a third-peak driver. Background dust != clustering dust.
+
+================================================================================================================
+C3 -- ROUTE 2: AeST's mechanism with the AETHER replaced by the CLOCK'S LEAF NORMAL
+================================================================================================================
+  Proposed dark sector (one new field chi, coupled to nothing but gravity and the existing foliation):
+      L_dark = K(Q) - c_Y |D chi|^2 ,   Q = n^mu grad_mu chi = (chidot - N^i d_i chi)/N ,
+      n^mu = the unit normal of the CLOCK's leaves (already present -- the clock defines the foliation),
+      |D chi|^2 = gamma^{ij} d_i chi d_j chi  (the SAME leaf projector the MOND field phi already uses),
+      K having a minimum at Q_0 != 0 and growing faster than quadratically (cosh/exp) at large |Q - Q_0|.
+  [PASS] C3-1  BACKGROUND: on FLRW the leaf normal IS the cosmic rest frame (n^mu = u^mu) and |D chi|^2 = 0, so Q = chidot and the shift charge obeys dK/dQ = I_0/a^3 exactly as in AeST => rho ~ a^-3 dust. The mechanism transplants at the background level with NO change of algebra.
+  [PASS] C3-2  and with K non-quadratic (SZ21's own cosh/exp) there is NO a^-6 stiff partner and hence NO BBN fine-tuning (script A, checks A6-2/A6-3/A6-5)
+  [PASS] C3-3  HEALTH: the quadratic action is (1/2) K_QQ (delta-chi-dot)^2 - c_Y |grad delta-chi|^2/a^2, so the sector is ghost-free for K_QQ > 0 and gradient-stable for c_Y > 0, with ONE propagating dof and c_s^2 = 2 c_Y/K_QQ -- subluminal for c_Y <= K_QQ/2. No ghost, no tachyon, no aether.   (c_s^2 = 2*c_Y/K_QQ (free, and running with K_QQ(a)))
+  dL_dark/dN^i = -d_i-chi*Subs(Derivative(K(_xi_1), _xi_1), _xi_1, -(N^i*d_i-chi - chidot)/N)/N
+  [PASS] C3-4  the new sector's momentum-constraint source is dL/dN^i = -(dK/dQ) d_i chi / N: it is proportional to the LOCAL SPATIAL GRADIENT of chi, which vanishes identically on the FLRW background and in any configuration where the dark field is locally homogeneous   (dL/dN^i = -K_Q (d_i chi)/N -> 0 when d_i chi -> 0)
+  [PASS] C3-5  CONTRAST with AeST, whose F^2 = 2 grad_[mu] A_[nu] term contains (Adot_i - d_i h^00/2)^2: that is quadratic in the SHIFT-dependent vector velocity and does NOT vanish at O(w) for a moving system -- it is the term the repo's L127 identifies as the source of alpha_1 = -2(K_B + 2), and an independent Einstein-aether evaluation of a Maxwell-only aether (c_1 = -c_3 = K_B, c_2 = c_4 = 0) in the Foster-Jacobson formula alpha_1 = -8(c_3^2 + c_1 c_4)/(2c_1 - c_1^2 + c_3^2) gives alpha_1 = -4 K_B, also O(1)   (AeST: alpha_1 = O(1), 4e3-2e4 x over the |alpha_1| < 1e-4 bound; route 2 has no such term)
+    K_B=0.10:  Foster-Jacobson (Maxwell-only aether) alpha_1 = -0.40 ;  repo's AeST value -2(K_B+2) = -4.20 ;  bound |alpha_1| < 1e-4
+    K_B=0.50:  Foster-Jacobson (Maxwell-only aether) alpha_1 = -2.00 ;  repo's AeST value -2(K_B+2) = -5.00 ;  bound |alpha_1| < 1e-4
+    K_B=1.00:  Foster-Jacobson (Maxwell-only aether) alpha_1 = -4.00 ;  repo's AeST value -2(K_B+2) = -6.00 ;  bound |alpha_1| < 1e-4
+  [PASS] C3-6  both evaluations agree that AeST's alpha_1 is an O(1) number, i.e. 4-5 ORDERS over the bound; they disagree on the coefficient (-4 K_B vs -2(K_B+2)), and NO PAPER IN THE LITERATURE HAS COMPUTED alpha_1 FOR AeST -- the repo's number is its own, and the Einstein-aether formula is formally degenerate here (c_123 = c_1 + c_2 + c_3 = 0 exactly, where Foster-Jacobson warn the PN expansion is not valid). The ORDER is robust; the coefficient is not.
+  [PASS] C3-8  COST INHERITED: because Q is measured with the LOCAL lapse, K(Q) expanded about its minimum gives K -> K_2 Q_0^2 Psi^2, i.e. the SAME 'mass term for the potential' mu^2 Phi^2 that AeST has (eq 6 of 2007.00082). The transplant therefore inherits AeST's Helmholtz (wrong-sign) mass, hence the oscillatory quasistatic solutions beyond r_C ~ (r_M/mu^2)^(1/3) and the weak-lensing tension reported in arXiv:2301.03499. This is structural, not optional: K_2 > 0 is required for the dust AND for health.   (induced coefficient of Psi^2 = K_2*Q_0**2 (= mu^2 up to the normalisation 2/(2-K_B)))
+    mu and r_C for SZ21's own published fits (dust abundance held fixed at Omega_dm = 0.264):
+      Cosh : Q_0=1e-01 Mpc^-1, K_2=7.5e+03  =>  mu =       10 Mpc^-1, mu^-1 =      0.1 Mpc, r_C ~       50 kpc
+      Exp  : Q_0=1e-04 Mpc^-1, K_2=9.5e+03  =>  mu =     0.01 Mpc^-1, mu^-1 =      100 Mpc, r_C ~    5e+03 kpc
+  [PASS] C3-9  and the size IS tunable: the dust abundance fixes only the PRODUCT Q_0 I_0, so Q_0 may be taken small (SZ21's own Exp fit has Q_0 = 1e-4 Mpc^-1 => mu^-1 = 100 Mpc, r_C ~ 3 Mpc) and the oscillatory regime pushed entirely outside galaxies. The price is that the mu-term can then no longer be invoked for clusters -- which is precisely the Mistele et al. pincer (lensing wants mu^2 small, clusters want it large), inherited along with the mechanism.   (Exp fit: mu^-1 = 100 Mpc >> galaxy scales)
+  [PASS] C3-7  HONEST SCOPE on route 2: the O(w) PPN solve for the transplanted dark sector has NOT been done here. What is established is structural -- the sector contributes no shift-dependent kinetic term at background order, so it does not carry AeST's mechanism. Its residual contribution is proportional to the AMBIENT dark density (~1e-30 g/cm^3 locally) rather than to an O(1) theory constant.
+
+================================================================================================================
+C4 -- does the repo's own L87 'stiff genericity' theorem OBSTRUCT route 2?
+================================================================================================================
+  L87's hypothesis, verbatim from FINDINGS.md:
+    "The background-independent velocity-Hessian degeneracy -- the health condition that keeps THE CLOCK free
+     of a Boulware-Deser mode -- forces F affine AND K_QQ = 3f^2/(2M^2) = const, i.e. K exactly quadratic."
+  That degeneracy is a property of the CLOCK's braiding function F(Q)Theta. It constrains the field that is
+  entangled with the lapse/extrinsic curvature. A SEPARATE, minimally coupled k-essence chi has no braiding
+  and no Boulware-Deser mode to protect: nothing forces its K to be quadratic.
+  [PASS] C4-1  L87 constrains the CLOCK's kinetic function (via the BD-mode degeneracy), not an arbitrary shift-symmetric field. Route 2's chi is a separate minimally coupled field => the hypothesis does not apply => K may be cosh/exp => stiff-free dust (script A). L87 DOES NOT OBSTRUCT THE TRANSPLANT.
+  [PASS] C4-2  and L123(c)'s generalisation ('no stiff <=> no dust for a scalar') is refuted independently of this by script A: SZ21's own cosh/exp K give a^-3 dust with no a^-6 partner. The surviving true statement is: an a^-6 stiff partner appears iff dK/dQ is ASYMPTOTICALLY LINEAR.
+  [PASS] C4-3  what DOES remain true from L123(a): a NON-PROPAGATING field cannot supply the third peak. Route 2 therefore necessarily adds ONE PROPAGATING scalar dof to the branch (0 -> 1 dark dof). That is the real price, and it is the same price AeST pays (AeST carries 6 dof: 2 tensor + 2 vector + 2 scalar).
+
+================================================================================================================
+VERDICT (C)
+================================================================================================================
+
+  ROUTE 1 (dust from the clock's own potential V(tau)):  OBSTRUCTED, and now for a SHARP reason.
+     The background works perfectly and beautifully -- V(tau) = (mu_c^2/B)(C - tau)^2 gives EXACTLY
+     pressureless a^-3 dust with no stiff partner and no BBN tuning (C1-3..C1-6, verified numerically).
+     But the cuscuton's second-order action has no (delta-tau-dot)^2 term (C2-1, verified symbolically), so
+     delta-tau is elliptically slaved and 1/k^2-suppressed sub-horizon. A background dust that does not
+     cluster does not drive the third peak. THE VERY PROPERTY THAT MAKES THE CLOCK HEALTHY (0 dof) IS WHAT
+     FORBIDS IT FROM CARRYING THE CMB. This is the honest, structural version of the repo's L110/L123 result.
+
+  ROUTE 2 (AeST's k-essence with the aether replaced by the clock's leaf normal):  OPEN -- not obstructed.
+     * background dust: transplants verbatim (C3-1).
+     * BBN: no stiff partner with cosh/exp K (A6), and L87's degeneracy does not apply to a separate field (C4-1).
+     * health: one healthy propagating scalar, ghost-free and gradient-stable, no aether (C3-3).
+     * alpha_1: the term that kills AeST (a shift-dependent VECTOR kinetic term) is simply absent; the new
+       sector's momentum source vanishes with the local gradient of chi (C3-4/C3-5). O(w) solve not done.
+     * the sound speed is free AND runs the right way (script B): c_s^2 ~ a^3 with cosh K.
+     COST: +1 propagating dark dof, and the dark sector's abundance remains an initial condition I_0 (exactly
+     as in AeST, and exactly as Omega_c is in LambdaCDM).
+     WHAT WOULD DECIDE IT: (i) a Boltzmann run for this sector (third peak with running c_s^2), (ii) the
+     galaxy-smoothness computation nobody has done for AeST either (SZ21: 'how the two regimes connect is an
+     open problem'), (iii) the O(w) PPN solve with chi present.
+
+================================================================================================================
+C COMPLETE: 22/22 checks PASS.   [0.8s]
+================================================================================================================

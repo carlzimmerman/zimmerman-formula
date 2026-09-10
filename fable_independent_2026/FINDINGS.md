@@ -4644,3 +4644,86 @@ cuscuton-MOND branch **+ a cold sector at f ≈ 0.6 of Planck's ω_c** — as pa
 0.18 dex and the galaxy ceiling by 0.04 dex. It is the right target precisely because the ceiling it violates
 is the *cited* 0.582 and the Tremaine–Gunn bracket is *exactly ambiguous* at the relic mass it wants — the
 ceiling and the near-miss are the same uncertainty seen twice.
+
+## L137–L139 — THE SURVIVING CORNER, AND TWO MORE CORRECTIONS TO MY OWN RECORD
+
+Scripts: `L137_aest_dust_stiff_correction.py` (24/24), `L138_velocity_lemma_is_particle_specific.py` (20/20),
+`L139_cuscuton_transplant_route2_open.py` (22/22). All re-run and verified here.
+
+**CORRECTION — L87/L123(c) "no stiff-free dust exists" is REFUTED as a general statement.** For *quadratic* K
+the repo is exactly right, and the published theory carries the identical structure:
+`8πG̃ρ̄ = 2Λ + Q₀I₀a⁻³ + [I₀²/(4K₂)]a⁻⁶` — dust **linear** in the shift charge, stiff **quadratic**. (Pleasing
+independent convergence: the repo's BBN fine-tuning ratio `I₀/(4K₂Q₀)` *is* the published `w₀`.) But **cosh**
+`K = 2K₂Z₀²[cosh Z − 1]` and **exp** `K = 2K₂Z₀²[e^{Z²} − 1]` give `dlnρ/dlna = −3.003` and `−3.000` all the
+way into BBN — **no a⁻⁶ tail, no 24-order tuning.** The correct theorem: *a shift-symmetric k-essence has an
+a⁻⁶ stiff partner **iff** dK/dQ is asymptotically linear.* L87's forcing came from the repo's own
+velocity-Hessian degeneracy **on the clock**, which forces K_QQ = const; a separate, unbraided dark k-essence
+is under no such constraint.
+
+**CORRECTION — L125's velocity lemma is NOT "mechanism-independent."** Its content is `v_rms ∝ 1/a`, a theorem
+about free-streaming **particles**. For a *Lorentz-violating* k-essence — AeST's actual structure —
+`c_s² = 2c_Y/K_QQ(a)`, a **free function**: constant for quadratic K, and **∝ a⁺³** for cosh/exp K. The sound
+speed *grows with time*, so such a dust is colder at recombination than a particle by `(1+z_rec)⁵ ≈ 1.6e15`.
+L125's table rejects k-essence on the BBN horn (refuted above) and particles on the velocity horn (stands).
+**Neither horn covers a Lorentz-violating k-essence with non-quadratic K — that is the gap, and it is exactly
+where AeST lives.**
+
+**What replaces the lemma is tighter and quantitative:** floor `c_s² ≳ 1.0e-6` (leave every SPARC curve to
+MOND; a softer hydrostatic criterion gives ≳3.5e-8, so the floor is criterion-dependent over ~1.5 decades)
+against ceiling `c_s² < 3.21e-6` at 99.7% (arXiv:1601.05097, constant-c_s GDM, Planck 2015). **A factor 3.2 —
+knife-edge, but NOT empty.** A *running* `c_s² ∝ a³` is strictly better and nothing computed excludes it.
+
+**AeST α₁ — correct the coefficient.** A full-text sweep of all 14 AeST papers found **no paper computes any
+PPN parameter for AeST**. An independent Einstein-aether evaluation of its Maxwell-only vector
+(c₁=−c₃=K_B, c₂=c₄=0) in the Foster–Jacobson formula gives **α₁ = −4K_B** (−0.4 to −2.0 over the fitted range),
+*same order, different coefficient* — and the formula is **formally degenerate** here (c₁₂₃ = 0 exactly, a case
+the authors flag). **Cite "AeST's α₁ is an O(1) number, uncomputed in the literature, ~4–5 orders over the
+bound"; do NOT cite −2(K_B+2) as if it were the literature's.**
+
+### THE TRANSPLANT — Route 1 obstructed, Route 2 OPEN
+
+**Route 1 (dust from the clock's own V(τ)): OBSTRUCTED, structurally.** The background is beautiful and
+confirms L128 independently — `ρ = V ∝ a⁻³` exactly, **no stiff partner, no BBN tuning**, from a plain
+quadratic `V = (μ_c²/B)(C−τ)²`; numerically `dlnρ/dlna = −2.999977`, and the cuscuton field equation (never
+imposed during the integration) holds along the solution to 2.6e-16. But expanding `√(−(∂τ)²)` to second order,
+**the (δτ̇)² terms cancel identically** — that *is* the 0-DOF property — leaving a purely elliptic action, so
+δτ is algebraically slaved with `k²δτ → −a²τ̄̇S/μ_c²`: **1/k² suppression sub-horizon**, `δ_τ/δ_CDM ~ 4e-5` at
+third-peak scales. **The very property that makes the clock healthy is what forbids it from carrying the CMB.**
+This is the structural counterpart of L129's numerical result — two independent routes, same conclusion.
+
+**Route 2 (AeST's k-essence with the aether replaced by the clock's own leaf normal): OPEN.**
+
+    L_dark = K(Q) − c_Y|Dχ|² ,   Q = n^μ ∇_μ χ ,   |Dχ|² = γ^{ij} ∂_i χ ∂_j χ
+
+with `n^μ` the clock's leaf normal (already present) and the same leaf projector the MOND field φ already uses.
+- **Background**: on FLRW, `n^μ = u^μ` and `|Dχ|² = 0`, so `Q = χ̇` and `dK/dQ = I₀/a³` — the AeST algebra
+  transplants verbatim. **Dust ✓**
+- **BBN**: cosh/exp K ⇒ no a⁻⁶ partner. **L87 does not obstruct** (no braiding forces K quadratic here).
+- **Health**: `½K_QQ(δχ̇)² − c_Y|∇δχ|²/a²` ⇒ ghost-free for `K_QQ>0`, gradient-stable for `c_Y>0`, subluminal
+  for `c_Y ≤ K_QQ/2`. **One propagating DOF. No aether.**
+- **α₁ — the decisive point**: the sector's momentum-constraint source is `∂L/∂N^i = −(dK/dQ)∂_iχ/N`,
+  proportional to the **local spatial gradient** of χ, which vanishes on the background. **AeST's killer F²
+  vector kinetic term is simply absent**, and the clock stays exactly shift-independent (L127).
+- **Sound speed runs the right way**: `c_s² ∝ a³`.
+
+**Cost sheet (verified as hard as the win):** (1) **+1 propagating dark DOF** (0→1) — unavoidable, since
+L123(a) stands: a non-propagating field cannot drive the third peak. AeST pays this and more (6 DOF
+nonlinearly). (2) **The Helmholtz mass is inherited structurally** — because Q is measured with the local
+lapse, `Q → Q₀(1−Ψ)` produces `K₂Q₀²Ψ²`, the same μ²Φ² term as AeST, hence the oscillatory quasistatic regime
+and the published weak-lensing tension. `K₂>0` is required for both dust and health, so it cannot be switched
+off; it *can* be pushed out of range (small Q₀ ⇒ large μ⁻¹), at the price that μ can no longer be invoked for
+clusters. (3) **Ω_dark remains an initial condition** I₀ — as in AeST, and as Ω_c is in ΛCDM.
+
+**VERDICT: OPEN — not obstructed by L87, not by the velocity lemma, not by α₁. Not achieved either.** Three
+named computations decide it: (i) a Boltzmann run for this sector with running c_s²; (ii) the
+galaxy-smoothness/collapse computation **nobody has done, for AeST either**; (iii) the O(w) PPN solve with χ.
+
+**The gap the whole AeST programme rests on:** μ does not appear in the linear cosmological equations at all,
+and neither does a₀. The connection between linear cosmology (field = exact CDM at all k) and the quasistatic
+galaxy regime (where the derivation *sets* Q = Q₀(1−Ψ)) is, in the authors' own words, *"an open problem."*
+**AeST does not demonstrate that its field-dust stays out of galaxies — it assumes it.** That is precisely the
+L61 double-counting question, and it is untested for anyone.
+
+**RESTATED HONEST CLAIM:** pure MOND fails the CMB (stands); every **particle** dark sector fails (stands);
+**field-dust with a Lorentz-violating, non-quadratic kinetic function is NOT excluded, and is the surviving
+corner.**
