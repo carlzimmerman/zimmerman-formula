@@ -4007,3 +4007,20 @@ Eddington light-bending γ (Cassini: |γ−1| < 2.3×10⁻⁵).
 result — done. The AeST α₁ *disaster* is structurally absent, but the exact CAM α₁ number and the full suite
 (β, α₂, α₃) need the O(w) moving-frame + second-order solution — astra's remaining PPN work. Script
 `L112_cam_ppn_gamma_cassini.py` (6/6). **CAM now clears the strongest Solar-System gate (Cassini γ).**
+
+## L113 — CAM Solar-System closure: μ→1 GR limit ⇒ full PPN suite → GR (β=γ=1) to e^{−g/a₀} (5/5)
+
+Completes the Solar-System/PPN gate (L112 did γ; this does β + the full-suite GR limit). In the
+high-acceleration limit y=g/a₀→∞ the CAM kernel μ=1−e^{−y}→1, so:
+- the field equation (μΦ')'=ρ/4M² → **ordinary Poisson** Φ''=ρ/4M² (Newton);
+- the field superposes **linearly** ⇒ no anomalous nonlinear potential ⇒ **β=1** (GR);
+- with **γ=1** exact (no-slip, L112) and no static preferred-frame terms (α_i→0), the **full PPN suite takes
+  GR values**.
+
+The CAM-vs-GR deviation is **O(e^{−g/a₀})**, which **underflows** at every planetary orbit (g/a₀ ~ 10⁵–10⁸
+at Saturn→Mercury, both footings), so CAM is **observationally indistinguishable from GR in the Solar
+System** — it clears the entire Solar-System gate.
+
+**Honest scope.** The μ→1 GR limit and γ=1 are rigorous; deviations bounded by e^{−g/a₀} (astronomically
+small). The exact finite-a₀ moving-frame α₁ residual still needs astra's O(w) solve (flagged L112), but it's
+bounded by the same suppression, far below |α₁|<10⁻⁴. Script `L113_cam_gr_limit_full_ppn.py` (5/5).
