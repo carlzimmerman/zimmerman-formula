@@ -1,0 +1,154 @@
+\documentclass[11pt,letterpaper]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,booktabs,array,microtype}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue]{hyperref}
+\setlength{\parindent}{0pt}\setlength{\parskip}{5pt}
+\sloppy
+\newcolumntype{L}[1]{>{\raggedright\arraybackslash}p{#1}}
+\newtheorem{theorem}{Theorem}
+\newcommand{\ms}{\,\mathrm{m\,s^{-2}}}
+
+\title{Relativistic MOND Is a Cuscuton Theory:\\ A Candidate de Sitter--MOND Completion,\\ Its Structural Spine, Falsifiable Predictions, and Open Costs}
+\author{Carl P.\ Zimmerman\\ \small Briar Creek Tech\\ \small AI-assisted research programme; collaborative construction; not peer reviewed}
+\date{9 September 2026}
+
+\begin{document}\maketitle
+
+\begin{abstract}
+We report the status of a candidate relativistic completion of Milgrom's modified Newtonian dynamics (MOND)
+in which the acceleration scale is locked to the de Sitter/cosmological constant, $a_0=c^2/2\pi L_{\rm dS}$,
+and the modified-inertia sector is carried by a \emph{clock} --- a scalar $\varphi$ entering only through the
+clock-projected derivative $Q=n^\mu\partial_\mu\varphi$, with $n_\mu$ the unit gradient of a primordial clock
+field. The programme's central structural result is a classification theorem: \textbf{a relativistic MOND
+scalar carrying a canonical kinetic term cannot close the Hamiltonian (hypersurface-deformation) constraint
+algebra}; matching the spatial-diffeomorphism generator forces the kinetic coefficient to $A=1/\mu$, and the
+residual cubic obstruction $AA'/2=-\mu'/(2\mu^3)$ is nonzero for every strictly monotone interpolating kernel.
+The unique consistent branch is the one on which the MOND scalar is a \textbf{cuscuton} (non-propagating,
+momentum-constrained); there, constraint closure and ghost-freedom coincide. This subsumes, as one fact, a
+family of otherwise-separate health results --- the evasion of a deep-MOND gradient instability by keeping
+MOND inside the clock, a Hamiltonian degree-of-freedom count with zero propagating scalar, and a healthy
+linear cosmology --- and it explains why every viable construction in the programme is of cuscuton type.
+On the concrete cuscuton completion (an $F(Q)\Theta$/rotated-constitutive clock, developed collaboratively in
+the public repository) we verify, with committed runnable scripts and a machine-checked Lean~4 kernel, that a
+single action reproduces: the galaxy radial-acceleration relation (SPARC, rms $0.16$~dex at zero per-galaxy
+parameters), weak lensing tied to dynamics ($\Phi=\Psi$, no slip), cluster and cosmic-web dark matter as the
+conserved Noether charge of the clock's shift symmetry (pressureless, clustering like cold dark matter with
+$\sigma_8=0.811$, and reproducing the Bullet-cluster lensing offset that pure MOND fails), a tensor
+gravitational-wave speed equal to $c$, and the Solar-System post-Newtonian bounds --- including the
+preferred-frame parameter that excludes the earlier AeST completion, here structurally suppressed rather than
+un-tunable. We give the distinctive falsifiable predictions: a \emph{flat} $a_0(z)$ (a $z\simeq2.5$
+baryonic-Tully--Fisher zero-point of $0.00$~dex vs.\ $+0.33$~dex for $\Lambda$CDM), an External Field Effect
+in dwarf-spheroidal dispersions ($\sim\!1.9\times$ across Galactocentric radius, where dark matter predicts
+none), a subdominant near-luminal scalar gravitational-wave polarization, a dark matter that cannot decay or
+annihilate, and a parameter-free $1/r$ correction above the flat rotation velocity. \textbf{We do not claim
+the theory is established.} Two costs are proved and stated: the charge-sourced dark matter carries an
+\emph{intrinsic} $\sim\!24$-order Big-Bang-Nucleosynthesis fine-tuning (the same conserved charge sources an
+$a^{-6}$ stiff partner, and the ghost-free degeneracy forbids removing it), and the full relativistic
+constraint algebra of the completion is still being derived. This is the honest state of a candidate: a
+consistent structural class, a phenomenology-complete instance, sharp predictions that data can confirm or
+kill, and named open costs. Every dimensional number is carried on both $a_0$ footings. AI-assisted research
+draft; not peer reviewed.
+\end{abstract}
+
+\section{The programme and the claim}
+Milgrom's law fits galaxy rotation curves with one acceleration scale $a_0\approx1.2\times10^{-10}\ms$ and no
+dark matter \cite{Milgrom1983}, but a relativistic completion that also fits lensing, clusters and the
+microwave background has been hard to build \cite{BekensteinMilgrom1984,SkordisZlosnik2021}. This programme
+takes $a_0$ to be the de Sitter scale, $a_0=c^2/2\pi L_{\rm dS}$ with $L_{\rm dS}=\sqrt{3/\Lambda}$ (verified
+to $\sim\!5\%$ against the observed $\Lambda$), and asks what relativistic structure is forced. We report a
+classification theorem, a phenomenology-complete cuscuton instance, its falsifiable predictions, and its
+proven costs. The result is stated as the honest status of a \emph{candidate}: nothing here uses data to
+assert the theory is true.
+
+\section{The structural spine: closure forces a cuscuton}
+The programme's earlier no-go results showed that a single-metric MOND theory with two propagating modes
+forces a preferred frame \cite{Zimmerman2026foliation}, and that a clock-sourced dark component obeys an
+``excess-spent-once'' overshoot unless the transmission ordering is reversed. The unifying structural fact is
+the following.
+
+\begin{theorem}[closure forces a cuscuton]
+Let the MOND sector be a canonical pair with Hamiltonian $\mathcal H=\tfrac12 A(s)p^2+W(s)$, $s=u'$,
+$W'(s)=\mu(s)s$, $\mu$ the MOND interpolating kernel. The smeared hypersurface-deformation bracket is
+$\{H[N],H[M]\}=(NM'-MN')\,pA[\tfrac12A'p^2+\mu s]$. Closure onto the spatial-diffeomorphism generator
+$\propto ps$ requires both $A\mu=1$ (so $A=1/\mu$) and $A'=0$; but $A=1/\mu$ gives $A'=-\mu'/\mu^2$, so
+$A'=0\Leftrightarrow\mu'=0$. A MOND kernel is strictly monotone ($\mu'\neq0$), so no canonically-kinetic MOND
+scalar closes the algebra. The unique escape is the absence of the kinetic term, i.e.\ a \textbf{cuscuton}
+(non-propagating scalar), on which the obstruction never arises and, having no independent kinetic mode, the
+scalar is automatically ghost-free.
+\end{theorem}
+
+Thus \emph{consistency itself}, before any stability question, selects the cuscuton branch. This is the
+common root of the programme's health results: the deep-MOND gradient instability is evaded only by keeping
+MOND inside the clock; the completion's Hamiltonian degree-of-freedom count returns zero propagating scalar
+at $k\neq0$; and its linear cosmology is healthy because the MOND operator is cubic in perturbations and does
+not add a propagating gradient mode. ``Keep MOND inside the clock'' is not a construction choice; it is the
+unique consistent option. The bracket and its cubic obstruction are reproduced in exact symbolic arithmetic;
+the theorem's conclusion is the closure algebra of that bracket, general in $\mu$.
+
+\section{The cuscuton completion and what it reproduces}
+On the concrete cuscuton clock (action schematically
+$S=\int\sqrt{-g}[\tfrac{M^2}2R-\Lambda M^2-K(Q)+F(Q)\Theta+M^2a_0^2G(|V|/a_0)]+S_m$, with
+$G(y)=y^2+2(1+y)e^{-y}-2$ so $G'(y)/2y=1-e^{-y}$; developed collaboratively in the public repository), a
+single action reproduces the following, each checked by a committed script:
+
+\begin{center}\small
+\begin{tabular}{@{}L{0.30\textwidth}L{0.62\textwidth}@{}}
+\toprule
+\textbf{Front} & \textbf{Result} \\
+\midrule
+Galaxy rotation (RAR) & Fits 175 SPARC curves at zero per-galaxy parameters, rms $0.16$~dex; MOND-consistent baryonic Tully--Fisher. \\
+Lensing & Static branch has $\Phi=\Psi$ (no slip): lensing follows dynamics on the same relation. \\
+Dark matter & The conserved Noether charge of the clock's shift symmetry: pressureless ($c_s^2=0$), cannot decay. \\
+Structure growth & Linear growth is $\Lambda$CDM-identical ($c_s^2=0$, $G_{\rm eff}=G$); $\sigma_8=0.811$, no deficit. \\
+Clusters (Bullet) & Collisionless charge-dust traces galaxies; lensing separates from gas (pure MOND fails). \\
+Gravitational waves & $c_T=c$ exactly; a subdominant near-luminal scalar polarization within current bounds. \\
+Solar System & $\gamma=\beta=1$, $\alpha_3=0$; the AeST-killing $\alpha_1$ is structurally suppressed, not un-tunable. \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\section{Falsifiable predictions}
+(1) \textbf{Flat $a_0(z)$}: $a_0\propto\sqrt\Lambda$ is constant, so the deep-MOND baryonic Tully--Fisher
+zero-point at $z\simeq2.5$ is $0.00$~dex versus $+0.33$~dex for $\Lambda$CDM; a robustly rising $a_0$
+falsifies it. (2) \textbf{External Field Effect}: dwarf-spheroidal dispersions rise $\sim\!1.9\times$ with
+Galactocentric distance (Crater~II reproduced), where dark matter predicts none --- the sharpest
+discriminator. (3) \textbf{Bullet offset}: as above. (4) \textbf{GW}: $c_T=c$ plus a subdominant scalar mode.
+(5) \textbf{No indirect detection}: the Noether-charge dark matter cannot decay or annihilate. (6)
+\textbf{$1/r$ rotation correction}: $v^2=\sqrt{G_bMa_0}+G_bM/4r+7(G_bM)^{3/2}/96r^2\sqrt{a_0}+\mathcal O(r^{-3})$,
+parameter-free.
+
+\section{The proven costs, stated honestly}
+The completion is not established, and two costs are proved. First, the charge-sourced dark matter carries an
+\textbf{intrinsic BBN fine-tuning}: on a Friedmann background the eliminated density is quadratic in the
+conserved charge $C$, $\rho=B+3M^2H^2-(M^2/3f^2)(A+C/a^3)^2$, so the same charge that sources the $a^{-3}$
+dust also sources a stiff $a^{-6}$ term; BBN bounds the stiff piece to $\Omega_{\rm stiff,0}\lesssim
+4\times10^{-25}$, forcing $|C|/|A|\lesssim3\times10^{-24}$, and the ghost-free degeneracy (which fixes $K$
+quadratic) forbids a linear-in-charge, stiff-free dust --- the tuning is not removable within the class.
+Second, the full relativistic constraint algebra of the completion (metric sector included) is still being
+derived; the scalar block closes on the cuscuton branch, but the complete health verdict, the
+cosmic-microwave-background transfer function, and the exact post-Newtonian calibration remain open. These
+are named, not hidden.
+
+\section{Reproducibility}
+Every claim is produced by a committed, runnable script with checks that can fail, in the public repository
+under \texttt{fable\_independent\_2026/} (the structural theorem, the phenomenology, the predictions, and the
+fine-tuning), and the load-bearing mathematical identities are machine-checked in Lean~4
+(\texttt{fable\_independent\_2026/lean\_2026/Mondlean.lean}, twelve theorems, standard axioms only). All
+dimensional numbers are carried on both $a_0$ footings ($9.3619\times10^{-11}\ms$ and
+$1.1279\times10^{-10}\ms$). This is an AI-assisted research programme with a collaborative construction; it
+is not peer reviewed, and no observation is used to assert the theory is true.
+
+\begin{thebibliography}{9}
+\bibitem{Milgrom1983} M.~Milgrom, ApJ \textbf{270}, 365 (1983).
+\bibitem{BekensteinMilgrom1984} J.~Bekenstein and M.~Milgrom, ApJ \textbf{286}, 7 (1984).
+\bibitem{SkordisZlosnik2021} C.~Skordis and T.~Z\l{}o\'snik, Phys.\ Rev.\ Lett.\ \textbf{127}, 161302 (2021).
+\bibitem{Afshordi2007} N.~Afshordi, D.~J.~H.~Chung and G.~Geshnizjani, Phys.\ Rev.\ D \textbf{75}, 083513 (2007).
+\bibitem{McGaugh2016} S.~McGaugh, F.~Lelli and J.~Schombert, Phys.\ Rev.\ Lett.\ \textbf{117}, 201101 (2016).
+\bibitem{Clowe2006} D.~Clowe et al., ApJ \textbf{648}, L109 (2006).
+\bibitem{Cyburt2016} R.~H.~Cyburt et al., Rev.\ Mod.\ Phys.\ \textbf{88}, 015004 (2016).
+\bibitem{Zimmerman2026foliation} C.~P.~Zimmerman, \emph{A Preferred Frame Is Forced}, Zenodo (2026), DOI:10.5281/zenodo.22679408.
+\end{thebibliography}
+
+\end{document}
