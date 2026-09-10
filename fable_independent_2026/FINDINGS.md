@@ -4024,3 +4024,20 @@ System** — it clears the entire Solar-System gate.
 **Honest scope.** The μ→1 GR limit and γ=1 are rigorous; deviations bounded by e^{−g/a₀} (astronomically
 small). The exact finite-a₀ moving-frame α₁ residual still needs astra's O(w) solve (flagged L112), but it's
 bounded by the same suppression, far below |α₁|<10⁻⁴. Script `L113_cam_gr_limit_full_ppn.py` (5/5).
+
+## L114 — the CAM BTFR √s lift is a KERNEL DISCRIMINATOR; CAM (exp) predicts c₁ = ½ (5/5)
+
+Sharpens L109. The point-mass circular-orbit invariant is `v_c⁴/(GMa₀) = x/μ(x)` (x=g_obs/a₀, s=μ(x)x),
+expanding as `1 + c₁√s + …`. The leading coefficient **c₁ is a kernel fingerprint** (exact series inversion):
+- **exp / CAM / F(Q)Θ** (μ=1−e^{−x}): **c₁ = ½**
+- **simple** (μ=x/(1+x)): c₁ = 1
+- **standard** (μ=x/√(1+x²)): c₁ = 0
+
+Three distinct values ⇒ the finite-acceleration BTFR "lift" above the flat plateau **discriminates the MOND
+interpolation kernel**. At g_bar=0.1a₀ the lift is +16% (CAM) vs +32% (simple) vs +0% (standard) — a precise
+RAR measurement in the transition regime (g_bar ~ 0.05–0.4 a₀) can select among them, and **CAM predicts
+specifically the +½√s law**.
+
+**Honest scope:** c₁ is the clean *point-mass* leading coefficient; the per-galaxy RAR test needs the full
+baryonic profile (L92's SPARC comparison smears the point-mass law). Script
+`L114_btfr_lift_kernel_discriminator.py` (5/5).
