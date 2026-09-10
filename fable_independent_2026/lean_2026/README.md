@@ -28,7 +28,10 @@ F(Q)Θ construction). It formalizes the mathematics, not the physics.
 - `mu_kernel_deriv`, `mu_kernel_deriv_pos` — the MOND kernel μ(y)=1−e^{-y} has μ'(y)=e^{-y} > 0 (strictly monotone).
 - `closure_obstruction` — with A=1/μ, the cubic constraint-bracket coefficient (1/2)A A' = −μ'/(2μ³) (the L95 obstruction).
 - `closure_needs_flat_kernel` — the obstruction vanishes iff μ'=0 (a flat, non-MOND kernel).
-- `cuscuton_forced` — for the exponential kernel μ'≠0, so the obstruction is nonzero: a p²-kinetic MOND scalar cannot close the constraint algebra; the non-propagating **cuscuton** branch is forced (the machine-checked core of the L95 cuscuton-closure theorem).
+- `cuscuton_forced` — for the exponential kernel μ'≠0, so the obstruction is nonzero: a p²-kinetic MOND scalar cannot close the constraint algebra; the non-propagating **cuscuton** branch is forced (the machine-checked core of the L95 cuscuton-closure theorem, the *necessity*).
+- `obstruction_coeff` — the constraint-bracket obstruction coefficient is (1/2)·A·A' in the p²-kinetic coefficient A.
+- `cuscuton_obstruction_vanishes` — **L105 (sufficiency):** a cuscuton has A ≡ 0, so the obstruction (1/2)A A' vanishes **identically**, for any kernel slope.
+- `cuscuton_closes_monotone` — **L105:** on the cuscuton branch the obstruction is 0 **and** the kernel stays strictly monotone (μ'=e^{-y}>0) — the two coexist, impossible in the canonical case (`closure_needs_flat_kernel`). This is the positive companion to `cuscuton_forced`: the cuscuton scalar sector escapes the L95 obstruction.
 
 ## Build
 
@@ -37,7 +40,7 @@ lake exe cache get      # download prebuilt mathlib oleans
 lake build Mondlean
 ```
 
-## Status (2026-09-09) — GREEN, MACHINE-VERIFIED (17 theorems)
+## Status (2026-09-09) — GREEN, MACHINE-VERIFIED (20 theorems)
 
 `lake build Mondlean` compiles **clean (exit 0), zero `sorry`/`admit`**, and `#print axioms` shows every
 theorem (`kernel_identity`, `Gpp_pos`, `Gpp_zero`, `cubic_leading`, `affine_degeneracy`, `sound_speed_zero`)

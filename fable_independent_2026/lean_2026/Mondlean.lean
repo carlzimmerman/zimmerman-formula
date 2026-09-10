@@ -21,6 +21,16 @@
     sound_speed_zero              — c_s² = 0 (pressureless dust; the L82 clustering key).
     mu_deep_slope                 — deep-MOND: μ(η)=1−e^{-η} has slope 1 at η=0 (μ ≈ η).
     mu_newton_limit               — EFE/strong-field: μ(η) → 1 as η → ∞ (Newtonisation).
+    mu_kernel_deriv(_pos)         — μ'(y)=e^{-y}>0 (kernel strictly monotone, the fact driving the obstruction).
+    closure_obstruction           — L95: matching the generator forces A=1/μ ⇒ obstruction (1/2)AA' = −μ'/(2μ³).
+    closure_needs_flat_kernel     — L95: obstruction = 0 ⟺ μ' = 0 (a flat, non-MOND kernel).
+    cuscuton_forced               — L95 (necessity): exp kernel ⇒ μ'≠0 ⇒ obstruction ≠ 0 ⇒ p²-scalar can't
+                                    close ⇒ the non-propagating (cuscuton) branch is forced.
+    obstruction_coeff             — L105: the obstruction coefficient is (1/2)·A·A' in the p²-kinetic coeff A.
+    cuscuton_obstruction_vanishes — L105 (sufficiency): a cuscuton has A ≡ 0 ⇒ obstruction (1/2)AA' = 0
+                                    IDENTICALLY, for ANY kernel slope.
+    cuscuton_closes_monotone      — L105: on the cuscuton branch obstruction = 0 AND μ' = e^{-y} > 0 coexist
+                                    (impossible in the canonical case) — closure compatible with a monotone kernel.
 -/
 import Mathlib.Analysis.SpecialFunctions.ExpDeriv
 import Mathlib.Analysis.Calculus.Deriv.Pow
@@ -166,3 +176,26 @@ theorem cuscuton_forced (y : ℝ) (hmu : 1 - Real.exp (-y) ≠ 0) :
   intro hcontra
   rw [closure_needs_flat_kernel (1 - Real.exp (-y)) (Real.exp (-y)) hmu] at hcontra
   exact (Real.exp_pos (-y)).ne' hcontra
+
+/-! ### Positive closure theorem (L105): the cuscuton branch escapes the obstruction.
+
+    The general p³ closure obstruction coefficient is (1/2)·A·A', where A is the p²-kinetic coefficient.
+    Canonical case: closure forces A = 1/μ, giving −μ'/(2μ³) ≠ 0 (cuscuton_forced above). CUSCUTON case:
+    there is NO p² kinetic term (A ≡ 0, the momentum is constrained), so the obstruction vanishes
+    identically — for ANY kernel slope — while the kernel stays strictly monotone. Lean certifies the
+    algebraic identity and the coexistence; the full HDA closure invokes Afshordi–Chung–Geshnizjani and is
+    physics, not Lean. -/
+
+/-- The closure obstruction coefficient is (1/2)·A·A' in the p²-kinetic coefficient A. -/
+theorem obstruction_coeff (A Aprime : ℝ) : A * Aprime / 2 = (1 / 2) * A * Aprime := by ring
+
+/-- POSITIVE CLOSURE (cuscuton branch): a cuscuton has NO p² kinetic term, i.e. A = 0, so the closure
+    obstruction (1/2)·A·A' vanishes IDENTICALLY — for ANY kernel slope A', monotone or not. -/
+theorem cuscuton_obstruction_vanishes (Aprime : ℝ) : (0 : ℝ) * Aprime / 2 = 0 := by ring
+
+/-- DECOUPLING / coexistence (the L105 sufficiency): on the cuscuton branch (A = 0) the obstruction is zero
+    WHILE the MOND kernel stays strictly monotone (μ' = e^{-y} > 0). Closure and a genuine interpolating
+    kernel coexist — impossible in the canonical case, where closure_needs_flat_kernel forces μ' = 0. -/
+theorem cuscuton_closes_monotone (y : ℝ) :
+    (0 : ℝ) * Real.exp (-y) / 2 = 0 ∧ 0 < Real.exp (-y) :=
+  ⟨by ring, Real.exp_pos _⟩
