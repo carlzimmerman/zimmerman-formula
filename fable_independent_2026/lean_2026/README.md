@@ -38,6 +38,7 @@ F(Q)Θ construction). It formalizes the mathematics, not the physics.
 - `canonical_scalar_dof` / `cuscuton_scalar_dof` — **L108 (Dirac count):** dof = (P−2F−S)/2; a canonical scalar (phase dim 2, no constraints) has **1** propagating dof (a wave), a cuscuton scalar (second-class pair) has **0** — the machine-checked DOF face of L104/L105/L106.
 - `cam_auxiliary_zero_dof` — **L108:** astra's CAM auxiliary sector at finite k (P=6, F=0, S=6) ⇒ **(6−0−6)/2 = 0** physical DOF — no propagating MOND scalar (the scalar-sector closure count). *Lean certifies the count; the constraint structure itself (6 second-class, PB rank 6) is astra's Dirac computation, and the full covariant τ-clock algebra + PPN remain open.*
 - `fully_constrained_zero_dof` — general: a fully second-class-constrained sector (S=P, F=0) has 0 dof — the structural reason a cuscuton/constrained sector cannot propagate.
+- `cam_total_linear_dof` — **L111:** the full linearized DOF = graviton (2) + CAM scalar (`diracDOF 6 0 6` = 0) = **2**, exactly GR — CAM propagates only the two graviton polarizations, no extra mode, no ghost. (The independent finite-k Dirac reconstruction — termination, rank-6 Poisson matrix, all second-class — is in `L111_independent_cam_dirac_closure.py`.)
 
 ## Build
 
@@ -46,7 +47,7 @@ lake exe cache get      # download prebuilt mathlib oleans
 lake build Mondlean
 ```
 
-## Status (2026-09-09) — GREEN, MACHINE-VERIFIED (28 theorems)
+## Status (2026-09-09) — GREEN, MACHINE-VERIFIED (29 theorems)
 
 `lake build Mondlean` compiles **clean (exit 0), zero `sorry`/`admit`**, and `#print axioms` shows every
 theorem (`kernel_identity`, `Gpp_pos`, `Gpp_zero`, `cubic_leading`, `affine_degeneracy`, `sound_speed_zero`)

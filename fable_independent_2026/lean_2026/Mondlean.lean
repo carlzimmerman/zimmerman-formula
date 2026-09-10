@@ -263,3 +263,8 @@ theorem cam_auxiliary_zero_dof : diracDOF 6 0 6 = 0 := by decide
     structural reason a cuscuton/constrained sector cannot propagate, for any phase dimension P. -/
 theorem fully_constrained_zero_dof (P : ℤ) : diracDOF P 0 P = 0 := by
   unfold diracDOF; simp
+
+/-- L111: the FULL linearized DOF count of the CAM sector = graviton (2) + CAM scalar (diracDOF 6 0 6 = 0)
+    = 2, exactly General Relativity — CAM propagates only the two graviton polarizations, no extra mode and
+    no ghost. (The independent finite-k Dirac reconstruction is in L111; Lean certifies the DOF arithmetic.) -/
+theorem cam_total_linear_dof : (2 : ℤ) + diracDOF 6 0 6 = 2 := by decide

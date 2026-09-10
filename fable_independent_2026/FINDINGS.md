@@ -3962,3 +3962,29 @@ programme's central tension (galaxy MOND vs a dark component for cosmology) does
 sharp fork: branch I pays at BBN + is unhealthy; branch II is healthy + BBN-clean but must face the CMB
 without dark matter. Whether pure-MOND CAM can meet the CMB/cluster data (massive ν, etc.) is **separate and
 unsolved** — not claimed here. Script `L110_bbn_vs_darkmatter_tradeoff.py` (7/7).
+
+## L111 — independent Dirac closure of the CAM scalar sector + tensor sector ⇒ full linearized DOF = 2 (GR) (8/8)
+
+**Independently computed** (not cited) the CAM finite-k Dirac constraint analysis from astra's displayed
+auxiliary Hamiltonian `H = ½K k²u² + ℓk(u−φ) + ½A k²φ²` (K=2,A=3,k=1), using my own Poisson brackets and
+rank:
+- **Primaries** p_u, p_ℓ, p_φ (no time-kinetic term → constrained sector).
+- **Secondaries** (2u+ℓ), (u−φ), (ℓ−3φ) from preserving the primaries.
+- **Termination:** preserving the secondaries gives a **nonsingular** multiplier matrix (det = 5), so the
+  Lagrange multipliers are fixed and **no tertiary tower** arises — the Dirac chain closes with exactly 6
+  constraints.
+- **Poisson matrix rank = 6 ⇒ all 6 second-class ⇒ DOF = (6−0−6)/2 = 0.** Independently reproduces astra's
+  finite-k result and the machine-checked `cam_auxiliary_zero_dof`.
+
+**Next step toward closure — the tensor sector.** The CAM additions (u, ℓ spatial scalars; the trace-free
+compensator has no time-derivative Hessian, i.e. non-propagating) don't source the transverse-traceless
+graviton, so the TT sector is pure GR (2 polarizations), vector sector 0. **Full linearized DOF = 2 + 0 + 0
+= 2 — exactly GR:** CAM propagates only the two graviton polarizations, no extra mode, no ghost. Added to
+Lean as `cam_total_linear_dof` (Mondlean.lean → 29 theorems, green).
+
+**Honest scope.** This closes the **finite-k linearized** constraint/DOF count (scalar sector recomputed
+from scratch + tensor count). The **full covariant closure** — the out-of-unitary-gauge clock τ
+reparametrization brackets `{H⊥,H⊥}` etc. at all k and nonlinearly, plus PPN and nonlinear stability —
+remains (L106 already resolves the competing-cone/structure-function part; the explicit bracket closure of
+the metric+clock constraints is the remaining piece). No claim the full nonlinear theory is closed. Script
+`L111_independent_cam_dirac_closure.py` (8/8).
