@@ -3525,3 +3525,32 @@ in exact sympy (imports nothing from qwen).
 - **VERDICT.** RMMG is **health-PROMISING, not health-CLOSED** — the most promising local architecture in the
   branch (zero propagating scalar DOF at k≠0, fits galaxies, new falsifiable prediction), with a specific,
   named remaining obstruction that is astra's live next calculation.
+
+## L95 — THEOREM: Hamiltonian closure forces relativistic MOND to be a cuscuton (the common root of the health saga)
+
+`L95_closure_forces_cuscuton.py` + `.out` (**8 checks, 8 PASS**). A general structural theorem built on astra's
+RMMG bracket (whose cubic term L94 verified), not a new realization — the unifying WHY behind the whole
+health saga.
+
+- **⭐ THE THEOREM.** For the MOND canonical pair H = ½A(s)p² + W(s), s=u', W'=μ(s)s, the hypersurface-
+  deformation bracket is {H[N],H[M]} = (NM'−MN')·pA[½A'p² + μs]. Closure onto the spatial-diffeomorphism
+  (momentum) generator ∝ ps requires **(i)** the p¹ match Aμ=1 (⇒ A=1/μ) and **(ii)** the p³ term
+  A A'/2 = 0 (⇒ A'=0). But A=1/μ ⇒ A' = −μ'/μ², so A'=0 ⟺ μ'=0. **A MOND kernel is strictly monotone
+  (μ'≠0), so no p²-kinetic MOND scalar can close the algebra** — the obstruction A A'/2 = −μ'/(2μ³) ≠ 0 has
+  no free parameter to cancel it (concrete witness: exponential μ=1−e^{−s/a₀}, μ'>0 everywhere).
+- **⭐⭐ THE RESOLUTION IS UNIQUE: the cuscuton branch.** Remove the p² kinetic term (the scalar is
+  non-dynamical, momentum constrained — a **cuscuton**); then B(p) has no p³ term and the algebra closes.
+  **Closure XOR a propagating MOND scalar.** And a non-propagating scalar is automatically **ghost-free**
+  (no kinetic sign to flip), so **constraint closure and propagating health coincide** — one condition.
+- **⭐⭐⭐ THE COMMON ROOT.** This subsumes the programme's recurring health finding as one structural fact:
+  the deep-MOND gradient instability (L60/L69) is evaded only by keeping MOND inside the clock (L66/L71);
+  RMMG's Dirac block has zero scalar phase dimension at k≠0 (L94); the F(Q)Θ cosmology is healthy because the
+  scalar doesn't propagate (L82/L83). **All the same statement:** a propagating MOND scalar is inconsistent
+  (fails closure) *before* any stability question, so consistency forces the cuscuton branch. "Keep MOND
+  inside the clock" is not a construction choice — it is the **unique consistent option**, and it is exactly
+  the branch astra's RMMG auxiliary-relay realization (no p_u², p_r²) is built on.
+- **⚠️ SCOPE.** Rests on astra's smeared-bracket form (reproduced; its cubic coefficient verified in L94),
+  not a from-scratch re-derivation of the full functional bracket; the conclusion is the closure algebra of
+  that bracket, general in the kernel μ. A reframing/classification result, not a claim the theory is
+  complete — the cuscuton branch still carries the intrinsic BBN fine-tuning (L87) and astra's full metric
+  constraint algebra remains to be run.
