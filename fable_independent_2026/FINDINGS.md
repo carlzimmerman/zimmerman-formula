@@ -3940,3 +3940,25 @@ this stress (Λ_TF=−2M²S y²e^{−y}/k², zero residual at k≠0), with no ti
 **Honest scope (astra's).** Orbital law is conditional on the full 3+1 normalization (G_eff→G) + lensing/PPN;
 the compensator is a finite-k tensor completion (nonlinear tensor chain + τ-clock Dirac + PPN + nonlinear
 stability remain open); BBN + a₀ separate. Script `L109_verify_cam_kepler_and_compensator.py` (9/9).
+
+## L110 — the cost tradeoff: CAM removes the BBN fine-tuning by removing the dust (pure MOND) (7/7)
+
+**Answers the BBN question precisely.** The intrinsic ~24-order BBN fine-tuning (L87) was the framework's
+other standing cost. On the two branches:
+- **Branch I (old F(Q)Θ, shift-charge dust):** ρ_φ carries `(A+C/a³)²` = Λ + **a⁻³ dust (2AC/a³ = dark
+  matter)** + **a⁻⁶ stiff (C²/a⁶)**. Both carry the *same* charge C, so a nonzero dust **forces** a nonzero
+  stiff term — L87's fine-tuning `|C/A|≲3×10⁻²⁴`. Dark matter and the BBN fine-tuning are **locked together.**
+- **Branch II (CAM cuscuton):** on FLRW `a_i=0, D_iu=0` ⇒ u pinned to a constant, Q(0)=0 ⇒ the MOND sector
+  contributes **zero** to Friedmann (`H²=(ρ+M²Λ)/3M²`). **No dust, no stiff ⇒ no BBN fine-tuning.**
+
+**The tradeoff (not a free lunch).** The cuscuton cure that removed the ghost (L104) and closed the algebra
+(L105/L106/L108) **also removes the BBN fine-tuning — but by removing the dark-matter dust**, since the two
+are the same shift-charge structure. So CAM is **pure MOND** cosmologically. The cost **relocates** rather
+than vanishing: from the BBN fine-tuning (branch I) to pure MOND's standing challenge — the **CMB third peak
+and cluster masses** need a dark component CAM doesn't supply.
+
+**Honest status:** the cuscuton buys health *and* BBN at the price of the cosmological dark sector. The
+programme's central tension (galaxy MOND vs a dark component for cosmology) doesn't disappear — it's now a
+sharp fork: branch I pays at BBN + is unhealthy; branch II is healthy + BBN-clean but must face the CMB
+without dark matter. Whether pure-MOND CAM can meet the CMB/cluster data (massive ν, etc.) is **separate and
+unsolved** — not claimed here. Script `L110_bbn_vs_darkmatter_tradeoff.py` (7/7).
