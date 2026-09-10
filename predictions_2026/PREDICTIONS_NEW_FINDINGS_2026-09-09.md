@@ -146,6 +146,14 @@ without disturbing the linear CMB-scale growth; this framework does both from on
 direction+order result; the precise z_form/mass function needs a MOND cosmological simulation. **Status: NEW
 — derived, current-tension.**
 
+**P20 — No purely-dark gravitating structure.** The phantom is a deterministic √(M_b) functional sourced
+only by baryons (L95/L99), so it vanishes where baryons do: no dark subhalos, no starless dark clumps —
+every gravitating structure has baryons. *Test:* lensing substructure and cold-stream gaps. *Discriminator:*
+ΛCDM predicts abundant starless dark subhalos (dN/dM~M⁻¹·⁹); this framework predicts none — a confirmed
+starless perturber at ~10⁷–10⁹ M☉ (where baryons should be visible) falsifies it. *Nuance:* baryonic
+satellites DO perturb, with a boosted effective mass, so the test is specifically about *starless*
+perturbers. **Status: NEW — derived from the cuscuton structure.**
+
 ---
 
 ## The single open item these predictions hinge on

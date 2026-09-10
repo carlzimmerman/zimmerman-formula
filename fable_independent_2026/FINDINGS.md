@@ -3601,3 +3601,26 @@ cuscuton/cubic-MOND structure, addressing a current tension.
   MOND early structure is a studied effect). The contribution is that the boost FOLLOWS from the same
   cuscuton/cubic structure that keeps linear growth ΛCDM-safe — a derived, un-tuned split, not a precise
   z_form. A distinctive, falsifiable, current-tension prediction (P19).
+
+## L99 — NEW PHYSICS: no purely-dark gravitating structure (the phantom vanishes with the baryons)
+
+`L99_no_dark_subhalos.py` + `.out` (**16 checks, 16 PASS**). A distinctive prediction from the cuscuton
+structure (L95).
+
+- **⭐ THE PREDICTION.** The MOND field is an elliptic constraint sourced entirely by baryons,
+  div[μ∇Φ]=4πGρ_b, so the phantom mass is a deterministic √(M_b) functional that **vanishes where baryons
+  vanish** (controls: M_ph=√(M_b a₀/G)·r − M_b, quadrupling M_b doubles M_ph, zero free parameters, exactly
+  0 at M_b=0). ⇒ **no dark subhalos, no starless dark clumps; every gravitating structure contains baryons;
+  no free dark-subhalo mass function.**
+- **ΛCDM contrast.** ΛCDM: dN/dM~M⁻¹·⁹, ~500/64/8 subhalos above 10⁷/10⁸/10⁹ M☉ per MW host, mostly
+  starless — the perturbers invoked for lens flux-ratio anomalies (~2×10⁸ M☉, Vegetti+) and stream gaps
+  (GD-1 ~10⁶–10⁷ M☉, Bonaca+). In the cuscuton picture these dark perturbers do not exist.
+- **⭐ FALSIFIER.** A robust perturber (lensing substructure or stream gap) with **no baryonic counterpart**
+  at a mass where baryons should be detectable (~10⁷–10⁹ M☉ needs ~10⁷–10⁹ M☉ of baryons, both footings ≫
+  the ~10⁶ M☉ detection floor). A confirmed starless one there kills it; all-baryonic supports it.
+- **⚠️ HONEST NUANCE.** MOND is NOT "no perturbers" — a baryonic satellite carries its own boosted phantom
+  (M_dyn/M_b = r/r_M ≈ 4–41 over 0.5–5 kpc for a 10⁷ M☉ dwarf), so a ~1.5×10⁷ M☉ dwarf mimics an inferred
+  ~10⁸ M☉ perturber; the EFE further suppresses satellite phantoms. The test is about **dark (starless)**
+  perturbers specifically; GD-1's perturber's baryonic origin is not currently excluded.
+- **VERDICT.** HIGH confidence on the structural chain (phantom vanishes with baryons ⇐ L95) and the ΛCDM
+  slope contrast; medium on the count normalizations. Prediction P20.
