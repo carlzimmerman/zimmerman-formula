@@ -87,3 +87,14 @@ python3 -B -m unittest discover \
 The candidate remains **OPEN**, with this route failing the requested
 controlled auxiliary/zero-field gate unless a further covariant regulator is
 derived without changing the exact `mu(y)` branch.
+
+The follow-up `FQTHETA_REGULATOR_TRILEMMA_REPORT.md` closes the local repair
+options for this same mixed principal architecture. Direct reduction gives
+`K_red = -U_nz^2 k^2/(2 Q0^2 U_pp)` and
+`omega^2 = Q0^2 U_pp U_zz/U_nz^2`: the exact elliptic branch (`U_pp>0`) is a
+ghost, a sign flip (`U_pp<0`, `U_zz>0`) is a gradient instability, and
+`U_nz=0` collapses the symplectic form. An independent `p_dot^2` regulator
+contains `p_ddot` in the varied equation and therefore makes the intended
+auxiliary clock dynamical. The Python gate is 12/12 and the Lean sign
+certificate exits 0; this is scoped to the displayed architecture, not a
+universal no-go.
