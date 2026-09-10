@@ -3695,3 +3695,41 @@ headline — SLIP-1). With `ν_exp(x)=1/(1−e^{−x})`, this vanishes **only** 
 here the (ν−2) proportionality, its sign, and its single zero are what is verified. The result is a
 verification of astra's carrier-specific obstruction plus its observable, not a new no-go.
 Script: `L101_verify_york_slip_lensing.py` (9/9), `.out` committed.
+
+## L102 — verified astra's parameter-free deep-MOND action-angle invariant + a calibration-free test (11/11)
+
+**What I did.** Independently reproduced astra's newest result (`rotated_mmg_constitutive_2026`, commit
+bbcacc6c1, `action_angle_invariant.py` + Lean companion) and turned it into a concrete observable with a
+Newtonian discriminator. astra's invariant, from the exact deep-MOND orbit quadratures:
+`T_r · √(G M_b a₀) / ℓ = F(e)/J(e) =: I(e)` — a pure function of eccentricity, where T_r is the radial
+period and ℓ the specific angular momentum. For two tracers of one source, `(T_r1 ℓ2)/(T_r2 ℓ1)=I(e1)/I(e2)`
+cancels M_b, a₀, the radius scale **and** the absolute time calibration.
+
+**Why it's true (the mechanism I verified).** Deep MOND around a point baryonic mass is a **scale-free
+logarithmic potential** Φ=v₀²ln r with v₀=(G M_b a₀)^{1/4} (the flat-rotation speed). Force ∝1/r is
+homogeneous of degree −1, so orbits are self-similar: the only length is ℓ/v₀ and it cancels from the
+dimensionless combination T_r v₀²/ℓ, leaving a pure function of orbit **shape** (eccentricity).
+
+**Verification (self-contained numpy; sqrt turning-point singularity removed analytically via
+`2(ε−Φ_eff)=(ρ−r_p)(r_a−ρ)g(ρ)`, `ρ=c−b cosθ` ⇒ b sinθ cancels ⇒ `I=2∫dθ/√g`).**
+- **INV-1b (absolute anchor):** near-circular limit I(e→0)=2π/κ with κ²=Φ_eff″(1)=2, i.e. π√2≈4.4429 —
+  quadrature gives 4.44309 (checks the machinery against closed form, not just self-consistency).
+- **INV-2 (the cancellation, dimensionally):** integrating the *physical* quadrature, T_r√(GM_b a₀)/ℓ = I(e)
+  for every M_b (1e9–5e11 M_⊙), both a₀ footings, and every ℓ — worst relative error **1.9e-9**. astra's
+  exact cancellation reproduced by direct quadrature, not by inserting the result.
+- **TWO-1/2:** the two-tracer ratio from raw periods = I(e1)/I(e2); at **equal eccentricity it is exactly 1**,
+  regardless of the two orbits' (different) sizes — the scale-free signature.
+
+**New: the discriminator + observable.** In Newtonian gravity the *same* combination is
+`(T_r1 ℓ2)/(T_r2 ℓ1)=(a1/a2)√((1−e2²)/(1−e1²))`, which at equal e is `a1/a2` — it carries the absolute
+orbit size because Kepler is **not** scale-free (KEP-1/2). So two equal-eccentricity tracers of one isolated
+low-acceleration host give ratio **1 in deep MOND vs a1/a2 in Newton** — a parameter-free, calibration-free
+dynamical test needing only kinematics (periods, angular momenta, eccentricities): no mass, no distance, no
+a₀, not even absolute time. Applies to two tidal streams / satellite or GC orbits / well-sampled stellar
+orbits around an isolated MOND-regime host.
+
+**Honest scope (astra's own caveat, preserved).** A *conditional weak-static* deep-MOND, isolated,
+test-particle prediction — NOT relativistic-closure evidence (that's the cuscuton/F(Q)Θ thread). Real
+tracers have finite g/a₀, external fields (EFE), and non-spherical baryons that deform I(e); the clean
+signal is the equal-eccentricity ratio → 1. Script: `L102_verify_deepmond_action_angle_invariant.py`
+(11/11), `.out` committed.
