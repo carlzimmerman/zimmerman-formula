@@ -3988,3 +3988,22 @@ reparametrization brackets `{H⊥,H⊥}` etc. at all k and nonlinearly, plus PPN
 remains (L106 already resolves the competing-cone/structure-function part; the explicit bracket closure of
 the metric+clock constraints is the remaining piece). No claim the full nonlinear theory is closed. Script
 `L111_independent_cam_dirac_closure.py` (8/8).
+
+## L112 — CAM PPN toward closure: γ = 1 exactly (Cassini-safe) + α₁ structurally suppressed (6/6)
+
+Toward the PPN item on astra's open closure list. The most observationally important PPN parameter is the
+Eddington light-bending γ (Cassini: |γ−1| < 2.3×10⁻⁵).
+
+- **γ = 1 exactly.** γ ≡ Ψ/Φ (space-curvature over time potential); the CAM no-slip (E_Ψ=2M²(Φ''−Ψ'')=0 ⇒
+  **Φ=Ψ**, verified L108) gives γ=1 with the MOND modification entering only the *common* potential, never
+  the ratio. So `|γ−1| = 0` — CAM **passes the strongest Solar-System test** (Cassini) with no tuning.
+- **Newtonian in the Solar System.** At Saturn's orbit g/a₀ ~ 7×10⁵, so μ=1−e^{−g/a₀}→1 to e^{−g/a₀}
+  (underflow, ≪10⁻⁹) — the MOND correction is utterly negligible there, consistent with γ=1.
+- **α₁ (preferred frame).** AeST died on α₁=−2(K_B+2), un-tunable (~2×10⁴× over bound). CAM's clock enters
+  **linearly** (through a_μ=n^ν∇_νn_μ in the acceleration relation), not as a quadratic aether kinetic term,
+  so that AeST α₁ structure is **absent by the same mechanism that lets F(Q)Θ pass the PPN gate (L91)**.
+
+**Honest scope.** γ=1 is rigorous (from no-slip) and it's the load-bearing, observationally strongest PPN
+result — done. The AeST α₁ *disaster* is structurally absent, but the exact CAM α₁ number and the full suite
+(β, α₂, α₃) need the O(w) moving-frame + second-order solution — astra's remaining PPN work. Script
+`L112_cam_ppn_gamma_cassini.py` (6/6). **CAM now clears the strongest Solar-System gate (Cassini γ).**
