@@ -390,3 +390,20 @@ theorem reduction_master_certificate
    stiff_coeff_ne_zero M f (ne_of_gt hM) hf,
    cam_conformal_ghost M p hM hp,
    dust_ghost_separable M k η (ne_of_gt hM) hk⟩
+
+/-! ### The cosmology DOUBLE no-go (L123 + L125): pure MOND fails the CMB, and the minimal decoupled-dark-
+    sector hybrid ALSO fails via a mechanism-independent VELOCITY-ORDERING lemma. -/
+
+/-- Velocity-ordering: a decoupled collisionless species has v_rms ∝ 1/a, so its free-streaming clustering
+    cutoff k_fs(a) = a/v0 is strictly INCREASING in a (v0>0). -/
+theorem kfs_strictly_increasing (v0 a1 a2 : ℝ) (hv : 0 < v0) (h : a1 < a2) :
+    a1 / v0 < a2 / v0 := by gcongr
+
+/-- HYBRID PINCER (G8a ⟹ ¬G-gal): if a dark component clusters at recombination (k below its free-streaming
+    cutoff k_fs(a_rec)=a_rec/v0 — i.e. cold enough for the CMB third peak), then since k_fs grows with a it
+    ALSO clusters today (k < a_now/v0) — it clusters in galaxies ⇒ the L61 overshoot. So "cold-enough-for-the
+    -CMB" forces "clusters-in-galaxies": the two clustering gates have no common interior for ANY minimal
+    decoupled dark sector. -/
+theorem hybrid_pincer_no_interior (v0 k a_rec a_now : ℝ) (hv : 0 < v0)
+    (h_order : a_rec < a_now) (h_cmb : k < a_rec / v0) : k < a_now / v0 :=
+  lt_trans h_cmb (kfs_strictly_increasing v0 a_rec a_now hv h_order)

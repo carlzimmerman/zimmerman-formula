@@ -4312,3 +4312,30 @@ sterile-ν survivor is "the candidate that passes every distilled constraint," p
 run, the O(w) α₁ solve, and a real sterile-ν structure-formation check (the down-select + PPN agents are doing
 the rigorous versions). This is a fast SCREENING tool (runnable/refinable on the M4 Max), not a proof.
 Script `parameter_space_scan.py`; survivors in `parameter_space_survivors.json`.
+
+## L125 / Phase B — THE FINAL VERDICT: MOND half HEALTHY; cosmology a rigorous DOUBLE no-go (7/7 + Lean)
+
+**Phase B (health-branch Dirac closure, fleet 13/13):** the MOND half is CONFIRMED HEALTHY. The full
+linearized Dirac chain TERMINATES (constraints 4→8→10→12→12: tertiary+quartic appear then STOP, no tower;
+Poisson matrix rank 12, all second-class), DOF = 2 (graviton) + 0 (scalar). **No conformal ghost:** the lapse
+Hessian is identically zero in every sector (EH; cuscuton clock via √−g·√X=√h; φ via leaf-projected |Dφ|²),
+so the Hamiltonian constraint FREEZES the conformal mode ψ (M²k²ψ≈0). Machine-checked freeze-vs-liberate
+contrast with CAM in one engine: adding CAM's lapse Hessian (η α²) liberates ψ as a ghost (H=−p²/6M²<0). φ is
+removed as a POSITIVE-definite pair ({p_φ,C_AQUAL}=M²k²[1−(1−y)e^{−y}]>0 ∀y). Terminates AND healthy — unlike
+CAM. (Open on MOND side: PPN α_i, a₀ coefficient.)
+
+**Dark-sector down-select (fleet):** the hybrid is ALSO pincered — NO minimal decoupled L_dark threads all
+gates. Binding, mechanism-independent obstruction: the **VELOCITY-ORDERING lemma** — a decoupled species has
+v_rms ∝ 1/a, so the free-streaming cutoff k_fs ∝ a is strictly increasing ⇒ clustering-for-CMB (G8a) ⟹
+clustering-in-galaxies ⟹ L61 overshoot (¬G-gal). **G8a ⟹ ¬G-gal, no common interior.** Each candidate fails a
+different gate (CDM: G-gal; k-essence dust: G9 BBN 24-order; hot ν: G8a+G-nu pincer), meta-reason one velocity
+fact. Corrected the brute-force scanner accordingly → **0 minimal survivors (100% reduction)**. Lean:
+`kfs_strictly_increasing`, `hybrid_pincer_no_interior`.
+
+**THE FINAL MAP:** the framework gives the best-behaved relativistic MOND the programme has had for
+galaxies/lensing/Solar-System (healthy, causal, transition-elliptic, γ=1, c_T=c, SPARC/BTFR — RAQUAL fixed by
+a cuscuton, no TeVeS baggage). But making it ALSO CMB-safe is a **rigorous double no-go** for this class: pure
+MOND fails the CMB (L123) AND every minimal decoupled dark sector fails (velocity lemma). CMB-safety requires
+stepping OUTSIDE the minimal class — to superfluid emergent MOND (closed on lensing, L67) or the two-metric
+branch (open, L61 §5). No free lunch; the map is complete and the remaining routes are named. Mondlean → 42
+theorems. Scripts `L125_final_verdict_health_vs_cosmology.py` (7/7), scratchpad phaseB_dirac_closure.py (13/13).
