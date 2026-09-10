@@ -1,0 +1,58 @@
+{
+  "scope": "Exact review algebra only; no full action, Lean build or Boltzmann rerun",
+  "python": "3.9.6",
+  "sympy": "1.14.0",
+  "checks": {
+    "sound_speed_is_pressure_derivative": true,
+    "pressure_is_concave": true,
+    "pressure_at_zero": true,
+    "exact_local_growth_from_continuity": true,
+    "counterexample_is_dustlike": true,
+    "counterexample_is_causal_and_respects_cs2_le_w": true,
+    "universal_local_p_ceiling_is_false": true,
+    "controlled_small_density_sound_speed": true,
+    "KQQ_chain_rule": true,
+    "superquadratic_is_not_sufficient_for_dust": true
+  },
+  "counterexample": {
+    "P": "epsilon*rho_star*(1 - exp(-rho/rho_star))",
+    "cs2": "epsilon*exp(-rho/rho_star)",
+    "local_p": "3*epsilon - 3*epsilon*exp(-rho/rho_star) + 3*rho/rho_star",
+    "at_rho_over_rho_star_2_epsilon_1e_minus_6": {
+      "cs2": "1.3533528323661269e-7",
+      "w": "4.3233235838169365e-7",
+      "p": "6.0000025939941503"
+    }
+  },
+  "KQQ": "Q**2*Subs(Derivative(P(_xi_1), (_xi_1, 2)), _xi_1, Q**2/2) + Subs(Derivative(P(_xi_1), _xi_1), _xi_1, Q**2/2)",
+  "L139_literal_true_check_lines": [
+    155,
+    171,
+    175,
+    197,
+    246,
+    261,
+    265,
+    269
+  ],
+  "source_sha256": {
+    "L137_aest_dust_stiff_correction.py": "3771d9e8feb9ba46221977efb534960d5ca549c4438e1464bc6ddf4fc29ead62",
+    "L139_cuscuton_transplant_route2_open.py": "4ba18c119e7962ac60f47bfa9469b9283cc1a373361865f71094cdd79d9213ee",
+    "L152_RUNNING_CS2_BOLTZMANN_VERDICT.md": "2a250ee90f5b47c3b9cf9b19e1ebfd779af3fa3c7e7abcc15f9e3ec45cf28c09",
+    "L152_running_cs2_cmb_boltzmann.py": "d73b37d20eae979dc83898a95dd357f2812080f8c74901fc13b1bfb20e979299",
+    "L152_running_cs2_pk_lyman_alpha.py": "1b4a042981ca84d0ac12406d9489cb5e5b13aea34beee0461a2852045ea8591c",
+    "L152_class_running_cs2/running_cs2.patch": "b30243ed56c9076d544cb6dae39cbd6b63d6eb99ee6f3a50f6502d886286c91f",
+    "L152_class_running_cs2/apply_running_cs2_patch.py": "6fdb3c35f170ef6b521e51155bffdac80b88a40b069b7e7fe719b9eef3932cc6",
+    "L152_class_running_cs2/build_patched_classy.sh": "02e4e0e72503524b2f754a0dfa3bd9e7a7e3f4b50642700893e757c3ae78ddb1",
+    "L153a_identity_soundspeed_coupling.py": "7d7fe10c443d3d90d2655507147c7d49d9844ce4ae0789e62ae0a94b291263e5",
+    "L153e_verdict_window.py": "e09cbe335e49da50622a29aa628162ba165afd84b3c52240b5ab1a201c91d9d6",
+    "L155_disformal_gamma_cure.py": "bc7d06217c05fdd55efe2c7e643420ea0c1f838d19662cfc63a738982126a295",
+    "L157_soundspeed_growth_realizability.py": "cbb00c122baa9d0d486e1946bc679db9365561b3591f0136ff2a290de36d495a",
+    "L158_gdm_loophole_verdict.py": "99e0bc213088188066a766b4efe431797d65a0f9d01c35886b32fdd3b8b45f92",
+    "L165_smooth_dust_third_peak_calibrated_sigma.py": "19ac97924696e294554d7c20325d5634fc2188a03a4f1a741b84d62dbb5a4b4b",
+    "lean_2026/Mondlean.lean": "b830c3dd2a19807c56691a94898fa1c639079bb344355ebd48a60ed22d951b57"
+  },
+  "command": "python3 -B fable_independent_2026/reviews/2026-09-10_twenty_recommendations/check_review_algebra.py",
+  "exit_code": 0,
+  "reviewed_through_commit": "20c27011f817eab420d11ec3e5e37a66ec4987a1"
+}
