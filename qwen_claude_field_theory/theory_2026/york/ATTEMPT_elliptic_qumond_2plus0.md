@@ -17,7 +17,8 @@ u_μ = −∇_μT/√(−∇_αT∇^αT),  h_μν = g_μν + u_μu_ν,  K_μν =
       + ∫ √−g [ μ_T² √(−∇T·∇T) − V(T) ]                                  [cuscuton DE clock]
       + (1/8πG) ∫ N√h [ −2 D_iΦ D^iΨ + a₀²(T) F(D_iΨ D^iΨ/a₀²(T)) ]      [elliptic MOND carrier]
       + S_m[g̃_μν, ψ]  +  S_CMC
-    F'(s) = ν(√s),  ν(y) = √(1+1/y);   a₀²(T) = κ² c² G V(T)
+    F'(s) = ν_exp(√s),  ν_exp(s)=x(s)/s,
+    s=x(1−e^(−x)), x>0;   a₀²(T) = κ² c² G V(T)
 
 Physical (single) metric:  d s̃² = −N² e^{2Φ} dt² + e^{−2Ψ} h_ij dx^i dx^j,  MOND branch Φ=Ψ=Φ_MOND.
 
@@ -30,8 +31,9 @@ Physical (single) metric:  d s̃² = −N² e^{2Φ} dt² + e^{−2Ψ} h_ij dx^i 
   is the distinctive, DESI-testable prediction. (NB: the *clock* reading a₀ ∝ K = 3H — from
   `cosmology_flrw_2026.py` — is the OTHER fork; the two agree only under DE-domination and diverge at
   high z. Pick one and state the assumption; √ρ_DE is the cleaner.)
-- **MOND:** D²Ψ = 4πGρ, D²Φ = D_i[ν D^iΨ] ⇒ ρ_ph = (1/4πG)D_i[(ν−1)D^iΨ] (the νρ source);
-  g² = g_N² + a₀ g_N; single metric ⇒ Φ=Ψ ⇒ g_lens = g_dyn = νg_N, c_γ=c_GW=c at tensor level.
+- **MOND:** D²Ψ = 4πGρ, D²Φ = D_i[ν_exp D^iΨ] ⇒ ρ_ph = (1/4πG)D_i[(ν_exp−1)D^iΨ].
+  In spherical symmetry \(g_N=a₀s,\ g=a₀x,\ s=x(1−e^{−x})\), so \(g=ν_exp(s)g_N\);
+  only the deep limit gives \(g²=a₀g_N\). Single metric ⇒ \(\Phi=\Psi\) is still an unproved gate.
 - **Background:** 3M_Pl²H² = ρ_m + ρ_DE, −2M_Pl²Ḣ = (ρ_m+p_m) + (ρ_DE+p_DE).
 
 ## Open (why this is candidate, not proven)
