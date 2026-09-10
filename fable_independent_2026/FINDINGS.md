@@ -4912,3 +4912,50 @@ algebra is now certified — `kessence_dust_stiff_decomposition`, `stiff_dust_co
 `helmholtz_mass_cannot_be_switched_off`, `fourth_power_error_budget`, `fourth_power_velocity_binds`,
 `fourth_power_velocity_threshold`. Docstrings flag what is NOT certified (Boltzmann run, PPN solve, the cosh/exp
 a⁻³ law). Nothing omitted.
+
+## L152 — THE DECIDING BOLTZMANN RUN FOR THE L139 SECTOR: running c_s² PASSES the CMB; Lyman-α is the fork
+
+Scripts: `L152_running_cs2_cmb_boltzmann.py` (21/21), `L152_running_cs2_pk_lyman_alpha.py` (14/14); patched
+CLASS 3.3.4.0 in `L152_class_running_cs2/` (patch + build script, build products gitignored). Report:
+`L152_RUNNING_CS2_BOLTZMANN_VERDICT.md`. This is deciding computation (i) of L139.
+
+**How.** CLASS's fluid was patched so its rest-frame sound speed runs, `cs2_fld(a) = min(cs2_max, c0 (a/a_*)^p)`,
+and the patched build reproduces stock classy to **0.0e+00** with p = 0 (bit-for-bit regression in a subprocess).
+Real Boltzmann integration of a GDM fluid (w = −1e-5, c_vis² = 0), controlled background (same w in every run,
+100θ_s identical), `recombination = recfast` — **because CLASS's HyRec wrapper computes its own H(z) from
+Omega0_nfsm (b + cdm only, fluid excluded)**, which puts every fluid-as-dust run 0.7% (TT) / Δz_rec = 0.52 away
+from true ΛCDM; with recfast the c_s² = 0 control matches a *real* ΛCDM run to 2.1e-4 in TT and 0.04% in σ₈.
+(L129/L127/L140's absolute controls, run with hyrec, carry that 0.7% offset; their *differential* conclusions
+are unaffected — checked here: hyrec/recfast ratios of the running deviations 1.10/0.96/1.00.) The running's
+time dependence was validated independently: a sub-horizon two-fluid growth solver reproduces the patched
+CLASS's fluid/baryon suppressions to 0.003/0.001 across z = 0–3, and would miss by 0.59/0.47 if CLASS had a²/a⁴.
+
+**CMB: PASS, by two orders of magnitude.** Over the whole L138 window c0 = 1e-6 … 3.21e-6 (c_s² today):
+unlensed TT/EE/TE max deviation **1.8e-5 … 5.9e-5** (ℓ = 30–2000), lensed TT/EE **1.8e-4 … 5.1e-4**, lensing
+potential (L = 8–400) **−0.19% … −0.55%**, peaks 1/2/3 and ratios 3/1, 3/2 equal to CDM to < 1e-4, Planck-like
+fixed-parameter Δχ² **0.012 … 0.095**. c_s²(a_rec) = c0·a_rec³ = 7.7e-16 … 2.5e-15: indistinguishable from CDM
+at recombination. The CMB's own ceiling on the running sector is c0 ≈ 4e-4 (lensed TT reaches 1%), **127× above
+the window**, and it is a lensing bound. **Constant c_s² (quadratic K)** at the same values: invisible at
+recombination (< 3e-4) but the lensing potential drops 4–10% and Δχ² = 33 at 3.21e-6, of which only **4.6 is
+TT+TE+EE** — the published 3.21e-6 ceiling (arXiv:1601.05097) is a CMB-*lensing* bound (a first version of
+that calibration check without the lensing term FAILED at 4.6; the failure is what identified this).
+
+**Late times.** Total-matter σ₈ 0.8226 → **0.8025 (−2.4%) / 0.7880 (−4.2%) / 0.7645 (−7.1%)** across the window;
+P/P_CDM at z = 0: k = 0.1: 0.990, k = 1: **0.32**, k = 10: 0.013 (c0 = 1e-6); **k₅₀ = 0.79 / 0.59 / 0.44 h/Mpc**.
+Galaxy-scale power is halved, large scales survive; z = 0.5 BOSS/DESI range touched at 0.3–2.6%. Constant
+c_s² = 1e-6 for contrast: σ₈ −18%, P/P = 0.004 at k = 1 h/Mpc — dead, as L129-gdm's solver found for p = 0.
+
+**Lyman-α: UNDETERMINED, and it is a fork.** At z = 3, k = 10 h/Mpc (c0 = 1e-6) the **total-matter** suppression
+is **0.53** but the **linear-baryon** suppression is **0.038** (14×): once the fluid's Jeans term switches on its
+δ freezes, while baryons keep falling into the frozen (not erased) fluid potential. Against the 5.3-keV WDM
+allowance over k = 8–12 h/Mpc: total reading **23× (z=3), 11× (z=4) → FAIL**; baryon reading **0.63× (z=4,
+inside), 1.5× (z=3, borderline), 4.3× (z=2)**; at c0 = 3.21e-6 even the baryon reading is 4.5× over at z=3.
+**L129-gdm's Lyman-α gate used the baryon spectrum — the generous reading.** Which field the forest traces on
+mildly non-linear scales (Δ² ~ 10–30 at z=3) needs a two-species hydro simulation, which exists for neither
+this sector nor AeST. The generous reading already sits at the tolerance for the smallest allowed c0.
+
+**Standing after L152.** L139 route 2 survives its first named deciding computation cleanly — the CMB is not
+where it dies. Its binding tests are late-time: Lyman-α (fork, knife-edge at best), then the z = 0.5 full-shape
+P(k) and σ₈ (quantified, not adjudicated). Items (ii) non-linear galaxy smoothness and (iii) the O(w) PPN solve
+with χ remain open. Scope: GDM mapping (exact sub-horizon), c_s² ∝ a³ assumed all the way to today (a
+saturating cosh/exp transition lies between the two scans), linear theory, Planck-like not Planck likelihood.

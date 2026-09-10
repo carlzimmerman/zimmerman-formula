@@ -1,0 +1,137 @@
+================================================================================================================
+L152 (2/2) -- running-sound-speed dark fluid at late times: P(k), sigma_8, k_50, Lyman-alpha, validation
+================================================================================================================
+
+================================================================================================================
+PART 0 -- runs: control, true LambdaCDM, the running window, and constant c_s^2 for contrast
+================================================================================================================
+  [PASS] SETUP-0  the hand-built (rho_b d_b + rho_cdm d_cdm)/(rho_b+rho_cdm) reproduces CLASS's own d_m transfer to < 1e-5 for every k >= 0.01 h/Mpc at every z, and the residual below that is the expected large-scale GAUGE term (CLASS's d_m is the gauge-invariant comoving density, d_b/d_cdm are synchronous): it falls by > 10x per decade from k = 1e-3 to 1e-1 h/Mpc at every z.  So the density weights are the code's own; the total spectrum below uses CLASS's d_m as its denominator, and sigma_8/P(k) at k >= 0.01 carry no error from this   (max |d_m(mine)/d_m(CLASS) - 1| (k >= 0.01) = 1.4e-06; residual at k = 1e-3/1e-2/1e-1 (z=0): 8.3e-06/1.0e-07/2.2e-09; (z=3): 7.2e-05/1.0e-06/2.8e-08)
+  [PASS] SETUP-1  the TOTAL-matter sigma_8 of the c_s^2 = 0 fluid control equals that of a true LambdaCDM run (real CDM, no fluid) to < 0.5%, and my sigma_8 integral reproduces CLASS's own sigma8() for LambdaCDM to < 0.5%: the total-P(k) construction is validated at both ends   (sigma_8: control(total) 0.8226, LambdaCDM(total, mine) 0.8229, LambdaCDM (CLASS) 0.8228; CLASS's sigma8() of the control counts b+cdm only: 0.8193)
+  [PASS] SETUP-2  and the control's total P(k, z=0) matches true LambdaCDM to < 1% for 0.01 < k < 10 h/Mpc   (max |P_ctrl/P_LCDM - 1| = 1.1e-03)
+    runs done [1.2s]
+
+================================================================================================================
+PART 1 -- INDEPENDENT VALIDATION of the running implementation: sub-horizon two-fluid growth solver vs CLASS
+================================================================================================================
+  running c0 = 1e-6, c_s^2(a) = c0 a^3:   (P/P_ctrl) for the FLUID and for the BARYONS, solver vs CLASS
+      z     k[h/Mpc] |  fluid: solver   CLASS  |  baryon: solver   CLASS
+     0.0     0.30   |    0.8922    0.8921  |     0.9958    0.9958
+     0.0     0.50   |    0.7238    0.7237  |     0.9886    0.9885
+     0.0     1.00   |    0.2356    0.2369  |     0.9566    0.9559
+     0.0     2.00   |    0.0194    0.0203  |     0.8557    0.8539
+     0.0     5.00   |    0.0018    0.0046  |     0.6021    0.6002
+     0.0    10.00   |    0.0012    0.0007  |     0.4215    0.4191
+     2.0     0.30   |    0.9977    0.9977  |     0.9999    0.9999
+     2.0     0.50   |    0.9935    0.9935  |     0.9997    0.9997
+     2.0     1.00   |    0.9742    0.9739  |     0.9988    0.9988
+     2.0     2.00   |    0.9000    0.8986  |     0.9953    0.9952
+     2.0     5.00   |    0.4979    0.4946  |     0.9716    0.9708
+     2.0    10.00   |    0.0177    0.0264  |     0.8984    0.8960
+     3.0     0.30   |    0.9992    0.9992  |     1.0000    1.0000
+     3.0     0.50   |    0.9979    0.9979  |     0.9999    0.9999
+     3.0     1.00   |    0.9916    0.9915  |     0.9996    0.9996
+     3.0     2.00   |    0.9669    0.9663  |     0.9985    0.9984
+     3.0     5.00   |    0.8071    0.8044  |     0.9905    0.9902
+     3.0    10.00   |    0.3989    0.3964  |     0.9635    0.9624
+  [PASS] VAL-0  the independent solver reproduces the patched CLASS's FLUID suppression to within 0.05 (absolute, in P/P_ctrl) wherever the ratio exceeds 0.3, and the BARYON suppression to within 0.02: the running c_s^2 = c0 a^3 is implemented in CLASS with the right power of a and the right normalisation (a wrong exponent shifts these ratios by far more than this over z = 0-3)   (max |solver - CLASS|: fluid 0.003, baryon 0.001 (13 cells with ratio > 0.3))
+  [PASS] VAL-1  the comparison is DISCRIMINATING: had CLASS implemented a^2 or a^4 instead of a^3, the solver (run with those exponents) would disagree with CLASS by > 0.1 in the same cells -- so VAL-0 is not a test that anything would pass   (max |solver(p=2) - CLASS(p=3)| = 0.585; p=4: 0.466)
+  NOTE the fluid-vs-baryon asymmetry: once the fluid's Jeans term switches on, its own delta stops growing,
+  but the baryons keep falling into the (frozen, not erased) fluid potential and their linear delta
+  continues to grow almost as before -- so linear baryons are far less suppressed than the fluid.
+
+================================================================================================================
+PART 2 -- sigma_8, P(k)/P_control at z = 0 and 0.5, and the 50%-suppression scale
+================================================================================================================
+  sigma_8 (TOTAL matter, z=0): control 0.8226
+  run c0=1.00e-06  z=0.0  total: k0.1:0.9895 k0.2:0.9585 k0.3:0.9087 k1:0.3202 k3:0.0168 k10:0.0134 | k_50(total) 0.791  k_50(fluid) 0.719  k_50(baryon) 7.2 h/Mpc
+  run c0=1.00e-06  z=0.5  total: k0.1:0.9971 k0.2:0.9884 k0.3:0.9740 k1:0.7406 | k_50(total) 1.5  k_50(fluid) 1.37  k_50(baryon) 12.3 h/Mpc
+                    sigma_8(total) = 0.8025  (-2.4% vs control);  CLASS's b+cdm sigma8 = 0.8184
+  run c0=1.80e-06  z=0.0  total: k0.1:0.9811 k0.2:0.9264 k0.3:0.8409 k1:0.1142 k3:0.0328 k10:0.0079 | k_50(total) 0.59  k_50(fluid) 0.536  k_50(baryon) 5.37 h/Mpc
+  run c0=1.80e-06  z=0.5  total: k0.1:0.9948 k0.2:0.9792 k0.3:0.9537 k1:0.5780 | k_50(total) 1.12  k_50(fluid) 1.02  k_50(baryon) 9.19 h/Mpc
+                    sigma_8(total) = 0.7880  (-4.2% vs control);  CLASS's b+cdm sigma8 = 0.8176
+  run c0=3.21e-06  z=0.0  total: k0.1:0.9666 k0.2:0.8720 k0.3:0.7322 k1:0.0130 k3:0.0116 k10:0.0086 | k_50(total) 0.442  k_50(fluid) 0.401  k_50(baryon) 4.02 h/Mpc
+  run c0=3.21e-06  z=0.5  total: k0.1:0.9907 k0.2:0.9631 k0.3:0.9187 k1:0.3666 | k_50(total) 0.84  k_50(fluid) 0.764  k_50(baryon) 6.88 h/Mpc
+                    sigma_8(total) = 0.7645  (-7.1% vs control);  CLASS's b+cdm sigma8 = 0.8164
+  const c=1.00e-06 z=0.0  total: k0.1:0.8933 k0.2:0.6348 k0.3:0.3537 k1:0.0037 k3:0.0001 k10:0.0000 | k_50(total) 0.246  k_50(fluid) 0.229  k_50(baryon) 0.477 h/Mpc
+                    sigma_8(total) = 0.6711  (-18.4% vs control)
+  const c=3.21e-06 z=0.0  total: k0.1:0.6945 k0.2:0.2238 k0.3:0.0312 k1:0.0006 k3:0.0000 k10:0.0000 | k_50(total) 0.137  k_50(fluid) 0.128  k_50(baryon) 0.266 h/Mpc
+                    sigma_8(total) = 0.5115  (-37.8% vs control)
+  [PASS] PK-0  THE INTENDED FEATURE IS THERE: at z = 0 the running fluid suppresses galaxy-scale total-matter power by half at k_50 = 0.4-0.8 h/Mpc across the window (P/P_ctrl < 0.35 at k = 1 h/Mpc, < 0.05 at 10 h/Mpc), while the large scales survive: < 1.5% at k = 0.1 h/Mpc for c0 = 1e-6   (k_50 = 0.79/0.59/0.44 h/Mpc; c0=1e-6: P/P at k=0.1: 0.9895, k=1: 0.320, k=10: 0.0134)
+  [PASS] PK-1  sigma_8 (total matter) moves DOWN by 2-8% across the window -- a shift current S8 measurements (weak lensing sits 3-8% below Planck) cannot exclude and might even welcome; it is NOT a kill and NOT a win, and the check only asserts the size: |dsigma_8/sigma_8| < 10% for every window value   (sigma_8 = 0.8025 (-2.4%), 0.7880 (-4.2%), 0.7645 (-7.1%) vs control 0.8226)
+  [PASS] PK-2  the BOSS/DESI regime is touched at the few-percent level: at z = 0.5 the total P(k) is suppressed by < 2% at k = 0.1 h/Mpc and < 10% at k = 0.3 h/Mpc for c0 = 1e-6 (a shape distortion that full-shape analyses can probe but which this lane does not adjudicate)   (z=0.5, c0=1e-6: P/P at k=0.1: 0.9971, 0.2: 0.9884, 0.3: 0.9740)
+  [PASS] PK-3  CONTRAST -- the constant-c_s^2 (quadratic K) branch at the SAME c_s^2(today) = 1e-6 is dead on late-time structure alone: sigma_8 down by > 15% and P/P_ctrl < 0.05 at k = 1 h/Mpc (k_50 ~ 0.25 h/Mpc), confirming with a Boltzmann code what L129's growth solver found for p = 0   (const 1e-6: sigma_8 0.6711 (-18.4%), P/P(k=1) = 0.0037, k_50 = 0.25)
+
+================================================================================================================
+PART 3 -- LYMAN-ALPHA (z = 2-4, k = 1-12 h/Mpc): total vs fluid vs baryon suppression against the WDM allowance
+================================================================================================================
+  allowance proxy: 1 - T^2_WDM(k) for m_WDM = 5.3 keV (the linear suppression the forest tolerates, z-independent):
+      k[h/Mpc]:  1.00   2.00   3.00   5.00   8.00  10.00  11.88
+      allowed : 0.000  0.001  0.002  0.006  0.016  0.027  0.039
+  the ratio 'suppression/allowed' is evaluated over k = 8-12 h/Mpc (0.07-0.1 s/km at z = 3-4), the range in
+  which the published bound is set by the cutoff shape.  At k <= 3 h/Mpc the WDM proxy 'allows' only
+  1e-4 .. 2e-3, far below any real forest sensitivity to a smooth suppression, so a max over all k would
+  be an artefact of the proxy, not of the data.  The full table is printed so both can be read.
+  running c0 = 1.00e-06:  suppression 1 - P/P_ctrl
+    z=2  total : 0.022  0.086  0.186  0.439  0.791  0.923  0.976   (max/allowed over k=8-12 =   48.3)
+         fluid : 0.026  0.101  0.218  0.505  0.869  0.974  0.989
+         baryon: 0.001  0.005  0.011  0.029  0.070  0.104  0.139   (max/allowed over k=8-12 =   4.29)
+    z=3  total : 0.007  0.029  0.064  0.167  0.378  0.529  0.661   (max/allowed over k=8-12 =   23.1)
+         fluid : 0.008  0.034  0.075  0.196  0.437  0.604  0.741
+         baryon: 0.000  0.002  0.004  0.010  0.025  0.038  0.052   (max/allowed over k=8-12 =   1.50)
+    z=4  total : 0.003  0.012  0.027  0.072  0.175  0.262  0.352   (max/allowed over k=8-12 =   10.7)
+         fluid : 0.004  0.014  0.032  0.085  0.205  0.305  0.407
+         baryon: 0.000  0.001  0.001  0.004  0.010  0.016  0.023   (max/allowed over k=8-12 =   0.63)
+  running c0 = 1.80e-06:  suppression 1 - P/P_ctrl
+    z=2  total : 0.039  0.150  0.311  0.657  0.952  0.994  1.000   (max/allowed over k=8-12 =   58.2)
+         fluid : 0.047  0.176  0.361  0.738  0.988  0.981  0.975
+         baryon: 0.002  0.009  0.019  0.051  0.117  0.167  0.214   (max/allowed over k=8-12 =   7.16)
+    z=3  total : 0.013  0.051  0.112  0.282  0.582  0.755  0.868   (max/allowed over k=8-12 =   35.6)
+         fluid : 0.015  0.060  0.132  0.328  0.661  0.835  0.932
+         baryon: 0.001  0.003  0.006  0.017  0.043  0.065  0.089   (max/allowed over k=8-12 =   2.63)
+    z=4  total : 0.005  0.021  0.048  0.126  0.295  0.425  0.547   (max/allowed over k=8-12 =   18.0)
+         fluid : 0.006  0.025  0.056  0.149  0.343  0.489  0.622
+         baryon: 0.000  0.001  0.003  0.007  0.018  0.028  0.040   (max/allowed over k=8-12 =   1.13)
+  running c0 = 3.21e-06:  suppression 1 - P/P_ctrl
+    z=2  total : 0.069  0.253  0.490  0.865  0.997  0.999  0.982   (max/allowed over k=8-12 =   61.0)
+         fluid : 0.082  0.296  0.561  0.932  0.974  0.980  0.991
+         baryon: 0.004  0.015  0.034  0.086  0.184  0.248  0.301   (max/allowed over k=8-12 =  11.24)
+    z=3  total : 0.023  0.089  0.192  0.451  0.803  0.931  0.979   (max/allowed over k=8-12 =   49.1)
+         fluid : 0.027  0.105  0.224  0.518  0.880  0.978  0.989
+         baryon: 0.001  0.005  0.011  0.031  0.073  0.108  0.144   (max/allowed over k=8-12 =   4.47)
+    z=4  total : 0.009  0.038  0.084  0.215  0.469  0.637  0.767   (max/allowed over k=8-12 =   28.7)
+         fluid : 0.011  0.044  0.098  0.252  0.538  0.717  0.844
+         baryon: 0.001  0.002  0.005  0.013  0.032  0.049  0.068   (max/allowed over k=8-12 =   1.97)
+  [PASS] LYA-0  TOTAL-MATTER READING (the quantity a WDM-style bound is placed on): at z = 3 and z = 4 the running fluid's total suppression at k = 5-10 h/Mpc exceeds the 5.3-keV WDM allowance by more than 5x for the SMALLEST window value c0 = 1e-6 -- and exceeds a flat 5% criterion at k = 10 h/Mpc.  In this reading the sector FAILS the forest decisively   (c0=1e-6: max(suppression/allowed) total: z=3 23.1x, z=4 10.7x; total suppression at k=10, z=3: 0.53)
+  [PASS] LYA-1  BARYON READING (linear gas, the quantity L129's growth-solver gate used): at z = 4 -- the redshifts that drive the published WDM bound -- the baryon suppression is INSIDE the allowance over the constraining range k = 8-12 h/Mpc for c0 = 1e-6 (suppression/allowed < 1)   (c0=1e-6, z=4: max(suppression/allowed, k=8-12) baryon = 0.63)
+  [PASS] LYA-2  and at z = 3 the baryon reading is BORDERLINE: suppression/allowed between 0.5 and 2 at its worst k for c0 = 1e-6 (it exceeds 2 at z = 2, where the forest is less constraining)   (c0=1e-6: z=3 1.50, z=2 4.29; baryon suppression at k=10 h/Mpc: z=2 0.104, z=3 0.038, z=4 0.016)
+  [PASS] LYA-3  THE FORK IS REAL AND LARGE: at z = 3 the total-matter and baryon suppressions differ by more than 5x at k = 10 h/Mpc.  Which one the forest flux traces on scales that are mildly non-linear at z = 3 (Delta^2 ~ 10-30) cannot be decided by linear theory: the gas needs the fluid's potential wells to reach the overdensities the forest sees, and a fluid that is pressure-supported below ~3 h/Mpc at z = 3 does not provide them.  => the Lyman-alpha verdict is UNDETERMINED between a decisive FAIL (total reading) and BORDERLINE (baryon reading), and the deciding computation is a hydrodynamical simulation with a separate pressure-supported dark fluid, which does not exist for this sector or for AeST   (z=3, k=10 h/Mpc: total 0.529 vs baryon 0.038 (ratio 14.1x))
+  [PASS] LYA-4  the window's upper end is worse in both readings: at c0 = 3.21e-6 the baryon reading already exceeds the allowance at z = 3 (ratio > 1) and the total reading exceeds it by > 10x   (c0=3.21e-6, z=3: baryon 4.47x, total 49.1x allowed)
+
+================================================================================================================
+VERDICT (late times) -- and honest scope
+================================================================================================================
+
+  RUNNING c_s^2 = c0 a^3, c0 = 1e-6 (window floor):
+     sigma_8(total) 0.8025 vs control 0.8226 (-2.4%);  z=0 P/P_ctrl: k=0.1 0.9895,
+     k=1 0.320, k=10 0.0134 h/Mpc;  50% suppression at k_50 = 0.79 h/Mpc (fluid alone 0.72).
+     Galaxy-scale power IS suppressed, large scales survive, sigma_8 shifts modestly downward.
+     Across the window (to 3.21e-6): sigma_8 0.7645 (-7.1%), k_50 = 0.44 h/Mpc.
+  LYMAN-ALPHA (the named next falsifier), c0 = 1e-6, k = 1-10 h/Mpc, suppression 1 - P/P_ctrl:
+     z=3 total  : 0.007  0.029  0.064  0.167  0.378  0.529   -> FAILS the 5.3-keV allowance by 23x
+     z=3 baryon : 0.000  0.002  0.004  0.010  0.025  0.038   -> 1.50x the allowance (borderline)
+     z=4 baryon : 0.000  0.001  0.001  0.004  0.010  0.016   -> 0.63x (inside)
+     z=2 baryon : 0.001  0.005  0.011  0.029  0.070  0.104   -> 4.29x (outside, weaker data)
+     VERDICT: UNDETERMINED between FAIL (total-matter reading) and BORDERLINE (linear-baryon reading); the
+     generous reading sits AT the tolerance for the smallest allowed c0, so any non-linear starvation of the
+     gas by the pressure-supported fluid pushes it over.  A two-species hydro simulation decides.
+
+  SCOPE: (i) linear theory throughout; the forest at k ~ 5-10 h/Mpc, z = 3 is mildly non-linear.  (ii) The
+  WDM allowance is a z-independent proxy (Viel+05 transfer, m = 5.3 keV) for a bound derived from a joint
+  z = 3-5.4 fit; a z-dependent suppression is compared to it redshift by redshift, which is approximate in
+  both directions.  (iii) The sound speed is c0 a^3 all the way to today (cosh/exp K with the shift charge
+  still undiluted); a saturating c_s^2 lies between the running and constant scans.  (iv) The galaxy
+  window's floor (c_s^2 ~ 1e-6, c_s ~ 300 km/s today) is L138's number; it is not re-derived here.
+
+================================================================================================================
+L152 (2/2) COMPLETE: 14/14 checks PASS.   [1.3s]
+================================================================================================================

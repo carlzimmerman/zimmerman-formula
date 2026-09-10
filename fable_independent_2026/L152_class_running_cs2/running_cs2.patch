@@ -1,0 +1,94 @@
+diff -ru classy-3.3.4.0-orig/include/background.h classy-3.3.4.0/include/background.h
+--- classy-3.3.4.0-orig/include/background.h	2026-09-10 13:46:08
++++ classy-3.3.4.0/include/background.h	2026-09-10 13:46:49
+@@ -109,7 +109,10 @@
+   enum equation_of_state fluid_equation_of_state; /**< parametrisation scheme for fluid equation of state */
+   double w0_fld;   /**< \f$ w0_{DE} \f$: current fluid equation of state parameter */
+   double wa_fld;   /**< \f$ wa_{DE} \f$: fluid equation of state parameter derivative */
+-  double cs2_fld;  /**< \f$ c^2_{s~DE} \f$: sound speed of the fluid in the frame comoving with the fluid (so, this is
++  double cs2_fld;
++  double cs2_fld_p;     /**< L152: running index, cs2_fld(a) = cs2_fld (a/cs2_fld_astar)^cs2_fld_p (0 = stock) */
++  double cs2_fld_astar; /**< L152: pivot scale factor of the running sound speed */
++  double cs2_fld_max;   /**< L152: cap on the running sound speed */  /**< \f$ c^2_{s~DE} \f$: sound speed of the fluid in the frame comoving with the fluid (so, this is
+                       not [delta p/delta rho] in the synchronous or newtonian gauge!) */
+   double Omega_EDE;        /**< \f$ wa_{DE} \f$: Early Dark Energy density parameter */
+   double * scf_parameters; /**< list of parameters describing the scalar field potential */
+diff -ru classy-3.3.4.0-orig/source/input.c classy-3.3.4.0/source/input.c
+--- classy-3.3.4.0-orig/source/input.c	2026-09-10 13:46:08
++++ classy-3.3.4.0/source/input.c	2026-09-10 13:46:49
+@@ -3305,6 +3305,9 @@
+       class_read_double("w0_fld",pba->w0_fld);
+       class_read_double("wa_fld",pba->wa_fld);
+       class_read_double("cs2_fld",pba->cs2_fld);
++      class_read_double("cs2_fld_p",pba->cs2_fld_p);
++      class_read_double("cs2_fld_astar",pba->cs2_fld_astar);
++      class_read_double("cs2_fld_max",pba->cs2_fld_max);
+     }
+     if (pba->fluid_equation_of_state == EDE) {
+       /** 8.a.2.3) Equation of state of the fluid in 'EDE' case */
+@@ -5914,6 +5917,9 @@
+   pba->fluid_equation_of_state = CLP;
+   pba->w0_fld = -1.;
+   pba->cs2_fld = 1.;
++  pba->cs2_fld_p = 0.;
++  pba->cs2_fld_astar = 1.;
++  pba->cs2_fld_max = 1.;
+   /** 9.a.2.1) 'CLP' case */
+   pba->wa_fld = 0.;
+   /** 9.a.2.2) 'EDE' case */
+diff -ru classy-3.3.4.0-orig/source/perturbations.c classy-3.3.4.0/source/perturbations.c
+--- classy-3.3.4.0-orig/source/perturbations.c	2026-09-10 13:46:08
++++ classy-3.3.4.0/source/perturbations.c	2026-09-10 13:46:49
+@@ -27,7 +27,17 @@
+ #include "perturbations.h"
+ #include "parallel.h"
+ 
++/* L152: fluid rest-frame sound speed as a function of the scale factor (p = 0 restores stock CLASS) */
++static double cs2_fld_of_a(struct background * pba, double a) {
++  double cs2;
++  if (pba->cs2_fld_p == 0.) return pba->cs2_fld;
++  cs2 = pba->cs2_fld * pow(a/pba->cs2_fld_astar, pba->cs2_fld_p);
++  if (cs2 > pba->cs2_fld_max) cs2 = pba->cs2_fld_max;
++  return cs2;
++}
+ 
++
++
+ /**
+  * Source function \f$ S^{X} (k, \tau) \f$ at a given conformal time tau.
+  *
+@@ -5464,9 +5474,9 @@
+         class_call(background_w_fld(pba,a,&w_fld,&dw_over_da_fld,&integral_fld), pba->error_message, ppt->error_message);
+ 
+         if (pba->use_ppf == _FALSE_) {
+-          ppw->pv->y[ppw->pv->index_pt_delta_fld] = - ktau_two/4.*(1.+w_fld)*(4.-3.*pba->cs2_fld)/(4.-6.*w_fld+3.*pba->cs2_fld) * ppr->curvature_ini * s2_squared; /* from 1004.5509 */ //TBC: curvature
++          ppw->pv->y[ppw->pv->index_pt_delta_fld] = - ktau_two/4.*(1.+w_fld)*(4.-3.*cs2_fld_of_a(pba,a))/(4.-6.*w_fld+3.*cs2_fld_of_a(pba,a)) * ppr->curvature_ini * s2_squared; /* from 1004.5509 */ //TBC: curvature
+ 
+-          ppw->pv->y[ppw->pv->index_pt_theta_fld] = - k*ktau_three/4.*pba->cs2_fld/(4.-6.*w_fld+3.*pba->cs2_fld) * ppr->curvature_ini * s2_squared; /* from 1004.5509 */ //TBC:curvature
++          ppw->pv->y[ppw->pv->index_pt_theta_fld] = - k*ktau_three/4.*cs2_fld_of_a(pba,a)/(4.-6.*w_fld+3.*cs2_fld_of_a(pba,a)) * ppr->curvature_ini * s2_squared; /* from 1004.5509 */ //TBC:curvature
+         }
+         /* if use_ppf == _TRUE_, y[ppw->pv->index_pt_Gamma_fld] will be automatically set to zero, and this is what we want (although one could probably work out some small nonzero initial conditions: TODO) */
+       }
+@@ -7185,11 +7195,11 @@
+         ppw->rho_plus_p_theta_fld = (1.+w_fld)*ppw->pvecback[pba->index_bg_rho_fld]*y[ppw->pv->index_pt_theta_fld];
+         ca2_fld = w_fld - w_prime_fld / 3. / (1.+w_fld) / a_prime_over_a;
+         /** We must gauge transform the pressure perturbation from the fluid rest-frame to the gauge we are working in */
+-        ppw->delta_p_fld = pba->cs2_fld * ppw->delta_rho_fld + (pba->cs2_fld-ca2_fld)*(3*a_prime_over_a*ppw->rho_plus_p_theta_fld/k/k);
++        ppw->delta_p_fld = cs2_fld_of_a(pba,a) * ppw->delta_rho_fld + (cs2_fld_of_a(pba,a)-ca2_fld)*(3*a_prime_over_a*ppw->rho_plus_p_theta_fld/k/k);
+       }
+       else {
+         s2sq = ppw->s_l[2]*ppw->s_l[2];
+-        c_gamma_k_H_square = pow(pba->c_gamma_over_c_fld*k/a_prime_over_a,2)*pba->cs2_fld;
++        c_gamma_k_H_square = pow(pba->c_gamma_over_c_fld*k/a_prime_over_a,2)*cs2_fld_of_a(pba,a);
+         /** The equation is too stiff for Runge-Kutta when c_gamma_k_H_square is large.
+             Use the asymptotic solution Gamma=Gamma'=0 in that case.
+         */
+@@ -9368,7 +9378,7 @@
+         w_prime_fld = dw_over_da_fld * a_prime_over_a * a;
+ 
+         ca2 = w_fld - w_prime_fld / 3. / (1.+w_fld) / a_prime_over_a;
+-        cs2 = pba->cs2_fld;
++        cs2 = cs2_fld_of_a(pba,a);
+ 
+         /** - ----> fluid density */
+ 

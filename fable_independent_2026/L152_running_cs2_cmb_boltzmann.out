@@ -1,0 +1,93 @@
+================================================================================================================
+L152 (1/2) -- running-sound-speed dark fluid vs the CMB: a real Boltzmann run with a patched CLASS
+================================================================================================================
+
+================================================================================================================
+PART 0 -- the patched CLASS: import, bit-for-bit regression against stock classy, control validation
+================================================================================================================
+  [PASS] BUILD-0  the classy imported by this script is the PATCHED build living under L152_class_running_cs2/site (not the system package)   (import path is inside L152_class_running_cs2/site)
+  [PASS] REG-0  with the running switched off (cs2_fld_p = 0, the default) the PATCHED classy reproduces the STOCK classy to machine precision on TT/EE/TE/phiphi, unlensed and lensed, for c_s^2 = 0 and 1e-6 (max relative difference < 1e-10): the patch changes nothing it should not   (max |rel diff| over all spectra = 0.0e+00)
+  [PASS] REG-1  passing the new parameters explicitly at their defaults (p=0, a_*=1, max=1) is a no-op (max rel diff < 1e-12), so the parameters are read and default exactly as documented   (max |rel diff| = 0.0e+00)
+    control (fluid, c_s^2=0):  100*theta_s=1.040316  z_rec=1088.802  unlensed peaks=[(221, 5740.9), (537, 2606.5), (816, 2584.2)]
+    true LambdaCDM (omega_cdm=0.12): 100*theta_s=1.040289  z_rec=1088.803  unlensed peaks=[(221, 5740.3), (537, 2606.1), (816, 2584.1)]
+  [PASS] CTRL-0  the c_s^2 = 0 control reproduces the measured first acoustic peak (l ~ 220, ~5750 uK^2), as L129's control does: the pipeline sees the real CMB   (peak1: l=221, 5741 uK^2)
+  [PASS] CTRL-1  and the control's peaks 2 and 3 sit where the data put them (l ~ 537, ~810) with the observed third/second ratio ~1.0 (Planck: 0.99 +- 0.01 at this binning)   (peak2 l=537, peak3 l=816, peak3/peak2=0.9914)
+  [PASS] CTRL-2  the fluid-as-dust control IS a faithful CDM stand-in: against a true LambdaCDM run (real CDM, no fluid, same everything else) it agrees to < 5e-4 in TT (unlensed and lensed) and < 1e-3 in EE over l = 30-2000, and 100*theta_s agrees to < 1e-4 -- this is what recfast + w0 = -1e-5 buys (with hyrec, which computes its own H(z) without the fluid, the mismatch is 7e-3; see part 4)   (TT 2.1e-04, lensed TT 2.1e-04, EE 5.0e-04, phiphi 7.5e-04, d(100theta_s) = 2.8e-05, dz_rec = 0.002)
+
+================================================================================================================
+PART 1 -- CONSTANT c_s^2 (quadratic K): the window 1e-6 .. 3.21e-6, bracketed by 1e-7 and 1e-5
+================================================================================================================
+  const 1.00e-07     dTheta 0e+00 | pk1/2/3 1.0000/1.0000/1.0000 r32 0.9914 (ctrl 0.9914) | maxdev l=30-2000: TT 2.6e-05 EE 1.2e-05 TE 1.8e-05 | lensed TT 6.2e-04 EE 6.3e-04 | phiphi mean L8-400 -5.3e-03 max 1.2e-01 | l<30 9.4e-06 | dchi2 TTTEEE 0.021 + lens(dA=-0.007) 0.085 = 0.11
+  const 1.00e-06     dTheta 0e+00 | pk1/2/3 1.0000/1.0000/1.0000 r32 0.9914 (ctrl 0.9914) | maxdev l=30-2000: TT 1.0e-04 EE 2.0e-05 TE 1.3e-05 | lensed TT 3.6e-03 EE 3.9e-03 | phiphi mean L8-400 -4.1e-02 max 4.6e-01 | l<30 1.1e-04 | dchi2 TTTEEE 0.89 + lens(dA=-0.055) 4.9 = 5.8
+  const 1.80e-06     dTheta 0e+00 | pk1/2/3 1.0000/1.0000/1.0000 r32 0.9915 (ctrl 0.9914) | maxdev l=30-2000: TT 1.8e-04 EE 2.2e-05 TE 1.4e-05 | lensed TT 5.3e-03 EE 5.9e-03 | phiphi mean L8-400 -6.6e-02 max 5.8e-01 | l<30 1.9e-04 | dchi2 TTTEEE 2.1 + lens(dA=-0.088) 12 = 14
+  const 3.21e-06     dTheta 0e+00 | pk1/2/3 1.0001/1.0000/1.0000 r32 0.9915 (ctrl 0.9914) | maxdev l=30-2000: TT 3.2e-04 EE 3.8e-05 TE 2.2e-05 | lensed TT 7.5e-03 EE 8.8e-03 | phiphi mean L8-400 -1.0e-01 max 7.0e-01 | l<30 3.4e-04 | dchi2 TTTEEE 4.6 + lens(dA=-0.133) 28 = 33
+  const 1.00e-05     dTheta 0e+00 | pk1/2/3 1.0002/1.0001/1.0001 r32 0.9915 (ctrl 0.9914) | maxdev l=30-2000: TT 9.7e-04 EE 1.2e-04 TE 6.6e-05 | lensed TT 1.4e-02 EE 2.1e-02 | phiphi mean L8-400 -2.1e-01 max 8.7e-01 | l<30 1.1e-03 | dchi2 TTTEEE 19 + lens(dA=-0.272) 1.2e+02 = 1.4e+02
+  [PASS] CONST-0  every constant-c_s^2 run shares the control's background exactly (100*theta_s agrees to < 1e-5), so what follows is a pure sound-speed effect, not a re-tuned expansion history   (max d(100theta_s) = 0.0e+00)
+  [PASS] CONST-1  at recombination a constant c_s^2 in the window is INVISIBLE in the primary (unlensed) CMB: max |dC_l/C_l| < 1e-3 for TT, EE and TE over l = 30-2000 at c_s^2 = 3.21e-6 -- consistent with L127's finding that the published 3.21e-6 bound is set by LATE-time clustering, not by recombination physics   (unlensed at 3.21e-6: TT 3.2e-04, EE 3.8e-05, TE 2.2e-05)
+  [PASS] CONST-2  the late-time effect is where a constant c_s^2 shows: at 3.21e-6 the lensing potential is suppressed by tens of percent (Planck measures its amplitude to 2.5%), and the LENSED TT/EE deviate at the ~1% level -- so the window's ceiling is a CMB-lensing/late-ISW bound, reproduced here in kind   (at 3.21e-6: <dC^phiphi/C> L=8-400 = -0.101, lensed TT maxdev 7.5e-03, lensed EE 8.8e-03)
+  [PASS] CONST-3  pipeline sensitivity is consistent with the literature bound, AND the bound is a LENSING bound: at the published 99.7% ceiling c_s^2 = 3.21e-6 (arXiv:1601.05097, Planck 2015 temperature, polarisation and lensing) the fixed-parameter Planck-like Delta chi^2 from TT+TE+EE ALONE is < 9 -- the lensed spectra by themselves would NOT exclude it -- while adding the lensing-potential amplitude (2.5% precision) lifts the total to >= 9.  (A first version of this check without the lensing term FAILED at 4.6; that failure is what identified the bound's origin.)  No marginalisation: upper bounds.   (Delta chi^2 at 3.21e-6: TT+TE+EE 4.6; lensing amplitude dA = -0.133 -> 28.4; total 33.0)
+  [PASS] CONST-4  and it is monotone: the deviation grows with c_s^2 at every level (unlensed TT, lensed TT, phiphi), with no numerical noise floor masquerading as signal   (all three deviation measures strictly increase along the scan)
+
+================================================================================================================
+PART 2 -- RUNNING c_s^2 = c0 (a/1)^3 (cosh/exp K): the window, then up to 1e-3 to find the ceiling
+================================================================================================================
+  run c0=1.00e-06    dTheta 0e+00 | pk1/2/3 1.0000/1.0000/1.0000 r32 0.9914 (ctrl 0.9914) | maxdev l=30-2000: TT 1.8e-05 EE 1.1e-05 TE 1.2e-05 | lensed TT 1.8e-04 EE 2.0e-04 | phiphi mean L8-400 -1.9e-03 max 2.5e-02 | l<30 3.1e-05 | dchi2 TTTEEE 0.0022 + lens(dA=-0.003) 0.01 = 0.012
+  run c0=1.80e-06    dTheta 0e+00 | pk1/2/3 1.0000/1.0000/1.0000 r32 0.9914 (ctrl 0.9914) | maxdev l=30-2000: TT 3.3e-05 EE 1.3e-05 TE 9.6e-06 | lensed TT 3.0e-04 EE 3.1e-04 | phiphi mean L8-400 -3.3e-03 max 3.8e-02 | l<30 5.4e-05 | dchi2 TTTEEE 0.006 + lens(dA=-0.004) 0.029 = 0.035
+  run c0=3.21e-06    dTheta 0e+00 | pk1/2/3 1.0000/1.0000/1.0000 r32 0.9914 (ctrl 0.9914) | maxdev l=30-2000: TT 5.9e-05 EE 1.2e-05 TE 9.4e-06 | lensed TT 4.5e-04 EE 5.1e-04 | phiphi mean L8-400 -5.5e-03 max 5.6e-02 | l<30 9.6e-05 | dchi2 TTTEEE 0.015 + lens(dA=-0.007) 0.08 = 0.095
+  run c0=1.00e-05    dTheta 0e+00 | pk1/2/3 1.0000/1.0000/1.0000 r32 0.9914 (ctrl 0.9914) | maxdev l=30-2000: TT 1.9e-04 EE 1.4e-05 TE 1.2e-05 | lensed TT 1.1e-03 EE 1.3e-03 | phiphi mean L8-400 -1.4e-02 max 1.1e-01 | l<30 3.0e-04 | dchi2 TTTEEE 0.095 + lens(dA=-0.018) 0.5 = 0.6
+  run c0=1.00e-04    dTheta 0e+00 | pk1/2/3 1.0002/1.0001/1.0000 r32 0.9914 (ctrl 0.9914) | maxdev l=30-2000: TT 2.0e-03 EE 9.1e-06 TE 1.1e-05 | lensed TT 4.5e-03 EE 7.6e-03 | phiphi mean L8-400 -7.0e-02 max 2.8e-01 | l<30 3.1e-03 | dchi2 TTTEEE 2.2 + lens(dA=-0.084) 11 = 14
+  run c0=3.00e-04    dTheta 0e+00 | pk1/2/3 1.0004/1.0003/1.0001 r32 0.9913 (ctrl 0.9914) | maxdev l=30-2000: TT 6.1e-03 EE 9.6e-06 TE 1.9e-05 | lensed TT 7.9e-03 EE 1.5e-02 | phiphi mean L8-400 -1.3e-01 max 3.9e-01 | l<30 9.4e-03 | dchi2 TTTEEE 7.7 + lens(dA=-0.150) 36 = 44
+  run c0=1.00e-03    dTheta 0e+00 | pk1/2/3 1.0010/1.0006/1.0003 r32 0.9911 (ctrl 0.9914) | maxdev l=30-2000: TT 2.1e-02 EE 1.1e-05 TE 1.7e-05 | lensed TT 2.0e-02 EE 2.8e-02 | phiphi mean L8-400 -2.2e-01 max 5.0e-01 | l<30 3.2e-02 | dchi2 TTTEEE 24 + lens(dA=-0.250) 1e+02 = 1.2e+02
+    c_s^2 at recombination (a_rec = 9.176e-04): c0 * a_rec^3 = c0 * 7.73e-10
+  [PASS] RUN-0  identical background across the running scan too (100*theta_s to < 1e-5)   (max d(100theta_s) = 0.0e+00)
+  [PASS] RUN-1  THE RESULT AT RECOMBINATION: for the whole L138 window (c0 = 1e-6 .. 3.21e-6) the running sector is INDISTINGUISHABLE from CDM in the primary CMB -- max |dC_l/C_l| < 1e-4 in TT, EE and TE over l = 30-2000 (a factor 100 inside the 1% band), because c_s^2(a_rec) = c0 a_rec^3 ~ 1e-15   (unlensed maxdev at c0=3.21e-6: TT 5.9e-05, EE 1.2e-05, TE 9.4e-06; c_s^2(a_rec) = 2.5e-15)
+  [PASS] RUN-2  all three acoustic peak heights and both ratios (3/1, 3/2) agree with the control to < 1e-4 across the window (unlensed): the third peak is driven exactly as by CDM   (at 3.21e-6: pk1/2/3 = 1.00000/1.00000/1.00001, r32 = 0.99144 vs 0.99144)
+  [PASS] RUN-3  the LENSED spectra -- what Planck actually measures -- also stay inside the 1% band by a wide margin over the window: lensed TT/EE max deviation < 1e-3, and the low-l (ISW) deviation < 1e-3   (at 3.21e-6: lensed TT 4.5e-04, lensed EE 5.1e-04, l<30 9.6e-05)
+  [PASS] RUN-4  CMB LENSING: the lensing-potential amplitude over Planck's L = 8-400 changes by less than the 2.5% measurement precision across the window (the suppression lives at L > 400, where it reaches a few percent)   (<dC^phiphi/C>(L=8-400) = -1.9e-03 / -3.3e-03 / -5.5e-03; L=400-2000: -1.4e-02 / -3.3e-02)
+  [PASS] RUN-5  the fixed-parameter Planck-like Delta chi^2 (TT+TE+EE + lensing amplitude) over the window is < 1 (undetectable even with no marginalisation), versus >= 9 for the constant case at the same c_s^2(today) -- the running sector is at least an order of magnitude below the CMB's reach where quadratic K sits at its ceiling   (running dchi2 = 0.012 / 0.035 / 0.095; constant at 3.21e-6: 33.0)
+
+================================================================================================================
+PART 3 -- the running CEILING: where does the lensed CMB first leave the 1% band?
+================================================================================================================
+    lensed-TT max deviation along the scan: 1e-06:1.8e-04  2e-06:3.0e-04  3e-06:4.5e-04  1e-05:1.1e-03  1e-04:4.5e-03  3e-04:7.9e-03  1e-03:2.0e-02
+    unlensed-TT:                            1e-06:1.8e-05  2e-06:3.3e-05  3e-06:5.9e-05  1e-05:1.9e-04  1e-04:2.0e-03  3e-04:6.1e-03  1e-03:2.1e-02
+    1%-band ceiling on c0 (running, lensed TT, log-interpolated): 4.06e-04
+  [PASS] CEIL-0  the running ceiling sits ABOVE the window by more than two orders of magnitude: the lensed TT deviation only reaches 1% for c0 > 1e-4, i.e. > 30x the constant-case ceiling of 3.21e-6.  The CMB does not bound the running sector anywhere near the galaxy window -- the binding constraints are late-time (part 2 of L152)   (ceiling c0 = 4.1e-04 vs 3.21e-6 -> ratio 127)
+  [PASS] CEIL-1  and it is the late-time (lensing) channel that binds, not recombination: at the ceiling the unlensed deviation is still below the lensed one, and only at c0 ~ 1e-3 (c_s^2(a_rec) ~ 1e-12) does anything reach the primary spectrum at the percent level   (at c0=1e-4: unlensed 2.0e-03 < lensed 4.5e-03; at 1e-3: unlensed 2.1e-02)
+
+================================================================================================================
+PART 4 -- cross-check in the L129-identical configuration (hyrec, w0 = -1e-4): the differential result does not depend on the recombination-code choice
+================================================================================================================
+  hyrec run 1e-6     dTheta 0e+00 | pk1/2/3 1.0000/1.0000/1.0000 r32 0.9906 (ctrl 0.9906) | maxdev l=30-2000: TT 2.0e-05 EE 2.9e-05 TE 2.1e-05 | lensed TT 1.7e-04 EE 2.0e-04 | phiphi mean L8-400 -1.9e-03 max 2.5e-02 | l<30 3.1e-05 | dchi2 TTTEEE 0.0021 + lens(dA=-0.003) 0.01 = 0.012
+  hyrec const 1e-6   dTheta 0e+00 | pk1/2/3 1.0000/1.0000/1.0000 r32 0.9906 (ctrl 0.9906) | maxdev l=30-2000: TT 1.0e-04 EE 2.3e-05 TE 1.1e-05 | lensed TT 3.6e-03 EE 3.9e-03 | phiphi mean L8-400 -4.1e-02 max 4.6e-01 | l<30 1.1e-04 | dchi2 TTTEEE 0.88 + lens(dA=-0.055) 4.9 = 5.8
+    hyrec control vs true LambdaCDM: TT maxdev 7.3e-03, z_rec 1088.266 vs 1088.784 (the HyRec-wrapper H(z) issue)
+  [PASS] XCHK-0  in the L129-identical configuration the running-case deviations agree with the recfast configuration to within a factor 1.5 on every measure (unlensed TT, lensed TT, phiphi mean), so the verdict is not a recombination-code artefact   (ratios hyrec/recfast: TT 1.10, lensed TT 0.96, phiphi 1.00)
+  [PASS] XCHK-1  but the ABSOLUTE control is worse with hyrec: its mismatch to true LambdaCDM exceeds 5e-3 in TT and z_rec is off by > 0.3 -- the reason the L152 runs use recfast (CTRL-2)   (hyrec control vs LCDM: TT 7.3e-03, dz_rec = 0.52)
+
+================================================================================================================
+VERDICT (CMB) -- and honest scope
+================================================================================================================
+
+  RUNNING c_s^2 = c0 a^3 over the L138 window (c0 = 1e-6 .. 3.21e-6) PASSES THE CMB:
+     primary (unlensed) TT/EE/TE max deviation 1.8e-05 .. 5.9e-05 over l = 30-2000 (band 1e-2),
+     lensed TT 1.8e-04 .. 4.5e-04, lensing potential (L=8-400) -1.9e-03 .. -5.5e-03,
+     peak heights 1/2/3 and ratios equal to the control to < 1e-4, fixed-parameter Planck-like
+     Delta chi^2 0.012 .. 0.095.  c_s^2(a_rec) = 7.7e-16 .. 2.5e-15.
+     The CMB's own ceiling on the running sector is c0 ~ 4e-04 (lensed TT reaches 1%), ~127x above the window.
+  CONSTANT c_s^2 (quadratic K) at the same c_s^2(today): invisible at recombination (< 1e-3) but the lensing
+     potential drops by 4-10% (L=8-400) and the lensed spectra move at the 0.4-0.8% level:
+     the published 3.21e-6 ceiling is reproduced in kind (fixed-parameter Delta chi^2 = 33 there, of
+     which only 4.6 comes from TT+TE+EE: the published ceiling is a CMB-LENSING bound).
+
+  SCOPE: (i) GDM mapping with w = -1e-5 (not exactly 0), rest-frame c_s^2 = the dispersion sound speed,
+  c_vis^2 = 0 (CLASS's fld carries no shear); exact sub-horizon, an O((aH/k)^2) effective description at
+  horizon crossing -- irrelevant here because c_s^2(a_rec) ~ 1e-15.  (ii) The cosh/exp K sound speed is
+  c_s^2 ~ a^3 only while the shift charge is undiluted (Z >> 1); if the transition a_t falls before today
+  the late-time c_s^2 saturates at a constant -- that case lies between the two scans run here.  (iii) The
+  Delta chi^2 is a Planck-LIKE Gaussian estimate at FIXED cosmological parameters (an upper bound on
+  detectability), not the Planck likelihood; no sigma is quoted from it.  (iv) Passing the CMB is necessary,
+  not sufficient: sigma_8, P(k), and the Lyman-alpha forest are part 2.
+
+================================================================================================================
+L152 (1/2) COMPLETE: 21/21 checks PASS.   [4.9s]
+================================================================================================================
