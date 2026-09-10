@@ -61,6 +61,22 @@ The Lean certificate proves the exponential TF multiplier solution, the
 opposite-shift cancellation, both DOF arithmetic statements, and the expanding
 FLRW branch implication.
 
+The frozen-coefficient linear sector audit then separates the remaining
+principal modes.  Each TT polarization has
+
+\[
+ L_{TT}=\frac{M^2}{8}(\dot h^2-k^2h^2),
+ \qquad K_T=\frac{M^2}{8}>0,\quad G_T=\frac{M^2k^2}{8}>0,
+ \quad c_T^2=1.
+\]
+
+The transverse vector has no velocity Hessian; its generated two-constraint
+Poisson matrix has rank 2 and zero physical DOF.  Combined with the finite-
+k scalar count, this is a linear-principal-sector stability pass.  It is not a
+nonlinear stability theorem: background-dependent lower-derivative terms,
+strong coupling, PPN preferred-frame parameters, and the full covariant
+multiplier algebra remain open.
+
 ## Reproduction
 
 ```text
@@ -73,4 +89,7 @@ python3 -B flrw_tensor_compensated_gate.py
 python3 -B -m unittest -v test_flrw_tensor_compensated.py
 python3 -B flrw_zero_mode_dirac_gate.py
 python3 -B -m unittest -v test_flrw_zero_mode_dirac.py
+python3 -B linear_sector_stability_gate.py
+python3 -B -m unittest -v test_linear_sector_stability.py
+python3 -B run_linear_sector_lean.py
 ```
