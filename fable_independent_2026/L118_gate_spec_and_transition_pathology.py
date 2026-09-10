@@ -4,7 +4,7 @@ L118 -- THE GATE SPECIFICATION for a relativistic-MOND Lagrangian, and the recur
         pathology (the gate that keeps failing across CAM, KGB, and khronometric MOND). A targeted map for
         the search, not a universal no-go.
 =============================================================================================================
-Carl's goal: a Lagrangian that passes ALL the gates. This lane consolidates (a) the exact gate checklist any
+The goal: a Lagrangian that passes ALL the gates. This lane consolidates (a) the exact gate checklist any
 candidate must satisfy, with the obstruction each gate encodes, and (b) the empirical pattern that the
 programme's independent architectures all fail in the SAME place -- the MOND->Newton TRANSITION regime
 (y = g/a0 ~ 1-few) -- which is therefore the critical gate to target.
