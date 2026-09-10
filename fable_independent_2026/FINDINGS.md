@@ -4963,3 +4963,23 @@ saturating cosh/exp transition lies between the two scans), linear theory, Planc
 **⚠️ L159–L164 caveat:** 9 checks across these lanes use literal `True` as their pass condition, violating the
 post-L136 rule. Treat those specific checks as ASSERTED, not computed; the numerical verdicts above rest on
 the computed checks. Paths were scrubbed to relative before commit.
+
+## L153a–e — DECIDING LANE 2: L139 Route 2 as written is DEAD; the EP-consistent repair is a knife-edge sliver (62/62)
+
+**Exact identity, every K and c_Y:** `c_s² = ε·c_ad²`, `ε ≡ 2c_Y Q̄/K_Q` (inertial response ÷ gravitational
+mass), `c_ad² = K_Q/(Q̄K_QQ)`. The "free" running sound speed of L138 is bought with a **non-universal
+gravitational coupling**: constant c_Y with `K_Q = I₀/a³` forces `ε ∝ a³` — an equivalence-principle violation
+in the dark sector of `(1+z_rec)³ = 1.3e9`. Normalised to fall normally today the sector is inert at z=1100
+(no third peak); normalised to CDM at z=1100 it outgrows CDM by e^{2e4}. **Binding conflict: 9 orders of
+magnitude.** Supersedes L138's "nothing excludes that corner" and L139's "OPEN". L139's C3-1 ("AeST algebra
+transplants verbatim") was a literal-`True` check and is FALSE at perturbation order — AeST's dynamical vector
+carries the dark momentum; a slaved clock normal cannot.
+
+**EP-consistent repair (`c_Y = K_Q/2Q̄`) = Lorentz-invariant k-essence — no longer needs the foliation.**
+UNDETERMINED, window `c_ad ∈ [300, 537] km/s`. CMB carried by the constant-c_s GDM bound; galaxies: isothermal
+atmosphere `ρ = ρ̄ exp(|Φ|/c_ad²)`, SPARC floor 170–175 km/s with a₀ refit (at 100 km/s the L61 overshoot is
+reproduced from the atmosphere); clusters retain >50% for c_ad ≤ 700; **floor set by LENSING** (≤10% deviation
+inside 1 Mpc needs c_ad ≥ 300, boundary-condition dependent ~2×). Empty on VSB's isolated-log r_C scaling
+(floor 839) or trusting the deep KiDS points (floor 1346). Early-accreted dust is EXPELLED, not retained, once
+c_s ≳ 50 km/s. **Undecided:** inside the sliver the dust loses its late-time power (growth/CDM 0.51 at k=0.2);
+P(k) must come from MOND-boosted baryons, which L142 finds overshooting — that joint run decides the sliver.

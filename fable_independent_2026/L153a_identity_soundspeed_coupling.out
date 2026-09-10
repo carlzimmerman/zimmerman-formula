@@ -1,0 +1,106 @@
+
+================================================================================================================
+A1 -- FLAT SPACE: energy and momentum are transported at DIFFERENT rates (Noether, on-shell)
+================================================================================================================
+  [PASS] A1-1  energy conservation d_t(u K_u - K + c_Y w^2) + d_x(-2 c_Y u w) = 0 holds ON-SHELL (residual is exactly EOM * chi_t)   (residual = 0)
+  [PASS] A1-2  momentum conservation d_t(-K_u w) + d_x(...) = 0 holds ON-SHELL (residual is exactly EOM * chi_x)   (residual = 0)
+  energy density   = c_Y*Derivative(chi(t, x), x)**2 - K(Derivative(chi(t, x), t)) + Derivative(K(Derivative(chi(t, x), t)), Derivative(chi(t, x), t))*Derivative(chi(t, x), t)
+  energy flux      = -2*c_Y*Derivative(chi(t, x), t)*Derivative(chi(t, x), x)
+  momentum density = -Derivative(K(Derivative(chi(t, x), t)), Derivative(chi(t, x), t))*Derivative(chi(t, x), x)
+  energy flux / momentum density = 2*c_Y*Derivative(chi(t, x), t)/Derivative(K(Derivative(chi(t, x), t)), Derivative(chi(t, x), t))
+  [PASS] A1-3  the ratio (energy flux)/(momentum density) is 2 c_Y Q / K_Q(Q): T^{0i} != T^{i0} -- energy and momentum move at different speeds unless c_Y = K_Q/(2Q)   (ratio = 2*Q*c_Y/Derivative(K(Q), Q))
+  [PASS] A1-4  CONTROL: for a Lorentz-invariant k-essence P(X), X = (u^2 - w^2)/2, i.e. K = P(u^2/2) and c_Y = P_X/2, the ratio is exactly 1 (symmetric T^{mu nu}); the mismatch IS the Lorentz violation   (ratio_LI = 1)
+
+================================================================================================================
+A2 -- GRAVITY THROUGH THE LAPSE: the sector falls with acceleration -eps grad(Phi), eps = 2 c_Y Qbar/K_Q
+================================================================================================================
+  O(eps) field equation : -K_QQ*Qbar*Derivative(Phi(t, x), t) + K_QQ*Derivative(psi(t, x), (t, 2)) - 2*c_Y*Derivative(psi(t, x), (x, 2)) = 0
+  delta n               : -K_QQ*Qbar*Phi(t, x) + K_QQ*Derivative(psi(t, x), t)
+  [PASS] A2-1  the linearised density equation is  d_t^2(dn) - (2 c_Y/K_QQ) d_x^2(dn) = 2 c_Y Qbar d_x^2(Phi): sound speed c_s^2 = 2 c_Y/K_QQ (L138's) AND a gravitational source with coefficient 2 c_Y Qbar   (residual = 0)
+  [PASS] A2-2  dividing by the background density Qbar K_Q: the source is eps * rho_bar lap(Phi) with eps = 2 c_Y Qbar/K_Q -- the sector's INERTIAL response to gravity is eps times its GRAVITATIONAL mass   (eps = 2*Qbar*c_Y/K_Q)
+  [PASS] A2-3  IDENTITY for any K and any c_Y:  c_s^2 = eps * c_ad^2,  c_ad^2 = K_Q/(Qbar K_QQ) = dP/drho of the background.  A 'free' sound speed is bought with a non-universal gravitational coupling.   (c_s^2 - eps c_ad^2 = 0)
+  [PASS] A2-4  eps = 1 (equivalence principle in the dark sector, the condition for CDM-like infall) FORCES c_Y = K_Q/(2 Qbar) -- the Lorentz-invariant k-essence value of A1-4 -- and hence c_s = c_ad: the sound speed is then LOCKED to the background equation of state (L138 B2), not free   (c_Y(eps=1) = K_Q/(2*Qbar))
+
+================================================================================================================
+A3 -- EXPANDING BACKGROUND: the one-parameter family C(Q) ~ K_Q^p; only p = 1 is CDM
+================================================================================================================
+  [PASS] A3-1  the FRW density equation is  delta'' - (Cdot/C + H) delta' = -c_s^2 k^2 delta/a^2 - (2 C Qbar a/I_0) k^2 Phi   (exact rearrangement, verified symbolically)   (residual = 0)
+  [PASS] A3-2  for C ~ K_Q^p (= a^{-3p}) the friction coefficient is (3p - 1) H: p = 1 gives CDM's +2H, L139's constant c_Y (p = 0) gives -H (an anti-damped, non-diluting charge flux)   (friction/H = 3*p - 1)
+  [PASS] A3-3  the gravitational coupling scales as eps ~ a^{3(1-p)}: constant for p = 1 only; for p = 0 it changes by (1+z_rec)^3 = 1.3e9 between recombination and today   ((1+z_rec)^3 = 1.295e+09)
+  [PASS] A3-4  p = 1 reproduces the CDM growth equation EXACTLY: delta'' + 2H delta' = 4 pi G rho_d delta - c_ad^2 k^2 delta/a^2 (with c_s = c_ad); this is the Lorentz-invariant k-essence dust (Scherrer 2004)   (friction +2H, eps = 1, c_s^2 = c_ad^2)
+
+================================================================================================================
+A4 -- NUMBERS on SZ21's cosh K:  c_ad^2(a), eps(a), c_s^2(a)
+================================================================================================================
+          a |  c_ad^2/(Z0/Q0), a_t=0.3   a_t=1.27    a_t=3 |  eps (p=0, eps(1)=1)  eps (p=0, eps(rec)=1)
+    0.00092 |                   1.0000     1.0000   1.0000 |            7.722e-10              1.000e+00
+    0.01000 |                   1.0000     1.0000   1.0000 |            1.000e-06              1.295e+03
+    0.10000 |                   0.9993     1.0000   1.0000 |            1.000e-03              1.295e+06
+    0.33333 |                   0.5891     0.9998   1.0000 |            3.704e-02              4.796e+07
+    1.00000 |                   0.0270     0.8986   0.9993 |            1.000e+00              1.295e+09
+  [PASS] A4-1  cosh K: c_ad^2 = (Z_0/Q_0) tanh Z(a) is CONSTANT to <1% for a < a_t/2.4 and falls as a^-3 beyond a_t (L138 B2-3/B2-4 reproduced); a_t >= 1.27 keeps c_ad within 10% of its plateau today   (tanh Z at a = a_t/2.4: 0.9974;  at a=1 with a_t=1.27: 0.899)
+  [PASS] A4-2  with constant c_Y the coupling eps = eps(1) a^3 spans 1.3e9 between recombination and today: normalised to fall like CDM today it is INERT at recombination (eps = 7.7e-10); normalised to CDM at recombination it is 1.3e9 x CDM today   (eps(rec | eps(1)=1) = 7.72e-10;  eps(1 | eps(rec)=1) = 1.30e+09)
+
+  L138's corner: c_s(today) = 300 km/s with c_s^2 ~ a^3 (p = 0).  By the identity, c_ad^2 = c_s^2/eps:
+    eps(today) =  1.0e+00  =>  c_ad =        300.0 km/s  (eps(rec) = 7.7e-10)
+    eps(today) =  1.0e-03  =>  c_ad =       9486.8 km/s  (eps(rec) = 7.7e-13)
+    eps(today) =  1.0e-06  =>  c_ad =     300000.0 km/s  (eps(rec) = 7.7e-16)
+    eps(today) =  1.0e-09  =>  c_ad =    9486833.0 km/s  (eps(rec) = 7.7e-19)
+  [PASS] A4-3  the running corner cannot be normalised into existence: c_ad = c_s(today)/sqrt(eps(today)); eps(today) = 1 gives c_ad = 300 km/s but eps(rec) = 7.7e-10; eps(rec) = 1 requires eps(today) = 1.3e9 and c_ad = 0.008 km/s (a cold dust with a 300 km/s dynamical sound speed and 1e9 x CDM infall)
+
+================================================================================================================
+A5 -- LINEAR GROWTH ODE at the third-peak scale k = 0.06 Mpc^-1 (and the LSS diagnostic for p = 1)
+================================================================================================================
+  CDM control (p=1, eps=1, c_ad->0), k=0.06: delta(rec)/delta(a_i) = 5.241, delta(1)/delta(rec) = 376.1
+  [PASS] A5-0  CONTROL: the integrator reproduces the analytic dust-only growth index at a = 0.1 to <1% and a delta(1)/delta(rec) of order (1+z_rec)^0.9 x (Lambda suppression)   (index = 0.9000 vs analytic 0.8994; delta(1)/delta(rec) = 376)
+
+  p = 0 (L139's constant c_Y), c_ad^2 -> c_s^2(today)/eps(today), a_t = 10 (pure a^3 regime):
+   eps(today)   eps(rec) | ln d(rec)/d_i  ln vs CDM |  ln d(1)/d(rec)  ln vs CDM |  MD index
+      1.0e+00    7.7e-10 |         5.113     +3.456 |       1.742e+01 +1.149e+01 |     2.501
+      1.0e-03    7.7e-13 |         5.113     +3.456 |       1.738e+01 +1.145e+01 |     2.501
+      1.0e-06    7.7e-16 |         5.113     +3.456 |       1.738e+01 +1.145e+01 |     2.501
+      1.0e-09    7.7e-19 |         5.113     +3.456 |       1.738e+01 +1.145e+01 |     2.501
+      1.3e+09    1.0e+00 |         5.161     +3.504 |       2.161e+04 +2.161e+04 |  1278.011
+          1.0e+00 (f0=0) |         0.000     -1.657 |       4.452e-01   <- no initial velocity: FROZEN, no infall
+  [PASS] A5-1  p = 0: for EVERY normalisation eps(today) in [7.7e-10 .. 1.3e9] the sector fails to track CDM at recombination (ratio off by >10%) OR after it (late growth off by >50%); there is no eps_0 that is CDM-like at both epochs
+  [PASS] A5-2  p = 0 with eps(rec) << 1 either stays FROZEN (no initial velocity: no infall at all) or grows KINEMATICALLY as a^{5/2} in the matter era from its initial velocity (the -H anti-friction: the charge flux does not dilute), never gravitationally as a^1: the potential it sources grows as a^{3/2} instead of staying constant -- not CDM phenomenology at any amplitude   (matter-era index = 2.501 (CDM 1.000; dust-only analytic 0.899))
+  [PASS] A5-3  p = 0 with eps(rec) = 1: the sector is NOT CDM at recombination either (kinematic a^3 growth in the radiation era puts it >5x above CDM) and then grows by e^{>1e3} more than CDM by today at k = 0.06 Mpc^-1 -- structure explodes   (ln[d(rec)/CDM] = +3.504, ln[late growth/CDM] = 2.161e+04)
+
+  p = 1 (EP-consistent repair: c_s = c_ad = const, cosh with a_t = 1.27), growth relative to CDM:
+   c_ad km/s |    k=0.06    k=0.10    k=0.20    k=0.50    k=1.00   (delta(1)/delta_CDM(1))
+         150 |    0.9862    0.9619    0.8543    0.3290   -0.0422     [at recombination, k=0.06: 1.0000]
+         300 |    0.9455    0.8543    0.5112   -0.0422   -0.0046     [at recombination, k=0.06: 1.0000]
+         450 |    0.8806    0.6954    0.1725    0.0128   -0.0001     [at recombination, k=0.06: 0.9999]
+         537 |    0.8334    0.5898    0.0424   -0.0058   -0.0010     [at recombination, k=0.06: 0.9999]
+  [PASS] A5-4  p = 1 (c_s = c_ad constant) tracks CDM to <1% at recombination at the third-peak scale for every c_ad <= 537 km/s -- the constant-c_s GDM regime that arXiv:1601.05097 bounds -- so the CMB side is carried by that published bound   (rec ratios: 1.0000, 1.0000, 0.9999, 0.9999)
+  [PASS] A5-5  but by today the same dust has LOST its power at k >= 0.5 Mpc^-1 (|growth/CDM| < 0.1 at 300 km/s) and is suppressed 5-15% even at k = 0.06: the LSS side is NOT carried by the Planck-only bound and is left open here (it needs the baryon+MOND growth, which L142 finds overshooting on its own)   (c_ad=300: k=0.06 0.946, k=0.2 0.511, k=0.5 -0.042)
+
+================================================================================================================
+A6 -- THE STATIC NONLINEAR RESPONSE: the atmosphere temperature is c_ad^2 (independent of c_Y)
+================================================================================================================
+  [PASS] A6-1  for cosh K in its large-Z regime the exact static response n/nbar = sinh(Zbar + |Phi|/c_ad^2)/sinh(Zbar) equals exp(|Phi|/c_ad^2) to <1e-8 -- an ISOTHERMAL atmosphere at temperature c_ad^2, with NO dependence on c_Y (hence none on L138's c_s)   (max |ratio-1| = 2.1e-09)
+  [PASS] A6-2  its linearisation is drho_d = -rho_bar Phi/c_ad^2, i.e. Poisson becomes (lap + mu^2) Phi = 4 pi G rho_b with mu^2 = 4 pi G rho_bar_d/(c_ad^2 c^2): the AeST Helmholtz term IS the linear static response of the field-dust, and mu^-1 is the Jeans length of the ambient dust at sound speed c_ad (used in L153c)   ((K_QQ Qbar^2 c_ad^2)/rho_bar = 1)
+  mu^-1(c_ad = 300 km/s, ambient rho_d = cosmic mean 2.270e-27 kg/m^3) = 7.05 Mpc
+
+================================================================================================================
+VERDICT (A)
+================================================================================================================
+
+  1. THE SOUND SPEED OF THE L139 FIELD-DUST IS NOT A FREE FUNCTION.  For L = K(Q) - c_Y|D chi|^2 on a slaved
+     foliation, the identity  c_s^2 = eps c_ad^2  holds for every K and every c_Y, where eps = 2 c_Y Qbar/K_Q
+     is the ratio of the sector's inertial response to its gravitational mass.  L138's a^+3 running of c_s^2
+     (cosh/exp K, constant c_Y) IS an a^+3 running of eps: the dust does not fall into potential wells at
+     recombination (eps = 7.7e-10 if it falls normally today) or falls 1.3e9 x too hard today (if it is CDM at
+     recombination).  The velocity lemma's replacement was bought with an equivalence-principle violation of
+     nine orders of magnitude across the CMB-to-today baseline.  L138's corner, AS FORMULATED, IS DEAD.
+  2. THE ONLY EP-CONSISTENT MEMBER OF THE FAMILY IS p = 1: c_Y -> K_Q/(2 Qbar), which is the Lorentz-invariant
+     k-essence structure; then c_s = c_ad, constant for cosh K below its turnover a_t (a_t >= 1.27 required).
+     That sector is CDM up to a CONSTANT sound speed -- exactly the constant-c_s GDM of arXiv:1601.05097.
+     The foliation buys nothing: this repaired sector does not need it.
+  3. FOR THE NONLINEAR QUESTION (L153b-d) the equilibrium temperature of the dust in any static well is c_ad^2,
+     not c_s^2, and for cosh K it is a single constant.  So the crux the brief names -- 'material fell in early
+     and was pressurised later' -- does not arise: the atmosphere temperature never ran.
+
+================================================================================================================
+L153a COMPLETE: 23/23 checks PASS.   [0.4s]
+================================================================================================================
