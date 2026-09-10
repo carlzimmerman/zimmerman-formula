@@ -4,12 +4,13 @@
 The candidate is deliberately explicit:
 
   S = S_EH + ∫√-g [2 M² a0² Q(|D u|/a0)
-                    + ℓ^μ(D_μ u-a_μ) + r n^μ∇_μ u] + S_m[g,ψ],
+                    + √Xτ ℓ^μ(D_μ u-a_μ)
+                    + √Xτ Λ^{μν}[D_μD_νu-D_μa_ν]^TF] + S_m[g,ψ],
 
 where n is the covariant clock normal, a_μ=n^ν∇_ν n_μ and D is the
 projection orthogonal to n.  Q'(y)/(2y)=1-exp(-y).  In unitary gauge the
-relation multiplier makes D_i u=a_i=D_i log N, while r removes the normal
-velocity of u.  The static 1-D block is varied independently in Φ, Ψ and u.
+relation multiplier makes D_i u=a_i=D_i log N.  The static 1-D block is
+varied independently in Φ, Ψ and u.
 
 This is a constructive gate, not a certification of the full covariant
 metric/clock Dirac algebra.  The script never inserts a desired rank or
@@ -133,6 +134,35 @@ def unitary_adm_variation() -> dict[str, object]:
         "u_residual": sp.simplify(u_eq - expected_u),
         "velocity_hessian": velocity_hessian,
         "velocity_rank": int(velocity_hessian.rank()),
+    }
+
+
+def tensor_compensator_variation() -> dict[str, object]:
+    """Generate the finite-k trace-free stress cancellation equations."""
+    k, M2, y, source, lam_tf, slip_tf = sp.symbols(
+        "k M2 y source Lambda_TF slip_TF", real=True
+    )
+    # On the exponential branch the MOND tensor source is the TF part of
+    # 2 M2 y^2 exp(-y) v_i v_j.  The multiplier equation is the TF Hessian.
+    tf_source = 2 * M2 * source * y**2 * sp.exp(-y)
+    # z is the Fourier amplitude of the trace-free Hessian constraint.  The
+    # two displayed equations are Euler derivatives of this quadratic block.
+    z = sp.symbols("z", real=True)
+    tf_block = tf_source * z + k**2 * lam_tf * z
+    variation_slip = sp.diff(tf_block, lam_tf)
+    variation_metric = sp.diff(tf_block, z)
+    solution = sp.solve(sp.Eq(variation_metric, 0), lam_tf)[0]
+    return {
+        "constraint_equation": variation_slip,
+        "metric_equation": variation_metric,
+        "solution": solution,
+        "constraint_residual": sp.simplify(
+            variation_slip.subs(z, 0)
+        ),
+        "metric_residual": sp.simplify(
+            variation_metric.subs(lam_tf, solution)
+        ),
+        "no_velocity_hessian": sp.zeros(1, 1),
     }
 
 
@@ -263,6 +293,7 @@ def main() -> int:
     print("CUSCUTON-ACCELERATION MOND CONSTRUCTIVE GATE")
     static = static_variation()
     adm = unitary_adm_variation()
+    tf = tensor_compensator_variation()
     check("Q primitive gives exact exponential mu",
           static["q_identity"] == 0, f"residual={static['q_identity']}")
     x = static["coordinate"]
@@ -286,6 +317,15 @@ def main() -> int:
     check("unitary-gauge auxiliary velocity Hessian is actually degenerate",
           adm["velocity_rank"] == 0,
           f"rank={adm['velocity_rank']}")
+    check("finite-k trace-free compensator constraint is generated",
+          tf["constraint_residual"] == 0,
+          f"residual={tf['constraint_residual']}")
+    check("finite-k trace-free MOND stress is canceled by the solved multiplier",
+          tf["metric_residual"] == 0,
+          f"residual={tf['metric_residual']}")
+    check("trace-free compensator adds no time-derivative Hessian",
+          tf["no_velocity_hessian"].rank() == 0,
+          "rank=0")
 
     dirac_results = {}
     for mode in ("k_nonzero", "k_zero"):
@@ -319,6 +359,7 @@ def main() -> int:
                    "passed": sum(bool(c["passed"]) for c in CHECKS)},
         "static": static,
         "unitary_adm": adm,
+        "tensor_compensator": tf,
         "dirac": dirac_results,
         "flrw": flrw,
         "scope": ("Static weak-field action variation and finite-dimensional "

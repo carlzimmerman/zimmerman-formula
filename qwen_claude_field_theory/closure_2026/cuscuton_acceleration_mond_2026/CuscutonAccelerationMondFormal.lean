@@ -31,6 +31,14 @@ theorem finite_k_auxiliary_dof :
     (6 - 2 * 0 - 6 : ℤ) / 2 = 0 := by
   norm_num
 
+theorem tracefree_compensator_solution
+    (k source lambda : ℝ) (hk : k ≠ 0)
+    (hmetric : source + k ^ 2 * lambda = 0) :
+    lambda = -source / k ^ 2 := by
+  have hk2 : k ^ 2 ≠ 0 := pow_ne_zero 2 hk
+  apply (eq_div_iff hk2).2
+  linarith
+
 theorem zero_mode_is_separate :
     (0 : ℕ) ≠ 1 := by
   norm_num

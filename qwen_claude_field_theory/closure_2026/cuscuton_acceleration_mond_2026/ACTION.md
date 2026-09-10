@@ -20,7 +20,10 @@ The constrained cuscuton/acceleration action is
 S_{\rm CAM}=\int d^4x\sqrt{-g}\left[
 {M^2\over2}(R-2\Lambda)
 \;+\;2M^2a_0^2Q(y)
-\;+\;\sqrt{X_\tau}\,\ell^\mu(D_\mu u-a_\mu)\right]+S_m[g,\psi],
+\;+\;\sqrt{X_\tau}\,\ell^\mu(D_\mu u-a_\mu)
+\;+\;\sqrt{X_\tau}\,\Lambda^{\mu\nu}
+\bigl[D_\mu D_\nu u-D_\mu a_\nu\bigr]^{\rm TF}
+\right]+S_m[g,\psi],
 \]
 
 with \(n_\mu\ell^\mu=0\) and

@@ -7,7 +7,9 @@ from cuscuton_acceleration_mond_gate import (
     CHECKS,
     dirac_auxiliary,
     static_variation,
+    tensor_compensator_variation,
 )
+from kepler_prediction_gate import derive_prediction
 
 
 class CuscutonAccelerationMondTests(unittest.TestCase):
@@ -32,6 +34,21 @@ class CuscutonAccelerationMondTests(unittest.TestCase):
         result = dirac_auxiliary("k_zero")
         self.assertEqual(result.mode, "k_zero")
         self.assertNotEqual(result.mode, "k_nonzero")
+
+    def test_trace_free_compensator(self):
+        data = tensor_compensator_variation()
+        self.assertEqual(data["constraint_residual"], 0)
+        self.assertEqual(data["metric_residual"], 0)
+
+    def test_circular_orbit_prediction(self):
+        data = derive_prediction()
+        self.assertIn("exp", str(data["implicit_circular_law"]))
+        self.assertEqual(
+            sp.expand(data["v4_over_GMa0_series"]).coeff(
+                next(iter(data["v4_over_GMa0_series"].free_symbols)), 1
+            ),
+            sp.Rational(1, 2),
+        )
 
 
 if __name__ == "__main__":
