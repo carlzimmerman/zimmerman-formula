@@ -4402,3 +4402,44 @@ AeST's α₁ is computed and fails). **β remains the last open MOND-side gate.*
 `yukawa_transmission_increasing`, `yukawa_no_window` (gate-7 mass-independent kill),
 `twometric_mond_ghost_linked`, `twometric_detW_negative`, `twometric_detW_bg_nonpos` (gate-5 ghost),
 `ppn_alpha1_vanishes_iff_local_source` (α₁ = −8c_pf ⇒ α₁=0 ⟺ no local frame-drag source).
+
+## L128 — THE CUSCUTON IS THE ESCAPE POINT OF THE STIFF NO-GO; EXACT FIELD-DUST; THE WALL IS CLUSTERING ONLY
+
+Script: `L128_cuscuton_dust_escape_and_clustering_wall.py` (9/9 PASS). Own computation, exact sympy.
+
+**The escape.** L87 stiff genericity gives `d²ρ/dn² = 2/(2X·P_XX + P_X)`, so generically "no a⁻⁶ stiff" ⟺ "no
+a⁻³ dust" — a k-essence field cannot supply the CMB's pressureless component. For the cuscuton
+`P = μ²√X − V(φ)`: `P_X = μ²/(2√X)`, `2X·P_XX = −μ²/(2√X)`, so **`2X·P_XX + P_X ≡ 0` identically**. The
+obstruction's denominator vanishes: the cuscuton is the *degeneracy point* of the theorem, not merely an
+exception to it.
+
+**What it delivers.** `ρ = 2X·P_X − P = V(φ)` exactly; `ρ+p = μ²|φ̇|`, so `w=0 ⟺ μ²φ̇ = V`. Imposing that with
+the cuscuton FRW equation `V′(φ) = −3μ²H` **forces** `V″ = 12πGμ⁴ = const`, i.e. a *quadratic* potential
+`V = 6πGμ⁴φ²` — and with the implied `H(φ) = −4πGμ²φ` it reproduces the Friedmann equation
+`ρ = 3H²/(8πG)` **exactly**. So a field with **zero propagating DOF and no ghost** supplies an exactly a⁻³,
+exactly pressureless dark component. The dust is *forced to a single two-parameter shape*, not engineered.
+
+**The wall — inseparable from the escape.** The same vanishing denominator is `c_s² = ∞` (= L106's
+`c_s² = 1/(2n−1)` diverging at the cuscuton power n=½). Infinite sound speed ⇒ infinite Jeans length ⇒ the
+component is **smooth at every sub-horizon scale**: it shifts z_eq like matter but builds no potential wells.
+V does not enter the kinetic degeneracy, so you cannot keep the dust and remove the smoothness by choosing V.
+
+**Why this is worth banking though it is not a pass — it INVERTS the failure mode.** Requirements: (a) a⁻³,
+(b) clusters at recombination, (c) does *not* cluster in galaxies. Every particle hybrid died on **(c)** (L125
+velocity-ordering: cold-for-CMB forces clusters-in-galaxies, ~1.69× overshoot). The cuscuton cannot cluster
+anywhere, so it passes **(c) absolutely** — the lemma that killed every particle hybrid has nothing to bite on
+— and delivers **(a)** exactly. It fails **only (b)**. The obstruction is now *one property wide*, with a sharp
+visible tension: clustering wants finite `c_s`; finite `c_s` means the field **propagates**
+(`c_s² = 1/(2n−1)` is finite for every n≠½); and a propagating MOND scalar is excluded by the closure theorem
+(L95) and the RAQUAL superluminality band (L120).
+
+**Explicitly NOT shown** (recorded as open and *decidable*, not closed): that a smooth a⁻³ component
+definitively fails the third peak. It does shift z_eq, and z_eq affects peak heights via the radiation-driving
+envelope. Standard CMB physics expects failure — the third peak's enhancement is specifically a clustering
+signature — but "expected to fail" ≠ "shown to fail". A Boltzmann run (CAMB/CLASS, θ⋆ held fixed) decides it;
+one is running. Also not shown: that this cuscuton coexists with the MOND cuscuton and the clock without
+spoiling closure. **This is not a cosmology pass.**
+
+**Lean (53 theorems, zero sorry, axioms ⊆ {propext, Classical.choice, Quot.sound}):** added
+`cuscuton_stiff_denominator_zero`, `cuscuton_sound_speed_denominator_zero`, `cuscuton_rho_eq_potential`,
+`cuscuton_pressureless_iff`, `cuscuton_dust_reproduces_friedmann`.

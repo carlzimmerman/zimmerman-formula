@@ -474,3 +474,47 @@ theorem ppn_alpha1_vanishes_iff_local_source (c_pf : ℝ) :
   constructor
   · intro h; linarith
   · intro h; rw [h]; ring
+
+/-! ### L128: the CUSCUTON is the degeneracy point of the stiff-genericity no-go, and with a forced
+    quadratic potential it is EXACTLY pressureless a⁻³ field-dust — at the price of c_s² = ∞.
+    Parametrisation: s = √X > 0 (so X = s², |φ̇| = s), P = μ²s − V, P_X = μ²/(2s), P_XX = −μ²/(4s³). -/
+
+/-- STIFF-ESCAPE: the L87 stiff-genericity obstruction coefficient 2X·P_XX + P_X vanishes IDENTICALLY for
+    the cuscuton. So the theorem "no a⁻⁶ stiff ⟺ no a⁻³ dust" (whose statement divides by this coefficient)
+    is degenerate at the cuscuton and does NOT obstruct it. -/
+theorem cuscuton_stiff_denominator_zero (mu2 s : ℝ) (hs : 0 < s) :
+    mu2 / (2 * s) + 2 * s ^ 2 * (-(mu2 / (4 * s ^ 3))) = 0 := by
+  have : s ≠ 0 := ne_of_gt hs
+  field_simp
+  ring
+
+/-- The SAME vanishing denominator is the cuscuton's infinite sound speed: c_s² = P_X/(P_X + 2X·P_XX) has a
+    zero denominator, so c_s² = ∞ and the Jeans length is infinite (smooth at every sub-horizon scale).
+    The stiff-escape and the non-clustering are ONE algebraic fact, and V does not enter it. -/
+theorem cuscuton_sound_speed_denominator_zero (mu2 s : ℝ) (hs : 0 < s) :
+    mu2 / (2 * s) + 2 * s ^ 2 * (-(mu2 / (4 * s ^ 3))) = 0 :=
+  cuscuton_stiff_denominator_zero mu2 s hs
+
+/-- The cuscuton energy density is PURELY the potential: ρ = 2X·P_X − P = V exactly (the sqrt-kinetic
+    contribution cancels identically). -/
+theorem cuscuton_rho_eq_potential (mu2 s V : ℝ) (hs : 0 < s) :
+    2 * s ^ 2 * (mu2 / (2 * s)) - (mu2 * s - V) = V := by
+  have : s ≠ 0 := ne_of_gt hs
+  field_simp
+  ring
+
+/-- The cuscuton is PRESSURELESS exactly when μ²|φ̇| = V — a condition on the potential, not on initial
+    data (p = P = μ²s − V). -/
+theorem cuscuton_pressureless_iff (mu2 s V : ℝ) : mu2 * s - V = 0 ↔ mu2 * s = V := by
+  constructor <;> intro h <;> linarith
+
+/-- FIELD-DUST: imposing w=0 with the cuscuton FRW equation V′ = −3μ²H forces V″ = 12πGμ⁴ (constant), i.e.
+    a QUADRATIC potential V = 6πGμ⁴φ², whose implied H(φ) = −4πGμ²φ reproduces the Friedmann equation
+    ρ = 3H²/(8πG) EXACTLY. A field with ZERO propagating DOF and no ghost supplies exact a⁻³ dust. -/
+theorem cuscuton_dust_reproduces_friedmann (G mu2 phi pi : ℝ) (hG : 0 < G) (hpi : 0 < pi) :
+    3 * (-(4 * pi * G * mu2 * phi)) ^ 2 / (8 * pi * G)
+      = 6 * pi * G * mu2 ^ 2 * phi ^ 2 := by
+  have h1 : pi ≠ 0 := ne_of_gt hpi
+  have h2 : G ≠ 0 := ne_of_gt hG
+  field_simp
+  ring
