@@ -114,6 +114,21 @@ tensor auxiliary pole is introduced at this linear level.  The fixed-lapse
 \(k=0\) extension still reports one mode, while the lapse-retained FLRW
 minisuperspace chain closes it as a gauge artifact (see the separate gate).
 
+The ordinary-matter conservation gate is derived from the matter action rather
+than imposed phenomenologically. For a canonical scalar minimally coupled to
+a generic diagonal \(1+1\) metric, SymPy derives the Euler--Lagrange residual
+\(E_\psi\), the stress tensor, and both components of its covariant divergence.
+The exact identity is
+
+\[
+\nabla_\mu T^{\mu}{}_{\nu}=E_\psi\,\partial_\nu\psi,
+\]
+
+so both components vanish on the matter shell, while off-shell witnesses are
+nonzero. This is a local coordinate Ward check for ordinary minimally coupled
+matter. It does not replace the unfinished full \(3+1\) variation of the
+tensor-compensated gravitational action.
+
 ## Reproduction
 
 ```text
@@ -138,4 +153,7 @@ python3 -B run_full_tensor_multiplier_lean.py
 python3 -B ppn_tuned_aether_dirac_gate.py
 python3 -B -m unittest -v test_ppn_tuned_aether_dirac.py
 python3 -B run_ppn_tuned_aether_lean.py
+python3 -B matter_ward_gate.py
+python3 -B -m unittest -v test_matter_ward.py
+python3 -B run_matter_ward_lean.py
 ```
