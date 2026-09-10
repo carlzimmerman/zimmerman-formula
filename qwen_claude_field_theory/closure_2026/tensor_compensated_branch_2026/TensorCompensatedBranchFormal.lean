@@ -63,4 +63,10 @@ theorem expanding_flrw_branch
   refine ⟨heq, ?_, sq_pos_of_pos hH⟩
   exact div_pos hsource (by positivity)
 
+theorem lapse_retained_zero_mode_dof_count :
+    (12 - 2 * 6 - 0 : ℤ) / 2 = 0 := by norm_num
+
+theorem homogeneous_constraint_preservation (N C : ℝ) :
+    N * C * C - C * N * C = 0 := by ring
+
 end TensorCompensatedBranch

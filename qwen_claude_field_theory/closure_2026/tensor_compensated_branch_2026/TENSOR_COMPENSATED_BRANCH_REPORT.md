@@ -48,11 +48,17 @@ FLRW scalar/vector stability analysis remain open.
 The generated quadratic Dirac audit separates the sectors.  For k!=0 it finds
 six primary and six secondary constraints, an actual Poisson-bracket rank of
 10, two first-class and ten second-class constraints, and therefore zero
-physical scalar DOF from a 14-dimensional scalar phase space.  At k=0 the
-same computation gives rank 0 and one homogeneous scalar DOF; this is retained
-as an explicit unresolved zero-mode obstruction rather than being discarded.
+physical scalar DOF from a 14-dimensional scalar phase space.  The earlier
+fixed-lapse k=0 projection gives rank 0 and one scalar; this is not silently
+accepted as a physical auxiliary.  A separate homogeneous minisuperspace
+audit of the *same action* retains the lapse N(t).  It derives five primary
+multiplier/lapse constraints plus the Hamiltonian constraint, an identically
+zero PB matrix, six first-class constraints, closure
+{C,H}=0, and zero homogeneous scalar DOF from a 12-dimensional phase space.
+Thus the apparent k=0 pole is a gauge-fixing artifact at the FLRW background,
+although the full inhomogeneous covariant k=0 perturbation chain remains open.
 The Lean certificate proves the exponential TF multiplier solution, the
-opposite-shift cancellation, the finite-k DOF arithmetic, and the expanding
+opposite-shift cancellation, both DOF arithmetic statements, and the expanding
 FLRW branch implication.
 
 ## Reproduction
@@ -65,4 +71,6 @@ python3 -B tensor_compensated_dirac_gate.py
 python3 -B -m unittest -v test_tensor_compensated_dirac.py
 python3 -B flrw_tensor_compensated_gate.py
 python3 -B -m unittest -v test_flrw_tensor_compensated.py
+python3 -B flrw_zero_mode_dirac_gate.py
+python3 -B -m unittest -v test_flrw_zero_mode_dirac.py
 ```
