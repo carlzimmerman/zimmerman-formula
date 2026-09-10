@@ -35,6 +35,9 @@ F(Q)Θ construction). It formalizes the mathematics, not the physics.
 - `csSq_canonical`, `csSq_aqual` — **L106:** the k-essence sound speed of a power-law kinetic term is c_s²(n)=1/(2n−1); n=1 (canonical) is luminal (c_s²=1), n=3/2 (deep-MOND AQUAL, MOND in the kinetic term) gives c_s²=1/2 — a competing subluminal cone that corrupts the {H⊥,H⊥} structure function (the covariant root of L95 and the AeST/aether pathologies).
 - `cuscuton_denom_zero` — **L106:** n=1/2 makes the denominator 2n−1 vanish, so c_s² diverges — the infinite-but-causal cuscuton sound speed (no finite competing cone).
 - `cuscuton_unique_infinite` — **L106:** 2n−1=0 ⟺ n=1/2, so the cuscuton is the **unique** kinetic power with infinite sound speed; the MOND kernel, sitting in the gradient sector, never enters the causal structure ⇒ the metric-sector structure function stays h^{ij}. This extends the closure result from the scalar sector (L105) to the metric-sector structure function.
+- `canonical_scalar_dof` / `cuscuton_scalar_dof` — **L108 (Dirac count):** dof = (P−2F−S)/2; a canonical scalar (phase dim 2, no constraints) has **1** propagating dof (a wave), a cuscuton scalar (second-class pair) has **0** — the machine-checked DOF face of L104/L105/L106.
+- `cam_auxiliary_zero_dof` — **L108:** astra's CAM auxiliary sector at finite k (P=6, F=0, S=6) ⇒ **(6−0−6)/2 = 0** physical DOF — no propagating MOND scalar (the scalar-sector closure count). *Lean certifies the count; the constraint structure itself (6 second-class, PB rank 6) is astra's Dirac computation, and the full covariant τ-clock algebra + PPN remain open.*
+- `fully_constrained_zero_dof` — general: a fully second-class-constrained sector (S=P, F=0) has 0 dof — the structural reason a cuscuton/constrained sector cannot propagate.
 
 ## Build
 
@@ -43,7 +46,7 @@ lake exe cache get      # download prebuilt mathlib oleans
 lake build Mondlean
 ```
 
-## Status (2026-09-09) — GREEN, MACHINE-VERIFIED (24 theorems)
+## Status (2026-09-09) — GREEN, MACHINE-VERIFIED (28 theorems)
 
 `lake build Mondlean` compiles **clean (exit 0), zero `sorry`/`admit`**, and `#print axioms` shows every
 theorem (`kernel_identity`, `Gpp_pos`, `Gpp_zero`, `cubic_leading`, `affine_degeneracy`, `sound_speed_zero`)

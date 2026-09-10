@@ -36,6 +36,13 @@
     cuscuton_denom_zero           — L106: n=1/2 makes 2n−1 = 0 ⇒ c_s² diverges (infinite, causal sound speed).
     cuscuton_unique_infinite      — L106: 2n−1 = 0 ⟺ n = 1/2 — the cuscuton is the UNIQUE power with no finite
                                     competing cone ⇒ the metric-sector structure function stays h^{ij}.
+    canonical_scalar_dof          — Dirac count: a canonical scalar (phase dim 2, no constraints) has 1
+                                    propagating dof (a wave).
+    cuscuton_scalar_dof           — L108: a cuscuton scalar (phase dim 2, second-class pair) has 0 dof — the
+                                    machine-checked DOF face of L104/L105/L106.
+    cam_auxiliary_zero_dof        — L108: astra's CAM finite-k count (P=6, F=0, S=6) ⇒ (6−0−6)/2 = 0 dof
+                                    (no propagating MOND scalar; the scalar-sector closure count).
+    fully_constrained_zero_dof    — general: a fully second-class-constrained sector (S=P, F=0) has 0 dof.
 -/
 import Mathlib.Analysis.SpecialFunctions.ExpDeriv
 import Mathlib.Analysis.Calculus.Deriv.Pow
@@ -228,3 +235,31 @@ theorem cuscuton_denom_zero : 2 * (1 / 2 : ℝ) - 1 = 0 := by norm_num
     no finite competing characteristic cone. Any other MOND-generating nonlinearity has a finite c_s². -/
 theorem cuscuton_unique_infinite (n : ℝ) : 2 * n - 1 = 0 ↔ n = 1 / 2 := by
   constructor <;> intro h <;> linarith
+
+/-! ### Dirac degree-of-freedom counting (L108: closure at the DOF level, astra's CAM finite-k count).
+
+    The physical configuration DOF of a constrained system is  dof = (P − 2·F − S)/2, where P is the phase-
+    space dimension (2 × #fields), F the number of first-class and S the number of second-class constraints.
+    Lean certifies the COUNTING; the constraint structure itself (that the CAM auxiliary sector has 6
+    second-class constraints at finite k, PB rank 6) is astra's Dirac computation (cuscuton_acceleration_
+    mond_2026), and the full covariant τ-clock algebra + PPN remain open. The cuscuton's zero-DOF result
+    here is the same fact as cuscuton_obstruction_vanishes (L105) and cuscuton_denom_zero (L106, c_s=∞). -/
+
+/-- Dirac physical-configuration DOF: dof = (P − 2F − S)/2 (phase dim P, F first-class, S second-class). -/
+def diracDOF (P F S : ℤ) : ℤ := (P - 2 * F - S) / 2
+
+/-- A CANONICAL scalar (phase dim 2, no constraints) carries ONE propagating DOF: it is a wave. -/
+theorem canonical_scalar_dof : diracDOF 2 0 0 = 1 := by decide
+
+/-- A CUSCUTON scalar (phase dim 2, a second-class primary+secondary pair) carries ZERO propagating DOF:
+    the momentum is constrained, not evolved — the machine-checked DOF face of L104/L105/L106. -/
+theorem cuscuton_scalar_dof : diracDOF 2 0 2 = 0 := by decide
+
+/-- astra's CAM auxiliary sector at finite k: phase dim 6 (fields u, ℓ, Φ), 0 first-class, 6 second-class
+    ⇒ (6 − 0 − 6)/2 = 0 physical DOF — no propagating MOND scalar (the scalar-sector closure count). -/
+theorem cam_auxiliary_zero_dof : diracDOF 6 0 6 = 0 := by decide
+
+/-- General: a fully second-class-constrained sector (S = P, no first-class) has ZERO physical DOF — the
+    structural reason a cuscuton/constrained sector cannot propagate, for any phase dimension P. -/
+theorem fully_constrained_zero_dof (P : ℤ) : diracDOF P 0 P = 0 := by
+  unfold diracDOF; simp
