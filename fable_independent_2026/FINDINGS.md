@@ -4855,3 +4855,60 @@ it *understates* the damage (conservative).
 *(`L146_cmb_floor_exact_neff.out` in this copy is incomplete — OOM-killed during local regeneration under
 ~10 concurrent agents, a machine artifact, not a script defect; the number it computes is independently
 validated by L147. Annotated in the file.)*
+
+## L156–L158 — THE GDM SOUND-SPEED LOOPHOLE: real, then the BAROTROPIC realisation closes — narrowly — and the pincer relocates
+
+Scripts `L156_gdm_soundspeed_requirement.py` (9/9), `L157_soundspeed_growth_realizability.py` (13/13),
+`L158_gdm_loophole_verdict.py` (9/9). Independent of L137–L139; reached the same conclusion on the velocity lemma
+from the fluid side.
+
+**The lemma is one corner of a one-parameter family.** With `c_eff² ∝ a^p` the comoving Jeans wavenumber goes
+as `a^{−(1+p)/2}`, so the clustering set grows iff `p < −1`. A decoupled species is pinned at `p = −2`. That is
+the *entire* content of L125.
+
+**The CMB-vs-galaxy pincer does NOT close, by ~3 orders.** CMB leg (CLASS, exact GDM fluid, w=0, TT/TE/EE
+ℓ=30–2500, Fisher-marginalised over A_s, n_s, ω_b, τ, h, Ω_dark): **`c_s²(a_rec) < 6.1e−4`** at Δχ²=9 (analytic
+sound-horizon criterion 7.0e−4, agreement 15%). Galaxy leg (hydrostatic fluid in a MOND log potential vs the
+L61 0.11 dex tolerance): **`c_s²(1) > 4.8e−7`** (207 km/s, set by v_c≈300 km/s spirals). So c_s² may *fall* by
+**1288×** and still thread both: `p > −1.02`. **A constant sound speed passes.** Background cost nil
+(`w₀ = 3c_s²/(3−p) < 1e−5`) — a sound speed big enough to smooth a galaxy is automatically too small to matter
+for expansion. Also corrects L123 STIFF-1: `P = Xⁿ` gives `ρ ∝ a^{−3(1+c_s²)} = a^{−3.000003}`, not a⁻⁶.
+
+**Two theorems bound the BAROTROPIC class** (from `P = P(ρ)`, `c_s² ≥ 0`, NEC alone):
+- **A (growth ceiling):** growing c_s² ⟹ `c_s² ≤ w` ⟹ **`p < 3` strictly**, at cost `w/c_s² = 3/(3−p) → ∞`.
+- **B (climb bound):** `ΔΦ_max = 3∫₀¹ c_s²(a) dln a` — the fluid can climb only three times its log-integrated
+  sound-speed history. Growing *faster* buys *less* galaxy protection.
+- The reason, worth naming: **density–time duality.** For a barotropic fluid, "grows with a" *is* "falls with
+  ρ", and a galaxy is a high-ρ region — the fluid inside overdensity Δ carries exactly the sound speed the
+  universe had at `a = (1+Δ)^{−1/3}`.
+
+**The pincer relocates to Lyman-α (z≈3) vs galaxies (z=0)** — a lever arm of **4** in a, not 1090. Closure
+equation `4^p/p > L v_c²/(3ε_Lyα)`: **`p_required = 3.53` (generous) to `4.09`** (Lyα tolerance calibrated from
+m_WDM > 5.3 keV) against Theorem A's ceiling **3**. Window empty across the whole (p, c_s²(1)) scan.
+
+**Honest scope — the margin is only 2.1×–4.5× in c_s², not orders of magnitude.** Across 8 gate settings
+`p_required` ranges 2.95–4.09 and the ceiling 3 lies *inside* that range; the two settings that leave it
+marginally open both use a Lyα tolerance looser than the data support. Closed at every defensible setting,
+robust to which galaxies are used — **not** robust to a factor of two in Lyα or hydrostatic modelling. Part 2 is a
+theorem; "window empty" is a narrow empirical closure. The Lyα leg is linear (nonlinear fragmentation uncomputed).
+
+**THE SURVIVING DOOR IS THE NON-BAROTROPIC BRANCH — and this is where L139 sits.** If c_s² depends on anything
+besides local density (explicitly on an internal clock), density–time duality is broken by construction and
+*neither theorem applies*. Now the synthesis, mine: L139's sector has `c_s² = 2c_Y/K_QQ(Q)` with `Q` the shift
+charge along the clock's normal, whose quasistatic value is `Q → Q₀(1−Ψ)` — **set by the cosmic background plus
+a ~1e−6 potential correction, NOT by local ρ.** So the L139 sector is plausibly **non-barotropic by
+construction**: the foliation *is* the internal clock. Two independent agents named the same door from opposite
+sides. **But note the sharp edge:** as a *barotropic* fluid, L138's cosh k-essence reaches exactly **p = +3** —
+the ceiling — and is still 0.5–1.1 short of Lyα. Whether the non-barotropic structure actually delivers the
+escape is *precisely* the AeST assumption ("Q = Q₀(1−Ψ), the charge is not locally enhanced") that the authors
+call an open problem — and it is what the running galaxy-smoothness computation (L153) is testing.
+
+**Lean (53 → 70 theorems, zero sorry, axioms ⊆ {propext, Classical.choice, Quot.sound}):** the L137–L139
+algebra is now certified — `kessence_dust_stiff_decomposition`, `stiff_dust_coefficient_ratio`,
+`stiff_dust_term_ratio`, `stiff_dust_ratio_vanishes_iff`, `lv_kessence_sound_speed_scaling`,
+`lv_kessence_sound_speed_increasing`, `particle_sound_speed_decreasing`, `cuscuton_time_kinetic_affine` (the
+(δτ̇)² coefficient vanishes to *all* orders), `cuscuton_slaved_mode_identity`, `cuscuton_elliptic_slaving`,
+`leaf_normal_no_frame_drag_source`, `leaf_normal_frame_drag_source_iff`, `lapse_measured_charge_helmholtz`,
+`helmholtz_mass_cannot_be_switched_off`, `fourth_power_error_budget`, `fourth_power_velocity_binds`,
+`fourth_power_velocity_threshold`. Docstrings flag what is NOT certified (Boltzmann run, PPN solve, the cosh/exp
+a⁻³ law). Nothing omitted.

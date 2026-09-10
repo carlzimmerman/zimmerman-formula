@@ -1,0 +1,191 @@
+================================================================================================================
+L153 -- can anything DELIVER a sound speed that grows with a?  Two theorems, three obstructions, one realization
+================================================================================================================
+
+================================================================================================================
+PART 0 -- THE BAROTROPIC DICTIONARY: 'c_s^2 grows with a' is IDENTICALLY 'c_s^2 falls with rho'.
+================================================================================================================
+      continuity            dln rho / dln a   =  -3 (1 + w)
+      barotropic chain rule dln c_s^2 / dln a =  -3 (1 + w) * dln c_s^2 / dln rho  =  3 (1 + w) nu
+
+      so                    p  ==  dln c_s^2/dln a  =  3*nu*(w + 1)          with nu = -dln c_s^2/dln rho
+
+      THE DENSITY-TIME DUALITY.  For a barotropic fluid c_s^2 is a function of rho ALONE.  Demanding
+      that c_s^2 grow with the scale factor is therefore the SAME demand as that c_s^2 fall with density.
+      But a galaxy IS a region of high density.  The property that lets the fluid evade the L125 lemma
+      cosmologically is the property that makes it soft exactly where the galaxy gate needs it stiff.
+      Concretely: the fluid inside a present-day structure of overdensity Delta has EXACTLY the sound
+      speed the universe had at a = (1+Delta)^{-1/3}.  A galaxy is a time machine for a barotropic fluid.
+  [PASS] DUAL-1  the barotropic dictionary is an identity, not a model: p = dln c_s^2/dln a = 3(1+w) nu with nu = -dln c_s^2/dln rho.  Growth in time and softening with density are the SAME statement, so the cosmological evasion and the galaxy gate are not independent -- they read the same function   (p = 3(1+w)nu  identically; a structure of overdensity Delta sees c_s^2 at a=(1+Delta)^(-1/3))
+
+================================================================================================================
+PART 1 -- THEOREM A (growth ceiling): a barotropic fluid whose sound speed grows obeys c_s^2 <= w, hence p < 3(1+w).
+================================================================================================================
+  Hypotheses.  (H1) barotropic: P = P(rho).  (H2) no gradient instability: c_s^2 = P'(rho) >= 0.
+  (H3) the growth condition: c_s^2 non-increasing in rho (equivalently P concave).  (H4) the null energy
+  condition rho + P >= 0 holds down to rho -> 0, which forces P(0) >= 0.
+
+  Proof.  By (H3), c_s^2(rho) <= c_s^2(rho') for every rho' <= rho, so
+        c_s^2(rho) * rho  =  integral_0^rho c_s^2(rho) drho'  <=  integral_0^rho c_s^2(rho') drho'
+                          =  P(rho) - P(0)  <=  P(rho)          [by (H4)]
+  hence  c_s^2 <= P/rho = w.  QED.
+
+      power-law family  P = A rho^Gamma :   c_s^2 = A*Gamma*rho**(Gamma - 1),   w = A*rho**(Gamma - 1),   c_s^2/w = Gamma
+                                            nu = -dln c_s^2/dln rho = 1 - Gamma  =  1 - Gamma
+                                            p  = 3(1+w) nu  ->  3(1-Gamma) for w << 1
+  [PASS] THMA-1  on the power-law family the theorem is an identity: c_s^2/w = Gamma, and (H2) c_s^2 >= 0 with A > 0 forces Gamma > 0, so c_s^2 <= w exactly when Gamma <= 1 -- which is exactly the growth condition nu = 1 - Gamma >= 0.  Growth and c_s^2 <= w are the same constraint   (c_s^2/w = Gamma;  nu = 1 - Gamma;  growth (nu>0) <=> Gamma<1 <=> c_s^2 < w)
+
+      p = 3(1 - Gamma)  =>  Gamma = 1 - p/3,  and  w/c_s^2 = 1/Gamma = -3/(p - 3) = 3/(3-p).
+      Gamma > 0 (no gradient instability) is therefore  p < 3  STRICTLY, and the price of approaching the
+      ceiling is w/c_s^2 = 3/(3-p), which DIVERGES as p -> 3.
+
+           p    Gamma    w/c_s^2    w_0 for c_s(1)=207 km/s
+        0.00   1.0000      1.000                  4.768e-07
+        1.00   0.6667      1.500                  7.151e-07
+        2.00   0.3333      3.000                  1.430e-06
+        2.50   0.1667      6.000                  2.861e-06
+        2.90   0.0333     30.000                  1.430e-05
+        2.99   0.0033    300.000                  1.430e-04
+        3.00   0.0000   infinite     FORBIDDEN (c_s^2 <= 0)
+  [PASS] THMA-2  THEOREM A, sharp form.  For a barotropic fluid with c_s^2 >= 0, growing with a, and NEC-safe at low density, c_s^2 <= w.  On the power-law family this is p < 3(1+w), i.e. p < 3 to the accuracy that matters, and the cost of approaching the ceiling is w/c_s^2 = 3/(3-p) -> infinity.  There is NO barotropic fluid with p >= 3   (p < 3 strictly;  w/c_s^2 = 3/(3-p);  p=2.9 costs w = 10 c_s^2, p=2.99 costs w = 100 c_s^2)
+
+================================================================================================================
+PART 2 -- THEOREM B (climb bound): how deep a well can a barotropic fluid climb, from its own history?
+================================================================================================================
+  Hydrostatic equilibrium of a barotropic fluid:  dP/dr = -rho dPhi/dr, i.e.  c_s^2(rho) drho/rho = -dPhi.
+  Integrating from the cosmic mean rho_bar (where Phi = Phi_ref) inward to arbitrarily high density:
+
+        Delta_Phi_max  =  integral_{rho_bar}^{infinity} c_s^2(rho) dln rho
+
+  and, by the DENSITY-TIME DUALITY of PART 0 (dln rho = -3 dln a along the cosmological trajectory),
+
+        Delta_Phi_max  =  3 * integral_0^1 c_s^2(a) dln a.
+
+  THE FLUID CAN CLIMB EXACTLY THREE TIMES ITS OWN LOG-INTEGRATED COSMOLOGICAL SOUND-SPEED HISTORY.
+  For the power-law family this evaluates in closed form:
+
+        3 * integral_{-inf}^{0} c_s^2(1) e^{p lna} dlna  =  3*c_s2/p     (converges only for p > 0)
+  [PASS] THMB-1  THEOREM B: the maximum potential depth a barotropic fluid can climb from the cosmic mean is Delta_Phi_max = integral c_s^2 dln rho = 3 * integral_0^1 c_s^2(a) dln a, which for the power-law family is exactly 3 c_s^2(1)/p.  A fluid that grows FASTER (larger p) can climb LESS -- the two requirements of the hybrid pull in opposite directions through one and the same function   (Delta_Phi_max = 3 c_s^2(1)/p;  isothermal (p=0) diverges, i.e. an isothermal fluid can climb any well)
+
+  COROLLARY (no regular hydrostatic solution).  A MOND galaxy has Phi = v_c^2 ln r with UNBOUNDED depth
+  as r -> 0.  For any p > 0, Delta_Phi_max is FINITE, so there is a finite radius
+        r_crit  =  r_ref exp( -Delta_Phi_max / v_c^2 )  =  r_ref exp( -3 c_s^2(1) / (p v_c^2) )
+  at which the hydrostatic density diverges as (r - r_crit)^{-3/p}.  Inside r_crit the fluid does not
+  merely compress -- it CONDENSES, with no pressure support at all.  A fluid whose sound speed grows in
+  time has NO pressure support beyond a finite well depth.
+
+        c_s(1) | p=0.5    p=1      p=2      p=3         (r_crit in kpc, v_c=300 km/s, r_ref=3 Mpc)
+           207 | 1.72e+02  7.19e+02  1.47e+03  1.86e+03
+           400 | 6.99e-02  1.45e+01  2.08e+02  5.07e+02
+           700 | 1.95e-11  2.42e-04  8.52e-01  1.30e+01
+          1100 | 2.78e-32  9.13e-15  5.23e-06  4.35e-03
+          1600 | 2.28e-71  2.61e-34  8.86e-16  1.33e-09
+  [PASS] THMB-2  COROLLARY: for any p > 0 a barotropic fluid has a finite condensation radius inside every logarithmic (MOND) galaxy potential, r_crit = r_ref exp(-3 c_s^2(1)/(p v_c^2)), where the hydrostatic density diverges as (r-r_crit)^{-3/p} and the enclosed mass diverges.  Keeping r_crit below the rotation-curve region costs c_s^2(1) > (p/3) v_c^2 ln(r_ref/r) -- LINEAR in p   (v_c=300, p=1: c_s=207 km/s (the L152 galaxy minimum) condenses already at 719 kpc, i.e. the condensation front ENCLOSES the whole galaxy; pushing it below 1 kpc needs c_s > 1600 km/s (2.6e-34 kpc))
+
+================================================================================================================
+PART 3 -- THE OTHER MECHANISMS, each on its own terms.
+================================================================================================================
+  (b) FUZZY / ULTRALIGHT DARK MATTER.  The quantum-pressure dispersion is omega^2 = (hbar k^2/(2 m a^2))^2,
+      so the effective propagation speed at fixed COMOVING k is  c_eff = hbar k/(2 m a)  --  proportional
+      to 1/a, EXACTLY the decoupled scaling.  Hence p = -2, and the Jeans wavenumber is
+        c_eff(a) = hbar*k/(2*a*m)     dln c_eff/dln a = -1   (i.e. p = -2)
+        k_J(a) = 2*pi**(1/4)*G**(1/4)*a**(1/4)*sqrt(m)*rho0**(1/4)/sqrt(hbar)
+        dln k_J/dln a = 1/4    (the textbook a^{1/4} of Hu-Barkana-Gruzinov 2000)
+  [PASS] FDM-1  fuzzy / ultralight dark matter is a SECOND, independent instance of the velocity-ordering obstruction, not an escape from it.  Its quantum-pressure speed at fixed comoving k is hbar k/(2 m a), proportional to 1/a -- the same p = -2 as a decoupled particle -- and the Jeans wavenumber therefore goes as a^{1/4}, INCREASING: its clustering set grows in time, the wrong direction   (c_eff ~ 1/a  =>  p = -2;  k_J ~ a^(1/4) INCREASING (wrong direction, same as decoupled))
+
+  (d) GHOST CONDENSATE.  At the shift-symmetric minimum P_X = 0, so c_s^2 = 0 at leading order and the
+      dispersion is set by the higher-derivative term: omega^2 = k^4/(M^2 a^4).  The propagation speed at
+      fixed comoving k is again k/(M a) -- proportional to 1/a, p = -2.  A THIRD instance of the same
+      obstruction, with the same k^4 structure as fuzzy DM.  Additionally, a ghost condensate has a
+      Jeans-like GRAVITATIONAL instability of its own (the programme's g03x), so it is not a candidate.
+  [PASS] GC-1  a ghost condensate is a THIRD instance of the same obstruction: with P_X = 0 the leading dispersion is omega^2 = k^4/(M^2 a^4), so the propagation speed at fixed comoving k is k/(M a), again proportional to 1/a and again p = -2.  Every k^4 (higher-derivative) dispersion sits at p = -2, because k/a is a physical wavenumber   (omega^2 = k^4/M^2a^4  =>  c_eff = k/(Ma) ~ 1/a  =>  p = -2 (same corner as decoupled and fuzzy))
+
+  (a) SHIFT-SYMMETRIC k-ESSENCE, P = X^n.  This is the barotropic case, and it is the one mechanism that
+      DOES deliver a healthy, matter-like fluid with a finite sound speed:
+        rho = 2 X P_X - P = X**n*(2*n - 1)          w = P/rho = 1/(2*n - 1)
+        c_s^2 = P_X/(P_X + 2 X P_XX) = 1/(2*n - 1)     (equal to w EXACTLY: the THEOREM A bound is SATURATED)
+        no-ghost / no-gradient-instability:  P_X + 2 X P_XX = X**(n - 1)*n*(2*n - 1) > 0 for n > 0, X > 0
+        to realise a given c_s^2:  n = (c_s2 + 1)/(2*c_s2);  for c_s^2 = 4.76e-7 this is n = 1.050e+06
+  [PASS] KESS-1  a POSITIVE result: shift-symmetric k-essence P = X^n realizes a healthy constant-sound-speed dark fluid exactly, with c_s^2 = w = 1/(2n-1), no ghost and no gradient instability for n > 0.  So p = 0 (which L152 showed threads both of L125's gates) IS realizable by an explicit Lagrangian -- the loophole is not merely a parameterisation   (P = X^n:  c_s^2 = w = 1/(2n-1) > 0, P_X + 2X P_XX = n(2n-1)X^(n-1) > 0 (healthy))
+
+        BBN / stiff tail: the conserved shift charge gives rho proportional to a^{-6*n/(2*n - 1)} = a^{-3(1+c_s^2)}.
+        For c_s^2 = 4.76e-7 the exponent is -3.0000014, not -6.  L123's 'generic a^-6 stiff tail' is
+        the n = 1 (canonical, c_s^2 = 1) corner of this family; at small c_s^2 there is NO separate stiff
+        branch and NO BBN problem.  This is a correction to L123 STIFF-1, in the loophole's favour.
+  [PASS] KESS-2  CORRECTION TO L123.  L123's STIFF-1 says a finite-c_s shift-symmetric k-essence generically carries an a^-6 stiff tail with a ~24-order BBN tuning.  Quantified, the exponent is -3(1+c_s^2), which for the c_s^2 of interest (1e-6) is -3.000003, not -6.  The a^-6 tail is the canonical n = 1 (c_s^2 = 1) corner only.  The BBN objection does NOT apply to a slow dark fluid   (rho ~ a^-3(1+c_s^2) = a^-3.000001 for c_s^2 = 4.8e-7 -- no stiff branch, no BBN tail)
+
+  (c) A DARK-SECTOR PHASE TRANSITION OR LATE-TIME HEATING (decay products, dark radiation drag, dark
+      photon coupling).  Two independent obstructions, both quantitative:
+
+        mean free path at the cosmic mean density with sigma/m = 1 cm^2/g (the Bullet-Cluster ceiling):
+              lambda = 1/(rho sigma/m) = 1.25e+05 Mpc   -- vastly larger than the horizon.
+        to be a HYDRODYNAMIC fluid on 1 Mpc at the cosmic mean density one needs
+              sigma/m > 1.25e+05 cm^2/g,  i.e. 5.1 orders above the bound.
+  [PASS] HEAT-1  a PARTICLE realization of GDM is excluded by the mean free path, independently of any heating history.  A sound speed is a hydrodynamic quantity: it requires lambda_mfp << the scale.  At the cosmic mean density, sigma/m = 1 cm^2/g (the Bullet-Cluster / halo-shape ceiling) gives lambda of order 1e5 Mpc; being a fluid on Mpc scales demands sigma/m ~ 1e5-1e6 cm^2/g, five to six orders above the bound.  Particles at the cosmic mean density FREE-STREAM -- and free-streaming is p = -2   (lambda(sigma/m=1) = 1.2e+05 Mpc; need sigma/m > 1.2e+05 cm^2/g (5.1 dex above the bound))
+
+        And the ENERGY budget is NOT the obstruction, which is worth recording: raising the specific
+        internal energy to c_s^2 ~ 5e-7 c^2 costs 5e-7 of the dark rest mass, i.e. Omega ~ 1e-7 -- far
+        below any dark-radiation bound.  So heating fails on the MECHANISM (thermalization), not on the
+        energy.  For DECAYING dark matter specifically: particles kicked at time t cool as a(t)/a
+        afterwards (p = -2 again from the kick onward), and the UNDECAYED cold fraction still clusters
+        in galaxies and still spends the L61 excess.  A short lifetime removes the cold fraction but
+        then the kicked population has been cooling for a Hubble time.  No escape either way.
+  [PASS] HEAT-2  the energy budget is explicitly NOT the obstruction (recorded so the kill is attributed to the right cause): heating the dark sector to c_s^2 ~ 5e-7 c^2 costs ~1e-6 of its rest mass, Omega ~ 1e-7 today, invisible to every dark-radiation bound.  Late heating dies on thermalization (HEAT-1) and on the surviving cold fraction, not on energetics   (Delta u / (rest mass) = 7.14e-07; Omega_extra ~ 1.9e-07 -- unconstrained)
+
+================================================================================================================
+PART 4 -- Q2: THE BACKGROUND COST.  Does a nonzero c_s^2 spoil the expansion history / BAO?
+================================================================================================================
+  A barotropic fluid with c_s^2 has w = c_s^2 * 3/(3-p) (THEOREM A), and w inherits the same time
+  dependence, w(a) = w_0 a^p.  The background density then integrates to
+        rho_d(a) = rho_d,0 a^-3 exp( -3 [w(a) - w_0] / p ),   so   rho_d(a)/rho_d^{CDM}(a) - 1  ~  3w_0/p
+  at a = 1 and is exponentially smaller in the past.  Numbers for the L152 window:
+
+          p         w_0   d rho_d/rho_d (a=1)   d E/E (z=0.5)   d D_C(z=1100)/D_C
+       0.50   5.721e-07             3.433e-06       7.166e-07           5.393e-07
+       1.00   7.151e-07             2.145e-06       3.657e-07           1.928e-07
+       2.00   1.430e-06             2.145e-06       2.438e-07           9.113e-08
+       2.90   1.430e-05             1.480e-05       1.167e-06           3.959e-07
+  [PASS] BG-1  the BACKGROUND COST IS NIL, and this is reported as a NON-kill.  Across the whole L152 window the fluid's equation of state today is w_0 = 3 c_s^2/(3-p) < 1e-5, the dark density departs from a^-3 by < 1e-5, and the comoving distance to last scattering (hence theta_s, hence BAO calibration) shifts by < 1e-5 -- four orders below the measurement.  Task 3's 'this may be the actual kill' is answered: it is NOT.  The component is matter for every background observable   (worst of |d rho_d/rho_d|, |dE/E|, |dD_C/D_C| over p in [0.5, 2.9] = 1.48e-05)
+  [PASS] BG-2  and the reason is structural, not numerical: THEOREM A ties w to c_s^2 by w = 3c_s^2/(3-p), and the galaxy gate only ever asks for c_s^2 of order (v_c/c)^2 ~ 1e-6.  A sound speed large enough to smooth a galaxy is automatically far too small to matter for the expansion history.  Background self-consistency can never be the obstruction in this class   (even at p = 2.9 (worst case) w_0 = 1.43e-05; the galaxy gate needs only c_s ~ v_c)
+
+================================================================================================================
+VERDICT
+================================================================================================================
+
+  PART 2 VERDICT -- the mechanism map.
+
+  REALIZABLE (and healthy):
+    * shift-symmetric k-essence P = X^n gives a constant-sound-speed dark fluid with c_s^2 = w = 1/(2n-1),
+      no ghost, no gradient instability, and -- correcting L123's STIFF-1 -- rho proportional to
+      a^{-3(1+c_s^2)} = a^-3.000003, NOT a^-6.  There is no BBN tail for a slow fluid.  So p = 0, which
+      L152 showed threads both of L125's gates, is delivered by an explicit Lagrangian.
+
+  BOUNDED (two theorems, both new here):
+    * THEOREM A -- a barotropic fluid whose sound speed grows obeys c_s^2 <= w, hence p < 3 strictly, with
+      the cost w/c_s^2 = 3/(3-p) diverging at the ceiling.  No barotropic fluid reaches p = 3.
+    * THEOREM B -- such a fluid can climb a potential well of depth at most 3 * integral c_s^2 dln a, i.e.
+      3 c_s^2(1)/p for a power law.  For any p > 0 that is FINITE, so a MOND logarithmic potential (which is
+      unbounded) always has a condensation radius r_crit = r_ref exp(-3c_s^2(1)/(p v_c^2)) inside which the
+      fluid has no pressure support at all.  Growing FASTER buys LESS galaxy protection: one function is
+      being asked to do two opposite jobs.
+
+  DEAD ON ARRIVAL (three separate instances of the SAME p = -2 obstruction):
+    * fuzzy / ultralight DM: c_eff = hbar k/(2 m a) ~ 1/a, k_J ~ a^{1/4} INCREASING.  Wrong direction.
+    * ghost condensate:      omega^2 = k^4/M^2a^4, c_eff = k/(M a) ~ 1/a.  Wrong direction.  (And it carries
+                             its own gravitational instability.)
+    * collisional particles / late heating: a sound speed is hydrodynamic and needs lambda_mfp << scale;
+      at the cosmic mean density that costs sigma/m ~ 1e5-1e6 cm^2/g, five to six orders above the
+      Bullet-Cluster bound.  Particles at the mean density free-stream, and free-streaming IS p = -2.
+      The energy budget is NOT the problem (1e-6 of the rest mass); thermalization is.
+
+  NOT THE OBSTRUCTION (reported as such, so nothing is mis-attributed):
+    * the background.  w_0 = 3c_s^2/(3-p) < 1e-5 everywhere in the window; rho_d departs from a^-3 by
+      < 1e-5; the distance to last scattering shifts by < 1e-5.  Task 3's candidate kill is answered NO.
+
+  So the class of mechanisms narrows to exactly one live family: a BAROTROPIC fluid / shift-symmetric
+  k-essence with 0 <= p < 3, plus the unbounded NON-barotropic case in which c_s^2 depends on something
+  other than the local density.  L154 puts the first through the epochs between recombination and today.
+
+================================================================================================================
+L153 COMPLETE: 13/13 checks PASS.   [0.2s]
+================================================================================================================

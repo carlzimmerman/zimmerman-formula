@@ -9,7 +9,7 @@
   flat a₀(z), subdominant scalar GW) confronting DATA — not by Lean, and not while the intrinsic BBN
   fine-tuning (L84/L87) and astra's open ADM/khronon gates stand.
 
-  Theorems (all: exit 0, zero `sorry`, axioms ⊆ {propext, Classical.choice, Quot.sound}):
+  Theorems (70 as of 2026-09-10; all: exit 0, zero `sorry`, axioms ⊆ {propext, Classical.choice, Quot.sound}):
     hasDerivAt_G, hasDerivAt_Gp   — Gp = dG/dy and Gpp = d²G/dy² proven (not merely asserted).
     kernel_identity               — MOND kernel G'(y)/(2y) = 1 − e^{-y}.
     Gpp_zero, Gpp_pos             — health dichotomy: G''(0)=0, G''(y)>0 ∀ y>0 (no ghost off zero field).
@@ -43,6 +43,31 @@
     cam_auxiliary_zero_dof        — L108: astra's CAM finite-k count (P=6, F=0, S=6) ⇒ (6−0−6)/2 = 0 dof
                                     (no propagating MOND scalar; the scalar-sector closure count).
     fully_constrained_zero_dof    — general: a fully second-class-constrained sector (S=P, F=0) has 0 dof.
+    (… L117–L128 theorems: clock_structure_function, cam_conformal_ghost, cam_strong_coupling,
+        reduction_master_certificate, kfs_strictly_increasing, hybrid_pincer_no_interior [arithmetic only],
+        yukawa_transmission_increasing, yukawa_no_window, twometric_*, ppn_alpha1_vanishes_iff_local_source,
+        cuscuton_stiff_denominator_zero, cuscuton_sound_speed_denominator_zero, cuscuton_rho_eq_potential,
+        cuscuton_pressureless_iff, cuscuton_dust_reproduces_friedmann — documented in README.md.)
+    kessence_dust_stiff_decomposition — L137: quadratic K ⇒ 8πG̃ρ̄ = 2Λ + Q₀I₀a⁻³ + [I₀²/(4K₂)]a⁻⁶ (dust LINEAR,
+                                    stiff QUADRATIC in the shift charge I₀) — exact identity.
+    stiff_dust_coefficient_ratio,   — L137: stiff/dust coefficient ratio = I₀/(4K₂Q₀) (= published w₀ = the
+    stiff_dust_term_ratio             L84 BBN ratio); the TERM ratio scales as a⁻³.
+    stiff_dust_ratio_vanishes_iff   — L137: for quadratic K, ratio = 0 ⟺ I₀ = 0 (no dust without stiff).
+    lv_kessence_sound_speed_scaling — L138: c_s² = 2c_Y/K_QQ with K_QQ = K_QQ⁰a⁻³ ⇒ c_s² = (2c_Y/K_QQ⁰)a³.
+    lv_kessence_sound_speed_increasing — L138: that c_s² is strictly increasing in a (colder in the past).
+    particle_sound_speed_decreasing — L138 control: a particle's c_s² = v₀²/a² is strictly DECREASING —
+                                    the L125 velocity lemma is particle-specific.
+    cuscuton_time_kinetic_affine    — L139: √((1−2εΨ)(τ̄̇+εδτ̇)²) = √(1−2εΨ)(τ̄̇+εδτ̇), affine in δτ̇ ⇒ the
+                                    (δτ̇)² coefficient vanishes identically (0-DOF from the action).
+    cuscuton_slaved_mode_identity   — L139: the elliptic solution δτ = −(a²τ̄̇S/μ²)/(k² + V″a²τ̄̇/μ²), 1/k².
+    cuscuton_elliptic_slaving       — L139/L129: (aH/k)⁴ < 1e-4 whenever k/(aH) > 10.
+    leaf_normal_no_frame_drag_source, — L139: the Route-2 momentum source −K_Q∂ᵢχ/N vanishes when ∂ᵢχ = 0,
+    leaf_normal_frame_drag_source_iff   and (K_Q ≠ 0) ONLY then — gradient-driven, no F² frame-drag term.
+    lapse_measured_charge_helmholtz — L139: K₂(Q₀(1−Ψ) − Q₀)² = K₂Q₀²Ψ² (the inherited Helmholtz mass).
+    helmholtz_mass_cannot_be_switched_off — L139: that term is > 0 for K₂ > 0, Q₀, Ψ ≠ 0.
+    fourth_power_error_budget       — L143: Var(4X − Y) with Cov = 0 equals 16 Var X + Var Y.
+    fourth_power_velocity_binds,    — L143: σ_logv > 0.0335 ⇒ 16σ_logv² > 0.134²; 16·0.0335² = 0.134² exactly.
+    fourth_power_velocity_threshold
 -/
 import Mathlib.Analysis.SpecialFunctions.ExpDeriv
 import Mathlib.Analysis.Calculus.Deriv.Pow
@@ -520,3 +545,183 @@ theorem cuscuton_dust_reproduces_friedmann (G mu2 phi pi : ℝ) (hG : 0 < G) (hp
   have h2 : G ≠ 0 := ne_of_gt hG
   field_simp
   ring
+
+/-! ### L137–L139 (the surviving corner) + L143: the quadratic-K dust/stiff structure and its non-quadratic
+    escape (L137), the Lorentz-violating k-essence sound speed (L138), the cuscuton transplant — Route 1's
+    elliptic slaving, Route 2's leaf-normal momentum source and inherited Helmholtz mass (L139) — and the
+    fourth-power error budget of the decisive a₀(z) measurement (L143). Every statement below is algebra
+    or a real-number inequality; none certifies a Boltzmann run, a PPN solve or a collapse computation. -/
+
+/-- L137 (A1): for a QUADRATIC shift-symmetric k-essence K(Q) = −2Λ + K₂(Q−Q₀)² whose conserved shift charge
+    obeys dK/dQ = 2K₂(Q−Q₀) = I₀/a³, the FLRW energy density 8πG̃ρ̄ = Q·K_Q − K decomposes EXACTLY as
+    2Λ + Q₀I₀·a⁻³ + [I₀²/(4K₂)]·a⁻⁶ — a Λ-constant, an a⁻³ DUST term LINEAR in I₀, and an a⁻⁶ STIFF term
+    QUADRATIC in I₀. This is the published AeST Higgs-phase background and it is the SAME structure as the
+    repo's L84/L87 density (dust ∝ A·C, stiff ∝ C²). SCOPE: an identity for quadratic K only (K₂, a > 0); it
+    says nothing about cosh/exp K, for which L137 shows numerically that the a⁻⁶ partner is ABSENT — so
+    "no stiff-free dust" (L87/L123c) is refuted as a general claim while standing for quadratic K. -/
+theorem kessence_dust_stiff_decomposition (K2 Q0 I0 Lam a Q : ℝ) (hK : 0 < K2) (ha : 0 < a)
+    (hcharge : 2 * K2 * (Q - Q0) = I0 / a ^ 3) :
+    Q * (I0 / a ^ 3) - (-2 * Lam + K2 * (Q - Q0) ^ 2)
+      = 2 * Lam + Q0 * I0 / a ^ 3 + I0 ^ 2 / (4 * K2) / a ^ 6 := by
+  have hK' : K2 ≠ 0 := ne_of_gt hK
+  have ha' : a ≠ 0 := ne_of_gt ha
+  have hQ : Q = Q0 + I0 / (2 * K2 * a ^ 3) := by
+    have h3 : (a ^ 3) ≠ 0 := pow_ne_zero 3 ha'
+    have h := (eq_div_iff h3).mp hcharge
+    have h' : I0 / (2 * K2 * a ^ 3) = Q - Q0 := by
+      rw [div_eq_iff (by positivity)]
+      linear_combination (-1 : ℝ) * h
+    linarith
+  subst hQ
+  field_simp
+  ring
+
+/-- L137 (A2/A3): the ratio of the stiff to the dust COEFFICIENT is I₀/(4K₂Q₀) — a number that carries no a.
+    Evaluated today (a = 1) it is the published w₀ = P_stiff(1)/ρ_dust(1) AND the repo's L84 BBN fine-tuning
+    ratio Ω_stiff,0/Ω_dust,0: the two are ONE object. Holds for I₀ = 0 too (both sides 0). -/
+theorem stiff_dust_coefficient_ratio (K2 Q0 I0 : ℝ) (hK : K2 ≠ 0) (hQ : Q0 ≠ 0) :
+    (I0 ^ 2 / (4 * K2)) / (Q0 * I0) = I0 / (4 * K2 * Q0) := by
+  by_cases hI : I0 = 0
+  · simp [hI]
+  · field_simp
+
+/-- L137, the honest a-dependence: the ratio of the stiff TERM to the dust TERM at scale factor a is
+    [I₀/(4K₂Q₀)]·a⁻³ — the stiff piece overtakes the dust going back in time, which is exactly why the
+    coefficient ratio must be tuned to ≲1e-8 to survive BBN (the L87 horn, for quadratic K). -/
+theorem stiff_dust_term_ratio (K2 Q0 I0 a : ℝ) (hK : K2 ≠ 0) (hQ : Q0 ≠ 0) (ha : a ≠ 0) :
+    (I0 ^ 2 / (4 * K2) / a ^ 6) / (Q0 * I0 / a ^ 3) = (I0 / (4 * K2 * Q0)) / a ^ 3 := by
+  by_cases hI : I0 = 0
+  · simp [hI]
+  · field_simp
+
+/-- L137: for quadratic K the stiff/dust ratio I₀/(4K₂Q₀) vanishes IFF the shift charge I₀ vanishes — i.e.
+    quadratic K cannot carry dust (∝ Q₀I₀) without its a⁻⁶ stiff partner (∝ I₀²). This is the precise
+    content of L87 that survives; its converse for NON-quadratic K is false (L137). -/
+theorem stiff_dust_ratio_vanishes_iff (K2 Q0 I0 : ℝ) (hK : K2 ≠ 0) (hQ : Q0 ≠ 0) :
+    I0 / (4 * K2 * Q0) = 0 ↔ I0 = 0 := by
+  have hd : (4 * K2 * Q0) ≠ 0 := by positivity
+  rw [div_eq_zero_iff]
+  exact or_iff_left hd
+
+/-- L138 (B3): for a Lorentz-violating k-essence with leaf-projected gradient term c_Y|Dχ|², the sound speed
+    is c_s² = 2c_Y/K_QQ(a). If K_QQ = K_QQ⁰·a⁻³ (the cosh/exp kinetic functions on the charge trajectory)
+    then c_s² = (2c_Y/K_QQ⁰)·a³ EXACTLY. SCOPE: the identity only; that K_QQ ∝ a⁻³ for cosh/exp K is the
+    L138 numerical result, not certified here. -/
+theorem lv_kessence_sound_speed_scaling (cY KQQ0 a : ℝ) (hK : 0 < KQQ0) (ha : 0 < a) :
+    2 * cY / (KQQ0 / a ^ 3) = (2 * cY / KQQ0) * a ^ 3 := by
+  have hK' : KQQ0 ≠ 0 := ne_of_gt hK
+  have ha' : a ≠ 0 := ne_of_gt ha
+  field_simp
+
+/-- L138: the running sound speed c_s² = (2c_Y/K_QQ⁰)·a³ is STRICTLY INCREASING in a for c_Y, K_QQ⁰ > 0 —
+    such a dust is COLDER at recombination than today, the opposite ordering to a particle. -/
+theorem lv_kessence_sound_speed_increasing (cY KQQ0 a1 a2 : ℝ) (hc : 0 < cY) (hK : 0 < KQQ0)
+    (h1 : 0 < a1) (h : a1 < a2) :
+    (2 * cY / KQQ0) * a1 ^ 3 < (2 * cY / KQQ0) * a2 ^ 3 := by
+  have hpos : 0 < 2 * cY / KQQ0 := by positivity
+  have hpow : a1 ^ 3 < a2 ^ 3 := by gcongr
+  exact mul_lt_mul_of_pos_left hpow hpos
+
+/-- L138 (B1, the control): a decoupled free-streaming PARTICLE has v_rms = v₀/a, so c_s² = v₀²/a² is
+    STRICTLY DECREASING in a. Together with `lv_kessence_sound_speed_increasing` this is why the L125
+    velocity lemma is particle-specific, NOT mechanism-independent: the two mechanisms order c_s²(a) in
+    OPPOSITE directions, and the lemma's hypothesis is the particle one. -/
+theorem particle_sound_speed_decreasing (v0 a1 a2 : ℝ) (hv : 0 < v0) (h1 : 0 < a1) (h : a1 < a2) :
+    v0 ^ 2 / a2 ^ 2 < v0 ^ 2 / a1 ^ 2 := by
+  have hv2 : 0 < v0 ^ 2 := by positivity
+  have hpow : a1 ^ 2 < a2 ^ 2 := by gcongr
+  exact div_lt_div_of_pos_left hv2 (by positivity) hpow
+
+/-- L139 (C2-1), Route 1's obstruction at its root: at zero spatial gradient the cuscuton kinetic term
+    √(−(∂τ)²) = √((1−2εΨ)(τ̄̇+εδτ̇)²) equals √(1−2εΨ)·(τ̄̇+εδτ̇) EXACTLY, which is AFFINE in δτ̇ — so the
+    (δτ̇)² coefficient vanishes identically (to ALL orders, not just second). The perturbation has no
+    time-kinetic term; this is the 0-DOF property seen from the action. Companion to the derivative form
+    `cuscuton_stiff_denominator_zero` (P_X + 2X·P_XX = 0). Hypotheses: the usual positivity of the lapse
+    factor and of the background clock rate. -/
+theorem cuscuton_time_kinetic_affine (eps Psi tb d : ℝ) (h1 : 0 ≤ 1 - 2 * eps * Psi)
+    (h2 : 0 ≤ tb + eps * d) :
+    Real.sqrt ((1 - 2 * eps * Psi) * (tb + eps * d) ^ 2)
+      = Real.sqrt (1 - 2 * eps * Psi) * (tb + eps * d) := by
+  rw [Real.sqrt_mul h1, Real.sqrt_sq h2]
+
+/-- L139 (C2-3): the elliptic constraint (μ_c²k²/(a²τ̄̇) + V″)δτ = −S is solved ALGEBRAICALLY and the solution
+    can be written δτ = −(a²τ̄̇S/μ_c²)/(k² + V″a²τ̄̇/μ_c²) — the 1/k² sub-horizon fall-off is manifest, with
+    k²δτ → −a²τ̄̇S/μ_c². A slaved, 1/k²-suppressed δτ carries no independent growing mode: background a⁻³
+    dust ≠ clustering dust (Route 1 obstructed). Exact identity (a, τ̄̇, μ_c² ≠ 0; Lean's x/0 = 0 covers a
+    vanishing denominator on both sides). -/
+theorem cuscuton_slaved_mode_identity (S mu2 k a tb Vpp : ℝ) (hmu : mu2 ≠ 0)
+    (ha : a ≠ 0) (htb : tb ≠ 0) :
+    -S / (mu2 * k ^ 2 / (a ^ 2 * tb) + Vpp)
+      = -(a ^ 2 * tb * S / mu2) / (k ^ 2 + Vpp * a ^ 2 * tb / mu2) := by
+  have hc : a ^ 2 * tb / mu2 ≠ 0 := by positivity
+  have e1 : -(a ^ 2 * tb * S / mu2) = (a ^ 2 * tb / mu2) * (-S) := by ring
+  have e2 : k ^ 2 + Vpp * a ^ 2 * tb / mu2
+      = (a ^ 2 * tb / mu2) * (mu2 * k ^ 2 / (a ^ 2 * tb) + Vpp) := by
+    field_simp
+  rw [e1, e2, mul_div_mul_left _ _ hc]
+
+/-- L139 (C2-4) / L129: the sub-horizon suppression factor of a slaved elliptic mode relative to clustering
+    dust, (aH/k)⁴, is below 1e-4 whenever k/(aH) > 10 — at third-peak scales (k/aH ~ 10²) it is ~1e-8, the
+    order of the 4e-5 δ_τ/δ_CDM found numerically. A real-number inequality; the identification of the
+    ratio with (aH/k)⁴ is the L129/L139 scaling argument, not certified here. -/
+theorem cuscuton_elliptic_slaving (k a H : ℝ) (hk : 0 < k) (ha : 0 < a) (hH : 0 < H)
+    (hsub : 10 < k / (a * H)) :
+    (a * H / k) ^ 4 < 1e-4 := by
+  have haH : 0 < a * H := mul_pos ha hH
+  have hx : 0 ≤ a * H / k := le_of_lt (div_pos haH hk)
+  have hx' : a * H / k < 1 / 10 := by
+    have := one_div_lt_one_div_of_lt (by norm_num : (0:ℝ) < 10) hsub
+    rwa [one_div_div] at this
+  calc (a * H / k) ^ 4 < (1 / 10) ^ 4 := by gcongr
+    _ = 1e-4 := by norm_num
+
+/-- L139 (C3-4), Route 2's decisive α₁ point: with Q = (χ̇ − Nⁱ∂ᵢχ)/N measured along the clock's leaf normal,
+    the dark sector's momentum-constraint source is ∂L/∂Nⁱ = −K_Q·∂ᵢχ/N, proportional to the LOCAL spatial
+    gradient of χ; it vanishes wherever ∂ᵢχ = 0 (the FLRW background, any locally homogeneous dark field).
+    No F² vector kinetic term is present, so AeST's O(1) frame-drag source (and its α₁) is simply absent.
+    SCOPE: the O(w) PPN solve with χ is NOT done; this certifies only the local source. -/
+theorem leaf_normal_no_frame_drag_source (KQ dchi N : ℝ) (_hN : N ≠ 0) (h : dchi = 0) :
+    -(KQ * dchi) / N = 0 := by
+  rw [h, mul_zero, neg_zero, zero_div]
+
+/-- L139 (C3-4), positive control: for a nonzero charge density K_Q the source −K_Q·∂ᵢχ/N vanishes IFF the
+    local gradient ∂ᵢχ vanishes — the source is exactly gradient-driven, never a velocity (frame-drag) term. -/
+theorem leaf_normal_frame_drag_source_iff (KQ dchi N : ℝ) (hN : N ≠ 0) (hK : KQ ≠ 0) :
+    -(KQ * dchi) / N = 0 ↔ dchi = 0 := by
+  rw [div_eq_zero_iff, neg_eq_zero, mul_eq_zero]
+  constructor
+  · rintro ((h | h) | h)
+    · exact absurd h hK
+    · exact h
+    · exact absurd h hN
+  · intro h; exact Or.inl (Or.inr h)
+
+/-- L139 (C3-8), the COST inherited by the transplant: because Q is measured with the LOCAL lapse,
+    Q → Q₀(1−Ψ) in the weak field, and expanding the quadratic K about its minimum gives
+    K(Q₀(1−Ψ)) = K₂Q₀²Ψ² EXACTLY — the same "mass term for the potential" μ²Φ² that AeST has, hence the
+    Helmholtz (oscillatory quasistatic) regime and the published weak-lensing tension. -/
+theorem lapse_measured_charge_helmholtz (K2 Q0 Psi : ℝ) :
+    K2 * (Q0 * (1 - Psi) - Q0) ^ 2 = K2 * Q0 ^ 2 * Psi ^ 2 := by ring
+
+/-- L139 (C3-8): the induced Helmholtz mass term is STRICTLY POSITIVE for K₂ > 0 (required for dust AND
+    health), Q₀ ≠ 0 and Ψ ≠ 0 — it cannot be switched off, only pushed out of range by small Q₀. -/
+theorem helmholtz_mass_cannot_be_switched_off (K2 Q0 Psi : ℝ) (hK : 0 < K2) (hQ : Q0 ≠ 0)
+    (hP : Psi ≠ 0) : 0 < K2 * Q0 ^ 2 * Psi ^ 2 := by positivity
+
+/-- L143, the decisive-measurement error budget: with log a₀ = 4·log v − log M_b and INDEPENDENT errors
+    (covariance 0), the bilinear variance propagation Var(4X−Y) = 4²Var X + 2·4·(−1)Cov + (−1)²Var Y
+    collapses to σ²(log a₀) = 16σ²(log v) + σ²(log M_b): the FOURTH POWER binds. Algebra only; the
+    independence and Gaussian-propagation assumptions are the physics inputs. -/
+theorem fourth_power_error_budget (vx vy cov : ℝ) (hind : cov = 0) :
+    4 ^ 2 * vx + 2 * 4 * (-1) * cov + (-1) ^ 2 * vy = 16 * vx + vy := by
+  rw [hind]; ring
+
+/-- L143: the velocity term ALONE exceeds the registered σ(log a₀) ≤ 0.134 dex budget as soon as
+    σ(log v) > 0.0335 dex (= 0.134/4) — i.e. ~8% on v_flat blows the budget regardless of M_b. -/
+theorem fourth_power_velocity_binds (sv : ℝ) (h : 0.0335 < sv) :
+    0.134 ^ 2 < 16 * sv ^ 2 := by
+  nlinarith [mul_pos (sub_pos.mpr h) (by linarith : (0:ℝ) < sv + 0.0335)]
+
+/-- L143: the threshold is exact — 16·(0.0335)² = (0.134)², so 0.0335 dex on log v spends the ENTIRE budget
+    with nothing left for the baryonic mass. -/
+theorem fourth_power_velocity_threshold : (16 : ℝ) * 0.0335 ^ 2 = 0.134 ^ 2 := by norm_num

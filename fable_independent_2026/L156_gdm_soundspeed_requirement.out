@@ -1,0 +1,145 @@
+================================================================================================================
+L152 -- the GDM sound-speed loophole, part 1: what c_s^2(a) does the CMB-vs-galaxy pincer demand?
+================================================================================================================
+
+================================================================================================================
+PART 0 -- THE ORDERING CRITERION IN GENERAL FORM.  L125's lemma is the single case p = -2.
+================================================================================================================
+  For any component with an effective propagation speed c_eff(a) (free-streaming velocity dispersion for
+  a decoupled species, sound speed for a fluid, quantum pressure speed for a condensate), the comoving
+  scale above which it clusters is the Jeans wavenumber
+
+        k_J(a)  =  a * sqrt(4 pi G rho_d(a)) / c_eff(a)   ~   a^{-1/2} / c_eff(a)      (rho_d ~ a^-3)
+
+  Write c_eff^2(a) = c_eff^2(1) * a^p.  Then  k_J  is proportional to  a^{-(1+p)/2}.  The hybrid needs the
+  set {k < k_J} of clustering scales to SHRINK with time (cluster at recombination, be smooth in galaxies
+  today), i.e. it needs k_J DECREASING, i.e.
+
+        p  >  -1.
+
+  A DECOUPLED COLLISIONLESS species has v_rms ~ 1/a, i.e. p = -2 < -1.  That -- and only that -- is the
+  content of the L125 velocity-ordering lemma.  It is a statement about one value of p, not about all
+  matter-like components.
+
+  [PASS] ORD-1  the general criterion: with c_eff^2 proportional to a^p the comoving Jeans wavenumber goes as a^{-(1+p)/2}, so the set of clustering scales GROWS (L125's direction) iff p < -1 and SHRINKS (the direction the hybrid needs) iff p > -1.  The boundary is p = -1 exactly   (k_J(1)/k_J(a_rec): p=-2 -> 33.0 (grows), p=-1 -> 1.000 (marginal), p=0 -> 0.0303 (shrinks))
+  [PASS] ORD-2  the decoupled case sits at p = -2, a FULL UNIT of exponent on the wrong side of the boundary. So the L125 lemma is NOT mechanism-independent: it is the p = -2 corner of a one-parameter family, and every p > -1 evades it by construction.  A fluid's sound speed is not tied to p = -2   (decoupled p = -2; boundary p = -1; a constant-c_s fluid sits at p = 0)
+
+================================================================================================================
+PART 1 -- THE CMB LEG BY A REAL BOLTZMANN COMPUTATION (CLASS): how warm may the dark fluid be at a_rec?
+================================================================================================================
+  The dark matter is carried entirely by a fluid with w = 0 and a constant REST-FRAME sound speed c_s^2
+  (Hu's GDM with the viscosity c_vis^2 = 0 -- the least-damping, most generous choice).  CLASS integrates
+  the exact perturbation system.  We compare UNLENSED TT/TE/EE (generated at a <= a_rec) against the
+  c_s -> 0 limit of the SAME fluid setup, so the comparison isolates the sound speed and not the fluid
+  parameterisation.  A constant c_s^2 equal to c_s^2(a_rec) is an UPPER BOUND on the primary-CMB damage
+  done by any profile that GROWS with a (such a profile has a smaller c_s^2 at every a < a_rec), so this
+  bound is conservative in the safe direction for the loophole.
+
+       c_s^2(a_rec)  c_s (km/s)  dchi2 fixed  dchi2 marg
+            1.0e-05         948         0.04        0.00
+            3.0e-05        1642         0.24        0.03
+            1.0e-04        2998         1.54        0.29
+            2.0e-04        4240         5.14        1.06
+            3.0e-04        5193        10.52        2.29
+            5.0e-04        6704        25.38        5.95
+            7.0e-04        7932        44.55       11.01
+            1.0e-03        9480        79.48       20.75
+            2.0e-03       13407       230.17       66.88
+
+      3-sigma (dchi2 = 9) ceiling:  parameters FIXED  c_s^2(a_rec) < 2.67e-04   (4903 km/s)
+                                    MARGINALISED      c_s^2(a_rec) < 6.12e-04   (7419 km/s)   <-- carried (generous)
+  [PASS] CMB-1  a real Boltzmann computation (CLASS, exact GDM fluid, unlensed TT/TE/EE, l = 30-2500, Planck-like covariance, Fisher-marginalised over A_s, n_s, omega_b, tau, h and the dark density) puts the 3-sigma ceiling on the dark fluid's sound speed at recombination at c_s^2(a_rec) of order 1e-4 to 1e-3 -- NOT at the ~1e-6 level that constant-c_s^2 GDM fits report, because that number is set by LATE-time clustering, not by the CMB   (c_s^2(a_rec) < 6.12e-04 (marg 3sigma) = 7419 km/s; fixed-parameter 2.67e-04)
+
+================================================================================================================
+PART 2 -- the SAME bound analytically, from the sound-horizon criterion, at the k the CMB probes.
+================================================================================================================
+      third peak            l ~ 905   ->   k_3    = 3 pi / r_s = 0.0653 Mpc^-1
+      Planck damping tail   l ~ 2500          ->   k_damp = l / D_A    = 0.1802 Mpc^-1
+      a H at recombination (a_rec = 1/1090)                            = 4.7746e-03 Mpc^-1
+
+      A fluid mode oscillates (and so cannot hold a decoupled potential well) once c_s k > a H.  The
+      criterion is TIGHTEST at recombination because a H decreases monotonically from horizon entry to
+      recombination -- so the binding epoch is a_rec, not equality and not horizon crossing.
+
+      third peak    : c_s^2(a_rec) < (aH/k)^2 = 5.351e-03   (21931 km/s)
+      damping tail  : c_s^2(a_rec) < (aH/k)^2 = 7.017e-04   (7941 km/s)
+  [PASS] CMB-2  the analytic sound-horizon criterion applied at the damping-tail wavenumber reproduces the Boltzmann answer: c_s^2(a_rec) < (aH/k_damp)^2, and a H is minimised (criterion tightest) exactly at recombination over the whole post-horizon-entry history, so a_rec is the binding epoch   (analytic 7.02e-04 vs Boltzmann 6.12e-04  (ratio 1.15); aH minimal at a_rec over [1e-6, a_rec])
+
+================================================================================================================
+PART 3 -- THE GALAXY LEG: how cold may the dark fluid be today without failing the L61 gate?
+================================================================================================================
+  A MOND galaxy has an asymptotically LOGARITHMIC potential, Phi = v_c^2 ln r.  A fluid of sound speed
+  c_s in hydrostatic equilibrium there, matched to the cosmic mean density at a reference radius r_ref,
+  takes the isothermal-sphere profile rho ~ r^{-beta} with beta = v_c^2/c_s^2.  The enclosed dark mass
+  inside 100 kpc must not break the L61 'excess spent once' bound: the transmitted pull A_X = G M_d/R^2
+  must leave the RAR residual inside the relation's OWN scatter, 0.11 dex (L61's generous criterion).
+
+      cosmic mean dark density today            rho_d,0 = 33.304 Msun/kpc^3
+      unclustered dark mass inside 100 kpc              = 1.395e+08 Msun
+
+        v_c   L61 tolerance | c_s=100   c_s=200   c_s=300   c_s=400   c_s=600 
+         60       2.413e+10 | 5.4e+08*  2.0e+08*  1.6e+08*  1.5e+08*  1.4e+08*   -> c_s,min = 52 km/s
+        120       9.651e+10 | 3.6e+10*  5.4e+08*  2.5e+08*  2.0e+08*  1.6e+08*   -> c_s,min = 93 km/s
+        180       2.171e+11 |   inf    3.0e+09*  5.4e+08*  3.0e+08*  2.0e+08*   -> c_s,min = 132 km/s
+        250       4.189e+11 |   inf    5.9e+10*  1.9e+09*  6.1e+08*  2.7e+08*   -> c_s,min = 176 km/s
+        300       6.032e+11 |   inf    1.2e+12   6.3e+09*  1.2e+09*  3.6e+08*   -> c_s,min = 207 km/s
+      ('*' = inside the L61 tolerance;  'inf' = beta >= 3, the enclosed mass diverges)
+
+      The binding case is the DEEPEST MOND-regime galaxy potential in the SPARC/RAR sample,
+      v_c ~ 300 km/s:   c_s(a=1) > 207 km/s,  c_s^2(a=1) > 4.76e-07.
+      The gate is essentially beta = v_c^2/c_s^2 < 1: the fluid must be at least as fast as the galaxy.
+  [PASS] GAL-1  the galaxy leg: a fluid in hydrostatic equilibrium in a MOND logarithmic potential accumulates rho ~ r^{-v_c^2/c_s^2}; keeping the enclosed dark mass inside 100 kpc within the L61 0.11 dex tolerance for the deepest MOND-regime galaxies (v_c ~ 300 km/s) requires c_s(a=1) of order the galaxy's own circular speed -- and the requirement is MILDER for dwarfs, so massive spirals bind   (c_s(1) > 207 km/s for v_c=300; 52 km/s for v_c=60 (dwarfs are easier))
+  [PASS] GAL-2  the galaxy leg's systematic is named and bounded: the answer depends on r_ref, the radius at which the fluid rejoins the cosmic mean, only through ln(r_ref/R), so a factor 10 in r_ref moves c_s,min by well under a factor 2.  The gate is logarithmically robust, not fine-tuned   (r_ref=1 Mpc -> 183 km/s  r_ref=3 Mpc -> 207 km/s  r_ref=10 Mpc -> 234 km/s)
+
+================================================================================================================
+PART 4 -- THE REQUIRED EXPONENT, AND THE VERDICT ON THE STATED PINCER.
+================================================================================================================
+      CMB leg     :  c_s^2(a_rec)  <  6.125e-04      (7419 km/s)
+      galaxy leg  :  c_s^2(a = 1)  >  4.756e-07      (207 km/s)
+
+      required ratio c_s^2(1)/c_s^2(a_rec)  >  7.765e-04
+      i.e. c_s^2 may FALL by as much as a factor 1288 between recombination and today
+      and both legs are still satisfied.  In exponent form:  p  >  -1.024.
+
+      A DECOUPLED species is forced to p = -2, i.e. c_s^2 falls by a factor 1.19e+06.
+      It misses the allowed window by a factor 9.23e+02 in c_s^2 --
+      about 3.0 orders of magnitude.  THAT is the whole
+      content of the velocity-ordering lemma, made quantitative.
+
+  [PASS] REQ-1  the two legs of the stated pincer do NOT require c_s^2 to grow at all.  They require only that c_s^2 fall no faster than about a^{-1}.  A CONSTANT-sound-speed fluid (p = 0), an isothermal fluid, or any fluid with p > -1 threads BOTH legs with about three orders of magnitude of headroom in c_s^2   (required p > -1.024 (a DECREASE of up to 1288x is allowed); constant c_s (p=0) passes)
+  [PASS] REQ-2  the L125 velocity-ordering lemma is therefore NOT mechanism-independent.  It is exactly the statement that a decoupled collisionless species is pinned at p = -2, which misses the window by ~3 orders of magnitude in c_s^2.  The loophole named in the task is REAL: the CMB-vs-galaxy pincer as stated has a large, nonempty interior for a fluid   (decoupled p = -2 vs required p > -1.024: the lemma bites only at p <= -1)
+  [PASS] SCOPE-1  honestly bounded.  (i) The CMB leg is a real Boltzmann computation but with a Planck-LIKE covariance and a 6-parameter Fisher marginalisation, not the Planck likelihood -- the ceiling is good to a factor of a few, which is far smaller than the ~1e3 headroom found.  (ii) The galaxy leg uses static hydrostatic equilibrium in an idealised logarithmic potential.  (iii) NOTHING here yet says the surviving window is observationally allowed -- only that the TWO GATES L125 NAMED do not close it.  The intermediate-epoch constraints are L154   (CMB leg Boltzmann + Planck-like; galaxy leg hydrostatic; intermediate epochs NOT yet tested (L154))
+
+================================================================================================================
+VERDICT
+================================================================================================================
+
+  PART 1 VERDICT -- the loophole is REAL, and wide.
+
+  The L125 velocity-ordering lemma was stated as mechanism-independent.  It is not.  It is the p = -2 corner
+  of a one-parameter family: a component with c_eff^2 proportional to a^p has its clustering set GROW iff
+  p < -1, and a DECOUPLED COLLISIONLESS species is pinned at p = -2 because momentum redshifts as 1/a.
+  Nothing pins a FLUID there.
+
+  Quantitatively, with the CMB leg computed by a real Boltzmann code (CLASS running the exact GDM fluid
+  system, unlensed TT/TE/EE against a Planck-like covariance, marginalised over six parameters) and the
+  galaxy leg computed from hydrostatic equilibrium in a MOND logarithmic potential against the L61 0.11 dex
+  tolerance:
+
+        c_s^2(a_rec)  <  6.12e-04        (CMB third peak / damping tail)
+        c_s^2(a = 1)  >  4.76e-07        (no L61 overshoot in a v_c = 300 km/s galaxy)
+
+  so c_s^2 is permitted to FALL by a factor of ~1288 across the whole interval and both gates still
+  pass:  p > -1.02.  A decoupled species falls by 1.2e+06 and misses by ~3 orders of magnitude.
+
+  So the answer to "does the CMB-vs-galaxy pincer close against a GDM fluid?" is NO.  It does not close, and
+  it does not even come close to closing.  It is not a near miss that better modelling might rescue -- the
+  interior is three orders of magnitude wide in c_s^2 and a full unit wide in the exponent p.
+
+  This does NOT mean the hybrid works.  It means the obstruction, if there is one, is somewhere else: at the
+  epochs BETWEEN recombination and today, which neither gate touches.  That is L154.  Whether any field or
+  fluid can supply the required c_s^2(a) at all is L153.
+
+================================================================================================================
+L152 COMPLETE: 9/9 checks PASS.   [5.9s]
+================================================================================================================

@@ -46,6 +46,18 @@ F(Q)Θ construction). It formalizes the mathematics, not the physics.
 
 - `reduction_master_certificate` — **L124 (capstone):** one theorem conjoining the load-bearing lemmas of the whole parameter-space reduction — health dichotomy, cubic MOND term, the propagating-scalar elimination, the cuscuton survival, transition-health (elliptic AQUAL), the BBN stiff horn, the lapse-sourced ghost, and ghost separability. ⚠️ **Scope:** certifies the *mathematics* of the reduction, **not** a complete physical theory — the honest verdict (L123) is that the viable all-gates theory is healthy MOND + a minimal decoupled dark sector, not pure MOND.
 
+- `kessence_dust_stiff_decomposition` — **L137 (A1):** for a *quadratic* shift-symmetric k-essence K = −2Λ + K₂(Q−Q₀)² with charge dK/dQ = I₀/a³, the density is **exactly** 2Λ + Q₀I₀a⁻³ + [I₀²/(4K₂)]a⁻⁶ — dust **linear**, stiff **quadratic** in I₀ (the published AeST Higgs-phase background = the repo's L84/L87 structure). Scope: quadratic K only; L137 shows cosh/exp K have **no** a⁻⁶ partner (numerical, not certified here).
+- `stiff_dust_coefficient_ratio`, `stiff_dust_term_ratio` — **L137 (A2/A3):** the stiff/dust coefficient ratio is I₀/(4K₂Q₀) (= published w₀ = the L84 BBN fine-tuning ratio, one object); the *term* ratio scales as a⁻³ (stiff dominates early).
+- `stiff_dust_ratio_vanishes_iff` — **L137:** for quadratic K the ratio vanishes **iff** I₀ = 0 — quadratic K cannot carry dust without stiff (the part of L87 that survives).
+- `lv_kessence_sound_speed_scaling`, `lv_kessence_sound_speed_increasing` — **L138 (B3):** for a Lorentz-violating k-essence c_s² = 2c_Y/K_QQ; with K_QQ = K_QQ⁰a⁻³ this is (2c_Y/K_QQ⁰)a³, **strictly increasing** in a (colder at recombination than today). The a⁻³ law for cosh/exp K is L138's numerical result, not certified.
+- `particle_sound_speed_decreasing` — **L138 (B1, control):** a free-streaming particle has c_s² = v₀²/a², strictly **decreasing** — the opposite ordering, which is why the L125 velocity lemma is particle-specific, not mechanism-independent.
+- `cuscuton_time_kinetic_affine` — **L139 (C2-1):** at zero spatial gradient √((1−2εΨ)(τ̄̇+εδτ̇)²) = √(1−2εΨ)(τ̄̇+εδτ̇) exactly — affine in δτ̇, so the (δτ̇)² coefficient vanishes identically (0-DOF from the action; companion to `cuscuton_stiff_denominator_zero`).
+- `cuscuton_slaved_mode_identity` — **L139 (C2-3):** the elliptic constraint solution rewrites exactly as δτ = −(a²τ̄̇S/μ_c²)/(k² + V″a²τ̄̇/μ_c²): the 1/k² sub-horizon suppression is manifest, k²δτ → −a²τ̄̇S/μ_c² (Route 1 obstructed: background dust ≠ clustering dust).
+- `cuscuton_elliptic_slaving` — **L139/L129:** (aH/k)⁴ < 1e-4 whenever k/(aH) > 10 (real-number inequality; the identification of the suppression ratio with (aH/k)⁴ is the scaling argument, not certified).
+- `leaf_normal_no_frame_drag_source`, `leaf_normal_frame_drag_source_iff` — **L139 (C3-4):** the Route-2 momentum-constraint source −K_Q∂ᵢχ/N vanishes when ∂ᵢχ = 0, and for K_Q ≠ 0 **only** then — gradient-driven, no F² frame-drag term, so AeST's O(1) α₁ source is absent. Scope: the O(w) PPN solve is **not** done.
+- `lapse_measured_charge_helmholtz`, `helmholtz_mass_cannot_be_switched_off` — **L139 (C3-8), the inherited cost:** K₂(Q₀(1−Ψ)−Q₀)² = K₂Q₀²Ψ² exactly (AeST's μ²Φ² Helmholtz term), and it is > 0 for K₂ > 0, Q₀, Ψ ≠ 0 — it cannot be switched off.
+- `fourth_power_error_budget`, `fourth_power_velocity_binds`, `fourth_power_velocity_threshold` — **L143:** with log a₀ = 4 log v − log M_b and independent errors, σ² = 16σ²_logv + σ²_logM; σ_logv > 0.0335 dex alone exceeds the 0.134 dex budget, and 16·0.0335² = 0.134² exactly (the fourth power binds).
+
 ## Build
 
 ```
@@ -53,7 +65,7 @@ lake exe cache get      # download prebuilt mathlib oleans
 lake build Mondlean
 ```
 
-## Status (2026-09-09) — GREEN, MACHINE-VERIFIED (53 theorems)
+## Status (2026-09-10) — GREEN, MACHINE-VERIFIED (70 theorems)
 
 `lake build Mondlean` compiles **clean (exit 0), zero `sorry`/`admit`**, and `#print axioms` shows every
 theorem (`kernel_identity`, `Gpp_pos`, `Gpp_zero`, `cubic_leading`, `affine_degeneracy`, `sound_speed_zero`)

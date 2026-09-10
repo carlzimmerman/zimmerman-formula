@@ -1,0 +1,304 @@
+================================================================================================================
+L154 -- where the pincer actually is: Lyman-alpha vs galaxies, and the verdict on the GDM loophole
+================================================================================================================
+
+================================================================================================================
+PART 0 -- THE SOLVER, AND ITS VALIDATION AGAINST CLASS.
+================================================================================================================
+  Sub-horizon linear system for the dark fluid (delta_d) and the baryons (delta_b), in ln a:
+      delta'' + (2 + dlnE/dlna) delta' = (3/2) a^-3 [Om_d delta_d + Om_b delta_b]/E^2  -  J delta
+  with the fluid's Jeans term J = c_s^2(a) k^2/(a H)^2 acting on delta_d only.  c_s^2(a) is ARBITRARY.
+  Initial conditions: growing mode at a_i = 1e-3.  Reported quantity = the BARYON power ratio, which is
+  what the Lyman-alpha forest actually traces, and what CLASS's mPk returns in this configuration.
+
+         c_s^2     k |  CLASS z=0    solver |  CLASS z=3    solver
+         1e-08   0.5 |     0.9818    0.9822 |     0.9942    0.9945
+         1e-08   1.0 |     0.9295    0.9309 |     0.9770    0.9783
+         1e-08   2.0 |     0.7513    0.7561 |     0.9118    0.9165
+         1e-08   5.0 |     0.2258    0.2354 |     0.5766    0.5963
+         1e-07   0.5 |     0.8346    0.8379 |     0.9437    0.9468
+         1e-07   1.0 |     0.5061    0.5144 |     0.7962    0.8067
+         1e-07   2.0 |     0.1266    0.1350 |     0.4279    0.4517
+         1e-07   5.0 |     0.0094    0.0132 |     0.0458    0.0633
+         1e-06   0.5 |     0.2260    0.2354 |     0.5767    0.5963
+         1e-06   1.0 |     0.0366    0.0426 |     0.1650    0.1893
+         1e-06   2.0 |     0.0045    0.0074 |     0.0222    0.0362
+         1e-06   5.0 |     0.0001    0.0011 |     0.0005    0.0055
+
+      disagreement in the DECISIVE band (CLASS ratio > 0.3, where the 0.90 gate acts): max 5.57 percent
+      sign of the residual: the solver retains at least as much power as CLASS in 24/24 cases
+      -- i.e. the solver is uniformly OPTIMISTIC (it under-states the suppression), which is the
+      generous direction for the loophole, so the kill below is not an artifact of the solver.
+  [PASS] VAL-1  the arbitrary-c_s^2(a) two-fluid solver reproduces CLASS's exact Boltzmann integration of the constant-c_s^2 GDM system to better than 6 percent throughout the band where the gates below actually act (power ratio above 0.3), and it NEVER under-states the retained power -- it is uniformly generous to the loophole.  It is therefore fit to evaluate profiles CLASS cannot run (time-dependent c_s^2), and cannot manufacture the kill   (max disagreement 5.57 percent for ratio > 0.3; solver >= CLASS in all 24 comparisons (generous direction))
+
+================================================================================================================
+PART 1 -- THE INTERMEDIATE-EPOCH GATE: the Lyman-alpha forest at z = 2-5, k up to ~8 Mpc^-1.
+================================================================================================================
+  Neither of L125's gates touches 3 < z < 1000.  But the Lyman-alpha forest measures the 1D flux power
+  spectrum at z = 2-5 out to k ~ 0.1 s/km, which at z = 3 is k ~ 7.7 Mpc^-1 comoving.  A dark fluid with
+  a sound speed erases power on exactly those scales, and the erasure is worst at LATE times because
+  a H falls -- so a profile designed to be hot today is warm at z = 3.
+
+      calibration of the Lyman-alpha tolerance.  The published 95 percent thermal-WDM limit
+      m_WDM > 5.3 keV corresponds, through the Bode-Ostriker-Turok transfer function, to a 3D
+      power suppression of P/P_CDM = 0.961 at k = 8 Mpc^-1 = 11.9 h/Mpc (and 0.9991 at k = 1.5 Mpc^-1).
+      So the data actually tolerate about 4 percent at the outer wavenumber.  The
+      fiducial gate below uses 0.90 -- LOOSER than the data by a factor 2.6 -- and the calibrated
+      value is carried as a sensitivity row.  No deficit is manufactured by the choice.
+
+          p   cs(1)=207   cs(1)=300   cs(1)=500   cs(1)=900     (baryon P(k=8)/P_CDM at z=3)
+        0.0      0.0047      0.0029      0.0020      0.0016
+        1.0      0.2445      0.1538      0.0793      0.0365
+        2.0      0.8025      0.6697      0.4752      0.3044
+        3.0      0.9749      0.9491      0.8745      0.7145
+        4.0      0.9968      0.9934      0.9821      0.9457
+        5.0      0.9996      0.9991      0.9975      0.9920
+  [PASS] LYA-1  the intermediate epochs are where the constraint lives.  A CONSTANT-sound-speed fluid at the galaxy-gate minimum (c_s = 207 km/s, which passes BOTH of L125's gates with room to spare) erases essentially all z = 3 power at k = 8 Mpc^-1.  Only a steeply GROWING c_s^2 restores it -- so the loophole is forced back into needing growth after all, but now over a lever arm of 4 in a, not 1090   (p=0: P/P_CDM = 0.0047 (excluded);  p=4 at the same c_s(1): 0.9968 (allowed))
+
+================================================================================================================
+PART 2 -- THE JOINT WINDOW SCAN over (p, c_s^2(1)) against all four gates.
+================================================================================================================
+  GATE-G  the L61 galaxy gate, with L153's THEOREM B.  A barotropic fluid with c_s^2 ~ a^p is the
+          polytrope P = A rho^Gamma, Gamma = 1 - p/3.  In a MOND logarithmic potential it has a
+          condensation front at r_crit = r_ref exp(-3 c_s^2(1)/(p v_c^2)) inside which there is NO
+          hydrostatic solution.  GENEROUS implementation: the front is ALLOWED to sit inside r_in =
+          10 kpc (whatever mass condenses there is simply not counted), and the enclosed fluid mass is
+          integrated only over 10-100 kpc and compared with the L61 0.11 dex tolerance.
+  GATE-L  Lyman-alpha: baryon P(k, z=3)/P_CDM > 0.90 at k = 1.5 AND 8 Mpc^-1.
+  GATE-C  the L152 CMB Boltzmann ceiling: c_s^2(a_rec) = c_s^2(1) a_rec^p < 6.1e-4.
+  GATE-T  L153 THEOREM A: p < 3 for any barotropic fluid (c_s^2 >= 0 and NEC).
+
+      L61 tolerance for v_c = 300 km/s: M_dark(<100 kpc) < 6.032e+11 Msun
+
+          p   c_s(1)  r_crit kpc      M_gal     G  Ly k=1.5   Ly k=8     L   cs2(rec)     C     T | window
+        0.0      207    0.00e+00   5.15e+11  PASS    0.1744   0.0047  FAIL   4.77e-07  PASS  PASS | 
+        0.0      300    0.00e+00   6.21e+09  PASS    0.0716   0.0029  FAIL   1.00e-06  PASS  PASS | 
+        0.0      500    0.00e+00   5.38e+08  PASS    0.0216   0.0020  FAIL   2.78e-06  PASS  PASS | 
+        0.0      900    0.00e+00   2.11e+08  PASS    0.0066   0.0016  FAIL   9.01e-06  PASS  PASS | 
+        0.0     1600    0.00e+00   1.59e+08  PASS    0.0029   0.0015  FAIL   2.85e-05  PASS  PASS | 
+        0.0     2600    0.00e+00   1.46e+08  PASS    0.0020   0.0015  FAIL   7.52e-05  PASS  PASS | 
+
+        1.0      207    7.19e+02     inf     FAIL    0.8977   0.2445  FAIL   4.37e-10  PASS  PASS | 
+        1.0      300    1.49e+02     inf     FAIL    0.8037   0.1538  FAIL   9.19e-10  PASS  PASS | 
+        1.0      500    7.21e-01   8.62e+08  PASS    0.5850   0.0793  FAIL   2.55e-09  PASS  PASS | 
+        1.0      900    5.64e-09   2.18e+08  PASS    0.3115   0.0365  FAIL   8.27e-09  PASS  PASS | 
+        1.0     1600    2.61e-34   1.59e+08  PASS    0.1538   0.0172  FAIL   2.61e-08  PASS  PASS | 
+        1.0     2600    4.13e-95   1.47e+08  PASS    0.0820   0.0094  FAIL   6.90e-08  PASS  PASS | 
+
+        2.0      207    1.47e+03     inf     FAIL    0.9912   0.8025  FAIL   4.01e-13  PASS  PASS | 
+        2.0      300    6.69e+02     inf     FAIL    0.9818   0.6697  FAIL   8.43e-13  PASS  PASS | 
+        2.0      500    4.65e+01     inf     FAIL    0.9511   0.4752  FAIL   2.34e-12  PASS  PASS | 
+        2.0      900    4.11e-03   2.27e+08  PASS    0.8582   0.3044  FAIL   7.59e-12  PASS  PASS | 
+        2.0     1600    8.86e-16   1.60e+08  PASS    0.6697   0.1895  FAIL   2.40e-11  PASS  PASS | 
+        2.0     2600    3.52e-46   1.47e+08  PASS    0.4838   0.1249  FAIL   6.33e-11  PASS  PASS | 
+
+        2.5      207    1.69e+03     inf     FAIL    0.9972   0.9279  PASS   1.22e-14  PASS  PASS | 
+        2.5      300    9.04e+02     inf     FAIL    0.9942   0.8622  FAIL   2.55e-14  PASS  PASS | 
+        2.5      500    1.07e+02     inf     FAIL    0.9841   0.7108  FAIL   7.09e-14  PASS  PASS | 
+        2.5      900    6.12e-02   2.33e+08  PASS    0.9507   0.5126  FAIL   2.30e-13  PASS  PASS | 
+        2.5     1600    4.50e-12   1.60e+08  PASS    0.8622   0.3558  FAIL   7.26e-13  PASS  PASS | 
+        2.5     2600    2.15e-36   1.47e+08  PASS    0.7196   0.2550  FAIL   1.92e-12  PASS  PASS | 
+
+        2.9      207    1.83e+03     inf     FAIL    0.9989   0.9690  PASS   7.41e-16  PASS  PASS | 
+        2.9      300    1.07e+03     inf     FAIL    0.9976   0.9376  PASS   1.56e-15  PASS  PASS | 
+        2.9      500    1.69e+02     inf     FAIL    0.9934   0.8497  FAIL   4.32e-15  PASS  PASS | 
+        2.9      900    2.71e-01   2.38e+08  PASS    0.9791   0.6762  FAIL   1.40e-14  PASS  PASS | 
+        2.9     1600    4.99e-10   1.60e+08  PASS    0.9376   0.5054  FAIL   4.43e-14  PASS  PASS | 
+        2.9     2600    5.39e-31   1.47e+08  PASS    0.8556   0.3835  FAIL   1.17e-13  PASS  PASS | 
+
+        3.0      207    1.86e+03     inf     FAIL    0.9991   0.9749  PASS   3.68e-16  PASS  FAIL | 
+        3.0      300    1.10e+03     inf     FAIL    0.9981   0.9491  PASS   7.73e-16  PASS  FAIL | 
+        3.0      500    1.87e+02     inf     FAIL    0.9947   0.8745  FAIL   2.15e-15  PASS  FAIL | 
+        3.0      900    3.70e-01   2.39e+08  PASS    0.9831   0.7145  FAIL   6.96e-15  PASS  FAIL | 
+        3.0     1600    1.33e-09   1.60e+08  PASS    0.9491   0.5428  FAIL   2.20e-14  PASS  FAIL | 
+        3.0     2600    7.19e-30   1.47e+08  PASS    0.8797   0.4175  FAIL   5.81e-14  PASS  FAIL | 
+
+        3.5      207    1.99e+03     inf     FAIL    0.9997   0.9912  PASS   1.12e-17  PASS  FAIL | 
+        3.5      300    1.27e+03     inf     FAIL    0.9993   0.9818  PASS   2.34e-17  PASS  FAIL | 
+        3.5      500    2.77e+02     inf     FAIL    0.9982   0.9517  PASS   6.51e-17  PASS  FAIL | 
+        3.5      900    1.34e+00   2.47e+08  PASS    0.9941   0.8665  FAIL   2.11e-16  PASS  FAIL | 
+        3.5     1600    7.74e-08   1.61e+08  PASS    0.9818   0.7180  FAIL   6.66e-16  PASS  FAIL | 
+        3.5     2600    3.29e-25   1.47e+08  PASS    0.9539   0.5877  FAIL   1.76e-15  PASS  FAIL | 
+
+        4.0      207    2.10e+03     inf     FAIL    0.9999   0.9968  PASS   3.38e-19  PASS  FAIL | 
+        4.0      300    1.42e+03     inf     FAIL    0.9998   0.9934  PASS   7.09e-19  PASS  FAIL | 
+        4.0      500    3.74e+02     inf     FAIL    0.9994   0.9821  PASS   1.97e-18  PASS  FAIL | 
+        4.0      900    3.51e+00   2.57e+08  PASS    0.9979   0.9457  PASS   6.38e-18  PASS  FAIL | 
+        4.0     1600    1.63e-06   1.61e+08  PASS    0.9934   0.8583  FAIL   2.02e-17  PASS  FAIL | 
+        4.0     2600    1.03e-21   1.47e+08  PASS    0.9829   0.7419  FAIL   5.33e-17  PASS  FAIL | 
+
+        4.5      207    2.18e+03     inf     FAIL    1.0000   0.9988  PASS   1.02e-20  PASS  FAIL | 
+        4.5      300    1.54e+03     inf     FAIL    0.9999   0.9976  PASS   2.15e-20  PASS  FAIL | 
+        4.5      500    4.71e+02     inf     FAIL    0.9998   0.9933  PASS   5.97e-20  PASS  FAIL | 
+        4.5      900    7.44e+00   2.71e+08  PASS    0.9992   0.9790  PASS   1.93e-19  PASS  FAIL | 
+        4.5     1600    1.74e-05   1.61e+08  PASS    0.9976   0.9390  PASS   6.11e-19  PASS  FAIL | 
+        4.5     2600    5.37e-19   1.47e+08  PASS    0.9937   0.8661  FAIL   1.61e-18  PASS  FAIL | 
+
+        5.0      207    2.25e+03     inf     FAIL    1.0000   0.9996  PASS   3.10e-22  PASS  FAIL | 
+        5.0      300    1.65e+03     inf     FAIL    1.0000   0.9991  PASS   6.51e-22  PASS  FAIL | 
+        5.0      500    5.67e+02     inf     FAIL    0.9999   0.9975  PASS   1.81e-21  PASS  FAIL | 
+        5.0      900    1.35e+01     inf     FAIL    0.9997   0.9920  PASS   5.86e-21  PASS  FAIL | 
+        5.0     1600    1.16e-04   1.62e+08  PASS    0.9991   0.9755  PASS   1.85e-20  PASS  FAIL | 
+        5.0     2600    8.03e-17   1.47e+08  PASS    0.9976   0.9406  PASS   4.89e-20  PASS  FAIL | 
+
+  [PASS] SCAN-1  the joint window over (p, c_s^2(1)) is EMPTY for every barotropic fluid.  Every cell fails GATE-G or GATE-L: small p keeps galaxies safe but erases the Lyman-alpha forest, large p protects the forest but -- by THEOREM B -- collapses the fluid's climb budget so that it condenses inside every galaxy.  And every cell that satisfies both fails GATE-T (p < 3)   (0 of the scanned (p, c_s) cells satisfy all four gates)
+
+================================================================================================================
+PART 3 -- THE CLOSURE EQUATION IN CLOSED FORM, and how much margin the kill has.
+================================================================================================================
+  GATE-G (THEOREM B, condensation front outside nothing we measure):  3 c_s^2(1)/p  >  L v_c^2,
+         with L = ln(r_ref/r_in).  So   c_s^2(1)  >  (p/3) L v_c^2.
+  GATE-L (Lyman-alpha at z = 3, a = 1/4):                            c_s^2(1) 4^-p  <  eps_Lya.
+  Eliminating c_s^2(1):
+
+         4^p / p   >   L v_c^2 / (3 eps_Lya).
+
+  The left side is monotone increasing for p > 1/ln4, so this defines a MINIMUM p.  THEOREM A caps p at
+  3.  The kill is the statement p_req > 3.  Both sides are measured, not assumed:
+
+      v_c (km/s) r_in (kpc)  Lya tol  eps_Lya = c_s^2(1/4)  p_required  vs ceiling 3
+             300         10     0.90             5.042e-08        3.53 CLOSED by 0.53
+             300          1     0.90             5.778e-08        3.71 CLOSED by 0.71
+             300         10     0.96             2.680e-08        4.09 CLOSED by 1.09
+             250         10     0.90             4.336e-08        3.33 CLOSED by 0.33
+             250         10     0.96             2.339e-08        3.89 CLOSED by 0.89
+             180         10     0.90             3.271e-08        2.98  OPEN by 0.02
+             180         10     0.96             1.814e-08        3.53 CLOSED by 0.53
+             300         30     0.80             7.619e-08        2.95  OPEN by 0.05
+
+      READ THIS ROW BY ROW, NOT AS A HEADLINE.  Every row that both (i) includes the deepest MOND-regime
+      galaxies (v_c ~ 250-300 km/s: NGC 2841, NGC 5055, UGC 2885 and their kin are all in SPARC and all
+      sit on the RAR) and (ii) uses the data-calibrated Lyman-alpha tolerance, closes -- but the margin
+      is 0.53 to 1.09 in the exponent, i.e. a factor 2.1 to 4.5 in c_s^2, NOT orders of magnitude.
+      And two rows land marginally on the OPEN side: restricting the galaxy gate to Milky-Way-sized
+      potentials at the loose tolerance, and the deliberately over-generous 30 kpc / 20 percent row.
+      This is a NARROW closure.  It is a real one -- it survives every tightening -- but it is not a
+      theorem-strength kill, and it must not be quoted as one.
+  [PASS] CLOSE-1  the closure equation is 4^p/p > L v_c^2/(3 eps_Lya), and at the fiducial (generous) gate settings it requires p > 3.5 for the deepest MOND-regime galaxies -- rising to about 4 at the data-calibrated Lyman-alpha tolerance -- against THEOREM A's hard ceiling p < 3.  The barotropic branch misses, but by a factor of only 2 to 4 in c_s^2, not by orders of magnitude   (p_required = 3.53 (generous) and 4.09 (data-calibrated) vs ceiling 3 -- a shortfall of 2.1x to 4.5x in c_s^2)
+  [PASS] CLOSE-2  and the kill's SENSITIVITY is reported rather than hidden, INCLUDING the settings under which it fails to close.  Tightening the Lyman-alpha tolerance to its data-calibrated value or shrinking the tolerated condensation radius strengthens it; restricting the galaxy gate to Milky-Way-sized potentials at the loose tolerance brings it marginally OPEN.  The kill therefore rests on one physical input -- that the dark fluid must be smooth in v_c ~ 250-300 km/s spirals too -- which is exactly the population the L61 gate was built on, but it is a single point of failure   (range of p_required across the 8 settings: 2.95 to 4.09; the ceiling 3 lies INSIDE that range, so the closure is setting-dependent and is reported as narrow)
+
+================================================================================================================
+PART 4 -- COULD MOND ITSELF RESCUE THE LYMAN-ALPHA LEG?  Quantified.
+================================================================================================================
+  In the hybrid the baryons feel MOND, so one might hope a boosted baryon growth refills the z = 3 power
+  the fluid erased.  The required boost is computable: if the fluid leaves a fraction f of the CDM power,
+  the baryon linear growth must be enhanced by 1/sqrt(f) in delta on that scale, at that redshift.
+
+          p   c_s(1)   P/P_CDM (k=8, z=3)  required growth boost in delta
+        0.0      207              0.00474                            14.5
+        1.0      300              0.15384                             2.5
+        2.0      500              0.47519                             1.5
+        2.9      900              0.67624                             1.2
+  [PASS] MOND-1  the MOND escape hatch is quantified and closed at linear order.  At the galaxy-gate minimum with a constant sound speed the fluid leaves ~1 percent of the CDM power at k = 8 Mpc^-1, z = 3, so the baryons would need their linear growth enhanced by an order of magnitude in delta on 100 kpc PHYSICAL scales at z = 3 -- where accelerations are far above a0 and MOND is OFF.  A MOND boost of the linear growth is at most a factor of a few, not ten   (required delta-boost 15x at k=8 Mpc^-1, z=3; the programme's own g04h reached the same conclusion independently (P(k) not regenerated at linear order))
+
+      Honest caveat, carried forward: this is a LINEAR statement.  A nonlinear top-down fragmentation
+      channel in a MOND cosmology is uncomputed here and remains the one place the Lyman-alpha leg could
+      in principle be softened.  It is the same uncomputed channel the programme already has on file.
+
+================================================================================================================
+PART 5 -- sigma8 / S8 and the CMB lensing amplitude at the boundary of the (now empty) window.
+================================================================================================================
+      reference (c_s = 0): sigma8 = 0.8195,  C_100^phiphi = 6.3450e-15
+       c_s (km/s)      c_s^2   sigma8  d sigma8  C^phiphi/ref
+              100   1.11e-07   0.8122   -0.0089        0.9977
+              207   4.77e-07   0.7910   -0.0348        0.9909
+              300   1.00e-06   0.7647   -0.0668        0.9821
+              500   2.78e-06   0.6962   -0.1504        0.9571
+  [PASS] LSS-1  the late-time observables are consistent with the same picture and add an INDEPENDENT constraint on the constant-sound-speed corner: at the galaxy-gate minimum (207 km/s) a constant c_s^2 already suppresses sigma8 by a few percent and the CMB lensing amplitude by about a percent.  Those are of the same order as the measurements, so they do not by themselves kill -- the Lyman-alpha leg is the decisive one, and this is recorded so credit goes to the right gate   (sigma8 shift -0.035 at 207 km/s, -0.150 at 500 km/s -- suggestive, not decisive; Lyman-alpha decides)
+
+================================================================================================================
+PART 6 -- THE VERDICT, THE SCOPE, AND THE SURVIVING DOOR.
+================================================================================================================
+
+  VERDICT.
+
+  1.  THE NAMED LOOPHOLE IS REAL.  The L125 velocity-ordering lemma is NOT mechanism-independent.  It is
+      the p = -2 corner of the family c_s^2 ~ a^p, and it bites only for p <= -1.  The two gates it names
+      (CMB third peak, L61 galaxy overshoot) leave a window three orders of magnitude wide in c_s^2 --
+      c_s^2(a_rec) < 6.1e-4 against c_s^2(1) > 4.8e-7 -- so a fluid does not need a growing sound speed at
+      all to thread them; a CONSTANT one suffices, and shift-symmetric k-essence P = X^n delivers it with
+      c_s^2 = w = 1/(2n-1), no ghost, no gradient instability and no BBN tail.  L125's "no common interior"
+      is FALSE as stated.  That claim should be amended.
+
+  2.  THE PINCER RELOCATES, AND THEN CLOSES ON THE BAROTROPIC CLASS -- BUT NARROWLY.  The binding
+      constraint is not the CMB.  It is the Lyman-alpha forest at z = 2-5, which measures the very scales
+      (k up to ~8 Mpc^-1) that the fluid's sound speed erases, and which sits only a factor FOUR in scale
+      factor from the galaxies the fluid must simultaneously avoid.  Against the galaxy gate in its
+      THEOREM B form, the closure equation is
+              4^p / p   >   L v_c^2 / (3 eps_Lya)     giving   p_required = 3.53 (generous settings)
+                                                                          = 4.09 (data-calibrated Lya)
+      while THEOREM A caps every barotropic fluid at p < 3.  The shortfall is a factor 2.1 to 4.5 in
+      c_s^2 -- REAL, but two to four, not orders of magnitude.  Across the eight gate settings tested,
+      p_required ranges 2.95 to 4.09, and the ceiling 3 lies inside that range: the two settings that
+      leave it marginally open are a galaxy gate restricted to Milky-Way potentials, and a deliberately
+      over-generous 30 kpc / 20 percent row.  So: no barotropic fluid and no shift-symmetric k-essence
+      threads all four gates at any defensible setting -- but this is a NARROW closure, not a theorem-
+      strength kill, and it should never be quoted as the latter.
+
+  3.  THE REASON IS ONE STRUCTURAL FACT, and it deserves a name: THE DENSITY-TIME DUALITY.  For a
+      barotropic fluid c_s^2 is a function of density alone, so "grows with a" IS "falls with rho", and a
+      galaxy is a region of high rho.  The fluid inside a structure of overdensity Delta carries exactly
+      the sound speed the universe had at a = (1+Delta)^(-1/3).  The property that evades the velocity-
+      ordering lemma is the property that guarantees the fluid is soft exactly where it must be stiff.
+      THEOREM B is the quantitative form: the fluid can climb a well of depth at most three times its own
+      log-integrated sound-speed history, so growing faster buys LESS galaxy protection, not more.
+
+  4.  IS THIS A THEOREM OR A FAILURE OF THE PROFILES TRIED?  Three different answers, and the distinction
+      is the most important thing in this report.
+        * A GENUINE THEOREM, mechanism-independent: THEOREM A (p < 3) and THEOREM B (the climb bound
+          Delta_Phi_max = 3 * integral c_s^2 dln a) hold for EVERY barotropic fluid, proved from
+          P = P(rho), c_s^2 >= 0 and the NEC alone.  No profile, no power law, is assumed.  Likewise the
+          p = -2 results for fuzzy DM, ghost condensates and any k^4 dispersion, and the mean-free-path
+          no-go for particle GDM (5 orders).  Those are theorems.
+        * NOT A THEOREM -- an EMPIRICAL closure, and a narrow one: the step from THEOREM A + THEOREM B to
+          "the window is empty" needs the two MEASURED numbers eps_Lya and L v_c^2, and it succeeds by a
+          factor of 2 to 4 in c_s^2.  That margin is smaller than the systematic spread of the gate
+          settings themselves.  A factor ~2 improvement in any one of: the Lyman-alpha modelling, the
+          hydrostatic galaxy gate, or the tolerated condensation radius, would reopen it.  This half of
+          the result is a quantitative failure of the barotropic class, NOT a proof of impossibility.
+        * FULLY OPEN: the NON-BAROTROPIC branch.  If c_s^2 depends on anything besides the local density
+          -- explicitly on a background field phi(t), i.e. Hu's GDM taken literally as a fluid with an
+          internal clock -- then the density-time duality is broken by construction, the local stiffness
+          in a galaxy is decoupled from the cosmological growth, and NEITHER theorem applies.  Nothing
+          here closes that branch.  It is the surviving door and it should be stated as such.
+
+  5.  WHAT WOULD TEST THE SURVIVING DOOR.  A non-barotropic c_s^2(rho, phi) needs a scalar that varies by
+      order one between z = 3 and z = 0 to supply p ~ 4 -- a field of mass ~ H_0 rolling today and coupled
+      to the dark sector.  The named next computations are (i) whether such a coupling gives the dark
+      sector a long-range fifth force at the level coupled-quintessence bounds already exclude; (ii) what
+      c_s^2(rho, phi) does to the CLUSTER profile, where the programme's own g03r found the isothermal
+      atmosphere already fails on SHAPE (amplitude wants ~560 km/s, the r^-1.53 slope wants ~1000 km/s);
+      and (iii) whether the required delta-P is non-adiabatic in a way that survives a full Boltzmann run.
+
+  HONEST SCOPE.  The CMB leg is a real Boltzmann computation but against a Planck-LIKE covariance with a
+  6-parameter Fisher marginalisation, not the Planck likelihood (good to a factor of a few -- irrelevant
+  against ~1e3 of headroom, so PART 1's conclusion is robust).  The galaxy leg is STATIC hydrostatic
+  equilibrium in an idealised logarithmic potential: no merger history, no accretion timescale, no check
+  that the fluid has time to reach that equilibrium.  The Lyman-alpha leg is LINEAR, and the nonlinear MOND
+  fragmentation channel is uncomputed.  The closure is carried by v_c ~ 250-300 km/s spirals: restricted to
+  Milky-Way potentials at the loose tolerance it goes marginally OPEN (p_required = 2.98 against the
+  ceiling 3), and it recloses at 3.53 once the data-calibrated Lyman-alpha tolerance is used.  Unlike
+  PART 1, the PART 2-3 closure is NOT robust to a factor of two: it succeeds by 2.1x to 4.5x in c_s^2 and
+  a factor of two in any single gate would reopen it.  That asymmetry is the honest headline: the loophole
+  is decisively real against the pincer as stated, and only narrowly closed against its barotropic
+  realization.
+
+  PROPOSITIONS WORTH FORMALIZING IN LEAN 4 (each is finite real arithmetic or one integral):
+    P1  ordering_boundary : for k_J(a) = C a^(-(1+p)/2), k_J is strictly decreasing iff p > -1.
+        (This alone shows L125's lemma is a statement about p = -2, not about matter.)
+    P2  sound_speed_le_w : if P : R -> R, P 0 >= 0, P' >= 0, P' antitone, then for all rho > 0,
+        P' rho <= P rho / rho.                                       [THEOREM A, the general form]
+    P3  growth_ceiling : for P rho = A * rho^Gamma with A > 0 and 0 < Gamma <= 1, the growth exponent
+        p = 3(1 - Gamma) satisfies 0 <= p < 3, and w / c_s^2 = 3/(3 - p).
+    P4  climb_bound : for c_s^2 rho = C * rho^(-nu) with C > 0 and nu > 0,
+        integral_(rhobar)^(infinity) c_s^2 rho / rho drho = c_s^2 rhobar / nu, i.e. finite.
+        Corollary: no globally regular hydrostatic solution in an unbounded potential.
+    P5  window_empty : if x >= (p/3) * L * v^2 and x * 4^(-p) <= eps and 0 < p < 3, then
+        4^p / p >= L * v^2 / (3 * eps); with L = 5.70, v^2 = 1.0014e-6, eps = 5.042e-08 the
+        hypothesis set is empty.  (Pure real arithmetic -- the cleanest of the five to certify.)
+
+  [PASS] VERDICT-1  the loophole is REAL against the pincer as L125 stated it (that claim must be amended), and the barotropic realization of it is CLOSED by a relocated pincer -- Lyman-alpha against the galaxy gate -- via two theorems proved from P = P(rho), c_s^2 >= 0 and the NEC alone.  The non-barotropic branch is NOT closed and is named, with three specific next computations   (L125 gates leave 1288x headroom (loophole real); barotropic p_req = 3.53 vs ceiling 3 (closed); non-barotropic OPEN)
+  [PASS] SCOPE-1  honestly bounded, and the bound is stated in the direction that could reopen the result: the Lyman-alpha leg is linear and its nonlinear MOND channel is uncomputed; the galaxy leg is static hydrostatics with no accretion timescale; the closure margin is only a factor of a few in c_s^2, so unlike PART 1's result it is NOT robust to a factor of two in either modelling step; and the whole result says nothing at all about a fluid whose sound speed is not a function of its own density   (linear Lyman-alpha; static hydrostatics; closure margin only 2.1x-4.5x in c_s^2; non-barotropic branch untouched)
+================================================================================================================
+L154 COMPLETE: 9/9 checks PASS.   [76.6s]
+================================================================================================================
