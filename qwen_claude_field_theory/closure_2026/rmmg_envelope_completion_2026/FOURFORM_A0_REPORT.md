@@ -41,6 +41,18 @@ Thus Lean closes the algebra from the stated coupling normalization to
 the exponential MOND kernel.  This distinction is deliberate and is the
 current mathematical status of the framework's fitted factor.
 
+The same file now checks the parameterization exactly:
+
+\[
+ Z+2b\beta^2=8\beta^2
+ \quad\Longleftrightarrow\quad
+ \frac{Z}{\beta^2}=8-2b\qquad(\beta\ne0),
+\]
+
+and proves that the denominator is strictly positive on the \(\beta>0\)
+branch. These are consistency consequences of the chosen coupling surface;
+they do not select \(b\) or \(Z/\beta^2\).
+
 With the additional dark-energy identity
 \(\rho_\Lambda=c^2\Lambda/(8\pi G)\), the same Lean file also derives
 

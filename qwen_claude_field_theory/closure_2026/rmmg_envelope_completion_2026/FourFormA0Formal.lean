@@ -65,6 +65,25 @@ theorem kappa_eq_half_of_coupling_relation
   rw [hratio, Real.sqrt_sq_eq_abs, abs_of_nonneg]
   norm_num
 
+theorem coupling_relation_iff_ratio
+    (b beta Z : ℝ) (hbeta : beta ≠ 0) :
+    (Z + 2 * b * beta ^ 2 = 8 * beta ^ 2) ↔
+      (Z / beta ^ 2 = 8 - 2 * b) := by
+  constructor
+  · intro hrel
+    field_simp [hbeta]
+    nlinarith [hrel]
+  · intro hratio
+    field_simp [hbeta] at hratio
+    nlinarith [hratio]
+
+theorem denominator_positive_on_kappa_half_branch
+    (b beta Z : ℝ) (hbeta : 0 < beta)
+    (hrel : Z + 2 * b * beta ^ 2 = 8 * beta ^ 2) :
+    0 < Z + 2 * b * beta ^ 2 := by
+  rw [hrel]
+  positivity
+
 theorem lambda_from_a0_square_and_density
     (a0 c G rho Lambda pi : ℝ)
     (hc : c ≠ 0) (hG : G ≠ 0) (hpi : pi ≠ 0)
