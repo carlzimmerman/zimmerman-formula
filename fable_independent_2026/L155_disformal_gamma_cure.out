@@ -1,0 +1,137 @@
+
+====================================================================================================
+PART A -- STATIC WEAK FIELD: effective G for light vs slow orbits under gt = A^2 [g + B n n]
+====================================================================================================
+  a_T (temporal coupling, sources phi) = alpha*(1 - 2*x_d)     a_S (spatial coupling) = alpha
+  [PASS] A1  the disformal term flips the TEMPORAL coupling only: a_T = alpha(1 - 2 x_d), a_S = alpha
+  G_N/G_* = 4*alpha**2*x_d**2 - 4*alpha**2*x_d + alpha**2 + 1    gamma = (2*alpha**2*x_d - alpha**2 + 1)/(4*alpha**2*x_d**2 - 4*alpha**2*x_d + alpha**2 + 1)    f = alpha**2*(2*x_d - 1)**2/(alpha**2*(2*x_d - 1)**2 + 1)
+  [PASS] A2  x_d = 0 reproduces L135 exactly: G_N = G_*(1+alpha^2), gamma = (1-alpha^2)/(1+alpha^2), gamma-1 = -2f
+  gamma = 1  <=>  x_d in [1/2, 1]
+  [PASS] A3  gamma = 1 has exactly two roots: x_d = 1/2 (a_T = 0: scalar DECOUPLES, f = 0, no MOND) and x_d = 1 (the TeVeS-type cure: a_T = -a_S)
+  [PASS] A4  at x_d = 1 the fifth-force fraction is UNCHANGED, f = alpha^2/(1+alpha^2): the cure keeps the MOND coupling (a0t = a0/f lock untouched) while restoring gamma = 1 for EVERY f
+  [PASS] A5  the exact cure is B(phi) = 1 - A^{-4}(phi) = 1 - e^{-4 alpha phi}: a function of phi ALONE (not a constant, not a function of local acceleration); its linearisation is B' = 4 alpha, i.e. x_d = 1
+  [PASS] A6  a CONSTANT B cannot cure: with B = B0 the matter metric is -(1-B0) A^2 N^2 dt^2 + A^2 gamma_ij, i.e. the pure conformal case in a rescaled time unit (a_T/sqrt(1-B0) = alpha), so gamma stays at its x_d = 0 value
+
+====================================================================================================
+PART A2 -- EXACT beta for the cured coupling (JNW exterior, L134 map) and the grad-phi variant
+====================================================================================================
+  gt_00 = -1 + (-2*alpha*k + s) b/rho + (-2*alpha**2*k**2 + 2*alpha*k*s - s**2/2) b^2/rho^2 + ...   =>  beta = 1
+  [PASS] A2-1  beta = 1 EXACTLY for the cured exponential coupling, for every JNW exponent s and scalar charge k (ln f has no b^2 term, L134 C4), so the cure does not re-open the beta gate
+  [PASS] A2-2  the grad-phi variant leaves gt_00 untouched (static phi is spacelike, dphi_0 = 0) and adds only B_g phi'^2 ~ 1/r^4 to g_rr: the 1/r light-orbit split (2f) is NOT touched at O(U), so it cannot cure gamma
+           (O(U) coefficients: gt_00 2*alpha**2 + 2, gt_rr 2 - 2*alpha**2, gt_thth 2 - 2*alpha**2; anisotropic extra = B_g*alpha**2*m**2*exp(-2*alpha**2*m/r)/r**4)
+
+====================================================================================================
+PART B -- TENSOR SPEED: gravitons propagate on g, photons on gt = A^2 [g + B n n]
+====================================================================================================
+  [PASS] B1  the clock's only h_ij dependence is sqrt(h): on a TT mode det = 1 - h^2, no gradient of h appears, so the clock does not modify the tensor kinetic operator (nor does phi's leaf-projected h^{ij} d phi d phi)
+  [PASS] B2  photon speed / graviton speed = sqrt(1 - B); with the cure B = 1 - A^{-4} this is EXACTLY A^{-2} = e^{-2 alpha phi}: the SAME factor that flips the temporal coupling is the factor by which the two cones split
+  [PASS] B3  c_T/c - 1 = -2 Phi_s to first order, where Phi_s = a_T phi is the scalar's share of the potential: for the full cure the tensor-speed shift is locked to the scalar's local potential with NO free coefficient
+
+  Phi_s(Sun) - Phi_s(r_out) of the Milky Way (M_b = 6e10 Msun point mass beyond R0 = 8.2 kpc; the MOND
+  phantom potential is the dominant, f-independent part):
+  a0 footing                        f     r_out    Phi_s/c^2      c_T/c-1  over GW bound
+  repo canonical 9.36e-11     1.0e+00     100kpc    8.588e-07   -1.718e-06       5.73e+08x
+  repo canonical 9.36e-11     1.0e+00    1000kpc    1.565e-06   -3.130e-06       1.04e+09x
+  repo canonical 9.36e-11     1.0e-01     100kpc    5.695e-07   -1.139e-06       3.80e+08x
+  repo canonical 9.36e-11     1.0e-01    1000kpc    1.252e-06   -2.505e-06       8.35e+08x
+  repo canonical 9.36e-11     1.2e-03     100kpc    5.377e-07   -1.075e-06       3.58e+08x
+  repo canonical 9.36e-11     1.2e-03    1000kpc    1.218e-06   -2.436e-06       8.12e+08x
+  repo alt 1.13e-10           1.0e+00     100kpc    9.318e-07   -1.864e-06       6.21e+08x
+  repo alt 1.13e-10           1.0e+00    1000kpc    1.707e-06   -3.414e-06       1.14e+09x
+  repo alt 1.13e-10           1.0e-01     100kpc    6.424e-07   -1.285e-06       4.28e+08x
+  repo alt 1.13e-10           1.0e-01    1000kpc    1.394e-06   -2.789e-06       9.30e+08x
+  repo alt 1.13e-10           1.2e-03     100kpc    6.107e-07   -1.221e-06       4.07e+08x
+  repo alt 1.13e-10           1.2e-03    1000kpc    1.360e-06   -2.720e-06       9.07e+08x
+  [PASS] B4  *** KILL: for the full cure |c_T/c - 1| = 2 Phi_s(MW) >~ 1e-6 on BOTH a0 footings, for every f and already inside 100 kpc -- against |c_T/c - 1| < 3e-15 (GW170817): at least ~1e8-1e9 over, f-INDEPENDENT ***
+           (smallest violation factor over all rows = 3.58e+08)
+
+  Partial cure at fixed a_T^2 = f/(1-f) (f = 1.2e-3, the kernel-independent Saturn floor of L135), Phi_s = 1e-6:
+           x_d    |gamma-1|  Cassini?    |c_T/c-1|   GW?
+   0.000000000    2.400e-03        no    0.000e+00   yes
+   0.501000000    5.988e-01        no    5.010e-04    no
+   0.900000000    3.000e-04        no    2.250e-06    no
+   0.990000000    2.449e-05        no    2.020e-06    no
+   0.999000000    2.405e-06       yes    2.002e-06    no
+   0.999999000    2.400e-09       yes    2.000e-06    no
+   0.999999999    2.400e-12       yes    2.000e-06    no
+   1.000000000    0.000e+00       yes    2.000e-06    no
+  [PASS] B5  no partial cure passes both gates at the kernel floor: curing gamma to Cassini needs x_d = 1 to 2%, which pins |c_T/c - 1| at 2 Phi_s ~ 1e-6; keeping c_T within 3e-15 needs x_d < ~1e-9, i.e. no cure
+           (rows passing both = 0)
+
+====================================================================================================
+PART C -- PREFERRED FRAME: PPN frame moving at velocity w relative to the foliation (alpha_1, alpha_2, alpha_3)
+====================================================================================================
+  Idealisation (as in L127): foliation rigid = cosmic rest frame; Einstein-frame metric = GR (T^phi_0i = 0,
+  T^phi_00 = O(U^2)); source at rest in PPN coordinates; w along x.  All O(w^2 U) and O(w U) terms in gt kept.
+  [PASS] C1  n_mu is unit timelike for every w: eta^{mu nu} n_mu n_nu = -1
+  a_T,eff(w) = alpha*(w**2 + 2*x_d - 1)/(w**2 - 1)
+  [PASS] C2  phi = -a_T,eff m/(gw r_c), r_c^2 = x^2/gw^2 + y^2 + z^2, solves the leaf Laplacian away from the source
+  [PASS] C3  normalisation: under x = gw xi the operator becomes isotropic and the source delta^3 picks up 1/gw, so the charge is a_T,eff/gw -- phi(x = gw xi) is the Coulomb potential of charge a_T,eff/gw
+  [PASS] C4  Lorentz cross-check: |x_leaf - x_leaf,src|^2 = x^2/gw^2 + y^2 + z^2 exactly (leaf distance is w-contracted)
+  [PASS] C5  the w = 0 part of gt_00 is -1 + 2 U_N with U_N = (1 + a_T^2) U_*: the Part-A static result is recovered
+  [PASS] C6  the O(w^2 U) part of gt_00 has exactly the PPN form w^2 U + w^i w^j U_ij (no other angular structure), and g_0y carries the same w^j U_ij coefficient as g_0x
+  alpha_2 = alpha**2*(2*x_d - 1)**2/(4*alpha**2*x_d**2 - 4*alpha**2*x_d + alpha**2 + 1)   alpha_1 = 8*alpha**2*x_d*(2*x_d - 1)/(4*alpha**2*x_d**2 - 4*alpha**2*x_d + alpha**2 + 1)   alpha_3 = 0   (f = alpha**2*(2*x_d - 1)**2/(alpha**2*(2*x_d - 1)**2 + 1))
+    pure conformal (x_d = 0)  : alpha_1 = 0,  alpha_2 = alpha**2/(alpha**2 + 1),  alpha_3 = 0
+    full cure (x_d = 1)       : alpha_1 = 8*alpha**2/(alpha**2 + 1),  alpha_2 = alpha**2/(alpha**2 + 1),  alpha_3 = 0
+  [PASS] C7  CONSISTENCY: alpha_3 = 0 identically (Lagrangian-based theory), for every alpha and x_d -- the three independent coefficients (w^2 U, w^i w^j U_ij, and the invariant g_0i sum) close on a conservative PPN metric
+  [PASS] C8  the leaf-projected (instantaneous) scalar carries alpha_2 = f for EVERY x_d, B or no B: the potential of a source moving through the leaves is contracted along w (C4), giving a w^i w^j U_ij term in gt_00 through A^2(phi)
+  [PASS] C9  the disformal term makes the matter metric depend on the foliation velocity: gt_0i = -A^2 B gw^2 w_i = -4 f U w_i for the cure, so alpha_1 = 8 f x_d (2 x_d - 1)/(...) -> 8 f at x_d = 1 (0 at x_d = 0)
+  NOTE (ADM sense): n_mu = (-N,0,0,0) has no shift, so gt_00 = A^2[-N^2(1-B) + N_i N^i]: the clock stays exactly
+  shift-independent.  alpha_1 arises not from N^i but from B n_mu n_nu tilting with the foliation velocity.
+  CAVEAT (rigid foliation): with the cure, matter sources the cuscuton constraint through T~^{0i} ~ B rho w, and
+  phi's leaf projection sources it at O(w (grad phi)^2), against a stiffness mu_c^2 ~ M_pl^2 H^2.  The exact
+  alpha values above are conditional on L127's rigid-foliation idealisation; that back-reaction is UNDETERMINED here.
+
+====================================================================================================
+PART D -- PERIHELION AFTER THE CURE, THE PINCER IN f, VERDICT
+====================================================================================================
+  a0 footing                         f     Saturn /cy    Mercury /cy  verdict(1 mas/cy)
+  repo canonical 9.36e-11     1.00e+00      0.000e+00      0.000e+00  PASS
+  repo canonical 9.36e-11     1.00e-01      0.000e+00      0.000e+00  PASS
+  repo canonical 9.36e-11     1.00e-02      1.691e-24      0.000e+00  PASS
+  repo canonical 9.36e-11     6.10e-03      3.831e-06      0.000e+00  PASS
+  repo canonical 9.36e-11     1.00e-03      2.413e+03     3.988e-176  FAIL
+  repo canonical 9.36e-11     1.15e-05      2.635e+03      1.302e+04  FAIL
+  repo canonical 9.36e-11     4.00e-07      2.635e+03      1.308e+04  FAIL
+  repo canonical 9.36e-11    perihelion floor f >= 5.357e-03
+  repo alt 1.13e-10           1.00e+00      0.000e+00      0.000e+00  PASS
+  repo alt 1.13e-10           1.00e-01      0.000e+00      0.000e+00  PASS
+  repo alt 1.13e-10           1.00e-02      2.194e-19      0.000e+00  PASS
+  repo alt 1.13e-10           6.10e-03      2.720e-04      0.000e+00  PASS
+  repo alt 1.13e-10           1.00e-03      2.703e+03     1.165e-144  FAIL
+  repo alt 1.13e-10           1.15e-05      2.895e+03      1.432e+04  FAIL
+  repo alt 1.13e-10           4.00e-07      2.895e+03      1.437e+04  FAIL
+  repo alt 1.13e-10          perihelion floor f >= 5.901e-03
+  [PASS] D1  after the cure (gamma = beta = 1) Saturn+Mercury pass the 1 mas/cy gate for f >~ 6e-3 on both footings (same floor as L135 P4-5: the cure removes gamma, it does not move the kernel tail)
+           (repo canonical 9.36e-11: 5.357e-03; repo alt 1.13e-10: 5.901e-03)
+
+  gate                                   ceiling on f     floor on f
+  gamma (Cassini), NO cure                  1.150e-05
+  gamma (Cassini), full cure                1.000e+00   (removed)
+  alpha_2 = f  < 4e-07 (any x_d)            4.000e-07
+  alpha_1 = 8f < 4e-05 (cure)              5.000e-06
+  Saturn+Mercury perihelion, repo canonical 9.36e-11                      5.357e-03
+  Saturn+Mercury perihelion, repo alt 1.13e-10                            5.901e-03
+  PPN validity at Saturn (L135 P2-3)                          7.430e-03
+  [PASS] D2  *** THE WINDOW IS EMPTY WITH THE CURE: alpha_2 = f caps f at 4e-7 (alpha_1 = 8f at 5e-6), the perihelion floors it at ~6e-3: gap >~ 1e4 (rigid-foliation idealisation) ***
+           (floor/ceiling = 1.34e+04 (cure), 1.34e+04 (no cure; L135 had 529 from gamma alone))
+  [PASS] D3  the c_T kill (Part B) needs no PPN assumption at all: it is set by the Galaxy's MOND potential and the GW170817 path, independent of f, of the kernel and of the foliation's rigidity
+
+====================================================================================================
+VERDICT
+====================================================================================================
+  NO.  No B closes the light/orbit split without violating c_T:
+   (a) the unique cure is B = 1 - A^{-4}(phi) (function of phi alone, x_d = 1): gamma = 1, beta = 1, f untouched;
+       a constant B is a unit choice; a B(X) tracking acceleration would have to scale as M^{1/2} X^{1/4} (source-dependent).
+   (b) it makes photons ride A^2[g + B n n] while gravitons ride g: c_T/c - 1 = -2 Phi_s = -(1-3)e-6 from the
+       Milky Way's own MOND potential, ~1e9 x the GW170817 bound, for every f -- the amount that cures gamma IS the
+       amount that splits the cones (partial cures: Cassini needs x_d = 1 to 2%, GW needs x_d < 2e-9).
+   (c) no new N^i dependence, but B n n tilts with the foliation velocity: alpha_1 = 8f (cure);  and the leaf-
+       projected scalar carries alpha_2 = f with or without B (rigid-foliation idealisation, alpha_3 = 0 verified).
+   (d) perihelion passes only for f >~ 6e-3 (both footings) -- against alpha_2/alpha_1 ceilings 4e-7 / 5e-6.
+  The conformally (or disformally) coupled MOND scalar is DEAD in the Solar System.  Structural change required:
+  matter and gravitons must share ONE metric (no A(phi), no B), so the MOND boost must enter the gravitational
+  field equations linearly -- a kinetic mixing of phi with the metric potential (AeST-type Phi = Phi_N + phi from
+  the field equations, not from the matter coupling).  That is the L139 architecture, with its own alpha_1 debt.
+
+  CHECKS: 25 PASS, 0 FAIL

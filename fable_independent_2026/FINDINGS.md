@@ -4983,3 +4983,23 @@ inside 1 Mpc needs c_ad ≥ 300, boundary-condition dependent ~2×). Empty on VS
 (floor 839) or trusting the deep KiDS points (floor 1346). Early-accreted dust is EXPELLED, not retained, once
 c_s ≳ 50 km/s. **Undecided:** inside the sliver the dust loses its late-time power (growth/CDM 0.51 at k=0.2);
 P(k) must come from MOND-boosted baryons, which L142 finds overshooting — that joint run decides the sliver.
+
+## L155 — DECIDING LANE 3: the disformal γ-cure exists, is unique, and is KILLED by c_T. The conformally coupled MOND scalar is dead in the Solar System (25/25, both footings)
+
+**(a) The cure is unique:** with `g̃ = A²[g + B(φ)nn]`, γ=1 has two roots — x_d=½ (scalar decouples, no MOND) and
+x_d=1, the TeVeS-type cure `B = 1 − A⁻⁴(φ)`, a function of φ alone. At x_d=1: γ=β=1 exactly, and the fifth force
+f (hence the a₀/f lock) is kept. The ∇φ variant cannot cure γ at all.
+**(b) The kill:** gravitons propagate on g, photons on g̃, so `c_T/c − 1 = −2Φ_s` with **no free coefficient**.
+Φ_s of the Milky Way at the Sun (branch's own exp kernel) = 0.5–1.7e−6 ⇒ |c_T/c−1| = 1–3e−6 vs 3e−15:
+**3.6e8–1.1e9× over.** The amount that cures γ IS the amount that splits the light/graviton cones. No zero of
+φ helps (B differs Sun-vs-intergalactic by 4Φ_s).
+**(c) α₁, α₂:** in a frame moving at w, `Bnn` gives α₁ → 8f for the cure. **Unexpected: α₂ = f with or without
+B** — the leaf-projected scalar's potential is Lorentz-contracted on the leaves, giving a w^iw^jU_ij term in
+g̃₀₀ via A²(φ). ⚠️ L127's α₂=0 covered only the tensor/g₀ᵢ sector; this scalar O(w²U) term appears not to have
+been included — **re-derive independently before banking α₂=f**; if it holds it tightens L135's cap from
+1.15e−5 to 4e−7 even with no cure. α₃=0 came out identically (consistency check). Rigid-foliation caveat.
+**(d) Perihelion** passes only for f ≥ 5.4–5.9e−3; against α₂ ≤ 4e−7 / α₁ ≤ 5e−6 the window is empty by ~1.3e4.
+The c_T kill needs none of the PPN assumptions.
+**Structural change required:** matter and gravitons must share ONE metric (no A(φ), no B); the MOND boost must
+enter the field equations linearly — a kinetic mixing of φ with the metric potential (AeST-type Φ = Φ_N + φ), i.e.
+the L139 architecture, which carries its own α₁ debt.
