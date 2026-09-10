@@ -298,3 +298,24 @@ theorem cam_conformal_ghost (M2 p : ℝ) (hM : 0 < M2) (hp : p ≠ 0) : -p^2 / (
     VANISHES at the physical MOND value η=1 -- zero quadratic action ⇒ no perturbative propagator ⇒ infinite
     strong coupling around Minkowski. -/
 theorem cam_strong_coupling (M2 k zeta : ℝ) : M2 * k^2 * zeta^2 * (1 - 1) / 1 = 0 := by ring
+
+/-! ### Health-branch transition-health certificate (L119/L121 Phase A): the AQUAL operator is elliptic for
+    ALL accelerations -- a POSITIVE certificate, in contrast to CAM's nonelliptic lapse. When the MOND kernel
+    is carried by a separate field's projected gradient, the AQUAL Hessian eigenvalues are μ=1-e^{-y}
+    (transverse) and 1+(y-1)e^{-y}=Gpp(y)/2 (longitudinal), BOTH strictly positive for y>0. -/
+
+/-- Transverse AQUAL-Hessian eigenvalue μ(y)=1-e^{-y} > 0 for y>0. -/
+theorem mu_positive (y : ℝ) (hy : 0 < y) : 0 < 1 - Real.exp (-y) := by
+  have h : Real.exp (-y) < 1 := by rw [Real.exp_lt_one_iff]; linarith
+  linarith
+
+/-- HEALTH-BRANCH TRANSITION HEALTH: both AQUAL-Hessian eigenvalues are strictly positive for all y>0 --
+    transverse μ=1-e^{-y} and longitudinal 1+(y-1)e^{-y} (=Gpp/2, via Gpp_pos). So the AQUAL operator is
+    ELLIPTIC across ALL accelerations, unlike CAM's lapse (nonelliptic for y>1). The transition pathology is
+    removed, not relocated. -/
+theorem aqual_hessian_transition_healthy (y : ℝ) (hy : 0 < y) :
+    0 < 1 - Real.exp (-y) ∧ 0 < 1 + (y - 1) * Real.exp (-y) := by
+  refine ⟨mu_positive y hy, ?_⟩
+  have h := Gpp_pos hy
+  simp only [Gpp] at h
+  linarith
