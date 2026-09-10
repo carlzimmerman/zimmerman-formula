@@ -1,0 +1,36 @@
+{
+  "advertised_constraint": "beta*exp(-beta*Derivative(u(x), x))*Derivative(u(x), x)*Derivative(u(x), (x, 2)) + (1 - exp(-beta*Derivative(u(x), x)))*Derivative(u(x), (x, 2))",
+  "affine": {
+    "N": "exp(k*x)",
+    "Y": "beta*k",
+    "advertised_Q": "0",
+    "analytic_positivity_certificate": "exp(Y)+Y-1=(exp(Y)-1)+Y>0 for Y>0",
+    "extra_over_k2_exp_minus_Y": "beta*k + exp(beta*k) - 1",
+    "extra_term": "k**2*(beta*k + exp(beta*k) - 1)*exp(-beta*k)",
+    "high_field_extra_over_k2": "1",
+    "positive_factor": "beta*k + exp(beta*k) - 1",
+    "u": "k*x"
+  },
+  "candidate": "rotated_mmg_literal_lapse_variation",
+  "checks": {
+    "advertised_affine_constraint_vacuum": true,
+    "affine_extra_factorization_exact": true,
+    "affine_extra_term_is_symbolically_nonzero": true,
+    "constitutive_linearization_derived": true,
+    "exact_exponential_mu": true,
+    "literal_variation_identity_with_boundary": true,
+    "newtonian_limit_extra_term_nonzero": true
+  },
+  "constitutive_tangent": "(beta*Derivative(u(x), x) + exp(beta*Derivative(u(x), x)) - 1)*exp(-beta*Derivative(u(x), x))",
+  "derived_delta_Q": "(-beta**2*Derivative(eps(x), x)*Derivative(u(x), x)*Derivative(u(x), (x, 2)) + 2*beta*Derivative(eps(x), x)*Derivative(u(x), (x, 2)) + beta*Derivative(eps(x), (x, 2))*Derivative(u(x), x) - (1 - exp(beta*Derivative(u(x), x)))*Derivative(eps(x), (x, 2)))*exp(-beta*Derivative(u(x), x))",
+  "derived_equation": "Q + N^{-1} D_j[N (D_i u) A^{ij}] + matter = 0, A^{ij}=mu h^{ij}+(mu_Y/Y)D^i u D^j u",
+  "literal_lapse_euler_residual": "(-beta**2*Derivative(u(x), x)**2*Derivative(u(x), (x, 2)) + beta*Derivative(u(x), x)**3 + 4*beta*Derivative(u(x), x)*Derivative(u(x), (x, 2)) + exp(beta*Derivative(u(x), x))*Derivative(u(x), x)**2 + 2*exp(beta*Derivative(u(x), x))*Derivative(u(x), (x, 2)) - Derivative(u(x), x)**2 - 2*Derivative(u(x), (x, 2)))*exp(-beta*Derivative(u(x), x))",
+  "runtime_seconds": 0.455394,
+  "scope": "Flat fixed-h positive-gradient branch of the literal rotated-MMG first-order action. If u is instead declared independent of N, the defining relation u=log(N)-log(h)/6 is absent and must be added as a new constraint; its Dirac algebra is not analyzed here.",
+  "status": "OBSTRUCTION_TO_ADVERTISED_LAPSE_MULTIPLIER",
+  "symbols": {
+    "Y": "beta*u'",
+    "beta": "c^2/(2*a0)>0"
+  },
+  "variation_identity": "0"
+}

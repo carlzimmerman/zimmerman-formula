@@ -1,0 +1,83 @@
+{
+  "schema_version": 1,
+  "claim_id": "RMMG-literal-lapse-variation-obstruction-v1",
+  "claim": "The displayed rotated-MMG action does not yield its advertised lapse MOND constraint when u=log(N)-log(h)/6 is varied literally.",
+  "scope": "flat fixed-h positive-gradient branch; conditional action-level obstruction, not a universal no-go",
+  "repository": {
+    "commit": "766dda994304a13da4d997210a677ea5a5f9edff",
+    "dirty": true
+  },
+  "command": "python3 -B qwen_claude_field_theory/closure_2026/g03_covariant_action_2026/rmmg_lapse_variation_gate.py",
+  "commands": [
+    "python3 -B qwen_claude_field_theory/closure_2026/g03_covariant_action_2026/rmmg_lapse_variation_gate.py",
+    "python3 -B -m unittest discover -s qwen_claude_field_theory/closure_2026/g03_covariant_action_2026 -p 'test_rmmg_lapse_variation_gate.py' -v"
+  ],
+  "environment": {
+    "software": ["Python 3.9.6", "SymPy 1.14.0"],
+    "hardware": "macOS arm64"
+  },
+  "mathematics": {
+    "assertion_tested": "Literal Euler variation of -N D_i[mu(|Du|)D^i u] when u=log(N)-log(h)/6",
+    "coefficient_domain": "Exact SymPy expressions on a flat fixed-h positive-gradient branch",
+    "conventions": "beta=c^2/(2 a0)>0; Y=beta*u'>0; lapse variation delta N=N epsilon",
+    "inputs": [
+      "qwen_claude_field_theory/closure_2026/g03_covariant_action_2026/rmmg_lapse_variation_gate.py",
+      "qwen_claude_field_theory/closure_2026/g03_covariant_action_2026/RMMG_LAPSE_VARIATION_OBSTRUCTION.md",
+      "qwen_claude_field_theory/closure_2026/rotated_mmg_constitutive_2026/RMMG_ACTION.md"
+    ],
+    "bounds": {
+      "spatial_dimension": 1,
+      "branch": "local affine positive gradient",
+      "matter": "vacuum witness"
+    },
+    "non_claims": [
+      "universal MOND no-go",
+      "full nonlinear Dirac/HDA closure",
+      "PPN or cosmological viability",
+      "obstruction to a repaired action with independent u and new relation constraints"
+    ]
+  },
+  "randomness": {"used": false, "generator": "", "seed": null},
+  "exit_status": {
+    "rmmg_lapse_variation_gate.py": 0,
+    "test_rmmg_lapse_variation_gate.py": 0,
+    "strict_advertised_constraint_subgate": 2
+  },
+  "sha256": {
+    "rmmg_lapse_variation_gate.py": "612a7173080a40ae226f8abee06265387d2f7f2448db64fbbae279d5852d722f",
+    "test_rmmg_lapse_variation_gate.py": "862f09dddddf64549ae6f54ad3a7f7ac53c42d34328cffbc82abad5e2a42345e",
+    "rmmg_lapse_variation_results.json": "edd17f3d801bfe070ebf4545014759d3303ffe27c9339738f8c1c1d4b91ada02",
+    "RMMG_LAPSE_VARIATION_REPORT.md": "a89fc7cb095ecc089458229f0f70d6ffe0c838942415fe7202647efc97637c99"
+  },
+  "result_details": {
+    "advertised_affine_constraint": "0",
+    "extra_affine_term": "k**2*(beta*k + exp(beta*k) - 1)*exp(-beta*k)",
+    "positivity_for_beta_k_gt_0": "exp(Y)+Y-1=(exp(Y)-1)+Y>0"
+  },
+  "run": {
+    "started_at": "2026-09-09T23:59:00Z",
+    "runtime_seconds": 0.6,
+    "exit_status": 0,
+    "strict_advertised_constraint_exit_status": 2
+  },
+  "outputs": [
+    {
+      "path": "qwen_claude_field_theory/closure_2026/g03_covariant_action_2026/rmmg_lapse_variation_results.json",
+      "sha256": "8dac04d7c5c6999d6f4051c4cab55f354f4fa8022e0c33b5cfd2a8f5754f6bb7"
+    }
+  ],
+  "checks": [
+    {"name": "exact exponential constitutive law", "passed": true},
+    {"name": "chain-rule constitutive linearization", "passed": true},
+    {"name": "first-variation identity including boundary term", "passed": true},
+    {"name": "advertised affine vacuum constraint vanishes", "passed": true},
+    {"name": "literal affine lapse Euler residual is nonzero", "passed": true},
+    {"name": "exact positive-factor decomposition", "passed": true},
+    {"name": "high-field limit of extra term", "passed": true}
+  ],
+  "result": "CONDITIONAL_ACTION_OBSTRUCTION",
+  "residual_risks": [
+    "independent-u repair and its new relation constraints are not analyzed",
+    "full nonlinear Dirac/HDA closure, PPN, FLRW and stability remain open"
+  ]
+}
