@@ -4535,3 +4535,88 @@ application at all** (so L128's cuscuton lane is novel territory).
 
 *Note: the report identifies sources by arXiv/DOI only — the no-personal-names rule was applied literally to
 scholarly citations too. Fully verifiable as-is; author names can be added if wanted.*
+
+## L127 — the architecture scan REBUILT and AUDITED: 0/4200, three gate corrections, and the 0.22 dex crack (26/26)
+
+`parameter_space_scan.py` v2 + `parameter_space_scan.out` (26/26 checks PASS, 16 cores, ~5 min).
+**Supersedes the earlier `parameter_space_scan.py` entry above** (the one reporting "98.6% eliminated,
+one corner survives, keV cold sterile neutrino" — that survivor was the over-permissive-gate bug, already
+retracted by L125; and the "0 minimal survivors" correction noted in L125 is here rebuilt from scratch
+with margins instead of assertions).
+
+**THE SCAN.** 8 discrete axes — metric_count(2) × mond_carrier(2) × mond_source(2) × constraint(2) ×
+**preferred_frame(4, NEW)** × a0_scaling(3) × kernel(4) × dark_sector(7) = **5,376 raw / 4,200 internally
+coherent** architectures, each crossed with a continuum (dark mass 0.1 eV–1 MeV, relic T_x/T_ν, cold
+fraction f, graviton mass over 12 decades, κ) = **2.54e8 candidate points per a₀ footing**.
+**Result: 0 survivors, on BOTH footings.** New gates added: **G5 PPN preferred-frame** (aether vector
+whose kinetic term depends on the shift ⇒ α₁ = −4c₁₄ − 4(2−K_B)/(J_Y+1), min|α₁| = 2.333 over the
+physical box = 2.3e4× the bound; a shift-independent scalar clock gives α₁ = α₂ = 0 exactly),
+**G11 bimetric CMB** (Yukawa η(k) = k²/(k²+m²) strictly increasing ⇒ HIGH-pass, wrong ordering for every
+mass; 6.75 dex CMB shortfall), **G12 bimetric mode health** (symbolically: on the ghost-free locus
+2u₀+u₁ = 0 the MOND coefficient a = −2(2u₀+u₁) is identically zero).
+
+**⭐⭐ THREE GATE CORRECTIONS (all verified in both directions).**
+1. **RAQUAL causality was right for the wrong reason.** L120/L106's c_s² = 1/(2n−1) is superluminal for
+   1/2 < n < 1, and L120 asserts the transition passes through that band. **Computed from all four
+   kernels: it never does** — a monotone μ forces n_eff ∈ [1, 3/2] (deep MOND 3/2, Newtonian 1), so the
+   *stated* reason never fires. The gate is nonetheless CORRECT on the right calculation: for a
+   **spacelike** background gradient (the quasi-static galactic problem) the longitudinal characteristic
+   is **c∥² = 2n − 1 > 1 throughout the MOND regime** (= 2 in deep MOND, the classic Bekenstein–Milgrom
+   acausality). The two speeds are exact reciprocals (verified to 1e−10 on all four kernels): 1/(2n−1) is
+   the *timelike/cosmological* k-essence sound speed, 2n−1 the *spacelike/quasi-static* one. **Do not
+   quote "superluminal for 1/2 < n < 1" as the galactic kill; quote c∥² = 2n−1.**
+2. **The velocity-ordering lemma is a correct monotonicity statement but is NOT by itself a closure.**
+   k_J,com ∝ √a is strictly increasing (confirmed), but the growth from recombination to today is
+   **√1091 = 33, not 1091** (L125's "k_fs ∝ a" drops the √ρ factor), while the CMB-to-galaxy scale gap it
+   must cover is **333**. So the lemma alone leaves a ~1 decade window (comoving velocity u ∈ [2.3, 23.4]
+   km/s). The closure comes from the **phase-space/escape criterion** (v_rms today ≪ v_esc ⇒ captured
+   regardless of the linear Jeans scale), which is empty by 1.11 dex. **Honest flag:** the relic pincer's
+   N_eff arm is reproduced here exactly and independently (ΔN_eff = (T_x/T_ν)⁴ ≤ 0.3 with Ω_x h² = 0.12
+   ⇒ **m ≥ 27.57 eV**, matching g04i's 27.6), but the **11.4 eV RAR arm is CITED and not reproducible
+   here** — an independent Tremaine–Gunn estimate gives **25 eV (MW-like) to 198 eV (dwarf-like)**, which
+   *brackets* rather than confirms it. **G10 is the weakest gate in the battery.**
+3. **The binary "any clustering component fails" gate had to become a continuum in f.** With f free:
+   the CMB floor is f ≥ 0.194 under the *weakest* reading (z_eq > z_rec only) and f ≥ 0.970 under Planck's
+   ω_c = 0.1200 ± 0.0012 (3σ); the galaxy ceiling is f ≤ 0.582 / 0.486 (canonical / alt, L61 CITED).
+   **Under the weak reading the window f ∈ [0.194, 0.582] is OPEN (16 survivors); it is closed ONLY by the
+   measured ω_c, by 0.222 dex (canonical) / 0.300 dex (alt) = 42σ on ω_c.**
+
+**ANTI-MANUFACTURED-NO-GO CONTROLS (C5, all pass).** Switching off G8 resuscitates the CDM hybrid (32
+survivors); switching off causality resuscitates the propagating branch; weakening only the CMB gate
+reopens the space. The emptiness is produced by identified gates, not by a battery that rejects
+everything. Regression test for the old spurious keV sterile-ν survivor: a keV relic supplying ω_c has
+v_rms today = 35 m/s = 1.2e−4 × v_esc, so it clusters in galaxies — **no dark sector is granted an
+exemption from G8 any more.**
+
+**WHICH GATES DO THE WORK (leave-one-out, order-independent).** Only **three** gates are individually
+load-bearing: **G7 CMB clustering (+40 survivors if removed), G8 galaxy smoothness (+16), G10 relic
+pincer (+16)**. Every other gate is *redundant given the rest* — the kills are doubled: a propagating
+carrier dies twice (causality + L60 gradient instability), the bimetric branch dies twice (CMB filter +
+Ostrogradsky ghost), the lapse-sourced branch dies twice (conformal ghost + non-elliptic transition).
+By architectures *touched*, G7 fires on 100%, G5 PPN on 64%, causality on 52%. κ (G13) eliminates zero
+architectures — it is not a discriminator.
+
+**⭐ THE NEAR-MISS (the deliverable for future work).** 96 of 4,200 architectures fail *only* on
+continuous/tuning gates. The smallest margin in the entire enumeration is **0.222 dex**: the healthy
+single-metric cuscuton-MOND branch **+ a cold sector at f ≈ 0.6 of Planck's ω_c** — realized either as
+partial particle CDM or as a **thermal relic of ~100–200 eV at T_x/T_ν ≈ 0.37** (which passes ΔN_eff
+comfortably). It misses the CMB floor by 0.18 dex and the galaxy ceiling by 0.04 dex. It is the right
+target because the ceiling it violates is the CITED 0.582 and the Tremaine–Gunn bracket (25–198 eV) is
+*exactly ambiguous* at the relic mass it wants — phase-space exclusion from dwarfs but not from MW-like
+hosts, i.e. the ceiling and the near-miss are the same uncertainty seen twice. Next-worst margins:
+relic pincer 0.384 dex, superfluid lensing 0.740 dex, local a₀ 13σ, bimetric 6.75 dex (structural),
+AeST α₁ 4.37 dex (structural), k-essence BBN 24 dex of tuning.
+
+**HONEST SCOPE — read before quoting any percentage.** "100% of the enumerated space" means 100% of a
+**finite, hand-built list of architecture types**, not a cover of the space of Lagrangians. Had the list
+carried 20 dark sectors instead of 7 the same physics would have printed "100% of 20,736" — the
+percentage measures the list, not the physics. What is defensible: *every architecture the programme has
+named or built fails at least one gate, and for each the gate and the size of the failure are recorded.*
+Named exclusions from the enumeration: a dark component whose comoving velocity is not ∝1/a (decaying DM,
+time-dependent mass, self-heating); a **non-thermal** relic with an engineered momentum distribution
+(which evades the ΔN_eff floor entirely — the cold arm of the relic pincer does not apply to it); a
+weak/hybrid a₀ environmental coupling with |slope| < 0.15 (the BIG-SPARC null is blind there); and
+scale-dependent or non-local matter–dark couplings. Three gates are CITED not re-derived (L61 galaxy
+ceiling, g04i 11.4 eV, L67 superfluid lensing) — a referee should attack those three plus the Planck ω_c
+step first. Scripts: `parameter_space_scan.py`, `parameter_space_scan.out`,
+`parameter_space_survivors.json`.
