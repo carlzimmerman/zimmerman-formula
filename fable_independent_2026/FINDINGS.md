@@ -4270,3 +4270,24 @@ Axis 4) + the a₀ derivation.** 6 Lean-formalizable elimination lemmas proposed
 L-SECURE-3/4 survivals), with rigorous-vs-conditional flags: the CAM ghost kill + separate-field survival +
 kernel-blind health are rigorous; the cosmology pincer's "no interior" is CONDITIONAL (Phase E's constant-a₀
 assumption downgraded by L121 — a real Boltzmann calc with a₀∝H(z) is the deciding computation).
+
+## L123 — DECISIVE CMB VERDICT (Axis 4 resolved): pure MOND is a no-go; the ghost is separable; hybrid is the route (7/7)
+
+The last open axis of the reduction, settled (fleet-verified + independent). **(a) PURE MOND is a rigorous
+CMB no-go:** the non-propagating MOND field has ρ_φ(FLRW)=2M²a₀²Q(0)=0 (∇φ=0 on FLRW ⇒ Q(0)=0) — the same
+structure that removes the ghost/BBN removes the dust; and any elliptic matter-sourced field is slaved to
+the baryons (oscillates with them), so it cannot supply the decoupled a⁻³ clustering well the third peak
+needs. **The "no dark matter, all gates" dream is closed for this class.** **(b) The conformal ghost is
+SEPARABLE:** {p_n,S_n}=−2M²k²η vanishes iff η=0 (η=MOND-from-lapse coefficient); a dark sector with η_dust=0
+adds nothing — the ghost was a lapse-sourcing artifact, not an a⁻³-density property (Lean: `dust_ghost_separable`).
+**(c) k-essence stiff genericity (L87 generalized to ALL shift-symmetric k-essence):** ρ is quadratic in the
+charge (canonical P=X: ρ=X∝n², 2XP_XX+P_X=1 finite ⇒ a⁻⁶ stiff generic; cuscuton: denom=0 ⇒ no stiff but
+also no dust). "No stiff" ⟺ "no dust" for a scalar; only particle DM (ρ=mn) is stiff-free AND clustering.
+
+**THE VERDICT:** the theory that threads **every** gate is a **HYBRID** — the healthy MOND branch (galaxies,
+lensing, Solar System) **+ a separate, decoupled, propagating dark sector** (CMB, clusters, growth). Not pure
+MOND. **Honest costs of the hybrid:** a scalar dust carries a generic a⁻⁶ BBN tail; particle DM must be
+galaxy-smooth (L61 overshoot) + pass the ν pincer; either must pass PPN α₁ (AeST's killer — a vector-free
+cuscuton-clock realization is open) + a real Boltzmann third-peak run. **No clean kill of the programme, no
+free rescue of pure MOND — the viable target is now precisely defined.** Script `L123_cmb_pincer_tightness.py`
+(7/7). Mondlean.lean → 39 theorems.

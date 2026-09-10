@@ -51,7 +51,7 @@ lake exe cache get      # download prebuilt mathlib oleans
 lake build Mondlean
 ```
 
-## Status (2026-09-09) — GREEN, MACHINE-VERIFIED (38 theorems)
+## Status (2026-09-09) — GREEN, MACHINE-VERIFIED (39 theorems)
 
 `lake build Mondlean` compiles **clean (exit 0), zero `sorry`/`admit`**, and `#print axioms` shows every
 theorem (`kernel_identity`, `Gpp_pos`, `Gpp_zero`, `cubic_leading`, `affine_degeneracy`, `sound_speed_zero`)

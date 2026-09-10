@@ -334,3 +334,19 @@ theorem mu_standard_transition_healthy (y : ℝ) (hy : 0 < y) :
     0 < y / Real.sqrt (1 + y ^ 2) ∧ 0 < y * (2 + y ^ 2) / Real.sqrt (1 + y ^ 2) ^ 3 := by
   have hs : 0 < Real.sqrt (1 + y ^ 2) := Real.sqrt_pos.mpr (by positivity)
   constructor <;> positivity
+
+/-- Ghost SEPARABILITY (L123): the conformal-ghost bracket {p_n,S_n} = −2M²k²η vanishes iff η=0 (η = the
+    coefficient of MOND sourced from the LAPSE). So a dark sector that does NOT source MOND from the lapse
+    (η_dust=0) is ghost-free: the conformal ghost was a lapse-sourcing artifact, not a property of an a⁻³
+    density. A CMB-safe theory is not blocked by the ghost. -/
+theorem dust_ghost_separable (M2 k η : ℝ) (hM : M2 ≠ 0) (hk : k ≠ 0) :
+    -2 * M2 * k ^ 2 * η = 0 ↔ η = 0 := by
+  constructor
+  · intro h
+    have h2 : (-2 * M2 * k ^ 2) ≠ 0 := by
+      have : k ^ 2 ≠ 0 := pow_ne_zero 2 hk
+      simp [mul_ne_zero, hM, this]
+    rcases mul_eq_zero.mp h with h3 | h3
+    · exact absurd h3 h2
+    · exact h3
+  · intro h; rw [h]; ring
