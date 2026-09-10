@@ -4210,3 +4210,32 @@ can't discriminate); only the **static/spherical** regime is tested (not time-de
 dynamics, lensing, PPN, clusters, cosmology); a₀ fitted. **Key structural point: galaxy rotation is a static
 problem, so φ's non-propagation costs nothing for the phenomenology** — the health branch keeps standard MOND
 galaxy phenomenology while threading its health gates. Phase C = PASS for the static galaxy phenomenology.
+
+## L121 — honest CMB re-check: Phase E used LOCAL/constant a₀ (the recurring error); downgraded to UNRESOLVED
+
+Carl correctly flagged that Phase E's CMB kill assumed a **constant (local) a₀**. Verified: a₀ IS a
+dark-energy-scale acceleration (a₀,0/cH₀ = 0.14–0.17 ≈ 1/2π — the a₀=c²/2πL_dS tie). Two readings at
+recombination: (A) a₀∝√ρ_Λ (ρ_Λ const) ⇒ a₀ const ⇒ a₀/cH(z_rec)~6e-6 (MOND off, Phase E holds); (B) a₀∝H(z)
+(matching theorem) ⇒ **a₀/cH = 0.14 at ALL epochs including recombination** ⇒ MOND active at the horizon at
+recombination ⇒ **Phase E's "MOND off at recombination" is WRONG for this reading.** BUT the third peak needs
+a **clustering a⁻³ gravitating DENSITY** (baryon-only z_eq=532<z_rec=1090; with a⁻³ matter z_eq=3423>z_rec) —
+an acceleration SCALE a₀ modifies the force law, not the density. **Verdict: Phase E downgraded from "probable
+killer" to UNRESOLVED** — its constant-a₀ estimate is invalid under a₀∝H(z); a proper Boltzmann calc with the
+framework's a₀(z) AND the dark-sector a-scaling is needed. The real question is the DARK SECTOR's a-scaling
+(clustering a⁻³ ⇒ CMB-ok but pincer; ρ_Λ-like ⇒ no third peak). No clean kill, no free rescue.
+Script `L121_a0_scaling_cmb_recheck.py`.
+
+## Phase A — the explicit health-branch action + TRANSITION HEALTH verified (fleet, 26/26)
+
+The health-branch action (one explicit form): S = ∫√−g[M²/2(R−2Λ) + μ_c²√(−(∂τ)²)−V(τ) (cuscuton clock) +
+2M²a₀²Q(|Dφ|/a₀) (MOND in the clock-projected gradient of a separate field φ) − λφρ_b] + S_m. **Verified
+(26/26):** (1) φ non-dynamical — the leaf projector gives |Dφ|²=γ^{ij}∂_iφ∂_jφ (no φ̇/lapse/shift) ⇒ p_φ≡0,
+second-class pair, 0 propagating scalar DOF; (2) lapse Hessian = 0 ⇒ H_⊥ first-class ⇒ **no conformal ghost**
+(contrast: same kernel from |∇N| gives nonzero Hessian = CAM's ghost); (3) static AQUAL
+∇·[μ(|∇φ|/a₀)∇φ]=4πGρ_b (exp kernel, Newton + deep-MOND limits, mass-dependent BTFR = G7); (4) DOF=2.
+**THE DECISIVE POSITIVE:** the operator that killed CAM in the transition (longitudinal factor 1−y,
+sign-flips at y=1) is, when the kernel is carried by φ's projected gradient, the **AQUAL Hessian** with
+eigenvalues μ=1−e^{−y} (transverse) and 1−(1−y)e^{−y} (longitudinal) — **both strictly positive for all
+y>0** (= Gpp/2, already Lean-certified as Gpp_pos). **The transition-regime pathology is REMOVED, not
+relocated.** Open (Phase B): the full nonlinear Dirac-chain TERMINATION (residual risk), RAR phenomenology,
+PPN β/α_i, cosmology, a₀. Script: scratchpad phaseA_action_constraints.py (26/26).
