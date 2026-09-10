@@ -41,6 +41,20 @@ Thus Lean closes the algebra from the stated coupling normalization to
 the exponential MOND kernel.  This distinction is deliberate and is the
 current mathematical status of the framework's fitted factor.
 
+With the additional dark-energy identity
+\(\rho_\Lambda=c^2\Lambda/(8\pi G)\), the same Lean file also derives
+
+\[
+ 4a_0^2=c^2G\rho_\Lambda
+ \quad\Longrightarrow\quad
+ a_0^2=\frac{c^4\Lambda}{32\pi},
+ \qquad
+ \Lambda=\frac{32\pi a_0^2}{c^4}.
+\]
+
+This is an exact algebraic consequence of the two stated inputs, not an
+independent derivation of either input.
+
 Varying (A_3) gives (dJ=0), with (J=P_q) plus the derivative of any
 explicit (a_0(q))-dependent MOND term. This is a top-form flux equation,
 not a wave equation, so the sector supplies no local four-form polarization.

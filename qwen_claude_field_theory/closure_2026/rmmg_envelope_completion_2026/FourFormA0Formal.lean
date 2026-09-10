@@ -65,4 +65,14 @@ theorem kappa_eq_half_of_coupling_relation
   rw [hratio, Real.sqrt_sq_eq_abs, abs_of_nonneg]
   norm_num
 
+theorem lambda_from_a0_square_and_density
+    (a0 c G rho Lambda pi : ℝ)
+    (hc : c ≠ 0) (hG : G ≠ 0) (hpi : pi ≠ 0)
+    (hscale : 4 * a0 ^ 2 = c ^ 2 * G * rho)
+    (hrho : rho = c ^ 2 * Lambda / (8 * pi * G)) :
+    Lambda = 32 * pi * a0 ^ 2 / c ^ 4 := by
+  rw [hrho] at hscale
+  field_simp [hc, hG, hpi] at hscale ⊢
+  nlinarith [hscale]
+
 end RMMGEnvelope
