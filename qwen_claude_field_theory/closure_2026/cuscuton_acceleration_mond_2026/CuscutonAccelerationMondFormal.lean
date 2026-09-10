@@ -39,6 +39,19 @@ theorem tracefree_compensator_solution
   apply (eq_div_iff hk2).2
   linarith
 
+theorem eh_counterterm_coefficient_is_fixed
+    (p q eta : ℝ) (hp : p ≠ 0)
+    (hmatch : q ^ 2 - 2 * p * q + eta * p ^ 2 = (p - q) ^ 2) :
+    eta = 1 := by
+  have hp2 : 0 < p ^ 2 := sq_pos_of_ne_zero hp
+  nlinarith
+
+theorem true_eh_keeps_gr_poisson_term
+    (rho gr fluxPrime : ℝ)
+    (hfield : rho + gr - fluxPrime = 0) :
+    fluxPrime = rho + gr := by
+  linarith
+
 theorem zero_mode_is_separate :
     (0 : ℕ) ≠ 1 := by
   norm_num

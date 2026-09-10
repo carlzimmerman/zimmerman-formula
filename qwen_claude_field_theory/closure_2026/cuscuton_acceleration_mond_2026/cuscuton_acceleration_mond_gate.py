@@ -1,9 +1,15 @@
 #!/usr/bin/env python3
-"""Action-level gate for the constrained cuscuton/acceleration MOND door.
+"""Historical reduced-block checks, NOT an action-level CAM certificate.
+
+2026-09-10: physical_action_audit.py refutes the action-to-block mapping,
+the tensor-compensator claim and the claimed stealth clock. Default execution
+tests those bridges and fails. --historical-block-only reproduces the old
+algebra for diagnosis; a zero exit there certifies only the surrogate.
 
 The candidate is deliberately explicit:
 
-  S = S_EH + ∫√-g [2 M² a0² Q(|D u|/a0)
+  S = S_EH + ∫√-g [M² a_μ a^μ + 2 M² a0² Q(|D u|/a0)
+                    + C(τ)√Xτ - V(τ)
                     + √Xτ ℓ^μ(D_μ u-a_μ)
                     + √Xτ Λ^{μν}[D_μD_νu-D_μa_ν]^TF] + S_m[g,ψ],
 
@@ -12,16 +18,17 @@ projection orthogonal to n.  Q'(y)/(2y)=1-exp(-y).  In unitary gauge the
 relation multiplier makes D_i u=a_i=D_i log N.  The static 1-D block is
 varied independently in Φ, Ψ and u.
 
-This is a constructive gate, not a certification of the full covariant
-metric/clock Dirac algebra.  The script never inserts a desired rank or
-equation: all static Euler equations, auxiliary Poisson brackets, and
-zero-mode limits are generated from the displayed action.
+The \(M^2a_\mu a^\mu\) counterterm is fixed by the EH static-reduction audit:
+it supplies the \(+M^2(\Phi')^2\) needed for the difference-square block.
+The Fourier toy Hamiltonian and tensor z-block below were not derived from
+the covariant action. Their arithmetic cannot certify its DOF or slip.
 """
 
 from __future__ import annotations
 
 import json
 import sys
+import argparse
 from dataclasses import dataclass
 from typing import Iterable
 
@@ -52,7 +59,8 @@ def static_variation() -> dict[str, object]:
                               for s in ("Phi", "Psi", "u", "ell", "rho"))
     y = sp.diff(u, x) / a0
     Q = y**2 + 2 * (1 + y) * sp.exp(-y) - 2
-    # +rho Phi fixes the conventional sign so that positive rho gives
+    # The EH term plus the fixed +M2 a_mu a^mu counterterm reduces to the
+    # difference-square block.  +rho Phi fixes the conventional sign so that positive rho gives
     # (mu Phi')'=rho/(4 M²) for the displayed potential convention.
     density = (
         M2 * (sp.diff(Phi, x) - sp.diff(Psi, x))**2
@@ -113,14 +121,17 @@ def unitary_adm_variation() -> dict[str, object]:
     M2, a0 = sp.symbols("M2 a0", positive=True)
     y = sp.diff(u, x) / a0
     Q = y**2 + 2 * (1 + y) * sp.exp(-y) - 2
+    # The covariant acceleration term M2 a_mu a^mu contributes M2*N'^2/N
+    # in this 1-D unitary static block.  It is required by the EH audit.
+    density = N * (2 * M2 * a0**2 * Q) + M2 * sp.diff(N, x)**2 / N + \
+        ell * (sp.diff(u, x) - sp.diff(N, x) / N)
     # The covariant relation term is sqrt(-g)*sqrt(X_tau)*ell^mu B_mu.
     # In unitary gauge sqrt(-g)*sqrt(X_tau)=sqrt(h), so it has no
     # lapse prefactor.  This is the key repair of the literal RMMG mismatch.
-    density = N * (2 * M2 * a0**2 * Q) + \
-        ell * (sp.diff(u, x) - sp.diff(N, x) / N)
     lapse_eq = euler(density, N, x)
     mu = 1 - sp.exp(-y)
-    expected_lapse = 2 * M2 * a0**2 * Q + sp.diff(ell, x) / N
+    expected_lapse = (2 * M2 * a0**2 * Q - 2 * M2 * sp.diff(N, x, 2) / N
+                      + M2 * sp.diff(N, x)**2 / N**2 + sp.diff(ell, x) / N)
     u_eq = euler(density, u, x)
     expected_u = -sp.diff(N * 4 * M2 * mu * sp.diff(u, x) + ell, x)
     velocities = sp.symbols("u_dot ell_dot")
@@ -290,7 +301,28 @@ def encode(value: object) -> object:
 
 
 def main() -> int:
-    print("CUSCUTON-ACCELERATION MOND CONSTRUCTIVE GATE")
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--historical-block-only", action="store_true")
+    args = parser.parse_args()
+    if not args.historical_block_only:
+        from physical_action_audit import source_and_coefficients, tensor_redundancy, clock_background
+        src, tf, clk = source_and_coefficients(), tensor_redundancy(), clock_background()
+        static = static_variation()
+        fields = static["fields"]
+        toy_source = sp.diff(static["density"], fields["rho"], fields["Phi"])
+        mass = next(iter(src["source_expected"].free_symbols))
+        physical_source = src["particle_source_derivative"] / mass
+        check("historical block has the minimally coupled matter source sign",
+              sp.simplify(toy_source-physical_source) == 0,
+              f"historical={toy_source}, physical={physical_source}")
+        check("tensor multiplier adds an independent constraint",
+              tf["vector_plus_tensor_rank"] > tf["vector_constraint_rank"])
+        check("claimed de Sitter clock has zero energy",
+              clk["claimed_stealth_energy"] == 0,
+              f"rho_clock={clk['claimed_stealth_energy']}")
+        print("STATUS=HISTORICAL_CAM_ACTION_CLAIMS_REFUTED")
+        return 1 if FAILS else 0
+    print("HISTORICAL SURROGATE ALGEBRA ONLY: NOT PHYSICAL ACTION CERTIFICATION")
     static = static_variation()
     adm = unitary_adm_variation()
     tf = tensor_compensator_variation()
@@ -354,7 +386,7 @@ def main() -> int:
           (3 * flrw["M2"]))
 
     payload = {
-        "status": "CONSTRUCTIVE_CUSCUTON_ACCELERATION_BRANCH_OPEN",
+        "status": "HISTORICAL_SURROGATE_ONLY_ACTION_BRIDGES_REFUTED",
         "checks": {"count": len(CHECKS),
                    "passed": sum(bool(c["passed"]) for c in CHECKS)},
         "static": static,

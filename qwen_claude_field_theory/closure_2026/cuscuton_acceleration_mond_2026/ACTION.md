@@ -1,43 +1,60 @@
-# CAM action (constructive branch)
+# CAM action audit and minimal repaired fork — 2026-09-10
 
-Let
+**Historical CAM is refuted as an attractive MOND construction. The minimal
+repair is not a closed theory.** See REPORT.md and physical_action_audit.py.
+The action in commit a5fd5fdad and the subsequent counterterm proposal were
+not faithfully represented by the original static test.
 
+Conventions: signature \((-+++)\), \(c=1\), \(M^2>0\),
+\(S_m=-\sum m\int ds\) for point-particle matter. Let
 \[
-X_\tau=-g^{\mu\nu}\nabla_\mu\tau\nabla_\nu\tau>0,\quad
-n_\mu=-\nabla_\mu\tau/\sqrt{X_\tau},\quad
-h_{\mu\nu}=g_{\mu\nu}+n_\mu n_\nu ,
+ X=-g^{\mu\nu}\partial_\mu\tau\partial_\nu\tau>0,\quad
+ n_\mu=-\partial_\mu\tau/\sqrt X,\quad h_{\mu\nu}=g_{\mu\nu}+n_\mu n_\nu,
 \]
-
 \[
-D_\mu=h_\mu{}^\nu\nabla_\nu,\qquad
-a_\mu=n^\nu\nabla_\nu n_\mu,\qquad
-y={\sqrt{D_\mu uD^\mu u}\over a_0}.
+ a_\mu=n^\nu\nabla_\nu n_\mu,\quad a=\sqrt{a_\mu a^\mu},\quad
+ Q(y)=y^2+2(1+y)e^{-y}-2.
 \]
+\(D\) is the induced leaf connection, with every tensor index projected.
 
-The constrained cuscuton/acceleration action is
-
+The historical family added
 \[
-S_{\rm CAM}=\int d^4x\sqrt{-g}\left[
-{M^2\over2}(R-2\Lambda)
-\;+\;2M^2a_0^2Q(y)
-\;+\;\sqrt{X_\tau}\,\ell^\mu(D_\mu u-a_\mu)
-\;+\;\sqrt{X_\tau}\,\Lambda^{\mu\nu}
-\bigl[D_\mu D_\nu u-D_\mu a_\nu\bigr]^{\rm TF}
-\right]+S_m[g,\psi],
+ \eta M^2a^2+\sigma M^2a_0^2Q(|Du|/a_0)
+ +C(\tau)\sqrt X-V(\tau)
+ +\sqrt X\,\ell^iB_i+\sqrt X\,\Lambda^{ij}[D_{(i}B_{j)}]^{TF},
+ \quad B_i=D_i u-a_i.
 \]
+The original coefficients were \((\eta,\sigma)=(0,2)\), and the intermediate
+counterterm proposal used \((1,2)\). Physical matter variation gives
+\(-\rho\Phi\), not the \(+\rho\Phi\) inserted into the old test.
 
-with \(n_\mu\ell^\mu=0\) and
-
+Under the leading static weak-field reduction, matching the full exponential
+MOND law with positive \(G=1/(8\pi M^2)\) fixes \(\eta=1,\sigma=-1\).
+The tensor multiplier is redundant with \(B_i=0\); \(u\) can be eliminated
+on connected leaves: \(u=\ln N+f(t)\). With \(C=V=0\), the minimal repair is
 \[
-Q(y)=y^2+2(1+y)e^{-y}-2,\qquad
-\mu(y)={Q'(y)\over2y}=1-e^{-y}.
+ \boxed{S_{\rm min}=\int d^4x\sqrt{-g}\left[
+ \frac{M^2}{2}(R-2\Lambda)+M^2a^2-M^2a_0^2Q(a/a_0)
+ \right]+S_m[g,\psi].}
 \]
+Its added acceleration density is
+\[
+ F(a)=2M^2a_0^2[1-(1+a/a_0)e^{-a/a_0}].
+\]
+This specializes the Blanchet–Marsat acceleration-based khronometric class
+([arXiv:1107.5264v1, Eq. 2.4](https://arxiv.org/pdf/1107.5264v1));
+a new architecture has not been demonstrated.
 
-In unitary gauge \(\tau=t\), \(a_i=D_i\log N\) and \(D_i u=\partial_i u\).
-The factor \(\sqrt{X_\tau}\) is essential: it makes the relation term carry
-the spatial measure \(\sqrt h\), not an extra lapse prefactor, so its lapse
-variation is the intended elliptic multiplier divergence.
-The field \(u\) is therefore leafwise elliptic; no \(u\)- or \(\ell^i\)-time
-velocity occurs.  The transformation \(u\mapsto u+f(\tau)\) is a homogeneous
-zero-mode redundancy.  The full covariant \(\tau\)-clock constraint algebra is
-the next required calculation.
+The coupled quadratic ADM action retains a scalar canonical pair.
+Its quadratic Hamiltonian vanishes at zero field, while cubic interactions
+survive. Its lapse principal symbol is
+\[
+ \frac{2M^2e^{-y}}N[k_\perp^2+(1-y)k_\parallel^2],\qquad y=a/a_0.
+\]
+It is nonelliptic for \(y\ge1\), obstructing a globally elliptic lapse
+completion within this minimal action. This is not a universal no-go
+for relativistic MOND or proof of a global kernel or ghost.
+
+The \(a_0\)-\(\Lambda\) relation and \(\kappa=1/2\) remain external inputs.
+No empirical confirmation, full PPN calculation, or nonlinear health
+certificate is supplied by this repair.

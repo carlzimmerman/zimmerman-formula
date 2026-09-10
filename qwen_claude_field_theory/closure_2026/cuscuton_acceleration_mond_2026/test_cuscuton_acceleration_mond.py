@@ -10,6 +10,8 @@ from cuscuton_acceleration_mond_gate import (
     tensor_compensator_variation,
 )
 from kepler_prediction_gate import derive_prediction
+from clock_principal_gate import derive_clock_symbol
+from eh_static_reduction_gate import derive_eh_static
 
 
 class CuscutonAccelerationMondTests(unittest.TestCase):
@@ -49,6 +51,31 @@ class CuscutonAccelerationMondTests(unittest.TestCase):
             ),
             sp.Rational(1, 2),
         )
+
+    def test_clock_principal_symbol(self):
+        data = derive_clock_symbol()
+        self.assertEqual(
+            data["delta_acceleration"],
+            -sp.diff(data["symbols"]["pi"],
+                     next(v for v in data["delta_acceleration"].free_symbols
+                          if str(v) == "t"),
+                     next(v for v in data["delta_acceleration"].free_symbols
+                          if str(v) == "x")),
+        )
+        self.assertEqual(data["cuscuton_quadratic"].has(
+            sp.diff(data["symbols"]["pi"], next(
+                v for v in data["cuscuton_quadratic"].free_symbols
+                if str(v) == "t"))), False)
+
+    def test_eh_static_reduction_is_a_real_obstruction(self):
+        data = derive_eh_static()
+        M2 = data["symbols"]["M2"]
+        Phi = data["symbols"]["Phi"]
+        x = data["symbols"]["x"]
+        self.assertEqual(
+            sp.simplify(data["discrepancy"] - M2 * sp.diff(Phi, x) ** 2), 0
+        )
+        self.assertNotEqual(data["cam_eh_density"], data["eh_density_ibp"])
 
 
 if __name__ == "__main__":
