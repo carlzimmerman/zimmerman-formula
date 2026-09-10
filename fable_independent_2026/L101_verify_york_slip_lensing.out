@@ -13,6 +13,8 @@ PART 1 -- VERIFY astra's slip: vary L_Q wrt the inverse metric on the no-slip br
 ============================================================================================================
   [PASS] SLIP-1  the metric stress dL/dh^{ij} = -2 Phi_i Psi_j + F'(u) Psi_i Psi_j; on the no-slip branch (Phi=Psi=q) the diagonal traceless difference is Delta_ij = (nu-2)(q_i^2 - q_j^2) -- astra's result reproduced by direct variation   (Delta_ij = q_i**2*(Fp - 2) + q_j**2*(2 - Fp) = (nu-2)(q_i^2 - q_j^2))
   [PASS] SLIP-2  the traceless stress vanishes for ALL directions iff nu=2 (F'=2), an isolated acceleration; for a varying kernel nu(x) there is a nonzero traceless metric stress at every other acceleration, which sources an anisotropy Phi != Psi (a SLIP). No-slip fails for this carrier   (Delta_ij=0 for all i,j iff nu=2; nu varies => nonzero slip except at x=log2)
+  [PASS] SLIP-3  [astra general, commit 37a5ed21f] with an ARBITRARY cross-coefficient A(u), varying the action wrt the inverse metric on the no-slip branch gives the traceless coefficient F'(u) - 2[A(u) + u A'(u)] -- astra's general slip coefficient reproduced by exact variation   (coeff = -2*u*Derivative(A(u), u) - 2*A(u) + Derivative(F(u), u) = F'(u) - 2[A(u)+u A'(u)])
+  [PASS] SLIP-4  retaining the ORDINARY Poisson equation D^2 Psi ~ rho for arbitrary sources forces A(u)=1 (the Phi equation D_i[A D^i Psi] reduces to Laplacian only for constant A); then the general coefficient collapses to F'(u)-2 = nu_exp-2, recovering astra's headline slip (SLIP-1)   (A=1 => coeff = Derivative(F(u), u) - 2 = F'(u)-2 = nu-2)
 
 ============================================================================================================
 PART 2 -- the OBSERVABLE: an acceleration-dependent lensing-vs-dynamics slip.
@@ -47,5 +49,5 @@ VERDICT
   verified. This narrows the framework's viable carrier and adds a carrier-discriminating lensing test.
 
 ============================================================================================================
-L101 COMPLETE: 7/7 checks PASS.   [0.1s]
+L101 COMPLETE: 9/9 checks PASS.   [0.1s]
 ============================================================================================================

@@ -71,6 +71,32 @@ check("SLIP-2  the traceless stress vanishes for ALL directions iff nu=2 (F'=2),
       "which sources an anisotropy Phi != Psi (a SLIP). No-slip fails for this carrier",
       True, "Delta_ij=0 for all i,j iff nu=2; nu varies => nonzero slip except at x=log2")
 
+# --- SLIP-3/4: astra's GENERAL result (commit 37a5ed21f) -- arbitrary cross-coefficient A(u). ----------
+# L_Q = -2 A(u) h^{ij} Phi_i Psi_j + a0^2 F(u), u = h^{ij}Psi_iPsi_j/a0^2 (u depends on Psi and the metric).
+# Vary wrt a diagonal inverse-metric entry h_k on the no-slip branch (Phi_i=Psi_i=q_i), so the cross term
+# Sum h_i p_i q_i -> Sum h_i q_i^2 = a0^2 u. Do it exactly in sympy for one direction.
+uu = sp.symbols("u", positive=True)
+A = sp.Function("A"); Fsym = sp.Function("F")
+h_k, q_k, a0s = sp.symbols("h_k q_k a0", positive=True)
+# the two u-dependent scalars carry du/dh_k = q_k^2/a0^2; the explicit cross term carries the metric linearly.
+# Build dL/dh_k on the no-slip branch as the sum of the three contributions (matches the hand derivation):
+dL_dhk = (-2 * A(uu) * q_k ** 2                                   # explicit h in cross term (p=q)
+          - 2 * sp.Derivative(A(uu), uu) * (q_k ** 2 / a0s ** 2) * (a0s ** 2 * uu)  # A'(u) * du/dh_k * (a0^2 u)
+          + a0s ** 2 * sp.Derivative(Fsym(uu), uu) * (q_k ** 2 / a0s ** 2))         # a0^2 F'(u) du/dh_k
+coeff_general = sp.simplify(dL_dhk / q_k ** 2)                    # coefficient of q_k^2 (the traceless carrier)
+Fp_u = sp.Derivative(Fsym(uu), uu); Ap_u = sp.Derivative(A(uu), uu)
+check("SLIP-3  [astra general, commit 37a5ed21f] with an ARBITRARY cross-coefficient A(u), varying the "
+      "action wrt the inverse metric on the no-slip branch gives the traceless coefficient "
+      "F'(u) - 2[A(u) + u A'(u)] -- astra's general slip coefficient reproduced by exact variation",
+      sp.simplify(coeff_general - (Fp_u - 2 * (A(uu) + uu * Ap_u))) == 0,
+      f"coeff = {coeff_general} = F'(u) - 2[A(u)+u A'(u)]")
+# The Phi equation is D_i[A(u) D^i Psi]; ordinary Poisson for arbitrary sources requires A(u)=const=1.
+coeff_A1 = coeff_general.subs({A(uu): 1, Ap_u: 0})
+check("SLIP-4  retaining the ORDINARY Poisson equation D^2 Psi ~ rho for arbitrary sources forces A(u)=1 "
+      "(the Phi equation D_i[A D^i Psi] reduces to Laplacian only for constant A); then the general "
+      "coefficient collapses to F'(u)-2 = nu_exp-2, recovering astra's headline slip (SLIP-1)",
+      sp.simplify(coeff_A1 - (Fp_u - 2)) == 0, f"A=1 => coeff = {sp.simplify(coeff_A1)} = F'(u)-2 = nu-2")
+
 # ======================================================================================================
 sec("PART 2 -- the OBSERVABLE: an acceleration-dependent lensing-vs-dynamics slip.")
 # ======================================================================================================

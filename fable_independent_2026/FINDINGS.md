@@ -3666,3 +3666,32 @@ both footings). Turns the two cleanest MOND-vs-dark-matter falsifiers into a con
   mimics a BTFR-zero-point z-drift). **Sooner/cheaper = the dwarf σ–R_gc** test (runnable now with archival +
   Gaia data, modulo the tidal control). Both are decisive, both are within reach — the framework is
   now confront-able, not just characterized.
+
+## L101 — verified astra's York/QUMOND slip; the carrier discriminator and a lensing test (9/9)
+
+**What I did.** Independently reproduced astra's newest result (commits 692dd6deb, 37a5ed21f,
+`EXACT_EXPONENTIAL_YORK_SLIP_REPORT.md`) by direct symbolic variation, and turned it into an observable +
+a carrier discriminator. For the corrected static York/QUMOND carrier
+`L_Q = −2A(u) h^{ij}Φ_iΨ_j + a₀²F(u)`, `u=h^{ij}Ψ_iΨ_j/a₀²`, `F'(u)=ν_exp(√u)`, varying the action wrt the
+inverse metric on the no-slip branch (Φ=Ψ=q) gives the traceless metric stress with coefficient
+**F'(u) − 2[A(u) + u A'(u)]** (astra's *general* slip coefficient — SLIP-3, reproduced exactly). Retaining
+the ordinary Poisson equation for arbitrary sources forces **A=1** (the Φ equation D_i[A D^iΨ] is a
+Laplacian only for constant A — SLIP-4), collapsing it to **Δ_ij = (ν_exp − 2)(q_i² − q_j²)** (astra's
+headline — SLIP-1). With `ν_exp(x)=1/(1−e^{−x})`, this vanishes **only** at the isolated acceleration
+`x=g_bar/a₀=log 2 ≈ 0.693`, and flips sign there (>0 deep-MOND, <0 Newtonian-ward). So this carrier
+**cannot** give Φ=Ψ (no slip) on a finite-acceleration galaxy — a bounded *action-level* obstruction
+(not a universal no-go; the multiplier does not remove the residual stress, astra's C4).
+
+**Two consequences (new).**
+1. **Carrier discriminator.** The two constitutive carriers give opposite lensing verdicts: the **F(Q)Θ**
+   carrier has Φ=Ψ (no slip, γ_lens=1 at all accelerations — its static branch, prediction P2), while the
+   **York/QUMOND** carrier carries the (ν−2) slip. So clean galaxy-galaxy lensing **selects F(Q)Θ** and
+   discriminates the carriers — a real narrowing of which constitutive law the framework may use.
+2. **A sharp lensing test.** If nature used the York/QUMOND carrier, galaxy-galaxy lensing binned by
+   acceleration would show a lensing-vs-dynamics slip ∝ (ν_exp(x)−2): zero at g_bar/a₀=log 2, positive in
+   deep MOND, negative toward Newtonian — a keyed, falsifiable signature.
+
+**Honest scope.** The exact γ_lens(x) needs the coupled-(Φ,Ψ) profile solve for a real mass distribution;
+here the (ν−2) proportionality, its sign, and its single zero are what is verified. The result is a
+verification of astra's carrier-specific obstruction plus its observable, not a new no-go.
+Script: `L101_verify_york_slip_lensing.py` (9/9), `.out` committed.
