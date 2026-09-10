@@ -1,0 +1,93 @@
+======================================================================================================================
+fbC3 -- linear growth, sigma_8 and P(k) under a boosted MOND gravity
+======================================================================================================================
+  [PASS] C-0  CONTROL: the LCDM linear spectrum is normalised to sigma_8 = 0.811 by construction and recovers it   (sigma_8(control) = 0.811008)
+  [PASS] C-0b CONTROL: the LCDM growth factor has the right shape -- D(z=1)/D(0) within 2% of the standard 0.61   (D(1)/D(0) = 0.6068)
+  [PASS] C-0c CONTROL: the k-grid reproduces sigma_8 = 0.811 from the reference LCDM Delta(k) to 3%   (sigma_8(grid) = 0.8101)
+  [PASS] C-0d CONTROL, and it is the one that matters: with the initial conditions fixed off the integrator's OWN unboosted run, the UNBOOSTED LCDM sector reproduces the observed linear spectrum to <1% at every k, so every deviation reported below is the BOOST and not a normalisation error   (max |Delta_unboosted/Delta_LCDM - 1| over the grid = 2.02e-07; sigma_8 = 0.8101)
+
+======================================================================================================================
+PART 1 -- BARYON-ONLY (MOND replaces dark matter): does the boost regenerate the observed P(k)?
+======================================================================================================================
+    branch  mode     foot         eps |    R(0.05)     R(0.2)     R(1.0)     R(5.0) |  sigma_8       tilt
+    none    permode  canonical   0.03 |     0.0009     0.0009     0.0009     0.0009 |   0.0243          1
+    none    permode  canonical   0.30 |       0.09       0.09       0.09       0.09 |    0.243          1
+    A       permode  canonical   0.03 |        825        924   4.14e+03   3.62e+04 |     25.7        193
+    A       permode  canonical   0.30 |        988    1.1e+03   4.72e+03   3.96e+04 |       28        175
+    A       permode  alt         0.03 |   1.19e+03   1.33e+03   5.97e+03   5.23e+04 |     30.8        194
+    A       permode  alt         0.30 |    1.4e+03   1.57e+03   6.75e+03   5.68e+04 |     33.4        177
+    A       rms      canonical   0.03 |    1.8e+03    1.8e+03    1.8e+03    1.8e+03 |     34.3          1
+    A       rms      canonical   0.30 |    2.1e+03    2.1e+03    2.1e+03    2.1e+03 |     37.1          1
+    A       rms      alt         0.03 |   2.59e+03   2.59e+03   2.59e+03   2.59e+03 |     41.2          1
+    A       rms      alt         0.30 |   2.99e+03   2.99e+03   2.99e+03   2.99e+03 |     44.3          1
+    B       permode  canonical   0.03 |      2e+06   2.24e+06   1.02e+07   9.02e+07 | 1.27e+03        198
+    B       permode  canonical   0.30 |   2.19e+06   2.45e+06   1.09e+07   9.52e+07 | 1.32e+03        190
+    B       permode  alt         0.03 |   2.89e+06   3.24e+06   1.47e+07   1.31e+08 | 1.52e+03        199
+    B       permode  alt         0.30 |   3.15e+06   3.52e+06   1.58e+07   1.37e+08 | 1.58e+03        191
+    B       rms      canonical   0.03 |   4.39e+06   4.39e+06   4.39e+06   4.39e+06 |  1.7e+03          1
+    B       rms      canonical   0.30 |   4.76e+06   4.76e+06   4.76e+06   4.76e+06 | 1.77e+03          1
+    B       rms      alt         0.03 |   6.35e+06   6.35e+06   6.35e+06   6.35e+06 | 2.04e+03          1
+    B       rms      alt         0.30 |   6.85e+06   6.85e+06   6.85e+06   6.85e+06 | 2.12e+03          1
+  R(k) = P_model(k)/P_LCDM-linear(k) at z = 0.  'tilt' = R(20 h/Mpc)/R(0.02 h/Mpc): a shape measure that is
+  independent of the (unknown) initial baryon amplitude eps.  R = 1 and tilt = 1 would be a success.
+  [PASS] P1-a  SHAPE, and the honest split.  Evaluated PER MODE the boost is scale-dependent and the spectrum arrives tilted by 175-199 in power across k = 0.02-20 h/Mpc -- a normalisation-free failure that confirms the repository's rising_a0 gate (tilt 288-317) independently and extends it to the constant-a0 branch.  Evaluated on the RMS FIELD the boost is scale-INDEPENDENT and there is NO tilt at all (1.000) -- by construction, not by success.  Which evaluation is right is a real open question in MOND cosmology, so BOTH are carried and no verdict is rested on the tilt alone   (per-mode tilt = 175-199; rms-field tilt = 1.0000-1.0000 (scale-independent boost -> no tilt by construction))
+  [PASS] P1-b  AMPLITUDE, and the SIGN of the error: the boosted baryon-only runs OVERSHOOT sigma_8, they do not under-shoot it.  sigma_8 spans 25.7-2.12e+03 against the measured 0.811.  The repository's 'growth DEFICIT' belongs to g04h's relic-cutoff-refill setup, NOT to the MOND boost, whose error has the opposite sign   (sigma_8 over boosted baryon-only runs = 25.7-2.12e+03 vs 0.811)
+  [PASS] P1-c  BRANCH B is worse than branch A by orders, exactly as the rising_a0 gate found: max sigma_8 is 44.3 on A and 2.12e+03 on B   (max sigma_8: branch A 44.3, branch B 2.12e+03)
+
+======================================================================================================================
+PART 2 -- the framework's OWN derived Hubble floor, and the DOUBLE-COUNTING sector
+======================================================================================================================
+    sector     branch  foot       |  sigma_8     S_8   nu(z=0) at k=0.2      tilt
+    both       none    canonical  |     0.81   0.829              14.23         1
+    both       floor   canonical  |    0.811    0.83              14.22         1
+    both       floor   alt        |    0.811    0.83               15.6         1
+    both       A       canonical  |     13.8    14.1              3.642       144
+    both       A       alt        |     16.2    16.6              3.685       149
+    lcdm       none    canonical  |     0.81   0.829              14.23         1
+    lcdm       floor   canonical  |    0.811    0.83              14.22         1
+    lcdm       floor   alt        |    0.811    0.83               15.6         1
+    lcdm       A       canonical  |     13.8    14.1              3.642       144
+    lcdm       A       alt        |     16.2    16.6              3.685       149
+  [PASS] P2-a  the framework's OWN derived dS-Unruh Hubble floor makes MOND nearly IRRELEVANT to linear growth: sigma_8 = 0.8112 against the unboosted 0.8101, a 0.1% effect.  This reproduces mi_covariant_pt's sigma_8 = 0.829-0.833 independently   (sigma_8: floored 0.8112, unboosted 0.8101 (ratio 1.0013); mi_covariant_pt banked 0.829-0.833)
+  [PASS] P2-b  *** THE DOUBLE-COUNTING PROBLEM, quantified. ***  If the framework keeps a cold Omega_dm AND applies the UNFLOORED MOND boost, sigma_8 = 13.8 -- 17.0x the measured 0.811.  The dark sector the CMB needs and the boost the galaxies need cannot both act on the same perturbations   (sigma_8(cold dark sector + unfloored MOND boost) = 13.8 vs 0.811)
+
+======================================================================================================================
+PART 3 -- ADJUDICATING THE PRIOR RESULTS
+======================================================================================================================
+  g04h ('the causal boost does NOT regenerate P(k): sigma_8 <= 0.65, deficit 20-2000x'):
+    CONFIRMED AS STATED, and CORRECTED IN SCOPE.  Its boost is not nu(g/a0); it is a CAUSAL, SATURATING
+    B = min[0.9 (c_* k t/a)^2, nu-1] refilling a 28 eV relic's free-streaming cutoff.  The deficit is a
+    statement about that construction.  It is NOT a statement about MOND's effect on linear growth, which
+    this script finds has the OPPOSITE SIGN.  Quoting g04h as 'MOND under-produces structure' is wrong.
+  rising_a0_baryon_only ('tilt 288-317, amplitude 1e6-1e9 too strong on branch B'):
+    CONFIRMED independently here: tilt 175-199, branch B far worse than branch A.
+  mi_covariant_pt ('the derived Hubble floor gives sigma_8 = 0.829-0.833, LCDM-degenerate'):
+    CONFIRMED independently here: sigma_8 = 0.8112.
+  [PASS] P3-a  the three prior results are mutually consistent ONCE THEIR SETUPS ARE DISTINGUISHED, and the net statement is: the MOND boost OVERSHOOTS linear growth unless the framework's own Hubble floor is imposed, in which case it does nothing at all.  There is no configuration that both fixes P(k) and leaves a distinctive signal   (unfloored max sigma_8 = 2.12e+03; floored = 0.8112 (= unboosted 0.8101 to 0.1%))
+
+======================================================================================================================
+VERDICT (fbC3)
+======================================================================================================================
+
+  BARYON-ONLY, MOND-BOOSTED GROWTH FAILS ON SHAPE FOR ANY AMPLITUDE.  The boost nu = sqrt(1 + a0/g_N) is
+  largest where the peculiar gravity is smallest, and the peculiar gravity is smallest on SMALL scales at
+  early times, so small scales grow fastest and the spectrum arrives tilted by a factor 175-199 in power
+  across k = 0.02-20 h/Mpc.  That is a normalisation-free failure: no choice of the initial baryon amplitude
+  fixes it.  The amplitude fails too, and it fails UPWARD: sigma_8 = 25.7-2.12e+03 against 0.811.
+  Branch B is worse than branch A by orders (2.12e+03 vs 44.3) because a0(z) propto H makes the boost larger at
+  every earlier epoch.
+
+  CORRECTION TO THE PRIOR RECORD.  The repository's "growth deficit under a causal boost" (g04h: sigma_8 <=
+  0.648, 20-2000x short) is a result about REFILLING A 28 eV RELIC'S FREE-STREAMING CUTOFF with a causal
+  saturating boost.  It is not a result about MOND's linear growth, which errs in the opposite direction.
+  Both are reproduced here and both stand -- in their own scopes.
+
+  AND THE FRAMEWORK'S OWN ESCAPE IS A DEAD END EITHER WAY.  With its derived dS-Unruh Hubble floor the boost
+  collapses to a few per cent (sigma_8 = 0.8112 vs 0.8101 unboosted): the cosmology becomes LCDM's and the
+  distinctive content disappears.  Without the floor, and WITH the cold Omega_dm that the CMB requires, the
+  boost double-counts and gives sigma_8 = 13.8.  There is no setting that is simultaneously right at the CMB,
+  right at sigma_8, and distinctive.
+
+======================================================================================================================
+fbC3 COMPLETE: 10/10 checks PASS.   [3.3s]
+======================================================================================================================

@@ -4727,3 +4727,71 @@ L61 double-counting question, and it is untested for anyone.
 **RESTATED HONEST CLAIM:** pure MOND fails the CMB (stands); every **particle** dark sector fails (stands);
 **field-dust with a Lorentz-violating, non-quadratic kinetic function is NOT excluded, and is the surviving
 corner.**
+
+## L140–L144 — THE a₀-SCALING QUESTION, SETTLED: the dark-energy scaling does NOT rescue the CMB
+
+Scripts: `L140`–`L144` (21/21, 21/21, 10/10, 14/14, 11/11), all re-run and verified.
+
+**ADJUDICATION — the framework implies BRANCH A (constant a₀), and branch B is not even distinctive.**
+The derivation reads the scale off the de Sitter horizon `L_dS = √(3/Λ)`, and Λ is a constant of the action;
+every certified route (MacDowell–Mansouri SO(4,1), dS–Unruh quadrature, conformal-SO(4,1), gauge-YM) forces
+the *form* `a₀ ∝ c²√Λ`, i.e. **ρ = ρ_DE**. The fork is literally the choice of ρ in one formula:
+  **A:** `a₀ = κc√(Gρ_DE) = cH_Λ/Z` → with w=−1, **constant for all time**
+  **B:** `a₀ = κc√(Gρ_tot) = cH(z)/Z` → `a₀ ∝ H`
+Three things settle it against B: (i) the repo's own **matching theorem** says outright that a₀ *"cannot rise
+with redshift"*, and `DESITTER_GAUGE_MOND_SCALE.md` labels `a₀ ∝ cH` the **"rival rising branch"**;
+(ii) **branch B's leading scaling is identically ΛCDM's own naive emergent halo scale** `g† ~ √(Gρ_crit(z)) ∝
+H(z)` — it carries no distinctive content, whereas **branch A (flat) is the distinctive one** because ΛCDM has
+no way to make the scale constant; (iii) elegantly, **the two committed footings ARE this fork evaluated
+today**: alt/canonical = 1.2048 = 1/√Ω_Λ. Carrying "both footings" already carries both branches at z=0.
+
+**⚠️ THIS CORRECTS A STANDING RECORD CLAIM.** The record has carried *"a₀∝H(z) is the surviving distinctive
+prediction."* That is backwards: **a₀∝H is the rival/ΛCDM-like branch; the framework's own derivation gives
+the FLAT law, and flat is what ΛCDM cannot mimic.**
+
+**THE DECIDING NUMBER.** Deleting CDM moves `100θ⋆` from 1.03957 to **0.70325** against Planck's
+1.04109 ± 0.00030 — **1126σ** — and z_eq from 3402 to 534 (after last scattering). Crucially
+**`dθ⋆/da₀ = 0` EXACTLY**, verified bitwise over **20 orders of magnitude in a₀**. No a₀(z) law touches it;
+no `h ∈ [0.20, 2.00]` restores it (best 0.9665 at h=2.0, still 249σ). **What the CMB constrains is a
+clustering a⁻³ DENSITY; a₀ is an ACCELERATION SCALE and cannot supply one, however it scales.**
+
+**Driving at the third peak** (tight-coupling integrator; controls: acoustic series to 12%, textbook
+baryon-loading sign, H3/H1 rising monotonically with ω_c 1.276→1.703): branch A gives boost **ν = 1.62 against
+6.36 needed**, closing +5% of the gap gated to sub-horizon and −13% ungated — *a few per cent whose sign is
+not robust*. Branch B is **excluded by anisotropy amplitude, not shape**: |Θ₀+ψ| = 1.08e−2 vs ΛCDM 3.6e−5 and
+a measured sky rms ~1e−5, wrong by ~10³, and it displaces the acoustic extrema by 41% against a spacing
+measured to 0.03%. Mechanism: CDM's signature is a potential that *never decays* (|Φ|/Φ_prim = 0.170 vs 0.0091
+without CDM); a boost merely multiplies an *already-decayed* potential, and driving is an integral over the
+decay history, so the two are distinguishable.
+
+**GROWTH — and a correction.** Baryon-only MOND-boosted growth **OVERSHOOTS**: σ₈ = **25.7–2120** vs 0.811,
+and deep-MOND growth is an **attractor** (a 1000× spread in initial amplitude converges to within 1.16× by
+z=0), so it **cannot be normalised away by choosing ICs**. *Correction:* the repo's "growth deficit under a
+causal boost" (g04h, σ₈ ≤ 0.648) is a result about **refilling a 28 eV relic's free-streaming cutoff**, not a
+MOND-boost result — the MOND boost errs in the **opposite** direction. Both stand in their own scopes.
+
+**Correction to L121:** its "MOND is off at recombination" used the **background** criterion. On the honest
+no-CDM per-mode criterion, `y ≈ 0.87–1.19` — *at the transition*, ν = 1.4–2.2. **L121's conclusion survives;
+its stated reason does not.** More generally, four candidate estimators at recombination span **9.9 decades
+and straddle y = 1**, so *"is the CMB MOND?" is not well posed until one is named.*
+
+**MUSE, honestly (the sharpest live threat).** Ciocan et al. measure `a₁ = +1.59 ± 0.105` — a₀ **rising** —
+which is **15.1σ** from branch A at face value and **1.91–3.02σ** after folding ΛCDM assembly drift. Two
+things the record does not state: (i) the drift folding is **quasi-circular**, since the +0.80/z drift being
+folded is essentially branch B's own effect (0.997/z), so 1.9–3.0σ is a *ceiling on the relief*, not a
+resolution; (ii) **the same datum disfavours branch B at 5.6σ**, because the measured rise is *faster* than
+H(z). **No branch is supported by the one direct a₀(z) measurement in hand.** Also: branch A's z=2.5
+prediction is a **band, −0.122 to 0.000 dex** under DESI-CPL, not the single 0.00 the registered test uses.
+
+**The decisive test, with its real error budget:** `a₀ = v_flat⁴/(GM_b)` on ONE lensed rotation-dominated
+galaxy at 2.3<z<2.9 with g_bar < 0.3a₀ (JWST/NIRSpec G235H rotation + independent ALMA CO(3–2) gas mass).
+Required **σ(log a₀) ≤ 0.134 dex**. **The fourth power binds:** `σ² = 16σ_logv² + σ_logM²`, so 5% on v alone
+spends 0.087 dex (64% of the budget) and **8% on v blows it regardless of M_b**. Rivals at z=2.5:
+ΛCDM-native **+0.328 dex** (reproduced from Dutton–Macciò to 2%), branch B **+0.576 dex**, branch A **flat to
+<3e−5 dex**. One measurement separates all three.
+
+**Stated limitations:** L141 is a tight-coupling *fluid* code — no neutrino free-streaming (peaks at
+ℓ≈273/576/880 vs 220/537/813, an error common to every model compared), no C_ℓ projection, no Doppler,
+approximate Silk envelope; **only model-to-model ratios are used**. No-CDM potential normalisation ±30%. The
+per-mode vs rms-field boost evaluation is a genuinely open question in MOND cosmology; both are carried and no
+verdict rests on the tilt alone.

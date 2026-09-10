@@ -1,0 +1,76 @@
+======================================================================================================================
+fbE5 -- verdict in numbers + Lean-formalisable propositions
+======================================================================================================================
+
+======================================================================================================================
+PROP 1 (a0-BLINDNESS OF THE BACKGROUND).  If a0 enters only the field equation for perturbations and not the stress-energy tensor, then H(a) -- and hence z_eq, r_s, D_A and theta_* -- is INDEPENDENT of a0 and of any law a0(z).  Formally: dH/da0 = 0 pointwise, therefore d(theta_*)/da0 = 0.
+======================================================================================================================
+  [PASS] PROP1  theta_* is bitwise identical when a0 is varied over 20 orders of magnitude (including 0 and a value 1e16 times the physical one).  This is the load-bearing step of the whole CMB verdict and it is a THEOREM, not a numerical finding: a0 has no place to enter the Friedmann equation   (100 theta_* = 1.0419213157 for every a0 in {0, 1e-14, 9.36e-11, 1.13e-10, 1e-6, 1e6})
+  [PASS] PROP1b and the CONVERSE is what does the damage: theta_* is NOT independent of the gravitating matter density.  Removing omega_c moves it from 1.04192 to 0.70494, 1121 sigma on Planck's 1.04109 +- 0.00030.  So the CMB constrains a DENSITY, which a0 is not, on any branch   (100 theta_*: with CDM 1.04192, without 0.70494)
+
+======================================================================================================================
+PROP 2 (THE BRANCH DICHOTOMY IS EXACTLY A CHOICE OF rho).  For a0 = kappa c sqrt(G rho): (i) rho = rho_Lambda with w = -1 => a0 is constant in t; (ii) rho = rho_tot => a0 = kappa c sqrt(3/8pi) H, i.e. a0 propto H exactly.  There is no third possibility inside this functional form, because rho |-> kappa c sqrt(G rho) is injective on rho > 0.
+======================================================================================================================
+  [PASS] PROP2a  (c/2)sqrt(G rho_tot(z)) = (c/2)sqrt(3/8pi) H(z) identically at every z -- branch B is not an extra assumption on top of the formula, it IS the formula with rho_tot   (verified to 1e-12 at z = 0, 2.5, 1089.9;  coefficient (1/2)sqrt(3/8pi) = 0.172747 = 1/Z = 0.172747)
+  [PASS] PROP2b  the two COMMITTED FOOTINGS are that same dichotomy evaluated TODAY: alt/canonical = 1/sqrt(OL) to 0.3%.  Carrying 'both footings' is already carrying both branches at z = 0   (alt/canonical = 1.20478, 1/sqrt(OL) = 1.20859)
+  [PASS] PROP2c  and the DERIVATION selects (i): L_dS = sqrt(3/Lambda) contains Lambda alone, and Lambda is a constant of the action.  a0 = c^2/(2 pi L_dS) = c H_Lambda/2pi and a0 = c H_Lambda/Z differ only in the O(1) coefficient (Z/2pi = 0.9213); NEITHER contains rho_matter or rho_radiation   (Z/2pi = 0.92132; a0(2pi form) = 8.6181e-11, a0(Z form) = 9.3541e-11 m/s^2)
+
+======================================================================================================================
+PROP 3 (THE DEEP-MOND FORCE MAP IS HOLDER-1/2, NOT LINEAR).  In the deep-MOND limit the boosted field is F(g) = sign(g) sqrt(a0 |g|).  F is continuous and odd but NOT linear and NOT Lipschitz at 0: |F'(g)| -> infinity as g -> 0.  Consequences: (a) superposition fails, so 'linear perturbation theory with a boost' is a category error wherever the field crosses zero; (b) on an oscillating source the amplification is UNBOUNDED at the nodes.
+======================================================================================================================
+  [PASS] PROP3a  superposition FAILS: F(g1+g2) != F(g1) + F(g2), by a factor 1.3660   (F(g1)+F(g2) = 2.6434e-11 vs F(g1+g2) = 1.9351e-11 (ratio 1.3660))
+  [PASS] PROP3b  NOT Lipschitz at 0: the difference quotient (F(g)-F(0))/g grows without bound as g -> 0 (3.06e-01 -> 9.68e+03 over four decades).  The boost nu = sqrt(1+a0/g) therefore DIVERGES at every node of an acoustic oscillation   (difference quotients at g = 1e-9,-12,-15,-18: 3.06e-01, 9.68e+00, 3.06e+02, 9.68e+03)
+
+======================================================================================================================
+PROP 4 (DEEP-MOND GROWTH IS AN ATTRACTOR AND FORGETS ITS INITIAL AMPLITUDE).  The deep-MOND linear growth equation is d^2 delta/dN^2 + (2 + dlnH/dN) ddelta/dN = C(a) delta^(1/2): homogeneous of degree 1/2, not 1.  Hence the growing solution is a PARTICULAR solution set by C(a) alone, and initial amplitudes differing by any finite factor converge.  Corollary: a MOND cosmology cannot be normalised to the data by choosing initial conditions.
+======================================================================================================================
+  [PASS] PROP4  initial amplitudes differing by 1000x arrive within a factor 1.164 of each other at z = 0 -- the deep-MOND growth is an ATTRACTOR.  So the enormous sigma_8 overshoot of a baryon-only MOND cosmology CANNOT be fixed by lowering the initial baryon perturbation   (delta(z=0) from delta_i = 1e-6: 2.5974e+01; from 1e-3: 3.0226e+01 (ratio 1.164 for a 1000x spread in ICs))
+
+======================================================================================================================
+PROP 5 (THE FOURTH POWER IS THE TEST'S BINDING CONSTRAINT).  In the deep-MOND limit v^4 = G M_b a0, so log a0 = 4 log v - log M_b - log G and sigma(log a0)^2 = 16 sigma(log v)^2 + sigma(log M_b)^2.  The velocity error enters SIXTEEN-fold in variance.
+======================================================================================================================
+  [PASS] PROP5a  a 20:1 separation of 0.00 dex from the LCDM-native +0.33 dex needs sigma <= 0.1349 dex, and the velocity alone at 5% already spends 0.0869 dex of it   (sigma needed 0.1349 dex; 4 sigma_logv at dv/v = 5% is 0.0869 dex (64% of the whole budget))
+  [PASS] PROP5b  the trade is brutal: relaxing the velocity from 5% to 8% CANNOT be bought back by ANY baryonic mass precision, because 4 sigma_logv alone is then 0.1390 dex > 0.1349   (dv/v = 8% gives 0.1390 dex from velocity alone, already over the 0.1349 budget)
+
+======================================================================================================================
+PROP 6 (THE ESTIMATOR ORDERING).  'Is the CMB in the MOND regime?' has no answer until the argument of the interpolating function is named.  The four candidates at recombination are ordered and span more than five decades, so any claim of the form 'MOND is on/off at recombination' is meaningless without it.
+======================================================================================================================
+    a0/(cH) [background]              y = g/a0 = 6.161e-06
+    MG per-mode, no-CDM source        y = g/a0 = 0.8709
+    MG per-mode, LCDM source          y = g/a0 = 13.11
+    MI pressure c_s^2/r_s             y = g/a0 = 4.828e+04
+  [PASS] PROP6  the four estimators span 9.9 decades at recombination and STRADDLE y = 1: the background criterion says 1e-6 (deeply MOND-irrelevant), the no-CDM perturbation criterion says ~1 (AT the transition), the LCDM-source criterion says ~10 (Newtonian) and the modified-inertia criterion says ~1e4 (Newtonian).  No statement 'the CMB is/is not MOND' is well posed without naming one   (a0/(cH) [background] = 6.16e-06; MG per-mode, no-CDM source = 0.871; MG per-mode, LCDM source = 13.1; MI pressure c_s^2/r_s = 4.83e+04)
+
+======================================================================================================================
+THE VERDICT, IN NUMBERS (task 5)
+======================================================================================================================
+
+  Does the dark-energy-scaled a0 HELP, HURT, or NOT AFFECT the CMB problem?
+
+  BRANCH A (a0 locked to Lambda -- what the derivation actually gives).  NOT AFFECTED.
+    * background: a0 changes theta_*, z_eq and r_s by EXACTLY ZERO (PROP 1, bitwise).
+    * perturbations at recombination: the boost on the third-peak mode is nu = 1.62 (no-CDM source) or
+      nu = 1.03 (LCDM source), against the factor 6.36 = (omega_b+omega_c)/omega_b that replacing CDM needs.
+      Largest sustained boost anywhere before recombination: 1.49.
+    * effect on the third-peak ratio H3/H1: +5% of the LCDM-vs-no-CDM gap when the boost is gated to
+      sub-horizon, -15% when it is not -- a few per cent with a sign that is not robust.
+    * the deficit that remains: 100 theta_* = 0.70325 vs Planck 1.04109 +- 0.00030 = 1126 sigma.
+    NET: a0's dark-energy scaling is IRRELEVANT to the CMB on this branch.  It neither rescues it nor
+    worsens it.  The CMB verdict is identical to what it would be in a theory with no a0 at all.
+
+  BRANCH B (a0 propto H -- the rival).  HURTS, catastrophically.
+    * background: still exactly zero effect (PROP 1 again).
+    * perturbations: the boost reaches nu ~ 1e2 in the radiation era and the modes RUN AWAY.  The
+      third-peak potential grows to max|phi|/phi_prim = 153 (sub-horizon-gated; 3.2e4 ungated), giving
+      |Theta_0+psi| = 1.1e-2 against LCDM's 3.6e-5 and a measured sky rms of ~1e-5: wrong by ~1e3.
+    * it also displaces the acoustic extrema by 41% against a spacing measured to 0.03%.
+    * and sigma_8 comes out 1.3e3-2.1e3 instead of 0.811.
+    NET: branch B is excluded by the CMB by roughly three orders of magnitude in anisotropy amplitude.
+
+  THE PLAIN ANSWER THE BRIEF ASKED FOR: THE DARK-ENERGY SCALING DOES NOT RESCUE THE CMB.
+  The one number that shows it: 100 theta_* = 0.70325 without CDM against Planck's 1.04109 +- 0.00030,
+  i.e. 1126 sigma, and d(theta_*)/d(a0) = 0 exactly, on every branch, by PROP 1.
+
+======================================================================================================================
+fbE5 COMPLETE: 11/11 checks PASS.   [0.0s]
+======================================================================================================================
