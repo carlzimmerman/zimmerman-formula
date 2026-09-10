@@ -4620,3 +4620,27 @@ scale-dependent or non-local matter–dark couplings. Three gates are CITED not 
 ceiling, g04i 11.4 eV, L67 superfluid lensing) — a referee should attack those three plus the Planck ω_c
 step first. Scripts: `parameter_space_scan.py`, `parameter_space_scan.out`,
 `parameter_space_survivors.json`.
+
+**⚠️ L127 (scanner) / L136 (retraction) RECONCILIATION.** The rebuilt architecture scan retains gate G11
+(bimetric CMB) on the *high-pass* argument that **L136 retracts**. The scan's own leave-one-out analysis
+reports `loo["G11_bimetric_cmb"] == 0` — removing G11 changes the survivor count by zero, because bimetric
+architectures still die on **G12 (the Ostrogradsky ghost), which was NOT retracted**. So the scan's
+"0 survivors" conclusion is unaffected by the retraction, but **G11 must not be cited as an independent kill**.
+The scanner *independently corroborated* the red team on the velocity lemma: comoving `k_J ∝ √a` gives
+**33×, not 1091×** — two agents, same error found, from different directions.
+
+Two further scanner corrections worth recording: (i) **the RAQUAL causality gate was right for the wrong
+reason** — a monotone μ forces `n_eff ∈ [1, 3/2]`, so the transition never enters the quoted `1/2<n<1` band;
+the correct kill for the quasi-static galactic problem is the **spacelike** longitudinal characteristic
+`c∥² = 2n−1 > 1` (=2 in deep MOND, the classic Bekenstein–Milgrom acausality). The two speeds are exact
+reciprocals. **Do not quote the `1/2<n<1` band as the galactic kill.** (ii) **The relic pincer's 11.4 eV RAR
+arm is cited, not reproducible** — an independent Tremaine–Gunn estimate gives 25 eV (MW-like) to 198 eV
+(dwarf-like), which *brackets* rather than confirms it. The ΔN_eff arm does reproduce independently
+(m ≥ 27.57 eV vs g04i's 27.6).
+
+**THE REPAIR TARGET (smallest margin in the whole enumeration, 0.222 dex):** the healthy single-metric
+cuscuton-MOND branch **+ a cold sector at f ≈ 0.6 of Planck's ω_c** — as partial particle CDM or a
+**~100–200 eV thermal relic at T_x/T_ν ≈ 0.37** (which passes ΔN_eff comfortably). It misses the CMB floor by
+0.18 dex and the galaxy ceiling by 0.04 dex. It is the right target precisely because the ceiling it violates
+is the *cited* 0.582 and the Tremaine–Gunn bracket is *exactly ambiguous* at the relic mass it wants — the
+ceiling and the near-miss are the same uncertainty seen twice.

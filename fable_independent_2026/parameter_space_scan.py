@@ -335,7 +335,12 @@ GATE_META = {
     "G8_galaxy_smooth":    ("galaxy transmission ceiling (RAR overshoot)", "L61/L50 (CITED ceiling)"),
     "G9_bbn_stiff":        ("a^-6 stiff tail of shift-symmetric scalar dust", "L87/L123"),
     "G10_relic_pincer":    ("relic mass: Delta N_eff floor vs RAR ceiling", "g04i + this script"),
-    "G11_bimetric_cmb":    ("graviton mass is a HIGH-pass force filter", "L126 + this script"),
+    # *** G11 RETRACTED 2026-09-10 (see L136): the high-pass claim used the MASSIVE spin-2 exchange ALONE.
+    # The correct ghost-free bimetric cross-sector force is eta = 1 - (4/3)(1+mr)e^{-mr}, which is LOW-pass
+    # (deta/dr > 0), and a window IS open at Compton ~21-235 kpc. NOTE: leave-one-out below shows
+    # loo["G11_bimetric_cmb"] == 0, i.e. removing this gate changes NOTHING -- bimetric architectures still
+    # die on G12 (the Ostrogradsky ghost), which was NOT retracted. The 0-survivor count is unaffected.
+    "G11_bimetric_cmb":    ("RETRACTED (see L136); bimetric still dies on G12 ghost", "L136"),
     "G12_bimetric_ghost":  ("MOND-alive <=> transverse-vector Ostrogradsky ghost", "L126"),
     "G13_kappa":           ("a0 coefficient kappa inside the measured band", "kappa footing"),
     "G14_superfluid_lens": ("superfluid emergent MOND lensing ratio", "L67 (CITED)"),
