@@ -1,0 +1,47 @@
+================================================================================================================
+L129 -- smooth (non-clustering) a^-3 dust CANNOT drive the CMB third peak: the deciding Boltzmann run
+================================================================================================================
+
+================================================================================================================
+PART 0 -- run both cases: identical background (same w), ONLY c_s^2 differs.
+================================================================================================================
+    clustering (c_s^2=0): 100*theta_s=1.04090  peaks=[(221, 5747.1), (537, 2608.8), (815, 2584.2)]
+    SMOOTH     (c_s^2=1): 100*theta_s=1.04090  peaks=[(167, 15840.4), (508, 6465.4), (815, 3584.8)]
+  [PASS] CTRL-0  the two runs share an IDENTICAL background (same w), so 100*theta_s agrees to <1e-4 and the comparison is of peak HEIGHTS at fixed acoustic scale -- not of peak positions. The control is structural, not achieved by re-tuning H0   (100*theta_s: clustering=1.04090, smooth=1.04090, diff=0.00e+00)
+
+================================================================================================================
+PART 1 -- PIPELINE VALIDATION: the clustering run must reproduce the observed CMB. It does.
+================================================================================================================
+  [PASS] VALID-0  the c_s^2=0 (clustering) run reproduces the measured first acoustic peak -- l ~ 220 and amplitude ~5750 uK^2 -- so the pipeline is validated and a failure in the smooth run is physical, not a broken computation (this is the positive control)   (clustering peak1: l=221 (obs ~220), amp=5747 uK^2 (obs ~5750))
+
+================================================================================================================
+PART 2 -- THE RESULT: smooth dust fails grossly on peak height and on the third/second ratio.
+================================================================================================================
+    clustering:  peak3/peak1=0.4496  peak3/peak2=0.9906
+    SMOOTH:      peak3/peak1=0.2263  peak3/peak2=0.5545
+  [PASS] KILL-0  without clustering wells the gravitational potentials DECAY and radiation driving inflates the acoustic oscillations: the smooth run's first peak is several times too HIGH (a gross, not marginal, failure)   (smooth peak1 amplitude is 2.76x the clustering (observed) value)
+  [PASS] KILL-1  the third-to-second peak ratio collapses from ~0.99 (clustering, matching observation) to ~0.55 (smooth) -- a ~44% deficit against a ~1% measurement precision on peak heights. A smooth a^-3 component does NOT reproduce the third peak   (peak3/peak2: clustering=0.9906, smooth=0.5545, deficit=44.0% (vs ~1% precision))
+  [PASS] KILL-2  therefore the z_eq shift ALONE does not substitute for clustering. The third peak's enhancement is specifically a clustering signature, as standard CMB physics expects -- now SHOWN rather than assumed. L128's explicitly-open question is CLOSED, negatively   (smooth a^-3 dust is excluded: the cuscuton dark sector cannot drive the third peak)
+
+================================================================================================================
+PART 3 -- honest scope.
+================================================================================================================
+
+  WHAT IS SHOWN: with a controlled identical background and a validated pipeline, a non-clustering a^-3
+  component fails the CMB grossly -- first peak several times too high, third/second ratio 44% low. The
+  cuscuton's infinite-sound-speed dust (L128) therefore cannot supply the CMB's dark component.
+
+  WHAT IS NOT SHOWN: (i) c_s^2 = 1 is a stand-in for c_s^2 -> infinity; the true cuscuton is even MORE
+  smooth, so this is conservative in the correct direction, but it is a stand-in. (ii) No likelihood was
+  evaluated, so the deficits are quoted as fractional deviations against quoted measurement precision, NOT
+  as a calibrated sigma -- do not quote a sigma from this lane. (iii) The fluid's early-time initial
+  conditions are outside CLASS's intended regime (the code guards w>=0); this is why both runs use the SAME
+  w so the inaccuracy is common-mode, but an independent CAMB cross-check is still worth doing.
+  (iv) This closes the SMOOTH-dust route. It does not close every conceivable field-dust route -- a field
+  with FINITE c_s could cluster, which is exactly the remaining tension (finite c_s => propagating =>
+  excluded by L95 closure and the L120 RAQUAL band). That pincer is stated, not proven closed.
+
+  [PASS] SCOPE-0  honestly bounded: smooth a^-3 dust is excluded by a controlled, validated Boltzmann run; no sigma is quoted (no likelihood); c_s^2=1 is a conservative stand-in for infinity; a CAMB cross-check remains worthwhile; finite-c_s field-dust is NOT closed by this lane   (smooth-dust route closed; finite-c_s route remains the stated (unproven) pincer)
+================================================================================================================
+L129 COMPLETE: 6/6 checks PASS.   [1.0s]
+================================================================================================================

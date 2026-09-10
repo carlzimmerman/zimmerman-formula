@@ -4443,3 +4443,38 @@ spoiling closure. **This is not a cosmology pass.**
 **Lean (53 theorems, zero sorry, axioms ⊆ {propext, Classical.choice, Quot.sound}):** added
 `cuscuton_stiff_denominator_zero`, `cuscuton_sound_speed_denominator_zero`, `cuscuton_rho_eq_potential`,
 `cuscuton_pressureless_iff`, `cuscuton_dust_reproduces_friedmann`.
+
+## L129 — THE DECIDING BOLTZMANN RUN: smooth a⁻³ dust CANNOT drive the third peak (L128's open question, closed)
+
+Script: `L129_smooth_dust_third_peak_boltzmann.py` (6/6 PASS, CLASS). L128 left this **explicitly open and
+decidable**; this decides it, negatively.
+
+**Design (the point that makes it clean).** Run both cases as the *same* fluid with the *same* `w = −1e−4`
+(numerically dust), varying **only** `c_s²`. The background is then identical by construction — `100θ_s`
+agrees to 0.00e+00 — so this compares peak **heights** at fixed acoustic scale, not peak positions, without
+re-tuning H₀. Any fluid-IC inaccuracy is common-mode and cancels. `c_s²=0` clusters like CDM; `c_s²=1` is the
+conservative stand-in for the cuscuton's `c_s²=∞`.
+
+**Pipeline validation (why the null is credible).** The `c_s²=0` run reproduces the measured CMB: first peak
+at **ℓ=221, 5747 μK²** vs observed ℓ≈220, ≈5750 μK². The machinery is not blind.
+
+| | peak1 ℓ / amp | peak3/peak1 | peak3/peak2 |
+|---|---|---|---|
+| clustering (`c_s²=0`) | 221 / 5747 μK² | 0.4496 | **0.9906** ← matches observation |
+| **SMOOTH** (`c_s²=1`) | 167 / 15840 μK² | 0.2263 | **0.5545** ← grossly excluded |
+
+Without clustering wells the potentials **decay**, and radiation driving inflates the acoustic oscillations:
+the first peak comes out **2.76× too high** and in the wrong place, and peak3/peak2 is **44% low** against a
+~1% measurement precision. **The z_eq shift alone does not substitute for clustering.**
+
+**Consequence.** L128's inversion stands (the cuscuton passes the galaxy gate absolutely, since it cannot
+cluster anywhere), but the one property it fails is now **confirmed fatal, not merely suspected**. The
+cuscuton dark sector is closed. The remaining tension is exactly as L128 stated: clustering needs finite
+`c_s`; finite `c_s` means the field **propagates**; a propagating MOND scalar is excluded by the closure
+theorem (L95) and the RAQUAL band (L120).
+
+**Scope — do NOT overquote.** (i) `c_s²=1` is a stand-in for ∞ (conservative, correct direction). (ii) **No
+likelihood was evaluated — no sigma is quoted from this lane**, only fractional deviations against stated
+precision. (iii) The fluid's early ICs are outside CLASS's intended regime (it guards `w≥0`); both runs use
+the same `w` so the error is common-mode, but a CAMB cross-check remains worthwhile. (iv) This closes the
+**smooth**-dust route, not every field-dust route — finite-`c_s` field-dust is the stated, unproven pincer.
