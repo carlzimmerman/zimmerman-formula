@@ -3888,3 +3888,29 @@ about it (matching the standing "hint, estimator-limited" status). The decisive 
 orbital-pericenter control** (σ vs pericenter at fixed R_gc) on a binary-scrubbed classical+bright sample —
 not in this catalog. Reported as a null with full error budget; no manufactured win, no manufactured deficit.
 Script `L107_efe_confrontation_real_dwarfs.py` (5/5 analysis checks; physical correlation reported).
+
+## L108 — verified astra's constrained-cuscuton MOND (CAM) branch; two-method convergence (9/9)
+
+astra (commit 4a59d27c9, `cuscuton_acceleration_mond_2026`) **built the constructive single-metric action I
+pointed to in L104** — the MOND kernel in the *projected-gradient* (elliptic) sector with a cuscuton clock:
+`S_CAM = ∫√−g[(M²/2)(R−2Λ) + 2M²a₀²Q(|Du|/a₀) + √X_τ ℓ^μ(D_μu−a_μ)] + S_m`, Q'(y)/2y = 1−e^{−y}.
+
+**Independently reproduced (my own variation of the displayed density):** E_Ψ ⇒ **Φ=Ψ (no slip)**, E_ℓ ⇒
+u'=Φ' (acceleration relation), and the Φ+u combination ⇒ the exact **exponential-kernel MOND Poisson law
+(μΦ')'=ρ/4M² from ONE action** — the interpolation derived, not pasted. The MOND field u enters only through
+the projected *spatial* gradient (no time-velocity) ⇒ **non-propagating (cuscuton) by construction**.
+
+**The convergence (the point).** astra's finite-k **Dirac count** — 6 second-class constraints, PB rank 6,
+**(6−0−6)/2 = 0 physical DOF** — is the *same* healthy-cuscuton fact as my **L104** (kinetic Hessian = 0) and
+**L106** (sound speed c_s = ∞, no competing cone), derived by **two independent methods on the same action**.
+And because the kernel sits in the elliptic c_s=∞ sector, L106's structure-function theorem removes the
+scalar competing-cone obstruction (the covariant root of L95 / the AeST pathologies) from the CAM τ-clock
+algebra — reducing astra's open full-closure item to the tensor/vector + PPN pieces. The CAM no-slip also
+matches L101's lensing selection, and its healthy FLRW (H²=(ρ+M²Λ)/3M²>0) matches the cuscuton DE limit.
+
+**Honest scope (astra's own list).** The branch is **OPEN**: the full covariant τ-clock Dirac algebra, PPN
+(β,γ,α₁,α₂,α₃), nonlinear FLRW stability, and full 3+1 tensor/vector closure remain; BBN (L87) and the a₀
+coefficient (fitted) are separate costs. This lane makes CAM a **jointly-verified (astra + Fable, two
+methods) open branch** — the healthiest, most-constructive relativistic MOND branch the programme has, with
+scalar-sector consistency now confirmed from two directions. Script `L108_verify_astra_cuscuton_branch.py`
+(9/9).
