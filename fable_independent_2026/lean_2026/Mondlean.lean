@@ -9,7 +9,7 @@
   flat a₀(z), subdominant scalar GW) confronting DATA — not by Lean, and not while the intrinsic BBN
   fine-tuning (L84/L87) and astra's open ADM/khronon gates stand.
 
-  Theorems (76 as of 2026-09-10; all: exit 0, zero `sorry`, axioms ⊆ {propext, Classical.choice, Quot.sound}):
+  Theorems (83 as of 2026-09-10; all: exit 0, zero `sorry`, axioms ⊆ {propext, Classical.choice, Quot.sound}):
     hasDerivAt_G, hasDerivAt_Gp   — Gp = dG/dy and Gpp = d²G/dy² proven (not merely asserted).
     kernel_identity               — MOND kernel G'(y)/(2y) = 1 − e^{-y}.
     Gpp_zero, Gpp_pos             — health dichotomy: G''(0)=0, G''(y)>0 ∀ y>0 (no ghost off zero field).
@@ -786,3 +786,62 @@ theorem density_time_duality (rho0 a s : ℝ) (ha : 0 < a) (hs : 0 < s) :
   have hane : a ≠ 0 := ne_of_gt ha
   have hsne : s ≠ 0 := ne_of_gt hs
   field_simp
+
+/-! ### L166: CONDITIONAL-COMPLETENESS CERTIFICATE — NECESSITY ONLY.
+    What any theory built on the framework's equations (a₀ = κc√(Gρ_DE), ν-kernel, a⁻³ dust) MUST have in
+    order to pass the galaxy, CMB, Lyα and PPN gates simultaneously. Each clause is the algebraic content of a
+    computed pincer (L145–L151 dark fraction; L152–L158 barotropic ceiling; L134 PPN α₁). This is NOT a complete
+    theory and NOT a sufficiency proof: sufficiency is the content of three uncomputed simulations (two-species
+    Lyα hydro; baryon+MOND growth in the c_ad 300–537 km/s sliver; N-body mass-dependent kick) and cannot be
+    Lean-certified because those gates are empirical. -/
+
+/-- DARK-FRACTION PINCER forces a MASS-DEPENDENT dark fraction: if some galaxy host m_g needs f(m_g) ≤ f_gal_max,
+    the population sourcing the third peak needs f(m_c) ≥ f_cmb_min, and f_gal_max < f_cmb_min (0.105 < 0.988),
+    then f is strictly larger at m_c and cannot be constant. -/
+theorem dark_fraction_forces_mass_dependence (f : ℝ → ℝ) (m_g m_c f_gal_max f_cmb_min : ℝ)
+    (hg : f m_g ≤ f_gal_max) (hc : f_cmb_min ≤ f m_c) (hlt : f_gal_max < f_cmb_min) :
+    f m_g < f m_c ∧ ¬ (∀ m₁ m₂, f m₁ = f m₂) := by
+  have h : f m_g < f m_c := by linarith
+  refine ⟨h, ?_⟩
+  intro hconst
+  have := hconst m_g m_c
+  linarith
+
+theorem dark_fraction_pincer_numeric : (0.105 : ℝ) < 0.988 := by norm_num
+
+/-- Lyα: the required clustering exponent p_req ∈ [3.53, 4.09] lies strictly above the barotropic ceiling p < 3
+    (barotropic_w_ratio needs 3 − p > 0), so a single barotropic fluid cannot pass Lyα; the surviving door is
+    non-barotropic (two species / internal clock, cf. density_time_duality). -/
+theorem lya_excludes_barotropic (p p_req : ℝ) (hbar : p < 3) (hreq : 3.53 ≤ p_req) : p < p_req := by
+  linarith
+
+theorem lya_window_above_ceiling : ¬ ∃ p : ℝ, p < 3 ∧ 3.53 ≤ p ∧ p ≤ 4.09 := by
+  rintro ⟨p, h1, h2, _⟩; linarith
+
+/-- FOOTINGS (L140–L144): the framework's a₀² = κ²c²G·(Ω_Λ ρ_crit) versus the ΛCDM-native g†² = κ²c²G ρ_crit:
+    the squared ratio alt/canonical is exactly 1/Ω_Λ (= 1.2048² for Ω_Λ = 0.689). Certified on squares. -/
+theorem footing_ratio_sq (κ c G ρ_crit Ω : ℝ) (hκ : κ ≠ 0) (hc : c ≠ 0) (hG : G ≠ 0) (hρ : ρ_crit ≠ 0)
+    (hΩ : Ω ≠ 0) :
+    (κ ^ 2 * c ^ 2 * (G * ρ_crit)) / (κ ^ 2 * c ^ 2 * (G * (Ω * ρ_crit))) = 1 / Ω := by
+  field_simp
+
+/-- FLAT vs RISING: with ρ_crit(H) = 3H²/(8πG) (π passed as a nonzero constant) the ΛCDM-native scale squared scales as (H/H₀)², whereas the
+    framework's w = −1 law a₀² = κ²c²G ρ_DE is H-independent. This is the fork ΛCDM cannot mimic. -/
+theorem lcdm_native_scale_rises (c G H H0 pi : ℝ) (hc : c ≠ 0) (hG : G ≠ 0) (hH0 : H0 ≠ 0)
+    (hpi : pi ≠ 0) :
+    (c ^ 2 * (G * (3 * H ^ 2 / (8 * pi * G)))) / (c ^ 2 * (G * (3 * H0 ^ 2 / (8 * pi * G))))
+      = (H / H0) ^ 2 := by
+  field_simp
+
+/-- CONDITIONAL-COMPLETENESS CERTIFICATE (necessity). Any theory passing the galaxy gate (f ≤ 0.105 at some
+    host), the CMB gate (f ≥ 0.988 for the third-peak population), the Lyα gate (p_eff ≥ 3.53) and the PPN α₁
+    gate (α₁ = −8 c_pf = 0) must have: (i) a mass-dependent dark fraction, (ii) a non-barotropic effective
+    fluid, (iii) a local (screened) α₁ source. Sufficiency is NOT proven here and is not Lean-provable. -/
+theorem necessary_conditions_for_all_gates (f : ℝ → ℝ) (m_g m_c p_eff c_pf : ℝ)
+    (gate_galaxy : f m_g ≤ 0.105) (gate_cmb : 0.988 ≤ f m_c)
+    (gate_lya : 3.53 ≤ p_eff) (gate_ppn : -8 * c_pf = 0) :
+    (¬ ∀ m₁ m₂, f m₁ = f m₂) ∧ (¬ p_eff < 3) ∧ c_pf = 0 := by
+  refine ⟨(dark_fraction_forces_mass_dependence f m_g m_c 0.105 0.988 gate_galaxy gate_cmb
+    (by norm_num)).2, ?_, (ppn_alpha1_vanishes_iff_local_source c_pf).1 gate_ppn⟩
+  intro h
+  linarith

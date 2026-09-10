@@ -5003,3 +5003,19 @@ The c_T kill needs none of the PPN assumptions.
 **Structural change required:** matter and gravitons must share ONE metric (no A(φ), no B); the MOND boost must
 enter the field equations linearly — a kinetic mixing of φ with the metric potential (AeST-type Φ = Φ_N + φ), i.e.
 the L139 architecture, which carries its own α₁ debt.
+
+## L166 — CONDITIONAL-COMPLETENESS CERTIFICATE (necessity only), Lean-certified (2026-09-10)
+
+Added 7 theorems to `lean_2026/Mondlean.lean` (76 → 83; exit 0, zero sorry, axioms ⊆ {propext, Classical.choice, Quot.sound}):
+`dark_fraction_forces_mass_dependence`, `dark_fraction_pincer_numeric`, `lya_excludes_barotropic`, `lya_window_above_ceiling`,
+`footing_ratio_sq`, `lcdm_native_scale_rises`, `necessary_conditions_for_all_gates`.
+
+**What is certified.** Any theory built on the framework's equations that passes the galaxy gate (dark fraction ≤ 0.105 at some host),
+the CMB gate (≥ 0.988 for the third-peak population), the Lyα gate (p_eff ≥ 3.53) and the PPN α₁ gate (α₁ = −8c_pf = 0) MUST have
+(i) a mass-dependent dark fraction, (ii) a non-barotropic effective fluid, (iii) a local (screened) α₁ source. Also: alt/canonical
+footing ratio squared = 1/Ω_Λ exactly; the ΛCDM-native scale squared rises as (H/H₀)² while the w = −1 law is flat.
+
+**What is NOT certified, and cannot be.** Sufficiency. Whether a theory with (i)–(iii) actually passes is the content of three
+uncomputed simulations (two-species Lyα hydro; baryon+MOND growth in the c_ad 300–537 km/s sliver; N-body mass-dependent kick)
+and of empirical gates that Lean cannot check. This is NOT a complete theory. Anyone presenting a "complete Lean-certified theory"
+should be checked for: empirical gates encoded as axioms/hypotheses, literal-True passes, single-footing checks.
