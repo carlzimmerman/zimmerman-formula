@@ -92,6 +92,17 @@ denominator vanish.  The candidate therefore needs the tensor-compensator
 Dirac chain to show that this would-be instantaneous spin-0 mode is removed,
 not merely tune its PPN numerator away.
 
+That combined check has now been run.  In the (c_{13}=c_{14}=0) principal
+block, the (c_2K^2+c_4a^2) terms were inserted into the finite-(k)
+Hamiltonian before solving any constraints.  The generated Hessian and PB
+matrix still give rank 10, two first-class and ten second-class constraints,
+and zero scalar DOF (10/10 checks).  Thus, at this linear principal order,
+the tensor compensator removes the pole that the *unconstrained*
+Einstein-aether speed formula would have called instantaneous.  This does not
+yet prove causal propagation for the full covariant theory; it identifies the
+exact calculation needed to decide that question rather than treating the
+singular formula as a verdict.
+
 The five-component trace-free multiplier audit makes that decomposition
 explicit.  For a scalar Fourier mode, one TF component is the scalar
 constraint already included above; the other four components enter as
@@ -124,4 +135,7 @@ python3 -B run_ae_ppn_lean.py
 python3 -B full_tensor_multiplier_dirac_gate.py
 python3 -B -m unittest -v test_full_tensor_multiplier_dirac.py
 python3 -B run_full_tensor_multiplier_lean.py
+python3 -B ppn_tuned_aether_dirac_gate.py
+python3 -B -m unittest -v test_ppn_tuned_aether_dirac.py
+python3 -B run_ppn_tuned_aether_lean.py
 ```
