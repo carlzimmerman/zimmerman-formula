@@ -4213,7 +4213,7 @@ galaxy phenomenology while threading its health gates. Phase C = PASS for the st
 
 ## L121 — honest CMB re-check: Phase E used LOCAL/constant a₀ (the recurring error); downgraded to UNRESOLVED
 
-Carl correctly flagged that Phase E's CMB kill assumed a **constant (local) a₀**. Verified: a₀ IS a
+The programme owner correctly flagged that Phase E's CMB kill assumed a **constant (local) a₀**. Verified: a₀ IS a
 dark-energy-scale acceleration (a₀,0/cH₀ = 0.14–0.17 ≈ 1/2π — the a₀=c²/2πL_dS tie). Two readings at
 recombination: (A) a₀∝√ρ_Λ (ρ_Λ const) ⇒ a₀ const ⇒ a₀/cH(z_rec)~6e-6 (MOND off, Phase E holds); (B) a₀∝H(z)
 (matching theorem) ⇒ **a₀/cH = 0.14 at ALL epochs including recombination** ⇒ MOND active at the horizon at
@@ -4339,3 +4339,66 @@ MOND fails the CMB (L123) AND every minimal decoupled dark sector fails (velocit
 stepping OUTSIDE the minimal class — to superfluid emergent MOND (closed on lensing, L67) or the two-metric
 branch (open, L61 §5). No free lunch; the map is complete and the remaining routes are named. Mondlean → 42
 theorems. Scripts `L125_final_verdict_health_vs_cosmology.py` (7/7), scratchpad phaseB_dirac_closure.py (13/13).
+
+---
+
+## L126 — THE TWO-METRIC BRANCH DIES ON BOTH DECISIVE GATES (the last minimal door closes)
+
+Script: `L126_twometric_cmb_dead.py` (9/9 PASS). Two independent from-scratch agent computations, verified here.
+
+**Gate 7 (cosmology) — CMB-dead, MASS-INDEPENDENTLY.** Put the cold component on a second metric `f`; it reaches
+baryons only through the g–f interaction, which in ghost-free bimetric is a graviton mass (Yukawa). But a graviton
+mass is a **HIGH-PASS force filter**:
+  - position: `T(r) = (1+mr)e^{−mr}`, `dT/dr = −m²r e^{−mr} < 0` — strictly decreasing (long range OFF)
+  - Fourier: `η(k) = k²/(k²+m²)`, `dη/dk = 2km²/(k²+m²)² > 0` — strictly increasing (short range ON)
+The escape needs the **opposite** (low-pass): full transmission at the CMB sound horizon (low k) to drive the third
+peak, suppression at galaxy scales (high k) to avoid the L61 overshoot. Since η is increasing and k_CMB < k_gal,
+`η(k_CMB) < η(k_gal)` for **every** mass, while the window requires `η(k_CMB) > η(k_gal)`. No window exists.
+The two horns: Compton 7 kpc (galaxy-tuned) → CMB transmission 2.3e−9 (third peak dead); Compton 276 Mpc
+(CMB-tuned) → galaxy transmission 1.0000 (overshoot returns). ~4.6 decades apart, wrong sign.
+
+**Gate 5 (mode health) — MOND-alive ⟺ Ostrogradsky ghost.** The scalar Boulware–Deser mode *is* removed (the
+Hassan–Rosen `Σcᵢ = 0` constraint survives), but the MOND-alive coefficient and the transverse-vector Box² ghost
+coefficient are **linked through the same factor**:
+  `a = −2(2u₀+u₁)`   and   `L_A1 = −(λ/2)(2u₀+u₁)k⁴`
+so `a ≠ 0 ⟺ ghost on`. The only ghost-free point `2u₀+u₁ = 0` sets `a = 0` — MOND dies with the ghost. The
+transverse-vector time-kinetic matrix has `det W = (−2)(9/2) = −9 < 0` on Minkowski, and `det W = −8M₁² ≤ 0` on a
+nonzero MOND background (=0 only at `M′(T̄)=0`, i.e. no MOND) — so the ghost is robust, not a Minkowski artifact,
+which closes the exact-function escape.
+
+**Scope (honest).** This is a no-go across the classes explored, each with a specific reproduced argument — pure
+MOND (L123), minimal decoupled hybrid (L125 velocity-ordering lemma), two-metric (here), superfluid (L67 lensing).
+It is NOT a universal impossibility for all conceivable modified gravity, and it must not be quoted as one.
+
+## L127 — THE HEALTH BRANCH CLEARS THE PPN PREFERRED-FRAME GATE THAT KILLED AeST
+
+Independent agent computation (3 scripts, 7/7 + 8/8 + verdict). The single-metric cuscuton-clock health branch:
+
+| param | value | status |
+|---|---|---|
+| γ  | 1 | **RIGOROUS** — φ's anisotropic stress is O((∇φ)²)=O(4), so at O(2) the metric is matter-sourced only ⇒ Ψ=Φ |
+| α₁ | 0 | **RIGOROUS** in the strict asymptotically-flat PPN limit (two independent proofs) |
+| α₂ | 0 | **RIGOROUS** in the same limit |
+| α₃ | 0 | structural (conservative Lagrangian, pure-GR momentum sector) |
+| β  | 1 assumed | **ESTIMATE — OPEN.** O(4) not solved. |
+
+**Why it passes structurally, not by tuning.** α₁, α₂ live in the momentum sector g₀ᵢ, and two exact facts empty it:
+  1. **The clock is exactly shift-independent.** Using `g⁰⁰ = −1/N²`, the whole clock action reduces to
+     `∫[μ_c²√h − N√h V]`, a functional of (N, γ_ij) only ⇒ `∂S_clock/∂Nⁱ = 0` **to all orders**. The scalar clock
+     has no ∇u kinetic term — precisely the shift-dependent vector kinetic term that gave AeST `α₁ = −2(K_B+2)`.
+  2. **Leaf-projection kills φ's frame-drag.** For `P = |Dφ|²`, one gets `∂P/∂g^{0i} = 0` exactly, even with
+     `φ̇ ≠ 0` (the g^{ab} piece cancels against the (n·∂φ)² projection piece). So `T^φ_{0i} = 0`.
+Hence the (0i) equation is the pure-GR momentum constraint; the explicit Fourier solve returns `a = −4`, i.e.
+`g_{0i} = −(7/2)V_i − (1/2)W_i` ⇒ α₁ = α₂ = 0. **Positive control** (proves the machinery isn't blind): injecting
+an AeST-like local source `c_pf·w_i·ρ` returns `α₁ = −8c_pf ≠ 0`.
+
+AeST fails this gate by ~4×10⁴. The difference is the *aether vector* vs the *shift-independent scalar clock* —
+structural, not fine-tuned. **Honest residual:** in a frame where the foliation moves, the clock's (0i) stress
+carries a term with coefficient the clock's *background* scale μ_c² ~ Λ_eff ~ H²M², giving α₁ ~ (Hr)² ≈ 1.2e−30
+at 1 AU — cosmological, not a local O(1) number, and → 0 in the strict limit (the same idealization under which
+AeST's α₁ is computed and fails). **β remains the last open MOND-side gate.**
+
+**Lean (48 theorems, zero sorry, axioms ⊆ {propext, Classical.choice, Quot.sound}):** added
+`yukawa_transmission_increasing`, `yukawa_no_window` (gate-7 mass-independent kill),
+`twometric_mond_ghost_linked`, `twometric_detW_negative`, `twometric_detW_bg_nonpos` (gate-5 ghost),
+`ppn_alpha1_vanishes_iff_local_source` (α₁ = −8c_pf ⇒ α₁=0 ⟺ no local frame-drag source).

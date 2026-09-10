@@ -407,3 +407,70 @@ theorem kfs_strictly_increasing (v0 a1 a2 : ℝ) (hv : 0 < v0) (h : a1 < a2) :
 theorem hybrid_pincer_no_interior (v0 k a_rec a_now : ℝ) (hv : 0 < v0)
     (h_order : a_rec < a_now) (h_cmb : k < a_rec / v0) : k < a_now / v0 :=
   lt_trans h_cmb (kfs_strictly_increasing v0 a_rec a_now hv h_order)
+
+/-! ### The TWO-METRIC (bimetric) branch dies on BOTH decisive gates (L126), and the health branch clears
+    the PPN α₁ preferred-frame gate that killed AeST (α₁-agent). -/
+
+/-- GATE 7 (CMB): the Fourier transmission of a massive graviton η(k)=k²/(k²+m²) is STRICTLY INCREASING in
+    k — for 0 ≤ k₁ < k₂ and m ≠ 0, η(k₁) < η(k₂). A graviton mass is a HIGH-PASS force filter (passes short
+    range, suppresses long range) — the WRONG sign for a CMB-driving + galaxy-smoothing (low-pass) window. -/
+theorem yukawa_transmission_increasing (k1 k2 m : ℝ)
+    (hk1 : 0 ≤ k1) (h : k1 < k2) (hm : m ≠ 0) :
+    k1 ^ 2 / (k1 ^ 2 + m ^ 2) < k2 ^ 2 / (k2 ^ 2 + m ^ 2) := by
+  have hm2 : 0 < m ^ 2 := by positivity
+  have d1 : 0 < k1 ^ 2 + m ^ 2 := by positivity
+  have d2 : 0 < k2 ^ 2 + m ^ 2 := by positivity
+  have hk12 : k1 ^ 2 < k2 ^ 2 := by nlinarith [h, hk1]
+  have d1' : (k1 ^ 2 + m ^ 2) ≠ 0 := ne_of_gt d1
+  have d2' : (k2 ^ 2 + m ^ 2) ≠ 0 := ne_of_gt d2
+  have expand : k2 ^ 2 / (k2 ^ 2 + m ^ 2) - k1 ^ 2 / (k1 ^ 2 + m ^ 2)
+      = (m ^ 2 * (k2 ^ 2 - k1 ^ 2)) / ((k2 ^ 2 + m ^ 2) * (k1 ^ 2 + m ^ 2)) := by
+    field_simp; ring
+  have hnum : 0 < m ^ 2 * (k2 ^ 2 - k1 ^ 2) := mul_pos hm2 (by linarith)
+  have hden : 0 < (k2 ^ 2 + m ^ 2) * (k1 ^ 2 + m ^ 2) := mul_pos d2 d1
+  have key : 0 < k2 ^ 2 / (k2 ^ 2 + m ^ 2) - k1 ^ 2 / (k1 ^ 2 + m ^ 2) := by
+    rw [expand]; exact div_pos hnum hden
+  linarith
+
+/-- GATE 7 (CMB), F3 — the mass-independent kill: no graviton mass gives BOTH CMB-driving and
+    galaxy-smoothness. Since η is increasing, k_CMB < k_gal, and the required thresholds satisfy c₂ < c₁,
+    one cannot have η(k_CMB,m) ≥ c₁ AND η(k_gal,m) ≤ c₂ — the window has the wrong ordering for EVERY m. -/
+theorem yukawa_no_window (kC kG m c1 c2 : ℝ)
+    (hkC : 0 ≤ kC) (hk : kC < kG) (hm : m ≠ 0) (hc : c2 < c1)
+    (hcmb : c1 ≤ kC ^ 2 / (kC ^ 2 + m ^ 2))
+    (hgal : kG ^ 2 / (kG ^ 2 + m ^ 2) ≤ c2) : False := by
+  have hmono := yukawa_transmission_increasing kC kG m hkC hk hm
+  linarith
+
+/-- GATE 5 (mode health): the MOND acceleration a = −2(2u₀+u₁) and the transverse-vector Box² Ostrogradsky
+    ghost coefficient −(λ/2)(2u₀+u₁) share the SAME factor (2u₀+u₁). So with λ ≠ 0 they vanish together:
+    MOND-alive (a≠0) ⟺ ghost-on. The only ghost-free point 2u₀+u₁=0 kills MOND. -/
+theorem twometric_mond_ghost_linked (u0 u1 lam : ℝ) (hlam : lam ≠ 0) :
+    (-2 * (2 * u0 + u1) = 0) ↔ (-(lam / 2) * (2 * u0 + u1) = 0) := by
+  constructor
+  · intro h
+    have hs : 2 * u0 + u1 = 0 := by linarith
+    rw [hs, mul_zero]
+  · intro h
+    rcases mul_eq_zero.mp h with h1 | h1
+    · exact absurd (by linarith [neg_eq_zero.mp h1] : lam = 0) hlam
+    · rw [h1, mul_zero]
+
+/-- GATE 5: the transverse-vector time-kinetic matrix has NEGATIVE determinant (a negative-norm ghost mode).
+    Minkowski: det W = (−2)(9/2) = −9 < 0. -/
+theorem twometric_detW_negative : (-2 : ℝ) * (9 / 2) < 0 := by norm_num
+
+/-- GATE 5: on a nonzero MOND background det W = −8 M₁² ≤ 0 (=0 only at M₁=0, i.e. M′(T̄)=0 = no MOND) — the
+    ghost is robust, not a Minkowski artifact (closes the exact-function escape). -/
+theorem twometric_detW_bg_nonpos (M1 : ℝ) : -8 * M1 ^ 2 ≤ 0 := by nlinarith [sq_nonneg M1]
+
+/-- PPN α₁ of the single-metric HEALTH branch: the preferred-frame parameter is α₁ = −8·c_pf, where c_pf is
+    the coefficient of a LOCAL frame-drag source ρ w_i in the g₀ᵢ momentum sector. The cuscuton clock is
+    exactly shift-independent (∂S/∂Nⁱ = 0 to all orders) and leaf-projection kills φ's frame-drag ⇒ c_pf = 0
+    ⇒ α₁ = 0, clearing the |α₁|<1e-4 gate that killed AeST (whose aether VECTOR gave an O(1) c_pf,
+    α₁ = −2(K_B+2)). α₁ ≠ 0 ⟺ c_pf ≠ 0 (validated positive control). -/
+theorem ppn_alpha1_vanishes_iff_local_source (c_pf : ℝ) :
+    (-8 * c_pf = 0) ↔ (c_pf = 0) := by
+  constructor
+  · intro h; linarith
+  · intro h; rw [h]; ring
