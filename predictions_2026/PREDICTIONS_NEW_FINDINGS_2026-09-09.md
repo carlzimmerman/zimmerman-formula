@@ -138,6 +138,14 @@ halo-driven sinking/slowing; the cuscuton predicts none. *Caveat:* MOND has its 
 friction, so the Fornax case needs that residual shown small; the fast-bar signal is cleaner. **Status: NEW —
 derived from the cuscuton theorem.**
 
+**P19 — Earlier first galaxies (JWST), with a ΛCDM-safe CMB.** The cubic MOND operator is negligible at
+linear order (growth = ΛCDM, CMB-safe, L93) but dominant nonlinearly (boost √(a₀/g_N) ~ 8–26× once
+g_N < a₀, L97), so the first massive galaxies collapse EARLIER than ΛCDM. *Test:* the high-z massive-galaxy
+abundance (JWST z~10–16), where ΛCDM is strained. *Discriminator:* ΛCDM cannot accelerate nonlinear collapse
+without disturbing the linear CMB-scale growth; this framework does both from one operator. *Caveat:*
+direction+order result; the precise z_form/mass function needs a MOND cosmological simulation. **Status: NEW
+— derived, current-tension.**
+
 ---
 
 ## The single open item these predictions hinge on

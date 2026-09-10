@@ -3578,3 +3578,26 @@ DERIVED from L95, not assumed.
 - **VERDICT.** New-physics content = the derivation: a structural gravity theorem (cuscuton, L95) predicts
   specific galactic-dynamics signatures (fast bars, un-sunk GCs) that distinguish it from particle dark
   matter, at two present-day ΛCDM tensions — testable now.
+
+## L97 — NEW PHYSICS: linear growth = ΛCDM but nonlinear collapse boosted → earlier first galaxies (JWST)
+
+`L97_early_structure_jwst.py` + `.out` (**7 checks, 7 PASS**). A distinctive split prediction from the
+cuscuton/cubic-MOND structure, addressing a current tension.
+
+- **⭐ THE SPLIT.** Linear sub-horizon growth is **ΛCDM-identical** (L93, machine precision: MOND cubic
+  drops, c_s²=0, G_eff=G), so the **CMB and large-scale power are safe**. But once a perturbation's internal
+  acceleration falls below a₀, the **nonlinear** MOND boost g_eff/g_N = √(a₀/g_N) kicks in.
+- **⭐ THE BOOST IS LARGE.** Galaxy-scale proto-perturbations sit deep in MOND (g_N/a₀ ~ 10⁻³ at turnaround
+  scales), so the effective-gravity boost is **~8–26×** (both footings), shortening the collapse time by
+  ~1/√b → collapse ~5× faster → **higher formation redshift** than ΛCDM.
+- **⭐ JWST.** JWST finds unexpectedly massive galaxies (M*~10⁹–10^10.5) at **z~10–16** that strain ΛCDM's
+  assembly timeline. The boosted nonlinear collapse forms the first massive galaxies **earlier**, in the
+  observed regime — a distinctive prediction where ΛCDM is under tension.
+- **⭐⭐ THE SPLIT IS DERIVED, NOT TUNED.** The SAME cubic MOND operator is negligible linearly (CMB-safe) and
+  dominant nonlinearly (early galaxies) — one operator, two regimes. ΛCDM cannot boost nonlinear collapse
+  without disturbing the linear CMB-scale growth.
+- **⚠️ HONEST SCOPE.** linear=ΛCDM and the boost factor are rigorous; the precise formation redshift and mass
+  function need a MOND cosmological collapse/N-body calculation (Sanders 1998, Nusser 2002, McGaugh 2015 —
+  MOND early structure is a studied effect). The contribution is that the boost FOLLOWS from the same
+  cuscuton/cubic structure that keeps linear growth ΛCDM-safe — a derived, un-tuned split, not a precise
+  z_form. A distinctive, falsifiable, current-tension prediction (P19).
