@@ -29,7 +29,7 @@ def check(n, ok, d=""):
     if not ok: FAILS.append(n)
 def sec(t): print("\n" + "=" * 118); print(t); print("=" * 118, flush=True)
 
-REPO = "/Users/carlzimmerman/new_physics/zimmerman-formula"
+REPO = __import__("os").path.dirname(__import__("os").path.dirname(__import__("os").path.abspath(__file__)))
 SPARC = os.path.join(REPO, "real_research/data/sparc_data")
 CLJSON = os.path.join(REPO, "qwen_claude_field_theory/closure_2026/cluster_measurement_audit_2026/results.json")
 print("=" * 118); print("T5 -- the live window: consistency, characterisation, and the decisive tests"); print("=" * 118, flush=True)
