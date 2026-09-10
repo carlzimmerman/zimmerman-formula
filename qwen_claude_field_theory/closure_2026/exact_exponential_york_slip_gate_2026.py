@@ -63,6 +63,18 @@ def main() -> int:
     tf12 = sp.factor((dL_dh_flux[0] - dL_dh_flux[1]).subs(no_slip))
     tf23 = sp.factor((dL_dh_flux[1] - dL_dh_flux[2]).subs(no_slip))
 
+    # Linearize a general cross coefficient A(u) and carrier F(u) around one
+    # background value U.  This gives the complete local coefficient, including
+    # the A'(u) contribution, without assuming a special kernel.
+    U, A0, A1, F0, F1 = sp.symbols("U A0 A1 F0 F1")
+    A_lin = A0 + A1 * (u - U)
+    F_lin = F0 + F1 * (u - U)
+    L_general = -2 * A_lin * (h0 * p0 * q0 + h1 * p1 * q1 + h2 * p2 * q2) + a0**2 * F_lin
+    general_dh = [sp.diff(L_general, h) for h in (h0, h1, h2)]
+    background_u = {U: (h0 * q0**2 + h1 * q1**2 + h2 * q2**2) / a0**2}
+    general_tf12 = sp.factor((general_dh[0] - general_dh[1]).subs(no_slip).subs(background_u))
+    general_coeff = F1 - 2 * (A0 + A1 * u)
+
     x, s = sp.symbols("x s", positive=True)
     mu = 1 - sp.exp(-x)
     nu_x = sp.simplify(1 / mu)
@@ -94,6 +106,10 @@ def main() -> int:
     print("  finite-x residual at x=1 =", finite_residual)
     print("  solutions of nu_exp(x)=2 for x>0 =", cancellation_equation)
 
+    print("\n[2b] General cross-coefficient check")
+    print("  A(u)=A0+A1(u-U), F'(u)=F1 => TF coefficient = F1-2(A0+A1*u)")
+    print("  general TF(0,1) - coefficient*(q0^2-q1^2) =", sp.simplify(general_tf12 - general_coeff.subs(background_u) * (q0**2 - q1**2)))
+
     print("\n[3] Exact primitive")
     print("  F(x(s)^2) =", F_of_x)
     print("  dF/dx - 2*x*ds/dx =", primitive_residual)
@@ -104,6 +120,7 @@ def main() -> int:
         check("no-slip traceless stress is proportional to (nu-2)(q_i^2-q_j^2)", sp.simplify(tf12 - (Fp(u).subs(no_slip) - 2) * (q0**2 - q1**2)) == 0),
         check("the exact exponential carrier has nu-2 = (2-exp(x))/(exp(x)-1)", sp.simplify(nu_minus_two - (2 - sp.exp(x)) / (sp.exp(x) - 1)) == 0),
         check("nu_exp(x)=2 has exactly one finite solution x=log(2)", cancellation_equation == [sp.log(2)]),
+        check("general A(u),F(u) metric variation has the derived coefficient", sp.simplify(general_tf12 - general_coeff.subs(background_u) * (q0**2 - q1**2)) == 0),
         check("the exact primitive differentiates to 2*x*ds/dx", primitive_residual == 0),
         check("a finite MOND point has nonzero slip source", abs(float(finite_residual.evalf())) > 0.0),
     ]

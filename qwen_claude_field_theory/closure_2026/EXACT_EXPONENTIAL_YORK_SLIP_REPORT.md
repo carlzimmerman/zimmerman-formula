@@ -18,6 +18,10 @@ respect to diagonal inverse-metric entries gives the traceless difference
 \[
 \Delta_{ij}=(\nu_{\exp}-2)(q_i^2-q_j^2).
 \]
+More generally, replacing the fixed cross coefficient by \(A(u)\) changes the
+coefficient to \(F'(u)-2[A(u)+uA'(u)]\), while the \(\Phi\) equation becomes
+\(D_i[A(u)D^i\Psi]\). Retaining the ordinary Poisson equation for arbitrary
+sources therefore selects \(A=1\), returning the coefficient above.
 The exact exponential constitutive factor is
 \[
 \nu_{\exp}(x)=\frac1{1-e^{-x}},\qquad x=|\nabla\Psi|/a_0,

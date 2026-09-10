@@ -15,6 +15,13 @@ theorem metric_difference_factor
       (nu - 2) * (q0 ^ 2 - q1 ^ 2) := by
   ring
 
+theorem generic_metric_difference_factor
+    (A Aprime Fprime u q0 q1 : ℝ) :
+    ((Fprime - 2 * (A + u * Aprime)) * q0 ^ 2) -
+        ((Fprime - 2 * (A + u * Aprime)) * q1 ^ 2) =
+      (Fprime - 2 * (A + u * Aprime)) * (q0 ^ 2 - q1 ^ 2) := by
+  ring
+
 theorem exponential_nu_not_const_two
     (h : ∀ x : ℝ, 0 < x → 1 / (1 - Real.exp (-x)) = 2) : False := by
   have h1 := h 1 (by norm_num)
