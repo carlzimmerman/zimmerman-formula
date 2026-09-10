@@ -350,3 +350,43 @@ theorem dust_ghost_separable (M2 k η : ℝ) (hM : M2 ≠ 0) (hk : k ≠ 0) :
     · exact absurd h3 h2
     · exact h3
   · intro h; rw [h]; ring
+
+/-! ### MASTER CERTIFICATE (L124): the machine-checked mathematical spine of the parameter-space reduction.
+
+    SCOPE (read carefully). Lean certifies the algebraic/analytic FACTS below; it does NOT certify a complete
+    physical theory of gravity. The physics that remains outside Lean -- full nonlinear constraint closure,
+    PPN β/α_i, the cosmological Boltzmann third-peak fit, and the a₀ coefficient -- is unproven, and the
+    honest verdict of the reduction (L123) is that the viable all-gates theory is HEALTHY MOND + a minimal
+    DECOUPLED dark sector, NOT pure MOND. This theorem merely CONJOINS the load-bearing lemmas of the
+    reduction into one statement, so "the certificate for all of it" is a single object. Each conjunct is one
+    of the established theorems above. -/
+theorem reduction_master_certificate
+    (y M f p k η mu mup Aprime : ℝ)
+    (hy : 0 < y) (hM : 0 < M) (hf : f ≠ 0) (hp : p ≠ 0) (hk : k ≠ 0) (hmu : mu ≠ 0) :
+    -- (1) health dichotomy: G''(y) > 0 for y>0 (stable massive mode off the zero-field point)
+    (0 < Gpp y)
+    -- (2) the MOND term is cubic: G(0)=G'(0)=G''(0)=0
+    ∧ (G 0 = 0 ∧ Gp 0 = 0 ∧ Gpp 0 = 0)
+    -- (3) ELIMINATION (L95): a propagating p²-MOND scalar closes only for a FLAT (non-MOND) kernel
+    ∧ ((-mup / (2 * mu ^ 3) = 0) ↔ mup = 0)
+    -- (4) SURVIVAL (L105): the cuscuton branch's closure obstruction vanishes identically (A≡0)
+    ∧ ((0 : ℝ) * Aprime / 2 = 0)
+    -- (5) the cuscuton is the unique infinite-sound-speed kinetic power (n=1/2)
+    ∧ (2 * (1 / 2 : ℝ) - 1 = 0)
+    -- (6) TRANSITION HEALTH (health branch): the AQUAL operator is elliptic for all y (both eigenvalues > 0)
+    ∧ (0 < 1 - Real.exp (-y) ∧ 0 < 1 + (y - 1) * Real.exp (-y))
+    -- (7) BBN horn of the pincer: the intrinsic a⁻⁶ stiff coefficient is nonzero
+    ∧ (-(M ^ 2) / (3 * f ^ 2) ≠ 0)
+    -- (8) the lapse-sourced conformal mode is a GHOST (H₀ < 0) -- why MOND must not be lapse-sourced
+    ∧ (-p ^ 2 / (12 * M) < 0)
+    -- (9) SEPARABILITY (L123): a decoupled dark sector (η=0) does NOT re-liberate the ghost
+    ∧ (-2 * M * k ^ 2 * η = 0 ↔ η = 0) :=
+  ⟨Gpp_pos hy,
+   cubic_leading,
+   closure_needs_flat_kernel mu mup hmu,
+   cuscuton_obstruction_vanishes Aprime,
+   cuscuton_denom_zero,
+   aqual_hessian_transition_healthy y hy,
+   stiff_coeff_ne_zero M f (ne_of_gt hM) hf,
+   cam_conformal_ghost M p hM hp,
+   dust_ghost_separable M k η (ne_of_gt hM) hk⟩

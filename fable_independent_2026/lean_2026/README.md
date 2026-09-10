@@ -44,6 +44,8 @@ F(Q)Θ construction). It formalizes the mathematics, not the physics.
 - `cam_conformal_ghost` — **L117 (agent 3):** because H_⊥ is second-class, the GR conformal mode ζ survives with kinetic term −3M²ζ̇²; its homogeneous Hamiltonian **H₀ = −p²/(12M²) < 0** — a **ghost** (unbounded below). The minimal CAM is **not** ghost-free.
 - `cam_strong_coupling` — **L117 (agent 3):** the surviving mode's reduced quadratic Hamiltonian M²k²ζ²(1−η)/η **vanishes at η=1** (physical MOND value) ⇒ strong coupling around Minkowski.
 
+- `reduction_master_certificate` — **L124 (capstone):** one theorem conjoining the load-bearing lemmas of the whole parameter-space reduction — health dichotomy, cubic MOND term, the propagating-scalar elimination, the cuscuton survival, transition-health (elliptic AQUAL), the BBN stiff horn, the lapse-sourced ghost, and ghost separability. ⚠️ **Scope:** certifies the *mathematics* of the reduction, **not** a complete physical theory — the honest verdict (L123) is that the viable all-gates theory is healthy MOND + a minimal decoupled dark sector, not pure MOND.
+
 ## Build
 
 ```
@@ -51,7 +53,7 @@ lake exe cache get      # download prebuilt mathlib oleans
 lake build Mondlean
 ```
 
-## Status (2026-09-09) — GREEN, MACHINE-VERIFIED (39 theorems)
+## Status (2026-09-09) — GREEN, MACHINE-VERIFIED (40 theorems)
 
 `lake build Mondlean` compiles **clean (exit 0), zero `sorry`/`admit`**, and `#print axioms` shows every
 theorem (`kernel_identity`, `Gpp_pos`, `Gpp_zero`, `cubic_leading`, `affine_degeneracy`, `sound_speed_zero`)
