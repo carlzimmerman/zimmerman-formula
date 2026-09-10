@@ -164,6 +164,11 @@ four independent quadrature rows are tested by the accompanying unit gate.
 This is a conditional weak-static prediction, not evidence of relativistic
 closure.
 
+The Lean companion ActionAngleInvariantFormal.lean with runner
+run_lean_action_angle.py independently certifies the two algebraic
+cancellations used by this prediction. It does not formalize the orbit
+quadrature or promote the result to a relativistic theory.
+
 ## Normalized-acceleration parent (2026-09-09)
 
 The adjacent `../normalized_acceleration_parent_2026/` directory tests a new
