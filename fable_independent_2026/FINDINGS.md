@@ -3554,3 +3554,27 @@ health saga.
   that bracket, general in the kernel μ. A reframing/classification result, not a claim the theory is
   complete — the cuscuton branch still carries the intrinsic BBN fine-tuning (L87) and astra's full metric
   constraint algebra remains to be run.
+
+## L96 — NEW PHYSICS: no collisionless-halo dynamical friction (derived from the cuscuton theorem)
+
+`L96_no_halo_dynamical_friction.py` + `.out` (**7 checks, 7 PASS**). A distinctive, falsifiable prediction
+DERIVED from L95, not assumed.
+
+- **⭐ THE DERIVATION.** L95 ⇒ the MOND phantom is a **cuscuton** (non-propagating field), not collisionless
+  particles, so it has **no phase-space distribution and forms no trailing wake**. Chandrasekhar dynamical
+  friction is entirely the drag from a particle overdensity; with no particle halo, the mechanism has no
+  medium. **Collisionless-halo Chandrasekhar friction is structurally absent.**
+- **⭐ PREDICTION A — fast bars.** ΛCDM halo friction brakes bars to the slow regime R=R_corot/R_bar>1.4
+  within a few Gyr; observations find **fast bars R<1.4** (a standing ΛCDM tension). No halo → no bar-halo
+  friction → bars stay fast, matching observation.
+- **⭐ PREDICTION B — Fornax GCs don't sink.** In an ΛCDM halo Fornax's massive globular clusters have
+  Chandrasekhar sinking times ~0.7–1 Gyr ≪ Hubble (the classic timing problem: they should have merged to
+  the nucleus), yet are observed un-sunk at ~0.2–1.6 kpc. No halo → no Chandrasekhar sinking → matches.
+- **⚠️ HONEST SCOPE.** NOT "MOND is frictionless" — a body in a MOND field feels a real MOND field friction
+  (Ciotti–Binney, Nipoti et al.), system-dependent and debated. The claim is narrow and structural: the
+  ΛCDM collisionless-HALO friction (∝ a halo density that does not exist) is absent. Fast bars is a fairly
+  clean cuscuton success; the Fornax case requires the residual MOND friction shown small — a named open
+  quantitative item.
+- **VERDICT.** New-physics content = the derivation: a structural gravity theorem (cuscuton, L95) predicts
+  specific galactic-dynamics signatures (fast bars, un-sunk GCs) that distinguish it from particle dark
+  matter, at two present-day ΛCDM tensions — testable now.

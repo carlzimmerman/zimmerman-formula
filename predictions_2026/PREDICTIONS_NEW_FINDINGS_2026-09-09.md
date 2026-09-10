@@ -130,6 +130,14 @@ RMMG). *Test:* precise rotation curves in the transition region (where g ~ a₀)
 parameter-free 1/r fall-off above the flat asymptote. *Discriminator:* a dark-matter halo gives a
 profile-dependent (fittable) correction; this one is fixed by the kernel with no freedom. **Status: NEW.**
 
+**P18 — No collisionless-halo dynamical friction (fast bars, un-sunk Fornax GCs).** Because the MOND phantom
+is a cuscuton (non-propagating field, no phase-space wake, L95/L96), it exerts no Chandrasekhar friction from
+a particle halo. *Predictions:* galactic bars stay fast (R=R_corot/R_bar<1.4, vs ΛCDM halo-braked >1.4); the
+Fornax dSph globular clusters do not sink (vs the ΛCDM ~1 Gyr timing problem). *Discriminator:* ΛCDM predicts
+halo-driven sinking/slowing; the cuscuton predicts none. *Caveat:* MOND has its own (generally weaker) field
+friction, so the Fornax case needs that residual shown small; the fast-bar signal is cleaner. **Status: NEW —
+derived from the cuscuton theorem.**
+
 ---
 
 ## The single open item these predictions hinge on
