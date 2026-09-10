@@ -92,6 +92,17 @@ denominator vanish.  The candidate therefore needs the tensor-compensator
 Dirac chain to show that this would-be instantaneous spin-0 mode is removed,
 not merely tune its PPN numerator away.
 
+The five-component trace-free multiplier audit makes that decomposition
+explicit.  For a scalar Fourier mode, one TF component is the scalar
+constraint already included above; the other four components enter as
+independent zero-velocity spectators.  SymPy generates the enlarged
+22-dimensional phase space and finds, at (k\ne0), ten primary constraints,
+six nonzero secondary constraints, PB rank 10, six first-class and ten
+second-class constraints, hence zero scalar-sector DOF.  No extra vector or
+tensor auxiliary pole is introduced at this linear level.  The fixed-lapse
+\(k=0\) extension still reports one mode, while the lapse-retained FLRW
+minisuperspace chain closes it as a gauge artifact (see the separate gate).
+
 ## Reproduction
 
 ```text
@@ -110,4 +121,7 @@ python3 -B run_linear_sector_lean.py
 python3 -B ae_ppn_tuning_gate.py
 python3 -B -m unittest -v test_ae_ppn_tuning.py
 python3 -B run_ae_ppn_lean.py
+python3 -B full_tensor_multiplier_dirac_gate.py
+python3 -B -m unittest -v test_full_tensor_multiplier_dirac.py
+python3 -B run_full_tensor_multiplier_lean.py
 ```
