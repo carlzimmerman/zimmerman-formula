@@ -4075,3 +4075,14 @@ fix: source is −ρΦ, η=1, σ=−1), L110 (BBN/background), L114 (kinematic k
 (nonelliptic lapse + retained scalar pair) — **not a complete theory**; astra now exploring KGB /
 curvature-clock extensions to remove them. Lean docstrings + README corrected accordingly. Script
 `L115_correction_astra_cam_audit.py` (6/6, a correction lane).
+
+## L116 — CAM is a KHRONOMETRIC theory (H_⊥ second-class, spatial diffeos clean) (7/7)
+
+Independent verification of the MOND+multiplier agent's result. The CAM lapse Hessian
+`∂²[N F(|∇N|/N)]/∂(∇N)² = (2M²e^{−y}/N)(δ_ij − y n̂_i n̂_j)` is **nonzero** (GR control: identically zero),
+so the lapse is dynamical and **H_⊥ is second-class** — CAM is a **khronometric / preferred-foliation**
+theory (Blanchet–Marsat class), not 4D-diffeo-invariant. Perp eigenvalue 2M²e^{−y}/N > 0 always; parallel
+2M²e^{−y}(1−y)/N flips sign at y=1 (nonelliptic for y>1). Reduced criterion {p_n,S_n}=−2M²k²η ⇒ H_⊥
+first-class iff η=0 (no acceleration term). Momentum constraint H_i first-class (spatial diffeos anomaly-free).
+Correctly classifies CAM; the L108/L111 "pure-cuscuton/2-DOF" reading is superseded. Script
+`L116_cam_khronometric_structure.py` (7/7).
