@@ -28,7 +28,7 @@ def main() -> int:
     den2 = (2 - c14) * c123
     alpha1 = sp.factor(-8 * (c3**2 + c1 * c4) / den1)
     alpha2 = sp.factor(alpha1 / 2 -
-                       (c1 + 2 * c3 - c4) * (2 * c1 + c3 + c4) / den2)
+                       (c1 + 2 * c3 - c4) * (2 * c1 + 3 * c2 + c3 + c4) / den2)
     cT2 = sp.factor(1 / (1 - c13))
 
     luminal_subs = {c3: -c1}
