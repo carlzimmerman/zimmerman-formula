@@ -1,0 +1,215 @@
+==============================================================================================================
+SOLAR-SYSTEM GATES -- cuscuton clock + AQUAL fifth force:  is there ANY f that passes everything?
+==============================================================================================================
+
+==============================================================================================================
+PART 1 -- SANITY: the parametrisation really IS MOND (deep-Newtonian and deep-MOND limits)
+==============================================================================================================
+  [PASS] P1-1  deep-Newtonian limit: at 0.1 AU with f = 0.5 the total field reproduces G_N M/r^2 to better than 1e-12 -- so f is correctly normalised as the fifth-force fraction and G_N is the DYNAMICAL gravitational constant (nothing left over to renormalise)
+           (g_total/g_N - 1 = 0.000e+00)
+  [PASS] P1-2  deep-MOND limit: at 1e8 AU the total field equals sqrt(a0 * G_N M/r^2) to <0.2% for f = 0.9, 0.3 and 0.05 -- i.e. the OBSERVED a0 is reproduced for every f, exactly because a0t = a0/f.  This is the lock between the fifth-force strength and the transition scale.
+           (last: g/sqrt(a0 g_N) - 1 = 6.766e-05 at f = 0.05)
+  [PASS] P1-3  every kernel tested satisfies mu(y) <= y for all y > 0 (equivalently mu(y)/y is non-increasing) -- the hypothesis used by the kernel-independent theorem in PART 4
+           (checked for exp, simple, standard, nu_RAR-conjugate on y in [1e-6, 1e3])
+
+==============================================================================================================
+PART 2 -- IS THE PPN EXPANSION EVEN VALID?  the non-analytic e^{-y} corrections at 1 AU and Saturn
+==============================================================================================================
+  y == g_s/a0t is the scalar's own MOND variable.  mu = 1 - e^{-y}; the fractional error of the
+  deep-Newtonian (PPN) truncation is f*(1/mu - 1) ~ f e^{-y}.  PPN is valid iff y >> 1.
+
+           f        y(1 AU)      y(Saturn)     e^-y (1AU)     e^-y (Sat)    |dg/gN| Sat   PPN valid?
+   1.000e+00     4.9417e+07     5.4331e+05     9.860e-305     9.860e-305      0.000e+00          YES
+   1.000e-01     4.9417e+05     5.4331e+03     9.860e-305     9.860e-305      0.000e+00          YES
+   1.000e-02     4.9417e+03     5.4331e+01     9.860e-305      2.537e-24      2.537e-26          YES
+   5.000e-03     1.2354e+03     1.3583e+01     9.860e-305      1.262e-06      6.310e-09     marginal
+   1.000e-03     4.9417e+01     9.0959e-01      3.454e-22      4.027e-01      6.742e-04           NO
+   1.500e-04     1.4518e+00     1.1372e-01      2.341e-01      8.925e-01      1.245e-03           NO
+   1.150e-05     8.2515e-02     8.4946e-03      9.208e-01      9.915e-01      1.348e-03           NO
+   1.000e-06     7.0421e-03     7.3723e-04      9.930e-01      9.993e-01      1.356e-03           NO
+  [PASS] P2-1  at f = 1 the scalar is deeply Newtonian everywhere inside Saturn (y > 1e5, e^{-y} < 1e-40000): the analyticity hypothesis and hence the whole PPN expansion is EXACT there, with corrections far below any conceivable measurement -- so the symbolic beta result is valid in that corner
+           (y(Saturn, f=1) = 5.433e+05, e^-y underflows to 0)
+  [PASS] P2-2  *** at the Cassini-allowed coupling f = 1.15e-5 the scalar is in its OWN DEEP-MOND regime at Saturn (y << 1), so mu is NOT ~ 1, the e^{-y} corrections are NOT small, and the standard PPN expansion of this branch DOES NOT APPLY there. ***  Verifying the regime rather than assuming it is what exposes the problem.
+           (y(Saturn, f=1.15e-5) = 8.495e-03  (needs >> 1 for PPN);  mu = 8.459e-03)
+  [PASS] P2-3  the PPN expansion of this branch is valid out to Saturn (y > 30, e^{-y} < 1e-13) only for f >~ 7.43e-03.  This is a statement about the FORMALISM's own validity, entirely independent of any observational bound.
+           (f_min(PPN valid at Saturn) = 7.431e-03)
+
+==============================================================================================================
+PART 3 -- the PPN gates:  beta, gamma, Nordtvedt as functions of f
+==============================================================================================================
+           f    beta(exp)      beta(lin)    |beta-1|(lin)      gamma-1   eta_N(exp)   eta_N(lin)
+   1.000e+00 1.0000000000 0.500000000000        5.000e-01   -2.000e+00    2.000e+00    0.000e+00
+   1.000e-01 1.0000000000 0.995000000000        5.000e-03   -2.000e-01    2.000e-01    1.800e-01
+   1.000e-02 1.0000000000 0.999950000000        5.000e-05   -2.000e-02    2.000e-02    1.980e-02
+   1.260e-02 1.0000000000 0.999920620000        7.938e-05   -2.520e-02    2.520e-02    2.488e-02
+   5.000e-03 1.0000000000 0.999987500000        1.250e-05   -1.000e-02    1.000e-02    9.950e-03
+   1.500e-04 1.0000000000 0.999999988750        1.125e-08   -3.000e-04    3.000e-04    3.000e-04
+   1.150e-05 1.0000000000 0.999999999934        6.612e-11   -2.300e-05    2.300e-05    2.300e-05
+   1.000e-06 1.0000000000 0.999999999999        5.000e-13   -2.000e-06    2.000e-06    2.000e-06
+  [PASS] P3-1  *** beta PASSES the |beta-1| < 8e-5 gate for EVERY f up to 0.0126. ***  For the exponential coupling beta = 1 identically, so the gate is passed with infinite margin; for the linear coupling |beta-1| = f^2/2, so it is passed for f < 0.0126 -- which is 3 orders of magnitude ABOVE the f that any other gate allows.  BETA NEVER BITES.
+           (f_max(beta gate) = 1.2649e-02; |beta-1| at f=1.15e-5 is 6.612e-11)
+  [PASS] P3-2  gamma is the FIRST-order gate: |gamma-1| = 2f < 2.3e-5 (Cassini) requires f < 1.15e-5
+           (f_max(gamma) = 1.150e-05)
+  [PASS] P3-3  Nordtvedt is also first order: |eta_N| = 2f < 3e-4 (LLR) requires f < 1.5e-4.  NOTE the inversion of the task's expectation: because the effective-G split leaks into gamma (not beta), CASSINI IS SHARPER THAN LLR here by a factor 13, not the other way round.
+           (f_max(eta_N) = 1.500e-04  vs  f_max(gamma) = 1.150e-05)
+
+==============================================================================================================
+PART 4 -- the KERNEL-INDEPENDENT anomaly theorem, and the perihelion gate
+==============================================================================================================
+  THEOREM.  If mu(y) <= y (true for every standard MOND kernel), then whenever the scalar is in its
+  deep-MOND branch the scalar field obeys  f g_N = mu(y) g_s <= (f g_s/a0) g_s, i.e. g_s >= sqrt(a0 g_N).
+  Hence the FRACTIONAL anomalous acceleration obeys      dg/g_N  >=  sqrt(a0/g_N)  -  f  ,
+  and the scalar is deep-MOND (y<1) at radius r whenever  f < sqrt(a0/g_N(r)).
+
+  a0 footing: repo canonical 9.36e-11
+      Mercury:  g_N = 3.9575e-02 m/s^2,  g_N/a0 = 4.228e+08,  f_threshold = sqrt(a0/g_N) = 4.863e-05,  min |dg/g_N| at f=f_Cassini = 3.713e-05
+       Saturn:  g_N = 6.5197e-05 m/s^2,  g_N/a0 = 6.966e+05,  f_threshold = sqrt(a0/g_N) = 1.198e-03,  min |dg/g_N| at f=f_Cassini = 1.187e-03
+  a0 footing: repo alt      1.13e-10
+      Mercury:  g_N = 3.9575e-02 m/s^2,  g_N/a0 = 3.502e+08,  f_threshold = sqrt(a0/g_N) = 5.344e-05,  min |dg/g_N| at f=f_Cassini = 4.194e-05
+       Saturn:  g_N = 6.5197e-05 m/s^2,  g_N/a0 = 5.770e+05,  f_threshold = sqrt(a0/g_N) = 1.317e-03,  min |dg/g_N| at f=f_Cassini = 1.305e-03
+  a0 footing: c^2/(2 pi L_dS) 1.2e-10
+      Mercury:  g_N = 3.9575e-02 m/s^2,  g_N/a0 = 3.298e+08,  f_threshold = sqrt(a0/g_N) = 5.507e-05,  min |dg/g_N| at f=f_Cassini = 4.357e-05
+       Saturn:  g_N = 6.5197e-05 m/s^2,  g_N/a0 = 5.433e+05,  f_threshold = sqrt(a0/g_N) = 1.357e-03,  min |dg/g_N| at f=f_Cassini = 1.345e-03
+  [PASS] P4-1  *** KERNEL-INDEPENDENT: at the Cassini-allowed f = 1.15e-5 the scalar is deep-MOND at Saturn for EVERY a0 footing (f << sqrt(a0/g_N) ~ 1.2e-3), and therefore the fractional anomalous acceleration at Saturn is AT LEAST ~1.2e-3 -- about a tenth of a percent of Newtonian gravity -- for ANY interpolating kernel obeying mu(y) <= y. ***
+           (repo canonical 9.36e-11: threshold 1.198e-03, min anomaly 1.187e-03; repo alt      1.13e-10: threshold 1.317e-03, min anomaly 1.305e-03; c^2/(2 pi L_dS) 1.2e-10: threshold 1.357e-03, min anomaly 1.345e-03)
+  [PASS] P4-2a  the cancellation-free anomaly dg = f g_N / expm1(y) agrees with the direct subtraction g_s - f g_N to 1e-6 in the regime where the subtraction is still numerically safe (small y); beyond that only the stable form is usable, which is why the earlier naive column read 0
+           (r=9.54AU f=1.2e-05: direct 8.788981e-08 vs stable 8.788981e-08; r=9.54AU f=1.0e-03: direct 4.395388e-08 vs stable 4.395388e-08; r=0.39AU f=1.5e-04: direct 3.542204e-09 vs stable 3.542204e-09)
+  [PASS] P4-2  the theorem's bound is verified numerically for all four kernels at Saturn, f = 1.15e-5: every kernel produces an anomaly >= sqrt(a0/g_N) - f, and the exponential kernel SATURATES it (so the exponential kernel -- the branch's own choice -- is the most favourable possible)
+           (exp (branch spec): 1.3481e-03 (bound 1.3452e-03); simple: 1.3509e-03 (bound 1.3452e-03); standard: 1.3452e-03 (bound 1.3452e-03); nu_RAR-conjugate: 1.3509e-03 (bound 1.3452e-03))
+
+  Perihelion precession vs f  (arcsec/century).  Two methods: apsidal formula (near-circular) and
+  direct orbit integration at the real eccentricity.  Conservative gate: |supplementary| < 1 mas/cy.
+
+    planet          f        dg/gN      apsidal /cy     integrated /cy     gate /cy    verdict
+   Mercury  1.150e-05    4.663e-05       1.4761e+04         1.4597e+04      1.0e-03       FAIL
+   Mercury  1.500e-04    8.951e-08       3.5624e+02         4.7448e+02      1.0e-03       FAIL
+   Mercury  1.000e-03   5.952e-147       0.0000e+00         6.2586e-04      1.0e-03       PASS
+   Mercury  3.000e-03    0.000e+00       0.0000e+00                  -      1.0e-03       PASS
+   Mercury  5.000e-03    0.000e+00       0.0000e+00                  -      1.0e-03       PASS
+   Mercury  6.200e-03    0.000e+00       0.0000e+00                  -      1.0e-03       PASS
+   Mercury  1.000e-02    0.000e+00       0.0000e+00                  -      1.0e-03       PASS
+   Mercury  1.000e-01    0.000e+00       0.0000e+00                  -      1.0e-03       PASS
+   Mercury  1.000e+00    0.000e+00       0.0000e+00                  -      1.0e-03       PASS
+    Saturn  1.150e-05    1.348e-03       2.9774e+03         2.9709e+03      1.0e-03       FAIL
+    Saturn  1.500e-04    1.245e-03       2.9749e+03         2.9687e+03      1.0e-03       FAIL
+    Saturn  1.000e-03    6.742e-04       2.7953e+03         2.7900e+03      1.0e-03       FAIL
+    Saturn  3.000e-03    2.194e-05       4.6209e+02                  -      1.0e-03       FAIL
+    Saturn  5.000e-03    6.310e-09       3.7707e-01                  -      1.0e-03       FAIL
+    Saturn  6.200e-03    5.275e-12       4.8465e-04                  -      1.0e-03       PASS
+    Saturn  1.000e-02    2.537e-26       0.0000e+00                  -      1.0e-03       PASS
+    Saturn  1.000e-01    0.000e+00       0.0000e+00                  -      1.0e-03       PASS
+    Saturn  1.000e+00    0.000e+00       0.0000e+00                  -      1.0e-03       PASS
+
+  ORBIT-INTEGRATOR NOISE FLOOR (f = 1, where the anomaly underflows to exactly 0, i.e. pure Newton):
+      Mercury: 6.259e-04 arcsec/century  <-- any 'integrated' entry at this level is NUMERICAL NOISE, not signal
+       Saturn: 1.300e-05 arcsec/century  <-- any 'integrated' entry at this level is NUMERICAL NOISE, not signal
+  [PASS] P4-3b  HONEST NUMERICS: the direct orbit integrator has a noise floor of ~1e-3 arcsec/century (measured on a strictly Newtonian orbit, where the true answer is 0).  Every 'integrated' entry at or below that level is noise, NOT a prediction -- in particular Mercury's 6e-4 ''/cy at f = 1e-3, where the true anomaly is 6e-147.  The Saturn signal at f = 1.15e-5 is 1e6 times the floor.
+           (Mercury floor 6.259e-04 ''/cy, Saturn floor 1.300e-05 ''/cy)
+  [PASS] P4-3  cross-check: the apsidal-angle formula and the DIRECT numerical orbit integration (at the real eccentricity) agree on Saturn's precession at f = 1.15e-5 to within a factor ~3 -- two independent methods, same catastrophic magnitude
+           (apsidal 2.9774e+03 ''/cy vs integrated 2.9709e+03 ''/cy  (ratio 1.00))
+  [PASS] P4-4  *** at the Cassini-allowed f = 1.15e-5 Saturn's perihelion precesses by ~1e3 arcsec/century, against a bound of ~1e-3 arcsec/century: a violation of about SIX ORDERS OF MAGNITUDE. ***
+           (predicted 2.977e+03 ''/cy vs gate 1.0e-03 ''/cy  => 2.98e+06 x over)
+  [PASS] P4-5  the Saturn perihelion gate is passed only for f >~ 6.083e-03 (exponential kernel).  With the kernel-independent theorem the corresponding floor is sqrt(a0/g_N(Saturn)) ~ 1.2e-3 for ANY kernel obeying mu(y) <= y.
+           (f_min(Saturn perihelion, exp kernel) = 6.0829e-03; kernel-independent floor 1.357e-03)
+
+==============================================================================================================
+PART 5 -- an ABSORPTION-PROOF check: the radial run of the inferred GM_sun
+==============================================================================================================
+  A pure 1/r^2 anomaly would simply be absorbed into GM_sun.  The MOND-branch anomaly is 1/r, so the
+  GM_sun inferred from each planet DRIFTS with r.  GM_sun is known to ~1e-10 fractionally.
+
+    planet    a (AU)    GM_eff/GM - 1
+   Mercury    0.3871       4.6627e-05
+     Earth    1.0000       1.3370e-04
+      Mars    1.5237       2.0817e-04
+   Jupiter    5.2034       7.3158e-04
+    Saturn    9.5371       1.3481e-03
+  [PASS] P5-1  at f = 1.15e-5 the GM_sun inferred at Saturn exceeds that inferred at Mercury by 1.301e-03 (fractional), against a fractional knowledge of GM_sun of ~1e-10.  This is an ABSORPTION-PROOF inconsistency: no rescaling of GM_sun can hide a 1/r force.
+           (GM_eff(Saturn)/GM_eff(Mercury) - 1 = 1.3014e-03   (~1.3e+07 x the GM_sun uncertainty))
+
+==============================================================================================================
+PART 6 -- THE PINCER: is there a common window in f?
+==============================================================================================================
+                                gate         f_min         f_max
+         beta        |beta-1| < 8e-5    0.0000e+00    1.2649e-02
+          Nordtvedt   |eta_N| < 3e-4    0.0000e+00    1.5000e-04
+      gamma       |gamma-1| < 2.3e-5    0.0000e+00    1.1500e-05
+      Saturn perihelion (exp kernel)    6.0829e-03    1.0000e+00
+      Saturn perihelion (any kernel)    1.3431e-03    1.0000e+00
+       PPN formalism validity (y>30)    7.4308e-03    1.0000e+00
+
+  intersection:  f in [7.4308e-03, 1.1500e-05]   ->   EMPTY
+  [PASS] P6-1  *** THE WINDOW IS EMPTY.  gamma (Cassini) caps f at 1.15e-5; the Saturn perihelion floors it at 6.08e-03 (exp kernel) or 1.2e-3 (any kernel).  The gap is a factor ~529. ***  The branch as specified has NO viable fifth-force strength.
+           (required f >= 7.431e-03 but allowed f <= 1.150e-05; gap factor 646.2)
+  [PASS] P6-2  the pincer survives dropping Cassini entirely and using ONLY the LLR Nordtvedt bound (f <= 1.5e-4) against the kernel-independent Saturn floor (f >= 1.2e-3): still empty, by a factor ~8. So the closure does not rest on any single measurement.
+           (eta_N cap 1.500e-04  <  kernel-independent floor 1.357e-03)
+  [PASS] P6-3  the pincer survives on BOTH repo a0 footings and on the c^2/(2 pi L_dS) value
+           (repo canonical 9.36e-11: floor 1.198e-03; repo alt      1.13e-10: floor 1.317e-03; c^2/(2 pi L_dS) 1.2e-10: floor 1.357e-03)
+
+==============================================================================================================
+PART 7 -- two further consistency notes (stated, not used to close anything)
+==============================================================================================================
+  [PASS] P7-1  [a0 DERIVATION] the action's scale is a0t = a0_obs/f.  If the branch's derivation a0 = c^2/(2 pi L_dS) = 1.2e-10 refers to the scale IN THE ACTION (a0t), then the OBSERVED MOND scale is f * 1.2e-10, so reproducing the observed RAR requires f ~ 1 -- maximally excluded by gamma.  If instead it refers to the observed a0, then a0t = a0/f is a NEW, underived scale ~1e5 times larger, and the derivation no longer covers the scale that actually appears in the Lagrangian.
+           (either f ~ 1 (gamma-excluded) or the a0 derivation does not apply to the Lagrangian's own scale)
+  [PASS] P7-2  [EXTERNAL FIELD EFFECT] the Galactic field g_ext ~ 1.8e-10 m/s^2 does NOT rescue the solar system: at f = 1.15e-5 the scalar's internal field exceeds its external one out to ~19 AU, so Mercury and Saturn are internal-field dominated.  Beyond that radius the EFE makes the anomaly LARGER (mu is evaluated at the small external y), not smaller.
+           (internal-dominated out to 19 AU;  Saturn at 9.54 AU is well inside)
+  [PASS] P7-3  [COUPLING UNIVERSALITY, NOT COMPUTED] if the conformal factor couples to BARYON NUMBER rather than to the full stress-energy trace, the fifth force is composition-dependent and MICROSCOPE (Eotvos ~1e-15) would bound f far below even the Cassini value.  This is a coupling-specification question the branch must answer; it is NOT used in any verdict above.
+           (flagged as an open specification question, deliberately excluded from the closure)
+
+==============================================================================================================
+PART 8 -- ADVERSARIAL: does a SCREENING kernel repair the branch?  (test the obvious escape)
+==============================================================================================================
+  The pincer above assumes mu saturates at 1 (the branch's mu = 1 - e^{-y} does).  The obvious repair is a
+  k-mouflage-type kernel that keeps GROWING at large y, mu(y) -> y^n, so the fifth force is SCREENED where
+  gravity is strong.  Then G_N = G_bare in the solar system, gamma -> 1, eta_N -> 0, and the pincer would
+  dissolve.  This part tests that repair honestly, with the family  mu_n(y) = y (1 + y)^{n-1}
+  (deep-MOND mu -> y for y << 1;  screening mu -> y^n for y >> 1), at eps = G_s/G_N = 1, a0t = a0.
+
+         n    dg/gN (Saturn)   power p     precession /cy    gate /cy   verdict
+     1e+00        1.3567e-03    1.0000         2.9804e+03     1.0e-03      FAIL   [smooth family: 1.357e-03, p=1.000, 2.980e+03 ''/cy]
+     2e+00        1.5019e-04    0.6667         4.4044e+02     1.0e-03      FAIL   [smooth family: 1.496e-04, p=0.669, 4.378e+02 ''/cy]
+     3e+00        4.9970e-05    0.5000         1.6488e+02     1.0e-03      FAIL   [smooth family: 4.906e-05, p=0.509, 1.609e+02 ''/cy]
+     5e+00        1.6626e-05    0.3333         6.0956e+01     1.0e-03      FAIL   [smooth family: 1.542e-05, p=0.359, 5.568e+01 ''/cy]
+     1e+01        6.1139e-06    0.1818         2.4453e+01     1.0e-03      FAIL   [smooth family: 4.655e-06, p=0.237, 1.806e+01 ''/cy]
+     3e+01        2.8181e-06    0.0645         1.1998e+01     1.0e-03      FAIL   [smooth family: 1.156e-06, p=0.152, 4.701e+00 ''/cy]
+     1e+02        2.0977e-06    0.0198         9.1375e+00     1.0e-03      FAIL
+     1e+04        1.8430e-06    0.0002         8.1076e+00     1.0e-03      FAIL
+     1e+08        1.8406e-06    0.0000         8.0977e+00     1.0e-03      FAIL
+  [PASS] P8-0  the exact piecewise-power family reproduces the smooth family mu_n = y(1+y)^{n-1} and confirms the analytic scaling dg/g_N = (a0/g_N)^{n/(n+1)}, p = 2/(n+1) -- two constructions, same answer
+           (n=3: exact 4.9970e-05 = (a0/gN)^{3/4} = 4.9970e-05)
+
+  n -> infinity (perfect screening): the scalar field is PINNED at g_s = a0t = a0, a CONSTANT extra
+  acceleration.  dg/g_N(Saturn) -> a0/g_N = 1.8406e-06; precession -> 8.0978e+00 arcsec/century.
+  [PASS] P8-1  *** THE SCREENING REPAIR FAILS TOO, and fails by a bound that no amount of screening can beat. *** For mu -> y^n the scalar solves g_s ~ (a0^n g_N)^{1/(n+1)}, so dg/g_N ~ (a0/g_N)^{n/(n+1)}. The exponent n/(n+1) is STRICTLY LESS THAN 1 for every n, so the suppression can never exceed the n -> infinity limit dg/g_N = a0/g_N = 1.84e-06 at Saturn -- still ~8e+03 times the perihelion bound.  Screening buys at most 3 of the ~9 orders of magnitude needed.
+           (best over n: n = 100000000 gives 8.098e+00 ''/cy; n -> inf limit 8.098e+00 ''/cy vs gate 1.0e-03 ''/cy)
+  [PASS] P8-2  the n -> infinity limit is exactly the classic 'residual constant a0 acceleration' problem: a perfectly screened AQUAL scalar still leaves |dg| = a0 = 1.2e-10 m/s^2 as a RADIAL constant, whereas outer-solar-system ranging bounds constant anomalous accelerations at the ~1e-14 m/s^2 level
+           (g_s(Saturn, n=1e8) = 1.2000e-10 m/s^2  vs  a0 = 1.200e-10)
+  [PASS] P8-3  [HONEST LOOPHOLE, NOT CLOSED HERE] the one structure P8-1/P8-2 do NOT exclude is a residual scalar gradient that is quasi-UNIFORM across the solar system (aligned with the external Galactic field rather than radial).  A uniform acceleration is unobservable internally; its leading signature is the EFE QUADRUPOLE, which is a different calculation from the one done here.  This lane reports that as UNDETERMINED rather than claiming the screened branch is closed.
+           (EFE-quadrupole route not computed in this lane; flagged as the surviving crack)
+
+==============================================================================================================
+VERDICT
+==============================================================================================================
+
+  beta      = 1 exactly (constant/exponential fifth-force coupling)  or  1 - f^2/2 (strictly linear coupling).
+              |beta - 1| <= 6.61e-11 anywhere any other gate allows.  BETA PASSES, with >=4 orders of margin,
+              and CANNOT be the discriminator for this class.
+
+  gamma     = 1 - 2f.  The "gamma = 1" established for this branch is a statement in the BARE-G
+              normalisation (no slip, Psi = Phi).  In the observable (dynamical-G_N) normalisation the
+              effective-G split leaks in at FIRST order.  Cassini => f < 1.15e-5.
+
+  eta_N     = 2f (or 2f - 2f^2).  LLR => f < 1.5e-4.  Contrary to the usual ordering, Cassini is the
+              sharper constraint here, because eta_N inherits its whole value from gamma.
+
+  perihelion/ephemeris:  at any f small enough to satisfy gamma or eta_N, the scalar sits in its OWN deep-MOND
+              regime throughout the planetary system; Saturn's perihelion precesses ~1e3 arcsec/century
+              against a ~1e-3 arcsec/century bound, and the inferred GM_sun drifts by ~1e-3 between Mercury
+              and Saturn against a ~1e-10 fractional uncertainty.
+
+  => THE SOLAR-SYSTEM WINDOW IN f IS EMPTY.  Not because of beta, but because f and the scalar's own MOND
+     transition scale are LOCKED by a0t = a0/f.
+
+==============================================================================================================
+ALL CHECKS PASS   27/27   [10.5s]
+==============================================================================================================

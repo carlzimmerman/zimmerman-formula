@@ -1,4 +1,10 @@
 #!/usr/bin/env python3
+# =====================================================================================================
+# *** PARTIALLY RETRACTED 2026-09-10 -- SEE L136_RETRACTION_cosmology_nogo.py BEFORE CITING ANYTHING ***
+# The VELOCITY-ORDERING LEMMA is INVALID (category error: k_fs=a/v0 is instantaneous; the transfer-function
+#   cutoff is the CUMULATIVE COMOVING free-streaming distance, which CONVERGES and is FROZEN). VEL-2 and the
+#   'no common interior' conclusion are RETRACTED. Cite f06's Lyman-alpha vs Tremaine-Gunn pincer instead.
+# =====================================================================================================
 """
 L125 -- THE FINAL VERDICT: the MOND half is CONFIRMED HEALTHY (Phase B), but the cosmology is a RIGOROUS
         DOUBLE no-go -- pure MOND fails the CMB (L123) AND the minimal decoupled-dark-sector hybrid ALSO

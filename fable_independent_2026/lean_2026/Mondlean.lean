@@ -399,11 +399,13 @@ theorem reduction_master_certificate
 theorem kfs_strictly_increasing (v0 a1 a2 : ℝ) (hv : 0 < v0) (h : a1 < a2) :
     a1 / v0 < a2 / v0 := by gcongr
 
-/-- HYBRID PINCER (G8a ⟹ ¬G-gal): if a dark component clusters at recombination (k below its free-streaming
-    cutoff k_fs(a_rec)=a_rec/v0 — i.e. cold enough for the CMB third peak), then since k_fs grows with a it
-    ALSO clusters today (k < a_now/v0) — it clusters in galaxies ⇒ the L61 overshoot. So "cold-enough-for-the
-    -CMB" forces "clusters-in-galaxies": the two clustering gates have no common interior for ANY minimal
-    decoupled dark sector. -/
+/-- ⚠️ PHYSICAL INTERPRETATION RETRACTED 2026-09-10 (see L136). The ARITHMETIC below is true and stands:
+    from k < a_rec/v0 and a_rec < a_now it follows that k < a_now/v0. What is RETRACTED is the physical
+    reading that this implies "cold-enough-for-the-CMB ⟹ clusters-in-galaxies". That was a category error:
+    a/v0 is an INSTANTANEOUS ratio, whereas the transfer-function cutoff is set by the CUMULATIVE COMOVING
+    free-streaming distance, which CONVERGES and is therefore FROZEN — it does not migrate downward. A single
+    species can be cold at CMB scales and suppressed at galaxy scales simultaneously. Do NOT cite this
+    theorem as a physical no-go; it is arithmetic about a/v0 only. -/
 theorem hybrid_pincer_no_interior (v0 k a_rec a_now : ℝ) (hv : 0 < v0)
     (h_order : a_rec < a_now) (h_cmb : k < a_rec / v0) : k < a_now / v0 :=
   lt_trans h_cmb (kfs_strictly_increasing v0 a_rec a_now hv h_order)

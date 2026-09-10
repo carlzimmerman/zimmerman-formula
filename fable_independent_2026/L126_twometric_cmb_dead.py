@@ -1,4 +1,10 @@
 #!/usr/bin/env python3
+# =====================================================================================================
+# *** PARTIALLY RETRACTED 2026-09-10 -- SEE L136_RETRACTION_cosmology_nogo.py BEFORE CITING ANYTHING ***
+# GATE 7 (the CMB/Yukawa kill) is RETRACTED -- it used the MASSIVE spin-2 exchange ALONE. The correct
+#   ghost-free bimetric cross-sector force is eta=1-(4/3)(1+mr)e^{-mr}, which is LOW-pass (deta/dr>0), and a
+#   window exists at Compton ~21-235 kpc. F1/F2/F3 and HORN-1 RETRACTED. GATE 5 (the ghost) is NOT retracted.
+# =====================================================================================================
 """
 L126 -- THE LAST DOOR CLOSES: the two-metric (bimetric) branch is CMB-DEAD, mass-independently. A graviton
         mass is a HIGH-PASS force filter, but CMB-driving + galaxy-smoothness needs a LOW-PASS filter -- the
