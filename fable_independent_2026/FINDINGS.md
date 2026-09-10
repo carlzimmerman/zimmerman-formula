@@ -5054,3 +5054,38 @@ evacuated to η ≈ 0.04, which the RAR at low mass would have to tolerate (not 
 kernel) that is simultaneously the Lyα forest's worst case and dependent on the generous growth bound. Decisive test unchanged: a flux-power
 run at (τ = 5 Gyr, v_k = 600 km/s). This test DERIVES nothing; it bounds a phenomenological patch. The derivation target remains the
 single-metric kinetic-mixed action with α₁ screening.
+
+## L168 — THE FLUX-POWER TEST at the L167 cell (τ = 5 Gyr, v_k = 600 km/s): the two-body decay window is CLOSED (2026-09-10)
+
+`L168_flux_power_two_body_decay.py` / `.out` — 10/10 checks, none literal-True, 38 s. Method: exact linear response for the kicked
+daughters (Gilbert solution of the linearised Vlasov equation, cohort by birth epoch, daughters inherit the mother's δ and θ, self-gravity
+fed back by a direct linear solve), sub-horizon Newtonian limit k ≥ 0.02 h/Mpc from z = 100 with CLASS ΛCDM initial conditions.
+Controls: my ΛCDM growth matches CLASS to 1.1% (0.1–10 h/Mpc); τ = 5 Gyr with v_k = 0 reproduces ΛCDM to 6e-4; S₈ of the cell = 0.7865
+independently reproduces L160's generous-bound 0.787 (two methods, one number). The class_decays fork was tried first and rejected: with
+all the CDM decaying it returns ΔN_eff = 66 and zero daughter mass today, so its background is wrong for this setting.
+
+**The result.** At z = 3 the cell's T²(k) = P/P_ΛCDM falls from 0.97 at k = 0.3 h/Mpc to 0.72 at 1.2, 0.52 at 2.3, and a PLATEAU at 0.43
+for k ≥ 5 h/Mpc. The plateau is (1 − f_d)² with f_d = 0.348 the fraction decayed by z = 3: every daughter born more than ~0.1 Gyr before
+z = 3 carries no power on forest scales, and what is left is the still-cold mother plus baryons, squared. Suppression at k = 5 h/Mpc, z = 3
+is 53%. The allowed 5.3 keV thermal relic (Iršič et al. 2017) is suppressed 0.6% there; the excluded 3.5 keV relic 3%. Area criterion
+δ_A = 0.316 (WDM-equivalent 1.46 keV) versus 0.020 (5.3 keV) and 0.054 (3.5 keV). Linear 1-D proxy at k∥ = 0.005–0.1 s/km: 0.62–0.43
+of ΛCDM versus 0.99–0.89 for 5.3 keV and 0.97–0.74 for 3.5 keV. The cell passes only the conservative area bound δ_A < 0.38 (Murgia et al.
+2018), and only because a plateau is not a cutoff — that criterion was calibrated on cutoff shapes and is the inapplicable one.
+
+**L164 superseded.** L164's "strict upper bound" of 9–22% at k = 5 h/Mpc, z = 3 was not a bound: the exact answer is 53%. The window was
+never as open as L163/L164 described.
+
+**The lifetime pincer (kick-independent for v_k ≳ 200 km/s).** Forest floor T² = e^{−2t₃/τ} with t₃ = t(z=3) = 2.14 Gyr: a 10%
+tolerance needs τ ≥ 41 Gyr; the 5.3 keV-calibrated tolerance needs τ ≥ 744 Gyr. L167's galaxy gate needs τ ≤ 20 Gyr (and τ = 20 already
+needs 994 km/s on the massive host). Closed with a margin of 2× (loose) to 37× (calibrated). Growth is NOT the killer: S₈ = 0.787 is inside
+3σ of KiDS-Legacy.
+
+**Lean (87 theorems, zero sorry, axioms ⊆ {propext, Classical.choice, Quot.sound}):** `two_body_plateau_identity`,
+`two_body_forest_lifetime_bound`, `two_body_tau_pincer` (forest floor + galaxy gate ⇒ τ_gal ≥ 2t₃/(−log T_min)),
+`two_body_pincer_numeric` (t₃ = 2.14, T_min = 0.9 ⇒ the bound exceeds 20 Gyr, using only 1 + x ≤ eˣ).
+
+**Verdict.** The two-body decay branch of temporal separation is DEAD: galaxies need the daughters gone by z ~ 1 and the forest needs
+them present at z = 3, and both statements are about the same decayed fraction. With L159–L164 (isotropic removal EMPTY), the whole
+temporal-separation escape from the dark-fraction pincer (L145–L151, L166 clause i) is closed. Limits: linear theory, cold baryons,
+ε → 0, forest bounds cited as thermal-relic-equivalent scales rather than re-fitted flux likelihoods; none of these can move a 53%
+linear deficit at k = 5 h/Mpc, z = 3 inside a ~1% tolerance. This test DERIVES nothing; it removes a phenomenological patch.

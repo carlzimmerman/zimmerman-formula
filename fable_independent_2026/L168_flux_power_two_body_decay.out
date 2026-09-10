@@ -1,0 +1,105 @@
+  CLASS LCDM: sigma8 = 0.8228, f(z=100) = 0.9806, age = 13.81 Gyr
+
+======================================================================================================================
+L168  FLUX-POWER TEST at (tau = 5 Gyr, v_k = 600 km/s): exact linear response for the kicked daughters
+======================================================================================================================
+  grid: 420 epochs z = 100 -> 0, 44 k in [0.02, 30] h/Mpc; Om = 0.3138
+    LCDM control (my solver)       0.3s
+    tau=5, v_k=0 (no kick)         0.3s
+  [PASS] C1 my LCDM control reproduces CLASS's linear growth P(z=3)/P(z=100) to 2% for 0.1 <= k <= 10 h/Mpc (sub-horizon + cold baryons)
+           (max |dev| = 0.0113; at k=0.02: -0.0154)
+  [PASS] C2 tau = 5 Gyr with v_k = 0 reproduces the LCDM control to 1e-3 at z = 3 (cohort bookkeeping conserves the growing mode)
+           (max |P ratio - 1|^(1/2) = 6.41e-04)
+    tau=5 Gyr, v_k=600 km/s        7.6s
+    tau=5 Gyr, v_k=450 km/s        7.4s
+    tau=5 Gyr, v_k=300 km/s        7.3s
+    tau=20 Gyr, v_k=600 km/s       7.5s
+    tau=5 Gyr, v_k=994 km/s        7.6s
+
+======================================================================================================================
+T^2(k) = P_DDM / P_LCDM (linear)
+======================================================================================================================
+    k [h/Mpc]    0.02    0.04    0.08    0.15    0.30    0.60    1.19    2.34    4.62    9.12   18.01
+    tau    5 v_k  600 z=3:   1.001   1.001   0.999   0.994   0.974   0.904   0.716   0.524   0.468   0.443   0.432
+    tau    5 v_k  600 z=2:   1.002   1.001   0.998   0.988   0.951   0.827   0.548   0.371   0.321   0.296   0.285
+    tau    5 v_k  450 z=3:   1.001   1.001   1.000   0.997   0.986   0.944   0.812   0.580   0.497   0.451   0.436
+    tau    5 v_k  450 z=2:   1.002   1.001   1.000   0.994   0.973   0.897   0.681   0.404   0.336   0.305   0.289
+    tau    5 v_k  300 z=3:   1.001   1.001   1.001   0.999   0.994   0.975   0.906   0.721   0.525   0.469   0.443
+    tau    5 v_k  300 z=2:   1.002   1.002   1.001   0.998   0.989   0.953   0.831   0.554   0.372   0.321   0.297
+    tau   20 v_k  600 z=3:   1.000   1.000   1.000   0.998   0.993   0.973   0.916   0.848   0.823   0.811   0.805
+    tau   20 v_k  600 z=2:   1.000   1.000   1.000   0.997   0.986   0.948   0.852   0.771   0.741   0.726   0.718
+    tau    5 v_k  994 z=3:   1.001   1.000   0.996   0.982   0.930   0.777   0.552   0.484   0.450   0.435   0.427
+    tau    5 v_k  994 z=2:   1.001   0.999   0.992   0.966   0.873   0.630   0.385   0.324   0.299   0.287   0.281
+  [PASS] C3 monotonic: at z = 3 the cell's T^2(k) decreases with k (2e-3 noise), and suppression grows with v_k (300 < 450 < 600 < 994) and shrinks with tau (20 vs 5)
+           (largest upward step in T^2(k): -4.89e-05)
+    decayed fraction at z = 3 for tau = 5 Gyr: f_d = 0.348 (t(z=3) = 2.14 Gyr)  ->  small-scale floor (1 - f_d)^2 = 0.425;  T^2 at k = 18 h/Mpc: 0.430
+  [PASS] C4 the small-scale plateau of T^2 equals (1 - f_d(z=3))^2 to 5%: daughters born more than ~0.1 Gyr before z = 3 carry NO power at k >= 5 h/Mpc, so the residual is the still-cold mother + baryons squared. (L164's 9-22% 'strict upper bound' at k = 5 is thereby SUPERSEDED: it was not a bound.)
+           (cell suppression at k = 5 h/Mpc, z = 3: 53.2%; plateau/(1-f_d)^2 = 1.013)
+
+======================================================================================================================
+AREA CRITERION delta_A over 0.5-20 h/Mpc at z = 3 (Murgia et al. 2017 definition; bound delta_A < 0.38, Murgia et al. 2018, CITED)
+======================================================================================================================
+    tau    5 v_k  600: delta_A = 0.3162
+    tau    5 v_k  450: delta_A = 0.3051
+    tau    5 v_k  300: delta_A = 0.2841
+    tau   20 v_k  600: delta_A = 0.0939
+    tau    5 v_k  994: delta_A = 0.3307
+    thermal WDM 5.3 keV : delta_A = 0.0201
+    thermal WDM 3.5 keV : delta_A = 0.0541
+    thermal WDM 2.0 keV : delta_A = 0.1824
+    thermal WDM 1.0 keV : delta_A = 0.5120
+    cell's WDM-equivalent thermal mass (matched delta_A): 1.46 keV
+  [PASS] C5 [DEFICIT, verified] area criterion: the cell suppresses MORE than the EXCLUDED 3.5 keV thermal relic (Viel et al. 2013), and far more than the allowed 5.3 keV one (Irsic et al. 2017): delta_A(cell) > delta_A(3.5 keV)
+           (delta_A cell 0.3162 vs 5.3 keV 0.0201, 3.5 keV 0.0541, 2 keV 0.1824)
+  [PASS] C6 area criterion against the conservative Murgia et al. 2018 bound delta_A < 0.38
+           (delta_A(cell) = 0.3162)
+
+======================================================================================================================
+LINEAR 1-D PROXY P_1D(k_par) ~ int_{k_par}^inf k P(k) dk at z = 3, in s/km (ratio to LCDM; thermal WDM for calibration)
+======================================================================================================================
+  def row(lab, P1): print(f"    {lab:<18}" + " ".join(f"{np.interp(kp, kv_of_kh(kk), P1/P1_l):8.3f}" for kp in KP))
+  r_cell = np.array([np.interp(kp, kv_of_kh(kk), P1_c / P1_l) for kp in KP]); r_53 = np.array([np.interp(kp, kv_of_kh(kk), P1_w[5.3] / P1_l) for kp in KP])
+  r_35 = np.array([np.interp(kp, kv_of_kh(kk), P1_w[3.5] / P1_l) for kp in KP])
+    k_par [s/km]         0.005    0.010    0.020    0.050    0.100
+    cell (5, 600)        0.621    0.524    0.470    0.442    0.433
+    WDM 5.3 keV          0.987    0.981    0.971    0.942    0.893
+    WDM 3.5 keV          0.968    0.953    0.927    0.855    0.740
+    WDM 2.0 keV          0.912    0.872    0.802    0.617    0.369
+  [PASS] C7 [DEFICIT, verified] 1-D proxy: at every k_par in 0.005-0.1 s/km the cell's suppression EXCEEDS the excluded 3.5 keV relic's (linear proxy; nonlinear/thermal smoothing damps both alike)
+           (cell/5.3keV ratios: 0.621/0.987, 0.524/0.981, 0.470/0.971, 0.442/0.942, 0.433/0.893)
+
+======================================================================================================================
+sigma_8 and S_8 at z = 0 from the exact linear response (replaces L160's (A)/(B) growth-treatment ambiguity)
+======================================================================================================================
+    tau    5 v_k  600: sigma_8 = 0.7691, S_8 = 0.7865  (LCDM 0.8228, 0.8415; KiDS-Legacy 0.815 +/- 0.016)
+    tau    5 v_k  450: sigma_8 = 0.7912, S_8 = 0.8091  (LCDM 0.8228, 0.8415; KiDS-Legacy 0.815 +/- 0.016)
+    tau    5 v_k  300: sigma_8 = 0.8087, S_8 = 0.8270  (LCDM 0.8228, 0.8415; KiDS-Legacy 0.815 +/- 0.016)
+    tau   20 v_k  600: sigma_8 = 0.7995, S_8 = 0.8177  (LCDM 0.8228, 0.8415; KiDS-Legacy 0.815 +/- 0.016)
+    tau    5 v_k  994: sigma_8 = 0.6988, S_8 = 0.7147  (LCDM 0.8228, 0.8415; KiDS-Legacy 0.815 +/- 0.016)
+  [PASS] C8 S_8 of the cell lies within 3 sigma of KiDS-Legacy (>= 0.767), computed with the actual growth, not L160's bounds
+           (S_8(cell) = 0.7865; L160 quoted (B) 0.787 / (A) lower)
+
+======================================================================================================================
+THE LIFETIME PINCER (kick-independent for v_k >~ 200 km/s: any such kick free-streams past k ~ 1 h/Mpc by z = 3)
+======================================================================================================================
+    WDM-calibrated: no more suppression at k = 5 h/Mpc, z = 3 than the allowed 5.3 keV relic: (1-f_d)^2 >= 0.994  =>  tau >= 744 Gyr
+    loose: 10% at k = 5 h/Mpc: (1-f_d)^2 >= 0.900  =>  tau >= 41 Gyr
+    L167 galaxy gate: tau <= 20 Gyr (tau = 20 already needs v_k >= 994 km/s on the 220 km/s host).  Pincer margin (loose): 2.0x
+  [PASS] C9 lifetime pincer: even the loose forest tolerance (10% at k = 5 h/Mpc, z = 3) needs tau above the largest lifetime the L167 galaxy gate allows (20 Gyr)
+           (tau_forest >= 41 Gyr vs tau_galaxy <= 20 Gyr)
+  [PASS] C10 cross-validation: this exact linear response reproduces L160's generous-bound S_8 = 0.787 for the cell to 0.01 (two independent methods)
+           (S_8 here 0.7865 vs L160 (B) 0.787)
+
+======================================================================================================================
+VERDICT
+======================================================================================================================
+    cell (tau = 5 Gyr, v_k = 600 km/s): delta_A = 0.316 (WDM-equivalent 1.46 keV; allowed >= 5.3 keV has 0.020); suppression at k = 5 h/Mpc, z = 3: 53.2%; S_8 = 0.787
+    NOTE on the area criterion: delta_A(cell) = 0.316 passes the conservative 0.38 bound ONLY because a plateau at (1-f_d)^2 is not a cutoff; the criterion was calibrated on cutoff shapes (Murgia et al.), so it is the inapplicable one of the three. The WDM-equivalent mass and the 1-D proxy both exclude.
+    forest verdict: DEAD: stronger suppression than the excluded 3.5 keV relic
+    growth verdict: S_8 within 3 sigma of KiDS-Legacy
+    Limits: linear theory + sub-horizon Newtonian limit (k >= 0.02 h/Mpc, z <= 100); cold baryons; eps -> 0 (no dark radiation);
+    forest bounds CITED as thermal-relic-equivalent scales (Viel+05 transfer function), not re-fitted to flux data; no hydro.
+
+======================================================================================================================
+L168 COMPLETE: 10/10 checks PASS.   [38s]
+======================================================================================================================

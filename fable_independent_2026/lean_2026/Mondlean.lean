@@ -9,7 +9,7 @@
   flat a₀(z), subdominant scalar GW) confronting DATA — not by Lean, and not while the intrinsic BBN
   fine-tuning (L84/L87) and astra's open ADM/khronon gates stand.
 
-  Theorems (83 as of 2026-09-10; all: exit 0, zero `sorry`, axioms ⊆ {propext, Classical.choice, Quot.sound}):
+  Theorems (87 as of 2026-09-10; all: exit 0, zero `sorry`, axioms ⊆ {propext, Classical.choice, Quot.sound}):
     hasDerivAt_G, hasDerivAt_Gp   — Gp = dG/dy and Gpp = d²G/dy² proven (not merely asserted).
     kernel_identity               — MOND kernel G'(y)/(2y) = 1 − e^{-y}.
     Gpp_zero, Gpp_pos             — health dichotomy: G''(0)=0, G''(y)>0 ∀ y>0 (no ghost off zero field).
@@ -72,6 +72,7 @@
 import Mathlib.Analysis.SpecialFunctions.ExpDeriv
 import Mathlib.Analysis.Calculus.Deriv.Pow
 import Mathlib.Analysis.SpecialFunctions.Exponential
+import Mathlib.Analysis.SpecialFunctions.Log.Basic
 import Mathlib.Tactic.LinearCombination
 import Mathlib.Tactic.FieldSimp
 import Mathlib.Tactic.Positivity
@@ -844,4 +845,49 @@ theorem necessary_conditions_for_all_gates (f : ℝ → ℝ) (m_g m_c p_eff c_pf
   refine ⟨(dark_fraction_forces_mass_dependence f m_g m_c 0.105 0.988 gate_galaxy gate_cmb
     (by norm_num)).2, ?_, (ppn_alpha1_vanishes_iff_local_source c_pf).1 gate_ppn⟩
   intro h
+  linarith
+
+/-! ### L168: the TWO-BODY DECAY LIFETIME PINCER (forest vs galaxies).
+    Exact linear response (L168) shows that for any kick v_k ≳ 200 km/s every daughter born more than ~0.1 Gyr
+    before z = 3 carries no power at k ≥ 5 h/Mpc, so the small-scale transfer function has a floor
+    T² = (1 − f_d)² = exp(−t₃/τ)² = exp(−2t₃/τ), with f_d the decayed fraction at z = 3 and t₃ = t(z=3) = 2.14 Gyr.
+    The forest tolerates at most a factor T_min there; the L167 galaxy gate needs τ ≤ τ_gal = 20 Gyr.
+    Numbers: T_min = 0.90 (loose) ⇒ τ ≥ 41 Gyr; T_min = 0.994 (5.3 keV-calibrated) ⇒ τ ≥ 744 Gyr. Both exceed 20. -/
+
+/-- (e^{-t/τ})² = e^{-2t/τ}: the plateau identity. -/
+theorem two_body_plateau_identity (t τ : ℝ) : Real.exp (-t / τ) ^ 2 = Real.exp (-2 * t / τ) := by
+  rw [sq, ← Real.exp_add]; ring_nf
+
+/-- Forest floor ⇒ lifetime bound: T_min ≤ e^{-2t₃/τ} with τ > 0 forces 2t₃ ≤ τ·(−log T_min). -/
+theorem two_body_forest_lifetime_bound (t3 τ Tmin : ℝ) (hτ : 0 < τ) (hT : 0 < Tmin)
+    (hforest : Tmin ≤ Real.exp (-2 * t3 / τ)) : 2 * t3 ≤ τ * (-Real.log Tmin) := by
+  have h2 : Real.log Tmin ≤ -2 * t3 / τ := by
+    have := Real.log_le_log hT hforest
+    rwa [Real.log_exp] at this
+  have h3 : τ * Real.log Tmin ≤ τ * (-2 * t3 / τ) := mul_le_mul_of_nonneg_left h2 hτ.le
+  have h4 : τ * (-2 * t3 / τ) = -2 * t3 := by field_simp
+  have h5 : τ * (-Real.log Tmin) = -(τ * Real.log Tmin) := by ring
+  linarith
+
+/-- THE PINCER: forest floor (T_min < 1) plus galaxy gate (τ ≤ τ_gal) ⇒ τ_gal ≥ 2t₃/(−log T_min). -/
+theorem two_body_tau_pincer (t3 τ τ_gal Tmin : ℝ) (hτ : 0 < τ) (hT0 : 0 < Tmin) (hT1 : Tmin < 1)
+    (hforest : Tmin ≤ Real.exp (-2 * t3 / τ)) (hgal : τ ≤ τ_gal) :
+    2 * t3 / (-Real.log Tmin) ≤ τ_gal := by
+  have hlog : 0 < -Real.log Tmin := by have := Real.log_neg hT0 hT1; linarith
+  have hb := two_body_forest_lifetime_bound t3 τ Tmin hτ hT0 hforest
+  rw [div_le_iff₀ hlog]
+  calc 2 * t3 ≤ τ * (-Real.log Tmin) := hb
+    _ ≤ τ_gal * (-Real.log Tmin) := mul_le_mul_of_nonneg_right hgal hlog.le
+
+/-- Numeric instance (loose tolerance): with t₃ = 2.14 Gyr and T_min = 0.9 the forest needs τ > 20 Gyr,
+    i.e. more than the galaxy gate allows. Uses only 1 + x ≤ eˣ. -/
+theorem two_body_pincer_numeric : (20 : ℝ) < 2 * 2.14 / (-Real.log 0.9) := by
+  have h1 : (0.214 : ℝ) + 1 ≤ Real.exp 0.214 := Real.add_one_le_exp 0.214
+  have hlog : -0.214 < Real.log 0.9 := by
+    rw [Real.lt_log_iff_exp_lt (by norm_num)]
+    rw [Real.exp_neg, inv_lt_comm₀ (Real.exp_pos _) (by norm_num)]
+    linarith
+  have hpos : 0 < -Real.log 0.9 := by
+    have := Real.log_neg (by norm_num : (0:ℝ) < 0.9) (by norm_num); linarith
+  rw [lt_div_iff₀ hpos]
   linarith
