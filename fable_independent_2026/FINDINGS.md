@@ -3733,3 +3733,31 @@ test-particle prediction — NOT relativistic-closure evidence (that's the cuscu
 tracers have finite g/a₀, external fields (EFE), and non-spherical baryons that deform I(e); the clean
 signal is the equal-eccentricity ratio → 1. Script: `L102_verify_deepmond_action_angle_invariant.py`
 (11/11), `.out` committed.
+
+## L103 — verified astra's F(Q)Θ scalar GHOST; reconciled L83/L95 as one cuscuton necessity (12/12)
+
+**Correction + unification.** astra (commit 7dc8050b6) found the displayed F(Q)Θ principal scalar is a
+**ghost** on the nonzero-gradient branch: after the action-derived Dirac reduction to `L₁=Ωpż−H_red`
+(Ω=−4M²k²/Q₀, H_red=−2M²k²[A(y₀)p²+z²], A=1+(y−1)e^{−y}), eliminating p gives reduced kinetic coefficient
+**−2M²k²/(Q₀²A) < 0**. I reproduced it independently and, crucially, **calibrated the sign with a healthy
+control**: the same first-order reduction on a standard scalar (Ω=+1, H=p²/2+ω²z²/2) gives **+½** — so the
+negative result is a genuine ghost, not a convention artifact. Generic mixed sector: −U_nz²k²/(2Q₀²U_pp)<0
+whenever U_pp>0, U_nz≠0 — structural, not tuned.
+
+**Reconciliation with L83 (no contradiction, a refinement).** L83 proved (i) no tachyon (λ²≤0, oscillatory)
+and (ii) super-horizon sequestration from the CMB — it **never checked the kinetic sign**. λ² is a ratio
+(stiffness/inertia); a ghost flips the sign of *both* (H_red's overall minus), leaving λ² invariant — which
+is exactly why L83's oscillatory polynomial coexists with astra's ghost. A non-tachyonic, sequestered mode
+can still be a ghost.
+
+**Reconciliation with L95 (the unification).** astra's energy-ghost and L95's constraint-algebra
+non-closure are **two independent obstructions with one exit**: the MOND scalar must not propagate — it must
+be a **cuscuton**. And A(0)=0 means the FLRW background (y₀=0) is the marginal/non-propagating limit (the
+L82 dust/cuscuton branch); the ghost lives on the y₀>0 **galactic** branch, exactly where MOND is active.
+
+**Honest correction to the record.** Drop the unqualified "F(Q)Θ ghost-free": the displayed *propagating*
+scalar is a ghost; F(Q)Θ is healthy **only on the constrained/cuscuton branch**. The phenomenology dossier
+(SPARC fit, PPN>AeST, c_T=c, σ₈=ΛCDM) lives on that constrained dust branch and is **unaffected** — but the
+cuscuton requirement is now shown to be *not optional* (ghost + non-closure both force it). Scope (astra's):
+a scoped obstruction to the *displayed* action, not universal; a regulator changes the action. The cuscuton
+branch resolves it with no new operator. Script `L103_verify_fqtheta_ghost_reconcile_cuscuton.py` (12/12).

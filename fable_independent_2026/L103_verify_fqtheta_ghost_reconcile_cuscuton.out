@@ -1,0 +1,75 @@
+==============================================================================================================
+L103 -- verify astra's F(Q)Theta reduced-scalar ghost; reconcile L83/L95 as one cuscuton necessity
+==============================================================================================================
+
+==============================================================================================================
+PART 0 -- CONTROL: the same reduction on a KNOWN-HEALTHY scalar gives a POSITIVE kinetic coefficient.
+==============================================================================================================
+  [PASS] CTRL-1  applying the SAME first-order (Legendre) reduction to a standard healthy scalar (Omega=+1, H=p^2/2+w^2 z^2/2) returns kinetic coefficient = +1/2 > 0 -- so the method's sign is calibrated: a NEGATIVE reduced kinetic coefficient genuinely means a ghost, not a convention artifact   (healthy control kinetic = 1/2 (> 0))
+
+==============================================================================================================
+PART 1 -- REPRODUCE astra's F(Q)Theta reduced kinetic coefficient (the ghost).
+==============================================================================================================
+  [PASS] GHOST-1  eliminating p from the displayed F(Q)Theta first-order action L1=Omega p zdot - H_red yields reduced kinetic coefficient = -2 M^2 k^2/(Q0^2 A(y0)) -- astra's result reproduced by independent first-order reduction (not inserted)   (kinetic = -2*M2*k**2*exp(y)/(Q0**2*(y + exp(y) - 1)))
+  [PASS] GHOST-2  for M^2,k,Q0 > 0 and A(y0) > 0 the reduced kinetic coefficient is strictly NEGATIVE -- the one local scalar on the nonzero-gradient branch is a GHOST (negative kinetic energy), opposite in sign to the healthy control CTRL-1   (kinetic(M2=k=Q0=1, y0=1.5) = -1.7993 < 0 (ghost); control was +0.5)
+  [PASS] GHOST-3  the GENERIC mixed principal sector (arbitrary MOND stiffness Upp>0, metric-clock braid Unz!=0) gives reduced kinetic coefficient = -U_nz^2 k^2/(2 Q0^2 U_pp) < 0 -- the ghost is STRUCTURAL across this class, not a tuned artifact of the exponential kernel   (generic kinetic = -Unz**2*kg**2/(2*Qg**2*Upp) < 0 for Upp>0, Unz!=0)
+
+==============================================================================================================
+PART 2 -- A(y): ghost structural for y0>0; A(0)=0 is the marginal/non-propagating cuscuton limit.
+==============================================================================================================
+  [PASS] A-1  A(0) = 0 exactly: on the FLRW background y0=|V|/a0=0 (homogeneous, zero spatial gradient) the longitudinal stiffness vanishes, the reduced kinetic coefficient's denominator -> 0 and the mode becomes MARGINAL (lambda^2=0) -- the scalar does NOT propagate there. That is the constrained dust/cuscuton limit of L82/L83, NOT a propagating ghost   (A(0)=0; the cosmological background is the non-propagating limit)
+  [PASS] A-2  A(y) > 0 strictly for all y0 > 0 (rises to A(2)=1+e^{-2}~1.135, tends to 1 as y->inf), so the NEGATIVE kinetic coefficient -2M^2k^2/(Q0^2 A) is well-defined and strictly negative on the ENTIRE nonzero-gradient branch -- i.e. the ghost lives exactly where MOND is active (inside galaxies, |grad phi| != 0)   (A(y)>0 on y>0: { 1e-06:0.000, 0.5:0.697, 1:1.000, 2:1.135, 10:1.000, 100:1.000 })
+
+==============================================================================================================
+PART 3 -- RECONCILE with L83: no contradiction, a refinement (L83 never checked the kinetic sign).
+==============================================================================================================
+  [PASS] L83-1  L83 established (i) NO exponential instability (lambda^2 <= 0, oscillatory: U_pp U_zz >= 0 for the exact G) and (ii) super-horizon sequestration of the extra scalar from CMB observables. NEITHER is the kinetic SIGN. A non-tachyonic, CMB-sequestered mode can STILL be a ghost -- so astra's result is a REFINEMENT of L83, not a contradiction   (L83 verified lambda^2 <=0 (oscillatory, non-tachyonic) + sequestration; kinetic sign was unchecked -> ghost is new & compatible)
+  [PASS] L83-2  lambda^2 is a RATIO (stiffness/inertia); flipping the sign of BOTH (a ghost: negative kinetic AND negative stiffness, as in H_red = -2M^2k^2[A p^2 + z^2] where BOTH bracket terms carry the same overall minus) leaves lambda^2 invariant -- which is exactly why L83's oscillatory polynomial coexists with astra's ghost   (H_red's overall minus sign gives negative kinetic AND negative stiffness => lambda^2>0-form ratio unchanged, ghost hidden from the polynomial)
+
+==============================================================================================================
+PART 4 -- RECONCILE with L95: energy-ghost + closure-obstruction => ONE cuscuton necessity.
+==============================================================================================================
+  [PASS] L95-1  L95 (constraint-algebra domain): a p^2-kinetic MOND scalar CANNOT close the hypersurface-deformation algebra (residual A A'/2 = -mu'/2mu^3 != 0 for monotone mu). astra (energy domain): when the F(Q)Theta MOND scalar DOES propagate (y0>0) it is a GHOST. Two INDEPENDENT obstructions, ONE exit: the MOND scalar must NOT propagate -- it must be a CUSCUTON   (L95 closure no-go + astra energy-ghost => both forbid a propagating MOND scalar => cuscuton forced (two ways))
+  [PASS] L95-2  the exit is consistent and already present: the cosmological background (y0=0) is the marginal/non-propagating limit (A-1), i.e. the constrained cuscuton/dust branch (L82). So F(Q)Theta is HEALTHY only on the constrained (cuscuton) branch; the ghost is the price of letting the MOND scalar propagate on the y0>0 galactic branch   (healthy branch = cuscuton (non-propagating) branch; ghost = the propagating alternative L95 already excluded)
+
+==============================================================================================================
+PART 5 -- HONEST correction to the record, and astra's scope.
+==============================================================================================================
+
+  CORRECTION to my own wording: I recorded F(Q)Theta as 'ghost-free (Dirac + L83)'. That is too strong for
+  the DISPLAYED action: astra shows the displayed F(Q)Theta principal scalar is a GHOST on the y0>0 branch.
+  The accurate statement is: F(Q)Theta is healthy ONLY on the constrained/cuscuton branch (no propagating
+  MOND scalar); the displayed action's propagating scalar is a ghost. This does NOT overturn the dossier's
+  phenomenology (SPARC fit, PPN, c_T=c, sigma_8=LCDM) -- those live on the constrained/dust branch (L82/L83/
+  L91/L93) -- but it REMOVES the unqualified 'ghost-free' claim and REPLACES it with the sharper, already-
+  established requirement that the MOND scalar be a cuscuton (L95). The two costs of the programme are now:
+  (1) intrinsic BBN fine-tuning (L84/L87), and (2) the cuscuton requirement is not optional -- the propagating
+  F(Q)Theta scalar is a ghost (astra) AND cannot close the algebra (L95).
+
+  astra's SCOPE (preserved): this is a scoped obstruction to the DISPLAYED F(Q)Theta action, NOT a universal
+  no-go. Adding a regulator or an extra aether operator defines a DIFFERENT action and would require a fresh
+  full Dirac + PPN + c_T + Ward + FLRW + stability analysis. The cuscuton branch is the natural resolution
+  that needs no new operator.
+
+  [PASS] REC-1  the record is corrected: drop the unqualified 'F(Q)Theta ghost-free'; the displayed propagating scalar is a ghost (astra), F(Q)Theta is healthy only as a cuscuton (constrained branch), and the phenomenology dossier lives on that constrained/dust branch (unaffected)   ('ghost-free' -> 'healthy only on the cuscuton branch'; phenomenology (dust branch) intact)
+  [PASS] SCOPE-1  honestly bounded (astra's own): a scoped obstruction to the displayed action, not universal; a regulator/extra operator changes the action and needs a fresh full analysis. The cuscuton branch is the resolution requiring no new operator   (scoped to displayed action; regulator = different action; cuscuton branch = natural exit)
+
+==============================================================================================================
+VERDICT
+==============================================================================================================
+
+  Independently reproduced astra's F(Q)Theta reduced-scalar GHOST: the same first-order reduction that gives
+  +1/2 for a healthy scalar (sign calibrated) gives -2 M^2 k^2/(Q0^2 A(y0)) < 0 for the displayed F(Q)Theta
+  principal sector, and -U_nz^2 k^2/(2 Q0^2 U_pp) < 0 generically -- a STRUCTURAL ghost on the nonzero-
+  gradient (galactic) branch, with A(0)=0 marking the FLRW background as the marginal/non-propagating limit.
+  This REFINES L83 (which proved no-tachyon + super-horizon sequestration but never the kinetic sign -- a
+  sequestered non-tachyonic mode can still be a ghost) and UNIFIES with L95: astra's energy-ghost and L95's
+  closure obstruction are two independent proofs of the SAME necessity -- the relativistic MOND scalar must
+  be a CUSCUTON (non-propagating). Honest correction: the unqualified 'F(Q)Theta ghost-free' is replaced by
+  'healthy only on the constrained/cuscuton branch'; the phenomenology dossier (SPARC/PPN/c_T/growth) lives
+  on that constrained dust branch and is unaffected. Scope (astra): a scoped obstruction to the displayed
+  action, not a universal no-go; the cuscuton branch resolves it with no new operator.
+
+==============================================================================================================
+L103 COMPLETE: 12/12 checks PASS.   [0.1s]
+==============================================================================================================
