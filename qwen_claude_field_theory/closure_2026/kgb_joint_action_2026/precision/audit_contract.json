@@ -1,0 +1,45 @@
+{
+  "claim_id": "KGB_SHARED_SEED_60_DIGIT_AND_THIRD_DERIVATIVE_2026_09_10",
+  "mathematics": {
+    "assertion_tested": "Independently differentiate H matching to fix the shared PX and PXX at the selected two-mass seed; evaluate the original coupled principal and stress at 60 and 80 digits; verify one third-mass next-derivative mismatch.",
+    "coefficient_domain": "mpmath arbitrary precision at 60 and 80 decimal digits, exact decimal input strings; SymPy original principal/stress expression lambdified to mpmath.",
+    "conventions": "Signature -+++; c=a0=m=|q|=1; X=-grad(phi)^2/2; phi=q*t+psi(r); Jr=0; H=GX/PX is not the Hubble parameter; generic nonzero PX,Z,W branch.",
+    "inputs": [
+      "epsilon1=1e-6, epsilon2=2e-6, X=0.5, P=0, y1=0.1, y2=0.3, bscale=0.25",
+      "U1=bscale*X*r1*g1; U2 solved on the signed H2=H1 branch",
+      "epsilon3=1.5e-6; only the first-derivative matching root initialized near y3=0.16"
+    ],
+    "bounds": {
+      "precision": [60, 80],
+      "two_mass_points": 1,
+      "third_mass_roots": 1,
+      "third_root_initial_pair": [0.15, 0.17],
+      "third_root_maxsteps": 30,
+      "regression_checks": 7,
+      "cone_directions": "Quadratic minimum from endpoints and admissible interior vertex; no angular sampling certificate substituted"
+    },
+    "non_claims": [
+      "No full trajectory, global or FLRW existence proof or certificate.",
+      "No all-roots search or universal no-go from the selected third-mass root.",
+      "The original covariant variation and principal expression are reused, not independently rederived.",
+      "Static-time quadratic energy is not the full nonlinear Hamiltonian.",
+      "No dark matter particles, empirical novelty, measured G or PPN coefficient."
+    ]
+  },
+  "execution_artifacts": [
+    "qwen_claude_field_theory/closure_2026/kgb_joint_action_2026/precision/precision_check.py",
+    "qwen_claude_field_theory/closure_2026/kgb_joint_action_2026/precision/test_precision.py",
+    "qwen_claude_field_theory/closure_2026/kgb_joint_action_2026/joint_static.py",
+    "qwen_claude_field_theory/closure_2026/kgb_joint_action_2026/third_mass.py",
+    "qwen_claude_field_theory/closure_2026/kgb_shared_pressure_2026/shared_pressure.py",
+    "qwen_claude_field_theory/closure_2026/ticking_kgb_inverse_2026/kgb_inverse.py"
+  ],
+  "software": [
+    {"name": "Python", "version": "3.9.6"},
+    {"name": "SymPy", "version": "1.14.0"},
+    {"name": "mpmath", "version": "1.3.0"},
+    {"name": "NumPy source comparator", "version": "1.26.2"},
+    {"name": "SciPy source import", "version": "1.11.4"}
+  ],
+  "randomness": {"used": false, "generator": "", "seed": null}
+}

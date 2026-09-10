@@ -1,0 +1,96 @@
+{
+  "geometry": {
+    "r": "r",
+    "m": "m",
+    "A": "A(r)",
+    "B": "B(r)",
+    "rho": "m*(r*Derivative(B(r), r) + B(r)**2 - B(r))/(r**2*B(r)**2)",
+    "pr": "m*(r*Derivative(A(r), r) - A(r)*B(r) + A(r))/(r**2*A(r)*B(r))",
+    "pt": "m*(2*r*A(r)*B(r)*Derivative(A(r), (r, 2)) - r*A(r)*Derivative(A(r), r)*Derivative(B(r), r) - r*B(r)*Derivative(A(r), r)**2 - 2*A(r)**2*Derivative(B(r), r) + 2*A(r)*B(r)*Derivative(A(r), r))/(4*r*A(r)**2*B(r)**2)",
+    "residuals": [
+      "0",
+      "0"
+    ]
+  },
+  "derivation": {
+    "B": "(2*g*r + 1)/(P*r**2/m + 1)",
+    "rho": "-(4*P*g*r**2 - 2*P*gp*r**3 + 3*P*r + 2*Pp*g*r**3 + Pp*r**2 - 4*g**2*m*r - 4*g*m - 2*gp*m*r)/(r*(2*g*r + 1)**2)",
+    "rho_no_pressure": "2*m*(2*g**2*r + 2*g + gp*r)/(r*(2*g*r + 1)**2)",
+    "metric_radial_perturbation": "r*(-P*r + 2*g*m)/m",
+    "Phi_prime": "g",
+    "Psi_prime": "-P*r/(2*m) + g",
+    "Weyl_prime": "-P*r/(4*m) + g",
+    "slip_prime": "P*r/(2*m)",
+    "slope_ratio": "-P*r/(2*g*m) + 1",
+    "fractional_Weyl_suppression": "P*r/(4*g*m)",
+    "rho_weak": "-3*P - Pp*r + 4*g*m/r + 2*gp*m",
+    "rho_Weyl_weak": "-(3*P*r + Pp*r**2 - 8*g*m - 4*gp*m*r)/(2*r)",
+    "optical_index_first_order": "-Phi - Psi",
+    "exact_log_potential_slope_ratio": "(sqrt(m)*sqrt((2*g*r + 1)/(P*r**2 + m)) - 1)/(g*r)",
+    "exact_pressure_ratio_change": "-P*r*sqrt(2*g*r + 1)/(g*m*sqrt(P*r**2/m + 1)*(sqrt(P*r**2/m + 1) + 1))",
+    "residuals": [
+      "0",
+      "0",
+      "0",
+      "0",
+      "0",
+      "0",
+      "0"
+    ]
+  },
+  "local_constant_pressure_clock": {
+    "A": "-2*M/r + 1",
+    "B": "1/((-2*M/r + 1)*(P*r**2/m + 1))",
+    "rho": "-P*(-4*M + 3*r)/r",
+    "P": "P",
+    "pt": "P*(-M + r)/r",
+    "beta": "M/(r*(-4*M/r + 2))",
+    "X": "q**2*r/(-3*M + 2*r)",
+    "Xprime": "-3*M*q**2/(-3*M + 2*r)**2",
+    "G_X_over_p": "P*(-3*M + 2*r)**3*(-2*M + r)/(3*M*q**4*r**2)",
+    "domain": "r>2M, M,m,P,q>0; local monotone X branch",
+    "residuals": [
+      "0",
+      "0",
+      "0",
+      "0",
+      "0",
+      "0"
+    ]
+  },
+  "target_controls": [
+    {
+      "name": "large_pressure_to_actual_density_ratio",
+      "y": "20.0000000000000000000000000000",
+      "epsilon": "0.00000100000000000000000000000000000",
+      "rg": "0.00000447217595996631553546540523783",
+      "r2P": "2.45808123168275182636268066746e-13",
+      "rho0_over_curvature_density": "0.0000000824454042480834295741193997139",
+      "P_over_curvature_density": "0.0000000274819378048495448013327782601",
+      "rho_over_curvature_density": "8.24454042480834295741193997138e-14",
+      "P_over_rho": "333334.987625928279447158005161",
+      "leading_Weyl_fraction": "0.0000000137409689024247724006663891300",
+      "exact_log_slope_ratio_pressure_change": "-0.0000000274820607086312393878577414466"
+    },
+    {
+      "name": "negative_density_small_pressure_slip",
+      "y": "20.0000000000000000000000000000",
+      "epsilon": "0.00000100000000000000000000000000000",
+      "rg": "0.00000447217595996631553546540523783",
+      "r2P": "8.94435191993263107093081047567e-12",
+      "rho0_over_curvature_density": "0.0000000824454042480834295741193997139",
+      "P_over_curvature_density": "0.00000100000000000000000000000000000",
+      "rho_over_curvature_density": "-0.00000291753670720734071588005749094",
+      "P_over_rho": "-0.342754899203032702007353442630",
+      "leading_Weyl_fraction": "0.000000500000000000000000000000000000",
+      "exact_log_slope_ratio_pressure_change": "-0.00000100000447215925153818902573581"
+    }
+  ],
+  "status": "METRIC DIAGNOSTIC VERIFIED; UNIVERSAL HEALTHY THEORY OPEN",
+  "tests": {
+    "run": 9,
+    "failures": 0,
+    "errors": 0,
+    "passed": true
+  }
+}
