@@ -5093,7 +5093,7 @@ linear deficit at k = 5 h/Mpc, z = 3 inside a ~1% tolerance. This test DERIVES n
 ## L169 — THE SINGLE-METRIC KINETIC-MIXING ACTION: written, reduced, certified — and certified to FAIL cosmology (2026-09-10)
 
 `SINGLE_METRIC_ACTION.md` (the action and its reductions), `L169_single_metric_action.py` / `.out` (9/9, sympy Euler–Lagrange
-of the static action, kernel, transmission, PPN, G-renormalisation, dark-fraction no-go; no literal-True), Lean 92 theorems.
+of the static action, kernel, transmission, PPN, G-renormalisation, dark-fraction no-go; no literal-True), Lean 93 theorems.
 Action: R/16πG + cuscuton clock (0 DOF) + MOND scalar 𝒥(Y) + kinetic mixing (c/4πG)χ^μ∇_μφ + elliptic smoothing constraint
 λ^μ(χ_μ − ξ²D²χ_μ − A_μ) + matter on the one metric. Static limit = the T-B double filter DERIVED: Φ = Φ_N + c(1−ξ²∇²)⁻¹φ,
 φ sourced by the smoothed Newtonian field; transmission T(x) = 1 − e^{−x}(1+x+x²/2) ≤ x³ (Lean), k⁻⁴ UV suppression (Lean),

@@ -297,6 +297,12 @@ incorrectly required a resolved difference between two points on the
 low-k plateau. It failed and is preserved; comparing the explicitly
 tested low- and high-k ranges implements the intended nonconstancy check.
 No kernel or numerical tolerance was changed.
+An added source-charge check also caught a bookkeeping error in the
+returned diagnostic: it subtracted the external density twice, once
+through the solved lapse equation and again from the directly evaluated
+auxiliary charge. Removing the duplicate subtraction makes the direct
+clock charge zero as required. Neither the solved potentials nor the
+curvature transfer changed. The failing output is retained.
 
 ## 5. What fails, and what is still not proved
 
@@ -328,12 +334,67 @@ linear sources are admitted as required causal tests, that version of C-H
 is rejected by this test. This does not reject every double-filter or
 MOND completion. No action change is proposed to conceal the result.
 
-The next decisive work is narrow: determine whether the source and
-boundary prescription are admissible for the intended same-action
-matter/domain, or reproduce the curvature-support failure with two
-ordinary-matter histories on a permitted background. Resolve this before
-any PPN tuning or full Dirac calculation. The full metric/clock variation
-is now available for that task.
+### 5.1 Exact source and original-domain obstruction
+
+The next bounded check now rules out the direct proposed realization,
+without changing the action. On any spherical spacetime
+g_AB dx^A dx^B+r^2 dOmega^2, let E be the orthonormal radial electric
+field. The Maxwell equations are exactly
+
+    partial_t(r^2 E)=0,    partial_x(r^2 E)=0.
+
+This follows by evaluating sqrt(-g_2) r^2 F^{tx}=-r^2 E and includes
+arbitrary lapse and shift. Thus r^2 E=Q is a space/time constant.
+At fixed Q, delta rho_EM=-4 rho_EM Z; this response is already included
+in the background calculation. An extra compact flux perturbation has
+delta Q=0. There is no additional linear spherical source-free Maxwell
+mode to supply the prescribed external stress. Nonspherical Maxwell
+waves do not contribute a monopole at first order about the spherical
+radial field; their quadratic stress is not the linear source tested here.
+
+The background has no massive particles. Adding positive-mass particles
+gives a nonnegative orthonormal density measure. The external density
+cannot be such an addition. In fact its Killing energy obeys the exact
+identity
+
+    integral e^(a x) rho_s dx
+      = [2 e^(a x)(a Z-Z_x)]_endpoints = 0.
+
+The omitted common sphere area is positive. Every nonzero positive-mass
+particle addition instead has strictly positive energy for the everywhere
+timelike Killing field partial_t. For the particular Z=B'' used above,
+also integral rho_s dx=0; rho_s is nonzero by
+integral Z(-Z_xx+a^2 Z) dx=integral [(Z_x)^2+a^2 Z^2] dx>0, so it
+necessarily changes sign. A signed difference between two nonempty
+particle histories is not excluded by positivity, but those histories
+are not perturbations of this empty-particle background. Changing to
+such a background requires solving that same action again. No ordinary
+matter source with identical past data has been constructed; no full
+coupled initial-value uniqueness theorem is assumed.
+
+The exact cylinder also cannot be admitted by merely identifying its x
+coordinate periodically. U(x+ell)-U(x)=p ell and
+N(x+ell)/N(x)=exp(a ell), with p,a nonzero. More generally every smooth
+real scalar U on a compact closed leaf has an extremum with DU=0, whereas
+the cylinder has |DU|=p>0 everywhere. An affine-valued U, a twisted clock,
+or a noncompact leaf would change the specified field/domain data.
+A compact background agreeing approximately on a local patch is possible
+in principle, but the heat operator and its constraints are global; the
+cylinder response cannot simply be imported to it.
+
+These are exact obstructions to promoting this particular diagnostic to
+a physical compact-domain matter experiment, not proofs of causal health.
+The new admissibility diagnostic has 10 checks and exit status 0. An
+independent Gauss-Legendre quadrature uses the actual compact bump at
+a=.5,2,4 and orders 128,256,512; it confirms signed density and zero
+Killing energy within the recorded quadrature residuals. An added-density
+negative control breaks the identity as expected. The exact identity,
+not quadrature alone, supplies the positivity obstruction.
+The smallest remaining decisive task is to obtain an allowed nonzero
+compact-leaf background with actual matter, then compute a constrained
+retarded curvature response for its admissible matter perturbations and
+clock integration data. G03 remains OPEN. Resolve this before PPN tuning
+or a large Dirac calculation; no new action or relaxed target is proposed.
 
 ## 6. Reproduction and portability
 
@@ -352,7 +413,21 @@ in portability_record.json alongside hashes of the rewritten display
 bytes. Scientific numbers and failed-run history are not deleted.
 The fresh G03 inventory authenticates the current displayed files.
 
-No commit or push was requested or performed in this continuation. All
-changes are confined to the G03 study. The Mathbox computation/proof audit
+Final execution statuses for this continuation are 9/9 full-variation
+checks with rc=0; 8/8 retarded-screen diagnostic checks with rc=0 and
+physical criterion FAIL; 13/13 legacy static checks with strict-gate rc=2
+(OPEN); and 10/10 parent-action regression tests with rc=0. The separate
+low-k and source-charge development failures are preserved above. The
+four current Mathbox manifests validate, and their output hashes plus
+the regenerated study inventory are checked after the final runs.
+
+No commit or push was requested in this dispatch or performed by this
+worker. Concurrent commit 301b1545 captured an intermediate version of
+the work, including stale retarded evidence with rc=1/INCONCLUSIVE and
+a producer hash that did not match its corrected committed script. The
+fresh rc=0/conditional-FAIL evidence and manifests here supersede that
+intermediate snapshot; the failed-run files are retained. The capture
+does not itself validate the result. All changes
+by this worker are confined to the G03 study. The Mathbox computation/proof audit
 distinctions are used throughout; the displayed equations and new prose
 also received a conservative mathematical self-review.

@@ -24,7 +24,7 @@ So matter feels **Φ = Φ_N + c (1 − ξ²∇²)⁻¹ φ** and φ is sourced by
 of the f-lanes/G02, now derived from an action instead of imposed. Fourier space (Newtonian regime μ = μ_∞, u = ξ²k²):
 Φ̂ = Φ̂_N / (1 − c²/(μ_∞(1+u)²)). Deep MOND (r ≫ ξ): AQUAL for φ with source cρ, g → √(ã₀ g_N), **ã₀ = c³ a₀**.
 
-## What is certified (Lean, Mondlean.lean 92 theorems, zero sorry)
+## What is certified (Lean, Mondlean.lean 93 theorems, zero sorry)
 
 - `double_filter_kernel`: 1/(k²(1+u)²) = 1/k² − ξ²/(1+u) − ξ²/(1+u)², whose inverse transform gives the point-source
   transmission **T(x) = 1 − e^{−x}(1 + x + x²/2)**, x = r/ξ (script checks the closed form against numerics).

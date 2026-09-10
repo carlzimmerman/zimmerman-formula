@@ -17,7 +17,6 @@ import json
 import platform
 import subprocess
 import sys
-import time
 from pathlib import Path
 
 import sympy as sp
@@ -28,7 +27,6 @@ ROOT = HERE.parents[2]
 
 
 def derive() -> dict:
-    started = time.time()
     x, k, beta = sp.symbols("x k beta", positive=True)
     eps = sp.Function("eps")(x)
     u = sp.Function("u")(x)
@@ -133,7 +131,6 @@ def derive() -> dict:
             "added as a new constraint; its Dirac algebra is not analyzed here."
         ),
         "status": "OBSTRUCTION_TO_ADVERTISED_LAPSE_MULTIPLIER",
-        "runtime_seconds": round(time.time() - started, 6),
     }
     return result
 
