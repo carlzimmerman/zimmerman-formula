@@ -1,0 +1,51 @@
+============================================================================================================
+L101 -- verify astra's York/QUMOND slip obstruction; the lensing observable and carrier discriminator
+============================================================================================================
+
+============================================================================================================
+PART 0 -- CONTROL: the exact exponential QUMOND factor and the nu=2 point.
+============================================================================================================
+  [PASS] CTRL-1  the exact exponential QUMOND boost is nu_exp(x)=1/(1-e^{-x}); it equals 2 exactly at x = log 2 (approx 0.693), i.e. g_bar/a0 = log 2 -- the single acceleration where the slip vanishes   (nu(log2) = 2; x* = log2 = 0.693)
+  [PASS] CTRL-2  nu_exp - 2 changes SIGN across x=log2: nu>2 for x<log2 (deeper MOND) and nu<2 for x>log2 (toward Newtonian), so the slip coefficient flips sign there   (nu(0.4)-2 = 1.03 (>0), nu(1.5)-2 = -0.71 (<0))
+
+============================================================================================================
+PART 1 -- VERIFY astra's slip: vary L_Q wrt the inverse metric on the no-slip branch.
+============================================================================================================
+  [PASS] SLIP-1  the metric stress dL/dh^{ij} = -2 Phi_i Psi_j + F'(u) Psi_i Psi_j; on the no-slip branch (Phi=Psi=q) the diagonal traceless difference is Delta_ij = (nu-2)(q_i^2 - q_j^2) -- astra's result reproduced by direct variation   (Delta_ij = q_i**2*(Fp - 2) + q_j**2*(2 - Fp) = (nu-2)(q_i^2 - q_j^2))
+  [PASS] SLIP-2  the traceless stress vanishes for ALL directions iff nu=2 (F'=2), an isolated acceleration; for a varying kernel nu(x) there is a nonzero traceless metric stress at every other acceleration, which sources an anisotropy Phi != Psi (a SLIP). No-slip fails for this carrier   (Delta_ij=0 for all i,j iff nu=2; nu varies => nonzero slip except at x=log2)
+
+============================================================================================================
+PART 2 -- the OBSERVABLE: an acceleration-dependent lensing-vs-dynamics slip.
+============================================================================================================
+    slip coefficient (nu-2) vs acceleration x = g_bar/a0 (York/QUMOND carrier):
+      x=0.200  nu= 5.517  slip~(nu-2)=+3.517
+      x=0.500  nu= 2.541  slip~(nu-2)=+0.541
+      x=0.693  nu= 2.000  slip~(nu-2)=+0.000
+      x=1.000  nu= 1.582  slip~(nu-2)=-0.418
+      x=2.000  nu= 1.157  slip~(nu-2)=-0.843
+      x=4.000  nu= 1.019  slip~(nu-2)=-0.981
+  [PASS] OBS-1  the York/QUMOND carrier predicts a SPECIFIC acceleration-dependent lensing slip proportional to (nu_exp(x)-2): zero at g_bar/a0=log2, POSITIVE in deep MOND (x<log2), NEGATIVE toward Newtonian (x>log2) -- a sharp, keyed signature in galaxy-galaxy lensing (lensing mass vs dynamical mass as a function of acceleration)   (slip>0 deep-MOND, =0 at log2, <0 Newtonian-ward)
+
+============================================================================================================
+PART 3 -- the CARRIER DISCRIMINATOR (and honest scope).
+============================================================================================================
+  [PASS] DISC-1  the two constitutive carriers give OPPOSITE lensing verdicts: the F(Q)Theta carrier has Phi=Psi (no slip, gamma_lens=1 at all accelerations -- its static branch, prediction P2), while the York/QUMOND carrier has the (nu-2) slip above. Galaxy-galaxy lensing vs acceleration therefore DISCRIMINATES the carriers -- and clean-lensing selects F(Q)Theta   (F(Q)Theta: no slip (gamma_lens=1); York/QUMOND: (nu-2) slip => lensing selects F(Q)Theta)
+  [PASS] DISC-2  [honest scope] this is a bounded ACTION-LEVEL obstruction for the York/QUMOND carrier (astra), not a universal no-go; the multiplier does not remove the residual stress (astra's C4). The slip's exact translation to a measured gamma_lens(x) requires solving the coupled Phi,Psi system for a real profile -- done here only to the (nu-2) proportionality and its sign/zero structure. The result sharpens WHICH carrier the framework must use (F(Q)Theta) and gives a new carrier-discriminating test   (action-level obstruction (not universal); (nu-2) proportionality + sign/zero verified; full gamma_lens(x) needs the profile solve)
+
+============================================================================================================
+VERDICT
+============================================================================================================
+
+  Independently reproduced astra's York/QUMOND slip: varying L_Q on the no-slip branch gives the traceless
+  metric stress Delta_ij=(nu_exp-2)(q_i^2-q_j^2), which vanishes only at nu=2 (g_bar/a0=log2), so this
+  carrier cannot give Phi=Psi on a finite-acceleration galaxy -- a bounded action-level obstruction. Two
+  consequences: (1) clean lensing SELECTS the F(Q)Theta carrier (Phi=Psi) over the York/QUMOND one; (2) the
+  York/QUMOND carrier makes a sharp, testable prediction -- an acceleration-dependent lensing-vs-dynamics
+  slip proportional to (nu-2), zero at g_bar/a0=log2, positive in deep MOND and negative toward Newtonian --
+  so galaxy-galaxy lensing binned by acceleration DISCRIMINATES the carriers. Honest scope: the exact
+  gamma_lens(x) needs the coupled-potential profile solve; here the proportionality, sign, and zero are
+  verified. This narrows the framework's viable carrier and adds a carrier-discriminating lensing test.
+
+============================================================================================================
+L101 COMPLETE: 7/7 checks PASS.   [0.1s]
+============================================================================================================
