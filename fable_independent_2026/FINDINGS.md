@@ -3645,3 +3645,24 @@ structure (L95).
   the mass-monotone c(M), so this rules out a *mass-trend*, not every hidden variable (a decisive test needs
   independent per-galaxy concentration). **ΛCDM is not excluded** on magnitude alone (its ~0.07 dex can hide
   in the observational budget) — the data *disfavour* it only on the correlation axis. Prediction P21.
+
+## L100 — the kill-shot test plan: how to confirm or kill the framework, quantified
+
+`L100_killshot_test_plan.py` + `.out` + `L100_KILLSHOT_TEST_PLAN.md` (**16 checks, 16 PASS**, MC-validated,
+both footings). Turns the two cleanest MOND-vs-dark-matter falsifiers into a concrete observing spec.
+
+- **⭐ TEST 1 — dwarf σ vs R_gc (EFE):** predicted σ = σ_N/√μ_e (capped at σ_iso) rises **×1.95/×1.88** across
+  R_gc 40→250 kpc (fiducial 10⁶ M☉); **DM null = flat.** Precision: ~40 members → 11% (0.049 dex) σ error
+  (routine). Sample: ~10 dwarfs for 3σ, ~28 for 5σ; **the 17 named targets already give ≈3.9σ** (Segue 1/2,
+  UMa II, Coma Ber, Boötes I; Draco, UMi, Sculptor, Sextans, Carina, Crater II, Fornax, Leo IV, CVn I,
+  Leo II, Leo I). **Runnable NOW** (archival + Gaia). ⚠️ Honest caveat: tidal stripping gives a *same-sign*
+  σ–R_gc correlation in ΛCDM, so "DM predicts exactly zero" holds only for tidally-undisturbed dwarfs —
+  break the degeneracy via σ-vs-pericenter at fixed R_gc using Gaia orbits.
+- **⭐ TEST 2 — flat a₀(z) BTFR at z≈2:** predicted **0.00 dex** vs **+0.33 dex** ΛCDM. Precision: per-rotator
+  σ_off≈0.27 dex, binding requirement V to ~9% (×4 in BTFR), M_b to ~0.2 dex. Sample: **~7 rotators for 3σ,
+  ~18 for 5σ** (footing-independent). Targets: lensed discs (Cosmic Snake, A521) + ALMA [CII]/CO cold
+  rotators (Rizzo, Lelli); must be verified deep-MOND (g<a₀) — massive KMOS³D/SINS SFGs are the wrong regime.
+- **⭐⭐ VERDICT.** **Cleaner killshot = the flat-a₀ BTFR** (no astrophysical effect of comparable strength
+  mimics a BTFR-zero-point z-drift). **Sooner/cheaper = the dwarf σ–R_gc** test (runnable now with archival +
+  Gaia data, modulo the tidal control). Both are decisive, both are within reach — the framework is
+  now confront-able, not just characterized.

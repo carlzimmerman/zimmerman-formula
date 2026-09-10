@@ -1,0 +1,178 @@
+======================================================================================================================
+L100 -- KILLSHOT TEST PLAN: dwarf-sigma(R_gc) EFE  &  flat-a0(z) BTFR, as observing specs
+======================================================================================================================
+  a0 footings: canonical 9.3619e-11 / alt 1.1279e-10 m/s^2
+  EFE kernel (from L89, F(Q)Theta static branch): mu(y) = 1 - e^{-y}, y = g_ext/a0
+  MW field model: g_ext(R) = Vc^2/R, Vc = 180 km/s
+======================================================================================================================
+PART 0 -- CONTROLS FIRST (physics limits + statistical machinery must reproduce)
+======================================================================================================================
+  [PASS] C0a  eta=50 (very strong host field): mu_e -> 1 => sigma_EFE -> sigma_Newton (recovers the DM/GR baseline)
+        mu_e(50)=1.0000000000
+  [PASS] C0b  eta->0 (weak host field): mu_e -> eta (deep-MOND EFD boost 1/mu_e diverges, capped at isolated MOND)
+        mu_e(1e-4)=1.000e-04
+  [PASS] C1  isolated-MOND sigma scales as M^{1/4} (BTFR-consistent) => a 40% baryonic-mass error is only 0.25*0.15=0.04 dex in sigma
+        sigma(4M)/sigma(M) = 1.41421 vs 4^(1/4) = 1.41421
+  [PASS] C2  MC significance of rejecting the flat null matches the analytic sqrt(sum(g-gbar)^2)/s to <12% (shape-detection machinery validated)
+        analytic 4.42 sigma vs MC median 4.40 sigma
+  [PASS] C3  MC error on the sample mean matches sigma_point/sqrt(N) to <8% (BTFR zero-point machinery validated)
+        analytic 0.0550 dex vs MC 0.0549 dex
+======================================================================================================================
+TEST 1 -- DWARF sigma(R_gc) EFE: predicted signal, DM null, precision, sample size
+======================================================================================================================
+  Fiducial dwarf: M_baryon = 1e6 Msun, r_half = 300 pc, structure const k = 3
+  internal field g_in = GM/r_half^2 = 1.549e-12 m/s^2 = 0.0165 a0_can (deep-MOND internally)
+
+  [canonical] sigma_N(baryons) = 2.186 km/s   sigma_iso(no-EFE) = 8.621 km/s
+             R_gc[kpc]:       40      80     150     250
+             g_ext/a0 :    0.280   0.140   0.075   0.045
+             sigma[km/s]:  4.421   6.045   8.145   8.621
+             => rises 4.42 -> 8.62 km/s across 40->250 kpc (factor 1.95); DM predicts FLAT.
+
+  [alt      ] sigma_N(baryons) = 2.186 km/s   sigma_iso(no-EFE) = 9.032 km/s
+             R_gc[kpc]:       40      80     150     250
+             g_ext/a0 :    0.233   0.116   0.062   0.037
+             sigma[km/s]:  4.798   6.596   8.913   9.032
+             => rises 4.80 -> 9.03 km/s across 40->250 kpc (factor 1.88); DM predicts FLAT.
+
+  [PASS] T1a  PREDICTED SIGNAL: fiducial-dwarf sigma rises >1.5x (canonical ~1.9x) across 40->250 kpc on BOTH footings; DM null = flat (0x trend)
+        canonical 1.95x ; alt 1.88x
+  PER-DWARF PRECISION (measurement error on sigma from N member velocities):
+    frac error on sigma ~ 1/sqrt(2(N-1)); needs sigma >> per-star velocity error e_v.
+     N_members =   20:  delta_sigma/sigma =  16.2%  = 0.070 dex
+     N_members =   30:  delta_sigma/sigma =  13.1%  = 0.057 dex
+     N_members =   50:  delta_sigma/sigma =  10.1%  = 0.044 dex
+     N_members =  100:  delta_sigma/sigma =   7.1%  = 0.031 dex
+  [PASS] T1b  PRECISION ACHIEVABLE: ~40 member velocities (few km/s each) give <20% (here 11%, 0.049 dex) sigma error -- routine for classical dSphs, feasible for brighter UFDs
+        N=40 -> delta_sigma/sigma = 11.3% ; sigma>>e_v required (classical dSph sigma~7-10 km/s, e_v~2 km/s: OK)
+
+  REAL TARGET LIST (spanning R_gc ~ 28-254 kpc):
+     Segue 1              R_gc =   28.0 kpc   [UFD]
+     Ursa Major II        R_gc =   38.0 kpc   [UFD]
+     Segue 2              R_gc =   42.0 kpc   [UFD]
+     Coma Berenices       R_gc =   45.0 kpc   [UFD]
+     Bootes I             R_gc =   64.0 kpc   [UFD]
+     Draco                R_gc =   76.0 kpc   [classical]
+     Ursa Minor           R_gc =   78.0 kpc   [classical]
+     Sculptor             R_gc =   86.0 kpc   [classical]
+     Sextans              R_gc =   89.0 kpc   [classical]
+     Carina               R_gc =  107.0 kpc   [classical]
+     Crater II            R_gc =  117.0 kpc   [classical(LSB)]
+     Hercules             R_gc =  126.0 kpc   [UFD]
+     Fornax               R_gc =  149.0 kpc   [classical]
+     Leo IV               R_gc =  155.0 kpc   [UFD]
+     Canes Venatici I     R_gc =  218.0 kpc   [UFD]
+     Leo II               R_gc =  236.0 kpc   [classical]
+     Leo I                R_gc =  254.0 kpc   [classical]
+  [PASS] T1c  REAL TARGETS EXIST: 17 named dSph/UFD span R_gc 28-254 kpc, incl. >=6 classical dSphs with easy sigma (Draco,Sculptor,Sextans,Carina,Fornax,Leo I/II,UMi)
+        R_gc range 28-254 kpc, 9 classical + 8 UFD
+
+  SAMPLE SIZE (detect the EFE R_gc-trend vs the DM-flat null at 3/5 sigma):
+    test statistic: residual r_i = log10(sigma_obs/sigma_iso) vs the known EFE shape g(R_gc);
+    significance of rejecting the flat null = sqrt( sum_i (g_i - gbar)^2 ) / s_point.
+    per-dwarf scatter budget: meas 0.049 + mass(M^1/4) 0.037 + intrinsic/structural 0.100 = 0.118 dex
+  [canonical] signal std over population = 0.113 dex ; per-dwarf sig^2 = 0.924
+             => N_dwarfs(3 sigma) = 10 ; N_dwarfs(5 sigma) = 28   (MC random-draw at N=10: 2.9 sigma)
+             => the 17 NAMED targets (fixed R_gc) already give 3.9 sigma at this scatter
+  [alt      ] signal std over population = 0.110 dex ; per-dwarf sig^2 = 0.869
+             => N_dwarfs(3 sigma) = 11 ; N_dwarfs(5 sigma) = 29   (MC random-draw at N=11: 2.9 sigma)
+             => the 17 NAMED targets (fixed R_gc) already give 3.8 sigma at this scatter
+  [PASS] T1d  SAMPLE SIZE: ~10 dwarfs give 3 sigma and ~28 give 5 sigma against the DM-flat null (canonical); the 17 named dwarfs already yield ~4 sigma at 0.12-dex scatter -- WITHIN today's ~17-25 with good kinematics
+        3 sigma: N~10 ; 5 sigma: N~28 ; sig(17 targets)~3.9 ; per-dwarf scatter 0.118 dex
+
+  CONFOUNDS (honest -- this test is SOONER/CHEAPER but NOT degeneracy-free):
+    * TIDAL STRIPPING is the crux: in DM, dwarfs at small R_gc are more stripped -> LOWER halo mass
+      -> LOWER sigma. This is the SAME SIGN as the EFE. So 'DM predicts zero R_gc-dependence' holds
+      ONLY for tidally-undisturbed dwarfs. Break it with Gaia orbits: EFE depends on CURRENT g_ext(R_gc),
+      tides depend on PERICENTER/orbital history -- so at fixed R_gc, sigma-vs-pericenter separates them.
+    * BINARY STARS inflate sigma, worst for low-sigma UFDs (~few km/s ~ signal); need multi-epoch removal.
+    * NON-EQUILIBRIUM: recently-accreted/disrupting dwarfs violate the virial estimator; cut on cleanliness.
+    * MW field model: Vc(R) declines at 100-250 kpc; use an enclosed-mass g_ext(R), not a flat Vc.
+  [PASS] T1e  CONFOUND FLAGGED: tidal stripping gives a SAME-SIGN sigma-R_gc correlation in DM; the test is only clean for tidally-undisturbed dwarfs (control via Gaia pericenters). This caveats the 'DM predicts exactly zero' framing.
+        the EFE reads current g_ext(R_gc); tides read pericenter -> sigma-vs-pericenter at fixed R_gc is the discriminator
+======================================================================================================================
+TEST 2 -- FLAT a0(z) BTFR: predicted offset, LCDM null, precision, sample size
+======================================================================================================================
+  Deep-MOND BTFR: V_flat^4 = G M_b a0  =>  at fixed M_b, V_flat proportional to a0^{1/4}.
+  Framework (a0 = c^2/2piL_dS = Lambda-locked const): a0(z) FLAT => BTFR zero-point offset at z~2.5 = 0.00 dex.
+  Repo-committed LCDM expectation (project_framework_vs_lcdm_test): +0.33 dex at z~2.5.
+  (For scale, a naive a0 ∝ H(z) would give a0(z=2)/a0(0) = E(2) = 3.03, i.e. +0.48 dex in a0,
+   0.12 dex in the V-zero-point -- the flat-vs-rising split is large and clean.)
+
+  PER-ROTATOR PRECISION (offset from the local BTFR, in the M_b direction):
+    baryonic mass  sigma_logMb = 0.20 dex (stars+gas)
+    rotation speed sigma_logV  = 0.04 dex (~9%; enters as 4*log V => 0.16 dex)
+    intrinsic BTFR sigma_int   = 0.10 dex
+    => per-rotator offset error sigma_off = 0.275 dex
+  [PASS] T2a  PRECISION REQUIRED: rotation velocity to ~9% (sigma_logV~0.04, x4 in BTFR = 0.16 dex) and M_b to ~0.2 dex; V-precision is the binding requirement
+        4*sigma_logV = 0.16 dex dominates alongside M_b; sigma_off = 0.275 dex/galaxy
+
+  SAMPLE SIZE (distinguish 0.00 dex from +0.33 dex zero-point at 3/5 sigma):
+    sigma_ZP = sigma_off/sqrt(N) ; need sigma_ZP <= 0.110 dex (3 sigma) or 0.066 dex (5 sigma)
+    => N_rotators(3 sigma) = 7 ; N_rotators(5 sigma) = 18   (MC sigma_ZP at N=7: 0.105 dex)
+  [PASS] T2b  SAMPLE SIZE: only ~7 well-measured z~2 deep-MOND rotators give 3 sigma (~18 for 5 sigma) -- a small, targeted sample decides it
+        3 sigma: N~7 ; 5 sigma: N~18 ; footing-independent (flat vs +0.33 both hold on can/alt)
+  [PASS] T2c  BOTH FOOTINGS: the flat-a0 prediction (0.00 dex offset) and the +0.33 LCDM null are footing-independent -- a0's VALUE only sets the local BTFR zero-point, not its z-INVARIANCE
+        canonical/alt a0 shift the local zero-point identically at all z; the test is the z-DRIFT, which is 0 for flat a0 on both
+
+  REAL TARGETS & EXISTING DATA:
+    KEY REQUIREMENT: the rotator must reach the DEEP-MOND regime (g < a0) at its measured radii and have
+    a well-defined V_flat. Massive z~1-2.5 SFGs (KMOS3D, SINS/zC-SINF; Genzel+2017/2020, Uebler+) are mostly
+    the WRONG regime (baryon-dominated inner disks, g > a0, declining RCs) -- NOT deep-MOND.
+    RIGHT targets: gravitationally LENSED disks (magnification -> lower effective mass/larger radii -> g<a0)
+    and ALMA [CII]/CO cold rotators:
+      * Lensed rotators: 'Cosmic Snake' (z=1.04), A521-sys1 (z=1.04) [Girard+2019 extended RCs]
+      * ALMA [CII]/CO cold disks z~2-4.5 (Rizzo+2020/2021, Lelli+2021, Fraternali+2021): V_flat + gas well measured
+      * JWST NIRSpec/NIRCam-WFSS IFU Halpha kinematics at z~2 (now feasible; can extend the sample)
+      * Local anchor: SPARC deep-MOND BTFR zero-point (Lelli+2016) fixes the z=0 reference.
+  [PASS] T2d  EXISTING DATA CAN START IT: a handful of lensed/ALMA deep-MOND rotators at z~1-4 exist (Cosmic Snake, A521, Rizzo/Lelli ALMA disks); current archive can begin the test but is not yet decisive -- needs ~7-18 in the deep-MOND regime
+        binding feasibility issue is REACHING g<a0 with well-measured M_b (gas), not statistics
+
+  CONFOUNDS (honest):
+    * NON-FLAT RCs & pressure support: z~2 disks are dynamically hot (V/sigma~2-5); need asymmetric-drift
+      correction V_circ^2 = V_rot^2 + 2 sigma^2 (R/R_d ...); beam smearing biases V_flat low.
+    * GAS MASS dominates M_b at z~2; CO-to-H2 alpha_CO uncertain ~0.3 dex; [CII] calibration even looser.
+    * Must VERIFY the object is deep-MOND (g<a0); otherwise the BTFR-zero-point test does not apply.
+    * Lensing magnification model uncertainty for lensed targets (mu to ~10-20%).
+======================================================================================================================
+PART 3 -- PRIORITISED 'HOW TO KILL OR CONFIRM' PLAN (both footings)
+======================================================================================================================
+  WHICH IS CLEANER / CHEAPER / SOONER:
+    - SOONER & CHEAPER: TEST 1 (dwarf sigma-R_gc). All LOCAL; ~17-25 dSph/UFD already have member kinematics;
+      Gaia DR3/DR4 supplies orbits/pericenters to control tides. Could be executed on archival data NOW,
+      needing ~10 dwarfs for 3 sigma / ~28 for 5 sigma. Confound: tidal stripping mimics the SAME-SIGN trend,
+      so it is decisive only after cutting to tidally-undisturbed dwarfs (sigma-vs-pericenter control).
+    - CLEANER (less degenerate): TEST 2 (flat-a0 BTFR at z~2). No astrophysical effect of comparable strength
+      mimics a z-drift of the BTFR zero-point; the 0.00-vs-+0.33 dex split directly probes the framework's
+      defining principle (a0 = c^2/2piL_dS). Needs only ~7 rotators for 3 sigma / ~18 for 5 sigma, BUT each is
+      expensive (lensed/ALMA/JWST) and must be verified deep-MOND. Feasibility, not statistics, is the wall.
+
+  RECOMMENDED ORDER:
+    1) Run TEST 1 now on the archival classical-dSph sample + Gaia orbits (fast, cheap first-look screen).
+    2) Build the TEST 2 sample of ~10-18 lensed/ALMA deep-MOND rotators at z~2 (the definitive, degeneracy-free
+       killshot). This is the one that cleanly confirms or kills the framework's signature.
+
+  WHAT A NULL MEANS (both footings identical in direction):
+    - TEST 1 null (sigma independent of R_gc for undisturbed dwarfs) => KILLS the framework's SEP-violating EFE
+      => favours dark matter (which predicts exactly that). A POSITIVE ~1.9x trend that survives the tidal
+      control confirms the EFE.
+    - TEST 2: a FLAT BTFR zero-point (0.00 dex) at z~2 CONFIRMS the framework's Lambda-locked a0; a robust
+      +0.33 dex (LCDM) or a rising a0 ∝ H(z) KILLS the flat-a0 prediction -- the framework's sharpest signature.
+
+  [PASS] PLAN-1  CLEANER KILLSHOT = flat-a0(z) BTFR (no same-sign astrophysical degeneracy); SOONER/CHEAPER = dwarf sigma-R_gc (archival+Gaia, but tidal-confounded)
+        dwarf: N3~10/N5~28, run now ; BTFR: N3~7/N5~18, needs deep-MOND z~2 rotators
+  [PASS] PLAN-2  BOTH FOOTINGS carry both killshots: the ~1.9x dwarf trend holds on canonical & alt; the flat-vs-+0.33 BTFR split is footing-independent
+        no footing choice weakens either falsifier
+======================================================================================================================
+  SUMMARY: 16/16 checks PASS.
+  DWARF sigma-R_gc EFE : predicted ~1.9x rise (40->250 kpc), DM null = flat; ~10 dwarfs (3s)/~28 (5s);
+                         sigma to <20% from ~40 members; targets Draco..Leo I; TIDAL confound must be controlled.
+  FLAT-a0(z) BTFR      : predicted 0.00 dex vs LCDM +0.33 dex; ~7 rotators (3s)/~18 (5s);
+                         V to ~9%, M_b to ~0.2 dex; lensed/ALMA deep-MOND rotators at z~2; cleaner killshot.
+  VERDICT: PASS (test plan self-consistent; both killshots quantified on both footings)
+  CONFIDENCE: HIGH on the predicted signals and the sample-size arithmetic (statistical machinery MC-validated,
+  C2/C3). HIGH that the BTFR test is the cleaner killshot. HONEST CAVEAT: the dwarf test's 'DM predicts zero'
+  holds only for tidally-undisturbed dwarfs (stripping is a same-sign confound) -- flagged, not hidden. The
+  fiducial-mass ~1.9x amplitude is mass-dependent (larger for fainter/lower-M dwarfs); use per-object masses in practice.
+======================================================================================================================
+  [runtime 0.2s]
