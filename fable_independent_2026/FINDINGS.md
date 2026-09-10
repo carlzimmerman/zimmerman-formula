@@ -5089,3 +5089,17 @@ them present at z = 3, and both statements are about the same decayed fraction. 
 temporal-separation escape from the dark-fraction pincer (L145–L151, L166 clause i) is closed. Limits: linear theory, cold baryons,
 ε → 0, forest bounds cited as thermal-relic-equivalent scales rather than re-fitted flux likelihoods; none of these can move a 53%
 linear deficit at k = 5 h/Mpc, z = 3 inside a ~1% tolerance. This test DERIVES nothing; it removes a phenomenological patch.
+
+## L169 — THE SINGLE-METRIC KINETIC-MIXING ACTION: written, reduced, certified — and certified to FAIL cosmology (2026-09-10)
+
+`SINGLE_METRIC_ACTION.md` (the action and its reductions), `L169_single_metric_action.py` / `.out` (9/9, sympy Euler–Lagrange
+of the static action, kernel, transmission, PPN, G-renormalisation, dark-fraction no-go; no literal-True), Lean 92 theorems.
+Action: R/16πG + cuscuton clock (0 DOF) + MOND scalar 𝒥(Y) + kinetic mixing (c/4πG)χ^μ∇_μφ + elliptic smoothing constraint
+λ^μ(χ_μ − ξ²D²χ_μ − A_μ) + matter on the one metric. Static limit = the T-B double filter DERIVED: Φ = Φ_N + c(1−ξ²∇²)⁻¹φ,
+φ sourced by the smoothed Newtonian field; transmission T(x) = 1 − e^{−x}(1+x+x²/2) ≤ x³ (Lean), k⁻⁴ UV suppression (Lean),
+|γ−1| < 2.3e-5 at r/ξ ≤ 1/100 (Lean); deep MOND ã₀ = c³a₀; with c = 1 the Newtonian-regime stiffening must reach μ_∞ ≥ 4.3
+(SPARC Υ_* tolerance). Smoothing sector 0 DOF (Lean). Boosted-frame PPN (α₁, α₂) NOT run for this action (argued only).
+**Certified failure:** `single_metric_uniform_dark_fraction_fails` — the action's dark components (cuscuton dust, stiff φ
+background) are host-independent, so it cannot pass galaxies (≤ 0.105) and the CMB (≥ 0.988) together; smooth dust fails
+the third peak (L129/L165). The right static theory, the wrong cosmology. What is missing is a NEW mechanism type for L166
+clause (i), not a parameter.

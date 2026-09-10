@@ -9,7 +9,7 @@
   flat a₀(z), subdominant scalar GW) confronting DATA — not by Lean, and not while the intrinsic BBN
   fine-tuning (L84/L87) and astra's open ADM/khronon gates stand.
 
-  Theorems (87 as of 2026-09-10; all: exit 0, zero `sorry`, axioms ⊆ {propext, Classical.choice, Quot.sound}):
+  Theorems (92 as of 2026-09-10; all: exit 0, zero `sorry`, axioms ⊆ {propext, Classical.choice, Quot.sound}):
     hasDerivAt_G, hasDerivAt_Gp   — Gp = dG/dy and Gpp = d²G/dy² proven (not merely asserted).
     kernel_identity               — MOND kernel G'(y)/(2y) = 1 − e^{-y}.
     Gpp_zero, Gpp_pos             — health dichotomy: G''(0)=0, G''(y)>0 ∀ y>0 (no ghost off zero field).
@@ -891,3 +891,54 @@ theorem two_body_pincer_numeric : (20 : ℝ) < 2 * 2.14 / (-Real.log 0.9) := by
     have := Real.log_neg (by norm_num : (0:ℝ) < 0.9) (by norm_num); linarith
   rw [lt_div_iff₀ hpos]
   linarith
+
+/-! ### L169: the SINGLE-METRIC KINETIC-MIXING ACTION — static/PPN algebra certified, cosmology certified to FAIL.
+    See SINGLE_METRIC_ACTION.md. -/
+
+/-- Double-filter kernel: 1/(k²(1+u)²) = 1/k² − ξ²/(1+u) − ξ²/(1+u)² with u = ξ²k² (inverse transform ⇒ T(x)). -/
+theorem double_filter_kernel (k ξ : ℝ) (hk : k ≠ 0) :
+    1 / (k ^ 2 * (1 + ξ ^ 2 * k ^ 2) ^ 2)
+      = 1 / k ^ 2 - ξ ^ 2 / (1 + ξ ^ 2 * k ^ 2) - ξ ^ 2 / (1 + ξ ^ 2 * k ^ 2) ^ 2 := by
+  have h : (1 + ξ ^ 2 * k ^ 2) ≠ 0 := by positivity
+  field_simp
+  ring
+
+/-- UV suppression of the scalar channel: (1+u)⁻² ≤ u⁻² — the k⁴ coherent stiffening. -/
+theorem double_filter_uv_suppression (u : ℝ) (hu : 0 < u) : 1 / (1 + u) ^ 2 ≤ 1 / u ^ 2 := by
+  apply one_div_le_one_div_of_le (by positivity)
+  nlinarith
+
+/-- Smoothing sector (χ_i, λ_i): 6 configuration variables, phase dimension 12, 12 second-class constraints ⇒ 0 DOF. -/
+theorem smoothing_sector_zero_dof : diracDOF 12 0 12 = 0 := fully_constrained_zero_dof 12
+
+/-- Transmission bound: T(x) = 1 − e^{−x}(1 + x + x²/2) satisfies 0 ≤ T(x) ≤ x³ on [0,1]
+    (mathlib Taylor bound |exp y − Σ_{i<4} yⁱ/i!| ≤ |y|⁴·5/96 for |y| ≤ 1, at y = −x). -/
+theorem double_filter_transmission_cubic (x : ℝ) (h0 : 0 ≤ x) (h1 : x ≤ 1) :
+    0 ≤ 1 - Real.exp (-x) * (1 + x + x ^ 2 / 2) ∧ 1 - Real.exp (-x) * (1 + x + x ^ 2 / 2) ≤ x ^ 3 := by
+  have hb := Real.exp_bound (x := -x) (by rw [abs_neg, abs_of_nonneg h0]; exact h1) (n := 4) (by norm_num)
+  simp only [Finset.sum_range_succ, Finset.sum_range_zero, Nat.factorial, pow_zero, pow_one] at hb
+  norm_num at hb
+  have hneg : (-x) ^ 3 = -x ^ 3 := by ring
+  rw [hneg, abs_of_nonneg h0] at hb
+  have hlo := (abs_le.mp hb).1
+  have hhi := (abs_le.mp hb).2
+  have hx2 : x ^ 2 ≤ x := by nlinarith
+  have hx3 : x ^ 3 ≤ x ^ 2 := by nlinarith
+  have hx4 : x ^ 4 ≤ x ^ 3 := by nlinarith
+  have hx5 : x ^ 5 ≤ x ^ 4 := by nlinarith
+  have hx6 : x ^ 6 ≤ x ^ 5 := by nlinarith
+  constructor <;> nlinarith [hlo, hhi, hx2, hx3, hx4, hx5, hx6, sq_nonneg x, Real.exp_pos (-x)]
+
+/-- Cassini: |γ−1| = 2 f_eff with f_eff ≤ T(r/ξ) ≤ (r/ξ)³; at r/ξ ≤ 1/100 this is ≤ 2×10⁻⁶ < 2.3×10⁻⁵. -/
+theorem screened_gamma_cassini (x feff : ℝ) (h0 : 0 ≤ x) (hx : x ≤ 1 / 100) (hf0 : 0 ≤ feff) (hf : feff ≤ x ^ 3) :
+    2 * feff < 2.3e-5 := by
+  have hx2 : x ^ 2 ≤ (1 / 100) ^ 2 := by nlinarith
+  have hx3 : x ^ 3 ≤ (1 / 100) ^ 3 := by nlinarith
+  norm_num at hx3
+  linarith
+
+/-- THE CERTIFIED FAILURE: a theory whose dark fraction is host-independent cannot pass galaxies (≤ 0.105) and the
+    CMB (≥ 0.988) together. The single-metric action has only such components (cuscuton dust, stiff φ background). -/
+theorem single_metric_uniform_dark_fraction_fails (f : ℝ → ℝ) (m_g m_c : ℝ)
+    (huniform : ∀ m₁ m₂, f m₁ = f m₂) (hgal : f m_g ≤ 0.105) (hcmb : 0.988 ≤ f m_c) : False :=
+  (dark_fraction_forces_mass_dependence f m_g m_c 0.105 0.988 hgal hcmb (by norm_num)).2 huniform
