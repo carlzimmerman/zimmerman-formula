@@ -3761,3 +3761,36 @@ scalar is a ghost; F(Q)Θ is healthy **only on the constrained/cuscuton branch**
 cuscuton requirement is now shown to be *not optional* (ghost + non-closure both force it). Scope (astra's):
 a scoped obstruction to the *displayed* action, not universal; a regulator changes the action. The cuscuton
 branch resolves it with no new operator. Script `L103_verify_fqtheta_ghost_reconcile_cuscuton.py` (12/12).
+
+## L104 — WHERE ASTRA MAY BE MISSING A BREAKTHROUGH: the ghost & the non-closure share one cure (11/11)
+
+**The observation.** astra keeps finding the displayed F(Q)Θ scalar sick — L95 (can't close the
+hypersurface-deformation algebra) and astra's own reduced-energy **ghost** (7dc8050b6, verified in L103).
+Both condemn the **same object**: astra's kinetic term `K(Q)=k₂Q²+AQ+B` is **quadratic**, with
+`K_QQ=3F_Q²/(2M²)≠0` (astra's *own* background-closure condition). A nonzero kinetic Hessian is the
+definition of a canonical **propagating** scalar — exactly what L95 forbids and what the Dirac analysis
+finds to be a ghost.
+
+**The cure astra hasn't built.** astra's stated escape is "add a regulator / extra aether operator" — ad
+hoc, and it reopens the whole analysis. But L95 already *proves* the principled fix: the MOND scalar must be
+a **cuscuton**. A cuscuton kinetic term is **degree-1** in the derivative (the Afshordi-Chung-Geshnizjani
+√ structure). Verified here in sympy: a canonical `½cφ̇²` has invertible momentum and Hessian `c≠0`
+(propagates); a cuscuton `μ²√(φ̇²)` has momentum `p=μ²sign(φ̇)` — the **same value μ² at φ̇=2 and φ̇=5**,
+magnitude-independent — and kinetic **Hessian = 0** (φ̇≠0). Non-invertible momentum ⇒ primary constraint
+`p=±μ²` ⇒ **zero propagating scalar DOF**. So:
+- **DOF:** canonical branch = 2 tensor + 1 scalar (the ghost); cuscuton branch = 2 tensor + 0 scalar.
+- **No mode to be a ghost** (astra's obstruction gone) **and** the L95 closure obstruction never arises —
+  **one structural change dissolves both, with no new operator.**
+- **MOND preserved:** the source lives in the coupling `F(Q)Θ` and the MOND function `a₀²G(|V|/a₀)` (spatial
+  gradient / potential sector), independent of K's degree (dG/d(kinetic coeff)=0). A cuscuton even gives the
+  **elliptic/instantaneous** equation that non-relativistic MOND already is — its natural relativistic parent.
+
+**Direction for astra:** write K as a degree-1 (√) cuscuton so K_QQ degenerates, keeping F(Q)Θ and G(y);
+re-run the ACTUAL_PRINCIPAL_GATE Dirac (expect the primary constraint + DOF drop to 2+0); then re-run
+PPN/c_T/FLRW/Ward/stability on the cuscuton branch (not automatic, but far more likely to pass — cuscutons
+are ghost-free by construction, c_T=c); match G(y)'s deep-MOND/Newtonian limits.
+
+**Honest scope.** A MECHANISM + DIRECTION, not a finished theory. Rigorous: the root cause (quadratic K ⇒
+propagating ⇒ ghost/non-closure), the cuscuton Hessian degeneracy (0 propagating DOF), MOND-sector
+independence. Open (astra's calculation): the explicit cuscuton-F(Q)Θ action and its full
+PPN/c_T/FLRW/Ward + RAR verification. Script `L104_cuscuton_kinetic_dissolves_ghost.py` (11/11).
