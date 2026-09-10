@@ -1,0 +1,80 @@
+{
+  "schema_version": 1,
+  "claim_id": "RMMG-envelope-completion-v1",
+  "claim": "An algebraic Hamiltonian envelope removes the minimal separable cubic bracket while retaining the exact exponential static MOND flux on the p=0 relay branch.",
+  "scope": "scalar-sector and algebraic four-form gates; not full covariant gravity closure",
+  "repository": {"commit": "29b40d91e", "dirty": true},
+  "command": "python3 -B envelope_completion_gate.py",
+  "environment": {"software": ["Python 3.9.6", "SymPy 1.14.0"], "hardware": "macOS arm64"},
+  "mathematics": {
+    "assertion_tested": "H_p H_s=p*s on the algebraic envelope shell and W'(s)=mu(s)*s on p=0",
+    "coefficient_domain": "exact SymPy expressions, positive exponential branch, local Fourier relay witness",
+    "conventions": "positive a0, chi, beta and Z on the displayed branch; k=0 is treated separately from k!=0; four-form flux is homogeneous",
+    "bounds": {
+      "static": "positive-gradient p=0 relay branch",
+      "Dirac": "four-variable local witness at k=1,u=2,a0=1 and homogeneous k=0",
+      "four_form": "quadratic P(q) algebra and one-dimensional top-form representative",
+      "Lean": "conditional coupling normalization Z+2*b*beta^2=8*beta^2 with beta>0"
+    },
+    "inputs": ["envelope_completion_gate.py", "EnvelopeCompletionFormal.lean", "fourform_a0_promotion_gate.py"],
+    "non_claims": ["full covariant metric theory", "PPN/FLRW/stability closure", "universal no-go"]
+  },
+  "randomness": {"used": false, "generator": "", "seed": null},
+  "commands": [
+    "python3 -B envelope_completion_gate.py",
+    "python3 -B -m unittest -v",
+    "python3 -B run_lean_envelope.py",
+    "python3 -B fourform_a0_promotion_gate.py",
+    "python3 -B -m unittest -v test_fourform_a0_promotion_gate.py",
+    "python3 -B run_lean_fourform.py"
+  ],
+  "exit_status": {
+    "envelope_completion_gate.py": 0,
+    "envelope_completion_tests": 0,
+    "run_lean_envelope.py": 0,
+    "fourform_a0_promotion_gate.py": 0,
+    "fourform_a0_promotion_tests": 0,
+    "run_lean_fourform.py": 0
+  },
+  "sha256": {
+    "envelope_completion_gate.py": "fe5330577f0d752798e1a9b2afa772755a19621f27ac020df40436287b25e771",
+    "test_envelope_completion_gate.py": "7326027511e6d6d28e8034e29c4bfaaec7a697893327741ecedb3d2490c98dae",
+    "run_lean_envelope.py": "a881aa137a921ddd5dde85698c665a53f4fa8e1332ca96746945ceff7870ff12",
+    "EnvelopeCompletionFormal.lean": "e8e0a0beb8eedbd211922b5be5b30b436641317aa31aaf0381c931cc943f88ba",
+    "fourform_a0_promotion_gate.py": "3454dbc781d6c4e9c7289feaccbe357384f60cc968576f6413c057ad93601bcb",
+    "test_fourform_a0_promotion_gate.py": "4bb8e41caa3368c6d43b11594bb65a040fd9ef873870232c427e635c6df382cf",
+    "run_lean_fourform.py": "05c3890d3669e1edba6eb878133dfa7fad7168b12a6d760c78cd59b2917a2cbc",
+    "FourFormA0Formal.lean": "4843235ac06599f6f3fe92a2aa913bb3b2fe6d69abe0c0bcb33cad69ed2734e7",
+    "REPORT.md": "46a105726ee70d99b5c6327f0d1ac3a329ade9e6f0d24d6e51c037c762aaf17c",
+    "FOURFORM_A0_REPORT.md": "c28e2a27e481e6199382b4479e786dc28f651b5f9c8324df4dd2a0c34645a882",
+    "run_001/envelope_completion_results.json": "48d11a2853b3245fa916145c79e81ac913c3e1601b933f383e05695784ef8346",
+    "run_001/fourform_a0_promotion_results.json": "d1d37a39a0909d1d15e6147eb6b3d9667c07e1a00be5f51f93d8268aa4d40cfe"
+  },
+  "outputs": [
+    {"path": "run_001/envelope_completion_results.json", "sha256": "48d11a2853b3245fa916145c79e81ac913c3e1601b933f383e05695784ef8346"},
+    {"path": "run_001/fourform_a0_promotion_results.json", "sha256": "d1d37a39a0909d1d15e6147eb6b3d9667c07e1a00be5f51f93d8268aa4d40cfe"}
+  ],
+  "run": {"started_at": "2026-09-09T22:30:00Z", "exit_status": 0, "strict_subgates": [], "runtime_seconds": 1.0},
+  "residual_risks": [
+    "off-relay algebraic Hessian has a positive singularity surface",
+    "full ADM metric and clock constraints are not derived",
+    "four-form flux value is not dynamically selected"
+  ],
+  "checks": [
+    {"name": "exponential primitive", "passed": true},
+    {"name": "strong scalar HDA identity", "passed": true},
+    {"name": "static exponential flux", "passed": true},
+    {"name": "local/homogeneous Dirac rank split", "passed": true},
+    {"name": "four-form a0 normalization", "passed": true},
+    {"name": "Lean envelope algebra", "passed": true},
+    {"name": "Lean four-form algebra", "passed": true}
+  ],
+  "result": "Envelope HDA residual is zero; local scalar phase dimension is zero; homogeneous rank drop and the fitted four-form kappa=1/2 condition are exposed.",
+  "non_claims": [
+    "full nonlinear metric HDA",
+    "covariant clock completion",
+    "PPN alpha_1 alpha_2 alpha_3",
+    "FLRW perturbative stability",
+    "universal no-go or complete theory"
+  ]
+}

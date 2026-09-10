@@ -1,0 +1,148 @@
+{
+  "auxiliary_singularity": {
+    "hessian_on_algebraic_shell": "2*P*exp(chi/a0)/(a0**2*(exp(chi/a0) - 1)**3) - chi*exp(-chi/a0)/a0",
+    "interpretation": "The envelope extension has an off-relay algebraic rank surface. The physical p=0 relay avoids it for chi>0; a full theory must either restrict/extend the Hamiltonian consistently or audit this surface.",
+    "positive_singularity_surface_P": "a0*chi*(exp(chi/a0) - 1)**3*exp(-2*chi/a0)/2",
+    "singularity_surface_derived": true
+  },
+  "candidate": "rmmg_envelope_completion_2026",
+  "checks": {
+    "auxiliary_hessian_regular_on_local_branch": true,
+    "envelope_HDA_identity": true,
+    "exponential_primitive_derived": true,
+    "local_scalar_phase_removed": true,
+    "nonzero_mode_rank_computed": true,
+    "off_relay_singularity_is_exposed": true,
+    "static_envelope_recovery": true,
+    "stationarity_factorization_derived": true,
+    "three_dimensional_hda_identity": true,
+    "zero_mode_rank_drop_exposed": true
+  },
+  "definitions": {
+    "H_aux": "W(chi)+mu(chi)*(S-chi^2/2)+P/mu(chi)",
+    "P": "p^2/2",
+    "S": "s^2/2",
+    "W": "a0^2/2 * [y^2+2(1+y)exp(-y)-2], y=chi/a0",
+    "mu": "1-exp(-chi/a0)"
+  },
+  "dirac_homogeneous": {
+    "auxiliary_constraint_hessian": 0.0,
+    "constraints": [
+      "p",
+      "k**2*u*(1 - exp(-k*u/a0)) - rho",
+      "pchi",
+      "(-chi**2 + k**2*u**2)*exp(-chi/a0)/(2*a0)"
+    ],
+    "determinant": 0.0,
+    "k": 0.0,
+    "matrix": [
+      [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    ],
+    "phase_space_dimension": 4,
+    "rank": 0,
+    "remaining_phase_dimension": 4,
+    "source": 0.0
+  },
+  "dirac_local": {
+    "auxiliary_constraint_hessian": -0.2706705664732254,
+    "constraints": [
+      "p",
+      "k**2*u*(1 - exp(-k*u/a0)) - rho",
+      "pchi",
+      "(-chi**2 + k**2*u**2)*exp(-chi/a0)/(2*a0)"
+    ],
+    "determinant": 0.09443442347987768,
+    "k": 1.0,
+    "matrix": [
+      [
+        0.0,
+        -1.1353352832366128,
+        0.0,
+        -0.2706705664732254
+      ],
+      [
+        1.1353352832366128,
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        0.2706705664732254
+      ],
+      [
+        0.2706705664732254,
+        0.0,
+        -0.2706705664732254,
+        0.0
+      ]
+    ],
+    "phase_space_dimension": 4,
+    "rank": 4,
+    "remaining_phase_dimension": 0,
+    "source": 1.2642411176571153
+  },
+  "envelope": {
+    "Cchi": "(-p**2 + (-chi**2 + s**2)*mu(chi)**2)*Derivative(mu(chi), chi)/(2*mu(chi)**2)",
+    "H": "p**2/(2*mu(chi)) + (-chi**2/2 + s**2/2)*mu(chi) + W(chi)",
+    "H_P": "p/mu(chi)",
+    "H_S": "s*mu(chi)",
+    "hda_closes_strongly": true,
+    "hda_residual": "0",
+    "relation": "(-chi**2/2 - p**2/(2*mu(chi)**2) + s**2/2)*Derivative(mu(chi), chi)",
+    "static_H": "W(s)",
+    "static_envelope_reduces_to_W": true,
+    "static_flux": "s*mu(s)",
+    "static_flux_is_mu_s": true,
+    "stationarity_factorization": true
+  },
+  "exponential": {
+    "G": "y**2 + (2*y + 2)*exp(-y) - 2",
+    "W": "a0**2*((2 + 2*chi/a0)*exp(-chi/a0) - 2 + chi**2/a0**2)/2",
+    "mu": "1 - exp(-chi/a0)",
+    "mu_positive_witness": true,
+    "primitive_identity": true
+  },
+  "next_gate": "Embed the envelope Hamiltonian in the full ADM metric constraint and vary an explicit covariant clock completion.",
+  "scope": "Exact scalar Hamiltonian-envelope and relay constraints. The full metric/clock HDA, covariant action, Ward identity, PPN, FLRW and perturbative stability remain open.",
+  "status": "SCALAR_SECTOR_CONSTRUCTIVE_OPEN",
+  "vector_hda": {
+    "component_residuals": [
+      "0",
+      "0",
+      "0"
+    ],
+    "resulting_momentum_generator": "p_u D_i u (plus the standard tensor/matter generators)",
+    "slip_relay_residuals": [
+      "0",
+      "0",
+      "0"
+    ],
+    "three_dimensional_hda_identity": true
+  }
+}
