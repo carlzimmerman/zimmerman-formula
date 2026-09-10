@@ -1,0 +1,100 @@
+{
+  "candidate": "normalized_acceleration_parent_2026",
+  "checks": {
+    "exact_exponential_kernel": true,
+    "homogeneous_rank_jump_exposed": true,
+    "local_lapse_matrix_rank_computed": true,
+    "new_lapse_equation_is_exact_divergence": true,
+    "old_normalized_form_is_not_same_equation": true,
+    "unitary_gauge_acceleration_reduces": true,
+    "unitary_gauge_prefactor_reduces": true
+  },
+  "definitions": {
+    "H": "G-Y^2=2*(1+Y)*exp(-Y)-2",
+    "Y": "c^2 sqrt(a_mu a^mu)/(a0*s)",
+    "a": "n^nu nabla_nu n_mu",
+    "n": "-dT/s",
+    "s": "sqrt(-g^{mu nu} d_mu T d_nu T)"
+  },
+  "dirac_homogeneous": {
+    "constraints": [
+      "pN",
+      "N*k**2 - N*k**2*exp(-N*k) - rho"
+    ],
+    "determinant": 0.0,
+    "k": 0.0,
+    "matrix": [
+      [
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0
+      ]
+    ],
+    "phase_dimension": 2,
+    "rank": 0,
+    "remaining_phase_dimension": 2,
+    "y": 0.0
+  },
+  "dirac_local": {
+    "constraints": [
+      "pN",
+      "N*k**2 - N*k**2*exp(-N*k) - rho"
+    ],
+    "determinant": 1.0,
+    "k": 1.0,
+    "matrix": [
+      [
+        0.0,
+        -1.0
+      ],
+      [
+        1.0,
+        0.0
+      ]
+    ],
+    "phase_dimension": 2,
+    "rank": 2,
+    "remaining_phase_dimension": 0,
+    "y": 1.0
+  },
+  "kernel": {
+    "G": "y**2 + (2*y + 2)*exp(-y) - 2",
+    "H": "2*(y - exp(y) + 1)*exp(-y)",
+    "auxiliary_cancels_GR_at_origin": true,
+    "auxiliary_high_acceleration_flux_vanishes": true,
+    "exact_exponential": true,
+    "high_acceleration_GR_recovery": true,
+    "mu_aux": "-exp(-y)",
+    "mu_gr": "1",
+    "mu_total": "1 - exp(-y)"
+  },
+  "lapse_variation": {
+    "new_affine_euler": "2*k**2*(k*exp(k*x) + exp(k*exp(k*x)) - 1)*exp(k*x)*exp(-k*exp(k*x))",
+    "new_euler": "2*(exp(Derivative(N(x), x)) + Derivative(N(x), x) - 1)*exp(-Derivative(N(x), x))*Derivative(N(x), (x, 2))",
+    "new_exact_divergence": true,
+    "new_target_residual": "0",
+    "old_affine_euler": "(k**2*exp(k) - 2*k**2 - 2*k + 2*exp(k) - 2)*exp(-k)",
+    "old_unit_slope_nonzero": true
+  },
+  "obstruction_or_open_gate": "Its metric variation has nonzero finite-y anisotropic stress, so exact Phi=Psi and the full covariant Dirac/Ward/stability closure are not established.",
+  "spatial_stress": {
+    "anisotropy_at_y1": -0.7357588823428847,
+    "anisotropy_identically_zero": false,
+    "anisotropy_per_direction": "-2*y**2*exp(-y)",
+    "parallel_metric_euler": "2*(-y*(y + 1) + exp(y) - 1)*exp(-y)",
+    "raw_parallel_minus_transverse": "-2*(y**2 - y + exp(y) - 1)*exp(-y)",
+    "small_y_leading": "-y**4 + 2*y**3 - 2*y**2",
+    "transverse_metric_euler": "4*(-y + exp(y) - 1)*exp(-y)"
+  },
+  "status": "OPEN",
+  "surviving_gate": "The normalized covariant density gives the exact exponential lapse flux without the prior N-weighted affine residual.",
+  "unitary_gauge_reduction": {
+    "a_over_s": "dN",
+    "normalized_acceleration_is_DN": true,
+    "prefactor_is_sqrt_h": true,
+    "sqrt_minus_g_times_s": "sqrt(h)"
+  }
+}

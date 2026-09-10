@@ -163,3 +163,20 @@ radius scale, and absolute time calibration.  The symbolic cancellation and
 four independent quadrature rows are tested by the accompanying unit gate.
 This is a conditional weak-static prediction, not evidence of relativistic
 closure.
+
+## Normalized-acceleration parent (2026-09-09)
+
+The adjacent `../normalized_acceleration_parent_2026/` directory tests a new
+covariant normalization
+
+\[
+S_A\propto\int\sqrt{-g}\,s\,H\!\left(\frac{c^2\sqrt{a^2}}{a_0s}\right),
+\qquad H=G-Y^2.
+\]
+
+In unitary gauge this is exactly `sqrt(h) H(c^2|DN|/a0)`, so its lapse Euler
+equation is a pure divergence and the old affine residual disappears.  The
+same executable variation finds a nonzero per-direction metric stress
+`Y H'(Y)`.  Therefore the entire scalar-norm lapse-neutral class cannot both
+carry a nonzero MOND flux and have exact no-slip stress; this scoped no-go is
+now the most direct constraint on the next compensator design.
