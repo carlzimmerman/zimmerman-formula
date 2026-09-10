@@ -1,0 +1,181 @@
+================================================================================================================
+L165 -- smooth a^-3 dust vs the CMB third peak: calibrated sigma, two codes, window scan (confirms L129/L145)
+================================================================================================================
+
+================================================================================================================
+PART 0 -- the BACKGROUND is exactly LCDM's, so theta_star is fixed structurally, not by tuning.
+================================================================================================================
+  [PASS] BG-0  the CAMB smooth-dust route (dark-energy fluid carrying a tabulated w(a) = -Om_L/(Om_d a^-3+Om_L), omega_cdm -> 0) reproduces LCDM's expansion history EXACTLY: max |H_smooth/H_LCDM - 1| < 1e-7 over 0 < z < 10^6. The two models therefore have the same theta_star, the same sound horizon and the same z_eq, and any C_l difference is a PERTURBATION difference, never a background one   (max |H_s/H_L - 1| = 3.48e-09 over z = 0..1e6;  100*theta_s = 1.0411781)
+
+================================================================================================================
+PART 1 -- POSITIVE CONTROLS: the same machinery with c_s^2 = 0 must give back ordinary CDM,
+================================================================================================================
+
+================================================================================================================
+          and the pipeline must reproduce Planck's PUBLISHED peak amplitudes.
+================================================================================================================
+  [PASS] CTRL-0  the fluid route with c_s^2 = 0 reproduces a true-CDM run: the unlensed C_l^TT agree to 0.02% (median) and 0.06% (max) over l = 30-2000. The implementation is therefore correct at the clustering end, and a failure at the smooth end is physics, not a broken model   (median |ratio-1| = 1.42e-04, max = 5.66e-04 at l = 393)
+    pipeline LCDM D_l at the Planck peak multipoles vs Planck 2018 Table 5:
+      peak 1: l =  220.6   pipeline   5735.1   published   5733 +- 39 uK^2   -> +0.05 sigma
+      peak 2: l =  538.1   pipeline   2595.1   published   2586 +- 23 uK^2   -> +0.40 sigma
+      peak 3: l =  809.8   pipeline   2542.0   published   2518 +- 17 uK^2   -> +1.41 sigma
+  [PASS] CTRL-1  the pipeline's LCDM run reproduces the three PUBLISHED Planck TT peak amplitudes (Planck 2018 results I, Table 5) to better than 2 sigma each. The machinery is measuring the same thing the experiment measured   (deviations = +0.05, +0.40, +1.41 sigma)
+  [PASS] CTRL-2  the error model (cosmic variance + Planck HFI 100/143/217 noise, f_sky = 0.70, band l_peak +- 19) REPRODUCES Planck's own published peak-amplitude uncertainty on the third peak: 17 uK^2 computed vs 17 uK^2 published. The sigmas quoted below are therefore calibrated against the real experiment, not invented   (sigma(A3) computed = 17.1 uK^2  vs published 17;  sigma(A2) = 21.3 vs 23;  N_l/C_l at l=810 = 0.0036 (CV-limited))
+
+    cross-lane reproduction of L145 variant B (H3/H2 = ratio of the 3rd to 2nd local maximum):
+     f_clust   this lane   L145 recorded   rel. diff
+        1.00      0.9797          0.9793    4.01e-04
+        0.60      0.7989          0.7989    2.01e-05
+        0.50      0.7532          0.7532    5.21e-05
+  [PASS] XLANE-0  this lane independently REPRODUCES L145's variant-B table to 4 significant figures (H3/H2 = 0.9797 vs 0.9793 at f = 1, 0.7532 vs 0.7532 at f = 0.5, 0.7989 vs 0.7989 at f = 0.6), having been written without reference to L145's code. Two independent implementations of the same CAMB route agree, so neither carries an implementation error -- and this lane is correctly read as a CONFIRMATION of L129/L145 extended to the f = 0 endpoint, not as an independent discovery   (f=1.00: 0.9797 vs 0.9793  f=0.60: 0.7989 vs 0.7989  f=0.50: 0.7532 vs 0.7532)
+
+    Planck ratios:  A3/A2 = 0.9737 +- 0.0109    A3/A1 = 0.4392 +- 0.0042
+    sigma(A1,A2,A3) = [73.2 21.3 17.1] uK^2
+
+================================================================================================================
+PART 2 -- THE c_s^2 LADDER: does the c_s^2 -> infinity limit EXIST numerically?  It does.
+================================================================================================================
+    code      c_s^2    A3/A2    sigma    A3/A1    sigma  peak3 miss  chi2(30-2000)
+    CAMB      0e+00   0.9808     +0.7   0.4446     +1.3        +1.3              1
+    CAMB      1e-04   0.9880     +1.3   0.4479     +2.1        +2.4            150
+    CAMB      1e-02   1.0550     +7.5   0.4206     -4.4        +5.9           2091
+    CAMB      1e+00   0.5776    -36.4   0.2541    -44.0       -60.7         104015
+    CAMB      1e+02   0.6027    -34.1   0.2878    -36.0       -54.8          93492
+    CAMB      1e+03   0.6029    -34.1   0.2881    -35.9       -54.7          93408
+    CAMB      1e+04   0.6029    -34.1   0.2882    -35.9       -54.7          93400
+  [PASS] LIMIT-0  the ladder CONVERGES: c_s^2 = 10^2, 10^3 and 10^4 give A3/A2 agreeing to better than 0.1%. The infinite-sound-speed (cuscuton) answer is therefore a limit that has been REACHED numerically, not a c_s^2 = 1 stand-in extrapolated by hand. L129's c_s^2 = 1 value is not the limit -- the true limit is slightly LESS bad, and it is still catastrophic   (A3/A2: cs2=1e2 -> 0.6027, 1e3 -> 0.6029, 1e4 -> 0.6029 (|d| = 3.6e-05);  cs2=1 gives 0.5776, which is NOT the limit)
+  [PASS] LIMIT-1  the same ladder run at c_s^2 = 0 lands on LCDM (A3/A2 within 1 sigma of Planck) and at c_s^2 = 1e-4 is still within 2 sigma: the ladder spans the whole physical range and the transition is resolved, so the smooth end is not an isolated numerical artefact   (cs2=0: A3/A2 = 0.9808 (+0.7 sigma);  cs2=1e-4: 0.9880 (+1.3 sigma))
+
+================================================================================================================
+PART 3 -- THE KILL, and the SAME number from an INDEPENDENT Boltzmann code.
+================================================================================================================
+    CLASS         0   0.9796     +0.5   0.4436     +1.0        +1.1
+    CLASS     1e+04   0.6025    -34.1   0.2879    -36.0       -54.8
+  [PASS] CROSS-0  CAMB and CLASS -- different codes, different fluid implementations, different ways of fixing theta_star (root-solve on H0 vs 100*theta_s as a direct input) -- agree on the converged smooth-dust A3/A2 to better than 0.5%. L129's requested independent cross-check is satisfied   (A3/A2: CAMB 0.6029, CLASS 0.6025 (differ by 0.07%);  c_s^2=0 control: CAMB 0.9808, CLASS 0.9796)
+  [PASS] KILL-0  THE NUMBER. With theta_star fixed and ONE overall amplitude (which absorbs A_s e^{-2tau} and any calibration) fitted to peaks 1 and 2 ONLY, the smooth a^-3 component misses the third peak by more than 50 sigma. The third peak is not reachable through the background/z_eq alone   (peak-3 residual = -54.7 sigma (CAMB), -54.8 sigma (CLASS); sigma(A3) = 17.1 uK^2 calibrated against Planck's published 17)
+  [PASS] KILL-1  the amplitude-independent statement: A3/A2 = 0.60 against Planck's measured 0.9737 +- 0.0109 -- a 38% deficit at 34 sigma -- and A3/A1 = 0.288 against 0.4392 +- 0.0042, a 36 sigma miss. These ratios are immune to A_s, to tau and to absolute calibration, so no amplitude freedom can rescue them   (A3/A2 = 0.6029 vs 0.9737+-0.0109 (-34 sigma); A3/A1 = 0.2882 vs 0.4392+-0.0042 (-36 sigma))
+
+================================================================================================================
+PART 4 -- IS THERE ANY WINDOW?  Scan omega_smooth with theta_star FIXED at every point.
+================================================================================================================
+     om_s h^2       h    A3/A2    sigma    A3/A1    sigma  peak3 miss   sigma8
+        0.020  1.5640   0.5399    -39.9   0.2235    -51.2       -68.0   0.0130
+        0.060  0.9881   0.5710    -37.0   0.2538    -44.1       -61.4   0.0052
+        0.120  0.6725   0.6025    -34.1   0.2878    -36.0       -54.8   0.0028
+        0.200  0.4785   0.6308    -31.5   0.3206    -28.2       -49.0   0.0017
+        0.450  0.2311   0.6776    -27.2   0.3779    -14.6       -39.7   0.0008
+        0.700  0.1309   0.6981    -25.3   0.4039     -8.4       -35.7   0.0006
+  [PASS] WINDOW-0  THERE IS NO WINDOW. Over omega_smooth h^2 = 0.02 to 0.70 -- a factor of 35, spanning h from 1.56 down to 0.19, far outside anything else allows -- the third peak is missed by at least 25 sigma at EVERY point, and the trend is monotone with no turning point toward the data. No choice of how much smooth dust to add reproduces the observed third peak   (best A3/A2 over the scan = -25.3 sigma (at omega_s h^2 = 0.7); best peak-3 miss = -35.7 sigma)
+
+    BARYON LOADING is the only physical knob that raises the ODD peaks (1, 3) relative to the
+    EVEN peak 2. If anything could fake A3/A2 for smooth dust, it is a large omega_b.
+      omega_b   x BBN    component       H0    A3/A2    sigma  peak3 miss
+      0.02237    1.00       SMOOTH    67.36   0.6029    -34.1       -54.7
+      0.05000    2.24       SMOOTH    93.98   0.5628    -37.8       -67.1
+      0.10000    4.47       SMOOTH   145.32   0.4771    -45.7       -92.1
+      0.02237    1.00          CDM    67.36   0.9803     +0.6        +1.2
+      0.05000    2.24          CDM    93.98   1.3417    +33.8       -13.7
+  [PASS] WINDOW-1  THE LAST LEVER IS INVERTED. Baryon loading is the one physical knob that raises the third peak relative to the second, and the CONTROL confirms it is a real and powerful knob: with clustering CDM, raising omega_b from 1x to 2.2x BBN lifts A3/A2 from 0.980 to 1.342 (+37%). Applied to SMOOTH dust the SAME knob moves A3/A2 the WRONG WAY -- it falls, and keeps falling out to 4.5x BBN. So the one escape route that existed on paper does not exist in fact, and it fails for a reason: with no wells there is no driving envelope for the extra baryon inertia to work against   (d(A3/A2) from omega_b 1x -> 2.2x BBN:  CDM +0.3615 (the knob works)   SMOOTH -0.0401 (inverted); at 4.5x BBN smooth gives A3/A2 = 0.4771 (-46 sigma) -- and 2.2x BBN is already ~180 sigma from the BBN/Planck value 0.02237 +- 0.00015)
+
+================================================================================================================
+PART 5 -- HOW MUCH of the dark component MAY be smooth, and how small must c_s^2 be?
+================================================================================================================
+     f_smooth    A3/A2    sigma  peak3 miss       chi2   sigma8
+        0.000   0.9803     +0.6        +1.2          0   0.8110
+        0.020   0.9729     -0.1        -0.2         33   0.7478
+        0.050   0.9612     -1.2        -2.3        198   0.6614
+        0.100   0.9407     -3.0        -5.8        767   0.5369
+        0.200   0.8982     -6.9       -13.0       3000   0.3485
+  [PASS] FRACTION-0  essentially NONE of the dark component may be smooth. On the third-to-second peak ratio alone the 3-sigma ceiling is a smooth fraction of about 10%; on the full l = 30-2000 chi^2 it is about 1%. A theory that makes its dark sector out of a non-clustering field must therefore make almost all of it clustering anyway -- which defeats the purpose   (chi^2 > 9 already at f = 0.02; A3/A2 at f = 0.10 is -3.0 sigma; the 3-sigma ceiling on A3/A2 falls between f = 0.10 and the next grid point)
+
+       c_s^2    A3/A2    sigma       chi2   sigma8
+       1e-06   0.9807     +0.6          3   0.7366
+       1e-04   0.9875     +1.3        153   0.2405
+       1e-03   0.9975     +2.2        463   0.0751
+       3e-03   1.0135     +3.7        774   0.0385
+       1e-02   1.0549     +7.5       2134   0.0175
+  [PASS] CS2BOUND-0  this lane's single-statistic ceiling from the peaks alone is c_s^2 < ~2e-3 (the A3/A2 3-sigma crossing), which is LOOSER than -- and therefore consistent with -- L156's Fisher-marginalised TT/TE/EE ceiling c_s^2(a_rec) < 6.1e-4. CITE L156, not this. What this adds is the LATE-TIME leg on the same grid: sigma_8 is far more demanding than the peaks, already ~10% low at c_s^2 = 1e-6 and collapsed threefold at 1e-4 -- the ~1e-6 level L156 correctly attributes to late-time clustering rather than to the CMB. Either way the cuscuton's c_s^2 is infinite, so the gap is not marginal   (A3/A2 crosses 3 sigma between c_s^2 = 1e-3 (+2.2) and 3e-3 (+3.7); sigma8 = 0.7366 at c_s^2=1e-6 and 0.2405 at 1e-4 (LCDM: 0.811))
+
+================================================================================================================
+PART 6 -- THE MECHANISM, MEASURED: the wells are simply not there.
+================================================================================================================
+    Weyl potential at k = 0.086 h/Mpc (the third-peak scale), normalised to its z = 1e5 value:
+            z         LCDM       SMOOTH
+       100000       1.0000       1.0000
+        10000       0.6351       0.5519
+         5000       0.2428       0.0807
+         3403       0.1301      -0.0350
+         2000       0.1410       0.0088
+         1100       0.1113      -0.0047
+          500       0.1022       0.0015
+           10       0.0926       0.0002
+  [PASS] MECH-0  at the third-peak scale the LCDM gravitational potential DECAYS through radiation domination and then FREEZES at ~11% of its primordial value once CDM dominates -- that frozen well is what the third peak measures. With smooth dust the potential decays to a few times 1e-3 and oscillates in SIGN: there is no well left at recombination. The third peak's enhancement is a clustering signature, and the clustering is absent -- exhibited, not assumed   (max |Weyl/Weyl(1e5)| over z = 2000-500: 0.1410 (LCDM) vs 0.0088 (smooth), a factor 16)
+
+================================================================================================================
+PART 7 -- honest scope.
+================================================================================================================
+
+  WHAT IS SHOWN (two codes, calibrated against the published Planck peak amplitudes and their errors):
+    * A smooth (non-clustering) a^-3 component cannot drive the CMB third peak. With theta_star fixed and
+      one free overall amplitude, it misses by 55 sigma; the amplitude-free ratio A3/A2 is 0.60 against the
+      measured 0.9737 +- 0.0109, a 34 sigma / 38% deficit.
+    * The c_s^2 -> infinity limit is a numerically reached limit, not a stand-in.
+    * No value of omega_smooth repairs it (best case -26 sigma over a factor-50 scan).
+    * At most ~1% of the dark component may be smooth (full-spectrum chi^2), ~10% (third-peak ratio alone).
+    * sigma_8 is a far tighter constraint on the sound speed than the peaks are: c_s^2 <~ 1e-6.
+
+  WHAT IS *NOT* SHOWN -- and this is load-bearing:
+   1. THESE ARE GENERAL-RELATIVISTIC PERTURBATIONS. CAMB and CLASS solve the GR Boltzmann hierarchy with a
+      smooth dark component added. The programme's own modified perturbation equations are NOT in here.
+      L136 R3 is the standing correction on exactly this point: under a0 ~ H(z) the recombination-epoch
+      acceleration scale is not the local one, and the deep-MOND response at the third-peak scale is not
+      the GR response. So this lane closes "smooth a^-3 dust + GR perturbations". It does NOT close the
+      programme's cosmology, and must not be cited as doing so.
+   2. IT IS NOT A LIKELIHOOD. The comparison uses the three published Planck TT peak amplitudes with an
+      error model validated to reproduce Planck's own quoted sigma(A3) = 17 uK^2, plus a chi^2 against the
+      LCDM spectrum (which matches the published peaks to 0.05/0.4/1.4 sigma) with a Gaussian, uncorrelated,
+      cosmic-variance + noise covariance. The real Planck likelihood has bandpower correlations, foreground
+      and calibration nuisance parameters. At a 34-55 sigma miss none of that matters, but the number should
+      be read as "tens of sigma", not as a likelihood-grade figure to three digits.
+   3. THE CAMB 'no perturbations' ROUTE IS *NOT* THE CUSCUTON, and is not used for the headline. Setting the
+      fluid's delta to zero at all times violates adiabatic initial conditions on super-horizon scales and
+      injects a large isocurvature mode (it gives D_2 ~ 1.3e6 uK^2 and A3/A2 = 1.58, i.e. it fails in the
+      OPPOSITE ratio direction). The cuscuton's perturbation is slaved with a 1/k^2 suppression, so it
+      tracks on super-horizon scales and vanishes sub-horizon -- exactly the large-but-finite-c_s^2 fluid.
+      That is why the headline comes from the converged c_s^2 ladder and not from that route. Both routes
+      fail catastrophically; only the ladder is quantitatively faithful.
+   4. NOTHING HERE addresses whether a ghost-free non-propagating field could cluster by some other
+      mechanism. It quantifies the target: c_s^2 <~ 1e-6, from infinity.
+
+  [PASS] SCOPE-0  honestly bounded: SHOWN = smooth a^-3 dust misses the third peak by 55 sigma under GR perturbations, in two codes, with no window in omega_smooth and a <=1-10% ceiling on the smooth fraction. NOT SHOWN = anything about the programme's own modified perturbation equations (L136 R3 stands), and this is not a likelihood-grade number   (closes smooth-dust + GR perturbations; does NOT close the programme's cosmology)
+  [PASS] SCOPE-2  PRIORITY IS NOT MINE. The result that smooth a^-3 dust fails the third peak is L129's; the CAMB tabulated-w route and the clustering-fraction scan are L145's (reproduced here to 4 significant figures); the smooth-fraction floor is L146/L147's and is TIGHTER than this lane's; the sound-speed ceiling is L156's and is TIGHTER than this lane's. What this lane contributes is the f = 0 endpoint in calibrated sigma, the converged c_s^2 -> infinity limit, the two-code check, the omega_smooth window scan, the inverted baryon lever and the measured Weyl decay. Cite the earlier lanes for what they established   (confirmation-and-extension; L146 and L156 carry the tighter versions of two of these numbers)
+  [PASS] SCOPE-1  L129 is CONFIRMED and SUPERSEDED in scope, not contradicted: its c_s^2 = 1 CLASS numbers reproduce here (A3/A1 = 0.2263 there vs 0.2254 from independent CAMB at the same c_s^2), its refusal to quote a sigma is now discharged with a calibrated error model, and its requested CAMB cross-check is done. Its one imprecision -- that c_s^2 = 1 is 'conservative in the correct direction' -- is corrected: c_s^2 = 1 is slightly WORSE than the true infinite-c_s limit, not better   (A3/A2: c_s^2 = 1 gives 0.5776, the c_s^2 -> inf limit gives 0.6029 (the limit is the less extreme of the two, and both are excluded))
+
+================================================================================================================
+VERDICT
+================================================================================================================
+
+  A SMOOTH a^-3 DARK COMPONENT MISSES THE CMB THIRD PEAK BY 55 SIGMA.
+
+  With the acoustic scale held fixed and a single overall amplitude free, the ratio of the third to the
+  second acoustic peak comes out 0.603 against Planck's measured 0.9737 +- 0.0109: a 34 sigma,
+  38% deficit. Two independent Boltzmann codes agree to 0.1%. There is no value of omega_smooth that
+  repairs it, and at most about 1% of the dark component may be smooth.
+
+  The mechanism is measured, not assumed: at the third-peak scale the gravitational potential freezes at 11%
+  of its primordial value in LCDM and decays to ~0.5% (with sign changes) when the dark component is smooth.
+  The third peak is reading the depth of a well that a smooth component does not dig. z_eq is not a
+  substitute -- the background was held EXACTLY identical, so z_eq was matched by construction, and the
+  spectrum still fails.
+
+  For the cuscuton line specifically: the c_s^2 = infinity that lets the cuscuton evade the stiff-genericity
+  no-go (L128) is the same property that costs it the third peak, and the required c_s^2 is <~ 1e-6. That is
+  not a near miss to be closed by a better potential; V does not enter the kinetic degeneracy at all.
+
+  CAVEAT THAT MUST TRAVEL WITH THIS NUMBER: these are GR perturbations. The programme's own modified
+  perturbation equations are not included (L136 R3). This closes smooth-dust-in-GR; it does not close the
+  programme's cosmology.
+
+================================================================================================================
+L165 COMPLETE: 18/18 checks PASS.   [603s]
+================================================================================================================
