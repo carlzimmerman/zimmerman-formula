@@ -93,3 +93,11 @@ FLRW, tensor speed and perturbative stability be certified.
 
 The identities above are checked by `envelope_completion_gate.py` and
 kernel-checked in `EnvelopeCompletionFormal.lean`.
+
+The structural obstruction behind the previous minimal-pair failure is also
+kernel-checked in `CuscutonClosureFormal.lean`: if the bracket matching
+conditions are imposed with a nonzero kinetic coefficient, they force
+\(\mu'=0\); the exponential kernel has \(\mu'=e^{-s/a_0}/a_0>0\), so the
+canonical propagating branch is inconsistent under those hypotheses.  The
+Lean theorem is deliberately conditional on the displayed bracket form; it
+is not presented as a universal no-go for every relativistic action.
