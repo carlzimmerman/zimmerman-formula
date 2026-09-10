@@ -4291,3 +4291,24 @@ galaxy-smooth (L61 overshoot) + pass the ν pincer; either must pass PPN α₁ (
 cuscuton-clock realization is open) + a real Boltzmann third-peak run. **No clean kill of the programme, no
 free rescue of pure MOND — the viable target is now precisely defined.** Script `L123_cmb_pincer_tightness.py`
 (7/7). Mondlean.lean → 39 theorems.
+
+## parameter_space_bruteforce.py — the reduced space scanned in parallel; 98.6% eliminated, one corner survives
+
+A parallel (multiprocessing, all cores) brute-force screening of the 6-axis architecture space + dark-sector
+mass + a₀ coefficient against the gate battery (gates encode the distilled findings L87-L123). Result:
+**2.37M candidates in 0.2s (16 cores); 98.6% architecture-space reduction (8 of 576 survive), all the SAME
+core architecture:**
+
+> **cuscuton (non-propagating) · field-sourced ∇φ (not lapse) · H⊥ first-class · a₀∝H(z) (or const-cosmo) ·
+> any kernel (health-blind) · + a COLD STERILE-NEUTRINO (keV-window) dark sector.**
+
+Every other dark sector is eliminated: none (CMB 3rd peak), cosmological-const (no clustering), hot-ν
+(pincer), k-essence dust (BBN a⁻⁶ tail), particle CDM (L61 galaxy overshoot). **The keV cold sterile
+neutrino is the unique dark sector that threads all distilled gates** (cold enough to cluster for the CMB,
+warm enough to free-stream out of galaxies and avoid the L61 double-count).
+
+**HONEST scope:** the gate functions ENCODE the distilled lane results (not a from-scratch Boltzmann/PPN); the
+sterile-ν survivor is "the candidate that passes every distilled constraint," pending the full CMB Boltzmann
+run, the O(w) α₁ solve, and a real sterile-ν structure-formation check (the down-select + PPN agents are doing
+the rigorous versions). This is a fast SCREENING tool (runnable/refinable on the M4 Max), not a proof.
+Script `parameter_space_bruteforce.py`; survivors in `parameter_space_survivors.json`.
