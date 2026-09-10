@@ -319,3 +319,18 @@ theorem aqual_hessian_transition_healthy (y : ℝ) (hy : 0 < y) :
   have h := Gpp_pos hy
   simp only [Gpp] at h
   linarith
+
+/-! ### Kernel-blind transition health (L122 reduction map): the ∇φ AQUAL operator is elliptic for ALL y and
+    for EVERY standard kernel -- transition health comes from the SOURCING (separate field), not the kernel.
+    Certified here for the 'simple' and 'standard' kernels via their closed-form longitudinal eigenvalues. -/
+
+/-- SIMPLE kernel μ(y)=y/(1+y): transverse μ>0 and longitudinal (yμ)'=y(2+y)/(1+y)² > 0 for all y>0. -/
+theorem mu_simple_transition_healthy (y : ℝ) (hy : 0 < y) :
+    0 < y / (1 + y) ∧ 0 < y * (2 + y) / (1 + y) ^ 2 := by
+  constructor <;> positivity
+
+/-- STANDARD kernel μ(y)=y/√(1+y²): transverse μ>0 and longitudinal (yμ)'=y(2+y²)/(1+y²)^{3/2} > 0 ∀ y>0. -/
+theorem mu_standard_transition_healthy (y : ℝ) (hy : 0 < y) :
+    0 < y / Real.sqrt (1 + y ^ 2) ∧ 0 < y * (2 + y ^ 2) / Real.sqrt (1 + y ^ 2) ^ 3 := by
+  have hs : 0 < Real.sqrt (1 + y ^ 2) := Real.sqrt_pos.mpr (by positivity)
+  constructor <;> positivity

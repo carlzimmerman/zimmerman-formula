@@ -4239,3 +4239,34 @@ eigenvalues μ=1−e^{−y} (transverse) and 1−(1−y)e^{−y} (longitudinal) 
 y>0** (= Gpp/2, already Lean-certified as Gpp_pos). **The transition-regime pathology is REMOVED, not
 relocated.** Open (Phase B): the full nonlinear Dirac-chain TERMINATION (residual risk), RAR phenomenology,
 PPN β/α_i, cosmology, a₀. Script: scratchpad phaseA_action_constraints.py (26/26).
+
+## L122 — PARAMETER-SPACE REDUCTION MAP: the space collapses to ONE architecture + ONE open question
+
+Fleet agent, banked. Systematic elimination across the axes of single-metric relativistic MOND:
+
+- **Axis 1 (scalar propagation):** propagating (finite c_s) ELIMINATED (c_s²=1/(2n−1)>1 for 1/2<n<1 → RAQUAL
+  acausality; KGB wrong-sign y≥2; deep-MOND gradient instability L60). **Non-propagating cuscuton SURVIVES.**
+- **Axis 2 (MOND source):** lapse-acceleration ∇lnN ELIMINATED (conformal ghost, L115-117). **Separate-field
+  ∇φ SURVIVES** (lapse Hessian ≡ 0).
+- **Axis 3 (constraint class):** khronometric-by-the-MOND-operator ELIMINATED (the ghost-liberating operator).
+  **H_⊥ first-class for MOND + healthy cuscuton clock SURVIVES.**
+- **Axis 4 (cosmological dark sector):** ⛔ **NO CLEAN SURVIVOR** — none (fails CMB 3rd peak), a⁻³ dust (fits
+  CMB but ghost+BBN, L87/L110), ρ_Λ-const (no clustering), massive-ν (pincered). **The open battleground.**
+- **Axis 5 (a₀ scaling):** local/per-system ELIMINATED (ρ_local null 13-34σ). **a₀∝H(z) SURVIVES = the
+  distinctive prediction.**
+- **Axis 6 (kernel):** ⭐ **HEALTH-BLIND (new result):** the AQUAL Hessian transition-health (both eigenvalues
+  >0 ∀y) holds for **all four kernels** (exp, simple, standard, ν_RAR) — transition health comes from the
+  **∇φ sourcing, not the kernel.** Kernel is phenomenology only (exp vs ν_RAR → DR4 wide binaries decide).
+  Now Lean-certified for simple + standard kernels (`mu_simple_transition_healthy`,
+  `mu_standard_transition_healthy`; 38 theorems).
+
+**THE SURVIVING CORNER = the Phase A health-branch action** (non-propagating cuscuton, ∇φ source, H_⊥
+first-class, a₀∝H(z), any kernel). Inside it: threads G1-G3 (health), G4 (c_T=c), G5 (γ=1), G7 (BTFR),
+Phase C (SPARC). **Open/threatened:** G8 (Axis 4 cosmology pincer — the heaviest cost), G10 (a₀ fitted), G6
+(β,α_i unverified), Phase B (nonlinear Dirac termination unverified).
+
+**Net: the parameter space is reduced to a SINGLE architecture whose fate is decided by ONE axis (cosmology,
+Axis 4) + the a₀ derivation.** 6 Lean-formalizable elimination lemmas proposed (L-ELIM-1/2/5/6 kills,
+L-SECURE-3/4 survivals), with rigorous-vs-conditional flags: the CAM ghost kill + separate-field survival +
+kernel-blind health are rigorous; the cosmology pincer's "no interior" is CONDITIONAL (Phase E's constant-a₀
+assumption downgraded by L121 — a real Boltzmann calc with a₀∝H(z) is the deciding computation).
