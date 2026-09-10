@@ -77,6 +77,21 @@ nonlinear stability theorem: background-dependent lower-derivative terms,
 strong coupling, PPN preferred-frame parameters, and the full covariant
 multiplier algebra remain open.
 
+The preferred-frame coefficient scan gives one useful exact tuning.  On the
+luminal branch (c_{13}=c_1+c_3=0), the standard Einstein-aether weak-field
+expressions derive
+
+\[
+ \alpha_1=0=\alpha_2 \quad\Longleftarrow\quad
+ c_3=-c_1,\qquad c_4=-c_1,
+\]
+
+and (c_T^2=1).  This is not a PPN certification for the complete action:
+the same locus has (c_{14}=c_1+c_4=0), making the usual spin-0 speed
+denominator vanish.  The candidate therefore needs the tensor-compensator
+Dirac chain to show that this would-be instantaneous spin-0 mode is removed,
+not merely tune its PPN numerator away.
+
 ## Reproduction
 
 ```text
@@ -92,4 +107,7 @@ python3 -B -m unittest -v test_flrw_zero_mode_dirac.py
 python3 -B linear_sector_stability_gate.py
 python3 -B -m unittest -v test_linear_sector_stability.py
 python3 -B run_linear_sector_lean.py
+python3 -B ae_ppn_tuning_gate.py
+python3 -B -m unittest -v test_ae_ppn_tuning.py
+python3 -B run_ae_ppn_lean.py
 ```
