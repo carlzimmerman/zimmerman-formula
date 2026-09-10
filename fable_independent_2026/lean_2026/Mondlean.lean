@@ -9,7 +9,7 @@
   flat a₀(z), subdominant scalar GW) confronting DATA — not by Lean, and not while the intrinsic BBN
   fine-tuning (L84/L87) and astra's open ADM/khronon gates stand.
 
-  Theorems (70 as of 2026-09-10; all: exit 0, zero `sorry`, axioms ⊆ {propext, Classical.choice, Quot.sound}):
+  Theorems (76 as of 2026-09-10; all: exit 0, zero `sorry`, axioms ⊆ {propext, Classical.choice, Quot.sound}):
     hasDerivAt_G, hasDerivAt_Gp   — Gp = dG/dy and Gpp = d²G/dy² proven (not merely asserted).
     kernel_identity               — MOND kernel G'(y)/(2y) = 1 − e^{-y}.
     Gpp_zero, Gpp_pos             — health dichotomy: G''(0)=0, G''(y)>0 ∀ y>0 (no ghost off zero field).
@@ -725,3 +725,64 @@ theorem fourth_power_velocity_binds (sv : ℝ) (h : 0.0335 < sv) :
 /-- L143: the threshold is exact — 16·(0.0335)² = (0.134)², so 0.0335 dex on log v spends the ENTIRE budget
     with nothing left for the baryonic mass. -/
 theorem fourth_power_velocity_threshold : (16 : ℝ) * 0.0335 ^ 2 = 0.134 ^ 2 := by norm_num
+
+/-! ### L156–L158: the GDM sound-speed loophole and the BAROTROPIC bounds (growth ceiling, density–time
+    duality, Jeans ordering). Parametrisation: c_s² ∝ a^p. -/
+
+/-- JEANS ORDERING: with c_s² ∝ a^p the comoving Jeans wavenumber goes as a^{−(1+p)/2}, so the clustering set
+    GROWS with a (exponent positive) iff p < −1. A decoupled particle species sits at p = −2 (v_rms ∝ 1/a) —
+    the ENTIRE content of the L125 velocity lemma is this one corner of a one-parameter family. -/
+theorem jeans_exponent_positive_iff (p : ℝ) : 0 < -(1 + p) / 2 ↔ p < -1 := by
+  constructor <;> intro h <;> linarith
+
+/-- The particle case p = −2 lies in the growing-clustering corner; p = 0 (constant c_s) and p = 3
+    (the L139 running sector) do NOT. -/
+theorem particle_corner_and_escapes : (-2 : ℝ) < -1 ∧ ¬ ((0 : ℝ) < -1) ∧ ¬ ((3 : ℝ) < -1) := by
+  refine ⟨by norm_num, by norm_num, by norm_num⟩
+
+/-- BAROTROPIC EQUATION OF STATE from a power-law sound speed: for P = P(ρ) with c_s² = c·(ρ/ρ₀)^{−p/3}
+    (i.e. c_s² ∝ a^p on an a⁻³ background) and p < 3, integrating dP = c_s² dρ gives w = P/ρ = 3c_s²/(3−p).
+    Certified here as the algebraic content: the ratio w/c_s² = 3/(3−p), and for growing sound speed
+    (p ≥ 0) one has c_s² ≤ w — THEOREM A's inequality. -/
+theorem barotropic_w_ratio (c p : ℝ) (hc : 0 < c) (hp : p < 3) :
+    (3 * c / (3 - p)) / c = 3 / (3 - p) ∧ (0 ≤ p → c ≤ 3 * c / (3 - p)) := by
+  have h3 : 0 < 3 - p := by linarith
+  have hne : (3 - p) ≠ 0 := ne_of_gt h3
+  have hcne : c ≠ 0 := ne_of_gt hc
+  refine ⟨by field_simp, ?_⟩
+  intro hp0
+  rw [le_div_iff₀ h3]
+  nlinarith
+
+/-- THE GROWTH CEILING'S COST: the background cost ratio w/c_s² = 3/(3−p) is strictly increasing in p on
+    p < 3, and is UNBOUNDED as p → 3⁻ (for every M ≥ 1 the value M is attained at p = 3 − 3/M). So p = 3 is a
+    genuine ceiling for a barotropic fluid: growing faster buys less galaxy protection at diverging cost. -/
+theorem barotropic_cost_increasing (p1 p2 : ℝ) (h12 : p1 < p2) (h2 : p2 < 3) :
+    3 / (3 - p1) < 3 / (3 - p2) := by
+  have a1 : 0 < 3 - p1 := by linarith
+  have a2 : 0 < 3 - p2 := by linarith
+  have n1 : (3 - p1) ≠ 0 := ne_of_gt a1
+  have n2 : (3 - p2) ≠ 0 := ne_of_gt a2
+  have expand : 3 / (3 - p2) - 3 / (3 - p1) = 3 * (p2 - p1) / ((3 - p1) * (3 - p2)) := by
+    field_simp; ring
+  have key : 0 < 3 / (3 - p2) - 3 / (3 - p1) := by
+    rw [expand]; exact div_pos (by nlinarith) (mul_pos a1 a2)
+  linarith
+
+theorem barotropic_cost_unbounded (M : ℝ) (hM : 1 ≤ M) :
+    3 / (3 - (3 - 3 / M)) = M := by
+  have hMne : M ≠ 0 := by linarith
+  have h : 3 - (3 - 3 / M) = 3 / M := by ring
+  rw [h, div_div_eq_mul_div]
+  field_simp
+
+/-- DENSITY–TIME DUALITY (the reason Theorem A holds): on an a⁻³ background ρ̄(x) = ρ₀/x³, a region of
+    overdensity Δ = s³ − 1 at scale factor a carries exactly the density the universe had at a/s:
+    ρ̄(a)·(1+Δ) = ρ̄(a/s). For a BAROTROPIC fluid the sound speed is a function of density alone, so the fluid
+    inside a galaxy carries the sound speed of an EARLIER epoch — "grows with a" IS "falls with ρ". A fluid
+    whose c_s² depends on an internal clock rather than on ρ breaks this by construction (the surviving door). -/
+theorem density_time_duality (rho0 a s : ℝ) (ha : 0 < a) (hs : 0 < s) :
+    rho0 / a ^ 3 * s ^ 3 = rho0 / (a / s) ^ 3 := by
+  have hane : a ≠ 0 := ne_of_gt ha
+  have hsne : s ≠ 0 := ne_of_gt hs
+  field_simp
