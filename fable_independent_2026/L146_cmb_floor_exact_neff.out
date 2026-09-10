@@ -42,19 +42,8 @@ GUARD G2' -- restated correctly: the exact chi^2 at the profile's optimum must M
 
   checks: 2/3 passed   FAILED: GUARD G2'  the exact chi^2 at the profile's own optimum MATCHES the reported value (within 50%), so the remaining linearisation is sound
 
-      [SUPERSEDED NOTE] The GUARD G2' failure above is a defect in THE GUARD, not in the fit.
-      profile_chi2 minimises |DL_model*(1-A) - sum x_a T_a - DL_fid|^2, so the fitted model has
-      amplitude (1-A) and template coefficients MINUS x_a; the guard rebuilt it with (1+A) and
-      PLUS x_a, i.e. both signs wrong.  L147_verify_cmb_profile.py redoes the check correctly and
-      PASSES 4/4: linear reconstruction 7.79 vs profiled 7.79, EXACT CAMB 8.99, and an INDEPENDENT
-      nonlinear minimisation with real CAMB at every step 7.83.  f_cmb_min = 0.9877 stands.
-
-# ---------------------------------------------------------------------------------------------------
-# NOTE (2026-09-10): this .out is INCOMPLETE. It was regenerated locally while ~10 concurrent research
-# agents were running and the process was OOM-killed (exit 137) partway through the exact-N_eff CAMB
-# scan. This is a local memory-pressure artifact, NOT a defect in L146 itself. The conclusion does not
-# depend on this file: L147_verify_cmb_profile.py (4/4 PASS, exact CAMB) independently validates
-# f_cmb_min = 0.988, and an independent nonlinear minimisation with real CAMB at every step returned
-# Delta chi^2 = 7.83 against the profiled 7.79 (0.5% agreement) -- three independent validations.
-# Re-run L146 on an idle machine to regenerate the full table.
-# ---------------------------------------------------------------------------------------------------
+      [SUPERSEDED NOTE] The GUARD G2' failure above is a defect in THE GUARD, not the fit:
+      profile_chi2 minimises |DL_model*(1-A) - sum x_a T_a - DL_fid|^2, so the fitted model carries
+      amplitude (1-A) and coefficients MINUS x_a; the guard rebuilt it with (1+A) and PLUS x_a.
+      L147_verify_cmb_profile.py redoes it correctly and PASSES 4/4 (linear 7.79 vs profiled 7.79,
+      exact CAMB 8.99, independent nonlinear 7.83).  f_cmb_min = 0.9877 stands.

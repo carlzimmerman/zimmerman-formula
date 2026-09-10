@@ -73,3 +73,14 @@ SUMMARY
   f_cmb_min (3 sigma, variant B, TT+TE+EE) = 0.9698   -> omega_c^clust >= 0.1164
   f_cmb_min (3 sigma, variant B, TT only)  = 0.9528
   f_cmb_min (3 sigma, THIRD PEAK HEIGHT RATIO ALONE) = 0.9255   <- the literal 'third peak' answer
+
+      [ARTIFACT NOTE] This .out was produced BEFORE guard G2's check statement was corrected, so it
+      records 7/8.  As originally written G2 asserted only "exact chi^2 > reported - 1", which a
+      hugely LARGER exact chi^2 satisfies trivially -- it reported PASS on exact 8898 vs reported 7.5.
+      The .py in this directory carries the corrected statement ("exact must MATCH reported within
+      50%"), under which this same run scores 6/8: G1 AND G2 both fail.  Both readings carry the same
+      physical conclusion -- the N_eff linear template is invalid, so every floor in THIS script that
+      profiles over N_eff is unreliable in the LENIENT direction.  Those floors are superseded by
+      L146_cmb_floor_exact_neff.py (N_eff scanned exactly, f_cmb_min = 0.9877) and validated by
+      L147_verify_cmb_profile.py (4/4).  The scan table, the peak-ratio floors and the Planck
+      sigma(omega_c) controls in this file are unaffected and stand.
