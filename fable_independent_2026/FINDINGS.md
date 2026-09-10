@@ -4108,3 +4108,32 @@ pathology is dynamical (the conformal mode) + the y>1 nonelliptic lapse.
 operator (the clock is healthy) — the exact map astra needs; astra is attacking it with the
 elliptic-curvature-clock and ticking-KGB architectures (both OPEN). Script `L117_fleet_synthesis_cam_ghost.py`
 (5/5, a rigorous negative). Lean certifies both the healthy clock and the fatal ghost.
+
+## L118 — the GATE SPECIFICATION + the recurring transition-regime pathology (6/6)
+
+Toward "a Lagrangian that passes all the gates." Consolidates the target and the critical failing gate.
+
+**The 10-gate checklist** (each with the obstruction it encodes + the lane that established it): G1 ghost-free,
+G2 constraint closure, G3 elliptic-lapse/hyperbolic-scalar **across all y**, G4 c_T=c, G5 PPN γ=1, G6 PPN
+β+α_i, G7 deep-MOND **+ mass-dependent BTFR**, G8 cosmology (CMB/clusters), G9 BBN, G10 a₀ coefficient derived.
+
+**The decisive pattern — the recurring TRANSITION-regime failure.** Three *independent* architectures are all
+healthy in deep MOND (y<1) but pathological in the MOND→Newton transition (y~1–few):
+| architecture | healthy | pathology (transition) | source |
+|---|---|---|---|
+| CAM (khronometric) | y<1 | nonelliptic lapse for y>1 | L116/L117 |
+| KGB (ticking) | y≤1 | scalar C00 wrong-sign + hyperbolicity fail y≥2 | astra de6b2c1a9 |
+| khronometric MOND | a<a₀ | radial gradient instability a₀<a<38a₀ | FC-KH (prior) |
+
+**G3 (transition-regime health) is the gate that keeps failing.** Plus G7: KGB's fixed kinetic power gives a
+single flat speed (w=1/(2n+1), M-independent) ⇒ no BTFR — verified.
+
+**Design target:** (1) heal the transition — either keep H_⊥ first-class (covariant-scalar MOND, conformal
+mode stays non-dynamical) or deform the kinetic term (Hořava λ≠1 / KGB braiding) so the surviving scalar is
+right-sign + hyperbolic *through* the crossover; (2) **don't source MOND from the lapse acceleration**
+a_μ=∇lnN (that liberated the conformal ghost in CAM) — use the healthy clock sector; (3) use a
+mass-dependent (non-fixed-power) kinetic structure for BTFR; then re-run all gates.
+
+**Honest scope:** a specification + empirical pattern (astra's obstructions are conditional per branch), NOT
+a universal no-go — a threading coupling may exist (astra's open KGB/curvature-clock work). This makes the
+search precise. Script `L118_gate_spec_and_transition_pathology.py` (6/6).
