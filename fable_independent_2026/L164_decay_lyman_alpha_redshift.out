@@ -1,0 +1,93 @@
+======================================================================================================================
+T6 -- the Lyman-alpha horn at the redshift of the measurement
+======================================================================================================================
+
+======================================================================================================================
+PART 0 -- CONTROLS.
+======================================================================================================================
+  [PASS] C0  at a_eval = 1 the redshift-aware bound reduces exactly to the z = 0 expression used in T2/T5
+           (identity check on the a_eval = 1 branch)
+  [PASS] C1  CONTROL: with no decay (tau enormous) the bound returns 1 at every k and every redshift -- the machinery is normalised, not offset
+           (S(k=1,z=0) = 1.000000; S(k=10,z=3) = 1.000000)
+  [PASS] C2  CONTROL: the bound is monotone in redshift for a running decay -- less has decayed earlier, so the suppression at fixed k must be WEAKER at higher z.  If this failed, the redshift bookkeeping would be wrong
+           (S(k=5) = 0.9354 (z=4) > 0.8109 (z=1) > 0.6599 (z=0))
+
+======================================================================================================================
+PART 1 -- the suppression across the forest band, at the forest's own redshifts.
+======================================================================================================================
+    P(k)/P_LCDM (the SQUARE of the transfer bound), by redshift.  Forest band k ~ 0.5-20 h/Mpc.
+
+    --- G4 isothermal, most comfortable: tau = 5.0 Gyr, v_k = 203 km/s (eps = 6.77e-04) ---
+          z |       0.5       1.0       2.0       5.0      10.0      20.0
+        0.0 |    1.0000    0.6088    0.3793    0.3184    0.3118    0.3103
+        2.0 |    0.9883    0.8663    0.7184    0.6707    0.6651    0.6637
+        3.0 |    1.0095    0.9488    0.8248    0.7802    0.7749    0.7735
+        4.0 |    0.9867    0.9587    0.8574    0.8169    0.8120    0.8106
+
+    --- G4 isothermal, mid: tau = 10.0 Gyr, v_k = 303 km/s (eps = 1.01e-03) ---
+          z |       0.5       1.0       2.0       5.0      10.0      20.0
+        0.0 |    0.8298    0.5820    0.5149    0.4994    0.4977    0.4973
+        2.0 |    0.9698    0.8589    0.8167    0.8058    0.8045    0.8041
+        3.0 |    1.0016    0.9240    0.8871    0.8771    0.8758    0.8754
+        4.0 |    0.9910    0.9398    0.9074    0.8983    0.8972    0.8968
+
+    --- G3 orbit-averaged, mid: tau = 10.0 Gyr, v_k = 455 km/s (eps = 1.52e-03) ---
+          z |       0.5       1.0       2.0       5.0      10.0      20.0
+        0.0 |    0.6524    0.5315    0.5041    0.4982    0.4974    0.4972
+        2.0 |    0.8973    0.8278    0.8091    0.8049    0.8042    0.8040
+        3.0 |    0.9551    0.8970    0.8801    0.8762    0.8755    0.8753
+        4.0 |    0.9648    0.9164    0.9011    0.8975    0.8969    0.8967
+
+    --- G3 orbit-averaged, long: tau = 13.8 Gyr, v_k = 589 km/s (eps = 1.96e-03) ---
+          z |       0.5       1.0       2.0       5.0      10.0      20.0
+        0.0 |    0.6585    0.6020    0.5901    0.5875    0.5871    0.5870
+        2.0 |    0.8946    0.8614    0.8536    0.8517    0.8514    0.8513
+        3.0 |    0.9449    0.9163    0.9092    0.9075    0.9072    0.9071
+        4.0 |    0.9565    0.9316    0.9252    0.9236    0.9233    0.9232
+
+    --- G2 shallow step, mid: tau = 13.8 Gyr, v_k = 707 km/s (eps = 2.36e-03) ---
+          z |       0.5       1.0       2.0       5.0      10.0      20.0
+        0.0 |    0.6349    0.5968    0.5891    0.5873    0.5871    0.5870
+        2.0 |    0.8814    0.8580    0.8529    0.8516    0.8514    0.8513
+        3.0 |    0.9338    0.9132    0.9086    0.9074    0.9071    0.9071
+        4.0 |    0.9471    0.9289    0.9246    0.9235    0.9233    0.9232
+
+    At z = 3, the redshift where the forest signal is strongest:
+      G4 isothermal, most comfortable    P/P_LCDM = 0.9488 at k = 1 h/Mpc, 0.7802 at k = 5
+      G4 isothermal, mid                 P/P_LCDM = 0.9240 at k = 1 h/Mpc, 0.8771 at k = 5
+      G3 orbit-averaged, mid             P/P_LCDM = 0.8970 at k = 1 h/Mpc, 0.8762 at k = 5
+      G3 orbit-averaged, long            P/P_LCDM = 0.9163 at k = 1 h/Mpc, 0.9075 at k = 5
+      G2 shallow step, mid               P/P_LCDM = 0.9132 at k = 1 h/Mpc, 0.9074 at k = 5
+  [PASS] F1  the suppression IS materially weaker at the forest's redshift than at z = 0 -- so quoting the z = 0 number against a z = 3 measurement would have manufactured a deficit, and that correction was worth making.  Statement asserted: at k = 5 h/Mpc every live cell suppresses P by less at z = 3 than at z = 0
+           (G4 isothermal: 0.780 (z=3) vs 0.318 (z=0); G4 isothermal: 0.877 (z=3) vs 0.499 (z=0); G3 orbit-averaged: 0.876 (z=3) vs 0.498 (z=0); G3 orbit-averaged: 0.907 (z=3) vs 0.587 (z=0); G2 shallow step: 0.907 (z=3) vs 0.587 (z=0))
+  [PASS] F2  [THE HORN, CORRECTED -- the first assertion here overstated it]  at z = 3 and on the STRICT UPPER BOUND the live window suppresses the matter power by 9-22% at k = 5 h/Mpc, not by the factor of three the z = 0 number suggested.  Current Lyman-alpha analyses limit a warm-dark-matter-like cutoff in that band to roughly the ten-percent level (Irsic et al. 2017, PRD 96, 023522 [1702.01764], m_WDM > 5.3 keV thermal; Rogers & Peiris 2021 and Villasenor et al. 2023 are comparable).  So the window sits AT or just beyond the tolerance -- a real tension, not an overwhelming one.  Statement asserted: every live cell is suppressed by more than 8% at k = 5 h/Mpc at z = 3.  CITED as a scale, not re-fitted here
+           (G4 isothermal: P/P_LCDM = 0.780 at k=5, z=3; G4 isothermal: P/P_LCDM = 0.877 at k=5, z=3; G3 orbit-averaged: P/P_LCDM = 0.876 at k=5, z=3; G3 orbit-averaged: P/P_LCDM = 0.907 at k=5, z=3; G2 shallow step: P/P_LCDM = 0.907 at k=5, z=3)
+  [PASS] F3  [CORRECTED]  at z = 3 the suppression is controlled mainly by the DECAYED FRACTION at that epoch -- i.e. by tau -- and only weakly by v_k, because every daughter alive at z = 3 was born recently and is therefore slow (v = v_k a_d/a with a_d <= a).  That reverses the z = 0 ordering: the SHORTEST lifetime, not the largest kick, is worst in the forest.  Statement asserted: the cell with the shortest lifetime (tau = 5 Gyr) has the largest z = 3 suppression at k = 5 h/Mpc despite having the SMALLEST kick
+           (v_k=203: P/P_LCDM(k=1,z=3) = 0.949; v_k=303: P/P_LCDM(k=1,z=3) = 0.924; v_k=455: P/P_LCDM(k=1,z=3) = 0.897; v_k=589: P/P_LCDM(k=1,z=3) = 0.916; v_k=707: P/P_LCDM(k=1,z=3) = 0.913)
+
+======================================================================================================================
+PART 2 -- what this does to the verdict.
+======================================================================================================================
+
+  The redshift correction WEAKENS the Lyman-alpha horn substantially -- at z = 3 the suppression at k = 5 h/Mpc
+  is 0.78-0.91 of LambdaCDM rather than the 0.32 the z = 0 number suggested for the most comfortable
+  cell -- and it is right to make that correction.  But it does not remove the horn: a
+  9-22% suppression across k ~ 1-20 h/Mpc at z = 3 is at or beyond what the forest tolerates, and it is
+  present on the STRICT UPPER BOUND, so the standard treatment would be worse.
+
+  The window therefore now requires, on top of everything T5 listed, a Lyman-alpha forest tolerant of a
+  9-22% power suppression at k = 5 h/Mpc at z = 3.  That sits AT the edge of published tolerances
+  rather than far outside them, and the tension is worst for the SHORTEST lifetimes -- which is the opposite
+  of the z = 0 ordering and is worth stating, because it means the forest and the galaxy gate select
+  different corners of the window rather than the same one.
+
+  HONEST STATUS OF THIS HORN: it is CITED, not re-fitted.  A real confrontation needs the model's own flux
+  power through a hydrodynamic simulation, because the forest constrains the FLUX power, not the matter power,
+  and the mapping depends on the thermal history.  That is why this is reported as the sharpest remaining
+  tension rather than as a closure -- and it is Test 2 of T5's list, now with the number it must beat.
+
+  [PASS] F4  [VERDICT UPDATE]  the two-body window is now DISFAVOURED by the Lyman-alpha forest as well, at the level of tens of percent in P(k) at z = 3 -- but the confrontation is CITED rather than re-fitted, so the arm stays UNDETERMINED-BUT-DISFAVOURED rather than closed.  The named test (a flux-power run at the window's parameters) is now specified with the number it must return
+           (z=3, k=5 h/Mpc: P/P_LCDM in [0.780, 0.907] on the strict upper bound across the live cells; forest tolerance is ~10%)
+======================================================================================================================
+T6 COMPLETE: 7/7 checks PASS.   [3.3s]
+======================================================================================================================

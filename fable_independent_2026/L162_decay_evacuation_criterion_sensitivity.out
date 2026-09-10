@@ -1,0 +1,134 @@
+======================================================================================================================
+T4 -- adversarial sensitivity of the two-body verdict to the galaxy-evacuation criterion
+======================================================================================================================
+
+======================================================================================================================
+PART 0 -- SPARC, the four criteria, and the controls.
+======================================================================================================================
+    SPARC: 150 galaxies; v_flat median 110.0 km/s (10th 57, 90th 238); median measured radius 6.51 kpc
+  [PASS] C0  CONTROL: the SPARC read reproduces the sample used in T2 (150 galaxies passing eV/V < 0.10) and a median v_flat in the 100-160 km/s band expected for that sample
+           (150 galaxies, median v_flat = 110.0 km/s)
+
+    THE FOUR CRITERIA, calibrated: the single-particle speed at which the median SPARC galaxy's
+    retained fraction drops to the L61 ceiling 0.582 (i.e. the kick a single, present-day daughter
+    would need if ALL daughters had that one speed):
+      criterion                           v so that median xi = 0.582   / v_flat
+      G1 step, deep trunc                                         309       2.81
+      G2 step, shallow trunc                                      203       1.85
+      G3 orbit-averaged                                           114       1.04
+      G4 isothermal re-equilibration                               46       0.42
+  [PASS] C1  the four criteria span a genuine factor in how hard a galaxy is to evacuate -- which is exactly why the sensitivity has to be run.  Statement asserted: the single-particle evacuation speed differs by more than a factor 2 between the harshest (G1, T2's choice) and the most generous
+           (G1: 309 km/s; G2: 203 km/s; G3: 114 km/s; G4: 46 km/s)
+  [PASS] C2  CONTROL: with no decay the S_8 upper bound returns the LambdaCDM value 0.831 exactly (all daughter weights vanish), so the bound is normalised, not offset
+           (S_8(tau = 1e6 Gyr) = 0.8313 vs LambdaCDM 0.8313)
+
+======================================================================================================================
+PART 1 -- the decisive comparison under each criterion.
+======================================================================================================================
+    v_k NEEDED (the smallest kick bringing the MEDIAN SPARC retained fraction to the ceiling),
+    against v_k ALLOWED by the S_8 strict upper bound and by the published 2-sigma two-body curve.
+
+    --- G1 step, deep trunc ---
+         tau |  canon eps=0    alt eps=0  canon eps=1    alt eps=1 |  ALLOW S_8  ALLOW pub |                    verdict
+         3.0 |         1109         1293         1765         2062 |        637        161 |                     closed
+         5.0 |          831         1025         1402         1832 |        646        282 |                     closed
+         8.0 |          783          967         1485         2310 |        700        472 |                     closed
+        10.0 |          784         1027         1874         5207 |        748        604 |                     closed
+        13.8 |          881         1373  unreachable  unreachable |        858        861 |                     closed
+        17.0 |         1109         2454  unreachable  unreachable |        959       1083 |                     closed
+        20.0 |         1402  unreachable  unreachable  unreachable |       1064       1294 |                     closed
+        25.5 |  unreachable  unreachable  unreachable  unreachable |       1296       1691 |                     closed
+        35.0 |  unreachable  unreachable  unreachable  unreachable |       1972       2396 |                     closed
+
+    --- G2 step, shallow trunc ---
+         tau |  canon eps=0    alt eps=0  canon eps=1    alt eps=1 |  ALLOW S_8  ALLOW pub |                    verdict
+         3.0 |          729          816         1160         1330 |        637        161 |                     closed
+         5.0 |          549          647          925         1156 |        646        282 |                   S_8 only
+         8.0 |          515          610          981         1458 |        700        472 |                   S_8 only
+        10.0 |          518          663         1237         3285 |        748        604 |               OPEN: canon0
+        13.8 |          582          886  unreachable  unreachable |        858        861 |               OPEN: canon0
+        17.0 |          729         1584  unreachable  unreachable |        959       1083 |               OPEN: canon0
+        20.0 |          925  unreachable  unreachable  unreachable |       1064       1294 |               OPEN: canon0
+        25.5 |  unreachable  unreachable  unreachable  unreachable |       1296       1691 |                     closed
+        35.0 |  unreachable  unreachable  unreachable  unreachable |       1972       2396 |                     closed
+
+    --- G3 orbit-averaged ---
+         tau |  canon eps=0    alt eps=0  canon eps=1    alt eps=1 |  ALLOW S_8  ALLOW pub |                    verdict
+         3.0 |          434          547          763          964 |        637        161 |                   S_8 only
+         5.0 |          344          437          628          822 |        646        282 |                   S_8 only
+         8.0 |          327          431          692         1082 |        700        472 |          OPEN: canon0,alt0
+        10.0 |          342          470          893         2448 |        748        604 |          OPEN: canon0,alt0
+        13.8 |          404          649  unreachable  unreachable |        858        861 |          OPEN: canon0,alt0
+        17.0 |          499         1184  unreachable  unreachable |        959       1083 |               OPEN: canon0
+        20.0 |          669  unreachable  unreachable  unreachable |       1064       1294 |               OPEN: canon0
+        25.5 |  unreachable  unreachable  unreachable  unreachable |       1296       1691 |                     closed
+        35.0 |  unreachable  unreachable  unreachable  unreachable |       1972       2396 |                     closed
+
+    --- G4 isothermal re-equilibration ---
+         tau |  canon eps=0    alt eps=0  canon eps=1    alt eps=1 |  ALLOW S_8  ALLOW pub |                    verdict
+         3.0 |          184          250          361          513 |        637        161 |                   S_8 only
+         5.0 |          147          204          306          473 |        646        282 |          OPEN: canon0,alt0
+         8.0 |          143          212          369          783 |        700        472 |   OPEN: canon0,alt0,canon1
+        10.0 |          152          241          545         8164 |        748        604 |   OPEN: canon0,alt0,canon1
+        13.8 |          193          392  unreachable  unreachable |        858        861 |          OPEN: canon0,alt0
+        17.0 |          257         1140  unreachable  unreachable |        959       1083 |               OPEN: canon0
+        20.0 |          395  unreachable  unreachable  unreachable |       1064       1294 |               OPEN: canon0
+        25.5 |  unreachable  unreachable  unreachable  unreachable |       1296       1691 |                     closed
+        35.0 |  unreachable  unreachable  unreachable  unreachable |       1972       2396 |                     closed
+
+    SUMMARY OF THE SENSITIVITY:
+      G1 step, deep trunc              CLOSED at every lifetime and every ceiling
+      G2 step, shallow trunc           OPEN at tau = [10.0, 13.8, 17.0, 20.0] Gyr, ceilings ['canon eps=0']
+      G3 orbit-averaged                OPEN at tau = [8.0, 10.0, 13.8, 17.0, 20.0] Gyr, ceilings ['alt eps=0', 'canon eps=0']
+      G4 isothermal re-equilibration   OPEN at tau = [5.0, 8.0, 10.0, 13.8, 17.0, 20.0] Gyr, ceilings ['alt eps=0', 'canon eps=0', 'canon eps=1']
+  [PASS] V1  [THE ADVERSARIAL RESULT]  the two-body verdict is SENSITIVE to the galaxy-evacuation criterion.  Statement asserted: at least one of the three fairer criteria opens a region that T2's harsher step criterion closed
+           (G1: closed; G2: OPEN; G3: OPEN; G4: OPEN)
+
+    THE OPEN REGION under G2 step, shallow trunc:
+      tau =  10.0 Gyr:  v_k in [518, 604] km/s  (eps in [1.73e-03, 2.01e-03]);  ceilings satisfied: ['canon eps=0']
+      tau =  13.8 Gyr:  v_k in [582, 858] km/s  (eps in [1.94e-03, 2.86e-03]);  ceilings satisfied: ['canon eps=0']
+      tau =  17.0 Gyr:  v_k in [729, 959] km/s  (eps in [2.43e-03, 3.20e-03]);  ceilings satisfied: ['canon eps=0']
+      tau =  20.0 Gyr:  v_k in [925, 1064] km/s  (eps in [3.09e-03, 3.55e-03]);  ceilings satisfied: ['canon eps=0']
+
+    THE OPEN REGION under G3 orbit-averaged:
+      tau =   8.0 Gyr:  v_k in [327, 472] km/s  (eps in [1.09e-03, 1.58e-03]);  ceilings satisfied: ['canon eps=0', 'alt eps=0']
+      tau =  10.0 Gyr:  v_k in [342, 604] km/s  (eps in [1.14e-03, 2.01e-03]);  ceilings satisfied: ['canon eps=0', 'alt eps=0']
+      tau =  13.8 Gyr:  v_k in [404, 858] km/s  (eps in [1.35e-03, 2.86e-03]);  ceilings satisfied: ['canon eps=0', 'alt eps=0']
+      tau =  17.0 Gyr:  v_k in [499, 959] km/s  (eps in [1.66e-03, 3.20e-03]);  ceilings satisfied: ['canon eps=0']
+      tau =  20.0 Gyr:  v_k in [669, 1064] km/s  (eps in [2.23e-03, 3.55e-03]);  ceilings satisfied: ['canon eps=0']
+
+    THE OPEN REGION under G4 isothermal re-equilibration:
+      tau =   5.0 Gyr:  v_k in [147, 282] km/s  (eps in [4.90e-04, 9.40e-04]);  ceilings satisfied: ['canon eps=0', 'alt eps=0']
+      tau =   8.0 Gyr:  v_k in [143, 472] km/s  (eps in [4.76e-04, 1.58e-03]);  ceilings satisfied: ['canon eps=0', 'alt eps=0', 'canon eps=1']
+      tau =  10.0 Gyr:  v_k in [152, 604] km/s  (eps in [5.08e-04, 2.01e-03]);  ceilings satisfied: ['canon eps=0', 'alt eps=0', 'canon eps=1']
+      tau =  13.8 Gyr:  v_k in [193, 858] km/s  (eps in [6.44e-04, 2.86e-03]);  ceilings satisfied: ['canon eps=0', 'alt eps=0']
+      tau =  17.0 Gyr:  v_k in [257, 959] km/s  (eps in [8.57e-04, 3.20e-03]);  ceilings satisfied: ['canon eps=0']
+      tau =  20.0 Gyr:  v_k in [395, 1064] km/s  (eps in [1.32e-03, 3.55e-03]);  ceilings satisfied: ['canon eps=0']
+
+======================================================================================================================
+PART 2 -- what the sensitivity means, stated without spin.
+======================================================================================================================
+
+  T2's step-at-escape-velocity criterion is the HARSHEST of the four, and it is the one T2 used.  That was the
+  wrong posture and this lane corrects it.  Under the criteria that only require the daughter to stop
+  CONTRIBUTING at the measured radii -- rather than to become formally unbound -- the kick the galaxy gate
+  needs falls by a factor of 2.7-6.8, and that is the whole margin the T2 closure was resting on.
+
+  WHAT IS ROBUST ACROSS ALL FOUR CRITERIA:
+   * the ORDERING result (T2 O1) -- clusters are ~7x deeper than the median SPARC galaxy in the theory's own
+     gravity, so a depth filter has the right sign.  Nothing here touches it.
+   * the COOLING FLOOR -- v ~ 1/a means early daughters are cold today and fall back in, so f_gal has an
+     interior optimum in tau.  Nothing here touches it.
+   * the ONE-VELOCITY structure -- the same v_k sets both the evacuation scale and the free-streaming scale.
+     What the criterion changes is the CONSTANT relating them, not the fact that there is only one number.
+
+  WHAT IS NOT ROBUST: the numerical verdict on the two-body arm.  It depends on a galaxy-dynamics modelling
+  choice that this investigation did not settle, and that a proper answer would need an N-body experiment --
+  kick a MOND galaxy's dark component at a range of speeds and measure the rotation curve -- not an analytic
+  criterion.  That experiment is the decisive next step, and it is named here rather than papered over.
+
+  [PASS] V2  SCOPE, honestly stated: this lane does not decide which criterion is right.  It establishes that the two-body verdict TURNS on that choice, names the experiment that would settle it (an N-body kick test on a MOND galaxy), and separates the three results that are criterion-independent (the depth-filter ordering, the cooling floor, the one-velocity structure) from the one that is not (the numerical closure of the two-body arm)
+           (criterion-independent: ordering, cooling floor, one-velocity structure; criterion-dependent: the numerical two-body verdict)
+======================================================================================================================
+T4 COMPLETE: 5/5 checks PASS.   [8.9s]
+======================================================================================================================

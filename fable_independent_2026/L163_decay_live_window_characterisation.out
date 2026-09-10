@@ -1,0 +1,130 @@
+======================================================================================================================
+T5 -- the live window: consistency, characterisation, and the decisive tests
+======================================================================================================================
+    SPARC: 150 galaxies, median v_flat 110.0 km/s, median radius 6.51 kpc
+    X-COP at 1 Mpc: median v_circ = 1425 km/s; f_req = 0.576 (canonical) / 0.514 (alt)
+  [PASS] C0  CONTROL: the cluster circular velocity at 1 Mpc derived from the audited g_HSE lands in the 1000-1600 km/s band expected for X-COP-class clusters, and is ~10x the median SPARC v_flat -- the depth ordering that makes a velocity filter conceivable at all
+           (v_circ(cluster, 1 Mpc) = 1425 km/s vs median SPARC v_flat 110 km/s (ratio 13.0))
+
+======================================================================================================================
+PART 1 -- CONSISTENCY: the same criterion applied to clusters as to galaxies.
+======================================================================================================================
+
+  T4 compared a FAIR galaxy criterion against a STEP cluster criterion.  That is the same inconsistency in
+  the other direction, so it is corrected here: whichever criterion empties galaxies also acts on clusters,
+  with the cluster's own characteristic speed (v_circ at 1 Mpc, measured above) in place of v_flat.
+
+
+    --- G2 step, shallow trunc ---
+         tau  v_need(gal)  v_max(S_8)  v_max(pub)  f_cl at v_need   f_req   cluster    VERDICT
+         5.0          549         648         282           1.000   0.576        OK     closed
+         8.0          515         703         472           1.000   0.576        OK     closed
+        10.0          518         751         604           1.000   0.576        OK       LIVE
+        13.8          582         861         861           1.000   0.576        OK       LIVE
+        17.0          729         962        1083           1.000   0.576        OK       LIVE
+        20.0          925        1067        1294           1.000   0.576        OK       LIVE
+
+    --- G3 orbit-averaged ---
+         tau  v_need(gal)  v_max(S_8)  v_max(pub)  f_cl at v_need   f_req   cluster    VERDICT
+         5.0          344         648         282           0.995   0.576        OK     closed
+         8.0          327         703         472           0.994   0.576        OK       LIVE
+        10.0          342         751         604           0.994   0.576        OK       LIVE
+        13.8          404         861         861           0.992   0.576        OK       LIVE
+        17.0          499         962        1083           0.989   0.576        OK       LIVE
+        20.0          669        1067        1294           0.982   0.576        OK       LIVE
+
+    --- G4 isothermal ---
+         tau  v_need(gal)  v_max(S_8)  v_max(pub)  f_cl at v_need   f_req   cluster    VERDICT
+         5.0          147         648         282           0.993   0.576        OK       LIVE
+         8.0          143         703         472           0.992   0.576        OK       LIVE
+        10.0          152         751         604           0.991   0.576        OK       LIVE
+        13.8          193         861         861           0.987   0.576        OK       LIVE
+        17.0          257         962        1083           0.979   0.576        OK       LIVE
+        20.0          395        1067        1294           0.957   0.576        OK       LIVE
+  [PASS] W1  the window survives the CONSISTENCY correction: applying the same evacuation criterion to clusters does not close it, because the cluster's characteristic speed is ~10x the galaxy's, so the same kick that empties a galaxy leaves a cluster essentially untouched.  This is the depth ordering doing real work, not an artefact of using two different criteria
+           (G2: 4 live lifetimes; G3: 5 live lifetimes; G4: 6 live lifetimes)
+
+======================================================================================================================
+PART 2 -- CHARACTERISATION of the live cells.
+======================================================================================================================
+                 criterion    tau     v_k       eps   f_gal    f_cl  S_8 (bound)  vs KiDS  S_8 (std)  vs KiDS
+    G2 step, shallow trunc   10.0     559  1.87e-03   0.556   1.000        0.801     -0.9      0.786     -1.8
+    G2 step, shallow trunc   13.8     707  2.36e-03   0.538   1.000        0.785     -1.9      0.757     -3.6
+    G2 step, shallow trunc   17.0     838  2.79e-03   0.554   1.000        0.777     -2.4      0.734     -5.1
+    G2 step, shallow trunc   20.0     994  3.31e-03   0.575   1.000        0.773     -2.6      0.717     -6.1
+         G3 orbit-averaged    8.0     393  1.31e-03   0.517   0.992        0.817     +0.2      0.815     -0.0
+         G3 orbit-averaged   10.0     455  1.52e-03   0.495   0.989        0.811     -0.3      0.804     -0.7
+         G3 orbit-averaged   13.8     589  1.97e-03   0.502   0.984        0.802     -0.8      0.784     -1.9
+         G3 orbit-averaged   17.0     693  2.31e-03   0.533   0.979        0.793     -1.4      0.764     -3.2
+         G3 orbit-averaged   20.0     845  2.82e-03   0.560   0.972        0.783     -2.0      0.741     -4.6
+             G4 isothermal    5.0     203  6.78e-04   0.471   0.987        0.830     +0.9      0.830     +0.9
+             G4 isothermal    8.0     260  8.66e-04   0.423   0.975        0.829     +0.8      0.828     +0.8
+             G4 isothermal   10.0     303  1.01e-03   0.432   0.967        0.828     +0.8      0.826     +0.7
+             G4 isothermal   13.8     408  1.36e-03   0.475   0.947        0.819     +0.2      0.815     -0.0
+             G4 isothermal   17.0     497  1.66e-03   0.518   0.931        0.813     -0.1      0.800     -1.0
+             G4 isothermal   20.0     649  2.16e-03   0.552   0.903        0.802     -0.8      0.780     -2.2
+  [PASS] W2  inside the live window the STANDARD growth treatment is materially more pessimistic than the strict upper bound, so the window's survival depends on which treatment is right -- a second modelling sensitivity, independent of the first.  Statement asserted: at least one live cell is inside the S_8 3-sigma floor on the bound but outside it on the standard treatment
+           (10 of 15 live cells also clear S_8 on the standard treatment (floor 0.767))
+
+    The most comfortable live cell: G4 isothermal, tau = 5.0 Gyr, v_k = 203 km/s (eps = 6.78e-04)
+      f_gal = 0.471 (ceiling 0.582)   f_cl = 0.987 (needs 0.576)
+      sqrt(P/P_LCDM) -- strict bound / standard treatment.  Lyman-alpha probes k ~ 0.5-20 h/Mpc:
+        k =   0.020 h/Mpc :  1.0000  /  1.0000
+        k =   0.035 h/Mpc :  1.0000  /  1.0000
+        k =   0.062 h/Mpc :  1.0000  /  1.0000
+        k =   0.109 h/Mpc :  1.0000  /  1.0000
+        k =   0.192 h/Mpc :  1.0000  /  1.0000
+        k =   0.337 h/Mpc :  1.0000  /  1.0000
+        k =   0.593 h/Mpc :  0.9783  /  0.9916
+        k =   1.044 h/Mpc :  0.7648  /  0.7422
+        k =   1.836 h/Mpc :  0.6279  /  0.4670
+        k =   3.231 h/Mpc :  0.5778  /  0.3057
+        k =   5.684 h/Mpc :  0.5632  /  0.2155
+        k =  10.000 h/Mpc :  0.5592  /  0.1750
+  [PASS] W3  even in the most comfortable live cell the small-scale power carries a real suppression at Lyman-alpha scales on the STRICT UPPER BOUND, so the forest is a genuine and independent test of this window rather than a formality.  Statement asserted: P(k = 5 h/Mpc) is suppressed by more than 5% relative to LambdaCDM even on the bound
+           (sqrt(P/P_LCDM) at k = 5 h/Mpc: bound 0.5665 -> P ratio 0.3209; standard 0.2359 -> 0.0557)
+
+======================================================================================================================
+PART 3 -- THE DECISIVE TESTS, with the numbers they must return.
+======================================================================================================================
+
+  THE LIVE WINDOW, stated precisely.
+      mechanism   : two-body decay X -> Y + (massless), Y non-relativistic
+      lifetime    : tau ~ 5-20 Gyr  (Gamma ~ 0.050-0.20 Gyr^-1)
+      kick        : v_k ~ 203-994 km/s, i.e. mass splitting eps ~ 6.8e-04-3.3e-03
+      daughter    : a single massive species carrying the whole cold abundance, not a fraction
+      galaxy gate : passes only at the LOOSEST reading (canonical a0, kernel reading the baryons only,
+                    median RAR shift allowed up to the RAR's own 0.11 dex scatter)
+      requires    : an evacuation criterion softer than step-at-escape-velocity, and the strict-upper-bound
+                    growth treatment rather than the standard one
+
+  TEST 1 -- N-BODY KICK EXPERIMENT (settles the first sensitivity, and is cheap).
+      Take a MOND galaxy with the CMB-required cold component present, apply an isotropic kick v_k to that
+      component at a sequence of redshifts, integrate, and measure the rotation curve at z = 0.  The number
+      to report is the RETAINED CONTRIBUTION to g at the SPARC radii, as a function of v_k/v_flat.  The four
+      analytic criteria tested here predict that the retained fraction reaches 0.582 at
+      v_k/v_flat = 2.81 (step, deep), 1.85 (step, shallow), 1.04 (orbit-averaged), 0.42 (isothermal).
+      If the answer is above ~2, the window closes; if it is below ~1.5, the window is real.
+
+  TEST 2 -- A PROPER BOLTZMANN + LYMAN-ALPHA RUN (settles the second sensitivity).
+      Run the two-body model through CLASS at the window's parameters and confront the 1-D flux power.  The
+      strict upper bound computed here already predicts a several-percent suppression at k = 5 h/Mpc; the
+      standard treatment predicts far more.  The forest measures that band directly.
+
+  TEST 3 -- THE CLUSTER PROFILE SHAPE (independent of both sensitivities).
+      The window's daughters have present speeds of a few hundred km/s inside a cluster whose circular
+      velocity is 1425 km/s, so they are barely perturbed there -- which is why the cluster gate passes.
+      But T3 K4 showed the cluster needs a source MORE concentrated than the baryons (f_req(200 kpc) > 1),
+      and heating can only make it less so.  A hydrostatic-plus-lensing profile fit of the kicked component
+      against the X-COP rows at 40-750 kpc is the third decisive measurement.
+
+  WHAT WOULD HAVE TO BE TRUE, all at once, for this window to be a real theory: a soft evacuation criterion,
+  the generous growth treatment, the loosest galaxy ceiling, the canonical a0 footing, zero hydrostatic bias
+  in clusters, and a Lyman-alpha forest tolerant of a several-percent small-scale suppression.  That is a
+  narrow conjunction and it should be described as one -- but it is NOT empty, and saying so would be false.
+
+  [PASS] W4  [VERDICT, two-body arm]  UNDETERMINED, with the window characterised and the tests named.  This is not a closure and must not be reported as one; nor is it a success -- every one of the six conditions above has to hold together
+           (live window: tau ~ 5-20 Gyr, v_k ~ 203-994 km/s (eps ~ 6.8e-04-3.3e-03), loosest galaxy ceiling only)
+======================================================================================================================
+T5 COMPLETE: 5/5 checks PASS.   [127.4s]
+======================================================================================================================

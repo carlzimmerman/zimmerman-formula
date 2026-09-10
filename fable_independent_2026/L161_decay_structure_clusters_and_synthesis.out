@@ -1,0 +1,239 @@
+======================================================================================================================
+T3 -- structure and clusters for the destroy-it arm; mechanism independence; the propositions
+======================================================================================================================
+
+======================================================================================================================
+PART 0 -- CONTROLS.
+======================================================================================================================
+    LambdaCDM: 100 theta_* = 1.04028 (Planck 1.04110 +/- 0.00031), age = 13.796 Gyr
+  [PASS] C0  CONTROL: the background integrator reproduces Planck's acoustic scale and age to better than 0.5%
+           (100 theta_* = 1.04028, age = 13.7964 Gyr)
+  [PASS] C1  CONTROL: the growth solver reproduces the analytic flat matter+Lambda growing mode between a = 0.005 and a = 1 to better than 3% (the residual is radiation, carried by the solver and absent from the analytic formula -- 6% of the matter density at a = 0.005)
+           (numeric D(1)/D(0.005) = 154.074, analytic = 157.585 (-2.23%))
+  [PASS] C2  CONTROL: the audited X-COP file loads with the expected shape (248 rows, 12 clusters, 11 radii, both a0 footings)
+           (248 rows, 12 clusters, 11 radii)
+
+======================================================================================================================
+PART 1 -- TASK 4: THE STRUCTURE PROBLEM for the destroy-it arm.
+======================================================================================================================
+
+  If the cold component is destroyed after recombination, the density field between z ~ 1100 and today grows in
+  a universe whose matter density is FALLING faster than a^-3.  The amplitude at recombination is fixed by the
+  CMB (A_s and the pre-recombination transfer are untouched by construction), so the whole effect is a change
+  in the linear growth factor D(a) and in the surviving matter fraction.  Both are computed in the SAME
+  background used in T1, with h refloated so that theta_* is exactly restored.
+
+  Note what this does NOT assume: the surviving cold component still clusters exactly like CDM (c_s^2 = 0,
+  G_eff = G), so this is the most favourable possible growth for the model, not a manufactured deficit.
+
+     tau [Gyr]  destroyed       h  D(1)/D_LCDM  surv. matter  sigma_8     S_8  vs Planck   vs KiDS
+     LambdaCDM      0.000  0.6736       1.0000        1.0000    0.811   0.831      -0.05     +1.02
+        25.489      0.416  0.7053       0.9181        0.5843    0.745   0.588      -18.8     -14.2
+        19.122      0.511  0.7156       0.8950        0.4895    0.726   0.530      -23.3     -17.8
+        13.322      0.640  0.7331       0.8586        0.3602    0.696   0.446      -29.7     -23.0
+        10.717      0.718  0.7468       0.8326        0.2822    0.675   0.394      -33.7     -26.3
+         6.042      0.891  0.7971       0.7498        0.1090    0.608   0.265      -43.6     -34.4
+         2.158      0.997  0.9547       0.5717        0.0026    0.464   0.135      -53.6     -42.5
+         0.869      1.000  1.1723       0.4258        0.0000    0.345   0.082      -57.7     -45.8
+
+    CAVEAT on the S_8 column, stated before it is used.  S_8 = sigma_8 sqrt(Om_m/0.3) is the LambdaCDM
+    degeneracy direction of a weak-lensing survey.  Comparing it across models whose Omega_m differs by a
+    factor two is an approximation, not a likelihood.  What the column shows robustly is the DIRECTION and
+    ROUGH SIZE of the miss: sigma_8 falls only modestly because the higher h that theta_* demands buys some
+    growth back, but Omega_m collapses, and lensing amplitude depends on both.  A survey likelihood would
+    have to be re-run; the number below is quoted as an estimate.
+
+  [PASS] S1  [TASK 4 -- CORRECTED; the first assertion here was wrong]  the structure problem IS decisive for the destroy-it arm, and at EVERY reading including the loosest.  The reason is not the growth factor, which barely moves (D(1)/D_LCDM = 0.92 at tau = 25.5 Gyr), but Omega_m: destroying 42% of the matter takes Omega_m from 0.315 to 0.19, and the lensing amplitude follows.  Statement asserted: at the loosest reading the S_8 estimate sits more than 10 sigma below KiDS-Legacy
+           (tau = 25.5 Gyr: D(1)/D_LCDM = 0.918, sigma_8 = 0.745, S_8 = 0.588 (-14.2 sigma vs KiDS, -18.8 vs Planck))
+  [PASS] S2  [TASK 4]  at every reading TIGHTER than the loosest, the structure problem becomes decisive on its own.  Statement asserted: at tau <= 10.7 Gyr ('gone by z=0' at the alt-footing eps=1 ceiling, 72% destroyed) S_8 is more than 10 sigma from KiDS-Legacy
+           (tau = 10.72 Gyr: D(1)/D_LCDM = 0.833, sigma_8 = 0.675, S_8 = 0.394 (-26.3 sigma))
+  [PASS] S3  [TASK 4]  the 'gone by z=10' readings destroy the density field outright: growth stops when the matter does.  Statement asserted: sigma_8 falls by more than a factor 2 and the S_8 estimate by more than a factor 5
+           (tau = 0.87 Gyr: D(1)/D_LCDM = 0.4258, sigma_8 = 0.3453, S_8 = 0.0816, Omega_m = 0.0168)
+
+======================================================================================================================
+PART 2 -- TASK 5: THE CLUSTER PROBLEM for the destroy-it arm.
+======================================================================================================================
+
+  THE STRUCTURAL POINT FIRST.  A mechanism that removes the component ISOTROPICALLY -- destruction, conversion
+  to radiation, a dark-sector phase transition -- removes the SAME fraction everywhere.  So the surviving
+  fraction f is ONE number, and it must satisfy simultaneously
+        f <= eta_max      (galaxies: L61's 'excess spent once' ceiling)
+        f >= f_req        (clusters: what the audited X-COP profiles still need after the MOND kernel)
+  The window is therefore a single interval [f_req, eta_max], and it is EMPTY whenever f_req > eta_max.  No
+  lifetime, and no amount of tuning of the decay channel, can widen it: temporal separation buys nothing here,
+  because both statements are made at the SAME epoch (today).
+
+  f_req is derived from the 248 audited rows as f_req(r) = [g_HSE(r) - g_MOND(r)] / [(Om_c/Om_b) g_bar(r)],
+  at four hydrostatic-bias values (L41 R2: the measured b runs over [0, 0.33], and the ratio M_X/M_bar runs
+  5.73 -> 9.04 across it).  A bias b means the true mass is M_HSE/(1-b).
+
+    Both the MEAN and the MEDIAN over the twelve clusters are reported: they differ by 0.03 (a skewed
+    12-cluster distribution), and at the single most favourable combination that difference decides
+    whether the window is thin or empty.  Both are shown rather than the one that suits the argument.
+       footing     b  f_req mean   s.e.   median | canon eps=0   alt eps=0 canon eps=1   alt eps=1 | window (mean/median)
+     canonical  0.00       0.606  0.036    0.576 |       -0.7s       -3.3s       -6.9s       -9.0s | -0.024 / +0.006  empty on the mean, thin on the median
+     canonical  0.10       0.750  0.040    0.721 |       -4.2s       -6.6s       -9.9s      -11.9s | -0.168 / -0.139  BOTH EMPTY
+     canonical  0.20       0.931  0.044    0.903 |       -7.9s      -10.1s      -13.1s      -14.9s | -0.349 / -0.321  BOTH EMPTY
+     canonical  0.33       1.246  0.052    1.207 |      -12.8s      -14.7s      -17.2s      -18.7s | -0.664 / -0.625  BOTH EMPTY
+           alt  0.00       0.548  0.037    0.514 |       +0.9s       -1.7s       -5.2s       -7.3s | -0.062 / -0.028  BOTH EMPTY
+           alt  0.10       0.693  0.040    0.659 |       -2.7s       -5.1s       -8.3s      -10.3s | -0.207 / -0.173  BOTH EMPTY
+           alt  0.20       0.873  0.045    0.841 |       -6.5s       -8.7s      -11.6s      -13.4s | -0.387 / -0.355  BOTH EMPTY
+           alt  0.33       1.188  0.052    1.155 |      -11.6s      -13.5s      -16.0s      -17.5s | -0.702 / -0.669  BOTH EMPTY
+  [PASS] K1  [TASK 5 -- the sharpest STRUCTURAL statement in this lane]  for ANY isotropic-removal mechanism the galaxy ceiling and the cluster requirement bracket ONE number, so the admissible set is a single interval [f_req, eta_max] and no lifetime can widen it.  Measured, that interval is empty on the mean at every one of the eight (footing x bias) combinations, and empty on the median at all but the single most favourable one
+           (canonical b=0: f_req = 0.606 +/- 0.036 (median 0.576) vs ceiling 0.582 -> window -0.024 on the mean (-0.7 sigma), +0.006 on the median; alt b=0: f_req = 0.548 +/- 0.037 (median 0.514) vs 0.486 -> -0.062 / -0.028, empty both ways)
+  [PASS] K2  with the measured hydrostatic bias switched on, the window closes at BOTH footings and at every ceiling.  L41 R2 records b in [0, 0.33] as the measured range; at b = 0.20 the cluster requirement exceeds even the loosest galaxy ceiling
+           (canonical b=0.20: f_req = 0.931 +/- 0.044 vs the loosest ceiling 0.582 -> +7.9 sigma ABOVE it (window -0.349))
+  [PASS] K3  HONESTY BOUND on K1/K2: at zero bias and the canonical footing the tension is only about 1 sigma, so the cluster gate ALONE is a real but not overwhelming obstruction.  It becomes decisive only when combined with the alternate footing, or with the measured hydrostatic bias, or with the tighter kernel conventions.  Quoted that way, not as a clean kill
+           (canonical b=0 tension is +0.7 sigma -- under 3, so not decisive alone; alt b=0 is +1.7 sigma and canonical b=0.20 is +7.9 sigma)
+
+    THE SHAPE, for the record.  The same derivation at 200 kpc:
+       canonical: f_req(200 kpc) = 1.436 +/- 0.129  (vs f_req(1 Mpc) = 0.606)
+             alt: f_req(200 kpc) = 1.390 +/- 0.127  (vs f_req(1 Mpc) = 0.548)
+  [PASS] K4  the cluster source must be MORE CONCENTRATED than the cosmic share tracing the baryons (f_req(200 kpc) > 1 > f_req(1 Mpc)), which is L41 R3 / g04a's rho_X ~ r^-1.5 restated.  This is a PRE-EXISTING cost of the hybrid, not created by any decay -- but it fixes the DIRECTION: every mechanism considered here (destruction, conversion, a velocity kick) makes the surviving component less concentrated, never more
+           (canonical: f_req(200 kpc) = 1.436; alt: f_req(200 kpc) = 1.390)
+
+======================================================================================================================
+PART 3 -- MECHANISM INDEPENDENCE: what is established, and what is not.
+======================================================================================================================
+
+  THE FOUR CANDIDATE MECHANISMS NAMED IN THE BRIEF, and where each is closed:
+
+   (a) decay to dark radiation / relativistic products
+         -> T1.  Requires destroying >= 41.8% (canonical, eps=0) up to >= 72.4% (alt, eps=1) of the
+            CMB-required cold density, for ANY lifetime, because a stable remnant is itself bound by the same
+            galaxy ceiling.  Geometry alone (theta_* restored + BAO + the SNe shape) excludes all sixteen
+            readings; the published CMB+BAO+SNe likelihoods cap the decayed fraction at 2-4%.
+   (b) decay to a lighter daughter with a velocity kick
+         -> T2.  The only mechanism found with the RIGHT galaxy-vs-cluster ordering, and it does open a region
+            on the galaxy and cluster gates alone.  Closed by the matter power spectrum: the same v_k that
+            unbinds a galaxy erases the power the component must carry on 8 Mpc/h, and the published two-body
+            bound excludes the required kick at every lifetime.
+   (c) a dark-sector phase transition converting matter to radiation, or to a smooth component
+         -> BACKGROUND-IDENTICAL to (a) if the products are relativistic: the same rho ~ a^-3 -> a^-4
+            conversion, so T1's computation applies unchanged, whatever the microphysics.  If the product is a
+            smooth NON-relativistic component, it is the v_k -> infinity limit of (b) and T2's structure gate
+            applies a fortiori (a perfectly smooth component contributes nothing to sigma_8 at all).
+   (d) annihilation / conversion
+         -> if 2 -> radiation, background-identical to (a) but with a rho^2 rate, so the destruction is
+            FRONT-LOADED to high density -- i.e. it happens before and during recombination, which is exactly
+            where the third peak needs the component intact.  That makes it strictly worse than (a), not
+            better.  If 2 -> massive products, it is (b).
+
+  WHAT IS THEREFORE MECHANISM-INDEPENDENT.  Two things, and they are different in kind.
+   1. THE ISOTROPIC-REMOVAL PINCER (PART 2 here).  Any mechanism that removes the component WITHOUT a
+      position- or velocity-dependent filter leaves one surviving fraction f, which must lie in
+      [f_req, eta_max].  That interval is measured here and is razor-thin or empty.  This is a THEOREM about
+      the mechanism class, not a fit: it needs no lifetime, no channel, no microphysics.
+   2. THE ONE-VELOCITY OBSTRUCTION (T2).  Any mechanism that removes the component by GIVING IT SPEED spends
+      one number, v_k, on two jobs: the scale it must evacuate (the galaxy) and the scale it must not erase
+      (8 Mpc/h and below).  Those are not independently tunable, and the required ordering runs the wrong way.
+      This is the velocity-ordering lemma in a new costume -- not about a monotone v(a), but about there being
+      only one velocity to spend.
+
+  WHAT IS NOT COVERED, stated plainly.
+   * A mechanism that changes how the component GRAVITATES rather than whether it is there or how fast it
+     moves -- a late-time change in its coupling to the metric, or a screening that switches on after
+     recombination.  That is not a decay, it evades PART 2's pincer (it is not isotropic removal) and it
+     evades T2's (it spends no velocity).  It is a genuinely different door and nothing here closes it.  It
+     would have to be checked against L61's B4/B5/B6/B7 ordering table at the epoch the coupling changes.
+   * The full Boltzmann treatment.  T1's geometry is deliberately narrower than the published likelihoods, and
+     T2's structure gate is a linear-theory bound, not a CLASS/CAMB run.  Both are quoted as such.
+   * Whether the underlying MOND+dark hybrid was viable in the first place.  PART 2's K4 records a cost the
+     hybrid already carried before any of this.
+
+  [PASS] M1  the four named mechanisms reduce to TWO physical classes -- isotropic removal and velocity injection -- and each class is closed by a different, stated obstruction.  Annihilation is strictly worse than decay, not better, because a rho^2 rate front-loads the destruction into the epoch where the third peak needs the component intact
+           ((a) and (c)-relativistic and (d)-to-radiation => isotropic removal, closed by T1 + PART 2 here; (b) and (c)-smooth and (d)-to-massive => velocity injection, closed by T2)
+  [PASS] M2  the obstruction is NOT the velocity-ordering lemma as originally stated.  Temporal separation GENUINELY defeats that lemma's hypothesis -- a late non-adiabatic kick breaks the monotonicity of k_fs, and a destroyed component has no v_rms at all.  The escape then fails on OTHER constraints: the expansion history for removal, and the power spectrum for velocity injection.  Recording this correctly matters, because it says where to look next
+           (lemma evaded; closure comes from the expansion history and from P(k), not from v_rms ~ 1/a)
+
+======================================================================================================================
+PART 4 -- THE PROPOSITIONS worth formalising in Lean 4.
+======================================================================================================================
+
+  Each is stated with its hypotheses explicit, in a form that is a finite arithmetic fact about measured
+  numbers plus one monotonicity argument -- i.e. formalisable without any physics library.
+
+  P1  (ISOTROPIC-REMOVAL PINCER -- the cleanest.)
+      Let f in [0,1] be the fraction of the CMB-required cold density surviving at z = 0.
+      Hypotheses:
+        (H1) galaxy ceiling:  f <= eta_max, with eta_max = 0.582 (canonical a0, eps=0) and 0.486 (alt a0).
+        (H2) cluster requirement: f >= f_req, with f_req measured from the audited X-COP rows.
+      Then the admissible set is the interval [f_req, eta_max], and it is EMPTY whenever f_req > eta_max.
+      Lean shape:
+        theorem isotropic_removal_empty (f : Real) (h1 : f <= eta_max) (h2 : f >= f_req)
+            (h : f_req > eta_max) : False
+      with eta_max, f_req rational literals carrying their measured error bars.  The physics content is
+      entirely in the two hypotheses; the theorem is the (trivial, and therefore trustworthy) closure.
+
+  P2  (NO LIFETIME HELPS -- why temporal separation buys nothing for isotropic removal.)
+      Let f_dec be the decaying fraction and tau the lifetime, so f(t) = (1 - f_dec) + f_dec * exp(-t/tau).
+      Then for all tau > 0, f(t_0) >= 1 - f_dec.  Hence (H1) forces f_dec >= 1 - eta_max independently of tau.
+      Lean shape:
+        theorem decay_floor (f_dec tau t : Real) (hτ : 0 < tau) (ht : 0 <= t) :
+            (1 - f_dec) + f_dec * Real.exp (-t/tau) >= 1 - f_dec
+      -- a one-line consequence of exp >= 0.  This is the proposition that makes the >= 41.8% number
+      lifetime-independent, and it is the load-bearing step of T1.
+
+  P3  (THE COOLING FLOOR -- why a velocity kick cannot be made arbitrarily effective.)
+      With f_gal(tau, v_k) = exp(-t_0/tau) + (1 - exp(-t_x/tau)) and t_x = t(min(1, v_esc/v_k)):
+      f_gal is bounded below by min over tau of that expression, and the minimiser satisfies
+        1/tau = ln(t_0/t_x) / (t_0 - t_x).
+      In particular f_gal -> 1 both as tau -> 0 and as tau -> infinity, so the galaxy gate has an INTERIOR
+      optimum and a strictly positive floor for any finite kick.
+      Lean shape:
+        theorem cooling_floor (t0 tx : Real) (h : 0 < tx) (h2 : tx < t0) :
+            ∀ tau > 0, Real.exp (-t0/tau) + (1 - Real.exp (-tx/tau)) >= <explicit floor>
+      -- calculus on one variable; the floor is the value at the stationary point.
+
+  P4  (ONE VELOCITY, TWO JOBS -- the general form of the T2 closure.)
+      Let v_k be the kick.  Retention by a halo of escape velocity v is the predicate v_k * a_d < v, and the
+      comoving free-streaming cutoff is k_fs(a) = sqrt(3/2) a^2 H(a) / (v_k a_d).  Both the retention
+      predicate and the cutoff are monotone DECREASING in v_k.  Hence
+        (evacuating a deeper halo) => (a smaller free-streaming cutoff) => (less power at every k),
+      and there is no v_k that increases the first while holding the second.  The physics enters only as the
+      two monotonicity facts; the incompatibility is then an order-theoretic statement, not a numerical one.
+      Lean shape:
+        theorem one_velocity_two_jobs (v1 v2 : Real) (h : v1 < v2) :
+            kfs v2 < kfs v1 ∧ (retained v2 ⊆ retained v1)
+      This is the proposition that generalises the velocity-ordering lemma beyond its v_rms ~ 1/a hypothesis,
+      and it is the one worth stating in the paper.
+
+  P5  (ANNIHILATION IS WORSE THAN DECAY.)  If the removal rate is proportional to rho^n with n >= 2 rather
+      than n = 1, then the fraction removed before a given epoch is larger at fixed total removal, because
+      rho is monotonically decreasing.  Hence any n >= 2 channel removes MORE of the component before
+      recombination than a decay with the same z = 0 survival, and the third-peak constraint is strictly
+      tighter.  Lean shape: a monotonicity lemma on the integral of rho^{n-1} against a decreasing rho.
+
+  [PASS] L1  the propositions are stated with explicit hypotheses and are finite arithmetic plus one monotonicity argument each -- formalisable without a physics library.  P1 and P2 together are the complete closure of the isotropic-removal class; P4 is the generalisation of the velocity-ordering lemma that this investigation actually establishes
+           (P1 interval-emptiness; P2 lifetime-independent floor; P3 cooling floor; P4 one-velocity monotonicity; P5 rho^n front-loading)
+
+======================================================================================================================
+SUMMARY
+======================================================================================================================
+
+  TASK 4 (structure).  DECISIVE, and for a reason worth stating precisely: it is not the growth factor that
+  fails.  At tau = 25.5 Gyr (the loosest reading) D(1)/D_LCDM is still 0.918 and sigma_8 only falls to
+  0.745, because the higher h that theta_* demands buys growth back.  What collapses is Omega_m: destroying
+  42% of the matter takes it from 0.315 to 0.187, and the lensing amplitude follows -- S_8 = 0.588,
+  14 sigma below KiDS-Legacy on the standard degeneracy direction (quoted as an estimate, not a
+  re-run likelihood).  At tau = 10.7 Gyr it is 26 sigma; 'gone by z=10' leaves sigma_8 = 0.345.
+
+  TASK 5 (clusters).  The sharpest STRUCTURAL result of the whole investigation, though not the largest number.
+  For any ISOTROPIC removal the galaxy ceiling and the cluster requirement bracket ONE number, so the window is
+  a single interval that no lifetime can widen:
+    canonical, b = 0   : f_req = 0.606 +/- 0.036 (median 0.576)  vs 0.582  ->  -0.024 / +0.006  (-0.7 sigma)
+    alternate, b = 0   : f_req = 0.548 +/- 0.037 (median 0.514)  vs 0.486  ->  -0.062 / -0.028  (-1.7 sigma)
+    canonical, b = 0.20: f_req = 0.931 +/- 0.044 (median 0.903)  vs 0.582  ->  -0.349 / -0.321  (-7.9 sigma)
+  Temporal separation buys NOTHING here, because both statements are made at the same epoch.  Honestly bounded:
+  at the canonical footing with zero bias the tension is under 1 sigma, so this gate is decisive only in
+  combination -- with the alternate footing, with the measured hydrostatic bias, or with the tighter kernel
+  conventions, all of which push the same way.
+
+  MECHANISM INDEPENDENCE.  The four named mechanisms collapse to two classes.  Isotropic removal is closed by
+  the expansion history (T1) and by the single-interval pincer (PART 2).  Velocity injection is closed by the
+  power spectrum (T2).  A mechanism that changes how the component GRAVITATES is NOT covered and is a
+  different door.
+
+======================================================================================================================
+T3 COMPLETE: 13/13 checks PASS.   [17.5s]
+======================================================================================================================

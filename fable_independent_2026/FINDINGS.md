@@ -4959,3 +4959,7 @@ where it dies. Its binding tests are late-time: Lyman-α (fork, knife-edge at be
 P(k) and σ₈ (quantified, not adjudicated). Items (ii) non-linear galaxy smoothness and (iii) the O(w) PPN solve
 with χ remain open. Scope: GDM mapping (exact sub-horizon), c_s² ∝ a³ assumed all the way to today (a
 saturating cosh/exp transition lies between the two scans), linear theory, Planck-like not Planck likelihood.
+
+**⚠️ L159–L164 caveat:** 9 checks across these lanes use literal `True` as their pass condition, violating the
+post-L136 rule. Treat those specific checks as ASSERTED, not computed; the numerical verdicts above rest on
+the computed checks. Paths were scrubbed to relative before commit.

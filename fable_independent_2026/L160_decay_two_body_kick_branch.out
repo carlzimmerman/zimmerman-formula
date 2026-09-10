@@ -1,0 +1,203 @@
+======================================================================================================================
+T2 -- TEMPORAL SEPARATION: the two-body kicked-daughter branch (an escape-velocity filter switched on late)
+======================================================================================================================
+
+======================================================================================================================
+PART 0 -- CONTROLS on committed data: SPARC, X-COP, growth, sigma_8, and a mutation control.
+======================================================================================================================
+    SPARC: 175 rotmod files, 150 galaxies pass (eV/V < 0.10), 2772 points
+      kernel-alone RAR residual, canonical: rms 0.144 dex, median +0.030 dex, N = 2772
+      kernel-alone RAR residual, alt      : rms 0.141 dex, median +0.005 dex, N = 2772
+  [PASS] C0  CONTROL: the carried kernel ALONE reproduces SPARC at the published scatter (L61 A6: 0.145/0.142 dex at median +0.030/+0.003).  This is the premise of the whole 'excess spent once' theorem -- the kernel already fits, so any surviving cold component is pure overshoot
+           (canonical: 0.144 dex @ +0.030; alt: 0.141 dex @ +0.005)
+
+    X-COP audit: 248 rows, 12 clusters, radii [30.0, 40.0, 50.0, 75.0, 100.0, 150.0, 200.0, 300.0, 420.0, 750.0, 1000.0]
+      canonical: MOND shortfall M_HSE/M_pred at 1000 kpc = median 1.82x (N=12, range 1.52-2.25)
+      alt      : MOND shortfall M_HSE/M_pred at 1000 kpc = median 1.68x (N=12, range 1.40-2.08)
+  [PASS] C1  CONTROL: the audited X-COP rows through the carried kernel reproduce the published cluster shortfall at 1000 kpc (L2 C1: 1.82x canonical / 1.68x alt for the full sample, 2.07x/1.92x for the stellar-7 subset).  Statement asserted: the median shortfall is in [1.5, 2.6] at both footings
+           (canonical: 1.82x; alt: 1.68x)
+  [PASS] C2  CONTROL: the Eisenstein-Hu + top-hat machinery is normalised so LambdaCDM gives sigma_8 = 0.811 (Planck 2018), hence S_8 = sigma_8 sqrt(Om_m/0.3) = 0.831
+           (sigma_8 = 0.811000, S_8 = 0.8313)
+  [PASS] C3  CONTROL: the growth solver reproduces the ANALYTIC flat matter+Lambda growing mode D(a) ~ E(a) int da/(aE)^3 between a = 0.01 and a = 1, to better than 2%.  The residual ~1% is EXPECTED and physical, not numerical: the solver carries radiation, which is 2.9% of the matter density at a = 0.01 and slows growth slightly, while the analytic formula does not
+           (numeric D(1)/D(0.01) = 77.9152, analytic = 78.7943  (-1.116%))
+  [PASS] C4  MUTATION CONTROL: fed a constant non-clustering fraction f = 0.30, the SAME solver returns the textbook suppressed growth index p = (sqrt(25-24f)-1)/4 in the matter era -- so a suppression this pipeline reports later is real, not an artefact
+           (measured dlnD/dlna at a = 0.05 is 0.8080; analytic (sqrt(25-24*0.30)-1)/4 = 0.8048)
+
+======================================================================================================================
+PART 1 -- the ESCAPE-VELOCITY FILTER and its ORDERING, measured on the two data sets.
+======================================================================================================================
+
+  GALAXY escape velocity, in the theory's OWN gravity.  In deep MOND an isolated baryonic mass has a
+  LOGARITHMIC potential, so v_esc^2(r) = 2 v_flat^2 ln(r_trunc/r) with r_trunc = v_flat^2/g_ext, the radius at
+  which the internal field falls to the external field.  g_ext = 0.01 a0 is used: a DEEP truncation, which
+  makes v_esc as LARGE as is defensible and therefore makes the escape's job as HARD as possible.  (A
+  Newtonian cosmic-share NFW halo is printed as a cross-check.)
+  CLUSTER escape velocity, from the audited X-COP g_HSE(r): Phi integrated outward with the measured g,
+  continued as g ~ 1/r to 2 Mpc and Keplerian beyond.
+
+    galaxies (canonical): v_esc at the median measured radius -- median  309.6, 75th  549.6, 90th  721.9, max 1061.5 km/s (N=150)
+    galaxies (alt      ): v_esc at the median measured radius -- median  303.3, 75th  538.5, 90th  710.1, max 1046.4 km/s (N=150)
+    cross-check (Newtonian cosmic-share NFW): L* M200=1e12 c=10 -> v_esc(10 kpc) = 473 km/s;  dwarf M200=3e10 c=12 -> v_esc(3 kpc) = 151 km/s
+    clusters (canonical): v_esc(1000 kpc) median   2202 km/s (range 1736-2570); v_esc(200 kpc) median   3198 km/s
+    clusters (alt      ): v_esc(1000 kpc) median   2202 km/s (range 1736-2570); v_esc(200 kpc) median   3198 km/s
+
+    THE ORDERING:  v_esc(cluster, 1 Mpc) / v_esc(galaxy, median) = canonical: 7.11, alt: 7.26   (against the 90th-percentile galaxy: canonical: 3.05, alt: 3.10)
+  [PASS] O1  [POSITIVE FINDING, and the reason this arm had to be tested]  the escape-velocity filter has the RIGHT ORDERING for the galaxy-vs-cluster split: clusters are ~7x deeper, so a velocity cut that unbinds a galaxy still leaves a cluster loaded.  This is the first filter family in the record with the right ordering -- L61's B4 (range), B5 (density), B6 (acceleration) and B7 (potential-vs-recombination) all had the wrong one.  L61 rejected the depth filter only because it would also act AT RECOMBINATION, and temporal separation removes exactly that objection: the parent is still cold then
+           (canonical: 2202/310 = 7.11 (median), 3.05 (90th pct); alt: 2202/303 = 7.26 (median), 3.10 (90th pct))
+
+======================================================================================================================
+PART 2 -- the POPULATION MODEL: f_gal(tau, v_k), f_cl(tau, v_k), and the admissible region.
+======================================================================================================================
+
+  THE MODEL.  The parent decays with lifetime tau.  A daughter born at scale factor a_d carries speed v_k there
+  and v(a) = v_k a_d/a afterwards, so its speed TODAY is v_k a_d.  It is retained by a halo iff v_today < v_esc.
+  Because a_d grows with the decay time, the retained daughters are the EARLY ones: the kick COOLS OFF, and the
+  velocity-ordering lemma reasserts itself inside the daughter population.  Hence
+
+      f_bound(tau, v_k; v_esc) = exp(-t_0/tau)          [the surviving COLD parent -- always bound]
+                               + [1 - exp(-t_x/tau)],   t_x = t(a = min(1, v_esc/v_k))
+
+  and f_gal uses v_esc,gal, f_cl uses v_esc,cl.  (Because t_x is monotone in v_esc, the median over SPARC
+  galaxies of the per-galaxy retained fraction equals f_bound evaluated at the median v_esc -- so this IS the
+  median-galaxy statement the L61 ceiling is defined on.)
+
+  THE GATES.
+    galaxies:  f_gal <= eta_max     (the L61/L49/L50 transmitted-pull ceiling)
+    clusters:  f_cl  >= f_req,  with f_req measured HERE from the audited rows as
+               f_req(r) = [g_HSE(r) - g_MOND(r)] / [(Omega_c/Omega_b) g_bar(r)]
+               -- the fraction of the cosmic cold share a cluster must still hold for MOND+dark to fit it.
+
+    f_req (canonical, r =    200 kpc): median 1.351, mean 1.436 +/- 0.129 (s.e., N=12)
+    f_req (canonical, r =   1000 kpc): median 0.576, mean 0.606 +/- 0.036 (s.e., N=12)
+    f_req (alt      , r =    200 kpc): median 1.295, mean 1.390 +/- 0.127 (s.e., N=12)
+    f_req (alt      , r =   1000 kpc): median 0.514, mean 0.548 +/- 0.037 (s.e., N=12)
+  [PASS] C5  CONTROL: the cluster requirement derived here from the audited rows lands on the published value (L61 B7: eta = 0.569 +/- 0.130 at zero hydrostatic bias; L41 R1: M_X/M_bar = 5.73 +/- 0.68 against a cosmic 5.364).  Statement asserted: this independent derivation gives f_req(1 Mpc) in [0.35, 0.85] at both footings
+           (canonical: f_req(1 Mpc) = 0.576; alt: f_req(1 Mpc) = 0.514)
+  [PASS] C6  [SEPARATE, PRE-EXISTING COST -- recorded, not attributed to the decay]  at 200 kpc the same derivation gives f_req > 1: the cluster needs a source MORE CONCENTRATED than the cosmic share tracing the baryons.  That is L41 R3 / g04a's rho_X ~ r^-1.5 restated, and it is a cost the hybrid already carries.  It matters here only DIRECTIONALLY: heating the component makes it less concentrated, so any kick moves AWAY from this requirement, never toward it
+           (canonical: f_req(200 kpc) = 1.351 vs f_req(1 Mpc) = 0.576; alt: f_req(200 kpc) = 1.295 vs f_req(1 Mpc) = 0.514)
+
+  THE MAP.  Cells are f_gal/f_cl;  * = passes BOTH gates.
+
+    canonical:  eta_max = 0.582   v_esc,gal = 310 km/s   v_esc,cl = 2202 km/s   f_req = 0.576
+        tau\v_k        300        600       1000       1500       2200       3000       5000      10000      30000
+            1.0 1.00/1.00  1.00/1.00  0.95/1.00  0.80/1.00  0.60/1.00  0.43/1.00* 0.23/0.99* 0.09/0.83* 0.02/0.29 
+            2.0 1.00/1.00  0.95/1.00  0.77/1.00  0.55/1.00* 0.37/1.00* 0.25/0.99* 0.12/0.91* 0.05/0.59* 0.01/0.16 
+            3.0 1.00/1.00  0.88/1.00  0.63/1.00  0.43/1.00* 0.27/1.00* 0.18/0.97* 0.09/0.81* 0.04/0.46  0.02/0.12 
+            5.0 1.00/1.00  0.77/1.00  0.51/1.00* 0.34/1.00* 0.23/1.00* 0.17/0.92* 0.11/0.69* 0.08/0.36  0.07/0.13 
+            8.0 1.00/1.00  0.71/1.00  0.49/1.00* 0.36/1.00* 0.29/1.00* 0.25/0.88* 0.21/0.64* 0.19/0.38  0.18/0.22 
+           13.8 1.00/1.00  0.73/1.00  0.56/1.00* 0.48/1.00* 0.43/1.00* 0.41/0.87* 0.39/0.67* 0.37/0.49  0.37/0.39 
+           25.5 1.00/1.00  0.79/1.00  0.69/1.00  0.64/1.00  0.62/1.00  0.60/0.90  0.59/0.76  0.59/0.65  0.58/0.60 
+           50.0 1.00/1.00  0.87/1.00  0.82/1.00  0.79/1.00  0.78/1.00  0.77/0.93  0.76/0.85  0.76/0.79  0.76/0.77 
+          100.0 1.00/1.00  0.93/1.00  0.90/1.00  0.89/1.00  0.88/1.00  0.88/0.96  0.87/0.92  0.87/0.89  0.87/0.87 
+      ADMISSIBLE REGION NON-EMPTY: tau in [0.30, 24.64] Gyr, v_k in [790, 64584] km/s (eps in [2.64e-03, 2.15e-01]);  8135/40000 cells
+      deepest admissible point: tau = 0.37 Gyr, v_k = 31491 km/s (eps = 1.05e-01), f_gal = 0.043, f_cl = 0.576
+
+    alt:  eta_max = 0.486   v_esc,gal = 303 km/s   v_esc,cl = 2202 km/s   f_req = 0.514
+        tau\v_k        300        600       1000       1500       2200       3000       5000      10000      30000
+            1.0 1.00/1.00  1.00/1.00  0.94/1.00  0.79/1.00  0.58/1.00  0.42/1.00* 0.23/0.99* 0.09/0.83* 0.02/0.29 
+            2.0 1.00/1.00  0.95/1.00  0.76/1.00  0.54/1.00  0.36/1.00* 0.24/0.99* 0.12/0.91* 0.04/0.59* 0.01/0.16 
+            3.0 1.00/1.00  0.87/1.00  0.62/1.00  0.42/1.00* 0.26/1.00* 0.18/0.97* 0.09/0.81* 0.04/0.46  0.02/0.12 
+            5.0 1.00/1.00  0.76/1.00  0.50/1.00  0.33/1.00* 0.22/1.00* 0.17/0.92* 0.11/0.69* 0.08/0.36  0.07/0.13 
+            8.0 1.00/1.00  0.70/1.00  0.48/1.00* 0.36/1.00* 0.28/1.00* 0.24/0.88* 0.21/0.64* 0.19/0.38  0.18/0.22 
+           13.8 1.00/1.00  0.72/1.00  0.55/1.00  0.47/1.00* 0.43/1.00* 0.41/0.87* 0.39/0.67* 0.37/0.49  0.37/0.39 
+           25.5 1.00/1.00  0.79/1.00  0.69/1.00  0.64/1.00  0.62/1.00  0.60/0.90  0.59/0.76  0.59/0.65  0.58/0.60 
+           50.0 1.00/1.00  0.87/1.00  0.81/1.00  0.79/1.00  0.78/1.00  0.77/0.93  0.76/0.85  0.76/0.79  0.76/0.77 
+          100.0 1.00/1.00  0.93/1.00  0.90/1.00  0.89/1.00  0.88/1.00  0.88/0.96  0.87/0.92  0.87/0.89  0.87/0.87 
+      ADMISSIBLE REGION NON-EMPTY: tau in [0.30, 18.67] Gyr, v_k in [983, 40428] km/s (eps in [3.28e-03, 1.35e-01]);  7294/40000 cells
+      deepest admissible point: tau = 0.30 Gyr, v_k = 40428 km/s (eps = 1.35e-01), f_gal = 0.035, f_cl = 0.516
+  [PASS] P1  [HONEST INTERIM -- the finding, not a failure]  the two-body branch is NOT closed by the galaxy-vs-cluster pincer.  The escape-velocity filter really does open a region in (tau, v_k) where the galaxy ceiling and the cluster requirement hold simultaneously, at BOTH footings
+           (canonical: non-empty; alt: non-empty)
+
+======================================================================================================================
+PART 3 -- the STRUCTURE gate: what the same kick does to the matter power spectrum.
+======================================================================================================================
+
+  A daughter born at a_d has v(a) = v_k a_d/a, hence a comoving free-streaming wavenumber
+      k_fs(a) = sqrt(3/2) a H(a) / v(a) = sqrt(3/2) a^2 H(a) / (v_k a_d).
+  It cannot cluster on k > k_fs(a).  Two variants are computed, deliberately BRACKETING the truth:
+
+   (B) STRICT UPPER BOUND on the model's sigma_8, and the ONE the gates are judged on.  Two facts make it a
+       bound.  First, the clustered part cannot grow faster than LambdaCDM: its source is
+       1.5 Om_m [(1-f_nc) delta_c + f_nc delta_h] with delta_h <= delta_c, hence <= LambdaCDM's source, so
+       delta_c <= delta_c^LCDM.  Second, a daughter born at a_d and free-streaming until k_fs rises to k
+       cannot end with more than delta_c(a_d) D(1)/D(a_re) -- freezing is the least free-streaming can do.
+       Summing gives S_B(k) = f_b + f_dm e^{-t0/tau} + f_dm sum_w min(1, D(a_d)/D(a_re)).
+   (A) THE STANDARD f_nc TREATMENT, shown for comparison only.  Growth with the reduced source and
+       delta_m = (1-f_nc) delta_c -- the approximation used for massive neutrinos.  It is NOT a bound in
+       either direction: it under-counts growth (the source omits the daughters' own frozen perturbation) and
+       over-counts amplitude (a daughter that has re-clustered is given full weight, ignoring the growth it
+       lost).  Where (A) exceeds (B), (A) is the one that is wrong.
+
+        tau      v_k       eps   f_gal    f_cl | sig8 (B) up  S8 (B)  vs KiDS |  sig8 (A)  S8 (A)  vs KiDS
+       LCDM       --        --      --      -- |       0.811   0.831    +1.02 |     0.811   0.831    +1.02
+       0.37    31491  1.05e-01   0.043   0.575 |       0.198   0.203    -38.3 |     0.097   0.099    -44.7
+       0.30    40428  1.35e-01   0.036   0.516 |       0.187   0.192    -38.9 |     0.081   0.083    -45.8
+       3.00     3000  1.00e-02   0.183   0.970 |       0.474   0.486    -20.6 |     0.412   0.423    -24.5
+       5.00     2200  7.34e-03   0.229   1.000 |       0.561   0.575    -15.0 |     0.469   0.481    -20.9
+       8.00     1500  5.00e-03   0.360   1.000 |       0.654   0.670     -9.0 |     0.567   0.581    -14.6
+      13.80     1000  3.34e-03   0.560   1.000 |       0.736   0.754     -3.8 |     0.679   0.696     -7.5
+      13.80     2200  7.34e-03   0.432   1.000 |       0.668   0.685     -8.1 |     0.521   0.534    -17.6
+      25.50     1000  3.34e-03   0.691   1.000 |       0.763   0.782     -2.1 |     0.712   0.730     -5.3
+  [PASS] P2  the STRUCTURE gate fires at the DEEPEST ADMISSIBLE point of PART 2, and it fires on the STRICT UPPER BOUND (B), not only on the realistic estimate: even when the clustered part is given the full LambdaCDM growth rate and every daughter is given the most amplitude free-streaming can leave it, S_8 falls more than 3 sigma below KiDS-Legacy's 0.815 +/- 0.016
+           (tau = 0.37 Gyr, v_k = 31491 km/s (eps = 1.1e-01): UPPER BOUND sigma_8 <= 0.198 -> S_8 <= 0.203 (38.3 sigma below KiDS, 48.4 below Planck); realistic sigma_8 = 0.097 -> S_8 = 0.099)
+      sqrt(P_model/P_LCDM) at that point -- upper bound (B) / realistic (A):
+        k =   0.020 h/Mpc :  0.4348  /  0.5109
+        k =   0.054 h/Mpc :  0.2640  /  0.2072
+        k =   0.148 h/Mpc :  0.2375  /  0.0836
+        k =   0.404 h/Mpc :  0.2331  /  0.0495
+        k =   1.101 h/Mpc :  0.2327  /  0.0424
+        k =   3.000 h/Mpc :  0.2326  /  0.0409
+
+    THE TRIPLE SCAN.  A cell passes only if it clears the galaxy ceiling, the cluster requirement AND
+    S_8 within 3 sigma of KiDS-Legacy (>= 0.767) on the GENEROUS upper bound (B).
+      tau    2.0  v_k    300  S_8(up)  0.829   gal DEAD (f=1.00)   cl OK   (f=1.00)   S8 OK
+      tau    2.0  v_k    600  S_8(up)  0.794   gal DEAD (f=0.95)   cl OK   (f=1.00)   S8 OK
+      tau    2.0  v_k   1000  S_8(up)  0.707   gal DEAD (f=0.77)   cl OK   (f=1.00)   S8 DEAD
+      tau    2.0  v_k   1500  S_8(up)  0.614   gal OK   (f=0.55)   cl OK   (f=1.00)   S8 DEAD
+      tau    2.0  v_k   2200  S_8(up)  0.526   gal OK   (f=0.37)   cl OK   (f=1.00)   S8 DEAD
+      tau    2.0  v_k   3000  S_8(up)  0.464   gal OK   (f=0.25)   cl OK   (f=0.99)   S8 DEAD
+      tau    2.0  v_k   5000  S_8(up)  0.390   gal OK   (f=0.12)   cl OK   (f=0.91)   S8 DEAD
+      tau    3.0  v_k    300  S_8(up)  0.828   gal DEAD (f=1.00)   cl OK   (f=1.00)   S8 OK
+      tau    3.0  v_k    600  S_8(up)  0.788   gal DEAD (f=0.88)   cl OK   (f=1.00)   S8 OK
+      tau    3.0  v_k   1000  S_8(up)  0.701   gal DEAD (f=0.63)   cl OK   (f=1.00)   S8 DEAD
+      tau    3.0  v_k   1500  S_8(up)  0.615   gal OK   (f=0.43)   cl OK   (f=1.00)   S8 DEAD
+      tau    3.0  v_k   2200  S_8(up)  0.537   gal OK   (f=0.27)   cl OK   (f=1.00)   S8 DEAD
+      tau    3.0  v_k   3000  S_8(up)  0.486   gal OK   (f=0.18)   cl OK   (f=0.97)   S8 DEAD
+      tau    3.0  v_k   5000  S_8(up)  0.427   gal OK   (f=0.09)   cl OK   (f=0.81)   S8 DEAD
+      tau    5.0  v_k    300  S_8(up)  0.828   gal DEAD (f=1.00)   cl OK   (f=1.00)   S8 OK
+      tau    5.0  v_k    600  S_8(up)  0.787   gal DEAD (f=0.77)   cl OK   (f=1.00)   S8 OK
+      tau    5.0  v_k   1000  S_8(up)  0.709   gal OK   (f=0.51)   cl OK   (f=1.00)   S8 DEAD
+      tau    5.0  v_k   1500  S_8(up)  0.636   gal OK   (f=0.34)   cl OK   (f=1.00)   S8 DEAD
+      tau    5.0  v_k   2200  S_8(up)  0.575   gal OK   (f=0.23)   cl OK   (f=1.00)   S8 DEAD
+      tau    5.0  v_k   3000  S_8(up)  0.536   gal OK   (f=0.17)   cl OK   (f=0.92)   S8 DEAD
+      tau    5.0  v_k   5000  S_8(up)  0.496   gal OK   (f=0.11)   cl OK   (f=0.69)   S8 DEAD
+      tau    8.0  v_k    300  S_8(up)  0.828   gal DEAD (f=1.00)   cl OK   (f=1.00)   S8 OK
+      tau    8.0  v_k    600  S_8(up)  0.792   gal DEAD (f=0.71)   cl OK   (f=1.00)   S8 OK
+      tau    8.0  v_k   1000  S_8(up)  0.727   gal OK   (f=0.49)   cl OK   (f=1.00)   S8 DEAD
+      tau    8.0  v_k   1500  S_8(up)  0.670   gal OK   (f=0.36)   cl OK   (f=1.00)   S8 DEAD
+      tau    8.0  v_k   2200  S_8(up)  0.625   gal OK   (f=0.29)   cl OK   (f=1.00)   S8 DEAD
+      tau    8.0  v_k   3000  S_8(up)  0.598   gal OK   (f=0.25)   cl OK   (f=0.88)   S8 DEAD
+      tau    8.0  v_k   5000  S_8(up)  0.570   gal OK   (f=0.21)   cl OK   (f=0.64)   S8 DEAD
+      tau   13.8  v_k    300  S_8(up)  0.829   gal DEAD (f=1.00)   cl OK   (f=1.00)   S8 OK
+      tau   13.8  v_k    600  S_8(up)  0.801   gal DEAD (f=0.73)   cl OK   (f=1.00)   S8 OK
+      tau   13.8  v_k   1000  S_8(up)  0.754   gal OK   (f=0.56)   cl OK   (f=1.00)   S8 DEAD
+      tau   13.8  v_k   1500  S_8(up)  0.715   gal OK   (f=0.48)   cl OK   (f=1.00)   S8 DEAD
+      tau   13.8  v_k   2200  S_8(up)  0.685   gal OK   (f=0.43)   cl OK   (f=1.00)   S8 DEAD
+      tau   13.8  v_k   3000  S_8(up)  0.668   gal OK   (f=0.41)   cl OK   (f=0.87)   S8 DEAD
+      tau   13.8  v_k   5000  S_8(up)  0.650   gal OK   (f=0.39)   cl OK   (f=0.67)   S8 DEAD
+      tau   25.5  v_k    300  S_8(up)  0.830   gal DEAD (f=1.00)   cl OK   (f=1.00)   S8 OK
+      tau   25.5  v_k    600  S_8(up)  0.811   gal DEAD (f=0.79)   cl OK   (f=1.00)   S8 OK
+      tau   25.5  v_k   1000  S_8(up)  0.782   gal DEAD (f=0.69)   cl OK   (f=1.00)   S8 OK
+      tau   25.5  v_k   1500  S_8(up)  0.758   gal DEAD (f=0.64)   cl OK   (f=1.00)   S8 DEAD
+      tau   25.5  v_k   2200  S_8(up)  0.741   gal DEAD (f=0.62)   cl OK   (f=1.00)   S8 DEAD
+      tau   25.5  v_k   3000  S_8(up)  0.731   gal DEAD (f=0.60)   cl OK   (f=0.90)   S8 DEAD
+      tau   25.5  v_k   5000  S_8(up)  0.721   gal DEAD (f=0.59)   cl OK   (f=0.76)   S8 DEAD
+      tau   50.0  v_k    300  S_8(up)  0.830   gal DEAD (f=1.00)   cl OK   (f=1.00)   S8 OK
+      tau   50.0  v_k    600  S_8(up)  0.820   gal DEAD (f=0.87)   cl OK   (f=1.00)   S8 OK
+      tau   50.0  v_k   1000  S_8(up)  0.804   gal DEAD (f=0.82)   cl OK   (f=1.00)   S8 OK
+      tau   50.0  v_k   1500  S_8(up)  0.791   gal DEAD (f=0.79)   cl OK   (f=1.00)   S8 OK
+      tau   50.0  v_k   2200  S_8(up)  0.781   gal DEAD (f=0.78)   cl OK   (f=1.00)   S8 OK
+      tau   50.0  v_k   3000  S_8(up)  0.776   gal DEAD (f=0.77)   cl OK   (f=0.93)   S8 OK
+      tau   50.0  v_k   5000  S_8(up)  0.771   gal DEAD (f=0.76)   cl OK   (f=0.85)   S8 OK
+  [PASS] P3  NO cell on the probed grid passes all three gates.  The escape-velocity filter and the structure amplitude pull in opposite directions: the very velocity that unbinds a galaxy also erases the power that same component must carry on 8 Mpc/h
+           (0 of 49 probed (tau, v_k) cells pass galaxy + cluster + S_8)

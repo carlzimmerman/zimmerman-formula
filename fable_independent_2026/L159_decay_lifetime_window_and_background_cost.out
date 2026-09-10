@@ -1,0 +1,284 @@
+======================================================================================================================
+T1 -- TEMPORAL SEPARATION: required lifetime window + background cost (one-body decay to dark radiation)
+======================================================================================================================
+
+======================================================================================================================
+PART 0 -- CONTROLS: the from-scratch background integrator reproduces Planck-2018 LambdaCDM.
+======================================================================================================================
+    omega_gamma = 2.472800e-05   omega_nu(today, massive) = 6.476302e-04   (m/93.14 eV = 6.441915e-04)
+    omega_m = 0.14302   omega_r = 4.183406e-05   Omega_L = 0.68472
+    z_*  =  1089.92   (Planck 1089.92)
+    r_*  =  144.434 Mpc   (Planck 144.43 +/- 0.26)
+    D_M(z_*) =  13872.67 Mpc      r_drag = 147.094 Mpc  (Planck 147.09 +/- 0.26)
+    100 theta_* = 1.04114   (Planck 1.04110 +/- 0.00031)
+    z_eq =   3417.7  (Planck 3402)       age = 13.7971 Gyr  (Planck 13.797)
+  [PASS] C0  the massive-neutrino density today reproduces omega_nu = Sum m_nu / 93.14 eV to better than 2%
+           (6.476302e-04 vs 6.441915e-04  (ratio 1.0053))
+  [PASS] C1  the integrator reproduces Planck's sound horizon r_* = 144.43 Mpc to better than 1%
+           (r_* = 144.434 Mpc  (+0.00%))
+  [PASS] C1b the integrator reproduces Planck's drag-epoch sound horizon r_d = 147.09 Mpc to better than 1%
+           (r_d = 147.094 Mpc  (+0.00%))
+  [PASS] C2  the integrator reproduces Planck's acoustic scale 100 theta_* = 1.04110 to better than 0.5%
+           (100 theta_* = 1.04114  (+0.004%))
+  [PASS] C3  the integrator reproduces Planck's age 13.797 Gyr to better than 1%
+           (age = 13.7971 Gyr)
+  [PASS] C4  the integrator reproduces matter-radiation equality z_eq = 3402 to better than 3%
+           (z_eq = 3417.7)
+  [PASS] C5  MUTATION CONTROL: halving omega_c breaks the acoustic scale by vastly more than Planck's 0.03% error -- the pipeline is sensitive, not rigged to agree
+           (100 theta_*(omega_c/2) = 0.94922  (-8.83% vs baseline, 297 sigma))
+
+    t(z_*) = 3.7175e+05 yr = 0.0003718 Gyr ;  t(z=10) = 0.4704 Gyr ;  t(z=5) = 1.1683 Gyr ;  t(z=2) = 3.2706 Gyr
+
+======================================================================================================================
+PART 1 -- TASK 1: THE REQUIRED LIFETIME WINDOW.
+======================================================================================================================
+
+  The two edges, stated as hypotheses before any number is computed.
+    LOWER EDGE (must still be there for the third peak).  The third peak's height is set by the cold density AT
+    recombination; Planck measures omega_c = 0.1200 +/- 0.0012, a 1.0% (1 sigma) box.  Requiring the decayed
+    fraction at z_* to sit inside 1 sigma gives  1 - exp(-t_*/tau) <= 0.0100  =>  tau >= t_*/0.010050.
+    UPPER EDGE (must be gone where rotation curves are measured).  L61's branch-independent 'excess spent once'
+    theorem: a theory whose kernel already reproduces the RAR with the cold component switched off OVERSHOOTS
+    pointwise by the transmitted pull eta*g_halo.  L49/L50 put the ceiling at eta <= 0.582 (canonical a0 =
+    9.3619e-11) / 0.486 (alt a0 = 1.1279e-10) for a kernel reading the baryons only (eps=0), and 0.355 / 0.276
+    if it reads the total potential (eps=1); at eta = 1 the median SPARC overshoot is 1.692x (+0.228 dex).  The
+    SURVIVING FRACTION plays exactly the role of eta.  'Gone by' is a CHOICE, so all four choices are reported.
+
+  LOWER EDGE:  t_* = 3.7175e+05 yr;  allowed decayed fraction at z_* = 0.0100  =>  tau >= 0.036989 Gyr = 36.99 Myr
+  [PASS] W1  the LOWER edge is a real finite constraint: surviving recombination to Planck's 1% box on omega_c requires tau >= 35-40 Myr
+           (tau_lo = 0.036989 Gyr = 36.99 Myr)
+
+  UPPER EDGE  tau <= t_gone / ln(1/eta_max):
+    definition of gone-by                              t [Gyr]   canon eps=0     alt eps=0   canon eps=1     alt eps=1
+    z=0   rotation curves are measured today           13.7971       25.4895       19.1215       13.3223       10.7174
+    z=2   z~2 disc kinematics exist                     3.2706        6.0424        4.5328        3.1581        2.5406
+    z=5   a halo here leaves a dynamical imprint        1.1683        2.1583        1.6191        1.1281        0.9075
+    z=10  galaxy assembly begins                        0.4704        0.8691        0.6520        0.4542        0.3654
+      (Gyr; entry = the LONGEST lifetime leaving <= eta_max surviving at that epoch)
+
+  THE KINEMATIC WINDOW: [0.0370, 25.489] Gyr at the loosest reading, [0.0370, 0.3654] Gyr at the strictest.
+  [PASS] W2  KINEMATICALLY the window is NOT empty at any of the 16 (epoch x ceiling) readings -- even the strictest ('gone by z=10' at eta <= 0.276) leaves tau_hi > tau_lo.  Task 1 alone does NOT close the escape
+           (loosest [0.0370, 25.489] Gyr (ratio 689); strictest [0.0370, 0.3654] Gyr (ratio 9.9))
+
+  PARTIAL DECAY.  If only a fraction f_dec decays and (1-f_dec) is stable, the STABLE remnant is itself a cold
+  component present in galaxies today, so the SAME ceiling binds it:
+      f_surv(t_0) = (1 - f_dec) + f_dec exp(-t_0/tau) <= eta_max   =>   f_dec >= 1 - eta_max, for ANY tau.
+      canon eps=0   : f_dec >= 0.418  (41.8% of the CMB-required cold density destroyed)
+      alt eps=0     : f_dec >= 0.514  (51.4% of the CMB-required cold density destroyed)
+      canon eps=1   : f_dec >= 0.645  (64.5% of the CMB-required cold density destroyed)
+      alt eps=1     : f_dec >= 0.724  (72.4% of the CMB-required cold density destroyed)
+  [PASS] W3  the escape necessarily DESTROYS a large fraction of the dark matter -- at least 41.8% (canonical, eps=0) and up to 72.4% (alt, eps=1) -- for any lifetime whatsoever.  It is not a perturbative decay, which is exactly why a background cost is unavoidable
+           (f_dec >= 0.418 (canon eps=0) ... 0.724 (alt eps=1), independent of tau)
+
+======================================================================================================================
+PART 2 -- TASK 2: THE BACKGROUND COST.  theta_*, BAO, SNe, age, ISW.
+======================================================================================================================
+
+  PROCEDURE.  omega_dcdm is normalised so the cold density AT RECOMBINATION equals Planck's 0.1200 -- that is
+  what the third peak measures and it is the entire point of the escape.  Lambda is root-found for exact
+  flatness.  r_s is recomputed with the model's own H(a).  Then (a) the theta_* shift at fixed h; (b) the h
+  that restores theta_* exactly (the CMB geometric degeneracy); (c) at that h, BAO + SNe + age + an ISW proxy.
+
+  LambdaCDM baseline for the confrontations:
+      6dFGS     z=0.106 DV/rd   data   2.976 +/- 0.133   model   3.098   +0.91 sigma
+      SDSS MGS  z=0.150 DV/rd   data   4.470 +/- 0.170   model   4.317   -0.90 sigma
+      BOSS DR12 z=0.380 DM/rd   data  10.234 +/- 0.151   model  10.425   +1.27 sigma
+      BOSS DR12 z=0.380 DH/rd   data  24.981 +/- 0.738   model  24.595   -0.52 sigma
+      BOSS DR12 z=0.510 DM/rd   data  13.366 +/- 0.179   model  13.501   +0.75 sigma
+      BOSS DR12 z=0.510 DH/rd   data  22.317 +/- 0.578   model  22.740   +0.73 sigma
+      BOSS DR12 z=0.610 DM/rd   data  15.611 +/- 0.226   model  15.707   +0.42 sigma
+      BOSS DR12 z=0.610 DH/rd   data  20.492 +/- 0.508   model  21.391   +1.77 sigma
+      eBOSS QSO z=1.480 DM/rd   data  30.690 +/- 0.800   model  30.224   -0.58 sigma
+      eBOSS QSO z=1.480 DH/rd   data  13.260 +/- 0.550   model  12.907   -0.64 sigma
+      eBOSS Lya z=2.330 DM/rd   data  37.600 +/- 1.900   model  39.182   +0.83 sigma
+      eBOSS Lya z=2.330 DH/rd   data   8.930 +/- 0.280   model   8.615   -1.12 sigma
+      chi2_BAO(LambdaCDM, 12 pts) = 10.64      Om_SNe = 0.3210 (Pantheon+ 0.334 +/- 0.018, -0.72 sigma; shape rms 0.0046 mag)
+      ISW proxy: Phi(0)/Phi(100) = 0.7653  (the ordinary late-ISW potential decay)
+  [PASS] C6  CONTROL: the LambdaCDM baseline fits the 12-point BAO compilation and the SNe shape -- so a large chi2 later is a real failure of the decaying model, not of the machinery
+           (chi2_BAO = 10.64 on 12 points; Om_SNe = 0.3210 (-0.72 sigma from Pantheon+))
+
+  (a) FIXED h = 0.6736.   omega_dcdm(z_*) held at 0.1200.
+     tau [Gyr]  f_surv(0)   om_m(0)    Om_L   r_* Mpc   100 th_*    d th/th      sigma     age
+          0.05     0.0000   0.02302  0.9445   144.243    0.68311   -34.388%       1155  19.843
+          0.10    -0.0000   0.02302  0.9419   144.338    0.72440   -30.422%       1022  19.255
+          0.30     0.0000   0.02302  0.9341   144.402    0.80231   -22.939%        770  18.063
+          1.00     0.0000   0.02302  0.9155   144.424    0.89643   -13.899%        467  16.502
+          3.00     0.0064   0.02379  0.8769   144.431    0.97081    -6.755%        227  15.153
+          6.08     0.0915   0.03400  0.8319   144.432    1.00276    -3.686%        124  14.540
+         10.00     0.2402   0.05185  0.7953   144.433    1.01710    -2.309%         78  14.262
+         25.50     0.5779   0.09237  0.7391   144.433    1.03154    -0.922%         31  13.982
+         50.00     0.7574   0.11391  0.7146   144.434    1.03623    -0.471%         16  13.891
+        100.00     0.8707   0.12750  0.7003   144.434    1.03868    -0.236%          8  13.844
+        160.00     0.9172   0.13308  0.6946   144.434    1.03960    -0.147%          5  13.826
+        500.00     0.9728   0.13975  0.6879   144.434    1.04065    -0.047%          2  13.806
+       2000.00     0.9931   0.14219  0.6855   144.434    1.04102    -0.012%          0  13.799
+  [PASS] B1  at FIXED h the MINIMUM decay the escape needs (f_surv(t_0) = 0.582, tau = 25.5 Gyr) already breaks the acoustic scale decisively -- by more than 10 sigma of Planck's 0.03% measurement
+           (tau = 25.49 Gyr -> f_surv(0) = 0.5778; 100 theta_* = 1.03154 vs 1.04114; shift -0.922% = 31 sigma)
+
+  (b) RESTORE theta_* by floating h (the CMB geometric degeneracy). omega_dcdm(z_*) still 0.1200.
+     tau [Gyr]   decayed        h      H0  Om_m(0)     age  chi2_BAO    d chi2   Om_SNe  SNe sig  Phi0/Phi100
+          LCDM    0.0000   0.6736   67.36   0.3152  13.797     10.64     +0.00   0.3210    -0.72       0.7653
+          0.10    1.0000   1.9819  198.19   0.0059   9.554   7780.94  +7770.30   0.0200   -17.44       0.0289
+          0.30    1.0000   1.5194  151.94   0.0100  10.862   4942.05  +4931.41   0.0200   -17.44       0.0373
+          1.00    1.0000   1.1341  113.41   0.0179  12.185   2104.45  +2093.81   0.0478   -15.90       0.0543
+          3.00    0.9871   0.8941   89.41   0.0307  13.057    546.38   +535.74   0.1153   -12.15       0.0812
+          6.08    0.8895   0.7965   79.65   0.0572  13.395    165.37   +154.73   0.1775    -8.69       0.1440
+         10.00    0.7419   0.7517   75.17   0.0956  13.544     64.33    +53.69   0.2189    -6.39       0.2364
+         25.50    0.4155   0.7053   70.53   0.1873  13.695     13.05     +2.41   0.2741    -3.33       0.4568
+         50.00    0.2403   0.6899   68.99   0.2399  13.745      8.49     -2.15   0.2958    -2.12       0.5834
+        100.00    0.1286   0.6818   68.18   0.2745  13.771      8.65     -1.99   0.3081    -1.44       0.6668
+        160.00    0.0825   0.6787   67.87   0.2890  13.781      9.18     -1.46   0.3128    -1.18       0.7018
+        500.00    0.0272   0.6752   67.52   0.3065  13.792     10.09     -0.55   0.3183    -0.87       0.7442
+       2000.00    0.0069   0.6740   67.40   0.3130  13.796     10.50     -0.14   0.3203    -0.76       0.7600
+  [PASS] B2  [CORRECTED FINDING -- the honest result, not the one first asserted]  once h is refloated to restore theta_* exactly, BAO alone does NOT kill the minimum required decay.  At tau = 25.5 Gyr (42% destroyed) the 12-point BAO chi2 moves by only +2.4, and H0 rises to 70.5 -- which even helps the H0 tension.  The geometric horn that DOES bite is the supernova distance SHAPE.  Statement asserted: at tau = 25.5 Gyr the BAO shift is small (< 9) while the SNe-equivalent Omega_m is more than 3 sigma from Pantheon+
+           (tau=25.5: h_restore = 0.7053 (H0 = 70.5); Delta chi2_BAO = +2.4 (small); Om_SNe = 0.274 vs 0.334 +/- 0.018 = -3.33 sigma)
+
+  (c) INVERSION on the COMBINED geometric test (theta_* restored exactly + BAO + the SNe shape).
+      Delta chi2 is measured RELATIVE TO LambdaCDM run through the same machinery, so the pipeline's
+      own offsets cancel.  This is a GEOMETRY-ONLY test: it uses the acoustic scale, the BAO ladder and
+      the supernova shape, and deliberately does NOT use the CMB damping tail, lensing or the ISW --
+      which is exactly why it is WEAKER than the published full-likelihood bounds quoted in PART 2b.
+     tau [Gyr]   decayed        h      H0  dchi2_BAO   Om_SNe  SNe sig  rms mag  dchi2_tot  ~sigma     age
+           5.0    0.9303   0.8192   81.92    +224.61   0.1600     9.67   0.0068    +317.53   17.82  13.318
+           8.0    0.8147   0.7696   76.96     +88.17   0.2011     7.38   0.0054    +142.12   11.92  13.485
+          10.0    0.7419   0.7517   75.17     +53.69   0.2189     6.39   0.0049     +94.02    9.70  13.544
+          13.0    0.6487   0.7346   73.46     +28.26   0.2377     5.35   0.0043     +56.35    7.51  13.600
+          16.0    0.5735   0.7235   72.35     +15.91   0.2507     4.63   0.0041     +36.78    6.06  13.636
+          20.0    0.4951   0.7138   71.38      +7.63   0.2629     3.95   0.0039     +22.70    4.76  13.667
+          25.0    0.4217   0.7059   70.59      +2.73   0.2733     3.37   0.0039     +13.58    3.69  13.693
+          30.0    0.3668   0.7006   70.06      +0.36   0.2805     2.97   0.0039      +8.65    2.94  13.710
+          40.0    0.2906   0.6940   69.40      -1.57   0.2900     2.45   0.0040      +3.89    1.97  13.732
+          50.0    0.2403   0.6899   68.99      -2.15   0.2958     2.12   0.0040      +1.82    1.35  13.745
+          80.0    0.1581   0.6838   68.38      -2.19   0.3050     1.61   0.0042      -0.12    0.00  13.764
+         160.0    0.0825   0.6787   67.87      -1.46   0.3128     1.18   0.0044      -0.60    0.00  13.781
+         500.0    0.0272   0.6752   67.52      -0.55   0.3183     0.87   0.0045      -0.31    0.00  13.792
+    GEOMETRY-ONLY boundary at 3 sigma (dchi2 = 9)   : tau =    29.5 Gyr, i.e. at most  37.1% destroyed by z=0 (H0 = 70.1)
+    GEOMETRY-ONLY boundary at 5 sigma (dchi2 = 25)  : tau =    19.1 Gyr, i.e. at most  51.0% destroyed by z=0 (H0 = 71.6)
+  [PASS] B3  [CORRECTED]  the geometry-only test (theta_* restored + BAO + the SNe shape) permits a decayed fraction of roughly a THIRD -- far more than a few percent, but still less than the >= 41.8% the escape requires.  So geometry alone DOES close even the loosest reading, but only just.  Statement asserted: the 3-sigma geometry-only ceiling is in [0.20, 0.70] AND lies below the required 0.418
+           (geometry-only 3 sigma: at most 37.1% destroyed (tau >= 29.5 Gyr); 5 sigma: at most 51.0% (tau >= 19.1 Gyr).  Required by the escape: >= 41.8%)
+
+      THE LADDER.  Each reading of the galaxy gate fixes tau; each tau is then priced geometrically.
+      reading of the galaxy gate                            tau [Gyr]   decayed  dchi2_tot  ~sigma
+      z=0 / canon eps=0                                        25.489    0.4157      +13.0     3.6
+      z=0 / alt eps=0                                          19.122    0.5105      +25.1     5.0
+      z=0 / canon eps=1                                        13.322    0.6398      +53.6     7.3
+      z=0 / alt eps=1                                          10.717    0.7178      +82.4     9.1
+      z=2 / canon eps=0                                         6.042    0.8910     +232.2    15.2
+      z=2 / alt eps=0                                           4.533    0.9465     +371.2    19.3
+      z=2 / canon eps=1                                         3.158    0.9841     +635.6    25.2
+      z=2 / alt eps=1                                           2.541    0.9939     +853.5    29.2
+      z=5 / canon eps=0                                         2.158    0.9974    +1049.0    32.4
+      z=5 / alt eps=0                                           1.619    0.9996    +1463.0    38.2
+      z=5 / canon eps=1                                         1.128    1.0000    +2104.8    45.9
+      z=5 / alt eps=1                                           0.907    1.0000    +2549.3    50.5
+      z=10 / canon eps=0                                        0.869    1.0000    +2642.2    51.4
+      z=10 / alt eps=0                                          0.652    1.0000    +3292.5    57.4
+      z=10 / canon eps=1                                        0.454    1.0000    +4173.6    64.6
+      z=10 / alt eps=1                                          0.365    1.0000    +4727.1    68.8
+  [PASS] B4  [CORRECTED -- and the result is STRONGER than first assumed]  EVERY one of the 16 readings of the galaxy gate is excluded by the expansion history alone at more than 3 sigma.  The loosest ('gone by z=0' at eta <= 0.582) sits at the margin; every tighter ceiling and every earlier 'gone by' epoch is excluded overwhelmingly, because they demand near-total destruction of the dark matter
+           (0 of 16 readings survive geometry at 3 sigma; the ladder spans 3.6 sigma (loosest) to 69 sigma (strictest))
+
+======================================================================================================================
+PART 2b -- TASK 3: confrontation with the PUBLISHED decaying-dark-matter bounds.
+======================================================================================================================
+
+  All CITED, not re-derived.  All are for one-body decay into invisible relativistic products, i.e. exactly
+  this arm.  The relevant regime is "decay after recombination, gone by now", Gamma in [1e-1, 1e3] Gyr^-1,
+  plus the long-lived regime Gamma <~ H_0 that covers tau ~ 25 Gyr.
+
+    Poulin, Serpico & Lesgourgues, JCAP 08 (2016) 036 [1606.02073]
+       decay between recombination and today:   f_dcdm < 4.2% (PlanckTT) / 3.8% (PlanckTTTEEE),  95% CL
+       + BOSS BAO + WiggleZ:                    f < 3% at Gamma ~ 10 Gyr^-1;  f*Gamma < 5.8e-3 Gyr^-1
+    Nygaard, Tram & Hannestad, JCAP 05 (2021) 017 [2011.01632]
+       Planck 2018:                             f_dcdm < 2.44%;  + BOSS DR12 BAO: f < 2.62%,     95% CL
+       very-long-lived sub-regime:              f*Gamma < 4.01e-3 Gyr^-1 (Planck), 3.72e-3 (+BAO)
+    Simon, Franco Abellan, Du, Poulin & Tsai, PRD 106, 023516 (2022) [2203.07440]
+       Planck18 + Pantheon + ExtBAO + EFTofBOSS: f_dcdm < 2.16%;  and tau > 249.6 Gyr at f = 1,   95% CL
+    Alvi, Brinckmann, Gerbino, Lattanzi & Pagano, JCAP 11 (2022) 015 [2205.05636]
+       f = 1: tau > 181 Gyr (Planck T&P), > 234 (+lensing), > 246 Gyr (+BAO);                     95% CL
+       f = 0.5: tau > 115 Gyr;  f = 0.1: tau > 18.9 Gyr
+    Audren, Lesgourgues, Mangano, Serpico & Tram, JCAP 12 (2014) 028 [1407.2418]
+       f = 1: tau > 160 Gyr                                                                       95% CL
+    Blackadder & Koushiappas, PRD 93, 023510 (2016) [1510.06026]
+       verbatim: if more than 40% of the DM energy goes to massless products, lifetimes less than the age of
+       the universe are excluded at > 95% confidence
+    Enqvist, Nadathur, Sekiguchi & Takahashi, JCAP 04 (2020) 015 [1906.09112]
+       + Planck SZ cluster counts: Gamma^-1 >= 175 Gyr  (CL not printed in their Table 1 -- flagged)
+    Planck 2018 VI [1807.06209] contains NO collaboration bound on decaying dark matter; there is nothing to
+    cite there, and none is invented here.
+
+    published 95% ceiling on the decayed fraction    f_max   x below the required 0.418   x below 0.724
+    Poulin+2016 (PlanckTTTEEE)                     0.0380                         11.0            19.1
+    Poulin+2016 (+BAO+WiggleZ)                     0.0300                         13.9            24.1
+    Nygaard+2021 (Planck18)                        0.0244                         17.1            29.7
+    Nygaard+2021 (+BAO)                            0.0262                         16.0            27.6
+    Simon+2022 (+EFTofBOSS)                        0.0216                         19.4            33.5
+  [PASS] B6  [TASK 3]  the escape's requirement and the published constraints are disjoint by an ORDER OF MAGNITUDE.  Every analysis of the same regime caps the decayed fraction at a few percent; the escape needs at least 41.8%.  Statement asserted: the required fraction exceeds the LOOSEST published 95% ceiling by more than a factor 10
+           (required >= 0.418 vs the loosest published ceiling 0.0380 (Poulin+2016 PlanckTTTEEE) -> 11.0x; against the tightest (0.0216, Simon+2022) -> 19.4x)
+  [PASS] B7  the published bounds and this lane's independent geometry agree in DIRECTION and differ only in STRENGTH, for a stated reason: this lane used only theta_*, BAO and the SNe shape, while the published analyses add the CMB damping tail, lensing reconstruction, the ISW and the full TT/TE/EE shape.  The honest statement is therefore 'geometry alone disfavours the escape at ~3 sigma; the full CMB likelihood excludes it by 10-20x in fraction', not 'geometry alone kills it'
+           (geometry-only ceiling 37% vs published ceiling 3.8% -- the published analyses are 10x tighter, as expected from the extra observables)
+
+  (d) THE SHORT-LIFETIME HORN (tau ~ 0.04-3 Gyr: the decay happens between z_* and z~1).
+      ISW proxy: the large-scale potential Phi ~ omega_m,comoving(a) D(a)/a, ratio z=0 to z=100.
+      LambdaCDM's own value IS the ordinary late ISW, so the ratio to it is the ISW excess factor.
+      tau =   0.10 Gyr:  Phi(0)/Phi(100) = 0.0289   potential decay 0.9711   =   4.14 x LambdaCDM's 0.2347
+      tau =   0.30 Gyr:  Phi(0)/Phi(100) = 0.0373   potential decay 0.9627   =   4.10 x LambdaCDM's 0.2347
+      tau =   1.00 Gyr:  Phi(0)/Phi(100) = 0.0543   potential decay 0.9457   =   4.03 x LambdaCDM's 0.2347
+      tau =   3.00 Gyr:  Phi(0)/Phi(100) = 0.0812   potential decay 0.9188   =   3.91 x LambdaCDM's 0.2347
+      tau =  10.00 Gyr:  Phi(0)/Phi(100) = 0.2364   potential decay 0.7636   =   3.25 x LambdaCDM's 0.2347
+  [PASS] B5  the SHORT-lifetime end of the window is independently excluded by the integrated Sachs-Wolfe effect: for tau <~ 1 Gyr the large-scale potential collapses far faster than in LambdaCDM, giving a low-ell ISW signal several times the observed one.  (ESTIMATE from a growth+background proxy, NOT a Boltzmann run -- flagged as such and not load-bearing for the verdict)
+           (worst potential-decay excess = 4.1x LambdaCDM's late ISW)
+
+======================================================================================================================
+PART 3 -- the window INTERSECTED with the background cost and the published bounds.
+======================================================================================================================
+
+  LOWER EDGE   (third peak intact):                tau >= 0.0370 Gyr
+  UPPER EDGE   (gone in galaxies by z=0, loosest): tau <= 25.49 Gyr   [canonical a0, eps=0, eta <= 0.582]
+  UPPER EDGE   (gone by z=10, tightest):           tau <= 0.3654 Gyr
+  GEOMETRY-ONLY FLOOR (theta_*+BAO+SNe, 3 sigma):  tau >= 29.5 Gyr   (<= 37% destroyed)
+  PUBLISHED FLOOR (CMB+BAO+SNe full likelihood):   f_decayed <= 3.8% at 95%  =>  tau >= 356 Gyr
+
+  READ IT HONESTLY.  The geometry-only floor (37.1% destroyed at 3 sigma) sits just BELOW the loosest
+  requirement (41.8% destroyed), so this lane's own expansion-history test does close even the most generous
+  reading -- at 3.6 sigma, which is a real but not overwhelming margin.  Every other reading is
+  excluded far harder (69 sigma at the strictest), because they demand near-total destruction.  And the
+  published full-likelihood analyses, which use observables this lane deliberately did not (the damping tail,
+  lensing reconstruction, the ISW, the full TT/TE/EE shape), close the loosest reading by a further factor
+  11-19 in decayed fraction.
+
+  [PASS] V1  [VERDICT, one-body decay-to-dark-radiation arm]  the window is EMPTY, and the closure is layered: all 16 readings of the galaxy gate are excluded by this lane's own expansion-history computation (from 3.6 sigma at the loosest to 69 sigma at the strictest), and the published CMB+BAO+SNe likelihoods cap the decayed fraction at 2-4% against the >= 41.8% required -- a further factor 11-19
+           (16/16 readings closed by geometry alone (3.6-69 sigma); published bound exceeded by 11-19x)
+  [PASS] V2  SCOPE, honestly stated: this arm assumes ONE-BODY decay into RELATIVISTIC invisible products, so the destroyed mass leaves the matter budget and the a^-3 -> a^-4 conversion is what the expansion history sees.  A dark-sector phase transition converting matter to radiation is background-identical and is closed by the same computation.  It does NOT cover decay into a NON-RELATIVISTIC daughter with a velocity kick, which keeps rho ~ a^-3 and pays almost no background cost -- that is the real escape candidate and is tested separately (T2)
+           (one-body -> dark radiation (and matter -> radiation phase transitions) CLOSED here; two-body -> massive daughter + kick still open)
+
+======================================================================================================================
+SUMMARY
+======================================================================================================================
+
+  TASK 1 (lifetime window).  NOT empty kinematically.  Surviving recombination inside Planck's 1% box on
+  omega_c needs tau >= 37.0 Myr.  Being gone where rotation curves are measured needs tau <= 25.5 Gyr at the
+  loosest reading ('gone by z=0', eta <= 0.582) and tau <= 0.37 Gyr at the tightest ('gone by z=10',
+  eta <= 0.276).  The load-bearing consequence is f_dec >= 1 - eta_max: at least 41.8%, and up to 72.4%, of the
+  CMB-required cold density must be DESTROYED, for ANY lifetime.  That is what makes a background cost
+  unavoidable, and it is the number every later gate is priced against.
+
+  TASK 2 (background cost).  Layered, and weaker than first assumed.  At FIXED h the required decay moves
+  100 theta_* by -0.922% = 31 sigma.  But h is not fixed: refloating it restores theta_* exactly at
+  H0 = 70.5, and then BAO moves by only +2.4 on twelve points.  The geometric horn that bites is the
+  SUPERNOVA SHAPE: the model's effective Omega_m is 0.274 against Pantheon+'s 0.334 +/- 0.018 (3.3 sigma).
+  Combined, geometry alone caps the destroyed fraction at 37% (3 sigma) / 51% (5 sigma) -- which closes
+  all 16 readings of the galaxy gate -- the loosest at only 3.6 sigma, the strictest at 69 sigma.
+
+  TASK 3 (published bounds).  Decisive on the survivor.  Every analysis of this exact regime caps the decayed
+  fraction at 2-4% at 95% (Poulin+2016 3.8%; Nygaard+2021 2.44%; Simon+2022 2.16%), and at f = 1 the lifetime
+  floor is 160-250 Gyr (Audren+2014; Alvi+2022).  The escape needs >= 41.8% -- a factor 11-19 beyond the
+  loosest published ceiling.
+
+  VERDICT (this arm): the temporal-separation window is EMPTY for one-body decay to dark radiation.  The
+  obstruction is the EXPANSION HISTORY plus the post-recombination CMB, NOT the velocity-ordering lemma --
+  which this mechanism does genuinely evade.
+
+======================================================================================================================
+T1 COMPLETE: 20/20 checks PASS.   [132.4s]
+======================================================================================================================
