@@ -1,0 +1,184 @@
+\documentclass[11pt,letterpaper]{article}
+\usepackage[margin=0.95in]{geometry}
+\usepackage{amsmath,amssymb,booktabs,array,microtype}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue]{hyperref}
+\setlength{\parindent}{0pt}\setlength{\parskip}{5pt}
+\sloppy
+\newtheorem{theorem}{Theorem}
+\newtheorem{corollary}{Corollary}
+\newtheorem{lemma}{Lemma}
+\newcommand{\ms}{\,\mathrm{m\,s^{-2}}}
+
+\title{An Intrinsic Big Bang Nucleosynthesis Fine-Tuning\\ in Conserved-Charge Dark Matter\\ from Relativistic MOND Clocks}
+\author{Carl P.\ Zimmerman\\ \small Briar Creek Tech --- AI-assisted research draft; not peer reviewed}
+\date{9 September 2026}
+
+\begin{document}\maketitle
+
+\begin{abstract}
+A class of relativistic completions of Milgrom's dynamics keeps the modified-inertia sector \emph{inside a
+clock} --- a scalar $\varphi$ entering only through $Q=n^\mu\partial_\mu\varphi$, with $n_\mu$ the unit
+gradient of a primordial clock field --- and supplies cosmological dark matter as the conserved Noether
+charge of the clock-scalar's shift symmetry, $\varphi\to\varphi+\text{const}$. This is an attractive
+architecture: the dark matter is then pressureless ($c_s^2=0$) and clusters like cold dark matter, it does
+not decay, and the same clock-internal structure lets the theory evade a preferred-frame post-Newtonian kill
+and a deep-MOND gradient instability. We prove that this architecture carries an \textbf{intrinsic
+Big Bang Nucleosynthesis (BBN) fine-tuning}. On a Friedmann--Robertson--Walker background the eliminated
+energy density is \emph{quadratic} in the conserved charge $C$,
+$\rho = B + 3M^2H^2 - (M^2/3f^2)\,(A+C/a^3)^2$, so the same charge that sources the $a^{-3}$ dust
+(cross term $\propto AC$) necessarily sources a stiff $a^{-6}$ component (square term $\propto C^2$). The
+stiff term grows as $a^{-2}$ relative to radiation toward early times; BBN bounds it to
+$\Omega_{\rm stiff,0}\lesssim 4\times10^{-25}$. Demanding that the dust be the observed dark matter while the
+stiff term respects BBN forces $|C|/|A|\lesssim 3\times10^{-24}$ --- a hierarchy of about twenty-four orders
+of magnitude, along a direction no symmetry protects. We prove the fine-tuning is \textbf{not removable}
+within the healthy class: the ghost-free degeneracy that keeps the clock's propagating sector free of a
+Boulware--Deser mode forces the constitutive potential $K(Q)$ to be exactly quadratic, which forces the
+density to be quadratic in $C$; a linear-in-charge (stiff-free) dust does not exist in the family; the
+tuning-free corner ($A=0$) has \emph{no} dark matter; and enlarging $A$ merely relocates an equal
+$\sim$23-order tuning into the cosmological-constant sector. Every algebraic step is reproduced in exact
+symbolic arithmetic by committed scripts, and the load-bearing identities (the charge-quadratic density and
+the nonvanishing stiff coefficient) are additionally machine-checked in the Lean~4 proof assistant against
+its standard foundational axioms. \textbf{What is not claimed:} this is not a falsification --- the theory is
+viable at the tuned point --- and it is not a statement about whether nature is MONDian. It is a naturalness
+cost, one hierarchy worse than $\Lambda$CDM's, that any healthy conserved-charge MOND clock must pay unless a
+protecting mechanism absent from the present class is supplied. The construction whose fine-tuning is
+analysed here was developed collaboratively in the associated public repository; this paper isolates and
+proves the cost.
+\end{abstract}
+
+\section{Setup: MOND inside a clock, dark matter as a Noether charge}
+
+We consider relativistic MOND completions of the form
+\begin{equation}
+S=\int\!\sqrt{-g}\Big[\tfrac{M^2}{2}R-\Lambda M^2-K(Q)+F(Q)\,\Theta+M^2a_0^2\,G(|V|/a_0)\Big]+S_m[g,\psi],
+\label{eq:action}
+\end{equation}
+where a \emph{clock} field $T$ defines a unit timelike direction $n_\mu=-\partial_\mu T/\sqrt{-(\partial T)^2}$,
+$\Theta=\nabla_\mu n^\mu$ is its expansion, $Q=n^\mu\partial_\mu\varphi$ is the clock-projected derivative of
+the MOND scalar $\varphi$, $V_\mu=q_\mu{}^\nu\partial_\nu\varphi$ is the spatially-projected gradient, and $M$
+is the Planck scale ($G_{\rm N}=1/16\pi M^2$). The scale $a_0$ is fixed by the de Sitter/$\Lambda$ scale,
+$a_0=c^2/2\pi L_{\rm dS}$, $L_{\rm dS}=\sqrt{3/\Lambda}$. The kernel $G(y)=y^2+2(1+y)e^{-y}-2$ reproduces the
+exponential MOND interpolation, $G'(y)/(2y)=1-e^{-y}$. The MOND sector acts only through the clock and the
+spatial gradient; on a homogeneous background $|V|=0$, so the $G$-term is cubic in perturbations and drops
+from the linear cosmology.
+
+The action \eqref{eq:action} is invariant under the shift $\varphi\to\varphi+\text{const}$ (it depends on
+$\varphi$ only through $\partial\varphi$). The corresponding Noether current is
+$J^\mu=(-K_Q+F_Q\Theta)\,n^\mu$, and its conserved charge density on FRW is
+\begin{equation}
+a^3\big(-K_Q+3HF_Q\big)=C=\text{const}.
+\label{eq:charge}
+\end{equation}
+This charge \emph{is} the dark matter: as we recall below it redshifts as $a^{-3}$ with zero pressure.
+
+\section{The theorem}
+
+\begin{theorem}[intrinsic stiff partner]\label{thm:main}
+Let \eqref{eq:action} satisfy: \textbf{(a)} the propagating scalar sector is ghost-free on an expanding
+background, which by the background-independent velocity-Hessian degeneracy forces $F$ affine, $F=fQ$, and
+$K_{QQ}=3f^2/2M^2=\text{const}$ (so $K$ is exactly quadratic, $K=k_2Q^2+AQ+B$, $k_2=3f^2/4M^2$);
+\textbf{(b)} the cosmological dark matter is the conserved charge \eqref{eq:charge}, $f\neq0$. Then the
+Friedmann energy density is
+\begin{equation}
+\rho=B+3M^2H^2-\frac{M^2}{3f^2}\Big(A+\frac{C}{a^3}\Big)^2
+= \underbrace{\Big(B+3M^2H^2-\tfrac{M^2A^2}{3f^2}\Big)}_{\Lambda\text{-const}+\text{back-reaction}}
+\;\underbrace{-\frac{2M^2A}{3f^2}\,\frac{C}{a^3}}_{a^{-3}\ \text{DUST}}
+\;\underbrace{-\frac{M^2}{3f^2}\,\frac{C^2}{a^6}}_{a^{-6}\ \text{STIFF}} ,
+\label{eq:rho}
+\end{equation}
+and the stiff coefficient $-M^2/3f^2$ is nonzero for any finite $f$. The dust piece is exactly pressureless
+($w=0$: the $C/a^3$ coefficient of the pressure vanishes identically); the stiff piece has $w=1$
+($\rho_{\rm stiff}\propto a^{-6}$).
+\end{theorem}
+
+The elimination is elementary: \eqref{eq:charge} gives $Q=(3fH-A-C/a^3)/2k_2$ linear in $C/a^3$, and the
+lapse stress $\rho=K-QK_Q+3HQF_Q$ is quadratic in $Q$ because $K$ is quadratic; hence $\rho$ is quadratic in
+$C/a^3$. Because the coefficient of the square is the single number $1/(4k_2)=M^2/3f^2$, the dust and stiff
+pieces are the cross term and the square of one perfect square and cannot be separated. Every step is
+reproduced in exact \texttt{sympy} (script \texttt{L80\_verify\_fqtheta\_dust.py}) and the two load-bearing
+identities --- the decomposition \eqref{eq:rho} and $-M^2/3f^2\neq0$ --- are machine-checked in Lean~4
+(\texttt{Mondlean.lean}: \texttt{density\_affine}, \texttt{stiff\_coeff\_ne\_zero}), depending only on the
+standard axioms $\{$\texttt{propext},\texttt{Classical.choice},\texttt{Quot.sound}$\}$.
+
+\begin{theorem}[the fine-tuning]\label{thm:tune}
+Under Theorem~\ref{thm:main}, requiring the dust to supply the observed cold density $\Omega_c\simeq0.264$
+while the stiff term respects the BBN radiation-density bound forces
+\begin{equation}
+\Omega_{\rm stiff,0}\lesssim 4\times10^{-25},\qquad
+\frac{\Omega_{\rm stiff,0}}{\Omega_{\rm dust,0}}=\frac{|C|}{2|A|},\qquad\Longrightarrow\qquad
+\frac{|C|}{|A|}\lesssim 3\times10^{-24}.
+\end{equation}
+\end{theorem}
+
+The stiff density scales as $a^{-6}$, i.e.\ as $a^{-2}$ relative to radiation, so the binding constraint is
+imposed at the earliest robust epoch, $n/p$ freeze-out ($T\simeq1$~MeV, $a\simeq2.3\times10^{-10}$), where a
+$w=1$ component must contribute below the effective extra-radiation bound $\Delta N_{\rm eff}\lesssim0.5$.
+Propagating that bound to today gives $\Omega_{\rm stiff,0}\lesssim4\times10^{-25}$
+(script \texttt{L84\_stiff\_bbn\_bound.py}, $12/12$ checks; the number spans $10^{-25}$--$10^{-22}$ over
+$\Delta N_{\rm eff}\in[0.3,0.5]$, $T_{\rm BBN}\in[0.07,1]$~MeV). Because dust $\propto AC$ (linear) and stiff
+$\propto C^2$ (quadratic) share the single charge $C$, their ratio is $|C|/2|A|$, independent of $M$ and $f$;
+matching the dust to $\Omega_c$ then requires the twenty-four-order hierarchy quoted. The bound is
+$a_0$-independent: $a_0$ enters only the galaxy-scale $G$-term, not the FRW stiff sector.
+
+\begin{corollary}[not removable]\label{cor:intrinsic}
+No stiff-free dust exists in the healthy class, and the hierarchy cannot be relocated away. Specifically:
+\emph{(1)} making $K$ linear ($k_2=0$) removes the square but violates the degeneracy of Theorem~\ref{thm:main}
+and leaves no propagating charge (no dust); \emph{(2)} setting $f=0$ removes the braiding but keeps a stiff
+term and, on an expanding branch, charge conservation forces $A=0$ (no dust); \emph{(3)} the tuning-free
+corner $A=0$ has no $a^{-3}$ dust at all; \emph{(4)} enlarging $|A|$ (to reduce $|C|$ at fixed dust) is
+degeneracy-compatible but forces the constant $B$ to cancel $M^2A^2/3f^2$ to precision
+$\delta_{CC}=2(\Omega_\Lambda/\Omega_c)(|C|/|A|)\lesssim1.6\times10^{-23}$, i.e.\ the same hierarchy moved
+into the cosmological-constant sector, and drives the decoupling sound speed $c_{\rm bare}^2=1+A/2k_2Q$ to
+large magnitude. No shift or scaling symmetry of \eqref{eq:action} caps $C/A$.
+\end{corollary}
+
+Corollary~\ref{cor:intrinsic} is established in exact arithmetic by scripts
+\texttt{L86\_fine\_tuning\_assessment.py} ($16/16$) and \texttt{L87\_stiff\_free\_dust.py} ($19/19$), which
+enumerate the linearisation attempts and the cosmological-constant relocation.
+
+\section{Discussion: what the cost is, and what it is not}
+
+The architecture analysed here is genuinely attractive, and the cost is worth stating precisely against its
+benefits. On the benefit side, the conserved-charge dust is pressureless and clusters like cold dark matter
+at linear sub-horizon order (its growth equation is $\Lambda$CDM's character-for-character, so
+$\sigma_8=0.811$ with no structure deficit), it cannot decay or annihilate (it is a Noether charge), and the
+clock-internal structure that generates it also lets the theory pass the preferred-frame post-Newtonian gate
+that excludes AeST and evade a deep-MOND gradient instability. The present result shows the same conserved
+charge that carries all of this also carries a stiff early-time partner, and that BBN prices it at
+$|C|/|A|\lesssim3\times10^{-24}$.
+
+This is a naturalness statement, not a falsification. $\Lambda$CDM fixes $\Omega_\Lambda$ and $\Omega_c$ as
+two relic/initial-condition numbers, neither tuned against a pathology; the present class fixes the same two
+\emph{plus} the extra hierarchy, along an unstable direction. Framing $C$ as a conserved integration
+constant (initial data) softens but does not remove the cost, since conservation forbids dynamical
+relaxation and matching $\Omega_c$ re-imports a coefficient tuning. A protecting mechanism --- a symmetry
+under which $C^2$ is forbidden while $AC$ survives, or a construction in which the dust is not the clock's
+kinetic charge --- would evade the theorem; none exists in the class \eqref{eq:action}, and the only
+stiff-free alternative found (an externally added cold-dark-matter fluid) abandons the one-action structure
+and re-introduces the transmission overshoot such completions were built to avoid.
+
+\section{Reproducibility}
+
+Every numerical and algebraic claim is produced by a committed, runnable script with checks that can fail, in
+the public repository under \texttt{fable\_independent\_2026/}: \texttt{L80\_verify\_fqtheta\_dust.py} (the
+density decomposition), \texttt{L84\_stiff\_bbn\_bound.py} (the BBN bound), \texttt{L86\_fine\_tuning\_assessment.py}
+(non-removability, cosmological-constant relocation), \texttt{L87\_stiff\_free\_dust.py} (no linear-charge
+dust in the healthy class). The two load-bearing identities are machine-checked in Lean~4 under
+\texttt{fable\_independent\_2026/lean\_2026/Mondlean.lean}. All dimensional numbers are carried on both
+$a_0$ footings ($9.3619\times10^{-11}\ms$ and $1.1279\times10^{-10}\ms$); the fine-tuning is
+$a_0$-independent. AI-assisted research draft; not peer reviewed.
+
+\begin{thebibliography}{9}
+\bibitem{Milgrom1983} M.~Milgrom, \emph{A modification of the Newtonian dynamics as a possible alternative to the hidden mass hypothesis}, ApJ \textbf{270}, 365 (1983).
+\bibitem{BekensteinMilgrom1984} J.~Bekenstein and M.~Milgrom, \emph{Does the missing mass problem signal the breakdown of Newtonian gravity?}, ApJ \textbf{286}, 7 (1984).
+\bibitem{SkordisZlosnik2021} C.~Skordis and T.~Z\l{}o\'snik, \emph{New relativistic theory for modified Newtonian dynamics}, Phys.\ Rev.\ Lett.\ \textbf{127}, 161302 (2021).
+\bibitem{Afshordi2007} N.~Afshordi, D.~J.~H.~Chung and G.~Geshnizjani, \emph{Causal field theory with an infinite speed of sound (the cuscuton)}, Phys.\ Rev.\ D \textbf{75}, 083513 (2007).
+\bibitem{Cyburt2016} R.~H.~Cyburt, B.~D.~Fields, K.~A.~Olive and T.-H.~Yeh, \emph{Big Bang Nucleosynthesis: Present status}, Rev.\ Mod.\ Phys.\ \textbf{88}, 015004 (2016).
+\bibitem{Planck2018} Planck Collaboration, \emph{Planck 2018 results. VI. Cosmological parameters}, A\&A \textbf{641}, A6 (2020).
+\bibitem{Zimmerman2026foliation} C.~P.~Zimmerman, \emph{A Preferred Frame Is Forced}, Zenodo (2026), DOI:10.5281/zenodo.22679408.
+\bibitem{deMoura2021} Lean/mathlib community, \emph{The Lean 4 theorem prover and the mathlib library}, (2021--).
+\end{thebibliography}
+
+\end{document}
