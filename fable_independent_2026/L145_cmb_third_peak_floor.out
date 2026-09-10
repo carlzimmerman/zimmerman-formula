@@ -1,0 +1,75 @@
+========================================================================================================
+L145 -- THE CMB FLOOR: minimum CLUSTERING cold dark matter fraction f = omega_c^clust / 0.1200
+========================================================================================================
+      fiducial Planck 2018: omega_b=0.02237, omega_c=0.12, H0=67.36, ns=0.9649, tau=0.0544
+      multipole range used: 30 <= l <= 2000
+      fiducial theta_star = 1.041178
+
+========================================================================================================
+CONTROL -- is the likelihood/noise model right?  Reproduce Planck 2018's PUBLISHED sigma(omega_c).
+========================================================================================================
+      TT      Fisher sigma(omega_c) = 0.00240   [published 0.0022]
+  [PASS] CONTROL  the calibrated likelihood reproduces Planck TT+lowE: omega_c = 0.1212 +- 0.0022   (0.00240 vs 0.0022 (tol 0.0007))
+      TTTEEE  Fisher sigma(omega_c) = 0.00156   [published 0.0012]
+  [PASS] CONTROL  the calibrated likelihood reproduces Planck TT,TE,EE+lowE: omega_c = 0.1200 +- 0.0012   (0.00156 vs 0.0012 (tol 0.0004))
+      fiducial peaks (l, D_l muK^2): P1=(220, 5732.2), P2=(536, 2593.7), P3=(813, 2539.9)
+      fiducial third/second peak height ratio H3/H2 = 0.9793 +- 0.0100 (Planck-like, 50-l band)
+
+========================================================================================================
+THE SCAN -- Delta chi^2 (PROFILED over A_s, n_s, omega_b, theta_star) vs the clustering fraction f
+========================================================================================================
+
+       f  om_c^cl |  B:dchi2TT  B:dchi2all  B:H3/H2 B:nsig(R) |  A:dchi2TT  A:dchi2all  A:H3/H2
+  --------------------------------------------------------------------------------------------------------
+    1.00   0.1200 |        0.0         0.0   0.9793       0.0 |        0.0         0.0   0.9793
+    0.98   0.1176 |        1.6         3.5   0.9716       0.8 |        0.1         0.2   0.9730
+    0.95   0.1140 |        9.8        19.8   0.9595       2.0 |        0.7         1.5   0.9634
+    0.92   0.1104 |       24.8        47.6   0.9468       3.2 |        1.9         3.9   0.9536
+    0.90   0.1080 |       38.8        72.4   0.9381       4.1 |        3.0         6.2   0.9470
+    0.85   0.1020 |       88.3       159.4   0.9156       6.3 |        7.1        14.8   0.9300
+    0.80   0.0960 |      161.8       292.7   0.8926       8.6 |       13.2        28.0   0.9124
+    0.75   0.0900 |      264.2       489.3   0.8692      11.0 |       21.9        47.1   0.8942
+    0.70   0.0840 |      401.4       769.2   0.8457      13.3 |       33.6        73.5   0.8754
+    0.60   0.0720 |      810.1      1670.1   0.7989      18.0 |       68.9       158.3   0.8359
+    0.50   0.0600 |     1459.7      3199.4   0.7532      22.5 |      127.5       312.9   0.7936
+    0.40   0.0480 |     2445.4      5603.2   0.7089      26.9 |        nan         nan      nan
+    0.30   0.0360 |     3894.8      9169.3   0.6665      31.1 |        nan         nan      nan
+    0.20   0.0240 |        nan         nan      nan       nan |        nan         nan      nan
+    0.10   0.0120 |        nan         nan      nan       nan |        nan         nan      nan
+    0.05   0.0060 |        nan         nan      nan       nan |        nan         nan      nan
+
+========================================================================================================
+THE CMB FLOOR
+========================================================================================================
+  variant B  TT       :  f at dchi2=1: 0.9874   dchi2=4: 0.9712   dchi2=9: 0.9528   dchi2=25: 0.9198
+  variant B  TT,TE,EE :  f at dchi2=1: 0.9942   dchi2=4: 0.9790   dchi2=9: 0.9698   dchi2=25: 0.9444
+  variant A  TT       :  f at dchi2=1: 0.9427   dchi2=4: 0.8876   dchi2=9: 0.8342   dchi2=25: 0.7368
+  variant A  TT,TE,EE :  f at dchi2=1: 0.9616   dchi2=4: 0.9192   dchi2=9: 0.8838   dchi2=25: 0.8114
+  variant B  THIRD-PEAK HEIGHT RATIO H3/H2 ALONE:  f at 1sig: 0.9741   2sig: 0.9493   3sig: 0.9255   5sig: 0.8798
+  variant A  THIRD-PEAK HEIGHT RATIO H3/H2 ALONE:  f at 1sig: 0.9682   2sig: 0.9370   3sig: 0.9065   5sig: 0.8473
+
+      HEADLINE (variant B, TT+TE+EE, 3 sigma):  f_cmb_min = 0.9698
+      conservative (variant B, TT only, 3 sigma): f_cmb_min = 0.9528
+      MOST conservative: THIRD PEAK HEIGHT ALONE (variant B, 3 sigma): f_cmb_min = 0.9255
+      variant A (textbook, background also changes), TT+TE+EE, 3 sigma:  f_cmb_min = 0.8838
+  [PASS] the CMB floor is well inside the scanned grid (not an extrapolation)   (f_cmb_min=0.9698)
+  [PASS] reducing the CLUSTERING fraction at FIXED background lowers the third/second peak ratio   (H3/H2 = 0.7532 at f=0.5 vs 0.9793 fiducial)
+  [PASS] variant B holds theta_star fixed to <1e-4 (background truly unchanged)   (max |dtheta| = 1.03e-06)
+      scan results written to H1_cmb_results.json
+
+========================================================================================================
+VERIFICATION -- is the LINEARISED nuisance profile trustworthy at the critical f?
+========================================================================================================
+      at the critical f = 0.970 the linear profile wants: dA/A = +0.0127, dns = +0.01243, dombh2 = +0.00047, dthetastar = -0.00063, dnnu = +0.57324, dYHe = -0.03099
+  [FAIL] GUARD G1  the linearised nuisance directions are accurate at the offsets the profile actually uses (CAMB vs template agree to better than 2% on TT)   (max fractional TT error -- ns: 0.05%; ombh2: 0.97%; thetastar: 0.00%; nnu: 16.84%; YHe: 0.65%)
+      at f = 0.970:  linearised profile Delta chi^2 = 7.54;  TRUE Delta chi^2 at that same nuisance point = 8898.01
+  [PASS] GUARD G2  the linearised profile does NOT overstate the CMB constraint: the exact chi^2 at the profile's own optimum is not below the reported value by more than 1 unit   (true 8898.01 vs linear 7.54)
+  [PASS] CONTROL  CAMB numerical accuracy is converged (AccuracyBoost 1 vs 2 agree to <0.3% on TT)   (max fractional TT difference = 0.059%)
+
+========================================================================================================
+SUMMARY
+========================================================================================================
+  checks: 7/8 passed   FAILED: GUARD G1  the linearised nuisance directions are accurate at the offsets the profile actually uses (CAMB vs template agree to better than 2% on TT)
+  f_cmb_min (3 sigma, variant B, TT+TE+EE) = 0.9698   -> omega_c^clust >= 0.1164
+  f_cmb_min (3 sigma, variant B, TT only)  = 0.9528
+  f_cmb_min (3 sigma, THIRD PEAK HEIGHT RATIO ALONE) = 0.9255   <- the literal 'third peak' answer

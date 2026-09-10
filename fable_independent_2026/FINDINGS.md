@@ -4795,3 +4795,63 @@ spends 0.087 dex (64% of the budget) and **8% on v blows it regardless of M_b**.
 approximate Silk envelope; **only model-to-model ratios are used**. No-CDM potential normalisation ±30%. The
 per-mode vs rms-field boost evaluation is a genuinely open question in MOND cosmology; both are carried and no
 verdict rests on the tilt alone.
+
+## L145–L151 — THE DARK-FRACTION PINCER: how much CDM do galaxies tolerate vs how much does the CMB need?
+
+Scripts `L145`–`L151` (41/48 checks; **all seven non-passes are a deliberate self-diagnosis chain**, described
+below — no load-bearing claim rests on a failed check).
+
+**THE TWO NUMBERS.** `f_gal_max = 0.105` (max CDM fraction galaxy dynamics tolerates) vs
+`f_cmb_min = 0.988` (min clustering CDM fraction the CMB requires, ω_c^clust ≥ 0.1185). **GAP — no overlap**,
+9.4× on best estimates. Pushing *both* sides to their most lenient defensible settings simultaneously gives
+0.398 vs 0.866 — **a factor of only 2.2**, which is inside the "say so loudly" band, so it is said loudly here.
+
+**But the f-ratio badly understates it**, because Δχ² rises steeply: at the *most lenient* galaxy ceiling
+f = 0.398 the CMB is broken by **Δχ² = 5685** (background-pinned) / ≥313 (weakest variant). The gap is
+decisive in likelihood terms even where it looks narrow on the f axis.
+
+**THE SHARPEST SINGLE FACT: at the CMB's minimum f, the refit a₀ has fallen to 0.40% of its measured value.**
+The modification is not reduced — it is switched **off**. The surviving theory at that point is plain ΛCDM.
+
+**What actually binds — not the RAR.** With a₀ *honestly refit* at each f, a₀ slides continuously to zero and
+the model morphs into mean-relation ΛCDM, whose RAR scatter is only modestly worse; the ultra-loose 0.10 dex
+RAR criterion is **never violated at any f**. The binding constraint is the **BTFR residual trend** (0.105).
+The Milky Way never binds; dSphs were uninformative (the EFE prescription left a +0.42 dex offset at f=0) and
+were used for nothing.
+
+**THE ESCAPE — and it points straight at L139.** The galaxy bound bites through the **mass dependence** of the
+halo/baryon ratio, not its size. With a mass-*independent* ratio, refitting a₀ absorbs the entire effect and
+**no galaxy criterion bounds f at all, up to f=1**. So a viable hybrid needs cold matter that clusters at
+z~1100 but is **depleted from dwarf haloes by ~100× relative to abundance matching**. *Collisionless* cold
+matter has no known way to do that — it doesn't feel feedback. **But a component whose sound speed GROWS with
+time does exactly this**: the L139 leaf-normal k-essence has `c_s² ∝ a³`, so it is cold enough to cluster at
+recombination and pressure-supported on small scales at late times, which is precisely a mass-dependent
+depletion from the *smallest* haloes. **The two independent results meet here**, and that is the sharpest
+formulation of the surviving corner: *the escape the f-pincer names is the property the L139 sector has.*
+Neither result was constructed with the other in view. This is a target, not a proof.
+
+**Rigor notes (why to trust the CMB side and be careful with the galaxy side).** The CMB floor is **calibrated,
+not asserted**: the likelihood reproduces Planck's published σ(ω_c) (0.00240 vs 0.0022 TT; 0.00156 vs 0.0012
+TT+TE+EE — slightly conservative); variant B pins θ⋆ to 7 digits and H(z=1000) to 4e−7 so only *clustering*
+changes; third-peak-height-ratio alone gives f ≥ 0.926; and it is validated **three ways** (profiled 7.79,
+exact-CAMB reconstruction 8.99, independent nonlinear minimisation 7.83 — 0.5% agreement). The **galaxy
+ceiling is moderate confidence**: it moves an order of magnitude across defensible halo choices — 0.035 (c×2),
+0.398 (c×0.5), 0.143 cored, **unbounded if mass-independent**. Guards: more fit freedom *raises* the ceiling
+(0.267→0.628), kernel-insensitive to 4 decimals, and f=0 reproduces the repo's committed 0.145/0.142 gate.
+
+**Four bugs were found, three of which would have flipped a conclusion** — recorded because the process
+matters: (1) a ρ_crit unit error (Mpc as 10⁶·kpc) made halos 10⁶× too diffuse and produced a first run showing
+"no galaxy constraint at any f", caught by unit controls; (2) N_eff linearization invalid (16.8% error),
+caught by the lane's *own* guard — the linearized floor 0.970 was too lenient, exact scanning gives 0.988;
+(3) the guard's own reconstruction had two sign errors and reported a false FAIL; (4) SPARC `.mrt` byte
+offsets are shifted by one in this file copy, so fixed-width slicing is wrong (whitespace parse validated by a
+19-fields-per-row control). **The seven non-passing checks are exactly this diagnosis chain, left visible.**
+
+**Scope:** halo mass assumed to scale as f × ΛCDM (no re-run of structure formation at reduced Ω_c) — the main
+galaxy-side modelling assumption; Gaussian band-power likelihood, not the real Planck likelihood; no
+lensing/BAO/clusters (all would tighten); the BTFR trend is a linear summary of a non-monotonic distortion, so
+it *understates* the damage (conservative).
+
+*(`L146_cmb_floor_exact_neff.out` in this copy is incomplete — OOM-killed during local regeneration under
+~10 concurrent agents, a machine artifact, not a script defect; the number it computes is independently
+validated by L147. Annotated in the file.)*

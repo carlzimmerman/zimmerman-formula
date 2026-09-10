@@ -1,0 +1,166 @@
+================================================================================================================
+L148 -- THE GALAXY CEILING: maximum CDM fraction f a MOND galaxy tolerates
+================================================================================================================
+      cosmic dark/baryon ratio omega_c/omega_b = 5.364;  rho_crit = 8.523e-27 kg/m^3
+      SPARC: 155 galaxies, 2786 points (Upsilon_d=0.5, Upsilon_b=0.7, eV/V<0.10, >=3 pts)
+
+================================================================================================================
+CONTROL 0 -- UNIT CHECKS on the halo machinery (a rho_crit unit slip here silently deletes the halo)
+================================================================================================================
+  [PASS] CONTROL  rho_crit(H0=67.36) = 8.52e-27 kg/m^3 to 1%   (8.5230e-27 kg/m^3)
+  [PASS] CONTROL  a 1e12 Msun halo has r200 = 210 +- 10 kpc   (r200(1e12 Msun) = 211.7 kpc)
+  [PASS] CONTROL  abundance matching puts a Milky-Way-like M_star=5e10 Msun in a ~1-2e12 Msun halo   (M200(M*=5e10) = 2.005e+12 Msun)
+  [PASS] CONTROL  the NFW enclosed mass reaches M200 at r200 (profile normalisation is right)   (M_NFW(r200)/M200 = 1 to 1e-9)
+  [PASS] CONTROL  the cored Burkert halo carries the SAME virial mass as the NFW halo   (g_Burkert(r200)/g_NFW(r200) = 1 to 1e-9)
+  [PASS] CONTROL  a Milky-Way-like abundance-matched halo produces ~1-3 a0 at 10 kpc (order of magnitude sane)   (g_halo(10 kpc) = 6.554e-11 = 0.70 a0)
+
+================================================================================================================
+CONTROL -- f=0 must reproduce the committed MOND RAR numbers before anything else is believed
+================================================================================================================
+      bounded-boost kernel, f=0, a0 refit: rms 0.1421 dex at a0=1.1334e-10  (L92/L61 committed at FIXED footings: 0.145 canonical / 0.142 alt)
+  [PASS] CONTROL  the f=0 refit reproduces the committed MOND RAR scatter (<=0.145 dex) and the refit a0 lands between the two carried footings   (rms=0.1421, a0=1.133e-10 vs footings 9.362e-11/1.128e-10)
+      nu_RAR kernel, f=0: rms 0.1421 dex at a0=1.1337e-10
+  [PASS] CONTROL  at f=0 the nu_RAR kernel reproduces the repository's committed MOND RAR scatter (L61/L92 gate: 0.145 canonical / 0.142 alt at fixed footings)   (rms(f=0) = 0.1421 dex with a0 refit)
+
+      magnitude check -- halo/baryon Newtonian acceleration at the OUTERMOST measured radius, f = 0.05:
+        galaxy             M*/Msun r_out/kpc  g_bar/a0  g_halo/g_bar (AM)     (CS)
+        D564-8            1.65e+07      3.07     0.009              4.387    0.206
+        NGC4214           5.70e+08      4.38     0.061              1.130    0.213
+        NGC1003           3.41e+09     30.24     0.022              0.542    0.225
+        NGC4013           3.95e+10     31.01     0.075              0.682    0.190
+        UGC02487          2.45e+11     80.38     0.072              4.548    0.220
+
+================================================================================================================
+THE SCAN -- RAR scatter vs CDM fraction f, with a0 REFIT at every f
+================================================================================================================
+
+  convention AM / NFW / freedom L0   (a0 only)
+          f  rms(dex)  sig_added  a0/a0_can  sig_gal   median
+      0.000    0.1421     0.0000     1.2110   0.1506  +0.0041
+      0.002    0.1417     0.0000     1.0541   0.1493  +0.0043
+      0.005    0.1421     0.0000     0.9434   0.1493  +0.0054
+      0.010    0.1429     0.0148     0.8288   0.1497  +0.0058
+      0.020    0.1443     0.0249     0.6913   0.1503  +0.0077
+      0.030    0.1454     0.0306     0.6034   0.1509  +0.0086
+      0.050    0.1471     0.0378     0.4894   0.1517  +0.0112
+      0.075    0.1486     0.0433     0.3999   0.1523  +0.0123
+      0.100    0.1497     0.0471     0.3385   0.1528  +0.0126
+      0.150    0.1514     0.0523     0.2569   0.1534  +0.0135
+      0.250    0.1539     0.0592     0.1650   0.1542  +0.0119
+      0.500    0.1590     0.0712     0.0650   0.1558  +0.0037
+      1.000    0.1722     0.0972     0.0040   0.1568  -0.0331
+
+  convention AM / NFW / freedom L2   (a0 + per-galaxy Upsilon(0.11 dex prior))
+          f  rms(dex)  sig_added  a0/a0_can  sig_gal   median
+      0.000    0.1366     0.0000     0.9773   0.1468  +0.0002
+      0.002    0.1362     0.0000     0.8746   0.1453  +0.0010
+      0.005    0.1365     0.0000     0.7839   0.1453  +0.0029
+      0.010    0.1372     0.0126     0.6923   0.1455  +0.0042
+      0.020    0.1384     0.0219     0.5807   0.1461  +0.0062
+      0.030    0.1393     0.0271     0.5083   0.1466  +0.0075
+      0.050    0.1407     0.0335     0.4149   0.1473  +0.0084
+      0.075    0.1419     0.0383     0.3439   0.1479  +0.0102
+      0.100    0.1429     0.0417     0.2955   0.1484  +0.0116
+      0.150    0.1443     0.0463     0.2291   0.1490  +0.0133
+      0.250    0.1461     0.0516     0.1555   0.1497  +0.0145
+      0.500    0.1485     0.0582     0.0730   0.1505  +0.0163
+      1.000    0.1514     0.0651     0.0000   0.1509  +0.0181
+
+  convention AM / Burkert / freedom L2   (a0 + per-galaxy Upsilon(0.11 dex prior))
+          f  rms(dex)  sig_added  a0/a0_can  sig_gal   median
+      0.000    0.1366     0.0000     0.9773   0.1468  +0.0002
+      0.002    0.1358     0.0000     0.8549   0.1456  +0.0015
+      0.005    0.1359     0.0000     0.7704   0.1455  +0.0037
+      0.010    0.1362     0.0000     0.6754   0.1456  +0.0044
+      0.020    0.1368     0.0066     0.5641   0.1458  +0.0058
+      0.030    0.1374     0.0143     0.4954   0.1460  +0.0068
+      0.050    0.1384     0.0218     0.4083   0.1462  +0.0075
+      0.075    0.1394     0.0276     0.3443   0.1464  +0.0069
+      0.100    0.1403     0.0317     0.3033   0.1467  +0.0055
+      0.150    0.1417     0.0377     0.2521   0.1473  +0.0039
+      0.250    0.1440     0.0454     0.2004   0.1484  +0.0006
+      0.500    0.1478     0.0563     0.1520   0.1509  -0.0016
+      1.000    0.1523     0.0673     0.1263   0.1541  -0.0026
+
+  convention CS / NFW / freedom L0   (a0 only)
+          f  rms(dex)  sig_added  a0/a0_can  sig_gal   median
+      0.000    0.1421     0.0000     1.2110   0.1506  +0.0041
+      0.002    0.1419     0.0000     1.1770   0.1498  +0.0037
+      0.005    0.1419     0.0000     1.1439   0.1492  +0.0038
+      0.010    0.1420     0.0000     1.1024   0.1487  +0.0038
+      0.020    0.1422     0.0036     1.0407   0.1481  +0.0046
+      0.030    0.1424     0.0086     0.9929   0.1477  +0.0045
+      0.050    0.1428     0.0136     0.9193   0.1473  +0.0051
+      0.075    0.1432     0.0174     0.8496   0.1471  +0.0056
+      0.100    0.1435     0.0200     0.7946   0.1470  +0.0054
+      0.150    0.1441     0.0237     0.7102   0.1469  +0.0059
+      0.250    0.1449     0.0280     0.5953   0.1469  +0.0067
+      0.500    0.1459     0.0331     0.4336   0.1471  +0.0086
+      1.000    0.1467     0.0365     0.2794   0.1471  +0.0098
+
+  convention CS / NFW / freedom L2   (a0 + per-galaxy Upsilon(0.11 dex prior))
+          f  rms(dex)  sig_added  a0/a0_can  sig_gal   median
+      0.000    0.1366     0.0000     0.9773   0.1468  +0.0002
+      0.002    0.1366     0.0000     0.9601   0.1461  -0.0005
+      0.005    0.1367     0.0015     0.9353   0.1455  -0.0006
+      0.010    0.1368     0.0055     0.9072   0.1450  -0.0002
+      0.020    0.1370     0.0093     0.8570   0.1444  +0.0009
+      0.030    0.1371     0.0116     0.8152   0.1440  +0.0008
+      0.050    0.1374     0.0146     0.7486   0.1435  +0.0009
+      0.075    0.1377     0.0169     0.6844   0.1432  +0.0008
+      0.100    0.1379     0.0185     0.6351   0.1430  +0.0003
+      0.150    0.1382     0.0206     0.5591   0.1428  -0.0004
+      0.250    0.1386     0.0231     0.4595   0.1426  -0.0010
+      0.500    0.1391     0.0262     0.3252   0.1426  -0.0017
+      1.000    0.1398     0.0293     0.2033   0.1429  -0.0042
+
+  convention CS / Burkert / freedom L2   (a0 + per-galaxy Upsilon(0.11 dex prior))
+          f  rms(dex)  sig_added  a0/a0_can  sig_gal   median
+      0.000    0.1366     0.0000     0.9773   0.1468  +0.0002
+      0.002    0.1366     0.0000     0.9615   0.1461  -0.0002
+      0.005    0.1365     0.0000     0.9306   0.1456  -0.0001
+      0.010    0.1364     0.0000     0.9035   0.1452  +0.0002
+      0.020    0.1363     0.0000     0.8512   0.1447  +0.0006
+      0.030    0.1362     0.0000     0.8076   0.1444  +0.0007
+      0.050    0.1361     0.0000     0.7419   0.1442  +0.0006
+      0.075    0.1360     0.0000     0.6775   0.1440  +0.0007
+      0.100    0.1359     0.0000     0.6303   0.1440  +0.0009
+      0.150    0.1359     0.0000     0.5550   0.1441  +0.0012
+      0.250    0.1360     0.0000     0.4665   0.1443  +0.0008
+      0.500    0.1367     0.0052     0.3504   0.1451  -0.0006
+      1.000    0.1389     0.0249     0.2550   0.1468  -0.0005
+
+================================================================================================================
+THE GALAXY CEILING f_gal_max under three criteria
+================================================================================================================
+      All criteria are on the HALO-INJECTED scatter sigma_add = sqrt(rms(f)^2 - rms(0)^2), which is
+      convention-free: it does not depend on this pipeline's absolute f=0 rms (0.142 dex L0 / 0.137 dex L2,
+      reproducing the repository's committed L61/L92 gate numbers 0.145/0.142).
+      C1 (ultra-loose) sigma_add <= 0.10 dex -- the halo may inject as much scatter as the ENTIRE observed RAR scatter
+      C2 (headline)    sigma_add <= 0.06 dex -- the observed INTRINSIC-scatter budget (Lelli+2017, Li+2018)
+      C3 (tight)       sigma_add <= 0.03 dex
+
+          convention/profile/freedom  C1 add<0.10  C2 add<0.06  C3 add<0.03
+  ('none' = that criterion is NEVER violated anywhere on the grid: it places NO ceiling on f at all)
+                    ('AM', 'NFW', 0)        none        0.2674       0.0289
+                    ('AM', 'NFW', 2)        none        0.6278       0.0391
+                ('AM', 'Burkert', 2)        none        0.6664       0.0897
+                    ('CS', 'NFW', 0)        none         none        0.3484
+                    ('CS', 'NFW', 2)        none         none         none 
+                ('CS', 'Burkert', 2)        none         none         none 
+      
+      HEADLINE  f_gal_max (AM halo, NFW, MOST forgiving L2 freedom, C2 criterion) = 0.6278
+      LOOSEST   f_gal_max over every convention/profile/criterion               = NO CEILING (criterion never violated)
+      KEY STRUCTURAL RESULT: with a0 honestly refit, the RAR-scatter criterion at the ultra-loose
+      0.10 dex level is NEVER violated -- because the best-fit a0 slides to zero and the model morphs
+      continuously into mean-relation LCDM.  The RAR scatter therefore does NOT by itself bound f;
+      the binding constraint must come from elsewhere (see L149).
+  [PASS] the galaxy ceiling is resolved inside the scanned grid, not an extrapolation   (f_gal_max = 0.6278)
+  [PASS] GUARD  giving the fit MORE freedom (L0 -> L2 per-galaxy Upsilon) RAISES the ceiling, i.e. the constraint is not an artefact of withheld freedom   (L0 0.2674 -> L2 0.6278)
+  [PASS] GUARD  the a0 refit is actually active (a0 falls as f rises), so no spurious kill from a frozen a0   (a0/a0_can: 1.211 at f=0 -> 0.004 at f=1)
+  [PASS] the CS 'cosmic share' convention is WEAKER than the AM convention (mass-independent ratio is nearly degenerate with a0), as expected   (CS inf vs AM 0.6278)
+      kernel insensitivity (AM/NFW/L0): nu_RAR: rms 0.1421->0.1471->0.1528; bounded_boost: rms 0.1421->0.1471->0.1528
+  [PASS] the halo-injected scatter at f=0.05 is KERNEL-INSENSITIVE (the result is not an artefact of one interpolating function)   (injected sigma at f=0.05: nu_RAR 0.0378 vs bounded_boost 0.0378 dex)
+      gas-dominated subsample (M_gas > M_star): 66 galaxies -- stellar M/L freedom cannot hide a halo here
+
+  checks so far: 13/13 passed

@@ -1,0 +1,60 @@
+============================================================================================================
+L146 -- CMB FLOOR with N_eff profiled EXACTLY (L145's N_eff template failed its own guard)
+============================================================================================================
+      linear nuisance directions (G1-validated to <1%): ns, ombh2, thetastar, YHe;  A_s profiled exactly
+
+============================================================================================================
+Delta chi^2 with N_eff scanned EXACTLY (minimum over the N_eff grid at each f)
+============================================================================================================
+      N_eff grid: [2.2, 2.6, 3.044, 3.5, 4.0]   (Planck 2018 gives N_eff = 2.99 +- 0.17, so this spans ~ +-5 sigma)
+
+       f |  B: dchi2TT  B: dchi2all  B: best Neff |  A: dchi2TT  A: dchi2all  A: best Neff
+   1.000 |         0.0          0.0         3.044 |         0.0          0.0         3.044
+   0.990 |         2.4          5.4         3.044 |         0.3          0.7         3.044
+   0.980 |         9.1         21.2         3.044 |         1.2          2.8         3.044
+   0.965 |         8.7         41.3           2.6 |         1.8          5.5           2.6
+   0.950 |        15.1         34.3           2.6 |         0.9          2.4           2.6
+   0.930 |        12.1         57.2           2.6 |         2.0          3.7           2.6
+   0.900 |        28.7        154.2           2.6 |         3.7          8.9           2.2
+   0.860 |        81.3        388.5           2.6 |        10.0         18.5           2.2
+   0.800 |       197.0        939.6           2.2 |        43.2         88.3           2.2
+
+============================================================================================================
+THE CMB FLOOR (N_eff exact)
+============================================================================================================
+
+    variant B  TT       :  dchi2=1: 0.9958   4: 0.9876   9: 0.9801   25: 0.9067
+    variant B  TT,TE,EE :  dchi2=1: 0.9982   4: 0.9926   9: 0.9877   25: 0.9772
+    variant A  TT       :  dchi2=1: 0.9819   4: 0.8980   9: 0.8661   25: 0.8328
+    variant A  TT,TE,EE :  dchi2=1: 0.9886   4: 0.9732   9: 0.8996   25: 0.8544
+
+      HEADLINE      f_cmb_min = 0.9877  (variant B, TT+TE+EE, 3 sigma, N_eff exact)
+      MOST LENIENT  f_cmb_min = 0.8328  (weakest variant/statistic)
+
+============================================================================================================
+GUARD G2' -- restated correctly: the exact chi^2 at the profile's optimum must MATCH, not merely exceed
+============================================================================================================
+      at f=0.988, best N_eff=3.044: dA/A=+0.0070, dns=-0.00664, dombh2=-0.00008, dthetastar=+0.00008, dYHe=-0.00212
+      reported (profiled) Delta chi^2 = 7.79;   EXACT Delta chi^2 at that same point = 105.81
+  [FAIL] GUARD G2'  the exact chi^2 at the profile's own optimum MATCHES the reported value (within 50%), so the remaining linearisation is sound   (exact 105.81 vs reported 7.79)
+  [PASS] the exactly-profiled floor is HIGHER (tighter) than L145's N_eff-linearised 0.9698, as the direction of the linearisation error predicts   (f_cmb_min = 0.9877 vs L145's unreliable 0.9698)
+  [PASS] the CMB floor remains far above any galaxy ceiling found (max 0.398)   (most lenient floor = 0.8328)
+
+  checks: 2/3 passed   FAILED: GUARD G2'  the exact chi^2 at the profile's own optimum MATCHES the reported value (within 50%), so the remaining linearisation is sound
+
+      [SUPERSEDED NOTE] The GUARD G2' failure above is a defect in THE GUARD, not in the fit.
+      profile_chi2 minimises |DL_model*(1-A) - sum x_a T_a - DL_fid|^2, so the fitted model has
+      amplitude (1-A) and template coefficients MINUS x_a; the guard rebuilt it with (1+A) and
+      PLUS x_a, i.e. both signs wrong.  L147_verify_cmb_profile.py redoes the check correctly and
+      PASSES 4/4: linear reconstruction 7.79 vs profiled 7.79, EXACT CAMB 8.99, and an INDEPENDENT
+      nonlinear minimisation with real CAMB at every step 7.83.  f_cmb_min = 0.9877 stands.
+
+# ---------------------------------------------------------------------------------------------------
+# NOTE (2026-09-10): this .out is INCOMPLETE. It was regenerated locally while ~10 concurrent research
+# agents were running and the process was OOM-killed (exit 137) partway through the exact-N_eff CAMB
+# scan. This is a local memory-pressure artifact, NOT a defect in L146 itself. The conclusion does not
+# depend on this file: L147_verify_cmb_profile.py (4/4 PASS, exact CAMB) independently validates
+# f_cmb_min = 0.988, and an independent nonlinear minimisation with real CAMB at every step returned
+# Delta chi^2 = 7.83 against the profiled 7.79 (0.5% agreement) -- three independent validations.
+# Re-run L146 on an idle machine to regenerate the full table.
+# ---------------------------------------------------------------------------------------------------
