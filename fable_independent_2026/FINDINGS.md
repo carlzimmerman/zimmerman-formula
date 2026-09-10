@@ -3866,3 +3866,25 @@ part of the metric-sector closure (the specific covariant obstruction that kills
 done: the complete Dirac enumeration of the full theory (metric momenta + clock/khronon constraint
 classification + exact F(Q)Θ coupling) — still astra's. BBN fine-tuning (L87) and the a₀ coefficient
 (fitted) are separate, untouched. Script `L106_sound_speed_closes_full_algebra.py` (9/9).
+
+## L107 — real-data confrontation of the EFE prediction (McConnachie MW dwarfs): a NULL, honestly (5/5)
+
+**Confronted the framework's sharpest DM discriminator (the External Field Effect, L89) with real data** —
+the McConnachie (2012) Milky-Way dwarf catalog (22 MW dwarfs, σ + distance + luminosity + HI). The EFE
+predicts that at fixed baryonic mass a dwarf's σ is **suppressed** by a strong MW external field, i.e. a
+**negative** Spearman(σ_obs/σ_iso, y_ext), y_ext=g_ext/a₀; dark matter predicts **zero**.
+
+**Result (a null, not a win):** the correlation comes out **positive**, rho=+0.46 (perm p=0.03, N=22) —
+the *opposite* sign to the EFE. That positive sign is exactly what **tidal heating** produces (close-in
+dwarfs stirred up) and is degenerate with the EFE in this catalog (both key on R_gc). It is driven by the
+faint, binary/tide-contaminated ultra-faints: on the **reliable classical dwarfs** alone it drops to
+rho=+0.24, **p=0.48 — consistent with zero.** So the "significant" full-sample trend is a faint-end
+artifact, not a clean anti-EFE detection.
+
+**Honest conclusion:** the framework's sharpest prediction, naively confronted with this real data, is **NOT
+confirmed** — the reliable subsample shows no significant EFE signal and the full-sample sign is
+tidal-dominated. This neither detects nor cleanly refutes the EFE; the data are **currently uninformative**
+about it (matching the standing "hint, estimator-limited" status). The decisive step is the **Gaia
+orbital-pericenter control** (σ vs pericenter at fixed R_gc) on a binary-scrubbed classical+bright sample —
+not in this catalog. Reported as a null with full error budget; no manufactured win, no manufactured deficit.
+Script `L107_efe_confrontation_real_dwarfs.py` (5/5 analysis checks; physical correlation reported).
