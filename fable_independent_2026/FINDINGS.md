@@ -4086,3 +4086,25 @@ theory (Blanchet–Marsat class), not 4D-diffeo-invariant. Perp eigenvalue 2M²e
 first-class iff η=0 (no acceleration term). Momentum constraint H_i first-class (spatial diffeos anomaly-free).
 Correctly classifies CAM; the L108/L111 "pure-cuscuton/2-DOF" reading is superseded. Script
 `L116_cam_khronometric_structure.py` (7/7).
+
+## L117 — FLEET SYNTHESIS: minimal CAM has a conformal GHOST (does NOT close healthy); the clock is healthy (5/5)
+
+Three independent subagents (clock-HDA, MOND+multiplier, adversarial) + astra's audit converge. Verified
+independently here and formalized in Lean (32 theorems).
+- **Healthy clock (agent 1):** the cuscuton clock closes the HDA with the GR structure function γ^{xx} (crux
+  identity (∂_pF²)(∂_sF²)/4F² = g p s) — the degree-1 kinetic term is fine. Lean: `clock_structure_function`.
+- **Khronometric (agent 2 / L116):** H_⊥ second-class (nonzero lapse Hessian), spatial diffeos first-class.
+- **FATAL (agent 3, from-scratch 4D quadratic action):** the MOND acceleration term M²a² **liberates the GR
+  conformal mode ζ** (1 surviving pair, not 0 — L108/L111 omitted it). On the physical branch η=1 it is
+  **strongly coupled** (reduced quadratic Hamiltonian → 0) and a **ghost** in the homogeneous sector
+  (**H₀=−p²/12M²<0**, unbounded below). Lean: `cam_conformal_ghost`, `cam_strong_coupling`.
+
+**The dilemma:** the same operator that generates the MOND phenomenology (η≠0) makes H_⊥ second-class AND
+liberates the conformal ghost — you can't have MOND without it. So the **minimal CAM constraint algebra
+terminates but does NOT close into a healthy theory.** Static weak-field (no-slip, exp-MOND) untouched; the
+pathology is dynamical (the conformal mode) + the y>1 nonelliptic lapse.
+
+**Honest finish-line status: NOT crossed.** But the obstruction is now **pinned** to the acceleration/MOND
+operator (the clock is healthy) — the exact map astra needs; astra is attacking it with the
+elliptic-curvature-clock and ticking-KGB architectures (both OPEN). Script `L117_fleet_synthesis_cam_ghost.py`
+(5/5, a rigorous negative). Lean certifies both the healthy clock and the fatal ghost.

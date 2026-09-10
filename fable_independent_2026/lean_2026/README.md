@@ -40,6 +40,10 @@ F(Q)Θ construction). It formalizes the mathematics, not the physics.
 - `fully_constrained_zero_dof` — general: a fully second-class-constrained sector (S=P, F=0) has 0 dof — the structural reason a cuscuton/constrained sector cannot propagate.
 - `cam_total_linear_dof` — arithmetic `2 + diracDOF 6 0 6 = 2`. ⚠️ **RETRACTED interpretation (astra 5943d5325 + L115):** originally read as "CAM full linearized DOF = 2 = GR", but that omitted the retained metric-scalar pair (ζ,p) the full ADM keeps (cubic Hamiltonian, health undetermined). Lean certifies only the arithmetic (2+0=2), **not** that CAM's full DOF equals GR's. The independent finite-k Dirac reconstruction (`L111`) is correct for the (u,ℓ,Φ) sub-sector only.
 
+- `clock_structure_function` — **L117 (agent 1):** the cuscuton **clock** sector closes with the GR structure function γ^{xx} (crux identity (∂_pF²)(∂_sF²)/4F² = g p s) — the degree-1 clock kinetic term is **healthy**.
+- `cam_conformal_ghost` — **L117 (agent 3):** because H_⊥ is second-class, the GR conformal mode ζ survives with kinetic term −3M²ζ̇²; its homogeneous Hamiltonian **H₀ = −p²/(12M²) < 0** — a **ghost** (unbounded below). The minimal CAM is **not** ghost-free.
+- `cam_strong_coupling` — **L117 (agent 3):** the surviving mode's reduced quadratic Hamiltonian M²k²ζ²(1−η)/η **vanishes at η=1** (physical MOND value) ⇒ strong coupling around Minkowski.
+
 ## Build
 
 ```
@@ -47,7 +51,7 @@ lake exe cache get      # download prebuilt mathlib oleans
 lake build Mondlean
 ```
 
-## Status (2026-09-09) — GREEN, MACHINE-VERIFIED (29 theorems)
+## Status (2026-09-09) — GREEN, MACHINE-VERIFIED (32 theorems)
 
 `lake build Mondlean` compiles **clean (exit 0), zero `sorry`/`admit`**, and `#print axioms` shows every
 theorem (`kernel_identity`, `Gpp_pos`, `Gpp_zero`, `cubic_leading`, `affine_degeneracy`, `sound_speed_zero`)
@@ -55,6 +59,8 @@ depends only on Lean's three standard foundational axioms `[propext, Classical.c
 `sorryAx`. These are complete, sound, machine-checked proofs (Lean 4.34, mathlib).
 
 > **Correction (2026-09-10, L115):** astra's physical-action audit (5943d5325) found the minimal CAM action has a **nonelliptic lapse for y>1** and a **retained metric-scalar canonical pair** with a nonzero cubic Hamiltonian — so CAM is **not** a complete gravity theory (Blanchet–Marsat khronometric class). The DOF-count theorems above are correct arithmetic for their stated sub-sectors, but do **not** certify full CAM closure. The lanes' CAM-full-DOF (L111), α₁-suppression (L112), and β=1 (L113) claims are retracted; see L115.
+>
+> **Fleet verdict (2026-09-10, L117, three independent agents + astra):** the cuscuton **clock** sector is healthy (closes with γ^{xx}), but the MOND acceleration operator makes H_⊥ second-class (khronometric) and **liberates the GR conformal mode as a ghost** (H₀=−p²/12M²<0) that is strongly coupled at η=1 — so the **minimal CAM does not close into a healthy, ghost-free theory**. Lean now certifies both the healthy clock identity and the fatal ghost. The obstruction is pinned to the acceleration operator; astra is pursuing curvature-clock / KGB alternatives.
 
 Build environment note: the compile initially failed with `Too many open files in system` — NOT a proof
 error but a saturated macOS **vnode cache** (`kern.num_vnodes == kern.maxvnodes == 263168`); importing

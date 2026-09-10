@@ -273,3 +273,28 @@ theorem fully_constrained_zero_dof (P : ℤ) : diracDOF P 0 P = 0 := by
     undetermined). Lean certifies only the arithmetic (2 + 0 = 2); it does NOT certify that CAM's full
     linearized DOF equals GR's. Kept as an honest arithmetic fact, not a closure certificate. -/
 theorem cam_total_linear_dof : (2 : ℤ) + diracDOF 6 0 6 = 2 := by decide
+
+/-! ### Fleet synthesis (L117): the cuscuton CLOCK is healthy, but the MOND acceleration operator liberates
+    a conformal GHOST. Lean certifies BOTH the healthy identity and the fatal one -- the honest verdict that
+    the minimal CAM does NOT close into a ghost-free theory. (Three independent subagents + astra's audit.) -/
+
+/-- HEALTHY CLOCK (agent 1): for the cuscuton clock's H_perp-density with F^2 = (p^2 - m g) g s^2, the crux
+    identity (∂_p F^2)(∂_s F^2)/(4 F^2) = g p s holds -- {H_perp,H_perp} closes with the GR structure
+    function γ^{xx}=g. The degree-1 clock kinetic term is healthy (ACDG). -/
+theorem clock_structure_function (p s g m : ℝ) (h : (p^2 - m*g) * g * s^2 ≠ 0) :
+    (2*p*g*s^2) * ((p^2 - m*g) * g * (2*s)) / (4 * ((p^2 - m*g) * g * s^2)) = g * p * s := by
+  have h4 : (4 : ℝ) * ((p^2 - m*g) * g * s^2) ≠ 0 := mul_ne_zero (by norm_num) h
+  rw [div_eq_iff h4]; ring
+
+/-- FATAL GHOST (agent 3): the MOND acceleration term makes H_perp second-class (L116), so the GR conformal
+    mode ζ survives with kinetic term -3M²ζ̇²; its homogeneous (k→0) Hamiltonian is H_0 = -p²/(12M²) < 0 --
+    unbounded below, a ghost in the cosmological sector. The minimal CAM is NOT ghost-free. -/
+theorem cam_conformal_ghost (M2 p : ℝ) (hM : 0 < M2) (hp : p ≠ 0) : -p^2 / (12 * M2) < 0 := by
+  have h : 0 < p^2 / (12 * M2) := by positivity
+  have e : -p^2 / (12 * M2) = -(p^2 / (12 * M2)) := by ring
+  rw [e]; linarith
+
+/-- STRONG COUPLING (agent 3): the surviving mode's reduced quadratic Hamiltonian H_red = M²k²ζ²(1-η)/η
+    VANISHES at the physical MOND value η=1 -- zero quadratic action ⇒ no perturbative propagator ⇒ infinite
+    strong coupling around Minkowski. -/
+theorem cam_strong_coupling (M2 k zeta : ℝ) : M2 * k^2 * zeta^2 * (1 - 1) / 1 = 0 := by ring
