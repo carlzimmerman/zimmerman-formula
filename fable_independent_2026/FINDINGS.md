@@ -5103,3 +5103,20 @@ Action: R/16πG + cuscuton clock (0 DOF) + MOND scalar 𝒥(Y) + kinetic mixing 
 background) are host-independent, so it cannot pass galaxies (≤ 0.105) and the CMB (≥ 0.988) together; smooth dust fails
 the third peak (L129/L165). The right static theory, the wrong cosmology. What is missing is a NEW mechanism type for L166
 clause (i), not a parameter.
+
+## L170 — BOOSTED-FRAME PPN of the single-metric action: DEAD by clock drag (2026-09-10)
+
+`L170_boosted_ppn_single_metric.py` / `.out` (8/8, sympy, no literal-True), Lean 95 theorems. For a source moving at w relative to the
+cuscuton clock, all fields depend on x − wt. Derived: (B1) the cuscuton's quadratic action is −½μ_c²|∇T|² with no time-kinetic term;
+(B2) the clock acceleration at linear order is A_i = ∂_iΦ − ∂_i∂_tT exactly; (B3) the smoothing term λ^μA_μ therefore gives the clock
+equation μ_c²∇²T + ∂_t(∇·λ) = 0 — the matter-scale smoothed scalar force drags the clock, resisted only by μ_c² ~ H₀²/G;
+(B4) the chain T → A → χ → φ → λ → Φ gives Φ⁽²⁾/Φ⁽⁰⁾ = (c²/μ_∞)²(w·k)²/(4πGμ_c²(1+u)⁴): enhanced by (w·k)²/H₀², screened by (1+u)⁻⁴.
+Numbers (w = 370 km/s, ξ = 0.03 pc, c²/μ_∞ = 0.23, 4πGμ_c² = H₀²): the O(w²) potential is 3×10⁻⁸ Φ_N at 1 AU, 3×10⁻² at Saturn,
+23 Φ_N at 30 AU, 3×10¹⁰ at 1000 AU; the linear clock tilt |∇T| exceeds 1 beyond 30 AU (cuscuton driven to a null gradient, no linear
+regime). Keeping the drag below 10⁻⁵ Φ_N at all r ≤ ξ needs 4πGμ_c² ≥ 2×10¹⁹ H₀², i.e. a clock 10¹⁹ times denser than the dark energy
+it must source. The O(w) sector (α₁) has no 1/μ_c² enhancement (two time derivatives are needed) and was not computed to a number: moot.
+A stiff khronon-type clock (c₂K² term) removes the enhancement ((w/c)²(c²/μ_∞)²(1+u)⁻⁴ ~ 4×10⁻³⁰/c₂ at Saturn) but is a different action
+with a G_cosmo/G_N shift and astra's g03 clock-tachyon/PPN pincer. Lean: `clock_drag_amplitude`, `drag_ratio_exceeds_bound`.
+**Verdict.** The L169 action with a cuscuton clock fails the preferred-frame test outright; it now fails on BOTH cosmology (L169) and
+boosted PPN (L170). The static/γ/health results stand. The only clock that survives moving sources is a stiff one, which is the door
+astra already found pinched.

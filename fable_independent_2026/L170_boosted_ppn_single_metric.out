@@ -1,0 +1,28 @@
+  [PASS] B1 cuscuton: O(eps^2) Lagrangian = -(mu_c^2/2)|grad T|^2, no (d_t T)^2 term (elliptic, 0 DOF)
+           (L2 = -mu_c2*(Derivative(T(t, x, y, z), x)**2 + Derivative(T(t, x, y, z), y)**2 + Derivative(T(t, x, y, z), z)**2)/2)
+  [PASS] B2 A_x at O(eps) = d_x Phi - d_x d_t T exactly (no shift term at linear order; the clock enters as a time derivative of the tilt)
+           (A_x = Derivative(Phi(t, x, y, z), x) - Derivative(T(t, x, y, z), t, x))
+  [PASS] B3 clock equation: mu_c^2 grad^2 T + d_t(div lambda) = 0  (drag source is d_t of the smoothed scalar force)
+           (E-L: mu_c2*Derivative(T(t, x, y, z), (x, 2)) + mu_c2*Derivative(T(t, x, y, z), (y, 2)) + mu_c2*Derivative(T(t, x, y, z), (z, 2)) + Derivative(lam1(t, x, y, z), t, x) + Derivative(lam2(t, x, y, z), t, y) + Derivative(lam3(t, x, y, z), t, z) = 0)
+    drag channel: Phi^(2)/Phi^(0) = c**4*wk**2/(4*pi*G*mu_c2*mu_inf**2*(u + 1)**4)
+  [PASS] B4 |Phi^(2)/Phi^(0)| = (c^2/mu_inf)^2 (w.k)^2 / (4 pi G mu_c^2 (1+u)^4): enhanced by (w.k)^2/(4 pi G mu_c^2), screened by (1+u)^-4
+    numbers: w = 370 km/s, xi = 0.03 pc, c^2/mu_inf = 0.23, 4 pi G mu_c^2 = H0^2 (dark-energy-scale clock)
+           r  (w k /c)^2/H0^2   (1+u)^-4    Phi2/Phi0   |grad T|
+        1 AU         1.28e+24   4.65e-31     3.16e-08   4.21e-05
+       10 AU         1.28e+22   4.65e-23     3.16e-02   4.21e-02
+       30 AU         1.43e+21   3.05e-19     2.30e+01   1.14e+00
+     1000 AU         1.28e+18   4.20e-07     2.85e+10   3.89e+04
+  [PASS] B5 [DEFICIT, verified] the O(w^2) drag potential is 3e-2 of Phi_N at Saturn (10 AU) against a ~1e-5 PPN tolerance and EXCEEDS Phi_N beyond ~30 AU
+           (max Phi2/Phi0 = 2.8e+10)
+  [PASS] B6 [DEFICIT, verified] the linear clock tilt |grad T| >> 1 (cuscuton driven to the null gradient X -> 0): no linear regime exists for moving sources
+           (max |grad T| = 3.9e+04)
+    B8: keeping the drag below 1e-5 Phi_N at every scale up to xi needs 4 pi G mu_c^2 >= 1.9e+19 x H0^2 -- a clock 2e+19 times denser than dark energy
+  [PASS] B8 [DEFICIT, verified] no cuscuton stiffness works: the PPN-safe mu_c^2 is >= 1e15 x the dark-energy value the clock must have to source Lambda
+           (R_min = 1.9e+19)
+    stiff-clock scaling: with a c_2 K^2 term the enhancement (w.k)^2/(4 pi G mu^2) -> (w/c)^2/c_2: at 10 AU Phi2/Phi0 ~ 3.7e-30/c_2
+  [PASS] B7 a stiff (khronon-type) clock removes the enhancement: (w/c)^2 (c^2/mu_inf)^2 (1+u)^-4 at 10 AU is below 1e-20 -- but that is a different action (G_cosmo/G_N shift, astra's g03 clock pincer)
+           (3.7e-30)
+    alpha_1 channel (O(w), g_0i): the drag needs two time derivatives (d_t in the source, d_t in A_i), so it enters first at O(w^2);
+    the O(w) sector carries no 1/mu_c^2 and is screened like gamma. Not computed to a number here: moot once the O(w^2) sector fails.
+
+L170 COMPLETE: 8/8 checks PASS.

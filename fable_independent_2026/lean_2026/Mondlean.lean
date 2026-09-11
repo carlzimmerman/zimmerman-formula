@@ -9,7 +9,7 @@
   flat a₀(z), subdominant scalar GW) confronting DATA — not by Lean, and not while the intrinsic BBN
   fine-tuning (L84/L87) and astra's open ADM/khronon gates stand.
 
-  Theorems (93 as of 2026-09-10; all: exit 0, zero `sorry`, axioms ⊆ {propext, Classical.choice, Quot.sound}):
+  Theorems (95 as of 2026-09-10; all: exit 0, zero `sorry`, axioms ⊆ {propext, Classical.choice, Quot.sound}):
     hasDerivAt_G, hasDerivAt_Gp   — Gp = dG/dy and Gpp = d²G/dy² proven (not merely asserted).
     kernel_identity               — MOND kernel G'(y)/(2y) = 1 − e^{-y}.
     Gpp_zero, Gpp_pos             — health dichotomy: G''(0)=0, G''(y)>0 ∀ y>0 (no ghost off zero field).
@@ -942,3 +942,28 @@ theorem screened_gamma_cassini (x feff : ℝ) (h0 : 0 ≤ x) (hx : x ≤ 1 / 100
 theorem single_metric_uniform_dark_fraction_fails (f : ℝ → ℝ) (m_g m_c : ℝ)
     (huniform : ∀ m₁ m₂, f m₁ = f m₂) (hgal : f m_g ≤ 0.105) (hcmb : 0.988 ≤ f m_c) : False :=
   (dark_fraction_forces_mass_dependence f m_g m_c 0.105 0.988 hgal hcmb (by norm_num)).2 huniform
+
+/-! ### L170: BOOSTED-FRAME PPN of the single-metric action — the clock-drag channel.
+    For a source moving at w relative to the cuscuton clock, the smoothing constraint's λ^μA_μ term drives the clock tilt T
+    through μ_c²k²T = (w·k)(k·λ), and the resulting O(w²) potential is Φ⁽²⁾/Φ⁽⁰⁾ = (c²/μ_∞)²(w·k)²/(4πGμ_c²(1+u)⁴) (π passed as a positive constant).
+    Certified: the drag amplitude, and that the ratio exceeds any bound once the clock is soft enough. Numbers (L170):
+    3×10⁻² Φ_N at Saturn, > Φ_N beyond 30 AU, PPN-safe μ_c² ≥ 10¹⁵ × the dark-energy value. -/
+
+/-- Clock-drag amplitude: μ²k²T = (w·k)(k·λ) with μ, k ≠ 0 ⇒ T = (w·k)(k·λ)/(μ²k²). -/
+theorem clock_drag_amplitude (mu2 k2 wk klam T : ℝ) (hmu : mu2 ≠ 0) (hk : k2 ≠ 0)
+    (h : mu2 * k2 * T = wk * klam) : T = wk * klam / (mu2 * k2) := by
+  field_simp
+  linarith
+
+/-- The drag ratio C·wk²/(4πG μ² (1+u)⁴) exceeds any bound B once μ² < C·wk²/(4πG B (1+u)⁴): no finite PPN tolerance survives
+    a soft clock. -/
+theorem drag_ratio_exceeds_bound (C wk G pi mu2 u B : ℝ) (hC : 0 < C) (hwk : 0 < wk) (hG : 0 < G) (hpi : 0 < pi)
+    (hmu : 0 < mu2) (hu : 0 ≤ u) (hB : 0 < B)
+    (hsoft : mu2 < C * wk ^ 2 / (4 * pi * G * B * (1 + u) ^ 4)) :
+    B < C * wk ^ 2 / (4 * pi * G * mu2 * (1 + u) ^ 4) := by
+  have hpos : 0 < 4 * pi * G * B * (1 + u) ^ 4 := by positivity
+  have h1 : mu2 * (4 * pi * G * B * (1 + u) ^ 4) < C * wk ^ 2 := by
+    rwa [lt_div_iff₀ hpos] at hsoft
+  have hden : 0 < 4 * pi * G * mu2 * (1 + u) ^ 4 := by positivity
+  rw [lt_div_iff₀ hden]
+  nlinarith
