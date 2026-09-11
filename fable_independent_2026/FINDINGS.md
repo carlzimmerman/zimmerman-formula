@@ -5258,8 +5258,8 @@ The Newtonian control reproduces the linear L177 number (S₈ 0.525 vs 0.537): t
 baryon field, the knife-edge does not survive — it dies the other way: the kernel on top of a near-full dark budget at z = 3 overproduces the
 forest power by 2.2–2.5× and the late lensing power by 1.5–3.5× (S₈ proxy 1.22–1.25 against 0.84). **The kernel-prescription dichotomy.**
 (A) Kernel on the peculiar field (Llinares/Angus): with any substantial clustered budget the framework overshoots ΛCDM structure at z = 3 and
-z ≤ 0.5 (this lane; L176 f = 0.58 reading total: 3–8× at z ≤ 0.5). (B) Kernel argument includes the Hubble-flow acceleration cH(z): cH/a₀ = 6.0,
-9.4, 46 at z = 0, 0.5, 3 (ν = 1.09, 1.05, 1.00), so the kernel is off on cosmological scales, the growth is Newtonian to ≤ 9%, and every
+z ≤ 0.5 (this lane; L176 f = 0.58 reading total: 3–8× at z ≤ 0.5). (B) Kernel argument includes the Hubble-flow acceleration cH(z): cH/a₀ = 7.0,
+9.2, 32 at z = 0, 0.5, 3 (ν = 1.08, 1.05, 1.00), so the kernel is off on cosmological scales, the growth is Newtonian to ≤ 8%, and every
 component-alone verdict (L168 forest, L174 shear, L177 S₈ = 0.48–0.54) stands. Under (A) the coupled component is dead by overshoot; under (B)
 by undershoot; an intermediate prescription tuned to land on ΛCDM at both epochs would be a fit, not a theory. The L176 inference is closed
 in both readings. Net after L160–L178: no mechanism for the mass-dependent dark fraction survives on either kernel prescription.
