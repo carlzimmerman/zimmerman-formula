@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Fourth-order radial jets, second-order lapse solve, RK4 time stepping.
+"""Compatible fourth-order radial/lapse operators and RK4 time stepping.
 
 State rows: A, R/r, Kr, Ko, Q, chi_r, theta_r, D, dust-shell positions.
 D=A(R/r)^2 rho U_d is the conserved dust coordinate density per r².
@@ -24,7 +24,7 @@ from scipy.special import gammainc
 from constitutive import Model
 from equations import evaluate
 from center import evaluate_center
-from project import project_state
+from project import project_state,regular_center
 
 
 def derivatives(f,spacing,odd=False):
@@ -43,6 +43,35 @@ def derivatives(f,spacing,odd=False):
     if odd:second[0]=0.
     else:first[0]=0.
     return first,second
+
+
+def solve_lapse(r,acoef,bcoef,source,center_b,center_c):
+    """Solve N''=a N'+b N+c with the SAME fourth-order radial jets.
+
+    The center uses its separately derived regular N'' equation and even
+    reflection. The outer boundary remains N=1. No equation is changed.
+    """
+    size=len(r);dx=r[1]-r[0]
+    if size<5:raise ValueError('five radial points required')
+    band=np.zeros((7,size));rhs=np.array(source,copy=True)
+    base_first=np.array([1.,-8.,0.,8.,-1.])/(12*dx)
+    base_second=np.array([-1.,16.,-30.,16.,-1.])/(12*dx*dx)
+    def add(i,j,value):band[3+i-j,j]+=value
+    for i in range(size-1):
+        if i==size-2:
+            indices=np.arange(size-5,size)
+            coords=(indices-i).astype(float)
+            powers=np.array([coords**p for p in range(5)])
+            first=np.linalg.solve(powers,np.array([0.,1.,0.,0.,0.]))/dx
+            second=np.linalg.solve(powers,np.array([0.,0.,2.,0.,0.]))/(dx*dx)
+        else:
+            indices=np.abs(i+np.arange(-2,3))
+            first,second=base_first,base_second
+        for j,d1,d2 in zip(indices,first,second):
+            add(i,j,d2 if i==0 else d2-acoef[i]*d1)
+        add(i,i,-center_b if i==0 else -bcoef[i])
+    rhs[0]=center_c;rhs[-1]=1.;add(size-1,size-1,1.)
+    return solve_banded((3,3),band,rhs)
 
 
 class Evolution:
@@ -93,20 +122,15 @@ class Evolution:
                      for key,value in vals.items()}
         center_vals.update(a_c=A[0],A2=Arr[0],b2=brr[0],K_c=(k[0]+2*h[0])/3,
                            Q_c=Q[0],Q2=Qrr[0],u1=ur[0])
+        if self.constrained:
+            center_vals.update(regular_center(t,state,self.r,self.model))
         center_matrix,center_forcing=evaluate_center(center_vals)
         center_solved=np.linalg.solve(center_matrix,center_forcing)
         acoef,bcoef,c=solved[:,3,0].copy(),solved[:,3,1].copy(),solved[:,3,2].copy()
         bcoef[0]=(4*bcoef[1]-bcoef[2])/3;c[0]=(4*c[1]-c[2])/3
-        dx=self.dr
-        low=1/dx**2+acoef/(2*dx);diag=-2/dx**2-bcoef;up=1/dx**2-acoef/(2*dx)
-        # Exact action-derived regular-origin equation for N_rr, not a
-        # coefficient extrapolation from the coordinate-singular equations.
-        diag[0]=-2/dx**2-center_solved[2,0];up[0]=2/dx**2;c[0]=center_solved[2,1]
-        diag[-1]=1.;low[-1]=0.;c[-1]=1.
-        band=np.zeros((3,len(r)));band[0,1:]=up[:-1];band[1]=diag;band[2,:-1]=low[1:]
-        N=solve_banded((1,1),band,c)
+        N=solve_lapse(r,acoef,bcoef,c,center_solved[2,0],center_solved[2,1])
         if not np.all(np.isfinite(N)) or np.min(N)<=0:raise ValueError("positive lapse lost")
-        Nr,Nrr_fd=derivatives(N,dx)
+        Nr,Nrr_fd=derivatives(N,self.dr)
         rate=np.einsum("nij,nj->ni",solved,np.stack([Nr,N,np.ones_like(N)],axis=-1))
         center_rate=center_solved@np.array([N[0],1.])
         rate[0]=[center_rate[0],center_rate[0],center_rate[1],center_rate[2]]
