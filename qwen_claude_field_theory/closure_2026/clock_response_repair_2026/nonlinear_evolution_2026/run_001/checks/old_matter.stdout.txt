@@ -1,0 +1,52 @@
+{
+  "status": "passed",
+  "checks": {
+    "full_action_source_N": true,
+    "full_action_source_v": true,
+    "full_action_source_A": true,
+    "full_action_source_R": true,
+    "multiplier_normalization": true,
+    "current_time": true,
+    "current_radial": true,
+    "current_advection": true,
+    "theta_continuity": true,
+    "stress_tensor_source_N": true,
+    "stress_tensor_source_v": true,
+    "stress_tensor_source_A": true,
+    "stress_tensor_source_R": true,
+    "four_velocity_normalization": true,
+    "canonical_source_N": true,
+    "canonical_source_v": true,
+    "canonical_source_A": true,
+    "canonical_source_R": true,
+    "canonical_theta_evolution": true,
+    "canonical_mass_evolution": true,
+    "radial_momentum_transport": true,
+    "FLRW_stress_vs_mass_conservation": true,
+    "FLRW_dilution": true,
+    "moving_Minkowski_normalization": true,
+    "moving_Minkowski_mass": true,
+    "moving_Minkowski_energy": true,
+    "moving_Minkowski_momentum": true,
+    "moving_Minkowski_velocity": true,
+    "frozen_dust_residual_from_actual_equation": true,
+    "rest_density_error_from_actual_source": true,
+    "frozen_FLRW_density_from_actual_balance": true,
+    "initial_rest_acceleration": true
+  },
+  "check_count": 32,
+  "negative_controls_rejected": {
+    "frozen_radial_momentum": "-N_r",
+    "rest_density_as_normal_density": "-Z_0**2*rho_0*A(t, r)*R(t, r)**2",
+    "constant_rest_density_in_expanding_FLRW": "3*rho_0*Derivative(a(t), t)/a(t)"
+  },
+  "domain": "exact local smooth spherical dust before caustics; N,A,R>0, rho>=0, U>0",
+  "python": "3.9.6",
+  "sympy": "1.14.0",
+  "runtime_seconds": 0.476,
+  "non_claims": [
+    "no static finite-mass dust equilibrium",
+    "no multi-stream matter closure",
+    "no Einstein solution inferred from prescribed-metric matter benchmark"
+  ]
+}
