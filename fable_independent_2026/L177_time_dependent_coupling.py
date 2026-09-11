@@ -41,8 +41,9 @@ for g0 in (0.58, 0.40):
         print(f"    {g0:5.2f} {n:3d} {g(a_out[0]):7.3f} {T2f:15.3f} {T2l[1]:15.3f} {T2l[2]:13.3f} {S8:7.3f}")
 check("C1 [DEFICIT, verified] no g0 = 0.58 ramp (n = 1, 2, 4) reaches S8 >= 0.767: the coupling drop removes 42% of the lensing mass and slows growth, S8 = 0.48-0.54",
       all(res[(0.58, n)][4] < 0.767 for n in (1, 2, 4)), ", ".join(f"n={n}: S8={res[(0.58,n)][4]:.3f}" for n in (1, 2, 4)))
-check("C2 [DEFICIT, verified] even crediting the L176 kernel-boosted baryons (+0.2-0.4 of the band, computed WITHOUT the component) the lensing contrast today stays below 0.8 of LCDM for every ramp",
-      all(res[(0.58, n)][3] + 0.4 < 0.8 for n in (1, 2, 4)), ", ".join(f"n={n}: T2_lens(z=0)={res[(0.58,n)][3]:.3f}" for n in (1, 2, 4)))
+S8eff = {n: S8_L*np.sqrt(res[(0.58, n)][3] + 0.4) for n in (1, 2, 4)}
+check("C2 [DEFICIT, verified -- KNIFE-EDGE] crediting the L176 kernel-boosted baryons at their maximum (+0.4 of the band, a PM number added to a linear one, not self-consistent) gives S8_eff = 0.72-0.76 for n = 1-4: still below 0.767, but the latest ramp is within 0.01 of the floor",
+      all(v < 0.767 for v in S8eff.values()) and max(S8eff.values()) > 0.75, ", ".join(f"n={n}: S8_eff={v:.3f}" for n, v in S8eff.items()))
 check("C3 the forest side would have passed: the late ramps (n >= 2) keep baryon growth at z = 3 within 1% of LCDM", all(res[(0.58, n)][1] > 0.99 for n in (2, 4)))
 print("    galaxies: g0 = 0.58 passes the LOOSE ceiling (0.582) and fails the STRICT one (0.105); clusters: 0.58 >= 0.576 passes.")
 print("    LIMITS: linear, sub-horizon, LCDM background unchanged, kernel contribution (L176: +0.2-0.4 of the shear band at z = 0.5 from baryons) NOT added;\n"

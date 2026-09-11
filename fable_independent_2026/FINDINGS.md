@@ -5235,7 +5235,9 @@ candidate shape not yet excluded by a computation; its S₈/growth and shear num
 `L177_time_dependent_coupling.py` / `.out` (3/3). Cold, unheated component with coupling g(a) = 1 − 0.42 aⁿ (g₀ = 0.58 = X-COP = loose
 galaxy ceiling), linear two-fluid growth, lensing sees the coupled mass. Forest: fine (baryon growth at z = 3 within 1% of ΛCDM for n ≥ 2).
 S₈: 0.480 / 0.521 / 0.537 for n = 1 / 2 / 4 against a floor of 0.767 — the 42% coupling drop removes lensing mass and slows growth, and
-even crediting the L176 kernel-boosted baryons (+0.2–0.4 of the band, computed without the component) the lensing contrast stays below 0.8.
-DEAD. The L176 inference is closed: a fraction that falls in time cannot fall by the amount galaxies need without losing the lensing amplitude.
+crediting the L176 kernel-boosted baryons at their maximum (+0.4 of the band, a PM number added to a linear one, not self-consistent) gives
+S₈_eff = 0.72 / 0.75 / 0.76 for n = 1 / 2 / 4 — still below 0.767, but the latest ramp is within 0.01 of the floor. DEAD in linear theory,
+KNIFE-EDGE with the kernel credited. The self-consistent run (component at 0.58 coupling + kernel reading baryons only, PM) would decide and
+was not run. The L176 inference is closed as stated; it survives only as this knife-edge.
 Net: every mechanism shape for the mass-dependent dark fraction is now computed and excluded on this repository's baselines (velocity filters
 by forest/shear, potential depth by forest, time-dependent coupling by S₈, decay by background); the target f(M) ~ M^0.16 stands with no mechanism.
