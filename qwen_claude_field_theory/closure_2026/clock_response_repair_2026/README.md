@@ -6,6 +6,12 @@ Carl supplied the primordial-clock direction and the insistence on a global acce
 
 ## Latest numerical/action checkpoint (2026-09-11)
 
+See [mixed clock compatibility](mixed_compatibility_2026/REPORT.md) for the newest
+follow-through. Fresh staggered clock evolution reduces the reported momentum
+residual but still fails full-origin fine-grid tangency. A derived spline-space
+compatibility obstruction has two checked Lean algebra leaves; it is not a
+gravity no-go. The experimental method remains outside the production solver.
+
 See [fresh evolution and constraint energy](fresh_tangency_2026/REPORT.md).
 Fresh states reproduce decreasing errors at 129->257, but the stronger
 257->513 metric-tangency check deteriorates; late-time force/depletion claims
