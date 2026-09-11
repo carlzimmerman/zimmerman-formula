@@ -1,0 +1,27 @@
+================================================================================================================
+L183 CMB WITH THE KERNEL ON (patched CLASS, mean-field, prescription A)
+================================================================================================================
+    stock CLASS, LCDM (synchronous)          peaks l = [221, 537, 816]  peak2/peak1 = 0.454  peak3/peak2 = 0.992
+    A  LCDM, kernel off (newtonian)          peaks l = [221, 537, 816]  peak2/peak1 = 0.454  peak3/peak2 = 0.992
+  [PASS] V1 the Newtonian-gauge run reproduces stock synchronous CLASS: peak positions within 1% and peak3/peak2 within 1%
+           (A [221, 537, 816] 0.992 vs stock [221, 537, 816] 0.992)
+    B  no CDM, smooth dust, kernel off       peaks l = [167, 508, 815]  peak2/peak1 = 0.408  peak3/peak2 = 0.551
+  [PASS] V2 control: smooth dust reproduces the L129/L165 third-peak deficit (peak3/peak2 = 0.55 +/- 0.10 vs 0.99)
+           (B peak3/peak2 = 0.551)
+    C  no CDM + kernel canonical, z > 30     peaks l = [512, 821, 1128]  peak2/peak1 = 0.548  peak3/peak2 = 0.549
+    D  no CDM + kernel alt, z > 30           peaks l = [513, 822, 1129]  peak2/peak1 = 0.547  peak3/peak2 = 0.549
+    E  no CDM + kernel canonical, all z      peaks l = [512, 821, 1128]  peak2/peak1 = 0.547  peak3/peak2 = 0.549
+    F  LCDM + kernel canonical, z > 30       peaks l = [535, 815, 1131]  peak2/peak1 = 0.964  peak3/peak2 = 0.486
+    fixed-multipole ratios (537/221, 816/537): A 0.454/0.992, B 0.441/0.575, C 0.419/0.564, D 0.412/0.562, E 0.415/0.563, F 0.411/0.964
+    D_l / D_l(LCDM) at l = 30, 60, 100, 221, 537, 816: B 9.03 7.11 5.16 2.47 2.40 1.39; C 308.43 7.26 7.12 2.61 2.41 1.37; F 309.97 34.02 5.21 1.15 1.04 1.01
+    restoration of the third peak at fixed l (0 = smooth-dust deficit, 1 = LCDM): C: -0.03, D: -0.03, E: -0.03
+  [PASS] V3 [THE QUESTION, DEFICIT verified] with no CDM and the kernel on, peak3/peak2 at fixed l stays at the smooth-dust value (0.56 vs LCDM 0.99, restoration within +/-0.05 of zero) on both footings: the kernel does NOT replace cold dark matter at recombination
+           (C 0.564, D 0.562, B 0.575, LCDM 0.992)
+  [FAIL] V4 [reason] on the peak scales the kernel is in its Newtonian regime: with CDM present it changes the 221/537/816 amplitudes by less than 5%
+           (F at 221/537/816: 1.149 1.040 1.011)
+  [PASS] V5 [DEFICIT verified] prescription A adds a low-multipole catastrophe: D_l at l = 30-100 is boosted 5-500x over LCDM with or without CDM (deep-MOND regime of large-scale potentials), which Planck excludes outright
+           (C/F at 30,60,100: 308 7 7 / 310 34 5)
+    LIMITS: mean-field kernel (nu of the mode's rms envelope acceleration; no mode coupling), prescription A on the peculiar field for sub-horizon modes,
+    nu capped at 20; smooth-dust background as in L129 (w0 = -1e-4, cs2 = 1); Newtonian gauge; no lensing; raw C_l.
+
+L183 COMPLETE: 4/5 checks PASS.

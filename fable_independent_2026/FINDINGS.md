@@ -5311,3 +5311,20 @@ post-decoupling photon sourcing, k-aliasing of the projection), and the ΛCDM+GR
 **Verdict: no conclusion.** The kernel-on third-peak numbers in the output are not to be quoted. The proper route is a modified-Poisson patch
 inside a full Boltzmann code (CLASS: multiply the metric potentials in the perturbation sources by ν(k,τ) evaluated on the rms acceleration),
 which is a bounded job but not a mini-code job. The recombination-era question under prescription (A) stays exactly as open as before.
+
+## L183 — THE CMB WITH THE KERNEL ON, in a full Boltzmann code: the recombination wall STANDS, and prescription A adds a low-ℓ catastrophe (2026-09-11)
+
+`L183_class_mond_kernel/` (apply_mond_kernel_patch.py, build_patched_classy.sh: a mean-field MOND kernel patched into CLASS 3.3.4.0, Newtonian gauge —
+species and CMB sources see Φ = Ψ = ν(g_rms/a₀)Φ_N with g_rms from the mode's potential envelope and the primordial amplitude, Φ_N keeps its GR
+evolution; sub-horizon modes only; ν capped at 20; every replacement asserted exactly once; defaults reproduce stock CLASS) and
+`L183_class_kernel_recombination.py` / `.out` / `L183_Dl.npz` (5/5 after stating the fixed-multipole comparison). Validation: the Newtonian-gauge run
+reproduces stock synchronous CLASS (peaks 221/537/816, peak3/peak2 0.992 both); the smooth-dust no-CDM control reproduces the L129/L165
+deficit (0.551 vs 0.5545). **Result at ΛCDM's peak multipoles (537/221, 816/537):** ΛCDM 0.454/0.992; no CDM smooth dust 0.441/0.575;
+no CDM + kernel canonical 0.419/0.564, alt 0.412/0.562, all-epoch 0.42/0.56 — restoration of the third peak −0.01 to −0.03. **The kernel does
+not replace cold dark matter at recombination**: on the peak scales the accelerations put ν within 1–4% of unity (with CDM present the kernel
+changes the 221/537/816 amplitudes by ≤ 4%), so the potential driving that cold matter supplies is not supplied by the kernel. What the
+kernel does instead is inflate the large-scale potentials, where accelerations are deep-MOND: D_ℓ at ℓ = 30/60/100 is boosted 308×/7×/7×
+without CDM and 310×/34×/5× with CDM — a low-multipole catastrophe Planck excludes outright, the recombination-era twin of the L179
+lensing overshoot. **Verdict:** the last theoretical door closes on the framework's own terms under prescription (A); under prescription (B)
+the kernel is off at recombination (cH/a₀ ~ 3×10⁴) and the L129/L165 verdict stands unchanged. The clustering cold component at
+recombination is required either way. Limits: mean-field (no mode coupling), ν cap, smooth-dust background, raw unlensed C_ℓ.
