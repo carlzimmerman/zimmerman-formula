@@ -2,6 +2,11 @@
 
 ## Result and boundary
 
+Subsequent checkpoint: [finite-wavelength Python evolution](TRANSFER_REPORT.md)
+now implements the reduction and records three wavenumbers with six initial
+basis modes each. Its limited numerical agreement is not a CMB or convergence
+certificate; the original report below records the preceding derivation.
+
 The frozen cubic clock action now has an unrestricted scalar metric/matter
 variation, independently checked stress/current sources, exact off-shell
 energy and momentum identities, and a short matter-containing homogeneous
