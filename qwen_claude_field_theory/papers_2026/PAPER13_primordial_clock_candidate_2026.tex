@@ -1,0 +1,153 @@
+\documentclass[11pt,letterpaper]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,booktabs,array,microtype}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue]{hyperref}
+\setlength{\parindent}{0pt}\setlength{\parskip}{5pt}
+\sloppy
+\newcolumntype{L}[1]{>{\raggedright\arraybackslash}p{#1}}
+
+\title{A Primordial-Clock Candidate for de Sitter--MOND Gravity:\\ Explicit Covariant Action, Derived Field Equations, a Dust-like Expanding Background,\\ and an Obstruction to Instantaneous MOND on Expanding Initial Data}
+\author{Carl P.\ Zimmerman\\ \small Briar Creek Tech\\ \small AI-assisted research programme; collaborative construction; not peer reviewed}
+\date{10 September 2026}
+
+\begin{document}\maketitle
+
+\begin{abstract}
+We record the exact current state of a candidate relativistic completion of Milgrom's modified Newtonian dynamics (MOND) built on a primordial-clock foliation. What is established: an explicit covariant action with a clock scalar $\tau$, a dynamical scalar $\chi$, a cubic coupling $\gamma X\Box\chi$ and matter minimally coupled to the single metric; its varied field equations (metric, $\chi$-current conservation, clock constraint, matter conservation); a reconstructed expanding FLRW background on which the clock sector is exactly pressureless dust; positive, luminal tensor modes ($c_T^2=1$); and a finite-wavelength scalar velocity matrix of rank one, with selected positivity results carrying Lean~4 certificates. What is not established, stated with equal weight: the coefficient functions were \emph{reconstructed} to produce a chosen background rather than selected from first principles; the complete nonlinear constraint count is open; the recombination history is incomplete; exact galactic MOND, the measured $G_N$, the full post-Newtonian sector, nonlinear lensing, clusters and the cosmic microwave background are open; and the relation $a_0=\tfrac12 c\sqrt{G\rho_\Lambda}$ has not been derived from this action. On the solved spherical initial-data family the background-subtracted areal acceleration is bounded by $C(r)\varepsilon$, and the elementary inequality $1-e^{-x}\le x$ then shows that the exact exponential MOND law cannot hold instantaneously on that family (a Lean~4 certificate proves the inequalities assuming the force bound). The latest evolution-refinement test fails numerical convergence (momentum-constraint residual $7.41\times10^{-6}\to1.77\times10^{-5}$ from 129 to 257 grid points). This is a status report, not a claim that the theory is established; the decisive next result is named.
+\end{abstract}
+
+\section{Scope}
+This note fixes, in one place, what has actually been derived for the candidate and what has not. It is written so that every statement is either a theorem of the stated action, a computed quantity with its script named in the public repository, or an explicitly labelled open item. The construction was carried out collaboratively by AI systems under the author's direction; nothing here is peer reviewed. An earlier flagship note in this series~\cite{paper12} argued for the cuscuton branch as the consistent structural class; the present candidate is the explicit attempt to realise a dynamical scalar sector on a clock foliation, and it is reported with its failures. One correction to earlier statements in the programme is made explicit in Section~\ref{sec:coeff}.
+
+\section{The action}
+In units $c=1$, signature $(-+++)$,
+\begin{equation}
+S=\int d^4x\sqrt{-g}\left[\frac{M^2}{2}(\mathcal R-2\Lambda)+P(X,\tau)+sW(Y,\tau)-V(\tau)+\gamma X\Box\chi\right]+S_m[g,\psi],
+\end{equation}
+with
+\begin{gather}
+M^2=\frac{1}{8\pi G_{\rm bare}},\qquad X=-\nabla_\mu\chi\nabla^\mu\chi,\qquad s=\sqrt{-\nabla_\mu\tau\nabla^\mu\tau}>0,\qquad n_\mu=-\frac{\nabla_\mu\tau}{s},\\
+h_{\mu\nu}=g_{\mu\nu}+n_\mu n_\nu,\qquad Q=n^\mu\nabla_\mu\chi,\qquad D_\mu\chi=h_\mu{}^\nu\nabla_\nu\chi,\qquad Y=D_\mu\chi D^\mu\chi=Q^2-X.
+\end{gather}
+Here $\tau$ defines the primordial-clock foliation, $\chi$ is the dynamical scalar sector, and $\gamma$ is the cubic coupling (unrelated to $\gamma_{\rm PPN}$). Ordinary matter couples minimally to the same metric.
+
+\subsection{Coefficient functions and the correction}\label{sec:coeff}
+The functions currently under test are
+\begin{align}
+P(X,\tau)&=-\frac{U}{2}\log\!\left(\frac{U-2dX}{U-2dq^2}\right)+3\gamma qH_{\rm bg}(X-q^2),\\
+W(Y,\tau)&=U+2d\ell\left(\sqrt{1+\frac{Y}{\ell}}-1\right)-2\gamma q^2\dot q_{\rm bg},\qquad V(\tau)=U,
+\end{align}
+with prescribed background functions
+\begin{equation}
+\mathcal A=\frac{I}{a_{\rm bg}^3},\quad q=\frac{Q_c}{1+m},\quad U=mq\mathcal A,\quad d=\frac{\mathcal A U}{2q(q\mathcal A+U)},\quad \ell=\frac{q^2m}{2},\qquad 3M^2H_{\rm bg}^2=M^2\Lambda+q\mathcal A+U.
+\end{equation}
+During variation $q(\tau)$ and $H_{\rm bg}(\tau)$ are prescribed functions of the clock; replacing them by local fields would change the action. The regular domain requires positive logarithm arguments and $1+Y/\ell>0$.
+
+\textbf{Correction.} Earlier answers in the programme understated one point: these coefficient functions were reconstructed to produce a chosen background history. They have not been selected from first principles, and no statement below should be read as if they had. The coefficient history and differentiation rules are in \texttt{qwen\_claude\_field\_theory/closure\_2026/clock\_response\_repair\_2026/nonlinear\_infall\_2026/background.py}.
+
+\section{Field equations}
+Varying the metric,
+\begin{equation}
+M^2(G_{\mu\nu}+\Lambda g_{\mu\nu})=T^m_{\mu\nu}+T^{\rm clock}_{\mu\nu},
+\end{equation}
+where, writing $\chi_\mu=\nabla_\mu\chi$,
+\begin{align}
+T^{\rm clock}_{\mu\nu}={}&2P_X\chi_\mu\chi_\nu+sWn_\mu n_\nu-2sW_YD_\mu\chi D_\nu\chi+g_{\mu\nu}(P+sW-V)\notag\\
+&+2\gamma(\Box\chi)\chi_\mu\chi_\nu+\gamma(\chi_\mu\nabla_\nu X+\chi_\nu\nabla_\mu X)-\gamma g_{\mu\nu}\nabla_\alpha\chi\nabla^\alpha X.
+\end{align}
+Varying $\chi$ gives an exactly conserved current,
+\begin{equation}
+\nabla_\mu J^\mu=0,\qquad J^\mu=-2(P_X+\gamma\Box\chi)\nabla^\mu\chi-\gamma\nabla^\mu X+2sW_YD^\mu\chi .
+\end{equation}
+Varying the clock,
+\begin{equation}
+P_\tau+sW_\tau-V_\tau-\nabla_\mu\!\left(Wn^\mu-2QW_YD^\mu\chi\right)=0,
+\end{equation}
+which in clock gauge $\tau=t$ is the constraint
+\begin{equation}
+T\equiv V_\tau-P_\tau+WK-2W_YK^{ij}D_i\chi D_j\chi-2QD_i(W_YD^i\chi)=0,\qquad K_{ij}=\tfrac12\mathcal L_nh_{ij}.
+\end{equation}
+Its preservation $\partial_tT=0$ yields an elliptic lapse equation on the regular branches studied. Matter's separate diffeomorphism invariance gives $\nabla_\mu T_m^{\mu\nu}=0$ on the matter equations. The unrestricted spherical variation and its checks are documented in \texttt{.../clock\_response\_repair\_2026/spherical\_baryon\_bridge/action/REPORT.md}.
+
+\section{Homogeneous background}
+For FLRW with proper-time derivatives,
+\begin{equation}
+\rho_{\rm clock}=2Q^2P_X-P+V-6\gamma HQ^3,\qquad p_{\rm clock}=P-V+sW(0,\tau)+2\gamma Q^2\dot Q,\qquad j_{\rm clock}=2QP_X-6\gamma HQ^2,
+\end{equation}
+and the background equations are
+\begin{equation}
+3M^2H^2=M^2\Lambda+\rho_m+\rho_{\rm clock},\quad -2M^2\dot H=\rho_m+p_m+\rho_{\rm clock}+p_{\rm clock},\quad \frac{d}{dt}(a^3j_{\rm clock})=0,\quad V_\tau-P_\tau+3HW(0,\tau)=0 .
+\end{equation}
+The reconstructed solution has $j_{\rm clock}=I/a^3$, $\rho_{\rm clock}=Q_cI/a^3$, $p_{\rm clock}=0$: the clock supplies a dust-like background density. This is established for the constructed history only. It does not establish the required galaxy or cluster distribution of that component, nor the CMB spectrum. A same-action radiation calculation admits nearby expanding homogeneous solutions but has not produced a complete recombination history.
+
+\section{Perturbations}
+On the homogeneous branch the two tensor polarisations have
+\begin{equation}
+S^{(2)}_T=\frac{M^2}{8}\int dt\,d^3x\,a^3\left[\dot h^{TT}_{ij}\dot h^{TT}_{ij}-\frac{\partial_kh^{TT}_{ij}\partial_kh^{TT}_{ij}}{a^2}\right],
+\end{equation}
+so their kinetic energy is positive for $M^2>0$ and $c_T^2=1$. For finite nonzero wavenumber, after eliminating lapse and shift, the scalar velocity matrix is
+\begin{equation}
+K_{\rm red}=\frac{a^3\widehat B}{2\Theta^2}\begin{pmatrix}q^2&-qH\\-qH&H^2\end{pmatrix},\qquad \widehat B=2P_X+4q^2P_{XX}-12\gamma Hq+\frac{6\gamma^2q^4}{M^2},\qquad \Theta=H+\frac{\gamma q^3}{M^2},
+\end{equation}
+of rank one on its regular branch: one dynamical scalar remains. Selected-background positivity results carry Lean~4 certificates with a symbolic bridge to the action. This does not prove the nonlinear count of two gravitational modes plus one healthy scalar, and the $k=0$ sector needs its separate constraints (\texttt{.../clock\_response\_repair\_2026/cubic\_finite\_wavelength/README.md}).
+
+\section{Spherical initial data and the obstruction to instantaneous MOND}
+For the solved spherical initial family $\rho_b(r)=\varepsilon\sigma(r)$, $\chi'=0$, $Q=q$, $K^i{}_j=H\delta^i{}_j$, the Hamiltonian constraint gives
+\begin{equation}
+f(r)=A^{-2}(r)=1-\frac{1}{M^2r}\int_0^r\rho_b(s)s^2\,ds,
+\end{equation}
+and preserving the clock constraint gives the lapse equation
+\begin{equation}
+S\Delta_hN-\lambda_0(N-1)-\lambda_b\rho_bN=0,\qquad S=W-2q^2W_Y,
+\end{equation}
+with coefficients derived from the action (\texttt{.../nonlinear\_infall\_2026/slice\_action/REPORT.md}). The background-subtracted inward areal acceleration is
+\begin{equation}
+g_{\rm init}=\frac{1-f}{2r}+\frac{r}{2M^2N}\left[U(1-N)+2\gamma q^2(Q_t-\dot q_{\rm bg})\right],
+\end{equation}
+and on the positive-coefficient branch the analysis establishes $0\le g_{\rm init}\le C(r)\varepsilon$. The exact exponential MOND law would require $(1-e^{-g/a_0})g=g_N$ with $g_N=\varepsilon n(r)$; the inequality $1-e^{-x}\le x$ gives
+\begin{equation}
+0\le\frac{(1-e^{-g_{\rm init}/a_0})\,g_{\rm init}}{\varepsilon n(r)}\le\frac{C(r)^2\varepsilon}{a_0n(r)}\longrightarrow0,
+\end{equation}
+whereas MOND requires the ratio to equal one. This excludes instantaneous MOND on this expanding initial-data family. A late-time galactic branch remains uncomputed. The Lean certificate (\texttt{.../nonlinear\_infall\_2026/lean/SmallSourceObstruction.lean}) proves the inequalities assuming the force bound; the PDE argument supplying that bound is outside Lean.
+
+\section{Numerical status}
+The action, initial-data, potential, full-gradient, background, scalar-principal, tensor and seven Lean checks exit~0. The latest evolution-refinement test exits~1: increasing the grid from 129 to 257 points increased the momentum-constraint residual from $7.41\times10^{-6}$ to $1.77\times10^{-5}$. That is an unresolved numerical validation failure. It is not a proof that the theory is impossible, and it is not evidence that it works.
+
+\section{Status}
+\begin{center}
+\begin{tabular}{L{7.2cm}L{8.3cm}}\toprule
+Requirement & Current evidence\\\midrule
+Explicit action and varied equations & Established\\
+Separate ordinary-matter conservation & Established on the matter equations\\
+Expanding FLRW & Constructed background; limited radiation extension\\
+Positive, luminal tensor modes & Derived on homogeneous clock backgrounds\\
+Scalar health & Partial linear results; conditional Lean certificates\\
+Complete nonlinear constraint count & Open\\
+$\Phi=\Psi$ & Independently supported at linear order on the tested family\\
+Exact galactic MOND and measured $G_N$ & Open; instantaneous MOND excluded on the expanding initial family\\
+Full PPN, nonlinear lensing, CMB, clusters & Open\\
+First-principles coefficients and $\kappa=\tfrac12$ & Open; coefficients reconstructed, $a_0=\tfrac12c\sqrt{G\rho_\Lambda}$ not derived\\
+Converged nonlinear evolution & Failed at the latest refinement\\\bottomrule
+\end{tabular}
+\end{center}
+
+\section{Relation to the independent gate analysis}
+A separate programme in the same repository (\texttt{fable\_independent\_2026}, lanes L129--L176, a Lean~4 file of 99 theorems with zero \texttt{sorry}) tests candidate architectures against the galaxy, Solar-System, forest, growth and CMB gates independently of any construction. Two of its results bear directly on this candidate and are stated here so that the two lines are not read as contradicting each other. First, a necessity certificate: any theory on these equations passing all gates must carry a dark fraction that rises with host mass (approximately $f\propto M^{0.16}$ from spirals to clusters, with $f\ge0.988$ required at recombination and $f\lesssim0.1$ tolerated in spirals), a non-barotropic effective fluid, and a locally screened preferred-frame source. Second, every mechanism so far computed for that mass dependence (thermal relic, two-body decay, velocity kick, clock-switched sound speed, potential-depth threshold) fails on the Lyman-$\alpha$ forest, on small-scale cosmic shear, or on $N_{\rm eff}$; and it was found that all of those verdicts assume the dark component alone must reproduce $\Lambda$CDM's small-scale power, whereas a kernel-boosted baryonic sector also builds structure there. The framework's own nonlinear $P(k,z)$ with the kernel active is being computed as the baseline that those verdicts require. The present candidate's dust-like clock background is exactly the component the necessity certificate constrains; whether its distribution can be mass dependent is part of what is open.
+
+\section{What would decide}
+The next discriminating result is a converged baryon-sourced evolution of these equations, or a directly constructed quasistatic branch, showing whether they produce the required MOND force and the observed lensing at late times. Until one of those exists, this candidate is an explicit, varied, partially certified action with a working expanding background and named failures, and nothing more.
+
+\begin{thebibliography}{9}
+\bibitem{milgrom} M.~Milgrom, Astrophys.\ J.\ \textbf{270}, 365 (1983).
+\bibitem{bekenstein} J.~D.~Bekenstein, Phys.\ Rev.\ D \textbf{70}, 083509 (2004).
+\bibitem{aest} C.~Skordis and T.~Z\l o\'snik, Phys.\ Rev.\ Lett.\ \textbf{127}, 161302 (2021).
+\bibitem{khronon} L.~Blanchet and C.~Skordis, arXiv:2404.06584 (2024).
+\bibitem{cuscuton} N.~Afshordi, D.~J.~H.~Chung and G.~Geshnizjani, Phys.\ Rev.\ D \textbf{75}, 083513 (2007).
+\bibitem{will} C.~M.~Will, Living Rev.\ Relativ.\ \textbf{17}, 4 (2014).
+\bibitem{planck} Planck Collaboration, Astron.\ Astrophys.\ \textbf{641}, A6 (2020).
+\bibitem{rar} F.~Lelli, S.~S.~McGaugh, J.~M.~Schombert and M.~S.~Pawlowski, Astrophys.\ J.\ \textbf{836}, 152 (2017).
+\bibitem{paper12} C.~P.~Zimmerman, \emph{Relativistic MOND Is a Cuscuton Theory}, Zenodo, doi:10.5281/zenodo.22682544 (2026); see also doi:10.5281/zenodo.22679408, 10.5281/zenodo.22682539, 10.5281/zenodo.22682541.
+\end{thebibliography}
+\end{document}
