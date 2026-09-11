@@ -5298,3 +5298,16 @@ equation's ratio to Planck-ΛCDM (1.027–1.005 canonical, 1.038–1.007 alt acr
 Verdict: consistent (χ²/6 ≈ 1 on both footings and both sub-panels), and not yet discriminated from ΛCDM (|Δχ²| < 1: DESI DR1 errors are
 10–19% against a 1–4% effect). DESI's μ₀ = 0.05 ± 0.22 (arXiv:2411.12026) vs the equation's G_eff/G − 1 today (0.077 / 0.099): within
 0.3σ. A 3σ test needs ~1% on fσ₈ at z ≈ 0.3–0.6, i.e. the DESI final sample. Alive, untested at the required precision.
+
+## L182 — Recombination solver with the kernel on: BUILT, NOT VALIDATED, NO PHYSICS READ (2026-09-11)
+
+`L182_recombination_kernel_solver.py` / `.out` / `L182_Dl_*.npz` (1/4 — the one "pass" is the kernel question, which is meaningless because the
+validation gates fail). A compact scalar Boltzmann code (Newtonian gauge, tight-coupled photon–baryon fluid, neutrino fluid, optional CDM,
+potential evolved from the momentum constraint, instantaneous decoupling, Silk damping, SW + Doppler + early ISW, fine-k projection) with the
+framework kernel as a mean-field Φ = Ψ = ν(g_rms/a₀)Φ_N. Four iterations fixed four real defects (peak finder, initial-condition potential,
+post-decoupling photon sourcing, k-aliasing of the projection), and the ΛCDM+GR control still fails: peaks at ℓ = 209/440/710 vs CLASS
+221/537/816, second-to-first peak ratio 1.75 vs 0.45, third-to-second 0.71 vs 0.99. The remaining defect is in the peak-height physics
+(Doppler amplitude, absence of a visibility function, or the shear-free neutrino fluid); it was not found tonight.
+**Verdict: no conclusion.** The kernel-on third-peak numbers in the output are not to be quoted. The proper route is a modified-Poisson patch
+inside a full Boltzmann code (CLASS: multiply the metric potentials in the perturbation sources by ν(k,τ) evaluated on the rms acceleration),
+which is a bounded job but not a mini-code job. The recombination-era question under prescription (A) stays exactly as open as before.

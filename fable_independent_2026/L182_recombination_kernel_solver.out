@@ -1,0 +1,32 @@
+==============================================================================================================
+L182 RECOMBINATION SOLVER WITH THE KERNEL ON -- D_l peak positions and ratios
+==============================================================================================================
+    CLASS LCDM: peaks at l = [221, 537, 816]; D ratios peak2/peak1 = 0.454, peak3/peak2 = 0.992
+    LCDM+GR                done in 40s
+      D_l shape (norm. at l=220): 100:0.47 220:1.00 400:1.62 537:1.15 700:1.25 816:0.71 1000:0.74  | CLASS: 0.47 1.00 0.30 0.45 0.32 0.45 0.18
+      peaks l = [209, 440, 710]; peak2/peak1 = 1.752, peak3/peak2 = 0.711
+    noCDM+GR               done in 42s
+      D_l shape (norm. at l=220): 100:0.46 220:1.00 400:0.92 537:1.15 700:1.70 816:1.19 1000:1.04  | CLASS: 0.47 1.00 0.30 0.45 0.32 0.45 0.18
+      peaks l = [299, 683, 1094]; peak2/peak1 = 1.476, peak3/peak2 = 0.723
+    noCDM+kernel canon     done in 43s
+      D_l shape (norm. at l=220): 100:0.98 220:1.00 400:1.18 537:1.31 700:1.92 816:1.32 1000:1.13  | CLASS: 0.47 1.00 0.30 0.45 0.32 0.45 0.18
+      peaks l = [341, 680, 1094]; peak2/peak1 = 1.298, peak3/peak2 = 0.693
+    noCDM+kernel alt       done in 43s
+      D_l shape (norm. at l=220): 100:1.32 220:1.00 400:1.20 537:1.30 700:1.91 816:1.31 1000:1.11  | CLASS: 0.47 1.00 0.30 0.45 0.32 0.45 0.18
+      peaks l = [341, 680, 1094]; peak2/peak1 = 1.263, peak3/peak2 = 0.687
+    LCDM+kernel canon      done in 40s
+      D_l shape (norm. at l=220): 100:2.62 220:1.00 400:1.39 537:0.97 700:1.05 816:0.59 1000:0.62  | CLASS: 0.47 1.00 0.30 0.45 0.32 0.45 0.18
+      peaks l = [440, 710, 986]; peak2/peak1 = 0.691, peak3/peak2 = 0.594
+  [FAIL] V1 validation: the CDM + GR mini-Boltzmann reproduces CLASS's first three peak positions to 6%
+           (mine [209, 440, 710] vs CLASS [221, 537, 816])
+  [FAIL] V2 validation: the CDM + GR run reproduces CLASS's peak3/peak2 ratio to 25% (fluid approximation, no hierarchy)
+           (mine 0.711 vs CLASS 0.992)
+  [FAIL] V3 control: no CDM with GR lowers peak3/peak2 relative to the same-code LCDM by more than 25% (the L129/L165 third-peak deficit, reproduced in this code)
+           (noCDM+GR 0.723 vs LCDM+GR 0.711)
+    noCDM+kernel canon: peak3/peak2 = 0.693 (LCDM same code 0.711, noCDM GR 0.723); restoration fraction = 2.62
+    noCDM+kernel alt: peak3/peak2 = 0.687 (LCDM same code 0.711, noCDM GR 0.723); restoration fraction = 3.16
+  [PASS] V4 [THE QUESTION] with the kernel on and no CDM, does the third peak return to within 10% of the same-code LCDM ratio for either footing? (PASS = the dark-fraction wall dissolves at recombination; FAIL = it stands)
+           (noCDM+kernel canon: 0.975 of LCDM, restoration 2.62, noCDM+kernel alt: 0.966 of LCDM, restoration 3.16)
+    LIMITS: fluid photons/neutrinos, instantaneous decoupling, fitted Silk scale, mean-field kernel (nu of the rms mode acceleration, no mode coupling, nu' neglected), prescription A only.
+
+L182 COMPLETE: 1/4 checks PASS.   [208s]
