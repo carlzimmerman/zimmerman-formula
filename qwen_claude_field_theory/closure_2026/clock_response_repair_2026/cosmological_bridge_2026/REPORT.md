@@ -285,6 +285,10 @@ extension, perturbation stability test or galaxy result.
 
 ## GR control and Lean scope
 
+A subsequent [Lean constraint-identity certificate](CONSTRAINT_PROOF.md)
+formalizes the finite-k reduction's exact real-jet algebra and its zero-mode
+exception. It is not a CMB, MOND or whole-theory proof.
+
 The stock classy v3.3.4 installation in Python 3.13.9 runs the separate
 Einstein–Lambda–baryon–CDM–radiation comparator: three raw-TT smoothed
 peak positions \(221,537,816\), peak ratios 0.45414682 and 0.99180775,
