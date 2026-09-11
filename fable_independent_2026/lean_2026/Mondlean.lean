@@ -9,7 +9,7 @@
   flat a₀(z), subdominant scalar GW) confronting DATA — not by Lean, and not while the intrinsic BBN
   fine-tuning (L84/L87) and astra's open ADM/khronon gates stand.
 
-  Theorems (100 as of 2026-09-11; all: exit 0, zero `sorry`, axioms ⊆ {propext, Classical.choice, Quot.sound}):
+  Theorems (102 as of 2026-09-11; all: exit 0, zero `sorry`, axioms ⊆ {propext, Classical.choice, Quot.sound}):
     hasDerivAt_G, hasDerivAt_Gp   — Gp = dG/dy and Gpp = d²G/dy² proven (not merely asserted).
     kernel_identity               — MOND kernel G'(y)/(2y) = 1 − e^{-y}.
     Gpp_zero, Gpp_pos             — health dichotomy: G''(0)=0, G''(y)>0 ∀ y>0 (no ghost off zero field).
@@ -1004,3 +1004,28 @@ theorem hubble_kernel_identity (κ c G H0 Ω pi : ℝ) (hκ : κ ≠ 0) (hc : c 
     (hΩ : Ω ≠ 0) (hpi : pi ≠ 0) :
     (c * H0) ^ 2 / (κ ^ 2 * c ^ 2 * (G * (3 * Ω * H0 ^ 2 / (8 * pi * G)))) = 8 * pi / (3 * κ ^ 2 * Ω) := by
   field_simp
+
+/-! ### L184: the mean-field kernel's INTRINSIC ISW (the ν'Φ_N term astra's review found missing from L183). -/
+/-- L184: the mean-field kernel's intrinsic ISW rate. For ν(x) = 1/(1 − e^{−√x}) the calculus step gives
+    dν/dx = −e^{−u}/(2u(1−e^{−u})²) with u = √x; this theorem is the algebraic identity x·dν/dx = −(ν/2)·u/(e^u − 1),
+    so with Φ_N frozen and x ∝ 1/a, Φ_eff'/Φ_eff = −(x ν'/ν)·ℋ = (ℋ/2)·u/(e^u − 1). -/
+theorem mean_field_isw_rate_identity (u : ℝ) (hu : 0 < u) :
+    u ^ 2 * (-(Real.exp (-u)) / (2 * u * (1 - Real.exp (-u)) ^ 2)) =
+      -((1 / (1 - Real.exp (-u))) / 2) * (u / (Real.exp u - 1)) := by
+  have hgt : 1 < Real.exp u := by have := Real.add_one_lt_exp (ne_of_gt hu); linarith
+  have hne : Real.exp u - 1 ≠ 0 := by linarith
+  have h1 : Real.exp (-u) = 1 / Real.exp u := by rw [Real.exp_neg]; ring
+  have hne2 : 1 - Real.exp (-u) ≠ 0 := by
+    rw [h1]; have : 1 / Real.exp u < 1 := by rw [div_lt_one (Real.exp_pos u)]; exact hgt
+    linarith
+  rw [h1] at hne2 ⊢
+  field_simp
+
+/-- L184: the intrinsic ISW rate factor u/(e^u − 1) lies in (0, 1]: the kernel-driven Φ_eff growth rate is between 0 and ℋ/2,
+    reaching ℋ/2 in the deep-MOND limit u → 0 and vanishing in the Newtonian limit. -/
+theorem mean_field_isw_rate_bounds (u : ℝ) (hu : 0 < u) :
+    0 < u / (Real.exp u - 1) ∧ u / (Real.exp u - 1) ≤ 1 := by
+  have hle : u + 1 ≤ Real.exp u := Real.add_one_le_exp u
+  have hpos : 0 < Real.exp u - 1 := by linarith
+  refine ⟨div_pos hu hpos, ?_⟩
+  rw [div_le_one hpos]; linarith

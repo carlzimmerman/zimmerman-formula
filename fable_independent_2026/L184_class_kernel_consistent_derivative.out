@@ -1,0 +1,34 @@
+======================================================================================================================
+L184 CMB WITH THE KERNEL ON, CONSISTENT DERIVATIVE phi_eff' = nu phi_N' + nu' phi_N (patched CLASS, mean-field, prescription A)
+======================================================================================================================
+    A   LCDM, kernel off                           D_l(1e10) at l=(2, 10, 30, 60, 100, 221, 537, 816): 1.38 1.1 1.42 2.2 3.63 7.73 3.51 3.48
+    F0  LCDM + kernel canonical, z>30, nuprime=0 (L183) D_l(1e10) at l=(2, 10, 30, 60, 100, 221, 537, 816): 91.8 1.47e+03 441 74.7 18.9 8.88 3.65 3.52
+  [PASS] V1 the rebuilt binary with mond_nuprime = 0 reproduces L183's run F (kernel-caused factors at l = 2..816 within 3%)
+           (F0/A 66.55 1327.99 309.97 34.02 5.21 1.15 1.04 1.01 vs L183 66.55 1327.99 309.97 34.02 5.21 1.15 1.04 1.01)
+    F1c LCDM + kernel canonical, z>30, CONSISTENT  D_l(1e10) at l=(2, 10, 30, 60, 100, 221, 537, 816): 153 2.54e+03 822 167 42.1 10.3 3.95 3.52
+    F1a LCDM + kernel alt, z>30, CONSISTENT        D_l(1e10) at l=(2, 10, 30, 60, 100, 221, 537, 816): 196 3.32e+03 1.12e+03 229 57.5 11.5 4.09 3.55
+    F1n = F1c without ISW (tsw,dop,pol only)       D_l(1e10) at l=(2, 10, 30, 60, 100, 221, 537, 816): 1.4 1.65 1.8 2.35 1.99 5.05 3.61 3.36
+    An  = A without ISW                            D_l(1e10) at l=(2, 10, 30, 60, 100, 221, 537, 816): 1.43 1.31 1.41 1.55 2.03 5.49 3.55 3.35
+    B   no CDM, smooth dust, kernel off            D_l(1e10) at l=(2, 10, 30, 60, 100, 221, 537, 816): 6.2 9.66 12.8 15.6 18.7 19.1 8.43 4.84
+    C0  no CDM + kernel canonical, z>30, nuprime=0 (L183) D_l(1e10) at l=(2, 10, 30, 60, 100, 221, 537, 816): 1.98e+03 8.28e+03 438 15.9 25.8 20.2 8.45 4.77
+    C1  no CDM + kernel canonical, z>30, CONSISTENT D_l(1e10) at l=(2, 10, 30, 60, 100, 221, 537, 816): 3.1e+03 1.44e+04 1.21e+03 34.5 8.58 17.5 8.15 4.67
+    KERNEL-CAUSED factors D_l(run)/D_l(baseline) at l = (2, 10, 30, 60, 100, 221, 537, 816)
+      F0/A (L183)        66.55 1327.99 309.97 34.02 5.21 1.15 1.04 1.01
+      F1c/A              110.91 2301.95 578.39 76.07 11.62 1.33 1.13 1.01
+      F1a/A              141.74 3006.96 784.86 104.34 15.85 1.49 1.17 1.02
+      F1n/An (no ISW)    0.98 1.26 1.27 1.52 0.98 0.92 1.01 1.00
+      C0/B (L183)        319.81 856.92 34.16 1.02 1.38 1.06 1.00 0.98
+      C1/B               500.24 1492.08 94.08 2.21 0.46 0.91 0.97 0.97
+    peak3/peak2 at fixed l (816/537): LCDM 0.992, B 0.575, C0 0.564, C1 0.574, F1c 0.892
+  [PASS] V2 [DEFICIT verified, corrected derivative] the kernel-caused low-l excess survives the consistent nu' phi_N term: LCDM + kernel exceeds LCDM by > 5x at l = 30 on both footings
+           (F1c/A at l=30: 578, F1a/A: 785 (L183 F0/A 310))
+  [PASS] V3 [reason] the excess is ISW-borne: without the ISW contributions the l = 30 kernel-caused factor falls below 1.5
+           (F1n/An at l=30: 1.27 vs F1c/A 578)
+  [PASS] V4 [DEFICIT verified] with no CDM and the consistent derivative the third peak is still not restored (restoration within +/-0.05 of zero)
+           (restoration -0.00; C1 0.574 vs B 0.575 vs LCDM 0.992)
+  [PASS] V5 [correction to L183 V5 wording] the no-CDM kernel-caused factors in L183 (C0/B) are 30x at l=30 but ~1x at l=60 (astra's point); the baseline-free line is LCDM + kernel
+           (C0/B at 30,60,100: 34.16 1.02 1.38)
+    LIMITS: mean-field kernel (no mode coupling), prescription A on the peculiar field, sub-horizon modes, nu capped at 20 (nu' = 0 on the cap),
+    envelope derivative drops the phi'' term (matters only where nu = 1); CLASS's ISW approximation phi'+psi' ~ 2 phi'; raw C_l, no lensing.
+
+L184 COMPLETE: 5/5 checks PASS.

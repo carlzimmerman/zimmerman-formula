@@ -5328,3 +5328,28 @@ without CDM and 310×/34×/5× with CDM — a low-multipole catastrophe Planck e
 lensing overshoot. **Verdict:** the last theoretical door closes on the framework's own terms under prescription (A); under prescription (B)
 the kernel is off at recombination (cH/a₀ ~ 3×10⁴) and the L129/L165 verdict stands unchanged. The clustering cold component at
 recombination is required either way. Limits: mean-field (no mode coupling), ν cap, smooth-dust background, raw unlensed C_ℓ.
+
+## L184 — CMB with the kernel on, CONSISTENT metric derivative (2026-09-11)
+
+**Trigger.** astra's review of L183 (`qwen_claude_field_theory/.../cosmological_bridge_2026/CLAUDE_L183_REVIEW.md`) made two points: (i) with Φ_eff = νΦ_N the species and sources must see Φ_eff′ = νΦ_N′ + ν′Φ_N, and L183 dropped ν′Φ_N (load-bearing, since ν evolves with the envelope, the scale factor and the switches); (ii) L183's V5 wording "5–500× with or without CDM" mixed the smooth-dust baseline (itself 9/7/5× ΛCDM at ℓ = 30/60/100) with the kernel's own effect — at ℓ = 60 the no-CDM kernel-caused factor is 1.02, not 7. Both points are correct.
+
+**Fix.** Second patch `L183_class_mond_kernel/apply_nuprime_patch.py` (input `mond_nuprime`, default 0 = L183): ν′ by the chain rule on x = K(k)·env/a, d ln x/dτ = −ℋ + ΦΦ′/env² (the Φ″ term of the envelope dropped; it matters only where ν = 1), and x dν/dx = −(ν/2)·u/(e^u − 1), u = √x, ν′ = 0 on the cap; Φ_eff′ = νΦ_N′ + ν′Φ_N is what the continuity equations, the ISW source (CLASS's Φ′+Ψ′ ≈ 2Φ′) and the RSA see; Φ_N keeps its GR evolution via the stored Φ_N′. Rebuilt binary with `mond_nuprime = 0` reproduces L183's run F to the printed digits (V1). Lean (Mondlean 102): `mean_field_isw_rate_identity` (the algebraic identity x dν/dx = −(ν/2)u/(e^u−1)) and `mean_field_isw_rate_bounds` (0 < u/(e^u−1) ≤ 1). Physical content: with Φ_N frozen (matter era) and x ∝ 1/a, Φ_eff′/Φ_eff = (ℋ/2)·u/(e^u − 1) ∈ (0, ℋ/2] — an evolving mean-field kernel carries an INTRINSIC ISW even where GR has none, maximal (ℋ/2) in the deep-MOND regime of the large-scale potentials.
+
+**Results** (`L184_class_kernel_consistent_derivative.py/.out`, `L184_Dl.npz`; kernel-caused factors D_ℓ(run)/D_ℓ(baseline)):
+
+| line | ℓ = 2 | 10 | 30 | 60 | 100 | 221 | 537 | 816 |
+|---|---|---|---|---|---|---|---|---|
+| ΛCDM + kernel canonical, L183 derivative (F0/A) | 67 | 1328 | 310 | 34 | 5.2 | 1.15 | 1.04 | 1.01 |
+| ΛCDM + kernel canonical, consistent (F1c/A) | 111 | 2302 | 578 | 76 | 11.6 | 1.33 | 1.13 | 1.01 |
+| ΛCDM + kernel alt, consistent (F1a/A) | 142 | 3007 | 785 | 104 | 15.9 | 1.49 | 1.17 | 1.02 |
+| same without the ISW contributions (F1n/An) | 0.98 | 1.26 | 1.27 | 1.52 | 0.98 | 0.92 | 1.01 | 1.00 |
+| no CDM + kernel, L183 derivative (C0/B) | 320 | 857 | 34 | 1.02 | 1.38 | 1.06 | 1.00 | 0.98 |
+| no CDM + kernel, consistent (C1/B) | 500 | 1492 | 94 | 2.2 | 0.46 | 0.91 | 0.97 | 0.97 |
+
+Third peak at fixed ℓ (816/537): ΛCDM 0.992, smooth dust 0.575, no-CDM + kernel consistent 0.574 → restoration −0.00 (L183: −0.03). With CDM the consistent kernel changes the 221/537/816 amplitudes by 33/13/1% (L183: 15/4/1%) — the 4% statement of L183 V4 does not survive the correction; the 816 one does.
+
+**Verdicts (5/5).** V1 binary reproduces L183. V2 [DEFICIT verified] the kernel-caused low-ℓ excess SURVIVES the consistent derivative and roughly doubles: ×578 (canonical) / ×785 (alt) at ℓ = 30 on ΛCDM + kernel. V3 [reason] it is ISW-borne: without the ISW contributions the ℓ = 30 factor is 1.27. V4 [DEFICIT verified] third peak still not restored without CDM. V5 the L183 wording corrected: no-CDM kernel-caused factors were 34/1.02/1.4 at ℓ = 30/60/100; the baseline-free line is ΛCDM + kernel.
+
+**Reading.** astra's objection was right and, computed, strengthens the L183 verdict: the missing term is a positive intrinsic ISW, so any mean-field kernel on linear cosmological scales (prescription A) is excluded by Planck's low-ℓ plateau even more strongly, and the third peak is untouched. The recombination wall stands on both prescriptions (A: L183/L184; B: kernel off at recombination, L178/L179). Limits: mean-field (no mode coupling), sub-horizon switch, cap 20, Φ″ term of the envelope dropped, CLASS's 2Φ′ ISW approximation, raw C_ℓ.
+
+**astra's state at c5ffc6b59 (15:46).** Same-action bridge OPEN: the low-k transfer residual floor is now resolved (joint mpmath evolution, residuals 4e-6 → 3e-9 over six refinements); a radiation-majority homogeneous branch exists (Ω_r = 0.50 at a = 0.10, clock density ≈ radiation ≈ 100× baryons there); no MOND law derived from the action; Y (the projected-gradient invariant) has no cH term, so neither prescription follows from that action; radial fine-grid tangency failure unresolved. Next for astra (its own words): finite-k growth and kinetic/gradient health on the backward branch, then the Boltzmann hierarchy.
