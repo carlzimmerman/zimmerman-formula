@@ -9,7 +9,7 @@
   flat a₀(z), subdominant scalar GW) confronting DATA — not by Lean, and not while the intrinsic BBN
   fine-tuning (L84/L87) and astra's open ADM/khronon gates stand.
 
-  Theorems (95 as of 2026-09-10; all: exit 0, zero `sorry`, axioms ⊆ {propext, Classical.choice, Quot.sound}):
+  Theorems (99 as of 2026-09-10; all: exit 0, zero `sorry`, axioms ⊆ {propext, Classical.choice, Quot.sound}):
     hasDerivAt_G, hasDerivAt_Gp   — Gp = dG/dy and Gpp = d²G/dy² proven (not merely asserted).
     kernel_identity               — MOND kernel G'(y)/(2y) = 1 − e^{-y}.
     Gpp_zero, Gpp_pos             — health dichotomy: G''(0)=0, G''(y)>0 ∀ y>0 (no ghost off zero field).
@@ -967,3 +967,33 @@ theorem drag_ratio_exceeds_bound (C wk G pi mu2 u B : ℝ) (hC : 0 < C) (hwk : 0
   have hden : 0 < 4 * pi * G * mu2 * (1 + u) ^ 4 := by positivity
   rw [lt_div_iff₀ hden]
   nlinarith
+
+/-! ### L171: the STIFF-CLOCK version (khronometric K² clock, c₁₃ = c₁₄ = 0). -/
+
+/-- Stiff clock: the drag ratio 2C²(w·k)²/(c₂k²(1+u)⁴) is bounded by 2C²w²/c₂ (Cauchy–Schwarz (w·k)² ≤ w²k², (1+u)⁻⁴ ≤ 1). -/
+theorem stiff_clock_drag_bounded (C w k wk c2 u : ℝ) (hc2 : 0 < c2) (hk : 0 < k) (hu : 0 ≤ u)
+    (hcs : wk ^ 2 ≤ w ^ 2 * k ^ 2) :
+    2 * C ^ 2 * wk ^ 2 / (c2 * k ^ 2 * (1 + u) ^ 4) ≤ 2 * C ^ 2 * w ^ 2 / c2 := by
+  have h1 : 1 ≤ (1 + u) ^ 4 := one_le_pow₀ (by linarith)
+  have hden : 0 < c2 * k ^ 2 * (1 + u) ^ 4 := by positivity
+  rw [div_le_div_iff₀ hden hc2]
+  have hC : 0 ≤ 2 * C ^ 2 := by positivity
+  have h2 : 2 * C ^ 2 * wk ^ 2 ≤ 2 * C ^ 2 * (w ^ 2 * k ^ 2) := mul_le_mul_of_nonneg_left hcs hC
+  have h3 : 2 * C ^ 2 * (w ^ 2 * k ^ 2) * c2 ≤ 2 * C ^ 2 * w ^ 2 * (c2 * k ^ 2 * (1 + u) ^ 4) := by
+    have : 0 ≤ 2 * C ^ 2 * w ^ 2 * c2 * k ^ 2 := by positivity
+    nlinarith
+  nlinarith
+
+/-- α₁ from the gauge-invariant O(w) combination: A + B = −4 (the scalar does not enter g₀ᵢ) and
+    A + B = −2γ − 2 − α₁ (PPN dictionary) ⇒ α₁ = 2(1 − γ). -/
+theorem alpha1_from_invariant (A B γ α₁ : ℝ) (hGR : A + B = -4) (hdict : A + B = -2 * γ - 2 - α₁) :
+    α₁ = 2 * (1 - γ) := by linarith
+
+/-- BBN: G_cosmo/G_N = 1/(1 + 3c₂/2) ≥ 0.94 with c₂ ≥ 0 ⇒ c₂ ≤ 0.0426. -/
+theorem bbn_c2_bound (c2 : ℝ) (h0 : 0 ≤ c2) (h : (0.94 : ℝ) ≤ 1 / (1 + 3 * c2 / 2)) : c2 ≤ 0.0426 := by
+  have hp : 0 < 1 + 3 * c2 / 2 := by linarith
+  rw [le_div_iff₀ hp] at h
+  linarith
+
+/-- The K² clock has no time derivatives at quadratic order: phase dimension 2, fully constrained ⇒ 0 DOF. -/
+theorem stiff_clock_zero_dof : diracDOF 2 0 2 = 0 := fully_constrained_zero_dof 2

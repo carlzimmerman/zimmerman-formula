@@ -5120,3 +5120,16 @@ with a G_cosmo/G_N shift and astra's g03 clock-tachyon/PPN pincer. Lean: `clock_
 **Verdict.** The L169 action with a cuscuton clock fails the preferred-frame test outright; it now fails on BOTH cosmology (L169) and
 boosted PPN (L170). The static/γ/health results stand. The only clock that survives moving sources is a stiff one, which is the door
 astra already found pinched.
+
+## L171 — THE STIFF-CLOCK VERSION: boosted PPN fixed, cosmology still dead, and a new uncomputed sector (2026-09-10)
+
+`L171_stiff_clock_version.py` / `.out` (9/9, sympy, no literal-True), Lean 99 theorems. Clock = khronometric K² term, c₁₃ = 0 (c_T = c),
+c₁₄ = 0 (no kinetic term). Derived: linearised K has no time derivative of T (0 DOF, `stiff_clock_zero_dof`); the drag equation becomes
+(c₂/8πG)∇⁴T = ∂_t(∇·λ); the drag ratio is 2(c²/μ_∞)²(w·k)²/(c₂k²(1+u)⁴) ≤ 2(c²/μ_∞)²w²/c₂ (`stiff_clock_drag_bounded`).
+Cost: the K² term shifts G_cosmo/G_N = 1/(1 + 3c₂/2); a 6% BBN/CMB tolerance forces c₂ ≤ 0.0426 (`bbn_c2_bound`). At that ceiling the
+drag is 2×10⁻²⁸ Φ_N at Saturn, 10⁻²⁴ at 30 AU, 4×10⁻⁶ global maximum: boosted PPN PASSES. α₁ = 2(1 − γ) exactly (the scalar enters g₀₀
+but not g₀ᵢ; `alpha1_from_invariant`): 6×10⁻¹⁰ at Saturn. α₂ = O(f_eff) ≈ 8×10⁻¹⁰ (order certified by screening, O(1) coefficient not computed).
+Still dead: no clustering dust, host-independent dark fraction (L169 theorem). NEW deficit: the MOND scalar is active on linear cosmological
+scales at every epoch (g_N/a₀ ~ 10⁻³ at k = 0.01 h/Mpc today, ~9 at recombination) with no condensate background, so this action's CMB and
+growth sector is not the L129/L165 smooth-dust computation and has never been run. Verdict: the stiff clock buys the preferred-frame gate at
+the price of a G_cosmo shift and leaves both cosmological failures in place.
