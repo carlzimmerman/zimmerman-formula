@@ -2,6 +2,11 @@
 
 ## Result and boundary
 
+Latest checkpoint: [precision isolation and backward radiation continuation](PRECISION_RADIATION_REPORT.md)
+isolates evaluation roundoff and reaches a radiation-majority homogeneous
+branch without refitting. Differentiated transfer convergence and CMB
+viability remain open.
+
 Subsequent checkpoint: [finite-wavelength Python evolution](TRANSFER_REPORT.md)
 now implements the reduction and records three wavenumbers with six initial
 basis modes each. Its limited numerical agreement is not a CMB or convergence
