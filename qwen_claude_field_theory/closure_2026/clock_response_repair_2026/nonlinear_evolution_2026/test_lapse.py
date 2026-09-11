@@ -5,6 +5,17 @@ import evolve
 
 
 class LapseOperator(unittest.TestCase):
+    def test_constant_background_is_not_contaminated_by_the_banded_solve(self):
+        # Every continuum and discrete derivative of this exact background
+        # vanishes. This catches solving an order-one unknown through a
+        # cancellation-dominated matrix rather than its small departure.
+        for size in (257,513):
+            r=np.linspace(0,3,size)
+            a=np.divide(-2,r,out=np.zeros_like(r),where=r>0)+.1*r
+            b=6+.1*r*r
+            got=evolve.solve_lapse(r,a,b,-b,b[0]/3,-b[0]/3)
+            np.testing.assert_allclose(got,np.ones_like(r),rtol=0,atol=2e-14)
+
     def test_matches_polynomial_and_the_evolution_derivatives(self):
         self.assertTrue(hasattr(evolve,'solve_lapse'),'compatible lapse operator missing')
         r=np.linspace(0,1,65);dr=r[1]

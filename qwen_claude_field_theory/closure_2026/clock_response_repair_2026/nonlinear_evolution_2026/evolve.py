@@ -50,10 +50,12 @@ def solve_lapse(r,acoef,bcoef,source,center_b,center_c):
 
     The center uses its separately derived regular N'' equation and even
     reflection. The outer boundary remains N=1. No equation is changed.
+    Solve the small departure n=N-1 so differentiating the background does
+    not enter the ill-conditioned banded solve as numerical cancellation.
     """
     size=len(r);dx=r[1]-r[0]
     if size<5:raise ValueError('five radial points required')
-    band=np.zeros((7,size));rhs=np.array(source,copy=True)
+    band=np.zeros((7,size));rhs=np.asarray(source)+np.asarray(bcoef)
     base_first=np.array([1.,-8.,0.,8.,-1.])/(12*dx)
     base_second=np.array([-1.,16.,-30.,16.,-1.])/(12*dx*dx)
     def add(i,j,value):band[3+i-j,j]+=value
@@ -70,8 +72,8 @@ def solve_lapse(r,acoef,bcoef,source,center_b,center_c):
         for j,d1,d2 in zip(indices,first,second):
             add(i,j,d2 if i==0 else d2-acoef[i]*d1)
         add(i,i,-center_b if i==0 else -bcoef[i])
-    rhs[0]=center_c;rhs[-1]=1.;add(size-1,size-1,1.)
-    return solve_banded((3,3),band,rhs)
+    rhs[0]=center_c+center_b;rhs[-1]=0.;add(size-1,size-1,1.)
+    return 1.+solve_banded((3,3),band,rhs)
 
 
 class Evolution:

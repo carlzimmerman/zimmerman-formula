@@ -4,6 +4,17 @@ Base checkpoint: `cbd7a4d683b68dd677f0e3706a2ebade970a6346`, 2026-09-10.
 Objective remains Carl Zimmerman's full same-action relativistic MOND requirements.
 Carl supplied the primordial-clock direction and the insistence on a global acceleration scale; this calculation develops that direction. It does not derive his fitted κ=1/2 or assert global novelty.
 
+## Latest numerical/action checkpoint (2026-09-11)
+
+See [fresh evolution and constraint energy](fresh_tangency_2026/REPORT.md).
+Fresh states reproduce decreasing errors at 129->257, but the stronger
+257->513 metric-tangency check deteriorates; late-time force/depletion claims
+remain blocked by numerical consistency. A lapse-background cancellation
+repair passes its regression and all 17 solver tests, but does not remove
+that fine-grid failure. A separate exact Noether derivation supplies a weighted
+constraint-energy balance, with four conditional Lean algebra certificates.
+This is not physical-mode stability, a new MOND force law, or full theory closure.
+
 ## What changed
 
 The review identified a missing clock/metric response in the L139→L152 fluid mapping. We now expand an explicit Einstein–cuscuton–χ action **with metric lapse, shift and scalar curvature included**. The scalar speed differs from the frozen-clock value 2C/K_QQ. Inverting the corrected expression yields an explicit coefficient that realizes a prescribed positive short-wavelength speed. This is a construction step, not just an exclusion.
