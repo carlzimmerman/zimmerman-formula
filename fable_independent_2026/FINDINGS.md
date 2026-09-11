@@ -5279,3 +5279,14 @@ acceleration in the kernel ⇒ ν ≈ 1.08 today, lensing = Newtonian potential 
 (L168 forest, L174 shear, L177 S₈) stands. The ΛCDM-yardstick objection was legitimate and is now answered by computation: correcting it
 does not open the door, it closes prescription (A). Still open, honestly: the CMB under prescription (A) (nonlinear at recombination,
 not computable with linear tools); everything under (B) reduces to the component-alone results.
+
+## L180 — THE HUBBLE-KERNEL GROWTH EQUATION: one new, parameter-free, falsifiable prediction (2026-09-11)
+
+`L180_hubble_kernel_growth_prediction.py` / `.out` (3/3). From a₀ = κc√(Gρ_Λ) and the only cosmologically viable kernel prescription
+(L178–L179: the Hubble-flow acceleration is the ambient field), the linear-scale coupling is fixed with no new parameter:
+**G_eff(z)/G = ν(cH(z)/a₀), (cH₀/a₀)² = 8π/(3κ²Ω_Λ)**, i.e. cH₀/a₀ = 7.0 (κ = ½; Lean `hubble_kernel_identity`), reproducing the
+number the PM baseline produced empirically. Values: G_eff/G = 1.077 (z = 0), 1.050 (0.5), 1.030 (1), 1.004 (3) canonical; 1.099/1.067/1.042/1.006 alt.
+**Prediction:** σ₈ up 1.1% (canonical) / 1.5% (alt) relative to Planck-ΛCDM, S₈ = 0.843 / 0.847; fσ₈ up 2.7% / 3.8% at z = 0.3, 1.9% / 2.6% at
+0.6, 1.1% / 1.6% at 1.0. Opposite in sign to the S₈ tension, inside current RSD errors (~5%), at DESI-Y5 reach (1–2%). This is the
+framework's cosmology under prescription (B) with the dark component clustering as in ΛCDM; the galaxy-side gates are unchanged by it.
+It can be killed by a low-S₈ or low-fσ₈ result at the 2–3% level, which is exactly what a novel equation should risk.

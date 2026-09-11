@@ -9,7 +9,7 @@
   flat a₀(z), subdominant scalar GW) confronting DATA — not by Lean, and not while the intrinsic BBN
   fine-tuning (L84/L87) and astra's open ADM/khronon gates stand.
 
-  Theorems (99 as of 2026-09-10; all: exit 0, zero `sorry`, axioms ⊆ {propext, Classical.choice, Quot.sound}):
+  Theorems (100 as of 2026-09-11; all: exit 0, zero `sorry`, axioms ⊆ {propext, Classical.choice, Quot.sound}):
     hasDerivAt_G, hasDerivAt_Gp   — Gp = dG/dy and Gpp = d²G/dy² proven (not merely asserted).
     kernel_identity               — MOND kernel G'(y)/(2y) = 1 − e^{-y}.
     Gpp_zero, Gpp_pos             — health dichotomy: G''(0)=0, G''(y)>0 ∀ y>0 (no ghost off zero field).
@@ -997,3 +997,10 @@ theorem bbn_c2_bound (c2 : ℝ) (h0 : 0 ≤ c2) (h : (0.94 : ℝ) ≤ 1 / (1 + 3
 
 /-- The K² clock has no time derivatives at quadratic order: phase dimension 2, fully constrained ⇒ 0 DOF. -/
 theorem stiff_clock_zero_dof : diracDOF 2 0 2 = 0 := fully_constrained_zero_dof 2
+
+/-! ### L180: the HUBBLE-KERNEL identity. With a₀ = κc√(Gρ_Λ) and ρ_Λ = 3Ω_ΛH₀²/(8πG), the cosmological kernel argument is
+    fixed with no new parameter: (cH₀/a₀)² = 8π/(3κ²Ω_Λ) (= 49 for κ = ½, Ω_Λ = 0.686, i.e. cH₀/a₀ = 7.0). -/
+theorem hubble_kernel_identity (κ c G H0 Ω pi : ℝ) (hκ : κ ≠ 0) (hc : c ≠ 0) (hG : G ≠ 0) (hH : H0 ≠ 0)
+    (hΩ : Ω ≠ 0) (hpi : pi ≠ 0) :
+    (c * H0) ^ 2 / (κ ^ 2 * c ^ 2 * (G * (3 * Ω * H0 ^ 2 / (8 * pi * G)))) = 8 * pi / (3 * κ ^ 2 * Ω) := by
+  field_simp
