@@ -5229,3 +5229,13 @@ recombination to ~0.6 by z = 3 to ~0.6 universal today, would pass the forest, c
 free-stream (so the shear band keeps its frozen power plus the kernel's 0.2–0.4). It fails the strict galaxy ceiling (0.105). This is the first
 candidate shape not yet excluded by a computation; its S₈/growth and shear numbers are uncomputed. Limits of the baseline: PM resolution
 (k ≤ 4, no halo cores), single realisation, constant a₀ on the peculiar field, ICs presuppose the recombination component, no baryonic physics.
+
+## L177 — TIME-DEPENDENT DARK COUPLING: DEAD on S₈ (2026-09-10)
+
+`L177_time_dependent_coupling.py` / `.out` (3/3). Cold, unheated component with coupling g(a) = 1 − 0.42 aⁿ (g₀ = 0.58 = X-COP = loose
+galaxy ceiling), linear two-fluid growth, lensing sees the coupled mass. Forest: fine (baryon growth at z = 3 within 1% of ΛCDM for n ≥ 2).
+S₈: 0.480 / 0.521 / 0.537 for n = 1 / 2 / 4 against a floor of 0.767 — the 42% coupling drop removes lensing mass and slows growth, and
+even crediting the L176 kernel-boosted baryons (+0.2–0.4 of the band, computed without the component) the lensing contrast stays below 0.8.
+DEAD. The L176 inference is closed: a fraction that falls in time cannot fall by the amount galaxies need without losing the lensing amplitude.
+Net: every mechanism shape for the mass-dependent dark fraction is now computed and excluded on this repository's baselines (velocity filters
+by forest/shear, potential depth by forest, time-dependent coupling by S₈, decay by background); the target f(M) ~ M^0.16 stands with no mechanism.
