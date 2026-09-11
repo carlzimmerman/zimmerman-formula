@@ -91,6 +91,34 @@ interior to Skordis & Złośnik's own CMB fits, containing both their MOND-compa
 
 ---
 
+## The gems — what would survive a hostile expert
+
+Sorted by robustness, not by ambition. Everything below is either a published theorem, a preregistered test, or a computed cost, each with its script or DOI. None of it is the RAR fit, which reproduces the McGaugh–Lelli–Schombert relation at its own scatter by construction.
+
+**Theorems (published; machine-checked where noted)**
+- **Matching theorem** — a galaxy well today is the cosmic background at (1+z)³ ≤ 5000 with the same sound speed, so any dust cold enough for the Lyman-α forest falls into galaxies, for any equation of state. The cleanest general result here and the reason every pressure-supported dark sector dies. [DOI 10.5281/zenodo.22261001](https://doi.org/10.5281/zenodo.22261001)
+- **κ no-go / zero-mode theorem** — this class of actions cannot derive the a₀–Λ coefficient; the MOND primitive enters the field equations only through its derivative. [DOI 10.5281/zenodo.22559892](https://doi.org/10.5281/zenodo.22559892)
+- **Foliation theorem** — two-mode MOND forces a preferred frame. [DOI 10.5281/zenodo.22679408](https://doi.org/10.5281/zenodo.22679408)
+- **Cuscuton classification** — a canonical MOND scalar cannot close the hypersurface-deformation constraint algebra; consistency and ghost-freedom coincide only on the cuscuton branch. [DOI 10.5281/zenodo.22682544](https://doi.org/10.5281/zenodo.22682544)
+- **Stiff-partner / BBN theorem** — shift-symmetric k-essence dust carries an a⁻⁶ partner whenever dK/dQ is asymptotically linear. [DOI 10.5281/zenodo.22682539](https://doi.org/10.5281/zenodo.22682539)
+- **Bounded-boost theorem** — a ceiling that dark matter cannot impose. [DOI 10.5281/zenodo.22548669](https://doi.org/10.5281/zenodo.22548669)
+- **GDM degeneracy theorem** — the CMB constrains a fluid, not a particle ([`particle-vs-mode`](nbody_2026/)).
+- **Necessity certificate** (Lean 4) — what any completion on these equations must contain: a host-mass-dependent dark fraction, a non-barotropic effective fluid, a locally screened preferred-frame source ([Mondlean.lean](fable_independent_2026/lean_2026/Mondlean.lean), `necessary_conditions_for_all_gates`).
+- **Lifetime pincer** (Lean 4) — two-body decaying dark matter needs τ ≥ 41 Gyr for the forest and τ ≤ 20 Gyr for galaxies ([L168](fable_independent_2026/L168_flux_power_two_body_decay.py), `two_body_tau_pincer`).
+
+**Predictions and tests, fixed before the data**
+- **Flat a₀(z)** — deep-MOND Tully–Fisher zero-point at z ≈ 2.5: 0.00 dex (this framework) vs +0.33 dex (a ΛCDM-native rising scale), decidable at ±0.13 dex. [DOI 10.5281/zenodo.22563139](https://doi.org/10.5281/zenodo.22563139)
+- **Gaia DR4** — both mutually exclusive wide-binary arms registered with a fixed decision rule. [DOI 10.5281/zenodo.21702746](https://doi.org/10.5281/zenodo.21702746), [Amendment 11](prep_2026/gaia_dr4_prep/PREREGISTRATION_DR4.md)
+- **Milky Way outer slope** — −0.35 to −0.20 over 19.5–26.5 kpc with the LMC's external field, against Gaia DR3's −0.47 ± 0.15 ([L172](fable_independent_2026/L172_mw_outer_curve_and_fgal_ledger.py)).
+- **Dwarf-spheroidal external-field effect** — ~1.9× across Galactocentric radius, where dark matter predicts none ([`hunt_2026/g06*`](hunt_2026/)).
+- **SN-Ia host-mass step at a₀** — the 6.9σ step reproduced; decisive tests still underpowered ([`nbody_2026/`](nbody_2026/)).
+
+**Tools and honest costs**
+- A QUMOND cosmological particle-mesh code validated against halofit ([L176](fable_independent_2026/L176_framework_pk_baseline.py)) and an exact linear-response solver for kicked or decaying dark matter ([L168](fable_independent_2026/L168_flux_power_two_body_decay.py)).
+- The kernel-prescription dichotomy on lensing ([L178](fable_independent_2026/L178_pm_coupled_component_kernel_baryons.py), [L179](fable_independent_2026/L179_lensing_from_kernel_potential.py)): a kernel on the peculiar field overpowers cosmological lensing tenfold; a kernel that sees the Hubble-flow acceleration is off cosmologically. The sharpest statement here of what the cosmological-a₀ ambiguity costs.
+- The dark-fraction ledger, f ∝ M^0.16 from spirals to clusters, as the target any mechanism must hit ([L172](fable_independent_2026/L172_mw_outer_curve_and_fgal_ledger.py)).
+- Liabilities found and kept on the record: the Coma UDG factor-14 discrepancy (4.9σ), the cold-infall mass 4–6× over what the relation tolerates, and κ = ½ versus 1/2π degenerate with the H₀ tension.
+
 ## Start here
 
 | document | what it is |
