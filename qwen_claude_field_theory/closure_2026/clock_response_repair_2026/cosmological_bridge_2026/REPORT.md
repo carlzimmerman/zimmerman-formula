@@ -2,6 +2,10 @@
 
 ## Result and boundary
 
+Newest checkpoint: [joint high-precision evolution](COUPLED_PRECISION_REPORT.md)
+obtains decreasing original-Euler residuals across six step refinements in
+the short low-k test. This is bounded numerical progress, not full closure.
+
 Latest checkpoint: [precision isolation and backward radiation continuation](PRECISION_RADIATION_REPORT.md)
 isolates evaluation roundoff and reaches a radiation-majority homogeneous
 branch without refitting. Differentiated transfer convergence and CMB
