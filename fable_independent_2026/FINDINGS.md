@@ -5149,3 +5149,21 @@ time-dependent, disequilibrium (LMC/Sgr/warp) unmodelled.
 1.2×10¹⁰; MW = 0.14 Newtonian (Jiao dynamical mass 2.06×10¹¹ vs 10¹² expected), ≤ 0 on the kernel; X-COP clusters = 0.576/0.514 at 5×10¹⁴;
 CMB ≥ 0.988. Monotonic in host mass, f ~ M^0.16 from SPARC to clusters. This is the curve any mechanism for L166 clause (i) must produce;
 the Gaia result puts the Milky Way firmly on the galaxy side of the pincer and sharpens the target without supplying the mechanism.
+
+## L173 — THE INTERNAL-CLOCK FLUID: the first cell that threads forest + linear S₈ + galaxies (2026-09-10)
+
+`L173_internal_clock_fluid.py` / `.out` (5/5, no literal-True). Model: all dark matter cold until cosmic time t_*, then every particle
+receives an isotropic speed v_* (no decay, no energy loss; the switch is set by a clock, not by density). Cosmology = L168 exact linear
+response with one cohort at t_*; galaxy retention = L167 delta-kick table (kick at 4 Gyr, used for all t_*: later switch-on retains
+slightly more); forest CHECKED not assumed. Scan t_* ∈ {3.5, 5, 7, 9} Gyr × v_* ∈ {300, 450, 600} km/s.
+**Result.** Forest: untouched at z = 2.5 for every t_* ≥ 3.5 Gyr (T² = 1.000 at k = 5). Galaxy gate (η(3R_d) ≤ 0.582 for the 110 and
+220 km/s hosts): only v_* = 600 (η = 0.00, 0.42). S₈ ≥ 0.767: 11 of 12 cells (0.766 at t_* = 3.5, v_* = 600 fails by 0.001). **Both:
+t_* = 5, 7, 9 Gyr with v_* = 600 km/s (S₈ = 0.780, 0.801, 0.820).** Filter shape at (5 Gyr, 600): η = 0, 0, 0.42, 1.0 for 80, 110, 220
+km/s hosts and clusters — monotonic in host mass, the ledger's direction, though step-like rather than M^0.16 at the low end.
+**What binds next.** (i) Every passing cell has T²(k = 1 h/Mpc, z = 0) = 0.005–0.29 (0.005–0.06 for the three passing cells): the linear
+σ₈ proxy passes but cosmic shear at ℓ > 1000 probes exactly this band at z < 1 — that confrontation is uncomputed and is now the binding
+test, not S₈. (ii) Clusters retain 1.00 against the X-COP requirement 0.576: over-massive by 1.7× unless the cluster reading absorbs it.
+(iii) The 220 km/s host fails the STRICT galaxy ceiling 0.105 (0.42 ≥ 0.105); the pass is on the loosest reading. (iv) No mechanism
+couples the fluid's sound speed to a clock: this is the phenomenological ceiling of the idea, not a theory, and nothing here is Lean-new.
+**Verdict.** UNDETERMINED and LIVE — the first cell in the whole programme to pass forest + S₈ + galaxies simultaneously — with the
+small-scale shear test named and unrun. Do not call it a mechanism.
