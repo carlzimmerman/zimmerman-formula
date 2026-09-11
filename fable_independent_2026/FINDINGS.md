@@ -5241,3 +5241,25 @@ KNIFE-EDGE with the kernel credited. The self-consistent run (component at 0.58 
 was not run. The L176 inference is closed as stated; it survives only as this knife-edge.
 Net: every mechanism shape for the mass-dependent dark fraction is now computed and excluded on this repository's baselines (velocity filters
 by forest/shear, potential depth by forest, time-dependent coupling by S₈, decay by background); the target f(M) ~ M^0.16 stands with no mechanism.
+
+## L178 — SELF-CONSISTENT PM: coupled component + kernel reading baryons — DEAD BY OVERSHOOT, and the kernel-prescription dichotomy (2026-09-10)
+
+`L178_pm_coupled_component_kernel_baryons.py` / `.out` / `L178_results.json` (2/2). Two species (baryons, dark component with g(a) = 1 − 0.42aⁿ),
+kernel ν_RAR on the baryon field only, component Newtonian with weight g(a), same PM code/box/ICs as L176, ΛCDM reference reused.
+
+| run | forest z=3 (baryons) | shear z=0.5 (lensing) | lensing z=0, 0.15–0.5 | S₈ proxy |
+|---|---|---|---|---|
+| g₀ = 0.58, n = 4, kernel on baryons | 2.2–2.5 | 2.2–3.5 | 1.6–2.7 | 1.25 |
+| g₀ = 0.58, n = 2, kernel on baryons | 2.2–2.5 | 1.8–2.9 | 1.5–2.6 | 1.22 |
+| g = 1, kernel on baryons (control) | 2.2–2.5 | 2.6–4.2 | 4.1–7.0 | 2.02 |
+| g₀ = 0.58, n = 4, Newtonian (no kernel) | 1.00 | 0.83–0.85 | 0.38–0.39 | 0.525 |
+
+The Newtonian control reproduces the linear L177 number (S₈ 0.525 vs 0.537): the code is consistent. With the kernel active on the peculiar
+baryon field, the knife-edge does not survive — it dies the other way: the kernel on top of a near-full dark budget at z = 3 overproduces the
+forest power by 2.2–2.5× and the late lensing power by 1.5–3.5× (S₈ proxy 1.22–1.25 against 0.84). **The kernel-prescription dichotomy.**
+(A) Kernel on the peculiar field (Llinares/Angus): with any substantial clustered budget the framework overshoots ΛCDM structure at z = 3 and
+z ≤ 0.5 (this lane; L176 f = 0.58 reading total: 3–8× at z ≤ 0.5). (B) Kernel argument includes the Hubble-flow acceleration cH(z): cH/a₀ = 6.0,
+9.4, 46 at z = 0, 0.5, 3 (ν = 1.09, 1.05, 1.00), so the kernel is off on cosmological scales, the growth is Newtonian to ≤ 9%, and every
+component-alone verdict (L168 forest, L174 shear, L177 S₈ = 0.48–0.54) stands. Under (A) the coupled component is dead by overshoot; under (B)
+by undershoot; an intermediate prescription tuned to land on ΛCDM at both epochs would be a fit, not a theory. The L176 inference is closed
+in both readings. Net after L160–L178: no mechanism for the mass-dependent dark fraction survives on either kernel prescription.
