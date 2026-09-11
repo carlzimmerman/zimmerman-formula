@@ -6,8 +6,17 @@ Carl supplied the primordial-clock direction and the insistence on a global acce
 
 ## Latest numerical/action checkpoint (2026-09-11)
 
-See [mixed clock compatibility](mixed_compatibility_2026/REPORT.md) for the newest
-follow-through. Fresh staggered clock evolution reduces the reported momentum
+See [same-action cosmological bridge](cosmological_bridge_2026/REPORT.md).
+The frozen cubic clock now has independently checked scalar metric/matter
+equations and off-shell Ward identities, a short sourced homogeneous
+evolution preserving both constraints, a separate stock CLASS control,
+and two conditional Lean algebra leaves. The physical clock rate is solved
+rather than frozen to one when adding matter. The finite-k transfer system
+is derived but not integrated; no MOND kernel or CMB viability is claimed.
+This does not fix the radial convergence failure below.
+
+See [mixed clock compatibility](mixed_compatibility_2026/REPORT.md) for the
+radial follow-through. Fresh staggered clock evolution reduces the reported momentum
 residual but still fails full-origin fine-grid tangency. A derived spline-space
 compatibility obstruction has two checked Lean algebra leaves; it is not a
 gravity no-go. The experimental method remains outside the production solver.
