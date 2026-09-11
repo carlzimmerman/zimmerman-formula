@@ -5167,3 +5167,22 @@ test, not S₈. (ii) Clusters retain 1.00 against the X-COP requirement 0.576: o
 couples the fluid's sound speed to a clock: this is the phenomenological ceiling of the idea, not a theory, and nothing here is Lean-new.
 **Verdict.** UNDETERMINED and LIVE — the first cell in the whole programme to pass forest + S₈ + galaxies simultaneously — with the
 small-scale shear test named and unrun. Do not call it a mechanism.
+
+## L174 — SMALL-SCALE COSMIC SHEAR: the internal-clock fluid is DEAD (2026-09-10)
+
+`L174_small_scale_shear.py` / `.out` (3/3, no literal-True). Limber C_ℓ with a KiDS-like n(z) (z₀ = 0.5), ratio to ΛCDM halofit,
+bracketed because no N-body exists for this fluid: LOWER = linear T²(k,z) applied to halofit; UPPER = all nonlinear power at k > 0.3 h/Mpc
+frozen at its t_* value (true only for hosts with v_esc > 600 km/s; galaxy-scale one-halo power is in fact lost, so the truth is nearer the lower bound).
+
+| cell | bound | ℓ=100 | 300 | 1000 | 2000 | 3000 |
+|---|---|---|---|---|---|---|
+| t_* = 5 Gyr | lower / upper | 0.90 / 0.90 | 0.57 / 0.60 | 0.14 / 0.27 | 0.05 / 0.26 | 0.03 / 0.27 |
+| t_* = 7 Gyr | lower / upper | 0.93 / 0.94 | 0.70 / 0.74 | 0.30 / 0.51 | 0.17 / 0.51 | 0.13 / 0.53 |
+| t_* = 9 Gyr | lower / upper | 0.96 / 0.97 | 0.83 / 0.87 | 0.58 / 0.76 | 0.48 / 0.77 | 0.44 / 0.79 |
+
+Against a ~10% band-power tolerance (KiDS-1000 / DES-Y3 scale, cited not re-fit), every cell fails at ℓ = 1000 even on the upper bound
+(0.27, 0.51, 0.76), and the two cells that pass S₈ comfortably fail already at ℓ = 300. The linear σ₈ proxy was blind to this because it
+averages over k ≲ 0.3 h/Mpc; the evacuation that empties galaxies necessarily empties the k ~ 1 h/Mpc band that shear measures at z < 1.
+**Verdict: DEAD.** The clock-switched velocity filter cannot both evacuate galaxies (needs 600 km/s) and preserve the z < 1 small-scale
+shear power. With L168 (decay) this closes the velocity-filter family in both timing profiles (early → forest, late → shear). The
+dark-fraction target f(M) ~ M^0.16 remains without a mechanism.
