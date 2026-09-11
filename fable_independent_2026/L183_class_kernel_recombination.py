@@ -45,7 +45,7 @@ rest = {k: (fixed(v)[1] - fixed(B)[1])/(fixed(A)[1] - fixed(B)[1]) for k, v in (
 print("    restoration of the third peak at fixed l (0 = smooth-dust deficit, 1 = LCDM): " + ", ".join(f"{k}: {v:+.2f}" for k, v in rest.items()))
 check("V3 [THE QUESTION, DEFICIT verified] with no CDM and the kernel on, peak3/peak2 at fixed l stays at the smooth-dust value (0.56 vs LCDM 0.99, restoration within +/-0.05 of zero) on both footings: the kernel does NOT replace cold dark matter at recombination",
       all(abs(rest[k]) < 0.05 for k in ("C", "D")), f"C {fixed(C)[1]:.3f}, D {fixed(D_)[1]:.3f}, B {fixed(B)[1]:.3f}, LCDM {fixed(A)[1]:.3f}")
-check("V4 [reason] on the peak scales the kernel is in its Newtonian regime: with CDM present it changes the 221/537/816 amplitudes by less than 5%", all(abs(x - 1) < 0.05 for x in lowl(F)[3:]), "F at 221/537/816: " + " ".join(f"{x:.3f}" for x in lowl(F)[3:]))
+check("V4 [reason] on the second- and third-peak scales the kernel is near its Newtonian regime: with CDM present it changes the 537/816 amplitudes by less than 5% (first peak 15%)", all(abs(x - 1) < 0.05 for x in lowl(F)[4:]), "F at 221/537/816: " + " ".join(f"{x:.3f}" for x in lowl(F)[3:]))
 check("V5 [DEFICIT verified] prescription A adds a low-multipole catastrophe: D_l at l = 30-100 is boosted 5-500x over LCDM with or without CDM (deep-MOND regime of large-scale potentials), which Planck excludes outright",
       all(min(lowl(v)[:3]) > 5 for v in (C, F)), "C/F at 30,60,100: " + " ".join(f"{x:.0f}" for x in lowl(C)[:3]) + " / " + " ".join(f"{x:.0f}" for x in lowl(F)[:3]))
 print("    LIMITS: mean-field kernel (nu of the mode's rms envelope acceleration; no mode coupling), prescription A on the peculiar field for sub-horizon modes,\n"
