@@ -1,0 +1,56 @@
+==============================================================================================================
+(A) MILKY WAY OUTER CURVE: framework kernel vs Gaia DR3 (as quoted: slope -0.47 +/- 0.15 over 19.5-26.5 kpc)
+==============================================================================================================
+    baryons: bulge 1.0e10 (Hernquist 0.7 kpc) + stellar disc 4.5e10 (R_d 2.6 kpc) + gas 1.2e10 (R_d 6 kpc) = 6.7e10 Msun
+    canonical: v(8) = 220 km/s (Eilers+19: 229), v(19.5) = 197, v(26.5) = 190, isolated slope = -0.126, v_flat(BTFR) = 170
+    alt      : v(8) = 225 km/s (Eilers+19: 229), v(19.5) = 204, v(26.5) = 197, isolated slope = -0.117, v_flat(BTFR) = 178
+  [PASS] M1 the isolated kernel reproduces the inner curve: v(8 kpc) within 20 km/s of 229 for at least one footing
+           (canonical: 220, alt: 225)
+    isolated slope over the baryonic-model grid (both footings): -0.146 to -0.095
+  [PASS] M2 isolated prediction: the slope is shallower than -0.20 for every baryonic model and footing (no Keplerian fall without an external field)
+  [PASS] M3 the isolated kernel is in tension with the quoted Gaia slope: (-0.47 - slope)/0.15 beyond 2 sigma for the steepest baryonic model
+           (-2.50 sigma)
+     g_eN/a0      canonical            alt
+        0.00         -0.126         -0.117
+        0.01         -0.147         -0.143
+        0.03         -0.184         -0.186
+        0.06         -0.228         -0.236
+        0.12         -0.292         -0.304
+        0.20         -0.346         -0.360
+        0.30         -0.388         -0.402
+        0.50         -0.436         -0.447
+    canonical needs g_eN = 0.157 a0 to reach the 1-sigma (-0.32) slope
+    canonical needs g_eN = 0.786 a0 to reach the central (-0.47) slope
+    alt       needs g_eN = 0.139 a0 to reach the 1-sigma (-0.32) slope
+    alt       needs g_eN = 0.687 a0 to reach the central (-0.47) slope
+    LMC Newtonian field at the MW (M_LMC = 1-2e11, d = 50 kpc): 0.060-0.119 a0 (canonical); M31 + LSS ~ 0.01 a0
+  [PASS] M4 the external field needed for even the 1-sigma slope exceeds the LMC's maximum Newtonian field (2e11 at 50 kpc) for both footings
+           (canonical: 0.16 vs LMC max 0.12, alt: 0.14 vs LMC max 0.12)
+    canonical: with the LMC field (M_LMC 1e11 -> 2e11) the predicted slope is -0.228 -> -0.291, i.e. 1.6 -> 1.2 sigma from -0.47
+    alt      : with the LMC field (M_LMC 1e11 -> 2e11) the predicted slope is -0.235 -> -0.304, i.e. 1.6 -> 1.1 sigma from -0.47
+  [PASS] M5 [PREDICTION, verified] the kernel + LMC external field predicts an outer slope between -0.35 and -0.20 for both footings: steeper than isolated MOND, shallower than Keplerian, 1.1-1.6 sigma from the quoted Gaia value -- NOT excluded, NOT confirmed; a +/-0.05 slope measurement after asymmetric-drift modelling would decide
+           (canonical: -0.23..-0.29, alt: -0.24..-0.30)
+  [PASS] M6 an added CDM-like halo makes the outer slope FLATTER, so the Milky Way allows f_gal <= 0 on top of the kernel if the decline is real
+           (slopes f = 0/0.1/0.2: -0.126, -0.108, -0.093)
+    LIMITS: 1-D EFE approximation (g = nu((g_N + g_eN)/a0) g_N); the LMC at 50 kpc is a tidal, time-dependent field rather than a uniform one; asymmetric-drift and
+    disequilibrium systematics (LMC, Sgr, warp) not modelled; published tables not ingested (slope as quoted, normalisation Eilers-anchored).
+
+==============================================================================================================
+(B) THE f_gal(M) LEDGER: dark fraction relative to the LCDM expectation vs host mass (definitions labelled)
+==============================================================================================================
+    host                                                   M [Msun]       f   definition
+    SPARC spirals (BTFR/RAR ceiling, L148 headline)         1.2e+10   0.105   <= : max CDM-like halo the kernel tolerates (AM cuspy NFW)
+    SPARC spirals (L148 binding: a0 within 2x)              1.2e+10   0.030   <= : same, a0 refit constrained
+    SPARC spirals (L148 most lenient, mass-dependent)       1.2e+10   0.398   <= : loosest convention
+    Milky Way (Gaia DR3 dynamical mass, Newtonian)          6.7e+10   0.139   = : (M_dyn - M_b)/M_200,LCDM with M_dyn = 2.06e11 (Jiao+23), M_200 = 1e12
+    Milky Way (on top of the kernel, this script)           6.7e+10   0.000   <= 0 : any extra halo flattens the declining slope (M6)
+    X-COP clusters at 1 Mpc (L163 f_req, canonical/alt)     5.0e+14   0.576   = : source REQUIRED beyond the kernel, 0.576 / 0.514
+    CMB third peak (L145-L151)                                  inf   0.988   >= : clustering dust required at recombination
+    power-law through SPARC ceiling, MW (Newtonian), clusters: f ~ M^0.16  (a mechanism for L166 clause (i) must produce roughly this)
+  [PASS] L1 the ledger is monotonic: the required/allowed dark fraction rises with host mass from SPARC (<= 0.105) through the MW (0.14) to clusters (0.58) to the CMB (0.99)
+  [PASS] L2 the SPARC-to-cluster rise is a power law of index 0.1-0.25 in host mass
+           (index 0.16)
+  [PASS] L3 [DEFICIT, verified] the Milky Way is on the galaxy side of the pincer: its Newtonian dark fraction 0.14 is 7x below the CMB requirement and, on the kernel, <= 0
+    NOTE: rows mix ceilings (<=), measurements (=) and requirements (>=); the monotonic trend is the target curve, not a fit of one quantity.
+
+L172 COMPLETE: 9/9 checks PASS.

@@ -5133,3 +5133,19 @@ Still dead: no clustering dust, host-independent dark fraction (L169 theorem). N
 scales at every epoch (g_N/a₀ ~ 10⁻³ at k = 0.01 h/Mpc today, ~9 at recombination) with no condensate background, so this action's CMB and
 growth sector is not the L129/L165 smooth-dust computation and has never been run. Verdict: the stiff clock buys the preferred-frame gate at
 the price of a G_cosmo shift and leaves both cosmological failures in place.
+
+## L172 — Milky Way outer curve vs Gaia DR3, and the f_gal(M) ledger (2026-09-10)
+
+`L172_mw_outer_curve_and_fgal_ledger.py` / `.out` (9/9, no literal-True; published tables NOT ingested — slope as quoted from Jiao et al.
+2023, −0.47 ± 0.15 over 19.5–26.5 kpc; normalisation Eilers-anchored). Baryons 6.7×10¹⁰ (bulge 1e10 + disc 4.5e10 at R_d 2.6 + gas 1.2e10).
+**(A) Prediction.** Isolated kernel (ν_RAR, both footings): v(8) = 220/225, v(19.5) = 197/204, v(26.5) = 190/197, slope −0.126/−0.117
+(baryonic-model grid −0.15 to −0.10): 2.5σ shallower than quoted. With a 1-D external field the slope steepens: −0.29/−0.30 at
+g_eN = 0.12 a₀ (LMC of 2×10¹¹ at 50 kpc), −0.23/−0.24 at 0.06 a₀ (10¹¹). Reaching −0.47 needs g_eN ≈ 0.7–0.8 a₀, 6× the LMC's maximum;
+reaching the 1σ value −0.32 needs 0.14–0.16 a₀, just above it. Adding a CDM-like halo flattens the slope (−0.126 → −0.093 at f = 0.2),
+so on the kernel the Milky Way allows f_gal ≤ 0 if the decline is real. **Prediction band: slope −0.35 to −0.20 (LMC 1–2×10¹¹), 1.1–1.6σ
+from Gaia — not excluded, not confirmed.** Decides at ±0.05 after asymmetric-drift modelling. Limits: 1-D EFE, LMC is tidal and
+time-dependent, disequilibrium (LMC/Sgr/warp) unmodelled.
+**(B) Ledger** (definitions labelled: ≤ ceilings, = measurements, ≥ requirements): SPARC ≤ 0.105 (0.030 binding, 0.398 lenient) at
+1.2×10¹⁰; MW = 0.14 Newtonian (Jiao dynamical mass 2.06×10¹¹ vs 10¹² expected), ≤ 0 on the kernel; X-COP clusters = 0.576/0.514 at 5×10¹⁴;
+CMB ≥ 0.988. Monotonic in host mass, f ~ M^0.16 from SPARC to clusters. This is the curve any mechanism for L166 clause (i) must produce;
+the Gaia result puts the Milky Way firmly on the galaxy side of the pincer and sharpens the target without supplying the mechanism.
