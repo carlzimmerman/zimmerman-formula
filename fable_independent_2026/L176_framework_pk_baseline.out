@@ -1,0 +1,37 @@
+    box 50.0 Mpc/h, mesh 128^3, particles 96^3, z_i = 49.0; a0 code units canonical 429, alt 517
+    runs done in 159s
+
+    (A) VALIDATION: Newtonian LCDM PM vs CLASS halofit, P_PM/P_halofit
+      z=3.0: 0.17:1.24 0.21:1.73 0.27:0.85 0.34:1.03 0.43:1.10 0.54:1.17 0.69:1.08 0.87:1.10 1.10:0.89 1.39:0.85 1.76:0.74 2.23:0.65 2.81:0.55 3.56:0.45
+      z=0.0: 0.17:0.98 0.21:1.08 0.27:0.88 0.34:0.86 0.43:0.85 0.54:0.86 0.69:0.93 0.87:0.99 1.10:0.88 1.39:0.88 1.76:0.80 2.23:0.69 2.81:0.55 3.56:0.41
+  [PASS] V1 the Newtonian LCDM run reproduces CLASS halofit within 35% for 0.3 <= k <= 2 h/Mpc at z = 3 and z = 0 (PM resolution / shot noise)
+           (max dev 0.26)
+
+    (B/C) FRAMEWORK BASELINE: P/P_LCDM(PM) -- the kernel-boosted structure relative to the same-code LCDM
+      k [h/Mpc]:   0.17   0.21   0.27   0.34   0.43   0.54   0.69   0.87   1.10   1.39   1.76   2.23   2.81   3.56
+      bary_canon   z=3.0:   0.21   0.21   0.19   0.19   0.17   0.17   0.14   0.13   0.13   0.11   0.09   0.07   0.05   0.04
+      bary_canon   z=1.0:   0.32   0.32   0.26   0.24   0.24   0.22   0.18   0.17   0.13   0.11   0.10   0.09   0.08   0.08
+      bary_canon   z=0.5:   0.45   0.45   0.35   0.32   0.32   0.30   0.25   0.25   0.23   0.21   0.18   0.20   0.21   0.23
+      bary_canon   z=0.0:   0.75   0.71   0.59   0.54   0.52   0.46   0.38   0.33   0.33   0.31   0.31   0.31   0.32   0.31
+      bary_alt     z=3.0:   0.23   0.23   0.21   0.21   0.19   0.18   0.16   0.15   0.14   0.12   0.10   0.07   0.05   0.04
+      bary_alt     z=1.0:   0.38   0.38   0.31   0.29   0.28   0.27   0.22   0.21   0.17   0.15   0.13   0.12   0.12   0.12
+      bary_alt     z=0.5:   0.55   0.54   0.44   0.40   0.40   0.37   0.32   0.32   0.30   0.28   0.25   0.27   0.28   0.31
+      bary_alt     z=0.0:   0.92   0.85   0.77   0.69   0.66   0.60   0.50   0.43   0.43   0.40   0.41   0.40   0.39   0.37
+      f0.1_canon   z=3.0:   0.30   0.30   0.28   0.28   0.26   0.25   0.22   0.20   0.19   0.17   0.14   0.11   0.08   0.06
+      f0.1_canon   z=1.0:   0.54   0.53   0.46   0.42   0.42   0.41   0.35   0.35   0.29   0.27   0.25   0.24   0.24   0.25
+      f0.1_canon   z=0.5:   0.80   0.76   0.68   0.60   0.60   0.57   0.50   0.51   0.48   0.46   0.41   0.43   0.45   0.45
+      f0.1_canon   z=0.0:   1.33   1.15   1.23   1.06   1.03   1.00   0.83   0.74   0.70   0.67   0.65   0.61   0.58   0.52
+      f0.58_canon  z=3.0:   1.04   1.01   1.02   0.99   0.99   0.97   0.96   0.95   0.95   0.91   0.87   0.82   0.77   0.70
+      f0.58_canon  z=1.0:   2.31   1.95   2.56   2.19   2.22   2.29   2.24   2.30   2.17   2.15   2.12   1.84   1.57   1.34
+      f0.58_canon  z=0.5:   3.43   2.59   4.38   3.20   3.32   3.87   3.30   3.86   3.66   2.93   2.23   1.88   1.59   1.49
+      f0.58_canon  z=0.0:   5.37   4.80   8.60   7.81   8.24   7.38   5.45   4.55   4.66   3.82   2.92   2.49   2.27   1.77
+      bary_canon: forest band z=3 k=1-4: 0.04-0.13;  shear band z=0.5 k=0.3-2: 0.18-0.32
+      bary_alt: forest band z=3 k=1-4: 0.04-0.14;  shear band z=0.5 k=0.3-2: 0.25-0.40
+  [PASS] B1 [BASELINE, verified] baryons-only + kernel does NOT reproduce LCDM power in the forest band at z = 3 to 10% for either footing (it is either under or over)
+  [PASS] B2 direction at z = 0 in the shear band is the same for both footings (both over or both under LCDM)
+           (UNDER)
+  [PASS] B3 adding a retained dark fraction (0.1, 0.58, kernel reading the total) moves the z = 0 shear-band power monotonically
+    LIMITS: PM at 128^3/50 Mpc/h (k <= 4, no small-scale halo cores); QUMOND on the peculiar field with constant a0 (the cosmological-a0 ambiguity is
+    resolved the Llinares/Angus way); LCDM background; ICs assume the recombination-era component; no baryonic physics; single realisation.
+
+L176 COMPLETE: 4/4 checks PASS.   [159s]

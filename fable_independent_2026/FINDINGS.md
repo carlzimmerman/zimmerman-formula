@@ -5198,3 +5198,34 @@ reproduces ΛCDM's small-scale power (forest, S₈, shear). In the framework the
 and that contribution has never been computed for the nonlinear regime (the linear kernel is ill-defined at zero field). So the kills are
 conditional on a ΛCDM baseline the framework does not share, and so are the passes. The non-circular computation is the framework's own
 P(k, z) at z = 0–3 with the kernel active (a MOND-kernel N-body or halo-model estimate), which is the missing baseline for all of them.
+
+## L176 — THE FRAMEWORK'S OWN P(k, z) BASELINE with the kernel active (2026-09-10)
+
+`L176_framework_pk_baseline.py` / `.out` / `L176_pk_results.json` (4/4, no literal-True). Cosmological PM code (50 Mpc/h, 128³ mesh, 96³
+particles, z_i = 49, Zel'dovich ICs from the ΛCDM transfer function), QUMOND kernel on the peculiar Newtonian field (ν_RAR, constant a₀,
+both footings, Llinares/Angus prescription), ΛCDM background. Two code bugs caught by the validation and fixed before any framework number
+was read (force scaling, initial growth rate). Validation: the Newtonian ΛCDM run matches CLASS halofit within 26% for 0.3 ≤ k ≤ 2 h/Mpc
+at z = 3 and z = 0. Runs: baryons-only + kernel (both footings); baryons + retained dark fraction 0.1 and 0.58 with the kernel reading the total.
+
+**P/P_ΛCDM(same code):**
+
+| run | z = 3, k = 1–4 | z = 0.5, k = 0.3–2 | z = 0, k = 0.2–1 |
+|---|---|---|---|
+| baryons + kernel, canonical | 0.04–0.13 | 0.18–0.32 | 0.33–0.75 |
+| baryons + kernel, alt | 0.04–0.14 | 0.25–0.40 | 0.43–0.92 |
+| + 0.1 dark, kernel reads total | 0.06–0.19 | 0.41–0.60 | 0.65–1.3 |
+| + 0.58 dark, kernel reads total | 0.70–0.95 | 1.5–4.4 | 1.8–8.6 |
+
+**What the baseline does to the earlier verdicts.** (i) At z = 3 the kernel adds almost nothing on forest scales: kernel-boosted baryons alone
+sit 7–25× below ΛCDM, so the forest kills (L168 decay, L175 potential-depth) stand and were in fact conservative. (ii) At z = 0.5 the kernel-
+boosted baryons supply 0.2–0.4 of the shear-band power, so the L174 shear kill of the clock fluid is softened but stands (total ≈ 0.3 against a
+~0.9 tolerance). (iii) A retained 0.58 with the kernel reading the total reproduces ΛCDM at z = 3 exactly (0.95–1.0 for k ≤ 1) but overshoots
+by 3–8× by z ≤ 0.5; a retained 0.1 matches z = 0 on 0.2–1 h/Mpc but is 5–15× under at z = 3.
+
+**Inference (labelled as such, not a result).** The framework's own dynamics want an effective clustering dark fraction that FALLS with time on
+the same scales: ~0.6 at z = 3 (forest) → ~0.1–0.2 at z = 0 (field), while clusters need 0.58 today (L163) and the loose galaxy ceiling is
+0.582 (L148/L163) — the same number. A component whose gravitational coupling declines with cosmic time, without heating, from ~1 at
+recombination to ~0.6 by z = 3 to ~0.6 universal today, would pass the forest, clusters and the LOOSE galaxy reading at once and would not
+free-stream (so the shear band keeps its frozen power plus the kernel's 0.2–0.4). It fails the strict galaxy ceiling (0.105). This is the first
+candidate shape not yet excluded by a computation; its S₈/growth and shear numbers are uncomputed. Limits of the baseline: PM resolution
+(k ≤ 4, no halo cores), single realisation, constant a₀ on the peculiar field, ICs presuppose the recombination component, no baryonic physics.
