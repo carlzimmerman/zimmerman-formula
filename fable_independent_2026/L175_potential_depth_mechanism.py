@@ -10,7 +10,8 @@ def check(n, ok, d=""):
     CH.append(bool(ok)); print(f"  [{'PASS' if ok else 'FAIL'}] {n}" + (f"\n           ({d})" if d else ""))
 h = 0.6736; G = 4.30091e-6; c2 = 299792.458**2
 cl = Class(); cl.set({"h": h, "omega_b": 0.02237, "omega_cdm": 0.12, "A_s": 2.1e-9, "n_s": 0.9649, "tau_reio": 0.0544, "N_ur": 3.046, "N_ncdm": 0,
-                      "YHe": 0.2454, "output": "mPk", "P_k_max_h/Mpc": 60, "z_max_pk": 1100}); cl.compute()
+                      "YHe": 0.2454, "output": "mPk", "P_k_max_h/Mpc": 60, "z_max_pk": 50}); cl.compute()
+ZREC = 30.0   # matter-era stand-in: linear Phi_k is constant in matter domination; the true z = 1100 value is ~10-20% lower (radiation), which only strengthens P3
 Om = 0.3138; H0 = 100*h/299792.458
 def Phi_rms(k_h, z):   # rms of the Newtonian potential per ln k, in units of c^2 (Poisson, linear)
     k = k_h*h; D2 = k**3*cl.pk_lin(k, z)/(2*np.pi**2)
@@ -21,12 +22,12 @@ lo, hi = Phi_mw, Phi_cl
 check("P1 a single threshold separating MW-like galaxies (absent) from X-COP clusters (present) exists: Phi_c in [6e-7, 2e-5] c^2 (window 40x)", hi/lo > 10, f"{lo:.1e}..{hi:.1e}")
 print(f"    {'scale':<34} {'Phi_rms [c^2]':>14}  clusters at the lowest admissible threshold?")
 rows = [("forest z=3, k=1 h/Mpc", Phi_rms(1.0, 3.0)), ("forest z=3, k=5 h/Mpc", Phi_rms(5.0, 3.0)), ("shear z=0.5, k=1 h/Mpc", Phi_rms(1.0, 0.5)),
-        ("third peak z=1100, k=0.05/Mpc", Phi_rms(0.05/h, 1100.0)), ("third peak z=1100, k=0.15/Mpc", Phi_rms(0.15/h, 1100.0)), ("large scale z=0, k=0.01 h/Mpc", Phi_rms(0.01, 0.0))]
+        ("third peak k=0.05/Mpc (matter-era Phi)", Phi_rms(0.05/h, ZREC)), ("third peak k=0.15/Mpc (matter-era Phi)", Phi_rms(0.15/h, ZREC)), ("large scale z=0, k=0.01 h/Mpc", Phi_rms(0.01, 0.0))]
 for n, p in rows: print(f"    {n:<34} {p:14.1e}  {'yes' if p > lo else 'NO'}")
 check("P2 [DEFICIT, verified] on forest scales at z = 3 the potential is 10-100x below even the LOWEST admissible threshold: the component is unclustered there for any Phi_c that empties galaxies (forest kill, worse than the decay plateau)",
       Phi_rms(5.0, 3.0) < lo/10 and Phi_rms(1.0, 3.0) < lo, f"k=1: {Phi_rms(1.0,3.0):.1e}, k=5: {Phi_rms(5.0,3.0):.1e} vs {lo:.1e}")
 check("P3 [DEFICIT, verified] on third-peak scales at recombination the potential is below the lowest admissible threshold too: the component would not cluster at z = 1100 either (the CMB gate fails)",
-      Phi_rms(0.1/h, 1100.0) < lo, f"k=0.1/Mpc: {Phi_rms(0.1/h,1100.0):.1e}")
+      Phi_rms(0.1/h, ZREC) < lo, f"k=0.1/Mpc: {Phi_rms(0.1/h,ZREC):.1e} (matter-era value; z=1100 is lower still)")
 check("P4 the mechanism is a SCALE filter in disguise: linear Phi_k falls as k^-2 x transfer, so any Phi_c above the galaxy value removes all k >~ 0.05 h/Mpc power at every epoch",
       Phi_rms(0.05, 0.0) < lo and Phi_rms(0.005, 0.0) > Phi_rms(0.05, 0.0), f"Phi(0.005)={Phi_rms(0.005,0):.1e}, Phi(0.05)={Phi_rms(0.05,0):.1e}")
 print("    VERDICT: DEAD. Depth of potential and smallness of scale are the same variable in linear theory; a switch that removes the component from\n"

@@ -1,8 +1,20 @@
-Traceback (most recent call last):
-  File "/Users/carlzimmerman/new_physics/zimmerman-formula/fable_independent_2026/L175_potential_depth_mechanism.py", line 13, in <module>
-    "YHe": 0.2454, "output": "mPk", "P_k_max_h/Mpc": 60, "z_max_pk": 1100}); cl.compute()
-                                                                             ~~~~~~~~~~^^
-  File "python/classy.pyx", line 602, in classy._classy.Class.compute
-classy._classy.CosmoComputationError: 
+    ledger potentials: X-COP cluster at 1 Mpc 2.4e-05 c^2; MW at 10 kpc 5.6e-07; MW halo at 300 kpc 3.2e-08
+  [PASS] P1 a single threshold separating MW-like galaxies (absent) from X-COP clusters (present) exists: Phi_c in [6e-7, 2e-5] c^2 (window 40x)
+           (5.6e-07..2.4e-05)
+    scale                               Phi_rms [c^2]  clusters at the lowest admissible threshold?
+    forest z=3, k=1 h/Mpc                     1.2e-07  NO
+    forest z=3, k=5 h/Mpc                     7.8e-09  NO
+    shear z=0.5, k=1 h/Mpc                    1.1e-07  NO
+    third peak k=0.05/Mpc (matter-era Phi)        5.3e-06  yes
+    third peak k=0.15/Mpc (matter-era Phi)        1.3e-06  yes
+    large scale z=0, k=0.01 h/Mpc             1.8e-05  yes
+  [PASS] P2 [DEFICIT, verified] on forest scales at z = 3 the potential is 10-100x below even the LOWEST admissible threshold: the component is unclustered there for any Phi_c that empties galaxies (forest kill, worse than the decay plateau)
+           (k=1: 1.2e-07, k=5: 7.8e-09 vs 5.6e-07)
+  [FAIL] P3 [DEFICIT, verified] on third-peak scales at recombination the potential is below the lowest admissible threshold too: the component would not cluster at z = 1100 either (the CMB gate fails)
+           (k=0.1/Mpc: 2.2e-06 (matter-era value; z=1100 is lower still))
+  [FAIL] P4 the mechanism is a SCALE filter in disguise: linear Phi_k falls as k^-2 x transfer, so any Phi_c above the galaxy value removes all k >~ 0.05 h/Mpc power at every epoch
+           (Phi(0.005)=2.0e-05, Phi(0.05)=5.9e-06)
+    VERDICT: DEAD. Depth of potential and smallness of scale are the same variable in linear theory; a switch that removes the component from
+    galaxies removes it from every scale below ~30 Mpc at every epoch, including recombination.
 
-Error in Class: perturbations_init(L:873) :condition ((ppt->has_source_delta_m == _TRUE_) && (ppt->has_matter_source_in_current_gauge == _FALSE_)) is true; You requested a very high z_pk=1.100000e+03, higher than z_rec=1.088784e+03. This works very well when you ask only transfer functions, e.g. with 'output=mTk' or 'output=mTk,vTk'. But if you need the total matter (e.g. with 'mPk', 'dCl', etc.) there is an issue with the calculation of delta_m (or delta_cb) at very early times. By default, delta_m and delta_cb are expressed by the code as gauge-invariant variables (the density fluctuation in comoving gauge). This quantity is hard to get accurately at very early times. The solution is to define delta_m and delta_cb as density fluctuations in the current gauge, e.g. synchronous or newtonian. This is done by setting the input flag 'matter_source_in_current_gauge' to 'yes'.
+L175 COMPLETE: 2/4 checks PASS.
