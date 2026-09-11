@@ -5290,3 +5290,11 @@ number the PM baseline produced empirically. Values: G_eff/G = 1.077 (z = 0), 1.
 0.6, 1.1% / 1.6% at 1.0. Opposite in sign to the S₈ tension, inside current RSD errors (~5%), at DESI-Y5 reach (1–2%). This is the
 framework's cosmology under prescription (B) with the dark component clustering as in ΛCDM; the galaxy-side gates are unchanged by it.
 It can be killed by a low-S₈ or low-fσ₈ result at the 2–3% level, which is exactly what a novel equation should risk.
+
+## L181 — The Hubble-kernel equation against DESI DR1 growth (2026-09-11)
+
+`L181_desi_dr1_fsigma8_check.py` / `.out`. DESI 2024 V (arXiv:2411.12021) Table 9 ShapeFit fσ_s8/(fσ_s8)_fid per bin (Planck fiducial) vs the
+equation's ratio to Planck-ΛCDM (1.027–1.005 canonical, 1.038–1.007 alt across z = 0.3–1.5). See the `.out` for the per-bin table and χ².
+Verdict: consistent (χ²/6 ≈ 1 on both footings and both sub-panels), and not yet discriminated from ΛCDM (|Δχ²| < 1: DESI DR1 errors are
+10–19% against a 1–4% effect). DESI's μ₀ = 0.05 ± 0.22 (arXiv:2411.12026) vs the equation's G_eff/G − 1 today (0.077 / 0.099): within
+0.3σ. A 3σ test needs ~1% on fσ₈ at z ≈ 0.3–0.6, i.e. the DESI final sample. Alive, untested at the required precision.
