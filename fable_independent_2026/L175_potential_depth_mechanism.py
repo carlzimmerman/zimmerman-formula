@@ -26,10 +26,10 @@ rows = [("forest z=3, k=1 h/Mpc", Phi_rms(1.0, 3.0)), ("forest z=3, k=5 h/Mpc", 
 for n, p in rows: print(f"    {n:<34} {p:14.1e}  {'yes' if p > lo else 'NO'}")
 check("P2 [DEFICIT, verified] on forest scales at z = 3 the potential is 10-100x below even the LOWEST admissible threshold: the component is unclustered there for any Phi_c that empties galaxies (forest kill, worse than the decay plateau)",
       Phi_rms(5.0, 3.0) < lo/10 and Phi_rms(1.0, 3.0) < lo, f"k=1: {Phi_rms(1.0,3.0):.1e}, k=5: {Phi_rms(5.0,3.0):.1e} vs {lo:.1e}")
-check("P3 [DEFICIT, verified] on third-peak scales at recombination the potential is below the lowest admissible threshold too: the component would not cluster at z = 1100 either (the CMB gate fails)",
-      Phi_rms(0.1/h, ZREC) < lo, f"k=0.1/Mpc: {Phi_rms(0.1/h,ZREC):.1e} (matter-era value; z=1100 is lower still)")
-check("P4 the mechanism is a SCALE filter in disguise: linear Phi_k falls as k^-2 x transfer, so any Phi_c above the galaxy value removes all k >~ 0.05 h/Mpc power at every epoch",
-      Phi_rms(0.05, 0.0) < lo and Phi_rms(0.005, 0.0) > Phi_rms(0.05, 0.0), f"Phi(0.005)={Phi_rms(0.005,0):.1e}, Phi(0.05)={Phi_rms(0.05,0):.1e}")
-print("    VERDICT: DEAD. Depth of potential and smallness of scale are the same variable in linear theory; a switch that removes the component from\n"
-      "    galaxies removes it from every scale below ~30 Mpc at every epoch, including recombination.")
+check("P3 [computed, NOT a kill] on third-peak scales the matter-era potential (1.3e-6 to 5e-6 c^2) EXCEEDS the lowest admissible threshold: for Phi_c <= 1.3e-6 the component clusters at recombination, so the CMB gate does not kill this mechanism",
+      Phi_rms(0.15/h, ZREC) > lo and Phi_rms(0.05/h, ZREC) > lo, f"k=0.05: {Phi_rms(0.05/h,ZREC):.1e}, k=0.15: {Phi_rms(0.15/h,ZREC):.1e} vs lowest Phi_c {lo:.1e}")
+check("P4 the forest kill is threshold-independent: even the lowest galaxy-emptying Phi_c exceeds Phi_rms(k = 1 h/Mpc, z = 3) by more than 4x, so no admissible threshold keeps the component clustered on forest scales",
+      lo/Phi_rms(1.0, 3.0) > 4, f"ratio {lo/Phi_rms(1.0,3.0):.1f}")
+print("    VERDICT: DEAD by the forest alone. A threshold Phi_c ~ 1e-6 c^2 keeps the component in clusters and at recombination and out of galaxies,\n"
+      "    but at z = 3 the forest scales (k = 1-5 h/Mpc) sit 5-70x below it, so the component is unclustered exactly where the forest measures it.")
 print(f"\nL175 COMPLETE: {sum(CH)}/{len(CH)} checks PASS.")

@@ -5187,12 +5187,12 @@ averages over k ≲ 0.3 h/Mpc; the evacuation that empties galaxies necessarily 
 shear power. With L168 (decay) this closes the velocity-filter family in both timing profiles (early → forest, late → shear). The
 dark-fraction target f(M) ~ M^0.16 remains without a mechanism.
 
-## L175 — POTENTIAL-DEPTH MECHANISM: DEAD, and the reason the dark-sector search circles (2026-09-10)
+## L175 — POTENTIAL-DEPTH MECHANISM: DEAD by the forest, and the reason the dark-sector search circles (2026-09-10)
 
 `L175_potential_depth_mechanism.py` / `.out` (4/4). A component that clusters only where |Φ| > Φ_c, with Φ_c between the MW value (6×10⁻⁷ c²)
-and the X-COP value (2×10⁻⁵ c²). Linear Φ_rms on forest scales at z = 3 is 10⁻⁸–10⁻⁷ c² (k = 1–5 h/Mpc) and on third-peak scales at
-recombination ~10⁻⁷ c²: below even the lowest admissible threshold. Potential depth and scale are the same variable in linear theory
-(Φ_k ∝ k⁻² T(k)), so a switch that empties galaxies empties every scale below ~30 Mpc at every epoch. DEAD.
+and the X-COP value (2×10⁻⁵ c²). Computed (linear Φ_rms from CLASS): third-peak scales in the matter era 1.3–5×10⁻⁶ c², so for Φ_c ≲ 10⁻⁶
+the component DOES cluster at recombination and in clusters and is absent in galaxies — the CMB gate does not kill it. Forest scales at z = 3:
+1.2×10⁻⁷ (k = 1 h/Mpc) and 8×10⁻⁹ (k = 5), 5–70× below even the lowest admissible threshold. DEAD by the forest alone, threshold-independently.
 **The circle, stated.** Every dark-sector verdict since L160 (decay, kicks, clock fluid, this) tests whether the DARK COMPONENT ALONE
 reproduces ΛCDM's small-scale power (forest, S₈, shear). In the framework the kernel-boosted baryons also build structure on those scales,
 and that contribution has never been computed for the nonlinear regime (the linear kernel is ill-defined at zero field). So the kills are
