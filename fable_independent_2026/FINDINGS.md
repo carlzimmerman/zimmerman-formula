@@ -5263,3 +5263,19 @@ z ≤ 0.5 (this lane; L176 f = 0.58 reading total: 3–8× at z ≤ 0.5). (B) Ke
 component-alone verdict (L168 forest, L174 shear, L177 S₈ = 0.48–0.54) stands. Under (A) the coupled component is dead by overshoot; under (B)
 by undershoot; an intermediate prescription tuned to land on ΛCDM at both epochs would be a fit, not a theory. The L176 inference is closed
 in both readings. Net after L160–L178: no mechanism for the mass-dependent dark fraction survives on either kernel prescription.
+
+## L179 — LENSING ON THE FRAMEWORK'S OWN TERMS (potential power, not density): the peculiar-field kernel is DEAD by large-scale lensing (2026-09-10)
+
+`L179_lensing_from_kernel_potential.py` / `.out` / `L179_results.json` (0/2 checks pass — both were "the door reopens" statements; the
+deficits are the result). Correcting the ΛCDM-yardstick error: in the framework lensing is sourced by the kernel-boosted potential φ_M, so the
+lensing statistic was taken as the power of a∇²φ_M/(1.5Ω_m) for every run (Newtonian φ for ΛCDM). Result: with the kernel on the peculiar
+field, EVERYTHING overshoots — kernel-boosted baryons alone give lensing power 9–25× ΛCDM at 0.15–0.5 h/Mpc, z = 0 (S₈ proxy 3.0–3.5),
+1–5× in the shear band at z = 0.5; adding any component or the temporal-separation case makes it worse (S₈ proxy 3.9–4.2). Reason: on
+linear scales the peculiar acceleration is ≪ a₀, ν ≈ (a₀/g)^{1/2} is large, and the metric potential is amplified by ν² ~ 10–20.
+The forest (a density statistic) is unchanged by this correction (0.04–0.14 for baryons alone).
+**Consequence.** The kernel-prescription dichotomy of L178 is now decisive on the framework's own observables: (A) kernel on the peculiar
+field ⇒ large-scale lensing 10–20× too strong (dead outright; the same amplification would wreck ISW and CMB lensing); (B) Hubble-flow
+acceleration in the kernel ⇒ ν ≈ 1.08 today, lensing = Newtonian potential of the coupled matter, and every component-alone verdict
+(L168 forest, L174 shear, L177 S₈) stands. The ΛCDM-yardstick objection was legitimate and is now answered by computation: correcting it
+does not open the door, it closes prescription (A). Still open, honestly: the CMB under prescription (A) (nonlinear at recombination,
+not computable with linear tools); everything under (B) reduces to the component-alone results.
