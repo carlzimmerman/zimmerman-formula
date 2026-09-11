@@ -5,9 +5,31 @@ Regular-center initial data determine A and h; no target force is prescribed.
 This supplies a constrained numerical formulation, not a new field equation.
 """
 import numpy as np
+from functools import lru_cache
 from scipy.integrate import solve_ivp
 from scipy.interpolate import CubicSpline,PchipInterpolator
 from equations import constraint_rates
+
+
+@lru_cache(maxsize=8)
+def _first_sample_jet_weight(grid):
+    r=np.asarray(grid)
+    basis=np.zeros(len(r)-1);basis[0]=1/r[1]
+    return float(CubicSpline(r[1:]**2,basis)(0.))
+
+
+def match_odd_center_rate(r,rate,target):
+    """Enforce the continuum mixed-derivative jet in the discrete odd basis.
+
+    Only the first positive-radius rate is adjusted. The target comes from
+    (N Q)_{rr}(0)=N_{rr}(0) Q(0)+N(0) Q_{rr}(0), not from a fitted residual.
+    This is an origin closure, not a change to the bulk continuum equation.
+    Its accuracy and evolution convergence require independent tests.
+    """
+    measured=float(CubicSpline(r[1:]**2,rate[1:]/r[1:])(0.))
+    weight=_first_sample_jet_weight(tuple(r))
+    corrected=rate.copy();corrected[1]+=(target-measured)/weight
+    return corrected
 
 
 def radial_profiles(r,b,Q,u,w,D):

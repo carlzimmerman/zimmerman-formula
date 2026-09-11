@@ -24,7 +24,7 @@ from scipy.special import gammainc
 from constitutive import Model
 from equations import evaluate
 from center import evaluate_center
-from project import project_state,regular_center
+from project import project_state,regular_center,match_odd_center_rate
 
 
 def derivatives(f,spacing,odd=False):
@@ -142,7 +142,8 @@ class Evolution:
         return dict(A=A,b=b,k=k,h=h,Q=Q,u=u,w=w,D=D,R=R,Rr=Rr,Rrr=Rrr,Ar=Ar,hr=hr,
                     Qr=Qr,Ud=Ud,rho=rho,N=N,Nr=Nr,rate=rate,constraints=constraints,
                     lapse_residual=Nrr_fd-acoef*Nr-bcoef*N-solved[:,3,2],
-                    schur=schur,domain_denominator=vals["domain_denominator"])
+                    schur=schur,domain_denominator=vals["domain_denominator"],
+                    center_Qrr=center_vals['Q2'])
 
     def rhs(self,t,state):
         f=self.fields(t,state);A,b,N=f["A"],f["b"],f["N"]
@@ -150,6 +151,9 @@ class Evolution:
         out[0]=N*A*f["k"];out[1]=N*b*f["h"]
         out[2:5]=f["rate"][:,:3].T
         out[5]=f["Nr"]*f["Q"]+N*f["Qr"]
+        if self.constrained:
+            target=f['rate'][0,3]*f['Q'][0]+N[0]*f['center_Qrr']
+            out[5]=match_odd_center_rate(self.r,out[5],target)
         out[6]=derivatives(N*f["Ud"],self.dr)[0]
         out[5,0]=out[6,0]=0.
         velocity=-N*f["w"]/(A*A*f["Ud"])
