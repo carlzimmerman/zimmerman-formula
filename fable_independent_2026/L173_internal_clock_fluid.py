@@ -143,8 +143,8 @@ if both:
     check("I3 the surviving cell's retention rises monotonically with host mass (the M^0.16-type ledger shape)", all(np.diff(f) >= 0))
 if both:
     t2k1 = [res[key][1] for key in both]
-    check("I4 [DEFICIT, verified] every passing cell suppresses today's linear power at k = 1 h/Mpc to below 10% of LCDM: the binding test is now cosmic shear at l > 1000 (k ~ 1-3 h/Mpc, z < 1), NOT S_8 -- uncomputed here",
-          max(t2k1) < 0.10, "T2(k=1, z=0) = " + ", ".join(f"{x:.3f}" for x in t2k1))
+    check("I4 [DEFICIT, verified] every passing cell suppresses today's linear power at k = 1 h/Mpc by more than 70% (T2 = 0.005, 0.06, 0.29 for t_* = 5, 7, 9): the binding test is now cosmic shear at l > 1000 (k ~ 1-3 h/Mpc, z < 1), NOT S_8 -- uncomputed here",
+          max(t2k1) < 0.30, "T2(k=1, z=0) = " + ", ".join(f"{x:.3f}" for x in t2k1))
     check("I5 [FLAG, verified] clusters retain 1.00 of the CDM-like budget against the X-COP requirement 0.576 (L163): over-massive by 1.7x unless the cluster kernel reading absorbs it -- unresolved",
           1.0/0.576 > 1.5)
 print("    LIMITS: retention from the L167 4-Gyr delta kick for all t_* (later switch-on gives less relaxation time: retention slightly HIGHER); linear S_8;\n"

@@ -5160,7 +5160,7 @@ slightly more); forest CHECKED not assumed. Scan t_* ∈ {3.5, 5, 7, 9} Gyr × v
 220 km/s hosts): only v_* = 600 (η = 0.00, 0.42). S₈ ≥ 0.767: 11 of 12 cells (0.766 at t_* = 3.5, v_* = 600 fails by 0.001). **Both:
 t_* = 5, 7, 9 Gyr with v_* = 600 km/s (S₈ = 0.780, 0.801, 0.820).** Filter shape at (5 Gyr, 600): η = 0, 0, 0.42, 1.0 for 80, 110, 220
 km/s hosts and clusters — monotonic in host mass, the ledger's direction, though step-like rather than M^0.16 at the low end.
-**What binds next.** (i) Every passing cell has T²(k = 1 h/Mpc, z = 0) = 0.005–0.29 (0.005–0.06 for the three passing cells): the linear
+**What binds next.** (i) The three passing cells have T²(k = 1 h/Mpc, z = 0) = 0.005, 0.062, 0.287 (t_* = 5, 7, 9 Gyr): the linear
 σ₈ proxy passes but cosmic shear at ℓ > 1000 probes exactly this band at z < 1 — that confrontation is uncomputed and is now the binding
 test, not S₈. (ii) Clusters retain 1.00 against the X-COP requirement 0.576: over-massive by 1.7× unless the cluster reading absorbs it.
 (iii) The 220 km/s host fails the STRICT galaxy ceiling 0.105 (0.42 ≥ 0.105); the pass is on the loosest reading. (iv) No mechanism
