@@ -1,0 +1,8 @@
+Traceback (most recent call last):
+  File "/Users/carlzimmerman/new_physics/zimmerman-formula/fable_independent_2026/L175_potential_depth_mechanism.py", line 13, in <module>
+    "YHe": 0.2454, "output": "mPk", "P_k_max_h/Mpc": 60, "z_max_pk": 1100}); cl.compute()
+                                                                             ~~~~~~~~~~^^
+  File "python/classy.pyx", line 602, in classy._classy.Class.compute
+classy._classy.CosmoComputationError: 
+
+Error in Class: perturbations_init(L:873) :condition ((ppt->has_source_delta_m == _TRUE_) && (ppt->has_matter_source_in_current_gauge == _FALSE_)) is true; You requested a very high z_pk=1.100000e+03, higher than z_rec=1.088784e+03. This works very well when you ask only transfer functions, e.g. with 'output=mTk' or 'output=mTk,vTk'. But if you need the total matter (e.g. with 'mPk', 'dCl', etc.) there is an issue with the calculation of delta_m (or delta_cb) at very early times. By default, delta_m and delta_cb are expressed by the code as gauge-invariant variables (the density fluctuation in comoving gauge). This quantity is hard to get accurately at very early times. The solution is to define delta_m and delta_cb as density fluctuations in the current gauge, e.g. synchronous or newtonian. This is done by setting the input flag 'matter_source_in_current_gauge' to 'yes'.
