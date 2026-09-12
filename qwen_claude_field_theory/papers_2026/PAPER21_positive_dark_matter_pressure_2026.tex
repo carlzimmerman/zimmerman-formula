@@ -1,0 +1,81 @@
+\documentclass[11pt,letterpaper]{article}
+\usepackage[margin=1in]{geometry}\usepackage{amsmath,amssymb,booktabs,array,microtype}\usepackage[T1]{fontenc}\usepackage{lmodern}
+\usepackage[colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue]{hyperref}
+\setlength{\parindent}{0pt}\setlength{\parskip}{5pt}\sloppy
+\title{The Clock Rate Is the Dark Matter Pressure:\\ a Closed-Form Coefficient History for a Self-Critical MOND Sector,\\ and a Prediction of Positive $w_{\rm dm}$}
+\author{Carl P.\ Zimmerman\\ \small Briar Creek Tech\\ \small AI-assisted research programme; not peer reviewed}
+\date{12 September 2026}
+\begin{document}\maketitle
+\begin{abstract}
+A cuscuton-clock MOND sector is driven by its own gradient instability onto a critical surface where its stress is isotropic and its sound speed vanishes, making it a clustering cold component without tuning \cite{paper19,paper20}. That construction requires the clock to run faster than proper time, $s_0>1$, at every epoch where the coldness is needed, and no coefficient history satisfying it had been exhibited. We exhibit one, in closed form, and find that the requirement is not free. Imposing the clock's own field equation together with current and energy conservation collapses the freedom to a single parameter and forces the identity $s_0-1=w/m_{\rm rel}$, where $w$ is the sector's equation of state and $m_{\rm rel}$ the logarithm margin of the closure: \emph{the clock's excess rate over proper time is the sector's pressure divided by the margin}. The family is $U\propto a^{-3(1+w)}$, $d\propto a^{-3(1-w)}$, $q\propto a^{-3w}$, with constant margin and conserved clock charge. Imposing the Friedmann constraint at the same time closes the system in closed form and yields $\Lambda$CDM with one change, the cold sector's exponent $-3(1+w)$ in place of $-3$. The free parameter is therefore the dark matter equation of state, a measured quantity. Integrating the acoustic scale from that expansion history (which reproduces the measured $100\theta_s$ to $0.16\%$ at $w=0$) bounds $w\lesssim10^{-4}$, an order of magnitude tighter than the algebra alone allowed, and at that bound the zero-gradient sound speed is still negative, so the criticality still operates. Since criticality requires $w>0$ strictly --- at $w=0$ the clock sits at proper time, the instability vanishes and with it the attractor --- the construction predicts $0<w_{\rm dm}\lesssim10^{-4}$ where $\Lambda$CDM predicts exactly zero. We also show that the depletion mechanism's trigger cannot be the clock-rate condition itself, which fails the Lyman-$\alpha$ bound by a factor of 92 on the candidate's own history, and that a rate going as the fourth power of the dark-energy fraction does satisfy it. What is not derived is the amount of the sector: the Friedmann constraint is one equation for two dark unknowns.
+\end{abstract}
+
+\section{The conditions to be met}
+The programme's Lean-certified necessity result \cite{repo} requires any completion of a de Sitter-locked MOND kernel to contain a real, clustering cold component. Gradient-driven criticality supplies one \cite{paper19}: where the clock runs faster than proper time the sector is gradient-unstable at zero field gradient, its own MOND nonlinearity turns the sound speed positive at a finite gradient $Y_*$, and the marginal state there has $c_s^2=0$ together with isotropic stress, by an exact off-shell stress degeneracy. The back-reaction drives the sector to that state with a residual $c_s^2=(H/k_{\max})^2$ \cite{paper20}.
+
+Everything rests on $s_0>1$ at the epochs where the coldness is needed --- recombination for the acoustic peaks, $z\simeq2$--$3$ for the Lyman-$\alpha$ forest. The candidate's own coefficient history \cite{paper13} fails there: its clock runs slower than proper time before $z=2.45$, so the criticality never operates where those gates live. No history satisfying the requirement had been exhibited. That is what this note supplies.
+
+\section{The field equations collapse the freedom}
+Write the closure's coefficients as powers of the scale factor and define $\mu=2dq^2/U$, $m_{\rm rel}=1-\mu$. With $\gamma\to0$ the clock equation reads
+\begin{equation}
+E_\tau=P_\tau-V_\tau-3HW=-\frac{2Udq\,q_\tau}{m}-U_\tau-3HU=0 .
+\end{equation}
+The clock's charge is $j=2qd/m_{\rm rel}$ and must satisfy $j\propto a^{-3}$; the sector's density and pressure are $\rho=U/m_{\rm rel}$ and $p=U(s_0-1)$, which must satisfy $\dot\rho+3H(\rho+p)=0$. Imposing all three leaves a one-parameter family and forces
+\begin{equation}
+\boxed{\ s_0-1=\frac{w}{m_{\rm rel}}\ },\qquad
+U\propto a^{-3(1+w)},\quad d\propto a^{-3(1-w)},\quad q\propto a^{-3w},
+\label{family}
+\end{equation}
+with $\mu$ constant, so the margin neither drifts into the ghost region nor into the logarithm's singularity. The clock rate is not an input. It is the sector's equation of state divided by the margin. Substituting into the sound speed of \cite{paper19} gives the companion identity
+\begin{equation}
+c_s^2(Y=0)=-\frac{w}{2-m_{\rm rel}} ,
+\label{cs}
+\end{equation}
+so a single number controls the construction: the pressure sets the clock rate, the clock rate sets the instability, and the instability is what the MOND sector cures.
+
+\section{Friedmann, imposed at the same time}
+The constraint $3M^2H^2=M^2\Lambda+\rho_{\rm clock}+\rho_b+\rho_r$ closes (\ref{family}) in closed form:
+\begin{equation}
+3H^2(a)=\Lambda+\frac{U_0}{m_{\rm rel}}a^{-3(1+w)}+\rho_{b0}a^{-3}+\rho_{r0}a^{-4},
+\label{friedmann}
+\end{equation}
+and the sector's conservation law holds identically in $a$ rather than at one epoch. Equation (\ref{friedmann}) is $\Lambda$CDM with a single change: the cold sector's exponent is $-3(1+w)$ instead of $-3$. \emph{The family's free parameter is the dark matter equation of state.}
+
+\section{What the data allow}
+Boltzmann codes decline a positive equation of state for a fluid species, so the acoustic scale is integrated directly from (\ref{friedmann}), with $r_s$ the sound horizon at $z_*=1089.9$ and $D_A$ the comoving distance to it. At $w=0$ this returns $100\theta_s=1.03948$ against the measured $1.04109\pm0.00031$, an agreement of $0.16\%$, which licenses reading the shifts off the same integration.
+\begin{table}[h]\centering\caption{Acoustic scale and the sector's density at recombination, relative to dust.}\label{tab}
+\begin{tabular}{cccc}\toprule
+$w$ & $100\theta_s$ & shift & $\rho_{\rm clock}(z_*)/\rho_{\rm dust}(z_*)$\\\midrule
+$10^{-5}$ & 1.03945 & $-0.003\%$ & 1.0002\\
+$10^{-4}$ & 1.03921 & $-0.026\%$ & 1.0021\\
+$3\times10^{-4}$ & 1.03867 & $-0.078\%$ & 1.0063\\
+$10^{-3}$ & 1.03677 & $-0.260\%$ & 1.0212\\
+$3\times10^{-3}$ & 1.03120 & $-0.796\%$ & 1.0650\\\bottomrule
+\end{tabular}\end{table}
+The measurement's $0.03\%$ precision bounds $w\lesssim10^{-4}$. At that bound, with $m_{\rm rel}=0.5$, the clock runs $0.02\%$ faster than proper time and (\ref{cs}) gives $c_s^2(Y=0)=-6.7\times10^{-5}$, still negative: the instability that drives the sector onto the critical surface still switches on. Imposing Friedmann narrows the window by about a decade relative to the algebra alone, and does not close it.
+
+\section{The prediction}
+Criticality requires $w>0$ strictly. At $w=0$ the clock sits exactly at proper time, (\ref{cs}) vanishes identically, the instability disappears and with it the attractor that makes the sector cold without tuning. The construction therefore predicts
+\begin{equation}
+0<w_{\rm dm}\lesssim10^{-4},
+\end{equation}
+where $\Lambda$CDM predicts exactly zero. This is a measured quantity, and the band lies within reach of a dedicated analysis of existing data rather than of a future mission. It is also the sharpest statement the construction makes, because it is not a consequence of the MOND kernel at all but of the clock sector's internal consistency.
+
+\section{The depletion trigger, separately}
+The same programme requires the sector to be depleted from galaxies after the forest epoch \cite{paper18}, and the depleted population is hot, so the fraction kicked before $z\simeq2.2$ is bounded by the Lyman-$\alpha$ measurement. The appealing move --- gate the depletion on the same clock-rate condition that makes the sector critical --- fails on the candidate's history by a factor of 92, because that history's clock rate peaks at $a=0.42$ and declines, front-loading the depletion into exactly the epoch the forest measures. A rate going as the fourth power of the dark-energy fraction satisfies the bound, and cannot be front-loaded because that fraction only grows. This is a second structure, independent of (\ref{family}), and the construction does not currently unify the two.
+
+\section{What is not derived}
+The Friedmann constraint is one equation for two dark unknowns, so the dark-matter-to-dark-energy ratio is fixed by choosing the sector's amplitude and is not derived. The coefficient closure is assumed rather than obtained from first principles; $\gamma\to0$ throughout; $\ell(a)$ is unconstrained by any gate here. The acoustic scale is integrated at fixed cosmological parameters, so a full likelihood that re-fits $H_0$ and the densities would absorb part of the shift and loosen the bound, while adding baryon acoustic oscillations and supernovae would tighten it; the irreducible signature is the drift factor of Table~\ref{tab}, which no re-fitting removes. And $\kappa=\tfrac12$, which converts the de Sitter horizon time into the acceleration scale, remains fitted and provably underivable by this class of actions \cite{repo}.
+
+\section{Reproducibility}
+\texttt{fable\_independent\_2026/L199\_trigger\_sharpness.py}, \texttt{L200\_coefficient\_history.py} and \texttt{L201\_friedmann\_simultaneous.py} with their committed outputs (commits \texttt{593612171}, \texttt{e35651209}, \texttt{29b58ae82}); the preceding chain in \texttt{L192}--\texttt{L196}; the Lean file \texttt{fable\_independent\_2026/lean\_2026/Mondlean.lean} (111 theorems, no \texttt{sorry}).
+
+\begin{thebibliography}{9}
+\bibitem{repo} The research repository, \url{https://github.com/carlzimmerman/zimmerman-formula} (2026).
+\bibitem{paper13} C.~P.~Zimmerman, \emph{A Primordial-Clock Relativistic MOND Candidate: Status Report}, doi:10.5281/zenodo.22699828 (2026).
+\bibitem{paper18} C.~P.~Zimmerman, \emph{The Dark-Fraction Ledger Is Geometry}, doi:10.5281/zenodo.22718357 (2026).
+\bibitem{paper19} C.~P.~Zimmerman, \emph{Gradient-Driven Criticality}, doi:10.5281/zenodo.22727111 (2026).
+\bibitem{paper20} C.~P.~Zimmerman, \emph{The Coldness Is Dynamical}, doi:10.5281/zenodo.22727860 (2026).
+\bibitem{cuscuton} N.~Afshordi, D.~J.~H.~Chung, G.~Geshnizjani, Phys.\ Rev.\ D \textbf{75}, 083513 (2007).
+\end{thebibliography}
+\end{document}
