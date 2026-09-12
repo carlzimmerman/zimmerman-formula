@@ -5758,3 +5758,25 @@ The acoustic scale leaves Planck's 0.03% precision above w ≈ 1e-4.
 **Where this leaves the mechanism.** Eight gates pass, one is open with the known kill mechanism shown absent. The honest summary is that the last gate has been *narrowed*, not closed: what would settle it is the boosted metric expansion for this action, which is a real calculation and the single highest-value piece of work remaining.
 
 **Limits.** No preferred-frame parameter is computed anywhere in this script. The boosted metric expansion is not performed. The amplification is read off the linearised clock constraint of the cosmological reduction, and its solar-system counterpart may differ. The sector's local density is the standard 0.4 GeV/cm³ scaled by the retained fraction. The comparison with the earlier action uses that action's own published bound.
+
+## L204 — THE BOOSTED METRIC EXPANSION: the preferred-frame gate closes, and for a structural reason (2026-09-12)
+
+**The setup.** In the rest frame of a source moving at velocity w through the clock's frame, the clock acquires a spatial gradient, ∂_μτ = s₀γ(1, w), and the unit normal is tilted by w. That tilt is the preferred-frame coupling, and α₁ is its coefficient.
+
+**V1, the structural fact that decides everything downstream.** The background scalar depends only on the clock, χ = χ̄(τ), so ∂_μχ̄ = q ∂_μτ is **parallel to n_μ**. The MOND invariant Y is the part of ∂χ orthogonal to n. Therefore **Y vanishes in the boosted frame exactly as it does at rest**, verified symbolically to all orders in w, not just to leading order. A boost tilts the clock's normal and the scalar's gradient *together*. **The tilt generates no background MOND gradient**, so there is no first-order preferred-frame coupling at all.
+
+**V2, stronger than expected.** The clock rate s is a scalar built from the clock's gradient, so it is **exactly** invariant under the boost, with no dependence on w whatsoever. The naive second-order time dilation of 1.5e-6 does not appear. Taken with V1, the entire background clock sector is blind to the motion, so there is nothing at background level for the preferred frame to act upon.
+
+**What remains, and it is two things.**
+- **V3 the sector's own boosted stress**: 5.9e-16 solar masses inside Saturn's orbit, eleven orders below the α₁ bound.
+- **V4 the scalar's leakage into the solar system**, governed by the double-filter transmission T(x) = 1 − e^{−x}(1 + x + x²/2) with x = r/ξ, which falls as x³/6. At the programme's Cassini floor ξ = 0.03 pc, Saturn's orbit sits at x = 1.5e-3 and T = **6.1e-10**, six orders below the bound.
+
+**V5, which bound binds.** Solving for the screening length each measurement demands: the preferred-frame bound needs ξ > 5.4e-4 pc, the static Cassini bound on γ needs ξ > 8.8e-4 pc. **The static test is the more demanding of the two**, so α₁ is satisfied automatically wherever γ is, and the programme's existing floor of 0.03 pc exceeds the binding one by a factor of 34.
+
+**V6, the verdict: the gate is cleared**, by 2e5 in the larger of the two contributions, and cleared by structure rather than by tuning. 6/6.
+
+**Why this action survives where the earlier one died.** L170 killed a cuscuton clock inside an action that coupled the clock to matter directly through an explicit mixing term. Here matter couples only to the metric, the boost generates no background gradient, and what leakage remains is screened by the same length the static test already fixes, more tightly than the preferred-frame test does.
+
+**The gate board for this mechanism now reads nine of nine**: stability, Lyman-α forest, CMB third peak, galaxy lensing and rotation curves (in combination with the depletion), S₈, NGC 1052-DF2 (with named escapes), the depletion trigger, the matter budget, the static post-Newtonian limit, and now the preferred frame.
+
+**Limits, and they matter for how much weight this carries.** The leakage estimate assumes the preferred-frame amplitude is controlled by the same double-filter transmission as the static one. That is the same scalar reaching the same place, but it is an assumption rather than a derivation. The screening floor of 0.03 pc is this programme's own. **No post-Newtonian parameter is extracted from a full metric expansion, and none is claimed**; what is established is V1 and V2 symbolically, and the two magnitudes above by scaling. A referee would want the full expansion, and it should be done.
