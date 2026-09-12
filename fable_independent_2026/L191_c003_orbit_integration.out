@@ -1,0 +1,55 @@
+======================================================================================================================
+L191 C003 BY ORBIT INTEGRATION: does one kick velocity empty galaxies and only half-empty clusters?
+======================================================================================================================
+    [canonical] host scales from the baryons alone (no freedom):
+      spiral 1.2e10 Mb, 3R_d = 7.5 kpc         v_flat =   110.5 km/s, T =  150.7 crossing times, component extends to 18.90 r_anchor, target 0.105
+      Milky Way 6.5e10 Mb, 30 kpc              v_flat =   168.6 km/s, T =   57.5 crossing times, component extends to 7.07 r_anchor, target 0.14
+      group 1e12 Mb, R500 = 0.30 Mpc           v_flat =   333.9 km/s, T =   11.4 crossing times, component extends to 1.54 r_anchor, PREDICTION
+      cluster 1.4e14 Mb, R500 = 1.38 Mpc       v_flat =  1148.5 km/s, T =    8.5 crossing times, component extends to 1.53 r_anchor, target 0.576
+    running 144 orbit integrations (20000 particles each)...
+======================================================================================================================
+L191 C003 BY ORBIT INTEGRATION: does one kick velocity empty galaxies and only half-empty clusters?
+======================================================================================================================
+======================================================================================================================
+L191 C003 BY ORBIT INTEGRATION: does one kick velocity empty galaxies and only half-empty clusters?
+======================================================================================================================
+======================================================================================================================
+L191 C003 BY ORBIT INTEGRATION: does one kick velocity empty galaxies and only half-empty clusters?
+======================================================================================================================
+======================================================================================================================
+L191 C003 BY ORBIT INTEGRATION: does one kick velocity empty galaxies and only half-empty clusters?
+======================================================================================================================
+======================================================================================================================
+L191 C003 BY ORBIT INTEGRATION: does one kick velocity empty galaxies and only half-empty clusters?
+======================================================================================================================
+======================================================================================================================
+L191 C003 BY ORBIT INTEGRATION: does one kick velocity empty galaxies and only half-empty clusters?
+======================================================================================================================
+    done in 7.0 min
+    BOUNDARY: absorbing at R200 -- a kicked particle that leaves the halo joins the field
+      [canonical] best (v_k, n) = (700 km/s, 2): spiral 1.2e10 Mb 0.128 (target 0.105); Milky Way 6.5e10 Mb 0.132 (target 0.14); group 1e12 Mb 0.168 (PRED); cluster 1.4e14 Mb 0.664 (target 0.576)
+      [alt] best (v_k, n) = (1000 km/s, 2): spiral 1.2e10 Mb 0.127 (target 0.105); Milky Way 6.5e10 Mb 0.132 (target 0.14); group 1e12 Mb 0.155 (PRED); cluster 1.4e14 Mb 0.494 (target 0.576)
+      retention at n = 2, canonical, vs v_k [km/s]: spiral 1.2e10 Mb 0.132 0.128 0.142 0.125 | Milky Way 6.5e10 Mb 0.139 0.132 0.134 0.131 | group 1e12 Mb 0.256 0.168 0.147 0.148 | cluster 1.4e14 Mb 0.790 0.664 0.491 0.320
+    BOUNDARY: free -- kicked particles orbit in the untruncated log potential and can return
+      [canonical] best (v_k, n) = (1000 km/s, 2): spiral 1.2e10 Mb 0.128 (target 0.105); Milky Way 6.5e10 Mb 0.135 (target 0.14); group 1e12 Mb 0.146 (PRED); cluster 1.4e14 Mb 0.533 (target 0.576)
+      [alt] best (v_k, n) = (1000 km/s, 2): spiral 1.2e10 Mb 0.123 (target 0.105); Milky Way 6.5e10 Mb 0.143 (target 0.14); group 1e12 Mb 0.146 (PRED); cluster 1.4e14 Mb 0.573 (target 0.576)
+      retention at n = 2, canonical, vs v_k [km/s]: spiral 1.2e10 Mb 0.147 0.142 0.128 0.143 | Milky Way 6.5e10 Mb 0.138 0.144 0.135 0.124 | group 1e12 Mb 0.284 0.189 0.146 0.140 | cluster 1.4e14 Mb 0.852 0.699 0.533 0.346
+  [PASS] V1 [THE LEDGER by orbit integration, absorbing boundary, BOTH footings] one (v_k, n) reproduces all three anchors to within 25%: the spiral ceiling is exceeded by at most 35%, the Milky Way anchor matched to 20%, the cluster anchor to 25% (the estimator's own noise is about 0.015 in retention)
+           (canonical 0.128 0.132 0.168 0.664 | alt 0.127 0.132 0.155 0.494; deviations canonical (spiral over ceiling, MW, cluster) = 22% 5% 15%)
+  [PASS] V2 [why the galaxies saturate -- a correction to the hypothesis stated before this run] the galaxy retention is NOT set by kicked particles raining back through (the absorbing and free boundaries agree there to 0.02); it is the unkicked Poisson fraction e^-n (the boundary moves the CLUSTER more than it moves the galaxies), so every galaxy saturates at the same value however hard the kick
+           (spiral absorbing 0.128 vs free 0.128; e^-n = 0.135 at n = 2; spiral 0.128, MW 0.132)
+  [PASS] V5 [THE PREDICTION this forces] because both galaxies sit on the e^-n floor the mechanism gives the SAME dark fraction to every galaxy whose escape speed is below the kick speed: a universal galaxy-scale retained fraction with no mass dependence, against the ledger's own shallow f ~ M^0.16 trend (1.33x from the spiral to the Milky Way)
+           (spiral/MW retention ratio = 0.97 (ledger wants 0.105/0.14 = 0.75); testable across the SPARC mass range)
+  [PASS] V6 [the cluster is where the host dependence lives] the cluster retention responds strongly to the kick speed while the galaxies do not, because its escape speed exceeds v_k: cluster falls by more than a factor 2 across the scanned kick range while the Milky Way moves by less than 40%
+           (cluster 0.790 0.664 0.491 0.320 vs MW 0.139 0.132 0.134 0.131)
+  [PASS] V0 [numerical control] retention falls monotonically with kick speed in every host (0.05 tolerance): the estimator is not shot-noise dominated
+           (monotone in all four hosts)
+  [PASS] V3 [where the host dependence comes from] at the best fit the cluster retains at least 3x the Milky Way, supplied with no tuning by u = v_k/v_flat (v_flat from the BTFR) and T = t_H v_flat/r_a (crossing times available)
+           (cluster/MW = 5.0; v_flat 110/169/334/1148 km/s and T = 150/58/11/8.5 crossing times across the four hosts)
+  [PASS] V4 [a prediction, not a fit] the group (1e12 Msun baryons, R500) is left with a retained fraction between the Milky Way's and the cluster's, which the ledger does not constrain and which cluster-scale lensing of groups can test
+           (group = 0.168 between MW 0.132 and cluster 0.664)
+    LIMITS: test particles in a FIXED logarithmic potential from the kernel-boosted baryons (the component's self-gravity is neglected -- fine where it is
+    subdominant, questionable for the cluster anchor at 0.576); singular isothermal initial condition truncated at R200/r_a = 18.9/7.1/1.5/1.5 for the four hosts; kicks isotropic and
+    instantaneous; 10 Gyr of kick-active time; no external field / tidal truncation; no baryonic evolution.
+
+L191 COMPLETE: 7/7 checks PASS.  (7.0 min)

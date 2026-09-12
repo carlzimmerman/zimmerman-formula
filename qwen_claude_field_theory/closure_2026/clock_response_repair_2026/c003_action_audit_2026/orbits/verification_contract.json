@@ -1,0 +1,14 @@
+{
+ "claim_id":"C003_FIXED_NFW_ORBIT_VERIFICATION",
+ "mathematics":{
+  "assertion_tested":"Verify force versus potential, Eddington versus Jeans velocity moment, common-seed timestep convergence, independent-seed consistency, matched no-kick controls, and Poisson sampling in the persisted finite runs.",
+  "coefficient_domain":"IEEE754 float64",
+  "conventions":"Checks certify only implementation consistency and finite numerical findings in a prescribed fixed NFW potential.",
+  "inputs":["audit_orbits.py and two persisted results files in the same orbits directory"],
+  "bounds":{"force_radii":100,"radius_rs_min":0.001,"radius_rs_max":1000,"host_count":4,"particle_count_each_host":8192,"seeds":[307011,307012],"common_seed_dt_gyr":[0.002,0.001],"replicate_dt_gyr":0.002,"retention_convergence_tolerance_absolute":0.002,"Jeans_moment_tolerance_relative":0.001},
+  "non_claims":["Does not prove a MOND action, realistic clock coupling, self-consistent halo response, or universal exclusion of C003.","Scientific gate failures are separated from numerical check failures."]
+ },
+ "execution_artifacts":["qwen_claude_field_theory/closure_2026/clock_response_repair_2026/c003_action_audit_2026/orbits/verify_results.py","qwen_claude_field_theory/closure_2026/clock_response_repair_2026/c003_action_audit_2026/orbits/audit_orbits.py","qwen_claude_field_theory/closure_2026/clock_response_repair_2026/c003_action_audit_2026/orbits/convergence_001/results.json","qwen_claude_field_theory/closure_2026/clock_response_repair_2026/c003_action_audit_2026/orbits/replication_001/results.json"],
+ "software":[{"name":"Python child","version":"3.9.6"},{"name":"NumPy","version":"1.26.2"},{"name":"SciPy","version":"1.11.4"}],
+ "randomness":{"used":false,"generator":"","seed":null}
+}

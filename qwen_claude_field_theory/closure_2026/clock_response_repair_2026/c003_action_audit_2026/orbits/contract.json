@@ -1,0 +1,14 @@
+{
+  "claim_id": "C003_INDEPENDENT_FIXED_NFW_ORBITS",
+  "mathematics": {
+    "assertion_tested": "For the fixed C003 kick amplitude and DE clock rate, test exact single-kick angle-integrated escape and enclosed-mass retention in stationary isotropic tracer ensembles in prescribed NFW potentials.",
+    "coefficient_domain": "IEEE754 float64 with scipy quadrature and seeded numpy PCG64 sampling",
+    "conventions": "NFW Phi=-A ln(1+x)/x, zero at infinity. A fixed by supplied anchor escape speed; equilibrium sigma derived, not fitted. Eddington DF energy cut E>=psi(100) preserves stationarity. All tagged particles receive isotropic Poisson kicks with vk650 and G0=.382508632299176; static host in its rest frame.",
+    "inputs": ["fable_independent_2026/L189_results.json", "supplied anchor x=.5,1.19,2.2,2.71 and vesc250,480,900,2600 km/s"],
+    "bounds": {"n_per_host":8192,"hosts":4,"timestep_gyr":[0.002,0.001],"seeds":[307011,307012],"start_z":6,"end_z":0,"DF_cutoff_radius_rs":100,"MC_single_kick_trials_per_host":400000,"eddington_gauss_order":192,"eddington_energy_nodes":1500,"radial_nodes":2400,"velocity_CDF_nodes":384},
+    "non_claims": ["Not a self-consistent N-body, MOND, action-derived, evolving, accreting, or cosmological simulation.","Fixed NFW potential cannot establish C003 real-world viability or kill every action completion.","Input sigmas are mutually inconsistent with isotropic NFW equilibrium at the given vesc and anchor.","Retained bound probability is not enclosed-mass retention.","All tagged particles remain eligible for kicks even after escape; no multistream or local clock-frame coupling is derived.","Normal confidence intervals quantify independent particle sampling only; do not cover model error or timestep bias."]
+  },
+  "execution_artifacts": ["qwen_claude_field_theory/closure_2026/clock_response_repair_2026/c003_action_audit_2026/orbits/audit_orbits.py", "fable_independent_2026/L189_results.json"],
+  "software": [{"name":"Python child","version":"3.9.6"},{"name":"NumPy","version":"1.26.2"},{"name":"SciPy","version":"1.11.4"}],
+  "randomness": {"used":true,"generator":"NumPy default_rng PCG64","seed":[935706,307011,307012,378011,378012]}
+}
