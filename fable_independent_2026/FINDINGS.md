@@ -5811,3 +5811,26 @@ The acoustic scale leaves Planck's 0.03% precision above w ≈ 1e-4.
 **This is the most useful thing found today**, because it converts an open-ended question — does this action give MOND — into a single well-posed calculation with a known target: supply the difference between μ ∝ x² and μ ∝ x from the cubic term, subject to 4dℓ > U.
 
 **Limits.** Static weak field with the clock at rest; the matter coupling to χ is not specified, so the identification of 2F′ with the interpolating function assumes the standard scalar-tensor form; γ is set to zero, which is the whole point; the health condition is derived at small Y only.
+
+## L206 — THE CUBIC RESTORED: it does not flatten the rotation curve, and the action cannot (2026-09-12)
+
+**Part A, the background.** Carrying γ through astra's own expressions:
+- **V1, V2** the cubic cancels exactly out of the energy density and out of the clock's charge. The explicit cubic piece of P contributes +6γHq³ to 2q²P_X while the stress carries −6γHq³. So ρ = U/m_rel and j = 2qd/m_rel stand as derived.
+- **V3** it survives in the pressure alone, p = U(s₀−1) + 2γq²q̇, and the identity of L200 is corrected to **s₀ − 1 = w/m_rel − 2γq²q̇/U**. That single term is the whole of the cubic's effect on the background.
+- **V4** at the candidate's own coupling γ = 1e-6 the correction is 6.0e-10 against a leading term of 2.0e-4, a ratio of 3e-6. **The closed-form family of L200 and the acoustic-scale bound of L201 stand exactly as derived.**
+
+**Part B, the static limit, and this is the decisive part.** In spherical symmetry the cubic is a cubic Galileon. Setting each operator's first integral equal to a constant and reading off the rotation curve:
+
+| operator | first integral | rotation curve |
+|---|---|---|
+| the logarithm and square-root terms (F′ ∝ Y) | r²(χ′)³ | v ∝ r^{1/6}, rising |
+| the cubic Galileon alone | γ r (χ′)² | v ∝ r^{1/4}, rising faster |
+| what flat curves require (F ∝ Y^{3/2}) | r²(χ′)² | v ∝ r⁰, flat |
+
+**V5** the cubic makes the curve rise *faster*, not flatter. **V6, the no-go:** both available operators give strictly positive exponents, 1/6 and 1/4, and a sum of first-integral terms that each force a rising curve gives an exponent between them. Zero is not in that interval, **so the action's static limit cannot give flat rotation curves for any value of the cubic coupling.** **V7** what flat curves require is a first integral linear in the field gradient, meaning F ∝ Y^{3/2}, the AQUAL deep-MOND kinetic term. The action's two gradient operators are a logarithm and a square root, and neither reduces to a three-halves power in any limit. **That operator is simply not in the action.**
+
+**What this settles.** L205 left open whether the cubic could turn μ ∝ x² into μ ∝ x. It cannot. Restoring it changes the background by a term six orders below the leading one, so everything derived in L200–L204 stands, and it makes the static limit worse rather than better. **The chain from L192 to L204 derives a cold dark sector from a clock, and this action cannot also be the force law.** Flat rotation curves require an operator it does not contain.
+
+**The constructive reading.** This is not a dead end for the programme, it is a specification. Any action that is to do both jobs must carry a Y^{3/2} operator alongside the clock, and the derived family says what the rest of it must look like: U ∝ a^{−3(1+w)}, d ∝ a^{−3(1−w)}, q ∝ a^{−3w}, with s₀ − 1 = w/m_rel and 0 < w ≲ 1e-4. That is a much narrower search than the one this programme started with.
+
+**Limits.** Static spherical weak field with the clock at rest; the matter coupling to χ is taken to be the standard scalar-tensor form, so identifying the first integral with the enclosed mass assumes it; the Galileon's first integral is read off its variation rather than solved in full; the large-gradient branch of F is not treated, and carries no standard static solution because F′ falls as 1/x there.
