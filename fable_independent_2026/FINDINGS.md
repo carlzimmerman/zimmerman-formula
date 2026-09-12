@@ -5690,3 +5690,35 @@ Too little pressure and the clock sits at proper time and the criticality never 
 **Reading.** A sector with a little positive pressure makes the clock run fast; that makes the sector gradient-unstable; the MOND nonlinearity cures the instability at a finite gradient whose marginal state is exactly cold; and the observable residual is (H/k_max)². The pressure that starts the chain is the same pressure the CMB bounds, and the two do not collide.
 
 **Limits, and what is still missing.** γ → 0 throughout, and the candidate's closure is assumed rather than re-derived. ℓ(a) is left constant because only Y*/ℓ enters and no gate here constrains it. **The Friedmann equation is not solved simultaneously**, so the normalisations and the amount today are set by hand rather than emerging — exhibiting them is the next step. And the trigger for the depletion kicks is the separate Ω_DE⁴ condition of L199; this family does not supply it, so the mechanism still rests on two independent structures rather than one.
+
+## L201 — FRIEDMANN SOLVED SIMULTANEOUSLY: the family's free parameter is the dark matter equation of state, and it is measured (2026-09-12)
+
+**What L200 left.** The clock equation with current and energy conservation forced s₀ − 1 = w/m_rel and left a one-parameter family, but Friedmann was not imposed at the same time, so the expansion history and the amount were set by hand.
+
+**Imposing it closes in closed form (V1, V2).** With the family's density ρ_clock = U/m_rel and pressure p = U(s₀−1), the sector's conservation law holds identically in the scale factor, and the constraint gives
+
+  3H²(a) = Λ + (U₀/m_rel)·a^{−3(1+w)} + ρ_b0 a^{−3} + ρ_r0 a^{−4}
+
+exactly, with no numerical integration. **This is ΛCDM with one change: the cold sector's exponent is −3(1+w) instead of −3.** So the family's free parameter is not a hidden dial. It *is* the dark matter equation of state. The whole construction reduces to three lines: s₀ − 1 = w/m_rel, c_s²(Y = 0) = −w/(2 − m_rel), and ρ_clock ∝ a^{−3(1+w)}.
+
+**What the data allow (V0, V3).** CLASS refuses a positive equation of state for that species by design, so the acoustic scale is integrated directly from the family's own expansion history; at w = 0 it reproduces the measured 100θ_s = 1.04109 to 0.16%, which licenses reading the shifts off the same integration.
+
+| w | 100 θ_s | shift | sector's density at recombination, relative to dust |
+|---|---|---|---|
+| 1e-5 | 1.03945 | −0.003% | 1.0002× |
+| 1e-4 | 1.03921 | −0.026% | 1.0021× |
+| 3e-4 | 1.03867 | −0.078% | 1.0063× |
+| 1e-3 | 1.03677 | −0.260% | 1.0212× |
+| 3e-3 | 1.03120 | −0.796% | 1.0650× |
+
+The acoustic scale leaves Planck's 0.03% precision above w ≈ 1e-4.
+
+**The window survives, a decade narrower than the algebra alone allowed (V4).** At w = 1e-4 the clock runs 0.02% faster than proper time and the zero-gradient sound speed is −6.7e-5, still negative, so the instability that drives the sector onto the critical surface still switches on. L200's algebra-only window reached w = 1e-2; the acoustic scale excludes that by 18 times its precision.
+
+**The prediction (V5).** Criticality requires w > 0 strictly, because w = 0 puts the clock exactly at proper time, removes the instability and with it the attractor. **The framework therefore predicts a positive dark matter equation of state, 0 < w ≲ 1e-4, where ΛCDM says exactly zero.** That is a measured quantity, and the band is within reach of a dedicated analysis rather than a future mission.
+
+**What Friedmann does not deliver (V6).** The constraint is one equation for the two dark unknowns, so the dark-matter-to-dark-energy ratio is fixed by choosing the sector's amount and is still not derived.
+
+**Two bugs found and fixed in this lane**, both in my own integration: the sound horizon was integrated over reversed limits, giving a negative acoustic scale, and the neutrino contribution to the radiation density was double-counted, which had put the reference 12% off. With both corrected the reference reproduces the measurement to 0.16%.
+
+**Limits.** γ → 0 and the closure assumed. The acoustic scale is integrated at fixed cosmological parameters, so a full likelihood that re-fits H₀ and the densities would absorb part of the shift and loosen the bound, while adding BAO and supernovae would tighten it; the irreducible signature is the drift factor, which no re-fitting removes. Recombination held at z = 1089.9. The kick trigger of L199 remains a separate structure.
