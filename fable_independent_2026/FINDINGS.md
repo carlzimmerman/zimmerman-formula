@@ -5834,3 +5834,15 @@ The acoustic scale leaves Planck's 0.03% precision above w ≈ 1e-4.
 **The constructive reading.** This is not a dead end for the programme, it is a specification. Any action that is to do both jobs must carry a Y^{3/2} operator alongside the clock, and the derived family says what the rest of it must look like: U ∝ a^{−3(1+w)}, d ∝ a^{−3(1−w)}, q ∝ a^{−3w}, with s₀ − 1 = w/m_rel and 0 < w ≲ 1e-4. That is a much narrower search than the one this programme started with.
 
 **Limits.** Static spherical weak field with the clock at rest; the matter coupling to χ is taken to be the standard scalar-tensor form, so identifying the first integral with the enclosed mass assumes it; the Galileon's first integral is read off its variation rather than solved in full; the large-gradient branch of F is not treated, and carries no standard static solution because F′ falls as 1/x there.
+
+## Lean: how cosmic time runs, certified (Mondlean 114, 2026-09-12)
+
+Three theorems added, each depending only on propext, Classical.choice and Quot.sound. Together they are the framework's answer to what time is, stated so a machine can check it.
+
+- **`clock_rate_from_conservation`** — for the cuscuton-clock sector, with energy density ρ = U/m_rel and pressure p = U(s₀−1) + 2γq²q̇, imposing only that the equation of state is w = p/ρ gives **s₀ − 1 = w/m_rel − 2γq²q̇/U**. The clock's rate relative to proper time is not an input to the theory. It is fixed by the sector's own pressure.
+- **`clock_rate_is_pressure_over_margin`** — with the cubic coupling switched off the correction vanishes and the identity is exactly **s₀ − 1 = w/m_rel**.
+- **`clock_runs_fast_iff_pressure_positive`** — given that identity and a positive margin, **the clock exceeds proper time if and only if the sector's equation of state is positive**.
+
+**Why the third one matters.** `clock_gradient_stability_iff` (L186) says the sector is gradient-unstable precisely when the clock runs fast, and L192 showed that instability is what drives the sector onto the critical surface where it becomes exactly cold. Chaining the three: **a positive dark-sector pressure makes cosmic time run fast, which destabilises the sector, which the MOND nonlinearity cures at a critical gradient whose marginal state is exactly cold matter.** Every link in that chain is now machine-checked algebra, and the only free number in it is w, bounded by the acoustic scale at 1e-4 (L201).
+
+What Lean certifies here is the algebra and the logic. That ρ and p take those forms comes from the variation of the action, computed in L193 and L206 and not formalised.

@@ -9,7 +9,7 @@
   flat a₀(z), subdominant scalar GW) confronting DATA — not by Lean, and not while the intrinsic BBN
   fine-tuning (L84/L87) and astra's open ADM/khronon gates stand.
 
-  Theorems (111 as of 2026-09-12; all: exit 0, zero `sorry`, axioms ⊆ {propext, Classical.choice, Quot.sound}):
+  Theorems (114 as of 2026-09-12; all: exit 0, zero `sorry`, axioms ⊆ {propext, Classical.choice, Quot.sound}):
     hasDerivAt_G, hasDerivAt_Gp   — Gp = dG/dy and Gpp = d²G/dy² proven (not merely asserted).
     kernel_identity               — MOND kernel G'(y)/(2y) = 1 − e^{-y}.
     Gpp_zero, Gpp_pos             — health dichotomy: G''(0)=0, G''(y)>0 ∀ y>0 (no ghost off zero field).
@@ -1141,3 +1141,35 @@ theorem critical_stiffness_kills_N (PX W s0 Q WY : ℝ) (hW : W ≠ 0)
     2 * PX * (1 - 2 * Q ^ 2 * WY / W) - 2 * s0 * WY = 0 := by
   field_simp
   linear_combination (-2 : ℝ) * hc
+
+/-! ### L200/L206: HOW COSMIC TIME RUNS. The rate of the clock relative to proper time is not an input to this theory;
+    it is fixed by the dark sector's own pressure. These three certify that statement and its immediate consequence. -/
+/-- **How cosmic time runs, derived.** For the cuscuton-clock sector the energy density is ρ = U/m_rel and the pressure is
+    p = U(s₀ − 1) + 2γq²q̇, where s₀ is the rate of the clock relative to proper time, m_rel the logarithm margin of the
+    coefficient closure and γ the cubic coupling. Imposing only that the equation of state is w = p/ρ, the clock rate is not
+    free: it is fixed by the sector's own pressure. (L200, corrected for the cubic in L206.) -/
+theorem clock_rate_from_conservation (U mrel s0 γ q qd w : ℝ) (hU : U ≠ 0) (hm : mrel ≠ 0)
+    (hstate : w * (U / mrel) = U * (s0 - 1) + 2 * γ * q ^ 2 * qd) :
+    s0 - 1 = w / mrel - 2 * γ * q ^ 2 * qd / U := by
+  field_simp at hstate ⊢
+  linear_combination -hstate
+
+/-- **The same statement without the cubic coupling.** With γ = 0 the correction vanishes and the clock's excess rate over
+    proper time is exactly the sector's equation of state divided by the margin. This is the identity of L200. -/
+theorem clock_rate_is_pressure_over_margin (U mrel s0 q qd w : ℝ) (hU : U ≠ 0) (hm : mrel ≠ 0)
+    (hstate : w * (U / mrel) = U * (s0 - 1) + 2 * 0 * q ^ 2 * qd) :
+    s0 - 1 = w / mrel := by
+  have h := clock_rate_from_conservation U mrel s0 0 q qd w hU hm hstate
+  simpa using h
+
+/-- **Time runs fast exactly when the dark sector has pressure.** Given the identity above and a positive margin, the clock
+    exceeds proper time if and only if the sector's equation of state is positive. Since the sector is gradient-unstable
+    precisely when the clock runs fast (`clock_gradient_stability_iff`), and that instability is what drives the sector onto
+    the critical surface where it becomes exactly cold, the whole construction is controlled by the sign of one number. -/
+theorem clock_runs_fast_iff_pressure_positive (mrel s0 w : ℝ) (hm : 0 < mrel)
+    (h : s0 - 1 = w / mrel) : 1 < s0 ↔ 0 < w := by
+  have hw : w = (s0 - 1) * mrel := by
+    field_simp at h; linarith
+  constructor
+  · intro hs; rw [hw]; exact mul_pos (by linarith) hm
+  · intro hp; rw [hw] at hp; nlinarith
