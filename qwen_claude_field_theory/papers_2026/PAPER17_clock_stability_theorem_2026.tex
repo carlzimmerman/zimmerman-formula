@@ -1,0 +1,112 @@
+\documentclass[11pt,letterpaper]{article}
+\usepackage[margin=1in]{geometry}\usepackage{amsmath,amssymb,booktabs,array,microtype}\usepackage[T1]{fontenc}\usepackage{lmodern}
+\usepackage[colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue]{hyperref}
+\setlength{\parindent}{0pt}\setlength{\parskip}{5pt}\sloppy
+\title{The Clock Stability Theorem:\\ the Sub-Horizon Sound Speed of a Cuscuton-Clock MOND Sector\\ Is Set by the Clock Rate}
+\author{Carl P.\ Zimmerman\\ \small Briar Creek Tech\\ \small AI-assisted research programme; not peer reviewed}
+\date{11 September 2026}
+\begin{document}\maketitle
+\begin{abstract}
+A relativistic MOND candidate built from a cuscuton clock $\tau$, a dynamical scalar $\chi$ with a projected-gradient (MOND) sector $sW(Y,\tau)$, and a cubic coupling $\gamma X\Box\chi$ has a homogeneous cosmological branch on which the clock sector gravitates like dust. We derive, in the uniform-clock gauge and the sub-horizon limit, the sound speed of the clock--scalar mode: $c_s^2=[2P_X(1-D)-2s_0W_Y]/[B(1-D)]$ with $B=2P_X+4q^2P_{XX}$ and $D=2q^2W_Y/W$. The cuscuton constraint and the lapse response enhance the MOND gradient term by $1/(1-D)$; the naive $k$-essence form is wrong by factors of $-28$ to $+4$. Under the candidate's coefficient closure the result collapses to $c_s^2=(1-s_0)\,m_{\rm rel}/(2-m_{\rm rel})$, where $s_0=\dot\tau$ is the clock rate relative to proper time and $m_{\rm rel}$ the logarithm margin of the closure. Verified against the candidate's exact $6\times6$ finite-wavelength transfer operator at ten points of its branch to $1.1\times10^{-3}$ (general form) and $2.2\times10^{-3}$ (closure form), the residual being the $\gamma=10^{-6}$ terms dropped in the derivation. Consequences, each machine-checked in Lean~4: the sector is gradient-stable if and only if the clock does not run faster than proper time ($s_0\le1$; on the branch $s_0$ crosses~1 once, at $a=0.29$); a sound speed small enough for the Lyman-$\alpha$ forest ($c_s^2\le10^{-9}$) forces $m_{\rm rel}\le2\times10^{-9}/(1-s_0)\sim10^{-8}$, five orders below the branch; and no sound speed can supply the host-mass-dependent dark-fraction depletion that galaxies require, since the forest-compatible $c_s=9.5$~km\,s$^{-1}$ has a Jeans length below 7~kpc at galactic densities. The theorem turns the candidate's stability into an a-priori condition on its coefficient history and shows that its depletion mechanism, if any, must be dynamical rather than acoustic.
+\end{abstract}
+
+\section{Setting and attribution}
+The action, its coefficient closure, its sourced homogeneous branch and its finite-wavelength linear transfer operator are the work of the collaborating field-theory programme in the repository \cite{repo} (directory \texttt{qwen\_claude\_field\_theory/closure\_2026/clock\_response\_repair\_2026/}, commit \texttt{c5ffc6b59}), whose status was published in \cite{paper13}. Nothing of that programme is modified here: its modules are imported read-only and its archived branch is used as data. This note contributes the analytic derivation of the sub-horizon sound speed, its numerical verification against that operator, the Lean~4 certificates, and the consequences.
+
+In signature $(-{+}{+}{+})$ with $c=1$ and $M^2>0$, the frozen action is
+\begin{equation}
+S=\int d^4x\sqrt{-g}\Big[\tfrac{M^2}{2}(R-2\Lambda)+P(X,\tau)-V(\tau)+sW(Y,\tau)+\gamma X\Box\chi\Big]+S_r+S_b,
+\end{equation}
+\begin{equation}
+s=\sqrt{-\nabla_\mu\tau\nabla^\mu\tau},\quad n_\mu=-\partial_\mu\tau/s,\quad Q=n^\mu\partial_\mu\chi,\quad Y=(g^{\mu\nu}+n^\mu n^\nu)\partial_\mu\chi\partial_\nu\chi,\quad X=Q^2-Y,
+\end{equation}
+with a perfect-fluid radiation surrogate $S_r$ and irrotational baryon dust $S_b$ minimally coupled. The action is linear in $s$: the clock is a cuscuton \cite{cuscuton} and its field equation is a constraint. The coefficient closure evaluates, on the branch, $W=U$, $W_Y=d$, $P_X=Ud/m$, $P_{XX}=2Ud^2/m^2$ with $m=U-2dq^2$ the ``logarithm margin'' of $P=-\tfrac{U}{2}\log\frac{U-2dX}{U-2d\bar q^2}+\dots$, $q=\dot{\bar\chi}$, $m_{\rm rel}=m/U$; the functions $U,d$ are fixed histories, reconstructed rather than derived, which is the candidate's stated limitation.
+
+\section{The linear scalar sector}
+In the uniform-clock gauge $\delta\tau=0$ with shear-free spatial gauge, the scalar perturbations are the lapse $\alpha$, shift $b$, volume $z$, the scalar $\sigma=\delta\chi$ and the matter variables; Fourier amplitudes at wavenumber $k$, $\mathcal L=-k^2/a^2$, $\delta K=3\dot z-3H\alpha-kb$, $v=\delta Q=\dot\sigma-q\alpha$. The clock constraint and the scalar equation of the candidate's derivation are
+\begin{align}
+\delta E_\tau&=2qP_{X\tau}v-W\delta K+2qW_Y\mathcal L\sigma=0,\label{clock}\\
+\delta Dj&=\dot{\delta j}+3H\delta j+j\,\delta K-\alpha\dot j+[-2P_X+2s_0W_Y+2\gamma(\dot q+3Hq)]\mathcal L\sigma-2\gamma q\mathcal Lv=0,\label{chi}
+\end{align}
+with $\delta j=(B-12\gamma Hq)v-2\gamma q^2\delta K+2\gamma q\mathcal L\sigma$, $B=2P_X+4q^2P_{XX}$, $j=2qP_X-6\gamma Hq^2$, and $s_0=\dot{\bar\tau}$ the background clock rate, solved rather than set to one.
+
+\section{Derivation}
+Take $k\gg aH$, keep the leading powers of $k$, and set $\gamma\to0$ in the derivation (it is kept in the operator used for verification). Four steps.
+
+\emph{(i) The cuscuton constraint fixes the slicing at $O(k^2)$.} From (\ref{clock}),
+\begin{equation}
+\delta K=\frac{2qP_{X\tau}\,v+2qW_Y\mathcal L\,\sigma}{W}\equiv Fv+G\sigma,\qquad G=-\frac{2qW_Y}{W}\frac{k^2}{a^2}.
+\end{equation}
+
+\emph{(ii) The momentum constraint makes the shift $O(k)$.} $kb=-\delta K-3\mathcal M/(2M^2)$ with $\mathcal M$ the $O(1)$ momentum density, so $b=O(k)\sigma$ and the gauge-invariant potentials remain small: $\Psi=-z-HS$ with $S=-a^2b/k$ cancels at leading order.
+
+\emph{(iii) The lapse responds at $O(1)$.} The lapse equation has the form $(qG+p+\dots)\alpha=-[(\dot G+2HG)\sigma+Gv]+O(1)$ with $p=k^2/a^2$; since $G\propto p$, $\alpha$ is $O(1)$:
+\begin{equation}
+\alpha=\frac{Dv+(\dot D-\tfrac{\dot q}{q}D)\sigma}{q(1-D)},\qquad D\equiv\frac{2q^2W_Y}{W},
+\end{equation}
+so that $v=\dot\sigma-q\alpha$ gives $v=(1-D)\dot\sigma+O(\sigma)$: the constraint and the lapse renormalise the kinetic coefficient of $\sigma$ by $(1-D)$.
+
+\emph{(iv) The scalar equation.} At $O(k^2)$, (\ref{chi}) contains $[2P_X-2s_0W_Y](k^2/a^2)\sigma$ from the explicit gradient terms and $j\,G\sigma=-(2qW_Yj/W)(k^2/a^2)\sigma$ from the constraint, with $j=2qP_X$; the kinetic term is $B\dot v=B(1-D)\ddot\sigma+\dots$. Hence
+\begin{equation}
+\boxed{\;c_s^2=\frac{2P_X(1-D)-2s_0W_Y}{B(1-D)},\qquad B=2P_X+4q^2P_{XX},\qquad D=\frac{2q^2W_Y}{W}\;}
+\label{general}
+\end{equation}
+The MOND gradient term $s_0W_Y$ is enhanced by $1/(1-D)$ relative to the naive $k$-essence form $(2P_X-2s_0W_Y)/B$.
+
+\emph{Closure.} With $W=U$, $W_Y=d$, $P_X=Ud/m$, $P_{XX}=2Ud^2/m^2$ and $m=U-2dq^2$: $1-D=m/U=m_{\rm rel}$, $2P_X(1-D)=2d$, and $B(1-D)=2d(2U-m)/m$, so
+\begin{equation}
+\boxed{\;c_s^2=(1-s_0)\,\frac{m_{\rm rel}}{2-m_{\rm rel}}\;}
+\label{closure}
+\end{equation}
+
+\section{Verification against the exact operator}
+The candidate's $6\times6$ first-order transfer operator (state $\sigma,v,r_1,v_r,\theta_1,\delta\rho_b$; its reconstructed fields satisfy the original eight Euler equations to $10^{-8}$ in the candidate's own tests) was evaluated at ten archived samples of its backward, radiation-majority branch and its eigenvalues taken at $k=300,3000,30000\gg aH$; a propagating pair has $\lambda^2=-c_s^2k^2/a^2$. The perfect-fluid radiation pair returns $c_s^2=1/3$ to four digits at every sample and the clock pair is $k$-converged to $0.3\%$ (script L185 of \cite{repo}). Table~\ref{t} compares the operator value with (\ref{general}) and (\ref{closure}) (script L186).
+\begin{table}[h]\centering\caption{Clock sound speed on the candidate's branch: exact operator versus the derived forms.}\label{t}
+\begin{tabular}{ccccccc}\toprule
+$a$ & $s_0$ & $m_{\rm rel}$ & operator ($k=3\times10^4$) & eq.~(\ref{general}) & eq.~(\ref{closure}) & dev.\ (\ref{general}), (\ref{closure})\\\midrule
+1.000 & 1.032 & $9.34\times10^{-2}$ & $-1.554\times10^{-3}$ & $-1.552\times10^{-3}$ & $-1.557\times10^{-3}$ & $-1.1\times10^{-3}$, $+2.2\times10^{-3}$\\
+0.750 & 1.072 & $7.36\times10^{-2}$ & $-2.741\times10^{-3}$ & $-2.740\times10^{-3}$ & $-2.742\times10^{-3}$ & $-2.3\times10^{-4}$, $+6.7\times10^{-4}$\\
+0.563 & 1.173 & $5.60\times10^{-2}$ & $-4.989\times10^{-3}$ & $-4.988\times10^{-3}$ & $-4.990\times10^{-3}$ & $-5.0\times10^{-5}$, $+2.8\times10^{-4}$\\
+0.422 & 1.413 & $3.79\times10^{-2}$ & $-7.961\times10^{-3}$ & $-7.961\times10^{-3}$ & $-7.962\times10^{-3}$ & $-1.2\times10^{-5}$, $+1.7\times10^{-4}$\\
+0.317 & 1.118 & $2.02\times10^{-2}$ & $-1.198\times10^{-3}$ & $-1.198\times10^{-3}$ & $-1.199\times10^{-3}$ & $-2.7\times10^{-5}$, $+5.5\times10^{-4}$\\
+0.238 & 0.851 & $9.05\times10^{-3}$ & $+6.780\times10^{-4}$ & $+6.780\times10^{-4}$ & $+6.777\times10^{-4}$ & $+1.5\times10^{-5}$, $-4.4\times10^{-4}$\\
+0.178 & 0.771 & $3.89\times10^{-3}$ & $+4.454\times10^{-4}$ & $+4.454\times10^{-4}$ & $+4.453\times10^{-4}$ & $+8.2\times10^{-6}$, $-3.6\times10^{-4}$\\
+0.134 & 0.740 & $1.65\times10^{-3}$ & $+2.145\times10^{-4}$ & $+2.145\times10^{-4}$ & $+2.144\times10^{-4}$ & $+1.1\times10^{-5}$, $-4.2\times10^{-4}$\\
+0.100 & 0.723 & $6.98\times10^{-4}$ & $+9.662\times10^{-5}$ & $+9.662\times10^{-5}$ & $+9.657\times10^{-5}$ & $+2.9\times10^{-5}$, $-5.1\times10^{-4}$\\\bottomrule
+\end{tabular}\end{table}
+The general form agrees to $1.1\times10^{-3}$ at worst and the closure form to $2.2\times10^{-3}$; the deviations scale with $\gamma/d\sim10^{-3}$ and are the cubic-coupling terms dropped in the derivation. Two adversarial checks: the candidate's independent forward background object reproduces the $a=1$ value to $2\times10^{-4}$, and the growing eigenvector at $a=0.42$ has $99.8\%$ of its norm in the $(\sigma,v)$ components, so the unstable mode is the clock--scalar mode and not dust or radiation.
+
+\section{Theorems}
+The following are theorems of the repository's Lean~4 file (\texttt{Mondlean.lean}, 105 theorems, no \texttt{sorry}; each depends only on \texttt{propext}, \texttt{Classical.choice}, \texttt{Quot.sound}).
+
+\textbf{Theorem 1} (\texttt{clock\_sound\_speed\_closure}). For reals $U,d,q,m,s_0$ with $U,d,m\neq0$, $2U-m\neq0$ and $m=U-2dq^2$,
+\[
+\frac{2\frac{Ud}{m}\big(1-\frac{2q^2d}{U}\big)-2s_0d}{\big(2\frac{Ud}{m}+4q^2\frac{2Ud^2}{m^2}\big)\big(1-\frac{2q^2d}{U}\big)}=(1-s_0)\,\frac{m/U}{2-m/U}.
+\]
+
+\textbf{Theorem 2} (\texttt{clock\_gradient\_stability\_iff}). For $0<m_{\rm rel}<2$: $\;0\le(1-s_0)\,m_{\rm rel}/(2-m_{\rm rel})\iff s_0\le1$.
+
+\textbf{Theorem 3} (\texttt{clock\_softness\_forces\_margin}). For $0<m_{\rm rel}<1$, $\delta>0$, $s_0\le1-\delta$ and $(1-s_0)\,m_{\rm rel}/(2-m_{\rm rel})\le\varepsilon$: $\;m_{\rm rel}\le2\varepsilon/\delta$.
+
+The calculus of Section~3 (the $k\to\infty$ limit and the constraint elimination) is not formalised; the theorems certify the closure algebra and the two inequalities, and the numerical verification of Section~4 certifies that the algebra is the candidate's.
+
+\section{Consequences}
+\textbf{Stability is a clock-rate condition.} By Theorems 1--2 the sector is gradient-stable exactly when the clock does not run faster than proper time. On the candidate's branch $s_0$ is $1.03$--$1.41$ for $a\ge0.32$ (unstable, real eigenvalues $\pm|c_s|k/a$ with $|c_s|$ up to $0.089$, unbounded growth in $k$) and $0.85$--$0.72$ for $a\le0.24$ (stable); it crosses~1 exactly once, at $a=0.29$. This is a consistency condition that can be imposed on the coefficient history a priori; it is not a fit to data.
+
+\textbf{The forest bound in closed form.} On the repository's CMB/forest tooling (CLASS with cold matter replaced by a $w\simeq0$ fluid of sound speed $c_s^2$; L185), the third acoustic peak is restored for $c_s^2\le10^{-2}$, so the early, stable part of the branch ($c_s^2=10^{-4}$--$7\times10^{-4}$) would cluster on acoustic scales; but the Lyman-$\alpha$ power at $k=5\,h\,{\rm Mpc}^{-1}$, $z=3$ is within $10\%$ of $\Lambda$CDM only for $c_s^2\le10^{-9}$. By Theorem~3 with $\varepsilon=10^{-9}$ and the branch's own $s_0$, the margin must satisfy $m_{\rm rel}\le7\times10^{-9}$--$1.3\times10^{-8}$, against $7\times10^{-4}$--$9\times10^{-3}$ on the branch: the background would have to sit within $10^{-8}$ of the logarithm singularity throughout $z\le3$.
+
+\textbf{No acoustic depletion.} The repository's necessity certificate requires the dark fraction to fall with host mass ($f\le0.105$ inside spirals of $1.2\times10^{10}\,M_\odot$, $\ge0.988$ at recombination). A sound speed cannot supply this: the forest-compatible $c_s=\sqrt{10^{-9}}\,c=9.5$~km\,s$^{-1}$ has a linear Jeans length of $6.7$, $2.1$, $0.7$~kpc at $\rho=10^{-25}$, $10^{-24}$, $10^{-23}$~g\,cm$^{-3}$, so a fluid soft enough for the forest clusters inside galaxies. The depletion must be dynamical; the dynamical routes computed to date (two-body decay or kicks) are excluded by a lifetime pincer, forest $\tau\ge41$~Gyr against galaxies $\tau\le20$~Gyr.
+
+\section{What this does not claim}
+No statement is made about the existence of a viable coefficient history, about the candidate's static (galactic) branch, about ghosts (Theorem~2 concerns the gradient sign only; $B>0$ on the branch), or about the CMB beyond the fluid proxy. The derivation is a frozen-coefficient WKB limit without mode coupling and drops $\gamma$; the branch is the candidate's dimensionless one, not calibrated to recombination, and only the dimensionless $c_s^2$ is carried across. The Jeans estimate is linear and order-of-magnitude.
+
+\section{Reproducibility}
+Scripts \texttt{fable\_independent\_2026/L185\_astra\_clock\_sound\_speed.py} and \texttt{L186\_clock\_stability\_theorem.py} with their committed outputs (commits \texttt{2dbfc6013}, \texttt{cd1fc0b88}); the Lean file \texttt{fable\_independent\_2026/lean\_2026/Mondlean.lean} (\texttt{lake env lean Mondlean.lean}; \texttt{\#print axioms} on the three names above). The candidate's operator and branch: the collaborating programme's directory named in Section~1 at commit \texttt{c5ffc6b59}.
+
+\begin{thebibliography}{9}
+\bibitem{repo} The research repository, \url{https://github.com/carlzimmerman/zimmerman-formula} (2026).
+\bibitem{paper13} C.~P.~Zimmerman, \emph{A Primordial-Clock Relativistic MOND Candidate: Status Report}, doi:10.5281/zenodo.22699828 (2026).
+\bibitem{cuscuton} N.~Afshordi, D.~J.~H.~Chung, G.~Geshnizjani, \emph{Cuscuton: A causal field theory with an infinite speed of sound}, Phys.\ Rev.\ D \textbf{75}, 083513 (2007).
+\bibitem{milgrom} M.~Milgrom, \emph{A modification of the Newtonian dynamics as a possible alternative to the hidden mass hypothesis}, Astrophys.\ J.\ \textbf{270}, 365 (1983).
+\end{thebibliography}
+\end{document}
