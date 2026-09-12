@@ -1,0 +1,50 @@
+{
+  "claim_id": "NCR_STATIC_CLOCK_ELIMINATION_ACTUAL_FIRST_STATE",
+  "mathematics": {
+    "assertion_tested": "For the unchanged action at the actual first sourced Q and clock rate, varying then eliminating the static spatial clock reverses the bare quartic sign. The stated sampled zero-flux branch crosses longitudinal Schur zero and has a nonzero stationary scalar gradient with a nondegenerate clock block. At that stationary point, the conditional affine local transverse principal including cubic Einstein feedback has negative discriminant. Exact symbolic identities, eight unit tests, and rounded-input high-precision controls support only these specified statements.",
+    "coefficient_domain": "Binary64 NumPy/SciPy; exact SymPy rational functions for identities; 80-digit mpmath for rounded primitive Model inputs.",
+    "conventions": "Signature (-,+,+,+); chi=Q*t+f(x); tau=s0*t+pi(x); u=f'; z=pi'/s0; X=Q^2-u^2; Y=(u-Q*z)^2/(1-z^2); explicit coefficients frozen; L_eff=L0+c2*u^2+c4*u^4+O(u^6). Affine principal assumes covariant chi Hessian zero and uses clock-rest frame.",
+    "inputs": [
+      "Archived first state Q=0.9078321505772312, s0=1.0317810692809903, tau=0, gamma=1e-6, M2=1",
+      "Same constitutive.Model; reference qbar remains only in its defining coefficient functions"
+    ],
+    "bounds": {
+      "u_min": 0.0,
+      "u_max": 0.01,
+      "grid_points": 2001,
+      "negative_u": "By reflection z(-u)=-z(u), tested at selected points",
+      "clock_root_bracket_z": [-0.999999999999, 0.0],
+      "brent_absolute_tolerance": 5e-16,
+      "mpmath_digits": 80,
+      "high_precision_roots": 2,
+      "unit_tests": 8,
+      "existing_covariant_symbolic_checks": 14,
+      "series_error_u_values": [0.0001, 0.0002, 0.0004, 0.0008, 0.001, 0.0015, 0.002, 0.005, 0.01]
+    },
+    "non_claims": [
+      "No new on-shell sourced solution or cosmological background",
+      "No full nonlinear hyperbolicity or stability certificate",
+      "The affine chi Hessian condition is not the actual non-affine sourced background",
+      "No coefficient refit and no replacement of physical Q with constitutive reference qbar",
+      "No interval certification of rounded model data or exhaustive scalar-gradient/Schur root count between grid points",
+      "Zero spatial clock flux does not establish a global zero-mode theorem",
+      "The non-affine Hessian threshold is a condition for positive diagonal transverse G, not an assigned Hessian or a full hyperbolicity criterion"
+    ]
+  },
+  "execution_artifacts": [
+    "qwen_claude_field_theory/closure_2026/clock_response_repair_2026/nonlinear_clock_response_2026/clock/clock_response.py",
+    "qwen_claude_field_theory/closure_2026/clock_response_repair_2026/nonlinear_clock_response_2026/clock/test_clock_response.py",
+    "qwen_claude_field_theory/closure_2026/clock_response_repair_2026/nonlinear_clock_response_2026/clock/README.md",
+    "qwen_claude_field_theory/closure_2026/clock_response_repair_2026/nonlinear_evolution_2026/constitutive.py",
+    "qwen_claude_field_theory/closure_2026/clock_response_repair_2026/inhomogeneous_charge_2026/exterior/run_001/result.json",
+    "qwen_claude_field_theory/closure_2026/clock_response_repair_2026/finite_gradient_metric_2026/cubic/cubic_debraiding.py"
+  ],
+  "software": [
+    {"name": "Python", "version": "3.9.6"},
+    {"name": "NumPy", "version": "1.26.2"},
+    {"name": "SciPy", "version": "1.11.4"},
+    {"name": "SymPy", "version": "1.14.0"},
+    {"name": "mpmath", "version": "1.3.0"}
+  ],
+  "randomness": {"used": false, "generator": "", "seed": null}
+}

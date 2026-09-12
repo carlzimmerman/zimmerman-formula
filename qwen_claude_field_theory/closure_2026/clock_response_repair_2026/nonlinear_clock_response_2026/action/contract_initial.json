@@ -1,0 +1,53 @@
+{
+  "claim_id": "NONLINEAR_CLOCK_SECOND_ORDER_INITIAL_RESPONSE_2026",
+  "mathematics": {
+    "assertion_tested": "At the sourced t=0 background and k=3 stationary-variance linear seed, solve the mean and 2k Hamiltonian, momentum and unitary clock constraints through second order. Mean physical Q response is free and solved. The resulting exact frozen-function residual begins at cubic order and its even part at quartic order over the tested amplitudes.",
+    "coefficient_domain": "IEEE float64 truncated polynomial arithmetic, five-dimensional linear solve and bounded epsilon refinement; existing sourced-background SciPy ODE.",
+    "conventions": "Physical Kx,Ky,Q initial jets; dummy N=1,b=0 chooses coordinate velocities representing those jets, not the nonlinear preserved lapse. hxx=a^2 exp(2z+4e), hyy=hzz=a^2 exp(2z-2e). Ordinary epsilon coefficients, no factorial. Mean K2 denotes the equal mean Kx2 and Ky2, so the mean trace correction is 3 mean_K2. Full unitary E_tau=P_tau-V_tau-W K+2 W_Y Kx Y+2 Q(W_Y D²chi+W_YY chi^x partial_x Y).",
+    "inputs": [
+      "Existing sourced Background(.01), t=0; mode_system(v,k=3) seed sigma=1 and sigma_dot=H sigma",
+      "Unchanged EH+P(X,tau)-V(tau)+sqrt(Xtau)W(Y,tau)+gamma X Box chi plus minimally coupled radiation/dust",
+      "Fixed free second-order data: mean z2=0, mean Kx2=mean Ky2, spatial e2=0, sigma2=Q2k=matter2=0; mean Q2 remains free"
+    ],
+    "bounds": {
+      "k": 3.0,
+      "background_time": 0.0,
+      "background_integration_interval": [0.0, 0.01],
+      "physical_Q": 0.9078321505772312,
+      "clock_rate": 1.0317810692809903,
+      "gamma": 0.000001,
+      "spatial_points": 512,
+      "solved_constraint_order": 2,
+      "unknowns": ["mean_K2", "mean_deltaQ2", "z2_cos2", "Kx2_cos2", "Ky2_cos2"],
+      "epsilon": [0.002, 0.001, 0.0005],
+      "quadratic_absolute_tolerance": 0.0000000001,
+      "residual_order_tolerance": 0.15
+    },
+    "non_claims": [
+      "No nonlinear lapse-preservation equation or time evolution has been solved.",
+      "No third-order response or constraint-reduced quartic action is supplied.",
+      "The selected free initial data do not impose additional global charge-matching conditions.",
+      "This finite float64 sample is neither an interval certificate nor a general existence theorem or attractor proof.",
+      "The plane restriction does not cover all 3+1 tensor/vector polarizations."
+    ]
+  },
+  "execution_artifacts": [
+    "qwen_claude_field_theory/closure_2026/clock_response_repair_2026/nonlinear_clock_response_2026/action/initial_response.py",
+    "qwen_claude_field_theory/closure_2026/clock_response_repair_2026/nonlinear_clock_response_2026/action/test_initial_response.py",
+    "qwen_claude_field_theory/closure_2026/clock_response_repair_2026/nonlinear_clock_response_2026/action/run_initial_checks.py",
+    "qwen_claude_field_theory/closure_2026/clock_response_repair_2026/nonlinear_clock_response_2026/action/adm_action.py",
+    "qwen_claude_field_theory/closure_2026/clock_response_repair_2026/cosmological_bridge_2026/derive.py",
+    "qwen_claude_field_theory/closure_2026/clock_response_repair_2026/cosmological_bridge_2026/background_evolve.py",
+    "qwen_claude_field_theory/closure_2026/clock_response_repair_2026/cosmological_bridge_2026/transfer_evolve.py",
+    "qwen_claude_field_theory/closure_2026/clock_response_repair_2026/cosmological_bridge_2026/transfer_jets.py",
+    "qwen_claude_field_theory/closure_2026/clock_response_repair_2026/nonlinear_evolution_2026/constitutive.py",
+    "qwen_claude_field_theory/closure_2026/clock_response_repair_2026/inhomogeneous_charge_2026/exterior/run_001/result.json"
+  ],
+  "software": [
+    {"name": "Python", "version": "3.9.6"},
+    {"name": "SymPy", "version": "1.14.0"},
+    {"name": "NumPy", "version": "1.26.2"},
+    {"name": "SciPy", "version": "1.11.4"}
+  ],
+  "randomness": {"used": false, "generator": "", "seed": null}
+}
