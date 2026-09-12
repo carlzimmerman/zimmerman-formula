@@ -5846,3 +5846,31 @@ Three theorems added, each depending only on propext, Classical.choice and Quot.
 **Why the third one matters.** `clock_gradient_stability_iff` (L186) says the sector is gradient-unstable precisely when the clock runs fast, and L192 showed that instability is what drives the sector onto the critical surface where it becomes exactly cold. Chaining the three: **a positive dark-sector pressure makes cosmic time run fast, which destabilises the sector, which the MOND nonlinearity cures at a critical gradient whose marginal state is exactly cold matter.** Every link in that chain is now machine-checked algebra, and the only free number in it is w, bounded by the acoustic scale at 1e-4 (L201).
 
 What Lean certifies here is the algebra and the logic. That ρ and p take those forms comes from the variation of the action, computed in L193 and L206 and not formalised.
+
+## L207 — THE MISSING OPERATOR: it can be added, it is invisible to everything derived, and its price is a bounded window (2026-09-12)
+
+**What L206 said was absent.** Flat rotation curves require F ∝ Y^{3/2}, so that F′ goes as the first power of the gradient. The candidate is that operator written in this action's own invariant, added to W:
+
+  **W(Y) = U + 2dℓ(√(1 + Y/ℓ) − 1) + βY^{3/2}**
+
+**V1, V2 — it is invisible to every cosmological derivation.** Both W and its first derivative at zero gradient are exactly what they were: W(0) = U, W_Y(0) = d. Every result from L192 to L206 was obtained at Y = 0, on the homogeneous background, so **ρ, j, the clock identity and the acoustic-scale bound all stand untouched.** The new term's second derivative diverges at zero gradient, but it enters the perturbation analysis only as Y·W_YY, which vanishes there, so nothing is spoiled.
+
+**V3 — it does the job.** At small gradient the new term dominates, because √Y beats Y, so 2F′ → (3β/2)√Y: μ goes as the first power of the acceleration, the first integral r²(χ′)² is constant, and **v ∝ r⁰, exactly flat.**
+
+**V4 — the structure, and the coupling cancels.** The new term fights the criticality, because the criticality works by W_Y *falling* with the gradient and this term makes it rise. Two gradients matter: Y_t, where the new term hands over to the quadratic one, and Y_min, where W_Y stops falling. Their ratio is
+
+  **Y_min/Y_t = (4dℓ/U − 1)²**
+
+in which **β cancels entirely.** It depends only on 4dℓ/U, the same combination L205's health condition already constrained.
+
+**V5 — a bounded window, written in the framework's own number.** The criticality needs W_Y still falling where the sector parks, which bounds that combination from above; the cosmological state sits above the MOND transition by the parameter-free factor cH₀/a₀ = 7.0 of the Hubble-kernel identity (L180). So
+
+  **1 < 4dℓ/U < 8**
+
+**The lower end comes from L205's health condition and the upper from L180's identity. Neither bound was put in by hand, and neither was derived with this operator in view.** V6: the window spans a factor of eight in a single dimensionless combination, so it is open rather than fine-tuned.
+
+**Reading.** The operator flat rotation curves require can be added to this action and costs nothing already derived, because it and its first derivative vanish exactly where every cosmological result was obtained. What it costs is that it competes with the criticality, and the two requirements together bound one dimensionless combination from both sides, with the bounds arriving from two independent earlier results.
+
+**What would close it.** Compute the value of 4dℓ/U implied by the observed acceleration scale and see whether it lands inside the window. That requires the matter coupling, which this action does not yet specify, and is now the single remaining calculation between a dark sector and a theory.
+
+**Limits.** The handover gradient and the turning point are read off leading behaviours rather than solved exactly; Y*/ℓ is taken from the derived family; identifying the cosmological state's position relative to the MOND transition with cH₀/a₀ uses the Hubble-kernel prescription; no matter coupling is specified, so β is not yet tied to a₀ and the window is not yet tested against it.
