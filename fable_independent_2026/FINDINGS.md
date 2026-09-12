@@ -5623,3 +5623,31 @@ The ledger's ceiling is not a bookkeeping convention. It is what the rotation cu
 **Reading.** The kernel is not what DF2 strains. What it strains is the universal retained fraction that L191 predicts, and only at the far distance. Three escapes are on the table and all are quantitative rather than rhetorical: the distance dispute, a heavier neighbour, and tidal stripping of a satellite this close to a giant. The repository's standing UDG liability (the Coma discrepancy at 4.9σ) means this territory has not been friendly and should not be claimed as a win either way.
 
 **Limits.** Half-mass estimator, isotropic and spherical; the simple external-field prescription with no directional factor, which would lower every number here; NFW with c = 10 and an abundance-matched halo mass for the retained sector; projected separation used as the true one, so the external field is an upper bound; no tidal stripping modelled.
+
+## L199 — THE TRIGGER: the clock-rate gate fails, and what does work is a condition, not a free choice (2026-09-12)
+
+**The blocker (L196 V6).** The kicked population is hot: at v_k = 700 km/s its effective sound speed is 5.5e-6, so the Lyman-α bound on the mass-weighted value forces the kicked fraction at z = 2.2 below 1.8e-4. A trigger linear in the dark-energy fraction gives 3.0e-2, a factor 164 over.
+
+**The idea that failed, and why that is informative (V2).** The natural move was to gate the kicks on the same condition that makes the sector self-critical: the clock running faster than proper time. On the candidate's own history that clock rate crosses unity at z = 2.45, tantalisingly close to the forest epoch. It does not work. A rate linear in (s₀ − 1) delivers 1.7e-2, still **92× over**; the square gives 4.3e-3; even the cube gives 9.6e-4, five times over. The reason is the *shape* of that history: s₀ peaks at a = 0.42 and declines, so the rate is front-loaded into precisely the epoch the forest measures. Quantified in V5: the clock-rate gate's mean kick epoch is z = 0.92, **earlier** than the dark-energy gate's z = 0.34, which is the opposite of what is needed.
+
+**What does work, two routes, both conditions rather than choices.**
+
+| trigger | kicked fraction at z = 2.2 | vs bound 1.8e-4 |
+|---|---|---|
+| Ω_DE | 3.0e-2 | fails, 164× |
+| Ω_DE² | 8.4e-3 | fails |
+| Ω_DE³ | 2.5e-3 | fails |
+| **Ω_DE⁴** | **1.2e-4** | **passes** |
+| Ω_DE⁵ | 1.6e-6 | passes |
+| (s₀ − 1), crossing at z = 2.45 | 1.7e-2 | fails, 92× |
+| (s₀ − 1), crossing at z ≤ 2.2 | 0 | passes outright |
+
+**(a) A rate going as the fourth power of the dark-energy fraction (V1, V4).** Because that fraction only grows, such a trigger cannot be front-loaded; its mean kick epoch is later than either alternative. This is the cleaner route and it is a sharp structural demand: the kick rate must depend on dark energy to the fourth power, not linearly.
+
+**(b) The same clock-rate gate on a history whose clock crosses unity below z = 2.2 (V3).** Sliding the identical shape later makes the kicked fraction vanish outright, because then no kicks at all precede the forest. The candidate's crossing is 0.25 in redshift too early. Its coefficient history is not calibrated to observation (its a = 1 is a normalisation epoch, not today), so the crossing redshift is not pinned: **this is a condition to impose on the coefficient history, not a refutation.**
+
+**The ledger is untouched either way (V6).** The retained fraction is fixed by the total kick count, normalised to two in every trigger tested, so sharpening the trigger changes *when* the depletion happens, not *how much*. The floor e^{−n} = 0.135 and the cluster heating are unchanged.
+
+**Status of the blocker.** Cleared, conditionally. The 164× overshoot is removed by either route, and both are now explicit requirements on the theory rather than adjustable functions: a quartic dependence on the dark-energy fraction, or a clock crossing below z = 2.2. **The trigger was the last free function in the mechanism and it is no longer free.**
+
+**Limits.** The clock-rate history is the candidate's dimensionless branch whose a = 1 is a normalisation epoch, so its shape is used mapped onto the standard expansion history; a history calibrated to observation would move the crossing and every number with it. The kicked population's sound speed is its injection velocity without phase-space evolution. The ledger check is on the total kick count, not a re-run of the orbit integration under the new schedule.

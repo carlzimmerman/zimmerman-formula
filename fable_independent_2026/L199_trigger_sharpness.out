@@ -1,0 +1,54 @@
+======================================================================================================================
+L199 THE TRIGGER: the sharpness the forest demands, against the sharpness the clock rate already provides
+======================================================================================================================
+    what the forest allows, as a function of kick speed:
+      v_k =    400 km/s: effective c_s^2 = 1.78e-06, so the kicked fraction at z = 2.2 must be below 5.62e-04
+      v_k =    500 km/s: effective c_s^2 = 2.78e-06, so the kicked fraction at z = 2.2 must be below 3.60e-04
+      v_k =    700 km/s: effective c_s^2 = 5.45e-06, so the kicked fraction at z = 2.2 must be below 1.83e-04
+      v_k =   1000 km/s: effective c_s^2 = 1.11e-05, so the kicked fraction at z = 2.2 must be below 8.99e-05
+    (1) a rate proportional to a power of the dark-energy fraction:
+      Gamma ~ Omega_DE^1: kicked fraction at z = 2.2 = 3.01e-02  (fails at v_k = 700)
+      Gamma ~ Omega_DE^2: kicked fraction at z = 2.2 = 2.48e-03  (fails at v_k = 700)
+      Gamma ~ Omega_DE^3: kicked fraction at z = 2.2 = 2.11e-04  (fails at v_k = 700)
+      Gamma ~ Omega_DE^4: kicked fraction at z = 2.2 = 1.84e-05  (passes at v_k = 700)
+      Gamma ~ Omega_DE^5: kicked fraction at z = 2.2 = 1.62e-06  (passes at v_k = 700)
+  [PASS] V1 [how sharp, computed] a rate linear in the dark-energy fraction misses the forest bound by two orders of magnitude, but raising it to a modest power fixes it: the required sharpness is a power of about four, not an exotic switch
+           (the lowest integer power that passes at v_k = 700 km/s is 4; linear gives 3.01e-02 against the bound 1.83e-04)
+/Users/carlzimmerman/new_physics/zimmerman-formula/fable_independent_2026/L199_trigger_sharpness.py:33: IntegrationWarning: The occurrence of roundoff error is detected, which prevents 
+  the requested tolerance from being achieved.  The error may be 
+  underestimated.
+  den = quad(lambda a: w(a)*dt_da(a), a_on, 1.0, limit=200)[0]
+    (2) the candidate's own clock rate crosses unity at a = 0.290 (z = 2.45), and the criticality of L192 operates only above that:
+      Gamma ~ (s0 - 1)^1: kicked fraction at z = 2.2 = 1.68e-02  (fails at v_k = 700)
+      Gamma ~ (s0 - 1)^2: kicked fraction at z = 2.2 = 4.27e-03  (fails at v_k = 700)
+      Gamma ~ (s0 - 1)^3: kicked fraction at z = 2.2 = 9.63e-04  (fails at v_k = 700)
+  [PASS] V2 [the elegant idea FAILS on the candidate's own history] gating the kicks on the clock-rate condition does NOT pass the forest bound: a rate linear in (s0 - 1) overshoots by a factor of 92, and even the cube overshoots by 5. The reason is the SHAPE of the candidate's clock history -- s0 peaks at a = 0.42 and declines thereafter, so the rate is front-loaded into exactly the epoch the forest measures
+           (clock-rate crossing at z = 2.45; (s0-1)^1 gives 1.68e-02, ^2 gives 4.27e-03, ^3 gives 9.63e-04, all above the bound 1.83e-04)
+    what the crossing redshift has to be, holding the shape fixed and sliding it in time:
+      clock crosses unity at z = 2.45: kicked fraction at z = 2.2 = 1.74e-02  (fails)
+      clock crosses unity at z = 2.20: kicked fraction at z = 2.2 = 0.00e+00  (passes)
+      clock crosses unity at z = 2.00: kicked fraction at z = 2.2 = 0.00e+00  (passes)
+      clock crosses unity at z = 1.80: kicked fraction at z = 2.2 = 0.00e+00  (passes)
+      clock crosses unity at z = 1.50: kicked fraction at z = 2.2 = 0.00e+00  (passes)
+      clock crosses unity at z = 1.20: kicked fraction at z = 2.2 = 0.00e+00  (passes)
+  [PASS] V3 [what the trigger must satisfy, computed] the clock-rate gate works if the crossing happens later than it does in the candidate's history: sliding the same shape to a crossing below z = 2.2 clears the bound outright, because then no kicks at all are delivered before the forest epoch. The crossing redshift is a property of the coefficient history, and the candidate's is not calibrated to observation, so this is a condition to impose rather than a refutation
+           (passes for a crossing at z <= 2.20; the candidate's history crosses at z = 2.45, which is 0.25 too early)
+  [PASS] V4 [the other route, and it is the cleaner one] a rate that rises monotonically with the dark-energy fraction needs the fourth power, and unlike the clock-rate gate it cannot be front-loaded, because Omega_DE only grows: this is the trigger shape the mechanism actually requires
+           (Omega_DE^4 gives 1.84e-05 against the bound 1.83e-04; the linear version gives 3.01e-02)
+/Users/carlzimmerman/new_physics/zimmerman-formula/fable_independent_2026/L199_trigger_sharpness.py:83: IntegrationWarning: The occurrence of roundoff error is detected, which prevents 
+  the requested tolerance from being achieved.  The error may be 
+  underestimated.
+  num = quad(lambda a: w(a)*dt_da(a)*a, a_on, 1.0, limit=200)[0]; den = quad(lambda a: w(a)*dt_da(a), a_on, 1.0, limit=200)[0]
+  [PASS] V5 [why the clock gate fails and the fourth power does not, in one number] the clock-rate gate delivers its kicks EARLIER than a dark-energy gate, not later, because the candidate's s0 peaks and declines; the fourth power pushes them later still, which is exactly what the forest needs
+           (mean kick epoch: clock-rate a = 0.521 (z = 0.92), dark-energy a = 0.746 (z = 0.34), fourth power a = 0.869 (z = 0.15))
+  [PASS] V6 [the ledger survives either way] the retained fraction is fixed by the TOTAL kick count, which is normalised to two by construction in every trigger tested, so sharpening the trigger changes when the depletion happens but not how much: the floor e^-n and the cluster heating are untouched
+           (retained floor e^-n = 0.1353 for n = 2, independent of the trigger shape; what changes is the mean epoch, from z = 0.92 to z = 0.15)
+    READING: the appealing idea -- gate the kicks on the same clock-rate condition that makes the sector self-critical -- FAILS on the candidate's own history, by a factor
+    of 92, because that history's clock rate peaks early and declines, front-loading the kicks into the forest epoch. Two things do work, and both are conditions rather than
+    free choices: a rate going as the fourth power of the dark-energy fraction, which cannot be front-loaded because that fraction only grows; or the same clock-rate gate on
+    a history whose clock crosses unity below z = 2.2 rather than at 2.45. The candidate's history is not calibrated to observation, so the second is a condition to impose.
+    LIMITS: the clock-rate history is the candidate's dimensionless branch, whose a = 1 is a normalisation epoch rather than today, so its SHAPE is used mapped onto the
+    standard expansion history -- a history calibrated to observation would move the crossing redshift and with it every number here; the kicked population's sound speed
+    is its injection velocity without phase-space evolution; the ledger check is on the total kick count, not a re-run of the orbit integration under the new schedule.
+
+L199 COMPLETE: 6/6 checks PASS.
