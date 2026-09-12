@@ -13,3 +13,8 @@ the prompt, state its kill condition, and begin." Run `python3 hermes_push/harne
 re-run); `STATE.md` is the persistent hand-off between sessions. `run_loop.sh N` drives N sessions non-interactively once `AGENT_CMD` points at
 your agent's CLI; each session is one iteration and is committed if the guard passes. The agent must never call anything a complete theory:
 STOP-GREEN produces `COMPLETE_CANDIDATE.md` (a candidate that passes the scorecard, assumptions listed), STOP-NOGO produces a certified no-go.
+
+## search/
+A global optimiser over coefficient histories with the gates as a residual (`search/objective.py`, `search/run_search.py`,
+`search/SEARCH.md`). Cheap, offline, resumable, and designed for a small local model to run unattended across many seeds. Report the
+per-gate breakdown; escalate anything that meets every gate rather than calling it a theory.

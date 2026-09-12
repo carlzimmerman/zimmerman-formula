@@ -53,3 +53,21 @@ STOP-GREEN: every scorecard row green with a certificate -> write `COMPLETE_CAND
 the Lean names, and the list of remaining assumptions (kappa fit etc.). Do not call it a complete theory; call it a candidate that passes the scorecard.
 STOP-NOGO: a Lean-certified theorem closes an entire mechanism class (like the clock stability theorem) -> write it up as `NOGO_C###.md` and morph.
 Otherwise there is no stop: end the session with STATE.md written and the next candidate registered.
+
+## The parameter-space search (run this between candidates; it is cheap and it is where a local model earns its keep)
+`search/` holds a global optimiser over coefficient histories with the gates as a residual: see `search/SEARCH.md`. The method is the one
+that works on hard equations -- parameterise the unknown object, define a residual that vanishes exactly when the target property holds,
+drive it down, then certify what was found. Run it with several seeds, report the PER-GATE breakdown (never just the loss), and treat a
+stall above zero as a result naming the gate that resists. A loss below 1e-9 is a candidate to ESCALATE, not a theory: recompute its gates
+from the full background ODE, check the forest tracking precision, then attack it with the gates the objective does not contain.
+Never edit a threshold to make a candidate pass; extend `history()` or add a computed gate instead.
+
+## What Lean is for here (and what it cannot do)
+Lean certifies ALGEBRA and LOGIC, not physics. Three things belong in `lean/HermesLean.lean`:
+1. every identity in a derivation chain (the reduction of an action to a dispersion relation, a closure collapsing to a one-line formula);
+2. every gate as an IMPLICATION with explicit hypotheses ("if these computed signs and bounds hold, then this gate is met");
+3. the composition, so that "the numerics establish facts A, B, C" plus the certified implications yields "the theory passes gates X, Y, Z"
+   as a machine-checked statement.
+What remains outside Lean is the numerical input itself. That is the honest boundary: a certificate turns a numerical result into a
+theorem CONDITIONAL on the numbers, and the way to shrink the conditional is interval arithmetic on the load-bearing quantities, not more
+Lean. Say which facts are numerical and which are certified, every time.
