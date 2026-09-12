@@ -5906,3 +5906,30 @@ The window requires between 1 and 8.
 **What survives, and it is the useful part.** The structure is intact and now fully specified. Any history that is to work must satisfy the derived scalings — U ∝ a^{−3(1+w)}, d ∝ a^{−3(1−w)}, q ∝ a^{−3w}, with s₀ − 1 = w/m_rel and 0 < w ≲ 1e-4 — **and** the single inequality 1 < 4dℓ/U < 8. The first is a one-parameter family, the second is one inequality, and the search harness in `hermes_push/search/` is pointed at exactly that space. That is a far smaller target than this programme began with, and it is the first time the target has been stated as a closed set of conditions.
 
 **Limits.** The coupling is taken linear, Φ = Φ_N + cχ, which is this programme's structure and is not derived here. The matchings use leading deep-regime behaviour. The candidate's coefficient functions are reconstructed rather than derived, which its own documentation states, so this tests that reconstruction and not the action itself.
+
+## L210 — CORRECTION: the static health sign was inverted, and five results fall with it (2026-09-12)
+
+**Source.** An independent audit by the collaborating programme (`qwen_claude_field_theory/.../closure_front_2026/health/REPORT.md`, with a companion on the pressure) reports that L205's algebra is right and its interpretation is not. Verified here independently rather than accepted.
+
+**V1, the convention fixed by a reference case.** For the canonical scalar P(X) = X/2 the static Lagrangian is −Y/2, so F_Y = −1/2 and the energy density is +Y/2. **A manifestly healthy field has negative F_Y**, so the health condition is −F_Y > 0.
+
+**V2, the corrected condition.** The action's small-gradient coefficient must therefore be negative, giving **U > 4dℓ** — the reverse of what L205 asserted. (L205 quoted the coefficient for 2F_Y; the factor cannot change a sign.)
+
+**V3, the counterexample reproduces.** At U = d = ℓ = 1, Y = 0.01, where L205's stated condition holds, both stiffnesses measure **negative**: C_T = −0.0293, C_L = −0.0865. At U = 10, d = ℓ = 1 they are **positive**: +0.0059, +0.0177.
+
+**V4, the verdict on the candidate's history reverses.** With 4dℓ/U < 1 required, its branch gives 0.0909 down to 0.0001 — **healthy at every epoch.** L208 reported the opposite.
+
+**V5, the pressure.** Retaining the W0 counterterm that L206 dropped, and using the tracked chain rule, the cubic terms cancel and **p = U(s − 1) exactly**. So the clock identity is L200's, s₀ − 1 = w/m_rel, with no cubic correction.
+
+**What falls:**
+- **L205 V3** — the health condition, inverted.
+- **L207's window** — withdrawn entirely. Its lower bound was that condition; its upper bound was an identification with cH₀/a₀ rather than a derivation from the action, which the audit also flags.
+- **L208's verdict** — reversed. The candidate's coefficient history is not excluded by this.
+- **L209** — moot, withdrawn with the window.
+- **L206's cubic correction to the clock identity** — withdrawn.
+
+**What stands:** the exact cancellation F_Y(0) = 0, which is independent of the sign convention and remains the one structural result of L205; the quadratic leading power; the absence of a Y^{3/2} operator in the action; and the Lean theorems, which were conditional rearrangements and remain valid as such.
+
+**Three further corrections from the audit, recorded and not yet acted on.** L205's numerical comparison with the kernel mixed variables, since ν is a function of g_N/a₀ and the conversion to g/a₀ needs y = xν(x); the rotation-curve exponent is conditional on a χ-to-potential mapping that was never established, matter being minimally coupled here; and L204's boosted result is weaker than stated, because an aligned background Y = 0 does not remove perturbation mixing.
+
+**On the pattern.** Five results fell to one sign, and the ones that survived were pure algebra rather than interpretation. The lesson for this lane is specific: the checks that failed were ones asserting an expected physical reading of a computed quantity. Measurement and threshold should be stated separately.

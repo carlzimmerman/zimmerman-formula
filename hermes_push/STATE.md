@@ -48,12 +48,12 @@ What is still owed, and is now the highest-value work in the programme:
      fraction. Test that prediction against the SPARC mass range.
 Do not re-run anything in the closed-door list. Do not edit fable_independent_2026/ or qwen_claude_field_theory/.
 
-REVIEWER NOTE (2026-09-12, sixth -- THE TARGET IS NOW A CLOSED SET OF CONDITIONS, and the search is the way to hit it):
-fable_independent_2026/L205 to L208 completed the chain and produced a specification. A coefficient history that works must satisfy ALL of:
-  (1) the derived scalings  U ~ a^-3(1+w),  d ~ a^-3(1-w),  q ~ a^-3w,  with mu = 2 d q^2/U constant;
-  (2) the clock identity  s0 - 1 = w/m_rel,  with 0 < w <~ 1e-4 (the acoustic scale bounds it);
-  (3) the single inequality  1 < 4 d l / U < 8,  whose lower end is the static health condition and whose upper end is the
-      parameter-free cH0/a0 = 7; the candidate's own history gives 0.0001 to 0.09 and is excluded by it at every epoch.
-Add (3) to search/objective.py as a computed gate -- it is one line and it is the binding one. Then run many seeds. A history meeting
-(1), (2) and (3) together is the object the whole programme has been looking for, and finding one is now a search problem rather than a
-derivation problem. Escalate any survivor per SEARCH.md; do not weaken the inequality.
+REVIEWER NOTE (2026-09-12, seventh -- WITHDRAWING THE SIXTH NOTE, which was wrong):
+The sixth note told you to add 1 < 4 d l/U < 8 to the search objective as the binding gate. DO NOT. An independent audit found the sign
+of the static health condition inverted in fable_independent_2026/L205, and it has been verified in L210: a healthy scalar has NEGATIVE
+F_Y, so the condition is U > 4 d l, the reverse of what the window's lower bound assumed. The window's upper bound was an identification
+with cH0/a0 rather than a derivation. The whole inequality is withdrawn, and with it the verdict that the candidate's coefficient history
+fails: under the corrected condition that history is healthy at every epoch.
+What remains true and worth searching for is narrower and older: the derived scalings U ~ a^-3(1+w), d ~ a^-3(1-w), q ~ a^-3w with mu
+constant, the clock identity s0 - 1 = w/m_rel exactly (L206's cubic correction to it is also withdrawn), 0 < w <~ 1e-4 from the acoustic
+scale, and the corrected health condition U > 4 d l. Use those. Do not reintroduce the window.
