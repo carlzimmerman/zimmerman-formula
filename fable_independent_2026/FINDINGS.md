@@ -5933,3 +5933,41 @@ The window requires between 1 and 8.
 **Three further corrections from the audit, recorded and not yet acted on.** L205's numerical comparison with the kernel mixed variables, since ν is a function of g_N/a₀ and the conversion to g/a₀ needs y = xν(x); the rotation-curve exponent is conditional on a χ-to-potential mapping that was never established, matter being minimally coupled here; and L204's boosted result is weaker than stated, because an aligned background Y = 0 does not remove perturbation mixing.
 
 **On the pattern.** Five results fell to one sign, and the ones that survived were pure algebra rather than interpretation. The lesson for this lane is specific: the checks that failed were ones asserting an expected physical reading of a computed quantity. Measurement and threshold should be stated separately.
+
+## L211 — THE THREE REMAINING CORRECTIONS, worked through (2026-09-12)
+
+**(1) The wrong variable, corrected.** The kernel ν takes the Newtonian acceleration x = g_N/a₀; an interpolating function μ takes the true one y = g/a₀; the conversion is y = xν(x). Measured: d log μ/d log y = **0.997**, and d log μ/d log x = 0.499. L205 quoted the second and called it the first. The two differ by exactly the factor of two the conversion introduces in the deep regime. **The conclusion L205 drew survives**: MOND requires μ linear in the true acceleration, and the sector's static response is quadratic in its own gradient, so the mismatch is real once both are expressed against the same variable.
+
+**(2) The missing mapping.** Matter here enters only through minimally coupled actions, so varying them with respect to χ gives **identically zero**. There is no scalar source and the action as written **modifies no force law at all**. The rotation-curve exponents of L205 and L206 are therefore not predictions of this action but of this action plus the linear coupling introduced later in L208, and they are relabelled as conditional on it. What the sector does without a coupling is act as a dark component through its own gravity, which is the reading the nine gates were testing and is consistent with them.
+
+**(3) The surviving mixing, and L204 withdrawn.** The audit's exact quadratic action carries a cross term between the scalar's and the clock's spatial gradients with coefficient **−2qW_Y**, which vanishes only if q or W_Y does, and neither does on the branch. Eliminating the clock at non-zero wavenumber gives a definite response, σ/π = 2qsW_Y/(2q²W_Y − W₀). **So a vanishing background invariant does not remove the preferred-frame coupling, and L204's structural argument is withdrawn.** The preferred-frame gate returns to **open**; what survives of that lane is the scaling estimate and the observation that there is no direct clock-matter coupling.
+
+**Net effect on the record.** One number corrected, two results relabelled as conditional, one structural argument withdrawn, and one gate reopened. 6/6.
+
+## L212 — THE DECOUPLING BRANCH: the obstruction can be removed exactly, at a price that invalidates the derivation (2026-09-12)
+
+**The position after L211.** The action gives a dark sector but no force law, because matter is minimally coupled. Adding a matter coupling is what would give MOND. The preferred-frame gate, reopened by L211, is what makes adding one dangerous: the clock and scalar mix with cross term −2qW_Y and the clock responds by σ/π = 2qsW_Y/(2q²W_Y − W₀).
+
+**The observation.** That response, and the entire W_Y contribution with it, cancels identically when **W₀ = 0**. Since W₀ = U − 2γq̄²q̄′ is built from quantities the action already has, this is a locus inside the existing parameter space, not a modification of the theory.
+
+**V1 — the decoupling is exact.** With W₀ = 0 the eliminated scalar coefficient reduces to 2P_X alone, free of W_Y entirely. The mixing that L211 showed survives a vanishing background invariant **is removed by this condition instead.** That is the structural opening the programme needed.
+
+**V3 — and the clock equation degenerates.** With W₀ = 0 every surviving term in the clock equation carries the same factor of the clock rate, so it cancels: the equation no longer determines that rate but becomes a relation among the coefficient functions. The rate is still fixed, by conservation through s₀ − 1 = w/m_rel, but no longer by the clock's own field equation.
+
+**V4, V5 — the price, and it is structural.** The condition **fixes the cubic coupling** rather than leaving it free:
+
+  **|γ| = U/(6|w|q³H)**
+
+inversely in the sector's equation of state. With the acoustic bound w ≲ 1e-4 this forces |γ| ≈ 650 in the units used, against the **1e-6** carried in every run of this programme — a ratio of 6.5e8. And the scaling means there is no limit in which both are small: halving w doubles the coupling.
+
+| w | forced \|γ\| |
+|---|---|
+| 1e-3 | 65 |
+| 1e-4 | 650 |
+| 1e-5 | 6500 |
+
+**V6 — the verdict.** The branch is consistent and does exactly what the preferred-frame gate needs. But **every result from L192 onward was derived at γ → 0**, and none can be carried onto this branch without redoing it at a coupling eight orders larger. The shot lands on something real and lands short: it identifies where the obstruction disappears, and shows that reaching there costs the derivation that made the sector interesting.
+
+**What this specifies.** The next calculation is not a search. It is re-deriving the sector's properties — coldness, equation of state, criticality, the gates — at large cubic coupling on the W₀ = 0 locus. If they survive there, the action does both jobs. If they do not, the two requirements are genuinely incompatible in this action and that is a theorem worth having.
+
+**Limits.** The elimination and the clock response are the audit's, used rather than re-derived; the clock equation on the branch is solved with the same power-law ansatz as L200, which is not shown to remain valid at large coupling; no gate is re-run at the forced coupling, and none should be assumed to survive it.

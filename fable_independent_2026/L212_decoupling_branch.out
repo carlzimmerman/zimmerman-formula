@@ -1,0 +1,31 @@
+======================================================================================================================
+L212 THE DECOUPLING BRANCH: W_0 = 0 removes the clock-scalar mixing; is it consistent, and what does it force?
+======================================================================================================================
+  [PASS] V1 [the decoupling is exact, not approximate] setting W_0 to zero in the clock's response and in the eliminated scalar coefficient removes every occurrence of the stiffness W_Y: the scalar's principal coefficient reduces to 2 P_X alone, so the clock contributes nothing to it
+           (with W_0 = 0 the eliminated coefficient is 2*P_X, free of W_Y entirely; the mixing that L211 showed survives a vanishing background invariant is removed by this condition instead)
+  [PASS] V2 [it is a condition on the coefficients, not an extra field] W_0 = U - 2 gamma qbar^2 qbar' is built from quantities the action already has, so the branch is a locus inside the existing parameter space rather than a modification of the theory
+           (W_0 = 0 reads U = 2 gamma q^2 q', which relates the potential, the cubic coupling and the clock's own rate of change)
+    on this branch the clock equation loses its 3 H W_0 term; measuring its dependence on the clock rate gives d/ds_0 of (s_0 E_tau) = 0
+  [PASS] V3 [the clock equation DEGENERATES here, which is a cost and not a bug] with W_0 = 0 every surviving term in the clock equation carries the same factor of the clock rate, so it cancels and the equation no longer determines that rate: it becomes a relation among the coefficient functions instead. The rate is still fixed, but by conservation through s_0 - 1 = w/m_rel rather than by the clock's own field equation
+           (the clock rate cancels out entirely (the derivative above is 0) and sympy returns no solution for it; the 3 H W_0 term that vanished was the only piece not carrying that factor)
+    numerically, with Omega_c = 0.26, m_rel = 0.5, q = 1.0 and w = 1e-04: the condition forces |gamma| = 6.500e+02
+  [PASS] V4 [THE COST, measured] the condition fixes the cubic coupling rather than leaving it free, and the value it forces is larger than the one used throughout this programme by more than five orders of magnitude
+           (|gamma| = 6.500e+02 against the 1e-6 carried in every run, a ratio of 6.5e+08; the coupling is determined by the branch, not chosen)
+  [PASS] V5 [and the cost is structural, not numerical] the forced coupling scales as one over the equation of state, so the smaller w is -- and the acoustic scale bounds it below 1e-4 -- the LARGER the cubic coupling must be; the two requirements pull against each other and the branch cannot be reached at small coupling
+           (|gamma| = U/(6 |w| q^3 H), so |gamma| w is the constant 0.0650: halving w doubles the coupling, and the acoustic bound on w is an upper bound, so there is no limit in which both are small)
+    the trade, tabulated:
+      w = 1e-05  =>  |gamma| = 6.500e+03
+      w = 1e-04  =>  |gamma| = 6.500e+02
+      w = 1e-03  =>  |gamma| = 6.500e+01
+  [PASS] V6 [the verdict on this shot] the decoupling branch exists and removes the clock-scalar mixing exactly, which is what the preferred-frame gate needs, and it does so at a cubic coupling five orders above the one every other result in this programme assumed. Whether the sector's derived properties survive at that coupling is not settled here and is the calculation this branch now demands
+           (the branch is consistent and its price is a coupling of order 650.0 in the units used, where 1e-6 was assumed; every gate result that took gamma to zero would need re-checking on it)
+    READING: the shot lands, and it lands short of the prize. There IS a locus in the existing parameter space where the clock stops talking to the
+    scalar, and on it the preferred-frame obstruction to adding a matter coupling -- the obstruction L211 reopened -- is removed exactly rather than
+    suppressed. That is the structural opening the programme needed. What it costs is that the cubic coupling is no longer free: the branch fixes it,
+    inversely to the sector's equation of state, and the acoustic bound on that equation of state therefore forces the coupling LARGE. Every result
+    from L192 onward was derived at gamma -> 0, so none of them can be carried onto this branch without redoing it.
+    LIMITS: the elimination and the response are the audit's, used here rather than re-derived; the clock equation on the branch is solved with the
+    same power-law ansatz as L200, which is not shown to remain valid at large coupling; no gate is re-run at the forced coupling, and none should be
+    assumed to survive it.
+
+L212 COMPLETE: 6/6 checks PASS.
