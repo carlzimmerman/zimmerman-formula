@@ -5780,3 +5780,34 @@ The acoustic scale leaves Planck's 0.03% precision above w ≈ 1e-4.
 **The gate board for this mechanism now reads nine of nine**: stability, Lyman-α forest, CMB third peak, galaxy lensing and rotation curves (in combination with the depletion), S₈, NGC 1052-DF2 (with named escapes), the depletion trigger, the matter budget, the static post-Newtonian limit, and now the preferred frame.
 
 **Limits, and they matter for how much weight this carries.** The leakage estimate assumes the preferred-frame amplitude is controlled by the same double-filter transmission as the static one. That is the same scalar reaching the same place, but it is an assumption rather than a derivation. The screening floor of 0.03 pc is this programme's own. **No post-Newtonian parameter is extracted from a full metric expansion, and none is claimed**; what is established is V1 and V2 symbolically, and the two magnitudes above by scaling. A referee would want the full expansion, and it should be done.
+
+## L205 — WHAT THE DERIVED SECTOR SUPPLIES: the deep-MOND boundary condition for free, the exponent wrong, and the term that was set to zero (2026-09-12)
+
+**The question assumed past since L192.** Every derivation from L192 to L204 took γ → 0, where γ multiplies the cubic term γX□χ. Harmless for the cosmological reduction; **not** harmless for whether this sector produces MOND, because that cubic is the only Galileon-type operator in the action and Galileon operators are exactly what can modify a force law. So with γ = 0, what does the static limit give?
+
+**The static limit.** With the clock at rest, Q = 0 and X = −Y, so the whole Y-dependence is F(Y) = P(−Y) + W(Y), and for a Lagrangian F(Y) with Y = |∇χ|² the field equation is ∇·(2F′(Y)∇χ) = source. So 2F′ plays exactly the role of the interpolating function.
+
+**V1, an exact cancellation nobody had noticed.** The logarithm term contributes −2Ud/(U + 2dY) and the square-root term +2d/√(1 + Y/ℓ). At Y = 0 these are −2d and +2d. **The sector's response to an infinitesimal field gradient vanishes identically.** That is the deep-MOND boundary condition, μ → 0 as the acceleration goes to zero, and it holds here without being imposed.
+
+**V2, and the exponent is wrong.** Expanding, 2F′(Y) = (4d²/U − d/ℓ)·Y + O(Y²): linear in Y, hence **quadratic in the gradient**. MOND needs μ ∝ x, this gives μ ∝ x². The boundary condition is right and the power is not.
+
+**V3, a health condition the cosmological work never saw.** That coefficient is positive only when **4dℓ > U**. Below it the static response is negative at small gradient, a wrong-sign kinetic term. The cosmological derivations worked at the background where Y = 0 and could not see this constraint.
+
+**V4, MOND's own exponent measured off the framework's kernel.** Fitting ν_RAR at low acceleration gives d log μ/d log x = 0.470 in that variable, i.e. the first power of acceleration.
+
+**V5, the observational verdict.** For μ ∝ x^n the deep-field law is g = (a₀^n g_N)^{1/(n+1)}, so:
+
+| n | rotation curve |
+|---|---|
+| 1 (MOND) | v ∝ r⁰, exactly flat |
+| 2 (this sector) | v ∝ r^{1/6}, rising 47% per decade in radius |
+
+**A quadratic interpolating function does not give flat rotation curves.** Flat rotation curves are the single most robust fact the framework exists to explain, so the static sector with the cubic switched off does not explain them.
+
+**V6, what the cubic now has to do.** γ was exactly zero in every derivation and 1e-6 in the candidate's own runs. It is now carrying the entire burden of turning a quadratic law into a linear one.
+
+**What this means for closure, stated plainly (V7).** The nine gates walked in L195–L204 are **dark-matter gates**, and the sector passes them as a dark component. The static limit gets the deep-MOND boundary condition for free and the exponent wrong. Nothing computed in L192–L204 is wrong, but its scope is narrower than a theory of gravity: **it is a derivation of a cold dark sector from a clock, with the force law still put in by hand.** Restoring the cubic term is the calculation that would decide whether one action can do both, and it requires re-deriving the coefficient family, because the clock equation, the current and the energy conservation all acquire γ-dependent terms.
+
+**This is the most useful thing found today**, because it converts an open-ended question — does this action give MOND — into a single well-posed calculation with a known target: supply the difference between μ ∝ x² and μ ∝ x from the cubic term, subject to 4dℓ > U.
+
+**Limits.** Static weak field with the clock at rest; the matter coupling to χ is not specified, so the identification of 2F′ with the interpolating function assumes the standard scalar-tensor form; γ is set to zero, which is the whole point; the health condition is derived at small Y only.
