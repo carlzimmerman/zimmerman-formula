@@ -5971,3 +5971,65 @@ inversely in the sector's equation of state. With the acoustic bound w ≲ 1e-4 
 **What this specifies.** The next calculation is not a search. It is re-deriving the sector's properties — coldness, equation of state, criticality, the gates — at large cubic coupling on the W₀ = 0 locus. If they survive there, the action does both jobs. If they do not, the two requirements are genuinely incompatible in this action and that is a theorem worth having.
 
 **Limits.** The elimination and the clock response are the audit's, used rather than re-derived; the clock equation on the branch is solved with the same power-law ansatz as L200, which is not shown to remain valid at large coupling; no gate is re-run at the forced coupling, and none should be assumed to survive it.
+
+## L213 — THE DECOUPLING BRANCH SOLVED: L212's price tag was a units artifact, and the branch forces two things that were free (2026-09-12)
+
+**The correction.** L212 reported that reaching the W₀ = 0 locus forces the cubic coupling eight orders above the value every prior result assumed, scaling as 1/w. It computed that with the clock coefficient U held fixed. **U is not free.** L200/L207 give the sector's density as ρ = U/m_rel and its pressure as p = U(s₀ − 1), so U = m_rel ρ and it moves with w. Substituting, the factor of w **cancels identically** (V7, and Lean `cubic_coupling_is_equation_of_state_independent`). L212's table of 65 / 650 / 6500 was one number read in units where the sector density had been set to 1/m_rel, which is large for exactly the reason w is small. **L212 V4, V5 and its verdict are withdrawn.**
+
+**The stress tensor, derived not quoted (V1–V3).** The cubic operator's density and pressure are obtained from the minisuperspace action with the lapse restored, by the same two variations first calibrated on a k-essence term where the answer is textbook:
+
+  ρ₃ = −6γHq̄³,  p₃ = 2γq̄²q̄′
+
+so the counterterm is exactly W₀ = U − p₃. **The decoupling condition says the cubic operator's pressure equals the clock coefficient.** On the derived family q̄ ∝ a^{−3w} it gives p₃ = wρ₃ identically (V4): the operator carries the *sector's own* equation of state, so switching it on does not disturb the background scaling at all.
+
+**What the branch fixes, and it is a ratio (V8).** Not a coupling:
+
+  **γ q̄³ H / ρ = −1/(6(s₀ − 1))**
+
+magnitude at most 1/6. γ alone is not determined because q̄ is not; only the product is. Today that product is |γ|q̄³ = 1.13e21 eV³, cube root **10.4 MeV** — an ordinary scale twenty-one orders below the Planck mass.
+
+**The cost, in units nothing can inflate (V9, V10).** The operator's share of the momentum conjugate to the scale factor, derived from the same action as the Einstein-Hilbert term's, is **Ω_sector/(6(s₀−1)) ≤ 0.044**. Every result derived at γ → 0 from L192 onward survives on this branch to about four percent.
+
+**Two things that were free are now forced (V5, V6).** The cubic operator's share of the sector density is ρ₃/ρ = **1/(s₀ − 1)** — free of both U and w, set by the clock rate alone (Lean `cubic_share_is_clock_rate`). Requiring that no piece of the sector carry negative energy then forces
+
+  **s₀ ≥ 2**  and hence  **m_rel ≤ w ≤ 1e-4**
+
+(Lean `positivity_forces_clock_rate`, `margin_below_equation_of_state`). The clock must run at least twice proper time, and the margin must sit *below* the equation of state, not above it. At the boundary s₀ = 2 the cubic operator supplies the whole dark sector density by itself.
+
+**Limits.** The elimination giving the mixing coefficient is astra's, used not re-derived. The positivity argument assumes no piece carries negative energy; if one may, s₀ < 2 costs a cancellation of degree (2−s₀)/(s₀−1). The perturbation kinetic matrix at s₀ = 2 has not been recomputed and no gate re-run numerically. 12/12.
+
+## L214 — THE FORCE LAW ON THE BRANCH: MOND derived, the MOND scale derived, and the whole cost is one time-invariant inequality (2026-09-12)
+
+**The gate L213 left open** was the force law: matter is minimally coupled (L211), so the action gives a dark sector and no MOND. The obstruction that made adding a coupling dangerous — the preferred-frame mixing — is identically zero on this branch, so the question is clean.
+
+**V1 — MOND falls out.** Couple matter at leading order and reduce the gradient sector quasi-statically. The spherical solution of ∇·(2sW_Y∇φ) = −λρ with W = βY^{3/2} gives an acceleration on matter with **d log g/d log r = −1 and d log g/d log M = +1/2**: the deep-MOND scaling, obtained from the action rather than assumed.
+
+**V2 — and so does the scale.** Matching to √(GMa₀)/r gives
+
+  **a₀ = λ³ / (12π G β s₀)**
+
+with **∂a₀/∂M = 0** — mass-independent, so a constant of the theory rather than an object-by-object fit (Lean `mond_scale_mass_independent`). The MOND scale is the cube of the matter coupling over the gradient stiffness and the clock rate. **A faster clock means a smaller a₀**, which is new. Both footings carried: λ³/(βs₀) = 2.3555e-19 (canonical) and 2.8378e-19 (alt) in SI, ratio 1.204777 exactly the footing fork.
+
+**V3, V4 — the conflict is one coefficient, and it has a window.** The linear term d in W appears twice: as the floor it puts under the interpolating function, μ_floor = d/k, and as the closure's μ = 2dq̄²/U that sets the clock margin. They are the same d, related by **μ_closure = C μ_floor with C = 2kq̄²/U**. The branch wants μ_closure ≥ 1 − w; the rotation-curve data want μ_floor ≤ 1e-3 (the RAR intact to 10% at g/a₀ = 1e-2). The two are compatible exactly when
+
+  **C = 2 k q̄² / U ≥ 1.0e3**
+
+(Lean `branch_mond_window`). That is the entire cost of putting a force law on the decoupling branch: one inequality on the gradient stiffness at solar-system accelerations against the clock coefficient.
+
+**V5 — and the window never closes.** C formed from the derived family has scale-factor exponent **exactly zero**: −3(1−w) − 6w + 3(1+w) = 0 (Lean `derived_exponents_cancel`, `window_ratio_is_scale_invariant`). **C is a constant of the motion.** Imposed once, it holds for all time. This is not a tuning that must be maintained.
+
+**V6 — and missing it is bounded, not fatal.** Below the window the branch is bought with a cancellation instead, of degree m_rel/w:
+
+| C | μ_closure | m_rel | s₀ | \|ρ₃\|/ρ |
+|---|---|---|---|---|
+| 1 | 1.0e-3 | 0.999 | 1.0001 | 9.99e3 |
+| 1e2 | 1.0e-1 | 0.900 | 1.0001 | 9.00e3 |
+| **1e3** | **0.9999** | **1e-4** | **2.000** | **1.00** |
+
+The 1e4 at the bottom of that column is the 1/w L212 saw and put in the wrong place: it is a cancellation among the sector's densities, not a large coupling.
+
+**The board.** Ten of twelve gates now carry a computed number on this branch. **Still open: the solar-system gate on the new coupling (not computed here), and κ (provably underivable by this class, a theorem of this programme).**
+
+**Limits.** The matter coupling is leading order λφρ, not a full conformal or disformal factor. The quasi-static reduction drops the clock's gradient response, legitimate here only because the mixing vanishes on this branch. k is defined as W_Y at the highest acceleration probed and is not derived. The interpolation used is the pure Y^{3/2} limit, not ν_RAR in full, so V1/V2 establish the deep-MOND limit and the scale, not the whole interpolating function. No numerical gate has been re-run with the coupling switched on. 8/8.
+
+**Lean.** 122 theorems, exit 0, zero `sorry`, axioms ⊆ {propext, Classical.choice, Quot.sound}.

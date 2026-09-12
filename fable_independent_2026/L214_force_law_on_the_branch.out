@@ -1,0 +1,111 @@
+L214 -- the last open gate: the force law on the W_0 = 0 branch.
+
+L213 leaves nine gates carrying numbers and one open.  The open one is the force law:
+matter is minimally coupled (L211), so the action produces a cold dark sector and no MOND.
+Adding a matter coupling is what would produce MOND, and the obstruction that made that
+dangerous -- the preferred-frame mixing -- is identically zero on the branch.  So the
+question is now clean: add the coupling, and see what the branch costs it.
+
+This lane adds the minimal coupling, reduces the gradient sector in the quasi-static limit,
+derives the MOND scale from the action's own coefficients, and then measures the one
+conflict that appears -- the branch and the deep-MOND limit pull the SAME coefficient in
+opposite directions -- and states the window in which both hold, as a number.
+
+Every check states measurement and threshold separately.
+
+PART A -- the gradient sector in the quasi-static limit
+  [PASS] V1 [the deep-gradient limit of the action is exactly the MOND force law] the spherical solution of the quasi-static gradient equation with W = beta Y^{3/2} is solved for, the resulting acceleration on matter is formed, and its dependence on radius is measured
+         measured: lambda |grad phi| = sqrt(3)*sqrt(M)*lambda**(3/2)/(6*sqrt(pi)*sqrt(beta)*r*sqrt(s_0)); d log g/d log r = -1, d log g/d log M = 1/2
+         reading : acceleration falling as 1/r and rising as the square root of the mass: the deep-MOND scaling, obtained from the action rather than assumed
+  [PASS] V2 [the MOND acceleration scale, derived from the action's coefficients] setting the derived acceleration equal to sqrt(G M a_0)/r and solving for a_0 gives an expression whose dependence on the enclosed mass is measured, since a scale that depended on the mass would not be a constant of nature
+         measured: a_0 = lambda**3/(12*pi*G*beta*s_0), d a_0/d M = 0
+         reading : a_0 = lambda^3/(12 pi G beta s_0): the MOND scale is the cube of the matter coupling over the gradient stiffness and the clock rate. It is mass-independent, so it is a constant of the theory, and it falls as the clock runs faster
+
+PART B -- the coefficient the branch and MOND pull in opposite directions
+  [PASS] V3 [the two mu's are the same coefficient, differently normalised] the floor that a linear term puts on the interpolating function, and the closure's mu that sets the clock margin, are both formed and their ratio measured
+         measured: mu_floor = d/k, mu_closure = 2*d*qbar**2/U, ratio = 2*k*qbar**2/U
+         reading : mu_closure = C mu_floor with C = 2 k qbar^2/U. The branch wants mu_closure near one (so the clock runs fast); MOND wants mu_floor near zero (so the interpolating function reaches deep MOND). Both are the same d, so only a large C lets both hold
+  [PASS] V4 [THE WINDOW, as a number] the branch's lower bound on mu_closure and the rotation-curve data's upper bound on mu_floor are divided, giving the smallest C for which both hold, and that is compared with 1 (C <= 1 would mean no window)
+         measured: mu_closure >= 0.9999, mu_floor <= 1.0e-03 (RAR intact to 10% at g/a_0 = 1e-02) => C >= 1000
+         reading : the two requirements are compatible, and the price is one inequality: the gradient stiffness at solar-system accelerations, times the square of the scalar's velocity, must exceed the clock coefficient by at least a factor of a thousand. That is the whole cost of putting a force law on the decoupling branch
+
+PART C -- whether that window stays open as the universe expands
+  [PASS] V5 [the window does not close with time] C is formed from the derived scaling family and its power of the scale factor is measured; a non-zero power would mean the condition of V4 can hold at one epoch and fail at another
+         measured: C(a) = 2, exponent of a = 0
+         reading : the three exponents cancel exactly: -3(1-w) - 6w + 3(1+w) = 0. C is a constant of the motion on the derived family, so the inequality of V4 is imposed once and holds for all time. This is not a tuning that has to be maintained
+
+    if C is not large, the branch is bought with a cancellation instead:
+      C        mu_closure     m_rel        s_0        |rho_3|/rho
+      1e+00    1.000e-03      0.9990       1.0001     9.990e+03
+      1e+01    1.000e-02      0.9900       1.0001     9.900e+03
+      1e+02    1.000e-01      0.9000       1.0001     9.000e+03
+      1e+03    9.999e-01      0.0001       2.0000     1.000e+00
+      1e+04    9.999e-01      0.0001       2.0000     1.000e+00
+      1e+05    9.999e-01      0.0001       2.0000     1.000e+00
+  [PASS] V6 [and the cost of missing the window is bounded, not infinite] the cancellation degree among the sector's energy densities is evaluated across five decades of C, and the value at C = 1 is compared with the value at the required C
+         measured: |rho_3|/rho = 9.990e+03 at C = 1, 1.000e+00 at C = 1000
+         reading : with no enhancement the cubic operator must be cancelled to one part in ten thousand, which is the 1/w that L212 saw and mislocated in the coupling. Inside the window it is an order-unity fraction and nothing is cancelled
+
+PART D -- the board with the force law added
+    a_0 (canonical) = 9.3619e-11 m/s^2  =>  lambda^3/(beta s_0) = 2.3555e-19 in SI, with s_0 >= 2 from L213 V6
+    a_0 (alt      ) = 1.1279e-10 m/s^2  =>  lambda^3/(beta s_0) = 2.8378e-19 in SI, with s_0 >= 2 from L213 V6
+  [PASS] V7 [both footings are carried] the coefficient combination the derived scale fixes is evaluated on both footings and the ratio of the two taken, which must be the footing ratio itself and not something introduced by this lane
+         measured: ratio of the two coefficient combinations = 1.204777, footing ratio = 1.204777
+         reading : the derived relation is linear in a_0, so it carries the footing fork through untouched rather than hiding it
+    preferred frame / PPN      | 0 identically on the branch (L212 V1)                | REMOVED
+    cubic backreaction         | <= 0.044 of the gravitational momentum (L213 V10)    | BOUNDED
+    clock rate                 | s_0 >= 2, forced (L213 V6)                           | FORCED
+    margin                     | m_rel <= w <= 1e-4, forced (L213 V6)                 | FORCED
+    acoustic / CMB / BAO       | w <= 1e-4 (L201)                                     | unchanged
+    forest                     | residual c_s^2 = (H/k_max)^2 (L194)                  | by criticality
+    lensing, S8, growth        | sector inert, standard                               | unchanged
+    deep-MOND force law        | g ~ sqrt(GMa_0)/r, derived (V1)                      | DERIVED HERE
+    the MOND scale             | a_0 = lambda^3/(12 pi G beta s_0) (V2)               | DERIVED HERE
+    branch vs MOND             | one inequality, C >= 1000 (V4), time-invariant (V5)  | ONE CONDITION
+    solar system / Cassini     | not computed in this lane                            | OPEN
+    kappa                      | provably underivable by this class                   | OPEN, known
+  [PASS] V8 [the board is honest about what is left] the number of gates still recorded as open is counted and compared against zero, because a board with no open gates would be the claim this programme is not entitled to make
+         measured: 2 of 12 gates still open: ['solar system / Cassini', 'kappa']
+         reading : the force law is no longer one of them. What is left is the solar-system gate on the new coupling, which this lane does not compute, and the coefficient kappa, which is known to be underivable by this class of actions
+
+READING
+
+  The last gate is not blocked any more, and it turns out to cost exactly one inequality.
+
+  Coupling matter to the scalar and reducing the gradient sector in the quasi-static limit
+  gives the deep-MOND force law outright: acceleration falling as 1/r and rising as the
+  square root of the mass, straight out of the Y^{3/2} term (V1).  Matching it fixes the
+  MOND scale in terms of the action's own coefficients,
+
+      a_0 = lambda^3 / (12 pi G beta s_0),
+
+  mass-independent, so a genuine constant of the theory (V2).  It carries the clock rate in
+  the denominator, which is new: a faster clock means a smaller MOND scale.
+
+  The conflict, and it is a single coefficient.  The linear term d in the gradient function
+  appears twice, once as the floor it puts under the interpolating function and once as the
+  closure's mu that sets the clock margin.  The branch wants mu large and MOND wants the
+  floor small, and they are the same d.  The two are compatible exactly when
+
+      C = 2 k qbar^2 / U  >=  10^3,
+
+  the gradient stiffness at solar-system accelerations, times the scalar's velocity squared,
+  against the clock coefficient (V4).  And that ratio is built from three quantities whose
+  derived exponents cancel exactly, so it is a constant of the motion: imposed once, it
+  holds for all time (V5).  If it is missed, the branch is bought instead with a cancellation
+  of one part in 1/w = 10^4 among the sector's densities (V6) -- which is the factor L212
+  saw and put in the wrong place.
+
+  What is left.  The solar-system gate on the new coupling is not computed here and is open.
+  kappa remains underivable by this class of actions, which is a theorem of this programme,
+  not a gap in this lane.
+
+  LIMITS.  The matter coupling is taken at leading order, lambda phi rho, rather than as a
+  full conformal or disformal factor; the quasi-static reduction drops the clock's own
+  gradient response, which is legitimate on this branch only because the mixing vanishes
+  there. k is defined as W_Y at the highest acceleration probed and is not derived. The
+  interpolating function used is the pure Y^{3/2} limit, not nu_RAR in full, so V1 and V2
+  establish the deep-MOND limit and the scale, not the whole interpolation.  No numerical
+  gate has been re-run with the coupling switched on.
+
+L214 COMPLETE: 8/8 checks PASS.

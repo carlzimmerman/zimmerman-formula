@@ -9,7 +9,7 @@
   flat a₀(z), subdominant scalar GW) confronting DATA — not by Lean, and not while the intrinsic BBN
   fine-tuning (L84/L87) and astra's open ADM/khronon gates stand.
 
-  Theorems (114 as of 2026-09-12; all: exit 0, zero `sorry`, axioms ⊆ {propext, Classical.choice, Quot.sound}):
+  Theorems (122 as of 2026-09-12; all: exit 0, zero `sorry`, axioms ⊆ {propext, Classical.choice, Quot.sound}):
     hasDerivAt_G, hasDerivAt_Gp   — Gp = dG/dy and Gpp = d²G/dy² proven (not merely asserted).
     kernel_identity               — MOND kernel G'(y)/(2y) = 1 − e^{-y}.
     Gpp_zero, Gpp_pos             — health dichotomy: G''(0)=0, G''(y)>0 ∀ y>0 (no ghost off zero field).
@@ -1173,3 +1173,74 @@ theorem clock_runs_fast_iff_pressure_positive (mrel s0 w : ℝ) (hm : 0 < mrel)
   constructor
   · intro hs; rw [hw]; exact mul_pos (by linarith) hm
   · intro hp; rw [hw] at hp; nlinarith
+
+/-! ## L213/L214 — the decoupling branch solved, and the force law on it -/
+
+/-- **L213 V5.** On the decoupling locus the cubic operator's share of the sector's energy
+density is fixed by the clock rate alone: with `rho3 = U/w`, `rho = U/m_rel` and the clock
+identity `s0 - 1 = w/m_rel`, the ratio is `1/(s0-1)`, free of both `U` and `w`. -/
+theorem cubic_share_is_clock_rate (U w mrel s0 : ℝ)
+    (hw : w ≠ 0) (hm : mrel ≠ 0) (hU : U ≠ 0) (hid : s0 - 1 = w / mrel) :
+    (U / w) / (U / mrel) = 1 / (s0 - 1) := by
+  rw [hid]; field_simp
+
+/-- **L213 V6.** If no piece of the sector carries negative energy — the non-cubic density
+being `rho (1 - 1/(s0-1))` — then the clock must run at least twice proper time. -/
+theorem positivity_forces_clock_rate (s0 : ℝ) (h1 : 1 < s0)
+    (hpos : 0 ≤ 1 - 1 / (s0 - 1)) : 2 ≤ s0 := by
+  have hs : (0:ℝ) < s0 - 1 := by linarith
+  have h2 : 1 / (s0 - 1) ≤ 1 := by linarith
+  have := (div_le_one hs).mp h2
+  linarith
+
+/-- **L213 V6, corollary.** Through the clock identity, that same condition says the margin
+must sit *below* the sector's equation of state. -/
+theorem margin_below_equation_of_state (w mrel s0 : ℝ) (hm : 0 < mrel)
+    (hid : s0 - 1 = w / mrel) (hs : 2 ≤ s0) : mrel ≤ w := by
+  have h1 : (1:ℝ) ≤ w / mrel := by rw [← hid]; linarith
+  have := (le_div_iff₀ hm).mp h1
+  linarith
+
+/-- **L212 V4/V5 CORRECTED (L213 V7).** The cubic coupling does *not* diverge as the
+equation of state shrinks. Once `U` is tied to the sector's own pressure, `U = m_rel * rho`
+with `m_rel = w/(s0-1)`, the factor of `w` cancels identically and what remains depends on
+the clock rate alone. -/
+theorem cubic_coupling_is_equation_of_state_independent
+    (U w mrel s0 rho q H : ℝ) (hw : w ≠ 0) (hq : q ≠ 0) (hH : H ≠ 0) (hs : s0 - 1 ≠ 0)
+    (hU : U = mrel * rho) (hmr : mrel = w / (s0 - 1)) :
+    U / (6 * w * q ^ 3 * H) = rho / (6 * q ^ 3 * H * (s0 - 1)) := by
+  subst hU; subst hmr; field_simp
+
+/-- **L214 V2.** The MOND scale derived from the gradient sector is independent of the
+enclosed mass, so it is a constant of the theory rather than an object-by-object fit. -/
+theorem mond_scale_mass_independent (lam bet s0 G M r g c : ℝ)
+    (hG : G ≠ 0) (hM : M ≠ 0) (hr : r ≠ 0) (hb : bet ≠ 0) (hs : s0 ≠ 0) (hc : c ≠ 0)
+    (hg2 : g ^ 2 = lam ^ 3 * M / (c * bet * s0 * r ^ 2)) :
+    g ^ 2 * r ^ 2 / (G * M) = lam ^ 3 / (c * G * bet * s0) := by
+  rw [hg2]; field_simp
+
+/-- **L214 V4.** The decoupling branch and the deep-MOND limit constrain the *same*
+coefficient in opposite directions. They are compatible exactly above one threshold in the
+enhancement ratio `C`. -/
+theorem branch_mond_window (C muc muf w f : ℝ) (hw : w < 1) (hf : 0 < f)
+    (hmuf : 0 < muf) (hC : muc = C * muf) (hbranch : 1 - w ≤ muc) (hmond : muf ≤ f) :
+    (1 - w) / f ≤ C := by
+  rw [hC] at hbranch
+  have h1 : (0:ℝ) < 1 - w := by linarith
+  have hCpos : 0 < C := by nlinarith
+  have h2 : 1 - w ≤ C * f := by nlinarith
+  exact (div_le_iff₀ hf).mpr h2
+
+/-- **L214 V5, the exponent arithmetic.** On the derived scaling family the exponents of the
+three quantities entering `C` cancel exactly. -/
+theorem derived_exponents_cancel (w : ℝ) :
+    (-(3 * (1 - w))) + (-(3 * w)) * 2 = -(3 * (1 + w)) := by ring
+
+/-- **L214 V5.** Hence the enhancement ratio is a constant of the motion: imposed once, the
+window of `branch_mond_window` stays open for all time. The three power-law factors of the
+derived family multiply to one in the combination `fk * fq^2 = fU`, which is exactly the
+exponent identity of `derived_exponents_cancel`, and the ratio is then invariant. -/
+theorem window_ratio_is_scale_invariant (k0 q0 U0 fk fq fU : ℝ)
+    (hU0 : U0 ≠ 0) (hfk : fk ≠ 0) (hfq : fq ≠ 0) (hprod : fk * fq ^ 2 = fU) :
+    (k0 * fk) * (q0 * fq) ^ 2 / (U0 * fU) = k0 * q0 ^ 2 / U0 := by
+  subst hprod; field_simp

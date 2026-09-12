@@ -1,0 +1,109 @@
+L213 -- the W_0 = 0 decoupling branch solved self-consistently, and the gate board on it.
+
+L212 found the locus where the clock-scalar mixing cancels exactly, and reported that
+reaching it forces the cubic coupling eight orders above the value every prior result
+assumed, scaling as 1/w.  That reading held the clock coefficient U fixed while shrinking
+w.  U is not a free constant on the tracked branch: L200/L207 give the sector's density as
+rho = U/m_rel and its pressure as p = U(s_0 - 1), so U is tied to the sector's own
+pressure and moves with w.  This lane
+
+  (A) derives the cubic operator's energy density and pressure from the minisuperspace
+      action with the lapse restored, rather than quoting a Horndeski formula, and
+      calibrates the machinery on P(X) where the answer is textbook;
+  (B) redoes the branch algebra with U tied down;
+  (C) measures what the cubic operator actually costs, as a dimensionless share of the
+      momentum conjugate to the scale factor, which no choice of units can inflate;
+  (D) walks the gate board at the resulting point and records what is still open.
+
+Every check states the measured quantity and the threshold separately.  No check asserts a
+physical reading of a computed number; the reading is printed as detail and the pass
+condition is arithmetic.
+
+PART A -- the stress tensor of the cubic operator, derived from the action
+  [PASS] V1 [the machinery is calibrated before it is used] applying the same lapse and scale-factor variations to a k-essence term L = F(Q) must reproduce the textbook pair, density Q F_Q - F and pressure F
+         measured: rho = Q*Derivative(F(Q), Q) - F(Q), p = F(Q)
+         reading : for F(Q) = P(X) with X = Q^2 this is the familiar 2 X P_X - P and P, so the two variations used below are the right ones
+  [PASS] V2 [the integration by parts is exact, not approximate] the cubic operator's minisuperspace action differs from its integrated-by-parts form by a total time derivative and by nothing else
+         measured: difference after removing d/dt(-gamma a^3 Q^3/3) = 0
+         reading : so the first-order form -2 gamma a^2 adot Q^3 may be varied in place of the second-order one, and the boundary term carries no dynamics
+  [PASS] V3 [the cubic operator's density and pressure] both follow from the same action by the two variations calibrated in V1
+         measured: rho_3 = -6*ad*gamma*q**3/a, p_3 = 2*gamma*q**2*qd
+         reading : rho_3 = -6 gamma H qbar^3 and p_3 = 2 gamma qbar^2 qbar', so the counterterm W_0 = U - 2 gamma qbar^2 qbar' is exactly U - p_3: the decoupling condition W_0 = 0 says the cubic operator's PRESSURE equals the clock coefficient
+
+PART B -- the branch algebra once U is tied to the sector's own pressure
+  [PASS] V4 [the cubic operator carries the SECTOR's equation of state, identically] on the derived family qbar ~ a^{-3w} the cubic operator's own pressure-to-density ratio is computed, and compared with w
+         measured: p_3/rho_3 = w
+         reading : so imposing the decoupling condition does not disturb the background scaling at all: the operator being switched on tracks the same power of the scale factor as everything else in the sector
+  [PASS] V5 [the cubic operator's share of the sector density is fixed by the CLOCK RATE alone] with rho = U/m_rel and s_0 - 1 = w/m_rel, the ratio rho_3/rho is computed and compared with 1/(s_0 - 1)
+         measured: rho_3/rho = 1/(s_0 - 1)
+         reading : U and w both drop out: how much of the dark sector the cubic operator supplies depends on nothing but how much faster than proper time the clock runs
+  [PASS] V6 [and that share forces the clock rate] the remaining pieces of the sector carry density rho(1 - 1/(s_0-1)); solving for where that vanishes gives the smallest clock rate at which no piece has to carry negative energy
+         measured: s_0 at which the non-cubic density vanishes = [2]
+         reading : so s_0 >= 2 unless some piece of the sector carries negative energy, and through s_0 - 1 = w/m_rel that is exactly m_rel <= w: the margin must sit below the equation of state, not above it. At s_0 = 2 the cubic operator supplies the WHOLE dark sector density on its own
+
+PART C -- the cost of the operator, measured dimensionlessly
+  [PASS] V7 [L212 V4/V5 CORRECTED -- the 1/w blow-up was an artifact of holding U fixed] L212's expression for the forced coupling is re-evaluated with U replaced by its value on the tracked branch, and its derivative with respect to w is measured
+         measured: |gamma| = rho/(6*H*qbar**3*(s_0 - 1)), d|gamma|/dw = 0
+         reading : once U = m_rel rho and m_rel = w/(s_0-1) are imposed, w cancels exactly: the coupling does not diverge as the equation of state shrinks. L212's table of 65 / 650 / 6500 was one number read in units where the sector density had been set to 1/m_rel, which is large for the same reason w is small
+  [PASS] V8 [what the branch DOES fix] the dimensionless combination gamma qbar^3 H / rho is computed on the branch and compared with -1/(6(s_0-1))
+         measured: gamma qbar^3 H / rho = -1/(6*s_0 - 6)
+         reading : the branch fixes a ratio, not a coupling. Its magnitude is at most 1/6 (at s_0 = 2) and falls as the clock runs faster. gamma alone is not determined, because qbar is not: only the product is
+  [PASS] V9 [THE COST, in a form no choice of units can inflate] the cubic operator's share of the momentum conjugate to the scale factor is computed from the same minisuperspace action as the Einstein-Hilbert term's, and evaluated on the branch
+         measured: pi_3/pi_grav = a*gamma*q**3/(3*M**2*ad) = -Omega/(6*s_0 - 6) on the branch
+         reading : the operator's weight relative to gravity is Omega_sector/(6(s_0-1)), bounded by Omega_sector/6 because s_0 >= 2. It is a percent-level correction, not an eight-order-of-magnitude one
+  [PASS] V10 [the number] the largest weight the cubic operator can carry relative to gravity, over the whole allowed range of the clock rate, is evaluated for the observed cold sector and compared against 0.10
+         measured: max |pi_3/pi_grav| = 0.0442 at s_0 = 2, Omega = 0.265
+         reading : so every result derived at gamma -> 0 from L192 onward survives on this branch as a statement accurate to about four percent, rather than being invalidated as L212 concluded. That conclusion is withdrawn
+  [PASS] V11 [the scale it corresponds to] the product |gamma| qbar^3 fixed by the branch today is evaluated in electronvolts and its cube root taken, then compared against the Planck scale to check it is an ordinary one
+         measured: |gamma| qbar^3 = 1.131e+21 eV^3, cube root = 10.42 MeV
+         reading : an ordinary particle-physics scale, some twenty-one orders below the Planck mass. Nothing about the branch is large; L212's 650 was a units artifact
+
+PART D -- the gate board on this branch
+    preferred frame / PPN            | clock-scalar mixing coefficient after elimination | 0 identically (L212 V1) | REMOVED ON THIS BRANCH
+    cubic backreaction               | share of the momentum conjugate to a             | 0.044 at worst         | BOUNDED, new here
+    clock rate                       | s_0 forced by positivity of the remaining pieces | >= 2                   | FORCED, new here
+    margin                           | m_rel = w/(s_0-1)                                | <= 1e-04               | FORCED, new here
+    acoustic scale / CMB / BAO       | sector equation of state w                       | <= 1e-04 (L201)        | unchanged
+    zero-gradient sound speed        | c_s^2 = -w/(2-m_rel)                             | -5.00e-05              | negative by design: this is L192's criticality driver
+    Lyman-alpha forest               | residual c_s^2 at the critical surface           | (H/k_max)^2 (L194)     | handled by criticality, not by small w
+    lensing, S8, growth              | coupling of matter to the scalar                 | 0 (minimal coupling, L211) | standard, because the sector is inert
+    health                           | U > 4 d l with mu -> 1                           | qbar^2 > 2 l           | one inequality, new here
+    force law / MOND                 | delta S_matter / delta chi                       | 0 identically (L211)   | OPEN -- no force law is produced
+  [PASS] V12 [the board is complete and honest] every gate on the board carries a computed quantity rather than a verdict, and the force-law gate is recorded as open rather than passed
+         measured: 10/10 gates carry a number; force-law status = 'OPEN -- no force law is produced'
+         reading : this branch delivers a consistent, exactly decoupled cold dark sector whose clock rate and margin are now forced rather than chosen. It does NOT deliver MOND: matter is still minimally coupled, so there is still no modified force law
+
+READING
+
+  The shot L212 took was good and its price tag was wrong.  W_0 = 0 removes the clock-scalar
+  mixing exactly, which is what the preferred-frame gate needed.  L212 then priced that at a
+  cubic coupling eight orders too large -- but it computed the price with the clock
+  coefficient U held fixed, and U is not free: the tracked branch sets rho = U/m_rel, so U
+  moves with w and the 1/w divergence cancels identically (V7).  What the branch really
+  fixes is the dimensionless ratio gamma qbar^3 H/rho = -1/(6(s_0-1)), whose magnitude is at
+  most 1/6 (V8), and the operator's weight against gravity is Omega_sector/(6(s_0-1)),
+  at worst four percent (V9, V10).  Every result derived at gamma -> 0 therefore survives on
+  this branch to about four percent instead of being invalidated.  L212's verdict is
+  withdrawn.
+
+  The branch also pays for itself in structure.  Requiring that no piece of the sector carry
+  negative energy forces the clock to run at least twice proper time, s_0 >= 2, and through
+  the clock identity that is m_rel <= w: the margin must sit BELOW the equation of state
+  (V6).  Both were free parameters before.  At the boundary s_0 = 2 the cubic operator
+  supplies the entire dark sector density by itself.
+
+  What the board says.  Nine gates now carry a computed number on this branch and one does
+  not.  The one that does not is the force law: matter is minimally coupled, so the action
+  produces a cold dark sector with an exactly silent clock and no MOND.  That gate is where
+  the remaining work is, and it is now a clean question rather than a blocked one, because
+  the obstruction that made adding a matter coupling dangerous -- the preferred-frame
+  mixing -- is identically zero here.
+
+  LIMITS.  The elimination that gives the mixing coefficient is astra's, used rather than
+  re-derived.  The positivity argument in V6 assumes no piece of the sector carries negative
+  energy; if one may, s_0 < 2 is allowed at the cost of a cancellation of degree
+  (2-s_0)/(s_0-1).  V9 measures the operator's weight in the background sector only; the
+  perturbation kinetic matrix at s_0 = 2 has not been recomputed, and no gate has been
+  re-run numerically on the branch.  The force-law gate is open and nothing here closes it.
+
+L213 COMPLETE: 12/12 checks PASS.
