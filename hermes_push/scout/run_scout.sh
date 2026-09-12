@@ -1,9 +1,13 @@
 #!/usr/bin/env bash
 # The always-on loop. One cycle per interval, each cycle producing exactly one output.
-# Configure AGENT_CMD for your local model's CLI, e.g.
-#   export AGENT_CMD='ollama run qwen2.5-coder:32b'            (reads the prompt on stdin)
-#   export AGENT_CMD='hermes run --system-file hermes_push/scout/SCOUT.md --cwd . --allow-write hermes_push/scout --message'
+# Configure AGENT_CMD so that "$AGENT_CMD <message>" runs the agent headlessly on that message.
+# With the Hermes CLI on this machine, the working form is:
+#   export AGENT_CMD='hermes --in . --yolo -m <model> -z'
+# The -z flag takes the prompt as its argument and runs without a terminal; --in sets the working directory; --yolo lets it use
+# tools without stopping to ask. Add --provider if the model needs one. Test a single cycle before letting it loop:
+#   ./hermes_push/scout/run_scout.sh 60 1
 # Usage from the repository root:  ./hermes_push/scout/run_scout.sh [interval_seconds] [max_cycles]
+# Alternatively schedule it with the agent's own scheduler instead of this loop; see README.md in this folder.
 set -uo pipefail
 ROOT="$(cd "$(dirname "$0")/../.." && pwd)"; cd "$ROOT"
 INT="${1:-1800}"; MAX="${2:-0}"; N=0
