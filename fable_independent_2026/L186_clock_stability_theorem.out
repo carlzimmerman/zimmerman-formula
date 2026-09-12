@@ -1,0 +1,29 @@
+======================================================================================================================
+L186 THE CLOCK STABILITY THEOREM: c_s^2 = [2P_X(1-D) - 2 s0 W_Y]/[B(1-D)]  ->  (1 - s0) m_rel/(2 - m_rel) under astra's closure
+======================================================================================================================
+    a        s0       m_rel      c_s^2 operator(k=3e4)   general formula   closure formula   gen/op-1    clo/op-1
+    1.0000  1.0318  9.342e-02   -1.55397e-03          -1.55232e-03      -1.55732e-03     -1.1e-03   +2.2e-03
+    0.7501  1.0718  7.361e-02   -2.74051e-03          -2.73988e-03      -2.74235e-03     -2.3e-04   +6.7e-04
+    0.5627  1.1733  5.597e-02   -4.98863e-03          -4.98838e-03      -4.99005e-03     -5.0e-05   +2.8e-04
+    0.4221  1.4125  3.787e-02   -7.96102e-03          -7.96092e-03      -7.96235e-03     -1.2e-05   +1.7e-04
+    0.3166  1.1176  2.018e-02   -1.19787e-03          -1.19784e-03      -1.19853e-03     -2.7e-05   +5.5e-04
+    0.2375  0.8509  9.050e-03   +6.77966e-04          +6.77976e-04      +6.77670e-04     +1.5e-05   -4.4e-04
+    0.1782  0.7714  3.888e-03   +4.45443e-04          +4.45446e-04      +4.45284e-04     +8.2e-06   -3.6e-04
+    0.1337  0.7404  1.651e-03   +2.14513e-04          +2.14516e-04      +2.14424e-04     +1.1e-05   -4.2e-04
+    0.1003  0.7234  6.981e-04   +9.66193e-05          +9.66221e-05      +9.65697e-05     +2.9e-05   -5.1e-04
+    0.1003  0.7234  6.981e-04   +9.66193e-05          +9.66221e-05      +9.65697e-05     +2.9e-05   -5.1e-04
+  [PASS] V1 [derivation verified] the general formula reproduces astra's exact operator within 0.5% at every sample of the branch (gamma = 1e-6 residual)
+           (max |gen/op - 1| = 1.1e-03)
+  [PASS] V2 [closure verified] c_s^2 = (1 - s0) m_rel/(2 - m_rel) reproduces the operator within 0.5% at every sample
+           (max |clo/op - 1| = 2.2e-03)
+  [PASS] V3 [THE THEOREM, computed] sign(c_s^2) = sign(1 - s0) at every sample: the clock is gradient-stable exactly where its rate does not exceed proper time
+           (s0 = 1.032 1.072 1.173 1.413 1.118 0.851 0.771 0.740 0.723 0.723)
+  [PASS] V4 [computed] the clock rate crosses s0 = 1 exactly once on the branch, between a = 0.30 and a = 0.25 (z ~ 2.3-3): the instability switches on there
+           (crossings [(0.2937577003235335, 0.290108583563656)])
+  [PASS] V5 [the closed-form 1e5 gap] with the forest bound c_s^2 <= 1e-9 (L185) and the branch's own s0 < 1 values, the margin must satisfy m_rel <= 2e-9/(1 - s0) ~ 1e-8, while the branch has m_rel = 7e-4 .. 9e-3: too large by > 1e4 at every stable sample
+           (required m_rel = 1.3e-08 8.7e-09 7.7e-09 7.2e-09 7.2e-09; actual 9.0e-03 3.9e-03 1.7e-03 7.0e-04 7.0e-04)
+  [PASS] V6 [computed, assumption: linear Jeans length at the quoted densities] the forest-compatible sound speed is c_s = sqrt(1e-9) c = 9.5 km/s, whose Jeans length is < 10 kpc at rho >= 1e-25 g/cm^3: a fluid this soft clusters INSIDE galaxies, so a sound speed cannot supply the host-mass-dependent depletion the L166 certificate requires (f <= 0.105 strict at 1.2e10 Msun)
+           (c_s = 9.5 km/s; lambda_J(kpc) at rho = 1e-25/1e-24/1e-23: 6.7 2.1 0.7)
+    LIMITS: k >> aH frozen-coefficient limit, gamma -> 0 in the derivation (kept in the operator), astra's branch dimensionless; V6 is a linear Jeans estimate.
+
+L186 COMPLETE: 6/6 checks PASS.

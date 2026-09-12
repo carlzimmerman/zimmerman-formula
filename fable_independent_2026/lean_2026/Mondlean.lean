@@ -9,7 +9,7 @@
   flat a₀(z), subdominant scalar GW) confronting DATA — not by Lean, and not while the intrinsic BBN
   fine-tuning (L84/L87) and astra's open ADM/khronon gates stand.
 
-  Theorems (102 as of 2026-09-11; all: exit 0, zero `sorry`, axioms ⊆ {propext, Classical.choice, Quot.sound}):
+  Theorems (105 as of 2026-09-11; all: exit 0, zero `sorry`, axioms ⊆ {propext, Classical.choice, Quot.sound}):
     hasDerivAt_G, hasDerivAt_Gp   — Gp = dG/dy and Gpp = d²G/dy² proven (not merely asserted).
     kernel_identity               — MOND kernel G'(y)/(2y) = 1 − e^{-y}.
     Gpp_zero, Gpp_pos             — health dichotomy: G''(0)=0, G''(y)>0 ∀ y>0 (no ghost off zero field).
@@ -1029,3 +1029,46 @@ theorem mean_field_isw_rate_bounds (u : ℝ) (hu : 0 < u) :
   have hpos : 0 < Real.exp u - 1 := by linarith
   refine ⟨div_pos hu hpos, ?_⟩
   rw [div_le_one hpos]; linarith
+
+/-! ### L186: the CLOCK STABILITY THEOREM for astra's frozen cubic clock action (sub-horizon, γ → 0; derived by hand,
+    verified against astra's exact transfer operator to 1e-3 on its own branch, L186). -/
+/-- L186: astra's closure (W = U, W_Y = d, P_X = Ud/m, P_XX = 2Ud²/m², m = U − 2dq² the logarithm margin) reduces the
+    sub-horizon clock sound speed c_s² = [2P_X(1−D) − 2s₀W_Y]/[B(1−D)], B = 2P_X + 4q²P_XX, D = 2q²W_Y/W, to
+    (1 − s₀)·(m/U)/(2 − m/U). -/
+theorem clock_sound_speed_closure (U d q m s0 : ℝ) (hU : U ≠ 0) (hd : d ≠ 0) (hm : m ≠ 0) (h2 : 2 * U - m ≠ 0)
+    (hclos : m = U - 2 * d * q ^ 2) :
+    (2 * (U * d / m) * (1 - 2 * q ^ 2 * d / U) - 2 * s0 * d) /
+        ((2 * (U * d / m) + 4 * q ^ 2 * (2 * U * d ^ 2 / m ^ 2)) * (1 - 2 * q ^ 2 * d / U)) =
+      (1 - s0) * (m / U) / (2 - m / U) := by
+  have h3 : (2 : ℝ) - m / U ≠ 0 := by
+    intro h; apply h2; field_simp at h; linarith
+  have h4 : (1 : ℝ) - 2 * q ^ 2 * d / U ≠ 0 := by
+    have : (1 : ℝ) - 2 * q ^ 2 * d / U = m / U := by rw [hclos]; field_simp
+    rw [this]; exact div_ne_zero hm hU
+  have h5 : U + d * q ^ 2 * 2 ≠ 0 := by intro h; apply h2; rw [hclos]; linarith
+  subst hclos
+  field_simp
+  have hK : (U + d * q ^ 2 * 2) * (U + d * q ^ 2 * 2)⁻¹ = 1 := mul_inv_cancel₀ h5
+  linear_combination (1 - s0) * hK
+
+/-- L186: gradient stability of the clock ⇔ the clock rate does not exceed proper time (0 < m_rel < 2). -/
+theorem clock_gradient_stability_iff (mrel s0 : ℝ) (hm : 0 < mrel) (hm2 : mrel < 2) :
+    0 ≤ (1 - s0) * mrel / (2 - mrel) ↔ s0 ≤ 1 := by
+  have hpos : 0 < mrel / (2 - mrel) := div_pos hm (by linarith)
+  constructor
+  · intro h; rw [mul_div_assoc] at h; by_contra hc
+    have hlt : 1 < s0 := not_le.mp hc
+    have : (1 - s0) * (mrel / (2 - mrel)) < 0 := mul_neg_of_neg_of_pos (by linarith) hpos
+    linarith
+  · intro h; rw [mul_div_assoc]; exact mul_nonneg (by linarith) hpos.le
+
+/-- L186: softness forces the margin. If the clock is stable by a finite amount (s₀ ≤ 1 − δ) and its sound speed obeys
+    c_s² ≤ ε (the forest bound ε = 1e-9 of L185), then the logarithm margin obeys m_rel ≤ 2ε/δ. -/
+theorem clock_softness_forces_margin (mrel s0 ε δ : ℝ) (hm : 0 < mrel) (hm2 : mrel < 1) (hδ : 0 < δ)
+    (hs : s0 ≤ 1 - δ) (hsoft : (1 - s0) * mrel / (2 - mrel) ≤ ε) : mrel ≤ 2 * ε / δ := by
+  have h2m : 0 < 2 - mrel := by linarith
+  have h1 : δ * mrel / 2 ≤ (1 - s0) * mrel / (2 - mrel) := by
+    rw [le_div_iff₀ h2m]
+    nlinarith [mul_pos hδ hm, mul_nonneg hm.le (by linarith : (0 : ℝ) ≤ 1 - s0 - δ)]
+  have h2 : δ * mrel / 2 ≤ ε := le_trans h1 hsoft
+  rw [le_div_iff₀ hδ]; linarith
