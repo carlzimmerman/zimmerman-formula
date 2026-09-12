@@ -2,6 +2,12 @@
 
 ## Result and boundary
 
+Current physics checkpoint: [evolving density and alternative branches](DARK_ENERGY_BRANCH_REPORT.md).
+The clock density already evolves. Two additional expanding roots pass local
+gradient/partial-kinetic checks but fail the backward gradient gate before
+radiation domination. None of the four found roots passes the tested history;
+this is not an exhaustive or universal no-go. The theory remains OPEN.
+
 Newest checkpoint: [joint high-precision evolution](COUPLED_PRECISION_REPORT.md)
 obtains decreasing original-Euler residuals across six step refinements in
 the short low-k test. This is bounded numerical progress, not full closure.
