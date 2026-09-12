@@ -9,7 +9,7 @@
   flat a₀(z), subdominant scalar GW) confronting DATA — not by Lean, and not while the intrinsic BBN
   fine-tuning (L84/L87) and astra's open ADM/khronon gates stand.
 
-  Theorems (109 as of 2026-09-12; all: exit 0, zero `sorry`, axioms ⊆ {propext, Classical.choice, Quot.sound}):
+  Theorems (111 as of 2026-09-12; all: exit 0, zero `sorry`, axioms ⊆ {propext, Classical.choice, Quot.sound}):
     hasDerivAt_G, hasDerivAt_Gp   — Gp = dG/dy and Gpp = d²G/dy² proven (not merely asserted).
     kernel_identity               — MOND kernel G'(y)/(2y) = 1 − e^{-y}.
     Gpp_zero, Gpp_pos             — health dichotomy: G''(0)=0, G''(y)>0 ∀ y>0 (no ghost off zero field).
@@ -1118,3 +1118,26 @@ theorem critical_gradient_unique (f : ℝ → ℝ) (hf : Continuous f) (hm : Str
   refine ⟨y, ⟨hy, hfy⟩, ?_⟩
   rintro z ⟨-, hz⟩
   exact hm.injective (hz.trans hfy.symm)
+
+/-! ### L193: the critical surface of L192 is an exact stress-tensor degeneracy, off shell. -/
+/-- L193: the stress-degeneracy identity. For the frozen cuscuton-clock MOND action the determinant of the time-space
+    block of the MIXED stress tensor, shifted by the Lagrangian eigenvalue L, equals -s₀ b² W N where
+    N = 2P_X(1 - 2Q²W_Y/W) - 2s₀W_Y is exactly the combination whose vanishing sets the critical gradient of L192.
+    Stated with the block entries written out: T⁰₀ = -(2P_XQ² - P + V), T⁰₁ = -2P_XQb, T¹₀ = 2P_XQb,
+    T¹₁ = L + 2(P_X - s₀W_Y)b², L = P - V + s₀W. -/
+theorem stress_degeneracy_identity (P PX V W WY s0 Q b : ℝ) (hW : W ≠ 0) :
+    (-(2 * PX * Q ^ 2 - P + V) - (P - V + s0 * W)) *
+        ((P - V + s0 * W) + 2 * (PX - s0 * WY) * b ^ 2 - (P - V + s0 * W))
+      - (-(2 * PX * Q * b)) * (2 * PX * Q * b)
+    = -(s0 * b ^ 2 * W * (2 * PX * (1 - 2 * Q ^ 2 * WY / W) - 2 * s0 * WY)) := by
+  field_simp
+  ring
+
+/-- L193: on the critical surface the third eigenvalue joins the transverse pair. The critical stiffness is the solution of
+    W_Y (2P_XQ² + s₀W) = P_X W; at that value N vanishes, and with it the shifted determinant above, so the mixed stress has L
+    as a repeated eigenvalue and the sector's stress takes perfect-fluid form. -/
+theorem critical_stiffness_kills_N (PX W s0 Q WY : ℝ) (hW : W ≠ 0)
+    (hc : WY * (2 * PX * Q ^ 2 + s0 * W) = PX * W) :
+    2 * PX * (1 - 2 * Q ^ 2 * WY / W) - 2 * s0 * WY = 0 := by
+  field_simp
+  linear_combination (-2 : ℝ) * hc
