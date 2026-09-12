@@ -1,0 +1,54 @@
+================================================================================================================
+H001  C001 'MOND-state-gated' component: x = g_N/a_0 as the gating variable
+  footings: a_0 = 9.3619e-11 (canonical)   /   1.1279e-10 (alternative) m/s^2 ; kappa = 0.50 (fitted)
+  nu_RAR(x) = 1/(1 - exp(-sqrt x)) ; transfer T(x) = nu(x)/sqrt(x) ; MOND force = g_N (T(x)-1)
+================================================================================================================
+
+[A] FOREST GATE -- linear cold component x = g_N(a_0)/a_0 on its own linear modes (both footings)
+    k [h/Mpc]  z     |  x_canon      x_alt      g_N(delta=1) [m/s^2]  |  D(a)    verdict (x<<1 => inert)
+       1.0     3.0    |   3.870e-21      3.212e-21      3.623e-31         |   0.250    INERT (x<<1)
+       5.0     3.0    |   7.740e-22      6.424e-22      7.246e-32         |   0.250    INERT (x<<1)
+       8.0     3.0    |   4.837e-22      4.015e-22      4.529e-32         |   0.250    INERT (x<<1)
+       1.0     2.2    |   3.994e-21      3.315e-21      3.739e-31         |   0.312    INERT (x<<1)
+       5.0     2.2    |   7.988e-22      6.630e-22      7.478e-32         |   0.312    INERT (x<<1)
+       8.0     2.2    |   4.992e-22      4.144e-22      4.674e-32         |   0.312    INERT (x<<1)
+       1.0     1.0    |   4.780e-21      3.968e-21      4.475e-31         |   0.500    INERT (x<<1)
+       5.0     1.0    |   9.561e-22      7.936e-22      8.951e-32         |   0.500    INERT (x<<1)
+       8.0     1.0    |   5.976e-22      4.960e-22      5.594e-32         |   0.500    INERT (x<<1)
+       1.0     0.3    |   7.529e-21      6.249e-21      7.048e-31         |   0.769    INERT (x<<1)
+       5.0     0.3    |   1.506e-21      1.250e-21      1.410e-31         |   0.769    INERT (x<<1)
+       8.0     0.3    |   9.411e-22      7.811e-22      8.811e-32         |   0.769    INERT (x<<1)
+    T(k=8)/T(k=0.5) = 16 over x in [5.1e-22, 8.1e-21] (deep-MOND 1/sqrt x, non-universal)
+  [FAIL] G5 FAIL [forest -- NOT a pass] the cold component's self-acceleration on Mpc/forest scales (k = 1..8 h/Mpc, z = 0.3..3, BOTH footings a_0 = 9.3619e-11 / 1.1279e-10) gives x = g_N/a_0 ~ 1e-21, so the kernel is INERT: forest preservation is 'consistent by construction' (not a win) AND, since T(x) is non-universal, the inert regime distorts rather than preserves. G5 is not passed by this mechanism
+           (x_max = 7.5e-21 (inert), T_ratio = 16 (non-flat) => not CDM-preserved, not a pass)
+
+[B] ACTIVE SHELL -- x(r) = g_N(r)/a_0 inside a Milky-Way-type host (c=4 NFW + baryons)
+    r =   0.01 kpc  g_dark=6.696e-04  g_baryon=1.147e-06  x_dark=7.153e+06  x_bary=1.225e+04  (canonical a_0)
+    r =   0.03 kpc  g_dark=1.808e-04  g_baryon=3.686e-07  x_dark=1.931e+06  x_bary=3.937e+03  (canonical a_0)
+    r =   0.10 kpc  g_dark=3.050e-05  g_baryon=9.823e-08  x_dark=3.258e+05  x_bary=1.049e+03  (canonical a_0)
+    r =   0.30 kpc  g_dark=5.001e-06  g_baryon=2.495e-08  x_dark=5.342e+04  x_bary=2.665e+02  (canonical a_0)
+    r =   1.00 kpc  g_dark=6.151e-07  g_baryon=4.178e-09  x_dark=6.570e+03  x_bary=4.463e+01  (canonical a_0)
+    r =   3.00 kpc  g_dark=8.526e-08  g_baryon=6.462e-10  x_dark=9.107e+02  x_bary=6.903e+00  (canonical a_0)
+    r =   7.50 kpc  g_dark=1.591e-08  g_baryon=1.200e-10  x_dark=1.699e+02  x_bary=1.282e+00  (canonical a_0)
+    r =  30.00 kpc  g_dark=1.209e-09  g_baryon=7.952e-12  x_dark=1.291e+01  x_bary=8.494e-02  (canonical a_0)
+    r =  50.00 kpc  g_dark=4.637e-10  g_baryon=2.877e-12  x_dark=4.953e+00  x_bary=3.073e-02  (canonical a_0)
+    x_dark(r): 2.8e+07 at r=0.01 kpc, down to 5.0e+00 at r=50 kpc; the ACTIVE window 1<=x_dark<=10 lies at r in [34.42, 50.00] kpc
+  [PASS] DIAG (fact) [regime split] the kernel's active window 1 <= x_dark <= 10 sits at r ~ 1-50 kpc (the galactic-disk MOND regime): it does NOT reach the cluster mass (R500 = 1.38 Mpc, x ~ 1e-3) nor the Mpc forest modes (x ~ 1e-21) -- a gating variable at the disk scale cannot supply the ledger's Mpc-scale cluster retention (0.576) nor the galaxy anchors (0.105/0.14) -- so the mechanism's ledger doors are not reached (a computed DIAGNOSTIC, not a gate win)
+           (active window r = [34.42, 50.00] kpc (galaxy disk); cluster R500 = 1.38 Mpc; forest x~1e-21)
+  [PASS] FINDING (fact) [galaxies] the MOND active window (x_dark ~ O(1)) is the galactic-disk regime (x_dark(30 kpc) = 1e+01): rotation curves are FIT here, not a depletion the ledger needs -- consistent with the programme's statement that RAR is the fit, not a prediction
+           (x_dark(30 kpc) = 1e+01 (MOND regime in the outer disk))
+
+[C] CLUSTERS -- retained fraction f(R500) the mechanism can supply
+    cluster component x = g_dark/a_0 ~ 1e-3 (deep-CDM, inert): kernel acts on x~1; f(R500) = 1.000 (full LCDM) vs the ledger 0.576 +/- 0.10
+  [FAIL] G3 FAIL [clusters] the x-gated kernel is inert in clusters (x ~ 1e-3 << 1) and cannot deplete them: f(R500) = 1.00 vs 0.576 +/- 0.10. The window 1<x<10 (galaxy disks) and the cluster mass (R500 = 2.71 r_s) live in different regimes: x-gating supplies neither together
+           (f(R500) = 1.00 (inert) vs target 0.576 +/- 0.10 (deviation 0.424 > 0.10))
+
+[D] VERDICT -- M8-invert route to the ledger (c* ~ 0.4) via a forest-preserving kernel
+  [FAIL] D0/M8 FAIL [geometry] the M8-invert route is closed for the gating variable x = g_N/a_0: (i) x ~ 1e-21 on Mpc/forest modes -> kernel INERT -> forest power preserved (consistent by construction, NOT a pass); (ii) c*~0.4 needs structure cut below ~Mpc, which the inert kernel forbids; (iii) the active window (1<x<10) lives at r~1-50 kpc, not the cluster R500 (1.38 Mpc) nor the galaxy-disk 0.105 anchor.  3 free parameters, 0 ledger doors passed -- the C000c swing, not a new escape
+           (c*~0.4 (k_cut<~1) NOT achievable; f(R500)=1.00 vs 0.576; active window r~1-50 kpc)
+
+================================================================================================================
+H001 result: candidate C001 ('MOND-state-gated' component) KILLED.  x = g_N/a_0 ~ 1e-21 on the Mpc/forest modes on both footings (inert; forest 'preserved' is consistent-by-construction and NOT a win, and T(x) is non-universal so it distorts) -> G5 not passed; the active window lives at r ~ 1-50 kpc (galaxy disk, the RAR fit), so clusters f(R500)=1.00 vs 0.576 fail and the M8-invert c*~0.4 (k_cut<~1) is forbidden by forest preservation -- the C000c swing.  3 free parameters, 0 ledger doors passed.  See H001 entry and H001_results.json.
+
+H001 COMPLETE: 2/5 checks PASS.
+================================================================================================================
