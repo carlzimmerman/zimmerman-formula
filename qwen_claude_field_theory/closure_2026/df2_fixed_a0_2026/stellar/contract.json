@@ -1,0 +1,18 @@
+{
+  "claim_id": "DF2_SPHERICAL_STELLAR_ISOLATED_REFERENCE",
+  "mathematics": {
+    "assertion_tested": "Normalized circular Sersic Abel deprojection and isolated isotropic Jeans aperture second moments converge for the stated DF2 reference inputs; independent analytic controls are run separately in test_profile.py.",
+    "coefficient_domain": "IEEE 754 float64, SciPy quadrature and monotone interpolation; no interval certification",
+    "conventions": "Total mass M=1 and projected circular Re=1; accelerations in a0, second moments in a0 Re; spherical and isolated with constant M/L and zero outer pressure",
+    "inputs": ["Sersic n=0.6", "Mstar=2e8 solar masses at D=20 Mpc", "circular Re=2.0 kpc at D=20 Mpc", "V-band M/L=2 adopted prior", "fixed global a0=9.3619e-11 m/s^2"],
+    "bounds": {"grid_sizes": [1025, 2049, 4097], "r_min_Re": 1e-8, "outer_exponential_argument": 80, "circular_apertures_Re": [0.3, 0.5, 0.7, 1.0, 2.0, "global"], "aqual_inverse_test_gN_a0": [1e-14, 1e4], "analytic_sersic_control_n": 0.5},
+    "non_claims": ["No observed elliptical deprojection", "No KCWI weighted rectangular aperture model", "No external-field approximation or solution", "No anisotropy model", "No observational likelihood or significance", "No proof of relativistic completion or derivation of a0", "Observed convergence is not an interval error certificate"]
+  },
+  "execution_artifacts": [
+    "qwen_claude_field_theory/closure_2026/df2_fixed_a0_2026/stellar/profile.py",
+    "qwen_claude_field_theory/closure_2026/df2_fixed_a0_2026/stellar/test_profile.py",
+    "qwen_claude_field_theory/closure_2026/df2_fixed_a0_2026/stellar/run_checks.py"
+  ],
+  "software": [{"name": "Python", "version": "3.9.6"}, {"name": "NumPy", "version": "1.26.2"}, {"name": "SciPy", "version": "1.11.4"}],
+  "randomness": {"used": false, "generator": "", "seed": null}
+}

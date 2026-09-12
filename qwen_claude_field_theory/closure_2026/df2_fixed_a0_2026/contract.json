@@ -1,0 +1,107 @@
+{
+  "claim_id": "DF2_FIXED_GLOBAL_A0_CONDITIONAL_NONLINEAR_AQUAL",
+  "mathematics": {
+    "assertion_tested": "Action-derived exponential AQUAL finite-element residual and Hessian, deterministic analytic controls, fixed-a0 DF2 distance scenarios, mesh/domain convergence, and isolated isotropic aperture references. Numerical checks are not an empirical PASS or a relativistic closure.",
+    "coefficient_domain": "IEEE 754 float64 plus exact SymPy symbolic identities; no interval certification",
+    "conventions": "Axisymmetric cylindrical Q1 finite elements; total potential is internal u minus external e*z; lengths circularized Re, potential a0 Re, eta=G M/(a0 Re^2). Mass follows spherical Abel-deprojected Sersic n=0.6; global tensor virial assumes stationary collisionless matter and zero surface stress.",
+    "inputs": [
+      "data/inputs.json source-authenticated central distance scenarios",
+      "a0=9.3619e-11 m/s^2 fixed globally; kappa=1/2 input, not derived",
+      "Host point baryonic mass 1e11 Msun assumption",
+      "LV=1.1e8 Lsun at20Mpc; M/LV=2; circularized angular Re=22.6 arcsec sqrt(0.85)",
+      "isolated M/L sensitivity values 1,2,4, not observational priors"
+    ],
+    "bounds": {
+      "meshes": [
+        [
+          49,
+          97
+        ],
+        [
+          97,
+          193
+        ]
+      ],
+      "domain": "extent max(32,8 sqrt(eta)/e), doubled for two cases with approximately fixed central spacing",
+      "solver_relative_tolerance": 3e-10,
+      "max_newton_steps": 40,
+      "profile_n": 0.6,
+      "distance_Mpc_pairs": [
+        [
+          17.6,
+          21.3
+        ],
+        [
+          17.6,
+          17.9
+        ],
+        [
+          17.6,
+          17.6
+        ],
+        [
+          20,
+          20
+        ]
+      ],
+      "controls": "Newtonian Plummer, isolated spherical AQUAL, weak-source analytic anisotropic EFD; independent discrete-energy differentiation"
+    },
+    "non_claims": [
+      "No weak-field bridge from relativistic P/W/gamma theory",
+      "No positive equilibrium distribution function proved",
+      "No actual masked/weighted observed aperture likelihood",
+      "No distance posterior, host mass posterior, tides or other environments",
+      "No local a0 adjustment or fit",
+      "No Lean certification, continuum error enclosure or universal no-go",
+      "No original discovery of AQUAL or external-field effect",
+      "No full gravity theory closure"
+    ]
+  },
+  "execution_artifacts": [
+    "qwen_claude_field_theory/closure_2026/df2_fixed_a0_2026/solver.py",
+    "qwen_claude_field_theory/closure_2026/df2_fixed_a0_2026/test_solver.py",
+    "qwen_claude_field_theory/closure_2026/df2_fixed_a0_2026/study.py",
+    "qwen_claude_field_theory/closure_2026/df2_fixed_a0_2026/test_study.py",
+    "qwen_claude_field_theory/closure_2026/df2_fixed_a0_2026/run_suite.py",
+    "qwen_claude_field_theory/closure_2026/df2_fixed_a0_2026/data/inputs.json",
+    "qwen_claude_field_theory/closure_2026/df2_fixed_a0_2026/data/SOURCES.md",
+    "qwen_claude_field_theory/closure_2026/df2_fixed_a0_2026/stellar/profile.py",
+    "qwen_claude_field_theory/closure_2026/df2_fixed_a0_2026/stellar/test_profile.py",
+    "qwen_claude_field_theory/closure_2026/df2_fixed_a0_2026/stellar/run_checks.py",
+    "qwen_claude_field_theory/closure_2026/df2_fixed_a0_2026/stellar/contract.json",
+    "qwen_claude_field_theory/closure_2026/df2_fixed_a0_2026/bridge/audit_solver.py",
+    "qwen_claude_field_theory/closure_2026/df2_fixed_a0_2026/bridge/REPORT.md",
+    "qwen_claude_field_theory/closure_2026/df2_fixed_a0_2026/bridge/NUMERICAL_REVIEW.md",
+    "qwen_claude_field_theory/closure_2026/exact_exponential_aqual_efe_kepler_2026/exact_exponential_aqual_efe_kepler_2026.py",
+    "qwen_claude_field_theory/closure_2026/exact_exponential_aqual_efe_kepler_2026/independent_orbit_audit.py",
+    "qwen_claude_field_theory/closure_2026/exact_exponential_aqual_efe_kepler_2026/symbolic_action_audit.py",
+    "qwen_claude_field_theory/closure_2026/exact_exponential_aqual_efe_kepler_2026/test_exact_exponential_aqual_efe_kepler_2026.py",
+    "qwen_claude_field_theory/closure_2026/exact_exponential_aqual_efe_kepler_2026/calculation_results.json",
+    "qwen_claude_field_theory/closure_2026/exact_exponential_aqual_efe_kepler_2026/orbit_audit_results.json",
+    "qwen_claude_field_theory/closure_2026/exact_exponential_aqual_efe_kepler_2026/symbolic_action_results.json",
+    "qwen_claude_field_theory/closure_2026/exact_exponential_aqual_efe_kepler_2026/computation_manifest.json"
+  ],
+  "software": [
+    {
+      "name": "Python",
+      "version": "3.9.6"
+    },
+    {
+      "name": "NumPy",
+      "version": "1.26.2"
+    },
+    {
+      "name": "SciPy",
+      "version": "1.11.4"
+    },
+    {
+      "name": "SymPy",
+      "version": "1.14.0"
+    }
+  ],
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  }
+}
