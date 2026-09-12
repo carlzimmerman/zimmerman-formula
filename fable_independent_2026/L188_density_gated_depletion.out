@@ -1,0 +1,22 @@
+/Users/carlzimmerman/new_physics/zimmerman-formula/fable_independent_2026/L188_density_gated_depletion.py:34: RuntimeWarning: divide by zero encountered in log
+  costs = [sum((np.log(retained(M, 0, r, e, alpha)) - np.log(t))**2 for _, M, r, t in anchors) for e in grid]
+======================================================================================================================
+L188 DENSITY-GATED DEPLETION: ledger fit, KiDS monotonicity kill, Omega_m budget
+======================================================================================================================
+    local densities [g/cm^3]: spiral 1.2e10 Mb at anchor 3.0e-25; Milky Way at anchor 4.4e-26; X-COP cluster at anchor 1.3e-27; 1e12 halo at 0.1 / 0.3 / 1 Mpc: 2.6e-27 / 1.3e-28 / 3.8e-30
+    alpha = 0.5: best eps*Dt -> f = 0.080 / 0.178 / 0.428  (targets 0.105 / 0.14 / 0.576), max |ln(f/target)| = 0.30
+    alpha = 1.0: best eps*Dt -> f = 0.067 / 0.270 / 0.697  (targets 0.105 / 0.14 / 0.576), max |ln(f/target)| = 0.66
+    alpha = 1.5: best eps*Dt -> f = 0.060 / 0.362 / 0.835  (targets 0.105 / 0.14 / 0.576), max |ln(f/target)| = 0.95
+    alpha = 2.0: best eps*Dt -> f = 0.058 / 0.443 / 0.901  (targets 0.105 / 0.14 / 0.576), max |ln(f/target)| = 1.15
+  [PASS] V1 [ledger] the two-parameter density-gated rate reproduces all three ledger anchors within a factor 1.4 at its best (alpha, eps*Dt)
+           (alpha = 0.5, f = 0.080 / 0.178 / 0.428)
+  [PASS] V2 [G7 KiDS, DEFICIT verified] at the ledger-fitting rate the 1e12 halo keeps far more than 14% of its CDM-like mass in the 0.1-1 Mpc lensing shell
+           (retained in shell = 0.75 (>= 0.91 of the shell mass is less dense than the cluster anchor, where retention >= 0.58))
+  [PASS] V3 [structure, Lean density_gate_monotone_bound] the kill is generic: for ANY rate monotone in local density, retention in the part of the shell less dense than the cluster anchor is >= the cluster anchor's local retention; that part carries > 70% of the shell mass and the cluster anchor retains ~0.58 at any fit, so the shell cannot fall to 0.14
+           (mass fraction less dense = 0.91, cluster-anchor local retention = 0.58, product 0.53 > 0.14)
+  [PASS] V4 [G8 Omega_m budget, DEFICIT verified] the removal variant deletes more than 3% of all dark matter by today (mass-weighted over the Sheth-Tormen halo population; unbound matter untouched)
+           (removed fraction of all DM = 0.294 (fraction of DM in halos > 1e9: 0.54); redistribution instead of removal keeps Omega_m but raises the shell retention further)
+    LIMITS: NFW + Dutton-Maccio, anchors as in L187, removal bookkeeping, z_c <= 2.2 so the forest is untouched by construction, no time-dependence beyond eps*Dt,
+    Sheth-Tormen at z = 0; the KiDS shell criterion is the repository's '<= 14% CDM-like halo at 0.1-1 Mpc'.
+
+L188 COMPLETE: 4/4 checks PASS.

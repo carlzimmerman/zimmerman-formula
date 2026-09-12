@@ -9,7 +9,7 @@
   flat a₀(z), subdominant scalar GW) confronting DATA — not by Lean, and not while the intrinsic BBN
   fine-tuning (L84/L87) and astra's open ADM/khronon gates stand.
 
-  Theorems (105 as of 2026-09-11; all: exit 0, zero `sorry`, axioms ⊆ {propext, Classical.choice, Quot.sound}):
+  Theorems (106 as of 2026-09-12; all: exit 0, zero `sorry`, axioms ⊆ {propext, Classical.choice, Quot.sound}):
     hasDerivAt_G, hasDerivAt_Gp   — Gp = dG/dy and Gpp = d²G/dy² proven (not merely asserted).
     kernel_identity               — MOND kernel G'(y)/(2y) = 1 − e^{-y}.
     Gpp_zero, Gpp_pos             — health dichotomy: G''(0)=0, G''(y)>0 ∀ y>0 (no ghost off zero field).
@@ -1072,3 +1072,12 @@ theorem clock_softness_forces_margin (mrel s0 ε δ : ℝ) (hm : 0 < mrel) (hm2 
     nlinarith [mul_pos hδ hm, mul_nonneg hm.le (by linarith : (0 : ℝ) ≤ 1 - s0 - δ)]
   have h2 : δ * mrel / 2 ≤ ε := le_trans h1 hsoft
   rw [le_div_iff₀ hδ]; linarith
+
+/-! ### L188: density-gated depletion is killed by galaxy-galaxy lensing for any rate monotone in local density. -/
+/-- L188: the density-gate monotonicity bound. If the retained fraction g is a non-increasing function of local density
+    (any depletion rate monotone in density), a shell whose mass fraction φ ≥ 0.7 sits at densities ≤ ρ_cl (the cluster anchor,
+    where g ≥ 0.576) retains at least φ·g(ρ_cl) > 0.14: the KiDS ceiling cannot be met while the cluster anchor is. -/
+theorem density_gate_monotone_bound (g : ℝ → ℝ) (hg : Antitone g) (ρo ρc φ : ℝ) (h : ρo ≤ ρc)
+    (hc : 0.576 ≤ g ρc) (hφ : 0.7 ≤ φ) : 0.14 < φ * g ρo := by
+  have h1 : g ρc ≤ g ρo := hg h
+  nlinarith [mul_le_mul hφ (le_trans hc h1) (by norm_num) (by linarith)]
