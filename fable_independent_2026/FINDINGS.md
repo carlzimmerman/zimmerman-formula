@@ -5722,3 +5722,21 @@ The acoustic scale leaves Planck's 0.03% precision above w ≈ 1e-4.
 **Two bugs found and fixed in this lane**, both in my own integration: the sound horizon was integrated over reversed limits, giving a negative acoustic scale, and the neutrino contribution to the radiation density was double-counted, which had put the reference 12% off. With both corrected the reference reproduces the measurement to 0.16%.
 
 **Limits.** γ → 0 and the closure assumed. The acoustic scale is integrated at fixed cosmological parameters, so a full likelihood that re-fits H₀ and the densities would absorb part of the shift and loosen the bound, while adding BAO and supernovae would tighten it; the irreducible signature is the drift factor, which no re-fitting removes. Recombination held at z = 1089.9. The kick trigger of L199 remains a separate structure.
+
+## L202 — THE LAST TWO GATES: the matter budget passes outright, the post-Newtonian limit passes on one side and is untouched on the other (2026-09-12)
+
+**G8, the matter budget.** Three things could break it and all three are computed.
+- **V1 mass conservation.** Each transition converts (v_k/c)²/2 = 2.7e-6 of the particle's rest mass into the emitted quantum, so two kicks remove 5.5 parts per million of the sector and shift Ω_m by 4.6e-6, against a 3% tolerance.
+- **V2 the kicked population's kinetic pressure.** A fraction 0.30 of the sector moving at 400 km/s today (redshifted from the mean kick epoch) contributes an equation of state of 1.8e-7, three orders below the acoustic-scale bound of 1e-4 on the sector's own w.
+- **V3 early against late.** At w = 1e-4 the matter density inferred from the CMB and from late-time probes differ by 0.21%, well inside the ~2% at which they are separately measured. At w = 1e-3 it would be 2.1%, which is the same signature the acoustic scale already bounds.
+- **V4 the cluster baryon fraction, reported as circular.** Depleting the sector to 0.664 inside a cluster would raise the apparent baryon fraction from 0.157 to 0.219 *if the kernel contributed nothing*, but the kernel's boost is exactly what the cluster anchor was fitted to. This carries no independent information and is recorded as such rather than counted.
+
+**The budget gate passes, and nothing in it is close.**
+
+**G9, the post-Newtonian limit. It splits, and only one side is done.**
+- **V5, the static side, passes by eleven orders of magnitude.** The retained sector inside Saturn's orbit holds 5.9e-16 solar masses (1.9e-14 inside Neptune's), against the 2.3e-5 at which γ − 1 is measured. The depletion that galaxies require makes this *smaller* by a further factor of seven, so the gate gets easier rather than harder.
+- **V6, the preferred-frame side, is NOT computed and must not be counted as passed.** The clock defines a rest frame, so a body moving through it can drag the clock field. An earlier result in this programme (L170) killed a cuscuton clock inside a different action on exactly this test. Whether criticality changes that verdict is unknown, and the computed reason it is hard is that **the two fields bracket the entire range of response speeds**: the clock is a constraint, so its dispersion carries no k² term at all and its response is formally instantaneous, while the scalar is held at criticality with a sound speed of 7.7e-10. A drag computed in either limit alone is not the answer.
+
+**Where this leaves the mechanism.** Of the nine gates walked since L192, eight pass and one is untouched. The untouched one is the preferred-frame post-Newtonian calculation for this action, and it is the same test that has killed a cuscuton clock before. That is now the single remaining gate, and it should be treated as the one most likely to end the mechanism rather than as a formality.
+
+**Limits.** The kicked fraction today and the mean kick epoch are taken from L197's simulation regime rather than re-derived; the local dark matter density is the standard 0.4 GeV/cm³ scaled by the retained fraction; the cluster baryon fraction is reported as circular rather than as a test; no preferred-frame parameter is computed anywhere in this script.
