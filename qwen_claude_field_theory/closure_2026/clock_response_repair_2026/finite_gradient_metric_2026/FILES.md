@@ -1,0 +1,42 @@
+# Exact files created by this continuation
+
+All paths below are relative to `qwen_claude_field_theory/closure_2026/clock_response_repair_2026/`. No pre-existing scientific source is modified.
+
+```text
+finite_gradient_metric_2026/AffineCubic.lean
+finite_gradient_metric_2026/COMMANDS.md
+finite_gradient_metric_2026/FILES.md
+finite_gradient_metric_2026/REPORT.md
+finite_gradient_metric_2026/contract.json
+finite_gradient_metric_2026/lean_contract.json
+finite_gradient_metric_2026/metric_principal.py
+finite_gradient_metric_2026/test_metric_principal.py
+finite_gradient_metric_2026/run_001/manifest.json
+finite_gradient_metric_2026/run_001/result.json
+finite_gradient_metric_2026/run_001/stderr.txt
+finite_gradient_metric_2026/run_001/stdout.txt
+finite_gradient_metric_2026/lean_001/manifest.json
+finite_gradient_metric_2026/lean_001/stderr.txt
+finite_gradient_metric_2026/lean_001/stdout.txt
+finite_gradient_metric_2026/cubic/COMMANDS.md
+finite_gradient_metric_2026/cubic/REPORT.md
+finite_gradient_metric_2026/cubic/contract.json
+finite_gradient_metric_2026/cubic/cubic_debraiding.py
+finite_gradient_metric_2026/cubic/run_bounded.py
+finite_gradient_metric_2026/cubic/test_cubic_debraiding.py
+finite_gradient_metric_2026/cubic/run_001/manifest.json
+finite_gradient_metric_2026/cubic/run_001/result.json
+finite_gradient_metric_2026/cubic/run_001/stderr.txt
+finite_gradient_metric_2026/cubic/run_001/stdout.txt
+finite_gradient_background_2026/COMMANDS.md
+finite_gradient_background_2026/REPORT.md
+finite_gradient_background_2026/background_audit.py
+finite_gradient_background_2026/contract.json
+finite_gradient_background_2026/test_background_audit.py
+finite_gradient_background_2026/run_001/manifest.json
+finite_gradient_background_2026/run_001/result.json
+finite_gradient_background_2026/run_001/stderr.txt
+finite_gradient_background_2026/run_001/stdout.txt
+```
+
+The manifests record the existing action/history dependencies read by the new scripts. Those dependencies are not copied, retuned or included as new changes here. Raw run logs are preserved verbatim. The source revision recorded during each experiment intentionally precedes this checkpoint commit.
