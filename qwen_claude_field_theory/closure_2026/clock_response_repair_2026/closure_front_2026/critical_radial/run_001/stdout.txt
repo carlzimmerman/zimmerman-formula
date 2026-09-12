@@ -1,0 +1,85 @@
+{
+  "scope": "Exact jets and necessary ordering for a frozen local critical radial reduction; no nonlinear solution of the full fixed-history theory",
+  "base_revision_supplied": "bba135b36acd2dc40039517ed6038d1e7c37a995",
+  "software": {
+    "python": "3.9.6",
+    "sympy": "1.14.0"
+  },
+  "conventions": {
+    "signature": "-+++",
+    "clock_epoch": "tau=t+sigma(r), timelike near zero",
+    "metric": "-N^2 dt^2+A^2 dr^2+r^2 dOmega^2",
+    "scalar": "chi=q t+pi(r), p=pi'",
+    "flux": "regular-center zero scalar and clock flux in frozen stationary reduction",
+    "matter": "minimal dust at leading source order; gN=Menc/(8 pi M2 r^2)"
+  },
+  "clock_regular_denominator": "Wc - 2*d*q**2",
+  "G0": "2*PX - 2*Wc*d/(Wc - 2*d*q**2)",
+  "G0_lapse_derivative": "2*PX - 4*PXX*q**2 + 8*Wc*d**2*q**2/(Wc - 2*d*q**2)**2",
+  "critical_metric_cubic_coefficient_Q": "-gamma*q**2*(G0_N + 6*gamma**2*q**4/M2)/(2*M2)",
+  "critical_cubic_action": "-4*gamma*p**3*r/3 - gamma*p**2*pi*q**2*r**2*(G0_N + 6*gamma**2*q**4/M2)/(2*M2)",
+  "metric_remainder_Euler_operator": "-Q*(r**2*Derivative(pi(r), r)**2 + 2*(r**2*Derivative(pi(r), (r, 2)) + 2*r*Derivative(pi(r), r))*pi(r))",
+  "retained_radial_flux": "G*p+4*gamma*p^2/r=2*b*gN; b=gamma*q^2",
+  "critical_p_squared": "enclosed_mass*q**2/(16*pi*M2*r)",
+  "canonical_G0": "4*d**2*lambda_W*q**2/((U - 2*d*q**2)*(U - 2*d*q**2 + lambda_W)) + 2*lambda_X",
+  "canonical_G0_lapse_derivative": "-8*U*d**2*q**2/(U - 2*d*q**2)**2 + 2*U*d/(U - 2*d*q**2) + 8*d**2*q**2*(U + lambda_W)/(U - 2*d*q**2 + lambda_W)**2 + 2*lambda_X",
+  "unsubtracted_potential_quadratic": "n*(P0*a - 2*PX*a*q**2 + PX*n*q**2 + 2*PXX*n*q**4 - V*a)",
+  "projected_unsubtracted_potential_coefficient": "gamma**2*q**4*(-3*P0/2 + 4*PX*q**2 + 2*PXX*q**4 + 3*V/2)/M2**2",
+  "retained_model_fixture": [
+    {
+      "r": "1",
+      "p": "1",
+      "r_times_p_squared": "1",
+      "r_squared_times_p_squared": "1"
+    },
+    {
+      "r": "4",
+      "p": "1/2",
+      "r_times_p_squared": "1",
+      "r_squared_times_p_squared": "4"
+    },
+    {
+      "r": "16",
+      "p": "1/4",
+      "r_times_p_squared": "1",
+      "r_squared_times_p_squared": "16"
+    }
+  ],
+  "checks": {
+    "clock_eliminated_quadratic_p_coefficient": true,
+    "clock_eliminated_cubic_metric_p_coefficient": true,
+    "independent_lapse_derivative": true,
+    "EH_radial_quadratic": true,
+    "EH_radial_cubic": true,
+    "cubic_braiding_quadratic": true,
+    "cubic_braiding_cubic": true,
+    "metric_spatial_constraint": true,
+    "metric_square_completion": true,
+    "critical_projected_cubic_with_metric_remainder": true,
+    "critical_r3_p3_cancellation": true,
+    "metric_remainder_Euler_operator": true,
+    "Galileon_Euler_operator": true,
+    "metric_induced_source_flux": true,
+    "critical_sourced_square_law": true,
+    "critical_radius_exponent": true,
+    "physical_scalar_force_correction_exponent": true,
+    "canonical_completion_H0": true,
+    "canonical_completion_lapse_derivative": true,
+    "frozen_potential_quadratic_lapse": true,
+    "frozen_potential_quadratic_cross": true,
+    "projected_unsubtracted_potential_IBP": true,
+    "retained_fixture_at_1": true,
+    "retained_fixture_at_4": true,
+    "retained_fixture_at_16": true
+  },
+  "checks_passed": 25,
+  "non_claims": [
+    "No arbitrary direct scalar matter coupling",
+    "No source charge identified with baryonic mass",
+    "No nonlinear completion by mixing exact flat flux with selected metric terms",
+    "No global regularity, boundary matching or stability certificate",
+    "No proof the fixed histories admit the hierarchy or G=0",
+    "No uniform arbitrarily-small-source limit at fixed radius",
+    "Analytic regular clock exclusion of p|p| is branch-local"
+  ]
+}
