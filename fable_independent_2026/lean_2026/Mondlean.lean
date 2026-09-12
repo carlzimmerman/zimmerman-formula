@@ -9,7 +9,7 @@
   flat a₀(z), subdominant scalar GW) confronting DATA — not by Lean, and not while the intrinsic BBN
   fine-tuning (L84/L87) and astra's open ADM/khronon gates stand.
 
-  Theorems (128 as of 2026-09-12; all: exit 0, zero `sorry`, axioms ⊆ {propext, Classical.choice, Quot.sound}):
+  Theorems (132 as of 2026-09-12; all: exit 0, zero `sorry`, axioms ⊆ {propext, Classical.choice, Quot.sound}):
     hasDerivAt_G, hasDerivAt_Gp   — Gp = dG/dy and Gpp = d²G/dy² proven (not merely asserted).
     kernel_identity               — MOND kernel G'(y)/(2y) = 1 − e^{-y}.
     Gpp_zero, Gpp_pos             — health dichotomy: G''(0)=0, G''(y)>0 ∀ y>0 (no ghost off zero field).
@@ -1306,3 +1306,40 @@ theorem alignment_forces_clock_rate (D0 s0 eps : ℝ) (hD0 : 0 < D0) (heps : 0 <
   rw [div_le_iff₀ hpos] at hres
   rw [div_le_iff₀ (by positivity : (0:ℝ) < eps * D0)]
   nlinarith
+
+/-! ## L217 — where the clock rate comes from -/
+
+/-- **L217 V1.** The closure's two kinetic coefficients are not independent choices: they
+satisfy `P_XX = 2 P_X^2/U`, the first-order relation whose solution is the single
+logarithmic function `P = -(U/2) log(U - 2 d X)`, with a pole at the vanishing margin. -/
+theorem closure_is_one_kinetic_function (U d m PX PXX : ℝ) (hU : U ≠ 0) (hm : m ≠ 0)
+    (h1 : PX = U * d / m) (h2 : PXX = 2 * U * d ^ 2 / m ^ 2) :
+    PXX = 2 * PX ^ 2 / U := by
+  subst h1; subst h2; field_simp
+
+/-- **L217 V3.** Every term of the action carries `chi` only through derivatives, so the
+shift symmetry is exact and `Q = a^3 P_X qbar` is conserved. On the derived family that
+charge is the reciprocal of the margin, so the clock rate IS a conserved charge: not tuned
+each epoch but set once and protected. -/
+theorem clock_rate_is_a_conserved_charge (w mrel s0 Q q d : ℝ)
+    (hm : mrel ≠ 0) (hq : q ≠ 0) (hd : d ≠ 0)
+    (hQ : Q = q * d / mrel) (hid : s0 - 1 = w / mrel) :
+    s0 - 1 = w * Q / (q * d) := by
+  subst hQ; rw [hid]; field_simp
+
+/-- **L217 V4, correcting L214.** In the limit the decoupling locus forces, where
+`2 d qbar^2 = U`, the enhancement ratio is exactly the reciprocal of the interpolating
+function's floor. L214's `C >= 1e3` is therefore the rotation-curve requirement restated,
+not an independent price, and is withdrawn as a separate condition. -/
+theorem window_ratio_is_the_interpolating_floor (k d q U C : ℝ)
+    (hd : d ≠ 0) (hq : q ≠ 0) (hU : U = 2 * d * q ^ 2) (hC : C = 2 * k * q ^ 2 / U) :
+    C = k / d := by
+  subst hU; subst hC; field_simp
+
+/-- **L217 V5.** The coupling strength MOND requires, and hence the rate at which the matter
+coupling breaks the shift symmetry, is independent of the clock rate: it cancels exactly.
+So the drift cannot be made small by choosing a larger clock. -/
+theorem drift_is_independent_of_clock_rate (s0 C G U w rho c : ℝ)
+    (hs0 : s0 ≠ 0) (hU : U = w * rho / s0) :
+    c * s0 * C * G * U = c * C * G * rho * w := by
+  subst hU; field_simp

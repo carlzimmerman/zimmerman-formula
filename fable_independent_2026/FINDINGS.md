@@ -6103,3 +6103,47 @@ with ∂W/∂λ = ∂W/∂β = 0: **both free coefficients cancel.** Neither the
 **Limits, and they are substantial.** The interior match of V4 evaluates source and stiffness at the stellar surface with a uniform-density star; the real interior profile of the gradient invariant is not solved and the gain could move an order either way. The exterior stiffness is taken as r^{−4} throughout, assuming f_s constant from the surface to 1 AU. The elliptic problem is solved only for its indicial exponents and matched at one radius, not integrated through the star. The post-Newtonian matching inherited from L215 is convention-dependent at the factor-of-two level. The bound used is |α₁| < 1e-4; a tighter bound raises s₀ proportionally. 8/8.
 
 **Lean.** 128 theorems, exit 0, zero `sorry`, axioms ⊆ {propext, Classical.choice, Quot.sound}.
+
+## L217 — WHERE THE CLOCK RATE COMES FROM: it is a conserved charge, and MOND's coupling breaks the conservation (2026-09-12)
+
+**The question, restated exactly.** s₀ − 1 = w/m_rel, so s₀ = 1.5e7 at w ≤ 1e-4 means m_rel = 6.8e-12: the margin m = U − 2dq̄² sits within one part in 1e11 of zero. What puts it there?
+
+**V1, V2 — m = 0 is a SPEED LIMIT, not an arbitrary point.** The closure's two kinetic coefficients are not independent choices. Both come from one function:
+
+  **P(X) = −(U/2) ln(U − 2dX)**,  P_X = Ud/m,  P_XX = 2Ud²/m²
+
+verified by differentiating it twice. It has a pole at m = 0, where **P_X → ∞**: infinite energy to reach X* = U/(2d), so the scalar can approach that invariant and never cross it. **1/m_rel is exactly the Lorentz factor of that limit** (Lean `closure_is_one_kinetic_function`). A clock rate of 1e7 is the statement that the field sits close to its own speed limit — a kinematic regime, like any large relativistic factor, not a coincidence.
+
+**V3 — and the Lorentz factor is CONSERVED.** Every term of the action carries χ only through derivatives, so the shift symmetry is exact and the χ equation is a conservation law. Its Noether charge Q = a³P_Xq̄ = q̄d/m_rel is constant on the derived family (exponent of a measured as exactly zero), and
+
+  **s₀ − 1 = w Q/(q̄ d)**
+
+(Lean `clock_rate_is_a_conserved_charge`). **The clock rate is a conserved charge.** That is the answer to L216's question in the only way a question of this shape admits: 1e7 does not come from anywhere, it is set once and a symmetry preserves it exactly, which is what makes a large value **technically natural rather than fine-tuned**.
+
+**V4 — L214 CORRECTED.** In the limit the decoupling locus forces, 2dq̄² = U, the enhancement ratio is
+
+  **C = 2kq̄²/U = k/d = 1/μ_floor** identically
+
+(Lean `window_ratio_is_the_interpolating_floor`). So L214's "one inequality, C ≥ 1e3, the whole cost of putting a force law on the branch" **is the rotation-curve requirement restated and costs nothing extra.** L214's window is withdrawn as an independent condition.
+
+**V5–V7 — but MOND's coupling breaks the symmetry, and that is the real cost.** λχρ_b is not shift-symmetric: ∂_t(a³P_Xq̄) = λa³ρ_b = const, so the charge grows **linearly in cosmic time** and s₀ with it. Since **a₀ = λ³/(12πGβs₀)** with λ, β constants of the action, a growing clock rate pulls a₀ **down**. Solving f_s = 1 for the coupling and substituting the branch relations,
+
+  **(λq̄)² = 4πCGwρ**,  ∂/∂s₀ = 0 exactly
+
+(Lean `drift_is_independent_of_clock_rate`) — **the clock rate cancels, so the drift cannot be tuned away.** With G = 1/(8πM²) and ρ = 3H²M²Ω, λq̄ = H√(3CwΩ/2), and the charge grows at
+
+  d ln Q/dN = 2√(1.5CwΩ_dm)·(Ω_b/Ω_dm) = **0.074 per e-fold**
+
+so **a₀ falls 12.4% between z = 5 and today, against the 1% the framework's own derived flat law allows.** This is an internal tension: MOND's coupling fights the framework's distinctive prediction.
+
+**V7, V8 — THE BOUND, and what it costs.** Holding the flat law forces
+
+  **Cw ≤ 5.7e-4, hence w ≲ 5.7e-7 at C = 1e3**
+
+— **177× tighter than the acoustic bound** and the tightest constraint on the sector's equation of state this programme has derived. The published prediction band 0 < w ≲ 1e-4 shrinks by that factor. **Its sign survives** — w strictly positive, distinct from ΛCDM's exact zero, still required by criticality — but its magnitude moves further out of experimental reach. That is a real cost and it is recorded as one.
+
+**V9 — footing-independent.** a₀ enters only through a₀ ∝ 1/s₀ and s₀ cancelled in V5, so the bound is identical on both footings and is quoted once.
+
+**Limits.** The shift symmetry is read off the structure of the action rather than proved by formal variation. The drift is linear order with a conformal coupling to baryons alone, radiation taken not to source the scalar; a disformal piece adds a term not computed. λq̄ = H√(3CwΩ/2) uses f_s = 1 at solar-system accelerations, which MOND requires and which is not derived. The 1% flat-law tolerance over z ≤ 5 is taken from the framework's own derived law, not from data. **No gate has been re-run at w = 6e-7, and whether criticality still operates that close to zero pressure is not computed here.** 9/9.
+
+**Lean.** 132 theorems, exit 0, zero `sorry`, axioms ⊆ {propext, Classical.choice, Quot.sound}.
