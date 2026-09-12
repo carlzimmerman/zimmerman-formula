@@ -5651,3 +5651,42 @@ The ledger's ceiling is not a bookkeeping convention. It is what the rotation cu
 **Status of the blocker.** Cleared, conditionally. The 164× overshoot is removed by either route, and both are now explicit requirements on the theory rather than adjustable functions: a quartic dependence on the dark-energy fraction, or a clock crossing below z = 2.2. **The trigger was the last free function in the mechanism and it is no longer free.**
 
 **Limits.** The clock-rate history is the candidate's dimensionless branch whose a = 1 is a normalisation epoch, so its shape is used mapped onto the standard expansion history; a history calibrated to observation would move the crossing and every number with it. The kicked population's sound speed is its injection velocity without phase-space evolution. The ledger check is on the total kick count, not a re-run of the orbit integration under the new schedule.
+
+## L200 — A COEFFICIENT HISTORY IN CLOSED FORM: the clock rate is the sector's equation of state divided by the margin (2026-09-12)
+
+**What had to be satisfied**, accumulated over L186–L199: the clock must run faster than proper time at every epoch of interest or the criticality never switches on; the sector must redshift as dust to CMB accuracy; the margin must stay healthy and ghost-free; the critical gradient must exist and be reachable; the amount must come out right; and the background equations must actually hold, not just the algebra.
+
+**Imposing the background equations first collapses the freedom.** With the closure and γ → 0 the clock equation is E_τ = −2Udq q_τ/m − U_τ − 3HU = 0. Writing each coefficient as a power of the scale factor and adding current conservation (j = 2qd/m_rel ∝ a⁻³) and energy conservation (ρ̇ + 3H(ρ+p) = 0 with ρ = U/m_rel, p = U(s₀−1)) leaves a **one-parameter family** and forces the identity
+
+  **s₀ − 1 = w / m_rel**
+
+where w is the sector's own equation of state. **The clock rate is not an input.** The clock's excess rate over proper time *is* the sector's pressure divided by the logarithm margin. All four statements are verified symbolically (V1–V4), the last by solving the clock equation and recovering the identity exactly.
+
+**The explicit history**, with a single free number:
+
+  U(a) = U₀ a^{−3(1+w)},  d(a) = d₀ a^{−3(1−w)},  q(a) = q₀ a^{−3w},  μ = 2d₀q₀²/U₀ constant,  s₀ = 1 + w/m_rel.
+
+**It clears every gate** (V5–V8; taking w = 0.003 and m_rel = 0.5, so the clock runs 0.6% fast at every epoch):
+
+| z | 1100 | 100 | 3 | 0 |
+|---|---|---|---|---|
+| c_s²(Y = 0) | −2.0e-3 | −2.0e-3 | −2.0e-3 | −2.0e-3 |
+| Y*/ℓ | 0.018 | 0.020 | 0.024 | 0.026 |
+| residual (H/k_max)² | 3.5e-7 | 2.5e-8 | 1.0e-9 | 7.7e-10 |
+
+The sound speed at zero gradient is negative **all the way back to recombination**, which is exactly what the candidate's own history failed to do (its clock ran slow before z = 2.4, so the criticality never operated where the CMB and forest needed it). The critical gradient stays below 3% of the transition scale throughout, so it is reachable everywhere. And the density drifts by only 6.5% between recombination and today.
+
+**The trade-off is the whole content of the family:**
+
+| w | clock runs fast by | c_s²(Y=0) | density drift to recombination |
+|---|---|---|---|
+| 0.001 | 0.20% | −6.7e-4 | 1.02× |
+| 0.003 | 0.60% | −2.0e-3 | 1.07× |
+| 0.010 | 2.00% | −6.7e-3 | 1.23× |
+| 0.030 | 6.00% | −2.0e-2 | 1.88× |
+
+Too little pressure and the clock sits at proper time and the criticality never switches on. Too much and the sector stops being cold matter. **The window is roughly 10⁻³ to 10⁻² in w, and it is open.** 8/8.
+
+**Reading.** A sector with a little positive pressure makes the clock run fast; that makes the sector gradient-unstable; the MOND nonlinearity cures the instability at a finite gradient whose marginal state is exactly cold; and the observable residual is (H/k_max)². The pressure that starts the chain is the same pressure the CMB bounds, and the two do not collide.
+
+**Limits, and what is still missing.** γ → 0 throughout, and the candidate's closure is assumed rather than re-derived. ℓ(a) is left constant because only Y*/ℓ enters and no gate here constrains it. **The Friedmann equation is not solved simultaneously**, so the normalisations and the amount today are set by hand rather than emerging — exhibiting them is the next step. And the trigger for the depletion kicks is the separate Ω_DE⁴ condition of L199; this family does not supply it, so the mechanism still rests on two independent structures rather than one.
