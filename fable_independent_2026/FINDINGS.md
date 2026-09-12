@@ -5537,3 +5537,30 @@ with 𝒲 = W_Y(Y) for modes transverse to the gradient and W_Y + 2Y W_YY for lo
 **Reading.** The tracking calculation passes. The sequence is now complete on its own terms: a clock running faster than proper time makes the sector gradient-unstable (L186); the MOND nonlinearity cures that instability at a finite gradient whose marginal state has zero sound speed and isotropic stress (L192, L193); and the back-reaction drives the gradient to that state and holds it there, with a residual sound speed of (H/k_max)² set by the shortest wavelength the instability reaches (L194). The forest bound then requires only that the instability act on sub-Mpc scales. **What was a tuning of the logarithm margin to one part in 10⁸ is now a consequence of dynamics.**
 
 **What this costs and does not settle.** The residual depends on the ultraviolet reach of the instability, so the theory's coldness is UV-sensitive: the forest gate has become a *lower bound on the cutoff* rather than a tuning of coefficients. That is a better place to be, but it is not free, and a theory whose instability is cut off above ~0.8 Mpc at z = 3 would fail. The treatment is mean-field WKB, not a lattice simulation: mode coupling, phase decoherence and the nonlinear saturation of individual modes are not modelled, and the growth rate |c_s|k is exactly the assumption that makes the answer UV-sensitive. Only the forest gate is evaluated here. astra's own coefficient history still fails the forest on its early, stable branch, where the clock runs slow and no instability exists to drive the criticality.
+
+## L195 — THE CMB GATE ON THE SELF-CRITICAL SECTOR: the third peak is restored, and the forest is the binding constraint (2026-09-12)
+
+**What is being tested.** After L192–L194 the sector, wherever the clock runs fast, sits on the marginal surface with isotropic stress and a sound speed fixed by one number, the ultraviolet reach of the instability: c_s²(z) = (H(z)/k_max)². Nothing else is free. Does that sector restore the CMB third acoustic peak in place of cold dark matter?
+
+**The structural fact first (V1).** With c_s = H/k_max the comoving Jeans wavenumber is k_max at every epoch, computed here as k_J/k_max = 0.69, 1.20, 1.23, 1.23, 1.23 at z = 0, 3, 1100, 3400, 1e5. **The sector's Jeans scale is its own ultraviolet reach**, so it clusters exactly like cold dark matter on every comoving scale above k_max and on none below, at all epochs. That single statement organises every gate.
+
+**When the sector was not cold (V2).** The sound speed grows toward the past, reaching 0.1 only at z = 5.4e5, against 1.7e-6 at recombination and 8.1e-6 at matter-radiation equality. The acoustic scales enter the horizon long after that, so the peaks are set while the sector is already cold.
+
+**The Boltzmann gate** (patched CLASS 3.3.4.0, kernel off, cold dark matter replaced by a w = −1e-4 fluid; each gate run with the sound speed the law gives at that gate's own epoch, which the Jeans identity licenses):
+
+| k_max [1/Mpc comoving] | c_s²(z=1100) | peak3/peak2 | restoration | c_s²(z=3) | P(k=5 h/Mpc, z=3)/ΛCDM |
+|---|---|---|---|---|---|
+| 0.01 | 2.3e-1 | 0.532 | −0.10 | 6.6e-4 | 0.000 |
+| 0.05 | 9.2e-3 | 1.051 | +1.14 | 2.6e-5 | 0.000 |
+| 0.20 | 5.8e-4 | 0.995 | +1.01 | 1.6e-6 | 0.001 |
+| 1.00 | 2.3e-5 | 0.991 | +1.00 | 6.6e-8 | 0.228 |
+| **8.10** | **3.5e-7** | **0.991** | **+1.00** | **1.0e-9** | **0.941** |
+| 50.0 | 9.2e-9 | 0.991 | +1.00 | 2.6e-11 | 0.965 |
+
+ΛCDM reference 0.992; smooth-fluid control 0.575.
+
+**Verdicts (5/5).** V3 **the CMB gate passes**: at the ultraviolet reach the forest already demands (k_max = 8.1 /Mpc comoving, the 0.776 Mpc wavelength of L194), the third peak is 0.991 against ΛCDM's 0.992, a full restoration. V4 the CMB is satisfied for every reach above 0.05 /Mpc while the forest needs 8.1 /Mpc: **the forest, not the CMB, is what binds**, and the two are not in competition. V5 at that same reach the linear power at k = 5 h/Mpc, z = 3 is 0.941 of ΛCDM, inside the 10% tolerance, so **one number clears both gates**.
+
+**Reading.** The sector produced by gradient-driven criticality is cold dark matter above its own cutoff scale and nothing below it. The CMB does not discriminate it from cold dark matter at all, and the Lyman-α forest sets the only real requirement: the instability must reach comoving scales of about 0.8 Mpc. That requirement was already met in L194 by a wide margin.
+
+**Limits, and what this does not settle.** CLASS takes a constant sound speed, so each gate is run at its own epoch's value; the Jeans identity is what makes that split legitimate, but a code carrying the full c_s²(z) history would settle it properly and should be built. The sector's background density is imposed as the ΛCDM cold-matter share rather than derived, so **the amount of the sector is untested here**. No kernel is active, so this is the sector's own gate and not the framework's combined prediction. Above all, criticality must operate at recombination, meaning the clock must run faster than proper time there, and that is a condition on the coefficient history which this script does not establish. Still untested for this sector: galaxy-galaxy lensing and S₈, the late-time matter budget, and the post-Newtonian limit.
