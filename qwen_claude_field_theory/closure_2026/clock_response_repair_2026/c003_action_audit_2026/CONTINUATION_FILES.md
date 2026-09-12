@@ -74,6 +74,8 @@ explicitly distinguished in the command index and per-run reports.
 
 - `qwen_claude_field_theory/closure_2026/clock_response_repair_2026/l192_stress_audit_2026/COMMANDS.md`
 
-Total: 67 files. Exact mathematical results and limitations:
+- `qwen_claude_field_theory/closure_2026/clock_response_repair_2026/c003_action_audit_2026/PAPER19_ADDENDUM.md`
+
+Total: 68 files including the later PAPER19 audit addendum. Exact mathematical results and limitations:
 [review](CLAUDE_L191_L192_REVIEW.md). Exact commands and important exits:
 [command index](CONTINUATION_COMMANDS.md).

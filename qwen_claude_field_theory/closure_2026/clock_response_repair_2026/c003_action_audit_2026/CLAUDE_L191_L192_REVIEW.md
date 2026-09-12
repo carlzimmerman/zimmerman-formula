@@ -2,6 +2,9 @@
 
 ## Outcome
 
+Later concurrent update: [PAPER19/L193 addendum](PAPER19_ADDENDUM.md) checks
+the newly published-in-repo interpretation against these same calculations.
+
 **The full theory remains OPEN. L191's original-gate certification and
 L192's claimed exact-dust attractor are not established.** This continuation
 adds an action-derived anisotropic principal calculation and an exact,
