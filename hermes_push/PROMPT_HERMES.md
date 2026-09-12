@@ -16,7 +16,7 @@ other folders' Python modules read-only, but you never modify, move or delete an
    a real, clustering cold component whose retained fraction of its LambdaCDM halo mass RISES with host mass (the "dark-fraction ledger"),
    a non-barotropic effective fluid, and a locally screened preferred-frame source.
 
-## Where you stand (read `hermes_push/CONTEXT_DIGEST.md` first, then only the FINDINGS entries it points to)
+## Where you stand (read `hermes_push/CONTEXT_DIGEST.md` first, then `hermes_push/LOOP.md`, then only the FINDINGS entries they point to)
 The exclusion map is complete: every mechanism tried is computed to failure on the programme's own gates, each with a committed script. The single
 open door is a DEPLETION MECHANISM for the real component with this exact target shape: the ledger's mass dependence is pure geometry — one universal,
 extremely low halo concentration (c* ~ 0.4) seen at 0.5, 1.2 and 2.7 scale radii — so the mechanism must deplete the component inside a few scale
@@ -55,7 +55,7 @@ Anything else (re-fitting, re-deriving what is certified, decorating) is not pro
   `README.md`, `STANDING.md`, `FINDINGS.md`, or any preregistration file. Reference them by relative path.
 - Be economical: compute rather than read; read the digest, then only the specific FINDINGS entries you need; keep outputs terse.
 
-## Cadence
+## Cadence (the full protocol is `hermes_push/LOOP.md`: register in CANDIDATES.md, kill order, morph operators, STATE.md hand-off)
 Each push: state the hypothesis in one sentence; state in advance what result would kill it; write the script; run it; write the H-entry; commit.
 Prefer three independent pushes that fail honestly over one that survives by construction. When a push survives, immediately try to kill it
 with the next gate on the list. End every session with one sentence: what passed, what failed, what is next.
