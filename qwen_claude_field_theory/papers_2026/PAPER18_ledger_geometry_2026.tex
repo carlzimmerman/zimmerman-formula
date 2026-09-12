@@ -1,0 +1,78 @@
+\documentclass[11pt,letterpaper]{article}
+\usepackage[margin=1in]{geometry}\usepackage{amsmath,amssymb,booktabs,array,microtype}\usepackage[T1]{fontenc}\usepackage{lmodern}
+\usepackage[colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue]{hyperref}
+\setlength{\parindent}{0pt}\setlength{\parskip}{5pt}\sloppy
+\title{The Dark-Fraction Ledger Is Geometry:\\ One Universal Concentration Reproduces the Host-Mass Dependence,\\ and the Lyman-$\alpha$ Forest Closes the Late-and-Puffy Component}
+\author{Carl P.\ Zimmerman\\ \small Briar Creek Tech\\ \small AI-assisted research programme; not peer reviewed}
+\date{11 September 2026}
+\begin{document}\maketitle
+\begin{abstract}
+A MOND kernel on the de Sitter-locked acceleration scale $a_0=\kappa c\sqrt{G\rho_\Lambda}$ passes galaxies, clusters and the CMB together only if a real cold component is present with a fraction of its $\Lambda$CDM halo mass that rises with host mass: $\lesssim0.105$ inside three disc scale lengths of a $1.2\times10^{10}\,M_\odot$ spiral, $0.14$ inside 30~kpc of the Milky Way, $0.576$ inside $R_{500}$ of X-COP clusters, $\gtrsim0.988$ at recombination (the repository's necessity certificate; the trend is $f\propto M^{0.16}$). We show that the first three numbers are geometry: the three measurement radii sit at $0.50$, $1.19$ and $2.71$ $\Lambda$CDM scale radii, so a component whose haloes all share one universal concentration $c_*$ exhibits exactly such a rise. Fitting $c_*$ to the three anchors gives $c_*=0.40$ and $f=0.086$, $0.165$, $0.704$, all within a factor $1.6$ of the targets. The cost is that $c_*=0.4$ lies far below the concentration $c\simeq3$--$4$ of any halo that has just collapsed: the component would have to have no structure below roughly a megaparsec, i.e.\ a linear spectrum cut at $k_{\rm cut}\lesssim1\,h\,{\rm Mpc}^{-1}$. Whether nonlinear top-down fragmentation could regenerate the Lyman-$\alpha$ forest power from such a spectrum was an open door of the programme; we close it with a phase-matched particle-mesh comparison: at $k=5\,h\,{\rm Mpc}^{-1}$ and $z=2.2$ the regenerated power is $0.04$, $0.45$, $0.81$ of $\Lambda$CDM's for $k_{\rm cut}=1,2,4\,h\,{\rm Mpc}^{-1}$, against a forest tolerance of $0.9$, so the forest requires $k_{\rm cut}>4$ (structure intact down to $\sim2\times10^{11}M_\odot$) while the puffy profile requires $k_{\rm cut}\lesssim1$. With the acoustic route closed by the clock stability theorem and the decay/kick route by a lifetime pincer, the three physical routes to a host-mass-dependent depletion are now each computed to failure, and the ledger's geometric shape is the exact target that any future mechanism must reproduce.
+\end{abstract}
+
+\section{The ledger}
+The repository \cite{repo} carries a Lean-certified necessity result: any completion of the de Sitter-locked MOND kernel that passes rotation curves, clusters, the CMB and the Lyman-$\alpha$ forest must contain a real, clustering cold component whose retained fraction $f$ of the $\Lambda$CDM halo mass rises with host mass. Its computed anchors are listed in Table~\ref{anchors}; the trend between spirals and clusters is $f\propto M^{0.16}$. The acoustic route to such a depletion (a sound speed) was closed by the clock stability theorem \cite{paper17}: a fluid soft enough for the forest clusters inside galaxies. The kinetic route (two-body decay or velocity kicks) is closed by a lifetime pincer, forest $\tau\ge41$~Gyr against galaxies $\tau\le20$~Gyr. This note addresses what remains.
+
+\begin{table}[h]\centering\caption{The ledger's anchors and their radii in $\Lambda$CDM scale-radius units ($h=0.6736$; concentrations from \cite{dm14}).}\label{anchors}
+\begin{tabular}{lcccccc}\toprule
+host & $M_{200}$ [$M_\odot$] & $R_{200}$ [Mpc] & $c_{\Lambda{\rm CDM}}$ & radius & $r/r_s$ & target $f$\\\midrule
+SPARC spiral, $1.2\times10^{10}M_\odot$ baryons & $3\times10^{11}$ & 0.142 & 9.4 & $3R_d=7.5$ kpc & 0.50 & $\le0.105$\\
+Milky Way (Gaia DR3 decline) & $10^{12}$ & 0.212 & 8.4 & 30 kpc & 1.19 & 0.14\\
+X-COP cluster & $10^{15}$ & 2.116 & 4.2 & $R_{500}=1.38$ Mpc & 2.71 & 0.576\\\bottomrule
+\end{tabular}\end{table}
+
+\section{Geometry: one universal concentration}
+Let the real component's haloes be NFW \cite{nfw} with a universal concentration $c_*$ and the same $M_{200}$ as the $\Lambda$CDM halo. With $m(x)=\ln(1+x)-x/(1+x)$, the retained fraction inside radius $r$ is
+\begin{equation}
+f(r)=\frac{m(rc_*/R_{200})/m(c_*)}{m(rc_{\Lambda{\rm CDM}}/R_{200})/m(c_{\Lambda{\rm CDM}})}.
+\end{equation}
+Because the measurement radii of Table~\ref{anchors} climb from $0.5\,r_s$ to $2.7\,r_s$, $f$ rises with host mass for any $c_*<c_{\Lambda{\rm CDM}}$: a low-concentration profile is depleted where one looks deep inside the scale radius and nearly complete where one looks outside it. Table~\ref{geom} gives $f$ for a range of $c_*$; minimising $\sum(\ln f-\ln f_{\rm target})^2$ over $c_*\in[0.3,6]$ gives $c_*=0.40$.
+
+\begin{table}[h]\centering\caption{Retained fraction at the ledger's radii for a universal concentration $c_*$.}\label{geom}
+\begin{tabular}{lccccccc}\toprule
+host & target & $c_*=0.4$ & 1 & 1.5 & 2 & 3 & 4\\\midrule
+SPARC spiral ($0.50\,r_s$) & 0.105 & 0.086 & 0.135 & 0.180 & 0.227 & 0.325 & 0.428\\
+Milky Way ($1.19\,r_s$) & 0.14 & 0.165 & 0.244 & 0.310 & 0.373 & 0.494 & 0.606\\
+X-COP cluster ($2.71\,r_s$) & 0.576 & 0.704 & 0.798 & 0.852 & 0.894 & 0.953 & 0.994\\\bottomrule
+\end{tabular}\end{table}
+
+At $c_*=0.40$ all three anchors are reproduced within a factor $1.6$ (ratios $0.81$, $1.18$, $1.22$). The ledger's mass dependence therefore needs no mass-dependent physics: it is what one universal, extremely extended profile looks like through three different windows.
+
+\section{What it costs}
+A concentration of $0.4$ is not a property any collapsed halo can have. In the standard picture $c\simeq4(1+z_c)$ at $z=0$ \cite{bullock,wechsler}, so a halo that has only just collapsed has $c\simeq3$--$4$; haloes with $c<3$ are unrelaxed systems still in formation. A component with $c_*=0.4$ has a scale radius of $2.5\,R_{200}$: it possesses essentially no structure below roughly a megaparsec, which requires its linear power to be cut at $k_{\rm cut}\lesssim1\,h\,{\rm Mpc}^{-1}$. That is precisely the ``nonlinear top-down fragmentation'' loophole the programme had left open: could gravitational collapse of the surviving large-scale modes regenerate the small-scale power the forest measures by $z\simeq2$--$3$? Regeneration of small-scale power from truncated spectra is a known phenomenon at late times \cite{lwp}; the question here is quantitative and at high redshift.
+
+\section{The top-down test}
+We evolve a cold component with a comoving particle-mesh code (the scheme of the repository's L176 baseline, validated there against halofit): box $25\,h^{-1}$Mpc, mesh $192^3$, $128^3$ particles, Zel'dovich initial conditions at $z=49$ from the CLASS linear spectrum, leapfrog in $\ln a$ with step $0.02$. Four runs share the same random phases: $\Lambda$CDM and three spectra multiplied by $\exp[-(k/k_{\rm cut})^2]$ with $k_{\rm cut}=1,2,4\,h\,{\rm Mpc}^{-1}$. The absolute $\Lambda$CDM power in this small box is $0.5$--$0.85$ of halofit for $1\le k\le5\,h\,{\rm Mpc}^{-1}$ at $z=3$ and $2.2$ (the box lacks modes below $0.25\,h\,{\rm Mpc}^{-1}$ and the mesh limits the force resolution); this is a computed limitation, so only the phase-matched ratios between runs are read.
+
+\begin{table}[h]\centering\caption{Regenerated power $P(k;k_{\rm cut})/P(k;\Lambda{\rm CDM})$, same phases, $\pm15\%$ bands.}\label{regen}
+\begin{tabular}{ccccccccc}\toprule
+$k_{\rm cut}$ [$h$/Mpc] & $z$ & $k=0.5$ & 1 & 2 & 3 & 5 & 8 & linear input at $k=5$\\\midrule
+1 & 3.0 & 0.77 & 0.44 & 0.12 & 0.043 & 0.012 & 0.004 & $10^{-11}$\\
+1 & 2.2 & 0.79 & 0.48 & 0.18 & 0.091 & 0.043 & 0.025 & $10^{-11}$\\
+2 & 3.0 & 0.94 & 0.83 & 0.59 & 0.44 & 0.30 & 0.23 & 0.002\\
+2 & 2.2 & 0.95 & 0.85 & 0.67 & 0.56 & 0.45 & 0.41 & 0.002\\
+4 & 3.0 & 0.99 & 0.96 & 0.88 & 0.82 & 0.73 & 0.67 & 0.21\\
+4 & 2.2 & 0.99 & 0.97 & 0.91 & 0.87 & 0.81 & 0.77 & 0.21\\\bottomrule
+\end{tabular}\end{table}
+
+Regeneration is real: for $k_{\rm cut}=2$ the power at $k=5\,h\,{\rm Mpc}^{-1}$ climbs from a linear input of $0.002$ to $0.45$ of $\Lambda$CDM's by $z=2.2$. It is far from sufficient. With the forest tolerance used throughout the programme (dark-matter power at $k=5\,h\,{\rm Mpc}^{-1}$, $z=2$--$3$, within $10\%$), the forest requires $k_{\rm cut}>4\,h\,{\rm Mpc}^{-1}$, i.e.\ the component's structure intact down to haloes of $\sim2\times10^{11}M_\odot$ (the mass inside a sphere of radius $\pi/k_{\rm cut}$ is $1.4\times10^{13}$, $1.7\times10^{12}$, $2.2\times10^{11}M_\odot$ for $k_{\rm cut}=1,2,4$). The puffy profile of Section~3 requires $k_{\rm cut}\lesssim1$. The late-and-puffy component is closed by the forest.
+
+\section{Consequences}
+Three physical routes could give a real component a retained fraction that rises with host mass: pressure support, kinetic removal, and late collapse. Each is now computed to failure on the programme's own gates — pressure by the clock stability theorem and the Jeans argument \cite{paper17}, kinetic removal by the forest--galaxy lifetime pincer, late collapse by Table~\ref{regen}. What survives is the shape: the ledger is what a universal $c_*\simeq0.4$ profile looks like at $0.5$, $1.2$ and $2.7$ scale radii. Any future mechanism must therefore deplete the component inside a few scale radii of every halo while leaving its power on megaparsec scales untouched at $z\ge2$; the geometric reading makes that requirement exact and testable.
+
+\section{What this does not claim}
+No statement is made that the ledger's anchors are themselves beyond revision (they are the repository's computed numbers with stated assumptions: halo masses from a stellar-to-halo relation, Dutton--Macciò concentrations, the radii of Table~\ref{anchors}), nor that NFW is the right shape for an unrelaxed component. The particle-mesh comparison has a $50\%$ absolute floor and no hydrodynamics; the forest criterion is the linear-power proxy used in the repository's earlier forest tests, not a flux-power likelihood. No claim is made about mechanisms outside the three classes named.
+
+\section{Reproducibility}
+\texttt{fable\_independent\_2026/L187\_late\_puffy\_component\_topdown.py} with its committed output and \texttt{L187\_results.json} (commit \texttt{76f84c4dc}); the necessity certificate and ledger in \texttt{fable\_independent\_2026/FINDINGS.md} (L166, L172) and \texttt{lean\_2026/Mondlean.lean}; the particle-mesh scheme in \texttt{L176\_framework\_pk\_baseline.py}.
+
+\begin{thebibliography}{9}
+\bibitem{repo} The research repository, \url{https://github.com/carlzimmerman/zimmerman-formula} (2026).
+\bibitem{paper17} C.~P.~Zimmerman, \emph{The Clock Stability Theorem}, doi:10.5281/zenodo.22717950 (2026).
+\bibitem{nfw} J.~F.~Navarro, C.~S.~Frenk, S.~D.~M.~White, Astrophys.\ J.\ \textbf{490}, 493 (1997).
+\bibitem{dm14} A.~A.~Dutton, A.~V.~Macci\`o, Mon.\ Not.\ R.\ Astron.\ Soc.\ \textbf{441}, 3359 (2014).
+\bibitem{bullock} J.~S.~Bullock et al., Mon.\ Not.\ R.\ Astron.\ Soc.\ \textbf{321}, 559 (2001).
+\bibitem{wechsler} R.~H.~Wechsler et al., Astrophys.\ J.\ \textbf{568}, 52 (2002).
+\bibitem{lwp} B.~Little, D.~H.~Weinberg, C.~Park, Mon.\ Not.\ R.\ Astron.\ Soc.\ \textbf{253}, 295 (1991).
+\end{thebibliography}
+\end{document}
