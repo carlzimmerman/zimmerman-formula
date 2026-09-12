@@ -9,7 +9,7 @@
   flat a₀(z), subdominant scalar GW) confronting DATA — not by Lean, and not while the intrinsic BBN
   fine-tuning (L84/L87) and astra's open ADM/khronon gates stand.
 
-  Theorems (124 as of 2026-09-12; all: exit 0, zero `sorry`, axioms ⊆ {propext, Classical.choice, Quot.sound}):
+  Theorems (128 as of 2026-09-12; all: exit 0, zero `sorry`, axioms ⊆ {propext, Classical.choice, Quot.sound}):
     hasDerivAt_G, hasDerivAt_Gp   — Gp = dG/dy and Gpp = d²G/dy² proven (not merely asserted).
     kernel_identity               — MOND kernel G'(y)/(2y) = 1 − e^{-y}.
     Gpp_zero, Gpp_pos             — health dichotomy: G''(0)=0, G''(y)>0 ∀ y>0 (no ghost off zero field).
@@ -1264,3 +1264,45 @@ theorem preferred_frame_alignment_requirement (f_s v_res v_cos bound : ℝ)
   rw [le_div_iff₀ h8]
   calc v_res * (8 * f_s) = 8 * f_s * (v_res / v_cos) * v_cos := by field_simp
     _ ≤ bound * v_cos := mul_le_mul_of_nonneg_right halpha hv.le
+
+/-! ## L216 — the clock alignment -/
+
+/-- **L216 V1.** Writing the matter metric with independent conformal and disformal
+strengths gives `Psi~ = Psi + a phi` and `Phi~ = Phi - a phi + b phi`. Demanding that matter
+see `gamma_PPN = 1`, that is `Psi~ = Phi~`, locks `b = 2a`: the operator that fixes light
+bending IS the operator that generates the preferred-frame effect, at a fixed relative
+weight. There is no escape by dialling the disformal term down. -/
+theorem disformal_coefficient_locked (Phi varphi a b : ℝ) (hv : varphi ≠ 0)
+    (hgamma : Phi + a * varphi = Phi - a * varphi + b * varphi) : b = 2 * a := by
+  have h : (b - 2 * a) * varphi = 0 := by linarith
+  rcases mul_eq_zero.mp h with h1 | h2
+  · linarith
+  · exact absurd h2 hv
+
+/-- **L216 V4.** The ratio of the disformal source to the clock's gradient stiffness at a
+star's surface is `24 s0/f_s` — independent of the star's mass and radius entirely, so the
+dragging gain is a property of the theory rather than of the object. -/
+theorem drag_gain_is_star_independent (G M R s0 fs c : ℝ)
+    (hG : G ≠ 0) (hM : M ≠ 0) (hR : R ≠ 0) (hfs : fs ≠ 0) (hc : c ≠ 0) (hs0 : s0 ≠ 0) :
+    4 * (fs * G * M / R) * (3 * M / (4 * c * R ^ 3))
+        / (fs ^ 2 * G * M ^ 2 / (8 * c * s0 * R ^ 4)) = 24 * s0 / fs := by
+  field_simp; ring
+
+/-- **L216 V5.** With the clock's stiffness falling as the fourth power of radius the
+exterior dipole equation is `r^2 g'' - 2 r g' - 2 g = 0`, whose indicial equation is
+`n^2 - 3n - 2 = 0`. The decaying root is `(3 - sqrt 17)/2`, so the tilt falls off far more
+slowly than the `r^-3` of a constant-stiffness dipole. -/
+theorem drag_exponent_root (q : ℝ) (hq : q ^ 2 = 17) :
+    ((3 - q) / 2) ^ 2 - 3 * ((3 - q) / 2) - 2 = 0 := by
+  nlinarith [hq]
+
+/-- **L216 V7.** The drag gain is linear in the clock rate, so the experimental bound on the
+residual misalignment inverts into a lower bound on that rate. This is the third independent
+constraint on `s0` and the third pointing the same way. -/
+theorem alignment_forces_clock_rate (D0 s0 eps : ℝ) (hD0 : 0 < D0) (heps : 0 < eps)
+    (hs0 : 0 < s0) (hres : 1 / (1 + D0 * s0) ≤ eps) :
+    (1 - eps) / (eps * D0) ≤ s0 := by
+  have hpos : (0:ℝ) < 1 + D0 * s0 := by positivity
+  rw [div_le_iff₀ hpos] at hres
+  rw [div_le_iff₀ (by positivity : (0:ℝ) < eps * D0)]
+  nlinarith
