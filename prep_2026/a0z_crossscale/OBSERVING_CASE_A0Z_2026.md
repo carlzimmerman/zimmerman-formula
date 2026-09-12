@@ -94,3 +94,6 @@ deep-MOND population at z ≈ 2.5. The pipeline, the frozen constant, the estima
 
 *Provenance: DOI 10.5281/zenodo.22563139; `prep_2026/a0z_crossscale/highz_target_score_2026.py` (ledger and scores);
 `a0z_fork_likelihood_2026.py` (why the archives cannot decide).*
+
+---
+**Correction pending (2026-09-12, L189).** The framework's own necessity certificate (L166) and its Lyman-α gate require a clustering cold component whose halos persist around z ≈ 2.5 galaxies (the forest's k = 5 h/Mpc structures are those halos). A 3e11 M☉ halo at z = 2.5 contributes a dark fraction ≈ 0.38 inside R_e = 3 kpc of a 1e10 M☉-baryon rotator, shifting the framework's BTFR zero-point at z ≈ 2.5 by ≈ +0.05 dex in velocity (+0.2 dex in mass). The "0.00 dex vs +0.33 dex" gap stated above assumed baryons-only galaxies and shrinks to ≈ 0.1 dex in mass zero-point, below the ±0.13 dex resolution of the funnel. The decision rule must be recomputed with the retained halo included before any observing time is requested; a v2 of the published case (DOI 10.5281/zenodo.22700993) is pending.
