@@ -5508,3 +5508,32 @@ with 𝒲 = W_Y(Y) for modes transverse to the gradient and W_Y + 2Y W_YY for lo
 **Lean (Mondlean 111; axioms propext, Classical.choice, Quot.sound).** `stress_degeneracy_identity` (the determinant identity written out in the block entries) and `critical_stiffness_kills_N` (the critical stiffness, stated as the equation W_Y(2P_XQ² + s₀W) = P_XW, makes N vanish).
 
 **Limits.** The first-jet form of the density used for the variation, exact for a first metric variation; one spatial direction carries the gradient; no claim about the background history, the amount of the sector, or any observational gate. astra's audit is its own work and its report is not yet written; this entry records only what was verified independently here.
+
+## L194 — THE TRACKING CALCULATION: the back-reaction parks the gradient at the critical surface, and the forest gate becomes a statement about wavelength (2026-09-12)
+
+**What was owed.** L192/L193 established that the critical gradient Y* is a two-sided attractor in *sign* and that its marginal state has zero sound speed and isotropic stress. What was not established is whether the dynamics actually reach Y* and hold it there to the precision the Lyman-α forest demands (L192 V6).
+
+**The dynamics.** Two rates act on the gradient variance Y = ⟨|∇⊥χ|²⟩, and only two. Each mode's physical gradient redshifts, so its contribution falls as a⁻²: d lnY/dN = −2. Where c_s² < 0 a mode of physical wavenumber k grows at |c_s|k, so its contribution grows at 2|c_s|k: d lnY/dN = +2κ|c_s(Y)| with κ = k/H. Growth shuts off the instant Y passes Y*, so the balance is
+
+  |c_s(Y_eq)| = 1/κ,  i.e.  c_s²(Y_eq) = 1/κ².
+
+**Results (`L194_tracking_dynamics.py/.out`, `L194_results.json`; mean-field WKB back-reaction, coefficients and branch read-only). 6/6.**
+- **V1** integrating d lnY/dN from starting gradients spanning eight orders of magnitude around Y*, every trajectory lands on the same balance point to six digits, from both sides. At κ = 10³ it sits at Y_eq/Y* = 0.999725.
+- **V2** the residual sound speed is exactly 1/κ² over four decades (c_s²κ² = 1.000000 at κ = 10²–10⁵). **How cold the sector ends up is fixed by the instability-versus-dilution balance, not by any coefficient of the action.**
+
+| k/H | residual c_s² | fractional distance from Y* |
+|---|---|---|
+| 1e2 | 1.0e-4 | 2.7e-2 |
+| 1e3 | 1.0e-6 | 2.7e-4 |
+| 1e4 | 1.0e-8 | 2.7e-6 |
+| 1e5 | 1.0e-10 | 2.7e-8 |
+| 1e6 | 1.0e-12 | 2.7e-10 |
+
+- **V3 [the forest gate, converted]** c_s² ≤ 1e-9 is met once the instability reaches k/H = 3.2e4, which at z = 3 is a comoving wavelength of **0.78 Mpc**. The gate is now a statement about the shortest scale the instability acts on, and sub-Mpc scales are enormously larger than any cutoff of this effective theory.
+- **V4 [what the 'precision requirement' actually was]** the parked deviation equals L192 V6's stated requirement to within 0.05%, because they are the *same condition written two ways*. The attractor automatically sits at whatever precision the available wavenumber dictates. **Nothing has to be tuned.**
+- **V5** with a spectrum evolving together the shortest wavelength ends up carrying essentially all the gradient variance, and its sound speed matches the single-mode answer, so the residual can be read off the shortest scale available.
+- **V6** the same balance holds at all five gradient-unstable epochs of the branch, c_s²κ² = 1.0000 at each.
+
+**Reading.** The tracking calculation passes. The sequence is now complete on its own terms: a clock running faster than proper time makes the sector gradient-unstable (L186); the MOND nonlinearity cures that instability at a finite gradient whose marginal state has zero sound speed and isotropic stress (L192, L193); and the back-reaction drives the gradient to that state and holds it there, with a residual sound speed of (H/k_max)² set by the shortest wavelength the instability reaches (L194). The forest bound then requires only that the instability act on sub-Mpc scales. **What was a tuning of the logarithm margin to one part in 10⁸ is now a consequence of dynamics.**
+
+**What this costs and does not settle.** The residual depends on the ultraviolet reach of the instability, so the theory's coldness is UV-sensitive: the forest gate has become a *lower bound on the cutoff* rather than a tuning of coefficients. That is a better place to be, but it is not free, and a theory whose instability is cut off above ~0.8 Mpc at z = 3 would fail. The treatment is mean-field WKB, not a lattice simulation: mode coupling, phase decoherence and the nonlinear saturation of individual modes are not modelled, and the growth rate |c_s|k is exactly the assumption that makes the answer UV-sensitive. Only the forest gate is evaluated here. astra's own coefficient history still fails the forest on its early, stable branch, where the clock runs slow and no instability exists to drive the criticality.

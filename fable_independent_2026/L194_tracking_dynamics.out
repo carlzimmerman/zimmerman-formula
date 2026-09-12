@@ -1,0 +1,34 @@
+======================================================================================================================
+L194 THE TRACKING CALCULATION: where the back-reaction actually parks the gradient
+======================================================================================================================
+    epoch a = 0.56 (s0 = 1.173, Y*/l = 0.0174): approach to the balance point from four very different starting gradients, k/H = 1e3
+      start Y/Y* =   1.0e-06 -> end Y/Y_eq = 1.000000   c_s^2(end) = -1.000e-06
+      start Y/Y* =   1.0e-02 -> end Y/Y_eq = 1.000000   c_s^2(end) = -1.000e-06
+      start Y/Y* =   5.0e-01 -> end Y/Y_eq = 1.000000   c_s^2(end) = -1.000e-06
+      start Y/Y* =   5.0e+01 -> end Y/Y_eq = 1.000000   c_s^2(end) = -1.000e-06
+  [PASS] V1 [the balance point is an attractor, integrated] starting from gradients spanning eight orders of magnitude around Y*, the back-reaction brings the gradient to the same balance point from both sides, agreeing with the root-solved value to better than one part in a thousand
+           (final Y/Y_eq = 1.000000 1.000000 1.000000 1.000000; balance at Y_eq/Y* = 0.999725104)
+    the residual sound speed against the shortest wavelength the instability reaches (epoch a = 0.56):
+      k/H =    1e+02:  |c_s^2| at the balance = 1.000e-04   (1/kappa^2 = 1.000e-04)   |dY/Y*| = 2.738e-02
+      k/H =    1e+03:  |c_s^2| at the balance = 1.000e-06   (1/kappa^2 = 1.000e-06)   |dY/Y*| = 2.749e-04
+      k/H =    1e+04:  |c_s^2| at the balance = 1.000e-08   (1/kappa^2 = 1.000e-08)   |dY/Y*| = 2.749e-06
+      k/H =    1e+05:  |c_s^2| at the balance = 1.000e-10   (1/kappa^2 = 1.000e-10)   |dY/Y*| = 2.749e-08
+      k/H =    1e+06:  |c_s^2| at the balance = 1.000e-12   (1/kappa^2 = 1.000e-12)   |dY/Y*| = 2.749e-10
+  [PASS] V2 [the scaling, computed] the residual sound speed at the balance is exactly 1/kappa^2 over four decades of wavenumber: how cold the sector ends up is fixed by the balance between instability growth and Hubble dilution, not by any coefficient of the action
+           (c_s^2 kappa^2 = 1.000000 1.000000 1.000000 1.000000 0.999989)
+  [PASS] V3 [THE FOREST GATE, converted] the Lyman-alpha bound c_s^2 <= 1e-9 is met once the instability reaches k/H = 3.2e4, a comoving wavelength of about 0.8 Mpc at z = 3: the gate becomes a statement about the shortest scale the instability acts on, and that scale is enormous compared with any cutoff of this effective theory
+           (required k/H = 3.2e+04; H(z=3)/c = 0.0010 /Mpc; comoving wavelength = 0.776 Mpc (776 kpc))
+  [PASS] V4 [what L192's 'precision requirement' actually was] the parked fractional deviation equals the precision L192 V6 called for, to within numerical error -- because they are the SAME condition written in two ways. The attractor automatically sits at whatever precision the available wavenumber dictates, so what looked like a tuning requirement is really a statement about the shortest scale the instability can act on, and nothing has to be tuned at all
+           (parked |dY/Y*| = 2.749e-07, L192's stated requirement = 2.749e-07, ratio = 1.0000)
+    multi-mode (five wavenumbers evolving together): share of the final gradient variance per mode
+      k/H:      1e+01     3e+01     1e+02     3e+02     1e+03
+      share:   0.0000    0.0000    0.0000    0.0000    1.0000
+  [PASS] V5 [the shortest mode wins, computed] with a spectrum evolving together the gradient variance ends up dominated by the shortest wavelength present, and the resulting sound speed matches the single-mode answer for that wavenumber: the residual can legitimately be read off the shortest scale available
+           (shortest mode carries 1.000 of the variance; |c_s^2| kappa_max^2 = 1.000)
+  [PASS] V6 [every unstable epoch] the same balance holds at every gradient-unstable epoch of the branch, not only the one examined in detail
+           (c_s^2 kappa^2 at a = 1.00: 1.0000 0.75: 1.0000 0.56: 1.0000 0.42: 1.0000 0.32: 1.0000)
+    LIMITS: mean-field (Hartree) WKB back-reaction, not a lattice simulation -- mode coupling, phase decoherence and the nonlinear saturation of individual
+    modes are not modelled; the growth rate is taken as |c_s| k, exact in the WKB limit and the source of the UV sensitivity; the spectrum is evolved in gradient
+    variance only; astra's coefficient history frozen; no gate other than the forest is evaluated here.
+
+L194 COMPLETE: 6/6 checks PASS.
