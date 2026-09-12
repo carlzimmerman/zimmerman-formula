@@ -9,7 +9,7 @@
   flat a₀(z), subdominant scalar GW) confronting DATA — not by Lean, and not while the intrinsic BBN
   fine-tuning (L84/L87) and astra's open ADM/khronon gates stand.
 
-  Theorems (106 as of 2026-09-12; all: exit 0, zero `sorry`, axioms ⊆ {propext, Classical.choice, Quot.sound}):
+  Theorems (109 as of 2026-09-12; all: exit 0, zero `sorry`, axioms ⊆ {propext, Classical.choice, Quot.sound}):
     hasDerivAt_G, hasDerivAt_Gp   — Gp = dG/dy and Gpp = d²G/dy² proven (not merely asserted).
     kernel_identity               — MOND kernel G'(y)/(2y) = 1 − e^{-y}.
     Gpp_zero, Gpp_pos             — health dichotomy: G''(0)=0, G''(y)>0 ∀ y>0 (no ghost off zero field).
@@ -1081,3 +1081,40 @@ theorem density_gate_monotone_bound (g : ℝ → ℝ) (hg : Antitone g) (ρo ρc
     (hc : 0.576 ≤ g ρc) (hφ : 0.7 ≤ φ) : 0.14 < φ * g ρo := by
   have h1 : g ρc ≤ g ρo := hg h
   nlinarith [mul_le_mul hφ (le_trans hc h1) (by norm_num) (by linarith)]
+
+/-! ### L192: GRADIENT-DRIVEN CRITICALITY. The two structural drivers that turn the clock-scalar sound speed positive at finite
+    background field gradient, and the uniqueness of the marginal gradient Y* they imply. -/
+/-- L192: the destabilising stiffness of the MOND sector is strictly decreasing in the gradient invariant.
+    With W(Y) = U + 2dl(sqrt(1+Y/l) - 1) the coefficient that carries the clock's destabilising term is
+    W_Y(Y) = d/sqrt(1+Y/l), and it strictly decreases as the background field gradient grows. This is the
+    first of the two structural drivers that turn c_s^2 positive at finite Y (L192 V1-V4). -/
+theorem mond_stiffness_strict_anti (d l : ℝ) (hd : 0 < d) (hl : 0 < l) {Y₁ Y₂ : ℝ}
+    (h0 : 0 ≤ Y₁) (h : Y₁ < Y₂) :
+    d / Real.sqrt (1 + Y₂ / l) < d / Real.sqrt (1 + Y₁ / l) := by
+  have h1 : (0:ℝ) < 1 + Y₁ / l := by positivity
+  have h2 : 1 + Y₁ / l < 1 + Y₂ / l := by
+    have hd2 : Y₁ / l < Y₂ / l := by
+      rw [div_lt_div_iff_of_pos_right hl]; exact h
+    linarith
+  have hs1 : 0 < Real.sqrt (1 + Y₁ / l) := Real.sqrt_pos.mpr h1
+  have hs : Real.sqrt (1 + Y₁ / l) < Real.sqrt (1 + Y₂ / l) :=
+    Real.sqrt_lt_sqrt h1.le h2
+  exact div_lt_div_of_pos_left hd hs1 hs
+
+/-- L192: the logarithm margin is strictly increasing in the gradient invariant.
+    With X = Q^2 - Y the margin is m(Y) = U - 2dX = m₀ + 2dY, so a background gradient moves the
+    coefficient functions AWAY from their singularity. This is the second structural driver. -/
+theorem mond_margin_strict_mono (m₀ d : ℝ) (hd : 0 < d) : StrictMono (fun Y : ℝ => m₀ + 2 * d * Y) := by
+  intro a b hab; dsimp only; nlinarith
+
+/-- L192: a strictly monotone continuous quantity that is negative at one gradient and positive at another
+    has exactly one marginal point between them. With the two drivers above supplying the sign change,
+    this is the uniqueness of the critical gradient Y* at which c_s^2 vanishes. -/
+theorem critical_gradient_unique (f : ℝ → ℝ) (hf : Continuous f) (hm : StrictMono f)
+    {a b : ℝ} (hab : a < b) (ha : f a < 0) (hb : 0 < f b) :
+    ∃! y, y ∈ Set.Ioo a b ∧ f y = 0 := by
+  obtain ⟨y, hy, hfy⟩ := intermediate_value_Ioo hab.le hf.continuousOn
+    (show (0:ℝ) ∈ Set.Ioo (f a) (f b) from ⟨ha, hb⟩)
+  refine ⟨y, ⟨hy, hfy⟩, ?_⟩
+  rintro z ⟨-, hz⟩
+  exact hm.injective (hz.trans hfy.symm)

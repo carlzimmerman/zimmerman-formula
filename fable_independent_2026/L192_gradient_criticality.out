@@ -1,0 +1,31 @@
+======================================================================================================================
+L192 GRADIENT-DRIVEN CRITICALITY: does the MOND sector cure the clock's gradient instability, and at what gradient?
+======================================================================================================================
+    a        s0       m_rel      l          c_s^2(Y=0)     Y* (transverse)   Y*/l       Y* (longitudinal)   c_s^2 at 10 Y*
+    1.0000  1.0318  9.342e-02  4.132e-02  -1.5134e-03    2.5242e-04     0.0061   8.0969e-05        +1.028e-02
+    0.7501  1.0718  7.361e-02  3.221e-02  -2.5727e-03    3.3496e-04     0.0104   1.0809e-04        +1.353e-02
+    0.5627  1.1733  5.597e-02  2.297e-02  -4.2866e-03    3.9958e-04     0.0174   1.2939e-04        +1.453e-02
+    0.4221  1.4125  3.787e-02  1.222e-02  -5.2369e-03    2.6022e-04     0.0213   8.4774e-05        +9.747e-03
+    0.3166  1.1176  2.018e-02  4.082e-03  -4.8586e-04    7.9451e-06     0.0019   2.6376e-06        +2.014e-03
+    0.2375  0.8509  9.050e-03  1.369e-03  +2.0491e-04         (already stable at Y = 0: the attractor is Y = 0)
+    0.1782  0.7714  3.888e-03  4.803e-04  +1.0997e-04         (already stable at Y = 0: the attractor is Y = 0)
+    0.1337  0.7404  1.651e-03  1.686e-04  +4.3780e-05         (already stable at Y = 0: the attractor is Y = 0)
+    0.1003  0.7234  6.981e-04  5.845e-05  +1.6169e-05         (already stable at Y = 0: the attractor is Y = 0)
+    0.1003  0.7234  6.981e-04  5.845e-05  +1.6169e-05         (already stable at Y = 0: the attractor is Y = 0)
+  [PASS] V1 [the cure exists] on every gradient-unstable epoch of astra's branch (c_s^2 < 0 at zero gradient, a >= 0.3) there is a FINITE transverse gradient Y* at which the sound speed crosses zero, inside the domain where the kinetic term is still healthy
+           (Y*/l = 0.006 0.010 0.017 0.021 0.002; domain edge Y_max/l = 42.0 55.8 80.9 157.5 483.9)
+  [PASS] V2 [monotone, so the zero is unique] c_s^2(Y) increases monotonically in Y on every unstable epoch up to the healthy-domain edge, so Y* is the unique marginal state and there is no second crossing
+           (checked on 60-point logarithmic grids from 1e-10 l to half the healthy-domain edge at every unstable epoch)
+  [PASS] V3 [the attractor is two-sided] just below Y* the sector is unstable (gradients grow, Y rises) and just above it is stable (expansion dilutes Y, which falls): Y* is approached from both sides, and the state it selects has c_s^2 = 0 exactly -- pressureless dust
+           (c_s^2 at Y*/2 and 2Y*: a = 1.00: -7.4e-04 / +1.4e-03; a = 0.75: -1.2e-03 / +2.2e-03; a = 0.56: -2.0e-03 / +3.2e-03)
+  [PASS] V4 [the scale it picks -- corrected: far BELOW the transition, not at it] the critical gradient is a small fraction of the action's transition scale, Y*/l = 0.002 to 0.021, so the MOND sector is still in its quasi-linear regime there: only an infinitesimal field gradient (4 to 15 percent of the transition gradient) is needed to cancel the instability, which makes the marginal state easy to reach and puts the sector at c_s^2 = 0 essentially everywhere, voids included
+           (Y*/l = 0.0061 0.0104 0.0174 0.0213 0.0019; in gradient units sqrt(Y*/l) = 0.078 0.102 0.132 0.146 0.044)
+  [PASS] V5 [the clock rate loses control of the SIGN -- corrected: it still sets the magnitude] at the transition gradient Y = l the sound speed stays positive on every unstable epoch even when the clock rate is TRIPLED, while at Y = 0 that same tripling makes it negative: above Y* the gradient decides stability and the clock only rescales it (by a factor 1.1 to 3.8 here)
+           (c_s^2(Y = l) at s0 and 3 s0: +5.345e-02 / +1.400e-02; +4.248e-02 / +1.795e-02; +3.080e-02 / +1.728e-02; +1.687e-02 / +1.229e-02; +6.010e-03 / +5.606e-03 -- compare Y = 0, where 3 s0 gives -9.978e-02)
+  [PASS] V6 [what the attractor must still deliver, computed] the sound speed rises steeply out of the marginal point, so the Lyman-alpha bound c_s^2 <= 1e-9 requires the gradient to track Y* to a fractional precision of about 1e-6 to 1e-5: criticality replaces the 1e-8 tuning of the logarithm margin (L185/L186) with a dynamical tracking requirement of comparable sharpness, and whether the back-reaction achieves it is NOT established here -- it is the next calculation
+           (required |dY/Y*| for c_s^2 <= 1e-9: 6.8e-07 4.2e-07 2.7e-07 2.7e-07 2.3e-06)
+    LIMITS: WKB / locally uniform background gradient, the L186 constraint structure carried over with W_Y -> W_Y(Y) and the longitudinal combination W_Y + 2 Y W_YY;
+    astra's coefficient history frozen and imported read-only; the back-reaction that drives Y to Y* is argued from the sign of c_s^2, not integrated; anisotropy of the
+    background gradient treated by polarisation only; no claim that astra's particular history passes the forest (its stable early branch still sits at c_s^2 ~ 1e-4).
+
+L192 COMPLETE: 6/6 checks PASS.

@@ -5465,3 +5465,29 @@ Deviations: spiral over its ceiling by 22%, Milky Way 5%, cluster 15%; the alt f
 **The prediction this forces (V5).** Since both galaxies sit on that floor, the mechanism gives **the same retained fraction to every galaxy whose escape speed is below the kick speed**: a universal galaxy-scale dark fraction with no mass dependence (spiral/MW ratio 0.97, where the ledger's own f ∝ M^0.16 wants 0.75). All the host-mass dependence lives between galaxies and clusters, where v_esc rises above v_k — the cluster retention falls by 2.5× across the scanned kick range while the Milky Way moves by 5%. This is testable across the SPARC mass range and is the sharpest thing C003 says. The group prediction is 0.168 at R500, between the two, testable by group-scale lensing.
 
 **Status.** C003 remains a partial survivor, now on a dynamical calculation rather than an impulsive estimate, reproducing the ledger to ~20% with two parameters while missing the strict spiral ceiling by 22%. It is still not derived from an action. Limits: test particles in a fixed potential (the component's self-gravity is neglected, which is questionable at the cluster anchor where it retains 0.58), isothermal initial condition, instantaneous isotropic kicks, no external field or tidal truncation, no baryonic evolution.
+
+## L192 — GRADIENT-DRIVEN CRITICALITY: the MOND sector cures its own instability, and the marginal state is exact dust (2026-09-12)
+
+**The reversal.** The clock stability theorem (L186, PAPER17) computed the clock-scalar sound speed on a background with **no field gradient** and found c_s² = (1 − s₀)m_rel/(2 − m_rel), negative whenever the clock runs faster than proper time — which we recorded as a kill of astra's late branch. But the MOND sector's entire content is its dependence on the projected gradient invariant Y = |∇⊥χ|²: the function W(Y) **is** the interpolating function. Repeating the same reduction in the WKB limit with a background gradient carried through gives
+
+  c_s²(Y) = [2P_X(1 − D) − 2s₀𝒲] / [B(1 − D)],  D = 2Q²𝒲/W(Y),  B = 2P_X + 4X P_XX,  X = Q² − Y,
+
+with 𝒲 = W_Y(Y) for modes transverse to the gradient and W_Y + 2Y W_YY for longitudinal ones. Three consequences follow from astra's closure with nothing put in by hand: the destabilising stiffness falls, W_Y = d(1 + Y/ℓ)^{−1/2} → 0; the logarithm margin **grows**, m(Y) = m₀ + 2dY, moving the background away from its singularity; and c_s² therefore rises monotonically and crosses zero at a finite Y*.
+
+**Computed against astra's own coefficient functions and branch** (`L192_gradient_criticality.py/.out`, `L192_results.json`; its modules imported read-only):
+
+| a | s₀ | c_s²(Y = 0) | Y*/ℓ | c_s²(Y*/2) | c_s²(2Y*) |
+|---|---|---|---|---|---|
+| 1.00 | 1.032 | −1.51e-3 | 0.0061 | −7.4e-4 | +1.4e-3 |
+| 0.75 | 1.072 | −2.57e-3 | 0.0104 | −1.2e-3 | +2.2e-3 |
+| 0.56 | 1.173 | −4.29e-3 | 0.0174 | −2.0e-3 | +3.2e-3 |
+| 0.42 | 1.413 | −5.24e-3 | 0.0213 | | |
+| 0.32 | 1.118 | −4.86e-4 | 0.0019 | | |
+
+**Verdicts (6/6).** V1 every gradient-unstable epoch has a finite Y* inside the healthy-kinetic domain (whose edge is 42–484 ℓ). V2 c_s²(Y) is monotone on 60-point logarithmic grids, so Y* is unique. V3 the attractor is two-sided: below Y* the sector is unstable so gradients grow and Y rises; above it the sector is stable so expansion dilutes Y and it falls — and the selected state has c_s² = 0 **exactly**, i.e. pressureless dust, which is the clustering cold component the L166 necessity certificate demands. V4 [correction to my own guess] Y* sits far **below** the MOND transition, 0.2–2% of ℓ (4–15% in gradient units), so only an infinitesimal field gradient is needed and the marginal state is easy to reach everywhere, voids included. V5 [correction] at Y = ℓ the sound speed stays positive even with the clock rate **tripled**, while the same tripling at Y = 0 makes it negative: above Y* the gradient decides the sign and the clock only rescales the magnitude (factor 1.1–3.8). V6 [what is still owed] c_s² rises steeply out of the marginal point, so the Lyman-α bound c_s² ≤ 1e-9 requires the gradient to track Y* to a fractional precision of 3e-7 to 2e-6.
+
+**Lean (Mondlean 109; axioms propext, Classical.choice, Quot.sound).** `mond_stiffness_strict_anti` (the destabilising stiffness d/√(1+Y/ℓ) is strictly decreasing in Y), `mond_margin_strict_mono` (the margin m₀ + 2dY is strictly increasing), `critical_gradient_unique` (a continuous strictly monotone quantity negative at one gradient and positive at another has exactly one marginal point between them).
+
+**What this changes.** The gradient instability we recorded as fatal is, on this action, **self-limiting**: the MOND nonlinearity is the regulator. The programme's central difficulty — producing a cold, clustering component without tuning the logarithm margin to 1e-8 — is replaced by a dynamical attractor at c_s² = 0. **What it does not yet establish**: that the back-reaction actually drives Y to Y* and holds it there to the 1e-6 precision the forest demands. That tracking calculation is the next step and it is not done here; the sign structure is established, the dynamics are not. Nor does astra's particular coefficient history pass the forest — its early, stable branch still sits at c_s² ≈ 1e-4, because criticality only operates where the clock runs fast. The honest statement of the new requirement is therefore: **a history whose clock runs faster than proper time at all epochs of interest is driven to exact dust by its own MOND sector**, and that is a condition on the coefficient functions which can be imposed a priori rather than fitted.
+
+**Limits.** WKB with a locally uniform background gradient; the L186 constraint structure carried over with W_Y → W_Y(Y) and the longitudinal combination W_Y + 2Y W_YY; background anisotropy treated by polarisation only; astra's history frozen; the attractor argued from the sign of c_s², not integrated.
