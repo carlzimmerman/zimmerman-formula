@@ -6033,3 +6033,35 @@ The 1e4 at the bottom of that column is the 1/w L212 saw and put in the wrong pl
 **Limits.** The matter coupling is leading order λφρ, not a full conformal or disformal factor. The quasi-static reduction drops the clock's gradient response, legitimate here only because the mixing vanishes on this branch. k is defined as W_Y at the highest acceleration probed and is not derived. The interpolation used is the pure Y^{3/2} limit, not ν_RAR in full, so V1/V2 establish the deep-MOND limit and the scale, not the whole interpolating function. No numerical gate has been re-run with the coupling switched on. 8/8.
 
 **Lean.** 122 theorems, exit 0, zero `sorry`, axioms ⊆ {propext, Classical.choice, Quot.sound}.
+
+## L215 — THE SOLAR-SYSTEM GATE: light bending is exactly GR for free, and the gate reduces to one number on the clock (2026-09-12)
+
+**The setup.** L214 leaves the solar system as the last gate that is a gap rather than a theorem. A **conformal** matter coupling shifts the time potential and not the space one, so it fails light bending outright. The cure is a **disformal** coupling along a unit timelike vector — which TeVeS and AeST must ADD as a separate dynamical field, with its own kinetic term and its own stability conditions. **This action already has one:** the clock's gradient supplies n_μ, and the cuscuton propagates no scalar of its own.
+
+**V1, V2 — and it works exactly.** Expanding g̃ = (1−2φ)g − 4φ n⊗n in the weak field:
+
+  **Φ̃ = Φ + φ,  Ψ̃ = Ψ + φ**
+
+Both potentials pick up the *same* shift, so the scalar cancels out of their difference and
+
+  **γ_PPN = 1 exactly**, however strong the scalar is.
+
+Light bending and Shapiro delay are general-relativistic (Lean `disformal_gamma_is_one`). This is the TeVeS mechanism obtained **without adding a vector field**.
+
+**V3, V4 — boosting is where it costs.** The same disformal term, for a system moving at w through the clock's frame, gives g̃_0i = **4φw** — first order in the velocity *and* first order in the scalar, which is exactly the preferred-frame signature. Matching to the post-Newtonian form:
+
+  **α₁ = 8 f_s**, f_s = the scalar's share of the local potential
+
+At the share MOND requires at solar-system accelerations (f_s ≈ 1) that is **8 against a bound of 1e-4 — over by 8e4.** A clock sitting in the cosmic frame is excluded outright, by the same wall that killed the vector-based completions.
+
+**V5 — so the gate is one number.** The bound converts directly into an alignment requirement (Lean `preferred_frame_alignment_requirement`):
+
+  **local matter must drag the clock into its own rest frame to within 4.6 m/s**,
+
+one part in 8e4 of the solar system's 370 km/s through the cosmic frame. That is a single, sharp, computable requirement on the clock's field equation. **This lane does not compute it.**
+
+**The board after L213–L215.** Every gate carries a computed number except two: the clock alignment above, and κ (provably underivable by this class — a theorem of this programme, not a gap).
+
+**Limits.** The disformal form is leading order in the scalar in the standard one-parameter shape; a different factor changes the coefficient 8 but not the first-order-in-velocity structure. f_s ≈ 1 is what MOND requires and is not derived here. The post-Newtonian matching uses the standard normalisation, so the coefficient is convention-dependent at the factor-of-two level; the five-orders conclusion is not. **Whether the clock is dragged, and by how much, is the calculation this lane hands on** — and note L170 measured a cuscuton clock as dragged at 3e-2 Φ_N at Saturn, which is the same question in a different parameterisation and was recorded there as a kill. 6/6.
+
+**Lean.** 124 theorems, exit 0, zero `sorry`, axioms ⊆ {propext, Classical.choice, Quot.sound}.

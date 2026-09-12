@@ -9,7 +9,7 @@
   flat a₀(z), subdominant scalar GW) confronting DATA — not by Lean, and not while the intrinsic BBN
   fine-tuning (L84/L87) and astra's open ADM/khronon gates stand.
 
-  Theorems (122 as of 2026-09-12; all: exit 0, zero `sorry`, axioms ⊆ {propext, Classical.choice, Quot.sound}):
+  Theorems (124 as of 2026-09-12; all: exit 0, zero `sorry`, axioms ⊆ {propext, Classical.choice, Quot.sound}):
     hasDerivAt_G, hasDerivAt_Gp   — Gp = dG/dy and Gpp = d²G/dy² proven (not merely asserted).
     kernel_identity               — MOND kernel G'(y)/(2y) = 1 − e^{-y}.
     Gpp_zero, Gpp_pos             — health dichotomy: G''(0)=0, G''(y)>0 ∀ y>0 (no ghost off zero field).
@@ -1244,3 +1244,23 @@ theorem window_ratio_is_scale_invariant (k0 q0 U0 fk fq fU : ℝ)
     (hU0 : U0 ≠ 0) (hfk : fk ≠ 0) (hfq : fq ≠ 0) (hprod : fk * fq ^ 2 = fU) :
     (k0 * fk) * (q0 * fq) ^ 2 / (U0 * fU) = k0 * q0 ^ 2 / U0 := by
   subst hprod; field_simp
+
+/-- **L215 V1/V2.** A disformal matter coupling along the clock's own unit timelike
+direction shifts BOTH weak-field potentials by the same amount, so the post-Newtonian
+`gamma` that matter sees is exactly one however strong the scalar is. -/
+theorem disformal_gamma_is_one (Phi Psi varphi : ℝ) (h : Psi = Phi)
+    (hne : Phi + varphi ≠ 0) : (Psi + varphi) / (Phi + varphi) = 1 := by
+  rw [h]; exact div_self hne
+
+/-- **L215 V4/V5.** Boosted, the same coupling gives a preferred-frame parameter linear in
+the scalar's share of the local potential, so the experimental bound converts directly into
+an alignment requirement on the clock's frame. -/
+theorem preferred_frame_alignment_requirement (f_s v_res v_cos bound : ℝ)
+    (hv : 0 < v_cos) (hfs : 0 < f_s)
+    (halpha : 8 * f_s * (v_res / v_cos) ≤ bound) :
+    v_res ≤ bound * v_cos / (8 * f_s) := by
+  have hvne : v_cos ≠ 0 := hv.ne'
+  have h8 : (0:ℝ) < 8 * f_s := by linarith
+  rw [le_div_iff₀ h8]
+  calc v_res * (8 * f_s) = 8 * f_s * (v_res / v_cos) * v_cos := by field_simp
+    _ ≤ bound * v_cos := mul_le_mul_of_nonneg_right halpha hv.le
