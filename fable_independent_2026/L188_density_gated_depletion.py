@@ -31,7 +31,7 @@ best = None
 for alpha in (0.5, 1.0, 1.5, 2.0):
     # eps*Dt in units where (G rho)^(alpha/2) is in s^-alpha: scan log-uniformly
     grid = np.geomspace(1e-30, 1e40, 400)
-    costs = [sum((np.log(retained(M, 0, r, e, alpha)) - np.log(t))**2 for _, M, r, t in anchors) for e in grid]
+    costs = [sum((np.log(max(retained(M, 0, r, e, alpha), 1e-300)) - np.log(t))**2 for _, M, r, t in anchors) for e in grid]
     e = grid[int(np.argmin(costs))]; fs = [retained(M, 0, r, e, alpha) for _, M, r, _ in anchors]
     print(f"    alpha = {alpha:.1f}: best eps*Dt -> f = " + " / ".join(f"{x:.3f}" for x in fs) + f"  (targets 0.105 / 0.14 / 0.576), max |ln(f/target)| = {max(abs(np.log(x/t)) for x, (_, _, _, t) in zip(fs, anchors)):.2f}")
     if best is None or min(costs) < best[0]: best = (min(costs), alpha, e, fs)
