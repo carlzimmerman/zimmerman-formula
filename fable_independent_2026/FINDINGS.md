@@ -6147,3 +6147,40 @@ so **a₀ falls 12.4% between z = 5 and today, against the 1% the framework's ow
 **Limits.** The shift symmetry is read off the structure of the action rather than proved by formal variation. The drift is linear order with a conformal coupling to baryons alone, radiation taken not to source the scalar; a disformal piece adds a term not computed. λq̄ = H√(3CwΩ/2) uses f_s = 1 at solar-system accelerations, which MOND requires and which is not derived. The 1% flat-law tolerance over z ≤ 5 is taken from the framework's own derived law, not from data. **No gate has been re-run at w = 6e-7, and whether criticality still operates that close to zero pressure is not computed here.** 9/9.
 
 **Lean.** 132 theorems, exit 0, zero `sorry`, axioms ⊆ {propext, Classical.choice, Quot.sound}.
+
+## L218 — CRITICALITY AT w = 6e-7: it survives, and the mechanism supplies the programme's first LOWER bound on w (2026-09-12)
+
+**What was owed.** L217 tightened the sector's equation of state from 1e-4 to 5.7e-7. Every gate from L192 onward was run at 1e-4, and the mechanism that makes the sector exactly cold is criticality, whose driver is |c_s(0)| = √(w/2). Shrinking w weakens the driver.
+
+**V1 — the mechanism has an operating condition, and it is exact.** L194's balance is d lnY/dN = −2 + 2κ|c_s(Y)|. Setting growth equal to dilution at zero gradient, where the driver is weakest:
+
+  **w > 2/κ² = 2 × (residual c_s²)**
+
+(Lean `criticality_operating_condition`, `criticality_floor_is_twice_the_residual`). **w must exceed twice the residual sound speed the same mechanism ends up at.** Below that the instability cannot outrun the expansion and the sector never becomes exactly cold. **This is a lower bound on w, and the programme has never had one.**
+
+**V2, V3 — at the new ceiling the driver is still strong.** At w = 5.66e-7 the growth beats the dilution **17×** at the forest epoch, and the mechanism switches on at **z ≈ 940** and runs all the way down — covering the forest, galaxy formation, lensing and S₈, which is everything that needs the sector exactly cold. **Shrinking w by more than two orders did not switch the mechanism off.**
+
+**V4 — THE WINDOW, bounded on both sides for the first time.**
+
+| criticality required by | κ(z) | floor on w |
+|---|---|---|
+| z = 3 | 3.20e4 | 1.95e-9 |
+| z = 30 | 1.16e4 | 1.48e-8 |
+| z = 300 | 3.60e3 | 1.54e-7 |
+| z = 1100 | 1.71e3 | 6.86e-7 |
+
+Taking z = 30, comfortably earlier than any epoch the sector must be cold for:
+
+  **1.5e-8 ≲ w ≲ 5.7e-7**,  about **1.6 decades**
+
+and the two bounds come from completely unrelated physics: small-scale power on one side (via κ), the drift of the acceleration scale under symmetry breaking on the other (L217). That is the first two-sided determination of this quantity in the programme.
+
+**V5, V6 — one thing does close, and it is not a kill.** Demanding criticality at *recombination* puts the floor at 6.86e-7, **21% above the ceiling**: at the forest's own κ the mechanism cannot have run that early. But the sector does not need it there. At w this small the sound-speed correction to the sector's perturbation equation at the third-peak scale is **4.9e-4**, four parts in ten thousand. The sector reaches the CMB un-criticalised and still cold enough. **What this does mean is that the window's existence now depends on the effective theory's ultraviolet cutoff, which sets κ and which this programme has never determined.**
+
+**V7 — the forest gate is untouched.** The residual is 1/κ², with ∂(residual)/∂w = 0: how cold the sector ends up is fixed by the instability-versus-dilution balance and by nothing in the action. L194's forest verdict stands unchanged.
+
+**V8 — what does change is the margin.** m_rel = w/(s₀−1) = **3.8e-14** at the new ceiling, against 6.7e-12 at the old one. The field sits **180× closer to its own speed limit** (L217). Nothing computed forbids it — the Lorentz factor is a conserved charge and takes whatever value it was given — but the strong-coupling question of L216 gets 180× sharper and is **still not computed**.
+
+**Limits.** κ is normalised at L194's forest value and evolved as 1/(aH) at fixed comoving wavenumber, which assumes the same physical mode dominates the gradient variance across a thousandfold in redshift; L194 V5 supports that at one epoch only. The operating condition is evaluated at zero gradient, where the driver is weakest, so it is conservative. The ceiling inherits every limit of L217. V6 is the size of a term in the perturbation equation, not a Boltzmann calculation. **No gate has been re-run end to end at w = 6e-7.** a₀ does not enter, so the result is footing-independent and quoted once. 8/8.
+
+**Lean.** 135 theorems, exit 0, zero `sorry`, axioms ⊆ {propext, Classical.choice, Quot.sound}.

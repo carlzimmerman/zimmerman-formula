@@ -1,0 +1,54 @@
+{
+ "pass": 8,
+ "fail": 0,
+ "checks": [
+  {
+   "name": "V1 [the mechanism has an operating condition, and it is twice the residual] L194's growth term is evaluated at zero gradient, set equal to the dilution term, and solved for the equation of state; the result is compared with twice L194's residual sound speed",
+   "measured": "growth = sqrt(2)*kappa*sqrt(w), dilution = 2 => w_floor = 2/kappa**2; 2 x residual = 2/kappa**2",
+   "pass": true,
+   "reading": "w must exceed TWICE the residual sound speed the same mechanism ends up at. Below that the instability cannot outrun the expansion, the gradient never reaches the critical surface, and the sector never becomes exactly cold. This is a LOWER bound on w and the programme has never had one"
+  },
+  {
+   "name": "V2 [at the forest epoch the driver is comfortably strong] the growth-to-dilution ratio is evaluated at the tightened equation of state and the forest's own kappa, and compared against 1, the value at which the mechanism stalls",
+   "measured": "|c_s(0)| = 5.320e-04, kappa(z=3) = 3.200e+04, growth/dilution = 17.0",
+   "pass": true,
+   "reading": "seventeen times the stall value at z = 3, so at the epoch the Lyman-alpha forest measures, criticality runs and runs fast. Shrinking w by more than two orders did not switch the mechanism off"
+  },
+  {
+   "name": "V3 [and it runs from well before structure forms] the redshift at which growth equals dilution is solved for at the tightened equation of state, and compared with z = 30, comfortably earlier than any epoch the sector must be cold for",
+   "measured": "criticality operates for z < 940; kappa there = 1.880e+03",
+   "pass": true,
+   "reading": "the mechanism switches on at z ~ 1e3 and runs all the way down. Everything that requires the sector to be exactly cold -- the forest, galaxy formation, lensing, S8 -- happens below that, so the tightening costs the mechanism nothing where it matters"
+  },
+  {
+   "name": "V4 [THE WINDOW, bounded from both sides for the first time] the floor required for criticality to have run by z = 30 is compared with L217's ceiling from holding a_0 flat; a floor above the ceiling would mean no equation of state works at all",
+   "measured": "floor (criticality by z = 30) = 1.48e-08; ceiling (flat a_0) = 5.66e-07; window width = 38x = 38.4 (1.58 decades)",
+   "pass": true,
+   "reading": "the window is open and about one and a half decades wide. This is the first time this programme has bounded the sector's equation of state from BELOW, and the two bounds come from completely different physics: small-scale power on one side, the drift of the acceleration scale on the other"
+  },
+  {
+   "name": "V5 [but demanding it at recombination closes it] the same floor is evaluated at recombination and compared with the ceiling, because a mechanism that only switches on after recombination leaves the sector un-criticalised when the CMB is imprinted",
+   "measured": "floor (criticality by z = 1100) = 6.86e-07 vs ceiling 5.66e-07; ratio = 1.21",
+   "pass": true,
+   "reading": "at the forest's own kappa the mechanism cannot have run at recombination: the floor exceeds the ceiling by about twenty percent. So the sector reaches the CMB NOT yet parked on the critical surface, and whether that matters is V6"
+  },
+  {
+   "name": "V6 [and it does not] the sound-speed correction to the sector's perturbation equation is evaluated at the third-peak scale and recombination, and compared against 0.01, below which it cannot move a peak height",
+   "measured": "c_s^2 k^2/(aH)^2 = 4.89e-04 at k = 0.2 /Mpc, z = 1100",
+   "pass": true,
+   "reading": "four parts in ten thousand. Un-criticalised, the sector is still cold ENOUGH at recombination because the equation of state is now so small; criticality is needed for the forest and for structure, not for the CMB. So V5's closure is not a kill, it relocates the requirement to where the mechanism does run"
+  },
+  {
+   "name": "V7 [the residual, hence the forest gate, is untouched] L194's residual is evaluated at three values of kappa and its dependence on the equation of state is measured, since a residual that moved with w would reopen the forest gate",
+   "measured": "residual c_s^2 = ['1.0e-06', '1.0e-08', '1.0e-10'] at kappa = [1000.0, 10000.0, 100000.0]; d(residual)/dw = 0",
+   "pass": true,
+   "reading": "how cold the sector ends up is fixed by the instability-versus-dilution balance and by nothing in the action, so shrinking w by two orders leaves the forest gate exactly where L194 left it"
+  },
+  {
+   "name": "V8 [what it does change: the margin] the margin implied by the clock rate the solar system demands is evaluated at the new ceiling and compared with the value at the old one, since the margin is what the speed-limit picture of L217 measures",
+   "measured": "m_rel = w/(s_0-1) = 3.77e-14 at w = 5.66e-07, against 6.67e-12 at w = 1e-4",
+   "pass": true,
+   "reading": "the field sits 180 times closer to its own speed limit than before. Nothing computed forbids it -- the Lorentz factor is a conserved charge (L217) and takes whatever value it was given -- but the strong-coupling question L216 raised gets 180 times sharper, and it is still NOT computed"
+  }
+ ]
+}

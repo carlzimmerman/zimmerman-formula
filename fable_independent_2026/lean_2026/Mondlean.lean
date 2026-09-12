@@ -9,7 +9,7 @@
   flat a₀(z), subdominant scalar GW) confronting DATA — not by Lean, and not while the intrinsic BBN
   fine-tuning (L84/L87) and astra's open ADM/khronon gates stand.
 
-  Theorems (132 as of 2026-09-12; all: exit 0, zero `sorry`, axioms ⊆ {propext, Classical.choice, Quot.sound}):
+  Theorems (135 as of 2026-09-12; all: exit 0, zero `sorry`, axioms ⊆ {propext, Classical.choice, Quot.sound}):
     hasDerivAt_G, hasDerivAt_Gp   — Gp = dG/dy and Gpp = d²G/dy² proven (not merely asserted).
     kernel_identity               — MOND kernel G'(y)/(2y) = 1 − e^{-y}.
     Gpp_zero, Gpp_pos             — health dichotomy: G''(0)=0, G''(y)>0 ∀ y>0 (no ghost off zero field).
@@ -1343,3 +1343,46 @@ theorem drift_is_independent_of_clock_rate (s0 C G U w rho c : ℝ)
     (hs0 : s0 ≠ 0) (hU : U = w * rho / s0) :
     c * s0 * C * G * U = c * C * G * rho * w := by
   subst hU; field_simp
+
+/-! ## L218 — criticality at the tightened equation of state -/
+
+/-- **L218 V1.** The criticality mechanism runs only where its growth term beats the
+dilution term. With `|c_s(0)|^2 = w/2` and growth `2 kappa |c_s|` against dilution `2`, that
+condition is exactly `w > 2/kappa^2` — a LOWER bound on the sector's equation of state, the
+first this programme has had. -/
+theorem criticality_operating_condition (kappa w c : ℝ) (hk : 0 < kappa) (hc : 0 < c)
+    (hcs : c ^ 2 = w / 2) : (1 < kappa * c) ↔ (2 / kappa ^ 2 < w) := by
+  have hk2 : (0:ℝ) < kappa ^ 2 := by positivity
+  constructor
+  · intro h
+    have h1 : 1 < kappa ^ 2 * c ^ 2 := by nlinarith
+    rw [hcs] at h1
+    rw [div_lt_iff₀ hk2]
+    nlinarith
+  · intro h
+    rw [div_lt_iff₀ hk2] at h
+    have hkc : 0 < kappa * c := by positivity
+    have h1 : 1 < (kappa * c) ^ 2 := by rw [mul_pow, hcs]; nlinarith
+    by_contra hcon
+    push_neg at hcon
+    nlinarith [h1, hkc, hcon]
+
+/-- **L218 V1, restated.** That floor is exactly twice the residual sound speed `1/kappa^2`
+the same mechanism ends up at, so the bound below and the coldness above are set by one
+quantity. -/
+theorem criticality_floor_is_twice_the_residual (kappa w resid : ℝ) (hk : 0 < kappa)
+    (hres : resid = 1 / kappa ^ 2) : (2 / kappa ^ 2 < w) ↔ (2 * resid < w) := by
+  subst hres
+  have h : 2 * (1 / kappa ^ 2) = 2 / kappa ^ 2 := by ring
+  rw [h]
+
+/-- **L218 V4/V5.** Since `kappa = k/H` falls into the past at fixed comoving wavenumber,
+the floor rises the earlier the mechanism is required to have run. Demanding criticality at
+an earlier epoch is strictly harder. -/
+theorem floor_decreases_with_reach (k1 k2 : ℝ) (h1 : 0 < k1) (h : k1 < k2) :
+    2 / k2 ^ 2 < 2 / k1 ^ 2 := by
+  have h2 : (0:ℝ) < k2 := lt_trans h1 h
+  have hk1 : (0:ℝ) < k1 ^ 2 := by positivity
+  have hk2 : (0:ℝ) < k2 ^ 2 := by positivity
+  rw [div_lt_div_iff₀ hk2 hk1]
+  nlinarith
