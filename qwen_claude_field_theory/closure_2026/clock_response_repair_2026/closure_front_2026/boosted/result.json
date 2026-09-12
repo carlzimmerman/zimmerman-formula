@@ -1,0 +1,74 @@
+{
+  "scope": "Exact local frozen-jet principal coefficients, timelike aligned gradients and isotropic scalar Hessian; not an on-shell sourced solution or PPN.",
+  "conventions": {
+    "signature": "-+++",
+    "action": "P(X,tau)-V(tau)+s W(Y,tau)+gamma X Box chi",
+    "q": "proper clock-frame chi time derivative; q>0",
+    "s": "proper tau rate; s>0",
+    "H": "covariant Hessian chi=diag(H00,Hspace,Hspace,Hspace)",
+    "Einstein": "M2 G_mu_nu=T_mu_nu; minimal matter",
+    "Fourier": "exp(-i omega t+i k.x)",
+    "normalization": "L2=(K*pi_t\u00b2-G*grad(pi)\u00b2)/2 after elimination"
+  },
+  "exclusions": [
+    "W0-2q\u00b2 WY=0: clock Schur division unavailable",
+    "k_clock=0: clock principal row is zero and cannot be eliminated",
+    "Coefficient derivatives, tau mass/mixing, and other lower derivative terms are excluded",
+    "Metric sources retained at leading principal curvature order only",
+    "No finite-gradient nonlinear branch, boundary Green function or PPN coefficients computed"
+  ],
+  "quadratic": {
+    "Y2": "pi_x**2 - 2*pi_x*q*sigma_x/s + q**2*sigma_x**2/s**2",
+    "L2_frozen_metric": "-PX*pi_x**2 - W0*sigma_x**2/(2*s) + WY*s*(pi_x - q*sigma_x/s)**2 + pi_t**2*(PX + 2*PXX*q**2)",
+    "clock_spatial_block": "(-W0 + 2*WY*q**2)/s",
+    "sigma_over_pi_nonzero_k": "2*WY*q*s/(-W0 + 2*WY*q**2)",
+    "K_frozen_metric": "2*PX + 4*PXX*q**2",
+    "G_frozen_metric": "2*PX - 2*W0*WY*s/(W0 - 2*WY*q**2)",
+    "K_with_Einstein": "2*(6*Hspace*M2*gamma + M2*PX + 2*M2*PXX*q**2 + 3*gamma**2*q**4)/M2",
+    "G_with_Einstein": "-2*(-2*H00*M2*W0*gamma + 4*H00*M2*WY*gamma*q**2 + 4*Hspace*M2*W0*gamma - 8*Hspace*M2*WY*gamma*q**2 + M2*PX*W0 - 2*M2*PX*WY*q**2 - M2*W0*WY*s - W0*gamma**2*q**4 + 2*WY*gamma**2*q**6)/(M2*(-W0 + 2*WY*q**2))"
+  },
+  "moving_source": {
+    "source_forcing_S": "-gamma*q**2*rho*(w**2 + 1)/(M2*(w - 1)*(w + 1))",
+    "scalar_amplitude": "pi_hat=-S_hat/D; S from 2 gamma v^mu v^nu trace_reverse(T_m)_mu_nu/M2",
+    "clock_frame_D": "G*(kx**2 + ky**2 + kz**2) - K*kx**2*w**2",
+    "source_rest_D": "G*(ky**2 + kz**2) + kx**2*(G - K*w**2)/(1 - w**2)",
+    "source_rest_clock_k_squared": "kx**2/(1 - w**2) + ky**2 + kz**2",
+    "stationary_lapse_coupling_a": "-gamma*q**2*(w**2 + 1)/(M2*(w - 1)*(w + 1))",
+    "stationary_lapse_response": "Phi_hat=-rho_hat/(2 M2 |k_source|\u00b2)+a*pi_hat; cubic part=-a\u00b2*rho_hat/D. Principal order only; excludes homogeneous solutions.",
+    "simple_angular_residue_at_mu_cs_over_w": "-gamma*q**2*rho*(w**2 + 1)/(2*K*M2*cs*k**2*w*(w - 1)*(w + 1))",
+    "sound_speed_squared": "G/K, conditional K>0 and G>=0",
+    "positive_sound_pole": "For 0<cs<|w|<1, angular poles mu=+-cs/|w| occur in clock frame. If gamma*q\u00b2*rho_hat is nonzero there, the leading dust scalar residue is nonzero.",
+    "zero_sound": "G=0,K!=0,w!=0 gives D=-K*w\u00b2*k_parallel\u00b2 in clock frame: double angular degeneracy; simple-pole residue formula must not be used. w=0 gives identically zero stationary principal D.",
+    "tiny_sound_limit": "The cs>0 simple angular residue scales as 1/cs at fixed K,w,k,gamma,q,rho, conditional on jets realizing that limit. No finite retarded solution follows."
+  },
+  "checks": {
+    "projector_quadratic_mixing": true,
+    "raw_action_quadratic_jet": true,
+    "clock_has_no_principal_time_kinetic": true,
+    "clock_block": true,
+    "clock_schur_reduction": true,
+    "W0_zero_cancellation": true,
+    "direct_hessian_linearization": true,
+    "cubic_einstein_debraiding": true,
+    "full_kinetic": true,
+    "full_gradient": true,
+    "dust_trace": true,
+    "action_derived_dust_source": true,
+    "dust_fourier_conservation": true,
+    "cubic_principal_stress_conservation_0": true,
+    "cubic_principal_stress_conservation_1": true,
+    "cubic_principal_stress_conservation_2": true,
+    "cubic_principal_stress_conservation_3": true,
+    "lorentz_covariant_denominator": true,
+    "static_source_control": true,
+    "stationary_lapse_back_response": true,
+    "simple_pole_residue": true
+  },
+  "provenance": {
+    "python": "3.9.6",
+    "sympy": "1.14.0",
+    "source_sha256": "5e45b6f90c6e710ba7db4043770f9d1e1f26610f420dacec44a1f8e4b928727a",
+    "base_revision_reported_by_parent": "ac2052ae0",
+    "git_inspected": false
+  }
+}
