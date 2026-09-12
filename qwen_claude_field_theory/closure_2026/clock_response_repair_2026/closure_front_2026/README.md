@@ -1,5 +1,24 @@
 # Fixed-action closure checkpoint
 
+## Latest same-action response checkpoint
+
+Continue with `principal_gate/REPORT.md` and `principal_gate/VERIFICATION.md`.
+The post-`f59fad6c7` calculation independently derives both physical static
+potentials and a minimally sourced scalar through cubic metric mixing.
+It also proves that a uniformly finite isolated response cannot be the exact
+exponential MOND law. The regular linear branch therefore does not close the
+MOND gate; the nonlinear branch remains OPEN. Complete finite-mode principal
+constraint chains, a restricted radial current and eleven bounded Lean
+statements are recorded. None is a whole-theory certificate.
+
+L211/L212 (`473860435`) were reviewed: no direct scalar matter term does not
+mean no metric-mediated scalar source, and W0=0 removes a reduced WY term
+without removing the clock response or cubic mixing. The existing positive
+gamma reference patch does not establish that W0=0 branch. No new coefficient
+history was reconstructed.
+
+## Earlier clock/timing and constitutive checkpoint
+
 This checkpoint began at `ac2052ae0`, then audited L206 and time-certificate
 commit `0eee1a513`. Later L207/L208 were read for dependency impact. No original
 Claude/Hermes file or coefficient function was changed. The full theory is OPEN.

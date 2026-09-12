@@ -1,0 +1,84 @@
+{
+  "scope": "Exact frozen static scalar/clock identities and conditional local source scaling; no global solution or full health certificate",
+  "base_revision_supplied": "f59fad6c7",
+  "software": {
+    "python": "3.9.6",
+    "sympy": "1.14.0"
+  },
+  "conventions": {
+    "signature": "-+++",
+    "metric": "-N(r)^2 dt^2+A(r)^2 dr^2+r^2 dOmega^2",
+    "tau": "t for restricted current; clock varied before restriction",
+    "chi": "q t+pi(r)",
+    "source": "minimal matter; no direct chi source"
+  },
+  "cubic_reduced_density": "2*gamma*q**2*r**2*Derivative(N(r), r)*Derivative(pi(r), r)/(A(r)*N(r)**2) - 2*gamma*r**2*Derivative(N(r), r)*Derivative(pi(r), r)**3/(3*A(r)**3) - 4*gamma*r*N(r)*Derivative(pi(r), r)**3/(3*A(r)**3)",
+  "cubic_boundary": "gamma*r**2*(q**2/N(r)**2 - Derivative(pi(r), r)**2/A(r)**2)*N(r)*Derivative(pi(r), r)/A(r) + 2*gamma*r**2*N(r)*Derivative(pi(r), r)**3/(3*A(r)**3)",
+  "scalar_flux_F": "-gamma*q**2*Derivative(N(r), r)/(A(r)*N(r)**2) + gamma*Derivative(N(r), r)*Derivative(pi(r), r)**2/A(r)**3 + 2*gamma*N(r)*Derivative(pi(r), r)**2/(r*A(r)**3) + (N(r)*Subs(Derivative(P(x), x), x, q**2/N(r)**2 - Derivative(pi(r), r)**2/A(r)**2) - Subs(Derivative(W(y), y), y, Derivative(pi(r), r)**2/A(r)**2))*Derivative(pi(r), r)/A(r)",
+  "clock_density_current": "-2*p*q*r**2*Subs(Derivative(W(_xi_1), _xi_1), _xi_1, p**2/A0**2)/A0",
+  "analytic_plus_beta_scalar_flux_series": "-3*beta*p_positive**2*sign/2 - d*p_positive + d*p_positive**3/(2*ell) - 3*d*p_positive**5/(8*ell**2) + 2*gamma*p_positive**2/r + U*d*p_positive/Delta - 2*U*d**2*p_positive**3/Delta**2 + 4*U*d**3*p_positive**5/Delta**3",
+  "exponential_target_series": "-norm*p_positive**5/(24*a0**4) + norm*p_positive**4/(6*a0**3) - norm*p_positive**3/(2*a0**2) + norm*p_positive**2/a0 + O(p_positive**6)",
+  "regular_principal_metric_gain": "-G0*M2/(-G0*M2 + 2*b**2)",
+  "finite_gain_fixture": [
+    {
+      "epsilon": "1/100",
+      "g_regular_gain_2": "1/50",
+      "MOND_necessary_lower_g_at_a0_n_1": "1/10",
+      "gain2_below_necessary_g": true
+    },
+    {
+      "epsilon": "1/10000",
+      "g_regular_gain_2": "1/5000",
+      "MOND_necessary_lower_g_at_a0_n_1": "1/100",
+      "gain2_below_necessary_g": true
+    },
+    {
+      "epsilon": "1/1000000",
+      "g_regular_gain_2": "1/500000",
+      "MOND_necessary_lower_g_at_a0_n_1": "1/1000",
+      "gain2_below_necessary_g": true
+    },
+    {
+      "epsilon": "1/100000000",
+      "g_regular_gain_2": "1/50000000",
+      "MOND_necessary_lower_g_at_a0_n_1": "1/10000",
+      "gain2_below_necessary_g": true
+    }
+  ],
+  "checks": {
+    "cubic_radial_IBP_boundary": true,
+    "first_order_variation_current": true,
+    "independent_covariant_current": true,
+    "clock_current_from_projector": true,
+    "clock_projector_background": true,
+    "flat_cubic_reduction": true,
+    "flat_cubic_flux": true,
+    "weak_linear_current": true,
+    "constitutive_from_original_functions": true,
+    "scalar_flux_no_fourth_power": true,
+    "target_nonzero_fourth_power": true,
+    "q0_no_linear_flux": true,
+    "q0_analytic_cubic_coefficient": true,
+    "q0_tuned_next_coefficient": true,
+    "beta_plus_transverse_bad_near_zero": true,
+    "beta_minus_transverse_leading": true,
+    "hypothetical_cubic_sourced_flux": true,
+    "hypothetical_cubic_radius_exponent": true,
+    "principal_scalar_source": true,
+    "principal_metric_finite_gain": true,
+    "analytic_clock_schur_zero": true,
+    "regular_linear_metric_MONDratio_limit": true,
+    "target_leading_source_power": true
+  },
+  "checks_passed": 23,
+  "non_claims": [
+    "Frozen coefficients need not solve background equations",
+    "Diagonal metric plus tau=t can overrestrict a static branch",
+    "Uniform global susceptibility is not implied by nonzero local principal coefficient alone",
+    "No scalar force is identified with the physical metric",
+    "Fourth-order mismatch only concerns displayed restricted scalar constitutive flux",
+    "No direct scalar matter coupling added",
+    "No arbitrary scalar charge assigned to baryon mass",
+    "No beta coefficient is introduced into the original action"
+  ]
+}

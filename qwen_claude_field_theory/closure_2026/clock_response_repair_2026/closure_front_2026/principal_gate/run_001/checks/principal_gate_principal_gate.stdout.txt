@@ -1,0 +1,155 @@
+{
+  "scope": "Frozen fixed-metric principal Dirac chains; local regular-response obstruction, not full gravity closure",
+  "base_revision": "f59fad6c7",
+  "raw_action": "PX*pi_t**2 - PX*pi_x**2 + 2*PXX*pi_t**2*q**2 - W0*sigma_x**2/(2*s) + WY*pi_x**2*s - 2*WY*pi_x*q*sigma_x + WY*q**2*sigma_x**2/s",
+  "coefficients": {
+    "K": "2*(PX + 2*PXX*q**2)",
+    "A": "-2*(-PX + WY*s)",
+    "B": "2*WY*q",
+    "C": "-(-W0 + 2*WY*q**2)/s",
+    "G0": "2*(-PX*W0 + 2*PX*WY*q**2 + W0*WY*s)/(-W0 + 2*WY*q**2)"
+  },
+  "constraint_cases": {
+    "regular": {
+      "L": "K*pi_dot**2/2 - k**2*(A*pi**2 + 2*B*pi*sigma + C*sigma**2)/2",
+      "kinetic_hessian": "Matrix([[K, 0], [0, 0]])",
+      "kinetic_rank": 1,
+      "H": "(K*k**2*(A*pi**2 + 2*B*pi*sigma + C*sigma**2) + p_pi**2)/(2*K)",
+      "constraints": [
+        "p_sigma",
+        "-k**2*(B*pi + C*sigma)"
+      ],
+      "bracket_matrix": "Matrix([[0, C*k**2], [-C*k**2, 0]])",
+      "bracket_determinant": "C**2*k**4",
+      "bracket_rank": 2,
+      "first_class": 0,
+      "second_class": 2,
+      "scalar_canonical_pairs": "1",
+      "fixed_multiplier": "-B*p_pi/(C*K)",
+      "preservation": [
+        "0",
+        "0"
+      ]
+    },
+    "homogeneous_principal": {
+      "L": "K*pi_dot**2/2",
+      "kinetic_hessian": "Matrix([[K, 0], [0, 0]])",
+      "kinetic_rank": 1,
+      "H": "p_pi**2/(2*K)",
+      "constraints": [
+        "p_sigma"
+      ],
+      "bracket_matrix": "Matrix([[0]])",
+      "bracket_determinant": "0",
+      "bracket_rank": 0,
+      "first_class": 1,
+      "second_class": 0,
+      "scalar_canonical_pairs": "1",
+      "fixed_multiplier": null,
+      "preservation": [
+        "0"
+      ]
+    },
+    "singular_clock_with_mixing": {
+      "L": "K*pi_dot**2/2 - k**2*(A*pi**2 + 2*B*pi*sigma)/2",
+      "kinetic_hessian": "Matrix([[K, 0], [0, 0]])",
+      "kinetic_rank": 1,
+      "H": "(K*k**2*pi*(A*pi + 2*B*sigma) + p_pi**2)/(2*K)",
+      "constraints": [
+        "p_sigma",
+        "-B*k**2*pi",
+        "-B*k**2*p_pi/K",
+        "B**2*k**4*sigma/K"
+      ],
+      "bracket_matrix": "Matrix([[0, 0, 0, -B**2*k**4/K], [0, 0, B**2*k**4/K, 0], [0, -B**2*k**4/K, 0, 0], [B**2*k**4/K, 0, 0, 0]])",
+      "bracket_determinant": "B**8*k**16/K**4",
+      "bracket_rank": 4,
+      "first_class": 0,
+      "second_class": 4,
+      "scalar_canonical_pairs": "0",
+      "fixed_multiplier": "0",
+      "preservation": [
+        "0",
+        "0",
+        "0",
+        "0"
+      ]
+    },
+    "clock_absent": {
+      "L": "-A*k**2*pi**2/2 + K*pi_dot**2/2",
+      "kinetic_hessian": "Matrix([[K, 0], [0, 0]])",
+      "kinetic_rank": 1,
+      "H": "(A*K*k**2*pi**2 + p_pi**2)/(2*K)",
+      "constraints": [
+        "p_sigma"
+      ],
+      "bracket_matrix": "Matrix([[0]])",
+      "bracket_determinant": "0",
+      "bracket_rank": 0,
+      "first_class": 1,
+      "second_class": 0,
+      "scalar_canonical_pairs": "1",
+      "fixed_multiplier": null,
+      "preservation": [
+        "0"
+      ]
+    }
+  },
+  "braiding": {
+    "Bgrav": "2*gamma**2*q**4/M2",
+    "G": "2*(-PX*W0 + 2*PX*WY*q**2 + W0*WY*s)/(-W0 + 2*WY*q**2) - 2*gamma**2*q**4/M2",
+    "K": "2*(PX + 2*PXX*q**2) + 6*gamma**2*q**4/M2",
+    "enhancement": "1 + 2*gamma**2*q**4/(M2*(2*(-PX*W0 + 2*PX*WY*q**2 + W0*WY*s)/(-W0 + 2*WY*q**2) - 2*gamma**2*q**4/M2))",
+    "identity": "enhancement * sound_speed_squared = G0/Keff"
+  },
+  "mond": {
+    "exact": "g*(1-exp(-g/a0))=gN",
+    "lower_bound": "g\u00b2 >= a0*gN",
+    "finite_response_obstruction": "0<gN<a0/C\u00b2 and 0<=g<=C*gN contradict exact MOND; C>0",
+    "non_claim": "Nonanalytic/degenerate/external-field/boundary-dependent branches not excluded",
+    "numerical_controls": [
+      {
+        "response": 1.0,
+        "a0": 1.0,
+        "gn": 0.25,
+        "g": 0.25,
+        "residual": -0.19470019576785122,
+        "forbidden_if_g_le_response_gn": true
+      },
+      {
+        "response": 10.0,
+        "a0": 1.0,
+        "gn": 0.0025,
+        "g": 0.025,
+        "residual": -0.0018827478007083166,
+        "forbidden_if_g_le_response_gn": true
+      },
+      {
+        "response": 100.0,
+        "a0": 1.0,
+        "gn": 2.5e-05,
+        "g": 0.0025,
+        "residual": -1.875780599365031e-05,
+        "forbidden_if_g_le_response_gn": true
+      }
+    ]
+  },
+  "checks": {
+    "raw_clock_velocity_is_absent": true,
+    "raw_action_coefficients_rebuild": true,
+    "exact_schur_reduction": true,
+    "zero_W0_is_not_zero_clock_block": true,
+    "zero_W0_leaves_P_gradient": true,
+    "enhancement_sound_speed_tradeoff": true,
+    "decoupled_gamma_control": true,
+    "zero_W0_still_has_braided_response": true,
+    "deep_mond_coefficient_limit": true,
+    "newtonian_mu_limit": true,
+    "exponential_primitive": true
+  },
+  "provenance": {
+    "python": "3.9.6",
+    "sympy": "1.14.0",
+    "sha256": "5ed784a8aad280d73f5f87feb54f5db057fd054bda79cbbb783dbd1559bea988"
+  }
+}
