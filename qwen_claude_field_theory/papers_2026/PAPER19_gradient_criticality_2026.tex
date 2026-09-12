@@ -1,0 +1,95 @@
+\documentclass[11pt,letterpaper]{article}
+\usepackage[margin=1in]{geometry}\usepackage{amsmath,amssymb,booktabs,array,microtype}\usepackage[T1]{fontenc}\usepackage{lmodern}
+\usepackage[colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue]{hyperref}
+\setlength{\parindent}{0pt}\setlength{\parskip}{5pt}\sloppy
+\title{Gradient-Driven Criticality:\\ a MOND Sector That Cures Its Own Gradient Instability,\\ and a Marginal State That Is Exactly Cold}
+\author{Carl P.\ Zimmerman\\ \small Briar Creek Tech\\ \small AI-assisted research programme; not peer reviewed}
+\date{12 September 2026}
+\begin{document}\maketitle
+\begin{abstract}
+A relativistic MOND candidate built from a cuscuton clock $\tau$, a dynamical scalar $\chi$ with a projected-gradient sector $sW(Y,\tau)$ and a cubic coupling has a sub-horizon sound speed $c_s^2=(1-s_0)\,m_{\rm rel}/(2-m_{\rm rel})$, negative whenever the clock rate $s_0=\dot\tau$ exceeds unity \cite{paper17}. That result was obtained on a background with \emph{no} field gradient. Since the sector's entire content is its dependence on the projected gradient invariant $Y=|\nabla_\perp\chi|^2$ --- the function $W(Y)$ \emph{is} the interpolating function --- we recompute the sound speed with a background gradient carried through. Three consequences follow from the candidate's own closure with nothing added: the destabilising stiffness falls, $W_Y=d(1+Y/\ell)^{-1/2}\to0$; the logarithm margin \emph{grows}, $m(Y)=m_0+2dY$, carrying the background away from its singularity; and $c_s^2$ rises monotonically and crosses zero at a unique gradient $Y_*$. Below $Y_*$ the sector is unstable so gradients grow and $Y$ rises; above it the sector is stable so expansion dilutes $Y$ and it falls. $Y_*$ is a two-sided attractor, and the state it selects has $c_s^2=0$ exactly. Evaluated on the candidate's own frozen coefficient history, $Y_*$ lies at $0.2$--$2\%$ of the transition scale, so an infinitesimal gradient suffices, and at $Y=\ell$ the sound speed stays positive even with the clock rate tripled. We then show that this surface is not merely dynamical: varying the action with respect to the inverse metric gives $\det(T^{\rm mixed}_{tx}-L\,\mathbb{I})=-s_0b^2W\mathcal{N}$, where $\mathcal{N}$ is exactly the numerator whose vanishing defines $Y_*$, so on the critical surface a third eigenvalue of the mixed stress joins the transverse pair and the sector's stress takes perfect-fluid form. Isotropic stress together with non-propagating perturbations is precisely a clustering cold component --- the ingredient a Lean-certified necessity result requires of any completion --- and both properties arrive together on one surface fixed by the action rather than by tuning. Seven statements are machine-checked in Lean 4. What is not established is the tracking dynamics: the Lyman-$\alpha$ bound $c_s^2\le10^{-9}$ requires the gradient to follow $Y_*$ to a fractional precision of $3\times10^{-7}$ to $2\times10^{-6}$, and whether the back-reaction achieves that is the next calculation.
+\end{abstract}
+
+\section{The instability, and why its derivation was incomplete}
+The repository \cite{repo} studies a MOND kernel on the de Sitter-locked acceleration scale $a_0=\kappa c\sqrt{G\rho_\Lambda}$, and its Lean-certified necessity result states that any completion passing galaxies, clusters, the CMB and the Lyman-$\alpha$ forest together must contain a real, clustering cold component. The programme's lead candidate \cite{paper13} is, in signature $(-{+}{+}{+})$ with $c=1$,
+\begin{equation}
+S=\int d^4x\sqrt{-g}\Big[\tfrac{M^2}{2}(R-2\Lambda)+P(X,\tau)-V(\tau)+sW(Y,\tau)+\gamma X\Box\chi\Big]+S_r+S_b,
+\label{action}
+\end{equation}
+with $s=\sqrt{-\nabla_\mu\tau\nabla^\mu\tau}$, $n_\mu=-\partial_\mu\tau/s$, $Q=n^\mu\partial_\mu\chi$, $Y=(g^{\mu\nu}+n^\mu n^\nu)\partial_\mu\chi\partial_\nu\chi$ and $X=Q^2-Y$. The clock is linear in $s$, hence a cuscuton \cite{cuscuton}, and its field equation is a constraint. Its coefficient closure, on the branch studied there, reads $W=U$, $W_Y=d$, $P_X=Ud/m$, $P_{XX}=2Ud^2/m^2$ with $m=U-2dq^2$ the logarithm margin and $m_{\rm rel}=m/U$.
+
+The clock stability theorem \cite{paper17} eliminates the constraint and the lapse in the sub-horizon limit and obtains
+\begin{equation}
+c_s^2=\frac{2P_X(1-D)-2s_0W_Y}{B(1-D)},\qquad B=2P_X+4XP_{XX},\qquad D=\frac{2Q^2W_Y}{W},
+\label{general}
+\end{equation}
+which under the closure collapses to $c_s^2=(1-s_0)m_{\rm rel}/(2-m_{\rm rel})$: the sector is gradient-stable if and only if the clock does not run faster than proper time. On the candidate's own history $s_0$ crosses unity and the late branch is unstable, which was recorded as a cost of the candidate.
+
+Equation~(\ref{general}), however, was evaluated with $W_Y$ and $W$ taken at $Y=0$. That is a background with no field gradient anywhere --- and the entire MOND content of (\ref{action}) sits in the $Y$-dependence of $W$. The question this note answers is what the same reduction gives when the background has a gradient.
+
+\section{The sound speed at finite gradient}
+Work in the WKB limit with a locally uniform background gradient. The constraint structure of \cite{paper17} carries over unchanged; only the coefficients are now evaluated at the background $Y$, and the stiffness that appears depends on the polarisation,
+\begin{equation}
+\mathcal{W}=\begin{cases} W_Y(Y) & k\perp\nabla\chi,\\ W_Y(Y)+2YW_{YY}(Y) & k\parallel\nabla\chi,\end{cases}
+\qquad
+c_s^2(Y)=\frac{2P_X(1-D)-2s_0\mathcal{W}}{B(1-D)},\quad D=\frac{2Q^2\mathcal{W}}{W(Y)} .
+\label{csY}
+\end{equation}
+Three things now follow from the closure, none of them put in by hand. With $W(Y)=U+2d\ell(\sqrt{1+Y/\ell}-1)$:
+\begin{equation}
+W_Y=\frac{d}{\sqrt{1+Y/\ell}},\qquad W_Y+2YW_{YY}=\frac{d}{(1+Y/\ell)^{3/2}},\qquad m(Y)=U-2dX=m_0+2dY .
+\end{equation}
+The destabilising term $-2s_0\mathcal{W}$ therefore \emph{shrinks} with the gradient in either polarisation; $D$ shrinks with it; and the logarithm margin \emph{grows}, carrying $P_X=Ud/m(Y)$ away from the singularity that the closure's logarithm sits against. Hence $c_s^2(Y)$ increases monotonically from $(1-s_0)m_{\rm rel}/(2-m_{\rm rel})$ and, whenever that starting value is negative, crosses zero at a unique $Y_*$.
+
+\section{The attractor}
+Below $Y_*$ the sector is gradient-unstable, so perturbations grow, so the field gradient grows, so $Y$ rises. Above $Y_*$ the sector is stable, nothing pumps the gradient, and expansion dilutes it, so $Y$ falls. $Y_*$ is approached from both sides. The state it selects has $c_s^2=0$: the sector's perturbations do not propagate at all.
+
+Table~\ref{tab} evaluates (\ref{csY}) on the candidate's own frozen coefficient functions and its archived backward branch, imported read-only.
+\begin{table}[h]\centering\caption{The critical gradient on the candidate's own history (transverse polarisation).}\label{tab}
+\begin{tabular}{cccccc}\toprule
+$a$ & $s_0$ & $c_s^2(Y=0)$ & $Y_*/\ell$ & $c_s^2(Y_*/2)$ & $c_s^2(2Y_*)$\\\midrule
+1.00 & 1.032 & $-1.51\times10^{-3}$ & 0.0061 & $-7.4\times10^{-4}$ & $+1.4\times10^{-3}$\\
+0.75 & 1.072 & $-2.57\times10^{-3}$ & 0.0104 & $-1.2\times10^{-3}$ & $+2.2\times10^{-3}$\\
+0.56 & 1.173 & $-4.29\times10^{-3}$ & 0.0174 & $-2.0\times10^{-3}$ & $+3.2\times10^{-3}$\\
+0.42 & 1.413 & $-5.24\times10^{-3}$ & 0.0213 & &\\
+0.32 & 1.118 & $-4.86\times10^{-4}$ & 0.0019 & &\\\bottomrule
+\end{tabular}\end{table}
+The critical gradient lies far \emph{below} the transition scale, at $0.2$--$2\%$ of $\ell$ and $4$--$15\%$ in gradient units, so only an infinitesimal field gradient is needed: the marginal state is easy to reach, in voids as much as in halos. The healthy-kinetic domain extends to $42$--$484\,\ell$, so $Y_*$ sits well inside it. And at $Y=\ell$ the sound speed remains positive on every unstable epoch even when $s_0$ is tripled, whereas the same tripling at $Y=0$ makes it negative: above $Y_*$ the gradient decides the sign and the clock only rescales the magnitude.
+
+\section{What the critical surface is}
+The surface has an algebraic meaning that owes nothing to the WKB argument. Write $\mathcal{N}=2P_X(1-2Q^2W_Y/W)-2s_0W_Y$, the numerator of (\ref{csY}), and $L=P-V+s_0W$. Varying the density of (\ref{action}) with respect to the inverse metric in all ten components gives, on a background carrying gradient $b=\sqrt{Y}$ in one direction,
+\begin{equation}
+T_{00}=2P_XQ^2-P+V,\quad T_{11}=L+2(P_X-s_0W_Y)b^2,\quad T_{22}=T_{33}=L,\quad T_{01}=2P_XQb,
+\end{equation}
+so two eigenvalues of the mixed tensor $T^\mu{}_\nu$ equal $L$ for any background. The remaining block satisfies the exact identity
+\begin{equation}
+\boxed{\ \det\big(T^{\rm mixed}_{tx}-L\,\mathbb{I}\big)=-s_0\,b^2\,W\,\mathcal{N}\ }
+\label{degen}
+\end{equation}
+This identity was recorded in a concurrent independent audit of the same action and is verified here with an independent implementation. Its consequence is that $\mathcal{N}=0$ --- the same condition that defines $Y_*$ --- is precisely the condition for a \emph{third} eigenvalue to join the transverse pair. On the critical surface the mixed stress takes perfect-fluid form and the sector's anisotropic stress vanishes. The degeneracy is non-trivial: the shifted determinant carries an overall $b^2$, so a gradient-free background is degenerate for an unrelated reason, and it is finite gradient that makes $\mathcal{N}=0$ meaningful.
+
+So the marginal state has isotropic stress and perturbations that do not propagate. Those two properties together are what a clustering cold component is, and here they arrive on one surface fixed by the action rather than being imposed as separate conditions on a fluid.
+
+\section{Machine-checked statements}
+The following are theorems of the repository's Lean 4 file (\texttt{Mondlean.lean}, 111 theorems, no \texttt{sorry}; each depends only on \texttt{propext}, \texttt{Classical.choice}, \texttt{Quot.sound}).
+\texttt{mond\_stiffness\_strict\_anti}: for $d,\ell>0$ the destabilising stiffness $d/\sqrt{1+Y/\ell}$ is strictly decreasing in $Y$.
+\texttt{mond\_margin\_strict\_mono}: the margin $m_0+2dY$ is strictly increasing.
+\texttt{critical\_gradient\_unique}: a continuous strictly monotone quantity negative at one gradient and positive at another has exactly one marginal point between them.
+\texttt{stress\_degeneracy\_identity}: identity (\ref{degen}), written out in the block entries.
+\texttt{critical\_stiffness\_kills\_N}: the critical stiffness, stated as $W_Y(2P_XQ^2+s_0W)=P_XW$, makes $\mathcal{N}$ vanish.
+Two further theorems from \cite{paper17} supply the $Y=0$ closure and the stability equivalence. What Lean certifies here is algebra and logic; the evaluations in Table~\ref{tab} are numerical and are labelled as such.
+
+\section{What is not established}
+The sign structure is established; the dynamics are not. The sound speed rises steeply out of the marginal point, so the Lyman-$\alpha$ requirement $c_s^2\le10^{-9}$ demands that the gradient track $Y_*$ to a fractional precision of $3\times10^{-7}$ to $2\times10^{-6}$. Criticality therefore replaces a tuning of the logarithm margin to $10^{-8}$ with a dynamical tracking requirement of comparable sharpness, and whether the back-reaction achieves it is an integration that has not been done. Nor does the candidate's particular coefficient history pass the forest: its early, stable branch sits at $c_s^2\approx10^{-4}$, because criticality operates only where the clock runs fast. The honest form of the new requirement is that a history whose clock runs faster than proper time at all epochs of interest is driven to exact isotropy and zero sound speed by its own MOND sector --- a condition on the coefficient functions that can be imposed a priori rather than fitted. No claim is made here about the amount of the sector, the acoustic peaks, lensing, or the post-Newtonian limit.
+
+\section{Reproducibility}
+\texttt{fable\_independent\_2026/L192\_gradient\_criticality.py} and \texttt{L193\_stress\_degeneracy.py} with their committed outputs (commits \texttt{5fdec3d9a}, \texttt{bc71158f0}); the Lean file \texttt{fable\_independent\_2026/lean\_2026/Mondlean.lean}. The candidate's coefficient functions and archived branch are imported read-only from the collaborating programme's directory named in \cite{paper13}.
+
+\begin{thebibliography}{9}
+\bibitem{repo} The research repository, \url{https://github.com/carlzimmerman/zimmerman-formula} (2026).
+\bibitem{paper13} C.~P.~Zimmerman, \emph{A Primordial-Clock Relativistic MOND Candidate: Status Report}, doi:10.5281/zenodo.22699828 (2026).
+\bibitem{paper17} C.~P.~Zimmerman, \emph{The Clock Stability Theorem}, doi:10.5281/zenodo.22717950 (2026).
+\bibitem{cuscuton} N.~Afshordi, D.~J.~H.~Chung, G.~Geshnizjani, Phys.\ Rev.\ D \textbf{75}, 083513 (2007).
+\bibitem{milgrom} M.~Milgrom, Astrophys.\ J.\ \textbf{270}, 365 (1983).
+\end{thebibliography}
+\end{document}

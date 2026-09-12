@@ -1,0 +1,79 @@
+# Exact files in the L191/L192 continuation
+
+All paths below are relative to repository root. README.md is modified; all
+other listed paths are new. Earlier committed checkpoint files and unrelated
+concurrent work are excluded. Historical failed/stale-source evidence is
+explicitly distinguished in the command index and per-run reports.
+
+- `qwen_claude_field_theory/closure_2026/clock_response_repair_2026/c003_action_audit_2026/CLAUDE_L191_L192_REVIEW.md`
+- `qwen_claude_field_theory/closure_2026/clock_response_repair_2026/c003_action_audit_2026/CONTINUATION_COMMANDS.md`
+- `qwen_claude_field_theory/closure_2026/clock_response_repair_2026/c003_action_audit_2026/CONTINUATION_FILES.md`
+- `qwen_claude_field_theory/closure_2026/clock_response_repair_2026/c003_action_audit_2026/GRADIENT_TRACKING.md`
+- `qwen_claude_field_theory/closure_2026/clock_response_repair_2026/c003_action_audit_2026/L192Discriminant.lean`
+- `qwen_claude_field_theory/closure_2026/clock_response_repair_2026/c003_action_audit_2026/POISSON_FLOOR.md`
+- `qwen_claude_field_theory/closure_2026/clock_response_repair_2026/c003_action_audit_2026/POISSON_RUNS.md`
+- `qwen_claude_field_theory/closure_2026/clock_response_repair_2026/c003_action_audit_2026/PoissonFloor.lean`
+- `qwen_claude_field_theory/closure_2026/clock_response_repair_2026/c003_action_audit_2026/README.md`
+- `qwen_claude_field_theory/closure_2026/clock_response_repair_2026/c003_action_audit_2026/gradient_transport.py`
+- `qwen_claude_field_theory/closure_2026/clock_response_repair_2026/c003_action_audit_2026/gradient_transport_001/manifest.json`
+- `qwen_claude_field_theory/closure_2026/clock_response_repair_2026/c003_action_audit_2026/gradient_transport_001/result.json`
+- `qwen_claude_field_theory/closure_2026/clock_response_repair_2026/c003_action_audit_2026/gradient_transport_001/stderr.txt`
+- `qwen_claude_field_theory/closure_2026/clock_response_repair_2026/c003_action_audit_2026/gradient_transport_001/stdout.txt`
+- `qwen_claude_field_theory/closure_2026/clock_response_repair_2026/c003_action_audit_2026/gradient_transport_contract.json`
+- `qwen_claude_field_theory/closure_2026/clock_response_repair_2026/c003_action_audit_2026/l191_reconciliation/REPORT.md`
+- `qwen_claude_field_theory/closure_2026/clock_response_repair_2026/c003_action_audit_2026/l191_reconciliation/audit.py`
+- `qwen_claude_field_theory/closure_2026/clock_response_repair_2026/c003_action_audit_2026/l191_reconciliation/contract.json`
+- `qwen_claude_field_theory/closure_2026/clock_response_repair_2026/c003_action_audit_2026/l191_reconciliation/run_001/manifest.json`
+- `qwen_claude_field_theory/closure_2026/clock_response_repair_2026/c003_action_audit_2026/l191_reconciliation/run_001/stderr.txt`
+- `qwen_claude_field_theory/closure_2026/clock_response_repair_2026/c003_action_audit_2026/l191_reconciliation/run_001/stdout.txt`
+- `qwen_claude_field_theory/closure_2026/clock_response_repair_2026/c003_action_audit_2026/l191_reconciliation/run_002/manifest.json`
+- `qwen_claude_field_theory/closure_2026/clock_response_repair_2026/c003_action_audit_2026/l191_reconciliation/run_002/results.json`
+- `qwen_claude_field_theory/closure_2026/clock_response_repair_2026/c003_action_audit_2026/l191_reconciliation/run_002/stderr.txt`
+- `qwen_claude_field_theory/closure_2026/clock_response_repair_2026/c003_action_audit_2026/l191_reconciliation/run_002/stdout.txt`
+- `qwen_claude_field_theory/closure_2026/clock_response_repair_2026/c003_action_audit_2026/l191_reconciliation/run_audit.py`
+- `qwen_claude_field_theory/closure_2026/clock_response_repair_2026/c003_action_audit_2026/l192_lean_001/manifest.json`
+- `qwen_claude_field_theory/closure_2026/clock_response_repair_2026/c003_action_audit_2026/l192_lean_001/stderr.txt`
+- `qwen_claude_field_theory/closure_2026/clock_response_repair_2026/c003_action_audit_2026/l192_lean_001/stdout.txt`
+- `qwen_claude_field_theory/closure_2026/clock_response_repair_2026/c003_action_audit_2026/l192_lean_contract.json`
+- `qwen_claude_field_theory/closure_2026/clock_response_repair_2026/c003_action_audit_2026/poisson_001/manifest.json`
+- `qwen_claude_field_theory/closure_2026/clock_response_repair_2026/c003_action_audit_2026/poisson_001/stderr.txt`
+- `qwen_claude_field_theory/closure_2026/clock_response_repair_2026/c003_action_audit_2026/poisson_001/stdout.txt`
+- `qwen_claude_field_theory/closure_2026/clock_response_repair_2026/c003_action_audit_2026/poisson_contract.json`
+- `qwen_claude_field_theory/closure_2026/clock_response_repair_2026/c003_action_audit_2026/test_gradient_transport.py`
+- `qwen_claude_field_theory/closure_2026/clock_response_repair_2026/fixed_action_initial_data_2026/hermes_objective_audit_2026/REPORT.md`
+- `qwen_claude_field_theory/closure_2026/clock_response_repair_2026/fixed_action_initial_data_2026/hermes_objective_audit_2026/audit.py`
+- `qwen_claude_field_theory/closure_2026/clock_response_repair_2026/fixed_action_initial_data_2026/hermes_objective_audit_2026/contract.json`
+- `qwen_claude_field_theory/closure_2026/clock_response_repair_2026/fixed_action_initial_data_2026/hermes_objective_audit_2026/run_001/manifest.json`
+- `qwen_claude_field_theory/closure_2026/clock_response_repair_2026/fixed_action_initial_data_2026/hermes_objective_audit_2026/run_001/result.json`
+- `qwen_claude_field_theory/closure_2026/clock_response_repair_2026/fixed_action_initial_data_2026/hermes_objective_audit_2026/run_001/stderr.txt`
+- `qwen_claude_field_theory/closure_2026/clock_response_repair_2026/fixed_action_initial_data_2026/hermes_objective_audit_2026/run_001/stdout.txt`
+- `qwen_claude_field_theory/closure_2026/clock_response_repair_2026/l192_principal_audit_2026/COMMANDS.md`
+- `qwen_claude_field_theory/closure_2026/clock_response_repair_2026/l192_principal_audit_2026/REPORT.md`
+- `qwen_claude_field_theory/closure_2026/clock_response_repair_2026/l192_principal_audit_2026/contract.json`
+- `qwen_claude_field_theory/closure_2026/clock_response_repair_2026/l192_principal_audit_2026/principal_audit.py`
+- `qwen_claude_field_theory/closure_2026/clock_response_repair_2026/l192_principal_audit_2026/run_001/manifest.json`
+- `qwen_claude_field_theory/closure_2026/clock_response_repair_2026/l192_principal_audit_2026/run_001/result.json`
+- `qwen_claude_field_theory/closure_2026/clock_response_repair_2026/l192_principal_audit_2026/run_001/stderr.txt`
+- `qwen_claude_field_theory/closure_2026/clock_response_repair_2026/l192_principal_audit_2026/run_001/stdout.txt`
+- `qwen_claude_field_theory/closure_2026/clock_response_repair_2026/l192_principal_audit_2026/run_audit.py`
+- `qwen_claude_field_theory/closure_2026/clock_response_repair_2026/l192_principal_audit_2026/test_principal_audit.py`
+- `qwen_claude_field_theory/closure_2026/clock_response_repair_2026/l192_stress_audit_2026/COMMANDS.md`
+- `qwen_claude_field_theory/closure_2026/clock_response_repair_2026/l192_stress_audit_2026/REPORT.md`
+- `qwen_claude_field_theory/closure_2026/clock_response_repair_2026/l192_stress_audit_2026/contract.json`
+- `qwen_claude_field_theory/closure_2026/clock_response_repair_2026/l192_stress_audit_2026/run_001/manifest.json`
+- `qwen_claude_field_theory/closure_2026/clock_response_repair_2026/l192_stress_audit_2026/run_001/result.json`
+- `qwen_claude_field_theory/closure_2026/clock_response_repair_2026/l192_stress_audit_2026/run_001/source_at_run.py`
+- `qwen_claude_field_theory/closure_2026/clock_response_repair_2026/l192_stress_audit_2026/run_001/stderr.txt`
+- `qwen_claude_field_theory/closure_2026/clock_response_repair_2026/l192_stress_audit_2026/run_001/stdout.txt`
+- `qwen_claude_field_theory/closure_2026/clock_response_repair_2026/l192_stress_audit_2026/run_002/manifest.json`
+- `qwen_claude_field_theory/closure_2026/clock_response_repair_2026/l192_stress_audit_2026/run_002/result.json`
+- `qwen_claude_field_theory/closure_2026/clock_response_repair_2026/l192_stress_audit_2026/run_002/stderr.txt`
+- `qwen_claude_field_theory/closure_2026/clock_response_repair_2026/l192_stress_audit_2026/run_002/stdout.txt`
+- `qwen_claude_field_theory/closure_2026/clock_response_repair_2026/l192_stress_audit_2026/stress_audit.py`
+- `qwen_claude_field_theory/closure_2026/clock_response_repair_2026/l192_stress_audit_2026/test_stress_audit.py`
+
+- `qwen_claude_field_theory/closure_2026/clock_response_repair_2026/l192_stress_audit_2026/COMMANDS.md`
+
+Total: 67 files. Exact mathematical results and limitations:
+[review](CLAUDE_L191_L192_REVIEW.md). Exact commands and important exits:
+[command index](CONTINUATION_COMMANDS.md).

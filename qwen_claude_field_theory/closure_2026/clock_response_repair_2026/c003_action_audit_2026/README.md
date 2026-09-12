@@ -1,5 +1,10 @@
 # Closure checkpoint: action, recoil, orbits, and unchanged initial data
 
+Latest continuation: [Claude L191/L192 action audit](CLAUDE_L191_L192_REVIEW.md)
+adds an anisotropic principal-symbol obstruction, metric-stress tests,
+gradient-tracking identity and nine scoped Lean lemmas. The checkpoint below
+records the earlier L189/C003 work, not certification of those later claims.
+
 **Full theory: OPEN. No complete relativistic MOND theory or law-of-nature
 certificate is claimed.** The literal recoil bookkeeping and several tested
 realizations fail; this is not a no-go for every clock-based theory.
