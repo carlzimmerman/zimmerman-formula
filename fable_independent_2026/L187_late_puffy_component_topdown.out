@@ -1,0 +1,33 @@
+======================================================================================================================
+L187 THE DEPLETION SWING: late-and-puffy component -- ledger from a universal low concentration; top-down forest regeneration
+======================================================================================================================
+    host                                                 R200    c_LCDM  r/r_s   target   f(c*=1)  f(1.5)  f(2)   f(3)   f(4)
+    SPARC 1.2e10 Mb (M200 3e11), r = 3R_d = 7.5 kpc       0.142    9.4   0.50   0.105   0.135  0.180  0.227  0.325  0.428
+    Milky Way (M200 1e12), r = 30 kpc                     0.212    8.4   1.19   0.140   0.244  0.310  0.373  0.494  0.606
+    X-COP cluster (M200 1e15), r = R500 = 1.38 Mpc        2.116    4.2   2.71   0.576   0.798  0.852  0.894  0.953  0.994
+    best universal concentration c* = 0.40: f = 0.086, 0.165, 0.704  vs targets 0.105, 0.14, 0.576
+  [PASS] V1 [the ledger is geometry] a single universal concentration reproduces all three ledger values within a factor 1.6 (f rises with host mass because the measurement radius in units of r_s does)
+           (c* = 0.40, ratios f/target = 0.81 1.18 1.22)
+  [PASS] V2 [what it costs] the required c* lies below c = 3, the concentration of a halo that has only just collapsed (Bullock/Wechsler c ~ 4(1+z_c)): the component's galaxy-scale structure must be unrelaxed / still forming, i.e. its small-scale power must be suppressed
+           (c* = 0.40)
+    PM: box 25.0 Mpc/h, mesh 192^3, particles 128^3, z_i = 49.0, Gaussian cut exp(-(k/k_cut)^2) on P_lin; bands k = [0.5, 1.0, 2.0, 3.0, 5.0, 8.0] h/Mpc (+/-15%)
+    runs done in 4.2 min
+    z = 3.0: LCDM PM / halofit at k = [0.5, 1.0, 2.0, 3.0, 5.0, 8.0]: 0.59 0.84 0.68 0.61 0.56 0.50
+    z = 2.2: LCDM PM / halofit at k = [0.5, 1.0, 2.0, 3.0, 5.0, 8.0]: 0.53 0.69 0.56 0.54 0.54 0.50
+  [PASS] V3 [computed limitation] the absolute LCDM PM power is 0.5-0.85 of CLASS halofit for 1 <= k <= 5 h/Mpc at z = 3 and 2.2 (25 Mpc/h box lacks k < 0.25 modes; mesh force resolution): a 50% absolute floor, so only RATIOS between runs sharing phases, box and mesh are read below
+           (max dev 0.46)
+    REGENERATION: P(k, z; k_cut)/P(k, z; LCDM), same phases
+      k_cut = 1 h/Mpc, z = 3.0: 0.774 0.440 0.118 0.043 0.012 0.004   (linear input at these k: 0.779 0.368 0.018 0.000 0.000 0.000)
+      k_cut = 1 h/Mpc, z = 2.2: 0.790 0.479 0.178 0.091 0.043 0.025   (linear input at these k: 0.779 0.368 0.018 0.000 0.000 0.000)
+      k_cut = 2 h/Mpc, z = 3.0: 0.943 0.829 0.587 0.436 0.297 0.226   (linear input at these k: 0.939 0.779 0.368 0.105 0.002 0.000)
+      k_cut = 2 h/Mpc, z = 2.2: 0.950 0.852 0.665 0.556 0.454 0.405   (linear input at these k: 0.939 0.779 0.368 0.105 0.002 0.000)
+      k_cut = 4 h/Mpc, z = 3.0: 0.987 0.959 0.884 0.817 0.726 0.672   (linear input at these k: 0.984 0.939 0.779 0.570 0.210 0.018)
+      k_cut = 4 h/Mpc, z = 2.2: 0.989 0.966 0.912 0.869 0.812 0.766   (linear input at these k: 0.984 0.939 0.779 0.570 0.210 0.018)
+  [PASS] V4 [DEFICIT verified, the door] a Milky-Way-scale late-forming component (k_cut <= 2 h/Mpc) does NOT regenerate the forest power by nonlinear top-down fragmentation: P(k = 5 h/Mpc) at z = 3 stays below 0.5 of LCDM (forest tolerance 0.9)
+           (k_cut = 1: 0.012, k_cut = 2: 0.297 at z = 3; at z = 2.2: 0.043, 0.454)
+  [PASS] V5 [computed] regeneration is real but partial: at z = 2.2 the k = 5 h/Mpc power reaches 0.04 / 0.45 / 0.81 of LCDM for k_cut = 1 / 2 / 4 h/Mpc, so the forest tolerance (0.9) needs k_cut > 4 h/Mpc, i.e. the component's structure intact down to halo masses ~ 2e11 Msun -- incompatible with the c* ~ 0.4 (no structure below ~ Mpc, k_cut <~ 1) the ledger-as-geometry reading requires: the late-and-puffy door is CLOSED by the forest
+           (k = 5, z = 2.2: 0.043 0.454 0.812; M(pi/k_cut) at k_cut = 1, 2, 4: 1.7e+13 2.1e+12 2.6e+11 Msun)
+    LIMITS: PM resolution (cell 0.13 Mpc/h, k up to 8 h/Mpc), fundamental mode 0.25 h/Mpc (ratios share phases), no hydro (forest = dark-matter power proxy
+    at the 10% level, L168 convention); Gaussian cut on P; ledger radii and halo masses as stated (Dutton-Maccio concentrations); c_min ~ 3 for collapsed halos.
+
+L187 COMPLETE: 5/5 checks PASS.  (4.2 min)
