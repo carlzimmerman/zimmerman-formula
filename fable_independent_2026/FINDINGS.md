@@ -5874,3 +5874,35 @@ in which **β cancels entirely.** It depends only on 4dℓ/U, the same combinati
 **What would close it.** Compute the value of 4dℓ/U implied by the observed acceleration scale and see whether it lands inside the window. That requires the matter coupling, which this action does not yet specify, and is now the single remaining calculation between a dark sector and a theory.
 
 **Limits.** The handover gradient and the turning point are read off leading behaviours rather than solved exactly; Y*/ℓ is taken from the derived family; identifying the cosmological state's position relative to the MOND transition with cH₀/a₀ uses the Hubble-kernel prescription; no matter coupling is specified, so β is not yet tied to a₀ and the window is not yet tested against it.
+
+## L208 — THE MATTER COUPLING: the loop closes, and it closes against this coefficient history (2026-09-12)
+
+**The coupling, and what it fixes.** Let matter feel Φ = Φ_N + cχ, this programme's own double-filter structure. The scalar's equation is ∇·(2F′(Y)∇χ) = −c·4πGρ, and in the deep regime F′ = (3β/2)√Y, so the first integral gives |χ′| = √(cGM/(3β))/r and the force matter feels is √(c³GM/(3β))/r. Matching the deep-MOND law fixes
+
+  **β = c³/(3a₀)**
+
+and matching the transition, where the two terms in F′ balance, to the acceleration a₀ fixes
+
+  **4d²/U − d/ℓ = c⁴/(2a₀²), i.e. h = 4dℓ/U − 1 = ℓc⁴/(2da₀²)**
+
+**V5 — the coupling is not an extra dial.** Two matchings, two parameters, nothing left over. A coefficient history either lands in L207's window or it does not, and the window is a genuine test rather than something that can be fitted around.
+
+**V1 — the test, and it is negative.** Evaluated on the candidate's own coefficient functions, 4dℓ/U lands **outside the window at every epoch of its branch**:
+
+| a | 1.00 | 0.75 | 0.56 | 0.42 | 0.32 | 0.10 |
+|---|---|---|---|---|---|---|
+| 4dℓ/U | 0.091 | 0.069 | 0.048 | 0.025 | 0.008 | 0.0001 |
+
+The window requires between 1 and 8.
+
+**V2 — and the failure is at the lower end**, which is L205's health condition 4dℓ > U. The largest value on the branch is 0.091, short by a factor of 11. **That bound is independent of the new operator and of the coupling**, so this is not a failure of either: the candidate's coefficient functions give a static sector whose response has the wrong sign at small gradient.
+
+**V3 — the coupling cannot rescue it.** The relation h = ℓc⁴/(2da₀²) has a strictly positive right-hand side for any real c, while the branch requires h between −0.909 and −1.000. No coupling produces a negative h.
+
+**V4 — and no rescaling can either.** The required enhancement of dℓ at fixed U runs from 11 at a = 1 to four orders of magnitude at the earliest epoch, a spread of 780. **The shortfall grows toward the past, so the shape of the reconstructed functions is wrong, not merely their normalisation.**
+
+**What this settles.** The chain that began at L192 is now closed as a loop: the sector's coldness, its equation of state, its clock rate, nine gates, the missing operator, the window, and the coupling that tests it. The verdict on **this coefficient history** is that it fails, decisively and for a reason that predates the operator. The candidate's own documentation flags those functions as reconstructed rather than derived, so what is excluded is the reconstruction, not the action.
+
+**What survives, and it is the useful part.** The structure is intact and now fully specified. Any history that is to work must satisfy the derived scalings — U ∝ a^{−3(1+w)}, d ∝ a^{−3(1−w)}, q ∝ a^{−3w}, with s₀ − 1 = w/m_rel and 0 < w ≲ 1e-4 — **and** the single inequality 1 < 4dℓ/U < 8. The first is a one-parameter family, the second is one inequality, and the search harness in `hermes_push/search/` is pointed at exactly that space. That is a far smaller target than this programme began with, and it is the first time the target has been stated as a closed set of conditions.
+
+**Limits.** The coupling is taken linear, Φ = Φ_N + cχ, which is this programme's structure and is not derived here. The matchings use leading deep-regime behaviour. The candidate's coefficient functions are reconstructed rather than derived, which its own documentation states, so this tests that reconstruction and not the action itself.

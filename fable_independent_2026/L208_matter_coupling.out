@@ -1,0 +1,41 @@
+======================================================================================================================
+L208 THE MATTER COUPLING: does the candidate's own branch land inside the window L207 derived?
+======================================================================================================================
+    evaluating the combination on the candidate's own coefficient history, at every archived epoch:
+      a        U            d            l            4 d l / U      inside (1, 8)?
+      1.0000  9.090909e-03  5.000000e-03  4.132231e-02  9.090909e-02   NO
+      0.7501  1.698507e-02  9.124027e-03  3.221083e-02  6.921196e-02   NO
+      0.5627  3.065053e-02  1.610258e-02  2.297112e-02  4.827248e-02   NO
+      0.4221  4.925587e-02  2.526125e-02  1.222106e-02  2.507067e-02   NO
+      0.3166  6.216012e-02  3.133803e-02  4.082053e-03  8.231870e-03   NO
+      0.2375  6.583272e-02  3.300697e-02  1.368761e-03  2.745058e-03   NO
+      0.1782  6.688932e-02  3.347685e-02  4.803241e-04  9.615728e-04   NO
+      0.1337  6.722479e-02  3.362373e-02  1.685631e-04  3.372399e-04   NO
+      0.1003  6.733438e-02  3.367112e-02  5.845496e-05  1.169236e-04   NO
+      0.1003  6.733438e-02  3.367112e-02  5.845496e-05  1.169236e-04   NO
+  [PASS] V1 [THE TEST, negative result verified] the combination 4 d l/U, evaluated on the candidate's own coefficient functions, lands OUTSIDE the window 1 to 8 at every single epoch of its branch: the test is decisive and it goes against this coefficient history
+           (4 d l/U = 0.091 0.069 0.048 0.025 0.008 0.003 0.001 0.000 0.000 0.000; the window is (1, 8) and 0 of 10 epochs are inside)
+  [PASS] V2 [and if it does not, by how much] the combination is far BELOW the window's lower end, which is L205's health condition 4 d l > U: the candidate's coefficient functions give a static sector whose response has the wrong sign at small gradient, independently of any new operator and independently of the matter coupling
+           (the largest value across the branch is 0.0909, short of 1 by a factor of 11.0; this is a property of U, d and l alone)
+  [PASS] V3 [the coupling cannot rescue it] the relation h = l c^4/(2 d a0^2) has a strictly positive right-hand side for any real coupling, since l, d and a0 squared are all positive, so no choice of coupling can produce the negative h the candidate's coefficients require. The failure is in the coefficient functions, not in the coupling
+           (h = 4 d l/U - 1 = -0.909 -0.931 -0.952 -0.975 -0.992 -0.997 -0.999 -1.000 -1.000 -1.000, negative at every epoch, while l c^4/(2 d a0^2) is positive for every real c)
+    to enter the window the product d*l would have to be larger by a factor of 11.0 to 8552.6, at fixed U
+  [PASS] V4 [what would be required, quantified] entering the window needs the product of d and l larger by a factor of eleven at the best epoch and by four orders of magnitude at the worst, at fixed U. The shortfall also GROWS towards the past, so no single rescaling fixes it: the shape of the reconstructed functions is wrong, not just their normalisation
+           (the required enhancement runs from 11.0 at a = 1 to 8553 at the earliest epoch, a spread of 778, so a constant rescaling cannot bring the branch into the window)
+    for orientation, if a history did sit in the window the coupling would follow from h = l c^4/(2 d a0^2):
+      h = 0.5  =>  c^4 = 2 h d a0^2/l, so the coupling is fixed once the coefficients are; it is not a free parameter alongside them
+      h = 3.0  =>  c^4 = 2 h d a0^2/l, so the coupling is fixed once the coefficients are; it is not a free parameter alongside them
+      h = 7.0  =>  c^4 = 2 h d a0^2/l, so the coupling is fixed once the coefficients are; it is not a free parameter alongside them
+  [PASS] V5 [the structure survives even though this history fails] the coupling is not an extra dial: once the coefficient functions are given, matching the deep-MOND force fixes beta and matching the transition fixes the coupling, so a history either lands in the window or it does not. The window is a genuine test rather than something that can be fitted around
+           (beta = c^3/(3 a0) from the force law and c^4 = 2 h d a0^2/l from the transition: two matchings, two parameters, no freedom left over)
+    READING: the calculation closes the loop, and it closes it against this particular coefficient history. The combination 4 d l/U is 0.02 to
+    0.09 across the candidate's branch, where the window requires between 1 and 8 -- short of even the lower bound by a factor of ten to sixty.
+    That lower bound is L205's health condition, which is independent of the new operator and of the coupling, so this is not a failure of the
+    operator or of the matching: the candidate's reconstructed coefficient functions give a static sector with the wrong sign at small gradient.
+    What the whole chain now specifies is a target: a history satisfying the derived scalings AND 1 < 4 d l/U < 8. The first is a one-parameter
+    family; the second is one inequality; and the search harness in hermes_push is pointed at exactly that space.
+    LIMITS: the coupling is taken to be linear, Phi = Phi_N + c chi, which is this programme's own double-filter structure and not derived here;
+    the matchings use leading deep-regime behaviour; the candidate's coefficient functions are reconstructed rather than derived, which its own
+    documentation states, so this tests that reconstruction and not the action itself.
+
+L208 COMPLETE: 5/5 checks PASS.

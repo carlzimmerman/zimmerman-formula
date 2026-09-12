@@ -47,3 +47,13 @@ What is still owed, and is now the highest-value work in the programme:
  (3) C003 (clock-frame kicks) remains a separate partial survivor: L191 gives the ledger to 22% and predicts a UNIVERSAL galaxy-scale dark
      fraction. Test that prediction against the SPARC mass range.
 Do not re-run anything in the closed-door list. Do not edit fable_independent_2026/ or qwen_claude_field_theory/.
+
+REVIEWER NOTE (2026-09-12, sixth -- THE TARGET IS NOW A CLOSED SET OF CONDITIONS, and the search is the way to hit it):
+fable_independent_2026/L205 to L208 completed the chain and produced a specification. A coefficient history that works must satisfy ALL of:
+  (1) the derived scalings  U ~ a^-3(1+w),  d ~ a^-3(1-w),  q ~ a^-3w,  with mu = 2 d q^2/U constant;
+  (2) the clock identity  s0 - 1 = w/m_rel,  with 0 < w <~ 1e-4 (the acoustic scale bounds it);
+  (3) the single inequality  1 < 4 d l / U < 8,  whose lower end is the static health condition and whose upper end is the
+      parameter-free cH0/a0 = 7; the candidate's own history gives 0.0001 to 0.09 and is excluded by it at every epoch.
+Add (3) to search/objective.py as a computed gate -- it is one line and it is the binding one. Then run many seeds. A history meeting
+(1), (2) and (3) together is the object the whole programme has been looking for, and finding one is now a search problem rather than a
+derivation problem. Escalate any survivor per SEARCH.md; do not weaken the inequality.
