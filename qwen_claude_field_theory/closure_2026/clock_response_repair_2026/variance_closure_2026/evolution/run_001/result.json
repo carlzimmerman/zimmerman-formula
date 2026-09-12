@@ -1,0 +1,1001 @@
+{
+  "status": "bounded_numerical_assertions_passed",
+  "full_theory_status": "OPEN",
+  "convention": "u is an RMS mode/quadrature state; C=<u u^T>; Y2=(k/a)^2*C00; cosine amplitude instead gives factor 1/2",
+  "state_order": [
+    "sigma",
+    "deltaQ",
+    "radiation_field",
+    "deltaQr",
+    "dust_velocity",
+    "delta_rho_b"
+  ],
+  "formulas": {
+    "Cdot": "A C + C A^T",
+    "Y": "p C00",
+    "Ydot": "p [(A C+C A^T)00-2H C00]",
+    "Yddot": "p [Cddot00-4H Cdot00+(4H^2-2Hdot) C00]",
+    "Cddot": "Adot C+C Adot^T+A Cdot+Cdot A^T"
+  },
+  "bounds": {
+    "k": [
+      0.3,
+      3.0,
+      30.0
+    ],
+    "time": [
+      0.0,
+      0.02
+    ],
+    "background_rtol": 2e-12,
+    "fundamental_rtols": [
+      2e-10,
+      2e-12
+    ],
+    "covariance_rtol": 2e-11,
+    "covariance_method": "RK45",
+    "fundamental_method": "DOP853",
+    "sample_count": 9,
+    "exact_dynamics": "time-dependent constrained six-state linear action; float64 integration"
+  },
+  "background": [
+    {
+      "t": 0.0,
+      "a": 1.0,
+      "H": 0.5191118192004086,
+      "Hdot": -0.0559647070258105,
+      "clock_rate": 1.0317810692809903,
+      "constraint_max": 1.3877787807814457e-17,
+      "matrix_condition": 413.4428755251021,
+      "domain_margin": 0.0008493169546922846
+    },
+    {
+      "t": 0.0025,
+      "a": 1.001298447148064,
+      "H": 0.5189721908611756,
+      "Hdot": -0.05573812956188788,
+      "clock_rate": 1.031665627691745,
+      "constraint_max": 2.0816681711721685e-16,
+      "matrix_condition": 413.20396213161166,
+      "domain_margin": 0.0008478421246560404
+    },
+    {
+      "t": 0.005,
+      "a": 1.0025982309921087,
+      "H": 0.51883312772862,
+      "Hdot": -0.05551254087395112,
+      "clock_rate": 1.0315506364272558,
+      "constraint_max": 2.7755575615628914e-16,
+      "matrix_condition": 412.9650166916661,
+      "domain_margin": 0.0008463706873946993
+    },
+    {
+      "t": 0.0075,
+      "a": 1.0038993537765442,
+      "H": 0.5186946273368656,
+      "Hdot": -0.05528793611547135,
+      "clock_rate": 1.031436093402782,
+      "constraint_max": 2.3592239273284576e-16,
+      "matrix_condition": 412.72603659209324,
+      "domain_margin": 0.0008449026357541783
+    },
+    {
+      "t": 0.01,
+      "a": 1.0052018177466209,
+      "H": 0.5185566872321179,
+      "Hdot": -0.055064310467679574,
+      "clock_rate": 1.0313219965454976,
+      "constraint_max": 4.996003610813204e-16,
+      "matrix_condition": 412.4870192759068,
+      "domain_margin": 0.0008434379625730723
+    },
+    {
+      "t": 0.0125,
+      "a": 1.006505625148438,
+      "H": 0.5184193049725949,
+      "Hdot": -0.05484165913938358,
+      "clock_rate": 1.031208343795666,
+      "constraint_max": 5.828670879282072e-16,
+      "matrix_condition": 412.2479622522104,
+      "domain_margin": 0.0008419766606829714
+    },
+    {
+      "t": 0.015,
+      "a": 1.0078107782289518,
+      "H": 0.5182824781284586,
+      "Hdot": -0.05461997736677868,
+      "clock_rate": 1.0310951331059997,
+      "constraint_max": 4.3021142204224816e-16,
+      "matrix_condition": 412.00886311017473,
+      "domain_margin": 0.0008405187229087573
+    },
+    {
+      "t": 0.0175,
+      "a": 1.0091172792359815,
+      "H": 0.5181462042817458,
+      "Hdot": -0.05439926041325653,
+      "clock_rate": 1.0309823624409824,
+      "constraint_max": 2.7755575615628914e-16,
+      "matrix_condition": 411.7697195406641,
+      "domain_margin": 0.0008390641420689231
+    },
+    {
+      "t": 0.02,
+      "a": 1.0104251304182177,
+      "H": 0.5180104810263018,
+      "Hdot": -0.054179503569229764,
+      "clock_rate": 1.0308700297782563,
+      "constraint_max": 1.3877787807814457e-16,
+      "matrix_condition": 411.53052937190114,
+      "domain_margin": 0.0008376129109758587
+    }
+  ],
+  "source_sha256": {
+    "cosmological_bridge_2026/transfer_evolve.py": "6d5faef35f1f068293e926ccd5a679c2faf9789bd4e522db8e5b743912e4e4e6",
+    "cosmological_bridge_2026/background_evolve.py": "35c7fc42df9b8525688f0a0bf7d1bc1625da8a78428d4f62a1133f3ac88a61aa",
+    "cosmological_bridge_2026/derive.py": "e7ef3dae70f856559cf5fba837d8205cb9ead8a36c67edfa8bd134884a1450c8",
+    "cosmological_bridge_2026/transfer_jets.py": "ea7e707820ffaf2bc2e714048254079201c2cc2f705ce28e497316e66dd2ed90",
+    "nonlinear_evolution_2026/constitutive.py": "eab8586467cfefb16d3d6c51c72bab5a0e3e951dc8bd026cf0ade28b359c7f1c"
+  },
+  "modes": [
+    {
+      "k": 0.3,
+      "epsilon_rms": 3.3333333333333333e-06,
+      "initial": [
+        {
+          "label": "decreasing",
+          "state_rms": [
+            3.3333333333333333e-06,
+            -1.5550497683718673e-07,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "lapse_rms": -1.5944088617127903e-06,
+          "z_rms": -5.76910932849693e-06,
+          "shift_rms": -3.963491964712173e-06,
+          "J_rms": 3.2390782322259966e-07,
+          "Y": 1e-12,
+          "Ydot": -2e-12,
+          "Yddot": 4.0263833702938124e-12
+        },
+        {
+          "label": "instantaneously_stationary",
+          "state_rms": [
+            3.3333333333333333e-06,
+            1.6766220319235245e-07,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "lapse_rms": 1.7213650414143745e-06,
+          "z_rms": 9.811150100835781e-06,
+          "shift_rms": 2.9829448283894004e-06,
+          "J_rms": 3.239083559050176e-07,
+          "Y": 1e-12,
+          "Ydot": 0.0,
+          "Yddot": -8.43524127225283e-13
+        },
+        {
+          "label": "increasing",
+          "state_rms": [
+            3.3333333333333333e-06,
+            4.908293832218916e-07,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "lapse_rms": 5.03713894454154e-06,
+          "z_rms": 2.539140953016849e-05,
+          "shift_rms": 9.929381621490974e-06,
+          "J_rms": 3.2390888858743554e-07,
+          "Y": 1e-12,
+          "Ydot": 1.9999999999999996e-12,
+          "Yddot": -1.7134316247443814e-12
+        }
+      ],
+      "stationary_curvature_from_operator": [
+        {
+          "h": 0.0001,
+          "Yddot_over_initial": -0.8435241756641547,
+          "sigma_acceleration_over_sigma": -0.20824971402433035
+        },
+        {
+          "h": 5e-05,
+          "Yddot_over_initial": -0.8435241926180348,
+          "sigma_acceleration_over_sigma": -0.20824972250127025
+        },
+        {
+          "h": 2.5e-05,
+          "Yddot_over_initial": -0.8435241272252831,
+          "sigma_acceleration_over_sigma": -0.20824968980489444
+        }
+      ],
+      "stationary_curvature_from_solution": [
+        {
+          "h": 0.001,
+          "Yddot_over_initial": -0.8435241809347644
+        },
+        {
+          "h": 0.0005,
+          "Yddot_over_initial": -0.8435240746475756
+        },
+        {
+          "h": 0.00025,
+          "Yddot_over_initial": -0.8435242082923651
+        }
+      ],
+      "covariance_hidden_velocity_variance": {
+        "additional_deltaQ_variance": 0.01,
+        "unchanged_Y_over_initial": 1.0,
+        "unchanged_Ydot_over_initial": 0.0,
+        "extra_Yddot_over_initial": 2.1278107028249225
+      },
+      "evolution": [
+        {
+          "t": 0.0,
+          "Y_over_initial": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "Ydot_over_initial": [
+            -2.0,
+            0.0,
+            1.9999999999999998
+          ]
+        },
+        {
+          "t": 0.0025,
+          "Y_over_initial": [
+            0.9950125608759015,
+            0.9999973669147455,
+            1.0049946281948758
+          ],
+          "Ydot_over_initial": [
+            -1.9899599163978703,
+            -0.0021052973302316254,
+            1.9956956446791394
+          ]
+        },
+        {
+          "t": 0.005,
+          "Y_over_initial": [
+            0.9900501574499593,
+            0.9999894793653398,
+            1.0099784438779895
+          ],
+          "Ydot_over_initial": [
+            -1.9799713945145496,
+            -0.004203572276981535,
+            1.991350074730476
+          ]
+        },
+        {
+          "t": 0.0075,
+          "Y_over_initial": [
+            0.9851126611693718,
+            0.9999763549005454,
+            1.0149513446422658
+          ],
+          "Ydot_over_initial": [
+            -1.9700341534389343,
+            -0.0062948306057104735,
+            1.986963793111326
+          ]
+        },
+        {
+          "t": 0.01,
+          "Y_over_initial": [
+            0.9801999441814678,
+            0.9999580110546326,
+            1.0199132293331696
+          ],
+          "Ydot_over_initial": [
+            -1.960147913974065,
+            -0.008379078149650178,
+            1.982537298916497
+          ]
+        },
+        {
+          "t": 0.0125,
+          "Y_over_initial": [
+            0.9753118793294462,
+            0.9999344653472061,
+            1.024863998039179
+          ],
+          "Ydot_over_initial": [
+            -1.9503123986268653,
+            -0.010456320806920811,
+            1.9780710874140701
+          ]
+        },
+        {
+          "t": 0.015,
+          "Y_over_initial": [
+            0.970448340148121,
+            0.9999057352830367,
+            1.029803552082155
+          ],
+          "Ydot_over_initial": [
+            -1.9405273315934626,
+            -0.012526564542703518,
+            1.9735656500662702
+          ]
+        },
+        {
+          "t": 0.0175,
+          "Y_over_initial": [
+            0.9656092008597048,
+            0.9998718383519037,
+            1.0347317940078469
+          ],
+          "Ydot_over_initial": [
+            -1.9307924387497255,
+            -0.014589815385876352,
+            1.9690214745663825
+          ]
+        },
+        {
+          "t": 0.02,
+          "Y_over_initial": [
+            0.9607943363696413,
+            0.9998327920284377,
+            1.0396486275765666
+          ],
+          "Ydot_over_initial": [
+            -1.9211074476364427,
+            -0.01664607943149098,
+            1.964439044857977
+          ]
+        }
+      ],
+      "checks": {
+        "max_covariance_transport_error": 2.4461180802293392e-14,
+        "max_transfer_refinement_error": 2.308564313457275e-13,
+        "max_variance_transport_error": 2.7755575615628914e-14,
+        "min_scaled_covariance_eigenvalue": -4.7497869400256517e-14,
+        "covariance_symmetry_error": 0.0,
+        "operator_rate_curvature_refinement": 6.539275165806657e-08,
+        "direct_solution_curvature_error": 8.10670819362258e-08,
+        "dust_lapse_minor_identity_error": 2.220446049250313e-16,
+        "max_reduction_matrix_condition": 35.94137833879641
+      },
+      "original_euler_basis_checks": [
+        {
+          "step": 0.001,
+          "max_scaled_euler": 5.53576613514379e-08,
+          "euler_by_field": {
+            "z": 5.53576613514379e-08,
+            "e": 2.650484264043276e-12,
+            "sigma": 2.845811455907051e-09,
+            "rad": 1.3652890805076382e-09,
+            "theta": 2.7206055172817572e-11,
+            "drho": 1.016891636252534e-12,
+            "n": 1.4585273054782805e-11,
+            "b": 1.890745646705173e-11
+          },
+          "max_scaled_momentum": 2.3659159725249464e-11,
+          "max_scaled_slip": 2.7023397657140306e-11
+        },
+        {
+          "step": 0.0005,
+          "max_scaled_euler": 1.9274117377189462e-07,
+          "euler_by_field": {
+            "z": 1.9274117377189462e-07,
+            "e": 1.3323983840973795e-11,
+            "sigma": 6.179453305157945e-09,
+            "rad": 2.970608805636023e-09,
+            "theta": 6.016516654198076e-11,
+            "drho": 1.1683956117533647e-12,
+            "n": 9.019270139721044e-11,
+            "b": 1.1610018042829265e-10
+          },
+          "max_scaled_momentum": 1.4496217390976996e-10,
+          "max_scaled_slip": 1.361852281666675e-10
+        }
+      ],
+      "original_euler_selected_ensemble_check": {
+        "step": 0.0005,
+        "max_scaled_euler": 1.9014794285643715e-07,
+        "euler_by_field": {
+          "z": 1.9014794285643715e-07,
+          "e": 1.1053471601412572e-11,
+          "sigma": 4.908580801993928e-09,
+          "rad": 1.113343426875822e-09,
+          "theta": 9.014465375396287e-12,
+          "drho": 7.726365827729397e-13,
+          "n": 7.60228842625944e-11,
+          "b": 4.932691190623567e-11
+        },
+        "max_scaled_momentum": 1.1532453301904582e-10,
+        "max_scaled_slip": 8.727124623016712e-11
+      },
+      "integration_evaluations": {
+        "fundamental_coarse": 47,
+        "fundamental_fine": 62,
+        "independent_covariance": 20
+      }
+    },
+    {
+      "k": 3.0,
+      "epsilon_rms": 3.333333333333333e-07,
+      "initial": [
+        {
+          "label": "decreasing",
+          "state_rms": [
+            3.333333333333333e-07,
+            -1.5613902387923595e-08,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "lapse_rms": -1.5937104429118632e-07,
+          "z_rms": 1.6526870818492473e-07,
+          "shift_rms": 9.488505389630076e-07,
+          "J_rms": 3.239078221774882e-08,
+          "Y": 9.999999999999998e-13,
+          "Ydot": -1.9999999999999996e-12,
+          "Yddot": 3.88512002584909e-12
+        },
+        {
+          "label": "instantaneously_stationary",
+          "state_rms": [
+            3.333333333333333e-07,
+            1.6014936201814273e-08,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "lapse_rms": 1.7296406253639325e-07,
+          "z_rms": 1.8051733308029816e-07,
+          "shift_rms": 1.0168363189802555e-06,
+          "J_rms": 3.2390834352146307e-08,
+          "Y": 9.999999999999998e-13,
+          "Ydot": 0.0,
+          "Yddot": -1.0532532910384004e-12
+        },
+        {
+          "label": "increasing",
+          "state_rms": [
+            3.333333333333333e-07,
+            4.764377479155213e-08,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "lapse_rms": 5.052991693639727e-07,
+          "z_rms": 1.9576595797567159e-07,
+          "shift_rms": 1.0848220989975034e-06,
+          "J_rms": 3.2390886486543784e-08,
+          "Y": 9.999999999999998e-13,
+          "Ydot": 1.999999999999999e-12,
+          "Yddot": -1.9916266079258917e-12
+        }
+      ],
+      "stationary_curvature_from_operator": [
+        {
+          "h": 0.0001,
+          "Yddot_over_initial": -1.053253283369496,
+          "sigma_acceleration_over_sigma": -0.3131142678770008
+        },
+        {
+          "h": 5e-05,
+          "Yddot_over_initial": -1.0532532914539052,
+          "sigma_acceleration_over_sigma": -0.3131142719192055
+        },
+        {
+          "h": 2.5e-05,
+          "Yddot_over_initial": -1.0532532910384007,
+          "sigma_acceleration_over_sigma": -0.3131142717114531
+        }
+      ],
+      "stationary_curvature_from_solution": [
+        {
+          "h": 0.001,
+          "Yddot_over_initial": -1.0532532822107896
+        },
+        {
+          "h": 0.0005,
+          "Yddot_over_initial": -1.0532532585784793
+        },
+        {
+          "h": 0.00025,
+          "Yddot_over_initial": -1.0532532762736082
+        }
+      ],
+      "covariance_hidden_velocity_variance": {
+        "additional_deltaQ_variance": 0.01,
+        "unchanged_Y_over_initial": 1.0,
+        "unchanged_Ydot_over_initial": 0.0,
+        "extra_Yddot_over_initial": 2.221370480948743
+      },
+      "evolution": [
+        {
+          "t": 0.0,
+          "Y_over_initial": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "Ydot_over_initial": [
+            -2.0,
+            0.0,
+            1.9999999999999998
+          ]
+        },
+        {
+          "t": 0.0025,
+          "Y_over_initial": [
+            0.9950121229218348,
+            0.9999967145012768,
+            1.004993760257116
+          ],
+          "Ydot_over_initial": [
+            -1.9903088874220407,
+            -0.0026260344469028613,
+            1.995001865558982
+          ]
+        },
+        {
+          "t": 0.005,
+          "Y_over_initial": [
+            0.9900484195031213,
+            0.9999868816245018,
+            1.0099749778630072
+          ],
+          "Ydot_over_initial": [
+            -1.9806610465591323,
+            -0.005237912801649822,
+            1.989965973184917
+          ]
+        },
+        {
+          "t": 0.0075,
+          "Y_over_initial": [
+            0.9851087817584936,
+            0.9999705366823145,
+            1.0149435591270264
+          ],
+          "Ydot_over_initial": [
+            -1.971056322343957,
+            -0.00783569711071356,
+            1.9848928853566636
+          ]
+        },
+        {
+          "t": 0.01,
+          "Y_over_initial": [
+            0.9801931020899315,
+            0.9999477148323687,
+            1.0198994117578062
+          ],
+          "Ydot_over_initial": [
+            -1.9614945599213665,
+            -0.01041944930563672,
+            1.979783159005283
+          ]
+        },
+        {
+          "t": 0.0125,
+          "Y_over_initial": [
+            0.9753012732862585,
+            0.9999184510776986,
+            1.0248424448496343
+          ],
+          "Ydot_over_initial": [
+            -1.9519756046505754,
+            -0.012989231197111569,
+            1.9746373455737178
+          ]
+        },
+        {
+          "t": 0.015,
+          "Y_over_initial": [
+            0.9704331885227364,
+            0.9998827802669036,
+            1.0297725688683044
+          ],
+          "Ydot_over_initial": [
+            -1.942499302107054,
+            -0.015545104472793923,
+            1.969455991068622
+          ]
+        },
+        {
+          "t": 0.0175,
+          "Y_over_initial": [
+            0.9655887413603073,
+            0.9998407370945439,
+            1.0346896956380736
+          ],
+          "Ydot_over_initial": [
+            -1.9330654980865725,
+            -0.018087130693844915,
+            1.9642396361162704
+          ]
+        },
+        {
+          "t": 0.02,
+          "Y_over_initial": [
+            0.9607678257451976,
+            0.9997923561014496,
+            1.0395937383280678
+          ],
+          "Ydot_over_initial": [
+            -1.9236740386050353,
+            -0.02061537129082769,
+            1.9589888160150746
+          ]
+        }
+      ],
+      "checks": {
+        "max_covariance_transport_error": 1.3284513708755048e-13,
+        "max_transfer_refinement_error": 1.7534137493279695e-13,
+        "max_variance_transport_error": 3.441691376337985e-14,
+        "min_scaled_covariance_eigenvalue": -6.934261746598919e-14,
+        "covariance_symmetry_error": 0.0,
+        "operator_rate_curvature_refinement": 4.1550451967964364e-10,
+        "direct_solution_curvature_error": 1.4764792499732948e-08,
+        "dust_lapse_minor_identity_error": 5.551115123125783e-17,
+        "max_reduction_matrix_condition": 15.50635378781309
+      },
+      "original_euler_basis_checks": [
+        {
+          "step": 0.001,
+          "max_scaled_euler": 9.494839049304344e-10,
+          "euler_by_field": {
+            "z": 1.747014591626998e-10,
+            "e": 9.03109197754731e-12,
+            "sigma": 9.494839049304344e-10,
+            "rad": 4.6359417479689685e-10,
+            "theta": 9.796098711443147e-12,
+            "drho": 1.8154353655229818e-12,
+            "n": 3.250949055724984e-13,
+            "b": 2.006780384873573e-12
+          },
+          "max_scaled_momentum": 1.5570332396641748e-12,
+          "max_scaled_slip": 2.1895187509292173e-11
+        },
+        {
+          "step": 0.0005,
+          "max_scaled_euler": 1.009563734798289e-09,
+          "euler_by_field": {
+            "z": 6.618289443967379e-10,
+            "e": 2.4922193371636195e-12,
+            "sigma": 1.009563734798289e-09,
+            "rad": 4.993684985994163e-10,
+            "theta": 1.0369169040715086e-11,
+            "drho": 1.8260100530745005e-12,
+            "n": 7.586071337586216e-13,
+            "b": 2.9077649049926915e-12
+          },
+          "max_scaled_momentum": 2.5635539446821804e-12,
+          "max_scaled_slip": 4.519610232932077e-11
+        }
+      ],
+      "original_euler_selected_ensemble_check": {
+        "step": 0.0005,
+        "max_scaled_euler": 9.182595757945943e-10,
+        "euler_by_field": {
+          "z": 5.639272779451081e-10,
+          "e": 1.4873389912689784e-12,
+          "sigma": 9.182595757945943e-10,
+          "rad": 1.1615911311261884e-10,
+          "theta": 1.0611987406763906e-12,
+          "drho": 1.355882824526195e-12,
+          "n": 2.4998713490876994e-13,
+          "b": 2.2306014972635046e-12
+        },
+        "max_scaled_momentum": 1.8721866503083885e-12,
+        "max_scaled_slip": 6.1241330017038396e-12
+      },
+      "integration_evaluations": {
+        "fundamental_coarse": 47,
+        "fundamental_fine": 47,
+        "independent_covariance": 26
+      }
+    },
+    {
+      "k": 30.0,
+      "epsilon_rms": 3.3333333333333334e-08,
+      "initial": [
+        {
+          "label": "decreasing",
+          "state_rms": [
+            3.3333333333333334e-08,
+            -1.565785153047531e-09,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "lapse_rms": -1.5932263320272277e-08,
+          "z_rms": 1.7272086084462878e-08,
+          "shift_rms": 9.981093069113438e-07,
+          "J_rms": 3.2390782145306643e-09,
+          "Y": 1e-12,
+          "Ydot": -2e-12,
+          "Yddot": 6.532736837812448e-12
+        },
+        {
+          "label": "instantaneously_stationary",
+          "state_rms": [
+            3.3333333333333334e-08,
+            1.5494181579780884e-09,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "lapse_rms": 1.735376868806096e-08,
+          "z_rms": 1.7287104835982282e-08,
+          "shift_rms": 9.98778915839321e-07,
+          "J_rms": 3.239083349377686e-09,
+          "Y": 1e-12,
+          "Ydot": 0.0,
+          "Yddot": 1.5443064811358128e-12
+        },
+        {
+          "label": "increasing",
+          "state_rms": [
+            3.3333333333333334e-08,
+            4.664621469003707e-09,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "lapse_rms": 5.063980069639419e-08,
+          "z_rms": 1.7302123587501683e-08,
+          "shift_rms": 9.994485247672983e-07,
+          "J_rms": 3.2390884842247084e-09,
+          "Y": 1e-12,
+          "Ydot": 1.9999999999999996e-12,
+          "Yddot": 5.558761244591795e-13
+        }
+      ],
+      "stationary_curvature_from_operator": [
+        {
+          "h": 0.0001,
+          "Yddot_over_initial": 1.5443065281553343,
+          "sigma_acceleration_over_sigma": 0.9856656378854148
+        },
+        {
+          "h": 5e-05,
+          "Yddot_over_initial": 1.5443065251939494,
+          "sigma_acceleration_over_sigma": 0.9856656364047224
+        },
+        {
+          "h": 2.5e-05,
+          "Yddot_over_initial": 1.5443064811358127,
+          "sigma_acceleration_over_sigma": 0.9856656143756541
+        }
+      ],
+      "stationary_curvature_from_solution": [
+        {
+          "h": 0.001,
+          "Yddot_over_initial": 1.5443055932410061
+        },
+        {
+          "h": 0.0005,
+          "Yddot_over_initial": 1.5443064300343394
+        },
+        {
+          "h": 0.00025,
+          "Yddot_over_initial": 1.544306457042694
+        }
+      ],
+      "covariance_hidden_velocity_variance": {
+        "additional_deltaQ_variance": 0.01,
+        "unchanged_Y_over_initial": 1.0,
+        "unchanged_Ydot_over_initial": 0.0,
+        "extra_Yddot_over_initial": 2.2898903909775754
+      },
+      "evolution": [
+        {
+          "t": 0.0,
+          "Y_over_initial": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "Ydot_over_initial": [
+            -2.0,
+            0.0,
+            1.9999999999999993
+          ]
+        },
+        {
+          "t": 0.0025,
+          "Y_over_initial": [
+            0.9950203456130156,
+            1.0000048089151596,
+            1.0050017256508486
+          ],
+          "Ydot_over_initial": [
+            -1.9837510541564045,
+            0.0038403788667259416,
+            2.0013759831077707
+          ]
+        },
+        {
+          "t": 0.005,
+          "Y_over_initial": [
+            0.9900811083061359,
+            1.0000191687589435,
+            1.0100068576965306
+          ],
+          "Ydot_over_initial": [
+            -1.9676658187240086,
+            0.007640993765611898,
+            2.002725302550319
+          ]
+        },
+        {
+          "t": 0.0075,
+          "Y_over_initial": [
+            0.9851818826483631,
+            1.0000429819840464,
+            1.0150153308670806
+          ],
+          "Ydot_over_initial": [
+            -1.9517412312443776,
+            0.011403327197276478,
+            2.0040490652483394
+          ]
+        },
+        {
+          "t": 0.01,
+          "Y_over_initial": [
+            0.9803222707631013,
+            1.0000761546920152,
+            1.0200270826257343
+          ],
+          "Ydot_over_initial": [
+            -1.9359743106501366,
+            0.015128815560549397,
+            2.005348350518678
+          ]
+        },
+        {
+          "t": 0.0125,
+          "Y_over_initial": [
+            0.9755018821247651,
+            1.0001185965166854,
+            1.025042053097553
+          ],
+          "Ydot_over_initial": [
+            -1.9203621571772616,
+            0.018818848125193337,
+            2.006624208201041
+          ]
+        },
+        {
+          "t": 0.015,
+          "Y_over_initial": [
+            0.9707203333557345,
+            1.0001702205051775,
+            1.0300601849934823
+          ],
+          "Ydot_over_initial": [
+            -1.9049019521758885,
+            0.02247476610320409,
+            2.0078776568757246
+          ]
+        },
+        {
+          "t": 0.0175,
+          "Y_over_initial": [
+            0.9659772480239155,
+            1.0002309429966962,
+            1.0350814235300794
+          ],
+          "Ydot_over_initial": [
+            -1.8895909578188932,
+            0.02609786182160926,
+            2.0091096821775603
+          ]
+        },
+        {
+          "t": 0.02,
+          "Y_over_initial": [
+            0.9612722564411571,
+            1.0003006834993986,
+            1.0401057163451488
+          ],
+          "Ydot_over_initial": [
+            -1.8744265167064693,
+            0.029689378000962465,
+            2.010321235212758
+          ]
+        }
+      ],
+      "checks": {
+        "max_covariance_transport_error": 3.097372235221372e-12,
+        "max_transfer_refinement_error": 3.892619738577816e-12,
+        "max_variance_transport_error": 1.687538997430238e-14,
+        "min_scaled_covariance_eigenvalue": -1.553064814644501e-14,
+        "covariance_symmetry_error": 0.0,
+        "operator_rate_curvature_refinement": 4.4058136694502537e-08,
+        "direct_solution_curvature_error": 2.4093118611290265e-08,
+        "dust_lapse_minor_identity_error": 8.673617379884035e-19,
+        "max_reduction_matrix_condition": 123.00252889796776
+      },
+      "original_euler_basis_checks": [
+        {
+          "step": 0.001,
+          "max_scaled_euler": 1.3977777583013216e-08,
+          "euler_by_field": {
+            "z": 1.0178417003999346e-08,
+            "e": 1.3977777583013216e-08,
+            "sigma": 6.508731535632406e-10,
+            "rad": 1.5453819089284443e-09,
+            "theta": 1.699593113113642e-12,
+            "drho": 3.816469828403153e-11,
+            "n": 1.2261381636143613e-09,
+            "b": 4.3058213604912566e-10
+          },
+          "max_scaled_momentum": 6.838007073556369e-11,
+          "max_scaled_slip": 9.246807005663322e-11
+        },
+        {
+          "step": 0.0005,
+          "max_scaled_euler": 1.2668478567031205e-09,
+          "euler_by_field": {
+            "z": 6.858982245102695e-10,
+            "e": 8.735166080515543e-10,
+            "sigma": 5.410697983909383e-10,
+            "rad": 1.2668478567031205e-09,
+            "theta": 5.747512117026076e-13,
+            "drho": 2.5746036651514483e-12,
+            "n": 9.237835567885288e-11,
+            "b": 2.6934846059735714e-11
+          },
+          "max_scaled_momentum": 4.277478899816142e-12,
+          "max_scaled_slip": 6.2606992647539635e-12
+        }
+      ],
+      "original_euler_selected_ensemble_check": {
+        "step": 0.0005,
+        "max_scaled_euler": 9.3236069133513e-10,
+        "euler_by_field": {
+          "z": 4.423177104333405e-12,
+          "e": 1.1450525436008356e-12,
+          "sigma": 2.297712289511864e-11,
+          "rad": 9.3236069133513e-10,
+          "theta": 5.711899255216067e-13,
+          "drho": 1.1332281565299945e-12,
+          "n": 4.0782743032136984e-14,
+          "b": 1.4434305198460799e-12
+        },
+        "max_scaled_momentum": 8.041120823366686e-13,
+        "max_scaled_slip": 4.435434958631775e-12
+      },
+      "integration_evaluations": {
+        "fundamental_coarse": 62,
+        "fundamental_fine": 77,
+        "independent_covariance": 236
+      }
+    }
+  ],
+  "conclusions": [
+    "Equal initial gradient variance allows opposite initial time derivatives on this constrained action.",
+    "An initial state with Ydot=0 has nonzero action-derived Yddot in every tested mode.",
+    "Adding independent deltaQ variance keeps Y and Ydot fixed while changing Yddot.",
+    "The covariance law retains inertia, expansion, matter correlations and coefficient rates."
+  ],
+  "non_claims": [
+    "No all-k, late-time, nonlinear or global-attractor exclusion.",
+    "No supplied primordial spectrum, CMB spectrum or observed cosmological variance.",
+    "No claim that an arbitrary prescribed finite nonlinear variance is within the linear regime.",
+    "k=0 has identically zero projected gradient and is not evaluated by the singular finite-k reduction.",
+    "Numeric refinement and residuals are conditional evidence, not interval-certified error bounds."
+  ]
+}

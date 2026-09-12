@@ -1,0 +1,55 @@
+{
+  "claim_id": "SAME_ACTION_QUADRATIC_VARIANCE_COVARIANCE_OBSTRUCTION",
+  "mathematics": {
+    "assertion_tested": "At k=0.3,3,30 on the existing fixed-action sourced background for 0<=t<=0.02, equal initial quadratic gradient variances permit opposite derivatives; states with zero initial derivative have nonzero second derivative. Independently evolve the six-state fundamental matrix and three covariance ensembles, compare transport, original Euler residuals, PSD, and time-step/tolerance refinement.",
+    "coefficient_domain": "IEEE float64, SymPy exact-symbolic source-derived action coefficients, numerical ODE and finite-difference checks conditional on stated tolerances",
+    "conventions": "Physical proper time, delta tau=0 and e=0 gauge. u contains RMS real Fourier/quadrature amplitudes, C=<u u^T>, Y2=k^2/a^2*C00. Source cosine amplitudes instead give Y2=k^2/a^2*sigma_amp^2/2. All six source-state components and time-varying coefficient rates retained. No coefficients reconstructed or retuned.",
+    "inputs": ["Existing frozen-action Background(.02), three finite k values, three zero-mean rank-one initial ensembles with sigma_RMS=1e-6/k and sigma_dot=(H+d)*sigma for d=-1,0,+1"],
+    "bounds": {
+      "k": [0.3, 3.0, 30.0],
+      "time": [0.0, 0.02],
+      "state_dimension": 6,
+      "evolved_covariances": 3,
+      "initial_Y2": 1e-12,
+      "fundamental_rtols": [2e-10, 2e-12],
+      "fundamental_atols": [2e-12, 2e-14],
+      "covariance_rtol": 2e-11,
+      "covariance_atol": 2e-13,
+      "background_rtol": 2e-12,
+      "background_atol": 2e-14,
+      "operator_derivative_steps": [0.0001, 0.00005, 0.000025],
+      "solution_curvature_steps": [0.001, 0.0005, 0.00025],
+      "euler_difference_steps": [0.001, 0.0005],
+      "sample_times": 9,
+      "original_euler_times": 7,
+      "original_euler_equations": 8,
+      "wall_clock_cap_seconds": 480,
+      "log_cap_bytes": 1048576,
+      "cooperative_numerical_threads": 1
+    },
+    "non_claims": [
+      "No nonlinear, all-k, global or late-time attractor exclusion",
+      "No radiation-era, primordial-spectrum, CMB or observed cosmology prediction",
+      "No use of a phenomenological scalar growth law",
+      "No extrapolation to finite nonlinear variance; perturbation scaling is explicit",
+      "k=0 projected-gradient observable vanishes identically; the finite-k reduction is not applied there",
+      "No interval-certified numerical accuracy or independent proof of every source equation"
+    ]
+  },
+  "execution_artifacts": [
+    "qwen_claude_field_theory/closure_2026/clock_response_repair_2026/variance_closure_2026/evolution/variance_evolve.py",
+    "qwen_claude_field_theory/closure_2026/clock_response_repair_2026/variance_closure_2026/evolution/test_variance_evolve.py",
+    "qwen_claude_field_theory/closure_2026/clock_response_repair_2026/cosmological_bridge_2026/transfer_evolve.py",
+    "qwen_claude_field_theory/closure_2026/clock_response_repair_2026/cosmological_bridge_2026/background_evolve.py",
+    "qwen_claude_field_theory/closure_2026/clock_response_repair_2026/cosmological_bridge_2026/derive.py",
+    "qwen_claude_field_theory/closure_2026/clock_response_repair_2026/cosmological_bridge_2026/transfer_jets.py",
+    "qwen_claude_field_theory/closure_2026/clock_response_repair_2026/nonlinear_evolution_2026/constitutive.py"
+  ],
+  "software": [
+    {"name": "Python", "version": "3.9.6"},
+    {"name": "NumPy", "version": "1.26.2"},
+    {"name": "SciPy", "version": "1.11.4"},
+    {"name": "SymPy", "version": "1.14.0"}
+  ],
+  "randomness": {"used": false, "generator": "", "seed": null}
+}

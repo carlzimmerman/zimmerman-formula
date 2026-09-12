@@ -1,0 +1,140 @@
+{
+  "projection": {
+    "checks": {
+      "background_projection_zero": true,
+      "linear_projection_zero": true,
+      "arbitrary_metric_and_second_order_fields_cancel": true,
+      "projected_covector_time_component_zero": true,
+      "projected_covector_spatial_components": true,
+      "independent_projector_norm": true,
+      "linear_time_gauge_invariance": true
+    },
+    "Y2": "(pi_x**2*q**2 - 2*pi_x*q*sbar*sigma_x + pi_y**2*q**2 - 2*pi_y*q*sbar*sigma_y + pi_z**2*q**2 - 2*pi_z*q*sbar*sigma_z + sbar**2*sigma_x**2 + sbar**2*sigma_y**2 + sbar**2*sigma_z**2)/(a**2*sbar**2)",
+    "projected_covector": [
+      "0",
+      "-pi_x*q/sbar + sigma_x",
+      "-pi_y*q/sbar + sigma_y",
+      "-pi_z*q/sbar + sigma_z"
+    ]
+  },
+  "unitary_ADM": {
+    "checks": {
+      "unitary_ADM_exact_projection": true,
+      "cosine_period_average_half": true
+    },
+    "exact_unitary_Y": "chi_x*(chi_x*h_inv_00 + chi_y*h_inv_01 + chi_z*h_inv_02) + chi_y*(chi_x*h_inv_01 + chi_y*h_inv_11 + chi_z*h_inv_12) + chi_z*(chi_x*h_inv_02 + chi_y*h_inv_12 + chi_z*h_inv_22)",
+    "cosine_local_Y2": "k**2*sigma**2*sin(phase)**2/a**2",
+    "cosine_average_Y2": "k**2*sigma**2/(2*a**2)"
+  },
+  "action_constraint_obstruction": {
+    "checks": {
+      "constraint_matrix_determinant": true,
+      "action_density_lapse_column": true,
+      "full_density_column_satisfies_constraints": true,
+      "same_variance_rank_one_covariances": true,
+      "opposite_density_cross_correlation": true,
+      "positive_semidefinite_outer_product": true,
+      "nonzero_derivative_gap_formula": true
+    },
+    "determinant": "R*(Akin*L - D*E)",
+    "lapse_density": "-Akin/(2*M2*(Akin*L - D*E))",
+    "Aop_0_density": "-Akin*q/(2*M2*(Akin*L - D*E))",
+    "derivative_gap": "-2*Akin*p*q*r*x/(M2*(Akin*L - D*E))",
+    "assumptions": [
+      "M2>0",
+      "a>0",
+      "sbar>0",
+      "k>0",
+      "W != 0",
+      "R != 0",
+      "Delta=Akin*L-E*D != 0",
+      "q*Akin*x*r != 0"
+    ]
+  },
+  "variance_transport": {
+    "checks": {
+      "covariance_transport_identity": true,
+      "rank_one_matches_direct_state_derivative": true,
+      "all_five_closure_cross_coefficients": true
+    },
+    "variance_rate": "-2*C00*H*p + 2*C00*ell0*p*q + 2*C01*ell1*p*q + 2*C01*p + 2*C02*ell2*p*q + 2*C03*ell3*p*q + 2*C04*ell4*p*q + 2*C05*ell5*p*q",
+    "cross_coefficients": [
+      "2*a1*p",
+      "2*a2*p",
+      "2*a3*p",
+      "2*a4*p",
+      "2*a5*p"
+    ]
+  },
+  "frozen_action_map": {
+    "checks": {
+      "frozen_action_gradient_matches_covariant_expansion": true,
+      "frozen_action_clock_constraint_map": true,
+      "frozen_action_density_reconstruction": true,
+      "frozen_action_sigma_velocity_map": true
+    },
+    "source": "/Users/carlzimmerman/new_physics/zimmerman-formula/qwen_claude_field_theory/closure_2026/clock_response_repair_2026/cosmological_bridge_2026/derive.py",
+    "clock_F": "2*PXt*q/W",
+    "clock_G": "-2*WY*k**2*q/(W*a**2)",
+    "gradient": "k**2*sigma**2*sine**2/a**2"
+  },
+  "checks": {
+    "projection.background_projection_zero": true,
+    "projection.linear_projection_zero": true,
+    "projection.arbitrary_metric_and_second_order_fields_cancel": true,
+    "projection.projected_covector_time_component_zero": true,
+    "projection.projected_covector_spatial_components": true,
+    "projection.independent_projector_norm": true,
+    "projection.linear_time_gauge_invariance": true,
+    "unitary_ADM.unitary_ADM_exact_projection": true,
+    "unitary_ADM.cosine_period_average_half": true,
+    "action_constraint_obstruction.constraint_matrix_determinant": true,
+    "action_constraint_obstruction.action_density_lapse_column": true,
+    "action_constraint_obstruction.full_density_column_satisfies_constraints": true,
+    "action_constraint_obstruction.same_variance_rank_one_covariances": true,
+    "action_constraint_obstruction.opposite_density_cross_correlation": true,
+    "action_constraint_obstruction.positive_semidefinite_outer_product": true,
+    "action_constraint_obstruction.nonzero_derivative_gap_formula": true,
+    "variance_transport.covariance_transport_identity": true,
+    "variance_transport.rank_one_matches_direct_state_derivative": true,
+    "variance_transport.all_five_closure_cross_coefficients": true,
+    "frozen_action_map.frozen_action_gradient_matches_covariant_expansion": true,
+    "frozen_action_map.frozen_action_clock_constraint_map": true,
+    "frozen_action_map.frozen_action_density_reconstruction": true,
+    "frozen_action_map.frozen_action_sigma_velocity_map": true
+  },
+  "check_count": 23,
+  "exact_domain": "Rational-function identities over R; stated denominators nonzero",
+  "scope": "Second-order geometric coefficient and exact transport of the linear six-state system",
+  "non_claims": [
+    "No nonlinear averaged MOND closure",
+    "No exclusion of asymptotic attractors",
+    "No primordial spectrum or initial covariance prediction",
+    "No coefficient reconstruction or new particle species",
+    "No claim that a formal finite-order expansion controls finite-amplitude errors"
+  ],
+  "unit_tests": {
+    "run": 8,
+    "failures": 0,
+    "errors": 0
+  },
+  "software": {
+    "python": "3.9.6",
+    "sympy": "1.14.0"
+  },
+  "runtime_seconds": 6.171798042,
+  "command_argv": [
+    "/Applications/Xcode.app/Contents/Developer/usr/bin/python3",
+    "qwen_claude_field_theory/closure_2026/clock_response_repair_2026/variance_closure_2026/geometry/derive_geometry.py",
+    "--run-tests",
+    "--result-file",
+    "qwen_claude_field_theory/closure_2026/clock_response_repair_2026/variance_closure_2026/geometry/run_001/result.json"
+  ],
+  "input_hashes": {
+    "qwen_claude_field_theory/closure_2026/clock_response_repair_2026/variance_closure_2026/geometry/derive_geometry.py": "f7ffc24281d2df87c7b75dd9018e5c25df51a9091f7d97323d8f4ac4441f316b",
+    "qwen_claude_field_theory/closure_2026/clock_response_repair_2026/variance_closure_2026/geometry/test_geometry.py": "766cb963fe39c42c6b85579173b8ee5102684580d371eda2a64edac626c21ab0",
+    "qwen_claude_field_theory/closure_2026/clock_response_repair_2026/cosmological_bridge_2026/derive.py": "e7ef3dae70f856559cf5fba837d8205cb9ead8a36c67edfa8bd134884a1450c8",
+    "qwen_claude_field_theory/closure_2026/clock_response_repair_2026/cosmological_bridge_2026/transfer_evolve.py": "6d5faef35f1f068293e926ccd5a679c2faf9789bd4e522db8e5b743912e4e4e6",
+    "qwen_claude_field_theory/closure_2026/clock_response_repair_2026/nonlinear_evolution_2026/constitutive.py": "eab8586467cfefb16d3d6c51c72bab5a0e3e951dc8bd026cf0ade28b359c7f1c"
+  }
+}
