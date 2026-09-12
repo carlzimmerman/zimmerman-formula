@@ -5564,3 +5564,62 @@ with 𝒲 = W_Y(Y) for modes transverse to the gradient and W_Y + 2Y W_YY for lo
 **Reading.** The sector produced by gradient-driven criticality is cold dark matter above its own cutoff scale and nothing below it. The CMB does not discriminate it from cold dark matter at all, and the Lyman-α forest sets the only real requirement: the instability must reach comoving scales of about 0.8 Mpc. That requirement was already met in L194 by a wide margin.
 
 **Limits, and what this does not settle.** CLASS takes a constant sound speed, so each gate is run at its own epoch's value; the Jeans identity is what makes that split legitimate, but a code carrying the full c_s²(z) history would settle it properly and should be built. The sector's background density is imposed as the ΛCDM cold-matter share rather than derived, so **the amount of the sector is untested here**. No kernel is active, so this is the sector's own gate and not the framework's combined prediction. Above all, criticality must operate at recombination, meaning the clock must run faster than proper time there, and that is a condition on the coefficient history which this script does not establish. Still untested for this sector: galaxy-galaxy lensing and S₈, the late-time matter budget, and the post-Newtonian limit.
+
+## L196 — THE LENSING GATE: criticality alone fails it, the combination passes, and the combination is not free (2026-09-12)
+
+**The situation.** L195 showed the self-critical sector restores the CMB third peak precisely *because* it is cold dark matter above its own cutoff. That cutoff, fixed by the forest's ultraviolet reach, corresponds to a halo mass of 9.7e9 M☉ — far below a galaxy (V1). So the sector forms a full halo around every galaxy, while the necessity certificate requires the retained dark fraction to *rise* with host mass. This gate tests that on three fronts.
+
+**(a) Galaxy-galaxy lensing (V2).** With nothing depleting it the sector retains its whole halo: a 1-halo amplitude of 1.00 against the repository's 0.14 ceiling (the corrected convention of L190). **Criticality alone fails the lensing gate by a factor of 7.1.**
+
+**(b) Rotation curves (V3).** The kernel acts on baryons *plus* whatever the sector leaves behind, so the retained fraction is directly visible in the rotation curve. At three disc scale lengths of a 1.2e10 M☉-baryon spiral, where the ΛCDM halo holds 1.5e10 M☉:
+
+| retained fraction | velocity excess, canonical | alt |
+|---|---|---|
+| 0.105 (ledger ceiling) | +4.0% | +3.9% |
+| 0.576 (cluster value) | +19.1% | +18.7% |
+| 1.00 (criticality alone) | +30.3% | +29.7% |
+
+The ledger's ceiling is not a bookkeeping convention. It is what the rotation curves tolerate once the kernel is acting on the sector as well.
+
+**(c) The combination (V4).** The depletion mechanism already on the books, clock-frame kicks under an orbit integration (L191), brings the retained fraction to 0.132 in a Milky-Way halo — inside the 0.14 ceiling — and 0.664 in a cluster against the ledger's 0.576. **Criticality supplies the component and the kicks supply the mass dependence; only the two together clear this gate.** The two threads of the programme are not alternatives, they are halves of one answer.
+
+**And the combination costs something (V5, V6).** The kicked population carries a velocity dispersion, and at v_k = 700 km/s its effective sound speed is 5.5e-6, four thousand times the Lyman-α bound. The dark-energy trigger has kicked only 3% of the sector by z = 2.2, so the mass-weighted contribution is 1.6e-7 — still **164 times over** the 1e-9 bound. For the kicked population not to spoil the forest the trigger must hold the kicked fraction below 1.8e-4 at z = 2.2, roughly a hundred times sharper in redshift than the Ω_DE(z) trigger currently gives. That is a quantitative demand on the mechanism, not a free choice, and it is the sharpest open problem the combination now has. 6/6.
+
+**Reading.** Criticality answers the coldness question and leaves the depletion question exactly where it was. Stated plainly: the self-critical sector is what the CMB and the forest want, a full ΛCDM-like halo is what galaxy lensing and rotation curves forbid, and something must remove 87% of it from galaxies after the forest epoch without heating what remains. Clock-frame kicks do the removal, at the price of a hot ejected population that the trigger must keep negligible until z ≈ 2.
+
+**Limits.** Analytic, on the 1-halo lensing convention of L190; the depletion numbers are L191's orbit integration at the canonical footing; the kicked population's sound speed is estimated from its injection velocity without following its phase-space evolution; S₈ and cosmic shear are not evaluated here and remain the next gate.
+
+## L197 — THE S8 GATE: the kernel's lift and the kicks' suppression cancel, so S8 does not discriminate (2026-09-12)
+
+**Method.** Particle mesh on the validated L176/L187 scheme, box 100 Mpc/h, mesh 192³, 128³ particles, six runs sharing phases. The Hubble-flow kernel enters as G_eff/G = ν(cH(z)/a₀) with (cH₀/a₀)² = 49; the clock-frame kicks are applied at 700 km/s to particles whose local overdensity exceeds 200 (the proxy for a nonzero velocity relative to the clock frame), dark-energy weighted from z = 2, two per halo particle by z = 0. Only phase-matched ratios are read; S8 is that ratio applied to the CLASS value.
+
+| run | σ₈ ratio to ΛCDM | P/P_ΛCDM at k = 0.2, 0.5, 1, 2 h/Mpc (z = 0.3) |
+|---|---|---|
+| kernel only, canonical | 1.0059 | 1.006, 1.011, 1.015, 1.024 |
+| kernel only, alt | 1.0087 | 1.010, 1.016, 1.022, 1.033 |
+| kicks only | 0.9954 | 0.999, 0.989, 0.947, 0.840 |
+| kernel + kicks, canonical | 1.0013 | 1.005, 0.999, 0.960, 0.856 |
+| kernel + kicks, alt | 1.0041 | 1.008, 1.005, 0.968, 0.865 |
+
+**Verdicts.** V1 the kernel alone lifts σ₈ by 0.6% and 0.9%, reproducing L180's analytic +1.1%/+1.5% and validating the implementation. V2 the kicks alone lower σ₈ by 0.5%. V3 the combination gives **S8 = 0.843 (canonical) / 0.845 (alt)** against ΛCDM's 0.842. V4 [correction to my expectation that the kicks would lower S8] the two effects **very nearly cancel at eight megaparsecs**, so the combination's S8 is statistically indistinguishable from ΛCDM's: it sits 2.7σ from KiDS-1000 where ΛCDM itself sits 2.6σ. **The framework inherits the weak-lensing tension without resolving or worsening it, and S8 is not a discriminator.** V5 the effects do not cancel scale by scale: the kernel lifts the largest scales while the kicks bite hardest on the smallest, so the combination predicts a **tilt** in the shear power, from 1.005 at k = 0.2 h/Mpc to 0.856 at k = 2 h/Mpc. That tilt, not S8 itself, is what a survey can test.
+
+**Limits.** 100 Mpc/h box and 192³ mesh, so absolute σ₈ carries a resolution offset and only ratios are read; virialised regions identified by overdensity above 200; the kicked population's later cooling is not modelled; no baryonic feedback; the sector's amount is imposed as ΛCDM's cold-matter share.
+
+## L198 — NGC 1052-DF2: the universal retained fraction is in tension at the far distance (2026-09-12)
+
+**Why this object.** Two things meet in it. The external field effect is the one prediction a kernel makes that a dark halo cannot imitate, and DF2 sits close enough to NGC 1052 for its neighbour to set the boost. And L191 predicted a **universal** retained fraction of e^{−n} ≈ 0.135 in every galaxy whose escape speed is below the kick speed, which DF2 is reported to lack entirely.
+
+**Computed** (half-mass estimator, boost from ν at whichever acceleration dominates, both footings, both disputed distances; inputs at 20 Mpc: stellar mass 2.0e8 M☉, R_e = 2.2 kpc, projected separation 80 kpc, all scaling with distance):
+
+| case (20 Mpc) | σ predicted | vs Danieli 8.5 ± 2.5 | vs Emsellem 10.8 ± 3.5 |
+|---|---|---|---|
+| stars only, canonical | 12.1 km/s | +1.4σ | +0.4σ |
+| stars only, alt | 12.4 km/s | +1.5σ | +0.4σ |
+| stars + retained sector, canonical | 16.5 km/s | **+3.2σ** | +1.6σ |
+| stars + retained sector, alt | 16.9 km/s | **+3.4σ** | +1.7σ |
+
+**Verdicts (6/6).** V1 the external field exceeds DF2's own internal field on both footings, so the object is genuinely in the regime where a kernel and a halo differ. V2 [correction] the external field lowers the prediction by about 20%, not by a factor: both accelerations are well below a₀, so the neighbour softens the boost rather than switching it off. V3 **stars alone are fine**, within 1.5σ of both measurements. V4 **the universal floor is what is in tension**: adding the 13.5% retained sector pushes the prediction 3.2–3.4σ above the tighter measurement. V5 at the nearer disputed distance the same sector falls within 1.2σ, so **the tension is a statement about the far distance and cannot be settled until the distance is**. V6 [correction, I had the sign backwards] a *heavier* NGC 1052 **relieves** the tension, because a larger external field means a smaller boost: tripling the neighbour's mass drops the prediction by about 2 km/s.
+
+**Reading.** The kernel is not what DF2 strains. What it strains is the universal retained fraction that L191 predicts, and only at the far distance. Three escapes are on the table and all are quantitative rather than rhetorical: the distance dispute, a heavier neighbour, and tidal stripping of a satellite this close to a giant. The repository's standing UDG liability (the Coma discrepancy at 4.9σ) means this territory has not been friendly and should not be claimed as a win either way.
+
+**Limits.** Half-mass estimator, isotropic and spherical; the simple external-field prescription with no directional factor, which would lower every number here; NFW with c = 10 and an abundance-matched halo mass for the retained sector; projected separation used as the true one, so the external field is an upper bound; no tidal stripping modelled.
