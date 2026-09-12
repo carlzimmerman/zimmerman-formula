@@ -86,3 +86,8 @@ No old action or gate threshold was edited. The earlier checkpoint's main
 files landed in concurrent commit `9b97161a6`; `056a4159e` was only its file
 index cleanup. This continuation is a separate scoped commit, not a rewrite
 of either shared commit.
+
+The first staged whitespace check exited 2 only because the preserved raw
+L191 run_002 stdout ends with an extra blank line. Its log and provenance
+hash were not changed. The source/document/data-only staged check is used
+before commit; raw experimental logs remain verbatim.
