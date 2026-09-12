@@ -1,0 +1,299 @@
+{
+  "checks": {
+    "radial_action_matches_covariant": true,
+    "radial_second_derivative_cancels": true,
+    "regular_center_has_zero_flux": true,
+    "all_snapshot_roots_classified": true,
+    "nonzero_zero_flux_root_exists": true,
+    "actual_clock_dependence_nonzero": true
+  },
+  "covariant_current": "J^mu=-2(P_X+gamma Box chi) nabla^mu chi + 2 s W_Y h^{mu nu} chi_nu - gamma nabla^mu X",
+  "radial_current": "-2*F*(F*K*N**3*gamma*p**2 + N**3*PX*p - N**2*WY*p - Np*Q**2*gamma)/N**3",
+  "time_current": "2*Q*(PX + gamma*(F*pp + 2*F*Rp*p/R + F*Np*p/N + Fp*p/2))/N**2",
+  "explicit_time_derivative": "2*PXtau*Q/N**2",
+  "geometric_convention": "K=Nprime/N+2Rprime/R; R=r for spheres, R=constant for planes",
+  "reduced_action_warning": "The reduced radial momentum gives J^r, but its radial derivative alone is NOT the full chi Euler equation when partial_t(D J^t) is nonzero.",
+  "continuity": {
+    "local_law": "partial_t[(N R^2/sqrt(F)) J^t]+partial_r[(N R^2/sqrt(F)) J^r]=0",
+    "spherical_charge": "C(<r,t)=4 pi integral_0^r (N u^2/sqrt(F)) J^t du",
+    "regularity": "A smooth center has N finite positive, F->1 and finite physical radial current, hence center flux=0.",
+    "stationarity": "Only partial_t C=0 plus no center flux implies zero outer flux. A decreasing C permits positive outward flux."
+  },
+  "root_algebra": {
+    "definitions": {
+      "A": "d U/[U-2d(Q^2/N^2-Fp^2)]+3gamma qbar Hbar-d/[N sqrt(1+Fp^2/ell)]",
+      "D": "U-2d Q^2/N^2+2d Fp^2",
+      "S": "1+Fp^2/ell",
+      "a": "gamma F (Nprime/N+2Rprime/R)",
+      "c": "3gamma qbar Hbar",
+      "e": "gamma Q^2 Nprime/N^3",
+      "H": "(a p^2+c p-e)D+d U p"
+    },
+    "all_roots": "Exactly the real p with D>0, S>0, polynomial=0 and p H>=0, for N,d>0. The last condition rejects roots introduced by squaring.",
+    "maximum_degree": 10,
+    "special_cases": [
+      "gamma=0: p=0 or A(p^2,t)=0; A nonzero is an additional hypothesis.",
+      "gamma!=0 and Nprime!=0 and Q!=0: p=0 is not even a zero-current root.",
+      "flat sphere: p=0 or A(p^2,t)+2gamma p/r=0.",
+      "flat plane: p=0 or A(p^2,t)=0; the one-dimensional cubic radial current cancels exactly."
+    ]
+  },
+  "center_series": {
+    "slope": "-A0/(2*gamma)",
+    "cubic_coefficient": "-A0**2*AY/(8*gamma**3)",
+    "checked_residual_through_cubic": "0",
+    "scope": "Flat spherical instantaneous zero-current branch. If gamma and A0 are nonzero, p=-(A0/2gamma)r+O(r^3) is nontrivial and regular; no time-stationarity or Einstein solution follows."
+  },
+  "frozen_slice": {
+    "coefficients": {
+      "qbar": 0.9090909090909091,
+      "U": 0.009090909090909092,
+      "d": 0.005000000000000001,
+      "Hbar": 0.5163977794943222,
+      "ell": 0.04132231404958678,
+      "Q": 0.9078321505772312,
+      "gamma": 1e-06
+    },
+    "geometry": {
+      "N": 1,
+      "F": 1,
+      "Nprime": 0,
+      "r": 1
+    },
+    "PXtau_at_p_zero": -0.03228726816147054,
+    "dJt_dt_at_p_zero": -0.05862284018258313,
+    "time_dependence_rows": [
+      {
+        "Y": 0.0,
+        "X": 0.8241592136216807,
+        "P_Xtau": -0.03228726816147076,
+        "dJt_dt": -0.058622840182583534
+      },
+      {
+        "Y": 0.0001,
+        "X": 0.8240592136216807,
+        "P_Xtau": -0.03228004103577686,
+        "dJt_dt": -0.058609718148461165
+      },
+      {
+        "Y": 0.001,
+        "X": 0.8231592136216807,
+        "P_Xtau": -0.03221256765576519,
+        "dJt_dt": -0.058487209141095745
+      },
+      {
+        "Y": 0.04132231404958678,
+        "X": 0.7828368995720939,
+        "P_Xtau": -0.027482348263389744,
+        "dJt_dt": -0.04989871865373109
+      },
+      {
+        "Y": 0.7417432922595126,
+        "X": 0.08241592136216802,
+        "P_Xtau": -0.0057300152870079155,
+        "dJt_dt": -0.010403784201689614
+      }
+    ],
+    "small_radius_witness": {
+      "r": 1e-08,
+      "p": -0.0002426015877862721,
+      "pp": -24260.125252194677,
+      "X": 0.8241591547661502,
+      "Y": 5.885553039642029e-08,
+      "bracket": [
+        -0.001,
+        -1e-12
+      ],
+      "xtol": 1e-17,
+      "rtol": 1e-14,
+      "reduced_original_current": -1.0164395367051604e-20,
+      "covariant_original_current": -1.0164395367051604e-20,
+      "Jt": -0.034969928321310656,
+      "dJt_dt": -0.05862283248915736,
+      "warning": "An instantaneous regular-center zero-current branch on a prescribed flat test slice, not stationary Einstein data."
+    },
+    "polynomial_degree": 10,
+    "polynomial": "25000000000000010000000000000001*p**10/2582644628099173750000000000000000000000000000 + 1760446975548826403601441793200425186939651421057976906062946803*p**9/129132231404958687500000000000000000000000000000000000000000000000000000000000 + 176763368395771291686696202772462007109685121305446137882214890809742049266675675025336007920809*p**8/25826446280991737500000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000 + 4439210908635789156932512360702414444505913307194582343671714912555602916197710997838354663731637*p**7/100884555785123974609375000000000000000000000000000000000000000000000000000000000000000000000000000000000000 - 49817095932495304778241623446344501280520553014335753276368283075641821008739021589549221568173901983516501519193045562831400893489*p**6/20176911157024794921875000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000 + 5106150510529388401903691621011240080122525521494194688159172013126591987395883303734479654970177825314092445412441135861461*p**5/919137716701202392578125000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000 + 3126113099107065187166975806599620193463992351492158678769611432924106095268889569812361569764727049098244416518339548435220972973019462879670435706306931954699769*p**4/63052847365702484130859375000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000 + 1178171753724153335020149587440530013169506771739659417347339404615527867034011900478558729877150382573506637030029809600481123*p**3/7629394531250000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000 + 3125291384660512943080684723783241729570745599221000644944885688762797676748896820222034658113158376168107397055494982525729292570265775939805568441994431954699769*p**2/1525878906250000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+    "polynomial_coefficients_descending": [
+      "25000000000000010000000000000001/2582644628099173750000000000000000000000000000",
+      "1760446975548826403601441793200425186939651421057976906062946803/129132231404958687500000000000000000000000000000000000000000000000000000000000",
+      "176763368395771291686696202772462007109685121305446137882214890809742049266675675025336007920809/25826446280991737500000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+      "4439210908635789156932512360702414444505913307194582343671714912555602916197710997838354663731637/100884555785123974609375000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+      "-49817095932495304778241623446344501280520553014335753276368283075641821008739021589549221568173901983516501519193045562831400893489/20176911157024794921875000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+      "5106150510529388401903691621011240080122525521494194688159172013126591987395883303734479654970177825314092445412441135861461/919137716701202392578125000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+      "3126113099107065187166975806599620193463992351492158678769611432924106095268889569812361569764727049098244416518339548435220972973019462879670435706306931954699769/63052847365702484130859375000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+      "1178171753724153335020149587440530013169506771739659417347339404615527867034011900478558729877150382573506637030029809600481123/7629394531250000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+      "3125291384660512943080684723783241729570745599221000644944885688762797676748896820222034658113158376168107397055494982525729292570265775939805568441994431954699769/1525878906250000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+      "0",
+      "0"
+    ],
+    "real_polynomial_roots": 5,
+    "real_polynomial_roots_with_multiplicity": 6,
+    "candidates": [
+      {
+        "p": -24.84244058204123,
+        "interval": [
+          "-329170152581445258/13250314577360993",
+          "-463680448296673129/18664850853336481"
+        ],
+        "multiplicity": 1,
+        "domain": true,
+        "unsquared_sign": false,
+        "sign_certified": true,
+        "current": -0.00406544203824566,
+        "accepted": false,
+        "X": -616.3226948586274,
+        "chi_timelike": false,
+        "coefficient_A": -3.21396486122833e-05
+      },
+      {
+        "p": -4.323548015373877,
+        "interval": [
+          "-44532309829823401/10299945709281661",
+          "-52236744970083824/12081916237390665"
+        ],
+        "multiplicity": 1,
+        "domain": true,
+        "unsquared_sign": true,
+        "sign_certified": true,
+        "current": -1.6444594306473388e-36,
+        "accepted": true,
+        "X": -17.868908227621706,
+        "chi_timelike": false,
+        "coefficient_A": 8.647096030747753e-06,
+        "source_float64_current": -2.303929616531697e-19
+      },
+      {
+        "p": 0.0,
+        "interval": [
+          "0",
+          "0"
+        ],
+        "multiplicity": 2,
+        "domain": true,
+        "unsquared_sign": true,
+        "sign_certified": true,
+        "current": 0.0,
+        "accepted": true,
+        "X": 0.8241592136216805,
+        "chi_timelike": true,
+        "coefficient_A": 0.04852035108375512,
+        "source_float64_current": -0.0
+      },
+      {
+        "p": 4.693300539870391,
+        "interval": [
+          "10007863276531813/2132372131618954",
+          "242523064182273708/51674309395274987"
+        ],
+        "multiplicity": 1,
+        "domain": true,
+        "unsquared_sign": true,
+        "sign_certified": true,
+        "current": -1.1106017642622323e-36,
+        "accepted": true,
+        "X": -21.202910743926022,
+        "chi_timelike": false,
+        "coefficient_A": -9.386601079740781e-06,
+        "source_float64_current": 4.0657581468206416e-20
+      },
+      {
+        "p": 19.430556349714983,
+        "interval": [
+          "192005678590764281/9881635663694247",
+          "370204041943912205/19052673288448714"
+        ],
+        "multiplicity": 1,
+        "domain": true,
+        "unsquared_sign": true,
+        "sign_certified": true,
+        "current": 1.3470136399058048e-37,
+        "accepted": true,
+        "X": -376.72236084582755,
+        "chi_timelike": false,
+        "coefficient_A": -3.886111269942997e-05,
+        "source_float64_current": -2.168404344971009e-19
+      }
+    ],
+    "accepted_roots": [
+      {
+        "p": -4.323548015373877,
+        "interval": [
+          "-44532309829823401/10299945709281661",
+          "-52236744970083824/12081916237390665"
+        ],
+        "multiplicity": 1,
+        "domain": true,
+        "unsquared_sign": true,
+        "sign_certified": true,
+        "current": -1.6444594306473388e-36,
+        "accepted": true,
+        "X": -17.868908227621706,
+        "chi_timelike": false,
+        "coefficient_A": 8.647096030747753e-06,
+        "source_float64_current": -2.303929616531697e-19
+      },
+      {
+        "p": 0.0,
+        "interval": [
+          "0",
+          "0"
+        ],
+        "multiplicity": 2,
+        "domain": true,
+        "unsquared_sign": true,
+        "sign_certified": true,
+        "current": 0.0,
+        "accepted": true,
+        "X": 0.8241592136216805,
+        "chi_timelike": true,
+        "coefficient_A": 0.04852035108375512,
+        "source_float64_current": -0.0
+      },
+      {
+        "p": 4.693300539870391,
+        "interval": [
+          "10007863276531813/2132372131618954",
+          "242523064182273708/51674309395274987"
+        ],
+        "multiplicity": 1,
+        "domain": true,
+        "unsquared_sign": true,
+        "sign_certified": true,
+        "current": -1.1106017642622323e-36,
+        "accepted": true,
+        "X": -21.202910743926022,
+        "chi_timelike": false,
+        "coefficient_A": -9.386601079740781e-06,
+        "source_float64_current": 4.0657581468206416e-20
+      },
+      {
+        "p": 19.430556349714983,
+        "interval": [
+          "192005678590764281/9881635663694247",
+          "370204041943912205/19052673288448714"
+        ],
+        "multiplicity": 1,
+        "domain": true,
+        "unsquared_sign": true,
+        "sign_certified": true,
+        "current": 1.3470136399058048e-37,
+        "accepted": true,
+        "X": -376.72236084582755,
+        "chi_timelike": false,
+        "coefficient_A": -3.886111269942997e-05,
+        "source_float64_current": -2.168404344971009e-19
+      }
+    ],
+    "all_roots_classified": true,
+    "scope": "Exhaustive real-root isolation of one recorded rationalized polynomial; no assertion of global branch, Einstein constraints, timelike chi, stability, or persistent stationarity.",
+    "coefficient_policy": "All coefficients are unchanged source evaluations. Exact rationals serialize this binary64 slice only; they are not new constitutive functions or fitted coefficients."
+  },
+  "verdict": "Regular stationary charge with no center source cannot carry nonzero net outward shift flux. Charge depletion need not be stationary. Zero flux does not imply zero scalar gradient for this action.",
+  "non_claims": [
+    "No galaxy or full Einstein/scalar/clock solution has been constructed.",
+    "No stability or physical admissibility follows from any isolated zero-current root.",
+    "The polynomial root count is only for the recorded rationalized source snapshot.",
+    "Time-varying charge, sources, singular centers, horizons, or nonstationary geometry alter the stationary-flux conclusion."
+  ]
+}
