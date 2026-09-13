@@ -6725,3 +6725,36 @@ Monte Carlo at Y = 2, n = 2: 0.8632 against the closed form 0.8611. Under this p
 **Entropic and holographic derivations.** No published derivation produces this family beyond the **n = 1** member, which modified-Rényi entropic gravity gives exactly. Milgrom 1999 gives an algebraic branch-point form; Verlinde gives no interpolating function at all; Pazy–Argaman and Li–Chang both give a dilogarithm/Debye form with a 1/x tail. **Every factor of two in that literature sits in the acceleration scale, never in the exponent.** And the thermal-screen derivations have **exponentially small** deep-MOND corrections where this family's are **analytic** — a structural mismatch worth holding against the whole screen approach.
 
 **EFT positivity and causality.** Positivity bounds are **inapplicable**: with μ(0) = 0 the fluctuation kinetic matrix degenerates at zero gradient, so there is no propagator and no S-matrix — the premises are absent, for every n. And AQUAL is not a derivative expansion. Even granting them, the one scale-free invariant is **9(n+1)/(16n)**, continuous and monotone, so a bound could exclude a range but **never select an integer**. ⚠️ **A notable by-product: every MOND interpolating function is superluminal in the deep regime**, with c∥² = 1 + d ln μ/d ln Y = **2 exactly** for the simple, standard, exponential and this family alike — non-discriminating, and the known escape is a **disformal matter coupling**, which this programme already has (L215). Nobody has aimed positivity or causality at MOND interpolating functions before. Committed as `hunt_2026/eft01_positivity_causality_mu_family_2026.py`, 14/14.
+
+## L238 — HUNTING THE TWO MODES: the obvious answer dies, and the reading is pinned to d = 3 (2026-09-13)
+
+**V1, V2 — THEY ARE NOT UNRUH MODES.** An accelerating body sees a bath at T = g/2π, and a thermal mode of frequency s/2π *does* give occupancy g/s — but only in the classical, high-occupancy limit. Deep in the low-acceleration regime, the only regime MOND is about:
+
+| Y = g/s | required occupancy | Unruh thermal gives | ratio |
+|---|---|---|---|
+| 1 | 1 | 0.582 | 1.7 |
+| 0.1 | 0.1 | 4.5e-5 | 2.2e3 |
+| 0.01 | 0.01 | 3.7e-44 | **2.7e41** |
+
+**Forty-one orders.** A thermal occupancy is exponentially small at low temperature and this reading needs it **linear**. So the modes are not Unruh modes, nor any fixed-frequency thermal modes. That independently matches the mismatch the entropic-literature search reported: screen derivations give exponentially small deep corrections, this family's are analytic.
+
+**V3 — what they must be instead.** Occupancy exactly g/s at *all* accelerations is an **equipartition statement** — how many quanta of the dark-energy acceleration fit into this one — **not a Boltzmann one**. Whatever these modes are, they are not a heat bath.
+
+**V4 — ★ and the reading is pinned to THREE spatial dimensions.** Milgrom's conformally invariant deep limit in d spatial dimensions is the p-Laplacian at p = d, needing μ ∝ x^{d−2}. The photocount form is **always linear**. They agree only at **d = 3**.
+
+**V5 — which removes the one handle that would identify the modes.**
+
+| candidate count | formula | at d = 3 | dimension-dependent |
+|---|---|---|---|
+| transverse directions | d − 1 | 2 | yes |
+| graviton polarisations | (d+1)(d−2)/2 | 2 | yes |
+| screen dimensions | d − 1 | 2 | yes |
+| branches of the gradient invariant | 2 | 2 | no |
+
+All four give 2 in three dimensions; three would differ elsewhere. **The dimension is the discriminator, and the reading does not survive changing it.** An unusually clean way to be stuck.
+
+**V6 — three routes out**, of which the most tractable is: **find a generalisation of the family whose deep power is d − 2 rather than 1.** That restores the dimensional handle and makes the mode count checkable against the d-dimensional MOND literature. Concrete, and not done.
+
+**V7 — the honest position.** ASKED: find the two modes. **FOUND:** they are not Unruh or any fixed-frequency thermal modes (killed at 41 orders); their occupancy must be exactly linear, an equipartition statement; and the reading holds only in d = 3. **NOT FOUND:** what they are.
+
+**Limits.** The Unruh test uses a single fixed-frequency mode; a *distribution* of frequencies could in principle give linear occupancy and is **not excluded here** — though a Gamma-distributed rate is exactly what generates this family, so that route risks assuming the answer. The d-dimensional power is quoted from Milgrom's conformal argument. The candidate counts are not exhaustive. 7/7.
