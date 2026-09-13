@@ -6545,3 +6545,30 @@ exactly, where c is the function's deep-MOND slope with the function normalised 
 **Limits.** Single-field AQUAL only; the clock sector is not carried, so this speaks to the coefficient and not the rest of the construction. Deep and high-acceleration limits used; the interpolation between them is not solved. The slope is read at the non-analytic origin, so it is the leading coefficient rather than an ordinary derivative. The four shapes are the standard ones and are not exhaustive. 8/8.
 
 **Lean.** 157 theorems, exit 0, zero `sorry`, axioms ⊆ {propext, Classical.choice, Quot.sound}.
+
+## L231 — THE CURVE EXISTS: μ(Y) = 1 − 1/(1+Y)², but it is not selected (2026-09-12)
+
+**V1, V2 — a family whose slope is an integer, not a dial.** For μ_n(Y) = 1 − (1+Y)^{−n} the deep-MOND slope **equals the exponent exactly** and the function saturates at 1 for every member. So the member with slope 2 is
+
+  **μ(Y) = 1 − 1/(1+Y)²**,  no free coefficient anywhere,  **κ = 1/2 exactly.**
+
+That is the curve L230 demanded.
+
+**V3 — and galaxies do not reject it.** Across four decades of baryonic acceleration it tracks the framework's kernel to **0.0264 dex**, against an observed RAR scatter of 0.11 dex and an intrinsic 0.045. Allowed.
+
+**V4 — but it is NOT the best fit, and that pulls the other way.**
+
+| n | κ = 1/n | max \|dex\| | rms dex |
+|---|---|---|---|
+| **1** | 1.000 | 0.0199 | **0.0107** |
+| **2** | **0.500** | 0.0264 | 0.0154 |
+| 3 | 0.333 | 0.0406 | 0.0234 |
+| 8 | 0.125 | 0.0600 | 0.0336 |
+
+**n = 1 fits the kernel 1.44× better than n = 2** — and n = 1 implies κ = 1, which the κ measurements exclude at 7σ. **The rotation curves lean one way and the dark-energy normalisation the other**, with both inside the scatter so neither decides. *An earlier draft of this lane asserted n = 2 was the best fit. It is not, and that is corrected.*
+
+**V5–V7 — what kind of gap is left.** The observed scatter admits n ∈ {1,2,3,4,8}; the intrinsic admits {1,2,3}. So this is a **consistency check, not a measurement of the slope**. Choosing n = 2 from the integers is weaker freedom than a continuous coefficient but is **still freedom**. The arc: a free function (L226) → two continuous numbers (L229) → one number (L230) → **one integer** (here).
+
+**V8 — verdict.** FOUND: a parameter-free curve with slope 2 giving κ = ½ exactly and lying inside the RAR scatter. **NOT FOUND:** a reason for the exponent. **NOT SUPPORTED:** preference over n = 1.
+
+**⚠️ RIGOUR LIMIT, stated at the top of the next lane's work.** This comparison is against **ν_RAR, which is itself a fit**, not against data. "n = 1 fits better" is therefore a statement about ν_RAR's shape, not about galaxies. A real test requires SPARC with a₀ and the mass-to-light ratio profiled. Single-field AQUAL only; the clock sector is not carried. Five members tested, not all. 8/8.
