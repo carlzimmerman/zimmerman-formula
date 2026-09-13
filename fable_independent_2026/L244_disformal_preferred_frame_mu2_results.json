@@ -1,0 +1,32 @@
+{
+ "checks": [
+  {
+   "name": "V1 [mu_2's kernel correction is tiny at solar-system accelerations, despite its power-law tail] 1 - mu_2 = 4/(2+x)^2 is evaluated where the preferred-frame observables are measured (<= Neptune)",
+   "measured": "the largest kernel correction inside Neptune's orbit is 8.07e-10 (at Neptune); at Saturn 8.12e-12; at 1 AU 9.96e-16",
+   "pass": true,
+   "reading": "mu_2's approach to Newton is a power law, 4/x^2, vastly larger than the exponential kernel's e^-x -- yet it is still below 1e-9 out to Neptune, because solar-system accelerations are 1e4 to 1e7 times a_0. The kernel is essentially exactly 1 wherever the preferred-frame sector is measured"
+  },
+  {
+   "name": "V2 [the kernel's contribution to any PPN parameter is bounded by 1-mu_2 at the local field, which is orders below the alpha bounds] the worst-case inner-system kernel correction is compared with the alpha_1 and alpha_2 bounds",
+   "measured": "worst inner correction 8.07e-10 is 1e+05x below the alpha_1 bound (0.0001) and 2e+02x below the alpha_2 bound (2e-07)",
+   "pass": true,
+   "reading": "the interpolating function enters the field equations only through mu(|D ln N|/a0) in the LAPSE constraint; the preferred-frame parameters live in the g_0i gravito-magnetic sector for a source moving at w ~ 369 km/s, sourced by the SAME solar-scale potentials where mu = 1 to 1 part in 1e9 or better. So alpha_1(mu_2) = alpha_1(any kernel) to that precision -- the a0-scale physics that distinguishes kernels never enters this sector"
+  },
+  {
+   "name": "V3 [therefore mu_2 INHERITS the disformal sector's preferred-frame verdict, which is an O(1) violation the kernel cannot repair] the programme's committed PPN gates are cited for the value alpha_1 takes, since the kernel is now shown not to change it",
+   "measured": "the MMG/khronometric gate gives alpha_1 = 4 (4.0e4x the bound, un-tunable, ppn_mmg_gate_2026.py); the AeST vector sector gives alpha_1 = -2(K_B+2) = O(1) with K_B <~ 0.25 from BBN; both are set by the vector/constraint structure, not the kernel, and V2 shows mu_2 leaves them unchanged to < 1e-9",
+   "pass": true,
+   "reading": "this is inherited, not re-derived: L244's contribution is proving the kernel swap to mu_2 cannot touch these O(1) failures, closing the specific escape the user asked about. The disformal preferred-frame pincer stands with mu_2 exactly as with nu_RAR"
+  },
+  {
+   "name": "V4 [mu_2 is either too active or completely inert -- there is no scale where it helps] the kernel correction at the galactic external field (where the EFE quadrupole lives) is contrasted with the solar-system scales (where the PPN alphas live)",
+   "measured": "at the galactic external field x = 2.48, 1-mu_2 = 0.199 (order unity -> the large EFE quadrupole L243 found, 6.4x Cassini); at solar-system x >= 7e5, 1-mu_2 <= 8e-10 (kernel inert -> inherits the O(1) alpha_1 failure)",
+   "pass": true,
+   "reading": "the two horns fail for COMPLEMENTARY reasons. Where the kernel is active (x ~ 1, the external-field quadrupole) it is too active and overshoots Cassini (L243). Where it could rescue the preferred-frame parameters (x >> 1, the g_0i sector) it is inert and inherits the structural O(1) violation. There is no acceleration scale at which mu_2's shape does the job the theory needs"
+  }
+ ],
+ "n_pass": 4,
+ "n_fail": 0,
+ "worst_inner_kernel_corr": 8.07110007927584e-10,
+ "dmu_at_efe": 0.1994650021793551
+}

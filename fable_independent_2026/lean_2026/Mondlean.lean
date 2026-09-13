@@ -9,7 +9,7 @@
   flat a₀(z), subdominant scalar GW) confronting DATA — not by Lean, and not while the intrinsic BBN
   fine-tuning (L84/L87) and astra's open ADM/khronon gates stand.
 
-  Theorems (167 as of 2026-09-13; all: exit 0, zero `sorry`, axioms ⊆ {propext, Classical.choice, Quot.sound}):
+  Theorems (168 as of 2026-09-13; all: exit 0, zero `sorry`, axioms ⊆ {propext, Classical.choice, Quot.sound}):
     hasDerivAt_G, hasDerivAt_Gp   — Gp = dG/dy and Gpp = d²G/dy² proven (not merely asserted).
     kernel_identity               — MOND kernel G'(y)/(2y) = 1 − e^{-y}.
     Gpp_zero, Gpp_pos             — health dichotomy: G''(0)=0, G''(y)>0 ∀ y>0 (no ghost off zero field).
@@ -1677,4 +1677,14 @@ theorem onefunction_kernel_cancellation_free (x : ℝ) (hx : 1 + x/2 ≠ 0) :
     1 - 1 / (1 + x/2)^2 = (x + x^2/4) / (1 + x/2)^2 := by
   have h2 : (1 + x/2)^2 ≠ 0 := pow_ne_zero 2 hx
   rw [eq_div_iff h2, sub_mul, div_mul_cancel₀ _ h2, one_mul]
+  ring
+
+/-- L244: the OneFunction's Newtonian tail is a power law.  The kernel correction 1-mu_2 equals
+4/(2+x)^2 exactly, so at solar-system accelerations (x ~ 1e5-1e7) it is ~1e-11 or smaller --
+far below the preferred-frame PPN bounds (alpha_1 < 1e-4).  The interpolating kernel is inert
+where the preferred-frame parameters are measured, so it cannot repair their O(1) violation. -/
+theorem onefunction_newtonian_tail (x : ℝ) (hx : 2 + x ≠ 0) :
+    1 / (1 + x/2)^2 = 4 / (2 + x)^2 := by
+  have hx2 : (1 + x/2) ≠ 0 := by intro h; apply hx; linarith
+  rw [div_eq_div_iff (pow_ne_zero 2 hx2) (pow_ne_zero 2 hx)]
   ring

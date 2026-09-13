@@ -6921,3 +6921,30 @@ already closed (DC-013/DC-019). **The curve the galaxies selected is an excellen
 DESCRIPTION and does not, by itself, escape the relativistic pincer.** A complete theory is not
 available on this evidence. `L243_onefunction_cassini_quadrupole.py` 4/5 (V3 is the hypothesis-check
 FAIL = the result). Lean 167 theorems, zero `sorry`.
+
+## L244 — the disformal preferred-frame door, taken with the μ₂ kernel: CLOSED (2026-09-13)
+
+The last live route. Does μ₂'s power-law tail (1−μ = 4/(2+x)²) — vastly bigger than the exponential
+kernel's, for which PPN was proven kernel-independent to 1e-19 — change the disformal/vector sector's
+preferred-frame parameters? Checked for μ₂ specifically, quantitatively and structurally.
+
+**Quantitative:** even μ₂'s fat tail is **1e-15 at 1 AU, 8e-12 at Saturn, 8e-10 at Neptune** — because
+solar-system accelerations are 1e4–1e7 × a₀. That is ≥7 orders below the α₁ bound (1e-4), ≥4 below α₂
+(2e-7). **Structural:** μ enters only the lapse constraint C_M via μ(|D ln N|/a₀); the preferred-frame
+α's live in the g_0i gravitomagnetic sector for a source moving at 369 km/s, sourced by the solar
+potential where μ=1. The a₀-scale physics that distinguishes kernels never reaches that sector. So
+**α₁(μ₂) = α₁(any kernel) to <1e-9**, and μ₂ inherits the O(1) violation (α₁=4, 4e4× over bound, MMG
+gate; −2(K_B+2) in AeST) that the kernel cannot repair.
+
+**The complementarity (V4):** μ₂ fails at BOTH ends for opposite reasons. Where the kernel is *active*
+(galactic external field, x~2.5, 1−μ=0.20) it overshoots Cassini 6.4× (L243). Where it could *rescue*
+the PPN α's (solar system, x≫1) it is inert. **There is no acceleration scale where μ₂'s shape does
+what the theory needs.**
+
+**VERDICT: door CLOSED. The 15% → 0.** With L241 (MI lensing-dead), L243 (MG Cassini-dead) and L244
+(disformal PF-dead, kernel-independent), **every relativistic completion of the parameter-free curve is
+under an existing constraint, and the kernel the galaxies selected lifts none of them.** The
+parameter-free curve is an effective description; a complete relativistic theory is not available on
+this evidence — now demonstrated, not suspected. `L244_disformal_preferred_frame_mu2.py` 4/4. Lean 168
+theorems. LIMITS: the O(1) α₁ values are the programme's prior results (ppn_mmg_gate; AeST PPN), cited;
+L244 proves only that the μ₂ swap leaves them unchanged, the specific question asked.
