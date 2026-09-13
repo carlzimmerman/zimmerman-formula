@@ -9,7 +9,7 @@
   flat a₀(z), subdominant scalar GW) confronting DATA — not by Lean, and not while the intrinsic BBN
   fine-tuning (L84/L87) and astra's open ADM/khronon gates stand.
 
-  Theorems (145 as of 2026-09-12; all: exit 0, zero `sorry`, axioms ⊆ {propext, Classical.choice, Quot.sound}):
+  Theorems (146 as of 2026-09-12; all: exit 0, zero `sorry`, axioms ⊆ {propext, Classical.choice, Quot.sound}):
     hasDerivAt_G, hasDerivAt_Gp   — Gp = dG/dy and Gpp = d²G/dy² proven (not merely asserted).
     kernel_identity               — MOND kernel G'(y)/(2y) = 1 − e^{-y}.
     Gpp_zero, Gpp_pos             — health dichotomy: G''(0)=0, G''(y)>0 ∀ y>0 (no ghost off zero field).
@@ -1477,3 +1477,11 @@ theorem margin_scales_as_root_of_the_coefficient (m1 m2 U1 U2 Q c : ℝ) (hc : c
     _ = m1 ^ 2 * (m2 ^ 2 * Q ^ 2) := by ring
     _ = m1 ^ 2 * (c * U2) := by rw [h2]
     _ = c * (m1 ^ 2 * U2) := by ring
+
+/-- **L222 V6.** The load-bearing half of L221, isolated. Because the conserved charge makes
+the margin scale as the square root of the coefficient, the margin only stops being small if
+the correction to that coefficient exceeds `2/m_rel`. No loop estimate is needed. -/
+theorem margin_stays_small_unless_correction_is_enormous (mrel dUU : ℝ) (hm : 0 < mrel)
+    (hd : 0 ≤ dUU) (hsmall : dUU < 2 / mrel) : dUU / 2 * mrel < 1 := by
+  rw [div_lt_iff₀ hm] at hsmall
+  nlinarith

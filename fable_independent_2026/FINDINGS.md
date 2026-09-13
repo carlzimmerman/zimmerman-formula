@@ -6287,3 +6287,34 @@ so **a small margin IS a large charge** — in that variable there is no differe
 **Limits.** The estimate is still one loop and still dimensional analysis; what changed is that the sound-speed factor and the cutoff's sound-speed dependence are **both** carried, and their cancellation is structural rather than numerical, so the result is far more robust than the one it replaces. No loop is computed anywhere in this programme. The charge is exactly conserved only in the dark sector; the matter coupling MOND requires breaks it at the rate L217 bounded, and that breaking is not re-examined here. a₀ does not enter, so the result is footing-independent and quoted once. 9/9.
 
 **Lean.** 145 theorems, exit 0, zero `sorry`, axioms ⊆ {propext, Classical.choice, Quot.sound}.
+
+## L222 — ADVERSARIAL AUDIT OF L221: three faults, and the conclusion survives for a different reason (2026-09-12)
+
+**Why.** Three lanes in a row corrected the one before them. That is a reason to attack L221 rather than bank it.
+
+**FAULT 1 — sU is not a cosmological-constant term, and BOTH lanes said it was.** In unitary gauge √−g·s·U = **a³U, lapse-independent**, while √−g·Λ = N a³Λ is not. They are different operators, so a vacuum-energy correction does not directly renormalise U. **L220 V1 asserted the opposite and L221 explicitly let it stand; both are withdrawn.** The scalar's quadratic operator does carry a lapse-independent gradient piece (√−g·sW_Y·(∇δχ)²/a² = a·d·(∇δχ)²), so U is renormalised by *something* — but the vacuum-energy formula both lanes used is the wrong vehicle for its coefficient.
+
+**FAULT 2 — L219 used the wrong sound speed and L221 inherited it.** L219 V3 computed c_s² = P_X/A = m_rel/(2−m_rel) from P(X) alone, dropping the cuscuton's own gradient contribution. L186's full result carries a factor **(1−s₀) = −1.5e7**: a different sign and seven orders. At zero gradient the physical sound speed is **imaginary** — that is L192's criticality driver — so the zero-point formula does not apply there at all. **L219 V3 is withdrawn**, and L219's cutoff *number* should not be quoted until recomputed.
+
+**FAULT 3 — L221's headline is nearly a tautology.** δU/U = 1/8 comes out identical at three sound speeds spanning twenty-two orders (1.4e-7, 5.3e-4, 7.7e-29), with ∂/∂c_s = 0. L221 read that as robustness. It is not: **U is the only dimensionful coefficient and the cutoff was derived from U, so δU ∝ U is forced by dimensions before any physics enters.** The content is the pure number, which such an estimate fixes to about an order. **The honest statement is δU/U = O(1): U is marginally radiatively stable** — neither L220's catastrophe nor L221's clean protection.
+
+**AND YET THE CONCLUSION HOLDS**, on the other half of L221, which needs no loop estimate. The conserved charge makes the margin scale as √U, so the margin stops being small only if
+
+  **δU/U ≥ 2/m_rel = 5.3e13**
+
+(Lean `margin_stays_small_unless_correction_is_enormous`). **Even L220's own overstated 9.1e5 was eight orders short.** L220's error was not its loop estimate; it was comparing that estimate against the margin rather than against U, which presumes the margin is a cancellation of two independently corrected numbers when the charge says it is not.
+
+| claim | status |
+|---|---|
+| L220 V1 (U is a CC-type coefficient) | **WITHDRAWN here** |
+| L220 V2/V3 (δU/U = 9.1e5, m_rel ≥ 1/32) | stays withdrawn |
+| L220 V4–V6 (the pincer) | stays withdrawn; V6 here gives the robust reason |
+| L221 V1–V3 (the c_s factor, δU/U = 1/8) | **DOWNGRADED** to δU/U = O(1) |
+| L221 V5–V7 (margin is a charge, sensitivity ½) | **STANDS, exact, carries the result** |
+| L219 V3 (c_s² = m_rel/(2−m_rel)) | **WITHDRAWN** |
+
+One of six stands unmodified, and it is the one that carries the conclusion.
+
+**Limits.** This lane audits arguments; it computes no loop either. That the coefficient of the lapse-independent operator is O(1) is asserted on dimensional grounds — the same criticism made of the two lanes before it, the difference being that **the conclusion no longer depends on it**. Fault 2 propagates into L219's cutoff number, not recomputed here. Footing-independent. 8/8.
+
+**Lean.** 146 theorems, exit 0, zero `sorry`, axioms ⊆ {propext, Classical.choice, Quot.sound}.
