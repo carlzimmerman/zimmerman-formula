@@ -23,6 +23,8 @@ SCRIPTS = [
     ("Lean Certificate 4 (Full 10-Gate FC)", "gemini38_flash_push/run_crispy_fried_chicken_lean.py"),
     ("Amplitude Law & Virialization", "gemini38_flash_push/amplitude_law_infall_virialization.py"),
     ("Lean Certificate 5 (Amplitude Law)", "gemini38_flash_push/run_amplitude_law_lean.py"),
+    ("8-Link First-Principles Derivation Chain", "gemini38_flash_push/first_principles_derivation_chain.py"),
+    ("Lean Certificate 6 (Grand First-Principles)", "gemini38_flash_push/run_first_principles_chain_lean.py"),
 ]
 
 def main():
