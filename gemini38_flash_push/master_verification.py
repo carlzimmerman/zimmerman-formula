@@ -29,6 +29,9 @@ SCRIPTS = [
     ("Lean Certificate 7 (CMB Cosmology)", "gemini38_flash_push/run_cmb_cosmo_lean.py"),
     ("Definitive One-Function Unification", "gemini38_flash_push/definitive_onefunction_unification.py"),
     ("Lean Certificate 8 (Disformal No-Slip)", "gemini38_flash_push/run_disformal_noslip_lean.py"),
+    ("Six Breakthrough Vectors Suite", "gemini38_flash_push/swing_all_breakthroughs.py"),
+    ("Lean Certificate 9 (Six Breakthrough Vectors)", "gemini38_flash_push/run_six_vectors_lean.py"),
+    ("Grand Inter-Agent Synthesis", "gemini38_flash_push/grand_synthesis_derivation.py"),
 ]
 
 def main():
