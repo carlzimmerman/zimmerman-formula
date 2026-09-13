@@ -1,0 +1,192 @@
+
+========================================================================================================
+  W1  INDEPENDENT RECOMPUTATION OF THE NEWTONIAN FORCES -- a different method entirely
+========================================================================================================
+  THE RAY IDENTITY.  With r = r0 + s n_hat the Newtonian field is
+
+      g(r0) = G Int rho(r) (r - r0)/|r - r0|^3 dV = G Int dOmega n_hat Int_0^inf ds rho(r0 + s n_hat)
+
+  because dV = s^2 ds dOmega cancels the 1/s^2.  There is NO singularity at the field point even when
+  the field point sits inside the mass, and no Hankel transform, no k grid and no Bessel function
+  appears anywhere -- so this shares no failure mode with g02's solver.  The only numerical care
+  needed is that for a thin disc the ray integral has a 1/|cos theta| ridge at theta = pi/2 (rays
+  running along the plane), so cos theta is graded as A sinh(v).
+
+  W1a  validation on Miyamoto-Nagai (M=5e10 Msun, a=3 kpc, b=0.3 kpc -- as thin as the MW disc):
+      R,z [kpc]              gR ray      gR exact      err        gz ray      gz exact      err
+       8.18, 0.00      -8.3122e-11   -8.3122e-11   0.001%    1.8524e-27   -0.0000e+00   0.000%
+       8.18, 1.10      -7.4021e-11   -7.4020e-11   0.000%   -3.6154e-11   -3.6153e-11   0.004%
+       4.00, 1.10      -1.4615e-10   -1.4615e-10   0.001%   -1.4595e-10   -1.4594e-10   0.005%
+  [PASS] W1a the independent ray solver reproduces the exact Miyamoto-Nagai forces to better than 1%, so it is fit to audit g02's Hankel solver   (worst error 0.005%)
+
+  W1b  the McMillan 2017 model at the Sun, ray solver vs g02's Hankel solver:
+      quantity                             ray           g02      diff
+      |g_R|(R0, 0)                  1.2417e-10    1.2302e-10    +0.94%
+      |g_R|(R0, 1.1 kpc)            1.1136e-10    1.1133e-10    +0.03%
+      |g_z|(R0, 1.1 kpc)            5.3425e-11    5.3437e-11    -0.02%
+      Q = |g_R|(0)/|g_z|(1.1)       2.3243e+00    2.3022e+00    +0.96%
+  [PASS] W1c g02's Newtonian shape number Q is CONFIRMED by an independent solver to better than 2% -- the attack that follows is NOT about the mass model's forces   (ray Q = 2.3243 vs g02 Q = 2.3022 (+0.96%))
+  [PASS] W1d and so is the fact g02 leans on hardest -- |g_N| at the two evaluation points agrees to well under 1%, because the vertical pull is only ~0.48 of the radial one and adds in quadrature   (|g_N|(R0,1.1)/|g_N|(R0,0) = 0.99464; |g_z|/|g_R| = 0.480)
+
+========================================================================================================
+  W2  WHAT THE 0.10 SIGMA ACTUALLY MEASURES -- both 'arms' read the same local scalar
+========================================================================================================
+  Write out the three arms g02 finds to agree:
+
+      MI algebraic      S = nu(|g_N|(R0,1.1)/a0) / nu(|g_N|(R0,0)/a0)
+      MI orbit-avg A1   S = nu(<|g_N|>_orbit/a0)  / nu(|g_N|(R0,0)/a0)
+      MI gate A2        S = [1+|G(w_v)|(nu(|g_N|(R0,1.1)/a0)-1)] / [1+|G(w_r)|(nu(|g_N|(R0,0)/a0)-1)]
+
+  Every one of them takes |g_N| AT A POINT as the kernel's argument.  A theory whose prediction is a
+  function of the local field magnitude is an ALGEBRAIC MODIFIED-GRAVITY relation; it cannot know
+  which trajectory the particle is on, which is the one thing modified INERTIA is defined to know
+  (Milgrom 1994; 2011, arXiv:1111.1611).  For A2 the point is sharper still: over the committed and
+  upper thirds of its omega_c window |G| -> 1 at BOTH frequencies and the gate collapses exactly onto
+  the algebraic map, so its 'scan over four decades' is a scan over a region where the assumption is
+  inert.  The consequence is arithmetic:
+
+      S_MG / S_MI,algebraic = 1.0121 (canonical), 1.0129 (alt)
+      i.e. g02's whole arm-vs-arm separation, 0.0121, IS the QUMOND phantom's departure from the algebraic
+      MOND relation g = nu(|g_N|/a0) g_N in a flattened source -- a known ~1% disc effect that exists
+      entirely INSIDE modified gravity (g02's own M2 shows it goes to zero for a spherical source).
+  [PASS] W2a *** the quantity g02 reports as the modified-GRAVITY / modified-INERTIA separation is numerically the full-QUMOND vs ALGEBRAIC-MOND difference: both of its arms are functions of the same local |g_N|, which its own V5a records as differing by 0.38% between the two evaluation points, so the 0.10 sigma is guaranteed before any physics enters ***   (S_MG/S_MI,alg = 1.0121 / 1.0129; g02's M2 drives the same quantity to 1.00480 for a sphere)
+
+  A2's window, checked: |G(w)| = 1/sqrt(1+(w/omega_c)^2) at w = Omega and w = nu_z.
+      omega_c lo         |G(Omega)| = 0.9106, |G(nu_z)| = 0.7743
+      omega_c committed  |G(Omega)| = 0.9987, |G(nu_z)| = 0.9958
+      omega_c hi         |G(Omega)| = 1.0000, |G(nu_z)| = 1.0000
+  [PASS] W2b two thirds of the gate's 'theory-allowed window' have |G| > 0.99 at BOTH frequencies, i.e. the gate is switched OFF there and its agreement with the algebraic map is definitional, not a result   (min |G| per decade tier = [0.7743, 0.9958, 1.0])
+
+========================================================================================================
+  W3  AN MI PRESCRIPTION THAT IS NOT A LOCAL-FIELD MAP -- and what it does to the verdict
+========================================================================================================
+  MI IS NORMALISED ON CIRCULAR ORBITS BY ITS OWN ACCELERATION, NOT BY THE AMBIENT FIELD.  The one
+  place Milgrom's modified inertia is not free is the circular orbit, where the exact relation is
+  mu(a/a0) a = g_N with a = Omega^2 R: the kernel's argument is the acceleration OF THAT MOTION.  At
+  the Sun the circular motion's Newtonian acceleration is |g_R,bar(R0,0)| -- there is no vertical
+  component in it at all.  The vertical oscillation is the OTHER periodic motion available at the same
+  place, and its own Newtonian acceleration at the turning point is the restoring force
+  |g_z,bar(R0,z_max)|.  Carrying the circular-orbit rule across to it gives
+
+      ARM A4 (modal argument):  S = nu(|g_z,bar(R0,1.1)|/a0) / nu(|g_R,bar(R0,0)|/a0)
+
+  g02 instead feeds the vertical arm |g_N| = sqrt(g_R^2 + g_z^2), which is dominated by the RADIAL
+  field that the vertical oscillation never samples.  That single choice -- not any physics -- is what
+  makes its MI arm agree with its MG arm to 0.1%.  A4 is a PRESCRIPTION, with exactly the status of
+  g02's A1/A2/A3, and it is labelled as one here.  Two further readings of the same idea are carried
+  so the reader sees the spread rather than one favourable point.
+
+  the three candidate arguments for the VERTICAL motion at R0 (a0-canonical units in brackets):
+      |g_N|(R0,1.1) = sqrt(g_R^2+g_z^2)  = 1.2351e-10  [y = 1.320]   <- g02's choice
+      |g_z,bar|(R0,1.1) = restoring force = 5.3425e-11  [y = 0.571]   <- A4
+      z_max nu_z^2 (g02's own nu_z)       = 9.0681e-11  [y = 0.969]   <- A4'
+      radial motion:  |g_R,bar|(R0,0)     = 1.2417e-10  [y = 1.327]
+
+  footing       S_MG (g02)   S_MI alg     S_A4  S_A4prime   |dS| A4   sigma  |dS| A4p   sigma
+  canonical         1.0111     1.0014   1.2899     1.0920    0.2788    2.31    0.0809    0.67
+  alt               1.0118     1.0015   1.3062     1.0976    0.2944    2.44    0.0858    0.71
+
+  g02's claimed arm-vs-arm separation: 0.10 sigma.  A4: 2.31-2.44 sigma.  A4': 0.67-0.71 sigma.
+  [PASS] W3a *** THE CLAIM 'the two arms predict the same ratio to about 1%' DOES NOT SURVIVE a modified-inertia prescription that keeps MI's own circular-orbit normalisation instead of substituting the ambient field: A4 splits the arms by 27-29%, more than 20x the 1.2% claimed ***   (A4 separation 2.31-2.44 sigma against the claimed 0.10 sigma)
+  [PASS] W3b and even the most conservative reading of the same idea (A4', which uses the boosted vertical frequency and so partly re-imports the radial field) still splits the arms by several times the claimed amount   (A4' separation 0.67-0.71 sigma)
+  [FAIL] W3c ATTEMPTED AND HONESTLY FAILED: A4 does not reach a 3-sigma arm-vs-arm separation either, so this refutation establishes that g02's laboratory has SOME discriminating power, not that it decides the fork   (best A4 separation 2.44 sigma -- FAILING THIS IS PART OF THE VERDICT: the honest reading is 'up to ~2.4 sigma', not '0.10 sigma, structurally undecidable')
+
+  AND IT LIES INSIDE g02's OWN A3 BRACKET.  A3 writes y_eff = (w/Omega)^p (|g_N|/a0) and g02 scans
+  p in [-2,+2], then dismisses the whole family in SUMMARY item 7 because "the framework supplies no
+  such exponent".  But A4 is A3 at
+        p = ln(|g_z,bar| / |g_N|) / ln(nu_z/Omega) = -1.424        (A4)
+        p = ln(z_max nu_z^2 / |g_N|) / ln(nu_z/Omega) = -0.525     (A4')
+  and that exponent is not a free parameter: it is fixed by the two measured numbers z_max/R0 and
+  nu_z/Omega together with the disc's own force ratio.  g02's scan already CONTAINS the refuting
+  case -- its p = -1 row reads S = 1.186, 1.5 sigma from its own MG arm -- and rejects it only by
+  the assertion that no exponent of order one is motivated.
+  [PASS] W3d *** the exponent that refutes the null is INSIDE g02's own scanned bracket, so the null rests entirely on the assertion that |p| ~ 1 is unmotivated -- and A4 motivates it from MI's circular-orbit normalisation, the one part of MI that is not free ***   (p(A4) = -1.424, inside the scanned [-2,+2])
+
+  AN INTERNAL-CONSISTENCY POINT, which is the strongest form of this objection.  The fork exists in
+  this repository (F08_F10_THE_COHERENCE_FORK.md, f09) because rotation-supported systems land on the
+  kernel and pressure-supported ones do not -- a pattern that can only be explained by a modification
+  which reads the ORBIT.  g02's 'MI algebraic' arm is a function of the local field alone; applied to
+  a dwarf spheroidal it returns exactly what modified gravity returns, and therefore cannot produce
+  the rotation/pressure split that motivated the fork in the first place.  An MI arm that cannot
+  reproduce the observation the fork was opened to explain is not a representative of the MI side.
+  [PASS] W3e the arm g02 calls 'modified inertia' predicts, for any system, exactly the algebraic modified-gravity answer, so it cannot reproduce the rotation-vs-pressure split (f09) that the fork was opened over -- it is not a representative of the MI side of the fork it is being used to close   (S_MI,alg = 0.9990, i.e. indistinguishable from 'no split at all')
+
+========================================================================================================
+  W4  A SEPARATE DEFECT -- two different quantities are averaged as one Sigma_1.1
+========================================================================================================
+
+  For the SAME McMillan model at R0, the two quantities that the literature both writes 'Sigma_1.1'
+  are not equal, because the integrated Poisson equation carries a radial term:
+
+      Int rho dz over |z| < 1.1 kpc          =  54.03 Msun/pc^2   (a surface DENSITY)
+      |K_z(1.1 kpc)| / (2 pi G)              =  60.99 Msun/pc^2   (a FORCE, the Kuijken-Gilmore
+                                                              1991 convention g02 assumes for all four)
+      ratio                                  =  1.129
+
+  Kuijken & Gilmore 1991 and Holmberg & Flynn 2004 quote the force quantity.  Nitschai, Eilers,
+  Neumayer, Cappellari & Rix 2021 (ApJ 916, 112) quote 'the surface density within |z| <= 1.1 kpc' from
+  a Jeans mass model -- an integrated density.  Averaging the two conventions as if they were one
+  quantity pushes S_obs DOWN by of order 13% on whichever entries are densities.
+      g02's own model column, for cross-reference: 54.03 Msun/pc^2 (this script: 54.03)
+      re-expressing ONE of the four entries in the force convention moves S_obs from 0.6417 to 0.6623,
+      i.e. the 'common offset' from -2.96 sigma to -2.79 sigma.
+  [PASS] W4a the two conventions differ by more than 10% for this mass model, so mixing them is a real error, not a rounding one   (ratio 1.129)
+  [PASS] W4b and the error runs AGAINST the framework -- it inflates the 2.5-3.1 sigma common offset g02 reports -- so it is a manufactured deficit, which this repository's working rule forbids as firmly as a manufactured win   (corrected S_obs = 0.6623 > reported 0.6417)
+  [FAIL] W4c NOT RUN AS A KILL: this script has not read Nitschai+ 2021's definition off the paper, only off its abstract wording as transcribed in g02's own header ('Sigma(R0,|z|<=1.1kpc)'), so the size of the correction is flagged, not asserted   (marked not-run: the convention of each of the four determinations must be checked against the papers before any number here is used)
+
+========================================================================================================
+  W5  MUTATION CONTROLS
+========================================================================================================
+
+  M1 vanishing-amplitude mutation: evaluate the vertical arm at z_max = 0.05 kpc instead of 1.1 kpc.
+     |g_z| there = 8.9741e-12 (vs 5.3425e-11); S_A4 = 2.5684, S_algebraic = 0.9995
+  [PASS] M1 as the vertical amplitude goes to zero the A4 argument goes to zero and its S runs AWAY from 1, while the local-field arm stays pinned at 1 -- the two prescriptions are genuinely different functions of the trajectory and not a re-parametrisation of each other   (|S_A4-1| = 1.568 vs |S_alg-1| = 0.0005)
+  [FAIL] M1b AGAINST THIS SCRIPT'S OWN INTEREST -- A4's PATHOLOGY, STATED OUTRIGHT.  Taken literally to small amplitude A4 sends nu_vert to infinity, because a low-amplitude vertical mode has a vanishing acceleration of its own whatever the ambient field.  A real time-nonlocal MI does not decompose a trajectory into independent modes and would not do this.  So A4 is a BRACKET, not a theory -- exactly the status of g02's A1/A2/A3 -- and this refutation does NOT claim A4 is right; it claims the null is prescription-dependent and therefore not a statement about the fork   (A4 at z_max = 0.05 kpc gives S = 2.568, which is unphysical -- FAILING THIS CHECK IS THE HONEST LIMIT OF THIS REFUTATION)
+  M2 Newtonian mutation (a0 = 1e-18): S_A4 = 1.000000, S_algebraic = 1.000000
+  [PASS] M2 with the kernel switched off BOTH prescriptions return 1, so the A4 split is produced by the kernel and not by the substitution of arguments   (|S_A4-1| = 0.00e+00, |S_alg-1| = 0.00e+00)
+  [PASS] M3 the ray solver returns a strictly radial field for a spherical source, so the vertical/radial decomposition it feeds the arms is not an artefact of the ray grading   (gz/gR = 0.13452 against z/R = 0.13451 (r = 8.252 kpc))
+
+========================================================================================================
+  VERDICT
+========================================================================================================
+
+  1. THE ARITHMETIC IS RIGHT AND THE MASS MODEL IS RIGHT.  An independent ray-integral solver, which
+     shares no machinery with g02's Hankel code, reproduces Q to 0.96% and confirms that |g_N| at
+     (R0,0) and (R0,1.1 kpc) agree to 0.54%.  Nothing in this refutation is a numerical dispute.
+
+  2. THE INFERENCE IS NOT RIGHT.  All three MI arms that agree with the QUMOND arm take the LOCAL
+     FIELD MAGNITUDE as the kernel's argument.  That is an algebraic modified-GRAVITY relation.  The
+     reported separation is arithmetically the full-QUMOND / algebraic-MOND difference,
+     S_MG/S_MI,alg = 1.0121, a known ~1% disc effect that lives entirely inside modified gravity and
+     that g02's own M2 mutation drives to zero for a spherical source.  The 0.10 sigma is a property
+     of the parametrisation, not a measurement about the fork.
+
+  3. AN MI PRESCRIPTION THAT KEEPS MI'S OWN CIRCULAR-ORBIT NORMALISATION SPLITS THE ARMS BY 20x MORE.
+     Feeding the vertical motion its own restoring force |g_z,bar| instead of the quadrature sum gives
+     S = 1.290 (canonical) / 1.306 (alt) against the MG arm's 1.011 / 1.012: a separation of
+     2.31-2.44 sigma rather than 0.10 sigma.  It sits at p = -1.42 inside g02's own A3 bracket, and
+     that exponent is fixed by z_max/R0 and nu_z/Omega -- it is not a free parameter that the
+     framework 'does not supply'.
+
+  3b. AND WHAT IS WRONG WITH A4, SAID BY THIS SCRIPT AND NOT LEFT FOR A REFEREE.  M1b shows A4 sends
+     nu_vert to infinity as the vertical amplitude goes to zero, which no real time-nonlocal theory
+     would do.  A4 is therefore a BRACKET, not a theory.  The refutation does not need it to be a
+     theory: point 2 stands on its own, and A4 only has to be as defensible as g02's own A1/A2/A3 to
+     show that the 0.10 sigma is a property of the prescription rather than of the fork.
+
+  4. WHAT SURVIVES OF g02.  The narrow statement -- QUMOND and the ALGEBRAIC local map predict the
+     same S to 1% -- survives and is confirmed here.  The headline generalisation -- that the
+     vertical/planar split does not discriminate modified gravity from modified inertia, and cannot
+     be made to, 'for a reason that is structural' -- does not.  The honest statement is that the
+     split discriminates MG from a trajectory-argument MI at about 2.4 sigma today, which is the same
+     strength as f09's rotation/pressure hint, and that the obstruction is the 13% baryon SHAPE
+     systematic rather than a structural degeneracy between the two theories.
+
+  5. AND A SECOND, SMALLER DEFECT.  Two different quantities are averaged as one Sigma_1.1: the
+     Kuijken-Gilmore force |K_z|/(2 pi G) and an integrated column Int rho dz, which differ by
+     13% for this mass model.  The mixture biases S_obs LOW and so INFLATES the common offset
+     g02 reports at 2.5-3.1 sigma.  Flagged, not asserted: the four papers' conventions have to be
+     read off the papers before the size of the correction is quoted.
+
+
+RESULT: 17 checks, 3 FAIL -> ["W3c ATTEMPTED AND HONESTLY FAILED: A4 does not reach a 3-sigma arm-vs-arm separation either, so this refutation establishes that g02's laboratory has SOME discriminating power, not that it decides the fork", "W4c NOT RUN AS A KILL: this script has not read Nitschai+ 2021's definition off the paper, only off its abstract wording as transcribed in g02's own header ('Sigma(R0,|z|<=1.1kpc)'), so the size of the correction is flagged, not asserted", "M1b AGAINST THIS SCRIPT'S OWN INTEREST -- A4's PATHOLOGY, STATED OUTRIGHT.  Taken literally to small amplitude A4 sends nu_vert to infinity, because a low-amplitude vertical mode has a vanishing acceleration of its own whatever the ambient field.  A real time-nonlocal MI does not decompose a trajectory into independent modes and would not do this.  So A4 is a BRACKET, not a theory -- exactly the status of g02's A1/A2/A3 -- and this refutation does NOT claim A4 is right; it claims the null is prescription-dependent and therefore not a statement about the fork"]   rc=1

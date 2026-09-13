@@ -1,0 +1,68 @@
+{
+  "base_revision": "196f84653fec06a359314ec705d69647c5bd05a4",
+  "scope": "Full quadratic unitary-chi scalar ADM action and exact gauge checks against existing source-free finite-k evidence; no sourced transfer or nonlinear PDE",
+  "software": {
+    "python": "3.9.6",
+    "sympy": "1.14.0"
+  },
+  "conventions": {
+    "metric": "N=1+n; h_ij=a^2 exp(2zeta)delta_ij; N^x=partial_x B",
+    "fields": "chi=chibar(t); tau=t+sigma; q=chidotbar",
+    "F": "P(q^2,t)-V(t)-M2*Lambda when Lambda is present",
+    "averaging": "real cosine products have period average 1/2",
+    "Bxx": "shift divergence, not the sine shift amplitude"
+  },
+  "raw_sector_quadratic_divided_by_a3": {
+    "EH": "-2*Bxx*H*M2*n + 6*Bxx*H*M2*z + 2*Bxx*M2*zd - 3*H**2*M2*n**2 + 9*H**2*M2*n*z - 27*H**2*M2*z**2/2 + 6*H*M2*beta*zx + 6*H*M2*n*zd - 18*H*M2*z*zd - 3*M2*zd**2 - 2*M2*n*zxx/a**2 - 2*M2*z*zxx/a**2 - M2*zx**2/a**2",
+    "P_V": "3*F*n*z + 9*F*z**2/2 + Ft*n*sigma + 3*Ft*sigma*z + Ftt*sigma**2/2 + PX*n**2*q**2 - 6*PX*n*q**2*z + 2*PXX*n**2*q**4 - 2*PXt*n*q**2*sigma",
+    "clock": "-W*beta*sx + 3*W*sd*z + 9*W*z**2/2 - W*sx**2/(2*a**2) + WY*q**2*sx**2/a**2 + Wt*sd*sigma + 3*Wt*sigma*z + Wtt*sigma**2/2",
+    "cubic": "-2*Bxx*gamma*n*q**3 + 2*Bxx*gamma*q**3*z - 12*H*gamma*n**2*q**3 + 18*H*gamma*n*q**3*z - 9*H*gamma*q**3*z**2 + 2*beta*gamma*q**3*zx + 6*gamma*n*q**3*zd - 6*gamma*q**3*z*zd"
+  },
+  "quadratic_after_IBP_divided_by_a3": "Bxx*W*sigma + Bxx*(2*M2*zd - 2*n*(H*M2 + gamma*q**3)) - 3*M2*zd**2 + M2*(2*nx*zx + zx**2)/a**2 - 3*W*sigma*zd + n**2*(-3*H**2*M2 - 12*H*gamma*q**3 + PX*q**2 + 2*PXX*q**4) + n*sigma*(Ft - 2*PXt*q**2) + n*zd*(6*H*M2 + 6*gamma*q**3) + sigma**2*(Ftt - 3*H*Wt)/2 - sx**2*(W - 2*WY*q**2)/(2*a**2)",
+  "tadpole_remainders_divided_by_a3": "n*z*(3*F + 9*H**2*M2 + 18*H*gamma*q**3 - 6*PX*q**2) + sigma*z*(3*Ft - 9*H*W) + z**2*(9*F/2 + 9*M2*(3*H**2 + 2*Hdot)/2 + 9*W/2 + 9*gamma*q**2*qdot)",
+  "coefficients": {
+    "Theta": "H*M2 + gamma*q**3",
+    "Sigma": "-3*H**2*M2 - 12*H*gamma*q**3 + PX*q**2 + 2*PXX*q**4",
+    "C": "Ft - 2*PXt*q**2",
+    "D": "Ftt - 3*H*Wt",
+    "Sclock": "W - 2*WY*q**2",
+    "Bhat": "-12*H*gamma*q + 2*PX + 4*PXX*q**2 + 6*gamma**2*q**4/M2"
+  },
+  "lapse_from_shift": "(M2*zd + W*sigma/2)/(H*M2 + gamma*q**3)",
+  "zeta_velocity_Hessian_averaged": "M2**2*a**3*q**2*(-12*H*gamma*q + 2*PX + 4*PXX*q**2 + 6*gamma**2*q**4/M2)/((H*M2 + gamma*q**3)*(2*H*M2 + 2*gamma*q**3))",
+  "remaining_clock_Hessian_averaged": "a**3*(Ftt/2 - 3*H*Wt/2 + W**2*(-3*H**2*M2 - 12*H*gamma*q**3 + PX*q**2 + 2*PXX*q**4)/(4*(H*M2 + gamma*q**3)**2) + W*(Ft - 2*PXt*q**2)/(2*H*M2 + 2*gamma*q**3)) - a*k**2*(W - 2*WY*q**2)/2",
+  "remaining_clock_velocity_mixing_averaged": "M2*a**3*(W*(-3*H**2*M2 - 12*H*gamma*q**3 + PX*q**2 + 2*PXX*q**4)/(H*M2 + gamma*q**3)**2 + (Ft - 2*PXt*q**2)/(H*M2 + gamma*q**3))/2",
+  "gauge_map": "zeta_tau=zeta_chi-H*sigma_chi; delta_chi_tau=-q*sigma_chi; u=delta_chi_tau-(q/H)zeta_tau=-(q/H)zeta_chi",
+  "checks": {
+    "z_zdot_coefficient": true,
+    "sigma_sigmadot_coefficient": true,
+    "z_sigmadot_coefficient": true,
+    "full_quadratic_action_including_tadpoles": true,
+    "no_clock_time_kinetic": true,
+    "no_clock_time_derivative_after_IBP": true,
+    "clock_spatial_block": true,
+    "cubic_ADM_covariant_boundary_identity": true,
+    "homogeneous_action_control": true,
+    "shift_constraint_lapse": true,
+    "lapse_shift_hessian_determinant_Bxx": true,
+    "shift_multiplier_drops": true,
+    "unitary_chi_velocity_Hessian": true,
+    "remaining_clock_constraint_Hessian": true,
+    "remaining_clock_velocity_mixing": true,
+    "clock_constraint_k_squared_coefficient": true,
+    "archived_full_finite_k_clock_constraint_gauge_match": true,
+    "archived_clock_velocity_mixing_gauge_match": true,
+    "archived_unitary_tau_kinetic_matrix_gauge_match": true,
+    "archived_spatial_clock_constraint_gauge_match": true,
+    "canonical_scalar_unitary_kinetic_fixture": true,
+    "clock_gradient_sign_fixture": true
+  },
+  "checks_passed": 22,
+  "non_claims": [
+    "No new fixed functions or reconstructed histories",
+    "No ordinary-matter source or transfer calculation",
+    "No new nonlinear constraint or stability theorem",
+    "No division allowed at q=0, Theta=0, or H=0 in the corresponding gauge comparison",
+    "No removal of tadpoles unless the actual background equations hold"
+  ]
+}

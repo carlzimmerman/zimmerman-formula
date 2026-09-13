@@ -1,0 +1,22 @@
+[PASS] EL coefficient
+  measured: div(2 F_Y grad chi) = div(C mu grad Phi)
+  reading:  the MOND equation fixes a nonzero constitutive derivative rather than leaving it free
+[PASS] traceless stress form
+  measured: Pi/2 = Matrix([[2*x1**2/3 - x2**2/3 - x3**2/3, x1*x2, x1*x3], [x1*x2, -x1**2/3 + 2*x2**2/3 - x3**2/3, x2*x3], [x1*x3, x2*x3, -x1**2/3 - x2**2/3 + 2*x3**2/3]])
+  reading:  the isotropic potential term cancels; the remaining stress is rank-one minus its trace
+[PASS] traceless_sum_of_squares
+  measured: sum_ij A_ij^2 - 2 Y^2/3 = 0
+  reading:  for Y>0 the traceless gradient tensor cannot vanish, independent of orientation
+[PASS] zero-slip implication
+  measured: sum_ij Pi_ij^2 = F_Y^2 * (8*Y**2/3)
+  reading:  vanishing traceless Einstein source at a nonzero gradient forces F_Y=0
+[PASS] mond_coefficient_nonzero
+  measured: 2 F_Y/C = 1-exp(-sqrt(Y)/a0) > 0 for Y>0, a0>0
+  reading:  the exact preferred kernel cannot satisfy the zero-slip implication in this restricted sector
+[PASS] obstruction
+  measured: Y>0 => slip forces F_Y=0, while exponential MOND gives F_Y>0
+  reading:  the two requirements cannot hold simultaneously for this restricted action
+[PASS] orientation witness
+  measured: v=(2/3, -1/3, 1/3), Y=2/3, sum_ij A_ij^2=0.296296296296296
+  reading:  a generic nonzero gradient leaves a nonzero anisotropic source whenever F_Y is nonzero
+CERTIFICATE_JSON: {"MOND_matching": "2 F_Y = C [1 - exp(-sqrt(Y)/a0)]", "Y": "delta^ij partial_i chi partial_j chi", "action": "integral sqrt(-g) F(Y)", "checks": {"EL coefficient": true, "mond_coefficient_nonzero": true, "obstruction": true, "orientation witness": true, "traceless stress form": true, "traceless_sum_of_squares": true, "zero-slip implication": true}, "gate": "local_single_elliptic_scalar_slip", "identity": "sum_ij (v_i v_j - delta_ij Y/3)^2 = 2 Y^2/3", "scope": "Conditional obstruction only: flat static leaf, one local F(Y) scalar, no multiplier/heat stress, no disformal metric, no background vector gradient, and slip required for every nonzero gradient. It is not a universal no-go for nonlocal, constrained, or multi-field stress cancellation.", "status": "CONDITIONAL_OBSTRUCTION", "traceless_stress": "Pi_ij = 2 F_Y (partial_i chi partial_j chi - delta_ij Y/3)"}

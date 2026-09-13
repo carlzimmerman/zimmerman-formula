@@ -1,0 +1,35 @@
+{
+  "schema_version": 1,
+  "claim_id": "local_FY_slip_audit_2026",
+  "repository": {
+    "commit": "7445dbcbc15d5f09b76377d7a1be606c9191fb8f",
+    "dirty": true,
+    "note": "The audit bundle is uncommitted in a shared dirty checkout; unrelated working-tree changes are outside scope."
+  },
+  "command": "python3 -B qwen_claude_field_theory/closure_2026/local_FY_slip_audit_2026/derive_local_FY_slip.py --output qwen_claude_field_theory/closure_2026/local_FY_slip_audit_2026/run_001/results.json",
+  "environment": {
+    "software": ["Python 3.9.6", "SymPy 1.14.0"],
+    "hardware": "arm64"
+  },
+  "mathematics": {
+    "assertion_tested": "For the fixed-foliation local single F(Y) action, the derived Hilbert traceless stress is nonzero when F_Y and the spatial gradient are nonzero, while the weak-field Einstein traceless equation vanishes identically on Phi=Psi.",
+    "coefficient_domain": "exact SymPy symbolic algebra",
+    "conventions": "signature -+++; static zero shift; c=1 for weak-field Einstein components; Y=h^ij chi_i chi_j",
+    "inputs": ["symbolic diagonal inverse spatial metric", "three symbolic gradient components", "exact exponential mu(y)=1-exp(-y)"],
+    "bounds": {"spatial_dimension": 3, "k_sectors": ["k=0", "finite k aligned transverse/longitudinal"]},
+    "non_claims": ["not a universal no-go", "does not vary a dynamical clock normal", "does not certify the full metric-plus-clock Dirac matrix", "does not prove physical completeness or empirical viability"]
+  },
+  "randomness": {"used": false, "generator": "", "seed": null},
+  "run": {"started_at": "2026-09-12", "runtime_seconds": 0.7, "exit_status": 0},
+  "sources": [
+    {"path": "qwen_claude_field_theory/closure_2026/local_FY_slip_audit_2026/derive_local_FY_slip.py", "sha256": "12dbf61004465ff2aaea53d71861afe9927461df27f825e77a5ccb64b0bf4244"},
+    {"path": "qwen_claude_field_theory/closure_2026/local_FY_slip_audit_2026/test_local_FY_slip.py", "sha256": "016daee7d38868de7bdbcfa6daf2ec0e4fd7a7773c55acac1e7a7229256e63bf"},
+    {"path": "qwen_claude_field_theory/closure_2026/local_FY_slip_audit_2026/LocalFYSlip.lean", "sha256": "520564058ef1e5fabd990c6d51597de5a81411a3aeb8c0aec698e074377bec5c"}
+  ],
+  "outputs": [
+    {"path": "qwen_claude_field_theory/closure_2026/local_FY_slip_audit_2026/run_001/results.json", "sha256": "cda5006abde87566824fae9bff2710cd62c474b24e95201b9288e5971179fba2"}
+  ],
+  "checks": ["16 live symbolic predicates", "3 Python unit tests", "Lean compile exits 0 in the repository-pinned Lake project"],
+  "result": "Conditional no-go for the minimal local single F(Y) sector; exact exponential elliptic symbols are positive for y>0 but the zero-field transverse symbol vanishes.",
+  "residual_risks": ["sign conventions for T are conventional and do not affect nonvanishing anisotropy", "clock-normal variation or extra stress could cancel the source", "global boundary conditions and nonlinear branches are not included"]
+}

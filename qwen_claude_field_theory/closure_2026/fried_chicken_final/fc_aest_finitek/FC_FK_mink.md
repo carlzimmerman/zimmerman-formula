@@ -73,3 +73,23 @@ Hubble friction *alone* rescues only `k_phys≲H`. The band is benign across its
 - **RESIDUAL (OPEN — the one uncomputed number).** Whether `Ω_red(k)=0` **exactly** for all `0<k<k_*` — i.e. the ghost band is a true constraint direction at finite k, not only at k=0 — is taken here as EXTERNAL-INPUT (published "nonpropagating"), reproduced and used but **not re-derived** from the full covariant AeST scalar reduction (which would also fix the near-crossing `k⁴` regulator at `K_eff→0`). If a full SZ21 finite-k reduction found `Ω_red(k)≠0` for some `0<k<k_*`, branch B3 fires and **FC-FINAL FAILS**. That reduction is the decisive next step; it is **not** closed here.
 
 **One-line honest status:** the finite-k band is **PASS conditional on the published Minkowski nonpropagating (ω=0) property extending to all `0<k<k_*`** — a condition this work reproduces and shows is *sufficient*, but does not itself prove from the AeST action. Failure is confined to the single counterfactual (`Ω_red≠0` at finite k), which is exactly the residual to compute.
+
+## Independent metric-coupled audit (2026-09-12)
+
+That conditional statement is superseded as a certification claim by
+`aest_metric_scalar_dirac_audit.py`.  The route-B file's own covariant
+quadratic expansion matches the compact polynomial with exact residual zero
+(`verify_aest_source_lagrangian.py`).  Its finite-k Dirac reduction has the
+gauge-invariant scalar `X = delta phi + Q0 v` with
+
+```text
+K_X     = 2 K2 K_B k^2/(2 K2 Q0^2 + K_B k^2)
+Omega_X = 2 k^2 (2-K_B)(K2 Q0^2+k^2)/(2 K2 Q0^2 + K_B k^2)
+omega^2 = (2-K_B)(K2 Q0^2+k^2)/(K2 K_B).
+```
+
+Thus a finite-k propagating scalar survives the actual action; the prior
+`Omega_red=0` input is not a derivation of this metric-coupled branch.  Under a
+strict two-tensor gravitational-sector definition this kills the host.  If the
+scalar is explicitly reclassified as the permitted clock field, the gate stays
+open but every PPN, FLRW, and strong-coupling calculation must include it.

@@ -1,0 +1,66 @@
+{
+  "base_revision": "486edc78eaed87647c0b605cdbebccb996a464cf",
+  "scope": "Exact finite-mode action identity and constrained source initial data",
+  "software": {
+    "python": "3.9.6",
+    "sympy": "1.14.0"
+  },
+  "domain": "Real rational functions; a>0, constant M2 nonzero, k nonzero; elimination additionally Theta, Dcal nonzero",
+  "raw_L": "D*n*sigma + LapB*W*sigma + LapB*(2*M2*zetadot - 2*Theta*n) + 2*M2*n*r*zeta + M2*r*zeta**2 - 3*M2*zetadot**2 + Sigma*n**2 + 6*Theta*n*zetadot - 3*W*sigma*zetadot - n*rho + sigma**2*(-C*r + E)/2",
+  "shift_row": "2*M2*zetadot - 2*Theta*n + W*sigma",
+  "lapse_row": "D*sigma - 2*LapB*Theta + 2*M2*r*zeta + 2*Sigma*n + 6*Theta*zetadot - rho",
+  "clock_row": "D*n + LapB*W - 3*W*zetadot + sigma*(-C*r + E)",
+  "momentum_density": "2*LapB*M2 - 6*M2*zetadot + 6*Theta*n - 3*W*sigma",
+  "zeta_row": "3*H*(2*LapB*M2 - 6*M2*zetadot + 6*Theta*n - 3*W*sigma) + 2*LapBdot*M2 - 2*M2*n*r - 2*M2*r*zeta - 6*M2*zetaddot + 6*Theta*ndot + 6*Thetadot*n - 3*W*sigmadot - 3*Wdot*sigma",
+  "Phi": "-2*H*LapB/r - LapBdot/r + n",
+  "Psi": "H*LapB/r - zeta",
+  "slip": "(-3*H*LapB - LapBdot + n*r + r*zeta)/r",
+  "off_shell_identity": "2*M2*r*(Phi-Psi)+E_zeta+3*(dot(E_shift)+3*H*E_shift)=0",
+  "canonical_on_shell": [
+    "p=2*M2*a^3*LapB",
+    "pdot=2*M2*a^3*r*(zeta+n)",
+    "u=-p/(2*M2*a*k^2)",
+    "Phi=n-pdot/(2*M2*a*k^2)+H*p/(2*M2*a*k^2)",
+    "Psi=-zeta+H*p/(2*M2*a*k^2)"
+  ],
+  "initial_data": {
+    "sigma": "-W*rho/(2*Theta*(C*r - D*W/Theta - E - Sigma*W**2/(2*Theta**2)))",
+    "n": "-W**2*rho/(4*Theta**2*(C*r - D*W/Theta - E - Sigma*W**2/(2*Theta**2)))",
+    "p_over_a3": "-M2*rho/Theta - M2*W*rho*(D*Theta + Sigma*W)/(2*Theta**3*(C*r - D*W/Theta - E - Sigma*W**2/(2*Theta**2)))",
+    "LapB": "(-M2*rho/Theta - M2*W*rho*(D*Theta + Sigma*W)/(2*Theta**3*(C*r - D*W/Theta - E - Sigma*W**2/(2*Theta**2))))/(2*M2)",
+    "Phi_equals_Psi": "H*(-M2*rho/Theta - M2*W*rho*(D*Theta + Sigma*W)/(2*Theta**3*(C*r - D*W/Theta - E - Sigma*W**2/(2*Theta**2))))/(2*M2*r)"
+  },
+  "background_remainder": "3*E0*n + 9*Ea*zeta + 3*Et*sigma",
+  "checks": {
+    "momentum_shift_row_identity": true,
+    "curvature_gradient_row": true,
+    "shift_time_derivative": true,
+    "off_shell_slip_identity": true,
+    "no_slip_on_variational_rows": true,
+    "Phi_time_gauge_invariance": true,
+    "Psi_time_gauge_invariance": true,
+    "dust_source_has_no_shift_row": true,
+    "dust_source_has_no_curvature_row": true,
+    "all_three_auxiliary_rows_shift": true,
+    "all_three_auxiliary_rows_lapse": true,
+    "all_three_auxiliary_rows_clock": true,
+    "Schur_envelope_momentum": true,
+    "Schur_envelope_curvature_row": true,
+    "initial_clock": true,
+    "initial_lapse": true,
+    "initial_momentum_is_F": true,
+    "initial_shift": true,
+    "initial_Psi": true,
+    "initial_Phi_independent_reconstruction": true,
+    "signed_dust_background_conservation": true,
+    "off_background_shell_remainder": true
+  },
+  "checks_passed": 22,
+  "non_claims": [
+    "No derivation of the input quadratic action from the full covariant action in this script",
+    "No homogeneous k=0 claim, nonlinear anisotropic-stress theorem, or PPN inference",
+    "No positive-density galaxy from the signed zero-background-density probe",
+    "No claim that nonconserved forcing is physically admissible, although its lapse-only algebra has the same identity",
+    "No numerical integration, accuracy estimate, force fit, or singular-constraint continuation"
+  ]
+}

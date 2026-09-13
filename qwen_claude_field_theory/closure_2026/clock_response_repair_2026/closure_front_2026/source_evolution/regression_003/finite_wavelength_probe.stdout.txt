@@ -1,0 +1,59 @@
+{
+  "scope": "Exact forced quadratic finite-k reduction; no time integration or physical-force fit",
+  "assumptions": [
+    "homogeneous on-shell clock/scalar-only FLRW",
+    "unitary chi with q nonzero",
+    "k nonzero, Theta nonzero, clock denominator nonzero, effective kinetic coefficient nonzero",
+    "rho=rho_star/a^3 is a conserved zero-background-density signed test perturbation",
+    "ordinary matter backreaction on homogeneous expansion is not modeled"
+  ],
+  "normalization": "L is twice the spatial period average divided by a^3",
+  "raw_L": "D*n*sigma + LapB*W*sigma + LapB*(2*M2*zetadot - 2*Theta*n) + 2*M2*n*physical_k_squared*zeta + M2*physical_k_squared*zeta**2 - 3*M2*zetadot**2 + Sigma*n**2 + 6*Theta*n*zetadot - 3*W*sigma*zetadot - n*rho + sigma**2*(-C*physical_k_squared + E)/2",
+  "lapse": "(M2*zetadot + W*sigma/2)/Theta",
+  "clock": "(-2*D*M2*Theta*zetadot - 2*M2*Sigma*W*zetadot - 2*M2*Theta*W*physical_k_squared*zeta + Theta*W*rho)/(-2*C*Theta**2*physical_k_squared + 2*D*Theta*W + 2*E*Theta**2 + Sigma*W**2)",
+  "shift_laplacian": "(D*sigma/2 + M2*physical_k_squared*zeta + Sigma*(M2*zetadot + W*sigma/2)/Theta + 3*Theta*zetadot - rho/2)/Theta",
+  "clock_denominator": "(2*C*Theta**2*physical_k_squared - 2*D*Theta*W - 2*E*Theta**2 - Sigma*W**2)/(2*Theta**2)",
+  "coefficients": {
+    "A": "2*M2*(2*C*M2*Sigma*physical_k_squared + 6*C*Theta**2*physical_k_squared + D**2*M2 - 6*D*Theta*W - 2*E*M2*Sigma - 6*E*Theta**2 - 3*Sigma*W**2)/(2*C*Theta**2*physical_k_squared - 2*D*Theta*W - 2*E*Theta**2 - Sigma*W**2)",
+    "B": "2*M2**2*physical_k_squared*(2*C*Theta*physical_k_squared - D*W - 2*E*Theta)/(2*C*Theta**2*physical_k_squared - 2*D*Theta*W - 2*E*Theta**2 - Sigma*W**2)",
+    "C": "2*M2*physical_k_squared*(2*C*Theta**2*physical_k_squared - 2*D*Theta*W - 2*E*Theta**2 + M2*W**2*physical_k_squared - Sigma*W**2)/(2*C*Theta**2*physical_k_squared - 2*D*Theta*W - 2*E*Theta**2 - Sigma*W**2)",
+    "F": "-M2*rho*(2*C*Theta*physical_k_squared - D*W - 2*E*Theta)/(2*C*Theta**2*physical_k_squared - 2*D*Theta*W - 2*E*Theta**2 - Sigma*W**2)",
+    "S": "-M2*W**2*physical_k_squared*rho/(2*C*Theta**2*physical_k_squared - 2*D*Theta*W - 2*E*Theta**2 - Sigma*W**2)"
+  },
+  "canonical_equations": [
+    "p=a^3*(A*zetadot+B*zeta+F)",
+    "zetadot=(p/a^3-B*zeta-F)/A",
+    "pdot=a^3*(B*zetadot+C*zeta+S)"
+  ],
+  "physical_potentials": [
+    "u=a^2 Bshift=-LapB/physical_k_squared",
+    "Phi=n+dot(u)",
+    "Psi=-zeta-H*u"
+  ],
+  "checks": {
+    "shift_Euler": true,
+    "clock_Euler": true,
+    "lapse_Euler": true,
+    "source_metric_variation": true,
+    "no_direct_clock_source": true,
+    "zero_source_F": true,
+    "zero_source_S": true,
+    "independent_clock_denominator": true,
+    "independent_shift_lapse": true,
+    "independent_clock_response": true,
+    "independent_kinetic_Schur": true,
+    "independent_cross_Schur": true,
+    "independent_potential_Schur": true,
+    "independent_momentum_source": true,
+    "independent_force_source": true,
+    "conserved_dust_density": true,
+    "Phi_gauge_invariance": true,
+    "Psi_gauge_invariance": true
+  },
+  "non_claims": [
+    "No assigned Phi=Psi or PPN value",
+    "No numerical response or CMB/galaxy prediction",
+    "No positive-density isolated galaxy from the signed probe",
+    "No nonlinear degree count or singular-denominator continuation"
+  ]
+}

@@ -1,0 +1,214 @@
+{
+  "schema_version": 1,
+  "claim_id": "g03-constrained-global-linear-evolution-and-instability-2026",
+  "repository": {
+    "commit": "6978397a4bc47f0e1bf1ded52103371a3419fff4",
+    "dirty": true,
+    "note": "Five new files; prior audit files and unrelated user work preserved. No commit or push. HEAD unchanged during this continuation."
+  },
+  "command": "OPENBLAS_NUM_THREADS=1 python3 -B qwen_claude_field_theory/closure_2026/g03_global_kernel_bridge_2026/metric_global_evolution.py --output qwen_claude_field_theory/closure_2026/g03_global_kernel_bridge_2026/metric_global_evolution_results.json",
+  "environment": {
+    "software": [
+      "Python 3.9.6",
+      "NumPy 1.26.2",
+      "SciPy 1.11.4",
+      "SymPy 1.14.0"
+    ],
+    "hardware": "arm64",
+    "OPENBLAS_NUM_THREADS": 1
+  },
+  "mathematics": {
+    "assertion_tested": "Same-action constrained plane vacuum reduces to four global variables plus static boundary-fixing spatial gauge. Two full-background spatial solves determine a Hamiltonian evolution matrix. Computed growing global eigenmodes on four regulated backgrounds; exact boundary charge excludes silently imposing an additional zero-energy equation.",
+    "coefficient_domain": "Exact symbolic canonical, gauge and boundary-charge identities. Double-precision ODE BVPs and matrix evolution. Exact rational arithmetic on computed binary matrices for quartic identities and 50-digit root checks; not a continuum interval certificate.",
+    "conventions": "METRIC_GLOBAL_EVOLUTION.md. Linear gravitational amplitude about static vacuum, c=a0=1; Y=(X,L*C,Q,L*pbar), tau=t/L. Reported symplectic form is L times literal scaled-coordinate form, and Hessian describes L^2 Hphysical. All global momenta retained.",
+    "inputs": [
+      "Same CMC Hamiltonian and exponential F; no action change",
+      "Full ungauged Euler-Lagrange operators of metric_static_background.py",
+      "Same augmented spatial inverse and small-slab argument of METRIC_SHARED_DATA.md",
+      "Two reconstruction inputs (D,Q)=(3N/(4A^3),0) and (0,1)",
+      "Fixed induced wall N,A; normal B and boundary energy not fixed"
+    ],
+    "bounds": {
+      "cases": [
+        {
+          "y0": 0.5,
+          "Lambda_over_a0_squared": 0,
+          "L": 0.02
+        },
+        {
+          "y0": 0.5,
+          "Lambda_over_a0_squared": 0,
+          "L": 0.01
+        },
+        {
+          "y0": 10.5,
+          "Lambda_over_a0_squared": 100.53096491487338,
+          "L": 0.002
+        },
+        {
+          "y0": 10.5,
+          "Lambda_over_a0_squared": 100.53096491487338,
+          "L": 0.001
+        }
+      ],
+      "force_grid": 201,
+      "ODE_probes": 81,
+      "coarse": {
+        "method": "RK45",
+        "rtol": 2e-10,
+        "atol": 2e-12,
+        "max_step": 0.015625
+      },
+      "fine": {
+        "method": "DOP853",
+        "rtol": 2e-13,
+        "atol": 3e-15,
+        "max_step": 0.010416666666666666
+      },
+      "background": {
+        "method": "DOP853",
+        "rtol": 2e-13,
+        "atol": 2e-15,
+        "max_step": 0.015625
+      },
+      "time_evolution": {
+        "tau": [
+          0,
+          1
+        ],
+        "samples": 101,
+        "methods": [
+          "matrix exponential",
+          "DOP853"
+        ],
+        "rtol": 2e-12,
+        "atol": 2e-14,
+        "initial": [
+          0.1,
+          -0.2,
+          0.15,
+          0.25
+        ]
+      },
+      "empirical_data": false,
+      "exclusions": [
+        "y0<=0",
+        "chi0=0",
+        "nonlinear and three-dimensional dynamics",
+        "other global/boundary completions"
+      ]
+    },
+    "non_claims": [
+      "Complete relativistic MOND theory or historical novelty",
+      "Universal instability, local propagating scalar ghost, or UV gradient instability",
+      "Continuum interval-certified spectrum",
+      "Nonlinear existence or nonlinear unstable-mode admissibility",
+      "New full PPN/DOF/FLRW/GW/zero-field certification",
+      "Numerical implementation of the analytic conserved-source extension",
+      "Import of g03r/g03s different-action gates"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "provenance_assembled_at": "2026-09-06 14:24:26 UTC",
+    "runtime_seconds": 4.051811,
+    "exit_status": 0,
+    "note": "Audit success; separate strict global-stability requirement exits2."
+  },
+  "outputs": [
+    {
+      "path": "qwen_claude_field_theory/closure_2026/g03_global_kernel_bridge_2026/metric_global_evolution.py",
+      "sha256": "70598c854b4ab79ded32c479ce629ef8104715c7db5477d1b7b0bfc184bffa58"
+    },
+    {
+      "path": "qwen_claude_field_theory/closure_2026/g03_global_kernel_bridge_2026/test_metric_global_evolution.py",
+      "sha256": "158611b6bd890db491c4782c33580e00f8af70dcce297e5b8f9b154e315531d8"
+    },
+    {
+      "path": "qwen_claude_field_theory/closure_2026/g03_global_kernel_bridge_2026/metric_global_evolution_results.json",
+      "sha256": "d8e65f47e34fa60a7c96623b1b6eef2208c60e6229e26fe25bf373d0bd1f05f8"
+    },
+    {
+      "path": "qwen_claude_field_theory/closure_2026/g03_global_kernel_bridge_2026/METRIC_GLOBAL_EVOLUTION.md",
+      "sha256": "6729b38fce69c1939d78c7ee72f818b26dc6b24c529969b80721ac32fc0a7b43"
+    },
+    {
+      "path": "qwen_claude_field_theory/closure_2026/g03_global_kernel_bridge_2026/metric_initial_response.py",
+      "sha256": "2cc2cdf61397b8fa14955027370736d4beac7ed9818b886ca900cdf47a0d446d"
+    },
+    {
+      "path": "qwen_claude_field_theory/closure_2026/g03_global_kernel_bridge_2026/metric_static_background.py",
+      "sha256": "814811cb8beffc9e3ed40c6ff9e5c2855a8933ad97e96264d56826aa1663c7bd"
+    },
+    {
+      "path": "qwen_claude_field_theory/closure_2026/g03_global_kernel_bridge_2026/METRIC_SHARED_DATA.md",
+      "sha256": "1b180174d3fca33c37a6ae1fdafd3a051f25ecc116ef91b9b55bc16e2e9c4937"
+    },
+    {
+      "path": "qwen_claude_field_theory/closure_2026/g03_global_kernel_bridge_2026/METRIC_CONTROL_EVOLUTION.md",
+      "sha256": "7ebcf8097930de9965292fe3b308690da2d25248bc0efd1fac5b169df6725eee"
+    }
+  ],
+  "checks": [
+    {
+      "command": "OPENBLAS_NUM_THREADS=1 python3 -B -m unittest discover -s qwen_claude_field_theory/closure_2026/g03_global_kernel_bridge_2026 -p 'test_metric_global_evolution.py' -v",
+      "exit_status": 0,
+      "tests": 10,
+      "runtime_seconds": 3.558
+    },
+    {
+      "command": "OPENBLAS_NUM_THREADS=1 python3 -B qwen_claude_field_theory/closure_2026/g03_global_kernel_bridge_2026/metric_global_evolution.py --require-no-growing-global-mode",
+      "exit_status": 2,
+      "result": "All four tested global stability gates FAIL; unresolved cannot silently pass."
+    },
+    {
+      "command": "OPENBLAS_NUM_THREADS=1 python3 -B -m unittest discover -s qwen_claude_field_theory/closure_2026/g03_global_kernel_bridge_2026 -p 'test_*.py' -v",
+      "exit_status": 0,
+      "tests": 98,
+      "runtime_seconds": 52.195
+    },
+    {
+      "command": "git status --short; git log -3 --oneline",
+      "exit_status": 0
+    },
+    {
+      "command": "git diff --check",
+      "exit_status": 0
+    },
+    {
+      "command": "git log -1 --format=%H",
+      "exit_status": 0
+    },
+    {
+      "test_first": "Missing module, new evidence/diagnostic functions, gauge and boundary-charge checks each tested before implementation.",
+      "exit_status": 1
+    },
+    {
+      "failed_intermediate_audit": "Same producer and strict commands initially exited1 because high-field float characteristic-polynomial comparison differed by8.96e-10 and1.37e-9. Narrow high-field regression reproduced failure. Exact binary-matrix rational determinant checks plus50-digit root checks replaced cancellation-prone comparison; original NumPy discrepancy remains in results.",
+      "exit_status": 1
+    },
+    {
+      "independent_reviews": "Read-only analytic reduction, force identity, gauge quotient, symplectic factors, boundary charge and forced extension audited; separate reviewer recomputed quartics and checked time scaling and no imported global constraint.",
+      "result": "No serious remaining claim defects; fixed-wall and nonlinear-scope limitations retained."
+    },
+    {
+      "latest_other_work": "Read-only inspection of untracked g03s code/output: different dynamical scalar model with surrogates; output incomplete at inspection. No new closure gate imported.",
+      "exit_status": 0
+    },
+    {
+      "self_proofreading": "Complete new report reviewed under Mathbox mathematical proofreading; no mathematical-token corrections required."
+    }
+  ],
+  "result": "Fixed-wall linear stability FAIL; full theory OPEN. Exact constrained reduction supplies actual linear vacuum evolution conditional on fixed augmented inverse, with analytic smooth-Ward-source extension. Four computed matrices have growing global modes, not removable by boundary-fixing spatial gauge or an absent zero-energy constraint.",
+  "residual_risks": [
+    "Finite numerical BVP coefficients, no interval enclosures",
+    "Nonnormal matrices: eigenvector condition numbers roughly2.8e3 to2.5e4; growth/refinement sensitivity ratios exceed6e5",
+    "No uniform shrinking-slab or infinite-volume limit",
+    "Nonlinear boundary/constraint admissibility of growing modes not proved",
+    "No forced-case numerical evolution or full nonlinear matter backreaction"
+  ]
+}

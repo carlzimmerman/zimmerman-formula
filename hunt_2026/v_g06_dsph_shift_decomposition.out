@@ -1,0 +1,74 @@
+==============================================================================================================================
+1.  BOTH PUBLISHED NUMBERS REPRODUCE FROM SCRATCH -- otherwise nothing below means anything
+==============================================================================================================================
+  f09 prescription, median residual:  canonical +0.228 dex   alt +0.187 dex
+  g06 prescription, median residual:  canonical +0.733 dex   alt +0.695 dex
+  [PASS] V1 this file reproduces f09's published +0.228 dex and g06's claimed +0.733 dex to the last digit on the canonical footing, from the same eight tuples, so the decomposition below is of the real quantity   (f09 +0.2279 against its published +0.228; g06 +0.7330 against its claimed +0.733; the shift is +0.505 dex)
+  [PASS] V2 (a rule g06 breaks) the alt footing must enter the dwarf-spheroidal number, not just be computed and discarded.  g06 line 612-626 builds dres for BOTH footings and then uses only dres['canonical'] -- the alt dwarf number is never printed and never checked, while F1, F2, F3 and the quoted 3.50 sigma all run on canonical alone.  This check supplies the missing number and asks whether the conclusion is footing-stable   (g06's dwarf median is +0.733 canonical / +0.695 alt, a difference of +0.038 dex.  The conclusion does not flip, but the number was never shown)
+
+==============================================================================================================================
+2.  TURNING THE INGREDIENTS ON ONE AT A TIME -- which of them actually moves the +0.505 dex?
+==============================================================================================================================
+  The claim names TWO causes: (i) the external field treated as QUMOND requires -- Newtonian and baryonic
+  rather than f09's v_c^2/D; and (ii) enclosed rather than total mass inside the half-light radius.  There is
+  a THIRD ingredient the claim does not name: f09 combined the isolated and external-field predictions with
+  g_pred = max(g_iso, g_efe), while g06 replaces that RULE with the interpolation nu(x+e)(1 + L w/3).
+    ingredient                                                                      canonical      alt
+    f09 as published (total-matter g_ext, max rule, point mass at projected R)         +0.228   +0.187
+    (i) ALONE: f09 rule, but the QUMOND-required BARYONIC Newtonian g_ext              +0.057   +0.018
+    (ii) ALONE: enclosed-mass Jeans at the deprojected r_1/2, NO external field at all     +0.390   +0.350
+    (ii) + (i), but keeping f09's spirit: isolated Jeans (EFE cannot bite on this branch)     +0.390   +0.350
+    (iii) THE UNNAMED ONE: (ii) + the max->interpolation change of RULE  == g06 as published     +0.733   +0.695
+    control: (iii) with f09's TOTAL-matter g_ext instead of the baryonic one           +1.191   +1.158
+    control: (iii) with no deprojection (r_1/2 = R_e), to size the (4/3) on its own     +0.643   +0.605
+  [FAIL] V3 (THE REFUTATION) the FIRST named cause moves the number in the OPPOSITE direction to the one claimed.  f09's g_ext = v_c^2/D with v_c = 200 km/s is the Milky Way's TOTAL dynamical field, 0.182 a_0.  The field QUMOND actually requires in nu's argument is the BARYONIC Newtonian one, 0.0155 a_0 at 76 kpc -- twelve times SMALLER.  A smaller external field makes a satellite MORE isolated and RAISES its predicted dispersion, so on its own that fix LOWERS the residual.  This check asserts the claim's own story: that fixing the external field to the QUMOND-required one raises the dwarf-spheroidal median.  It does not   (f09 as published +0.228 dex; f09 with ONLY the external field corrected to Newtonian-baryonic +0.057 dex.  That single named fix moves the median by -0.171 dex -- DOWNWARD, and by a third of the size of the shift it is credited with)
+  [FAIL] V4 the ingredient that actually supplies the shift is the one the claim does not name: the change of COMBINATION RULE from f09's max(g_iso, g_efe) to g06's interpolation.  f09's 'max' rule can only ever let the external field RAISE the prediction (it is discarded whenever it is the smaller); the interpolation always lets it LOWER the prediction.  This check asserts the two NAMED causes account for most of the shift   (enclosed-mass Jeans alone (both named causes, EFE unable to bite) gives +0.390 dex = +0.162 of the +0.505 dex shift; the unnamed change of rule adds the remaining +0.343 dex, i.e. 68% of it)
+  
+  and the part the named causes DO supply is not what they are described as.  In the isolated deep-MOND limit
+  the Plummer virial is sigma^4 = (4/81) G M a_0 (Milgrom 1994) -- it depends on the TOTAL mass and on a_0 and
+  on NOTHING ELSE: not on the radius, not on the deprojection, not on the enclosed-mass profile (that is g06's
+  own check J3).  f09's estimator sigma^2 = g_pred R/3 gives (1/3) sqrt(G M a_0) against the exact
+  (2/9) sqrt(G M a_0), a fixed factor 1.5 = 0.176 dex for every isolated-branch object.  So 'enclosed rather
+  than total mass inside the half-light radius' is a mis-description of a virial-COEFFICIENT correction.
+  [PASS] V5 the isolated-branch part of the shift is exactly the 0.176 dex virial-coefficient factor 1.5, computed analytically with no radius and no mass profile anywhere in it, which is what shows the 'enclosed vs total mass' label is wrong for it   (analytic isolated Plummer virial median +0.404 dex (alt +0.363) against f09's +0.228: a shift of +0.176 dex, against the predicted log10(1.5) = +0.176)
+
+==============================================================================================================================
+3.  BUG PATTERN #6, AND IT IS f09's OWN RETIRED CHECK A6 COMING BACK WITH THE SIGN FLIPPED
+==============================================================================================================================
+  f09's A6 recorded that its dwarf residuals' SIGN tracked which branch of its own external-field rule was
+  used -- isolated branch all positive, EFE branch all negative -- and concluded the eight objects could not
+  carry a number until the rule was replaced by a proper interpolation.  g06 does the interpolation and treats
+  A6 as discharged.  Here is the same diagnostic run on g06's own output.
+    dwarf           e_N/a0  x_int(r_h)  e_N/x_int   g06 dex  isolated dex
+    Leo I          0.00145     0.03657       0.04    +0.157        +0.130
+    Fornax         0.00420     0.03573       0.12    -0.046        -0.107
+    Leo II         0.00171     0.01001       0.17    +0.376        +0.293
+    Sculptor       0.01215     0.01203       1.01    +0.581        +0.333
+    Carina         0.00817     0.00255       3.21    +0.885        +0.446
+    Ursa Minor     0.01554     0.00371       4.19    +1.302        +0.820
+    Draco          0.01554     0.00249       6.25    +1.343        +0.784
+    Sextans        0.01215     0.00038      31.83    +1.474        +0.576
+  [FAIL] V6 (THE SAME DISEASE, NOT THE CURE) g06's per-object dwarf residual must not be a monotone function of e_N/x_int, the external-field ratio that its own prescription computes.  If it is, the +0.733 dex is a property of the branch and not of the data -- which is exactly the verdict f09 reached about its own numbers in check A6, and exactly the repository's bug pattern #6.  This check asserts the rank correlation is not extreme; it fails, and it fails harder than f09's version did because five of the eight objects are now external-field dominated where in f09 six of eight were isolated   (Spearman rank correlation of g06's dwarf residual against e_N/x_int = +0.976 over the eight objects (the isolated branch, where the EFE cannot act, gives +0.881); 5 of 8 are external-field dominated on g06's own numbers, up to e_N/x_int = 32 for Sextans, whose residual is the largest in the file at +1.474)
+  [FAIL] V7 so the replacement number is not stable enough to replace anything.  The claim's operative conclusion -- 'f09's dwarf spheroidal number should not be quoted at its published value' -- is right about f09 and wrong to imply +0.733 is the value to quote instead: the same eight objects give anywhere from the isolated-branch value to the interpolated one depending on a prescription choice that no check in g06 tests on the dwarfs (g06's R4 branch-sensitivity check is groups-only, and the groups sit at e_N/x_int ~ 0.06 where the branch cannot matter).  This check asserts the branch does not matter for the dwarfs either   (isolated branch +0.390 dex, interpolated branch +0.733 dex, a prescription spread of +0.343 dex on the same eight objects -- 68% of the entire shift the claim is built on, and larger than f09's published number itself)
+
+==============================================================================================================================
+4.  MUTATION CONTROLS
+==============================================================================================================================
+  [PASS] M1 mutation -- switch the kernel off (nu = 1, Newtonian gravity on the same stellar masses).  The dwarf residuals must explode to the famous dark-matter-to-baryon ratios of the classical dwarf spheroidals; if they did not, this re-implementation would not be computing gravity at all   (Newtonian median residual +1.621 dex canonical / +1.621 alt, i.e. a factor 42 in mass, against the kernel's +0.733 dex)
+  [PASS] M2 mutation -- flip f09's combination rule from max to min while changing nothing else.  This isolates the rule from the field and must reproduce most of the gap on its own, confirming that the rule and not the field is the lever   (f09 with max +0.228 dex, f09 with min +0.582 dex (alt +0.548): the rule alone moves the median by +0.354 dex without a single number in the external field changing)
+
+==============================================================================================================================
+VERDICT
+==============================================================================================================================
+  The NUMBER is right: g06's +0.733 dex reproduces exactly, and its alt-footing companion is +0.695.
+  The CAUSE as stated is not.  Of the two causes the claim names, the first -- 'the external field treated as
+  QUMOND requires (Newtonian, baryonic)' -- moves the median DOWN by 0.17 dex when applied on its own, because
+  the QUMOND-required baryonic field is TWELVE TIMES SMALLER than the total-matter field f09 used, and a
+  smaller external field makes a dwarf more isolated.  The second -- 'enclosed rather than total mass' -- is a
+  mis-description of a fixed virial-coefficient correction that the isolated deep-MOND limit shows depends on
+  neither radius nor mass profile.  Roughly two thirds of the shift comes from an ingredient the claim does not
+  mention at all: replacing max(g_iso, g_efe) with an interpolation, which changes the SIGN of what the
+  external field does to the prediction.  And that ingredient delivers its shift through a residual that ranks
+  monotonically with the prescription's own e_N/x_int -- f09's retired check A6, inverted, not cured.
+
+RESULT: 9 checks, 4 FAIL -> ["V3 (THE REFUTATION) the FIRST named cause moves the number in the OPPOSITE direction to the one claimed.  f09's g_ext = v_c^2/D with v_c = 200 km/s is the Milky Way's TOTAL dynamical field, 0.182 a_0.  The field QUMOND actually requires in nu's argument is the BARYONIC Newtonian one, 0.0155 a_0 at 76 kpc -- twelve times SMALLER.  A smaller external field makes a satellite MORE isolated and RAISES its predicted dispersion, so on its own that fix LOWERS the residual.  This check asserts the claim's own story: that fixing the external field to the QUMOND-required one raises the dwarf-spheroidal median.  It does not", "V4 the ingredient that actually supplies the shift is the one the claim does not name: the change of COMBINATION RULE from f09's max(g_iso, g_efe) to g06's interpolation.  f09's 'max' rule can only ever let the external field RAISE the prediction (it is discarded whenever it is the smaller); the interpolation always lets it LOWER the prediction.  This check asserts the two NAMED causes account for most of the shift", "V6 (THE SAME DISEASE, NOT THE CURE) g06's per-object dwarf residual must not be a monotone function of e_N/x_int, the external-field ratio that its own prescription computes.  If it is, the +0.733 dex is a property of the branch and not of the data -- which is exactly the verdict f09 reached about its own numbers in check A6, and exactly the repository's bug pattern #6.  This check asserts the rank correlation is not extreme; it fails, and it fails harder than f09's version did because five of the eight objects are now external-field dominated where in f09 six of eight were isolated", "V7 so the replacement number is not stable enough to replace anything.  The claim's operative conclusion -- 'f09's dwarf spheroidal number should not be quoted at its published value' -- is right about f09 and wrong to imply +0.733 is the value to quote instead: the same eight objects give anywhere from the isolated-branch value to the interpolated one depending on a prescription choice that no check in g06 tests on the dwarfs (g06's R4 branch-sensitivity check is groups-only, and the groups sit at e_N/x_int ~ 0.06 where the branch cannot matter).  This check asserts the branch does not matter for the dwarfs either"]   rc=1

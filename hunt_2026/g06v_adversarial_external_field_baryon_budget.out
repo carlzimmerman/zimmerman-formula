@@ -1,0 +1,116 @@
+==============================================================================================================================
+g06v -- ADVERSARIAL: is g06's 'baryonic Newtonian external field' the baryonic Newtonian field?
+==============================================================================================================================
+  [PASS] V0a my own Jeans integrator reproduces the deep-MOND virial theorem sigma^4 = (4/81) G M a_0 (Milgrom 1994), so the machinery below is not the thing under dispute   (0.049388 against 4/81 = 0.049383)
+  [PASS] V0b the sample rebuilds to g06's 26 groups / 333 members from the same catalogue and the same cuts   (26 groups, 333 members)
+  [PASS] V0c g06's three headline external-field numbers reproduce independently from the same files   (direct stars+HI 6.024e-15 (g06 6.024e-15); 2M++ total-matter 1.161e-12 (g06 1.161e-12); inverted 1.422e-14 (g06 1.422e-14))
+
+------------------------------------------------------------------------------------------------------------------------------
+V1.  WHAT FRACTION OF THE BARYONS DOES A STARS+HI SUM ACTUALLY CARRY?
+------------------------------------------------------------------------------------------------------------------------------
+  Fukugita & Peebles 2004 (ApJ 616, 643): Omega_star = 0.0027, cold neutral gas = 0.00033, against
+  Omega_b = 0.045.  Stars + cold gas are 7% of the baryons.  Shull, Smith & Danforth
+  2012 (ApJ 759, 23) put ~60% of low-z baryons in the warm/hot IGM; de Graaff et al. 2019 (A&A 624, A48)
+  and Macquart et al. 2020 (Nature 581, 391) locate the remainder in the same diffuse phase.
+  In a baryons-only framework that diffuse phase SOURCES g_N exactly as stars do, and on the 3-200 Mpc
+  scales that set the external field it traces the same density contrast (it is more weakly biased than
+  the galaxies, not less), so it cannot be dropped from the source term.
+      => a stars+HI sum under-counts the baryonic Newtonian source by ~1/0.067 = 15x BEFORE any survey incompleteness is discussed.
+  [PASS] V1 the omission is an order of magnitude, not the 'threefold error' g06's caveat rules harmless.  g06 frames the choice as stars-only versus the raw reconstruction and tells the reader a factor 3 in the former is immaterial; the actual gap between a stars+HI sum and the baryonic source term is far larger than 3 on the published budget alone   (stars + cold gas are 6.7% of Omega_b, i.e. a factor 14.9 under-count, against the factor 3 g06's caveat tests)
+
+------------------------------------------------------------------------------------------------------------------------------
+V2.  THE THIRD BRANCH g06 DOES NOT CARRY: the baryonic Newtonian field from g06's OWN 2M++ cube
+------------------------------------------------------------------------------------------------------------------------------
+      g06 route 1  stars+HI in catalogued galaxies      g_N = 6.024e-15 = 0.000064 a_0
+      g06 route 2  2M++ reconstruction used RAW          g   = 1.161e-12 = 0.012401 a_0
+      g06 route 2' the same, inverted through nu         g_N = 1.422e-14 = 0.000152 a_0
+      THE MISSING ROUTE: the same 2M++ density contrast, sourced by ALL BARYONS rather than all matter
+                   (Omega_b/Omega_m = 0.1571; nothing else in the reduction changes)
+                                                         g_N = 1.824e-13 = 0.001949 a_0
+      That is 30x g06's direct sum -- consistent with V1's 15x diffuse-baryon
+      deficit times a residual ~2.0x for 2MRS's magnitude limit, zone of avoidance and
+      the 150 Mpc volume cut, all of which g06 already flags as making its sum a LOWER bound.
+  [PASS] V2 the physically required baryonic Newtonian external field is an order of magnitude above the number g06 uses, and it comes from g06's own data by g06's own reduction with one constant changed.  If this check passes, the 'factor 3 is harmless' defence does not cover the actual error   (all-baryon 2M++ field 1.824e-13 vs g06's stars+HI sum 6.024e-15, a factor 30.3; g06's own tested bracket was a factor 3)
+  [FAIL] V3 E1's 'the two routes agree to a factor 0.42' does NOT survive replacing the stars-only sum with the baryonic source term.  E1's own passing window was 0.4 < ratio < 2.5; on the correct baryon budget the ratio lands outside it, in the direction that says the framework OVER-produces the Local Group's acceleration rather than under-producing it   (correct baryonic g_N = 1.824e-13 against the inverted-from-2M++ 1.422e-14: ratio 12.83 (E1's window is 0.4 - 2.5; E1 reported 0.42 using the stars-only sum))
+
+------------------------------------------------------------------------------------------------------------------------------
+V4.  THE RUNG RECOMPUTED ON THE CORRECT EXTERNAL FIELD, BOTH FOOTINGS
+------------------------------------------------------------------------------------------------------------------------------
+    external field branch                           canonical        alt
+    g06 PRIMARY: stars+HI only                          0.817      0.746   (-0.088 / -0.128 dex)
+    CORRECT: all baryons, same 2M++ field               1.210      1.106   (+0.083 / +0.044 dex)
+    g06's 'wrong, shown': raw reconstruction            2.215      2.030   (+0.345 / +0.308 dex)
+  [FAIL] V4a g06's headline number is NOT robust to using the correct baryonic external field.  g06 reports a median boost of 0.817 (-0.088 dex) and builds section 9 on its sitting below unity and far from the cluster rows.  This check asserts the correct branch stays within g06's own quoted bootstrap band [0.656, 1.110] on BOTH footings   (stars-only 0.817 canonical / 0.746 alt; ALL-BARYON 1.210 canonical / 1.106 alt -- a shift of +0.171 dex, against g06's bootstrap band [0.656, 1.110])
+  [FAIL] V4b the answer is not the binary g06 presents.  g06 tells the reader the choice is between its 0.817 and the raw reconstruction's 2.215, and that the second is simply wrong.  The correct branch sits BETWEEN them, so 'this rung's answer reverses if E1 is wrong' understates the exposure: the answer moves even when E1's PRESCRIPTION argument is accepted in full, purely from counting the baryons properly   (stars-only 0.817, correct-baryon 1.210, raw reconstruction 2.215; the correct branch is +0.171 dex from g06's headline and -0.263 dex from the branch g06 calls wrong)
+  [FAIL] V5 E2's picture ('mostly internal-field dominated; the EFE is a correction rather than the leading term') does not survive either.  E2 reports median e_N/x_int = 0.061 and 1 of 26 groups external-field dominated on the stars-only field, against 23 of 26 on the raw reconstruction, and rests the whole prediction on the first picture.  This check asserts the correct branch still gives a median well below 1   (median e_N/x_int(r_h): stars-only 0.061 (1 of 26 EFE-dominated), ALL-BARYON 0.939 (11 of 26), raw reconstruction 5.979 (23 of 26))
+
+------------------------------------------------------------------------------------------------------------------------------
+V7.  R4's 'the ADMISSIBLE prescriptions agree' argument, re-tested on the correct field
+------------------------------------------------------------------------------------------------------------------------------
+    stars+HI (g06 primary)       isolated  0.706   interpolated  0.817   pure-EFE  0.208   spread x3.93
+    all baryons (correct)        isolated  0.706   interpolated  1.210   pure-EFE  0.790   spread x1.71
+
+  ROBUSTNESS OF V4 TO THE ONE ASSUMPTION IT MAKES: that the diffuse baryons trace the same density
+  contrast as the matter on 3-200 Mpc (bias ~1; the galaxies are MORE biased, and 2M++ already divides by
+  b = 1.2).  If instead the diffuse phase were partly smooth, the external field scales down by that
+  factor.  The rung as a function of the diffuse clustering fraction, canonical footing:
+        diffuse baryons clustered at   0% of the matter contrast -> median boost 0.817
+        diffuse baryons clustered at  10% of the matter contrast -> median boost 0.901
+        diffuse baryons clustered at  25% of the matter contrast -> median boost 0.939
+        diffuse baryons clustered at  50% of the matter contrast -> median boost 1.024
+        diffuse baryons clustered at  75% of the matter contrast -> median boost 1.124
+        diffuse baryons clustered at 100% of the matter contrast -> median boost 1.210
+  Only a diffuse phase that is essentially SMOOTH recovers g06's 0.817, and that is excluded by the
+  tSZ and FRB detections of the warm/hot phase in filaments cited in V1.
+
+  g06's R4 excludes the pure external-field branch as 'a limit that does not apply here', justified by
+  E2's e_N/x_int ~ 0.06.  On the correct baryonic field V5 measures that ratio at ~0.9 with 11 of 26
+  groups external-field dominated, so the pure-EFE limit stops being inadmissible and R4's bracket
+  widens from a factor 1.29 to the full branch spread.
+  [FAIL] V7 R4's finding ('the admissible external-field prescriptions agree to a factor 1.29, inside the bootstrap band 1.69') is a consequence of the external field being small.  On the correct field the prescription branches no longer agree inside that band, so the prescription systematic that g06 retires is live again   (stars+HI branch spread x3.93, all-baryon branch spread x1.71, against g06's bootstrap band x1.69)
+
+------------------------------------------------------------------------------------------------------------------------------
+V6.  THE 'SUPPORTING CROSS-CHECK' RUNS THE OTHER WAY ONCE THE BARYONS ARE COUNTED
+------------------------------------------------------------------------------------------------------------------------------
+      crude v ~ g t_0 with t_0 = 4.35e+17 s, against the CMB dipole's 620 km/s:
+          g06's stars+HI field pushed through nu:         328 km/s   (g06 quotes 328)
+          the raw 2M++ field read as an acceleration:     505 km/s   (g06 quotes 505)
+          ALL-BARYON field pushed through nu:            1837 km/s
+      g06 offers the first as evidence that 'both routes are in the right decade and neither is a fit'.
+      The framework's own prediction, made with the baryons it actually has to gravitate, is the third,
+      and it OVER-shoots the dipole by 3.0x.  The apparent success was produced by omitting
+      ~93% of the baryons; the omission and the kernel's amplification cancelled.
+  [FAIL] V6 the peculiar-velocity cross-check offered in support of E1 does not support it once the same baryon budget the framework needs is used.  This check asserts the all-baryon prediction lands within a factor 2 of the dipole, the tolerance g06 itself claims for v ~ g t_0   (all-baryon 1837 km/s against 620 km/s = a factor 3.0; g06's stars-only route gave 328 km/s = a factor 0.53)
+
+------------------------------------------------------------------------------------------------------------------------------
+M1.  MUTATION CONTROL
+------------------------------------------------------------------------------------------------------------------------------
+  [PASS] M1a mutation -- recompute the all-baryon field by scaling the total-matter field instead of re-running the sum with Omega_b.  The Poisson reduction is linear in Omega, so the two must agree to machine precision; if they did not, the third branch would be a coding artefact rather than a budget identity   (direct Omega_b sum 1.823849e-13, scaled total-matter sum 1.823849e-13, ratio 1.000000000000)
+  [PASS] M1b mutation -- set the diffuse-baryon correction to 1, i.e. put g06's own stars-only field back in.  Every number in this file must collapse onto g06's published ones; if it does not, the disagreement is mine and not g06's   (median boost 0.817 vs g06's 0.817; median e_N/x_int 0.061 vs g06's 0.061)
+
+==============================================================================================================================
+VERDICT
+==============================================================================================================================
+  The PRESCRIPTION half of g06's claim survives: nu's argument is the Newtonian field of the actual
+  gravitating matter, that matter is baryons, and a total-matter reconstruction must not be fed in raw.
+  Nothing here disputes that, and the QUMOND inversion of the reconstruction is a legitimate estimate of
+  what the framework needs the baryonic field to be.
+  
+  The NUMBER half does not survive.  g06 substitutes the field of stars and HI in catalogued galaxies for
+  the baryonic Newtonian field.  Those are ~7% of the baryons (Fukugita & Peebles 2004), and the rest is
+  diffuse gas that gravitates identically in this framework and traces the same large-scale density
+  contrast.  Using g06's own 2M++ cube with Omega_b in place of Omega_m gives
+      g_N,bary = 1.824e-13 m/s^2 = 0.00195 a_0, a factor 30 above the number g06 uses,
+  and the rung moves from 0.817 to 1.210 (canonical), +0.171 dex.
+  
+  Consequences for the three statements g06 rests on E1:
+    * E1's factor-0.42 agreement becomes a factor 12.8, outside E1's own 0.4-2.5 window and on
+      the other side of unity: the framework OVER-produces the Local Group's acceleration.
+    * E2's '1 of 26 external-field dominated' becomes 11 of 26.
+    * the 328-vs-620 km/s cross-check becomes 1837-vs-620, a 3.0x over-prediction.
+  
+  What this does NOT establish: that the rung's qualitative conclusion is wrong.  Whether the corrected
+  median boost still sits below the liability table's cluster rows is what checks V4a/V4b decide, and the
+  numbers they print are the answer, not this paragraph.
+
+RESULT: 13 checks, 6 FAIL -> ["V3 E1's 'the two routes agree to a factor 0.42' does NOT survive replacing the stars-only sum with the baryonic source term.  E1's own passing window was 0.4 < ratio < 2.5; on the correct baryon budget the ratio lands outside it, in the direction that says the framework OVER-produces the Local Group's acceleration rather than under-producing it", "V4a g06's headline number is NOT robust to using the correct baryonic external field.  g06 reports a median boost of 0.817 (-0.088 dex) and builds section 9 on its sitting below unity and far from the cluster rows.  This check asserts the correct branch stays within g06's own quoted bootstrap band [0.656, 1.110] on BOTH footings", "V4b the answer is not the binary g06 presents.  g06 tells the reader the choice is between its 0.817 and the raw reconstruction's 2.215, and that the second is simply wrong.  The correct branch sits BETWEEN them, so 'this rung's answer reverses if E1 is wrong' understates the exposure: the answer moves even when E1's PRESCRIPTION argument is accepted in full, purely from counting the baryons properly", "V5 E2's picture ('mostly internal-field dominated; the EFE is a correction rather than the leading term') does not survive either.  E2 reports median e_N/x_int = 0.061 and 1 of 26 groups external-field dominated on the stars-only field, against 23 of 26 on the raw reconstruction, and rests the whole prediction on the first picture.  This check asserts the correct branch still gives a median well below 1", "V7 R4's finding ('the admissible external-field prescriptions agree to a factor 1.29, inside the bootstrap band 1.69') is a consequence of the external field being small.  On the correct field the prescription branches no longer agree inside that band, so the prescription systematic that g06 retires is live again", 'V6 the peculiar-velocity cross-check offered in support of E1 does not support it once the same baryon budget the framework needs is used.  This check asserts the all-baryon prediction lands within a factor 2 of the dipole, the tolerance g06 itself claims for v ~ g t_0']   rc=1

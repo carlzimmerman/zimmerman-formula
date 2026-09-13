@@ -1,0 +1,18 @@
+{
+  "claim_id": "SOURCE_EVOLUTION_CANONICAL_COORDINATE_CONTROL",
+  "mathematics": {
+    "assertion_tested": "A time-dependent canonical momentum shift gives the same fixed-action conserved dust response as the original canonical variables for k=100, t in [0,4], gamma=1e-6, amplitude=1e-7; transformed DOP853 and Radau agree on 161 common sample times.",
+    "coefficient_domain": "IEEE754 float64 numerical integration and exact rational symbolic coordinate identities",
+    "conventions": "M2=1, normalized real cosine mode, rho=amplitude/a^3, zeta(0)=zetadot(0)=0, no change to constitutive coefficients",
+    "inputs": ["canonical fixed constitutive action", "quadratic source action", "numerical source evolution implementation"],
+    "bounds": {"k": 100, "t_min": 0, "t_max": 4, "gamma": 0.000001, "amplitude": 0.0000001, "sample_count": 161, "solvers": ["DOP853 rtol=1e-10", "DOP853 rtol=1e-12", "Radau rtol=1e-10"], "random_coordinate_control_count": 21},
+    "non_claims": ["No positive-density isolated galaxy", "No nonlinear solution or universal stability result", "No physical initial-condition selection", "No coefficient reconstruction", "Finite sampling and solver tolerances do not certify a whole domain"]
+  },
+  "execution_artifacts": [
+    "qwen_claude_field_theory/closure_2026/clock_response_repair_2026/closure_front_2026/source_evolution/numerics_audit/audit.py",
+    "qwen_claude_field_theory/closure_2026/clock_response_repair_2026/closure_front_2026/source_evolution/evolve.py",
+    "qwen_claude_field_theory/closure_2026/clock_response_repair_2026/nonlinear_evolution_2026/constitutive.py"
+  ],
+  "software": [{"name": "Python", "version": "3.9.6"}, {"name": "NumPy", "version": "1.26.2"}, {"name": "SciPy", "version": "1.11.4"}, {"name": "SymPy", "version": "1.14.0"}],
+  "randomness": {"used": true, "generator": "NumPy default_rng PCG64", "seed": 803}
+}

@@ -1,0 +1,67 @@
+{
+  "action": "a**3*lambda*(-N*(1 + k2*phi**2/a**2) + phidot**2/N)/2",
+  "momenta": {
+    "p_phi": "a**3*lambda*phidot/N",
+    "p_lambda": "0"
+  },
+  "hamiltonian_density_over_lapse": "(a**4*lambda**2*(a**2 + k2*phi**2) + p_phi**2)/(2*a**3*lambda)",
+  "constraints": {
+    "primary": [
+      "p_lambda"
+    ],
+    "secondary": [
+      "a**3/2 + a*k2*phi**2/2 - p_phi**2/(2*a**3*lambda**2)"
+    ]
+  },
+  "dirac_matrix": "Matrix([[0, -p_phi**2/(a**3*lambda**3)], [p_phi**2/(a**3*lambda**3), 0]])",
+  "generic_dirac_rank": 2,
+  "reduced_phase_dimension": 2,
+  "reduced_configuration_dof": "1",
+  "preservation": {
+    "{C2,H0}": "2*k2*p_phi*phi/(a**2*lambda)",
+    "{C2,C1}": "p_phi**2/(a**3*lambda**3)",
+    "dot_C2": "p_phi*(2*N*a*k2*lambda**2*phi + p_phi*u)/(a**3*lambda**3)"
+  },
+  "sectors": {
+    "k=0": {
+      "dirac_matrix": "Matrix([[0, -p_phi**2/(a**3*lambda**3)], [p_phi**2/(a**3*lambda**3), 0]])",
+      "generic_rank": 2,
+      "configuration_dof": "1",
+      "bracket": "-p_phi**2/(a**3*lambda**3)"
+    },
+    "k!=0": {
+      "dirac_matrix": "Matrix([[0, -p_phi**2/(a**3*lambda**3)], [p_phi**2/(a**3*lambda**3), 0]])",
+      "generic_rank": 2,
+      "configuration_dof": "1",
+      "bracket": "-p_phi**2/(a**3*lambda**3)"
+    }
+  },
+  "flrw": {
+    "L_homogeneous": "a**3*lambda*(-N**2 + phidot**2)/(2*N)",
+    "p_phi_homogeneous": "a**3*lambda*phidot/N",
+    "rho_clock": "lambda*(N**2 + phidot**2)/(2*N**2)",
+    "pressure_diagnostic": "lambda*(-N**2 + phidot**2)/(2*N**2)",
+    "charge_equation": "Eq(a**3*lambda, clock_charge)",
+    "sound_speed_squared": "0",
+    "expanding_friedmann_source": "rho_clock=lambda=clock_charge/a^3, p_clock=0"
+  },
+  "preferred_frame_contrast": {
+    "alpha1_general_ea": "8*(c1*c4 + c3**2)/(c1**2 - 2*c1 - c3**2)",
+    "alpha2_general_ea": "(2*c1**4 + 3*c1**3*c2 + 5*c1**3*c3 + 3*c1**3*c4 - 4*c1**3 + 6*c1**2*c2*c3 + c1**2*c2*c4 - 6*c1**2*c2 + 4*c1**2*c3**2 + 5*c1**2*c3*c4 - 10*c1**2*c3 + 3*c1**2*c4**2 - 6*c1**2*c4 + c1*c2*c3**2 - 12*c1*c2*c3 + 4*c1*c2*c4**2 - 2*c1*c2*c4 - c1*c3**3 + 5*c1*c3**2*c4 - 12*c1*c3**2 + 4*c1*c3*c4**2 - 10*c1*c3*c4 + 2*c1*c4**2 - 6*c2*c3**3 + 7*c2*c3**2*c4 - 8*c2*c3**2 - 2*c3**4 + 3*c3**3*c4 - 8*c3**3 + c3**2*c4**2)/((c1 + c2 + c3)*(c1 + c4 - 2)*(c1**2 - 2*c1 - c3**2))",
+    "alpha1_c13_0_c4_0": "-4*c1",
+    "alpha2_c13_0_c4_0": "-c1*(2*c1*c2 + c1 - c2)/(c2*(c1 - 2))",
+    "alpha2_zero_locus": [
+      "-c1/(2*c1 - 1)"
+    ],
+    "sample_c1_1e-5_c2_0.1": {
+      "alpha1": "-4.00000000000000e-5",
+      "alpha2": "-4.99942499712499e-6"
+    },
+    "interpretation": "These Einstein-aether formulas apply only after adding aether kinetic terms; the mimetic multiplier has no c_i kinetic block."
+  },
+  "interpretation": {
+    "nonzero_density_branch": "lambda != 0 and p_phi != 0 gives a nonzero Dirac bracket and one reduced clock configuration DOF in both k sectors.",
+    "zero_density_exception": "lambda=0 is a rank-degenerate zero-clock branch; it cannot supply the FLRW dust density used by the memory proposal.",
+    "scope": "Reduced clock-sector audit; not a substitute for the full gravity-plus-clock functional constraint algebra."
+  }
+}

@@ -1,0 +1,172 @@
+{
+  "Y": "h^{ij} chi_i chi_j",
+  "action": "S_F = integral dt d^3x N sqrt(h) F(Y)",
+  "assumptions": [
+    "preferred foliation and zero shift on the static branch",
+    "local single scalar F(Y) with no time derivative",
+    "minimal Hilbert coupling through N sqrt(h) and h^{ij}",
+    "no independent anisotropic counter-stress or multiplier cancellation",
+    "Einstein-Hilbert weak-field curvature equations retained",
+    "galactic branch has Y>0 and finite nonzero F_Y"
+  ],
+  "checks": {
+    "aligned_rank_one_stress_has_nonzero_eigenvalue": true,
+    "aligned_tf_difference_is_nonzero_expression": true,
+    "chi_flux_is_2_FY_h_inverse_gradient": true,
+    "dirac_bracket_determinant_is_computed": true,
+    "dirac_longitudinal_symbol_matches_principal": true,
+    "dirac_transverse_symbol_matches_principal": true,
+    "dirac_zero_mode_is_degenerate": true,
+    "exact_exponential_stress_source_nonzero_for_y_positive": true,
+    "exponential_longitudinal_symbol_is_positive_form": true,
+    "exponential_transverse_symbol_is_mu": true,
+    "hilbert_mixed_stress_is_derived": true,
+    "principal_determinant_factorizes": true,
+    "principal_matrix_is_derived": true,
+    "tracefree_stress_has_zero_trace": true,
+    "weak_field_G00_is_2_laplacian_Psi": true,
+    "weak_field_tf_vanishes_on_phi_equals_psi": true
+  },
+  "dirac": {
+    "bracket_determinant": "4*(F_Y*k0**2 + F_Y*k1**2 + F_Y*k2**2 + 2*F_YY*Q*k0**2)**2",
+    "bracket_matrix": [
+      [
+        "0",
+        "-2*F_Y*k1**2 - 2*F_Y*k2**2 - 2*k0**2*(F_Y + 2*F_YY*Q)"
+      ],
+      [
+        "2*F_Y*k1**2 + 2*F_Y*k2**2 + 2*k0**2*(F_Y + 2*F_YY*Q)",
+        "0"
+      ]
+    ],
+    "fourier_symbol": "2*F_Y*k1**2 + 2*F_Y*k2**2 + 2*k0**2*(F_Y + 2*F_YY*Q)",
+    "k0_symbol": "0",
+    "k_nonzero_longitudinal_symbol": "2*F_Y + 4*F_YY*Q",
+    "k_nonzero_transverse_symbol": "2*F_Y",
+    "primary_constraint": "p_chi = 0",
+    "secondary_constraint": "C_chi = (N sqrt(h))^(-1) d_i(2 N sqrt(h) F_Y h^ij chi_j) - J"
+  },
+  "euler_lagrange_flux": [
+    "2*F_Y*h0*q0",
+    "2*F_Y*h1*q1",
+    "2*F_Y*h2*q2"
+  ],
+  "exponential": {
+    "F_Y": "(exp(y) - 1)*exp(-y)/2",
+    "F_YY": "exp(-y)/(4*a0**2*y)",
+    "aligned_TF_difference": "a0**2*y**2*(1 - exp(y))*exp(-y)",
+    "lambda_parallel": "(y + exp(y) - 1)*exp(-y)",
+    "lambda_perp": "1 - exp(-y)",
+    "mu": "1 - exp(-y)"
+  },
+  "mixed_spatial_stress": [
+    [
+      "F - 2*F_Y*h0*q0**2",
+      "0",
+      "0"
+    ],
+    [
+      "0",
+      "F - 2*F_Y*h1*q1**2",
+      "0"
+    ],
+    [
+      "0",
+      "0",
+      "F - 2*F_Y*h2*q2**2"
+    ]
+  ],
+  "non_claim": "Not a universal no-go for nonlocal, multi-field, multiplier, or stress-canceling architectures.",
+  "passed": true,
+  "pressure": "F - 2*F_Y*h0*q0**2/3 - 2*F_Y*h1*q1**2/3 - 2*F_Y*h2*q2**2/3",
+  "principal_determinant": "8*F_Y**2*(F_Y + 2*F_YY*Q)",
+  "principal_matrix_aligned": [
+    [
+      "2*F_Y + 4*F_YY*Q",
+      "0",
+      "0"
+    ],
+    [
+      "0",
+      "2*F_Y",
+      "0"
+    ],
+    [
+      "0",
+      "0",
+      "2*F_Y"
+    ]
+  ],
+  "tracefree_stress": [
+    [
+      "2*F_Y*(-2*h0*q0**2 + h1*q1**2 + h2*q2**2)/3",
+      "0",
+      "0"
+    ],
+    [
+      "0",
+      "2*F_Y*(h0*q0**2 - 2*h1*q1**2 + h2*q2**2)/3",
+      "0"
+    ],
+    [
+      "0",
+      "0",
+      "2*F_Y*(h0*q0**2 + h1*q1**2 - 2*h2*q2**2)/3"
+    ]
+  ],
+  "verdict": "CONDITIONAL_NO_GO_FOR_MINIMAL_LOCAL_SINGLE_FY_SECTOR",
+  "weak_field": {
+    "G00": "2*Derivative(Psi(x0, x1, x2), (x0, 2)) + 2*Derivative(Psi(x0, x1, x2), (x1, 2)) + 2*Derivative(Psi(x0, x1, x2), (x2, 2))",
+    "Gij": [
+      [
+        "Derivative(Phi(x0, x1, x2), (x1, 2)) + Derivative(Phi(x0, x1, x2), (x2, 2)) - Derivative(Psi(x0, x1, x2), (x1, 2)) - Derivative(Psi(x0, x1, x2), (x2, 2))",
+        "-Derivative(Phi(x0, x1, x2), x0, x1) + Derivative(Psi(x0, x1, x2), x0, x1)",
+        "-Derivative(Phi(x0, x1, x2), x0, x2) + Derivative(Psi(x0, x1, x2), x0, x2)"
+      ],
+      [
+        "-Derivative(Phi(x0, x1, x2), x0, x1) + Derivative(Psi(x0, x1, x2), x0, x1)",
+        "Derivative(Phi(x0, x1, x2), (x0, 2)) + Derivative(Phi(x0, x1, x2), (x2, 2)) - Derivative(Psi(x0, x1, x2), (x0, 2)) - Derivative(Psi(x0, x1, x2), (x2, 2))",
+        "-Derivative(Phi(x0, x1, x2), x1, x2) + Derivative(Psi(x0, x1, x2), x1, x2)"
+      ],
+      [
+        "-Derivative(Phi(x0, x1, x2), x0, x2) + Derivative(Psi(x0, x1, x2), x0, x2)",
+        "-Derivative(Phi(x0, x1, x2), x1, x2) + Derivative(Psi(x0, x1, x2), x1, x2)",
+        "Derivative(Phi(x0, x1, x2), (x0, 2)) + Derivative(Phi(x0, x1, x2), (x1, 2)) - Derivative(Psi(x0, x1, x2), (x0, 2)) - Derivative(Psi(x0, x1, x2), (x1, 2))"
+      ]
+    ],
+    "TF_Gij": [
+      [
+        "-2*Derivative(Phi(x0, x1, x2), (x0, 2))/3 + Derivative(Phi(x0, x1, x2), (x1, 2))/3 + Derivative(Phi(x0, x1, x2), (x2, 2))/3 + 2*Derivative(Psi(x0, x1, x2), (x0, 2))/3 - Derivative(Psi(x0, x1, x2), (x1, 2))/3 - Derivative(Psi(x0, x1, x2), (x2, 2))/3",
+        "-Derivative(Phi(x0, x1, x2), x0, x1) + Derivative(Psi(x0, x1, x2), x0, x1)",
+        "-Derivative(Phi(x0, x1, x2), x0, x2) + Derivative(Psi(x0, x1, x2), x0, x2)"
+      ],
+      [
+        "-Derivative(Phi(x0, x1, x2), x0, x1) + Derivative(Psi(x0, x1, x2), x0, x1)",
+        "Derivative(Phi(x0, x1, x2), (x0, 2))/3 - 2*Derivative(Phi(x0, x1, x2), (x1, 2))/3 + Derivative(Phi(x0, x1, x2), (x2, 2))/3 - Derivative(Psi(x0, x1, x2), (x0, 2))/3 + 2*Derivative(Psi(x0, x1, x2), (x1, 2))/3 - Derivative(Psi(x0, x1, x2), (x2, 2))/3",
+        "-Derivative(Phi(x0, x1, x2), x1, x2) + Derivative(Psi(x0, x1, x2), x1, x2)"
+      ],
+      [
+        "-Derivative(Phi(x0, x1, x2), x0, x2) + Derivative(Psi(x0, x1, x2), x0, x2)",
+        "-Derivative(Phi(x0, x1, x2), x1, x2) + Derivative(Psi(x0, x1, x2), x1, x2)",
+        "Derivative(Phi(x0, x1, x2), (x0, 2))/3 + Derivative(Phi(x0, x1, x2), (x1, 2))/3 - 2*Derivative(Phi(x0, x1, x2), (x2, 2))/3 - Derivative(Psi(x0, x1, x2), (x0, 2))/3 - Derivative(Psi(x0, x1, x2), (x1, 2))/3 + 2*Derivative(Psi(x0, x1, x2), (x2, 2))/3"
+      ]
+    ],
+    "TF_Gij_on_Phi_eq_Psi": [
+      [
+        "0",
+        "0",
+        "0"
+      ],
+      [
+        "0",
+        "0",
+        "0"
+      ],
+      [
+        "0",
+        "0",
+        "0"
+      ]
+    ]
+  }
+}

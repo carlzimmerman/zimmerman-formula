@@ -1,0 +1,97 @@
+L216 -- the clock alignment calculation that L215 handed on.
+
+L215 reduced the solar-system gate to one number: local matter must drag the clock's frame
+into its own rest frame to within 4.6 m/s, one part in 8e4 of the solar system's motion
+through the cosmic frame.  Whether the clock's own field equation delivers that was not
+computed.  This lane computes it.
+
+The route: (A) show the disformal coupling cannot simply be switched off, because the
+post-Newtonian gamma locks its coefficient to the conformal one; (B) show the clock is a
+CONSTRAINT field -- the cuscuton's linearised Lagrangian carries no squared time derivative,
+so its equation is elliptic and the tilt is a boundary-value problem, not a propagating
+response; (C) derive the matter source and the clock's stiffness in the solar system, which
+turns out to be independent of the matter coupling and of the MOND coefficient; (D) solve
+the exterior problem for its radial falloff; (E) evaluate the drag at 1 AU and invert the
+bound into a requirement on the one quantity left free.
+
+Every check states measurement and threshold separately.
+
+PART A -- can the preferred-frame coupling simply be removed?
+  [PASS] V1 [the disformal coefficient is LOCKED to the conformal one by light bending] the matter metric is written with independent conformal and disformal strengths, the post-Newtonian ratio is formed, and the disformal strength that makes it one is solved for
+         measured: Phi~ = Phi - a*varphi + b*varphi, Psi~ = Psi + a*varphi, gamma = (Phi + a*varphi)/(Phi - a*varphi + b*varphi), b = [2*a]
+         reading : b = 2a exactly. The disformal term cannot be dialled down while keeping gamma = 1: the fix for light bending and the source of the preferred-frame effect are the same operator with a fixed relative weight. There is no escape by tuning, so the gate has to be met by dragging or not at all
+
+PART B -- the clock is a constraint field, so the tilt is a boundary-value problem
+  [PASS] V2 [no squared time derivative survives, so the clock equation is elliptic] the cuscuton scalar s is expanded for tau = t + psi; the coefficient of the squared time derivative is read off, and the coefficient of the squared gradient is read off at vanishing time derivative, the two being measured separately
+         measured: coefficient of psidot^2 = 0, coefficient of |grad psi|^2 = -1/2
+         reading : the linear-in-s structure kills the time-kinetic term exactly and leaves -W|grad psi|^2/2. The clock therefore propagates nothing and obeys a constraint on each slice: whether it aligns with the Sun is settled by an elliptic equation with the cosmic frame as its boundary condition at infinity, not by a wave that may or may not arrive
+
+PART C -- the source, and the stiffness that resists it
+  [PASS] V3 [the solar-system stiffness is free of both the matter coupling and the MOND coefficient] the clock's gradient stiffness is formed at the local invariant and its derivatives with respect to the matter coupling and the MOND coefficient are measured
+         measured: W_local = G*M**2*f_s**2/(8*pi*r**4*s_0), dW/dlambda = 0, dW/dbeta = 0
+         reading : W_local = f_s^2 G M^2/(8 pi s_0 r^4). Both free coefficients cancel, so the drag cannot be improved by choosing them. The only handle left is the clock rate s_0
+  [PASS] V4 [the drag gain at the source is a pure number] the ratio of the disformal source to the clock's stiffness is formed at the stellar surface and its dependence on the star's mass and radius is measured, since a gain that depended on them would make the gate object-by-object
+         measured: D(R) = 24*s_0/f_s, dD/dM = 0, dD/dR = 0
+         reading : D(R) = 24 s_0/f_s, independent of the star entirely. At the clock rate positivity forces (s_0 >= 2) that is at least 48: the source beats the stiffness at the surface, so the clock IS dragged there. The question is how far out that survives
+
+PART D -- how far out the dragging survives
+  [PASS] V5 [the falling stiffness makes the dragging reach much further than a plain dipole] the exterior dipole equation is solved for its indicial exponents with the r^-4 stiffness and again with a constant stiffness, and the two decay rates of the tilt are compared
+         measured: exponents [3/2 - sqrt(17)/2, 3/2 + sqrt(17)/2] => drag ~ r^--1/2 + sqrt(17)/2 = r^-1.5616; constant stiffness gives r^-3
+         reading : with the stiffness falling as the fourth power of radius the tilt decays as r^-(sqrt(17)-1)/2 = r^-1.562 instead of the r^-3 of an ordinary dipole. The clock is dragged far further than a naive estimate would give, and that works in the construction's favour
+
+PART E -- the drag at 1 AU, and what the bound demands
+  [PASS] V6 [at the clock rate already forced, the gate is missed] the drag gain is carried from the stellar surface to 1 AU with the exponent of V5, the residual misalignment fraction 1/(1+D) is formed, and compared with the requirement
+         measured: D(1 AU) = 0.0109 at s_0 = 2; residual = 9.892e-01 vs required 1.25e-05; short by 7.9e+04
+         reading : at the minimum clock rate the drag reaches only about one percent at Earth's orbit and the gate is missed by nearly the full five orders. Dragging alone does not rescue the coupling at s_0 = 2
+  [PASS] V7 [THE ANSWER: the gate is an inequality on the clock rate] the drag gain is linear in the clock rate, so the requirement is inverted for the clock rate that satisfies it, and that is compared with the rate positivity already forces
+         measured: s_0 >= 1.463e+07, against s_0 >= 2 from positivity (L213 V6)
+         reading : the solar system does not exclude the construction. It DEMANDS a clock running about 1.5e7 times proper time. That is the third independent constraint on the same quantity and the third pointing the same way, but it is seven orders beyond what the other two need, and nothing in the programme explains a number that size
+  [PASS] V8 [and what it costs elsewhere] the margin, the cubic operator's share and the scalar's kinetic coefficient implied by that clock rate are each evaluated, and the kinetic coefficient is compared against 1e6 as a strong-coupling flag
+         measured: m_rel = 6.84e-12, cubic share |rho_3|/rho = 6.84e-08, P_X/d = 1/m_rel = 1.46e+11
+         reading : the margin collapses to 7e-12 and the scalar's kinetic coefficient rises to 1.4e11 times the gradient coefficient. That is not a contradiction with anything computed -- the sound speed and every gate of L213/L214 are unchanged, because they depend on w and not on s_0 -- but a kinetic coefficient eleven orders above its neighbour is a strong-coupling question, and it is NOT computed here
+
+READING
+
+  The clock is dragged, and not nearly enough.
+
+  First, there is no way round the question.  Writing the matter metric with independent
+  conformal and disformal strengths and demanding gamma = 1 forces b = 2a exactly (V1): the
+  operator that fixes light bending IS the operator that generates the preferred-frame
+  effect, at a locked relative weight.  The gate has to be met by dragging.
+
+  Second, the dragging is a constraint, not a response.  The cuscuton's linearised
+  Lagrangian has no squared time derivative at all (V2), so the clock propagates nothing and
+  its tilt solves an elliptic equation whose boundary condition at infinity is the cosmic
+  frame.  Whether the Sun wins is a straight competition between a local source and a
+  stiffness.
+
+  Third, that competition is decided by one number.  The stiffness in the solar system is
+  the gradient function at the LOCAL invariant, and it works out to f_s^2 G M^2/(8 pi s_0
+  r^4) -- free of both the matter coupling and the MOND coefficient (V3), so neither can be
+  used to improve the drag.  At the source the gain is 24 s_0/f_s, independent of the star's
+  mass and radius entirely (V4).  Outside, the falling stiffness makes the tilt decay as
+  r^-1.562 rather than the r^-3 of an ordinary dipole (V5), which helps considerably and is
+  still not enough: at the minimum clock rate the drag is about one percent at Earth's orbit
+  and the residual misalignment misses the bound by nearly five orders (V6).
+
+  So the gate is an inequality, and it is on the clock rate:
+
+      s_0  >~  1.5e7 .
+
+  This is the third independent constraint on s_0 and the third that pushes it up -- the
+  clock identity, positivity of the sector's energy, and now the solar system.  That is a
+  real structural convergence.  But the first two want s_0 of order unity and this one wants
+  ten million, and nothing in the programme explains a number that size.  It is a
+  requirement, recorded as a requirement, not a derivation.
+
+  LIMITS, and they are substantial.  The interior match of V4 evaluates source and stiffness
+  at the stellar surface with a uniform-density star; the real interior profile of the
+  gradient invariant is not solved, and the gain could move by an order either way.  The
+  exterior stiffness is taken as r^-4 throughout, which assumes the scalar's share f_s stays
+  constant from the surface to 1 AU.  The elliptic problem is solved only for its indicial
+  exponents and matched at one radius, not integrated through the star.  The post-Newtonian
+  matching inherited from L215 is convention-dependent at the factor-of-two level.  The
+  bound used is |alpha_1| < 1e-4; a tighter bound moves s_0 up proportionally.  And the
+  strong-coupling question raised in V8 is stated, not answered.
+
+L216 COMPLETE: 8/8 checks PASS.

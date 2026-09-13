@@ -1,0 +1,137 @@
+{
+  "scope": "Exact local Taylor identities and algebraic surrogate checks; no full stellar BVP, PPN fit, or EFT cutoff",
+  "checks": {
+    "normalized_clock_quadratic": true,
+    "normalized_clock_no_time_kinetic": true,
+    "physical_tilt_stiffness_is_s0_W": true,
+    "fixed_W_truncation_gain_has_no_s0": true,
+    "Y_linear": true,
+    "Y_quadratic": true,
+    "full_sW_quadratic_in_tilt": true,
+    "parallel_stiffness": true,
+    "perpendicular_stiffness": true,
+    "homogeneous_known_clock_stiffness": true,
+    "W0_zero_clock_response_is_nonzero": true,
+    "matter_action_tilt_terms": true,
+    "advertised_indicial_root": true,
+    "surface_saturation_and_exterior_propagation_do_not_commute": true,
+    "prior_cone_34_checks_reproduced": true
+  },
+  "L216_reproduction": {
+    "pass": 8,
+    "fail": 0,
+    "matches_committed_json": true,
+    "input_sha256": "2717400b49848e96dc021c45b2a16067445ece62dec80d5591319396bd3b7b51",
+    "meaning": "Reproduces arithmetic and assertions, not their field-theory interpretation"
+  },
+  "physical_tilt_normalization": {
+    "stiffness": "W*s0",
+    "gain_in_fixed_W_truncation": "24/fs"
+  },
+  "projected_Y_clock_hessian": {
+    "L2": "-W0*s0*zx**2/2 - W0*s0*zy**2/2 - W0*s0*zz**2/2 + WY*p**2*s0*zx**2 + WY*q**2*s0*zx**2 + WY*q**2*s0*zy**2 + WY*q**2*s0*zz**2 + 2*WYY*p**2*q**2*s0*zx**2",
+    "parallel_stiffness": "-s0*(-W0 + 2*WY*(p**2 + q**2) + 4*WYY*p**2*q**2)",
+    "perpendicular_stiffness": "s0*(W0 - 2*WY*q**2)",
+    "matter_tilt_terms": "-4*rho*varphi*vel*z - 2*rho*varphi*z**2"
+  },
+  "paper_arithmetic": {
+    "falloff_exponent": 1.5615528128088303,
+    "Rsun_over_AU_to_p": 0.0002278573743302591,
+    "rate_exact_within_paper_surrogate": 14628851.387690246,
+    "rate_approx_paper": 14629034.250618378,
+    "surface_D_48_propagated_saturated_tilt": 0.0002232072238337232,
+    "surface_D_48_paper_saturated_propagated_gain": 0.010818826793460828,
+    "fixed_W_corrected_gain_at_surface_fs1": 24,
+    "fixed_W_corrected_gain_times_reach": 0.0054685769839262184
+  },
+  "cone": {
+    "scope": "Pointwise disformal kinematics plus Maxwell variation; unchanged tensor cone on aligned homogeneous branch",
+    "assumptions": [
+      "C>0 and C-D>0",
+      "g-unit timelike clock covector",
+      "photons minimally coupled to physical gtilde=C*g+D*n*n",
+      "tensor cone remains g; baseline Phi=Psi for the shift-only theorem"
+    ],
+    "maxwell_kinetic": "sqrt(C)/sqrt(L)",
+    "maxwell_gradient": "sqrt(L)/sqrt(C)",
+    "photon_speed_squared_over_g_cone": "(C - D)/C",
+    "matter_measured_tensor_speed_squared": "C/(C - D)",
+    "shifts": {
+      "Phi": "c - d",
+      "Psi": "-c"
+    },
+    "no_slip_and_common_cone_solution": [
+      {
+        "c": "0",
+        "d": "0"
+      }
+    ],
+    "L215_first_order_photon_speed_squared": "1 + 4*varphi + O(varphi**2)",
+    "invariant_norm_difference": "D*t**2",
+    "boost_controls": [
+      {
+        "w": "0",
+        "norm_over_D": "1"
+      },
+      {
+        "w": "3/5",
+        "norm_over_D": "1/4"
+      },
+      {
+        "w": "-3/5",
+        "norm_over_D": "4"
+      }
+    ],
+    "known_TeVeS_metric_speed_squared": "exp(4*varphi)",
+    "checks": {
+      "Maxwell_null_speed_from_EL": true,
+      "independent_inverse_metric_dispersion": true,
+      "physical_metric_determinant": true,
+      "inverse_0_0": true,
+      "inverse_0_1": true,
+      "inverse_0_2": true,
+      "inverse_0_3": true,
+      "inverse_1_0": true,
+      "inverse_1_1": true,
+      "inverse_1_2": true,
+      "inverse_1_3": true,
+      "inverse_2_0": true,
+      "inverse_2_1": true,
+      "inverse_2_2": true,
+      "inverse_2_3": true,
+      "inverse_3_0": true,
+      "inverse_3_1": true,
+      "inverse_3_2": true,
+      "inverse_3_3": true,
+      "invariant_ray_norm_difference": true,
+      "Phi_shift": true,
+      "Psi_shift": true,
+      "first_order_cone_shift": true,
+      "simultaneous_no_slip_common_cone_c": true,
+      "simultaneous_no_slip_common_cone_d": true,
+      "unit_clock_0": true,
+      "boost_ray_norm_0": true,
+      "unit_clock_3/5": true,
+      "boost_ray_norm_3/5": true,
+      "unit_clock_-3/5": true,
+      "boost_ray_norm_-3/5": true,
+      "L215_equal_nonzero_shift": true,
+      "L215_nonzero_cone_shift": true,
+      "known_exponential_metric_cone": true
+    },
+    "non_claims": [
+      "No empirical GW exclusion without field profile and emission assumptions",
+      "No full PPN or clock-drag calculation",
+      "No universal MOND no-go",
+      "No inference of nonlinear L215 completion",
+      "No proof of arbitrary inhomogeneous tensor characteristics"
+    ]
+  },
+  "non_claims": [
+    "No complete gravitational clock constraint or canonical-pair count",
+    "No observational bound on clock rate established",
+    "No alternate solar-system alignment prediction from the fixed-W check",
+    "No nonlinear or all-background tensor-cone theorem",
+    "No quantum strong-coupling scale"
+  ]
+}

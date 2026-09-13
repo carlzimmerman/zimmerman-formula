@@ -1,0 +1,208 @@
+{
+  "schema_version": 1,
+  "claim_id": "C-H-cylinder-source-admissibility-obstructions",
+  "repository": {
+    "commit": "559d57805961ea1122e14d1455f6fe2c963be83f",
+    "dirty": true
+  },
+  "command": "python3 qwen_claude_field_theory/closure_2026/g03_covariant_action_2026/g03_matter_admissibility.py",
+  "environment": {
+    "software": [
+      "Python 3.9.6",
+      "SymPy 1.14.0",
+      "NumPy 1.26.2"
+    ],
+    "hardware": "CPU"
+  },
+  "mathematics": {
+    "assertion_tested": "The prescribed compact source is not a linear perturbation of the specified empty-particle, radial-electrovac background. The exact cylinder is not a background in the original compact-leaf domain.",
+    "coefficient_domain": "exact symbolic",
+    "conventions": "signature -+++; rho is orthonormal density; x is proper cylinder distance",
+    "inputs": [
+      {
+        "path": "qwen_claude_field_theory/closure_2026/g03_covariant_action_2026/g03_matter_admissibility.py",
+        "sha256": "bfa2e89c4ebeaa178d0035c75bc51096ecea4b4576543e132a4dd057c72f06ae"
+      },
+      {
+        "path": "qwen_claude_field_theory/closure_2026/g03_covariant_action_2026/ACTION.md",
+        "sha256": "18b75c25f8842bdb9ea6be22e8f6bfb4ecf67d34819dbb530772632b97d810ed"
+      },
+      {
+        "path": "qwen_claude_field_theory/closure_2026/g03_covariant_action_2026/g03_retarded_screen.py",
+        "sha256": "c5686b49a0887eb3598a32f965dd7cffd38ed17714e32f43fbdc257706e98dc3"
+      }
+    ],
+    "bounds": {
+      "sector": "linear spherical electric Maxwell, empty particle background, smooth compact spatial source",
+      "quadrature_orders": [
+        128,
+        256,
+        512
+      ],
+      "accelerations": [
+        0.5,
+        2,
+        4
+      ],
+      "bump_width": 0.45
+    },
+    "non_claims": [
+      "full theory causal no-go",
+      "positive material realization of the external source",
+      "full matter initial-value uniqueness"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-09-09T23:48:44Z",
+    "runtime_seconds": 1.9718549251556396,
+    "exit_status": 0
+  },
+  "outputs": [
+    {
+      "path": "qwen_claude_field_theory/closure_2026/g03_covariant_action_2026/matter_admissibility_results.json",
+      "sha256": "fbf74715ca30297d9ef2b46758f3b2352301057edc6651067ab79326bedd41ef"
+    }
+  ],
+  "checks": [
+    {
+      "name": "external source satisfies both conservation identities",
+      "passed": true,
+      "evidence": [
+        "0",
+        "0"
+      ]
+    },
+    {
+      "name": "spherical source-free Maxwell reduces to constant flux",
+      "passed": true,
+      "evidence": {
+        "densitized_Ftx": "-E*r**2",
+        "equations": "partial_t(r^2 E)=partial_x(r^2 E)=0"
+      }
+    },
+    {
+      "name": "fixed Maxwell charge has only the already included area response",
+      "passed": true,
+      "evidence": {
+        "delta_rho": "-2*Q**2*z/r**4",
+        "additional_compact_flux": "delta Q=0 by space/time constancy and compact support"
+      }
+    },
+    {
+      "name": "constructed additional density has exactly zero spatial integral",
+      "passed": true,
+      "evidence": "Integral rho dx=[2(-B third derivative+a^2 B first derivative)] at both compact-support endpoints=0."
+    },
+    {
+      "name": "density is nonzero and signed at an exact illustrative acceleration",
+      "passed": true,
+      "evidence": {
+        "center_expression": "1600*(800 - 27*a**2)*exp(-1)/2187",
+        "exact_test_a": 2,
+        "interpretation": "At a=2 center>0; zero integral forces negative density somewhere. General branch condition is given by center expression."
+      }
+    },
+    {
+      "name": "signed-density argument is independent of numerical background a",
+      "passed": true,
+      "evidence": "Integration by parts: integral Z(-Z_xx+a^2 Z)=integral (Z_x)^2+a^2 Z^2>0 for nonzero compact Z; rho cannot vanish identically."
+    },
+    {
+      "name": "compact source has exactly zero Killing energy",
+      "passed": true,
+      "evidence": "Integral e^(ax) rho_s dx is the endpoint value of 2e^(ax)(aZ-Z_x), hence zero for any compact smooth Z. Positive particle additions have strictly positive Killing energy."
+    },
+    {
+      "name": "Killing energy negative control detects an added nonconserved density",
+      "passed": true,
+      "evidence": "Z(t, x)*exp(a*x)"
+    },
+    {
+      "name": "independent quadrature retains signed density and zero Killing energy",
+      "passed": true,
+      "evidence": [
+        {
+          "a": 0.5,
+          "order": 128,
+          "minimum": -392504.53594826633,
+          "maximum": 279283.792457523,
+          "relative_energy_residual": 3.800897262863931e-10
+        },
+        {
+          "a": 0.5,
+          "order": 256,
+          "minimum": -405588.9660089199,
+          "maximum": 285282.94279881596,
+          "relative_energy_residual": 1.1139928443821011e-14
+        },
+        {
+          "a": 0.5,
+          "order": 512,
+          "minimum": -404963.2273849256,
+          "maximum": 286969.62769920635,
+          "relative_energy_residual": 2.1368123335802725e-14
+        },
+        {
+          "a": 2.0,
+          "order": 128,
+          "minimum": -392471.09962110425,
+          "maximum": 279524.01434674434,
+          "relative_energy_residual": 4.141294959091527e-10
+        },
+        {
+          "a": 2.0,
+          "order": 256,
+          "minimum": -405565.55793299404,
+          "maximum": 285547.5150456175,
+          "relative_energy_residual": 1.1400854271754554e-14
+        },
+        {
+          "a": 2.0,
+          "order": 512,
+          "minimum": -404937.8860231156,
+          "maximum": 287228.681340511,
+          "relative_energy_residual": 2.194195640510127e-14
+        },
+        {
+          "a": 4.0,
+          "order": 128,
+          "minimum": -392364.10337418545,
+          "maximum": 280292.7243922525,
+          "relative_energy_residual": 4.811755386796019e-10
+        },
+        {
+          "a": 4.0,
+          "order": 256,
+          "minimum": -405490.65209003136,
+          "maximum": 286394.1462353821,
+          "relative_energy_residual": 1.188902727650016e-14
+        },
+        {
+          "a": 4.0,
+          "order": 512,
+          "minimum": -404856.79366532364,
+          "maximum": 288057.6529926858,
+          "relative_energy_residual": 2.2953088521441847e-14
+        }
+      ]
+    },
+    {
+      "name": "the affine cylinder cannot be periodically identified as this scalar/lapse background",
+      "passed": true,
+      "evidence": {
+        "U_jump": "ell*p",
+        "lapse_ratio": "exp(a*ell)",
+        "general_obstruction": "Every smooth real scalar U on a compact closed leaf attains extrema, where DU=0; the globally constant nonzero-gradient cylinder is outside that domain."
+      }
+    }
+  ],
+  "result": "PASS",
+  "residual_risks": [
+    "Positive-mass particle additions about zero particle density; linear spherical Maxwell; same exact background and original compact-domain specification. Differences about nonzero particle backgrounds, nonspherical matter, and full constrained retarded responses remain untested."
+  ]
+}

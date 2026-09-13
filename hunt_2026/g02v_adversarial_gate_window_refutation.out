@@ -1,0 +1,100 @@
+
+====================================================================================================
+  A0  REGRESSION -- reproduce g02's own three gate points before attacking them
+====================================================================================================
+      omega_c = 2.000e-15 (lo       ):  S = 0.9546  |S-1| = 4.54%
+      omega_c = 1.782e-14 (committed):  S = 0.9981  |S-1| = 0.19%
+      omega_c = 1.000e-11 (hi       ):  S = 0.9990  |S-1| = 0.10%
+  [PASS] A0 this file reproduces g02's published gate numbers (4.54% at its 'lo', 0.19% at the committed value), so everything below attacks the same arithmetic and not a different one   (got 4.54% and 0.19% against g02's 4.54% and 0.19%)
+
+====================================================================================================
+  A1  IS 2.0e-15 THE GALACTIC-SURVIVAL BOUND?  (the claim says it is)
+====================================================================================================
+
+  mi_omegac_anchor_2026.py S3 defines the bound: the largest galactic orbital frequency in its own
+  table is Omega_gal,max = 6.482e-15 rad/s, and galaxies survive only while Re G >= 1/2 there,
+  i.e. omega_c >= 6.482e-15 rad/s.
+
+  g02 scans down to 2.000e-15, which is 3.24x BELOW that bound.  At that omega_c the
+  framework's own gate leaves the inner-disk star  Re G = 0.087  -- galaxies keep
+  9% of their MOND boost, i.e. the RAR is destroyed.  So the headline 4.54% is
+  evaluated at an omega_c the framework has already excluded.
+  [FAIL] A1 the claim's 'window bottom edge' is NOT the galactic-survival bound -- it sits a factor 3+ below it, at an omega_c where the framework's own gate switches galaxies off   (g02 lo = 2.000e-15 against the anchor's 6.482e-15 (3.24x); Re G at Omega_gal,max would be 0.087 -- FAILING THIS IS THE REFUTATION OF THE CLAIM'S STATED WINDOW)
+
+====================================================================================================
+  A2  IS THE WINDOW ~4 DECADES?
+====================================================================================================
+      claim / g02       : 2.000e-15 - 1.000e-11   = 3.70 decades
+      anchor, allowed   : 6.482e-15 - 6.296e-12   = 2.99 decades
+      anchor, COMMITTED : 1.782e-14 - 2.211e-14   = a factor 1.24 (canonical), 1.03 (alt)
+  [FAIL] A2 the theory-allowed window is the anchor's 3.0 decades, not the claim's ~4, and the COMMITTED window is a factor 1.24 wide -- so 'the parameter's whole allowed window' is misdescribed by the claim   (claim 3.70 dex vs anchor 2.99 dex; committed span x1.24 -- FAILING THIS RECORDS THE MISDESCRIPTION)
+
+====================================================================================================
+  A3  THREE POINTS ARE NOT A SCAN -- |S-1| is non-monotonic in omega_c
+====================================================================================================
+
+  |S-1| -> 0 as omega_c -> 0 (gate shuts on BOTH trajectories) and -> 0.10% as
+  omega_c -> inf (gate open on both).  It therefore PEAKS in between: the true maximum over all
+  omega_c is 7.95% at omega_c = 7.659e-16 rad/s -- which lies BELOW g02's own 'lo', so the
+  three sampled points cannot establish 'the largest departure' even inside the stated interval.
+  (Inside g02's interval the max is 4.53%, at its bottom edge -- true, but shown
+  here by a 6001-point grid, not by the three evaluations OMC = dict(lo, committed, hi).)
+  [FAIL] A3 the claim's 'exhaustive scan over the parameter's whole allowed window' is three function evaluations of a NON-MONOTONIC function whose global maximum lies outside them   (global peak 7.95% at 7.659e-16, below g02's lo 2.000e-15 -- FAILING THIS RECORDS THAT 3 POINTS DID NOT ESTABLISH THE MAXIMUM)
+
+====================================================================================================
+  A4  THE GATE FUNCTION -- g02 uses |G|, the anchor uses Re G
+====================================================================================================
+      mi_omegac_anchor_2026.py S2 tabulates 'Re G (omc lo)', and the committed lower edge is
+      defined in mi_kernel_axis_separation_omegac_2026.py:66 as "3 x OMEGA_GAL, from Re G >= 0.90".
+      g02 line 628-630 uses |G| = 1/sqrt(1+(w/omc)^2) instead.  Re G falls faster, so it SPLITS the
+      two trajectories harder -- the substitution runs AGAINST the claim, not for it.
+
+             omega_c   |G|, q=1.801   ReG, q=1.801   |G|, q=3.135   ReG, q=3.135
+           6.482e-15         0.758%         1.393%         2.473%         4.635%
+           1.782e-14         0.193%         0.284%         0.457%         0.807%
+           2.211e-14         0.161%         0.221%         0.334%         0.564%
+           6.296e-12         0.102%         0.102%         0.102%         0.102%
+  [FAIL] A4 the two gate conventions are NOT interchangeable at the percent level the claim trades in -- Re G roughly doubles the split at fixed omega_c, and Re G is the one the cited anchor uses   (Re G / |G| split ratio = 1.84 at the survival edge -- FAILING THIS RECORDS THAT THE FORM CHOICE IS LOAD-BEARING FOR THE HEADLINE NUMBER)
+      (q = 3.135 is g02's own midplane value, printed at its V5b and then never fed to the gate; it raises the split a further factor ~2.7.)
+
+====================================================================================================
+  A5  DOES THE CONCLUSION SURVIVE THE CORRECTION?  worst case over EVERY defensible choice
+====================================================================================================
+      both footings x {|G|, Re G} x {q=1.801, q=3.135}, evaluated on the CORRECTED windows:
+
+      claim's headline, at its excluded omega_c   : 4.54%  = 0.38 sigma
+      worst over the ALLOWED window (anchor S3)   : 5.14%  = 0.43 sigma
+      worst over the COMMITTED window             : 0.89%  = 0.07 sigma
+  [PASS] A5a THE NO-GO CONCLUSION SURVIVES, AND STRENGTHENS: with the window corrected, the gate's largest possible split over every defensible convention stays far below sigma(S) -- so the claim's CONCLUSION is not refuted, only its numbers   (5.14% worst allowed vs sigma(S) = 12.08%)
+  [FAIL] A5b and the claim's own headline number is wrong for the window it names: inside the COMMITTED window the gate reaches at most 0.89%, not 4.54%   (committed-window worst 0.89% against the claimed 4.54% -- a factor 5.1 overstatement; FAILING THIS IS THE CORRECTION)
+  [PASS] A5c the gate cannot rescue the common offset either: even the worst allowed split moves the MI prediction by less than half a sigma toward S_obs, so it is not hiding a fit improvement   (largest move 0.43 sigma against a 2.96 sigma offset)
+
+====================================================================================================
+  MUTATION CONTROLS
+====================================================================================================
+      M1 q -> 1 (the two trajectories made identical): worst excursion of S outside the ungated band [nu_v/nu_r, 1] over ALL omega_c = 0.00e+00
+  [PASS] M1 with the frequency difference deleted the gate contributes NO split of its own at any omega_c -- S never leaves the band between the ungated algebraic ratio and 1 -- so every number above is the frequency dependence and not the machinery   (worst excursion 0.00e+00)
+      M2 Newtonian limit (a0 = 1e-18, nu -> 1): worst |S-1| over ALL omega_c = 0.00e+00
+  [PASS] M2 with the kernel switched off the gate has nothing to attenuate and S = 1 identically   (worst 0.00e+00)
+
+====================================================================================================
+  VERDICT
+====================================================================================================
+
+  THE CLAIM'S CONCLUSION STANDS.  THE CLAIM'S NUMBERS AND WINDOW DO NOT.
+
+  * '2e-15 to 1e-11, the ~4-decade window whose lower edge is the galactic-survival bound' is wrong
+    on all three counts.  The script it cites, mi_omegac_anchor_2026.py, puts the galactic-survival
+    bound at 6.482e-15 (3.24x higher), the allowed window at 3.0 decades, and the
+    COMMITTED window at [1.782e-14, 2.211e-14] -- a factor 1.24, not 4 decades.
+  * '4.54% at the window's bottom edge' is therefore evaluated at an omega_c where the framework's
+    own gate leaves galaxies Re G = 0.087.  Inside the committed window the honest worst case
+    over both footings, both gate conventions and both frequency ratios is 0.89%.
+  * The correction runs IN THE CLAIM'S FAVOUR.  5.14% is the largest split the gate can produce
+    anywhere the theory permits, i.e. 0.43 sigma of a measurement whose error is 19%.
+    The one-pole gate is even more thoroughly unable to split vertical from planar than g02 says.
+  * Fix to apply at g02 line 612:  OMC = dict(lo=6.482e-15, committed=1.782e-14, hi=6.296e-12),
+    and either switch to Re G or state explicitly that |G| is the amplitude convention chosen.
+
+
+RESULT: 10 checks, 5 FAIL -> ["A1 the claim's 'window bottom edge' is NOT the galactic-survival bound -- it sits a factor 3+ below it, at an omega_c where the framework's own gate switches galaxies off", "A2 the theory-allowed window is the anchor's 3.0 decades, not the claim's ~4, and the COMMITTED window is a factor 1.24 wide -- so 'the parameter's whole allowed window' is misdescribed by the claim", "A3 the claim's 'exhaustive scan over the parameter's whole allowed window' is three function evaluations of a NON-MONOTONIC function whose global maximum lies outside them", 'A4 the two gate conventions are NOT interchangeable at the percent level the claim trades in -- Re G roughly doubles the split at fixed omega_c, and Re G is the one the cited anchor uses', "A5b and the claim's own headline number is wrong for the window it names: inside the COMMITTED window the gate reaches at most 0.89%, not 4.54%"]   rc=1

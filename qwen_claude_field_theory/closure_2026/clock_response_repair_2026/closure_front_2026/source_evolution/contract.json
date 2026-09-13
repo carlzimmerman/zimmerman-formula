@@ -1,0 +1,85 @@
+{
+  "claim_id": "FIXED_ACTION_CONSERVED_FINITE_TIME_SOURCE",
+  "mathematics": {
+    "assertion_tested": "Evolve fixed quadratic same-action signed conserved source; independently reconstruct potentials, compare solvers/refinements and raw Euler residuals; measure response and source scaling without a force-law fit",
+    "coefficient_domain": "float64 ODE and coefficient arithmetic; upstream exact symbolic action reduction",
+    "conventions": "-+++; M2=1; r=k^2/a^2; rho=epsilon/a^3; canonical normalization is twice real cosine average; fixed gamma candidate 1e-6 and gamma=0 control",
+    "inputs": [
+      "qwen_claude_field_theory/closure_2026/clock_response_repair_2026/closure_front_2026/source_evolution/evolve.py",
+      "qwen_claude_field_theory/closure_2026/clock_response_repair_2026/closure_front_2026/source_evolution/check_response.py",
+      "qwen_claude_field_theory/closure_2026/clock_response_repair_2026/nonlinear_evolution_2026/constitutive.py",
+      "qwen_claude_field_theory/closure_2026/clock_response_repair_2026/closure_front_2026/finite_wavelength/probe.py"
+    ],
+    "bounds": {
+      "t": [
+        0,
+        4
+      ],
+      "k": [
+        0.3,
+        1,
+        3,
+        10,
+        30,
+        100
+      ],
+      "gamma": [
+        0,
+        0.000001
+      ],
+      "initial_data": "a=1,m=.1,v=.5,zeta=zetadot=0; source-compatible p=a^3 F",
+      "amplitude": 1e-7,
+      "scaling_amplitudes": [
+        1e-8,
+        1e-7,
+        0.000001
+      ],
+      "methods": [
+        "DOP853",
+        "Radau"
+      ],
+      "residual_grids": [
+        129,
+        257,
+        513
+      ],
+      "workers": 2
+    },
+    "non_claims": [
+      "Not a positive-density galaxy or baryonic background",
+      "No fixed measured Newton constant, PPN, primordial transfer or CMB fit",
+      "No nonlinear DOF or continuum-time stability proof",
+      "No derivation of exponential MOND or kappa=1/2; original constitutive functions remain reconstructions",
+      "Linear scaling does not exclude nonperturbative branches or noncommuting static limits"
+    ]
+  },
+  "execution_artifacts": [
+    "qwen_claude_field_theory/closure_2026/clock_response_repair_2026/closure_front_2026/source_evolution/evolve.py",
+    "qwen_claude_field_theory/closure_2026/clock_response_repair_2026/closure_front_2026/source_evolution/check_response.py",
+    "qwen_claude_field_theory/closure_2026/clock_response_repair_2026/nonlinear_evolution_2026/constitutive.py",
+    "qwen_claude_field_theory/closure_2026/clock_response_repair_2026/closure_front_2026/finite_wavelength/probe.py"
+  ],
+  "software": [
+    {
+      "name": "Python",
+      "version": "3.9.6"
+    },
+    {
+      "name": "NumPy",
+      "version": "1.26.2"
+    },
+    {
+      "name": "SciPy",
+      "version": "1.11.4"
+    },
+    {
+      "name": "SymPy",
+      "version": "1.14.0"
+    }
+  ],
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  }
+}

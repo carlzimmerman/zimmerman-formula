@@ -1,0 +1,182 @@
+==========================================================================================================================
+PART A.  THE TWO 'PRESCRIPTIONS', REBUILT INDEPENDENTLY.
+==========================================================================================================================
+  independent rebuild sanity: the sphere quadrature must reduce to the framework's own kernel at x_e = 0.
+  [PASS] V0 the independently rebuilt sphere average reproduces nu(x_i) x_i exactly when the external field is off, so this script's machinery is the same physics g05 used and any disagreement below is about inference, not about code   (ratios 1.000000000000, 1.000000000000, 1.000000000000, 1.000000000000)
+
+==========================================================================================================================
+PART B.  THE SAMPLE AND THE MATCHING, REBUILT INDEPENDENTLY (g05's definitions, this script's code).
+==========================================================================================================================
+  rebuilt pressure sample: classical 11, ultrafaint 29, m31 34, isolated 5
+
+     footing   prescription  N_matched   raw dex  matched sep      se   sigma
+   canonical         sphere         14    +0.114       +0.064   0.069    0.93
+   canonical           fm12         14    +0.219       +0.157   0.075    2.08
+   canonical            f09         14    -0.520       -0.525   0.129   -4.06
+         alt         sphere         14    +0.075       +0.065   0.069    0.94
+         alt           fm12         14    +0.180       +0.158   0.075    2.10
+         alt            f09         14    -0.558       -0.531   0.129   -4.11
+  [PASS] V1 the claim's own three numbers are REPRODUCED by an independent rebuild, so nothing below turns on an arithmetic disagreement: matched separation +0.064 dex (0.93 sigma) sphere average, +0.157 dex (2.08 sigma) FM12 eq.60, -0.525 dex f09 max(); systematic 0.093 dex, ratio 1.4   (rebuilt: sphere +0.064 (0.93 sigma), FM12 +0.157 (2.08), f09 -0.525 (-4.06); systematic 0.093 dex, signal 0.064, ratio 1.44; N_matched = 14, N_rotating = 147)
+
+==========================================================================================================================
+PART C.  V2-V3.  THE 'SYSTEMATIC' IS A GEOMETRY FACTOR BETWEEN TWO KNOWN QUANTITIES, NOT AN AMBIGUITY.
+==========================================================================================================================
+  The sphere average and FM12 eq.60 use the SAME theory, the SAME nu, the SAME a_0 and the SAME masses.
+  This script SET OUT to show FM12 eq.60 is a directional slice of the exact field -- its along-the-axis
+  value -- so that the difference would be a pure geometry factor.  The measured answer is different and
+  STRONGER against the claim, and is reported as measured: at nearly every object FM12 eq.60 falls BELOW
+  the exact QUMOND field at EVERY polar angle, so it is not any component of the exact solution at all.
+  object                       x_i       x_e  exact min  sphere avg  FM12 eq60  exact max      FM12 is
+  Fornax                   0.03371   0.00427    0.18670     0.20036    0.14696    0.21450    BELOW all
+  Leo I                    0.07279   0.00130    0.30471     0.30781    0.27419    0.31093    BELOW all
+  Leo II                   0.02059   0.00200    0.14585     0.15374    0.11615    0.16186    BELOW all
+  Sculptor                 0.02915   0.01265    0.13686     0.17912    0.10714    0.22607    BELOW all
+  Andromeda VI             0.01479   0.00226    0.11831     0.12855    0.09061    0.13926    BELOW all
+  Andromeda VII            0.01561   0.00338    0.11682     0.13169    0.08767    0.14752    BELOW all
+  M 32                    29.66442   4.25666   25.57321    29.79195   29.14544   34.02162       inside
+  NGC 147                  0.27458   0.01577    0.64906     0.67288    0.56335    0.69700    BELOW all
+  NGC 185                  0.51579   0.00744    0.99711     1.00666    0.92618    1.01624    BELOW all
+  NGC 205                  1.42872   0.04970    1.99577     2.04842    1.85264    2.10134    BELOW all
+  Antlia B                 0.01375   0.00009    0.12383     0.12427    0.11502    0.12472    BELOW all
+  Phoenix                  0.01195   0.00078    0.11137     0.11528    0.09102    0.11927    BELOW all
+  Tucana                   0.01134   0.00021    0.11113     0.11224    0.09865    0.11335    BELOW all
+  UGC 4879                 0.06683   0.00017    0.29295     0.29337    0.28068    0.29378    BELOW all
+  [PASS] V2 (THE CORE OF THE REFUTATION, AND THE MEASUREMENT CAME OUT STRONGER THAN THE HYPOTHESIS) FM12 eq.60 is not a second correct treatment of the external field, because it is not a value the exact QUMOND field takes anywhere: at 13 of the 14 matched objects it falls BELOW the exact field at EVERY polar angle, pole and equator alike.  It is an approximation biased low by a computable, one-signed amount, applied here outside the regime it was written for.  The author's own stated weakest link -- 'arguably the FM12 1-D number is simply the approximation's error' -- is therefore not an arguable position but the measured one, and the difference between an exact calculation and a known-biased approximation is that approximation's error, not a systematic uncertainty on the exact calculation   (FM12 eq.60 lies below the exact field at every polar angle at 13 of 14 objects, inside the exact angular range at 1; the sphere average is by construction the angle average of that exact field)
+  
+  V2b.  WHERE THE BIAS COMES FROM, identified rather than asserted.  FM12 eq.60 carries a subtraction term
+  -x_e nu(x_e), which in the deep-MOND regime is -sqrt(x_e) and does NOT switch off with the external field
+  fast enough.  It is applied here to objects whose external field is three decades below their internal
+  one and is doing no physical work.  Test: for the near-isolated objects, is (isolated kernel - FM12)
+  equal to that term?
+  object                        x_e  nu(x_i)x_i  FM12 eq60  difference  x_e nu(x_e)   ratio
+  Antlia B                 0.000093     0.12427    0.11502     0.00925      0.00969   0.954
+  Phoenix                  0.000776     0.11538    0.09102     0.02435      0.02825   0.862
+  Tucana                   0.000213     0.11224    0.09865     0.01359      0.01469   0.925
+  UGC 4879                 0.000169     0.29337    0.28068     0.01269      0.01310   0.968
+  [FAIL] V2b the bias is IDENTIFIED, not merely observed: at the near-isolated objects (x_e < 1e-3, where the exact answer is that the external field does essentially nothing) the whole gap between FM12 eq.60 and the framework's own isolated kernel IS the eq.60 subtraction term x_e nu(x_e) = sqrt(x_e) in deep MOND, to a few per cent.  That term is an artefact of a collinear one-dimensional construction being used where there is no external field to speak of.  A named, computable artefact of a misapplied approximation is not a systematic   (4 objects with x_e < 1e-3; worst departure of (isolated kernel - FM12) from x_e nu(x_e): 13.8 per cent)
+  
+  Test 2, the analytic version.  In the external-field-dominated limit the exact angle average is
+  nu(x_e)(1 + L_e/3) x_i (Milgrom 1986, ApJ 302, 617) and the one-dimensional formula tends to
+  nu(x_e)(1 + L_e) x_i, so the ratio is the fixed number (1 + L_e/3)/(1 + L_e) with L_e = dln nu/dln x.
+         x_e       L_e   (1+L/3)/(1+L)  measured ratio    agree
+      0.0010   -0.4921          1.6460          1.6460   0.000%
+      0.0030   -0.4864          1.6314          1.6314   0.000%
+      0.0100   -0.4754          1.6042          1.6042   0.000%
+      0.0300   -0.4579          1.5632          1.5632   0.000%
+      0.1000   -0.4251          1.4930          1.4930   0.000%
+      0.3000   -0.3755          1.4009          1.4009   0.000%
+  [PASS] V3 the ratio between the two 'prescriptions' is not free and is not measured: in the external-field-dominated limit it is the analytic geometry factor (1 + L_e/3)/(1 + L_e) to better than 1 per cent.  A quantity fixed by a textbook identity cannot be a source of uncertainty in a systematic budget   (worst departure from the analytic factor over x_e = 1e-3 to 0.3: 0.000 per cent)
+
+==========================================================================================================================
+PART D.  V4.  'SYSTEMATIC / SIGNAL = 1.4' IS ILL-POSED BECAUSE THE SIGNAL IS A NULL.
+==========================================================================================================================
+  The denominator is the central value of a result consistent with zero.  Bootstrap the 14 pressure objects
+  and the 147 rotating galaxies; recompute the ratio each time.  If the ratio were a property of the data it
+  would be stable.  If it is an accident of where a null landed it will be unbounded.
+  bootstrap of the ratio |systematic| / |signal|, 20000 resamples:
+     point value 1.44;  bootstrap median 1.29,  16-84 per cent 0.52-3.51
+     90th percentile 4.78,  99th percentile 29.5,  max 892
+     fraction of resamples with ratio > 5: 0.098;  > 20: 0.0188
+     fraction of resamples in which the separation itself changes SIGN: 0.206
+  [FAIL] V4 (THIS CHECK ASSERTS THE RATIO IS A STABLE PROPERTY OF THE DATA.  IT FAILS, AND THE FAILURE IS THE REFUTATION) the ratio 'systematic over signal' has no stable value here, because its denominator is a null.  Its bootstrap distribution is heavy-tailed and unbounded, the separation changes sign in a substantial fraction of resamples, and the quoted 1.4 sits far from the distribution's own centre.  A statistic that would have read 'the systematic is fifty times the signal' had the median landed a few thousandths of a dex lower is not what decides whether something is a measurement   (point 1.4; bootstrap 16-84 per cent 0.52-3.51, 99th 29.5, max 892; 9.8 per cent of resamples exceed 5; sign flips 20.6 per cent of the time)
+  
+  MUTATION CONTROL for V4: the same ratio construction applied to g05's RAW offset over the WHOLE pressure
+  sample (+0.489 dex, systematic 0.205), which g05 KEEPS as a standing result.  If the construction is sound
+  it should be well behaved when the signal is genuinely large, and the contrast is then the whole point.
+     whole-sample RAW: sphere +0.489 dex, FM12 +0.694 dex on N = 50
+     RAW offset ratio: point 0.42; bootstrap 16-84 per cent 0.31-0.46, 99th 0.84, max 1.84
+  [PASS] V4b MUTATION CONTROL: on g05's RAW offset over the whole pressure sample, where the signal is large and well determined, the identical ratio construction is tight, finite and stable.  So the construction is not broken in general -- it is broken specifically when it is pointed at a null, which is exactly what S2b does.  This is also why g05 is right to keep the RAW statement (42 per cent systematic on a real signal) and wrong to promote the matched one   (RAW ratio: point 0.42, bootstrap max 1.84, 99th 0.84.  Matched-case: point 1.44, bootstrap max 892, 99th 29.5.  Same construction, same objects, tail width differs by a factor 35)
+
+==========================================================================================================================
+PART E.  V5.  THE SHIFT IS ONE-SIDED, KNOWN IN SIGN, AND DOES NOT STRADDLE ZERO.
+==========================================================================================================================
+  per-object log10(sphere/FM12): min +0.0095, median +0.0666, max +0.2232 dex
+  objects where FM12 predicts MORE acceleration than the exact sphere average: 0 of 14
+      canonical: sphere +0.064 dex, FM12 +0.157 dex -- same sign: True
+            alt: sphere +0.065 dex, FM12 +0.158 dex -- same sign: True
+  [PASS] V5 the 'systematic' is one-sided with a known sign and a known cause: FM12 eq.60 under-predicts the exact sphere average at every object in the matched set, so it inflates every residual, and both defensible answers are POSITIVE on both footings.  The interval between them does not contain zero and does not change any conclusion.  A one-sided offset whose sign and size are computable is a correction that should be applied, not an uncertainty that should be carried   (all 14 per-object shifts have the same sign (sphere >= FM12); footings give sphere/FM12 = canonical +0.064/+0.157; alt +0.065/+0.158)
+
+==========================================================================================================================
+PART F.  V6.  f09's max() BRANCH IS NOT A CANDIDATE PRESCRIPTION AND CANNOT ENTER A SYSTEMATIC BUDGET.
+==========================================================================================================================
+  g05's own check P3 proves max() is discontinuous.  Here it is measured against the exact flux theorem,
+  which any admissible QUMOND prediction must satisfy identically.
+     |log10(max()/exact)| over the matched set: median 0.541 dex, max 1.246 dex
+  [PASS] V6 f09's max() branch violates the exact QUMOND sphere-average identity by up to about half a dex on the very objects in question, and is discontinuous by g05's own P3.  Its -0.525 dex / -4.06 sigma is the signature of a wrong formula, not one arm of a prescription ambiguity, and listing it among the numbers that make the separation 'not a measurement' overstates the ambiguity   (median violation 0.541 dex, worst 1.246 dex; note g05's own headline systematic (0.093 dex) correctly EXCLUDES this branch, but the claim's number list presents it alongside the two defensible ones)
+
+==========================================================================================================================
+PART G.  V7.  THE WELL-POSED COMPARISON, AND WHETHER THE CLAIM IS LOAD-BEARING AT ALL.
+==========================================================================================================================
+  A systematic is compared with the STATISTICAL error, not with the central value of a null.
+      canonical: separation +0.064 +- 0.069 (stat), prescription shift 0.093 dex -> systematic/statistical = 1.33; total error 0.116, significance with the shift folded in 0.56 sigma
+            alt: separation +0.065 +- 0.069 (stat), prescription shift 0.093 dex -> systematic/statistical = 1.34; total error 0.116, significance with the shift folded in 0.56 sigma
+  [PASS] V7 the well-posed statement is much milder than the claim: the prescription shift is comparable to the STATISTICAL error, about 1.3 times it, so folding it in as an error moves 0.93 sigma to about 0.6 sigma.  That is a sensitivity statement about a null.  It is not 'the signal is smaller than its systematic', and it is not what makes the number a non-measurement   (systematic/statistical = 1.33; significance 0.93 sigma bare, 0.56 sigma with the shift folded in as an error)
+  [FAIL] V8 (THIS CHECK ASKS WHETHER THE SEPARATION WOULD BE A RESULT WITHOUT ANY SYSTEMATIC.  IT FAILS -- AND THAT FAILURE IS WHY S2b IS NOT LOAD-BEARING) the separation does not reach two sigma on either footing before a single word is said about prescriptions.  g05's conclusion that it is not a measurement therefore follows from 0.93 sigma and p ~ 0.10 alone.  Deleting S2b entirely changes nothing g05 concludes, so the systematic-versus-signal argument is reinforcement of an already-established null, not 'the single most decisive line in the file'   (bare significance 0.93 sigma on the canonical footing and 0.94 on the alt; both are already consistent with zero before any prescription question is asked)
+
+==========================================================================================================================
+PART H.  V9.  WHAT ARGUES FOR THE CLAIM, RECORDED AGAINST MY OWN CONCLUSION.
+==========================================================================================================================
+  Wolf et al. 2010's estimator M_1/2 = 3 sigma^2 r_1/2 / G is derived from the SPHERICAL Jeans equation.
+  A uniform external field makes the effective gravity anisotropic (Milgrom 1986: enhanced by (1+L_e) along
+  the field, unenhanced transverse), so the potential is NOT spherical and the estimator is not exact for
+  either treatment.  A real prescription systematic therefore almost certainly exists.  Its size is bounded
+  below by the anisotropy of the exact field over the matched set, computed here:
+     pole-to-equator spread of the exact radial field: median 0.030 dex, max 0.218 dex
+  [FAIL] V9 (THE STRONGEST CASE I CAN BUILD FOR THE CLAIM, PUT AS A CHECK: IS THE REAL EXTERNAL-FIELD MODELLING SYSTEMATIC AT LEAST AS BIG AS THE 0.093 DEX CLAIMED?  IT FAILS.)  A genuine systematic does exist -- the Wolf et al. 2010 estimator assumes a spherical potential and the external field breaks that -- but its natural scale is the anisotropy of the exact field, and across the matched objects that is a median of only about 0.03 dex, three times SMALLER than the 0.093 dex the claim carries.  So the claimed systematic is not merely mis-derived; it is larger than the physical effect it is standing in for.  The honest budget would be a few hundredths of a dex, well inside the 0.069 dex statistical error   (median pole-to-equator anisotropy 0.030 dex, worst 0.218, over the 14 matched objects, against the claimed prescription systematic of 0.093 dex and a statistical error of 0.069 dex.  Sizing the real effect properly needs an anisotropic Jeans solve, which neither treatment performs; this is a scale estimate, not that solve)
+
+==========================================================================================================================
+PART I.  MUTATION CONTROLS.
+==========================================================================================================================
+  [PASS] M1 MUTATION: with nu = 1 the same quadrature returns the internal Newtonian field exactly at every external field, so the angle-average machinery invents no coupling of its own   (ratios 1.000000000000, 1.000000000000, 1.000000000000)
+  [PASS] M2 MUTATION, AND IT IS THE REFUTATION IN ONE LINE: switch off the kernel (nu = 1) and the two 'prescriptions' become IDENTICAL to machine precision on the real objects.  The entire 0.093 dex therefore comes from the curvature of nu -- that is, from the geometry factor (1 + L_e/3) against (1 + L_e) -- and not from any freedom in how the external field is treated.  A quantity that vanishes identically when the kernel is switched off is a property of the kernel, computable, not an uncertainty   (max |sphere/FM12 - 1| under nu = 1 over the 14 matched objects: 2.220e-16)
+  M3 MUTATION on the DATA rather than the theory: multiply every observed dispersion by sqrt(2).  Every raw
+  residual must move by exactly log10(2), and the sphere-minus-FM12 shift must not move at all.
+  [PASS] M3 MUTATION on the DATA: inflating every observed dispersion by sqrt(2) moves every raw residual by exactly log10(2) and leaves the sphere-minus-FM12 shift bit-identical.  The 'systematic' therefore does not respond to the data at all -- it is a function of (x_i, x_e) and of nu alone.  Something that cannot change when the measurements change is not a measurement uncertainty   (worst departure of the residual shift from log10(2): 2.776e-16 dex; worst drift in the prescription difference across all 50 objects: 4.441e-16 dex)
+
+==========================================================================================================================
+VERDICT
+==========================================================================================================================
+  THE CLAIM IS REFUTED AS STATED, AND ITS CONCLUSION SURVIVES FOR A DIFFERENT REASON.
+
+  REFUTED: 'the matched separation is smaller than its own external-field-prescription systematic'.
+   * The two 'defensible treatments' are not two defensible treatments.  At 13 of the 14 matched objects the
+     FM12 eq.60 value falls BELOW the exact QUMOND field at EVERY polar angle (V2), so it is not a value the
+     exact solution takes anywhere -- an approximation biased low, not a rival prescription.  The bias is
+     named: the eq.60 subtraction term x_e nu(x_e) = sqrt(x_e), applied to objects whose external field is
+     three decades below their internal one and is doing nothing -- it accounts for 86-97 per cent of the gap
+     at the near-isolated objects, and V2b is left FAILING at its 10 per cent bar rather than loosened
+     because the last few per cent is second order in x_e.  The remaining structure is the
+     analytic factor (1 + L_e/3)/(1 + L_e) to 1e-5 (V3), and the whole difference vanishes identically when
+     the kernel is switched off (M2) and cannot respond to the data at all (M3).  The author's own stated
+     weakest link -- 'arguably this is simply the approximation's error' -- is the measured position, not an
+     arguable one, and 'I took the conservative branch' does not convert an approximation error into a
+     systematic uncertainty on the exact calculation.
+   * The shift is one-sided: FM12 under-predicts at all 14 objects, both answers are positive on both
+     footings, and the interval between them never contains zero (V5).  A correction, not an error bar.
+   * 'Systematic / signal = 1.4' is ill-posed because the denominator is a null.  Its bootstrap distribution
+     is heavy-tailed with a 99th percentile of 29 and a maximum of 892 (V4), while the identical
+     construction on the RAW offset -- a real signal -- is tight (V4b).  The number 1.4 is an accident of
+     where a null central value happened to land, not a property of the data.
+   * f09's max() branch, which supplies the -0.525 dex / -4.06 sigma in the claim's number list, violates the
+     exact flux theorem by up to 1.25 dex and is discontinuous by g05's own P3 (V6).  It is a wrong formula,
+     not one arm of an ambiguity.
+
+  WHAT SURVIVES, AND IT IS g05's ACTUAL CONCLUSION RATHER THAN S2b's ARGUMENT FOR IT:
+   * The matched separation is +0.064 +- 0.069 dex, 0.93 sigma, p ~ 0.10.  It is consistent with zero
+     on its own, before any prescription question is asked (V8).  f09's 1.73 sigma remains withdrawn.
+   * The well-posed systematic statement is systematic/statistical = 1.33, i.e. folding the prescription shift
+     in as an error moves 0.93 sigma to 0.56 sigma (V7).  A sensitivity remark about a null.
+   * A REAL external-field systematic does exist -- the Wolf et al. 2010 estimator assumes a spherical
+     potential and the external field breaks it -- but it is SMALLER than the one claimed, not larger: the
+     exact field's pole-to-equator anisotropy across these objects is a median 0.030 dex against the claimed
+     0.093 (V9), and well inside the 0.069 dex statistical error.  Sizing it properly needs an anisotropic
+     Jeans solve, which neither treatment performs.  This is the strongest case for the claim and it fails.
+
+  AND ON THE ADVERSARIAL LENS -- does the claim DISCRIMINATE anything?  It cannot: it is a claim that a
+  null is a null.  Ordinary cold dark matter makes no prediction about the size of a MOND external-field
+  prescription systematic, so this line separates no hypothesis from any other.  g05's own S5 -- globular
+  clusters below the kernel where dwarf spheroidals sit above it -- is the line in that file that does
+  discriminate, and it argues for dark-matter content rather than for support type.  S2b is not the most
+  decisive line in the file; S5 is, and A1b behind it.
+
+RESULT: 15 checks, 4 FAIL -> ["V2b the bias is IDENTIFIED, not merely observed: at the near-isolated objects (x_e < 1e-3, where the exact answer is that the external field does essentially nothing) the whole gap between FM12 eq.60 and the framework's own isolated kernel IS the eq.60 subtraction term x_e nu(x_e) = sqrt(x_e) in deep MOND, to a few per cent.  That term is an artefact of a collinear one-dimensional construction being used where there is no external field to speak of.  A named, computable artefact of a misapplied approximation is not a systematic", "V4 (THIS CHECK ASSERTS THE RATIO IS A STABLE PROPERTY OF THE DATA.  IT FAILS, AND THE FAILURE IS THE REFUTATION) the ratio 'systematic over signal' has no stable value here, because its denominator is a null.  Its bootstrap distribution is heavy-tailed and unbounded, the separation changes sign in a substantial fraction of resamples, and the quoted 1.4 sits far from the distribution's own centre.  A statistic that would have read 'the systematic is fifty times the signal' had the median landed a few thousandths of a dex lower is not what decides whether something is a measurement", "V8 (THIS CHECK ASKS WHETHER THE SEPARATION WOULD BE A RESULT WITHOUT ANY SYSTEMATIC.  IT FAILS -- AND THAT FAILURE IS WHY S2b IS NOT LOAD-BEARING) the separation does not reach two sigma on either footing before a single word is said about prescriptions.  g05's conclusion that it is not a measurement therefore follows from 0.93 sigma and p ~ 0.10 alone.  Deleting S2b entirely changes nothing g05 concludes, so the systematic-versus-signal argument is reinforcement of an already-established null, not 'the single most decisive line in the file'", 'V9 (THE STRONGEST CASE I CAN BUILD FOR THE CLAIM, PUT AS A CHECK: IS THE REAL EXTERNAL-FIELD MODELLING SYSTEMATIC AT LEAST AS BIG AS THE 0.093 DEX CLAIMED?  IT FAILS.)  A genuine systematic does exist -- the Wolf et al. 2010 estimator assumes a spherical potential and the external field breaks that -- but its natural scale is the anisotropy of the exact field, and across the matched objects that is a median of only about 0.03 dex, three times SMALLER than the 0.093 dex the claim carries.  So the claimed systematic is not merely mis-derived; it is larger than the physical effect it is standing in for.  The honest budget would be a few hundredths of a dex, well inside the 0.069 dex statistical error']   rc=1

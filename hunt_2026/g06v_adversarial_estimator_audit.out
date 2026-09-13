@@ -1,0 +1,88 @@
+==============================================================================================================================
+0.  INDEPENDENT REBUILD OF THE SAMPLE FROM THE RAW CATALOGUE
+==============================================================================================================================
+  independent rebuild: 26 groups, 333 member entries, 259 of them with a velocity
+  [PASS] V0 the sample rebuilds identically from the raw VizieR table with independently written geometry, membership and gapper code.  If the group construction did not reproduce, nothing downstream would be comparable   (26 groups (g06: 26), 333 members (g06: 333); member counts per group 5-39, velocities per group 3-37)
+
+==============================================================================================================================
+1.  THE CENTRAL NUMBER, RE-DERIVED
+==============================================================================================================================
+  canonical a_0 = 9.360e-11:  median boost 0.816 (-0.088 dex), median g_bar/a_0 = 0.00189
+  alt       a_0 = 1.130e-10:  median boost 0.744 (-0.128 dex), median g_bar/a_0 = 0.00157
+  isolated branch (no external field): median boost 0.706
+  [PASS] V1 the primary median reproduces on BOTH footings under independently written code -- different coordinate transform, different enclosed-mass route (analytic, not trapezoid), different quadrature.  A 2% tolerance; anything larger and one of the two files has an arithmetic error   (canonical 0.816 vs g06's 0.817; alt 0.744 vs 0.746; isolated 0.706 vs 0.706)
+  [PASS] V2 the reported acceleration reproduces too, on both footings.  The rung's whole placement argument is that these groups sit BELOW every cluster row in g_bar/a_0, so this number carries as much weight as the boost   (canonical median g_bar/a_0 0.00189 vs g06's 0.00189; alt 0.00157 vs 0.00157; sample spans 0.00013 - 0.02080)
+
+==============================================================================================================================
+2.  THE FIVE BUG PATTERNS, ONE AT A TIME
+==============================================================================================================================
+  [PASS] V3 (bug pattern 1: TOTAL mass where ENCLOSED belongs) g06 is NOT taking the shortcut.  Collapsing all the baryons onto one central point mass -- the move that would make the prediction look best-case -- gives a DIFFERENT and lower boost.  If g06 had used total mass its number would have matched this one instead   (total-mass point-mass shortcut 0.655 vs g06's enclosed-mass solve 0.816, a gap of -0.095 dex; the shortcut would have understated the boost, so the choice is against interest)
+  [PASS] V4 (bug pattern 3: the aperture) g06 predicts a 3-D number-weighted <sigma_r^2> truncated at r_max, but what is OBSERVED is a projected line-of-sight dispersion inside a projected aperture.  Redone honestly through the Abel integral -- Sigma(R) sigma_los^2(R) = 2 int_R^inf rho sigma_r^2 r dr/sqrt(r^2-R^2), then aperture-weighted by 2 pi R dR -- the answer must not move by more than the bootstrap half-width   (Abel-projected sigma_los estimator 0.835 vs g06's 3-D truncated 0.816, a shift of +0.010 dex against the bootstrap half-width 0.114)
+  [PASS] V5 (bug pattern 5: a residual whose sign tracks a branch of the author's own prescription) the answer must not be manufactured by the choice of external-field branch.  The admissible branches at the measured e_N/x_int ~ 0.06 are the isolated one and the interpolated one; they must bracket the answer inside the bootstrap band, and the sign of the residual must not flip between them   (isolated 0.706, interpolated 0.816 -- factor 1.155 against the bootstrap band's 1.692; both on the same side of unity.  A tenfold error in e_N would give 1.085)
+  [PASS] V6 the member-by-member Hubble-flow subtraction cannot be injecting the signal.  Distance errors turn v - H_0 D into a noise generator, and at 10 Mpc with TF distances that noise would be ~130 km/s, comparable to sigma itself.  It is not, because the member distances inside a group are overwhelmingly TRGB or membership-assigned, and dropping the correction entirely barely moves the median   (median H_0 x sd(D) inside a group = 12.4 km/s against a median sigma of 84.5 km/s (ratio 0.116); no-Hubble-correction median boost 0.836 vs 0.816)
+
+==============================================================================================================================
+3.  THE CURRENCY AND THE COMPARISON SET
+==============================================================================================================================
+  [PASS] V7 g06 hard-codes the liability table into its section 6 rather than reading the file.  Every row is checked here against THE_LIABILITY_TABLE.md as it stands on disk.  A hard-coded table that has drifted from its source would make the whole cluster comparison a comparison with nothing   (26 numeric rows parsed from the .md, 26 hard-coded in g06; identical)
+  the .md states its currency verbatim: 'the missing boost, i.e. the factor by which the observation exceeds
+  the framework's zero-parameter prediction in *acceleration*'.  g06 reports (sigma_obs/sigma_pred)^2, which
+  IS an acceleration ratio at fixed radius.  There is no square-root mismatch between the two sides.
+  [PASS] V8 the comparison median survives the mislabel.  g06 calls all 14 pressure rows with boost <= 3 'X-ray group and cluster rows', but two of them are not (X-ray ellipticals 5-70 kpc; SLUGGS globular systems).  Dropping them must not move the comparison median, or the 0.41 dex separation would be an artefact of the bin   (all 14 pressure rows with boost <= 3: median 2.11; the 12 that really are X-ray groups/clusters: median 2.15)
+
+==============================================================================================================================
+4.  THE ESTIMATOR ITSELF: IS AN UNWEIGHTED MEDIAN THE RIGHT STATISTIC?
+==============================================================================================================================
+  per-group velocity counts run 3 to 37, so per-group errors run 0.102 to 0.434 dex -- a factor 4.2.  An UNWEIGHTED median gives
+  a group with 3 velocities the same vote as one with 37.  Two consequences, both computed here:
+    (a) sigma^2 estimated from n velocities is distributed as sigma_true^2 chi^2_(n-1)/(n-1), whose MEDIAN
+        sits below 1.  Per-group that is -0.159 to -0.008 dex, so an
+        unweighted median of boosts is biased LOW.  De-biased: 0.884 (-0.054 dex) against the raw 0.816.
+    (b) the boost distribution is right-skewed, so median != mean of log: median -0.088 dex vs
+        mean of log -0.030 dex, a further +0.058 dex.
+    the maximum-likelihood intrinsic scatter is 0.266 dex, and the properly weighted mean of log boost is
+    -0.002 +- 0.071 dex, i.e. a boost of 0.995.
+  [PASS] V9 (THE ESTIMATOR SUBSTITUTION, AND IT GOES THE OTHER WAY) replacing the unweighted median with the statistically correct estimator -- an inverse-variance weighted mean of log boost with the ML intrinsic scatter -- must not move the answer outside g06's own bootstrap band, or the headline is a statement about the choice of statistic.  It does not: it moves it TOWARD unity and TIGHTENS the error, which strengthens the claim rather than refuting it.  Recorded as found, per the working rule that a win is verified as hard as a deficit   (unweighted median 0.816 (-0.088 dex) -> ML-weighted mean 0.995 (-0.002 +- 0.071 dex), inside g06's bootstrap band [0.656, 1.11]; the separation from the cluster median 2.11 goes from 0.412/0.114 = 3.62 sigma to 0.326/0.071 = 4.57 sigma)
+  [FAIL] V10 (FAILS -- AN UNDISCLOSED SUBSAMPLE INSTABILITY) the median must not depend on where the richness cut is put.  It does: the nine groups with >= 10 members, which carry the smallest statistical errors, sit well above the full-sample median, and the six with >= 20 members land INSIDE the liability table's cluster band 1.45-3.45.  This is a median-of-nine effect -- the slope of log boost against log N is under 1.5 sigma against a permutation null, and the weighted mean of V9, which gives those groups most of the weight, still lands at unity -- but g06 does not disclose it and its 'these groups do not look like clusters' sentence is a statement about the full sample only   (N>=5: n=26 median 0.816; N>=8: n=14 median 1.054; N>=10: n=9 median 1.430; N>=20: n=6 median 1.605)
+    slope of log boost against log N = +0.381 (r = +0.28) against a permutation null of width 0.274, i.e. 1.39 sigma -- NOT a significant trend
+
+==============================================================================================================================
+5.  SAMPLE INDEPENDENCE AND TWO UNDISCLOSED PRESCRIPTION LEVERS
+==============================================================================================================================
+  [FAIL] V11 (FAILS) the 26 groups must be 26 independent systems for the bootstrap over them to mean anything.  They are not: some galaxies are simultaneously a host of one group and a catalogued member of another, so a few physical structures enter the sample twice.  The effect on the headline is small and in the conservative direction, but the bootstrap's effective N is smaller than 26 and g06 does not say so   (3 host-in-another-group pairs: NGC3368 contains host NGC3412; NGC5128 contains host NGC4945; NGC4945 contains host NGC5128.  Dropping the duplicated hosts leaves n=24 with median 0.759 against 0.816)
+  [PASS] V12 g06 places the hot gas on the EXTENDED satellite tracer profile.  The circumgalactic media it is standing in for are bound to the individual galaxies, and the host carries 93% of the light, so a compact placement is at least as defensible and was not bracketed.  It must not move the answer by more than the bootstrap half-width, and it does not -- but it is a second lever alongside Upsilon_K and it points the same way   (hot gas on the host instead of the tracer profile: 0.727 (-0.050 dex); with f_hot = 1.0 as well, 0.619)
+  [PASS] V13 THE AUTHOR'S OWN STATED WEAKEST LINK, TESTED IN THE DIRECTION THAT MATTERS.  Upsilon_K moves the boost over 0.62 - 1.01, which is wider than the bootstrap band, so 'consistent with unity' IS Upsilon-dependent.  But the load-bearing conclusion is the SEPARATION FROM THE CLUSTER ROWS, and that is what has to survive: this check asks what Upsilon_K would be needed to lift these groups to the cluster median of 2.11, and the answer has to be outside any defensible K-band range or the rung is worthless   (Upsilon_K = 0.4 -> 1.009, 0.6 (adopted) -> 0.816, 1.0 -> 0.620; reaching the cluster median 2.11 would need Upsilon_K = 0.086, i.e. 7.0x below the adopted value and far outside Bell & de Jong 2001's K-band range.  The consistency-with-unity half of the claim is soft; the no-cluster-deficit half is not)
+
+==============================================================================================================================
+6.  MUTATION CONTROLS ON THIS AUDIT'S OWN PIPELINE
+==============================================================================================================================
+  [PASS] M1 mutation -- triple a_0 in THIS file's independent solver.  Deep-MOND scaling forces the boost down by 1/sqrt(3); if this audit's own Jeans code were mis-normalised in a_0 it would not land there   (ratio 0.5841 against 0.5774 (g06's own mutation gave 0.5841))
+  [PASS] M2 mutation -- kernel off (nu = 1).  Must explode to the Newtonian missing mass, and must land near g06's own value for the same mutation, which is an end-to-end cross-check of two independently written pipelines in a regime far from the one they were tuned on   (Newtonian median boost 15.0 (g06: 15.0), range 2.2 - 140.9)
+  [PASS] M3 mutation -- shuffle the measured dispersions across groups.  The median boost is a MARGINAL statistic and survives the shuffle, which is the honest limit of what this rung can prove: it constrains the overall scale of sigma against the overall scale of M_b^(1/4), not the per-group pairing.  g06 says this too; it is restated here because it bounds how much the 'consistent with the prediction' sentence is worth   (shuffled median boost 0.953 +- 0.110 vs real 0.816 -- only 0.068 dex apart, so the median alone cannot distinguish the framework predicting EACH group from it predicting the ENSEMBLE SCALE)
+
+==============================================================================================================================
+7.  VERDICT
+==============================================================================================================================
+  THE CLAIM IS NOT REFUTED.  The central number is exact under independently written code (0.816 vs 0.817 on
+  the canonical footing, 0.706 vs 0.706 isolated), the currency matches the liability table's stated one, the
+  hard-coded comparison table matches the .md row for row, and the estimator survives all five of this repo's
+  bug patterns -- enclosed mass is used and not total (V3), the aperture costs 0.01 dex (V4), and the
+  residual's sign does not track the external-field branch (V5).
+
+  WHAT DOES NOT SURVIVE IS THE CLAIMED STRENGTH'S ERROR BAR, in BOTH directions:
+    * the unweighted median is the wrong statistic for groups carrying 3 to 37 velocities, and it is biased
+      LOW by -0.035 dex from the median-of-chi^2 effect alone.  Correcting it moves the
+      answer to 0.995 +- 0.071 dex -- closer to unity, not further.  The 3.6 sigma separation from the
+      cluster rows becomes 4.6 sigma.  The claim gets STRONGER, not weaker, when the estimator is fixed.
+    * against that, the quoted 0.114 dex is a STATISTICAL half-width only.  g06's own Upsilon_K bracket is
+      0.21 dex wide and V12 adds a second undisclosed 0.05 dex lever in the same direction.  A
+      referee would demand those in the error bar, which puts the honest separation nearer 2-3 sigma.
+    * two undisclosed sample facts: 3 host-in-another-group pairs (V11) so the effective N is under 26,
+      and a richest-subsample median (V10) that lands inside the cluster band on 6 groups.  Neither is
+      significant, both belong in the caveats.
+
+  AND THE ONE THING THAT WOULD REVERSE IT IS THE ONE g06 ALREADY FLAGS: the external field.  A tenfold error
+  in e_N gives 1.085; the raw 2M++ reconstruction gives g06's 2.215.  E1's inversion argument is
+  the load-bearing step and it is an argument between two crude estimates, not a measurement.
+
+RESULT: 17 checks, 2 FAIL -> ["V10 (FAILS -- AN UNDISCLOSED SUBSAMPLE INSTABILITY) the median must not depend on where the richness cut is put.  It does: the nine groups with >= 10 members, which carry the smallest statistical errors, sit well above the full-sample median, and the six with >= 20 members land INSIDE the liability table's cluster band 1.45-3.45.  This is a median-of-nine effect -- the slope of log boost against log N is under 1.5 sigma against a permutation null, and the weighted mean of V9, which gives those groups most of the weight, still lands at unity -- but g06 does not disclose it and its 'these groups do not look like clusters' sentence is a statement about the full sample only", "V11 (FAILS) the 26 groups must be 26 independent systems for the bootstrap over them to mean anything.  They are not: some galaxies are simultaneously a host of one group and a catalogued member of another, so a few physical structures enter the sample twice.  The effect on the headline is small and in the conservative direction, but the bootstrap's effective N is smaller than 26 and g06 does not say so"]   rc=1
