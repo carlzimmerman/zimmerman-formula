@@ -9,7 +9,7 @@
   flat a₀(z), subdominant scalar GW) confronting DATA — not by Lean, and not while the intrinsic BBN
   fine-tuning (L84/L87) and astra's open ADM/khronon gates stand.
 
-  Theorems (166 as of 2026-09-13; all: exit 0, zero `sorry`, axioms ⊆ {propext, Classical.choice, Quot.sound}):
+  Theorems (167 as of 2026-09-13; all: exit 0, zero `sorry`, axioms ⊆ {propext, Classical.choice, Quot.sound}):
     hasDerivAt_G, hasDerivAt_Gp   — Gp = dG/dy and Gpp = d²G/dy² proven (not merely asserted).
     kernel_identity               — MOND kernel G'(y)/(2y) = 1 − e^{-y}.
     Gpp_zero, Gpp_pos             — health dichotomy: G''(0)=0, G''(y)>0 ∀ y>0 (no ghost off zero field).
@@ -1668,3 +1668,13 @@ theorem break_radius_is_mond_radius_over_field
       = (Real.sqrt (G * M / a0)) / (gext / a0) := by
   have key : G * M * a0 = (G * M / a0) * a0 ^ 2 := by field_simp
   rw [key, Real.sqrt_mul (by positivity), Real.sqrt_sq ha.le, div_div_eq_mul_div]
+
+/-- L243: the OneFunction AQUAL kernel in cancellation-free form.  The interpolating function
+selected by the SPARC data, mu_2(x) = 1 - 1/(1 + x/2)^2, equals (x + x^2/4)/(1 + x/2)^2
+exactly -- the form used to evaluate it near x = 0 without catastrophic cancellation, and the
+form that shows its deep-MOND slope is one (mu_2 ~ x as x -> 0). -/
+theorem onefunction_kernel_cancellation_free (x : ℝ) (hx : 1 + x/2 ≠ 0) :
+    1 - 1 / (1 + x/2)^2 = (x + x^2/4) / (1 + x/2)^2 := by
+  have h2 : (1 + x/2)^2 ≠ 0 := pow_ne_zero 2 hx
+  rw [eq_div_iff h2, sub_mul, div_mul_cancel₀ _ h2, one_mul]
+  ring

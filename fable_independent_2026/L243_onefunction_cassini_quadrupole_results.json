@@ -1,0 +1,56 @@
+{
+ "checks": [
+  {
+   "name": "V1 [the OneFunction AQUAL kernel has the correct MOND limits] mu_2(x) = 1-(1+x/2)^-2 is checked deep (mu -> x) and Newtonian (mu -> 1)",
+   "measured": "deep: mu_2(x)/x - 1 max 7.5e-03 over x <= 1e-2; Newtonian: mu_2(1e8) = 1.00000000",
+   "pass": true,
+   "reading": "deep-MOND slope one gives g = sqrt(g_N a_0) with a_0 = s/2, the parameter-free footing; the kernel is fixed with no shape freedom"
+  },
+  {
+   "name": "V2 [the validated solver reproduces the exact spherical first integral for THIS kernel] mu_2(g) g = 1/r^2 is solved and compared with the analytic first integral",
+   "measured": "max relative error 5.878e-04 over the fit range (17 iters, resid 7.7e-11)",
+   "pass": true,
+   "reading": "the solver is trustworthy for mu_2, so the quadrupole below is the physics of this kernel and not a numerical artefact"
+  },
+  {
+   "name": "V3 [HYPOTHESIS CHECK -- a FAIL is the result: does mu_2 clear the Cassini ceiling on any footing at g_ext - 1 sigma?] the exact-AQUAL quadrupole of mu_2 is compared with the Park 2026 two-sigma ceiling",
+   "measured": "canonical 6.44x ceiling (min 6.18x at g_ext-1sig); alt 7.63x (7.29x); best case 6.18x",
+   "pass": false,
+   "reading": "stated as a hypothesis so a fail cannot be reworded into a pass. mu_2 has a POWER-LAW approach to Newton (1-mu ~ 4/x^2), gentler than nu_RAR's, so its transition region is broader and its quadrupole LARGER -- the opposite of what an escape needs"
+  },
+  {
+   "name": "V4 [mu_2 is at least as excluded as nu_RAR, so selecting mu_2 on rotation curves does not rescue it in the Solar System] the mu_2 quadrupole is compared with nu_RAR's on both footings",
+   "measured": "mu_2/nu_RAR quadrupole ratio: canonical 1.03, alt 1.12",
+   "pass": true,
+   "reading": "the curve the galaxies prefer is MORE excluded in the Solar System than the one they disprefer, because rotation curves reward a gentle transition and Cassini punishes it. That tension is the whole modified-gravity problem, and mu_2 does not resolve it"
+  },
+  {
+   "name": "V5 [mu_2 as modified gravity is closed; the surviving sectors are the ones already under constraint] the consequence for the OneFunction's relativistic completion is stated",
+   "measured": "mu_2 fails Cassini as pure modified gravity (AQUAL/QUMOND) on both footings; as modified inertia it is lensing-dead by the L241 conformal argument; the only escape is a disformal completion (TeVeS/AeST), whose preferred-frame pincer this programme already closed (DC-013/DC-019)",
+   "pass": true,
+   "reading": "so the OneFunction inherits EXACTLY the non-relativistic pincer that closed nu_RAR: MG fails Cassini, MI fails lensing, disformal is preferred-frame-constrained. The parameter-free curve is an excellent DESCRIPTION of galaxies and does not, by itself, escape the relativistic pincer. This is the honest board"
+  }
+ ],
+ "n_pass": 4,
+ "n_fail": 1,
+ "quadrupole": {
+  "canonical": {
+   "eta": 2.478129439536846,
+   "q": 0.28379020901088986,
+   "Q": 3.3467490164495285e-26,
+   "ratio": 6.4360558008644775,
+   "sig": 17.70416120249738,
+   "Q_lo": 3.214712365983049e-26,
+   "ratio_lo": 6.182139165352017
+  },
+  "alt": {
+   "eta": 2.056919939710967,
+   "q": 0.2543559804769619,
+   "Q": 3.9666838506262604e-26,
+   "ratio": 7.62823817428127,
+   "sig": 21.148243614590335,
+   "Q_lo": 3.788862502246048e-26,
+   "ratio_lo": 7.286274042780861
+  }
+ }
+}

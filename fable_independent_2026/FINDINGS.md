@@ -6897,3 +6897,27 @@ of break radius with environmental density, at fixed mass, is a MOND signature.
 **LIMITS:** g_ext is the approximation-dependent 2MRS MOND sum (rank robust, value not); M_b is enclosed
 at R_last; the lane predicts and designs the test — it does not fit downturns in data (next lane, needs
 extended rotation curves or lensing). `L242_efe_break_radius_law.py` 5/5. Lean 166 theorems, zero `sorry`.
+
+## L243 — the OneFunction the data selected FAILS Cassini as modified gravity, worse than its rival (2026-09-13)
+
+The decisive relativistic test. The parameter-free reading fixes the AQUAL kernel with no freedom:
+since Y = g/s and a₀ = s/2 (κ=½), **μ₂(x) = 1 − (1+x/2)⁻²**, x = |∇φ|/a₀. Run through the SAME
+validated axisymmetric AQUAL solver and the SAME Park 2026 Cassini ceiling that closed ν_RAR (f24):
+
+| footing | η = g_ext/a₀ | \|q_zz\| | \|Q2\| | vs ceiling | vs ν_RAR |
+|---|---|---|---|---|---|
+| canonical | 2.478 | 0.2838 | 3.35e-26 | **6.44×** (17.7σ) | 6.23× |
+| alt | 2.057 | 0.2544 | 3.97e-26 | **7.63×** (21.1σ) | 6.81× |
+
+**μ₂ fails on both footings, and by MORE than ν_RAR.** Structural reason: μ₂ approaches Newton as a
+power law (1−μ ~ 4/x²), gentler than ν_RAR's near-exponential approach, so its transition region is
+broader and its EFE quadrupole larger. **The gentleness that fits rotation curves is what fails Cassini.**
+Solver validated on μ₂'s exact spherical first integral to <2% (V2) before trusting the negative.
+
+**THE ARCHITECTURE BOARD, now sharp:** the OneFunction inherits the full non-relativistic pincer —
+as modified gravity it fails Cassini (this lane, 6.4×); as modified inertia it is lensing-dead (L241
+conformal cancellation); the only escape is disformal (TeVeS/AeST), whose preferred-frame pincer is
+already closed (DC-013/DC-019). **The curve the galaxies selected is an excellent parameter-free
+DESCRIPTION and does not, by itself, escape the relativistic pincer.** A complete theory is not
+available on this evidence. `L243_onefunction_cassini_quadrupole.py` 4/5 (V3 is the hypothesis-check
+FAIL = the result). Lean 167 theorems, zero `sorry`.
