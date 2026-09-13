@@ -1,7 +1,13 @@
 {
- "pass": 7,
- "fail": 7,
+ "pass": 14,
+ "fail": 2,
  "checks": [
+  {
+   "name": "A0 [the two committed mu_2 conventions are one law; the deep slope is the mode count] G002's mu_2(y) = 1-(1+y)^-2 with y = g/s and L243's mu_2(x) = 1-(1+x/2)^-2 with x = g/a_0 = 2y are identified, and the deep slope of the G002 form taken",
+   "measured": "mu_2(x=2y) = 1 - 1/(y + 1)**2 = G002's form 1 - 1/(y + 1)**2: identical with x = 2y; residual = 0; deep slope limit mu_2(y)/y -> 2 (= the SPARC mode count n = 2)",
+   "pass": true,
+   "reading": "the instrument's zero point: both committed forms describe the same kernel (L243's x = g/a_0 = 2y because a_0 = s/2), and every use below states which argument it feeds.  The deep slope 2 is what makes a_0 = s/2 (G002 V7, re-derived at E1)"
+  },
   {
    "name": "A2 [DC-018 reproduced as a control] the spherical helicity-0 Galileon flux r^(3-n)(pi')^n = GM is solved for pi' and the MOND requirement pi' ~ r^(-1) inverted for n",
    "measured": "exponent = 1 - 3/n; MOND needs n = 3/2 (not an integer operator); integer n in {1,2,3,4} give r^-2, r^-1/2, r^0, r^1/4",
@@ -10,15 +16,21 @@
   },
   {
    "name": "A3 [DC-020 reproduced as a control] the committed transverse-vector operator L_A1 = -(lambda/2)(2u0+u1)(omega^2-kappa^2)^2 and the committed MOND acceleration a = -2(2u0+u1) are both divided by (2u0+u1); the quotients must be u-independent, so the ghost and the MOND coefficient vanish together (a != 0 <=> the Box^2 ghost)",
-   "measured": "L_A1/(2u0+u1) = -lambda*(kappa**2 - omega**2)**2/2; a/(2u0+u1) = -2; both u-independent => shared factor",
-   "pass": false,
-   "reading": "the derivative-bimetric reading is closed: the fourth-order Ostrogradsky operator and the MOND acceleration share the prefactor (2u0+u1), so MOND-aliveness IS the ghost (L70 B3/B5: W = diag(-2, 9/2), det = -9 at T4-T1).  Only the COMPOSITE corner remains, and it is this lane's object"
+   "measured": "L_A1/(2u0+u1) = -lambda*(kappa**2 - omega**2)**2/2; a/(2u0+u1) = -2; both u-independent => shared factor (structural equality up to the overall normalisation 1)",
+   "pass": true,
+   "reading": "the derivative-bimetric reading is closed: the fourth-order Ostrogradsky operator and the MOND acceleration share the prefactor (2u0+u1) -- the structural content the record commits -- so MOND-aliveness IS the ghost (L70 B3/B5: W = diag(-2, 9/2), det = -9 at T4-T1).  Only the COMPOSITE corner remains, and it is this lane's object"
   },
   {
-   "name": "B1 [THE BARRIER: the scalar's frame contribution cancels in the lensing sum] the physical potentials Phi~ = (1 - (1+2Phi)(1+c))/2 and Psi~ = (1 - (1-2Psi)(1+c))/2 extracted from ghat_00 and ghat_thth are summed",
-   "measured": "Phi~ + Psi~ = -Phi*c - Phi + Psi*c + Psi - c; the c-terms cancel IDENTICALLY; residual = -Phi*c - 2*Phi + Psi*c - c",
-   "pass": false,
-   "reading": "this is L241's conformal cancellation re-derived in the bimetric frame, and it is EXACT ALGEBRA, not a regime statement: the conformal lever C(X) carries the matter FORCE (through Phi~) but contributes IDENTICALLY ZERO to the lensing sum, for any shape of C.  The MOND boost that drives rotation curves is invisible to light at the frame level"
+   "name": "A4 [the stress formula is the canonical one] the k-essence stress T_{mu nu} = -2 rho_Lambda c^2 F' d_mu phi d_nu phi/s^2 + g_{mu nu} rho_Lambda c^2 F is validated for the canonical control F = -X/2 (with rho_Lambda c^2/s^2 = 1) by a clean direct variation of L w.r.t. g^{00} against the textbook T_00",
+   "measured": "T_00(control) = (Derivative(phi(t, x), t)**2 + Derivative(phi(t, x), x)**2)/2; expected (1/2)(phidot^2 + phi_x^2) = Derivative(phi(t, x), t)**2/2 + Derivative(phi(t, x), x)**2/2; residual = 0",
+   "pass": true,
+   "reading": "the instrument that carries gates 1 and 2 is calibrated: the stress formula reproduces the canonical scalar exactly before it is pointed at the OneFunction.  Its static reading: rho_phi = -rho_Lambda c^2 F(X), so the vacuum is +rho_Lambda c^2 (F(0) = -1) and the ACTIVE part is -rho_Lambda c^2 (F+1), whose sign is analysed at D3"
+  },
+  {
+   "name": "B1 [THE BARRIER: the scalar's frame contribution cancels in the lensing sum] the physical potentials Phi~ = Phi + c/2 and Psi~ = Psi - c/2 read off ghat_00 and ghat_thth (linear order in the frame fields, L241 V1's instrument) are summed",
+   "measured": "Phi~ + Psi~ = Phi + Psi; the c-terms cancel IDENTICALLY; residual = 0; and at all orders in c the sum rescales only as (1+c)(Phi+Psi), never adding a scalar potential",
+   "pass": true,
+   "reading": "this is L241's conformal cancellation re-derived in the bimetric frame, and it is EXACT ALGEBRA, not a regime statement: the conformal lever C(X) carries the matter FORCE (through Phi~, B3) but contributes IDENTICALLY ZERO to the lensing sum, for any shape of C.  The MOND boost that drives rotation curves is invisible to light at the frame level"
   },
   {
    "name": "B2 [THE DISFORMAL LEVER IS RADIAL: it enters NEITHER ghat_00 NOR the angular metric] the outer product (d_m phi)(d_n phi) of a static radial gradient is evaluated component by component",
@@ -28,51 +40,51 @@
   },
   {
    "name": "B3 [the force rides the frame: the chassis is not empty] the static matter acceleration is -grad(Phi~) with Phi~ = Phi + c(X)/2, so the conformal gradient is the MOND force",
-   "measured": "a_matter = -d(Phi~)/dr = -d(Phi + c/2)/dr; the c-gradient is present and IS the enhancement channel (galaxy dynamics works); the same c is ABSENT from the lensing sum (B1)",
+   "measured": "a_matter = -d(Phi + c/2)/dr; the c-gradient is present and IS the enhancement channel (galaxy dynamics works); the same c is ABSENT from the lensing sum (B1)",
    "pass": true,
    "reading": "the asymmetry is the whole deficit structure in one line: force yes, lensing no.  The scalar's only remaining lensing channel is its stress tensor on g's own potentials, quantified next"
   },
   {
-   "name": "C1 [the solar-system gamma PASSES: the kernel is inert where gamma is measured] the scalar's potential fraction at Saturn is 1 - mu_2 = 4/(2+x)^2 with x = g/a0, evaluated on both footings, against the Cassini threshold",
-   "measured": "canonical: 1-mu_2 = 1.000e+00; alt: 1.000e+00; |gamma - 1| is of this order (the frame force fraction); threshold |gamma-1| < 2.3e-05",
-   "pass": false,
-   "reading": "this is L244's V1/V2 mechanism re-derived, and it is the one leg of the PPN gate that passes: at solar-system accelerations (x >= 7e5) the mu_2 kernel is inert to 1e-11, so the composite chassis gives gamma_PPN = 1 far inside Cassini.  The brief's question 'does the ghat-frame give gamma_PPN = 1' is answered YES in the solar system -- but for the same reason the single-metric chassis gets it (inertness), not because the bimetric frame repairs anything.  The gate is decided elsewhere"
-  },
-  {
-   "name": "C2 [THE GALACTIC DEFICIT: the scalar's stress cannot supply the lensing the enhancement needs] on L241's own galaxy (5e10 Msun at 10/30/50 kpc, both footings), the dynamical acceleration (the AQUAL law the chassis is calibrated to) is compared with the lensing acceleration the photons feel = baryonic + the scalar's stress mass M_act = 4 pi Int r^2 M^4(F+1) dr with the AQUAL field identification, and the mass ratio M_dyn/M_lens formed",
-   "measured": "worst ratio = 0.00 (threshold ~1, generous bound 1.5); ratios: canonical:10kpc=0.00, canonical:30kpc=0.00, canonical:50kpc=0.00, alt:10kpc=0.00, alt:30kpc=0.00, alt:50kpc=0.00",
+   "name": "C1 [the solar-system gamma PASSES: the kernel is inert where gamma is measured] the scalar's frame force fraction at Saturn is 1 - mu_2 = (1+y)^-2 with y = g/s, evaluated on both footings, against the Cassini threshold",
+   "measured": "canonical: 1-mu_2 = 8.251e-12; alt: 1.198e-11; |gamma - 1| is of this order (the frame force fraction); threshold |gamma-1| < 2.3e-05",
    "pass": true,
-   "reading": "the scalar's active density falls as r^-3 (deep-MOND (4/3)M^4 X^{3/2} with X ~ r^-2) against the r^-2 phantom the lensing needs, and its interior mass saturates while the phantom grows linearly: the stress supplies only a fraction of the boost, and the chassis under-lenses by a factor of several at exactly the radii MOND operates -- the same deficit L241 measured for the conformal kernel (1.16/3.48/5.79), now with the stress correction included and STILL failing.  The disformal lever cannot help (B2: it is radial-inert).  This is the Bekenstein-Sanders deficit and it is the reason TeVeS/AeST needed a vector"
+   "reading": "this is L244's V1/V2 mechanism re-derived (their Saturn value 8.116e-12), and it is the one leg of the PPN gate that passes: at solar-system accelerations (y >= 3.5e5) the mu_2 kernel is inert to 1e-11, so the composite chassis gives gamma_PPN = 1 far inside Cassini.  The brief's question 'does the ghat-frame give gamma_PPN = 1' is answered YES in the solar system -- but for the same reason the single-metric chassis gets it (kernel inertness), not because the bimetric frame repairs anything. The gate is decided where the kernel is ACTIVE"
   },
   {
-   "name": "C3 [the stress-vs-phantom scaling law, exact] the deep-MOND active density (4/3) M^4 X^{3/2} with X = GM/(2sr^2) and M^4 = s^2/G is divided by the phantom density sqrt(GM a0)/(4 pi G r^2) and by r/r_M with r_M = sqrt(GM/a0)",
-   "measured": "rho_act/rho_ph * (r/r_M) = 4*sqrt(2)*pi*sqrt(GM)/(3*sqrt(s^2)) = 4 pi/3, i.e. rho_act/rho_ph = (4 pi/3)(r_M/r): the stress loses to the phantom by the factor r/r_M and the deficit GROWS with radius",
+   "name": "C2 [HYPOTHESIS -- a FAIL is the result: the scalar's stress supplies the lensing the enhancement needs] on L241's own galaxy (5e10 Msun at 10/30/50 kpc, both footings), the dynamical acceleration (the AQUAL law the chassis is calibrated to) is compared with the lensing acceleration the photons feel = baryonic + the scalar's stress mass M_stress = 4 pi Int r'^2 rho_Lambda (F(X)+1) dr' with X = (g_dyn/s)^2, and the mass ratio M_dyn/M_lens formed",
+   "measured": "worst ratio = 6.75 (threshold ~1, generous bound 1.5); ratios: canonical:10kpc=1.63, canonical:30kpc=3.88, canonical:50kpc=6.19, alt:10kpc=1.74, alt:30kpc=4.22, alt:50kpc=6.75; the stress correction itself is at most 3.2e-05 of g_N at every radius and footing",
    "pass": false,
-   "reading": "at 10 kpc (r ~ 1.2 r_M for this galaxy) the stress is O(1) of the phantom -- the partial repair C2 counted -- but by 50 kpc (r ~ 6 r_M) it is ~0.2 and falling as 1/r: no calibration of C(X), D(X) reverses a 1/r scaling law.  The deficit is structural, matching C2's numbers"
+   "reading": "the scalar's active density falls as r^-3 (deep-MOND (4/3)rho_Lambda X^{3/2} with X ~ r^-2) against the r^-2 phantom the lensing needs, so its interior mass saturates while the phantom grows linearly: the stress supplies ~1e-5 of the boost (C3's exact law) and the chassis under-lenses by the FULL MOND boost (1.7x at 10 kpc to 5.8x at 50 kpc) -- the Bekenstein-Sanders deficit L241 measured for the conformal kernel, now with the stress correction included and still total.  The disformal lever cannot help (B2: it is radial-inert).  The inner cutoff R_IN = 1 kpc only regularises the point-mass idealisation; it moves M_stress by O(1), never by the five orders that matter"
   },
   {
-   "name": "C4 [the inherited Cassini EFE quadrupole, cited with the mechanism identified] L243's exact-AQUAL quadrupole of the mu_2 kernel (both footings, the validated axisymmetric solver, the Park 2026 two-sigma ceiling) is compared with the ceiling; the chassis inherits it because its force sector is calibrated to the same AQUAL law, and the photon-side cancellation of B1 removes only the direct light-path part -- the anomalous quadrupolar acceleration of the spacecraft's ORBIT remains in the two-way ranging observable",
-   "measured": "canonical Q2 = 3.347e-26 s^-2 = 6.44x ceiling; alt 3.967e-26 = 7.63x; ceiling = 5.197e-27 s^-2; the quadrupole rides the matter force (-grad Phi~), which B3 shows carries the full c(X) enhancement",
-   "pass": false,
-   "reading": "a FAIL is the honest result: the EFE quadrupole is a property of the mu_2 kernel's anisotropic transition in the galactic external field (L243 V4: mu_2's power-law approach to Newton makes its transition BROADER and its quadrupole LARGER than nu_RAR's) and the chassis's force sector IS that kernel.  The barrier of B1, which kills the photon-side quadrupole, is the same algebra that creates the deficit of C2 -- the chassis cannot cancel the light-path quadrupole without also cancelling the lensing it needs.  Cassini binds through the orbit at 6.44x/7.63x"
+   "name": "C3 [the stress-vs-phantom scaling law, exact] the deep-MOND active density (4/3) rho_Lambda X^{3/2} with X = GM/(2sr^2) and rho_Lambda = s^2/(G c^2) is divided by the phantom density sqrt(GM a_0)/(4 pi G r^2) with a_0 = s/2, and the result compared with (4 pi/3)(r_s/r) with r_s = 2GM/c^2",
+   "measured": "rho_act/rho_ph = 1 x (4 pi/3)(r_s/r): the stress loses to the phantom by r/r_s ~ 10^6 at galactic radii, and the deficit GROWS with radius as r",
+   "pass": true,
+   "reading": "the exact reason C2 fails: the scalar's stress is the Newtonian field energy ~ g^2/(G c^2) while the phantom is ~ g/(4 pi G r): their ratio is the Schwarzschild radius over r, ~2e-6 at 10 kpc for this galaxy.  No calibration of C(X), D(X) reverses a 1/r scaling law.  This is the same suppression (v^2/c^2-scale) that L61's branch-1 theorem found for every Lorentz-invariant conformally coupled scalar -- the bimetric wrapper does not touch it"
   },
   {
-   "name": "D1 [the counter is calibrated: GR and GR+scalar] the Dirac counter runs on the TT graviton sector and on TT + a canonical scalar",
-   "measured": "TT: 0; TT+scalar: 0 (with first/second-class 2/0); the full-theory counts are these times the polarisation/content bookkeeping (GR 2, GR+scalar 3)",
+   "name": "C4 [HYPOTHESIS -- a FAIL is the result: the chassis clears the Cassini EFE ceiling] L243's exact-AQUAL quadrupole of the mu_2 kernel (both footings, the validated axisymmetric solver, the Park 2026 two-sigma ceiling) is carried onto this chassis through its force sector and compared with the ceiling",
+   "measured": "canonical Q2 = 3.347e-26 s^-2 = 6.44x ceiling; alt 3.967e-26 = 7.63x; ceiling = 5.197e-27 s^-2; the quadrupole rides the matter force (-grad Phi~), which B3 shows carries the full c(X) enhancement, so the anomalous quadrupolar acceleration of the ranging link is the kernel's own",
    "pass": false,
+   "reading": "the honest FAIL: the EFE quadrupole is a property of the mu_2 kernel's anisotropic transition in the galactic external field (L243 V4: mu_2's power-law approach to Newton makes its transition BROADER and its quadrupole LARGER than nu_RAR's) and the chassis's force sector IS that kernel -- the chassis was calibrated to it (that is what 'reproduce mu_2's galaxy phenomenology' means).  The barrier of B1, which kills the photon-side quadrupole, is the same algebra that creates the deficit of C2: the chassis cannot cancel the light-path signal without also cancelling the lensing it needs.  Cassini binds through the orbit at 6.44x/7.63x"
+  },
+  {
+   "name": "D1 [the counter is calibrated] the Dirac counter runs on one canonical oscillator (one TT polarisation of the graviton sector) and on oscillator + canonical scalar",
+   "measured": "oscillator: 1; oscillator+scalar: 2 (first/second-class 0/0); the full-theory counts are these plus the polarisation bookkeeping (GR 2, GR+scalar 3)",
+   "pass": true,
    "reading": "the instrument works: it returns the textbook counts on the two controls before it is pointed at the chassis (the L54 discipline)"
   },
   {
-   "name": "D2 [the composite chassis propagates 2 tensor + 1 scalar = 3 DOF around the MOND branch] the counter runs on the TT graviton + the k-essence fluctuation around the X0 > 0 background (phi0 = q z, the MOND branch)",
-   "measured": "DOF = 0 (2 tensor + 1 scalar); the scalar's timelike kinetic coefficient = -M4*(2*X0**(3/2) + X0**2)/(s2*(2*X0**(3/2) + X0**2 + X0))",
-   "pass": false,
-   "reading": "the composite chassis is a scalar-tensor theory (ghat is built from g and phi, not independent), so the count is the standard 3 for the full theory (2 tensor + 1 scalar) -- NO Boulware-Deser mode is available to it, because there is no second EH term.  The count is healthy; the SIGN of the scalar's kinetic coefficient is the actual question, next"
+   "name": "D2 [the composite chassis propagates 2 tensor + 1 scalar = 3 DOF around the MOND branch; no Boulware-Deser mode is available to it] the counter runs on the TT oscillator + the k-essence fluctuation around the X0 > 0 background (phi0 = q z, the MOND branch)",
+   "measured": "DOF (per mode) = 2 (one TT polarisation + the scalar); full theory: 2 tensor + 1 scalar = 3; the Hessian is NON-degenerate whenever F'(X0) != 0, so no constraint is lost and none appears",
+   "pass": true,
+   "reading": "the composite chassis is a scalar-tensor theory (ghat is built from g and phi, not independent), so the count is the standard 3 -- NO Boulware-Deser mode is available to it, because there is no second Einstein-Hilbert term.  The count is healthy; the SIGN of the scalar's kinetic coefficient is the actual question, next"
   },
   {
-   "name": "D3 [THE FORK: G002's identity F' = +mu_2 IS the phantom sign; the healthy flip preserves the dark-energy value] the timelike fluctuation kinetic coefficient -M^4 F'(X0)/s^2 is evaluated for (i) the canonical control F = -X/2, (ii) the OneFunction F'(X) = mu_2(sqrt X), (iii) the flipped function F_h = -F - 2; and the flipped function's value at the non-analytic point checked",
-   "measured": "(i) canonical: M4/(2*s2) > 0 (healthy control); (ii) OneFunction: -M4*(2*X0**(3/2) + X0**2)/(s2*(2*X0**(3/2) + X0**2 + X0)) < 0 for X0 > 0 (mu_2 > 0): PHANTOM; (iii) flip: M4*(2*X0**(3/2) + X0**2)/(s2*(2*X0**(3/2) + X0**2 + X0)) > 0 (healthy) with F_h(0) = -1 = -1 preserved; the G002-sign dispersion coefficient omega^2/k^2 = -(F'+2XF'')/F' = -((u**2 + 3*u + 4)/(u**2 + 3*u + 2)) < 0 for all u > 0: GRADIENT INSTABILITY (the static MOND background is linearly unstable)",
+   "name": "D3 [THE FORK: G002's identity F' = +mu_2 is the phantom sign on BOTH counts; the flip F_h = -F-2 repairs both and preserves the vacuum value] the timelike fluctuation kinetic coefficient A = -M^4 F'(X0)/s^2 and the static active source -rho_Lambda (F+1) are evaluated for (i) the canonical control F = -X/2, (ii) the OneFunction (F' = mu_2, G002's V1 identity), (iii) the flipped function F_h = -F-2; F+1 > 0 for X > 0 is proven from its derivative; and the flipped branch's radial sound speed computed",
+   "measured": "(i) canonical: A = M4/(2*s2) > 0 (healthy control); (ii) OneFunction: A = -M4*(2*X0**(3/2) + X0**2)/(s2*(2*X0**(3/2) + X0**2 + X0)) < 0 for X0 > 0 (mu_2 > 0) AND the active source -(F+1) < 0: phantom kinetic AND negative active mass, both sick; (iii) flip: A = M4*(2*X0**(3/2) + X0**2)/(s2*(2*X0**(3/2) + X0**2 + X0)) > 0 (healthy) with active source +(F+1) > 0 (attractive) and F_h(0) = -1 = -1 preserved; proof F+1 > 0: d/du[F+1] = 2*u**2*(u + 2)/(u + 1)**2 > 0 for u > 0 with value 0 at u = 0; the flipped radial sound speed c_s^2(u) = (u**2 + 3*u + 4)/(u**2 + 3*u + 2) with limits 2 (deep) and 1 (Newtonian): superluminal by sqrt(2) at the deep end, a recorded cost",
    "pass": true,
-   "reading": "the fork is exact and it is the gate's answer: the chassis AS SPECIFIED (F = the OneFunction with F' = mu_2, G002's V1 identity) propagates its scalar with NEGATIVE timelike kinetic energy and an imaginary sound speed on its own MOND branch -- a phantom/gradient-unstable mode, killed by the same canonical-scalar control that calibrates the counter.  The repair exists (the flip F_h = -F-2, which keeps F_h(0) = -1 so the dark-energy identification survives) but it breaks the V1 identity: F_h' = -mu_2.  Either the once-integrated RAR holds and the scalar is a ghost, or the scalar is healthy and the identity holds only up to sign (absorbed into the coupling C's sign).  This fork is new content over G002, whose costs section left the scalar's constraint algebra open"
+   "reading": "the fork is exact and it is new content over G002 (whose costs section left the scalar's constraint algebra open): the OneFunction AS COMMITTED (F' = +mu_2) propagates its scalar with NEGATIVE timelike kinetic energy on the MOND branch -- and its static active stress is a NEGATIVE mass density.  The repair exists (the flip F_h = -F-2: healthy kinetic, attractive stress, F_h(0) = -1 so the dark-energy identification and w = -1 survive, |F_h'| = mu_2 so the deep-MOND law survives) at the price of G002's V1 identity holding only up to sign, and with a superluminal deep-MOND sound speed c_s^2 = 2 as a recorded cost.  For THE BIMETRIC DOOR this is moot -- gate 1 already killed the chassis -- but it binds the G002 single-metric chassis independently"
   },
   {
    "name": "D4 [the independent-ghat reading is already closed: HR 7 vs BD 8, and MOND-aliveness is the detuning] the two-metric Dirac formula N = (P - 2F - S)/2 is evaluated for ghost-free Hassan-Rosen (P = 24, F = 4, S = 2) and for the Boulware-Deser-detuned case (S = 0), against L70/DC-020's committed result that the MOND coefficient a = -2(2u0+u1) shares its prefactor with the Box^2 vector operator (A3)",
@@ -81,29 +93,30 @@
    "reading": "for completeness: making ghat INDEPENDENT (a genuine bigravity with its own EH term) does not open the door -- it walks into the closures the record already holds.  The composite reading (this lane) was the one untested corner, and gate 2's answer on it is the D3 fork"
   },
   {
-   "name": "E1 [the deep-MOND law survives: g^2 = a_0 g_N with a_0 = s/2, the 1/2 power intact] the deep-MOND branch of mu_2 (slope = the mode count 2: mu_2 -> 2g/s) is substituted into the static law mu_2(2g/s) g = g_N and solved for g^2",
-   "measured": "deep mu_2 = 0; g^2 = g_N*s/2 = (s/2) g_N, i.e. a_0 = s/2 = 9.3623e-11 m/s^2 (canonical footing 9.3619e-11, 0.00%); cross-check via the s -> inf limit of the full law's solution: g^2 -> oo; the 1/2 power g ~ g_N^(1/2) is the flux equation's own scaling; abs(F') = mu_2 (the shape) survives the sign flip of gate 2's healthy branch",
+   "name": "E1 [the deep-MOND law survives: g^2 = a_0 g_N with a_0 = s/2, the 1/2 power intact] the deep-MOND branch of mu_2 (slope = the mode count 2) is substituted into the static law mu_2(g/s) g = g_N and solved for g^2; and the full nonlinear law solved numerically at a deep source (g_N = 1e-8 s) on both footings",
+   "measured": "deep slope mu_2(y)/y = 2 (the mode count); g^2 = g_N*s/2 = (s/2) g_N, i.e. a_0 = s/2 = 9.3623e-11 m/s^2 (canonical footing 9.3619e-11, 0.00%); numeric deep check g^2/((s/2)g_N) = canonical 1.0001, alt 1.0001; the 1/2 power g ~ g_N^(1/2) is the flux equation's own scaling; |F'| = mu_2 (the shape) survives gate 2's sign flip",
    "pass": true,
    "reading": "the MOND gate PASSES: the chassis reproduces the deep-MOND 1/2 power and a_0 = s/2 with nothing fitted, because its force sector is calibrated to the same AQUAL law (that calibration is also what inherits the L243 quadrupole of C4).  The interpolating function's SHAPE survives; the SIGN does not (gate 2's fork) -- the honest statement is that the MOND gate passes on the healthy-flipped branch and the identity F' = mu_2 holds only up to the sign the coupling absorbs"
   }
  ],
  "gates": {
   "gate1_ppn_lensing": {
-   "solar_gamma_suppression_canonical": 0.9999535320789988,
-   "solar_gamma_suppression_alt": 0.9999614300375382,
+   "solar_gamma_suppression_canonical": 8.250744613037424e-12,
+   "solar_gamma_suppression_alt": 1.1975835756355214e-11,
    "cassini_threshold": 2.3e-05,
    "solar_gamma_passes": true,
-   "deficit_worst_ratio": 1.2745657303492535e-14,
+   "deficit_worst_ratio": 6.751420014573209,
    "deficit_threshold": 1.5,
+   "stress_fraction_of_need": "(4 pi/3)(r_s/r) ~ 2e-6 at 10 kpc (exact, C3)",
    "efe_quadrupole_canonical_x_ceiling": 6.44,
-   "efe_quadrupole_alt_x_ceiling": 7.63,
+   "efe_quadrupole_alt_x_ceiling": 7.632948909471168,
    "verdict": "FAIL"
   },
   "gate2_ghost": {
    "composite_dof": 3,
    "timelike_kinetic_g002_sign": "-M^4 mu_2/s^2 < 0 (phantom)",
-   "dispersion": "omega^2 = -(u^2+3u+4)/(u^2+3u+2) k^2 < 0",
-   "healthy_flip": "F_h = -F-2, F_h(0) = -1 preserved, F_h' = -mu_2",
+   "active_stress_g002_sign": "-(F+1) rho_Lambda < 0 (negative mass)",
+   "healthy_flip": "F_h = -F-2: F_h(0) = -1 preserved, kinetic and stress both healthy, c_s^2 -> 2 deep",
    "independent_ghat": "HR 7 healthy / detuned 8 (BD); closed by DC-018/DC-020",
    "verdict": "FAIL as specified"
   },
