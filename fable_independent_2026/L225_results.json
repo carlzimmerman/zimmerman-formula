@@ -1,0 +1,54 @@
+{
+ "pass": 8,
+ "fail": 0,
+ "checks": [
+  {
+   "name": "V1 [the transfer function and the normalisation are right] the transfer function is evaluated at a wavenumber far below the equality scale, where it must approach one, and the amplitude is solved for so that the variance in 8 Mpc/h spheres reproduces the observed value",
+   "measured": "T(k -> 0) = 0.999998; sigma_8 recovered = 0.811000 against the input 0.811",
+   "pass": true,
+   "reading": "the shape is normalised at large scales and the amplitude is pinned to sigma_8, so everything built on it inherits a correctly normalised linear spectrum"
+  },
+  {
+   "name": "V2 [the growth to the forest epoch] the linear growth factor to z = 3 is computed from the exact integral and compared with 1/(1+z), the matter-dominated limit it must approach from above",
+   "measured": "D(z=3)/D(0) = 0.315405; 1/(1+z) = 0.250000; ratio 1.2616",
+   "pass": true,
+   "reading": "growth is slightly faster than the matter-dominated scaling because Lambda has not yet slowed it at z = 3, which is the expected sign and size"
+  },
+  {
+   "name": "V3 [the realisation reproduces the spectrum it was built from] the three-dimensional power is measured back off the generated field and its median ratio to the input spectrum taken over the trusted band, which must be one",
+   "measured": "median measured/input = 0.9919 over 25 bins from 0.249 to 4.57 /Mpc",
+   "pass": true,
+   "reading": "the field generator is correct to five percent in the band used, which is the level set by the number of independent modes per bin rather than by any bias"
+  },
+  {
+   "name": "V4 [the mean flux is matched, which is what fixes the optical-depth normalisation] the optical-depth amplitude is solved for by bisection so that the mean transmitted flux equals the observed value at z = 3, and the achieved mean measured",
+   "measured": "solved amplitude A = 0.6106; mean flux achieved = 0.680000 against the target 0.68; beta = 1.65, thermal width 15.9 km/s",
+   "pass": true,
+   "reading": "the mean flux is the one quantity a forest analysis always marginalises over, so matching it in both models is what makes the comparison of their SHAPES meaningful"
+  },
+  {
+   "name": "V5 [THE RESPONSE, measured rather than assumed] the largest fractional deviation of the one-dimensional flux power over the high-resolution band is measured, the deviation of the LINEAR power over the same wavenumbers is measured, and their ratio is reported; the check is only that the field is genuinely nonlinear, since a linear field would make the whole chain trivial",
+   "measured": "linear power deviates by 0.0299, flux power by 0.0457, response 1.53; filtered-field variance sigma^2 = 1.673",
+   "pass": true,
+   "reading": "the response is not a suppression. Projecting three dimensions onto one puts power from every transverse mode with q >= k into the line-of-sight bin at k, so a three-dimensional suppression that begins beyond the forest's reach still shows up inside it, and the nonlinear mapping does not undo that. The flux is MORE sensitive than the linear power at these wavenumbers, not less"
+  },
+  {
+   "name": "V6 [and at the old reach the forest gate is passed after all] the flux-power deviation is compared with the precision of the two kinds of forest measurement, at the reach L194 originally set and L224 reported as failing on linear power",
+   "measured": "old reach: eBOSS band 0.0042 vs 0.03; high-resolution band 0.0457 vs 0.08",
+   "pass": true,
+   "reading": "L224's eight percent was a deviation in the LINEAR matter power, which the forest does not measure. Carried through the flux chain it lands inside the precision of both kinds of measurement, so L224's correction to L194 is itself corrected: the original reach passes the forest"
+  },
+  {
+   "name": "V7 [and the corrected reach passes by a wide margin] the same comparison at the reach L224 derived",
+   "measured": "corrected reach: eBOSS band 0.0006 vs 0.03; high-resolution band 0.0039 vs 0.08",
+   "pass": true,
+   "reading": "the tighter reach L224 asked for is not required by the forest, but it is not excluded either and it clears by a further factor. The programme keeps the looser requirement and gains the tighter one as headroom"
+  },
+  {
+   "name": "V8 [the verdict DOES depend on the filtering scale, and that is the dominant systematic] the temperature, the mean flux and the pressure filtering scale are each varied across the range the data allow, the largest and smallest flux-power deviations recorded, and the spread attributed",
+   "measured": "deviations across six variations span 0.0272 to 0.0613; temperature and mean flux move it by less than 0.0056, the filtering scale by 0.0185",
+   "pass": true,
+   "reading": "every variation stays inside the high-resolution precision, so the verdict survives the whole allowed range. Temperature and mean flux move it by half a percent and are irrelevant; the IGM's pressure filtering scale moves it three times as much and is the dominant systematic. The gate passes, and the quantity to nail down if anyone wants to sharpen it is the filtering scale, not the thermal state"
+  }
+ ]
+}

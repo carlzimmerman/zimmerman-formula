@@ -6380,3 +6380,24 @@ This **loosens** L218's criticality floor, which goes as 2/κ², so nothing else
 **Limits.** **This is not a Boltzmann calculation**: photons, baryons and neutrinos are not evolved, the potential is the subhorizon Poisson limit, no C_ℓ is computed. **It is not a likelihood**: the tolerances are round numbers standing in for real error bars, and a proper Lyman-α comparison needs the flux power spectrum, not the linear matter one. Baryon perturbations are not evolved. The initial condition is imposed at z = 3000 and cancels in the ratio. The pre-criticality sound speed is the closure value at zero gradient and does not track the gradient's growth — **the approximation most in need of replacement.** Footing-independent. 11/11.
 
 **Lean.** 149 theorems, exit 0, zero `sorry`, axioms ⊆ {propext, Classical.choice, Quot.sound}.
+
+## L225 — THE FLUX POWER COMPARISON: the forest gate PASSES, and L224's correction is itself corrected (2026-09-12)
+
+**Why.** L224 found an 8% suppression of the **linear** matter power over the forest's wavenumbers and read it as a failing gate. The forest does not measure linear matter power. It measures the 1D power of the transmitted flux, reached through a nonlinear density mapping, the IGM's pressure filtering, thermal broadening and a mean-flux normalisation.
+
+**V1–V4 — validated first, and one real bug caught.** The Eisenstein–Hu transfer function gives T(k→0) = 0.999998 and σ₈ is pinned to 0.811 exactly. The growth to z = 3 is 0.3154, above the matter-dominated 0.25 as it must be. **V3 caught a normalisation error of N³ in the field generator** — the amplitude must be √(P/Δx³), not √(P/L³) — which had left the whole chain running in the linear regime. After the fix the realisation reproduces its input spectrum to **0.9919**, and the filtered field variance is **σ² = 1.67**, genuinely nonlinear. The mean flux is solved to 0.680000 in each model separately.
+
+**V5 — the response, measured rather than assumed.** Over the high-resolution band the **linear** power deviates by 0.0299 and the **flux** power by 0.0457: a response of **1.53**. The flux is *more* sensitive, not less — projecting three dimensions onto one puts every transverse mode with q ≥ k into the line-of-sight bin at k. **This lane's first draft asserted the opposite and was wrong.**
+
+**V6, V7 — and the gate passes.**
+
+| band | old reach (3.2e4) | corrected reach (3e5) | precision |
+|---|---|---|---|
+| eBOSS, k ≤ 0.02 s/km | 0.0042 | 0.0006 | ~0.03 |
+| high-resolution, k ≤ 0.1 s/km | 0.0457 | 0.0039 | ~0.08 |
+
+**The reach requirement goes back to L194's 3.2e4.** L224's 3e5 is not required, not excluded, and clears by a further order — the programme keeps the looser requirement and gains the tighter one as headroom.
+
+**V8 — and it survives the systematics.** Across temperature 1e4–2e4 K, mean flux 0.62–0.74 and filtering scale 0.10–0.25 Mpc, every deviation lands between **0.027 and 0.061**, all inside the high-resolution precision. Temperature and mean flux move it by 0.006 and are irrelevant; **the filtering scale moves it three times as much and is the dominant systematic** — the one quantity to nail down to sharpen this.
+
+**Limits, and they are real.** The fluctuating Gunn-Peterson approximation is **not a hydrodynamic simulation**: the density field is a lognormal transform of the linear field, **peculiar velocities are not included**, and the temperature–density relation is a single power law with no scatter. Peculiar velocities are the largest omission; they affect both models similarly so the **ratio** is more reliable than either spectrum, but that is an argument, not a demonstration. Box 80 Mpc, 256 cells, so k above ~6 /Mpc is untrusted and Nyquist modes are excluded. The tolerances are representative precisions, **not a likelihood with a covariance matrix**. A real constraint needs hydrodynamic simulations and the published flux-power covariance. Footing-independent. 8/8.
