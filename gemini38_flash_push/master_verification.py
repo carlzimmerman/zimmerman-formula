@@ -21,6 +21,8 @@ SCRIPTS = [
     ("Lean Certificate 3 (Cosmo & Lensing)", "gemini38_flash_push/run_cosmo_lensing_lean.py"),
     ("Fried Chicken Dirac Analysis", "gemini38_flash_push/fried_chicken_action_and_dof.py"),
     ("Lean Certificate 4 (Full 10-Gate FC)", "gemini38_flash_push/run_crispy_fried_chicken_lean.py"),
+    ("Amplitude Law & Virialization", "gemini38_flash_push/amplitude_law_infall_virialization.py"),
+    ("Lean Certificate 5 (Amplitude Law)", "gemini38_flash_push/run_amplitude_law_lean.py"),
 ]
 
 def main():
