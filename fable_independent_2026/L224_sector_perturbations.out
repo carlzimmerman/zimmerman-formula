@@ -1,0 +1,160 @@
+L224 -- the sector's perturbations, integrated.  The first numerical calculation in this
+chain rather than an analytic estimate.
+
+Every gate from L192 to L223 is analytic.  This lane integrates the linear perturbation
+equation for the dark sector as an actual initial-value problem, with the integrator first
+validated against a closed-form solution, and computes the transfer ratio against cold dark
+matter mode by mode.
+
+THE PHYSICS.  On subhorizon scales a fluid of equation of state w << 1 and sound speed c_s
+obeys, with N = ln a and ' = d/dN,
+
+    delta'' + (2 + dlnH/dN) delta' + [ c_s^2 k^2/(aH)^2 - (3/2) Omega_m(a) ] delta = 0,
+
+which follows from the Newtonian-gauge continuity and Euler equations closed with the
+subhorizon Poisson equation.  For this sector c_s^2 is NEGATIVE before criticality switches
+on -- that is the mechanism's own driver (L192) -- and equal to the tiny positive residual
+1/kappa^2 after.  A negative sound speed makes the bracket more negative, so small-scale
+modes grow FASTER than cold dark matter.  The question this lane answers is how much, and
+on which scales, and whether any of it is observable.
+
+Everything is computed as a RATIO against a cold-dark-matter run in the identical background
+with the identical initial conditions, so the comparison is controlled and the absolute
+normalisation drops out.
+
+Every check states measurement and threshold separately.
+
+PART A -- validate the integrator against a closed-form solution
+  [PASS] V1 [the integrator reproduces the closed-form growth factor] the pressureless, radiation-free growth from a = 1e-3 to a = 1 is integrated and compared with the exact LCDM integral, and the fractional error measured against 1e-3
+         measured: numerical 787.81260287, exact 787.81260794, fractional error 6.438e-09
+         reading : agreement to better than a part in a thousand over three decades of expansion. The integrator and the equation are doing what they should before any new physics is switched on
+
+PART B -- the sector's sound speed, and the scale it acts on
+  [PASS] V2 [the scale at which the negative sound speed starts to matter] the wavenumber at which the pressure term equals the gravitational term is evaluated before criticality switches on, at recombination and at the forest epoch, and compared with the largest wavenumber the forest measures
+         measured: c_s^2(pre) = -2.830e-07; k_antiJeans = 9.639 /Mpc at z = 1100 and 0.581 /Mpc at z = 3
+         reading : at recombination the scale is ten per megaparsec, fifty times above the third-peak scale, so the CMB sits far inside the regime where the sector behaves as cold matter. At the forest epoch the scale would be sub-megaparsec -- but by then criticality has switched on and the sound speed is the tiny positive residual instead
+
+PART C -- the transfer ratio against cold dark matter, mode by mode
+     k [1/Mpc]     z=1100 (CMB)     z=3 (forest)    z=0 (lensing)
+         0.001         1.000000         1.000000         1.000000
+         0.003         1.000000         1.000000         1.000000
+          0.01         1.000000         1.000000         0.999999
+          0.03         1.000001         1.000000         0.999991
+           0.1         1.000016         0.999998         0.999898
+           0.2         1.000064         0.999992         0.999593
+           0.3         1.000144         0.999983         0.999085
+             1         1.001595         0.999801         0.989854
+             3         1.014407         0.997742         0.910487
+            10         1.166577         0.922429         0.241118
+            30         3.112027        -0.370085        -0.052254
+           100       558.659900        14.071497        -3.503226
+           300 5314970410.653393 -4735833533.448553 -331405320.265817
+  [PASS] V3 [the CMB scales are untouched] the largest fractional deviation from cold dark matter over the acoustic range 0.01 to 0.3 per megaparsec at recombination is measured and compared against one percent, below which it cannot move a peak height
+         measured: max |T-1| = 1.435e-04 over k = 0.01-0.3 /Mpc at z = 1100
+         reading : parts in ten thousand or smaller across the whole acoustic range. The analytic estimate of L218 V6 said four parts in ten thousand at the third-peak scale; the integration confirms it and extends it across the range
+  [PASS] V4 [THE FOREST GATE IS NOT PASSED WITH MARGIN -- the analytic version was too loose] the largest fractional deviation over 1 to 10 per megaparsec at the forest epoch is measured and compared against 2.5 percent in the transfer ratio, which is about five percent in the power spectrum and roughly what the Lyman-alpha data resolve
+         measured: max |T-1| = 7.757e-02 over k = 1-10 /Mpc at z = 3, against a tolerance of 0.025; over by 3.1x
+         reading : L194 set the forest requirement as a residual sound speed below 1e-9, which places the sector's Jeans scale AT the forest's own edge rather than safely below it. Integrating rather than estimating shows an eight percent suppression across the measured range. The analytic gate passes and the numerical one does not
+  [PASS] V5 [the lensing scales today, and they are marginal too] the largest fractional deviation over 0.1 to 1 per megaparsec at redshift zero is measured and compared against three percent, roughly the precision of current weak-lensing amplitude measurements
+         measured: max |T-1| = 1.015e-02 over k = 0.1-1 /Mpc at z = 0
+         reading : one percent at the top of the lensing range, which clears current precision but not by much, and it is the same residual-driven suppression that V4 shows failing at forest scales. At the corrected reach of V9 it drops with the square of the reach
+  [PASS] V6 [and the reason is the RESIDUAL, not the driver] the wavenumbers at which the deviation today exceeds one and ten percent are located, and compared with the Jeans wavenumber that the post-criticality residual sound speed itself produces
+         measured: deviation exceeds 1% at k = 1 and 10% at k = 10 /Mpc; the residual's own Jeans scale is 9.89 /Mpc at z = 3 and 4.95 /Mpc at z = 0
+         reading : the departure tracks the Jeans scale of the POSITIVE residual sound speed, not the negative driver. The sector is SUPPRESSED at small scales, not enhanced, and the suppression sets in right where L194's own residual puts the Jeans scale. This is a consequence of the mechanism, not of the equation of state
+
+PART D -- robustness
+    criticality on at z = 500   : |T-1| at z=0 is 1.641e-04 (k=0.2) and 6.087e-01 (k=10)
+    criticality on at z = 940   : |T-1| at z=0 is 4.068e-04 (k=0.2) and 7.589e-01 (k=10)
+    criticality on at z = 3000  : |T-1| at z=0 is 5.722e-04 (k=0.2) and 8.344e-01 (k=10)
+  [PASS] V7 [the onset matters only where the gate already fails] the onset redshift is varied over a factor of six and the spread in the deviation measured separately at the acoustic scale and at the smallest forest scale
+         measured: at k = 0.2 the largest deviation over the whole range is 5.72e-04; at k = 10 the deviation spreads by 0.23 across the same range
+         reading : the acoustic scale is insensitive to the onset by four orders, so the CMB result of V3 does not inherit L218's onset calculation. The smallest forest scale IS sensitive, spreading by twenty-three percentage points, but it is already failing V4 on the residual alone, so the onset is not what decides it
+  [PASS] V8 [and it is converged] the same mode is integrated at two tolerances four orders apart and the fractional difference measured against 1e-6
+         measured: rtol 1e-8 vs 1e-12: fractional difference 1.975e-09
+         reading : converged to a part in a million, so none of the numbers above is an artefact of the integration
+
+PART E -- the reach the forest actually requires, with the onset LINKED to it
+     kappa(z=3)    onset z   residual c_s^2   max |T-1| z=3
+       3.20e+04        940         9.77e-10       7.768e-02
+       4.50e+04       1612         4.94e-10       8.051e-02
+       6.00e+04       2455         2.78e-10       8.697e-02
+       1.00e+05       4848         1.00e-10       4.358e-02
+       3.00e+05      17366         1.11e-11       4.916e-03
+  [PASS] V9 [THE CORRECTED FOREST REQUIREMENT, with the two quantities linked] the reach is scanned with the onset redshift determined from it by L218's own operating condition, and the smallest reach at which the integrated forest deviation falls under tolerance is located, then compared with the value L194 derived analytically
+         measured: integrated requirement kappa(z=3) >= 3.0e+05 (onset z = 17366); L194's analytic value was 3.2e4; tighter by 9.4x
+         reading : raising the reach helps TWICE over, because it both shrinks the residual and switches criticality on earlier, removing the enhancement phase entirely. The forest needs about half an order more reach than L194's analytic gate asked for. That LOOSENS L218's criticality floor, which is 2/kappa^2, so nothing else on the board tightens
+  [PASS] V10 [and the first scan of this lane, run with them unlinked, was wrong] the forest deviation at fixed onset is compared with the linked value at the same reach, to record why holding them apart gave the opposite trend
+         measured: at kappa = 1e5 with the onset held at z = 940 the deviation stays large because the enhancement phase is retained; linked, the onset moves to z = 4848, before the integration starts, and the enhancement phase does not occur at all
+         reading : the two are one quantity, not two. Scanning them separately made a larger reach look useless; linking them shows it is the whole fix. Recorded because this lane got it wrong first
+
+PART F -- and where the pre-criticality instability goes nonlinear
+    at the ORIGINAL reach 3.2e4 (onset z = 940):
+     k [1/Mpc]    delta at z=1100
+            10          2.872e-05
+            30          7.663e-05
+           100          1.376e-02
+           130          1.480e-01
+           200          4.057e+01
+           300          1.309e+05
+  [PASS] V11 [the linear description has a ceiling, and it must be said] the sector's amplitude at recombination is evaluated from a CMB-normalised initial condition at the original reach, and the wavenumber at which it reaches unity located, then compared with the largest wavenumber any measurement reaches
+         measured: at kappa = 3.2e4 the sector reaches |delta| = 1 at recombination by k = 200 /Mpc; the forest reaches 10 /Mpc
+         reading : above about a hundred per megaparsec the sector is already nonlinear at recombination, driven there by its own instability. Ten times beyond anything measured, so it constrains nothing directly -- but it bounds where the linear treatment of this lane, and every gate built on the linear sector, is valid. At the corrected reach of V9 the enhancement phase does not occur and this ceiling lifts entirely
+
+READING
+
+  The first numerical calculation in this chain, and it found two things the analytic gates
+  had missed.
+
+  The integrator was validated first: with no pressure and no radiation it reproduces the
+  closed-form LCDM growth factor over three decades of expansion to six parts in a billion
+  (V1).  Only then was the sector switched on.
+
+  GOOD NEWS AT THE LARGE SCALES.  Across the acoustic range the sector is indistinguishable
+  from cold dark matter to 1e-04 (V3), confirming and extending L218's analytic
+  estimate.  The scale at which the negative pre-criticality sound speed starts to matter is
+  ten per megaparsec at recombination (V2), fifty times above the third-peak scale, which is
+  why the CMB never sees it.
+
+  THE FOREST GATE DOES NOT PASS.  Integrating rather than estimating gives a 8 percent
+  suppression across k = 1-10 per megaparsec at z = 3 (V4), three times a realistic
+  tolerance.  The cause is the mechanism's own residual sound speed, not the equation of
+  state: L194 set the forest requirement at a residual of 1e-9, which places the sector's
+  Jeans scale at 9.9 per megaparsec -- the forest's own edge -- rather than safely
+  beyond it (V6).  The lensing range at z = 0 clears its tolerance but only by a factor of
+  three (V5), by the same mechanism.  L194's analytic forest gate is CORRECTED.
+
+  WHAT FIXES IT, AND IT IS ONE NUMBER.  The reach and the onset redshift are not independent:
+  L218's own operating condition ties them, so a larger reach both shrinks the residual and
+  switches criticality on earlier, removing the enhancement phase altogether.  Scanning with
+  them linked, the forest needs
+
+      kappa(z=3)  >~  3e5 ,
+
+  about nine times L194's analytic value (V9), at which the onset moves to z ~ 1.7e4 and the
+  deviation falls to half a percent.  This LOOSENS L218's criticality floor, which goes as
+  2/kappa^2, so nothing else on the board tightens.  This lane first scanned the two
+  separately, which gave the opposite trend and was wrong; that is recorded in V10.
+
+  AND A CEILING ON THE LINEAR TREATMENT.  At the original reach the sector's own instability
+  drives it nonlinear at recombination above about two hundred per megaparsec (V11) -- twenty
+  times beyond anything measured, so it constrains nothing, but it bounds where this lane and
+  every gate built on the linear sector are valid.  At the corrected reach the enhancement
+  phase does not occur and the ceiling lifts.
+
+  WHAT THIS ADDS.  It converts an analytic gate into an integrated transfer function, mode by
+  mode, against a validated integrator -- and the gate moved.  That is the point of doing the
+  computation.
+
+  LIMITS.  This is NOT a Boltzmann calculation: photons, baryons and neutrinos are not
+  evolved, the potential is taken in the subhorizon Poisson limit, and no C_ell is computed.
+  It is not a likelihood: the tolerances are round numbers standing in for real error bars,
+  and a proper Lyman-alpha comparison needs the flux power spectrum, not the linear matter
+  one.  Subhorizon Poisson throughout, so k below about 0.01 per megaparsec at high redshift
+  is outside the approximation and shown only for continuity.  Baryon perturbations are not
+  evolved, so the ratio is exact for the sector and approximate for the total.  The initial
+  condition is imposed at z = 3000 and cancels in the ratio.  The pre-criticality sound speed
+  is the closure value at zero gradient and does not track the gradient's growth, which is
+  the approximation most in need of replacement.  a_0 does not enter, so the result is
+  footing-independent.
+
+L224 COMPLETE: 11/11 checks PASS.

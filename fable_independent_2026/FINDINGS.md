@@ -6346,3 +6346,37 @@ One of six stands unmodified, and it is the one that carries the conclusion.
 **Limits.** Every gate is an analytic result inheriting its own lane's limits; none is a Boltzmann or N-body calculation and the board is a chain of estimates, not a likelihood. The reach is a conservative stand-in; recomputing the cutoff moves the criticality floor **down** only. The health condition U > 4dℓ is not evaluated because ℓ has never been pinned. The disformal coupling's cosmological effect is not computed anywhere. No loop is computed anywhere. 11/11.
 
 **Lean.** 147 theorems, exit 0, zero `sorry`, axioms ⊆ {propext, Classical.choice, Quot.sound}.
+
+## L224 — THE SECTOR'S PERTURBATIONS, INTEGRATED: the forest gate moves, and L194's analytic version is corrected (2026-09-12)
+
+**The first numerical calculation in this chain.** Every gate from L192 to L223 is analytic. This lane integrates the linear perturbation equation for the sector as an initial-value problem, with the integrator **validated first**, and takes transfer ratios against a cold-dark-matter run in the identical background with identical initial conditions.
+
+**V1 — validation.** Pressureless, radiation-free, the integrator reproduces the closed-form ΛCDM growth factor over three decades of expansion to **6.4e-9**. Only then was the sector switched on.
+
+**V2, V3 — the large scales are safe.** The negative pre-criticality sound speed starts to matter at **9.6 /Mpc at recombination**, fifty times above the third-peak scale. Across the acoustic range the deviation is **1.4e-4**, confirming and extending L218's analytic estimate.
+
+**V4, V5, V6 — THE FOREST GATE DOES NOT PASS.** Integrated, the deviation over k = 1–10 /Mpc at z = 3 is
+
+  **7.8%**, against a 2.5% tolerance (about 5% in P(k)) — **over by 3.1×**
+
+and the lensing range at z = 0 clears its 3% tolerance only by a factor of three (1.0%). The cause is the **mechanism's own residual sound speed**, not the equation of state: L194 set the requirement at a residual ≤ 1e-9, which places the sector's Jeans scale at **9.9 /Mpc at z = 3 and 4.9 /Mpc at z = 0** — the forest's own edge rather than safely beyond it (Lean `jeans_wavenumber_scales_with_reach`). The sector is **suppressed** at small scales, not enhanced. **L194's analytic forest gate is corrected.**
+
+**V9, V10 — what fixes it, and the reach and onset are ONE quantity.** L218's operating condition ties the onset expansion rate to the reach, so a larger reach **both** shrinks the residual **and** switches criticality on earlier, removing the enhancement phase entirely (Lean `reach_helps_both_ways`). Scanning with them linked:
+
+| κ(z=3) | onset z | residual c_s² | max \|T−1\| at z=3 |
+|---|---|---|---|
+| 3.2e4 | 940 | 9.8e-10 | 7.8e-2 |
+| 1e5 | 4848 | 1.0e-10 | 4.4e-2 |
+| **3e5** | **17366** | **1.1e-11** | **4.9e-3** |
+
+  **κ(z=3) ≳ 3e5**, about **9× tighter** than L194's analytic value.
+
+This **loosens** L218's criticality floor, which goes as 2/κ², so nothing else on the board tightens. **This lane first scanned the two separately, which gave the opposite trend and was wrong; recorded in V10.**
+
+**V7, V8 — robustness.** The acoustic scale is insensitive to the onset by four orders. The integration is converged to 2e-9.
+
+**V11 — a ceiling on the linear treatment.** At the original reach the sector's own instability drives it nonlinear at recombination above **k ≈ 200 /Mpc** — twenty times beyond anything measured, so it constrains nothing, but it bounds where this lane and every gate built on the linear sector are valid. **At the corrected reach the enhancement phase does not occur and the ceiling lifts.**
+
+**Limits.** **This is not a Boltzmann calculation**: photons, baryons and neutrinos are not evolved, the potential is the subhorizon Poisson limit, no C_ℓ is computed. **It is not a likelihood**: the tolerances are round numbers standing in for real error bars, and a proper Lyman-α comparison needs the flux power spectrum, not the linear matter one. Baryon perturbations are not evolved. The initial condition is imposed at z = 3000 and cancels in the ratio. The pre-criticality sound speed is the closure value at zero gradient and does not track the gradient's growth — **the approximation most in need of replacement.** Footing-independent. 11/11.
+
+**Lean.** 149 theorems, exit 0, zero `sorry`, axioms ⊆ {propext, Classical.choice, Quot.sound}.

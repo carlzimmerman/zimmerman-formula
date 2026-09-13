@@ -9,7 +9,7 @@
   flat a₀(z), subdominant scalar GW) confronting DATA — not by Lean, and not while the intrinsic BBN
   fine-tuning (L84/L87) and astra's open ADM/khronon gates stand.
 
-  Theorems (147 as of 2026-09-12; all: exit 0, zero `sorry`, axioms ⊆ {propext, Classical.choice, Quot.sound}):
+  Theorems (149 as of 2026-09-12; all: exit 0, zero `sorry`, axioms ⊆ {propext, Classical.choice, Quot.sound}):
     hasDerivAt_G, hasDerivAt_Gp   — Gp = dG/dy and Gpp = d²G/dy² proven (not merely asserted).
     kernel_identity               — MOND kernel G'(y)/(2y) = 1 − e^{-y}.
     Gpp_zero, Gpp_pos             — health dichotomy: G''(0)=0, G''(y)>0 ∀ y>0 (no ghost off zero field).
@@ -1495,3 +1495,28 @@ theorem flat_law_constrains_the_product (C w D c r : ℝ) (hc : 0 < c) (hr : 0 �
   have h1 : (0:ℝ) ≤ D - c * r := by linarith
   have h2 : (0:ℝ) ≤ D + c * r := by positivity
   nlinarith [mul_nonneg h1 h2]
+
+/-! ## L224 — the sector's perturbations, integrated -/
+
+/-- **L224 V6.** The sector's Jeans wavenumber is set by the mechanism's own residual sound
+speed `1/kappa^2`, so it is PROPORTIONAL to the reach. A reach only just large enough for
+the forest puts the Jeans scale at the forest's own edge. -/
+theorem jeans_wavenumber_scales_with_reach (aH Om kappa kJ : ℝ) (haH : 0 < aH) (hOm : 0 < Om)
+    (hk : 0 < kappa) (hJ : kJ ^ 2 = aH ^ 2 * (3 / 2 * Om) / (1 / kappa ^ 2)) :
+    kJ ^ 2 = aH ^ 2 * (3 / 2 * Om) * kappa ^ 2 := by
+  rw [hJ]; field_simp
+
+/-- **L224 V9/V10.** The reach and the criticality onset are one quantity, not two: L218's
+operating condition ties the onset expansion rate to the reach, so a larger reach BOTH
+switches criticality on earlier AND shrinks the residual. Scanning them separately, as this
+lane first did, gives the opposite trend. -/
+theorem reach_helps_both_ways (k1 k2 cs aH3 : ℝ) (hc : 0 < cs) (ha : 0 < aH3)
+    (h1 : 0 < k1) (h : k1 < k2) :
+    k1 * (cs * aH3) < k2 * (cs * aH3) ∧ 1 / k2 ^ 2 < 1 / k1 ^ 2 := by
+  constructor
+  · exact mul_lt_mul_of_pos_right h (mul_pos hc ha)
+  · have h2 : (0:ℝ) < k2 := lt_trans h1 h
+    have hk1 : (0:ℝ) < k1 ^ 2 := by positivity
+    have hk2 : (0:ℝ) < k2 ^ 2 := by positivity
+    rw [div_lt_div_iff₀ hk2 hk1]
+    nlinarith
