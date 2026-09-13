@@ -6259,3 +6259,31 @@ A cutoff at millimetres — the familiar scale of dark-sector effective theories
 **Limits.** The correction is a naive-dimensional-analysis estimate, not a computed loop; V9 measures how much room that leaves and it is not enough. It inherits L219's cutoff, whose one soft step is the fluctuation amplitude, and **the cutoff enters here at the FOURTH power**, so this lane is far more sensitive to that step than L219 was: a factor of 31 in the cutoff closes the gap, where L219 had twelve orders of room. **That is the place to attack this if it is to be attacked.** The clock rate is L216's, with its crude interior match. **No loop is computed anywhere in this programme.** a₀ does not enter, so the result is footing-independent and quoted once. 9/9.
 
 **Lean.** 142 theorems, exit 0, zero `sorry`, axioms ⊆ {propext, Classical.choice, Quot.sound}.
+
+## L221 — THE CUTOFF STEP ATTACKED: L220's pincer DISSOLVES (2026-09-12)
+
+**L220 named its own soft link.** The cutoff enters there at the fourth power, so a factor of 31 would close the gap. Attacking it turns up **two** factors L220 did not carry, and together they reverse the verdict.
+
+**V1–V3 — the first factor: the vacuum energy of a slow mode.** L220 used δU = Λ⁴/(16π²), the estimate for a mode travelling at the speed of light. This scalar has c_s² = m_rel/(2−m_rel), so its dispersion is ω = c_s k: the counting is over momenta but the energy per mode is c_s k, and the mode sum carries a factor of **c_s**. Meanwhile L219's cutoff, rewritten, is **Λ⁴ = 2π²U/c_s** — exactly one *inverse* power, and not a coincidence, since that cutoff was derived from the same fluctuation amplitude. They cancel:
+
+  **δU/U = 1/8 exactly**,  ∂/∂c_s = 0,  ∂/∂U = 0
+
+(Lean `loop_correction_is_margin_independent`). A one-loop correction of **12.5%** is an ordinary perturbative correction.
+
+**V4 — L220 V2/V3 WITHDRAWN.** L220 reported δU/U = √(2/m_rel)/8 = 9.1e5. It **overstated the correction by 7.3e6**, exactly one inverse power of the sound speed (Lean `l220_estimate_differs_by_the_sound_speed`). Its bound m_rel ≥ 1/32 is withdrawn, **and with it the claim that the effective theory is strongly coupled at the required margin. It is not.**
+
+**V5–V7 — the second factor, and it is deeper: the margin was never a difference.** L220 compared the correction against the margin as though the margin were a cancellation between two independently corrected numbers. L217 showed the *reciprocal* margin is a conserved Noether charge. Solving that charge for the margin:
+
+  **m_rel = a³√(dU/2)/Q**
+
+so **a small margin IS a large charge** — in that variable there is no difference of large numbers anywhere for a correction to spoil. The sensitivity is a square root, d ln m_rel/d ln U = **1/2** (Lean `margin_scales_as_root_of_the_coefficient`), so the 12.5% shift in U moves the margin by
+
+  **6.2%.**
+
+**The margin the solar system demands is radiatively stable. L220's pincer dissolves.**
+
+**V8, V9 — the ledger.** Six of L220's nine checks are withdrawn: δU/U = √(2/m_rel)/8, m_rel ≥ 1/32, the twelve-order gap, δU/m = 2.4e19, the clock-rate ceiling, and the escape analysis. **Three stand:** only U is exposed (d is dimensionless); the χ shift symmetry does not act on τ — true, and it turns out not to matter, because what protects the margin is the *charge* that symmetry conserves; and U does sit **1.5e-14 of the dark energy density**. That last is the real residue: a very small number nothing explains, **but small in a radiatively stable way** — the ordinary problem of a vacuum-energy-like coefficient, not a new pathology of this construction.
+
+**Limits.** The estimate is still one loop and still dimensional analysis; what changed is that the sound-speed factor and the cutoff's sound-speed dependence are **both** carried, and their cancellation is structural rather than numerical, so the result is far more robust than the one it replaces. No loop is computed anywhere in this programme. The charge is exactly conserved only in the dark sector; the matter coupling MOND requires breaks it at the rate L217 bounded, and that breaking is not re-examined here. a₀ does not enter, so the result is footing-independent and quoted once. 9/9.
+
+**Lean.** 145 theorems, exit 0, zero `sorry`, axioms ⊆ {propext, Classical.choice, Quot.sound}.

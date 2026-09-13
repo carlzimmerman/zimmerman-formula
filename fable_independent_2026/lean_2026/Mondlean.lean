@@ -9,7 +9,7 @@
   flat a₀(z), subdominant scalar GW) confronting DATA — not by Lean, and not while the intrinsic BBN
   fine-tuning (L84/L87) and astra's open ADM/khronon gates stand.
 
-  Theorems (142 as of 2026-09-12; all: exit 0, zero `sorry`, axioms ⊆ {propext, Classical.choice, Quot.sound}):
+  Theorems (145 as of 2026-09-12; all: exit 0, zero `sorry`, axioms ⊆ {propext, Classical.choice, Quot.sound}):
     hasDerivAt_G, hasDerivAt_Gp   — Gp = dG/dy and Gpp = d²G/dy² proven (not merely asserted).
     kernel_identity               — MOND kernel G'(y)/(2y) = 1 − e^{-y}.
     Gpp_zero, Gpp_pos             — health dichotomy: G''(0)=0, G''(y)>0 ∀ y>0 (no ghost off zero field).
@@ -1445,3 +1445,35 @@ theorem clock_rate_ceiling_from_stability (w mrel s0 wmax : ℝ) (hm : 0 < mrel)
   have h1 : w / mrel ≤ 32 * w := by
     rw [div_le_iff₀ hm]; nlinarith
   linarith
+
+/-! ## L221 — the cutoff step, and the withdrawal of L220's pincer -/
+
+/-- **L221 V3/V4.** The zero-point energy of a mode with sound speed `c_s` carries a factor
+of `c_s`, and L219's cutoff carries exactly one inverse power of it, because both descend
+from the same fluctuation amplitude. The correction to the clock coefficient is therefore a
+pure number, independent of the margin, the sound speed and the coefficient alike. -/
+theorem loop_correction_is_margin_independent (U cs L4 dU p : ℝ)
+    (hU : U ≠ 0) (hcs : cs ≠ 0) (hp : p ≠ 0)
+    (hL : L4 = 2 * p * U / cs) (hdU : dU = cs * L4 / (16 * p)) : dU / U = 1 / 8 := by
+  subst hL; subst hdU; field_simp; ring
+
+/-- **L221 V4.** L220 used the unit-sound-speed mode sum. The two estimates differ by
+exactly one inverse power of the sound speed, which is where its factor of seven million
+came from. -/
+theorem l220_estimate_differs_by_the_sound_speed (U cs L4 p : ℝ)
+    (hU : U ≠ 0) (hcs : cs ≠ 0) (hp : p ≠ 0) (hL4 : L4 ≠ 0) :
+    (L4 / (16 * p)) / (cs * L4 / (16 * p)) = 1 / cs := by
+  field_simp
+
+/-- **L221 V5/V6.** The margin is not a difference of large numbers: L217's conserved charge
+gives `m_rel^2 Q^2 = (a^6 d/2) U`, so the margin moves as the SQUARE ROOT of the corrected
+coefficient. A twelve percent shift in `U` moves it by six percent. -/
+theorem margin_scales_as_root_of_the_coefficient (m1 m2 U1 U2 Q c : ℝ) (hc : c ≠ 0)
+    (h1 : m1 ^ 2 * Q ^ 2 = c * U1) (h2 : m2 ^ 2 * Q ^ 2 = c * U2) :
+    m2 ^ 2 * U1 = m1 ^ 2 * U2 := by
+  refine mul_left_cancel₀ hc ?_
+  calc c * (m2 ^ 2 * U1) = m2 ^ 2 * (c * U1) := by ring
+    _ = m2 ^ 2 * (m1 ^ 2 * Q ^ 2) := by rw [h1]
+    _ = m1 ^ 2 * (m2 ^ 2 * Q ^ 2) := by ring
+    _ = m1 ^ 2 * (c * U2) := by rw [h2]
+    _ = c * (m1 ^ 2 * U2) := by ring
