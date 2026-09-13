@@ -6654,3 +6654,34 @@ At Saturn that is an anomalous acceleration of **5.8e-16 m/s², about 17× below
 **V6 — none of this touches L232**, which was a measurement and stands.
 
 **LITERATURE (independent search).** The family is **not a named or proposed MOND interpolating function** — absent from Famaey & McGaugh 2012, the 2025 MOND review, Zhao & Famaey 2006, Hees et al. 2016. Its n = 1 member is the known "simple" function and its n → ∞ limit the "exponential" μ, but the family itself is **novel**. It is **genuinely distinct** from the standard n-family y/(1+y^n)^{1/n}, coinciding only at n = 1 (different order of the first correction, so not a reparametrisation). And **no published work derives an interpolating exponent at all** — the 2025 review states there is no clear derivation of the transition from first principles. Tying a₀ to Λ has precedent (Milgrom 1999, Verlinde 2016) but always for the *scale*, never for an *exponent*. 6/6.
+
+## L235 — ⚠️ META-TEST: no mathematical criterion picks the integer 2 (2026-09-13)
+
+**The protocol, fixed before any result was seen.** Rather than keep generating candidate stories one at a time — which is how motivated reasoning works — twelve natural distinguishing properties of the family were **pre-registered**, each statable without reference to the number 2 or to κ, then evaluated.
+
+| criterion | selects n = |
+|---|---|
+| F_n is rational (no logarithm) | 3, 4 |
+| **convergence boundary of the residual integral** | **2** |
+| the AQUAL–QUMOND dual is closed-form | 1 |
+| μ(1) = 1/2 (half response at the natural scale) | 1 |
+| the residual's decay ODE has integer power | 1 |
+| \|second Taylor coefficient of μ\| = 1 | 1 |
+| deep-MOND coefficient of F equals 1 | 3/2 |
+| deep-MOND coefficient of F equals the AQUAL 2/3 | 1 |
+| Gamma-mixture dof counting, n = d/2 at d = 3 | 3/2 |
+| **F − z tends to a finite constant (boundary)** | **2** |
+| μ_n invariant under Y → 1/Y | none |
+| μ″(0) = −μ′(0) | none |
+
+**V1, V2 — they scatter.** Nine criteria with a unique selection, over **three distinct members**: n = 1 gets **5**, n = 3/2 gets 2, n = 2 gets 2. **n = 2 is not even the modal choice** — n = 1 is.
+
+**V3 — and the two that pick n = 2 are ONE fact.** ∫(1−μ_n)dz converges iff n > 2, and F − z tends to a constant iff that same integral converges. Same statement, two dressings. So the honest count is **one criterion**, and it selects n = 2 as a **boundary case, not an interior optimum**. A marginal index is what a criticality argument would want, and L229 did place the cosmological state at the function's critical point — so it stays on the record as suggestive. **A boundary is not a derivation.**
+
+**V4 — one hit is what chance gives.** Nine criteria over three members: expected hits on any one member ≈ 3.0; observed on n = 2 is 2. Same discipline as L228, same verdict.
+
+**V5 — the test could have returned a positive.** Evidence would have been three or more *independent* criteria agreeing, or one selecting an interior optimum. **Neither occurred.**
+
+**V6 — L232 is untouched.** The galaxies still select the exponent with nothing fitted. What this closes off is the expectation that a short mathematical reason is nearly in hand.
+
+**Limits.** Twelve criteria is not exhaustive and the list is mine, though a different list would have to be strikingly different to produce convergence. The dof count and the duality result are carried from L234. **Whether a genuinely physical principle — as opposed to mathematical prettiness — fixes the exponent is not settled here**, and two such searches (EFT positivity/causality, and entropic derivations) were running when this was written. 6/6.

@@ -1,0 +1,93 @@
+L235 -- a meta-test: does ANY natural mathematical criterion pick the integer two?
+
+Four structural angles failed in L234 and two pointed elsewhere.  Rather than keep generating
+candidate stories one at a time -- which is how motivated reasoning works -- this lane fixes a
+list of natural distinguishing properties of the family FIRST, then evaluates which member
+each one selects, and reports the distribution.
+
+THE PROTOCOL, stated before any result is looked at:
+  * each criterion must be a property of the family mu_n(Y) = 1 - (1+Y)^(-n) alone, statable
+    without reference to the number 2 or to kappa;
+  * each must have a unique selected member, or be recorded as selecting none;
+  * the list is fixed here and not extended after seeing the answers.
+
+If the selected members scatter, the honest conclusion is that the mathematics does not pick
+the exponent and only the data do.  If several independent criteria converge on the same
+member, that is evidence.
+
+Every check states measurement and threshold separately.
+
+PART A -- the pre-registered criteria, evaluated
+                                             criterion    selects n =
+                        F_n is rational (no logarithm)         [3, 4]
+         convergence boundary of the residual integral              2
+                  the AQUAL-QUMOND dual is closed-form              1
+      mu(1) = 1/2 (half response at the natural scale)              1
+            the residual's decay ODE has integer power              1
+                 |second Taylor coefficient of mu| = 1              1
+                   deep-MOND coefficient of F equals 1            3/2
+       deep-MOND coefficient of F equals the AQUAL 2/3              1
+          Gamma-mixture dof counting, n = d/2 at d = 3            3/2
+           F - z tends to a finite constant (boundary)              2
+                         mu_n invariant under Y -> 1/Y           None
+                                     mu''(0) = -mu'(0)           None
+
+PART B -- the distribution of selected members
+    selected members: {'2': 2, '1': 5, '3/2': 2}
+  [PASS] V1 [the criteria do NOT converge] the pre-registered criteria are evaluated, the member each selects is recorded, and the number of distinct members selected is counted; convergence would mean nearly all picking the same one
+         measured: 9 criteria with a unique selection, picking 3 distinct members: {'2': 2, '1': 5, '3/2': 2}
+         reading : the criteria scatter across at least three different members. There is no convergence, and that is the answer to whether a mathematical reason is waiting to be found: on this evidence it is not
+  [PASS] V2 [and two is not even the modal choice] the most frequently selected member is identified and compared with two
+         measured: selections: {'2': 2, '1': 5, '3/2': 2}; the modal member is 1 with 5 of 9; n = 2 is selected by 2
+         reading : n = 2 is picked by the two convergence-boundary criteria and by nothing else. Both of those are the SAME fact in two dressings -- the residual integral and the large-z constant converge together -- so it is really one criterion, not two
+  [PASS] V3 [the two criteria that do pick it are one fact, not two] the residual integral and the large-z constant are compared to see whether they are independent
+         measured: int (1-mu_n) dz converges iff n > 2, and F - z tends to a constant iff that same integral converges. They are the same statement
+         reading : so the honest count is ONE criterion selecting n = 2, and it selects it as a BOUNDARY case rather than as an interior optimum. A marginal index is what a criticality argument would want, which is why it is worth keeping on the record, but a boundary is not a derivation
+
+PART C -- how surprising a single hit is
+  [PASS] V4 [one hit out of a scattered list is what chance produces] the expected number of criteria selecting any given member by chance is computed from the spread, and compared with the number that actually select two
+         measured: 9 criteria spread over 3 members; expected hits on any one member by chance is 3.0; observed on n = 2 is 2
+         reading : the observed count is what chance gives. This is the same discipline L228 applied to closed forms for the coefficient, and it gives the same verdict: a hit inside a scattered set is not evidence
+  [PASS] V5 [what would have counted] the pattern that would have constituted evidence is stated, so that the negative result has a definite meaning
+         measured: evidence would be three or more INDEPENDENT criteria selecting the same member, or one criterion selecting it as an interior optimum rather than a boundary. Neither occurred
+         reading : the test was capable of returning a positive and did not. That is worth more than not having run it
+
+PART D -- what stands
+  [PASS] V6 [the empirical result is untouched] the status of L232 after this lane is stated
+         measured: L232 stands: on 155 curves and 2788 points with nothing fitted, n = 2 gives 0.1502 dex (dark energy) and 0.1438 (critical) against 0.1660 and 0.1846 for n = 1. This lane bears on WHY, not on WHETHER
+         reading : the galaxies still select the exponent. What this lane closes off is the expectation that a tidy mathematical reason is nearly in hand: twelve natural criteria were fixed in advance and they scatter
+
+READING
+
+  The mathematics does not pick the exponent.  Twelve natural criteria were fixed in advance
+  and they scatter across 3 different members (V1).
+
+  Only the convergence boundary picks two -- and the two criteria that appear to do so are the
+  same fact in two dressings, since the residual's integral and the large-z constant converge
+  together (V3).  So the honest count is ONE criterion, and it selects two as a BOUNDARY case
+  rather than as an interior optimum.  That is worth keeping on the record, because a marginal
+  index is exactly what a criticality argument would want and L229 did place the cosmological
+  state at the function's critical point.  But a boundary is not a derivation.
+
+  Meanwhile rationality of the free function picks three, the closed-form dual picks one,
+  half-saturation at the natural scale picks one, the integer decay power picks one, and
+  degree-of-freedom counting wants three halves.  One hit out of a list this scattered is what
+  chance produces (V4).
+
+  The test could have returned a positive -- three independent criteria agreeing, or an
+  interior optimum -- and did not (V5).  That is the useful part: the expectation that a short
+  mathematical reason is waiting should now be much lower, and effort is better spent
+  elsewhere.
+
+  None of this touches L232 (V6).  The galaxies still select the exponent with nothing fitted.
+  The construction has an empirically selected integer and no derivation of it, and after this
+  lane that looks less like a gap about to close and more like the honest shape of the result.
+
+  LIMITS.  Twelve criteria is not exhaustive and the list is mine; a different list could
+  shift the distribution, though it would have to be strikingly different to produce
+  convergence. Several criteria are evaluated symbolically here; the degree-of-freedom count
+  and the duality result are carried in from L234's searches. Whether a genuinely physical
+  principle -- as opposed to a mathematical prettiness criterion -- fixes the exponent is not
+  settled by this lane, and two such searches were running when it was written.
+
+L235 COMPLETE: 6/6 checks PASS.
