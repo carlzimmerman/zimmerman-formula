@@ -1483,5 +1483,5 @@ the margin scale as the square root of the coefficient, the margin only stops be
 the correction to that coefficient exceeds `2/m_rel`. No loop estimate is needed. -/
 theorem margin_stays_small_unless_correction_is_enormous (mrel dUU : ℝ) (hm : 0 < mrel)
     (hd : 0 ≤ dUU) (hsmall : dUU < 2 / mrel) : dUU / 2 * mrel < 1 := by
-  rw [div_lt_iff₀ hm] at hsmall
+  rw [lt_div_iff₀ hm] at hsmall
   nlinarith
