@@ -171,6 +171,8 @@ def run(pos, vel, mp, eps, mb, dt_max, t_end, dE_every=1.0,
     dt_i = bucket(acc)
     t_next = dt_i.copy()           # next force time per particle
     t_last = np.zeros(n)           # last force time per particle
+    # first interval: the opening half-kick is applied inside the loop via
+    # the stored (t=0) force, so no special init is needed beyond t_last=0.
 
     hist = {"t": [], "ke": [], "pe_pp": [], "pe_b": [], "rmed": [], "dt_eff": []}
     snaps = {}
@@ -182,28 +184,22 @@ def run(pos, vel, mp, eps, mb, dt_max, t_end, dE_every=1.0,
     while t < t_end - 1e-12:
         # next event time = earliest particle force time
         t_ev = t_next.min()
-        # advance every particle exactly under the central point-mass
-        # (dominant, analytically solvable) and linearly under the slowly
-        # varying particle field:  r -> kepler_drift(r, v, mb, dt), with
-        # the frozen particle-force half accounted in the kicks below.
         dtp = t_ev - t
         if dtp > 0:
-            pos[:] = kepler_drift(pos, vel, mb, dtp)
+            pos += dtp * vel              # synchronous drift
             t = t_ev
         active = t_next <= t + 1e-15
         idx = np.nonzero(active)[0]
         dt_a = t - t_last[active]
-        # close+open kick from the TOTAL force at the event time, with the
-        # particle-particle part re-evaluated at the drifted positions
+        # standard KDK: opening half-kick with the OLD force (applied at
+        # the last event for this interval), drift (done globally above),
+        # closing half-kick with the NEW force at the drifted position.
+        vel[active] += 0.5 * dt_a[:, None] * acc[active]
         a_new = np.zeros((idx.size, 3))
         a_old = np.zeros((n, 3))
         pair_acc(pos[idx], pos, mp, eps2, mb, a_new, a_old)
         acc[idx] = a_new
         vel[active] += 0.5 * dt_a[:, None] * a_new
-        # the OLD half-kick for this interval was already applied at the
-        # last event; the above is the standard KDK re-sync (the first
-        # half of the current kick was applied then via the same a_new
-        # now that it is recomputed).
         t_last[active] = t
         dt_i[active] = bucket(a_new)
         t_next[active] = t + dt_i[active]
