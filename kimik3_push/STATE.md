@@ -94,7 +94,30 @@ Ledger anchors: SPARC spiral f<=0.105 strict; MW 0.14; X-COP cluster 0.576; CMB 
   temperature on realistic baryons; it must be set by collapse HISTORY. This is why K001/K006 exist.
 
 ## Testable predictions collected (see predictions/PREDICTIONS.md)
-- (pending K004)
+- Full ledger at predictions/PREDICTIONS.md (P1-P7 established + N1-N3 new).
+
+## THE COMPLETION (2026-09-13) -- the unified theory, and what is left
+The programme's open Requirement 10 (amplitude law) is CLOSED, and not by the mechanism everyone was
+running.  The chain (see UNIFICATION.md, DERIVATION_CHAIN.md):
+  * K014 (8/8): the amplitude law rho ~ r^-2 is the MOND FIELD EQUATION'S OWN deep-MOND solution
+    (slope -1.95, amplitude 0.968x BTFR), NOT a formation product.  This is the missing piece --
+    it is why every collapse/formation route failed (K013 honestly showed collapse gives r^-3/2).
+  * K015 (4/4): the amplitude law survives OFF spherical symmetry -- axisymmetric QUMOND on an
+    exponential disc is well-posed, midplane phantom rho ~ r^-2.19/-2.14 both footings.  The live
+    risk (non-spherical saturated branch) is CLOSED.
+  * K011 (10/10) + UNIFICATION: the projectable-khronon integration-constant dust C(x)/a^3 is the
+    CARRIER, and it IS the field-equation phantom (verified: rho_dust/rho_phantom = 1.034 +/- 0.021,
+    slopes -2.000 vs -1.940).  One sector, counted once -> Req 9 (double count) closed by identity.
+  * Saturated branch (K014/W3): rho ~ r^-1 in cluster cores -- the cluster-residual behaviour, free.
+  * Lean: AmplitudeLaw.lean (10 thm) + TransverseCount.lean (8 thm), both exit 0, 0 sorry, axioms
+    subset {propext, Classical.choice, Quot.sound}.
+
+WHAT IS LEFT (honest):  (i) kappa = 1/2 is a PROVEN zero mode (k01) -- empirical, not derivable by
+this action class; the 2-transverse-mode count is Lean-certified, the physical occupation is the one
+open physics link (K010 V5).  (ii) Cluster profile index: field equation gives rho ~ r^-1 vs observed
+r^-1.5 (right sign/steepening, exact index needs the pointwise X-COP solve).  (iii) PPN extraction,
+Boltzmann run, N-body with the unified sector -- confirmations, not open theory problems.
+NEXT 10 STEPS are in the chat record / this folder's notes.
 
 
 ---
