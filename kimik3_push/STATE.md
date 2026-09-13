@@ -57,13 +57,25 @@ Ledger anchors: SPARC spiral f<=0.105 strict; MW 0.14; X-COP cluster 0.576; CMB 
 ## K-track lanes (this folder)
 | Lane | Goal | Script | Status |
 |---|---|---|---|
-| K001 | Cold self-gravitating collapse of a cold collisionless sphere: does it settle at r_M with isothermal rho∝r^-2? | scripts/K001_*.py | QUEUED |
-| K002 | Sweep baryon mass / compactness: is the settled temperature ∝ sqrt(G M_b a0)? -> BTFR | scripts/K002_*.py | QUEUED |
-| K003 | Lean-certify the collapse algebra (Jeans, virial, BTFR exponent, profile slope) | lean/*.lean | QUEUED |
-| K004 | Record every testable prediction with numbers | predictions/*.md | LIVE |
+| K001 | 3D collisionless cold-collapse N-body: does the sector settle at r_M isothermal? | scripts/K001_*.py | RUNNING (subagent) |
+| K002 | Lean-certify the collapse/BTFR algebra (Mathlib) | lean/AmplitudeLaw.lean | RUNNING (subagent) |
+| K004 | Testable-predictions ledger (Kepler-grade) | predictions/PREDICTIONS.md | RUNNING (subagent) |
+| K005 | Analytical spine of the formation route | scripts/K005_formation_spherical_infall.py | DONE 16/16 PASS, pushed |
+| K006 | Controlled spherical self-gravitating collapse (shell code) | scripts/K006_spherical_collapse.py | RUNNING |
+
+## Milestones (newest first)
+- **2026-09-13 K005 (16/16, pushed f3a2b229c):** the amplitude-law algebra is self-consistent and the
+  BTFR emerges. (a) The local invariant g_b^3/|grad g_b|^2 = G M_b/4 is EXACT for point + Hernquist
+  (the right temperature is available locally). (b) Cold-shell infall at r_M gives a virial
+  temperature within the orbit-averaging factor (~2) of the target G M_b/(2 r_M). (c) r_M and sigma^2
+  both scale as M_b^0.5 exactly (BTFR). (d) rho=A/r^2 gives an exactly flat curve with v_c^4 = G M_b a0
+  coefficient 1. (e) HONESTY CONTROL: the invariant is NOT constant for an exponential disk (spread
+  12.1x across 0.5-3 r_M) -- reproduces the documented no-go: no LOCAL covariant rule selects the
+  temperature on realistic baryons; it must be set by collapse HISTORY. This is why K001/K006 exist.
 
 ## Testable predictions collected (see predictions/PREDICTIONS.md)
-- (pending K001/K002)
+- (pending K004)
+
 
 ---
 *Log format: append dated milestone entries below this line, newest first.*

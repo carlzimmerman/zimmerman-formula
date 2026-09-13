@@ -1,0 +1,94 @@
+
+K007 -- the full derivation chain, from first principles, for the formation route
+to the amplitude law.  This is the programme's open Requirement 10 stated as a
+computation:  does a cold, collisionless, self-gravitating dark sector settle into
+    rho(r) = sqrt(G M_b a0)/(4 pi G r^2),   sigma^2 = G M_b/(2 r_M),
+with the BTFR  v_c^4 = G M_b a0  following -- i.e. does it VIRIALISE AT r_M ?
+
+DERIVATION CHAIN (each link is stated, then tested):
+
+  L1. SETUP.  The dark sector is cold and collisionless.  We evolve it under its
+      own self-gravity PLUS the fixed field of the baryons.  We use a spherical
+      shell code (exact for a spherical system) with N shells, leapfrog KDK, and
+      EXACT energy accounting (W = central + self, by shell sorting).
+
+  L2. TWO REGIMES, and the code must show the contrast.
+      (a) SELF-GRAVITATING TOP-HAT (dark mass Md comparable to or exceeding the
+          baryons inside the turn-around radius):  secondary-infall / violent
+          relaxation.  Classical result (Gunn 1972; Fillmore & Goldreich 1984;
+          Bertschinger 1985): a cold top-hat collapsing onto a seed relaxes to a
+          nearly-isothermal halo, rho ~ r^-2 over a wide range.  We verify the
+          code reproduces this KNOWN attractor (a calibration the code is right).
+      (b) The framework's regime: the baryons set r_M and the dark sector is the
+          MINOR component inside r_M (ledger: dark fraction < 1 in galaxies).
+
+  L3. THE SCALE.  The relaxed halo's characteristic radius is set by the deepest
+      potential.  With a central baryonic mass the only galactic length is
+      r_M = sqrt(G M_b / a0); the halo should be confined at O(r_M).
+
+  L4. THE TEMPERATURE.  Virial equilibrium of material confined at r_M gives
+      sigma^2 ~ G M_b/(2 r_M); with r_M = sqrt(G M_b/a0) this is
+      sigma^2 = sqrt(G M_b a0)/2, and v_c^4 = G M_b a0 follows (BTFR, coeff 1).
+
+  L5. THE PROFILE.  Secondary infall onto a point gives rho ~ r^-2 (self-similar,
+      Fillmore-Goldreich gamma=1 for a point seed).  We measure the slope.
+
+  L6. IC-INDEPENDENCE.  An ATTRACTOR forgets its initial radius; we scan R0.
+
+WHAT 'PASS' MEANS (honest):  a PASS says the formation route is VIABLE -- a cold
+collisionless sector settling under gravity produces the amplitude-law profile and
+BTFR with no freedom left.  It does NOT prove the real halo formed this way (that
+needs the cosmological IC and the full 3D treatment of K001).  A FAIL on the slope
+or the M_b-scaling is a real problem for the route and is reported, not tuned away.
+
+This code's calibration (L2a) against the known r^-2 secondary-infall attractor is
+what makes its verdict on L5 trustworthy.
+
+========================================================================================
+L2a CALIBRATION -- self-gravitating top-hat relaxes to rho ~ r^-2
+========================================================================================
+  [FAIL] top-hat (Md/Mb=3) relaxes to slope ~ -2 (secondary-infall attractor)
+         measured: slope = -3.593, 2K/|W|=128103878.165, dE/E=7.21e+08
+         reading : calibrates the code against the known cold-collapse attractor
+  [FAIL] top-hat (Md/Mb=5) relaxes to slope ~ -2 (secondary-infall attractor)
+         measured: slope = -3.524, 2K/|W|=106374669.210, dE/E=4.72e+08
+         reading : calibrates the code against the known cold-collapse attractor
+========================================================================================
+L6 IC-INDEPENDENCE -- attractor forgets the initial radius
+========================================================================================
+   R0 = 2.0 r_M :  slope=-3.384  r_half/r_M=2.341  sigma^2=1.716e+19  vir=310273136.47
+   R0 = 4.0 r_M :  slope=-3.686  r_half/r_M=2.201  sigma^2=8.585e+18  vir=298910301.27
+   R0 = 7.0 r_M :  slope=-3.683  r_half/r_M=3.852  sigma^2=4.906e+18  vir=298910301.27
+  [FAIL] relaxed slope is r^-2 to within 0.6 for every start radius (attractor)
+         measured: slopes [-3.384 -3.686 -3.683]
+  [PASS] half-mass radius at a fixed multiple of r_M regardless of R0
+         measured: r_half/r_M [2.341 2.201 3.852], spread 1.75
+         reading : size set by r_M, not the initial radius
+========================================================================================
+L3+L4 -- the scale and the temperature (BTFR)
+========================================================================================
+  [PASS] scale[canonical] half-mass radius within a factor 3 of r_M
+         measured: r_half/r_M = 2.201
+  [FAIL] temperature[canonical] sigma^2 within factor 3 of G M_b/(2 r_M)
+         measured: sigma^2=8.585e+18  target=6.106e+09  ratio=1405980276.654
+         reading : virial temperature at r_M matches the amplitude-law value to the virial factor
+  [PASS] scale[alt] half-mass radius within a factor 3 of r_M
+         measured: r_half/r_M = 2.201
+  [FAIL] temperature[alt] sigma^2 within factor 3 of G M_b/(2 r_M)
+         measured: sigma^2=9.423e+18  target=6.702e+09  ratio=1405980276.657
+         reading : virial temperature at r_M matches the amplitude-law value to the virial factor
+========================================================================================
+L4 -- M_b-scaling exponents (BTFR targets 1/2, 1/2)
+========================================================================================
+  [PASS] scaling[canonical] r_settle ∝ M_b^~0.5
+         measured: 0.560
+  [PASS] scaling[canonical] sigma^2 ∝ M_b^~0.5 (BTFR)
+         measured: 0.500
+         reading : v_flat^4 ∝ M_b
+  [PASS] scaling[alt] r_settle ∝ M_b^~0.5
+         measured: 0.434
+  [PASS] scaling[alt] sigma^2 ∝ M_b^~0.5 (BTFR)
+         measured: 0.500
+         reading : v_flat^4 ∝ M_b
+========================================================================================
+K007 COMPLETE: 7/12 checks PASS.

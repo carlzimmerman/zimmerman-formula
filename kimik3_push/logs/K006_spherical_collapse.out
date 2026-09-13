@@ -1,0 +1,78 @@
+
+K006 -- CONTROLLED spherical self-gravitating collapse of the dark sector.
+
+Companion to K001 (brute-force 3D N-body) and K005 (analytical spine).  This lane
+uses a SPHERICAL SHELL code so the radial profile and its slope can be measured
+with high resolution and the energy budget tracked exactly.
+
+PHYSICS (the framework's claim under test):  the dark sector is a cold,
+collisionless, self-gravitating component.  Baryons supply a fixed central mass
+M_b that sets the MOND radius r_M = sqrt(G M_b / a0).  The open Requirement 10
+asks whether collapse makes the sector settle into the isothermal amplitude law
+    rho(r) = sqrt(G M_b a0)/(4 pi G r^2),   sigma^2 = G M_b/(2 r_M),
+with the BTFR  v_c^4 = G M_b a0  following.
+
+WHAT THIS CODE DOES:
+  * Evolves Nt concentric collisionless shells (a spherical N-body, self-gravity
+    by enclosed mass + fixed central baryonic point M_b) with a leapfrog KDK
+    integrator and a small Plummer softening for the shell crossings.
+  * Starts COLD (zero radial velocity) from a top-hat of radius R0 spanning a
+    range around r_M (R0 = f*r_M, f scanned 1.5--8) so we can see whether the
+    relaxed state is an attractor (independent of R0) or remembers its IC.
+  * Measures, in the virialised end state (|2K/W+1|<tol for several dyn times):
+      - density slope  d log rho / d log r  over 0.3--3 r_M  (isothermal = -2),
+      - the radius r_half enclosing half the dark mass, vs r_M,
+      - the virial temperature  sigma^2 = K/(3 M)  vs the target G M_b/(2 r_M).
+  * Runs a NO-BARYON CONTROL (M_b = 0) to show the scale-free contrast.
+  * Scans M_b over 2 decades and fits the exponents of r_half and sigma^2.
+
+Honesty: a spherical shell code FORBIDS non-radial orbit structure, so it can
+show radial virialisation and the density slope but NOT tangential anisotropy;
+that is K001's job.  A FAIL here is a real result (the formation route is in
+trouble); a PASS is necessary-not-sufficient and is reported as such.
+
+========================================================================================
+CONTROL RUN -- energy conservation + no-baryon (scale-free) collapse
+========================================================================================
+  [FAIL] energy drift over 10 dyn times < 5%
+         measured: |dE/E| = 11508755.896
+  [FAIL] virial ratio relaxes to 2K/|W| ~ 1
+         measured: 2K/|W| = 2613624.960
+         reading : system has virialised (not still collapsing or flying apart)
+========================================================================================
+IC-INDEPENDENCE -- does the relaxed state forget R0?  (attractor test)
+========================================================================================
+   R0 = 1.5 r_M :  slope=-3.081  r_half/r_M=0.970  sigma^2=1.494e+17  vir=3876347.33
+   R0 = 3.0 r_M :  slope=-3.395  r_half/r_M=2.067  sigma^2=7.446e+16  vir=3944596.96
+   R0 = 5.0 r_M :  slope=-3.432  r_half/r_M=3.234  sigma^2=4.483e+16  vir=3876347.33
+   R0 = 8.0 r_M :  slope=-3.326  r_half/r_M=5.174  sigma^2=2.802e+16  vir=3876347.33
+  [FAIL] relaxed density slope is r^-2 to within 0.5 (attractor, all R0)
+         measured: slopes [-3.081 -3.395 -3.432 -3.326]
+         reading : every start radius relaxes to the same profile -> attractor, not IC memory
+  [FAIL] half-mass radius settles at a fixed multiple of r_M regardless of R0
+         measured: r_half/r_M [0.97  2.067 3.234 5.174], spread 5.33
+         reading : the settled size is set by r_M, not by the initial radius
+========================================================================================
+M_b-SCALING -- r_settle ∝ M_b^? and sigma^2 ∝ M_b^?  (BTFR targets 1/2, 1/2)
+========================================================================================
+  [PASS] M_b-scaling[canonical] settled radius exponent ~ 1/2 (tracks r_M)
+         measured: d log r_half/d log M_b = 0.495
+  [PASS] M_b-scaling[canonical] sigma^2 exponent ~ 1/2 (BTFR)
+         measured: d log sigma^2/d log M_b = 0.500
+         reading : sigma^2 ∝ sqrt(M_b) <=> v_flat^4 ∝ M_b is the BTFR
+  [PASS] M_b-scaling[alt] settled radius exponent ~ 1/2 (tracks r_M)
+         measured: d log r_half/d log M_b = 0.501
+  [PASS] M_b-scaling[alt] sigma^2 exponent ~ 1/2 (BTFR)
+         measured: d log sigma^2/d log M_b = 0.500
+         reading : sigma^2 ∝ sqrt(M_b) <=> v_flat^4 ∝ M_b is the BTFR
+========================================================================================
+TEMPERATURE -- settled sigma^2 vs the target G M_b/(2 r_M)
+========================================================================================
+  [FAIL] temperature[canonical] settled sigma^2 within factor 2 of G M_b/(2 r_M)
+         measured: sigma^2=7.446e+16  target=6.106e+09  ratio=12194261.519
+         reading : the settled temperature matches the amplitude-law value to the virial factor
+  [FAIL] temperature[alt] settled sigma^2 within factor 2 of G M_b/(2 r_M)
+         measured: sigma^2=8.202e+16  target=6.702e+09  ratio=12237733.573
+         reading : the settled temperature matches the amplitude-law value to the virial factor
+========================================================================================
+K006 COMPLETE: 4/10 checks PASS.

@@ -84,46 +84,57 @@ theorem profile_slope (hA : 0 < A) (r : ℝ) (hr : 0 < r) :
   have hA' : A ≠ 0 := ne_of_gt hA
   have hderiv : deriv (fun x => A / x ^ 2) r = -2 * A / r ^ 3 := by
     rw [deriv_const_div]
-    · simp only [deriv_pow]
+    · have hp : deriv (fun x => x ^ 2) r = 2 * r := by simp
+      rw [hp]
       field_simp
-      ring
     · exact differentiableAt_pow 2
     · exact hr2
   rw [hderiv]
   field_simp
-  ring
 
 /-! ### 6. Dimensional uniqueness of the MOND length monomial -/
 
-/-- Dimensions as integer exponent triples (L, M, T).
+/-- Dimensions as exponent triples (L, M, T).
     G = (3, -1, -2), M_b = (0, 1, 0), a0 = (1, 0, -2). -/
-def Dim := ℤ × ℤ × ℤ
-
-def G_dim : Dim := (3, -1, -2)
-def M_dim : Dim := (0, 1, 0)
-def a0_dim : Dim := (1, 0, -2)
+def Dim := ℝ × ℝ × ℝ
 
 /-- A monomial G^p M_b^q a0^s has dimension (3p+s, -p+q, -2p-2s). -/
-def monomial_dim (p q s : ℤ) : Dim :=
+def monomial_dim (p q s : ℝ) : Dim :=
   (3 * p + s, -p + q, -2 * p - 2 * s)
 
-/-- The monomial has dimensions of length (1, 0, 0) iff q = p and s = -p and ... .
-    We prove the length constraint forces a one-parameter family giving r_M = √(G·M_b/a0). -/
-theorem monomial_dim_length (p q s : ℤ) :
-    monomial_dim p q s = (1, 0, 0) ↔ p = 1 ∧ q = 1 ∧ s = -1 := by
+/-- Dimensional uniqueness: the ONLY monomial G^p M_b^q a0^s with dimensions of length
+    (1, 0, 0) has p = q = 1/2, s = -1/2 — i.e. it is √(G·M_b/a0), the MOND-radius form. -/
+theorem monomial_dim_length (p q s : ℝ) :
+    monomial_dim p q s = (1, 0, 0) ↔ p = 1 / 2 ∧ q = 1 / 2 ∧ s = -1 / 2 := by
   unfold monomial_dim
   constructor
   · intro h
-    simp only [Prod.mk.injEq] at h
-    obtain ⟨h1, h2, h3⟩ := h
-    omega
+    have h1 : 3 * p + s = 1 := congrArg Prod.fst h
+    have h23 : (-p + q, -2 * p - 2 * s) = (0, 0) := congrArg Prod.snd h
+    have h2 : -p + q = 0 := congrArg Prod.fst h23
+    have h3 : -2 * p - 2 * s = 0 := congrArg Prod.snd h23
+    refine ⟨?_, ?_, ?_⟩ <;> linarith
   · rintro ⟨rfl, rfl, rfl⟩
-    rfl
+    norm_num [Prod.mk.injEq]
+    all_goals rfl
 
-/-- The unique monomial with dimensions of length is G^1 M_b^1 a0^{-1},
-    whose square root gives r_M = √(G·M_b/a0). -/
-theorem mond_length_unique (p q s : ℤ) (h : monomial_dim p q s = (1, 0, 0)) :
-    p = 1 ∧ q = 1 ∧ s = -1 := (monomial_dim_length p q s).mp h
+/-- The unique monomial with dimensions of length is G^{1/2} M_b^{1/2} a0^{-1/2}. -/
+theorem mond_length_unique (p q s : ℝ) (h : monomial_dim p q s = (1, 0, 0)) :
+    p = 1 / 2 ∧ q = 1 / 2 ∧ s = -1 / 2 := (monomial_dim_length p q s).mp h
+
+/-- The dimensionally-unique monomial G^{1/2} M_b^{1/2} a0^{-1/2} equals √(G·M_b/a0):
+    the MOND radius is the unique length constructible from G, M_b, a0. -/
+theorem mond_length_form (hG : 0 < G) (hM : 0 < M_b) (ha0 : 0 < a0) :
+    G ^ ((1 : ℝ) / 2) * M_b ^ ((1 : ℝ) / 2) * a0 ^ (-(1 : ℝ) / 2) =
+      Real.sqrt (G * M_b / a0) := by
+  have h1 : G ^ ((1 : ℝ) / 2) = Real.sqrt G := (Real.sqrt_eq_rpow G).symm
+  have h2 : M_b ^ ((1 : ℝ) / 2) = Real.sqrt M_b := (Real.sqrt_eq_rpow M_b).symm
+  have h3 : a0 ^ (-(1 : ℝ) / 2) = 1 / Real.sqrt a0 := by
+    rw [neg_div, Real.rpow_neg (le_of_lt ha0), ← Real.sqrt_eq_rpow, one_div]
+  rw [h1, h2, h3]
+  rw [Real.sqrt_div (mul_nonneg (le_of_lt hG) (le_of_lt hM))]
+  rw [Real.sqrt_mul (le_of_lt hG)]
+  field_simp
 
 /-! ### 7. Circular-speed flatness for ρ = A/r² -/
 
@@ -132,6 +143,5 @@ theorem mond_length_unique (p q s : ℤ) (h : monomial_dim p q s = (1, 0, 0)) :
 theorem vc_flat (hG : 0 < G) (hA : 0 < A) (r : ℝ) (hr : 0 < r) :
     G * (4 * Real.pi * A * r) / r = 4 * Real.pi * G * A := by
   field_simp
-  ring
 
 end AmplitudeLaw
