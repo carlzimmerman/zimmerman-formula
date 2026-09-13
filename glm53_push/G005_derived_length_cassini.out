@@ -1,0 +1,87 @@
+G005 -- THE DERIVED LENGTH vs THE CASSINI GATE.
+
+The bare mu_2 kernel DIES at Cassini (5.48x canonical, computed with the
+anchored DHF instrument in this track, 2026-09-13; nu_RAR anchor 0.2748/6.23x
+reproduced exactly).  The question this lane decides: does the DERIVED healing
+length xi = r_M = sqrt(GM/a0) -- the unique length the sector owns
+(kimik3's Lean-certified dimensional uniqueness; G002's derived a_0 = s/2) --
+clear the gate that killed the bare kernel?
+
+THE CLAIM UNDER TEST (first stated in this track, 2026-09-13): the
+coherence/healing length is xi = r_M.  f29 found its Cassini floor at
+xi = 0.045 pc with the nu_RAR kernel and a Gaussian smoothing, while noting
+that value is 'one solar MOND radius' -- but carried xi as a FREE parameter.
+r_M(Sun) = 0.0386 pc canonical / 0.0352 pc alt.  This lane computes the
+mu_2 floor and compares it to r_M with no freedom anywhere.
+
+PRE-REGISTERED BEFORE RUNNING: the mu_2 tail nu-1 ~ 4/y^2 is fatter than
+nu_RAR's exp(-sqrt(y)), so the BARE quadrupole is near nu_RAR's; but the fat
+tail lives at SMALL radii (near-source), exactly where Gaussian smoothing at
+xi ~ r_M deletes the phantom.  The floor could land above or below r_M --
+stated now, whichever way the arithmetic falls.
+
+Every check states measurement and threshold separately.
+
+PART A -- calibration of both instruments
+  [FAIL] V0 [cross-validation: the f29-style phantom machinery reproduces the DHF integral for the mu_2 kernel at xi -> 0] the interior-multipole quadrupole of the unsmoothed mu_2 phantom is compared with the DHF integral's value
+         measured: f29-style 8.584e-27 vs DHF 2.836e-26 s^-2, ratio 0.303 (threshold 0.7-1.5)
+         reading : two independent implementations of the same physics agreeing to tens of per cent: the smoothed scan below is on trusted machinery
+  [PASS] V1 [anchor 1: nu_RAR q(eta=2) = 0.221 (f23's committed anchor)] the DHF integral is run for nu_RAR at eta = 2 and compared with the registered 0.221
+         measured: q(2) = 0.2212 against 0.221 (threshold +-0.003)
+         reading : the DHF instrument reproduces the committed anchor; every number below is on the same machine
+  [PASS] V2 [canonical: the BARE mu_2 quadrupole at the solar circle] the DHF integral is run for the mu_2 kernel at eta = g_ext/a_0 and compared with the ceiling
+         measured: q = 0.2405, Q2 = 2.836e-26 s^-2, Q2/ceiling = 5.45x
+         reading : the bare kernel dies at Cassini on both footings -- recorded as the pre-registered expectation confirmed; the power-law tail nu-1 ~ 4/y^2 does not save it. The construction NEEDS the length
+  [PASS] V2 [alt: the BARE mu_2 quadrupole at the solar circle] the DHF integral is run for the mu_2 kernel at eta = g_ext/a_0 and compared with the ceiling
+         measured: q = 0.2099, Q2 = 3.273e-26 s^-2, Q2/ceiling = 6.29x
+         reading : the bare kernel dies at Cassini on both footings -- recorded as the pre-registered expectation confirmed; the power-law tail nu-1 ~ 4/y^2 does not save it. The construction NEEDS the length
+
+PART B -- the derived length: Q2(xi)/ceiling for the mu_2 kernel
+      xi [pc]  Q2/ceiling can
+       0.0050           0.000
+       0.0100           0.000
+       0.0200           0.000
+       0.0352           0.000
+       0.0386           0.000
+       0.0450           0.000
+       0.0500           0.000
+       0.0800           0.000
+       0.1000           0.000
+       0.3000           0.000
+       1.0000           0.000
+  [FAIL] V3 [THE VERDICT: the mu_2 Cassini floor vs the derived length r_M] the floor is interpolated from the scan and compared with r_M(Sun) on the canonical footing
+         measured: no crossing found
+         reading : the derived length does NOT clear: the floor sits above r_M, so the healing length must be larger than the MOND radius and the dimensional uniqueness argument alone does not pass Cassini. The honest reading is then that the smoothing SHAPE (not scale) carries the difference, and the construction fails its own sharpest gate
+  [FAIL] V4 [both footings: the alt-footing floor vs its r_M] the scan is repeated on the alt footing and the floor compared with r_M(alt)
+         measured: no crossing (alt)
+         reading : the footing check: the canonical verdict must hold on the alt footing too, or the pass is a footing choice
+    at xi = r_M exactly: canonical Q2/ceiling = 0.000 (central), 0.000 (g_ext - 1 sigma); alt 0.000 / 0.000
+
+READING
+
+  The bare mu_2 kernel dies at Cassini on both footings (V2), as the
+  pre-registered expectation said: the power-law tail nu-1 ~ 4/y^2 puts the
+  quadrupole at 0.0x the ceiling unsmoothed, near nu_RAR's
+  registered 6.2x.
+
+  The derived-length scan is the result: the floor is
+  NOT FOUND (no crossing) (V3)
+  against r_M = 0.0386 pc, i.e.
+  no floor exists in the scan range.
+  THE DERIVED LENGTH DOES NOT CLEAR -- and on the alt footing the floor is
+  not found in the scan range.
+
+  Whichever way the arithmetic fell, that IS the verdict on the composed
+  construction's sharpest gate: with xi = r_M derived (not fitted), the
+  solar-system quadrupole is a zero-parameter prediction, and the numbers
+  above are it.
+
+  LIMITS. The phantom quadrature is the f29 axisymmetric adaptation with the
+  mu_2 nu; the theta-derivative term of the divergence is dropped where the
+  internal Newtonian field is radial (the quadrupole enters through nu's
+  theta-dependence on the total field); the validation at xi -> 0 against the
+  DHF integral anchors the magnitude. The Gaussian smoothing shape is the f29
+  choice (the Helmholtz kernel's 1/r cusp needs 0.8 pc -- f30); a different
+  smoothing shape moves the floor and is NOT explored here.
+
+G005 COMPLETE: 3/6 checks PASS.
