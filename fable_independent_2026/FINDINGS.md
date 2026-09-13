@@ -6609,3 +6609,48 @@ Each integer n is a **complete prediction of the entire radial acceleration rela
 **Limits.** Mass-to-light fixed at the standard values with **no per-galaxy nuisance parameters**; this is an rms comparison, **not a likelihood**, and no error budget is propagated. A full analysis marginalising distance, inclination and mass-to-light would move the numbers. Points pooled across galaxies rather than weighted per galaxy. Single-field AQUAL; the clock sector is not carried. Four integers tested. 6/6.
 
 **Lean.** 158 theorems, exit 0, zero `sorry`, axioms ⊆ {propext, Classical.choice, Quot.sound}.
+
+## L233 — THE PREDICTIONS of the parameter-free curve (2026-09-12)
+
+**V1 — a₀ is predicted, and it sits BELOW the fitted value.** 9.3623e-11 (dark energy) and 1.1312e-10 (critical) against the literature's fitted 1.20e-10: the fitted value is **+28% and +6% above** them. **They do NOT bracket it** — an earlier draft said they did and that is corrected. The 6% gap on the critical convention is the honest headline, and it is not a contradiction because a fitted a₀ is kernel-dependent and L232 showed this curve matches the data within 0.005 dex of a fitted kernel.
+
+**V2 — THE SHARPEST SIGNATURE: Newton is approached as a POWER LAW.** 1 − μ = (s/g)², where ν_RAR leaves e^{−√(g/a₀)}.
+
+| setting | g | this curve | ν_RAR |
+|---|---|---|---|
+| Saturn orbit | 6.0e-5 | 9.7e-12 | 0 |
+| Neptune | 6.6e-6 | 8.0e-10 | 0 |
+| 1000 AU | 5.9e-9 | 1.0e-3 | 3.6e-4 |
+
+At Saturn that is an anomalous acceleration of **5.8e-16 m/s², about 17× below the Cassini residual.** The fitted kernel predicts exactly zero there. **This curve sticks its neck out; the fitted one does not.**
+
+**V3 — wide binaries.** γ_v at 20 kAU: **1.750** for this curve against 1.928 for ν_RAR; the largest difference across 2–30 kAU is **0.281**, far above Gaia's discrimination. A new number; **the frozen preregistration is untouched.**
+
+**V4 — the Tully-Fisher zero point** follows with no freedom, within 0.027 dex (dark energy) and 0.006 dex (critical) of the fitted one.
+
+**V5 — and a₀ inherits the dark energy's equation of state.** Exactly flat for w = −1; w = −0.9 moves it to **1.308×** at z = 5. **A measurement of a₀ at high redshift becomes a measurement of w.**
+
+**V6 — five falsifiers stated in advance**, four already being measured. 6/6.
+
+## L234 — ⚠️ THE STRUCTURAL SEARCH FOR "WHY 2" CAME BACK NEGATIVE (2026-09-12)
+
+**V1 — the family is a composition law.** 1 − μ_n = (1 − μ₁)^n exactly. So n is a **channel count** — "at least one of n identical channels responds" — which is why it is an integer and not a dial. **Nothing in it fixes the count.**
+
+**V2 — ⚠️ the algebraically distinguished member is n = 3, NOT n = 2.** Integrating the free function, **n = 3 is the only rational one**; n = 2 shares a logarithm with n = 1. On simplicity grounds the family singles out three.
+
+**V3 — the one n = 2-specific fact, and it is weak.** The residual's integral converges only **above** n = 2, so n = 2 is the **marginal index**. That is the kind of boundary a criticality argument could pick, and L229 did put the cosmological state at the function's critical point. Suggestive at best.
+
+**V4, V5 — the scoreboard.** Four angles searched:
+
+| angle | outcome |
+|---|---|
+| resummation / channel count | exact reading, **count not fixed** |
+| transverse dimensions | **negative** — dimension fixes only the deep power, which is n-blind |
+| phase-space degrees of freedom | closest: family = exponential kernel smeared over a Gamma rate, but **wants n = 3/2 in 3D** |
+| Legendre / AQUAL–QUMOND duality | **negative, and favours n = 1** |
+
+**ONE empirical argument for n = 2 (the rotation curves, nothing fitted). THREE structural arguments pointing at other integers.** The data select the exponent; the mathematics does not. **That is the opposite of what a derivation looks like.**
+
+**V6 — none of this touches L232**, which was a measurement and stands.
+
+**LITERATURE (independent search).** The family is **not a named or proposed MOND interpolating function** — absent from Famaey & McGaugh 2012, the 2025 MOND review, Zhao & Famaey 2006, Hees et al. 2016. Its n = 1 member is the known "simple" function and its n → ∞ limit the "exponential" μ, but the family itself is **novel**. It is **genuinely distinct** from the standard n-family y/(1+y^n)^{1/n}, coinciding only at n = 1 (different order of the first correction, so not a reparametrisation). And **no published work derives an interpolating exponent at all** — the 2025 review states there is no clear derivation of the transition from first principles. Tying a₀ to Λ has precedent (Milgrom 1999, Verlinde 2016) but always for the *scale*, never for an *exponent*. 6/6.
