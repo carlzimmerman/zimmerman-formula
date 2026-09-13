@@ -9,7 +9,7 @@
   flat a₀(z), subdominant scalar GW) confronting DATA — not by Lean, and not while the intrinsic BBN
   fine-tuning (L84/L87) and astra's open ADM/khronon gates stand.
 
-  Theorems (153 as of 2026-09-12; all: exit 0, zero `sorry`, axioms ⊆ {propext, Classical.choice, Quot.sound}):
+  Theorems (155 as of 2026-09-12; all: exit 0, zero `sorry`, axioms ⊆ {propext, Classical.choice, Quot.sound}):
     hasDerivAt_G, hasDerivAt_Gp   — Gp = dG/dy and Gpp = d²G/dy² proven (not merely asserted).
     kernel_identity               — MOND kernel G'(y)/(2y) = 1 − e^{-y}.
     Gpp_zero, Gpp_pos             — health dichotomy: G''(0)=0, G''(y)>0 ∀ y>0 (no ghost off zero field).
@@ -1558,3 +1558,19 @@ point, so none can fix `kappa`. -/
 theorem monotone_kernel_has_no_interior_extremum (m : ℝ → ℝ)
     (hpos : ∀ y : ℝ, 0 < y → 0 < m y) (x : ℝ) (hx : 0 < x) : m x ≠ 0 :=
   ne_of_gt (hpos x hx)
+
+/-! ## L229 — the shape-fixing principle -/
+
+/-- **L229.** At the equipartition point, where the scalar's high-acceleration force equals
+the metric's so that Newton's constant is exactly doubled, the coupling ratio `t = xi/K`
+equals one half and the factor `(t/(1+2t))` collapses to a quarter. Its cube is what enters
+`kappa` squared. -/
+theorem equipartition_factor (t : ℝ) (ht : t = 1 / 2) : (t / (1 + 2 * t)) ^ 3 = 1 / 64 := by
+  subst ht; norm_num
+
+/-- **L229.** With that factor fixed, `kappa` and the shape normalisation are locked to each
+other by `4 kappa^2 = 2 pi K`. So choosing `kappa = 1/2` is the same statement as choosing
+`K = 1/(2 pi)`: one equation, one unknown, and no freedom left beyond it. -/
+theorem kappa_fixes_the_shape_normalisation (kap K p : ℝ) (hp : 0 < p)
+    (h : 4 * kap ^ 2 = p * K) : K = 4 * kap ^ 2 / p := by
+  field_simp; linarith

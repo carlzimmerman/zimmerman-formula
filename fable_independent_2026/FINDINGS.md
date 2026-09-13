@@ -6480,3 +6480,37 @@ This **loosens** L218's criticality floor, which goes as 2/κ², so nothing else
 **V8 — what is recorded.** κ = ½ stands as the framework's fitted value. **b = 6.6843 is the number a shape-fixing principle would have to produce.** Anything deriving it is a result; anything matching it is not. 8/8.
 
 **Lean.** 153 theorems, exit 0, zero `sorry`, axioms ⊆ {propext, Classical.choice, Quot.sound}.
+
+## L229 — THE PRINCIPLE: "there is no independent a₀", and κ reduces to one equation (2026-09-12)
+
+**The principle, in one line.** The interpolating function's argument is the gradient invariant **in units of the dark-energy scale**, so the function has no scale of its own and **a₀ is an OUTPUT** — the acceleration at which that one function turns over.
+
+**V1, V2 — it formalises a picture L227's specification implies.** Any function with a Y^{3/2} branch has f′(0) = 0 and f″(0⁺) = ∞. So **the cosmological state sits at the NON-ANALYTIC point of the scalar's kinetic function, and MOND is the critical behaviour around it with exponent 3/2.** L227 V7 asked for a stationary point on the timelike branch; it is at the **boundary** between branches instead, which is easier to satisfy. **L227 V7 is corrected.**
+
+**V3 — the factor a careless derivation drops.** At high acceleration the scalar force is a fixed fraction of the Newtonian one, **2ξ/K**, so G_obs = G_b(1 + 2ξ/K). Every later step must use the observed constant.
+
+**V4, V5 — and then κ is a pure number.** a₀ = Kλ³μ²/(12πG_b b(K+2ξ)), mass-independent, carrying μ² = √ρ_Λ automatically. Hence
+
+  **κ = 4√(2π)·√K·[t/(1+2t)]^{3/2}**,  t ≡ ξ/K,  b = K/3
+
+with ∂κ/∂μ = 0 exactly. **One equation, two unknowns.**
+
+**V6 — why the naive version is not reported.** Dropping the G renormalisation changes κ by **2^{3/2} = 2.83** at the natural point. That is more than enough to manufacture or destroy an exact hit, which is why this lane carries it and does not quote the version without it.
+
+**V7, V8 — the reduction, and the answer.** At the **equipartition point** t = 1/2, where the scalar's high-acceleration force equals the metric's and Newton's constant is exactly doubled, the bracket collapses to 1/4 and
+
+  **κ = √(2πK)/2**,  so  **κ = ½ ⟺ K = 1/(2π) = 0.159155 exactly**
+
+(Lean `equipartition_factor`, `kappa_fixes_the_shape_normalisation`). Verified numerically: the required K at t = 1/2 is 0.159155, against 1/(2π) = 0.159155.
+
+| t = ξ/K | G_obs/G_b | K required for κ = ½ |
+|---|---|---|
+| 0.25 | 1.5 | 0.5371 |
+| **0.50** | **2.0** | **0.159155 = 1/(2π)** |
+| 1.00 | 3.0 | 0.0671 |
+
+**Is 6.6843 derived? No.** But the question has changed shape. That number was b at an assumed gravitational-strength coupling; the principle shows b alone was never the invariant. **The invariant is K, and κ = ½ is the single statement K = 1/(2π) at equipartition.** Two unknowns became one equation with two nameable *physical* conditions — the high-acceleration renormalisation of Newton's constant, and the shape normalisation — instead of two free coefficients.
+
+**Limits.** Deep-MOND spherical limit and the high-acceleration limit only; the interpolation between them is not solved. Leading-order linear matter coupling. b = K/3 assumes the interpolating function saturates to a constant, which every standard one does. The vacuum energy is identified with the function's value at its non-analytic point, assuming the cosmological field sits **exactly** there. **Neither equipartition nor K = 1/(2π) is derived here**, and no cosmological evolution is solved. 8/8.
+
+**Lean.** 155 theorems, exit 0, zero `sorry`, axioms ⊆ {propext, Classical.choice, Quot.sound}.
