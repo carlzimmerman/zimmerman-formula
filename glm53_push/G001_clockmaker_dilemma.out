@@ -1,0 +1,115 @@
+G001 -- the one loophole in L236's clock no-go, CLOSED.
+
+L236 proved the constant-U form: a cuscuton clock's own field equation fixes
+V'(tau) = -3 H U, so a vanishing potential forces a vanishing expansion rate --
+any cuscuton clock in an expanding universe REQUIRES a potential, and a
+potential is exactly the free additive constant that the kappa no-go (L226)
+needs in order to bite.  L236's own LIMITS section names ONE loophole and says
+it "should be closed before the result is leaned on":
+
+    "The clock equation in V3 is written for a constant coefficient; with U
+     depending on tau there is an extra term, and whether that term can
+     substitute for the potential is NOT computed here -- it is the one
+     loophole in the no-go and it should be closed before the result is
+     leaned on."
+
+This lane closes it, with the closure family the construction itself requires
+(L200: U = U0 a^-3(1+w), d = d0 a^-3(1-w), q = q0 a^-3w, mu = 2dq^2/U constant,
+s0 = 1 + w/m_rel) substituted into the clock equation E_tau exactly as L200
+writes it:
+
+    E_tau = -2 U d q q_tau/m - U_tau - 3 H U - V_tau = 0 .
+
+The answer is sharper than the loophole suggested.  Substituting the family,
+the first three terms collapse to exactly 3 H U w / m_rel = 3 H U (s0 - 1), so
+
+    V_tau = 3 H U (s0 - 1) .
+
+The running of U does not substitute for the potential; it MULTIPLIES the
+required slope by the clock's excess rate itself.  The no-potential branch
+V = 0 exists, but it forces w = 0 hence s0 = 1 exactly -- a clock at proper
+time -- which is excluded by the construction's own gates twice over: the
+solar system demands s0 >= 1.5e7 (L216) and criticality requires w strictly
+positive (L192/L200).  The dilemma is exhaustive and both horns fail.
+
+Every check states measurement and threshold separately.  No pass condition is
+hard-coded; every one is arithmetic on computed quantities.
+
+  [PASS] V1 [the family is the closure: mu is constant in the scale factor] the closure family of L200 is substituted and the combination mu = 2 d q^2 / U checked for constancy, since the whole reduction depends on it
+         measured: mu = 2 d q^2/U = 2*d_0*q_0**2/U_0, d(mu)/da = 0
+         reading : the margin is scale-free on the family, as L200 V1 established; this is the one input the reduction needs from the closure
+  [PASS] V2 [THE REDUCTION: the clock equation's first three terms are exactly the clock's excess rate times 3HU] E_tau's potential-free part, -2Udq q_tau/m - U_tau - 3HU, is evaluated on the family and compared with 3 H U w / m_rel = 3 H U (s0 - 1)
+         measured: -2Udq q_tau/m - U_tau - 3HU = 3*H*U_0**2*av**(-3*w - 3)*w/(U_0 - 2*d_0*q_0**2); 3 H U w/m_rel = 3*H*U_0**2*av**(-3*w - 3)*w/(U_0 - 2*d_0*q_0**2); residual = 0
+         reading : so the clock equation E_tau = 0 reads V_tau = 3 H U w/m_rel = 3 H U (s0 - 1) with s0 = 1 + w/m_rel the clock rate (L200 V4). The running of U does NOT substitute for the potential: it multiplies the required slope by the clock's excess rate itself
+  [PASS] V3 [and the reduction is verified numerically, not only symbolically] the potential-free part of E_tau is evaluated at random points of the family with all derivatives computed independently, and the largest RELATIVE deviation from the closed form 3 H U w/m_rel reported
+         measured: max relative deviation over 237 accepted random points = 1.111e-14
+         reading : the symbolic identity is not an artefact of simplification
+  [PASS] V4 [calibration: the pure-cuscuton limit reproduces L236's no-go exactly] the reduced potential slope V_tau = 3 H U w/m_rel is taken to the pure-cuscuton limit (d-sector off, mu -> 0, constant U i.e. w = -1) and compared with L236's V' = -3HU
+         measured: V_tau(pure cuscuton) = -3*H*U_0 against U = U_0 there, so V_tau = -3H*U exactly; L236 requires V' = -3HU
+         reading : the reduction contains L236's constant-U result as its mu -> 0, w = -1 limit, so the two lanes are one algebra, not two
+
+PART B -- the no-potential branch, solved completely and priced against the gates
+  [PASS] V5 [THE LOOPHOLE CLOSED: the no-potential branch forces the clock to run at exactly proper time] with V_tau = 0 the clock equation 3HUw/m_rel = 0 is solved for w (U, H, m_rel non-vanishing) and the resulting clock rate evaluated
+         measured: w = 0 hence s0 = 1 + w/m_rel = 1
+         reading : the no-potential branch exists but is a single point: the clock runs at EXACTLY proper time. The escape from the potential is the statement w = 0
+  [PASS] V6 [and the no-potential point is excluded by the construction's own gates, twice over] the two gates the twelve-gate construction already carries are evaluated at the no-potential point w = 0, s0 = 1
+         measured: criticality: requires w > 0 strictly (L192/L200), the point has w = 0; solar system: requires s0 >= 1.5e7 (L216), the point has s0 = 1 -- short by a factor 1.5e+07
+         reading : both horns of the dilemma now fail: (i) V != 0 gives the L226 zero mode and kappa is underivable; (ii) V = 0 forces w = 0, which switches off the criticality that makes the sector cold, and s0 = 1, which the solar-system alignment gate excludes by seven orders. The loophole in L236 is closed, and it closes AGAINST the escape
+  [PASS] V7 [THE AMPLIFICATION: running U multiplies the required potential slope by the clock rate itself] the ratio of the running-U potential slope 3HU(s0-1) to the constant-U estimate 3HU is computed at the twelve-gate parameter point's solar-system clock rate
+         measured: V_tau/(-3HU) = s0 - 1 = 1.500e+07 at s0 = 1.5e7; the required slope is fifteen million times the constant-U value L236 quoted
+         reading : so the extra term does not weaken the no-go -- the clock running fast enough for the solar system makes the potential's slope fifteen million times steeper than the constant-U estimate. The intuition that a running coefficient could absorb the potential's job fails in the most emphatic direction available
+
+PART C -- what this decides
+      horn (i): V != 0: the potential exists; L226's zero mode bites; kappa underivable by this class (L236 V4, now with the U(tau) loophole closed)
+      horn (ii): V = 0: w = 0 (clock at proper time): criticality off (needs w > 0), solar system excluded (needs s0 >= 1.5e7); the branch is a single dead point
+  [PASS] V8 [THE DILEMMA IS EXHAUSTIVE AND BOTH HORNS FAIL THE CONSTRUCTION'S OWN GATES] the number of horns on which a cuscuton-clock theory both expands and keeps its gates is counted
+         measured: horns surviving = 0 of 2: horn (i) loses kappa, horn (ii) loses the cold sector and the solar system
+         reading : the conclusion of L236 -- the merged theory cannot use the cuscuton as its timekeeper -- is now a CLOSED theorem rather than a lane with a named loophole. What survives is the specification of L236 V6: relativistic, no independent potential, expansion driven by the SAME function that carries the gradient sector, that function's value at its non-analytic point equal to the dark energy. That specification is the target of G002
+
+READING
+
+  L236 left one loophole in its own no-go: the clock equation was written for a
+  constant coefficient U, and with U depending on tau there is an extra term that,
+  L236 said, "should be closed before the result is leaned on."
+
+  This lane closes it, using the closure family the construction itself already
+  requires (L200), substituted into the clock equation exactly as L200 writes it.
+  The potential-free part of E_tau collapses, identically, to 3 H U w/m_rel --
+  the clock's excess rate over proper time times the constant-U slope (V2,
+  verified numerically at 200 random points, V3).  So:
+
+      V_tau = 3 H U (s0 - 1) .
+
+  The running of U does not substitute for the potential.  It multiplies the
+  required slope by the clock rate itself (V7): at the solar-system clock rate the
+  potential's slope is fifteen million times the constant-U estimate.  And the
+  pure-cuscuton limit of the reduction is exactly L236's V' = -3HU (V4), so the
+  two lanes are one algebra.
+
+  The no-potential branch does exist, as a single point: V = 0 forces w = 0,
+  hence s0 = 1, a clock at exactly proper time (V5).  That point is excluded by
+  the construction's own gates twice over -- criticality requires w strictly
+  positive (it is the instability that self-cures into the cold sector), and the
+  solar-system alignment gate demands s0 >= 1.5e7 (V6).
+
+  So the dilemma is exhaustive and both horns fail (V8): a cuscuton clock either
+  carries a potential -- the L226 zero mode, kappa underivable -- or it does not
+  expand with a live cold sector.  L236's architectural conclusion is therefore
+  no longer a lane with a named loophole: the cuscuton is EXCLUDED as the
+  timekeeper of the merged theory, by a closed dilemma.
+
+  What survives is exactly L236 V6's specification, and it is now the sharpest
+  open target in the programme: a relativistic theory with NO independent
+  potential, whose expansion is driven by the SAME function that carries the
+  gradient sector, with that function's value at its non-analytic point equal to
+  the dark energy.  One function, both jobs.  G002 builds it.
+
+  LIMITS.  The reduction uses the closure family of L200, which is the family the
+  twelve-gate construction itself sits on; a clock theory outside that family is
+  outside this dilemma's scope, and nothing here rules one out.  The sign of
+  V_tau follows L200's convention; the magnitude is convention-independent.  The
+  solar-system and criticality gates are inherited from L216 and L192/L200 with
+  their own recorded limits.  The dilemma certifies the EXCLUSION of the cuscuton
+  timekeeper; it does not exhibit the replacement.
+
+G001 COMPLETE: 8/8 checks PASS.
