@@ -1,0 +1,69 @@
+# kimik3_push — track state (read at session start, rewrite at each milestone)
+
+**Mission:** get closure on a complete theory of gravity on the Zimmerman framework, backed by Lean
+certificates (zero sorry, Mathlib available), with Kepler-grade testable predictions recorded.
+
+**Constraint (user directive):** READ anywhere in the repo, but WRITE ONLY into `kimik3_push/`.
+Keep all changes UNCOMMITTED until the user commits them later. The commit guard is
+`hermes_push/harness.py`; it also flags `__pycache__/*.pyc` — clean before running it.
+
+**Build note (NEW, this session):** Mathlib IS installed for Lean 4.34.0-rc2. Build location:
+`/Users/carlzimmerman/new_physics/zimmerman-formula/fable_independent_2026/lean_2026/.lake/packages/`.
+To compile a single file with Mathlib:
+```
+cd fable_independent_2026/lean_2026
+LP=$(for d in .lake/packages/*/.lake/build/lib/lean; do [ -d "$d" ] && printf '%s:' "$(cd "$d" && pwd)"; done)
+env LEAN_PATH="${LP%:}" lean /path/to/file.lean
+```
+`Real.pi` is available via Mathlib (the old no-Mathlib note in CONTEXT_DIGEST is stale). Bare-core
+`lean` only works for Bool/finite; real analysis needs the LEAN_PATH above. Zero-sorry check:
+`grep -cE '(^|[^`])\bsorry\b([^`]|$)' file.lean` (exclude comments).
+
+---
+
+## The frontier this track attacks (as of 2026-09-13)
+
+The programme's standing blocks (README rev. 20) and FRIED_CHICKEN.md agree: the ONE open
+requirement for a complete theory is **Requirement 10 — the amplitude law**,
+`rho = sqrt(G M_b a0)/(4 pi G r^2)` as a *dynamical consequence*, not initial data. It has been
+PROVEN a formation/virialisation question, not an equation-of-state question:
+- `collapse_2026.py`: no barotropic EOS `c_s^2(rho)` gives both flat curves AND the BTFR.
+- `local_selection_2026.py`: no LOCAL covariant selection rule on realistic baryons works
+  (the invariant `g_b^3/|grad g_b|^2 = G M_b/4` is exact for point/Hernquist but varies 1.41x
+  across an exponential disk, 1.19x Plummer).
+- Conclusion (FRIED_CHICKEN.md): the sector must have thermalised in the region `g_b > a0` and
+  KEPT that virial temperature — i.e. **collapse history: multi-streaming, caustics, violent
+  relaxation**. "It is the one route this programme flagged twice as unrun and never ran."
+
+**The one remaining question (verbatim):** *Does the dark sector virialise at the MOND radius?*
+Given `sigma^2 = G M_b/(2 r_M)`, `r_M = sqrt(G M_b/a0)`, the profile, its coefficient, and the
+BTFR all follow with no freedom. `virialisation_2026.py` proved the confinement radius is FORCED
+to be ∝ r_M (dimensional theorem, unique solution — the sector has no galactic length of its own,
+`c^2/a0 = 31112 Mpc`). What is NOT proved is that it *settles* there.
+
+## Certified necessity (L166, Lean) — what any completion must contain
+(i) a real clustering cold component with retained fraction f rising with host mass;
+(ii) a non-barotropic effective fluid; (iii) a locally screened preferred-frame source.
+Ledger anchors: SPARC spiral f<=0.105 strict; MW 0.14; X-COP cluster 0.576; CMB >=0.988.
+
+## FABLE 5.1 parallel track (running elsewhere — do not duplicate, build off if applicable)
+- FABLE is at L240 (HEAD commit a9f9a2340). Its frontier: the photocount/EFE ambiguity, n=2 empirical.
+- The two tracks are a PROVEN fork (L236): cuscuton-clock track and parameter-free-curve track
+  assign U differing by 6.9e13 to the same coefficient; merge is arithmetically impossible.
+- FABLE's dSph result (L240): both surviving EFE laws OVER-SUPPRESS classical dwarfs (a
+  pre-existing MOND dwarf problem, not the new physics). Wide-binary prediction gamma_v(20 kAU)
+  = 1.095–1.111, BELOW the registered Arm-A band — falsifiable.
+
+## K-track lanes (this folder)
+| Lane | Goal | Script | Status |
+|---|---|---|---|
+| K001 | Cold self-gravitating collapse of a cold collisionless sphere: does it settle at r_M with isothermal rho∝r^-2? | scripts/K001_*.py | QUEUED |
+| K002 | Sweep baryon mass / compactness: is the settled temperature ∝ sqrt(G M_b a0)? -> BTFR | scripts/K002_*.py | QUEUED |
+| K003 | Lean-certify the collapse algebra (Jeans, virial, BTFR exponent, profile slope) | lean/*.lean | QUEUED |
+| K004 | Record every testable prediction with numbers | predictions/*.md | LIVE |
+
+## Testable predictions collected (see predictions/PREDICTIONS.md)
+- (pending K001/K002)
+
+---
+*Log format: append dated milestone entries below this line, newest first.*
