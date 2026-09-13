@@ -6829,3 +6829,27 @@ same way and neither is modelled. n = 2 remains empirical.
 
 `L240_the_external_field_effect.py` — **7/10 checks PASS** (V4, V6, V8 are honest failures).
 Lean 163 theorems, zero `sorry`.
+
+## L232 ROBUSTNESS — the parameter-free SPARC result survives equal-galaxy weighting and a galaxy bootstrap (2026-09-13)
+
+L232 pooled all radii, so long rotation curves carried more weight than short ones. That is a real
+aggregation criticism of the result PAPER27 rests on, and this audit answers it: same fixed
+cosmological scales, same fixed mass-to-light ratios, same four parameter-free integer families, but
+**one rms residual per galaxy, then averaged equally**, plus a 1000-draw galaxy bootstrap.
+
+**n = 2 wins on both footings, and wins every single bootstrap draw.**
+
+| footing | n=1 | **n=2** | n=3 | n=4 | bootstrap wins for n=2 | median margin | p05 margin |
+|---|---|---|---|---|---|---|---|
+| dark energy | 0.1678 | **0.1399** | 0.1694 | 0.2018 | **1000/1000** | 0.0250 dex | 0.0157 dex |
+| critical | 0.1879 | **0.1368** | 0.1538 | 0.1816 | **1000/1000** | 0.0172 dex | 0.0096 dex |
+
+The margin over n = 1 **grows** under equal-galaxy weighting (0.028 dex on the dark-energy footing
+against 0.016 pooled), so the pooled result was if anything conservative. The 5th-percentile
+bootstrap margin is positive on both footings, so no plausible resampling of the galaxy sample
+reverses the winner.
+
+**LIMITS.** A robustness check, **not a likelihood**: published covariance, inclination, distance and
+mass-to-light uncertainties are still not marginalised, and those are the dominant systematics. It
+does not derive the integer from an action and does not address the relativistic scalar/PPN/FLRW
+gates. `L232_robustness_audit.py` + `test_L232_robustness_audit.py` (2 tests, OK).
