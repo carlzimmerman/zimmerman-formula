@@ -6973,3 +6973,21 @@ depends on an approximation-dependent external-field estimate. The flat outer cu
 over-suppresses. **The decisive test needs extended-HI curves reaching several MOND radii in
 independently-measured dense environments — not this archive.** `L245_break_radius_fit.py` 4/6 (V3, V4
 are the honest-negative FAILs). Both footings machinery; canonical reported.
+
+## L246 — the flatness of a₀ turns the CMB into a discriminant unique to the footing (2026-09-13)
+
+**A CMB-related test built on the same w=−1 flatness logic as the high-z BTFR.** a₀ = ½c√(Gρ_Λ) with
+ρ_Λ constant (w=−1) → a₀ is **flat**: same 9.36e-11 m/s² at recombination as today. The rival scale
+g† ~ √(Gρ_crit) ∝ H(z) is **2.3×10⁴** larger at z=1090.
+
+- **V1 background:** cH(z_rec) = 1.52e-5 m/s² = **1.6×10⁵ × a₀** → expansion/sound-horizon standard (both laws share this; μ₂ off to 1.5e-10).
+- **V2:** flat a₀(z_rec)=9.36e-11 vs rising a₀(z_rec)=2.17e-6 — factor H(z_rec)/H₀ = 2.32e4.
+- **V3 perturbation:** acoustic-scale peculiar gravity g ~ Φc²/λ_sound ≈ (3e-5)c²/135 kpc ≈ **6.5e-10 m/s² ≈ 7 a₀** (order a₀, not ≫).
+- **V4 THE DISCRIMINANT:** against **flat** a₀, g/a₀≈7 → **5% modification** (near-Newtonian, peaks nearly standard); against **rising** a₀, g/a₀≈3e-4 → **~100% modification, acoustic-scale gravity boosted ~3350×** (peaks wrecked). Both footings (canonical 5%, alt 7%).
+- **V5:** one parameter (w=−1) controls both this and the high-z BTFR (0.00 vs +0.33 dex) — two falsifiable tests 8 Gyr apart.
+- **V6 HONESTY:** this is peak **geometry**, not peak **heights** — the third-peak/dark-clustering problem is separate and unsolved. Flatness *protects* the acoustic geometry; it does **not** solve the CMB.
+
+**The flatness of a₀ makes the CMB peak geometry survivable in a way a density-tracking scale cannot** —
+turning the generic MOND-CMB problem into a discriminator for this specific footing.
+`L246_cmb_flatness_discriminant.py` 6/6. Lean 170 theorems, zero `sorry` (flat_vs_rising_scale_ratio;
+smaller_a0_modifies_cmb_less — smaller a₀ ⇒ less CMB modification, certified).

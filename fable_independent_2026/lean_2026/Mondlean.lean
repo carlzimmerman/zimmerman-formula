@@ -9,7 +9,7 @@
   flat a₀(z), subdominant scalar GW) confronting DATA — not by Lean, and not while the intrinsic BBN
   fine-tuning (L84/L87) and astra's open ADM/khronon gates stand.
 
-  Theorems (168 as of 2026-09-13; all: exit 0, zero `sorry`, axioms ⊆ {propext, Classical.choice, Quot.sound}):
+  Theorems (170 as of 2026-09-13; all: exit 0, zero `sorry`, axioms ⊆ {propext, Classical.choice, Quot.sound}):
     hasDerivAt_G, hasDerivAt_Gp   — Gp = dG/dy and Gpp = d²G/dy² proven (not merely asserted).
     kernel_identity               — MOND kernel G'(y)/(2y) = 1 − e^{-y}.
     Gpp_zero, Gpp_pos             — health dichotomy: G''(0)=0, G''(y)>0 ∀ y>0 (no ghost off zero field).
@@ -1688,3 +1688,28 @@ theorem onefunction_newtonian_tail (x : ℝ) (hx : 2 + x ≠ 0) :
   have hx2 : (1 + x/2) ≠ 0 := by intro h; apply hx; linarith
   rw [div_eq_div_iff (pow_ne_zero 2 hx2) (pow_ne_zero 2 hx)]
   ring
+
+/-- L246: the flat-vs-rising ratio at any epoch.  If the flat law keeps a_0 constant, a_flat(z) = A,
+and the rival tracks the expansion, a_rise(z) = A * H(z)/H0, then their ratio is exactly H(z)/H0 --
+so at recombination (H/H0 ~ 2e4) the two MOND scales differ by that factor.  Structural core of
+the discriminant. -/
+theorem flat_vs_rising_scale_ratio (A H Hz : ℝ) (hA : A ≠ 0) (hH : H ≠ 0) :
+    (A * (Hz / H)) / A = Hz / H := by
+  rw [mul_comm, mul_div_assoc, div_self hA, mul_one]
+
+/-- L246: the CMB modification is monotone in a_0 -- a SMALLER a_0 gives a SMALLER departure from
+Newtonian at fixed perturbation gravity g.  With 1 - mu_2 = 4/(2 + g/a_0)^2, for 0 < a < b the flat
+(smaller) scale a modifies acoustic-scale gravity LESS than the rising (larger) scale b.  This is
+why the w = -1 flatness protects the acoustic-peak geometry. -/
+theorem smaller_a0_modifies_cmb_less (g a b : ℝ) (hg : 0 < g) (ha : 0 < a) (hab : a < b) :
+    4 / (2 + g/a)^2 < 4 / (2 + g/b)^2 := by
+  have hb : 0 < b := lt_trans ha hab
+  have hlt : g/b < g/a := by
+    rw [div_lt_div_iff₀ hb ha]; nlinarith [hg, hab]
+  have hsum : 2 + g/b < 2 + g/a := by linarith
+  have hposb : 0 < 2 + g/b := by positivity
+  have h2 : (2 + g/b)^2 < (2 + g/a)^2 := by nlinarith [hsum, hposb]
+  have hpa : 0 < (2 + g/a)^2 := by positivity
+  have hpb : 0 < (2 + g/b)^2 := by positivity
+  rw [div_lt_div_iff₀ hpa hpb]
+  linarith [h2]
