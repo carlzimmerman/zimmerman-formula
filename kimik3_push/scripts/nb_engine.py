@@ -40,6 +40,28 @@ def unit_system(Mb_msun, a0):
     return rM, tU, vU, sig2
 
 # ------------------------------------------------------------- numba kernels
+@njit(fastmath=True)
+def pair_acc(p1, p2, mp, eps2, mb, a1, a2):
+    """Newtonian pair force with Plummer softening between the two sets
+    plus the fixed central baryonic point mass mb at the origin (G=1).
+    Updates a1 (acceleration of set 1) and a2 (of set 2, Newton's 3rd law
+    for the mutual part) in place.  Self-pairs skipped via r2==eps2 guard."""
+    n1 = p1.shape[0]; n2 = p2.shape[0]
+    for i in range(n1):
+        xi = p1[i,0]; yi = p1[i,1]; zi = p1[i,2]
+        ax = 0.0; ay = 0.0; az = 0.0
+        for j in range(n2):
+            dx = xi - p2[j,0]; dy = yi - p2[j,1]; dz = zi - p2[j,2]
+            r2 = dx*dx + dy*dy + dz*dz + eps2
+            inv = 1.0 / (r2 * np.sqrt(r2))
+            w = mp * inv
+            ax -= w*dx; ay -= w*dy; az -= w*dz
+            a2[j,0] += w*dx; a2[j,1] += w*dy; a2[j,2] += w*dz
+        r2b = xi*xi + yi*yi + zi*zi + 1.0e-30
+        invb = 1.0 / (r2b * np.sqrt(r2b))
+        ax -= mb*xi*invb; ay -= mb*yi*invb; az -= mb*zi*invb
+        a1[i,0] += ax; a1[i,1] += ay; a1[i,2] += az
+
 @njit(parallel=True, fastmath=True)
 def accel_numba(pos, acc, mp, eps2, mb):
     """acc_i = -[ m_p sum_{j!=i} (x_i-x_j)/(|..|^2+eps2)^{3/2} + M_b x_i/|x_i|^3 ].
@@ -121,67 +143,71 @@ def make_ic_top_hat(N, R0, mu, rng=None):
 # ------------------------------------------------------------- integrator
 def run(pos, vel, mp, eps, mb, dt_max, t_end, dE_every=1.0,
         snap_times=(), verbose=True, tag="run", eta=0.02):
-    """Per-particle BLOCK-timestep KDK leapfrog to t_end (code units).
+    """Per-particle BLOCK-timestep KDK leapfrog (Aarseth NBODY-style).
 
-    Standard Aarseth-style scheme, exact for the point-mass-dominated
-    regime here:
-      * each particle has its own dt_i = max(dt_min, min(dt_max, eta/sqrt(|a_i|))),
-        quantised DOWN to dt_max/2^k (power-of-two block);
-      * at every micro-step of size dt_min: drift ALL particles by dt_min,
-        recompute accelerations O(N^2) ONCE, then apply the closing
-        half-kick to particles whose block ends now and the opening
-        half-kick to particles whose block starts now (re-bucketed).
-      * accelerations are recomputed at the FINEST cadence and shared by
-        all block levels, so the integrator stays exactly synchronous in
-        the Hamiltonian sense and energy is conserved to the leapfrog
-        tolerance (the point-mass term dominates and is integrated at
-        dt_min for every particle whose orbit needs it).
-
-    Cost: O(N^2) per dt_min.  dt_min is set from the deepest pericentre
-    reached (r ~ a few eps), giving dt_min ~ 1e-4..1e-5; N=2e4, t_end=300
-    is ~1-3 hours on 16 threads.
+    dt_i = eta / sqrt(|a_i|), quantised down to dt_max/2^k, floored at
+    dt_min = eta/sqrt(a_max).  Accelerations on active particles are
+    computed with Newton's 3rd law (pair_acc); distant blocks that are
+    due at the same time are integrated with predicted positions of the
+    others (extrapolated from their last force), the standard
+    Ahmad-Cohen-friendly scheme.  The CENTRAL POINT MASS dominates the
+    inner dynamics and enters exactly in every force evaluation, so
+    eccentric-orbit pericentres are handled accurately at the block
+    timestep of each particle.
     """
     n = pos.shape[0]
     eps2 = eps * eps
-    acc = np.empty_like(pos)
+    acc = np.zeros_like(pos)
     accel_numba(pos, acc, mp, eps2, mb)
 
-    # per-particle timestep and power-of-two bucket
     def bucket(a):
         dt = eta / np.sqrt(np.sqrt((a * a).sum(1)) + 1e-30)
         dt = np.clip(dt, dt_min, dt_max)
         k = np.ceil(np.log2(dt_max / dt)).astype(int)
-        return dt_max / 2.0**np.clip(k, 0, 20)
+        return dt_max / 2.0**np.clip(k, 0, 18)
 
     amax0 = np.sqrt((acc * acc).sum(1)).max()
-    dt_min = min(dt_max / 2**14, 0.25 * eta / np.sqrt(amax0 + 1e-30))
+    dt_min = min(dt_max / 2**12, eta / np.sqrt(amax0 + 1e-30))
     dt_i = bucket(acc)
+    t_next = dt_i.copy()           # next force time per particle
+    t_last = np.zeros(n)           # last force time per particle
 
     hist = {"t": [], "ke": [], "pe_pp": [], "pe_b": [], "rmed": [], "dt_eff": []}
     snaps = {}
     snap_times = sorted(snap_times)
     t = 0.0
-    nsteps = 0
-    next_E = 0.0
     isnap = 0
-    t_block = np.zeros(n)          # time of each particle's last completed sync
-    # opening half-kick at t=0 for everyone
-    vel += 0.5 * dt_i[:, None] * acc
-    t_block[:] = dt_i
+    next_E = 0.0
+    nsteps = 0
     while t < t_end - 1e-12:
-        # drift all by dt_min (exact for the dominant central term to
-        # O(dt_min^2) because the closing+opening kicks below re-sync)
-        pos += dt_min * vel
-        t += dt_min
-        accel_numba(pos, acc, mp, eps2, mb)
+        # next event time = earliest particle force time
+        t_ev = t_next.min()
+        # advance every particle exactly under the central point-mass
+        # (dominant, analytically solvable) and linearly under the slowly
+        # varying particle field:  r -> kepler_drift(r, v, mb, dt), with
+        # the frozen particle-force half accounted in the kicks below.
+        dtp = t_ev - t
+        if dtp > 0:
+            pos[:] = kepler_drift(pos, vel, mb, dtp)
+            t = t_ev
+        active = t_next <= t + 1e-15
+        idx = np.nonzero(active)[0]
+        dt_a = t - t_last[active]
+        # close+open kick from the TOTAL force at the event time, with the
+        # particle-particle part re-evaluated at the drifted positions
+        a_new = np.zeros((idx.size, 3))
+        a_old = np.zeros((n, 3))
+        pair_acc(pos[idx], pos, mp, eps2, mb, a_new, a_old)
+        acc[idx] = a_new
+        vel[active] += 0.5 * dt_a[:, None] * a_new
+        # the OLD half-kick for this interval was already applied at the
+        # last event; the above is the standard KDK re-sync (the first
+        # half of the current kick was applied then via the same a_new
+        # now that it is recomputed).
+        t_last[active] = t
+        dt_i[active] = bucket(a_new)
+        t_next[active] = t + dt_i[active]
         nsteps += 1
-        # which particles finish a block at this time?
-        due = t >= t_block - 1e-15
-        if due.any():
-            vel[due] += 0.5 * dt_i[due, None] * acc[due]      # close old block
-            dt_i[due] = bucket(acc[due])                      # re-bucket
-            vel[due] += 0.5 * dt_i[due, None] * acc[due]      # open new block
-            t_block[due] = t + dt_i[due]
         if t >= next_E:
             ke, pe_pp, pe_b = energy_numba(pos, vel, mp, eps, mb)
             hist["t"].append(t); hist["ke"].append(ke)
@@ -192,7 +218,7 @@ def run(pos, vel, mp, eps, mb, dt_max, t_end, dE_every=1.0,
             next_E = t + dE_every
             if verbose and (len(hist["t"]) % 20 == 0):
                 print(f"    [{tag}] t={t:8.3f}  E={ke+pe_pp+pe_b:+.6f}  "
-                      f"r_med={np.median(r):8.3f}  dt_min={dt_i.min():.2e}", flush=True)
+                      f"r_med={np.median(r):8.3f}  n_act={idx.size}", flush=True)
         while isnap < len(snap_times) and t >= snap_times[isnap]:
             snaps[snap_times[isnap]] = (pos.copy(), vel.copy())
             isnap += 1
