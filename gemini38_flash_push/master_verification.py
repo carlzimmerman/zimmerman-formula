@@ -25,6 +25,8 @@ SCRIPTS = [
     ("Lean Certificate 5 (Amplitude Law)", "gemini38_flash_push/run_amplitude_law_lean.py"),
     ("8-Link First-Principles Derivation Chain", "gemini38_flash_push/first_principles_derivation_chain.py"),
     ("Lean Certificate 6 (Grand First-Principles)", "gemini38_flash_push/run_first_principles_chain_lean.py"),
+    ("CMB Acoustic Peaks & Cosmology", "gemini38_flash_push/cmb_acoustic_peaks_cosmology.py"),
+    ("Lean Certificate 7 (CMB Cosmology)", "gemini38_flash_push/run_cmb_cosmo_lean.py"),
 ]
 
 def main():
