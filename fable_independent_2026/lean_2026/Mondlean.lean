@@ -9,7 +9,7 @@
   flat a₀(z), subdominant scalar GW) confronting DATA — not by Lean, and not while the intrinsic BBN
   fine-tuning (L84/L87) and astra's open ADM/khronon gates stand.
 
-  Theorems (159 as of 2026-09-13; all: exit 0, zero `sorry`, axioms ⊆ {propext, Classical.choice, Quot.sound}):
+  Theorems (160 as of 2026-09-13; all: exit 0, zero `sorry`, axioms ⊆ {propext, Classical.choice, Quot.sound}):
     hasDerivAt_G, hasDerivAt_Gp   — Gp = dG/dy and Gpp = d²G/dy² proven (not merely asserted).
     kernel_identity               — MOND kernel G'(y)/(2y) = 1 − e^{-y}.
     Gpp_zero, Gpp_pos             — health dichotomy: G''(0)=0, G''(y)>0 ∀ y>0 (no ghost off zero field).
@@ -1612,3 +1612,13 @@ theorem cuscuton_needs_a_potential (U H Vp : ℝ) (hU : U ≠ 0)
   rcases mul_eq_zero.mp heq with h | h
   · exact absurd h hU
   · linarith
+
+/-! ## L239 — the mode count is dimensionally inert -/
+
+/-- **L239 V2.** In the deep limit the response is the mode count times the occupancy, so two
+different counts give responses differing by a constant ratio whatever the occupancy is. The
+count therefore cannot change the occupancy's functional form — and the conformally invariant
+requirement in `d` dimensions constrains exactly that form. So no dimension fixes the count. -/
+theorem counts_differ_by_a_factor_not_a_power (n m v : ℝ) (hn : n ≠ 0) (hv : v ≠ 0) :
+    (m * v) / (n * v) = m / n := by
+  field_simp

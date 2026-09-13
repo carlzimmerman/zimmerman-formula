@@ -6758,3 +6758,31 @@ All four give 2 in three dimensions; three would differ elsewhere. **The dimensi
 **V7 — the honest position.** ASKED: find the two modes. **FOUND:** they are not Unruh or any fixed-frequency thermal modes (killed at 41 orders); their occupancy must be exactly linear, an equipartition statement; and the reading holds only in d = 3. **NOT FOUND:** what they are.
 
 **Limits.** The Unruh test uses a single fixed-frequency mode; a *distribution* of frequencies could in principle give linear occupancy and is **not excluded here** — though a Gamma-distributed rate is exactly what generates this family, so that route risks assuming the answer. The d-dimensional power is quoted from Milgrom's conformal argument. The candidate counts are not exhaustive. 7/7.
+
+## L239 — THE d-DIMENSIONAL GENERALISATION: it exists, and it CLOSES the route rather than opening it (2026-09-13)
+
+**What L238 asked for.** A family reducing to μ_n(Y) = 1 − (1+Y)^{−n} in three dimensions but carrying the conformally invariant deep power Y^{d−2} in general, which would make the mode count dimension-dependent and therefore checkable.
+
+**V1 — it exists and is clean.** Keeping the photocount structure, the dimension can only enter through the mean occupancy:
+
+  **μ_n^{(d)}(Y) = 1 − (1 + Y^{d−2})^{−n}**
+
+It reduces exactly to the family at d = 3, has deep limit n·Y^{d−2} (verified at d = 3, 4, 5), and saturates at 1.
+
+**V2, V3 — ★ but it does NOT do what was hoped.** In the deep limit the response is **count × occupancy**, so the count is a multiplicative prefactor and **cannot change a power**: d log(response)/d log Y = d − 2, free of n (Lean `counts_differ_by_a_factor_not_a_power`). The conformal requirement constrains the **occupancy** and says nothing about the **count**, in any dimension.
+
+  **The dimensional handle does not exist, and it never did.** L238 treated the dimension as a discriminator the reading happened not to survive; in fact **the count is dimensionally inert.**
+
+**V4 — what the generalisation does buy.** The occupancy is Y^{d−2}: constant at d = 2, **linear at d = 3**, quadratic at d = 4. So L238's equipartition statement — "how many quanta of the dark-energy acceleration fit into this one" — is **specifically a three-dimensional fact**, not a general principle.
+
+**V5 — and the generalisation is forced.** The only alternative keeps the occupancy linear at the cost of the thermal single-mode structure, which is exactly what makes the composition law and the photocount reading meaningful. Within the reading it is unique; outside it there is no reading to generalise.
+
+**V6 — all four candidate counts survive, undiscriminated.** Transverse directions, graviton polarisations, screen dimensions, branches of the gradient invariant: all 2 at d = 3, and the generalisation separates **none** of them.
+
+**V7 — ★ what is left is the data, and only the data.** Four structural angles (L234), twelve pre-registered criteria (L235), two literature searches, and now a dimensional generalisation have all been closed. The rotation curves prefer n = 2 by **0.016 dex** over n = 1 (L232); sharpening that means beating the relation's **0.045 dex intrinsic scatter** by a factor of a few, which needs better mass-to-light ratios and distances, **not better theory**.
+
+**The honest standing.** The exponent is an **empirical quantity**. After this lane that is not a placeholder for a derivation somebody will find next week; it is the result.
+
+**Limits.** The d-dimensional deep power is Milgrom's conformal argument, quoted not re-derived. d = 2 is degenerate (no acceleration scale in the conformal case) and is shown for completeness, not used as a check. Uniqueness in V5 is within the photocount reading only. **Nothing here bears on whether the reading is physically correct.** 7/7.
+
+**Lean.** 160 theorems, exit 0, zero `sorry`, axioms ⊆ {propext, Classical.choice, Quot.sound}.
