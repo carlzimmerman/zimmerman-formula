@@ -6853,3 +6853,47 @@ reverses the winner.
 mass-to-light uncertainties are still not marginalised, and those are the dominant systematics. It
 does not derive the integer from an action and does not address the relativistic scalar/PPN/FLRW
 gates. `L232_robustness_audit.py` + `test_L232_robustness_audit.py` (2 tests, OK).
+
+## L241 — the "nonlocal conformal kernel" door is not real: conformal MOND, lensing-dead since 1994 (2026-09-13)
+
+gemini38's `nonlocal_metric_closure.py` proposed evading the local York/QUMOND no-go with a scalar
+entering as a conformal factor A(χ)g **or** via R, matter minimally coupled to g, and **claimed** the
+result has Φ=Ψ (no slip, γ_PPN=1) AND reproduces MOND AND has 2 tensor DOF. Tested rigorously in the
+weak field, where a conformal scalar-tensor theory is fully fixed:
+
+- **V3 LENSING CANCELLATION (exact):** with matter and light in g̃ = A²g, Φ̃ = Φ_E + αχ and Ψ̃ = Ψ_E − αχ.
+  Light bends by Φ̃+Ψ̃ = **2Φ_E** — the αχ cancels. Light sees the baryons only; matter feels the full
+  MOND boost. That is a lensing deficit of up to **5.8× at 50 kpc** — the Bekenstein-Sanders 1994 result.
+- **V5 SLIP (exact):** Φ̃−Ψ̃ = **2αχ ≠ 0**. gemini's central claim (conformal → no-slip) is *backwards*;
+  it dropped the scalar's ∇∇χ stress, the very term that makes Brans-Dicke γ_PPN ≠ 1.
+- **V6:** "nonlocal" adds nothing — □χ=S is solved by the Green function of a local operator (verified,
+  PDE vs convolution agree to 1e-2), same weak-field content as a local scalar.
+- **V7:** the only coupling that cures the deficit is **disformal** (derivative), i.e. TeVeS/AeST and this
+  programme's single-metric disformal track, whose preferred-frame pincer is already closed (DC-013/DC-019).
+
+**VERDICT: the door leads back into a locked room.** `L241_nonlocal_kernel_verdict.py` 7/7. Lean:
+`conformal_lensing_cancels`, `conformal_gives_slip`.
+
+## L242 — REFRAME: G003's one Milky-Way break radius → a sample-wide, parameter-free EFE break-radius law and a ΛCDM discriminant (2026-09-13)
+
+The one reusable idea in the agent batch, lifted out of a G003 footnote. Every galaxy has a crossover
+where its internal deep-MOND field falls to the external field: **r_× = √(G M_b a₀)/g_ext = r_M/e_N**
+(certified: `break_radius_is_mond_radius_over_field`). Inside, the phantom is isothermal r⁻²; outside,
+the EFE suppresses it — a **structural break at a computable radius**, no free parameter.
+
+On **120 real SPARC galaxies** in their real 2MRS environments: r_× spans 1.4–1243 kpc (median 21),
+and **12 (10%) fall inside the already-measured rotation curve** — a live confrontation for the
+strongest-field galaxies, a forecast for the rest.
+
+**THE DISCRIMINANT (V3):** at fixed baryonic mass, MOND ties r_× to environment (Spearman ρ = **−0.811**,
+by construction); ΛCDM's NFW scale radius, built from a concentration-mass relation, is environment-blind
+(ρ = **−0.028, p = 0.76**). The MOND correlation being definitional is *not* the claim — the claim is that
+ΛCDM has **no mechanism** to reproduce it without adding assembly bias by hand. A measured anti-correlation
+of break radius with environmental density, at fixed mass, is a MOND signature.
+
+**Distinct** from the registered environmental fork (which tests whether the a₀ *amplitude* depends on
+ρ_local): this tests a *shape* feature's *location*. **Standard:** the EFE downturn (Famaey-McGaugh).
+**New to this ledger:** the per-galaxy break-radius law and its environment dependence as a ΛCDM test.
+**LIMITS:** g_ext is the approximation-dependent 2MRS MOND sum (rank robust, value not); M_b is enclosed
+at R_last; the lane predicts and designs the test — it does not fit downturns in data (next lane, needs
+extended rotation curves or lensing). `L242_efe_break_radius_law.py` 5/5. Lean 166 theorems, zero `sorry`.

@@ -9,7 +9,7 @@
   flat a₀(z), subdominant scalar GW) confronting DATA — not by Lean, and not while the intrinsic BBN
   fine-tuning (L84/L87) and astra's open ADM/khronon gates stand.
 
-  Theorems (163 as of 2026-09-13; all: exit 0, zero `sorry`, axioms ⊆ {propext, Classical.choice, Quot.sound}):
+  Theorems (166 as of 2026-09-13; all: exit 0, zero `sorry`, axioms ⊆ {propext, Classical.choice, Quot.sound}):
     hasDerivAt_G, hasDerivAt_Gp   — Gp = dG/dy and Gpp = d²G/dy² proven (not merely asserted).
     kernel_identity               — MOND kernel G'(y)/(2y) = 1 − e^{-y}.
     Gpp_zero, Gpp_pos             — health dichotomy: G''(0)=0, G''(y)>0 ∀ y>0 (no ghost off zero field).
@@ -1645,3 +1645,26 @@ theorem total_occupancy_mode_is_geometric (Y : ℝ) (hY : 0 < Y) (k : ℕ) :
   have h1 : (0:ℝ) < 1 + Y := by linarith
   field_simp
   ring
+
+/-- L241 V3: the conformal lensing cancellation, exact.  With matter and light in the Jordan
+metric g~ = A^2 g, the potentials are Phi~ = Phi_E + a*chi and Psi~ = Psi_E - a*chi with the
+Einstein metric sector unslipped (Phi_E = Psi_E).  Light bends by the SUM Phi~ + Psi~, and the
+conformal term a*chi cancels there, leaving twice the baryonic potential and no scalar
+contribution.  This is why a conformal/nonlocal scalar under-lenses (Bekenstein-Sanders). -/
+theorem conformal_lensing_cancels (PhiE a chi : ℝ) :
+    (PhiE + a * chi) + (PhiE - a * chi) = 2 * PhiE := by ring
+
+/-- L241 V5: and the same coupling gives NONZERO slip, so a conformal coupling cannot deliver
+gamma_PPN = 1 (the claim that it does is backwards).  The slip is exactly 2 a chi. -/
+theorem conformal_gives_slip (PhiE a chi : ℝ) :
+    (PhiE + a * chi) - (PhiE - a * chi) = 2 * (a * chi) := by ring
+
+/-- L242: the break radius equals the MOND radius divided by the external-field strength.
+From r_x = sqrt(G M a0)/g_ext, r_M = sqrt(G M / a0) and e_N = g_ext/a0, one has
+r_x = r_M / e_N, so the EFE break always sits outside the MOND radius when e_N < 1. -/
+theorem break_radius_is_mond_radius_over_field
+    (G M a0 gext : ℝ) (hG : 0 < G) (hM : 0 < M) (ha : 0 < a0) (hg : 0 < gext) :
+    Real.sqrt (G * M * a0) / gext
+      = (Real.sqrt (G * M / a0)) / (gext / a0) := by
+  have key : G * M * a0 = (G * M / a0) * a0 ^ 2 := by field_simp
+  rw [key, Real.sqrt_mul (by positivity), Real.sqrt_sq ha.le, div_div_eq_mul_div]

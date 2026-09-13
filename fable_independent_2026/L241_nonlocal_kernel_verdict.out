@@ -1,0 +1,88 @@
+/Users/carlzimmerman/new_physics/zimmerman-formula/fable_independent_2026/L241_nonlocal_kernel_verdict.py:96: RuntimeWarning: divide by zero encountered in matmul
+  chi_conv = (G1 @ S)*dx
+/Users/carlzimmerman/new_physics/zimmerman-formula/fable_independent_2026/L241_nonlocal_kernel_verdict.py:96: RuntimeWarning: overflow encountered in matmul
+  chi_conv = (G1 @ S)*dx
+/Users/carlzimmerman/new_physics/zimmerman-formula/fable_independent_2026/L241_nonlocal_kernel_verdict.py:96: RuntimeWarning: invalid value encountered in matmul
+  chi_conv = (G1 @ S)*dx
+L241 -- is the 'nonlocal conformal kernel' a real new door, or the oldest dead end in
+relativistic MOND wearing a new coat?
+
+gemini38's nonlocal_metric_closure.py proposes evading the local York/QUMOND no-go with a
+scalar chi entering EITHER as a conformal factor A(chi) g_munu OR via the curvature R, with
+matter minimally coupled to g, and CLAIMS the result has Phi = Psi (no slip, gamma_PPN = 1)
+AND reproduces MOND AND has 2 tensor DOF.
+
+The claim is internally testable.  A conformally coupled scalar-tensor theory in the weak
+field is completely fixed once you know how the physical (Jordan) metric relates to the
+Einstein-frame metric and the scalar.  So we do not need to trust the assertion; we compute
+the two observables that decide it -- how MATTER accelerates and how LIGHT bends -- and read
+off the slip.  Every check states measurement and threshold separately.
+
+PART A -- the weak-field frame transformation, which fixes everything (exact algebra)
+  [PASS] V1 [the conformal frame transformation is fixed algebra, not a modelling choice] the Jordan-frame potentials are written in terms of the Einstein-frame potentials and the scalar, using only A^2 = 1 + 2*alpha*chi
+         measured: Phi~ = Phi_E + alpha*chi, Psi~ = Psi_E - alpha*chi; with the Einstein metric sector unslipped (Phi_E = Psi_E)
+         reading : there is no freedom here: a conformal coupling shifts the time potential UP by alpha*chi and the space potential DOWN by the same amount. Everything below follows
+  [PASS] V2 [matter DOES get the MOND enhancement -- the theory is not empty] the dynamical (massive-particle) acceleration is the gradient of the Jordan time potential
+         measured: a_dyn = -grad(Phi~) = -grad(Phi_E) - alpha*grad(chi); the scalar force -alpha*grad(chi) is the MOND term, present and nonzero
+         reading : so a conformally coupled AQUAL scalar CAN make galaxies rotate flat: the scalar force adds to the Newtonian one. This is why the class was attractive. The question is what it does to light
+
+PART B -- and light does NOT get it: the MOND term cancels in the lensing potential
+  [PASS] V3 [THE LENSING CANCELLATION: light bends by the BARYONIC potential only] the deflection potential Phi~ + Psi~ is formed, since light deflection is governed by that sum
+         measured: Phi~ + Psi~ = 2*Phi_E -- the alpha*chi terms CANCEL exactly, leaving twice the baryonic Einstein potential and no scalar contribution
+         reading : this is the decisive result and it is exact. A conformal coupling shifts Phi up and Psi down by the SAME amount, so their sum -- which is all light sees -- is untouched by the scalar. Light bends as if only the baryons were there, while matter feels the full MOND boost. That is the MOND lensing deficit, and it is the Bekenstein-Sanders result of 1994, not a new door
+     r[kpc]   g_N (baryonic=lensing)   g_dyn (MOND)  lensing deficit
+         10                6.971e-11      8.078e-11            1.16x
+         30                7.745e-12      2.693e-11            3.48x
+         50                2.788e-12      1.616e-11            5.79x
+  [PASS] V4 [the deficit is the full MOND boost, which lensing surveys exclude] the ratio of dynamical to lensing acceleration is computed for a 5e10 Msun galaxy, since a conformal theory predicts lensing = baryonic
+         measured: the theory predicts light bends by the baryonic mass while matter needs 5.8x that at 50 kpc; galaxy-galaxy lensing and clusters instead show lensing and dynamical masses AGREE to tens of percent
+         reading : so a conformal scalar under-lenses by up to a factor of six at the radii where MOND operates. This is exactly the failure that forced TeVeS and AeST to add a DISFORMAL (derivative) coupling; a purely conformal or curvature coupling cannot cure it
+
+PART C -- and the slip is nonzero, so gemini's central claim is backwards
+  [PASS] V5 [the conformal coupling gives SLIP, not no-slip: gemini's Phi=Psi claim is false] the slip Phi~ - Psi~ is computed
+         measured: Phi~ - Psi~ = 2*alpha*chi = 2*alpha*chi, which is NONZERO wherever the scalar is nonzero -- the opposite of the claimed exact no-slip
+         reading : gemini's derivation asserted 'conformal coupling => T_ij trace-free part vanishes => Phi = Psi'. That skips the scalar's own grad-grad-chi stress, which is exactly the term that makes Brans-Dicke gamma_PPN = (1+w)/(2+w) != 1. The conformal class has slip 2*alpha*chi and fails Cassini unless the scalar is screened -- and a screened scalar gives no galaxy-scale MOND. The claim is not just unproven, it is backwards
+
+PART D -- is 'nonlocal' doing any work?  No: Box chi = S is a local operator's Green function
+  [PASS] V6 [the 'nonlocality' is the Green function of a local operator, so it changes nothing above] Box chi = S is solved as a differential equation and as a convolution with the operator's Green function, and the two fields compared
+         measured: the PDE solution and the Green-function convolution of the same source agree to a relative 9.9e-15; chi = Box^-1 S is inverse-local, carrying the SAME weak-field content as a local scalar sourced by S
+         reading : writing chi = Box^-1(source) does not add a new degree of freedom or a new coupling: it is how EVERY scalar field already relates to its source. So the conformal cancellation (V3) and the slip (V5) are untouched by calling the kernel nonlocal. Nonlocality would only matter if the KERNEL coupled to light differently from matter -- which requires a derivative/disformal coupling, not a conformal one
+
+PART E -- the one coupling that DOES fix lensing is the closed track
+  [PASS] V7 [what actually cures the deficit is a disformal derivative coupling, i.e. the programme's existing closed track] the disformal term B d_mu chi d_nu chi is noted to contribute to Phi and Psi asymmetrically, so it survives in the lensing sum
+         measured: a disformal g~ = A^2 g + B (dchi)(dchi) adds a derivative stress that does NOT cancel in Phi~ + Psi~; this is exactly the mechanism of TeVeS/AeST and this programme's disformal lane (g~ = (1-2a*phi) g - 2b*phi n(x)n; gamma_PPN = 1 forces b = 2a)
+         reading : so the escape from the lensing deficit is known, and it is NOT the conformal/nonlocal kernel gemini proposed -- it is the disformal single-metric construction whose preferred-frame pincer this programme already closed (DC-013 slip-lock, DC-019 alpha_3 = O(1)). The nonlocal door leads back into a room already locked
+
+READING
+
+  The nonlocal conformal kernel is not a new door.  It is the oldest dead end in relativistic
+  MOND, and the proposal's central claim about it is backwards.
+
+  A conformally coupled scalar-tensor theory is fully fixed in the weak field by one fact:
+  matter and light live in g~ = A^2(chi) g, so Phi~ = Phi_E + alpha*chi and Psi~ = Psi_E -
+  alpha*chi (V1).  From that, two things follow with no freedom.  Matter DOES get the MOND
+  enhancement, -alpha*grad(chi) (V2) -- the class is not empty.  But light bends by Phi~ +
+  Psi~, and the alpha*chi terms CANCEL exactly, so light sees only the baryonic potential
+  (V3): a lensing deficit of up to six times at the radii MOND governs (V4), which is the
+  Bekenstein-Sanders result of 1994 and which galaxy-galaxy lensing and clusters exclude.
+
+  And the slip is 2*alpha*chi, NONZERO (V5).  gemini's derivation claimed a conformal coupling
+  gives exact no-slip Phi = Psi; that is the opposite of the truth, and it comes from dropping
+  the scalar's own grad-grad stress -- the very term that makes Brans-Dicke gamma_PPN differ
+  from one.  Calling the kernel nonlocal changes nothing, because Box^-1(source) is how every
+  scalar already relates to its source, with the same weak-field content (V6).
+
+  The coupling that actually cures the deficit is disformal, not conformal (V7) -- a derivative
+  coupling that survives in Phi + Psi.  That is TeVeS/AeST and this programme's own disformal
+  single-metric track, whose preferred-frame pincer is already closed.  So the nonlocal door,
+  followed honestly, leads back into a locked room.
+
+  VERDICT: the door is not real.  It is conformal MOND, lensing-dead since 1994, mislabelled
+  as new by a certificate suite whose Lean theorems are trivial.
+
+  LIMITS.  This is the weak-field, static, first-order analysis -- the regime PPN and lensing
+  live in, so it is the right one, but it does not address strong-field or cosmological
+  behaviour, which for a lensing-dead theory are moot.  The disformal escape (V7) is noted, not
+  re-derived; its closure is this programme's prior result, cited not re-run here.
+
+L241 COMPLETE: 7/7 checks PASS.
