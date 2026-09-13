@@ -9,7 +9,7 @@
   flat a₀(z), subdominant scalar GW) confronting DATA — not by Lean, and not while the intrinsic BBN
   fine-tuning (L84/L87) and astra's open ADM/khronon gates stand.
 
-  Theorems (155 as of 2026-09-12; all: exit 0, zero `sorry`, axioms ⊆ {propext, Classical.choice, Quot.sound}):
+  Theorems (157 as of 2026-09-12; all: exit 0, zero `sorry`, axioms ⊆ {propext, Classical.choice, Quot.sound}):
     hasDerivAt_G, hasDerivAt_Gp   — Gp = dG/dy and Gpp = d²G/dy² proven (not merely asserted).
     kernel_identity               — MOND kernel G'(y)/(2y) = 1 − e^{-y}.
     Gpp_zero, Gpp_pos             — health dichotomy: G''(0)=0, G''(y)>0 ∀ y>0 (no ghost off zero field).
@@ -1574,3 +1574,19 @@ other by `4 kappa^2 = 2 pi K`. So choosing `kappa = 1/2` is the same statement a
 theorem kappa_fixes_the_shape_normalisation (kap K p : ℝ) (hp : 0 < p)
     (h : 4 * kap ^ 2 = p * K) : K = 4 * kap ^ 2 / p := by
   field_simp; linarith
+
+/-! ## L230 — the principle stripped to one number -/
+
+/-- **L230 V2.** With the interpolating function's argument measured in dark-energy units
+rather than in units of `a_0`, the acceleration scale is an OUTPUT and `kappa` is exactly the
+reciprocal of the function's deep-MOND slope. One number, and it is a property of a curve. -/
+theorem kappa_is_the_reciprocal_slope (c s a0 kap : ℝ) (hc : c ≠ 0) (hs : s ≠ 0)
+    (ha : a0 = s / c) (hk : kap = a0 / s) : kap = 1 / c := by
+  subst ha; subst hk; field_simp
+
+/-- **L230 V4.** `2 sqrt(8 p/3)` and `4 sqrt(6 p)/3` are the same number: the horizon form of
+`kappa = 1/2` is not an independent candidate for it, but a rewriting of it. -/
+theorem horizon_form_of_one_half (p q : ℝ) (hq2 : q ^ 2 = 6 * p) :
+    (2 * q / 3) ^ 2 = 8 * p / 3 := by
+  have h : (2 * q / 3) ^ 2 = 4 * q ^ 2 / 9 := by ring
+  rw [h, hq2]; ring

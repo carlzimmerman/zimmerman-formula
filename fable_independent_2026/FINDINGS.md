@@ -6514,3 +6514,34 @@ with ∂κ/∂μ = 0 exactly. **One equation, two unknowns.**
 **Limits.** Deep-MOND spherical limit and the high-acceleration limit only; the interpolation between them is not solved. Leading-order linear matter coupling. b = K/3 assumes the interpolating function saturates to a constant, which every standard one does. The vacuum energy is identified with the function's value at its non-analytic point, assuming the cosmological field sits **exactly** there. **Neither equipartition nor K = 1/(2π) is derived here**, and no cosmological evolution is solved. 8/8.
 
 **Lean.** 155 theorems, exit 0, zero `sorry`, axioms ⊆ {propext, Classical.choice, Quot.sound}.
+
+## L230 — THE PRINCIPLE STRIPPED TO ONE NUMBER, and the easy version is excluded by our own data (2026-09-12)
+
+**V1 — L229's equipartition condition is an ARTIFACT and is withdrawn.** AQUAL modifies the Poisson equation for the potential itself. There is **no second field**, hence no coupling constant, no renormalisation of Newton's constant, and nothing to equipartition. All four of the structures L229 had to carry are absent in the single-field form.
+
+**V2 — what is left is one number.** With the interpolating function's argument in **dark-energy units** rather than units of a₀:
+
+  **κ = 1/c**
+
+exactly, where c is the function's deep-MOND slope with the function normalised to 1 at high acceleration (Lean `kappa_is_the_reciprocal_slope`). a₀ = √(Gρ_Λ)/c is an **output**.
+
+**V3 — so κ = ½ is a single statement about a shape:** the function must rise **twice as fast at the origin** as every standard interpolating function while still saturating at 1.
+
+**V4 — 2√(8π/3) is κ = ½ in horizon language, not a rival to it.** Symbolically, κ = ½ gives a₀ = c²/(N·L_dS) with **N = 4√6·√π/3 = 5.788810**, and 2√(8π/3) = 5.788810 — **difference 0.00e+00** (Lean `horizon_form_of_one_half`). The same statement written against the de Sitter horizon instead of the dark-energy density.
+
+**V5, V6 — and the easy version of the principle is EXCLUDED by the programme's own measurements.** A shape with no free parameter turns over where its argument is one, so in dark-energy units it puts a₀ **at** the dark-energy acceleration:
+
+| parameter-free shape | slope c | κ = 1/c | BTFR σ | distance-free σ |
+|---|---|---|---|---|
+| y/(1+y) | 1.0000 | 1.0000 | 7.0 | 10.4 |
+| y/√(1+y²) | 1.0000 | 1.0000 | 7.0 | 10.4 |
+| 1 − e^{−y} | 1.0000 | 1.0000 | 7.0 | 10.4 |
+| tanh y | 1.0000 | 1.0000 | 7.0 | 10.4 |
+
+**All four give κ = 1, excluded at 7 to 10σ.** Take a standard shape, put its argument in dark-energy units, and you predict κ = 1 — which this programme's own κ measurements rule out.
+
+**V7, V8 — the residue.** κ = ½ demands **c = 2** from a shape with **no free parameter** to arrange it. That is a different curve, not an adjusted one, and **inserting a factor of two is not available** — a factor of two *is* a free parameter, and the principle's whole content is that there is none. **No such shape is exhibited here.**
+
+**Limits.** Single-field AQUAL only; the clock sector is not carried, so this speaks to the coefficient and not the rest of the construction. Deep and high-acceleration limits used; the interpolation between them is not solved. The slope is read at the non-analytic origin, so it is the leading coefficient rather than an ordinary derivative. The four shapes are the standard ones and are not exhaustive. 8/8.
+
+**Lean.** 157 theorems, exit 0, zero `sorry`, axioms ⊆ {propext, Classical.choice, Quot.sound}.
