@@ -64,6 +64,26 @@ Ledger anchors: SPARC spiral f<=0.105 strict; MW 0.14; X-COP cluster 0.576; CMB 
 | K006 | Controlled spherical self-gravitating collapse (shell code) | scripts/K006_spherical_collapse.py | RUNNING |
 
 ## Milestones (newest first)
+- **2026-09-13 physics note (collapse modelling):** the framework's dark sector is a
+  cuscuton-like condensate whose perturbations are NON-PROPAGATING (c_s^2 = 0 exactly on the
+  critical surface, isotropic stress = clustering cold component; L192/L193), carried by the
+  Noether charge of the shift symmetry (L217). => it clusters and self-gravitates as
+  COLLISIONLESS DUST. Therefore a collisionless N-body (K001) is the CORRECT instrument for the
+  formation question; a hydrodynamic treatment is not.
+- **2026-09-13 numerics note:** a spherical SHELL code cannot do this problem. At top-hat collapse
+  every shell reaches r~0 simultaneously, the potential diverges, and r=|r| reflection injects
+  uncontrolled energy (measured dE/E ~ 1e6, r_half runaway). K006/K007 shell runs are SUPERSEDED;
+  the formation test is K001's 3D numba N-body (validated to machine precision, adaptive dt).
+- **2026-09-13 Lean certificate (pushed f931b4f89):** kimik3_push/lean/AmplitudeLaw.lean -- 10 theorems
+  (a0_pos, rM_pos, rM_sq, btfr_virial, btfr_exponent, profile_slope, monomial_dim_length,
+  mond_length_unique, mond_length_form, vc_flat), exit 0, ZERO sorry, axioms subset of
+  {propext, Classical.choice, Quot.sound}; independently recompiled and re-grepped. Certifies the
+  ALGEBRA of the amplitude law / BTFR / dimensional-uniqueness of r_M. Mathlib now available
+  (8557 oleans) -- the old bare-Bool fallback is obsolete.
+- **2026-09-13 predictions ledger (pushed f931b4f89):** kimik3_push/predictions/PREDICTIONS.md -- the
+  numbered falsifiable ledger (Gaia DR4 Arm A/B; a0(z) flat vs evolving + z~2.5 BTFR zero-point;
+  w_dm > 0 and the w <= 5.7e-7 window; Saturn 5.84e-16 m/s^2 power-law tail NEW both footings; etc.)
+  with values, kill conditions, LCDM contrast, deciding instrument, pre-registered vs NEW flagged.
 - **2026-09-13 K005 (16/16, pushed f3a2b229c):** the amplitude-law algebra is self-consistent and the
   BTFR emerges. (a) The local invariant g_b^3/|grad g_b|^2 = G M_b/4 is EXACT for point + Hernquist
   (the right temperature is available locally). (b) Cold-shell infall at r_M gives a virial
