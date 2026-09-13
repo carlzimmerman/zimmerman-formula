@@ -9,7 +9,7 @@
   flat a₀(z), subdominant scalar GW) confronting DATA — not by Lean, and not while the intrinsic BBN
   fine-tuning (L84/L87) and astra's open ADM/khronon gates stand.
 
-  Theorems (158 as of 2026-09-12; all: exit 0, zero `sorry`, axioms ⊆ {propext, Classical.choice, Quot.sound}):
+  Theorems (159 as of 2026-09-13; all: exit 0, zero `sorry`, axioms ⊆ {propext, Classical.choice, Quot.sound}):
     hasDerivAt_G, hasDerivAt_Gp   — Gp = dG/dy and Gpp = d²G/dy² proven (not merely asserted).
     kernel_identity               — MOND kernel G'(y)/(2y) = 1 − e^{-y}.
     Gpp_zero, Gpp_pos             — health dichotomy: G''(0)=0, G''(y)>0 ∀ y>0 (no ghost off zero field).
@@ -1599,3 +1599,16 @@ a complete prediction of the relation with nothing fitted. -/
 theorem parameter_free_a0 (s n g gbar : ℝ) (hn : n ≠ 0) (hs : s ≠ 0)
     (hdeep : n * (g / s) * g = gbar) : g ^ 2 = s * gbar / n := by
   field_simp at hdeep ⊢; linarith
+
+/-! ## L236 — the architecture no-go -/
+
+/-- **L236 V3.** A cuscuton clock's own field equation fixes `U * 3H = -V'`. A vanishing
+potential therefore forces a vanishing expansion rate: any cuscuton clock in an expanding
+universe REQUIRES a potential — and a potential is exactly the free additive constant that
+the `kappa` no-go needs in order to bite. -/
+theorem cuscuton_needs_a_potential (U H Vp : ℝ) (hU : U ≠ 0)
+    (heq : U * (3 * H) = -Vp) (hV : Vp = 0) : H = 0 := by
+  rw [hV, neg_zero] at heq
+  rcases mul_eq_zero.mp heq with h | h
+  · exact absurd h hU
+  · linarith

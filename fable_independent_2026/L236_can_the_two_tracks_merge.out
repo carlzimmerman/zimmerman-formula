@@ -1,0 +1,86 @@
+L236 -- can the relativistic clock construction and the parameter-free curve be the SAME
+theory?  The architecture question, asked sharply.
+
+The programme now has TWO things that both work and have never been put together:
+
+  TRACK A, the clock construction (L213-L225).  Relativistic, twelve gates passing at one
+  parameter point, light bending exact, preferred-frame obstruction removed.  But its gradient
+  function W(Y) was never pinned, and kappa is fitted.
+
+  TRACK B, the parameter-free curve (L230-L232).  kappa comes out of the shape, the galaxies
+  select the integer with nothing fitted -- but it is single-field AQUAL with no relativistic
+  sector at all.
+
+The obvious move is to make Track A's gradient function BE Track B's curve.  This lane tests
+whether that is possible, and finds a no-go that decides the architecture.
+
+Every check states measurement and threshold separately.
+
+PART A -- the two tracks disagree about one coefficient, by fourteen orders
+  [PASS] V1 [the same coefficient, two values] the value of the gradient function at zero gradient is computed in each track and the ratio taken; both tracks call this quantity W(0) = U, so a large ratio means they are not describing the same theory
+         measured: Track A (clock): U = m_rel x rho_dm = 3.677e-25 eV^4; Track B (parameter-free): U = rho_Lambda = 2.521e-11 eV^4; ratio 6.86e+13
+         reading : fourteen orders apart. They are not two descriptions of one theory; they assign incompatible values to the same coefficient in the same action
+  [PASS] V2 [forcing them to agree breaks the clock sector outright] the margin required to make the two values equal is solved for and compared with one, which it cannot exceed since the margin is one minus a non-negative quantity
+         measured: agreement needs m_rel = rho_Lambda/rho_dm = 2.5849, against the requirement m_rel <= 1 and the parameter point's 3.77e-14
+         reading : the margin would have to exceed one, which is impossible by its definition as one minus the closure's mu. So the merge is not merely strained, it is arithmetically blocked
+
+PART B -- and the reason is structural, not numerical
+  [PASS] V3 [THE NO-GO: a cuscuton clock cannot track an expanding universe without a potential] the clock's field equation is written for a constant coefficient and solved for the potential's slope, then evaluated at zero expansion
+         measured: the clock equation gives V'(tau) = -3*H*U; at H = 0 this is 0, and for H > 0 it is strictly non-zero
+         reading : the potential's slope is fixed to minus three times the expansion rate times the coefficient. A vanishing potential forces a vanishing expansion rate. So ANY cuscuton clock in an expanding universe REQUIRES a potential
+  [PASS] V4 [and a potential is exactly what the kappa no-go needs to survive] the requirement of L226 is applied to Track A, since that no-go turns on whether a free additive constant exists somewhere in the action
+         measured: L226: for any FREE interpolating function, shifting it by a constant moves only the vacuum energy, so the normalisation tying a_0 to it is a zero mode. Track A's V(tau) supplies exactly that constant, and V3 shows Track A cannot drop it
+         reading : so the clock construction is INSIDE the class L226's no-go covers, and no amount of work on it will produce kappa. Track B escapes precisely because it has no separate potential: the gradient function's value at the origin is the only constant in it
+
+PART C -- what this decides
+                    A: cuscuton clock + scalar: {'relativistic': True, 'gates passed': 12, 'kappa derivable': False, 'reason': 'requires V(tau) to expand (V3), which is the zero mode of L226'}
+    B: single-field, one function, no potential: {'relativistic': False, 'gates passed': 1, 'kappa derivable': True, 'reason': "the gradient function's value at the origin is the only constant"}
+  [PASS] V5 [the architecture is a genuine fork, not a choice of emphasis] the two tracks are scored on relativistic completeness and on whether the coefficient is derivable, and the number satisfying BOTH counted
+         measured: 0 of 2 tracks satisfy both; A is relativistic and cannot derive kappa, B can derive kappa and is not relativistic
+         reading : neither track does both, and the reason one fails is now a theorem rather than a gap. This is the sharpest architectural statement the programme has: the twelve-gate construction CANNOT be the thing that derives the coefficient
+  [PASS] V6 [the specification for an architecture that does both] the conditions a merged construction must satisfy are assembled from V3 and V4 and counted
+         measured: 5 conditions: relativistic, so it must reproduce lensing, the microwave background and the preferred-frame limits; and carry NO independent potential, since a potential reinstates the zero mode; so its expansion cannot be driven by a potential term; which means the background must be driven by the SAME function that carries the gradient sector -- one function doing both jobs; and that function's value at its non-analytic point must be the dark energy
+         reading : the binding one is the third: the expansion cannot be driven by a potential. That rules out the cuscuton clock as the timekeeper, because V3 shows it needs one. A merged architecture needs a different mechanism for the background
+  [PASS] V7 [what this does NOT say] the status of the twelve-gate construction after this lane is stated, since a no-go about one coefficient is not a verdict on a construction
+         measured: Track A's twelve gates stand. What is now established is that kappa is not obtainable within it, which was already this programme's k01 theorem and is here given its structural reason: the potential the clock needs in order to expand
+         reading : the clock construction remains the relativistic candidate. It simply cannot be the route to the coefficient, and that is now known rather than suspected
+
+READING
+
+  The two tracks cannot be the same theory, and the reason is a theorem rather than an
+  awkwardness.
+
+  They assign values fourteen orders apart to the same coefficient -- the gradient function at
+  zero gradient (V1).  Forcing agreement needs a margin of 2.58, and the margin is one
+  minus a non-negative quantity, so it cannot exceed one (V2).  The merge is arithmetically
+  blocked, not merely strained.
+
+  The structural reason is this.  A cuscuton clock's own field equation fixes the potential's
+  slope to minus three times the expansion rate times its coefficient, so a vanishing potential
+  forces a vanishing expansion rate: ANY cuscuton clock in an expanding universe REQUIRES a
+  potential (V3).  And a potential is precisely the free additive constant that L226's no-go
+  needs in order to bite.  So the clock construction sits INSIDE the class that no-go covers,
+  and no further work on it will produce kappa (V4).  Track B escapes only because it has no
+  separate potential at all.
+
+  That decides the architecture, and it is a real fork (V5).  Track A is relativistic, passes
+  twelve gates, and provably cannot derive the coefficient.  Track B derives the coefficient
+  from the shape and has no relativistic sector.  Neither does both, and the failure of the
+  first is now a theorem.
+
+  What a merged architecture would need is stated in five conditions (V6), and the binding one
+  is that the expansion cannot be driven by a potential term -- which rules out the cuscuton
+  clock as the timekeeper.  Something else has to drive the background, and the same function
+  that carries the gradient sector has to do it.
+
+  None of this retracts Track A's gates (V7).  It remains the relativistic candidate.  It
+  simply is not the route to the coefficient, and that is now known rather than suspected.
+
+  LIMITS.  The clock equation in V3 is written for a constant coefficient; with U depending on
+  tau there is an extra term, and whether that term can substitute for the potential is NOT
+  computed here -- it is the one loophole in the no-go and it should be closed before the
+  result is leaned on. The numerical clash in V1 uses the L213/L216 parameter point, so it
+  inherits those lanes. The identification of the gradient function's value at the origin with
+  the dark energy is Track B's principle and is an assumption of the comparison, not a result.
+
+L236 COMPLETE: 7/7 checks PASS.

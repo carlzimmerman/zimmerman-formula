@@ -1,0 +1,42 @@
+{
+ "pass": 6,
+ "fail": 0,
+ "checks": [
+  {
+   "name": "V1 [the single-mode distribution is the thermal one] the geometric occupancy distribution is summed and its mean taken, both of which must come out right before anything is built on it",
+   "measured": "P(k) = Y**k*(Y + 1)**(-k - 1); sum over k = 1; mean = Y",
+   "pass": true,
+   "reading": "normalised, with mean occupancy exactly Y. This is the Bose-Einstein distribution for one mode, written in terms of its own mean"
+  },
+  {
+   "name": "V2 [THE IDENTIFICATION: the interpolating function IS a photocount probability] the probability that one mode is empty is read off, raised to the number of independent modes, and subtracted from one, then compared with the family",
+   "measured": "P(empty, one mode) = 1/(Y + 1); P(all n empty) = (Y + 1)**(-n); 1 - that = 1 - 1/(Y + 1)**n",
+   "pass": true,
+   "reading": "the interpolating function is the probability that AT LEAST ONE quantum is present among n independent thermal modes of mean occupancy Y. Under this programme's own principle Y is the acceleration in units of the dark-energy acceleration, so the reading is: the response is the chance that the acceleration excites at least one quantum out of the vacuum"
+  },
+  {
+   "name": "V3 [and it survives a direct simulation] independent thermal modes are sampled and the fraction of trials with at least one quantum compared with the closed form",
+   "measured": "Monte Carlo at Y = 2.0, n = 2, 400000 trials: 0.88914 against the closed form 0.88889; difference 0.00025",
+   "pass": true,
+   "reading": "agreement to three decimals. The identification is not a formal coincidence; the family is that counting statement"
+  },
+  {
+   "name": "V4 [the family is one minus a q-deformed exponential, with q tied to the mode count] the Tsallis q-exponential is evaluated at the deformation q = 1 + 1/n and argument -nY, and compared with the family",
+   "measured": "1 - exp_q(-nY) at q = 1 + 1/n gives 1 - 1/(Y + 1)**n",
+   "pass": true,
+   "reading": "so the mode count and the Tsallis deformation are the same parameter: n = 2 is q = 3/2. The ordinary exponential kernel is the q -> 1, infinite-mode limit. That ties the family to the deformed-statistics literature, where the deformation is a free parameter, so it relabels the unknown rather than removing it"
+  },
+  {
+   "name": "V5 [the honest ledger] what the identification supplies and what it leaves open are listed and counted, since a reading that explains the FORM but not the VALUE is a partial result and should be reported as one",
+   "measured": "4 things gained, 4 left open; the central one left open is the mode count itself",
+   "pass": true,
+   "reading": "the form is explained and the value is not. That is real progress on understanding and no progress on the number, and conflating the two would be the easiest mistake available here"
+  },
+  {
+   "name": "V6 [the sharpened question] the open problem is restated in the new language, since a better-posed question is what a partial result is for",
+   "measured": "OLD: why is the exponent in an interpolating function equal to two? NEW: why does the vacuum present exactly TWO independent modes to an acceleration? The second is a physical question about mode counting rather than a question about curve shapes",
+   "pass": true,
+   "reading": "that is a better question than the one this programme started the day with, and it is the kind that a horizon or screen calculation could actually answer. Two candidate readings exist -- the graviton's two polarisations, and the two branches of the gradient invariant -- and NEITHER is established here"
+  }
+ ]
+}

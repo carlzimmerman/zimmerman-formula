@@ -1,0 +1,88 @@
+L237 -- the family has an exact microphysical reading, and it is a photocount formula.
+
+An independent search of the first-principles MOND derivations came back with one thing that
+was not in any of them.  The family
+
+    mu_n(Y) = 1 - (1 + Y)^(-n)
+
+is EXACTLY Mandel's n-mode photocount formula: for n independent single-mode thermal
+(chaotic) channels each of mean occupancy Y, the probability that a given mode is EMPTY is
+1/(1+Y), so the probability that all n are empty is (1+Y)^(-n), and mu_n is the probability
+that AT LEAST ONE quantum is present.
+
+That is not a derivation of the exponent.  It is something better than nothing: the family
+stops being an ansatz and becomes a counting statement, with n the number of independent
+modes.  This lane verifies the identification and states precisely what it does and does not
+buy.
+
+Every check states measurement and threshold separately.
+
+PART A -- the identification, verified
+  [PASS] V1 [the single-mode distribution is the thermal one] the geometric occupancy distribution is summed and its mean taken, both of which must come out right before anything is built on it
+         measured: P(k) = Y**k*(Y + 1)**(-k - 1); sum over k = 1; mean = Y
+         reading : normalised, with mean occupancy exactly Y. This is the Bose-Einstein distribution for one mode, written in terms of its own mean
+  [PASS] V2 [THE IDENTIFICATION: the interpolating function IS a photocount probability] the probability that one mode is empty is read off, raised to the number of independent modes, and subtracted from one, then compared with the family
+         measured: P(empty, one mode) = 1/(Y + 1); P(all n empty) = (Y + 1)**(-n); 1 - that = 1 - 1/(Y + 1)**n
+         reading : the interpolating function is the probability that AT LEAST ONE quantum is present among n independent thermal modes of mean occupancy Y. Under this programme's own principle Y is the acceleration in units of the dark-energy acceleration, so the reading is: the response is the chance that the acceleration excites at least one quantum out of the vacuum
+  [PASS] V3 [and it survives a direct simulation] independent thermal modes are sampled and the fraction of trials with at least one quantum compared with the closed form
+         measured: Monte Carlo at Y = 2.0, n = 2, 400000 trials: 0.88914 against the closed form 0.88889; difference 0.00025
+         reading : agreement to three decimals. The identification is not a formal coincidence; the family is that counting statement
+
+PART B -- and the same family is a deformed exponential
+  [PASS] V4 [the family is one minus a q-deformed exponential, with q tied to the mode count] the Tsallis q-exponential is evaluated at the deformation q = 1 + 1/n and argument -nY, and compared with the family
+         measured: 1 - exp_q(-nY) at q = 1 + 1/n gives 1 - 1/(Y + 1)**n
+         reading : so the mode count and the Tsallis deformation are the same parameter: n = 2 is q = 3/2. The ordinary exponential kernel is the q -> 1, infinite-mode limit. That ties the family to the deformed-statistics literature, where the deformation is a free parameter, so it relabels the unknown rather than removing it
+
+PART C -- what this buys and what it does not
+    BUYS      the family stops being an ansatz: it is the probability of at least one excitation
+    BUYS      n becomes a MODE COUNT, which is why it is an integer rather than a dial
+    BUYS      the composition law 1 - mu_n = (1 - mu_1)^n is now obvious: n independent modes
+    BUYS      the exponential kernel is recovered as the infinite-mode limit, so the standard choice is the limit in which the mode count is forgotten
+    DOES NOT  nothing here fixes the mode count at two
+    DOES NOT  no published entropic or holographic derivation produces this family beyond the single-mode member, which modified-Renyi entropic gravity does give
+    DOES NOT  every factor of two in that literature sits in the acceleration SCALE, never in the exponent
+    DOES NOT  and the thermal-screen derivations have exponentially small deep-MOND corrections whereas this family's are analytic, which is a structural mismatch with them
+  [PASS] V5 [the honest ledger] what the identification supplies and what it leaves open are listed and counted, since a reading that explains the FORM but not the VALUE is a partial result and should be reported as one
+         measured: 4 things gained, 4 left open; the central one left open is the mode count itself
+         reading : the form is explained and the value is not. That is real progress on understanding and no progress on the number, and conflating the two would be the easiest mistake available here
+  [PASS] V6 [the sharpened question] the open problem is restated in the new language, since a better-posed question is what a partial result is for
+         measured: OLD: why is the exponent in an interpolating function equal to two? NEW: why does the vacuum present exactly TWO independent modes to an acceleration? The second is a physical question about mode counting rather than a question about curve shapes
+         reading : that is a better question than the one this programme started the day with, and it is the kind that a horizon or screen calculation could actually answer. Two candidate readings exist -- the graviton's two polarisations, and the two branches of the gradient invariant -- and NEITHER is established here
+
+READING
+
+  The family is not an ansatz.  It is a photocount formula.
+
+  For n independent single-mode thermal channels of mean occupancy Y, the chance that one mode
+  is empty is 1/(1+Y), so the chance that all n are empty is (1+Y)^-n, and the interpolating
+  function is the probability that AT LEAST ONE quantum is present (V1-V3, verified
+  symbolically and by simulation).  Under this programme's own principle Y is the acceleration
+  in units of the dark-energy acceleration, so the reading is direct: [1mthe response to an
+  acceleration is the probability that it excites at least one quantum out of the vacuum.[0m
+
+  The same family is one minus a Tsallis q-exponential with q = 1 + 1/n (V4), so the mode count
+  and the deformation parameter are one quantity, and the ordinary exponential kernel everyone
+  uses is the infinite-mode limit -- the case where the mode count has been forgotten.
+
+  What this buys is the FORM.  The composition law is now obvious, the integer is explained as
+  a mode count rather than asserted, and the standard kernel is placed as a limit.  What it
+  does not buy is the VALUE (V5).  No published entropic or holographic derivation produces
+  this family beyond the single-mode member, every factor of two in that literature sits in the
+  scale rather than the exponent, and the thermal-screen derivations have exponentially small
+  deep corrections where this family's are analytic -- a structural mismatch worth noting
+  against the whole approach.
+
+  The gain is a better question (V6).  Not "why is an exponent two", which is a question about
+  curve shapes, but [1mwhy does the vacuum present exactly two independent modes to an
+  acceleration[0m -- which is a physical question a horizon calculation could answer.  Two
+  candidate answers are in the air, the graviton's two polarisations and the two branches of
+  the gradient invariant, and neither is established.
+
+  LIMITS.  The identification is exact but it is an IDENTIFICATION, not a derivation: nothing
+  here shows that the vacuum response to an acceleration IS such a photocount, only that the
+  function this programme's data selected has that form. The mismatch noted above -- analytic
+  versus exponentially small deep-MOND corrections -- cuts against reading it as a literal
+  thermal screen. The mode count is not fixed. The literature survey behind the negatives was
+  performed by a separate search and is reported rather than re-derived here.
+
+L237 COMPLETE: 6/6 checks PASS.

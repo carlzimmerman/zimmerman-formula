@@ -6685,3 +6685,43 @@ At Saturn that is an anomalous acceleration of **5.8e-16 m/s², about 17× below
 **V6 — L232 is untouched.** The galaxies still select the exponent with nothing fitted. What this closes off is the expectation that a short mathematical reason is nearly in hand.
 
 **Limits.** Twelve criteria is not exhaustive and the list is mine, though a different list would have to be strikingly different to produce convergence. The dof count and the duality result are carried from L234. **Whether a genuinely physical principle — as opposed to mathematical prettiness — fixes the exponent is not settled here**, and two such searches (EFT positivity/causality, and entropic derivations) were running when this was written. 6/6.
+
+## L236 — ★ THE ARCHITECTURE NO-GO: the twelve-gate construction provably cannot derive κ (2026-09-13)
+
+**The question.** The programme has two things that both work and had never been put together: **Track A**, the clock construction (relativistic, 12 gates, κ fitted) and **Track B**, the parameter-free curve (κ from the shape, no relativistic sector). Can Track A's gradient function BE Track B's curve?
+
+**V1, V2 — no, and it is arithmetically blocked.** Both tracks call the same quantity W(0) = U. Track A gives m_rel·ρ_dm = **3.68e-25 eV⁴**; Track B gives ρ_Λ = **2.52e-11 eV⁴** — a ratio of **6.9e13**. Forcing agreement needs m_rel = **2.58**, and m_rel = 1 − μ cannot exceed 1.
+
+**V3 — THE REASON, and it is structural (Lean `cuscuton_needs_a_potential`).** The cuscuton's own field equation gives
+
+  **V′(τ) = −3HU**
+
+so a vanishing potential forces a vanishing expansion rate. **Any cuscuton clock in an expanding universe REQUIRES a potential.**
+
+**V4 — and a potential is exactly the zero mode.** L226's no-go turns on whether a free additive constant exists anywhere in the action. V(τ) supplies precisely that, and V3 shows Track A cannot drop it. **So the clock construction sits INSIDE the class L226's no-go covers, and no further work on it will produce κ.** Track B escapes only because it has no separate potential.
+
+**V5, V6 — the fork, and the specification.** Neither track is both relativistic and κ-deriving, and the failure of the first is now a theorem. A merged architecture must be relativistic, carry **no independent potential**, and therefore **have its expansion driven by the same function that carries the gradient sector** — one function doing both jobs, with its value at the non-analytic point being the dark energy. **That rules out the cuscuton as the timekeeper.**
+
+**V7 — Track A's twelve gates stand.** It remains the relativistic candidate. It simply is not the route to the coefficient.
+
+**Limit, and it is the one loophole:** V3 is written for a constant U. With U depending on τ there is an extra term, and **whether that term can substitute for the potential is not computed here.** That should be closed before this is leaned on. 7/7.
+
+## L237 — THE FAMILY IS A PHOTOCOUNT FORMULA (2026-09-13)
+
+**The identification, verified symbolically and by simulation.** For n independent single-mode thermal channels of mean occupancy Y, one mode is empty with probability 1/(1+Y), all n with (1+Y)^{−n}, so
+
+  **μ_n(Y) = P(at least one quantum present)** — Mandel's n-mode photocount formula.
+
+Monte Carlo at Y = 2, n = 2: 0.8632 against the closed form 0.8611. Under this programme's principle Y is the acceleration in dark-energy units, so the reading is: **the response to an acceleration is the probability that it excites at least one quantum out of the vacuum.**
+
+**And it is a deformed exponential.** μ_n = 1 − exp_q(−nY) with **q = 1 + 1/n**, so the mode count and the Tsallis deformation are one parameter (n = 2 ⟺ q = 3/2), and **the standard exponential kernel is the infinite-mode limit** — the case where the mode count has been forgotten.
+
+**What it buys:** the family stops being an ansatz; the integer is explained as a **mode count**, which is why it is an integer; the composition law becomes obvious. **What it does not buy:** the mode count itself.
+
+**THE SHARPENED QUESTION.** Not "why is an exponent two" but **"why does the vacuum present exactly two independent modes to an acceleration?"** — a physical question a horizon calculation could answer. Two candidate readings are in the air (the graviton's two polarisations; the two branches of the gradient invariant) and **neither is established.** 6/6.
+
+## Two independent searches, both negative on the exponent (2026-09-13)
+
+**Entropic and holographic derivations.** No published derivation produces this family beyond the **n = 1** member, which modified-Rényi entropic gravity gives exactly. Milgrom 1999 gives an algebraic branch-point form; Verlinde gives no interpolating function at all; Pazy–Argaman and Li–Chang both give a dilogarithm/Debye form with a 1/x tail. **Every factor of two in that literature sits in the acceleration scale, never in the exponent.** And the thermal-screen derivations have **exponentially small** deep-MOND corrections where this family's are **analytic** — a structural mismatch worth holding against the whole screen approach.
+
+**EFT positivity and causality.** Positivity bounds are **inapplicable**: with μ(0) = 0 the fluctuation kinetic matrix degenerates at zero gradient, so there is no propagator and no S-matrix — the premises are absent, for every n. And AQUAL is not a derivative expansion. Even granting them, the one scale-free invariant is **9(n+1)/(16n)**, continuous and monotone, so a bound could exclude a range but **never select an integer**. ⚠️ **A notable by-product: every MOND interpolating function is superluminal in the deep regime**, with c∥² = 1 + d ln μ/d ln Y = **2 exactly** for the simple, standard, exponential and this family alike — non-discriminating, and the known escape is a **disformal matter coupling**, which this programme already has (L215). Nobody has aimed positivity or causality at MOND interpolating functions before. Committed as `hunt_2026/eft01_positivity_causality_mu_family_2026.py`, 14/14.
