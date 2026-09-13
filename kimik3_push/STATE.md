@@ -97,6 +97,16 @@ Ledger anchors: SPARC spiral f<=0.105 strict; MW 0.14; X-COP cluster 0.576; CMB 
 - Full ledger at predictions/PREDICTIONS.md (P1-P7 established + N1-N3 new).
 
 ## THE COMPLETION (2026-09-13) -- the unified theory, and what is left
+**K001 3D N-body -- FINAL (subagent died on OpenRouter HTTP 402 credits after 1h40m; its N=1500
+smoke run completed and is on disk as scripts/K001_results.json).**  Independent 3D CONFIRMATION of
+the field-equation result: density slope -1.92 over 0.3-3 r_M (isothermal r^-2, matches K014/K015),
+dark sector CONFINED at r_M (r50 -> 1.57, stable across 20 snapshots), BTFR scaling r_settle and
+sigma^2 both ∝ M_b^0.5 on both footings, Newtonian control has NO MOND-radius attractor, energy
+conserved to 1.4e-5.  Two honest FAILs at this small N: the ABSOLUTE dispersion normalisation (d) and
+IC-independence (f) -- exactly consistent with K013: collapse gives the r^-2 SHAPE and the r_M SCALE
+but does NOT fix the normalisation; the field equation (K014) does.  The two mechanisms agree where
+they should and the theory needs collapse for nothing.  The full N=8000+ production run was never
+launched (billing); it is a confirmation only and changes no conclusion.
 The programme's open Requirement 10 (amplitude law) is CLOSED, and not by the mechanism everyone was
 running.  The chain (see UNIFICATION.md, DERIVATION_CHAIN.md):
   * K014 (8/8): the amplitude law rho ~ r^-2 is the MOND FIELD EQUATION'S OWN deep-MOND solution

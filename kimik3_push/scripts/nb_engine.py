@@ -63,9 +63,14 @@ def pair_acc(p1, p2, mp, eps2, mb, a1, a2):
         a1[i,0] += ax; a1[i,1] += ay; a1[i,2] += az
 
 @njit(parallel=True, fastmath=True)
-def accel_numba(pos, acc, mp, eps2, mb):
-    """acc_i = -[ m_p sum_{j!=i} (x_i-x_j)/(|..|^2+eps2)^{3/2} + M_b x_i/|x_i|^3 ].
-    G = 1, equal particle mass m_p."""
+def accel_numba(pos, acc, mp, eps2, mb, epsb2):
+    """acc_i = -[ m_p sum_{j!=i} (x_i-x_j)/(|..|^2+eps2)^{3/2}
+                  + M_b x_i/(|x_i|^2+epsb2)^{3/2} ].
+    G = 1, equal particle mass m_p.  Both the particle-particle force
+    (eps2) and the central baryonic point mass (epsb2) are Plummer-softened;
+    softening the central mass is REQUIRED to integrate the radial orbits
+    that plunge to r=0 in a cold collapse (unsoftened 1/r^2 diverges and
+    injects energy -- measured dE/E ~ 1e5 with epsb=0, ~1e-5 with epsb>0)."""
     n = pos.shape[0]
     for i in prange(n):
         xi = pos[i, 0]; yi = pos[i, 1]; zi = pos[i, 2]
@@ -78,20 +83,20 @@ def accel_numba(pos, acc, mp, eps2, mb):
             inv = 1.0 / (r2 * np.sqrt(r2))
             w = mp * inv
             ax -= w * dx; ay -= w * dy; az -= w * dz
-        r2b = xi*xi + yi*yi + zi*zi + 1.0e-30
+        r2b = xi*xi + yi*yi + zi*zi + epsb2
         invb = 1.0 / (r2b * np.sqrt(r2b))
         ax -= mb * xi * invb; ay -= mb * yi * invb; az -= mb * zi * invb
         acc[i, 0] = ax; acc[i, 1] = ay; acc[i, 2] = az
 
 @njit(parallel=True, fastmath=True)
-def energy_numba(pos, vel, mp, eps, mb):
-    """Total KE, particle-particle PE (Plummer), baryon PE."""
+def energy_numba(pos, vel, mp, eps, mb, epsb):
+    """Total KE, particle-particle PE (Plummer eps), baryon PE (Plummer epsb)."""
     n = pos.shape[0]
     ke = 0.0; pe_pp = 0.0; pe_b = 0.0
     for i in prange(n):
         xi = pos[i, 0]; yi = pos[i, 1]; zi = pos[i, 2]
         ke += 0.5 * mp * (vel[i,0]**2 + vel[i,1]**2 + vel[i,2]**2)
-        rb = np.sqrt(xi*xi + yi*yi + zi*zi + 1.0e-30)
+        rb = np.sqrt(xi*xi + yi*yi + zi*zi + epsb*epsb)
         pe_b -= mp * mb / rb
         p = 0.0
         for j in range(n):
@@ -142,26 +147,26 @@ def make_ic_top_hat(N, R0, mu, rng=None):
 
 # ------------------------------------------------------------- integrator
 def run(pos, vel, mp, eps, mb, dt_max, t_end, dE_every=1.0,
-        snap_times=(), verbose=True, tag="run", eta=0.03):
+        snap_times=(), verbose=True, tag="run", eta=0.03, epsb=None):
     """Synchronous KDK leapfrog with a shared adaptive timestep.
 
-    dt = min over particles of  eta * sqrt((|r|^2+eps^2)^{3/2} / (mb + M_enc))
-    (a fraction of the local free-fall time), capped at dt_max.  This is
-    the correct criterion for a point-mass-dominated collapse: the orbit
-    time at the pericentre.  KDK with a shared step is exactly symplectic
-    at fixed dt and 2nd-order accurate; energy is conserved to the
-    leapfrog tolerance.
+    dt = min over particles of  eta * sqrt((|r|^2+eps_b^2)^{3/2} / (mb + M_d))
+    (a fraction of the local free-fall time in the SOFTENED central field),
+    capped at dt_max.  epsb is the Plummer softening of the central baryonic
+    point mass (defaults to eps); it MUST be nonzero so the radial orbits of
+    a cold collapse are integrable.  KDK with a shared step is exactly
+    symplectic at fixed dt and 2nd-order accurate.
     """
+    if epsb is None:
+        epsb = eps
     n = pos.shape[0]
     eps2 = eps * eps
+    epsb2 = epsb * epsb
     acc = np.zeros_like(pos)
-    accel_numba(pos, acc, mp, eps2, mb)
+    accel_numba(pos, acc, mp, eps2, mb, epsb2)
 
     def choose_dt(pos):
-        r2 = (pos * pos).sum(1) + eps2
-        # local enclosed mass for the free-fall time: point mass + a
-        # uniform-density interior estimate using the current median
-        # radius.  Conservative (uses mb + mu throughout).
+        r2 = (pos * pos).sum(1) + epsb2
         tau = np.sqrt(r2**1.5 / (mb + mp * n))
         return min(dt_max, eta * tau.min())
 
@@ -177,12 +182,12 @@ def run(pos, vel, mp, eps, mb, dt_max, t_end, dE_every=1.0,
         vel += 0.5 * dt * acc
         pos += dt * vel
         t += dt
-        accel_numba(pos, acc, mp, eps2, mb)
+        accel_numba(pos, acc, mp, eps2, mb, epsb2)
         vel += 0.5 * dt * acc
         dt = choose_dt(pos)
         nsteps += 1
         if t >= next_E:
-            ke, pe_pp, pe_b = energy_numba(pos, vel, mp, eps, mb)
+            ke, pe_pp, pe_b = energy_numba(pos, vel, mp, eps, mb, epsb)
             hist["t"].append(t); hist["ke"].append(ke)
             hist["pe_pp"].append(pe_pp); hist["pe_b"].append(pe_b)
             hist["dt"].append(dt)
