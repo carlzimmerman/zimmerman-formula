@@ -9,7 +9,7 @@
   flat a₀(z), subdominant scalar GW) confronting DATA — not by Lean, and not while the intrinsic BBN
   fine-tuning (L84/L87) and astra's open ADM/khronon gates stand.
 
-  Theorems (149 as of 2026-09-12; all: exit 0, zero `sorry`, axioms ⊆ {propext, Classical.choice, Quot.sound}):
+  Theorems (151 as of 2026-09-12; all: exit 0, zero `sorry`, axioms ⊆ {propext, Classical.choice, Quot.sound}):
     hasDerivAt_G, hasDerivAt_Gp   — Gp = dG/dy and Gpp = d²G/dy² proven (not merely asserted).
     kernel_identity               — MOND kernel G'(y)/(2y) = 1 − e^{-y}.
     Gpp_zero, Gpp_pos             — health dichotomy: G''(0)=0, G''(y)>0 ∀ y>0 (no ghost off zero field).
@@ -1520,3 +1520,23 @@ theorem reach_helps_both_ways (k1 k2 cs aH3 : ℝ) (hc : 0 < cs) (ha : 0 < aH3)
     have hk2 : (0:ℝ) < k2 ^ 2 := by positivity
     rw [div_lt_div_iff₀ hk2 hk1]
     nlinarith
+
+/-! ## L226 — kappa, and what the no-go actually forbids -/
+
+/-- **L226 V1.** The whole kappa no-go rests on this: shifting a free interpolating function
+by a constant leaves its derivative untouched, and the derivative is all the scalar equation
+and the static force law ever see. The shift therefore moves the vacuum energy and nothing
+else, which is why the normalisation relating `a_0` to it is a zero mode. -/
+theorem shift_leaves_the_force_law_untouched (F : ℝ → ℝ) (c Z : ℝ) :
+    deriv (fun z => F z + c) Z = deriv F Z := by
+  simp
+
+/-- **L226 V5.** Fixing the SHAPE removes the zero mode: with one scale `mu`, the vacuum
+energy and the deep-MOND branch coefficient both carry it, and it cancels out of
+`kappa^2 = a_0^2/(G rho)`. What remains is a pure number set by the matter coupling and the
+branch coefficient of the fixed shape. -/
+theorem kappa_is_scale_independent (lam G b mu c f0 : ℝ) (hG : G ≠ 0) (hb : b ≠ 0)
+    (hmu : mu ≠ 0) (hc : c ≠ 0) (hf : f0 ≠ 0) :
+    (lam ^ 3 * mu ^ 2 / (c * G * b)) ^ 2 / (G * (f0 * mu ^ 4))
+      = lam ^ 6 / (c ^ 2 * G ^ 3 * b ^ 2 * f0) := by
+  field_simp

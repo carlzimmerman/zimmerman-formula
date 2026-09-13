@@ -6401,3 +6401,42 @@ This **loosens** L218's criticality floor, which goes as 2/κ², so nothing else
 **V8 — and it survives the systematics.** Across temperature 1e4–2e4 K, mean flux 0.62–0.74 and filtering scale 0.10–0.25 Mpc, every deviation lands between **0.027 and 0.061**, all inside the high-resolution precision. Temperature and mean flux move it by 0.006 and are irrelevant; **the filtering scale moves it three times as much and is the dominant systematic** — the one quantity to nail down to sharpen this.
 
 **Limits, and they are real.** The fluctuating Gunn-Peterson approximation is **not a hydrodynamic simulation**: the density field is a lognormal transform of the linear field, **peculiar velocities are not included**, and the temperature–density relation is a single power law with no scatter. Peculiar velocities are the largest omission; they affect both models similarly so the **ratio** is more reliable than either spectrum, but that is an argument, not a demonstration. Box 80 Mpc, 256 cells, so k above ~6 /Mpc is untrusted and Nyquist modes are excluded. The tolerances are representative precisions, **not a likelihood with a covariance matrix**. A real constraint needs hydrodynamic simulations and the published flux-power covariance. Footing-independent. 8/8.
+
+## L226 — κ: THE NO-GO IS MUCH MORE GENERAL THAN STATED, AND IT NAMES ITS OWN ESCAPE (2026-09-12)
+
+**The question.** κ, the pure number in a₀ = κc√(Gρ_DE), is fitted. The k01 theorem says *this class of actions* cannot derive it. This lane asks what the obstruction actually is.
+
+**V1 — the whole no-go, in one line.** For a **free** interpolating function F of derivative invariants, shifting F → F + c gives
+
+  **change in F′ = 0**,  **change in the metric-multiplying piece = c**
+
+(Lean `shift_leaves_the_force_law_untouched`). The derivative is all the scalar equation and the static force law ever see, so a₀ does not move at all; the metric piece shifts by exactly the constant, which is a cosmological constant and nothing else. **The normalisation relating a₀ to the vacuum energy is a zero mode.**
+
+**V2 — and the argument uses NOTHING about the class of action.** Not the number of fields, not whether Λ appears explicitly, not the other terms, not the kernel's shape. **The obstruction is therefore not a property of this class of actions, as it has been quoted.** It holds for *any* theory whose interpolating function is a free function of derivative invariants, with any field content.
+
+  **Searching a wider class of actions for κ is wasted effort.**
+
+**V3 — the obvious escape is closed explicitly.** Dropping Λ and letting the interpolating function itself be the dark energy does not help: ∂ρ_DE/∂c = −1 while a₀ does not move, so the ratio is still free.
+
+**V4, V5 — but the same argument names the escape, because the obstruction is the FREEDOM of the function.** Fix the shape, F(Z) = μ⁴f(Z/μ⁴) with f a fixed dimensionless function and μ the single scale. Then:
+
+- **a₀ ∝ √ρ_DE is DERIVED**, with d log a₀/d log ρ = **exactly 1/2** — the framework's central relation stops being an input.
+- **κ = λ³/(12π b G^{3/2}√f₀)**, with ∂κ/∂μ = 0 (Lean `kappa_is_scale_independent`): a pure number set by the matter coupling and the branch coefficient of the fixed shape.
+
+**V6 — the target, as a number.** At gravitational-strength coupling the branch coefficient would have to satisfy
+
+| κ | source | required b |
+|---|---|---|
+| 0.465 | BTFR measurement | 7.19 |
+| 0.551 | distance-free measurement | 6.07 |
+| 0.500 | the fitted value | 6.68 |
+
+  **b ∈ [5.63, 8.59]** across the 1σ span of both measurements. A single-digit pure number. **This lane does not compute it**, and the programme walls off reading meaning into a number that merely lands inside a band.
+
+**V7, V8 — and the requirement is sharper than it looks.** The value at the origin and the coefficient of the non-analytic |u|^{3/2} branch are **independent** for any free function, so a principle must lock their **ratio**, not merely produce a tidy kernel. Four conditions in total, **none delivered here**.
+
+**The reduction.** κ moves from *"a zero mode this class cannot fix"* to *"four stated conditions on a function's shape and a coupling."* That is a reduction of the problem, not a solution.
+
+**Limits.** The k-essence stress tensor of V1 is quoted, not re-derived here. The static matching is the deep-MOND spherical limit only. Gravitational-strength coupling in V6 is a choice, not a derivation; a different choice rescales b as the 3/2 power. f₀ = 1 is a definition of μ. **No shape-fixing principle is exhibited and no candidate shape is tested against galaxy data.** 8/8.
+
+**Lean.** 151 theorems, exit 0, zero `sorry`, axioms ⊆ {propext, Classical.choice, Quot.sound}.
