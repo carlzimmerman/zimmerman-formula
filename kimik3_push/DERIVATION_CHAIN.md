@@ -77,10 +77,46 @@ The **exponent is derived** (FRIED_CHICKEN row 2 ✅); the **normalisation is $\
 
 ---
 
-## Rung 5 — collapse makes the sector settle at $r_M$ with the isothermal profile  [OPEN — the active computation]
+## Rung 5 — the amplitude law is the condensate's HYDROSTATIC EQUILIBRIUM, not a collapse product  [OPEN — the crux, and the repo's own key]
 
-The amplitude law $\rho(r) = \dfrac{\sqrt{G M_b a_0}}{4\pi G\,r^2}$ (isothermal, $\rho\propto r^{-2}$)
-must arise as a **dynamical consequence of formation**, not as initial data. Three results frame it:
+**The missing piece, and it changes this rung entirely.** The framework's central structural
+identification (README rev. 6, the boxed promotion) is that **the MOND scale is the dark sector's
+pressure**:
+$$\mathcal{A}(\mathcal{Q})\equiv a_0^2(\mathcal{Q})=\kappa^2 G\,\bigl(-\mathcal{K}(\mathcal{Q})\bigr).$$
+And the matching theorem (rev. 6) states that **a galaxy well is just the cosmic background at**
+$(1+z)^3=\delta_{\rm well}\le 5000$, **with the identical sound speed.** Therefore the amplitude law is
+**NOT built by collapse** — collapse is how a *particle* halo forms, and this sector is a *condensate
+field* (Rung 3). It is the **hydrostatic equilibrium of the condensate in the baryonic potential well**,
+with an effective sound speed set by the baryonic potential itself, $c_s^2 = |\Psi|$ (rev. 6 polytrope).
+The K001/N-body collapse I was running tests the *wrong mechanism* — it answers how a collisionless
+dust halo would form, not how a condensate equilibrates. That is the thing I was missing.
+
+**The derivation this reframes.** Hydrostatic balance of a condensate with $p_d = (2\pi G/\mu^2)\rho_d^2$
+(a $\gamma=2$ polytrope, so $c_s^2 = d p/d\rho = 4\pi G\rho_d/\mu^2$) against the baryonic potential
+$\Psi$:
+$$\frac{1}{\rho_d}\nabla p_d \;=\; -\nabla\Psi \quad\Longrightarrow\quad c_s^2 \;=\; \frac{4\pi G\rho_d}{\mu^2} \;=\; |\Psi|.$$
+**The resolution (K008 6/8, K009 8/8 — both pushed).** The amplitude law is **exactly** a
+self-gravitating isothermal sphere (SIS) at the **constant** temperature
+$$\sigma^2 \;=\; \tfrac12\sqrt{G M_b a_0} \;=\; \frac{G M_b}{2 r_M},\qquad
+\rho_d(r) \;=\; \frac{\sigma^2}{2\pi G\,r^2} \;=\; \frac{\sqrt{G M_b a_0}}{4\pi G\,r^2},$$
+coefficient **exactly 1**, giving $v_c^2 = 2\sigma^2 = \sqrt{G M_b a_0}$ i.e. $v_c^4 = G M_b a_0$
+(BTFR). The honesty checks in K009 make the logic airtight:
+
+- The identity $c_s^2 = |\Psi|$ is **not** constant in $r$, so it does **not** by itself give $r^{-2}$:
+  in a baryon-dominated well it gives $\rho_d \propto 1/|\Psi_b| \propto r^{+1}$ (rising, wrong); in a
+  self-gravitating condensate the self-consistent ODE $(r^2 u')' = -4\pi G C r^2/u$ has **no real
+  power-law solution** ($u_0^2 = -2\pi G C < 0$). So $c_s^2=|\Psi|$ is the **coupling**, not the state.
+- The $r^{-2}$ **state** is the *constant-$\sigma$* isothermal sphere. A constant $\sigma$ is a
+  **global** boundary condition — exactly the loophole the barotropic no-go (Rung 5 preamble) leaves
+  open, because it forbids only a *local* $\rho$-dependent temperature, not a globally-set uniform one.
+
+**So the amplitude law reduces to ONE formation statement:** the condensate equilibrated to the
+**uniform** virial temperature of the baryonic well evaluated at the MOND radius,
+$\sigma^2 = GM_b/(2 r_M)$. The microphysics $c_s^2 = |\Psi|$ is *why the condensate can sit at the
+potential's temperature*; the constant $\sigma$ is the value $|\Psi|$ had where it last equilibrated,
+at $r_M$. **[OPEN — the single remaining rung]:** show the condensate *mixes/thermalises across*
+$r_M$ so that this global temperature is selected rather than left free. Everything else in the chain
+is derived and Lean-certified.
 
 - **No local equation of state works** (proven, FRIED_CHICKEN.md / `collapse_2026.py`): no barotropic
   $c_s^2(\rho)$ gives both a flat curve and the BTFR. So it is a **formation/violent-relaxation** question.
