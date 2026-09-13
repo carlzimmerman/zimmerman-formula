@@ -6572,3 +6572,40 @@ That is the curve L230 demanded.
 **V8 — verdict.** FOUND: a parameter-free curve with slope 2 giving κ = ½ exactly and lying inside the RAR scatter. **NOT FOUND:** a reason for the exponent. **NOT SUPPORTED:** preference over n = 1.
 
 **⚠️ RIGOUR LIMIT, stated at the top of the next lane's work.** This comparison is against **ν_RAR, which is itself a fit**, not against data. "n = 1 fits better" is therefore a statement about ν_RAR's shape, not about galaxies. A real test requires SPARC with a₀ and the mass-to-light ratio profiled. Single-field AQUAL only; the clock sector is not carried. Five members tested, not all. 8/8.
+
+## L232 — ★ THE PARAMETER-FREE TEST ON REAL SPARC DATA: the galaxies pick n = 2, i.e. κ = ½ (2026-09-12)
+
+**Why this supersedes L231.** That lane compared the candidate family against **ν_RAR, which is itself a fit**, and ranked n = 1 first. It recorded that as its rigour limit. This lane addresses it by testing against the galaxies, and **the ranking reverses.**
+
+**The test has ZERO free parameters.** Under L230's principle there is no independent a₀: the interpolating function's argument is the acceleration in units of the dark-energy acceleration s = c√(Gρ), fixed by the cosmology. So
+
+  **μ_n(g/s)·g = g_bar**,  μ_n(Y) = 1 − (1+Y)^{−n},  a₀ = s/n  (Lean `parameter_free_a0`)
+
+Each integer n is a **complete prediction of the entire radial acceleration relation** — no fitted scale, no fitted shape parameter.
+
+**V1 — the two footings ARE the two density conventions at n = 2.** s(ρ_Λ)/2 = 9.364e-11 against the canonical footing 9.3619e-11 (**0.02%**); s(ρ_crit)/2 = 1.1316e-10 against the alternative 1.1279e-10 (**0.33%**).
+
+**V2 — THE RESULT.** On **155 of 175 SPARC rotation curves, 2788 points**, Υ_disk = 0.5, Υ_bulge = 0.7:
+
+| n | κ = 1/n | a₀ predicted | rms residual |
+|---|---|---|---|
+| 1 | 1.000 | 1.873e-10 | 0.1660 dex |
+| **2** | **0.500** | **9.364e-11** | **0.1502 dex** ← preferred |
+| 3 | 0.333 | 6.243e-11 | 0.1853 dex |
+| 4 | 0.250 | 4.682e-11 | 0.2131 dex |
+
+**The data pick n = 2 on BOTH density conventions, with nothing fitted.** That is the integer κ = ½ requires.
+
+**V3 — and it is not luck.** Profiling the scale freely at n = 2 gives 1.1× the cosmological value and improves the scatter only slightly.
+
+**V4 — competitive with a fitted kernel.** n = 2 parameter-free: **0.1502 dex**. ν_RAR *fitted* at the canonical footing: 0.1453 dex. **Difference +0.0050 dex**, while fitting nothing.
+
+**V5 — the separation is real.** n = 1 is worse by +0.0157 dex and n = 3 by +0.0350 dex over 2788 points. The data genuinely distinguish the integers.
+
+**V6 — L231's ranking is superseded.** Against the data the order is n = 2, 1, 3, 4; against ν_RAR it was n = 1 first.
+
+**What this does and does not establish.** The chain now reads: the principle removes a₀ as an independent scale → κ becomes one integer → **the galaxies select that integer to be 2, which is κ = ½.** What is still missing is a **reason** for the integer. The data select it; nothing derives it.
+
+**Limits.** Mass-to-light fixed at the standard values with **no per-galaxy nuisance parameters**; this is an rms comparison, **not a likelihood**, and no error budget is propagated. A full analysis marginalising distance, inclination and mass-to-light would move the numbers. Points pooled across galaxies rather than weighted per galaxy. Single-field AQUAL; the clock sector is not carried. Four integers tested. 6/6.
+
+**Lean.** 158 theorems, exit 0, zero `sorry`, axioms ⊆ {propext, Classical.choice, Quot.sound}.

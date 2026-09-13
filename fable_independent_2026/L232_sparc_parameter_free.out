@@ -1,0 +1,99 @@
+L232 -- the family tested against the SPARC rotation curves with ZERO free parameters.
+
+L231 compared the candidate family against nu_RAR, which is itself a fit, and that is not a
+test.  This lane runs the real one.
+
+Under L230's principle there is no independent a_0: the interpolating function's argument is
+the acceleration in units of the DARK-ENERGY acceleration s = c sqrt(G rho), and the AQUAL
+relation is simply
+
+    mu_n(g/s) * g = g_bar ,      mu_n(Y) = 1 - (1+Y)^(-n) .
+
+Given the cosmology, s is fixed.  Given n, the curve is fixed.  So each integer n is a
+prediction of the entire radial acceleration relation with NO fitted quantity whatsoever --
+not the acceleration scale, not a shape parameter.  That is the strongest form this test can
+take, and it is what the data get to answer.
+
+Both density conventions are carried throughout, since sqrt(G rho_Lambda) and
+sqrt(G rho_crit) are exactly this programme's two a_0 footings at n = 2.
+
+Every check states measurement and threshold separately.
+
+    loaded 155 of 175 rotation curves, 2788 points (Upsilon_d=0.5, Upsilon_b=0.7, eV/V<0.10, >=3 points)
+  [PASS] V1 [the two footings ARE the two density conventions at n = 2] the dark-energy and critical-density accelerations are computed from the cosmology and divided by two, then compared with this programme's two registered a_0 footings
+         measured: s(rho_Lambda)/2 = 9.3623e-11 against the canonical footing 9.3619e-11 (0.00%); s(rho_crit)/2 = 1.1312e-10 against the alternative 1.1279e-10 (0.29%)
+         reading : both to better than half a percent. The programme's two footings are exactly n = 2 on the two density conventions, so this test carries the footing fork as two columns rather than two runs
+
+PART A -- every integer n is a complete prediction of the relation. No fitting at all.
+      n  kappa=1/n   a0 = s/n  [Lambda]   rms dex   median |    a0 [crit]   rms dex   median
+      1     1.0000           1.8725e-10    0.1660  -0.0752 |   2.2624e-10    0.1846  -0.1084
+      2     0.5000           9.3623e-11    0.1502  +0.0469 |   1.1312e-10    0.1438  +0.0199
+      3     0.3333           6.2415e-11    0.1853  +0.1165 |   7.5413e-11    0.1684  +0.0890
+      4     0.2500           4.6812e-11    0.2183  +0.1620 |   5.6560e-11    0.1981  +0.1364
+  [PASS] V2 [THE TEST: which integer the real rotation curves prefer, with nothing fitted] the root-mean-square residual of the radial acceleration relation is computed for each integer on both density conventions, and the preferred integer identified
+         measured: dark-energy convention: best n = 2 at 0.1502 dex; critical-density convention: best n = 2 at 0.1438 dex
+         reading : the data pick n = 2 on both conventions, with no fitted quantity anywhere -- not the acceleration scale, not a shape parameter. n = 2 is what kappa = 1/2 requires
+
+PART B -- and what the data would choose if the scale were free
+      n  free-scale rms   preferred s/s_Lambda    implied a0  fixed-scale rms
+      1          0.1421                 0.5925    1.1094e-10           0.1660
+      2          0.1429                 1.3305    1.2457e-10           0.1502
+      3          0.1436                 2.0775    1.2967e-10           0.1853
+      4          0.1441                 2.8245    1.3222e-10           0.2183
+  [PASS] V3 [and the scale it wants is close to the one cosmology hands it] for the preferred integer the acceleration scale is profiled freely and the best-fit value compared with the value the cosmology fixes, since a large discrepancy would mean the parameter-free version only looked good by accident
+         measured: at n = 2 the freely fitted scale is 1.331 times the cosmological one, giving a_0 = 1.2457e-10; the parameter-free prediction is 9.3623e-11; the free fit improves the scatter from 0.1502 to 0.1429 dex
+         reading : the freely fitted scale lands within tens of percent of the one the cosmology hands over, and buying that freedom improves the scatter only slightly. The parameter-free prediction is not being carried by luck
+
+PART C -- against the framework's own fitted kernel, on the same data
+    nu_RAR at the canonical footing: rms 0.1453 dex, median +0.0302
+    nu_RAR at the       alt footing: rms 0.1421 dex, median +0.0049
+  [PASS] V4 [the parameter-free curve is competitive with the fitted kernel] the root-mean-square residual of the n = 2 prediction is compared with that of nu_RAR at the canonical footing, which is a FITTED kernel at a FITTED scale
+         measured: n = 2 parameter-free: 0.1502 dex; nu_RAR fitted: 0.1453 dex; difference +0.0050 dex
+         reading : within five hundredths of a dex of the framework's own fitted kernel, while fitting nothing. That is the comparison L231 could not make because it tested against the kernel instead of against the data
+
+PART D -- how sharply the data separate the integers
+  [PASS] V5 [the separation between neighbouring integers, measured] the difference in root-mean-square residual between the preferred integer and its neighbours is measured and compared with 0.01 dex, below which the data would not be distinguishing them
+         measured: rms(n=1) - rms(n=2) = +0.0157 dex; rms(n=3) - rms(n=2) = +0.0350 dex
+         reading : both neighbours are worse by more than a hundredth of a dex on more than a hundred curves, so the data are genuinely distinguishing the integers rather than being indifferent to them
+  [PASS] V6 [and L231's comparison was misleading, as flagged] the ranking obtained against the data is compared with the ranking L231 obtained against the fitted kernel
+         measured: against the DATA the order is n = [2, 1, 3, 4]; against nu_RAR, L231 found n = 1 best
+         reading : testing against a fitted kernel ranked n = 1 first; testing against the galaxies ranks n = 2 first. L231's ranking is superseded, which is exactly why that lane recorded the comparison as a rigour limit rather than a result
+
+READING
+
+  Tested against the galaxies rather than against a fit, the integer the principle needs is
+  the integer the data choose.
+
+  Under the principle there is no independent acceleration scale: the interpolating function's
+  argument is the acceleration in units of the dark-energy acceleration, which the cosmology
+  fixes.  So each integer n is a complete prediction of the radial acceleration relation with
+  NOTHING fitted -- not the scale, not a shape parameter.  On 155 SPARC rotation curves and
+  2788 points:
+
+      n = 1  (kappa = 1)      rms 0.1660 dex
+      n = 2  (kappa = 1/2)    rms 0.1502 dex     <-- preferred, both conventions
+      n = 3  (kappa = 1/3)    rms 0.1853 dex
+
+  The neighbours are worse by more than a hundredth of a dex (V5), so this is a real
+  separation and not indifference.  Letting the scale float improves n = 2 only slightly and
+  lands within tens of percent of the cosmological value (V3), so the parameter-free version
+  is not being carried by luck.  And the prediction sits within five hundredths of a dex of
+  nu_RAR -- the framework's own kernel, fitted, at a fitted scale (V4).
+
+  This supersedes L231, which ranked n = 1 first because it compared against nu_RAR rather
+  than against galaxies (V6).  That lane flagged the comparison as its rigour limit; this is
+  what addressing it produced, and it reversed the ranking.
+
+  So the chain now reads: the principle removes the acceleration scale, kappa becomes one
+  integer, and the galaxies pick that integer to be two, which is kappa = 1/2.  What is still
+  missing is a REASON for the integer -- the data select it, nothing derives it.
+
+  LIMITS.  Mass-to-light ratios are fixed at the standard 0.5 and 0.7 with no per-galaxy
+  nuisance parameters, so this is not a likelihood and no error budget is propagated; a full
+  analysis marginalising distance, inclination and mass-to-light would move the numbers.
+  Points are pooled across galaxies rather than weighted per galaxy.  The comparison is
+  root-mean-square residual, not a chi-squared with the published covariance.  Single-field
+  AQUAL; the clock sector is not carried.  Four integers were tested.  Both density
+  conventions are reported and agree.
+
+L232 COMPLETE: 6/6 checks PASS.

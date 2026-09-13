@@ -9,7 +9,7 @@
   flat a₀(z), subdominant scalar GW) confronting DATA — not by Lean, and not while the intrinsic BBN
   fine-tuning (L84/L87) and astra's open ADM/khronon gates stand.
 
-  Theorems (157 as of 2026-09-12; all: exit 0, zero `sorry`, axioms ⊆ {propext, Classical.choice, Quot.sound}):
+  Theorems (158 as of 2026-09-12; all: exit 0, zero `sorry`, axioms ⊆ {propext, Classical.choice, Quot.sound}):
     hasDerivAt_G, hasDerivAt_Gp   — Gp = dG/dy and Gpp = d²G/dy² proven (not merely asserted).
     kernel_identity               — MOND kernel G'(y)/(2y) = 1 − e^{-y}.
     Gpp_zero, Gpp_pos             — health dichotomy: G''(0)=0, G''(y)>0 ∀ y>0 (no ghost off zero field).
@@ -1590,3 +1590,12 @@ theorem horizon_form_of_one_half (p q : ℝ) (hq2 : q ^ 2 = 6 * p) :
     (2 * q / 3) ^ 2 = 8 * p / 3 := by
   have h : (2 * q / 3) ^ 2 = 4 * q ^ 2 / 9 := by ring
   rw [h, hq2]; ring
+
+/-! ## L232 — the parameter-free prediction -/
+
+/-- **L232.** With no independent acceleration scale, the deep limit of `mu_n(g/s) g = g_bar`
+gives `g^2 = s g_bar/n`, i.e. `a_0 = s/n` with `s` fixed by the cosmology. So each integer is
+a complete prediction of the relation with nothing fitted. -/
+theorem parameter_free_a0 (s n g gbar : ℝ) (hn : n ≠ 0) (hs : s ≠ 0)
+    (hdeep : n * (g / s) * g = gbar) : g ^ 2 = s * gbar / n := by
+  field_simp at hdeep ⊢; linarith
