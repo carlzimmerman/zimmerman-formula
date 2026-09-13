@@ -1,0 +1,93 @@
+/Users/carlzimmerman/new_physics/zimmerman-formula/glm53_push/G009_photocount_variance.py:62: RuntimeWarning: overflow encountered in power
+  return comb(n + k - 1, k)*Y**k/(1.0 + Y)**(n + k)
+/Users/carlzimmerman/new_physics/zimmerman-formula/glm53_push/G009_photocount_variance.py:62: RuntimeWarning: overflow encountered in scalar multiply
+  return comb(n + k - 1, k)*Y**k/(1.0 + Y)**(n + k)
+/Users/carlzimmerman/new_physics/zimmerman-formula/glm53_push/G009_photocount_variance.py:62: RuntimeWarning: invalid value encountered in scalar divide
+  return comb(n + k - 1, k)*Y**k/(1.0 + Y)**(n + k)
+/Users/carlzimmerman/new_physics/zimmerman-formula/glm53_push/G009_photocount_variance.py:62: RuntimeWarning: overflow encountered in scalar power
+  return comb(n + k - 1, k)*Y**k/(1.0 + Y)**(n + k)
+G009 -- THE PHOTOCOUNT VARIANCE SIGNATURE (the user's Question 6).
+
+Is the Mandel photocount identification physics or analogy?  The question,
+verbatim: 'Does mu_n = P(>=1 quantum in n modes) predict anything beyond the
+RAR shape -- a variance/fluctuation signature in the acceleration field?  Kill:
+if it makes no prediction distinguishable from a bare interpolating function,
+it's an analogy, not a mechanism, and n=2 stays purely empirical.'
+
+THE DERIVATION (new, this lane).  If mu_2(Y) is literally the probability that
+at least one quantum is present among n = 2 independent thermal modes of mean
+occupancy Y = g/s, then the acceleration response is not the DETERMINISTIC
+function mu_2(Y) g -- it is the EXPECTED response over the mode-occupancy
+distribution.  The full count statistics of n independent Bose modes (Mandel's
+formula) are:
+
+    P(k total quanta) = C(n+k-1, k) Y^k / (1+Y)^(n+k)
+
+and the response is conditioned on k >= 1.  A deterministic interpolating
+function predicts NOTHING about the variance; the photocount reading predicts
+a specific one:
+
+    Var(g_response | Y) / <g_response>^2 = [Var(k | k>=1)] / <k | k>=1>^2
+
+THE TEST.  The RAR's observed scatter (0.05-0.11 dex in SPARC, McGaugh+16;
+the repo's own floor estimate 0.045 dex intrinsic) must be AT LEAST the
+photocount variance at the same Y -- because the photocount shot noise is
+irreducible if the reading is a mechanism.  If the predicted shot noise is
+LARGER than the observed scatter anywhere on the relation, the reading is
+DEAD (the data are quieter than its floor).  If it is smaller everywhere, it
+is a live mechanism with a specific, binned, measurable prediction.  If it is
+negligible everywhere, it is indistinguishable from a bare interpolating
+function -- the user's kill.
+
+Every check states measurement and threshold separately.
+
+PART A -- the exact count statistics: P(k) for n = 2 independent thermal modes
+       Y = g/s   <k|on>   Var(k)  sigma_g/<g>  sigma_g [dex]
+          0.01    1.015    0.015       0.1215         0.0528
+          0.05    1.076    0.080       0.2630         0.1142
+          0.10    1.152    0.170       0.3579         0.1554
+          0.30    1.470    0.633       0.5412         0.2350
+          0.50    1.800    1.260       0.6236         0.2708
+          1.00    2.667    3.556       0.7071         0.3071
+          2.00      nan      nan          nan            nan
+          5.00      nan      nan          nan            nan
+
+PART B -- the photocount shot-noise floor vs the observed RAR scatter
+  [FAIL] V1 [the photocount floor is BELOW the observed scatter everywhere on the bulk of the relation] the maximum predicted shot-noise scatter over the RAR's central band (Y in [0.05, 2]) is compared with the observed total scatter and the intrinsic floor
+         measured: max photocount sigma = 0.3071 dex at Y = 1.0 against the observed total 0.108 dex and the intrinsic floor 0.045 dex
+         reading : the measured verdict, and it is a KILL: the photocount floor (max 0.307 dex over the bulk band) OVER-PREDICTS the observed intrinsic scatter (0.045 dex) by a factor of several and even the TOTAL scatter (0.108 dex) by ~2.5x. If the acceleration response were proportional to the quantum count, the RAR would be visibly looser than it is. The literal mechanism is falsified by the relation's own tightness -- the strongest form of the user's pre-registered kill
+  [PASS] V2 [THE KILL TEST: is the photocount variance distinguishable from a bare interpolating function?] the predicted shot-noise contribution at the RAR's central band is compared with the precision of the best current RAR scatter measurement (the intrinsic floor 0.045 dex) and with the per-bin precision achievable by stacking 2788 SPARC points in Y-bins
+         measured: photocount floor 0.3071 dex vs intrinsic scatter 0.045 dex vs stacked-bin precision 0.0145 dex (50 bins over 2788 points) -- the photocount term is 21.2x the stacked-bin precision
+         reading : the verdict the arithmetic gives: if the photocount term exceeds the stacked-bin precision, the reading predicts a MEASURABLE extra scatter floor at small Y that a bare interpolating function does not -- physics, not analogy, and testable by binning the existing SPARC data
+
+PART C -- the floor's SHAPE: sigma(Y) falls as 1/sqrt(<k>) -- a specific curve
+    the floor stays above 0.045 dex for all Y < sampled
+  [FAIL] V3 [the signature: the predicted scatter floor is LARGER than the intrinsic scatter in the deep regime, giving a measurable Y-dependence] the floor curve is evaluated and its crossing with the intrinsic scatter located; the prediction is that binned SPARC scatter must RISE toward small Y as the photocount floor takes over
+         measured: no crossing
+         reading : the measured shape: the floor curve is NON-MONOTONIC -- ~0.05 dex at Y = 0.01, RISING to ~0.31 dex by Y ~ 1, asymptoting there (the negative-binomial relative variance approaches 1/sqrt(2)).  It NEVER falls below the intrinsic scatter anywhere in the RAR's bulk: the predicted floor is above the data EVERYWHERE, which is the kill.  The shape is specific and would have been measurable by binning the 2788 SPARC points in Y -- instead the existing measurement already answers it: the flat 0.045-dex intrinsic floor contradicts a rising 0.3-dex photocount floor
+
+READING
+
+  THE ANSWER TO QUESTION 6, AND IT IS THE KILL.  The Mandel photocount reading
+  DOES make a prediction beyond the RAR shape -- a specific, irreducible
+  scatter floor, sigma_g/<g> = sqrt(Var(k|on))/<k|on> -- and that prediction is
+  WRONG: at the RAR's central band the predicted floor is ~0.3 dex against the
+  observed 0.108 dex TOTAL scatter and 0.045 dex intrinsic floor.  The radial
+  acceleration relation is roughly three times TIGHTER than the literal
+  per-quantum mechanism allows.
+
+  So the verdict on the identification: it is an ANALOGY, not a mechanism.
+  The n-mode thermal formula correctly predicts the MEAN (the shape mu_2), but
+  the variance the mechanism demands is excluded by the data already in hand.
+  Any surviving mechanism must be effectively deterministic at fixed Y -- the
+  occupation numbers must be enormous (the classical limit), in which case the
+  'mode count' reading loses its quantum content and n = 2 stays purely
+  empirical, exactly as the user's kill condition states.
+
+  This is the honest close of the photocount thread: the reading was beautiful
+  (it explained the integer) and it is falsified as physics by its own variance.
+  The exponent n = 2 remains a measured number with no known derivation --
+  four structural searches failed, the dimensional route closed (L239), and now
+  the count-statistics route is killed by the RAR's tightness.
+
+G009 COMPLETE: 1/3 checks PASS.
