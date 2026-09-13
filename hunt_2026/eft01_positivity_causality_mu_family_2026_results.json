@@ -1,0 +1,93 @@
+{
+  "checks": [
+    {
+      "name": "F_n = (2n/3) z^(3/2) - (n(n+1)/4) z^2 + ...",
+      "measured": "coeff z^(3/2) = 2*n/3,  coeff z^2 = n*(-n - 1)/4",
+      "ok": true,
+      "threshold": "must equal 2n/3 and -n(n+1)/4 identically in n"
+    },
+    {
+      "name": "leading term is NON-ANALYTIC (half-integer power), no z^1 term",
+      "measured": "F_n(z) ~ z^(3/2); the coefficient of z^1 is 0 for every n",
+      "ok": true,
+      "threshold": "F'(0) = mu(0) = 0  =>  no quadratic kinetic term at the origin"
+    },
+    {
+      "name": "after fixing a0, exactly ONE free number distinguishes the members",
+      "measured": "c_(3/2) = 2/3 (n-independent), c_2 = (n + 1)/(4*n), invariant c_2/c_(3/2)^2 = 9*(n + 1)/(16*n)",
+      "ok": true,
+      "threshold": "one-parameter family => n <-> a single ratio; a bound on it is the only way in"
+    },
+    {
+      "name": "that invariant is continuous and strictly monotone in n",
+      "measured": "values {1: 9/8, 2: 27/32, 3: 3/4, 4: 45/64, 10: 99/160}; range (n: oo -> 0) = (9/16, oo)",
+      "ok": true,
+      "threshold": "=> any two-sided bound carves an INTERVAL of n, it can never select one member"
+    },
+    {
+      "name": "kinetic matrix degenerates at z = 0: no propagator, no asymptotic states",
+      "measured": "F'(z) -> 0 and z F''(z) -> 0 as z -> 0",
+      "ok": true,
+      "threshold": "both invariants of G^{mu nu} vanish => infinitely strong coupling at the vacuum"
+    },
+    {
+      "name": "so the AADNR premise (a gapped, weakly coupled, Lorentz-invariant vacuum with an analytic s-expansion) is absent, for every n",
+      "measured": "the obstruction is n-independent: F'(0)=0 holds for all n>0",
+      "ok": true,
+      "threshold": "positivity bounds are not violated here -- they are inapplicable"
+    },
+    {
+      "name": "F'' > 0 for every member and every Y (so P'' < 0: the forbidden sign)",
+      "measured": "F''(z) = mu'(Y)/(2Y) = n*(Y + 1)**(-n - 1)/(2*Y); positive on a 6x6 grid in (n, Y): True",
+      "ok": true,
+      "threshold": "AADNR/forward positivity wants P'' > 0 <=> F'' <= 0; violated by ALL n, none selected"
+    },
+    {
+      "name": "the violation is forced by MOND itself, not by the choice of family",
+      "measured": "F''(z) = mu'(Y)/(2Y) > 0 <=> mu increasing; any interpolation 0 -> 1 is increasing",
+      "ok": true,
+      "threshold": "one line, kernel-blind"
+    },
+    {
+      "name": "c_par^2 = 1 + dln(mu)/dln(Y) -> 2 in the deep-MOND limit for EVERY n",
+      "measured": "limit Y->0 : 2 (n-independent);  limit Y->inf : 1",
+      "ok": true,
+      "threshold": "the deep-MOND speed is sqrt(2) c exactly, with no n-dependence to exploit"
+    },
+    {
+      "name": "superluminal at every finite Y, for every n (no member is rescued)",
+      "measured": "smallest excess over the grid = 8.963E-20",
+      "ok": true,
+      "threshold": "c_par^2 > 1 everywhere => the causality test does not discriminate between members; large n only makes the excess die faster in the Newtonian tail (~ n Y^-n)"
+    },
+    {
+      "name": "the deep value is fixed by Milgrom scale invariance alone, not by the kernel",
+      "measured": "for mu ~ Y^p, c_par^2 -> p + 1; MOND forces p = 1 (g = sqrt(g_N a0)) => c^2 = 2",
+      "ok": true,
+      "threshold": "any theory with the deep-MOND limit has scalar cone exactly sqrt(2) wider than light"
+    },
+    {
+      "name": "every standard MOND kernel is superluminal too",
+      "measured": "all four exceed 1 on the grid: True",
+      "ok": true,
+      "threshold": "the pathology is a property of MOND, not of this family or of its exponent"
+    },
+    {
+      "name": "(a) F' = mu > 0 and (b) 2 z F'' + F' > 0 hold for the whole family",
+      "measured": "(a) all true: True;  (b) all true: True",
+      "ok": true,
+      "threshold": "the equations stay hyperbolic; only condition (c) F'' <= 0 fails -- again for all n"
+    },
+    {
+      "name": "the advance is enormous compared with any wavelength inside the EFT's validity",
+      "measured": "~4.78e+04 yr over 50 kpc, versus resolution ~ wavelength/c for lambda << 50 kpc",
+      "ok": true,
+      "threshold": "so the 'unresolvable superluminality' escape of arXiv:2207.03491 is NOT available; but the advance is n-independent, so this too fails to select n"
+    }
+  ],
+  "passed": 14,
+  "failed": 0,
+  "invariant_c2_over_c32sq": "9*(n + 1)/(16*n)",
+  "deep_mond_cpar2": "2",
+  "newtonian_cpar2": "1"
+}

@@ -1,0 +1,80 @@
+
+C1  small-z expansion of F_n (general n)
+  [PASS] F_n = (2n/3) z^(3/2) - (n(n+1)/4) z^2 + ...
+         measured : coeff z^(3/2) = 2*n/3,  coeff z^2 = n*(-n - 1)/4
+         threshold: must equal 2n/3 and -n(n+1)/4 identically in n
+  [PASS] leading term is NON-ANALYTIC (half-integer power), no z^1 term
+         measured : F_n(z) ~ z^(3/2); the coefficient of z^1 is 0 for every n
+         threshold: F'(0) = mu(0) = 0  =>  no quadratic kinetic term at the origin
+
+C2  the one dimensionless invariant a bound would have to fix
+  [PASS] after fixing a0, exactly ONE free number distinguishes the members
+         measured : c_(3/2) = 2/3 (n-independent), c_2 = (n + 1)/(4*n), invariant c_2/c_(3/2)^2 = 9*(n + 1)/(16*n)
+         threshold: one-parameter family => n <-> a single ratio; a bound on it is the only way in
+  [PASS] that invariant is continuous and strictly monotone in n
+         measured : values {1: 9/8, 2: 27/32, 3: 3/4, 4: 45/64, 10: 99/160}; range (n: oo -> 0) = (9/16, oo)
+         threshold: => any two-sided bound carves an INTERVAL of n, it can never select one member
+
+C3  the quadratic operator at the deep-MOND vacuum
+  [PASS] kinetic matrix degenerates at z = 0: no propagator, no asymptotic states
+         measured : F'(z) -> 0 and z F''(z) -> 0 as z -> 0
+         threshold: both invariants of G^{mu nu} vanish => infinitely strong coupling at the vacuum
+  [PASS] so the AADNR premise (a gapped, weakly coupled, Lorentz-invariant vacuum with an analytic s-expansion) is absent, for every n
+         measured : the obstruction is n-independent: F'(0)=0 holds for all n>0
+         threshold: positivity bounds are not violated here -- they are inapplicable
+
+C4  the AADNR sign test on the surviving analytic structure
+  [PASS] F'' > 0 for every member and every Y (so P'' < 0: the forbidden sign)
+         measured : F''(z) = mu'(Y)/(2Y) = n*(Y + 1)**(-n - 1)/(2*Y); positive on a 6x6 grid in (n, Y): True
+         threshold: AADNR/forward positivity wants P'' > 0 <=> F'' <= 0; violated by ALL n, none selected
+  [PASS] the violation is forced by MOND itself, not by the choice of family
+         measured : F''(z) = mu'(Y)/(2Y) > 0 <=> mu increasing; any interpolation 0 -> 1 is increasing
+         threshold: one line, kernel-blind
+
+C5  propagation speed along the background gradient
+         n=1   c_par^2 at Y=0.01,0.1,1,10,100 : ['1+0.9901', '1+0.9091', '1+0.5000', '1+0.09091', '1+0.009901']
+         n=2   c_par^2 at Y=0.01,0.1,1,10,100 : ['1+0.9852', '1+0.8658', '1+0.3333', '1+0.01515', '1+0.0001941']
+         n=3   c_par^2 at Y=0.01,0.1,1,10,100 : ['1+0.9803', '1+0.8240', '1+0.2143', '1+0.002051', '1+0.000002883']
+         n=4   c_par^2 at Y=0.01,0.1,1,10,100 : ['1+0.9754', '1+0.7835', '1+0.1333', '1+0.0002484', '1+3.806E-8']
+         n=10  c_par^2 at Y=0.01,0.1,1,10,100 : ['1+0.9464', '1+0.5704', '1+0.004888', '1+3.505E-10', '1+8.963E-20']
+  [PASS] c_par^2 = 1 + dln(mu)/dln(Y) -> 2 in the deep-MOND limit for EVERY n
+         measured : limit Y->0 : 2 (n-independent);  limit Y->inf : 1
+         threshold: the deep-MOND speed is sqrt(2) c exactly, with no n-dependence to exploit
+  [PASS] superluminal at every finite Y, for every n (no member is rescued)
+         measured : smallest excess over the grid = 8.963E-20
+         threshold: c_par^2 > 1 everywhere => the causality test does not discriminate between members; large n only makes the excess die faster in the Newtonian tail (~ n Y^-n)
+  [PASS] the deep value is fixed by Milgrom scale invariance alone, not by the kernel
+         measured : for mu ~ Y^p, c_par^2 -> p + 1; MOND forces p = 1 (g = sqrt(g_N a0)) => c^2 = 2
+         threshold: any theory with the deep-MOND limit has scalar cone exactly sqrt(2) wider than light
+
+C6  kernel-blindness on four other MOND interpolating functions
+         simple  mu = Y/(1+Y)             c^2(Y->0) = 2,  grid [1.9901, 1.9091, 1.5, 1.0909]
+         standard mu = Y/sqrt(1+Y^2)      c^2(Y->0) = 2,  grid [1.9999, 1.9901, 1.5, 1.0099]
+         exponential mu = 1-exp(-Y)       c^2(Y->0) = 2,  grid [1.995, 1.9508, 1.582, 1.0005]
+         control (NOT deep-MOND) mu ~ sqrt(Y) c^2(Y->0) = 3/2,  grid [1.4754, 1.4251, 1.291, 1.0699]
+  [PASS] every standard MOND kernel is superluminal too
+         measured : all four exceed 1 on the grid: True
+         threshold: the pathology is a property of MOND, not of this family or of its exponent
+
+C7  hyperbolicity (Bruneton & Esposito-Farese conditions a, b)
+  [PASS] (a) F' = mu > 0 and (b) 2 z F'' + F' > 0 hold for the whole family
+         measured : (a) all true: True;  (b) all true: True
+         threshold: the equations stay hyperbolic; only condition (c) F'' <= 0 fails -- again for all n
+
+C8  is the time advance 'resolvable' (causal-EFT criterion)?
+         crossing   10.0 kpc of deep-MOND region: advance ~ 9.553e+03 yr
+         crossing   50.0 kpc of deep-MOND region: advance ~ 4.776e+04 yr
+         crossing  200.0 kpc of deep-MOND region: advance ~ 1.911e+05 yr
+  [PASS] the advance is enormous compared with any wavelength inside the EFT's validity
+         measured : ~4.78e+04 yr over 50 kpc, versus resolution ~ wavelength/c for lambda << 50 kpc
+         threshold: so the 'unresolvable superluminality' escape of arXiv:2207.03491 is NOT available; but the advance is n-independent, so this too fails to select n
+
+==============================================================================
+VERDICT  14/14 checks passed.
+Every consistency handle examined is either INAPPLICABLE (C3: no vacuum, no
+S-matrix, no derivative expansion) or SATURATED IDENTICALLY BY THE WHOLE FAMILY
+(C4, C5, C7, C8 -- the deep-MOND speed is sqrt(2) c for all n).  The single
+dimensionless invariant that distinguishes the members (C2) is monotone in n, so
+even a hypothetical two-sided bound could only carve an interval, never pick n = 2.
+EFT positivity/causality does not fix the exponent.  Clean negative.
+==============================================================================
