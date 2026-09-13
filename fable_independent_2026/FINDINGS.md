@@ -6221,3 +6221,41 @@ A cutoff at millimetres — the familiar scale of dark-sector effective theories
 **Limits.** The excursion is estimated from the time-derivative piece of X alone, taking the gradient piece no larger. The cutoff is evaluated at today's coefficient values; its evolution is not computed. The margin comes from L216's clock rate and L217's ceiling, so every limit of those lanes is inherited. **Nothing here addresses the strong-coupling question of L216**, which is about the scalar's kinetic coefficient rather than about the cutoff. a₀ does not enter, so the result is footing-independent and quoted once. 9/9.
 
 **Lean.** 139 theorems, exit 0, zero `sorry`, axioms ⊆ {propext, Classical.choice, Quot.sound}.
+
+## L220 — THE STRONG-COUPLING QUESTION ANSWERED: a naturalness pincer with no interior (2026-09-12)
+
+**What was owed.** L216 raised it, L218 sharpened it 180-fold, L219 declined it as a different question. Stated exactly: the solar system and the flat law force m_rel = 3.8e-14. L217 showed the *reciprocal* of the margin is a conserved Noether charge, so it is protected against **classical** drift. Quantum corrections are separate: the shift symmetry acts on χ, while U is the clock's own coefficient.
+
+**V1 — only one coefficient is exposed.** [χ] = 1 so [Y] = 4; s is dimensionless so [W] = 4 and **[W_Y] = 0**. Hence sU is a cosmological-constant term with a dimension-four coefficient, taking **additive** corrections at the fourth power of the cutoff, while d is a dimensionless coupling taking only logarithmic ones. **The margin is exposed through U alone.**
+
+**V2 — and L219 closes the loop.** Because that lane derived the cutoff *from* the margin, the correction can be written in the margin alone:
+
+  **δU/U = √(2/m_rel)/8**,  ∂/∂U = 0,  ∂/∂(loop factor) = 0
+
+(Lean `loop_correction_ratio_from_the_margin`). The whole question is that one expression.
+
+**V3 — radiative stability is a LOWER bound on the margin.**
+
+  **δU ≤ U  ⟺  m_rel ≥ 1/32 = 0.031**
+
+(Lean `radiative_stability_bounds_the_margin`). **The theory is under control only if the field is NOT close to its speed limit** — closeness raises the cutoff and lowers U at once, and both push the correction up.
+
+**V4–V6 — THE PINCER, and it has no interior.**
+
+| requirement | on m_rel | on s₀ |
+|---|---|---|
+| solar-system alignment (L216) + flat a₀ (L217) | 3.8e-14 | ≥ 1.5e7 |
+| radiative stability | ≥ 0.031 | ≤ 1.000018 |
+
+**Gap: 12 orders in the margin, 8.3e11 in s₀ − 1.** The correction runs **9.1e5 times U** and **2.4e19 times the margin itself** — the cancellation that defines the margin cannot survive a single loop (Lean `clock_rate_ceiling_from_stability`). A clock essentially at proper time against a clock ten million times faster. **Every value of the clock rate fails one side or the other.**
+
+**V7–V9 — the escapes, checked, and they do not open.**
+- **Worse than the cosmological constant.** U = 3.7e-25 eV⁴ is **1.5e-14 of the dark energy density**. The ordinary CC problem is already at that scale, so this asks for a tuning fourteen orders *beyond* the one everybody already owes.
+- **The shift symmetry does not reach it.** It acts on χ; the exposed coefficient belongs to τ, and V(τ), W(Y,τ) and P(X,τ) all carry τ explicitly, so there is no τ shift symmetry. **L217's conservation protects against classical drift, which is all that lane claimed, and it stands.**
+- **The estimate cannot be dismissed on its uncertainty.** It would have to be wrong by **9.1e5 in the loop coefficient**, or the cutoff too high by **31×**. Dimensional analysis is good to an order or two, not six.
+
+**What this binds, exactly.** Light bending forces a disformal coupling (L215); the disformal coupling boosted forces a large clock rate (L216); a large clock rate forces a tiny margin; a tiny margin is radiatively unstable (here). Every link is a computed lane. **The construction is not inconsistent — it can be tuned, to one part in 1e19 — and this programme's rule is to record a cost as a cost. This is the largest cost on the board.**
+
+**Limits.** The correction is a naive-dimensional-analysis estimate, not a computed loop; V9 measures how much room that leaves and it is not enough. It inherits L219's cutoff, whose one soft step is the fluctuation amplitude, and **the cutoff enters here at the FOURTH power**, so this lane is far more sensitive to that step than L219 was: a factor of 31 in the cutoff closes the gap, where L219 had twelve orders of room. **That is the place to attack this if it is to be attacked.** The clock rate is L216's, with its crude interior match. **No loop is computed anywhere in this programme.** a₀ does not enter, so the result is footing-independent and quoted once. 9/9.
+
+**Lean.** 142 theorems, exit 0, zero `sorry`, axioms ⊆ {propext, Classical.choice, Quot.sound}.

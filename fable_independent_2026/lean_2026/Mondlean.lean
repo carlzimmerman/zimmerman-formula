@@ -9,7 +9,7 @@
   flat a₀(z), subdominant scalar GW) confronting DATA — not by Lean, and not while the intrinsic BBN
   fine-tuning (L84/L87) and astra's open ADM/khronon gates stand.
 
-  Theorems (139 as of 2026-09-12; all: exit 0, zero `sorry`, axioms ⊆ {propext, Classical.choice, Quot.sound}):
+  Theorems (142 as of 2026-09-12; all: exit 0, zero `sorry`, axioms ⊆ {propext, Classical.choice, Quot.sound}):
     hasDerivAt_G, hasDerivAt_Gp   — Gp = dG/dy and Gpp = d²G/dy² proven (not merely asserted).
     kernel_identity               — MOND kernel G'(y)/(2y) = 1 − e^{-y}.
     Gpp_zero, Gpp_pos             — health dichotomy: G''(0)=0, G''(y)>0 ∀ y>0 (no ghost off zero field).
@@ -1416,3 +1416,32 @@ of the cutoff: the branch relation ties it to the clock coefficient. -/
 theorem cutoff_is_free_of_the_field_velocity (U d q : ℝ) (hq : 0 < q) (hU : 0 < U)
     (hd : d = U / (2 * q ^ 2)) : d * q ^ 2 = U / 2 := by
   subst hd; field_simp
+
+/-! ## L220 — radiative stability of the margin -/
+
+/-- **L220 V2.** Because L219 derived the cutoff FROM the margin, the radiative correction
+to the clock coefficient can be written in the margin alone: with `Lambda^4 = 2 c U r` and
+`deltaU = Lambda^4/(16 c)`, the ratio is `r/8`, free of the coefficient and of the loop
+factor alike. Here `r` stands for `sqrt(2/m_rel)`. -/
+theorem loop_correction_ratio_from_the_margin (U r c dU L4 : ℝ) (hU : U ≠ 0) (hc : c ≠ 0)
+    (hL : L4 = 2 * c * U * r) (hdU : dU = L4 / (16 * c)) : dU / U = r / 8 := by
+  subst hL; subst hdU; field_simp; ring
+
+/-- **L220 V3.** Requiring that correction not exceed the coefficient it corrects bounds the
+margin from BELOW: the theory is under control only if the field is not close to its speed
+limit. -/
+theorem radiative_stability_bounds_the_margin (mrel r : ℝ) (hm : 0 < mrel) (hr : 0 < r)
+    (hr2 : r ^ 2 = 2 / mrel) (hstab : r / 8 ≤ 1) : 1 / 32 ≤ mrel := by
+  have h1 : r ≤ 8 := by linarith
+  have h2 : r ^ 2 ≤ 64 := by nlinarith
+  rw [hr2, div_le_iff₀ hm] at h2
+  linarith
+
+/-- **L220 V6.** Through the clock identity that lower bound on the margin is a CEILING on
+the clock rate. Set against the floor the solar system imposes, the two do not overlap. -/
+theorem clock_rate_ceiling_from_stability (w mrel s0 wmax : ℝ) (hm : 0 < mrel)
+    (hstab : 1 / 32 ≤ mrel) (hw : 0 < w) (hwm : w ≤ wmax)
+    (hid : s0 - 1 = w / mrel) : s0 ≤ 1 + 32 * wmax := by
+  have h1 : w / mrel ≤ 32 * w := by
+    rw [div_le_iff₀ hm]; nlinarith
+  linarith
