@@ -9,7 +9,7 @@
   flat a₀(z), subdominant scalar GW) confronting DATA — not by Lean, and not while the intrinsic BBN
   fine-tuning (L84/L87) and astra's open ADM/khronon gates stand.
 
-  Theorems (146 as of 2026-09-12; all: exit 0, zero `sorry`, axioms ⊆ {propext, Classical.choice, Quot.sound}):
+  Theorems (147 as of 2026-09-12; all: exit 0, zero `sorry`, axioms ⊆ {propext, Classical.choice, Quot.sound}):
     hasDerivAt_G, hasDerivAt_Gp   — Gp = dG/dy and Gpp = d²G/dy² proven (not merely asserted).
     kernel_identity               — MOND kernel G'(y)/(2y) = 1 − e^{-y}.
     Gpp_zero, Gpp_pos             — health dichotomy: G''(0)=0, G''(y)>0 ∀ y>0 (no ghost off zero field).
@@ -1485,3 +1485,13 @@ theorem margin_stays_small_unless_correction_is_enormous (mrel dUU : ℝ) (hm : 
     (hd : 0 ≤ dUU) (hsmall : dUU < 2 / mrel) : dUU / 2 * mrel < 1 := by
   rw [lt_div_iff₀ hm] at hsmall
   nlinarith
+
+/-- **L223 V6b.** The flat-`a_0` gate does not constrain the equation of state alone: since
+the drift goes as the square root of `C w`, it constrains their PRODUCT. The depth of the
+MOND interpolation and the sector's equation of state therefore trade off. -/
+theorem flat_law_constrains_the_product (C w D c r : ℝ) (hc : 0 < c) (hr : 0 ≤ r)
+    (hD : 0 ≤ D) (hr2 : r ^ 2 = C * w) (hbound : c * r ≤ D) : C * w ≤ D ^ 2 / c ^ 2 := by
+  rw [← hr2, le_div_iff₀ (by positivity)]
+  have h1 : (0:ℝ) ≤ D - c * r := by linarith
+  have h2 : (0:ℝ) ≤ D + c * r := by positivity
+  nlinarith [mul_nonneg h1 h2]

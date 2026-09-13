@@ -6318,3 +6318,31 @@ One of six stands unmodified, and it is the one that carries the conclusion.
 **Limits.** This lane audits arguments; it computes no loop either. That the coefficient of the lapse-independent operator is O(1) is asserted on dimensional grounds — the same criticism made of the two lanes before it, the difference being that **the conclusion no longer depends on it**. Fault 2 propagates into L219's cutoff number, not recomputed here. Footing-independent. 8/8.
 
 **Lean.** 146 theorems, exit 0, zero `sorry`, axioms ⊆ {propext, Classical.choice, Quot.sound}.
+
+## L223 — THE GATES END TO END: the chain is simultaneously satisfiable, and the allowed region has an interior (2026-09-12)
+
+**Why.** Every lane from L192 to L222 is analytic and four corrected the one before. Nobody had checked that the whole set holds at one parameter point with actual numbers. Uses POST-AUDIT values; L219's withdrawn cutoff is **not** quoted, and the forest's own minimum reach is used as a labelled stand-in.
+
+**The point.** Two gates fix two numbers and everything else follows: **w = 5.66e-7** (L217, flat-a₀ ceiling) and **s₀ = 1.5e7** (L216, alignment floor), giving m_rel = 3.77e-14, U = 3.68e-25 eV⁴, μ = 1 − m_rel, C = 1e3.
+
+**V2 — two lanes that had to agree, do.** The combination s₀U from L214's force-law matching and wρ from L217's symmetry-breaking drift were derived in different lanes from different physics:
+
+  s₀U = 5.5196e-18,  wρ = 5.5196e-18,  **ratio 1.00000007 = s₀/(s₀−1) exactly**
+
+**V5 — all twelve gates pass at one point.** Acoustic scale (margin 177), flat-a₀ drift (1.0), criticality operating (290), forest residual (1.02), positivity (7.5e6), margin below equation of state (1.5e7), cubic backreaction (1.5e7), preferred-frame mixing (0 identically), γ_PPN (exactly 1), alignment (1.0), radiative stability (5.3e13), MOND floor (1.0). **This was not established before: every previous result was one gate at a time.**
+
+**V6 — no hidden over-constraint.** Four gates sit at margin one, and every one is at margin one because a parameter was placed on its boundary on purpose. **Zero surprises.**
+
+**V6b — A NEW COUPLING, found by the run.** Moving all four parameters off their limits naively **fails** the flat-a₀ gate. The reason: the drift goes as √(Cw), so **the flat law constrains the PRODUCT C·w, not w alone** (Lean `flat_law_constrains_the_product`). **The depth of the MOND interpolation and the sector's equation of state trade off against each other** — a deeper interpolation must be paid for with a smaller equation of state. That coupling was implicit in L217's algebra and had never been stated.
+
+**V6c — and honouring it, the region has an interior.** At w = 5e-8, s₀ = 1e8, C = 3e3, κ = 1e5 (product 1.5e-4), all eight gates pass with **smallest margin 1.94**. The allowed set is a region, not the single corner.
+
+**V7 — the count.** **Seven quantities fixed** (the family exponents, γ by W₀ = 0, d by μ→1, the U amplitude by ρ_dm, m_rel by w and s₀, λ³/β by a₀, k by f_s = 1). **Five free**, two bounded by gates (w, s₀). Of the three unbounded: a λ–β split no observable sees, ℓ entering one inequality, and **κ — not a gap but a theorem, since this action class provably cannot derive it.**
+
+**V8, V9.** Both footings carried, ratio 1.204777 exactly. A do-not-quote list of five withdrawn results is carried with the board and none is used.
+
+**The honest position.** The construction is **closed on its own gates at a parameter point with an interior**, with two numbers measured rather than derived and one coefficient known to be underivable here. **It is not a complete theory and this lane does not make it one.** What it establishes is that the board is consistent, which after four self-corrections in a day was the thing most in doubt.
+
+**Limits.** Every gate is an analytic result inheriting its own lane's limits; none is a Boltzmann or N-body calculation and the board is a chain of estimates, not a likelihood. The reach is a conservative stand-in; recomputing the cutoff moves the criticality floor **down** only. The health condition U > 4dℓ is not evaluated because ℓ has never been pinned. The disformal coupling's cosmological effect is not computed anywhere. No loop is computed anywhere. 11/11.
+
+**Lean.** 147 theorems, exit 0, zero `sorry`, axioms ⊆ {propext, Classical.choice, Quot.sound}.

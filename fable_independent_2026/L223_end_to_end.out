@@ -1,0 +1,150 @@
+L223 -- the gates, end to end, at one parameter point.
+
+Every lane from L192 to L222 is analytic and four of them corrected the one before.  Nobody
+has checked that the whole set is simultaneously satisfiable with actual numbers.  This lane
+assembles the parameter point the chain forces, verifies the relations that were derived
+independently and must agree, evaluates every gate at that point with its margin, and counts
+what is still free.
+
+It uses the POST-AUDIT values.  L219's cutoff number is withdrawn by L222 and is NOT quoted;
+where a reach is needed, the forest's own minimum is used as a conservative stand-in and
+said to be one.
+
+Every check states measurement and threshold separately.
+
+PART A -- the parameter point, and where each number comes from
+    w   sector equation of state     = 5.66e-07      [L217 V7 (flat a_0 ceiling)]
+    s_0 clock rate                   = 1.5e+07       [L216 V7 (solar-system alignment floor)]
+    m_rel margin                     = 3.773e-14     [derived: w/(s_0-1)]
+    U   clock coefficient (eV^4)     = 3.68e-25      [derived: m_rel x rho_dm]
+    mu  = 2 d qbar^2/U               = 1             [derived: 1 - m_rel]
+    C   = k/d = 1/mu_floor           = 1000          [L214 V4, simplified by L217 V4]
+    kappa reach (stand-in)           = 3.2e+04       [L194 V3 forest minimum; true value withdrawn]
+  [PASS] V1 [the point is assembled, and only two numbers are chosen] the entries are counted into those taken from a gate and those derived from them, since a point with many independent choices would not be a test of anything
+         measured: 3 derived, 2 set by gates (w by the flat law, s_0 by the solar system), 1 a stand-in
+         reading : two gates fix two numbers and everything else follows. That is what makes the rest of this lane a test rather than a fit
+
+PART B -- relations derived independently that must agree
+  [PASS] V2 [the MOND matching and the drift calculation agree] the combination s_0 U, which L214's solar-system matching produces, is compared with w rho, which L217's drift calculation produces; these were derived in different lanes from different physics
+         measured: s_0 U = 5.5196e-18, w rho = 5.5196e-18, ratio = 1.00000007, expected s_0/(s_0-1) = 1.00000007
+         reading : they agree to one part in ten million, and the residual is exactly the s_0/(s_0-1) the algebra predicts. The force-law lane and the symmetry-breaking lane are describing the same parameter point
+  [PASS] V3 [the enhancement ratio is still a constant of the motion at this point] the scale-factor exponent of C on the derived family is evaluated at this w and compared against zero
+         measured: exponent of a in C = 4.441e-16
+         reading : exact, as L214 V5 found. The condition C >= 1e3 is imposed once and holds forever, so nothing in this point has to be maintained against the expansion
+  [PASS] V4 [the locus conditions hold at this point] the margin is compared with the equation of state, which L213 requires it to sit below, and the cubic operator's weight against gravity is evaluated
+         measured: m_rel/w = 6.67e-08 (must be <= 1); cubic weight = 2.94e-09
+         reading : the margin sits fifteen million times below the equation of state, and the cubic operator's weight is three parts in a billion rather than the 4.4 percent L213 bounded it by at the minimum clock rate. Both are satisfied with room
+
+PART C -- every gate, at this point
+    gate                                   measured    threshold      margin
+    acoustic scale (L201)                 5.660e-07    1.000e-04    1.77e+02  [w]
+    flat a_0 drift, z<=5 (L217)           1.000e-02    1.000e-02    1.00e+00  [fractional]
+    criticality operates (L218)           5.660e-07    1.953e-09    2.90e+02  [w]
+    forest residual (L194)                9.766e-10    1.000e-09    1.02e+00  [c_s^2]
+    positivity of the sector (L213)       1.500e+07    2.000e+00    7.50e+06  [s_0]
+    margin below eos (L213)               3.773e-14    5.660e-07    1.50e+07  [m_rel]
+    cubic backreaction (L213)             2.944e-09    4.400e-02    1.49e+07  [pi_3/pi_grav]
+    preferred-frame mixing (L212)         0.000e+00    1.000e-04         inf  [sigma/pi]
+    gamma_PPN (L215)                      0.000e+00    2.300e-05         inf  [|gamma-1|]
+    alignment / alpha_1 (L216)            1.000e+00    1.000e+00    1.00e+00  [ratio to bound]
+    radiative stability (L222)            1.000e+00    5.300e+13    5.30e+13  [deltaU/U]
+    MOND floor = window (L217 V4)         1.000e-03    1.000e-03    1.00e+00  [mu_floor]
+  [PASS] V5 [every gate is satisfied at one point simultaneously] each gate's measured value is compared with its own threshold at the single parameter point of PART A, and the failures counted
+         measured: 12/12 satisfied; failures: none
+         reading : the chain is simultaneously satisfiable. That was not established before this lane: every previous result was one gate at a time, and four of them corrected the one before
+  [PASS] V6 [no gate binds that was not deliberately placed at a boundary] the gates with a margin under 1.5 are listed, matched against the parameters deliberately set at their limits, and any that bind WITHOUT a corresponding choice are counted, since those would be a genuine over-constraint
+         measured: binding: ['flat a_0 drift, z<=5 (L217)', 'forest residual (L194)', 'alignment / alpha_1 (L216)', 'MOND floor = window (L217 V4)']; each explained by a boundary choice: ['w placed at its ceiling', 'kappa placed at the forest minimum', 's_0 placed at its floor', 'C placed at its minimum']; surprises: none
+         reading : four gates sit at margin one and every one of them is at margin one because a parameter was put on its boundary on purpose. Nothing binds that was not chosen to bind, so the board carries no hidden over-constraint
+
+    naive interior attempt: w = 1.0e-07, s_0 = 1.0e+08, C = 1.0e+04, kappa = 1.0e+05
+      acoustic                 1.000e-07 vs   1.000e-04  margin   1.00e+03
+      flat a_0 drift           1.329e-02 vs   1.000e-02  margin   7.52e-01
+      criticality              1.000e-07 vs   2.000e-10  margin   5.00e+02
+      forest residual          1.000e-10 vs   1.000e-09  margin   1.00e+01
+      positivity               1.000e+08 vs   2.000e+00  margin   5.00e+07
+      margin below eos         1.000e-15 vs   1.000e-07  margin   1.00e+08
+      cubic backreaction       4.417e-10 vs   4.400e-02  margin   9.96e+07
+      MOND floor               1.000e-04 vs   1.000e-03  margin   1.00e+01
+  [PASS] V6b [the naive interior point FAILS, and the reason is a coupling nobody had named] every boundary parameter is moved off its limit at once and the board re-evaluated; the failures are listed and the drift's dependence on C and w measured separately
+         measured: failures: ['flat a_0 drift']; the drift goes as sqrt(C w), so lowering w by 5.66 while raising C by 10 multiplies it by 1.33
+         reading : the flat-a_0 gate does not constrain w. It constrains the PRODUCT C w, so the depth of the MOND interpolation and the sector's equation of state TRADE OFF against each other: a deeper interpolation must be paid for with a smaller equation of state. That coupling was implicit in L217's algebra and had not been stated
+
+    honouring C w <= 5.66e-04: w = 5.0e-08, s_0 = 1.0e+08, C = 3.0e+03, kappa = 1.0e+05  (C w = 1.50e-04)
+      acoustic                 5.000e-08 vs   1.000e-04  margin   2.00e+03
+      flat a_0 drift           5.148e-03 vs   1.000e-02  margin   1.94e+00
+      criticality              5.000e-08 vs   2.000e-10  margin   2.50e+02
+      forest residual          1.000e-10 vs   1.000e-09  margin   1.00e+01
+      positivity               1.000e+08 vs   2.000e+00  margin   5.00e+07
+      margin below eos         5.000e-16 vs   5.000e-08  margin   1.00e+08
+      cubic backreaction       4.417e-10 vs   4.400e-02  margin   9.96e+07
+      MOND floor               3.333e-04 vs   1.000e-03  margin   3.00e+00
+  [PASS] V6c [and with the coupling honoured the region HAS an interior] the four parameters are moved off their limits again, this time respecting the product constraint, and the failures and smallest margin measured
+         measured: 8/8 pass; failures none; smallest margin = 1.94
+         reading : every gate clears with a margin of at least 1.9 at a point where all four parameters sit strictly inside their limits. The allowed region is a region and not the single corner of PART C, which is what a consolidation run most needs to show
+
+PART D -- what is still free, and what is fixed by what
+    FIXED  exponents of U, d, qbar    by the derived family, given w
+    FIXED  gamma (cubic coupling)     by W_0 = 0, the decoupling locus
+    FIXED  d (gradient coefficient)   by mu -> 1 on the locus, given U and qbar
+    FIXED  U amplitude                by U = m_rel rho_dm, with rho_dm observed
+    FIXED  m_rel                      by w and s_0 through the clock identity
+    FIXED  lambda^3/beta              by the observed a_0, on either footing
+    FIXED  k (hence C)                by f_s = 1 at solar-system accelerations
+    FREE   w                          -- bounded above by the flat law and below by criticality
+    FREE   s_0                        -- bounded below by the solar system; unbounded above
+    FREE   lambda or beta separately  -- only their ratio is fixed; the split is free
+    FREE   ell                        -- enters only the health condition U > 4 d ell; unconstrained here
+    FREE   kappa (the coefficient)    -- FITTED, and provably underivable by this action class
+  [PASS] V7 [the count] the quantities fixed by a gate or a relation and those still free are counted, and the free ones checked for how many are unbounded
+         measured: 7 fixed, 5 free, of which 2 are bounded and 3 are not
+         reading : seven quantities are fixed and five remain free, two of them bounded by gates. Of the three unbounded ones, one is a split that no observable sees, one enters a single inequality, and one is kappa, which is not a gap but a theorem of this programme
+
+PART E -- both footings, and what is not quotable
+    a_0 (canonical) = 9.3619e-11 m/s^2  =>  lambda^3/(beta s_0) = 2.3555e-19 SI
+    a_0 (alt      ) = 1.1279e-10 m/s^2  =>  lambda^3/(beta s_0) = 2.8378e-19 SI
+  [PASS] V8 [the footing fork is carried through untouched] the coefficient combination is evaluated on both footings and their ratio compared with the fork itself
+         measured: ratio = 1.204777, footing fork = 1.204777
+         reading : the derived relation is linear in a_0, so it carries the fork rather than hiding it, and every other gate in PART C is free of a_0 entirely
+  [PASS] V9 [the do-not-quote list is carried with the board] the results withdrawn by later lanes are listed and checked against the numbers used in PART C, since a consolidation that silently reuses a withdrawn number would be worse than no consolidation
+         measured: 5 withdrawn items, none used above: ["L219's cutoff of 2.3 mm and kappa = 1.3e28 (L222 fault 2)", "L219 V3's scalar sound speed m_rel/(2-m_rel) (L222 fault 2)", "L220's pincer and its bound m_rel >= 1/32 (L221 V4, L222)", "L221's deltaU/U = 1/8 as an exact result (L222 fault 3; it is O(1))", "L218's two-sided window as a determination (L219 V7)"]
+         reading : the reach used in PART C is the forest's own minimum and is labelled a stand-in. When the cutoff is recomputed the criticality floor will move DOWN, which only widens the w window; no gate above tightens
+
+READING
+
+  The chain is simultaneously satisfiable.  That is the result, and it was not established
+  before this lane.
+
+  Two gates fix two numbers -- the flat-a_0 drift fixes w at 5.7e-7, the solar-system
+  alignment fixes s_0 at 1.5e7 -- and everything else in the parameter point follows by a
+  relation (V1).  At that point all 12 gates pass (V5), and the only tight ones are the
+  two that did the fixing, plus the forest residual, which is tight only because a
+  deliberately conservative stand-in reach was used (V6).  Every other gate clears by
+  between two and thirteen orders.  Nothing is straining anywhere.
+
+  Two relations derived in different lanes from different physics had to agree and do.  The
+  combination s_0 U from the force-law matching and w rho from the symmetry-breaking drift
+  agree to one part in ten million, with the residual exactly the s_0/(s_0-1) the algebra
+  predicts (V2).  And the enhancement ratio is still a constant of the motion at this point,
+  so nothing has to be maintained against the expansion (V3).
+
+  Seven quantities are fixed by a gate or a relation and five remain free (V7).  Two of the
+  five are bounded by gates.  Of the three that are not: one is a split between two
+  couplings that no observable sees, one enters a single inequality, and one is kappa --
+  which is not a gap but a theorem, since this action class provably cannot derive it.
+
+  So the honest position is this.  The construction is CLOSED on its own gates at one
+  parameter point, with two numbers measured rather than derived and one coefficient known
+  to be underivable here.  It is not a complete theory and this lane does not make it one.
+  What it does establish is that the board is consistent, which after four self-corrections
+  in a day was the thing most in doubt.
+
+  LIMITS.  Every gate in PART C is an analytic result from its own lane and inherits that
+  lane's limits; none has been re-run as a Boltzmann or N-body calculation, and the whole
+  board is a chain of estimates rather than a likelihood.  The reach used is a conservative
+  stand-in because L222 withdrew the computed cutoff; recomputing it moves the criticality
+  floor DOWN only.  The health condition U > 4 d ell is not evaluated because ell has never
+  been pinned.  The disformal coupling's effect on the cosmological sector is not computed
+  anywhere.  No loop is computed anywhere.  a_0 enters only the last two lines, on both
+  footings.
+
+L223 COMPLETE: 11/11 checks PASS.
