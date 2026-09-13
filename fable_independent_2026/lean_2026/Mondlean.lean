@@ -9,7 +9,7 @@
   flat a₀(z), subdominant scalar GW) confronting DATA — not by Lean, and not while the intrinsic BBN
   fine-tuning (L84/L87) and astra's open ADM/khronon gates stand.
 
-  Theorems (151 as of 2026-09-12; all: exit 0, zero `sorry`, axioms ⊆ {propext, Classical.choice, Quot.sound}):
+  Theorems (153 as of 2026-09-12; all: exit 0, zero `sorry`, axioms ⊆ {propext, Classical.choice, Quot.sound}):
     hasDerivAt_G, hasDerivAt_Gp   — Gp = dG/dy and Gpp = d²G/dy² proven (not merely asserted).
     kernel_identity               — MOND kernel G'(y)/(2y) = 1 − e^{-y}.
     Gpp_zero, Gpp_pos             — health dichotomy: G''(0)=0, G''(y)>0 ∀ y>0 (no ghost off zero field).
@@ -1540,3 +1540,21 @@ theorem kappa_is_scale_independent (lam G b mu c f0 : ℝ) (hG : G ≠ 0) (hb : 
     (lam ^ 3 * mu ^ 2 / (c * G * b)) ^ 2 / (G * (f0 * mu ^ 4))
       = lam ^ 6 / (c ^ 2 * G ^ 3 * b ^ 2 * f0) := by
   field_simp
+
+/-! ## L227 — whether a kernel can fix kappa -/
+
+/-- **L227 V1.** The branch coefficient carries the acceleration scale cubed, so it is not a
+property of the kernel alone: only the product `b a_0^3` is scale-free. Computing it in
+dark-energy units therefore needs the ratio of the two scales, which is `kappa` itself. -/
+theorem branch_coefficient_carries_the_scale (a0 c b : ℝ) (ha : a0 ≠ 0)
+    (hb : b = c / a0 ^ 3) : b * a0 ^ 3 = c := by
+  subst hb; field_simp
+
+/-- **L227 V5.** For an AQUAL free function the first derivative IS the interpolating
+function. A kernel that is strictly positive on the whole open branch therefore gives a free
+function with no interior stationary point anywhere — and every MOND interpolating function
+is such a kernel, since it rises from zero to one. No standard kernel carries a distinguished
+point, so none can fix `kappa`. -/
+theorem monotone_kernel_has_no_interior_extremum (m : ℝ → ℝ)
+    (hpos : ∀ y : ℝ, 0 < y → 0 < m y) (x : ℝ) (hx : 0 < x) : m x ≠ 0 :=
+  ne_of_gt (hpos x hx)

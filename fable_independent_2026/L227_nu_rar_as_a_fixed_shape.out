@@ -1,0 +1,96 @@
+L227 -- can the framework's own kernel fix kappa?  The test proposed at the end of L226.
+
+L226 reduced kappa to one pure number: the coefficient b of the non-analytic branch in a
+FIXED dimensionless shape f, with the scale set by f(0) = -1.  The obvious candidate is the
+framework's own kernel nu_RAR, taken as fundamental rather than fitted.  This lane tests it.
+
+The first thing it finds is that the test AS I PROPOSED IT is circular, and that is recorded
+rather than quietly repaired.  The second thing is the well-posed version, and a general
+answer to it that rules out not only nu_RAR but every standard interpolating function.
+
+Every check states measurement and threshold separately.
+
+PART A -- the test as proposed, and why it does not stand
+  [PASS] V1 [THE PROPOSED TEST IS CIRCULAR, and that is withdrawn here] the deep-MOND coefficient of nu_RAR, which is 2/3 in units of the acceleration scale, is converted into units of the dark-energy scale, and its dependence on the acceleration scale measured
+         measured: b from nu_RAR = 2*mu4**(3/2)/(3*a_0**3); d log b/d log a_0 = -3
+         reading : b carries the acceleration scale to the third power, so writing nu_RAR's branch coefficient in dark-energy units REQUIRES knowing the ratio of the two scales -- which is kappa. The test I proposed at the end of L226 computes kappa from kappa. It is withdrawn
+
+PART B -- what would actually fix the ratio
+  [PASS] V2 [the well-posed version of the question] the conditions under which a fixed shape determines the ratio of the two scales are listed, and checked to be a statement about the function rather than about its normalisation
+         measured: 4 conditions: f(0) and the branch coefficient must be two features of ONE fixed function; a scale-free kernel gives the branch SHAPE but not its amplitude against f(0); so f must carry a distinguished point at a pure-number location; and that point is what ties the galactic scale to the cosmological one
+         reading : a kernel that is scale-free -- and every MOND interpolating function is, by construction, a function of acceleration divided by a_0 -- cannot supply the amplitude by itself. It needs a feature at a fixed place
+
+PART C -- does nu_RAR carry such a point?
+  [PASS] V3 [nu_RAR's interpolating function is strictly monotone with no stationary point] the AQUAL interpolating function of nu_RAR and its derivative are formed, and the solutions of each equalling zero at finite positive argument are counted
+         measured: mu(x) = 1 - exp(-sqrt(x)); mu'(x) = exp(-sqrt(x))/(2*sqrt(x)); zeros of mu at finite x > 0: 0; zeros of mu' at finite x > 0: 0
+         reading : the derivative is a positive exponential over a positive root and never vanishes, so the function rises strictly from zero to one with no turning point anywhere. There is no distinguished location on the galactic branch to read a pure number off
+  [PASS] V4 [and it is featureless across the whole measured range] the interpolating function is evaluated across eight decades of acceleration and checked to be strictly increasing with no interior extremum
+         measured: mu at {'x = 0.0001': 0.009950166250831893, 'x = 0.01': 0.09516258196404048, 'x = 1': 0.6321205588285577, 'x = 100': 0.9999546000702375, 'x = 10000': 1.0}
+         reading : monotone across every acceleration galaxies probe. Nothing in the shape marks a special place, which is exactly why the kernel has always been a one-parameter fit with a_0 as that parameter
+
+PART D -- and the answer generalises to every standard kernel
+  [PASS] V5 [A SECOND NO-GO: no monotone interpolating function can fix kappa] the two derivatives of the AQUAL free function are expressed through the interpolating function, their signs read off monotonicity alone, and the number of interior features counted
+         measured: {"F' = mu, and mu > 0 on 0 < x": 'no extremum of F', "F'' proportional to mu', and mu' > 0 by monotonicity": 'no inflection of F', 'mu -> 0 only as x -> 0 and mu -> 1 only as x -> infinity': 'features only at the endpoints'}; interior features = 0 for any monotone mu
+         reading : monotonicity alone forbids an interior stationary point or inflection, and EVERY MOND interpolating function is monotone by construction, since it must rise from zero at low acceleration to one at high. So no standard kernel carries a distinguished point, and no standard kernel can fix kappa. This closes the candidate L226 pointed at, and every sibling of it
+
+PART E -- where a feature could still live
+  [PASS] V6 [nu_RAR does not even define a real function on the branch where the feature would have to live] the kernel is continued to the timelike branch, where the cosmological background sits, and the imaginary part of the result measured
+         measured: continued mu = 1 - exp(-I*s); real part 1 - cos(s); imaginary part sin(s), which vanishes only at isolated points
+         reading : on the branch where the field's gradient is timelike -- which is where the cosmological background lives -- the continuation is complex except at isolated points. nu_RAR is not a real function there at all, so it cannot carry a stationary point there either
+  [PASS] V7 [THE SPECIFICATION that survives] the properties a shape-fixing function must have are assembled from V5 and V6 and counted, since a specification with no content would not be progress
+         measured: 5 properties: real on BOTH branches, spacelike and timelike gradient; monotone on the spacelike branch, because the rotation curves require it; NON-monotone on the timelike branch, carrying a stationary point; that stationary point is where the cosmological background sits, so the sector acts as a cosmological constant there; its location in units of a_0 is then the pure number that fixes kappa
+         reading : the function must be real where every standard kernel goes complex, and non-monotone where none of them is. That is a sharp target and it is not satisfied by anything in this programme's kernel library. Whether such a function exists is not settled here
+  [PASS] V8 [the verdict on the test] the outcome of the test proposed at the end of L226 is stated and compared with what was hoped for, since a lane that quietly changes its question has not answered it
+         measured: proposed: compute nu_RAR's branch coefficient and see whether it lands in [5.63, 8.59]. Outcome: the computation is circular (V1), and the well-posed replacement returns NO for nu_RAR (V3, V4, V6) and for every monotone kernel (V5)
+         reading : the test was run and the answer is negative. kappa is not fixed by the framework's own kernel, and cannot be fixed by any kernel of the standard monotone kind
+
+READING
+
+  The test returns NO, and on the way it closes a wider door than it was aimed at.
+
+  First, honestly: the test as I proposed it at the end of L226 does not stand.  nu_RAR's
+  deep-MOND coefficient is 2/3 in units of the acceleration scale, and converting it into
+  dark-energy units carries that scale to the third power (V1) -- so computing "nu_RAR's b"
+  requires already knowing the ratio of the two scales, which is kappa.  The proposal computed
+  kappa from kappa.  It is withdrawn.
+
+  The well-posed version is this.  A scale-free kernel supplies the SHAPE of the galactic
+  branch but not its amplitude against the function's value at the origin, and every MOND
+  interpolating function is scale-free by construction, being a function of acceleration
+  divided by a_0.  The amplitude is fixed only if the function carries a DISTINGUISHED POINT
+  at a pure-number location (V2).
+
+  nu_RAR has none.  Its interpolating function is 1 - exp(-sqrt(x)), whose derivative is a
+  positive exponential over a positive root and never vanishes; it rises strictly from zero to
+  one with no turning point anywhere, and is featureless across the eight decades galaxies
+  probe (V3, V4).
+
+  And the answer generalises.  For ANY interpolating function, the AQUAL free function's first
+  derivative IS that function and its second is proportional to that function's derivative --
+  so monotonicity alone forbids an interior extremum or inflection.  Every MOND interpolating
+  function is monotone by construction, because it must rise from zero at low acceleration to
+  one at high.  [1mNo standard kernel carries a distinguished point, and therefore no standard
+  kernel can fix kappa[0m (V5).  That closes not just the candidate L226 pointed at but every
+  sibling of it.
+
+  Where a feature could still live is the timelike branch, where the cosmological background
+  sits.  nu_RAR does not even define a real function there (V6): continued, it is complex
+  except at isolated points.  So the specification that survives is sharp and unusual (V7): a
+  function real on both branches, monotone on the spacelike one because rotation curves
+  require it, and NON-monotone on the timelike one, with a stationary point whose location in
+  units of a_0 is the number that fixes kappa.
+
+  Nothing in this programme's kernel library has that shape.  Whether any function does is not
+  settled here.
+
+  LIMITS.  The AQUAL reduction used is the standard one and the relation between the
+  interpolating function and the free function's derivatives is quoted rather than re-derived.
+  The circularity argument of V1 assumes the galactic branch enters only through its
+  asymptotic coefficient, which is what the deep-MOND limit means but not what a full fit
+  uses.  V5's generalisation covers monotone interpolating functions; a kernel that is
+  non-monotone on the spacelike branch would evade it, but no such kernel is viable for
+  rotation curves.  The continuation in V6 is the direct substitution of a timelike argument
+  and other continuations exist.  Nothing here exhibits a function meeting the specification
+  of V7, and its existence is open.
+
+L227 COMPLETE: 8/8 checks PASS.

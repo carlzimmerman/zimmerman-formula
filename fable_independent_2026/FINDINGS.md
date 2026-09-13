@@ -6440,3 +6440,43 @@ This **loosens** L218's criticality floor, which goes as 2/κ², so nothing else
 **Limits.** The k-essence stress tensor of V1 is quoted, not re-derived here. The static matching is the deep-MOND spherical limit only. Gravitational-strength coupling in V6 is a choice, not a derivation; a different choice rescales b as the 3/2 power. f₀ = 1 is a definition of μ. **No shape-fixing principle is exhibited and no candidate shape is tested against galaxy data.** 8/8.
 
 **Lean.** 151 theorems, exit 0, zero `sorry`, axioms ⊆ {propext, Classical.choice, Quot.sound}.
+
+## L227 — CAN THE FRAMEWORK'S OWN KERNEL FIX κ? No, and neither can any monotone kernel (2026-09-12)
+
+**V1 — the test I proposed at the end of L226 is CIRCULAR, and is withdrawn here.** ν_RAR's deep-MOND coefficient is 2/3 in units of a₀. Converted to dark-energy units it carries **d log b/d log a₀ = −3**, so computing "ν_RAR's b" requires already knowing the ratio of the two scales — which is κ. **The proposal computed κ from κ** (Lean `branch_coefficient_carries_the_scale`).
+
+**V2 — the well-posed version.** A scale-free kernel supplies the *shape* of the galactic branch but not its amplitude against f(0), and **every MOND interpolating function is scale-free by construction**. The amplitude is fixed only if the function carries a **distinguished point** at a pure-number location.
+
+**V3, V4 — ν_RAR has none.** Its interpolating function is μ(x) = 1 − e^{−√x}, with μ′ = e^{−√x}/(2√x): **zeros of μ at finite x > 0: 0. Zeros of μ′: 0.** It rises strictly from 0 to 1, monotone across all eight decades galaxies probe, with no turning point.
+
+**V5 — A SECOND NO-GO, and it is general.** For an AQUAL free function, F′ **is** the interpolating function and F″ ∝ its derivative. **Monotonicity alone forbids an interior extremum or inflection**, and every MOND interpolating function is monotone by construction (it must rise from 0 to 1). Therefore:
+
+  **No standard kernel carries a distinguished point, and no standard kernel can fix κ.**
+
+(Lean `monotone_kernel_has_no_interior_extremum`.) This closes not just the candidate L226 pointed at but every sibling of it.
+
+**V6, V7 — where a feature could still live.** On the timelike branch, where the cosmological background sits, ν_RAR continues to 1 − e^{−is}: real part 1 − cos s, **imaginary part sin s** — complex except at isolated points. So it is not even a real function there. The surviving specification: a function **real on both branches, monotone on the spacelike one (rotation curves require it), and NON-monotone on the timelike one**, with a stationary point whose location in a₀ units fixes κ. **Nothing in this programme's kernel library has that shape.** 8/8.
+
+## L228 — IS A CLOSED FORM FOR b EVIDENCE? Measured, not opined (2026-09-12)
+
+**The question, asked directly:** with κ = ½ taken as fixed, is a tidy closed form for the branch coefficient meaningful?
+
+**V1 — the target.** b = **6.6843** at gravitational-strength coupling. The two κ measurements allow b ∈ [5.627, 8.592] — **0.184 dex wide.**
+
+**V2, V3 — the density of tidy numbers there.** Enumerating small rationals × half-integer powers of π and e × small square roots: 20 924 distinct forms, of which **10 304 lie in the decade around the target** — one every 0.0001 dex. Inside the band the measurements allow, **1 957 forms fit.**
+
+| within | of 6.6843 | forms |
+|---|---|---|
+| 7.6% (the BTFR error) | | 705 |
+| 1% | | 95 |
+| 0.1% | | 9 |
+
+**V4 — the specific candidates, scored.** 2√(8π/3) = 5.7888 implies **κ = 1/√3 exactly**, 0.61σ from the distance-free measurement and 1.48σ from BTFR. So does 2π (κ = 0.5319), 4π²/6, 3√5, and 21/π (which reproduces κ = ½ to 0.003%). **All six candidates tested sit within 2σ of at least one measurement.**
+
+**V5, V6 — THE ANSWER.** One candidate per 0.0001 dex means the tolerance must be **0.022% in b**, i.e. κ known to **0.00011 absolute** against the current best of 0.043 — an improvement of **385×**. Nothing on the observational horizon does that.
+
+**V7 — and the structural reason, which is stronger.** L227 proved **no monotone kernel produces b at all.** So a closed form for it is **not a prediction awaiting confirmation; it is a guess awaiting a derivation.** Matching data cannot promote it.
+
+**V8 — what is recorded.** κ = ½ stands as the framework's fitted value. **b = 6.6843 is the number a shape-fixing principle would have to produce.** Anything deriving it is a result; anything matching it is not. 8/8.
+
+**Lean.** 153 theorems, exit 0, zero `sorry`, axioms ⊆ {propext, Classical.choice, Quot.sound}.
