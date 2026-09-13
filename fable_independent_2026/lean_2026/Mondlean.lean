@@ -9,7 +9,7 @@
   flat a₀(z), subdominant scalar GW) confronting DATA — not by Lean, and not while the intrinsic BBN
   fine-tuning (L84/L87) and astra's open ADM/khronon gates stand.
 
-  Theorems (135 as of 2026-09-12; all: exit 0, zero `sorry`, axioms ⊆ {propext, Classical.choice, Quot.sound}):
+  Theorems (139 as of 2026-09-12; all: exit 0, zero `sorry`, axioms ⊆ {propext, Classical.choice, Quot.sound}):
     hasDerivAt_G, hasDerivAt_Gp   — Gp = dG/dy and Gpp = d²G/dy² proven (not merely asserted).
     kernel_identity               — MOND kernel G'(y)/(2y) = 1 − e^{-y}.
     Gpp_zero, Gpp_pos             — health dichotomy: G''(0)=0, G''(y)>0 ∀ y>0 (no ghost off zero field).
@@ -1386,3 +1386,33 @@ theorem floor_decreases_with_reach (k1 k2 : ℝ) (h1 : 0 < k1) (h : k1 < k2) :
   have hk2 : (0:ℝ) < k2 ^ 2 := by positivity
   rw [div_lt_div_iff₀ hk2 hk1]
   nlinarith
+
+/-! ## L219 — the effective theory's ultraviolet cutoff -/
+
+/-- **L219 V1.** Because the closure is a single logarithmic function, successive
+derivatives of the kinetic function grow by a fixed ratio: the expansion parameter of the
+theory is exactly `2d/m` times the excursion, with no coefficient left free. -/
+theorem log_kinetic_expansion_parameter (U d m : ℝ) (hU : U ≠ 0) (hd : d ≠ 0) (hm : m ≠ 0) :
+    (2 * U * d ^ 2 / m ^ 2) / (U * d / m) = 2 * d / m := by
+  field_simp
+
+/-- **L219 V2.** The excursion at which that parameter reaches one is the remaining distance
+to the speed limit, as a fraction of the limit itself equal to the margin. -/
+theorem breakdown_is_the_distance_to_the_speed_limit (U d m : ℝ) (hd : d ≠ 0) (hU : U ≠ 0) :
+    (m / (2 * d)) / (U / (2 * d)) = m / U := by
+  field_simp
+
+/-- **L219 V3.** The same function fixes the quadratic action, and the scalar's own sound
+speed is the margin: a field close to its speed limit is a field with a tiny sound speed. -/
+theorem scalar_sound_speed_from_the_margin (U d m : ℝ)
+    (hU : U ≠ 0) (hd : d ≠ 0) (hm : m ≠ 0) (h2Um : 2 * U - m ≠ 0) :
+    (U * d / m) / (U * d / m + 2 * ((U - m) / (2 * d)) * (2 * U * d ^ 2 / m ^ 2))
+      = m / (2 * U - m) := by
+  field_simp
+  ring
+
+/-- **L219 V4.** The scalar's velocity, which this programme never determined, cancels out
+of the cutoff: the branch relation ties it to the clock coefficient. -/
+theorem cutoff_is_free_of_the_field_velocity (U d q : ℝ) (hq : 0 < q) (hU : 0 < U)
+    (hd : d = U / (2 * q ^ 2)) : d * q ^ 2 = U / 2 := by
+  subst hd; field_simp

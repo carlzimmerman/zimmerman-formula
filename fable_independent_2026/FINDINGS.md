@@ -6184,3 +6184,40 @@ and the two bounds come from completely unrelated physics: small-scale power on 
 **Limits.** κ is normalised at L194's forest value and evolved as 1/(aH) at fixed comoving wavenumber, which assumes the same physical mode dominates the gradient variance across a thousandfold in redshift; L194 V5 supports that at one epoch only. The operating condition is evaluated at zero gradient, where the driver is weakest, so it is conservative. The ceiling inherits every limit of L217. V6 is the size of a term in the perturbation equation, not a Boltzmann calculation. **No gate has been re-run end to end at w = 6e-7.** a₀ does not enter, so the result is footing-independent and quoted once. 8/8.
 
 **Lean.** 135 theorems, exit 0, zero `sorry`, axioms ⊆ {propext, Classical.choice, Quot.sound}.
+
+## L219 — THE UV CUTOFF: a millimetre, and it withdraws L218's two-sided window (2026-09-12)
+
+**What made it computable.** L218 left the criticality window's existence turning on κ at the shortest scale the instability acts on, never determined. L217 makes it determinable: the closure is **one** logarithmic kinetic function, so every derivative is fixed and nothing is free.
+
+**V1, V2 — the expansion parameter, and where it breaks.** Differentiating P = −(U/2)ln(U−2dX) five times reproduces (n−1)!(2d/m)^{n−1}Ud/m exactly, so successive derivatives grow by 2d/m, 4d/m, 6d/m. **The theory's expansion parameter is exactly (2d/m)·δX**, with no coefficient left free (Lean `log_kinetic_expansion_parameter`), and it reaches one when
+
+  **δX = m/(2d) = X*·m_rel** — the *remaining distance to the speed limit*
+
+(Lean `breakdown_is_the_distance_to_the_speed_limit`). That is what a speed limit always does, and it is why a small margin means a low cutoff.
+
+**V3, V4 — converting to a momentum.** The same function fixes the quadratic action: A = P_X + 2XP_XX = Ud(2U−m)/m², and the scalar's own sound speed is **c_s² = m_rel/(2−m_rel)** (Lean `scalar_sound_speed_from_the_margin`), so a field near its speed limit is also a field with a tiny sound speed. Setting a fluctuation's excursion equal to the breakdown excursion and solving,
+
+  **k_max² = π√2 · √U · (2/m_rel)^{1/4}**,  ∂k_max/∂q̄ = 0
+
+— **the scalar's velocity cancels** (Lean `cutoff_is_free_of_the_field_velocity`), which matters because the programme never determined it.
+
+**V5, V6 — the number.** At m_rel = 3.8e-14 and U = 3.7e-25 eV⁴:
+
+| quantity | value |
+|---|---|
+| k_max | 8.53e-5 eV |
+| 1/k_max | **2.31 mm** |
+| κ_max at z = 3 | 1.30e28 |
+| margin over the forest's 3.2e4 | 4.1e23, **24 orders** |
+
+A cutoff at millimetres — the familiar scale of dark-sector effective theories built on the dark energy density, reached here **from the margin rather than assumed**. L194's "sub-Mpc scales are enormously larger than any cutoff of this effective theory" is now a computed statement.
+
+**V7 — L218 V4 CORRECTED, the two-sided window is WITHDRAWN.** L218 computed its lower bound on w at the *smallest* κ the forest tolerates, not at the cutoff. At the cutoff the floor collapses from 1.5e-8 to **4.2e-54**, forty-five orders lower. **Criticality imposes no practical lower bound. w is bounded from above only, and L218's headline — the first two-sided determination of w — is withdrawn.** L218's operating condition w > 2/κ² itself stands; only its numerical floor was evaluated at the wrong κ.
+
+**V8 — the cost of a high cutoff.** The residual is 1/κ_max² = **5.9e-57**, colder than any measurement could register, but **set by the shortest scale in the theory and by nothing in the action**. At that scale the instability grows 1.4e25 per e-fold, which is the effective theory failing at its own cutoff exactly as it should. So the sector's coldness stays a genuine prediction of the *mechanism* — L194's "nothing has to be tuned" stands — while **its numerical value is not computable inside this effective theory.**
+
+**V9 — robustness.** The one convention-sensitive step is the amplitude of a fluctuation at momentum k. The verdict survives an error of **twelve orders** there, leaving 4.1e17 of margin. It does not rest on that step.
+
+**Limits.** The excursion is estimated from the time-derivative piece of X alone, taking the gradient piece no larger. The cutoff is evaluated at today's coefficient values; its evolution is not computed. The margin comes from L216's clock rate and L217's ceiling, so every limit of those lanes is inherited. **Nothing here addresses the strong-coupling question of L216**, which is about the scalar's kinetic coefficient rather than about the cutoff. a₀ does not enter, so the result is footing-independent and quoted once. 9/9.
+
+**Lean.** 139 theorems, exit 0, zero `sorry`, axioms ⊆ {propext, Classical.choice, Quot.sound}.
