@@ -6587,18 +6587,18 @@ Each integer n is a **complete prediction of the entire radial acceleration rela
 
 **V2 — THE RESULT.** On **155 of 175 SPARC rotation curves, 2788 points**, Υ_disk = 0.5, Υ_bulge = 0.7:
 
-| n | κ = 1/n | a₀ predicted | rms residual |
-|---|---|---|---|
-| 1 | 1.000 | 1.873e-10 | 0.1660 dex |
-| **2** | **0.500** | **9.364e-11** | **0.1502 dex** ← preferred |
-| 3 | 0.333 | 6.243e-11 | 0.1853 dex |
-| 4 | 0.250 | 4.682e-11 | 0.2131 dex |
+| n | κ = 1/n | a₀ (ρ_Λ) | rms (ρ_Λ) | a₀ (ρ_crit) | rms (ρ_crit) |
+|---|---|---|---|---|---|
+| 1 | 1.000 | 1.8725e-10 | 0.1660 | 2.2624e-10 | 0.1846 |
+| **2** | **0.500** | **9.3623e-11** | **0.1502** | **1.1312e-10** | **0.1438** |
+| 3 | 0.333 | 6.2415e-11 | 0.1853 | 7.5413e-11 | 0.1684 |
+| 4 | 0.250 | 4.6812e-11 | 0.2183 | 5.6560e-11 | 0.1981 |
 
 **The data pick n = 2 on BOTH density conventions, with nothing fitted.** That is the integer κ = ½ requires.
 
 **V3 — and it is not luck.** Profiling the scale freely at n = 2 gives 1.1× the cosmological value and improves the scatter only slightly.
 
-**V4 — competitive with a fitted kernel.** n = 2 parameter-free: **0.1502 dex**. ν_RAR *fitted* at the canonical footing: 0.1453 dex. **Difference +0.0050 dex**, while fitting nothing.
+**V4 — competitive with a fitted kernel.** n = 2 parameter-free: **0.1502 dex** (ρ_Λ) and **0.1438 dex** (ρ_crit). ν_RAR *fitted* at the canonical footing: 0.1453 dex. So the fit-free curve is within 0.005 dex on one convention and marginally **below** the fitted kernel on the other — noted without weight, since 0.0015 dex is far inside the systematics of fixed mass-to-light ratios.
 
 **V5 — the separation is real.** n = 1 is worse by +0.0157 dex and n = 3 by +0.0350 dex over 2788 points. The data genuinely distinguish the integers.
 
