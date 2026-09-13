@@ -27,6 +27,8 @@ SCRIPTS = [
     ("Lean Certificate 6 (Grand First-Principles)", "gemini38_flash_push/run_first_principles_chain_lean.py"),
     ("CMB Acoustic Peaks & Cosmology", "gemini38_flash_push/cmb_acoustic_peaks_cosmology.py"),
     ("Lean Certificate 7 (CMB Cosmology)", "gemini38_flash_push/run_cmb_cosmo_lean.py"),
+    ("Definitive One-Function Unification", "gemini38_flash_push/definitive_onefunction_unification.py"),
+    ("Lean Certificate 8 (Disformal No-Slip)", "gemini38_flash_push/run_disformal_noslip_lean.py"),
 ]
 
 def main():
