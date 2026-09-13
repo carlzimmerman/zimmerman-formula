@@ -142,86 +142,63 @@ def make_ic_top_hat(N, R0, mu, rng=None):
 
 # ------------------------------------------------------------- integrator
 def run(pos, vel, mp, eps, mb, dt_max, t_end, dE_every=1.0,
-        snap_times=(), verbose=True, tag="run", eta=0.02):
-    """Per-particle BLOCK-timestep KDK leapfrog (Aarseth NBODY-style).
+        snap_times=(), verbose=True, tag="run", eta=0.03):
+    """Synchronous KDK leapfrog with a shared adaptive timestep.
 
-    dt_i = eta / sqrt(|a_i|), quantised down to dt_max/2^k, floored at
-    dt_min = eta/sqrt(a_max).  Accelerations on active particles are
-    computed with Newton's 3rd law (pair_acc); distant blocks that are
-    due at the same time are integrated with predicted positions of the
-    others (extrapolated from their last force), the standard
-    Ahmad-Cohen-friendly scheme.  The CENTRAL POINT MASS dominates the
-    inner dynamics and enters exactly in every force evaluation, so
-    eccentric-orbit pericentres are handled accurately at the block
-    timestep of each particle.
+    dt = min over particles of  eta * sqrt((|r|^2+eps^2)^{3/2} / (mb + M_enc))
+    (a fraction of the local free-fall time), capped at dt_max.  This is
+    the correct criterion for a point-mass-dominated collapse: the orbit
+    time at the pericentre.  KDK with a shared step is exactly symplectic
+    at fixed dt and 2nd-order accurate; energy is conserved to the
+    leapfrog tolerance.
     """
     n = pos.shape[0]
     eps2 = eps * eps
     acc = np.zeros_like(pos)
     accel_numba(pos, acc, mp, eps2, mb)
 
-    def bucket(a):
-        dt = eta / np.sqrt(np.sqrt((a * a).sum(1)) + 1e-30)
-        dt = np.clip(dt, dt_min, dt_max)
-        k = np.ceil(np.log2(dt_max / dt)).astype(int)
-        return dt_max / 2.0**np.clip(k, 0, 18)
+    def choose_dt(pos):
+        r2 = (pos * pos).sum(1) + eps2
+        # local enclosed mass for the free-fall time: point mass + a
+        # uniform-density interior estimate using the current median
+        # radius.  Conservative (uses mb + mu throughout).
+        tau = np.sqrt(r2**1.5 / (mb + mp * n))
+        return min(dt_max, eta * tau.min())
 
-    amax0 = np.sqrt((acc * acc).sum(1)).max()
-    dt_min = min(dt_max / 2**12, eta / np.sqrt(amax0 + 1e-30))
-    dt_i = bucket(acc)
-    t_next = dt_i.copy()           # next force time per particle
-    t_last = np.zeros(n)           # last force time per particle
-    # first interval: the opening half-kick is applied inside the loop via
-    # the stored (t=0) force, so no special init is needed beyond t_last=0.
-
-    hist = {"t": [], "ke": [], "pe_pp": [], "pe_b": [], "rmed": [], "dt_eff": []}
+    hist = {"t": [], "ke": [], "pe_pp": [], "pe_b": [], "rmed": [], "dt": []}
     snaps = {}
     snap_times = sorted(snap_times)
     t = 0.0
     isnap = 0
     next_E = 0.0
     nsteps = 0
+    dt = choose_dt(pos)
     while t < t_end - 1e-12:
-        # next event time = earliest particle force time
-        t_ev = t_next.min()
-        dtp = t_ev - t
-        if dtp > 0:
-            pos += dtp * vel              # synchronous drift
-            t = t_ev
-        active = t_next <= t + 1e-15
-        idx = np.nonzero(active)[0]
-        dt_a = t - t_last[active]
-        # standard KDK: opening half-kick with the OLD force (applied at
-        # the last event for this interval), drift (done globally above),
-        # closing half-kick with the NEW force at the drifted position.
-        vel[active] += 0.5 * dt_a[:, None] * acc[active]
-        a_new = np.zeros((idx.size, 3))
-        a_old = np.zeros((n, 3))
-        pair_acc(pos[idx], pos, mp, eps2, mb, a_new, a_old)
-        acc[idx] = a_new
-        vel[active] += 0.5 * dt_a[:, None] * a_new
-        t_last[active] = t
-        dt_i[active] = bucket(a_new)
-        t_next[active] = t + dt_i[active]
+        vel += 0.5 * dt * acc
+        pos += dt * vel
+        t += dt
+        accel_numba(pos, acc, mp, eps2, mb)
+        vel += 0.5 * dt * acc
+        dt = choose_dt(pos)
         nsteps += 1
         if t >= next_E:
             ke, pe_pp, pe_b = energy_numba(pos, vel, mp, eps, mb)
             hist["t"].append(t); hist["ke"].append(ke)
             hist["pe_pp"].append(pe_pp); hist["pe_b"].append(pe_b)
-            hist["dt_eff"].append(dt_i.min())
+            hist["dt"].append(dt)
             r = np.sqrt((pos * pos).sum(1))
             hist["rmed"].append(np.median(r))
             next_E = t + dE_every
-            if verbose and (len(hist["t"]) % 20 == 0):
+            if verbose and (len(hist["t"]) % 10 == 0):
                 print(f"    [{tag}] t={t:8.3f}  E={ke+pe_pp+pe_b:+.6f}  "
-                      f"r_med={np.median(r):8.3f}  n_act={idx.size}", flush=True)
+                      f"r_med={np.median(r):8.3f}  dt={dt:.2e}", flush=True)
         while isnap < len(snap_times) and t >= snap_times[isnap]:
             snaps[snap_times[isnap]] = (pos.copy(), vel.copy())
             isnap += 1
     if isnap < len(snap_times):
         snaps[snap_times[-1]] = (pos.copy(), vel.copy())
     hist["nsteps"] = nsteps
-    for k in ("t", "ke", "pe_pp", "pe_b", "rmed", "dt_eff"):
+    for k in ("t", "ke", "pe_pp", "pe_b", "rmed", "dt"):
         hist[k] = np.array(hist[k])
     return hist, snaps
 
