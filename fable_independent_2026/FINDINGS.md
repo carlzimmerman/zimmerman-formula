@@ -6948,3 +6948,28 @@ parameter-free curve is an effective description; a complete relativistic theory
 this evidence — now demonstrated, not suspected. `L244_disformal_preferred_frame_mu2.py` 4/4. Lean 168
 theorems. LIMITS: the O(1) α₁ values are the programme's prior results (ppn_mmg_gate; AeST PPN), cited;
 L244 proves only that the μ₂ swap leaves them unchanged, the specific question asked.
+
+## L245 — the break-radius prediction fit to real SPARC rotation curves: NO DETECTION, and the sample cannot decide (2026-09-13)
+
+Fit L242's parameter-free EFE break to the SPARC curves that reach past r_× (isolated μ₂ vs the L240
+forced EFE law, nothing fitted — r_×, g_ext, a₀ all measured).
+
+- **V1 sanity:** isolated μ₂ reproduces the L232 fit (0.147 dex full sample). ✓
+- **V3 the test:** on the **34 outer points of 9–10 galaxies** past r_×, the EFE model fits **worse** —
+  0.304 dex vs isolated 0.135. The EFE **over-predicts** a downturn.
+- **V4 direction:** only **14/34 (41%)** outer points sit below flat MOND; median offset **+0.007 dex**
+  (slightly *above*); sign-test **p=0.30**. The curves stay **flat** past r_×; the predicted downturn
+  is absent.
+- **V6 robustness:** the negative is **not** a choice of EFE law — additive (0.297) ≈ multiplicative
+  (0.304), both over-suppress. And it **flips with the g_ext prescription**: with the conservative
+  Newtonian-net field, **0** galaxies have a break inside their data (breaks move outside → nothing to
+  see, consistent with flatness). The aggressive 2MRS `mondpc` field predicts a downturn that isn't
+  there; the conservative field predicts no observable break.
+
+**VERDICT: no detection. SPARC cannot settle it** — only ~9 galaxies reach past r_×, and the outcome
+depends on an approximation-dependent external-field estimate. The flat outer curves either falsify the
+*strong* EFE downturn or indicate the 2MRS field is overestimated (its own code flags `mondpc`
+"over-weights distant deep-MOND structure"). This matches L240's finding that the forced EFE law
+over-suppresses. **The decisive test needs extended-HI curves reaching several MOND radii in
+independently-measured dense environments — not this archive.** `L245_break_radius_fit.py` 4/6 (V3, V4
+are the honest-negative FAILs). Both footings machinery; canonical reported.

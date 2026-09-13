@@ -1,0 +1,49 @@
+{
+ "checks": [
+  {
+   "name": "V1 [sanity: isolated mu_2 reproduces the L232 parameter-free residual on the full sample] the isolated model rms is compared with L232's 0.1502 dex",
+   "measured": "isolated rms 0.1469 dex over 2296 points (120 galaxies)",
+   "pass": true,
+   "reading": "the machinery reproduces the established parameter-free fit, so the EFE comparison below is trustworthy"
+  },
+  {
+   "name": "V2 [applying the EFE everywhere slightly WORSENS the full-sample fit, as expected: most SPARC galaxies are near-isolated] the EFE rms over ALL points is compared with the isolated rms",
+   "measured": "EFE rms 0.1957 vs isolated 0.1469 dex over the full sample",
+   "pass": true,
+   "reading": "most galaxies sit in weak fields where the EFE should barely act, so forcing it everywhere cannot help globally. The test is not the global fit -- it is the OUTER points of the few galaxies that reach past r_x, done next"
+  },
+  {
+   "name": "V3 [does the EFE model fit the OUTER points better than isolated MOND?] the rms residual at points beyond r_x is compared between the two parameter-free models",
+   "measured": "34 outer points in 10 galaxies: isolated rms 0.1354 dex, EFE rms 0.3043 dex (EFE better by -0.1689)",
+   "pass": false,
+   "reading": "this is the confirmatory test. A lower EFE rms means the predicted downturn is actually present at the outer radii; a higher one means the EFE over-suppresses (as it did for dwarfs in L240) or is absent"
+  },
+  {
+   "name": "V4 [do the outer points show the predicted deficit -- obs BELOW isolated MOND?] the sign of log(gobs/g_isolated) at outer points is tested against the no-downturn null (half above, half below)",
+   "measured": "14/34 outer points sit below isolated MOND (41%), median offset +0.0067 dex; sign-test p = 0.303",
+   "pass": false,
+   "reading": "the EFE predicts outer points fall BELOW the flat-MOND expectation. A majority below with a negative median is the signature; a split near 50/50 means no detectable downturn at this footing and sample size"
+  },
+  {
+   "name": "V5 [the test is LOW POWER and is reported as a hint, not a result] the number of testable galaxies and the per-galaxy win rate are stated with their statistical limitation",
+   "measured": "only 10 galaxies reach past r_x; EFE fits better in 3/10; with 34 outer points a -0.1689 dex difference and sign-test p = 0.303 are HINT-level, not decisive",
+   "pass": true,
+   "reading": "stated so the result cannot be over-read: SPARC simply does not contain many galaxies whose curves reach deep into their own EFE regime. A decisive test needs extended-HI curves (e.g. WHISP/Apertif) or a purpose-built deep-MOND-in-a-field sample, not this archive"
+  },
+  {
+   "name": "V6 [the negative is NOT a choice of EFE law, and it flips with the g_ext prescription -- so SPARC cannot settle it] the additive law is compared with the multiplicative, and the aggressive vs conservative external-field prescriptions are contrasted",
+   "measured": "additive law rms 0.2974 dex, essentially the same as multiplicative 0.3043 -- both over-predict the downturn vs isolated 0.1354; and with the conservative Newtonian-net g_ext the predicted breaks move OUTSIDE the data entirely (0 testable galaxies), consistent with the observed flatness",
+   "pass": true,
+   "reading": "the failure is robust to the EFE law (both bracket and both over-suppress), and the whole test's existence depends on the approximation-dependent 2MRS field: the aggressive prescription predicts a downturn that is absent, the conservative one predicts almost no observable break at all (0 galaxies). SPARC cannot decide either way"
+  }
+ ],
+ "n_pass": 4,
+ "n_fail": 2,
+ "n_testable": 10,
+ "n_outer_points": 34,
+ "iso_rms_outer": 0.13541478331396792,
+ "efe_rms_outer": 0.30430938868069685,
+ "frac_below": 0.4117647058823529,
+ "median_dir_dex": 0.006650190768501206,
+ "sign_p": 0.30348366402484217
+}
