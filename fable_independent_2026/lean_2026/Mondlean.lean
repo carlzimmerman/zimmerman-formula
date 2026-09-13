@@ -9,7 +9,7 @@
   flat a₀(z), subdominant scalar GW) confronting DATA — not by Lean, and not while the intrinsic BBN
   fine-tuning (L84/L87) and astra's open ADM/khronon gates stand.
 
-  Theorems (160 as of 2026-09-13; all: exit 0, zero `sorry`, axioms ⊆ {propext, Classical.choice, Quot.sound}):
+  Theorems (163 as of 2026-09-13; all: exit 0, zero `sorry`, axioms ⊆ {propext, Classical.choice, Quot.sound}):
     hasDerivAt_G, hasDerivAt_Gp   — Gp = dG/dy and Gpp = d²G/dy² proven (not merely asserted).
     kernel_identity               — MOND kernel G'(y)/(2y) = 1 − e^{-y}.
     Gpp_zero, Gpp_pos             — health dichotomy: G''(0)=0, G''(y)>0 ∀ y>0 (no ghost off zero field).
@@ -1622,3 +1622,26 @@ requirement in `d` dimensions constrains exactly that form. So no dimension fixe
 theorem counts_differ_by_a_factor_not_a_power (n m v : ℝ) (hn : n ≠ 0) (hv : v ≠ 0) :
     (m * v) / (n * v) = m / n := by
   field_simp
+
+/-- L240 V4: the two external-field laws differ by EXACTLY the cross term.  The
+multiplicative law uses (1+Y_i)(1+Y_e) where the additive one uses 1+Y_i+Y_e, and the
+difference is Y_i*Y_e and nothing else -- which is why they agree whenever either
+acceleration is small, and separate only when both are of order one. -/
+theorem external_field_laws_differ_by_the_cross_term (Yi Ye : ℝ) :
+    (1 + Yi) * (1 + Ye) - (1 + Yi + Ye) = Yi * Ye := by ring
+
+/-- L240 V4: and for non-negative accelerations the multiplicative law always sits at or
+above the additive one in the argument, hence always predicts at least as much external-field
+suppression.  Equality exactly when one of the two accelerations vanishes. -/
+theorem multiplicative_suppresses_at_least_as_much (Yi Ye : ℝ) (hi : 0 ≤ Yi) (he : 0 ≤ Ye) :
+    1 + Yi + Ye ≤ (1 + Yi) * (1 + Ye) := by nlinarith
+
+/-- L240 V1: the refutation of my own argument, stated as algebra.  A single mode whose mean
+occupancy is the total is geometric: the ratio of successive counts is constant, independent
+of the count k.  So the additive reading is consistent with the photocount structure and the
+claim that the reading FORCES a unique external field effect does not hold. -/
+theorem total_occupancy_mode_is_geometric (Y : ℝ) (hY : 0 < Y) (k : ℕ) :
+    (Y ^ (k + 1) / (1 + Y) ^ (k + 2)) / (Y ^ k / (1 + Y) ^ (k + 1)) = Y / (1 + Y) := by
+  have h1 : (0:ℝ) < 1 + Y := by linarith
+  field_simp
+  ring

@@ -6786,3 +6786,46 @@ It reduces exactly to the family at d = 3, has deep limit n·Y^{d−2} (verified
 **Limits.** The d-dimensional deep power is Milgrom's conformal argument, quoted not re-derived. d = 2 is degenerate (no acceleration scale in the conformal case) and is shown for completeness, not used as a check. Uniqueness in V5 is within the photocount reading only. **Nothing here bears on whether the reading is physically correct.** 7/7.
 
 **Lean.** 160 theorems, exit 0, zero `sorry`, axioms ⊆ {propext, Classical.choice, Quot.sound}.
+
+## L240 — what the photocount reading does and does NOT say about the external field effect (2026-09-13)
+
+**I set out to show the photocount identification FORCES a unique external field effect. It does not,
+and V1–V2 are the refutation of my own argument.** The argument was that two accelerations driving one
+mode make its count the sum of two geometric variables, which is not geometric. That attacks a
+distribution the additive reading never asserts: a mode does not carry one count per source, it has ONE
+mean occupancy set by the total local acceleration, and a mode at occupancy Y_i + Y_e is geometric by
+definition. The second prop, the composition law, is n modes at a SINGLE occupancy and says nothing
+about combining two different ones. **The "forced" claim is withdrawn.** Two laws survive —
+multiplicative `μ = 1 − (1+Y_i)^(−n)(1+Y_e)^(−n)` and additive `μ = 1 − (1+Y_i+Y_e)^(−n)` — and both
+pass all three required limits including the substantive one (a strong external field returns a deep
+system to *Newtonian* dynamics with a boosted constant, not to deep-MOND).
+
+**A REAL COST (V6–V8).** On 10 classical Milky Way dwarfs BOTH laws predict dispersions a median
+**−0.326 dex** below the measured ones — a factor of 2.1 — and both are **worse than ignoring the
+external field entirely** (0.360 dex rms against 0.182). The two laws differ by 0.002 dex here, so this
+is about the framework's EFE as such, not about which rule. Not a code fault: the solver's isolated
+limit reproduces the closed-form deep-MOND dispersion to **0.04%** (V5), run first for that reason.
+**Robust:** a free M/L cannot close it (deep-MOND σ scales as M^(1/4), lifting every prediction
+together — best 0.177 dex at Υ_V = 12 against 0.143 at Υ_V = 5 isolated), and dropping the tidally
+disrupted Sagittarius does not either. **But it does not land cleanly on the new physics:** the
+isolated prediction already underpredicts by a factor 1.26 at Υ_V = 2 (V7), a pre-existing dwarf
+problem standard MOND shares. The EFE law owns the extra −0.225 dex and not the rest.
+
+**THE PREDICTION, WHICH SURVIVES THE AMBIGUITY (V9–V10).** The laws differ only by the cross term
+Y_i·Y_e, under 5% everywhere accessible and largest in the solar neighbourhood (Y_e = 1.15, Y_i ≈ 1/3 at
+10 kAU) — but by a factor 2.6, **not** the 5 set as the threshold, so V4 is recorded as a failure. At
+the registered separations the two laws therefore *bracket* rather than disagree:
+
+**γ_v(20 kAU) = 1.095 to 1.111, against 1.575 for the same binary isolated — the Milky Way's own field
+removes 83% of the boost.** Parameter-free, and **below** the registered Arm-A band 1.16–1.23: a
+confident DR4 measurement inside that band counts AGAINST the framework's EFE, not for it.
+
+**LIMITS.** Inherits L237's status (an identification, not a demonstration). The wide-binary numbers are
+a one-dimensional two-body boost, NOT an orbit simulation — internal and external accelerations are
+treated as scalars when they are vectors whose relative angle sweeps around an orbit, and that
+anisotropy is not carried here. The frozen DR4 preregistration is untouched. The dwarf test uses one M/L
+and the MW flat-curve field at heliocentric distance; binary inflation and tidal disruption push the
+same way and neither is modelled. n = 2 remains empirical.
+
+`L240_the_external_field_effect.py` — **7/10 checks PASS** (V4, V6, V8 are honest failures).
+Lean 163 theorems, zero `sorry`.
