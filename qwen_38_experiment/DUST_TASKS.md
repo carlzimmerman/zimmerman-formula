@@ -106,3 +106,21 @@ the ghost-condensate, khronon, Galileon, superfluid-dark-matter and BEC-dark-mat
 literature for support mechanisms in a sector with a conserved shift charge. Report what was
 tried and what killed it. PASS: the annotated list. **Cite nothing you have not read** — mark
 anything second-hand as UNVERIFIED, and never invent an equation number, quote or DOI.
+
+**D000 — What carries the weak-lensing signal on the surviving reading? (NEW 2026-09-14,
+post-L248.)** Hypothesis: L248 excluded every reading whose lensing phantom is the
+galaxy's own bounded sector (no turnover at a0/(1+B)^2, slope 0.537±0.026; enclosed
+lensing mass 1.5–8.7x the full AM budget at 1 Mpc). The equilibrium reading survives
+only by its external-field cap (5.8 kpc vs the 35 kpc innermost bin — silence). Method:
+compute what the two-component architecture DOES predict for the stacked lensing RAR —
+the capped phantom inside R_cap plus the free cold dust beyond — and compare with the
+Brouwer+2021 ESD profile on both footings. State the cap radius R_cap(g_ext, M_bar)
+explicitly (the EFE law), the dust profile choice that must supply the r^-2-ish lensing
+signal beyond it, and whether the joint prediction (capped phantom + dust) can fit the
+ESD data with the dust's only freedom being its abundance. PASS: the joint-fit chi2 on
+both footings, with the dust abundance per bin; KILL: if the joint prediction needs the
+dust to cluster on the lens scale with a profile shape the free cold dust cannot
+support (c_s^2 = 0 dust cannot make a smooth halo around a single lens without
+collapse — say which), the lensing signal is UNEXPLAINED on this reading and the gap
+is escalated to ESCALATE.md as the theory's sharpest open hole. Either verdict is a
+first-class result.
