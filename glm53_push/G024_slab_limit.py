@@ -272,6 +272,32 @@ check("V4b box-averaged local nu = 2 sqrt(z_c/z) (sympy residual 0; a DISTINCTIV
 
 # ------------------------------------------------------------------
 print("="*88)
+print("V7  SATURATION AND COLUMN CANCELLATION -- z* = 4 z_c, the total dark column is EXACTLY ZERO")
+print("="*88)
+rb_kg = RHO_B_MSPC3*K3
+_,A,zc,zstar = slab_profile(A0, rb_kg, 1.0)
+zc_pc = zc/3.0857e16; zstar_pc = zstar/3.0857e16
+col = lambda z: 2*(2*A*np.sqrt(z) - rb_kg*z)   # two-sided net dark column (SI)
+print(f"  z_c = {zc_pc:.1f} pc   z* = {zstar_pc:.1f} pc   z*/z_c = {zstar/zc:.4f} (expect exactly 4)")
+print(f"  col(z_c)  = {col(zc):.4e} kg/m2 = a0/(8πG) = {A0/(8*np.pi*G):.4e}  (ratio {col(zc)/(A0/(8*np.pi*G)):.4f})")
+print(f"  col(z*)   = {col(zstar):.3e} kg/m2   (expect EXACTLY 0)")
+rho_ph_zstar = A/np.sqrt(zstar) - rb_kg
+print(f"  rho_ph(z*) = {rho_ph_zstar:.4e} kg/m3 = {rho_ph_zstar*K3:.4f} Msun/pc3  (expect -rho_b/2 = {-0.5*RHO_B_MSPC3:.4f})")
+# numeric continuity of nu_box at z*
+nu_at_zstar = 2*np.sqrt(zc/zstar)
+print(f"  nu_box(z*) = 2 sqrt(z_c/z*) = {nu_at_zstar:.4f} (continuous with the constant 1 beyond z*)")
+# SYMPY exact
+Asym, rbsym = sp.symbols('A rho_b', positive=True)
+col_tot_star = 2*(2*Asym*sp.sqrt(4*(Asym/rbsym)**2) - rbsym*4*(Asym/rbsym)**2)
+col_tot_star_s = sp.simplify(col_tot_star)
+rho_at_star = sp.simplify(Asym/sp.sqrt(4*(Asym/rbsym)**2) - rbsym)
+check("V7 slab saturation: z* = 4 z_c and the TOTAL two-sided dark column cancels to EXACTLY 0 (sympy)",
+      f"z*/z_c = {zstar/zc:.4f}, col(z*) = {col(zstar):.3e} kg/m2, col_tot(z*)_sympy = {col_tot_star_s}, rho_ph(z*)_sympy = {rho_at_star}",
+      abs(zstar/zc - 4) < 1e-12 and abs(col(zstar)) < 1e-12 and col_tot_star_s == 0 and rho_at_star == -rbsym/2,
+      "THE SATURATION STRUCTURE (no track has this): the dark column RISES from the midplane, peaks at a0/(8πG) = 26.7 Msun/pc2 at z_c = 141 pc, then FALLS and CROSSES ZERO at z* = 562.5 pc -- the negative outer layer (z_c < |z| < z*) exactly cancels the positive core. The box-nu curve 2 sqrt(z_c/z) is continuous at z* (it equals 1 there) and stays 1 beyond: the slab dark matter is a FINITE, self-cancelling structure, not an ever-growing halo. This is the sharpest local signature of the identification: existing local dark-density analyses box-average |z| <= ~50-300 pc -- they would measure the RISING positive core (nu_box 3.3-4.3 at 30-50 pc); a DR4 box at ~500 pc should measure nu -> 1 (no dark excess). The negative layer (rho_ph = -rho_b/2 at z*) is itself a direct, falsifiable, zero-parameter prediction: any measurement of the local vertical mass distribution at |z| ~ 500 pc that finds POSITIVE dark mass there kills the slab limit")
+
+# ------------------------------------------------------------------
+print("="*88)
 print("V5  SYMBOLIC IDENTITY (sympy residual 0) -- the nu=2 column identity")
 print("="*88)
 a0s, rbs, Gs = sp.symbols('a0 rho_b G', positive=True)
@@ -311,8 +337,12 @@ print("    discriminant is the radial POSITION of the 0.5 region, not its mere a
 print("    The slab layer's existence (a structural break in the local dark profile at ~141 pc,")
 print("    NOT a smooth NFW) is the DR4 dark-density-mapping prediction that accompanies")
 print("    G003's 6.1 kpc radial break.")
-check("V6 slab limit is registered as a falsifiable near-midplane prediction (exponent-at-large-R test + layer break)",
-      "exponent 0.5 (MOND) at LARGE R vs 1.0 (Newton) at |z|~10-300 pc; layer break at 141 pc", True,
+print("  - FALSIFIABLE (added by V7): a DR4 box at |z| ~ 500 pc should measure")
+print("    nu -> 1 (the total column cancels at z* = 562.5 pc); finding positive")
+print("    dark mass at ~500 pc kills the slab; a box 30-50 pc should measure")
+print("    nu = 4.3-3.4 (the rising core), a flat halo predicts 1.5-2.5.")
+check("V6 slab limit is registered as a falsifiable near-midplane prediction (exponent-at-large-R test + layer break + saturation box)",
+      "exponent 0.5 (MOND) at LARGE R vs 1.0 (Newton); layer break at 141 pc; nu -> 1 at ~562 pc", True,
       "the theory's registration, not a claim of closure -- the slab limit is one more falsifiable channel, now made parameter-free, regime-mapped, and derivative-identified")
 
 # ------------------------------------------------------------------

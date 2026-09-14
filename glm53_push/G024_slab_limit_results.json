@@ -1,5 +1,5 @@
 {
-  "n_pass": 10,
+  "n_pass": 11,
   "n_fail": 0,
   "checks": [
     {
@@ -51,14 +51,20 @@
       "reading": "the local nu as a function of BOX SIZE is predicted parameter-free: it FALLS AS 1/sqrt(z) (3.36 at +/-50 pc down to 2 at +/-140.6 pc, down to 1.17 at +/-300 pc). This is the theory's sharpest local signature: a DR4 dark-density box average that systematically decreases with box scale at the 1/sqrt rate (not the roughly-flat 1.5-2.5 of an NFW halo) is the slab; a flat or INCREASING box-nu kills the slab local structure. The z_c = 140.6 pc layer width is the scale where nu_box crosses the in-layer identity value 2"
     },
     {
+      "name": "V7 slab saturation: z* = 4 z_c and the TOTAL two-sided dark column cancels to EXACTLY 0 (sympy)",
+      "measured": "z*/z_c = 4.0000, col(z*) = -2.776e-17 kg/m2, col_tot(z*)_sympy = 0, rho_ph(z*)_sympy = -rho_b/2",
+      "pass": true,
+      "reading": "THE SATURATION STRUCTURE (no track has this): the dark column RISES from the midplane, peaks at a0/(8\u03c0G) = 26.7 Msun/pc2 at z_c = 141 pc, then FALLS and CROSSES ZERO at z* = 562.5 pc -- the negative outer layer (z_c < |z| < z*) exactly cancels the positive core. The box-nu curve 2 sqrt(z_c/z) is continuous at z* (it equals 1 there) and stays 1 beyond: the slab dark matter is a FINITE, self-cancelling structure, not an ever-growing halo. This is the sharpest local signature of the identification: existing local dark-density analyses box-average |z| <= ~50-300 pc -- they would measure the RISING positive core (nu_box 3.3-4.3 at 30-50 pc); a DR4 box at ~500 pc should measure nu -> 1 (no dark excess). The negative layer (rho_ph = -rho_b/2 at z*) is itself a direct, falsifiable, zero-parameter prediction: any measurement of the local vertical mass distribution at |z| ~ 500 pc that finds POSITIVE dark mass there kills the slab limit"
+    },
+    {
       "name": "V5 sympy: col_ph = a0/(8 pi G), col_b = a0/(8 pi G), nu = 2  (all residuals 0)",
       "measured": "res(col_ph)=0, res(col_b)=0, res(nu-2)=0",
       "pass": true,
       "reading": "the column identity is EXACT algebra (Lean-certified in G018_slab.lean with standard axioms); the local \u03bd=2 is a theorem, not a fit"
     },
     {
-      "name": "V6 slab limit is registered as a falsifiable near-midplane prediction (exponent-at-large-R test + layer break)",
-      "measured": "exponent 0.5 (MOND) at LARGE R vs 1.0 (Newton) at |z|~10-300 pc; layer break at 141 pc",
+      "name": "V6 slab limit is registered as a falsifiable near-midplane prediction (exponent-at-large-R test + layer break + saturation box)",
+      "measured": "exponent 0.5 (MOND) at LARGE R vs 1.0 (Newton); layer break at 141 pc; nu -> 1 at ~562 pc",
       "pass": true,
       "reading": "the theory's registration, not a claim of closure -- the slab limit is one more falsifiable channel, now made parameter-free, regime-mapped, and derivative-identified"
     }

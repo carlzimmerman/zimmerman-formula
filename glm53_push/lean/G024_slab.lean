@@ -82,6 +82,44 @@ theorem slab_phantom_column (A a0 G rb : ℝ) (hA : 0 < A) (hA_sq : A ^ 2 = a0 *
   field_simp
   ring
 
+/-- **slab_saturation (z* = 4 z_c).** The branch-crossing height z* =
+a0/(4πGρ_b) is exactly FOUR times the layer half-width z_c = a0/(16πGρ_b):
+z*/z_c = 4.  The dark column is finite -- it cancels at z*. -/
+theorem slab_saturation (a0 G rb : ℝ) (ha0 : 0 < a0) (hG : 0 < G) (hrb : 0 < rb) :
+    a0 / (4 * Real.pi * G * rb) = 4 * (a0 / (16 * Real.pi * G * rb)) := by
+  field_simp [hG, hrb, Real.pi_pos]
+  ring
+
+/-- **slab_column_cancels (the cancellation).** At the saturation height
+z* = 4 z_c, the two-sided net dark column is EXACTLY zero:
+col(z*) = 2*(2A·sqrt(z*) − ρ_b·z*) = 0, with A = sqrt(z_c·ρ_b²) ...  stated
+with A as the layer coefficient satisfying A² = a0·ρ_b/(16πG) (slab_A_sq,
+which gives A = √(a0 ρ_b/(16πG)) and z* = 4a0/(16πGρ_b)): -/
+theorem slab_column_cancels (A a0 G rb : ℝ) (hA : 0 < A)
+    (hA_sq : A ^ 2 = a0 * rb / (16 * Real.pi * G)) (ha0 : 0 < a0) (hG : 0 < G) (hrb : 0 < rb) :
+    2 * (2 * A * Real.sqrt (4 * a0 / (16 * Real.pi * G * rb)) - rb * (4 * a0 / (16 * Real.pi * G * rb))) = 0 := by
+  set t := 4 * a0 / (16 * Real.pi * G * rb) with ht
+  have hz : 0 < t := by rw [ht]; positivity
+  have hA2t : A ^ 2 * t = (rb * t) ^ 2 / 4 := by
+    rw [hA_sq, ht]
+    field_simp [hG, hrb, Real.pi_pos]
+  have hl : (A * Real.sqrt t) ^ 2 = A ^ 2 * t := by
+    calc (A * Real.sqrt t) ^ 2
+      = A ^ 2 * (Real.sqrt t) ^ 2 := by ring
+      _ = A ^ 2 * t := by rw [Real.sq_sqrt hz.le]
+  have heq_sq : (A * Real.sqrt t) ^ 2 = (rb * t / 2) ^ 2 := by
+    rw [hl, hA2t]
+    field_simp [hz.ne', hrb.ne']
+    ring
+  have hposL : 0 ≤ A * Real.sqrt t := mul_nonneg hA.le (Real.sqrt_nonneg t)
+  have hposR : 0 ≤ rb * t / 2 := by positivity
+  have heqL : A * Real.sqrt t = rb * t / 2 := by
+    have hp : 0 < A * Real.sqrt t := by positivity
+    have hq : 0 < rb * t / 2 := by positivity
+    nlinarith
+  rw [show 2 * A * Real.sqrt t = 2 * (rb * t / 2) from by
+    rw [mul_assoc, heqL]]
+  ring
 /-- **slab_nu_two (THE IDENTITY).** Within the slab layer,
 nu = (col_b + col_ph)/col_b = 2 EXACTLY — the local amplification factor
 is a column identity, not a halo-model fit. -/
@@ -126,4 +164,6 @@ theorem slab_box_nu (A rb z : ℝ) (hA : 0 < A) (hrb : 0 < rb) (hz : 0 < z) :
 #print axioms slab_phantom_column
 #print axioms slab_nu_two
 #print axioms slab_box_nu
+#print axioms slab_saturation
+#print axioms slab_column_cancels
 #print axioms num_zc_product
