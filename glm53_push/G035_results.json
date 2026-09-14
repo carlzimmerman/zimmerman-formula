@@ -1,0 +1,274 @@
+{
+ "checks": [
+  {
+   "name": "V1 [canonical] unit identity G M_b = 2 sigma_t^2 r_M",
+   "measured": "|lhs/rhs - 1| = 0.00e+00",
+   "pass": true,
+   "reading": "the code-unit system is the physical one; G_code = 2 exact"
+  },
+  {
+   "name": "V1 [alt] unit identity G M_b = 2 sigma_t^2 r_M",
+   "measured": "|lhs/rhs - 1| = 0.00e+00",
+   "pass": true,
+   "reading": "the code-unit system is the physical one; G_code = 2 exact"
+  },
+  {
+   "name": "V2 bundle M_b closed loop (max enclosed baryons of the real curve)",
+   "measured": "max M/M_b = 1.000000 (expect 1.0 by construction), M(x_last)/M_b = 0.9979 (last curve point, 0.2% noise, registered), x_last = 4.57 r_M",
+   "pass": true,
+   "reading": "the baryon field is the bundle's own curve, normalised to its own M_b (the G033 pipeline M_b definition: MAX enclosed baryons)"
+  },
+  {
+   "name": "V3 baryon field structure",
+   "measured": "g(0.01)/g(0.02) = 0.500 (solid body: 0.500); g(2 x_last)/g(x_last) = 0.500 (flat-vb: 0.500); g(r_M) = 1.232",
+   "pass": true,
+   "reading": "interior solid-body below x_first, tail flat-v_b (g ~ 1/x); no softening"
+  },
+  {
+   "name": "V4 closed-form potential vs field: -dphi/dln r = r g_b",
+   "measured": "max rel dev = 7.61e-04 (finite-difference, 2000 pts)",
+   "pass": true,
+   "reading": "the exact segment integrals reproduce g_b; the PE bookkeeping is correct"
+  },
+  {
+   "name": "V5 tracer-orbit conservation in the real baryon field",
+   "measured": "dE/E = -2.02e-06, dL/L = 4.51e-16 over 20 t_cross",
+   "pass": true,
+   "reading": "leapfrog conserves E and L in the exact external field (mp ~ 0)"
+  },
+  {
+   "name": "V6a baryon force direction at r = 0.05 r_M",
+   "measured": "a.r_hat = -1.000000 (attractive: -1)",
+   "pass": true,
+   "reading": "the field pulls toward the origin (a sign error here invalidates everything)"
+  },
+  {
+   "name": "V6a baryon force direction at r = 0.3 r_M",
+   "measured": "a.r_hat = -1.000000 (attractive: -1)",
+   "pass": true,
+   "reading": "the field pulls toward the origin (a sign error here invalidates everything)"
+  },
+  {
+   "name": "V6a baryon force direction at r = 1.0 r_M",
+   "measured": "a.r_hat = -1.000000 (attractive: -1)",
+   "pass": true,
+   "reading": "the field pulls toward the origin (a sign error here invalidates everything)"
+  },
+  {
+   "name": "V6a baryon force direction at r = 3.0 r_M",
+   "measured": "a.r_hat = -1.000000 (attractive: -1)",
+   "pass": true,
+   "reading": "the field pulls toward the origin (a sign error here invalidates everything)"
+  },
+  {
+   "name": "V6b self-gravity direction (two particles close, do not repel)",
+   "measured": "a(left) x = +1.9810 > 0, a(right) x = -1.9810 < 0",
+   "pass": true,
+   "reading": "particles accelerate toward each other"
+  },
+  {
+   "name": "V7 inverse-square orbit bound",
+   "measured": "r in [0.905, 1.000] (start 1.0, sub-circular v), dE/E = -2.14e-06",
+   "pass": true,
+   "reading": "a 1/r^2 attractive field keeps the orbit bound and oscillating"
+  },
+  {
+   "name": "V8 numba kernel vs numpy kernel",
+   "measured": "max abs dev = 1.70e-15 (500 particles), numba = True",
+   "pass": true,
+   "reading": "the production kernel is the validated kernel (fallback identity)"
+  }
+ ],
+ "verdict": {
+  "P1": false,
+  "P2": false,
+  "P3": false,
+  "kill_T": true,
+  "kill_R": true,
+  "kill": true,
+  "instrument_ok": true,
+  "energy_ok": true,
+  "dtconv": true,
+  "relax_frac": 0.9824561403508771,
+  "verdict": "KILL",
+  "r50_span": {
+   "0.3": 5.748084753582295,
+   "0.5": 4.812582454374537,
+   "0.7": 4.8892151423221195,
+   "1.0": 10.280910014374449,
+   "1.5": 47.15305171795784
+  }
+ },
+ "transfer": {
+  "sig2/mu=0.1": {
+   "0.3": {
+    "0.5": 0.30973664030620607,
+    "1.0": 0.387737892609687,
+    "2.0": 0.3708029089662845
+   },
+   "0.5": {
+    "0.5": 0.3294965831900051,
+    "1.0": 0.40507440536249534,
+    "2.0": 0.34953220834532167
+   },
+   "0.7": {
+    "0.5": 0.36092082827985345,
+    "1.0": 0.389015025507802,
+    "2.0": 0.27502174474613283
+   },
+   "1.0": {
+    "0.5": 0.36904369682673965,
+    "1.0": 0.36989063673472,
+    "2.0": 0.32733637984009245
+   },
+   "1.5": {
+    "0.5": 0.7499711884991341,
+    "1.0": 0.9425517743912832,
+    "2.0": 1.0644103111471248
+   }
+  },
+  "r50/mu=0.1": {
+   "0.3": {
+    "0.5": 0.2419502640685112,
+    "1.0": 0.523466866668395,
+    "2.0": 1.1820736594919472
+   },
+   "0.5": {
+    "0.5": 0.31887359995823583,
+    "1.0": 0.6395868663277806,
+    "2.0": 1.3840488604971386
+   },
+   "0.7": {
+    "0.5": 0.40800819323397164,
+    "1.0": 0.7523932364726285,
+    "2.0": 1.9057065581315844
+   },
+   "1.0": {
+    "0.5": 0.5832881620270272,
+    "1.0": 1.1971018212506466,
+    "2.0": 7.591246963023558
+   },
+   "1.5": {
+    "0.5": 2.325189976879208,
+    "1.0": 28.540403538189132,
+    "2.0": 86.09974100775429
+   }
+  },
+  "sig2/mu=0.3": {
+   "0.3": {
+    "0.5": 0.5147333398384263,
+    "1.0": 0.45509275996766013,
+    "2.0": 0.4239799581330425
+   },
+   "0.5": {
+    "0.5": 0.47426275522028893,
+    "1.0": 0.4948607790711336,
+    "2.0": 0.3960172560616622
+   },
+   "0.7": {
+    "0.5": 0.46731296184836363,
+    "1.0": 0.4602633197464253,
+    "2.0": 0.32917046407209116
+   },
+   "1.0": {
+    "0.5": 0.44585668160199093,
+    "1.0": 0.3905907048131799,
+    "2.0": 0.32466619274939934
+   },
+   "1.5": {
+    "0.5": 0.683401300652737,
+    "1.0": 0.8941324070819547,
+    "2.0": 1.0387705493108816
+   }
+  },
+  "r50/mu=0.3": {
+   "0.3": {
+    "0.5": 0.19333188565215048,
+    "1.0": 0.47389212086047905,
+    "2.0": 1.1112880642984417
+   },
+   "0.5": {
+    "0.5": 0.27397471398940454,
+    "1.0": 0.5882053474002258,
+    "2.0": 1.3185259014876902
+   },
+   "0.7": {
+    "0.5": 0.3601169936681925,
+    "1.0": 0.7385315892428871,
+    "2.0": 1.7606894584500457
+   },
+   "1.0": {
+    "0.5": 0.5035929677616894,
+    "1.0": 1.094711142478759,
+    "2.0": 5.177393985429701
+   },
+   "1.5": {
+    "0.5": 1.7151328133500714,
+    "1.0": 22.31839904455142,
+    "2.0": 80.87374625106244
+   }
+  },
+  "sig2/mu=1.0": {
+   "0.3": {
+    "0.5": 1.0595956882140722,
+    "1.0": 0.8070181671981986,
+    "2.0": 0.5899778770306531
+   },
+   "0.5": {
+    "0.5": 1.146619688546987,
+    "1.0": 0.8144140432938611,
+    "2.0": 0.5773936039700772
+   },
+   "0.7": {
+    "0.5": 1.099213763556854,
+    "1.0": 0.8218028773256341,
+    "2.0": 0.48538530001711916
+   },
+   "1.0": {
+    "0.5": 0.9649080182615385,
+    "1.0": 0.6431689606584228,
+    "2.0": 0.36039500973470445
+   },
+   "1.5": {
+    "0.5": 0.7692363899339469,
+    "1.0": 0.711685369219302,
+    "2.0": 0.8042259061571487
+   }
+  },
+  "r50/mu=1.0": {
+   "0.3": {
+    "0.5": 0.1546860641079364,
+    "1.0": 0.34970838213437977,
+    "2.0": 0.9209783703733023
+   },
+   "0.5": {
+    "0.5": 0.19199480663442814,
+    "1.0": 0.45497830340220125,
+    "2.0": 1.1292748286077563
+   },
+   "0.7": {
+    "0.5": 0.24603137299879052,
+    "1.0": 0.5783864205784923,
+    "2.0": 1.4963662585642195
+   },
+   "1.0": {
+    "0.5": 0.35664675452427697,
+    "1.0": 0.8177280138617766,
+    "2.0": 2.5923970898090127
+   },
+   "1.5": {
+    "0.5": 0.6170242110330096,
+    "1.0": 3.406039689839959,
+    "2.0": 53.21818472412019
+   }
+  }
+ },
+ "constants": {
+  "Mb_msun": 62501000000.0,
+  "N": 2000,
+  "eps_rm": 0.08,
+  "eta": 0.05,
+  "dt_max": 0.02,
+  "xmax": 60.0
+ }
+}

@@ -1,0 +1,158 @@
+==============================================================================
+G035 -- THE ATTRACTOR TEST (pre-registered verdicts in
+        G035_preregistration.md; frozen BEFORE this suite ran)
+==============================================================================
+  [canonical] a0 = 9.3619e-11  r_M =  9.647 kpc  sigma_target =  118.05 km/s  t_cross(r_M) =  79.91 Myr
+  [alt      ] a0 = 1.1279e-10  r_M =  8.789 kpc  sigma_target =  123.67 km/s  t_cross(r_M) =  69.49 Myr
+
+--- STATIC VALIDATIONS ---
+  [PASS] V1 [canonical] unit identity G M_b = 2 sigma_t^2 r_M
+         measured: |lhs/rhs - 1| = 0.00e+00
+         reading : the code-unit system is the physical one; G_code = 2 exact
+  [PASS] V1 [alt] unit identity G M_b = 2 sigma_t^2 r_M
+         measured: |lhs/rhs - 1| = 0.00e+00
+         reading : the code-unit system is the physical one; G_code = 2 exact
+  [PASS] V2 bundle M_b closed loop (max enclosed baryons of the real curve)
+         measured: max M/M_b = 1.000000 (expect 1.0 by construction), M(x_last)/M_b = 0.9979 (last curve point, 0.2% noise, registered), x_last = 4.57 r_M
+         reading : the baryon field is the bundle's own curve, normalised to its own M_b (the G033 pipeline M_b definition: MAX enclosed baryons)
+  [PASS] V3 baryon field structure
+         measured: g(0.01)/g(0.02) = 0.500 (solid body: 0.500); g(2 x_last)/g(x_last) = 0.500 (flat-vb: 0.500); g(r_M) = 1.232
+         reading : interior solid-body below x_first, tail flat-v_b (g ~ 1/x); no softening
+  [PASS] V4 closed-form potential vs field: -dphi/dln r = r g_b
+         measured: max rel dev = 7.61e-04 (finite-difference, 2000 pts)
+         reading : the exact segment integrals reproduce g_b; the PE bookkeeping is correct
+  [PASS] V5 tracer-orbit conservation in the real baryon field
+         measured: dE/E = -2.02e-06, dL/L = 4.51e-16 over 20 t_cross
+         reading : leapfrog conserves E and L in the exact external field (mp ~ 0)
+  [PASS] V6a baryon force direction at r = 0.05 r_M
+         measured: a.r_hat = -1.000000 (attractive: -1)
+         reading : the field pulls toward the origin (a sign error here invalidates everything)
+  [PASS] V6a baryon force direction at r = 0.3 r_M
+         measured: a.r_hat = -1.000000 (attractive: -1)
+         reading : the field pulls toward the origin (a sign error here invalidates everything)
+  [PASS] V6a baryon force direction at r = 1.0 r_M
+         measured: a.r_hat = -1.000000 (attractive: -1)
+         reading : the field pulls toward the origin (a sign error here invalidates everything)
+  [PASS] V6a baryon force direction at r = 3.0 r_M
+         measured: a.r_hat = -1.000000 (attractive: -1)
+         reading : the field pulls toward the origin (a sign error here invalidates everything)
+  [PASS] V6b self-gravity direction (two particles close, do not repel)
+         measured: a(left) x = +1.9810 > 0, a(right) x = -1.9810 < 0
+         reading : particles accelerate toward each other
+  [PASS] V7 inverse-square orbit bound
+         measured: r in [0.905, 1.000] (start 1.0, sub-circular v), dE/E = -2.14e-06
+         reading : a 1/r^2 attractive field keeps the orbit bound and oscillating
+  [PASS] V8 numba kernel vs numpy kernel
+         measured: max abs dev = 1.70e-15 (500 particles), numba = True
+         reading : the production kernel is the validated kernel (fallback identity)
+
+--- SUITE: 58 runs x 2000 particles, eps = 0.08 r_M, adaptive dt (eta = 0.05, cap 0.02) ---
+  [C1/canonical/0.1/1.0/0.5]  sig2/sig2t = 0.369  r50 = 0.583 r_M  slope = -4.01  f_esc = 0.11  dE/E = -8.5e-05  relaxed = True  (31s)
+  [C1/canonical/0.1/0.7/0.5]  sig2/sig2t = 0.362  r50 = 0.409 r_M  slope = -4.91  f_esc = 0.00  dE/E = +4.2e-06  relaxed = True  (46s)
+  [C1/canonical/0.1/0.5/0.5]  sig2/sig2t = 0.325  r50 = 0.323 r_M  slope = -5.79  f_esc = 0.00  dE/E = -2.8e-06  relaxed = True  (67s)
+  [C1/canonical/0.1/0.7/1.0]  sig2/sig2t = 0.392  r50 = 0.751 r_M  slope = -3.87  f_esc = 0.03  dE/E = -4.4e-04  relaxed = True  (84s)
+  [C1/canonical/0.1/1.0/1.0]  sig2/sig2t = 0.371  r50 = 1.195 r_M  slope = -3.25  f_esc = 0.21  dE/E = -9.3e-03  relaxed = True  (55s)
+  [C1/canonical/0.1/1.5/0.5]  sig2/sig2t = 0.750  r50 = 2.325 r_M  slope = -3.58  f_esc = 0.41  dE/E = -2.7e-03  relaxed = True  (20s)
+  [C1/canonical/0.1/0.3/0.5]  sig2/sig2t = 0.298  r50 = 0.252 r_M  slope = -5.17  f_esc = 0.00  dE/E = -3.9e-06  relaxed = True  (111s)
+  [C1/canonical/0.1/1.5/1.0]  sig2/sig2t = 0.943  r50 = 28.542 r_M  slope = -3.15  f_esc = 0.59  dE/E = -1.1e-01  relaxed = True  (27s)
+  [C1/canonical/0.1/1.0/2.0]  sig2/sig2t = 0.326  r50 = 7.583 r_M  slope = -2.33  f_esc = 0.45  dE/E = -2.0e-01  relaxed = True  (69s)
+  [C1/canonical/0.1/1.5/2.0]  sig2/sig2t = 1.065  r50 = 86.100 r_M  slope = -2.89  f_esc = 0.75  dE/E = -1.6e-01  relaxed = True  (34s)
+  [C1/canonical/0.1/0.5/1.0]  sig2/sig2t = 0.414  r50 = 0.635 r_M  slope = -4.01  f_esc = 0.00  dE/E = -2.3e-05  relaxed = True  (120s)
+  [C1/canonical/0.1/0.7/2.0]  sig2/sig2t = 0.290  r50 = 1.872 r_M  slope = -2.08  f_esc = 0.14  dE/E = -1.2e-02  relaxed = True  (128s)
+  [C1/canonical/0.3/0.7/0.5]  sig2/sig2t = 0.471  r50 = 0.360 r_M  slope = -5.44  f_esc = 0.00  dE/E = +2.7e-06  relaxed = True  (71s)
+  [C1/canonical/0.1/0.3/1.0]  sig2/sig2t = 0.398  r50 = 0.521 r_M  slope = -3.14  f_esc = 0.00  dE/E = -1.4e-05  relaxed = True  (202s)
+  [C1/canonical/0.1/0.5/2.0]  sig2/sig2t = 0.345  r50 = 1.405 r_M  slope = -2.40  f_esc = 0.02  dE/E = -1.3e-04  relaxed = True  (202s)
+  [C1/canonical/0.3/0.5/0.5]  sig2/sig2t = 0.472  r50 = 0.282 r_M  slope = -5.47  f_esc = 0.00  dE/E = -6.1e-06  relaxed = True  (104s)
+  [C1/canonical/0.3/1.0/0.5]  sig2/sig2t = 0.446  r50 = 0.504 r_M  slope = -4.31  f_esc = 0.04  dE/E = -3.4e-05  relaxed = True  (47s)
+  [C1/canonical/0.3/0.3/0.5]  sig2/sig2t = 0.483  r50 = 0.203 r_M  slope = -4.27  f_esc = 0.00  dE/E = +1.2e-05  relaxed = True  (173s)
+  [C1/canonical/0.3/1.5/0.5]  sig2/sig2t = 0.683  r50 = 1.715 r_M  slope = -3.45  f_esc = 0.36  dE/E = -1.3e-03  relaxed = True  (27s)
+  [C1/canonical/0.3/1.0/1.0]  sig2/sig2t = 0.391  r50 = 1.087 r_M  slope = -3.23  f_esc = 0.16  dE/E = -5.8e-03  relaxed = True  (82s)
+  [C1/canonical/0.3/0.5/1.0]  sig2/sig2t = 0.496  r50 = 0.582 r_M  slope = -3.56  f_esc = 0.00  dE/E = -1.0e-05  relaxed = True  (188s)
+  [C1/canonical/0.3/0.7/1.0]  sig2/sig2t = 0.470  r50 = 0.730 r_M  slope = -3.54  f_esc = 0.01  dE/E = -2.8e-04  relaxed = True  (127s)
+  [C1/canonical/0.3/1.5/1.0]  sig2/sig2t = 0.894  r50 = 22.319 r_M  slope = -2.97  f_esc = 0.56  dE/E = -1.4e-01  relaxed = True  (51s)
+  [C1/canonical/0.1/0.3/2.0]  sig2/sig2t = 0.384  r50 = 1.151 r_M  slope = -2.69  f_esc = 0.00  dE/E = -1.7e-04  relaxed = True  (348s)
+  [C1/canonical/0.3/1.5/2.0]  sig2/sig2t = 1.039  r50 = 80.874 r_M  slope = -2.55  f_esc = 0.73  dE/E = -1.6e-01  relaxed = True  (51s)
+  [C1/canonical/0.3/1.0/2.0]  sig2/sig2t = 0.335  r50 = 5.128 r_M  slope = -2.32  f_esc = 0.41  dE/E = -1.4e-01  relaxed = True  (114s)
+  [C1/canonical/0.3/0.7/2.0]  sig2/sig2t = 0.325  r50 = 1.747 r_M  slope = -2.26  f_esc = 0.10  dE/E = -6.0e-03  relaxed = True  (181s)
+  [C1/canonical/0.3/0.5/2.0]  sig2/sig2t = 0.394  r50 = 1.336 r_M  slope = -2.46  f_esc = 0.01  dE/E = -9.5e-05  relaxed = True  (316s)
+  [C1/canonical/0.3/0.3/1.0]  sig2/sig2t = 0.453  r50 = 0.481 r_M  slope = -3.96  f_esc = 0.00  dE/E = -8.1e-06  relaxed = True  (329s)
+  [C1/canonical/1.0/0.7/0.5]  sig2/sig2t = 1.086  r50 = 0.250 r_M  slope = -5.32  f_esc = 0.00  dE/E = -1.0e-06  relaxed = True  (134s)
+  [C1/canonical/1.0/0.5/0.5]  sig2/sig2t = 1.142  r50 = 0.193 r_M  slope = -4.26  f_esc = 0.00  dE/E = +2.3e-06  relaxed = True  (187s)
+  [C1/canonical/1.0/1.0/0.5]  sig2/sig2t = 0.972  r50 = 0.357 r_M  slope = -6.00  f_esc = 0.00  dE/E = -3.9e-06  relaxed = True  (91s)
+  [C1/canonical/1.0/0.3/0.5]  sig2/sig2t = 1.061  r50 = 0.154 r_M  slope = -3.59  f_esc = 0.00  dE/E = -3.6e-06  relaxed = True  (318s)
+  [C1/canonical/1.0/1.5/0.5]  sig2/sig2t = 0.769  r50 = 0.618 r_M  slope = -4.09  f_esc = 0.15  dE/E = -2.7e-04  relaxed = True  (58s)
+  [C1/canonical/1.0/0.7/1.0]  sig2/sig2t = 0.763  r50 = 0.599 r_M  slope = -3.58  f_esc = 0.00  dE/E = -3.4e-05  relaxed = True  (249s)
+  [C1/canonical/1.0/1.0/1.0]  sig2/sig2t = 0.657  r50 = 0.807 r_M  slope = -3.66  f_esc = 0.04  dE/E = -5.9e-04  relaxed = True  (161s)
+  [C1/canonical/0.3/0.3/2.0]  sig2/sig2t = 0.418  r50 = 1.122 r_M  slope = -2.81  f_esc = 0.00  dE/E = -4.2e-05  relaxed = True  (598s)
+  [C1/canonical/1.0/0.5/1.0]  sig2/sig2t = 0.836  r50 = 0.448 r_M  slope = -3.95  f_esc = 0.00  dE/E = -1.7e-06  relaxed = True  (362s)
+  [C2/canonical/0.1/1.0/0.0]  sig2/sig2t = 0.330  r50 = 10.425 r_M  slope = -1.99  f_esc = 0.51  dE/E = -4.2e-01  relaxed = True  (57s)
+  [C1/canonical/1.0/1.5/1.0]  sig2/sig2t = 0.712  r50 = 3.413 r_M  slope = -2.76  f_esc = 0.40  dE/E = -5.4e-02  relaxed = True  (87s)
+  [C1/canonical/1.0/1.5/2.0]  sig2/sig2t = 0.805  r50 = 53.218 r_M  slope = -2.47  f_esc = 0.66  dE/E = -2.3e-01  relaxed = True  (102s)
+  [C1/canonical/1.0/0.7/2.0]  sig2/sig2t = 0.491  r50 = 1.472 r_M  slope = -2.27  f_esc = 0.03  dE/E = -1.1e-03  relaxed = True  (366s)
+  [C2/canonical/0.3/1.0/0.0]  sig2/sig2t = 0.327  r50 = 8.000 r_M  slope = -2.04  f_esc = 0.47  dE/E = -2.5e-01  relaxed = True  (103s)
+  [C1/canonical/1.0/1.0/2.0]  sig2/sig2t = 0.370  r50 = 2.484 r_M  slope = -2.03  f_esc = 0.24  dE/E = -3.7e-02  relaxed = True  (210s)
+  [C1/alt/0.3/1.5/1.0]  sig2/sig2t = 0.932  r50 = 25.161 r_M  slope = -2.96  f_esc = 0.57  dE/E = -9.4e-02  relaxed = True  (44s)
+  [C1/alt/0.3/1.0/0.5]  sig2/sig2t = 0.402  r50 = 0.532 r_M  slope = -4.30  f_esc = 0.06  dE/E = -1.1e-05  relaxed = True  (50s)
+  [C1/alt/0.3/1.0/1.0]  sig2/sig2t = 0.373  r50 = 1.085 r_M  slope = -3.18  f_esc = 0.15  dE/E = -4.7e-03  relaxed = True  (90s)
+  [C2/canonical/1.0/1.0/0.0]  sig2/sig2t = 0.312  r50 = 4.847 r_M  slope = -1.96  f_esc = 0.37  dE/E = -9.3e-02  relaxed = True  (185s)
+  [C1/alt/0.1/1.0/1.0]  sig2/sig2t = 0.356  r50 = 1.234 r_M  slope = -3.16  f_esc = 0.22  dE/E = -1.1e-02  relaxed = True  (47s)
+  [C1/alt/0.3/0.7/1.0]  sig2/sig2t = 0.434  r50 = 0.727 r_M  slope = -3.97  f_esc = 0.02  dE/E = -3.5e-05  relaxed = True  (132s)
+  [C1/canonical/1.0/0.5/2.0]  sig2/sig2t = 0.596  r50 = 1.082 r_M  slope = -2.67  f_esc = 0.00  dE/E = -3.4e-06  relaxed = True  (579s)
+  [C1/canonical/1.0/0.3/1.0]  sig2/sig2t = 0.772  r50 = 0.362 r_M  slope = -3.46  f_esc = 0.00  dE/E = -1.3e-06  relaxed = True  (624s)
+  [C1/alt/0.3/0.5/1.0]  sig2/sig2t = 0.470  r50 = 0.580 r_M  slope = -3.81  f_esc = 0.00  dE/E = -4.9e-06  relaxed = True  (183s)
+  [C1/alt/0.3/1.0/2.0]  sig2/sig2t = 0.325  r50 = 5.177 r_M  slope = -2.28  f_esc = 0.41  dE/E = -1.5e-01  relaxed = True  (106s)
+  [C1/alt/1.0/1.0/1.0]  sig2/sig2t = 0.612  r50 = 0.860 r_M  slope = -3.58  f_esc = 0.05  dE/E = -1.3e-03  relaxed = True  (112s)
+  [C1dt/canonical/0.3/0.5/1.0]  sig2/sig2t = 0.501  r50 = 0.587 r_M  slope = -3.57  f_esc = 0.00  dE/E = -8.4e-06  relaxed = True  (139s)
+  [C1/alt/0.3/0.3/1.0]  sig2/sig2t = 0.445  r50 = 0.444 r_M  slope = -3.79  f_esc = 0.00  dE/E = -1.1e-06  relaxed = True  (288s)
+  [C1/canonical/1.0/0.3/2.0]  sig2/sig2t = 0.614  r50 = 0.914 r_M  slope = -3.15  f_esc = 0.00  dE/E = -1.3e-05  relaxed = True  (924s)
+
+  all runs done in 1263s -> /Users/carlzimmerman/new_physics/zimmerman-formula/glm53_push/G035_transfer_function.json
+
+==============================================================================
+TRANSFER FUNCTION sigma_inf^2/sigma_target^2 (rows sigma_start, cols R0):
+  mu = 0.1:
+    sigma_start = 0.3: R0=0.5: 0.298  R0=1.0: 0.398  R0=2.0: 0.384
+    sigma_start = 0.5: R0=0.5: 0.325  R0=1.0: 0.414  R0=2.0: 0.345
+    sigma_start = 0.7: R0=0.5: 0.362  R0=1.0: 0.392  R0=2.0: 0.290
+    sigma_start = 1.0: R0=0.5: 0.369  R0=1.0: 0.371  R0=2.0: 0.326
+    sigma_start = 1.5: R0=0.5: 0.750  R0=1.0: 0.943  R0=2.0: 1.065
+  mu = 0.3:
+    sigma_start = 0.3: R0=0.5: 0.483  R0=1.0: 0.453  R0=2.0: 0.418
+    sigma_start = 0.5: R0=0.5: 0.472  R0=1.0: 0.496  R0=2.0: 0.394
+    sigma_start = 0.7: R0=0.5: 0.471  R0=1.0: 0.470  R0=2.0: 0.325
+    sigma_start = 1.0: R0=0.5: 0.446  R0=1.0: 0.391  R0=2.0: 0.335
+    sigma_start = 1.5: R0=0.5: 0.683  R0=1.0: 0.894  R0=2.0: 1.039
+  mu = 1.0:
+    sigma_start = 0.3: R0=0.5: 1.061  R0=1.0: 0.772  R0=2.0: 0.614
+    sigma_start = 0.5: R0=0.5: 1.142  R0=1.0: 0.836  R0=2.0: 0.596
+    sigma_start = 0.7: R0=0.5: 1.086  R0=1.0: 0.763  R0=2.0: 0.491
+    sigma_start = 1.0: R0=0.5: 0.972  R0=1.0: 0.657  R0=2.0: 0.370
+    sigma_start = 1.5: R0=0.5: 0.769  R0=1.0: 0.712  R0=2.0: 0.805
+TRANSFER FUNCTION r50/r_M:
+  mu = 0.1:
+    sigma_start = 0.3: R0=0.5: 0.252  R0=1.0: 0.521  R0=2.0: 1.151
+    sigma_start = 0.5: R0=0.5: 0.323  R0=1.0: 0.635  R0=2.0: 1.405
+    sigma_start = 0.7: R0=0.5: 0.409  R0=1.0: 0.751  R0=2.0: 1.872
+    sigma_start = 1.0: R0=0.5: 0.583  R0=1.0: 1.195  R0=2.0: 7.583
+    sigma_start = 1.5: R0=0.5: 2.325  R0=1.0: 28.542  R0=2.0: 86.100
+  mu = 0.3:
+    sigma_start = 0.3: R0=0.5: 0.203  R0=1.0: 0.481  R0=2.0: 1.122
+    sigma_start = 0.5: R0=0.5: 0.282  R0=1.0: 0.582  R0=2.0: 1.336
+    sigma_start = 0.7: R0=0.5: 0.360  R0=1.0: 0.730  R0=2.0: 1.747
+    sigma_start = 1.0: R0=0.5: 0.504  R0=1.0: 1.087  R0=2.0: 5.128
+    sigma_start = 1.5: R0=0.5: 1.715  R0=1.0: 22.319  R0=2.0: 80.874
+  mu = 1.0:
+    sigma_start = 0.3: R0=0.5: 0.154  R0=1.0: 0.362  R0=2.0: 0.914
+    sigma_start = 0.5: R0=0.5: 0.193  R0=1.0: 0.448  R0=2.0: 1.082
+    sigma_start = 0.7: R0=0.5: 0.250  R0=1.0: 0.599  R0=2.0: 1.472
+    sigma_start = 1.0: R0=0.5: 0.357  R0=1.0: 0.807  R0=2.0: 2.484
+    sigma_start = 1.5: R0=0.5: 0.618  R0=1.0: 3.413  R0=2.0: 53.218
+------------------------------------------------------------------------------
+P1 (temperature in [0.8, 1.25] everywhere, mu = 0.3): False
+P2 (r50 in [0.5, 2.0] r_M everywhere):                          False
+P3 (control holds + diagonal stable):                           False
+instrument: energy_ok = False, dt-convergence = True, relaxed 100% of cells
+VERDICT: INSTRUMENT-FAIL
+
+Results written to /Users/carlzimmerman/new_physics/zimmerman-formula/glm53_push/G035_results.json
+G035 COMPLETE: verdict = INSTRUMENT-FAIL (1263s total).
