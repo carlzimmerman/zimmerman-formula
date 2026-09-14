@@ -22,7 +22,7 @@
   `Real.sq_sqrt` (the exact pattern the consolidated spine used for its
   last rungs -- Real.sq_sqrt exists in this Mathlib build for the ^2 form).
 
-  Companion computational lane: G018_slab_limit.py (8 checks, hand-anchored).
+  Companion computational lane: G024_slab_limit.py (10 checks, hand-anchored).
 -/
 import Mathlib
 
@@ -105,9 +105,25 @@ theorem num_zc_product (a0 G rb : ℝ) (ha0 : 0 < a0) (hG : 0 < G) (hrb : 0 < rb
     (a0 / (16 * Real.pi * G * rb)) * (16 * Real.pi * G * rb) = a0 := by
   field_simp [Real.pi_pos, hG, hrb]
 
+/-- **slab_box_nu (the distinctive DR4 curve).** The box-averaged local nu over
+the box (half size z) is nu_box = (col_b(z) + col_ph(z))/col_b(z) =
+2*sqrt(z_c/z): it FALLS as 1/sqrt(z) (3.36 at 50 pc, 2 at 140.6 pc, 1.17 at
+300 pc), against NFW's roughly flat 1.5-2.5. The sharpest local signature of
+the slab limit. -/
+theorem slab_box_nu (A rb z : ℝ) (hA : 0 < A) (hrb : 0 < rb) (hz : 0 < z) :
+    (2 * rb * z + (4 * A * Real.sqrt z - 2 * rb * z)) / (2 * rb * z)
+      = 2 * Real.sqrt ((A / rb) ^ 2) / Real.sqrt z := by
+  have hsqrt : Real.sqrt ((A / rb) ^ 2) = A / rb := by
+    rw [Real.sqrt_sq_eq_abs, abs_of_pos]
+    positivity
+  rw [hsqrt]
+  field_simp [hA, hrb, hz]
+  nlinarith [Real.sq_sqrt hz.le]
+
 #print axioms slab_A_sq
 #print axioms slab_layer_halfwidth
 #print axioms slab_baryon_column
 #print axioms slab_phantom_column
 #print axioms slab_nu_two
+#print axioms slab_box_nu
 #print axioms num_zc_product
