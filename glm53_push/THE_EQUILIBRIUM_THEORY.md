@@ -21,8 +21,11 @@ $$\sigma^2 = \frac{G M_{\rm tot}}{2 r_M}, \qquad r_M = \sqrt{\frac{G M_{\rm tot}
 and an isothermal fluid at that temperature has exactly the density the relation
 describes — the deep-MOND phantom density, coefficient exactly one
 (G003, Lean-certified): $\rho_{\rm ph} = \sqrt{GM_{\rm tot}a_0}/(4\pi G r^2)$.
-The relation is tight because equilibration erases initial conditions; loose at
-the 0.1-dex level in dwarfs because equilibration is incomplete there (G010).
+The relation is tight because equilibration erases initial conditions AND
+population diversity: with per-galaxy M/L freedom the floor is 0.064 dex, and
+the outer half — the pure-isothermal regime the identification lives in — is
+the tightest part at 0.055 dex, exactly as the equilibrium reading predicts
+(G010, G013).
 The equilibrium is confined by the external field at the radius where the
 internal field falls to the external one — inside that cap the equilibrated
 phantom dominates; outside it, free cold dust (G003, G006, G012 — three
@@ -39,7 +42,7 @@ appearance, and ΛCDM-shaped at cluster scale by its own architecture.
 | 3 | $r_M = \sqrt{GM/a_0}$ is the dimensionally unique galactic length | DERIVED + LEAN (kimik3 `mond_length_unique`) |
 | 4 | The cold sector equilibrates at $\sigma^2 = GM/2r_M$ (violent relaxation; kimik3 rung 4-5, K001 3D N-body: slope −1.92, confined at $r_M$, BTFR scaling, Newtonian control no attractor) | DERIVED (formation dynamics; Lean `btfr_virial`) |
 | 5 | **THE IDENTIFICATION**: the equilibrated density IS the deep-MOND phantom, coefficient exactly 1 (exact algebra + 12 digits) | DERIVED + LEAN (`phantom_bracket`; G003 V1/V2) |
-| 6 | The RAR follows: tight (equilibration), structured at the edges (incomplete equilibration in dwarfs: 1.33× scatter excess, G010) | DERIVED (G010) |
+| 6 | The RAR follows: tight (equilibration), structured at the edges (incomplete equilibration in dwarfs: 1.33× scatter excess, G010); **with per-galaxy M/L freedom the floor is 0.064 dex median — below the 0.10 kill — and the OUTER half (the pure-isothermal regime) is the TIGHTEST part, 0.055 dex: the equilibrium reading's own prediction, confirmed** (G010, G013) | DERIVED + CONFIRMED (G013) |
 | 7 | The EFE cap confines the equilibrium at the internal/external field crossover: MW ~6 kpc (G003 V5), solar pairs unbound (G006), clusters core-confined (G012) | DERIVED (three independent confirmations) |
 | 8 | Clusters: the baryon-steepened isothermal gives the residual slope −1.478 vs certified −1.53 (G008); the temperature is right from zero parameters (809 km/s vs 8-keV ~800-1000, G012); the bulk of the cluster residual is free dust | DERIVED (amplitude honestly over-supplies 1.9× uncapped — the cap is what makes it work) |
 | 9 | $n=2$ is a measurement: four structural searches, the dimensional route (L239), the EFT route, and the count-statistics route (G009: the photocount variance floor ~0.3 dex is 3× the observed scatter — the Mandel reading is an analogy, killed) | EMPIRICAL, no derivation exists |
