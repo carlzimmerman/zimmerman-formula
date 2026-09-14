@@ -93,18 +93,27 @@ theorem reparametrisation_still_minus_one
 
 /-! ## 4. The spine: Horn A is a gauge of a covariant parent -/
 
-/-- THE SPINE.  The mimetic constraint is an identity of the definition, the
-    conformal factor is positive precisely for timelike gradients, and the
-    construction is invariant under reparametrisation of the clock.  Hence
-    Horn A's fixed congruence is a GAUGE of a generally covariant parent, and
-    the local Lorentz violation recorded in G032 is a gauge artifact
-    (unimodular-gravity class), not an added structure.
+/-- THE SPINE (SCOPE CORRECTED 2026-09-14 -- see H010_H009_REFUTED.py).
 
-    NOTE ON SCOPE: this certifies the ALGEBRA of the gauge statement.  It does
-    not certify (i) that the mimetic mode's dynamics are harmless for the
-    growth sector, (ii) off-shell equivalence of the parent with the
-    gauge-fixed theory, or (iii) any specific paper's construction.  Those are
-    recorded as open in H009's reading and in hy4_push/H009_mimetic_horn_a.py. -/
+    This theorem certifies the KINEMATIC ALGEBRA of the mimetic rewrite: the
+    constraint is an identity of the definition, the conformal factor is
+    positive precisely for timelike gradients, and the rewrite is invariant
+    under reparametrisation of the clock.
+
+    IT DOES NOT CERTIFY, AND NEVER DID, that a generally covariant PARENT
+    exists whose gauge-fixing yields Horn A.  glm53's G043 tested that and it
+    FAILS: 2503.11174's embedding machinery needs the CONFORMAL symmetry of
+    homogeneously-scaling building blocks, and the Zimmerman normalisation
+    P = Lambda^4 f with f(0) = -1 is not conformal -- so Horn A's fixed
+    congruence is NOT a gauge slice of any parent in that class, and the local
+    Lorentz violation recorded in G032 is a REAL cost, not a gauge artifact.
+
+    A reparametrisation invariance of a rewriting is not a gauge symmetry of a
+    theory.  The three facts below are true; the inference drawn from them in
+    the original H009 (that the cost dissolves) was not.
+
+    Also not certified here: the mimetic mode's effect on the growth sector,
+    and any specific paper's construction. -/
 theorem mimetic_horn_a_spine
     (Xt s : ℝ) (hs : s ≠ 0) (hXt : Xt ≠ 0) (htime : Xt < 0) :
     -- (1) the constraint is an identity of the definition
