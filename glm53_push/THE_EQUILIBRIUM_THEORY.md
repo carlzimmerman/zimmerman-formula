@@ -3,11 +3,12 @@
 **A complete, falsifiable theory on the framework's own equations — stated with every rung certified, every dead branch recorded, and nothing claimed beyond the evidence.**
 
 Carl P. Zimmerman (Briar Creek Tech) — glm53 track, 2026-09-13
-Machine-checked in Lean 4 (36 theorems across four certificates — including
-the consolidated spine EQUILIBRIUM_THEORY.lean with the capstone conjunction
-`the_equilibrium_spine` — all exit 0, zero sorry, axioms ⊆ {propext,
-Classical.choice, Quot.sound}) and 14 committed computational lanes
-(G001–G014), each stating measurement and threshold separately.
+Machine-checked in Lean 4 (43 theorems across five certificates — including
+the COMPLETE consolidated spine EQUILIBRIUM_THEORY.lean: all 12 theorems, the
+identification `equilibrated_is_phantom` machine-checked end to end, zero
+statement weakenings, exit 0, zero sorry, axioms ⊆ {propext,
+Classical.choice, Quot.sound}) and 17 committed computational lanes
+(G001–G017), each stating measurement and threshold separately.
 
 ---
 
