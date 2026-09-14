@@ -1,0 +1,60 @@
+[cache] loaded /tmp/g030_sc/L2dc_k4_hess.pkl
+[build] complete (5s)
+
+============================================================================
+OPERATOR (C): the aether's own biharmonic (G030)
+============================================================================
+   K_B J_Y       XI2        alpha_1         drag        alpha_2  gamma   a3
+   1/5   1         0 (-5184.0*q**4 - 16.0*q**2 - 22.0)/(648.0*q**4 + 36.0*q**2 + 5.0) (-5184.0*q**4 - 16.0*q**2 - 22.0)/(648.0*q**4 + 36.0*q**2 + 5.0) (-6.7185e+6*q**8 - 4.7462e+5*q**6 - 84744.0*q**4 - 7360.0*q**2 - 605.0)/(3.1726e+6*q**8 + 3.8621e+5*q**6 + 36144.0*q**4 + 1620.0*q**2)  1.000    0
+   1/5   1         1  SINGULAR (SING0)
+   1/5   1       100  SINGULAR (SING0)
+   1/5   1     10000  SINGULAR (SING0)
+   1/5   1 100000000  SINGULAR (SING0)
+   1/2   1         0 (-288.0*q**4 + 4.0*q**2 - 5.0)/(36.0*q**4 + 6.0*q**2 + 1.0) (-288.0*q**4 + 4.0*q**2 - 5.0)/(36.0*q**4 + 6.0*q**2 + 1.0) (-41472.0*q**8 + 7728.0*q**6 - 444.0*q**4 - 140.0*q**2 - 25.0)/(22464.0*q**8 + 5040.0*q**6 + 840.0*q**4 + 36.0*q**2)  1.000    0
+   1/2   1         1  SINGULAR (SING0)
+   1/2   1       100  SINGULAR (SING0)
+   1/2   1     10000  SINGULAR (SING0)
+   1/2   1 100000000  SINGULAR (SING0)
+   1/5   2         0 (-11664.0*q**4 - 124.0*q**2 - 16.0)/(1458.0*q**4 + 54.0*q**2 + 5.0) (-11664.0*q**4 - 124.0*q**2 - 16.0)/(1458.0*q**4 + 54.0*q**2 + 5.0) (-8.5031e+6*q**8 - 1.0474e+6*q**6 - 41580.0*q**4 - 2530.0*q**2 - 80.0)/(3.0312e+6*q**8 + 3.4846e+5*q**6 + 19143.0*q**4 + 810.0*q**2)  1.000    0
+   1/5   2         1  SINGULAR (SING0)
+   1/5   2       100  SINGULAR (SING0)
+   1/5   2     10000  SINGULAR (SING0)
+   1/5   2 100000000  SINGULAR (SING0)
+  [PASS] V1 anchors at XI2 = 0: gamma = 1 and alpha_3 = 0 at every (K_B, J_Y) -- the aether operator touches nothing else in the conservative sector
+  [FAIL] V2 the drag is SUPPRESSED at the physical XI2 = 1e8 (|alpha_1(1e8)| < 1e-2 |alpha_1(0)| at every grid point)
+  verdict K_B=1/5 J_Y=1: |alpha_1(1e8)| = SING/NL, alpha_2 ratio = uncomputed
+  verdict K_B=1/2 J_Y=1: |alpha_1(1e8)| = SING/NL, alpha_2 ratio = uncomputed
+  verdict K_B=1/5 J_Y=2: |alpha_1(1e8)| = SING/NL, alpha_2 ratio = uncomputed
+  [FAIL] V3 THE VERDICT: at XI2 = 1e8, |alpha_1| < 1e-4 with c_14 = 0 allowed (hence c_14 in (0, 2.5e-5] admissible: no spin-1 ghost) AND |alpha_2| below 1e-2 of its XI2 = 0 value at every grid point
+
+RESULT: 2 FAIL -> ['V2 the drag is SUPPRESSED at the physical XI2 = 1e8 (|alpha_1(1e8)| < 1e-2 |alpha_1(0)| at every grid point)', 'V3 THE VERDICT: at XI2 = 1e8, |alpha_1| < 1e-4 with c_14 = 0 allowed (hence c_14 in (0, 2.5e-5] admissible: no spin-1 ghost) AND |alpha_2| below 1e-2 of its XI2 = 0 value at every grid point']
+(43s)
+
+
+READING
+=======
+  THE K^4 PPN GATE IN THE AETHER-SCALAR HOST: ALL THREE LOCAL OPERATORS DEAD.
+    (1) scalar trace (D^2 phi)^2      [f31]:  drag GROWS ~ linearly in XI2 (poisoned
+        by the operator's action on the scalar's CHARGED background gradient Q0).
+    (2) scalar Hessian^2 |D_mD_n phi|^2 [f31c]: same growth; background pieces mirror
+        the poisoned trace.
+    (3) AETHER Hessian^2 (G030, this lane): the static ladder is SINGULAR at every
+        XI2 > 0 at all three grid points (K_B = 1/5, 1/2 at J_Y = 1; 1/5 at J_Y = 2)
+        -- the operator stiffens the aether's constraint sector so the static
+        Green's function ceases to exist.  The XI2 = 0 anchors hold (V1 PASS:
+        gamma = 1, alpha_3 = 0), so the singularisation is the operator's doing,
+        not a build error.
+
+  WHAT SURVIVES: f31c's REFERENCE result stands untouched -- coherent stiffening
+  of the WHOLE Y sector (J_Y -> J_Y(1+XI2)) gives EXACTLY the propagator form
+  -4(2-K_B)/(J_Y(1+XI2)+1) and evades the alpha_1 lock at c_14 > 0.  The gate is
+  therefore OPEN only to an operator that stiffens the scalar's KINETIC SECTOR
+  COHERENTLY (through Y itself) without acting through the background gradient.
+  The natural next candidate is a function f(X + xi^2 Y^2/X) -- a Y-coupled
+  correction INSIDE the existing invariant -- which is a different lane.
+
+  HONEST STATUS: the completed action (hy4 H004) does NOT pass its own
+  pre-registered PPN gate with any local fourth-order operator tried.  The
+  screening door exists as a mathematical reference; realising it covariantly
+  and locally remains OPEN.  Three-strike rule reached for the (D^2)-class:
+  the lane closes with the failure mode recorded, per repo discipline.
