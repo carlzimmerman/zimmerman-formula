@@ -3,7 +3,7 @@
 **A complete, falsifiable theory on the framework's own equations — stated with every rung certified, every dead branch recorded, and nothing claimed beyond the evidence.**
 
 Carl P. Zimmerman (Briar Creek Tech) — glm53 track, 2026-09-13
-Machine-checked in Lean 4 (31 theorems across four certificates — including
+Machine-checked in Lean 4 (36 theorems across four certificates — including
 the consolidated spine EQUILIBRIUM_THEORY.lean with the capstone conjunction
 `the_equilibrium_spine` — all exit 0, zero sorry, axioms ⊆ {propext,
 Classical.choice, Quot.sound}) and 14 committed computational lanes
@@ -132,14 +132,17 @@ under an existing constraint:
 
 All lanes: `glm53_push/G001…G014_*.py` (+ `.out` + `_results.json`), each
 exiting nonzero on failed internal checks. Lean: `glm53_push/lean/` —
-EQUILIBRIUM_THEORY (7, the consolidated spine), G001 (9), G002+G003 (4),
-G007 (11); compile with
+EQUILIBRIUM_THEORY (12, the consolidated spine, COMPLETE), G001 (9), G002+G003 (4),
+G007 (11); the consolidated SPINE certificate
+`lean/EQUILIBRIUM_THEORY.lean` is **COMPLETE — 12 theorems, zero sorry,
+standard axioms only** (verified: every theorem, incl. the identification
+and `the_equilibrium_spine`, depends only on {propext, Classical.choice,
+Quot.sound}). The previously Python-only rungs (the virial temperature
+σ⁴ = GMa₀/4 and the identification's full equality) now close via
+`Real.sq_sqrt` + `Real.sqrt_mul_self` (the numerator identity
+√(GM/a₀)·√(GMa₀) = GM is pure sqrt composition — no nonlinear-arithmetic
+lemmas needed). Compile with
 `cd fable_independent_2026/lean_2026 && lake env lean <abs path>.lean`.
-The two rungs the spine certifies only in Python (the virial temperature's
-σ⁴ = GMa₀/4 and the identification's full equality) are blocked by this
-Mathlib build's missing nonlinear √ lemmas — named in the Lean file, the
-sympy residuals are exactly zero, and any future Mathlib with `sq_eq_sq'`
-closes them in one line.
 Lane conventions: measurement and threshold stated separately, every FAIL is a
 finding, no literal-True pass conditions (commit-guarded).
 
