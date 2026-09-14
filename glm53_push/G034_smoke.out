@@ -1,0 +1,83 @@
+[S1] unit-norm constraint solved (0.7s)
+    aether operators built (109.8s)
+    dark scalars (153.8s)
+    Ricci (170.9s)
+    Hessian-squared operator built (efficient): 11 terms (172.1s)
+    inside-the-invariant operators built: Y*dQ 1 terms, Y^2 1 terms (190.5s)
+    L2dc built+cached: 981 terms (196.7s)
+[build] complete (198s)
+
+============================================================================
+S0: the injection enters only through Z = K_2*XI2/X0
+============================================================================
+  [PASS] S0 the XD-coefficient of L2dc is exactly K_2*XI2*(Y*dQ + Y^2/4)/X0 (single combination Z, no other XI2 or X0 dependence anywhere in the build)
+
+============================================================================
+MASTER RUNS: alpha_1(q, Z) in closed form  (Z = K_2*XI2/X0, K_2 = 10)
+============================================================================
+  K_B=1/5 J_Y=1: count_ops(a1)=14, gamma(q->0,Z)=1 (0s)
+     alpha_1(q->0, Z) = -22/5
+     drag(Z) = alpha_1 + 4K_B = -18/5
+     reference (A) drag at same Z: -4(2-K_B)/(J_Y(1+Z/10)+1) = -72/(Z + 20)
+     limit Z->oo of drag: -18/5
+  K_B=1/2 J_Y=1: count_ops(a1)=13, gamma(q->0,Z)=1 (0s)
+     alpha_1(q->0, Z) = -5
+     drag(Z) = alpha_1 + 4K_B = -3
+     reference (A) drag at same Z: -4(2-K_B)/(J_Y(1+Z/10)+1) = -60/(Z + 20)
+     limit Z->oo of drag: -3
+  K_B=1/5 J_Y=2: count_ops(a1)=14, gamma(q->0,Z)=1 (0s)
+     alpha_1(q->0, Z) = -16/5
+     drag(Z) = alpha_1 + 4K_B = -12/5
+     reference (A) drag at same Z: -4(2-K_B)/(J_Y(1+Z/10)+1) = -36/(Z + 15)
+     limit Z->oo of drag: -12/5
+
+-- S1: exact numeric Z-collapse pair --
+  [PASS] S1 the Z-collapse holds exactly: alpha_1(XI2=3, X0=7) == alpha_1(Z=30/7) as rational functions of q
+
+-- V1: anchors at Z = 0 --
+  K_B=1/5 J_Y=1: gamma=1, alpha_1(0)=-22/5 (banked -22/5), alpha_3(0)=0, alpha_2(0)=-oo
+  K_B=1/2 J_Y=1: gamma=1, alpha_1(0)=-5 (banked -5), alpha_3(0)=0, alpha_2(0)=-oo
+  K_B=1/5 J_Y=2: gamma=1, alpha_1(0)=-16/5 (banked -16/5), alpha_3(0)=0, alpha_2(0)=-oo
+  [PASS] V1 the XI2 = 0 anchors: gamma = 1, alpha_3 = 0, alpha_1 = the banked -4(K_B + (2-K_B)/(1+J_Y)) at every (K_B, J_Y) -- the (D) build touches nothing else
+
+============================================================================
+GRID (same as G030): XI2 in {0,1,100,1e4,1e8} at benchmark X0 = 1  =>  Z = 10*XI2
+============================================================================
+   K_B J_Y       XI2 Z=10*XI2/X0  alpha_1(q->0)       drag  gamma
+   1/5   1         0           0       -4.40000   -3.60000  1.000
+   1/5   1         1       10.00       -4.40000   -3.60000  1.000
+   1/5   1       100       1000.       -4.40000   -3.60000  1.000
+   1/5   1     10000    1.000e+5       -4.40000   -3.60000  1.000
+   1/5   1 100000000    1.000e+9       -4.40000   -3.60000  1.000
+   1/2   1         0           0       -5.00000   -3.00000  1.000
+   1/2   1         1       10.00       -5.00000   -3.00000  1.000
+   1/2   1       100       1000.       -5.00000   -3.00000  1.000
+   1/2   1     10000    1.000e+5       -5.00000   -3.00000  1.000
+   1/2   1 100000000    1.000e+9       -5.00000   -3.00000  1.000
+   1/5   2         0           0       -3.20000   -2.40000  1.000
+   1/5   2         1       10.00       -3.20000   -2.40000  1.000
+   1/5   2       100       1000.       -3.20000   -2.40000  1.000
+   1/5   2     10000    1.000e+5       -3.20000   -2.40000  1.000
+   1/5   2 100000000    1.000e+9       -3.20000   -2.40000  1.000
+
+-- V2: drag suppression at the physical XI2 = 1e8 (Z* = 1e9/X0; benchmark X0 = 1 => Z* = 1e9) --
+  K_B=1/5 J_Y=1: alpha_1(0) = -4.40000 -> alpha_1(Z*=1e9) = -4.40000  NOT suppressed; thresholds: none: alpha_1 is exactly Z-independent
+  K_B=1/2 J_Y=1: alpha_1(0) = -5.00000 -> alpha_1(Z*=1e9) = -5.00000  NOT suppressed; thresholds: none: alpha_1 is exactly Z-independent
+  K_B=1/5 J_Y=2: alpha_1(0) = -3.20000 -> alpha_1(Z*=1e9) = -3.20000  NOT suppressed; thresholds: none: alpha_1 is exactly Z-independent
+  [FAIL] V2 the drag is SUPPRESSED at the physical XI2 = 1e8 at the benchmark footing X0 = 1 (|alpha_1(Z*=1e9)| < 1e-2 |alpha_1(0)| at every grid point)
+
+============================================================================
+FULL-LADDER alpha_2 at XI2 = 1e8 (benchmark X0 = 1, Z* = 1e9)
+============================================================================
+  K_B=1/5 J_Y=1: a2(Z*) = -oo, a3(Z*) = 0 (2s)
+  K_B=1/2 J_Y=1: a2(Z*) = -oo, a3(Z*) = 0 (2s)
+  K_B=1/5 J_Y=2: a2(Z*) = -oo, a3(Z*) = 0 (2s)
+
+-- V3: the verdict (alpha_1 = 0 reachable with c_14 in (0, 2.5e-5]; alpha_2 dies) --
+  verdict K_B=1/5 J_Y=1: |alpha_1(Z*=1e9)| = -4.4000 (FAIL), alpha_2 ratio = 1.0000 (q->0) (FAIL)
+  verdict K_B=1/2 J_Y=1: |alpha_1(Z*=1e9)| = -5.0000 (FAIL), alpha_2 ratio = 1.0000 (q->0) (FAIL)
+  verdict K_B=1/5 J_Y=2: |alpha_1(Z*=1e9)| = -3.2000 (FAIL), alpha_2 ratio = 1.0000 (q->0) (FAIL)
+  [FAIL] V3 THE VERDICT: at the physical XI2 = 1e8 (benchmark X0 = 1) |alpha_1| < 1e-4 with c_14 = 0 allowed (hence c_14 in (0, 2.5e-5] admissible: no spin-1 ghost) AND |alpha_2| below 1e-2 of its XI2 = 0 value at every grid point
+
+RESULT: 2 FAIL -> ['V2 the drag is SUPPRESSED at the physical XI2 = 1e8 at the benchmark footing X0 = 1 (|alpha_1(Z*=1e9)| < 1e-2 |alpha_1(0)| at every grid point)', 'V3 THE VERDICT: at the physical XI2 = 1e8 (benchmark X0 = 1) |alpha_1| < 1e-4 with c_14 = 0 allowed (hence c_14 in (0, 2.5e-5] admissible: no spin-1 ghost) AND |alpha_2| below 1e-2 of its XI2 = 0 value at every grid point']
+(215s)

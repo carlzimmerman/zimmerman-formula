@@ -1,0 +1,163 @@
+[S1] unit-norm constraint solved (0.5s)
+    aether operators built (92.3s)
+    dark scalars (133.8s)
+    Ricci (150.5s)
+    Hessian-squared operator built (efficient): 11 terms (151.7s)
+    inside-the-invariant operators built: Y*dQ 1 terms, Y^2 1 terms (169.9s)
+    L2dc built+cached: 981 terms (176.0s)
+[build] complete (177s)
+
+============================================================================
+S0: the injection enters only through Z = K_2*XI2/X0
+============================================================================
+  [PASS] S0 the XD-coefficient of L2dc is exactly K_2*XI2*(Y*dQ + Y^2/4)/X0 (single combination Z, no other XI2 or X0 dependence anywhere in the build)
+
+============================================================================
+MASTER RUNS: alpha_1(q, Z) in closed form  (Z = K_2*XI2/X0, K_2 = 10)
+============================================================================
+  K_B=1/5 J_Y=1: count_ops(a1)=14, gamma(q->0,Z)=1 (0s)
+     alpha_1(q->0, Z) = -22/5
+     drag(Z) = alpha_1 + 4K_B = -18/5
+     reference (A) drag at same Z: -4(2-K_B)/(J_Y(1+Z/10)+1) = -72/(Z + 20)
+     limit Z->oo of drag: -18/5
+  K_B=1/2 J_Y=1: count_ops(a1)=13, gamma(q->0,Z)=1 (0s)
+     alpha_1(q->0, Z) = -5
+     drag(Z) = alpha_1 + 4K_B = -3
+     reference (A) drag at same Z: -4(2-K_B)/(J_Y(1+Z/10)+1) = -60/(Z + 20)
+     limit Z->oo of drag: -3
+  K_B=1/5 J_Y=2: count_ops(a1)=14, gamma(q->0,Z)=1 (0s)
+     alpha_1(q->0, Z) = -16/5
+     drag(Z) = alpha_1 + 4K_B = -12/5
+     reference (A) drag at same Z: -4(2-K_B)/(J_Y(1+Z/10)+1) = -36/(Z + 15)
+     limit Z->oo of drag: -12/5
+
+-- S1: exact numeric Z-collapse pair --
+  [PASS] S1 the Z-collapse holds exactly: alpha_1(XI2=3, X0=7) == alpha_1(Z=30/7) as rational functions of q
+
+-- V1: anchors at Z = 0 --
+  K_B=1/5 J_Y=1: gamma=1, alpha_1(0)=-22/5 (banked -22/5), alpha_3(0)=0, alpha_2(0)=-oo
+  K_B=1/2 J_Y=1: gamma=1, alpha_1(0)=-5 (banked -5), alpha_3(0)=0, alpha_2(0)=-oo
+  K_B=1/5 J_Y=2: gamma=1, alpha_1(0)=-16/5 (banked -16/5), alpha_3(0)=0, alpha_2(0)=-oo
+  [PASS] V1 the XI2 = 0 anchors: gamma = 1, alpha_3 = 0, alpha_1 = the banked -4(K_B + (2-K_B)/(1+J_Y)) at every (K_B, J_Y) -- the (D) build touches nothing else
+
+============================================================================
+GRID (same as G030): XI2 in {0,1,100,1e4,1e8} at benchmark X0 = 1  =>  Z = 10*XI2
+============================================================================
+   K_B J_Y       XI2 Z=10*XI2/X0  alpha_1(q->0)       drag  gamma
+   1/5   1         0           0       -4.40000   -3.60000  1.000
+   1/5   1         1       10.00       -4.40000   -3.60000  1.000
+   1/5   1       100       1000.       -4.40000   -3.60000  1.000
+   1/5   1     10000    1.000e+5       -4.40000   -3.60000  1.000
+   1/5   1 100000000    1.000e+9       -4.40000   -3.60000  1.000
+   1/2   1         0           0       -5.00000   -3.00000  1.000
+   1/2   1         1       10.00       -5.00000   -3.00000  1.000
+   1/2   1       100       1000.       -5.00000   -3.00000  1.000
+   1/2   1     10000    1.000e+5       -5.00000   -3.00000  1.000
+   1/2   1 100000000    1.000e+9       -5.00000   -3.00000  1.000
+   1/5   2         0           0       -3.20000   -2.40000  1.000
+   1/5   2         1       10.00       -3.20000   -2.40000  1.000
+   1/5   2       100       1000.       -3.20000   -2.40000  1.000
+   1/5   2     10000    1.000e+5       -3.20000   -2.40000  1.000
+   1/5   2 100000000    1.000e+9       -3.20000   -2.40000  1.000
+
+-- V2: drag suppression at the physical XI2 = 1e8 (Z* = 1e9/X0; benchmark X0 = 1 => Z* = 1e9) --
+  K_B=1/5 J_Y=1: alpha_1(0) = -4.40000 -> alpha_1(Z*=1e9) = -4.40000  NOT suppressed; thresholds: none: alpha_1 is exactly Z-independent
+  K_B=1/2 J_Y=1: alpha_1(0) = -5.00000 -> alpha_1(Z*=1e9) = -5.00000  NOT suppressed; thresholds: none: alpha_1 is exactly Z-independent
+  K_B=1/5 J_Y=2: alpha_1(0) = -3.20000 -> alpha_1(Z*=1e9) = -3.20000  NOT suppressed; thresholds: none: alpha_1 is exactly Z-independent
+  [FAIL] V2 the drag is SUPPRESSED at the physical XI2 = 1e8 at the benchmark footing X0 = 1 (|alpha_1(Z*=1e9)| < 1e-2 |alpha_1(0)| at every grid point)
+
+============================================================================
+FULL-LADDER alpha_2 at XI2 = 1e8 (benchmark X0 = 1, Z* = 1e9)
+============================================================================
+  K_B=1/5 J_Y=1: a2(Z*) = -oo, a3(Z*) = 0 (2s)
+  K_B=1/2 J_Y=1: a2(Z*) = -oo, a3(Z*) = 0 (2s)
+  K_B=1/5 J_Y=2: a2(Z*) = -oo, a3(Z*) = 0 (2s)
+
+-- V3: the verdict (alpha_1 = 0 reachable with c_14 in (0, 2.5e-5]; alpha_2 dies) --
+  verdict K_B=1/5 J_Y=1: |alpha_1(Z*=1e9)| = -4.4000 (FAIL), alpha_2 ratio = 1.0000 (q->0) (FAIL)
+  verdict K_B=1/2 J_Y=1: |alpha_1(Z*=1e9)| = -5.0000 (FAIL), alpha_2 ratio = 1.0000 (q->0) (FAIL)
+  verdict K_B=1/5 J_Y=2: |alpha_1(Z*=1e9)| = -3.2000 (FAIL), alpha_2 ratio = 1.0000 (q->0) (FAIL)
+  [FAIL] V3 THE VERDICT: at the physical XI2 = 1e8 (benchmark X0 = 1) |alpha_1| < 1e-4 with c_14 = 0 allowed (hence c_14 in (0, 2.5e-5] admissible: no spin-1 ghost) AND |alpha_2| below 1e-2 of its XI2 = 0 value at every grid point
+
+RESULT: 2 FAIL -> ['V2 the drag is SUPPRESSED at the physical XI2 = 1e8 at the benchmark footing X0 = 1 (|alpha_1(Z*=1e9)| < 1e-2 |alpha_1(0)| at every grid point)', 'V3 THE VERDICT: at the physical XI2 = 1e8 (benchmark X0 = 1) |alpha_1| < 1e-4 with c_14 = 0 allowed (hence c_14 in (0, 2.5e-5] admissible: no spin-1 ghost) AND |alpha_2| below 1e-2 of its XI2 = 0 value at every grid point']
+(194s)
+
+============================================================================
+READING
+============================================================================
+  THE INSIDE-THE-INVARIANT CLASS IS EXACTLY INERT AT PPN ORDER -- NOT SINGULAR,
+  NOT POISONED: NULL.  And the theory's own X0 footing cannot save it.
+
+    (1) STRUCTURE, verified two ways.  S0: the XD-coefficient of the ladder action is
+        EXACTLY K_2 XI2 (Y dQ + Y^2/4)/X0 -- a single combination Z = K_2 XI2/X0, no
+        other XI2 or X0 dependence anywhere in the build.  S1: the Z-collapse holds
+        EXACTLY (alpha_1(XI2=3, X0=7) == alpha_1(Z=30/7) as rational functions of q),
+        so X0 is a pure rescuing of Z: a scan over X0 IS a scan over Z, and both were
+        run.  The closed-form drag is therefore THE PRIZE the task asked for:
+              drag(Z) = 4(2-K_B)/(J_Y+1)   -- the UNSCREENED f31 banked value,
+        a constant, at every Z, at every grid point:
+              (K_B, J_Y) = (1/5, 1): 18/5   (1/2, 1): 3   (1/5, 2): 12/5.
+        There is no factoring to do: the exact rational formula for the new drag IS the
+        old one.  Compare operator (A)'s reference form -4(2-K_B)/(J_Y(1+Z/10)+1),
+        which falls off the same grid: this class does not.
+
+    (2) MECHANISM, from the pre-projection build.  The unit-norm constraint (C1c = 0)
+        makes Y|eps^1 == 0 IDENTICALLY: with d phi_bg = -Q0 A_dn purely aether-parallel,
+        the metric projection term h0^{mn} dphi_bg_m dphi_bg_1n = -Q0 (A_up1 . A_dn)
+        is cancelled by the kinetic cross term Q0 A_up0 . d(d chi) -- the exact identity
+        2 A_up1 . A_dn = A_up0 . H . A_up0 (H = the metric perturbation matrix).  So Y
+        is QUADRATIC in the fluctuations to the kept order.  Hence (Y dQ)|eps^2 = 0 and
+        (Y^2)|eps^2 = (Y^2)|eps^3 = 0 EXACTLY (both verified symbolically from the
+        pipeline's own objects, /tmp/g034_sc/mech.pkl).  Both injected pieces start at
+        eps^3, whose Es/Eis monomials are all ODD-power ((3,0),(2,1),(1,2),(0,3)) and
+        the DC projection (equal powers only, Es*Eis -> 1) kills them; their eps^4
+        terms are OUTSIDE the ladder's eps<=2 bookkeeping.  Net: the XD-coefficient of
+        the static action is IDENTICALLY ZERO (all 20 EOM derivatives d(L2dc, amp) = 0).
+        The operator stiffens the QUARTIC fluctuation self-interactions, not the
+        quadratic kinetic matrix: to linearised PPN it does not couple AT ALL.  The
+        f(0) = -1 + O(Y)-expansion used by the task (bookkeeping pieces + sign) drops
+        the -xi^2 Y^2/(2X0) constant and the dQ^3/Y^3+ terms, and that expansion error
+        is harmless HERE precisely because the kept pieces are null: the screening
+        never enters the linearised problem in ANY sign or bookkeeping convention.
+
+    (3) X0, the theory's own footing (per the steering directive, settled, not assumed).
+        The certified convention is H003 line 513:  Lambda^4 = rho_Lambda, status
+        DERIVED from f(0) = -1 (H001 A2/B2, symbolic); hy4/PAPER line 36 puts the FRW
+        vacuum at X = 0 identically.  The natural footing X0 = rho_Lambda/Lambda^4 is
+        therefore EXACTLY 1 -- the benchmark run.  (The parent's L200/L206 pointer
+        resolves to the L211 ledger's relabelled rotation-curve exponents, not an X0
+        convention; H003/PAPER is the X0-bearing convention.)  And the opposite extreme
+        is already covered exactly: X0 -> 0^+ is Z -> infinity (maximal screening, the
+        limit the f(X + xi^2 Y^2/X) class lives at), where the drag limits are
+              -18/5, -3, -12/5  -- UNCHANGED from Z = 0.
+        No X0 exists, natural or extreme, that turns this operator on.  The verdict is
+        footing-independent BY THE STRUCTURE (S0/S1), not by choice of benchmark.
+
+    (4) VERDICT (pre-registered, honest on both branches).  V1 PASS (gamma = 1,
+        alpha_3 = 0, alpha_1 = banked at Z = 0 at all three grid points -- the build
+        touches nothing else); V2 FAIL (|alpha_1(Z*)| = |alpha_1(0)| exactly: ratio 1,
+        not < 1e-2); V3 FAIL (alpha_1 = 0 is NOT reachable at positive coupling -- the
+        alpha_1 lock -4 c_14 = +4(2-K_B)/(1+J_Y) forces c_14 < 0 UNTOUCHED -- and the
+        alpha_2 channel is exactly unchanged, ratio 1.0000 at q -> 0).  No singularisation
+        anywhere: unlike G030's aether operator, this operator does not break the
+        static limit -- it is EXACTLY INVISIBLE to it.  'Operator breaks the theory'
+        vs 'operator breaks the static limit' has a third answer: 'operator never
+        enters the linearised problem'.
+
+    (5) CONSEQUENCE -- THE SECOND DOOR CLOSES.  G030 closed the (D^2)-class (scalar
+        trace, scalar Hessian, aether Hessian) and left open the inside-the-invariant
+        class f(X + xi^2 Y^2/X).  This lane closes it: no local operator tested --
+        seven now across f31/f31c/G030/G034 -- realises f31c's coherent-stiffening
+        reference (J_Y -> J_Y(1+XI2), propagator form -4(2-K_B)/(J_Y(1+XI2)+1), the
+        exact drag the gate needs).  The k^4 PPN gate for LOCAL two-derivative-family
+        operators is CLOSED.  The surviving completions are the non-local-form lane
+        (route A / Horn A, G032 running: the fixed-congruence ladder) and non-perturbative
+        screenings (which by this lane's mechanism cannot act through the quadratic
+        invariant at PPN order at all).  The completed-action gate stays SHUT unless
+        Horn A opens it.
+
+  STATUS: committed as a FINDING per repo discipline.  The drag closed form is exact
+  (the unscreened one); the mechanism is verified symbolically at EOM level; the X0
+  question is settled from the repo's own certified lanes (H003/PAPER) and is moot
+  by structure.  Per the steering directive, no iteration past the X0 scan: the
+  session ends with the lane committed and pushed.
