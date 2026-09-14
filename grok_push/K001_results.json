@@ -1,0 +1,58 @@
+{
+ "pass": 7,
+ "fail": 0,
+ "checks": [
+  {
+   "name": "V0 [L248 committed numbers load and the cap fraction is zero] r_cap and v6_frac_canonical are read from the committed L248_results.json",
+   "measured": "r_cap = 5.798 kpc, frac = 0.0, slope = 0.537 +/- 0.026",
+   "pass": true,
+   "reading": "control: we are using L248's own numbers, not a re-derivation"
+  },
+  {
+   "name": "V1 [SPARC deep-branch supported mass is a DISC CORRECTION, not a halo] M_S(<r_last) = M_bar max(r_last/r_M - 1, 0) is computed on every SPARC curve; the median ratio is compared with 20 (halo-scale) and with 1 (order-unity disc correction)",
+   "measured": "canonical median 2.950, p90 5.279, mass-weighted 2.191; alt median 3.335",
+   "pass": true,
+   "reading": "pre-registered kill was median > 20; it does not fire.  SPARC's (S) mass is a few baryon-masses of disc-scale dark component (median 3.0, mass-weighted 2.2), not a 20:1 cosmological halo"
+  },
+  {
+   "name": "V2 [THE COSMIC SPLIT: (S) is a TRACE of Omega_dm] f_S = Omega_(S)/Omega_dm is formed from the SPARC mass-weighted M_S/M_bar, two stellar-census normalisations, two disc gas factors, both a0 footings, and compared with the pre-registered kill 0.10",
+   "measured": "f_S in [2.6875e-02, 6.4387e-02]; kill threshold 0.10; max/kill = 0.6439",
+   "pass": true,
+   "reading": "the supported branch carries at most 6.44% of Omega_dm -- a TRACE, not a cosmological component.  The CMB third peak, the forest, cluster bulk and KiDS lensing are the free-fall branch.  L166's double-count does not fire: the two branches are two STATES of one fluid, and (S) is a local rearrangement of a 10^-3-level subset of the charge"
+  },
+  {
+   "name": "V3 [L248's truncation theorem DOES NOT APPLY to the measured lensing range] the MW supported-branch cap (L248 v6) is compared with the innermost KiDS isolated-galaxy bin; overlap would make L248's 17.6-sigma kill a kill of this theory",
+   "measured": "r_cap = 5.80 kpc, r_in = 35.0 kpc, r_in/r_cap = 6.0, L248 frac inside cap = 0.0",
+   "pass": true,
+   "reading": "the cap sits a factor 6 inside the first lensing bin.  Every kilogram KiDS measures is outside (S).  L248 killed the one-branch medium as a lensing source; it is a PASS of the two-branch theory, because the lensing channel is predicted to be (F) -- untruncated, slope 1/2 from the isothermal mass run (L257), amplitude NOT the galaxy's (S) budget"
+  },
+  {
+   "name": "V4 [most SPARC last-points sit OUTSIDE r_M, so (S) is in the data, as a disc correction] the fraction of SPARC curves with r_last > r_M is computed on both footings and compared with 0.5; median r_M/r_last is compared with 1",
+   "measured": "canonical n_pos/ng = 0.987, median r_M/r_last = 0.253; alt n_pos/ng = 0.987, median r_M/r_last = 0.231",
+   "pass": true,
+   "reading": "the supported branch is not a hypothetical outer halo: it is inside the SPARC window as an O(1) disc correction (V1).  Cassini Q2 = 0 is NOT recomputed here -- it is Lean medium_background_pressureless on branch (F), labelled by construction, not a new quadrupole integral"
+  },
+  {
+   "name": "V5 [the MW 17x shortfall IS the local cosmic split] G003's committed identification total M_MW / M(<100 kpc) is compared with V2's f_S; both must be << 1 and in the same direction (supported is a trace)",
+   "measured": "MW f_local = 0.0596 (shortfall 16.8x); cosmic f_S max = 6.4387e-02",
+   "pass": true,
+   "reading": "same architecture at two scales: the well's hydrostatic mass is a trace of the dynamical mass.  PAPER29 recorded G003 V5 as a FAILURE of a one-component identification that claimed to carry all the dark mass.  Under two branches it is a PREDICTION: ~94% of M(<100 kpc) is (F), ~6% is (S), and KiDS at 35 kpc -- 1 Mpc sees only (F)"
+  },
+  {
+   "name": "V6 [the branch-selection rule is POSTULATED, labelled as such] the lane counts derived / measured / postulated / open inputs to the theory as assembled here",
+   "measured": "DERIVED 4 (dichotomy, matched P, p=0 on F, truncation formula); MEASURED 3 (n=2, a0=s/2, Omega_dm amplitude); POSTULATED 1 (kinematics selects the branch); OPEN 1 (covariant action + constraint algebra)",
+   "pass": true,
+   "reading": "the mic-drop is the MASS SPLIT and the L248 escape, not a derived branch-selection rule.  PAPER29's audit of glm53 stands: do not upgrade a postulate to DERIVED.  The action-level unification remains the theoretical gap G028 named"
+  }
+ ],
+ "f_S_min": 0.026874954895400375,
+ "f_S_max": 0.06438671664110088,
+ "sparc_ng": 155,
+ "median_MS_over_Mbar_canonical": 2.9496850723080494,
+ "median_MS_over_Mbar_alt": 3.335266182070675,
+ "mass_weighted_canonical": 2.191342476086492,
+ "mass_weighted_alt": 2.500024230275441,
+ "r_cap_kpc": 5.798472603405604,
+ "r_in_kpc": 35.0,
+ "f_local_MW": 0.05961538461538461
+}
