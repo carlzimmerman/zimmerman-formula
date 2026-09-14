@@ -1,0 +1,66 @@
+{
+ "pass": 9,
+ "fail": 0,
+ "checks": [
+  {
+   "name": "V1a [w = 0 by construction] the mimetic stress T = rho_mim u u with u^mu u_mu = -1 has trace T^mu_mu = -rho_mim exactly, so the extracted pressure p = (T^mu_mu + rho)/3 = 0 -- w = 0 EXACTLY, the famous mimetic result, verified in symbols",
+   "measured": "u^mu u_mu + 1 = 0; T^mu_mu = -rho_mim; p = 0 => w = p/rho = 0 exactly",
+   "pass": true,
+   "reading": "the mimetic constraint g^{mu nu} d_mu chi d_nu chi = -1 makes the Lagrange multiplier absorb ALL non-dust components: the on-shell stress is rho u^mu u^nu with NO pressure term available in principle. Contrast G028's honest window: the charge dust carries 0 < w < 5.7e-7, strictly positive -- the sign of w is the theory's registered CMB discriminator"
+  },
+  {
+   "name": "V1b [the mimetic density redshifts as a^-3 exactly] the mimetic field equation d_mu(Lambda^4 sqrt(X) d^mu chi) = 0 on FLRW is rho_dot + 3H rho = 0 identically given chi_ddot = -3H chi_dot -- dust redshift with no condition beyond the constraint's own conservation law",
+   "measured": "residual rho_dot + 3H rho = 0 (identically zero, sympy)",
+   "pass": true,
+   "reading": "w = 0 is not an approximation here: the mimetic scalar's equation IS the dust conservation law. This is the object the identification test must confront: our registered closure family (L200) has rho = U/m_rel ~ a^{-3(1+w)} with w = 0.003, and G028's window is w > 0 strictly"
+  },
+  {
+   "name": "V2a [the stress tensors match at w = 0] with the identification chi = the Schutz clock phi (G031's Lagrange multiplier, the shift charge's potential), T_charge(w=0) and T_mimetic are the SAME matrix, symbolically",
+   "measured": "T_charge - T_mimetic at w = 0 = Matrix([[0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0]]) (zero matrix, sympy exact)",
+   "pass": true,
+   "reading": "at the boundary w = 0 the two stress tensors are one object. The map: chi (mimetic scalar) <-> phi (the dust's clock / the shift charge's potential); u^mu = grad chi / sqrt(X) <-> u^mu = grad phi / |grad phi|; rho_mim = Lambda^4 sqrt(X) <-> rho_charge = U/m_rel. Both currents are GRADIENT currents of a clock scalar: J^mu_mim = Lambda^4 sqrt(X) grad^mu chi, J^mu_charge = P_X grad^mu chi -- the same operator form"
+  },
+  {
+   "name": "V2b [the conservation laws are the same operator] the mimetic conservation law and the Lean-certified charge conservation (L217) are the SAME divergence form d_mu(C[X] grad^mu chi) = 0 with the single replacement C = Lambda^4 sqrt(X) <-> C = P_X",
+   "measured": "J^mu_mim = Lambda^4 sqrt(X) grad^mu chi; J^mu_charge = P_X grad^mu chi -- identical divergence structure (the substitution map is C[X])",
+   "pass": true,
+   "reading": "this is WHY the identification is live: the mimetic scalar's equation is a shift-charge conservation law, exactly like ours. The mimetic dust is a Noether charge of the conformal/shift symmetry in the same sense ours is of the shift symmetry -- 2503.11174's interchange theorem makes the vector-norm and mimetic constraints the same gauge, so Horn A's fixed congruence and the mimetic dust sit in ONE gauge structure"
+  },
+  {
+   "name": "V2c [THE VERDICT: the identification is PARTIAL -- exact at the w = 0 boundary, a w-scaled residual inside the registered window] T_charge - T_mimetic = w rho (delta^mu_nu + u^mu u_nu): the pure pressure parts. Our registered family has w = 0.003 (L200) with the theory window 0 < w < 5.7e-7 (G028) -- strictly positive by design, the SIGN of w being the registered discriminator vs LCDM",
+   "measured": "residual after subtracting w rho (delta + u u): Matrix([[0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0]]) (zero => the difference is exactly the w-terms); deviation bound at the window ceiling: |DeltaT|/rho <= w < 5.7e-07",
+   "pass": true,
+   "reading": "THE IDENTIFICATION MAP, STATED: chi <-> phi (the dust's clock), u^mu <-> u^mu, Lambda^4 sqrt(X) <-> P_X, Q_mim <-> Q0 -- exact at w = 0; partial inside the window by exactly the pressure residual w rho (delta + u u), bounded by 5.7e-7. Adopting mimetic dust IDENTICALLY would force w = 0 and DELETE the theory's registered sign-of-w prediction (G028 V3: the discriminator is the sign, not the magnitude). The unification therefore holds at the boundary: the mimetic gauge is the w -> 0 edge of the closure family, not the whole family. The registered w > 0 is the theory's own amendment to mimetic dust -- it is what keeps the clock running fast (L200) and the a0 window flat (G028 V3)"
+  },
+  {
+   "name": "V3a [the mimetic abundance is ONE conserved integration constant] Q_mim = a^3 Lambda^4 chi_dot is conserved exactly when chi_dot ~ a^-3, and rho_mim = Q_mim a^-3 -- the density today is set by ONE initial number, the mimetic charge's amplitude",
+   "measured": "dQ_mim/da = 0 (identically zero); rho_mim = Q_mim a^-3 (exact, sympy)",
+   "pass": true,
+   "reading": "the same status as our charge: Q0 = a^3 P_X qbar conserved (L217, Lean-certified), rho_charge = Q0-normalised a^-3 on the closure family (L200 V1/G028 V1). One conserved number per sector"
+  },
+  {
+   "name": "V3b [V3 VERDICT: the initial conditions COINCIDE -- one parameter, not two] under the V2 map the mimetic integration constant and the charge's initial amplitude are the same conserved number: Q0 = Q_mim. The parameter count is UNCHANGED: the theory carries one initial condition (G028 V2: 'one initial condition replaces LCDM's particle mass') and the mimetic dust adds none",
+   "measured": "Q0 = a^3 P_X qbar = a^3 Lambda^4 sqrt(X) chi_dot = Q_mim under P_X <-> Lambda^4 sqrt(X) with chi = phi -- one number, two names",
+   "pass": true,
+   "reading": "this is the unification's abundance leg: adopting the mimetic gauge does NOT add a second dark abundance parameter. The honest ledger: the unification REDUCES nothing either (G028's honest statement stands -- the freedom is relocated, not removed); what it adds is structural: the cold sector's conservation law becomes a GAUGE FIXING of the conformal symmetry, and the Lorentz-violation cost of Horn A becomes a gauge artifact IN THE SAME MOVE (2503.11174's interchange theorem) -- one action, gauge-fixed, producing the MOND law (the scalar sector) and the cold sector (the mimetic charge)"
+  },
+  {
+   "name": "V4a [the dust stress is blind to the MOND sector] T_mimetic = Lambda^4 sqrt(X) u^mu u^nu contains no a_0 and no MOND scalar phi: partial T/partial a_0 = 0 and partial T/partial phi = 0 identically",
+   "measured": "free symbols of T_mimetic: ['rho_mim']; contains a_0: False; contains phi: False",
+   "pass": true,
+   "reading": "the raise cannot be carried by the dust's stress: it is a function of a_0 only through the MOND coupling's kernel nu(cH/a_0) (L180), which lives in the SCALAR sector's kinetic normalization (Horn A's CA g^{mu nu} d phi d phi on the fixed projector, a0 = (c/2) sqrt(G rho_Lambda)). The mimetic dust's own clustering is standard w = 0, c_s^2 = 0 -- precisely L180's prescription (B): 'the dark component clustering as in LCDM'"
+  },
+  {
+   "name": "V4b [the registered L180 prediction is REPRODUCED unchanged under the identification] the growth raise (+1-3% in sigma8/S8, +1-4% in f sigma8 at z = 0.3-1, falling with z) enters only through G_eff = nu(cH/a0) in the growth equation's source term -- the dust is a passive w = 0 clustering component in both readings",
+   "measured": "canonical (kappa=1/2): S8 = 0.843, dfsig8(0.3) = +2.7%; alt (kappa=0.6): S8 = 0.847, dfsig8(0.3) = +3.8%",
+   "pass": true,
+   "reading": "V4 VERDICT: the growth-raise carrier is the MOND COUPLING (the scalar sector's a_0 kernel), NOT the dust. The unified theory's growth prediction IS the registered one (L180 stands, no recomputation) -- conditional on the minimal identification (chi = the dust's clock). The alternative branch, chi = the MOND scalar itself, would thread the coupling through the dust's constraint and move the raise -- that branch is G043's embedding decision, not this lane's, and it must pass 2503.11174's timelike-gradient requirement through matter and Lambda domination (their sec. V: the mimetic constraint's sign issue in cosmology)"
+  }
+ ],
+ "verdict": {
+  "V1": "w=0 exact for mimetic dust (confirmed)",
+  "V2": "identification PARTIAL: exact at w=0; residual w*rho*(delta+uu), bounded 5.7e-7",
+  "V3": "abundances coincide: Q0 = Q_mim, one parameter, count unchanged",
+  "V4": "raise carrier = MOND coupling only; registered L180 prediction stands"
+ }
+}
