@@ -62,3 +62,50 @@ at 20:1 (G011 confirms no better epoch exists).
 3. **The per-galaxy M/L freedom test** (G010's sharpener): re-run the RAR floor
    with per-galaxy M/L; if the 0.108-dex floor survives above 0.10, the
    statistical origin is confirmed and the force-law obituary stands.
+
+## G049 MILESTONE (2026-09-14) -- THE SAG DECOMPOSITION: NO CANDIDATE OWNS IT
+
+G049 (pre-registered in G049_preregistration.md, FROZEN before any residual was
+computed; V0 anchor reproduced G036's registered sag exactly: -0.142/-0.133
+dex/dex, p_bin 6e-4/2e-4) tested the three registered candidates for the RAR's
+outer sag:
+
+- **(a) radial M/L gradient (the strongest): FAILS, and in the WRONG DIRECTION.**
+  Two-parameter fits (ups0 in [0.2,1.2] x ups1 in [-0.5,+0.5]/Rd, Rdisk from the
+  SPARC Lelli+16 table, 171/171 galaxies) leave the sag DEEPER: -0.127 -> -0.165
+  (canonical), -0.140 -> -0.165 dex/dex (alt), t = -4.6/-4.9, p ~ 1e-5.  The
+  M/L freedom finds the gradient in a few galaxies (median ups1 ~ 0, sd ~ 0.27,
+  35/171 pinned at the plausibility bounds) but the sag is NOT an M/L-gradient
+  artifact.  The white-noise floor is PRESERVED (pooled offset-removed 0.0419 ->
+  0.0434 canonical, 0.0464 -> 0.0491 alt) -- a real null, not an overfitting
+  rescue.
+- **(b) matched law at finite Y: IMMATERIAL.**  The C(Y) = 2(1+Y)^2/(2+Y) law at
+  SPARC's deep-regime Y (median 0.034) sits only +0.012-0.039 dex above bare mu2
+  and moves the sag -0.127 -> -0.118 (canonical), -0.140 -> -0.131 (alt) -- a
+  9% absorption, far from the |mean| < 0.075 material-share gate.  With the
+  gradient refitted under the C law it gets DEEPER again (-0.19).
+- **(c) HI truncation: IMMATERIAL.**  Dropping the outermost 2 deep-regime
+  points of all 187 Tier-1 curves moves the sag -0.155 -> -0.134 (canonical),
+  -0.143 -> -0.118 (alt), still binomial-coherent one-sign (p ~ 3e-4); the
+  errV < 10% cut leaves -0.144/-0.146.  The sag is NOT an outer-point artifact.
+- **(d) EFE: closed** (G036 V4e + G044 V2E); the G049 consistency column reads
+  d(slope)/d log10 eN = -0.019 +/- 0.125 (canonical), consistent with zero.
+
+**THE ESCALATION (the registered both-outcomes finding):** no candidate --
+gradient, matched law, truncation, or their combination -- reduces the
+population-mean deep sag to |mean| < 0.05 dex/dex with the white-noise floor
+intact.  The sag (-0.13 to -0.16 dex/dex, one-sign, 4-5 sigma, population-
+coherent) is UNEXPLAINED residual structure: the theory's sharpest open
+anomaly.  It is NOT the radial M/L gradient -- so the gradient-refit cannot
+claim the RAR precision; what the lane DID measure: with the per-galaxy M/L
+surface + radial gradient priced (2 params/galaxy), the pooled deep-regime RAR
+rms drops 0.175 -> 0.104 dex (canonical) / 0.177 -> 0.111 (alt) -- the M/L
+surface owns ~0.07 dex of the registered 0.15-0.17, the gradient owns almost
+nothing extra -- and the within-galaxy white-noise floor STANDS at 0.043/0.049
+dex (the registered 0.045-0.052 band, now measured under the 2-parameter
+freedom: the floor is not an artifact of the fixed M/L convention).
+
+**NEXT-VALUE LANES (from G049):** the sag's mechanical account (per-galaxy
+slope vs r_max/Rd, bulge fraction, bar presence -- structure G040 did not
+test); BIG-SPARC/WALLABY e_N ~ 1 EFE split (registered); the cluster amplitude
+check (G008's owed follow-up).

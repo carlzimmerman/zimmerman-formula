@@ -1,0 +1,108 @@
+G049 -- THE SAG DECOMPOSITION: what drives the RAR's outer sag?
+
+THE OPEN QUESTION (G036/G044 registered): the RAR residual decomposes as
+per-galaxy offset + white per-point noise (0.045-0.052 dex within-galaxy) +
+a small ONE-SIGN outer sag -- per-galaxy deep-regime (r/r_M > 2) slope of
+delta = log10(g_obs/g_th) vs log10(r/r_M), population mean -0.13 dex/dex
+(t = -4 sigma, binomial p ~ 1e-3, most galaxies negative).  G040 killed the
+physics-variable reading of the OFFSET; the SAG is the remaining UNEXPLAINED
+coherent structure.  This lane decomposes it.
+
+CANDIDATES (pre-registered order in G049_preregistration.md, FROZEN before
+any G049 residual was computed):
+  (a) radial M/L gradient ups(r) = ups0 + ups1*(r/Rd)  -- THE STRONGEST.
+      dln g_bar = dln ups pointwise (exact, multiplicative at fixed
+      components).  Two-parameter per-galaxy fit: ups0 in [0.2,1.2] (the
+      registered Lelli+16 population range, G013/G040) x ups1 in [-0.5,+0.5]
+      per disc scale length (the pre-set plausibility band), against the
+      WHOLE curve with the same pooled-dex objective as G013/G040.
+      Rd from SPARC_Lelli2016c.mrt (3.6-micron disc scale length).
+  (b) the G031 matched law at finite Y: g^2 = a0*C(Y)*g_N with
+      C(Y) = 2(1+Y)^2/(2+Y), Y = g_bar/(2a0); C(Y->0) = 1 exactly (G031 V7).
+      The frozen pre-registration logged an arithmetic correction (first
+      draft C(1)=3/2, exact 8/3) BEFORE any galaxy residual was computed;
+      the lane measures the C-vs-mu2 offset profile numerically.
+  (c) HI truncation / outermost-point artifacts: drop the outermost 2
+      DEEP-REGIME points of each curve, refit; plus the errV/V < 10% cut.
+  (d) the EFE at the high-eN tail is NOT re-run (G036 V4e + G044 V2E closed
+      it at SPARC amplitudes); e_N is carried as a consistency column only.
+
+VERDICT GATES (frozen):
+  (a) KILLS the sag iff  (i) |mean deep slope| < 0.05 dex/dex with the
+      gradient fitted, on BOTH footings; (ii) the within-galaxy white-noise
+      floor does not degrade by more than 0.005 dex; (iii) > 80% of fitted
+      ups1 interior to [-0.5,+0.5].  HEADLINE if (a) fires: the sag WAS the
+      radial M/L gradient and the priced RAR precision floor is the
+      gradient-fit white-noise floor, stated against the registered
+      0.150/0.174-dex deep totals and 0.045-0.052-dex within-galaxy floor.
+  (b)/(c) absorb a MATERIAL share iff |mean| < 0.075 (more than half) with
+      the floor intact.
+  If NO candidate (alone or combined) reaches |mean| < 0.05 with the floor
+  intact: the sag is UNEXPLAINED residual structure -- ESCALATED as the
+  theory's sharpest open anomaly.  Both outcomes are findings.
+
+CORPORA: SPARC-175 (G036's exact ingest, the V0 anchor; candidate (a) is
+SPARC-only because only SPARC carries the Vgas/Vdisk/Vbul decomposition a
+gradient needs) + the G044 v7 extended Tier-1 set (crossmatched curves
+inherit their SPARC baryon model by registered interpolation) for (b)/(c).
+
+Rdisk parsed for 175 SPARC galaxies
+PART 0 -- V0 CONTROL: reproduce G036's registered sag on the SPARC ingest
+    SPARC ingest: 171 galaxies, 3373 rotation points
+    [canonical] sag mean -0.1417 dex/dex (93/144 negative, p_bin = 0.00059), t = -4.24
+    [alt] sag mean -0.1329 dex/dex (98/150 negative, p_bin = 0.00022), t = -4.26
+  [PASS] V0 REPRODUCE THE REGISTERED SAG (G036 anchor): mean deep-regime slope -0.13/-0.14 dex/dex, N in [120,155], on the SPARC ingest
+         measured: canonical -0.1417 dex/dex (N = 144), alt -0.1329 (N = 150)
+         reading : same ingest, residual definition and slope fit as G036's V4d; a miss invalidates every downstream comparison
+
+PART 1 -- candidate (a): the radial M/L gradient ups(r) = ups0 + ups1*r/Rd
+    galaxies with a parsed Rdisk: 171/171 (candidate (a) runs on these; the rest are excluded with count recorded)
+    [canonical] N = 171
+      fixed-M/L sag mean   -0.1273 dex/dex (N = 144)
+      gradient sag mean    -0.1648 +/- 0.0355 (t = -4.64, p = 7.9e-06; 98/144 negative, p_bin = 1.8e-05)
+      deep within-galaxy floor: fixed 0.0291 -> gradient 0.0296 dex
+      ups1: median +0.007, sd 0.273, interior 80%, pinned lo/hi 23/12
+    [alt] N = 171
+      fixed-M/L sag mean   -0.1403 dex/dex (N = 150)
+      gradient sag mean    -0.1647 +/- 0.0340 (t = -4.85, p = 3.1e-06; 101/150 negative, p_bin = 2.6e-05)
+      deep within-galaxy floor: fixed 0.0328 -> gradient 0.0339 dex
+      ups1: median -0.011, sd 0.256, interior 82%, pinned lo/hi 24/6
+  [FAIL] A1 GRADIENT-KILL: with ups(r) fitted the population-mean deep sag drops to |mean| < 0.05 dex/dex on BOTH footings
+         measured: canonical: sag mean -0.1273 -> -0.1648 dex/dex (t = -4.64, p = 7.9e-06); floor 0.0291 -> 0.0296 dex; ups1 median +0.007 +/- 0.273, interior 80%, pinned 23lo/12hi; alt: sag mean -0.1403 -> -0.1647 dex/dex (t = -4.85, p = 3.1e-06); floor 0.0328 -> 0.0339 dex; ups1 median -0.011 +/- 0.256, interior 82%, pinned 24lo/6hi
+         reading : the pre-registered kill clause (i): the sag's population mean must vanish within errors when the two-parameter gradient model is fitted
+  [PASS] A2 NOISE-FLOOR PRESERVATION: the within-galaxy deep white-noise floor does not degrade by more than 0.005 dex under the gradient model (pooled offset-removed rms, the registered statistic; median shown too)
+         measured: canonical: pooled 0.0419 -> 0.0434 dex (delta +0.0015); median 0.0291 -> 0.0296; alt: pooled 0.0464 -> 0.0491 dex (delta +0.0026); median 0.0328 -> 0.0339
+         reading : a gradient that 'fixes' the sag by eating the noise floor is overfitting, not physics -- the registered 0.045-0.052-dex floor must survive
+  [FAIL] A3 PLAUSIBILITY: > 80% of fitted ups1 interior to [-0.5, +0.5] per Rd
+         measured: canonical: interior 80% (pinned at bounds: 23 lo / 12 hi of 171); alt: interior 82% (pinned at bounds: 24 lo / 6 hi of 171)
+         reading : values pinned at the plausibility bound mean the fit wants unphysical gradients -- the candidate then fails its own plausibility clause
+
+PART 1b -- THE PRICED RAR PRECISION (both models, whole deep ledger)
+    [canonical] pooled deep rms: fixed M/L 0.1745 -> gradient 0.1040 dex (registered comparators 0.174/0.150); within-galaxy floor 0.0291 -> 0.0296; pooled within-galaxy (offset+line removed) 0.0194 dex (N = 1212)
+    [alt] pooled deep rms: fixed M/L 0.1768 -> gradient 0.1110 dex (registered comparators 0.174/0.150); within-galaxy floor 0.0328 -> 0.0339; pooled within-galaxy (offset+line removed) 0.0208 dex (N = 1334)
+
+PART 2 -- candidate (b): the G031 matched law at finite Y, C(Y)=2(1+Y)^2/(2+Y)
+    Tier-1 extended set: 187 curves (16 crossmatched, inheriting their SPARC model) -- candidate (b) runs on SPARC curves only (component decomposition needed); crossmatched set reserved for (c)
+    bare C-law vs bare mu2, deep-regime offset profile (median): Y~0.01: +0.0118 dex (n=1143); Y~0.1: +0.0394 dex (n=46)
+    deep-regime Y range: median 0.034, 10-90th pct [0.015, 0.080]
+    [canonical] deep sag mean: mu2-fixed -0.1273 -> C-law fixed -0.1177 -> C-law + gradient -0.1885 dex/dex
+          deep within-floor: mu2 0.0291 -> C 0.0305 dex
+    [alt] deep sag mean: mu2-fixed -0.1403 -> C-law fixed -0.1312 -> C-law + gradient -0.1922 dex/dex
+          deep within-floor: mu2 0.0328 -> C 0.0344 dex
+
+PART 3 -- candidate (c): HI truncation / outermost-point artifacts
+    [canonical] Tier-1 (187 curves): full -0.1548 (102/158 neg, p_bin 0.00031) -> outer-2-dropped -0.1336 (79/118 neg, p_bin 0.00029) -> errV<10% cut -0.1437 (89/139 neg)
+    [alt] Tier-1 (187 curves): full -0.1425 (108/164 neg, p_bin 6e-05) -> outer-2-dropped -0.1179 (86/131 neg, p_bin 0.00043) -> errV<10% cut -0.1458 (95/144 neg)
+
+PART 4 -- consistency column: e_N vs sag slope (NO verdict -- candidate (d) is closed by G036 V4e + G044 V2E)
+    [canonical] d(slope)/d log10 eN = -0.0189 +/- 0.1251 (p = 0.880, N = 144) -- consistency read only
+    [alt] d(slope)/d log10 eN = -0.0885 +/- 0.1179 (p = 0.454, N = 150) -- consistency read only
+
+PART 5 -- THE VERDICT
+  [FAIL] FINAL VERDICT -- WHICH CANDIDATE OWNS THE SAG
+         measured: (a) SURVIVES (|mean| after gradient = 0.1647 dex/dex, floor kept = True, plausible = False); (b) immaterial (C-law+gradient min |mean| = 0.1885); (c) immaterial (outer-2-dropped min |mean| = 0.1179)
+         reading : PRE-REGISTERED ESCALATION: no candidate (gradient, matched law, truncation) reduces the population-mean deep sag to |mean| < 0.05 dex/dex with the white-noise floor intact. The sag is UNEXPLAINED one-sign coherent structure -- the theory's sharpest open anomaly, escalated for the equilibrium account to absorb (candidate (d) EFE is closed at SPARC amplitudes by G036 V4e/G044 V2E).
+
+wrote G049_sag_decomposition_results.json
+
+G049 COMPLETE: 2/5 checks PASS.
