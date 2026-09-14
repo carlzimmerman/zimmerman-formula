@@ -9,7 +9,7 @@
   flat a₀(z), subdominant scalar GW) confronting DATA — not by Lean, and not while the intrinsic BBN
   fine-tuning (L84/L87) and astra's open ADM/khronon gates stand.
 
-  Theorems (181 as of 2026-09-13; all: exit 0, zero `sorry`, axioms ⊆ {propext, Classical.choice, Quot.sound}):
+  Theorems (185 as of 2026-09-14; all: exit 0, zero `sorry`, axioms ⊆ {propext, Classical.choice, Quot.sound}):
     hasDerivAt_G, hasDerivAt_Gp   — Gp = dG/dy and Gpp = d²G/dy² proven (not merely asserted).
     kernel_identity               — MOND kernel G'(y)/(2y) = 1 − e^{-y}.
     Gpp_zero, Gpp_pos             — health dichotomy: G''(0)=0, G''(y)>0 ∀ y>0 (no ghost off zero field).
@@ -1815,3 +1815,54 @@ theorem medium_truncation_radius (Mb ratio rM : ℝ) (hr : rM ≠ 0) :
     Mb * ((1 + ratio) * rM / rM - 1) = ratio * Mb := by
   field_simp
   ring
+
+/-! ## L248 -- the mass-budget truncation of the lensing relation.  If the phantom carrying the
+weak-lensing signal is REAL MASS drawn from a galaxy's finite budget B = M_dark/M_bar (the equilibrium
+identification, the amplitude law, and the L247 medium all say it is), the enclosed mass freezes once
+the budget is spent and the relation must turn.  These theorems fix WHERE it must turn and WHICH WAY
+it must depart; the lane measures the data and finds no turn there. -/
+
+/-- L248: THE TRUNCATION ACCELERATION IS MASS-INDEPENDENT.  With the MOND radius r_M given by
+r_M^2 = G M / a_0, spending a budget of B baryonic masses puts the truncation at r_t = (1+B) r_M,
+where the baryonic acceleration is exactly a_0/(1+B)^2 -- the galaxy's mass cancels, so every galaxy
+in a stacked measurement must turn at the SAME acceleration. -/
+theorem budget_truncation_acceleration (G M a0 B rM rt : ℝ) (hGM : G * M ≠ 0) (ha0 : a0 ≠ 0)
+    (hB : 1 + B ≠ 0) (hrM : rM ^ 2 = G * M / a0) (hrt : rt = (1 + B) * rM) :
+    G * M / rt ^ 2 = a0 / (1 + B) ^ 2 := by
+  have hG : G ≠ 0 := fun h => hGM (by rw [h]; ring)
+  have hM : M ≠ 0 := fun h => hGM (by rw [h]; ring)
+  subst hrt
+  rw [mul_pow, hrM]
+  field_simp
+
+/-- L248: the truncated relation is CONTINUOUS at the turn.  Approaching from above, the square-root
+branch gives a_0/(1+B); from below, the frozen-mass branch g_obs = (1+B) g_bar gives the same value. -/
+theorem truncation_continuous (a0 B : ℝ) (ha0 : 0 < a0) (hB : 0 < 1 + B) :
+    Real.sqrt ((a0 / (1 + B) ^ 2) * a0) = (1 + B) * (a0 / (1 + B) ^ 2) := by
+  have h : (a0 / (1 + B) ^ 2) * a0 = (a0 / (1 + B)) ^ 2 := by
+    field_simp
+  rw [h, Real.sqrt_sq (by positivity)]
+  field_simp
+
+/-- L248: the deep branch's enclosed mass grows LINEARLY with radius, written squarefree.  With
+g^2 = G M a_0 / r^2 the dynamical mass M_dyn = g r^2 / G satisfies M_dyn^2 = M a_0 r^2 / G, so
+M_dyn ∝ r without bound: no finite budget can feed it at every radius. -/
+theorem deep_branch_mass_linear (G M a0 r g Mdyn : ℝ) (hG : G ≠ 0) (hr : r ≠ 0)
+    (hg : g ^ 2 = G * M * a0 / r ^ 2) (hM : Mdyn = g * r ^ 2 / G) :
+    Mdyn ^ 2 = M * a0 * r ^ 2 / G := by
+  subst hM
+  have h : g ^ 2 * r ^ 2 = G * M * a0 := by field_simp at hg; linarith [hg]
+  field_simp
+  exact h
+
+/-- L248: BELOW the turn the truncated prediction is strictly SMALLER than the square-root branch, so
+the departure has a definite sign -- the model predicts a deficit, and the test is one-sided. -/
+theorem truncation_is_a_deficit (a0 B g : ℝ) (ha0 : 0 < a0) (hB : 0 < 1 + B) (hg : 0 < g)
+    (hlt : g < a0 / (1 + B) ^ 2) :
+    (1 + B) * g < Real.sqrt (g * a0) := by
+  have hpos : 0 ≤ (1 + B) * g := by positivity
+  have h2 : g * (1 + B) ^ 2 < a0 := by
+    rw [lt_div_iff₀ (by positivity)] at hlt; linarith
+  have key : ((1 + B) * g) ^ 2 < g * a0 := by nlinarith
+  calc (1 + B) * g = Real.sqrt (((1 + B) * g) ^ 2) := (Real.sqrt_sq hpos).symm
+    _ < Real.sqrt (g * a0) := Real.sqrt_lt_sqrt (by positivity) key
