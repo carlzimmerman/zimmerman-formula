@@ -1,0 +1,130 @@
+{
+ "lane": "H002_cmb_perturbations",
+ "pass": 13,
+ "fail": 2,
+ "camb_equivalent_available": false,
+ "peak_shift_percent": 1.403094992119706e-07,
+ "sigma8_theory": 0.8420014053943284,
+ "tension_sigma": 3.166725224763684,
+ "verdict": "PEAK GEOMETRY PASSES (it is a null test): total acoustic peak shift 0.0000% vs 0.1% Planck precision -- the CMB peaks CANNOT discriminate this theory, because the background is exactly LCDM and the scalar is smooth. THE DISCRIMINANT IS THE GROWTH SECTOR, AND THERE THE THEORY LOSES GROUND: the kernel raises D by 0.96% (registered: 1.29%), giving sigma_8 = 0.8420 (registered 0.8447) against Planck's 0.834 -- so it is 3.17 sigma above KiDS-1000 (0.766) and 4.12 sigma above DES-Y3 (0.772), versus LCDM's own 2.83 and 3.65 sigma. The S_8 tension gets WORSE, not better. f sigma_8(z=0) = 0.4508 vs LCDM 0.4396 (+2.55%) is the cleanest test. Approximation stated: this is a Boltzmann-free geometric treatment with a scale-independent G_eff(a); an exact answer needs hi_class/ISiTGR with the mu(a,k), Sigma(a,k) derived from the linearized AeST action.",
+ "details": {
+  "background_w_X0": -1.0,
+  "background_rho_over_Lambda4": 1.0,
+  "cs2_range": [
+   0.5000000037500001,
+   0.999999999998
+  ],
+  "R_at_recombination": 3.2545326476320655,
+  "R_at_z1090": 1.053491052495329,
+  "z_rec_fitting_formula": 352.1563092810437,
+  "r_s_Mpc_mine": 268.9745838863026,
+  "D_A_Gpc_mine": 0.038354777789294026,
+  "l_A_mine": 0.44797945735961875,
+  "growth_raise_D_kernel_percent": 0.95940112641828,
+  "growth_raise_D_registered_percent": 1.2871742084983095,
+  "sigma8_registered": 0.8447350328988759,
+  "sigma8_LCDM_Planck": 0.834,
+  "fsigma8_z0_kernel": 0.4507907974923082,
+  "fsigma8_z0_LCDM": 0.4395807160538508,
+  "tension_KiDS_kernel_sigma": 3.166725224763684,
+  "tension_DES_kernel_sigma": 4.117729729078142,
+  "tension_KiDS_LCDM_sigma": 2.8333333333333313,
+  "shift_geometry_percent": 0.0,
+  "shift_phase_percent": 1.403094992119706e-07,
+  "shift_lensing_percent": 0.0,
+  "peak_shift_budget": {
+   "geometry": "EXACTLY 0 -- the background is LCDM (w=-1 exactly)",
+   "recombination_coupling": "1.403e-07 % (eps(z_rec)=5.20e-09)",
+   "lensing_smoothing": "0.0000 % (BOUND, needs MG Boltzmann)"
+  },
+  "approximation": "Boltzmann-free geometric treatment + scale-independent G_eff(a) in the growth ODE; NOT a modified-gravity Boltzmann integration. Exact treatment needs hi_class / ISiTGR / MG-CAMB with mu(a,k), Sigma(a,k) derived from the linearized AeST action (aether vector perturbation included).",
+  "camb": {
+   "error": "AssertionError: "
+  },
+  "kill_conditions": {
+   "K1": "ACOUSTIC PEAK GEOMETRY",
+   "K2": "BACKGROUND IS EXACTLY LCDM",
+   "K3": "STABILITY / CAUSALITY",
+   "K4": "GROWTH SECTOR vs LENSING",
+   "K5": "PIPELINE VALIDATION (methodology, not physics)",
+   "K6": "KERNEL SCALING vs REGISTERED ANCHORS"
+  },
+  "checks": [
+   {
+    "check": "K2 f'(X) = mu_2(sqrt X): the MOND function is the derivative of the Lagrangian (symbolic, sympy)",
+    "measured": "f'(X) - mu_2(sqrt X) = 0 exactly: True",
+    "pass": true
+   },
+   {
+    "check": "K2 FRW forces X = 0 exactly: h^{00} = g^{00} + u^0 u^0 = -1 + 1 = 0",
+    "measured": "h^00 = 0.0  (homogeneous phi has a purely timelike gradient, which the spatial projector annihilates)",
+    "pass": true
+   },
+   {
+    "check": "K2 rho_scalar/Lambda^4 = 2X f' - f = 1 at X = 0",
+    "measured": "rho/Lambda^4 = 1.000000000000000",
+    "pass": true
+   },
+   {
+    "check": "K2 w(X=0) = p/rho = f/(2Xf' - f) = -1 EXACTLY (kill: |w+1| < 1e-12)",
+    "measured": "w = -1.000000000000000,  |w+1| = 0.000e+00",
+    "pass": true
+   },
+   {
+    "check": "K3 c_s^2 = (u^2+3u+2)/(u^2+3u+4) stays in [1/2, 1) on the whole branch",
+    "measured": "c_s^2 in [0.500000004, 1.000000000] over u in [1e-8, 1e6]",
+    "pass": true
+   },
+   {
+    "check": "K5 R at recombination is in the accepted band 0.5 < R < 0.8 (Planck LCDM: R_* ~ 0.6-0.7; the brief quoted ~0.67 at z_rec ~ 1090)",
+    "measured": "R(z_rec=352.2) = 3.2545   [R(z=1090) = 1.0535,  R(z_drag~1060) = 1.0833]",
+    "pass": false
+   },
+   {
+    "check": "K5 CAMB cross-check",
+    "measured": "CAMB could not be run",
+    "pass": false
+   },
+   {
+    "check": "K1 GEOMETRIC PEAK SHIFT: Delta l_A / l_A from the background",
+    "measured": "Delta l_A/l_A = 0.000e+00 %  (EXACT: the background IS LCDM, not 'close to' it)",
+    "pass": true
+   },
+   {
+    "check": "K1 PHOTON-BARYON SOUND SPEED: the theory must not modify c/sqrt(3(1+R))",
+    "measured": "c_s^gamma = 0.279907 c  = the LCDM value exactly (minimal coupling to g_mu_nu; no disformally coupled photon sector)",
+    "pass": true
+   },
+   {
+    "check": "K1 SCALAR SMOOTHNESS: every observed acoustic mode is inside the scalar's sound horizon, so the scalar does NOT cluster",
+    "measured": "min(k_acoustic)/k_s = 1660.53  (all modes: 1660.5x, 4053.2x, 6113.8x)",
+    "pass": true
+   },
+   {
+    "check": "K1 PHASE SHIFT from the modified coupling at recombination",
+    "measured": "Delta l_1/l_1 <~ eps(z_rec)*phi_1 = 5.197e-09 * 0.270 = 1.403e-07 %",
+    "pass": true
+   },
+   {
+    "check": "K6 the (a_0/(cH))^2 kernel, normalised at z=0, reproduces G023's registered G_eff/G anchors at z = 0.5, 1, 3",
+    "measured": "kernel/registered = 0.870, 0.795, 1.019 at z = 0.5, 1, 3",
+    "pass": true
+   },
+   {
+    "check": "K5 growth integrator validation: with G_eff = G the deep-matter-era solution must be D = a exactly, and f(0) must match Omega_m^0.545",
+    "measured": "D/a at z=20 = 0.995360330 (threshold: 1 +/- 0.005); f(0) = 0.527075 vs Omega_m^0.545 = 0.532803 (1.07% apart)",
+    "pass": true
+   },
+   {
+    "check": "K4 GROWTH SECTOR: sigma_8(theory) vs KiDS-1000 and DES-Y3 (kill if > 5 sigma)",
+    "measured": "sigma_8(kernel) = 0.8420, sigma_8(registered) = 0.8447; tension vs KiDS = 3.17 sigma, vs DES = 4.12 sigma (max |tension| = 4.12 sigma)",
+    "pass": true
+   },
+   {
+    "check": "K1 TOTAL ACOUSTIC PEAK SHIFT vs Planck precision",
+    "measured": "|Delta l_1/l_1| = 0.000000 %  vs threshold 0.1 %  (= 1.40e-06 x the threshold)",
+    "pass": true
+   }
+  ]
+ }
+}

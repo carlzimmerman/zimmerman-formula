@@ -100,7 +100,7 @@ theorem f_zero : f 0 = -1 := by
 private theorem hasDerivAt_f_raw (X : ℝ) (hX : X ≠ 0) (h1ne : 1 + Real.sqrt X ≠ 0) :
     HasDerivAt f
       (1 - 2 * ((1 / (2 * Real.sqrt X)) / (1 + Real.sqrt X))
-         - ((-2 * (1 / (2 * Real.sqrt X))) / (1 + Real.sqrt X) ^ 2))
+         - ((-(2 * (1 / (2 * Real.sqrt X)))) / (1 + Real.sqrt X) ^ 2))
       X := by
   have hsqrt : HasDerivAt (fun Y : ℝ => Real.sqrt Y) (1 / (2 * Real.sqrt X)) X :=
     Real.hasDerivAt_sqrt hX
@@ -110,10 +110,13 @@ private theorem hasDerivAt_f_raw (X : ℝ) (hX : X ≠ 0) (h1ne : 1 + Real.sqrt 
       ((1 / (2 * Real.sqrt X)) / (1 + Real.sqrt X)) X := h1p.log h1ne
   have hlog2 : HasDerivAt (fun Y : ℝ => 2 * Real.log (1 + Real.sqrt Y))
       (2 * ((1 / (2 * Real.sqrt X)) / (1 + Real.sqrt X))) X := hlog.const_mul (2 : ℝ)
-  have hdiv0 := (hasDerivAt_const (x := X) (c := (2 : ℝ))).div h1p h1ne
   have hdiv : HasDerivAt (fun Y : ℝ => (2 : ℝ) / (1 + Real.sqrt Y))
-      ((-2 * (1 / (2 * Real.sqrt X))) / (1 + Real.sqrt X) ^ 2) X := by
-    convert hdiv0 using 1
+      ((-(2 * (1 / (2 * Real.sqrt X)))) / (1 + Real.sqrt X) ^ 2) X := by
+    have h := (hasDerivAt_const (x := X) (c := (2 : ℝ))).div h1p h1ne
+    change HasDerivAt (fun Y : ℝ => (2 : ℝ) / (1 + Real.sqrt Y))
+      ((0 * (1 + Real.sqrt X) - 2 * (1 / (2 * Real.sqrt X)))
+        / (1 + Real.sqrt X) ^ 2) X at h
+    convert h using 1
     ring
   exact (((hasDerivAt_id X).sub hlog2).sub hdiv).add_const (1 : ℝ)
 
@@ -130,7 +133,7 @@ theorem hasDerivAt_f (X : ℝ) (hX : 0 < X) : HasDerivAt f (mu2 (Real.sqrt X)) X
   have h := hasDerivAt_f_raw X hXne h1ne
   have hval :
       1 - 2 * ((1 / (2 * Real.sqrt X)) / (1 + Real.sqrt X))
-        - ((-2 * (1 / (2 * Real.sqrt X))) / (1 + Real.sqrt X) ^ 2)
+        - ((-(2 * (1 / (2 * Real.sqrt X)))) / (1 + Real.sqrt X) ^ 2)
       = mu2 (Real.sqrt X) := by
     set u := Real.sqrt X with hu
     have hu_ne : u ≠ 0 := by rw [hu]; exact hsne
@@ -138,7 +141,8 @@ theorem hasDerivAt_f (X : ℝ) (hX : 0 < X) : HasDerivAt f (mu2 (Real.sqrt X)) X
     unfold mu2
     field_simp [hu_ne, h1u]
     ring
-  simpa [hval] using h
+  rw [hval] at h
+  exact h
 
 /-- **No ghost.** f'(X) > 0 for X > 0: the kinetic term is positive on the
 whole galactic branch, so the scalar propagates with the right sign. -/
@@ -152,7 +156,7 @@ form (whose derivative is the clean one), before simplification. -/
 private theorem hasDerivAt_fprime_raw (X : ℝ) (hX : X ≠ 0)
     (h1ne : 1 + Real.sqrt X ≠ 0) :
     HasDerivAt (fun Y : ℝ => 1 - (1 : ℝ) / ((1 + Real.sqrt Y) ^ 2))
-      (-(-(2 * (1 + Real.sqrt X) * (1 / (2 * Real.sqrt X)))
+      (-((-(2 * (1 + Real.sqrt X) * (1 / (2 * Real.sqrt X))))
           / (((1 + Real.sqrt X) ^ 2) ^ 2)))
       X := by
   have hsqrt : HasDerivAt (fun Y : ℝ => Real.sqrt Y) (1 / (2 * Real.sqrt X)) X :=
@@ -160,17 +164,21 @@ private theorem hasDerivAt_fprime_raw (X : ℝ) (hX : X ≠ 0)
   have h1p : HasDerivAt (fun Y : ℝ => 1 + Real.sqrt Y) (1 / (2 * Real.sqrt X)) X :=
     hsqrt.const_add (1 : ℝ)
   have h1sq : (1 + Real.sqrt X) ^ 2 ≠ 0 := pow_ne_zero 2 h1ne
-  have hpow0 := h1p.pow 2
   have hpow : HasDerivAt (fun Y : ℝ => (1 + Real.sqrt Y) ^ 2)
       (2 * (1 + Real.sqrt X) * (1 / (2 * Real.sqrt X))) X := by
-    convert hpow0 using 1
+    have h0 := h1p.pow 2
+    change HasDerivAt (fun Y : ℝ => (1 + Real.sqrt Y) ^ 2)
+      ((2 : ℝ) * (1 + Real.sqrt X) ^ (2 - 1) * (1 / (2 * Real.sqrt X))) X at h0
+    convert h0 using 1
     norm_num
-    ring
-  have hdiv0 := (hasDerivAt_const (x := X) (c := (1 : ℝ))).div hpow h1sq
   have hdiv : HasDerivAt (fun Y : ℝ => (1 : ℝ) / ((1 + Real.sqrt Y) ^ 2))
-      ((-(2 * (1 + Real.sqrt X) * (1 / (2 * Real.sqrt X)))
-        / (((1 + Real.sqrt X) ^ 2) ^ 2))) X := by
-    convert hdiv0 using 1
+      ((-(2 * (1 + Real.sqrt X) * (1 / (2 * Real.sqrt X))))
+        / (((1 + Real.sqrt X) ^ 2) ^ 2)) X := by
+    have h0 := (hasDerivAt_const (x := X) (c := (1 : ℝ))).div hpow h1sq
+    change HasDerivAt (fun Y : ℝ => (1 : ℝ) / ((1 + Real.sqrt Y) ^ 2))
+      ((0 * ((1 + Real.sqrt X) ^ 2) - 1 * (2 * (1 + Real.sqrt X)
+        * (1 / (2 * Real.sqrt X)))) / (((1 + Real.sqrt X) ^ 2) ^ 2)) X at h0
+    convert h0 using 1
     ring
   simpa [sub_eq_add_neg] using (hdiv.neg.const_add (1 : ℝ))
 
@@ -191,7 +199,7 @@ theorem hasDerivAt_fprime (X : ℝ) (hX : 0 < X) :
     exact (mu2_eq_one_minus (Real.sqrt Y) (Real.sqrt_nonneg Y)).symm
   rw [hfun] at h
   have hval :
-      -(-(2 * (1 + Real.sqrt X) * (1 / (2 * Real.sqrt X)))
+      -((-(2 * (1 + Real.sqrt X) * (1 / (2 * Real.sqrt X))))
           / (((1 + Real.sqrt X) ^ 2) ^ 2)) = fpp X := by
     unfold fpp
     set u := Real.sqrt X with hu
@@ -199,8 +207,8 @@ theorem hasDerivAt_fprime (X : ℝ) (hX : 0 < X) :
     have h1u : 1 + u ≠ 0 := by rw [hu]; exact h1ne
     have h1sq : (1 + u) ^ 2 ≠ 0 := pow_ne_zero 2 h1u
     field_simp [hu_ne, h1u, h1sq]
-    ring
-  simpa [hval] using h
+  rw [hval] at h
+  exact h
 
 /-- **Convexity.** f''(X) > 0 for X > 0. -/
 theorem fpp_pos {X : ℝ} (hX : 0 < X) : 0 < fpp X := by
@@ -230,14 +238,14 @@ theorem cs2_from_f_eq (X : ℝ) (hX : 0 < X) : cs2_from_f X = cs2 (Real.sqrt X) 
   have hnum : u * (2 + u) / (1 + u) ^ 2 = u * (u ^ 2 + 3 * u + 2) / (1 + u) ^ 3 := by
     field_simp [h1u, h1sq]
     ring
-  -- denominator: u(2+u)/(1+u)² + 2u²/(u(1+u)³) = u(u²+3u+4)/(1+u)³
-  have hden : u * (2 + u) / (1 + u) ^ 2 + 2 * u ^ 2 * (1 / (u * (1 + u) ^ 3))
+  -- the denominator, written with the ALREADY-REWRITTEN numerator term
+  have hden' : u * (u ^ 2 + 3 * u + 2) / (1 + u) ^ 3
+        + 2 * u ^ 2 * (1 / (u * (1 + u) ^ 3))
       = u * (u ^ 2 + 3 * u + 4) / (1 + u) ^ 3 := by
     field_simp [hu_ne, h1u, h1sq]
     ring
-  rw [hnum, hden]
+  rw [hnum, hden']
   field_simp [hu_ne, h1u, h1sq, hden_ne]
-  ring
 
 /-! ## (5) Stability and subluminality -/
 
