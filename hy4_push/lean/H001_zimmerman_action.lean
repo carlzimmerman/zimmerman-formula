@@ -16,19 +16,19 @@
 
   Certified here (all pure algebra / calculus, no analysis):
 
-    1. f_zero                 : f(0) = −1 — the value at the non-analytic
-                                point IS the dark energy (p/ρ = −1)
-    2. hasDerivAt_f           : f'(X) = μ₂(√X) for X > 0 — PROVEN as a
-                                HasDerivAt chain (not merely asserted)
-    3. hasDerivAt_fprime      : f''(X) = 1/(√X (1+√X)³) for X > 0 — likewise
-                                PROVEN as a HasDerivAt chain
-    4. cs2_from_f_eq          : c_s² = f'/(f' + 2X f'') = (u²+3u+2)/(u²+3u+4)
-                                with u = √X — by field_simp; ring
-    5. cs2_ge_half            : c_s² ≥ 1/2 for u ≥ 0 — STABILITY
-    6. cs2_lt_one             : c_s² < 1  for u ≥ 0 — SUBLUMINALITY
-    7. mu2_pos / fprime_pos   : f'(X) > 0 for X > 0 — NO GHOST
-    8. fpp_pos                : f''(X) > 0 for X > 0
-    9. aest_algebraic_core    : the conjunction (the capstone)
+    1. f_zero              : f(0) = −1 — the value at the non-analytic point
+                             IS the dark energy (p/ρ = −1)
+    2. hasDerivAt_f        : f'(X) = μ₂(√X) for X > 0 — PROVEN as a HasDerivAt
+                             chain (not merely asserted)
+    3. hasDerivAt_fprime   : f''(X) = 1/(√X (1+√X)³) for X > 0 — likewise
+                             PROVEN as a HasDerivAt chain
+    4. cs2_from_f_eq       : c_s² = f'/(f' + 2X f'') = (u²+3u+2)/(u²+3u+4),
+                             u = √X — by field_simp; ring
+    5. cs2_ge_half         : c_s² ≥ 1/2 for u ≥ 0 — STABILITY
+    6. cs2_lt_one          : c_s² < 1  for u ≥ 0 — SUBLUMINALITY
+    7. mu2_pos, fprime_pos : f'(X) > 0 for X > 0 — NO GHOST
+    8. fpp_pos             : f''(X) > 0 for X > 0
+    9. aest_algebraic_core : the conjunction (the capstone)
 
   NOT certified here, and deliberately so: the Noether-charge statement
   (shift symmetry φ → φ + c ⇒ J^μ = f'(X) h^{μν} ∂_νφ is exactly conserved,
@@ -70,9 +70,9 @@ def cs2 (u : ℝ) : ℝ := (u ^ 2 + 3 * u + 2) / (u ^ 2 + 3 * u + 4)
 /-! ## Basic algebra of μ₂ -/
 
 /-- μ₂(u) = 1 − (1+u)⁻² for u ≥ 0 (hence 1+u ≠ 0). This is the form whose
-derivative is trivial: dμ₂/du = 2(1+u)⁻³. -/
+derivative is the clean one: dμ₂/du = 2(1+u)⁻³. -/
 theorem mu2_eq_one_minus (u : ℝ) (hu : 0 ≤ u) :
-    mu2 u = 1 - ((1 + u) ^ 2)⁻¹ := by
+    mu2 u = 1 - (1 : ℝ) / (1 + u) ^ 2 := by
   have h1 : 1 + u ≠ 0 := by nlinarith
   have hsq : (1 + u) ^ 2 ≠ 0 := pow_ne_zero 2 h1
   unfold mu2
@@ -98,10 +98,9 @@ theorem f_zero : f 0 = -1 := by
 
 /-- The raw derivative chain for f, before the value is simplified. -/
 private theorem hasDerivAt_f_raw (X : ℝ) (hX : X ≠ 0) (h1ne : 1 + Real.sqrt X ≠ 0) :
-    HasDerivAt
-      (fun Y : ℝ => Y - 2 * Real.log (1 + Real.sqrt Y) - 2 * (1 + Real.sqrt Y)⁻¹ + 1)
+    HasDerivAt f
       (1 - 2 * ((1 / (2 * Real.sqrt X)) / (1 + Real.sqrt X))
-         - 2 * (-((1 / (2 * Real.sqrt X)) / (1 + Real.sqrt X) ^ 2)))
+         - ((-2 * (1 / (2 * Real.sqrt X))) / (1 + Real.sqrt X) ^ 2))
       X := by
   have hsqrt : HasDerivAt (fun Y : ℝ => Real.sqrt Y) (1 / (2 * Real.sqrt X)) X :=
     Real.hasDerivAt_sqrt hX
@@ -111,12 +110,12 @@ private theorem hasDerivAt_f_raw (X : ℝ) (hX : X ≠ 0) (h1ne : 1 + Real.sqrt 
       ((1 / (2 * Real.sqrt X)) / (1 + Real.sqrt X)) X := h1p.log h1ne
   have hlog2 : HasDerivAt (fun Y : ℝ => 2 * Real.log (1 + Real.sqrt Y))
       (2 * ((1 / (2 * Real.sqrt X)) / (1 + Real.sqrt X))) X := hlog.const_mul (2 : ℝ)
-  have hinv : HasDerivAt (fun Y : ℝ => (1 + Real.sqrt Y)⁻¹)
-      (-((1 / (2 * Real.sqrt X)) / (1 + Real.sqrt X) ^ 2)) X := h1p.inv h1ne
-  have hinv2 : HasDerivAt (fun Y : ℝ => 2 * (1 + Real.sqrt Y)⁻¹)
-      (2 * (-((1 / (2 * Real.sqrt X)) / (1 + Real.sqrt X) ^ 2))) X :=
-    hinv.const_mul (2 : ℝ)
-  exact (((hasDerivAt_id X).sub hlog2).sub hinv2).add_const (1 : ℝ)
+  have hdiv0 := (hasDerivAt_const (x := X) (c := (2 : ℝ))).div h1p h1ne
+  have hdiv : HasDerivAt (fun Y : ℝ => (2 : ℝ) / (1 + Real.sqrt Y))
+      ((-2 * (1 / (2 * Real.sqrt X))) / (1 + Real.sqrt X) ^ 2) X := by
+    convert hdiv0 using 1
+    ring
+  exact (((hasDerivAt_id X).sub hlog2).sub hdiv).add_const (1 : ℝ)
 
 /-- **The first derivative.** For X > 0, f is differentiable at X with
 derivative exactly μ₂(√X) — the MOND interpolating function evaluated on the
@@ -128,10 +127,10 @@ theorem hasDerivAt_f (X : ℝ) (hX : 0 < X) : HasDerivAt f (mu2 (Real.sqrt X)) X
   have hspos : 0 < Real.sqrt X := Real.sqrt_pos.mpr hX
   have hsne : Real.sqrt X ≠ 0 := ne_of_gt hspos
   have h1ne : 1 + Real.sqrt X ≠ 0 := by nlinarith
-  have htot := hasDerivAt_f_raw X hXne h1ne
+  have h := hasDerivAt_f_raw X hXne h1ne
   have hval :
       1 - 2 * ((1 / (2 * Real.sqrt X)) / (1 + Real.sqrt X))
-        - 2 * (-((1 / (2 * Real.sqrt X)) / (1 + Real.sqrt X) ^ 2))
+        - ((-2 * (1 / (2 * Real.sqrt X))) / (1 + Real.sqrt X) ^ 2)
       = mu2 (Real.sqrt X) := by
     set u := Real.sqrt X with hu
     have hu_ne : u ≠ 0 := by rw [hu]; exact hsne
@@ -139,11 +138,7 @@ theorem hasDerivAt_f (X : ℝ) (hX : 0 < X) : HasDerivAt f (mu2 (Real.sqrt X)) X
     unfold mu2
     field_simp [hu_ne, h1u]
     ring
-  have htot' : HasDerivAt f
-      (1 - 2 * ((1 / (2 * Real.sqrt X)) / (1 + Real.sqrt X))
-        - 2 * (-((1 / (2 * Real.sqrt X)) / (1 + Real.sqrt X) ^ 2))) X := by
-    simpa [f, div_eq_mul_inv] using htot
-  simpa [hval] using htot'
+  simpa [hval] using h
 
 /-- **No ghost.** f'(X) > 0 for X > 0: the kinetic term is positive on the
 whole galactic branch, so the scalar propagates with the right sign. -/
@@ -156,8 +151,8 @@ theorem fprime_pos {X : ℝ} (hX : 0 < X) : 0 < mu2 (Real.sqrt X) :=
 form (whose derivative is the clean one), before simplification. -/
 private theorem hasDerivAt_fprime_raw (X : ℝ) (hX : X ≠ 0)
     (h1ne : 1 + Real.sqrt X ≠ 0) :
-    HasDerivAt (fun Y : ℝ => 1 - ((1 + Real.sqrt Y) ^ 2)⁻¹)
-      (-(-(2 * (1 + Real.sqrt X) ^ (2 - 1) * (1 / (2 * Real.sqrt X)))
+    HasDerivAt (fun Y : ℝ => 1 - (1 : ℝ) / ((1 + Real.sqrt Y) ^ 2))
+      (-(-(2 * (1 + Real.sqrt X) * (1 / (2 * Real.sqrt X)))
           / (((1 + Real.sqrt X) ^ 2) ^ 2)))
       X := by
   have hsqrt : HasDerivAt (fun Y : ℝ => Real.sqrt Y) (1 / (2 * Real.sqrt X)) X :=
@@ -165,13 +160,19 @@ private theorem hasDerivAt_fprime_raw (X : ℝ) (hX : X ≠ 0)
   have h1p : HasDerivAt (fun Y : ℝ => 1 + Real.sqrt Y) (1 / (2 * Real.sqrt X)) X :=
     hsqrt.const_add (1 : ℝ)
   have h1sq : (1 + Real.sqrt X) ^ 2 ≠ 0 := pow_ne_zero 2 h1ne
+  have hpow0 := h1p.pow 2
   have hpow : HasDerivAt (fun Y : ℝ => (1 + Real.sqrt Y) ^ 2)
-      (2 * (1 + Real.sqrt X) ^ (2 - 1) * (1 / (2 * Real.sqrt X))) X := h1p.pow 2
-  have hinv : HasDerivAt (fun Y : ℝ => ((1 + Real.sqrt Y) ^ 2)⁻¹)
-      (-(2 * (1 + Real.sqrt X) ^ (2 - 1) * (1 / (2 * Real.sqrt X)))
-        / (((1 + Real.sqrt X) ^ 2) ^ 2)) X := hpow.inv h1sq
-  have hneg := hinv.neg
-  simpa [sub_eq_add_neg] using hneg.const_add (1 : ℝ)
+      (2 * (1 + Real.sqrt X) * (1 / (2 * Real.sqrt X))) X := by
+    convert hpow0 using 1
+    norm_num
+    ring
+  have hdiv0 := (hasDerivAt_const (x := X) (c := (1 : ℝ))).div hpow h1sq
+  have hdiv : HasDerivAt (fun Y : ℝ => (1 : ℝ) / ((1 + Real.sqrt Y) ^ 2))
+      ((-(2 * (1 + Real.sqrt X) * (1 / (2 * Real.sqrt X)))
+        / (((1 + Real.sqrt X) ^ 2) ^ 2))) X := by
+    convert hdiv0 using 1
+    ring
+  simpa [sub_eq_add_neg] using (hdiv.neg.const_add (1 : ℝ))
 
 /-- **The second derivative.** For X > 0, f' = μ₂∘√ is differentiable with
 derivative 1/(√X (1+√X)³) — again PROVEN, not asserted. This is the input the
@@ -184,20 +185,20 @@ theorem hasDerivAt_fprime (X : ℝ) (hX : 0 < X) :
   have h1ne : 1 + Real.sqrt X ≠ 0 := by nlinarith
   have h := hasDerivAt_fprime_raw X hXne h1ne
   -- transport the function across the pointwise identity μ₂(u) = 1 − (1+u)⁻²
-  have hfun : (fun Y : ℝ => 1 - ((1 + Real.sqrt Y) ^ 2)⁻¹)
+  have hfun : (fun Y : ℝ => 1 - (1 : ℝ) / ((1 + Real.sqrt Y) ^ 2))
       = (fun Y : ℝ => mu2 (Real.sqrt Y)) := by
     funext Y
     exact (mu2_eq_one_minus (Real.sqrt Y) (Real.sqrt_nonneg Y)).symm
   rw [hfun] at h
   have hval :
-      -(-(2 * (1 + Real.sqrt X) ^ (2 - 1) * (1 / (2 * Real.sqrt X)))
+      -(-(2 * (1 + Real.sqrt X) * (1 / (2 * Real.sqrt X)))
           / (((1 + Real.sqrt X) ^ 2) ^ 2)) = fpp X := by
     unfold fpp
     set u := Real.sqrt X with hu
     have hu_ne : u ≠ 0 := by rw [hu]; exact hsne
     have h1u : 1 + u ≠ 0 := by rw [hu]; exact h1ne
-    norm_num
-    field_simp [hu_ne, h1u]
+    have h1sq : (1 + u) ^ 2 ≠ 0 := pow_ne_zero 2 h1u
+    field_simp [hu_ne, h1u, h1sq]
     ring
   simpa [hval] using h
 
@@ -213,28 +214,29 @@ theorem fpp_pos {X : ℝ} (hX : 0 < X) : 0 < fpp X := by
 gathers as u(u²+3u+2)/(1+u)³ and the denominator as u(u²+3u+4)/(1+u)³, and
 the common u/(1+u)³ cancels. -/
 theorem cs2_from_f_eq (X : ℝ) (hX : 0 < X) : cs2_from_f X = cs2 (Real.sqrt X) := by
-  have hspos : 0 < Real.sqrt X := Real.sqrt_pos.mpr hX
-  have hu_ne : Real.sqrt X ≠ 0 := ne_of_gt hspos
-  have h1ne : 1 + Real.sqrt X ≠ 0 := by nlinarith
   set u := Real.sqrt X with hu
-  have hu_ne' : u ≠ 0 := by rw [hu]; exact hu_ne
-  have h1u : 1 + u ≠ 0 := by rw [hu]; exact h1ne
+  have hupos : 0 < u := by rw [hu]; exact Real.sqrt_pos.mpr hX
+  have hu_ne : u ≠ 0 := ne_of_gt hupos
+  have h1u : 1 + u ≠ 0 := by nlinarith
+  have h1sq : (1 + u) ^ 2 ≠ 0 := pow_ne_zero 2 h1u
   have hXu : X = u ^ 2 := by
     rw [hu]
     exact (Real.sq_sqrt (le_of_lt hX)).symm
+  have hden_ne : u ^ 2 + 3 * u + 4 ≠ 0 := ne_of_gt (by nlinarith [sq_nonneg u, hupos])
   unfold cs2_from_f cs2 fpp mu2
+  rw [← hu]
   rw [hXu]
   -- numerator: u(2+u)/(1+u)²  =  u(u²+3u+2)/(1+u)³
   have hnum : u * (2 + u) / (1 + u) ^ 2 = u * (u ^ 2 + 3 * u + 2) / (1 + u) ^ 3 := by
-    field_simp [h1u]
+    field_simp [h1u, h1sq]
     ring
   -- denominator: u(2+u)/(1+u)² + 2u²/(u(1+u)³) = u(u²+3u+4)/(1+u)³
   have hden : u * (2 + u) / (1 + u) ^ 2 + 2 * u ^ 2 * (1 / (u * (1 + u) ^ 3))
       = u * (u ^ 2 + 3 * u + 4) / (1 + u) ^ 3 := by
-    field_simp [hu_ne', h1u]
+    field_simp [hu_ne, h1u, h1sq]
     ring
   rw [hnum, hden]
-  field_simp [hu_ne', h1u]
+  field_simp [hu_ne, h1u, h1sq, hden_ne]
   ring
 
 /-! ## (5) Stability and subluminality -/
@@ -266,11 +268,11 @@ theorem cs2_lt_one {u : ℝ} (hu : 0 ≤ u) : cs2 u < 1 := by
 /-- **Stability on the branch.** c_s² ≥ 1/2 at u = √X for every X ≥ 0 — the
 form in which the bound is actually used (the aether projector guarantees
 X ≥ 0 on both branches). -/
-theorem cs2_ge_half_at {X : ℝ} (hX : 0 ≤ X) : (1 / 2 : ℝ) ≤ cs2 (Real.sqrt X) :=
+theorem cs2_ge_half_at (X : ℝ) : (1 / 2 : ℝ) ≤ cs2 (Real.sqrt X) :=
   cs2_ge_half (Real.sqrt_nonneg X)
 
 /-- **Subluminality on the branch.** c_s² < 1 at u = √X for every X ≥ 0. -/
-theorem cs2_lt_one_at {X : ℝ} (hX : 0 ≤ X) : cs2 (Real.sqrt X) < 1 :=
+theorem cs2_lt_one_at (X : ℝ) : cs2 (Real.sqrt X) < 1 :=
   cs2_lt_one (Real.sqrt_nonneg X)
 
 /-- **The sound-speed window, assembled.** 1/2 ≤ c_s² < 1 on the whole

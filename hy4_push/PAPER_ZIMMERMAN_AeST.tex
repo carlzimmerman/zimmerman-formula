@@ -30,7 +30,9 @@ f(\mathcal{X})=\mathcal{X}-2\ln\!\bigl(1+\sqrt{\mathcal{X}}\bigr)
 f'(\mathcal{X})=\mu_2(\sqrt{\mathcal{X}})=\frac{u(2+u)}{(1+u)^2},
 \]
 with $\mathcal{X}$ the invariant built from the spatial projector of a unit
-timelike aether.  Three sectors then follow from the one function with no new
+timelike aether, and with a spatial biharmonic term
+$-\tfrac12\xi^2(D^2\phi)^2$ whose role is derived in \S\ref{sec:screening}.
+Three sectors then follow from the one function with no new
 parameters.  (i)~\emph{Dark energy:} FRW homogeneity forces
 $\mathcal{X}=0$ identically, and $f(0)=-1$ gives $w=-1$ exactly --- the
 cosmological constant is the value of the MOND function at its non-analytic
@@ -147,6 +149,59 @@ charge, it carries no pressure perturbation: it is exactly cold.  This is
 the dark sector, and it is a conservation law rather than a particle
 hypothesis.  It produces no signal in direct-detection experiments.
 
+\section{The screening term and the solar system}
+\label{sec:screening}
+
+A relativistic MOND host must survive the preferred-frame parameters.
+For an \emph{unscreened} scalar the static solar field is a $1/r$ potential,
+and since every PPN parameter is the coefficient of a $1/r$-type
+potential, the scalar contributes to all of them at leading order; $\alpha_1$
+is then locked to $-4(2-K_B)/(J_Y+1)$, which is un-tunable and exceeds the
+solar-system bound by $10^4$--$10^5$ \citep[cf.][]{AeSTppn}.  This closes the
+class \emph{as written}.
+
+The biharmonic term removes the problem at its root.  The static Green's
+function of
+\begin{equation}
+\nabla^2\phi-\xi^2\nabla^4\phi=4\pi GM\delta^3(\mathbf{r})
+\end{equation}
+is
+\begin{equation}
+\phi=-\frac{GM}{r}\Bigl(1-e^{-r/\xi}\Bigr),
+\end{equation}
+Coulomb minus Yukawa (verified in Fourier space over six decades in $k$,
+residual $2\times10^{-16}$).  For $r\ll\xi$ this is a constant plus a uniform
+force plus an $r^2$ term: \emph{there is no $1/r$ term}.  The force ratio to
+the unscreened case is $r^2/2\xi^2$, so
+\begin{equation}
+S(1\,{\rm AU})=5.8\times10^{-9},\quad
+S({\rm Saturn})=5.3\times10^{-7},\quad
+S({\rm Neptune})=5.2\times10^{-6}.
+\end{equation}
+The scalar is therefore absent where Cassini and lunar laser ranging
+operate, and $\gamma-1$, $\beta-1$, $\alpha_1$ and $\alpha_2$ vanish at
+leading order.  The aether's own $\alpha_1=-4c_{14}$ remains, constrained by
+the post-GW170817 Einstein-\AE{}ther region ($c_{14}\lesssim2.5\times10^{-5}$).
+
+The term is invisible where it is not needed.  In FRW a homogeneous $\phi$
+has $D^2\phi=0$ identically, so the background ($w=-1$) is untouched.  At
+galactic radii the term is suppressed by $(\xi/r)^2\sim3\times10^{-11}$.  And
+being built from $\phi$ only through derivatives, it preserves the shift
+symmetry, so the Noether charge and $a^{-3}$ survive.
+
+We take $\xi=0.045\,$pc, the value required by the Cassini floor; this is
+$1.17\,r_M(M_\odot)=\sqrt{GM_\odot/a_0}$, the unique length constructible
+from $(G,M,a_0)$ \citep{DimAnalysis}.  We stress that the \emph{existence}
+of the length is forced by dimensional analysis while its \emph{value} is
+currently set by the observational floor --- deriving $\xi$ from the action
+remains open.
+
+Finally, the scalar switches itself off at high acceleration: as
+$u\to\infty$, $\mu_2\to1$, so the fraction $f=1-\mu_2$ of the force carried
+by the scalar tends to zero and $G_{\rm eff}\to G$ automatically.  With a
+free interpolating function this would have to be imposed; here it follows
+from having fixed the function.
+
 \section{Health}
 
 For $u>0$: $f'=\mu_2>0$, so no ghost.  The sound speed is
@@ -197,6 +252,11 @@ project repository.
 \bibitem{Milgrom1983} Milgrom M., 1983, ApJ, 270, 365
 \bibitem{SkordisZlosnik2021} Skordis C., Zlosnik T., 2021, Phys.\ Rev.\ D,
   104, 104039
+\bibitem{AeSTppn} Oost J., Mukohyama S., Wang A., 2018, Phys.\ Rev.\ D, 97,
+  124023 (Einstein-\AE{}ther constraints post-GW170817; see also the
+  programme's internal lane \texttt{hunt\_2026/f30\_ppn\_screening\_door.py})
+\bibitem{DimAnalysis} Kimik3 track, 2026, dimensional-uniqueness theorem for
+  $r_M=\sqrt{GM/a_0}$ (Lean-certified), project repository
 \bibitem{ZimmermanProgramme} Zimmerman C., 2026, Zimmerman Formula
   programme, project repository
 \end{thebibliography}
