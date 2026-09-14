@@ -1,0 +1,225 @@
+G043 -- THE MIMETIC EMBEDDING TEST: is Horn A's fixed congruence the mimetic
+gauge of a covariant parent?  (lane G043, per glm53_push/G041 sec. 5)
+
+THE QUESTION.  Domenech & Ganz, arXiv:2503.11174 ("Connecting Relativistic MOND
+Theories with Mimetic Gravity"): ANY relativistic MOND model with a unit-timelike
+vector (TeVeS, AeST) embeds in a conformal/disformal-invariant framework -- their
+building blocks X = g^{mu nu} d_mu phi d_nu phi, A = g^{mu nu} A_mu A_nu,
+Q = g^{mu nu} A_mu d_nu phi all scale as Omega^{-2} under the conformal map
+g -> Omega^2 g, A_mu -> A_mu/Omega, with multipliers lambda_a -> Omega^2 lambda_a;
+an action built from them is conformally invariant and GAUGE-FIXING the symmetry
+imposes a norm constraint -- A = 1 (the TeVeS/AeST gauge) or the mimetic
+constraint on the scalar gradient; the constraints are INTERCHANGEABLE while the
+fields stay timelike (their secs. II-III; sec. IV: the same class arises from
+non-invertible disformal maps; sec. V: the FLRW Hamiltonian analysis).
+OUR Horn A (G032) carries a FIXED congruence n^mu (a non-dynamical background
+vector, the CMB frame; alpha_1 = 0 by construction) whose stated cost is explicit
+local Lorentz violation.  IF the fixed congruence is exactly the mimetic gauge of
+a covariant parent, the cost dissolves.  IF the mimetic dust IS our Noether-charge
+cold sector (G028), it is the unification.
+
+THE CANDIDATE PARENT (the object under test, per the lane definition):
+  S_par[g, chi, phi] = int d^4x sqrt(-g) { M_P^2 R/2 + P(X_chi) } + S_m,
+  P(X) = Lambda^4 f(X),  X_chi = h_chi^{mu nu} d_mu phi d_nu phi / (2 Lambda^4),
+  h_chi^{mu nu} = g^{mu nu} + n_chi^mu n_chi^nu,
+  n_chi^mu = nabla^mu chi / sqrt(|(nabla chi)^2|)     (the mimetic congruence).
+Horn A is the same scalar action with n^mu a FIXED background vector and no chi
+(G032; the paper's action with the aether kinetic deleted; the metric sector is
+pure GR in both).  The standard mimetic map g'_{mu nu} = -hhat_{mu nu} +
+d_mu chi d_nu chi is tested for what constraint (if any) it carries by itself.
+
+PRE-REGISTERED VERDICTS (all outcomes findings):
+  (i)   EXACT -- Horn A is the unitary (chi = t) gauge of the parent: Lorentz
+        violation is a gauge artifact; the parent action is written down.
+  (ii)  UNIFY -- the scalar sectors agree AND the mimetic dust IS our Noether
+        charge: w = 0 exactly, abundance a free initial condition, compatible
+        with the G028 window w in (1.5e-8, 5.7e-7) STRICTLY POSITIVE.
+  (iii) FAIL -- the structures differ; Horn A stays an honest Lorentz-violating
+        theory (with the agreement region precisely mapped).
+
+TESTS (all symbolic; measurement and reading stated separately):
+  V1  FRW background: X = 0 identically in both; same (rho, p, w).    [sec. C]
+  V2  Static sourced sector: identical AQUAL operator -> same G_eff.  [sec. D]
+  V3  Linear spectra on the cosmic slice (chi = t gauge vs fixed n).  [sec. E]
+  V4  The parent's chi sector: dust or not; w; abundance; our charge? [B, E, G]
+  V5  Gauge-slice status: is there a conformal symmetry whose gauge-fixing
+      imposes the constraint (2503.11174's mechanism)?               [sec. F]
+  V7  Benchmark: the paper's c_s^2 = f'/(f' + 2Xf'') on the unprojected
+      rolling branch (where a sound speed exists at all).             [sec. H]
+
+READING NOTES (sources):
+  - G041_literature_sweep_2026H2.md sec. 5 (the lane definition);
+  - G032_horn_a_fixed_congruence.py (Horn A: fixed congruence, C_A free, the
+    aether perturbations frozen -- note the pipeline freezes the aether
+    1-FORM components ('fixed components'); the metric-ADAPTIVE 'fixed
+    foliation' definition is tested alongside: they differ at O(pert^2));
+  - hy4_push/PAPER_ZIMMERMAN_AeST.tex (the action; f(0) = -1 makes the X = 0
+    slice exactly dark energy: rho = Lambda^4(2Xf'-f) = +Lambda^4, p = -Lambda^4,
+    w = -1; f'(0) = mu_2(0) = 0; f non-analytic at X = 0);
+  - arXiv:2503.11174 (the construction summarized above);
+  - G028_noether_dark_sector.py (our charge: Q = a^3 P_X qbar, rho ~ a^{-3},
+    w in (1.5e-8, 5.7e-7) strictly positive -- the SIGN is the registered CMB
+    discriminator; the abundance is the theory's one free initial condition;
+    the charge DRIFTS under the MOND coupling -> the +1-4% growth raise).
+
+
+============================================================================
+CONVENTIONS
+============================================================================
+  signature (-,+,+,+); unit timelike n: n.n = -1.
+  scalar sector: P(X) = Lambda^4 f(X), X = h^{mu nu} d_mu phi d_nu phi/(2 Lambda^4),
+  h^{mu nu} = g^{mu nu} + n^mu n^nu  (spatial projector; paper writes h = g - uu/u^2
+  in mostly-minus notation -- same object).
+  Sign bookkeeping: the paper's action line writes -Lambda^4 f while its
+  rho = Lambda^4(2Xf'-f), p = Lambda^4 f formulas correspond to P = +Lambda^4 f;
+  P = +Lambda^4 f is adopted (f(0) = -1 => rho = +Lambda^4, p = -Lambda^4, w = -1).
+  The bookkeeping affects no structural test below.
+
+============================================================================
+PART A -- kinematic identities of the mimetic congruence (2x2, general)
+============================================================================
+  [PASS] A1 unit norm: g_{mn} n^m n^n = -1 given n = grad(chi)/sqrt(-sigma)
+         measured: g(n,n) = sigma/S^2 -> (A*w_t**2 + 2*B*w_t*w_x + C*w_x**2)/(-A*w_t**2 - 2*B*w_t*w_x - C*w_x**2)
+  [PASS] A2 projector property: h^{mn} d_nu chi = 0 (X is blind to the grad-chi-parallel part)
+         measured: h.w = Matrix([[0, 0]])
+  [PASS] A3 projector idempotence: h^{mu a} g_{ab} h^{bn} = h^{mn}
+         measured: verified at two generic timelike points (exact sqrt arithmetic)
+         reading : the symbolic form carries unresolved sqrt(sigma) factors; the identity is exact
+  [PASS] A4 X invariant under d phi -> d phi + c*(parallel to grad chi)
+         measured: X[p + c w] - X[p] = 0
+         reading : X measures phi's gradient TRANSVERSE to the chi-congruence only
+
+============================================================================
+PART B -- the mimetic map carries no constraint; the chi current
+============================================================================
+  [PASS] B1 mimetic map g' = -hhat + dchi dchi:  g'^{mn} w_m w_n = -s/(1-s),  s = hhat^{mn} w_m w_n
+         measured: identity residual: 0
+         reading : the map fixes NO norm: s remains a FREE field (the would-be constraint is an EXTRA equation; in 2503.11174 it is the conformal gauge-fixing of a parent that POSSESSES the symmetry -- see V5)
+  [PASS] B2a exact w-structure: X = [P2 + (w.p)^2/(-sigma)]/(2 Lambda^4) -- X depends on chi ONLY through the single scalar (w.p)^2/(-sigma)
+         measured: structure residual: 0
+  [PASS] B2b the chi current: dX/d(d_mu chi) = K[(g p)_mu (-sigma) + K (g w)_mu]/((-sigma)^2 Lambda^4)  (a FIXED polynomial function of the two gradients -- no free function)
+         measured: symbolic residual: Matrix([[0, 0]])
+         reading : the current carries NO free function of chi (no rho(chi), no F(chi)): a dust sector needs a current rho(chi) d^mu chi with FREE rho -- impossible here. J vanishes identically whenever w.p = 0, and the EOM current is f'(X) J: on the X = 0 slice f'(0) = mu_2(0) = 0 kills it identically (even for a rolling phi).  Hence NO freely-specifiable dust abundance in the projector-parent
+
+============================================================================
+PART C -- V1: the two actions on the FRW background (4x4)
+============================================================================
+  [PASS] V1a Horn A: X = 0 identically on FRW
+         measured: X_HA = 0
+         reading : h^{00} = g^{00} + n^0 n^0 = -1/N^2 + 1/N^2 = 0: the projector kills the timelike kinetic; the paper's 'Dark energy' sector
+  [PASS] V1b mimetic parent: X_chi = 0 identically on FRW (for any chi(t))
+         measured: X_mim = 0
+         reading : the mimetic congruence reproduces the same projector on the homogeneous slice
+  [PASS] V1c identical background stress: rho = +Lambda^4, p = -Lambda^4, w = -1 (f(0) = -1)
+         measured: p/rho = -1
+         reading : both theories: the X = 0 slice is exactly dark energy; the CMB background is LCDM in both -> test (a) of the lane: AGREES
+
+============================================================================
+PART D -- V2: the static sourced sector (G_eff)
+============================================================================
+  [PASS] V2a static sector: X_fixed-components = X_mimetric-adaptive EXACTLY (p_t = 0)
+         measured: X_HA - X_mim = 0
+         reading : with a static congruence and a static scalar every h^{00} term multiplies p_t = 0: the constructions coincide exactly in the static sector
+  [PASS] V2b identical static sourced operator => identical G_eff
+         measured: both: nabla_mu[ f'(X) h^{mu nu} d_nu phi ] = 4 pi G rho_b  (AQUAL, mu = f')
+         reading : same mu = f', same deep-MOND limit g^2 = a0 g_N, same Newtonian recovery: the conservative sector is shared verbatim -> test (b) G_eff: AGREES
+
+============================================================================
+PART E -- V3: linear perturbations on the cosmic slice (1+1 D)
+============================================================================
+  [PASS] V3a mimetic parent: X^(1) = 0 on the cosmic slice (no lapse tadpole, no chi coupling)
+         measured: coeff(eps, 1) = 0
+         reading : the projector is metric-adaptive: h^{00} = O(eps^2) identically (h^{tt} w_t + h^{tx} w_x = 0 with w_x = O(eps)); the Chihat-dependence of n^t cancels at O(eps)
+  [PASS] V3b the foliation mode decouples at linear order
+         measured: coeff(eps,1) has no Chihat/Chihat_t/alpha_hat dependence
+         reading : the first chi-coupling is the O(eps^2) cross term in X^(2)
+  [PASS] V3c the O(eps^2) chi-phi cross coupling EXISTS (the foliation's first coupling)
+         measured: coeff(X^(2), Chihat*Phihat) = -k**2*phibar_dot*sin(k*x)**2/(Lambda^4*a**2)
+         reading : k^2 phibar_dot Chihat Phihat sin^2(kx)/(a^2 Lambda^4)-structure: the foliation mode couples to the scalar gradient only at quadratic order
+  [PASS] V3d fixed-components Horn A: X^(1) = alpha phibar_dot^2/Lambda^4 != 0 (a lapse tadpole)
+         measured: coeff(eps,1) - alpha_hat phibar_dot^2 cos(kx)/Lambda^4 = 0
+         reading : EOM-inert at linear order (the tadpole enters the EOM multiplied by f'(0) = 0) but it generates an alpha^2 contact term at quadratic order: the operational signature of the absolute structure.  The metric-ADAPTIVE 'fixed foliation' definition has no tadpole: G043 recommends the adaptive definition
+  [PASS] V3e adaptive Horn A (chi = t): X^(1) = 0 and X^(2) carries NO lapse dependence
+         measured: coeff(eps,1) = 0;  coeff(eps,2) alpha_hat-coeff = 0
+         reading : the adaptive congruence is exactly unit: h^{tt} = g^{tt} + (n^t)^2 = 0 exactly; this is the kinematics the mimetic parent's chi = t slice reduces to
+  [PASS] V3f the mimetic parent CONTAINS the adaptive Horn-A kinematics as its chi = t slice
+         measured: X_mim - X_HA2 with Chihat -> 0: 0
+         reading : the difference is EXACTLY the chi-structure: the parent = Horn-A kinematics + a dynamical foliation
+  [PASS] V3g the scalar sector's contribution to the QUADRATIC action on the cosmic slice
+         measured: mimetic/adaptive: L^(2) = 0   (f'(0) = 0 AND X^(1) = 0); fixed-components: L^(2) = alpha_hat**2*fpp0*phibar_dot**4*cos(k*x)**2/(2*Lambda^4) (an alpha^2 contact term)
+         reading : NO propagating scalar exists at linear order in EITHER theory on the X = 0 slice (the MOND kinetic is zero/non-analytic there): the propagating spectrum is GR's two tensors with c_T = 1 in both; the c_s^2 question is DEGENERATE on-slice (the paper's c_s^2 belongs to the off-slice rolling branch, V7)
+  [PASS] V3h the linearized EOMs coincide (both trivially satisfied on-slice)
+         measured: phi_perp^t at O(eps): 0;  the currents I_phi, I_chi are O(eps^2) (f'(X) = f''(0) X + ... with X^(1) = 0 and phi_perp^(0) = 0)
+         reading : at linear order BOTH EOMs are identities on the cosmic slice: the linear sectors of Horn A and the mimetic parent coincide exactly
+  [PASS] V4a the parent's EXTRA chi-EOM term f'(X) phi_perp . d(kappa) has a NONZERO kernel
+         measured: coeff at O(eps^2) of phi_perp^x d_x kappa = k**2*(Chihat*phibar_dot - Phihat)*(Chihat_t*phibar_dot - Phihat_t)*sin(k*x)**2/a**2
+         reading : kappa = phibar_dot + eps (Phihat_t - phibar_dot Chihat_t) cos(kx): the LAPSE CANCELS out of kappa; the kernel ~ k^2 Phihat (Phihat_t - phibar_dot Chihat_t) sin^2(kx)/a^2.  On the exact cosmic slice this term is silenced to high order (multiplied by f'(X) = O(eps^2)); OFF-slice (X != 0, f' != 0: the rolling / galactic regime) it is ACTIVE: the parent's chi-EOM = kappa*(phi-EOM) + f'(X) phi_perp.d(kappa) is then INDEPENDENT of the phi-EOM: an extra constraint Horn A does not impose
+  [PASS] V4b static sector: kappa = n.d phi = 0 for the fixed congruence (the chi-EOM is trivially satisfied)
+         measured: kappa_static = 0;  and a TILTED static chi changes X by chi_x**2*phi_x**2*(2*Phi + 1)/(2*Lambda^4*(2*Psi - 1)*(2*Phi*chi_x**2 + 2*Psi + chi_x**2 - 1)) != 0
+         reading : Horn A's static solutions ARE parent solutions (the fixed-n choice solves the chi-EOM trivially); the parent ALSO has tilted-foliation static solutions Horn A forbids: the solution sets differ in BOTH directions -> not gauge-equivalent, not nested: DIFFERENT theories with a shared conservative core
+
+============================================================================
+PART F -- V5: is the constraint a gauge-fixing? (2503.11174's mechanism)
+============================================================================
+  [PASS] F1 chi -> F(chi) [F' > 0]: n is invariant -- the reparametrization 'gauge' cannot move the foliation
+         measured: n[F'(grad chi)] - n[grad chi] = 0 at generic timelike points with F' = 3/2, 2 (the symbolic form carries unresolved sqrt factors: sqrt(F'^2 sigma) needs the F' > 0 branch)
+         reading : sqrt(F'^2 (-sigma)) = F' sqrt(-sigma) for F' > 0: the only symmetry of the projector-parent fixes the PARAMETRIZATION of chi, never the foliation
+  [PASS] F2a under g -> Omega^2 g (lower): the PROJECTOR scales homogeneously, h^{mn} -> Omega^-2 h^{mn} (2503.11174's building-block property HOLDS)
+         measured: h[Omega^2 g] - Omega^-2 h[g] = 0 at generic timelike points with Omega = 2, 3/2
+  [PASS] F2b the candidate parent BREAKS the conformal symmetry (2503.11174's precondition fails)
+         measured: need P(Omega^-2 X) = Omega^-4 P(X) (X is a building block, weight -2); at X = 0: P(0) = -Lambda^4 vs Omega^-4 P(0) = -Omega^-4 Lambda^4: residual Lambda^4 - Lambda^4/Omega**4 != 0
+         reading : FINDING (the mechanism's precondition fails): the Zimmerman normalization f(0) = -1 != 0 -- which fixes the cosmological constant and, through f' = mu_2, the MOND scale -- BREAKS the homogeneous scaling.  The candidate parent has NO conformal symmetry, hence NO conformal gauge whose fixing could impose the norm/projector constraint: 2503.11174's mechanism does NOT apply to this class.  The fixed foliation is absolute structure, not a gauge slice
+  [PASS] F2c no polynomial/analytic redefinition P_tilde = P - c*Lambda^4 with c != 0 restores the Omega^-4 homogeneity
+         measured: P_tilde(Omega^-2 X) - Omega^-4 P_tilde(X) at X = 0 = Lambda^4*(1 - Omega**4)*(c + 1)/Omega**4 != 0 for Omega^4 != 1 (independent of c)
+         reading : the obstruction is structural: a homogeneous P must satisfy P(0) = 0 (unless P = 0); any nonvanishing P(0) kills the symmetry.  A single-c_OS shift cannot rehabilitate the class without deleting the dark-energy sector itself
+
+============================================================================
+PART G -- the norm-multiplier parent: genuine mimetic dust, and the G028 test
+============================================================================
+  The alternative parent adds the norm constraint as a multiplier:
+  S_lam = int sqrt(-g) [ ... + lambda (g^{mn} d_mu chi d_nu chi + 1) ].
+  On-shell T_{mn} = 2 lambda d_mu chi d_nu chi (the constraint kills the metric terms):
+  the dust stress is carried by the SAME projector structure.
+  [PASS] G1 the CM-style dust: p = 0 EXACTLY (the projector identity A2), rho = 2 lambda, w = 0 exactly
+         measured: T_(mn) h^(mn) = 2 lambda (h^(mn) w_m w_n) = 0 at two generic timelike points (exact arithmetic; the symbolic form carries unresolved sqrt factors); the chi-EOM nabla_mu(lambda nabla^mu chi) = 0 => lambda a^3 = const => rho ~ a^-3
+         reading : genuine mimetic dust: w = 0 EXACTLY, rho ~ a^-3, abundance = the free constant lambda_0 (a free initial condition) -- but this is a DIFFERENT theory (it adds a cold sector Horn A does not have)
+  [PASS] G2 UNIFICATION TEST: the mimetic dust is NOT our Noether charge (G028) -- the sign of w excludes it
+         measured: w_dust = 0 exactly; our registered window: w in (1.5e-08, 5.7e-07) STRICTLY POSITIVE (the sign is the CMB discriminator, G028 V3); our charge DRIFTS under the MOND coupling (L217 V6) driving the +1-4% growth raise -- an exactly conserved dust cannot drift
+         reading : FINDING: 0 lies BELOW our floor: the mimetic dust is excluded as our cold sector by the registered sign of w under BOTH parent constructions.  In the projector-parent it does not even exist (B2); in the multiplier-parent it is an exactly-conserved w = 0 component -- a second, LCDM-like dust that would kill the w > 0 discriminator and the growth raise, or a replacement that does the same.  The unification fails on the SIGN of w
+
+============================================================================
+PART H -- V7: benchmark: the paper's c_s^2 on the unprojected rolling branch
+============================================================================
+  [PASS] V7 the quadratic-action coefficients give c_s^2 = f'/(f' + 2Xf'') (the Health-section formula)
+         measured: c_s^2 = fprime/(2*Y0*fprimeprime + fprime)
+         reading : verified on the UNPROJECTED branch (where the congruence tracks the scalar flow and a sound speed exists); on the cosmic slice (X = 0) the question is degenerate in both theories (V3g)
+
+============================================================================
+THE VERDICT (pre-registered outcomes; all findings)
+============================================================================
+  agreement region:  V1 FRW background [OK]  V2 static AQUAL / G_eff [OK]  V3 on-slice linear spectra [OK]
+  extra DOF:         the foliation mode EXISTS in the parent (V3c/V4a/V4b): dynamical chi, decoupled at linear order, NOT dust (B2/G2)  [CONFIRMED]
+  gauge status:      no conformal symmetry (F2b/F2c), the constraint is not a gauge-fixing; the fixed foliation is absolute structure (F1/F2/G1)  [CONFIRMED]
+
+  (i)  EXACT embedding: NO.  The parent's chi = t slice is the metric-adaptive kinematics PLUS the chi-EOM constraint; the foliation DOF is physical (the reparametrization symmetry cannot fix it); the solution sets differ in BOTH directions (the parent allows other foliations; Horn-A solutions with rolling phi violate the parent's chi-EOM off-slice).  The fixed congruence is NOT a gauge slice of any theory in the 2503.11174 class.
+  (ii) UNIFICATION:    NO.  The projector-parent carries NO dust at all: the chi-current is J_mu = K[(g p)_mu (-sigma) + K (g w)_mu]/((-sigma)^2 Lambda^4) with K = w.p (B2b): a fixed polynomial of the two gradients, NO free function of chi; it vanishes whenever K = 0, and the EOM current f'(X) J is killed identically on the cosmic slice by f'(0) = mu_2(0) = 0 -- even for a rolling phi.  No free initial condition, no w.  The CM-style multiplier-parent carries genuine dust with w = 0 EXACTLY, which contradicts our registered strictly-positive window (1.5e-8, 5.7e-7) and cannot drift (no growth raise): not our charge under either parent.
+  (iii) FAIL of the embedding claim: CONFIRMED, with the agreement region mapped exactly: backgrounds (V1), the static conservative sector (V2), and the on-slice linear spectra (V3) coincide; the theories differ precisely in the foliation sector.
+
+  STRUCTURAL DIAGNOSIS (the publishable core):
+   1. 2503.11174's machinery feeds on the conformal symmetry of homogeneously-
+      scaling building blocks; the Zimmerman normalization P = Lambda^4 f with
+      f(0) = -1 (fixing Lambda AND, through f' = mu_2, the MOND scale) is not
+      conformal: Horn A's fixed congruence CANNOT be a gauge slice of any parent
+      in that class.  The Lorentz-violation cost does NOT dissolve.
+   2. The mimetic covariantization would reintroduce, as a foliation/dust mode,
+      precisely the DOF Horn A's aether-deletion removed; the deletion that buys
+      c_T = c and no spin-1 ghost is the same one that blocks the embedding.
+   3. What G043 adds: 'mimetic reformulation != mimetic gauge'.  The congruence
+      CAN be reparametrized covariantly (chi <-> foliation); the conservative
+      sector is shared verbatim; the difference is exactly the foliation's
+      dynamical status -- which is also the theory's cold-sector discriminator.
+   4. Operational by-product: the G032 freeze fixes the aether components; the
+      metric-ADAPTIVE 'fixed foliation' definition removes the O(alpha) tadpole
+      in X and coincides with the mimetic kinematics on-slice.  Recommended.
+
+(3s)  checks: 29 pass / 0 fail  -> G043_results.json
