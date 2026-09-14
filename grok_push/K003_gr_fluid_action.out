@@ -1,0 +1,112 @@
+K003 -- THE GR FLUID ACTION for p = P(a), with the Zimmerman scale.
+
+NOT a modified Poisson equation.  Gravity is Einstein's.  The dark sector
+is a Schutz potential-flow fluid whose pressure depends on its OWN proper
+acceleration a^mu = u^nu nabla_nu u^mu.  The interpolating function is
+mu_2 at a0 = s/2, s = c sqrt(G rho_Lambda) -- the programme's scale, not
+a fitted a0.
+
+THE ACTION (potential flow, one scalar):
+    S = int sqrt(-g) [ R/(16 pi G) + L ]
+    L = - n (sqrt(X) - nu)  -  U(a^2)
+    X = - g^{ab} d_a phi d_b phi,   u_a = d_a phi / sqrt(X)
+    n is the Lagrange multiplier for the potential-flow constraint;
+    nu is the chemical potential (Schutz 1970 / Brown 1993 dust).
+    U is the acceleration potential: on shell p = 2 a^2 U'(a^2) in the
+    rest-frame hydrostatic identity below.
+
+WHY THIS AND NOT ANOTHER SCALAR-TENSOR HOST: K002 closed every local
+force-law completion including H004.  This is a MATTER action in GR.
+
+PRE-REGISTERED:
+  V1  P_deep = a^2/(8 pi G) with a0 = s/2 must equal
+      rho_Lambda c^2 * (a/s)^2 / (8 pi)  -- the MOND scaling identity.
+  V2  rest-frame a_mu for potential flow is a SPATIAL gradient of ln sqrt(X):
+      no second TIME derivative at this order (Ostrogradsky not triggered
+      by U(a^2) on a potential flow).
+  V3  mu_2 matched P'(g) reproduces L247's hydrostatic residual 0
+      (control: any-nu identity already Lean; here the SPARC member).
+  V4  c_s^2 = (dp/drho)|_a = 0 identically -- non-barotropic, no Jeans
+      scale from this pressure; clustering is dust-like.
+  V5  on FLRW, a^mu = 0 for comoving u^mu => p = 0 => w = 0 at linear
+      order (CMB-cold).  Kill if |w_eff| at z_* exceeds 1e-6 from the
+      a^2 term with Hubble acceleration  H^2 * (peculiar).
+  V6  honesty: the Schutz chemical-potential sector is POSTULATED as
+      the number current; U is matched, not derived from a more primitive
+      Lagrangian.  Constraint algebra of the full GR+fluid system is OPEN.
+
+Both a0 footings.  Measurement and threshold stated separately.
+A FAIL is a finding.  No literal-True conditions.
+
+V0 -- Zimmerman scale: a0 = s/2 on both density conventions
+    [canonical] a0 = s/2 = 9.362307e-11 vs registered 9.361900e-11 (0.004%)
+    [alt] a0 = s/2 = 1.131195e-10 vs registered 1.127900e-10 (0.292%)
+  [PASS] V0 [a0 IS s/2, both footings] s = c sqrt(G rho) on Lambda and critical density, divided by two, compared with the registered footings at 1%
+         measured: canonical 9.362307e-11 vs 9.361900e-11; alt 1.131195e-10 vs 1.127900e-10
+         reading : the fluid's scale is the programme's, not a fitted MOND a0
+
+V1 -- deep-MOND pressure in dark-energy units
+    P/(rho_Lambda c^2) = a**2/(8*pi*s**2)  (should be (a/s)^2/(8 pi))
+    residual = 0
+    [canonical] a=a0=s/2: P/(rho_L c^2) = 9.94718394e-03 vs 1/(32 pi) = 9.94718394e-03
+    [alt] a=a0=s/2: P/(rho_L c^2) = 9.94718394e-03 vs 1/(32 pi) = 9.94718394e-03
+  [PASS] V1 [MOND SCALING: P_deep = rho_Lambda c^2 (a/s)^2 / (8 pi)] sympy residual of that identity (symbolic G,c), and the numeric value at a = a0 = s/2 vs 1/(32 pi)
+         measured: sympy residual = 0; canonical rel = 0.000e+00, alt rel = 0.000e+00
+         reading : the deep-branch pressure is a DARK-ENERGY fraction (a/s)^2/8pi.  At the characteristic acceleration a0 = s/2 that fraction is 1/(32 pi) ~ 0.010.  Not a new scale -- rho_Lambda and s already in the theory
+
+V2 -- potential-flow proper acceleration is spatial
+    a_1 at phix=0 = 0
+    coefficient of phi_tt = 0
+    d_x ln sqrt(X) at phix=0 = 0
+  [PASS] V2 [REST FRAME: a_i has no phi_tt] potential-flow a_1 in Minkowski at phix=0 is expanded; the coefficient of d^2 phi/dt^2 is compared with 0
+         measured: coeff of phi_tt = 0; a_1 rest = 0
+         reading : U(a^2) on a potential flow is a spatial-gradient potential in the rest frame.  That is L247's 'no second time derivative at this order' -- now computed, not quoted.  This is NOT a full Hamiltonian constraint-algebra proof; it is the derivative-count that keeps Ostrogradsky off the potential-flow sector
+
+V3 -- mu_2 matched P'(g), hydrostatic residual
+    hydrostatic residual P' g' + rho_ph g = 0
+    [canonical] max |residual| on Y in [1e-3,10] = 0.000e+00
+    [alt] max |residual| on Y in [1e-3,10] = 0.000e+00
+  [PASS] V3 [mu_2 MATCHED LAW: hydrostatic residual 0] sympy residual of P'(g) g' + rho_ph g for mu_2 at a0=s/2, plus a numeric scan
+         measured: sympy residual = 0; numeric max abs = 0.000e+00
+         reading : L247 V1 is kernel-agnostic (Lean).  This is the SPARC member at the Zimmerman scale: same identity, no extra scale
+
+V4 -- non-barotropic: (dp/drho)|_a = 0
+  [PASS] V4 [c_s^2 = (dp/drho)|_a = 0] P depends on a, not on rho; the fixed-a derivative is compared with 0
+         measured: (dp/drho)|_a = 0.0
+         reading : LABELLED BY CONSTRUCTION of p=P(a): this is L166's non-barotropic clause, not a new computation.  Consequence: no Jeans scale from this pressure.  Clustering is dust-like on (F) and hydrostatic on (S).  The sound speed that WOULD be dP/da * da/drho is not a propagation speed of density contrasts at fixed a
+
+V5 -- FLRW: Hubble-flow acceleration of comoving observers is 0
+    [canonical] a_pec = H_* v = 1.3235e-08 m/s^2 = 1.414e+02 a0; w_eff = 3.957e-07
+    [alt] a_pec = H_* v = 1.3235e-08 m/s^2 = 1.170e+02 a0; w_eff = 3.957e-07
+  [PASS] V5 [CMB-COLD: w_eff from peculiar Hubble drag at z_* vs 1e-6] p = a^2/(8 pi G) with a = H(z_*) * 300 km/s, divided by rho_dm c^2
+         measured: w_eff canonical = 3.957e-07, alt = 3.957e-07; threshold 1e-6; a_pec/a0 = 1.414e+02
+         reading : comoving observers are geodesic (a=0, p=0 exactly).  The overestimate with 300 km/s peculiar still gives w_eff ~ 4.0e-07, CMB-cold.  Linear perturbations about FLRW see dust + O(v^2) which is not a first-order source
+
+V6 -- what is postulated
+  [PASS] V6 [Schutz n and branch selection are POSTULATED] count of derived / measured / postulated / open inputs to this action
+         measured: DERIVED 4 (P_deep scaling, rest-frame derivative count, mu_2 hydrostatic, w_eff at z_*); MEASURED 2 (n=2, Omega_dm amplitude); POSTULATED 2 (Schutz potential-flow current; kinematics selects branch); OPEN 1 (full GR+fluid constraint algebra / ghosts off potential flow)
+         reading : a count, not a physics pass.  The action is written; the Hamiltonian analysis is not
+
+READING
+
+  THE GR FLUID ACTION, WITH THE ZIMMERMAN SCALE.
+
+    S = int sqrt(-g) [ R/(16 pi G) + L_Schutz(phi, n) - U(a^2) ]
+
+  a^mu = u^nu nabla_nu u^mu, u_a = d_a phi / sqrt(X).  Deep-MOND
+  U is fixed by P = a^2/(8 pi G) = rho_Lambda c^2 (a/s)^2 / (8 pi),
+  s = c sqrt(G rho_Lambda), a0 = s/2.  At a = a0 the pressure is
+  1/(32 pi) of the dark-energy density.  mu_2's matched P'(g) has
+  hydrostatic residual 0 (V3).  Rest-frame a_i has no phi_tt (V2).
+  FLRW is geodesic, w_eff from a 300 km/s peculiar is 4.0e-07 (V5).
+
+  THIS IS NOT A NEW THEORY OF GRAVITY.  Poisson is Einstein's.
+  Cassini is Einstein's.  The RAR is the hydrostatic branch of this
+  fluid (K001).  The CMB/clusters/KiDS are the free-fall branch.
+
+  WHAT IS NOT CLAIMED.  The Schutz current is postulated.  The full
+  constraint algebra of GR + this fluid off potential flow is OPEN.
+  U is matched to mu_2, not derived from a more primitive principle.
+  n=2 stays measured.
+
+K003 COMPLETE: 7/7 checks PASS.

@@ -56,10 +56,30 @@ K002 did not re-run the ladder; it read the committed artifact.
 - `lean/K002_alpha1_closed_form.lean` — 4 theorems: `drag_at_zero`,
   `drag_grows_linear`, `drag_slope_pos`, `lock_is_ghost`. Exit 0, zero sorry,
   axioms `{propext, Classical.choice, Quot.sound}`. Certifies that f31's
-  closed form **grows** in `XI2` for `0 < K_B < 2`, `J_Y > 0`, and that the
-  AeST lock value of `c_14` is a ghost.
+  closed form **grows** in `XI2` for `0 < K_B < 2`, `J_Y > 0`.
+- `lean/K003_fluid_scale.lean` — 3 theorems: `mond_scale_pressure`,
+  `pressure_at_a0`, `free_fall_p`. Exit 0, zero sorry, standard axioms.
 
-Lean certifies the algebra. Physical verdicts are the Python lanes'.
+## The GR fluid action (K003)
+
+$$
+S=\int\sqrt{-g}\Bigl[\frac{R}{16\pi G}+\mathcal{L}_{\mathrm{Schutz}}(\phi,n)-U(a^2)\Bigr],
+\quad
+a^\mu=u^\nu\nabla_\nu u^\mu,\quad
+u_a=\partial_a\phi/\sqrt{X}.
+$$
+
+Scale: $a_0=s/2$, $s=c\sqrt{G\rho_\Lambda}$ (both footings). Deep-MOND
+$P=a^2/(8\pi G)=\rho_\Lambda c^2\,(a/s)^2/(8\pi)$. At $a=a_0$ that is
+$1/(32\pi)$ of the dark-energy density (Lean `pressure_at_a0`). Rest-frame
+$a_i$ has no $\ddot\phi$ (K003 V2). FLRW is geodesic; $w_{\mathrm{eff}}$ from
+a 300 km/s peculiar at $z_*$ is $4\times10^{-7}$. $\mu_2$ hydrostatic
+residual 0.
+
+This is a **matter** action in GR, not a new gravity. Poisson is Einstein's.
+
+Schutz $n$ and branch selection remain POSTULATED. Full constraint algebra
+off potential flow remains OPEN.
 
 ## Tagged, not inflated
 
@@ -68,7 +88,7 @@ Lean certifies the algebra. Physical verdicts are the Python lanes'.
 | DERIVED | two-branch dichotomy, matched `P`, `p=0` on (F), truncation formula, f31 closed-form growth |
 | MEASURED | `n=2`, `a₀ = s/2`, `Ω_dm` amplitude, `f_S ∈ [0.027, 0.064]` |
 | POSTULATED | kinematics selects the branch (stars on (F), disc medium on (S)) |
-| OPEN | a **fluid** action in GR whose stress is `T = ρ u u + p(a) Δ` with healthy constraints — not a modified-gravity action |
+| OPEN | GR+fluid constraint algebra off potential flow |
 | DEAD | every local force-law completion, including H004 |
 
 ## Kills going forward
