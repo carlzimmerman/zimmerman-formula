@@ -1,0 +1,183 @@
+G036 -- THE RADIAL SCATTER FUNCTION of the RAR.
+
+THE NEW OBSERVABLE (never computed in this repo or, to our knowledge, in the
+literature): sigma_RAR(R) -- the RAR residual decomposed BY RADIUS WITHIN
+galaxies.  The theory's interpolant is EXACT (mu_2(u) = 1-(1+u)^-2, u = g/2a0,
+zero parameters) once M_b and the disc geometry are fixed, so ALL residual
+scatter must come from measured galaxy properties (distance, inclination, M/L,
+non-circular motions, asymmetry).  Li+2018 / Stone+2020 report the RAR's TOTAL
+scatter but never its RADIAL DECOMPOSITION.
+
+THE PRE-REGISTERED PREDICTIONS (stated before the run, both readings kept):
+
+  V1 (flat scale-free equilibrium, NEW): in the deep regime R/r_M > 2 the
+      per-point residual delta = log10(g_obs/g_th) is (a) tight, pooled
+      per-point rms < 0.13 dex, and (b) FLAT: |d(delta)/d log10(r/r_M)|
+      (per-galaxy slopes, deconfounded from galaxy identity) < 0.02 dex/dex.
+  V2 (baryon-feature amplification): the inner-regime (R/r_M < 0.5) per-point
+      rms EXCEEDS the deep-regime per-point rms by > 1.5x.
+  V3 (environmental EFE offset): galaxies split at g_ext = 0.5 a0 (the repo's
+      real 2MRS/2M++-built per-galaxy g_ext table, 175/175 SPARC rows,
+      GATE-A-validated against Chae+2021 Table 3): the strong-field sample's
+      outer-bin mean offset vs weak-field EXCEEDS 0.05 dex (sag LOW, the L240
+      additive-law sign).  HONEST SCOPE NOTE registered in advance: the SPARC
+      field sample has NO galaxy above e_N ~ 0.04; the 0.5-a0 split is out of
+      the sample's range and its near-null is itself the architecture's
+      prediction (the signature lives at e_N ~ 1, BIG-SPARC/WALLABY class).
+      The sample-range versions run here: the continuous regression of the
+      deep-regime mean residual vs log10 e_N on TWO independent g_ext axes
+      (the repo's maxclu column AND Chae's published Table-3 values), with
+      the additive-law sign (negative) required at p < 0.05.
+  V4 (the autocorrelation kill-test): lag-1 autocorrelation of per-galaxy
+      deep-regime residual sequences (ordered in radius), Fisher-z pooled,
+      < 0.4.  A pure per-POINT-noise equilibrium gives ~ 0; any radially
+      coherent error (NFW halo-shape mis-fit, coherent offsets) gives more.
+      The decomposition verdicts then establish WHAT the coherence is:
+      V4a after removing each galaxy's own best-fit LINE in log-r, the pooled
+          lag-1 AC drops below 0.4 (slow drift, not concentric rings);
+      V4c the drift's SIGN is population-coherent (binomial test vs 50/50,
+          p < 0.01) -- random per-galaxy systematics would split evenly;
+      V4d the population mean drift slope differs from zero (t-test,
+          p < 0.01), registered sign: sag LOW at large r/r_M;
+      V4e the drift attributes to the external field at SPARC amplitudes
+          (regression of per-galaxy drift slope vs log10 e_N, negative at
+          p < 0.05 on either axis).
+
+OUTPUT: the full radial scatter function TABLE (bin center, N, n_gal, rms,
+mean, deconfounded slope) on BOTH footings (9.3619e-11 canonical = s_DE/2,
+1.1279e-10 alt), in r/r_M (self-similar, 0.2-dex bins) and in absolute kpc
+(fixed-scale baryon noise).  The table IS the new result; it goes in the paper.
+
+INGEST: G033_build_fluid_bundle.py's parser (all 175 SPARC _rotmod.dat files,
+g_bar = vb^2/r, g_obs = v^2/r in SI, per-point galaxy id AND radius), the
+certified mu_2 bisection (G010/G013's g_pred, 200 iterations), per-galaxy M_b
+from the curve's own enclosed baryons (max of Vb^2 r / G over the curve).
+Stellar M/L 0.5, bulge 0.7 (the repo's standing SPARC convention).
+
+Every check states measurement and threshold separately.  FAILs are findings.
+
+PART 0 -- ingest (G033 parser: all 175 files, per-point id AND radius)
+    kept 171 galaxies, 3373 rotation points
+    environment: repo table 171/171 matched; Chae published 106 matched
+    e_N = g_ext/a0 (repo axis): median 0.0004, p90 0.0007, max 0.0048; galaxies with e_N > 0.5: 0
+
+PART 1 -- per-point residuals delta = log10(g_obs/g_th), both footings
+
+PART 2 -- THE RADIAL SCATTER FUNCTION (the new table)
+
+  [canonical] a0 = 9.3623e-11  --  sigma_RAR(r/r_M), 0.2-dex bins
+           r/rM bin     N  ngal     rms     mean  slope dex/dex
+   0.020-  0.03        12    11  0.3942  +0.0845           +nan
+   0.032-  0.05        25    17  0.3343  -0.1268        +0.0531
+   0.050-  0.08        49    35  0.3050  -0.0726        +0.0260
+   0.080-  0.13        80    45  0.3053  -0.0859        +0.1719
+   0.126-  0.20       122    57  0.2187  -0.0212        -0.0100
+   0.200-  0.32       182    82  0.2128  -0.0151        +0.0930
+   0.317-  0.50       320   123  0.2021  +0.0257        +0.1499
+   0.502-  0.80       388   140  0.1924  +0.0477        +0.0493
+   0.796-  1.26       428   160  0.1916  +0.0468        +0.0865
+   1.262-  2.00       529   161  0.1820  +0.0369        +0.0281
+   2.000-  3.17       612   153  0.1683  +0.0280        -0.1489
+   3.170-  5.02       474   123  0.1795  +0.0026        -0.1162
+   5.024-  7.96       134    43  0.1847  +0.0073        +0.0407
+   7.962- 12.62        10     4  0.0991  +0.0084        -0.0365
+  absolute-kpc view (fixed-scale baryon noise):
+    R =   0.0-   1 kpc  N=  326  rms=0.3639  mean=-0.1087
+    R =   1.0-   2 kpc  N=  369  rms=0.2326  mean=-0.0406
+    R =   2.0-   3 kpc  N=  312  rms=0.2070  mean=+0.0140
+    R =   3.0-   5 kpc  N=  493  rms=0.1918  mean=+0.0461
+    R =   5.0-   8 kpc  N=  582  rms=0.1640  mean=+0.0595
+    R =   8.0-  12 kpc  N=  412  rms=0.1454  mean=+0.0466
+    R =  12.0-  20 kpc  N=  396  rms=0.1140  mean=+0.0380
+    R =  20.0-  40 kpc  N=  349  rms=0.1197  mean=+0.0549
+
+  [alt] a0 = 1.1279e-10  --  sigma_RAR(r/r_M), 0.2-dex bins
+           r/rM bin     N  ngal     rms     mean  slope dex/dex
+   0.020-  0.03        12    11  0.4085  +0.1033           +nan
+   0.032-  0.05        21    16  0.3658  -0.1408        -0.3511
+   0.050-  0.08        41    28  0.2708  -0.0714        +0.2498
+   0.080-  0.13        72    46  0.3527  -0.1202        +0.1557
+   0.126-  0.20       110    53  0.2099  -0.0398        +0.0758
+   0.200-  0.32       175    80  0.2275  -0.0323        +0.2027
+   0.317-  0.50       279   112  0.1919  +0.0016        +0.1249
+   0.502-  0.80       387   140  0.1976  +0.0197        +0.0072
+   0.796-  1.26       417   157  0.1895  +0.0176        +0.0814
+   1.262-  2.00       506   161  0.1738  +0.0081        +0.0453
+   2.000-  3.17       606   157  0.1718  -0.0071        -0.1711
+   3.170-  5.02       526   133  0.1750  -0.0256        -0.1340
+   5.024-  7.96       197    63  0.2004  -0.0429        -0.0282
+   7.962- 12.62        17     6  0.0991  -0.0030        -0.1202
+  absolute-kpc view (fixed-scale baryon noise):
+    R =   0.0-   1 kpc  N=  326  rms=0.3752  mean=-0.1342
+    R =   1.0-   2 kpc  N=  369  rms=0.2399  mean=-0.0665
+    R =   2.0-   3 kpc  N=  312  rms=0.2067  mean=-0.0129
+    R =   3.0-   5 kpc  N=  493  rms=0.1869  mean=+0.0185
+    R =   5.0-   8 kpc  N=  582  rms=0.1570  mean=+0.0311
+    R =   8.0-  12 kpc  N=  412  rms=0.1402  mean=+0.0160
+    R =  12.0-  20 kpc  N=  396  rms=0.1088  mean=+0.0061
+    R =  20.0-  40 kpc  N=  349  rms=0.1090  mean=+0.0210
+
+PART 3 -- the pre-registered verdicts V1-V2
+  [FAIL] V1 [canonical] DEEP REGIME (r/r_M > 2): pooled per-point rms < 0.13 dex AND radial slope < 0.02 dex/dex -- flat scale-free equilibrium, NEW
+         measured: N = 1230 points; pooled per-point rms = 0.1741 dex (threshold 0.13; decomposition: between-galaxy 0.1908, within-galaxy after per-galaxy offset removed 0.0447); per-galaxy radial slope mean -0.1417 dex/dex (threshold 0.02; 93/144 negative)
+         reading : registered before the run: the scale-free equilibrium (rho ~ r^-2 has no scale) predicts a tight, flat deep residual. The rms clause and the flatness clause are judged TOGETHER as pre-registered; the decomposition verdicts V4a-V4e establish what the failing structure actually is
+  [FAIL] V2 [canonical] INNER regime (r/r_M < 0.5) per-point rms EXCEEDS deep rms by > 1.5x -- the mu_2 transition amplifies baryon-feature noise
+         measured: inner rms = 0.2404 dex (N = 794), deep rms = 0.1741 dex (N = 1230), ratio = 1.38 (threshold > 1.5)
+         reading : the transition amplifies baryon-feature noise (spiral arms, bulge/disc degeneracy, non-circular motions); a FAIL means the noise architecture is NOT transition-amplified -- a different fingerprint than claimed
+  [FAIL] V1 [alt] DEEP REGIME (r/r_M > 2): pooled per-point rms < 0.13 dex AND radial slope < 0.02 dex/dex -- flat scale-free equilibrium, NEW
+         measured: N = 1346 points; pooled per-point rms = 0.1768 dex (threshold 0.13; decomposition: between-galaxy 0.1934, within-galaxy after per-galaxy offset removed 0.0479); per-galaxy radial slope mean -0.1329 dex/dex (threshold 0.02; 98/150 negative)
+         reading : registered before the run: the scale-free equilibrium (rho ~ r^-2 has no scale) predicts a tight, flat deep residual. The rms clause and the flatness clause are judged TOGETHER as pre-registered; the decomposition verdicts V4a-V4e establish what the failing structure actually is
+  [FAIL] V2 [alt] INNER regime (r/r_M < 0.5) per-point rms EXCEEDS deep rms by > 1.5x -- the mu_2 transition amplifies baryon-feature noise
+         measured: inner rms = 0.2453 dex (N = 710), deep rms = 0.1768 dex (N = 1346), ratio = 1.39 (threshold > 1.5)
+         reading : the transition amplifies baryon-feature noise (spiral arms, bulge/disc degeneracy, non-circular motions); a FAIL means the noise architecture is NOT transition-amplified -- a different fingerprint than claimed
+
+PART 4 -- V3: the environmental EFE test on the repo's real g_ext tables
+  [FAIL] V3 [canonical] ENVIRONMENTAL EFE OFFSET: strong-field outer-bin offset > 0.05 dex at the registered 0.5-a0 split; sample-range fallback: d(delta)/d log10 e_N < 0 at p < 0.05 on either g_ext axis (L240 additive-law sign)
+         measured: g_ext > 0.5 a0: N = 0 galaxies -- the registered 0.5-a0 split is OUT OF THE SAMPLE'S RANGE (max e_N = 0.0048); offset = n/a (0 strong-field galaxies). Sample-range regressions of the deep-regime mean residual vs log10 e_N: repo 2MRS/2M++ (maxclu): slope -0.0515 +/- 0.0538 dex/dex (p = 0.340, N = 152); Chae+2021 published: slope -0.1071 +/- 0.1079 dex/dex (p = 0.324, N = 93)
+         reading : the additive law (L240/G006) predicts strong-field galaxies sag LOW beyond the cap. SPARC is a field sample: its entire e_N range sits an order of magnitude below 0.5 a0, so the registered split cannot fire here -- recorded as the finding that the EFE offset is NOT ESTABLISHED in SPARC, with the directional regressions on two independent g_ext axes as the sample-range test. The architecture's measurable prediction moves to e_N ~ 1 (BIG-SPARC/WALLABY)
+  [FAIL] V3 [alt] ENVIRONMENTAL EFE OFFSET: strong-field outer-bin offset > 0.05 dex at the registered 0.5-a0 split; sample-range fallback: d(delta)/d log10 e_N < 0 at p < 0.05 on either g_ext axis (L240 additive-law sign)
+         measured: g_ext > 0.5 a0: N = 0 galaxies -- the registered 0.5-a0 split is OUT OF THE SAMPLE'S RANGE (max e_N = 0.0048); offset = n/a (0 strong-field galaxies). Sample-range regressions of the deep-regime mean residual vs log10 e_N: repo 2MRS/2M++ (maxclu): slope -0.0502 +/- 0.0535 dex/dex (p = 0.350, N = 153); Chae+2021 published: slope -0.1137 +/- 0.1070 dex/dex (p = 0.291, N = 94)
+         reading : the additive law (L240/G006) predicts strong-field galaxies sag LOW beyond the cap. SPARC is a field sample: its entire e_N range sits an order of magnitude below 0.5 a0, so the registered split cannot fire here -- recorded as the finding that the EFE offset is NOT ESTABLISHED in SPARC, with the directional regressions on two independent g_ext axes as the sample-range test. The architecture's measurable prediction moves to e_N ~ 1 (BIG-SPARC/WALLABY)
+
+PART 5 -- V4: the autocorrelation kill-test and its decomposition
+  [FAIL] V4 [canonical] DEEP-REGIME RADIAL COHERENCE: pooled lag-1 autocorrelation < 0.4 -- the kill-test (per-point-noise equilibrium ~ 0; radially coherent errors 0.7+)
+         measured: pooled lag-1 AC = +0.838 over 128 galaxies (threshold 0.4); null distribution (within-galaxy circular shifts, 2000 draws): mean +0.225, 95th pct +0.258; p(data >= null) = 0.0000
+         reading : registered before the run: the kill-test of the no-halo reading. A FAIL establishes that the deep residual is NOT per-point noise; the decomposition verdicts below establish WHAT the coherent structure is
+  [PASS] V4a [canonical] DECOMPOSITION: the coherence is a slow per-galaxy drift, not radial fine structure -- linear-detrended pooled lag-1 AC < 0.4
+         measured: raw +0.838 -> after removing each galaxy's own best-fit line in log(r/r_M): +0.018 (threshold 0.4); after a 3-pt running-median detrend: -0.222
+         reading : removing ONE straight line per galaxy collapses the autocorrelation to ~0: the deep-regime residual is one quasi-static per-galaxy offset/drift plus WHITE per-point noise. There are no coherent rings or bumps to fit -- the halo-shape error mode (an NFW concentration wiggle) leaves no trace in the residual's radial structure
+  [PASS] V4c [canonical] the drift's SIGN is population-coherent: galaxies with sagging deep residuals exceed 50/50 (binomial p < 0.01)
+         measured: 83/128 galaxies have a negative drift slope (0.648); binomial p vs 0.5 = 0.001
+         reading : random per-galaxy systematics (distance, inclination, M/L) would split evenly; a one-sign population drift is the signature of a MONOTONIC external/background effect shared by the sample
+  [PASS] V4d [canonical] the population mean drift differs from zero: t-test p < 0.01, registered sign sag LOW
+         measured: mean drift slope = -0.1310 dex/dex, t = -3.80, p = 0.00023 (N = 128 galaxies)
+         reading : the deep-regime residual is FLAT point-to-point but SAGS systematically toward the outermost self-similar radii -- a real, small, one-sign radial structure that any deep-regime account must absorb
+  [FAIL] V4e [canonical] ATTRIBUTION of the drift to the external field at SPARC amplitudes: d(drift)/d log10 e_N < 0 at p < 0.05 on either axis
+         measured: repo axis: +0.0067 +/- 0.1176 dex/dex per dex (p = 0.955, N = 144); Chae published: +0.2450 +/- 0.2039 dex/dex per dex (p = 0.233, N = 90)
+         reading : at SPARC's field strengths (median e_N ~ 0.003) the additive law's own shift is ~0.001-0.01 dex -- an order of magnitude below the measured ~0.1-dex drift -- so no attribution at this amplitude is expected; the regression quantifies that honestly. The attribution test that CAN decide it lives at e_N ~ 1 (BIG-SPARC/WALLABY)
+  [FAIL] V4 [alt] DEEP-REGIME RADIAL COHERENCE: pooled lag-1 autocorrelation < 0.4 -- the kill-test (per-point-noise equilibrium ~ 0; radially coherent errors 0.7+)
+         measured: pooled lag-1 AC = +0.848 over 138 galaxies (threshold 0.4); null distribution (within-galaxy circular shifts, 2000 draws): mean +0.237, 95th pct +0.263; p(data >= null) = 0.0000
+         reading : registered before the run: the kill-test of the no-halo reading. A FAIL establishes that the deep residual is NOT per-point noise; the decomposition verdicts below establish WHAT the coherent structure is
+  [PASS] V4a [alt] DECOMPOSITION: the coherence is a slow per-galaxy drift, not radial fine structure -- linear-detrended pooled lag-1 AC < 0.4
+         measured: raw +0.848 -> after removing each galaxy's own best-fit line in log(r/r_M): +0.069 (threshold 0.4); after a 3-pt running-median detrend: -0.172
+         reading : removing ONE straight line per galaxy collapses the autocorrelation to ~0: the deep-regime residual is one quasi-static per-galaxy offset/drift plus WHITE per-point noise. There are no coherent rings or bumps to fit -- the halo-shape error mode (an NFW concentration wiggle) leaves no trace in the residual's radial structure
+  [PASS] V4c [alt] the drift's SIGN is population-coherent: galaxies with sagging deep residuals exceed 50/50 (binomial p < 0.01)
+         measured: 91/138 galaxies have a negative drift slope (0.659); binomial p vs 0.5 = 0.00023
+         reading : random per-galaxy systematics (distance, inclination, M/L) would split evenly; a one-sign population drift is the signature of a MONOTONIC external/background effect shared by the sample
+  [PASS] V4d [alt] the population mean drift differs from zero: t-test p < 0.01, registered sign sag LOW
+         measured: mean drift slope = -0.1380 dex/dex, t = -4.34, p = 2.7e-05 (N = 138 galaxies)
+         reading : the deep-regime residual is FLAT point-to-point but SAGS systematically toward the outermost self-similar radii -- a real, small, one-sign radial structure that any deep-regime account must absorb
+  [FAIL] V4e [alt] ATTRIBUTION of the drift to the external field at SPARC amplitudes: d(drift)/d log10 e_N < 0 at p < 0.05 on either axis
+         measured: repo axis: -0.0420 +/- 0.1085 dex/dex per dex (p = 0.699, N = 150); Chae published: +0.2249 +/- 0.1891 dex/dex per dex (p = 0.237, N = 93)
+         reading : at SPARC's field strengths (median e_N ~ 0.003) the additive law's own shift is ~0.001-0.01 dex -- an order of magnitude below the measured ~0.1-dex drift -- so no attribution at this amplitude is expected; the regression quantifies that honestly. The attribution test that CAN decide it lives at e_N ~ 1 (BIG-SPARC/WALLABY)
+
+  [FAIL] V4b [canonical] the kill-test under the errV/V < 10% quality cut (G013's selection): the coherence is not an error-bar artifact
+         measured: pooled lag-1 AC = +0.827 over 109 galaxies (threshold 0.4)
+         reading : same verdict under the strict cut: the coherent structure is not driven by high-error points
+  [FAIL] V4b [alt] the kill-test under the errV/V < 10% quality cut (G013's selection): the coherence is not an error-bar artifact
+         measured: pooled lag-1 AC = +0.856 over 117 galaxies (threshold 0.4)
+         reading : same verdict under the strict cut: the coherent structure is not driven by high-error points
+
+wrote G036_radial_scatter_function.json
+
+G036 COMPLETE: 6/18 checks PASS.

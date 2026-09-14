@@ -1,0 +1,374 @@
+{
+ "meta": {
+  "lane": "G036",
+  "observable": "sigma_RAR(R): the radial scatter function of the RAR",
+  "a0": {
+   "canonical": 9.362307184320096e-11,
+   "alt": 1.1279e-10
+  },
+  "ingest": "G033 parser, 175 SPARC rotmod files, M_b from enclosed baryons, M/L 0.5/0.7",
+  "env": "gext_vectors_2026 (2MRS/2M++ + MCXC, Chae-validated, 175/175) + Chae+2021 Table 3",
+  "deep_regime_r_over_rM": 2.0,
+  "inner_regime_r_over_rM": 0.5,
+  "verdicts": {
+   "V1 [canonical] DEEP REGIME (r/r_M > 2): pooled per-point rms < 0.13 dex AND radial slope < 0.02 dex/dex -- flat scale-free equilibrium, NEW": {
+    "measured": "N = 1230 points; pooled per-point rms = 0.1741 dex (threshold 0.13; decomposition: between-galaxy 0.1908, within-galaxy after per-galaxy offset removed 0.0447); per-galaxy radial slope mean -0.1417 dex/dex (threshold 0.02; 93/144 negative)",
+    "pass": false
+   },
+   "V2 [canonical] INNER regime (r/r_M < 0.5) per-point rms EXCEEDS deep rms by > 1.5x -- the mu_2 transition amplifies baryon-feature noise": {
+    "measured": "inner rms = 0.2404 dex (N = 794), deep rms = 0.1741 dex (N = 1230), ratio = 1.38 (threshold > 1.5)",
+    "pass": false
+   },
+   "V1 [alt] DEEP REGIME (r/r_M > 2): pooled per-point rms < 0.13 dex AND radial slope < 0.02 dex/dex -- flat scale-free equilibrium, NEW": {
+    "measured": "N = 1346 points; pooled per-point rms = 0.1768 dex (threshold 0.13; decomposition: between-galaxy 0.1934, within-galaxy after per-galaxy offset removed 0.0479); per-galaxy radial slope mean -0.1329 dex/dex (threshold 0.02; 98/150 negative)",
+    "pass": false
+   },
+   "V2 [alt] INNER regime (r/r_M < 0.5) per-point rms EXCEEDS deep rms by > 1.5x -- the mu_2 transition amplifies baryon-feature noise": {
+    "measured": "inner rms = 0.2453 dex (N = 710), deep rms = 0.1768 dex (N = 1346), ratio = 1.39 (threshold > 1.5)",
+    "pass": false
+   },
+   "V3 [canonical] ENVIRONMENTAL EFE OFFSET: strong-field outer-bin offset > 0.05 dex at the registered 0.5-a0 split; sample-range fallback: d(delta)/d log10 e_N < 0 at p < 0.05 on either g_ext axis (L240 additive-law sign)": {
+    "measured": "g_ext > 0.5 a0: N = 0 galaxies -- the registered 0.5-a0 split is OUT OF THE SAMPLE'S RANGE (max e_N = 0.0048); offset = n/a (0 strong-field galaxies). Sample-range regressions of the deep-regime mean residual vs log10 e_N: repo 2MRS/2M++ (maxclu): slope -0.0515 +/- 0.0538 dex/dex (p = 0.340, N = 152); Chae+2021 published: slope -0.1071 +/- 0.1079 dex/dex (p = 0.324, N = 93)",
+    "pass": false
+   },
+   "V3 [alt] ENVIRONMENTAL EFE OFFSET: strong-field outer-bin offset > 0.05 dex at the registered 0.5-a0 split; sample-range fallback: d(delta)/d log10 e_N < 0 at p < 0.05 on either g_ext axis (L240 additive-law sign)": {
+    "measured": "g_ext > 0.5 a0: N = 0 galaxies -- the registered 0.5-a0 split is OUT OF THE SAMPLE'S RANGE (max e_N = 0.0048); offset = n/a (0 strong-field galaxies). Sample-range regressions of the deep-regime mean residual vs log10 e_N: repo 2MRS/2M++ (maxclu): slope -0.0502 +/- 0.0535 dex/dex (p = 0.350, N = 153); Chae+2021 published: slope -0.1137 +/- 0.1070 dex/dex (p = 0.291, N = 94)",
+    "pass": false
+   },
+   "V4 [canonical] DEEP-REGIME RADIAL COHERENCE: pooled lag-1 autocorrelation < 0.4 -- the kill-test (per-point-noise equilibrium ~ 0; radially coherent errors 0.7+)": {
+    "measured": "pooled lag-1 AC = +0.838 over 128 galaxies (threshold 0.4); null distribution (within-galaxy circular shifts, 2000 draws): mean +0.225, 95th pct +0.258; p(data >= null) = 0.0000",
+    "pass": false
+   },
+   "V4a [canonical] DECOMPOSITION: the coherence is a slow per-galaxy drift, not radial fine structure -- linear-detrended pooled lag-1 AC < 0.4": {
+    "measured": "raw +0.838 -> after removing each galaxy's own best-fit line in log(r/r_M): +0.018 (threshold 0.4); after a 3-pt running-median detrend: -0.222",
+    "pass": true
+   },
+   "V4c [canonical] the drift's SIGN is population-coherent: galaxies with sagging deep residuals exceed 50/50 (binomial p < 0.01)": {
+    "measured": "83/128 galaxies have a negative drift slope (0.648); binomial p vs 0.5 = 0.001",
+    "pass": true
+   },
+   "V4d [canonical] the population mean drift differs from zero: t-test p < 0.01, registered sign sag LOW": {
+    "measured": "mean drift slope = -0.1310 dex/dex, t = -3.80, p = 0.00023 (N = 128 galaxies)",
+    "pass": true
+   },
+   "V4e [canonical] ATTRIBUTION of the drift to the external field at SPARC amplitudes: d(drift)/d log10 e_N < 0 at p < 0.05 on either axis": {
+    "measured": "repo axis: +0.0067 +/- 0.1176 dex/dex per dex (p = 0.955, N = 144); Chae published: +0.2450 +/- 0.2039 dex/dex per dex (p = 0.233, N = 90)",
+    "pass": false
+   },
+   "V4 [alt] DEEP-REGIME RADIAL COHERENCE: pooled lag-1 autocorrelation < 0.4 -- the kill-test (per-point-noise equilibrium ~ 0; radially coherent errors 0.7+)": {
+    "measured": "pooled lag-1 AC = +0.848 over 138 galaxies (threshold 0.4); null distribution (within-galaxy circular shifts, 2000 draws): mean +0.237, 95th pct +0.263; p(data >= null) = 0.0000",
+    "pass": false
+   },
+   "V4a [alt] DECOMPOSITION: the coherence is a slow per-galaxy drift, not radial fine structure -- linear-detrended pooled lag-1 AC < 0.4": {
+    "measured": "raw +0.848 -> after removing each galaxy's own best-fit line in log(r/r_M): +0.069 (threshold 0.4); after a 3-pt running-median detrend: -0.172",
+    "pass": true
+   },
+   "V4c [alt] the drift's SIGN is population-coherent: galaxies with sagging deep residuals exceed 50/50 (binomial p < 0.01)": {
+    "measured": "91/138 galaxies have a negative drift slope (0.659); binomial p vs 0.5 = 0.00023",
+    "pass": true
+   },
+   "V4d [alt] the population mean drift differs from zero: t-test p < 0.01, registered sign sag LOW": {
+    "measured": "mean drift slope = -0.1380 dex/dex, t = -4.34, p = 2.7e-05 (N = 138 galaxies)",
+    "pass": true
+   },
+   "V4e [alt] ATTRIBUTION of the drift to the external field at SPARC amplitudes: d(drift)/d log10 e_N < 0 at p < 0.05 on either axis": {
+    "measured": "repo axis: -0.0420 +/- 0.1085 dex/dex per dex (p = 0.699, N = 150); Chae published: +0.2249 +/- 0.1891 dex/dex per dex (p = 0.237, N = 93)",
+    "pass": false
+   },
+   "V4b [canonical] the kill-test under the errV/V < 10% quality cut (G013's selection): the coherence is not an error-bar artifact": {
+    "measured": "pooled lag-1 AC = +0.827 over 109 galaxies (threshold 0.4)",
+    "pass": false
+   },
+   "V4b [alt] the kill-test under the errV/V < 10% quality cut (G013's selection): the coherence is not an error-bar artifact": {
+    "measured": "pooled lag-1 AC = +0.856 over 117 galaxies (threshold 0.4)",
+    "pass": false
+   }
+  }
+ },
+ "radial_table_r_over_rM": {
+  "canonical": [
+   {
+    "lo": 0.020000000000000004,
+    "hi": 0.03169786384922227,
+    "center": 0.025178508235883346,
+    "N": 12,
+    "ngal": 11,
+    "rms": 0.39416460098470446,
+    "mean": 0.0845244990881177,
+    "slope": NaN
+   },
+   {
+    "lo": 0.03169786384922227,
+    "hi": 0.050237728630191596,
+    "center": 0.03990524629937759,
+    "N": 25,
+    "ngal": 17,
+    "rms": 0.33425930706201223,
+    "mean": -0.12684418002277745,
+    "slope": 0.053149953847736076
+   },
+   {
+    "lo": 0.050237728630191596,
+    "hi": 0.07962143411069944,
+    "center": 0.06324555320336758,
+    "N": 49,
+    "ngal": 35,
+    "rms": 0.304975973227568,
+    "mean": -0.07258229008807272,
+    "slope": 0.02601012404596235
+   },
+   {
+    "lo": 0.07962143411069944,
+    "hi": 0.1261914688960386,
+    "center": 0.10023744672545444,
+    "N": 80,
+    "ngal": 45,
+    "rms": 0.30530288371204356,
+    "mean": -0.08588204250899287,
+    "slope": 0.17185298086675527
+   },
+   {
+    "lo": 0.1261914688960386,
+    "hi": 0.19999999999999993,
+    "center": 0.15886564694485625,
+    "N": 122,
+    "ngal": 57,
+    "rms": 0.2187385356157177,
+    "mean": -0.021235585085501354,
+    "slope": -0.010029485615410736
+   },
+   {
+    "lo": 0.19999999999999993,
+    "hi": 0.3169786384922225,
+    "center": 0.25178508235883335,
+    "N": 182,
+    "ngal": 82,
+    "rms": 0.21282006993250785,
+    "mean": -0.015082122383961637,
+    "slope": 0.09299249634564352
+   },
+   {
+    "lo": 0.3169786384922225,
+    "hi": 0.5023772863019157,
+    "center": 0.39905246299377567,
+    "N": 320,
+    "ngal": 123,
+    "rms": 0.20213354802960798,
+    "mean": 0.0257292643793331,
+    "slope": 0.14993142855107278
+   },
+   {
+    "lo": 0.5023772863019157,
+    "hi": 0.796214341106994,
+    "center": 0.6324555320336754,
+    "N": 388,
+    "ngal": 140,
+    "rms": 0.19239382980454542,
+    "mean": 0.04768344331620805,
+    "slope": 0.049324570133533474
+   },
+   {
+    "lo": 0.796214341106994,
+    "hi": 1.2619146889603856,
+    "center": 1.0023744672545438,
+    "N": 428,
+    "ngal": 160,
+    "rms": 0.191565503683029,
+    "mean": 0.04675761610903369,
+    "slope": 0.08646459861775427
+   },
+   {
+    "lo": 1.2619146889603856,
+    "hi": 1.9999999999999982,
+    "center": 1.5886564694485616,
+    "N": 529,
+    "ngal": 161,
+    "rms": 0.1820484601304011,
+    "mean": 0.036941629851292866,
+    "slope": 0.02807995260174422
+   },
+   {
+    "lo": 1.9999999999999982,
+    "hi": 3.1697863849222236,
+    "center": 2.517850823588332,
+    "N": 612,
+    "ngal": 153,
+    "rms": 0.16834858872023373,
+    "mean": 0.02801555478941075,
+    "slope": -0.14886382592957093
+   },
+   {
+    "lo": 3.1697863849222236,
+    "hi": 5.023772863019155,
+    "center": 3.990524629937755,
+    "N": 474,
+    "ngal": 123,
+    "rms": 0.17952215110661712,
+    "mean": 0.002591450602572779,
+    "slope": -0.11624871443057859
+   },
+   {
+    "lo": 5.023772863019155,
+    "hi": 7.962143411069936,
+    "center": 6.324555320336751,
+    "N": 134,
+    "ngal": 43,
+    "rms": 0.18473344899043223,
+    "mean": 0.007344962399353293,
+    "slope": 0.04066313793268613
+   },
+   {
+    "lo": 7.962143411069936,
+    "hi": 12.619146889603849,
+    "center": 10.023744672545433,
+    "N": 10,
+    "ngal": 4,
+    "rms": 0.09910090146233416,
+    "mean": 0.0084456575266735,
+    "slope": -0.036483990065463316
+   }
+  ],
+  "alt": [
+   {
+    "lo": 0.020000000000000004,
+    "hi": 0.03169786384922227,
+    "center": 0.025178508235883346,
+    "N": 12,
+    "ngal": 11,
+    "rms": 0.40845106893018873,
+    "mean": 0.1032961112220665,
+    "slope": NaN
+   },
+   {
+    "lo": 0.03169786384922227,
+    "hi": 0.050237728630191596,
+    "center": 0.03990524629937759,
+    "N": 21,
+    "ngal": 16,
+    "rms": 0.36581561390830963,
+    "mean": -0.1407670952922641,
+    "slope": -0.35105022493181726
+   },
+   {
+    "lo": 0.050237728630191596,
+    "hi": 0.07962143411069944,
+    "center": 0.06324555320336758,
+    "N": 41,
+    "ngal": 28,
+    "rms": 0.2708195688146771,
+    "mean": -0.07143958990678764,
+    "slope": 0.24978761810113367
+   },
+   {
+    "lo": 0.07962143411069944,
+    "hi": 0.1261914688960386,
+    "center": 0.10023744672545444,
+    "N": 72,
+    "ngal": 46,
+    "rms": 0.35272040358335166,
+    "mean": -0.120178646490729,
+    "slope": 0.15571213056595273
+   },
+   {
+    "lo": 0.1261914688960386,
+    "hi": 0.19999999999999993,
+    "center": 0.15886564694485625,
+    "N": 110,
+    "ngal": 53,
+    "rms": 0.20993523432537103,
+    "mean": -0.03976152023660824,
+    "slope": 0.07584511483161852
+   },
+   {
+    "lo": 0.19999999999999993,
+    "hi": 0.3169786384922225,
+    "center": 0.25178508235883335,
+    "N": 175,
+    "ngal": 80,
+    "rms": 0.22754909653355807,
+    "mean": -0.03232194032557386,
+    "slope": 0.2026547272466909
+   },
+   {
+    "lo": 0.3169786384922225,
+    "hi": 0.5023772863019157,
+    "center": 0.39905246299377567,
+    "N": 279,
+    "ngal": 112,
+    "rms": 0.19193451202018852,
+    "mean": 0.0016191449555500146,
+    "slope": 0.12490592705158238
+   },
+   {
+    "lo": 0.5023772863019157,
+    "hi": 0.796214341106994,
+    "center": 0.6324555320336754,
+    "N": 387,
+    "ngal": 140,
+    "rms": 0.19759424519062233,
+    "mean": 0.019669093698985295,
+    "slope": 0.007187507743376191
+   },
+   {
+    "lo": 0.796214341106994,
+    "hi": 1.2619146889603856,
+    "center": 1.0023744672545438,
+    "N": 417,
+    "ngal": 157,
+    "rms": 0.18946922837756122,
+    "mean": 0.017580005889161365,
+    "slope": 0.08136722449494743
+   },
+   {
+    "lo": 1.2619146889603856,
+    "hi": 1.9999999999999982,
+    "center": 1.5886564694485616,
+    "N": 506,
+    "ngal": 161,
+    "rms": 0.17382755653729445,
+    "mean": 0.008068565432110824,
+    "slope": 0.04525838390745912
+   },
+   {
+    "lo": 1.9999999999999982,
+    "hi": 3.1697863849222236,
+    "center": 2.517850823588332,
+    "N": 606,
+    "ngal": 157,
+    "rms": 0.17177975832989062,
+    "mean": -0.007106064279577366,
+    "slope": -0.17111767861131938
+   },
+   {
+    "lo": 3.1697863849222236,
+    "hi": 5.023772863019155,
+    "center": 3.990524629937755,
+    "N": 526,
+    "ngal": 133,
+    "rms": 0.17501230247615612,
+    "mean": -0.025552203767572806,
+    "slope": -0.13402729524289908
+   },
+   {
+    "lo": 5.023772863019155,
+    "hi": 7.962143411069936,
+    "center": 6.324555320336751,
+    "N": 197,
+    "ngal": 63,
+    "rms": 0.20043318612180805,
+    "mean": -0.04293972950213885,
+    "slope": -0.028170399047046945
+   },
+   {
+    "lo": 7.962143411069936,
+    "hi": 12.619146889603849,
+    "center": 10.023744672545433,
+    "N": 17,
+    "ngal": 6,
+    "rms": 0.09914462482283608,
+    "mean": -0.002998115525015375,
+    "slope": -0.12015742714278407
+   }
+  ]
+ }
+}
