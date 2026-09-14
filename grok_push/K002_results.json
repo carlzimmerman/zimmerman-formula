@@ -1,0 +1,46 @@
+{
+ "pass": 5,
+ "fail": 1,
+ "checks": [
+  {
+   "name": "V0 [f31 is on disk and its XI2=0 anchors passed] the committed f31_ppn_k4_alpha1.out is read; the number of XI2=0 anchor PASSes is compared with 3 (one per (K_B, J_Y) point; gamma/a3 share the line)",
+   "measured": "anchor PASS count = 3, verdict block present = True",
+   "pass": true,
+   "reading": "control: we are reading the committed instrument, not re-deriving the PPN ladder.  XI2=0 reproducing the banked AeST lock is what makes the finite-XI2 numbers trustworthy"
+  },
+  {
+   "name": "V1 [THE CLOSED FORM GROWS LINEARLY] f31's fitted drag 4(2-K_B)/(J_Y+1)[J_Y XI2/(J_Y+1) - 1] is compared with the committed table at five XI2; max relative error vs 1e-3",
+   "measured": "max rel err = 2.000e-04 over XI2 = 0,1,1e2,1e4,1e8; drag(0) = -3.60 (the AeST lock), drag(1e8) = +1.8000e+08",
+   "pass": true,
+   "reading": "H004 claimed the k^4 term suppresses the 1/r piece so alpha_1 vanishes.  The ladder says the opposite: after a brief dip at XI2 ~ 1 the drag GROWS as +XI2.  Screening the static Green's function is not screening the preferred-frame PPN parameter"
+  },
+  {
+   "name": "V2 [H004's claim: |alpha_1| at XI2 = 1e8 is below the Will bound 1e-4] the committed ladder's |alpha_1| at the solar-system XI2 is compared with 1e-4; a FAIL is H005's pre-registered reading",
+   "measured": "|alpha_1| = 1.8000e+08, bound = 1.0e-04, over = 1.800e+12 x; drag grows as +XI2 not 1/XI2",
+   "pass": false,
+   "reading": "FAIL is the finding: screening does not set alpha_1 -> 0.  The parameter is 12 orders over the bound and growing.  H004 is dead as a screened AeST host.  H005 named the fallback: K001"
+  },
+  {
+   "name": "V3 [THE SAVING OPERATOR IS NOT LOCAL] f31c's coherent-stiffening operator (A) suppresses the drag; the covariant Hessian-squared (B) does not; (A) is a replacement J_Y -> J_Y(1+XI2) of the whole Y sector, not a local Lagrangian term",
+   "measured": "A1 PASS in file = True, B1 FAIL in file = True; A at XI2=1e4: alpha_1 = -8.0072e-01, drag = -7.1986e-04; B at XI2=1e4: alpha_1 = 1.7996e+04",
+   "pass": true,
+   "reading": "the screened door exists as a REFERENCE (rescale the whole scalar kinetic term by 1+xi^2 k^2).  Neither local fourth-order operator tried -- (D^2 phi)^2 nor |D_m D_n phi|^2 -- realises it.  A local covariant force-law completion on this host is not available on this evidence.  That is f31's own verdict, restated"
+  },
+  {
+   "name": "V4 [THE FALLBACK IS K001, ALREADY MEASURED] H005 named the equilibrium / two-branch reading as the FAIL fallback; K001's committed f_S_max and median M_S/M_bar are compared with their kills 0.10 and 20",
+   "measured": "f_S_max = 6.4387e-02 vs kill 0.10; median M_S/M_bar = 2.950 vs kill 20; K001 7/7",
+   "pass": true,
+   "reading": "the puzzle's answer is not a new action.  It is: every local relativistic FORCE-LAW completion of the SPARC curve is dead (pincer + f31), and the surviving theory is Einstein gravity plus L247's constitutive fluid on two branches, with (S) a 6.4% trace of Omega_dm"
+  },
+  {
+   "name": "V5 [this lane READ a committed ladder, it did not compute one] count of PPN ladders run here vs read from disk",
+   "measured": "ladders run = 0, ladders read = 1; open = 1 (a local operator that realises f31c-(A) without being a k-dependent replacement of J_Y)",
+   "pass": true,
+   "reading": "re-running f31 would waste the session; the artifact is on origin/main.  A future local operator that reproduces f31c-(A) would reopen the force-law door -- that operator is not in hand, and two covariant fourth-order candidates already failed"
+  }
+ ],
+ "max_rel_closed_form": 0.00019999999999991916,
+ "alpha_1_XI2_1e8": 180000000.0,
+ "over_bound": 1800000000000.0,
+ "f_S_max": 0.06438671664110088
+}

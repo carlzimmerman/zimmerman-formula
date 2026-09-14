@@ -1,40 +1,39 @@
-# STATE — grok_push after K001 (two-branch Einstein)
+# STATE — grok_push after K002 (the action door)
 
 ## One line
 
-The remaining relativistic theory is Einstein gravity plus L247's
-constitutive fluid on two branches; K001 measured that the supported
-branch is a 3–6% trace of `Ω_dm` and that L248's lensing kill is this
-theory's own prediction, not its death.
+Every local relativistic force-law completion is dead, including H004's
+screened AeST host (`α₁` grows as `XI2`, 12 orders over the Will bound,
+f31). What survives is K001: Einstein gravity plus L247's constitutive
+fluid on two branches, with (S) a 3–6% trace of `Ω_dm`.
 
-## Why this door, not a force law
+## Why this, not another action
 
-glm53 closed every relativistic *force-law* completion (Cassini,
-lensing, preferred frame, bimetric — G007 Lean). L247 already had
-`p = P(a)` in Einstein gravity. L248 killed that medium as *bound
-lensing mass*. PAPER29 recorded the capped-equilibrium escape as
-silence. K001 turns the silence into a mass split plus four kills.
+hy4 H001+H004 wrote the remaining force-law candidate. H005 pre-registered
+the `α₁` gate both ways and named K001 as the FAIL fallback. f31 already
+ran: drag `= 4(2-K_B)/(J_Y+1)[J_Y XI2/(J_Y+1) - 1]`, growing, not
+suppressing. f31c: the only suppressing operator is a non-local replacement
+of the whole Y sector. K002 reads those artifacts and states the FAIL
+reading. It does not invent a third fourth-order operator.
 
 ## What landed
 
 | item | result |
 |---|---|
-| K001 Python | 7/7 PASS, 155 SPARC curves, both footings |
-| `f_S` | 0.027–0.064 vs kill 0.10 |
-| median `M_S/M_bar` | 2.95 / 3.34 vs kill 20 |
-| L248 cap vs KiDS | 5.80 kpc vs 35 kpc, frac = 0 |
-| MW local split | 0.060 (16.8×), same direction as `f_S` |
-| Lean | 8 theorems, exit 0, zero sorry, standard axioms |
+| K001 | 7/7, `f_S ∈ [0.027, 0.064]`, median `M_S/M_bar` 2.95 |
+| K002 | 5/6 (the FAIL is the finding: `|α₁|(XI2=1e8) = 1.8e8` vs bound `1e-4`) |
+| Lean K001 | 8 theorems, exit 0 |
+| Lean K002 | 4 theorems, exit 0, `drag_grows_linear` + `lock_is_ghost` |
 
-## Still open (honest)
+## Still open (honest, narrowed)
 
-- Branch-selection rule: POSTULATED.
-- Covariant action + constraint algebra: OPEN (G028's gap).
-- Dwarf stripping: L247 V7, ram/support ~ 2.4–2.6, named kill, not recomputed.
-- `n=2` stays measured. `Ω_dm` amplitude is a relocated initial condition.
+- Branch-selection: POSTULATED.
+- A GR **fluid** action for `p = P(a)` with healthy constraints — G028's gap
+  at the right scope (dark sector, not gravity).
+- Dwarf stripping (L247 V7), volume-limited `f_S`.
+- `n=2` measured. `Ω_dm` amplitude relocated, not reduced.
 
-## Next (if this track continues)
+## Do not
 
-1. A volume-limited `f_S` (SPARC is not volume-limited; Baldry/FP × SPARC ratio is a proxy).
-2. The action whose stress is `T^μ_ν = ρ u^μ u^ν + p(a) h^μ_ν` with healthy constraints — or a documented no-go.
-3. Do not reopen force-law doors the pincer closed.
+Reopen force-law doors the pincer + f31 closed. Do not claim H004 stands.
+Do not upgrade branch-selection to DERIVED.
