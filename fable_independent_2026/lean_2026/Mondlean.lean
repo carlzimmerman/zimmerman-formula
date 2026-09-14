@@ -9,7 +9,7 @@
   flat a₀(z), subdominant scalar GW) confronting DATA — not by Lean, and not while the intrinsic BBN
   fine-tuning (L84/L87) and astra's open ADM/khronon gates stand.
 
-  Theorems (170 as of 2026-09-13; all: exit 0, zero `sorry`, axioms ⊆ {propext, Classical.choice, Quot.sound}):
+  Theorems (181 as of 2026-09-13; all: exit 0, zero `sorry`, axioms ⊆ {propext, Classical.choice, Quot.sound}):
     hasDerivAt_G, hasDerivAt_Gp   — Gp = dG/dy and Gpp = d²G/dy² proven (not merely asserted).
     kernel_identity               — MOND kernel G'(y)/(2y) = 1 − e^{-y}.
     Gpp_zero, Gpp_pos             — health dichotomy: G''(0)=0, G''(y)>0 ∀ y>0 (no ghost off zero field).
@@ -1713,3 +1713,105 @@ theorem smaller_a0_modifies_cmb_less (g a b : ℝ) (hg : 0 < g) (ha : 0 < a) (ha
   have hpb : 0 < (2 + g/b)^2 := by positivity
   rw [div_lt_div_iff₀ hpa hpb]
   linarith [h2]
+
+/-! ## L247 -- the self-acceleration medium: a cold sector whose pressure is a function of its own
+proper acceleration, p = P(a), a^mu = u^nu nabla_nu u^mu.  Everything below is the ALGEBRA of the
+static, spherical problem (K = 4 pi G throughout); the dynamics (stability of the supported branch,
+the branch-selection rule, the precursor's collapse) are NOT certified here and are stated as open
+in the lane. -/
+
+/-- L247 V1: the constitutive law matched to a kernel.  In the spherical field of a point mass, with
+x = g_N/a_0 and total field g = nu x a_0, the kernel's phantom is rho_ph = -2 x^2 a_0 nu'/(K r) and
+dg/dr = -2 a_0 x (nu + x nu')/r.  The law P'(g) = a_0 x^2 nu (-nu')/(K (nu + x nu')) then satisfies the
+hydrostatic condition P'(g) g' = -rho_ph g IDENTICALLY -- nu and nu' are free reals, so no kernel is assumed:
+every interpolating function's phantom is the equilibrium state of some member of this family. -/
+theorem medium_matched_law_hydrostatic (K a0 x r ν ν' : ℝ) (hr : r ≠ 0) (hK : K ≠ 0)
+    (hd : ν + x * ν' ≠ 0) :
+    (a0 * x ^ 2 * ν * (-ν') / (K * (ν + x * ν'))) * (-2 * a0 * x * (ν + x * ν') / r)
+      = -((-(2 * x ^ 2 * a0 * ν') / (K * r)) * (ν * x * a0)) := by
+  field_simp
+
+/-- L247 V2: the deep-MOND limit of the matched law is the pure law P'(g) = g/K, i.e. P = g^2/(8 pi G):
+the pressure is the gravitational field's energy density.  With nu = x^{-1/2}, written x = s^2, nu = 1/s,
+nu' = -1/(2 s^3), the matched law equals g/K with g = nu x a_0 = s a_0. -/
+theorem medium_deep_limit_pure_law (K a0 s : ℝ) (hs : s ≠ 0) (hK : K ≠ 0) :
+    a0 * (s ^ 2) ^ 2 * (1 / s) * (-(-1 / (2 * s ^ 3))) / (K * (1 / s + s ^ 2 * (-1 / (2 * s ^ 3))))
+      = ((1 / s) * s ^ 2 * a0) / K := by
+  have hden : 1 / s + s ^ 2 * (-1 / (2 * s ^ 3)) = 1 / (2 * s) := by
+    field_simp
+    ring
+  rw [hden]
+  field_simp
+
+/-- L247 V2: hydrostatic equilibrium under the pure law (K rho = -g') together with the Poisson force
+(g' + 2g/r = K rho) forces g' = -g/r: the static solution is the flat rotation curve g = C/r, with the
+amplitude C a free integration constant that the law does NOT fix. -/
+theorem medium_pure_law_flat_curve (K g g' r ρ : ℝ) (_hr : r ≠ 0)
+    (hyd : K * ρ = -g') (poi : g' + 2 * g / r = K * ρ) : g' = -g / r := by
+  linear_combination (1 / 2 : ℝ) * poi + (1 / 2 : ℝ) * hyd
+
+/-- L247 V2: on the flat-curve solution the pure law is isothermal: p = g^2/(2K) equals rho * (C/2), so
+sigma^2 = C/2 = v_flat^2/2.  The 'halo is the phantom' identification is a consequence, not a postulate. -/
+theorem medium_flat_curve_isothermal (K C r : ℝ) (hr : r ≠ 0) (hK : K ≠ 0) :
+    (C / r) ^ 2 / (2 * K) = (C / (K * r ^ 2)) * (C / 2) := by
+  field_simp
+
+/-- L247 V3: the medium is pressureless wherever it is in free fall -- in particular on the homogeneous
+background, where comoving elements are geodesic. -/
+theorem medium_background_pressureless (K a : ℝ) (h : a = 0) : a ^ 2 / (2 * K) = 0 := by
+  rw [h]; simp
+
+/-- L247 V3: the pressure is second order in the acceleration, so the sector is dust at linear order
+with no tuned sound speed. -/
+theorem medium_pressure_second_order (K a ε : ℝ) :
+    (ε * a) ^ 2 / (2 * K) = ε ^ 2 * (a ^ 2 / (2 * K)) := by
+  ring
+
+/-- L247 V7: the self-consistency of the pure law, a = -(grad p)/rho with p = a^2/(2K), multiplied out
+(a K rho = -a a'), has exactly two branches: free fall (a = 0, pressureless, CDM-like) or the supported
+branch (a' = -K rho, the hydrostatic state).  Which branch a region takes is dynamical and NOT certified. -/
+theorem medium_branch_dichotomy (K ρ a a' : ℝ) (h : a * (K * ρ) = -(a * a')) :
+    a = 0 ∨ a' = -(K * ρ) := by
+  have h2 : a * (K * ρ + a') = 0 := by linear_combination h
+  rcases mul_eq_zero.mp h2 with h3 | h3
+  · left; exact h3
+  · right; linarith
+
+/-- L247 V5: a supply-limited inner edge (r_in^3 * (2 pi rho_s) = M, with a universal supply density)
+gives v^6 = G^3 M^2 (2 pi rho_s): v^6 ∝ M^2, i.e. the baryonic Tully-Fisher exponent 3, excluded by
+SPARC in the lane.  So the amplitude is NOT derived by the law. -/
+theorem medium_supply_limited_btfr (G M v rin τρ : ℝ) (hr : rin ≠ 0)
+    (h1 : v ^ 2 = G * M / rin) (h2 : rin ^ 3 * τρ = M) :
+    v ^ 6 = G ^ 3 * M ^ 2 * τρ := by
+  have h3 : v ^ 6 = (G * M / rin) ^ 3 := by rw [show v ^ 6 = (v ^ 2) ^ 3 by ring, h1]
+  rw [h3]
+  field_simp
+  first
+    | linear_combination (G ^ 3 * M ^ 2) * h2
+    | linear_combination (-(G ^ 3 * M ^ 2)) * h2
+
+/-- L247 V5: with the inner edge at the MOND radius (r_M^2 = G M/a_0) the amplitude is the BTFR,
+v^4 = G M a_0: exponent 4, zero point a_0 -- the a_0 kink is what the law needs and kappa stays the
+measured boundary condition of the zero-mode theorem. -/
+theorem medium_kink_btfr (G M a0 v rM : ℝ) (hr : rM ≠ 0) (ha : a0 ≠ 0)
+    (h1 : v ^ 2 = G * M / rM) (h2 : rM ^ 2 = G * M / a0) : v ^ 4 = G * M * a0 := by
+  have hGM : G * M ≠ 0 := by
+    intro h0
+    rw [h0, zero_div] at h2
+    exact hr ((pow_eq_zero_iff two_ne_zero).mp h2)
+  have h3 : v ^ 4 = (G * M / rM) ^ 2 := by rw [show v ^ 4 = (v ^ 2) ^ 2 by ring, h1]
+  rw [h3, div_pow, h2]
+  field_simp
+
+/-- L247 V6: in an X-COP-like cluster (R500 = 1.38 Mpc, baryonic MOND radius 0.42 Mpc) the medium's
+deep-branch mass inside R500 is (R500/r_M) baryons = 138/42, and the certified requirement 6.8 exceeds
+it by more than 1.5x: the medium does not close clusters. -/
+theorem medium_cluster_shortfall : (6.8 : ℝ) / ((138 : ℝ) / 42) > 1.5 := by norm_num
+
+/-- L247 V8: the phantom is real mass.  The deep-branch medium mass M_b (r/r_M - 1) exhausts a budget of
+`ratio` baryon masses exactly at r_t = (1 + ratio) r_M: beyond the truncation radius the lensing signal
+must fall below the MOND line. -/
+theorem medium_truncation_radius (Mb ratio rM : ℝ) (hr : rM ≠ 0) :
+    Mb * ((1 + ratio) * rM / rM - 1) = ratio * Mb := by
+  field_simp
+  ring

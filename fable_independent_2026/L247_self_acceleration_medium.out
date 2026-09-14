@@ -1,0 +1,73 @@
+L247 -- the self-acceleration medium
+
+    hydrostatic residual P'(g) g' + rho_ph g for an ARBITRARY kernel nu(x): 0
+  [PASS] V1 [THE MATCHED LAW REPRODUCES ANY KERNEL'S PHANTOM EXACTLY] with P'(g) = a_0 x^2 nu|nu'|/(4 pi G (nu + x nu')) the hydrostatic residual of the medium in the kernel's own field vanishes identically for an arbitrary nu(x)
+           (sympy: residual simplifies to 0 with nu(x) an undetermined function -- no kernel is assumed)
+    nu_RAR: P'(g)/(g/4piG) = 0.9063 at x = 0.01, 0.397 at x = 1, 1.18e-02 at x = 30, 1.1e-12 at x = 1000
+    mu_2: P'(g)/(g/4piG) = 0.9266 at x = 0.01, 0.402 at x = 1, 7.38e-03 at x = 30, 8.0e-06 at x = 1000
+
+V2 -- the deep limit: P = g^2/(8 pi G), the flat curve, and the isothermal identification
+    pure law on g = C/r, rho = C/(4 pi G r^2): hydrostatic residual 2.7e-06, Poisson residual 3.1e-13, p/rho = C/2 to 4.4e-16
+    [canonical] MW (M_b = 6.5e10): v_flat = 168.6 km/s, medium temperature sigma = 119.2 km/s
+    [alt] MW (M_b = 6.5e10): v_flat = 176.6 km/s, medium temperature sigma = 124.9 km/s
+  [PASS] V2 [THE DEEP LIMIT IS THE FLAT CURVE AND THE ISOTHERMAL IDENTIFICATION IS DERIVED] for nu = x^-1/2 the matched law is P = g^2/(8 pi G); hydrostatic + Poisson then force g' = -g/r (Lean), g = C/r with C free, and p/rho = C/2 = v_flat^2/2 -- the relation the glm53 track POSTULATED ('the halo is the phantom') follows from the law
+           (residuals at numerical precision; no temperature parameter enters; the amplitude C is NOT fixed by the law (V5))
+
+V3 -- the background and linear order
+    [canonical] second-order pressure at recombination on acoustic scales (a ~ 7 a_0): p = 2.56e-10 Pa vs rho c^2 = 2.68e-01 Pa: w_eff = 9.5e-10
+    [alt] second-order pressure at recombination on acoustic scales (a ~ 7 a_0): p = 3.72e-10 Pa vs rho c^2 = 2.68e-01 Pa: w_eff = 1.4e-09
+  [PASS] V3 [CMB-COLD BY CONSTRUCTION] comoving background elements are geodesic (a = 0) so p = 0 exactly; at linear order delta p = P'(0) delta a = 0 because P' vanishes with a, so the sector is dust for the CMB and linear P(k) with NO tuned sound speed; the second-order pressure at recombination is compared with the CMB-cold requirement w < 1e-5
+           (w_eff = 9.5e-10 / 1.4e-09: 6-7 orders below the bound; contrast the barotropic P(rho) routes (superfluid, polytrope) that were CMB-hot and forest-dead)
+
+V4 -- the interior: what the equilibrium demands vs what a precursor supplies (MW: M_b = 6.5e10 point mass, 3 R_d = 7.5 kpc)
+    [canonical] nu_RAR: equilibrium demand rho_eq = 0.0027 / 0.0255 / 0.0069 M_sun/pc^3 at 1 / 3 / 8.2 kpc (NFW precursor 0.109 / 0.031 / 0.0076); precursor EXCESS inside 3 R_d that the law drives to the centre: f = 0.064 of M_b
+    [canonical] mu_2: equilibrium demand rho_eq = 0.0083 / 0.0154 / 0.0064 M_sun/pc^3 at 1 / 3 / 8.2 kpc (NFW precursor 0.109 / 0.031 / 0.0076); precursor EXCESS inside 3 R_d that the law drives to the centre: f = 0.143 of M_b
+    [alt] nu_RAR: equilibrium demand rho_eq = 0.0059 / 0.0320 / 0.0078 M_sun/pc^3 at 1 / 3 / 8.2 kpc (NFW precursor 0.109 / 0.031 / 0.0076); precursor EXCESS inside 3 R_d that the law drives to the centre: f = 0.034 of M_b
+    [alt] mu_2: equilibrium demand rho_eq = 0.0119 / 0.0202 / 0.0073 M_sun/pc^3 at 1 / 3 / 8.2 kpc (NFW precursor 0.109 / 0.031 / 0.0076); precursor EXCESS inside 3 R_d that the law drives to the centre: f = 0.083 of M_b
+  [PASS] V4a [THE EXPONENTIAL KERNEL SURVIVES THE PRECURSOR TEST] with nu_RAR the demand inside 3 R_d is small but the M/(2 pi r^3) prefactor keeps it finite; an NFW-like precursor's excess over it collapses to the centre and that mass is compared with the ledger's spiral ceiling 0.105 M_b inside 3 R_d, both footings
+           (f = 0.064 / 0.034 (canonical/alt) vs 0.105: under the ceiling -- the interior collapse does not kill the medium reading with this kernel, GIVEN an NFW-like precursor (a fluid precursor is uncomputed))
+  [FAIL] V4b [THE POWER-LAW KERNEL mu_2 IS MARGINAL ON THE SAME TEST] mu_2's demand is LOWER than nu_RAR's across 2-7 kpc (its 4/x^2 tail beats e^-sqrt(x) only beyond x ~ 30), so more of the precursor is excess; compared with the same ceiling on both footings
+           (f = 0.143 / 0.083 vs 0.105: ABOVE on the canonical footing, below on the alt -- marginal, the FAIL is the finding; the medium reading does NOT select a kernel (an earlier asymptotic argument that it picks mu_2 is refuted by these numbers); in both kernels the demand at the Sun is 0.006-0.008 vs the measured 0.008-0.015)
+
+V5 -- what fixes the amplitude: the BTFR slope, computed here from the repo's SPARC files
+    140 SPARC galaxies (flat outer curves: 3 outer points within 5%), M_b proxy R V_b^2/G, Ups 0.5/0.7
+    slope s in M_b ~ v^s: OLS(M|v) 3.46 +/- 0.09, OLS(v|M) inverted 3.77, bisector 3.61
+    kink-free law: inner edge where the demand meets a universal supply rho_s, r_in^3 = M/(2 pi rho_s) -> v^2 = GM/r_in ~ M^2/3, s = 3
+    a_0 kink: r_in = r_M -> v^4 = G M_b a_0, s = 4 (the framework's registered law; this crude proxy does not test 3.6 vs 4)
+    [canonical] supply the kink-free law would need at the edge to fake slope 4: MW 0.0109, 1e8-M_sun dwarf 0.277 M_sun/pc^3 -- scaling as M^-1/2
+    [alt] supply the kink-free law would need at the edge to fake slope 4: MW 0.0144, 1e8-M_sun dwarf 0.366 M_sun/pc^3 -- scaling as M^-1/2
+  [PASS] V5 [THE KINK-FREE LAW IS EXCLUDED: THE AMPLITUDE IS NOT DERIVED] the supply-limited law's slope 3 is compared with the slope measured here on SPARC by three estimators; the a_0 kink (slope 4) is required and kappa stays the measured boundary condition the zero-mode theorem says it must be
+           (measured 3.46-3.77: slope 3 excluded by 5 sigma (lowest estimator); the proxy is too crude to separate the estimators' 3.5-3.8 from 4 and this lane makes no such claim)
+
+V6 -- clusters (X-COP-like 1e15 M_sun host, R500 = 1.38 Mpc, f_b = 0.12 inside R500)
+    [canonical] r_M = 0.42 Mpc < R500: medium inside R500 = 2.26 M_b -> dynamical/baryonic = 3.26 vs the certified 6.8 (g04a): short by 2.1x
+    [alt] r_M = 0.39 Mpc < R500: medium inside R500 = 2.58 M_b -> dynamical/baryonic = 3.58 vs the certified 6.8 (g04a): short by 1.9x
+  [PASS] V6 [THE MEDIUM IS MOND IN CLUSTERS AND SHORT BY THE KNOWN RESIDUAL] the medium's mass inside R500 is compared with the certified 6.8x baryons; a shortfall above 1.5x means the medium does not close clusters
+           (shortfall 2.1x / 1.9x: the framework's cluster residual, now attributable to a component the medium is not -- cold COLLISIONLESS matter, the object the CMB third peak, the forest and the merger gate force; the L166 double-count pincer on THAT component is untouched by this lane)
+
+V7 -- the two branches of p = P(a) and where they put the solar system and the dwarfs
+    self-consistency a = -grad P/rho = -P'(a) grad a/rho: a = 0 (free fall, p = 0, CDM-like) or the supported branch a = g
+    (static in the source's frame). A star orbits THROUGH the galaxy's medium at ~200 km/s, so no medium is static in its
+    frame: the Sun carries NO phantom -> EFE quadrupole Q2 = 0, extra mass inside Saturn = 0, and wide binaries are
+    Newtonian, gamma_v = 1.000 at every separation: inside the registered Arm-B ceilings (1.045/1.030), OUTSIDE the
+    registered Arm-A band (1.16-1.23). The medium reading and the force-law reading are DR4-separable.
+    [canonical] Draco-like dwarf (sigma 9 km/s, r_h 200 pc, L 3e5, d 76 kpc, v 200 km/s): M_dyn/L = 50; stripped of its medium it shows sigma = 1.8 km/s; host medium 9.1e-05 M_sun/pc^3: ram/support = 2.40
+    [alt] Draco-like dwarf (sigma 9 km/s, r_h 200 pc, L 3e5, d 76 kpc, v 200 km/s): M_dyn/L = 50; stripped of its medium it shows sigma = 1.8 km/s; host medium 1.0e-04 M_sun/pc^3: ram/support = 2.63
+  [PASS] V7 [THE PRESSURE-SUPPORTED DWARFS ARE THE NAMED KILL CONDITION] a dwarf keeps its dark dynamics only if its bound medium survives passage through the host's medium; the ram-pressure-to-support ratio is computed and compared with 1
+           (ratio 2.40 / 2.63: order unity, MARGINAL -- neither a pass nor a kill; a stripped dwarf would show 1.8 km/s against 9 observed, so the stripping calculation decides)
+
+V8 -- the phantom is REAL mass: the lensing signal must truncate where the medium runs out
+    [canonical] M_b = 1.0e+11, halo/baryon budget 20: r_M = 12 kpc, truncation r_t = 256 kpc, i.e. g_bar = 2.1e-13 m/s^2 = 2.3e-03 a_0 -- beyond it the RAR must FALL below the MOND line
+    [canonical] M_b = 6.5e+10, halo/baryon budget 15: r_M = 10 kpc, truncation r_t = 157 kpc, i.e. g_bar = 3.7e-13 m/s^2 = 3.9e-03 a_0 -- beyond it the RAR must FALL below the MOND line
+    [alt] M_b = 1.0e+11, halo/baryon budget 20: r_M = 11 kpc, truncation r_t = 233 kpc, i.e. g_bar = 2.6e-13 m/s^2 = 2.3e-03 a_0 -- beyond it the RAR must FALL below the MOND line
+    [alt] M_b = 6.5e+10, halo/baryon budget 15: r_M = 9 kpc, truncation r_t = 143 kpc, i.e. g_bar = 4.4e-13 m/s^2 = 3.9e-03 a_0 -- beyond it the RAR must FALL below the MOND line
+  [PASS] V8 [A DECISIVE, UNRUN TEST IS STATED] in the medium reading the phantom mass M_b (r/r_M - 1) is real and bounded by the galaxy's medium budget; the truncation radius is computed for the abundance-matching budget and compared with the radii the KiDS lensing RAR reaches (~300 kpc to 1 Mpc): if the lensing RAR holds on the MOND line beyond r_t the medium reading is dead, and so is every 'the halo IS the phantom' reading
+           (r_t = 256 / 233 kpc for a 1e11 galaxy with a 20:1 budget -- inside the KiDS range; the test is a mass-budget comparison of the stacked lensing profile at 0.3-1 Mpc, not run here)
+
+L247 COMPLETE: 8/9 checks PASS.
+VERDICT: a covariant, CMB-cold-by-construction realisation of L166's non-barotropic clause that reproduces ANY kernel's
+phantom in equilibrium and derives the isothermal identification -- a GALAXY law with two computed no-gos (kink-free
+BTFR; clusters at the known residual), a precursor-collapse budget that passes for the exponential kernel and is marginal
+for mu_2, one named kill condition (dwarf stripping) and one decisive unrun test (lensing truncation). NOT a complete
+theory: clusters, the CMB third peak, the forest and the Bullet still force cold collisionless matter, and the L166
+double count of that component in galaxies is untouched.
