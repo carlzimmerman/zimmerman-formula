@@ -89,9 +89,17 @@ under an existing constraint:
    fields — confirmed from three independent directions (G003/G006/G012),
    with the predicted MW break radius (~6 kpc) and the period–separation
    signature as its novel observables.
-3. **The cluster shape and temperature from zero parameters** (rung 8): the
-   baryon-steepened isothermal slope −1.478 vs −1.53, the virial temperature
-   809 km/s for an 8-keV cluster (G008/G012).
+3. **The cluster statement, complete and kernel-robust** (rung 8, final form
+   after G016/G017): one field equation, three regimes — galaxy outskirts
+   (deep branch = the RAR, the equilibrated phantom's regime), clusters
+   (transition branch = the field solve supplying 2.76–3.07× at R500 with
+   slope bracketing X-COP's −1.5, **robust to the kernel swap: μ₂ changes
+   the slope <0.05 and the boost <10%**, G017), solar system (inert, 10⁻¹⁰
+   corrections). The equilibrated phantom is the galaxy-outskirt regime; at
+   cluster scale the identification is ΛCDM-shaped (free dust carries the
+   bulk, G016) — stated, not hidden. L243's solar-system death does not
+   propagate to cluster scale (the EFE quadrupole is a g~10⁴a₀ observable;
+   the cluster boost is a different regime of the same equation).
 4. **The complete pincer** (§3): the first proof that EVERY relativistic
    force-law completion of the curve is dead — with the bimetric door closed
    by a Lean certificate (G007). Negative results, fully certified, are the
