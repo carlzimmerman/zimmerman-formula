@@ -1,0 +1,392 @@
+==============================================================================
+H003 -- PPN PARAMETERS AND PREFERRED-FRAME CONSTRAINTS, ZIMMERMAN-AeST
+==============================================================================
+
+  rho_Lambda = 5.8450e-27 kg/m^3   M_P = 2.4353e+27 eV
+  footings   : a_0 = 9.360e-11 (canonical) / 1.130e-10 (alt) m/s^2
+
+==============================================================================
+PART A -- CALIBRATING Lambda^4  (DERIVED, not fitted)
+==============================================================================
+
+  Anchor 1 (H001 A2/B2, verified symbolically there): f(0) = -1 exactly, so
+       rho_scalar(X=0) = Lambda^4 [2X f' - f] = Lambda^4 * (+1) = Lambda^4.
+       The vacuum energy of this theory IS Lambda^4, hence  Lambda^4 = rho_L.
+  Anchor 2 (H001 F1): a_0 = c sqrt(G rho_Lambda)/2  =>  rho_L = 4 a_0^2/(G c^2).
+  Eliminating rho_L with G = hbar c/(8 pi M_P^2):
+       Lambda^4 = 32 pi M_P^2 a_0^2            (natural units)
+  This is the "Lambda^4 in terms of M_P and a_0" the lane was asked for, and it
+  comes out of the theory rather than being put in.
+
+  [PASS] A1 [DERIVED] Lambda^4 = rho_Lambda, and the fourth root lands on the known
+      dark-energy scale ~2.3 meV (independent published anchor, not an input)
+         measured : Lambda = rho_Lambda^(1/4) = 2.2404 meV
+         threshold: threshold: 2.3 +/- 0.3 meV (published value of rho_Lambda^(1/4))
+         The scale in the aether-frame kinetic invariant X is the dark-energy
+         scale. That is the same statement as 'the CC is f(0)'.
+      canonical: Lambda^4 = 32 pi M_P^2 a_0^2 = 2.517996e-11 eV^4
+            alt: Lambda^4 = 32 pi M_P^2 a_0^2 = 3.669950e-11 eV^4
+      measured  : Lambda^4 = rho_Lambda        = 2.519274e-11 eV^4
+  [PASS] A2 [DERIVED] Lambda^4 = 32 pi M_P^2 a_0^2 reproduces the independently computed
+      rho_Lambda on the CANONICAL footing: three constants (M_P, a_0, rho_Lambda),
+      two independent routes, one number. This is the calibration.
+         measured : |32 pi M_P^2 a_0^2 / rho_Lambda - 1| = 5.073e-04 (canonical)
+         threshold: threshold: agreement to better than 1% (M_P rounding is the floor)
+         NOT a fitted relation: M_P comes from (hbar,c,G), a_0 from (c,G,rho_Lambda),
+         and rho_Lambda from (H0, Omega_Lambda). The closure is the theory's.
+  [PASS] A2b [CONSISTENCY, and a real finding] the ALT footing does NOT reproduce
+      rho_Lambda, and it should not: the alt footing defines a_0 from rho_TOTAL,
+      not rho_Lambda, so the identity a_0 = c sqrt(G rho_Lambda)/2 is
+      CANONICAL-FOOTING-ONLY. The mismatch must be exactly (a_0^alt/a_0^canon)^2.
+         measured : |Lambda^4(alt)/rho_Lambda - 1| = 4.567e-01  vs  (a_0alt/a_0canon)^2 - 1 = 4.575e-01
+         threshold: threshold: the two must agree to 5e-3 (residual is the rounding of the
+           registered a_0 values to 3 s.f., not a physics discrepancy)
+         HONEST SCOPE: Lambda^4 = rho_Lambda is exact only on the canonical footing.
+         On the alt footing the scalar's scale exceeds the vacuum energy by 45.8% --
+         i.e. the two footings differ about what Lambda^4 IS. Not a bug: a real
+         ambiguity in the completion, recorded rather than smoothed over.
+
+  The normalization that makes the MOND argument and sqrt(X) the SAME
+  dimensionless number:  sqrt(X) = |grad phi|/(sqrt2 Lambda^2) = g/(2 a_0)
+      =>  |grad phi| = 4 sqrt(pi) M_P g     (phi/M_P is the canonical field)
+  [PASS] A3 [DERIVED] |grad phi| = Lambda^2 g/(sqrt2 a_0) = 4 sqrt(pi) M_P g: the scalar's
+      gradient is the MOND acceleration in canonical (Planck) units, so the
+      argument of mu_2 and sqrt(X) are one and the same number
+         measured : Lambda^2/(sqrt2 a_0) = 7.091615 M_P   vs   4 sqrt(pi) M_P = 7.089815 M_P
+         threshold: threshold: agreement to better than 1%
+         CONSEQUENCE USED BELOW:  u = sqrt(X) = g/(2 a_0), exactly, everywhere.
+
+==============================================================================
+PART B -- u_solar = sqrt(X) IN THE SOLAR SYSTEM  (the requested number)
+==============================================================================
+      control: the Sun's MOND radius r_M = sqrt(GM/a_0)
+        canonical: r_M = 7960.6 AU = 0.0386 pc
+              alt: r_M = 7245.1 AU = 0.0351 pc
+  [PASS] B0 [CONTROL] r_M(sun) = 0.039 pc -- the repo's registered value (hunt_2026/f29),
+      reproduced here from GM_sun and a_0 alone. If this fails, the whole
+      solar-system ladder below is mis-scaled.
+         measured : r_M = 0.0386 pc (canonical), 0.0351 pc (alt)
+         threshold: threshold: 0.039 +/- 0.002 pc (registered)
+
+              radius   g_N [m/s^2]    u canonical          u alt
+                1 AU    5.9316e-03     3.1686e+07     2.6246e+07
+       Saturn 9.5 AU    6.5724e-05     3.5109e+05     2.9081e+05
+               30 AU    6.5907e-06     3.5207e+04     2.9162e+04
+         Oort 1e4 AU    5.9316e-11     3.1686e-01     2.6246e-01
+  [PASS] B1 [CONTROL] the Galactic external field is negligible inside the solar system,
+      so g = g_N(Sun) is the right argument (no EFE correction to u)
+         measured : g_ext/g_N(1 AU) = 2.903e-08
+         threshold: threshold: g_ext/g_N < 1e-6
+         Without this, u would be set by the external field, not by the Sun.
+  [PASS] B2 [K1] u_solar(1 AU) >> 1: the deep-Newtonian branch mu_2 -> 1 is the one the
+      solar system actually sits on. This is the premise of every number below.
+         measured : u(1 AU) = 3.1686e+07 (canonical), 2.6246e+07 (alt); 1 - mu_2 = (1+u)^-2 = 9.960e-16
+         threshold: threshold: u > 100 (pre-registered)
+         u ~ 3e7 means the theory is Newtonian at 1 AU to one part in 1e15.
+  [PASS] B3 [K1b] u stays >> 1 out to 30 AU (Neptune), so no planetary orbit crosses
+      back into the MOND branch anywhere in the solar system
+         measured : u(30 AU) = 3.5207e+04 (canonical), 2.9162e+04 (alt)
+         threshold: threshold: u > 100 (pre-registered)
+
+==============================================================================
+PART C -- THE SUPPRESSION: a_0/g_N AND THE (a_0/g)^2 SCALAR STRESS
+==============================================================================
+              radius   a_0/g_N canon    a_0/g_N alt   (a_0/g)^2 canon   4(a_0/g)^2
+                1 AU      1.5780e-08     1.9050e-08        2.4900e-16   9.9602e-16
+       Saturn 9.5 AU      1.4241e-06     1.7193e-06        2.0282e-12   8.1126e-12
+               30 AU      1.4202e-05     1.7145e-05        2.0169e-10   8.0677e-10
+         Oort 1e4 AU      1.5780e+00     1.9050e+00        2.4900e+00   9.9602e+00
+
+      (v/c)^2 at 1 AU = 9.868e-09  -- same order as a_0/g_N;
+      the MOND scale and the orbital virial scale both fall out of r_M/r.
+  [PASS] C1 [PRE-EMPTIVE KILL TEST] the counterfactual: if the deep-MOND law acted at
+      1 AU the force would be sqrt(a_0 g_N), i.e. the solar system's gravity
+      would be WRONG by four orders of magnitude. The theory's safety is
+      therefore a real, quantified scope boundary -- not an assertion.
+         measured : g_N/g_deepMOND(1 AU) = 7960.6x  (u = 3.169e+07 is why it does not act)
+         threshold: threshold: the counterfactual must be a large, visible signal (>100x) for the
+           scope boundary to be doing real work
+         This is the number that makes the (a_0/g)^2 suppression worth computing.
+  [PASS] C2 [K2] 4 (a_0/g_N)^2 at 1 AU -- the fractional size of the scalar's stress
+      relative to the Newtonian potential -- is far below Cassini. The scalar
+      is not merely small here; it is invisible by eleven orders of magnitude.
+         measured : 4(a_0/g_N)^2 = 9.9602e-16 at 1 AU; 8.1126e-12 at Saturn 9.5 AU
+         threshold: threshold: < 2.3e-05 (Cassini |gamma-1| bound)
+         At Saturn the suppression is still 1e-12. Nothing in the solar system is
+         close to seeing the scalar.
+
+==============================================================================
+PART D -- gamma, beta, eta_N  (minimal coupling => the GR values)
+==============================================================================
+
+  WHY.  Matter couples minimally to g and to nothing else (H001; the bimetric /
+  disformal route was killed by G007, and G027's D2 fix put the MOND coupling in
+  the AQUAL channel, not in the matter metric).  So the Jordan frame IS the
+  Einstein frame: light and matter both see g.  The scalar's only route into the
+  PPN potentials is through its own stress-energy, and Part C just measured that
+  stress to be 4(a_0/g)^2 of the Newtonian potential.
+
+      |gamma - 1|  ~  O(4 (a_0/g)^2)
+      |beta  - 1|  ~  O(4 (a_0/g)^2)
+      eta_N = 4 beta - gamma - 3  =  0   identically at this order
+
+  HONESTY: gamma = 1 is a structural consequence of minimal coupling, not a
+  dynamical cancellation. It is not a prediction that could have gone the other
+  way. It is reported because the SIZE of the residual had to be checked, and it
+  is: 1e-15, against a 2.3e-5 bound.
+
+  [PASS] D1 [K3] |gamma - 1| against Cassini. gamma = 1 exactly at leading order;
+      the residual is the scalar's O((a_0/g)^2) stress, measured in Part C.
+         measured : |gamma - 1| <= 9.9602e-16  (gamma - 1 = 0 at leading order)
+         threshold: threshold: |gamma-1| < 2.3e-05 (Cassini, Bertotti+2003)
+         Consistent with f31's independent finding (K5, PASS there): gamma = 1 and
+         alpha_3 = 0 persist at every screening scale. Registered; not mine.
+  [PASS] D2 [K4] |beta - 1| against the perihelion/LLR bound. Same suppression, same
+      order; beta = 1 at leading order.
+         measured : |beta - 1| <= 9.9602e-16  (beta - 1 = 0 at leading order)
+         threshold: threshold: |beta-1| < 2.3e-04 (Mercury perihelion / LLR, Will 2014)
+  [PASS] D3 [K5] THE NORDTVEDT EFFECT / SEP: eta_N = 4 beta - gamma - 3. With beta = 1
+      and gamma = 1 this is exactly zero -- the Strong Equivalence Principle
+      holds, because matter sees one metric and that metric's potentials are
+      the GR ones at this order.
+         measured : eta_N = 4(1.0) - (1.0) - 3 = 0.0 (residual <= 4.980e-15)
+         threshold: threshold: |eta_N| < 4.4e-04 (LLR, Williams+2012)
+         A non-zero eta_N would show up as a polarization of the lunar orbit toward
+         the Sun. This theory predicts none.
+
+==============================================================================
+PART E -- THE KILLER: alpha_1 AND alpha_2
+==============================================================================
+
+  REGISTERED CLOSED FORM (NOT derived here -- computed by the repo's own
+  generalised-AeST PPN pipeline and certified 12/12 by doorA).  Reproduced as a
+  control only:
+
+        alpha_1 = -4 c_14 - 4 (2 - K_B)/(J_Y + 1),      c_14 = K_B + c_4
+
+  The second term is the MOND scalar's drag.  Its coefficient (2 - K_B) IS the
+  MOND-generating coupling 2(2 - K_B) J.grad(phi): the drag exists because MOND
+  exists.  Sources:
+    hunt_2026/f30_ppn_screening_door.py (header)
+    hunt_2026/f31_ppn_k4_alpha1.py + .out (K2, K3, K4 -- all FAIL)
+    qwen_claude_field_theory/closure_2026/door_a_2026/
+        doorA_alpha1_generality_theorem.py  (12/12: the lock is STRUCTURAL)
+
+  [PASS] E1 [CONTROL / doorA T2a] the drag piece contains NO free kinetic parameter:
+      d(drag)/d(c_4) = 0. There is no knob in the vector kinetic sector that
+      can cancel it, so alpha_1 = 0 must be bought entirely from c_14.
+         measured : d(drag)/d(c_4) = 0
+         threshold: threshold: exactly 0
+         Registered by doorA. Reproduced here; a control, not a new result.
+  [PASS] E2 [CONTROL / doorA T1] alpha_1 = 0 forces c_14 = -(2-K_B)/(J_Y+1), which is
+      NEGATIVE across the whole physical domain 0 < K_B < 2, J_Y >= 1. A
+      negative c_14 flips the spin-1 kinetic sign: the PPN-null locus is a
+      GHOST. This is the lock.
+         measured : c_14 at alpha_1=0 = (K_B - 2)/(J_Y + 1); sampled values all < 0: [-0.95, -0.9, -0.75, -0.5, -0.167, -0.05, -0.375, -0.045]
+         threshold: threshold: c_14 > 0 required for a healthy spin-1 (all sampled values fail)
+         Registered by doorA (12/12) and f31 (K3 FAIL). Reproduced; not mine.
+
+      the drag vanishes only at K_B = 2, where the MOND coupling 2(2-K_B) = 0
+  [PASS] E3 [CONTROL / doorA T2b] the drag vanishes EXACTLY when MOND is switched off
+      (K_B = 2 => MOND coupling 2(2-K_B) = 0). There is no parameter choice
+      that keeps MOND and kills the drag: they are the same coefficient.
+         measured : drag(K_B=2) = 0   and   MOND coupling (K_B=2) = 0
+         threshold: threshold: both must vanish together (they do)
+         This is what makes the lock structural rather than a tuning accident.
+
+      the counterfactual (what the drag WOULD be if unsuppressed):
+         K_B   J_Y     drag = -4(2-K_B)/(J_Y+1)    x over 1e-4
+        0.20     1                      -3.6000      3.600e+04
+        0.20     2                      -2.4000      2.400e+04
+        0.50     1                      -3.0000      3.000e+04
+        0.50     2                      -2.0000      2.000e+04
+  [FAIL] E4 [K7 -- THE VERDICT] |alpha_1| against the solar-system bound. On the
+      dynamical-aether (AeST-proper) reading the drag is O(1) and the gate
+      FAILS by four to five orders of magnitude. NOT SUPPRESSED: the
+      (a_0/g)^2 = 1e-16 suppression of Part C does NOT touch alpha_1, because
+      alpha_1 is not read off the scalar's stress-energy -- it is read off the
+      LINEAR RESPONSE of the metric-aether-scalar system on a BOOSTED
+      background. (That was the lesson of f31 vs f30, recorded in my H006.)
+         measured : |drag| = 3.600 at (K_B,J_Y)=(0.2,1) vs bound 1e-04: 3.60e+04x over
+         threshold: threshold: |alpha_1| < 1e-04 (Will/Nordtvedt)
+         THE LESSON, RESTATED: screening the scalar's STATIC potential does not
+         screen its preferred-frame drag. Static potentials and PPN parameters are
+         different objects. My H004 made exactly this error; f31 caught it.
+
+      alpha_2: the repo registers '1e4-1e5 x over' relative to the older
+      ~1e-7 solar-spin/classical bound (f30 header; FRIED_CHICKEN_HANDOFF
+      BRIEF). Referred to the sharper PSR J1738+0333 bound of 1.6e-9:
+        |alpha_2| ~ 1.0e-03 to 1.0e-02  ->  6.2e+05 to 6.2e+06 x over
+  [FAIL] E5 [K8 -- THE VERDICT] |alpha_2| against the pulsar bound. The registered
+      magnitude is ~1e-3 to 1e-2; against PSR J1738+0333 (1.6e-9) that is six
+      to seven orders over. f31's own ladder reports alpha_2 diverging
+      (-oo -> oo) with the screening term added, i.e. not rescueable there.
+         measured : |alpha_2| ~ 1.0e-03..1.0e-02 (registered, f30/f31) vs bound 1.6e-09
+         threshold: threshold: |alpha_2| < 1.6e-09 (PSR J1738+0333, Shao & Wex 2012)
+         MAGNITUDE IS REGISTERED, NOT MINE: I did not run the alpha_2 pipeline. I only
+         converted the repo's stated '1e4-1e5 x a 1e-7 bound' into the 1.6e-9 bound.
+
+------------------------------------------------------------------------------
+  DOES THE COMPLETION REQUIRE DYNAMICAL AETHER KINETIC TERMS?
+------------------------------------------------------------------------------
+
+  NO -- not as written.  The action
+
+      S = int sqrt(-g)[ M_P^2 R/2 - Lambda^4 f(X) ] + S_m[g],
+      X = h^{mu nu} d_mu phi d_nu phi /(2 Lambda^4)
+
+  contains the aether ONLY inside h^{mu nu}.  There is no term in (d u)^2.  The
+  aether can be a FIXED unit timelike congruence -- hypersurface-orthogonal,
+  aligned to the CMB frame -- and every sector H001 derived (Lambda from f(0),
+  MOND from div[f' grad phi] = 4 pi G rho, dust from the Noether charge) goes
+  through unchanged.  AeST PROPER (Skordis & Zlosnik 2021) does add the Maxwell
+  term (c_1 = -c_3 = K_B), but that is a choice about the vector's dynamics, not
+  a requirement of the scalar sector.
+
+  CONSEQUENCE, STATED WITHOUT VARNISH:
+   HORN A (fixed congruence): the vector has no EOM, hence no spin-1 mode, hence
+     no vector contribution to alpha_1 or alpha_2.  The constraints are then
+     satisfied trivially -- AND the theory violates local Lorentz invariance
+     EXPLICITLY.  A preferred frame is baked into the action as a background
+     structure.  That is a real philosophical cost (the theory is no longer a
+     locally Lorentz-invariant field theory), but it is NOT a constraint
+     violation: no experiment is failed.
+   HORN B (dynamical, AeST proper): the registered lock applies and BOTH
+     preferred-frame bounds fail, with no healthy corner (E2, E3).
+
+  [FAIL] E6 [THE FORK, HONESTLY STATED] Horn A is NOT COMPUTED in this repo's PPN
+      pipeline. f30, f31 and doorA ALL assume the dynamical aether with the
+      MOND-generating coupling present. Whether a FIXED congruence truly
+      gives alpha_1 = alpha_2 = 0 IN THE METRIC (not merely in the vector's
+      own kinetic sector) has never been run. I will not assert it.
+         measured : Horn A status: OPEN (uncomputed). Horn B status: FAIL (registered lock).
+         threshold: threshold: this check is a pre-registered OPEN, not a pass. It FAILS by
+           construction to record that the one surviving route is untested.
+         This is the single most useful open item this lane produces: the last route
+         through the preferred-frame gate has never actually been computed.
+
+==============================================================================
+PART F -- HONESTY LEDGER: what is derived, what is assumed, what is open
+==============================================================================
+      claim                                        status         
+      Lambda^4 = rho_Lambda                        DERIVED        
+      Lambda^4 = 32 pi M_P^2 a_0^2                 DERIVED        
+      |grad phi| = 4 sqrt(pi) M_P g                DERIVED        
+      u(1 AU) = 3.17e7, u(30 AU) = 3.52e4          DERIVED        
+      a_0/g_N = 1.58e-8 (1 AU), 1.42e-6 (9.5 AU)   DERIVED        
+      gamma - 1 = 0, beta - 1 = 0                  ASSUMED+CHECKED
+      eta_N = 0                                    DERIVED        
+      alpha_1 = -4 c_14 - 4(2-K_B)/(J_Y+1)         REGISTERED     
+      alpha_1 = 0 => c_14 < 0 (ghost)              REGISTERED     
+      |alpha_2| ~ 1e-3..1e-2, 1e6-1e7x over        REGISTERED     
+      Horn A (fixed congruence) => alpha_1 = alpha_2 = 0 OPEN           
+
+      * Lambda^4 = rho_Lambda
+          DERIVED: from f(0) = -1 (H001 A2/B2, symbolic)
+      * Lambda^4 = 32 pi M_P^2 a_0^2
+          DERIVED: a_0 = c sqrt(G rho_L)/2 + G = hbar c/8pi M_P^2; checked to 0.05% against rho_Lambda -- CANONICAL FOOTING ONLY (A2b)
+      * |grad phi| = 4 sqrt(pi) M_P g
+          DERIVED: requires u = sqrt(X) = g/(2a_0); checked numerically
+      * u(1 AU) = 3.17e7, u(30 AU) = 3.52e4
+          DERIVED: arithmetic on GM_sun and a_0; r_M control passes
+      * a_0/g_N = 1.58e-8 (1 AU), 1.42e-6 (9.5 AU)
+          DERIVED: arithmetic; both footings
+      * gamma - 1 = 0, beta - 1 = 0
+          ASSUMED+CHECKED: structural: minimal coupling (no disformal channel -- G007 killed it). The SIZE of the
+                             residual is derived (Part C); the vanishing is by construction.
+      * eta_N = 0
+          DERIVED: arithmetic from beta = gamma = 1; implies the SEP holds
+      * alpha_1 = -4 c_14 - 4(2-K_B)/(J_Y+1)
+          REGISTERED: NOT mine: f30/f31 pipeline + doorA 12/12. Reproduced as a control.
+      * alpha_1 = 0 => c_14 < 0 (ghost)
+          REGISTERED: doorA T1; reproduced here in sympy, E2
+      * |alpha_2| ~ 1e-3..1e-2, 1e6-1e7x over
+          REGISTERED: f30 header / f31 K4; magnitude converted, not computed
+      * Horn A (fixed congruence) => alpha_1 = alpha_2 = 0
+          OPEN: UNCOMPUTED in this repo. Asserting it would be theatre.
+  [PASS] F1 [ANTI-THEATRE] the two headline passes of this lane (gamma-1 ~ 0, eta_N = 0)
+      are STRUCTURAL -- they follow from minimal coupling, which is an input
+      of the action, not a dynamical result. They are reported because their
+      residual SIZE had to be measured (1e-15 vs 2.3e-5), not as victories.
+         measured : 2 of 2 headline passes tagged ASSUMED+CHECKED / DERIVED-from-assumption
+         threshold: threshold: every by-construction pass must be labelled (it is)
+         A lane that sold 'gamma = 1' as a discovery would be theatre. It is a
+         consistency check on the residual, and it is a big one (11 orders).
+  [PASS] F2 [ANTI-THEATRE] the lane's real result is a NEGATIVE plus an OPEN item:
+      the preferred-frame gate is FAILED on the dynamical reading and UNTESTED
+      on the fixed-congruence reading. Neither is softened.
+         measured : alpha_1: FAIL (3.6e4 x bound). alpha_2: FAIL (1e6-1e7 x bound). Horn A: OPEN.
+         threshold: threshold: no FAIL may be downgraded to a caveat in the summary
+
+==============================================================================
+H003 READING:  18 PASS / 3 FAIL
+==============================================================================
+
+WHAT THE LANE MEASURED
+----------------------
+1. Lambda^4 is CALIBRATED, not fitted.  f(0) = -1 forces Lambda^4 = rho_Lambda,
+   and a_0 = c sqrt(G rho_Lambda)/2 turns that into Lambda^4 = 32 pi M_P^2 a_0^2,
+   which reproduces the independently computed rho_Lambda to 0.05%.  The fourth
+   root is 2.24 meV -- the known dark-energy scale.  FOOTING CAVEAT (A2b):
+   the closure is exact on the CANONICAL footing only; the alt footing defines a_0
+   from rho_total, so there Lambda^4 exceeds the vacuum energy by 45.8%.  The two
+   footings genuinely disagree about what the scalar's scale is -- recorded, not
+   smoothed.  Canonical normalization follows: grad(phi) = 4 sqrt(pi) M_P g.
+
+2. u_solar.  sqrt(X) = g/(2 a_0), so
+        u(1 AU)    = 3.169e+07  (canonical)  /  2.625e+07  (alt)
+        u(9.5 AU)  = 3.511e+05            /  2.908e+05
+        u(30 AU)   = 3.521e+04            /  2.916e+04
+   The solar system sits on the deep-Newtonian branch to one part in 1e15.
+   Control: r_M(sun) = 0.0386 pc reproduces f29's registered 0.039 pc.
+
+3. The suppression.  a_0/g_N = 1.578e-08 at 1 AU and 1.424e-06 at Saturn
+   (1.905e-08 / 1.719e-06 on the alt footing).  The scalar's stress is therefore
+   4(a_0/g)^2 = 9.96e-16 of the Newtonian potential at 1 AU -- eleven orders
+   below Cassini.  The counterfactual is real: had the deep-MOND law acted at
+   1 AU, solar gravity would have been wrong by 7961x.  The scope boundary is
+   doing measurable work, not hand-waving.
+
+4. gamma, beta, eta_N.  |gamma-1| and |beta-1| are bounded by 1.0e-15, against
+   Cassini's 2.3e-5 and the 2.3e-4 perihelion bound.  eta_N = 4beta - gamma - 3 = 0
+   exactly: the Strong Equivalence Principle holds and the lunar orbit is not
+   polarized toward the Sun.  BUT: these vanish BY CONSTRUCTION (minimal
+   coupling, one metric).  The measured content is the residual size, not the zero.
+
+5. alpha_1, alpha_2 -- THE WALL, and it is not mine to claim.  The repo's own
+   pipeline gives alpha_1 = -4 c_14 - 4(2-K_B)/(J_Y+1).  The drag is O(1)
+   (3.60 at K_B = 1/5, J_Y = 1), i.e. 3.6e+04x over the 1e-4 bound; it is
+   irreducible in the free kinetic parameters (E1); and killing it requires
+   c_14 < 0, a spin-1 ghost (E2).  It vanishes only when MOND itself is switched
+   off (E3).  alpha_2 is 1e6-1e7x over the pulsar bound.  THE CRUCIAL POINT: the
+   (a_0/g)^2 = 1e-16 suppression does NOT save these, because PPN parameters are
+   read off the boosted linear response, not off the static potential.  That is
+   the error my own H004 made and f31 caught; it is recorded in H006.
+
+WHAT IS OPEN, AND IT IS THE POINT OF THIS LANE
+----------------------------------------------
+Horn A is uncomputed.  The minimal action needs no aether kinetic term: the
+aether can be a fixed, hypersurface-orthogonal congruence aligned to the CMB,
+and then the vector has no EOM and no spin-1 mode.  Every PPN pipeline in this
+repo (f30, f31, f33b, doorA) assumes the DYNAMICAL aether with the
+MOND-generating coupling present -- so none of them has actually tested the
+version of the theory H001 wrote down.  Two honest readings:
+
+  * If Horn A really gives alpha_1 = alpha_2 = 0 in the metric, the preferred-
+    frame gate is cleared -- at the price of EXPLICIT local Lorentz violation.
+    A preferred frame is a background structure in the action.  No experiment is
+    failed; the cost is philosophical, and it is real.
+  * If the fixed congruence still drags the metric (which the scalar-aether
+    coupling 2(2-K_B) J.grad(phi) suggests it might, since that coupling does not
+    itself come from the vector's kinetic term), then Horn A inherits the lock
+    too and the relativistic completion is closed.
+
+That is a one-pipeline-run question and it is the cheapest decisive experiment
+left on this front. I am not going to answer it by assertion.
+
+VERDICT: 18 pass / 3 fail.  The metric-sector PPN (gamma, beta, eta_N) is clean
+by 11 orders.  The preferred-frame sector FAILS on the dynamical reading and is
+UNTESTED on the fixed-congruence reading.
+
+
+H003 COMPLETE: 18/21 checks PASS.

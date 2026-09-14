@@ -73,36 +73,80 @@ PART A -- BACKGROUND: X = 0 in FRW  =>  the scalar IS Lambda
 ==============================================================================
 PART B -- THE ACOUSTIC GEOMETRY: r_s, D_A, l_A, and the peak phases
 ==============================================================================
-  z_rec (fitting formula, Hu-Sugiyama/EH98)  = 352.16
-  Omega_b h^2 = 0.0224,  Omega_gamma h^2 = 1.461685e-05
-  R(z_rec) = 3 rho_b/(4 rho_gamma) = 3.2545
-  [FAIL] K5 -- R at recombination is in the accepted band 0.5 < R < 0.8 (Planck LCDM: R_* ~ 0.6-0.7; the brief quoted ~0.67 at z_rec ~ 1090)
-         measured : R(z_rec=352.2) = 3.2545   [R(z=1090) = 1.0535,  R(z_drag~1060) = 1.0833]
+  z_rec (Hu-Sugiyama fitting formula)       = 1091.87
+  Omega_b h^2 = 0.0224,  Omega_gamma h^2 = 2.472975e-05
+  R(z_rec) = 3 rho_b/(4 rho_gamma) = 0.6216
+  [PASS] K5 -- R at recombination is in the accepted band 0.5 < R < 0.8 (Planck LCDM: R_* ~ 0.6-0.7; the brief quoted ~0.67 at z_rec ~ 1090)
+         measured : R(z_rec=1091.9) = 0.6216   [R(z=1090) = 0.6227,  R(z_drag~1060) = 0.6403]
          threshold: see kill condition K5 above
          The precise value tracks which epoch you pick (recombination z_rec vs baryon drag
-         z_drag): 0.62 at z=1090, 0.64 at z=1060. The brief's 0.67 is within the spread
-         of that choice. THE POINT IS UNCHANGED: this number is set by rho_b and
-         rho_gamma alone, and this theory modifies neither.
+         z_drag): R(1090) = 0.623, R(1060) = 0.640. The brief's 0.67
+         sits just above that band (it corresponds to the baryon-drag epoch with a
+         slightly different Om_g convention). THE POINT IS UNCHANGED: this number is
+         set by rho_b and rho_gamma alone, and this theory modifies neither.
 
   --- my quadrature (Boltzmann-free) ---
-  r_s(z_rec)   = 268.9746 Mpc   (quadrature error 1.11e-14)
-  D_A(z_rec)   = 0.0384 Gpc
-  l_A = pi D_A / r_s = 0.4480
+  r_s(z_rec)     = 143.8026 Mpc   (quadrature error 5.46e-12)
+  D_M(z_rec)     = 13.8645 Gpc   (comoving)
+  D_A(z_rec)     = 12.6863 Mpc   (angular diameter)
+  l_A = pi D_M / r_s = 302.8923
 
-  !! CAMB unavailable or failed: AssertionError: 
-  !! Falling back to the analytic treatment only.
+  --- CAMB 1.6.6 (real line-of-sight Boltzmann) ---
+  z_star = 1089.90,  z_drag = 1060.02
+  r_s(z_star) = 144.4175 Mpc,  r_s(z_drag) = 147.0679 Mpc
+  D_A(z_star) = 13.8700 Gpc
+  theta_star  = 1.041221  ->  l_A = pi/theta_* = 301.7221
+  sigma_8 (LCDM, A_s calibrated to Planck) = 0.83400
 
-  l_A (my quadrature) = 0.448
-  [FAIL] K5 -- CAMB cross-check
-         measured : CAMB could not be run
+  l_A (my quadrature) = 302.892
+  l_A (CAMB)          = 301.722
+  l_A (Planck 2018)   = 301.5   (published approximate value)
+  [PASS] K5 -- my quadrature reproduces CAMB's sound horizon to < 2%
+         measured : mine = 143.8026 Mpc vs CAMB r_s(z_star) = 144.4175 Mpc; relative diff = 0.426%
          threshold: see kill condition K5 above
-         No independent validation of the geometry was possible.
+         Residual is the fitting formula for z_rec vs CAMB's full recombination history
+         (and my use of z_rec where CAMB's rstar is defined at its own z_star).
+  [PASS] K5 -- my quadrature reproduces CAMB's comoving distance D_M(z_star) to < 2%
+         measured : mine = 13.8645 Gpc vs CAMB DAstar = 13.8700 Gpc; relative diff = 0.040%
+         threshold: see kill condition K5 above
+         CAMB's derived parameter called 'DAstar' is the COMOVING distance in Gpc; the
+         angular-diameter distance is D_A = 12.69 Mpc = D_M/(1+z_star). Both my r_s and my D_M
+         agree with CAMB, so the geometric pipeline is validated.
+  [PASS] K5 -- my own l_A (quadrature) matches CAMB's l_A to < 2%
+         measured : l_A(mine) = 302.892 vs l_A(CAMB) = 301.722; relative diff = 0.388%
+         threshold: see kill condition K5 above
+         This is the check that matters: the SAME quantity computed two independent ways
+         (my quadrature + Hu-Sugiyama z_rec, vs CAMB's full recombination history).
+  [PASS] K5 -- l_A agrees with the published Planck 2018 value 301.5 to < 1%
+         measured : l_A(CAMB) = 301.722, l_A(mine) = 302.892, Planck ~ 301.5; CAMB vs Planck = 0.074%
+         threshold: see kill condition K5 above
+         This validates the whole geometric pipeline against both a real Boltzmann code
+         and the published Planck number.
+
+  --- acoustic peaks measured from the CAMB lensed TT spectrum ---
+  local maxima of the smoothed D_l: l = 286, 585, 843
+  ratios: l_2/l_1 = 2.0455,  l_3/l_1 = 2.9476
+  NOTE ON CONVENTION (honest): peak-finding on the smoothed D_l returns
+  local maxima spaced by ~l_A (see below), but the FIRST maximum it finds is at
+  l ~ 286, not the textbook first compression peak l_1 ~ 220 -- because the broad
+  first peak is blended with the Sachs-Wolfe plateau by the smoothing. The published
+  approximate Planck compression peaks are l_1 ~ 220, l_2 ~ 537, l_3 ~ 810
+  (ratios ~2.44, ~3.68). I report what the algorithm found and flag the
+  convention rather than quietly renaming them; the SPACING, which is what the
+  acoustic scale actually fixes, is convention-free.
+  spacings between consecutive maxima: 299, 258  (mean 278.5)
+  -> the compression peaks are spaced by ~l_A, and l_A(CAMB) = 301.7: mean spacing is 7.7% from it (box-car smoothing over w=41 in l broadens and shifts broad features, so a few-%-level offset is expected -- this is a consistency note, not a load-bearing number)
+  acoustic PHASES phi_m = m - l_m/l_A using the published compression peaks
+  (220, 537, 810) and CAMB's l_A: 0.2709, 0.2202, 0.3154
+  (these are the quantities the Hu & Eisenstein 1999 / Hu & White 1996 fitting
+   formulae parametrise; they are MEASURED here from CAMB's spectrum + published peak
+   positions, so no remembered fitting-formula coefficient enters the shift budget)
 
 ==============================================================================
 PART C -- THE PEAK SHIFT: geometry, phase, and the source side
 ==============================================================================
   C1 GEOMETRY.  The scalar's energy density today is Omega_L = 0.685;
-      at z_rec = 352.2 it is Omega_L(z_rec) = 4.653e-08.
+      at z_rec = 1089.9 it is Omega_L(z_rec) = 1.270e-09.
       Its perturbation is smooth (Part C3) and its background is w = -1,
       so EVERY geometric quantity (r_s, D_A, l_A) is the LCDM value.
   [PASS] K1 -- GEOMETRIC PEAK SHIFT: Delta l_A / l_A from the background
@@ -111,23 +155,23 @@ PART C -- THE PEAK SHIFT: geometry, phase, and the source side
          This is the whole answer to the peak question. The peaks cannot move because
          the ruler (r_s) and the distance (D_A) are the LCDM ones.
 
-  C2 THE RESTORING FORCE.  c_s^gamma = c/sqrt(3(1+R)) with R = 3.2545:
-      c_s^gamma(z_rec) = 8.391395e+07 m/s = 0.279907 c
-      sqrt(1/3) = 0.577350 -- the baryon loading R reduces it by 51.52%
+  C2 THE RESTORING FORCE.  c_s^gamma = c/sqrt(3(1+R)) with R = 0.6216:
+      c_s^gamma(z_rec) = 1.359210e+08 m/s = 0.453384 c
+      sqrt(1/3) = 0.577350 -- the baryon loading R reduces it by 21.47%
       This theory couples to the photon-baryon fluid ONLY through g_mu_nu
       (S_m[g], minimal coupling). It does not change c, rho_b, or rho_gamma.
   [PASS] K1 -- PHOTON-BARYON SOUND SPEED: the theory must not modify c/sqrt(3(1+R))
-         measured : c_s^gamma = 0.279907 c  = the LCDM value exactly (minimal coupling to g_mu_nu; no disformally coupled photon sector)
+         measured : c_s^gamma = 0.453384 c  = the LCDM value exactly (minimal coupling to g_mu_nu; no disformally coupled photon sector)
          threshold: see kill condition K1 above
          The acoustic PHASE is set by this speed. It is the LCDM value. The theory's
          5% is NOT here -- it is on the source side.
 
   C3 IS THE SCALAR CLUSTERED?  Its sound speed is c_s in [0.7071, 1) c.
-      comoving particle horizon at z_rec   : 659.83 Mpc (k_hor = 0.00952 Mpc^-1)
-      scalar Jeans/sound wavenumber k_s = aH/c_s (c_s = c/sqrt2, the slowest): 0.00345 Mpc^-1
-      acoustic wavenumbers k ~ l/D_A      : 5.73592, 14.00086, 21.11862 Mpc^-1
+      comoving particle horizon at z_rec   : 279.65 Mpc (k_hor = 0.02247 Mpc^-1)
+      scalar Jeans/sound wavenumber k_s = aH/c_s (c_s = c/sqrt2, the slowest): 0.00677 Mpc^-1
+      acoustic wavenumbers k ~ l/D_A      : 0.02063, 0.04220, 0.06080 Mpc^-1
   [PASS] K1 -- SCALAR SMOOTHNESS: every observed acoustic mode is inside the scalar's sound horizon, so the scalar does NOT cluster
-         measured : min(k_acoustic)/k_s = 1660.53  (all modes: 1660.5x, 4053.2x, 6113.8x)
+         measured : min(k_acoustic)/k_s = 3.05  (all modes: 3.0x, 6.2x, 9.0x)
          threshold: see kill condition K1 above
          Because c_s >= c/sqrt(2), the scalar's sound horizon is of order the particle
          horizon. Every CMB acoustic mode is deep inside it, so the scalar behaves
@@ -136,16 +180,20 @@ PART C -- THE PEAK SHIFT: geometry, phase, and the source side
          dynamics -- it acts only through the late-time growth (Part D).
 
   C4 THE KERNEL AT RECOMBINATION.  eps(a) = A (a_0/(cH(a)))^2, A = 3.7424
-      eps(z=0)    = 7.649584e-02   (G023 registered: 0.0765)
-      eps(z=3)    = 3.667493e-03   (G023 registered: 0.0036; task statement: ~+1%)
-      eps(z=z_rec)= 5.196648e-09
-      eps(z=100)  = 2.316708e-07
+      eps(z=0)    = 7.649296e-02   (G023 registered: 0.0765)
+      eps(z=3)    = 3.665799e-03   (G023 registered: 0.0036; task statement: ~+1%)
+      eps(z=z_rec)= 1.418308e-10
+      eps(z=100)  = 2.289535e-07
   [PASS] K1 -- PHASE SHIFT from the modified coupling at recombination
-         measured : Delta l_1/l_1 <~ eps(z_rec)*phi_1 = 5.197e-09 * 0.270 = 1.403e-07 %
+         measured : Delta l_1/l_1 <~ eps(z_rec)*phi_1 = 1.418e-10 * 0.271 = 3.842e-09 %
          threshold: see kill condition K1 above
-         At recombination cH = 2.5125e-06 m/s^2 is 2.684e+04 times a_0, so the MOND kernel
-         is switched off by ~10 orders of magnitude there (eps = 5.20e-09). The growth
-         raise is a z <~ 3 phenomenon; recombination is at z = 352.
+         At recombination cH = 1.5208e-05 m/s^2 is 1.624e+05 times a_0, so the MOND kernel
+         is switched off by ~10 orders of magnitude there (eps = 1.42e-10). The growth
+         raise is a z <~ 3 phenomenon; recombination is at z = 1090.
+
+  C5 LENSING.  Lensing smoothing moves the peaks by (lensed - unlensed) = +0.0, +2.0, +0.0 in l
+      (the theory's growth raise changes the lensing amplitude by ~2x the raise in D,
+       and the peak displacement scales linearly with it -> see Part D for the number)
 
   C6 TOTAL PEAK SHIFT (to be completed with the lensing term from Part D)
 
@@ -153,12 +201,12 @@ PART C -- THE PEAK SHIFT: geometry, phase, and the source side
 PART D -- THE GROWTH SECTOR: eps(a), D(a), sigma_8, f sigma_8
 ==============================================================================
        z  eps kernel (a_0/cH)^2    eps G023 registered    ratio
-     0.0           7.649584e-02           7.650000e-02    1.000
-     0.5           4.375428e-02           5.030000e-02    0.870
-     1.0           2.386247e-02           3.000000e-02    0.795
-     3.0           3.667493e-03           3.600000e-03    1.019
+     0.0           7.649296e-02           7.650000e-02    1.000
+     0.5           4.374950e-02           5.030000e-02    0.870
+     1.0           2.385799e-02           3.000000e-02    0.795
+     3.0           3.665799e-03           3.600000e-03    1.018
   [PASS] K6 -- the (a_0/(cH))^2 kernel, normalised at z=0, reproduces G023's registered G_eff/G anchors at z = 0.5, 1, 3
-         measured : kernel/registered = 0.870, 0.795, 1.019 at z = 0.5, 1, 3
+         measured : kernel/registered = 0.870, 0.795, 1.018 at z = 0.5, 1, 3
          threshold: see kill condition K6 above
          The pure (a_0/cH)^2 law nails the two ENDS (z=0 by construction, z=3 to 2%:
          0.367% vs 0.36% registered) but falls ~25% low at z=1 and ~13% low at z=0.5.
@@ -169,25 +217,34 @@ PART D -- THE GROWTH SECTOR: eps(a), D(a), sigma_8, f sigma_8
   The growth equation (x = ln a, so the friction term is exactly the specified
   (2 + H'/H); in d/da form this reads D'' + (3/a + dlnH/da) D' - (3/2) Om_m G_eff/G D/a^2 = 0):
       D'' + (2 + H'/H) D' - (3/2) Om_m(a) (G_eff/G) D = 0
-  [PASS] K5 -- growth integrator validation: with G_eff = G the deep-matter-era solution must be D = a exactly, and f(0) must match Omega_m^0.545
-         measured : D/a at z=20 = 0.995360330 (threshold: 1 +/- 0.005); f(0) = 0.527075 vs Omega_m^0.545 = 0.532803 (1.07% apart)
+  [PASS] K5 -- growth integrator validation (weak): in the deep matter era the growing mode must be D ~ a, and f(0) must match Omega_m^0.545
+         measured : D/a at z=20 = 0.992238 (threshold: 1 +/- 0.02 -- NOT 1 exactly, because at z=20 there is residual radiation and a little Lambda); f(0) = 0.527056 vs Omega_m^0.545 = 0.532792 (1.08% apart)
          threshold: see kill condition K5 above
-         Two independent validators of the ODE solution: the growing mode in matter
-         domination, and the standard f ~ Omega_m^0.55 approximation at z=0.
+         f ~ Omega_m^0.545 is the standard approximation; matching it to ~1% validates the
+         z=0 end of the ODE solution. The strong validator is the CAMB comparison below.
+    my D(z)/D(0) vs CAMB sigma8(z)/sigma8(0): z=0.0: 0.00%, z=0.5: 0.08%, z=1.0: 0.10%, z=2.0: 0.19%, z=3.0: 0.32%
+  [PASS] K5 -- growth integrator validation (STRONG): my LCDM growth history D(z)/D(0) must match CAMB's own to < 1% at every z
+         measured : max relative difference over z = 0, 0.5, 1, 2, 3 : 0.321%
+         threshold: see kill condition K5 above
+         This is the real validator: my ODE integration of the growth equation (with
+         G_eff = G) reproduces CAMB's own sigma_8(z) history to a fraction of a percent,
+         so the raise computed below is not an artefact of my integrator.
 
   quantity                                  kernel footing  registered footing
   D(z=0) / D_LCDM(z=0) - 1  [the raise]             0.959%              1.287%
 
-  observable                                        kernel          registered   LCDM / Planck
+  observable                                        kernel          registered     LCDM (CAMB)
   --------------------------------------------------------------------------------------------
-  sigma_8 (z=0)                                     0.8420              0.8447  0.834 (Planck)
-  f sigma_8 (z=0.00)                                0.4508              0.4522             n/a
-  f sigma_8 (z=0.38)                                0.4951              0.4967             n/a
-  f sigma_8 (z=0.51)                                0.4914              0.4929             n/a
-  f sigma_8 (z=0.61)                                0.4848              0.4862             n/a
-  f sigma_8 (z=1.00)                                0.4435              0.4443             n/a
+  sigma_8 (z=0)                                     0.8420              0.8447          0.8340
+  f sigma_8 (z=0.00)                                0.4508              0.4522          0.4402
+  f sigma_8 (z=0.38)                                0.4951              0.4967          0.4773
+  f sigma_8 (z=0.51)                                0.4914              0.4929          0.4882
+  f sigma_8 (z=0.61)                                0.4848              0.4862          0.4793
+  f sigma_8 (z=1.00)                                0.4434              0.4443          0.4449
 
-  f sigma_8 (z=0): theory(kernel) = 0.45079 vs LCDM 0.43958  (+2.55%)
+  DESI DR1 f sigma_8 (z_eff = 0.38): 0.4951 (theory) vs 0.4773 (LCDM/CAMB) -> raise +3.71%
+
+  f sigma_8 (z=0): theory(kernel) = 0.45077 vs LCDM/CAMB 0.44021  (+2.40%)
 
   --- the tension (adopted 1-sigma: KiDS 0.024, DES 0.017; these are the published
       S_8 errors, stated not derived) ---
@@ -204,20 +261,31 @@ PART D -- THE GROWTH SECTOR: eps(a), D(a), sigma_8, f sigma_8
          THE HONEST RESULT: the growth raise pushes sigma_8 UP, so it does not solve the
          S_8 tension -- it makes it WORSE. LCDM already sits 2.83 sigma above KiDS on this
          metric; the theory sits 3.17 sigma. The raise (0.96% in D) adds
-         33.34 sigma of tension. This is the theory's real
-         liability and it is in the growth sector, not the CMB peaks.
+         0.33 sigma of tension (Delta sigma_8 = 0.0080). This is
+         the theory's real liability and it is in the growth sector, not
+         the CMB peaks.
+
+  C5 (completed) LENSING-INDUCED PEAK SHIFT:
+      lensing moves peak 1 by +0.0 in l (measured from CAMB, lensed vs unlensed)
+      the growth raise (0.96% in D) changes the lensing amplitude by ~1.92%
+      -> induced shift in l_1 = 0.0000%
+  [PASS] K1 -- LENSING-INDUCED PEAK SHIFT (bounded, not exactly computed)
+         measured : |Delta l_1/l_1| <~ 0.0000 %  (Kill K1 threshold: 0.1%)
+         threshold: see kill condition K1 above
+         This is the LARGEST sub-leading term and it is still below Planck precision.
+         It is a BOUND: the exact number needs a real MG-Boltzmann run.
 
   C6 TOTAL PEAK SHIFT:
       geometric (background)      : 0.000e+00 %
-      recombination-era coupling  : 1.403e-07 %
+      recombination-era coupling  : 3.842e-09 %
       lensing (bounded)           : 0.0000 %
       TOTAL                       : 0.0000 %
       Planck precision on l_A     : ~0.1 %
   [PASS] K1 -- TOTAL ACOUSTIC PEAK SHIFT vs Planck precision
-         measured : |Delta l_1/l_1| = 0.000000 %  vs threshold 0.1 %  (= 1.40e-06 x the threshold)
+         measured : |Delta l_1/l_1| = 0.000000 %  vs threshold 0.1 %  (= 3.84e-08 x the threshold)
          threshold: see kill condition K1 above
          THE REFEREE'S QUESTION, ANSWERED: the peak shift is 0.0000%, which is
-         712710x BELOW Planck precision. The theory is INDISTINGUISHABLE from LCDM
+         26031359x BELOW Planck precision. The theory is INDISTINGUISHABLE from LCDM
          in CMB acoustic peak geometry -- not because it is fine-tuned, but because
          (i) its background is exactly LCDM, (ii) it does not touch the photon sound
          speed, and (iii) its scalar is smooth on every observed scale. The only
@@ -275,17 +343,17 @@ PART E -- HONEST LIMITS: what is approximate here
 ==============================================================================
 VERDICT
 ==============================================================================
-  checks passed : 13
-  checks failed : 2
+  checks passed : 20
+  checks failed : 0
 
   PEAK GEOMETRY PASSES (it is a null test): total acoustic peak shift 0.0000% vs 0.1% Planck precision -- the CMB peaks CANNOT discriminate this theory, because the background is exactly LCDM and the scalar is smooth.
   THE DISCRIMINANT IS THE GROWTH SECTOR, AND THERE THE THEORY LOSES GROUND: the kernel raises D by 0.96% (registered: 1.29%), giving sigma_8 = 0.8420 (registered 0.8447) against Planck's 0.834 -- so it is 3.17 sigma above KiDS-1000 (0.766) and 4.12 sigma above DES-Y3 (0.772), versus LCDM's own 2.83 and 3.65 sigma.
   The S_8 tension gets WORSE, not better.
-  f sigma_8(z=0) = 0.4508 vs LCDM 0.4396 (+2.55%) is the cleanest test.
+  f sigma_8(z=0) = 0.4508 vs LCDM 0.4402 (+2.40%) is the cleanest test.
   Approximation stated: this is a Boltzmann-free geometric treatment with a scale-independent G_eff(a); an exact answer needs hi_class/ISiTGR with the mu(a,k), Sigma(a,k) derived from the linearized AeST action.
 
-  wrote H002_results.json  (5671 bytes)
-  camb_equivalent_available = False
+  wrote H002_results.json  (7366 bytes)
+  camb_equivalent_available = True
   peak_shift_percent        = 0.000000
   sigma8_theory             = 0.84200
   tension_sigma (vs KiDS)   = 3.167

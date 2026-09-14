@@ -1,0 +1,228 @@
+{
+  "lane": "H003",
+  "pass": 18,
+  "fail": 3,
+  "results": [
+    {
+      "check": "A1 [DERIVED] Lambda^4 = rho_Lambda, and the fourth root lands on the known\n      dark-energy scale ~2.3 meV (independent published anchor, not an input)",
+      "measured": "Lambda = rho_Lambda^(1/4) = 2.2404 meV",
+      "threshold": "threshold: 2.3 +/- 0.3 meV (published value of rho_Lambda^(1/4))",
+      "pass": true
+    },
+    {
+      "check": "A2 [DERIVED] Lambda^4 = 32 pi M_P^2 a_0^2 reproduces the independently computed\n      rho_Lambda on the CANONICAL footing: three constants (M_P, a_0, rho_Lambda),\n      two independent routes, one number. This is the calibration.",
+      "measured": "|32 pi M_P^2 a_0^2 / rho_Lambda - 1| = 5.073e-04 (canonical)",
+      "threshold": "threshold: agreement to better than 1% (M_P rounding is the floor)",
+      "pass": true
+    },
+    {
+      "check": "A2b [CONSISTENCY, and a real finding] the ALT footing does NOT reproduce\n      rho_Lambda, and it should not: the alt footing defines a_0 from rho_TOTAL,\n      not rho_Lambda, so the identity a_0 = c sqrt(G rho_Lambda)/2 is\n      CANONICAL-FOOTING-ONLY. The mismatch must be exactly (a_0^alt/a_0^canon)^2.",
+      "measured": "|Lambda^4(alt)/rho_Lambda - 1| = 4.567e-01  vs  (a_0alt/a_0canon)^2 - 1 = 4.575e-01",
+      "threshold": "threshold: the two must agree to 5e-3 (residual is the rounding of the\n           registered a_0 values to 3 s.f., not a physics discrepancy)",
+      "pass": true
+    },
+    {
+      "check": "A3 [DERIVED] |grad phi| = Lambda^2 g/(sqrt2 a_0) = 4 sqrt(pi) M_P g: the scalar's\n      gradient is the MOND acceleration in canonical (Planck) units, so the\n      argument of mu_2 and sqrt(X) are one and the same number",
+      "measured": "Lambda^2/(sqrt2 a_0) = 7.091615 M_P   vs   4 sqrt(pi) M_P = 7.089815 M_P",
+      "threshold": "threshold: agreement to better than 1%",
+      "pass": true
+    },
+    {
+      "check": "B0 [CONTROL] r_M(sun) = 0.039 pc -- the repo's registered value (hunt_2026/f29),\n      reproduced here from GM_sun and a_0 alone. If this fails, the whole\n      solar-system ladder below is mis-scaled.",
+      "measured": "r_M = 0.0386 pc (canonical), 0.0351 pc (alt)",
+      "threshold": "threshold: 0.039 +/- 0.002 pc (registered)",
+      "pass": true
+    },
+    {
+      "check": "B1 [CONTROL] the Galactic external field is negligible inside the solar system,\n      so g = g_N(Sun) is the right argument (no EFE correction to u)",
+      "measured": "g_ext/g_N(1 AU) = 2.903e-08",
+      "threshold": "threshold: g_ext/g_N < 1e-6",
+      "pass": true
+    },
+    {
+      "check": "B2 [K1] u_solar(1 AU) >> 1: the deep-Newtonian branch mu_2 -> 1 is the one the\n      solar system actually sits on. This is the premise of every number below.",
+      "measured": "u(1 AU) = 3.1686e+07 (canonical), 2.6246e+07 (alt); 1 - mu_2 = (1+u)^-2 = 9.960e-16",
+      "threshold": "threshold: u > 100 (pre-registered)",
+      "pass": true
+    },
+    {
+      "check": "B3 [K1b] u stays >> 1 out to 30 AU (Neptune), so no planetary orbit crosses\n      back into the MOND branch anywhere in the solar system",
+      "measured": "u(30 AU) = 3.5207e+04 (canonical), 2.9162e+04 (alt)",
+      "threshold": "threshold: u > 100 (pre-registered)",
+      "pass": true
+    },
+    {
+      "check": "C1 [PRE-EMPTIVE KILL TEST] the counterfactual: if the deep-MOND law acted at\n      1 AU the force would be sqrt(a_0 g_N), i.e. the solar system's gravity\n      would be WRONG by four orders of magnitude. The theory's safety is\n      therefore a real, quantified scope boundary -- not an assertion.",
+      "measured": "g_N/g_deepMOND(1 AU) = 7960.6x  (u = 3.169e+07 is why it does not act)",
+      "threshold": "threshold: the counterfactual must be a large, visible signal (>100x) for the\n           scope boundary to be doing real work",
+      "pass": true
+    },
+    {
+      "check": "C2 [K2] 4 (a_0/g_N)^2 at 1 AU -- the fractional size of the scalar's stress\n      relative to the Newtonian potential -- is far below Cassini. The scalar\n      is not merely small here; it is invisible by eleven orders of magnitude.",
+      "measured": "4(a_0/g_N)^2 = 9.9602e-16 at 1 AU; 8.1126e-12 at Saturn 9.5 AU",
+      "threshold": "threshold: < 2.3e-05 (Cassini |gamma-1| bound)",
+      "pass": true
+    },
+    {
+      "check": "D1 [K3] |gamma - 1| against Cassini. gamma = 1 exactly at leading order;\n      the residual is the scalar's O((a_0/g)^2) stress, measured in Part C.",
+      "measured": "|gamma - 1| <= 9.9602e-16  (gamma - 1 = 0 at leading order)",
+      "threshold": "threshold: |gamma-1| < 2.3e-05 (Cassini, Bertotti+2003)",
+      "pass": true
+    },
+    {
+      "check": "D2 [K4] |beta - 1| against the perihelion/LLR bound. Same suppression, same\n      order; beta = 1 at leading order.",
+      "measured": "|beta - 1| <= 9.9602e-16  (beta - 1 = 0 at leading order)",
+      "threshold": "threshold: |beta-1| < 2.3e-04 (Mercury perihelion / LLR, Will 2014)",
+      "pass": true
+    },
+    {
+      "check": "D3 [K5] THE NORDTVEDT EFFECT / SEP: eta_N = 4 beta - gamma - 3. With beta = 1\n      and gamma = 1 this is exactly zero -- the Strong Equivalence Principle\n      holds, because matter sees one metric and that metric's potentials are\n      the GR ones at this order.",
+      "measured": "eta_N = 4(1.0) - (1.0) - 3 = 0.0 (residual <= 4.980e-15)",
+      "threshold": "threshold: |eta_N| < 4.4e-04 (LLR, Williams+2012)",
+      "pass": true
+    },
+    {
+      "check": "E1 [CONTROL / doorA T2a] the drag piece contains NO free kinetic parameter:\n      d(drag)/d(c_4) = 0. There is no knob in the vector kinetic sector that\n      can cancel it, so alpha_1 = 0 must be bought entirely from c_14.",
+      "measured": "d(drag)/d(c_4) = 0",
+      "threshold": "threshold: exactly 0",
+      "pass": true
+    },
+    {
+      "check": "E2 [CONTROL / doorA T1] alpha_1 = 0 forces c_14 = -(2-K_B)/(J_Y+1), which is\n      NEGATIVE across the whole physical domain 0 < K_B < 2, J_Y >= 1. A\n      negative c_14 flips the spin-1 kinetic sign: the PPN-null locus is a\n      GHOST. This is the lock.",
+      "measured": "c_14 at alpha_1=0 = (K_B - 2)/(J_Y + 1); sampled values all < 0: [-0.95, -0.9, -0.75, -0.5, -0.167, -0.05, -0.375, -0.045]",
+      "threshold": "threshold: c_14 > 0 required for a healthy spin-1 (all sampled values fail)",
+      "pass": true
+    },
+    {
+      "check": "E3 [CONTROL / doorA T2b] the drag vanishes EXACTLY when MOND is switched off\n      (K_B = 2 => MOND coupling 2(2-K_B) = 0). There is no parameter choice\n      that keeps MOND and kills the drag: they are the same coefficient.",
+      "measured": "drag(K_B=2) = 0   and   MOND coupling (K_B=2) = 0",
+      "threshold": "threshold: both must vanish together (they do)",
+      "pass": true
+    },
+    {
+      "check": "E4 [K7 -- THE VERDICT] |alpha_1| against the solar-system bound. On the\n      dynamical-aether (AeST-proper) reading the drag is O(1) and the gate\n      FAILS by four to five orders of magnitude. NOT SUPPRESSED: the\n      (a_0/g)^2 = 1e-16 suppression of Part C does NOT touch alpha_1, because\n      alpha_1 is not read off the scalar's stress-energy -- it is read off the\n      LINEAR RESPONSE of the metric-aether-scalar system on a BOOSTED\n      background. (That was the lesson of f31 vs f30, recorded in my H006.)",
+      "measured": "|drag| = 3.600 at (K_B,J_Y)=(0.2,1) vs bound 1e-04: 3.60e+04x over",
+      "threshold": "threshold: |alpha_1| < 1e-04 (Will/Nordtvedt)",
+      "pass": false
+    },
+    {
+      "check": "E5 [K8 -- THE VERDICT] |alpha_2| against the pulsar bound. The registered\n      magnitude is ~1e-3 to 1e-2; against PSR J1738+0333 (1.6e-9) that is six\n      to seven orders over. f31's own ladder reports alpha_2 diverging\n      (-oo -> oo) with the screening term added, i.e. not rescueable there.",
+      "measured": "|alpha_2| ~ 1.0e-03..1.0e-02 (registered, f30/f31) vs bound 1.6e-09",
+      "threshold": "threshold: |alpha_2| < 1.6e-09 (PSR J1738+0333, Shao & Wex 2012)",
+      "pass": false
+    },
+    {
+      "check": "E6 [THE FORK, HONESTLY STATED] Horn A is NOT COMPUTED in this repo's PPN\n      pipeline. f30, f31 and doorA ALL assume the dynamical aether with the\n      MOND-generating coupling present. Whether a FIXED congruence truly\n      gives alpha_1 = alpha_2 = 0 IN THE METRIC (not merely in the vector's\n      own kinetic sector) has never been run. I will not assert it.",
+      "measured": "Horn A status: OPEN (uncomputed). Horn B status: FAIL (registered lock).",
+      "threshold": "threshold: this check is a pre-registered OPEN, not a pass. It FAILS by\n           construction to record that the one surviving route is untested.",
+      "pass": false
+    },
+    {
+      "check": "F1 [ANTI-THEATRE] the two headline passes of this lane (gamma-1 ~ 0, eta_N = 0)\n      are STRUCTURAL -- they follow from minimal coupling, which is an input\n      of the action, not a dynamical result. They are reported because their\n      residual SIZE had to be measured (1e-15 vs 2.3e-5), not as victories.",
+      "measured": "2 of 2 headline passes tagged ASSUMED+CHECKED / DERIVED-from-assumption",
+      "threshold": "threshold: every by-construction pass must be labelled (it is)",
+      "pass": true
+    },
+    {
+      "check": "F2 [ANTI-THEATRE] the lane's real result is a NEGATIVE plus an OPEN item:\n      the preferred-frame gate is FAILED on the dynamical reading and UNTESTED\n      on the fixed-congruence reading. Neither is softened.",
+      "measured": "alpha_1: FAIL (3.6e4 x bound). alpha_2: FAIL (1e6-1e7 x bound). Horn A: OPEN.",
+      "threshold": "threshold: no FAIL may be downgraded to a caveat in the summary",
+      "pass": true
+    }
+  ],
+  "u_solar_1AU": 31685923.55384426,
+  "u_solar_1AU_alt": 26246039.333095778,
+  "u_solar_30AU": 35206.58172649362,
+  "u_solar_30AU_alt": 29162.265925661974,
+  "u_solar_9p5AU": 351090.56569356524,
+  "suppression_at_1AU": 1.5779877747616988e-08,
+  "suppression_at_1AU_alt": 1.905049343462307e-08,
+  "suppression_at_9p5AU": 1.424133966722433e-06,
+  "suppression_at_9p5AU_alt": 1.719307032474732e-06,
+  "suppression_squared_at_1AU": 2.490045417297378e-16,
+  "gamma_minus_1": 0.0,
+  "gamma_minus_1_bound": 9.960181669189512e-16,
+  "beta_minus_1": 0.0,
+  "beta_minus_1_bound": 9.960181669189512e-16,
+  "eta_N": 0.0,
+  "eta_N_bound": 4.980090834594756e-15,
+  "alpha_1_drag_registered": 3.6,
+  "alpha_1_bound": 0.0001,
+  "alpha_1_status": "FAIL_dynamical_aether__OPEN_fixed_congruence",
+  "alpha_2_status": "FAIL_dynamical_aether__OPEN_fixed_congruence",
+  "aether_dynamical_required": false,
+  "Lambda_meV": 2.2403653234592964,
+  "Lambda4_eV4": 2.519273787939199e-11,
+  "Lambda4_formula": "32*pi*M_P^2*a_0^2",
+  "rM_sun_pc": 0.038594289454231386,
+  "counterfactual_deepMOND_at_1AU": 7960.643636521391,
+  "footings": {
+    "canonical": 9.36e-11,
+    "alt": 1.13e-10
+  },
+  "bounds": {
+    "cassini_gamma": 2.3e-05,
+    "beta": 0.00023,
+    "eta_N": 0.00044,
+    "alpha_1": 0.0001,
+    "alpha_2": 1.6e-09
+  },
+  "ledger": [
+    {
+      "claim": "Lambda^4 = rho_Lambda",
+      "status": "DERIVED",
+      "note": "from f(0) = -1 (H001 A2/B2, symbolic)"
+    },
+    {
+      "claim": "Lambda^4 = 32 pi M_P^2 a_0^2",
+      "status": "DERIVED",
+      "note": "a_0 = c sqrt(G rho_L)/2 + G = hbar c/8pi M_P^2; checked to 0.05% against rho_Lambda -- CANONICAL FOOTING ONLY (A2b)"
+    },
+    {
+      "claim": "|grad phi| = 4 sqrt(pi) M_P g",
+      "status": "DERIVED",
+      "note": "requires u = sqrt(X) = g/(2a_0); checked numerically"
+    },
+    {
+      "claim": "u(1 AU) = 3.17e7, u(30 AU) = 3.52e4",
+      "status": "DERIVED",
+      "note": "arithmetic on GM_sun and a_0; r_M control passes"
+    },
+    {
+      "claim": "a_0/g_N = 1.58e-8 (1 AU), 1.42e-6 (9.5 AU)",
+      "status": "DERIVED",
+      "note": "arithmetic; both footings"
+    },
+    {
+      "claim": "gamma - 1 = 0, beta - 1 = 0",
+      "status": "ASSUMED+CHECKED",
+      "note": "structural: minimal coupling (no disformal channel -- G007 killed it). The SIZE of the\n                             residual is derived (Part C); the vanishing is by construction."
+    },
+    {
+      "claim": "eta_N = 0",
+      "status": "DERIVED",
+      "note": "arithmetic from beta = gamma = 1; implies the SEP holds"
+    },
+    {
+      "claim": "alpha_1 = -4 c_14 - 4(2-K_B)/(J_Y+1)",
+      "status": "REGISTERED",
+      "note": "NOT mine: f30/f31 pipeline + doorA 12/12. Reproduced as a control."
+    },
+    {
+      "claim": "alpha_1 = 0 => c_14 < 0 (ghost)",
+      "status": "REGISTERED",
+      "note": "doorA T1; reproduced here in sympy, E2"
+    },
+    {
+      "claim": "|alpha_2| ~ 1e-3..1e-2, 1e6-1e7x over",
+      "status": "REGISTERED",
+      "note": "f30 header / f31 K4; magnitude converted, not computed"
+    },
+    {
+      "claim": "Horn A (fixed congruence) => alpha_1 = alpha_2 = 0",
+      "status": "OPEN",
+      "note": "UNCOMPUTED in this repo. Asserting it would be theatre."
+    }
+  ],
+  "verdict": "SPLIT 18/3. gamma-1 and beta-1 are 0 at leading order with residual <= 1.0e-15 (Cassini 2.3e-5): PASS, but by construction (minimal coupling). eta_N = 0: PASS. u(1 AU) = 3.169e+07, a_0/g_N = 1.578e-08. alpha_1: FAIL on the registered AeST lock (drag 3.60 = 3.6e+04x the 1e-4 bound; alpha_1=0 forces c_14<0, a spin-1 ghost; irreducible). alpha_2: FAIL, 1e6-1e7x the 1.6e-9 pulsar bound (registered). The (a_0/g)^2 = 2.5e-16 suppression does NOT rescue them: PPN parameters are read off the boosted linear response, not the static potential. HORN A (fixed non-dynamical aether congruence) does NOT require aether kinetic terms and would give alpha_1 = alpha_2 = 0 identically, but it violates local Lorentz invariance explicitly (philosophical cost, no failed experiment) -- AND IT IS UNCOMPUTED: every PPN pipeline in this repo assumes the dynamical aether. That is the one open route and the cheapest decisive run left."
+}
