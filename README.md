@@ -338,6 +338,7 @@ Plain text on purpose, so that titles and DOIs are searchable. Versions of one r
 
 | date | DOI | title | version |
 |---|---|---|---|
+| 2026-09-14 | [10.5281/zenodo.22753165](https://doi.org/10.5281/zenodo.22753165) (concept 22753164) | The Equilibrium Reading of the Radial Acceleration Relation: What Is Derived, What Is Measured, What Is Dead | v1 |
 | 2026-09-13 | [10.5281/zenodo.22735193](https://doi.org/10.5281/zenodo.22735193) (concept 22735192) | A Photocount Reading of the Interpolating Function, and a No-Go for Deriving Its Normalisation from a Clock | v1 |
 | 2026-09-12 | [10.5281/zenodo.22731370](https://doi.org/10.5281/zenodo.22731370) (concept 22731369) | A Parameter-Free Radial Acceleration Relation from the Dark-Energy Scale | v1 |
 | 2026-09-12 | [10.5281/zenodo.22731066](https://doi.org/10.5281/zenodo.22731066) (concept 22731065) | A Conserved Clock Rate, and the Board Run End to End | v1 |

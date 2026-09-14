@@ -1,0 +1,107 @@
+---
+title: "The Equilibrium Reading of the Radial Acceleration Relation: What Is Derived, What Is Measured, What Is Dead"
+author: "Carl P. Zimmerman (Briar Creek Tech) — AI-assisted research programme; not peer reviewed"
+date: "2026-09-13 (v1)"
+geometry: margin=1in
+mainfont: "STIX Two Text"
+fontsize: 11pt
+---
+
+**A candidate reading of the relation, stated with every rung labelled, the audit that relabelled three of them, every dead branch recorded, and the tests that decide it.**
+
+This is the status report of the glm53 track of an AI-assisted research programme on the de Sitter-locked acceleration scale $a_0 = \tfrac12 c\sqrt{G\rho_\Lambda}$. It consolidates that track's computational lanes (G001–G027) and its five Lean 4 certificates (43 theorems, exit 0, zero `sorry`, axioms $\subseteq$ {propext, Classical.choice, Quot.sound}), together with an independent audit of the track and two companion lanes, L247 and L248, whose certificates live in a separate file of 185 theorems on the same standard. Where the audit relabelled a rung, the relabelling is stated here and the original claim is not repeated. The track's own later lanes include an audit response that accepts three of four defects raised against it, including the missing matter coupling in its action; that correction is incorporated below.
+
+**What the Lean certificates certify.** Every theorem in the five files is an algebraic identity or inequality of the static problem: the phantom bracket, the sound-speed forms, the lensing-sum cancellation of the bimetric frame algebra ($(\Phi + c/2) + (\Psi - c/2) = \Phi + \Psi$), the identification itself (the isothermal density at $\sigma^2 = GM/2r_M$ equals $\sqrt{GMa_0}/4\pi G r^2$), the existence and uniqueness of the external-field cap radius. None of them certifies a dynamical statement: that the cold sector reaches the stated temperature, that any equilibrium is stable, or that any branch is selected. The word "certified" below means "the algebra is machine-checked", never more.
+
+# 1. The reading in one paragraph
+
+The radial acceleration relation is read not as a force law but as the hydrostatic equilibrium of a cold dark sector in every baryonic potential well: if that sector sits at the virial temperature of its well,
+
+$$\sigma^2 = \frac{G M}{2 r_M}, \qquad r_M = \sqrt{\frac{G M}{a_0}}, \qquad a_0 = \tfrac12 c\sqrt{G\rho_\Lambda},$$
+
+then an isothermal sphere at that temperature has exactly the deep-MOND phantom density, $\rho_{\rm ph} = \sqrt{GMa_0}/(4\pi G r^2)$. That equality is Milgrom's: the deep-MOND phantom of a point mass is a singular isothermal sphere, and the coefficient is one by the definition of $\sigma^2$. What would make it physics is a law that forces the sector to that temperature. The track's own formation calculation (rung 4) does not establish one, and a companion lane (L247) exhibits a constitutive law from which the identification follows but which still does not fix the amplitude. The reading is therefore a *candidate* whose central rung is open, with a two-component architecture (equilibrated inner phantom inside the external-field cap, free cold dust outside) that is proposed, not confirmed, and with one recorded failure in the Milky Way.
+
+# 2. The derivation chain, every rung labelled
+
+| Rung | Statement | Status |
+|---|---|---|
+| 0 | $s = c\sqrt{G\rho_\Lambda}$, one acceleration from the measured dark energy | MEASURED (cosmology) |
+| 1 | $a_0 = s/2$: the 2 is the integer $n = 2$ that 155 SPARC curves select with nothing fitted (rms 0.150 dex, the registered L232 value) | SELECTED BY DATA (G002; Lean `deep_mond_law`); the integer is not derived (rung 9) |
+| 2 | The interpolating function is the SPARC-selected member $\mu_2(x) = 1 - (1 + x/2)^{-2}$ | MEASURED (empirical shape) |
+| 3 | $r_M = \sqrt{GM/a_0}$ is the dimensionally unique galactic length | DERIVED + LEAN (`mond_length_unique`) |
+| 4 | The cold sector equilibrates at $\sigma^2 = GM/2r_M$ | **POSTULATED.** The N-body cited for this rung (K001) integrates Newtonian gravity in units where $r_M := 1$; $a_0$ never enters its equations of motion. Its own initial-condition runs give a relaxed half-mass radius $r_{50} = 1.06, 1.57, 3.17$ for start radii $R_0 = 2, 3, 6$, i.e. $r_{50} = 0.53\,R_0$: the confinement radius is the initial radius, not an attractor at $r_M$, and the settled dispersion is half the target. No formation calculation in the repository establishes this rung. |
+| 5 | The identification: the equilibrated density is the deep-MOND phantom, coefficient one | IDENTITY (Milgrom; Lean `equilibrated_is_phantom`). It is a consequence of rung 4, not evidence for it. L247 derives it instead from a constitutive law $p = P(a)$ (Section 5). |
+| 6 | The relation is tight: with a free stellar mass-to-light ratio per galaxy in [0.2, 1.2] the per-galaxy floor is 0.064 dex median, and the outer half is tighter (0.055) | MEASURED WITH A PER-GALAXY NUISANCE (G013). A nuisance minimised per galaxy lowers the residual by construction; 42 of 155 galaxies remain above 0.10 dex and the mean is 0.11. Not a confirmed prediction. |
+| 7 | The external-field cap confines the equilibrium where the internal field falls to the external one (Milky Way $\approx 6$ kpc; solar pairs unbound; clusters core-confined) | PROPOSED, WITH ONE RECORDED FAIL. G003 V5 is a failure in that lane's own reading: the capped phantom gives a Milky Way mass 17$\times$ below the measured $1.3 \times 10^{12}\,M_\odot$ within 100 kpc and a confined fraction 0.161 against the ledger's 0.14. The rescue, free cold dust outside 6 kpc, is a cold dark matter halo carrying 94% of the Milky Way's dark mass. The 6 kpc break is a prediction for Gaia DR4, not a confirmation. Section 5 adds that the cap lies below every radius the weak-lensing data reach. |
+| 8 | Clusters: the baryon-steepened isothermal gives residual slope $-1.478$ against the certified $-1.53$ (G008); the field solve supplies 2.8–3.1$\times$ baryons at $R_{500}$, robust to the kernel swap (G016, G017); the bulk of the cluster residual is free dust | PARTIAL. The shape and temperature are the reading's own; the amplitude is the framework's known $\approx 2\times$ cluster residual and is carried by cold collisionless matter, as in every other completion in the programme. |
+| 9 | $n = 2$ is a measurement; the count-statistics route (G009), the dimensional route (L239), the EFT route and four structural searches do not derive it | EMPIRICAL |
+| 10 | Flat $a_0(z)$ ($w = -1$): the deep-MOND Tully–Fisher zero point at $z \approx 2.5$, 0.00 dex against +0.33 for a rising scale, $\pm 0.13$ decides at 20:1 (G011; pre-registered, DOI 10.5281/zenodo.22563139) | REGISTERED TEST |
+| 11 | The solar neighbourhood: near-Newton wide binaries ($\gamma_v \approx 1.00$–$1.05$) with a period–separation signature (G006, G014, G018) | REGISTERED TEST (Gaia DR4) |
+
+Five checks in the track's lanes pass on a literal `True` and are not evidence (G001 V8, and one check each in G014, G015, G017, G020); the pass counts quoted in the lane outputs include them. The G003 lane prints 7/7 PASS while its own reading records V5 as a failure; the failure is the finding.
+
+# 3. What is dead: the force-law pincer
+
+Every relativistic *force-law* completion of the parameter-free curve is closed under an existing constraint, and these closures stand independently of the reading above:
+
+- **Modified gravity (AQUAL/QUMOND):** the Cassini external-field quadrupole is 6.44$\times$/7.63$\times$ the Park 2026 ceiling on the two footings (L243, exact AQUAL; 5.45$\times$/6.29$\times$ on the anchored DHF instrument, G004/G005). The derived length $\xi = r_M$ does not rescue it (G005).
+- **Modified inertia:** lensing-dead by conformal cancellation (L241).
+- **Disformal/vector (TeVeS/AeST class):** preferred-frame $\alpha_1 = O(1)$, kernel-independent (L244; DC-013/DC-019).
+- **Bimetric/composite:** lensing-dead by exact frame algebra (G007, 11 Lean theorems): the conformal lever cancels in the lensing sum, the disformal lever is inert in both channels, the scalar's stress channel is $2 \times 10^{-6}$ short.
+- **The photocount mechanism:** the variance floor it predicts ($\approx 0.3$ dex) is three times the observed scatter (G009).
+- **The strictly bound solar cloud:** excluded by DR3 wide binaries (G006).
+- **Pure power-law cluster fluids:** acausal at the edge (G008).
+- **A clock-derived $\kappa$:** the Clockmaker's Dilemma (G001, 9 Lean theorems).
+
+# 4. The equilibrium architecture, and its recorded tensions
+
+The reading's architecture is one field equation in three regimes: galaxy outskirts (the deep branch, the relation itself), clusters (the transition branch, supplying 2.8–3.1$\times$ baryons at $R_{500}$ with the observed slope, the rest carried by free dust), and the solar system (inert, corrections of order $10^{-10}$). Two tensions are recorded with their instruments, exactly like the successes:
+
+- **Growth (G020):** the reading inherits, through its field equation, a raise of $\sigma_8$ by 1–3% over Planck-$\Lambda$CDM ($S_8 = 0.843$–$0.847$ against 0.834) and of $f\sigma_8$ by 1–4% at $z = 0.3$–$1.0$. That is opposite in sign to the direct-lensing $S_8$ values; the gate is open and killable by KiDS, DES and DESI.
+- **Cluster amplitude (G012, G016):** uncapped, the pure isothermal phantom over-supplies by 1.9–2.2$\times$; capped, it under-supplies by the known residual. The cap is doing the work, and what it leaves is cold collisionless matter.
+
+# 5. The companion result, and the test that decided it
+
+Lane L247 exhibits a covariant, non-barotropic constitutive law for the cold sector, $p = P(a)$ with $a^\mu = u^\nu\nabla_\nu u^\mu$ the medium's own proper acceleration, matched so that its hydrostatic state in a spherical baryon field is any kernel's phantom exactly (Lean, with the kernel left undetermined). Its deep limit is $p = g^2/8\pi G$, the gravitational field's energy density; hydrostatic equilibrium together with Poisson then forces the flat curve $g = C/r$ with $C$ free, and $p/\rho = C/2$, so the isothermal identification of rung 5 becomes a consequence rather than a postulate. On the homogeneous background the pressure is exactly zero and second order at linear order ($w_{\rm eff} \approx 10^{-9}$ at recombination), so the cosmology is $\Lambda$CDM's with nothing tuned. It does not fix the amplitude: a supply-limited inner edge gives Tully–Fisher exponent 3, excluded at $\ge 5\sigma$ on 140 SPARC curves, so the $a_0$ kink must be imposed and $\kappa$ remains the measured boundary condition of the zero-mode theorem.
+
+That lane also named the test that would decide it. Lane L248 has now run that test, against the lane's own candidate.
+
+**The closed form.** If the phantom producing a galaxy's weak-lensing signal is real mass drawn from a finite budget $B = M_{\rm dark}/M_{\rm bar}$, the enclosed mass freezes once the budget is spent, at $r_t = (1+B)\,r_M$. The baryonic acceleration there is
+
+$$g_{\rm bar,t} = \frac{a_0}{(1+B)^2},$$
+
+**independent of the galaxy's mass**, so every galaxy in a stacked measurement must turn at the same acceleration. Beyond the turn the frozen mass gives $g_{\rm obs} = (1+B)\,g_{\rm bar}$: the relation passes from log-slope $\tfrac12$ to log-slope 1, continuously at $a_0/(1+B)$, and strictly downward. All four statements are machine-checked.
+
+**The measurement.** Against the published KiDS-1000 excess-surface-density profiles of Brouwer et al. (2021), converted by that paper's own relation — which is exact for the $r^{-2}$ profile under test — and using the full covariance, the log–log slope over the eight bins below $10^{-13}\,\mathrm{m\,s^{-2}}$ is
+
+$$0.537 \pm 0.026,$$
+
+which is $17.6\sigma$ from the truncated value 1 and $1.4\sigma$ from $\tfrac12$. The relation has not turned. Against the truncated model the comparison gives $\Delta\chi^2 = +349$ at the abundance-matching budget (Moster et al. 2013, $B = 32$), $+970$ at the cosmic dark-to-baryon ratio, and $+75$ even at a stress budget $B = 100$; both $a_0$ footings agree. Radius-resolved, the enclosed lensing mass inside 1 Mpc already exceeds the galaxies' entire abundance-matching budget by factors 1.5, 4.1 and 8.7 in the three narrow stellar-mass bins.
+
+**What it kills, our own candidate included.** That excess is real mass in the universe — in the standard picture the two-halo term of correlated neighbours — but it is not bound to the lens, so no reading whose lensing phantom is the galaxy's own equilibrated sector may claim it. This removes L247's medium as the source of the lensing signal, and with it every reading in which the phantom carrying the lensing *is* the galaxy's own bounded sector. MOND as a force law is untouched: no mass is there, so no budget applies. The capped equilibrium reading of rung 7 is also untouched, and the same computation says why — the cap for a lens of the sample's median mass sits at 5.8 kpc, below the innermost lensing bin at 35 kpc, so it covers none of the measured range. That reading evades the test by making no prediction where the data are, at the stated price that ordinary cold collisionless matter carries all of the signal these data measure.
+
+**Two limits on this result.** The parameter-free square-root branch itself fits these data poorly in absolute terms ($\chi^2/\mathrm{dof} = 13.9$ canonical, $9.5$ alternative), so every verdict here is a *relative* comparison of two models on identical data and covariance, not a claim that either describes the data well. And dropping the seven lowest-acceleration bins leaves only one bin below the turn, whereupon the discrimination collapses to $\Delta\chi^2 = +5$: the verdict rests on the low-acceleration bins, because that is the only place a mass-budget truncation can appear.
+
+# 6. What can be claimed, and what cannot
+
+Claimable: the parameter-free curve and the data's selection of $n = 2$ (with L230–L233); the complete force-law pincer, with the bimetric door closed by a Lean certificate; the cluster shape and temperature from the isothermal phantom; the external-field cap as a predictive architecture with a stated Milky Way break radius; the period–separation signature as a novel observable; from L247, a constitutive law from which the identification follows; and, from L248, the mass-independent truncation acceleration $a_0/(1+B)^2$ together with its measurement, which excludes the whole real-mass-phantom class as an explanation of weak lensing.
+
+Not claimable: a relativistic force-law theory of gravity (proven unavailable on this evidence); a derivation of the equilibrium temperature (rung 4 is postulated); a derivation of $n = 2$ or of $\kappa$; cluster dark-matter-free status (free dust carries the cluster bulk and the CMB third peak, the Lyman-$\alpha$ forest and the merging-cluster gate force the same cold collisionless object); the dissolution of the galactic double-counting liability (it would follow from rung 4, which is not established); wide-binary velocity boosts (excluded by DR3); that the equilibrated sector produces the weak-lensing signal (excluded in Section 5); and anything favouring this framework over $\Lambda$CDM.
+
+# 7. The tests that decide it
+
+| Test | Prediction | Decides | When |
+|---|---|---|---|
+| Deep-MOND Tully–Fisher zero point, $z \approx 2.5$ | 0.00 dex (flat $a_0$) vs +0.33 (rising) | the $a_0$–$\Lambda$ tie, at 20:1 | JWST/ALMA, registered |
+| Gaia DR4 wide binaries | $\gamma_v \approx 1.00$–$1.05$, binned profile stated (G018), period–separation signature | the unbound-cloud architecture | Dec 2026, registered |
+| Gaia DR4 dark-density mapping | break at $\approx 6$ kpc; inner profile the zero-parameter phantom | the external-field cap | Dec 2026+ |
+| $S_8$ and $f\sigma_8$ | $S_8 = 0.843$–$0.847$, $f\sigma_8$ raised 1–4% | the growth gate | KiDS/DES/DESI, now |
+| Stacked lensing profile, mass budget | turn at $g_{\rm bar} = a_0/(1+B)^2$, slope $\tfrac12 \to 1$ | every reading whose lensing phantom is the galaxy's own bounded sector | **RUN (L248): no turn, slope $0.537 \pm 0.026$, class excluded** |
+
+# 8. Reproduction
+
+Lanes `glm53_push/G001`–`G027_*.py` with `.out` and `_results.json`; Lean certificates in `glm53_push/lean/` (EQUILIBRIUM_THEORY 12, G001 9, G002+G003 4, G007 11) and the companion blocks `medium_*` and the truncation theorems in `fable_independent_2026/lean_2026/Mondlean.lean` (185 theorems, zero `sorry`); the audit record and lanes L247–L248 in `fable_independent_2026/`. The lensing data are the public Brouwer et al. (2021) release. Compile with `lake env lean` against the repository's Mathlib.
+
+One caveat on priority within the later lanes: the vertical-slab "column identity" reported there — that the vertical boost is exactly 2 where the baryon column equals $a_0/8\pi G$ — is a restatement of Milgrom's critical surface density $a_0/2\pi G$ (1989), which already appears throughout this repository. It should not be presented as new.
+
+*This document states what is earned, what is measured, what is dead, and what will decide it. It does not state that a theory is closed.*
