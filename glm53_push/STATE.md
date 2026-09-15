@@ -179,18 +179,38 @@ digit-for-digit.
 - The interval-theorem pattern: `G036_formal_extras.lean` (41 registered
   numbers as marked intervals, π bounds).
 
-## LEAN INVENTORY (glm53_push/lean/)
+## LEAN INVENTORY (glm53_push/lean/) — 12 certificates, 104 theorems (audited 2026-09-14)
 
-EQUILIBRIUM_THEORY.lean (7-thm spine) · G001 (9) · G002_G003 (4) ·
-G007_bimetric (11) · G024_slab (9+1) · G031_fluid_action · G036_formal_extras (9) ·
-G039_horn_a_clean + G039_radial_scatter (14) · G055_frozen_scalar (9,
-`d0f3d645f`) · G058_omega_from_a0 (6, `516693473`) · G047_efe_cap (6: mu2_sq,
-mu2_pos, solve_well_posed, external_field_lifts, efe_floor_law_exact,
+EQUILIBRIUM_THEORY.lean (12) · G001 (8) · G002_G003 (4) · G007_bimetric (11) ·
+G024_slab (9) · G031_fluid_action (13) · G036_formal_extras (9) ·
+G039_horn_a_clean (6) + G039_radial_scatter (8) · G055_frozen_scalar (12,
+`d0f3d645f`) · G058_omega_from_a0 (6, `516693473`) · G047_efe_cap (6, `d21aee425`:
+mu2_sq, mu2_pos, solve_well_posed, external_field_lifts, efe_floor_law_exact,
 cap_uniqueness — salvaged from the iteration-capped draft; numeric anchors
 trimmed with the named Mathlib blocker) · plus hy4's H-series and
 grok's K-series certificates. Every committed certificate: zero `sorry`,
 axioms ⊆ {propext, Classical.choice, Quot.sound}, verified by independent
 compile where marked.
+
+## THE REFEREE'S ATTACK LIST (paper defense, summary)
+
+Every major objection a referee can raise, with response status — the full
+document is `REFEREE_ATTACKS.md` in this directory:
+
+| attack | status |
+|---|---|
+| "MOND relabeled" | ANSWERED by derivation: a₀ and the chain are theorems from one constant (G019/G031/G058), not fits |
+| Cassini quadrupole | kernel-only realization excluded (5.45×/6.29×, G005/L243); Horn A completion α₁=α₂=0 BY ARCHITECTURE (G032); residual quadrupole at finite ξ: registered |
+| lensing (L248 audit) | ANSWERED: no reading where the phantom carries lensing; the charge dust carries it as matter (H012/G017) |
+| wide binaries (Banik+24 19σ) | strict bound-cloud reading EXCLUDED (G006, 1.289 > 1.129); period–separation signature; DR4 bands registered |
+| Wang+ 2026 13σ vertical | ANSWERED with the discriminator (G042): their test is plain MOND; slab linear in their window; 3 DR4 signatures registered |
+| "clusters need more mass" | two-regime resolution (H012); amplitude partition does NOT close (G059 corrective) — residual = free dust = astrophysical normalization (as ΛCDM); falsifier = core slope (−1 vs ~−1.5) |
+| the RAR sag | RESOLVED to observational channel (G057): asymmetric drift closes it (−0.031 dex/dex); calibration test = independent HI σ_z |
+| S₈ / growth | the theory RAISES growth (+1–4%); G020 OPEN-UNCONFIRMED; DESI DR2 the arbiter |
+| a(z) | armed: z≈2.5 BTFR, 0.00 vs +0.33 dex at ±0.13 (20:1) |
+| n = 2 empirical | stated plainly; four structural derivation routes closed |
+| alt-footing Ω_Λ mismatch (0.9942) | carried as G052's registered FAIL row — one-footing-closes stated explicitly |
+| reproducibility | every lane seeded; master table replay 19 PASS/4 CITED/0 FAIL at 2% drift (G051) |
 
 ## WHAT REMAINS OPEN (honest, at print time)
 
