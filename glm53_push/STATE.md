@@ -168,6 +168,10 @@ digit-for-digit.
 
 - `glm53_push/THE_EQUILIBRIUM_THEORY.md` — the capstone.
 - `deepseek_push/THEORY.md` + MNRAS skeleton + `PREDICTIONS.md` (E1–E10).
+- **`glm53_push/G051_master_table.*`** (`9261f3df9`) — THE MASTER TABLE:
+  23 rows, every registered number recomputed from certified constants on
+  both footings, 19 PASS / 4 CITED / 0 FAIL at the 2% drift gate (worst
+  +0.48%); the paper's numbers section in one artifact.
 - `glm53_push/G057_cluster_prediction_table.*` — the cluster section table.
 - `glm53_push/G029_theory_vs_lcdm_visual.html` — the 4-panel visual.
 - `glm53_push/G033_build_fluid_bundle.py` + website suite (deployed,
