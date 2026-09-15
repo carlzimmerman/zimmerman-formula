@@ -13,6 +13,11 @@ from the action with no tuning. In clusters the same charge appears in two
 regimes: cold dust (c²_s = 0) in the Newtonian interior, equilibrated phantom
 in the MOND outskirts, with the phantom share rising through a₀ (measured,
 G050 V4) and the core-slope −1 (NFW) vs ~−1.5 (this theory) as the falsifier.
+The partition function is now TESTED and honestly OPEN: the certified μ₂
+kernel's sub-a₀ branch delivers ~6/10 of the cluster deficit at 420 kpc with
+zero free parameters (a genuine parameter-free lower bound on the theory's own
+cluster contribution, G059 corrective `2a5bb35bf`), and the residual is the
+free dust's astrophysical-normalization share.
 Cosmology is ΛCDM-exact on the frozen branch (w = −1, c_s² ∈ [1/2, 1)),
 φ̇ = 0 is an attractor, and the registered growth raise carries over inside
 band. One number remains empirical (n = 2: four structural routes closed);
@@ -98,9 +103,17 @@ digit-for-digit.
    core slope NFW → −1 vs this theory → ~−1.5** (kill D2 registered).
 5. **G057 cluster table** (`86bb771ea`): 12 X-COP clusters × 2 footings, the
    paper's cluster section table.
-6. **G059 (in flight)**: the partition function — three candidates (kernel
-   f(g/a₀), virial, r_M-surface) tested against G050's data; closes the last
-   theoretical gap if a candidate lands the median ratio in [0.8, 1.3].
+6. **G059 (TESTED — honestly OPEN)**: the partition function ran three
+   candidates (kernel f(g/a₀), virial, r_M-surface) against G050's data on
+   both footings. NO non-degenerate candidate closes [0.8, 1.3]: KERNEL
+   0.571/0.615 (the nearest miss, zero free parameters — the certified μ₂
+   kernel's sub-a₀ branch), VIRIAL 0.353/0.389, r_M 0.175/0.190 (binary,
+   information-free on this data). The kernel's ~6/10 delivery is a genuine
+   parameter-free lower bound on the theory's own cluster contribution; the
+   residual is the free dust's astrophysical-normalization share, exactly
+   H012's two-regime statement. A first commit (`5429900a9`) carried a
+   solve_rM units bug (missing *MSUN) that returned a vacuous 1.000 by
+   identity; caught in review, fixed and re-run (`2a5bb35bf`).
 
 ## THE HONEST RECORD — kills, anomalies, open items
 
@@ -165,9 +178,11 @@ compile where marked.
 
 ## WHAT REMAINS OPEN (honest, at print time)
 
-1. **The cluster partition law** — G059 in flight; if no candidate closes,
-   the amplitude normalization is one astrophysical number (as in ΛCDM),
-   stated as such.
+1. **The cluster partition law** — G059 tested three candidates and NO
+   non-degenerate one closes; the kernel's ~6/10 delivery is the parameter-free
+   lower bound, the residual is the free dust's astrophysical normalization
+   (as in ΛCDM), stated as such. The amplitude stays NOT derived; the shape
+   and the rising-share signature ARE (G008/G050/H012).
 2. **The sag mechanism** — G049's escalation stands; G057 sweeping.
 3. **Relaxation onto the equilibrium** (G035's registered follow-up) —
    scalar-mediated N-body.
