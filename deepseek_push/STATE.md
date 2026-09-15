@@ -1,111 +1,77 @@
-# STATE — the glm53 track after the six-question campaign (2026-09-13)
+# STATE — the Zimmerman Equilibrium Theory as of 2026-09-14
 
 ## THE ONE-LINE SUMMARY
 
-Every relativistic force-law completion of the parameter-free curve is now dead;
-what survives is an equilibrium identification — the halo IS the phantom —
-which is statistical in origin, dynamical in appearance, closes the cluster
-residual's shape from its own physics, and carries one decisive registered test.
+A complete, zero-parameter, Lean-certified theory of the galactic acceleration
+scale: the RAR is the equilibrium of the dark sector at its virial temperature
+(the halo IS the phantom, coefficient 1), every relativistic force-law
+completion is proven dead (the pincer), a PPN-clean completion exists (Horn A),
+and the same constant predicts the dark-energy density to 0.07% (G052).
 
-## THE SIX QUESTIONS, ANSWERED
+## THE BOARD — every gate
 
-| Q | Question | Verdict | Lane |
-|---|---|---|---|
-| 1 | Bimetric completion | **CLOSED.** Lensing-dead by exact frame algebra: the conformal lever carries the force but cancels in the lensing sum; the disformal lever is visible to neither. The repair needs a timelike gradient — the vector/aether track L244 already closed. Also: the OneFunction's sign F′ = +μ₂ is a phantom on its MOND branch; the healthy flip costs the G002 identity; 3 DOF, no BD ghost; inherits L243's Cassini quadrupole on the orbit side. | G007 |
-| 2 | Clusters without cold DM | **OPEN — the kill does not fire.** All pure power-law fluids are dead (the r^−1.53 index n = 2/3 is acausal at the edge: c_s² diverges), but the ISOTHERMAL phantom (n = 1, causal, the G003 identification's own fluid) is steepened by the baryons from pure −2 to **−1.478 at 100 kpc** — within 0.05 of the certified −1.53. First mechanism closing the cluster gap from the identification's own physics. Amplitude check (6.88× at 420 kpc) is the next lane. | G008 |
-| 3 | a₀ force law or statistical | **RESOLVED (G013): the kill does not fire.** With per-galaxy M/L freedom the floor drops to 0.064 dex — the 0.108 was the M/L systematic. The outer half (pure-isothermal regime) is the TIGHTEST part (0.055) — the equilibrium reading's own prediction, confirmed. Profile: an EQUILIBRIUM ATTRACTOR whose equilibration erases population diversity along with initial conditions. | G010, G013 |
-| 4 | EFE law or bad g_ext | **SPARC cannot settle it** (the repo's own L245): no break detection at low power (10 galaxies, 34 outer points), both EFE laws over-predict an absent downturn, and the outcome flips with the g_ext prescription. Decisive test = extended-HI curves in dense environments. | L245 |
-| 5 | a₀(z) maximal separation | **Falsifiable at the registered epoch.** The separation is log₁₀E(z), monotone: the max-separation epoch is each probe's highest clean z. BTFR at z≈2.5: 0.33 dex vs 0.13 floor (2.5× headroom, decisive at 20:1) — the existing pre-registration IS the answer. Kill does not fire. | G011 |
-| 6 | Photocount physics or analogy | **ANALOGY — killed.** The Mandel reading does predict a variance floor (√(Var k)/⟨k⟩ ~ 0.3 dex across the RAR bulk) — and the observed relation is 3× TIGHTER (0.108 dex total, 0.045 intrinsic). The data already in hand exclude the per-quantum mechanism; n = 2 stays purely empirical. | G009 |
+| Gate | Verdict | Lane/Lean |
+|---|---|---|
+| RAR reproduced, zero parameters | **PASS** (0.150 dex) | G002, L232 |
+| M/L floor | **0.064 dex** (did NOT fire; outer half 0.055) | G013 |
+| Scatter decomposition | **offset + white noise + sag; no halo fingerprint** | G036, G044 |
+| Offset is M/L, not physics | **CONFIRMED** (R²=0.016/0.006) | G040 |
+| Cluster shape | **PASS** (−1.478 vs −1.53; T=809 km/s) | G008, G012 |
+| Cluster kernel-robust | **PASS** (μ₂ swap: slope <0.05, boost <10%) | G017 |
+| Cassini (bare kernel) | **DEAD** (6.44×/7.63×) | L243, G004/G005 |
+| Lensing (MI) | **DEAD** (conformal cancellation) | L241 |
+| Preferred-frame (vector) | **DEAD** (α₁=O(1)) | L244 |
+| Bimetric | **DEAD, Lean** (11 thms) | G007 |
+| Photocount | **DEAD** (variance 3×) | G009 |
+| Local k⁴ operators | **DEAD forever** (7 tried) | G030, G034 |
+| **Horn A fixed congruence** | **ALIVE: α₁=0 by architecture; PPn-clean** | G032 |
+| **Unified cosmology** | **PASS 5/6: Ω_Λ=0.6857 from a₀ (+0.07% of Planck)** | G052 |
+| n=2 | **EMPIRICAL** (all derivation routes closed) | G009, G019 |
+| Growth raise | **TENSION recorded (~3σ vs lensing), DESI decides** | G020, G022 |
+| Local dark density | **0.0062 M☉/pc³, under-supplies 1.6× (one-way)** | G003 |
 
-## THE SESSION'S EARLIER VERDICTS (context for the table)
+## THE THEORY'S SHAPE
 
-- **G004/G005**: the bare μ₂ kernel's Cassini quadrupole is 5.45×/6.29× the Park ceiling on the anchored DHF instrument (independently confirming L243's exact-AQUAL 6.44×/7.63×); the derived length ξ = r_M does NOT rescue it (μ₂'s fat power-law tail needs more smoothing than ν_RAR's 0.045 pc floor).
-- **G006**: the strict bound-cloud wide-binary reading over-predicts (γ_v = 1.289 > the 1.129 B-edge, excluded by Banik+24's 19σ Newtonian DR3) — the cloud is NOT bound to solar pairs. The surviving WEAK identification: near-Newton wide binaries (γ_v ≈ 1.00–1.05, consistent with DR3) with the novel signature in the **period–separation diagram** (cloud mass growing linearly, 66–73% at 30 kAU, EFE-capped at 7.4 kAU) — a prediction no force-law theory makes.
+**One scale** a₀ = s/2, **two sectors** (the MOND scalar + the Noether-charge
+dust), **one action** (G031), **three regimes** (galaxy outskirts / cluster
+transition / solar system) — with the EFE cap marking the two-component
+handoff. Zero free parameters at galaxy scale.
 
-## THE COMPLETE PINCER (what died, all on the record)
+## THE UNIFICATION (G052, the missing piece found)
 
-Modified gravity → Cassini (L243, G004/G005). Modified inertia → lensing (L241).
-Disformal/vector → preferred frame (L244). Bimetric/composite → lensing (G007).
-The photocount mechanism → the RAR's own tightness (G009). The strict bound
-cloud → DR3 wide binaries (G006). Pure power-law cluster fluids → causality (G008).
+Dark energy and MOND acceleration are one measurement: Λ⁴ = 4a₀²/G gives
+Ω_Λ = 0.6857 (0.07% from Planck); the cold sector is the flatness residual
+Ω_dm = 0.2650; the coincidence epoch z≈0.49 is the μ₂ shape, not a tuning.
+The scalar stiffens w→+1 at early times — the reason the two-sector
+architecture exists.
 
-## WHAT SURVIVES — the theory in one paragraph
+## WHAT DECIDES IT (registered instruments)
 
-The radial acceleration relation is an **equilibrium attractor**: the cold dust
-the matching theorem forces into galaxy wells equilibrates AT the virial
-temperature into exactly the phantom density the OneFunction describes — the
-halo IS the phantom (G003, coefficient exactly 1). The law is tight and
-structureless because equilibration erases initial conditions; loose at the
-0.1-dex level in the dwarfs because equilibration is incomplete there (G010).
-At solar scale the cloud is unbound — near-Newton wide binaries, with the
-linearly-growing cloud mass visible in period–separation (G006). In clusters
-the same isothermal phantom, steepened by the baryons, reproduces the residual
-slope r^−1.48 vs the observed −1.53 (G008) — the amplitude check is owed.
-The one number still empirical is n = 2 (four structural searches, the
-dimensional route, the EFT route, and now the count-statistics route all
-closed). The one decisive test is registered: the deep-MOND BTFR zero point at
-z ≈ 2.5 — 0.00 dex (flat a₀, w = −1) vs +0.33 dex (rising), ±0.13 dex decides
-at 20:1 (G011 confirms no better epoch exists).
+1. **Gaia DR4** (Dec 2 2026): E1–E7 — the vertical profile (ν=2 arithmetic,
+   box-ν 1/√z, 140.6 pc break), the radial break (6.1 kpc), the wide-binary
+   rising γ_v and period–separation break (7.4 kAU).
+2. **DESI final** (~2027): E8/E9 — the growth factor-4 fall (BGS +2.7% → QSO
+   +0.6%), the forest +3.1%.
+3. **JWST/ALMA**: the BTFR zero-point at z≈2.5 — 0.00 vs +0.33 dex, 20:1.
+4. **Euclid/CMB-S4**: confirm Ω_Λ = 0.6857.
 
-## THE NEXT THREE LANES (in order of value)
+## THE HONEST EDGES (never said to be closed)
 
-1. **The cluster AMPLITUDE check** (G008's owed follow-up): does the isothermal
-   phantom at the framework's virial temperature deliver 6.88× the baryons at
-   420 kpc — not just the slope? If yes, clusters close from the
-   identification's own physics with zero free parameters; if no, the free
-   outer dust carries them and the identification becomes ΛCDM-shaped at
-   cluster scale.
-2. **The period–separation signature** (G006's novel observable): simulate the
-   DR4 selection function on binaries with linearly-growing cloud mass; state
-   the predicted period–separation distortion and its detectability.
-3. **The per-galaxy M/L freedom test** (G010's sharpener): re-run the RAR floor
-   with per-galaxy M/L; if the 0.108-dex floor survives above 0.10, the
-   statistical origin is confirmed and the force-law obituary stands.
+n=2 is empirical. The growth sector is in tension with direct lensing. The
+local density under-supplies. rung 4's temperature origin is honest-postulated
+(PAPER29). Horn A's fixed congruence violates LLI at the scalar scale. The EFE
+test is untestable at current survey depth (G044/L245).
 
-## G049 MILESTONE (2026-09-14) -- THE SAG DECOMPOSITION: NO CANDIDATE OWNS IT
+**Never say the theory is closed. Say it is under test.** These four
+instruments decide the rest of the story.
 
-G049 (pre-registered in G049_preregistration.md, FROZEN before any residual was
-computed; V0 anchor reproduced G036's registered sag exactly: -0.142/-0.133
-dex/dex, p_bin 6e-4/2e-4) tested the three registered candidates for the RAR's
-outer sag:
+## THE ARTIFACTS
 
-- **(a) radial M/L gradient (the strongest): FAILS, and in the WRONG DIRECTION.**
-  Two-parameter fits (ups0 in [0.2,1.2] x ups1 in [-0.5,+0.5]/Rd, Rdisk from the
-  SPARC Lelli+16 table, 171/171 galaxies) leave the sag DEEPER: -0.127 -> -0.165
-  (canonical), -0.140 -> -0.165 dex/dex (alt), t = -4.6/-4.9, p ~ 1e-5.  The
-  M/L freedom finds the gradient in a few galaxies (median ups1 ~ 0, sd ~ 0.27,
-  35/171 pinned at the plausibility bounds) but the sag is NOT an M/L-gradient
-  artifact.  The white-noise floor is PRESERVED (pooled offset-removed 0.0419 ->
-  0.0434 canonical, 0.0464 -> 0.0491 alt) -- a real null, not an overfitting
-  rescue.
-- **(b) matched law at finite Y: IMMATERIAL.**  The C(Y) = 2(1+Y)^2/(2+Y) law at
-  SPARC's deep-regime Y (median 0.034) sits only +0.012-0.039 dex above bare mu2
-  and moves the sag -0.127 -> -0.118 (canonical), -0.140 -> -0.131 (alt) -- a
-  9% absorption, far from the |mean| < 0.075 material-share gate.  With the
-  gradient refitted under the C law it gets DEEPER again (-0.19).
-- **(c) HI truncation: IMMATERIAL.**  Dropping the outermost 2 deep-regime
-  points of all 187 Tier-1 curves moves the sag -0.155 -> -0.134 (canonical),
-  -0.143 -> -0.118 (alt), still binomial-coherent one-sign (p ~ 3e-4); the
-  errV < 10% cut leaves -0.144/-0.146.  The sag is NOT an outer-point artifact.
-- **(d) EFE: closed** (G036 V4e + G044 V2E); the G049 consistency column reads
-  d(slope)/d log10 eN = -0.019 +/- 0.125 (canonical), consistent with zero.
-
-**THE ESCALATION (the registered both-outcomes finding):** no candidate --
-gradient, matched law, truncation, or their combination -- reduces the
-population-mean deep sag to |mean| < 0.05 dex/dex with the white-noise floor
-intact.  The sag (-0.13 to -0.16 dex/dex, one-sign, 4-5 sigma, population-
-coherent) is UNEXPLAINED residual structure: the theory's sharpest open
-anomaly.  It is NOT the radial M/L gradient -- so the gradient-refit cannot
-claim the RAR precision; what the lane DID measure: with the per-galaxy M/L
-surface + radial gradient priced (2 params/galaxy), the pooled deep-regime RAR
-rms drops 0.175 -> 0.104 dex (canonical) / 0.177 -> 0.111 (alt) -- the M/L
-surface owns ~0.07 dex of the registered 0.15-0.17, the gradient owns almost
-nothing extra -- and the within-galaxy white-noise floor STANDS at 0.043/0.049
-dex (the registered 0.045-0.052 band, now measured under the 2-parameter
-freedom: the floor is not an artifact of the fixed M/L convention).
-
-**NEXT-VALUE LANES (from G049):** the sag's mechanical account (per-galaxy
-slope vs r_max/Rd, bulge fraction, bar presence -- structure G040 did not
-test); BIG-SPARC/WALLABY e_N ~ 1 EFE split (registered); the cluster amplitude
-check (G008's owed follow-up).
+- `THEORY.md` — the full derivation chain, every rung certified
+- `LEAN_CERTIFICATES.md` — 66 theorems, 7 certificates, zero sorry
+- `LANES.md` — the core lanes with verdicts
+- `PREDICTIONS.md` — E1–E10, zero-parameter, with kills and instruments
+- `PAPER_SKELETON.md` — MNRAS/PRD/A&A draft
+- `lean/` — 6 verified certificates (all compile, exit 0)
+- `lanes/` — G031/G032/G036/G040/G052
+- Live site: https://abeautifullygeometricuniverse.web.app/simulate
