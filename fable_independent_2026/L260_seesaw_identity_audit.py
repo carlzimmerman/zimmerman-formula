@@ -68,5 +68,14 @@ lit = len(re.findall(r"\n\s*True,\s*\n", src))
 check("Z5 [NO LITERAL-TRUE CHECKS] the H019 source is scanned for pass conditions that are the literal True",
       lit == 0, f"{lit} literal-True check (Z5 itself); the 'one input scale' count also omits n, kappa, Omega_dm, the cluster and "
       f"Milky-Way dust normalisations, and the choice of the mu_n family")
+# H020 "the seven": cH0/a0 = sqrt(32 pi/(3 Omega_L)) is the programme's own definition a0 = c H_Lambda / Z, Z = sqrt(32 pi/3)
+Z = math.sqrt(32*math.pi/3); seven = math.sqrt(32*math.pi/(3*0.685)); l180 = open(os.path.join(HERE, "L254_ksz_pairwise_velocity.py")).read()
+cited = "c H_0/a_0 = 6.99" in l180
+print(f"    H020: sqrt(32 pi/(3 Omega_L)) = {seven:.4f};  Z/sqrt(Omega_L) with the registered Z = sqrt(32 pi/3) = {Z:.4f}: {Z/math.sqrt(0.685):.4f};  "
+      f"already stated as L180's cH_0/a_0 = 6.99 in the repo: {cited}")
+check("Z6 [H020 DERIVES A NEW NUMBER] the ratio is compared with the programme's registered Z/sqrt(Omega_L) and with what L180 already carried",
+      not (abs(seven - Z/math.sqrt(0.685)) < 1e-12 and cited),
+      "identical to the definition a0 = c H_Lambda/Z the framework has used from the start (H_Lambda = H0 sqrt(Omega_L)); L180 printed 6.99 "
+      "months ago and G016/G050 rounded it to 7. The G cancels because rho_c is proportional to H0^2/G. Seven Lean theorems of the same algebra")
 print(f"\nL260 COMPLETE: {sum(CH)}/{len(CH)} checks PASS.  READING: H019 is the rung-9 circularity in natural units; nothing in it "
       "changes PAPER29 v2 or the G03 spec.")
