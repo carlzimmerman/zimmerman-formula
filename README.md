@@ -338,6 +338,7 @@ Plain text on purpose, so that titles and DOIs are searchable. Versions of one r
 
 | date | DOI | title | version |
 |---|---|---|---|
+| 2026-09-15 | [10.5281/zenodo.22776494](https://doi.org/10.5281/zenodo.22776494) (concept 22753164) | The Equilibrium Reading of the Radial Acceleration Relation: What Is Derived, What Is Measured, What Is Dead | v3 (adds the natural-units form a₀ = Λ_DE²/(2M_Pl) stated as notation, and the L260 audit of H019/H020) |
 | 2026-09-15 | [10.5281/zenodo.22772710](https://doi.org/10.5281/zenodo.22772710) (concept 22753164) | The Equilibrium Reading of the Radial Acceleration Relation: What Is Derived, What Is Measured, What Is Dead | v2 (adds Section 8, the L258 audit of the post-v1 closure claims: none landed, v1 labels stand; and L257 on what the lensing relation's shape tests) |
 | 2026-09-14 | [10.5281/zenodo.22753165](https://doi.org/10.5281/zenodo.22753165) (concept 22753164) | The Equilibrium Reading of the Radial Acceleration Relation: What Is Derived, What Is Measured, What Is Dead | v1 |
 | 2026-09-13 | [10.5281/zenodo.22735193](https://doi.org/10.5281/zenodo.22735193) (concept 22735192) | A Photocount Reading of the Interpolating Function, and a No-Go for Deriving Its Normalisation from a Clock | v1 |
