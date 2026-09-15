@@ -1,5 +1,9 @@
 #!/usr/bin/env python3
-"""G059 -- THE PARTITION FUNCTION: the phantom/free-dust partition, DERIVED.
+"""G059 -- THE PARTITION FUNCTION: the phantom/free-dust partition tested three ways.
+HONEST VERDICT: the certified kernel's sub-a0 branch delivers ~6/10 of the deficit at
+420 kpc; NO non-degenerate candidate reaches the measured mass [0.8, 1.3] band; the
+residual is the free dust's registered (astrophysical-normalization) share, consistent
+with hy4's H012 two-regime resolution.
 
 THE GAP.  G050 (the split architecture): with the EFE cap at cH0 the split
 delivers 0.41x/0.41x the measured mass at 420 kpc; the deficit (0.59x M_b) is
@@ -152,17 +156,25 @@ def dlnM_dlnr(c, r):
     return out
 # ================== STEP 1 -- the per-bin partition shares, all three candidates
 def solve_rM(c, a0):
-    """r_M: G M_hse(<r)/r^2 = a0, bisected on the measured profile."""
-    r_hm, M = c["r_hm"], c["M_hse"]
-    lo, hi = float(r_hm[0]), float(r_hm[-1])
-    f = lambda r: math.log(G * loginterp([r], r_hm, M)[0] / (r * KPC) ** 2 / a0)
-    if f(lo) < 0:
-        return lo, "all_sub"          # the whole profile already sub-a0
-    if f(hi) > 0:
-        return hi, "beyond"           # transition outside the profile
+    """r_M: G M_hse(<r)/r^2 = a0, evaluated on the measured profile grid.
+
+    CORRECTIVE NOTE: masses arrive in Msun -- the * MSUN conversion is
+    MANDATORY here.  The original G059 draft omitted it, computing g ~ 2e30x
+    too small, forcing ALL 12 clusters into 'all_sub' and the rM-delivered
+    amplitude to 1.000 by identity.  Caught in review; fixed in place."""
+    r_hm = np.asarray(c["r_hm"], float)
+    M = np.asarray(c["M_hse"], float)
+    x = G * M * MSUN / (r_hm * KPC) ** 2 / a0
+    if np.all(x > 1.0):
+        return float(r_hm[-1]), "all_super"     # Newtonian through the window
+    if np.all(x < 1.0):
+        return float(r_hm[0]), "all_sub"        # deep through the window (degenerate)
+    idx = int(np.where(np.diff(np.sign(x - 1.0)) != 0)[0][-1])  # outermost crossing
+    lo, hi = float(r_hm[idx]), float(r_hm[idx + 1])
     for _ in range(200):
         mid = math.sqrt(lo * hi)
-        if f(mid) > 0:
+        xm = G * float(loginterp([mid], r_hm, M)[0]) * MSUN / (mid * KPC) ** 2 / a0
+        if xm > 1.0:
             lo = mid
         else:
             hi = mid
@@ -189,9 +201,10 @@ for foot, a0 in A0.items():
         wm = (1.0 - mu2(x)) * x * w              # the deep-branch (phantom) work
         wn = mu2(x) * x * w                      # the baryon-well Newtonian work
         share_v = np.cumsum(wm) / np.cumsum(wm + wn)
-        # (3) r_M SURFACE: binary, phantom only beyond the a0 crossing
+        # (3) r_M SURFACE: binary, phantom exactly where the local field is sub-a0
         rM, rM_state = solve_rM(c, a0)
-        share_bin = (np.asarray(r, float) > rM).astype(float)
+        share_bin = (x < 1.0).astype(float)   # corrective: share from the physical condition,
+                                              # not from the solver's (previously broken) rM
         DATA[foot][c["name"]] = dict(
             r=r, mb=mb, Mh=Mh, Mres=Mres, gtot=gtot, x=x,
             share_k=share_k, share_kp=share_kp, share_v=share_v,
@@ -225,17 +238,14 @@ for foot in A0:
             pt = float((d["mb"][i] + share[i] * d["Mres"][i]) / d["Mh"][i])
             it = float((d["mb"][i] + Mph_int(d["r"], d["Mres"], share)) / d["Mh"][i])
             row[key] = dict(pt=pt, integral=it, share420=float(share[i]))
-        # binary: integral = the deficit accumulated outside r_M up to 420 kpc
-        rM = d["rM"]
-        if d["rM_state"] == "beyond":
-            mph_bin = 0.0
-        elif d["rM_state"] == "all_sub":
-            mph_bin = float(d["Mres"][i])
-        else:
-            mph_bin = float(d["Mres"][i] - Mres_at(c, max(rM, float(d["r"][0]))))
+        # binary: integral = the deficit accumulated where share_bin = 1 (sub-a0)
+        # (same share-consistent integrator as the other candidates; the old
+        #  Mres_at extrapolation went negative when the crossing lies beyond
+        #  the 420 kpc edge -- caught in the corrective review)
+        mph_bin = Mph_int(d["r"], d["Mres"], d["share_bin"])
         row["rM"] = dict(pt=float((d["mb"][i] + d["share_bin"][i] * d["Mres"][i]) / d["Mh"][i]),
                          integral=float((d["mb"][i] + mph_bin) / d["Mh"][i]),
-                         share420=float(d["share_bin"][i]), mph_int=mph_bin)
+                         share420=float(d["share_bin"][i]), mph_int=float(mph_bin))
         RAT[foot][c["name"]] = row
     RAT[foot]["_median"] = {}
     for key in ["kernel", "kernel_g_arg", "virial", "rM"]:
@@ -302,11 +312,11 @@ for key in ["kernel", "virial", "rM"]:
         med = RAT[ft]["_median"][key]["integral"]
         VERD[(key, ft)] = med
         degen = (key == "rM") and all(
-            DATA[ft][c["name"]]["rM_state"] in ("all_sub", "beyond") for c in CL)
+            DATA[ft][c["name"]]["rM_state"] == "all_sub" for c in CL)
         DEGEN[(key, ft)] = degen
         if degen:
             rd = ("[0.8, 1.3] would be the band -- but this PASS is VACUOUS: "
-                  "r_M lies below the first tabulated radius (30 kpc) for ALL 12 "
+                  "the local field is sub-a0 through the entire window for ALL 12 "
                   "clusters on this footing, so the binary share is 1 everywhere "
                   "in the window and the ratio returns M_HSE identically by "
                   "construction (zero explanatory content: no partition performed)")
@@ -316,7 +326,7 @@ for key in ["kernel", "virial", "rM"]:
         check(f"V-{key} [{ft}: the {NAMES[key]} partition's delivered amplitude at 420 kpc] "
               f"median over 12 clusters of (M_b + M_ph,supported(<420))/M_HSE, "
               f"M_ph,supported the deficit integral of the candidate's own share "
-              f"(G050's cap-reduced 0.41x = baryons alone)",
+              f"(clean recompute: baryons alone ~0.175x; G050's cap-reduced 0.41x was baryons + capped EOS)",
               f"median delivered / measured = {med:.3f} over 12 clusters "
               f"(pt closed-form variant {RAT[ft]['_median'][key]['pt']:.3f})",
               0.8 <= med <= 1.3, rd)
@@ -460,19 +470,22 @@ print(f"""
   the cumulative work fraction of the deep branch.
 
   r_M-SURFACE ({VERD[('rM','canonical')]:.2f}x / {VERD[('rM','alt')]:.2f}x):
-  the binary surface reading -- VACUOUS on X-COP: r_M lies BELOW the first
-  tabulated radius (30 kpc) for all 12 clusters on both footings (the X-COP
-  forward masses put g_tot < a0 through the entire window), so the binary
-  share is 1 everywhere and the ratio returns M_HSE identically by
-  construction.  A binary partition cannot be performed inside this data.
+  the binary surface reading, share = 1 wherever the local field is sub-a0.
+  HONEST STATUS (corrective re-run): information-free on this data -- for the
+  clusters whose window is Newtonian (g_tot > a0 throughout: the a0-crossing
+  lies beyond the data) the share is 0 and the ratio is baryons alone; for
+  the clusters whose window is deep throughout the share is 1 and the ratio
+  returns M_HSE identically by construction (M_res := M_HSE - M_b).  A binary
+  partition cannot be independently tested inside this data; see the state
+  census in the table above.
 
   HONEST STATE: no NON-degenerate candidate reaches [0.8, 1.3] on either
   footing.  The theory's own kernel (KERNEL, zero free parameters) is the
   nearest miss: {RAT['canonical']['_median']['kernel']['integral']:.2f}x
   (canonical) / {RAT['alt']['_median']['kernel']['integral']:.2f}x (alt);
   the required share of the deficit for the band floor is
-  {(0.8 - mbfrac)/(1 - mbfrac):.2f} at 420 kpc.  The DERIVED partitions
-  undersupply; the residual is the free dust's share, exactly G050's
+  {(0.8 - mbfrac)/(1 - mbfrac):.2f} at 420 kpc.  The kernel and virial
+  partitions undersupply; the residual is the free dust's share, exactly G050's
   architecture: cap/un-cap was always a stand-in for this partition, and the
   partition the theory supplies (the mu2 kernel's sub-a0 branch) delivers
   ~6/10 of the deficit, not all of it.  Both partitions together -- supported
