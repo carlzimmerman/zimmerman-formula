@@ -1,0 +1,53 @@
+{
+  "lane": "H014",
+  "pass": 4,
+  "fail": 1,
+  "results": [
+    {
+      "check": "S2-0 [THE KERNEL] the Helmholtz filter's force ratio is\n      S(r) = 1 - e^{-r/xi}(1 + r/xi) -> r^2/(2 xi^2) for r << xi",
+      "measured": "S(r)/(r^2/2xi^2) = 0.99993, 0.99933, 0.99336 at r/xi = 1e-4,1e-3,1e-2",
+      "pass": true
+    },
+    {
+      "check": "S2-1 [DEEP INSIDE] Saturn sits at r/xi ~ 1.5e-3, i.e. five orders of\n      magnitude inside the screening length",
+      "measured": "r_Saturn/xi = 1.542e-03 at the Helmholtz floor",
+      "pass": true
+    },
+    {
+      "check": "S2-2 [THE GATE -- LOCAL READING] |Q2|/ceiling at Saturn, both footings,\n      with the filter applied to the field that matter feels",
+      "measured": "canonical: 7.646e-06  alternative: 9.058e-06",
+      "pass": true
+    },
+    {
+      "check": "S2-3 [THE SENSITIVITY -- GLOBAL READING, RECORDED NOT HIDDEN] if one\n      instead weighted the phantom out to r_M ~ 8000 AU, the\n      suppression would be only ~0.37 and the gate would FAIL",
+      "measured": "canonical: 2.372  alternative: 2.497",
+      "pass": false
+    },
+    {
+      "check": "S3 [DISC GATE, SPOT-CHECK] the filter's correction at galactic radii is\n      (xi/r)^2 ~ 1e-11 -- far below g02's 0.2% requirement, both footings",
+      "measured": "(xi/8kpc)^2 = 1.41e-11",
+      "pass": true
+    }
+  ],
+  "Q2_over_ceiling_local": {
+    "canonical": 7.645633994255441e-06,
+    "alternative": 9.05841418884612e-06
+  },
+  "Q2_over_ceiling_global": {
+    "canonical": 2.3720565237497104,
+    "alternative": 2.4965907196146606
+  },
+  "xi_AU": 6187.944187412891,
+  "r_Saturn_over_xi": 0.0015417075059283242,
+  "gates_run": [
+    "S2",
+    "S3-spot"
+  ],
+  "gates_pending": [
+    "S4",
+    "S5",
+    "P1",
+    "P2",
+    "C1"
+  ]
+}

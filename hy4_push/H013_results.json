@@ -1,0 +1,57 @@
+{
+  "lane": "H013",
+  "pass": 7,
+  "fail": 0,
+  "results": [
+    {
+      "check": "S1a [THE CHI EQUATION] varying the auxiliary gives the screened\n      Helmholtz equation (\u25a1 - m^2) chi = -m^2 phi  (sympy, from the action)",
+      "measured": "residual = 0",
+      "pass": true
+    },
+    {
+      "check": "S1b [THE PROPAGATOR FORM] in Fourier the solution is\n      chi_k = phi_k / (1 + xi^2 k^2) -- EXACTLY the f31c surviving form",
+      "measured": "chi_k/phi_k = 1/(k**2*xi**2 + 1)  ->  1/(1 + xi^2 k^2): 0",
+      "pass": true
+    },
+    {
+      "check": "S1c [CORRECTION SIZE] the filter's departure from unity is O((xi k)^2):\n      chi_k/phi_k = 1 - (xi k)^2 + O((xi k)^4)",
+      "measured": "series = -k**2*xi**2 + 1",
+      "pass": true
+    },
+    {
+      "check": "P3a [NO OSTROGRADSKY] the action is SECOND order in derivatives of both\n      phi and chi -- no (lap phi)^2 or (lap chi)^2 term appears",
+      "measured": "highest derivative order in the Lagrangian: 1 (first derivatives only)",
+      "pass": true
+    },
+    {
+      "check": "P3b [HEALTHY EXTRA MODE] chi is a normal massive scalar: healthy for\n      Z > 0 (right-sign kinetic) and m^2 > 0 (no tachyon). The mode\n      count is phi (MOND scalar) + chi (filter, mass 1/xi) + 2 graviton\n      polarisations: no ghost, no extra propagator beyond chi.",
+      "measured": "Z = Z > 0 assumed, m^2 = m**2 > 0; kinetic sign of chi: -Z/2 (grad chi)^2",
+      "pass": true
+    },
+    {
+      "check": "P3c [MIXING] the (chi - phi)^2 coupling has mass matrix with eigenvalues\n      {0, 2 m^2} -- one massless mode (the MOND scalar) and one massive\n      (the filter at 1/xi): both non-tachyonic",
+      "measured": "eigenvalues = [2*m**2, 0]",
+      "pass": true
+    },
+    {
+      "check": "F1 [BOTH FOOTINGS] the filter construction is independent of the a_0\n      footing (xi is a new length, a_0 is not changed by it), so the\n      static reduction holds on both; the galactic correction is ~1e-11",
+      "measured": "(xi/8kpc)^2 = 1.41e-11 on both footings",
+      "pass": true
+    }
+  ],
+  "action": "M_P^2 R/2 + Lambda^4 f(X) - (Z/2)(grad chi)^2 - (1/2)m^2(chi-phi)^2",
+  "form_factor": "1/(1 + xi^2 k^2), from an auxiliary field (2nd order)",
+  "gates_run": [
+    "S1",
+    "P3-sketch"
+  ],
+  "gates_pending": [
+    "S2",
+    "S3",
+    "S4",
+    "S5",
+    "P1",
+    "P2",
+    "C1"
+  ]
+}

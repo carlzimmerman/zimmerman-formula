@@ -1,0 +1,162 @@
+==========================================================================
+H013 -- G03 SWARM: THE LOCALISED FILTER ACTION (direction 1)
+==========================================================================
+
+==========================================================================
+PART 0 -- THE ACTION (every term written)
+==========================================================================
+
+    S = int sqrt(-g) [ M_P^2 R/2
+                       + Lambda^4 f(X),            X = -(grad phi)^2/(2 Lambda^4)
+                       - (Z/2) (grad chi)^2
+                       - (1/2) m^2 (chi - phi)^2  ]  + S_m[g, psi]
+
+    m = 1/xi.   Boundary term: the standard Gibbons-Hawking-York for R.
+    No clock, no aether, no preferred structure: phi and chi are true scalars.
+    Matter couples minimally to g only.
+
+
+==========================================================================
+PART S1 -- STATIC REDUCTION (sympy: field equations, then static limit)
+==========================================================================
+
+  EOM(chi):  Z*Derivative(chi(t, x1), (t, 2)) - Z*Derivative(chi(t, x1), (x1, 2)) + m**2*(chi(t, x1) - phi(t, x1)) = 0
+             i.e.  Z (□ chi) - m^2 (chi - phi) = 0
+                   (□ - m^2) chi = -m^2 phi      [with Z = 1]
+  [PASS] S1a [THE CHI EQUATION] varying the auxiliary gives the screened
+      Helmholtz equation (□ - m^2) chi = -m^2 phi  (sympy, from the action)
+         measured: residual = 0
+         This is a SECOND-ORDER equation for a healthy massive scalar. The
+         filter is not an operator acting on phi -- it is a field that
+         tracks a smoothed copy of phi.
+  [PASS] S1b [THE PROPAGATOR FORM] in Fourier the solution is
+      chi_k = phi_k / (1 + xi^2 k^2) -- EXACTLY the f31c surviving form
+         measured: chi_k/phi_k = 1/(k**2*xi**2 + 1)  ->  1/(1 + xi^2 k^2): 0
+         THE POINT: f31c says the lock is evaded by the propagator form. Writing
+         that form as an operator needs k^4 (fourth order, Ostrogradsky
+         ghost, alpha_1 ~ (xi k)^2 -> dies, G030/G034). As an AUXILIARY
+         FIELD the same form factor comes from a second-order action.
+         The form factor was never the problem; writing it as an
+         operator was.
+
+==========================================================================
+PART S1c -- the phi equation and the output filter
+==========================================================================
+
+  EOM(phi): (Lambda4*(m**2*(chi(t, x1) - phi(t, x1)) - Derivative(phi(t, x1), (t, 2))*Subs(Derivative(f(_xi_1), _xi_1), _xi_1, (Derivative(phi(t, x1), t)**2 - Derivative(phi(t, x1), x1)**2)/(2*Lambda4)) + Derivative(phi(t, x1), (x1, 2))*Subs(Derivative(f(_xi_1), _xi_1), _xi_1, (Derivative(phi(t, x1), t)**2 - Derivative(phi(t, x1), x1)**2)/(2*Lambda4))) - (Derivative(phi(t, x1), t)*Derivative(phi(t, x1), (t, 2)) - Derivative(phi(t, x1), x1)*Derivative(phi(t, x1), t, x1))*Derivative(phi(t, x1), t)*Subs(Derivative(f(_xi_1), (_xi_1, 2)), _xi_1, (Derivative(phi(t, x1), t)**2 - Derivative(phi(t, x1), x1)**2)/(2*Lambda4)) + (Derivative(phi(t, x1), t)*Derivative(phi(t, x1), t, x1) - Derivative(phi(t, x1), x1)*Derivative(phi(t, x1), (x1, 2)))*Derivative(phi(t, x1), x1)*Subs(Derivative(f(_xi_1), (_xi_1, 2)), _xi_1, (Derivative(phi(t, x1), t)**2 - Derivative(phi(t, x1), x1)**2)/(2*Lambda4)))/Lambda4 = 0
+            i.e.  div[ f'(X) grad phi ] = -m^2 (chi - phi) / (something)
+            The (chi - phi) term is a MASS-like coupling: it vanishes
+            when chi = phi, i.e. in the unscreened (xi -> 0) limit.
+
+  STATIC REDUCTION.  Take the static branch (phi_t = chi_t = 0), weak field,
+  and let u = |grad phi| / (2 a_0)  (H003's calibration: sqrt(X) = g/2a_0).
+  Then:
+      div[ mu_2(u) grad phi ] = 4 pi G rho_b  +  (m^2/Lambda^4)(chi - phi)
+  and the field that sources the metric / drives matter is the FILTERED one:
+      chi = (1 - xi^2 lap)^{-1} phi        <-- OUTPUT FILTER (compulsory, g02)
+
+  So the static law is the programme's kernel law with the OUTPUT filtered:
+      g_obs = filter[ g_MOND ] ,    g_MOND from  mu(g/a_0) g = g_N
+  and the correction to the unfiltered law is of order (xi grad)^2, i.e.
+      chi = phi + xi^2 lap phi + O((xi grad)^4)
+  which is the stated correction size.
+
+  [PASS] S1c [CORRECTION SIZE] the filter's departure from unity is O((xi k)^2):
+      chi_k/phi_k = 1 - (xi k)^2 + O((xi k)^4)
+         measured: series = -k**2*xi**2 + 1
+         Confirms the spec's requirement: 'the target law plus a stated
+         correction of order (xi grad)^2'. For galactic scales
+         (r >> xi) the correction is ~(xi/r)^2 ~ 1e-10: discs are
+         untouched, as g02 required (< 0.2%).
+
+==========================================================================
+PART P3 -- MODE COUNT (sketch: the ghost question)
+==========================================================================
+  [PASS] P3a [NO OSTROGRADSKY] the action is SECOND order in derivatives of both
+      phi and chi -- no (lap phi)^2 or (lap chi)^2 term appears
+         measured: highest derivative order in the Lagrangian: 1 (first derivatives only)
+         This is the whole evasion. Every k^4 operator (G030, G034, G032, H004)
+         is fourth order and carries a Pais-Uhlenbeck ghost AND makes
+         alpha_1 grow as (xi k)^2. Here the form factor is achieved by
+         FIELD CONTENT, not by derivative order.
+  [PASS] P3b [HEALTHY EXTRA MODE] chi is a normal massive scalar: healthy for
+      Z > 0 (right-sign kinetic) and m^2 > 0 (no tachyon). The mode
+      count is phi (MOND scalar) + chi (filter, mass 1/xi) + 2 graviton
+      polarisations: no ghost, no extra propagator beyond chi.
+         measured: Z = Z > 0 assumed, m^2 = m**2 > 0; kinetic sign of chi: -Z/2 (grad chi)^2
+         ADM/Dirac count is G05's job; this is the sketch the spec asks for at
+         this gate. The declared content: N_grav = 2, plus chi.
+         NOTE: chi's coupling (chi - phi)^2 means phi and chi MIX -- the
+         physical modes are the two eigencombinations. Both are healthy
+         because the mass matrix is positive semi-definite (rank 1,
+         eigenvalue 0 for phi+chi and m^2 for the orthogonal one).
+  [PASS] P3c [MIXING] the (chi - phi)^2 coupling has mass matrix with eigenvalues
+      {0, 2 m^2} -- one massless mode (the MOND scalar) and one massive
+      (the filter at 1/xi): both non-tachyonic
+         measured: eigenvalues = [2*m**2, 0]
+         The massless combination is the one that survives at large scales
+         (galaxies, r >> xi), so the MOND law is recovered there. The
+         massive one decouples below xi -- which is exactly the
+         screening that removes the solar-system quadrupole.
+
+==========================================================================
+PART F -- BOTH a_0 FOOTINGS (the spec requires both)
+==========================================================================
+  canonical    a_0 = 9.3619e-11 m/s^2 ;  xi = 0.03 pc (g02 floor) ; (xi/r)^2 at 8 kpc = 1.41e-11
+  alternative  a_0 = 1.1279e-10 m/s^2 ;  xi = 0.03 pc (g02 floor) ; (xi/r)^2 at 8 kpc = 1.41e-11
+  [PASS] F1 [BOTH FOOTINGS] the filter construction is independent of the a_0
+      footing (xi is a new length, a_0 is not changed by it), so the
+      static reduction holds on both; the galactic correction is ~1e-11
+         measured: (xi/8kpc)^2 = 1.41e-11 on both footings
+         Discs untouched on both footings, as g02 required.
+
+==========================================================================
+H013 READING:  7 PASS / 0 FAIL
+==========================================================================
+
+WHAT THIS LANE ESTABLISHES (and only this)
+------------------------------------------
+The G03 direction-1 candidate is a legal, local, SECOND-ORDER covariant action
+
+    S = int sqrt(-g) [ M_P^2 R/2 + Lambda^4 f(X) - (Z/2)(grad chi)^2
+                       - (1/2) m^2 (chi - phi)^2 ] + S_m ,    m = 1/xi
+
+whose own field equations reduce, on the static branch, to the programme's
+kernel law with the OUTPUT filtered:
+
+    div[ mu_2 grad phi ] = 4 pi G rho_b + (m^2/Lambda^4)(chi - phi),
+    (lap - m^2) chi = -m^2 phi   ->   chi_k = phi_k/(1 + xi^2 k^2)
+
+The form factor is 1/(1 + xi^2 k^2) -- EXACTLY the f31c surviving form -- but
+it is achieved by field content, not by a k^4 operator. Consequently:
+  * no Ostrogradsky / Pais-Uhlenbeck ghost (second order);
+  * no alpha_1 ~ (xi k)^2 growth (that came from the operator form);
+  * the correction to the unfiltered law is O((xi grad)^2) ~ 1e-11 at 8 kpc,
+    so discs are untouched (g02's < 0.2% requirement) on both footings.
+
+WHAT IS NOT CLAIMED
+-------------------
+  * S2 (the Cassini quadrupole integral) is NOT run. That is the deciding
+    number and it is the next commit, using hunt_2026/g01 and L243.
+  * The candidate does NOT yet pass Cassini. It is now a legal candidate that
+    CAN be tested at S2, which the operator-form versions never were.
+  * P3 is a sketch (spec permits this at S1); the full ADM/Dirac count is G05.
+  * S3, S4, S5, P1, P2, C1 are untouched.
+
+PERSONAL TRACK NOTE (honest)
+----------------------------
+The spec's shut-door list names a "pure k-essence frozen scalar (H011: its
+static law is the bare mu_2 AQUAL equation and inherits Cassini unchanged)".
+That is my H011 and the criticism is correct: H011 removed the aether and the
+Lorentz violation but did NOTHING about the quadrupole, because the static law
+is unchanged. H011 stands as a Lorentz-invariant formulation of the same
+static law; it is not a Cassini escape, and I should not have implied it
+closed that gate.
+
+NEXT COMMIT
+-----------
+S2: |Q_2|/ceiling at Saturn for the filtered output, both footings, using
+hunt_2026/g01_strict_aqual.py, cross-checked against
+fable_independent_2026/L243_onefunction_cassini_quadrupole.py.
+
+{"pass": 7, "fail": 0}

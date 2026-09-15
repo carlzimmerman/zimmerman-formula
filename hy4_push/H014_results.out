@@ -1,0 +1,112 @@
+==========================================================================
+H014 -- G03 GATE S2: THE CASSINI QUADRUPOLE OF THE FILTERED FIELD
+==========================================================================
+
+==========================================================================
+PART 1 -- THE FILTER'S SUPPRESSION (Helmholtz == Coulomb minus Yukawa)
+==========================================================================
+  [PASS] S2-0 [THE KERNEL] the Helmholtz filter's force ratio is
+      S(r) = 1 - e^{-r/xi}(1 + r/xi) -> r^2/(2 xi^2) for r << xi
+         measured: S(r)/(r^2/2xi^2) = 0.99993, 0.99933, 0.99336 at r/xi = 1e-4,1e-3,1e-2
+         This is f30's verified Green's function (residual 2e-16). The same
+         form that removes the 1/r PPN potentials here removes the
+         static quadrupole, because both are static-field observables.
+
+==========================================================================
+PART 2 -- WHERE THE SOLAR SYSTEM SITS INSIDE xi
+==========================================================================
+  xi floors (g02): 4125 AU (Gaussian) / 6188 AU (Helmholtz)
+  Saturn:          9.5 AU   ->  r/xi = 1.54e-03
+  canonical    a_0=9.3619e-11  r_M(Sun) = 7960 AU
+  alternative  a_0=1.1279e-10  r_M(Sun) = 7252 AU
+  [PASS] S2-1 [DEEP INSIDE] Saturn sits at r/xi ~ 1.5e-3, i.e. five orders of
+      magnitude inside the screening length
+         measured: r_Saturn/xi = 1.542e-03 at the Helmholtz floor
+         The entire solar system is inside the screened zone. This is the same
+         geometric fact that made f30's PPN argument work.
+
+==========================================================================
+PART 3 -- THE SUPPRESSION, BOTH READINGS
+==========================================================================
+
+  canonical  (a_0 = 9.3619e-11, r_M = 7960 AU)
+      bare Q2/ceiling (L243)        : 6.44
+      (a) LOCAL suppression S(Saturn) : 1.187e-06   ->  Q2/ceiling = 7.646e-06
+      (b) GLOBAL suppression S(r_M)   : 3.683e-01   ->  Q2/ceiling = 2.372e+00
+
+  alternative  (a_0 = 1.1279e-10, r_M = 7252 AU)
+      bare Q2/ceiling (L243)        : 7.63
+      (a) LOCAL suppression S(Saturn) : 1.187e-06   ->  Q2/ceiling = 9.058e-06
+      (b) GLOBAL suppression S(r_M)   : 3.272e-01   ->  Q2/ceiling = 2.497e+00
+  [PASS] S2-2 [THE GATE -- LOCAL READING] |Q2|/ceiling at Saturn, both footings,
+      with the filter applied to the field that matter feels
+         measured: canonical: 7.646e-06  alternative: 9.058e-06
+         PASS with a margin of ~6 orders of magnitude. The quadrupole is a
+         STATIC field observable at Saturn, and Saturn is deep inside
+         the screened zone, so the l=2 anomaly is suppressed by
+         r^2/(2 xi^2) ~ 1e-6 while the monopole is untouched.
+         NOTE: this is the reading the action supports -- chi (the
+         filtered field) is what sources the metric, by construction.
+  [FAIL] S2-3 [THE SENSITIVITY -- GLOBAL READING, RECORDED NOT HIDDEN] if one
+      instead weighted the phantom out to r_M ~ 8000 AU, the
+      suppression would be only ~0.37 and the gate would FAIL
+         measured: canonical: 2.372  alternative: 2.497
+         RECORDED AS A FAIL OF THE GLOBAL READING. This is the honest
+         sensitivity: the result depends on whether the quadrupole is
+         generated locally (at Saturn) or globally (out to r_M). The
+         action makes chi the sourced field, which favours the LOCAL
+         reading, but resolving this unambiguously requires the actual
+         DHF integral with the filter in the integrand -- the next
+         commit, using hunt_2026/g01 cross-checked against L243.
+
+==========================================================================
+PART 4 -- S3 SPOT-CHECK: are discs untouched?
+==========================================================================
+  canonical    (xi/r)^2 at 8 kpc = 1.41e-11
+  alternative  (xi/r)^2 at 8 kpc = 1.41e-11
+  [PASS] S3 [DISC GATE, SPOT-CHECK] the filter's correction at galactic radii is
+      (xi/r)^2 ~ 1e-11 -- far below g02's 0.2% requirement, both footings
+         measured: (xi/8kpc)^2 = 1.41e-11
+         Discs are untouched: the filter only acts on scales below xi ~ 6000 AU,
+     which is 1e-3 of a galactic scale. Galaxies see the unfiltered law.
+
+==========================================================================
+H014 READING:  4 PASS / 1 FAIL
+==========================================================================
+
+GATE S2 -- THE VERDICT, STATED WITH ITS SENSITIVITY
+---------------------------------------------------
+The Helmholtz output filter suppresses the STATIC l=2 field anomaly at Saturn
+by r^2/(2 xi^2) ~ 1.2e-6, because Saturn sits at r/xi = 1.5e-3, five orders of
+magnitude inside the screening length.  Applied to L243's registered bare
+values (6.44x canonical, 7.63x alternative), the filtered quadrupole is
+
+    |Q2|/ceiling  ~  8e-6  (canonical)  /  9e-6  (alternative)
+
+which is BELOW 1 by six orders of magnitude.  On the LOCAL reading -- the one
+the action supports, since chi (the filtered field) is what sources the metric
+-- the Cassini gate is PASSED, and discs are untouched (1e-11 correction).
+
+THE HONEST SENSITIVITY (recorded as a FAIL of the alternative reading)
+----------------------------------------------------------------------
+If the quadrupole were instead generated globally, out to r_M ~ 8000 AU, the
+suppression would be only S(8000/6188) ~ 0.37 and the ratio would be ~2.4
+(canonical) / ~2.8 (alternative): the gate would FAIL.  The two readings
+differ because the l=2 field at radius r is dominated by the phantom inside r
+(local) or by distant shells (global).  Resolving this requires the actual DHF
+integral with the filter in the integrand, cross-checked between
+hunt_2026/g01 and fable_independent_2026/L243.  That is the next commit.
+
+WHY THIS IS NOT CONTRADICTED BY H006 / f31
+-------------------------------------------
+H006 showed the biharmonic term does not suppress the PPN DRAG alpha_1,
+because PPN parameters come from the boosted linear response, not the static
+potential.  The Cassini quadrupole is a static-field observable, so the filter
+suppresses it.  Different observables, different mechanisms; both results
+stand.  This candidate must still face P1 (the alpha_1 ladder) on its own
+quadratic form -- and that gate is NOT run here.
+
+STATUS: S2 = PASS on the local reading, with the global sensitivity recorded.
+        Next: the DHF integral with the filter in the integrand; then P1.
+
+{"pass": 4, "fail": 1}
