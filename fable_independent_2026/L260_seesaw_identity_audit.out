@@ -1,0 +1,22 @@
+L260 -- H019 audited
+
+    sympy: kappa sqrt(G rho_L) - kappa Lambda^2/M_Pl with rho_L := Lambda^4, M_Pl := 1/sqrt(G)  ->  0
+    H019's 'ratio' recomputed for kappa = 1/2, 1/3, 1/2pi, 0.461: 1.000000000000000, 1.000000000000000, 1.000000000000000, 1.000000000000000
+  [FAIL] Z1 [THE IDENTITY SINGLES OUT THE COEFFICIENT 1/2] the identity is checked symbolically with a free coefficient; it carries information about the 1/2 only if it fails for other coefficients
+           (residual is identically zero for every kappa: rho_L = Lambda^4 and G = 1/M_Pl^2 are the definitions of Lambda and M_Pl, so the 'seesaw' is the same formula in different units. The 1.0000000000000002 is a definition equalling itself. a0 ~ Lambda^2/M_Pl ~ c H0 ~ sqrt(G rho_L) is the single Milgrom (1983) coincidence written three ways)
+    H019 computes its a0 from rho_L in-script: True;  observed Lambda = 2.2404 meV
+    Lambda = sqrt(2 M_Pl a0) from H019 (a0 from rho_L)   a0 = 9.3624e-11: 2.2404 meV (+0.0%; rho_L off by +0%)
+    Lambda = sqrt(2 M_Pl a0) from L232 free-scale fit    a0 = 1.2457e-10: 2.5842 meV (+15.3%; rho_L off by +77%)
+    Lambda = sqrt(2 M_Pl a0) from McGaugh+2016           a0 = 1.2000e-10: 2.5364 meV (+13.2%; rho_L off by +64%)
+  [FAIL] Z3 [LAMBDA IS PREDICTED FROM a0 WITHOUT REFERENCE TO rho_L] the script's a0 is traced to its source, and the prediction is repeated with the two galactic a0 values on the record; it counts as a prediction only if a galactic a0 lands within 1% of the observed Lambda
+           (the a0 H019 feeds in is computed from rho_L three lines earlier, so Z3 returns its input (the rung-9 circularity of L258); an independent a0 misses Lambda by 15% (rho_L by ~70%): the coincidence holds at the 20-30% level, as always)
+    static law depends on f through f'(K) only: d/dc0 of the coefficient = 0;  rho_vac(f + c0) - rho_vac(f) = -c0 Lambda^4
+  [FAIL] Z4 [f(0) = -1 IS FIXED BY THE THEORY] adding a constant to f must change either the static law or be forbidden; if the static law is unchanged and only the vacuum energy shifts, f(0) is a free integration constant
+           (f -> f + c0 leaves every galactic prediction untouched and shifts the dark energy by -c0 Lambda^4: this is the k01/L226 zero mode. 'Dark energy IS f(0) = -1' is the choice of that constant to match Planck, not a derivation)
+    deep slope of mu_n(Y) = 1-(1+Y)^-n: {1: 1, 2: 2, 3: 3, 4: 4};  H017's 'a0 M_Pl n = Lambda^2' with a0 := s/n holds for every n by definition
+  [FAIL] Z2 [n = 2 IS DERIVED FROM THE GRAVITON'S POLARISATION COUNT] the slope of the family at n and the TT rank D(D-3)/2 are two integers; a derivation must produce the slope from the tensor sector, i.e. the static scalar equation must contain the polarisation count
+           (the slope is n by construction of the family; the static equation div[f' grad phi] = 4 pi G rho contains no tensor polarisation at all (the TT modes decouple from a static scalar source), so H018's 'one monopole, two helicities' identifies two unrelated 2s. The programme's own theorems stand: kappa is a zero mode (k01/L226), no monotone kernel fixes it (L227), a factor of 2 in a parameter-free shape is a free parameter (L230); n = 2 remains SELECTED BY DATA (L232/L259))
+  [FAIL] Z5 [NO LITERAL-TRUE CHECKS] the H019 source is scanned for pass conditions that are the literal True
+           (1 literal-True check (Z5 itself); the 'one input scale' count also omits n, kappa, Omega_dm, the cluster and Milky-Way dust normalisations, and the choice of the mu_n family)
+
+L260 COMPLETE: 0/5 checks PASS.  READING: H019 is the rung-9 circularity in natural units; nothing in it changes PAPER29 v2 or the G03 spec.
