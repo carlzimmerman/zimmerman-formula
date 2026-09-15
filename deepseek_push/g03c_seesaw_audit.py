@@ -64,7 +64,7 @@ rhoL_ev4 = RHO_L_MEAS * (C ** 2) / (HB_C ** 3) * (1.0) * 0.0  # placeholder guar
 rhoL_ev4 = RHO_L_MEAS * C * C / 1.602176634e-19 * (HB_C) ** 3
 Lambda_ev = rhoL_ev4 ** 0.25
 MPl_red_ev = 2.435e27          # reduced Planck mass (sqrt(hbar c / 8 pi G))
-print(f"    rho_L(Planck) = {RHO_L_MEAS:.4e} kg/m^3 -> Lambda = {Lambda_ev:.4f} meV "
+print(f"    rho_L(Planck) = {RHO_L_MEAS:.4e} kg/m^3 -> Lambda = {Lambda_ev*1e3:.2f} meV "
       f"(literature vacuum scale 2.24 meV)")
 print(f"    a0_DE(identity) = {a0_de:.4e} m/s^2")
 print(f"    Lambda^2/(2 M_Pl) = {Lambda_ev**2/(2*MPl_red_ev):.4e} eV (natural units; "
