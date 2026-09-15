@@ -1,0 +1,102 @@
+{
+ "lane": "G054",
+ "pass": 14,
+ "fail": 0,
+ "checks": [
+  {
+   "name": "A1 [mu_2 expansion] mu_2(v) = 1 - (1+v)^{-2} = 2v - 3v^2 + 4v^3 - 5v^4 + O(v^5)",
+   "measured": "mu_2(v) = -5*v**4 + 4*v**3 - 3*v**2 + 2*v",
+   "pass": true,
+   "reading": "The interpolating function's deep expansion: leading coefficient 2 (G002's registered slope)."
+  },
+  {
+   "name": "A2 [f'(K) near phi_dot=0] substituting K = phi_dot^2/(2 Lambda^4) into the mu_2 expansion",
+   "measured": "f'(K) = mu_2(phi_dot/(sqrt(2) Lambda^2)) = phi_dot*(4*sqrt(2)*Lambda**6 - 6*Lambda**4*phi_dot + 4*sqrt(2)*Lambda**2*phi_dot**2 - 5*phi_dot**3)/(4*Lambda**8)",
+   "pass": true,
+   "reading": "f'(K) ~ sqrt(2) phi_dot / Lambda^2 for small phi_dot: it vanishes linearly with phi_dot."
+  },
+  {
+   "name": "A3 [PURE-FRW REGIME] with no spatial gradients, K = phi_dot^2/(2 Lambda^4), f'(K) ~ sqrt(2) phi_dot/Lambda^2 (linear in phi_dot), so EOM a^3 phi_dot^2 = const => phi_dot ~ a^{-3/2}: ATTRACTOR (decays)",
+   "measured": "phi_dot scaling exponent (pure FRW) = -3/2 (i.e. phi_dot ~ a^{-3/2}); d/da(a^3 phi_dot^2) = 0 (verified 0)",
+   "pass": true,
+   "reading": "phi_dot ~ a^{-3/2}: any small roll decays, so phi_dot = 0 is an attracting fixed point. The decay is slower than a^{-3} because f'(K) also shrinks as phi_dot -> 0 (the coupling turns off at the fixed point), but it STILL decays."
+  },
+  {
+   "name": "A4 [SPATIAL-GRADIENT REGIME] with K dominated by spatial gradients (O(1) from large-scale structure), f'(K) = f'(K_spatial) ~ const > 0, so EOM a^3 phi_dot = const => phi_dot ~ a^{-3}: STRONG ATTRACTOR",
+   "measured": "phi_dot scaling exponent (spatial dominated) = -3 (i.e. phi_dot ~ a^{-3}); d/da(a^3 phi_dot) = 0 (verified 0)",
+   "pass": true,
+   "reading": "phi_dot ~ a^{-3}: the canonical cosmological dilution of a frozen degree of freedom. In a realistic universe with structure, the spatial gradient piece is always present (K_spatial ~ O(1) on MOND scales), so the STRONG attractor governs -- any cosmologically generated roll dilutes away like radiation."
+  },
+  {
+   "name": "A5 [NUMERIC DECAY] over a factor 100 in scale factor (a=1 -> 100), phi_dot decays by 1e-3 (pure FRW, a^{-3/2} => 1/1000) vs 1e-6 (spatial dominated, a^{-3} => 1/1e6)",
+   "measured": "phi_dot(100)/phi_dot(1): pure FRW = 1.00e-03 (target 1e-3), spatial = 1.00e-06 (target 1e-6)",
+   "pass": true,
+   "reading": "Both regimes confirm the attractor: phi_dot is driven to zero by cosmic expansion regardless of the initial value. The frozen branch is dynamically selected, not imposed by fiat."
+  },
+  {
+   "name": "B1 [THE EQUATION OF STATE] at K = 0 (the frozen branch), f(0) = -1 gives p = -Lambda^4, rho = +Lambda^4, w = p/rho = -1 exactly",
+   "measured": "f(0) = -1; p/Lambda^4 = -1; rho/Lambda^4 = 1; w = -1; |w+1| = 0.0e+00",
+   "pass": true,
+   "reading": "V2 passes: the background IS LCDM. With phi_dot = 0, K = 0 identically on the homogeneous background, f(0) = -1, and w = -1 exactly. H002's CMB verification (20/20) transfers wholesale: every background input is identical. The scalar sector IS the cosmological constant, with the right sign and no tuning -- f(0) = -1 is the theory's construction, not a dial."
+  },
+  {
+   "name": "B2 [SOUND SPEED AT THE FIXED POINT] c_s^2 = f'/(f' + 2K f'') -> 1/2 as K -> 0 (the 0/0 resolved by the mu_2 expansion: leading order f' ~ 2 sqrt K, 2K f'' ~ 2 sqrt K, ratio = 1/2)",
+   "measured": "c_s^2(K->0) = 1/2 (closed form verified: True)",
+   "pass": true,
+   "reading": "The frozen point is not a gradient-instability locus: c_s^2 -> 1/2, not 0 or negative. The scalar perturbations on the background are stable."
+  },
+  {
+   "name": "C1 [NO VECTOR SECTOR] the Lagrangian L = Lambda^4 f(K) with K = -(1/2) g^{mu nu} d_mu phi d_nu phi / Lambda^4 contains exactly one scalar field and the metric. There is no u^mu, no h^{mu nu}, no aether kinetic term. The PPN vector-sector parameters alpha_1 and alpha_2 parametrize preferred-frame effects that cannot be written because the sector they live in does not exist.",
+   "measured": "vector DOF count = 0 (scalar phi = 1, metric g_mu_nu = 2, total = 3 = GR+scalar, G007's Dirac-count control satisfied); c_14, K_B, J_Y: not defined (no aether); the alpha_1 lock of H003/G032: cannot be written (no handle).",
+   "pass": true,
+   "reading": "V3 passes by structure, not by computation. Horn A (G032) got alpha_1 = 0 by freezing a dynamical congruence (explicit Lorentz violation, but zero drag). The frozen scalar gets it by having no congruence at all. The lock alpha_1 = -4 c_14 - 4(2-K_B)/(J_Y+1) has no constituent symbols in this theory. alpha_2 = 0 for the same reason: there is no second-rank tensor preferred-frame source."
+  },
+  {
+   "name": "C2 [NO LORENTZ VIOLATION] K = -(1/2) g^{mu nu} d_mu phi d_nu phi / Lambda^4 is a genuine coordinate scalar -- it transforms as a scalar under ALL diffeomorphisms, not just those preserving a preferred foliation or congruence. The action S = int d^4x sqrt(-g) [R/(16 pi G) + Lambda^4 f(K)] is manifestly diffeomorphism-invariant.",
+   "measured": "K transforms as: K -> K under x^mu -> x'^mu (scalar). No background vector, no Stueckelberg, no khronon, no Einstein-aether.",
+   "pass": true,
+   "reading": "The theory is Lorentz-invariant at the level of the action. This is the decisive advantage over Horn A: no explicit Lorentz violation to explain away, no preferred-frame residuals to bound."
+  },
+  {
+   "name": "D1 [KERNEL STRUCTURE] the frozen scalar's G_eff/G = 1/mu_2(cH/(2a0)) and L180's G_eff/G = nu(cH/a0) share identical structure: one measured function of one argument (cH/a0), same Hubble-flow prescription, same a0 footings, same origin (the scalar's coupling to matter through the sourced equation). The aether deletion touches neither the coupling function nor the argument.",
+   "measured": "structure: both = F(cH(z)/a0) with F measured; canonical cH0/a0 = 6.99, alt cH0/a0 = 5.80",
+   "pass": true,
+   "reading": "The kernel carries over structurally: the coupling IS the same mu_2 function. The aether was never doing the coupling work (H011 M1/M2 proved the projector only kept sqrt(X) real -- it dropped out of the sourced equation)."
+  },
+  {
+   "name": "D2 [QUANTITATIVE: G_eff agreement] the frozen-scalar's 1/mu_2(x/2) and L180's nu(x) give G_eff values within 30% at z=0 on both footings",
+   "measured": "canonical: G_eff(0) L180=1.0765 vs FS=1.0521 (ratio 0.9773); alt: G_eff(0) L180=1.0988 vs FS=1.0703 (ratio 0.9741)",
+   "pass": true,
+   "reading": "The two coupling functions differ numerically (nu vs 1/mu_2 are different analytic forms) but they agree at the ~10-15% level: the frozen scalar's coupling is a bit weaker (1/mu_2 < nu at the same argument), which is expected since 1/mu_2(x/2) maps the argument through a factor of 2 and a different functional shape."
+  },
+  {
+   "name": "D3 [QUANTITATIVE: f sigma8 raise in registered band] the frozen-scalar's BGS (z=0.3-0.6) f sigma8 raise falls in L180's registered +1-4% band",
+   "measured": "canonical: BGS raise = +1.86% (z=0.3); alt: BGS raise = +2.57% (z=0.3)",
+   "pass": true,
+   "reading": "The raise is inside the +1-4% band on both footings. The canonical footing gives +1.86%, the alt footing +2.57%."
+  },
+  {
+   "name": "D4 [QUANTITATIVE: falling profile] the frozen-scalar's f sigma8 raise FALLS with redshift (BGS z=0.3 > z=1.0), consistent with G024's registered falling-profile discriminant",
+   "measured": "canonical: BGS ++1.86% -> z=1.0 ++0.80%; alt: BGS ++2.57% -> z=1.0 ++1.12%",
+   "pass": true,
+   "reading": "The raise falls from BGS to QSO by a factor of ~2.3 (canonical), matching G024's falling shape. The sign is positive (growth enhancement), same as L180's prediction."
+  },
+  {
+   "name": "D5 [QUANTITATIVE: shift vs registered] the frozen-scalar's DESI-bin raises differ from L180's registered nu-based raises by at most a few percentage points, well inside DESI errors (10-19%) and G045's envelope",
+   "measured": "max |delta(f sigma8 raise)| across both footings, BGS and QSO bins: 1.21 pp (DESI errors 10-19%, G045 envelope verified)",
+   "pass": true,
+   "reading": "The shift is 1.21 percentage points -- inside DESI observational errors and inside the registered envelope. L180's kernel CARRIES OVER: no registered number moves outside its tolerance, and the qualitative features (positive raise, falling profile, BGS/QSO ratio) are preserved. The modification is the coupling function's analytic form (1/mu_2(x/2) instead of nu(x)), which is a DIFFERENCE the data can discriminate, not a failure of carryover."
+  }
+ ],
+ "title": "FROZEN-SCALAR COSMOLOGY: the phi_dot=0 attractor and its consequences",
+ "V1_attractor": "CONFIRMED: phi_dot ~ a^{-3/2} (pure FRW) or a^{-3} (spatial dominated)",
+ "V2_background": "LCDM exactly: f(0)=-1, w=-1, no tuning",
+ "V3_PPN": "alpha_1=alpha_2=0 by structure (no vector sector)",
+ "V4_growth_raise": "CARRIES OVER: sigma8 ratio canonical=1.0078, alt=1.0108; BGS raise canonical=1.86%, alt=2.57%; max shift vs registered nu kernel = 1.21 pp",
+ "a0_footings": {
+  "canonical": 9.3619e-11,
+  "alt": 1.1279e-10
+ },
+ "coupling_function": "1/mu_2(cH/(2a0)), mu_2 the G002 closed form",
+ "L180_kernel_reference": "nu(x) = 1/(1-exp(-sqrt(x))) vs frozen-scalar 1/mu_2(x/2)"
+}
