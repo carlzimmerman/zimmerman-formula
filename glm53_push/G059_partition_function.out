@@ -1,0 +1,182 @@
+G059 -- THE PARTITION FUNCTION: the phantom/free-dust partition, DERIVED.
+
+THE GAP.  G050 (the split architecture): with the EFE cap at cH0 the split
+delivers 0.41x/0.41x the measured mass at 420 kpc; the deficit (0.59x M_b) is
+the free dust's share.  G050 left the PARTITION UNDECIDED: it capped the
+phantom with a step at g_ext = cH0, but the theory's own kernel says the
+phantom exists only sub-a0 -- the share must be a FUNCTION of the local field
+(P4: the share rises as g_tot/a0 falls through a0; G050 V4 rho = -0.926).
+This lane DERIVES the partition from G050's per-cluster data (same ingest,
+same on-disk X-COP FITS -- nothing re-downloaded) with THREE candidates:
+
+  (1) KERNEL partition -- the mu2 kernel itself, oriented sub-a0:
+      share_k(r) = 1 - mu2(g_tot(r)/(2 a0)) = (1 + g_tot/(4 a0))^-2,
+      mu2(s) = 1-(1+s/2)^-2 (the certified kernel, G002/G057 convention).
+      Deep (g << a0): share -> 1; Newtonian (g >> a0): share -> 0.
+      Variant carried beside: share_k'(r) = 1 - mu2(g_tot/a0).
+  (2) VIRIAL partition -- the charge splits by binding: the cumulative work
+      fraction carried by the baryon well's deep branch,
+      share_v(<r) = W_M/(W_M + W_N),  W_M = sum (1-mu2(x_j)) x_j w_j,
+      W_N = sum mu2(x_j) x_j w_j, x_j = g_tot(r_j)/a0 (G050's per-bin field),
+      w_j = dln r_j (cumulative inner-to-outer).
+  (3) r_M-SURFACE partition -- binary: phantom where r > r_M(cluster)
+      (g_tot(r_M) = a0), free inside; the supported phantom is the measured
+      deficit accumulated OUTSIDE r_M up to 420 kpc.
+
+For each candidate x footing: predicted (M_ph,supported(<420) + M_b(<420)) /
+M_HSE(<420).  VERDICT: the median over the 12 clusters must land in [0.8, 1.3].
+Both footings carried: canonical a0 = s_DE/2, alt a0 = 1.1279e-10.
+
+DATA NOTE (G050 units slips, traced).  G050's safety floors read 1e9*MSUN
+against masses CARRIED IN MSUN (1e9*MSUN = 1.99e39 swamps every cluster mass
+~1e14), and its g_tot line dropped the *MSUN conversion.  The arrays stored
+in G050_results.json are the residue (gtot/a0 ~ 1e-5, shares ~ 1e-27; the
+0.41x headline is unaffected -- the EFE cap zeroed the support anyway).
+G059 fixes both and recomputes from the SAME on-disk FITS through G050's own
+ingest (load_cluster/baryons/dlnM_dlnr; nothing re-downloaded).
+
+X-COP clusters loaded: 12 (A1644, A1795, A2029, A2142, A2255, A2319, A3158, A3266, A644, A85, RXC1825, ZW1215); 7 with a measured stellar profile
+(G050 ingest reused verbatim; same on-disk FITS; nothing re-downloaded)
+
+========================================================================================
+STEP 1 -- partition shares computed: 12 clusters x 8 radii x 2 footings x 3 candidates (+1 kernel variant)
+========================================================================================
+  r_M states (canonical): A1644:30[all_sub], A1795:30[all_sub], A2029:30[all_sub], A2142:30[all_sub], A2255:30[all_sub], A2319:30[all_sub], A3158:30[all_sub], A3266:30[all_sub], A644:30[all_sub], A85:30[all_sub], RXC1825:30[all_sub], ZW1215:30[all_sub]
+  r_M states (alt):       A1644:30[all_sub], A1795:30[all_sub], A2029:30[all_sub], A2142:30[all_sub], A2255:30[all_sub], A2319:30[all_sub], A3158:30[all_sub], A3266:30[all_sub], A644:30[all_sub], A85:30[all_sub], RXC1825:30[all_sub], ZW1215:30[all_sub]
+  (mu2 = the certified monotone-increasing kernel 1-(1+s/2)^-2; the phantom
+   share is oriented sub-a0 as share = 1 - mu2, so deep -> 1, Newtonian -> 0
+   -- the task's asymptotics; the literal increasing mu2 would invert them)
+
+========================================================================================
+STEP 2 -- the delivered amplitude at 420 kpc: (M_ph,supported + M_b)/M_HSE
+========================================================================================
+
+  --- canonical: a0 = s_DE/2 = 9.3623e-11 ---
+  cluster   KERNEL: sh(420)  pt    int   | VIRIAL: sh(420)  pt    int   | r_M   B_pt  B_int
+  A1644       0.67   0.70   0.70  |   0.49   0.54   0.55  |    30all_    1.00   1.00  (imp)
+  A1795       0.56   0.62   0.53  |   0.22   0.33   0.31  |    30all_    1.00   1.00  (meas)
+  A2029       0.46   0.56   0.50  |   0.15   0.32   0.30  |    30all_    1.00   1.00  (meas)
+  A2142       0.49   0.60   0.56  |   0.20   0.37   0.36  |    30all_    1.00   1.00  (meas)
+  A2255       0.67   0.73   0.72  |   0.47   0.57   0.57  |    30all_    1.00   1.00  (imp)
+  A2319       0.47   0.56   0.51  |   0.18   0.33   0.32  |    30all_    1.00   1.00  (meas)
+  A3158       0.63   0.68   0.61  |   0.26   0.37   0.35  |    30all_    1.00   1.00  (imp)
+  A3266       0.55   0.64   0.58  |   0.28   0.42   0.41  |    30all_    1.00   1.00  (imp)
+  A644        0.44   0.50   0.47  |   0.19   0.28   0.27  |    30all_    1.00   1.00  (meas)
+  A85         0.56   0.64   0.58  |   0.25   0.38   0.36  |    30all_    1.00   1.00  (meas)
+  RXC1825     0.63   0.67   0.56  |   0.21   0.30   0.27  |    30all_    1.00   1.00  (imp)
+  ZW1215      0.57   0.64   0.62  |   0.32   0.44   0.43  |    30all_    1.00   1.00  (meas)
+  MEDIAN      0.56   0.64   0.57  |   0.23   0.37   0.35  |         1.00   1.00   (medians)
+
+  --- alt: a0 = 1.1279e-10 ---
+  cluster   KERNEL: sh(420)  pt    int   | VIRIAL: sh(420)  pt    int   | r_M   B_pt  B_int
+  A1644       0.72   0.74   0.74  |   0.55   0.59   0.60  |    30all_    1.00   1.00  (imp)
+  A1795       0.61   0.67   0.58  |   0.26   0.37   0.35  |    30all_    1.00   1.00  (meas)
+  A2029       0.51   0.60   0.54  |   0.19   0.35   0.33  |    30all_    1.00   1.00  (meas)
+  A2142       0.54   0.64   0.61  |   0.24   0.40   0.39  |    30all_    1.00   1.00  (meas)
+  A2255       0.72   0.77   0.76  |   0.53   0.61   0.61  |    30all_    1.00   1.00  (imp)
+  A2319       0.52   0.61   0.56  |   0.22   0.36   0.35  |    30all_    1.00   1.00  (meas)
+  A3158       0.67   0.72   0.66  |   0.31   0.42   0.39  |    30all_    1.00   1.00  (imp)
+  A3266       0.60   0.68   0.62  |   0.33   0.46   0.46  |    30all_    1.00   1.00  (imp)
+  A644        0.49   0.55   0.52  |   0.24   0.32   0.31  |    30all_    1.00   1.00  (meas)
+  A85         0.62   0.68   0.62  |   0.30   0.42   0.40  |    30all_    1.00   1.00  (meas)
+  RXC1825     0.67   0.71   0.61  |   0.25   0.33   0.30  |    30all_    1.00   1.00  (imp)
+  ZW1215      0.62   0.69   0.67  |   0.37   0.48   0.47  |    30all_    1.00   1.00  (meas)
+  MEDIAN      0.61   0.68   0.61  |   0.28   0.41   0.39  |         1.00   1.00   (medians)
+
+========================================================================================
+STEP 3 -- THE VERDICT: candidate closes the gap iff the median ratio lands in [0.8, 1.3]
+========================================================================================
+  [FAIL] V-kernel [canonical: the KERNEL (1-mu2(g/2a0)) partition's delivered amplitude at 420 kpc] median over 12 clusters of (M_b + M_ph,supported(<420))/M_HSE, M_ph,supported the deficit integral of the candidate's own share (G050's cap-reduced 0.41x = baryons alone)
+         measured: median delivered / measured = 0.571 over 12 clusters (pt closed-form variant 0.636)
+         reading : [0.8, 1.3] = the partition closes the amplitude gap (the phantom supplies the deficit), < 0.8 = undersupply, > 1.3 = oversupply
+  [FAIL] V-kernel [alt: the KERNEL (1-mu2(g/2a0)) partition's delivered amplitude at 420 kpc] median over 12 clusters of (M_b + M_ph,supported(<420))/M_HSE, M_ph,supported the deficit integral of the candidate's own share (G050's cap-reduced 0.41x = baryons alone)
+         measured: median delivered / measured = 0.615 over 12 clusters (pt closed-form variant 0.678)
+         reading : [0.8, 1.3] = the partition closes the amplitude gap (the phantom supplies the deficit), < 0.8 = undersupply, > 1.3 = oversupply
+  [FAIL] V-virial [canonical: the VIRIAL (W_M/(W_M+W_N)) partition's delivered amplitude at 420 kpc] median over 12 clusters of (M_b + M_ph,supported(<420))/M_HSE, M_ph,supported the deficit integral of the candidate's own share (G050's cap-reduced 0.41x = baryons alone)
+         measured: median delivered / measured = 0.353 over 12 clusters (pt closed-form variant 0.373)
+         reading : [0.8, 1.3] = the partition closes the amplitude gap (the phantom supplies the deficit), < 0.8 = undersupply, > 1.3 = oversupply
+  [FAIL] V-virial [alt: the VIRIAL (W_M/(W_M+W_N)) partition's delivered amplitude at 420 kpc] median over 12 clusters of (M_b + M_ph,supported(<420))/M_HSE, M_ph,supported the deficit integral of the candidate's own share (G050's cap-reduced 0.41x = baryons alone)
+         measured: median delivered / measured = 0.389 over 12 clusters (pt closed-form variant 0.409)
+         reading : [0.8, 1.3] = the partition closes the amplitude gap (the phantom supplies the deficit), < 0.8 = undersupply, > 1.3 = oversupply
+  [PASS] V-rM [canonical: the r_M-SURFACE (binary beyond a0 crossing) partition's delivered amplitude at 420 kpc] median over 12 clusters of (M_b + M_ph,supported(<420))/M_HSE, M_ph,supported the deficit integral of the candidate's own share (G050's cap-reduced 0.41x = baryons alone)
+         measured: median delivered / measured = 1.000 over 12 clusters (pt closed-form variant 1.000)
+         reading : [0.8, 1.3] would be the band -- but this PASS is VACUOUS: r_M lies below the first tabulated radius (30 kpc) for ALL 12 clusters on this footing, so the binary share is 1 everywhere in the window and the ratio returns M_HSE identically by construction (zero explanatory content: no partition performed)
+  [PASS] V-rM [alt: the r_M-SURFACE (binary beyond a0 crossing) partition's delivered amplitude at 420 kpc] median over 12 clusters of (M_b + M_ph,supported(<420))/M_HSE, M_ph,supported the deficit integral of the candidate's own share (G050's cap-reduced 0.41x = baryons alone)
+         measured: median delivered / measured = 1.000 over 12 clusters (pt closed-form variant 1.000)
+         reading : [0.8, 1.3] would be the band -- but this PASS is VACUOUS: r_M lies below the first tabulated radius (30 kpc) for ALL 12 clusters on this footing, so the binary share is 1 everywhere in the window and the ratio returns M_HSE identically by construction (zero explanatory content: no partition performed)
+
+  reference: median baryon fraction M_b/M_HSE at 420 kpc = 0.170 (coherent with X-COP's own f_b ~ 0.13-0.17); G050's registered 0.409 reproduces as (M_b + M_ph,EOS)/M_HSE = 0.409 -- its cap never fired (broken g_tot), so 0.409 was never baryons-only. The band floor 0.8 requires the phantom to carry 0.759 of the measured deficit at 420 kpc
+
+  (kernel variant 1-mu2(g/a0), beside: canonical median 0.413; alt median 0.453)
+
+========================================================================================
+STEP 4 -- THE HONEST RESIDUAL for the best candidate (|median - 1| minimal)
+========================================================================================
+  best NON-DEGENERATE candidate: KERNEL (1-mu2(g/2a0)) on alt (median ratio 0.615; degenerate r_M-PASSes excluded)
+    canonical: median ratio 0.571
+    alt: median ratio 0.615
+  cluster   ratio   residual (ratio-1)   deficit shortfall (1 - M_ph,supported/M_res)
+  A1644     0.736     -0.264              +0.291
+  A1795     0.576     -0.424              +0.494
+  A2029     0.541     -0.459              +0.567
+  A2142     0.608     -0.392              +0.501
+  A2255     0.759     -0.241              +0.292
+  A2319     0.558     -0.442              +0.538
+  A3158     0.656     -0.344              +0.405
+  A3266     0.624     -0.376              +0.463
+  A644      0.523     -0.477              +0.535
+  A85       0.622     -0.378              +0.454
+  RXC1825   0.607     -0.393              +0.443
+  ZW1215    0.667     -0.333              +0.403
+  MEDIAN residual = -0.385 (MAD 0.047); median deficit shortfall = +0.459; range of ratio 0.52-0.76
+  [PASS] V-RES [the honest residual of the best candidate at 420 kpc] per-cluster (M_b + M_ph,supported)/M_HSE residuals for KERNEL (1-mu2(g/2a0)) on alt
+         measured: median residual -0.385; median deficit shortfall +0.459; spread 0.52-0.76
+         reading : the residual stated as a measurement, no threshold: this is what the partition leaves on the table at 420 kpc
+
+========================================================================================
+READING
+========================================================================================
+
+  The partition is now a FUNCTION, not a step.  G050's split registered 0.41x
+  -- but that number was (M_b + M_ph,EOS)/M_HSE with its EFE cap never firing
+  (the units slips broke g_tot), so nothing was actually partitioned.  On the
+  clean recompute (same files): baryons alone deliver 0.170x at
+  420 kpc (coherent with X-COP f_b), the EOS phantom another ~0.24x,
+  and the deficit is 0.83x M_HSE -- the free-dust share left
+  undeduced.  G059 derives the partition from the local field itself on the
+  SAME 12 X-COP clusters, three ways.
+
+  KERNEL (0.57x / 0.61x):
+  the mu2 kernel oriented sub-a0 -- the phantom's share IS the certified
+  kernel's sub-a0 branch, pointwise in g_tot/a0, no free parameter.
+
+  VIRIAL (0.35x / 0.39x):
+  the cumulative work fraction of the deep branch.
+
+  r_M-SURFACE (1.00x / 1.00x):
+  the binary surface reading -- VACUOUS on X-COP: r_M lies BELOW the first
+  tabulated radius (30 kpc) for all 12 clusters on both footings (the X-COP
+  forward masses put g_tot < a0 through the entire window), so the binary
+  share is 1 everywhere and the ratio returns M_HSE identically by
+  construction.  A binary partition cannot be performed inside this data.
+
+  HONEST STATE: no NON-degenerate candidate reaches [0.8, 1.3] on either
+  footing.  The theory's own kernel (KERNEL, zero free parameters) is the
+  nearest miss: 0.57x
+  (canonical) / 0.61x (alt);
+  the required share of the deficit for the band floor is
+  0.76 at 420 kpc.  The DERIVED partitions
+  undersupply; the residual is the free dust's share, exactly G050's
+  architecture: cap/un-cap was always a stand-in for this partition, and the
+  partition the theory supplies (the mu2 kernel's sub-a0 branch) delivers
+  ~6/10 of the deficit, not all of it.  Both partitions together -- supported
+  phantom + free dust -- account for M_HSE by construction; the derived
+  phantom share is the honest, parameter-free lower bound on what the theory
+  itself contributes to the cluster's dark sector.
+
+  Best non-degenerate candidate: KERNEL (1-mu2(g/2a0)) on alt, median residual
+  -0.385 (median deficit shortfall +0.459).
+
+G059 COMPLETE: 3/7 checks PASS.
+artifact written: G059_results.json
+
