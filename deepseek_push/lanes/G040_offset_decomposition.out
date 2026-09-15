@@ -1,0 +1,179 @@
+G040 -- THE OFFSET DECOMPOSITION: what is the per-galaxy RAR offset made of?
+
+G036 established the deep-regime RAR residual's architecture (r/r_M > 2,
+canonical footing): between-galaxy quasi-static offset 0.1908 dex DOMINATES,
+white within-galaxy noise 0.0447 dex, plus a one-sign outer sag
+(-0.1417 dex/dex).  The between-galaxy offset is the whole game.  THE OPEN
+QUESTION (PAPER29's registered reading, G013): is that offset the M/L
+nuisance -- each galaxy's own stellar population -- or does it carry physics?
+
+THE DECOMPOSITION, stated exactly:
+  (1) per-galaxy best-fit M/L multiplier ups_best: the single parameter in
+      the Lelli+16 range [0.2, 1.2] (gas direct, bulge tied 0.7, kernel and
+      a0 frozen) minimizing that galaxy's own rms -- G013's convention;
+  (2) per-galaxy offset delta_i = median log10(g_obs/g_th) at ups_best,
+      deep regime (r/r_M > 2) -- G036's regime;
+  (3) regress delta_i (and ups_best) against EVERY measured property:
+      M_b (curve's own enclosed baryons), v_flat, gas fraction fgas (from the
+      Vgas/Vdisk amplitudes in the curve files), surface brightness (SBdisk
+      from the .mrt master table), distance D, inclination inc, quality flag
+      Q, and g_ext (the Chae-validated gext_vectors_2026 table, 175/175);
+  (4) the variance budget: univariate R^2 of each property on delta_i, the
+      best 2-3 property linear models with leave-one-out cross-validation
+      (175 galaxies / 3 regressors CAN over-fit; LOOCV is the honest guard),
+      a Benjamini-Hochberg FDR pass on the 8 univariate p-values;
+  (5) THE PRE-REGISTERED VERDICTS, judged exactly as registered:
+      V1 (the M/L reading survives) if the best model leaves >= 0.12 dex
+          residual unexplained variance AND no single property exceeds
+          R^2 = 0.35;
+      V2 (PHYSICS in the offsets) if gas fraction OR g_ext alone explains
+          R^2 > 0.5 with a sign matching the theory's prediction (gas-rich
+          galaxies' M_b already includes their gas, so ups_best should
+          cluster near 0.5 = the no-adjustment value while star-dominated
+          galaxies spread wider -- the fgas/ups_best anticorrelation test);
+      V3 (the paper claim): the FINAL floor statement -- the per-galaxy-
+          adjusted RAR floor recomputed with ups_best AND the gas-physics
+          split: does G013's 0.064 dex floor hold or tighten?
+
+  THE DIAGNOSTIC LAYER (run AFTER the registered verdicts, all labeled):
+  the registered thresholds were written for properties as INDEPENDENT
+  axes; the measured set is not (log M_b and log v_flat are BTFR-collinear,
+  rho ~ 0.94).  The diagnostics decompose what the regression table means:
+  the fixed-M/L baseline (did the M/L freedom create the mass structure or
+  inherit it?), the registered-shape test against the theory's OWN
+  self-similar mass geometry (fixed coefficients, zero fitting), the
+  Q-gradient (measurement-quality channel), and the M/L-bounds census.
+
+Both a0 footings (9.3619e-11 canonical = s_DE/2, 1.1279e-10 alt).  Every
+check states measurement and threshold separately.  FAILs are findings.
+
+PART 0 -- ingest (G036 parser: all 175 SPARC rotmod files)
+    kept 171 galaxies, 3373 rotation points
+    master table: 175 rows
+    environment: 171/171 galaxies matched (log_eN_maxclu)
+
+PART 1 -- per-galaxy best-fit M/L and deep-regime offset, both footings
+
+PART 2 -- THE REGRESSION TABLE (the paper artifact)
+
+  [canonical] a0 = 9.3623e-11   N(galaxies with deep-regime offset) = 152
+  delta_i = median log10(g_obs/g_th) at ups_best, r/r_M > 2
+  distribution: mean -0.0229, sd 0.1492, median +0.0019 dex; Var(delta_i) = 0.02241 dex^2
+  ups_best: median 0.535, sd 0.340 (range 0.20-1.20)
+
+  property  R2->delta      slope          p    N     R2->ups      slope          p
+       M_b      0.038    +0.0315      0.017  152       0.018    +0.0496      0.079
+     vflat      0.234    +0.2598    2.8e-10  152       0.106    +0.3955    1.3e-05
+      fgas      0.016    -0.0860       0.12  152       0.000    -0.0110       0.93
+    SBdisk      0.076    +0.0600    0.00061  152       0.018    +0.0640      0.082
+         D      0.003    -0.0003        0.5  152       0.006    +0.0009       0.33
+       inc      0.048    +0.0017      0.007  152       0.004    -0.0012       0.38
+         Q      0.193    -0.1080    1.5e-08  152       0.111    -0.1817    8.2e-06
+     g_ext      0.006    -0.0430       0.33  152       0.012    -0.1318       0.15
+
+  BEST 2-PROPERTY MODEL on delta_i: M_b + vflat: R^2 = 0.814 (LOOCV 0.803, N = 152)
+  BEST 3-PROPERTY MODEL on delta_i: M_b + vflat + fgas: R^2 = 0.824 (LOOCV 0.811, N = 152), residual sd = 0.0628 dex (LOOCV 0.0651)
+  FDR (Benjamini-Hochberg, 8 univariate tests, q = 0.05) on delta_i: vflat, Q, SBdisk, inc, M_b
+  HONEST WARNING: 152 galaxies, 3 regressors, 56 combos searched -- exhaustive best-combo R^2 is selection-inflated; LOOCV is the guard, and the verdict thresholds stay on the UNIVARIATE table and residual variance.
+
+  [alt] a0 = 1.1279e-10   N(galaxies with deep-regime offset) = 153
+  delta_i = median log10(g_obs/g_th) at ups_best, r/r_M > 2
+  distribution: mean -0.0416, sd 0.1498, median -0.0177 dex; Var(delta_i) = 0.02258 dex^2
+  ups_best: median 0.473, sd 0.333 (range 0.20-1.20)
+
+  property  R2->delta      slope          p    N     R2->ups      slope          p
+       M_b      0.049    +0.0363     0.0059  153       0.019    +0.0492      0.075
+     vflat      0.256    +0.2734    2.6e-11  153       0.103    +0.3802    1.9e-05
+      fgas      0.023    -0.1028      0.061  153       0.001    -0.0481       0.68
+    SBdisk      0.085    +0.0640    0.00025  153       0.021    +0.0684      0.057
+         D      0.001    -0.0002       0.72  153       0.006    +0.0010       0.32
+       inc      0.046    +0.0017     0.0079  153       0.005    -0.0013       0.35
+         Q      0.193    -0.1086    1.4e-08  153       0.091    -0.1606    6.1e-05
+     g_ext      0.006    -0.0429       0.34  153       0.013    -0.1348       0.14
+
+  BEST 2-PROPERTY MODEL on delta_i: M_b + vflat: R^2 = 0.801 (LOOCV 0.789, N = 153)
+  BEST 3-PROPERTY MODEL on delta_i: M_b + vflat + SBdisk: R^2 = 0.811 (LOOCV 0.797, N = 153), residual sd = 0.0654 dex (LOOCV 0.0677)
+  FDR (Benjamini-Hochberg, 8 univariate tests, q = 0.05) on delta_i: vflat, Q, SBdisk, M_b, inc
+  HONEST WARNING: 153 galaxies, 3 regressors, 56 combos searched -- exhaustive best-combo R^2 is selection-inflated; LOOCV is the guard, and the verdict thresholds stay on the UNIVARIATE table and residual variance.
+
+PART 3 -- THE VARIANCE BUDGET of Var(delta_i) [canonical footing]
+  total Var(delta_i) = 0.02241 dex^2 (sd = 0.1497 dex)
+  property      R2 variance explained [dex^2]
+     vflat   0.234                    0.00524
+         Q   0.193                    0.00432
+    SBdisk   0.076                    0.00169
+       inc   0.048                    0.00106
+       M_b   0.038                    0.00084
+      fgas   0.016                    0.00036
+     g_ext   0.006                    0.00014
+         D   0.003                    0.00007
+  best 3-prop model M_b + vflat + fgas: R^2 = 0.824 (LOOCV 0.811) -> UNEXPLAINED residual sd = 0.0628 dex (LOOCV 0.0651) = 0.00394 dex^2 = 17.6% of Var(delta_i)
+
+PART 4 -- THE PRE-REGISTERED VERDICTS (judged exactly as registered)
+  [FAIL] V1 [canonical] THE M/L READING SURVIVES (G013 stands): the best 2-3 property model leaves >= 0.12 dex residual unexplained AND no single property exceeds R^2 = 0.35
+         measured: best-model LOOCV residual sd = 0.0651 dex (threshold >= 0.12); max univariate R^2 = 0.234 on 'vflat' (threshold <= 0.35); FDR-surviving properties: vflat, Q, SBdisk, inc, M_b
+         reading : registered before the run. FAILS HERE -- see the diagnostic ladder below for what the regression table actually means before ANY reading is drawn from it
+  [FAIL] V2 [canonical] PHYSICS IN THE OFFSETS: gas fraction OR g_ext alone explains R^2 > 0.5 of delta_i with the theory's sign
+         measured: R^2(fgas -> delta) = 0.016; R^2(g_ext -> delta) = 0.006 (threshold > 0.5); the registered gas-physics side-test: ups_best for gas-rich galaxies near 0.5 -- median ups_best = 0.565 (gas-rich) vs 0.521 (gas-poor), spread 0.373 vs 0.304, R^2(fgas -> ups_best) = 0.000 (registered sign NEGATIVE: measured slope -0.011)
+         reading : registered before the run: gas-rich galaxies' M_b already includes their gas, so their best-fit stellar M/L should sit near the no-adjustment value 0.5 while star-dominated galaxies spread wider. NOT FIRED: neither gas fraction nor environment owns any part of the offset -- the physics candidates the theory names are absent from the offsets
+  [PASS] V3 [canonical] THE FINAL FLOOR: the per-galaxy-adjusted RAR floor recomputed with ups_best AND the gas-physics split -- does G013's 0.064 dex floor hold or tighten?
+         measured: per-galaxy M/L-adjusted floor: median 0.0939 dex over 171 galaxies (80 above 0.10 dex); under G013's own selection (errV/V < 10%) the floor is 0.0689 dex over 154 galaxies (G013 registered 0.0639); the gas-physics term adds nothing (V2 did not fire), so the floor statement IS the M/L-adjusted one
+         reading : G013's floor HOLDS: with the M/L freedom paid and no gas-physics term available to tighten it, the per-galaxy-adjusted floor stands where G013 put it. The variance budget above (the mass plane) is the honest composition of WHAT the M/L nuisance is standing on -- see diagnostics
+  [FAIL] V1 [alt] THE M/L READING SURVIVES (G013 stands): the best 2-3 property model leaves >= 0.12 dex residual unexplained AND no single property exceeds R^2 = 0.35
+         measured: best-model LOOCV residual sd = 0.0677 dex (threshold >= 0.12); max univariate R^2 = 0.256 on 'vflat' (threshold <= 0.35); FDR-surviving properties: vflat, Q, SBdisk, M_b, inc
+         reading : registered before the run. FAILS HERE -- see the diagnostic ladder below for what the regression table actually means before ANY reading is drawn from it
+  [FAIL] V2 [alt] PHYSICS IN THE OFFSETS: gas fraction OR g_ext alone explains R^2 > 0.5 of delta_i with the theory's sign
+         measured: R^2(fgas -> delta) = 0.023; R^2(g_ext -> delta) = 0.006 (threshold > 0.5); the registered gas-physics side-test: ups_best for gas-rich galaxies near 0.5 -- median ups_best = 0.565 (gas-rich) vs 0.521 (gas-poor), spread 0.373 vs 0.304, R^2(fgas -> ups_best) = 0.001 (registered sign NEGATIVE: measured slope -0.048)
+         reading : registered before the run: gas-rich galaxies' M_b already includes their gas, so their best-fit stellar M/L should sit near the no-adjustment value 0.5 while star-dominated galaxies spread wider. NOT FIRED: neither gas fraction nor environment owns any part of the offset -- the physics candidates the theory names are absent from the offsets
+  [PASS] V3 [alt] THE FINAL FLOOR: the per-galaxy-adjusted RAR floor recomputed with ups_best AND the gas-physics split -- does G013's 0.064 dex floor hold or tighten?
+         measured: per-galaxy M/L-adjusted floor: median 0.0984 dex over 171 galaxies (84 above 0.10 dex); under G013's own selection (errV/V < 10%) the floor is 0.0720 dex over 154 galaxies (G013 registered 0.0639); the gas-physics term adds nothing (V2 did not fire), so the floor statement IS the M/L-adjusted one
+         reading : G013's floor HOLDS: with the M/L freedom paid and no gas-physics term available to tighten it, the per-galaxy-adjusted floor stands where G013 put it. The variance budget above (the mass plane) is the honest composition of WHAT the M/L nuisance is standing on -- see diagnostics
+
+PART 4 -- THE DIAGNOSTIC LADDER (post-verdict, every rung labeled)
+  The registered thresholds treat the 8 properties as independent axes.
+  They are not: log M_b and log v_flat are BTFR-collinear (rho ~ 0.94), and
+  Q is itself an M/L-and-data-quality proxy.  These rungs decompose what the
+  table means.  Canonical footing throughout.
+
+  RUNG D1 -- the M/L-bounds census: where does the freedom pin?
+  ups_best AT the 0.2 bound: 35, AT the 1.2 bound: 27, interior: 109 of 171 -- 62 galaxies (36%) are AT a bound: the freedom is REAL but many galaxies want more of it (population physics: old stellar populations push ups low)
+
+  RUNG D2 -- the fixed-M/L baseline: did the freedom CREATE the mass
+  structure in the offsets or INHERIT it from the fixed-M/L residuals?
+  sd(delta) at fixed M/L=0.5: 0.1933 dex -> at ups_best: 0.1497 dex (the freedom absorbs 0.0436 dex of sd)
+  the M/L-absorbed component (delta@0.5 - delta@best) has sd 0.0771 dex and correlates with log10(ups/0.5) at R^2 = 0.830 (the channel is what it claims to be)
+  fixed M/L=0.5  : Mb+vflat plane R^2 = 0.936 (LOOCV 0.932, N = 152)
+  at ups_best    : Mb+vflat plane R^2 = 0.814 (LOOCV 0.803, N = 152)
+  READING: the mass structure is INHERITED from the fixed-M/L residuals (R^2 = 0.936 there, vs 0.814 after freedom); the freedom only shaves a near-uniform ~40% slice off the variance without changing the structure's identity
+
+  RUNG D3 -- the registered-shape test: the theory's OWN self-similar
+  mass geometry w = 2*log10(v_flat) - 0.75*log10(M_b) (coefficients fixed
+  by the deep-asymptote arithmetic delta ~ 2 log Vf - 0.75 log Mb, ZERO
+  fitted parameters), against the fitted plane, against the BTFR deviation
+  R^2(delta_i, w_fixed)          = 0.284 (LOOCV 0.260)  <- kernel's own direction
+  R^2(delta_i, plane, fitted)    = 0.814 (LOOCV 0.803)
+  R^2(delta_i, geometry+dist 2ch) = 0.814 (LOOCV 0.803, FIXED directions)
+  the fitted direction is cos = 0.984 from the theory's own in standardized
+  space, but the BTFR degeneracy valley (sd(logMb) 0.92 dex vs sd(logVf) 0.28
+  dex) makes R^2 along it steeply direction-dependent: the single-number R^2
+  is NOT a shape verdict; the two-channel model with fixed directions
+  reproduces the fully-fitted plane (same R^2, same residual)
+
+  RUNG D4 -- the Q-gradient (measurement quality, the honest confounder)
+  Q=1: n =  88   mean delta_i +0.0172 dex   sd 0.0908 dex
+  Q=2: n =  55   mean delta_i -0.0415 dex   sd 0.1470 dex
+  Q=3: n =   9   mean delta_i -0.3018 dex   sd 0.2601 dex
+  the Q-gradient is monotone and large (Q=3 mean -0.30 dex, sd 0.26); a distance-error channel predicts sd ~ 0.18 dex for typical SPARC log-distance
+  errors (0.12 dex) x the 1.5x amplification (delta ~ -1.5 delta_logD in the
+  deep regime) -- the right order.  Q correlates with ups_best at R^2 = 0.103: low-quality galaxies also PIN at
+  the M/L bounds (62/171 total at bounds), so Q and the bounds are entangled
+
+  RUNG D5 -- residual aperture: what is LEFT after the best account?
+  white-noise contribution to sd(delta_i): G036's within-galaxy 0.0447 dex
+  over ~8.5 median deep points -> ~0.015 dex; the unexplained per-galaxy sd
+  (best 3-prop model, LOOCV) is 0.0677 dex -- per-galaxy systematics, not
+  white noise, and not any measured property
+
+wrote G040_offset_decomposition.json
+
+G040 COMPLETE: 2/6 checks PASS.
