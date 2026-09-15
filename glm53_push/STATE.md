@@ -21,9 +21,10 @@ free dust's astrophysical-normalization share.
 Cosmology is ΛCDM-exact on the frozen branch (w = −1, c_s² ∈ [1/2, 1)),
 φ̇ = 0 is an attractor, and the registered growth raise carries over inside
 band. One number remains empirical (n = 2: four structural routes closed);
-one residual structure is unexplained (the outer sag −0.13…−0.17 dex/dex,
-G049/G057); one derivation remains open at print time (the cluster
-partition, G059 — in flight).
+the outer sag now resolves to a physical channel — the unmodeled asymmetric
+drift (gas pressure support) correction closes it (G057 `6a7a35a4c`,
+err+fullAD → −0.031 dex/dex), with the σ_z calibration as the identifying
+test; and the cluster partition (G059) is tested with an honest negative.
 
 ## THE CENTRAL CHAIN — status of every rung
 
@@ -122,10 +123,18 @@ digit-for-digit.
   the resolution is the scalar-mediated force (rung 4 above), not a different
   initial condition. Registered N-body follow-up: relaxation ONTO the
   equilibrium in the scalar-mediated dynamics.
-- **The sag**: −0.13…−0.17 dex/dex, one-sign, 4–5σ, immune to M/L gradient,
-  matched law, truncation, EFE (G049). Sharpest open anomaly; G057 sweeping
-  6 candidate mechanisms (distance, inclination, asymmetric drift, gas
-  fraction, footing cross-talk, Bayesian comparison).
+- **The sag — RESOLVED TO A PHYSICAL CHANNEL (G057, `6a7a35a4c`)**:
+  −0.13…−0.17 dex/dex, one-sign, 4–5σ (G049). The exhaustion sweep's
+  baseline reproduced G049 field-for-field; of the six mechanisms, distance
+  closes only 11%, inclination is exactly slope-degenerate by construction,
+  but the **textbook full asymmetric-drift (gas pressure-support)
+  correction closes it**: the error-model stack leaves −0.1250
+  [−0.140,−0.106], the physical stack (err + full AD) lands at **−0.0310
+  [−0.050, −0.010]** canonical / −0.0373 alt — inside the 0.05 threshold.
+  Amplitude-modulated by gas dominance (rich −0.208 vs poor −0.076, p≈0.045),
+  footing-independent. **Honest caveat: the closure is degenerate with the
+  HI σ_z calibration** — it needs σ_z ≈ 10–16 km/s; at σ_z ≲ 7 km/s a −0.10
+  residual survives. Decisive test: independent HI velocity-dispersion data.
 - **Cassini**: bare μ₂ 5.45×/6.29× the ceiling (G005; L243's exact-AQUAL
   6.44×/7.63×); the fixed-congruence Horn A (G032: α₁ = 0 by architecture)
   is the PPN-clean completion.
@@ -183,7 +192,12 @@ compile where marked.
    lower bound, the residual is the free dust's astrophysical normalization
    (as in ΛCDM), stated as such. The amplitude stays NOT derived; the shape
    and the rising-share signature ARE (G008/G050/H012).
-2. **The sag mechanism** — G049's escalation stands; G057 sweeping.
+2. **The sag — resolved to a physical channel, one calibration open** (G057
+   `6a7a35a4c`): asymmetric drift (gas pressure support) closes the sag
+   (err+fullAD → −0.031 dex/dex, inside the 0.05 threshold); the open piece is
+   the σ_z calibration (closure needs σ_z ≈ 10–16 km/s; at σ_z ≲ 7 km/s a
+   −0.10 residual survives) — decisively testable with independent HI
+   velocity-dispersion data.
 3. **Relaxation onto the equilibrium** (G035's registered follow-up) —
    scalar-mediated N-body.
 4. **Euclid η lane** — G052 landed 5/6; the η observable itself is the
