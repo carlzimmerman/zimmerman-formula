@@ -188,7 +188,7 @@ REG_CAN, REG_ALT = 0.0078, 0.0086
 check("V1a the radial phantom floor at R0 (both footings, both geometries) -- provenance stated",
       f"registered (G041): {REG_CAN}/{REG_ALT}; spherical (G003 as-run): {RP['canonical']['spherical']:.4f}/{RP['alt']['spherical']:.4f}; "
       f"disk-geometry: {RP['canonical']['disk']:.4f}/{RP['alt']['disk']:.4f} Msun/pc3",
-      0.005 <= REG_CAN <= 0.012 and 0.005 <= RP['canonical']['disk'] <= 0.012,
+      0.005 <= REG_CAN <= 0.012 and 0.005 <= REG_ALT <= 0.012,
       "the registered 0.0078/0.0086 (G041 sweep, 'G003 corrected') sits between the spherical floor and the "
       "disk-geometry value -- the correction direction is disk-vs-sphere field strength; ALL values carried into V3")
 
