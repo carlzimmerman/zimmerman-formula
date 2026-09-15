@@ -1,0 +1,221 @@
+L250 -- COSMIC VOIDS: the maximally-MOND environment, and what the kernel does to it.
+
+PRIOR ART IN THIS REPO (stated before anything new is claimed):
+    nbody_2026/stage53_route_a_prime_closure_2026.py PART C -- KBC front; C2(ii) already has
+      'every rms 12-Mpc void evacuates to delta = -0.993'; C1 ratio 1.175; C3 a_0(z) FLAT
+      where the void lives, so constant a_0 is justified to <= 4.5% even from z_i = 1000.
+    hunt_2026/k01_acceleration_census.py -- one literature scalar, g_int/a_0 ~ 0.003 at 15 Mpc.
+    hunt_2026/h76_h13_h36_h63.py item 63 -- void-vs-wall EFE on rotation curves, different front.
+    UNRUN, and done here: the confrontation with the OBSERVED void population.
+
+================================================================================================================
+V1 -- the acceleration census of voids, analytic, across the OBSERVED size range
+================================================================================================================
+    g(R) = (4/3) pi G rho_m |delta| R at the edge of a spherical under-density
+    rho_m = 2.6879e-27 kg/m^3 (Planck 2018 Omega_m = 0.315, h = 0.674)
+
+     R (Mpc/h)    g (m/s^2)   y = g/a0 can   nu can      y alt   nu alt
+            10    2.752e-13        0.00294    18.95    0.00244    20.75
+            15    4.128e-13        0.00441    15.56    0.00366    17.03
+            20    5.504e-13        0.00588    13.55    0.00488    14.82
+            30    8.257e-13        0.00882    11.16    0.00732    12.20
+            50    1.376e-12        0.01470     8.76    0.01220     9.56
+
+    for comparison, the deepest point the RAR is actually measured at: SPARC outermost
+    median g_bar/a_0 = 0.02 (k01_acceleration_census.out), nu = 7.58
+    NOTE the direction: g grows with R at fixed delta, so the LARGEST voids are the
+    SHALLOWEST in MOND terms and the smallest voids are the most enhanced.
+  [PASS] V1 [EVERY OBSERVED VOID SIZE IS DEEPER IN THE MOND REGIME THAN ANYWHERE THE RAR IS MEASURED] the edge acceleration of a spherical under-density with the observed central contrast is computed across the observed radius range on both footings and the largest resulting y = g/a_0 is compared with the deep-MOND threshold y < 0.1 (nu > 4.1)
+           (the worst case over R = 10-50 Mpc/h and both footings is y = 0.0147, threshold 0.1; the kernel boost runs nu = 8.8 to 18.9 (canonical), against nu = 7.6 at the deepest point SPARC reaches. Voids are the maximally-MOND environment, and this confirms k01's single literature scalar across the whole size range)
+
+================================================================================================================
+V2 -- real local voids: internal accelerations measured on the 2M++ reconstruction
+================================================================================================================
+    Carrick+2015 2M++ loaded: (257, 257, 257), delta_g in [-1.00, 53.57], mean +0.00311, cell 1.5625 Mpc/h
+    converting tracer to matter with the paper's own bias b = 1.2: delta_m = delta_g / b
+
+     void   l(deg)   b(deg)  d(Mpc/h)  dbar(<15)   g_int/a0   g_ext/a0  ext/int
+        1     17.7      5.0      36.2     -0.682    0.00376    0.00804     2.14
+        2    236.3    -48.0      75.7     -0.635    0.00350    0.00526     1.50
+        3    300.4    -22.4      90.2     -0.602    0.00332    0.00346     1.04
+        4     57.3    -64.2     119.7     -0.584    0.00322    0.00159     0.49
+        5    285.4    -65.8     114.8     -0.594    0.00327    0.00118     0.36
+        6    235.4    -55.9      98.1     -0.571    0.00315    0.00505     1.61
+        7      4.8     36.8      47.0     -0.585    0.00322    0.00864     2.68
+        8    342.5    -60.3      62.9     -0.617    0.00340    0.00252     0.74
+        9    356.5    -21.0     109.0     -0.560    0.00308    0.00274     0.89
+       10     69.0    -16.0      22.6     -0.590    0.00325    0.00550     1.69
+       11    110.6     10.6      67.9     -0.560    0.00309    0.00478     1.55
+       12     68.2    -81.9     119.9     -0.565    0.00312    0.00335     1.08
+
+    medians over 12 voids: delta_bar(<15 Mpc/h) = -0.587, g_int/a_0 = 0.00324 (canonical) / 0.00269 (alt)
+    the reconstruction is smoothed at ~4 Mpc/h and linear-theory based, so delta_bar here is
+    a LOWER bound on the true depth and g_int correspondingly an UPPER bound -- the true
+    voids are deeper in MOND than this measurement says, not shallower
+  [PASS] V2 [REAL LOCAL VOIDS SIT WHERE V1 SAYS THEY DO -- THE CENSUS SCALAR IS CONFIRMED ON DATA] the mean matter contrast inside 15 Mpc/h of the twelve deepest local under-densities in the 2M++ reconstruction is measured, converted to an internal acceleration, and the median is compared with the deep-MOND threshold y < 0.1
+           (median g_int/a_0 = 0.00324 (canonical) / 0.00269 (alt) against threshold 0.1, on a median measured contrast delta_bar = -0.587. k01's single scalar 0.003 is confirmed to within a factor of a few on real data; the external field these voids sit in is carried to V7)
+
+================================================================================================================
+V3 -- the spherical under-density integrator and its controls
+================================================================================================================
+    control A (EdS): linear delta_L = -2.717 (Blumenthal+1992 / SvdW2004) integrates
+                     to delta_nl = -0.80156; the literature value is -0.7947, relative error 8.63e-03
+    control B (LCDM linear): delta_i = -1e-05 at z = 100 integrates to -7.951870e-04; linear
+                     theory with D(1)/D(a_i) = 79.5691 predicts -7.956910e-04, relative error 6.33e-04
+  [PASS] V3 [THE INTEGRATOR IS CORRECT] the same code is run in two regimes with a known answer: the Einstein-de Sitter void shell-crossing pair from the literature, and the linear-growth limit computed independently by quadrature; both must agree to better than 1 per cent
+           (EdS shell crossing reproduced to 8.63e-03 and LCDM linear growth to 6.33e-04, threshold 1e-2 on each. The Newtonian limit of the kernel branch is therefore the correct spherical evolution and every comparison below is differential on one verified integrator)
+
+================================================================================================================
+V4 -- the evacuation, calibrated so the NEWTONIAN branch lands on the observed void
+================================================================================================================
+    method: for each Lagrangian radius, solve for the initial contrast delta_i at z = 100 that
+    makes the NEWTONIAN branch reach the observed non-linear contrast -0.7947 at z = 0, then run
+    the KERNEL branch from THE SAME delta_i.  Apples to apples; no free parameter is left over.
+
+       R_L  delta_i(z=100)   delta_L0 |     branch  delta(z=0)   1+delta  z_shellcross
+         8   -3.283715e-02     -2.613 |  Newtonian    -0.79470    0.2053           nan
+                                      | kernel can    -0.99825    0.0017          4.71   residual matter 117.6x less than Newtonian
+                                      | kernel alt    -0.99875    0.0012          5.09   residual matter 164.8x less than Newtonian
+        12   -3.283715e-02     -2.613 |  Newtonian    -0.79470    0.2053           nan
+                                      | kernel can    -0.99649    0.0035          3.96   residual matter 58.6x less than Newtonian
+                                      | kernel alt    -0.99744    0.0026          4.29   residual matter 80.2x less than Newtonian
+        15   -3.283715e-02     -2.613 |  Newtonian    -0.79470    0.2053           nan
+                                      | kernel can    -0.99497    0.0050          3.58   residual matter 40.8x less than Newtonian
+                                      | kernel alt    -0.99627    0.0037          3.89   residual matter 55.1x less than Newtonian
+        20   -3.283715e-02     -2.613 |  Newtonian    -0.79470    0.2053           nan
+                                      | kernel can    -0.99219    0.0078          3.15   residual matter 26.3x less than Newtonian
+                                      | kernel alt    -0.99411    0.0059          3.43   residual matter 34.8x less than Newtonian
+        30   -3.283715e-02     -2.613 |  Newtonian    -0.79470    0.2053           nan
+                                      | kernel can    -0.98619    0.0138          2.61   residual matter 14.9x less than Newtonian
+                                      | kernel alt    -0.98929    0.0107          2.85   residual matter 19.2x less than Newtonian
+
+    across all radii and both footings the kernel leaves between 14.9x and 164.8x less residual matter
+    the kernel branch reaches shell crossing at z = 2.6 to 5.1, against z = 0 for the Newtonian branch by construction
+  [PASS] V4 [THE FRONT HAS TEETH -- THE TWO BRANCHES ARE NOT DEGENERATE] with the initial condition fixed by the Newtonian branch matching the observed void, the kernel branch is run from the same initial condition and the residual matter fraction 1+delta is compared; a ratio above 3 means the prediction is separable from LCDM by any measurement of void emptiness
+           (the kernel leaves 14.9x to 164.8x less residual matter than Newtonian from an identical initial under-density, and drives shell crossing forward from z = 0 to z = 2.6-5.1. Against the threshold 3 this is a large, separable effect -- IN BRANCH (ii) ONLY; branch (i) is Newtonian by construction and predicts the Newtonian column exactly)
+
+================================================================================================================
+V5 -- confrontation with the observed void density profile
+================================================================================================================
+    THE THRESHOLD, STATED SEPARATELY AND BEFORE THE MEASUREMENT.  Stacked void profiles
+    (Hamaus+2014 PRL 112 251302; Ricciardelli+2014 MNRAS 440 601; Nadathur+2015 MNRAS 449
+    3997; Hamaus+2016 JCAP 11 018) find central TRACER contrast about -0.8 for large voids;
+    the MEAN interior matter contrast that corresponds to is shallower than the central value
+    and carries tracer-bias and void-finder systematics in both directions.  The envelope
+    adopted here is deliberately GENEROUS to the framework: residual matter fraction
+    1+delta_bar between 0.1 and 0.5 (i.e. delta_bar between -0.90 and -0.50).
+    A branch is in tension only if it falls BELOW the floor, i.e. empties voids further than
+    the most extreme reading of the data allows.
+
+    Newtonian branch  : 1+delta_bar = 0.2053  -- inside the envelope BY CONSTRUCTION (it was calibrated there)
+    kernel branch (ii): 1+delta_bar = 0.00125 to 0.01381 across radii and footings
+    the kernel therefore leaves 15x to 165x less matter in a void than the observations accommodate
+  [PASS] V5 [THE KERNEL BRANCH OVER-EMPTIES VOIDS PAST THE MOST GENEROUS READING OF THE DATA] the residual matter fraction the kernel branch leaves inside a void is compared with a floor set in advance from the published stacked void profiles and deliberately widened in the framework's favour; falling below that floor in EVERY case is the tension
+           (the least-emptied kernel case over all radii and both footings is 1+delta_bar = 0.01381, against the generous floor 0.1: a factor 7 below it, and a factor 15 below the calibrated Newtonian value. This reproduces and generalises stage53 C2(ii)'s single number -0.993 across the observed size range. IT IS NOT A KILL: see V8, and note the kernel branch is past shell crossing (V4) where the top-hat is an extrapolation, so the DIRECTION is robust and the VALUE is not)
+
+================================================================================================================
+V6 -- the void size function: which way, and roughly how much
+================================================================================================================
+    Sheth & van de Weygaert 2004 MNRAS 350 517: the void multiplicity carries the factor
+    exp(-delta_v^2 / 2 sigma^2(R_L)), delta_v the LINEAR contrast at which the void reaches
+    shell crossing.  A kernel that evacuates faster reaches shell crossing from a SHALLOWER
+    initial under-density, so |delta_v| falls and the exponential rises: MORE voids, LARGER.
+    sigma(R) is BBKS+Sugiyama normalised to sigma_8 = 0.811 -- the CMB-anchored linear
+    amplitude, which both branches share at z = 100.
+
+       R_L  sigma_L(R_L)   dv Newton  dv kernel can  dv kernel alt   N_M/N_N can          alt
+         8        0.8110      -2.613        -0.000        -0.000     1.794e+02    1.794e+02
+        12        0.6044      -2.613        -0.000        -0.000     1.144e+04    1.144e+04
+        15        0.5057      -2.613        -0.000        -0.000     6.270e+05    6.270e+05
+        20        0.3942      -2.613        -0.000        -0.000     3.481e+09    3.481e+09
+        30        0.2665      -2.613        -0.000        -0.000     7.440e+20    7.440e+20
+
+    NOTE: for 10 kernel-branch cases no seed as shallow as |delta_i| = 1e-13 at z = 100
+    avoids shell crossing by z = 0 (the deep-MOND enhancement nu ~ (a_0/g)^(1/2) diverges as the
+    peculiar field vanishes), so the kernel barrier |delta_v| is an UPPER BOUND (< 8e-13 in linear
+    z = 0 units) and the exponential factor N_M/N_N is a LOWER BOUND, not a value.
+
+    the kernel barrier is shallower than the Newtonian one at every radius and both footings;
+    the largest ratio |delta_v,kernel| / |delta_v,Newton| is 0.000
+    THE MAGNITUDE IS NOT A PREDICTION.  The exponential is the LEADING factor only, sigma(R_L)
+    enters squared in a denominator, and the SvdW barrier is itself a spherical construction.
+    Only the SIGN and the ordering are defensible from this calculation.
+  [PASS] V6 [THE SIZE FUNCTION MOVES THE SAME WAY AT EVERY RADIUS: MORE AND LARGER VOIDS] the linear shell-crossing barrier is computed for both branches on the same integrator and the same CMB-anchored sigma(R); the kernel barrier must be shallower than the Newtonian barrier at every radius and both footings for the direction to be a clean prediction rather than a radius-dependent mixture
+           (the deepest kernel barrier is 0.000 of the Newtonian one, threshold 1.0 -- shallower everywhere. The exponential factor that follows runs 1.8e+02 to 7.4e+20, which is quoted as a DIRECTION with an order of magnitude and must never be quoted as a predicted abundance)
+
+================================================================================================================
+V7 -- does the external field rescue it?  The one escape a MOND kernel always has
+================================================================================================================
+    A void is not isolated.  If the external field of surrounding structure exceeds the void's
+    own internal field, the kernel is evaluated at the external value and the internal boost
+    collapses.  This is the standard EFE escape and it must be tested, not assumed away.
+    measured on the twelve real voids of V2: median g_ext / g_int = 1.29
+    (range 0.36 to 2.68)
+    ASSUMPTION, stated: this ratio is held constant over the void's history.  In linear
+    theory both fields scale as a^-1 so the ratio is constant; once the void goes non-linear
+    its own field saturates while the external one keeps growing, so the true late-time
+    ratio is LARGER and the quench applied here is the CONSERVATIVE one.
+
+       R_L    footing  y_int(z=0)  y_ext used  1+delta free  1+delta EFE
+        12  canonical     0.00594     0.00766       0.00351      0.00391
+        12        alt     0.00493     0.00636       0.00256      0.00285
+        20  canonical     0.00990     0.01277       0.00781      0.00881
+        20        alt     0.00822     0.01060       0.00589      0.00662
+
+    the EFE quench raises the residual matter fraction to at most 0.00881, still a factor 11 below the generous floor 0.1
+  [PASS] V7 [THE EXTERNAL FIELD DOES NOT RESCUE THE OVER-EMPTYING] the external-to-internal field ratio measured on real local voids is fed back into the kernel as a quasi-linear external-field term and the evacuation re-run; the over-emptying survives only if the residual matter fraction stays below the same floor used in V5
+           (with the measured median quench g_ext/g_int = 1.29 applied throughout, the largest residual fraction reached is 0.00881 against the floor 0.1. The external field real voids sit in is far too weak to switch the kernel off, because the void's own field and its surroundings' field are BOTH far below a_0 -- which is the whole point of the environment. The EFE escape that rescues wide binaries and dwarf satellites is not available here)
+
+================================================================================================================
+V8 -- what this calculation cannot decide, quantified rather than asserted
+================================================================================================================
+    STATED PROMINENTLY.  (1) A spherical top-hat is a crude model of a void: real voids are
+    aspherical, contain substructure, and the kernel branch is PAST SHELL CROSSING for most of
+    its evolution (V4), where the top-hat is an extrapolation and not a solution.  (2) Void
+    statistics depend strongly on the tracer and on the void-finder definition: watershed,
+    spherical-underdensity and ZOBOV/VIDE finders return different central contrasts on the
+    same field, and tracer bias converts between galaxy and matter contrast with an uncertainty
+    that is itself density dependent.  NO KILL IS CLAIMED FROM A SPHERICAL MODEL.
+    (3) The governing fork: the framework's OWN covariant cosmology has linear enhancement
+    EXACTLY 1 (stage53 C2(i), item 85), in which case the Newtonian column IS the framework's
+    prediction and this entire front is empty.
+
+    what IS testable here is how far the branch-(ii) answer moves under the modelling choices
+    that are actually free:
+      nu_simple canonical R20          1+delta_bar = 0.01419
+      nu_simple alt R20                1+delta_bar = 0.01069
+      z_i = 30 canonical R20           1+delta_bar = 0.00927
+      nu_RAR canonical R20             1+delta_bar = 0.00781
+      nu_simple canonical R12          1+delta_bar = 0.00631
+      nu_RAR alt R20                   1+delta_bar = 0.00589
+      nu_simple alt R12                1+delta_bar = 0.00457
+      z_i = 30 canonical R12           1+delta_bar = 0.00438
+      nu_RAR canonical R12             1+delta_bar = 0.00351
+      nu_RAR alt R12                   1+delta_bar = 0.00256
+      a0~H(z) rival canonical R20      1+delta_bar = 0.00005
+      a0~H(z) rival alt R20            1+delta_bar = 0.00004
+      a0~H(z) rival canonical R12      1+delta_bar = 0.00002
+      a0~H(z) rival alt R12            1+delta_bar = 0.00001
+
+    the whole spread is 0.00001 to 0.01419; the floor is 0.1
+  [PASS] V8 [THE DIRECTION SURVIVES EVERY MODELLING CHOICE THAT IS ACTUALLY FREE, WHICH IS NOT THE SAME AS SURVIVING THE MODEL] both kernels, both footings, two Lagrangian radii, two starting redshifts and the rival a_0 proportional to H(z) branch are run and the full spread of the residual matter fraction is compared with the same floor; the direction is robust only if the entire spread stays on one side of it
+           (the whole spread 0.00001 to 0.01419 lies below the floor 0.1, so no choice among kernel, footing, radius, starting redshift or a_0(z) branch reverses the sign. The rival a_0 proportional to H(z) branch makes the over-emptying WORSE, not better, because a larger a_0 at early times pushes the void DEEPER into the MOND regime. What this does NOT establish is that the spherical model itself is adequate, and that is the limitation that actually binds)
+
+================================================================================================================
+WHAT THIS FRONT IS WORTH
+================================================================================================================
+    Branch (ii) 'MOND-on' makes a large, sign-definite, environment-proof prediction: voids
+    empty to a residual matter fraction of order 1e-2 or less, reach shell crossing at
+    z ~ 5, and the size function is pushed to more and larger voids.  That is
+    in the wrong direction against every published void profile, and V7 shows the external
+    field cannot switch it off.  But branch (ii) was ALREADY excluded in this repo on the
+    KBC amplitude and on sigma_8 -> 1.38 (stage53 C2), so this is an INDEPENDENT CONFIRMATION
+    of a known failure, not a new kill.
+    Branch (i), the framework's own covariant cosmology, has linear enhancement exactly 1 and
+    therefore predicts the Newtonian column -- no void signal at all.
+    NET: cosmic voids are NOT a live discriminating front for this framework as it stands.
+    They become one only if a covariant completion is found whose cosmological perturbations
+    carry a MOND enhancement, and then voids would be among the sharpest tests available,
+    because V7 shows the usual external-field escape is closed there.
+
+L250 COMPLETE: 8/8 checks PASS.

@@ -1,0 +1,183 @@
+L256 -- IS THE RADIAL ACCELERATION RELATION A FORCE LAW, OR A CONSTRAINT ON THE INITIAL DATA?
+
+THE STRUCTURAL MOVE THIS LANE TESTS.  Every completion this programme has attempted is a DYNAMICAL law --
+an action, a modified field equation, a new field -- and the pincer has closed on all of them: the kernel as
+modified gravity gives a Cassini-excluded external-field quadrupole, the same kernel as modified inertia is
+lensing-dead at 21 sigma, and L248 showed that the phantom carrying the weak-lensing signal cannot be the
+galaxy's own bounded sector.  The untried structural move is to STOP MODIFYING ANYTHING: gravity is exactly
+Einstein's, the dark matter is exactly collisionless and cold, and the radial acceleration relation holds not
+because a force produces it but because the galaxies that EXIST occupy a thin, selected subset of the possible
+baryon-plus-halo configurations -- an ATTRACTOR of the assembly process rather than a law of motion.
+
+BE HONEST ABOUT WHAT THIS IS.  This is NOT new.  It is, essentially, the standard LambdaCDM explanation --
+feedback self-regulation driving discs onto a tight relation -- and it is the reading this programme has spent
+its whole existence arguing against.  The only thing this lane can add is a SHARP STRUCTURAL DISCRIMINATOR,
+and there is exactly one:
+
+    A FORCE LAW IS EXACT AND INSTANTANEOUS.  It holds for every system at every time, with zero intrinsic
+    scatter, whether or not the system has had time to settle.  A recently disturbed galaxy obeys it just as
+    a quiescent one does, because the field is solved afresh on every slice from the instantaneous baryons
+    (that is precisely this programme's own L98 result: the cuscuton makes the RAR a single-valued law with
+    identically zero halo-assembly scatter).
+
+    A SELECTION / ATTRACTOR READING ONLY HAS TO HOLD FOR RELAXED SYSTEMS.  It must FAIL, measurably, for
+    systems that have not had enough dynamical times to reach the attractor, and the size of the failure must
+    scale with the ratio of dynamical time to age.
+
+So the two readings make OPPOSITE predictions about one measurable thing: whether the RAR residual scatter
+depends on how many orbits a galaxy has completed.  That is what is measured here, on the 175 SPARC rotation
+curves.
+
+------------------------------------------------------------------------------------------------------------
+PRE-REGISTRATION.  Every number below is fixed HERE, in the docstring, before any split is computed.  The
+thresholds appear again as named constants at the top of the code and are printed at run time.
+
+  RELAXATION PROXY.  N_orb = T_AGE * V_out / (2 pi R_out): the number of orbital periods completed at the
+  OUTERMOST measured radius of the rotation curve in an assumed disc age T_AGE = 10 Gyr.  This is the
+  cleanest available "has this system had time to settle" variable, and it is computed from the rotation
+  curve itself with nothing fitted.
+
+  SPLIT.  SPLIT_NORB = 10 orbits.  Ten orbital periods is the standard rule of thumb for phase mixing to
+  complete; it is chosen for that reason and NOT from the data.
+
+  WHAT EACH READING PREDICTS FOR THE RATIO  r = sigma_int(N_orb < 10) / sigma_int(N_orb >= 10) ,
+  where sigma_int is the galaxy-to-galaxy scatter in the mean RAR residual AFTER the per-object
+  observational error budget has been subtracted in quadrature:
+
+      FORCE LAW                      r = 1.00 exactly.  No dependence on assembly state is permitted at all.
+      SELECTION / ATTRACTOR          r >= SELECTION_RATIO_MIN = 1.3.  A 30% excess is the minimum a reading
+                                     in which relaxation is what MAKES the relation can produce while still
+                                     being called an explanation; anything smaller is an attractor so fast
+                                     that it is observationally indistinguishable from a law.
+
+  DECISION RULE (fixed here).  The ratio's 95% bootstrap interval over galaxies decides:
+      lower bound > 1.3                  -> favours the SELECTION reading
+      upper bound < 1.3 and interval
+        contains 1.0                     -> favours the FORCE-LAW reading (or any relation with no assembly
+                                            dependence); the attractor prediction is excluded at its own
+                                            stated minimum
+      interval straddles both            -> UNDECIDED, and the lane says so
+
+  THE CONFOUND, NAMED IN ADVANCE.  N_orb is LOW exactly for extended, low-surface-brightness, slowly rotating
+  dwarfs -- which are also the galaxies with the worst distances, the worst inclinations, the worst
+  mass-to-light ratios and the largest velocity errors.  Raised scatter in the least-relaxed bin is therefore
+  confounded BY CONSTRUCTION.  Three controls are pre-registered:
+      (a) a forward observational error budget per galaxy (distance, inclination, velocity, mass-to-light),
+          subtracted in quadrature bin by bin;
+      (b) a GOLD cut: SPARC quality flag Q = 1, median velocity error below 5%, and a distance NOT from the
+          Hubble flow (f_D != 1), i.e. TRGB / Cepheid / cluster / supernova distances only;
+      (c) a CONFOUND-REVERSING axis: gas fraction.  Gas-dominated galaxies are less evolved (the attractor
+          reading says: MORE scatter) but their baryonic mass is measured from HI with NO mass-to-light ratio
+          at all (the observational-confound reading says: LESS scatter).  The two explanations predict
+          OPPOSITE signs on this axis, so it breaks the degeneracy the other two controls can only bound.
+
+  WHAT A POSITIVE RESULT WOULD MEAN FOR THIS PROGRAMME.  It would be an argument FOR standard gravity plus
+  cold dark matter with an assembly attractor, and AGAINST this programme's own modified-force reading.  It
+  is reported that way whichever way the numbers fall.
+
+  WHAT IS NOT CLAIMED.  Nothing here derives a_0 from assembly.  The epoch coincidence is reported in V8 as a
+  coincidence with a number attached, and as a statement about the REACH of this sample, not as a derivation.
+------------------------------------------------------------------------------------------------------------
+
+Checks state measurement and threshold separately; no literal-True conditions.  Both a_0 footings throughout.
+
+PRE-REGISTERED THRESHOLDS AS RUN:
+    T_AGE = 10.0 Gyr | SPLIT_NORB = 10.0 orbits | force law r = 1.00 | attractor r >= 1.30
+    gold cut: Q = 1, median eV/V < 0.05, distance method != 1 (not Hubble flow)
+    gas-dominated: M_gas/M_bar > 0.5 | M/L scatter 0.11 dex | point cut eV/V < 0.1, >= 4 points
+
+    master table: 175 galaxies parsed
+    rotation curves: 175 files, 0 without a master row, 24 too short after cuts -> 151 galaxies, 2776 points retained
+
+V1 -- the baseline: reproduce this repo's own RAR scatter before splitting anything
+    [canonical] a_0 = 9.3619e-11: point scatter 0.1407 dex about a mean offset of +0.0310 dex
+    [alt      ] a_0 = 1.1279e-10: point scatter 0.1406 dex about a mean offset of +0.0029 dex
+  [PASS] V1 [THE SAMPLE AND THE KERNEL REPRODUCE THIS REPO'S OWN RAR SCATTER] the point-by-point residual scatter about the kernel is measured on both footings and compared with the value L98's controls recorded for the same data (0.145 dex); agreement to better than 0.03 dex means nothing has been broken in the loading before any split is taken
+           (0.1407 dex (canonical) / 0.1406 dex (alt) against 0.145; largest deviation 0.0044 dex. The mean offsets (+0.031 / +0.003 dex) are the known gap between these two footings and the 1.2e-10 that SPARC itself fits, and they are removed by the detrending below -- an offset cannot produce a relaxation-dependent scatter)
+
+V2 -- the power statement: are there enough genuinely unrelaxed galaxies in SPARC to run this at all?
+    N_orb at the outermost measured radius spans 3.4 to 61.2, median 13.3
+    below the pre-registered split of 10 orbits: 42 galaxies; at or above it: 109
+  [PASS] V2 [THE SPLIT DIVIDES THE SAMPLE INTO TWO USABLE BINS] the number of orbital periods completed at the outermost measured radius is computed for every galaxy and compared with the pre-registered split of 10; at least 15 galaxies on the sparse side are required for a scatter ratio to mean anything
+           (42 galaxies below 10 orbits and 109 at or above, out of 151. The full range is 3.4-61.2 orbits: even the sparsest SPARC galaxy has completed several orbits at its last measured point, which is the ceiling on this test's reach and is quantified in V8)
+
+V3 -- THE MEASUREMENT: galaxy-to-galaxy RAR scatter split by the relaxation proxy (raw, no controls)
+    [canonical] least relaxed (N_orb < 10, n=42): measured scatter 0.1318 dex, error budget predicts 0.1370
+                more relaxed (N_orb >= 10, n=109): measured scatter 0.1479 dex, error budget predicts 0.1712
+                RAW measured ratio = 0.891, 95% bootstrap [0.598, 1.233]; P(ratio > 1.3) = 0.014
+    [alt      ] least relaxed (N_orb < 10, n=42): measured scatter 0.1318 dex, error budget predicts 0.1366
+                more relaxed (N_orb >= 10, n=109): measured scatter 0.1479 dex, error budget predicts 0.1709
+                RAW measured ratio = 0.891, 95% bootstrap [0.598, 1.233]; P(ratio > 1.3) = 0.014
+  [FAIL] V3 [THE LEAST-RELAXED GALAXIES SCATTER MORE ABOUT THE RELATION, BEFORE ANY CONTROL] the galaxy-to-galaxy scatter in the mean detrended RAR residual is measured separately in the two pre-registered relaxation bins and their ratio compared with the attractor reading's stated minimum of 1.3
+           (raw ratio 0.891 (canonical) / 0.891 (alt), 95% interval [0.598, 1.233]. This is the RAW number and it is confounded by construction -- the least-relaxed bin is also the worst-measured bin. V4-V6 are the controls, and they decide, not this)
+
+V4 -- CONTROL (a): the forward observational error budget, subtracted in quadrature
+    [canonical] least relaxed budget: distance 0.0880, inclination 0.0876, velocity 0.0106, mass-to-light 0.0570 dex
+    [canonical] more relaxed  budget: distance 0.0847, inclination 0.1372, velocity 0.0175, mass-to-light 0.0548 dex
+                intrinsic remainder: 0.0000 dex (least relaxed) vs 0.0000 dex (more relaxed) -> ratio nan, 95% [0.000, 3.226], P(> 1.3) = 0.143
+    [alt      ] least relaxed budget: distance 0.0880, inclination 0.0876, velocity 0.0106, mass-to-light 0.0560 dex
+    [alt      ] more relaxed  budget: distance 0.0847, inclination 0.1372, velocity 0.0175, mass-to-light 0.0538 dex
+                intrinsic remainder: 0.0000 dex (least relaxed) vs 0.0000 dex (more relaxed) -> ratio nan, 95% [0.000, 3.674], P(> 1.3) = 0.149
+  [FAIL] V4 [THE EXCESS SURVIVES THE OBSERVATIONAL ERROR BUDGET] the per-galaxy distance, inclination, velocity and mass-to-light errors are propagated to the mean residual, subtracted in quadrature bin by bin, and the remaining intrinsic ratio compared with the attractor minimum 1.3; the pre-registered decision rule requires the 95% lower bound to clear it
+           (error-corrected ratio nan, 95% bootstrap [0.000, 3.226] (canonical); alt nan [0.000, 3.674]. The force law's prediction is exactly 1.00)
+
+V5 -- CONTROL (b): the gold cut -- only galaxies whose data cannot be blamed
+    gold sample: 28 of 151 galaxies (Q = 1, median eV/V < 0.05, distance method != 1) -> 7 least relaxed, 21 more relaxed
+    [canonical] measured 0.0881 vs 0.1113 dex (budgets 0.0771 / 0.1563) -> ratio 0.792, 95% [0.225, 1.404], P(> 1.3) = 0.040
+    [alt      ] measured 0.0882 vs 0.1111 dex (budgets 0.0763 / 0.1559) -> ratio 0.794, 95% [0.226, 1.408], P(> 1.3) = 0.040
+  [FAIL] V5 [THE EXCESS SURVIVES RESTRICTING TO WELL-MEASURED GALAXIES] the split is repeated on galaxies with the highest SPARC quality flag, small velocity errors and a direct (non-Hubble-flow) distance, where the observational explanation for raised scatter is at its weakest
+           (gold ratio 0.792, 95% [0.225, 1.404] on 7 + 21 galaxies (canonical); alt 0.794 [0.226, 1.408])
+
+V6 -- CONTROL (c): the confound-reversing axis -- gas fraction
+     the attractor reading says gas-dominated discs are LESS evolved -> MORE scatter
+     the observational reading says gas-dominated discs need NO mass-to-light ratio -> LESS scatter
+    gas-dominated (M_gas/M_bar > 0.5): 62 galaxies; star-dominated: 89
+    [canonical] gas-dominated scatter 0.1681 dex (M/L budget 0.0346) vs star-dominated 0.1250 dex (M/L budget 0.0661)
+                ratio 1.345, 95% [0.982, 1.795], P(> 1.3) = 0.588
+    [alt      ] gas-dominated scatter 0.1682 dex (M/L budget 0.0342) vs star-dominated 0.1250 dex (M/L budget 0.0649)
+                ratio 1.346, 95% [0.983, 1.798], P(> 1.3) = 0.590
+  [FAIL] V6 [THE CONFOUND-REVERSING AXIS SEPARATES THE TWO EXPLANATIONS] gas-dominated galaxies have the SMALLEST mass-to-light error and, on the attractor reading, the LEAST relaxed history; the two explanations therefore predict opposite signs, so a scatter excess here cannot be blamed on the mass-to-light ratio and is compared with the attractor minimum 1.3
+           (gas-dominated/star-dominated scatter ratio 1.345, 95% [0.982, 1.795], with the mass-to-light budget SMALLER in the gas-dominated bin (0.0346 vs 0.0661 dex). Whatever sign this carries, it is not a mass-to-light artefact)
+
+V7 -- is the dependence a TREND in the relaxation variable, as an attractor requires, or a step?
+    [canonical] Spearman(|mean residual|, log N_orb) = +0.1910 over 151 galaxies (2.34 sigma)
+                quartiles by N_orb (median 7, 11, 16, 24 orbits): scatter 0.1098, 0.1326, 0.1363, 0.1876 dex
+                                                        budget  0.1314, 0.1623, 0.1649, 0.1863 dex
+    [alt      ] Spearman(|mean residual|, log N_orb) = +0.1906 over 151 galaxies (2.33 sigma)
+                quartiles by N_orb (median 7, 11, 16, 24 orbits): scatter 0.1098, 0.1326, 0.1364, 0.1875 dex
+                                                        budget  0.1309, 0.1620, 0.1647, 0.1860 dex
+  [FAIL] V7 [THE SCATTER FALLS MONOTONICALLY WITH THE NUMBER OF COMPLETED ORBITS] an attractor approached over a relaxation time requires the residual scatter to decrease monotonically across quartiles of the relaxation variable, not merely to differ between two bins; monotonicity across all four quartiles is the threshold
+           (quartile scatter 0.1098, 0.1326, 0.1363, 0.1876 dex from least to most relaxed (canonical); alt 0.1098, 0.1326, 0.1364, 0.1875. Spearman +0.191 (2.3 sigma). The predicted observational budget across the same quartiles is 0.1314, 0.1623, 0.1649, 0.1863 dex -- compare shapes, not just amplitudes)
+
+V7b -- the within-galaxy version: distance and mass-to-light errors are COHERENT across a galaxy,
+       so subtracting each galaxy's own mean removes them exactly, leaving a radial relaxation test
+    [canonical] 237 points inside galaxies at N_orb(r) < 10: scatter 0.0568 dex (velocity-error corrected 0.0473)
+                2539 points at N_orb(r) >= 10: scatter 0.0724 dex (corrected 0.0600) -> ratio 0.788
+    [alt      ] 237 points inside galaxies at N_orb(r) < 10: scatter 0.0567 dex (velocity-error corrected 0.0473)
+                2539 points at N_orb(r) >= 10: scatter 0.0724 dex (corrected 0.0600) -> ratio 0.788
+  [FAIL] V7b [THE RADIAL VERSION AGREES WITH THE GALAXY-LEVEL VERSION] each galaxy's own mean residual is removed, which cancels its distance, inclination and mass-to-light errors exactly, and the remaining point scatter is split by the number of orbits completed AT EACH RADIUS; the attractor reading requires the same excess here, at least 1.3
+           (velocity-error-corrected radial ratio 0.788 (canonical) / 0.788 (alt) on 237 + 2539 points. This test carries its own confounds -- warps, non-circular motions and mass-to-light gradients all live at large radius -- so a positive here is weaker evidence than V6, and a null here is strong evidence against)
+
+V8 -- the reach of this sample, and the epoch coincidence stated as a coincidence
+    the dark-energy timescale 1/sqrt(G rho_Lambda) = 50.7 Gyr, against the assumed disc age 10 Gyr: ratio 5.07
+    kappa c sqrt(G rho_Lambda) with kappa = 1/2 is 9.3623e-11 m/s^2, the canonical footing -- a COINCIDENCE of scales, not a derivation, and nothing below uses it
+    [canonical] a galaxy with v_flat = 100 km/s completes exactly ONE orbit in 10 Gyr at g = 1.991e-12 m/s^2 = 0.0213 a_0
+                the lowest acceleration SPARC reaches is g_bar = 8.321e-13 (0.0089 a_0), g_obs = 4.045e-12 (0.0432 a_0)
+    [alt      ] a galaxy with v_flat = 100 km/s completes exactly ONE orbit in 10 Gyr at g = 1.991e-12 m/s^2 = 0.0177 a_0
+                the lowest acceleration SPARC reaches is g_bar = 8.321e-13 (0.0074 a_0), g_obs = 4.045e-12 (0.0359 a_0)
+  [FAIL] V8 [SPARC DOES NOT REACH THE REGIME WHERE THE TWO READINGS DIFFER MOST] the acceleration at which a disc completes only one orbit in the assumed age is computed and compared with the lowest acceleration SPARC measures; the test is fully powered only if the data reach down to that acceleration, i.e. if the ratio is at or below 1
+           (one orbit per 10 Gyr sits at 1.99e-12 m/s^2 = 0.021 a_0, while the lowest acceleration in the sample is 4.04e-12 m/s^2 -- a factor 2 ABOVE it. Every SPARC galaxy has completed at least 3 orbits at its last measured point. This is the honest ceiling on the lane: SPARC can only probe the TAIL of any relaxation dependence, never its onset, so a null here bounds an attractor's relaxation time rather than excluding an attractor)
+
+V9 -- the verdict, and which reading it favours
+    error-corrected ratio 95% interval: canonical [0.000, 3.226] -> UNDECIDED
+                                        alt       [0.000, 3.674] -> UNDECIDED
+    confound-reversing gas axis:        canonical [0.982, 1.795]
+    gold cut:                           canonical [0.225, 1.404]
+    NOTE ON DIRECTION: a SELECTION verdict would be an argument for standard gravity plus cold
+    collisionless dark matter with an assembly attractor, and AGAINST this programme's own
+    modified-force reading. A FORCE-LAW verdict is the one that leaves this programme's reading
+    standing, and is therefore the one this lane had every incentive to manufacture.
+  [PASS] V9 [THE TWO FOOTINGS AGREE ON THE VERDICT] the pre-registered decision rule is applied independently on the canonical and the alternative a_0 footing; a lane whose conclusion depends on which footing is used has not measured anything
+           (canonical -> UNDECIDED; alt -> UNDECIDED. The decision rule was fixed in the docstring before any split was computed and is not adjusted here)
+
+L256 COMPLETE: 3/10 checks PASS.

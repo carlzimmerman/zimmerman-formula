@@ -1,0 +1,105 @@
+L258 -- the 'finished puzzle' of 2026-09-14/15, audited on its own numbers
+
+====================================================================================================
+PART A -- Omega_Lambda 'from a_0 alone' (G052 / G058 / Q002)
+====================================================================================================
+A1 -- the identity applied to the a_0 that was built from Omega_Lambda
+    sympy: 32 pi a0(Omega,H0)^2/(3 H0^2 c^2) - Omega = 0
+    a0 built from Omega_L = 0.685, H0 = 67.4: 9.36231e-11 m/s^2 (registered canonical 9.3619e-11: +0.004%)
+    a0 built from Omega_L = 0.6847, H0 = 67.36: 9.35470e-11 m/s^2 (registered canonical 9.3619e-11: -0.077%)
+    Omega_L returned by the identity from the registered a0 and H0 = 67.36: 0.6858 (G052 registers 0.6857)
+    ratio to Planck 0.6847: 1.00154;  the ratio of the two roundings (67.4/67.36)^2 x (0.685/0.6847) = 1.00163
+  [PASS] A1 [THE IDENTITY RETURNS ITS OWN INPUT] the registered a_0 is rebuilt from the Planck pair the programme used (Omega_L = 0.685, H_0 = 67.4); the G058 identity is then applied to it symbolically and numerically; a symbolic residual of zero AND a numerical return within 0.2% of the input Omega means the 'derivation' of Omega_Lambda is the inversion of the definition of a_0
+           (symbolic residual 0; a0(0.685, 67.4) reproduces the registered value to +0.004%; the identity returns 0.6858. The advertised '+0.07% agreement with Planck' is the ratio 1.00163 between two roundings of the same Planck parameters (H_0 = 67.4 vs 67.36, Omega = 0.685 vs 0.6847), not a prediction. Q002's own closing paragraph says the same: 'a_0's canonical value was DERIVED from rho_Lambda in the first place')
+
+A2 -- what the identity returns from an a_0 that was NOT built from Omega_Lambda
+    L232 free-scale fit at n = 2 (SPARC, M/L fixed 0.5/0.7): a_0 = 1.2457e-10 -> Omega_L = 1.214 (+77% from Planck, 73 sigma)
+    McGaugh+2016 RAR fit (nu_RAR, free M/L): a_0 = 1.2000e-10 -> Omega_L = 1.127 (+65% from Planck, 61 sigma)
+    the RAR's +/-20% systematic on a_0 maps to Omega_L in [0.72, 1.62] (Omega scales as a_0^2)
+  [FAIL] A2 [A GALACTIC a_0 DOES NOT RETURN PLANCK'S Omega_Lambda] the two independent galactic scales on the record (this track's L232 free-scale fit at the selected integer, and the literature RAR fit) are fed through the same identity and compared with Planck at G052's own 1% threshold
+           (L232's free scale gives Omega_L = 1.21 and the literature value 1.13: both exceed 1 (a closed, matter-free universe), 73 and 61 sigma from Planck. With the RAR's own +/-20% systematics the identity constrains Omega_L to [0.72, 1.62], a +/-40% statement, not +0.07%. The tie a_0 ~ sqrt(G rho_L) at the 20-30% level is the long-known MOND coincidence (Milgrom 1983); nothing sharper is delivered)
+
+A3 -- the 'selection rule' (Q002) and the 'flatness residual' (G052)
+    (c/2) sqrt(G rho_crit) = 1.1305e-10; registered alt footing 1.1279e-10 (+0.23%) -> identity returns Omega = 0.9954
+    G052 'flatness residual' Omega_dm = 1 - Omega_L(returned) - Omega_b = 0.2649 vs Planck 0.2647 (registered a_0)
+    flatness residual with a_0 from L232 free-scale fit at n = 2 (SPARC, M/L fixed 0.5/0.7): Omega_dm = -0.263
+    flatness residual with a_0 from McGaugh+2016 RAR fit (nu_RAR, free M/L): Omega_dm = -0.176
+    flatness residual with a_0 from McGaugh -20% syst: Omega_dm = +0.230
+    flatness residual with a_0 from McGaugh +20% syst: Omega_dm = -0.672
+  [FAIL] A3 [THE 'FLATNESS RESIDUAL' PREDICTS Omega_dm, AND THE ALT-FOOTING 'EXCLUSION' SELECTS SOMETHING] the residual 1 - Omega_L(identity) - Omega_b is evaluated for the registered a_0 and for every galactic a_0 on the record including the RAR's +/-20% systematic band; the prediction is real only if it stays within 0.03 of Planck's Omega_dm across that band; the alt footing is rebuilt as (c/2) sqrt(G rho_crit) to see what its 'exclusion' means
+           (with the registered (fed-back) a_0 the residual is 0.2649; with any galactic a_0 it runs from -0.67 to +0.23 -- negative dark matter over most of the RAR's own systematic band. The 'prediction' of Omega_dm is Planck's Omega_Lambda fed back. The alt footing is the critical-density convention to +0.23%, so its identity value 0.995 is 1 by construction and Q002's '44 sigma exclusion' is the statement rho_crit != rho_Lambda, which selects nothing about galaxies. The 'parameter count = 0' of G038/G052 therefore omits the cold-dust abundance (Planck's Omega_dm by feedback) and the cluster/Milky-Way dust normalisation (fitted: G059, G003 V5))
+
+====================================================================================================
+PART B -- rung 4: is the temperature DERIVED from the equilibrium, or is the profile ASSUMED?
+====================================================================================================
+B1 -- hydrostatic balance of an isothermal fluid in the scalar's deep force g = C/r (sympy)
+    d(rho sigma^2)/dr = -rho C/r  =>  Eq(rho(r), C1/r**(C/sigma2))
+    a power law rho = A r^-gamma balances iff sigma^2 = [C/gamma] -- for EVERY gamma, with A FREE
+    [canonical] C = sqrt(G M_b a0) = 2.842e+10 m^2/s^2: sigma^2 = C/2 -> rho ~ r^-2 (the phantom); C/3 -> r^-3; 2C/3 -> r^-1.5; every choice is an exact equilibrium (119.2 / 97.3 / 137.7 km/s)
+    [alt] C = sqrt(G M_b a0) = 3.120e+10 m^2/s^2: sigma^2 = C/2 -> rho ~ r^-2 (the phantom); C/3 -> r^-3; 2C/3 -> r^-1.5; every choice is an exact equilibrium (124.9 / 102.0 / 144.2 km/s)
+  [FAIL] B1 [HYDROSTATIC BALANCE IN A 1/r FORCE DOES NOT FIX THE TEMPERATURE] the balance equation is solved in general; the temperature is fixed only if the general solution admits a single sigma^2, whereas a one-parameter family sigma^2 = C/gamma with a free amplitude A means sigma^2 = C/2 is equivalent to ASSUMING the r^-2 profile (the phantom) rather than deriving it
+           (general solution rho = A r^(-C/sigma^2): sigma^2 and A are both integration data. sigma^2 = C/2 <=> gamma = 2 <=> 'the dust IS the phantom' -- G046 PART 3/4 and G056 V2a ('the log-potential virial 2 sigma^2 = g r') both insert gamma = 2 and read the temperature back out. Q001's identity P/rho = C/2 uses L247's matched law, which was CONSTRUCTED to yield the phantom and which L247 itself records as leaving the amplitude C free. Three restatements of PAPER29's rung 5, not three derivations of rung 4. Verdict of PAPER29 (POSTULATED) stands. [FAIL is the finding])
+
+B2 -- G046's own scorecard (the lane STATE cites for 'DERIVED')
+    G046: 3 PASS / 8 FAIL; failed: V2.1 the deep branch solves EXACTLY: g = 2 a0 u with u*mu_2(u) = g_N/(; V3.1 the isothermal dust sphere's OWN deep force is exactly 1/r: rho_d; V3.2 THE TEMPERATURE IS THE FORCE CONSTANT'S OWN SCALE: hydrostatic ba; V4.1 THE MATCHING IS EXACT: the deep regime (u <= 1) ends where the ha; V4.2 THE COEFFICIENT, DERIVED: matching the dust's equilibrium tempera; V2 (full sphere, exact mu2, T = 1): the integrated density tracks the ; V3 (falsifier, T = 2x Zimmerman): the deep density doubles (A -> 2 A_Z; V7 (dimensional realisation, both footings): the derived temperature a
+    G046 prints r_M(MW) = 9838.36 kpc and rho_ph(R0) = 7819.0331 Msun/pc^3; closed forms give 9.84 kpc and 0.0078 Msun/pc^3 (factors 1000 and 1000020)
+  [FAIL] B2 [G046 SUPPORTS ITS 'PROMOTED' VERDICT ON ITS OWN CHECKS] the lane's committed results file is read; the promotion is supported only if the checks it names as the derivation (V3.2, V4.1, V4.2) and the numerical confirmation (V2 full sphere) PASS and its dimensional realisation reproduces the master-table r_M within 1%
+           (3 of 11 checks pass; the three 'derivation' checks and the full-sphere integration all FAIL in the lane's own output (integrated density deviation 100%, falsifier amplitude 0.000), and its dimensional block is off by 10^3 in r_M and 10^6 in density (a pc/kpc slip). The log ends 'rung 4 PROMOTED' regardless. STATE.md and REFEREE_ATTACKS.md cite this lane as one of the three routes)
+
+B3 -- the double count, under G046's stated rule that the dust sources the SAME sourced equation
+    'the SAME field equation that gives the baryons' MOND force mediates the dust's self-gravity' (G046 V1.1).
+    The phantom is rho_ph = C/(4 pi G r^2), M_ph(r) = C r/G, whose Newtonian pull alone is C/r = the deep MOND force.
+    [canonical] r =  2.0 r_M (  19.7 kpc): v/v_flat = (i) MOND-only 1.099 | (ii) Newton with the dust 1.225 | (iii) dust as a source of the same equation 1.559 | (iv) dust Newton + baryons boosted 1.486
+    [canonical] r =  5.0 r_M (  49.2 kpc): v/v_flat = (i) MOND-only 1.036 | (ii) Newton with the dust 1.095 | (iii) dust as a source of the same equation 1.715 | (iv) dust Newton + baryons boosted 1.440
+    [canonical] r = 10.0 r_M (  98.4 kpc): v/v_flat = (i) MOND-only 1.025 | (ii) Newton with the dust 1.049 | (iii) dust as a source of the same equation 1.938 | (iv) dust Newton + baryons boosted 1.432
+    [alt] r =  2.0 r_M (  17.9 kpc): v/v_flat = (i) MOND-only 1.099 | (ii) Newton with the dust 1.225 | (iii) dust as a source of the same equation 1.561 | (iv) dust Newton + baryons boosted 1.486
+    [alt] r =  5.0 r_M (  44.8 kpc): v/v_flat = (i) MOND-only 1.037 | (ii) Newton with the dust 1.095 | (iii) dust as a source of the same equation 1.715 | (iv) dust Newton + baryons boosted 1.441
+    [alt] r = 10.0 r_M (  89.6 kpc): v/v_flat = (i) MOND-only 1.025 | (ii) Newton with the dust 1.049 | (iii) dust as a source of the same equation 1.938 | (iv) dust Newton + baryons boosted 1.432
+  [FAIL] B3 [THE EQUILIBRIUM READING WITH THE SCALAR FORCE KEEPS THE OUTER CURVE FLAT] the mu_2 sourced equation is solved at 2, 5 and 10 r_M for a Milky-Way-mass baryon well with the phantom-density dust included as a source (G046's rule), and separately with the dust's Newtonian pull added to the baryons' MOND response; the reading is consistent only if the curve stays within 10% of v_flat out to 5 r_M in at least one of them
+           (at 5 r_M the curve is 1.72 v_flat under (iii) (rising as (r/r_M)^(1/4): g^2 = a0 g_N with g_N ~ C/r gives v^2 ~ sqrt(a0 C r)) and 1.44 v_flat under (iv) (2C/r: BTFR mass normalisation off by 4). Only (ii), Newtonian gravity with the dust and NO scalar force, is flat -- and (ii) is a cold-dark-matter halo with a prescribed profile, in which the scalar does nothing dynamically and the halo amplitude A is free (B1). This is the 2.7-4.4x double-counting liability (STANDING rev. 6) in closed form; G003's claim that the identification 'dissolves' it is the opposite of what the equation says)
+
+====================================================================================================
+PART C -- the completion, and the referee document's answers
+====================================================================================================
+C1 -- Cassini, by inheritance
+    H011 states the frozen scalar's static law is the same mu_2 AQUAL equation: True
+    L243 (exact AQUAL, mu_2): EFE quadrupole = 6.44x / 7.63x the Park 2026 Cassini ceiling (canonical / alt)
+  [FAIL] C1 [THE FROZEN-SCALAR COMPLETION CLEARS CASSINI] the completion's own lane asserts its static law is the mu_2 AQUAL equation; the exact-AQUAL Cassini quadrupole of that equation is on the record (L243); the completion passes only if that quadrupole is below the ceiling on at least one footing
+           (same static law (H011 M1/M2), so the committed 6.44x/7.63x is inherited unchanged. REFEREE_ATTACKS 1.1 answers Cassini with Horn A (G032), a DIFFERENT theory (next check); for the frozen scalar it is an open kill, not 'ANSWERED')
+
+C2 -- one completion or two?
+    G032 Horn A (the PPN answer, alpha_1 = 0 'by architecture'): states its cost as explicit local Lorentz violation: True
+    H011 frozen scalar (the Lorentz-invariance answer): states 'Lorentz violation: none': True; G043: the congruence is not a gauge: True
+  [FAIL] C2 [THE REFEREE DOCUMENT'S PPN ANSWER AND ITS LORENTZ-INVARIANCE ANSWER COME FROM ONE THEORY] the two committed outputs are read; the answers are compatible only if the theory that delivers alpha_1 = 0 is the theory that has no preferred frame
+           (Horn A buys alpha_1 = 0 with a fixed congruence that G032 itself calls explicit local Lorentz violation and G043 proves is not a gauge choice; the frozen scalar has no congruence and therefore no Horn-A PPN result. REFEREE_ATTACKS 1.1/1.2 cite Horn A for PPN and 4.x/H011 for Lorentz invariance as if they were one completion)
+
+C3 -- what carries the lensing, the cluster bulk and the Milky Way's dark mass
+    G003 V5 (Milky Way, capped phantom), recorded as PASS: 'M_ph(<r_cut) = 1.25e+10 M_sun; confined fraction f = 0.161 against the ledger's 0.14; identification total M_MW = 7.75e+10 M_sun against the measured ~1.3e12 within 100 kpc -- a factor 17 short'
+    REFEREE_ATTACKS 2.1: 'Lensing = GR + the dust'; 2.4: cluster amplitude 'OPEN-HONEST'; G059: no partition closes; L248: cap at 5.8 kpc, lensing bins start at 35 kpc
+  [FAIL] C3 [THE SECTOR THAT CARRIES LENSING, THE CLUSTER BULK AND THE MILKY WAY'S OUTER MASS HAS A DERIVED ABUNDANCE] the tracks' own outputs are read for the mass the phantom fails to supply and for who supplies it
+           (the capped phantom is a factor 17 short in the Milky Way (G003 V5, printed PASS), the cluster residual is open (G059), and the weak-lensing signal is carried entirely by 'the dust as ordinary matter' (REFEREE 2.1, L248). That dust has Planck's Omega_dm (A3), a fitted cluster normalisation and 94% of the Milky Way's dark mass: it is cold dark matter under another name, and the scalar's only remaining job -- the galactic RAR -- double-counts with it (B3). The honest description is Lambda-CDM plus a scalar, not a replacement for it)
+
+C4 -- the uncommitted G062 Milky-Way draft, and the Milky Way on the certified solve
+    G062: 6 PASS / 15 FAIL; V0c 'ratio at R0 = 96584261529231736832.000 (disc > sphere, as it must be for a flatt'; V0d '6.3124e+30 vs 7.0000e10 Msun (ratio 90177012168374829056.0000)'
+    G062 'required mass' 2.351e+11 Msun = 3.36x the budget -- from v_flat = (G M a0)^(1/4), the DEEP-MOND amplitude, applied at R_0 where g_N ~ 1.4 a_0
+    [canonical] v_c(R_0 = 8.2 kpc), point-mass mu_2 solve: M_b = 6.0e10 -> 208 km/s, M_b = 6.5e10 -> 214 km/s, M_b = 7.0e10 -> 221 km/s, M_b = 8.0e10 -> 232 km/s  (g_N/a0 at 6.5e10 = 1.44; measured 232.5 +/- 5; a disc raises the point-mass value by ~10-15%, L172: 220/225 km/s at 6.7e10)
+    [alt] v_c(R_0 = 8.2 kpc), point-mass mu_2 solve: M_b = 6.0e10 -> 214 km/s, M_b = 6.5e10 -> 220 km/s, M_b = 7.0e10 -> 226 km/s, M_b = 8.0e10 -> 237 km/s  (g_N/a0 at 6.5e10 = 1.19; measured 232.5 +/- 5; a disc raises the point-mass value by ~10-15%, L172: 220/225 km/s at 6.7e10)
+  [PASS] C4 [THE CERTIFIED mu_2 SOLVE PUTS THE MILKY WAY WITHIN 10% OF ITS MEASURED CIRCULAR SPEED FOR THE STANDARD BARYON BUDGET] the sourced equation is solved at the solar radius for M_b = 7e10 (point mass, both footings) and compared with 232.5 km/s; G062's 3.4x mass deficit is checked against this
+           (the point-mass solve lands within 10% on both footings before the disc correction, so G062's 'required mass 3.4x the budget' is a misuse of the deep-MOND BTFR amplitude at a radius that is not deep MOND. G062 is also unit-broken (disc/sphere force ratio 10^19, enclosed mass 10^30 'Msun') and fails 15 of its 21 checks: a draft, not evidence in either direction; it should not be committed as it stands)
+
+====================================================================================================
+PART D -- the Lean inventory (L258_lean_inventory.py)
+====================================================================================================
+    36 files, 474 theorems; 35 files exit 0; 5 theorems on non-standard axioms; files with errors: ['gemini38_flash_push/UnifiedGravitationalTheoryProof.lean']
+      gemini38_flash_push/UnifiedGravitationalTheoryProof.lean: exit 1, 16 errors, on sorryAx: ['UnifiedGravity.zimmerman_cosmological_relation', 'UnifiedGravity.virial_temperature_uniqueness', 'UnifiedGravity.flat_rotation_velocity', 'UnifiedGravity.enclosed_dark_mass_at_rM', 'UnifiedGravity.exact_btfr_closure']
+  [FAIL] D1 [EVERY COMMITTED CERTIFICATE COMPILES ON THE STANDARD AXIOMS] every .lean file in the agent tracks and this track is compiled against the repository Mathlib with #print axioms on every theorem
+           (469 of 474 theorems certify on {propext, Classical.choice, Quot.sound}; the exceptions are listed above. The glm53/qwen38/hy4/grok/deepseek certificates all compile clean. What they certify is algebra: G058's 'one_constant_closure' is the statement that rho = 4 a0^2/(G c^2) exists and is unique given a0 (a definition); EQUILIBRIUM_THEORY's identification is Milgrom's isothermal-sphere identity; Q001's is P/rho = C/2 for two r^-2 laws. None certifies that any equilibrium is reached, stable, or selected -- PAPER29's reading of the word 'certified' stands)
+
+L258 COMPLETE: 2/11 checks PASS.
+READING: the puzzle is not finished.  Rung 9 (Omega_Lambda 'from a_0') returns the Planck value that built a_0;
+rung 4's three 'derivations' each insert the r^-2 profile they claim to derive, and the lane cited for the
+promotion fails 8 of its own 11 checks; the completion inherits the Cassini kill through its own static law and
+its referee defence splices two incompatible theories; the lensing, cluster and Milky-Way mass is cold dark
+matter with a fitted or fed-back abundance.  What STANDS since PAPER29: the honest negatives (G059 partition,
+G044 EFE split), the asymmetric-drift channel for the sag (G057, open on sigma_z), the Lean algebra, and this
+track's L248/L257 on what lensing does and does not test.  PAPER29's labels are unchanged by the 09-14/15 batch.

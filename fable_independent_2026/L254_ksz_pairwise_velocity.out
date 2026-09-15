@@ -1,0 +1,124 @@
+L254 -- the kinematic Sunyaev-Zel'dovich pairwise velocity as a test of who does the clustering
+
+LITERATURE BLOCK (quoted values, not recomputed here)
+    pairwise kSZ detection 3.8 sigma  --  Hand et al. 2012, PRL 109 041101 (arXiv:1203.4219), ACT x BOSS -- first detection
+    pairwise kSZ detection 4.2 sigma  --  Soergel et al. 2016, MNRAS 461 3172 (arXiv:1603.03904), SPT-SZ x DES-Y1 clusters
+    pairwise kSZ detection 3.8 sigma  --  De Bernardis et al. 2017, JCAP 03 008 (arXiv:1607.02139), ACT x BOSS DR11
+    pairwise kSZ detection 5.4 sigma  --  Calafut et al. 2021, PRD 104 043502 (arXiv:2101.08374), ACT DR5+Planck x SDSS DR15 LRG
+    stacked   kSZ detection 6.5 sigma  --  Schaan et al. 2021, PRD 103 063513 (arXiv:2009.05557), ACT DR5 x BOSS, velocity-reconstruction stacking (NOT pairwise)
+    sigma_tau/tau = 15%  --  Battaglia 2016, JCAP 08 058 (arXiv:1607.02442) 'The tau of galaxy clusters': optical-depth uncertainty ~15% for Planck-like cluster samples; sub-grid physics systematics <10% when a tau-tSZ relation is used
+    sigma_tau/tau = 30%  --  Amodeo et al. 2021, PRD 103 063514 (arXiv:2009.05558) and the feedback literature that followed it: hydrodynamic simulations under-predict the measured kSZ/tSZ gas profiles, and strong- vs weak-feedback models differ by tens of percent
+    sigma_tau/tau = 10%  --  optimistic floor if the gas profile is externally calibrated
+
+V1 -- the transfer function and correlation function, validated against known cosmological numbers
+    EH98 drag-epoch sound horizon s = 151.08 Mpc (101.77 h^-1 Mpc); z_d = 1020.7, z_eq = 3428
+    Planck 2018 r_drag = 147.09 Mpc (LITERATURE) -> EH98 differs by 2.72%
+    T(k -> 0) = 1.00000 (must be 1); BAO peak of r^2 xi(r) at r = 101.6 h^-1 Mpc = 150.8 Mpc
+    full-vs-no-wiggle T ratio over k = 1e-3..1 h/Mpc: mean 0.9970, peak-to-peak 0.061 (the acoustic wiggles)
+  [PASS] V1 [THE LINEAR MACHINERY REPRODUCES INDEPENDENT COSMOLOGICAL NUMBERS] the Eisenstein-Hu 1998 sound horizon is compared with the Planck 2018 drag-epoch value 147.09 Mpc (threshold: 5%), the low-k limit of the transfer function with unity (threshold: 1%), and the acoustic peak of r^2 xi(r) with the standard 100 h^-1 Mpc BAO scale (threshold: the 95-115 h^-1 Mpc window)
+           (s = 151.08 Mpc, 2.72% from Planck's 147.09; T(0) = 1.00000; BAO peak at 101.6 h^-1 Mpc. The independently coded no-wiggle form agrees in the broadband (mean ratio 0.997) and differs only by the acoustic oscillation)
+
+V2 -- the framework's growth, re-solved from scratch and checked against L180's recorded table
+    [canonical] cH_0/a_0 = 6.99, G_eff/G(z=0) = 1.0765, D(0) ratio = 1.0109; d(f sigma_8)/(f sigma_8) = z=0.3: +2.7% (L180 recorded +2.7%), z=0.6: +1.9% (L180 recorded +1.9%), z=1.0: +1.1% (L180 recorded +1.1%)
+    [alt] cH_0/a_0 = 5.80, G_eff/G(z=0) = 1.0988, D(0) ratio = 1.0154; d(f sigma_8)/(f sigma_8) = z=0.3: +3.8% (L180 recorded +3.8%), z=0.6: +2.6% (L180 recorded +2.6%), z=1.0: +1.6% (L180 recorded +1.6%)
+    largest disagreement with L180's recorded table: 0.04 percentage points
+  [PASS] V2 [THE GROWTH PREDICTION IS THIS REPO'S OWN, REPRODUCED INDEPENDENTLY] the Hubble-kernel growth equation of L180 is re-solved here from a_0 = kappa c sqrt(G rho_Lambda) and the six recorded f sigma_8 boosts (2.7/1.9/1.1% canonical, 3.8/2.6/1.6% alt at z = 0.3/0.6/1.0) are compared with the values this lane computes; threshold 0.15 percentage points on the worst of the six
+           (worst disagreement 0.04 pp over six numbers. The prediction used below is NOT invented here: it is L180's, re-derived, and the citation is L180_hubble_kernel_growth_prediction.py / .out and the L180 entry of FINDINGS.md (DOI 22706925))
+
+V3 -- the mean pairwise velocity v_12(r) at 10-100 Mpc/h, LCDM and framework
+    z = 0.5, linear bias b = 2.0 (CMASS/LRG-like), LCDM f(z) = 0.7601, D(z)/D(0) = 0.7693, sigma_8(z) = 0.6239
+     r [h^-1 Mpc]       xi_m   xi_bar_m   v_12 LCDM [km/s]
+               10    0.20731    0.38761             -189.1
+               15    0.09995    0.21203             -202.8
+               20    0.05510    0.13143             -192.2
+               30    0.02062    0.06167             -152.6
+               40    0.00897    0.03373             -116.2
+               60    0.00207    0.01296              -68.8
+               80    0.00060    0.00609              -43.4
+              100    0.00098    0.00348              -30.9
+    |v_12| at r = 20 h^-1 Mpc: 192.2 km/s
+    (linear theory is known to UNDERSTATE |v_12| below ~20 h^-1 Mpc, where pair-weighting and nonlinear infall add; the fractional shift below is insensitive to that -- see V4)
+  [PASS] V3 [THE PAIRWISE VELOCITY HAS THE AMPLITUDE THE MEASUREMENTS WORK WITH] the linear-theory |v_12| at r = 20 h^-1 Mpc for a b = 2 tracer at z = 0.5 is computed and compared with the 50-250 km/s band that published pairwise-kSZ model curves span for LRG-like samples at that separation
+           (|v_12(20 h^-1 Mpc)| = 192.2 km/s, inside the 50-250 km/s band; the curve falls from 189 km/s at 10 h^-1 Mpc to 31 km/s at 100 h^-1 Mpc, the standard shape)
+
+V4 -- the framework's fractional shift in v_12, and the fact that it carries NO SHAPE
+     convention A: the SAME tracer bias b in both cosmologies  -> v_12 ~ f b sigma_8^2
+     convention B: b recalibrated so b*sigma_8 matches the measured galaxy clustering amplitude
+                   -> v_12 ~ (f sigma_8)(b sigma_8), i.e. the shift is exactly d(f sigma_8)/(f sigma_8)
+    [canonical] f(z)/f_LCDM = 1.01585, D(z)/D_LCDM = 1.00524
+        convention A: 10:+2.17%, 15:+2.34%, 20:+2.46%, 30:+2.57%, 40:+2.61%, 60:+2.64%, 80:+2.65%, 100:+2.65%
+        convention B: 10:+2.12%, 15:+2.12%, 20:+2.12%, 30:+2.12%, 40:+2.12%, 60:+2.12%, 80:+2.12%, 100:+2.12%
+    [alt] f(z)/f_LCDM = 1.02182, D(z)/D_LCDM = 1.00770
+        convention A: 10:+3.04%, 15:+3.31%, 20:+3.47%, 30:+3.64%, 40:+3.71%, 60:+3.75%, 80:+3.76%, 100:+3.76%
+        convention B: 10:+2.97%, 15:+2.97%, 20:+2.97%, 30:+2.97%, 40:+2.97%, 60:+2.97%, 80:+2.97%, 100:+2.97%
+    variation of the shift across r = 10-100 h^-1 Mpc: 0.718 pp (convention A), 0.000 pp (convention B)
+    changing the transfer function entirely (EH98 full -> EH98 no-wiggle) moves the shift by 0.0048 pp
+    the headline numbers, convention B: +2.12% (canonical), +2.97% (alt)
+  [FAIL] V4 [THE SIGNAL IS A PURE AMPLITUDE AND THEREFORE HAS NO SHAPE HANDLE AGAINST tau] because G_eff/G = nu(cH(z)/a_0) depends on redshift alone and not on scale, the predicted v_12 shift must be the same at every separation; the variation of the shift across r = 10-100 h^-1 Mpc is measured and compared with a 0.3 percentage-point threshold, and the whole transfer function is swapped for an independently coded one to show the result does not depend on the P(k) shape at all
+           (the shift varies by 0.718 pp (A) / 0.000 pp (B) over a factor of ten in separation, and by 0.0048 pp under a complete change of transfer function. THIS IS THE CORE DIFFICULTY, not a convenience: a constant multiplicative amplitude is exactly what the optical depth tau also is, so no r-dependence of the measurement can separate them. The small residual in convention A comes only from the (1 + b^2 xi) pair-weighting denominator)
+
+V5 -- do L197's clock-frame kicks touch the kSZ scales, as they touch sigma_8 at 8 h^-1 Mpc?
+    L197 (FINDINGS.md, 2026-09-12) particle-mesh, kicks only, z = 0.3: P/P_LCDM = 0.2:0.999, 0.5:0.989, 1.0:0.947, 2.0:0.84
+    [flat above k=2] sigma_8 ratio from L197's own P(k) ratios: 0.9989 (L197 reported 0.9954 for the kicks alone)
+        induced change in v_12: 10:-0.07%, 15:+0.01%, 20:+0.05%, 30:-0.00%, 40:-0.01%, 60:+0.00%, 80:+0.01%, 100:-0.01%
+    [extrapolated above k=2] sigma_8 ratio from L197's own P(k) ratios: 0.9989 (L197 reported 0.9954 for the kicks alone)
+        induced change in v_12: 10:-0.07%, 15:+0.01%, 20:+0.05%, 30:-0.00%, 40:-0.01%, 60:+0.00%, 80:+0.01%, 100:-0.01%
+    the kicks move sigma_8 (8 h^-1 Mpc) by 0.11% but v_12 at 30 h^-1 Mpc by only 0.00% -- a factor 24.5 weaker
+  [PASS] V5 [kSZ SCALES READ THE KERNEL'S RAISE ALMOST UNDILUTED, WHICH IS WHY THIS PROBE IS WORTH ASKING ABOUT AT ALL] L197 found the kernel's lift and the clock-frame kicks' suppression cancel at eight megaparsecs so that S_8 does not discriminate; L197's own P(k) ratios are pushed through the pairwise integral here and the kick-induced change in v_12 at 30 h^-1 Mpc is compared with the kick-induced change in sigma_8; a ratio above 3 means the cancellation does not reach the kSZ separations
+           (the kicks cost 0.11% at 8 h^-1 Mpc and 0.00% at 30 h^-1 Mpc, a factor 24.5. So the framework's distinctive cosmological pattern is a SCALE SPLIT: S_8 indistinguishable from LCDM (L197) while the 10-100 Mpc growth is raised +2.1% to +3.0%. Limit: L197's kick ratios were tabulated at four wavenumbers in a 100 Mpc/h box and are interpolated here; they are not re-simulated)
+
+V6 -- THE CENTRAL DIFFICULTY: the optical-depth degeneracy, quantified
+     the estimator measures  T_pairwise  proportional to  tau_bar * v_12 : a fractional error on
+     tau_bar maps one-for-one onto the inferred v_12, and the framework's signal IS a pure amplitude
+    best published PAIRWISE detection: 5.4 sigma (Calafut et al. 2021) -> statistical fractional error on the amplitude = 1/5.4 = 18.5%
+    (the 6.5 sigma of Schaan et al. 2021 is a velocity-reconstruction stack, not pairwise: 15.4% if one is generous and uses it)
+    footing    tau prior                    statistics                   total frac err  signal/sigma
+    canonical  Battaglia 2016               current pairwise 5.4 sigma            23.8%          0.09
+    canonical  Battaglia 2016               generous stacked 6.5 sigma            21.5%          0.10
+    canonical  Battaglia 2016               statistics-free limit                 15.0%          0.14
+    canonical  Amodeo et al. 2021           current pairwise 5.4 sigma            35.3%          0.06
+    canonical  Amodeo et al. 2021           generous stacked 6.5 sigma            33.7%          0.06
+    canonical  Amodeo et al. 2021           statistics-free limit                 30.0%          0.07
+    canonical  optimistic floor if the gas  current pairwise 5.4 sigma            21.0%          0.10
+    canonical  optimistic floor if the gas  generous stacked 6.5 sigma            18.3%          0.12
+    canonical  optimistic floor if the gas  statistics-free limit                 10.0%          0.21
+    alt        Battaglia 2016               current pairwise 5.4 sigma            23.8%          0.12
+    alt        Battaglia 2016               generous stacked 6.5 sigma            21.5%          0.14
+    alt        Battaglia 2016               statistics-free limit                 15.0%          0.20
+    alt        Amodeo et al. 2021           current pairwise 5.4 sigma            35.3%          0.08
+    alt        Amodeo et al. 2021           generous stacked 6.5 sigma            33.7%          0.09
+    alt        Amodeo et al. 2021           statistics-free limit                 30.0%          0.10
+    alt        optimistic floor if the gas  current pairwise 5.4 sigma            21.0%          0.14
+    alt        optimistic floor if the gas  generous stacked 6.5 sigma            18.3%          0.16
+    alt        optimistic floor if the gas  statistics-free limit                 10.0%          0.30
+    the MOST OPTIMISTIC entry in the whole table -- alt footing, 10% tau, infinite statistics -- reaches 0.30 sigma
+  [PASS] V6 [CURRENT kSZ CANNOT TEST THIS, AND NOT BY A LITTLE] the framework's predicted fractional v_12 shift is divided by the total fractional amplitude error of a pairwise kSZ measurement, statistical and optical-depth errors combined in quadrature, over every combination of the published detection significances and the published tau uncertainties; the threshold for the claim 'current kSZ can see it' is that the best entry reach 3 sigma
+           (the best entry in the table reaches 0.30 sigma, and that entry already assumes INFINITE statistics and the most optimistic 10% optical depth. With the actual best pairwise measurement (5.4 sigma, 19% statistical) and a 15% tau the significance is 0.09 sigma. THIS IS THE FINDING: the kSZ angle is not a test of this framework today, and the obstacle is the optical depth, not the photon noise)
+
+V7 -- what it would take: the required tau precision and the required statistics
+    [canonical] shift 2.12%: a 2 sigma statement needs sigma_tau/tau < 1.06% (with perfect statistics) AND an overall kSZ detection at 94 sigma (with perfect tau) -- naively 306x the object count of the 5.4 sigma measurement, since SNR scales as sqrt(N_pairs)
+    [canonical] shift 2.12%: a 3 sigma statement needs sigma_tau/tau < 0.71% (with perfect statistics) AND an overall kSZ detection at 142 sigma (with perfect tau) -- naively 689x the object count of the 5.4 sigma measurement, since SNR scales as sqrt(N_pairs)
+    [alt] shift 2.97%: a 2 sigma statement needs sigma_tau/tau < 1.48% (with perfect statistics) AND an overall kSZ detection at 67 sigma (with perfect tau) -- naively 156x the object count of the 5.4 sigma measurement, since SNR scales as sqrt(N_pairs)
+    [alt] shift 2.97%: a 3 sigma statement needs sigma_tau/tau < 0.99% (with perfect statistics) AND an overall kSZ detection at 101 sigma (with perfect tau) -- naively 350x the object count of the 5.4 sigma measurement, since SNR scales as sqrt(N_pairs)
+    the binding requirement: sigma_tau/tau < 0.71%, against an optimistic present-day 10% -- a factor 14 in the optical depth alone
+    [canonical] the one partial handle -- the redshift DIFFERENTIAL, which a z-independent tau error cancels from: the boost is +2.7% at z = 0.3 against +1.1% at z = 1.0, a differential of +1.63% -- SMALLER than the signal it was meant to rescue
+    [alt] the one partial handle -- the redshift DIFFERENTIAL, which a z-independent tau error cancels from: the boost is +3.8% at z = 0.3 against +1.6% at z = 1.0, a differential of +2.15% -- SMALLER than the signal it was meant to rescue
+  [PASS] V7 [THE REQUIREMENT IS STATED, AND IT IS A FACTOR OF SEVERAL IN A SYSTEMATIC NOBODY CONTROLS] the optical-depth precision needed for a 3 sigma statement about the framework's v_12 shift is solved for and compared with the most optimistic optical-depth precision the published literature claims; a factor above 3 means the gap is not closable by better CMB maps
+           (sigma_tau/tau < 0.71% is required against 10% claimed at best, a factor 14. The redshift differential, the only feature of the prediction a constant tau error cannot absorb, is 2.15% -- smaller than the amplitude it would replace, so it is not a rescue. What WOULD change the verdict is an independent measurement of the electron column: fast-radio-burst dispersion measures cross-correlated with the same tracers (the Macquart relation measures the same integral of n_e that tau does, with completely different systematics), or a jointly calibrated gas profile from tSZ + X-ray + FRB, feeding a CMB-S4-era kSZ measurement. The photon-noise side is the easy half)
+
+V8 -- the direction of the effect, and how it sits against the S_8 tension
+    the framework RAISES the growth rate, so infall is faster and |v_12| is LARGER: +2.12% (canonical) / +2.97% (alt)
+    the same kernel raises S_8 to 0.843 / 0.847 against Planck's 0.834, while KiDS-1000 measures 0.766 +- 0.020 (LITERATURE: Asgari+21)
+    direct lensing pulls at -3.4 sigma relative to Planck -- i.e. DOWNWARD, toward less growth; the kernel pulls UPWARD. The two probes pull in OPPOSITE directions
+    but L197's kicks cancel the kernel at 8 h^-1 Mpc, so the FULL framework predicts S_8 ~ LCDM (L197: 0.843/0.845 vs LCDM 0.842) while leaving v_12 raised at 10-100 h^-1 Mpc (V5)
+  [PASS] V8 [kSZ AND DIRECT LENSING PULL IN OPPOSITE DIRECTIONS, AND THE FRAMEWORK'S OWN SIGNATURE IS A SCALE SPLIT] the sign of the predicted v_12 shift is multiplied by the sign of the weak-lensing pull relative to Planck; a product below zero means a kSZ confirmation of raised large-scale growth would sit against, not with, the low-S_8 direct measurements
+           (the v_12 shift is +2.12%/+2.97% (UPWARD) while KiDS-1000 sits -3.4 sigma below Planck (DOWNWARD): product -1. This is a genuinely useful consistency statement and it cuts both ways. The framework does NOT resolve the S_8 tension -- it inherits Planck's side of it (G020, glm53 lane) -- and a future high-precision kSZ that confirmed raised 10-100 Mpc growth while lensing stayed low would put the framework and LCDM under the SAME strain, since both would then need scale-dependent growth. The framework's distinctive claim is not the raise by itself but the SPLIT: LCDM-like at 8 h^-1 Mpc (kernel cancelled by kicks) and raised at 10-100 h^-1 Mpc (kernel alone). That split is the thing to preregister if the tau problem is ever solved. NOTE the honest cost: the split depends on the clock-frame kicks, which L197 itself records as carrying a Lyman-alpha forest problem 164x over bound)
+
+V9 -- numerical convergence of the integrals the verdict rests on
+    nk = 200000, smoothing = 0.25 h^-1 Mpc: max |xi_bar change| over the r grid = 0.000%
+    nk = 400000, smoothing = 0.5 h^-1 Mpc: max |xi_bar change| over the r grid = 0.501%
+    nk = 400000, smoothing = 0.125 h^-1 Mpc: max |xi_bar change| over the r grid = 0.125%
+  [PASS] V9 [THE INTEGRALS ARE CONVERGED WHERE IT MATTERS] the volume-averaged correlation function is recomputed with half the k-samples and with the small-scale Gaussian smoothing doubled and halved, and the largest change over the separation grid is compared with a 1% threshold; anything larger would mean the absolute v_12 is not trustworthy (the FRACTIONAL shift cancels this entirely, as V4 already showed by swapping the whole transfer function)
+           (largest change 0.501% under halved sampling and a factor-four range of smoothing)
+
+L254 COMPLETE: 8/9 checks PASS.

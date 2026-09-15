@@ -9,7 +9,7 @@
   flat a₀(z), subdominant scalar GW) confronting DATA — not by Lean, and not while the intrinsic BBN
   fine-tuning (L84/L87) and astra's open ADM/khronon gates stand.
 
-  Theorems (185 as of 2026-09-14; all: exit 0, zero `sorry`, axioms ⊆ {propext, Classical.choice, Quot.sound}):
+  Theorems (189 as of 2026-09-14; all: exit 0, zero `sorry`, axioms ⊆ {propext, Classical.choice, Quot.sound}):
     hasDerivAt_G, hasDerivAt_Gp   — Gp = dG/dy and Gpp = d²G/dy² proven (not merely asserted).
     kernel_identity               — MOND kernel G'(y)/(2y) = 1 − e^{-y}.
     Gpp_zero, Gpp_pos             — health dichotomy: G''(0)=0, G''(y)>0 ∀ y>0 (no ghost off zero field).
@@ -1866,3 +1866,45 @@ theorem truncation_is_a_deficit (a0 B g : ℝ) (ha0 : 0 < a0) (hB : 0 < 1 + B) (
   have key : ((1 + B) * g) ^ 2 < g * a0 := by nlinarith
   calc (1 + B) * g = Real.sqrt (((1 + B) * g) ^ 2) := (Real.sqrt_sq hpos).symm
     _ < Real.sqrt (g * a0) := Real.sqrt_lt_sqrt (by positivity) key
+
+/-! ## L257 -- what the weak-lensing relation actually measures.  The deep branch's SLOPE follows from the
+mass run alone and tests no force law; the gravitational content is one exponent in the AMPLITUDE. -/
+
+/-- L257: A LINEARLY GROWING ENCLOSED MASS REPRODUCES THE SQUARE-ROOT BRANCH BY ITSELF.  If M(r) = M0 r --
+an isothermal mass run, whatever produces it -- then g_obs = G M0/r and g_bar = G M_b/r^2 satisfy
+g_obs^2/g_bar = G M0^2/M_b, a constant in r.  So the relation g_obs = sqrt(g_bar a_eff) holds identically,
+with a_eff = G M0^2/M_b, for ANY theory delivering that mass run: the square-root shape is not evidence
+for a modified force law. -/
+theorem linear_mass_is_sqrt_branch (G M0 Mb r : ℝ) (hr : r ≠ 0) (hG : G ≠ 0) (hMb : Mb ≠ 0) :
+    (G * (M0 * r) / r ^ 2) ^ 2 / (G * Mb / r ^ 2) = G * M0 ^ 2 / Mb := by
+  have hr2 : r ^ 2 ≠ 0 := pow_ne_zero 2 hr
+  rw [div_eq_div_iff (div_ne_zero (mul_ne_zero hG hMb) hr2) hMb]
+  field_simp
+
+/-- L257: WHAT IS LEFT IS ONE EXPONENT.  Demanding that the effective scale be the SAME a_0 for every galaxy
+forces G M0^2 = M_b a_0, i.e. the lensing amplitude must scale as the square root of baryonic mass.  That
+scaling -- the baryonic Tully-Fisher relation seen in lensing -- is the only gravitational content of the
+deep branch. -/
+theorem universal_scale_forces_root_mass (G M0 Mb a0 r : ℝ) (hr : r ≠ 0) (hG : G ≠ 0)
+    (h : (G * M0 / r) ^ 2 = (G * Mb / r ^ 2) * a0) : G * M0 ^ 2 = Mb * a0 := by
+  have hr2 : r ^ 2 ≠ 0 := pow_ne_zero 2 hr
+  have h' : (G * M0) ^ 2 / r ^ 2 = (G * Mb * a0) / r ^ 2 := by
+    rw [← div_pow, h]; ring
+  have h'' : (G * M0) ^ 2 = G * Mb * a0 := (div_left_inj' hr2).mp h'
+  apply mul_left_cancel₀ hG
+  linear_combination h''
+
+/-- L257: THE SLOPE MAP IS AN IDENTITY OF THE TWO VARIABLES.  An excess surface density whose logarithm is
+linear in log R with slope (1 - gamma) is, when replotted against log g_bar = c2 - 2 log R, exactly a line of
+slope (gamma - 1)/2.  No dynamics enters; gamma = 2 (the isothermal projection, ESD ~ 1/R) gives slope 1/2. -/
+theorem esd_slope_maps_to_rar_slope (gam c1 c2 lR : ℝ) :
+    c1 + (1 - gam) * lR = (c1 - (gam - 1) / 2 * c2) + (gam - 1) / 2 * (c2 - 2 * lR) := by
+  ring
+
+/-- L257: THE ISOTHERMAL NORMALISATION.  For rho = M0/(4 pi r^2) the projected excess surface density is
+DeltaSigma = M0/(4R), so the standard estimator 4 G DeltaSigma returns exactly G M0/R = G M(R)/R^2.  The
+factor of four is what makes the excess-surface-density estimator report the true acceleration for this
+profile -- and dropping it misstates the inferred scale by sixteen. -/
+theorem isothermal_esd_normalisation (G M0 R : ℝ) (hR : R ≠ 0) :
+    4 * G * (M0 / (4 * R)) = G * M0 / R := by
+  field_simp
