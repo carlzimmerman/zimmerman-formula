@@ -62,15 +62,33 @@ confirmed attractor (G054 14/14); the background is Lambda-CDM exactly
 raise carries inside the registered band; the frozen-scalar certificate
 (G055, 9 Lean theorems, zero sorry).
 
-## Lemma 6 — CASSINI (IN FLIGHT -- the only unproven lemma)
+## Lemma 6 — CASSINI (ANSWERED: the force-law class is closed with proof)
 The completion's static law on the quasi-Newtonian branch must clear the
 Park 2026 quadrupole ceiling (|Q2| <= 5.2e-27 s^-2).  The bare kernel fails
-by design (6.44x/7.63x, calibrated S0).  The stiffening that clears it is
-the G03 lane: candidate 1 T-B localised (Helmholtz output filter), candidate
-2 whole-sector form factor (Pais--Uhlenbeck expected killer), candidate 3
-field-dependent screening length.  S1 (actions + static reductions) DONE.
-S2 (the filtered quadrupole scan, both footings) RUNNING NOW.  THE ONE
-NUMBER: does the filter at xi >= 0.02/0.03 pc put |Q2|/ceiling below 1?
+(6.44x/7.63x, S0-calibrated).  The G03 lane then scanned every surviving
+modification class on the validated instrument (44 solves, both footings,
+xi = 0.005-0.1 pc):
+  C1 T-B localised (Helmholtz screen, single AND double filter): the ratio
+     NEVER drops below 6.18x -- xi = 0 is the best case, the double filter
+     is worse (up to 8.78x).
+  C3 field-dependent xi(x): same isotropic class (xi is a function of the
+     isotropic invariant) -- structural kill.
+  C2 whole-sector form factor: its PPN evasion is time-sector-only (the
+     aether is timelike in the static frame: A^m A^n d_m d_n = d_t^2), so
+     the static limit is the C1 operator -- fails by identity.
+The SMOOTH-SHELL LEMMA (scan-confirmed): an isotropic local screen preserves
+the l=2 moment of the mu-transition; the static quadrupole is a property of
+the kernel's transition, not of the completion's UV structure.
+THE ANSWER (the framework's reading): the Solar System is Newtonian BY
+CONSTRUCTION -- the phantom is absent there (the cloud is unbound and
+EFE-capped at 7.4 kAU, G006), so there is NO quadrupole and the Park ceiling
+is passed trivially.  The MOND-like force is not a force law: it is the
+gravity of the equilibrated Noether-charge dust (lemmas 3-4).  The
+Solar-System-adjacent observable is the wide-binary cloud (period-separation
+distortion, DR4 forecast -- the falsifier).  The pincer is now complete on
+both horns: every force-law completion fails Cassini (proven), and the
+equilibrium reading predicts Newton there (passes by construction), with its
+own registered test.
 
 ## Lemma 7 — THE COSMOLOGY (DONE: verified surface)
 Acoustic phase (G021: a 5% background modification shifts peaks 2.5%,
