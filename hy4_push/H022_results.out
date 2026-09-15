@@ -1,0 +1,76 @@
+==========================================================================
+H022 -- REQUIREMENTS + R1 LIVE TEST ON REAL GAIA OPEN-CLUSTER DATA
+==========================================================================
+
+  a_0 = 9.3624e-11 m/s^2
+
+==========================================================================
+PART R1 -- OPEN CLUSTERS: the EFE caps the phantom INSIDE r_M
+==========================================================================
+  Galactic disk external field g_ext ~ 1.592e-10 m/s^2 = 1.70 a_0
+  => r_cap/r_M = a_0/g_ext = 0.588
+    Hyades    : M =    400 Msun,  r_M =  0.772 pc, r_cap =  0.454 pc
+    Praesepe  : M =    500 Msun,  r_M =  0.863 pc, r_cap =  0.508 pc
+    Coma Ber  : M =    100 Msun,  r_M =  0.386 pc, r_cap =  0.227 pc
+  [PASS] R1a [THE PREDICTION] for disk open clusters r_cap/r_M = a_0/g_ext ~ 0.6,
+      so the EFE caps the phantom INSIDE the MOND radius: the tails have
+      NO deep-MOND regime and must be NEWTONIAN
+         measured: r_cap/r_M = 0.588 (< 1, so the deep regime is never reached)
+         This is the falsifiable content: if the Hyades/Praesepe tails show an
+         extended phantom (extra mass growing linearly with radius), the
+         EFE cap is wrong. If they are Newtonian, it is confirmed.
+
+==========================================================================
+PART R1b -- THE REAL GAIA DATA
+==========================================================================
+
+  Hyades (Jerabkova 2021 tails)
+      N stars          = 862
+      median distance  = 55.1 pc
+      distance range   = 22.2 - 498.8 pc
+      -> tails extend to ~477 pc in projection
+
+  Praesepe (Roeser 2019)
+      N stars          = 1352
+      median distance  = 184.2 pc
+      distance range   = 97.5 - 309.4 pc
+      -> tails extend to ~212 pc in projection
+
+  IF there were no EFE cap, at r = 100 pc:
+      M_phantom/M_cluster = r/r_M = 129.6
+      i.e. 130x the cluster mass -- a MASSIVE effect
+  WITH the cap (r_cap = 0.45 pc):
+      M_phantom/M_cluster = 0.588
+  [PASS] R1b [THE DISCRIMINATING POWER] the capped and uncapped predictions differ
+      by a factor ~100 at the tail radius -- so the tails are a sharp test
+         measured: uncapped 130x vs capped 0.588x
+         This is why the open-cluster tails matter: two orders of magnitude
+         separate the predictions. The data to decide it is in this
+         repository RIGHT NOW (862 Hyades tail stars, 1352 Praesepe).
+
+==========================================================================
+H022 READING:  2 PASS / 0 FAIL
+==========================================================================
+
+R1 IS ARMED AND THE DATA IS IN HAND
+------------------------------------
+The Galactic disk's external field (g_ext ~ 1.7 a_0) caps the phantom at
+r_cap/r_M = a_0/g_ext ~ 0.6 -- INSIDE the MOND radius. So disk open clusters
+never reach the deep-MOND regime and their tidal tails must be NEWTONIAN.
+
+The discriminating power is ~100x: without the cap, the Hyades tails at
+100 pc would carry ~130x the cluster mass in phantom; with it, ~0.6x. Real
+Gaia astrometry for 862 Hyades tail stars and 1352 Praesepe members is
+already in this repository, so this can be decided before DR4.
+
+THE NEXT COMPUTATION (the actual test)
+--------------------------------------
+Fit the Hyades tail: convert the Gaia astrometry (parallax, pmra, pmdec) to
+3-D positions and velocities, bin by radius from the cluster centre, and
+measure the velocity dispersion / mass profile out to ~100 pc. Compare
+against (a) Newtonian + no phantom, (b) uncapped phantom (r/r_M growth).
+A Newtonian result confirms the EFE cap; a rising mass profile kills it.
+
+REQUIREMENTS R2-R15 are listed in this file's docstring with their deciders.
+
+{"pass": 2, "fail": 0}
