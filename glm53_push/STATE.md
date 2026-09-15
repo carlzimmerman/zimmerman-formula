@@ -180,7 +180,10 @@ digit-for-digit.
 EQUILIBRIUM_THEORY.lean (7-thm spine) · G001 (9) · G002_G003 (4) ·
 G007_bimetric (11) · G024_slab (9+1) · G031_fluid_action · G036_formal_extras (9) ·
 G039_horn_a_clean + G039_radial_scatter (14) · G055_frozen_scalar (9,
-`d0f3d645f`) · G058_omega_from_a0 (in flight) · plus hy4's H-series and
+`d0f3d645f`) · G058_omega_from_a0 (6, `516693473`) · G047_efe_cap (6: mu2_sq,
+mu2_pos, solve_well_posed, external_field_lifts, efe_floor_law_exact,
+cap_uniqueness — salvaged from the iteration-capped draft; numeric anchors
+trimmed with the named Mathlib blocker) · plus hy4's H-series and
 grok's K-series certificates. Every committed certificate: zero `sorry`,
 axioms ⊆ {propext, Classical.choice, Quot.sound}, verified by independent
 compile where marked.
