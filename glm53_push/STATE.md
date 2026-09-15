@@ -109,3 +109,32 @@ freedom: the floor is not an artifact of the fixed M/L convention).
 slope vs r_max/Rd, bulge fraction, bar presence -- structure G040 did not
 test); BIG-SPARC/WALLABY e_N ~ 1 EFE split (registered); the cluster amplitude
 check (G008's owed follow-up).
+
+## G058 MILESTONE (2026-09-14) -- THE ONE-CONSTANT CLOSURE, LEAN-CERTIFIED
+
+G052's central claim -- the dark-energy density IS the MOND scale --
+is now a Lean certificate: `lean/G058_omega_from_a0.lean`, 6 theorems,
+exit 0, zero sorry, axioms ⊆ {propext, Classical.choice, Quot.sound}:
+
+- **omega_from_a0 / omega_from_a0_gen**: from rho_Lambda = 4*a0^2/(G*c^2)
+  (i.e. a0 = (c/2)*sqrt(G rho_Lambda)) and the Friedmann critical density
+  H0^2 = 8*pi*G*rho_crit/3, the ratio is the EXACT identity
+  Omega_Lambda = 32*pi*a0^2/(3*H0^2*c^2) -- no fitting, the G's cancel
+  exactly, pi and a0 survive.
+- **num_omega_lambda (the interval theorem)**: with a0 = 9.3619e-11,
+  H0 = 67.4 km/s/Mpc in SI, c = 299792458, Omega_Lambda ∈ (0.68, 0.69)
+  rigorously, via Mathlib's own coarse pi bounds (Real.pi_gt_d6/pi_lt_d4);
+  the exact-rational window is [0.684930, 0.684932], margins ~0.005 per side.
+- **num_omega_lambda_h0_planck**: the G052 canonical H0 = 67.36 variant,
+  the registered 0.6857, same window.
+- **one_constant_closure**: given ONLY a0, there EXISTS a UNIQUE
+  rho_Lambda = 4*a0^2/(G*c^2) realizing the identity -- the dark-energy
+  density is not an independent cosmological parameter; the MOND scale and
+  the dark energy are ONE measurement.
+- **omega_lambda_near_planck**: the derived value differs from Planck's
+  0.6847 by < 0.001 (the +0.07% coincidence is a theorem about the one
+  scale, not a fitted parameter).
+
+Cross-check (G058_omega_numeric.py, exact Fractions): derived/Planck =
+1.001525 at H0 = 67.36 -- G052's registered 1.0015 (+0.07%) reproduced
+digit-for-digit.
