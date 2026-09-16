@@ -15,6 +15,7 @@ build (Lean 4.34.0-rc2, `lake env lean <file>.lean`, exit 0, zero sorry, axioms
 | `lean/G031_fluid_action.lean` | 13 | The hydrostatic spine: temperature → identification → BTFR → g²=a₀g_N, ending in `the_spine` |
 | `lean/G036_formal_extras.lean` | 4+ | The slab column cancellation (∫=0 via `integral_rpow`), the peak 26.7 M☉/pc², the w-window coldness |
 | `lean/G005_derived_length.lean` | 8 | (companion) the derived-length/ξ chain |
+| `lean/C01_sqrt2_sound.lean` | 10 | The sqrt-2 identity (B05 B5): `sound_flat_sq` (b² = 2a²), `sqrt2_ratio` (a² = b²/2, a,b > 0 ⇒ b/a = √2), `response_lag_sqrt2` (t_sound/t_dyn = √2, r_M cancels), `response_lag_defs`, `cs2_over_flat`, `cs_tff_over_r` (G127 C2: c_s t_ff/r = 1/√2), `numeric_cross_check` (119.21/(119.21/√2) = √2), `sqrt2_decimal_interval` (√2 ∈ (1.41421356, 1.41421357)), `numeric_cross_check_interval`, `c01_spine` |
 
 ## The KEY LEMMA that unblocks the spine
 

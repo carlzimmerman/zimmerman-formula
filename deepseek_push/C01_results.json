@@ -1,0 +1,56 @@
+{
+  "lane": "C01",
+  "title": "THE sqrt-2 IDENTITY: t_sound/t_dyn = v_flat/c_s = sqrt(2) EXACTLY -- Lean certificate (B05 WAVE-30 B5 / G127 C2)",
+  "status_date": "2026-09-16",
+  "gate": "PASS",
+  "lean": {
+    "file": "deepseek_push/lean/C01_sqrt2_sound.lean",
+    "compiled": "lake env lean, exit 0",
+    "lean_version": "Lean 4.34.0-rc2 (mathlib 85e3a25e006c35636f0e53b0e9296caca2685bc0)",
+    "sorry": 0,
+    "axioms": "{propext, Classical.choice, Quot.sound}",
+    "theorems": {
+      "count": 10,
+      "names": [
+        "sound_flat_sq",
+        "sqrt2_ratio",
+        "response_lag_sqrt2",
+        "response_lag_defs",
+        "cs2_over_flat",
+        "cs_tff_over_r",
+        "numeric_cross_check",
+        "sqrt2_decimal_interval",
+        "numeric_cross_check_interval",
+        "c01_spine"
+      ]
+    }
+  },
+  "statements": {
+    "the_algebra_lemma": "sqrt2_ratio: a^2 = b^2/2 with a > 0, b > 0  ==>  b/a = Real.sqrt 2 (sign resolved by positivity, no rpow)",
+    "field_level": "sound_flat_sq: a^2 = b^2/2  ==>  b^2 = 2 a^2",
+    "crossing_time": "response_lag_sqrt2: with t_sound := r_M/a, t_dyn := r_M/b and b^2 = 2 a^2: t_sound/t_dyn = sqrt(2); r_M cancels",
+    "defs_form": "response_lag_defs: v_flat := sqrt(2)*sigma, c_s := sigma: t_sound/t_dyn = sqrt(2)",
+    "G127_C2": "cs_tff_over_r: c_s t_ff/r = 1/sqrt(2) exactly (t_ff := r/v_flat); cs2_over_flat: c_s/v_flat = 1/sqrt(2)"
+  },
+  "numeric_cross_check": {
+    "python": {
+      "target": "119.21/(119.21/sqrt(2))",
+      "value": 1.4142135623730951,
+      "expected": 1.4142135623730951,
+      "diff": 0.0,
+      "pass": true
+    },
+    "lean_exact": "numeric_cross_check: (119.21)/((119.21)/sqrt 2) = sqrt 2 EXACTLY (field cancellation; 119.21 km/s anchor = any nonzero radius)",
+    "lean_decimal": "sqrt2_decimal_interval: sqrt(2) in (1.41421356, 1.41421357), squared-pin (sq_lt_sq₀, no calculus); numeric_cross_check_interval: 1.41421356 < 119.21/(119.21/sqrt 2) < 1.41421357"
+  },
+  "verdicts": {
+    "V1": "FULL Real-sqrt statement CERTIFIED on attempt 2: the algebra lemma b/a = sqrt(2) from a^2 = b^2/2 (a,b > 0) closes with the G03G/G227 sqrt_pair technique (square both sides via div_pow + Real.sq_sqrt, resolve the sign by positivity). No PENDING registered, no three-strike invocation.",
+    "V2": "THE CROSSING-TIME COROLLARY t_sound/t_dyn = sqrt(2) certified in the lemma form (r_M cancels), the definitions form (v_flat := sqrt(2) sigma), and the G127 C2 inverse c_s t_ff/r = 1/sqrt(2) -- all field_simp/ring/norm_num, zero sorry.",
+    "V3": "NUMERIC CROSS-CHECK PASSES exactly: 119.21/(119.21/sqrt(2)) = 1.4142135623730951 = sqrt(2) to double precision (diff 0.0), and Lean pins sqrt(2) in (1.41421356, 1.41421357) plus the literal 119.21 ratio inside the same interval. The b^2 = 2 a^2 field identity stands registered as sound_flat_sq.",
+    "V4": "10 theorems, exit 0, zero sorry, axioms {propext, Classical.choice, Quot.sound} exactly. PASS."
+  },
+  "files": [
+    "deepseek_push/lean/C01_sqrt2_sound.lean",
+    "deepseek_push/C01_results.json"
+  ]
+}
