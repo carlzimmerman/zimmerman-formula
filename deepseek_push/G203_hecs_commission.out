@@ -1,0 +1,113 @@
+G203 -- THE HECS/DR7 MEMBER-CATALOG COMMISSION: the anisotropy test's data,
+fetched, spec'd, and FIRST-USED.
+
+G195 (deepseek_push/G195_sdss_anisotropy.py) is DATA-GATED: the beta(2-5 R500)
+window-mean anisotropy measurement needs a cluster catalog (M500/R500) plus
+member galaxies carrying (R in R500 units, v_los in km/s) OUT TO 2-5 R500.
+This lane COMMISSIONS that data:
+
+(1) THE FETCH.  The HeCS (Hectospec Cluster Survey, Rines, Geller, Diaferio &
+    Kurtz 2013, ApJ 767, 15, 2013ApJ...767...15R) member catalog is deposited at
+    the CDS/VizieR catalog J/ApJ/767/15:
+        ReadMe     https://cdsarc.cds.unistra.fr/ftp/J/ApJ/767/15/ReadMe
+        table1.dat https://cdsarc.cds.unistra.fr/ftp/J/ApJ/767/15/table1.dat
+                   58 HeCS basic properties (Name, RA, Dec, z, sigma_p, Nm)
+        table2.dat https://cdsarc.cds.unistra.fr/ftp/J/ApJ/767/15/table2.dat
+                   22,680 HeCS redshifts + membership classification (Np flag)
+        table3.dat https://cdsarc.cds.unistra.fr/ftp/J/ApJ/767/15/table3.dat
+                   2,621 HeCS members from literature redshifts (SDSS, Boschin)
+    Per-cluster characteristic radii (r500, r200, rmax, M200) are NOT in the
+    VizieR deposit; they are the paper's Table 4 ("HeCS Characteristic Radii
+    and Masses"), transcribed here from the published paper PDF
+    (iris.unito.it mirror of ApJ 767, 15) into G203_data/hecs2013_table4.tsv.
+    The SDSS DR7 satellite stack (Wojtak & Mamon 2013, MNRAS 428, 2407) is NOT
+    pre-packaged as a member (R, v_los) catalog -- the DR7 central/satellite
+    sample must be reconstructed from SDSS CAS/DAS (classic.sdss.org/dr7);
+    status: UNVERIFIED-as-download / reconstruction-required (not a blocker:
+    HeCS delivers the full requirement).
+    Files are committed under deepseek_push/G203_data/; this script verifies
+    presence + sha256 and can re-download from the CDS URLs if absent.
+
+(2) THE CATALOG SPEC.  Per cluster: assigned member count (validated against
+    the published Nm), the r/R500 coverage out to the critical 2-5 R500 window
+    (max member R/R500, members in [2,5] R500), the v_los errors (per-galaxy
+    e_cz from table2/3 plus the jackknife per-bin errors), and the interloper
+    treatment as published: the Diaferio & Geller 1999 / Diaferio 1999 caustic
+    technique (q=25 adaptive-kernel smoothing; membership = position inside the
+    caustics; Np = membership flag), plus the estimator's additional iterative
+    3.5-sigma MAD cleaning (G195).  FIT CATALOG: clusters reaching the window.
+
+(3) THE FIRST-USE.  G195's estimator (projected-Jeans two-asymptote inversion,
+    functions reproduced VERBATIM from G195_sdss_anisotropy.py) run on the
+    commissioned HeCS stack: beta_win(2-5 R500) with the bootstrap error, vs
+    the streaming 0.5 rule (G170) and the static 0 null, with the precision
+    gate sigma_beta <= 0.167.
+
+(4) VERDICTS: V1 catalog commission status (fetched/transcribed/blocked, URLs,
+    sizes, checksums); V2 the first-run beta measurement; V3 the honest
+    statement of the streaming-vs-static test's first confrontation.
+
+Deliverable: deepseek_push/G203_hecs_commission.py + .out + G203_results.json
+
+====================================================================================================
+G203 -- THE HECS/DR7 MEMBER-CATALOG COMMISSION
+====================================================================================================
+  catalog file ReadMe: present (committed)  sha256 OK
+  catalog file table1.dat: present (committed)  sha256 OK
+  catalog file table2.dat: present (committed)  sha256 OK
+  catalog file table3.dat: present (committed)  sha256 OK
+  catalog file hecs2013_table4.tsv: present (committed transcription)
+  HeCS CDS catalog URL base: https://cdsarc.cds.unistra.fr/ftp/J/ApJ/767/15  (all files FETCHED, sizes: ReadMe 9.0 KB, table1 3.3 KB, table2 1.04 MB, table3 99.8 KB)
+  DR7 (Wojtak & Mamon 2013) satellite stack: NOT pre-packaged -- the central/satellite sample is reconstructed from SDSS DR7 CAS/DAS (classic.sdss.org/dr7); status UNVERIFIED-as-download; HeCS delivers the full requirement, so the lane proceeds on HeCS.
+
+catalog parsed: 58 clusters, 22680 Hectospec + 2621 literature galaxies = 25301
+assigned members: 10145 (paper total: 10,145); Np sum = 10479 (uniques + 334 two-cluster overlaps; paper states 334)
+
+====================================================================================================
+PART 2 -- THE CATALOG SPEC
+====================================================================================================
+  per-cluster assigned n_mem vs published Nm: median diff 0, mean -4.2
+  r/R500 coverage (critical window 2-5 R500): clusters reaching R>=2: 58/58; >=3: 58/58; >=4: 57/58; >=5: 55/58;  members at R>=2: 5668, in [2,5]: 3629; clusters with >=12 members in-window: 58/58
+  v_los errors: per-galaxy e_cz (table2/3; median across members 36 km/s; paper: rvsao internal errors ~56 km/s absorption / 21 km/s emission); jackknife per-bin errors reported in the first-use bins below.
+  interloper treatment (as published): Diaferio & Geller 1999 / Diaferio 1999 caustic technique with q=25 adaptive-kernel smoothing; membership = position INSIDE the caustics (Np flag in table2/3; Np=0 non-member, Np>=1 member of N clusters).  G195's estimator adds its own iterative 3.5-sigma MAD cleaning before binning.  Caveat: the caustic envelope itself is the interloper boundary at 2-5 R500 -- outer bins contain caustic-selected (virial + infall) members, not interloper-free equilibrium tracers.
+  FIT CATALOG: all 58 HeCS clusters reach the critical window with >=12 in-window members -> fit catalog = 58 clusters (the full HeCS set); 50/58 reach 5 R500.
+  stack normalization: M500_med = 2.405 x1e14 Msun (caustic M200 -> NFW c500=4.5, the G195 mass model), R500_med = 0.700 Mpc (h^-1; ratio units h-independent); r200/r500 med = 1.493
+
+====================================================================================================
+PART 3 -- THE FIRST-USE: G195's executable on the HeCS members
+====================================================================================================
+  PRIMARY (nearest-center assignment, 10145 members of 58 clusters):
+    beta_win(2-5 R500) = 0.434 +- 0.015   (boot mean 0.434, n_boot 60)
+    fitted (beta_inf, r_a) = (1.225, 4.360 R500), chi2 = 805.6
+    binned sigma_los(R): R=0.29: 813+-42 km/s (n=216); R=0.41: 938+-33 km/s (n=314); R=0.56: 939+-27 km/s (n=485); R=0.78: 957+-23 km/s (n=680); R=1.08: 857+-19 km/s (n=849); R=1.50: 779+-16 km/s (n=1084); R=2.08: 726+-14 km/s (n=1188); R=2.88: 630+-12 km/s (n=1307); R=3.99: 543+-11 km/s (n=1287); R=5.52: 459+-9 km/s (n=1059)
+  SCORING: vs static null 0: z = 29.7 sigma; vs streaming rule 0.5: z = -4.5 sigma; vs streaming window-mean 0.594: z = -10.9 sigma; precision gate sigma<=0.167: PASS (sigma = 0.015)
+  SENSITIVITY (0.525 deg field cut, 9384 members): beta_win = 0.432 +- 0.015
+
+====================================================================================================
+PART 4 -- THE VERDICTS
+====================================================================================================
+  [PASS] C1 [catalog fetched] HeCS CDS J/ApJ/767/15 (table1/2/3 + ReadMe) present with verified sha256, sizes 3.3KB/1.04MB/99.8KB/9.0KB; Table 4 (r500/r200/rmax/M200) transcribed to hecs2013_table4.tsv
+         measured: files: 4 OK=4; tsv rows: 58; DR7 stack: not pre-packaged (UNVERIFIED)
+         reading : HeCS is the providing stack: members (R, v_los) to the caustic reach + per-cluster r500; the DR7 Wojtak-Mamon stack requires reconstruction from SDSS CAS/DAS (not a blocker).
+  [PASS] C2 [transcription validated] the deposited member catalog reproduces the published totals: 22,680 + 2,621 galaxies; 10,145 members; Np-sum 10479 = 10145 + 334 two-cluster overlaps; assigned n_mem vs published Nm: median diff 0
+         measured: gals 25301; members 10145; overlap 334; med Nm diff 0
+         reading : nearest-center assignment (the CDS deposit carries no per-galaxy cluster ID) is validated to the galaxy against the paper's totals.
+  [PASS] C3 [fit catalog reaches the window] clusters with members out to 2-5 R500 and >=12 in-window members
+         measured: reach >=2 R500: 58/58; >=5: 55/58; in-window members 3629; fit catalog 58/58 clusters
+         reading : the critical window is populated across the full HeCS set; the first-use is not coverage-gated.
+  [PASS] C4 [precision gate] bootstrap sigma_beta <= 0.167 (G170 F2)
+         measured: sigma_beta = 0.015
+         reading : stacked HeCS (10,145 members) beats the registered precision floor by an order of magnitude.
+  [PASS] C5 [null rejected] beta_win(2-5 R500) - 0 >= 3 sigma
+         measured: beta_win = 0.434 +- 0.015, z_null = 29.7
+         reading : the static (beta = 0) reading is rejected decisively by the first real-data measurement.
+  [FAIL] C6 [streaming rule] beta_win > 0.5 at >= 3 sigma (G170 rule)
+         measured: beta_win = 0.434 vs 0.5 -> z = -4.5 sigma; vs streaming window-mean 0.594 -> z = -10.9 sigma
+         reading : the first confrontation does NOT confirm the 0.5 envelope as stated: the measured window mean sits 4.5 sigma BELOW 0.5 and 11 sigma below the streaming model's window mean -- the data favor a strongly positive but shallower anisotropy.
+  [PASS] V3 [honest statement] the streaming-vs-static test's first confrontation is MEASURED today on the public data, with the one open systematic named
+         measured: MEASURED: beta_win = 0.434 +- 0.015 (z_null 29.7, z_0.5 -4.5); sensitivity (field cut) = 0.432; open systematic: caustic-envelope selection at 3-5 R500 (envelope-bounded LOS sample) + nearest-center assignment + caustic-based r500 normalization
+         reading : first real confrontation complete: H0 rejected at ~30 sigma; the streaming 0.5 envelope is 4.5 sigma too high; a Wojtak-class 2D phase-space (DF/MAMPOSSt-style) fit on this same catalog is the one remaining gating piece for a final anisotropy verdict at 2-5 R500.
+
+G203 COMPLETE: 6/7 checks PASS.
+artifacts: G203_hecs_commission.py + .out + G203_results.json
+wrote G203_results.json
