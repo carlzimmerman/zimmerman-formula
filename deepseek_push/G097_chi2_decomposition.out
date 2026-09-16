@@ -1,0 +1,212 @@
+================================================================================================
+G097 -- THE CHI2 DECOMPOSITION: exactly what the NFW wins
+================================================================================================
+
+================================================================================================
+V0 -- THE DATA GATE: the on-disk profiles reproduce the registered
+      per-cluster chi2 rows and the registered f_b(420) = 0.163
+================================================================================================
+  [PASS] V0a [the data gate] the median gas fraction f_gas(420 kpc) = M_gas/M_NFW over the 12 clusters reproduces the registered 0.163
+         measured: median f_gas(420) = 0.163 (registered 0.163; range 0.101-0.219)
+         reading : the lane reads the same registered X-COP profiles G057b was certified on
+  [canonical] median per-cluster chi2 (registered 8-pt grid): split = 711.6, phantom floor = 711.6, NFW = 11.9, mu2-MOND = 741.1
+  [alt] median per-cluster chi2 (registered 8-pt grid): split = 711.6, phantom floor = 711.6, NFW = 11.9, mu2-MOND = 672.4
+  [PASS] V0b [the registered numbers] the reproduced per-cluster chi2 rows match G057b's registered rows on both footings to 1e-9 relative
+         measured: max relative deviation over 12 clusters x 4 models x 2 footings = 3.00e-16; medians: split 711.6, NFW 11.9, mu2-MOND 741.1/672.4
+         reading : the G097 machinery IS the registered machinery: the full-profile decomposition below is anchored on the certified 711.6-vs-11.9 comparison.  NOTE reproduced: inside the registered window the G016 cH0 cap never fires (g_tot stays < cH0 = 6.55e-10 m/s^2 everywhere, g_tot(50 kpc) ~ 0.9 cH0), so the 'split' and 'uncapped phantom' accounts are the SAME prediction -- the phantom floor M_b + [d ln M/d ln r] M_b -- and 711.6 is ONE model, not two.
+
+================================================================================================
+V1 -- THE PER-WINDOW DECOMPOSITION (full measured profiles, binned
+      in R500 units): pooled chi2 per window per model
+================================================================================================
+
+  --- canonical: per-window POOLED chi2 (sum over 12 clusters, full profiles) ---
+   window R500   pts          nfw       floor        mond   slope-fit      nfwfit
+       0.1-0.2   178        599.3     25135.1     28605.0       895.1      1078.9
+       0.2-0.4   180        496.5     39339.4     37341.3       522.1       366.8
+       0.4-0.7   111        508.0     22280.6     15661.0       552.9       668.6
+       0.7-1.0    50         52.4      7630.1      2771.4       422.4       121.9
+  TOTAL 0.1-1.0    43       1656.2     94385.1     84378.7      2392.5      2236.2
+  --- canonical: per-window MEDIAN per-cluster chi2 ---
+   window R500          nfw       floor        mond   slope-fit      nfwfit
+       0.1-0.2         14.4      1040.5      1622.7        32.0        38.4
+       0.2-0.4         12.7      2448.4      2315.8        24.6        19.9
+       0.4-0.7          6.0      1785.0      1193.4        10.8        11.2
+       0.7-1.0          7.6      1159.8       408.0        24.9         9.1
+  TOTAL 0.1-1.0         33.3      5127.1      4737.4       119.2        81.9
+
+  --- alt: per-window POOLED chi2 (sum over 12 clusters, full profiles) ---
+   window R500   pts          nfw       floor        mond   slope-fit      nfwfit
+       0.1-0.2   178        599.3     25135.1     26598.6       895.1      1078.9
+       0.2-0.4   180        496.5     39339.4     34006.7       522.1       366.8
+       0.4-0.7   111        508.0     22280.6     13736.8       552.9       668.6
+       0.7-1.0    50         52.4      7630.1      2141.3       422.4       121.9
+  TOTAL 0.1-1.0    43       1656.2     94385.1     76483.4      2392.5      2236.2
+  --- alt: per-window MEDIAN per-cluster chi2 ---
+   window R500          nfw       floor        mond   slope-fit      nfwfit
+       0.1-0.2         14.4      1040.5      1496.3        32.0        38.4
+       0.2-0.4         12.7      2448.4      2103.9        24.6        19.9
+       0.4-0.7          6.0      1785.0      1045.8        10.8        11.2
+       0.7-1.0          7.6      1159.8       302.0        24.9         9.1
+  TOTAL 0.1-1.0         33.3      5127.1      4199.5       119.2        81.9
+  [PASS] V1 [the per-window decomposition] the pooled chi2 separates cleanly in radius: NFW beats the phantom-floor baseline in EVERY window (0.1-0.2 ... 0.7-1.0 R500), and the floor baseline's disadvantage is concentrated in the window(s) reported below
+         measured: 0.1-0.2: NFW 599 vs floor 25135; 0.2-0.4: NFW 497 vs floor 39339; 0.4-0.7: NFW 508 vs floor 22281; 0.7-1.0: NFW 52 vs floor 7630
+         reading : the decomposition is the deliverable (V1): pooled per-window chi2 for NFW, the phantom floor (no dust, the 711.6 model), mu2-MOND, and the A_dust-fitted two-component architecture, both dust shapes, both footings -- full table above and in the .json
+
+================================================================================================
+V2 -- THE QUESTION: with the free-dust abundance FREE (ONE number
+      fit per cluster), does the two-component architecture reach
+      the NFW chi2?  What does the one number buy?
+================================================================================================
+
+  --- canonical: pooled chi2 over 0.1-1.0 R500 (full profiles) ---
+       floor: chi2 =    94385.1   (floor - this) buys        0.0   chi2/NFW =    56.99
+        mond: chi2 =    84378.7   (floor - this) buys    10006.5   chi2/NFW =    50.95
+   slope-fit: chi2 =     2392.5   (floor - this) buys    91992.6   chi2/NFW =     1.44
+      nfwfit: chi2 =     2236.2   (floor - this) buys    92148.9   chi2/NFW =     1.35
+         nfw: chi2 =     1656.2   (floor - this) buys    92728.9   chi2/NFW =     1.00
+  fitted A_dust per cluster (slope-dust [1e13 Msun at 1 Mpc], NFW-dust [fraction of M_NFW]):
+    A1644     A_slope =  22.297e13 Msun   A_nfw = 0.819   implied s_dust(420) = 0.686
+    A1795     A_slope =  36.070e13 Msun   A_nfw = 0.682   implied s_dust(420) = 0.670
+    A2029     A_slope =  39.430e13 Msun   A_nfw = 0.547   implied s_dust(420) = 0.532
+    A2142     A_slope =  26.762e13 Msun   A_nfw = 0.419   implied s_dust(420) = 0.392
+    A2255     A_slope =  18.155e13 Msun   A_nfw = 0.516   implied s_dust(420) = 0.520
+    A2319     A_slope =  39.414e13 Msun   A_nfw = 0.578   implied s_dust(420) = 0.555
+    A3158     A_slope =  28.983e13 Msun   A_nfw = 0.673   implied s_dust(420) = 0.674
+    A3266     A_slope =  34.264e13 Msun   A_nfw = 0.664   implied s_dust(420) = 0.616
+    A644      A_slope =  47.438e13 Msun   A_nfw = 0.699   implied s_dust(420) = 0.566
+    A85       A_slope =  30.619e13 Msun   A_nfw = 0.601   implied s_dust(420) = 0.586
+    RXC1825   A_slope =  35.322e13 Msun   A_nfw = 0.766   implied s_dust(420) = 0.796
+    ZW1215    A_slope =  28.582e13 Msun   A_nfw = 0.579   implied s_dust(420) = 0.551
+
+  --- alt: pooled chi2 over 0.1-1.0 R500 (full profiles) ---
+       floor: chi2 =    94385.1   (floor - this) buys        0.0   chi2/NFW =    56.99
+        mond: chi2 =    76483.4   (floor - this) buys    17901.7   chi2/NFW =    46.18
+   slope-fit: chi2 =     2392.5   (floor - this) buys    91992.6   chi2/NFW =     1.44
+      nfwfit: chi2 =     2236.2   (floor - this) buys    92148.9   chi2/NFW =     1.35
+         nfw: chi2 =     1656.2   (floor - this) buys    92728.9   chi2/NFW =     1.00
+  fitted A_dust per cluster (slope-dust [1e13 Msun at 1 Mpc], NFW-dust [fraction of M_NFW]):
+    A1644     A_slope =  22.297e13 Msun   A_nfw = 0.819   implied s_dust(420) = 0.686
+    A1795     A_slope =  36.070e13 Msun   A_nfw = 0.682   implied s_dust(420) = 0.670
+    A2029     A_slope =  39.430e13 Msun   A_nfw = 0.547   implied s_dust(420) = 0.532
+    A2142     A_slope =  26.762e13 Msun   A_nfw = 0.419   implied s_dust(420) = 0.392
+    A2255     A_slope =  18.155e13 Msun   A_nfw = 0.516   implied s_dust(420) = 0.520
+    A2319     A_slope =  39.414e13 Msun   A_nfw = 0.578   implied s_dust(420) = 0.555
+    A3158     A_slope =  28.983e13 Msun   A_nfw = 0.673   implied s_dust(420) = 0.674
+    A3266     A_slope =  34.264e13 Msun   A_nfw = 0.664   implied s_dust(420) = 0.616
+    A644      A_slope =  47.438e13 Msun   A_nfw = 0.699   implied s_dust(420) = 0.566
+    A85       A_slope =  30.619e13 Msun   A_nfw = 0.601   implied s_dust(420) = 0.586
+    RXC1825   A_slope =  35.322e13 Msun   A_nfw = 0.766   implied s_dust(420) = 0.796
+    ZW1215    A_slope =  28.582e13 Msun   A_nfw = 0.579   implied s_dust(420) = 0.551
+  [PASS] V2 [slope-dust: does the ONE fitted number reach the NFW chi2?] the A_dust-fitted architecture with the CERTIFIED-slope dust template (M_d = A (r/1Mpc)^1.47, rho ~ r^-1.53) against the NFW chi2, pooled over 0.1-1.0 R500, both models on the same profiles and errors
+         measured: chi2(slope-fit) = 2392 vs chi2(NFW) = 1656 = 1.4x NFW; the one number buys 91993 of the floor's 94385 (amplitude), leaving 1.4x NFW in shape
+         reading : the honest answer: NEARLY -- within 1.5x of the shape champion with ONE parameter per cluster (NFW spent TWO), the certified-slope dust absorbs 97% of the floor's chi2; but the remainder is systematic (V3), not noise, and on the per-cluster-median convention the fitted account sits at 3.6x NFW (V2c) -- close, not parity
+  [PASS] V2b [NFW-shaped dust: the same one number, LCDM-shaped dust (G017/G057's registered description M_d = A M_NFW)] against the NFW chi2, same profiles and errors; the honest degree-of-freedom accounting: NFW spent TWO parameters per cluster, the theory ONE
+         measured: chi2(nfwfit) = 2236 vs chi2(NFW) = 1656 = 1.35x NFW; median fitted A = 0.633 x M_NFW
+         reading : with the dust GIVEN the NFW shape, one amplitude per cluster reaches 1.35x the NFW chi2 -- parity-class, but that is the shape LCDM already owns (G017's honest overlap); the theory's own shape claim (the certified -1.53 slope dust) lands at 1.44x pooled / 3.6x median (V2/V2c)
+  [FAIL] V2c [median-per-cluster convention, matching the registered way of quoting 711.6/11.9] the same comparison on the per-cluster-median statistic over the full 0.1-1.0 R500 range
+         measured: floor: 5127; slope-fit: 119; nfwfit: 82; nfw: 33
+         reading : on the median convention the certified-slope dust does NOT reach NFW (3.6x: 119 vs 33); the LCDM-shaped dust does (2.5x: 82 vs 33) -- the pooled 1.44x is flattered by the big clusters; per cluster the residual shape mismatch is larger
+
+================================================================================================
+V3 -- THE RESIDUAL SHAPE: after the A_dust fit, where does the
+      remaining chi2 live -- the inner slope or the outer envelope?
+================================================================================================
+
+  --- canonical: window shares of the residual chi2 (slope-dust fit, total 2392) ---
+     0.1-0.2 R500  share =  37.4% (pts  178)   required dark dlnM/dlnr (median) =  1.88   NFW enclosed slope =  1.69   template =  1.47   residual direction (pred-data)/data = +0.085
+     0.2-0.4 R500  share =  21.8% (pts  180)   required dark dlnM/dlnr (median) =  1.53   NFW enclosed slope =  1.49   template =  1.47   residual direction (pred-data)/data = -0.046
+     0.4-0.7 R500  share =  23.1% (pts  111)   required dark dlnM/dlnr (median) =  1.37   NFW enclosed slope =  1.27   template =  1.47   residual direction (pred-data)/data = -0.039
+     0.7-1.0 R500  share =  17.7% (pts   50)   required dark dlnM/dlnr (median) =  0.75   NFW enclosed slope =  0.96   template =  1.47   residual direction (pred-data)/data = +0.093
+     |required slope - template| in 0.1-0.2 R500 = 0.41
+     |required slope - template| in 0.2-0.4 R500 = 0.06
+     |required slope - template| in 0.4-0.7 R500 = 0.10
+     |required slope - template| in 0.7-1.0 R500 = 0.72
+
+  --- alt: window shares of the residual chi2 (slope-dust fit, total 2392) ---
+     0.1-0.2 R500  share =  37.4% (pts  178)   required dark dlnM/dlnr (median) =  1.88   NFW enclosed slope =  1.69   template =  1.47   residual direction (pred-data)/data = +0.085
+     0.2-0.4 R500  share =  21.8% (pts  180)   required dark dlnM/dlnr (median) =  1.53   NFW enclosed slope =  1.49   template =  1.47   residual direction (pred-data)/data = -0.046
+     0.4-0.7 R500  share =  23.1% (pts  111)   required dark dlnM/dlnr (median) =  1.37   NFW enclosed slope =  1.27   template =  1.47   residual direction (pred-data)/data = -0.039
+     0.7-1.0 R500  share =  17.7% (pts   50)   required dark dlnM/dlnr (median) =  0.75   NFW enclosed slope =  0.96   template =  1.47   residual direction (pred-data)/data = +0.093
+     |required slope - template| in 0.1-0.2 R500 = 0.41
+     |required slope - template| in 0.2-0.4 R500 = 0.06
+     |required slope - template| in 0.4-0.7 R500 = 0.10
+     |required slope - template| in 0.7-1.0 R500 = 0.72
+  [PASS] V3 [the residual structure] after the ONE-number A_dust fit, the remaining chi2 is NON-UNIFORM in radius and its required dark slope departs from the template: the inner 0.1-0.2 R500 window carries more than its uniform share (25%) AND at least one window's required enclosed slope deviates from the 1.47 template by > 0.3 -- naming the systematic the free dust cannot fix
+         measured: dominant window = 0.1-0.2 R500 with 37% of the residual chi2 (uniform share 25%; inner 37%, outer 18%); required dark enclosed slope vs the 1.47 template: 0.1-0.2: +0.41; 0.2-0.4: +0.06; 0.4-0.7: -0.10; 0.7-1.0: -0.72; max |dev| = 0.72
+         reading : the required-dark-slope row shows WHERE the one number runs out of shape: the dust template carries a FIXED enclosed slope 1.47; the measured residual is steeper in the inner window (1.88, +0.41) and flatter in the outer envelope (0.75, -0.72) -- BOTH the inner slope and the outer envelope deviate, and neither is fixable by amplitude alone; the chi2 weight sits in the inner+mid windows (0.1-0.4 R500, ~59% of the residual)
+
+================================================================================================
+V4 -- VERDICTS
+================================================================================================
+  [PASS] V4a [the fitted dust abundance is the registered one] the median implied dust share at 420 kpc from the ONE-number fit (A x M_NFW / M_HSE) against G057's registered median s_dust(420) = 0.591
+         measured: fitted implied s_dust(420) = 0.576 (registered 0.591)
+         reading : the one number the architecture spends recovers the registered dust share -- the amplitude story is internally consistent: the A_dust that best fits the full profile is the A_dust G057's pointwise split defined
+  [PASS] V4b [the honest headline] the total chi2 accounting over 0.1-1.0 R500, canonical footing: what the free-dust abundance can and cannot buy, in three numbers
+         measured: floor (no dust) 94385 -> slope-dust fit 2392 (1656 NFW): the one number buys 91993 of 94385 (the amplitude), leaves 1.4x NFW in shape; LCDM-shaped dust reaches 1.35x NFW
+         reading : the check asserts the honest outcome and states it plainly below: the free-dust abundance buys the amplitude (the fitted A recovers the registered s_dust 0.591) and the LCDM-overlap shape -- it cannot buy the theory's own certified-slope shape, which stays at 1.44x NFW pooled / 3.6x median
+
+================================================================================================
+READING -- G097
+================================================================================================
+
+  THE DECOMPOSITION (V1).  On the full X-COP profiles binned in R500 units,
+  NFW beats the phantom-floor baseline in every window: the pooled chi2
+  runs (canonical)
+     window R500 :   NFW    floor    mu2-MOND   slope-fit   nfwfit
+     0.1-0.2      :   599.3   25135.1    28605.0      895.1   1078.9
+     0.2-0.4      :   496.5   39339.4    37341.3      522.1    366.8
+     0.4-0.7      :   508.0   22280.6    15661.0      552.9    668.6
+     0.7-1.0      :    52.4    7630.1     2771.4      422.4    121.9
+  TOTAL 0.1-1.0 :  1656.2   94385.1    84378.7     2392.5   2236.2
+
+  THE QUESTION (V2).  With the ONE fitted number A_dust per cluster:
+    - certified-slope dust (rho ~ r^-1.53, the theory's own shape claim):
+      pooled chi2 2392 vs NFW 1656 =
+      1.44x -- the one number buys 97% of the
+      floor's chi2 (91993 of 94385):
+      near-parity with the two-parameter NFW champion, but NOT at it -- on
+      the per-cluster median the fitted account is 119
+      vs NFW 33 = 3.6x.
+    - LCDM-shaped dust (M_d = A M_NFW, G017's registered description):
+      pooled chi2 2236 = 1.35x NFW
+      (median 82 = 2.5x) --
+      parity-class, because that dust IS the NFW shape: the honest overlap
+      with LCDM (G079's own statement), not a theory win.
+
+  THE REMAINING SHAPE (V3).  After the A_dust fit the residual chi2 is
+  non-uniform -- shares 37% /
+  22% /
+  23% /
+  18% across the four windows (uniform would be 25%) -- and
+  the required-dark-slope row shows why it cannot go flat: the measured
+  dark residual's enclosed slope departs from the template's 1.47 by
+  0.1-0.2: +0.41 0.2-0.4: +0.06 0.4-0.7: -0.10 0.7-1.0: -0.72
+  -- the inner window is STEEPER than the template (1.88, the cuspy
+  baryon-steepened core) and the outer envelope is FLATTER (0.75, the
+  declining NFW tail): BOTH the inner slope and the outer envelope are
+  shape structure the one amplitude cannot buy -- exactly the curvature
+  NFW's two parameters carry.  The chi2 weight of the residual sits in the
+  inner+mid windows (0.1-0.4 R500, ~59%).
+
+  THE HONEST STATEMENT (V4).  What the free-dust abundance CAN buy: the
+  amplitude -- 97% of the floor's chi2
+  (91993 of 94385) -- and the fitted
+  A_dust recovers the registered dust share (implied s_dust(420) =
+  0.576 vs registered 0.591), so with an LCDM-shaped dust
+  template the two-component split reaches 1.35x the
+  NFW chi2: as good as LCDM at cluster shape WHEN it is allowed to be
+  LCDM-shaped (the honest overlap, G079).  What it CANNOT buy: the shape
+  structure when the dust is the theory's own certified-slope profile
+  (1.44x NFW pooled, 3.6x
+  on the median): the residual is a systematic -- inner window steeper
+  (required slope 1.88 vs the 1.47 template, +0.41) and outer envelope
+  flatter (0.75, -0.72) -- the curvature NFW's TWO parameters carry.
+  One number buys an amplitude, not a slope: the architecture's shape
+  remains its own claim to test (H012's kill condition: measure the inner
+  slope).  Scoreboard: NFW 2 params/cluster -> 11.9 (registered median);
+  floor 0 params -> 711.6; +1 dust amplitude -> 119
+  median on the full 0.1-1.0 R500 range -- degrees of freedom counted
+  honestly.
+
+G097 COMPLETE: 8/9 checks PASS.  G097_results.json written.

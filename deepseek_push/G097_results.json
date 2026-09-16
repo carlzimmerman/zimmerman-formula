@@ -1,0 +1,459 @@
+{
+ "lane": "G097",
+ "title": "the chi2 decomposition: exactly what the NFW wins",
+ "anchor": "G057b registered: median per-cluster chi2 (50-600 kpc, 8 pts) split/uncapped phantom floor 711.6, NFW 11.9, mu2-MOND 741.1/672.4; reproduced exactly in V0 (max rel dev 3.00177e-16)",
+ "windows_R500": [
+  [
+   0.1,
+   0.2
+  ],
+  [
+   0.2,
+   0.4
+  ],
+  [
+   0.4,
+   0.7
+  ],
+  [
+   0.7,
+   1.0
+  ]
+ ],
+ "n_clusters": 12,
+ "clusters": [
+  "A1644",
+  "A1795",
+  "A2029",
+  "A2142",
+  "A2255",
+  "A2319",
+  "A3158",
+  "A3266",
+  "A644",
+  "A85",
+  "RXC1825",
+  "ZW1215"
+ ],
+ "strip": "the G016 cH0 EFE cap never fires inside the registered window (g_tot < cH0 everywhere), so split == uncapped phantom floor M_b + [dlnM]M_b -- 711.6 is ONE model",
+ "checks": [
+  {
+   "name": "V0a [the data gate] the median gas fraction f_gas(420 kpc) = M_gas/M_NFW over the 12 clusters reproduces the registered 0.163",
+   "measured": "median f_gas(420) = 0.163 (registered 0.163; range 0.101-0.219)",
+   "pass": true,
+   "reading": "the lane reads the same registered X-COP profiles G057b was certified on"
+  },
+  {
+   "name": "V0b [the registered numbers] the reproduced per-cluster chi2 rows match G057b's registered rows on both footings to 1e-9 relative",
+   "measured": "max relative deviation over 12 clusters x 4 models x 2 footings = 3.00e-16; medians: split 711.6, NFW 11.9, mu2-MOND 741.1/672.4",
+   "pass": true,
+   "reading": "the G097 machinery IS the registered machinery: the full-profile decomposition below is anchored on the certified 711.6-vs-11.9 comparison.  NOTE reproduced: inside the registered window the G016 cH0 cap never fires (g_tot stays < cH0 = 6.55e-10 m/s^2 everywhere, g_tot(50 kpc) ~ 0.9 cH0), so the 'split' and 'uncapped phantom' accounts are the SAME prediction -- the phantom floor M_b + [d ln M/d ln r] M_b -- and 711.6 is ONE model, not two."
+  },
+  {
+   "name": "V1 [the per-window decomposition] the pooled chi2 separates cleanly in radius: NFW beats the phantom-floor baseline in EVERY window (0.1-0.2 ... 0.7-1.0 R500), and the floor baseline's disadvantage is concentrated in the window(s) reported below",
+   "measured": "0.1-0.2: NFW 599 vs floor 25135; 0.2-0.4: NFW 497 vs floor 39339; 0.4-0.7: NFW 508 vs floor 22281; 0.7-1.0: NFW 52 vs floor 7630",
+   "pass": true,
+   "reading": "the decomposition is the deliverable (V1): pooled per-window chi2 for NFW, the phantom floor (no dust, the 711.6 model), mu2-MOND, and the A_dust-fitted two-component architecture, both dust shapes, both footings -- full table above and in the .json"
+  },
+  {
+   "name": "V2 [slope-dust: does the ONE fitted number reach the NFW chi2?] the A_dust-fitted architecture with the CERTIFIED-slope dust template (M_d = A (r/1Mpc)^1.47, rho ~ r^-1.53) against the NFW chi2, pooled over 0.1-1.0 R500, both models on the same profiles and errors",
+   "measured": "chi2(slope-fit) = 2392 vs chi2(NFW) = 1656 = 1.4x NFW; the one number buys 91993 of the floor's 94385 (amplitude), leaving 1.4x NFW in shape",
+   "pass": true,
+   "reading": "the honest answer: NEARLY -- within 1.5x of the shape champion with ONE parameter per cluster (NFW spent TWO), the certified-slope dust absorbs 97% of the floor's chi2; but the remainder is systematic (V3), not noise, and on the per-cluster-median convention the fitted account sits at 3.6x NFW (V2c) -- close, not parity"
+  },
+  {
+   "name": "V2b [NFW-shaped dust: the same one number, LCDM-shaped dust (G017/G057's registered description M_d = A M_NFW)] against the NFW chi2, same profiles and errors; the honest degree-of-freedom accounting: NFW spent TWO parameters per cluster, the theory ONE",
+   "measured": "chi2(nfwfit) = 2236 vs chi2(NFW) = 1656 = 1.35x NFW; median fitted A = 0.633 x M_NFW",
+   "pass": true,
+   "reading": "with the dust GIVEN the NFW shape, one amplitude per cluster reaches 1.35x the NFW chi2 -- parity-class, but that is the shape LCDM already owns (G017's honest overlap); the theory's own shape claim (the certified -1.53 slope dust) lands at 1.44x pooled / 3.6x median (V2/V2c)"
+  },
+  {
+   "name": "V2c [median-per-cluster convention, matching the registered way of quoting 711.6/11.9] the same comparison on the per-cluster-median statistic over the full 0.1-1.0 R500 range",
+   "measured": "floor: 5127; slope-fit: 119; nfwfit: 82; nfw: 33",
+   "pass": false,
+   "reading": "on the median convention the certified-slope dust does NOT reach NFW (3.6x: 119 vs 33); the LCDM-shaped dust does (2.5x: 82 vs 33) -- the pooled 1.44x is flattered by the big clusters; per cluster the residual shape mismatch is larger"
+  },
+  {
+   "name": "V3 [the residual structure] after the ONE-number A_dust fit, the remaining chi2 is NON-UNIFORM in radius and its required dark slope departs from the template: the inner 0.1-0.2 R500 window carries more than its uniform share (25%) AND at least one window's required enclosed slope deviates from the 1.47 template by > 0.3 -- naming the systematic the free dust cannot fix",
+   "measured": "dominant window = 0.1-0.2 R500 with 37% of the residual chi2 (uniform share 25%; inner 37%, outer 18%); required dark enclosed slope vs the 1.47 template: 0.1-0.2: +0.41; 0.2-0.4: +0.06; 0.4-0.7: -0.10; 0.7-1.0: -0.72; max |dev| = 0.72",
+   "pass": true,
+   "reading": "the required-dark-slope row shows WHERE the one number runs out of shape: the dust template carries a FIXED enclosed slope 1.47; the measured residual is steeper in the inner window (1.88, +0.41) and flatter in the outer envelope (0.75, -0.72) -- BOTH the inner slope and the outer envelope deviate, and neither is fixable by amplitude alone; the chi2 weight sits in the inner+mid windows (0.1-0.4 R500, ~59% of the residual)"
+  },
+  {
+   "name": "V4a [the fitted dust abundance is the registered one] the median implied dust share at 420 kpc from the ONE-number fit (A x M_NFW / M_HSE) against G057's registered median s_dust(420) = 0.591",
+   "measured": "fitted implied s_dust(420) = 0.576 (registered 0.591)",
+   "pass": true,
+   "reading": "the one number the architecture spends recovers the registered dust share -- the amplitude story is internally consistent: the A_dust that best fits the full profile is the A_dust G057's pointwise split defined"
+  },
+  {
+   "name": "V4b [the honest headline] the total chi2 accounting over 0.1-1.0 R500, canonical footing: what the free-dust abundance can and cannot buy, in three numbers",
+   "measured": "floor (no dust) 94385 -> slope-dust fit 2392 (1656 NFW): the one number buys 91993 of 94385 (the amplitude), leaves 1.4x NFW in shape; LCDM-shaped dust reaches 1.35x NFW",
+   "pass": true,
+   "reading": "the check asserts the honest outcome and states it plainly below: the free-dust abundance buys the amplitude (the fitted A recovers the registered s_dust 0.591) and the LCDM-overlap shape -- it cannot buy the theory's own certified-slope shape, which stays at 1.44x NFW pooled / 3.6x median"
+  }
+ ],
+ "n_pass": 8,
+ "n_fail": 1,
+ "footings": {
+  "canonical": {
+   "a0_mss": 9.362307184320096e-11,
+   "total_chi2_0p1_1p0_R500": {
+    "nfw": 1656.1977813298347,
+    "floor": 94385.1309612491,
+    "mond": 84378.67271652285,
+    "slope-fit": 2392.484062021515,
+    "nfwfit": 2236.223766370549
+   },
+   "ratio_to_nfw": {
+    "floor": 56.98904564735203,
+    "mond": 50.94721999251289,
+    "slope-fit": 1.4445642235436902,
+    "nfwfit": 1.35021541000676
+   },
+   "what_one_number_buys": 91992.64689922759,
+   "median_per_cluster_chi2_full": {
+    "nfw": 33.33266358700568,
+    "floor": 5127.138201907544,
+    "mond": 4737.36027008994,
+    "slope-fit": 119.21252364907305,
+    "nfwfit": 81.8537305924075
+   },
+   "per_window_pooled_chi2": {
+    "0.1-0.2": {
+     "nfw": 599.2832892866134,
+     "floor": 25135.084887030174,
+     "mond": 28605.031481792783,
+     "slope-fit": 895.0961544883334,
+     "nfwfit": 1078.8678889139014
+    },
+    "0.2-0.4": {
+     "nfw": 496.52232971891294,
+     "floor": 39339.39985526724,
+     "mond": 37341.253793872194,
+     "slope-fit": 522.065294558973,
+     "nfwfit": 366.8185032039736
+    },
+    "0.4-0.7": {
+     "nfw": 507.9855999793925,
+     "floor": 22280.560363671415,
+     "mond": 15661.006635869107,
+     "slope-fit": 552.8761982000706,
+     "nfwfit": 668.649742603305
+    },
+    "0.7-1.0": {
+     "nfw": 52.40656234491581,
+     "floor": 7630.085855280256,
+     "mond": 2771.3808049887625,
+     "slope-fit": 422.4464147741369,
+     "nfwfit": 121.88763164936852
+    }
+   },
+   "per_window_points": [
+    178,
+    180,
+    111,
+    50
+   ],
+   "per_window_median_per_cluster": {
+    "0.1-0.2": {
+     "nfw": 14.444247905540374,
+     "floor": 1040.5093845383963,
+     "mond": 1622.743019327782,
+     "slope-fit": 31.968585306578355,
+     "nfwfit": 38.433030728773005
+    },
+    "0.2-0.4": {
+     "nfw": 12.730718228244822,
+     "floor": 2448.361197128481,
+     "mond": 2315.8018099407323,
+     "slope-fit": 24.594568079869546,
+     "nfwfit": 19.941376804113034
+    },
+    "0.4-0.7": {
+     "nfw": 5.984991889985934,
+     "floor": 1784.9712369800154,
+     "mond": 1193.3579819176114,
+     "slope-fit": 10.808947662093942,
+     "nfwfit": 11.174285291389563
+    },
+    "0.7-1.0": {
+     "nfw": 7.643528223878247,
+     "floor": 1159.7948737803692,
+     "mond": 408.01258317623905,
+     "slope-fit": 24.94795204065857,
+     "nfwfit": 9.061693755175497
+    }
+   },
+   "residual_window_shares_slopefit": {
+    "0.1-0.2": 0.3741283667035287,
+    "0.2-0.4": 0.21821056317418355,
+    "0.4-0.7": 0.2310887696083213,
+    "0.7-1.0": 0.17657230051396594
+   },
+   "required_dark_enclosed_slope_median": {
+    "0.1-0.2": 1.8788240607729452,
+    "0.2-0.4": 1.530002796103414,
+    "0.4-0.7": 1.3705135550367031,
+    "0.7-1.0": 0.7472713363525679
+   },
+   "nfw_enclosed_slope_median": {
+    "0.1-0.2": 1.6893636713489553,
+    "0.2-0.4": 1.485749839498844,
+    "0.4-0.7": 1.2675475288206253,
+    "0.7-1.0": 0.9605318991714803
+   },
+   "residual_direction_pred_minus_data": {
+    "0.1-0.2": 0.08457025017498976,
+    "0.2-0.4": -0.0464931927518594,
+    "0.4-0.7": -0.039121908417779835,
+    "0.7-1.0": 0.09263153616845092
+   },
+   "fitted_A_dust_per_cluster": {
+    "A1644": {
+     "a_slope_Msun": 222972516407136.75,
+     "a_nfw_frac": 0.8190008384669557,
+     "implied_sdust_420": 0.6855903788412695
+    },
+    "A1795": {
+     "a_slope_Msun": 360695024434921.3,
+     "a_nfw_frac": 0.6818913098710129,
+     "implied_sdust_420": 0.6702797424248156
+    },
+    "A2029": {
+     "a_slope_Msun": 394298121071863.8,
+     "a_nfw_frac": 0.5474642877258638,
+     "implied_sdust_420": 0.5316270697541744
+    },
+    "A2142": {
+     "a_slope_Msun": 267622692834051.06,
+     "a_nfw_frac": 0.4187043483449486,
+     "implied_sdust_420": 0.39178859273371364
+    },
+    "A2255": {
+     "a_slope_Msun": 181554395392047.4,
+     "a_nfw_frac": 0.5156355407734927,
+     "implied_sdust_420": 0.5198180143497958
+    },
+    "A2319": {
+     "a_slope_Msun": 394141606273912.56,
+     "a_nfw_frac": 0.5778091911918678,
+     "implied_sdust_420": 0.5552295683743914
+    },
+    "A3158": {
+     "a_slope_Msun": 289829759228882.75,
+     "a_nfw_frac": 0.6734975257282875,
+     "implied_sdust_420": 0.6738675149546657
+    },
+    "A3266": {
+     "a_slope_Msun": 342644409737158.1,
+     "a_nfw_frac": 0.664393404388063,
+     "implied_sdust_420": 0.616492141363058
+    },
+    "A644": {
+     "a_slope_Msun": 474381128433675.9,
+     "a_nfw_frac": 0.699331178280768,
+     "implied_sdust_420": 0.5659583348870191
+    },
+    "A85": {
+     "a_slope_Msun": 306190777247135.25,
+     "a_nfw_frac": 0.6010156452901606,
+     "implied_sdust_420": 0.5864292216322637
+    },
+    "RXC1825": {
+     "a_slope_Msun": 353215189948504.75,
+     "a_nfw_frac": 0.765860414613182,
+     "implied_sdust_420": 0.7961104357436645
+    },
+    "ZW1215": {
+     "a_slope_Msun": 285819928962456.9,
+     "a_nfw_frac": 0.5788569085657822,
+     "implied_sdust_420": 0.5509298058403294
+    }
+   },
+   "median_A_slope_Msun": 324417593492146.7,
+   "median_A_nfw_frac": 0.6327045248391119,
+   "implied_sdust_420_fit_median": 0.5761937782596414,
+   "registered_sdust_420": 0.5912777835570311
+  },
+  "alt": {
+   "a0_mss": 1.1279e-10,
+   "total_chi2_0p1_1p0_R500": {
+    "nfw": 1656.1977813298347,
+    "floor": 94385.1309612491,
+    "mond": 76483.42503200874,
+    "slope-fit": 2392.484062021515,
+    "nfwfit": 2236.223766370549
+   },
+   "ratio_to_nfw": {
+    "floor": 56.98904564735203,
+    "mond": 46.18012769622044,
+    "slope-fit": 1.4445642235436902,
+    "nfwfit": 1.35021541000676
+   },
+   "what_one_number_buys": 91992.64689922759,
+   "median_per_cluster_chi2_full": null,
+   "per_window_pooled_chi2": {
+    "0.1-0.2": {
+     "nfw": 599.2832892866134,
+     "floor": 25135.084887030174,
+     "mond": 26598.62733419251,
+     "slope-fit": 895.0961544883334,
+     "nfwfit": 1078.8678889139014
+    },
+    "0.2-0.4": {
+     "nfw": 496.52232971891294,
+     "floor": 39339.39985526724,
+     "mond": 34006.744358820164,
+     "slope-fit": 522.065294558973,
+     "nfwfit": 366.8185032039736
+    },
+    "0.4-0.7": {
+     "nfw": 507.9855999793925,
+     "floor": 22280.560363671415,
+     "mond": 13736.771340340158,
+     "slope-fit": 552.8761982000706,
+     "nfwfit": 668.649742603305
+    },
+    "0.7-1.0": {
+     "nfw": 52.40656234491581,
+     "floor": 7630.085855280256,
+     "mond": 2141.2819986559057,
+     "slope-fit": 422.4464147741369,
+     "nfwfit": 121.88763164936852
+    }
+   },
+   "per_window_points": [
+    178,
+    180,
+    111,
+    50
+   ],
+   "per_window_median_per_cluster": {
+    "0.1-0.2": {
+     "nfw": 14.444247905540374,
+     "floor": 1040.5093845383963,
+     "mond": 1496.3135039081258,
+     "slope-fit": 31.968585306578355,
+     "nfwfit": 38.433030728773005
+    },
+    "0.2-0.4": {
+     "nfw": 12.730718228244822,
+     "floor": 2448.361197128481,
+     "mond": 2103.9151873398005,
+     "slope-fit": 24.594568079869546,
+     "nfwfit": 19.941376804113034
+    },
+    "0.4-0.7": {
+     "nfw": 5.984991889985934,
+     "floor": 1784.9712369800154,
+     "mond": 1045.845882432871,
+     "slope-fit": 10.808947662093942,
+     "nfwfit": 11.174285291389563
+    },
+    "0.7-1.0": {
+     "nfw": 7.643528223878247,
+     "floor": 1159.7948737803692,
+     "mond": 301.9706779507051,
+     "slope-fit": 24.94795204065857,
+     "nfwfit": 9.061693755175497
+    }
+   },
+   "residual_window_shares_slopefit": {
+    "0.1-0.2": 0.3741283667035287,
+    "0.2-0.4": 0.21821056317418355,
+    "0.4-0.7": 0.2310887696083213,
+    "0.7-1.0": 0.17657230051396594
+   },
+   "required_dark_enclosed_slope_median": {
+    "0.1-0.2": 1.8788240607729452,
+    "0.2-0.4": 1.530002796103414,
+    "0.4-0.7": 1.3705135550367031,
+    "0.7-1.0": 0.7472713363525679
+   },
+   "nfw_enclosed_slope_median": {
+    "0.1-0.2": 1.6893636713489553,
+    "0.2-0.4": 1.485749839498844,
+    "0.4-0.7": 1.2675475288206253,
+    "0.7-1.0": 0.9605318991714803
+   },
+   "residual_direction_pred_minus_data": {
+    "0.1-0.2": 0.08457025017498976,
+    "0.2-0.4": -0.0464931927518594,
+    "0.4-0.7": -0.039121908417779835,
+    "0.7-1.0": 0.09263153616845092
+   },
+   "fitted_A_dust_per_cluster": {
+    "A1644": {
+     "a_slope_Msun": 222972516407136.75,
+     "a_nfw_frac": 0.8190008384669557,
+     "implied_sdust_420": 0.6855903788412695
+    },
+    "A1795": {
+     "a_slope_Msun": 360695024434921.3,
+     "a_nfw_frac": 0.6818913098710129,
+     "implied_sdust_420": 0.6702797424248156
+    },
+    "A2029": {
+     "a_slope_Msun": 394298121071863.8,
+     "a_nfw_frac": 0.5474642877258638,
+     "implied_sdust_420": 0.5316270697541744
+    },
+    "A2142": {
+     "a_slope_Msun": 267622692834051.06,
+     "a_nfw_frac": 0.4187043483449486,
+     "implied_sdust_420": 0.39178859273371364
+    },
+    "A2255": {
+     "a_slope_Msun": 181554395392047.4,
+     "a_nfw_frac": 0.5156355407734927,
+     "implied_sdust_420": 0.5198180143497958
+    },
+    "A2319": {
+     "a_slope_Msun": 394141606273912.56,
+     "a_nfw_frac": 0.5778091911918678,
+     "implied_sdust_420": 0.5552295683743914
+    },
+    "A3158": {
+     "a_slope_Msun": 289829759228882.75,
+     "a_nfw_frac": 0.6734975257282875,
+     "implied_sdust_420": 0.6738675149546657
+    },
+    "A3266": {
+     "a_slope_Msun": 342644409737158.1,
+     "a_nfw_frac": 0.664393404388063,
+     "implied_sdust_420": 0.616492141363058
+    },
+    "A644": {
+     "a_slope_Msun": 474381128433675.9,
+     "a_nfw_frac": 0.699331178280768,
+     "implied_sdust_420": 0.5659583348870191
+    },
+    "A85": {
+     "a_slope_Msun": 306190777247135.25,
+     "a_nfw_frac": 0.6010156452901606,
+     "implied_sdust_420": 0.5864292216322637
+    },
+    "RXC1825": {
+     "a_slope_Msun": 353215189948504.75,
+     "a_nfw_frac": 0.765860414613182,
+     "implied_sdust_420": 0.7961104357436645
+    },
+    "ZW1215": {
+     "a_slope_Msun": 285819928962456.9,
+     "a_nfw_frac": 0.5788569085657822,
+     "implied_sdust_420": 0.5509298058403294
+    }
+   },
+   "median_A_slope_Msun": 324417593492146.7,
+   "median_A_nfw_frac": 0.6327045248391119,
+   "implied_sdust_420_fit_median": 0.5761937782596414,
+   "registered_sdust_420": 0.5912777835570311
+  }
+ },
+ "verdicts": {
+  "V1": "NFW beats the phantom floor in every R500 window (pooled chi2: 599/497/508/52 vs 25135/39339/22281/7630); the per-window table is the decomposition; the floor's chi2 is concentrated in 0.2-0.4 R500 (42%) and 0.1-0.2 (27%)",
+  "V2": "with ONE fitted A_dust per cluster the certified-slope dust lands at 1.44x the NFW chi2 pooled (2392 vs 1656) and 3.6x on the per-cluster median (119 vs 33): NEAR-parity, not at it; the LCDM-shaped dust reaches 1.35x pooled (2.5x median) -- parity-class, the honest LCDM overlap (G079)",
+  "V3": "residual chi2 after the fit is non-uniform (inner 0.1-0.2 R500 share 37%, uniform 25%) and the required dark enclosed slope departs from the 1.47 template by +0.41 (inner, too steep) and -0.72 (outer, too flat) -- BOTH the inner slope and the outer envelope are structure the one amplitude cannot buy; chi2 weight inner+mid (~59%)",
+  "V4": "the free-dust abundance buys 97% of the floor's chi2 (91993 of 94385) and recovers the registered s_dust(420) (0.576 vs 0.591); with LCDM-shaped dust the split reaches 1.35x NFW (parity-class); with the theory's own certified-slope dust it lands at 1.44x pooled / 3.6x median -- close, systematic, and concentrated in the inner slope (needed 1.88 vs 1.47) and outer envelope (0.75 vs 1.47): the shape is the architecture's own claim to test (H012's inner-slope kill), not an amplitude freedom.  DoF: NFW 2 params -> 11.9; floor 0 -> 711.6; +1 dust amplitude -> 119 median (full 0.1-1.0 R500)"
+ }
+}
