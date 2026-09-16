@@ -334,7 +334,48 @@ gas-concentration inversion REFUTED; phantom-share edge REFUTED.  The
 rise survives 11/12 + 1 explained; P(most extreme of 12 slopes) = 0.29
 carried as the honest fluke caveat.
 
-## WAVES 9-10 (in flight/landing: G127-G143)
+## WAVE 7 (landed 6/6 -- the synthesis wave)
+G116 SECTOR MASS: ONE species, ONE mass: m in [3.3, 100] keV, the lower
+bound binding; the TG floor auto-satisfied (margin 141.9x; m_TG/m_forest =
+0.007); the virial is MASS-FREE (T/m = sigma^2/k_B the mass-independent
+constant); HONEST CORRECTION: the brief's 4e-5 K does NOT reproduce --
+T_phase(5 keV) = 9.17 K; 4e-5 K is the free dust's kinetic T(z=3); the
+decoupling in one number: T_equil/T_kin,dust = 4.5e5.  Upper bound
+unconstrained on record (100 keV placeholder; production not derived).
+G117 BTFR CORRECTION: the 11.5%/22% lives in EXACTLY ONE live register
+(REFEREE_ATTACKS 2.7) -- corrected to 5.0-5.6%/9.4-11.6% (rms 0.09-0.11
+dex); per-row impact: NOTHING WEAKENED (a tighter zero-parameter BTFR is
+BETTER for the law; 21% intrinsic upper bound is the honest caveat; JWST
+forecast unchanged 26.8->21.5%).
+G118 MERGER REGISTRY 8/8: q = 1 CLOSED FORM from the Roche-class criterion
+with the 1/r force: f_pair/f_pair,LCDM = (1 + r_M/s)^1 -- 2.000 at r_M
+EXACT, 1.500 at 2 r_M, 3.000 at r_M/2; window excess median 1.485 (+48%);
+FALSIFIERS F1-F4 armed (anchor <= 1.00 kills; q outside [0.5, 1.5] kills;
+concentration-not-M_b kills; window kills); SDSS z~0.1 decider with 19-59
+sigma anchor detectability; G086 table reproduced digit-for-digit.
+G119 THE 0.62: PARTIALLY DERIVED -- the form derived identically
+(r_efe/r_M = sqrt(a0/g_ext), M_b cancels to 1e-16); the ZERO-PARAMETER
+FULL-KERNEL SOLVE REPRODUCES r_cut = 6.13 kpc = 0.6232 (+0.5%): the
+registered 6.1 kpc IS the kernel value; the 0.6200-vs-0.6605 gap is the
+kernel interpolation near g ~ a0, not a parameter; the '0.685 tension' is
+a MIXED-M_b artifact (same-M_b gives 0.6605 at both masses); the sample
+test vacuous on 102 SPARC (EFE line beyond every curve; the MW is the
+only O(1)-e_N object and the only measured break: 6.1 vs 6.13 kernel).
+G120 THEORY REFRESH: GRAVITY_EVERYWHERE.md updated in place -- ORIGIN
+(max-entropy + virial: the pressure IS the 1/2), PARTICLE (cold species,
+one-species-two-phases), DR4 (ridge 30.7 sigma + the double-map negative
+bin), OPEN LIST 5 -> 10 rows each with its falsifier, 10-line summary
+verified (lines 6 and 10 updated).  Voice and structure untouched.
+G121 PAIR-MERGER FORECAST 9/9: the direction DERIVED: f_pair RISES
++35-190% in-window vs baryon-only (the deep well (1 + s/r_M) holds pairs
+LONGER; the 'lifetime shortens -> falls' branch rejected as orbital-
+period confusion); vs SHMR-matched NFW: a SLIGHT DEFICIT (-2 to -5%
+central, the enclosed-mass census; crossover s* = 42-47 kpc in-window);
+3-sigma reachable CORNERS (deep-deficit needs N <= 100 at sys 10%;
+massive-corner needs sys <= 5% at N ~ 300); the close-pair statistics =
+the cleanest galaxy-scale 1/r test outside the Solar System.
+
+## WAVES 9-10 (in flight/landing: G127-G148)
 wave 9 (G127 the cap's origin, G128 pooled deep-end, G129 tSZ proposal,
 G130 the T-profile asymptote, G131 the 10-decade line, G132 the cap's
 thermodynamics) + wave 10 (G133 the MIGHTEE footing, G134 the V4 partial,
