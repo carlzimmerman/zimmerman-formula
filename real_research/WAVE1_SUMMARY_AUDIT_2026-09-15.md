@@ -44,15 +44,21 @@ paragraph's "never-before-tested observables" list should drop the universal
 surface density (Milgrom 2009 / Donato 2009) and keep the ones that are
 actually new (the dSph floor at this coefficient, the funnel, the GC boundary).
 
-**W4. `deepseek_push/G081_equilibrium_stability.py` — two numerical bugs.**
-(a) `fixed_well_probe_Omega1_2` returns NaN; the contrast probe never runs.
-(b) The second zero mode (xi = r^2) integrates to residual 2.0 against the
-lane's own 1e-4 budget on (0, r_break]; re-run on a grid that resolves it, or
-state why it cannot be. Until both are fixed, the marginal-stability conclusion
-in the JSON's `formation` field is not established and the gate stays OPEN.
-This is the gate GRAVITY_EVERYWHERE.md §4 item 2 names as deciding whether the
-equipartition temperature is dynamics or ansatz — it is the highest-value
-unfinished item in the batch.
+**W4. ~~G081's two numerical bugs~~ — RESOLVED 2026-09-15, verified here.**
+The deepseek track fixed this while the audit was being written (e527a29a7).
+Re-run independently by this pass: `python3 deepseek_push/G081_equilibrium_stability.py`
+-> exit 0, **4/4 PASS**, `zero_mode_residual` = 1.8e-12 (was 2.0 against a 1e-4
+budget), and the NaN probe is gone. The fix is real and the new framing is
+BETTER than "stable": the cap BCs admit exact 1-parameter zero-mode subfamilies
+(residuals ~1e-12) and the radial spectrum is a NEUTRAL CONTINUUM — no discrete
+eigenvalue exists to be positive or negative, in either the self-consistent or
+the fixed-well reading. Read the scope carefully: this settles the equilibrium's
+LOCAL LINEAR STABILITY (no exponentially growing radial mode, cap-invariant). It
+does NOT settle ATTAINMENT — G035's kill (Newtonian dust relaxation does not land
+at (sigma^2_target, r_M)) is untouched and the lane says so. So
+GRAVITY_EVERYWHERE.md §4 item 2 stays open on the half that decides whether the
+equipartition temperature is dynamics or ansatz; it is now closed on the half
+that asked whether the equilibrium would hold if reached.
 
 **W5. `glm53_push/G062_mw_test.py` — broken instrument, fix or retire.**
 Thread a0 through the alt arm (`curves["canonical"] == curves["alt"]` is
@@ -165,17 +171,19 @@ a field labelled km/s, and — decisively — `curves["canonical"] ==
 curves["alt"]` is **True**, i.e. the alt-footing arm never switched a0.
 **G062 is a broken instrument, not an honest FAIL. Do not cite it.**
 
-**B6. G081's stability conclusion outruns its own checks.** The JSON's
-`formation` field states "THE CAPPED ISOTHERMAL PHANTOM IS A CRITICAL
-(marginally stable) EQUILIBRIUM ... no exponentially growing mode". The two
-checks that would establish it both FAIL on the script's own budgets: V2's
-second zero mode has grid residual 2.0 against a declared budget of 1e-4, and
-V3's cap-BC subfamilies carry ODE residuals 7.6e-1 and 1.0. The contrast probe
-returns `fixed_well_probe_Omega1_2: NaN` — an outright bug. The analytic
-identity (xi = r u => u'' = (w/sigma)^2 u) is exact and the eta = 1/2 landing
-is exact; the NUMERICAL confirmation is not there yet.
-**The G081 relaxation/stability gate stays OPEN** — which is, correctly, how
-GRAVITY_EVERYWHERE.md §4 item 2 still lists it.
+**B6. G081's stability conclusion outran its own checks — SINCE FIXED.**
+*As audited:* the JSON's `formation` field asserted "CRITICAL (marginally
+stable) EQUILIBRIUM ... no exponentially growing mode" while the two checks
+that would establish it both FAILED on the script's own budgets (V2's second
+zero mode at grid residual 2.0 against a declared 1e-4; V3's cap-BC subfamilies
+at ODE residuals 7.6e-1 and 1.0), and the contrast probe returned
+`fixed_well_probe_Omega1_2: NaN`.
+*Resolved the same day* (e527a29a7) and re-run independently by this pass:
+4/4 PASS, exit 0, zero-mode residual 1.8e-12, NaN gone. See W4 for the scope of
+what that does and does not close. **This finding is superseded; do not cite
+B6 against the current G081.** It is kept in the record because the lane was
+briefly in the tree asserting a conclusion its own checks did not support, and
+that pattern is the subject of this audit.
 
 **B7. a0 drifts in the fourth digit across the batch.** The registered
 canonical footing is 9.3619e-11. KEPLER_GRADE_10 uses 9.3624e-11; G062's
@@ -218,3 +226,8 @@ same branch; G079, G086 and G092 landed mid-audit. G079's numbers in §B4 are
 quoted from the COMMITTED version (04bc65bd7, 9/9), with the superseded
 afternoon draft noted. G085, G087 and Q007 appeared after this pass and are
 NOT audited here.
+
+**Addendum 2026-09-15, late:** W4/B6 resolved and verified (see above). The
+autoloop also landed G085, G086, G087, G088, H036 and Q007 after this pass —
+NOT audited. The three summary-document items (W1, W2, W3) and the G062
+instrument (W5) are untouched and remain the live work order.
