@@ -1,0 +1,133 @@
+{
+ "gate": "G154",
+ "pass": 18,
+ "fail": 0,
+ "verdicts": {
+  "V1": "J^0 = 0 identically on the static branch; Q = 0; spatial current divergenceless. hy4's H048 DOOR 3 statement exact for the bare field shift current.",
+  "V2": "survivors: (c) Gauss-map charge of the sourced field M_ph(<r) = (1/4pi G) \u222e g dA = r sqrt(G M_b a0)/G, capped at sqrt(a0/g_ext) = 0.660 M_b; (d) fluid current J^0_fluid = n(x), M_dark = int m n = same number. (a) comoving-only (dilutes a^-3); (b) pi = f'(0)*0 = 0 dead.",
+  "V3": "dark mass ASSIGNED to the sourced field's Gauss map and the fluid charge (M_ph(<r_M) = M_b exactly at r_M = 9.45/8.61 kpc; 6e10 Msun; capped 0.660 M_b), NOT to the shift-Noether charge (zero on the static branch). STATUS must carry the amendment from 'Noether charge' to 'sourced Gauss-map / fluid charge'."
+ },
+ "numbers": {
+  "r_M_kpc": {
+   "canonical": 9.4527,
+   "alt": 8.6119
+  },
+  "M_ph_rM_Msun": 60000000000.0,
+  "capped_share_sqrt(a0/g_ext)": {
+   "canonical": 0.6605,
+   "alt": 0.725
+  },
+  "closed_form": "M_dark(<r) = sqrt(G M_b a0) r / G = M_b (r/r_M);  rho_DM = sqrt(G M_b a0)/(4 pi G r^2)",
+  "G028_cert": "L217 V3: conserved comoving Noether current on homogeneous FRW (Q = a^3 P_X qdot), density a^-3, carries Omega_dm, w window; SILENT on static halos."
+ },
+ "checks": [
+  {
+   "name": "R1 [J^0 vanishes identically] on the static branch phidot = 0, so ",
+   "measured": "J^0 = f'(K) d^0 phi = f'(K)(g^{00} phidot + g^{0i} d_i phi) = f'(K)*0 = 0",
+   "pass": true,
+   "reading": "Every event on the static branch has a zero time-component of the shift current.  This is pointwise, inside and outside any halo: the field configuration is static everywhere."
+  },
+  {
+   "name": "R2 [the total charge is zero] Q = int J^0 d^3x ",
+   "measured": "Q = int (0) dV = 0 identically",
+   "pass": true,
+   "reading": "There is no Noether charge to integrate on the static branch: the charge density is identically zero, so hy4's 'the dark mass is the conserved Noether charge' is EMPTY for the bare field current."
+  },
+  {
+   "name": "R3 [the spatial current is divergenceless] from d_mu J^mu = 0 and J^0 = 0 ",
+   "measured": "d_i J^i = -d_0 J^0 = 0",
+   "pass": true,
+   "reading": "The spatial shift current is a divergenceless vector field on the static branch: its flux through any closed surface (including spheres at infinity) is zero.  No Gauss-map charge exists in the Noether current."
+  },
+  {
+   "name": "R4 [canonical momentum is J^0 by another name] pi = dL/d phidot = f'(K) phidot ",
+   "measured": "pi = f'(0)*0 = 0",
+   "pass": true,
+   "reading": "The canonical momentum of the shift direction IS the charge density (pi = J^0 in the static frame up to metric factors).  It vanishes for the same reason J^0 does."
+  },
+  {
+   "name": "A1 [the comoving charge is conserved] on FRW the EOM d/dt(a^3 f' phidot)=0 ",
+   "measured": "a^3 f'(K) phidot = const (G054's EOM); spatial-dominated attractor: a^3 * (C a^{-3}) = C (constant)",
+   "pass": true,
+   "reading": "The charge is NONVANISHING in the comoving sense: the scalar's roll carries a conserved comoving charge through the attractor.  This is G028's certified object (Q = a^3 P_X qdot, Lean L217 V3, on the homogeneous FRW family)."
+  },
+  {
+   "name": "A2 [the LOCAL density dilutes to zero] J^0 = f' phidot ~ a^{-3} on the frozen branch (phi_dot -> 0 attractor)",
+   "measured": "J^0(100)/J^0(1) = 1e-6 (a^-3 to a^-1.5)",
+   "pass": true,
+   "reading": "The frozen-branch completion makes the LOCAL charge density NONVANISHING only in comoving units: the physical density decays as a^{-3} (or a^{-3/2} pure FRW) toward zero.  A static halo is a phi = phi(x) configuration with phidot = 0 EXACTLY: it exports zero charge density from the background's roll.  (a) therefore cannot assign the halo; at best it assigns the homogeneous Omega_dm background (G028 V2)."
+  },
+  {
+   "name": "B1 [pi = 0 on the static branch] pi = dL/d phidot = f'(K) phidot evaluated at phidot = 0",
+   "measured": "pi = f'(0) * 0 = 0",
+   "pass": true,
+   "reading": "The canonical momentum is the SAME object as J^0 (R4).  There is no phase-space density to be found: pi = 0 identically.  Candidate (b) is dead by identity, not by accident."
+  },
+  {
+   "name": "C1 [NO Noether surface term] the phantom mass cannot be an integral of J^0 over the outside",
+   "measured": "int_{outside} J^0 dV = 0 (J^0 = 0 everywhere);  \u222e_{S} J^i dA_i = int div J dV = 0",
+   "pass": true,
+   "reading": "Both candidate surface integrals of the shift current vanish identically: the current has zero flux through every closed surface and zero time-component at every event.  Any claim that M_ph is a Noether boundary term is killed."
+  },
+  {
+   "name": "C2 [canonical] the Gauss-map charge equals the phantom formula M_ph(<r) = r sqrt(G M_b a0)/G at r = r_M",
+   "measured": "M_ph(<r_M) = M_b exactly (|ratio - 1| = 0.0e+00)",
+   "pass": true,
+   "reading": "The phantom mass IS a surface term -- but of the SOURCED acceleration field: M_enc(<r) = (1/4pi G)\u222e_{S(r)} g dA = r sqrt(G M_b a0)/G.  This is the Gauss map of the field that satisfies div[f'(K) grad phi] = 4pi G rho_b (H008/H011's SOURCED form), i.e. of rho_DM = (1/4pi G) div(g - g_b) -- NOT of the Noether current, which has no flux.  G03E V1's equipartition M_ph(<r_M) = M_b (|ratio-1| <= 2.2e-16) reproduced."
+  },
+  {
+   "name": "C2 [alt] the Gauss-map charge equals the phantom formula M_ph(<r) = r sqrt(G M_b a0)/G at r = r_M",
+   "measured": "M_ph(<r_M) = M_b exactly (|ratio - 1| = 0.0e+00)",
+   "pass": true,
+   "reading": "The phantom mass IS a surface term -- but of the SOURCED acceleration field: M_enc(<r) = (1/4pi G)\u222e_{S(r)} g dA = r sqrt(G M_b a0)/G.  This is the Gauss map of the field that satisfies div[f'(K) grad phi] = 4pi G rho_b (H008/H011's SOURCED form), i.e. of rho_DM = (1/4pi G) div(g - g_b) -- NOT of the Noether current, which has no flux.  G03E V1's equipartition M_ph(<r_M) = M_b (|ratio-1| <= 2.2e-16) reproduced."
+  },
+  {
+   "name": "C3 [canonical] the closed linear law M_ph(<r)/M_b = r/r_M holds at 0.5/1/2 r_M",
+   "measured": "M_ph/M_b - r/r_M < 1e-9 at every sampled radius",
+   "pass": true,
+   "reading": "The Gauss-map charge's closed form is M_ph(<r) = sqrt(G M_b a0) r / G = M_b (r/r_M), the framework's registered universal linear law (G03E V2)."
+  },
+  {
+   "name": "C4 [canonical] the EFE-capped phantom share is the surface term at the cap radius",
+   "measured": "M_ph,capped/M_b = sqrt(a0/g_ext) = 0.6605",
+   "pass": true,
+   "reading": "The unbounded r sqrt(G M_b a0)/G Gauss charge is capped at the EFE line: share = sqrt(a0/g_ext) = 0.660 (canonical) / 0.725 (alt) -- vs the registered 0.62 outer-MW saturation and G119's candidate 0.635.  The Gauss-map reading reproduces the handoff's ORIGIN; the residual 4-6% (0.66 vs 0.62) stays on G119's open row."
+  },
+  {
+   "name": "C3 [alt] the closed linear law M_ph(<r)/M_b = r/r_M holds at 0.5/1/2 r_M",
+   "measured": "M_ph/M_b - r/r_M < 1e-9 at every sampled radius",
+   "pass": true,
+   "reading": "The Gauss-map charge's closed form is M_ph(<r) = sqrt(G M_b a0) r / G = M_b (r/r_M), the framework's registered universal linear law (G03E V2)."
+  },
+  {
+   "name": "C4 [alt] the EFE-capped phantom share is the surface term at the cap radius",
+   "measured": "M_ph,capped/M_b = sqrt(a0/g_ext) = 0.7250",
+   "pass": true,
+   "reading": "The unbounded r sqrt(G M_b a0)/G Gauss charge is capped at the EFE line: share = sqrt(a0/g_ext) = 0.660 (canonical) / 0.725 (alt) -- vs the registered 0.62 outer-MW saturation and G119's candidate 0.635.  The Gauss-map reading reproduces the handoff's ORIGIN; the residual 4-6% (0.66 vs 0.62) stays on G119's open row."
+  },
+  {
+   "name": "D1 [the fluid current is nonzero on the static branch] J^mu_fluid = n u^mu with u at rest: J^0_fluid = n(x) != 0",
+   "measured": "J^0_fluid = n(x)  (any nontrivial dust density)",
+   "pass": true,
+   "reading": "Unlike the field gradient's J^0 = f'(K) phidot, the fluid's current has a nonzero time component at rest: the number density n IS the charge density, and continuity is the conservation law (d_t n + div(n v) = 0, trivially satisfied for static dust).  The charge lives on the fluid/particles, not on the field."
+  },
+  {
+   "name": "D2 [the fluid charge equals the phantom mass] with n = rho_DM/m, M_dark = int m n d^3x = M_ph(<r); continuity d_t n + div(n v) = 0 is satisfied identically for static dust (v = 0, d_t n = 0)",
+   "measured": "m * (M_ph/m) = M_ph to 1e-12; continuity: 0 = 0 (static rest)",
+   "pass": true,
+   "reading": "The closed form: Q_fluid = M_ph(<r)/m and M_dark(<r) = m Q_fluid = r sqrt(G M_b a0)/G.  The fluid reading and the Gauss-map reading are the SAME number carried two ways: the mass density of the fluid equals the phantom density (G031 V4: the halo IS the charge dust at equilibrium).  H047's caveat stands (N7): c_s^2 = 0 is an INPUT sector property, an open structural requirement, not derived from f."
+  },
+  {
+   "name": "G1 [what L217 certifies] the Lean certificate (L217 V3) proves the shift-symmetric action has a conserved Noether current on the HOMOGENEOUS FRW family: d/dt(a^3 J^0) = 0 (comoving) with Q = a^3 P_X qdot conserved",
+   "measured": "conservation law on homogeneous FLRW: comoving charge conservation; local density dilution a^-3 (audit: 'FLRW conserved charge divergence')",
+   "pass": true,
+   "reading": "G028's cert is about the TIME-DEPENDENT sector: the charge exists as a conserved comoving quantity on FRW backgrounds and dilutes as a^-3 (V1: rho ~ a^-3 to 2e-6 across the w window); carries Omega_dm = 0.265 with a free initial amplitude (V2); acquires the w window from the coupling's shift-symmetry breaking (V3).  It certifies J-divergenceless in comoving form -- which is candidate (a), NOT the static halo."
+  },
+  {
+   "name": "G2 [what L217 does NOT certify] no statement about the static branch: J^0 = f' phidot at phidot = 0 is not asserted in, contradicted by, or resolved by G028/L217",
+   "measured": "G028's claims: existence (L217), dilution a^-3, Omega_dm carry, w window, contrast table.  Static-branch halo identity: absent.",
+   "pass": true,
+   "reading": "The 'charge is the fluid' reading (d) is therefore not a theorem of G028; it is G031/H047's own construction (S_fluid couples J^mu as the conserved current).  G028 is CONSISTENT with the fluid reading but does not deliver it.  The framework's honest scope: the shift charge is certified on the cosmological branch; on the static branch the mass is carried by the sourced Gauss map (c) and the fluid current (d)."
+  }
+ ]
+}
