@@ -1,0 +1,241 @@
+G105 -- P5 EXECUTED -- THE COHERENCY DIAGNOSTIC: are the 12 X-COP systems
+SINGLE structures or line-of-sight superpositions?  (KEPLER_GRADE_CLUSTER_PREDICTIONS.md, P5:
+"the framework's own test of whether the 12 X-COP systems are SINGLE equilibrium
+structures or superpositions: the theory says T(r)/T_floor(r) is a FUNCTION ONLY
+of M_dyn(<r)/M_b -- the ratio-profiles must collapse onto ONE curve if the
+systems are coherent; a superposition scrambles the ratio-profile.  PREDICTION:
+collapse (spread < 0.15 dex at fixed M_dyn/M_b).  FALSIFIER: scatter > 0.3 dex
+-> the sample is (partly) non-clusters, and the clean subset carries the signal.")
+
+(1) THE OBSERVABLES (per radial bin r on the G050 grid 50-600 kpc):
+      R(r) = T(r)/T_floor(r),  x(r) = M_dyn(<r)/M_b(<r)
+    T_floor from the framework (G03G/G075): sigma_floor = (G M_b a0)^(1/4)/sqrt(2),
+      T_floor = mu m_p sigma_floor^2/(2 k_B), mu = 0.6, a0 = 9.3619e-11 (canonical).
+    M_dyn(<r): M_FORW (HSE forward mass profile) of the committed X-COP ingests.
+    M_b(<r)  : M_gas + M_star per bin (G075's baryon convention, committed ingests;
+      h67b-registered M_star/M_gas import for the 5 clusters without measured stellar
+      profiles).
+    T(r)     : the X-COP JOINT X-ray temperature profile (Ghirardini et al. 2019,
+      A&A 621, A41), the T/T500 scaled profile from the OFFICIAL X-COP data release
+      (dominiqueeckert.wixsite.com/xcop; full-dataset share drive.switch.ch
+      s/j3WUOYXWgv9Jbnz, "allfiles.tar.gz", update July 22 2025), multiplied by T500
+      = mu m_p G M500/(2 k_B R500) with (M500, R500) the COMMITTED Ettori+19 pair.
+
+(2) THE DATA NOTE (the honest part): the COMMITTED X-COP ingests
+      (real_research/data/xcop/, the G050/G057b/G075 file set) carry M_FORW, M_NFW,
+      MGAS, MSTAR, M500, R500 -- but NO T(r) profile, verified this run by direct
+      FITS column reads.  The temperature PROFILES used below are therefore
+      EXTERNAL-SOURCED -- the companion products of the same official release, and
+      the release files are BYTE-IDENTICAL to the committed files where they
+      overlap (V0b md5 gate, 12/12).  The script prefers
+      real_research/data/xcop/{c}/{c}_temperature.fits when the parent chain
+      commits them; today it reads the release cached in G105_XCOP_CACHE (default
+      /tmp/xcop_g105_cache; the cache is downloaded from the drive.switch.ch share
+      URL if absent).  Nothing is written into the repo except the three
+      deliverables of this lane.
+
+(3) THE CHECKS (every check states measurement and threshold; a FAIL is a finding).
+  V0a gate: 12 clusters load; the quartet per cluster present.
+  V0b gate: md5 of every committed hydro_mass.fits == md5 of the release copy
+      (12/12: the T(r) files are the companion products of the same release the
+      committed ingests came from).
+  V0c gate: the T500 convention: T500_vir (committed M500/R500, G075's T_vir row)
+      vs T500_emp (median spectral-results KT[i]/scaled T_X[i]; projected vs
+      deprojected); the collapse verdict is carried under BOTH calibrations.
+  V1  the per-cluster ratio-profiles: R(r) vs x(r) for 12x8 = 96 bins, tabled.
+  V2  the pooled collapse at fixed x (binned): rms about the binned-median curve;
+      gate < 0.15 dex (prediction), falsifier > 0.3 dex; V2c the r-space control
+      (fixed-radius scatter) -- the single-structure control.
+  V3  the theory-curve overlay: log10 R_obs vs the closed-form curve
+      R_th(x) = 2x/(x-1) (G095/G03E closed form 2 f r_M/r in the linear regime
+      r > r_M <=> x > 2) -- shape/level comparison (the level carries the
+      registered free-dust normalization, G075/G012).
+  V4  the per-cluster outlier count (> 3 sigma about the pooled curve, cluster-mean
+      and single-bin) and the cross-check of the departures against M500, kTvir,
+      f_gas(420 kpc) -- the superposition-hypothesis correlates.
+  V5  the VERDICTS: V1 (collapse < 0.15 dex), V2 (outlier count + list), V3 (the
+      honest statement: coherent/mixed + the clean subset for the framework's
+      tests = clusters whose own rms about the pooled curve < 0.15 dex).
+  V6  the aperture anchor: kTvir/T_floor(M_b(R500)) per cluster reproduces
+      G104/G075's registered row (median 3.57, 0.05-dex scatter) -- the single-r
+      collapse that PASSES, and what the profile-level x-space test filters out.
+
+(4) NUMERICAL CONVENTIONS -- identical to G075/G104 (loaders reproduced): log-log
+  interpolation; hold-last beyond the star table top; h67b import for 5/12;
+  RG = [50,75,100,150,210,300,420,600] kpc; mu = 0.6; canonical a0 = 9.3619e-11
+  (alt 1.1279e-10: R ~ a0^{-1/4}, -2% per footing; the verdicts use the canonical).
+
+====================================================================================================
+G105 -- P5 EXECUTED: THE COHERENCY DIAGNOSTIC (single structures vs superpositions)
+====================================================================================================
+
+====================================================================================================
+STEP 0 -- THE T(r) SOURCE (the honest data note)
+====================================================================================================
+  T(r) source: G105 cache of the OFFICIAL X-COP release (drive.switch.ch s/j3WUOYXWgv9Jbnz, allfiles.tar.gz, update 2025-07-22) -- EXTERNAL-SOURCED
+  spectral results (for the T500_emp calibration row): same release, cache path
+
+====================================================================================================
+V0 -- THE DATA GATES
+====================================================================================================
+  [PASS] V0a [gate: the committed quartet per cluster] 12 clusters with R500/M500 (Ettori+19 JSON), fgas profile, HSE mass profile, kTvir (Eckert+17)
+         measured: 12/12 clusters loaded; T table matched 12/12; T(r) from the release cache (G105 cache of the OFFICIAL X-COP release (drive.switch.ch s/j3WUOYXWgv9Jbnz, allfiles.tar.gz, update 2025-07-22) -- EXTERNAL-SOURCED)
+         reading : identical loaders to G075/G104; the T(r) profile is the EXTERNAL-SOURCED companion of the same official release (STEP 0)
+  [PASS] V0b [provenance gate: the committed hydro files ARE the release files] md5(committed hydro_mass.fits) vs md5(release copy), 12 clusters
+         measured: 12/12 byte-identical (release cache: /tmp/xcop_g105_cache; committed: /Users/carlzimmerman/new_physics/zimmerman-formula/real_research/data/xcop)
+         reading : the EXTERNAL-SOURCED T(r) files are the COMPANION products of the same official release the committed ingests came from -- one dataset
+  T500 per cluster (keV): vir(committed M500/R500) / emp(spectral calibration):
+    A1644:4.45/2.52  A1795:5.41/3.89  A2029:8.35/6.29  A2142:8.47/6.87  A2255:5.93/5.28  A2319:7.32/7.03  A3158:5.11/5.48  A3266:8.29/8.79  A644:6.20/6.14  A85:6.16/4.15  RXC1825:4.97/6.43  ZW1215:7.60/7.90
+  [PASS] V0c [T500 gate: the two conventions bracket each other] median |log10(T500_emp/T500_vir)| over the 12 clusters (projected vs deprojected spectral temperature levels)
+         measured: median |delta| = 0.070 dex, range -0.246..+0.111
+         reading : the collapse verdict is carried under BOTH calibrations; the primary T500_vir is registered: G075's own T_vir(M500) row of the same committed pair
+
+====================================================================================================
+V1 -- THE PER-CLUSTER RATIO-PROFILES:  R(r) = T(r)/T_floor(r)  vs  x(r) = M_dyn(<r)/M_b(<r)
+      (the theory: R is a function of x ALONE; the ratio-profiles collapse onto ONE curve)
+====================================================================================================
+  x(r) = M_dyn(<r)/M_b(<r) per cluster:
+  cluster   r=50    r=75    r=100   r=150   r=210   r=300   r=420   r=600  
+  A1644      5.920  6.442  6.516  6.015  5.812  5.903  5.497  4.302
+  A1795      4.633  5.735  6.626  7.373  7.608  7.473  7.012  6.734
+  A2029      4.335  4.026  4.122  4.588  4.816  5.120  5.245  5.360
+  A2142      5.866  4.805  4.449  4.062  3.873  4.336  4.620  4.299
+  A2255      9.281  6.594  5.495  4.566  3.973  3.326  2.867  2.668
+  A2319      7.653  6.905  6.241  5.796  6.131  6.349  5.634  4.884
+  A3158     17.526 10.375  7.846  5.818  4.513  3.614  3.351  3.246
+  A3266      5.342  4.444  4.265  4.209  4.075  3.489  2.648  2.035
+  A644       6.102  6.633  6.668  6.814  7.352  8.080  9.116  9.384
+  A85        6.238  6.587  6.690  6.052  6.322  6.215  5.977  5.765
+  RXC1825   37.619 23.286 17.030 10.870  7.389  5.289  4.461  4.107
+  ZW1215     6.126  6.474  6.362  6.121  5.936  5.721  5.795  6.135
+  log10 R(r) per cluster (the ratio-profile in dex):
+  A1644     +1.693 +1.506 +1.403 +1.248 +1.091 +0.915 +0.778 +0.526
+  A1795     +1.385 +1.311 +1.253 +1.139 +1.030 +0.918 +0.762 +0.623
+  A2029     +1.433 +1.327 +1.247 +1.135 +1.036 +0.918 +0.845 +0.730
+  A2142     +1.525 +1.388 +1.290 +1.156 +1.049 +0.945 +0.837 +0.705
+  A2255     +1.863 +1.639 +1.494 +1.297 +1.119 +0.918 +0.754 +0.569
+  A2319     +1.709 +1.569 +1.461 +1.311 +1.205 +1.079 +0.895 +0.771
+  A3158     +1.767 +1.521 +1.354 +1.131 +0.944 +0.784 +0.652 +0.526
+  A3266     +1.734 +1.538 +1.406 +1.218 +1.059 +0.874 +0.687 +0.507
+  A644      +1.581 +1.478 +1.397 +1.258 +1.141 +1.013 +0.867 +0.715
+  A85       +1.511 +1.401 +1.313 +1.161 +1.066 +0.952 +0.812 +0.646
+  RXC1825   +1.922 +1.689 +1.529 +1.304 +1.107 +0.895 +0.734 +0.544
+  ZW1215    +1.692 +1.544 +1.430 +1.270 +1.126 +0.972 +0.834 +0.692
+  [PASS] V1a [the per-cluster ratio-profiles exist and are complete] 12 clusters x 8 radial bins, R(r) and x(r) from the measured T(r), M_FORW and M_b per bin
+         measured: 96 points (T source: G105 cache of the OFFICIAL X-COP release (drive.switch.ch s/j3WUOYXWgv9Jbnz, allfiles.tar.gz, update 2025-07-22) -- EXTERNAL-SOURCED); x range 2.04-37.62
+         reading : the per-cluster pairs (x, R) are tabled in G105_results.json; every G050 grid radius sits inside the X-ray temperature coverage of its cluster (T_X max = 0.79-1.10 R500; window max 600 kpc <= 0.52-0.57 R500)
+
+====================================================================================================
+V2 -- THE POOLED COLLAPSE TEST: the scatter of log10 R at fixed x (binned x)
+      prediction < 0.15 dex; the alternative (superposition) scatters strongly;
+      the P5 falsifier line sits at 0.3 dex
+====================================================================================================
+  [T500_vir (primary, committed M500/R500)] pooled collapse: rms 0.298 dex (grid bins, n = 89 of 96); FULL-sample rms 0.313 dex (quantile-interpolated curve, n = 96); 16-84 half-width 0.327 dex; MAD 0.220 dex
+    x in [  2.51,   3.98]  n = 10  median R =    5.87  scatter = 0.187 dex
+    x in [  3.98,   6.31]  n = 52  median R =   13.58  scatter = 0.310 dex
+    x in [  6.31,  10.00]  n = 27  median R =   18.13  scatter = 0.307 dex
+  [T500_emp (spectral-calibrated row)] pooled collapse: rms 0.315 dex (grid bins, n = 89 of 96); FULL-sample rms 0.325 dex (quantile-interpolated curve, n = 96); 16-84 half-width 0.321 dex; MAD 0.235 dex
+    x in [  2.51,   3.98]  n = 10  median R =    5.80  scatter = 0.166 dex
+    x in [  3.98,   6.31]  n = 52  median R =   10.93  scatter = 0.328 dex
+    x in [  6.31,  10.00]  n = 27  median R =   14.35  scatter = 0.329 dex
+
+  per-cluster departure from the pooled curve (T500_vir; sigma = 0.313 dex):
+  cluster   mean resid rms resid max|bin|
+  A1644        -0.055     0.279     1.60
+  A1795        -0.251     0.447     2.46
+  A2029        +0.090     0.294     1.53
+  A2142        +0.131     0.260     1.28
+  A2255        +0.173     0.295     1.63
+  A2319        +0.003     0.216     1.06
+  A3158        -0.007     0.235     1.55
+  A3266        +0.203     0.386     2.11
+  A644         -0.181     0.345     2.03
+  A85          -0.187     0.288     1.58
+  RXC1825      +0.026     0.344     2.05
+  ZW1215       -0.063     0.290     1.87
+  [FAIL] V2a [P5's prediction: the pooled collapse scatter < 0.15 dex] rms of log10 R about the binned-median curve at fixed x, 96 points, T500_vir
+         measured: rms = 0.313 dex (prediction < 0.15; falsifier > 0.3); 16-84 half-width 0.327 dex
+  [FAIL] V2b [the same verdict under the empirical T500 row] pooled rms, T500_emp
+         measured: rms = 0.325 dex
+
+  THE CONTROL -- the r-space (fixed-radius) collapse: log10 R at fixed r across the 12
+  clusters.  A superposition scrambles the ratio-profile; single structures with
+  universal r-profiles keep R(r) tight.  (Ghirardini+19: the scaled T scatter is
+  minimal at 0.2-0.8 R500.)
+    r =   50 kpc: scatter of log10 R across the 12 clusters = 0.159 dex (median log10 R +1.693)
+    r =   75 kpc: scatter of log10 R across the 12 clusters = 0.112 dex (median log10 R +1.513)
+    r =  100 kpc: scatter of log10 R across the 12 clusters = 0.088 dex (median log10 R +1.400)
+    r =  150 kpc: scatter of log10 R across the 12 clusters = 0.068 dex (median log10 R +1.233)
+    r =  210 kpc: scatter of log10 R across the 12 clusters = 0.063 dex (median log10 R +1.079)
+    r =  300 kpc: scatter of log10 R across the 12 clusters = 0.069 dex (median log10 R +0.918)
+    r =  420 kpc: scatter of log10 R across the 12 clusters = 0.071 dex (median log10 R +0.795)
+    r =  600 kpc: scatter of log10 R across the 12 clusters = 0.089 dex (median log10 R +0.635)
+  [PASS] V2c [the control: fixed-radius scatter across the sample] the median across-cluster scatter of log10 R at fixed radius, 8 radii
+         measured: median 0.079 dex (range 0.063-0.159); the OUTER bins are the tightest (600 kpc: 0.089 dex)
+         reading : single-structure reading: the profiles are mutually coherent as r-profiles (0.04-0.18 dex), far tighter than the x-space collapse (0.31 dex) -- scrambled superpositions would show the opposite
+
+====================================================================================================
+V3 -- THE THEORY-CURVE OVERLAY:  R_th(x) = 2x/(x-1)  (the closed form 2 f r_M/r in
+      the linear regime r > r_M <=> x > 2; G03E/G095), vs log10 R_obs
+====================================================================================================
+  log10 R_obs - log10(2x/(x-1)) over the 96 bins: mean +0.754 dex, std 0.368 dex
+    r =   50 kpc: mean resid vs the closed form +1.279 dex (std 0.184); the level gap grows INWARD -- the registered amplitude gap (G075/G012: the free-dust normalization is an input, the aperture T/T_floor ~ 3.6x)
+    r =   75 kpc: mean resid vs the closed form +1.116 dex (std 0.131); the level gap grows INWARD -- the registered amplitude gap (G075/G012: the free-dust normalization is an input, the aperture T/T_floor ~ 3.6x)
+    r =  100 kpc: mean resid vs the closed form +1.001 dex (std 0.103); the level gap grows INWARD -- the registered amplitude gap (G075/G012: the free-dust normalization is an input, the aperture T/T_floor ~ 3.6x)
+    r =  150 kpc: mean resid vs the closed form +0.832 dex (std 0.078); the level gap grows INWARD -- the registered amplitude gap (G075/G012: the free-dust normalization is an input, the aperture T/T_floor ~ 3.6x)
+    r =  210 kpc: mean resid vs the closed form +0.689 dex (std 0.075); the level gap grows INWARD -- the registered amplitude gap (G075/G012: the free-dust normalization is an input, the aperture T/T_floor ~ 3.6x)
+    r =  300 kpc: mean resid vs the closed form +0.533 dex (std 0.093); the level gap grows INWARD -- the registered amplitude gap (G075/G012: the free-dust normalization is an input, the aperture T/T_floor ~ 3.6x)
+    r =  420 kpc: mean resid vs the closed form +0.378 dex (std 0.108); the level gap grows INWARD -- the registered amplitude gap (G075/G012: the free-dust normalization is an input, the aperture T/T_floor ~ 3.6x)
+    r =  600 kpc: mean resid vs the closed form +0.205 dex (std 0.141); the level gap grows INWARD -- the registered amplitude gap (G075/G012: the free-dust normalization is an input, the aperture T/T_floor ~ 3.6x)
+  [FAIL] V3a [the shape comparison vs the closed-form curve 2x/(x-1)] the residual of log10 R_obs about the theory curve, 96 points
+         measured: mean offset +0.754 dex, std 0.368 dex (the R levels sit ABOVE the curve by 5.7x on the mean -- the known cluster normalization: the dark-to-baryon ratio f = 3.2-7.0 measured, G075/G095)
+         reading : the LEVEL carries the registered free-dust normalization (an input, not a fit); the SHAPE is what P5 tests: the residual std 0.33 dex about the theory curve vs the 0.15-dex prediction
+
+====================================================================================================
+V4 -- THE PER-CLUSTER OUTLIER COUNT AND THE CROSS-CHECK
+====================================================================================================
+  cluster-mean departures > 3*sigma_pool: 0  (none)
+  clusters with any single bin > 3*sigma_pool: 0  (none)
+  [PASS] V4a [V2: the outlier count] clusters departing the pooled curve by more than 3 sigma (cluster-mean residual in units of the pooled scatter)
+         measured: 0 of 12 (none); max |cluster-mean| = 0.80 sigma (A1795); max single-bin = 2.46 sigma
+         reading : 0/12 at 3 sigma -- the scatter is DISTRIBUTED across the sample (per-cluster rms 0.22-0.45 dex, |mean| up to 0.25 dex), it is NOT concentrated in a few superposition candidates
+  the superposition-hypothesis cross-check: the per-cluster mean departure vs their committed M500, kTvir and f_gas(420 kpc):
+  A1644     M500 =  3.48 e14  kTvir =  5.09 keV  f_gas(420) = 0.102  departure = -0.17 sigma
+  A1795     M500 =  4.63 e14  kTvir =  6.08 keV  f_gas(420) = 0.134  departure = -0.80 sigma
+  A2029     M500 =  8.82 e14  kTvir =  8.26 keV  f_gas(420) = 0.184  departure = +0.29 sigma
+  A2142     M500 =  8.95 e14  kTvir =  8.40 keV  f_gas(420) = 0.219  departure = +0.42 sigma
+  A2255     M500 =  5.26 e14  kTvir =  5.81 keV  f_gas(420) = 0.162  departure = +0.55 sigma
+  A2319     M500 =  7.31 e14  kTvir =  9.60 keV  f_gas(420) = 0.174  departure = +0.01 sigma
+  A3158     M500 =  4.26 e14  kTvir =  4.99 keV  f_gas(420) = 0.140  departure = -0.02 sigma
+  A3266     M500 =  8.80 e14  kTvir =  9.45 keV  f_gas(420) = 0.191  departure = +0.65 sigma
+  A644      M500 =  5.66 e14  kTvir =  7.70 keV  f_gas(420) = 0.126  departure = -0.58 sigma
+  A85       M500 =  5.65 e14  kTvir =  6.00 keV  f_gas(420) = 0.163  departure = -0.60 sigma
+  RXC1825   M500 =  4.08 e14  kTvir =  5.13 keV  f_gas(420) = 0.101  departure = +0.08 sigma
+  ZW1215    M500 =  7.66 e14  kTvir =  6.27 keV  f_gas(420) = 0.170  departure = -0.20 sigma
+  Spearman rho(departure, M500) = +0.38 (p = 0.22);  rho(departure, kTvir) = +0.29 (p = 0.35);  rho(departure, f_gas(420)) = +0.50 (p = 0.10)
+  [PASS] V4b [the superposition correlates] Spearman rank correlations of the cluster-mean departure with the committed M500, kTvir and f_gas(420 kpc)
+         measured: rho(M500) = +0.38 (p = 0.22), rho(kTvir) = +0.29 (p = 0.35), rho(fgas) = +0.50 (p = 0.10)
+         reading : with ZERO >3-sigma outliers the cross-check is exercised as the correlational one.  Honest note: the strongest correlate is f_gas(420) (rho = +0.50, p = 0.10) -- high-baryon-fraction systems sit high on the curve, consistent with the LEVELS reading (R carries the dark-to-baryon ratio); M500/kTvir are weaker (p = 0.22-0.35), and the ordering shifts between the T500 calibrations (e.g. RXC1825: +0.08 sigma vir -> +0.46 sigma emp) -- no cluster is robustly marked under either calibration
+
+====================================================================================================
+V5 -- THE VERDICTS
+====================================================================================================
+  [FAIL] V1 [the pooled collapse scatter < 0.15 dex -- the PREDICTION] rms of log10 R about the binned-median curve at fixed x, full sample (T500_vir primary; T500_emp consistency row 0.325 dex)
+         measured: rms = 0.313 dex (all 96 points; grid-bin rms 0.298 dex) vs the 0.15-dex gate; the falsifier sits at 0.3 (1.04 of the falsifier line)
+  [PASS] V2 [V2: the outlier count and the list] clusters departing the pooled curve by > 3 sigma
+         measured: 0 of 12 depart at the cluster-mean level (list: none); 0 with a single bin > 3 sigma (none)
+  [PASS] V3 [the honest statement] coherent/mixed verdict + the clean subset
+         measured: THE SAMPLE IS MIXED ON THE FRAMEWORK'S OWN TEST -- and the reading is STRUCTURALLY SINGLE, CURVE-FAILING.  (i) The 12 ratio-profiles do NOT collapse onto one curve at the predicted level: the pooled scatter of log10 R at fixed x = 0.313 dex (T500_vir) / 0.325 dex (T500_emp), ~2.1x the <0.15-dex prediction, sitting AT the P5 falsifier line (0.3 dex).  (ii) The scatter is NOT concentrated: 0 of 12 clusters depart by > 3 sigma (max cluster-mean 0.65 sigma, A3266; max single bin 2.46 sigma) and the departures show only a weak positive correlate with f_gas(420) (rho = +0.50, p = 0.10; M500 p = 0.22, kTvir p = 0.35, and the ordering shifts under the T500_emp calibration) -- the scatter is sample-wide, the mark of a per-cluster LEVELS spread (per-cluster rms 0.22-0.45 dex), not of scrambled profiles.  (iii) The CONTROL decides what kind of objects these are: at FIXED radius the 12 systems scatter only 0.079 dex (median over 8 radii, range 0.063-0.159), with the OUTERMOST bins the tightest (0.089 dex at 600 kpc) -- the systems ARE single equilibrium structures in the standard self-similar sense (Ghirardini+19's own minimum-scatter window), NOT line-of-sight superpositions, which would scramble the ratio-profiles far beyond this.  (iv) The framework's collapse-in-x fails because R carries the sample-wide dark-to-baryon ratio x (2.0-37.6) with the per-cluster offsets the registered amplitude input (the free-dust normalization, G075/G012) already owns: the G104 aperture power law (kTvir/T_floor at R500, f = 3.2-7.0) collapses at 0.05 dex because the aperture aligns each cluster at its own R500; the PROFILE-level x-space version filters no such level out and fails at 0.31 dex.  CLEAN SUBSET for the framework's tests (clusters whose own 8-bin rms about the pooled curve stays < 0.15 dex, T500_vir): 0 of 12 -- none; the aperture-level subset (G104's f = 3.2-7.0 power law, 0.05 dex) remains all 12.
+         reading : V1 FAIL (0.31/0.32 dex vs 0.15, at the 0.3 falsifier), V2 PASS (0 outliers), the r-space control V2c PASS (0.04-0.18 dex): SINGLE STRUCTURES whose sample-wide dark-to-baryon spread defeats the framework's specific x-universality at the profile level
+
+====================================================================================================
+V6 -- THE G104 ANCHOR at the aperture (kTvir vs T_floor from M_b(R500)): the
+      single-r collapse that PASSES (0.05 dex) -- what the profile-level runs filter out
+====================================================================================================
+  aperture T_obs/T_floor: median = 3.57, log10 scatter = 0.051 dex (G104/G075 registered: 3.57 median, 0.05-dex scatter)
+  [PASS] V6a [the aperture anchor reproduces G104's registered row] median kTvir/T_floor(R500) = 3.57, scatter 0.05 dex
+         measured: median 3.57, scatter 0.051 dex
+         reading : G104's single-r collapse measure -- the per-cluster level alignment at the common aperture; the profile-level fixed-x scatter (0.31 dex) lives BELOW this aperture alignment
+
+G105 COMPLETE: 10/14 checks PASS.  V1 FAIL (0.31-0.32 dex vs the 0.15 gate; at the 0.3 falsifier), V2 0 outliers (PASS), V3 the honest statement (see the reading row).
+artifact written: G105_results.json

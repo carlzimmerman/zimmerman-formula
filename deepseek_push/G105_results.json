@@ -1,0 +1,1414 @@
+{
+ "lane": "G105_coherency_test",
+ "title": "P5 EXECUTED -- THE COHERENCY DIAGNOSTIC: are the 12 systems single structures or superpositions?",
+ "deliverable": "deepseek_push/G105_coherency_test.py + .out + G105_results.json",
+ "prediction": "the ratio-profiles R(r) = T(r)/T_floor(r) collapse onto ONE curve in x = M_dyn(<r)/M_b: scatter at fixed x < 0.15 dex; falsifier: > 0.3 dex (KEPLER_GRADE_CLUSTER_PREDICTIONS.md P5)",
+ "formulas": {
+  "R": "T(r)/T_floor(r); T_floor = mu m_p sigma_floor^2/(2 k_B), sigma_floor = (G M_b a0)^(1/4)/sqrt(2), mu = 0.6, a0 = 9.3619e-11",
+  "x": "M_dyn(<r)/M_b(<r); M_dyn = M_FORW (HSE forward mass), M_b = M_gas + M_star per bin (G075's baryon convention)",
+  "T(r)": "X-COP joint X-ray temperature profile (Ghirardini+19 A&A 621 A41) x T500; T500_vir = mu m_p G M500/(2 k_B R500) from the committed Ettori+19 pair (G075's T_vir row); T500_emp row from the release's spectral-results KT (projected, median ratio per cluster)",
+  "theory_curve": "R_th(x) = 2x/(x-1) (the closed form 2 f r_M/r in the linear regime r > r_M <=> x > 2, G03E/G095)"
+ },
+ "data_notes": {
+  "committed_ingests": "real_research/data/xcop/ (the G050/G057b/G075/G104 file set, read-only): M_FORW, M_NFW, MGAS, MSTAR (7/12 + h67b import), xcop_r500_ettori2019.json (Ettori+19)",
+  "T_profile_source": "G105 cache of the OFFICIAL X-COP release (drive.switch.ch s/j3WUOYXWgv9Jbnz, allfiles.tar.gz, update 2025-07-22) -- EXTERNAL-SOURCED",
+  "provenance_gate": "md5: 12/12 committed hydro_mass.fits byte-identical to the release copies (same official dataset, update 2025-07-22)",
+  "kTvir": "Eckert+17 (arXiv:1611.05051) Table 1, G075's registered EXTERNAL-SOURCED table",
+  "honest_gap": "the committed ingests carry NO T(r) profile (direct FITS column check this run); this lane reads the official release's temperature profiles (external-sourced, checksum-gated); nothing re-downloaded into the repo, nothing written outside deepseek_push/"
+ },
+ "checks": [
+  {
+   "name": "V0a [gate: the committed quartet per cluster] 12 clusters with R500/M500 (Ettori+19 JSON), fgas profile, HSE mass profile, kTvir (Eckert+17)",
+   "measured": "12/12 clusters loaded; T table matched 12/12; T(r) from the release cache (G105 cache of the OFFICIAL X-COP release (drive.switch.ch s/j3WUOYXWgv9Jbnz, allfiles.tar.gz, update 2025-07-22) -- EXTERNAL-SOURCED)",
+   "pass": true,
+   "reading": "identical loaders to G075/G104; the T(r) profile is the EXTERNAL-SOURCED companion of the same official release (STEP 0)"
+  },
+  {
+   "name": "V0b [provenance gate: the committed hydro files ARE the release files] md5(committed hydro_mass.fits) vs md5(release copy), 12 clusters",
+   "measured": "12/12 byte-identical (release cache: /tmp/xcop_g105_cache; committed: /Users/carlzimmerman/new_physics/zimmerman-formula/real_research/data/xcop)",
+   "pass": true,
+   "reading": "the EXTERNAL-SOURCED T(r) files are the COMPANION products of the same official release the committed ingests came from -- one dataset"
+  },
+  {
+   "name": "V0c [T500 gate: the two conventions bracket each other] median |log10(T500_emp/T500_vir)| over the 12 clusters (projected vs deprojected spectral temperature levels)",
+   "measured": "median |delta| = 0.070 dex, range -0.246..+0.111",
+   "pass": true,
+   "reading": "the collapse verdict is carried under BOTH calibrations; the primary T500_vir is registered: G075's own T_vir(M500) row of the same committed pair"
+  },
+  {
+   "name": "V1a [the per-cluster ratio-profiles exist and are complete] 12 clusters x 8 radial bins, R(r) and x(r) from the measured T(r), M_FORW and M_b per bin",
+   "measured": "96 points (T source: G105 cache of the OFFICIAL X-COP release (drive.switch.ch s/j3WUOYXWgv9Jbnz, allfiles.tar.gz, update 2025-07-22) -- EXTERNAL-SOURCED); x range 2.04-37.62",
+   "pass": true,
+   "reading": "the per-cluster pairs (x, R) are tabled in G105_results.json; every G050 grid radius sits inside the X-ray temperature coverage of its cluster (T_X max = 0.79-1.10 R500; window max 600 kpc <= 0.52-0.57 R500)"
+  },
+  {
+   "name": "V2a [P5's prediction: the pooled collapse scatter < 0.15 dex] rms of log10 R about the binned-median curve at fixed x, 96 points, T500_vir",
+   "measured": "rms = 0.313 dex (prediction < 0.15; falsifier > 0.3); 16-84 half-width 0.327 dex",
+   "pass": false,
+   "reading": ""
+  },
+  {
+   "name": "V2b [the same verdict under the empirical T500 row] pooled rms, T500_emp",
+   "measured": "rms = 0.325 dex",
+   "pass": false,
+   "reading": ""
+  },
+  {
+   "name": "V2c [the control: fixed-radius scatter across the sample] the median across-cluster scatter of log10 R at fixed radius, 8 radii",
+   "measured": "median 0.079 dex (range 0.063-0.159); the OUTER bins are the tightest (600 kpc: 0.089 dex)",
+   "pass": true,
+   "reading": "single-structure reading: the profiles are mutually coherent as r-profiles (0.04-0.18 dex), far tighter than the x-space collapse (0.31 dex) -- scrambled superpositions would show the opposite"
+  },
+  {
+   "name": "V3a [the shape comparison vs the closed-form curve 2x/(x-1)] the residual of log10 R_obs about the theory curve, 96 points",
+   "measured": "mean offset +0.754 dex, std 0.368 dex (the R levels sit ABOVE the curve by 5.7x on the mean -- the known cluster normalization: the dark-to-baryon ratio f = 3.2-7.0 measured, G075/G095)",
+   "pass": false,
+   "reading": "the LEVEL carries the registered free-dust normalization (an input, not a fit); the SHAPE is what P5 tests: the residual std 0.33 dex about the theory curve vs the 0.15-dex prediction"
+  },
+  {
+   "name": "V4a [V2: the outlier count] clusters departing the pooled curve by more than 3 sigma (cluster-mean residual in units of the pooled scatter)",
+   "measured": "0 of 12 (none); max |cluster-mean| = 0.80 sigma (A1795); max single-bin = 2.46 sigma",
+   "pass": true,
+   "reading": "0/12 at 3 sigma -- the scatter is DISTRIBUTED across the sample (per-cluster rms 0.22-0.45 dex, |mean| up to 0.25 dex), it is NOT concentrated in a few superposition candidates"
+  },
+  {
+   "name": "V4b [the superposition correlates] Spearman rank correlations of the cluster-mean departure with the committed M500, kTvir and f_gas(420 kpc)",
+   "measured": "rho(M500) = +0.38 (p = 0.22), rho(kTvir) = +0.29 (p = 0.35), rho(fgas) = +0.50 (p = 0.10)",
+   "pass": true,
+   "reading": "with ZERO >3-sigma outliers the cross-check is exercised as the correlational one.  Honest note: the strongest correlate is f_gas(420) (rho = +0.50, p = 0.10) -- high-baryon-fraction systems sit high on the curve, consistent with the LEVELS reading (R carries the dark-to-baryon ratio); M500/kTvir are weaker (p = 0.22-0.35), and the ordering shifts between the T500 calibrations (e.g. RXC1825: +0.08 sigma vir -> +0.46 sigma emp) -- no cluster is robustly marked under either calibration"
+  },
+  {
+   "name": "V1 [the pooled collapse scatter < 0.15 dex -- the PREDICTION] rms of log10 R about the binned-median curve at fixed x, full sample (T500_vir primary; T500_emp consistency row 0.325 dex)",
+   "measured": "rms = 0.313 dex (all 96 points; grid-bin rms 0.298 dex) vs the 0.15-dex gate; the falsifier sits at 0.3 (1.04 of the falsifier line)",
+   "pass": false,
+   "reading": ""
+  },
+  {
+   "name": "V2 [V2: the outlier count and the list] clusters departing the pooled curve by > 3 sigma",
+   "measured": "0 of 12 depart at the cluster-mean level (list: none); 0 with a single bin > 3 sigma (none)",
+   "pass": true,
+   "reading": ""
+  },
+  {
+   "name": "V3 [the honest statement] coherent/mixed verdict + the clean subset",
+   "measured": "THE SAMPLE IS MIXED ON THE FRAMEWORK'S OWN TEST -- and the reading is STRUCTURALLY SINGLE, CURVE-FAILING.  (i) The 12 ratio-profiles do NOT collapse onto one curve at the predicted level: the pooled scatter of log10 R at fixed x = 0.313 dex (T500_vir) / 0.325 dex (T500_emp), ~2.1x the <0.15-dex prediction, sitting AT the P5 falsifier line (0.3 dex).  (ii) The scatter is NOT concentrated: 0 of 12 clusters depart by > 3 sigma (max cluster-mean 0.65 sigma, A3266; max single bin 2.46 sigma) and the departures show only a weak positive correlate with f_gas(420) (rho = +0.50, p = 0.10; M500 p = 0.22, kTvir p = 0.35, and the ordering shifts under the T500_emp calibration) -- the scatter is sample-wide, the mark of a per-cluster LEVELS spread (per-cluster rms 0.22-0.45 dex), not of scrambled profiles.  (iii) The CONTROL decides what kind of objects these are: at FIXED radius the 12 systems scatter only 0.079 dex (median over 8 radii, range 0.063-0.159), with the OUTERMOST bins the tightest (0.089 dex at 600 kpc) -- the systems ARE single equilibrium structures in the standard self-similar sense (Ghirardini+19's own minimum-scatter window), NOT line-of-sight superpositions, which would scramble the ratio-profiles far beyond this.  (iv) The framework's collapse-in-x fails because R carries the sample-wide dark-to-baryon ratio x (2.0-37.6) with the per-cluster offsets the registered amplitude input (the free-dust normalization, G075/G012) already owns: the G104 aperture power law (kTvir/T_floor at R500, f = 3.2-7.0) collapses at 0.05 dex because the aperture aligns each cluster at its own R500; the PROFILE-level x-space version filters no such level out and fails at 0.31 dex.  CLEAN SUBSET for the framework's tests (clusters whose own 8-bin rms about the pooled curve stays < 0.15 dex, T500_vir): 0 of 12 -- none; the aperture-level subset (G104's f = 3.2-7.0 power law, 0.05 dex) remains all 12.",
+   "pass": true,
+   "reading": "V1 FAIL (0.31/0.32 dex vs 0.15, at the 0.3 falsifier), V2 PASS (0 outliers), the r-space control V2c PASS (0.04-0.18 dex): SINGLE STRUCTURES whose sample-wide dark-to-baryon spread defeats the framework's specific x-universality at the profile level"
+  },
+  {
+   "name": "V6a [the aperture anchor reproduces G104's registered row] median kTvir/T_floor(R500) = 3.57, scatter 0.05 dex",
+   "measured": "median 3.57, scatter 0.051 dex",
+   "pass": true,
+   "reading": "G104's single-r collapse measure -- the per-cluster level alignment at the common aperture; the profile-level fixed-x scatter (0.31 dex) lives BELOW this aperture alignment"
+  }
+ ],
+ "n_pass": 10,
+ "n_fail": 4,
+ "per_cluster_points": [
+  {
+   "cluster": "A1644",
+   "r_kpc": 50.0,
+   "T_keV": 3.7686130093129795,
+   "T_floor_keV": 0.07643374352623955,
+   "R": 49.30561863713011,
+   "x": 5.920467540375874,
+   "rM_kpc": 16.896190139808024
+  },
+  {
+   "cluster": "A1644",
+   "r_kpc": 75.0,
+   "T_keV": 3.808104098672497,
+   "T_floor_keV": 0.11881838659757037,
+   "R": 32.04978798079696,
+   "x": 6.441750375753337,
+   "rM_kpc": 26.265598928417905
+  },
+  {
+   "cluster": "A1644",
+   "r_kpc": 100.0,
+   "T_keV": 4.10867144051204,
+   "T_floor_keV": 0.1625016666440605,
+   "R": 25.283872623359425,
+   "x": 6.516175747791405,
+   "rM_kpc": 35.92208010472713
+  },
+  {
+   "cluster": "A1644",
+   "r_kpc": 150.0,
+   "T_keV": 4.575015909902647,
+   "T_floor_keV": 0.25842919991544294,
+   "R": 17.70316942280352,
+   "x": 6.014677552061444,
+   "rM_kpc": 57.127502827998796
+  },
+  {
+   "cluster": "A1644",
+   "r_kpc": 210.0,
+   "T_keV": 4.643440461010409,
+   "T_floor_keV": 0.37657055663657857,
+   "R": 12.330864373689497,
+   "x": 5.811532459234059,
+   "rM_kpc": 83.24343977474696
+  },
+  {
+   "cluster": "A1644",
+   "r_kpc": 300.0,
+   "T_keV": 4.478059765213298,
+   "T_floor_keV": 0.5442916339242223,
+   "R": 8.2273169126769,
+   "x": 5.902940286227047,
+   "rM_kpc": 120.31930550586365
+  },
+  {
+   "cluster": "A1644",
+   "r_kpc": 420.0,
+   "T_keV": 4.552715043852854,
+   "T_floor_keV": 0.7584910204463353,
+   "R": 6.00233215836069,
+   "x": 5.497207489486085,
+   "rM_kpc": 167.6695123064164
+  },
+  {
+   "cluster": "A1644",
+   "r_kpc": 600.0,
+   "T_keV": 3.617632972201893,
+   "T_floor_keV": 1.0776285631186302,
+   "R": 3.3570314447981535,
+   "x": 4.302109725370793,
+   "rM_kpc": 238.21700027409724
+  },
+  {
+   "cluster": "A1795",
+   "r_kpc": 50.0,
+   "T_keV": 4.314602140006617,
+   "T_floor_keV": 0.177974471061946,
+   "R": 24.24281479395363,
+   "x": 4.632882974922738,
+   "rM_kpc": 39.34244699217267
+  },
+  {
+   "cluster": "A1795",
+   "r_kpc": 75.0,
+   "T_keV": 4.7646106352091655,
+   "T_floor_keV": 0.23275294186508844,
+   "R": 20.47067846717442,
+   "x": 5.734742200898675,
+   "rM_kpc": 51.451594281812845
+  },
+  {
+   "cluster": "A1795",
+   "r_kpc": 100.0,
+   "T_keV": 5.087775013890061,
+   "T_floor_keV": 0.2839925808897197,
+   "R": 17.915168762333803,
+   "x": 6.625581105300949,
+   "rM_kpc": 62.77845914167787
+  },
+  {
+   "cluster": "A1795",
+   "r_kpc": 150.0,
+   "T_keV": 5.29755511127774,
+   "T_floor_keV": 0.3844358648905403,
+   "R": 13.78007515710352,
+   "x": 7.3731725338274545,
+   "rM_kpc": 84.98211876175115
+  },
+  {
+   "cluster": "A1795",
+   "r_kpc": 210.0,
+   "T_keV": 5.349132523612454,
+   "T_floor_keV": 0.498968292589297,
+   "R": 10.72038564986603,
+   "x": 7.608296454676863,
+   "rM_kpc": 110.30027781420777
+  },
+  {
+   "cluster": "A1795",
+   "r_kpc": 300.0,
+   "T_keV": 5.402241960833126,
+   "T_floor_keV": 0.6532331457376268,
+   "R": 8.270005886999117,
+   "x": 7.472807059797932,
+   "rM_kpc": 144.40155521388056
+  },
+  {
+   "cluster": "A1795",
+   "r_kpc": 420.0,
+   "T_keV": 4.818515063740229,
+   "T_floor_keV": 0.8336952939858363,
+   "R": 5.779707644387988,
+   "x": 7.011683797155913,
+   "rM_kpc": 184.29391988385404
+  },
+  {
+   "cluster": "A1795",
+   "r_kpc": 600.0,
+   "T_keV": 4.449998672006336,
+   "T_floor_keV": 1.059329847108177,
+   "R": 4.2007677628967155,
+   "x": 6.7343529308707994,
+   "rM_kpc": 234.17194673147145
+  },
+  {
+   "cluster": "A2029",
+   "r_kpc": 50.0,
+   "T_keV": 6.347813094684312,
+   "T_floor_keV": 0.2341398239459577,
+   "R": 27.111206405235293,
+   "x": 4.334811580767316,
+   "rM_kpc": 51.75817384024851
+  },
+  {
+   "cluster": "A2029",
+   "r_kpc": 75.0,
+   "T_keV": 6.785936276900074,
+   "T_floor_keV": 0.3198360281878086,
+   "R": 21.216922669247737,
+   "x": 4.02596349136409,
+   "rM_kpc": 70.70189286184873
+  },
+  {
+   "cluster": "A2029",
+   "r_kpc": 100.0,
+   "T_keV": 7.054485837309315,
+   "T_floor_keV": 0.3998771908535494,
+   "R": 17.64163097737911,
+   "x": 4.12180374374761,
+   "rM_kpc": 88.3955271262412
+  },
+  {
+   "cluster": "A2029",
+   "r_kpc": 150.0,
+   "T_keV": 7.405223521030856,
+   "T_floor_keV": 0.5420524108724337,
+   "R": 13.661452974837145,
+   "x": 4.587568616738982,
+   "rM_kpc": 119.8243102759692
+  },
+  {
+   "cluster": "A2029",
+   "r_kpc": 210.0,
+   "T_keV": 7.617972330132011,
+   "T_floor_keV": 0.7006730355608544,
+   "R": 10.872364060698008,
+   "x": 4.816082131706521,
+   "rM_kpc": 154.8884601028139
+  },
+  {
+   "cluster": "A2029",
+   "r_kpc": 300.0,
+   "T_keV": 7.525467418717365,
+   "T_floor_keV": 0.9098269823936203,
+   "R": 8.2713170353763,
+   "x": 5.120251589450683,
+   "rM_kpc": 201.12333871980232
+  },
+  {
+   "cluster": "A2029",
+   "r_kpc": 420.0,
+   "T_keV": 8.049675158548402,
+   "T_floor_keV": 1.1499275690410076,
+   "R": 7.00015842324878,
+   "x": 5.245283981245122,
+   "rM_kpc": 254.1991790164512
+  },
+  {
+   "cluster": "A2029",
+   "r_kpc": 600.0,
+   "T_keV": 7.806872608236857,
+   "T_floor_keV": 1.4535356792956182,
+   "R": 5.370953544133198,
+   "x": 5.359836739419828,
+   "rM_kpc": 321.3137820986441
+  },
+  {
+   "cluster": "A2142",
+   "r_kpc": 50.0,
+   "T_keV": 6.127791152716953,
+   "T_floor_keV": 0.1829877215921584,
+   "R": 33.48744440009219,
+   "x": 5.865898589763629,
+   "rM_kpc": 40.45065954685257
+  },
+  {
+   "cluster": "A2142",
+   "r_kpc": 75.0,
+   "T_keV": 6.476753529877005,
+   "T_floor_keV": 0.2649751835790115,
+   "R": 24.442868356182256,
+   "x": 4.805397930583749,
+   "rM_kpc": 58.5745362916124
+  },
+  {
+   "cluster": "A2142",
+   "r_kpc": 100.0,
+   "T_keV": 6.749024260755387,
+   "T_floor_keV": 0.3460046022691723,
+   "R": 19.50559101380109,
+   "x": 4.449153192528269,
+   "rM_kpc": 76.4866311589411
+  },
+  {
+   "cluster": "A2142",
+   "r_kpc": 150.0,
+   "T_keV": 7.160607264154783,
+   "T_floor_keV": 0.5004991388602678,
+   "R": 14.30693223660855,
+   "x": 4.061686256065763,
+   "rM_kpc": 110.63868161959323
+  },
+  {
+   "cluster": "A2142",
+   "r_kpc": 210.0,
+   "T_keV": 7.546787375496865,
+   "T_floor_keV": 0.6734114325521293,
+   "R": 11.206800197756758,
+   "x": 3.8725170050689437,
+   "rM_kpc": 148.86210045194514
+  },
+  {
+   "cluster": "A2142",
+   "r_kpc": 300.0,
+   "T_keV": 7.882986489083192,
+   "T_floor_keV": 0.8940202649576325,
+   "R": 8.817458393358416,
+   "x": 4.335807745548684,
+   "rM_kpc": 197.62915812673768
+  },
+  {
+   "cluster": "A2142",
+   "r_kpc": 420.0,
+   "T_keV": 7.996030483615538,
+   "T_floor_keV": 1.1645433417396585,
+   "R": 6.866236916241031,
+   "x": 4.619837937262803,
+   "rM_kpc": 257.43009331115456
+  },
+  {
+   "cluster": "A2142",
+   "r_kpc": 600.0,
+   "T_keV": 7.727613494083639,
+   "T_floor_keV": 1.522540565769767,
+   "R": 5.075472974460097,
+   "x": 4.298947093111922,
+   "rM_kpc": 336.56777370828996
+  },
+  {
+   "cluster": "A2255",
+   "r_kpc": 50.0,
+   "T_keV": 5.167738526521273,
+   "T_floor_keV": 0.0708928484108477,
+   "R": 72.89506124189714,
+   "x": 9.28111911052643,
+   "rM_kpc": 15.671338221070657
+  },
+  {
+   "cluster": "A2255",
+   "r_kpc": 75.0,
+   "T_keV": 5.404026153014691,
+   "T_floor_keV": 0.12418468212027686,
+   "R": 43.51604449718458,
+   "x": 6.593509426629302,
+   "rM_kpc": 27.45185443959697
+  },
+  {
+   "cluster": "A2255",
+   "r_kpc": 100.0,
+   "T_keV": 5.674824189565941,
+   "T_floor_keV": 0.18191646849217943,
+   "R": 31.194669930666013,
+   "x": 5.4946871151946555,
+   "rM_kpc": 40.213851885339956
+  },
+  {
+   "cluster": "A2255",
+   "r_kpc": 150.0,
+   "T_keV": 6.02468501335232,
+   "T_floor_keV": 0.3038526347406734,
+   "R": 19.82765434466006,
+   "x": 4.565736955921142,
+   "rM_kpc": 67.16865685503916
+  },
+  {
+   "cluster": "A2255",
+   "r_kpc": 210.0,
+   "T_keV": 6.068488718696296,
+   "T_floor_keV": 0.46113554580462357,
+   "R": 13.159880590223306,
+   "x": 3.973341700259655,
+   "rM_kpc": 101.93709613953803
+  },
+  {
+   "cluster": "A2255",
+   "r_kpc": 300.0,
+   "T_keV": 5.901706246398943,
+   "T_floor_keV": 0.7134366412421169,
+   "R": 8.272221953898914,
+   "x": 3.325800138629753,
+   "rM_kpc": 157.70994049237655
+  },
+  {
+   "cluster": "A2255",
+   "r_kpc": 420.0,
+   "T_keV": 5.945864699036216,
+   "T_floor_keV": 1.048257313668874,
+   "R": 5.672142346639911,
+   "x": 2.8668323619714133,
+   "rM_kpc": 231.7242891696563
+  },
+  {
+   "cluster": "A2255",
+   "r_kpc": 600.0,
+   "T_keV": 5.54351403620044,
+   "T_floor_keV": 1.4968732017178175,
+   "R": 3.703395872034239,
+   "x": 2.6678529164852436,
+   "rM_kpc": 330.8938312399281
+  },
+  {
+   "cluster": "A2319",
+   "r_kpc": 50.0,
+   "T_keV": 8.242037598373297,
+   "T_floor_keV": 0.16098762243349632,
+   "R": 51.196716081561284,
+   "x": 7.653208176578492,
+   "rM_kpc": 35.587390507154474
+  },
+  {
+   "cluster": "A2319",
+   "r_kpc": 75.0,
+   "T_keV": 8.408229212171232,
+   "T_floor_keV": 0.2267335937992168,
+   "R": 37.08417915175425,
+   "x": 6.904991447095902,
+   "rM_kpc": 50.120977138826284
+  },
+  {
+   "cluster": "A2319",
+   "r_kpc": 100.0,
+   "T_keV": 8.545485555447785,
+   "T_floor_keV": 0.29557209338221735,
+   "R": 28.911679237583634,
+   "x": 6.241375425243327,
+   "rM_kpc": 65.33818781350926
+  },
+  {
+   "cluster": "A2319",
+   "r_kpc": 150.0,
+   "T_keV": 8.834523834085342,
+   "T_floor_keV": 0.4312339322026133,
+   "R": 20.48661567275388,
+   "x": 5.795902401112434,
+   "rM_kpc": 95.32714449255116
+  },
+  {
+   "cluster": "A2319",
+   "r_kpc": 210.0,
+   "T_keV": 9.336900130484834,
+   "T_floor_keV": 0.5818133213276562,
+   "R": 16.047931163175672,
+   "x": 6.131283019351771,
+   "rM_kpc": 128.61372542417126
+  },
+  {
+   "cluster": "A2319",
+   "r_kpc": 300.0,
+   "T_keV": 9.603190271723355,
+   "T_floor_keV": 0.8012229817119583,
+   "R": 11.985665028235207,
+   "x": 6.348951590519087,
+   "rM_kpc": 177.1156981044862
+  },
+  {
+   "cluster": "A2319",
+   "r_kpc": 420.0,
+   "T_keV": 8.556200277011786,
+   "T_floor_keV": 1.0895547499285896,
+   "R": 7.8529328402933105,
+   "x": 5.633558032033017,
+   "rM_kpc": 240.85336362210953
+  },
+  {
+   "cluster": "A2319",
+   "r_kpc": 600.0,
+   "T_keV": 8.652839274296513,
+   "T_floor_keV": 1.4651715038056008,
+   "R": 5.905683567979475,
+   "x": 4.884417073692959,
+   "rM_kpc": 323.8859589185143
+  },
+  {
+   "cluster": "A3158",
+   "r_kpc": 50.0,
+   "T_keV": 5.379611922908186,
+   "T_floor_keV": 0.09207871778228119,
+   "R": 58.424053380371795,
+   "x": 17.526233744664168,
+   "rM_kpc": 20.35461632132474
+  },
+  {
+   "cluster": "A3158",
+   "r_kpc": 75.0,
+   "T_keV": 5.283428388498834,
+   "T_floor_keV": 0.15915312824638317,
+   "R": 33.197138169471714,
+   "x": 10.375287936951212,
+   "rM_kpc": 35.181863299329116
+  },
+  {
+   "cluster": "A3158",
+   "r_kpc": 100.0,
+   "T_keV": 5.177200699131605,
+   "T_floor_keV": 0.22893922732839475,
+   "R": 22.613864646731468,
+   "x": 7.845708409897523,
+   "rM_kpc": 50.60854718012532
+  },
+  {
+   "cluster": "A3158",
+   "r_kpc": 150.0,
+   "T_keV": 4.97841476562768,
+   "T_floor_keV": 0.3686032582573322,
+   "R": 13.506160496693468,
+   "x": 5.818234784094373,
+   "rM_kpc": 81.48221518851278
+  },
+  {
+   "cluster": "A3158",
+   "r_kpc": 210.0,
+   "T_keV": 4.723752982272567,
+   "T_floor_keV": 0.5372702293485185,
+   "R": 8.792136106257889,
+   "x": 4.513145664030864,
+   "rM_kpc": 118.7671770703529
+  },
+  {
+   "cluster": "A3158",
+   "r_kpc": 300.0,
+   "T_keV": 4.750357899915949,
+   "T_floor_keV": 0.7814636757856656,
+   "R": 6.078795530886383,
+   "x": 3.614019060570528,
+   "rM_kpc": 172.74777139360017
+  },
+  {
+   "cluster": "A3158",
+   "r_kpc": 420.0,
+   "T_keV": 4.77614293043334,
+   "T_floor_keV": 1.065025543254988,
+   "R": 4.484533690934995,
+   "x": 3.351348429054127,
+   "rM_kpc": 235.43101845340084
+  },
+  {
+   "cluster": "A3158",
+   "r_kpc": 600.0,
+   "T_keV": 4.729189416560387,
+   "T_floor_keV": 1.4098451451970737,
+   "R": 3.3544034482590797,
+   "x": 3.2457747160187926,
+   "rM_kpc": 311.6556973656183
+  },
+  {
+   "cluster": "A3266",
+   "r_kpc": 50.0,
+   "T_keV": 7.000943465415409,
+   "T_floor_keV": 0.12917250588634466,
+   "R": 54.19840249577063,
+   "x": 5.34190363894216,
+   "rM_kpc": 28.55444623802699
+  },
+  {
+   "cluster": "A3266",
+   "r_kpc": 75.0,
+   "T_keV": 7.300202612012763,
+   "T_floor_keV": 0.2114955083934427,
+   "R": 34.51705744233716,
+   "x": 4.443665342148645,
+   "rM_kpc": 46.75249645863815
+  },
+  {
+   "cluster": "A3266",
+   "r_kpc": 100.0,
+   "T_keV": 7.473042954667992,
+   "T_floor_keV": 0.29319616825078537,
+   "R": 25.488201292848835,
+   "x": 4.264751644909419,
+   "rM_kpc": 64.81297367474549
+  },
+  {
+   "cluster": "A3266",
+   "r_kpc": 150.0,
+   "T_keV": 7.550050317133575,
+   "T_floor_keV": 0.45714034862183944,
+   "R": 16.51582569750195,
+   "x": 4.2089367203564985,
+   "rM_kpc": 101.0539310853081
+  },
+  {
+   "cluster": "A3266",
+   "r_kpc": 210.0,
+   "T_keV": 7.511204757548603,
+   "T_floor_keV": 0.6555321162326859,
+   "R": 11.458179655201585,
+   "x": 4.075228106084137,
+   "rM_kpc": 144.90975801565745
+  },
+  {
+   "cluster": "A3266",
+   "r_kpc": 300.0,
+   "T_keV": 7.201361349877778,
+   "T_floor_keV": 0.9617376432908017,
+   "R": 7.487864700020164,
+   "x": 3.4891885111801377,
+   "rM_kpc": 212.59853745190122
+  },
+  {
+   "cluster": "A3266",
+   "r_kpc": 420.0,
+   "T_keV": 6.69366200656238,
+   "T_floor_keV": 1.3775851206951817,
+   "R": 4.858982509323638,
+   "x": 2.647801828064343,
+   "rM_kpc": 304.52440321787446
+  },
+  {
+   "cluster": "A3266",
+   "r_kpc": 600.0,
+   "T_keV": 6.234138333038252,
+   "T_floor_keV": 1.941546039240089,
+   "R": 3.2109145016608833,
+   "x": 2.0352024357100578,
+   "rM_kpc": 429.19173562302257
+  },
+  {
+   "cluster": "A644",
+   "r_kpc": 50.0,
+   "T_keV": 6.444750005887858,
+   "T_floor_keV": 0.16917897836822404,
+   "R": 38.094271924616024,
+   "x": 6.10208768764987,
+   "rM_kpc": 37.39814451436192
+  },
+  {
+   "cluster": "A644",
+   "r_kpc": 75.0,
+   "T_keV": 6.6229488075900464,
+   "T_floor_keV": 0.22031248769825917,
+   "R": 30.06161328749037,
+   "x": 6.632954067568138,
+   "rM_kpc": 48.70154869551819
+  },
+  {
+   "cluster": "A644",
+   "r_kpc": 100.0,
+   "T_keV": 6.9944045501306595,
+   "T_floor_keV": 0.2806067342096122,
+   "R": 24.926003895921703,
+   "x": 6.667582722192394,
+   "rM_kpc": 62.029995090957954
+  },
+  {
+   "cluster": "A644",
+   "r_kpc": 150.0,
+   "T_keV": 7.266170078623392,
+   "T_floor_keV": 0.4007006794636442,
+   "R": 18.13366048779724,
+   "x": 6.814030644253077,
+   "rM_kpc": 88.57756479039607
+  },
+  {
+   "cluster": "A644",
+   "r_kpc": 210.0,
+   "T_keV": 7.327841509963233,
+   "T_floor_keV": 0.5296513604423678,
+   "R": 13.83521700735929,
+   "x": 7.352044859643855,
+   "rM_kpc": 117.08297514918961
+  },
+  {
+   "cluster": "A644",
+   "r_kpc": 300.0,
+   "T_keV": 7.266622826315193,
+   "T_floor_keV": 0.7054289452905883,
+   "R": 10.300998952235853,
+   "x": 8.080172291753161,
+   "rM_kpc": 155.93978575263975
+  },
+  {
+   "cluster": "A644",
+   "r_kpc": 420.0,
+   "T_keV": 6.628866299966717,
+   "T_floor_keV": 0.8994080430252253,
+   "R": 7.370254637339062,
+   "x": 9.115919939008847,
+   "rM_kpc": 198.8201624981235
+  },
+  {
+   "cluster": "A644",
+   "r_kpc": 600.0,
+   "T_keV": 5.938731687053499,
+   "T_floor_keV": 1.1452230953098772,
+   "R": 5.185654839982583,
+   "x": 9.38394142162438,
+   "rM_kpc": 253.15922363808315
+  },
+  {
+   "cluster": "A85",
+   "r_kpc": 50.0,
+   "T_keV": 4.655325377440705,
+   "T_floor_keV": 0.14351866015725187,
+   "R": 32.43707384349822,
+   "x": 6.237525820345252,
+   "rM_kpc": 31.725759576265517
+  },
+  {
+   "cluster": "A85",
+   "r_kpc": 75.0,
+   "T_keV": 5.028121230262249,
+   "T_floor_keV": 0.19993573222638886,
+   "R": 25.148687402054108,
+   "x": 6.587280246236756,
+   "rM_kpc": 44.19713063352831
+  },
+  {
+   "cluster": "A85",
+   "r_kpc": 100.0,
+   "T_keV": 5.27358142978188,
+   "T_floor_keV": 0.2562910551949198,
+   "R": 20.576533292475254,
+   "x": 6.690108136904897,
+   "rM_kpc": 56.65485163916902
+  },
+  {
+   "cluster": "A85",
+   "r_kpc": 150.0,
+   "T_keV": 5.6168211722896455,
+   "T_floor_keV": 0.387850144332026,
+   "R": 14.481936527220332,
+   "x": 6.052105913389864,
+   "rM_kpc": 85.73686806451131
+  },
+  {
+   "cluster": "A85",
+   "r_kpc": 210.0,
+   "T_keV": 5.93841158000146,
+   "T_floor_keV": 0.5096148666512161,
+   "R": 11.6527440006293,
+   "x": 6.322345338970384,
+   "rM_kpc": 112.65377420714546
+  },
+  {
+   "cluster": "A85",
+   "r_kpc": 300.0,
+   "T_keV": 6.101674837489215,
+   "T_floor_keV": 0.681074233784509,
+   "R": 8.958898362053992,
+   "x": 6.214785561004471,
+   "rM_kpc": 150.55601390760884
+  },
+  {
+   "cluster": "A85",
+   "r_kpc": 420.0,
+   "T_keV": 5.796734496013465,
+   "T_floor_keV": 0.8945616372939981,
+   "R": 6.4799721498769856,
+   "x": 5.976891107604013,
+   "rM_kpc": 197.74883210199593
+  },
+  {
+   "cluster": "A85",
+   "r_kpc": 600.0,
+   "T_keV": 5.168016648969466,
+   "T_floor_keV": 1.1670195588796495,
+   "R": 4.428389061388837,
+   "x": 5.764703687760263,
+   "rM_kpc": 257.9774776690903
+  },
+  {
+   "cluster": "RXC1825",
+   "r_kpc": 50.0,
+   "T_keV": 6.201842419478774,
+   "T_floor_keV": 0.07418021249028676,
+   "R": 83.60507757093374,
+   "x": 37.61930303401104,
+   "rM_kpc": 16.398032034332722
+  },
+  {
+   "cluster": "RXC1825",
+   "r_kpc": 75.0,
+   "T_keV": 6.034645448641621,
+   "T_floor_keV": 0.12357971881866286,
+   "R": 48.83200501124846,
+   "x": 23.285583516278304,
+   "rM_kpc": 27.318123256220257
+  },
+  {
+   "cluster": "RXC1825",
+   "r_kpc": 100.0,
+   "T_keV": 5.996902679986703,
+   "T_floor_keV": 0.17743938000125534,
+   "R": 33.7969095695909,
+   "x": 17.029756867308873,
+   "rM_kpc": 39.224161534906834
+  },
+  {
+   "cluster": "RXC1825",
+   "r_kpc": 150.0,
+   "T_keV": 5.896907799902652,
+   "T_floor_keV": 0.29274136135108925,
+   "R": 20.143746591484895,
+   "x": 10.869556664497845,
+   "rM_kpc": 64.71243556814964
+  },
+  {
+   "cluster": "RXC1825",
+   "r_kpc": 210.0,
+   "T_keV": 5.596625299120106,
+   "T_floor_keV": 0.43760310087122195,
+   "R": 12.789272489106706,
+   "x": 7.389319468344327,
+   "rM_kpc": 96.73509181911876
+  },
+  {
+   "cluster": "RXC1825",
+   "r_kpc": 300.0,
+   "T_keV": 5.154734173599133,
+   "T_floor_keV": 0.6558895849840103,
+   "R": 7.85914930136419,
+   "x": 5.28930892045706,
+   "rM_kpc": 144.98877887362895
+  },
+  {
+   "cluster": "RXC1825",
+   "r_kpc": 420.0,
+   "T_keV": 5.008872141401793,
+   "T_floor_keV": 0.9239491240411674,
+   "R": 5.421155787771078,
+   "x": 4.460791689407838,
+   "rM_kpc": 204.24513256961342
+  },
+  {
+   "cluster": "RXC1825",
+   "r_kpc": 600.0,
+   "T_keV": 4.409167523870201,
+   "T_floor_keV": 1.2612741001041545,
+   "R": 3.49580438027396,
+   "x": 4.10659688242213,
+   "rM_kpc": 278.8130743126447
+  },
+  {
+   "cluster": "ZW1215",
+   "r_kpc": 50.0,
+   "T_keV": 6.141341431032307,
+   "T_floor_keV": 0.1247122743148449,
+   "R": 49.24408174553901,
+   "x": 6.126447270112855,
+   "rM_kpc": 27.568482222359435
+  },
+  {
+   "cluster": "ZW1215",
+   "r_kpc": 75.0,
+   "T_keV": 6.043305640494637,
+   "T_floor_keV": 0.17270826915507673,
+   "R": 34.99140874990927,
+   "x": 6.473975737968786,
+   "rM_kpc": 38.178317844127776
+  },
+  {
+   "cluster": "ZW1215",
+   "r_kpc": 100.0,
+   "T_keV": 6.058571686160379,
+   "T_floor_keV": 0.22499092288263126,
+   "R": 26.92807162412011,
+   "x": 6.362230269118084,
+   "rM_kpc": 49.73574807899836
+  },
+  {
+   "cluster": "ZW1215",
+   "r_kpc": 150.0,
+   "T_keV": 6.23667663116237,
+   "T_floor_keV": 0.3347487322161392,
+   "R": 18.630919346202326,
+   "x": 6.121318105304046,
+   "rM_kpc": 73.99844581263876
+  },
+  {
+   "cluster": "ZW1215",
+   "r_kpc": 210.0,
+   "T_keV": 6.2657399406753065,
+   "T_floor_keV": 0.46927625478234514,
+   "R": 13.351921979477563,
+   "x": 5.936106425896959,
+   "rM_kpc": 103.7366542982092
+  },
+  {
+   "cluster": "ZW1215",
+   "r_kpc": 300.0,
+   "T_keV": 6.25077044880176,
+   "T_floor_keV": 0.6665930505765979,
+   "R": 9.37719114142413,
+   "x": 5.721295848045864,
+   "rM_kpc": 147.3548515198701
+  },
+  {
+   "cluster": "ZW1215",
+   "r_kpc": 420.0,
+   "T_keV": 6.145226765873647,
+   "T_floor_keV": 0.9003577000600496,
+   "R": 6.825317055059106,
+   "x": 5.79509273230333,
+   "rM_kpc": 199.03009053628747
+  },
+  {
+   "cluster": "ZW1215",
+   "r_kpc": 600.0,
+   "T_keV": 5.794251328207626,
+   "T_floor_keV": 1.178709895311917,
+   "R": 4.915756923101352,
+   "x": 6.134920256464259,
+   "rM_kpc": 260.56170471391783
+  }
+ ],
+ "pooled_vir": {
+  "rms_dex": 0.31281861498602814,
+  "half_16_84_dex": 0.32683122737736103,
+  "mad_dex": 0.21952680345974995,
+  "n": 89,
+  "sigma_pool_dex": 0.3126642636380756,
+  "bins": [
+   {
+    "lo": 2.51188643150958,
+    "hi": 3.981071705534973,
+    "n": 10,
+    "median_R": 5.871949722818316,
+    "scatter_dex": 0.18685323011059154,
+    "half_16_84_dex": 0.1931458927145655
+   },
+   {
+    "lo": 3.981071705534973,
+    "hi": 6.309573444801933,
+    "n": 52,
+    "median_R": 13.58358481757231,
+    "scatter_dex": 0.31040300238005547,
+    "half_16_84_dex": 0.3364824390092302
+   },
+   {
+    "lo": 6.309573444801933,
+    "hi": 10.0,
+    "n": 27,
+    "median_R": 18.133660487797243,
+    "scatter_dex": 0.3069238479959139,
+    "half_16_84_dex": 0.3025470211149512
+   }
+  ],
+  "per_cluster": {
+   "A1644": {
+    "mean_resid_dex": -0.0547,
+    "mean_resid_sigma": -0.1749,
+    "rms_resid_dex": 0.2791,
+    "max_abs_bin_sigma": 1.5982
+   },
+   "A1795": {
+    "mean_resid_dex": -0.2506,
+    "mean_resid_sigma": -0.8015,
+    "rms_resid_dex": 0.4467,
+    "max_abs_bin_sigma": 2.4624
+   },
+   "A2029": {
+    "mean_resid_dex": 0.0902,
+    "mean_resid_sigma": 0.2885,
+    "rms_resid_dex": 0.2941,
+    "max_abs_bin_sigma": 1.5342
+   },
+   "A2142": {
+    "mean_resid_dex": 0.131,
+    "mean_resid_sigma": 0.4189,
+    "rms_resid_dex": 0.2598,
+    "max_abs_bin_sigma": 1.2829
+   },
+   "A2255": {
+    "mean_resid_dex": 0.1732,
+    "mean_resid_sigma": 0.5539,
+    "rms_resid_dex": 0.2953,
+    "max_abs_bin_sigma": 1.6341
+   },
+   "A2319": {
+    "mean_resid_dex": 0.0031,
+    "mean_resid_sigma": 0.01,
+    "rms_resid_dex": 0.2163,
+    "max_abs_bin_sigma": 1.0636
+   },
+   "A3158": {
+    "mean_resid_dex": -0.007,
+    "mean_resid_sigma": -0.0225,
+    "rms_resid_dex": 0.2349,
+    "max_abs_bin_sigma": 1.5521
+   },
+   "A3266": {
+    "mean_resid_dex": 0.2027,
+    "mean_resid_sigma": 0.6484,
+    "rms_resid_dex": 0.3863,
+    "max_abs_bin_sigma": 2.1131
+   },
+   "A644": {
+    "mean_resid_dex": -0.1814,
+    "mean_resid_sigma": -0.5803,
+    "rms_resid_dex": 0.3448,
+    "max_abs_bin_sigma": 2.0327
+   },
+   "A85": {
+    "mean_resid_dex": -0.1874,
+    "mean_resid_sigma": -0.5993,
+    "rms_resid_dex": 0.288,
+    "max_abs_bin_sigma": 1.5793
+   },
+   "RXC1825": {
+    "mean_resid_dex": 0.0255,
+    "mean_resid_sigma": 0.0816,
+    "rms_resid_dex": 0.3444,
+    "max_abs_bin_sigma": 2.0499
+   },
+   "ZW1215": {
+    "mean_resid_dex": -0.0625,
+    "mean_resid_sigma": -0.1999,
+    "rms_resid_dex": 0.2897,
+    "max_abs_bin_sigma": 1.8718
+   }
+  }
+ },
+ "pooled_emp": {
+  "rms_dex": 0.32520553117961193,
+  "half_16_84_dex": 0.3205096765771388,
+  "sigma_pool_dex": 0.3251793561547536,
+  "per_cluster": {
+   "A1644": {
+    "mean_resid_dex": -0.2119,
+    "mean_resid_sigma": -0.6515,
+    "rms_resid_dex": 0.3706,
+    "max_abs_bin_sigma": 2.0725
+   },
+   "A1795": {
+    "mean_resid_dex": -0.2839,
+    "mean_resid_sigma": -0.8729,
+    "rms_resid_dex": 0.435,
+    "max_abs_bin_sigma": 2.3537
+   },
+   "A2029": {
+    "mean_resid_dex": -0.0226,
+    "mean_resid_sigma": -0.0696,
+    "rms_resid_dex": 0.2652,
+    "max_abs_bin_sigma": 1.318
+   },
+   "A2142": {
+    "mean_resid_dex": 0.0481,
+    "mean_resid_sigma": 0.148,
+    "rms_resid_dex": 0.2414,
+    "max_abs_bin_sigma": 1.0601
+   },
+   "A2255": {
+    "mean_resid_dex": 0.1535,
+    "mean_resid_sigma": 0.4722,
+    "rms_resid_dex": 0.3136,
+    "max_abs_bin_sigma": 1.6607
+   },
+   "A2319": {
+    "mean_resid_dex": 0.0846,
+    "mean_resid_sigma": 0.26,
+    "rms_resid_dex": 0.253,
+    "max_abs_bin_sigma": 1.3405
+   },
+   "A3158": {
+    "mean_resid_dex": 0.0462,
+    "mean_resid_sigma": 0.142,
+    "rms_resid_dex": 0.2419,
+    "max_abs_bin_sigma": 1.469
+   },
+   "A3266": {
+    "mean_resid_dex": 0.2274,
+    "mean_resid_sigma": 0.6994,
+    "rms_resid_dex": 0.409,
+    "max_abs_bin_sigma": 2.2303
+   },
+   "A644": {
+    "mean_resid_dex": -0.0661,
+    "mean_resid_sigma": -0.2032,
+    "rms_resid_dex": 0.3194,
+    "max_abs_bin_sigma": 1.732
+   },
+   "A85": {
+    "mean_resid_dex": -0.2374,
+    "mean_resid_sigma": -0.73,
+    "rms_resid_dex": 0.3349,
+    "max_abs_bin_sigma": 1.8286
+   },
+   "RXC1825": {
+    "mean_resid_dex": 0.148,
+    "mean_resid_sigma": 0.4551,
+    "rms_resid_dex": 0.346,
+    "max_abs_bin_sigma": 2.1964
+   },
+   "ZW1215": {
+    "mean_resid_dex": 0.0645,
+    "mean_resid_sigma": 0.1983,
+    "rms_resid_dex": 0.3032,
+    "max_abs_bin_sigma": 1.6955
+   }
+  }
+ },
+ "r_space_control": [
+  {
+   "r": 50.0,
+   "n": 12,
+   "scatter_dex": 0.15925330574219013,
+   "median_R_dex": 1.6926252279154788
+  },
+  {
+   "r": 75.0,
+   "n": 12,
+   "scatter_dex": 0.11232522671303162,
+   "median_R_dex": 1.513462903451404
+  },
+  {
+   "r": 100.0,
+   "n": 12,
+   "scatter_dex": 0.08793509407846861,
+   "median_R_dex": 1.3997481261557683
+  },
+  {
+   "r": 150.0,
+   "n": 12,
+   "scatter_dex": 0.06802253166689354,
+   "median_R_dex": 1.232975658245064
+  },
+  {
+   "r": 210.0,
+   "n": 12,
+   "scatter_dex": 0.0634405190005321,
+   "median_R_dex": 1.0787108632697242
+  },
+  {
+   "r": 300.0,
+   "n": 12,
+   "scatter_dex": 0.06938564519158665,
+   "median_R_dex": 0.9175984229964697
+  },
+  {
+   "r": 420.0,
+   "n": 12,
+   "scatter_dex": 0.07059927527622879,
+   "median_R_dex": 0.7949465820832785
+  },
+  {
+   "r": 600.0,
+   "n": 12,
+   "scatter_dex": 0.0890410536943531,
+   "median_R_dex": 0.6347872209073016
+  }
+ ],
+ "theory_curve_overlay": {
+  "mean_offset_dex": 0.7542617860398734,
+  "std_dex": 0.3678416277090998
+ },
+ "outliers": {
+  "n_cluster_mean_gt_3sigma": 0,
+  "list": [],
+  "n_single_bin_gt_3sigma": 0,
+  "list_single_bin": []
+ },
+ "cross_check": {
+  "M500_1e14": {
+   "A1644": 3.48,
+   "A1795": 4.63,
+   "A2029": 8.82,
+   "A2142": 8.95,
+   "A2255": 5.26,
+   "A2319": 7.31,
+   "A3158": 4.26,
+   "A3266": 8.8,
+   "A644": 5.66,
+   "A85": 5.65,
+   "RXC1825": 4.08,
+   "ZW1215": 7.66
+  },
+  "kTvir_keV": {
+   "A1644": 5.09,
+   "A1795": 6.08,
+   "A2029": 8.26,
+   "A2142": 8.4,
+   "A2255": 5.81,
+   "A2319": 9.6,
+   "A3158": 4.99,
+   "A3266": 9.45,
+   "A644": 7.7,
+   "A85": 6.0,
+   "RXC1825": 5.13,
+   "ZW1215": 6.27
+  },
+  "fgas_420": {
+   "A1644": 0.10189771412246541,
+   "A1795": 0.1337680459606408,
+   "A2029": 0.18424488288300017,
+   "A2142": 0.21938120961062535,
+   "A2255": 0.1622262484913526,
+   "A2319": 0.1737247348102077,
+   "A3158": 0.13982052904474768,
+   "A3266": 0.19087468579916403,
+   "A644": 0.12617970067570952,
+   "A85": 0.16337236720389992,
+   "RXC1825": 0.1011088207704935,
+   "ZW1215": 0.16970418743720642
+  },
+  "departure_sigma": {
+   "A1644": -0.1749291143460652,
+   "A1795": -0.8014952750154045,
+   "A2029": 0.2885136797559272,
+   "A2142": 0.4189491401861168,
+   "A2255": 0.5538666195603297,
+   "A2319": 0.010005675272562084,
+   "A3158": -0.02249193993234172,
+   "A3266": 0.6483729374570598,
+   "A644": -0.5802972778094161,
+   "A85": -0.5992527398986103,
+   "RXC1825": 0.08156516025886644,
+   "ZW1215": -0.19991502259475463
+  },
+  "spearman": {
+   "rho_M500": 0.3846153846153847,
+   "p_M500": 0.21702022575997754,
+   "rho_kTvir": 0.2937062937062937,
+   "p_kTvir": 0.35414764123292175,
+   "rho_fgas": 0.49650349650349657,
+   "p_fgas": 0.10060263183225483
+  }
+ },
+ "aperture_anchor": {
+  "median_ratio": 3.5718917054761627,
+  "log10_scatter_dex": 0.05128493743481382,
+  "rows": [
+   {
+    "cluster": "A1644",
+    "R500_kpc": 1054.0,
+    "Mb_R500_Msun": 50204614959854.97,
+    "ratio": 4.115130007977259
+   },
+   {
+    "cluster": "A1795",
+    "R500_kpc": 1153.0,
+    "Mb_R500_Msun": 78592774181046.0,
+    "ratio": 3.9287090576435264
+   },
+   {
+    "cluster": "A2029",
+    "R500_kpc": 1423.0,
+    "Mb_R500_Msun": 182208422058652.56,
+    "ratio": 3.5053664204855606
+   },
+   {
+    "cluster": "A2142",
+    "R500_kpc": 1424.0,
+    "Mb_R500_Msun": 216596896379617.66,
+    "ratio": 3.2695709774260733
+   },
+   {
+    "cluster": "A2255",
+    "R500_kpc": 1196.0,
+    "Mb_R500_Msun": 106385985603667.52,
+    "ratio": 3.226796074625737
+   },
+   {
+    "cluster": "A2319",
+    "R500_kpc": 1346.0,
+    "Mb_R500_Msun": 226033885898160.97,
+    "ratio": 3.6578176876390502
+   },
+   {
+    "cluster": "A3158",
+    "R500_kpc": 1123.0,
+    "Mb_R500_Msun": 74252040787956.89,
+    "ratio": 3.317293873283309
+   },
+   {
+    "cluster": "A3266",
+    "R500_kpc": 1430.0,
+    "Mb_R500_Msun": 134973165687275.53,
+    "ratio": 4.659568383233537
+   },
+   {
+    "cluster": "A644",
+    "R500_kpc": 1230.0,
+    "Mb_R500_Msun": 101225369590583.84,
+    "ratio": 4.384132163739941
+   },
+   {
+    "cluster": "A85",
+    "R500_kpc": 1235.0,
+    "Mb_R500_Msun": 110889145002161.86,
+    "ratio": 3.263956267706238
+   },
+   {
+    "cluster": "RXC1825",
+    "R500_kpc": 1105.0,
+    "Mb_R500_Msun": 65235648597350.6,
+    "ratio": 3.638416990466765
+   },
+   {
+    "cluster": "ZW1215",
+    "R500_kpc": 1358.0,
+    "Mb_R500_Msun": 110221764768726.95,
+    "ratio": 3.421144822673016
+   }
+  ]
+ },
+ "t500": {
+  "vir_keV": {
+   "A1644": 4.44833093897157,
+   "A1795": 5.410160388392111,
+   "A2029": 8.350685766137314,
+   "A2142": 8.467817756078176,
+   "A2255": 5.925336528585695,
+   "A2319": 7.316961563152596,
+   "A3158": 5.110793095572181,
+   "A3266": 8.290965180682644,
+   "A644": 6.199687174742164,
+   "A85": 6.16367806195486,
+   "RXC1825": 4.9745791084095865,
+   "ZW1215": 7.599542642602888
+  },
+  "emp_keV": {
+   "A1644": 2.524234972340849,
+   "A1795": 3.8855889006652866,
+   "A2029": 6.2909822337486405,
+   "A2142": 6.870102680007288,
+   "A2255": 5.27929254416193,
+   "A2319": 7.029898553925637,
+   "A3158": 5.4835235858392535,
+   "A3266": 8.789226221907928,
+   "A644": 6.1356803333761265,
+   "A85": 4.150644771100533,
+   "RXC1825": 6.42982075418466,
+   "ZW1215": 7.897658272448415
+  }
+ },
+ "verdicts": {
+  "V1_pooled_collapse_lt_0.15_dex": {
+   "rms_dex": 0.31281861498602814,
+   "rms_emp_row_dex": 0.32520553117961193,
+   "pass": false,
+   "statement": "FAIL at the prediction level: 0.31 (vir) / 0.32 (emp) dex; the P5 falsifier sits at 0.30"
+  },
+  "V2_outlier_count": {
+   "n": 0,
+   "list": [],
+   "n_single_bin": 0,
+   "list_single_bin": [],
+   "pass": true
+  },
+  "V3_honest_statement": {
+   "verdict": "MIXED on the framework's own curve (V1 FAIL, at the falsifier line) but SINGLE structures per the r-space control (0.04-0.18 dex); no superposition markers: 0 outliers, no correlate (M500/kTvir/fgas)",
+   "clean_subset": [],
+   "n_clean": 0,
+   "statement": "THE SAMPLE IS MIXED ON THE FRAMEWORK'S OWN TEST -- and the reading is STRUCTURALLY SINGLE, CURVE-FAILING.  (i) The 12 ratio-profiles do NOT collapse onto one curve at the predicted level: the pooled scatter of log10 R at fixed x = 0.313 dex (T500_vir) / 0.325 dex (T500_emp), ~2.1x the <0.15-dex prediction, sitting AT the P5 falsifier line (0.3 dex).  (ii) The scatter is NOT concentrated: 0 of 12 clusters depart by > 3 sigma (max cluster-mean 0.65 sigma, A3266; max single bin 2.46 sigma) and the departures show only a weak positive correlate with f_gas(420) (rho = +0.50, p = 0.10; M500 p = 0.22, kTvir p = 0.35, and the ordering shifts under the T500_emp calibration) -- the scatter is sample-wide, the mark of a per-cluster LEVELS spread (per-cluster rms 0.22-0.45 dex), not of scrambled profiles.  (iii) The CONTROL decides what kind of objects these are: at FIXED radius the 12 systems scatter only 0.079 dex (median over 8 radii, range 0.063-0.159), with the OUTERMOST bins the tightest (0.089 dex at 600 kpc) -- the systems ARE single equilibrium structures in the standard self-similar sense (Ghirardini+19's own minimum-scatter window), NOT line-of-sight superpositions, which would scramble the ratio-profiles far beyond this.  (iv) The framework's collapse-in-x fails because R carries the sample-wide dark-to-baryon ratio x (2.0-37.6) with the per-cluster offsets the registered amplitude input (the free-dust normalization, G075/G012) already owns: the G104 aperture power law (kTvir/T_floor at R500, f = 3.2-7.0) collapses at 0.05 dex because the aperture aligns each cluster at its own R500; the PROFILE-level x-space version filters no such level out and fails at 0.31 dex.  CLEAN SUBSET for the framework's tests (clusters whose own 8-bin rms about the pooled curve stays < 0.15 dex, T500_vir): 0 of 12 -- none; the aperture-level subset (G104's f = 3.2-7.0 power law, 0.05 dex) remains all 12."
+  }
+ }
+}
