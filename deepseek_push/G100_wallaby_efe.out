@@ -1,0 +1,115 @@
+# kinematic catalogue: 303 rows -> 236 unique galaxies (multi-tile re-releases dropped)
+# source catalogue: 3454 rows -> 2419 unique names (targets; exact-name dedupe)
+# dist_h check: Vsys_model/dist_h median 69.93 (p16 69.71, p84 70.07; n=236; |r-70|<5 for 100%) -> Hubble distances with H0=70 confirmed
+# quality drop (neighbour set): rel<0.8 or qflag==4 -> 544 removed
+# comment pipeline: 39 drops, 15 fragment merges requested
+# comment merges applied: 6 fragment rows folded into their parent galaxy (mass added)
+# geometric double-detection merges: 2 (<0.75 arcmin, |dD|<0.71 Mpc, f-ratio<3)
+# CLEAN NEIGHBOUR catalogue: 1828 sources
+# TARGETS: 2372 physical galaxies (2419 deduped minus 47 merged/dropped fragments)
+
+========================================================================================
+PART 2 -- g_ext FROM THE SURVEY ITSELF (nearest-neighbour sources,
+          targets = all 2372 catalogue sources; neighbours = clean 1828
+          linking: |dD|<=2 Mpc physical-pair corridor, d_proj<=200 kpc)
+  galaxy-level e_N == g_ext/a0 (registered G036/G044 convention):
+    -- all 2372 sources --
+    gas-only (1.33*M_HI)       median    0.0000  p90    0.0000  max    0.0966  | n>0.10:   0  n>0.30:  0  n>0.50:  0
+    gas+stars (2.66*M_HI)      median    0.0000  p90    0.0000  max    0.1931  | n>0.10:   2  n>0.30:  0  n>0.50:  0
+    summed <=200 kpc (bracket): median 0.00000  max 0.19314
+    raw-3D conservative (sightline-ambiguous links, 289 encountered): median 0.00000  max 0.00001
+    -- kinematic subset (233 with rotation curves) --
+    gas+stars (2.66*M_HI)      median    0.0000  p90    0.0003  max    0.0033  | n>0.10:   0  n>0.30:  0  n>0.50:  0
+  top-15 sources by g_ext (bracket; kinematic = K, comment-confirmed pair = P):
+   [  ] WALLABY J132029-214845      D=  22.5  d= 17.1 kpc  dD=1.78 Mpc  dv=122.9 km/s   M_HI,j=10.15  e_N= 0.1931  <- WALLABY J132018-214925 
+   [ P] WALLABY J130003-183028      D= 196.6  d= 22.2 kpc  dD=0.78 Mpc  dv= 50.1 km/s   M_HI,j=10.15  e_N= 0.1142  <- WALLABY J130002-183046 Possible galaxy pair (twestmeier)
+   [ P] WALLABY J130647-162241      D= 156.2  d= 25.4 kpc  dD=0.76 Mpc  dv= 49.3 km/s   M_HI,j= 9.76  e_N= 0.0356  <- WALLABY J130645-162250 Close galaxy pair; contains galaxy WALLABY J
+   [  ] WALLABY J124531-003203      D=  23.1  d= 47.6 kpc  dD=1.22 Mpc  dv= 84.5 km/s   M_HI,j= 9.99  e_N= 0.0173  <- WALLABY J124508-002747 
+   [  ] WALLABY J132020-124006      D=  20.8  d= 34.6 kpc  dD=0.34 Mpc  dv= 23.6 km/s   M_HI,j= 9.67  e_N= 0.0154  <- WALLABY J132019-123420 
+   [  ] WALLABY J103704-252038      D=  53.0  d= 77.4 kpc  dD=0.05 Mpc  dv=  3.3 km/s   M_HI,j=10.31  e_N= 0.0136  <- WALLABY J103725-251916 
+   [  ] WALLABY J101448-433152      D=  43.9  d= 70.3 kpc  dD=0.58 Mpc  dv= 39.5 km/s   M_HI,j=10.14  e_N= 0.0112  <- WALLABY J101457-433710 
+   [  ] WALLABY J130323-172339      D=  43.7  d= 38.2 kpc  dD=1.38 Mpc  dv= 95.0 km/s   M_HI,j= 9.55  e_N= 0.0097  <- WALLABY J130311-172230 
+   [  ] WALLABY J103114-295837      D=  59.9  d= 47.9 kpc  dD=1.29 Mpc  dv= 87.6 km/s   M_HI,j= 9.73  e_N= 0.0093  <- WALLABY J103124-295706 
+   [  ] WALLABY J131859-183522      D=  36.1  d= 11.9 kpc  dD=1.24 Mpc  dv= 85.4 km/s   M_HI,j= 8.48  e_N= 0.0084  <- WALLABY J131854-183512 Partial detection of galaxy WALLABY J131859-
+   [ P] WALLABY J170550-620939      D=  21.3  d= 57.7 kpc  dD=0.21 Mpc  dv= 14.5 km/s   M_HI,j= 9.81  e_N= 0.0077  <- WALLABY J170659-620502 Galaxy pair. (Tobias Westmeier)
+   [  ] WALLABY J124800+042609      D=  14.6  d= 27.9 kpc  dD=0.53 Mpc  dv= 36.8 km/s   M_HI,j= 9.16  e_N= 0.0074  <- WALLABY J124747+042017 
+   [  ] WALLABY J132435-194801      D= 115.0  d= 72.7 kpc  dD=0.13 Mpc  dv= 31.7 km/s   M_HI,j= 9.99  e_N= 0.0073  <- WALLABY J132440-194953 Part of this galaxy was previously detected 
+   [ P] WALLABY J130216-145410      D=  69.5  d= 84.7 kpc  dD=0.10 Mpc  dv=  6.7 km/s   M_HI,j=10.11  e_N= 0.0071  <- WALLABY J130213-145817 Possible interacting system (twestmeier)
+   [ P] WALLABY J131751-185007      D= 103.5  d= 60.9 kpc  dD=0.02 Mpc  dv=  6.3 km/s   M_HI,j= 9.71  e_N= 0.0054  <- WALLABY J131745-185133 Galaxy pair (Tobias Westmeier)One of the gal
+
+  CROSS-CHECK vs the registered 2M++/MCXC table (G044 axis): 234/2372 targets matched
+    2M++/MCXC maxclu-can936 (G044 committed): median 0.0042  p90 0.0227  max 0.1193
+    2M++/MCXC noclu-can936: median 0.0005  max 0.0148
+    survey-bracket: median 0.00000  max 0.00329  | Spearman(log,log)=0.162
+
+========================================================================================
+PART 3 -- THE RAR WITH THE ENVIRONMENTAL LENS (WALLABY-DR2 gas-RAR)
+========================================================================================
+  RAR points (all rings, gas abscissa): 1725 points / 236 galaxies (kinematic rows without ring data: 0)
+  NOTE: kinematic galaxies absorbed as fragments (env row in parent): WALLABY J123138+035620, WALLABY J130314-172514, WALLABY J132947-175747
+  deep-end sets: last-ring 236 | outer-2-rings 472 | g_N<0.1a0 1672 | g_N<0.3a0 1725
+  registered split test (deep-end residual, HIGH-e_N minus LOW-e_N):
+  [last-ring/survey-gas] n=46  split@e_N=0.00043 (p75)  hi n=12  lo n=34  offset=-0.2070 dex  CI95=[-0.5054, +0.0501]  p(offset>=0)=0.083  (registered bar |0.05| dex, additive sign = negative)
+  [last-ring/survey-bracket] n=46  split@e_N=0.00086 (p75)  hi n=12  lo n=34  offset=-0.2070 dex  CI95=[-0.5054, +0.0501]  p(offset>=0)=0.083  (registered bar |0.05| dex, additive sign = negative)
+  [last-ring/2mpp-maxclu] n=236  split@e_N=0.00769 (p75)  hi n=59  lo n=177  offset=+0.0704 dex  CI95=[-0.0348, +0.1383]  p(offset>=0)=0.896  (registered bar |0.05| dex, additive sign = negative)
+  [outer2/survey-gas] n=92  split@e_N=0.00044 (p75)  hi n=24  lo n=68  offset=-0.1744 dex  CI95=[-0.5054, +0.0501]  p(offset>=0)=0.083  (registered bar |0.05| dex, additive sign = negative)
+  [outer2/survey-bracket] n=92  split@e_N=0.00087 (p75)  hi n=24  lo n=68  offset=-0.1744 dex  CI95=[-0.5054, +0.0501]  p(offset>=0)=0.083  (registered bar |0.05| dex, additive sign = negative)
+  [outer2/2mpp-maxclu] n=472  split@e_N=0.00769 (p75)  hi n=118  lo n=354  offset=+0.0838 dex  CI95=[-0.0348, +0.1383]  p(offset>=0)=0.896  (registered bar |0.05| dex, additive sign = negative)
+  [gN<0.1a0/survey-gas] n=413  split@e_N=0.00041 (p75)  hi n=119  lo n=294  offset=-0.0321 dex  CI95=[-0.5054, +0.0501]  p(offset>=0)=0.083  (registered bar |0.05| dex, additive sign = negative)
+  [gN<0.1a0/survey-bracket] n=413  split@e_N=0.00082 (p75)  hi n=119  lo n=294  offset=-0.0321 dex  CI95=[-0.5054, +0.0501]  p(offset>=0)=0.083  (registered bar |0.05| dex, additive sign = negative)
+  [gN<0.1a0/2mpp-maxclu] n=1672  split@e_N=0.00770 (p75)  hi n=423  lo n=1249  offset=+0.0448 dex  CI95=[-0.0348, +0.1383]  p(offset>=0)=0.896  (registered bar |0.05| dex, additive sign = negative)
+  [gN<0.3a0/survey-gas] n=433  split@e_N=0.00041 (p75)  hi n=125  lo n=308  offset=-0.0387 dex  CI95=[-0.5054, +0.0501]  p(offset>=0)=0.083  (registered bar |0.05| dex, additive sign = negative)
+  [gN<0.3a0/survey-bracket] n=433  split@e_N=0.00082 (p75)  hi n=125  lo n=308  offset=-0.0387 dex  CI95=[-0.5054, +0.0501]  p(offset>=0)=0.083  (registered bar |0.05| dex, additive sign = negative)
+  [gN<0.3a0/2mpp-maxclu] n=1725  split@e_N=0.00809 (p75)  hi n=434  lo n=1291  offset=+0.0553 dex  CI95=[-0.0348, +0.1383]  p(offset>=0)=0.896  (registered bar |0.05| dex, additive sign = negative)
+
+  radii-resolved e_N,RAR = g_ext/g_N at the deep-end points:
+    last-ring    median   0.000  p90    0.01  max    0.21  |  frac>0.1  0.02  frac>0.5  0.00  frac>1  0.00
+    outer2       median   0.000  p90    0.01  max    0.21  |  frac>0.1  0.02  frac>0.5  0.00  frac>1  0.00
+    gN<0.1a0     median   0.000  p90    0.02  max    0.21  |  frac>0.1  0.01  frac>0.5  0.00  frac>1  0.00
+    gN<0.3a0     median   0.000  p90    0.02  max    0.21  |  frac>0.1  0.01  frac>0.5  0.00  frac>1  0.00
+  RAR table (gas abscissa, all rings; this sample covers only the deep end, g_N <= 0.2 a0):
+    log g_N/a0         n mean g_obs       rms mean resid
+    [ -2.25, -2.00)     30    -0.788     0.260     0.087
+    [ -2.00, -1.75)    271    -0.605     0.367     0.151
+    [ -1.75, -1.50)    608    -0.429     0.384     0.213
+    [ -1.50, -1.25)    568    -0.268     0.402     0.253
+    [ -1.25, -1.00)    195    -0.162     0.450     0.231
+    [ -1.00, -0.75)     50     0.029     0.390     0.292
+    [ -0.75, -0.50)      3    -0.044     0.299     0.107
+
+========================================================================================
+VERDICTS
+========================================================================================
+V1: {
+  "convention": "e_N = g_ext/a0 (registered G036/G044 galaxy-level axis)",
+  "source": "WALLABY-DR2 source catalogue, survey-complete HI-selected nearest neighbours (clean neighbour set, WALLABY-comment-verified pairs; fragments/tile duplicates removed)",
+  "n_targets": 2372,
+  "n_neighbours": 1828,
+  "gas_only": {
+    "median": 0.0,
+    "p90": 2.316215652395095e-06,
+    "max": 0.09656655973767866
+  },
+  "gas_plus_stars_bracket": {
+    "median": 0.0,
+    "p90": 4.63243130479019e-06,
+    "max": 0.19313311947535733,
+    "count_gt_0_1": 2,
+    "count_gt_0_3": 0,
+    "count_gt_0_5": 0,
+    "max_source": "WALLABY J132029-214845",
+    "max_neighbour": "WALLABY J132018-214925",
+    "max_sep_kpc": 17.057243900884504
+  },
+  "registered_boundary": 0.5,
+  "brief_question": "max g_ext/a0 reaching 0.3-0.5: NO (max 0.1931)"
+}
+
+V2: {
+  "enabled_now": false,
+  "verdict": "STAYS-REGISTERED",
+  "registered_protocol": "the registered 0.5-a0 boundary needs max e_N >= 0.50; measured max e_N = 0.1931 (BELOW) -- the survey-pair axis (0.193, genuine close pairs) edges out the 2M++/MCXC maxclu axis (0.119, G044), but BOTH stay below the 0.3 level",
+  "g044_recorded_max": "0.119 (maxclu can936, 2M++/MCXC, frozen 2026-09-14; reproduced here on 234 targets)"
+}
+
+V3: WALLABY DR2 contribution: official survey-complete HI-selected environment + 236 gas rotation curves. The richest RESOLVED pair/group environments (team-comment-verified galaxy pairs, interacting systems, gas bridges; fragments, sidelobes and tile duplicates removed by the same comments) reach g_ext/a0 ~ 0.097 with gas-only neighbour masses (0.193 with the gas+stars bracket) -- a factor ~3 SHORT of the registered 0.5-a0 boundary. The survey pair/group axis peaks at e_N = 0.1931 -- just ABOVE the registered 2M++/MCXC maxclu max (0.1193, G044, cluster+field sum) for the few genuine close pairs, but no pair in DR2 provides the galaxy-level e_N ~ 0.5 field the registered split demands; both axes stay below 0.30. The deep-end gas-RAR shows the registered split NOT ESTABLISHED (null/opposite-sign on the registered 2M++/MCXC axis; the survey-pair axis shows a candidate additive-sign offset at the last ring, p ~ 0.08, bootstrap CI including 0 -- under the frozen G044 reading a positive at e_N <= 0.1 class amplitudes triggers a confounder audit, not a claim, and here it fails that audit's requirement too) at this sample's e_N range (last-ring offset -0.207 dex vs the 0.05-dex bar; expected architecture shift at these amplitudes ~1e-3-1e-2 dex). What DR3 needs: (1) a pointing on a RESOLVED close pair of gas-rich dwarfs at <=8-15 kpc separation (at DR2's distances ~1-2 arcmin pairs; none confirmed in DR2: the arcmin-scale candidates are mostly half-detections/tile duplicates, which the WALLABY comments themselves label) -- that would push g_ext/a0 into 0.3-0.5 with existing masses; (2) stellar/baryonic masses per kinematic galaxy (today only integrated HI exists -- the gas-only abscissa carries O(1) geometry/systematics, visible as the +0.2-dex absolute deep-end offset of this first-pass gas-RAR); (3) the registered BIG-SPARC path (full-baryon extragalactic RAR at e_N ~ 1) remains the clean route to the EFE split.
