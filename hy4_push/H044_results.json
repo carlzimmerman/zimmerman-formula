@@ -1,0 +1,485 @@
+{
+  "lane": "H044",
+  "pass": 8,
+  "fail": 3,
+  "results": [
+    {
+      "check": "S1 [THE CAP IS a_0-FREE] r_cap = D sqrt(M_sat/M_host): the two footings\n      must agree exactly, because a_0 cancels between r_M and g_ext",
+      "measured": "|r_cap(f1) - r_cap(f2)|/r_cap = 0.000e+00  (D=100 kpc, M_sat=1e7, M_h=6e10 -> r_cap = 1.2910 kpc)",
+      "threshold": "relative difference < 1e-12 (machine agreement)",
+      "pass": true
+    },
+    {
+      "check": "S2 [THE MASTER IDENTITY] r_cap/r_M,sat = D/r_M,host over 4 decades of\n      satellite mass and 20-300 kpc: the satellite's own mass cancels",
+      "measured": "max |lhs/rhs - 1| over the 16-cell grid = 2.220e-16",
+      "threshold": "max relative deviation < 1e-9",
+      "pass": true
+    },
+    {
+      "check": "S3 [THE LIMIT] the unified law must reduce to G070's certified isolated\n      line (G M_b a_0)^{1/4}/sqrt(2) when the cap does not bite",
+      "measured": "|sigma_law/sigma_iso - 1| at R/r_M = 1e6: f1=5.00e-07  f2=5.00e-07",
+      "threshold": "relative deviation < 1e-3 for both footings",
+      "pass": true
+    },
+    {
+      "check": "S4 [THE CROSSOVER] the framework does NOT predict blanket suppression:\n      there is a radius D* = 5.408 r_M,host where satellite = field",
+      "measured": "D* = f1:51.1 kpc  f2:46.6 kpc  (measured S_M at 20 kpc = 0.486, at 100 kpc = 1.369)",
+      "threshold": "S_M(20 kpc) < 1 AND S_M(100 kpc) > 1 (sign must flip)",
+      "pass": true
+    },
+    {
+      "check": "S5 [THE SUPPRESSION IS BOUNDED] for an MW-mass host the strongest\n      suppression available to any REAL satellite (innermost is\n      Sagittarius at D ~ 18 kpc) is finite and small",
+      "measured": "S_M(18 kpc) = 0.453 (mass) = 0.344 dex, S_sigma = 0.673 = 0.172 dex; absolute floor as D->0: S_M = 0.156 = 0.807 dex, S_sigma = 0.395 = 0.403 dex",
+      "threshold": "S_M(18 kpc) > 0.3 (i.e. less than 0.53 dex of suppression)",
+      "pass": true
+    },
+    {
+      "check": "S6 [WHERE THE FRAMEWORK SAYS THE CAP IS INERT, IT WORKS] the 8 uncapped\n      satellites must sit on G070's zero-parameter isolated line",
+      "measured": "median |log10(sigma_pred/sigma_obs)| = 0.079 dex; median signed = +0.049 dex (n = 8)",
+      "threshold": "median |log10| <= 0.15 dex",
+      "pass": true
+    },
+    {
+      "check": "S7 [WHERE THE FRAMEWORK SAYS THE CAP BITES, IT FAILS] the 24 capped\n      satellites must ALSO sit within 0.30 dex of the capped prediction",
+      "measured": "median log10(sigma_pred/sigma_obs) = -0.487 dex (observed is 3.1x ABOVE prediction); median |log10| = 0.487 dex (n = 24); robust subset (capped even at D+8.3 kpc): n = 21, median = -0.535 dex",
+      "threshold": "median |log10(sigma_pred/sigma_obs)| <= 0.30 dex",
+      "pass": false
+    },
+    {
+      "check": "S8 [THE DATA PREFER THE TIDE] if truncation were TIDAL rather than\n      smooth-field, almost nothing would be truncated and every object\n      would sit on the isolated line",
+      "measured": "tidal prescription: 1/32 capped; EFE prescription: 24/32 capped; median |log10| of the isolated line over the tidal-safe 31 = 0.219 dex",
+      "threshold": "<= 3 of 32 tidally capped",
+      "pass": true
+    },
+    {
+      "check": "S9 [TOO-BIG-TO-FAIL IS NOT SOLVED BY THE EFE] TBTF needs the satellites\n      to be suppressed by a factor ~2-3 in V_max (0.30-0.50 dex);\n      the EFE must be able to supply that for the classicals",
+      "measured": "best suppression available among the 9 classicals = 0.128 dex (Ursa Minor, S_sigma = 0.745); median = -0.000 dex; absolute floor from S5 (D=18 kpc) = 0.172 dex; 5 of 9 have r_cap >= R_1/2 and get exactly 0.000 dex",
+      "threshold": "best available suppression >= 0.30 dex",
+      "pass": false
+    },
+    {
+      "check": "S10 [MISSING SATELLITES IS NOT ADDRESSED] the missing-satellites problem\n      is a statement about the NUMBER of subhalos; the EFE must change a\n      predicted COUNT, not merely a velocity dispersion",
+      "measured": "EFE changes sigma for 24/32 satellites by 0.272 dex and leaves the predicted dark/luminous count ratio at 1.000 (needs >= 10 to even pose the problem, so there is nothing for the EFE to remove)",
+      "threshold": "the mechanism must alter a predicted satellite COUNT by >= 2x",
+      "pass": false
+    },
+    {
+      "check": "S11 [TESTABLE] the truncation radius lands inside the measured radial\n      range of published dSph dispersion profiles for most of the sample",
+      "measured": "r_cap in [0.1, 2] kpc for 30/32 satellites; median r_cap = 58 pc; median r_J/r_cap = 25.6",
+      "threshold": ">= 20 of 32 inside the measured radial range",
+      "pass": true
+    }
+  ],
+  "r_cap_law": "r_cap = D * sqrt(M_sat/M_host)   [a_0-free]",
+  "master_identity": "r_cap/r_M,sat = D/r_M,host",
+  "sigma_law": "sigma^2 = (G M_b/2R)[1 + min(R/r_M,sat, D/r_M,host)]",
+  "r_M_host_kpc": {
+    "f1 (9.3619e-11)": 9.452672257659215,
+    "f2 (1.1279e-10)": 8.61194605856116
+  },
+  "D_star_kpc": {
+    "f1 (9.3619e-11)": 51.12194210387256,
+    "f2 (1.1279e-10)": 46.57512667391046
+  },
+  "crossover_meaning": "D* = 5.408 r_M,host: inside->suppressed, outside->enhanced",
+  "S_M_at_18kpc": 0.45320424318034414,
+  "S_sigma_at_18kpc": 0.6732044586753301,
+  "S_M_floor_D_to_0": 0.15605006085952375,
+  "n_satellites": 32,
+  "n_efe_capped": 24,
+  "n_efe_uncapped": 8,
+  "median_log10_capped": -0.4873325570165696,
+  "median_abs_log10_uncapped": 0.0794706506956355,
+  "n_tidally_capped": 1,
+  "median_rJ_over_rcap": 25.63612850650017,
+  "tbf_max_available_dex": 0.1278357030691824,
+  "tbf_needed_dex": 0.3,
+  "verdict": "amplitude law confirmed at 0.08 dex where the cap is inert; smooth-field EFE truncation rejected at 0.49 dex where it bites; tidal truncation preferred; missing-satellites and TBTF not explained by the EFE",
+  "sample": [
+    {
+      "name": "Segue 1",
+      "lM": 2.6280912596999957,
+      "R12": 24.0,
+      "D": 23.0,
+      "rcap": 1.9350751716664651,
+      "frac": 0.08062813215276937,
+      "s_iso": 1.0717773534441393,
+      "s_cap": 0.3615007391195276,
+      "s_obs": 3.7,
+      "lg_cap": -1.0100925344829068
+    },
+    {
+      "name": "Ursa Major II",
+      "lM": 3.880091263059747,
+      "R12": 139.0,
+      "D": 34.7,
+      "rcap": 12.339554518768768,
+      "frac": 0.08877377351632207,
+      "s_iso": 2.2034569861961257,
+      "s_cap": 0.7405607266674387,
+      "s_obs": 5.6,
+      "lg_cap": -0.8786273501378622
+    },
+    {
+      "name": "Carina III",
+      "lM": 3.068091197504269,
+      "R12": 30.0,
+      "D": 27.8,
+      "rcap": 3.881635664252893,
+      "frac": 0.12938785547509643,
+      "s_iso": 1.3807166456558282,
+      "s_cap": 0.5749202898602674,
+      "s_obs": 5.6,
+      "lg_cap": -0.9885803911400828
+    },
+    {
+      "name": "Tucana II",
+      "lM": 3.6680912234125977,
+      "R12": 121.0,
+      "D": 58.0,
+      "rcap": 16.158386055956623,
+      "frac": 0.13354038062774068,
+      "s_iso": 1.9503141295614983,
+      "s_cap": 0.7685930536080305,
+      "s_obs": 8.6,
+      "lg_cap": -1.0488019961651127
+    },
+    {
+      "name": "Carina II",
+      "lM": 3.908091240931486,
+      "R12": 92.0,
+      "D": 36.2,
+      "rcap": 13.294700736233215,
+      "frac": 0.14450761669818715,
+      "s_iso": 2.239260253494804,
+      "s_cap": 0.9559358683681277,
+      "s_obs": 3.4,
+      "lg_cap": -0.5510501596490859
+    },
+    {
+      "name": "Ursa Major I",
+      "lM": 4.160091398608488,
+      "R12": 295.0,
+      "D": 97.3,
+      "rcap": 47.76204510166344,
+      "frac": 0.1619052376327574,
+      "s_iso": 2.5888364274983044,
+      "s_cap": 1.0911086973378497,
+      "s_obs": 7.0,
+      "lg_cap": -0.8072300224208182
+    },
+    {
+      "name": "Reticulum II",
+      "lM": 3.704091290826765,
+      "R12": 51.0,
+      "D": 31.6,
+      "rcap": 9.176078132477585,
+      "frac": 0.1799231006368154,
+      "s_iso": 1.9911527777724045,
+      "s_cap": 0.9626650882252119,
+      "s_obs": 3.3,
+      "lg_cap": -0.5350387177937598
+    },
+    {
+      "name": "Bootes II",
+      "lM": 3.2840912875080623,
+      "R12": 39.0,
+      "D": 42.0,
+      "rcap": 7.520025425488932,
+      "frac": 0.19282116475612643,
+      "s_iso": 1.5635241120727668,
+      "s_cap": 0.7599084198782337,
+      "s_obs": 10.5,
+      "lg_cap": -1.1404280424970923
+    },
+    {
+      "name": "Coma Berenices",
+      "lM": 3.8200912621708887,
+      "R12": 69.0,
+      "D": 42.0,
+      "rcap": 13.9386045284311,
+      "frac": 0.20200876128161013,
+      "s_iso": 2.1286515572418496,
+      "s_cap": 1.05893426649608,
+      "s_obs": 4.6,
+      "lg_cap": -0.637888829632693
+    },
+    {
+      "name": "Hydrus I",
+      "lM": 3.992091276259801,
+      "R12": 53.0,
+      "D": 27.6,
+      "rcap": 11.16552362981692,
+      "frac": 0.210670257166357,
+      "s_iso": 2.3501986926326324,
+      "s_cap": 1.2498601444754742,
+      "s_obs": 2.7,
+      "lg_cap": -0.3345023446554618
+    },
+    {
+      "name": "Crater II",
+      "lM": 5.38809125035545,
+      "R12": 1066.0,
+      "D": 117.5,
+      "rcap": 237.1416659931358,
+      "frac": 0.22245934896166586,
+      "s_iso": 5.249338439720091,
+      "s_cap": 2.5735457608515566,
+      "s_obs": 2.7,
+      "lg_cap": -0.02083186920690517
+    },
+    {
+      "name": "Aquarius II",
+      "lM": 3.8520912725538414,
+      "R12": 160.0,
+      "D": 107.9,
+      "rcap": 37.15279196514038,
+      "frac": 0.23220494978212738,
+      "s_iso": 2.1682261573338213,
+      "s_cap": 1.0896225571774487,
+      "s_obs": 5.4,
+      "lg_cap": -0.6951176744720539
+    },
+    {
+      "name": "Sagittarius",
+      "lM": 7.508091297986769,
+      "R12": 2662.0,
+      "D": 26.7,
+      "rcap": 618.7016655788152,
+      "frac": 0.23241985934591103,
+      "s_iso": 17.787077026660466,
+      "s_cap": 9.978282014081206,
+      "s_obs": 9.6,
+      "lg_cap": 0.01678454111044732
+    },
+    {
+      "name": "Willman 1",
+      "lM": 3.2680912238780255,
+      "R12": 33.0,
+      "D": 45.0,
+      "rcap": 7.910109591529058,
+      "frac": 0.2397002906523957,
+      "s_iso": 1.54918958010747,
+      "s_cap": 0.8343383178424184,
+      "s_obs": 4.0,
+      "lg_cap": -0.6807178018668995
+    },
+    {
+      "name": "Bootes I",
+      "lM": 4.516091201365197,
+      "R12": 191.0,
+      "D": 66.0,
+      "rcap": 48.81057356761954,
+      "frac": 0.25555274119172533,
+      "s_iso": 3.177639033366723,
+      "s_cap": 1.717553123228633,
+      "s_obs": 4.6,
+      "lg_cap": -0.4278476531882613
+    },
+    {
+      "name": "Hercules",
+      "lM": 4.440091335512212,
+      "R12": 216.0,
+      "D": 132.0,
+      "rcap": 89.44250908824058,
+      "frac": 0.414085690223336,
+      "s_iso": 3.0416174783311396,
+      "s_cap": 2.026134721509464,
+      "s_obs": 5.1,
+      "lg_cap": -0.40090185705643366
+    },
+    {
+      "name": "Ursa Minor",
+      "lM": 5.720091299974668,
+      "R12": 405.0,
+      "D": 76.0,
+      "rcap": 224.7934315766366,
+      "frac": 0.5550455100657693,
+      "s_iso": 6.3548394990139725,
+      "s_cap": 5.020244988478749,
+      "s_obs": 9.5,
+      "lg_cap": -0.27699869401069854
+    },
+    {
+      "name": "Horologium I",
+      "lM": 3.612091293620003,
+      "R12": 40.0,
+      "D": 87.0,
+      "rcap": 22.724235125741856,
+      "frac": 0.5681058781435464,
+      "s_iso": 1.8884460607286813,
+      "s_cap": 1.4987069871542529,
+      "s_obs": 4.9,
+      "lg_cap": -0.5144793479814035
+    },
+    {
+      "name": "Sextans",
+      "lM": 5.684091242253688,
+      "R12": 456.0,
+      "D": 95.0,
+      "rcap": 269.5836823542305,
+      "frac": 0.5911922858645406,
+      "s_iso": 6.224501441343132,
+      "s_cap": 5.018419084151295,
+      "s_obs": 7.9,
+      "lg_cap": -0.1970601652136903
+    },
+    {
+      "name": "Leo IV",
+      "lM": 4.104091217633331,
+      "R12": 114.0,
+      "D": 154.0,
+      "rcap": 70.87461364503747,
+      "frac": 0.6217071372371709,
+      "s_iso": 2.506712725085573,
+      "s_cap": 2.0362595981397824,
+      "s_obs": 3.3,
+      "lg_cap": -0.2096807954603665
+    },
+    {
+      "name": "Pegasus III",
+      "lM": 3.748091230592518,
+      "R12": 78.0,
+      "D": 205.0,
+      "rcap": 62.62155550074857,
+      "frac": 0.8028404551378021,
+      "s_iso": 2.0422296111716136,
+      "s_cap": 1.8715782683076598,
+      "s_obs": 5.4,
+      "lg_cap": -0.46018576605173567
+    },
+    {
+      "name": "Grus I",
+      "lM": 3.4960912318555213,
+      "R12": 28.0,
+      "D": 120.0,
+      "rcap": 27.42529051806015,
+      "frac": 0.9794746613592911,
+      "s_iso": 1.7664630977214983,
+      "s_cap": 1.81579183496629,
+      "s_obs": 2.9,
+      "lg_cap": -0.2033319390152906
+    },
+    {
+      "name": "Draco",
+      "lM": 5.660091213036929,
+      "R12": 231.0,
+      "D": 82.0,
+      "rcap": 226.35173811275817,
+      "frac": 0.9798776541677843,
+      "s_iso": 6.139097976628097,
+      "s_cap": 6.417734778384716,
+      "s_obs": 9.1,
+      "lg_cap": -0.15165962700069213
+    },
+    {
+      "name": "Pisces II",
+      "lM": 3.800091229755877,
+      "R12": 60.0,
+      "D": 183.0,
+      "rcap": 59.350048667629586,
+      "frac": 0.9891674777938264,
+      "s_iso": 2.104285045092665,
+      "s_cap": 2.1462282708857674,
+      "s_obs": 5.4,
+      "lg_cap": -0.40071784857056103
+    },
+    {
+      "name": "Canes Venatici II",
+      "lM": 4.176091259055681,
+      "R12": 71.0,
+      "D": 160.0,
+      "rcap": 80.0,
+      "frac": 1.1267605633802815,
+      "s_iso": 2.612790426139676,
+      "s_cap": 2.6983536860023825,
+      "s_obs": 4.6,
+      "lg_cap": -0.2316589575792219
+    },
+    {
+      "name": "Leo V",
+      "lM": 3.8240912582718942,
+      "R12": 49.0,
+      "D": 169.0,
+      "rcap": 56.34517194770699,
+      "frac": 1.1499014683205508,
+      "s_iso": 2.1335586010775365,
+      "s_cap": 2.201101948868705,
+      "s_obs": 2.3,
+      "lg_cap": -0.019087677696079105
+    },
+    {
+      "name": "Carina",
+      "lM": 5.888091277671405,
+      "R12": 311.0,
+      "D": 106.0,
+      "rcap": 380.43098252727344,
+      "frac": 1.2232507476761203,
+      "s_iso": 7.000105424117477,
+      "s_cap": 7.372027670222685,
+      "s_obs": 6.6,
+      "lg_cap": 0.04804302109231791
+    },
+    {
+      "name": "Canes Venatici I",
+      "lM": 5.600091221649728,
+      "R12": 437.0,
+      "D": 211.0,
+      "rcap": 543.5661966249679,
+      "frac": 1.2438585735125123,
+      "s_iso": 5.930681025930034,
+      "s_cap": 6.093682001176251,
+      "s_obs": 7.6,
+      "lg_cap": -0.09593380546237604
+    },
+    {
+      "name": "Sculptor",
+      "lM": 6.4360912132459935,
+      "R12": 279.0,
+      "D": 86.0,
+      "rcap": 580.0540089221578,
+      "frac": 2.079046626961139,
+      "s_iso": 9.596316531262953,
+      "s_cap": 10.636416211277098,
+      "s_obs": 9.2,
+      "lg_cap": 0.06300749592889494
+    },
+    {
+      "name": "Fornax",
+      "lM": 7.444091191087704,
+      "R12": 792.0,
+      "D": 139.0,
+      "rcap": 2992.1597087778136,
+      "frac": 3.7779794302750176,
+      "s_iso": 17.14370002877493,
+      "s_cap": 19.22022769304072,
+      "s_obs": 11.7,
+      "lg_cap": 0.21557266650027873
+    },
+    {
+      "name": "Leo II",
+      "lM": 6.00409126575576,
+      "R12": 171.0,
+      "D": 233.0,
+      "rcap": 955.7095565163438,
+      "frac": 5.588944774949379,
+      "s_iso": 7.483496807395004,
+      "s_cap": 8.288594126920747,
+      "s_obs": 7.4,
+      "lg_cap": 0.04924915404027677
+    },
+    {
+      "name": "Leo I",
+      "lM": 6.820091262170889,
+      "R12": 270.0,
+      "D": 254.0,
+      "rcap": 2665.653661762283,
+      "frac": 9.872791339860306,
+      "s_iso": 11.97028737567882,
+      "s_cap": 13.997654784003386,
+      "s_obs": 9.2,
+      "lg_cap": 0.18226745121238536
+    }
+  ],
+  "source": "Simon (2019), ARA&A 57, 375 (arXiv:1901.05465), Table 1; M/L_V = 1.5 Kroupa (G070 convention)"
+}

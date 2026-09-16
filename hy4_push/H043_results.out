@@ -1,0 +1,252 @@
+==========================================================================
+H043 -- IS THE FRAMEWORK INCONSISTENT FOR D != 4 ?
+==========================================================================
+
+  a_0 = 1.0320e-10 m/s^2   (footings 9.3619e-11 / 1.1279e-10)
+  D scanned: [3, 4, 5, 6, 7, 8, 9, 10]
+
+  general-D laws used:
+    g_N = G M / R^(D-2);   g^2 = a_0 g_N
+    r_M = (G M/a_0)^(1/(D-2));   M_ph/M_b = (R/r_M)^((D-2)/2)
+    Sigma_ph(R) = M_ph(R)/(A_(D-2) R^(D-2)),  A_(D-2) = pi^((D-2)/2)/Gamma(D/2)
+
+==========================================================================
+PART 1 -- THE AMPLITUDE LAW AND r_M IN GENERAL D
+==========================================================================
+
+  E1 [AMPLITUDE-LAW EXPONENT]  H021 certified M_ph/M_b = r/r_M, i.e.
+      exponent exactly 1 at D = 4.  In general D the exponent is (D-2)/2.
+      threshold: |exponent - 1| <= 0.10 (the linearity of the phantom
+      amplitude is certified, not fitted; 10% is a generous band)
+
+        D = 3:  exponent = 0.500
+        D = 4:  exponent = 1.000
+        D = 5:  exponent = 1.500
+        D = 6:  exponent = 2.000
+        D = 7:  exponent = 2.500
+        D = 8:  exponent = 3.000
+        D = 9:  exponent = 3.500
+        D = 10:  exponent = 4.000
+  [PASS] E1 [AMPLITUDE EXPONENT] M_ph/M_b = (r/r_M)^((D-2)/2) equals the certified
+         measured: exponents ['0.50', '1.00', '1.50', '2.00', '2.50', '3.00', '3.50', '4.00']; within 10% of 1: D = [4]
+         The certified law has exponent 1. (D-2)/2 = 1 has the unique solution D = 4. D = 5 gives 3/2 and D = 3 gives 1/2 -- the amplitude law is the first channel that fails away from four dimensions.
+
+  E2 [IS r_M A LENGTH?]  the framework's r_M = sqrt(G M / a_0).  Its
+      dimensions: [G M / a_0] = L^(D-2)  =>  [r_M] = L^((D-2)/2).
+      The amplitude law M_ph/M_b = r/r_M has a dimensionless left side,
+      so r MUST divide by a length: threshold exponent = 1 exactly.
+
+        D = 3:  [r_M] = L^0.50
+        D = 4:  [r_M] = L^1.00
+        D = 5:  [r_M] = L^1.50
+        D = 6:  [r_M] = L^2.00
+        D = 7:  [r_M] = L^2.50
+        D = 8:  [r_M] = L^3.00
+        D = 9:  [r_M] = L^3.50
+        D = 10:  [r_M] = L^4.00
+  [PASS] E2 [r_M IS A LENGTH] sqrt(GM/a_0) has dimensions of length
+         measured: dim exponent (D-2)/2 = [0.5, 1.0, 1.5, 2.0, 2.5, 3.0, 3.5, 4.0]; equals 1 only for D = [4]
+         INTERNAL INCONSISTENCY, not a data fit: at D = 5 sqrt(GM/a_0) carries L^(3/2), so r/r_M has dimensions L^(-1/2) and cannot equal a ratio of masses. The framework's own MOND radius is a length only in four dimensions.
+
+  E3 [THE TWO RADII]  the D-dimensional transition radius is
+      r_M(D) = (G M/a_0)^(1/(D-2)); the framework uses sqrt(G M/a_0).
+      They coincide iff 1/(D-2) = 1/2, i.e. iff D = 4.  Numerical
+      comparison for M = 1e11 M_sun (G M/a_0 = 1.4177e41 in m^(D-2)):
+
+        D    (GM/a0)^(1/(D-2)) [m]      sqrt(GM/a0) [m]        ratio
+        3            1.285956e+41           3.586023e+20   358602296401168629760.0000
+        4            3.586023e+20           3.586023e+20       1.0000
+        5            5.047489e+13           3.586023e+20       0.0000
+        6            1.893680e+10           3.586023e+20       0.0000
+        7            1.666653e+08           3.586023e+20       0.0000
+        8            7.104568e+06           3.586023e+20       0.0000
+        9            7.460133e+05           3.586023e+20       0.0000
+        10            1.376110e+05           3.586023e+20       0.0000
+  [PASS] E3 [TWO DEFINITIONS COINCIDE] (GM/a_0)^(1/(D-2)) = sqrt(GM/a_0)
+         measured: ratio = 1 only at D = [4]
+         The framework's r_M is the D = 4 case of the transition radius. Away from D = 4 it is a different quantity with different units.
+
+  E4 [THE COEFFICIENT]  at R = r_M the phantom mass equals the baryon
+      mass -- is that D-dependent?  M_ph(r_M)/M_b for six decades:
+
+        D      M_ph(r_M)/M_b  (M_b = 1e7 ... 1e13 M_sun)
+        3      1.000000000000 .. 1.000000000000
+        4      1.000000000000 .. 1.000000000000
+        5      1.000000000000 .. 1.000000000000
+        6      1.000000000000 .. 1.000000000000
+        7      1.000000000000 .. 1.000000000000
+        8      1.000000000000 .. 1.000000000000
+        9      1.000000000000 .. 1.000000000000
+        10      1.000000000000 .. 1.000000000000
+  [PASS] E4 [COEFFICIENT 1] M_ph(r_M) = M_b holds in every dimension
+         measured: ratio = 1 to 1e-12 for all D scanned
+         HONEST NEGATIVE: the unit coefficient of the amplitude law is D-independent. This channel is not a selector.
+
+==========================================================================
+PART 2 -- THE DEEP LAW IN D: ROTATION CURVES AND THE BTFR
+==========================================================================
+
+  E5 [FLATNESS]  deep MOND: g = sqrt(a_0 G M)/R^((D-2)/2), so
+      v^2 = g R = sqrt(a_0 G M) R^((4-D)/2)  =>  d ln v / d ln R = (4-D)/4.
+      Observed outer rotation curves are FLAT: |d ln v/d ln R| <= 0.05
+      (SPARC outer slopes scatter at the few-percent level).
+
+        D = 3:  d ln v / d ln R = +0.250    v(10 r_M)/v(r_M) = 1.7783
+        D = 4:  d ln v / d ln R = +0.000    v(10 r_M)/v(r_M) = 1.0000
+        D = 5:  d ln v / d ln R = -0.250    v(10 r_M)/v(r_M) = 0.5623
+        D = 6:  d ln v / d ln R = -0.500    v(10 r_M)/v(r_M) = 0.3162
+        D = 7:  d ln v / d ln R = -0.750    v(10 r_M)/v(r_M) = 0.1778
+        D = 8:  d ln v / d ln R = -1.000    v(10 r_M)/v(r_M) = 0.1000
+        D = 9:  d ln v / d ln R = -1.250    v(10 r_M)/v(r_M) = 0.0562
+        D = 10:  d ln v / d ln R = -1.500    v(10 r_M)/v(r_M) = 0.0316
+  [PASS] E5 [FLAT ROTATION CURVES] |d ln v / d ln R| <= 0.05
+         measured: slopes ['+0.25', '+0.00', '-0.25', '-0.50', '-0.75', '-1.00', '-1.25', '-1.50']; flat only for D = [4]
+         EXCLUDES D >= 5. At D = 5 the deep-MOND rotation curve DECLINES as v ~ R^(-1/4): over one decade in radius v falls by 44%, where SPARC galaxies hold v constant to a few percent. It also excludes D = 3 (curves rise as R^(+1/4)).
+
+  E6 [DECADE DROP]  v(10 r_M)/v(r_M) = 10^((4-D)/4) against the
+      observed flatness band 0.90 - 1.10 over a decade in radius:
+
+        D = 3:  factor 1.7783   OUTSIDE [0.90, 1.10]
+        D = 4:  factor 1.0000   inside [0.90, 1.10]
+        D = 5:  factor 0.5623   OUTSIDE [0.90, 1.10]
+        D = 6:  factor 0.3162   OUTSIDE [0.90, 1.10]
+        D = 7:  factor 0.1778   OUTSIDE [0.90, 1.10]
+        D = 8:  factor 0.1000   OUTSIDE [0.90, 1.10]
+        D = 9:  factor 0.0562   OUTSIDE [0.90, 1.10]
+        D = 10:  factor 0.0316   OUTSIDE [0.90, 1.10]
+  [PASS] E6 [DECADE DROP IN v] v(10 r_M)/v(r_M) inside [0.90, 1.10]
+         measured: only D = [4] survives
+         Quantitative version of E5 on a physical decade of radius.
+
+  E7 [BTFR]  at a fixed scaled radius the mass-speed relation is
+      M ∝ V^(2(D-2)):  D = 4 gives the observed M ∝ V^4.  Observed
+      slope = 3.85 +/- 0.09 (Lelli et al. 2019); band used here 3.5-4.5.
+
+        D = 3:  M ∝ V^2
+        D = 4:  M ∝ V^4
+        D = 5:  M ∝ V^6
+        D = 6:  M ∝ V^8
+        D = 7:  M ∝ V^10
+        D = 8:  M ∝ V^12
+        D = 9:  M ∝ V^14
+        D = 10:  M ∝ V^16
+  [PASS] E7 [BTFR SLOPE] predicted exponent 2(D-2) inside the observed band 3.5-4.5
+         measured: exponents [2.0, 4.0, 6.0, 8.0, 10.0, 12.0, 14.0, 16.0]; inside band: D = [4]
+         D = 5 predicts M ∝ V^6, D = 3 predicts M ∝ V^2. The observed slope 4 is the D = 4 value; implied D = 2 + slope/2 = 3.925 +/- 0.045.
+
+  E8 [IS THE DEEP LAW ITSELF D-DEPENDENT?]  Gauss/AQUAL check: for a
+      point mass, div((g/a_0) g) integrated over the (D-2)-sphere gives
+      g^2/a_0 = G M/(S_(D-2) R^(D-2)) -- i.e. g^2 = a_0 g_N in EVERY D.
+      Numerically: g(R)/sqrt(a_0 G M/R^(D-2)) should be 1 for all D.
+
+        D = 3:  g / sqrt(a_0 G M / R^(D-2)) = 1.000000000000
+        D = 4:  g / sqrt(a_0 G M / R^(D-2)) = 1.000000000000
+        D = 5:  g / sqrt(a_0 G M / R^(D-2)) = 1.000000000000
+        D = 6:  g / sqrt(a_0 G M / R^(D-2)) = 1.000000000000
+        D = 7:  g / sqrt(a_0 G M / R^(D-2)) = 1.000000000000
+        D = 8:  g / sqrt(a_0 G M / R^(D-2)) = 1.000000000000
+        D = 9:  g / sqrt(a_0 G M / R^(D-2)) = 1.000000000000
+        D = 10:  g / sqrt(a_0 G M / R^(D-2)) = 1.000000000000
+  [PASS] E8 [DEEP LAW FORM] g^2 = a_0 g_N follows from the D-dim Gauss/AQUAL flux
+         measured: ratio = 1.000000000000 for every D scanned
+         HONEST NEGATIVE: the FORM of the deep law is D-independent. What changes with D is the observable it implies (E5-E7), not the law.
+
+==========================================================================
+PART 3 -- DOES Sigma_ph = a_0/(pi G) SURVIVE IN GENERAL D?
+==========================================================================
+
+  E9 [UNIVERSALITY]  Sigma_ph(R) = M_ph(R)/(A_(D-2) R^(D-2)); at R = r_M
+      Sigma_ph(r_M) = a_0/(G A_(D-2)) -- is it mass-independent?
+
+        D    A_(D-2)      Sigma_ph(r_M) [M_sun/pc^(D-2)]   spread over 6 decades
+        3     2.000000            1.199760e-14          1.32e-16
+        4     3.141593            2.356813e+02          1.21e-16
+        5     4.188790            5.454273e+18          5.63e-16
+        6     4.934802            1.428586e+35          3.87e-16
+        7     5.263789            4.132645e+51          1.61e-16
+        8     5.167713            1.298909e+68          3.69e-16
+        9     4.724766            4.383766e+84          5.90e-16
+        10     4.058712           1.574672e+101          5.92e-16
+  [PASS] E9 [Sigma UNIVERSALITY] Sigma_ph(r_M) is mass-independent in general D
+         measured: relative spread <= 1e-09 over M_b = 1e7..1e13 M_sun for every D
+         HONEST NEGATIVE -- THIS CHANNEL DOES NOT SELECT D. The universality survives because r_M absorbs the mass: Sigma_ph(r_M) = a_0/(G A_(D-2)) with no r_M left in it. Only the geometric prefactor and the UNITS change: at D = 4, A = pi and Sigma = a_0/(pi G) = 213.79 M_sun/pc^2 at the lower footing (H033 quotes 213.74) and 257.57 at the upper one. At D = 5 the same quantity is a volume density, not a surface density -- correct for that dimensionality, not an inconsistency.
+
+  E10 [PROFILE SHAPE]  the phantom density slope: rho_ph ∝ R^(-D/2).
+      Only D = 4 gives the certified 1/R^2 cusp.
+
+        D = 3:  rho_ph ∝ R^-1.5   (phantom mass M_ph ∝ R^0.5)
+        D = 4:  rho_ph ∝ R^-2.0   (phantom mass M_ph ∝ R^1.0)
+        D = 5:  rho_ph ∝ R^-2.5   (phantom mass M_ph ∝ R^1.5)
+        D = 6:  rho_ph ∝ R^-3.0   (phantom mass M_ph ∝ R^2.0)
+        D = 7:  rho_ph ∝ R^-3.5   (phantom mass M_ph ∝ R^2.5)
+        D = 8:  rho_ph ∝ R^-4.0   (phantom mass M_ph ∝ R^3.0)
+        D = 9:  rho_ph ∝ R^-4.5   (phantom mass M_ph ∝ R^3.5)
+        D = 10:  rho_ph ∝ R^-5.0   (phantom mass M_ph ∝ R^4.0)
+  [PASS] E10 [PROFILE SHAPE] rho_ph ∝ 1/R^2 -- the D = 4 phantom cusp
+         measured: slopes -D/2 = [-1.5, -2.0, -2.5, -3.0, -3.5, -4.0, -4.5, -5.0]; equals -2 only at D = 4
+         Same content as E1 in the density language: the halo's shape knows D. Reported here for completeness, not counted as an independent channel.
+
+==========================================================================
+PART 4 -- IS THE FLUID STABLE IN GENERAL D?  (c_s^2 in [0,1])
+==========================================================================
+
+  E11 [SOUND SPEED]  c_s^2(u) = (u^2+3u+2)/(u^2+3u+4), u = the MOND
+      variable.  The expression is a ratio of polynomials in u alone --
+      no D enters -- so it is the same in every dimension.  Scan:
+
+        u in [0, 1e6]:  c_s^2 in [0.500000000, 1.000000000]
+        1 - c_s^2 = 2/(u^2+3u+4) > 0  ->  subluminal for all u >= 0
+        c_s^2 - 0 = (u+1)(u+2)/(u^2+3u+4) > 0  ->  stable for all u >= 0
+  [PASS] E11 [STABLE AND CAUSAL] 0 < c_s^2 < 1 for every u >= 0
+         measured: c_s^2 in [0.500000000, 1.000000000] on u in [0,1e6]; c_s^2(0) = 1/2, sup = 1
+         HONEST NEGATIVE -- THIS CHANNEL DOES NOT SELECT D. The sound speed is a function of the dimensionless MOND variable only (H008 derived it from the k-essence kinetic function f(X)); the spacetime dimension never enters. The fluid is stable and subluminal in every D, so stability imposes no constraint on the dimensionality.
+
+==========================================================================
+PART 5 -- VERDICT
+==========================================================================
+
+  E12 [THE n = 2 COUNT, AS PREMISE]  H030/H017 (already established,
+      NOT a new finding here): n = D(D-3)/2 = 2 forces D = 4.
+
+        D = 3:  n = 0
+        D = 4:  n = 2
+        D = 5:  n = 5
+        D = 6:  n = 9
+        D = 7:  n = 14
+        D = 8:  n = 20
+        D = 9:  n = 27
+        D = 10:  n = 35
+  [PASS] E12 [MODE COUNT] n = D(D-3)/2 = 2 (H030, cited as premise not as new result)
+         measured: n(D) = [0, 2, 5, 9, 14, 20, 27, 35]; n = 2 only at D = 4
+         PREMISE. Listed so the verdict table is complete; the new content of this lane is E1-E3, E5-E7.
+
+  ---- verdict table ------------------------------------------------
+   D   n    amp-exp   [r_M]     dlnv/dlnR   M∝V^k   Sigma univ   c_s^2    verdict
+   3   0    0.50    L^0.5     +0.250     V^2     yes          ok       EXCLUDED
+   4   2    1.00    L^1.0     +0.000     V^4     yes          ok       CONSISTENT
+   5   5    1.50    L^1.5     -0.250     V^6     yes          ok       EXCLUDED
+   6   9    2.00    L^2.0     -0.500     V^8     yes          ok       EXCLUDED
+   7  14    2.50    L^2.5     -0.750     V^10    yes          ok       EXCLUDED
+   8  20    3.00    L^3.0     -1.000     V^12    yes          ok       EXCLUDED
+   9  27    3.50    L^3.5     -1.250     V^14    yes          ok       EXCLUDED
+  10  35    4.00    L^4.0     -1.500     V^16    yes          ok       EXCLUDED
+  --------------------------------------------------------------------
+  [PASS] E13 [INCONSISTENCY FOUND] the D-generalised framework is inconsistent for some D >= 5
+         measured: excluded dimensions: [3, 5, 6, 7, 8, 9, 10]; survivors: [4]
+         Every D >= 5 fails three independent channels (amplitude-law exponent and r_M dimensionality, rotation-curve flatness, BTFR slope). D = 3 fails the same channels and also has n = 0 (no propagating graviton). D = 4 passes all of them.
+
+  ---- why this is not circular --------------------------------------
+   * E2 (r_M is a length) is pure dimensional analysis of the
+     framework's own definitions -- no galaxy data enters.
+   * E5-E7 use SPARC-class facts (flat outer curves, BTFR slope 4)
+     that are MEASURED, and a_0 cancels out of the exponents.
+   * No channel uses a_0 = (1/2) c sqrt(G rho_Lambda): H029 showed that
+     relation is algebraically identical to the postulate.
+   * The polarization count (E12) is H030's, cited not re-derived.
+
+H043 READING:  13 PASS / 0 FAIL
+==========================================================================
+THE FRAMEWORK IS INCONSISTENT FOR EVERY D != 4 (D >= 3)
+    excluded: [3, 5, 6, 7, 8, 9, 10]
+    D = 4 is the unique consistent dimension
+==========================================================================

@@ -83,6 +83,14 @@ The theory is EFT-like with scale Λ = 2.24 meV. What is the cutoff, and is ther
 **17. Quantum stability of the vacuum.**
 Is the K = 0 vacuum stable against gradient formation? (H035 shows ρ *drops* with K, which may signal an instability.) *Decider:* stability analysis — **this is important given H035's sign result.**
 
+**17b. Is φ̇ = 0 (H011's frozen scalar) an attractor or an imposed constraint? — CLOSED by H038.**
+H038 integrates the FLRW scalar EOM: K = −φ̇²/(2Λ⁴) ≤ 0 always, so the domain K ≥ 0 isolates the
+**single** configuration φ̇ = 0 (no neighbourhood ⇒ "attractor" is ill-posed); off it f′(K) = μ₂(iw)
+has Im = 2w/(1+w²)² ≠ 0, so there is no real rolling solution at all; f′(K) ≤ 2√K → 0 at the frozen
+point, so the EOM supplies no barrier and the linearised EOM is 0 = 0. Verdict: **imposed constraint**
+(a reality/domain condition), not an attractor. Decay of |φ̇| (a^−3/2, a^−1) is measured only on the
+analytic continuation, at K < 0 — outside the theory. Lean: 18 theorems, exit 0, zero sorry.
+
 **18. The cosmological constant problem.**
 The framework relates Λ to a₀ and M_Pl but does not explain why ρ_Λ is small relative to QFT estimates. State precisely what it does and does not address. *Decider:* an honest scope statement.
 

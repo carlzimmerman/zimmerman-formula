@@ -1,0 +1,185 @@
+{
+  "lane": "H043",
+  "a0": 1.032045e-10,
+  "a0_footings": [
+    9.3619e-11,
+    1.1279e-10
+  ],
+  "verdict": {
+    "3": {
+      "n": 0,
+      "amp_exponent": 0.5,
+      "rM_length_exponent": 0.5,
+      "dlnv_dlnR": 0.25,
+      "btfr_exponent": 2.0,
+      "sigma_universal": true,
+      "cs2_stable": true,
+      "consistent": false
+    },
+    "4": {
+      "n": 2,
+      "amp_exponent": 1.0,
+      "rM_length_exponent": 1.0,
+      "dlnv_dlnR": 0.0,
+      "btfr_exponent": 4.0,
+      "sigma_universal": true,
+      "cs2_stable": true,
+      "consistent": true
+    },
+    "5": {
+      "n": 5,
+      "amp_exponent": 1.5,
+      "rM_length_exponent": 1.5,
+      "dlnv_dlnR": -0.25,
+      "btfr_exponent": 6.0,
+      "sigma_universal": true,
+      "cs2_stable": true,
+      "consistent": false
+    },
+    "6": {
+      "n": 9,
+      "amp_exponent": 2.0,
+      "rM_length_exponent": 2.0,
+      "dlnv_dlnR": -0.5,
+      "btfr_exponent": 8.0,
+      "sigma_universal": true,
+      "cs2_stable": true,
+      "consistent": false
+    },
+    "7": {
+      "n": 14,
+      "amp_exponent": 2.5,
+      "rM_length_exponent": 2.5,
+      "dlnv_dlnR": -0.75,
+      "btfr_exponent": 10.0,
+      "sigma_universal": true,
+      "cs2_stable": true,
+      "consistent": false
+    },
+    "8": {
+      "n": 20,
+      "amp_exponent": 3.0,
+      "rM_length_exponent": 3.0,
+      "dlnv_dlnR": -1.0,
+      "btfr_exponent": 12.0,
+      "sigma_universal": true,
+      "cs2_stable": true,
+      "consistent": false
+    },
+    "9": {
+      "n": 27,
+      "amp_exponent": 3.5,
+      "rM_length_exponent": 3.5,
+      "dlnv_dlnR": -1.25,
+      "btfr_exponent": 14.0,
+      "sigma_universal": true,
+      "cs2_stable": true,
+      "consistent": false
+    },
+    "10": {
+      "n": 35,
+      "amp_exponent": 4.0,
+      "rM_length_exponent": 4.0,
+      "dlnv_dlnR": -1.5,
+      "btfr_exponent": 16.0,
+      "sigma_universal": true,
+      "cs2_stable": true,
+      "consistent": false
+    }
+  },
+  "excluded_D": [
+    3,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10
+  ],
+  "consistent_D": [
+    4
+  ],
+  "channels_selecting_D": [
+    "E1 amplitude exponent",
+    "E2 r_M is a length",
+    "E5 flat rotation curves",
+    "E6 decade drop",
+    "E7 BTFR slope",
+    "E10 profile slope"
+  ],
+  "channels_not_selecting_D": [
+    "E4 coefficient 1",
+    "E8 deep-law form",
+    "E9 Sigma universality",
+    "E11 sound speed"
+  ],
+  "results": [
+    {
+      "check": "E1 [AMPLITUDE EXPONENT] M_ph/M_b = (r/r_M)^((D-2)/2) equals the certified",
+      "measured": "exponents ['0.50', '1.00', '1.50', '2.00', '2.50', '3.00', '3.50', '4.00']; within 10% of 1: D = [4]",
+      "pass": true
+    },
+    {
+      "check": "E2 [r_M IS A LENGTH] sqrt(GM/a_0) has dimensions of length",
+      "measured": "dim exponent (D-2)/2 = [0.5, 1.0, 1.5, 2.0, 2.5, 3.0, 3.5, 4.0]; equals 1 only for D = [4]",
+      "pass": true
+    },
+    {
+      "check": "E3 [TWO DEFINITIONS COINCIDE] (GM/a_0)^(1/(D-2)) = sqrt(GM/a_0)",
+      "measured": "ratio = 1 only at D = [4]",
+      "pass": true
+    },
+    {
+      "check": "E4 [COEFFICIENT 1] M_ph(r_M) = M_b holds in every dimension",
+      "measured": "ratio = 1 to 1e-12 for all D scanned",
+      "pass": true
+    },
+    {
+      "check": "E5 [FLAT ROTATION CURVES] |d ln v / d ln R| <= 0.05",
+      "measured": "slopes ['+0.25', '+0.00', '-0.25', '-0.50', '-0.75', '-1.00', '-1.25', '-1.50']; flat only for D = [4]",
+      "pass": true
+    },
+    {
+      "check": "E6 [DECADE DROP IN v] v(10 r_M)/v(r_M) inside [0.90, 1.10]",
+      "measured": "only D = [4] survives",
+      "pass": true
+    },
+    {
+      "check": "E7 [BTFR SLOPE] predicted exponent 2(D-2) inside the observed band 3.5-4.5",
+      "measured": "exponents [2.0, 4.0, 6.0, 8.0, 10.0, 12.0, 14.0, 16.0]; inside band: D = [4]",
+      "pass": true
+    },
+    {
+      "check": "E8 [DEEP LAW FORM] g^2 = a_0 g_N follows from the D-dim Gauss/AQUAL flux",
+      "measured": "ratio = 1.000000000000 for every D scanned",
+      "pass": true
+    },
+    {
+      "check": "E9 [Sigma UNIVERSALITY] Sigma_ph(r_M) is mass-independent in general D",
+      "measured": "relative spread <= 1e-09 over M_b = 1e7..1e13 M_sun for every D",
+      "pass": true
+    },
+    {
+      "check": "E10 [PROFILE SHAPE] rho_ph \u221d 1/R^2 -- the D = 4 phantom cusp",
+      "measured": "slopes -D/2 = [-1.5, -2.0, -2.5, -3.0, -3.5, -4.0, -4.5, -5.0]; equals -2 only at D = 4",
+      "pass": true
+    },
+    {
+      "check": "E11 [STABLE AND CAUSAL] 0 < c_s^2 < 1 for every u >= 0",
+      "measured": "c_s^2 in [0.500000000, 1.000000000] on u in [0,1e6]; c_s^2(0) = 1/2, sup = 1",
+      "pass": true
+    },
+    {
+      "check": "E12 [MODE COUNT] n = D(D-3)/2 = 2 (H030, cited as premise not as new result)",
+      "measured": "n(D) = [0, 2, 5, 9, 14, 20, 27, 35]; n = 2 only at D = 4",
+      "pass": true
+    },
+    {
+      "check": "E13 [INCONSISTENCY FOUND] the D-generalised framework is inconsistent for some D >= 5",
+      "measured": "excluded dimensions: [3, 5, 6, 7, 8, 9, 10]; survivors: [4]",
+      "pass": true
+    }
+  ],
+  "pass": 13,
+  "fail": 0
+}

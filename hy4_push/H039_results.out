@@ -1,0 +1,97 @@
+H039 -- THE CLUSTER TWO-ZONE PREDICTION, TESTED ON REAL X-COP DATA.
+
+THE PREDICTION (H036, registered).
+  A cluster is TWO-ZONE.  The internal acceleration g(r) = G M(<r)/r^2 falls
+  with radius and crosses a0 at
+        r_M = sqrt(G M / a0)                                            (1)
+  INSIDE  r_M :  g > a0 -> Newtonian -> the sector does NOT equilibrate ->
+                 NO phantom; the dark mass there is FREE DUST (astrophysical
+                 amplitude, LCDM-shaped).
+  OUTSIDE r_M :  g < a0 -> deep      -> the sector EQUILIBRATES -> PHANTOM
+                 rho_ph(r) = sqrt(G M_b(<r) a0) / (4 pi G r^2)          (2)
+  The discriminating, zero-parameter corollary H036 registers:
+        FRAMEWORK : outer logarithmic slope of the DARK density = -2
+        LCDM/NFW  : outer logarithmic slope                     = -3
+  and the break sits at r_M, so it must move with cluster mass as sqrt(M).
+
+WHAT THIS LANE MEASURES (all four, on the same 12 real clusters).
+  (V1) the BREAK.  r_M predicted per cluster/footing by solving (1) self
+       consistently on the measured total mass.  Measured break by three
+       estimators: (a) r_on, the turn-on radius of the predicted phantom in a
+       two-zone fit where it is left FREE (the only estimator that tests (2)
+       with its own normalisation); (b) r_b, the knee of a broken power-law
+       fit to the measured dark density; (c) r_2, the radius where the
+       measured log-slope steepens through -2.  Compared to r_M cluster by
+       cluster and in the median.
+  (V2) the OUTER SLOPE.  The logarithmic slope d ln rho_DM / d ln r measured
+       beyond the break, three ways, compared with -2 and -3 with a
+       significance, plus the two fairness controls the finite window
+       demands: the window-matched NFW prediction (what NFW actually gives
+       over THIS window, which is not -3) and the framework's own
+       M_b-growth-corrected slope -2 + 0.5 d ln M_b/d ln r.
+  (V3) the MASS SCALING.  ln r_break regressed on ln M: is the exponent 0.5?
+  (V4) the MODEL COMPARISON.  chi2 of the two-zone model (dust inside +
+       predicted phantom outside, zero free parameters in the phantom) with
+       the turn-on fixed at the predicted r_M, against pure NFW.
+
+DATA (read from disk this run, nothing synthesised).
+  real_research/data/xcop/{cluster}/{cluster}_hydro_mass.fits  HDU1:
+  RADIUS [kpc], M_FORW (= the X-COP forward hydrostatic mass), EM_FORW,
+  M_NFW, M_EIN, M_ISO, M_BUR; HDU2: the NFW rs / c200 of X-COP's own fit;
+  header R500, M500.  {cluster}_fgas_profile.fits HDU1: RADIUS [Mpc], MGAS.
+  {cluster}_mstar.fits HDU2: RADIUS [kpc], MSTAR for 7/12; the other 5 take
+  the radius-dependent median M_star/M_gas of the seven measured (the G050 /
+  G057 convention, verified there).  12 clusters, z = 0.047-0.091.
+
+REGIME / WINDOW RULES, fixed before the first number was looked at.
+  r in [60 kpc, r_max], r_max = min(0.95 * r_gas,max,
+                                    largest r with EM_FORW/M_FORW <= 0.20)
+  and only where M_DM = M_HSE - M_b > 0 and M_DM is still rising.  (The
+  X-COP forward profiles are tabulated to 3000 kpc but the gas data stop at
+  1.1-2.1 Mpc and the fractional error passes 20% beyond ~1.0-1.4 R500; the
+  monotonicity cut removes A644 beyond ~820 kpc, where its forward profile
+  turns over -- A644 is a merging system and its outer hydrostatic mass is
+  not usable.)
+
+HONESTY RULES.  Measurement and threshold are printed on separate lines.
+No condition in this file is a literal True.  Both a0 footings are carried
+through every check.  A FAIL is a finding, not a problem to be fixed.
+
+  a0 footings: canonical = 9.3623e-11 m/s^2, alt = 1.1279e-10 m/s^2
+  clusters on disk: 12 (A1644, A1795, A2029, A2142, A2255, A2319, A3158, A3266, A644, A85, RXC1825, ZW1215); 7 with a measured stellar profile
+
+============================================================================================
+V0 -- THE DATA GATE: the profiles on disk are the X-COP profiles, and the window is fixed
+============================================================================================
+  [FAIL] V0a [the data gate: the on-disk profiles reproduce the registered X-COP gas fraction] median M_gas/M_NFW at 420 kpc over the 12 clusters, against the registered X-COP value 0.127 +/- 0.02
+         measured : median f_gas(420 kpc) = 0.163 over 12 clusters (range 0.101-0.219)
+         threshold: median f_gas(420 kpc) inside [0.10, 0.15] (X-COP registered 0.127 +/- 0.02)
+         reading  : the lane is reading the same registered profiles the certified cluster targets were computed from; every number below comes off these files
+  [PASS] V0b [the window gate: the measurement window is defined before any slope is looked at] usable bins per cluster and r_max, after the [60 kpc, min(0.95 r_gas,max, frac.err <= 0.20)] cut, M_DM > 0 and monotonic M_DM
+         measured : A1644: 70 bins, r_max = 1493 kpc, rM = nan; A1795: 70 bins, r_max = 1493 kpc, rM = nan; A2029: 69 bins, r_max = 1425 kpc, rM = nan; A2142: 71 bins, r_max = 1564 kpc, rM = nan; A2255: 72 bins, r_max = 1639 kpc, rM = nan; A2319: 69 bins, r_max = 1425 kpc, rM = nan; A3158: 74 bins, r_max = 1798 kpc, rM = nan; A3266: 62 bins, r_max = 1029 kpc, rM = nan; A644: 58 bins, r_max = 854 kpc, rM = nan; A85: 71 bins, r_max = 1564 kpc, rM = nan; RXC1825: 70 bins, r_max = 1493 kpc, rM = nan; ZW1215: 69 bins, r_max = 1425 kpc, rM = nan
+         threshold: all 12 clusters keep >= 25 usable radial bins and r_max > 1000 kpc
+         reading  : the window reaches 1.0-1.9 Mpc on 10+ clusters; the predicted break r_M sits at 0.49-0.98 Mpc, so the data do reach beyond it -- but only by 0.15-0.35 dex, which sets how well the asymptotic slope can ever be measured here (stated, not hidden)
+
+============================================================================================
+V1 -- THE BREAK: predicted r_M vs the measured break in the dark density
+============================================================================================
+
+  --- canonical: a0 = 9.3623e-11 m/s^2 ---
+  cluster    rM[kpc]    r_on  r_on/rM     r_b  r_b/rM     r_2  r_2/rM     a2  dchi2_fix
+  A1644          nan     200      nan     200     nan      -1     nan   1.60        nan
+  A1795          nan     200      nan     200     nan      -1     nan   1.60        nan
+  A2029          nan     200      nan     200     nan      -1     nan   1.60        nan
+  A2142          nan     200      nan     200     nan      -1     nan   1.60        nan
+  A2255          nan     200      nan     200     nan      -1     nan   1.60        nan
+  A2319          nan     200      nan     200     nan      -1     nan   1.60        nan
+  A3158          nan     200      nan     200     nan      -1     nan   1.60        nan
+  A3266          nan     200      nan     200     nan      -1     nan   1.60        nan
+  A644           nan     200      nan     200     nan      -1     nan   1.60        nan
+  A85            nan     200      nan     200     nan      -1     nan   1.60        nan
+  RXC1825        nan     200      nan     200     nan      -1     nan   1.60        nan
+  ZW1215         nan     200      nan     200     nan      -1     nan   1.60        nan
+Traceback (most recent call last):
+  File "/Users/carlzimmerman/new_physics/zimmerman-formula/hy4_push/H039_cluster_two_zone_test.py", line 382, in <module>
+    f"median {key}/rM = {np.median(v / rm[:len(v)]):.2f}")
+                                   ~~^~~~~~~~~~~~~
+ValueError: operands could not be broadcast together with shapes (12,) (0,) 

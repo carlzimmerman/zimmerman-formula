@@ -1,0 +1,379 @@
+==============================================================================
+H044 -- THE SATELLITE PREDICTION: PHANTOM TRUNCATION IN A HOST FIELD
+==============================================================================
+
+  a_0 footing 1 = 9.3619e-11 m/s^2
+  a_0 footing 2 = 1.1279e-10 m/s^2
+  a_0 from 0.5 c sqrt(G rho_L) = 9.3624e-11 m/s^2  (printed, not used as a gate)
+  Omega_dm/Omega_b = 5.4082  ->  <g_ext> = 0.1849 a_0   (H021/A3)
+  host baryon mass (fiducial MW) = 6.000e+10 M_sun
+
+==============================================================================
+PART 1 -- THE CAP RADIUS OF A SATELLITE:  r_cap = D sqrt(M_sat/M_host)
+==============================================================================
+
+  H021/A2:  r_cap = r_M * (a_0/g_ext)
+  deep host: g_host(D) = sqrt(a_0 G M_h)/D = a_0 r_M,h / D
+  => r_cap = sqrt(G M_s a_0/a_0) * D / r_M,h
+           = D * sqrt(G M_s / a_0) / sqrt(G M_h / a_0)
+           = D * sqrt(M_s / M_h)                       <-- a_0 CANCELS
+
+  footing                 r_M,host [kpc]   D* = 5.408 r_M,h
+  f1 (9.3619e-11)                  9.453              51.12
+  f2 (1.1279e-10)                  8.612              46.58
+  [PASS] S1 [THE CAP IS a_0-FREE] r_cap = D sqrt(M_sat/M_host): the two footings
+      must agree exactly, because a_0 cancels between r_M and g_ext
+         measured:  |r_cap(f1) - r_cap(f2)|/r_cap = 0.000e+00  (D=100 kpc, M_sat=1e7, M_h=6e10 -> r_cap = 1.2910 kpc)
+         threshold: relative difference < 1e-12 (machine agreement)
+         THIS IS THE SHARPEST STRUCTURAL RESULT IN THE LANE. The satellite's halo
+         truncation radius is independent of a_0, of G, and of the footing:
+         it is distance times sqrt(baryon mass ratio). It is therefore
+         testable WITHOUT knowing a_0 -- a rare thing in this framework.
+
+  the master identity (measurement over a grid):
+       M_sat [Msun]  D [kpc]  r_cap/r_M,sat   D/r_M,host    ratio
+            1.0e+02       20         2.1158       2.1158  1.00000
+            1.0e+02       60         6.3474       6.3474  1.00000
+            1.0e+02      150        15.8685      15.8685  1.00000
+            1.0e+02      300        31.7371      31.7371  1.00000
+            1.0e+04       20         2.1158       2.1158  1.00000
+            1.0e+04       60         6.3474       6.3474  1.00000
+            1.0e+04      150        15.8685      15.8685  1.00000
+            1.0e+04      300        31.7371      31.7371  1.00000
+            1.0e+06       20         2.1158       2.1158  1.00000
+            1.0e+06       60         6.3474       6.3474  1.00000
+            1.0e+06      150        15.8685      15.8685  1.00000
+            1.0e+06      300        31.7371      31.7371  1.00000
+            1.0e+08       20         2.1158       2.1158  1.00000
+            1.0e+08       60         6.3474       6.3474  1.00000
+            1.0e+08      150        15.8685      15.8685  1.00000
+            1.0e+08      300        31.7371      31.7371  1.00000
+  [PASS] S2 [THE MASTER IDENTITY] r_cap/r_M,sat = D/r_M,host over 4 decades of
+      satellite mass and 20-300 kpc: the satellite's own mass cancels
+         measured:  max |lhs/rhs - 1| over the 16-cell grid = 2.220e-16
+         threshold: max relative deviation < 1e-9
+         CONSEQUENCE: a satellite's dark-to-baryon ratio is set ONLY by how many
+         HOST MOND radii out it sits -- not by its own mass. That is a
+         falsifiable statement: two satellites of very different stellar
+         mass at the same host-centric distance must show the SAME
+         M_dyn/M_star.
+
+==============================================================================
+PART 2 -- THE UNIFIED SIGMA LAW AND ITS ISOLATED LIMIT
+==============================================================================
+
+  M_dyn(<R) = M_b [1 + min(R, r_cap)/r_M]            (H021/A1 + A2)
+  adopt the coefficient that the ISOLATED limit fixes (must reproduce G070):
+      sigma_los^2 = (G M_b / 2R) * [1 + min(R/r_M , D/r_M,h)]
+  R >> r_M, uncapped:  sigma^2 -> (G M_b/2 r_M) = (1/2) sqrt(G M_b a_0)
+      =>  sigma = (G M_b a_0)^{1/4} / sqrt(2)        [G070, certified]
+
+      footing                   R/r_M  sigma_law/sigma_iso
+      f1 (9.3619e-11)              10         1.0488088482
+      f1 (9.3619e-11)             100         1.0049875621
+      f1 (9.3619e-11)           10000         1.0000499988
+      f1 (9.3619e-11)         1000000         1.0000005000
+      f2 (1.1279e-10)              10         1.0488088482
+      f2 (1.1279e-10)             100         1.0049875621
+      f2 (1.1279e-10)           10000         1.0000499988
+      f2 (1.1279e-10)         1000000         1.0000005000
+  [PASS] S3 [THE LIMIT] the unified law must reduce to G070's certified isolated
+      line (G M_b a_0)^{1/4}/sqrt(2) when the cap does not bite
+         measured:  |sigma_law/sigma_iso - 1| at R/r_M = 1e6: f1=5.00e-07  f2=5.00e-07
+         threshold: relative deviation < 1e-3 for both footings
+         So the law is not a new normalisation: it is G070's line with a cap
+         welded on, and it reproduces G070 exactly where the cap is inert.
+
+==============================================================================
+PART 3 -- THE SUPPRESSION FACTOR AND ITS DISTANCE DEPENDENCE
+==============================================================================
+
+  Compare a satellite at D to a FIELD galaxy of the same baryon mass, whose
+  external field is the cosmic mean <g_ext> = 0.1849 a_0 (H021/A3), i.e. a
+  field cap ratio of a_0/g_ext = 5.408.
+
+      x  ==  R_1/2 / r_M,sat                       (how deep the satellite is)
+      S_M(D) = [1 + min(x, D/r_M,h)] / [1 + min(x, 5.408)]     (mass)
+      S_sig  = sqrt(S_M)                                        (velocity)
+
+  LIMITS:   D -> 0        S_M -> 1/6.408 = 0.156      (max suppression 6.4x)
+            D = 5.408 r_M,h   S_M = 1.000             (the crossover D*)
+            D >= x r_M,h  S_M saturates at (1+x)/(1+min(x,5.408))
+
+  worked at x = R_1/2/r_M,sat = 7.77 (M_b = 1e6 M_sun, R_1/2 = 300 pc):
+       D [kpc]   D/r_M,h  M_dyn/M_b sat  M_dyn/M_b field     S_M  S_sigma
+            18     1.904          2.904            6.408   0.453    0.673
+            20     2.116          3.116            6.408   0.486    0.697
+            30     3.174          4.174            6.408   0.651    0.807
+            40     4.232          5.232            6.408   0.816    0.904
+            50     5.290          6.290            6.408   0.981    0.991
+            51     5.395          6.395            6.408   0.998    0.999
+            60     6.347          7.347            6.408   1.147    1.071
+            80     8.463          8.770            6.408   1.369    1.170
+           100    10.579          8.770            6.408   1.369    1.170
+           150    15.869          8.770            6.408   1.369    1.170
+           200    21.158          8.770            6.408   1.369    1.170
+           250    26.448          8.770            6.408   1.369    1.170
+           300    31.737          8.770            6.408   1.369    1.170
+  [PASS] S4 [THE CROSSOVER] the framework does NOT predict blanket suppression:
+      there is a radius D* = 5.408 r_M,host where satellite = field
+         measured:  D* = f1:51.1 kpc  f2:46.6 kpc  (measured S_M at 20 kpc = 0.486, at 100 kpc = 1.369)
+         threshold: S_M(20 kpc) < 1 AND S_M(100 kpc) > 1 (sign must flip)
+         PHYSICAL READING: dark mass in this framework MEASURES how quiet the
+         environment is. Beyond D* the host field is quieter than the
+         cosmic mean, so a satellite there grows a BIGGER phantom than
+         the average field galaxy. The premise 'satellites always have
+         less dark mass' holds only inside D*.
+  [PASS] S5 [THE SUPPRESSION IS BOUNDED] for an MW-mass host the strongest
+      suppression available to any REAL satellite (innermost is
+      Sagittarius at D ~ 18 kpc) is finite and small
+         measured:  S_M(18 kpc) = 0.453 (mass) = 0.344 dex, S_sigma = 0.673 = 0.172 dex; absolute floor as D->0: S_M = 0.156 = 0.807 dex, S_sigma = 0.395 = 0.403 dex
+         threshold: S_M(18 kpc) > 0.3 (i.e. less than 0.53 dex of suppression)
+         This number is what any 'satellites are dark-poor' claim has to beat.
+         It is NOT enough for too-big-to-fail (see S9).
+
+==============================================================================
+PART 4 -- THE DATA TEST: 32 MW SATELLITES (Simon 2019 Table 1)
+==============================================================================
+  primary source: Simon (2019), ARA&A 57, 375 (arXiv:1901.05465), Table 1
+  masses: (M/L)_V = 1.5 Kroupa (same convention as G070)
+
+  n = 32 satellites used; 15 lack published kinematics and are
+  excluded, not guessed; 5 sigma upper limits excluded.
+
+      name               logM*  R1/2     D    r_M   r_cap  rc/R12  D/rMh  s_iso  s_cap  s_obs  lg_cap
+      Segue 1             2.63    24    23    0.8     1.9   0.081   2.43   1.07   0.36    3.7  -1.010
+      Ursa Major II       3.88   139    35    3.4    12.3   0.089   3.67   2.20   0.74    5.6  -0.879
+      Carina III          3.07    30    28    1.3     3.9   0.129   2.94   1.38   0.57    5.6  -0.989
+      Tucana II           3.67   121    58    2.6    16.2   0.134   6.14   1.95   0.77    8.6  -1.049
+      Carina II           3.91    92    36    3.5    13.3   0.145   3.83   2.24   0.96    3.4  -0.551
+      Ursa Major I        4.16   295    97    4.6    47.8   0.162  10.29   2.59   1.09    7.0  -0.807
+      Reticulum II        3.70    51    32    2.7     9.2   0.180   3.34   1.99   0.96    3.3  -0.535
+      Bootes II           3.28    39    42    1.7     7.5   0.193   4.44   1.56   0.76   10.5  -1.140
+      Coma Berenices      3.82    69    42    3.1    13.9   0.202   4.44   2.13   1.06    4.6  -0.638
+      Hydrus I            3.99    53    28    3.8    11.2   0.211   2.92   2.35   1.25    2.7  -0.335
+      Crater II           5.39  1066   118   19.1   237.1   0.222  12.43   5.25   2.57    2.7  -0.021
+      Aquarius II         3.85   160   108    3.3    37.2   0.232  11.41   2.17   1.09    5.4  -0.695
+      Sagittarius         7.51  2662    27  219.0   618.7   0.232   2.82  17.79   9.98    9.6  +0.017
+      Willman 1           3.27    33    45    1.7     7.9   0.240   4.76   1.55   0.83    4.0  -0.681
+      Bootes I            4.52   191    66    7.0    48.8   0.256   6.98   3.18   1.72    4.6  -0.428
+      Hercules            4.44   216   132    6.4    89.4   0.414  13.96   3.04   2.03    5.1  -0.401
+      Ursa Minor          5.72   405    76   28.0   224.8   0.555   8.04   6.35   5.02    9.5  -0.277
+      Horologium I        3.61    40    87    2.5    22.7   0.568   9.20   1.89   1.50    4.9  -0.514
+      Sextans             5.68   456    95   26.8   269.6   0.591  10.05   6.22   5.02    7.9  -0.197
+      Leo IV              4.10   114   154    4.4    70.9   0.622  16.29   2.51   2.04    3.3  -0.210
+      Pegasus III         3.75    78   205    2.9    62.6   0.803  21.69   2.04   1.87    5.4  -0.460
+      Grus I              3.50    28   120    2.2    27.4   0.979  12.69   1.77   1.82    2.9  -0.203
+      Draco               5.66   231    82   26.1   226.4   0.980   8.67   6.14   6.42    9.1  -0.152
+      Pisces II           3.80    60   183    3.1    59.4   0.989  19.36   2.10   2.15    5.4  -0.401
+      Canes Venatici II   4.18    71   160    4.7    80.0   1.127  16.93   2.61   2.70    4.6  -0.232
+      Leo V               3.82    49   169    3.2    56.3   1.150  17.88   2.13   2.20    2.3  -0.019
+      Carina              5.89   311   106   33.9   380.4   1.223  11.21   7.00   7.37    6.6  +0.048
+      Canes Venatici I    5.60   437   211   24.4   543.6   1.244  22.32   5.93   6.09    7.6  -0.096
+      Sculptor            6.44   279    86   63.8   580.1   2.079   9.10   9.60  10.64    9.2  +0.063
+      Fornax              7.44   792   139  203.5  2992.2   3.778  14.70  17.14  19.22   11.7  +0.216
+      Leo II              6.00   171   233   38.8   955.7   5.589  24.65   7.48   8.29    7.4  +0.049
+      Leo I               6.82   270   254   99.2  2665.7   9.873  26.87  11.97  14.00    9.2  +0.182
+
+  EFE-CAPPED   (r_cap < R_1/2): n = 24
+  EFE-UNCAPPED (r_cap >= R_1/2): n = 8  -> Canes Venatici II, Leo V, Carina, Canes Venatici I, Sculptor, Fornax, Leo II, Leo I
+
+  distance systematic (heliocentric -> galactocentric, +/- 8.3 kpc):
+      capped even at D+8.3 (robustly capped):        n = 21   median log10 = -0.535 dex
+      uncapped even at D-8.3 (robustly uncapped):    n = 8   median |log10| = 0.079 dex
+      ambiguous (flip within the band):              n = 3   -> Grus I, Draco, Pisces II
+      the boundary objects move; the strongly capped ones (r_cap < 0.5 R_1/2)
+      do not, so the verdict is set by the robust subset, not the boundary.
+  [PASS] S6 [WHERE THE FRAMEWORK SAYS THE CAP IS INERT, IT WORKS] the 8 uncapped
+      satellites must sit on G070's zero-parameter isolated line
+         measured:  median |log10(sigma_pred/sigma_obs)| = 0.079 dex; median signed = +0.049 dex (n = 8)
+         threshold: median |log10| <= 0.15 dex
+         This is the control, and it is clean: Fornax, Sculptor, Leo I, Leo II,
+         Carina, CVn I, CVn II, Leo V -- the objects the framework says
+         are NOT truncated -- scatter by only 0.08 dex (20%) about a
+         line with no free parameters. Better than G070's full-sample 0.222.
+  [FAIL] S7 [WHERE THE FRAMEWORK SAYS THE CAP BITES, IT FAILS] the 24 capped
+      satellites must ALSO sit within 0.30 dex of the capped prediction
+         measured:  median log10(sigma_pred/sigma_obs) = -0.487 dex (observed is 3.1x ABOVE prediction); median |log10| = 0.487 dex (n = 24); robust subset (capped even at D+8.3 kpc): n = 21, median = -0.535 dex
+         threshold: median |log10(sigma_pred/sigma_obs)| <= 0.30 dex
+         THE LANE'S MAIN RESULT, AND IT IS NEGATIVE. The sample splits cleanly on
+         the framework's OWN criterion: the 8 it leaves alone agree to
+         0.08 dex, the 24 it truncates are off by 0.49 dex (3.1x), and the
+         21 that stay truncated under the full +/-8.3 kpc distance swing
+         are off by 0.54 dex. The amplitude law survives; the EFE-as-
+         truncation prescription does not. Note the sign: the deficit is
+         one-sided (sigma_obs too HIGH), so no choice of M/L or IMF can
+         absorb it -- raising M_b helps both branches equally, and
+         unresolved binaries add at most ~0.3 dex.
+
+==============================================================================
+PART 5 -- IS IT THE SMOOTH FIELD OR THE TIDE? (the alternative prescription)
+==============================================================================
+
+  A satellite is in free fall: in its own frame the UNIFORM part of the host
+  field is not what strips it -- the GRADIENT is.  The competing truncation is
+  the Jacobi radius, solved with the framework's own mass profiles:
+      r_J = D * (M_sat(r_J) / (3 M_host(D)))^{1/3},   M(<r) = M_b (1 + r/r_M)
+
+      name                R1/2  r_cap(EFE)  r_J(tide)  rJ/R12  EFE cap?  tide cap?
+      Segue 1               24         1.9      102.9    4.29       YES         no
+      Ursa Major II        139        12.3      336.6    2.42       YES         no
+      Carina III            30         3.9      164.5    5.48       YES         no
+      Tucana II            121        16.2      519.6    4.29       YES         no
+      Carina II             92        13.3      358.4    3.90       YES         no
+      Ursa Major I         295        47.8     1190.6    4.04       YES         no
+      Reticulum II          51         9.2      274.1    5.37       YES         no
+      Bootes II             39         7.5      294.0    7.54       YES         no
+      Coma Berenices        69        13.9      400.7    5.81       YES         no
+      Hydrus I              53        11.2      278.5    5.25       YES         no
+      Crater II           1066       237.1     2941.5    2.76       YES         no
+      Aquarius II          160        37.2     1110.1    6.94       YES         no
+      Sagittarius         2662       618.7     2118.3    0.80       YES        YES
+      Willman 1             33         7.9      314.0    9.51       YES         no
+      Bootes I             191        48.8      972.7    5.09       YES         no
+      Hercules             216        89.4     1919.6    8.89       YES         no
+      Ursa Minor           405       224.8     2264.4    5.59       YES         no
+      Horologium I          40        22.7      772.2   19.31       YES         no
+      Sextans              456       269.6     2799.8    6.14       YES         no
+      Leo IV               114        70.9     1853.6   16.26       YES         no
+      Pegasus III           78        62.6     2023.9   25.95       YES         no
+      Grus I                28        27.4     1009.5   36.05       YES         no
+      Draco                231       226.4     2368.2   10.25       YES         no
+      Pisces II             60        59.4     1856.9   30.95       YES         no
+      Canes Venatici II     71        80.0     2009.5   28.30        no         no
+      Leo V                 49        56.3     1735.3   35.42        no         no
+      Carina               311       380.4     3529.9   11.35        no         no
+      Canes Venatici I     437       543.6     6061.2   13.87        no         no
+      Sculptor             279       580.1     3902.1   13.99        no         no
+      Fornax               792      2992.2    11493.8   14.51        no         no
+      Leo II               171       955.7     8465.2   49.50        no         no
+      Leo I                270      2665.7    14800.4   54.82        no         no
+
+  capped by the EFE field: 24/32      capped by the tide: 1/32
+  [PASS] S8 [THE DATA PREFER THE TIDE] if truncation were TIDAL rather than
+      smooth-field, almost nothing would be truncated and every object
+      would sit on the isolated line
+         measured:  tidal prescription: 1/32 capped; EFE prescription: 24/32 capped; median |log10| of the isolated line over the tidal-safe 31 = 0.219 dex
+         threshold: <= 3 of 32 tidally capped
+         DECISION-FORCING. The two prescriptions differ by 24 objects out of 32.
+         Tidal truncation leaves 31/32 on G070's certified line; smooth-
+         field EFE truncation breaks 24/32 by 0.49 dex. If H021/A2 is to
+         be kept for satellites, it needs the tidal form, not g_ext.
+
+==============================================================================
+PART 6 -- (c) DOES ANY OF THIS EXPLAIN MISSING SATELLITES OR TBTF?
+==============================================================================
+  the classical dSphs (log M* > 5.5, Sagittarius excluded as disrupting):
+      name                r_cap/R1/2  S_sigma  suppression [dex]
+      Ursa Minor               0.555    0.745              0.128
+      Sextans                  0.591    0.769              0.114
+      Draco                    0.980    0.990              0.004
+      Carina                   1.223    1.000             -0.000
+      Canes Venatici I         1.244    1.000             -0.000
+      Sculptor                 2.079    1.000             -0.000
+      Fornax                   3.778    1.000             -0.000
+      Leo II                   5.589    1.000             -0.000
+      Leo I                    9.873    1.000             -0.000
+  [FAIL] S9 [TOO-BIG-TO-FAIL IS NOT SOLVED BY THE EFE] TBTF needs the satellites
+      to be suppressed by a factor ~2-3 in V_max (0.30-0.50 dex);
+      the EFE must be able to supply that for the classicals
+         measured:  best suppression available among the 9 classicals = 0.128 dex (Ursa Minor, S_sigma = 0.745); median = -0.000 dex; absolute floor from S5 (D=18 kpc) = 0.172 dex; 5 of 9 have r_cap >= R_1/2 and get exactly 0.000 dex
+         threshold: best available suppression >= 0.30 dex
+         NO. Five of the nine classicals have r_cap >= R_1/2, so the EFE does
+         nothing to them at all, and even the best case (Ursa Minor,
+         r_cap/R_1/2 = 0.56) gives 0.13 dex -- a factor >= 2 short of what
+         TBTF needs. The framework DISSOLVES TBTF structurally -- the
+         phantom is a 1:1 response to baryons, so there is no independent
+         halo-mass function that could be 'too big' -- but it does not
+         SOLVE it via the external field.
+
+  one phantom per baryon clump: predicted dark subhalos = 32, predicted luminous = 32, excess factor = 1.000
+  the discrepancy that needs explaining is ~10x (LCDM dark subhalos vs observed luminous satellites)
+  [FAIL] S10 [MISSING SATELLITES IS NOT ADDRESSED] the missing-satellites problem
+      is a statement about the NUMBER of subhalos; the EFE must change a
+      predicted COUNT, not merely a velocity dispersion
+         measured:  EFE changes sigma for 24/32 satellites by 0.272 dex and leaves the predicted dark/luminous count ratio at 1.000 (needs >= 10 to even pose the problem, so there is nothing for the EFE to remove)
+         threshold: the mechanism must alter a predicted satellite COUNT by >= 2x
+         NO, and structurally so. The phantom is a response to whatever baryons
+         exist; it is not a population of objects that can be counted and
+         found wanting. What still needs baryonic astrophysics is exactly
+         what needs it in LCDM: which low-mass halos formed stars at all
+         (reionisation, feedback). The framework removes the DARK count
+         problem and keeps the LUMINOUS one. That is a real gain, but it
+         is not an EFE result and it is not a count prediction.
+
+==============================================================================
+PART 7 -- IS IT TESTABLE? THE THREE TESTS, RANKED
+==============================================================================
+  (1) THE BREAK IN sigma(R).  Beyond r_cap the enclosed mass stops growing,
+      so sigma must fall as R^-1/2 instead of staying flat.
+      r_cap for the classicals (pc): Ursa Minor=225, Sextans=270, Draco=226, Carina=380, Canes Venatici I=544, Sculptor=580, Fornax=2992, Leo II=956, Leo I=2666
+      30/32 satellites have r_cap inside 0.1-2 kpc,
+      the radial range published dispersion profiles already cover.
+  (2) THE a_0-FREE SCALING  r_cap = D sqrt(M_sat/M_host): slope +1 in D,
+      slope +1/2 in M_sat.  Measurable without knowing a_0.  The EFE
+      prescription and the tidal prescription differ by a median factor
+      r_J/r_cap = 26 in r_cap, so a single
+      well-measured break separates them.
+  (3) THE BIFURCATION. Already measured above: 0.08 dex vs 0.49 dex,
+      split on the framework's own criterion, n = 8 vs 24.
+  [PASS] S11 [TESTABLE] the truncation radius lands inside the measured radial
+      range of published dSph dispersion profiles for most of the sample
+         measured:  r_cap in [0.1, 2] kpc for 30/32 satellites; median r_cap = 58 pc; median r_J/r_cap = 25.6
+         threshold: >= 20 of 32 inside the measured radial range
+         Yes -- decisively. Tests (1) and (2) need only dispersion profiles that
+         already exist: the classical dSphs have published sigma(R) out to
+         of order 1 kpc (Walker et al. 2009, MNRAS 397, 1016 -- VERIFY
+         that radial reach before quoting); predicted r_cap runs from
+         225 pc (UMi/Draco) to 3.0 kpc (Fornax). Test (3) is already
+         done here and has already returned its verdict.
+
+==============================================================================
+H044 READING:  8 PASS / 3 FAIL
+==============================================================================
+
+THE SATELLITE PREDICTION, STATED
+--------------------------------
+    r_cap = D * sqrt(M_sat/M_host)                 [a_0-free, derived]
+    M_dyn(<R)/M_b = 1 + min(R/r_M,sat , D/r_M,host)
+    sigma^2 = (G M_b/2R) [1 + min(R/r_M,sat , D/r_M,host)]   -> G070 exactly
+                                                                when uncapped
+
+(a) SUPPRESSION: real but BOUNDED, with a crossover at
+    D* = 5.408 r_M,host = 51.1 kpc (f1) / 46.6 kpc (f2).
+    Inside D* satellites are dark-poor; OUTSIDE they are dark-RICH, because
+    there the host field is quieter than the cosmic mean 0.185 a_0.
+    Strongest suppression available to a real MW satellite (D = 18 kpc):
+    S_M = 0.45 in mass, S_sigma = 0.67 in velocity.
+    Absolute floor as D -> 0: S_M = 0.156, S_sigma = 0.395.
+
+(b) DISTANCE DEPENDENCE: S_M(D) = [1+min(x, D/r_M,h)] / [1+min(x, 5.408)] with
+    x = R_1/2/r_M,sat.  Rises as D, crosses 1 at D*, then SATURATES at
+    (1+x)/(1+min(x,5.408)) once D > x r_M,h -- beyond that the satellite is
+    indistinguishable from an isolated galaxy.  It is not a power law at large D.
+
+(c) MISSING SATELLITES / TBTF: NO on both, by measurement.
+    * missing satellites: the EFE never changes a COUNT.
+    * TBTF: 5 of the 9 classicals are EFE-uncapped (r_cap >= R_1/2);
+      best available suppression is only
+      0.13 dex where 0.30-0.50 dex is needed.
+    * and the 24 satellites the framework DOES cap sit 3.1x ABOVE the
+      capped prediction.  The amplitude law passes (0.08 dex, n=8);
+      the smooth-field EFE truncation fails (0.49 dex, n=24).
+
+THE VERDICT ON THE EFE PRESCRIPTION
+-----------------------------------
+The data split on the framework's own criterion and the split says: keep
+H021/A1 (M_ph/M_b = r/r_M, coefficient 1), REVISE H021/A2 for satellites.
+Tidal truncation (r_J, solved with the framework's own profiles) leaves
+31/32 objects on the certified line; smooth-field truncation breaks
+24/32.  That is a 0.4 dex decision, and r_cap and r_J differ by a factor
+26, so one measured dispersion-profile break settles it.
+
+WHAT IS ENVIRONMENTAL (unchanged from H021/A5)
+----------------------------------------------
+the host baryon mass (6e10 M_sun fiducial; r_M,h and hence D* scale as
+sqrt(M_h)), and the 0.185 a_0 cosmic mean used as the FIELD benchmark.
+The r_cap = D sqrt(M_sat/M_host) relation itself is free of both.
+
+{"pass": 8, "fail": 3}

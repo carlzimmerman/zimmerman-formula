@@ -1,493 +1,176 @@
 {
   "lane": "H038",
-  "pass": 6,
-  "fail": 1,
+  "pass": 27,
+  "fail": 0,
   "results": [
     {
-      "check": "C1 [CONTROL] dM_ph/dr from the amplitude law = standard phantom form",
-      "measured": "max |ratio-1| over 2 footings x 4 radii = 2.220e-16",
+      "check": "E1 [EXACT REDUCTION] grad_mu[f'(K) d^mu phi] = 0 in homogeneous FLRW reduces\n      to d_t( a^3 f'(K) phidot ) = 0, i.e. a^3 f'(K) phidot = const",
+      "measured": "divergence = -Fp(t)*Derivative(phi(t), (t, 2)) - 3*Fp(t)*Derivative(a(t), t)*Derivative(phi(t), t)/a(t) - Derivative(Fp(t), t)*Derivative(phi(t), t);  residual against -(1/a^3)d_t(a^3 f' phidot) = 0;  K(FLRW) = -Derivative(phi(t), t)**2/(2*Lambda4);  residual(K) = 0",
+      "threshold": "both symbolic residuals == 0",
       "pass": true
     },
     {
-      "check": "C2 [DERIVED] an isothermal power-law halo in equilibrium against its own",
-      "measured": "residual(gamma=2) = 0.000e+00; residual(1.5) = -0.500; residual(3.0) = 1.000",
+      "check": "E2 [KINEMATICS] in homogeneous FLRW  K = -phidot^2/(2 Lambda^4) <= 0\n      for every real phidot, with equality iff phidot = 0",
+      "measured": "max K over |v| in [1e-8, 1e6] (v = phidot/Lambda^2) = -5.000000e-17; K at v = 0 = 0.0e+00",
+      "threshold": "K <= 0 for all v (equality only at v = 0)",
       "pass": true
     },
     {
-      "check": "C3 [CONSISTENCY CLOSURE, NOT INDEPENDENT EVIDENCE] hydrostatic equilibrium +\n      the amplitude law reproduce the registered temperature exactly",
-      "measured": "canonical: rel=2.22e-16 ; alternative: rel=0.00e+00",
+      "check": "R1 [CONTINUATION] for K = -w^2, f'(K) = mu_2(i w) with\n      Re = w^2(w^2+3)/(1+w^2)^2 and Im = 2w/(1+w^2)^2  (sympy exact)",
+      "measured": "residual(Re) = 0; residual(Im) = 0",
+      "threshold": "both symbolic residuals == 0",
       "pass": true
     },
     {
-      "check": "C4 [NEGATIVE / INTERNAL TENSION, QUANTIFIED] a CONSTANT sigma^2 is",
-      "measured": "rho_B/rho_A = 4.593 at r = 10 kpc (= r_M) and 1.792 at 30 kpc (= 3.2 r_M); sigma^2(r=10kpc)/sigma^2_reg = 1.615",
-      "pass": false
-    },
-    {
-      "check": "C4b [DECISION] the MW rotation curve at 20 kpc selects one reading",
-      "measured": "v_A = 193.9 km/s, v_B = 263.3 km/s, measured 208.8 +- 15 km/s; implied M_b: A = 7.56e+10, B = 2.92e+10 Msun",
+      "check": "R2 [NO REAL DYNAMICS] Im f'(K) = 2w/(1+w^2)^2 is strictly nonzero for\n      every w > 0, so the Noether current a^3 f'(K) phidot is complex\n      for every nonzero phidot",
+      "measured": "min Im f' over w in [1e-6, 1e6] = 2.000000e-18; value at w = 1e-6 = 2.000000e-06",
+      "threshold": "Im f' > 0 for all w > 0 (never real)",
       "pass": true
     },
     {
-      "check": "C5 [THE FALSIFIABLE PREDICTION] for r >= 3 r_M the framework locks at",
-      "measured": "framework gamma in [-2.068, -2.002] vs NFW in [-2.841, -2.306]; max separation 0.839 at r = 200 kpc; crossing at 19.0 kpc",
+      "check": "R3 [low footing] a physical perturbation v = phidot/Lambda^2 = 1e-3\n      gives |Im f'| / |f'| = 0.999999 (the EOM coefficient is\n      not even approximately real)",
+      "measured": "Lambda^2 = 2 a0/sqrt(G) = 2.291876e-05; phidot = 2.291876e-08 SI; Im f' = 1.414212e-03, |f'| = 1.414213e-03",
+      "threshold": "|Im f'|/|f'| > 0.05",
       "pass": true
     },
     {
-      "check": "C6 [H029 AUDIT] no step above is a rearrangement of the postulate presented",
-      "measured": "7 rows tagged; 2 tagged NEW+DERIVED, 1 CONSISTENCY, 1 ALGEBRAIC IDENTITY",
+      "check": "R3 [high footing] a physical perturbation v = phidot/Lambda^2 = 1e-3\n      gives |Im f'| / |f'| = 0.999999 (the EOM coefficient is\n      not even approximately real)",
+      "measured": "Lambda^2 = 2 a0/sqrt(G) = 2.761199e-05; phidot = 2.761199e-08 SI; Im f' = 1.414212e-03, |f'| = 1.414213e-03",
+      "threshold": "|Im f'|/|f'| > 0.05",
+      "pass": true
+    },
+    {
+      "check": "G1[M] [DIRECTION OF FLOW] |phidot| DECAYS: |v_final|/|v_initial| < 1",
+      "measured": "|v_f|/|v_i| = 1.250000e-01",
+      "threshold": "ratio < 1 (decay, not growth)",
+      "pass": true
+    },
+    {
+      "check": "G2[M] [RATE] fitted decay exponent p in |v| ~ a^-p",
+      "measured": "p = 1.500000",
+      "threshold": "p > 0.5",
+      "pass": true
+    },
+    {
+      "check": "G3[M] [BUT IT NEVER ENTERS THE DOMAIN] K < 0 at every point of\n      the trajectory: the count of samples with K >= 0 is zero",
+      "measured": "samples with K >= 0: 0 of 4000;  max K = -7.812497e-09",
+      "threshold": "0 samples with K >= 0",
+      "pass": true
+    },
+    {
+      "check": "G4[M] [FIRST INTEGRAL] a^3 G(v) is conserved along the integration",
+      "measured": "max relative drift of a^3 G(v) = 2.093e-12",
+      "threshold": "relative drift < 1e-6",
+      "pass": true
+    },
+    {
+      "check": "G1[R] [DIRECTION OF FLOW] |phidot| DECAYS: |v_final|/|v_initial| < 1",
+      "measured": "|v_f|/|v_i| = 2.499999e-01",
+      "threshold": "ratio < 1 (decay, not growth)",
+      "pass": true
+    },
+    {
+      "check": "G2[R] [RATE] fitted decay exponent p in |v| ~ a^-p",
+      "measured": "p = 1.000000",
+      "threshold": "p > 0.5",
+      "pass": true
+    },
+    {
+      "check": "G3[R] [BUT IT NEVER ENTERS THE DOMAIN] K < 0 at every point of\n      the trajectory: the count of samples with K >= 0 is zero",
+      "measured": "samples with K >= 0: 0 of 4000;  max K = -3.124999e-08",
+      "threshold": "0 samples with K >= 0",
+      "pass": true
+    },
+    {
+      "check": "G4[R] [FIRST INTEGRAL] a^3 G(v) is conserved along the integration",
+      "measured": "max relative drift of a^3 G(v) = 7.500e-08",
+      "threshold": "relative drift < 1e-6",
+      "pass": true
+    },
+    {
+      "check": "G1[I] [DIRECTION OF FLOW] |phidot| DECAYS: |v_final|/|v_initial| < 1",
+      "measured": "|v_f|/|v_i| = 1.249999e-01",
+      "threshold": "ratio < 1 (decay, not growth)",
+      "pass": true
+    },
+    {
+      "check": "G2[I] [RATE] fitted decay exponent p in |v| ~ a^-p",
+      "measured": "p = 1.500000",
+      "threshold": "p > 0.5",
+      "pass": true
+    },
+    {
+      "check": "G3[I] [BUT IT NEVER ENTERS THE DOMAIN] K < 0 at every point of\n      the trajectory: the count of samples with K >= 0 is zero",
+      "measured": "samples with K >= 0: 0 of 4000;  max K = -7.812492e-09",
+      "threshold": "0 samples with K >= 0",
+      "pass": true
+    },
+    {
+      "check": "G4[I] [FIRST INTEGRAL] a^3 G(v) is conserved along the integration",
+      "measured": "max relative drift of a^3 G(v) = 2.149e-12",
+      "threshold": "relative drift < 1e-6",
+      "pass": true
+    },
+    {
+      "check": "N1 [NO BARRIER] f'(K) = mu_2(sqrt K) <= 2 sqrt(K) for all K >= 0\n      -- the EOM coefficient VANISHES at the frozen point instead of\n      diverging, i.e. the opposite of a protective barrier",
+      "measured": "2u - mu_2(u) = u**2*(2*u + 3)/(u + 1)**2  (>= 0 for u >= 0); min over u in [1e-8,1e6] = 3.000000e-16; f'(1e-2) = 1.735537e-01, f'(1e-8) = 1.999700e-04",
+      "threshold": "2u - mu_2(u) >= 0 on the grid, and f'(K) <= 2 sqrt(K) numerically",
+      "pass": true
+    },
+    {
+      "check": "N2 [DEGENERACY] f'(K) -> 0 as K -> 0+ : the principal coefficient of the\n      scalar EOM degenerates at the frozen configuration",
+      "measured": "f'(K) = 1.736e-01, 1.970e-02, 1.997e-03, 2.000e-04, 2.000e-05, 2.000e-06, 2.000e-07, 2.000e-08 for K = 1e-2 .. 1e-16",
+      "threshold": "f'(1e-16) < 1e-7 and f' decreasing in K",
+      "pass": true
+    },
+    {
+      "check": "N3 [LINEARISED EOM IS EMPTY] about the frozen background the linearised\n      EOM is f'(0) * (box delta-phi) = 0 * (box delta-phi) = 0",
+      "measured": "f'(0) = mu_2(0) = 0.0e+00; coefficient of box delta-phi = 0",
+      "threshold": "f'(0) == 0 exactly",
+      "pass": true
+    },
+    {
+      "check": "N4 [NO RESTORING FORCE] d rho/dK -> 0 as K -> 0+ (the vacuum has no mass\n      term for the scalar, so nothing pushes K back up)",
+      "measured": "d rho/du at u = 1e-1,1e-2,1e-3,1e-4 : 6.476e-02, 7.823e-04, 7.982e-06, 7.998e-08",
+      "threshold": "d rho/du at u=1e-4 < 1e-2 and decreasing",
+      "pass": true
+    },
+    {
+      "check": "D1 [MODES LEAVE THE DOMAIN] a Fourier mode with any A_dot != 0 has K < 0 on\n      a set of POSITIVE measure (the antinodes of sin, where grad phi = 0)",
+      "measured": "fraction of the period with K < 0: r=0.001 -> 6.3662e-04, r=0.01 -> 6.3660e-03, r=0.1 -> 6.3451e-02;  r = |A_dot| a/(k|A|)",
+      "threshold": "violating fraction > 0 for every r > 0",
+      "pass": true
+    },
+    {
+      "check": "D2 [low] [HOW SMALL IS SMALL] at 15 kpc in a 1e11 Msun galaxy the\n      domain bound |phidot| <= g/a reads |v| = |phidot|/Lambda^2 <= 3.3229e-06",
+      "measured": "|v|_max = g(15 kpc)/Lambda^2 = 3.322855e-06;  |phidot|_max = 7.615573e-11 SI",
+      "threshold": "|v|_max < 1e-4",
+      "pass": true
+    },
+    {
+      "check": "D2 [high] [HOW SMALL IS SMALL] at 15 kpc in a 1e11 Msun galaxy the\n      domain bound |phidot| <= g/a reads |v| = |phidot|/Lambda^2 <= 3.0273e-06",
+      "measured": "|v|_max = g(15 kpc)/Lambda^2 = 3.027319e-06;  |phidot|_max = 8.359030e-11 SI",
+      "threshold": "|v|_max < 1e-4",
+      "pass": true
+    },
+    {
+      "check": "S1 [HYPERBOLIC CONE] c_s^2 = (u^2+3u+2)/(u^2+3u+4) -> 1/2 as K -> 0+:\n      the perturbation cone is real, timelike and subluminal AT the frozen\n      point, so the vacuum is not a singular point of the causal structure",
+      "measured": "c_s^2(K=0) = 0.500000;  c_s^2 in [0.500000, 1.000000] over u in [1e-6,1e6]",
+      "threshold": "|c_s^2(0) - 1/2| < 1e-12",
+      "pass": true
+    },
+    {
+      "check": "S2 [STABLE ONLY VACUOUSLY] inside the domain the homogeneous FLRW sector is\n      a single point, so 'stability' holds trivially -- the number of grid\n      configurations with K >= 0 is exactly 1 (namely v = 0)",
+      "measured": "configurations with K >= 0 out of 1401 scanned: 1; the unique one is v = 0.0e+00; max K = -0.0e+00",
+      "threshold": "exactly 1 in-domain homogeneous configuration",
       "pass": true
     }
   ],
-  "M_b_Msun": 60000000000.0,
-  "hernquist_a_kpc": 2.4,
-  "r_M_kpc": {
-    "canonical": 9.452672257659215,
-    "alternative": 8.61194605856116
-  },
-  "v_flat_km_s": {
-    "canonical": 165.2473759056664,
-    "alternative": 173.1255720407117
-  },
-  "sigma_derived_km_s": {
-    "canonical": 116.8475400761792,
-    "alternative": 122.41826598678739
-  },
-  "sigma2_closure_rel_error": {
-    "canonical": 2.220446049250313e-16,
-    "alternative": 0.0
-  },
-  "rhoB_over_rhoA": {
-    "10kpc": 4.593418681794464,
-    "15kpc": 2.963923960061257,
-    "20kpc": 2.325624475141634,
-    "30kpc": 1.792297448222602,
-    "50kpc": 1.4344607827816465,
-    "80kpc": 1.257887583077474,
-    "100kpc": 1.202764316941633,
-    "200kpc": 1.0979072330876851
-  },
-  "reading_selection_v20kpc_km_s": {
-    "A": 193.8951491823962,
-    "B": 263.259664468293,
-    "measured": 208.8074,
-    "measured_err": 15.0,
-    "M_b_implied_A_Msun": 75560351638.44478,
-    "M_b_implied_B_Msun": 29221094813.402176
-  },
-  "r_EFE_kpc": {
-    "gext=0.01": 945.2672257659214,
-    "gext=0.02": 472.6336128829607,
-    "gext=0.05": 189.0534451531843
-  },
-  "nfw": {
-    "M200_Msun": 1000000000000.0,
-    "c": 12.0,
-    "r200_kpc": 211.56844793951436,
-    "r_s_kpc": 17.630703994959532
-  },
-  "slope_table": {
-    "canonical": [
-      {
-        "r": 1.0,
-        "rM": 9.452672257659215,
-        "rrM": 0.10579019061934895,
-        "fph": 0.4641647717358173,
-        "fph_nfw": 0.19320182604997865,
-        "g_b": -1.8823529411764706,
-        "g_totA": -1.9369605613806842,
-        "g_totB": -3.6276589988785894,
-        "g_nfw": -1.1073496739866133,
-        "g_totNFW": -1.7326208947606907,
-        "d": -0.20433966661999348,
-        "valid": false
-      },
-      {
-        "r": 2.0,
-        "rM": 9.452672257659215,
-        "rrM": 0.2115803812386979,
-        "fph": 0.48419352975067753,
-        "fph_nfw": 0.3185553820652838,
-        "g_b": -2.3636363636363633,
-        "g_totA": -2.1875659891815715,
-        "g_totB": -3.930310494452326,
-        "g_nfw": -1.2037624326171419,
-        "g_totNFW": -1.9941522803929728,
-        "d": -0.19341370878859876,
-        "valid": false
-      },
-      {
-        "r": 3.0,
-        "rM": 9.452672257659215,
-        "rrM": 0.3173705718580469,
-        "fph": 0.5363535307907431,
-        "fph_nfw": 0.4389544217898528,
-        "g_b": -2.6666666666666665,
-        "g_totA": -2.3090976461395045,
-        "g_totB": -3.9125052376512515,
-        "g_nfw": -1.2908286601109644,
-        "g_totNFW": -2.0627364900225045,
-        "d": -0.24636115611700005,
-        "valid": false
-      },
-      {
-        "r": 5.0,
-        "rM": 9.452672257659215,
-        "rrM": 0.5289509530967448,
-        "fph": 0.6410878136847835,
-        "fph_nfw": 0.6259268967697302,
-        "g_b": -3.027027027027027,
-        "g_totA": -2.3686125156750877,
-        "g_totB": -3.6970504054677047,
-        "g_nfw": -1.4418775484062392,
-        "g_totNFW": -2.034839332957761,
-        "d": -0.3337731827173265,
-        "valid": false
-      },
-      {
-        "r": 8.0,
-        "rM": 9.452672257659215,
-        "rrM": 0.8463215249547916,
-        "fph": 0.7560349224783903,
-        "fph_nfw": 0.7836038567192501,
-        "g_b": -3.307692307692308,
-        "g_totA": -2.3190312552205667,
-        "g_totB": -3.393811796887472,
-        "g_nfw": -1.6242512887334861,
-        "g_totNFW": -1.9885414326767907,
-        "d": -0.330489822543776,
-        "valid": false
-      },
-      {
-        "r": 10.0,
-        "rM": 9.452672257659215,
-        "rrM": 1.0579019061934896,
-        "fph": 0.807770952476755,
-        "fph_nfw": 0.8407998816349249,
-        "g_b": -3.4193548387096775,
-        "g_totA": -2.27284122874267,
-        "g_totB": -3.2388856372860864,
-        "g_nfw": -1.7238324439235588,
-        "g_totNFW": -1.993759809864145,
-        "d": -0.2790814188785249,
-        "valid": true
-      },
-      {
-        "r": 15.0,
-        "rM": 9.452672257659215,
-        "rrM": 1.5868528592902345,
-        "fph": 0.8855881172200738,
-        "fph_nfw": 0.9127640365344655,
-        "g_b": -3.586206896551724,
-        "g_totA": -2.181480917512986,
-        "g_totB": -2.963780693055614,
-        "g_nfw": -1.9193794900849857,
-        "g_totNFW": -2.0647867848188697,
-        "d": -0.11669413269411644,
-        "valid": true
-      },
-      {
-        "r": 20.0,
-        "rM": 9.452672257659215,
-        "rrM": 2.115803812386979,
-        "fph": 0.9252930384891082,
-        "fph_nfw": 0.9437735905361918,
-        "g_b": -3.6785714285714284,
-        "g_totA": -2.1254009711075685,
-        "g_totB": -2.784597343317685,
-        "g_nfw": -2.0629617773124265,
-        "g_totNFW": -2.1538017070977955,
-        "d": 0.028400735990226966,
-        "valid": true
-      },
-      {
-        "r": 30.0,
-        "rM": 9.452672257659215,
-        "rrM": 3.173705718580469,
-        "fph": 0.9615195467136725,
-        "fph_nfw": 0.9694237292217556,
-        "g_b": -3.777777777777778,
-        "g_totA": -2.068409694731249,
-        "g_totB": -2.567305006780683,
-        "g_nfw": -2.25969164777303,
-        "g_totNFW": -2.3061090603487524,
-        "d": 0.2376993656175035,
-        "valid": true
-      },
-      {
-        "r": 50.0,
-        "rM": 9.452672257659215,
-        "rrM": 5.289509530967448,
-        "fph": 0.9844769332153751,
-        "fph_nfw": 0.9851903093803563,
-        "g_b": -3.8625954198473282,
-        "g_totA": -2.0289131930950264,
-        "g_totB": -2.3607726160934974,
-        "g_nfw": -2.478618350733905,
-        "g_totNFW": -2.4991146229521557,
-        "d": 0.4702014298571293,
-        "valid": true
-      },
-      {
-        "r": 80.0,
-        "rM": 9.452672257659215,
-        "rrM": 8.463215249547916,
-        "fph": 0.9935539208893353,
-        "fph_nfw": 0.9920083138859949,
-        "g_b": -3.912621359223301,
-        "g_totA": -2.0123289085903004,
-        "g_totB": -2.2314224997936853,
-        "g_nfw": -2.638828702989384,
-        "g_totNFW": -2.6490084540723307,
-        "d": 0.6366795454820302,
-        "valid": true
-      },
-      {
-        "r": 100.0,
-        "rM": 9.452672257659215,
-        "rrM": 10.579019061934895,
-        "fph": 0.9957921073907932,
-        "fph_nfw": 0.9939433142841958,
-        "g_b": -3.9296875,
-        "g_totA": -2.0081199177693287,
-        "g_totB": -2.186420039417008,
-        "g_nfw": -2.7002363601306847,
-        "g_totNFW": -2.7076827592878105,
-        "d": 0.6995628415184818,
-        "valid": true
-      },
-      {
-        "r": 150.0,
-        "rM": 9.452672257659215,
-        "rrM": 15.868528592902344,
-        "fph": 0.9980808985224844,
-        "fph_nfw": 0.9962601267375463,
-        "g_b": -3.9527559055118107,
-        "g_totA": -2.003747536743495,
-        "g_totB": -2.1252013055881385,
-        "g_nfw": -2.7896482735586474,
-        "g_totNFW": -2.793998148692745,
-        "d": 0.7902506119492498,
-        "valid": true
-      },
-      {
-        "r": 200.0,
-        "rM": 9.452672257659215,
-        "rrM": 21.15803812386979,
-        "fph": 0.9989067505766276,
-        "fph_nfw": 0.9973061760046548,
-        "g_b": -3.964426877470356,
-        "g_totA": -2.0021476085510517,
-        "g_totB": -2.0941626410363066,
-        "g_nfw": -2.837975950347816,
-        "g_totNFW": -2.841010410884878,
-        "d": 0.8388628023338263,
-        "valid": true
-      }
-    ],
-    "alternative": [
-      {
-        "r": 1.0,
-        "rM": 8.61194605856116,
-        "rrM": 0.1161177732884076,
-        "fph": 0.48739268808136,
-        "fph_nfw": 0.19320182604997865,
-        "g_b": -1.8823529411764706,
-        "g_totA": -1.9396932574213364,
-        "g_totB": -3.4793600722929567,
-        "g_nfw": -1.1073496739866133,
-        "g_totNFW": -1.7326208947606907,
-        "d": -0.20707236266064566,
-        "valid": false
-      },
-      {
-        "r": 2.0,
-        "rM": 8.61194605856116,
-        "rrM": 0.2322355465768152,
-        "fph": 0.5074744952286363,
-        "fph_nfw": 0.3185553820652838,
-        "g_b": -2.3636363636363633,
-        "g_totA": -2.1791001835532233,
-        "g_totB": -3.7524371522468116,
-        "g_nfw": -1.2037624326171419,
-        "g_totNFW": -1.9941522803929728,
-        "d": -0.18494790316025056,
-        "valid": false
-      },
-      {
-        "r": 3.0,
-        "rM": 8.61194605856116,
-        "rrM": 0.3483533198652228,
-        "fph": 0.5594224267688453,
-        "fph_nfw": 0.4389544217898528,
-        "g_b": -2.6666666666666665,
-        "g_totA": -2.2937183821541027,
-        "g_totB": -3.7372770173896694,
-        "g_nfw": -1.2908286601109644,
-        "g_totNFW": -2.0627364900225045,
-        "d": -0.23098189213159825,
-        "valid": false
-      },
-      {
-        "r": 5.0,
-        "rM": 8.61194605856116,
-        "rrM": 0.580588866442038,
-        "fph": 0.662227342029403,
-        "fph_nfw": 0.6259268967697302,
-        "g_b": -3.027027027027027,
-        "g_totA": -2.3469016487265595,
-        "g_totB": -3.5468127377722922,
-        "g_nfw": -1.4418775484062392,
-        "g_totNFW": -2.034839332957761,
-        "d": -0.3120623157687983,
-        "valid": false
-      },
-      {
-        "r": 8.0,
-        "rM": 8.61194605856116,
-        "rrM": 0.9289421863072608,
-        "fph": 0.7728035198072514,
-        "fph_nfw": 0.7836038567192501,
-        "g_b": -3.307692307692308,
-        "g_totA": -2.297103089482825,
-        "g_totB": -3.275749013700712,
-        "g_nfw": -1.6242512887334861,
-        "g_totNFW": -1.9885414326767907,
-        "d": -0.3085616568060343,
-        "valid": false
-      },
-      {
-        "r": 10.0,
-        "rM": 8.61194605856116,
-        "rrM": 1.161177732884076,
-        "fph": 0.8218216068325505,
-        "fph_nfw": 0.8407998816349249,
-        "g_b": -3.4193548387096775,
-        "g_totA": -2.2528983644957346,
-        "g_totB": -3.135522705409221,
-        "g_nfw": -1.7238324439235588,
-        "g_totNFW": -1.993759809864145,
-        "d": -0.25913855463158963,
-        "valid": true
-      },
-      {
-        "r": 15.0,
-        "rM": 8.61194605856116,
-        "rrM": 1.7417665993261138,
-        "fph": 0.8946923814303718,
-        "fph_nfw": 0.9127640365344655,
-        "g_b": -3.586206896551724,
-        "g_totA": -2.1670396708345825,
-        "g_totB": -2.884056491593658,
-        "g_nfw": -1.9193794900849857,
-        "g_totNFW": -2.0647867848188697,
-        "d": -0.10225288601571281,
-        "valid": true
-      },
-      {
-        "r": 20.0,
-        "rM": 8.61194605856116,
-        "rrM": 2.322355465768152,
-        "fph": 0.9314822544911772,
-        "fph_nfw": 0.9437735905361918,
-        "g_b": -3.6785714285714284,
-        "g_totA": -2.1150119299612387,
-        "g_totB": -2.719247112265917,
-        "g_nfw": -2.0629617773124265,
-        "g_totNFW": -2.1538017070977955,
-        "d": 0.03878977713655685,
-        "valid": true
-      },
-      {
-        "r": 30.0,
-        "rM": 8.61194605856116,
-        "rrM": 3.4835331986522275,
-        "fph": 0.9648216236555447,
-        "fph_nfw": 0.9694237292217556,
-        "g_b": -3.777777777777778,
-        "g_totA": -2.062539335723476,
-        "g_totB": -2.5191911825474533,
-        "g_nfw": -2.25969164777303,
-        "g_totNFW": -2.3061090603487524,
-        "d": 0.2435697246252766,
-        "valid": true
-      },
-      {
-        "r": 50.0,
-        "rM": 8.61194605856116,
-        "rrM": 5.8058886644203795,
-        "fph": 0.9858380113786451,
-        "fph_nfw": 0.9851903093803563,
-        "g_b": -3.8625954198473282,
-        "g_totA": -2.0263780551420654,
-        "g_totB": -2.329499133347627,
-        "g_nfw": -2.478618350733905,
-        "g_totNFW": -2.4991146229521557,
-        "d": 0.4727365678100903,
-        "valid": true
-      },
-      {
-        "r": 80.0,
-        "rM": 8.61194605856116,
-        "rrM": 9.289421863072608,
-        "fph": 0.9941238700441545,
-        "fph_nfw": 0.9920083138859949,
-        "g_b": -3.912621359223301,
-        "g_totA": -2.011238811663122,
-        "g_totB": -2.2110999760047774,
-        "g_nfw": -2.638828702989384,
-        "g_totNFW": -2.6490084540723307,
-        "d": 0.6377696424092085,
-        "valid": true
-      },
-      {
-        "r": 100.0,
-        "rM": 8.61194605856116,
-        "rrM": 11.611777328840759,
-        "fph": 0.9961649245341783,
-        "fph_nfw": 0.9939433142841958,
-        "g_b": -3.9296875,
-        "g_totA": -2.007400497187953,
-        "g_totB": -2.1699855875315532,
-        "g_nfw": -2.7002363601306847,
-        "g_totNFW": -2.7076827592878105,
-        "d": 0.7002822620998574,
-        "valid": true
-      },
-      {
-        "r": 150.0,
-        "rM": 8.61194605856116,
-        "rrM": 17.41766599326114,
-        "fph": 0.9982512860492996,
-        "fph_nfw": 0.9962601267375463,
-        "g_b": -3.9527559055118107,
-        "g_totA": -2.003414811494281,
-        "g_totB": -2.1141145484634265,
-        "g_nfw": -2.7896482735586474,
-        "g_totNFW": -2.793998148692745,
-        "d": 0.7905833371984641,
-        "valid": true
-      },
-      {
-        "r": 200.0,
-        "rM": 8.61194605856116,
-        "rrM": 23.223554657681518,
-        "fph": 0.9990038879635417,
-        "fph_nfw": 0.9973061760046548,
-        "g_b": -3.964426877470356,
-        "g_totA": -2.0019567892573904,
-        "g_totB": -2.0858095796993825,
-        "g_nfw": -2.837975950347816,
-        "g_totNFW": -2.841010410884878,
-        "d": 0.8390536216274875,
-        "valid": true
-      }
-    ]
-  },
-  "crossing_radius_kpc": 19.021304604092744,
-  "max_separation": {
-    "r_kpc": 200.0,
-    "delta_gamma": 0.8388628023338263
-  },
-  "discriminator": "framework gamma -> -2 for r >= 3 r_M; NFW steepens past -2.4"
+  "verdict": "IMPOSED CONSTRAINT, not an attractor",
+  "decay_on_continuation": true,
+  "in_domain_rolling_solution": false,
+  "footings": {
+    "a0_low": 9.3619e-11,
+    "a0_high": 1.1279e-10
+  }
 }
