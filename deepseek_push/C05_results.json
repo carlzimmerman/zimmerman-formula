@@ -1,0 +1,86 @@
+{
+  "lane": "C05_doubleZ",
+  "title": "THE DOUBLE-Z EXPONENT (LEAN): m = k_B T_0(1+z*)/sigma^2 with sigma^2 = (1/2) sqrt(G M_b a0), a0 = c^2/(Z R_dS) -- the Z-dependence of m is Z^(+1/2) EXACTLY and m(2Z)/m(Z) = sqrt(2) exactly",
+  "status_date": "2026-09-16",
+  "gate": "PASS",
+  "checks_passed": 10,
+  "checks_failed": 0,
+  "toolchain": {
+    "lean": "4.34.0-rc2",
+    "project": "fable_independent_2026/lean_2026 (mondlean)",
+    "compile": "lake env lean deepseek_push/lean/C05_doubleZ.lean",
+    "exit_code": 0,
+    "sorry": 0,
+    "axioms": ["propext", "Classical.choice", "Quot.sound"],
+    "note": "the only 'sorry' string in the file is the docstring's 'Zero sorry.' declaration"
+  },
+  "lean_file": "deepseek_push/lean/C05_doubleZ.lean",
+  "theorems": {
+    "count": 10,
+    "names": [
+      "exponent_flip",
+      "sqrt_recip",
+      "sqrt_mul_pos",
+      "ladder_sqrt_pair",
+      "ladder_closed_form",
+      "z_exponent",
+      "z_dependence_of_m",
+      "double_z_scaling",
+      "z_squared_exact",
+      "sqrt_z_sqrt_form"
+    ],
+    "theorem_1_exponent_flip": "1/(k x^(-1/2)) = x^(+1/2)/k for x > 0, x^(-1/2) := 1/sqrt(x), x^(+1/2) := sqrt(x) -- the reciprocal-square-root algebra at the field level",
+    "theorem_2_sqrt_recip": "sqrt(1/y) = 1/sqrt(y) for y > 0 (the flip on the sqrt itself)",
+    "theorem_3_sqrt_mul_pos": "sqrt(A*B) = sqrt(A) sqrt(B) for 0 < A, 0 < B (two-factor product, squared both sides)",
+    "theorem_4_ladder_sqrt_pair": "sqrt(G M_b c^2/(Z R_dS)) * sqrt(Z R_dS/(G M_b)) = c -- sigma^2 carries Z^(-1/2), the inverse flips it to Z^(+1/2)",
+    "theorem_5_ladder_closed_form": "m = k_B T/sigma^2 = (2 k_B T/c) sqrt(Z R_dS/(G M_b)) EXACTLY, sigma^2 := (1/2) sqrt(G M_b c^2/(Z R_dS))",
+    "theorem_6_z_exponent": "sqrt(Z R_dS/(G M_b)) = sqrt(Z) sqrt(R_dS/(G M_b)) -- the Z^(+1/2) factor separates",
+    "theorem_7_z_dependence_of_m": "m = (2 k_B T/c) sqrt(Z) sqrt(R_dS/(G M_b)) -- m carries Z^(+1/2) exactly, Z-independent prefactor",
+    "theorem_8_double_z_scaling": "m(2Z)/m(Z) = sqrt(2) EXACTLY (2Z doubles Z inside a0 = c^2/(Z R_dS))",
+    "theorem_9_z_squared_exact": "(2 sqrt(8 pi/3))^2 = 32 pi/3 exactly (Z = sqrt(32 pi/3), Z > 0)",
+    "theorem_10_sqrt_z_sqrt_form": "sqrt(Z) = sqrt(sqrt(32 pi/3)) exactly -- the A08 '(32 pi/3)^(1/4)' content in sqrt-of-sqrt form (no rpow)"
+  },
+  "math_content": {
+    "ladder": "m = k_B T_0(1+z*)/sigma^2, T := T_0(1+z*)",
+    "sigma2_form": "(1/2) sqrt(G M_b a0)",
+    "a0_form": "c^2/(Z R_dS) (Z11 horizon form)",
+    "closed_form": "m = (2 k_B T/c) Z^(+1/2) R_dS^(+1/2) G^(-1/2) M_b^(-1/2)",
+    "Z_exponent_in_m": 0.5,
+    "Z_exponent_statement": "sigma^2 carries Z^(-1/2) through a0; m = k_B T/sigma^2 inverts the sign -> Z^(+1/2) exactly",
+    "certified_style": "field-level reciprocal-square-root algebra only (sqrt-rendered powers, no rpow); premises (the ladder formula, the horizon a0, Z = 2 sqrt(8 pi/3)) stay inputs"
+  },
+  "numeric_anchors": {
+    "m_2Z_over_m_Z": 1.414213562373095,
+    "m_2Z_over_m_Z_expect_sqrt2": 1.4142135623730951,
+    "m_2Z_over_m_Z_agreement": "1.41421356 at 8 decimals; A08 check 'to 1e-9' PASS",
+    "closed_form_equals_ladder_rel": 1.7435847198147666e-16,
+    "closed_form_equals_ladder_statement": "the closed form matches the ladder to 1.7e-16 (A08 8/8 PASS, re-run today: 8/8)",
+    "sqrt_Z": 2.4059946044133476,
+    "Z": 5.788810036466141
+  },
+  "scope": "Lean certifies the field-level algebra: the exponent-flip identity, the closed-form identity, the Z^(+1/2) separation, and the sqrt(2) scaling corollary -- NOT the physics-law reading, the constants' values, or the decimal numerics (those live in project_atomos/A08_double_Z.py, 8/8 PASS; delivered numbers echoed from A08_results.json and re-verified by running A08 today).",
+  "verdicts": {
+    "V1": "the exponent-flip certified: 1/(k x^(-1/2)) = x^(+1/2)/k for x > 0 (theorem exponent_flip); the ladder carries it (ladder_sqrt_pair -> ladder_closed_form -> z_dependence_of_m): m = (2 k_B T/c) Z^(+1/2) R_dS^(+1/2) G^(-1/2) M_b^(-1/2) exactly",
+    "V2": "the scaling corollary certified: m(2Z)/m(Z) = sqrt(2) EXACTLY (theorem double_z_scaling); numeric m(2Z)/m(Z) = 1.414213562373095 vs sqrt(2) = 1.4142135623730951 (A08 'to 1e-9' PASS)",
+    "V3": "the closed form matches the ladder: Lean ladder_closed_form exact identity; numeric rel diff 1.74e-16 (A08) -- the 1.7e-16 anchor",
+    "V4": "the (32 pi/3)^(1/4) content certified at the sqrt level: Z^2 = 32 pi/3 and sqrt(Z) = sqrt(sqrt(32 pi/3)) exactly (z_squared_exact, sqrt_z_sqrt_form); the 1/4-power rendering is documentation (no rpow)"
+  },
+  "checks": [
+    {"name": "file compiles exit 0 (lake env lean)", "pass": true},
+    {"name": "zero sorryAx in proof terms", "pass": true},
+    {"name": "axioms subset {propext, Classical.choice, Quot.sound}", "pass": true},
+    {"name": "10 theorems certified", "pass": true},
+    {"name": "exponent_flip: 1/(k x^(-1/2)) = x^(+1/2)/k for x > 0", "pass": true},
+    {"name": "sqrt_recip: sqrt(1/y) = 1/sqrt(y)", "pass": true},
+    {"name": "sqrt_mul_pos: sqrt(A B) = sqrt A sqrt B", "pass": true},
+    {"name": "ladder_sqrt_pair: sqrt(G M_b c^2/(Z R_dS)) sqrt(Z R_dS/(G M_b)) = c", "pass": true},
+    {"name": "ladder_closed_form: k_B T/sigma^2 = (2 k_B T/c) sqrt(Z R_dS/(G M_b))", "pass": true},
+    {"name": "z_exponent + z_dependence_of_m: m carries Z^(+1/2) exactly", "pass": true},
+    {"name": "double_z_scaling: m(2Z)/m(Z) = sqrt(2)", "pass": true},
+    {"name": "z_squared_exact + sqrt_z_sqrt_form: (32 pi/3)^(1/4) in sqrt-of-sqrt form", "pass": true},
+    {"name": "numeric m(2Z)/m(Z) = 1.41421356 (matches sqrt(2) to 8 decimals; A08 1e-9 check PASS)", "pass": true},
+    {"name": "closed form vs ladder rel diff 1.7e-16 (A08 re-run today 8/8 PASS)", "pass": true}
+  ],
+  "n_pass": 14,
+  "n_total": 14
+}
