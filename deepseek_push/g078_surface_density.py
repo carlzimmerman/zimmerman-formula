@@ -82,21 +82,26 @@ RES.append(check("V2 [composition] the M_b cancels: equipartition (G03E) + the "
                  "one line: <Sigma>(<r_M) = M_b/(pi r_M^2) = M_b/(pi G M_b/a0) = a0/(pi G)"))
 
 # ---- V3: the MW observables ----
-print("\n--- V3 the MW sheet: Sigma_dark(R0), the ratio, rho_dark(R0) ---")
+# ---- V3: the MW observables (CORRECTED: the finite-range column is the survey number) ----
+print("\n--- V3 the MW sheet: Sigma_dark(R0) total-LOS vs the finite-range column ---")
 Mb = 7e10
 A = math.sqrt(GN * Mb * MSUN * A0["canonical"]) / (4 * math.pi * GN)
 R0 = 8.2 * KPC
-SigR0 = math.pi * A / R0
+SigR0 = math.pi * A / R0                 # the FULL line-of-sight column (the sheet total)
+zmax = 1.1 * KPC                         # the vertical-survey range (the classic |z| window)
+col_fin = 2.0 * (A / R0) * math.atan(zmax / R0)   # finite column, the survey-measurable
 rhoR0 = A / R0 ** 2
-SigB = 40.0 * MSUN / PC ** 2          # MW baryon surface density at R0 ~ 35-50
-print(f"    Sigma_dark(R0) = {SigR0/MSUN*PC**2:.2f} Msun/pc^2  (vs Sigma_b ~ 35-50)")
-print(f"    ratio Sigma_dark/Sigma_b = {SigR0/SigB:.3f}")
+print(f"    Sigma_dark(R0, full LOS) = {SigR0/MSUN*PC**2:.1f} Msun/pc^2 (the sheet total)")
+print(f"    Sigma_dark(R0, +/- {zmax/KPC:.1f} kpc window) = {col_fin/MSUN*PC**2:.1f} Msun/pc^2 "
+      f"(the survey-measurable column; measured local columns sit ~15-25)")
 print(f"    rho_dark(R0) = {rhoR0/MSUN*PC**3:.4f} Msun/pc^3 (measured 0.008-0.015; "
       f"ClearPotential 0.0084)")
-ok3 = 0.005 < rhoR0/MSUN*PC**3 < 0.012 and SigR0/SigB > 0.2
-RES.append(check("V3 [MW sheet] rho_dark(R0) in the measured band and the surface ratio "
-                 "is a few tenths (the dark sheet is sub-dominant in projection at R0)", ok3,
-                 f"Sigma_dark/Sigma_b = {SigR0/SigB:.2f}; rho_dark(R0) = {rhoR0/MSUN*PC**3:.4f}"))
+ok3 = (0.005 < rhoR0/MSUN*PC**3 < 0.012 and 10 < col_fin/MSUN*PC**2 < 30)
+RES.append(check("V3 [MW sheet] rho_dark(R0) in the measured band AND the finite-range "
+                 "vertical column in the measured column band (10-30 Msun/pc^2)",
+                 ok3,
+                 f"rho_dark(R0) = {rhoR0/MSUN*PC**3:.4f}; column(+/-1.1 kpc) = {col_fin/MSUN*PC**2:.1f} "
+                 f"Msun/pc^2; (full-LOS total 209.0 is the sheet's full column, not the survey number)"))
 
 # ---- V4 ----
 statement = ("THE UNIVERSAL DARK SURFACE DENSITY: <Sigma_ph>(<r_M) = a0/(pi G) = "
@@ -112,7 +117,8 @@ n = sum(1 for r in RES if r)
 print(f"\nG078 COMPLETE: {n}/{len(RES)} checks PASS.")
 json.dump({"checks": [bool(r) for r in RES], "n_pass": int(n), "n_total": len(RES),
            "universal": sigs,
-           "mw": {"Sigma_dark_R0": SigR0 / MSUN * PC ** 2, "ratio": SigR0 / SigB,
+           "mw": {"Sigma_dark_R0_fullLOS": SigR0 / MSUN * PC ** 2,
+                  "col_fin_1kpc": col_fin / MSUN * PC ** 2,
                   "rho_dark_R0": rhoR0 / MSUN * PC ** 3},
            "statement": statement},
           open(os.path.join(HERE, "g078_surface_density_results.json"), "w"), indent=1)
