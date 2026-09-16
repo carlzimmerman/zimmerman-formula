@@ -741,3 +741,23 @@ G085/G092 -> G112 amendment) · the Bullet under two-phase (G110 dw) · the
 tSZ prediction (G113) · the deep-end HI (G114) · the 0.62 factor (G119:
 sqrt(a0/g_ext) = 0.635 candidate) · the BTFR register correction (G117) ·
 the merger-rate forecast (G118/G121).
+
+## WAVE 15 LANDED (G166 -- the footing crisis, mapped end to end)
+G166 THE FOOTING CRISIS MAP (10/10 checks, 11/11 gates): the seesaw's
+single constant is under a 1.3-2x strain, and EVERY a0-carrying number
+re-prices at the RAR footing: (a) Omega_Lambda 0.6857 -> 1.125-1.213
+(1.64-1.77x Planck; OUTSIDE the Lean-closed (0.68,0.69) -- CONTRADICTS
+G058; at Omega fixed H0 would be 86.3-89.6 km/s/Mpc, CONTRADICTS Planck);
+(b) Z = cH0/a0: 5.46-5.26 at RAR vs the derived 5.789 (-5.7% to -9.2%),
+3.87-3.56 at MIGHTEE (-33% to -38%) -- the RAR scale is NOT the vacuum
+scale; (c) r_M shrinks 1.13-1.15x; (d) the universal column 213.8 ->
+274.0-284.4 Msun/pc^2 (MW shifts only via r_M-normalization); (e) dSph
+predictions up 6.4-7.4%, the 0.222 floor -> 0.195; (f) the 12-decade line
+is EXACTLY footing-invariant in slope (0.9884) -- the line does NOT care,
+the zero point does.  STRUCTURE: the DE anchor is CMB-consistent (Lean
+arithmetic holds; only the GALACTIC link fails, G133 5.2 sigma); EFE
+inflation REJECTED (G03D: the boost moved the fit DOWN 0.692 -> 0.534);
+the surviving reading is the composite equilibrium scale a0_RAR =
+sqrt(a0_Lambda x a0_c), a0_c = 1.54-1.66e-10 (3.05-3.63e-10 MIGHTEE-end);
+the registered z ~ 2.5 BTFR-zero-point test (flat 0.00 vs +0.33 dex at
++-0.13, 20:1, G080) is now THE decisive instrument.
