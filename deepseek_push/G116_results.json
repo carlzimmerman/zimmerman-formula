@@ -1,0 +1,224 @@
+{
+ "lane": "G116_sector_mass_synthesis",
+ "title": "THE SECTOR MASS SYNTHESIS -- one species, one mass: the ONE window m in [3.3, 100] keV",
+ "question": "G116: one species, two phases -- what is the ONE mass window?  Equilibrium-phase TG floor (m > 23.25 eV, G084) vs free-dust forest bound (m > 3.3-5.7 keV, G093); thermal consistency of the equilibrium phase; the honest window; production status.",
+ "references": {
+  "G084": "TG floor m > 23.25 eV (rho 0.008, sigma 119.2 km/s); T_per_eV 1.83-2.01 mK/eV; killed-window offset 4x",
+  "G093": "free dust: m > 3.3-5.7 keV, cold (v_th < 0.055 km/s z=0), lambda_fs 0.50-0.82 Mpc vs 0.6 Mpc register; TG minima incl. clusters 11.8 eV; V4 non-claim on production",
+  "f04": "thermal 1-dof closure Omega h^2 = m/94 eV; 11.3 eV closes; the 14.7-93 eV conditional and its three costs",
+  "f06": "the killed window: 93-148 eV empty by 1.6x; 11 eV relic dead at 103-190 Mpc streaming; Newtonian-linear-regime escape closed",
+  "G089": "the dimensionless inventory: ONE free parameter; classification rules applied here to the window's claims",
+  "G079/G022": "dust share 98.7-99.2% of Omega_dm; no double counting",
+  "FORWARD_PROGRESS_2026-06-06": "KK-graviton DM corridor 1-100 keV, freeze-in T ~ 4 GeV (sketch)"
+ },
+ "checks": [
+  {
+   "name": "A1 [the consistency] ONE SPECIES, ONE MASS: the binding bound is the forest's m > 3.3-5.7 keV (G093); the equilibrium phase's TG floor m > 23.25 eV (G084) is then satisfied AUTOMATICALLY -- m_TG/m_forest = 7.047e-03 <= 0.007 (canonical at the 2-sigma mass); alt footing 6.804e-03; at the 95% CL forest mass 4.080e-03",
+   "measured": {
+    "m_TG_eV": 23.25438239113201,
+    "m_forest_keV": [
+     3.3,
+     5.7
+    ],
+    "ratio_TG_over_forest": {
+     "2sig_canon": 0.007046782542767276,
+     "2sig_alt": 0.0068041868698760655,
+     "95cl_canon": 0.004079716208970528
+    },
+    "margin_forest_over_TG": {
+     "2sig": 141.90873550176266,
+     "95cl": 245.11508859395371
+    },
+    "equilibrium_TG_below_killed_window": "4.01x (G084's 4x, floor 93.3 eV, window 93.3-148.0 eV)"
+   },
+   "pass": true,
+   "reading": "the equilibrium's phase-space floor (23.25 eV) is 142x weaker than the forest bound (3.3 keV), so a single species at the forest mass clears the equilibrium's TG cap with margin 1.4e2x; the two bounds are one-species compatible, and the equilibrium bound never binds.  The 23.25 eV floor also sits 4.0x BELOW the killed relic window's floor (93.3 eV, f04/f06): the equilibrium sector is phase-space safe on both sides of the window."
+  },
+  {
+   "name": "A2 [the thermal consistency] T_phase = m sigma^2/k_B: at m = 5 keV, sigma = 119.2 km/s: T = 9.17 K (direct m sigma^2/k_B); registered linear law 1.835 mK/eV -> 9.17 K, band [9.17, 10.07] K across the two footings -- the phase temperature is set by the DYNAMICS (the DE-set virial sigma), not by the particle mass",
+   "measured": {
+    "T_phase_K_at_5keV": {
+     "direct_m_sigma2_kB": 9.172932978094265,
+     "band_from_registered_mK_per_eV": [
+      9.172932977939725,
+      9.520472248404246,
+      10.071185291849854
+     ]
+    },
+    "T_per_eV_mK_registered_G084": {
+     "canonical": 1.834586595587945,
+     "7e10-constants": 1.9040944496808492,
+     "alt": 2.0142370583699707
+    },
+    "free_dust_kinetic_T_at_z3_K": {
+     "3.3keV": 2.043562265291894e-05,
+     "5.7keV": 1.1870472405817723e-05,
+     "5keV_interp": 2.0435622652918944e-05
+    },
+    "free_dust_kinetic_T_at_z0_K": 1.2795603146644502e-06,
+    "brief_4e-5_K_registry_note": "the brief's '4e-5 K' does NOT reproduce on the committed formula at (5 keV, 119.2 km/s) -- it is the FREE-DUST kinetic temperature T = m v_th^2/k_B at z = 3 (2.04e-05 K at 5 keV, v_th = 0.178 km/s): the two phases' velocity scales transposed (119.2 km/s virial vs ~0.18-0.22 km/s thermal; T scales as v^2, (0.22/119.2)^2 = 3.38e-06)"
+   },
+   "pass": true,
+   "reading": "at keV masses the equilibrium phase's temperature is ~10 K (9.2-10.1 K band on the registered per-eV constants) -- dynamically cold in absolute terms and 5 orders above the free dust's own kinetic temperature at z = 3 (~2e-5 K, ratio 4.5e+05x): the equilibrium phase is a Maxwell-Boltzmann equilibrium AT the virial temperature set by the well sigma^2 = (1/2) sqrt(G M_b a0), while the free dust never equilibrates."
+  },
+  {
+   "name": "A3 [the decoupling] mass vs dynamics: sigma_phase = sqrt((1/2) sqrt(G M_b a0)) = 119.21 km/s at G003's M_b = 6.5e10 Msun, a0 = 9.3623e-11 (registered 119.2 km/s, G084) -- the virial contains NO particle mass; the mass appears only in the free-streaming horizon (lambda_fs ~ 0.5-0.82 Mpc at 5.7-3.3 keV, G093) and the phase-space caps (TG rho_max ~ m^4 sigma^3)",
+   "measured": {
+    "sigma_virial_kms": 119.20924633196348,
+    "sigma_registered_kms": 119.2,
+    "mass_free": "sigma^2 = (1/2) sqrt(G M_b a0): no m_sec enters",
+    "mass_sets": [
+     "lambda_fs ~ (0.9 keV/Mpc)/m (G093)",
+     "TG caps rho_max ~ m^4 sigma^3",
+     "free-streaming kill scale m^(-4/3)-class at fixed Omega (f06)"
+    ],
+    "lfs_Mpc": {
+     "3.3keV": 0.82,
+     "5.7keV": 0.5,
+     "register": 0.6
+    }
+   },
+   "pass": true,
+   "reading": "the decoupling statement: the mass sets the free-streaming/phase-space side of the species (where it can live, how dense it can get); the dynamics sets sigma (the virial of the fixed baryon well, the DE-anchored a0) -- the equilibrium temperature T/m = sigma^2/k_B is the mass-INDEPENDENT registered constant 1.83-2.01 mK/eV."
+  },
+  {
+   "name": "B1 [the window statement] the dark sector = ONE cold species, m in [3.3, 100] keV: upper-bound candidates audited honestly",
+   "measured": {
+    "candidate_a_production": {
+     "status": "NOT DERIVED -- the framework registers no production mechanism (G093 V4's explicit non-claim)",
+     "thermal_1dof_closure_f04": "Omega h^2 = m/(94 eV); 11.3 eV closes (killed: free-streaming 103-190 Mpc, f06)",
+     "overclosure_at_keV": {
+      "3.3 keV": "292.6x",
+      "5.7 keV": "505.3x",
+      "10.0 keV": "886.5x",
+      "100.0 keV": "8865.2x"
+     },
+     "dilution_needed": {
+      "3.3 keV": "3.42e-03",
+      "5.7 keV": "1.98e-03",
+      "10.0 keV": "1.13e-03",
+      "100.0 keV": "1.13e-04"
+     },
+     "corridor_sketch": "KK-graviton DM 1-100 keV, freeze-in at T ~ 4 GeV (FORWARD_PROGRESS_2026-06-06) -- sketch, not a derivation"
+    },
+    "candidate_b_stellar_warming": {
+     "status": "NOT BINDING HERE -- published stellar-warming/cooling floors bind SM-coupled keV-DM classes; the framework's species is SM-decoupled by construction (no direct-detection coupling, THEORY.md 8 / G093 V4), so no stellar probe channel exists. Listed and dismissed."
+    },
+    "candidate_c_TG_densest": {
+     "cluster_core_TG_min_eV": 11.811364817196157,
+     "margin_at_2sig": "279x",
+     "status": "a LOWER bound, not an upper one -- trivially satisfied (279x margin)"
+    },
+    "honest_window_keV": [
+     3.3,
+     100.0
+    ],
+    "upper_end_status": "100 keV is the top of the production corridor sketch (KK-graviton freeze-in band), NOT an astrophysical constraint: no committed gate binds the species from above"
+   },
+   "pass": true,
+   "reading": "every upper-bound candidate fails to bind on the record: production is not derived (a thermal-ish keV yield would overclose by 3e2-9e3x, so the abundance REQUIRES a diluted/non-thermal channel -- which the framework does not claim, G093 V4); stellar-warming applies to SM-coupled classes only; the cluster-core TG (11.8 eV) is a lower bound satisfied 279x over. The honest window is therefore m in [3.3, 100] keV with the LOWER bound binding (the forest, 3.3 keV 2-sigma; 5.7 keV 95% CL preferred reading that puts lambda_fs = 0.50 Mpc inside the 0.6 Mpc register)."
+  },
+  {
+   "name": "V1 [THE CONSISTENCY] the two bounds on the record are ONE-SPECIES COMPATIBLE: binding bound m > 3.3-5.7 keV (forest, G093); the equilibrium's TG floor m > 23.25 eV (G084) is satisfied automatically -- m_TG/m_forest = 7.047e-03 <= 0.007 (canonical, 2-sigma mass), margin 141.9x (2-sigma) / 245.1x (95% CL); the equilibrium floor also clears the killed relic window by 4.0x below its floor (93.3 eV, f04/f06).  PASS.",
+   "measured": {
+    "ratio": 0.007046782542767276,
+    "margin_x": 141.90873550176266
+   },
+   "pass": true
+  },
+  {
+   "name": "V2 [THE HONEST MASS WINDOW] m in [3.3, 100] keV -- ONE cold species, lower bound binding (the forest), upper end = production-corridor top (KK-graviton freeze-in sketch 1-100 keV), NOT an astrophysical constraint: no committed gate binds from above; masses above 100 keV are unconstrained on the record.  PASS (as the honest statement; the upper end is a placeholder awaiting production derivation, V4).",
+   "measured": {
+    "window_keV": [
+     3.3,
+     100.0
+    ],
+    "binding": "lower (forest 3.3-5.7 keV)",
+    "upper_end": "placeholder: corridor sketch, not derived"
+   },
+   "pass": true
+  },
+  {
+   "name": "V3 [THE DECOUPLING] the mass sets the free-streaming/phase-space (lambda_fs ~ 0.5-0.82 Mpc at 5.7-3.3 keV vs the 0.6 Mpc register; TG caps rho_max ~ m^4 sigma^3); the dynamics sets sigma -- sigma^2 = (1/2) sqrt(G M_b a0) = 119.2 km/s (registered 119.2 km/s, G084), mass-free; T_phase/m = sigma^2/k_B = 1.83-2.01 mK/eV registered constant; T_phase(5 keV) = 9.17 K vs the free dust's own kinetic T(z=3) ~ 2.0e-05 K -- the equilibrium is a Maxwell-Boltzmann state AT the virial temperature, the free dust never equilibrates.  PASS.",
+   "measured": {
+    "sigma_virial_kms": 119.20924633196348,
+    "T_per_eV_mK": {
+     "canonical": 1.834586595587945,
+     "7e10-constants": 1.9040944496808492,
+     "alt": 2.0142370583699707
+    },
+    "T_phase_5keV_K": 9.172932978094265,
+    "T_kin_dust_z3_K": 2.0435622652918944e-05
+   },
+   "pass": true
+  },
+  {
+   "name": "V4 [PRODUCTION-MECHANISM STATUS] NOT DERIVED -- listed, honestly: (i) the framework registers no production mechanism and makes no thermal-relic claim (G093 V4's explicit non-claim, on the record); (ii) a thermal-ish yield at keV masses would overclose by 292.6x-8865x (Omega h^2 = m/94 eV, f04), so the observed Omega_dm needs a dilution 3.42e-03-1.13e-04 -- the mechanism is OPEN, not assumed; (iii) the one registered motif is the KK-graviton freeze-in corridor (1-100 keV, T ~ 4 GeV, FORWARD_PROGRESS_2026-06-06): a sketch, squeezed but alive, not a derivation; the window's upper end waits on it.  PASS as stated.",
+   "measured": {
+    "overclosure_band": {
+     "3.3 keV": 292.5531914893617,
+     "5.7 keV": 505.3191489361702,
+     "10.0 keV": 886.5248226950355,
+     "100.0 keV": 8865.248226950354
+    },
+    "dilution_band": {
+     "3.3 keV": 0.003418181818181818,
+     "5.7 keV": 0.0019789473684210528,
+     "10.0 keV": 0.0011279999999999999,
+     "100.0 keV": 0.0001128
+    },
+    "corridor": "KK-graviton 1-100 keV freeze-in (sketch)"
+   },
+   "pass": true
+  }
+ ],
+ "n_pass": 8,
+ "n_total": 8,
+ "window": {
+  "mass_window_keV": [
+   3.3,
+   100.0
+  ],
+  "binding_bound": "lower: Lyman-alpha forest, m > 3.3 keV (2-sigma, Viel+13) / 3.3-5.7 keV band (95% CL 5.7 keV, Villasenor+24; lambda_fs 0.50 Mpc inside the 0.6 Mpc register)",
+  "upper_end": "100 keV: top of the KK-graviton freeze-in corridor sketch (FORWARD_PROGRESS_2026-06-06); NO committed astrophysical gate binds from above",
+  "equilibrium_TG_floor_eV": {
+   "canonical_0p008_119p2": 23.25438239113201,
+   "alt_0p008_124p9": 22.453816670591017
+  },
+  "ratio_TG_over_forest": {
+   "canonical_2sig": 0.007046782542767276,
+   "alt_2sig": 0.0068041868698760655,
+   "canonical_95cl": 0.004079716208970528
+  },
+  "thermal": {
+   "T_phase_5keV_K": 9.172932978094265,
+   "T_per_eV_mK_G084": {
+    "canonical": 1.834586595587945,
+    "7e10-constants": 1.9040944496808492,
+    "alt": 2.0142370583699707
+   },
+   "T_kin_dust_z3_K": {
+    "3.3keV": 2.043562265291894e-05,
+    "5.7keV": 1.1870472405817723e-05
+   },
+   "decoupling": "mass -> free-streaming + phase-space; dynamics -> sigma (virial, mass-free); T/m = sigma^2/k_B = 1.83-2.01 mK/eV constant"
+  },
+  "production": {
+   "status": "NOT DERIVED (G093 V4 non-claim)",
+   "thermal_overclosure_x": {
+    "3.3 keV": 292.5531914893617,
+    "5.7 keV": 505.3191489361702,
+    "10.0 keV": 886.5248226950355,
+    "100.0 keV": 8865.248226950354
+   },
+   "dilution_needed": {
+    "3.3 keV": 0.003418181818181818,
+    "5.7 keV": 0.0019789473684210528,
+    "10.0 keV": 0.0011279999999999999,
+    "100.0 keV": 0.0001128
+   },
+   "corridor_sketch": "KK-graviton 1-100 keV freeze-in T ~ 4 GeV"
+  }
+ },
+ "statement": "THE ONE-SPECIES MASS WINDOW: the framework's dark sector is ONE cold species (the shift-symmetric scalar's Noether charge, G028) in two phases -- the equilibrium phantom (~1% of Omega_dm, inside the EFE line) and the free dust (~99%, outside).  The forest bound m > 3.3-5.7 keV (G093) is the binding lower bound; the equilibrium's TG floor m > 23.25 eV (G084) is satisfied automatically (m_TG/m_forest <= 0.007, margin 1.4e2x), and the floor also sits 4x below the killed 93-148 eV relic window (f04/f06).  The thermal consistency: T_phase = m sigma^2/k_B is the DYNAMICS-set number (sigma^2 = (1/2) sqrt(G M_b a0) = 119.2 km/s virial, mass-free; registered 1.83-2.01 mK/eV): at m = 5 keV the equilibrium phase sits at ~9.2-10.1 K while the free dust's own kinetic temperature is ~2e-5 K at z = 3 -- the mass sets free-streaming and phase space, the dynamics sets sigma; they are decoupled.  The honest window: m in [3.3, 100] keV, lower bound binding; the upper end (100 keV) is the top of the KK-graviton freeze-in corridor sketch, NOT an astrophysical constraint -- production is NOT derived (G093 V4's registered non-claim): a thermal-ish keV yield would overclose by 3e2-9e3x, so the observed Omega_dm requires a diluted/non-thermal channel that the framework does not claim."
+}
