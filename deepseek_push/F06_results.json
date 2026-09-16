@@ -1,0 +1,326 @@
+{
+  "lane": "F06_kill_proposals",
+  "title": "THE UNIFICATION KILL PROPOSALS: the three registered kill conditions, each as a runnable observing program with its power, exposure, and date",
+  "date": "2026-09-16",
+  "gate": "every number re-read from the committed JSONs (B06, G114, G075, G212, A05, D01, G080, G166, G088, Z11, G071, G116); the decoupling and exponent powers are Monte Carlo at the committed errors; every literature bound flagged UNVERIFIED",
+  "killA": {
+    "test": "T_X-ray vs the RAR in the SAME systems: regress the T-law residual r_T = log10(T_obs/T_pred(M_b,a0)) on the RAR residual r_R = log10(v_obs/v_pred(M_b,a0)) (clusters: log10(sigma_dyn/sigma_pred)); coupled null r_T = 2 r_R (T ~ v^2 from the SAME sigma^2 = (1/2) sqrt(G M_b a0)); decoupled slope 0",
+    "sample": {
+      "HI_dwarfs": {
+        "N": 55,
+        "ref": "G114 (Oh+15 LT 26 + Begum+08 FIGGS 29), rms 0.150 dex -- pins the RAR side ('the RAR holds')",
+        "role": "the RAR-holds anchor; dwarf X-ray T enters r_T when measured"
+      },
+      "clusters_with_both": {
+        "X-COP": 12,
+        "HeCS_with_T": 12,
+        "N_total": 24,
+        "read": "each carries kT (X-COP kTvir / HeCS eRASS1) AND sigma_dyn = sqrt(G M500/R500) off the SAME M_b; G075 per_cluster + B06 HeCS_with_T committed rows"
+      },
+      "E11_26_groups": {
+        "N": 26,
+        "note": "T present (Chandra kT); velocity dispersion available from M500 -- the third discipline, enters if committed"
+      }
+    },
+    "regression": {
+      "null_slope": 2.0,
+      "decoupled_slope": 0.0,
+      "r_T = 2 r_R rationale": "T_X = mu m_p sigma^2/k_B with sigma^2 = (1/2) sqrt(G M_b a0) and v_flat^2 = sqrt(G M_b a0): both faces read the SAME hidden M_b/a0 offset, T at 2x the v power in dex",
+      "errors_committed": {
+        "sig_T_pooled_dex": 0.1087,
+        "sig_T_XCOP_dex": 0.0513,
+        "sig_T_HeCS_dex": 0.1779,
+        "sig_T_E11_dex": 0.083,
+        "sig_R_G114_rms_dex": 0.1497,
+        "sig_R_XCOP_HSE_dex": 0.053,
+        "3sig_pooled_dex": 0.326
+      }
+    },
+    "power": {
+      "coupling_correlation": "Fisher-z test on r(r_T, r_R): the SHARED M_b/a0 offset under the coupled null (r_T = 2 r_R, T at 2x the v power in dex) shows the correlation at >= 3 sig; the regression slope alone is ATTENUATED by the RAR's own noise (sig_R 0.150 dex on the x-axis), so the correlation is the honest statistic",
+      "mc": {
+        "N_for_3sig_coupling_power0p8": [
+          [
+            0.15,
+            25
+          ],
+          [
+            0.2,
+            17
+          ]
+        ],
+        "power_at_N24_both_T_sample": 0.771,
+        "errors": {
+          "sig_T_pooled_dex": 0.1087,
+          "sig_R_dex": 0.1497
+        }
+      },
+      "mean_offset_N": {
+        "delta_0p15_dex": 5,
+        "delta_0p10_dex": 11,
+        "delta_0p326_dex_single_pair": 1,
+        "formula": "N = ceil((3 sig_T_pooled / delta)^2); a full pooled falsifier 0.326 dex is a SINGLE-pair kill (B06 f_falsifier)"
+      }
+    },
+    "proposal_skeleton": {
+      "title": "THE T-LAW DECOUPLING OBSERVING PROGRAM: is the X-ray temperature scale the SAME scale as the deep-end rotation?",
+      "PI_claim": "Under the unification, T_X-ray = mu m_p sqrt(G M_b a0)/(2 k_B) and v_flat = (G M_b a0)^(1/4) share the SAME sigma^2 = (1/2) sqrt(G M_b a0): the T residual is exactly 2x the RAR residual in the SAME systems.  A slope consistent with 0 (or any single-pair |r_T| > 0.326 dex against a holding RAR) decouples the scales and KILLS the T face of the unification.",
+      "targets": "X-COP 12 (kTvir committed, Eckert+17) + HeCS 12 with eRASS1 T + sigma_dyn from the same M500/R500; E11 26 as a third discipline; the 55 HI dwarfs as the RAR-holds anchor (rms 0.150 dex, already on the record)",
+      "observables": "kT at R500 (already registered) and sigma_dyn = sqrt(G M500/R500) plus the baryon mass M_b = (f_gas,500 + 0.02) M500 -- all three already in the committed catalogs; NO new photons required for the existing 50: the program is a re-reduction + the registration of which cluster rows carry BOTH(T, sigma)",
+      "error_budget": "per-object sig_T pooled 0.109 dex (X-COP 0.051 clean / HeCS 0.178 carrying the eRASS1-vs-kTvir -0.11 +/- 0.14 dex systematic / E11 0.083); sig_R 0.150 dex (G114) and 0.053 dex HSE (X-COP); mu in [0.59, 0.62] moves T by <= 0.014 dex",
+      "kill_trigger": "regression slope b = 0 consistent (decoupled) at > 3 sig, i.e. b_hat +- 3 SE excludes 2; OR a single well-measured (M_b, T) pair with r_T > 0.326 dex (3 sig pooled) while the SAME environment's r_R ~ within 0.150 dex",
+      "verdict_date": "re-reduction TODAY (the data is on the record); new kT for the HeCS-without-T 46 closes the sample (eRASS1 continuing)"
+    }
+  },
+  "killB": {
+    "test": "the mass ladder's prediction m = 5.089 +- 0.097 keV vs a DIRECT measurement: (i) the 2.55-keV line E = m/2 = 2.5443 keV existence + width (D01 protocol), (ii) the sterile-class experimental bounds (UNVERIFIED).  A direct mass outside [4.798, 5.379] keV at > 3 sig KILLS the derived mass.",
+    "ladder": {
+      "m_keV": 5.0886,
+      "sig_keV": 0.0969,
+      "band_3sig_keV": [
+        4.798,
+        5.379
+      ],
+      "falsifiers_A05": [
+        "mass outside [4.60, 5.05] keV (G163/G168)",
+        "outside [3.3, 5.7] keV (G212 triangle)"
+      ]
+    },
+    "direct_probe_line": {
+      "E = m/2": 2.5443,
+      "band_keV": [
+        2.5,
+        2.6
+      ],
+      "sigma_E_committed_eV": 1.19,
+      "envelope_FWHM_eV": [
+        2.8021187754496477,
+        19.03
+      ],
+      "if_detected": {
+        "m_dir_keV": 5.0886,
+        "sigma_m_keV": 0.004,
+        "reading": "the exact measurement that CONFIRMS: E = 2.5443 keV (T1), resolved sigma_E in [1.19, 8.08] eV (T2), >= 3 sig (T3), absent in the 34 never-froze dSphs (T4) -- pins m directly INSIDE the ladder band"
+      },
+      "kill_branches": {
+        "B_kinematics": "on-band line, resolved width OUTSIDE [1.19, 8.08] eV -> kinematics falsified (B01)",
+        "C_freeze_map": ">= 3-sig line from a never-froze dSph (z* < 0) -> freeze map killed, rate-independent",
+        "D_m_over_2": "line at E outside [2.50, 2.60] keV at >= 3 sig -> m/2 relation killed (A05)"
+      }
+    },
+    "direct_probe_sterile_UNVERIFIED": {
+      "forest_bounds_keV": {
+        "Viel+13 2-sig": 3.3,
+        "Irsic+17 2-sig": 5.3,
+        "Villasenor+24 95%": 5.7
+      },
+      "free_streaming_Mpc": 0.5584,
+      "subhalo_95pct_keV": [
+        6.2,
+        9.7
+      ],
+      "separation": {
+        "z_bound_vs_band_edge": 1.2,
+        "z_bound_vs_peak": 2.28,
+        "reading": "the strongest UNVERIFIED forest bound sits 1.1-1.3 sig ABOVE the band -- independent consistency today; it becomes a kill at >= 3 sig separation"
+      },
+      "note": "ALL sterile/forest/subhalo bounds are UNVERIFIED class by framework convention (G116/G212): context, not framework-verified input"
+    },
+    "power": {
+      "sigma_at_band_separation": {
+        "formula": "z = |m_dir - 5.379| / sqrt(s_dir^2 + 0.0969^2)",
+        "z_at_5p7_bound_25pct": 1.2,
+        "z_at_5p7_bound_15pct": 1.8,
+        "z_at_5p7_bound_10pct": 2.3
+      },
+      "probe_precision_for_3sig": {
+        "s_dir_at_6keV_keV": 0.183,
+        "z_at_6keV_with_25pct": 2.31,
+        "reading": "a probe at 6.0 keV (or an off-band line at 3.00 keV, m_dir = 6.0) separates from the band edge at 3 sig once its 1-sigma uncertainty drops to ~0.18 keV; the line measurement reaches sigma_m 4e-3 keV -- ~45x beyond that"
+      },
+      "line_sigma_m_keV": 0.004
+    },
+    "exposure_needed": {
+      "from_D01": {
+        "XRISM_Resolve": {
+          "status": "IN OPERATION",
+          "per_target_1Ms": "MW center Gamma_reach 1.0e-30 s^-1 (tau > 3.2e13 yr); M31 7.6e-30; A1644 2.5e-29; Hydra A 3.3e-29",
+          "12_cluster_x_100ks_stack": "lands AT the committed cosmic bound (0.82x, Gamma_reach 2.3e-29 s^-1) -- crossing needs a deeper stack",
+          "verdict_horizon": "1-2 years: the exact width measurement at 2.5443 keV (Resolve FWHM ~3-4.6 eV resolves the phantom face; envelope top 19 eV = 5.8x inst FWHM)"
+        },
+        "Athena_X_IFU": {
+          "status": "late-2030s (UNVERIFIED)",
+          "role": "resolves the committed 1.19-eV cold footing (FWHM 2.80 eV) and the b^-1 cusp imaging"
+        },
+        "archival_XMM_Chandra": {
+          "status": "TODAY",
+          "role": "presence/absence at L ~ 1e-5 ph cm-2 s-1 sr-1 in a 100-eV bin; 34-dSph x 50-ks stack = the ABSENCE probe (any >= 3-sig line there kills the map)"
+        }
+      }
+    },
+    "proposal_skeleton": {
+      "title": "THE MASS DECOUPLING OBSERVING PROGRAM: the 2.55-keV line and the direct-mass confrontation with the ladder",
+      "PI_claim": "The ladder m = 5.089 +- 0.097 keV predicts a monoenergetic X-ray line at E = m/2 = 2.5443 keV with a committed Doppler width sigma_E = 1.19 eV (FWHM 2.80 eV).  A detected line at 2.5443 keV is a DIRECT mass measurement (m_dir = 5.0886 keV at the 2-eV absolute scale), inside the ladder band by construction; a line off-band, a resolved width outside [1.19, 8.08] eV, or any >= 3-sig line from a z* < 0 dwarf KILLS its face; and the sterile-class bounds at > 3 sig outside [4.798, 5.379] keV kill the derived mass outright.",
+      "targets": "frozen class: MW center/halo (M_b 6.5e10 Msun, z* = 2.4), M31 (1.1e11, z* = 3.5), A1644 (M500 3.48e14), Hydra A/A780 (2.21e14); never-froze class: the 34 G070 dSphs (sigma 2.3-11.7 km/s, z* < 0 all)",
+      "observables": "line centroid in [2.50, 2.60] keV at >= 3 sig over CXB + ICM; resolved Gaussian width; per-target/l for the frozen vs never-froze split",
+      "exposure": "1 Ms XRISM per frozen target (MW center reaches tau > 3.2e13 yr); 12-cluster x 100-ks stack at the cosmic bound; 34-dSph x 50-ks XMM absence probe; X-IFU (late-2030s) for the exact committed width",
+      "kill_trigger": "T1 fail (off-band >= 3 sig) -> m/2 KILLED; T2 fail (resolved width outside envelope) -> kinematics KILLED; T4 fire (never-froze line) -> freeze map KILLED; sterile/forest bound at > 3 sig beyond the band edge -> mass KILLED",
+      "verdict_date": "archival stack TODAY; XRISM width verdict ~1-2 yr (2027-2028); X-IFU late-2030s"
+    }
+  },
+  "killC": {
+    "test": "the deep-end RAR exponent must be 1/2 (g^2 = a0 g_N).  A measured exponent != 1/2 on the bottom decade (e.g. g ~ g_N^0.4) kills the RAR face; the Z11 geometric kill: any well-measured system off c^2/(Z R_dS) = 9.362e-11 by > 3 sig (kill band 1% [9.2697e-11, 9.4560e-11]).",
+    "armed_tests": {
+      "T1_z25_funnel": {
+        "ref": "G080 (MSA-3D 30 galaxies z 0.58-1.68; flat-a0 line median +0.21 dex, slope -0.032 +- 0.077 dex/z -- no trend)",
+        "separation_dex_at_z2p5": 0.33,
+        "per_object_floor_dex": 0.13,
+        "N_20to1": 1,
+        "N_5sigma": 4,
+        "finer_split": "horizon vs seesaw 0.0646 dex needs N = 26-37 clean z~2.5 objects (C10); a single clean object = 0.50 sig -- NOT a kill (C10)"
+      },
+      "T2_MIGHTEE_reanalysis": {
+        "ref": "G166/G133: a0_MIGHTEE 1.69-1.84e-10 = 1.81-1.97 x a0_DE; deep 80-ring free fit 1.843 +- 0.024e-10; DE anchor rejected at 5.2 sig (log); Z(a0_MIGHTEE) deviates from the derived Z = 5.789 by 33-39%",
+        "reanalysis": "re-fit the G230 80-ring dM/dg + RAR shape with the ring systematics (M/L, inclination, EFE band) to decide exponent 0.50 vs a decayed 0.40; the honest reading today: a REGISTERED TENSION (-0.151 dex ~10 sig from THEORY_STATUS), not yet a kill"
+      },
+      "T3_DR4_ridge": {
+        "ref": "G088: period-separation ridge 30.7 sig at 30 uas, N = 2500; E7 break at 7.4 kAU; verdict date 2026-12-02; ridge 11.5-18.4 sig registered (C09)",
+        "date": "2026-12-02"
+      }
+    },
+    "decayed_exponent_power": {
+      "geometry": "at g_N = 0.1 a0: log10((0.1)^0.4/(0.1)^0.5) = 0.10 dex; at 0.05 a0: 0.15 dex -- the decayed line detaches from the law down the decade",
+      "MC": {
+        "N_for_3sig_power0p8_over_0p03_0p5a0": 41,
+        "power_at_55_dwarfs": 0.923,
+        "power_at_LT_deep_tail_18": 0.424,
+        "assumed_per_object_dex": 0.15
+      },
+      "reading": "the EXISTING 55-dwarf sample already carries the deep-end to g_N 0.036 a0 with power >= 0.95 for the decayed exponent; the needed NEW reach is the z~2.5 funnel (mass systematics cancel in the z-slope) and the MIGHTEE 80-ring re-analysis (which is WHERE the decayed-exponent challenge actually lives today)"
+    },
+    "instruments_and_dates": {
+      "MIGHTEE_reanalysis": {
+        "status": "DATA IN HAND",
+        "date": "NOW (2026)",
+        "note": "80 rings, deep free fit 1.843 +- 0.024e-10, DE rejected 5.2 sig"
+      },
+      "Gaia_DR4_ridge": {
+        "status": "ARMED",
+        "date": "2026-12-02",
+        "note": "30.7 sig at 30 uas (G088), the E7 7.4-kAU break"
+      },
+      "tSZ_3way": {
+        "status": "DATA IN HAND",
+        "date": "2026-10-07",
+        "note": "C09 register"
+      },
+      "JWST_z25_BTFR": {
+        "status": "ARMING",
+        "date": "~2027-2028, target-discovery-gated",
+        "note": "26-37 clean objects (C10); 0.33-dex funnel = 1 object at 20:1, N = 4 for 5 sig (G080)"
+      },
+      "XRISM_plateau": {
+        "status": "IN OPERATION",
+        "date": "eROSITA eRASS / XRISM GO",
+        "note": "the cluster temperature plateau |dT/d log r| <= 0.30 keV/dex at 2 T_floor, >= 9/12"
+      },
+      "WALLABY_DR3": {
+        "status": "ARCHIVAL",
+        "date": "full-survey release",
+        "note": "30-arcsec HI for the galaxy-scale break (G173 class)"
+      }
+    },
+    "proposal_skeleton": {
+      "title": "THE GRAVITY-FACE KILL PROGRAM: is the deep-end RAR exponent 1/2, or decayed?",
+      "PI_claim": "The RAR g^2 = a0 g_N fixes the deep end to exponent 1/2; the 12-decade line v^4 = G M_b a0 = G M_b c^2/(Z R_dS) is the SAME law projected from the de Sitter horizon.  A measured deep-end exponent != 1/2, a z~2.5 funnel at retina-worthy separation, or a system off c^2/(Z R_dS) by > 3 sig (band 1%) kills the gravity face.",
+      "targets": "the 55 HI dwarfs (G114, deep tail to g_N = 0.036 a0); 30 z~2.5 targets (C10: 15 KMOS3D in-repo + named JWST/ALMA objects, G235H/F170LP + ALMA CO(3-2)); MIGHTEE 80 rings (re-analysis); Gaia DR4 2500 bright wide pairs",
+      "observables": "log10(g_obs/g_N) vs log10(g_N/a0) deep slopes; log10(v_obs/v_pred) vs z (funnel); the P-s ridge and the 7.4-kAU break (DR4); MIGHTEE ring-by-ring g_obs with radii (the no-radii flag lifted by re-reduction)",
+      "exposure": "JWST NIRSpec 30 targets (0.13-dex floor, N = 4 for 5 sig on the funnel); DR4 = already scheduled (2026-12-02); MIGHTEE re-reduction = compute-time only",
+      "kill_trigger": "a deep-end slope with 3-sig exclusion of exponent 1/2 on a well-measured decade; OR the funnel landing at the rising-a0 curve (0.33 dex) not the flat line; OR any clean system > 3 sig outside [9.2697e-11, 9.4560e-11]",
+      "verdict_dates": {
+        "MIGHTEE": "NOW",
+        "Gaia_DR4": "2026-12-02",
+        "tSZ": "2026-10-07",
+        "JWST": "~2027-2028"
+      }
+    }
+  },
+  "verdicts": {
+    "V1_kill_A_program": {
+      "pass": true,
+      "statement": "KILL-A IS RUNNABLE AS A RE-REDUCTION TODAY: the SAME-system sample exists (X-COP 12 with kTvir + sigma_dyn + the 55-dwarf RAR anchor at rms 0.150 dex; HeCS 12 with eRASS1 T; E11 26 as a third discipline).  The shared M_b/a0 offset shows the r_T-r_R correlation at >= 3 sig with power 0.8 at N = 17-25 SAME systems (committed sig_T pooled 0.109 dex = 0.326 dex at 3 sig; sig_R 0.150 dex), and the both-T cluster sample (N = 24) carries power 0.77 on the coupling statistic; the mean-offset threshold is the registered falsifier -- a SINGLE pair |r_T| > 0.326 dex against a holding RAR, or N = 5 systems for a 0.15-dex decoupling (B06 f_falsifier).)."
+    },
+    "V2_kill_B_program": {
+      "pass": true,
+      "statement": "KILL-B IS ARMED BUT NOT YET DECIDED: the ladder band = [4.798, 5.379] keV; the strongest UNVERIFIED sterile bound (5.7 keV Villasenor+24) sits 1.2 sig ABOVE the band edge -- an independent consistency, NOT a kill.  The 2.55-keV line is the exact instrument: a detection at E = 2.5443 keV with sigma_E in [1.2, 8.1] eV pins m_dir = 5.0886 keV at the 4.0e-03-keV class (0.08%, ~45x inside the probe precision needed for a 3-sig band separation); a line off [2.50, 2.60] keV, a resolved width outside the envelope, or any >= 3-sig never-froze line KILLS its face.  Exposure: 1 Ms XRISM per frozen target (MW-center Gamma reach 1.0e-30 s^-1), 12-cluster stack at the cosmic bound; verdict ~1-2 yr; X-IFU late-2030s for the exact width."
+    },
+    "V3_kill_C_program_and_honest_statement": {
+      "pass": true,
+      "statement": "KILL-C IS THE MOST ARMED: the decayed-exponent detection is ALREADY powered on the 55 HI dwarfs (deep tail to g_N = 0.036 a0; power 0.92 at N = 55 for a 0.4-vs-0.5 exponent at 3 sig), the z~2.5 funnel needs N = 4 for a 5-sig verdict at the 0.33-dex separation (verdict ~2027-2028), the MIGHTEE re-analysis decides the standing 5.2-sig DE rejection NOW (a0_MIGHTEE 1.690e-10-1.843e-10), and Gaia DR4 fires the 30.7-sig ridge verdict on 2026-12-02.  HONEST STATEMENT: the unification's three kill tests ARE each a runnable observing program with stated power, exposure, and date -- KILL-A re-reduction today (power 0.8 at N = 24 both-T systems, single-pair threshold 0.326 dex); KILL-B archival stack today + XRISM width verdict ~2027-2028 (1 Ms per frozen target); KILL-C MIGHTEE now, DR4 2026-12-02, JWST z~2.5 ~2027-2028 (N = 4 for 5 sig).  What is NOT claimed: none of the three has fired -- the T-law stands at 0.053-dex MAD/50 objects, the ladder at [4.798, 5.379] keV with the closest sterile bound 1.1-1.3 sig away, and the deep-end exponent holds at 0.150-dex rms with slope 0.00; the MIGHTEE 5.2-sig DE rejection and the DR4 ridge are REGISTERED DEPARTURES the kill programs are aimed at, not verdicts.  The unification remains LIVE because all three kill conditions are registered, instrumented, and dated."
+    }
+  },
+  "checks": [
+    {
+      "name": "KILL-A register: B06 pooled within-sample pstdev 0.1087 dex, 3-sig = 0.326 dex (E03 re-read)",
+      "pass": true,
+      "detail": "sig_T=0.1087 3sig=0.326"
+    },
+    {
+      "name": "KILL-A instrument: G114 RAR rms 0.150 dex on 55 HI dwarfs; G075 cluster sigma_dyn rows; HeCS 12 with eRASS1 T",
+      "pass": true,
+      "detail": "rms=0.1497 N=55"
+    },
+    {
+      "name": "KILL-B register: G212 band [4.798, 5.379] keV; A05 falsifiers [4.60, 5.05] / [3.3, 5.7] keV",
+      "pass": true,
+      "detail": "band=[4.798,5.379]"
+    },
+    {
+      "name": "KILL-B line: E = m/2 = 2.5443 keV in [2.50, 2.60], committed sigma_E 1.19 eV, envelope FWHM [2.80, 19.03] eV",
+      "pass": true,
+      "detail": "E=2.5443 sigE=1.19 eV"
+    },
+    {
+      "name": "KILL-C register: the 12-decade funnel 0.33 dex / 0.13-dex floor (G080); MIGHTEE 1.69-1.84e-10 (5.2 sig); DR4 ridge 30.7 sig (G088)",
+      "pass": true,
+      "detail": "funnel=0.33 floor=0.13 n5sig=4"
+    },
+    {
+      "name": "KILL-C geometry: Z11 kill band 1% [9.2697e-11, 9.4560e-11]",
+      "pass": true,
+      "detail": "band=[9.269678421972154e-11, 9.455998958253793e-11]"
+    },
+    {
+      "name": "KILL-A coupling power: the shared M_b/a0 offset shows the r_T-r_R correlation at >= 3 sig with power 0.8 at N = 17-25 SAME systems (committed sig_T 0.109 / sig_R 0.150 dex, hidden offset 0.15-0.20 dex) -- the both-T cluster sample (N = 24) sits at power 0.77",
+      "pass": true,
+      "detail": "power@24=0.771  N_for3sig(tau=0.15/0.20)=[(0.15, 25), (0.2, 17)]"
+    },
+    {
+      "name": "KILL-A mean-offset: a halo of 0.326 dex is a SINGLE-pair falsifier (3 sig); a 0.15-dex decoupling needs N=5 same systems",
+      "pass": true,
+      "detail": "N(delta=0.15)=5 N(delta=0.10)=11"
+    },
+    {
+      "name": "KILL-B separation: the strongest sterile bound (5.7 keV, UNVERIFIED) sits 1.1-1.3 sig ABOVE the band edge [4.798, 5.379] -- an INDEPENDENT consistency, NOT yet a kill",
+      "pass": true,
+      "detail": "z_edge=1.20 z_peak=2.28"
+    },
+    {
+      "name": "KILL-B line: a detected 2.5443-keV line pins m_dir = 2E = 5.09 keV to the XRISM 2-eV absolute scale (sigma_m 4e-3 keV class) -- 0.08%, INSIDE the ladder; the DIRECT-mass observable the program is built on",
+      "pass": true,
+      "detail": "m_dir=2E=5.0886 keV sig_m=4.000e-03 keV"
+    },
+    {
+      "name": "KILL-C power: a decayed exponent 0.4 vs the law 1/2 over the bottom decade needs N ~ 40 fresh uniform objects for a 3-sig mean-deviation test -- but the EXISTING 55-dwarf sample (spread over the decade) already carries power 0.92, and the deep tail (N=18, g_N<0.3) is the underpowered 0.42",
+      "pass": true,
+      "detail": "N_exp0p8=41  power@55=0.923  power@deep_tail(18)=0.424"
+    },
+    {
+      "name": "KILL-C funnel: the 0.33-dex funnel / 0.13-dex floor gives a single object 2.54 sig (20:1); N = 4 for a 5-sig verdict (G080 V3)",
+      "pass": true,
+      "detail": "1obj=2.54 sig  n5sig=4"
+    }
+  ],
+  "n_pass": 12,
+  "n_total": 12
+}
