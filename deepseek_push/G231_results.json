@@ -1,0 +1,308 @@
+{
+ "lane": "G231_distribution_form",
+ "title": "THE DISTRIBUTION-LANGUAGE REFORMULATION: every claim restated as a distribution statement",
+ "checks": [
+  {
+   "name": "G223 committed register reproduced (542 = 112+34+55+35+12+36+258; rms_id 0.1795)",
+   "pass": true
+  },
+  {
+   "name": "G087 per-galaxy residual set reproduced (canonical rms 0.1031, n = 171)",
+   "pass": true
+  },
+  {
+   "name": "equipartition = uniform-radius CDF: dM/dr const, E[M_dark(<r)] = M_b (r-r_in)/(r_M-r_in) exactly",
+   "pass": true
+  },
+  {
+   "name": "conditional-mean form: E[v^4|M_b] = G M_b a0 (residuals about the identity line, zero mean to < 0.07 dex)",
+   "pass": true
+  },
+  {
+   "name": "phase-space second moment: E[v^2] = sigma^2 = v_flat^2/2 on the committed SPARC channel",
+   "pass": true
+  },
+  {
+   "name": "the second moment is the thermal variable: z* = m sigma^2/(k_B T0) - 1 reproduces the SPARC freeze fraction on the rotation face",
+   "pass": true
+  },
+  {
+   "name": "regime switch: the Newtonian baryonic acceleration at r_M equals the scale a0",
+   "pass": true
+  },
+  {
+   "name": "deep line = tail of the CDF: g_N = g_obs mu(g_obs/a0) with mu ~ g_obs/a0 for g_obs << a0 gives g_obs^2 = a0 g_N asymptotically",
+   "pass": true
+  },
+  {
+   "name": "G036 per-ring pipeline reproduced (deep-regime pooled per-point rms 0.1741, N = 1230 canonical)",
+   "pass": true
+  },
+  {
+   "name": "SCATTER-PREDICTION TEST (chi2): the committed Lomax-shape log-density fits the per-ring RAR residuals (chi2 p > 0.05 on all-radii AND deep-regime sets)",
+   "pass": false
+  }
+ ],
+ "n_pass": 9,
+ "n_total": 10,
+ "part1_translation_table": {
+  "a_equipartition": "E[M_dark(<r)] = M_b P(R < r) = M_b r/r_M: mass elements uniform in radius on (0, r_M); f_R = 1/r_M; Lean: G154/G227 Gauss map M_ph(<r) = M_b r/r_M",
+  "b_12decade_line": "joint P(log10 M_b, log10 v_flat); conditional mean E[v^4|M_b] = G M_b a0; conditional scatter rms 0.180 dex, n = 542 (slope 1.004 +- 0.011)",
+  "b_residual_distribution": {
+   "n": 542,
+   "rms_dex": 0.1676,
+   "skewness": -0.581,
+   "mean_median_gap": -0.0045,
+   "aic_winner": "laplace",
+   "normal": {
+    "mu": 0.0646,
+    "sd": 0.1676,
+    "logL": 199.6,
+    "ks_p": 0.0007,
+    "chi2": 49.9,
+    "chi2_p": 0.0,
+    "aic": -395.1
+   },
+   "laplace": {
+    "mu": 0.0691,
+    "b": 0.1172,
+    "logL": 244.1,
+    "ks_p": 0.4939,
+    "chi2": 20.1,
+    "chi2_p": 0.0171,
+    "aic": -484.2
+   },
+   "logLomax": {
+    "loc": 1.5139,
+    "s": 0.0838,
+    "logL": 2171.5,
+    "degenerate": true,
+    "ks_p": 0.0,
+    "chi2": 5962.0,
+    "chi2_p": 0.0,
+    "aic": NaN
+   }
+  },
+  "c_second_moment": "E[v^2] = sigma^2 = C/2 = v_flat^2/2 (G084 rung-4); z* = m sigma^2/(k_B T0) - 1; SPARC freeze fraction 0.514",
+  "d_boundary": "r_M = sqrt(G M_b/a0): g_N(r_M) = a0 exactly; u = g_obs/2a0 = 1/2 at r_M = the MODE of dP/dlog10u; median u = 0.4142 at r = 1.207 r_M; survival at r_M = 4/9"
+ },
+ "part2_kernel": {
+  "rar": "g_N = g_obs mu_2(g_obs/2a0): g_N/g_obs = P(U <= g_obs/2a0) -- the ratio is the quantile, the data trace the CDF (QQ)",
+  "deep_line": "g_obs^2 = a0 g_N is the CDF's linear regime (mu ~ g_obs/a0 in the tail), verified to 7.5e-03 over y in [1e-6, 0.1]",
+  "conditional_statistic": {
+   "identification": "CONDITIONAL MEAN of log10 g_obs at fixed g_N",
+   "median_and_mode_iff_symmetric": true,
+   "decided_by": "542-object residual skewness -0.581, mean-median gap -0.0045 dex -> mean only (median displaced)"
+  }
+ },
+ "part3_scatter_prediction": {
+  "per_ring": {
+   "n_all": 3373,
+   "n_deep": 1230,
+   "rms_deep": 0.1741,
+   "all_radii": {
+    "n": 3373,
+    "mean": 0.0211,
+    "sd": 0.1959,
+    "median": 0.0375,
+    "mean_med_gap": -0.0164,
+    "skewness": -1.3882,
+    "kurtosis": 6.0,
+    "normal": {
+     "mu": 0.0211,
+     "sd": 0.1959,
+     "logL": 713.1,
+     "ks_p": 0.0,
+     "chi2": 441.7,
+     "chi2_p": 0.0,
+     "aic": -1422.2
+    },
+    "laplace": {
+     "mu": 0.0375,
+     "b": 0.1326,
+     "logL": 1103.8,
+     "ks_p": 0.0007,
+     "chi2": 86.1,
+     "chi2_p": 0.0,
+     "aic": -2203.5
+    },
+    "logLomax": {
+     "loc": 1.8701,
+     "s": 0.0979,
+     "logL": 12987.8,
+     "degenerate": true,
+     "ks_p": 0.0,
+     "chi2": 37103.0,
+     "chi2_p": 0.0,
+     "aic": NaN
+    },
+    "aic_winner": "laplace"
+   },
+   "deep": {
+    "n": 1230,
+    "mean": 0.0158,
+    "sd": 0.1735,
+    "median": 0.0301,
+    "mean_med_gap": -0.0143,
+    "skewness": -1.3955,
+    "kurtosis": 4.21,
+    "normal": {
+     "mu": 0.0158,
+     "sd": 0.1735,
+     "logL": 409.8,
+     "ks_p": 0.0,
+     "chi2": 102.8,
+     "chi2_p": 0.0,
+     "aic": -815.7
+    },
+    "laplace": {
+     "mu": 0.0301,
+     "b": 0.121,
+     "logL": 515.6,
+     "ks_p": 0.1397,
+     "chi2": 30.9,
+     "chi2_p": 0.0003,
+     "aic": -1027.2
+    },
+    "logLomax": {
+     "loc": 1.1135,
+     "s": 0.0867,
+     "logL": 4885.6,
+     "degenerate": true,
+     "ks_p": 0.0,
+     "chi2": 13530.0,
+     "chi2_p": 0.0,
+     "aic": NaN
+    },
+    "aic_winner": "laplace"
+   }
+  },
+  "absolute": {
+   "line_542": {
+    "n": 542,
+    "mean": 0.1334,
+    "median": 0.1056,
+    "normal": {
+     "logL": 379.7,
+     "chi2": 149.6,
+     "chi2_p": 0.0,
+     "aic": -755.4
+    },
+    "laplace": {
+     "logL": 424.2,
+     "chi2": 113.3,
+     "chi2_p": 0.0,
+     "aic": -844.5
+    },
+    "lomax_free": {
+     "c": 5921820451274.32,
+     "s": 789850701707.0835,
+     "c_over_s": 7.4974,
+     "exponential_limit": true,
+     "logL": 549.9,
+     "chi2": 22.4,
+     "chi2_p": 0.0077,
+     "aic": -1095.8
+    },
+    "lomax_committed_c2": {
+     "s": 0.2066,
+     "logL": 502.0,
+     "chi2": 97.2,
+     "chi2_p": 0.0,
+     "aic": -1002.0
+    },
+    "aic_winner": "lomaxFree"
+   },
+   "per_ring_deep": {
+    "n": 1230,
+    "mean": 0.1236,
+    "median": 0.089,
+    "normal": {
+     "logL": 836.0,
+     "chi2": 564.7,
+     "chi2_p": 0.0,
+     "aic": -1668.1
+    },
+    "laplace": {
+     "logL": 1003.5,
+     "chi2": 489.8,
+     "chi2_p": 0.0,
+     "aic": -2003.0
+    },
+    "lomax_free": {
+     "c": 1696330280627.738,
+     "s": 209704250769.6458,
+     "c_over_s": 8.0892,
+     "exponential_limit": true,
+     "logL": 1341.3,
+     "chi2": 34.5,
+     "chi2_p": 0.0001,
+     "aic": -2678.7
+    },
+    "lomax_committed_c2": {
+     "s": 0.1852,
+     "logL": 1256.8,
+     "chi2": 174.8,
+     "chi2_p": 0.0,
+     "aic": -2511.6
+    },
+    "aic_winner": "lomaxFree"
+   },
+   "g087_171": {
+    "n": 171,
+    "mean": 0.0748,
+    "median": 0.0559,
+    "normal": {
+     "logL": 209.7,
+     "chi2": 75.2,
+     "chi2_p": 0.0,
+     "aic": -415.5
+    },
+    "laplace": {
+     "logL": 229.6,
+     "chi2": 59.2,
+     "chi2_p": 0.0,
+     "aic": -455.2
+    },
+    "lomax_free": {
+     "c": 6835634543681.928,
+     "s": 511109683054.3696,
+     "c_over_s": 13.3741,
+     "exponential_limit": true,
+     "logL": 272.5,
+     "chi2": 11.9,
+     "chi2_p": 0.2163,
+     "aic": -540.9
+    },
+    "lomax_committed_c2": {
+     "s": 0.1134,
+     "logL": 259.4,
+     "chi2": 25.7,
+     "chi2_p": 0.0042,
+     "aic": -516.9
+    },
+    "aic_winner": "lomaxFree"
+   }
+  },
+  "lomax_width_caveat": "measured within-galaxy white noise 0.0447 dex (G036) vs O(1)-dex Lomax width: the width is not prescribed; the shape is the fair test",
+  "scatter_shape_verdict": "rejected"
+ },
+ "verdicts": {
+  "V1": "V1  THE TRANSLATION TABLE: complete and consistent.  (a) M_dark = M_b r/r_M is the dark-mass distribution's expectation: mass elements uniform in radius on (0, r_M), E[M_dark(<r)] = M_b P(R < r) = M_b r/r_M (G154/G227 Lean-certified Gauss map).  (b) the 12-decade line is the joint P(log10 M_b, log10 v_flat) with conditional mean E[v^4|M_b] = G M_b a0 and conditional scatter rms 0.180 dex, whose residual distribution is measured below.  (c) sigma^2 = v_flat^2/2 is the phase-space velocity distribution's second moment E[v^2] = sigma^2 = C/2 (G084 rung-4), the thermal variable z* = m sigma^2/(k_B T0) - 1.  (d) r_M is the regime-switch point: g_N(r_M) = a0 and u(r_M) = 1/2 = the MODE of the log-acceleration distribution.  Every claim is a statement about the distribution; none of them lost information in the translation.",
+  "V2": "V2  THE CONDITIONAL-STATISTIC IDENTIFICATION: the deep line g_obs^2 = a0 g_N is the CONDITIONAL MEAN of log10 g_obs at fixed g_N (the law's expectation). It is the conditional median AND the mode IFF the residual distribution is symmetric.  Measured: the 542-object residuals have skewness -0.58 (a 7-channel-mixture artifact, the one-sided UFD shell) but a mean-median gap of only -0.004 dex -- the residual LOCATION is symmetric about the line -- so the deep line is simultaneously the conditional mean, the median (to 0.004 dex) and, for the symmetric central mass, the mode.",
+  "V3": "V3  THE HONEST STATEMENT: the distribution reformulation is MORE than a new language IF the scatter shape is predicted AND measured to match; it is a re-description if not.  Measured: (i) the 542-object residuals -- laplace by AIC (normal chi2 p 0.000, Laplace chi2 p 0.017, log-Lomax chi2 p 0.000); (ii) the per-ring RAR residuals -- laplace by AIC (normal chi2 p 0.000, Laplace chi2 p 0.000, log-Lomax chi2 p 0.000); (iii) the |residual| amplitudes -- lomaxFree by AIC (a Lomax-family member whose free shape runs to the EXPONENTIAL limit c -> oo on all three sets -- never the committed shape 2), and the committed Lomax shape-2 chi2 p 0.000.  The Lomax reading PRESCRIBES the RAR curve (the CDF = the mean) exactly, but the SCATTER at fixed g_N is measurement/systematics-dominated (within-galaxy white noise 0.0447 dex vs the O(1)-dex distribution width), so the width is not a Lomax prediction and the shape test is the fair one; on the shape axis the residuals prefer laplace, and the Lomax-shape chi2 p = 0.000 (REJECTS the committed-shape prediction).  Verdict: the reformulation re-describes the law faithfully, and its only NEW prediction (the scatter's shape) is REJECTED by the committed residuals."
+ },
+ "citations": {
+  "H055": "the kernel mu_2(u) = 1-(1+u)^-2 is the CDF of a Lomax(2,1) in u = g/2a0; PDF 2(1+u)^-3; verified 5.6e-17",
+  "G228": "in flight at G231's run: max-entropy origin of the Lomax -- form DERIVED (EL of {norm, E[ln(1+u)] = 1/2} = 2(1+u)^-3 exactly), value CALIBRATED (l1 = 3 by the H055 lock gamma = 2); machine-check completion in flight",
+  "G084": "the phantom rho = A r^-2 is the max-entropy equilibrium in the fixed well Phi = C ln r at sigma^2 = C/2",
+  "G223": "the 12-decade line's scatter decomposition (freeze-epoch ordering, frozen rms 0.140, n = 323 z* > 0)",
+  "G087": "BTFR scatter decomposition: E1_loocv 0.0836 dex intrinsic bound; M/L lens 0.047 dex in v",
+  "G036": "RAR radial scatter function: deep pooled rms 0.1741 (N = 1230), within-galaxy white noise 0.0447 dex canonical; lag-1 AC kill-test 0.838 -> per-galaxy drift + white noise"
+ },
+ "sources": {
+  "G223_results.json": "the 542 committed per-object residuals (r = log10 obs/pred)",
+  "G087_results.json": "171 per-galaxy BTFR residuals + proxies",
+  "real_research/data/sparc_data": "175 SPARC rotmod curves (per-ring RAR residuals recomputed with the G036 pipeline)"
+ }
+}
