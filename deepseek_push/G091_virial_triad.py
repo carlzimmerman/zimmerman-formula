@@ -419,10 +419,18 @@ check("V3c [max entropy / G084 connection] the virialized equilibrium "
       "statement.  Registered for the formal G084 lane.",
       "S ∝ (3/2) ln sigma^2;  sigma^2(E) = -2E/(3M_ph);  k_B T = m sigma^2",
       True,
-      "G084 does not exist at run time (2026-09-15 22:4x): the connection is "
-      "carried analytically HERE and registered for the parallel lane; the "
-      "relaxation gate (G081, landed fe237d33c) books energy INTO the "
-      "E = -T surface, and the virial tells the gate where the surface sits")
+      "G084 is now on disk as an UNTRACKED DRAFT (deepseek_push/"
+      "G084_maxentropy_law.py, appeared mid-run at 22:49, no .out/verdict "
+      "committed): its variational chain (S = -int rho ln(rho sigma^3) dV at "
+      "fixed M, E in the fixed well Phi = C ln r; Euler-Lagrange gives "
+      "rho ~ r^{-beta C}, beta = 1/sigma^2, gamma = C/sigma^2 = 2 at "
+      "sigma^2 = C/2) reaches the SAME landing point as this lane's V3c "
+      "statement -- the virialized state is the entropy extremum at "
+      "k_B T_thermo = m sigma^2 and gamma = 2; G091 carries the energy-"
+      "bookkeeping side (E = -T, E_bind) that the max-entropy lane's "
+      "variational problem keeps fixed.  The relaxation gate (G081, landed "
+      "fe237d33c) books energy INTO the E = -T surface, and the virial tells "
+      "the gate where the surface sits")
 
 statement = ("THE VIRIAL DERIVATION OF THE TRIAD, HONESTLY STATED:  the "
              "virial theorem for the phantom sphere rho = A/r^2 in the log "
@@ -529,6 +537,14 @@ out = {
                 "relaxation gate; attainment remains G035's kill",
         "G035": "Newtonian attractor KILL stands: the virial derives the "
                 "energy surface, not the dust's arrival at it",
+        "G084": "max-entropy lane appeared mid-run as an UNTRACKED DRAFT "
+                "(deepseek_push/G084_maxentropy_law.py, 22:49, no .out/"
+                "verdict yet): its variational chain (S = -int rho ln(rho "
+                "sigma^3) dV, fixed M and E in the fixed well, beta = "
+                "1/sigma^2 => gamma = C/sigma^2 = 2 at sigma^2 = C/2) "
+                "reaches the same landing point as this lane's V3c "
+                "statement; G091 supplies the energy bookkeeping (E = -T, "
+                "E_bind) that the variation holds fixed",
         "Q007": "parallel draft (qwen38_push, UNCOMMITTED) crashed on its "
                 "first assert: bare-virial reading without the boundary term "
                 "is inconsistent; this lane carries the boundary-term "
