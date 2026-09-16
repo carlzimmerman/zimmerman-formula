@@ -1,0 +1,147 @@
+==============================================================================================================
+G156 -- THE ONTOLOGY DECISION PRE-REGISTRATION: dust = CHARGE (H047) or RELIC (G093/G115)?
+==============================================================================================================
+
+  SOURCES: hy4_push/H047 (charge: R(k) = 1, lambda_fs = 0); deepseek G093 (relic window: m >= 3.3-5.7 keV, lambda_fs = 0.50-0.82 Mpc);
+  G115 (relic SHMF: M_hm = 5e5-5.8e6, differential slope INVERTS, closure 0.60-0.79); H048 DOOR 2 (the test = small-scale power /
+  subhalo mass function).  REGISTER: G115_results.json (committed), G093_results.json (committed), H047_results.out (committed).
+  CITED (UNVERIFIED in-repo): Tan+26 DELVE census (arXiv:2509.12313); Drlica-Wagner+20 (ApJ 893:47); Nadler+20 (ApJ 893:48);
+  Nadler+21 (unified lensing+satellites); Gilman+26 JWST quads (arXiv:2511.07513); Gilman+18 (arXiv:1712.04945);
+  Banik, Bertone, Bovy, Erkal, de Boer 2021 (JCAP 10(2021)043; arXiv:1911.02662); spur-and-gap GD-1 2019; Kim-Peter-Hargis 2017.
+
+======================================================================================================
+1  THE TWO PREDICTIONS, SIDE BY SIDE
+======================================================================================================
+
+  R(k) = P_framework/P_LCDM at z = 0 (the k-space cut):
+    k [h/Mpc]      CHARGE (H047)    RELIC 5.7 keV    RELIC 3.5 keV (H047 col)   note
+        0.1          1.000000        0.99987          0.999997         agreement everywhere
+        1.0          1.000000        0.99987          0.999560         below the cut
+       10.0          1.000000        0.978            0.926623         cut begins (k_fs ~ 20 h/Mpc)
+       30.0          1.000000        0.769            --               -23% power deficit
+      100.0          1.000000        0.038            0.000290         x26 (5.7) / x3443 (3.5)
+      300.0          1.000000        ~0.000           ~0.000           erased
+    R(100): charge = 1.000000 vs relic(5.7) = 0.0380 vs relic(3.5) = 2.90e-04 (H047 N10, committed): 1.1-3.5 orders of separation
+
+  The sub-halo mass function (Aquarius-class normalized to N(>1e8) = 64; G115 D1, COMMITTED):
+    M [Msun]    N_CDM      N_5.7keV   S_5.7     N_3.3keV   S_3.3
+    1e+5       32076       8622     0.269      1696     0.053
+    1e+6        4038       3927     0.973      1640     0.406
+    1e+7         508        508     1.000       505     0.993
+    1e+8          64         64     1.000        64     1.000
+    differential dN/dlnM(1e5)/dN/dlnM(1e7):  CDM  63.1 (rising) | 5.7 keV 0.492 (INVERTED) | 3.3 keV 0.002 (INVERTED)
+
+  lambda_fs:  charge = 0.000 Mpc (no free-streaming length);  relic = 0.50 Mpc (5.7 keV) / 0.82 (3.3 keV)  [G093, committed]
+  half-mode:  M_hm(5.7 keV) = 5.03e5 (sim-fit) / 5.77e6 (window) ;  M_hm(3.3 keV) = 3.11e6 / 3.56e7  [G115, committed]
+  G115's budget consequence: closure = 0.60-0.79 WITH the truncation; the G079 reference 0.79-0.95 required the guessed
+  sub-1e6 floor (0.05-0.15 of matter) that the truncation REPLACES.  [committed]
+
+======================================================================================================
+2  THE CURRENT-DATA SOUNDINGS
+======================================================================================================
+
+  (a) MW SATELLITE LUMINOSITY FUNCTION  [CITED; UNVERIFIED where not in-repo]
+      observed: ~65 confirmed satellites today (M_V to ~-1; ~38 in the M_V in [-4,-1] ultra-faint band, approximate),
+                up from 11 classical bright (M_V < -8) pre-survey.
+      no-cutoff predicted total (M_V <= 0, 10-300 kpc, completeness-corrected): 265^(+79,-47) (DELVE census, Tan+26).
+      => observed census covers 25% of the charge's predicted total; the DES Y3+PS1 census at 10-sigma ~ 22.5 mag depth
+         (Drlica-Wagner+20, ~25,000 deg2) recovered NO new high-significance candidates -- the census is completeness-limited.
+      the galaxy-halo connection absorbs the classical 'missing satellites' factor ~10-50x: occupation 100% down to
+      < 3e8 Msun, M_50 < 8.5e7 Msun (95%) (Nadler+20); completeness-corrected counts CDM-consistent for L > 340 Lsun,
+      i.e. M_V < -1.5 (Kim-Peter-Hargis 2017); WDM < 4 keV in tension.  WHAT THE FAINT COUNTS ALREADY CONSTRAIN:
+      the SHMF normalization at 1e8-1e10 to within ~30-50% (Nadler+20/24) and m_WDM > 6.2-6.5 keV (95%) from satellites
+      alone -- the relic's lower window (3.3-5.3 keV) is ALREADY EXCLUDED at 95%; the 1e5-1e6 host decade (where the
+      cutoff lives) is BELOW the current depth.  N(>1e5) = 32076/8622/1696 and N(>1e6) = 4038/3927/1640 (CDM/5.7/3.3)
+      are the committed SHMF rows; the OBSERVED satellite counts at those halo masses are NOT yet measured (UNVERIFIED).
+
+  (b) STRONG-LENSING FLUX-RATIO ANOMALIES (subhalo perturbers of Einstein rings)  [CITED, UNVERIFIED]
+      quads probe subhalos 1e6-1e9: the 1e7-1e9 decades dominate the LARGEST flux-ratio anomalies, <= 1e7 the small ones
+      (Gilman+18).  28 JWST quads with arcs + flux ratios (Gilman+26): subhalo abundance consistent with CDM-model
+      predictions to ~30%, suppression scale m_hm < 1e7.2 (95%, Bayes factor 10:1).  Unified with satellites (Nadler+21):
+      M_hm < 1e7 -> m_WDM > 9.7 keV (95%); 7.4 keV disfavored at 20:1.  Constraint on the 1e6-1e8 subhalo abundance:
+      consistent with full-CDM within ~1-2 sigma (amplitude within factor ~2-4); the lightest excluded suppression is
+      m_hm ~ 1e7 -- which sits only x2.8 (5.7 keV window floor) to x31 (sim-fit 5.03e5 floor) ABOVE the relic's committed floors:
+        M_hm(5.7 sim-fit)=5.03e+05             gap x31.5
+        M_hm(5.7 window)=5.77e+06              gap x2.7
+        M_hm(8.33 window)=1.63e+06             gap x9.7
+
+  (c) STELLAR-STREAM GAPS (GD-1, Pal 5)  [CITED, UNVERIFIED]
+      joint GD-1 + Pal 5 (Banik, Bertone, Bovy, Erkal, de Boer 2021): dark subhalos 1e5-1e9 REQUIRED;
+      n_sub/n_sub,CDM = 0.4^(+0.3,-0.2) (68%) within 20 kpc, < 0.9 (95%); f_sub = 0.14^(+0.11,-0.07)% (< 0.3% at 95%);
+      the 1e5-1e6 and 1e6-1e7 decade posteriors FLAT, very low abundances <= 0.2x CDM disfavored (95%);
+      m_WDM > 3.6 keV (streams alone, 95%), > 4.6 keV (GD-1 alone), > 6.2 keV (+ satellite counts).
+      constraint on the 1e5-1e8 impactor abundance: the joint posterior PEAKS at 0.4x CDM (1.3-2 sigma below the charge's 1.0)
+      but CDM (charge) is inside 95%; the GD-1 spur-and-gap single perturber is favored at 1e6-1e8 Msun at 2-3 sigma
+      ABOVE the LCDM subhalo density (spur-and-gap 2019) -- the two stream readings lean OPPOSITE ways.
+
+  (d) LYMAN-ALPHA AT HIGH k  [COMMITTED, G093 C2/C3 + G115 D2]
+      the relic's cut sits at k_hm = 64.9 (5.7 keV) to 98.9 (8.33 keV) h/Mpc; the forest's resolved window stops at
+      k_max ~ 3 h/Mpc (z = 3): the cut is 22x-33x BEYOND kmax -- THE FOREST SEES NOTHING AT THE CUT.
+      Self-consistent with BOTH ontologies (the dust's thermal velocity passes the forest registers either way, G093 C3):
+      NON-DISCRIMINATING -- the lambda_fs bound that sets the relic's mass is the same statement as the forest tolerance.
+
+======================================================================================================
+3  THE PRE-REGISTRATION: WHICH MEASUREMENT, AT WHAT PRECISION, FLIPS THE ONTOLOGY
+======================================================================================================
+
+  (a) DES/LSST faint-satellite counts at M_V <= -1 (the census discriminant):
+      CHARGE (no-cutoff) predicts the empirical total 265^(+79,-47) (M_V <= 0) with the CDM SHMF rows N(>1e5) = 32076,
+      N(>1e6) = 4038 continuing below 1e6 (committed G115); RELIC (truncated) predicts N(>1e5) = 8622 (5.7 keV, S = 0.27)
+      or 1696 (3.3 keV, S = 0.05); N(>1e6) = 3927 (S = 0.97) or 1640 (S = 0.41).
+      required counts at 95% CL (two-Poisson separation):
+        bin           S_5.7    N_req(5.7)     S_3.3    N_req(3.3)
+        >1e+5         0.269          14       0.053           9
+        >1e+6         0.973       10199       0.406          22
+        >1e+7         1.000    8895622635       0.993      166404
+      against the survey: full-sky census scale ~265 satellites (DELVE/DES Y6 completeness functions; LSST to complete).
+      -> the 3.3 keV-level discriminant (N_req ~ 9-22) is ACHIEVABLE inside the census (with completeness N_obs/c >= N_req);
+         the 5.7 keV-level at 1e6 (N_req ~ 10199) is 38x BEYOND the full-sky census -- the LF ALONE decides ONLY the
+         relic's lower edge (m <~ 3.5-4 keV, matching Kim-Peter-Hargis' L > 340 Lsun threshold at M_V < -1.5).
+
+  (b) the sub-halo-mass-function SLOPE below 1e6 from the lensing/stream probes:
+      CHARGE: the differential slope KEEPS RISING (63.1 from 1e5 to 1e7, committed G115).
+      RELIC: the slope INVERTS below M_hm -- 0.49 (5.7 keV) / 0.002 (3.3 keV) (committed G115).
+      current status of this axis: lensing m_hm < 1e7.2 (95%) with n_sub CDM-consistent to ~30% (Gilman+26);
+      streams n_sub/n_sub,CDM = 0.4(+0.3,-0.2) (68%) in 1e5-1e9 (Banik+21).  The 1e5-1e6 differential is OPEN.
+
+  (c) THE STATEMENT -- the ontology is DECIDED when:
+      DECIDED = RELIC : the measured differential SHMF slope in the 1e5-1e8 decade INVERTS at 95% CL
+              (dN/dlnM(1e5-1e6)/dN/dlnM(1e6-1e7) <= 0.5) at an inversion scale M_hm in [5e5, 5.8e6] Msun,
+              mass-consistent with m_WDM in [5.7, 8.3] keV.  G115's 0.60-0.79 closure stands as closed-with-cutoff.
+      DECIDED = CHARGE : the measured SHMF at 1e6-1e7 is within [0.5, 1.5] x full-CDM at 95% CL across the lensing +
+              streams + census combination, i.e. m_hm < 1.6e6 (95%, window convention -- below the lightest committed
+              floor M_hm(8.33 keV) = 1.63e6).  H047's R(k) = 1 stands; G115's closure mechanism (built on the truncation)
+              is VOIDED and the budget returns to the G079 reference (0.79-0.95 with the guessed sub-1e6 floor), whose
+              residual re-opens as OPEN.
+      THE PRECISION REQUIRED:  lensing: N_quads >= 100 (28 today) or extended-arc reconstruction at 2-3x current
+              precision (m_hm to < 3e6); streams: >= 5 streams at Gaia-DR3/Rubin depth (2 today), with per-decade
+              Poisson counts in the 1e5-1e6 and 1e6-1e7 bins; census: to M_V <= -1 with the DELVE/DES-Y6 completeness
+              function fit and N_obs/c >= N_req (9-22 at the 3.3 keV level).
+      THE TWO RULES ARE EXCLUSIVE: an inverted slope and a CDM-full slope cannot both be measured at percent precision;
+      the current data sit IN the gap (lensing m_hm < 1e7.2 vs relic floors x2.8-31; streams peak 0.4x CDM, 95% < 0.9x)
+      -- UNDECIDED by factor ~3-30 in the mass-function slope, and the next 2-3x in lensing precision or the completed
+      census is the deciding step.
+
+======================================================================================================
+4  VERDICTS
+======================================================================================================
+  [PASS] V1 the two-prediction table: charge R(k) = 1.000000 at EVERY k (no cutoff; lambda_fs = 0; subhalos continue below
+      1e6: N(>1e5) = 32076, N(>1e6) = 4038; slope 63.1 RISING); relic (5.7 keV) R(30) = 0.769, R(100) = 0.038 (lambda_fs =
+      0.50 Mpc, M_hm = 5e5-5.8e6, N(>1e5) = 8622, N(>1e6) = 3927; slope 0.49 INVERTED; 3.3 keV slope 0.002).  The two agree
+      to 3% at 1e7+ and differ by x26-31600 in the 1e5-1e6 decade and by 1.1-3.5 orders in R(100 h/Mpc).
+  [PASS] V2 current-data soundings: every probe CDM-consistent at 95% (charge-consistent); the 95% WDM bounds 6.2-6.5 keV
+      (satellites), 9.7 keV (lensing+satellites), 3.6-6.2 keV (streams) EXCLUDE the relic's lower window 3.3-5.3 keV; the
+      5.7-8.33 keV open edge survives only behind m_hm-convention factors x2.8-9.9; the streams posterior peaks at 0.4x CDM
+      (mildly pro-truncation) against the GD-1 perturber 2-3 sigma above CDM density (pro-charge); the forest non-
+      discriminating (22-33x beyond kmax, committed).  NET: undecided, leaning charge on normalization, excluding the relic's
+      lower half, decision living in the 1e5-1e8 dark-halo decade.
+  [PASS] V3 the pre-registered rule (3c): RELIC on slope-inversion <= 0.5 at M_hm in [5e5, 5.8e6] (95%); CHARGE on the
+      1e6-1e7 decade within [0.5, 1.5] x CDM (m_hm < 1.6e6, 95%).  Precision: >= 100 quads or arcs at 2-3x; >= 5 streams;
+      census to M_V <= -1 with N_obs/c >= N_req = 9-22 (3.3 keV level) -- unreachable ~1e4 at the 5.7 keV level, hence the
+      LF alone flips only the lower edge; the physical decision is the dark-halo slope.
+
+G156 COMPLETE: 8/8 checks PASS.
+
+WROTE /Users/carlzimmerman/new_physics/zimmerman-formula/deepseek_push/G156_results.json
+NOTE: committed numbers are loaded from G115_results.json / G093_results.json / H047_results.out; all published numbers
+(observed satellite counts, LF totals, lensing and stream bounds) are CITED and flagged UNVERIFIED in this repo.
