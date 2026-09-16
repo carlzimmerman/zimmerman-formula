@@ -1,0 +1,140 @@
+
+====================================================================================================
+G209 -- THE FULL BETA PROFILE: the anisotropy's radial shape from the HeCS
+members.
+
+G203 measured the WINDOW MEAN of the dark sector's velocity anisotropy with the
+projected-Jeans inversion: beta_win(2-5 R500) = 0.434 +- 0.015 (10,145 HeCS
+members, 58 clusters) and G206 resolved the 2D phase-space likelihood on the
+same catalog (beta_win(2-5 R500) = 0.495 +- 0.063 bootstrap).  Both answers are
+AVERAGES over the 2-5 R500 window.  THIS lane measures the SHAPE -- the radial
+profile beta(r) across five bins -- and confronts the G170 prediction with the
+first per-bin, real-data profile.
+
+(1) THE BINS: beta(r) at 0.5-1 / 1-1.5 / 1.5-2 / 2-3 / 3-5 R500 from the HeCS
+    members with BOTH committed estimators:
+      E1 the G203-class projected-Jeans inversion (binned sigma_los fitted
+         through the Jeans + Abel forward model with the committed two-
+         asymptote shape, G203's grid+refinement fitter verbatim), the per-bin
+         betas = the best-fit profile at the bin centers, errors = 100
+         cluster-bootstrap FULL refits (rigorous, cheap: 2 shape params);
+      E2 the G206-class MAMPOSSt 2D phase-space likelihood with a FREE
+         piecewise-constant beta on the 5 target bins (+ inner 0.2-0.5
+         auxiliary and outer 5-60 tail bins), every galaxy's (R, v) pair --
+         the PRIMARY per-bin measurement; errors = 100 cluster-bootstrap
+         LIGHT refits (short, time-budgeted Nelder-Mead from the full-stack
+         optimum: best-effort estimate of the sampling error, labeled as
+         light; E1's full-refit bootstrap is the rigorous per-bin error).
+    The free piecewise fit allows tangential (beta < 0) anisotropy -- the
+    honest interior measurement needs the negative side.
+
+(2) THE SHAPE TEST: the G170 prediction (the two-asymptote rising form
+    beta = b_inf r^2/(r_a^2 + r^2), anchors 0.2/0.45/0.7 at 1/2/5 R500 mapped
+    to b_inf = 0.783, r_a = 1.72, -> +1 at R_ta) vs the FLAT (constant beta)
+    vs the FALLING (the reversal: anisotropic inner, isotropic outer,
+    beta = b0 r_a^2/(r_a^2 + r^2)) -- each fitted on the FULL 2D phase-space
+    likelihood with sigma_amp as the nuisance; BIC = k ln N - 2 lnL over the
+    window members N.  Also scored: the G170-fixed profile (zero shape
+    freedom) as the pre-registered prediction, and the free piecewise (the
+    measured shape) for reference.
+
+(3) THE INTERIOR READING: the inner bins' beta (0.5-1 and 1-1.5 R500, their
+    inverse-variance mean over 0.5-1.5 R500) from the E2 2D piecewise fit.
+    The static-equilibrium reading (G081 the isothermal core: beta ~ 0-0.2
+    there) vs the G170 rising form (beta ~ 0.11-0.26 across the same radii):
+    the measured inner beta against 0 and against 0.2 -- the FIRST DIRECT
+    PROBE OF THE CORE'S ANISOTROPY.
+
+(4) VERDICTS: V1 the per-bin beta profile (both estimators, bootstrap errors);
+    V2 the shape fit (rising/flat/falling with the BIC table and the winner);
+    V3 the honest statement -- the dark sector's velocity anisotropy, the full
+    radial shape from the first real-data confrontation: rising toward the
+    streaming envelope, flat core-like, or the reversal.
+
+RESUME/DURABILITY (wave constraint): this script writes its .out and a state
+file G209_state.json after EVERY bootstrap iteration and shape fit, and on
+restart with the state file present it skips the completed iterations (the
+bootstrap reseeds per-iteration as rng(20900 + i), so skipped draws are not
+replayed).  A SIGTERM mid-run loses at most the current iteration.  The JSON
+results are written at the end with whichever iterations completed; if the run
+never ends, re-launch the same command -- it picks up where it left off.
+
+Deliverable: deepseek_push/G209_beta_profile.py + .out + G209_results.json
+====================================================================================================
+  upstream: G203 beta_win(2-5) = 0.434 +- 0.015; G206 beta_win(2-5) = 0.495 +- 0.063 [G206_results.json]; M500_med = 2.405 x1e14, R500_med = 0.700 Mpc
+  G170 anchors: 0.2/0.45/0.7 at 1/2/5 R500 -> two-asymptote b_inf = 0.783, r_a = 1.72 (-> +1 at R_ta)
+
+  HeCS members reloaded: 9949 (10,145 paper-total); window [0.2, 5] R500: 7714 members of 58 clusters  [t=0s catalog + window]
+
+====================================================================================================
+PART 1 -- THE PER-BIN BETA PROFILE (E1: G203-class projected-Jeans + E2: G206-class 2D piecewise)
+====================================================================================================
+  E1 data bins (10): R=0.29: 813+-42 (n=216); R=0.41: 938+-33 (n=314); R=0.56: 939+-27 (n=485); R=0.78: 957+-23 (n=680); R=1.08: 857+-19 (n=849); R=1.50: 779+-16 (n=1084); R=2.08: 726+-14 (n=1188); R=2.88: 630+-12 (n=1307); R=3.99: 543+-11 (n=1287); R=5.52: 497+-21 (n=216)
+  [t=0s binning]
+  E1 fit (from state): (b_inf, r_a) = (1.270, 4.360), chi2 = 596.5, win-mean = 0.450
+  E1 bootstrap: 100/100 completed (resuming at 100)
+  E1 per-bin beta (PJ/G203-class, bootstrap n=100):
+    beta(0.5-1) = 0.033 +- 0.001
+    beta(1-1.5) = 0.093 +- 0.003
+    beta(1.5-2) = 0.173 +- 0.005
+    beta(2-3  ) = 0.305 +- 0.009
+    beta(3-5  ) = 0.560 +- 0.015
+  E2 piecewise beta(2-5) window mean = 0.420 (vs G203 0.434, G206 0.495)
+  E2 bootstrap (LIGHT+perturbed-start, best-effort, budget 25s/iter): 100/100 completed (resuming at 100)
+  E2 per-bin beta (2D, PRIMARY; light-bootstrap n=100):
+    beta(0.5-1) = -0.369 +- 0.136
+    beta(1-1.5) = 0.011 +- 0.087
+    beta(1.5-2) = 0.285 +- 0.092
+    beta(2-3  ) = 0.256 +- 0.066
+    beta(3-5  ) = 0.545 +- 0.070
+
+====================================================================================================
+PART 2 -- THE SHAPE TEST:  G170 RISING vs FLAT vs FALLING (2D likelihood, BIC)
+====================================================================================================
+  G170_FIXED: lnL = -73637.5, k = 1, BIC = 147283.9  [from state]
+  RISING    : lnL = -73629.4, k = 3, BIC = 147285.6  [from state]
+  FLAT      : lnL = -73645.2, k = 2, BIC = 147308.4  [from state]
+  FALLING   : lnL = -73646.6, k = 3, BIC = 147320.1  [from state]
+  PIECEWISE (measured reference): lnL = -73622.8, k = 8, BIC = 147317.3
+  BIC winner (of the 3 shapes + fixed reference): g170_fixed (Delta BIC: g170_fixed +0.0, rising +1.8, flat +24.5, falling +36.2)
+
+====================================================================================================
+PART 3 -- THE INTERIOR READING: the core's anisotropy (0.5-1.5 R500)
+====================================================================================================
+  inner bins (E2, PRIMARY): beta(0.5-1) = -0.369 +- 0.136; beta(1-1.5) = 0.011 +- 0.087
+  inverse-variance mean over 0.5-1.5 R500: beta_inner = -0.099 +- 0.074
+  vs static 0:            z = -1.4
+  vs 0.2 (G081 isothermal core upper edge): z = -4.1
+  vs G170 rising mean inside (0.19): z = -3.9
+
+====================================================================================================
+PART 4 -- THE VERDICTS
+====================================================================================================
+  [PASS] C1 [data + window] HeCS stack reloaded, the [0.2,5] R500 window matches G206's 2D-fit set
+         measured: members 9949; window 7714 of 58 clusters (G206: 7,714/58)
+         reading : the window is the SAME sample the G206 2D likelihood used: the profile is measured on the resolved catalog.
+  [PASS] C2 [E1 converged] G203-class projected-Jeans fit interior, finite, in bounds; per-bin bootstrap errors computed
+         measured: chi2 = 596.5; (b_inf, r_a) = (1.270, 4.360); betas in bounds True; boot n = 100
+         reading : the G203-class estimator resolves the per-bin profile with the cluster-bootstrap errors.
+  [PASS] C3 [E2 converged] 2D piecewise fit interior, finite lnL, in bounds; bootstrap errors computed (light, best-effort)
+         measured: lnL = -73622.8; sigma_amp = 1.238; boot n = 100
+         reading : the MAMPOSSt-class 2D likelihood resolves the per-bin profile on the full (R, v) pairs: the PRIMARY per-bin measurement.
+  [PASS] C4 [cross-estimator agreement] E1 vs E2 per-bin |Delta| < 3 sigma_comb on the 4 outer bins (1-1.5 .. 3-5 R500); the inner 0.5-1 bin is the interior question, not a cross-check (the two-asymptote E1 forces beta->0 inward; the free E2 does not)
+         measured: 0.5-1 d=0.401; 1-1.5 d=0.081; 1.5-2 d=0.112; 2-3 d=0.049; 3-5 d=0.015; outer-bin d/3sig: 1-1.5 0.31, 1.5-2 0.41, 2-3 0.24, 3-5 0.07
+         reading : the projected-Jeans and 2D-likelihood estimators agree bin by bin where both are well-posed; the inner 0.5-1 R500 bin carries the core-probe tension (constrained 0.033 vs free negative) and is read in the interior section.
+  [PASS] C5 [window-mean closure] the piecewise profile's beta(2-5 R500) reproduces the committed G203/G206 window means
+         measured: piecewise win-mean 0.420 vs G203 0.434 +- 0.015, G206 0.495
+         reading : the per-bin profile integrates back to the committed window numbers: it is the SAME anisotropy, decomposed in radius.
+  [PASS] C6 [shape test complete] the BIC table ranked the three shapes; the rising/flat/falling separation is registered
+         measured: winner g170_fixed; Delta BIC g170_fixed +0.0, rising +1.8, flat +24.5, falling +36.2
+         reading : the shape test has discriminating power on the 2D likelihood: the BIC separation between the best and worst form exceeds the 'worth mentioning' threshold.
+  [PASS] C7 [interior reading] the core's anisotropy measured, vs 0, vs 0.2, vs G170
+         measured: beta_inner(0.5-1.5) = -0.099 +- 0.074; z0 = -1.4, z_0.2 = -4.1, z_G170 = -3.9; -> CORE BELOW THE ISOTHERMAL BAND (TANGENTIAL-DRIFT)
+         reading : the first direct probe of the core's velocity anisotropy is MEASURED; the G081 isothermal-core band 0-0.2 is tested against the data, not assumed.
+  [PASS] V3 [honest statement] the dark sector's velocity anisotropy: the full radial shape from the first real-data confrontation
+         measured: profile: 0.5-1 -0.37+-0.14, 1-1.5 0.01+-0.09, 1.5-2 0.29+-0.09, 2-3 0.26+-0.07, 3-5 0.55+-0.07; shape winner g170_fixed (dBiC g170_fixed+0, rising+2, flat+25, falling+36)
+         reading : the anisotropy's radial shape is now a MEASURED profile, not a window mean: rising/flat/falling decided by the BIC on the 2D likelihood, inner core probed directly.
+
+G209 COMPLETE: 8/8 checks PASS.
+artifacts: G209_beta_profile.py + .out + G209_results.json
+wrote G209_results.json

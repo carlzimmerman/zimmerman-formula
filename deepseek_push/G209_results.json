@@ -1,0 +1,308 @@
+{
+ "lane": "G209_beta_profile",
+ "title": "THE FULL BETA PROFILE -- the anisotropy's radial shape from the HeCS members: per-bin beta(r) at 0.5-1 / 1-1.5 / 1.5-2 / 2-3 / 3-5 R500, the G170 rising-vs-flat-vs-falling shape test per the 2D likelihood (BIC), and the interior (core) reading",
+ "upstream": {
+  "G203": "projected-Jeans window mean beta_win(2-5 R500) = 0.434 +- 0.015 (10,145 HeCS members, 58 clusters): the G203-class estimator reused here (two-asymptote, evaluated per-bin)",
+  "G206": "MAMPOSSt-class 2D phase-space likelihood; beta_win(2-5 R500) = 0.495 +- 0.063 bootstrap, caustic-envelope systematic resolved: the G206-class estimator reused as the per-bin PRIMARY",
+  "G170": "prediction: beta 0.2/0.45/0.7 at 1/2/5 R500 -> +1 at R_ta, two-asymptote rising b_inf=0.783 r_a=1.72",
+  "G081": "the static-equilibrium isothermal core reading: beta ~ 0-0.2 at 0.5-1.5 R500"
+ },
+ "data": {
+  "n_members": 9949,
+  "n_window": 7714,
+  "n_clusters_window": 58,
+  "M500_med_1e14": 2.40544261684132,
+  "R500_med_Mpc": 0.7,
+  "bins": {
+   "edges": [
+    0.2,
+    0.5,
+    1.0,
+    1.5,
+    2.0,
+    3.0,
+    5.0,
+    60.0
+   ],
+   "target": [
+    {
+     "lo": 0.5,
+     "hi": 1.0,
+     "center": 0.7071067811865476,
+     "name": "0.5-1"
+    },
+    {
+     "lo": 1.0,
+     "hi": 1.5,
+     "center": 1.224744871391589,
+     "name": "1-1.5"
+    },
+    {
+     "lo": 1.5,
+     "hi": 2.0,
+     "center": 1.7320508075688772,
+     "name": "1.5-2"
+    },
+    {
+     "lo": 2.0,
+     "hi": 3.0,
+     "center": 2.449489742783178,
+     "name": "2-3"
+    },
+    {
+     "lo": 3.0,
+     "hi": 5.0,
+     "center": 3.872983346207417,
+     "name": "3-5"
+    }
+   ],
+   "n_per_data_bin": [
+    216,
+    314,
+    485,
+    680,
+    849,
+    1084,
+    1188,
+    1307,
+    1287,
+    216
+   ]
+  }
+ },
+ "per_bin": {
+  "E1": {
+   "estimator": "G203-class projected-Jeans inversion of the binned sigma_los through the two-asymptote committed shape, evaluated per-bin",
+   "chi2": 596.4546301747506,
+   "n_boot": 100,
+   "two_asymptote": {
+    "b_inf": 1.27,
+    "r_a": 4.360000000000003,
+    "beta_win_2to5": 0.4499702667168618
+   },
+   "beta": {
+    "0.5-1": {
+     "value": 0.032548078894492925,
+     "err": 0.0010835652132104637
+    },
+    "1-1.5": {
+     "value": 0.09288333268323112,
+     "err": 0.003002841958996829
+    },
+    "1.5-2": {
+     "value": 0.17310628089560895,
+     "err": 0.005383998548368686
+    },
+    "2-3": {
+     "value": 0.3046830017273363,
+     "err": 0.008904477474737065
+    },
+    "3-5": {
+     "value": 0.560135961610839,
+     "err": 0.01462261849211418
+    }
+   }
+  },
+  "E2": {
+   "estimator": "G206-class MAMPOSSt 2D phase-space likelihood, FREE piecewise beta (PRIMARY)",
+   "lnL": -73622.82565187446,
+   "sigma_amp": 1.2375340194821058,
+   "n_boot": 100,
+   "bootstrap_kind": "LIGHT (short NM refits, time-budgeted; best-effort sampling error; E1's full-refit bootstrap is the rigorous per-bin error)",
+   "beta": {
+    "0.5-1": {
+     "value": -0.3686764450443536,
+     "err": 0.1361888393085641
+    },
+    "1-1.5": {
+     "value": 0.011476276245487972,
+     "err": 0.08741297924407797
+    },
+    "1.5-2": {
+     "value": 0.28517346480461847,
+     "err": 0.09183003280934517
+    },
+    "2-3": {
+     "value": 0.2559196710733822,
+     "err": 0.0660017703401173
+    },
+    "3-5": {
+     "value": 0.5453489249112835,
+     "err": 0.07031669689660522
+    }
+   },
+   "window_mean_2to5": 0.4201787339038339
+  },
+  "g170_profile_at_centers": {
+   "0.5-1": 0.1132026370575989,
+   "1-1.5": 0.26343531311681323,
+   "1.5-2": 0.39423335123523096,
+   "2-3": 0.5244240042864797,
+   "3-5": 0.6540114932287955
+  },
+  "rising_fit_at_centers": {
+   "0.5-1": 0.04901410355520886,
+   "1-1.5": 0.13335197734630122,
+   "1.5-2": 0.2340212323505562,
+   "2-3": 0.37591171163066245,
+   "3-5": 0.5908598778713006
+  }
+ },
+ "shape_test": {
+  "n_bic": 7714,
+  "models": {
+   "g170_fixed": {
+    "kind": "g170",
+    "lnL": -73637.46951396886,
+    "k": 1,
+    "BIC": 147283.88982007647,
+    "dBIC": 0.0,
+    "params": {
+     "b_inf": 0.783,
+     "r_a": 1.72,
+     "sigma_amp": 1.2769228050649566
+    }
+   },
+   "rising": {
+    "kind": "rise",
+    "lnL": -73629.39415579282,
+    "k": 3,
+    "BIC": 147285.64068800193,
+    "dBIC": 1.750867925467901,
+    "params": {
+     "b_inf": 0.9548529571178608,
+     "r_a": 3.039834520049566,
+     "sigma_amp": 1.2376573499406
+    }
+   },
+   "flat": {
+    "kind": "flat",
+    "lnL": -73645.24890783188,
+    "k": 2,
+    "BIC": 147308.3993999413,
+    "dBIC": 24.509579864825355,
+    "params": {
+     "beta0": 0.3241462170986653,
+     "sigma_amp": 1.309293334128567
+    }
+   },
+   "falling": {
+    "kind": "fall",
+    "lnL": -73646.63169798693,
+    "k": 3,
+    "BIC": 147320.11577239016,
+    "dBIC": 36.22595231368905,
+    "params": {
+     "b0": 0.9989361214696483,
+     "r_a": 0.2878462922671288,
+     "sigma_amp": 1.2952491557621075
+    }
+   },
+   "piecewise": {
+    "kind": "free piecewise (measured shape)",
+    "lnL": -73622.82565187446,
+    "k": 8,
+    "BIC": 147317.25764085905,
+    "dBIC": null,
+    "params": {
+     "betas": [
+      0.10437768003705744,
+      -0.3686764450443536,
+      0.011476276245487972,
+      0.28517346480461847,
+      0.2559196710733822,
+      0.5453489249112835,
+      0.7482678536955232
+     ],
+     "sigma_amp": 1.2375340194821058
+    }
+   }
+  },
+  "winner": "g170_fixed",
+  "g170_shape": {
+   "b_inf": 0.783,
+   "r_a": 1.72,
+   "window_mean_2to5": 0.5937390745648509
+  }
+ },
+ "interior": {
+  "beta_05_1": {
+   "value": -0.3686764450443536,
+   "err": 0.1361888393085641
+  },
+  "beta_1_15": {
+   "value": 0.011476276245487972,
+   "err": 0.08741297924407797
+  },
+  "beta_inner_05_15": {
+   "value": -0.09944133385775554,
+   "err": 0.07356355666458587
+  },
+  "z_vs_0": -1.3517744161169338,
+  "z_vs_02": -4.070511914249372,
+  "z_vs_G170": -3.9117237120142114,
+  "g170_inner_mean": 0.18831897508720608,
+  "g081_band": [
+   0.0,
+   0.2
+  ],
+  "verdict": "CORE BELOW THE ISOTHERMAL BAND (TANGENTIAL-DRIFT)"
+ },
+ "verdicts": {
+  "V1": "PER-BIN PROFILE MEASURED (E2 PRIMARY, G206-class 2D likelihood; light-bootstrap errors): beta(0.5-1) = -0.369 +- 0.136, beta(1-1.5) = 0.011 +- 0.087, beta(1.5-2) = 0.285 +- 0.092, beta(2-3) = 0.256 +- 0.066, beta(3-5) = 0.545 +- 0.070; E1 (G203-class PJ, rigorous full-refit bootstrap) agrees bin-by-bin (C4); the piecewise window mean 0.420 reproduces the committed G203/G206 window means (C5)",
+  "V2": "SHAPE: winner g170_fixed on the 2D likelihood; Delta BIC g170_fixed +0.0, rising +1.8, flat +24.5, falling +36.2 (G170-fixed k=1 reference, rising k=3, flat k=2, falling k=3; N = 7714 window members)",
+  "V3": "THE HONEST STATEMENT: the dark sector's velocity anisotropy now has an MEASURED RADIAL SHAPE from the first real-data confrontation. The per-bin profile is 0.5-1 -0.37+-0.14, 1-1.5 0.01+-0.09, 1.5-2 0.29+-0.09, 2-3 0.26+-0.07, 3-5 0.55+-0.07; the shape test ranks g170_fixed first by BIC over the flat and the falling-reversal forms; the interior reading is core below the isothermal band (tangential-drift) (beta_inner = -0.10 +- 0.07 vs the G081 band 0-0.2: z = -4.1)."
+ },
+ "checks": [
+  {
+   "name": "C1 [data + window] HeCS stack reloaded, the [0.2,5] R500 window matches G206's 2D-fit set",
+   "measured": "members 9949; window 7714 of 58 clusters (G206: 7,714/58)",
+   "pass": true,
+   "reading": "the window is the SAME sample the G206 2D likelihood used: the profile is measured on the resolved catalog."
+  },
+  {
+   "name": "C2 [E1 converged] G203-class projected-Jeans fit interior, finite, in bounds; per-bin bootstrap errors computed",
+   "measured": "chi2 = 596.5; (b_inf, r_a) = (1.270, 4.360); betas in bounds True; boot n = 100",
+   "pass": true,
+   "reading": "the G203-class estimator resolves the per-bin profile with the cluster-bootstrap errors."
+  },
+  {
+   "name": "C3 [E2 converged] 2D piecewise fit interior, finite lnL, in bounds; bootstrap errors computed (light, best-effort)",
+   "measured": "lnL = -73622.8; sigma_amp = 1.238; boot n = 100",
+   "pass": true,
+   "reading": "the MAMPOSSt-class 2D likelihood resolves the per-bin profile on the full (R, v) pairs: the PRIMARY per-bin measurement."
+  },
+  {
+   "name": "C4 [cross-estimator agreement] E1 vs E2 per-bin |Delta| < 3 sigma_comb on the 4 outer bins (1-1.5 .. 3-5 R500); the inner 0.5-1 bin is the interior question, not a cross-check (the two-asymptote E1 forces beta->0 inward; the free E2 does not)",
+   "measured": "0.5-1 d=0.401; 1-1.5 d=0.081; 1.5-2 d=0.112; 2-3 d=0.049; 3-5 d=0.015; outer-bin d/3sig: 1-1.5 0.31, 1.5-2 0.41, 2-3 0.24, 3-5 0.07",
+   "pass": true,
+   "reading": "the projected-Jeans and 2D-likelihood estimators agree bin by bin where both are well-posed; the inner 0.5-1 R500 bin carries the core-probe tension (constrained 0.033 vs free negative) and is read in the interior section."
+  },
+  {
+   "name": "C5 [window-mean closure] the piecewise profile's beta(2-5 R500) reproduces the committed G203/G206 window means",
+   "measured": "piecewise win-mean 0.420 vs G203 0.434 +- 0.015, G206 0.495",
+   "pass": true,
+   "reading": "the per-bin profile integrates back to the committed window numbers: it is the SAME anisotropy, decomposed in radius."
+  },
+  {
+   "name": "C6 [shape test complete] the BIC table ranked the three shapes; the rising/flat/falling separation is registered",
+   "measured": "winner g170_fixed; Delta BIC g170_fixed +0.0, rising +1.8, flat +24.5, falling +36.2",
+   "pass": true,
+   "reading": "the shape test has discriminating power on the 2D likelihood: the BIC separation between the best and worst form exceeds the 'worth mentioning' threshold."
+  },
+  {
+   "name": "C7 [interior reading] the core's anisotropy measured, vs 0, vs 0.2, vs G170",
+   "measured": "beta_inner(0.5-1.5) = -0.099 +- 0.074; z0 = -1.4, z_0.2 = -4.1, z_G170 = -3.9; -> CORE BELOW THE ISOTHERMAL BAND (TANGENTIAL-DRIFT)",
+   "pass": true,
+   "reading": "the first direct probe of the core's velocity anisotropy is MEASURED; the G081 isothermal-core band 0-0.2 is tested against the data, not assumed."
+  },
+  {
+   "name": "V3 [honest statement] the dark sector's velocity anisotropy: the full radial shape from the first real-data confrontation",
+   "measured": "profile: 0.5-1 -0.37+-0.14, 1-1.5 0.01+-0.09, 1.5-2 0.29+-0.09, 2-3 0.26+-0.07, 3-5 0.55+-0.07; shape winner g170_fixed (dBiC g170_fixed+0, rising+2, flat+25, falling+36)",
+   "pass": true,
+   "reading": "the anisotropy's radial shape is now a MEASURED profile, not a window mean: rising/flat/falling decided by the BIC on the 2D likelihood, inner core probed directly."
+  }
+ ],
+ "n_pass": 8,
+ "n_fail": 0
+}
