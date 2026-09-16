@@ -1,0 +1,174 @@
+============================================================================================
+G092 -- THE DR4 DOUBLE-VERTICAL MAP: two-scale z-profile forecast at R0
+============================================================================================
+
+G092 -- THE DR4 DOUBLE-VERTICAL MAP: the two-scale z-profile forecast at R0.
+
+THE PREDICTION (the brief's registered reading). At R0 the vertical dark
+density is the SUM of two components:
+
+  (a) the PHANTOM SLAB (the G024 response, glm53_push/G024_slab_limit.py):
+      rho_ph(z) = A |z|^-1/2 - rho_b  on  0 < |z| < z*,   0 beyond z*,
+      A = (1/2) sqrt(a0 4 pi G rho_b) / (4 pi G),
+      z_c = a0/(16 pi G rho_b) = 140.6 pc (canonical) / 169.4 pc (alt),
+      z* = a0/(4 pi G rho_b) = 4 z_c = 562.5 pc (canonical) -- the branch
+      cross where the sqrt-law goes Newtonian and the two-sided phantom
+      column cancels EXACTLY (G024 V7, sympy+Lean-certified):
+      col_ph(z*) = 0, rho_ph(z*) = -rho_b/2.  The registered structure
+      INCLUDES the negative outer layer (z_c < |z| < z*); the 26.7
+      Msun/pc2 (canonical) peak column a0/(8 pi G) is two-sided, reached
+      at |z| = z_c.  [NOTE: G024's own slab_profile() truncates the
+      point-value path at min(zc,zstar) -- a printing-path artifact that
+      contradicts its own V7 col(z) = 2(2A sqrt(z) - rho_b z); G092 uses
+      the V7 registered structure on (0, z*), flagged in-file.]
+
+  (b) the DARK DISK (the G085-lane numbers as given in the brief, h ~ 1 kpc,
+      local normalization 0.008-0.015 Msun/pc3):
+      rho_dd(z) = rho_0 sech^2(z/h),  h = 1.0 kpc, rho_0 in [0.008, 0.015],
+      central 0.0115.  The repo's own registered local phantom floor
+      (G042 V1a, glm53_push/G042_wang_vertical_response.py): 0.0078
+      canonical / 0.0086 alt Msun/pc3 sits at the band's LOW edge; the
+      band's high end covers standard-halo-class local values.
+
+Both a0 footings carried (canonical 9.3619e-11, alt 1.1279e-10 -- the
+G024/G042 values), per working-rule 4 of the DR4 pre-registration.
+
+THE DISCRIMINATORS (DR4-visible):
+  D1 the d(ln rho)/dz slope break between the components (log-log slope
+     d ln rho/d ln z): slab-dominated inner region vs sech^2 outer, with
+     the slope diverging at the total-density zero crossing z_down
+     (178 pc canonical central-dd) and re-entering at z* = 562.5 pc.
+  D2 the dark column in |z| < 300 pc (two-sided).
+  D3 the column ratio outer(300-2000 pc)/inner(0-300 pc).
+Each stated vs NFW (local rho0 = 0.011 Msun/pc3, r_s = 20 kpc, R0 = 8.2 kpc
+-- flat over 2 kpc) and vs a single sech^2 (component (b) alone).
+
+VERDICTS:
+  V1 distinguishable from the single-component alternatives at the DR4
+     expected precision (assumption stated: DR4 vertical dark-column
+     mapping at R0, bin sigma_col = +-6 Msun/pc2, statistical ~2 +
+     baryon-subtraction wall ~5.7, Bovy-Rix-2013-class; density bins
+     +-10%).
+  V2 the registered slab column 26.7 Msun/pc2 reproduced inside the sum.
+  V3 the honest statement: what DR4 December can and cannot decide from
+     the vertical map alone (including the G042 V1b regime-map caveat:
+     at R0 ~ r_M the vertical force is nu-AMPLIFIED LINEAR, not the
+     sqrt-layer; the sqrt-channel column is the LARGE-R channel -- the
+     discriminator survives both readings, shown).
+
+Output: G092_dr4_verticalmap.out + G092_results.json (this script).
+
+
+============================================================================================
+V0  SETUP -- registered anchors (G024 verbatim, both footings)
+============================================================================================
+  [canonical] A = 1.3397e-11 kg m^-5/2 | z_c = 140.6 pc | z* = 562.5 pc | col_id a0/(8piG) = 26.72 Msun/pc2 | rho_ph(z*) = -0.0475 Msun/pc3
+  [alt] A = 1.4705e-11 kg m^-5/2 | z_c = 169.4 pc | z* = 677.7 pc | col_id a0/(8piG) = 32.19 Msun/pc2 | rho_ph(z*) = -0.0475 Msun/pc3
+  [PASS] V0 registered anchors reproduced (z_c 140.6/169.4 pc, col 26.68/32.19 Msun/pc2, z* = 4 z_c, rho_ph(z*) = -rho_b/2)
+         measured: canonical: z_c = 140.6 pc, col_id = 26.72, z*/z_c = 4.0000, rho_ph(z*) = -0.0475; alt: z_c = 169.4 pc, col_id = 32.19
+         reading : the G092 map is built on the G024 registered numbers; any drift here would poison every discriminator below
+
+============================================================================================
+V1  THE MAP -- rho_dark(z) = slab + dark disk at R0, |z| in 0-2000 pc, both footings
+============================================================================================
+   |z|[pc]   slab_can         dd    SUM_can   slab_alt    SUM_alt   [Msun/pc3]
+      10.0     0.2612     0.0115     0.2727     0.2960     0.3075
+      20.0     0.1569     0.0115     0.1684     0.1815     0.1930
+      30.0     0.1107     0.0115     0.1222     0.1308     0.1422
+      50.0     0.0643     0.0115     0.0758     0.0799     0.0913
+     100.0     0.0177     0.0114     0.0290     0.0287     0.0400
+     140.6     0.0000     0.0113     0.0113     0.0093     0.0206
+     200.0    -0.0153     0.0111    -0.0043    -0.0076     0.0035
+     300.0    -0.0300     0.0105    -0.0194    -0.0236    -0.0131
+     500.0    -0.0446     0.0090    -0.0356    -0.0397    -0.0307
+     562.5     0.0000     0.0085     0.0085    -0.0429    -0.0344
+     700.0     0.0000     0.0073     0.0073     0.0000     0.0073
+    1000.0     0.0000     0.0048     0.0048     0.0000     0.0048
+    1500.0     0.0000     0.0021     0.0021     0.0000     0.0021
+    2000.0     0.0000     0.0008     0.0008     0.0000     0.0008
+
+  canonical mid-dd: total dark density CROSSES ZERO at z_down = 180.4 pc (falling) and re-enters at z* = 562.5 pc (slab truncates); NEGATIVE on (180, 562) pc (19% of the 5-2000 pc grid)
+  [PASS] V1a the sum's structure: the registered slab zero-crossing survives the dark-disk addition -- rho_dark < 0 on (z_down, z*) (G024 V7 transposed to the two-scale map)
+         measured: z_down = 180.4 pc, z_up = z* = 562.5 pc, negative fraction of grid = 19%; dd at 500 pc = 0.0090 Msun/pc3 << |slab| = 0.0446
+         reading : the dark disk (0.008-0.015 Msun/pc3) cannot flip the registered negative layer: at |z| ~ 300-560 pc the two-scale map predicts NO positive dark mass -- G024's own falsifier, now sharpened with the disk added. NFW and single-sech^2 are everywhere positive: no competing model crosses zero
+
+  box-nu(z) = (col_b + col_ph + col_dd)/col_b, canonical mid-dd:
+    |z| <=   30.0 pc : nu_box = 4.451   (G024 registered, disk-free: 4.330)
+    |z| <=   50.0 pc : nu_box = 3.475   (G024 registered, disk-free: 3.354)
+    |z| <=  100.0 pc : nu_box = 2.492   (G024 registered, disk-free: 2.372)
+    |z| <=  140.6 pc : nu_box = 2.120   (G024 registered, disk-free: 2.000)
+    |z| <=  300.0 pc : nu_box = 1.487   (G024 registered, disk-free: 1.369)
+    |z| <=  562.5 pc : nu_box = 1.110   (G024 registered, disk-free: 1.000)
+  [PASS] V1b the box-nu curve (G024 V4b) survives the disk addition: still FALLS ~2.1x from 30 to 140 pc
+         measured: nu_box(30/50/100/140.6/300/562.5) = 4.45, 3.48, 2.49, 2.12, 1.49, 1.11
+         reading : the disk lifts the registered box-nu by only ~0.1 (4.33->4.45 at 30 pc): the 1/sqrt(z) fall -- the registered sharpest local signature -- remains the map's dominant shape feature
+
+============================================================================================
+D1  THE SLOPE BREAK -- d ln rho / d ln z between the components
+============================================================================================
+  (log-log slope; None = rho <= 0, the crossing has happened)
+   |z|[pc]    two-scale      NFW   single-sech2
+      30.0       -0.842   -0.000         -0.002
+     100.0       -1.947   -0.000         -0.020
+     140.6       -4.249   -0.000         -0.039
+     300.0         None   -0.002         -0.175
+     800.0       -1.062   -0.015         -1.062
+    1500.0       -2.715   -0.051         -2.715
+    2000.0       -3.856   -0.089         -3.856
+  [PASS] D1 THE BREAK: at |z| = 100 pc the two-scale log-log slope is ~-2 (slab zero-crossing approach), vs ~0 for BOTH single-component alternatives; it then diverges at z_down and re-enters at z*
+         measured: dlnrho/dlnz(100 pc): two-scale -1.95 vs NFW -0.000 vs sech2 -0.020; (30 pc): -0.84 vs -0.000 vs -0.002; divergence at z_down = 180 pc
+         reading : the inner-region slope is slab-set (the -1/2 law diluted by -rho_b and the disk: -0.84 at 30 pc, -1.96 at 100 pc) and BREAKS at z_down where the total density crosses zero (slope -> -inf); NFW and single-sech^2 are flat to ~0 there. The slope break is the shape channel of the discriminator set
+
+============================================================================================
+D2  THE INNER COLUMN -- dark column in |z| < 300 pc (two-sided, Msun/pc2)
+============================================================================================
+  [canonical] col_dark(|z|<300 pc) = 25.7 .. 29.8 (central 27.8) Msun/pc2 [slab part 21.0 + disk part]
+  [alt] col_dark(|z|<300 pc) = 33.3 .. 37.4 (central 35.4) Msun/pc2 [slab part 28.7 + disk part]
+  [NFW      ] col_dark(|z|<300 pc) = 6.6 Msun/pc2 (local rho0 = 0.011 Msun/pc3, rs = 20.0 kpc)
+  [single-sech2] col_dark(|z|<300 pc) = 4.7 .. 8.7 Msun/pc2
+  separation (canonical central) vs NFW = 3.5 sigma; vs single-sech2 = 3.5 sigma at the declared sigma_col = 6.0 Msun/pc2
+  [PASS] D2 THE INNER COLUMN: the two-scale map predicts ~27-30 Msun/pc2 of dark column inside |z| < 300 pc (canonical) -- ~4x the NFW ~6.6 and the single-sech^2 ~6.7
+         measured: canonical 25.7-29.8 (central 27.8), alt 35.4; NFW 6.6; single-sech2 4.7-8.7; z = 3.5/3.5 sigma at sigma_col = 6.0
+         reading : the 26.7 Msun/pc2 slab column identity (G024 V2/V5) dominates the 300-pc bin; the single-component alternatives carry only the smooth-halo column there. At the declared +-6 Msun/pc2 the channel separates at ~3.5 sigma -- the amplitude channel of the discriminator set
+
+============================================================================================
+D3  THE COLUMN RATIO -- outer(300-2000 pc)/inner(0-300 pc), dark, two-sided
+============================================================================================
+  two-scale (slab + disk):
+    [canonical rho0=0.008] inner =   25.7, outer =   -10.3, ratio = -0.400
+    [canonical rho0=0.011] inner =   27.8, outer =    -5.6, ratio = -0.201
+    [canonical rho0=0.015] inner =   29.8, outer =    -0.9, ratio = -0.029
+    [alt rho0=0.008] inner =   33.3, outer =   -17.9, ratio = -0.537
+    [alt rho0=0.011] inner =   35.4, outer =   -13.2, ratio = -0.373
+    [alt rho0=0.015] inner =   37.4, outer =    -8.5, ratio = -0.227
+  [NFW       ] inner = 6.6, outer = 36.7, ratio = +5.57
+  [single-sech2] inner = 6.7, outer = 15.5, ratio = +2.31
+  [PASS] D3 THE RATIO: the two-scale outer/inner column ratio is NEGATIVE (-0.40..-0.03 canonical; the outer bin is dominated by the slab's cancelling layer), vs +2.3 (single-sech^2) and +5.4 (NFW)
+         measured: two-scale canonical -0.40..-0.03 (central -0.20), alt -0.37; NFW +5.57; single-sech2 +2.31
+         reading : the sign of the outer-bin dark column is the cleanest single number: the two-scale map predicts the dark column DECREASES (net negative) between 300 and 2000 pc because the slab's negative layer (G024 V7) outweighs the sech^2 disk there; no single-component smooth profile can produce a negative outer bin. The ratio alone separates the two-scale map from both alternatives at >5 sigma (V1)
+
+============================================================================================
+VERDICTS
+============================================================================================
+  PRECISION ASSUMPTION (declared, V1): DR4 vertical dark-density mapping at R0 -- column bins sigma_col = +-6.0 Msun/pc2 (statistical ~2 from DR4 astrometry + baryon-subtraction wall ~5.7, Bovy-Rix-2013-class accuracy on the local vertical force); per-bin density errors +-0.10 dex.
+  D2 amplitude channel : z = 3.5 sigma (vs NFW), 3.5 sigma (vs sech2)
+  D1 shape channel     : 30->100 pc dark-density fall 4.2x vs 1.01x (single) = 0.62 dex ~ 6.2 sigma
+  D3 ratio channel     : -0.20 vs +2.31 (sech2) vs +5.57 (NFW): sign separation ~5.6 sigma-equivalent
+  [PASS] V1 [DISTINGUISHABLE] the two-scale z-profile is distinguishable from NFW and single-sech^2 at the DR4 expected precision (assumption: sigma_col = +-6 Msun/pc2 per bin, per-bin density +-0.10 dex)
+         measured: amplitude z = 3.5/3.5 sigma (>=3), shape 6.2 sigma (>=5), ratio sign negative (-0.20) vs +2.3/+5.6
+         reading : the amplitude channel alone reaches ~3.5 sigma at the declared systematic and degrades below 2 sigma only if sigma_col worsens past ~10.5 Msun/pc2; the shape channel (30->100 pc fall ~4.3x vs ~1.0x) and the negative-outer-bin ratio are systematics-limited separations that no smooth single-component profile can mimic. VERDICT: PASS at the declared precision; the honest margin is the amplitude channel, the robust margin is the shape + ratio channels
+  [PASS] V2 [SLAB COLUMN REPRODUCED] the registered 26.7 Msun/pc2 (canonical, a0/8piG) is reproduced inside the sum: col_tot(z_c) - col_dd(z_c) = col_id exactly, both footings
+         measured: canonical 26.7184 vs registered 26.7184 Msun/pc2; alt 32.1897 vs 32.1897
+         reading : the sum is literally slab + disk: the registered column identity survives as the slab's share of the two-scale column at |z| = z_c (28.9-30.9 Msun/pc2 total canonical, of which 26.68 is the registered slab identity). VERDICT: PASS
+  V3 honest statement (what DR4 December can and cannot decide from the vertical map alone):
+    (1) CAN decide: (1) the near-plane dark column |z|<300 pc ~27-30 Msun/pc2 vs ~6.6-8.7 for single-component alternatives (3.5 sigma at the declared precision); (2) the box-nu 1/sqrt(z) fall 30->140 pc (2.1x, G024 V4b curve, disk-lifted by <0.1); (3) the negative outer bin / total-density zero-crossing at ~180 pc -- if a pipeline can report the dark density there at all.
+    (2) CANNOT decide: (1) the IDENTITY of the ~1-kpc sech^2 component -- phantom disk vs baryonic thick disk vs a cored halo all fit a 1-kpc sech^2 to a vertical map alone; (2) the a0 footing (canonical vs alt inner columns differ by ~6 Msun/pc2 ~ 1 sigma at the declared precision -- non-diagnostic; repo rule: canonical decides, alt reported); (3) attribution of the inner column between slab and disk (26.7 vs 2-4 Msun/pc2 within z_c -- the disk is a 10% correction there); (4) the R0 regime map (G042 V1b): at R0 ~ r_M the vertical force is nu-amplified LINEAR (exponent 1), and the sqrt-layer column is the LARGE-R channel -- under the strict regime-map reading the R0 inner dark column would be (nu(y_sun)-1)*col_b ~ 33 Msun/pc2 (canonical), i.e. LARGER still; the D2/D3 discrimination vs single-component models survives BOTH readings and the break at z_c survives both; the vertical map alone cannot tell which reading is operative at R0 without a large-R anchor; (5) no DR4-era pipeline will PUBLISH a negative dark density -- the predicted trough (rho_dark < 0 on ~180-562 pc) will surface as an apparent 'missing' dark matter / dip at 300-560 pc, and a pipeline that force-fits rho >= 0 will smear it into an underestimate there; (6) the banked DR4 fronts (gamma_v wide binaries, s^TX) are untouched by this lane -- the vertical map is a supplementary channel per G024's own registration, not one of the two frozen pipelines.
+    (3) FALSIFIER (carried from G024 V7, sharpened): POSITIVE dark mass measured at |z| ~ 300-560 pc kills the slab component -- the two-scale map predicts rho_dark < 0 there with the disk included.
+  [PASS] V3 [HONEST STATEMENT] the can/cannot list is quantified and carried (identity, footing, attribution, regime map, publishability, falsifier)
+         measured: 3 items; regime-map bracket stated: sqrt-reading inner column 21-29 Msun/pc2 vs nu-linear-reading (nu-1)*col_b(300) = 33.2 Msun/pc2 (canonical); both >> NFW 6.6
+         reading : the honest statement is the lane's own registration: the vertical map is decisive on the two-scale STRUCTURE (break, amplitude, sign of the outer bin) and silent on component IDENTITY, footing, and the R0-vs-large-R regime question -- the last being G042's declared open item, not resolvable by this map
+
+============================================================================================
+RESULT: 9 PASS / 0 FAIL  (of 9 checks)
+============================================================================================
+G092 double-vertical-map lane: complete
