@@ -1,0 +1,107 @@
+====================================================================================================
+G160 -- THE CAP-BREAK RE-PREDICTION: the two-zone break at the firing
+        radius, not r_M
+====================================================================================================
+X-COP clusters: 12; a0 can/alt = 9.3623e-11/1.128e-10 m/s^2
+====================================================================================================
+V0 -- THE COMMITTED VALUES REPRODUCED on the tables before anything new
+====================================================================================================
+  [PASS] V0a [anchor: G138's R_cap table] the recomputed total-field a0-crossings reproduce G138's committed R_cap(a0) column per cluster x footing
+         measured: max relative deviation 2.30e-14 over 20 entries
+  [PASS] V0b [anchor: D036's r_M table] the recomputed self-consistent total-field crossings reproduce D036's committed r_M per cluster x footing
+         measured: max relative deviation 0.00e+00 over 20 entries
+
+  THE near-degeneracy, stated before anything is measured: D036's r_M was computed on the TOTAL measured mass
+  (sqrt(G M_FORW(<r)/a0) = r), i.e. it IS the total-field a0-crossing -- the same quantity as G138's R_cap(a0).
+  r_M(D036)/R_cap(G138) per cluster x footing: 1.001-1.046, median 1.024, n = 20
+  [PASS] V0c [the restated premise: is hy4's r_M a DIFFERENT radius than R_cap?] per-cluster r_M(D036)/R_cap(G138) sits within [0.95, 1.10] -- the hy4 test was already run against the total-field a0-crossing, so the 'r_M vs R_cap' re-prediction is not a new radius class unless the baryon-scale r_M (274-580 kpc) was the intended comparator
+         measured: r_M/R_cap = 1.001-1.046 (median 1.024)
+         note    : the 274-580 kpc baryon-scale sqrt(G M_b/a0) (G138's r_M_a0_* column) never entered H036/H039/D036; their r_M was the total-field crossing
+
+====================================================================================================
+V1 -- THE RE-PREDICTION: the model-free knee vs R_cap (the theory's
+      operative cap) vs the old r_M scatter
+====================================================================================================
+
+  --- canonical: a0 = 9.3623e-11 m/s^2 ---
+  cluster    R_cap     rM     rb   rb/Rc   rb/rM    r_2  r_2/Rc    r_on  ron/Rc  ron/rM     rs
+  A1644        nan    nan    270      -      -    415      -    619      -      -   1219
+  A1795        618    646    194    0.31    0.30    257    0.42    667    1.08    1.03    386
+  A2029        943    982    395    0.42    0.40    392    0.42    793    0.84    0.81    492
+  A2142        928    938    403    0.43    0.43    682    0.73   1317    1.42    1.40    708
+  A2255        nan    nan    474      -      -    nan      -   2512      -      -   1481
+  A2319        958    982    281    0.29    0.29    359    0.37    847    0.88    0.86    447
+  A3158        476    489    462    0.97    0.95    816    1.71   2105    4.42    4.31    612
+  A3266        632    646    173    0.27    0.27    288    0.45    467    0.74    0.72   1142
+  A644         851    854    390    0.46    0.46    379    0.44    590    0.69    0.69    349
+  A85          655    677    291    0.44    0.43    404    0.62    872    1.33    1.29    581
+  RXC1825      478    489    603    1.26    1.23    557    1.16   1837    3.84    3.76    513
+  ZW1215       752    779    441    0.59    0.57    699    0.93   1192    1.59    1.53   1045
+  [canonical] median rb/R_cap = 0.44 (range 0.27-1.26, n=10); median rb/rM = 0.43 (old)
+  [canonical] median r_2/R_cap = 0.54 (n=10); r_2 = the d ln rho_DM/d ln r = -2 inflection
+  [canonical] median r_on/R_cap = 1.21 (range 0.69-4.42); median r_on/rM = 1.16 (old)
+
+  --- alt: a0 = 1.1279e-10 m/s^2 ---
+  cluster    R_cap     rM     rb   rb/Rc   rb/rM    r_2  r_2/Rc    r_on  ron/Rc  ron/rM     rs
+  A1644        nan    nan    270      -      -    415      -    590      -      -   1219
+  A1795        489    489    194    0.40    0.40    257    0.52    641    1.31    1.31    386
+  A2029        809    816    395    0.49    0.48    392    0.49    772    0.95    0.95    492
+  A2142        708    709    403    0.57    0.57    682    0.96   1276    1.80    1.80    708
+  A2255        nan    nan    474      -      -    nan      -   2512      -      -   1481
+  A2319        760    779    281    0.37    0.36    359    0.47    823    1.08    1.06    447
+  A3158        296    307    462    1.56    1.51    816    2.75   1498    5.05    4.88    612
+  A3266        501    512    173    0.35    0.34    288    0.57    428    0.85    0.83   1142
+  A644         765    779    390    0.51    0.50    379    0.50    581    0.76    0.75    349
+  A85          497    512    291    0.59    0.57    404    0.81    835    1.68    1.63    581
+  RXC1825      314    322    603    1.92    1.87    557    1.77   1238    3.94    3.85    513
+  ZW1215       548    562    441    0.80    0.78    699    1.27   1183    2.16    2.11   1045
+  [alt] median rb/R_cap = 0.54 (range 0.35-1.92, n=10); median rb/rM = 0.53 (old)
+  [alt] median r_2/R_cap = 0.69 (n=10); r_2 = the d ln rho_DM/d ln r = -2 inflection
+  [alt] median r_on/R_cap = 1.50 (range 0.76-5.05); median r_on/rM = 1.47 (old)
+  [FAIL] V1 [THE RE-PREDICTION: the model-free knee sits at the theory's operative cap R_cap, 1.00 = the prediction] the median over the clusters of r_b / R_cap (the broken-power-law knee of the committed dark residual profiles), both a0 footings
+         measured: canonical: median r_b/R_cap = 0.44 (old r_b/rM = 0.43); alt: median r_b/R_cap = 0.54 (old r_b/rM = 0.53)
+         note    : the model-free knee is what hy4 registered at 0.43-0.53 r_M; if R_cap were the operative boundary the ratio would sit at ~1, not ~0.5
+
+====================================================================================================
+V2 -- THE CHI2 COMPARISON AT THE R_cap-CLASS BREAK
+====================================================================================================
+
+  --- canonical: delta chi2 (split_a0 - uncapped floor), R_cap-class firing rule ---
+        REG 50-600: pooled   +51235.4   median   +4550.3   (|d|>4: 10/12)
+      OUT 600-R500: pooled    +4304.0   median    +239.3   (|d|>4: 8/12)
+
+  --- alt: delta chi2 (split_a0 - uncapped floor), R_cap-class firing rule ---
+        REG 50-600: pooled   +44087.4   median   +3499.2   (|d|>4: 10/12)
+      OUT 600-R500: pooled    +1791.5   median      +0.0   (|d|>4: 4/12)
+  [PASS] V2a [anchor: G138's outer-window table] the split-vs-uncapped delta chi2 at the a0-class firing rule reproduces G138's committed pooled rows (REG 50-600 +51232 in-window 10/12; OUT 600-R500 +4304, 8/12, canonical)
+         measured: canonical REG 50-600 pooled +51235.4; OUT 600-R500 pooled +4304.0
+
+  --- the refined prediction's delta chi2: chi2(fix at X) - chi2(free)
+    [canonical] fix-at-r_M  : median     24.6 (range 1.0-631.7, 8/10 above 9)  [old]
+    [canonical] fix-at-R_cap: median     29.1 (range 1.4-678.8, 8/10 above 9)  [new]
+    [alt] fix-at-r_M  : median     96.7 (range 0.3-1673.9, 8/10 above 9)  [old]
+    [alt] fix-at-R_cap: median     91.7 (range 0.7-1752.2, 8/10 above 9)  [new]
+  [FAIL] V2b [the refined prediction's delta chi2] fixing the phantom turn-on at the theory's operative cap R_cap costs below 9 per cluster (3 sigma, 1 dof) if the subtle break is the a0-crossing of the total field
+         measured: canonical: median 29.1 (range 1.4-678.8); alt: median 91.7 (range 0.7-1752.2)
+         note    : D036's committed fix-at-r_M medians were 24.6 (canonical) / 96.7 (alt); if R_cap were a different, correct radius the penalty would collapse toward 0
+
+  --- the NFW-crossing point: NFW's logarithmic slope is -2 at r = rs (X-COP's own fit), hy4 registered the knee at 0.43-0.53 r_M
+    [canonical] median r_b/rs(NFW) = 0.54 (n=12); median r_on/rs = 1.69
+    [canonical] median r_b/r_M = 0.43 (hy4's 0.43); median r_2/r_M = 0.52 (hy4's 0.52)
+  [FAIL] V2c [the NFW-crossing statement] the model-free knee coincides with the scale where X-COP's OWN NFW fit passes slope -2 (r = rs) rather than with the a0-crossing of the total field (R_cap): median |log10(r_b/rs)| below 0.15 while median r_b/R_cap is below 0.67
+         measured: median r_b/rs = 0.54; median r_b/R_cap = 0.44
+
+====================================================================================================
+V3 -- VERDICTS
+====================================================================================================
+V1 -- per-cluster r_knee/R_cap (the new scatter) vs r_knee/r_M:
+     [canonical] r_b/R_cap median 0.44 (range 0.27-1.26) vs r_b/rM median 0.43 (old scalar); r_on/R_cap median 1.21 vs r_on/rM 1.16
+     [alt] r_b/R_cap median 0.54 (range 0.35-1.92) vs r_b/rM median 0.53 (old scalar); r_on/R_cap median 1.50 vs r_on/rM 1.47
+V2 -- the delta chi2 at the R_cap-class break:
+     [canonical] split-vs-floor (R_cap firing rule) REG 50-600 pooled +51235.4; two-zone fix-at-R_cap median delta 29.1 (fix-at-rM 24.6)
+     [alt] split-vs-floor (R_cap firing rule) REG 50-600 pooled +44087.4; two-zone fix-at-R_cap median delta 91.7 (fix-at-rM 96.7)
+V3 -- the honest statement:
+     FAILS TOO: the model-free knee sits at r_b/R_cap = 0.44 (canonical) / 0.54 (alt) -- a factor ~2 INSIDE the theory's operative cap, NOT ~1; fixing the phantom turn-on at R_cap costs a median delta chi2 of 29 (canonical) / 92 (alt) per cluster -- the same order as D036's fix-at-r_M failure (24.6 / 96.7).  AND the re-prediction is nearly DEGENERATE with the old test: D036's r_M was already the total-field a0-crossing (r_M/R_cap = 1.00-1.05), so the 'wrong radius' diagnosis is itself wrong -- hy4 never used the 274-580 kpc baryon-scale r_M.  The knee (rb 173-603 kpc) is interior to BOTH the a0-crossing class (R_cap 476-958) and NFW's own -2 crossing (r = rs; r_b/rs ~ 0.54) -- nearer the NFW scale radius than the cap, but at neither prediction.  hy4's break failure stands; the cap-break re-prediction resolves nothing on the committed data alone.
+
+
+G160 COMPLETE -- written G160_results.json
