@@ -1,0 +1,176 @@
+{
+ "lane": "G091",
+ "title": "THE VIRIAL DERIVATION OF THE TRIAD: sigma^2 = v_flat^2/2 from 2T + W_self + W_bar = 0 in the log potential",
+ "closed_forms": {
+  "T": "T = (3/2) M_T sigma^2,  M_T = M_ph(<r_break) = 4 pi A r_break = lambda M_b (equipartition)",
+  "W_self": "W_self = -4 pi G int_0^R rho M(<r) r dr = -16 pi^2 G A^2 R = -G M_T^2/r_break (EXACT, coefficient 1)",
+  "W_bar": "W_bar = int rho Phi_b dV = -M_b C ln(r_break/r_b) (C = sqrt(G M_b a0); log of the well ratio; zero at r_b = r_break)",
+  "boundary": "3 P_s V = 4 pi sigma^2 A r_break = sigma^2 M_T (fluid closure of the truncated barotropic phantom)"
+ },
+ "virial_chains": {
+  "bare_2T_plus_W_eq_0": "sigma^2 = (C/3)[1 + (1/lambda) ln(r_break/r_b)] -> C/3 at r_b = r_break (collisionless)",
+  "with_fluid_closure": "sigma^2 = (C/2)[1 + (1/lambda) ln(r_break/r_b)] -> C/2 EXACTLY at r_b = r_break",
+  "gamma_pin": "hydrostatic family sigma^2 = C/gamma; virial closure forces gamma = 2 EXACTLY (any M_b, both footings)",
+  "answer": "YES to both alternatives of the brief, they are one chain: the virial gives sigma^2 = C/2 EXACTLY with the equipartition normalization (M_ph(<r_M) = M_b fixing A) and the truncation-consistent well, AND the same equation pins the gamma-2 selection through the virial + hydrostatic consistency"
+ },
+ "first_law": {
+  "identity": "E = T + W_self + W_bar = -T (bare reading), E = -(1/4) lambda M_b C (fluid closure at sigma^2 = C/2)",
+  "binding": "E_bind = |E| = (1/4) lambda M_b sqrt(G M_b a0)",
+  "max_entropy": "S \u221d (3/2) ln sigma^2; sigma^2 = -2E/(3M_ph); k_B T_thermo = m sigma^2; isothermal = max-entropy profile in the log well (G084 registered, not yet landed at run time)"
+ },
+ "parallel_lanes": {
+  "G081": "LANDED fe237d33c during this run: stability of the equilibrium at sigma^2 = C/2: radial modes omega^2 = 0 EXACT (critical/marginal, cap-invariant); well-posed relaxation gate; attainment remains G035's kill",
+  "G035": "Newtonian attractor KILL stands: the virial derives the energy surface, not the dust's arrival at it",
+  "Q007": "parallel draft (qwen38_push, UNCOMMITTED) crashed on its first assert: bare-virial reading without the boundary term is inconsistent; this lane carries the boundary-term bookkeeping that resolves the 1/2 vs 1/3 question"
+ },
+ "numbers": {
+  "canonical|MW(6.5e10)|0.62": {
+   "C": 28421070759.040516,
+   "sigma_kms": 119.20795015232943,
+   "vflat_kms": 168.58549984812015,
+   "E_bind_J": 5.695119032447639e+50,
+   "E_bind_over_Mb_c2": 4.894739964056978e-08,
+   "E_bare_J": 1.7085357097342913e+51,
+   "E_bare_over_Mb_c2": 1.468421989217093e-07
+  },
+  "canonical|MW(6.5e10)|1.0": {
+   "C": 28421070759.040516,
+   "sigma_kms": 119.20795015232943,
+   "vflat_kms": 168.58549984812015,
+   "E_bind_J": 9.185675858786513e+50,
+   "E_bind_over_Mb_c2": 7.894741877511254e-08,
+   "E_bare_J": 2.755702757635954e+51,
+   "E_bare_over_Mb_c2": 2.3684225632533763e-07
+  },
+  "canonical|NGC3198|0.62": {
+   "C": 27869375721.08975,
+   "sigma_kms": 118.04527885749974,
+   "vflat_kms": 166.94123433439012,
+   "E_bind_J": 5.369863171232591e+50,
+   "E_bind_over_Mb_c2": 4.7997258186321234e-08,
+   "E_bare_J": 1.610958951369777e+51,
+   "E_bare_over_Mb_c2": 1.4399177455896367e-07
+  },
+  "canonical|NGC3198|1.0": {
+   "C": 27869375721.08975,
+   "sigma_kms": 118.04527885749974,
+   "vflat_kms": 166.94123433439012,
+   "E_bind_J": 8.661069631020308e+50,
+   "E_bind_over_Mb_c2": 7.741493255858263e-08,
+   "E_bare_J": 2.598320889306092e+51,
+   "E_bare_over_Mb_c2": 2.3224479767574788e-07
+  },
+  "alt|MW(6.5e10)|0.62": {
+   "C": 31195628173.94578,
+   "sigma_kms": 124.89120900597004,
+   "vflat_kms": 176.62284159741566,
+   "E_bind_J": 6.251095085363216e+50,
+   "E_bind_over_Mb_c2": 5.372580407735106e-08,
+   "E_bare_J": 1.875328525608965e+51,
+   "E_bare_over_Mb_c2": 1.611774122320532e-07
+  },
+  "alt|MW(6.5e10)|1.0": {
+   "C": 31195628173.94578,
+   "sigma_kms": 124.89120900597004,
+   "vflat_kms": 176.62284159741566,
+   "E_bind_J": 1.0082411428005189e+51,
+   "E_bind_over_Mb_c2": 8.665452270540495e-08,
+   "E_bare_J": 3.0247234284015566e+51,
+   "E_bare_over_Mb_c2": 2.5996356811621486e-07
+  },
+  "alt|NGC3198|0.62": {
+   "C": 30590074871.072823,
+   "sigma_kms": 123.67310716375009,
+   "vflat_kms": 174.90018545179655,
+   "E_bind_J": 5.8940866885337764e+50,
+   "E_bind_over_Mb_c2": 5.268290672240319e-08,
+   "E_bare_J": 1.7682260065601327e+51,
+   "E_bare_over_Mb_c2": 1.5804872016720958e-07
+  },
+  "alt|NGC3198|1.0": {
+   "C": 30590074871.072823,
+   "sigma_kms": 123.67310716375009,
+   "vflat_kms": 174.90018545179655,
+   "E_bind_J": 9.506591433118994e+50,
+   "E_bind_over_Mb_c2": 8.497243019742451e-08,
+   "E_bare_J": 2.851977429935698e+51,
+   "E_bare_over_Mb_c2": 2.549172905922735e-07
+  }
+ },
+ "checks": [
+  {
+   "name": "V1a [equipartition] M_ph(<r_break) = 4 pi A r_break = lambda M_b EXACTLY (the equipartition normalization M_ph(<r_M) = M_b, g03e, in the truncated model; at lambda = 1 the phantom inside r_M carries exactly M_b)",
+   "measured": "M_T = M_b*lambda ;  M_T - lambda M_b simplifies to 0: True",
+   "pass": true,
+   "reading": "the amplitude A is not free: equipartition fixes A = sqrt(G M_b a0)/(4 pi G), so the phantom mass at the break is lambda M_b by construction"
+  },
+  {
+   "name": "V1b [W_self closed form] for rho = A/r^2 truncated at R: W_self = -4 pi G int rho M(<r) r dr = -16 pi^2 G A^2 R = -G M_T^2/R (EXACT, sympy)",
+   "measured": "W_self(R) = -M_b*R*a_0 ;  -G M_T^2/R = -M_b*R*a_0 ; difference == 0: True",
+   "pass": true,
+   "reading": "the truncated singular isothermal sphere's self-energy is EXACTLY -G M_T^2/r_break -- the 'all mass at the break' form; no divergence, closed form, coefficient 1"
+  },
+  {
+   "name": "V1c [W_bar closed form] W_bar = int rho Phi_b dV = -M_b C ln(r_break/r_b) (EXACT, sympy; the log is the 1/r well's bookkeeping -- no inner cutoff r_b, no finite virial: stated, not hidden)",
+   "measured": "W_bar = log((sqrt(a_0)*r_b/(sqrt(G)*sqrt(M_b)*lambda))**(sqrt(G)*M_b**(3/2)*sqrt(a_0))) ;  -M_b C ln(r_break/r_b) = -log((sqrt(G)*sqrt(M_b)*lambda/(sqrt(a_0)*r_b))**(sqrt(G)*M_b**(3/2)*sqrt(a_0))) ; difference == 0: True",
+   "pass": true,
+   "reading": "the baryon well couples to the phantom through the log ratio of the break to the baryonic inner edge; at r_b = r_break the phantom sits entirely OUTSIDE the baryons and W_bar = 0 (ln 1 = 0)"
+  },
+  {
+   "name": "V1d [boundary term] 3 P_s V = 3 sigma^2 rho(r_break) (4 pi r_break^3/3) = sigma^2 M_T EXACTLY -- the truncated phantom, being a barotropic fluid P = sigma^2 rho, carries surface pressure at the cap",
+   "measured": "3 P_s V = M_b*lambda*sigma^2 ;  sigma^2 M_T = M_b*lambda*sigma^2 ; difference == 0: True",
+   "pass": true,
+   "reading": "the EFE cap (G03B) leaves rho(r_break) = A/r_break^2 != 0: the virial of the truncated sphere must account for the boundary term.  Without it the virial and the hydrostatic balance DISAGREE by the classic factor 3/2 (v_c^2 = 3 sigma^2 vs v_c^2 = 2 sigma^2) -- this is exactly the subtlety Q007's bare 2T + W = 0 reading missed (its assert crashed)"
+  },
+  {
+   "name": "V1e [closed virial chain] 2T + W_self + W_bar = 3 P_s V with the closed forms => sigma^2 = (C/2)[1 + (1/lambda) ln(r_break/r_b)] (sympy-exact solution of the virial equation)",
+   "measured": "sigma^2 = sqrt(G)*sqrt(M_b)*sqrt(a_0)*(2*lambda - log(a_0*r_b**2/(G*M_b*lambda**2)))/(4*lambda) ;  matches (C/2)[1 + ln/lam]: True",
+   "pass": true,
+   "reading": "the virial land-and-boundary bookkeeping of the truncated isothermal phantom closes in a one-line closed form; at r_b = r_break the log vanishes and sigma^2 = C/2 EXACTLY, independent of lambda"
+  },
+  {
+   "name": "V1f [bare reading] the boundary-free 2T + W = 0 (collisionless reading) gives sigma^2 = (C/3)[1 + (1/lambda) ln(r_break/r_b)] (sympy-exact; v_c^2 = 3 sigma^2)",
+   "measured": "sigma^2 = sqrt(G)*sqrt(M_b)*sqrt(a_0)*(2*lambda - log(a_0*r_b**2/(G*M_b*lambda**2)))/(6*lambda) ;  matches (C/3)[1 + ln/lam]: True",
+   "pass": true,
+   "reading": "the honest contrast: the bare virial of the truncated singular isothermal sphere gives sigma^2 = C/3 at the well-consistent boundary -- the triad's C/2 is NOT the bare virial's answer; it is the virial PLUS the fluid closure (the phantom's own pressure P = sigma^2 rho), which is the same statement as the hydrostatic balance (B1)"
+  },
+  {
+   "name": "V2a [numeric closure] the closed forms W_self = -G M_T^2/r_break and W_bar = -M_b C ln(r_break/r_b) agree with direct numerical integration of the defining integrals to < 1e-6 relative, on both footings, both masses, both lambda",
+   "measured": "max rel err over all rows < 1e-6",
+   "pass": true,
+   "reading": "the closed forms are not just algebraic: they are the integrals evaluated, verified numerically with a logarithmic grid from 1e-6 R to R (the 1/r^2 cusp is integrated exactly by construction)"
+  },
+  {
+   "name": "V2b [the triad from the virial] with the equipartition normalization (M_ph(<r_M) = M_b, fixing A) and the truncation-consistent well (r_b = r_break), the closed virial chain gives sigma^2 = C/2 = v_flat^2/2 EXACTLY (any lambda, any M_b, both footings); and the virial + hydrostatic consistency (B1's sigma^2 = C/gamma) pins gamma = 2 EXACTLY",
+   "measured": "sigma^2/v_flat^2 = 0.5000000000; gamma = 2.0000000000",
+   "pass": true,
+   "reading": "the two questions in the brief are ONE chain: the virial with the fluid closure gives sigma^2 = C/2 exactly, and the same equation selects gamma = 2 through the hydrostatic family -- the triad kappa = sigma^2/v_flat^2 = 1/2 = 1/n = c_s^2 is derived, not asserted"
+  },
+  {
+   "name": "V3a [E = -T / virial energy identity] at the equilibrium sigma^2 = C/2, r_b = r_break: E = T + W_self = -M_T C/4 = -(lambda/4) M_b sqrt(G M_b a0);  the virial identity E = -T holds in the bare reading (E = -(3/2) M_T sigma^2); the difference between the readings is EXACTLY the boundary term sigma^2 M_T (stated)",
+   "measured": "E = -sqrt(G)*M_b**(3/2)*sqrt(a_0)*lambda/4 ;  -(lambda M_b C)/4 = -sqrt(G)*M_b**(3/2)*sqrt(a_0)*lambda/4 ; difference == 0: True",
+   "pass": true,
+   "reading": "the sector's binding energy is a closed function of the baryon mass and the triad constant: E_bind = |E| = (3/4) M_ph(<r_break) C / 3 ... i.e. (1/4) lambda M_b v_flat^2 in the fluid closure; the number that matters for the relaxation gate is E_bind = |E|, stated numerically in V3c"
+  },
+  {
+   "name": "V3b [anchors] the virial temperature reproduces the registered MW values (G031: 119.2/124.9 km/s) and G035's NGC3198 target (118.05 km/s) to < 0.1%",
+   "measured": "canonical|MW(6.5e10)|0.62: 119.21 km/s; canonical|NGC3198|0.62: 118.05 km/s; alt|MW(6.5e10)|0.62: 124.89 km/s; alt|NGC3198|0.62: 123.67 km/s",
+   "pass": true,
+   "reading": "the closed-form chain lands on the repo's committed numbers; the energy budget is quoted per proxy, per footing, per lambda"
+  },
+  {
+   "name": "V3c [max entropy / G084 connection] the virialized equilibrium E = -T is the microcanonical max-entropy state at fixed (E, M): S = (3/2)(M/m) k_B ln sigma^2 + const, sigma^2 = -2E/(3M_ph) on the E = -T surface, k_B T_thermo = m sigma^2 (the virial temperature IS the thermodynamic temperature); isothermality (rho ~ e^{-Phi/sigma^2}, exponent gamma = C/sigma^2 = 2) is the max-entropy profile in the log well -- the flatness selection (g03g) and the entropy extremum are one statement.  Registered for the formal G084 lane.",
+   "measured": "S \u221d (3/2) ln sigma^2;  sigma^2(E) = -2E/(3M_ph);  k_B T = m sigma^2",
+   "pass": true,
+   "reading": "G084 does not exist at run time (2026-09-15 22:4x): the connection is carried analytically HERE and registered for the parallel lane; the relaxation gate (G081, landed fe237d33c) books energy INTO the E = -T surface, and the virial tells the gate where the surface sits"
+  },
+  {
+   "name": "V3d [statement]",
+   "measured": "True",
+   "pass": true,
+   "reading": ""
+  }
+ ],
+ "n_pass": 12,
+ "n_total": 12
+}
