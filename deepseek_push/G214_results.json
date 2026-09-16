@@ -1,0 +1,267 @@
+{
+ "id": "G214",
+ "title": "THE DERIVATION TREE -- the law's complete proof chain in one diagram",
+ "date": "2026-09-16",
+ "status": {
+  "lean_certificates": 10,
+  "lean_theorems": 79,
+  "reverified_exit_0": true,
+  "zero_sorry": true,
+  "axioms": [
+   "propext",
+   "Classical.choice",
+   "Quot.sound"
+  ],
+  "lean_toolchain": "Lean 4.34.0-rc2 (mondlean lake project, Mathlib v4.34.0-rc2)"
+ },
+ "input": {
+  "node": "INPUT a0 (or s)",
+  "status": "empirical",
+  "note": "the one fitted/measured anchor; a0 = s/2 (EQUILIBRIUM rung 1 deep_mond_cleared LEAN); s_Lambda = 2 a0_DE = 1.87238e-10 (G189)"
+ },
+ "nodes": [
+  {
+   "id": "L1",
+   "name": "vacuum rho_Lambda = 4 a0^2/(G c^2)",
+   "status": "LEAN",
+   "certificate": "G031 rho_L_from_a0 (iff both directions), lambda_geom_fixed (Lambda = 32 pi a0^2/c^4)",
+   "empirical_check": "Omega_Lambda 0.6857 +- 0.07% (G058/G205)"
+  },
+  {
+   "id": "L2",
+   "name": "equilibrium sigma^2 = sqrt(G M_b a0)/2 (the DE-set temperature)",
+   "status": "closed-form",
+   "inputs": [
+    "G084 max-entropy functional (EL => rho = A r^-C/sigma^2; Boltzmann beta = 1/sigma^2; exact residual + strictly concave 2nd variation)",
+    "G091 virial triad (closed virial chain 2T+W_self+W_bar = 3P_sV => sigma^2 = C/2 exactly at r_b = r_break; sympy-exact, 1e-9 numeric)",
+    "G116 DE-set temperature synthesis (T = m sigma^2/k_B = 9.17 K at 5 keV; sigma mass-free; m in [3.3,100] keV)"
+   ],
+   "lean_algebra": "sigma^2 = sqrt(G M_b a0)/2 and sigma^4 = G M_b a0/4: G031 zimmerman_temperature (V3), G090 equipartition_virial, EQUILIBRIUM_THEORY virial_temperature, sigma_sq_form",
+   "note": "THE ONE NON-LEAN RUNG OF THE SPINE (the virial + Boltzmann premises); internal algebra Lean-certified"
+  },
+  {
+   "id": "L3",
+   "name": "phantom rho = A/r^2 coefficient 1",
+   "status": "LEAN",
+   "certificate": "G031 phantom_is_isothermal (sigma^2/(2 pi G r^2) = S/(4 pi G r^2)); EQUILIBRIUM_THEORY equilibrated_is_phantom (coeff one, end-to-end); G03G sigma_virial_half (kappa = 1/2 = 1/n = c_s^2)"
+  },
+  {
+   "id": "L4",
+   "name": "equipartition M_ph(< r_M) = M_b",
+   "status": "LEAN",
+   "certificate": "G03G equipartition_exact (4 pi A r_M = M_b); G090 equipartition_linear_law (M_ph(r_M)/M_b = 1), vc_flat_exact"
+  },
+  {
+   "id": "L5",
+   "name": "deep RAR g^2 = a0 g_N, coefficient exactly 1",
+   "status": "LEAN",
+   "certificate": "G031 deep_rar; G090 (the quadratic RAR = linear law one statement); G201 deep_limit_sq (geometric-mean reading g = sqrt(a0 g_N))"
+  },
+  {
+   "id": "BTFR",
+   "name": "v_flat^4 = G M_b a0",
+   "status": "LEAN + empirical",
+   "certificate": "G031 btfr; G090 btfr_quartic",
+   "empirical": "line b = 1.004 +- 0.011, n = 542, rms 0.180 dex (G131/G162 pool); scatter test G087 0/3 ARMED"
+  },
+  {
+   "id": "SIGMA_BAR",
+   "name": "surface density <Sigma_ph>(< r_M) = a0/(pi G) = 213.74 M_sun/pc^2",
+   "status": "LEAN + empirical",
+   "certificate": "G083 surface_density_universal, _composition, _mean, num_sigma_bar_msun (213.75 in (213,215)); G036 slab-column/peak extras",
+   "empirical": "G036 peak 26.7 M_sun/pc^2 (registered)"
+  },
+  {
+   "id": "T23",
+   "name": "the temperature law 2/3: log10(T_obs/T_pred) = (2/3) log10 f + log10(2 r_M/R500)",
+   "status": "closed-form + empirical",
+   "note": "structural alpha = 2/3 = 1 - 1/3 (virial +1, Delta500 self-similarity -1/3); measured pooled rms 0.076 dex, clusters 0.067 (HSE), groups 0.081; cluster 3.51 vs 3.57 (1.8%); virial 1/2 excluded ~2.2 sigma; G095 10/11, G135 12/12",
+   "not_lean": true
+  },
+  {
+   "id": "DUST",
+   "name": "the dust law (c0, q): c_dust = c0 (M500/8e14)^q (r/R500)^-1",
+   "status": "empirical/derived-within-error + registered-and-pending; jump algebra LEAN",
+   "note": "q_pred = alpha_supply - alpha_require = 2/3 - 1 = -1/3 vs measured -0.414 +- 0.157 = 0.52 sigma (G200 PASS); c0 via infall jump A_b = (sigma_ph/sigma_d)^3 = 0.6495 (G182/G185, 12/12, 0.09 dex); residuals registered (Delta q = +0.081, A_b 1.34x)",
+   "lean_part": "G201 isothermal_density_ratio, entropy_jump_log, entropy_jump_cube, entropy_jump_additivity, jump_cube (the A_b cube given dS/k_B; the dressed sigma_d(r_b) input stays algebra-only-on-record)"
+  },
+  {
+   "id": "MSTAR",
+   "name": "mass m(z*) = 5.0-5.2 keV (cosmic-noon inversion)",
+   "status": "empirical prediction + pending",
+   "note": "G168 8/8, m in [5.000, 5.190] keV at z* = 2.37-2.49 (canonical triad 119.2 km/s); kill band 4-6 keV registered; Lyman-alpha forest floor 3.3-5.7 keV binding (G093/G116); T = m sigma^2/k_B linear"
+  },
+  {
+   "id": "PHISHARE",
+   "name": "phantom share of the dark = (r/r_M)/(f-1)",
+   "status": "LEAN algebra + empirical pie",
+   "certificate": "G201 share_identity, share_identity_deep (one field_simp)",
+   "empirical": "G106/G188/G197: interior phantom share of dark 0.89, solar circle 0.892, f = 1.65"
+  }
+ ],
+ "links": [
+  {
+   "id": "E1",
+   "from": "INPUT",
+   "to": "L1",
+   "status": "LEAN",
+   "certificate": "G031 rho_L_from_a0"
+  },
+  {
+   "id": "E2",
+   "from": "INPUT",
+   "to": "L2",
+   "status": "closed-form",
+   "note": "virial (G091) + Boltzmann/max-entropy (G084) premises; internal algebra Lean (zimmerman_temperature/virial_temperature)"
+  },
+  {
+   "id": "E3",
+   "from": "L2",
+   "to": "L3",
+   "status": "LEAN",
+   "certificate": "zimmerman_temperature => phantom_is_isothermal; equilibrated_is_phantom end-to-end"
+  },
+  {
+   "id": "E4",
+   "from": "L3",
+   "to": "L4",
+   "status": "LEAN",
+   "certificate": "G03G equipartition_exact; G090 equipartition_linear_law"
+  },
+  {
+   "id": "E5",
+   "from": "L4",
+   "to": "L5",
+   "status": "LEAN",
+   "certificate": "G031 deep_rar; G201 deep_limit_sq"
+  },
+  {
+   "id": "E6",
+   "from": "L5",
+   "to": "BTFR",
+   "status": "LEAN",
+   "certificate": "G031 btfr; G090 btfr_quartic"
+  },
+  {
+   "id": "E7",
+   "from": "L5",
+   "to": "SIGMA_BAR",
+   "status": "LEAN",
+   "certificate": "G083 surface_density_composition"
+  },
+  {
+   "id": "E8",
+   "from": "L2",
+   "to": "T23",
+   "status": "closed-form + empirical",
+   "note": "virial + Delta500 self-similarity algebra (G095/G135); measured 0.076 dex; NOT Lean (candidate C3)"
+  },
+  {
+   "id": "E9",
+   "from": "L2",
+   "to": "MSTAR",
+   "status": "empirical",
+   "note": "T = m sigma^2/k_B linear in m (G084/G116); inversion arithmetic G168"
+  },
+  {
+   "id": "E10",
+   "from": "L5",
+   "to": "DUST",
+   "status": "empirical/derived + pending",
+   "note": "reservoir q (G200, 0.52 sigma), infall jump c0 (G182/G185); jump algebra Lean (G201)"
+  },
+  {
+   "id": "E11",
+   "from": "L4",
+   "to": "PHISHARE",
+   "status": "LEAN",
+   "certificate": "G201 share_identity"
+  }
+ ],
+ "counts": {
+  "nodes_total": 12,
+  "nodes_lean": 7,
+  "nodes_closed_form": 2,
+  "nodes_empirical": 4,
+  "nodes_pending": 2,
+  "links_total": 11,
+  "links_lean": 7,
+  "links_closed_form": 2,
+  "links_empirical": 2,
+  "lean_certificates": 10,
+  "lean_theorems": 79,
+  "lean_theorem_by_file": {
+   "EQUILIBRIUM_THEORY.lean": 12,
+   "G001_clockmaker_dilemma.lean": 8,
+   "G002_G003_onefunction_phantom.lean": 4,
+   "G007_bimetric.lean": 11,
+   "G031_fluid_action.lean": 13,
+   "G036_formal_extras.lean": 9,
+   "G03G_triad.lean": 4,
+   "G083_surface_density.lean": 5,
+   "G090_equivalence.lean": 5,
+   "G201_jump_share.lean": 8
+  },
+  "depth_certified_spine_edges": 5,
+  "depth_pure_lean_edges": 4,
+  "spine": "input -> sigma^2 (=sqrt(G M_b a0)/2) -> rho (coeff 1) -> M_ph(<r_M)=M_b -> g^2=a0 g_N -> BTFR",
+  "notes": "E2 is the one non-Lean rung (virial + Boltzmann premises, closed-form); depth 5 with E2 admitted, 4 with every premise discharged inside Lean; LEAN_CERTIFICATES.md '66/7' is stale (predates G03G/G083/G090/G201)"
+ },
+ "coverage_gap": {
+  "non_lean_physics_inputs": [
+   {
+    "name": "the virial premise sigma^2 = G M_b/(2 r_M)",
+    "status": "closed-form (G091: W_self = -G M_T^2/r_break, W_bar = -M_b C ln(r_break/r_b), 3P_sV = sigma^2 M_T; sympy-exact, numeric 1e-9), NOT Lean",
+    "closes_with": "C1"
+   },
+   {
+    "name": "the max-entropy functional (EL + concavity)",
+    "status": "closed-form/numeric (G084: exact EL residual at (gamma, sigma^2) = (2, C/2); strict concavity 2nd variation vs analytic to 5%), NOT Lean",
+    "closes_with": "C2"
+   },
+   {
+    "name": "the DE-set temperature's origin (T = m sigma^2/k_B, sigma mass-free)",
+    "status": "physics claim (G116 synthesis; Omega_Lambda 0.6857 consistent), committed not certified",
+    "note": "the linear-in-m temperature arithmetic is open as a Lean statement"
+   },
+   {
+    "name": "the T-law 2/3 closed form",
+    "status": "closed-form + measured (G095/G135), NOT Lean",
+    "closes_with": "C3"
+   }
+  ],
+  "next_certificates": [
+   {
+    "id": "C1",
+    "name": "virial_rung4",
+    "statement": "the G091 closed virial chain as theorems: shell-energy integrals of rho = A/r^2 evaluate (constant-shell-integrand argument, G031 integrand_const machinery), and 2T + W_self + W_bar = 3P_sV => sigma^2 = (C/2)[1 + (1/lambda) ln(r_b/r_break)] => sigma^2 = C/2 exactly at r_b = r_break",
+    "effect": "closes the largest non-Lean rung of the spine; virial equilibrium + truncation become explicit hypotheses"
+   },
+   {
+    "id": "C2",
+    "name": "maxentropy_phantom",
+    "statement": "rho = A r^-gamma satisfies the EL equation of S = -int rho ln(rho sigma^3) dV in the well Phi = C ln r iff gamma = C/sigma^2 (one field-algebra line); strict concavity of -x ln x and delta^2 S = -int (delta rho)^2/rho < 0 (Mathlib); Boltzmann beta = 1/sigma^2 explicit hypothesis => at sigma^2 = C/2 the unique maximizer is rho = A/r^2",
+    "effect": "the law's profile from its variational origin, machine-checked"
+   },
+   {
+    "id": "C3",
+    "name": "twothirds_law",
+    "statement": "with R500 ~ (M500/rho_c)^(1/3): log10(2 f r_M/R500^b) = (2/3) log10 f + const on the fixed-M_b face \u2014 the structural alpha = 2/3 = 1 - 1/3 as pure algebra",
+    "effect": "lifts the temperature law from measured to certified-form (6th certified edge)"
+   }
+  ]
+ },
+ "verdicts": {
+  "V1": "the derivation tree is complete: 12 nodes, 11 links, each status-marked, every certificate re-verified today (10/10 exit 0, zero sorry)",
+  "V2": "counts consistent: LEAN nodes 7, closed-form 2, empirical 4, pending 2; LEAN links 7, closed-form 2, empirical 2; 79 Lean theorems / 10 certificates; DEPTH = 5 certified spine edges (pure-Lean 4 + the closed-form entrance E2)",
+  "V3": "honest: the law's proof structure is a certified spine (vacuum, temperature algebra, phantom coeff 1, equipartition, deep RAR, BTFR, surface density, jump/share algebra) with ONE closed-form entrance (the virial + max-entropy premises of sigma^2 = sqrt(G M_b a0)/2) and empirical leaves (T-law 2/3 at 0.076 dex, zero-parameter dust law at 0.52 sigma, m(z*) = 5.0-5.2 keV registered with kill band); the next 2-3 certificates C1 virial_rung4, C2 maxentropy_phantom, C3 twothirds_law would close the entrance and lift the T-law; physics inputs by design (Boltzmann identification, virial equilibrium, measured exponents) remain stated, not hidden"
+ },
+ "checks": {
+  "10/10 lean certificates exit 0": true,
+  "zero sorry in all 10 files": true,
+  "node count 12 consistent with register": true,
+  "link count 11 consistent with diagram": true,
+  "depth 5 (pure 4) consistent with the spine": true,
+  "theorem count 79 = sum of per-file counts": true
+ }
+}
