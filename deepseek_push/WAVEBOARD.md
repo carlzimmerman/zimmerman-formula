@@ -917,6 +917,62 @@ z ~ 2.5 BTFR zero point picks the scale.
 5.2] keV from the cosmic-noon inversion, kill band m < 4 or m > 6 keV --
 the mass measurement and the z ~ 2.5 break are the SAME test.
 
+## WAVE 19 (landed 3/3 -- the one-boundary unification + the cosmic pie)
+G186 THE TWO TRANSITIONS, ONE BOUNDARY 4/4: the seam is NOT a density step
+(B-continuity pins rho_d(r_t-) = rho_d(r_t+): A' = 1.000 by construction;
+a step fit agrees at 1.006, d_BIC +7.3 against it) but the seam's IMPRINT
+-- the integral over its resolved width 10^[-(p2-p1) 0.304] = 0.364 --
+agrees with A = 0.273 within 1.34x, and the phantom/dust ratio measured
+directly at r_t = 0.369 (iqr 0.311-0.399) within 1.35x: A ~= THE INTEGRAL
+OF THE SEAM (the accumulated deficit of the steepening).  THE BOUNDARY IS
+OVERDETERMINED: TEN independent diagnostics sit on r_M = sqrt(G M_b/a0):
+the seam (0.96), the jump (0.273/0.297), the measured ratio (0.369), the
+2/3 temperature law's pivot, the first-order latent heat (dS 10.8-23.7
+k_B), the EFE cap line, the galaxy break, the deep window, the pie pivot,
+the saturation.  THE ONE-BOUNDARY STATEMENT: r_b/r_M = sqrt(a0/g_ext)
+(G119) frames BOTH scales: MW g_ext 2.44e-10 -> 0.620 = the kernel break
+(0.623); clusters g_ext ~ 1.08 a0 -> 0.963 = the seam (0.96): the galaxy
+break, the cluster seam, the cap line ARE one r_M boundary per M_b.
+Counterexamples registered (per-cluster r_M seam not preferred, smooth
+steepening within d_BIC 16, cap-firing mechanism contested G138).
+G187 THE PIE AS A FUNCTION OF MASS 11/11: the constitution curve is a
+CLOSED FORM: u(M) = 0.185 (M/1e14)^+0.314, the saturated gain g(M) (1 in
+the all-dust phase, 1/u in the phantom phase); THE GAP PREDICTIONS at 2 /
+2.5 / 3e14: SHARP saturation s_ph = 8/10/12%, f_dust(missing) 0.91/0.89/
+0.86 (above the registered 0.85 falsifier edge); SMOOTH ramp s_ph = 13/26/
+40%, f_dust 0.85/0.71/0.55 -- the discriminator: any eROSITA/SZ 2-3e14
+system with f_dust < 0.85 voids the sharp saturation; THE COSMIC PIE
+(mass-function weighted, > 1e12): <s_ph> = 0.111, <s_d> = 0.805, <s_b> =
+0.085 -- all-dust dominated; the honest closure: the equilibrium phase
+carries 0.8-1.3% of Omega_dm (the G079 bound, cosmic-density statement,
+UNCHANGED); the within-R500 integral reads 4.6% only in the equipartition
+truncation, 0.4% on the floor-A footing -- NOT new cosmic mass.
+G188 THE INVERTED-PIE READING 18/18: THE PIE IS THE TWO-REGIME MAP: dust
+81.6% of M_dyn at 50 kpc = 97.6% of the MISSING mass there, phantom 56.9%
+at R500; the field gate: g_tot(R500)/a0 = 0.554 < 1 on 12/12 -- the
+phantom zone IS the sub-a0 deep regime, confirmed by the bookkeeping;
+r_M = 0.31 R500 is the BARIONIC a0-crossing by construction (Lean G090
+rung 1), the dynamical crossing r_a0(iso) = 0.55 R500 ~ x_dp = 0.41; the
+temperature reads the TOTAL (f = 5.66); the dust's 24.6% enters through
+the POTENTIAL (+0.127 dex of T_vir), not as a thermal phase; GALAXY-
+CLUSTER UNITY: the SAME two-regime law at two r/r_M windows with the
+boundary position the ONLY difference (galaxy: the equilibration boundary
+at 0.66 r_M INSIDE; cluster: outside) -- at matched r/r_M = 0.6 the
+sectors flip (galaxy dust 3.9% vs cluster 74-79%); the 82%-at-50-kpc =
+G098's inner f_dust reconciled (0.976 -> 0.78 -> 0.55 face) -- the pie
+correction is a READING, not a contradiction.
+
+## THE ONE-BOUNDARY SYNTHESIS (wave-19 headline)
+r_M = sqrt(G M_b/a0) (the baryonic a0-crossing, Lean-certified) is THE
+framework's single phase boundary: the galaxy break (MW 0.62), the cluster
+seam (0.96), the cap line (sqrt(a0/g_ext)) -- all ONE radius at their own
+M_b and environment; ten independent diagnostics agree on it; the
+amplitude jump A is the SEAM'S INTEGRAL (0.364 vs 0.273, within 1.34x);
+and the cluster pie IS the two-regime map (dust-dominated interior,
+phantom sub-a0 zone outside).  The cluster thorn is closed; what remains
+is the single number q + the 0.1-dex floor + the cosmic pie's ontology
+(G196-G198).
+
 ## SIBLING COORDINATION (for qwen38 / hy4 / other tracks; read this first)
 CLAIMED (deepseek, in flight -- do NOT duplicate): G154 static-branch
 charge, G155 sourced equation, G156 dust charge-vs-relic decision,
