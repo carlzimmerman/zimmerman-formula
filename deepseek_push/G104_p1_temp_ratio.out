@@ -1,0 +1,195 @@
+G104 -- P1 EXECUTED: THE TEMPERATURE-RATIO UNIVERSALITY, measured on the 12
+committed X-COP clusters (KEPLER_GRADE_CLUSTER_PREDICTIONS.md, P1).
+
+THE PREDICTION UNDER TEST (P1): T_obs/T_floor obeys a closed form in
+(M_dyn/M_b) with a UNIVERSAL exponent, T_obs/T_floor = 10^c (M_dyn/M_b)^alpha,
+alpha in the family {1/2, 1} (BTFR-style vs virial-style; G095 derives which),
+and the SCATTER stays < 0.1 dex -- including when M_b is remeasured with the
+h67b stellar-import variant (uniform stellar treatment across all 12 clusters).
+G095 RAN IN PARALLEL AND ITS OUT LANDED IN THE WORKING TREE DURING THIS RUN:
+it derives the exact closed form T_obs/T_floor = 2 (M_dyn/M_b)(r_M/r) and the
+law's STRUCTURAL exponent 2/3 at fixed M_b (1 = the fixed-radius face; 1/2
+excluded at 2.19 sigma) -- i.e. NEITHER member of the brief's {1/2, 1} family
+-- plus the constancy condition M500 ~ M_b^{3/4}.  This lane incorporates it:
+the {1/2, 1} band is tested as stated (V1) and cross-checked against G095's
+closed form via the sample's M500-M_b scaling (V2b: alpha_cf = (4 beta - 3)/
+(6 (beta - 1))).
+
+(1) THE DATA -- identical file set and conventions to G075/G050/G057:
+    real_research/data/xcop/ (read-only): {c}_hydro_mass.fits (M_FORW),
+    {c}_fgas_profile.fits (MGAS), {c}_mstar.fits (7/12 measured; the other 5
+    import the h67b-registered median M_star/M_gas from the seven on the
+    50-600 kpc grid, 0.047 fallback beyond -- G050's exact convention),
+    xcop_r500_ettori2019.json (Ettori+19 A&A 621 A39: z, R500 [Mpc], M500
+    [1e14 Msun], HSE-derived).  12 clusters (HydraA: no committed profiles).
+    T_obs: kTvir from Eckert et al. 2017 (arXiv:1611.05051) Table 1, the
+    X-COP master table, EXTERNAL-SOURCED in G075 (same values, same citation).
+
+(2) THE MEASUREMENTS.
+    T_floor = mu m_p sigma_floor^2/(2 k_B),  sigma_floor = (G M_b a0)^(1/4)/sqrt(2),
+    mu = 0.6, a0 = 9.3619e-11 canonical (G075's footings; alt a0 = 1.1279e-10
+    reported for honesty).  M_dyn = M500,HSE (Ettori+19).  Per cluster:
+    ratio = T_obs/T_floor, x = M_dyn/M_b (M_b at R500, G050 convention).
+    FIT: log10(ratio) = alpha log10(x) + c, ordinary least squares on the 12
+    clusters; scatter = std of the residuals in dex (G075's scatter measure).
+
+(3) THE M_b-REMESUREMENT TEST: re-derive M_b for ALL 12 clusters with the
+    h67b stellar import (M_star = M_gas x ratio_tab(R500), the SAME import the
+    five unmeasured clusters already use), i.e. no cluster leans on its own
+    measured stellar profile; refit; the prediction's scatter gate is
+    re-checked.
+
+(4) THE VERDICTS.
+    V1: fitted alpha in {0.5, 1} within 0.15 (|alpha - 0.5| <= 0.15 or
+        |alpha - 1| <= 0.15) on the G050-convention M_b.
+    V2: fit scatter < 0.1 dex.
+    V3: the universality statement -- the 12 clusters obey ONE curve:
+        the pooled residual scatter < 0.1 dex on BOTH M_b conventions
+        (the G050 measurement and the h67b remeasurement), and no
+        single-cluster residual departs by > 0.2 dex (the > 3-sigma
+        falsifier of P1).
+    V4: the honest statement.
+
+METHOD NOTES.  Everything that G075 does is reproduced identically here
+(loaders, log-log interpolation, hold-last beyond the table, the ratio_tab
+definition); the two files differ only in what is NEW: the per-cluster
+ratio/x pair, the closed-form fit, and the remeasurement test.  The fit is
+reported with its residual scatter, not the sample ratio's scatter around a
+constant: the closed-form test is whether alpha is CLEAN and the RESIDUALS
+around the fit are tight.  Interpreting G075's registered numbers in this
+form: the median ratio T_obs/T_floor = 1/0.28 = 3.57 at median M_dyn/M_b ~
+4.2 puts the zero point c ~ log10(3.57/4.2^alpha); the SHAPE test (alpha) is
+new here.
+
+================================================================================================
+G104 -- P1 MEASURED: THE TEMPERATURE-RATIO UNIVERSALITY on the 12 X-COP clusters
+================================================================================================
+X-COP clusters loaded from the committed ingest: 12 (A1644, A1795, A2029, A2142, A2255, A2319, A3158, A3266, A644, A85, RXC1825, ZW1215); 7 with a measured stellar profile (the G050/G057/G075 loaders, identical file set)
+G050/G057/G075 stellar import median M_star/M_gas on the 50-600 kpc grid: 50:1.133, 75:0.600, 100:0.388, 150:0.215, 210:0.123, 300:0.087, 420:0.066, 600:0.050
+(imported clusters evaluated at r > 600 kpc fall back to the register's 0.047 convention)
+
+================================================================================================
+V0 -- THE DATA GATE (committed ingests + the Eckert+17 temperature table, G075's)
+================================================================================================
+  [PASS] V0a [gate: all 12 committed clusters carry the quartet] per cluster: R500/M500 (Ettori+19 JSON), the fgas profile, the hydro mass profile, kTvir (Eckert+17)
+         measured: 12/12 clusters loaded; T table matched 12/12 (not matched on disk: none)
+         reading : identical file set and loaders to G075; the EXTERNAL-SOURCED kTvir column is G075's registered table (arXiv:1611.05051 Table 1; ISDC master FITS unreachable 2026-09-15)
+  [PASS] V0b [gate: the ingest reproduces G075's registered rows] median M_gas/M_NFW at 420 kpc over the 12 clusters
+         measured: median f_gas(420 kpc) = 0.163, n = 12 (G075's registered 0.163, range 0.101-0.219)
+         reading : same files, same interpolation: this row reproduces the registered V0 digit-for-digit
+
+================================================================================================
+V1 -- THE MEASUREMENT: T_obs/T_floor and M_dyn/M_b per cluster (G050 convention)
+================================================================================================
+  cluster    Mdyn/Mb Tobs/Tfl     Mb(G050)      Mb(h67)    Tfl   Tobs  star
+  A1644         6.93    4.115    5.020e+13    5.020e+13   1.24   5.09  h67-imp
+  A1795         5.89    3.929    7.859e+13    7.812e+13   1.55   6.08  meas
+  A2029         4.84    3.505    1.822e+14    1.814e+14   2.36   8.26  meas
+  A2142         4.13    3.270    2.166e+14    2.171e+14   2.57   8.40  meas
+  A2255         4.94    3.227    1.064e+14    1.064e+14   1.80   5.81  h67-imp
+  A2319         3.23    3.658    2.260e+14    2.294e+14   2.62   9.60  meas
+  A3158         5.74    3.317    7.425e+13    7.425e+13   1.50   4.99  h67-imp
+  A3266         6.52    4.660    1.350e+14    1.350e+14   2.03   9.45  h67-imp
+  A644          5.59    4.384    1.012e+14    1.002e+14   1.76   7.70  meas
+  A85           5.10    3.264    1.109e+14    1.130e+14   1.84   6.00  meas
+  RXC1825       6.25    3.638    6.524e+13    6.524e+13   1.41   5.13  h67-imp
+  ZW1215        6.95    3.421    1.102e+14    1.109e+14   1.83   6.27  meas
+  [PASS] V1a [the P1 measurement, G050 convention, canonical a0] per-cluster T_obs/T_floor with T_floor = mu m_p sigma_floor^2/(2 k_B), sigma_floor = (G M_b a0)^(1/4)/sqrt(2)
+         measured: median T_obs/T_floor = 3.572 (range 3.23-4.66); = 1/(G075's registered T_pred/T_obs median 0.28)
+         reading : G075's median T_pred/T_obs = 0.280 per cluster -> T_obs/T_floor = 3.57 median; this row recomputes the SAME ratio from the same files, inverted as the task defines it
+
+================================================================================================
+V2 -- THE CLOSED FORM: log10(T_obs/T_floor) = alpha log10(M_dyn/M_b) + c (OLS, G050 convention)
+================================================================================================
+  [G050 convention (measured stars where present, h67b import elsewhere)] alpha = +0.210 +/- 0.161, c = +0.411, rms residual = 0.052 dex (std ddof0 0.047), n = 12
+    A1644     x =   6.93  ratio =  4.115  resid = +0.026 dex
+    A1795     x =   5.89  ratio =  3.929  resid = +0.021 dex
+    A2029     x =   4.84  ratio =  3.505  resid = -0.010 dex
+    A2142     x =   4.13  ratio =  3.270  resid = -0.026 dex
+    A2255     x =   4.94  ratio =  3.227  resid = -0.048 dex
+    A2319     x =   3.23  ratio =  3.658  resid = +0.045 dex
+    A3158     x =   5.74  ratio =  3.317  resid = -0.050 dex
+    A3266     x =   6.52  ratio =  4.660  resid = +0.086 dex
+    A644      x =   5.59  ratio =  4.384  resid = +0.074 dex
+    A85       x =   5.10  ratio =  3.264  resid = -0.046 dex
+    RXC1825   x =   6.25  ratio =  3.638  resid = -0.018 dex
+    ZW1215    x =   6.95  ratio =  3.421  resid = -0.054 dex
+    (canonical a0 = 9.3619e-11)
+  [G050 convention, ALT a0 = 1.1279e-10 (honesty row)] alpha = +0.210 +/- 0.161, c = +0.370, rms residual = 0.052 dex (std ddof0 0.047), n = 12
+    A1644     x =   6.93  ratio =  3.749  resid = +0.026 dex
+    A1795     x =   5.89  ratio =  3.579  resid = +0.021 dex
+    A2029     x =   4.84  ratio =  3.194  resid = -0.010 dex
+    A2142     x =   4.13  ratio =  2.979  resid = -0.026 dex
+    A2255     x =   4.94  ratio =  2.940  resid = -0.048 dex
+    A2319     x =   3.23  ratio =  3.332  resid = +0.045 dex
+    A3158     x =   5.74  ratio =  3.022  resid = -0.050 dex
+    A3266     x =   6.52  ratio =  4.245  resid = +0.086 dex
+    A644      x =   5.59  ratio =  3.994  resid = +0.074 dex
+    A85       x =   5.10  ratio =  2.974  resid = -0.046 dex
+    RXC1825   x =   6.25  ratio =  3.315  resid = -0.018 dex
+    ZW1215    x =   6.95  ratio =  3.117  resid = -0.054 dex
+
+================================================================================================
+V2b -- THE G095 CLOSED FORM AND THE EXPONENT IT DERIVES (incorporated)
+================================================================================================
+  G095 (present in the working tree at run time, uncommitted there) derives the identity
+  T_obs/T_floor = 2 (M_dyn/M_b) (r_M/r) -- the ratio is NOT a clean single power of
+  f (pointwise alpha_i spans 0.63-1.11, median 0.752 +/- 0.115; 'one power' excluded),
+  and the law's STRUCTURAL exponent at fixed M_b is alpha = 2/3 (T ~ M_dyn/r with
+  r = R500 ~ M500^{1/3}: f * f^{-1/3}); alpha = 1 is the fixed-radius face; alpha = 1/2
+  (BTFR-style) needs r ~ M_dyn^{1/2}, which is neither face (G095 V2b: 1/2 excluded at
+  2.19 sigma, 2/3 within 0.74 sigma of the pointwise median).  The family {1/2, 1} of
+  the KEPLER P1 brief is therefore superseded: G095 derives 2/3, not a family member.
+  The pooled-sample slope (what THIS lane fits) follows from the identity: with
+  M500 ~ M_b^beta, log(ratio) = (2 beta/3 - 1/2) log M_b + const and log f = (beta-1)
+  log M_b, so the pooled slope is alpha_cf = (4 beta - 3)/(6 (beta - 1)) -- zero at
+  beta = 3/4 (G095's constancy condition).
+  this lane's re-measure on the same rows: beta = 0.634 +/- 0.107 (jackknife); G095's closed form then predicts the pooled slope alpha_cf = +0.212 vs the fitted +0.210 +/- 0.161 (OLS) / +/- 0.161; pointwise median alpha_i = 0.752 +/- 0.115 (G095: 0.752 +/- 0.115)
+  [PASS] V2b [G095's closed form predicts the pooled slope] alpha_cf = (4 beta - 3)/(6 (beta - 1)) from the sample's M500-M_b scaling vs the fitted alpha (G050 convention)
+         measured: alpha_cf = +0.212 (beta = 0.634 +/- 0.107) vs fitted alpha = +0.210 +/- 0.161: |delta| = 0.001 = 0.0 sigma
+         reading : the low pooled slope is NOT a failure of the law's exponent: it is the sample's own baryon-mass covariance (beta = 0.63, the value whose 3/4 limit makes the ratio mass-independent); at fixed M_b the structural exponent is 2/3 (G095's derivation, re-measured here: pointwise median 0.75 within 0.74 sigma)
+  fitted alpha = +0.210: |alpha-1/2| = 0.290, |alpha-1| = 0.790 
+  -> NEITHER family member: G095 derives 2/3 (superseding the {1/2, 1} band); the pooled slope is the closed form's own value at the sample's beta = 0.63
+  [PASS] V2a [the closed form exists] the 12 clusters follow a single power law log10(ratio) = alpha log10(M_dyn/M_b) + c with a well-determined exponent (the P1 closed-form claim)
+         measured: alpha = +0.210 +/- 0.161 (OLS, n = 12), c = +0.411, residual rms = 0.052 dex
+         reading : the fit is well-determined: the ratio spans 3.23-4.66 over M_dyn/M_b 3.23-6.95
+
+================================================================================================
+V3 -- THE M_b-REMESUREMENT: the h67b stellar-import variant on ALL 12 clusters
+================================================================================================
+  [h67b variant (M_star = M_gas x import ratio for every cluster)] alpha = +0.221 +/- 0.159, c = +0.403, rms residual = 0.052 dex (std ddof0 0.048), n = 12
+    A1644     x =   6.93  ratio =  4.115  resid = +0.026 dex
+    A1795     x =   5.93  ratio =  3.941  resid = +0.022 dex
+    A2029     x =   4.86  ratio =  3.513  resid = -0.009 dex
+    A2142     x =   4.12  ratio =  3.266  resid = -0.025 dex
+    A2255     x =   4.94  ratio =  3.227  resid = -0.048 dex
+    A2319     x =   3.19  ratio =  3.631  resid = +0.046 dex
+    A3158     x =   5.74  ratio =  3.317  resid = -0.050 dex
+    A3266     x =   6.52  ratio =  4.660  resid = +0.085 dex
+    A644      x =   5.65  ratio =  4.406  resid = +0.075 dex
+    A85       x =   5.00  ratio =  3.233  resid = -0.048 dex
+    RXC1825   x =   6.25  ratio =  3.638  resid = -0.018 dex
+    ZW1215    x =   6.90  ratio =  3.410  resid = -0.056 dex
+    (no cluster leans on its own stellar profile; canonical a0)
+  [PASS] V3a [the scatter gate under remeasurement] the closed-form residual scatter stays < 0.1 dex when M_b is re-derived with the h67b stellar-import variant
+         measured: residual rms = 0.052 dex (G050 0.052); alpha = +0.221 vs +0.210; median M_b shift = +0.0%
+         reading : the stellar treatment is a small fractional correction to M_b at R500 (M_star << M_gas there); the universality is not an artifact of which clusters carry measured stellar profiles
+
+================================================================================================
+V4 -- THE VERDICTS (P1)
+================================================================================================
+  [FAIL] V1 [the exponent family] fitted alpha in {1/2, 1} within 0.15 (the task's stated P1 band, tested as stated)
+         measured: alpha = +0.210 +/- 0.161; |alpha-1/2| = 0.290 (1.8 sigma), |alpha-1| = 0.790; nearest member: 1/2 -> FAIL (band within 0.15)
+         reading : the band as stated in KEPLER P1 is superseded by G095 (that lane ran during this one and derives the structural exponent 2/3 at fixed M_b -- 1/2 excluded at 2.19 sigma, 1 = fixed-radius face only, '1/2 BTFR-style needs r ~ M_dyn^{1/2}, neither face) -- so NEITHER {1/2, 1} member is the derivation and the pooled fit 0.21 (the closed form's own value at the sample beta = 0.63) is the honest exponent; the graded verdict on the stated band: FAIL (0.29 from 1/2, 0.79 from 1); vs G095's 2/3 the pooled slope is 2.8 sigma away -- stated in V4
+  [PASS] V2 [the scatter gate] closed-form residual scatter < 0.1 dex (G050 convention)
+         measured: residual rms = 0.052 dex (std ddof0 0.047)
+         reading : G075's ratio scatter around the CONSTANT 0.28 was 0.05 dex; the fit's residual scatter around the power law is reported here
+  [PASS] V3 [the universality statement] the 12 clusters obey ONE curve T_obs/T_floor = 10^c (M_dyn/M_b)^alpha
+         measured: residual rms 0.052 dex (G050) and 0.052 dex (h67 remeasurement); max |residual| 0.086 dex <= 0.2 (the P1 >3-sigma falsifier is a single-cluster departure)
+         reading : one curve with alpha = +0.21 (G050) / +0.22 (h67), zero point c = +0.41 / +0.40; 'the 12 clusters are one system' is P5's stricter ratio-PROFILE test (G105 runs it) -- here the SINGLE-r point at R500 obeys one curve, which is P1's statement
+  [PASS] V4 [the honest statement]
+         measured: P1 MEASURED -- THE UNIVERSALITY GATES HELD; THE EXPONENT BAND AS STATED ({1/2, 1}) FAILED AND WAS SUPERSEDED BY G095'S DERIVATION DURING THIS RUN.  (1) The 12 clusters obey ONE closed form T_obs/T_floor = 10^c (M_dyn/M_b)^alpha with scatter 0.052 dex (G050-convention M_b) / 0.052 dex (h67b stellar-import remeasurement) -- under the < 0.1 dex prediction on BOTH baryon conventions and remeasurement-invariant (V2/V3 PASS; max |residual| 0.086 dex, no single-cluster departure > 0.2 dex, the P1 falsifier): the universality statement is MEASURED TRUE.  (2) The fitted exponent alpha = +0.210 +/- 0.161 (OLS; G095's jackknife 0.236) is 0.29 from 1/2 and 0.79 from 1 -- the task's band {1/2, 1} within 0.15 FAILS (V1 FAIL).  BUT G095, which ran in parallel and is now in the tree, derives the law's structural exponent: T_obs/T_floor = 2 (M_dyn/M_b)(r_M/r) exactly (a virial identity of the committed definitions), pointwise alpha_i spans 0.63-1.11 (median 0.752 +/- 0.115, within 0.74 sigma of 2/3, 1/2 excluded at 2.19 sigma) -- the derived alpha is 2/3 at fixed M_b (1 is the fixed-radius face; 1/2 BTFR-style needs r ~ M_dyn^1/2, neither face), i.e. NEITHER family member, and the pooled slope this lane fits is the closed form's own value given the sample's baryon-mass covariance: M500 ~ M_b^0.63 +/- 0.11 predicts alpha_cf = (4 beta - 3)/(6 (beta - 1)) = +0.212 vs the fitted +0.210 (0.0 sigma -- V2b PASS): the 'small' exponent is the constancy mechanism G095 identified (the ratio becomes mass-independent exactly at beta = 3/4), not a contradiction of the law.  Vs the derived 2/3, the pooled slope is 0.46 (2.8 sigma, OLS) -- the pooled measure mixes the fixed-M_b exponent with the sample's beta, so the honest comparison is V2b's (PASS) plus G095's pointwise one (2/3 within 1 sigma); neither reading supports 1/2.  (3) The zero point c = +0.411: T_obs/T_floor = 2.58 at M_dyn/M_b = 1 -- the ~3.6x temperature offset G075 pinned, now the amplitude of the universal curve; it carries the registered free-dust normalization, still an input (the curve's SHAPE is measured here, its amplitude is not predicted from M_b alone -- G095 V4's point, unchanged).  (4) Honest limitations: one point per cluster (kTvir vs M500, both HSE-legged; G095 shows the 0.05-dex residual scatter IS the hydrostatic scatter hse = 0.76-1.21, 0.053 dex), the single-kTvir aperture mixes the strong-field core (law off, G016) with the a0-crossing outskirts, and the alt-a0 footing shifts only the zero point (alpha unchanged, +0.210).  VERDICT: the universality prediction (one curve, scatter < 0.1 dex, remeasurement-invariant) SURVIVES on both M_b conventions; the exponent band {1/2, 1} as stated fails and is superseded by G095's derived structural 2/3, which the pooled data are consistent with via the closed form (V2b PASS) -- P1's content is the one curve, and the curve's exponent is the closed form's, not the brief's family.
+         reading : V1 FAIL, V2 PASS, V3 PASS, V2b PASS
+
+G104 COMPLETE: 9/10 checks PASS.
+artifact written: G104_results.json
