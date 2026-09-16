@@ -1,0 +1,303 @@
+G094 -- THE CLUSTER EVIDENCE AUDIT: are the committed numbers right?
+
+Every cluster headline is re-derived here from the ORIGINAL committed data
+(real_research/data/xcop/ FITS + the committed Ettori+19 M500 table
+xcop_r500_ettori2019.json; nothing re-downloaded) and from the committed lane
+code conventions (G050/G057/G059/G075 ingests; g04a's residual-profile solve).
+
+HEADLINES UNDER AUDIT (registered rows, from the committed record):
+  (1) slope  : theory in-situ isothermal -1.478 at 100 kpc (G008) vs the
+               observed residual slope -1.53 (g04a; window 75-420 kpc per
+               L190/G008);
+  (2) amplitude: G012's self-consistent phantom M_ph/M_b = 12.77/15.21 at
+               420 kpc (1.86x/2.21x the certified 6.88 -- the 1.9-2.2x
+               overshoot); G050's split-delivered 0.409x; G075's EFE-capped
+               dark fraction pred/obs 0.21 (cap g_ext~a0) / 0.031 (cap cH0),
+               uncapped linear law 0.68, observed median 4.7x at R500;
+  (3) V4      : Spearman rho(g_tot/a0, s_ph) = -0.926, p = 1.43e-41, pooled
+               12 clusters x 8 radii, both footings (G050);
+  (4) T ratio : median T_pred/T_obs = 0.28 (canonical) / 0.31 (alt), with
+               T_pred/T_obs = (sigma_pred/sigma_dyn,3D)^2 = 0.53^2 (G075);
+  (5) chi2    : split 711.6 vs NFW 11.9 (mu2-MOND 1378.5 pooled;
+               741.1/672.4 per footing), median per-cluster chi2 over the
+               50-600 kpc window (G057b/G050);
+  (6) VERDICTS: per number CONFIRMED (within 5%) or CORRECTED (new value),
+               and the meta-finding: which cluster conclusions survive.
+
+KNOWN REGISTERED QUIRKS (carried, not papered over):
+  * G050's g_tot line dropped the *MSUN conversion (G059's DATA NOTE); the
+    EFE cap therefore never fired in G050's run.  Rank correlations are
+    invariant to that multiplicative slip; the delivered-420 row is evaluated
+    at 420 kpc where the cap is off on any footing; both facts are checked.
+  * G050/G057's nu_of_mu2(s) solves x mu2(x) = s mu2(s), whose unique
+    solution is x = s -- nu_of_mu2 == 1 identically (G050 V5's own table
+    printed nu_mu2 = 1.000 and FAILed the deep-RAR identity).  The
+    "mu2-MOND" chi2 rows are therefore the bare-baryon chi2; a corrected
+    RAR-kernel MOND row is computed beside.
+  * The Eckert+17 kTvir column is EXTERNAL-SOURCED but committed in G075's
+    KTVIR_ECKERT17; the audit uses the committed dict (the register's value).
+
+Every check states the registered number and the recomputed number
+separately; a FAIL/CORRECTED is a finding.
+
+====================================================================================================
+G094 -- THE CLUSTER EVIDENCE AUDIT
+====================================================================================================
+X-COP clusters loaded: 12 (A1644, A1795, A2029, A2142, A2255, A2319, A3158, A3266, A644, A85, RXC1825, ZW1215); 7 with a measured stellar profile
+a0 canonical = 9.3623e-11, alt = 1.1279e-10; g_ext = cH0 = 6.548e-10 = 6.99 a0 (canonical)
+
+====================================================================================================
+HEADLINE 1 -- THE SLOPE: observed -1.53 (g04a) vs theory -1.478 at 100 kpc (G008)
+====================================================================================================
+
+  g04a R1 replica (median over the 7 star-measured clusters):
+       r [kpc]  M_b [1e12]  M_src [1e12]  M_src/M_b rho_src [Msun/kpc^3]
+            40       0.729         3.573       4.90            5.332e+06
+            50       0.939         4.645       4.95            3.704e+06
+            75       1.687         8.128       4.82            2.412e+06
+           100       2.647        13.171       4.98            1.740e+06
+           150       5.269        25.793       4.90            9.744e+05
+           200       8.479        40.720       4.80            6.360e+05
+           300      16.330        76.916       4.71            3.686e+05
+           420      26.601       134.862       5.07            1.983e+05
+           750      61.506       240.684       3.91            4.537e+04
+  max |replica - committed g04a.out| on rho_src rows: 0.02%  (data-gate for this audit)
+  NOTE (radius convention): g04a evaluated the gas radius as RADIUS x R500_header while G050/G075/G059 read RADIUS x 1e3 (Mpc); M_src/rho_src come from the HYDRO table only, so the residual-profile slope is convention-independent (reproduced to 0.02%); the M_b column differs from g04a.out for that reason and is not part of the slope.
+  [PASS] (1a) data gate: the g04a residual-profile replica matches the committed g04a.out table rows
+         registered: rho_src rows as printed in g04a_cluster_source_phase_space.out
+         recomputed: max deviation 0.02% over the 9 radii
+         note      : the audit is reading the same committed profile the -1.53 was read from
+  rho_src log-log slope: 40-750 kpc = -1.527 (registered -1.53); 75-420 kpc = -1.442 (G008/L190's certified window)
+  [PASS] (1b) observed slope: the residual density profile's log-log slope (40-750 kpc, g04a's own fit range) vs the registered -1.53
+         registered: -1.53
+         recomputed: -1.527
+         note      : g04a's printed 'rho ~ r^(-1.53) over 40-750 kpc' (R4b)
+  [FAIL] (1c) observed slope, certified window: the same profile fitted over 75-420 kpc (the window G008/L190 quote) vs the registered -1.53
+         registered: -1.53 (window 75-420)
+         recomputed: -1.442
+         note      : the windowed fit is the value G008's 'observed -1.53' is compared against; kill line -1.4
+  plain residual (M_HSE - M_b): 40-750 kpc slope = -1.440; 75-420 kpc slope = -1.392
+  [FAIL] (1d) observed slope, plain residual (no kernel): 75-420 kpc slope vs -1.53
+         registered: -1.53
+         recomputed: -1.392
+         note      : the residual without the kernel-boost correction; both definitions of 'the residual profile' reported
+
+  G008 replica: in-situ isothermal polytrope slope at 100 kpc (M_b = 1e13 Msun, M_res = 6.88 M_b inside 420 kpc) = -1.478
+  [PASS] (1e) theory slope: G008's in-situ isothermal slope at 100 kpc vs the committed -1.478
+         registered: -1.478
+         recomputed: -1.478
+         note      : the kill line is -1.4; target -1.53; recomputed from the same constants (G050's G, MSUN, KPC) and G008's K_ref convention
+
+====================================================================================================
+HEADLINE 2 -- THE AMPLITUDES: G012's 1.9-2.2x overshoot; G050's 0.409x delivered; G075's dark fractions 0.21 / 0.031 with the cap
+====================================================================================================
+  G012 fixed point [canonical]: M_ph/M_b(420 kpc) = 12.77 vs registered 12.77/15.21; ratio to target 6.88 = 1.86x
+  G012 fixed point [alt]: M_ph/M_b(420 kpc) = 15.21 vs registered 12.77/15.21; ratio to target 6.88 = 2.21x
+  [PASS] (2a) G012 canonical: self-consistent phantom M_ph/M_b at 420 kpc (M_b = 1e13 Msun) vs 12.77
+         registered: 12.77
+         recomputed: 12.77
+         note      : the 1.86x overshoot = 12.77/6.88
+  [PASS] (2b) G012 alt: same vs 15.21
+         registered: 15.21
+         recomputed: 15.21
+         note      : the 2.21x overshoot = 15.21/6.88
+  G012 galaxy guard [canonical]: M_ph/M_b(20 kpc) = 6.234 vs registered 6.234/7.353
+  G012 galaxy guard [alt]: M_ph/M_b(20 kpc) = 7.353 vs registered 6.234/7.353
+  [PASS] (2c) G012 galaxy guard canonical 6.234
+         registered: 6.234
+         recomputed: 6.234
+         note      : the scale-free isothermal sphere at the spiral window
+  [PASS] (2d) G012 galaxy guard alt 7.353
+         registered: 7.353
+         recomputed: 7.353
+  G012 VB [canonical]: slope at the self-consistent amplitude = -1.972 vs registered -1.972/-1.982
+  G012 VB [alt]: slope at the self-consistent amplitude = -1.982 vs registered -1.972/-1.982
+  [PASS] (2e) G012 VB canonical slope -1.972
+         registered: -1.972
+         recomputed: -1.972
+  [PASS] (2f) G012 VB alt slope -1.982
+         registered: -1.982
+         recomputed: -1.982
+  G050 delivered [canonical, as committed]: median (M_b + M_ph,supported)/M_HSE at 420 kpc = 0.409 vs registered 0.409
+  [PASS] (2g) G050 split-delivered amplitude [canonical] 0.409
+         registered: 0.409
+         recomputed: 0.409
+         note      : as-committed ingest (G050 code path: broken g_tot, cap never fired in-window); at 420 kpc the cap is off on any footing, so the row is (M_b + EOS phantom)/M_HSE
+  G050 delivered [alt, as committed]: median (M_b + M_ph,supported)/M_HSE at 420 kpc = 0.409 vs registered 0.409
+  [PASS] (2g) G050 split-delivered amplitude [alt] 0.409
+         registered: 0.409
+         recomputed: 0.409
+         note      : as-committed ingest (G050 code path: broken g_tot, cap never fired in-window); at 420 kpc the cap is off on any footing, so the row is (M_b + EOS phantom)/M_HSE
+  G050 delivered [canonical, corrected g_tot]: median = 0.409 (registered 0.409; G059's baryons-only 0.170 is the all-capped extreme)
+  G050 delivered [alt, corrected g_tot]: median = 0.409 (registered 0.409; G059's baryons-only 0.170 is the all-capped extreme)
+  reference: median baryon fraction M_b/M_HSE at 420 kpc = 0.170 (G059 registered 0.170)
+
+  G075 dark fractions at R500: observed median 4.7x (registered 4.7); uncapped linear law 3.2x (ratio 0.68, registered 0.68); capped g~a0 1.00x (ratio 0.21, registered 0.21); capped cH0 0.143x (ratio 0.031, registered 0.031)
+  [PASS] (2h) G075 observed dark fraction median 4.7x
+         registered: 4.7
+         recomputed: 4.7
+  [PASS] (2i) G075 uncapped linear law ratio 0.68
+         registered: 0.68
+         recomputed: 0.68
+  [PASS] (2j) G075 cap-a0 ratio 0.21
+         registered: 0.21
+         recomputed: 0.21
+  [PASS] (2k) G075 cap-cH0 ratio 0.031
+         registered: 0.031
+         recomputed: 0.031
+
+====================================================================================================
+HEADLINE 3 -- THE V4 RISING-SHARE SPEARMAN: rho = -0.926, p = 1.43e-41 (G050)
+====================================================================================================
+  [canonical] Spearman rho(g_tot/a0, s_ph), UNITS-FIXED field = -0.298 (p = 3.24e-03, n = 96) vs registered -0.926 / 1.43e-41
+  [canonical] Spearman on G050's AS-COMMITTED (broken) g_tot = -0.926 (p = 1.43e-41) -- the registered -0.926 is reproduced only on the broken field, where the 1e9*MSUN floor makes g_tot a function of RADIUS ONLY (identical across clusters at fixed r): the rank correlation then measures share-vs-radius, not share-vs-field
+  [alt] Spearman rho(g_tot/a0, s_ph), UNITS-FIXED field = -0.298 (p = 3.24e-03, n = 96) vs registered -0.926 / 1.43e-41
+  [alt] Spearman on G050's AS-COMMITTED (broken) g_tot = -0.926 (p = 1.43e-41) -- the registered -0.926 is reproduced only on the broken field, where the 1e9*MSUN floor makes g_tot a function of RADIUS ONLY (identical across clusters at fixed r): the rank correlation then measures share-vs-radius, not share-vs-field
+  [FAIL] (3) V4 Spearman [alt] -0.926
+         registered: -0.926
+         recomputed: -0.298
+         note      : recomputed with the UNITS-FIXED g_tot (G*M*MSUN/r^2): CORRECTED -- the registered -0.926 was computed on the broken field (see the diagnostic above) and does not survive the units fix; the SIGN of the signature (share falls with field strength) survives at p = 3.2e-03
+  [FAIL] (3b) V4 Spearman p-value 1.43e-41 (canonical)
+         registered: 1.43e-41
+         recomputed: 3.24e-03
+         note      : CORRECTED: the registered p is the broken-field p; the fixed-field p is 3.24e-03 (n = 96)
+
+====================================================================================================
+HEADLINE 4 -- THE TEMPERATURE RATIO: T_pred/T_obs = 0.28 = (sigma_pred/sigma_dyn,3D)^2 = 0.53^2 (G075)
+====================================================================================================
+
+  sigma ratio (canonical, 3D): median 0.534 (registered 0.53/0.534); SIS-1D median 0.755 (registered 0.75)
+  T_pred/T_obs: canonical median 0.280 (registered 0.28), alt median 0.307 (registered 0.31)
+  per-cluster identity T ratio vs (sigma ratio)^2:
+    A1644     TpC/Tobs = 0.243   (sigC/sdyn3)^2 = 0.278   rel dev -14.42%
+    A1795     TpC/Tobs = 0.255   (sigC/sdyn3)^2 = 0.286   rel dev -12.38%
+    A2029     TpC/Tobs = 0.285   (sigC/sdyn3)^2 = 0.282   rel dev +1.09%
+    A2142     TpC/Tobs = 0.306   (sigC/sdyn3)^2 = 0.303   rel dev +0.80%
+    A2255     TpC/Tobs = 0.310   (sigC/sdyn3)^2 = 0.304   rel dev +1.95%
+    A2319     TpC/Tobs = 0.273   (sigC/sdyn3)^2 = 0.359   rel dev -31.20%
+    A3158     TpC/Tobs = 0.301   (sigC/sdyn3)^2 = 0.294   rel dev +2.36%
+    A3266     TpC/Tobs = 0.215   (sigC/sdyn3)^2 = 0.245   rel dev -13.98%
+    A644      TpC/Tobs = 0.228   (sigC/sdyn3)^2 = 0.283   rel dev -24.20%
+    A85       TpC/Tobs = 0.306   (sigC/sdyn3)^2 = 0.298   rel dev +2.66%
+    RXC1825   TpC/Tobs = 0.275   (sigC/sdyn3)^2 = 0.283   rel dev -3.12%
+    ZW1215    TpC/Tobs = 0.292   (sigC/sdyn3)^2 = 0.241   rel dev +17.50%
+  median |T-ratio - (sigma-ratio)^2| / T-ratio = 7.75%
+  [PASS] (4a) median T_pred/T_obs canonical 0.28
+         registered: 0.28
+         recomputed: 0.280
+  [PASS] (4b) median T_pred/T_obs alt 0.31
+         registered: 0.31
+         recomputed: 0.307
+  [PASS] (4c) median sigma ratio 0.53 (3D, canonical)
+         registered: 0.53
+         recomputed: 0.534
+  [PASS] (4d) the identity T_pred/T_obs = (sigma_pred/sigma_dyn,3D)^2 (0.28 = 0.53^2 = 0.281)
+         registered: 0.28 = 0.53^2
+         recomputed: 0.280 vs 0.285
+         note      : the T and sigma failures are ONE number up to the virial convention (T_obs measured vs sdyn from Ettori M500); per-cluster deviations median 7.8%
+
+====================================================================================================
+HEADLINE 5 -- THE CHI2: split 711.6 vs NFW 11.9 (mu2-MOND 1378.5 pooled; 741.1/672.4 per footing), 50-600 kpc (G057b/G050)
+====================================================================================================
+  median per-cluster chi2 over the 50-600 kpc window (192 points total = 24 cluster-footing runs x 8 pts):
+    split (as committed)  = 711.6   (registered 711.6)
+    uncapped phantom      = 711.6   (registered 711.6)
+    NFW (X-COP fit)       = 11.9   (registered 11.9)
+    mu2-MOND (as comm.)   = 1378.5   (registered 1378.5)
+    split (fixed g_tot)   = 711.6   (corrected row)
+    MOND RAR-kernel (fix) = 663.7   (corrected row)
+    mu2-MOND per footing: {'canonical': 1378.4526534487923, 'alt': 1378.4526534487923}   (G050 registered 1378.5 pooled; G057b registered 741.1/672.4)
+    corrected RAR-kernel MOND per footing: {'canonical': 700.2875799321987, 'alt': 632.8318747434157}
+    split per footing:    {'canonical': 711.5911316723423, 'alt': 711.5911316723423}   (registered 711.6/711.6)
+  [PASS] (5a) split chi2 711.6 (pooled median)
+         registered: 711.6
+         recomputed: 711.6
+         note      : as-committed: with G050's g_tot the cap never fires, so the split prediction is IDENTICAL to the uncapped-phantom prediction (split chi2 == phantom chi2 digit-for-digit by construction)
+  [PASS] (5b) NFW chi2 11.9 (pooled median)
+         registered: 11.9
+         recomputed: 11.9
+         note      : X-COP's own NFW fit is the shape champion; the NFW row is footing-independent (same M_NFW)
+  [FAIL] (5c) mu2-MOND chi2: G050's pooled 1378.5 and G057b's per-footing 741.1/672.4
+         registered: 1378.5 pooled, 741.1/672.4 per footing
+         recomputed: 1378.5 pooled, 1378.5/1378.5 per footing
+         note      : G050's pooled 1378.5 reproduces.  G057b's per-footing 741.1/672.4 do NOT reproduce through the committed nu_of_mu2 (which solves x mu2(x) = s mu2(s); the unique solution is x = s, so nu == 1 identically and the rows are bare-baryon chi2, 1378.5 on BOTH footings -- G057's per-footing split is not reproducible from the committed code).  The corrected RAR-kernel MOND row: pooled 663.7, per footing 700.3/632.8.
+
+====================================================================================================
+CROSS-CHECKS AGAINST THE COMMITTED RESULT ARTIFACTS
+====================================================================================================
+  G050_results.json: delivered_amplitude_420 = {'canonical': 0.4087222164429679, 'alt': 0.4087222164429679}; median_chi2 = {'split': 711.5911316723423, 'ph': 711.5911316723423, 'nfw': 11.898518323883915, 'mond': 1378.4526534487923}; spearman = {'canonical': [-0.926096013576042, 1.4258370232572555e-41], 'alt': [-0.926096013576042, 1.4258370232572555e-41]}
+  [PASS] (x1) G050_results.json delivered 0.409
+         registered: 0.409
+         recomputed: [0.4087222164429679, 0.4087222164429679]
+  [PASS] (x2) G050_results.json median_chi2 split/nfw
+         registered: 711.6 / 11.9
+         recomputed: 711.6 / 11.9
+  G075_results.json: T ratios 0.280/0.307; dark-fraction pred/obs {'uncapped': 0.6815396842170832, 'capped_a0': 0.2143921513940492, 'capped_cH0': 0.030652427223322027}
+  [PASS] (x3) G075_results.json T ratio 0.28/0.31
+         registered: 0.28/0.31
+         recomputed: 0.280/0.307
+  [PASS] (x4) G075_results.json dark fractions 0.21/0.031
+         registered: 0.21/0.031
+         recomputed: 0.21/0.031
+  G059_results.json: g050_anchor_correction = {'note': "G050's registered 0.409x was (M_b + M_ph,EOS)/M_HSE, not baryons-only: its cap never fired (g_tot broken by the units slips) and the floors cancelled in share x M_res", 'clean_baryon_fraction_420': 0.16993542741250556, 'g050_0p409_reproduced_as': 0.4087222164429679}
+  [PASS] (x5) G059's reproduction of G050's 0.409 as (M_b + M_ph,EOS)/M_HSE
+         registered: 0.409
+         recomputed: 0.409
+         note      : G059's registered corrective: G050's cap never fired; 0.409 was baryons + EOS phantom, not baryons-only
+  G012_results.json pass/fail = 2/4; G008 candidates = [(1.0, -1.478), (1.1, -1.31)]
+  G057 json keys: ['a0', 'checks', 'clusters', 'data', 'footings', 'gext_cH0_mss', 'gext_over_a0', 'lane', 'n_clusters', 'n_fail', 'n_pass', 'title']
+  H012_results.json: {'lane': 'H012', 'pass': 8, 'fail': 0, 'results': [{'check': 'A1 [THE REGIME] the cluster interior is DEEP NEWTONIAN (g_N/a_0 > 3)\n      and the boost g/g_N is therefore near 1 there', 'measured': 'g_N/a_0 = 2.18 at 75 kpc, 0.65 at 420 kpc; g/g_N = 1.2250 at 75 kpc', 'pass': True}, {'check': "B1 [THE PHANTOM SUPPLIES THE SHAPE] the phantom's logarithmic slope\n      in the certified window is close to the observed -1.53", 'measured': 'phantom slope over 75-420 kpc = -1.122 (observed -1.53)', 'pass': True}, {'check': 'B2 [THE DUST SUPPLIES THE BULK] at 420 kpc the free dust carries the\n      majority of the required dark mass', 'measured': 'at 420 kpc: M_phantom = 5.410e+13 Msun, M_dust = 4.593e+14 Msun, total = 5.134e+14; required 6.8x baryon = 5.232e+14', 'pass': True}, {'check': 'C1 [ADMISSIBLE] the required dust density is within the cosmological\n      cold-sector budget (not an absurd over-density)', 'measured': 'mean dust density inside 420 kpc = 1.002e-22 kg/m^3; cosmic Omega_dm rho_c = 2.261e-27; ratio = 44305.8', 'pass': True}, {'check': 'C2 [COLD AND COLLISIONLESS] the dust has c_s^2 = 0 exactly (it is a\n      conserved charge density, not a fluid with pressure)', 'measured': 'c_s^2(dust) = 0 by construction (Noether charge, no pressure)', 'pass': True}, {'check': 'C3 [THE SHAPE IS THE FALSIFIABLE PART] the THEORY predicts the\n      residual slope from the field solve (phantom) + a^-3 collapse\n      (dust), while LCDM predicts NFW (slope -1 in the core, -3 outside)', 'measured': 'theory: phantom slope ~-1.37/-1.40 (G017) steepened by dust; observed -1.53; NFW: -1 -> -3', 'pass': True}, {'check': "D1 [WHAT IS NOT DERIVED] the free dust's NORMALISATION is not derived\n      -- it is set by the cluster's collapse history, exactly as in LCDM.\n      This is Requirement 10 (the amplitude law), still open.", 'measured': 'dust amplitude: set by collapse history, NOT derived from the action', 'pass': True}, {'check': 'D2 [THE KILL CONDITION] if the measured cluster core slope is -1 (NFW)\n      rather than ~-1.5, the two-component construction is dead', 'measured': 'kill: inner slope consistent with -1 and inconsistent with -1.5', 'pass': True}], 'a0': 9.362375204701e-11, 'resolution': 'phantom (outskirts, shape, zero-param) + free dust (interior, bulk, astrophysical normalisation)', 'not_derived': ['dust amplitude / Requirement 10'], 'kill': 'cluster core slope = -1 (NFW) rather than ~-1.5'}
+
+====================================================================================================
+HEADLINE 6 -- THE VERDICTS (CONFIRMED within 5% / CORRECTED)
+====================================================================================================
+  [CONFIRMED] (1) observed residual slope -1.53 (g04a, 40-750 kpc fit)
+      recomputed -1.5275 vs registered -1.53
+      CONFIRMED; the committed profile reproduces g04a's own fit range digit-for-digit
+  [CORRECTED ] (1) observed residual slope -1.53 IN THE CERTIFIED WINDOW 75-420 kpc
+      recomputed -1.4417 vs registered -1.53
+      CORRECTED: the same profile fitted over 75-420 kpc gives -1.44 (vs -1.53) -- still past the -1.4 kill line, and G008's -1.478 sits within 0.04 of it
+  [CONFIRMED] (1) theory in-situ isothermal slope at 100 kpc -1.478 (G008)
+      recomputed -1.4784 vs registered -1.478
+      CONFIRMED
+  [CONFIRMED] (2) G012 canonical overshoot 12.77 (1.86x)
+      recomputed 12.7738 vs registered 12.77
+      CONFIRMED
+  [CONFIRMED] (2) G012 alt overshoot 15.21 (2.21x)
+      recomputed 15.2099 vs registered 15.21
+      CONFIRMED
+  [CONFIRMED] (2) G012 galaxy guard 6.234 / 7.353 (20 kpc, 5e10 Msun)
+      recomputed 6.2343 vs registered 6.234
+      CONFIRMED (alt 7.353 beside)
+  [CONFIRMED] (2) G050 split-delivered 0.409x at 420 kpc
+      recomputed 0.4087 vs registered 0.409
+      CONFIRMED as committed arithmetic -- but see the corrected reading: with G059's g_tot fix the cap still does not fire at 420 kpc, so 0.409 = (M_b + EOS phantom)/M_HSE stands; G059's baryons-only 0.170 is the all-capped extreme, not a replacement
+  [CONFIRMED] (2) G075 dark fraction cap-a0 pred/obs 0.21
+      recomputed 0.2144 vs registered 0.21
+      CONFIRMED
+  [CONFIRMED] (2) G075 dark fraction cap-cH0 pred/obs 0.031
+      recomputed 0.0307 vs registered 0.031
+      CONFIRMED
+  [CONFIRMED] (2) G075 uncapped linear law pred/obs 0.68 (obs median 4.7x)
+      recomputed 0.6815 vs registered 0.68
+      CONFIRMED
+  [CORRECTED ] (3) V4 Spearman rho = -0.926 (both footings)
+      recomputed -0.2975 vs registered -0.926
+      CORRECTED: on the units-fixed field rho = -0.298 (p = 3.2e-03, n = 96); the registered -0.926 / 1.43e-41 is reproduced only on G050's broken g_tot (the 1e9*MSUN floor made the field a function of radius alone).  The SIGNATURE'S SIGN (share falls with field strength) survives and stays significant (p = 3.2e-3), but the registered amplitude was an artifact.
+  [CONFIRMED] (4) T_pred/T_obs median 0.28 (canonical) / 0.31 (alt)
+      recomputed 0.2801 vs registered 0.28
+      CONFIRMED (alt 0.307 beside)
+  [CONFIRMED] (4) the identity 0.28 = (sigma_pred/sigma_dyn,3D)^2 = 0.53^2
+      recomputed 0.2801 vs registered 0.2847
+      CONFIRMED: median T-ratio 0.280 vs (0.534)^2 = 0.285 (1.8% apart); per-cluster median deviation 7.8%
+  [CONFIRMED] (5) chi2 split 711.6 (and uncapped phantom 711.6)
+      recomputed 711.5911 vs registered 711.6
+      CONFIRMED as committed -- but the split and phantom rows are numerically IDENTICAL (G050's g_tot slip means the cap never fired; the two predictions are the same vector). The G057b 'split beats phantom' comparison row is degenerate, not a measurement
+  [CONFIRMED] (5) chi2 NFW 11.9
+      recomputed 11.8985 vs registered 11.9
+      CONFIRMED: NFW (X-COP's own fit) remains the shape champion by a factor ~60
+  [CONFIRMED] (5) chi2 mu2-MOND 1378.5 pooled; G057b's per-footing 741.1/672.4
+      recomputed 1378.4527 vs registered 1378.5
+      G050's pooled 1378.5 CONFIRMED as committed; G057b's per-footing 741.1/672.4 CORRECTED -- the committed solve x mu2(x) = s mu2(s) is vacuous (x = s, nu == 1), giving 1378.5 on BOTH footings (the rows ARE the bare-baryon chi2).  The corrected RAR-kernel MOND row: pooled 663.7, per footing 700.3/632.8.
+
+G094 COMPLETE: 26/31 checks reproduce; artifact written: G094_results.json
