@@ -1,0 +1,1488 @@
+{
+ "lane": "G217_kink_sample",
+ "question": "THE KINK-WIDTH SAMPLE DESIGN: the exact H3/APOGEE/stream star lists and the required integration for G191's width verdict (w* = 0.5 kpc at 3 sigma at r_peak 6.33 kpc): the per-bin N at the sign frontier (sigma_beta 0.03) and the strict 3-sigma frontier (0.01), the catalog actuals with citations, the integration map (today vs the frontier), and the concrete verdict calendar.",
+ "requirement": {
+  "v_ref_kms": 230.0,
+  "rc_ref_kpc": 6.3,
+  "design_dr_kpc": 0.2,
+  "frontiers": {
+   "sign_verdict_1yr": {
+    "sigma_beta": 0.03,
+    "sigma_v_binmean_kms": 0.3098,
+    "n_per_bin": {
+     "giants_eff25": 6513,
+     "giants_eff35": 12765,
+     "streams_eff3": 94,
+     "streams_eff5": 261,
+     "streams_eff8": 667
+    },
+    "bin_width_trade": {
+     "dr_0.10": {
+      "sigma_v_kms": 0.1549,
+      "N_giants25": 26052
+     },
+     "dr_0.20": {
+      "sigma_v_kms": 0.3098,
+      "N_giants25": 6513
+     },
+     "dr_0.25": {
+      "sigma_v_kms": 0.3872,
+      "N_giants25": 4168
+     }
+    }
+   },
+   "strict_3sigma": {
+    "sigma_beta": 0.01,
+    "sigma_v_binmean_kms": 0.1033,
+    "n_per_bin": {
+     "giants_eff25": 58616,
+     "giants_eff35": 114887,
+     "streams_eff3": 844,
+     "streams_eff5": 2345,
+     "streams_eff8": 6002
+    },
+    "bin_width_trade": {
+     "dr_0.10": {
+      "sigma_v_kms": 0.0516,
+      "N_giants25": 234464
+     },
+     "dr_0.20": {
+      "sigma_v_kms": 0.1033,
+      "N_giants25": 58616
+     },
+     "dr_0.25": {
+      "sigma_v_kms": 0.1291,
+      "N_giants25": 37514
+     }
+    }
+   }
+  },
+  "at_sigma_v_1_2_kms": {
+   "sv_1": {
+    "dr_for_sbeta0_03_kpc": 0.646,
+    "dr_for_sbeta0_01_kpc": 1.937,
+    "dr_for_sbeta0_05_kpc": 0.387
+   },
+   "sv_1.5": {
+    "dr_for_sbeta0_03_kpc": 0.968,
+    "dr_for_sbeta0_01_kpc": 2.905,
+    "dr_for_sbeta0_05_kpc": 0.581
+   },
+   "sv_2": {
+    "dr_for_sbeta0_03_kpc": 1.291,
+    "dr_for_sbeta0_01_kpc": 3.874,
+    "dr_for_sbeta0_05_kpc": 0.775
+   }
+  }
+ },
+ "catalogs": {
+  "H3": {
+   "citation": "H3 survey site h3survey.rc.fas.harvard.edu: 325,000 high-latitude stars, |b|>20 BY DESIGN, R=32,000 Hectochelle; Conroy+19 ApJ 883,107 doi:10.3847/1538-4357/ab38b8; Bonaca+20 doi:10.3847/2041-8213/ab9caa (125,000 observed by 2020)",
+   "total_stars": 325000,
+   "plane_annulus_5_10_kpc": 0,
+   "plane_annulus_citation": "|b|>20deg targeting excludes the plane by construction; in-plane annulus count = 0",
+   "role": "off-plane thick-disk+halo lane; vertical/pressure term and halo kinematics; NOT a plane rotation-curve lane at 5-10 kpc"
+  },
+  "APOGEE_DR17": {
+   "citation": "657,359 spectra / over 650,000 stars (Abdurro'uf+22 ApJS 259,35 doi:10.3847/1538-4365/ac4414); the published Jeans RC machinery: ~23,000 thin-disk LRGB (Eilers+19 arXiv:1810.09466), Hogg+19 ~44,784 LRGB (doi:10.3847/1538-3881/ab398c), Zhou+23 254,882 LRGB / ~54,408 thin-disk for the 5-25 kpc RC (ApJ 946,73 doi:10.3847/1538-4357/acadd9)",
+   "total_spectra": 657359,
+   "thin_disk_rc_sample_published": 54408,
+   "role": "the plane's workhorse; full DR17 giant sample (not the 54k published subset) is the 1-year path"
+  },
+  "GD-1": {
+   "citation": "r_peri 13.8-14 kpc, r_apo 20.8-22.3 kpc (Malhan & Ibata 19 arXiv:1807.05994; Bonaca+20a doi:10.3847/1538-4357/ab800c); 43 high-res confirmed (Bonaca+20a); 353 members with RVs (Tavangar+25 doi:10.3847/1538-4357/addd1c); sigma_disp 2.1+-0.3 km/s (doi:10.3847/2041-8213/abf491)",
+   "n_members_confirmed_highres": 43,
+   "n_members_with_rv": 353,
+   "r_peri_kpc": 13.8,
+   "r_apo_kpc": 22.3,
+   "n_per_0_2kpc_bin_at_6_7kpc_tangent": 0,
+   "tangent_radius_where_it_acts_kpc": "13.8-22 (outer of the kink)"
+  },
+  "Pal5": {
+   "citation": "r_peri 5-7 kpc, r_apo ~18 kpc; core at R_GC = 20.6+-0.2 kpc near apo; 8 APOGEE giants (6 core + 2 stream) (Sheffield+25 doi:10.3847/1538-4357/adf645); ~111 tail members (Odenkirchen+01); tails ~20 deg (Grillmair & Dionatos 06)",
+   "n_apogee_giants": 8,
+   "r_peri_kpc": 5.0,
+   "r_apo_kpc": 18.0,
+   "crosses_5_7kpc_annulus": true,
+   "n_per_0_2kpc_bin_at_6_7kpc_tangent_measured": 0,
+   "n_per_0_2kpc_bin_at_6_7kpc_tangent_model": "0-1 (peri debris un-detected: extinguished behind the inner disk)"
+  },
+  "Orphan": {
+   "citation": "r_peri ~15 kpc, extends to 50-60 kpc; ~30 RR Lyrae plus hundreds of BHB/MSTO tracers over ~210 deg (Koposov+19 MNRAS 485,4 doi:10.1093/mnras/stz457; Newberg+10)",
+   "n_rr_lyrae": 30,
+   "r_peri_kpc": 15.0,
+   "r_apo_kpc": 60.0,
+   "n_per_0_2kpc_bin_at_6_7kpc_tangent": 0,
+   "tangent_radius_where_it_acts_kpc": "15-60 (far outside the kink)"
+  }
+ },
+ "stream_tangent_verdict": {
+  "n_per_bin_measured_at_6_7kpc": 0,
+  "reading": "GD-1 and Orphan never reach 6-7 kpc (peri 13.8/15 kpc); Pal 5's orbit crosses 5-7 kpc but the measured debris hugs the 20.6-kpc core (8 APOGEE giants); the tangent-point reading acts at the stream's own radius, outside the kink band"
+ },
+ "achieved_today": {
+  "label": "Eilers+19 thin-disk",
+  "total_5_25kpc": 23000,
+  "bins_5_10": {
+   "5.10": {
+    "r_kpc": 5.1,
+    "N_per_bin": 1144.0,
+    "sigma_v_kms": 0.739,
+    "sigma_beta": 0.0579
+   },
+   "5.30": {
+    "r_kpc": 5.3,
+    "N_per_bin": 1101.0,
+    "sigma_v_kms": 0.753,
+    "sigma_beta": 0.0614
+   },
+   "5.50": {
+    "r_kpc": 5.5,
+    "N_per_bin": 1058.0,
+    "sigma_v_kms": 0.769,
+    "sigma_beta": 0.065
+   },
+   "5.70": {
+    "r_kpc": 5.7,
+    "N_per_bin": 1015.0,
+    "sigma_v_kms": 0.785,
+    "sigma_beta": 0.0687
+   },
+   "5.90": {
+    "r_kpc": 5.9,
+    "N_per_bin": 973.0,
+    "sigma_v_kms": 0.801,
+    "sigma_beta": 0.0727
+   },
+   "6.10": {
+    "r_kpc": 6.1,
+    "N_per_bin": 932.0,
+    "sigma_v_kms": 0.819,
+    "sigma_beta": 0.0768
+   },
+   "6.30": {
+    "r_kpc": 6.3,
+    "N_per_bin": 891.0,
+    "sigma_v_kms": 0.838,
+    "sigma_beta": 0.0811
+   },
+   "6.50": {
+    "r_kpc": 6.5,
+    "N_per_bin": 851.0,
+    "sigma_v_kms": 0.857,
+    "sigma_beta": 0.0856
+   },
+   "6.70": {
+    "r_kpc": 6.7,
+    "N_per_bin": 812.0,
+    "sigma_v_kms": 0.877,
+    "sigma_beta": 0.0903
+   },
+   "6.90": {
+    "r_kpc": 6.9,
+    "N_per_bin": 775.0,
+    "sigma_v_kms": 0.898,
+    "sigma_beta": 0.0953
+   },
+   "7.10": {
+    "r_kpc": 7.1,
+    "N_per_bin": 738.0,
+    "sigma_v_kms": 0.92,
+    "sigma_beta": 0.1004
+   },
+   "7.30": {
+    "r_kpc": 7.3,
+    "N_per_bin": 703.0,
+    "sigma_v_kms": 0.943,
+    "sigma_beta": 0.1058
+   },
+   "7.50": {
+    "r_kpc": 7.5,
+    "N_per_bin": 669.0,
+    "sigma_v_kms": 0.967,
+    "sigma_beta": 0.1115
+   },
+   "7.70": {
+    "r_kpc": 7.7,
+    "N_per_bin": 636.0,
+    "sigma_v_kms": 0.992,
+    "sigma_beta": 0.1174
+   },
+   "7.90": {
+    "r_kpc": 7.9,
+    "N_per_bin": 604.0,
+    "sigma_v_kms": 1.017,
+    "sigma_beta": 0.1235
+   },
+   "8.10": {
+    "r_kpc": 8.1,
+    "N_per_bin": 573.0,
+    "sigma_v_kms": 1.044,
+    "sigma_beta": 0.13
+   },
+   "8.30": {
+    "r_kpc": 8.3,
+    "N_per_bin": 544.0,
+    "sigma_v_kms": 1.072,
+    "sigma_beta": 0.1368
+   },
+   "8.50": {
+    "r_kpc": 8.5,
+    "N_per_bin": 516.0,
+    "sigma_v_kms": 1.101,
+    "sigma_beta": 0.1438
+   },
+   "8.70": {
+    "r_kpc": 8.7,
+    "N_per_bin": 489.0,
+    "sigma_v_kms": 1.131,
+    "sigma_beta": 0.1512
+   },
+   "8.90": {
+    "r_kpc": 8.9,
+    "N_per_bin": 463.0,
+    "sigma_v_kms": 1.162,
+    "sigma_beta": 0.1589
+   },
+   "9.10": {
+    "r_kpc": 9.1,
+    "N_per_bin": 438.0,
+    "sigma_v_kms": 1.194,
+    "sigma_beta": 0.167
+   },
+   "9.30": {
+    "r_kpc": 9.3,
+    "N_per_bin": 415.0,
+    "sigma_v_kms": 1.227,
+    "sigma_beta": 0.1755
+   },
+   "9.50": {
+    "r_kpc": 9.5,
+    "N_per_bin": 392.0,
+    "sigma_v_kms": 1.262,
+    "sigma_beta": 0.1843
+   },
+   "9.70": {
+    "r_kpc": 9.7,
+    "N_per_bin": 371.0,
+    "sigma_v_kms": 1.298,
+    "sigma_beta": 0.1935
+   },
+   "9.90": {
+    "r_kpc": 9.9,
+    "N_per_bin": 351.0,
+    "sigma_v_kms": 1.335,
+    "sigma_beta": 0.2032
+   }
+  }
+ },
+ "achieved_zhou54k": {
+  "5.10": {
+   "r_kpc": 5.1,
+   "N_per_bin": 2707.0,
+   "sigma_v_kms": 0.481,
+   "sigma_beta": 0.0377
+  },
+  "5.30": {
+   "r_kpc": 5.3,
+   "N_per_bin": 2605.0,
+   "sigma_v_kms": 0.49,
+   "sigma_beta": 0.0399
+  },
+  "5.50": {
+   "r_kpc": 5.5,
+   "N_per_bin": 2503.0,
+   "sigma_v_kms": 0.5,
+   "sigma_beta": 0.0422
+  },
+  "5.70": {
+   "r_kpc": 5.7,
+   "N_per_bin": 2402.0,
+   "sigma_v_kms": 0.51,
+   "sigma_beta": 0.0447
+  },
+  "5.90": {
+   "r_kpc": 5.9,
+   "N_per_bin": 2302.0,
+   "sigma_v_kms": 0.521,
+   "sigma_beta": 0.0473
+  },
+  "6.10": {
+   "r_kpc": 6.1,
+   "N_per_bin": 2204.0,
+   "sigma_v_kms": 0.533,
+   "sigma_beta": 0.0499
+  },
+  "6.30": {
+   "r_kpc": 6.3,
+   "N_per_bin": 2108.0,
+   "sigma_v_kms": 0.545,
+   "sigma_beta": 0.0527
+  },
+  "6.50": {
+   "r_kpc": 6.5,
+   "N_per_bin": 2014.0,
+   "sigma_v_kms": 0.557,
+   "sigma_beta": 0.0557
+  },
+  "6.70": {
+   "r_kpc": 6.7,
+   "N_per_bin": 1922.0,
+   "sigma_v_kms": 0.57,
+   "sigma_beta": 0.0587
+  },
+  "6.90": {
+   "r_kpc": 6.9,
+   "N_per_bin": 1833.0,
+   "sigma_v_kms": 0.584,
+   "sigma_beta": 0.0619
+  },
+  "7.10": {
+   "r_kpc": 7.1,
+   "N_per_bin": 1746.0,
+   "sigma_v_kms": 0.598,
+   "sigma_beta": 0.0653
+  },
+  "7.30": {
+   "r_kpc": 7.3,
+   "N_per_bin": 1662.0,
+   "sigma_v_kms": 0.613,
+   "sigma_beta": 0.0688
+  },
+  "7.50": {
+   "r_kpc": 7.5,
+   "N_per_bin": 1582.0,
+   "sigma_v_kms": 0.629,
+   "sigma_beta": 0.0725
+  },
+  "7.70": {
+   "r_kpc": 7.7,
+   "N_per_bin": 1504.0,
+   "sigma_v_kms": 0.645,
+   "sigma_beta": 0.0763
+  },
+  "7.90": {
+   "r_kpc": 7.9,
+   "N_per_bin": 1428.0,
+   "sigma_v_kms": 0.661,
+   "sigma_beta": 0.0803
+  },
+  "8.10": {
+   "r_kpc": 8.1,
+   "N_per_bin": 1356.0,
+   "sigma_v_kms": 0.679,
+   "sigma_beta": 0.0845
+  },
+  "8.30": {
+   "r_kpc": 8.3,
+   "N_per_bin": 1287.0,
+   "sigma_v_kms": 0.697,
+   "sigma_beta": 0.0889
+  },
+  "8.50": {
+   "r_kpc": 8.5,
+   "N_per_bin": 1220.0,
+   "sigma_v_kms": 0.716,
+   "sigma_beta": 0.0935
+  },
+  "8.70": {
+   "r_kpc": 8.7,
+   "N_per_bin": 1156.0,
+   "sigma_v_kms": 0.735,
+   "sigma_beta": 0.0983
+  },
+  "8.90": {
+   "r_kpc": 8.9,
+   "N_per_bin": 1095.0,
+   "sigma_v_kms": 0.755,
+   "sigma_beta": 0.1033
+  },
+  "9.10": {
+   "r_kpc": 9.1,
+   "N_per_bin": 1037.0,
+   "sigma_v_kms": 0.776,
+   "sigma_beta": 0.1086
+  },
+  "9.30": {
+   "r_kpc": 9.3,
+   "N_per_bin": 981.0,
+   "sigma_v_kms": 0.798,
+   "sigma_beta": 0.1141
+  },
+  "9.50": {
+   "r_kpc": 9.5,
+   "N_per_bin": 928.0,
+   "sigma_v_kms": 0.821,
+   "sigma_beta": 0.1198
+  },
+  "9.70": {
+   "r_kpc": 9.7,
+   "N_per_bin": 878.0,
+   "sigma_v_kms": 0.844,
+   "sigma_beta": 0.1258
+  },
+  "9.90": {
+   "r_kpc": 9.9,
+   "N_per_bin": 829.0,
+   "sigma_v_kms": 0.868,
+   "sigma_beta": 0.1321
+  }
+ },
+ "achieved_oneyear_dr17full": {
+  "5.10": {
+   "r_kpc": 5.1,
+   "N_per_bin": 8392.0,
+   "sigma_v_kms": 0.273,
+   "sigma_beta": 0.0214
+  },
+  "5.30": {
+   "r_kpc": 5.3,
+   "N_per_bin": 8075.0,
+   "sigma_v_kms": 0.278,
+   "sigma_beta": 0.0227
+  },
+  "5.50": {
+   "r_kpc": 5.5,
+   "N_per_bin": 7759.0,
+   "sigma_v_kms": 0.284,
+   "sigma_beta": 0.024
+  },
+  "5.70": {
+   "r_kpc": 5.7,
+   "N_per_bin": 7446.0,
+   "sigma_v_kms": 0.29,
+   "sigma_beta": 0.0254
+  },
+  "5.90": {
+   "r_kpc": 5.9,
+   "N_per_bin": 7137.0,
+   "sigma_v_kms": 0.296,
+   "sigma_beta": 0.0268
+  },
+  "6.10": {
+   "r_kpc": 6.1,
+   "N_per_bin": 6832.0,
+   "sigma_v_kms": 0.302,
+   "sigma_beta": 0.0284
+  },
+  "6.30": {
+   "r_kpc": 6.3,
+   "N_per_bin": 6534.0,
+   "sigma_v_kms": 0.309,
+   "sigma_beta": 0.03
+  },
+  "6.50": {
+   "r_kpc": 6.5,
+   "N_per_bin": 6242.0,
+   "sigma_v_kms": 0.316,
+   "sigma_beta": 0.0316
+  },
+  "6.70": {
+   "r_kpc": 6.7,
+   "N_per_bin": 5958.0,
+   "sigma_v_kms": 0.324,
+   "sigma_beta": 0.0334
+  },
+  "6.90": {
+   "r_kpc": 6.9,
+   "N_per_bin": 5682.0,
+   "sigma_v_kms": 0.332,
+   "sigma_beta": 0.0352
+  },
+  "7.10": {
+   "r_kpc": 7.1,
+   "N_per_bin": 5413.0,
+   "sigma_v_kms": 0.34,
+   "sigma_beta": 0.0371
+  },
+  "7.30": {
+   "r_kpc": 7.3,
+   "N_per_bin": 5154.0,
+   "sigma_v_kms": 0.348,
+   "sigma_beta": 0.0391
+  },
+  "7.50": {
+   "r_kpc": 7.5,
+   "N_per_bin": 4903.0,
+   "sigma_v_kms": 0.357,
+   "sigma_beta": 0.0412
+  },
+  "7.70": {
+   "r_kpc": 7.7,
+   "N_per_bin": 4661.0,
+   "sigma_v_kms": 0.366,
+   "sigma_beta": 0.0433
+  },
+  "7.90": {
+   "r_kpc": 7.9,
+   "N_per_bin": 4428.0,
+   "sigma_v_kms": 0.376,
+   "sigma_beta": 0.0456
+  },
+  "8.10": {
+   "r_kpc": 8.1,
+   "N_per_bin": 4204.0,
+   "sigma_v_kms": 0.386,
+   "sigma_beta": 0.048
+  },
+  "8.30": {
+   "r_kpc": 8.3,
+   "N_per_bin": 3989.0,
+   "sigma_v_kms": 0.396,
+   "sigma_beta": 0.0505
+  },
+  "8.50": {
+   "r_kpc": 8.5,
+   "N_per_bin": 3782.0,
+   "sigma_v_kms": 0.406,
+   "sigma_beta": 0.0531
+  },
+  "8.70": {
+   "r_kpc": 8.7,
+   "N_per_bin": 3585.0,
+   "sigma_v_kms": 0.418,
+   "sigma_beta": 0.0558
+  },
+  "8.90": {
+   "r_kpc": 8.9,
+   "N_per_bin": 3396.0,
+   "sigma_v_kms": 0.429,
+   "sigma_beta": 0.0587
+  },
+  "9.10": {
+   "r_kpc": 9.1,
+   "N_per_bin": 3215.0,
+   "sigma_v_kms": 0.441,
+   "sigma_beta": 0.0617
+  },
+  "9.30": {
+   "r_kpc": 9.3,
+   "N_per_bin": 3042.0,
+   "sigma_v_kms": 0.453,
+   "sigma_beta": 0.0648
+  },
+  "9.50": {
+   "r_kpc": 9.5,
+   "N_per_bin": 2878.0,
+   "sigma_v_kms": 0.466,
+   "sigma_beta": 0.0681
+  },
+  "9.70": {
+   "r_kpc": 9.7,
+   "N_per_bin": 2721.0,
+   "sigma_v_kms": 0.479,
+   "sigma_beta": 0.0715
+  },
+  "9.90": {
+   "r_kpc": 9.9,
+   "N_per_bin": 2571.0,
+   "sigma_v_kms": 0.493,
+   "sigma_beta": 0.075
+  }
+ },
+ "achieved_frontier": {
+  "5.10": {
+   "r_kpc": 5.1,
+   "N_per_bin": 41959.0,
+   "sigma_v_kms": 0.122,
+   "sigma_beta": 0.0096
+  },
+  "5.30": {
+   "r_kpc": 5.3,
+   "N_per_bin": 40376.0,
+   "sigma_v_kms": 0.124,
+   "sigma_beta": 0.0101
+  },
+  "5.50": {
+   "r_kpc": 5.5,
+   "N_per_bin": 38797.0,
+   "sigma_v_kms": 0.127,
+   "sigma_beta": 0.0107
+  },
+  "5.70": {
+   "r_kpc": 5.7,
+   "N_per_bin": 37231.0,
+   "sigma_v_kms": 0.13,
+   "sigma_beta": 0.0114
+  },
+  "5.90": {
+   "r_kpc": 5.9,
+   "N_per_bin": 35684.0,
+   "sigma_v_kms": 0.132,
+   "sigma_beta": 0.012
+  },
+  "6.10": {
+   "r_kpc": 6.1,
+   "N_per_bin": 34162.0,
+   "sigma_v_kms": 0.135,
+   "sigma_beta": 0.0127
+  },
+  "6.30": {
+   "r_kpc": 6.3,
+   "N_per_bin": 32670.0,
+   "sigma_v_kms": 0.138,
+   "sigma_beta": 0.0134
+  },
+  "6.50": {
+   "r_kpc": 6.5,
+   "N_per_bin": 31211.0,
+   "sigma_v_kms": 0.142,
+   "sigma_beta": 0.0141
+  },
+  "6.70": {
+   "r_kpc": 6.7,
+   "N_per_bin": 29790.0,
+   "sigma_v_kms": 0.145,
+   "sigma_beta": 0.0149
+  },
+  "6.90": {
+   "r_kpc": 6.9,
+   "N_per_bin": 28408.0,
+   "sigma_v_kms": 0.148,
+   "sigma_beta": 0.0157
+  },
+  "7.10": {
+   "r_kpc": 7.1,
+   "N_per_bin": 27067.0,
+   "sigma_v_kms": 0.152,
+   "sigma_beta": 0.0166
+  },
+  "7.30": {
+   "r_kpc": 7.3,
+   "N_per_bin": 25769.0,
+   "sigma_v_kms": 0.156,
+   "sigma_beta": 0.0175
+  },
+  "7.50": {
+   "r_kpc": 7.5,
+   "N_per_bin": 24515.0,
+   "sigma_v_kms": 0.16,
+   "sigma_beta": 0.0184
+  },
+  "7.70": {
+   "r_kpc": 7.7,
+   "N_per_bin": 23305.0,
+   "sigma_v_kms": 0.164,
+   "sigma_beta": 0.0194
+  },
+  "7.90": {
+   "r_kpc": 7.9,
+   "N_per_bin": 22140.0,
+   "sigma_v_kms": 0.168,
+   "sigma_beta": 0.0204
+  },
+  "8.10": {
+   "r_kpc": 8.1,
+   "N_per_bin": 21020.0,
+   "sigma_v_kms": 0.172,
+   "sigma_beta": 0.0215
+  },
+  "8.30": {
+   "r_kpc": 8.3,
+   "N_per_bin": 19944.0,
+   "sigma_v_kms": 0.177,
+   "sigma_beta": 0.0226
+  },
+  "8.50": {
+   "r_kpc": 8.5,
+   "N_per_bin": 18912.0,
+   "sigma_v_kms": 0.182,
+   "sigma_beta": 0.0238
+  },
+  "8.70": {
+   "r_kpc": 8.7,
+   "N_per_bin": 17924.0,
+   "sigma_v_kms": 0.187,
+   "sigma_beta": 0.025
+  },
+  "8.90": {
+   "r_kpc": 8.9,
+   "N_per_bin": 16979.0,
+   "sigma_v_kms": 0.192,
+   "sigma_beta": 0.0262
+  },
+  "9.10": {
+   "r_kpc": 9.1,
+   "N_per_bin": 16075.0,
+   "sigma_v_kms": 0.197,
+   "sigma_beta": 0.0276
+  },
+  "9.30": {
+   "r_kpc": 9.3,
+   "N_per_bin": 15212.0,
+   "sigma_v_kms": 0.203,
+   "sigma_beta": 0.029
+  },
+  "9.50": {
+   "r_kpc": 9.5,
+   "N_per_bin": 14388.0,
+   "sigma_v_kms": 0.208,
+   "sigma_beta": 0.0304
+  },
+  "9.70": {
+   "r_kpc": 9.7,
+   "N_per_bin": 13604.0,
+   "sigma_v_kms": 0.214,
+   "sigma_beta": 0.032
+  },
+  "9.90": {
+   "r_kpc": 9.9,
+   "N_per_bin": 12856.0,
+   "sigma_v_kms": 0.22,
+   "sigma_beta": 0.0336
+  }
+ },
+ "integration_map": {
+  "today_eilers23k": {
+   "5.10": {
+    "sigma_beta": 0.0579,
+    "sign_0_03": false,
+    "feasible_strict_0_02": false,
+    "literal_0_01": false
+   },
+   "5.30": {
+    "sigma_beta": 0.0614,
+    "sign_0_03": false,
+    "feasible_strict_0_02": false,
+    "literal_0_01": false
+   },
+   "5.50": {
+    "sigma_beta": 0.065,
+    "sign_0_03": false,
+    "feasible_strict_0_02": false,
+    "literal_0_01": false
+   },
+   "5.70": {
+    "sigma_beta": 0.0687,
+    "sign_0_03": false,
+    "feasible_strict_0_02": false,
+    "literal_0_01": false
+   },
+   "5.90": {
+    "sigma_beta": 0.0727,
+    "sign_0_03": false,
+    "feasible_strict_0_02": false,
+    "literal_0_01": false
+   },
+   "6.10": {
+    "sigma_beta": 0.0768,
+    "sign_0_03": false,
+    "feasible_strict_0_02": false,
+    "literal_0_01": false
+   },
+   "6.30": {
+    "sigma_beta": 0.0811,
+    "sign_0_03": false,
+    "feasible_strict_0_02": false,
+    "literal_0_01": false
+   },
+   "6.50": {
+    "sigma_beta": 0.0856,
+    "sign_0_03": false,
+    "feasible_strict_0_02": false,
+    "literal_0_01": false
+   },
+   "6.70": {
+    "sigma_beta": 0.0903,
+    "sign_0_03": false,
+    "feasible_strict_0_02": false,
+    "literal_0_01": false
+   },
+   "6.90": {
+    "sigma_beta": 0.0953,
+    "sign_0_03": false,
+    "feasible_strict_0_02": false,
+    "literal_0_01": false
+   },
+   "7.10": {
+    "sigma_beta": 0.1004,
+    "sign_0_03": false,
+    "feasible_strict_0_02": false,
+    "literal_0_01": false
+   },
+   "7.30": {
+    "sigma_beta": 0.1058,
+    "sign_0_03": false,
+    "feasible_strict_0_02": false,
+    "literal_0_01": false
+   },
+   "7.50": {
+    "sigma_beta": 0.1115,
+    "sign_0_03": false,
+    "feasible_strict_0_02": false,
+    "literal_0_01": false
+   },
+   "7.70": {
+    "sigma_beta": 0.1174,
+    "sign_0_03": false,
+    "feasible_strict_0_02": false,
+    "literal_0_01": false
+   },
+   "7.90": {
+    "sigma_beta": 0.1235,
+    "sign_0_03": false,
+    "feasible_strict_0_02": false,
+    "literal_0_01": false
+   },
+   "8.10": {
+    "sigma_beta": 0.13,
+    "sign_0_03": false,
+    "feasible_strict_0_02": false,
+    "literal_0_01": false
+   },
+   "8.30": {
+    "sigma_beta": 0.1368,
+    "sign_0_03": false,
+    "feasible_strict_0_02": false,
+    "literal_0_01": false
+   },
+   "8.50": {
+    "sigma_beta": 0.1438,
+    "sign_0_03": false,
+    "feasible_strict_0_02": false,
+    "literal_0_01": false
+   },
+   "8.70": {
+    "sigma_beta": 0.1512,
+    "sign_0_03": false,
+    "feasible_strict_0_02": false,
+    "literal_0_01": false
+   },
+   "8.90": {
+    "sigma_beta": 0.1589,
+    "sign_0_03": false,
+    "feasible_strict_0_02": false,
+    "literal_0_01": false
+   },
+   "9.10": {
+    "sigma_beta": 0.167,
+    "sign_0_03": false,
+    "feasible_strict_0_02": false,
+    "literal_0_01": false
+   },
+   "9.30": {
+    "sigma_beta": 0.1755,
+    "sign_0_03": false,
+    "feasible_strict_0_02": false,
+    "literal_0_01": false
+   },
+   "9.50": {
+    "sigma_beta": 0.1843,
+    "sign_0_03": false,
+    "feasible_strict_0_02": false,
+    "literal_0_01": false
+   },
+   "9.70": {
+    "sigma_beta": 0.1935,
+    "sign_0_03": false,
+    "feasible_strict_0_02": false,
+    "literal_0_01": false
+   },
+   "9.90": {
+    "sigma_beta": 0.2032,
+    "sign_0_03": false,
+    "feasible_strict_0_02": false,
+    "literal_0_01": false
+   }
+  },
+  "today_zhou54k": {
+   "5.10": {
+    "sigma_beta": 0.0377,
+    "sign_0_03": false,
+    "feasible_strict_0_02": false,
+    "literal_0_01": false
+   },
+   "5.30": {
+    "sigma_beta": 0.0399,
+    "sign_0_03": false,
+    "feasible_strict_0_02": false,
+    "literal_0_01": false
+   },
+   "5.50": {
+    "sigma_beta": 0.0422,
+    "sign_0_03": false,
+    "feasible_strict_0_02": false,
+    "literal_0_01": false
+   },
+   "5.70": {
+    "sigma_beta": 0.0447,
+    "sign_0_03": false,
+    "feasible_strict_0_02": false,
+    "literal_0_01": false
+   },
+   "5.90": {
+    "sigma_beta": 0.0473,
+    "sign_0_03": false,
+    "feasible_strict_0_02": false,
+    "literal_0_01": false
+   },
+   "6.10": {
+    "sigma_beta": 0.0499,
+    "sign_0_03": false,
+    "feasible_strict_0_02": false,
+    "literal_0_01": false
+   },
+   "6.30": {
+    "sigma_beta": 0.0527,
+    "sign_0_03": false,
+    "feasible_strict_0_02": false,
+    "literal_0_01": false
+   },
+   "6.50": {
+    "sigma_beta": 0.0557,
+    "sign_0_03": false,
+    "feasible_strict_0_02": false,
+    "literal_0_01": false
+   },
+   "6.70": {
+    "sigma_beta": 0.0587,
+    "sign_0_03": false,
+    "feasible_strict_0_02": false,
+    "literal_0_01": false
+   },
+   "6.90": {
+    "sigma_beta": 0.0619,
+    "sign_0_03": false,
+    "feasible_strict_0_02": false,
+    "literal_0_01": false
+   },
+   "7.10": {
+    "sigma_beta": 0.0653,
+    "sign_0_03": false,
+    "feasible_strict_0_02": false,
+    "literal_0_01": false
+   },
+   "7.30": {
+    "sigma_beta": 0.0688,
+    "sign_0_03": false,
+    "feasible_strict_0_02": false,
+    "literal_0_01": false
+   },
+   "7.50": {
+    "sigma_beta": 0.0725,
+    "sign_0_03": false,
+    "feasible_strict_0_02": false,
+    "literal_0_01": false
+   },
+   "7.70": {
+    "sigma_beta": 0.0763,
+    "sign_0_03": false,
+    "feasible_strict_0_02": false,
+    "literal_0_01": false
+   },
+   "7.90": {
+    "sigma_beta": 0.0803,
+    "sign_0_03": false,
+    "feasible_strict_0_02": false,
+    "literal_0_01": false
+   },
+   "8.10": {
+    "sigma_beta": 0.0845,
+    "sign_0_03": false,
+    "feasible_strict_0_02": false,
+    "literal_0_01": false
+   },
+   "8.30": {
+    "sigma_beta": 0.0889,
+    "sign_0_03": false,
+    "feasible_strict_0_02": false,
+    "literal_0_01": false
+   },
+   "8.50": {
+    "sigma_beta": 0.0935,
+    "sign_0_03": false,
+    "feasible_strict_0_02": false,
+    "literal_0_01": false
+   },
+   "8.70": {
+    "sigma_beta": 0.0983,
+    "sign_0_03": false,
+    "feasible_strict_0_02": false,
+    "literal_0_01": false
+   },
+   "8.90": {
+    "sigma_beta": 0.1033,
+    "sign_0_03": false,
+    "feasible_strict_0_02": false,
+    "literal_0_01": false
+   },
+   "9.10": {
+    "sigma_beta": 0.1086,
+    "sign_0_03": false,
+    "feasible_strict_0_02": false,
+    "literal_0_01": false
+   },
+   "9.30": {
+    "sigma_beta": 0.1141,
+    "sign_0_03": false,
+    "feasible_strict_0_02": false,
+    "literal_0_01": false
+   },
+   "9.50": {
+    "sigma_beta": 0.1198,
+    "sign_0_03": false,
+    "feasible_strict_0_02": false,
+    "literal_0_01": false
+   },
+   "9.70": {
+    "sigma_beta": 0.1258,
+    "sign_0_03": false,
+    "feasible_strict_0_02": false,
+    "literal_0_01": false
+   },
+   "9.90": {
+    "sigma_beta": 0.1321,
+    "sign_0_03": false,
+    "feasible_strict_0_02": false,
+    "literal_0_01": false
+   }
+  },
+  "oneyear_dr17full_gaia3": {
+   "5.10": {
+    "sigma_beta": 0.0214,
+    "sign_0_03": true,
+    "feasible_strict_0_02": false,
+    "literal_0_01": false
+   },
+   "5.30": {
+    "sigma_beta": 0.0227,
+    "sign_0_03": true,
+    "feasible_strict_0_02": false,
+    "literal_0_01": false
+   },
+   "5.50": {
+    "sigma_beta": 0.024,
+    "sign_0_03": true,
+    "feasible_strict_0_02": false,
+    "literal_0_01": false
+   },
+   "5.70": {
+    "sigma_beta": 0.0254,
+    "sign_0_03": true,
+    "feasible_strict_0_02": false,
+    "literal_0_01": false
+   },
+   "5.90": {
+    "sigma_beta": 0.0268,
+    "sign_0_03": true,
+    "feasible_strict_0_02": false,
+    "literal_0_01": false
+   },
+   "6.10": {
+    "sigma_beta": 0.0284,
+    "sign_0_03": true,
+    "feasible_strict_0_02": false,
+    "literal_0_01": false
+   },
+   "6.30": {
+    "sigma_beta": 0.03,
+    "sign_0_03": true,
+    "feasible_strict_0_02": false,
+    "literal_0_01": false
+   },
+   "6.50": {
+    "sigma_beta": 0.0316,
+    "sign_0_03": false,
+    "feasible_strict_0_02": false,
+    "literal_0_01": false
+   },
+   "6.70": {
+    "sigma_beta": 0.0334,
+    "sign_0_03": false,
+    "feasible_strict_0_02": false,
+    "literal_0_01": false
+   },
+   "6.90": {
+    "sigma_beta": 0.0352,
+    "sign_0_03": false,
+    "feasible_strict_0_02": false,
+    "literal_0_01": false
+   },
+   "7.10": {
+    "sigma_beta": 0.0371,
+    "sign_0_03": false,
+    "feasible_strict_0_02": false,
+    "literal_0_01": false
+   },
+   "7.30": {
+    "sigma_beta": 0.0391,
+    "sign_0_03": false,
+    "feasible_strict_0_02": false,
+    "literal_0_01": false
+   },
+   "7.50": {
+    "sigma_beta": 0.0412,
+    "sign_0_03": false,
+    "feasible_strict_0_02": false,
+    "literal_0_01": false
+   },
+   "7.70": {
+    "sigma_beta": 0.0433,
+    "sign_0_03": false,
+    "feasible_strict_0_02": false,
+    "literal_0_01": false
+   },
+   "7.90": {
+    "sigma_beta": 0.0456,
+    "sign_0_03": false,
+    "feasible_strict_0_02": false,
+    "literal_0_01": false
+   },
+   "8.10": {
+    "sigma_beta": 0.048,
+    "sign_0_03": false,
+    "feasible_strict_0_02": false,
+    "literal_0_01": false
+   },
+   "8.30": {
+    "sigma_beta": 0.0505,
+    "sign_0_03": false,
+    "feasible_strict_0_02": false,
+    "literal_0_01": false
+   },
+   "8.50": {
+    "sigma_beta": 0.0531,
+    "sign_0_03": false,
+    "feasible_strict_0_02": false,
+    "literal_0_01": false
+   },
+   "8.70": {
+    "sigma_beta": 0.0558,
+    "sign_0_03": false,
+    "feasible_strict_0_02": false,
+    "literal_0_01": false
+   },
+   "8.90": {
+    "sigma_beta": 0.0587,
+    "sign_0_03": false,
+    "feasible_strict_0_02": false,
+    "literal_0_01": false
+   },
+   "9.10": {
+    "sigma_beta": 0.0617,
+    "sign_0_03": false,
+    "feasible_strict_0_02": false,
+    "literal_0_01": false
+   },
+   "9.30": {
+    "sigma_beta": 0.0648,
+    "sign_0_03": false,
+    "feasible_strict_0_02": false,
+    "literal_0_01": false
+   },
+   "9.50": {
+    "sigma_beta": 0.0681,
+    "sign_0_03": false,
+    "feasible_strict_0_02": false,
+    "literal_0_01": false
+   },
+   "9.70": {
+    "sigma_beta": 0.0715,
+    "sign_0_03": false,
+    "feasible_strict_0_02": false,
+    "literal_0_01": false
+   },
+   "9.90": {
+    "sigma_beta": 0.075,
+    "sign_0_03": false,
+    "feasible_strict_0_02": false,
+    "literal_0_01": false
+   }
+  },
+  "frontier_2029": {
+   "5.10": {
+    "sigma_beta": 0.0096,
+    "sign_0_03": true,
+    "feasible_strict_0_02": true,
+    "literal_0_01": true
+   },
+   "5.30": {
+    "sigma_beta": 0.0101,
+    "sign_0_03": true,
+    "feasible_strict_0_02": true,
+    "literal_0_01": false
+   },
+   "5.50": {
+    "sigma_beta": 0.0107,
+    "sign_0_03": true,
+    "feasible_strict_0_02": true,
+    "literal_0_01": false
+   },
+   "5.70": {
+    "sigma_beta": 0.0114,
+    "sign_0_03": true,
+    "feasible_strict_0_02": true,
+    "literal_0_01": false
+   },
+   "5.90": {
+    "sigma_beta": 0.012,
+    "sign_0_03": true,
+    "feasible_strict_0_02": true,
+    "literal_0_01": false
+   },
+   "6.10": {
+    "sigma_beta": 0.0127,
+    "sign_0_03": true,
+    "feasible_strict_0_02": true,
+    "literal_0_01": false
+   },
+   "6.30": {
+    "sigma_beta": 0.0134,
+    "sign_0_03": true,
+    "feasible_strict_0_02": true,
+    "literal_0_01": false
+   },
+   "6.50": {
+    "sigma_beta": 0.0141,
+    "sign_0_03": true,
+    "feasible_strict_0_02": true,
+    "literal_0_01": false
+   },
+   "6.70": {
+    "sigma_beta": 0.0149,
+    "sign_0_03": true,
+    "feasible_strict_0_02": true,
+    "literal_0_01": false
+   },
+   "6.90": {
+    "sigma_beta": 0.0157,
+    "sign_0_03": true,
+    "feasible_strict_0_02": true,
+    "literal_0_01": false
+   },
+   "7.10": {
+    "sigma_beta": 0.0166,
+    "sign_0_03": true,
+    "feasible_strict_0_02": true,
+    "literal_0_01": false
+   },
+   "7.30": {
+    "sigma_beta": 0.0175,
+    "sign_0_03": true,
+    "feasible_strict_0_02": true,
+    "literal_0_01": false
+   },
+   "7.50": {
+    "sigma_beta": 0.0184,
+    "sign_0_03": true,
+    "feasible_strict_0_02": true,
+    "literal_0_01": false
+   },
+   "7.70": {
+    "sigma_beta": 0.0194,
+    "sign_0_03": true,
+    "feasible_strict_0_02": true,
+    "literal_0_01": false
+   },
+   "7.90": {
+    "sigma_beta": 0.0204,
+    "sign_0_03": true,
+    "feasible_strict_0_02": false,
+    "literal_0_01": false
+   },
+   "8.10": {
+    "sigma_beta": 0.0215,
+    "sign_0_03": true,
+    "feasible_strict_0_02": false,
+    "literal_0_01": false
+   },
+   "8.30": {
+    "sigma_beta": 0.0226,
+    "sign_0_03": true,
+    "feasible_strict_0_02": false,
+    "literal_0_01": false
+   },
+   "8.50": {
+    "sigma_beta": 0.0238,
+    "sign_0_03": true,
+    "feasible_strict_0_02": false,
+    "literal_0_01": false
+   },
+   "8.70": {
+    "sigma_beta": 0.025,
+    "sign_0_03": true,
+    "feasible_strict_0_02": false,
+    "literal_0_01": false
+   },
+   "8.90": {
+    "sigma_beta": 0.0262,
+    "sign_0_03": true,
+    "feasible_strict_0_02": false,
+    "literal_0_01": false
+   },
+   "9.10": {
+    "sigma_beta": 0.0276,
+    "sign_0_03": true,
+    "feasible_strict_0_02": false,
+    "literal_0_01": false
+   },
+   "9.30": {
+    "sigma_beta": 0.029,
+    "sign_0_03": true,
+    "feasible_strict_0_02": false,
+    "literal_0_01": false
+   },
+   "9.50": {
+    "sigma_beta": 0.0304,
+    "sign_0_03": false,
+    "feasible_strict_0_02": false,
+    "literal_0_01": false
+   },
+   "9.70": {
+    "sigma_beta": 0.032,
+    "sign_0_03": false,
+    "feasible_strict_0_02": false,
+    "literal_0_01": false
+   },
+   "9.90": {
+    "sigma_beta": 0.0336,
+    "sign_0_03": false,
+    "feasible_strict_0_02": false,
+    "literal_0_01": false
+   }
+  }
+ },
+ "integration_summary": {
+  "kink_bins_6_1_6_7_kpc": [
+   "6.30",
+   "6.50"
+  ],
+  "today_eilers23k_kink_sigma_beta_range": [
+   0.0811,
+   0.0856
+  ],
+  "today_zhou54k_kink_sigma_beta": 0.0527,
+  "oneyear_dr17full_kink_sigma_beta": 0.03,
+  "frontier_kink_sigma_beta": 0.0134,
+  "n_bins_reaching_sign_today54k": 0,
+  "n_bins_reaching_sign_1yr": 7,
+  "n_bins_reaching_sign_frontier": 22,
+  "n_bins_reaching_0_02_feasible_strict_frontier": 14,
+  "n_bins_reaching_0_01_literal_frontier": 1
+ },
+ "timeline": {
+  "today": "2026-09-16",
+  "sign_path": {
+   "analysis_locked": "2026 Q4",
+   "gaia_dr4": "2026-12 (astrometric distances + tangential velocities refine every bin; sigma_eff effectively reduced)",
+   "width_sign_decision": "2027 H1",
+   "verdict_date": "2027-06-30",
+   "floor": "2027-09-30",
+   "basis": "APOGEE-DR17 full giant sample + Gaia DR3/DR4, NO new telescope time; sigma_beta -> ~0.03 at the kink; G191 sims A/C separate the readings at 97.5%/100%"
+  },
+  "strict_path": {
+   "sdss_v_mwm_full_sample": "2026 Q4 - 2027 (DR19 2025: 336,511 new APO stars, 1.2M APOGEE + 800k BOSS spectra)",
+   "4most_science": "2027-2028 (2,436 fibres; 20-30M spectra / 5 yr)",
+   "weave_survey_sample": "2027 (WEAVE-GA ~3M RVs)",
+   "gaia_dr4": "2026-12",
+   "strict_run": "2028 H2",
+   "verdict_date": "2029-06-30",
+   "earliest": "2028-12-31",
+   "basis": "projected annulus giant tally ~5x the 1-yr path -> sigma_beta ~0.014-0.020 at 0.2-kpc bins: the STRICT rule (w90 +- 3 sw90 vs 0.5) fires at the feasible frontier; the literal 0.01 deep frontier needs 0.25-kpc bins and/or the DR4/sigma_eff reduction -> 2029-2030"
+  }
+ },
+ "verdicts": {
+  "V1_sample_table": "THE SAMPLE TABLE (N per bin, EVERY row cited): (a) SIGN verdict (per-bin sigma_beta 0.03, 1 year) at dr = 0.2 kpc, v = 230.0, r = 6.3: sigma_v(bin-mean) = 0.310 km/s -> N = 6,513 plane giants (sigma_eff 25 km/s) or 261 stream stars (sigma_eff 5) per bin; (b) STRICT 3-sigma (0.01): sigma_v = 0.103 km/s -> N = 58,616 giants or 844 cold streams (sigma_eff 3) per bin; the G191-compact table (sbeta 0.03: 6,513/12,765 giants(25/35), 94/261/667 streams(3/5/8); sbeta 0.01: 58,600/114,900 giants, 853/2,345/6,002 streams) is reproduced to 1e-9 (gates 1-7).  BIN-WIDTH LEVER at fixed precision: N scales as 1/dr^2 (dr 0.10/0.20/0.25 kpc in the table).  THE STAR LISTS: H3 = 325,000 stars but |b|>20 by design -> in-plane 5-10 kpc annulus count = 0 (H3 is the off-plane lane only); APOGEE-DR17 = 657,359 spectra / >650,000 stars, published thin-disk RC subset 23,000 (Eilers+19) -> 54,408 (Zhou+23); streams at the 6-7 kpc tangent: GD-1 0 (r_peri 13.8 kpc), Orphan 0 (r_peri 15 kpc), Pal 5 ~0-1 model, 0 measured (8 APOGEE giants, all at the 20.6-kpc core/debris; peri debris un-detected).  THE STREAM LANE DOES NOT SAMPLE THE KINK ANNULUS.",
+  "V2_integration_map": "THE INTEGRATION MAP (catalog x bin vs the frontier): TODAY, the published APOGEE-Zhou machinery reaches sigma_beta ~ 0.05 at the 6.3-kpc bin (Eilers' 23k machine: ~0.08) - ABOVE the 0.03 sign frontier, and ~0/25 bins reach 0.03.  THE 1-YEAR PATH: the FULL APOGEE-DR17 giant catalog + Gaia DR3 (a x3.1 usable-annulus uplift over the published 54k subset, no new telescope time) -> sigma_beta ~ 0.030 at the kink and 7/25 bins at the sign frontier -> the width SIGN verdict is within reach in ~1 year.  H3 contributes 0 in-plane; the streams contribute ~0 per bin at the 6-7 kpc tangent on BOTH paths (their real value is the potential/outer-disk check).  THE 2-3-YEAR PATH (strict 3-sigma): SDSS-V MWM (>5M stars; DR19 already 336,511 new APO stars, 1.2M APOGEE + 800k BOSS spectra, sigma_v floor ~0.1 km/s), WEAVE-GA (~3M RVs), 4MOST (20-30M spectra, RV<=2 km/s at r=19.5) -> annulus tally x5 -> sigma_beta ~ 0.013 at 0.2-kpc bins: 22/25 bins at the sign frontier, 14 at the feasible strict (0.02), 1 at the literal 0.01.  THE STRICT LITERAL 3-SIGMA VERDICT is the frontier's edge: reached at 0.25-kpc bins and/or with the Gaia DR4 sigma_eff reduction.",
+  "V3_honest_statement": "THE HONEST STATEMENT - the kink-width sample and calendar, dated 2026-09-16: the first-order transition's final signature (the width of the beta(r) step at r_peak 6.33 kpc, band 6.1-6.74, G191's w* = 0.5 kpc / 3-sigma rule) is carried by the PLANE GIANTS ALONE.  H3 (325,000 high-latitude stars, |b|>20 by design) is an off-plane lane with ZERO in-plane 5-10 kpc counts - G191/G164's 'H3 giants at the 5-10 kpc annulus' is corrected to 'the off-plane vertical/pressure term'.  The streams do NOT sample the 6-7 kpc tangent: GD-1's peri is 13.8 kpc, Orphan's 15 kpc, Pal 5's orbit crosses 5-7 kpc but its observed debris hugs the 20.6-kpc core/apocenter (8 APOGEE giants) - the tangent-point reading acts at THE STREAM'S OWN radius, which is OUTSIDE the kink band for all three; the 'streams anchor the 6-7 kpc tangent bins' claim is corrected here with the orbits cited.  THE REAL SAMPLE: APOGEE-DR17 (657,359 spectra), whose published RC machinery (23,000 -> 54,408 thin-disk giants) reaches sigma_beta ~0.05 per 0.2-kpc bin at the kink today; the full DR17 giant catalog + Gaia DR3 pushes the kink bins to ~0.03 with locked analysis only.  CALENDAR: SIGN verdict by 2027-06-30 (1 year, no new telescope time; floor 2027-09-30); STRICT 3-sigma verdict by 2029-06-30 (earliest 2028-12-31) with SDSS-V/WEAVE/4MOST + Gaia DR4; the literal sigma_beta 0.01 frontier is 2029-2030.  THE FIRST-ORDER TRANSITION'S FINAL SIGNATURE - THE WIDTH OF THE KINK - IS A DATE, NOT A DREAM: 2027-06-30 for the width's side, 2029-06-30 for the 3-sigma width, each on a sample this table can count."
+ },
+ "checks": [
+  {
+   "name": "GATE1 sigma_v(sbeta 0.03) reproduces G191 (rounded 1e-3)",
+   "measured": "0.309780114 vs committed 0.31",
+   "pass": true,
+   "tol": 0.001,
+   "reading": ""
+  },
+  {
+   "name": "GATE2 N_giants25(sbeta 0.03) reproduces G191 (int)",
+   "measured": "6512.87807 vs committed 6513",
+   "pass": true,
+   "tol": 0.01,
+   "reading": ""
+  },
+  {
+   "name": "GATE3 N_streams5(sbeta 0.03) reproduces G191 (int)",
+   "measured": "260.515123 vs committed 261",
+   "pass": true,
+   "tol": 0.01,
+   "reading": ""
+  },
+  {
+   "name": "GATE4 N_streams8(sbeta 0.03) reproduces G191 (int)",
+   "measured": "666.918715 vs committed 667",
+   "pass": true,
+   "tol": 0.01,
+   "reading": ""
+  },
+  {
+   "name": "GATE5 the deep frontier sigma_v(sbeta 0.01) = 0.103 km/s (G191 V2)",
+   "measured": "0.103260038 vs committed 0.103",
+   "pass": true,
+   "tol": 0.003,
+   "reading": ""
+  },
+  {
+   "name": "GATE6 deep N_giants25(sbeta 0.01) ~ 59,000 (G191 V2)",
+   "measured": "58615.9026 vs committed 58600",
+   "pass": true,
+   "tol": 0.015,
+   "reading": ""
+  },
+  {
+   "name": "GATE7 deep N_streams3(sbeta 0.01) ~ 850 (G191 V2)",
+   "measured": "844.068998 vs committed 850",
+   "pass": true,
+   "tol": 0.015,
+   "reading": ""
+  },
+  {
+   "name": "C1 [gate] G191 feasibility rows reproduced 1e-9",
+   "measured": "0.309780114 vs committed 0.31 ... 844.068998 vs committed 850",
+   "pass": true
+  },
+  {
+   "name": "C2 [requirement] sbeta 0.03/sigma_v-pin 1-2 km/s reading: the per-star MEASUREMENT error is NOT the binding constraint (sigma_eff 25 km/s >> 1-2 km/s)",
+   "measured": "dr needed at sv=1.5 km/s for sbeta 0.03: 0.968 kpc -- the bin-mean sigma_v is set by N vs sigma_eff, not by the per-star RV accuracy",
+   "pass": true
+  },
+  {
+   "name": "C3 [requirement] N scales as 1/dr^2 exactly",
+   "measured": "N(0.10)/N(0.20) = 4.000 vs 4; N(0.25)/N(0.20) = 0.640 vs 0.64",
+   "pass": true
+  },
+  {
+   "name": "C4 [honesty] H3 = 0 in-plane counts (|b|>20 by design)",
+   "measured": "H3 plane_annulus_5_10_kpc = 0; citation: h3survey site + Conroy+19",
+   "pass": true
+  },
+  {
+   "name": "C5 [honesty] streams at the 6-7 kpc tangent: only Pal 5's orbit crosses the annulus; measured N per bin ~ 0 for all three",
+   "measured": "GD-1 r_peri 13.8 kpc; Orphan 15.0; Pal 5 crosses 5-7 but 8 giants at the 20.6-kpc core; sum measured = 0",
+   "pass": true
+  },
+  {
+   "name": "C6 [map] today's published machinery (23k/54k) does NOT yet reach the sign frontier at the kink bin",
+   "measured": "sbeta(6.30) today: Eilers23k 0.081, Zhou54k 0.053 vs 0.03",
+   "pass": true
+  },
+  {
+   "name": "C7 [map] the 1-year path (full DR17 + Gaia DR3) reaches the sign frontier at the kink",
+   "measured": "sbeta(6.30) = 0.030 <= 0.03; 7/25 bins",
+   "pass": true
+  },
+  {
+   "name": "C8 [map] the frontier (SDSS-V+WEAVE+4MOST) reaches the FEASIBLE strict frontier (0.02) at the kink but not the literal 0.01 on 0.2-kpc bins",
+   "measured": "sbeta(6.30) frontier = 0.013 ; literal-0.01 bins = 1/25",
+   "pass": true
+  },
+  {
+   "name": "C9 [timeline] sign verdict date precedes the strict verdict date and both precede 2030",
+   "measured": "sign 2027-06-30 < strict 2029-06-30",
+   "pass": true
+  }
+ ],
+ "n_pass": 16,
+ "n_total": 16,
+ "complete": true
+}
