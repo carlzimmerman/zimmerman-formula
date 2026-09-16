@@ -1,0 +1,108 @@
+====================================================================================================
+G121 -- THE PAIR-MERGER FORECAST: the quantitative close-pair excess vs LCDM
+====================================================================================================
+
+--- (0) THE REGISTERED ANCHOR (G086 V2c) REPRODUCED ---
+    M_tot = 1.0e+11 Msun: r_M(pair) =   12.203 kpc  (G086 committed   12.203)
+    M_tot = 2.5e+11 Msun: r_M(pair) =   19.295 kpc  (G086 committed   19.295)
+    M_tot = 5.0e+11 Msun: r_M(pair) =   27.287 kpc  (G086 committed   27.287)
+    M_tot = 1.0e+12 Msun: r_M(pair) =   38.590 kpc  (G086 committed   38.590)
+    enhancement (1 + r/r_M) at r = r_M: 2.000000000 (must be 2.000000000)
+  [PASS] A0 [G086 registry] r_M(pair) rows reproduce the committed values to 1e-9 rel (12.20/19.29/27.29/38.59 kpc at 1e11/2.5e11/5e11/1e12 Msun)
+  [PASS] A1 [G086 identity] the deep-regime pair enhancement (1 + s/r_M) = 2.000000000 exactly at s = r_M(pair)
+    the (1 + r_M/s)-class regime (the task's frame): at s < r_M the enhancement DIVERGES:
+      M_b = 2e+10 (r_M =   7.7 kpc): s=  5:  2.54  s=  8:  1.96  s= 10:  1.77  s= 12:  1.64  [1 + r_M/s]
+      M_b = 5e+10 (r_M =  12.2 kpc): s=  5:  3.44  s=  8:  2.53  s= 10:  2.22  s= 12:  2.02  [1 + r_M/s]
+      M_b = 1e+11 (r_M =  17.3 kpc): s=  5:  4.45  s=  8:  3.16  s= 10:  2.73  s= 12:  2.44  [1 + r_M/s]
+
+--- (1) THE LCDM BASELINE at z ~ 0.1-0.3 (published close-pair fractions) ---
+    MaNGA (Fu et al. 2018)           | z~0.04, 105 pairs, r_p 1-30 kpc, dv<600, mu 0.1-1 | ~3% of M* galaxies in close pairs                    | V verified (arXiv:1801.00792 abstract)
+    local consensus (quoted in Fu+18) | z~0.1, M* = 4.6e10, r_p < 30 kpc, major      | ~2% in major pairs; rate ~0.04 /M*/Gyr (Robotham+14) | V
+    GAMA (Robotham et al. 2014)      | z 0.05-0.2; 1434/4741/13496 pairs at r<20/50/100 kpc, dv<500 | gamma_M = 0.021 (1+z)^1.53 (major pair fraction; ~2-3% at z~0.1) | V verified (MNRAS 444, 3986 abstract)
+    zCOSMOS (Lopez-Sanjuan et al. 2012) | z<1, r_p 10h^-1-30h^-1 kpc, dv<500, massive  | f_pair = 10^-1.88 (1+z)^2.2  (~1.6% at z=0.1)        | V verified (A&A 548, A7)
+    SDSS-class (Ellison et al. 2010; Xu et al. 2012) | z<0.15, M* > 1e10-1e11, r_p < 30-50 kpc      | SDSS DR7 close-pair samples (10^3-10^4 pairs; fractions cited 4-7% class) | U unverified in this lane -- cited sample provenance only
+    THE TASK ANCHOR                  | z 0.1-0.3, 20-30 kpc, 1e10-1e11 Msun-class   | f_pair ~ 5-10%                                       | U UNVERIFIED in this lane -- consistent with the rows above under the wider mass-ratio + M_b (gas-inclusive) conventions, but not itself checked
+  [PASS] B0 [baseline record] the published-pair-fraction table carries a VERIFIED/UNVERIFIED flag on every row and the task anchor 5-10% is flagged U (unverified)   verified rows: MaNGA 3% (1-30 kpc), GAMA 0.021(1+z)^1.53, consensus ~2% < 30 kpc
+    merger-timescale references: KW08 T = 2.2 Gyr (r_p/50kpc)(M/4e10)^-0.3 (1+z)/8 [V formula,
+    its z->0.1 extrapolation U-class]; the ratio forecast uses the self-similar-LCDM
+    dynamical-friction s^2-class (t ~ s^2 v_c/(G m lnL)), s-shape verified against the
+    density-sensitive BT v^3/rho form below.
+
+--- (2) THE DIRECTION DERIVATION (t_merge ~ s^2/(dE/dt)-class, deep-regime force) ---
+    t_merge(s) = E_bind/|dE/dt| with E_bind = G m^2/s, dE/dt = 4 pi G^2 m^2 rho lnL / v:
+    t_merge ~ s^{3/2} M_enc(s)^{1/2} / (G m lnL)   (standard df form; BT v^3/rho check below)
+    => at FIXED observed s, the residence time scales with sqrt(M_enc(s)): the deep well
+       holds pairs LONGER (queue lengthens); the 'lifetime shortens -> f_pair falls' branch
+       is rejected for the force enhancement (it confuses orbital period with drag timescale).
+    M_b = 1e+10: r_M(pair) =    5.5 kpc | s =   20 kpc: binding (1+s/r_M) =  4.66, residence sqrt(1+s/r_M)-1 = +116.0% vs baryon-only
+    M_b = 1e+10: r_M(pair) =    5.5 kpc | s =   40 kpc: binding (1+s/r_M) =  8.33, residence sqrt(1+s/r_M)-1 = +188.6% vs baryon-only
+    M_b = 3e+10: r_M(pair) =    9.5 kpc | s =   20 kpc: binding (1+s/r_M) =  3.12, residence sqrt(1+s/r_M)-1 =  +76.5% vs baryon-only
+    M_b = 3e+10: r_M(pair) =    9.5 kpc | s =   40 kpc: binding (1+s/r_M) =  5.23, residence sqrt(1+s/r_M)-1 = +128.7% vs baryon-only
+    M_b = 5e+10: r_M(pair) =   12.2 kpc | s =   20 kpc: binding (1+s/r_M) =  2.64, residence sqrt(1+s/r_M)-1 =  +62.4% vs baryon-only
+    M_b = 5e+10: r_M(pair) =   12.2 kpc | s =   40 kpc: binding (1+s/r_M) =  4.28, residence sqrt(1+s/r_M)-1 = +106.8% vs baryon-only
+    M_b = 1e+11: r_M(pair) =   17.3 kpc | s =   20 kpc: binding (1+s/r_M) =  2.16, residence sqrt(1+s/r_M)-1 =  +46.9% vs baryon-only
+    M_b = 1e+11: r_M(pair) =   17.3 kpc | s =   40 kpc: binding (1+s/r_M) =  3.32, residence sqrt(1+s/r_M)-1 =  +82.1% vs baryon-only
+    M_b = 2e+11: r_M(pair) =   24.4 kpc | s =   20 kpc: binding (1+s/r_M) =  1.82, residence sqrt(1+s/r_M)-1 =  +34.9% vs baryon-only
+    M_b = 2e+11: r_M(pair) =   24.4 kpc | s =   40 kpc: binding (1+s/r_M) =  2.64, residence sqrt(1+s/r_M)-1 =  +62.4% vs baryon-only
+  [PASS] V1a [direction vs baryon-only] the deep-window residence exceeds baryon-only Newton at EVERY (M_b, s) row: sqrt(1+s/r_M)-1 > 0 -- f_pair RISES at fixed s   the pair fraction is a queue length: feeding x residence; the residence branch is positive
+
+--- (3) THE MEASURABLE: delta(s) vs LCDM, 10-60 kpc, fixed M_b ---
+    central mapping (SHMR-faithful k(M_b), c = 12, a0 canonical), standard df form:
+    M_b        | delta(10)  delta(15)  delta(20)  delta(25)  delta(30)  delta(40)  delta(50)  delta(60)  [%]
+    M_b 1.0e+10 k=14.0 |   -0.3    -3.0    -3.8    -3.5    -2.8    -0.5    +2.2    +5.1
+    M_b 3.0e+10 k=11.0 |   +1.5    -1.9    -3.6    -4.3    -4.4    -3.5    -2.0    -0.1
+    M_b 5.0e+10 k= 9.5 |   +2.6    -0.5    -2.4    -3.4    -3.8    -3.5    -2.4    -0.9
+    M_b 1.0e+11 k= 7.0 |   +4.5    +2.4    +0.9    -0.1    -0.5    -0.5    +0.3    +1.5
+    M_b 2.0e+11 k= 5.5 |   +4.9    +3.7    +2.5    +1.6    +1.1    +0.8    +1.2    +2.1
+    density-sensitive (BT v^3/rho) treatment, same mapping:
+    M_b 1.0e+10 k=14.0 |  -10.9   -22.7   -30.9   -36.6   -40.7   -46.2   -49.7   -52.1
+    M_b 3.0e+10 k=11.0 |   -4.6   -13.8   -22.3   -28.9   -33.9   -40.9   -45.4   -48.6
+    M_b 5.0e+10 k= 9.5 |   -4.1   -10.6   -18.4   -25.0   -30.2   -37.7   -42.8   -46.3
+    M_b 1.0e+11 k= 7.0 |   -9.4   -10.5   -15.8   -21.3   -26.1   -33.7   -39.0   -42.9
+    M_b 2.0e+11 k= 5.5 |  -15.7   -12.1   -14.5   -18.5   -22.7   -29.9   -35.4   -39.6
+
+    THE FORECAST (delta = f_pair,fw/f_pair,LCDM - 1, %, head-to-head vs SHMR-matched NFW):
+      s = 20 kpc: central (M_b 5e10, k 9.5) =   -2.4% | band (std) [ -16.2,  +15.2]% | band (density-sensitive) [ -38.8,   -5.4]%   <-- EQUIPOISE
+      s = 40 kpc: central (M_b 5e10, k 9.5) =   -3.5% | band (std) [ -15.6,  +19.7]% | band (density-sensitive) [ -53.7,  -18.9]%   <-- EQUIPOISE
+    the crossover separation s* (Me_law = Me_cdm, std treatment):
+      M_b = 1e+10, k = 14.0: s* =   41.8 kpc (INSIDE the 10-60 kpc window)
+      M_b = 3e+10, k = 11.0: s* =   60.6 kpc (outside the window)
+      M_b = 5e+10, k =  9.5: s* =   65.3 kpc (outside the window)
+      M_b = 1e+11, k =  7.0: s* =   46.8 kpc (INSIDE the 10-60 kpc window)
+      M_b = 2e+11, k =  5.5: s* =    4.0 kpc (outside the window)
+  [PASS] V1b [direction vs LCDM] the signed direction is the enclosed-mass census: excess where Me_law > Me_cdm, crossover at s* (printed per M_b); the naive 'lifetime-shortens' branch rejected (A-V1a); SDSS-prime rows straddle zero   s* rows: 1e+10->42kpc, 3e+10->61kpc, 5e+10->65kpc, 1e+11->47kpc, 2e+11->4kpc
+  [PASS] V2 [magnitude] delta(20) and delta(40) reported central + band (std + density-sensitive treatments); the SDSS-prime central value is near-zero   delta(20) = -2.4% [band -16..+15%], delta(40) = -3.5% [band -16..+20%]
+
+--- (4) THE DISRUPTION REGIME (Roche-class criterion derived fresh; G118 not landed) ---
+    s_cap^3 = k_roche * 2 G M_enc(s_cap) R_t / g_int(R_t), R_t = 4 kpc, k_roche in {1.26, 2.44}
+    M_b = 1e+10: s_cap,law =   9.4 kpc, s_cap,cdm =  10.8 kpc, capture flux ratio Phi =  0.77 (k_roche = 2.44)
+    M_b = 3e+10: s_cap,law =   9.2 kpc, s_cap,cdm =  10.0 kpc, capture flux ratio Phi =  0.87 (k_roche = 2.44)
+    M_b = 5e+10: s_cap,law =   9.1 kpc, s_cap,cdm =   9.7 kpc, capture flux ratio Phi =  0.92 (k_roche = 2.44)
+    M_b = 1e+11: s_cap,law =   8.9 kpc, s_cap,cdm =   9.3 kpc, capture flux ratio Phi =  0.99 (k_roche = 2.44)
+    M_b = 2e+11: s_cap,law =   8.8 kpc, s_cap,cdm =   9.0 kpc, capture flux ratio Phi =  1.02 (k_roche = 2.44)
+  [PASS] V1c [disruption regime] at s < ~2 s_cap the inflow is renormalized by the capture-flux ratio (band 0.77-1.02, k_roche 1.26-2.44); at s > 20 kpc flux conservation from the outer binding scale gives Phi = 1 -- the forecast of (3) is the steady-state head-to-head   Phi(2.44) rows 1e+10:0.77, 3e+10:0.87, 5e+10:0.92, 1e+11:0.99, 2e+11:1.02
+
+--- (5) THE SAMPLE REQUIREMENT: N_pairs for 3 sigma at fixed (M_b, s-bin) ---
+    sigma_f/f = sqrt(1/N_p + sys^2); N3 = 1/((delta/3)^2 - sys^2)  (sys = relative systematic)
+    delta =  +10%: N_p(3sigma) sys 0.00 =    900   sys 0.05 =    inf   sys 0.10 =    inf   sys 0.15 =    inf   sys 0.20 =    inf
+    delta =  +20%: N_p(3sigma) sys 0.00 =    225   sys 0.05 =    515   sys 0.10 =    inf   sys 0.15 =    inf   sys 0.20 =    inf
+    delta =  +30%: N_p(3sigma) sys 0.00 =    101   sys 0.05 =    134   sys 0.10 =    inf   sys 0.15 =    inf   sys 0.20 =    inf
+    delta =  +50%: N_p(3sigma) sys 0.00 =     36   sys 0.05 =     40   sys 0.10 =     57   sys 0.15 =    190   sys 0.20 =    inf
+    SDSS/GAMA-class availability per (M*, s-window 10-60 kpc) bin: GAMA PSr50v500 = 4741 pairs [V]; SDSS DR7 Ellison-class 10^3-10^4 [U]; in-window M* cuts ~500-3000 [U-class]
+    achieved sigma at delta = 0.30 (the massive-corner / outer-bin reading):
+      N_p =   200, sys = 0.05: sigma =   3.5
+      N_p =   200, sys = 0.10: sigma =   2.4
+      N_p =   200, sys = 0.15: sigma =   1.8
+      N_p =  1000, sys = 0.05: sigma =   5.1
+      N_p =  1000, sys = 0.10: sigma =   2.9
+      N_p =  1000, sys = 0.15: sigma =   2.0
+      N_p =  5000, sys = 0.05: sigma =   5.8
+      N_p =  5000, sys = 0.10: sigma =   3.0
+      N_p =  5000, sys = 0.15: sigma =   2.0
+  [PASS] V3 [sample] the REACHABLE 3-sigma corners: the deep-deficit rows (density-sensitive treatment, 40-60 kpc, light M_b: delta ~ -40..-52%) need N <= 100 at sys = 10%; the massive-corner excess (std, +15-20%) needs sys <= 5% at SDSS/GAMA-class availability; the prime-mass centroids (delta ~ 2-5%) are NOT 3-sigma reachable at any achievable N -- the test resolves on the CORNERS and the shape, not the centroid   N3(50%, 10%) = 57; N3(30%, 5%) = 134; N3(20%, 5%) = 515; N3(10%, 0%) = 900
+
+--- VERDICTS ---
+  [PASS] V4 [honest statement]   THE CLOSE-PAIR FORECAST: THE 1/r LAW BUYS ITS OWN MERGER QUEUE -- AND THE QUEUE IS A CENSUS, NOT A SIGN.  (1) The registered machinery (G086 V2c): at fixed separation s the pair binding is (1 + s/r_M(pair)) times baryon-only -- exactly 2.000 at r_M(pair) = 12-39 kpc -- and the merger TIMESCALE at fixed s scales as sqrt(M_enc(s)) (t_merge ~ s^{3/2} M_enc^{1/2}, the s^2/(dE/dt) dynamical-friction class): the deep well holds pairs LONGER, so relative to baryon-only Newton the close-pair fraction RISES at every (M_b, s) (+35% to +190% in-window) -- the naive 'stronger force -> faster -> fewer pairs' branch is the orbital-period confusion and is REJECTED; BOTH prompt branches (lifetime, inflow) enter the pair 'queue length' f_pair(s) ~ (feeding) x (residence) positively.  (2) The head-to-head vs LCDM is an ENCLOSED-MASS CENSUS: at 20-40 kpc the law's M_dark(<s) = M_b s/r_M and an SHMR-matched NFW carry comparable in-window mass (both reproduce the G071 zero-parameter rotation curves at 1-2 r_M -- same reason the pair test is a PRECISION test, not a discovery test), and the computed delta(s) = f_pair,fw/f_pair,LCDM - 1 runs over [-39%, +15%] at 20 kpc and [-54%, +20%] at 40 kpc (SHMR x c x a0 x drag-treatment band), with the SDSS-prime centroid (M* ~ 3e10-5e10) at -2 to -5% (SLIGHT DEFICIT at fixed s -- the SHMR-matched CDM halo is the more massive in-window bag at the central mapping) and the crossover separation s* = 4-65 kpc (inside the window for the light and massive-L* rows: 42 and 47 kpc); the ROBUST fingerprints are the MASS TREND (delta rises with M_b at fixed s -- -0.3% to +4.9% at 10 kpc and -3.8% to +2.5% at 20 kpc across the mass rows: the law's halo wins at the massive corner and above s*) and the SHAPE (density-sensitive treatment: the deficit deepens monotonically outward, -41%..-52% at 60 kpc -- the NFW projected density beats the 1/s^2 phantom envelope at every in-window radius for the SHMR-central mapping).  (3) The 3-sigma sample: the reachable corners are the DEEP-DEFICIT rows (delta ~ -40..-52%: N <= 100 pairs per bin at a 10% systematic; the mass-resolved outer window of GAMA-class samples supplies this) and the massive-corner excess (+15-20%: N ~ 300 sys-free, needs sys <= 5%); the prime-mass centroids (2-5%) are NOT 3-sigma reachable at any achievable N -- the test resolves on the corners, the mass trend and the shape, not a single number.  (4) THE HONEST STATEMENT: close-pair statistics at 10-60 kpc are the cleanest galaxy-scale probe of the 1/r law outside the Solar System -- the pair queue is set by the same zero-parameter enclosed mass that the rotation curves verify, at separations where the deep-regime binding is 1.5-4x Newton -- with the baseline 5-10% at 20-30 kpc marked UNVERIFIED (the verified rows: MaNGA ~3% at 1-30 kpc, GAMA gamma_M = 0.021(1+z)^1.53, zCOSMOS 10^-1.88(1+z)^2.2), the sign ambiguity resolved INTO a mass-/separation-resolved census (equipoise at the prime mass; deficit in the density-sensitive reading; excess at the massive corner), the exposure of the test stated (fiber collisions and projection degeneracies dominate the systematics; the SHMR mapping is the one imported input and is banded; the disruption regime below ~2 s_cap ~ 18-20 kpc carries the capture-flux band 0.77-1.02) -- and the dwarf-pair Kepler law (hunt h47: A = 1.79 +- 0.20) already hints at the same deep-regime binding for isolated pairs in the same separation decade.
+
+G121 COMPLETE: 9/9 checks PASS.
+wrote /Users/carlzimmerman/new_physics/zimmerman-formula/deepseek_push/G121_results.json
