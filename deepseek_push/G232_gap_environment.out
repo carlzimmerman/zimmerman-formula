@@ -1,0 +1,93 @@
+========================================================================================================
+G232 -- C4's KILL TEST: the a0_eff/a0_DE GAP vs THE ENVIRONMENT
+        (hy4 H054 C4 [I]: if a_0 is emergent, rho_Lambda sets it only approximately,
+         so the gap should CORRELATE WITH ENVIRONMENT -- a REAL kill)
+        foot: a0_DE = 9.36190e-11 m/s^2; deep window g_N < 0.2 a0 (G208)
+========================================================================================================
+
+--- PART 0: PER-GALAXY a0_eff-deep (G208's construction, recomputed in-file) ---
+  HI   : 55 dwarfs (LT 26 + FIGGS 29)  a0e med 1.075 x1e-10 (G208/G199 1.0751e-10)
+  SPARC: 35 isolated z0 (G071, Y<0.1)  a0e per-gal med 0.501 x1e-10 (G208 0.501)
+  residual_dex = log10(a0e/a0_DE): HI med +0.060 | SPARC med -0.271
+  env-table coverage: SPARC 35/35 | HI 4/55 (matched by de-spaced name: ['DDO 154', 'DDO 168', 'NGC 2366', 'NGC 3741'])
+
+--- PART 1: THE CORRELATION: residual_dex vs the environment (SPARC, fully matched) ---
+  per-galaxy residual_dex: N=35, med -0.271, MAD 0.220 dex; e_N_maxclu range 1.13e-03..3.88e-02 (max 0.039)
+  Spearman(e_N_maxclu (g_ext/a0, 2M++/MCXC maxclu)       )  rho = -0.194   p = 0.2615   (n=35)
+  Spearman(e_N_noclu  (g_ext/a0, no-cluster)             )  rho = -0.189   p = 0.2743   (n=35)
+  Spearman(g_ext abs  (m/s^2 = e_N . a0_DE)              )  rho = -0.194   p = 0.2615   (n=35)
+  Nm_host (neighbour count)                      DEGENERATE in-sample (constant value 0.301 for all n=35) -- no lever, stated
+  Spearman(onepd_2mpp (1-Mpc 2M++ density)               )  rho = -0.009   p = 0.9594   (n=35)
+  Spearman(dom_share (dominant-structure share)          )  rho = -0.071   p = 0.6864   (n=35)
+  dom_kind (group field, cluster=1)              DEGENERATE in-sample (constant value 1 for all n=35) -- no lever, stated
+  EXTREME FACE (top-5 vs bottom-5 e_N): mean residual -0.525 vs -0.099 dex -> diff -0.426 +- 0.162 (-2.63 sigma, n=5+5)
+    TOP  UGC05764     e_N=0.0048  resid=-0.557 dex
+    TOP  UGC05829     e_N=0.0053  resid=-0.801 dex
+    TOP  UGC07125     e_N=0.0058  resid=-0.808 dex
+    TOP  NGC4559      e_N=0.0089  resid=-0.214 dex
+    TOP  UGC07261     e_N=0.0388  resid=-0.246 dex
+    BOT  NGC1003      e_N=0.0011  resid=-0.226 dex
+    BOT  UGC00891     e_N=0.0012  resid=-0.403 dex
+    BOT  UGC03580     e_N=0.0012  resid=+0.023 dex
+    BOT  NGC0100      e_N=0.0012  resid=-0.043 dex
+    BOT  ESO116-G012  e_N=0.0014  resid=+0.154 dex
+  LOO (drop the e_N-extreme galaxy UGC07261, e_N=0.0388): top-5-of-rest vs bottom-5 diff -0.329 +- 0.222 (-1.48 sigma)
+  POOLED (SPARC 35 + HI-matched 4: DDO154/DDO168/NGC2366/NGC3741): rho = -0.120 (p 0.4680) -- 4-point field anchor, no power, stated
+
+--- PART 2: THE NULLS ---
+  (a) UNIVERSAL-scale reading: the residual is FOOTING-ONLY, no environmental run
+      -> rho ~ 0, p ~ ns (the gap would be a constant offset, not a gradient)
+  (b) EFFECTIVE/EMERGENT reading: a REAL run -- the LOW-EFE galaxies show the
+      LARGEST residual -> rho < 0 (residual falls as g_ext rises)
+  MEASURED on the primary axis (e_N_maxclu, SPARC N=35): rho = -0.194, p = 0.2615
+  VERDICT ON THE NULLS: the data do NOT prefer (b): the correlation is absent/ns -> consistent with (a) the universal/footing-only reading at the committed amplitudes (see the amplitude caveat)
+  AMPLITUDE CAVEAT (registered): the committed SPARC e_N spans only 0.0008-0.039;
+    the EFE-shift scale at the top e_N ~ (g_ext)^2/a0 ~ 0.2% of a0 vs the per-galaxy residual MAD 0.22 dex -- the run the emergent reading predicts here is far below the per-galaxy scatter (a starving test)
+
+--- PART 3: THE SPLITS ---
+  S1 SPARC MEDIAN-e_N SPLIT (median e_N = 0.0031):
+     high-EFE half (n=18): mean residual -0.399 dex (a0e med 0.487 x1e-10)
+     low-EFE  half (n=17): mean residual -0.183 dex (a0e med 0.556 x1e-10)
+     HIGH - LOW = -0.217 +- 0.106 dex  ->  sigma = -2.05  (emergent predicts NEGATIVE: low-EFE larger residual)
+     bootstrap 95% CI [-0.423, -0.012], P(diff>=0) = 0.019
+  CONFOUND AUDIT (high-e_N half vs low-e_N half):
+    log10 D (f_dark proxy)       high +0.193 vs low +0.278 -> diff -0.084 (-1.85 sigma) | rho(e_N, log10 D (f_dark proxy)) = -0.34
+    log10 Mb                     high +9.623 vs low +9.802 -> diff -0.178 (-0.86 sigma) | rho(e_N, log10 Mb) = -0.13
+    overall: rho(e_N, log10 D) = -0.34 | rho(e_N, log10 Mb) = -0.13 -- if strong, the S1 split mirrors the registered f_dark/mass structure, NOT the EFE
+    F-LAW DECOMPOSITION (G208: log10 a0e = -0.640 + 1.47 log10 D): the D-difference -0.084 dex predicts an a0e shift -0.124 dex ~ 57% of the observed +0.217-dex split; environmental remainder -0.092 dex (-0.9 sigma)
+
+  S2 HI FIELD DWARFS (lowest EFE) vs WALLABY GROUP MEMBERS (G100's pair axis):
+  (recompute of G100's gas-RAR machinery: per-galaxy a0_gas = median g_obs^2/g_N over
+   deep rings g_N < 0.1 a0; e_N_b = max G*2.66*M_HI_j/d_proj^2 over neighbours in G100's
+   linking corridor -- |dD|<=2 Mpc, d_proj<=200 kpc, theta<=3 deg)
+  WALLABY cleaning replicating G100: 544 quality + 66 comment drops, 6 comment merges, 2 geometric merges; targets 2345 | clean neighbours 1828
+  recomputed e_N_b (bracket 2.66*M_HI, G100's scheme): max over ALL targets 0.1931 (G100 registered 0.1931) | over KINEMATIC targets 0.0033 (G100 registered 0.0033) | kinematic n_eN>0 44/231
+  WALLABY kinematics with deep rings: 230 (231 with curves); group members (e_N>0): 44, field: 186
+  recomputed e_N_b over the KINEMATIC sample: max 0.0033 (G100 registered kinematic max 0.0033) | n>0: 44 (all-target max 0.1931 vs G100's 0.1931)
+  a0_gas (gas-only abscissa): group members med 6.426 x1e-10 mean(log10) -9.343 (n=44) | WALLABY field med 5.152 x1e-10 mean(log10) -9.283 (n=186) | HI field dwarfs (G114, full baryons) med 1.075 x1e-10 mean(log10) -9.952 (n=55)
+  WITHIN-WALLABY group-vs-field: mean log10 a0_gas -9.343 vs -9.283 dex -> diff -0.060 +- 0.127 (-0.47 sigma) | MEDIANS: group -9.192 vs field -9.288 dex -> +0.096 dex (median runs the ANTI-emergent way)
+  HI FIELD (lowest EFE) vs WALLABY GROUP MEMBERS: mean log10 a0 -9.952 (HI) vs -9.343 (group) -> HI - GROUP = -0.609 +- 0.143 dex (-4.27 sigma); medians -9.969 vs -9.192 (-0.777 dex)
+  SYSTEMATIC BRACKET: the WALLABY side is GAS-ONLY (no stellar masses; G100 registered +0.2 dex absolute deep-end offset).  Applying that -0.2 dex to the group side moves HI - GROUP to -0.409 dex (-2.87 sigma) -- the correction direction HELPS the emergent prediction, but the comparison stays construction-mismatched (G114 full baryons vs WALLABY M_HI-only)
+  CROSS-CHECK (G100 registered): WALLABY last-ring deep-end residual, high-e_N minus low-e_N
+    = -0.207 dex, CI95 [-0.505, +0.050], p(offset>=0) = 0.083 -- the survey-pair axis shows
+    an ns candidate in the additive (sag-low) direction; 2M++ axis +0.070 ns
+
+--- THE CHECKS
+  [PASS] C0 [registers] HI a0e med == 1.0751e-10 (2%) and SPARC per-gal med == 0.501e-10 (10%)   1.075 vs 1.0751 | 0.501 vs 0.501
+  [PASS] C1 [coverage] ALL 35 SPARC galaxies matched to the committed env tables (gext + envtab)   35/35
+  [PASS] C2 [correlation computed] primary-axis Spearman rho + p reported on n >= 30   rho_main -0.194, axes computed 6
+  [PASS] C3 [determinism] permutation p seeded (seed=232, n=20000)   seeded rng
+  [PASS] C4 [WALLABY recompute] G100's pair axis reproduced: all-target max e_N_b within 25% of the registered 0.1931 AND kinematic max within 50% of 0.0033, with n_eN>0 >= 20   all-target 0.1931 vs 0.1931 | kinematic 0.0033 vs 0.0033 | n>0 44
+  [PASS] C5 [deep rings] WALLABY a0_gas computed for >= 15 galaxies with >= 2 deep rings   n=230
+  [PASS] C6 [extreme face stated] top-5 vs bottom-5 e_N residual difference reported   diff -0.426 dex
+
+G232 COMPLETE: 7/7 checks PASS.
+written: G232_results.json
+VERDICTS:
+  V1 THE CORRELATION (per-galaxy a0_eff-deep residual = log10(a0e/a0_DE) vs the committed environment, SPARC N=35): primary axis e_N_maxclu = g_ext/a0 (2M++/MCXC maxclu, gext_vectors_2026): Spearman rho = -0.194, p = 0.2615.  Full axis set: e_N_maxclu (g_ext/a0, 2M++/MCXC maxclu) rho -0.194 (p 0.2615); e_N_noclu  (g_ext/a0, no-cluster) rho -0.189 (p 0.2743); g_ext abs  (m/s^2 = e_N . a0_DE) rho -0.194 (p 0.2615); Nm_host (neighbour count) DEGENERATE (constant in-sample); onepd_2mpp (1-Mpc 2M++ density) rho -0.009 (p 0.9594); dom_share (dominant-structure share) rho -0.071 (p 0.6864); dom_kind (group field, cluster=1) DEGENERATE (constant in-sample).  Extreme face (top-5 vs bottom-5 e_N): -0.426 +- 0.162 dex (-2.63 sigma; LOO drop UGC07261: -0.329 +- 0.222, -1.48 sigma).
+
+  V2 THE SPLITS.  S1 (SPARC at the median e_N = 0.0031): high-EFE half mean residual -0.399 dex vs low-EFE -0.183 dex -> HIGH - LOW = -0.217 +- 0.106 dex, sigma = -2.05, bootstrap 95% CI [-0.423, -0.012], P(diff>=0) = 0.019 (emergent predicts NEGATIVE).  CONFOUND AUDIT: the high-e_N half differs from the low in the registered in-sample driver D (f_dark proxy) by -1.85 sigma, rho(e_N, log10 D) = -0.34, rho(e_N, log10 Mb) = -0.13 -- the split is NOT clean of G208's known f_dark structure.  S2 (field vs group): HI field dwarfs a0e med 1.075 x1e-10 (n=55, full baryons) vs WALLABY group members a0_gas med 6.426 x1e-10 (n=44): raw HI - GROUP = -0.609 +- 0.143 dex (-4.27 sigma) -- CONSTRUCTION-DOMINATED (gas-only vs full-baryon abscissa, +0.78 dex systematic floor, only -0.2 dex of which is G100-registered); the construction-clean within-WALLABY group-vs-field a0_gas diff -0.060 +- 0.127 dex (-0.47 sigma, medians +0.096 dex anti-emergent); the G100 registered last-ring split (high-e_N minus low-e_N, the same environmental face on the RAR directly): -0.207 dex, CI [-0.505, +0.050], p = 0.083 ns.
+
+  V3 C4's KILL TEST -- VERDICT: UNCORRELATED (primary axis) with a direction-correct 2-sigma split candidate -- NOT CONFIRMED WITH THE NUMBERS.  On the fully matched SPARC sample the per-galaxy residual vs e_N_maxclu gives rho = -0.194, p = 0.2615 -- the primary correlation is ABSENT (the universal/foothing reading's expectation) -- and the median-e_N split runs HIGH - LOW = -0.217 +- 0.106 dex (-2.05 sigma, bootstrap P(diff>=0) = 0.019) with the extreme face -0.426 +- 0.162 dex (-2.63 sigma), BOTH in the emergent-predicted direction (low-EFE -> larger residual).  TWO AMPLITUDE/PURITY OBJECTIONS prevent reading that as C4 confirmation: (i) the committed e_N only spans 0.0008-0.039 and the EFE floor shift at the top e_N = (g_ext)^2/a0 ~ 0.15% of a0 (6.52e-04 dex) vs a per-galaxy residual MAD 0.22 dex -- the observed 0.22-dex split is ~332x LARGER than the emergent/rho_Lambda amplitude budget (if real, it is NOT the EFE channel); (ii) the high-e_N half differs in the registered in-sample driver D by -1.85 sigma (rho(e_N, log10 D) = -0.34), and G208's own F law (log10 a0e = -0.640 + 1.47 log10 D) attributes 57% of the observed split to that D-difference -- the environmental remainder is only -0.09 dex (-0.9 sigma): the split is CONFOUNDED with G208's f_dark structure.  The GROUP/PAIR face (HI field vs WALLABY group members: raw -0.609 +- 0.143 dex, -4.27 sigma, but CONSTRUCTION-DOMINATED -- gas-only vs full-baryon abscissa, +0.78 dex systematic floor; the construction-clean within-WALLABY face -0.060 +- 0.127 dex, -0.47 sigma with anti-emergent medians; G100 registered last-ring split -0.207 dex, p = 0.083 ns) is also null-to-candidate.  C4's kill test therefore: the EMERGENT reading's environmental correlation is NOT confirmed (primary rho null, amplitude-inconsistent candidate, confounded split) and the UNIVERSAL reading is NOT killed -- the data are largely SILENT at the committed amplitudes, with a direction-correct ~2-sigma split candidate on the SPARC face REGISTERED for the large-EFE sample (e_N ~ 0.3-1, the G036/G044 registered boundary) that can actually distinguish.
+
+done
