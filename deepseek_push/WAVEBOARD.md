@@ -1530,6 +1530,98 @@ dilute classical gas entropy, non-gravitating, no holographic claim, no
 entropy reservoir added to the cosmic ledger; the k_B-band normalization
 convention-dependence (G132 trap) registered as the open note.
 
+## WAVE 30 (B-series, 8/8 landed -- the particle face fully specified; B9/B10 riding)
+B1 THE 2.55-KEV LINE PROFILE 11/11: E = m/2 = 2.5443 keV; sigma_E =
+1.19 eV (caustic, G182) / 6.05 eV thermal (Z7) / 7.16 eV core (S04) --
+full Doppler envelope [1.19, 8.08] eV, never intrinsic (no rate); the
+spatial law: the Abel projection of rho_ph = A/r^2 is the EXACT 1/b cusp
+(relative 5e-15) vs the NFW flat core -- the composite slope [0.7, 1.0)
+inside r_M steepening inward (brightness 6.4x from 1->0.1 r_M vs NFW 1.45x);
+THE ENVIRONMENTAL SWITCH: the line is present in the frozen class (z* >= 0)
+and ABSENT in all 34 never-froze dSphs (z* < 0: the phase mass undefined):
+the three confirm/kill numbers = E 2.5443 keV, sigma_E 1-8 eV, I ~ b^-1
+cusp + the UFD-absence switch.
+B2 THE LINE-FLUX MAP 10/10: S(b) = (Gamma/4pi)(1/m)Sigma(b): phantom r^-2
+projects to the EXACT 1/b column (slope -1.0000), dust r^-1.7 to b^-0.7
+(exact Gamma-function identity), NFW flattens interior -- the shape is
+RATE-INDEPENDENT (identical at Gamma and 2Gamma to 1e-10); the cosmic
+line: dI/dE = 1.065e26 ph/cm2/s/sr/keV per (Gamma = 1/s); THE RATE BOUNDS
+from non-detection: cosmic budget Gamma < 1.88e-29 /s (tau > 1.7e12 yr),
+MW-center column Gamma < 3.30e-33 /s (tau > 9.6e15 yr), cluster 0.2 R500
+Gamma < 7.6e-32 -- ALWAYS bounds (the framework predicts the profile and
+the budget, not the rate); the X-ray null is the only constraint
+(t_relax = 1e73-1e76 t_H closes the dynamical channel).
+B3 THE DOUBLE-Z ACROSS MASS 10/10 -- ENVIRONMENT-BLINDNESS PROVEN: the
+same ladder at every committed G213 freeze rung (freeze floor 65,
+galaxy 119.2/z* 2.4, group 250/13.8, cluster 600-992/84-232) recovers
+m in [5.0000, 5.0001] keV, spread 0.00012 keV -- ONE MASS FROM EVERY
+ENVIRONMENT THAT FROZE (0.0013 sigma among rungs, <= 0.93 sigma vs the
+5.09 germ; Z appears in every environment's sigma^2 with each rung's own
+physically-right M_b class); THE MASSLESS RUNG: the UFD class breaks the
+ladder exactly where G213's map says it must -- naive freeze-today masses
+k_B T_0/sigma^2_obs = 154-3990 keV, 34/34 ABOVE the kill band (30-780x the
+germ); the algebraic continuation below z* = -1 is formally NEGATIVE
+(m(z*=-1.5) = -0.74 keV: no real equilibrium) -- the unphysical branch IS
+the never-froze domain G213 declares undefined.
+B4 THE 3-Z^2 SEQUENCE TEST 5/5 -- CLOSED: the pre-registered family
+(m_i/(3Z^2)^n, n = 0..2, 15 members vs the 3-rung ladder at 1%) with the
+expected count stated BEFORE (E ~ 0.10 from the null's window math): the
+run: EXACTLY ONE survivor = the A01 hook itself (m_e/100.531 = 5.083 keV,
+z = -0.058 sig); 0 additional members (m_mu/m_p/m_n/m_tau classes all miss
+every rung by >= 100%); the gate: E_chance = 0.10 = 300x the family-wise
+E* = 3.3e-4 -> IMPASSABLE BY CONSTRUCTION: m_e/100 STANDS AS A SINGLE
+COINCIDENCE (the registered curiosity; falsifier registered: any measured
+m_i/100.531^n within 1% of a rung re-opens it).
+B5 THE DARK GAS THERMODYNAMICS 11/11 -- THE sqrt-2 IDENTITY DISCOVERED:
+the state functions (gamma = 1 exact, C_V = N k_B, kappa_T = 1/sigma^2 =
+6.78e-11, Q_1K = 1.97e50 J MW); THE RESPONSE LAG: c_s = sigma, t_sound =
+r_M/c_s vs t_dyn = r_M/v_flat: THE RATIO = sqrt(2) = 1.414214 EXACTLY (the
+isothermal identity, G127 C2's c_s t_ff/r = 1/sqrt(2) < 1) -- the sector
+re-arranges at the sound speed, prompt order-unity, never delayed (HeCS
+sound response lags the light crossing by c/c_s = 327); THE HEATING
+RESPONSE: delta-T_rms/T = N^-1/2 = 2.65e-37, delta-T_rms = 2.47e-36 K
+scale-invariant; G135's 0.076-dex scatter is 6.6e35x above the heat-
+capacity floor -> 100% non-thermal (HSE/mass-estimate quality);
+falsifier registered: a resolved dark-sector response at speed != sigma or
+lag != sqrt(2) t_dyn kills the isothermal-gas reading.
+B6 THE T-XRAY LAW ACROSS ALL CLUSTERS 14/14: the full sample = X-COP 12 +
+HeCS 12 (positional eRASS1 match, the 46 without measured T excluded, stated)
++ E11 26 = 50 objects, 3 instruments, 2.5 dex mass, 1.25 dex temperature:
+median T_pred/T_obs = 0.560/0.721/0.433 (identity form); the WITHIN-SAMPLE
+MAD = 0.053 dex = AT the G109 0.062-dex benchmark; the amplitude gap
+reproduces the G075 class (0.280, the total-mass virial floor f = 5.66);
+THE INVERSE ESTIMATOR: M_impl = 4(k_B T/mu m_p)^2/(G a0) at the horizon
+footing -- SZ-class, zero parameters (0.103 X-COP / 0.166 E11 dex
+precision); the systematics (mu, HSE 0.053, f_b) budgeted; the largest
+zero-parameter particle-sector test in the repo, verified at the horizon.
+B7 THE DECOUPLING THERMAL HISTORY 10/10: T_b = 9.338 K -> z* = 2.426 in
+band; the occupation factor CORRECTED: m/k_B T = 6.44e6 (NOT the brief's
+6.6e8 -- exponent 100x lower, occupation still astronomically zero at
+10^-2.8e6): the equilibrium IS a condensed/coherent phase, not a relic
+Boltzmann gas; THE DENSITY: the phantom CONDENSES at freeze -- rho(z*) =
+1.393e-20 kg/m3 = 1.32e5 x the cosmic mean at z* (it condenses, it does
+not freeze homogeneous and collapse), today's rho = A/r^2 is the frozen
+density; the imprint: a linearly-frozen species would sit at bias 0.042,
+excluded (S_meas = 1.0) -- the phantom is the well's equilibrium (bias = 1
+by construction); the observable: NO free-streaming cut; falsifiers
+pre-registered (a measured cut; a measurable thermal gas; the BTFR zero
+point not breaking at z*).
+B8 THE CONDENSATE EXCITATIONS 15/15: the EOS carries one velocity scale:
+c_s^2 = C/2 = sigma^2 -> a GAUGELESS GOLDSTONE acoustic branch omega(k) =
+c_s k (121.4 km/s MW, 628-915 cluster), gap EXACTLY ZERO (G081's omega^2 =
+0 EXACT = the k->0 face: no growing mode, no decay channel); modes above
+L_1 = 2 pi c_s t_H (10.8 Mpc MW) are Hubble-slow; THE NO-HEATING
+PREDICTION: the Landau criterion v_c = c_s: subsonic passages excite
+nothing, supersonic deposit only a coherent ordered wake, nothing
+thermalizes (dust t_relax = 1e73-1e76 t_H) -- a generic ICM shock carries
+1.3e6x the phantom's 1%-sigma^2 heating cost and heats nothing (T_b is a
+fixed point); the granularity test: shot noise 2.6e-37, the census no-break
+at 19 (3.2-4.1 sig to the smooth face); the honest tensions: NOT a
+degenerate BEC (n lambda_dB^3 = 3.4e-11), the phantom is the capped
+minority (dust 79-97%) -- the tests discriminate the phantom envelope
+(slope -2 vs NFW -3), not the dust's subhalos; V3 kill criteria registered.
+(B9 the baryon pin, B10 PARTICLE_SECTOR.md: in flight.)
+
 ## SIBLING COORDINATION (for qwen38 / hy4 / other tracks; read this first)
 ## WAVE 26 (landed 10/10 -- THE MASS CONVERGED; the scale final; the dSph boundary explained; the census leans charge)
 G208 DEEP-STAIRCASE ORTHOGONALITY 14/14 -- TWO-LAYER: the top stair is the
