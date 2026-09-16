@@ -1,0 +1,155 @@
+====================================================================================================
+G138 -- THE CAP-FIRING-RADIUS RECONCILIATION: where does the cap bite?
+====================================================================================================
+X-COP clusters loaded: 12; a0 can/alt = 9.3623e-11/1.128e-10 m/s^2; g_ext = cH0 = 6.548e-10 = 6.99 a0 (canonical)
+
+====================================================================================================
+V0 -- ANCHORS: the registered R_cap rows and the 711.6 = 711.6 rows
+      reproduced on the committed tables before anything new
+====================================================================================================
+  [PASS] V0a [anchor] the recomputed g_tot = a0 crossings reproduce G057b's registered R_cap(a0) column (296-958 kpc; A1644/A2255 none) on the 12 clusters x 2 footings
+         measured: max relative deviation = 0.00e+00 over the registered finite entries
+  [PASS] V0b [anchor] the registered degeneracy: split == uncapped phantom row-for-row on the 50-600 kpc grid (the cap never fires -> the two predictions are the same vector), median 711.6 on both footings
+         measured: canonical split 711.6 = ph 711.6; alt split 711.6 = ph 711.6
+         note    : by construction under the cH0 rule the cap never fires on the grid: g_tot(50 kpc) < cH0 for every cluster
+    g_tot(50 kpc)/cH0: min 0.097, median 0.413, max 0.664 (G097's note: ~0.9, the field never reaches cH0)
+
+====================================================================================================
+V1 -- THE FIRING RADII: the g_tot = g_ext crossing per rule, per cluster, vs the 50-600 kpc window and R500
+====================================================================================================
+  cl        R500 Rc(a0)can Rc(a0)alt  Rc(cH0)  Rc(self)  rM(a0) rCap(self) 600/R500
+  A1644     1054      none      none      none      1054     274        422    0.569
+  A1795     1153       618       489      none      1153     342        497    0.520
+  A2029     1423       943       809       31      1423     521        681    0.422
+  A2142     1424       928       708      none      1424     568        691    0.421
+  A2255     1196      none      none      none      1196     399        535    0.502
+  A2319     1346       958       760      none      1346     580        720    0.446
+  A3158     1123       476       296      none      1123     333        462    0.534
+  A3266     1430       632       501      none      1430     nan       none    0.420
+  A644      1230       851       765      none      1230     388        557    0.488
+  A85       1235       655       497      none      1235     406        559    0.486
+  RXC1825   1105       478       314      none      1105     312        444    0.543
+  ZW1215    1358       752       548      none      1358     405        516    0.442
+
+  a0-class firing radius (what G057b registered): in the 50-600 kpc window 2/12 (canonical), 6/12 (alt); in the 600 kpc-R500 outer window 8/12 (4/12); no crossing (g_tot < a0 everywhere, never fires) 2/12 (A1644, A2255).
+  cH0-class (the committed operative rule): fires left of 50 kpc for 1/12 (A2029 at 31 kpc, an edge artefact); never in-window for 12/12 -- the registered never-fired.
+  self-class (g_ext = own field at R500): r_fire = R500-class for 12/12 (the whole profile inside R500 is screened; split = bare baryons in-window -- the known all-capped extreme).
+  [PASS] V1 [firing radius vs the window] the registered puzzle is a CLASS MISMATCH: R_cap(a0) 296-958 kpc is the a0-crossing (a0-class firing radius), while the operative split rule uses g_ext = cH0 whose crossing lies at < 50 kpc (or never) -- so 'the cap never fired in the 50-600 kpc window' is exactly true for the cH0 rule and the a0-class column registers a different, window-adjacent quantity
+         measured: cH0: in-window 0/12 (left-of-window 1/12); a0-class in-window 2/12 + 600-R500 8/12 (canonical); self-class screens the whole window (12/12)
+
+====================================================================================================
+V2 -- OUTER-WINDOW TESTABILITY: per-cluster delta chi2
+      (split MINUS uncapped floor) per window per firing rule
+====================================================================================================
+
+  --- canonical: delta chi2 per cluster = split(rule) - uncapped floor (the floor is the 711.6 model) ---
+  cl         REG 50-600  OUT 600-R500  0.1-0.2 R500  0.2-0.4 R500  0.4-0.7 R500  0.7-1.0 R500    |     REG 50-600  OUT 600-R500  0.1-0.2 R500  0.2-0.4 R500  0.4-0.7 R500  0.7-1.0 R500
+  A1644             0.0           0.0           0.0           0.0           0.0           0.0
+    |            0.0           0.0           0.0           0.0           0.0           0.0
+    |         2726.2        1026.7         531.4        1565.4         931.4         724.8
+  A1795             0.0           0.0           0.0           0.0           0.0           0.0
+    |         8686.3         164.2        4227.1        3368.7        1254.7           0.0
+    |         8686.3        1543.4        4227.1        3368.7        1908.7         725.1
+  A2029             0.0           0.0           0.0           0.0           0.0           0.0
+    |         4560.9        1058.1        2191.6        2228.1        1199.3           0.0
+    |         4560.9        1582.0        2191.6        2228.1        1262.9         460.2
+  A2142             0.0           0.0           0.0           0.0           0.0           0.0
+    |         3883.7         959.2        1710.7        2063.1        1069.1           0.0
+    |         3883.7        1783.8        1710.7        2063.1        1270.5         623.2
+  A2255             0.0           0.0           0.0           0.0           0.0           0.0
+    |            0.0           0.0           0.0           0.0           0.0           0.0
+    |         1429.5        1284.8         138.5         778.6        1170.5         626.7
+  A2319             0.0           0.0           0.0           0.0           0.0           0.0
+    |         1682.2         689.4         280.5        1220.8         870.2           0.0
+    |         1682.2         939.3         280.5        1220.8         870.2         249.9
+  A3158             0.0           0.0           0.0           0.0           0.0           0.0
+    |         5192.0           0.0        1735.8        3258.6         197.6           0.0
+    |         6087.4        1708.4        1735.8        3258.6        1937.3         864.1
+  A3266             0.0           0.0           0.0           0.0           0.0           0.0
+    |         2471.2          80.6         990.0        1399.2         162.6           0.0
+    |         2471.2        1093.5         990.0        1399.2         982.7         192.8
+  A644              0.0           0.0           0.0           0.0           0.0           0.0
+    |         7057.8         388.8        2974.7        3563.9         908.1           0.0
+    |         7057.8         424.6        2974.7        3563.9         925.9          17.9
+  A85               0.0           0.0           0.0           0.0           0.0           0.0
+    |         7270.3         314.3        3446.7        3146.8         991.1           0.0
+    |         7270.3        1868.4        3446.7        3146.8        1816.7         728.5
+  RXC1825           0.0           0.0           0.0           0.0           0.0           0.0
+    |         5887.9           0.0        1101.2        4218.2         568.5           0.0
+    |         6975.5        1844.1        1101.2        4218.2        2405.7        1094.5
+  ZW1215            0.0           0.0           0.0           0.0           0.0           0.0
+    |         4539.8         649.4        1526.3        2707.6         955.3           0.0
+    |         4539.8        1990.9        1526.3        2707.6        1540.2         756.7
+
+  --- alt: delta chi2 per cluster = split(rule) - uncapped floor (the floor is the 711.6 model) ---
+  cl         REG 50-600  OUT 600-R500  0.1-0.2 R500  0.2-0.4 R500  0.4-0.7 R500  0.7-1.0 R500    |     REG 50-600  OUT 600-R500  0.1-0.2 R500  0.2-0.4 R500  0.4-0.7 R500  0.7-1.0 R500
+  A1644             0.0           0.0           0.0           0.0           0.0           0.0
+    |            0.0           0.0           0.0           0.0           0.0           0.0
+    |         2726.2        1026.7         531.4        1565.4         931.4         724.8
+  A1795             0.0           0.0           0.0           0.0           0.0           0.0
+    |         7786.8           0.0        4227.1        3368.7         191.0           0.0
+    |         8686.3        1543.4        4227.1        3368.7        1908.7         725.1
+  A2029             0.0           0.0           0.0           0.0           0.0           0.0
+    |         4560.9         743.5        2191.6        2228.1         884.7           0.0
+    |         4560.9        1582.0        2191.6        2228.1        1262.9         460.2
+  A2142             0.0           0.0           0.0           0.0           0.0           0.0
+    |         3883.7         324.9        1710.7        2063.1         434.8           0.0
+    |         3883.7        1783.8        1710.7        2063.1        1270.5         623.2
+  A2255             0.0           0.0           0.0           0.0           0.0           0.0
+    |            0.0           0.0           0.0           0.0           0.0           0.0
+    |         1429.5        1284.8         138.5         778.6        1170.5         626.7
+  A2319             0.0           0.0           0.0           0.0           0.0           0.0
+    |         1682.2         392.6         280.5        1220.8         573.4           0.0
+    |         1682.2         939.3         280.5        1220.8         870.2         249.9
+  A3158             0.0           0.0           0.0           0.0           0.0           0.0
+    |         3038.1           0.0        1735.8        1302.3           0.0           0.0
+    |         6087.4        1708.4        1735.8        3258.6        1937.3         864.1
+  A3266             0.0           0.0           0.0           0.0           0.0           0.0
+    |         2133.4           0.0         990.0        1143.4           0.0           0.0
+    |         2471.2        1093.5         990.0        1399.2         982.7         192.8
+  A644              0.0           0.0           0.0           0.0           0.0           0.0
+    |         7057.8         330.6        2974.7        3563.9         849.9           0.0
+    |         7057.8         424.6        2974.7        3563.9         925.9          17.9
+  A85               0.0           0.0           0.0           0.0           0.0           0.0
+    |         6593.5           0.0        3446.7        3146.8           0.0           0.0
+    |         7270.3        1868.4        3446.7        3146.8        1816.7         728.5
+  RXC1825           0.0           0.0           0.0           0.0           0.0           0.0
+    |         3110.2           0.0        1101.2        2009.0           0.0           0.0
+    |         6975.5        1844.1        1101.2        4218.2        2405.7        1094.5
+  ZW1215            0.0           0.0           0.0           0.0           0.0           0.0
+    |         4233.8           0.0        1526.3        2707.6           0.0           0.0
+    |         4539.8        1990.9        1526.3        2707.6        1540.2         756.7
+
+  [canonical] summaries (delta chi2 = split - floor):
+        REG 50-600: cH0: pooled      +0.0 median     +0.0 (|d|>4: 0/12); a0: pooled  +51232.1 median  +4550.3 (|d|>4: 10/12); self: pooled  +57370.8 median  +4550.3 (|d|>4: 12/12)
+      OUT 600-R500: cH0: pooled      +0.0 median     +0.0 (|d|>4: 0/12); a0: pooled   +4304.0 median   +239.3 (|d|>4: 8/12); self: pooled  +17089.9 median  +1562.7 (|d|>4: 12/12)
+      0.1-0.2 R500: cH0: pooled      +0.0 median     +0.0 (|d|>4: 0/12); a0: pooled  +20184.6 median  +1618.5 (|d|>4: 10/12); self: pooled  +20854.4 median  +1618.5 (|d|>4: 12/12)
+      0.2-0.4 R500: cH0: pooled      +0.0 median     +0.0 (|d|>4: 0/12); a0: pooled  +27174.9 median  +2467.8 (|d|>4: 10/12); self: pooled  +29518.9 median  +2467.8 (|d|>4: 12/12)
+      0.4-0.7 R500: cH0: pooled      +0.0 median     +0.0 (|d|>4: 0/12); a0: pooled   +8176.5 median   +889.1 (|d|>4: 10/12); self: pooled  +17022.8 median  +1266.7 (|d|>4: 12/12)
+      0.7-1.0 R500: cH0: pooled      +0.0 median     +0.0 (|d|>4: 0/12); a0: pooled      +0.0 median     +0.0 (|d|>4: 0/12); self: pooled   +7064.5 median   +675.8 (|d|>4: 12/12)
+
+  [alt] summaries (delta chi2 = split - floor):
+        REG 50-600: cH0: pooled      +0.0 median     +0.0 (|d|>4: 0/12); a0: pooled  +44080.5 median  +3497.0 (|d|>4: 10/12); self: pooled  +57370.8 median  +4550.3 (|d|>4: 12/12)
+      OUT 600-R500: cH0: pooled      +0.0 median     +0.0 (|d|>4: 0/12); a0: pooled   +1791.5 median     +0.0 (|d|>4: 4/12); self: pooled  +17089.9 median  +1562.7 (|d|>4: 12/12)
+      0.1-0.2 R500: cH0: pooled      +0.0 median     +0.0 (|d|>4: 0/12); a0: pooled  +20184.6 median  +1618.5 (|d|>4: 10/12); self: pooled  +20854.4 median  +1618.5 (|d|>4: 12/12)
+      0.2-0.4 R500: cH0: pooled      +0.0 median     +0.0 (|d|>4: 0/12); a0: pooled  +22753.7 median  +2036.1 (|d|>4: 10/12); self: pooled  +29518.9 median  +2467.8 (|d|>4: 12/12)
+      0.4-0.7 R500: cH0: pooled      +0.0 median     +0.0 (|d|>4: 0/12); a0: pooled   +2933.7 median     +0.0 (|d|>4: 5/12); self: pooled  +17022.8 median  +1266.7 (|d|>4: 12/12)
+      0.7-1.0 R500: cH0: pooled      +0.0 median     +0.0 (|d|>4: 0/12); a0: pooled      +0.0 median     +0.0 (|d|>4: 0/12); self: pooled   +7064.5 median   +675.8 (|d|>4: 12/12)
+  [PASS] V2 [outer-window testability] does the split-vs-uncapped distinction open up in the outer bins?  Under the committed cH0 rule the delta chi2 is ZERO identically (the cap never fires anywhere on the tables); under the a0-class rule the screened zone reaches into 600 kpc-R500 for the massive clusters; the self rule differs everywhere (the all-capped extreme)
+         measured: outer windows: cH0-rule |delta|>4 in 0/12; a0-rule |delta|>4 in 8/12; pooled OUT 600-R500 delta_a0 = +4304.0
+
+====================================================================================================
+V3 -- VERDICTS
+====================================================================================================
+V1 -- the per-cluster firing radius under both rules vs the window:
+     a0-class: R_cap(a0) canonical range 476-958 kpc (median 703; both footings 296-958); in-window 2/12, 600 kpc-R500 8/12 (canonical); never (g_tot < a0 everywhere) 2/12.
+     self-class: r_fire = R500 for 12/12 (the whole profile screened inside R500); the analytic r_cap = sqrt(G M_b/g(R500)) = r_M*sqrt(a0/g(R500)) with g(R500)/a0 median 0.54 -> r_M-class (1.2-1.7x r_M).
+     cH0-class (the committed operative rule): fires left of 50 kpc only (A2029 31 kpc) / never -- the registered never-fired.
+V2 -- outer-window testability (numbers above):
+     committed cH0 rule: delta chi2 = 0 in every window of every cluster (711.6 = 711.6 is a WINDOW degeneracy, not an identity of the two models).
+     a0-class rule: the 600 kpc-R500 window carries the split-vs-uncapped difference for the R_cap(a0) > 600 kpc set (pooled delta +4304.0, 8/12 clusters |delta| > 4); the 0.7-1.0 R500 bins show delta = 0 for 12/12 (R_cap(a0)/R500 <= 0.71 and no table bin lands in the A2319 sliver: the a0-crossing never sits inside 0.7-1.0 R500 on the measured tables).
+V3 -- the honest statement:
+     'The cap never fired in the window' is a WINDOW statement: on the measured X-COP tables g_tot < cH0 everywhere (g_tot(50 kpc)/cH0 = 0.10-0.66, median 0.41 -- G097's '~0.9' note is loose; the only cH0 crossing is A2029 at 31 kpc), so the COMMITTED cH0 cap cannot fire anywhere the data reach; the registered 296-958 kpc is the a0-class firing radius of the measured field -- the region where the split differs from the uncapped floor; 'never fired' is therefore not 'no cap': it is 'the cH0 threshold sits above the window's field'.  The split architecture's switch is a0-class at 0.28-0.91 R500 and becomes data-testable at 600 kpc-R500 for the massive half of the sample (8/12 canonical) and in-window for 10/12, where the phantom re-activates beyond R_cap(a0); the 0.7-1.0 R500 bins themselves carry zero a0-split-vs-floor difference on the measured tables.
+
+
+G138 COMPLETE -- written G138_results.json
