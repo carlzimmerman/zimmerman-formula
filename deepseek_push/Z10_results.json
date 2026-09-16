@@ -1,0 +1,88 @@
+{
+  "lane": "Z10_mnras_methods",
+  "title": "THE MNRAS METHODS + FIGURES: the paper's last missing section, assembled -- the samples, the estimators, the Lean statement, the conventions, the error budget, the 10-figure list, and the one-page discussion/conclusions",
+  "date": "2026-09-16",
+  "deliverables": {
+    "primary": "deepseek_push/MNRAS_METHODS.md",
+    "companion": "deepseek_push/Z10_results.json"
+  },
+  "sources": [
+    "REASSESSMENT_2026-09-16.md (section 4: METHODS + figure list = the last paper gap)",
+    "MNRAS_RESULTS_SKELETON.md (G202, results 4.1-4.6)",
+    "MNRAS_ABSTRACT.md (G221)",
+    "SOLAR_FACE_CLOSEOUT.md (G224)",
+    "LAW_VERIFIED.md",
+    "ONE_BOUNDARY_STATEMENT.md (G196)",
+    "THEORY_CLOSURE_2026-09-16.md (G205)",
+    "FALSIFIER_MATRIX.md (G207)",
+    "G227_lean_roadmap.md (126/16 recount)",
+    "G131/G162 (12-decade line), G114/G071/G099 (RAR and deep end), G203/G206/G209 (anisotropy), G135 (temperature law), G139/G143 (dust law), G167 (M/L conventions), G187 (pie), G200/G210 (q derived), G212 (mass window), G231 (distribution reading), G219 (mass bias)"
+  ],
+  "samples_7": [
+    {"name": "SPARC", "n": "175 database / 35 isolated / 641 rings / 155 curves-2788 points moonshot", "provenance": "Lelli, McGaugh & Schombert 2017, MNRAS 468, L68", "lane": "G071, G036, L232"},
+    {"name": "HI dwarfs", "n": 55, "composition": "26 LITTLE THINGS (Oh+15) + 29 FIGGS (Begum+08), 22/29 TRGB", "provenance": "Oh et al. 2015 AJ 149 180; Begum et al. 2008 MNRAS 386 138", "lane": "G114"},
+    {"name": "ATLAS3D", "n": 258, "provenance": "Cappellari et al. 2013, MNRAS 432 1709, Table 1 (JAM Chabrier sigma_e)", "lane": "G162 channel B"},
+    {"name": "12-decade line", "n": 542, "span": "log M_b 2.63-14.35", "composition": "G131 base 248 + G162 fill 294 (GEMS, ATLAS3D, SLUGGS, E11)", "b": "1.004 +- 0.011", "lane": "G131, G162"},
+    {"name": "HeCS", "n": "58 clusters / 10,145 members (3,629 in 2-5 R500)", "provenance": "Rines et al. 2013, ApJ 767 15; CDS J/ApJ/767/15 sha256-verified; Table 4 transcribed", "lane": "G203"},
+    {"name": "X-COP", "n": 12, "provenance": "Eckert et al. 2017 XMM Cluster Outskirts Project; committed ingest", "lane": "G075, G104, G105, G143"},
+    {"name": "E11 groups", "n": 26, "provenance": "Eckmiller et al. 2011, A&A 535 A105; M500 5.2e12-1.7e14", "lane": "G143, G162 channel C, G125"}
+  ],
+  "estimators_8": [
+    {"name": "RAR line fit + deep line", "numbers": "b = 1.004 +- 0.011 (n=542), rms 0.180 dex; SPARC 641 rings 0.145 dex zero-param; deep g^2 = a0 g_N slope 1/2; n = 1.20 +- 0.06 slope channel (FIRED, explained)", "lanes": "G071, G036, G114, G099, G158, G231, G236"},
+    {"name": "M/L conventions", "numbers": "M_b = M* + 1.4 M_HI; cross-convention a0* 1.118/1.256/1.131e-10; MIGHTEE at Y*=0.6 -> 1.08e-10 (ratio 0.95); 0.097-dex max closure", "lane": "G167"},
+    {"name": "projected-Jeans beta", "numbers": "two-asymptote beta(r), NFW c500=4.5, Binney-Mamon; window mean 0.434 +- 0.015", "lane": "G203"},
+    {"name": "2D phase-space", "numbers": "MAMPOSSt-class P(R,v); beta_win 0.495 +- 0.063 bootstrap (mean 0.471); caustic systematic resolved", "lane": "G206"},
+    {"name": "per-bin beta", "numbers": "E1 0.033/0.093/0.173/0.305/0.560; E2 free piecewise -0.37..0.545; BIC rising winner dBIC 24.5 vs flat; mass bias q = 0.891 +- 0.007", "lane": "G209, G219"},
+    {"name": "temperature law", "numbers": "log10(T_obs/T_pred) = (2/3) log10 f + log10(2 r_M/R500); 31 systems rms 0.076 dex; a = 0.75 +- 0.12 measured, 1/2 excluded ~2.2 sigma", "lane": "G135, G095"},
+    {"name": "dust-law fits", "numbers": "c_dust = 0.72 (M500/8e14)^q (r/R500)^-p; q = -0.414 +- 0.157, p = +0.990 +- 0.035, c0 = -0.145 +- 0.030; rms 0.119 -> 0.097 dex; q derived -1/3 (Bondi) at 0.52 sigma", "lanes": "G139, G143, G182, G185, G200, G210"},
+    {"name": "pie", "numbers": "s_b:s_ph:s_d = 17.7:56.9:24.6 at R500; u = 0.185 (M/1e14)^0.314; M_sat = 3.09e14; gap [1.73, 3.48]e14; cosmic <s_d> 0.805, <s_ph> 0.111", "lane": "G187"}
+  ],
+  "lean_statement": {
+    "toolchain": "Lean 4.34.0-rc2, repo Mathlib build, lake env lean, exit 0, zero sorry, axioms subset of {propext, Classical.choice, Quot.sound}",
+    "ledger": {"theorems": 126, "certificates": 16, "spine": "79/10", "task_inventory": 105},
+    "spine_chain": "EQUILIBRIUM_THEORY 12 -> G031 hydrostatic 13 -> G090 equivalence 5 -> G03G triad 4 -> G083 surface density 5 -> G201 jump share 8",
+    "gauss_map": "M01_equipartition.lean 6 theorems: rM_sq, phantom_mass_linear, equipartition, gauss_flux, surface_density, the_spine; M_ph(<r_M) = M_b to 2.2e-16",
+    "mathlib_citation": "included verbatim in section (c): cites Lean 4.34.0-rc2 + Mathlib + real-number API + supplementary certificate index"
+  },
+  "conventions": {
+    "a0": "9.3619e-11 m/s^2 (DE footing, s_Lambda = 2 a0 = 1.87238e-10); RAR-class 1.08-1.10e-10 (G193, 2.2 sigma, sub-materiality)",
+    "r_M": "sqrt(G M_b/a0); MW 9.84 kpc at 6.5e10; projection r_b/r_M = sqrt(a0/g_ext) exact 1e-16",
+    "M500": "(4pi/3) 500 rho_c r500^3, rho_c = 3H0^2/8piG, H0 = 70 km/s/Mpc; HeCS h cancels",
+    "constants_table": "G 6.674e-11; a0; Sigma_ph = a0/piG = 213.74 Msun/pc2; sigma^2/v_flat^2 = 1/2; T_b 9.52 K; m 5.09 +- 0.10 keV; Omega_Lambda 0.6857; Omega_dm 0.264; Omega_dust 0.2619; M_sat 3.09e14"
+  },
+  "error_budget": {
+    "ML_systematics": "cross-convention matrix G167; max closure 0.097 dex; residual 0.04 dex; f_b +- 0.05 dex groups; slope exactly invariant (G172)",
+    "estimator_systematics": "caustic vs 2D 0.434/0.495; Jeans mass bias q = 0.891 +- 0.007 (est. sys. 0.0047); seam d_BIC 16; kink tie; slope-floor constancy FAIL; live seams registered (frozen tilt b = 1.155 +- 0.029 n=323, beta mean-vs-profile, DR4 verdict class)",
+    "distance_scale": "TRGB 22/29 FIGGS; Simon 2019 dSph distances; BH18 GC distances; HeCS e_cz 36 km/s; R500 at H0=70; r/r_M and r/R500 distance-invariant"
+  },
+  "figure_list_10": [
+    {"fig": "F1", "title": "the 12-decade line", "content": "542 objects, log M_b 2.63-14.35, per-channel colors, b = 1.004 +- 0.011, residual panel, sliver + UFD flags", "lanes": "G131, G162"},
+    {"fig": "F2", "title": "the RAR with the deep line", "content": "747 pooled rings, mu2 full curve, g^2 = a0 g_N deep asymptote, 0.145 dex band, residual histogram Laplace", "lanes": "G071, G099, G114, G236, G231"},
+    {"fig": "F3", "title": "the one-boundary diagram", "content": "r/r_M axis: break 0.623, seam 0.96, EFE line 0.620/0.963, r^-2 phantom, latent heat annotation", "lanes": "G196, G119, G176, G186, G132, G188"},
+    {"fig": "F4", "title": "the beta profile", "content": "E1 0.033->0.560 + E2 -0.37->0.545 per-bin, G170 curve, static null, window means, BIC winner", "lanes": "G209, G203, G206"},
+    {"fig": "F5", "title": "the temperature law 2/3", "content": "31 systems, slope 2/3 line vs 1/2, rms 0.076 dex", "lanes": "G135, G095"},
+    {"fig": "F6", "title": "the pie + constitution curve", "content": "17.7/56.9/24.6 pie + s(M500) with saturation M_sat 3.09e14, gap [1.73,3.48]e14, sharp/smooth brackets", "lanes": "G187, G179, G178"},
+    {"fig": "F7", "title": "the dust law c_dust(M500, r)", "content": "38 systems, p = +0.990 +- 0.035 envelope + amplitude run q = -0.414 +- 0.157 with derived -1/3 and A_b = 0.650", "lanes": "G139, G143, G182, G185, G200, G210"},
+    {"fig": "F8", "title": "the cosmology pie + mass window", "content": "Omega_Lambda 0.6857 / Omega_dust 0.2619 = 99.2% / eq + dust = 1.000; mass triangle [5.0,5.2] x [3.3,5.7] x [4.70,5.75] -> m = 5.09 +- 0.10 keV", "lanes": "G212, G187, G198, G079, G058"},
+    {"fig": "F9", "title": "the falsifier matrix", "content": "20 rows by domain x status, 12 ARMED / 3 PENDING / 3 FIRED-explained / 2 resolved non-fires, zero unexplained", "lanes": "G207, G237"},
+    {"fig": "F10", "title": "the anisotropy window", "content": "(beta_inf, r_a) 2D contours, window-mean ladder 0.434/0.495/0.545-0.560, null dead 29.7 sigma, mass-bias q(R) panel 0.89", "lanes": "G203, G206, G209, G219"}
+  ],
+  "discussion_conclusions": "one page drafted in-file: dead force-law routes cited, equilibrium/EOS reading restated, honest ledger (3 fired all explained, live seams), four closing claims, December instrument season mapped",
+  "checks": [
+    {"name": "C1 samples", "measured": "7 samples each with lane + provenance in Table 1", "pass": true},
+    {"name": "C2 estimators", "measured": "8 estimators each with lane + committed number (b1-b8)", "pass": true},
+    {"name": "C3 lean", "measured": "126 theorems / 16 certs, spine chain, Gauss-map M01, Mathlib citation form", "pass": true},
+    {"name": "C4 conventions", "measured": "a0, r_M, M500, H0, constants table all present", "pass": true},
+    {"name": "C5 error budget", "measured": "3 families: M/L, estimator (incl. live seams), distance scale", "pass": true},
+    {"name": "C6 figures", "measured": "F1-F10, 10 figures in the 8-10 mandate, each with content spec + lane", "pass": true},
+    {"name": "C7 discussion", "measured": "one-page discussion/conclusions drafted in-file", "pass": true}
+  ],
+  "n_pass": 7,
+  "n_total": 7,
+  "verdicts": {
+    "V1": "Methods complete -- 5 parts (samples/estimators/Lean/conventions/error budget) assembled from committed lanes only. PASS.",
+    "V2": "Figure list complete -- 10 figures, each with content spec and committing lane's data, mapped to G202 results subsections. PASS.",
+    "V3": "Honest statement -- the paper's documents (abstract+intro G221, results G202, solar-face G224, methods+figures Z10, discussion Z10) all in-repo; the last missing text was the discussion/conclusions, now drafted one page; remaining work = assembly + author's voice pass; 3 fired falsifiers all explained, zero unexplained fires. PASS."
+  },
+  "commit_message": "Z10: the MNRAS METHODS section + figure list -- the paper's last missing section assembled (samples, estimators, Lean 126/16 statement, conventions, error budget, F1-F10, one-page discussion); the paper's document set is now complete in-repo"
+}
