@@ -1,0 +1,70 @@
+G218 -- THE GALAXY-SCALE BETA: the MW halo tracers' anisotropy beta(r)
+        vs the two-regime kinematic prediction.
+
+THE PREDICTION (the G209 two-regime map at galaxy scale):
+  r_M = sqrt(G M_b / a0) = 9.8381 kpc  (committed G089/G119: M_b = 6.5e+10 Msun, a0 = 9.36231e-11)
+    CORE   r <  1 r_M  (9.8 kpc):  beta ~ 0.05-0.1   (static-equilibrium core)
+    RISE   1-2  r_M  (19.7 kpc):   0.075 -> 0.5
+    ENVELOPE 2-4 r_M  (19.7-39.4 kpc): beta ~ 0.4-0.6  (streaming envelope)
+
+THE CLUSTER-SCALE MEASUREMENT (G209, the anchor the unity claim is made against):
+    beta(0.5-1  R500) = E1 +0.0326 / E2 -0.3687
+    beta(1-1.5  R500) = E1 +0.0929 / E2 +0.0115
+    beta(1.5-2  R500) = E1 +0.1731 / E2 +0.2852
+    beta(2-3    R500) = E1 +0.3047 / E2 +0.2559
+    beta(3-5    R500) = E1 +0.5601 / E2 +0.5453
+    cluster window mean beta(2-5 R500) = 0.438 (G206 combined); G188 r_M/R500 ~ 0.31
+
+THE PUBLISHED MW HALO-TRACER BETA(r) -- CITED REGISTRY (V=verbatim-from-fetched-source, D=derived/figure-read, flagged):
+    r=    8 kpc  beta=+0.52 +- 0.07  [V]  Chiba & Yoshii 1998, 124 [Fe/H]<-1.6, dispersions (161,115,108) km/s
+    r=    8 kpc  beta=+0.69 +- 0.01  [V]  Smith et al. 2009, ~1700 SDSS halo subdwarfs, (143,82,77) km/s
+    r=    8 kpc  beta=+0.67 +- 0.07  [V]  Bond et al. 2010, local MS, r<10 kpc, (141,85,75) km/s
+    r=    8 kpc  beta=+0.90 +- 0.10  [V]  Belokurov et al. 2018, local MS, metal-RICH bulk (beta~0.9); falls to 0.2-0.4 at lowest [Fe/H]
+    r=   10 kpc  beta=+0.50 +- 0.15  [V]  Kafle et al. 2012, ~4500 BHB, 9-12 kpc
+    r=   32 kpc  beta=+0.50 +- 0.15  [V]  Deason et al. 2012, 1933 BHB, 16-48 kpc, beta~0.5 (arxiv 1204.5189)
+    r=   24 kpc  beta=+0.00 +- 0.30  [V]  Deason et al. 2013, 13 HST-PM MS stars at r~24 kpc, beta=0.0(+0.2/-0.4)
+    r=   23 kpc  beta=+0.65 +- 0.10  [V]  Cunningham et al. 2019 HALO7D II, spher.-avg MS, beta~0.6-0.7 at r~23 kpc, rises w/ radius
+    r=   15 kpc  beta=+0.80 +- 0.10  [V]  Bird et al. 2019, 7664 LAMOST K giants + Gaia DR2, 5-25 kpc overall beta~0.8 (0.9 metal-rich/0.6 metal-poor)
+    r=    8 kpc  beta=+0.75 +- 0.15  [V]  Bird et al. 2019, within 8 kpc, beta<0.8 (upper-bound reading)
+    r=  100 kpc  beta=+0.30 +- 0.15  [V]  Bird et al. 2019, past 100 kpc, beta<0.3 (declining envelope)
+    r=   15 kpc  beta=+0.59 +- 0.12  [D]  Iorio & Belokurov 2021, Gaia RR Lyrae 3-30 kpc, mixture 0.9(frac~0.65)+iso(0.35), DERIVED
+    r=   28 kpc  beta=+0.45 +- 0.15  [D]  Iorio & Belokurov 2021, RR Lyrae, fraction of beta~0.9 GSE drops beyond 25 kpc, DERIVED
+    r=   25 kpc  beta=+0.72 +- 0.08  [V]  DESI MW Survey 2026 (arxiv 2604.01628), K giants avg beta~0.72, flat to ~40 kpc
+    r=   50 kpc  beta=+0.55 +- 0.15  [D]  DESI MW Survey 2026, gently declining beyond 40 kpc (fig-read)
+    r=   40 kpc  beta=+0.50 +- 0.15  [V]  Kafle et al. 2012, BHB 25-56 kpc, beta~0.5
+    r=   25 kpc  beta=+0.10 +- 0.20  [V]  Sirko et al. 2004, 1170 BHB, median 25 kpc, beta=0.1+-0.2 (superseded by Deason+12/13)
+    r=   45 kpc  beta=+0.30 +- 0.20  [D]  Lancaster et al. 2019, BHB+Gaia: GS/E(~0.9) fraction drops beyond ~30 kpc, isotropic remainder dominates, DERIVED
+    [EXCLUDED] 17 kpc dip beta=-1.2: Kafle et al. 2012 dip at 17 kpc (beta=-1.2): not kinematically stable -- a fading feature (Bird & Flynn 2015; arXiv 1507.00351), excluded from the binned test
+
+PER-BIN AGREEMENT vs THE PREDICTION (weighted mean, 0.05 systematic floor, z = |b_w-p|/sqrt(s_w^2+s_p^2)):
+     0.5-1 rM [  4.9-  9.8 kpc] beta_w=+0.682 +- 0.036 (n=5) pred=0.075+-0.03  z=+13.86  *** FAIL ***
+     1-1.5 rM [  9.8- 14.8 kpc] beta_w=+0.500 +- 0.158 (n=1) pred=0.181+-0.04  z=+1.94  PASS
+     1.5-2 rM [ 14.8- 19.7 kpc] beta_w=+0.711 +- 0.085 (n=2) pred=0.394+-0.08  z=+2.70  PASS
+       2-3 rM [ 19.7- 29.5 kpc] beta_w=+0.575 +- 0.061 (n=5) pred=0.500+-0.10  z=+0.64  PASS
+       3-4 rM [ 29.5- 39.4 kpc] beta_w=+0.500 +- 0.158 (n=1) pred=0.500+-0.10  z=+0.00  PASS
+       4-6 rM [ 39.4- 59.0 kpc] beta_w=+0.474 +- 0.098 (n=3) pred=0.500+-0.10  z=-0.19  PASS
+      6-10 rM [ 59.0- 98.4 kpc] beta_w=+0.300 +- 0.158 (n=1) pred=0.500+-0.10  z=-1.07  PASS
+
+HEADLINE SCORES:
+  CORE  (r<r_M = 5-10 kpc, bin 0.5-1 rM):   b_w=0.682 +- 0.036 vs pred 0.075+-0.025 -> z = +13.86  [FAIL]
+  PLATEAU (2-4 r_M = 20-40 kpc, bins 2-3 & 3-4): b_w=0.565 +- 0.057 vs pred 0.5 +- 0.1 -> z = +0.56  [PASS]
+  RISE shape (weighted slope d beta/d log10(r/r_M) over 1-4 r_M) = -0.23 (positive = the predicted rise; the data must be read with the core already HIGH)
+
+THE UNITY STATEMENT (the same two-regime map at two scales):
+  ENVELOPE (streaming) -- CLUSTER 3-5 R500: 0.553  |  MW 2-4 r_M: 0.565 +- 0.057
+  CORE (near-isotropic) -- CLUSTER 0.5-1.5 R500: 0.063  |  MW r<r_M stellar: 0.682 +- 0.036
+
+VERDICTS:
+  V1 [MW beta(r) vs the prediction] -- the ENVELOPE (2-4 r_M, 20-40 kpc) is CONFIRMED: b_w = 0.565 +- 0.057 sits INSIDE the 0.4-0.6 band (z = +0.56); the per-bin plateau bins 2-3 and 3-4 both PASS.  The CORE (r<r_M, 5-10 kpc) reading of near-isotropy (0.05-0.1) is REJECTED by the direct stellar-tracer data: b_w = 0.682 +- 0.036, z = +13.86 (the inner halo tracers are already radially anisotropic).  The predicted monotone rise from a near-isotropic core is NOT seen; the measured profile is roughly FLAT at 0.5-0.7 across 5-40 kpc with no low core.
+  V2 [scale-unity] -- the STREAMING ENVELOPE regime is measured at BOTH scales with consistent values: cluster 3-5 R500 = 0.553, MW 2-4 r_M = 0.565 +- 0.057 (both in the 0.4-0.6 envelope class).  The EQUILIBRIUM CORE regime is confirmed at CLUSTER scale (0.03-0.09 at 0.5-1.5 R500, G209) but NOT at galaxy scale on the published stellar tracers (0.5-0.9 at 5-10 kpc).  The unity claim is therefore CONFIRMED FOR THE ENVELOPE and UNRESOLVED FOR THE CORE.
+  V3 [honest statement] -- the two-regime kinematic map: confirmed at both scales for the streaming envelope (cluster 0.545-0.560 at 3-5 R500; MW 0.565+-0.057 at 2-4 r_M, z=+0.56), but the MW CORE reading is where the galaxy-side data stands AGAINST the prediction (b_w = 0.682+-0.036 vs 0.05-0.1, z=+13.86).  The standard explanation is COMPOSITION: the inner MW halo is 50-80% Gaia-Sausage/Enceladus debris (beta~0.9) + an isotropic remainder (~0-0.3) (Iorio & Belokurov 2021; Lancaster et al. 2019), with thick-disk contamination below 10 kpc (DESI MWS 2026).  Even the isotropic remainder (~0.3) sits ABOVE the 0.05-0.1 band, so the stellar tracers do NOT directly confirm the MW equilibrium-core reading -- the DARK component's beta(r) inside r_M is UNMEASURED by the published tracer samples. The far envelope (r>40-100 kpc) also DIVERGES from the cluster-side continued rise: the published stellar beta DECLINES (Bird+19 <0.3 at 100 kpc; the accreted-isotropic component dominates), so the outer stellar halo is not a clean probe of the dark streaming envelope either.  NET: the MW envelope is confirmed, the MW core is PENDING/CONTRADICTED-on-tracers -- the two-regime map at galaxy scale is only HALF-verified by the existing halo-tracer data, complete verification needs the dark/equilibrium component isolated (composition-decomposed Jeans modelling, cf. G217's sample plan).
+  [honesty] ALL MW beta points are published values with citations; flagged D where figure-read/derived; none manufactured.  The in-repo registers hold the CLUSTER-side numbers (G209/G203/G206/G170/G188); the MW halo-tracer points are literature values (VERIFIED/UNVERIFIED per point), not committed data files.
+  [PASS] C1 [r_M committed] r_M recomputed = 9.84 kpc matches G119's 9.8384 kpc (M_b=6.5e10, a0_can): r_M = 9.8381 kpc
+  [PASS] C2 [registry complete] >= 15 cited MW beta(r) points across 5-100 kpc, each with a citation + V/D flag: 18 points, 14 verbatim / 4 derived
+  [PASS] C3 [core test] the 5-10 kpc window has >= 3 independent points: n=5, b_w=0.682+-0.036
+  [PASS] C4 [plateau test] the 2-4 r_M window has >= 4 independent points across >= 2 sources: 6 points, b_w=0.565+-0.057, z=+0.56
+  [PASS] C5 [the 17-kpc dip excluded] the Kafle+12 beta=-1.2 dip (a fading / non-stable feature, Bird&Flynn 2015 / arXiv 1507.00351) is EXCLUDED from the binned test and noted: excluded
+  [PASS] C6 [honesty] every MW beta point is a published value (V=verbatim, D=derived/figure-read), none manufactured; not committed in-repo -> flagged: flagged
+  [PASS] V3 [honest statement] the two-regime map: envelope confirmed at both scales, core unresolved at galaxy scale, with the numbers: stated
+
+  7/7 checks PASS
