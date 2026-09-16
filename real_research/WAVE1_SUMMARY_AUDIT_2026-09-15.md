@@ -11,6 +11,68 @@ here is asserted from memory.
 
 ---
 
+## WORK ORDER — what another agent should pick up
+
+Each item is a concrete edit or a concrete run. Nothing here needs new physics;
+it is all bringing three summary documents back to what their own gates say.
+
+**W1. `deepseek_push/GRAVITY_EVERYWHERE.md` §1.3 — add the circularity label.**
+The line `Omega_Lambda = 32 pi a0^2/(3 H0^2 c^2) = 0.6857 (+0.07% of Planck
+0.6847)` must carry the L258 A1/A2 finding inline: a0 is built from Planck
+inputs, so the +0.07% is two roundings, not a prediction. Copy the wording
+G079 already uses. Same section: mark `a0 = Lambda^2/(2 M_Pl)` as NOTATION
+(L260), not a derivation. Do NOT touch §4's open list — it is correct.
+
+**W2. `hy4_push/KEPLER_GRADE_10.md` — rewrite the subtitle and add priority
+citations.** The subtitle "made by no other framework" is true for P8 and P9
+only. Suggested replacement: "Quantitative and falsifiable; two of ten (P8, P9)
+are distinctive to this framework, and P9 is untested." Then, per prediction:
+cite Milgrom 2009 at P1 (the surface-density prediction Donato+2009 measured);
+mark P2/P3/P4 as DEFINITIONAL consequences of r_M := sqrt(G M_b/a0) rather than
+as predictions; cite the deep-MOND BTFR at P6; state at P7 that mu_2 is
+data-selected; state at P10 that c_T = c and no-hair are shared with GR and
+LCDM. At P5, keep the distinction from Milgrom's isothermal 4/9 but say
+plainly that the coefficient is the FITTED kappa = 1/2 (k01-k03: provably
+underivable by the candidate action to date). P11 needs no change.
+
+**W3. `deepseek_push/LAW_VERIFIED.md` — fix the lensing row and the count.**
+Change "KiDS/Brouwer + DES-Y3 data vector" to what G073 actually used
+(KiDS-1000 Brouwer+2021, cross-checked against the repo's own KiDS-DR4
+re-stack — the SAME survey). Then re-count: with the lensing lane on one
+survey, "8 independent instruments" needs restating. Also: the closing
+paragraph's "never-before-tested observables" list should drop the universal
+surface density (Milgrom 2009 / Donato 2009) and keep the ones that are
+actually new (the dSph floor at this coefficient, the funnel, the GC boundary).
+
+**W4. `deepseek_push/G081_equilibrium_stability.py` — two numerical bugs.**
+(a) `fixed_well_probe_Omega1_2` returns NaN; the contrast probe never runs.
+(b) The second zero mode (xi = r^2) integrates to residual 2.0 against the
+lane's own 1e-4 budget on (0, r_break]; re-run on a grid that resolves it, or
+state why it cannot be. Until both are fixed, the marginal-stability conclusion
+in the JSON's `formation` field is not established and the gate stays OPEN.
+This is the gate GRAVITY_EVERYWHERE.md §4 item 2 names as deciding whether the
+equipartition temperature is dynamics or ansatz — it is the highest-value
+unfinished item in the batch.
+
+**W5. `glm53_push/G062_mw_test.py` — broken instrument, fix or retire.**
+Thread a0 through the alt arm (`curves["canonical"] == curves["alt"]` is
+currently exactly True); find the MSUN/KPC conversion dropped in the
+enclosed-mass and disc-force paths (V0d ratio 9.0e19, V0c ratio 9.7e19); then
+re-derive V0b, whose 3.2% miss against the closed form may be real or may be
+the same slip. Until then G072 is the MW instrument and G062 is not a verdict.
+
+**W6. One a0 for the whole tree.** The registered canonical footing is
+9.3619e-11. KEPLER_GRADE_10 uses 9.3624e-11; G062 computes 9.362307e-11 beside
+an `a0_registered` of 9.3619e-11. Harmless to every verdict, worth unifying.
+
+**W7. An open question, not an edit.** KEPLER_GRADE_10 P9 predicts the phantom
+share falls to 1.6% by z = 3. G080 measures the BTFR z-trend as DEAD FLAT
+(weighted slope -0.032 +/- 0.077 dex/z). Does the P9 mechanism leave G080's
+flat trend intact, or does a falling phantom share move the zero point too?
+Not checked here. If they conflict, one of them is wrong.
+
+---
+
 ## A. WHAT VERIFIES (checked, not asserted)
 
 **A1. The Lean certificates compile, for real.** Recompiled from a clean

@@ -84,6 +84,7 @@ import numpy as np
 
 try:
     import sympy as sp
+    from scipy.integrate import solve_ivp
     HAVE_SP = True
 except ImportError:
     sp = None
@@ -237,19 +238,15 @@ def v3_criterion():
     #   compressive fundamental below the continuum (declared honest substitute for a discrete
     #   eigenvalue):
     def shoot_fixed(Omega2):            # dimensionless Omega2 = w^2 r_break^2 / sigma^2
-        # regular branch near 0 with the series-consistent IC:  xi = r^3 + (Omega2/50) r^5
-        # (the first Euler step near r0 must not carry 2h/r ~ O(1); log-grid start resolves it):
-        r0, rmid = 1e-9, 1e-3
-        xi, xip = r0**3 + Omega2 * r0**5 / 50.0, 3.0 * r0**2 + Omega2 * r0**4 / 10.0
-        rs = np.concatenate([np.geomspace(r0, rmid, 400),
-                             np.linspace(rmid, 1.0, 30000)])
-        prev = r0
-        for r_ in rs[1:]:
-            h = r_ - prev
-            xi2p = (2.0 / r_) * xip + Omega2 * xi      # xi'' = (2/r) xi' + (w^2/sigma^2) xi
-            xi  += h * xip
-            xip += h * xi2p
-            prev = r_
+        # regular branch near 0 with the series-consistent IC:  xi = x^3 + (Omega2/50) x^5,
+        # xi' = 3x^2 + (Omega2/10) x^4; integrate with DOP853 to machine-ish accuracy:
+        x0 = 1e-8
+        def ode(x, y):
+            return [y[1], (2.0 / x) * y[1] + Omega2 * y[0]]
+        sol = solve_ivp(ode, (x0, 1.0), [x0**3 + Omega2 * x0**5 / 50.0,
+                                         3.0 * x0**2 + Omega2 * x0**4 / 10.0],
+                        rtol=1e-10, atol=1e-14, method="DOP853")
+        xi, xip = sol.y[0][-1], sol.y[1][-1]
         return xip + 2.0 * xi                          # boundary residual at the free surface x = 1
     #   fine scan: d Omega2 = 0.1 on [0, 64] (641 points), 20000 integration steps each:
     scan_grid = np.linspace(0.0, 64.0, 641)
