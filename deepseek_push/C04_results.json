@@ -1,0 +1,165 @@
+{
+ "lane": "C04_proton_rung",
+ "title": "THE PROTON RUNG CERTIFIED IN LEAN: the T_X-ray field identity, its algebraic inverse M_impl, the (mu m_p) mass-ratio invariance, and the B06 50-object estimator numerics.",
+ "question": "C04: (1) certify T = mu m_p sqrt(G M_b a0)/(2 k_B) from the virial (field identity); (2) certify M_impl = 4 (k_B T/(mu m_p))^2/(G a0) as the algebraic inverse (substitute T -> M and return); (3) certify the mass-ratio-invariance corollary under the (mu m_p) scale; (4) register the B06 estimator numerics on the 50-object sample (within-sample MAD ~ 0.05-0.08 dex).",
+ "lean": {
+  "file": "deepseek_push/lean/C04_proton_rung.lean",
+  "toolchain": "leanprover/lean4:v4.34.0-rc2 (mondlean lake)",
+  "compile": "lake env lean deepseek_push/lean/C04_proton_rung.lean",
+  "exit_code": 0,
+  "sorry": 0,
+  "axioms": [
+   "propext",
+   "Classical.choice",
+   "Quot.sound"
+  ],
+  "theorems": [
+   {
+    "name": "field_identity",
+    "statement": "k_B T = mu m_p sigma^2, sigma^2 = (1/2) sqrt(G M_b a0) => T = mu m_p sqrt(G M_b a0)/(2 k_B)",
+    "role": "the field identity (A02/B06 law)"
+   },
+   {
+    "name": "mass_free_ratio",
+    "statement": "k_B T/(mu m_p) = sqrt(G M_b a0)/2 (the mass-free ratio the inverse inverts, G084)"
+   },
+   {
+    "name": "inversion_identity",
+    "statement": "M_impl(T(M)) = M with M_impl := 4 (k_B T/(mu m_p))^2/(G a0)",
+    "role": "the algebraic inverse, T -> M round trip"
+   },
+   {
+    "name": "inversion_dual",
+    "statement": "T(M_impl(T)) = T (the mirror round trip)",
+    "role": "mutual inversion pair"
+   },
+   {
+    "name": "ratio_scale_invariant",
+    "statement": "k_B (lam T)/(lam (mu m_p)) = k_B T/(mu m_p)"
+   },
+   {
+    "name": "mass_ratio_invariant",
+    "statement": "M_impl(lam T, lam (mu m_p)) = M_impl(T, mu m_p)",
+    "role": "the corollary: estimator reads only the mass-free ratio"
+   },
+   {
+    "name": "proton_rung_ratio",
+    "statement": "T_phase/T_bary = m/(mu m_p) at equal sigma",
+    "role": "the corollary's rung face (G151 A3, c/a = 1.126e5)"
+   }
+  ]
+ },
+ "numeric": {
+  "N0_field_identity": {
+   "pass": true,
+   "n": 50,
+   "measured": "worst rel err 0.00e+00 vs committed B06 rows"
+  },
+  "N1_inverse_round_trip": {
+   "pass": true,
+   "n": 50,
+   "measured": "worst rel err 1.03e-15 on M_impl(T(M_b)) - M_b"
+  },
+  "N2_mass_ratio_invariance": {
+   "pass": true,
+   "lam": 1.5,
+   "n": 50,
+   "measured": "exact (worst rel diff 1.0e-15)"
+  },
+  "N3_one_a0": {
+   "pass": true,
+   "n_clusters": 12,
+   "median_a0": 9.361930620934099e-11,
+   "spread": 9.04728794979874e-26,
+   "canonical": 9.3619e-11
+  },
+  "N4_B06_estimator_50obj": {
+   "pass": true,
+   "n": 50,
+   "within_sample_mad_dex": 0.05305009681727604,
+   "within_sample_pstdev_dex": 0.108674203122366,
+   "per_sample_mad_dex": {
+    "X-COP": 0.038705396108233675,
+    "E11": 0.04048279096186777,
+    "HeCS": 0.15852964398552694
+   },
+   "pooled_mad_dex": 0.07541331075308458,
+   "estimator_2x_mad_XCOP_dex": 0.07741079221646735,
+   "benchmark_G109_dex": 0.062
+  },
+  "N5_rung_ratio": {
+   "pass": true,
+   "c_over_a": 112586.8022616021,
+   "m_over_mp_rung": 5.3292214357937305e-06,
+   "m_over_mp_SM": 5.328945124654684e-06,
+   "ratio": 1.000051851001011
+  }
+ },
+ "checks": [
+  {
+   "name": "N0 the field identity numeric: T = mu m_p sqrt(G M_b a0)/(2 k_B)",
+   "measured": "worst rel err vs the committed B06 rows = 0.000e+00 (n = 50)",
+   "pass": true,
+   "reading": "the Lean theorem 1 (field_identity) instantiated at the horizon footing: the virial /2 (sigma^2 = (1/2) sqrt(G M_b a0)) cancels the law's /2 exactly at float precision on every committed object"
+  },
+  {
+   "name": "N1 the inverse round trip numeric: M_impl(T(M_b)) = M_b",
+   "measured": "worst rel err over the 50 objects = 1.028e-15",
+   "pass": true,
+   "reading": "the Lean theorem 2 (inversion_identity): substituting the law's own temperature into M_impl = 4 (k_B T/(mu m_p))^2/(G a0) returns the baryon mass at float precision -- the estimator is the algebraic inverse of the temperature law"
+  },
+  {
+   "name": "N2 the corollary numeric: M_impl(lam T, lam (mu m_p)) = M_impl(T, mu m_p)",
+   "measured": "lam = 1.5: worst rel diff over the 50 objects = 1.001e-15",
+   "pass": true,
+   "reading": "the Lean theorem 4 (mass_ratio_invariant): the estimator depends only on the mass-free ratio k_B T/(mu m_p), EXACTLY invariant under the joint (mu m_p) rescale -- B06's mu-sweep ([-0.007, +0.014] dex on T)is this identity read through the mu assumption"
+  },
+  {
+   "name": "N3 the 12 committed clusters imply ONE a0 to machine precision",
+   "measured": "median a0 = 4 sigma^4/(G M_b) = 9.361931e-11, spread 9.05e-26 vs registered canonical 9.3619e-11 (rel 3.27e-06)",
+   "pass": true,
+   "reading": "the field identity solved for a0 on each committed X-COP row: one shared zero point 9.36193e-11 to machine precision (A02 V0b reproduced), the canonical/the horizon-footing value"
+  },
+  {
+   "name": "N4 the B06 estimator on the 50-object sample: within-sample MAD",
+   "measured": "within-sample log10 MAD = 0.0531 dex (pstdev 0.1087) at the G109 0.062-dex benchmark; per-sample MAD: X-COP 0.039, E11 0.040, HeCS 0.159; pooled 0.075; estimator 2x MAD X-COP 0.077 dex",
+   "pass": true,
+   "reading": "the 0.05-0.08-dex within-sample class of the task: the temperature law's residual MAD sits at the G109 benchmark (0.053 within-sample), and the inverse mass estimator's precision = 2x the T scatter (X-COP 0.077 dex = 2 x 0.039) -- the B06 registered class, reproduced from the committed per-object rows"
+  },
+  {
+   "name": "N5 the rung ratio numeric: T_phase/T_bary = m/(mu m_p)",
+   "measured": "c/a = T_bary/T_phase = 112586.8 (registered 1.126e5); m/m_p = mu/(c/a) = 5.32922e-06 vs SM (5 keV) 5.32895e-06 -> ratio 1.00005",
+   "pass": true,
+   "reading": "the Lean theorem 5 (proton_rung_ratio): at equal sigma the temperature ratio IS the mass ratio -- only m/(mu m_p) enters, the law is invariant under the joint (m, mu m_p) scale (the corollary's rung face, A02 V2a reproduced)"
+  }
+ ],
+ "verdicts": {
+  "V1_field_identity_certified": {
+   "pass": true,
+   "statement": "The field identity T = mu m_p sqrt(G M_b a0)/(2 k_B) is Lean-certified from the virial and reproduced at float precision on all 50 committed objects."
+  },
+  "V2_inverse_certified": {
+   "pass": true,
+   "statement": "M_impl = 4 (k_B T/(mu m_p))^2/(G a0) is certified as the algebraic inverse of the temperature law in both directions (M_impl(T(M)) = M, T(M_impl(T)) = T)."
+  },
+  "V3_ratio_invariance_certified": {
+   "pass": true,
+   "statement": "The law is mass-ratio-invariant under the (mu m_p) scale: M_impl depends only on k_B T/(mu m_p) and the rung reads only m/(mu m_p) -- rescalings of the baryonic rung drop out exactly."
+  },
+  "V4_numerics_on_record": {
+   "pass": true,
+   "statement": "The B06 estimator on the 50-object sample sits at the 0.05-0.08-dex within-sample class (MAD 0.053, X-COP 0.039, E11 0.040), reproduced read-only from the committed registers."
+  }
+ },
+ "gates": {
+  "a_single_relation_pre_existing": "No new relation is claimed: the certified identities are the committed A02/B06 algebra (the virial closed form G091, the baryonic rung G151 rung (c)), machine-checked; every numeric is a reproduction of a committed register row (A02/B06/G075), nothing fit.",
+  "b_fdr": "No search is performed and no multiplicity is possible: the theorems are exact algebraic identities on positive reals, and the numerics are deterministic reproductions.",
+  "c_accuracy": "Lean: exit 0, zero sorry, axioms {propext, Classical.choice, Quot.sound}; numerics: worst rel err 1e-9 (field identity and inverse round trip on all 50 objects), exact mass-ratio invariance, the 12-cluster a0 spread 9e-26.",
+  "d_mechanism_statement": "The mechanism is the virial closed form kappa = 1/2 (G091/G03G) combined with the SM coupling mu m_p on the baryonic rung (A02): the /2 of sigma^2 = (1/2) sqrt(G M_b a0) cancels into the law's 2 k_B; the inverse estimator is pure algebra on the mass-free ratio k_B T/(mu m_p).",
+  "e_framework_originated_only": "Read-only over the committed registers (A02/B06/G075); no value is fit, adjusted, or re-sourced.",
+  "f_falsifier": "The certified content is algebraic (the identities hold for any positive values); the falsifiable claim is the empirical law it instantiates, carried by B06: a well-measured object outside the 0.06-dex-class band at the horizon footing falsifies the zero-parameter scaling, not the algebra."
+ },
+ "n_pass": 6,
+ "n_total": 6,
+ "statement": "C04: THE PROTON RUNG CERTIFIED.  Lean (deepseek_push/lean/C04_proton_rung.lean, 7 theorems, exit 0, zero sorry, axioms {propext, Classical.choice, Quot.sound}): (1) field_identity -- the virial k_B T = mu m_p sigma^2 with sigma^2 = (1/2) sqrt(G M_b a0) closes to the zero-parameter law T = mu m_p sqrt(G M_b a0)/(2 k_B); (2) inversion_identity + inversion_dual -- M_impl = 4 (k_B T/(mu m_p))^2/(G a0) is the algebraic inverse of the temperature law on the positive axis, both round trips; (3) mass_ratio_invariant + proton_rung_ratio -- the law reads only the mass-free ratio k_B T/(mu m_p) (and m/(mu m_p) at equal sigma, c/a = 1.126e5), so it is mass-ratio-invariant under the (mu m_p) scale.  Numerics (read-only reproductions of A02/B06/G075): the field identity at the horizon footing reproduces the 50 committed objects at worst rel err 0.0e+00; the inverse round trip returns M_b at 1.0e-15 rel on all 50; the mass-ratio invariance is exact (lam = 3/2); the 12 clusters imply ONE a0 = 9.36193e-11 (spread 9.0e-26); the B06 estimator on the 50-object sample sits at within-sample MAD 0.053 dex (per-sample X-COP 0.039, E11 0.040, HeCS 0.159; pooled 0.075) at the G109 0.062-dex benchmark, i.e. the 0.05-0.08-dex class, with the inverse estimator at 2x the T scatter (X-COP 0.077 dex)."
+}
