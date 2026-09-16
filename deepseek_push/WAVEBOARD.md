@@ -465,6 +465,73 @@ PLACEMENT (r_cap = 0.62 r_M needs g_ext); the kink test untested at
 cluster scale (0/12 with >= 2 bins per side); its resolved signature = the
 galaxy-scale break (MW 6.1 kpc).
 
+## WAVE 10 (landed 6/6 -- the footing staircase + the V4 death + the cap's firing)
+G133 THE MIGHTEE FOOTING: a0* = (1.843 +- 0.024)e-10 from the 80 rings
+(paper's MLS 1.69 +- 0.13, 0.6 sigma consistent); with a0 free the rms
+collapses 0.190 -> 0.129 dex = the SPARC benchmark: the MIGHTEE excess was
+NORMALIZATION, not shape.  THE STAIRCASE: DE-anchored 0.936e-10 < SPARC-RAR
+1.20-1.246e-10 < MIGHTEE-deep 1.69-1.84e-10: the DE anchor REJECTED at
+5.2 sigma, the RAR band missed by 3.0-3.3 sigma.  Systematics: NO committed
+choice closes the 0.137-dex offset (max honest closure 0.097 via the
+SPARC-class Y_K = 0.6; inclination/pressure/beam all anti-closing).  THE
+a0 SCALE IS RAR-CLASS, NOT DE-CLASS -- the vs-DE gap survives every
+committed systematic.
+G134 THE V4 DEATH, PROPERLY: net of radius the sign INVERTS (partial
++0.626 p = 1.2e-11; fixed-shell +0.672 p = 5.0e-12, 0/8 shells negative):
+the corrected -0.298 was ENTIRELY the radius confound (G050's registered
+-0.926 = -rho(s, log r) exactly: the broken field was the radius trend
+with sign flipped); THE CLAIM REDUCES TO 'the share rises with radius' --
+a restatement of the profile.  Plus a THIRD units slip: the G050/G094
+share object is degenerate (Mres mixes units: share ~ 1e-27; the rank
+stats measure dlnM*M_b, not a density share).  G106's physical share:
+partial -0.283 (p = 5.5e-3) in the claimed direction but fixed-shell
+-0.170 (p = 0.145) -- fails the 0.3 bar at exact fixed radius.
+G135 THE 2/3 LAW UNIVERSAL: ONE temperature-ratio relation across
+1e12-1e15 Msun (12/12): clusters pred 3.35 vs obs 3.57 (rms 0.067 = the
+HSE scatter), GROUPS uniform x0.83 offset (scatter 0.005 dex!), MW/M31
+closures +0.01/+0.02 dex at the galaxy-scale face (the G131 RAR line);
+pooled 31-system rms 0.076 dex, all-33 0.103; EVERY residual identified as
+a measured HSE/aperture factor; f_dark(M500) slope -0.28 +- 0.19 (the
+beta = 3/4 face; the +1/4 reading excluded at 2.8 sigma on direction).
+The cluster-specific-coincidence reading EXCLUDED by the groups + the MW
+closure rows alone.
+G136 THE LENSING-CORE REGISTRY: complete (the D2 decision at r < 0.1 R500:
+NFW -1 vs the theory ~-1.5 via HST/Subaru lensing cores + XRISM-class HSE
+correction; rules: slope <= -1.2 -> NFW wins, <= -1.7 -> the theory's core;
+published lensing papers cited per cluster).
+G137 THE DUST ENVELOPE DERIVED TO CLASS: the NFW/FG SECONDARY-INFAIL
+accretion flow (pooled dln rho/dln r = -2.218 +- 0.021; rms_c = 0.253 dex
+lowest; 11/12 per-cluster winners; r^-3/2 and r^-2 excluded at 33.6 and
+10.2 sigma); THE RESERVOIR CLOSES via the cosmic-composition collapse
+(2.0x point-mass floor / 6.2x with the outer-slope continuation); the dust
+is STREAMING (radial-biased beta -> +1 outward, turnaround caustic at ~6-7
+R500 UNOBSERVED, capture ~8.3e12 Msun/Gyr -- THE ENVELOPE IS BEING FED);
+derived in CLASS, empirical in NORMALIZATION (the per-cluster A, the cap
+line, the subtraction's own limits).
+G138 THE CAP-FIRING RESOLVED: G057b's R_cap (296-958 kpc) IS the a0-class
+total-field crossing, NOT the operative cH0 firing boundary (which fires
+NOWHERE in-window: g_tot(50 kpc)/cH0 = 0.10-0.66; 0/12) -- the split row
+was the phantom row, 711.6 = 711.6 exactly (reproduced both footings).
+NEVER-FIRED-IN-WINDOW IS A WINDOW STATEMENT, not a no-cap statement: the
+a0-class switch at 0.28-0.91 R500 is the testable crossing (in-window
+10/12; 600 kpc-R500 8/12 with pooled delta chi2 +4304, median +239); the
+self-class reading falsified (r_fire = R500 for 12/12: the bare-baryon
+all-capped extreme).
+
+## THE FOOTING CRISIS (the live headline -- wave 10's opening)
+a0 staircase: DE 0.936e-10 < SPARC 1.20-1.246e-10 < MIGHTEE-deep
+1.69-1.84e-10, monotone, the DE anchor 2x below the galactic deep end and
+REJECTED at 5.2 sigma by MIGHTEE with no committed systematic closing it.
+The framework's one-constant claim (a0 = Lambda^2/2M_Pl from rho_Lambda)
+is under direct pressure: the equilibrium's scale may sit at the galactic
+RAR value, not the cosmological one.  Wave 15: G166 the full crisis map
+(the footing knock-ons across every committed channel + the implied H0/Z),
+G167 the MIGHTEE-vs-LITTLE-THINGS pipeline split (why the resolved HI
+dwarfs fit and MIGHTEE does not), G168 the cosmic-noon mass consistency
+(z*-implied m vs the forest window), G170 the turnaround-caustic registry
+(the streaming envelope's fingerprints), G172 the footing-INDEPENDENT core
+(which verified numbers survive whichever footing wins).
+
 ## SIBLING COORDINATION (for qwen38 / hy4 / other tracks; read this first)
 CLAIMED (deepseek, in flight -- do NOT duplicate): G154 static-branch
 charge, G155 sourced equation, G156 dust charge-vs-relic decision,
