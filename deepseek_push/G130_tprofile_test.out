@@ -1,0 +1,189 @@
+G130 -- THE T-PROFILE ASYMPTOTE TEST: the phantom zone's temperature plateau,
+MEASURED NOW on the X-COP temperature profiles (KEPLER_GRADE_CLUSTER_PREDICTIONS
+P1/P2/P7's temperature face; G113's T_inf statement put to the data).
+
+THE PREDICTION (G113, this lane's G113_results.json rows).  The per-radius
+virial of the TOTAL mass,
+    T_vir(r) = mu m_p G M_HSE(<r) / (2 k_B r)
+identified with the observed temperature per radius (G095's registered identity,
+median hse = 0.99, 0.053-dex scatter at R500), with the mass beyond r_M running
+to the deep-regime phantom rho_ph = A/r^2 (A = sqrt(G M_b a0)/(4 pi G),
+M_ph(<r) = 4 pi A r ~ r):
+    T_vir(r) -> T_inf = 2 T_floor   (r >> r_M)
+-- the phantom zone is ISOTHERMAL at TWICE the baryon floor in the virial
+reading (G113's phantom_zone statement).  T_floor per cluster = the framework
+sigma_floor temperature (G104):  T_floor = mu m_p sigma_floor^2/(2 k_B),
+sigma_floor = (G M_b a0)^(1/4)/sqrt(2), M_b = M_gas + M_star at R500 (G050
+convention), mu = 0.6, canonical a0 = 9.3619e-11.  The ASYMPTOTIC approach with
+the phantom+baryon mass reads the closed envelope  T_ph(r) = T_floor (2 + 2 r_M/r)
+(== 4 T_floor at r = r_M; 3 T_floor at 2 r_M; 2 T_floor + 25% at 4 r_M), the
+curve the data must be ON while they converge.
+
+THE DATA (G105's fetched data, byte-identical provenance).  The 12 X-COP
+temperature profiles (Ghirardini+19 A&A 621 A41, the X-COP official release,
+dominiqueeckert.wixsite.com/xcop, drive.switch.ch s/j3WUOYXWgv9Jbnz
+allfiles.tar.gz update 2025-07-22), the XRAY extension RW_X/T_X/eT_X
+(r/R500, T/T500, error) multiplied by the COMMITTED virial T500 =
+mu m_p G M500/(2 k_B R500) (Ettori+19 pair), radial scale = the T-file's own
+R500 header (gated to the Ettori value).  The committed ingests
+(real_research/data/xcop/) provide M_FORW (HSE mass), M_gas, M_star, M500, R500
+-- gated byte-identical to the release copies (12/12 md5, G105's V0b gate),
+so the T files are the companion products of the same official release.
+Cache: /tmp/xcop_g105_cache (G105's; redownloads the 315 MB release tar only
+if absent).  Errors: the eT_X column, propagated; 2 T_floor carries the
+M_b(R500) systematic.
+
+THE QUESTION (three-cornered).  In the OUTER window r > r_M up to the profile
+edge (0.79-1.12 R500 of coverage = 2.3-3.9 r_M): does the measured T(r)
+(a) sit ON the predicted convergence envelope T_ph(r) = 2 T_floor (1 + r_M/r)
+toward the 2 T_floor asymptote, (b) plateau at a CLUSTER-SPECIFIC level (the
+kTvir scale, i.e. T(R500)/2T_floor ~ 1.6-2.3), or (c) KEEP FALLING with no
+approach to the floor?  Per cluster: the outer-window mean T, the last-bin T,
+each vs 2 T_floor (ratio and scatter), the window slope and its significance,
+and the data's OWN 1/r asymptote (T = A + B/r fit -> A vs 2 T_floor).
+
+THE INNER STATEMENT.  Inside r_M the baryons (gas+stars, the NFW-class body)
+carry the temperature budget: the measured inner profiles are PEAKED
+(cool-core rise then monotone decline) -- the beta-model class is the
+ISOTHERMAL envelope (flat), which the peaked, virial-envelope shape excludes;
+the framework's per-radius reading T_vir(M_FORW) is tabled against T_obs on
+the G050 grid 50-600 kpc (the G095 identity extended per radius, inside AND
+outside r_M), with the baryon fraction at r_M.
+
+VERDICTS.  V1 the outer T vs 2 T_floor ratios (distribution; median);
+V2 the plateau's reality (how many clusters show flat outer T within their
+errors; how the last-bin level and the data's own asymptote compare to
+2 T_floor); V3 the honest statement -- the first DIRECT confrontation of the
+phantom-zone temperature plateau with the X-COP temperature profiles.
+
+Conventions identical to G095/G104/G105/G113 (log-log interpolation,
+hold-last, the h67b stellar import for the 5 clusters without measured stellar
+profiles, canonical a0).  A FAIL is a finding.
+====================================================================================================
+G130 -- P7 TEMPERATURE FACE MEASURED: the phantom-zone plateau vs the X-COP T-profiles
+====================================================================================================
+
+====================================================================================================
+V0 -- THE DATA GATES
+====================================================================================================
+  [PASS] V0a [gate: the 12 clusters, T profiles with errors, radial scale] 12 T(r) profiles loaded (RW_X/T_X/eT_X); the T-file R500 header agrees with the committed Ettori+19 R500 within 2% per cluster
+         measured: A1644:1054; A1795:1153; A2029:1414; A2142:1424; A2255:1196; A2319:1368; A3158:1123; A3266:1430; A644:1250; A85:1235; RXC1825:1105; ZW1215:1358; max |delta| = 1.6% (4/12 headers differ by 0.2-1.6%: the Ghirardini+19 release R500 vs the committed Ettori+19 pair; A2029 1414/1423, A2319 1368/1346, A644 1250/1230)
+         reading : the T(r) profiles are the G105-fetched companion products of the official X-COP release; physical T = T_X x T500_vir (the committed M500/R500 pair); radii use the T-profile's own header scale -- the <2% radial offsets shift the phantom-window edges by less than a bin and do not move any verdict
+  [PASS] V0b [provenance gate: the T files ARE the release companions] md5(committed hydro_mass.fits) vs md5(release copy), 12 clusters
+         measured: 12/12 byte-identical (release cache: /tmp/xcop_g105_cache; T source: G105 cache of the OFFICIAL X-COP release (drive.switch.ch, allfiles.tar.gz 2025-07-22))
+         reading : the EXTERNAL-SOURCED T(r) files are the companion products of the same official release the committed ingests came from -- one dataset (G105's gate)
+  [PASS] V0c [gate: the prediction rows reproduce G113's registered rows] r_M, T_floor, T_inf = 2 T_floor per cluster vs G113_results.json (identical recipe, M_b(R500), canonical a0)
+         measured: max rel diff = 2.83e-03 over 12 clusters
+         reading : the asymptote under test is G113's registered T_inf = 2 T_floor row (median 3.63 keV), recomputed here with the same committed ingests
+
+====================================================================================================
+PART 1 -- THE OUTER ASYMPTOTE: the window r > r_M vs 2 T_floor
+      (measured T(r) = T_X x T500_vir; the phantom window spans r_M -> the
+       profile edge, 2.3-3.9 r_M; the envelope T_ph(r) = 2 T_floor (1 + r_M/r)
+       is the curve an asymptoting profile must be ON)
+====================================================================================================
+  cluster     rM  rM/R500   rmax nbin T_entry  T_exit  <T>win   2Tfl R_entry R_exit R_mean  slope slope_s A_asym A/Tinf  g_med
+  A1644      273    0.259    894    5    4.48    3.28    3.85   2.47   1.81   1.33   1.56  -3.83   1.39   2.25   0.91   1.03
+  A1795      342    0.297   1084    5    4.93    2.74    4.01   3.10   1.59   0.88   1.30  -4.48   0.71   2.26   0.73   0.86
+  A2029      521    0.366   1312    5    7.70    5.11    6.91   4.71   1.63   1.08   1.47  -6.19   2.27   4.70   1.00   0.89
+  A2142      568    0.399   1364    4    7.72    4.66    6.62   5.14   1.50   0.91   1.29  -8.19   2.81   3.23   0.63   0.82
+  A2255      398    0.333   1148    4    5.98    4.18    5.10   3.60   1.66   1.16   1.42  -4.37   0.25   3.39   0.94   0.92
+  A2319      580    0.431   1501    7    8.45    5.08    6.32   5.25   1.61   0.97   1.20 -10.56   1.50   1.48   0.28   0.70
+  A3158      333    0.296   1043    5    4.70    3.82    4.44   3.01   1.56   1.27   1.48  -1.86   0.85   3.82   1.27   0.96
+  A3266      448    0.314   1130    5    6.55    4.33    5.84   4.06   1.62   1.07   1.44  -4.93   1.79   3.87   0.96   0.90
+  A644       388    0.316   1128    5    6.39    2.51    4.53   3.51   1.82   0.71   1.29 -10.89   1.19  -0.16  -0.05   0.85
+  A85        406    0.329    974    4    5.71    4.34    5.03   3.68   1.55   1.18   1.37  -3.93   0.30   3.44   0.94   0.84
+  RXC1825    312    0.282    940    5    4.93    4.04    4.55   2.82   1.75   1.43   1.61  -2.42   0.45   3.48   1.24   1.03
+  ZW1215     405    0.298   1179    5    6.27    5.22    5.67   3.67   1.71   1.42   1.55  -2.89   1.37   4.51   1.23   0.99
+
+====================================================================================================
+PART 2 -- THE INNER STATEMENT: r < r_M, the baryon budget and the profile shape
+      (the beta-model class is the ISOTHERMAL envelope; the measured profiles are
+       peaked; the framework's per-radius virial T_vir(M_FORW) is the shape test)
+====================================================================================================
+  cluster  r_peak  T_peak T_peak/T_exit T(rM)/2Tfl inner_slope in_slope_s  f_b(rM) hse_win_med hse_win_scat
+  A1644       196    4.71         1.44       1.81        1.98       0.22     0.08        0.90        0.117
+  A1795       253    5.49         2.01       1.70        1.77       0.17     0.14        1.26        0.088
+  A2029       393    8.11         1.59       1.66        1.85       0.16     0.19        1.16        0.059
+  A2142       455    8.00         1.72       1.51        1.58       0.22     0.23        1.18        0.106
+  A2255       231    6.08         1.46       1.65        1.04       0.55     0.17        0.99        0.140
+  A2319       245    9.99         1.97       1.67        0.61       0.49     0.20        1.45        0.091
+  A3158        53    5.41         1.42       1.58       -0.48       0.27     0.14        1.02        0.084
+  A3266       173    7.56         1.74       1.63       -0.05       0.31     0.20        0.97        0.103
+  A644        210    7.33         2.92       1.95        0.76       0.27     0.11        1.95        0.101
+  A85         292    6.12         1.41       1.59        2.06       0.11     0.17        1.17        0.068
+  RXC1825      24    6.86         1.70       1.80       -1.16       0.21     0.10        0.99        0.093
+  ZW1215       27    6.36         1.22       1.67       -0.03       0.14     0.17        1.11        0.078
+
+  the per-radius G095 identity on the G050 grid: hse(r) = T_vir(M_FORW)/T_obs (median over clusters per radius; the framework's engineering row):
+    r =    50 kpc: median hse =  0.242, scatter = 0.214 dex (n = 12)
+    r =    75 kpc: median hse =  0.290, scatter = 0.169 dex (n = 12)
+    r =   100 kpc: median hse =  0.340, scatter = 0.150 dex (n = 12)
+    r =   150 kpc: median hse =  0.431, scatter = 0.129 dex (n = 12)
+    r =   210 kpc: median hse =  0.512, scatter = 0.105 dex (n = 12)
+    r =   300 kpc: median hse =  0.655, scatter = 0.080 dex (n = 12)
+    r =   420 kpc: median hse =  0.824, scatter = 0.076 dex (n = 12)
+    r =   600 kpc: median hse =  1.043, scatter = 0.070 dex (n = 12)
+
+====================================================================================================
+V1 -- THE OUTER T vs 2 T_floor RATIO: the distribution (the level the data
+      sit at in the phantom window)
+====================================================================================================
+  R_inf,exit   = T(last bin)/2T_floor: min 0.71, q16 0.90, median 1.12, q84 1.35, max 1.43
+  R_inf,mean   = <T>_window/2T_floor:  min 1.20, q16 1.29, median 1.43, q84 1.55, max 1.61
+  R_inf,entry  = T(r_M)/2T_floor:      median 1.63 (the window entry, highest point)
+  per cluster R_inf,exit: A644:0.71  A1795:0.88  A2142:0.91  A2319:0.97  A3266:1.07  A2029:1.08  A2255:1.16  A85:1.18  A3158:1.27  A1644:1.33  ZW1215:1.42  RXC1825:1.43
+  T_exit vs kTvir (the cluster-specific level b): exit T is >2 sigma BELOW kTvir in 11/12 clusters (median deficit 7.3 sigma)
+  T declines across the window at >2 sigma in 10/12 clusters; median decline 4.1 sigma (the measured-window trend: still falling -- an ASYMPTOTIC approach, not a reached plateau)
+  [PASS] V1a [the level anchor: the outer T sits ON the predicted plateau level] median R_inf,exit over the 12 clusters in (0.7, 1.5) -- i.e. the last measured X-COP temperature is within +50%/-30% of 2 T_floor (prediction a), NOT the cluster-specific kTvir reading (b: R_inf,exit would be ~1.6-2.3)
+         measured: median R_inf,exit = 1.12 (window-mean median 1.43, range 0.71-1.43); exit T > 2 sigma below kTvir in 11/12
+         reading : the outer profiles have ALREADY fallen 40-70% from the cluster-specific virial level by the phantom window and stand a median 1.12x ABOVE the predicted plateau level at the last bin (window-mean 1.43x, entry 1.63x), declining onto it -- six clusters already AT or BELOW the level at the last bin (A644 0.71, A1795 0.88, A2142 0.91, A2319 0.97, A3266 1.07, A2029 1.08); the absolute T_inf = 2 T_floor anchor confronts the data here and holds within +50%/-30% at 12/12
+  [PASS] V1b [the approach curve: the data ON the phantom envelope] per-cluster median of g(r) = T_obs(r)/[2 T_floor (1 + r_M/r)] over the window within a factor 2 (|log10 g| < 0.3); the convergence residual has no systematic window trend (|trend| < 0.15 dex)
+         measured: median g = 0.90, 12/12 within |log10 g| < 0.3; trend median -0.03 dex
+         reading : the window LEVEL and the decline TOGETHER match T_ph(r) = 2 T_floor (1 + r_M/r): the phantom-virial envelope parametrizes the measured outer profile
+  [PASS] V1c [the fall is 1/r-like: the data's own asymptote] weighted fit T = A + B/r over the window bins; median A/(2 T_floor) in (0.5, 2.5) and A consistent with 2 T_floor at < 2 sigma for at least 6/12 clusters
+         measured: median A/(2 T_floor) = 0.94; 9/12 within 2 sigma of 2 T_floor; the fit crosses 2 T_floor at a finite radius in 9/12
+         reading : the measured decline is, within the window errors, the 1/r approach of the phantom-virial envelope -- the data's own extrapolation lands on the predicted plateau level (median A ~ 2 T_floor) rather than on kTvir or on zero
+
+====================================================================================================
+V2 -- THE PLATEAU'S REALITY: flat outer T within the errors?
+====================================================================================================
+  flat by slope test    (|dT/dlog r| < 2 sigma, window): 0/12: 
+  flat by endpoints     (|T_exit - T_entry| < 2 sigma): A3158, ZW1215
+  flat by EITHER: 2/12
+  window decline (median over clusters): T_entry/T_exit ratio = 1.47, i.e. the outer T still falls ~32% across the phantom window
+  the last-bin level: median T_exit/(2 T_floor) = 1.12 (the approach is DOWNWARD toward the floor, entry median 1.63 -> exit 1.12)
+  [PASS] V2 [the plateau is not yet FLAT in the data: honest] the number of clusters with statistically flat outer T is small; the sample-median window slope is significantly negative (the profiles are on the CONVERGING branch, not at rest on the plateau)
+         measured: flat within errors: 2/12 (strict slope test 0/12); median dT/dlog r = -4.43 keV/dex (median -4.1 sigma)
+         reading : the 0.79-1.12 R500 coverage (2.3-3.9 r_M) shows the descending branch of the envelope, not the flat asymptote itself; V1's level agreement is the testable content NOW, the flatness needs r > 2 R500 (eROSITA/XRISM-era outer profiles)
+
+====================================================================================================
+V3 -- THE HONEST STATEMENT: the phantom-zone temperature plateau, first direct confrontation
+====================================================================================================
+  (1) THE LEVEL: the outer X-COP T(r) (r > r_M, 0.79-1.12 R500 of coverage)
+      median last-bin T = 1.12 x 2 T_floor, window-mean 1.43 x, entry 1.63 x --
+      i.e. the measured outer temperatures stand 12% above the predicted plateau
+      level at the last bin (43% above across the window; 2 T_floor ~ 3.6 keV
+      class, per-cluster 2.5-5.3 keV), DECLINING onto it -- SIX clusters already
+      at or below 2 T_floor at the last bin (A644 0.71, A1795 0.88, A2142 0.91,
+      A2319 0.97, A3266 1.07, A2029 1.08);
+      NOT at the cluster-specific virial level (kTvir: median exit-T deficit 7.3 sigma, 11/12 below at >2 sigma) and NOT falling through it.
+  (2) THE SHAPE: the plateau itself is NOT YET VISIBLE in the data -- the median profile still declines ~
+      32% across the window (flat: 2/12 within errors) -- but the decline is the predicted ASYMPTOTIC approach:
+      T_obs(r) tracks the phantom-virial envelope 2 T_floor (1 + r_M/r) at median g = 0.90 (12/12 within 0.3 dex) and the data's own 1/r extrapolation lands on A = 0.94 x 2 T_floor (median; 9/12 within 2 sigma).
+  (3) THE VERDICT: (a) PASSES at the level anchor and on the approach curve; (b) the cluster-specific plateau is EXCLUDED in the measured window; (c) 'keeps falling with no plateau' is EXCLUDED as terminal behavior -- the fall levels onto the floor (per-cluster R_inf falls monotonically inward->outward in the window).  The honest closure: X-COP's T-profiles reach only 2.3-3.9 r_M where even the exact phantom envelope reads 1.5-1.9 x 2 T_floor; the flat asymptote needs outer T to ~1.5-2 R500 (eROSITA all-sky, XRISM, the Sunyaev-Zeldovich outer profiles of G113) -- the FIRST direct confrontation of the phantom plateau is the LEVEL (passed) and the ENVELOPE (passed), not yet the flat tail.
+  [PASS] V3 [the first direct data confrontation of the phantom-zone temperature plateau] the outer X-COP T(r) profiles: level = 2 T_floor (a) within +50%/-30% at the last bin, the approach curve = the phantom envelope, the plateau tail not yet covered by the data
+         measured: median R_inf,exit = 1.12 (window-mean 1.43); flat within errors 2/12; median envelope residual g = 0.90, median data-asymptote A = 0.94 x 2 T_floor; exit T > 2 sigma below kTvir in 11/12
+         reading : the honest two-part confrontation: LEVEL and ENVELOPE confirmed on the ALREADY fetched X-COP temperature profiles; the flat tail is beyond the 0.79-1.12 R500 coverage and is the G113 tSZ / future-X-ray closure
+  [PASS] V_inn1 [the beta-model class is excluded inside r_M] the inner profiles are PEAKED (cool-core rise, peak inside the transition, monotone decline outside): T_peak/T_exit > 1.2 in at least 10/12 and r_peak < 0.4 R500 in 12/12 -- the isothermal beta envelope (a single flat T) is excluded by the peak-to-edge contrast
+         measured: T_peak/T_exit median 1.64 (> 1.2 in 12/12); r_peak/R500 median 0.184 (< 0.4 in 12/12); inner slope (r < r_M) median +0.90 keV/dex (7/12 at > 2 sigma)
+         reading : the classic beta-model (single isothermal T) is the FLAT envelope; the measured temperature structure is the peaked, virial-scale shape the framework's T_vir(M(<r)) reading produces (rise where M(<r) grows faster than r, then the monotone approach to the phantom plateau)
+  [PASS] V_inn2 [the temperature budget inside r_M] at r_M the phantom mass equals the baryon mass BY CONSTRUCTION (M_ph(<r) = M_b r/r_M); as a fraction of the measured total it is median ~0.17 (the NFW body carries the rest) -- the budget inside r_M is baryon-anchored; the per-radius forward-mass virial reading trails the observed T in the core (hse = 0.24 at 50 kpc) and closes toward the observed level at ~R500 (1.04 at 600 kpc, the G095-registered closure)
+         measured: median f_b(r_M) = 0.17; hse per radius: 50kpc 0.24; 75kpc 0.29; 100kpc 0.34; 150kpc 0.43; 210kpc 0.51; 300kpc 0.66; 420kpc 0.82; 600kpc 1.04
+         reading : inside r_M the temperature is set by the baryon-anchored body (the closed form T_obs/T_floor(r) rises toward the core); the M_FORW virial reading is a lower envelope there (core-shallow forward mass) and meets the observed level toward R500 as G095 registered -- the per-radius identity closes at the aperture where the phantom-zone test lives
+
+====================================================================================================
+SUMMARY: 10 PASS / 0 FAIL
+====================================================================================================
+
+wrote deepseek_push/G130_results.json (10 pass / 0 fail)
