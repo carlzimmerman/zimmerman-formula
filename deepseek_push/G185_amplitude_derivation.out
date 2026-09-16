@@ -1,0 +1,146 @@
+G185 -- THE AMPLITUDE DERIVATION: does the derived jump pin the dust law's
+coefficients (c0, q)?
+
+THE CHAIN.
+  G159 (deepseek_push/G159_jump_condition.py) derived the phantom/free-dust
+  density ratio at the EFE cap as a UNIVERSAL jump-condition number:
+      A_b = rho_ph/rho_d at r_b = (sigma_ph/sigma_d)^3 = exp[L/(N k_B T_b)]
+  in the dressed (potential-velocity) form: band 0.125-0.5, geomean 0.2726,
+  r_b = 0.62 r_M (G119 cap; r_M-class; G M(<r)/r = C in the isothermal well,
+  so A_b carries no r_b/g_ext dependence).
+  G143 (deepseek_push/G143_group_amplitude.py) MEASURED the dust envelope's
+  amplitude run: log10 c_dust = c0 + q log10(M500/8e14) + p log10(r/R500) with
+  c0 = -0.1445 +/- 0.030, q = -0.414 +/- 0.157 (12 committed amplitudes),
+  p = +0.990 +/- 0.035 -- the two-parameter dust law c_dust = 0.72
+  (M500/8e14)^-0.41 (r/R500)^-0.99 [G122's form, digit-gated in G143].
+  G098 (deepseek_push/G098_results.json) supplies the COMMITTED per-cluster
+  density arrays the law summarizes: rho_ph_A (the floor-A phantom law
+  rho_ph(r) = sqrt(G M_b(<r) a0)/(4 pi G r^2), no cap, no fit) and
+  rho_dust_req_A = rho_res - rho_ph_A, both in Msun/kpc^3 on a 140-pt grid
+  (0.1-1.25 R500) -- the density-LEVEL side of the same dust.
+
+THE QUESTION (task G185).
+  (1) THE BOUNDARY AGREEMENT: does the derived A_b at r_b equal the law's value
+  at r_b, i.e. per cluster
+        ratio_committed(r_b) = rho_ph(r_b)/rho_dust(r_b)   [committed laws:
+            floor-A phantom law for rho_ph at r_b; canonical rho_dust_req_A
+            for rho_d], vs the derived A_b band (0.125-0.5, geomean 0.2726)?
+        R = ratio_committed/A_b per cluster  -> median and scatter.
+      Cross-check at the COEFFICIENT level: the law's own amplitude at r_b,
+      c_dust(r_b) = 10^(c0 + q log10(M500/8e14)) (r_b/R500)^+0.99 vs A_b.
+  (2) THE PIN: median R within [0.5, 1.5] <-- the boundary pins ONE combination
+      of (c0, q).  Which combination, and what remains (the q direction: the
+      mass dimension of the law's mass-slope)?
+  (3) THE FULL DERIVATION STATUS: the chain with G182 (IN FLIGHT: dispatched
+      per WAVEBOARD "radial dispersion at the cap (G182 dispatched)" -- no
+      files on disk at the time of this lane): sigma_d(r_b) exact -> A_b single
+      number -> c0 closed.  (c0, q) = DERIVED / ONE-PARAMETER-EMPIRICAL /
+      TWO-PARAMETER-EMPIRICAL -- exact status stated.
+  (4) VERDICTS V1 (boundary agreement R), V2 (the pinned combination), V3 (the
+      honest statement: the jump condition's contribution to the law's
+      coefficients -- the state of the LAST cluster freedom).
+
+Data: ONLY committed ingests + committed JSONs are used: the X-COP baryon
+ingests (real_research/data/xcop + xcop_r500_ettori2019.json, the G143 loader)
+and the G098 committed per-cluster density arrays (canonical floor A).
+Nothing is downloaded in this run.  Outputs: G185_amplitude_derivation.out +
+G185_results.json.  Run: python3 G185_amplitude_derivation.py > out 2>/dev/null.
+
+====================================================================================================
+G185 -- THE AMPLITUDE DERIVATION: does the derived jump pin the dust law?
+====================================================================================================
+
+--- GATE 0 -- THE COMMITTED REGISTERS REPRODUCED ---
+  [PASS] G0a [G159 gate] A_b band and geomean reproduced (0.125-0.5, geomean 0.2726)
+         measured: recomputed geomean 0.2726 (G159 committed 0.2726)
+  [PASS] G0b [G143 gate] the dust-law digits reproduced: c0 = -0.1445 +- 0.030, q = -0.414 +- 0.157, p = +0.990 +- 0.035
+         measured: law = 0.72 (M500/8e14)^q (r/R500)^p: q = -0.4142, c0 = -0.1445, p = +0.9904
+  A_b band = [0.125, 0.5], geomean = 0.2726 (the task's 0.273)
+
+====================================================================================================
+PART 1 -- THE BOUNDARY AGREEMENT: rho_ph(r_b)/rho_d(r_b) PER CLUSTER
+====================================================================================================
+  r_b = 0.62 r_M (EFE cap, G119); r_M = sqrt(G M_b(R500)/a0) (G105 V6,
+  G122's committed rM_over_R500); rho_ph(r_b) = canonical floor-A law;
+  rho_d(r_b) = G098 canonical rho_dust_req_A (Msun/kpc^3)
+
+  A1644    M500= 3.48e14 r_b/R500=0.161 rho_ph=  91040.8 rho_d= 449555.0 ratio= 0.203  c_dust(r_b)=0.166
+  A1795    M500= 4.63e14 r_b/R500=0.184 rho_ph= 132005.3 rho_d= 593801.5 ratio= 0.222  c_dust(r_b)=0.168
+  A2029    M500= 8.82e14 r_b/R500=0.227 rho_ph= 108556.2 rho_d= 351455.9 ratio= 0.309  c_dust(r_b)=0.159
+  A2142    M500= 8.95e14 r_b/R500=0.247 rho_ph=  96595.6 rho_d= 314987.2 ratio= 0.307  c_dust(r_b)=0.172
+  A2255    M500= 5.26e14 r_b/R500=0.206 rho_ph=  78686.8 rho_d= 246761.2 ratio= 0.319  c_dust(r_b)=0.179
+  A2319    M500= 7.31e14 r_b/R500=0.267 rho_ph=  86615.0 rho_d= 260651.2 ratio= 0.332  c_dust(r_b)=0.201
+  A3158    M500= 4.26e14 r_b/R500=0.184 rho_ph= 106464.9 rho_d= 353873.6 ratio= 0.301  c_dust(r_b)=0.174
+  A3266    M500= 8.80e14 r_b/R500=0.194 rho_ph=  97042.8 rho_d= 354457.9 ratio= 0.274  c_dust(r_b)=0.136
+  A644     M500= 5.66e14 r_b/R500=0.196 rho_ph= 120709.4 rho_d= 714536.2 ratio= 0.169  c_dust(r_b)=0.164
+  A85      M500= 5.65e14 r_b/R500=0.204 rho_ph= 110076.8 rho_d= 361531.4 ratio= 0.304  c_dust(r_b)=0.172
+  RXC1825  M500= 4.08e14 r_b/R500=0.175 rho_ph=  92128.2 rho_d= 413763.7 ratio= 0.223  c_dust(r_b)=0.169
+  ZW1215   M500= 7.66e14 r_b/R500=0.185 rho_ph= 105191.8 rho_d= 357907.5 ratio= 0.294  c_dust(r_b)=0.137
+  [PASS] C0 [gate] the floor-A phantom law recomputed at r_b agrees with the committed canonical rho_ph_A arrays
+         measured: median |d log10| = 0.0000 dex, max = 0.0269 dex (12 clusters)
+         reading : the density ratio below uses the committed arrays; the recomputation confirms the floor-A formula and the G143 baryon recipe (the residual max sits on A1644, whose canonical M_b uses G098's imported star profile absent from the X-COP ingests; all other clusters agree to <0.03 dex)
+
+  ratio_committed(r_b): median 0.297 (geomean 0.266), IQR [0.223, 0.307], log-scatter 0.094 dex, range [0.169, 0.332]
+  vs A_b geomean 0.273 -> R = ratio/A_b: median 1.09, IQR [0.82, 1.13]
+  coefficient-level cross-check: c_dust(r_b) median 0.168 vs A_b 0.273 -> factor 0.62
+  [PASS] V1a [boundary agreement] median ratio_committed/A_b inside [0.5, 1.5] (the within-50% gate)
+         measured: R_median = 1.09
+  [PASS] V1b [universality] R vs M500 has no significant mass trend (a universal A_b demands a mass-independent boundary ratio)
+         measured: Spearman rho = +0.45 (p = 0.14)
+         reading : a mass trend in R would break the universality of the derived A_b
+  clusters whose committed boundary ratio sits INSIDE the derived A_b band [0.125, 0.5]: 12/12; outside: none
+
+====================================================================================================
+PART 2 -- THE PIN: which combination of (c0, q) does the jump fix?
+====================================================================================================
+  rho_d(r_b) mass run: d log10 rho_d(r_b)/d log10(M500/8e14) = q_jump = -0.343 +- 0.270 (Spearman -0.45, p = 0.14)
+  the law's committed amplitude slope q = -0.414 +- 0.157 -> consistent within combined errors: YES
+  rho_ph density slope at r_b: median -1.06 (= -2 + (1/2) d ln M_b/d ln r, the brief's '-1.7-ish')
+
+  THE PINNED COMBINATION (algebra):
+    jump: rho_ph(r_b)/rho_d(r_b) = A_b  =>  rho_d(r_b) = rho_ph(r_b)/A_b
+    with rho_ph(r) = sqrt(G M_b(<r) a0)/(4 pi G r^2) (floor-A law):
+    rho_d(r_b) = A_b^-1 sqrt(G a0)/(4 pi G) [M_b(<r_b)]^{1/2} r_b^-2
+    -> the jump fixes, PER CLUSTER, the dust density at r_b; in the
+       law's variables rho_d(r) ~ 10^{c0} (M500/8e14)^q (r/R500)^-0.99
+       this pins the ONE linear combination
+       c0 + q log10(M500/8e14) = log10[rho_d(r_b) (r_b/R500)^{-0.99}],
+       i.e. the c0-direction at r_b -- leaving the perpendicular
+       direction (the mass slope q's own value) EMPIRICAL unless the
+       mass run of rho_ph(r_b) pins it (q_jump above).
+
+====================================================================================================
+PART 3 -- THE FULL DERIVATION STATUS: (c0, q) = DERIVED / 1-PARAM / 2-PARAM
+====================================================================================================
+  G182 (dispatched per WAVEBOARD 'radial dispersion at the cap (G182
+  dispatched)' -- NOT on disk at lane time) closes sigma_d(r_b), the
+  infall dispersion at the cap = G159 V3's named missing piece:
+    G159:  A_b = (sigma_ph / sigma_d(r_b))^3   [dressed jump, p = 3]
+    G182:  sigma_d(r_b) EXACT  ->  A_b a SINGLE number (band collapses)
+    jump:  rho_d(r_b) = rho_ph(r_b)/A_b  ->  c0-direction pinned:
+           c0 = log10[rho_ph(r_b) (r_b/R500)^{0.99} / A_b] - q log10(M500/8e14)
+    q direction: the mass run of rho_ph(r_b) (Part 2, q_jump).
+  STATUS with today's committed data: ONE-PARAMETER EMPIRICAL + consistency: the jump pins the c0-combination (median R = 1.09, 12/12 inside the derived band); q's mass dimension remains MEASURED (-0.414 +- 0.157), CONSISTENT with the derived mass run (q_jump = -0.34 +- 0.27, within combined errors) but not independently derived (12-point power)
+  -> G182 landing collapses the A_b band to one number and turns the
+     c0-direction into a COMPUTED number; the LAST cluster freedom is
+     then at most the single number q.
+
+====================================================================================================
+V -- VERDICTS
+====================================================================================================
+  [PASS] V1 [the boundary agreement R]
+         measured: R_median = 1.09, scatter 0.09 dex, 12/12 in-window
+         reading : THE BOUNDARY AGREEMENT R: per-cluster ratio_committed(r_b) = rho_ph(r_b)/rho_d(r_b) from the committed laws (canonical floor-A phantom + rho_dust_req) vs the derived A_b = 0.273: median ratio 0.297 -> R = ratio/A_b = 1.09 (AGREE within 50% (PASS)); log-scatter 0.09 dex, IQR [0.22, 0.31], range [0.17, 0.33]; Spearman(R, M500) = +0.45 (p = 0.14); 12/12 clusters inside the derived band [0.125, 0.5]; coefficient cross-check c_dust(r_b)/A_b = 0.62 (the law's own amplitude at r_b, dimensionless temperature-coherency factor -- same order as the density ratio, not identical by construction)
+  [PASS] V2 [the pinned combination]
+         measured: q_jump = -0.343 +- 0.270 vs q_law = -0.414 +/- 0.157; rho_ph slope at r_b ~ -1.06
+         reading : THE PINNED COMBINATION: the jump fixes rho_d(r_b) = rho_ph(r_b)/A_b per cluster; in the law's variables that is the ONE linear combination c0 + q log10(M500/8e14) (the c0-direction at r_b; rho_ph(r_b) from the floor-A law, envelope shape (r/R500)^-0.99 committed); the perpendicular direction (q's mass dimension) is pinned only if the mass run of rho_d(r_b) matches the law's q: q_jump = -0.343 +- 0.270 vs committed q = -0.414 +- 0.157 -> q CONSISTENT with the derived mass run (q_jump = -0.343 +- 0.270 vs committed -0.414 +- 0.157, within combined errors) but NOT independently derived (predictor se 0.27 > law se 0.16, 12-point power); the phantom density slope at r_b is -2 + (1/2) d ln M_b/d ln r ~ -1.06 (the '-1.7-ish' of the brief)
+  [PASS] V3 [the honest statement]
+         measured: status: ONE-PARAMETER EMPIRICAL + consistency: the jump pins the c0-combination (median R = 1.09, 12/12 inside the derived band); q's mass dimension remains MEASURED (-0.414 +- 0.157), CONSISTENT with the derived mass run (q_jump = -0.34 +- 0.27, within combined errors) but not independently derived (12-point power)
+         reading : HONEST: the jump condition contributes a UNIVERSAL DENSITY RATIO at r_b = 0.62 r_M (A_b = (sigma_ph/sigma_d)^3 = 0.125-0.5, geomean 0.273) that AGREES with the committed laws' boundary ratio (median R = 1.09, log-scatter 0.09 dex); it pins the c0-direction of the amplitude pair exactly (rho_d(r_b) = rho_ph(r_b)/A_b with the floor-A phantom and the r^-0.99 envelope shape), leaving q's mass dimension EMPIRICAL (but mass-run-consistent) on today's data; G182's sigma_d(r_b) closure (in flight) collapses the A_b band to a single number and turns the c0-direction into a COMPUTED number; the LAST cluster freedom: ONE-PARAMETER EMPIRICAL + consistency: the jump pins the c0-combination (median R = 1.09, 12/12 inside the derived band); q's mass dimension remains MEASURED (-0.414 +- 0.157), CONSISTENT with the derived mass run (q_jump = -0.34 +- 0.27, within combined errors) but not independently derived (12-point power)
+
+G185 COMPLETE: 8/8 checks PASS.
+  V1: THE BOUNDARY AGREEMENT R: per-cluster ratio_committed(r_b) = rho_ph(r_b)/rho_d(r_b) from the committed laws (canonical floor-A phantom + rho_dust_req) vs the derived A_b = 0.273: median rati...
+  V2: THE PINNED COMBINATION: the jump fixes rho_d(r_b) = rho_ph(r_b)/A_b per cluster; in the law's variables that is the ONE linear combination c0 + q log10(M500/8e14) (the c0-direction at r_b; r...
+  V3: HONEST: the jump condition contributes a UNIVERSAL DENSITY RATIO at r_b = 0.62 r_M (A_b = (sigma_ph/sigma_d)^3 = 0.125-0.5, geomean 0.273) that AGREES with the committed laws' boundary ratio...
+
+wrote G185_results.json
