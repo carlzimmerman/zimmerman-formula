@@ -1,0 +1,94 @@
+================================================================================================
+S03 -- THE ATLAS3D M/L_JAM AUDIT: the frozen-tilt decider and half the
+seesaw offset -- mass-trending M/L_JAM, a real dark slope, or geometry?
+================================================================================================
+
+(0) PROVENANCE + REPRODUCTION
+------------------------------------------------------------------------------------------------
+  committed ATLAS3D rows : 258 (G162 construction, imported guarded)
+  Table 1 (fetched)      : 258 rows, sha256 389c1ae85811... OK
+  logM* == logL + log(M/L)_JAM : max|d| = 1.78e-15 (gate <1e-4)
+  sigma_e == 10^log_sigma_e    : max|d| = 0.0050 km/s (gate <0.01)
+  paper's (M/L)-sigma_e slope  : 0.727 +- 0.046 (registered 0.72)
+  Vcirc/sigma_e median ratio   : 1.74 (paper 1.76)
+  committed registers:
+    Nu slope   b = 1.2977 +- 0.0451  (b-1)/se = +6.60   rms 0.0787   med r +0.0813
+    residual drift vs log M*   : +0.0744 dex/dex (committed +0.0744)
+    split-half                 : 1.9439 +- 0.1368 below / 0.9634 +- 0.0762 above
+
+(1) V1 -- THE MASS-TRENDING TEST
+------------------------------------------------------------------------------------------------
+  residual r vs M/L proxies (n = 258):
+    log_ML_JAM         rho +0.473 (t +8.60)   OLS slope +0.2560 +- 0.0273 (+9.4 sigma)
+    log_L              rho +0.296 (t +4.97)   OLS slope +0.0560 +- 0.0147 (+3.8 sigma)
+    log_sigma_e        rho +0.765 (t +19.02)   OLS slope +0.4113 +- 0.0205 (+20.1 sigma)
+    log_Re_arcsec      rho -0.123 (t -1.98)   OLS slope -0.0501 +- 0.0198 (-2.5 sigma)
+    logMstar           rho +0.429 (t +7.61)   OLS slope +0.0744 +- 0.0113 (+6.6 sigma)
+  THE REQUIRED M/L TREND (b = 1/(1+delta')): delta' = -0.229 dex/dex (below -0.49 / above +0.04)
+  the JAM M/L_JAM's OWN mass trend         : +0.249/dex (below +0.512 / above +0.148)  -- SIGNS OPPOSITE (test fails)
+  THE M/L-REMOVED SLOPE (per-galaxy M/L_JAM -> constant):
+    b_fix = 1.378 +- 0.076   (NOT 1.00)   b_L (pure L) = 1.378 +- 0.076
+  partial r = a + c1 logM* + c2 log(M/L)_JAM: c1 = +0.019, c2 = +0.225
+    residual drift after removing M/L_JAM channel: +0.0185 +- 0.0105 -> b_after = 1.074
+  IMF zero point (Kroupa +0.05 in M*): b = 1.2977 -- slope INVARIANT
+
+(2) V2 -- THE PHANTOM-FLATTENING TEST
+------------------------------------------------------------------------------------------------
+  p_req = 3 - (s - 0.3512)/[w (s - 0.5)] at the ETG core (drift +0.0744):
+    s \ w    0.13     0.2      0.3      0.5      0.8      1.0    
+    0.45      --       --       --       --       --       --  
+    0.5       --       --       --       --       --       --  
+    0.55   -27.58   -16.88   -10.25   -4.95    -1.97    -0.98  
+    0.6    -16.14   -9.44    -5.29    -1.98    -0.11    0.51   
+    0.65   -12.32   -6.96    -3.64    -0.98    0.51     1.01   
+    0.7    -10.42   -5.72    -2.81    -0.49    0.82     1.26   
+  paper's median f_DM = 0.13 -> p_req = -27.6 (s=0.55) / -16.1 (s=0.60) -- INVERTED
+  committed phantom (p=2): drift -0.0218/dex -> b_ph = 0.913, +8.5 sigma below 1.30
+  G188 unity: p = 2.000 (MW) / ~1.6-2.0 (clusters) -- dark-slope reading needs p <= -28 at the ETG boundary: UNITY BROKEN
+
+(2b) THE THIRD READING -- the Mass Plane / size-mass geometry  b = 2(1-s)
+------------------------------------------------------------------------------------------------
+  sample's own size-mass slope s = 0.377 +- 0.030 (angular; volume-limited sample)
+    -> b_geo = 1.245 vs observed 1.298 (sigma separation +1.17)
+  tilt's required s = 0.351 (b = 2(1-s) with b = 1.298)
+  split-half:  below-median s = 0.025 -> b_geo = 1.951 vs 1.944 (z = -0.05)
+               above-median s = 0.557 -> b_geo = 0.886 vs 0.963 (z = +1.02)
+  residual drift after geometry: +0.0132 +- 0.0113 (z_geo = +1.17)
+
+(3) THE DECISION -- sigma separation
+------------------------------------------------------------------------------------------------
+  after M/L_JAM removal : drift +0.0185 +- 0.0105 -> z_ML = +1.77
+  under committed phantom: unexplained +0.0962 +- 0.0113 -> z_ph = +8.53
+  after geometry removal: drift +0.0132 +- 0.0113 -> z_geo = +1.17
+  DECISION: GEOMETRY (Mass Plane) READING PREFERRED: b = 2(1-s) with the sample's own size-mass slope reproduces the tilt (z_geo = 1.17 < z_ML = 1.77 < z_ph = 8.53); the committed phantom has the WRONG sign (predicts drift <= 0 at the ETG core) and needs an inverted p < 0 to carry the tilt
+
+(4) VERDICTS
+------------------------------------------------------------------------------------------------
+[V1] PASS
+    THE MASS-TRENDING TEST: on the committed ATLAS3D rows the residual r = log10(sigma_e/sigma_pred) vs the JAM-implied M/L proxy log(M/L)_JAM has Spearman rho = +0.473 (t = +8.60) and OLS slope dr/dlog(M/L)_JAM = +0.2560 +- 0.0273 (9.4 sigma); vs log sigma_e (the velocity-dispersion proxy -- the paper's own (M/L) ~ sigma^0.72 is reproduced in-sample 0.73 +- 0.05) rho = +0.765; vs log L rho = +0.296; vs log R_e rho = -0.123 -- the residual DOES correlate with the JAM-implied M/L proxies.  BUT the sign test fails: the tilt b = 1.298 requires the M/L ERROR to trend at delta' = 1/b - 1 = -0.229 dex/dex (below median -0.49 / above +0.04), while the JAM M/L_JAM's own measured mass trend is +0.249/dex (below +0.512 / above +0.148) -- OPPOSITE SIGNS, so the JAM M/L_JAM as committed cannot be the carrier (a +0.25/dex spurious M/L would tilt the line to b ~ 0.80, not 1.30).  THE RESIDUAL SLOPE AFTER THE M/L REMOVAL: with a constant per-galaxy M/L_JAM the Nu slope is b = 1.378 +- 0.076 (NOT 1.00; pure-luminosity abscissa b_L = 1.378 +- 0.076) -- fixing the M/L does NOT flatten the tilt; after the fitted partial channel c2 = +0.225 the residual drift drops to +0.0185 +- 0.0105 (z = +1.77, b_after = 1.074) but that removal uses the M/L_JAM at a coefficient the JAM itself produced (the anisotropy/IMF degeneracy), and the registered IMF shift (Kroupa +0.03-0.06 in M*) is a slope-invariant zero point (verified: b 1.2977).  The mass-trending-M/L reading is NOT supported by the sign structure of the committed rows.
+[V2] PASS
+    THE PHANTOM-FLATTENING TEST: a REAL dark-mass slope b = 1.30 at the ETG core (dr/dlogM* = +0.0744) requires, from the committed deep-regime phantom (rho_ph ~ r^-p, M_ph(<r) = M_b u^(3-p), u = r/r_M) with the dark fraction w = u^(3-p)/(1+u^(3-p)) at the aperture, the density exponent p_req = 3 - (s - 0.3512)/[w (s - 0.5)].  With the paper's OWN median dark fraction f_DM = 0.13 within R_e (w = 0.13): at s = 0.55 p_req = -27.6, at s = 0.60 p_req = -16.1 -- NEGATIVE (an INVERTED phantom, density RISING outward) in every central cell; even at w = 1.0 the required p stays below ~0.5-1.0 everywhere below s = 0.60.  THE G188 CHECK AT THE ETG BOUNDARY: the phantom exponent is locked at p = 2.000 (MW interior, G072) and ~1.6-2.0 at the cluster scale (G188 galaxy-cluster unity) -- the dark-slope reading needs p <= -28 at the ETG boundary, breaking the unity by tens of exponent units.  THE COMMITTED PHANTOM'S OWN PREDICTION (p = 2, w = 0.13): drift = -0.0218/dex -> Nu slope b_ph = 0.913, +8.5 sigma BELOW the observed 1.30 -- the committed phantom predicts a NEAR-ZERO or NEGATIVE drift at the ETG core, so it cannot produce the tilt; the phantom-flattening reading is refuted by the G188 unity.
+[V2b] PASS
+    THE THIRD READING (the audit's discovery): ATLAS3D XV's own Mass Plane satisfies the scalar virial relation M_JAM ~ sigma_e^2 R_e (their abstract) -- which ALONE, with NO dark matter and NO M/L trend, gives the Nu slope b = 2(1 - s) with s = d log R_e/d log M*.  Measured in-sample on the committed rows: s = 0.377 +- 0.030 -> b_geo = 1.245 vs the observed 1.2977 (sigma separation +1.17); the tilt's required s is 0.351 (needs s = 0.35).  THE SPLIT-HALF CURVATURE: below-median s = 0.025 -> b_geo = 1.951 vs the observed 1.944 (z = -0.05 -- the low-mass steepness 1.94 is EXACTLY the flat size-mass slope of the sub-median bin); above-median s = 0.557 -> b_geo = 0.886 vs 0.963 (z = +1.02).  The geometric reading leaves a residual drift of only +0.0132 +- 0.0113 dex/dex (z_geo = +1.17) -- smaller than the M/L-channel residual (z_ML = +1.77) and far smaller than the phantom residual (z_ph = +8.53).  Caveat: s is measured from ANGULAR R_e; the sample is volume-limited to 42 Mpc and near mass-selected (ATLAS3D XV abstract), so the angular size-mass slope tracks the physical one, stated as the audit's assumption.
+[V3] PASS
+    THE HONEST STATEMENT: the committed ATLAS3D data (258 ETGs, Nu slope 1.298 +- 0.045, +6.60 sigma, split-half 1.944 below / 0.963 above the median log M*) do NOT support EITHER of the two named rescues, and PREFER a third.  (a) The M/L-trend reading (the frozen tilt's decider AND the 56% seesaw offset's shared suspect): the residual correlates with the JAM M/L proxies (rho +0.473 vs log(M/L)_JAM), but the required M/L error trend is -0.23 dex/dex (below -0.49 / above +0.04) -- OPPOSITE SIGN to the JAM M/L_JAM's measured +0.25/dex, and the M/L-REMOVED slope (constant M/L) stays +1.38 +- 0.08, NOT 1: the mass-trending M/L_JAM is sign-refuted and removal-ineffective.  (b) The phantom-flattening reading (a real dark slope at elliptical scale): it needs the phantom density exponent at the ETG core to be p = -27.6 to -16.1 at the paper's own median f_DM = 0.13 -- NEGATIVE, an inverted phantom -- vs the committed p = 2.000 exact (MW, G072/G188) and the galaxy-cluster unity p ~ 1.6-2.0 at clusters (G188): refuted at the ETG boundary.  (c) THE GEOMETRIC READING (discovered here): the Mass-Plane/virial form b = 2(1-s) with the sample's own size-mass slope s = 0.377 +- 0.030 reproduces the tilt (b_geo = 1.245, z = +1.17) and the split-half curvature (geometric 1.951/0.886 vs observed 1.944/0.963), leaving the smallest residual of all three readings.  THE SIGMA SEPARATION: z_ML = +1.77 (M/L-channel removal), z_ph = +8.53 (committed phantom), z_geo = +1.17 (Mass Plane) -> GEOMETRY (Mass Plane) READING PREFERRED: b = 2(1-s) with the sample's own size-mass slope reproduces the tilt (z_geo = 1.17 < z_ML = 1.77 < z_ph = 8.53); the committed phantom has the WRONG sign (predicts drift <= 0 at the ETG core) and needs an inverted p < 0 to carry the tilt.  THE AUDIT'S NUMBER: the frozen tilt and the seesaw's 56% ATLAS3D share share one suspect -- the ATLAS3D abscissa -- and that suspect decomposes as SIZE-MASS GEOMETRY (b = 2(1-s), s_measured = 0.38, the pivot between the two named hypotheses), NOT a measured mass-trending M/L_JAM (sign-opposite, removal keeps b = 1.38) and NOT a dark slope the committed phantom can carry (needs p <= -28 vs +2.000, G188 broken).  The 1.30 tilt is re-classified: within the committed rows it is the ETG size-mass relation of the sample -- the 12-decade line's frozen-domain slope anomaly (Z1) shrinks by the same geometric amount, and the M/L_JAM's remaining role (the anisotropy/IMF degeneracy -- the paper's own warning that (M/L) ~ sigma^0.72 'provides an upper limit to any systematic increase of the IMF mass normalization with sigma_e') is registered as the caveat this audit cannot break with committed rows alone (cited UNVERIFIED literature: Cappellari+13 arXiv:1208.3522v2 Table 1, provenance-gated).
+
+(5) CHECKS: 15/15 pass
+    [OK] Table 1 provenance: sha256 of S03_data/atlas3d_xv_table1.tsv matches recorded (389c1ae85811...)
+    [OK] Committed ATLAS3D parse: 258 rows, unique names
+    [OK] Provenance gate: logM*_committed == logL + log(M/L)_JAM to <1e-4 (max|d| = 1.78e-15)
+    [OK] Provenance gate: sigma_e_committed == 10^log_sigma_e to <0.01 km/s (max|d| = 0.0050)
+    [OK] G162 register reproduced: ATLAS3D Nu slope 1.2977 +- 0.0451 (+6.60)
+    [OK] G162 register reproduced: residual drift +0.0744/dex of log M*
+    [OK] Z1 register reproduced: split-half 1.9439 below / 0.9634 above median log M*
+    [OK] Paper's own (M/L)-sigma_e relation reproduced in-sample: 0.72 (measured 0.727 +- 0.046)
+    [OK] Vcirc/sigma_e median ratio ~1.76 (paper): measured 1.74
+    [OK] IMF zero point (Kroupa +0.05 in M*) leaves the Nu slope UNCHANGED (a zero point cannot bend a slope): b 1.2977 vs 1.2977
+    [OK] SIGN TEST: the tilt requires M/L error trend -0.229 dex/dex but the JAM M/L_JAM's measured mass trend is +0.249/dex (below +0.512 / above +0.148) -- OPPOSITE signs
+    [OK] V1 M/L-removal: with a constant M/L_JAM the Nu slope stays +1.378 +- 0.076 (NOT 1.00); partial-removal drift +0.0185 +- 0.0105 (z = +1.77)
+    [OK] V2 phantom flattening at the ETG core requires p < 0 (inverted phantom) for the paper's median f_DM = 0.13 at s = 0.55-0.60: p_required = -27.6 / -16.1 vs the committed p = 2.000 (G188 unity broken)
+    [OK] V2b geometric reading: the sample's own size-mass slope s = 0.377 +- 0.030 gives b_geo = 2(1-s) = 1.245, consistent with the observed 1.298 at 1.17 sigma; split-half b_geo = 1.951 (vs 1.944, z = -0.05) / 0.886 (vs 0.963, z = +1.02)
+    [OK] G162_results.json unmodified by the import (byte-identical, guarded restore)
+
+wrote /Users/carlzimmerman/new_physics/zimmerman-formula/deepseek_push/S03_results.json
+checks: 15/15 pass

@@ -1,0 +1,528 @@
+{
+ "lane": "S03_atlas3d_audit",
+ "title": "THE ATLAS3D M/L_JAM AUDIT: mass-trending M/L_JAM zero point vs genuine dark-mass slope at the elliptical scale -- the frozen-tilt decider (Z1) and 56% of the seesaw offset (Z8), resolved",
+ "question": "is ATLAS3D's internal Nu slope 1.30 (split-half 1.944 below / 0.963 above median log M*) a mass-trending M/L_JAM/IMF zero point (the relation should correlate with the JAM-implied M/L; the residual slope after M/L removal should return to 1), a genuine dark-mass slope (the phantom's r-exponent flattens at the ETG core; check against the G188 galaxy-cluster unity), or -- the reading found here -- the sample's own size-mass geometry (the Mass Plane b = 2(1-s))?",
+ "method": "rebuild the committed 258 ATLAS3D rows exactly as G162 (guarded import); re-transcribe Table 1 of Cappellari+13 (arXiv:1208.3522v2) into deepseek_push/S03_data/atlas3d_xv_table1.tsv with a sha256 provenance gate; verify logM* = logL + log(M/L)_JAM exact to 1e-5 and sigma_e to 1e-2; reproduce the committed registers (Nu slope 1.2977+-0.0451, drift +0.0744/dex, split-half 1.9439/0.9634, the paper's own (M/L)-sigma_e 0.72 in-sample, Vcirc/sigma_e 1.76); V1 the mass-trending test (residual r vs the M/L proxies log(M/L)_JAM / log sigma_e / log L / log R_e: Spearman + OLS; the sign test delta' = 1/b - 1 vs the JAM M/L_JAM's measured trend; the M/L-removed Nu slope with a constant M/L; the partial c2 channel; the IMF zero-point invariance); V2 the phantom-flattening derivation p_req = 3 - (s-0.3512)/[w(s-0.5)] from dr/dlogM* = 0.0744 with the paper's median f_DM = 0.13, and the G188 unity check at the ETG boundary; V2b the Mass-Plane geometric reading b = 2(1-s) with the sample's own angular size-mass slope (all-sample and split-half); V3 the decision via the sigma separation of the three residual models (z_ML, z_ph, z_geo).",
+ "provenance": {
+  "table_tsv": "deepseek_push/S03_data/atlas3d_xv_table1.tsv",
+  "sha256": "389c1ae85811a08b24f7d45819de391ed812a23244658ff0465ff688a39c104c",
+  "expected_sha256": "389c1ae85811a08b24f7d45819de391ed812a23244658ff0465ff688a39c104c",
+  "intact": true,
+  "source": "Cappellari et al. 2013 MNRAS 432, 1709 (ATLAS3D XV), arXiv:1208.3522v2, Table 1, columns (Galaxy, log sigma_e, R(sigma)/Re, log sigma_kpc, inc, log(M/L)_JAM, log Vcircmax, qual, log Remaj, log Re, log r1/2, log rg, conc, eps_e, log L); 260 rows fetched, 258 match the committed transcription; UNVERIFIED-in-repo literature, cited",
+  "gates": {
+   "logMstar_minus_logL_minus_logML_JAM_maxabs": 0.0,
+   "sigma_e_minus_10_pow_log_sigma_e_maxabs": 0.00496,
+   "paper_ML_sigma_slope_in_sample": 0.7266,
+   "Vcirc_over_sigma_e_median": 1.744
+  }
+ },
+ "reproduction": {
+  "Nu_slope": {
+   "b": 1.2977,
+   "se": 0.0451,
+   "nu_sigma": 6.604,
+   "n": 258,
+   "rms": 0.0787,
+   "median_r": 0.0813
+  },
+  "drift_dex": 0.0744,
+  "split_half": {
+   "below_median_logMstar": {
+    "n": 129,
+    "slope": 1.9439,
+    "se": 0.1368,
+    "nu_sigma": 6.899
+   },
+   "above_median_logMstar": {
+    "n": 129,
+    "slope": 0.9634,
+    "se": 0.0762,
+    "nu_sigma": -0.479
+   }
+  }
+ },
+ "V1_mass_trending_test": {
+  "proxy_stats": {
+   "log_ML_JAM": {
+    "spearman_rho": 0.4733,
+    "rho_se": 0.0626,
+    "t_rho": 8.596,
+    "ols_slope_dr_dproxy": 0.256,
+    "se": 0.0273,
+    "nu_sigma": 9.37,
+    "n": 258
+   },
+   "log_L": {
+    "spearman_rho": 0.2964,
+    "rho_se": 0.0626,
+    "t_rho": 4.966,
+    "ols_slope_dr_dproxy": 0.056,
+    "se": 0.0147,
+    "nu_sigma": 3.81,
+    "n": 258
+   },
+   "log_sigma_e": {
+    "spearman_rho": 0.7653,
+    "rho_se": 0.0626,
+    "t_rho": 19.025,
+    "ols_slope_dr_dproxy": 0.4113,
+    "se": 0.0205,
+    "nu_sigma": 20.11,
+    "n": 258
+   },
+   "log_Re_arcsec": {
+    "spearman_rho": -0.1229,
+    "rho_se": 0.0626,
+    "t_rho": -1.981,
+    "ols_slope_dr_dproxy": -0.0501,
+    "se": 0.0198,
+    "nu_sigma": -2.53,
+    "n": 258
+   },
+   "logMstar": {
+    "spearman_rho": 0.4295,
+    "rho_se": 0.0626,
+    "t_rho": 7.609,
+    "ols_slope_dr_dproxy": 0.0744,
+    "se": 0.0113,
+    "nu_sigma": 6.6,
+    "n": 258
+   }
+  },
+  "required_ML_trend": {
+   "all_dex": -0.2294,
+   "below_dex": -0.4856,
+   "above_dex": 0.0379,
+   "formula": "delta' = 1/b - 1 (b = 1/(1+delta'))"
+  },
+  "measured_JAM_ML_trend": {
+   "all_dex": 0.2485,
+   "below_dex": 0.5124,
+   "above_dex": 0.1481,
+   "sign_opposite_to_required": true
+  },
+  "M_L_removed_slope": {
+   "b_fix": 1.3778,
+   "se_b_fix": 0.0762,
+   "b_L": 1.3778,
+   "se_b_L": 0.0762
+  },
+  "partial": {
+   "c1": 0.0185,
+   "c2": 0.225,
+   "drift_clean": 0.0185,
+   "se_drift_clean": 0.0105,
+   "b_after": 1.074
+  },
+  "IMF_zero_point": {
+   "b_after_plus_0p05": 1.2977,
+   "note": "a constant M/L shift leaves the slope unchanged"
+  },
+  "ML_absorbs_tilt": false,
+  "residual_drift_killed": true
+ },
+ "V2_phantom_flattening": {
+  "required_p_table": {
+   "0.45": {
+    "0.13": null,
+    "0.2": null,
+    "0.3": null,
+    "0.5": null,
+    "0.8": null,
+    "1.0": null
+   },
+   "0.5": {
+    "0.13": null,
+    "0.2": null,
+    "0.3": null,
+    "0.5": null,
+    "0.8": null,
+    "1.0": null
+   },
+   "0.55": {
+    "0.13": -27.58,
+    "0.2": -16.88,
+    "0.3": -10.25,
+    "0.5": -4.95,
+    "0.8": -1.97,
+    "1.0": -0.98
+   },
+   "0.6": {
+    "0.13": -16.14,
+    "0.2": -9.44,
+    "0.3": -5.29,
+    "0.5": -1.98,
+    "0.8": -0.11,
+    "1.0": 0.51
+   },
+   "0.65": {
+    "0.13": -12.32,
+    "0.2": -6.96,
+    "0.3": -3.64,
+    "0.5": -0.98,
+    "0.8": 0.51,
+    "1.0": 1.01
+   },
+   "0.7": {
+    "0.13": -10.42,
+    "0.2": -5.72,
+    "0.3": -2.81,
+    "0.5": -0.49,
+    "0.8": 0.82,
+    "1.0": 1.26
+   }
+  },
+  "w_paper_median_fDM": 0.13,
+  "p_required_s055": -27.58,
+  "p_required_s060": -16.14,
+  "central_required_p_range": [
+   -27.6,
+   -16.1
+  ],
+  "committed_p": 2.0,
+  "committed_phantom_drift": -0.0218,
+  "committed_phantom_b_ph": 0.913,
+  "sigma_sep_ph": 8.53,
+  "G188_unity_broken": true
+ },
+ "V2b_geometry": {
+  "size_mass_slope": {
+   "s_all": 0.3775,
+   "se_all": 0.0298,
+   "s_below": 0.0247,
+   "s_above": 0.5571,
+   "s_required_all": 0.3511
+  },
+  "b_geo": {
+   "all": 1.245,
+   "below": 1.9506,
+   "above": 0.8858
+  },
+  "z_geo": {
+   "all": 1.17,
+   "below": -0.05,
+   "above": 1.02
+  },
+  "residual_drift_after_geometry": {
+   "drift": 0.0132,
+   "se": 0.0113,
+   "z": 1.17
+  },
+  "assumption": "angular size-mass slope tracks the physical one (ATLAS3D XV volume-limited to 42 Mpc, near mass-selected)"
+ },
+ "decision": {
+  "decision": "GEOMETRY (Mass Plane) READING PREFERRED: b = 2(1-s) with the sample's own size-mass slope reproduces the tilt (z_geo = 1.17 < z_ML = 1.77 < z_ph = 8.53); the committed phantom has the WRONG sign (predicts drift <= 0 at the ETG core) and needs an inverted p < 0 to carry the tilt",
+  "sigma_separation": {
+   "z_ML": 1.77,
+   "z_ph": 8.53,
+   "z_geo": 1.17,
+   "drift_ML": 0.0185,
+   "drift_ph_residual": 0.0962,
+   "drift_geo": 0.0132,
+   "se_drift": 0.0113
+  }
+ },
+ "verdicts": {
+  "V1": {
+   "statement": "THE MASS-TRENDING TEST: on the committed ATLAS3D rows the residual r = log10(sigma_e/sigma_pred) vs the JAM-implied M/L proxy log(M/L)_JAM has Spearman rho = +0.473 (t = +8.60) and OLS slope dr/dlog(M/L)_JAM = +0.2560 +- 0.0273 (9.4 sigma); vs log sigma_e (the velocity-dispersion proxy -- the paper's own (M/L) ~ sigma^0.72 is reproduced in-sample 0.73 +- 0.05) rho = +0.765; vs log L rho = +0.296; vs log R_e rho = -0.123 -- the residual DOES correlate with the JAM-implied M/L proxies.  BUT the sign test fails: the tilt b = 1.298 requires the M/L ERROR to trend at delta' = 1/b - 1 = -0.229 dex/dex (below median -0.49 / above +0.04), while the JAM M/L_JAM's own measured mass trend is +0.249/dex (below +0.512 / above +0.148) -- OPPOSITE SIGNS, so the JAM M/L_JAM as committed cannot be the carrier (a +0.25/dex spurious M/L would tilt the line to b ~ 0.80, not 1.30).  THE RESIDUAL SLOPE AFTER THE M/L REMOVAL: with a constant per-galaxy M/L_JAM the Nu slope is b = 1.378 +- 0.076 (NOT 1.00; pure-luminosity abscissa b_L = 1.378 +- 0.076) -- fixing the M/L does NOT flatten the tilt; after the fitted partial channel c2 = +0.225 the residual drift drops to +0.0185 +- 0.0105 (z = +1.77, b_after = 1.074) but that removal uses the M/L_JAM at a coefficient the JAM itself produced (the anisotropy/IMF degeneracy), and the registered IMF shift (Kroupa +0.03-0.06 in M*) is a slope-invariant zero point (verified: b 1.2977).  The mass-trending-M/L reading is NOT supported by the sign structure of the committed rows.",
+   "proxy_stats": {
+    "log_ML_JAM": {
+     "spearman_rho": 0.4733,
+     "rho_se": 0.0626,
+     "t_rho": 8.596,
+     "ols_slope_dr_dproxy": 0.256,
+     "se": 0.0273,
+     "nu_sigma": 9.37,
+     "n": 258
+    },
+    "log_L": {
+     "spearman_rho": 0.2964,
+     "rho_se": 0.0626,
+     "t_rho": 4.966,
+     "ols_slope_dr_dproxy": 0.056,
+     "se": 0.0147,
+     "nu_sigma": 3.81,
+     "n": 258
+    },
+    "log_sigma_e": {
+     "spearman_rho": 0.7653,
+     "rho_se": 0.0626,
+     "t_rho": 19.025,
+     "ols_slope_dr_dproxy": 0.4113,
+     "se": 0.0205,
+     "nu_sigma": 20.11,
+     "n": 258
+    },
+    "log_Re_arcsec": {
+     "spearman_rho": -0.1229,
+     "rho_se": 0.0626,
+     "t_rho": -1.981,
+     "ols_slope_dr_dproxy": -0.0501,
+     "se": 0.0198,
+     "nu_sigma": -2.53,
+     "n": 258
+    },
+    "logMstar": {
+     "spearman_rho": 0.4295,
+     "rho_se": 0.0626,
+     "t_rho": 7.609,
+     "ols_slope_dr_dproxy": 0.0744,
+     "se": 0.0113,
+     "nu_sigma": 6.6,
+     "n": 258
+    }
+   },
+   "M_L_removed_slope": {
+    "b_fix": 1.3778,
+    "se_b_fix": 0.0762,
+    "b_L": 1.3778,
+    "se_b_L": 0.0762
+   },
+   "partial": {
+    "c1": 0.0185,
+    "c2": 0.225,
+    "drift_clean": 0.0185,
+    "se_drift_clean": 0.0105,
+    "b_after": 1.074
+   },
+   "required_ML_trend": {
+    "all": -0.2294,
+    "below": -0.4856,
+    "above": 0.0379,
+    "formula": "delta' = 1/b - 1"
+   },
+   "measured_ML_trend": {
+    "all": 0.2485,
+    "below": 0.5124,
+    "above": 0.1481
+   },
+   "paper_ML_sigma": {
+    "slope": 0.7266,
+    "se": 0.0463,
+    "registered": 0.72
+   },
+   "IMF_zero_point": {
+    "b_after_plus_0p05": 1.2977,
+    "note": "a constant M/L shift leaves the slope unchanged"
+   },
+   "sign_test_pass": true,
+   "ML_absorbs_tilt": false,
+   "residual_drift_killed": true,
+   "pass": true
+  },
+  "V2": {
+   "statement": "THE PHANTOM-FLATTENING TEST: a REAL dark-mass slope b = 1.30 at the ETG core (dr/dlogM* = +0.0744) requires, from the committed deep-regime phantom (rho_ph ~ r^-p, M_ph(<r) = M_b u^(3-p), u = r/r_M) with the dark fraction w = u^(3-p)/(1+u^(3-p)) at the aperture, the density exponent p_req = 3 - (s - 0.3512)/[w (s - 0.5)].  With the paper's OWN median dark fraction f_DM = 0.13 within R_e (w = 0.13): at s = 0.55 p_req = -27.6, at s = 0.60 p_req = -16.1 -- NEGATIVE (an INVERTED phantom, density RISING outward) in every central cell; even at w = 1.0 the required p stays below ~0.5-1.0 everywhere below s = 0.60.  THE G188 CHECK AT THE ETG BOUNDARY: the phantom exponent is locked at p = 2.000 (MW interior, G072) and ~1.6-2.0 at the cluster scale (G188 galaxy-cluster unity) -- the dark-slope reading needs p <= -28 at the ETG boundary, breaking the unity by tens of exponent units.  THE COMMITTED PHANTOM'S OWN PREDICTION (p = 2, w = 0.13): drift = -0.0218/dex -> Nu slope b_ph = 0.913, +8.5 sigma BELOW the observed 1.30 -- the committed phantom predicts a NEAR-ZERO or NEGATIVE drift at the ETG core, so it cannot produce the tilt; the phantom-flattening reading is refuted by the G188 unity.",
+   "required_p_at_ETG": {
+    "table": {
+     "0.45": {
+      "0.13": null,
+      "0.2": null,
+      "0.3": null,
+      "0.5": null,
+      "0.8": null,
+      "1.0": null
+     },
+     "0.5": {
+      "0.13": null,
+      "0.2": null,
+      "0.3": null,
+      "0.5": null,
+      "0.8": null,
+      "1.0": null
+     },
+     "0.55": {
+      "0.13": -27.58,
+      "0.2": -16.88,
+      "0.3": -10.25,
+      "0.5": -4.95,
+      "0.8": -1.97,
+      "1.0": -0.98
+     },
+     "0.6": {
+      "0.13": -16.14,
+      "0.2": -9.44,
+      "0.3": -5.29,
+      "0.5": -1.98,
+      "0.8": -0.11,
+      "1.0": 0.51
+     },
+     "0.65": {
+      "0.13": -12.32,
+      "0.2": -6.96,
+      "0.3": -3.64,
+      "0.5": -0.98,
+      "0.8": 0.51,
+      "1.0": 1.01
+     },
+     "0.7": {
+      "0.13": -10.42,
+      "0.2": -5.72,
+      "0.3": -2.81,
+      "0.5": -0.49,
+      "0.8": 0.82,
+      "1.0": 1.26
+     }
+    },
+    "w_paper_median_fDM": 0.13,
+    "p_required_s055": -27.58,
+    "p_required_s060": -16.14,
+    "central_range": [
+     -27.6,
+     -16.1
+    ],
+    "committed_p": 2.0
+   },
+   "committed_phantom_prediction": {
+    "drift_ph": -0.0218,
+    "b_ph": 0.913,
+    "sigma_separation_from_obs": 8.53,
+    "note": "predicted with the committed p = 2 and the paper's median f_DM = 0.13"
+   },
+   "G188_unity_check": {
+    "unity_breaks_at_ETG_boundary": true,
+    "galaxy_scale_p": 2.0,
+    "cluster_scale_p": "~1.6-2.0 (G188)",
+    "statement": "the dark-slope reading needs an inverted phantom at the ETG boundary, breaking the G188 galaxy-cluster unity"
+   },
+   "pass": true
+  },
+  "V2b": {
+   "statement": "THE THIRD READING (the audit's discovery): ATLAS3D XV's own Mass Plane satisfies the scalar virial relation M_JAM ~ sigma_e^2 R_e (their abstract) -- which ALONE, with NO dark matter and NO M/L trend, gives the Nu slope b = 2(1 - s) with s = d log R_e/d log M*.  Measured in-sample on the committed rows: s = 0.377 +- 0.030 -> b_geo = 1.245 vs the observed 1.2977 (sigma separation +1.17); the tilt's required s is 0.351 (needs s = 0.35).  THE SPLIT-HALF CURVATURE: below-median s = 0.025 -> b_geo = 1.951 vs the observed 1.944 (z = -0.05 -- the low-mass steepness 1.94 is EXACTLY the flat size-mass slope of the sub-median bin); above-median s = 0.557 -> b_geo = 0.886 vs 0.963 (z = +1.02).  The geometric reading leaves a residual drift of only +0.0132 +- 0.0113 dex/dex (z_geo = +1.17) -- smaller than the M/L-channel residual (z_ML = +1.77) and far smaller than the phantom residual (z_ph = +8.53).  Caveat: s is measured from ANGULAR R_e; the sample is volume-limited to 42 Mpc and near mass-selected (ATLAS3D XV abstract), so the angular size-mass slope tracks the physical one, stated as the audit's assumption.",
+   "size_mass_slope": {
+    "s_all": 0.3775,
+    "se": 0.0298,
+    "s_below": 0.0247,
+    "s_above": 0.5571,
+    "s_required_all": 0.3511,
+    "s_required_below": 0.028,
+    "s_required_above": 0.5183
+   },
+   "b_geo": {
+    "all": 1.245,
+    "below": 1.9506,
+    "above": 0.8858
+   },
+   "z_geo": {
+    "all": 1.17,
+    "below": -0.05,
+    "above": 1.02
+   },
+   "residual_drift_after_geometry": {
+    "drift": 0.0132,
+    "se": 0.0113,
+    "z": 1.17
+   },
+   "assumption": "angular size-mass slope tracks the physical one (volume-limited sample, ATLAS3D XV abstract)",
+   "pass": true
+  },
+  "V3": {
+   "decision": "GEOMETRY (Mass Plane) READING PREFERRED: b = 2(1-s) with the sample's own size-mass slope reproduces the tilt (z_geo = 1.17 < z_ML = 1.77 < z_ph = 8.53); the committed phantom has the WRONG sign (predicts drift <= 0 at the ETG core) and needs an inverted p < 0 to carry the tilt",
+   "statement": "THE HONEST STATEMENT: the committed ATLAS3D data (258 ETGs, Nu slope 1.298 +- 0.045, +6.60 sigma, split-half 1.944 below / 0.963 above the median log M*) do NOT support EITHER of the two named rescues, and PREFER a third.  (a) The M/L-trend reading (the frozen tilt's decider AND the 56% seesaw offset's shared suspect): the residual correlates with the JAM M/L proxies (rho +0.473 vs log(M/L)_JAM), but the required M/L error trend is -0.23 dex/dex (below -0.49 / above +0.04) -- OPPOSITE SIGN to the JAM M/L_JAM's measured +0.25/dex, and the M/L-REMOVED slope (constant M/L) stays +1.38 +- 0.08, NOT 1: the mass-trending M/L_JAM is sign-refuted and removal-ineffective.  (b) The phantom-flattening reading (a real dark slope at elliptical scale): it needs the phantom density exponent at the ETG core to be p = -27.6 to -16.1 at the paper's own median f_DM = 0.13 -- NEGATIVE, an inverted phantom -- vs the committed p = 2.000 exact (MW, G072/G188) and the galaxy-cluster unity p ~ 1.6-2.0 at clusters (G188): refuted at the ETG boundary.  (c) THE GEOMETRIC READING (discovered here): the Mass-Plane/virial form b = 2(1-s) with the sample's own size-mass slope s = 0.377 +- 0.030 reproduces the tilt (b_geo = 1.245, z = +1.17) and the split-half curvature (geometric 1.951/0.886 vs observed 1.944/0.963), leaving the smallest residual of all three readings.  THE SIGMA SEPARATION: z_ML = +1.77 (M/L-channel removal), z_ph = +8.53 (committed phantom), z_geo = +1.17 (Mass Plane) -> GEOMETRY (Mass Plane) READING PREFERRED: b = 2(1-s) with the sample's own size-mass slope reproduces the tilt (z_geo = 1.17 < z_ML = 1.77 < z_ph = 8.53); the committed phantom has the WRONG sign (predicts drift <= 0 at the ETG core) and needs an inverted p < 0 to carry the tilt.  THE AUDIT'S NUMBER: the frozen tilt and the seesaw's 56% ATLAS3D share share one suspect -- the ATLAS3D abscissa -- and that suspect decomposes as SIZE-MASS GEOMETRY (b = 2(1-s), s_measured = 0.38, the pivot between the two named hypotheses), NOT a measured mass-trending M/L_JAM (sign-opposite, removal keeps b = 1.38) and NOT a dark slope the committed phantom can carry (needs p <= -28 vs +2.000, G188 broken).  The 1.30 tilt is re-classified: within the committed rows it is the ETG size-mass relation of the sample -- the 12-decade line's frozen-domain slope anomaly (Z1) shrinks by the same geometric amount, and the M/L_JAM's remaining role (the anisotropy/IMF degeneracy -- the paper's own warning that (M/L) ~ sigma^0.72 'provides an upper limit to any systematic increase of the IMF mass normalization with sigma_e') is registered as the caveat this audit cannot break with committed rows alone (cited UNVERIFIED literature: Cappellari+13 arXiv:1208.3522v2 Table 1, provenance-gated).",
+   "sigma_separation": {
+    "z_ML": 1.77,
+    "z_ph": 8.53,
+    "z_geo": 1.17,
+    "drift_ML": 0.0185,
+    "drift_ph_residual": 0.0962,
+    "drift_geo": 0.0132,
+    "se_drift": 0.0113,
+    "decision": "GEOMETRY (Mass Plane) READING PREFERRED: b = 2(1-s) with the sample's own size-mass slope reproduces the tilt (z_geo = 1.17 < z_ML = 1.77 < z_ph = 8.53); the committed phantom has the WRONG sign (predicts drift <= 0 at the ETG core) and needs an inverted p < 0 to carry the tilt"
+   },
+   "frozen_tilt": {
+    "Nu_slope": 1.2977,
+    "se": 0.0451,
+    "nu_sigma": 6.6,
+    "split_below": 1.9439,
+    "split_above": 0.9634,
+    "median_r": 0.0813,
+    "rms": 0.1144
+   },
+   "seesaw": {
+    "atlast3d_share_of_offset_pct": 56.2,
+    "offset_log10a0": 0.2585,
+    "atlast3d_a0_over_DE": 2.02,
+    "source": "Z08: ATLAS3D channel +0.145 dex = 56.2% of the +0.2585-dex (log10 a0) seesaw offset; the audit reframes the SLOPE side, the median-r zero point (+0.081) remains the M/L_JAM scale",
+    "zero_point_anatomy": {
+     "median_r": 0.0813,
+     "Vcirc_over_sigma_e_convention_dex": 0.0285,
+     "note": "the paper's V_circ(Re_maj) ~ 1.51 sigma_e (their eq. 30) vs the committed dispersion-face factor sqrt(2) = 1.414 contributes log10(1.51/1.414) = +0.028 dex to the median r -- about 1/3 of the +0.081 ATLAS3D zero point, a convention term the audit registers, not resolves (G162 already noted the 7% agreement)"
+    }
+   },
+   "caveat": "the JAM M/L_JAM is itself model-dependent: the anisotropy (beta) and the IMF mass normalization are degenerate with M/L_JAM in the JAM fit; Cappellari+13 explicitly state (M/L) ~ sigma_e^0.72 'provides an upper limit to any systematic increase of the IMF mass normalization with sigma_e'.  The committed ATLAS3D rows are transcribed from that paper (UNVERIFIED-in-repo, cited); the per-galaxy M/L_JAM, log L and log R_e used here were re-transcribed from the same Table 1 with a provenance gate (logM* = logL + log(M/L)_JAM exact to 1e-5).",
+   "pass": true
+  }
+ },
+ "checks": [
+  {
+   "name": "Table 1 provenance: sha256 of S03_data/atlas3d_xv_table1.tsv matches recorded (389c1ae85811...)",
+   "pass": true
+  },
+  {
+   "name": "Committed ATLAS3D parse: 258 rows, unique names",
+   "pass": true
+  },
+  {
+   "name": "Provenance gate: logM*_committed == logL + log(M/L)_JAM to <1e-4 (max|d| = 1.78e-15)",
+   "pass": true
+  },
+  {
+   "name": "Provenance gate: sigma_e_committed == 10^log_sigma_e to <0.01 km/s (max|d| = 0.0050)",
+   "pass": true
+  },
+  {
+   "name": "G162 register reproduced: ATLAS3D Nu slope 1.2977 +- 0.0451 (+6.60)",
+   "pass": true
+  },
+  {
+   "name": "G162 register reproduced: residual drift +0.0744/dex of log M*",
+   "pass": true
+  },
+  {
+   "name": "Z1 register reproduced: split-half 1.9439 below / 0.9634 above median log M*",
+   "pass": true
+  },
+  {
+   "name": "Paper's own (M/L)-sigma_e relation reproduced in-sample: 0.72 (measured 0.727 +- 0.046)",
+   "pass": true
+  },
+  {
+   "name": "Vcirc/sigma_e median ratio ~1.76 (paper): measured 1.74",
+   "pass": true
+  },
+  {
+   "name": "IMF zero point (Kroupa +0.05 in M*) leaves the Nu slope UNCHANGED (a zero point cannot bend a slope): b 1.2977 vs 1.2977",
+   "pass": true
+  },
+  {
+   "name": "SIGN TEST: the tilt requires M/L error trend -0.229 dex/dex but the JAM M/L_JAM's measured mass trend is +0.249/dex (below +0.512 / above +0.148) -- OPPOSITE signs",
+   "pass": true
+  },
+  {
+   "name": "V1 M/L-removal: with a constant M/L_JAM the Nu slope stays +1.378 +- 0.076 (NOT 1.00); partial-removal drift +0.0185 +- 0.0105 (z = +1.77)",
+   "pass": true
+  },
+  {
+   "name": "V2 phantom flattening at the ETG core requires p < 0 (inverted phantom) for the paper's median f_DM = 0.13 at s = 0.55-0.60: p_required = -27.6 / -16.1 vs the committed p = 2.000 (G188 unity broken)",
+   "pass": true
+  },
+  {
+   "name": "V2b geometric reading: the sample's own size-mass slope s = 0.377 +- 0.030 gives b_geo = 2(1-s) = 1.245, consistent with the observed 1.298 at 1.17 sigma; split-half b_geo = 1.951 (vs 1.944, z = -0.05) / 0.886 (vs 0.963, z = +1.02)",
+   "pass": true
+  },
+  {
+   "name": "G162_results.json unmodified by the import (byte-identical, guarded restore)",
+   "pass": true
+  }
+ ],
+ "n_pass": 15,
+ "n_total": 15,
+ "sources": {
+  "Z1": "deepseek_push/Z01_frozen_tilt.py/.json (the frozen-domain tilt; ATLAS3D internal 1.2977+-0.0451; split-half 1.9439/0.9634; named decider = mass-trending M/L_JAM/IMF zero point vs real dark slope)",
+  "Z8": "deepseek_push/Z08_line_zero.py/.json (the seesaw: ATLAS3D channel +0.145 dex = 56.2% of the +0.2585-dex log10 a0 offset; ATLAS3D a0_over_DE = 2.020)",
+  "G162": "deepseek_push/G162_fill_gap.py/.json (the committed ATLAS3D transcription; M* = L x (M/L)_JAM; Kroupa shift <= -0.015 dex in r; SLUGGS 1.286+-0.128)",
+  "G188": "deepseek_push/G188_inverted_pie.py/.json (the galaxy-cluster unity; phantom r^-2 at galaxy scale, p ~ 2; phantom at/outside R500 at cluster scale)",
+  "G072": "deepseek_push/G072_mw_law.py/.json (MW interior phantom face, gamma = 2.000 exact)",
+  "Z5": "deepseek_push/Z05_reverse_lock.py/.json (MW interior gamma = 2.000 exact; cluster gamma locks ~1.6-2.0)",
+  "PAPER": "Cappellari et al. 2013 MNRAS 432, 1709 (ATLAS3D XV), arXiv:1208.3522v2 -- Table 1 re-transcribed into S03_data/ with provenance gate; (M/L)-sigma_e 0.72, median f_DM = 13% within Re, Vcirc ~ 1.76 sigma_e, the Mass Plane satisfies the scalar virial M_JAM ~ sigma_e^2 R_e ('provides an upper limit to any systematic increase of the IMF mass normalization with sigma_e') -- UNVERIFIED-in-repo, cited"
+ }
+}
