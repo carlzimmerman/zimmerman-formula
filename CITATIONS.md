@@ -1,226 +1,568 @@
 # CITATIONS.md — Living Citation Index
 
-> Every individual whose work is used anywhere in this repo — papers, Python
-> script mechanisms, data credits, references. **Click a name** for its citation
-> page: every repo file where they appear (full list, GitHub links).
-> Append-only: never delete an entry; add as new work lands.
+> **Confirmed individuals** whose work is used in this repo — papers, Python
+> mechanisms, data credits, references. **Click a name** for its citation page:
+> every repo file where they appear (GitHub links) + papers. Append-only: never
+> delete; add as new work lands.
 
-**682 individuals indexed · full-repo corpus sweep.**
+**2012 confirmed individuals · full-repo corpus sweep.**
 
 | Name | Files | Occurrences | Citation page |
 |---|---|---|---|
 | \Citep | 14 | 17 | [citations/\citep/](citations/\citep/index.md) |
-| Niels Henrik Abel | 2 | 35 | [citations/abel/](citations/abel/index.md) |
+| Abel | 2 | 35 | [citations/abel/](citations/abel/index.md) |
 | Allen | 2 | 14 | [citations/allen/](citations/allen/index.md) |
 | Anderson | 1 | 1 | [citations/anderson/](citations/anderson/index.md) |
-| J. Anosova | 0 | 0 | [citations/anosova/](citations/anosova/index.md) |
-| V. A. Antonov | 0 | 0 | [citations/antonov/](citations/antonov/index.md) |
-| Nima Arkani-Hamed | 159 | 588 | [citations/arkani-hamed/](citations/arkani-hamed/index.md) |
-| Atiyah-Singer | 3 | 3 | [citations/atiyah-singer/](citations/atiyah-singer/index.md) |
+| Arkani Hamed | 159 | 588 | [citations/arkani-hamed/](citations/arkani-hamed/index.md) |
+| Atiyah Singer | 3 | 3 | [citations/atiyah-singer/](citations/atiyah-singer/index.md) |
 | Auger | 6 | 7 | [citations/auger/](citations/auger/index.md) |
 | Bailey | 1 | 3 | [citations/bailey/](citations/bailey/index.md) |
 | Baker | 5 | 7 | [citations/baker/](citations/baker/index.md) |
-| Indranil Banik | 129 | 261 | [citations/banik/](citations/banik/index.md) |
+| Banik | 129 | 261 | [citations/banik/](citations/banik/index.md) |
 | Battaglia | 1 | 1 | [citations/battaglia/](citations/battaglia/index.md) |
-| Ayesha Begum | 25 | 49 | [citations/begum/](citations/begum/index.md) |
-| Jacob Bekenstein | 298 | 585 | [citations/bekenstein/](citations/bekenstein/index.md) |
-| John Stewart Bell | 61 | 134 | [citations/bell/](citations/bell/index.md) |
-| Edmund Bertschinger | 0 | 0 | [citations/bertschinger/](citations/bertschinger/index.md) |
+| Begum | 25 | 49 | [citations/begum/](citations/begum/index.md) |
+| Bekenstein | 298 | 585 | [citations/bekenstein/](citations/bekenstein/index.md) |
+| Bell | 61 | 134 | [citations/bell/](citations/bell/index.md) |
 | Beurling | 1 | 1 | [citations/beurling/](citations/beurling/index.md) |
-| Bimond | 2 | 2 | [citations/bimond/](citations/bimond/index.md) |
-| James Binney | 44 | 87 | [citations/binney/](citations/binney/index.md) |
-| Luc Blanchet | 102 | 200 | [citations/blanchet/](citations/blanchet/index.md) |
+| Binney | 44 | 87 | [citations/binney/](citations/binney/index.md) |
+| Blanchet | 102 | 200 | [citations/blanchet/](citations/blanchet/index.md) |
 | Blas | 1 | 12 | [citations/blas/](citations/blas/index.md) |
 | Blok | 1 | 4 | [citations/blok/](citations/blok/index.md) |
-| Mike Bode | 0 | 0 | [citations/bode/](citations/bode/index.md) |
-| Hermann Bondi | 0 | 0 | [citations/bondi/](citations/bondi/index.md) |
+| Bosch | 29 | 57 | [citations/bosch/](citations/bosch/index.md) |
+| Boselli | 12 | 17 | [citations/boselli/](citations/boselli/index.md) |
 | Bosma | 1 | 2 | [citations/bosma/](citations/bosma/index.md) |
+| Boss | 149 | 1051 | [citations/boss/](citations/boss/index.md) |
+| Both | 14185 | 46444 | [citations/both/](citations/both/index.md) |
 | Boue | 1 | 2 | [citations/boue/](citations/boue/index.md) |
-| Boufourou | 0 | 0 | [citations/boufourou/](citations/boufourou/index.md) |
-| David Boulware | 0 | 0 | [citations/boulware/](citations/boulware/index.md) |
+| Bound | 9599 | 57135 | [citations/bound/](citations/bound/index.md) |
+| Bourgain Sarnak Ziegler | 1 | 1 | [citations/bourgain-sarnak-ziegler/](citations/bourgain-sarnak-ziegler/index.md) |
 | Bourgoin | 1 | 2 | [citations/bourgoin/](citations/bourgoin/index.md) |
 | Bournaud | 1 | 2 | [citations/bournaud/](citations/bournaud/index.md) |
+| Bousso | 26 | 58 | [citations/bousso/](citations/bousso/index.md) |
+| Boutivas | 3 | 6 | [citations/boutivas/](citations/boutivas/index.md) |
 | Bovy | 1 | 2 | [citations/bovy/](citations/bovy/index.md) |
-| Boylan-Kolchin | 1 | 2 | [citations/boylan-kolchin/](citations/boylan-kolchin/index.md) |
+| Boylan Kolchin | 1 | 2 | [citations/boylan-kolchin/](citations/boylan-kolchin/index.md) |
 | Brada | 1 | 2 | [citations/brada/](citations/brada/index.md) |
 | Brainerd | 1 | 2 | [citations/brainerd/](citations/brainerd/index.md) |
+| Brand | 813 | 3299 | [citations/brand/](citations/brand/index.md) |
 | Brannen | 3 | 5 | [citations/brannen/](citations/brannen/index.md) |
+| Brans | 44 | 81 | [citations/brans/](citations/brans/index.md) |
+| Brax | 19 | 240 | [citations/brax/](citations/brax/index.md) |
+| Breakthrough | 207 | 386 | [citations/breakthrough/](citations/breakthrough/index.md) |
 | Bregman | 1 | 2 | [citations/bregman/](citations/bregman/index.md) |
+| Brewer | 15 | 31 | [citations/brewer/](citations/brewer/index.md) |
+| Briareusflow | 44 | 172 | [citations/briareusflow/](citations/briareusflow/index.md) |
+| Briggs | 17 | 40 | [citations/briggs/](citations/briggs/index.md) |
+| Brighenti | 2 | 2 | [citations/brighenti/](citations/brighenti/index.md) |
 | Broadhurst | 1 | 2 | [citations/broadhurst/](citations/broadhurst/index.md) |
 | Brocato | 1 | 2 | [citations/brocato/](citations/brocato/index.md) |
 | Broeils | 1 | 2 | [citations/broeils/](citations/broeils/index.md) |
+| Broglie | 56 | 103 | [citations/broglie/](citations/broglie/index.md) |
+| Bromley | 2 | 6 | [citations/bromley/](citations/bromley/index.md) |
+| Broughan | 1 | 2 | [citations/broughan/](citations/broughan/index.md) |
 | Brout | 1 | 2 | [citations/brout/](citations/brout/index.md) |
-| Margot Brouwer | 114 | 224 | [citations/brouwer/](citations/brouwer/index.md) |
-| A. Brown | 103 | 384 | [citations/brown/](citations/brown/index.md) |
+| Brouwer | 114 | 224 | [citations/brouwer/](citations/brouwer/index.md) |
+| Brown | 103 | 384 | [citations/brown/](citations/brown/index.md) |
+| Bruneton | 21 | 46 | [citations/bruneton/](citations/bruneton/index.md) |
+| Bruningseeley | 1 | 1 | [citations/bruningseeley/](citations/bruningseeley/index.md) |
+| Brunthaler | 4 | 6 | [citations/brunthaler/](citations/brunthaler/index.md) |
+| Bruzual | 7 | 70 | [citations/bruzual/](citations/bruzual/index.md) |
 | Bryan | 5 | 6 | [citations/bryan/](citations/bryan/index.md) |
-| Buckley-Geer | 1 | 2 | [citations/buckley-geer/](citations/buckley-geer/index.md) |
+| Bucher | 10 | 12 | [citations/bucher/](citations/bucher/index.md) |
+| Buckley Geer | 1 | 2 | [citations/buckley-geer/](citations/buckley-geer/index.md) |
 | Buell | 1 | 2 | [citations/buell/](citations/buell/index.md) |
+| Bueno | 9 | 21 | [citations/bueno/](citations/bueno/index.md) |
+| Buhimschi | 2 | 2 | [citations/buhimschi/](citations/buhimschi/index.md) |
 | Bulbul | 1 | 2 | [citations/bulbul/](citations/bulbul/index.md) |
+| Bulk | 4605 | 14303 | [citations/bulk/](citations/bulk/index.md) |
 | Bullock | 2 | 4 | [citations/bullock/](citations/bullock/index.md) |
 | Bunker | 2 | 4 | [citations/bunker/](citations/bunker/index.md) |
+| Buoninfante | 5 | 8 | [citations/buoninfante/](citations/buoninfante/index.md) |
 | Buote | 1 | 2 | [citations/buote/](citations/buote/index.md) |
+| Bureau | 31 | 72 | [citations/bureau/](citations/bureau/index.md) |
+| Burg | 578 | 1433 | [citations/burg/](citations/burg/index.md) |
+| Burkert | 43 | 405 | [citations/burkert/](citations/burkert/index.md) |
+| Burnol | 1 | 1 | [citations/burnol/](citations/burnol/index.md) |
 | Burstein | 1 | 2 | [citations/burstein/](citations/burstein/index.md) |
+| Buta | 155 | 332 | [citations/buta/](citations/buta/index.md) |
+| Buttazzo | 2 | 7 | [citations/buttazzo/](citations/buttazzo/index.md) |
+| Butterfield | 1 | 1 | [citations/butterfield/](citations/butterfield/index.md) |
+| Ca Only | 7 | 15 | [citations/ca-only/](citations/ca-only/index.md) |
 | Cahn | 1 | 2 | [citations/cahn/](citations/cahn/index.md) |
+| Cai | 216 | 2782 | [citations/cai/](citations/cai/index.md) |
+| Calabi Yau | 126 | 245 | [citations/calabi-yau/](citations/calabi-yau/index.md) |
 | Calafut | 1 | 2 | [citations/calafut/](citations/calafut/index.md) |
 | Caldeira | 1 | 2 | [citations/caldeira/](citations/caldeira/index.md) |
+| Calderaro | 1 | 1 | [citations/calderaro/](citations/calderaro/index.md) |
+| Caldwell | 21 | 29 | [citations/caldwell/](citations/caldwell/index.md) |
+| Calet | 24 | 44 | [citations/calet/](citations/calet/index.md) |
+| Camb | 372 | 1752 | [citations/camb/](citations/camb/index.md) |
+| Camille | 7 | 115 | [citations/camille/](citations/camille/index.md) |
 | Campbell | 1 | 2 | [citations/campbell/](citations/campbell/index.md) |
+| Campeti | 1 | 1 | [citations/campeti/](citations/campeti/index.md) |
 | Candelas | 1 | 2 | [citations/candelas/](citations/candelas/index.md) |
 | Cannaliato | 1 | 2 | [citations/cannaliato/](citations/cannaliato/index.md) |
-| Michele Cappellari | 39 | 77 | [citations/cappellari/](citations/cappellari/index.md) |
+| Cappellari | 39 | 77 | [citations/cappellari/](citations/cappellari/index.md) |
+| Car | 13597 | 134980 | [citations/car/](citations/car/index.md) |
 | Carr | 3 | 26 | [citations/carr/](citations/carr/index.md) |
-| Sean Carroll | 160 | 612 | [citations/carroll/](citations/carroll/index.md) |
-| Élie Cartan | 4 | 11 | [citations/cartan/](citations/cartan/index.md) |
+| Carroll | 160 | 612 | [citations/carroll/](citations/carroll/index.md) |
+| Cartan | 4 | 11 | [citations/cartan/](citations/cartan/index.md) |
+| Casagrande | 6 | 6 | [citations/casagrande/](citations/casagrande/index.md) |
+| Casals | 3 | 5 | [citations/casals/](citations/casals/index.md) |
 | Casey | 1 | 2 | [citations/casey/](citations/casey/index.md) |
-| Kyu-Hyun Chae | 193 | 399 | [citations/chae/](citations/chae/index.md) |
-| H. Chan | 32 | 119 | [citations/chan/](citations/chan/index.md) |
+| Casimir | 234 | 1251 | [citations/casimir/](citations/casimir/index.md) |
+| Casper | 16 | 24 | [citations/casper/](citations/casper/index.md) |
+| Cassisi | 1 | 3 | [citations/cassisi/](citations/cassisi/index.md) |
+| Castell | 27 | 441 | [citations/castell/](citations/castell/index.md) |
+| Category | 1511 | 16768 | [citations/category/](citations/category/index.md) |
+| Cava | 72 | 628 | [citations/cava/](citations/cava/index.md) |
+| Cbmai | 4 | 14 | [citations/cbmai/](citations/cbmai/index.md) |
+| Cect | 6 | 55 | [citations/cect/](citations/cect/index.md) |
+| Cepheids | 51 | 79 | [citations/cepheids/](citations/cepheids/index.md) |
+| Cha | 98037 | 547677 | [citations/cha/](citations/cha/index.md) |
+| Chae | 193 | 399 | [citations/chae/](citations/chae/index.md) |
+| Chan | 32 | 119 | [citations/chan/](citations/chan/index.md) |
 | Chandra | 3 | 5 | [citations/chandra/](citations/chandra/index.md) |
 | Chang | 3 | 21 | [citations/chang/](citations/chang/index.md) |
+| Checked | 75118 | 76718 | [citations/checked/](citations/checked/index.md) |
+| Checklist | 356 | 1183 | [citations/checklist/](citations/checklist/index.md) |
 | Cheeger | 1 | 2 | [citations/cheeger/](citations/cheeger/index.md) |
-| X. Chen | 4 | 74 | [citations/chen/](citations/chen/index.md) |
+| Chem | 7344 | 48203 | [citations/chem/](citations/chem/index.md) |
+| Chen | 4 | 74 | [citations/chen/](citations/chen/index.md) |
+| Cherenkov | 140 | 645 | [citations/cherenkov/](citations/cherenkov/index.md) |
+| Chern | 224 | 664 | [citations/chern/](citations/chern/index.md) |
+| Chetyrkin | 1 | 1 | [citations/chetyrkin/](citations/chetyrkin/index.md) |
 | Chiba | 1 | 2 | [citations/chiba/](citations/chiba/index.md) |
+| Chicago | 30 | 56 | [citations/chicago/](citations/chicago/index.md) |
+| Chicone | 1 | 7 | [citations/chicone/](citations/chicone/index.md) |
 | Chilingarian | 1 | 2 | [citations/chilingarian/](citations/chilingarian/index.md) |
+| Chiti | 38 | 820 | [citations/chiti/](citations/chiti/index.md) |
 | Chiu | 1 | 2 | [citations/chiu/](citations/chiu/index.md) |
 | Chluba | 1 | 2 | [citations/chluba/](citations/chluba/index.md) |
+| Cho | 12282 | 78587 | [citations/cho/](citations/cho/index.md) |
+| Christoffels | 124 | 184 | [citations/christoffels/](citations/christoffels/index.md) |
+| Christoph | 36 | 51 | [citations/christoph/](citations/christoph/index.md) |
 | Ciardullo | 1 | 2 | [citations/ciardullo/](citations/ciardullo/index.md) |
 | Cintio | 1 | 2 | [citations/cintio/](citations/cintio/index.md) |
 | Ciocan | 2 | 4 | [citations/ciocan/](citations/ciocan/index.md) |
+| Ciotti | 7 | 13 | [citations/ciotti/](citations/ciotti/index.md) |
 | Ciufolini | 1 | 2 | [citations/ciufolini/](citations/ciufolini/index.md) |
+| Clark | 48 | 118 | [citations/clark/](citations/clark/index.md) |
+| Clean | 6146 | 27045 | [citations/clean/](citations/clean/index.md) |
+| Clearpotential | 19 | 50 | [citations/clearpotential/](citations/clearpotential/index.md) |
+| Clementini | 3 | 22 | [citations/clementini/](citations/clementini/index.md) |
+| Cli | 9445 | 131212 | [citations/cli/](citations/cli/index.md) |
 | Clipper | 1 | 1 | [citations/clipper/](citations/clipper/index.md) |
+| Closer | 502 | 897 | [citations/closer/](citations/closer/index.md) |
+| Closure | 6775 | 92971 | [citations/closure/](citations/closure/index.md) |
+| Cloud | 1471 | 8677 | [citations/cloud/](citations/cloud/index.md) |
 | Clowe | 1 | 2 | [citations/clowe/](citations/clowe/index.md) |
 | Clube | 2 | 4 | [citations/clube/](citations/clube/index.md) |
+| Coccato | 2 | 5 | [citations/coccato/](citations/coccato/index.md) |
 | Codecov | 2 | 5 | [citations/codecov/](citations/codecov/index.md) |
+| Coe | 11079 | 63986 | [citations/coe/](citations/coe/index.md) |
 | Cohen | 3 | 6 | [citations/cohen/](citations/cohen/index.md) |
+| Coingecko'S | 8 | 8 | [citations/coingecko's/](citations/coingecko's/index.md) |
+| Colao | 5 | 26 | [citations/colao/](citations/colao/index.md) |
 | Cole | 3 | 29 | [citations/cole/](citations/cole/index.md) |
+| Colin | 67 | 353 | [citations/colin/](citations/colin/index.md) |
+| Colladay | 3 | 3 | [citations/colladay/](citations/colladay/index.md) |
+| Colless | 3 | 15 | [citations/colless/](citations/colless/index.md) |
 | Collins | 1 | 2 | [citations/collins/](citations/collins/index.md) |
+| Colm | 71 | 430 | [citations/colm/](citations/colm/index.md) |
+| Colors | 1240 | 6214 | [citations/colors/](citations/colors/index.md) |
 | Combes | 1 | 2 | [citations/combes/](citations/combes/index.md) |
-| Alain Connes | 154 | 612 | [citations/connes/](citations/connes/index.md) |
+| Command | 4427 | 50236 | [citations/command/](citations/command/index.md) |
+| Community | 468 | 1475 | [citations/community/](citations/community/index.md) |
+| Companions | 84 | 123 | [citations/companions/](citations/companions/index.md) |
+| Comparison | 3205 | 8001 | [citations/comparison/](citations/comparison/index.md) |
+| Complete | 11892 | 52831 | [citations/complete/](citations/complete/index.md) |
+| Concannon | 1 | 1 | [citations/concannon/](citations/concannon/index.md) |
+| Concentrations | 95 | 167 | [citations/concentrations/](citations/concentrations/index.md) |
+| Conect | 3551 | 258113 | [citations/conect/](citations/conect/index.md) |
+| Congedo | 1 | 1 | [citations/congedo/](citations/congedo/index.md) |
+| Connes | 154 | 612 | [citations/connes/](citations/connes/index.md) |
+| Conrad | 14 | 17 | [citations/conrad/](citations/conrad/index.md) |
+| Conrey | 10 | 11 | [citations/conrey/](citations/conrey/index.md) |
 | Conroy | 1 | 2 | [citations/conroy/](citations/conroy/index.md) |
+| Constantinos | 16 | 21 | [citations/constantinos/](citations/constantinos/index.md) |
+| Construction | 4354 | 64090 | [citations/construction/](citations/construction/index.md) |
+| Contaldi | 1 | 2 | [citations/contaldi/](citations/contaldi/index.md) |
+| Contextvar | 80 | 636 | [citations/contextvar/](citations/contextvar/index.md) |
 | Cooke | 1 | 2 | [citations/cooke/](citations/cooke/index.md) |
+| Cookson Banik | 3 | 5 | [citations/cookson-banik/](citations/cookson-banik/index.md) |
+| Cooperstock | 1 | 2 | [citations/cooperstock/](citations/cooperstock/index.md) |
+| Copi | 1809 | 8315 | [citations/copi/](citations/copi/index.md) |
+| Cordiner | 1 | 1 | [citations/cordiner/](citations/cordiner/index.md) |
 | Corey | 1 | 2 | [citations/corey/](citations/corey/index.md) |
 | Corless | 1 | 2 | [citations/corless/](citations/corless/index.md) |
 | Cornish | 1 | 2 | [citations/cornish/](citations/cornish/index.md) |
+| Corrected | 1952 | 5392 | [citations/corrected/](citations/corrected/index.md) |
+| Corrections | 4170 | 6423 | [citations/corrections/](citations/corrections/index.md) |
+| Corsini | 1 | 1 | [citations/corsini/](citations/corsini/index.md) |
+| Cosmological | 3481 | 12023 | [citations/cosmological/](citations/cosmological/index.md) |
+| Cosmology | 2556 | 7262 | [citations/cosmology/](citations/cosmology/index.md) |
 | Cote | 3 | 7 | [citations/cote/](citations/cote/index.md) |
 | Coulton | 1 | 2 | [citations/coulton/](citations/coulton/index.md) |
 | Courteau | 1 | 2 | [citations/courteau/](citations/courteau/index.md) |
+| Cover | 9789 | 33253 | [citations/cover/](citations/cover/index.md) |
+| Cowan | 5 | 7 | [citations/cowan/](citations/cowan/index.md) |
 | Cowie | 1 | 2 | [citations/cowie/](citations/cowie/index.md) |
+| Cremades | 6 | 8 | [citations/cremades/](citations/cremades/index.md) |
 | Creminelli | 1 | 2 | [citations/creminelli/](citations/creminelli/index.md) |
+| Critical | 2732 | 9678 | [citations/critical/](citations/critical/index.md) |
+| Crnojevic | 5 | 16 | [citations/crnojevic/](citations/crnojevic/index.md) |
 | Cromm | 1 | 2 | [citations/cromm/](citations/cromm/index.md) |
+| Cronin | 5 | 7 | [citations/cronin/](citations/cronin/index.md) |
+| Crotts | 1 | 4 | [citations/crotts/](citations/crotts/index.md) |
+| Crystals | 3848 | 4224 | [citations/crystals/](citations/crystals/index.md) |
+| Csaba | 10 | 10 | [citations/csaba/](citations/csaba/index.md) |
+| Csaki | 4 | 5 | [citations/csaki/](citations/csaki/index.md) |
+| Ctan | 1013 | 3077 | [citations/ctan/](citations/ctan/index.md) |
+| Cube | 1742 | 21589 | [citations/cube/](citations/cube/index.md) |
+| Cubic | 2875 | 7668 | [citations/cubic/](citations/cubic/index.md) |
 | Cunningham | 1 | 2 | [citations/cunningham/](citations/cunningham/index.md) |
 | Cuomo | 1 | 2 | [citations/cuomo/](citations/cuomo/index.md) |
+| Cup | 1885 | 4306 | [citations/cup/](citations/cup/index.md) |
+| Curves | 1614 | 4801 | [citations/curves/](citations/curves/index.md) |
 | Cyburt | 1 | 2 | [citations/cyburt/](citations/cyburt/index.md) |
+| Cylleneflow | 55 | 125 | [citations/cylleneflow/](citations/cylleneflow/index.md) |
 | Cypriano | 1 | 2 | [citations/cypriano/](citations/cypriano/index.md) |
 | Czarnecki | 1 | 2 | [citations/czarnecki/](citations/czarnecki/index.md) |
+| Czeisler | 1 | 1 | [citations/czeisler/](citations/czeisler/index.md) |
 | D'Eugenio | 1 | 2 | [citations/d'eugenio/](citations/d'eugenio/index.md) |
-| A. Dainelli | 0 | 0 | [citations/dainelli/](citations/dainelli/index.md) |
+| Dai | 402 | 19654 | [citations/dai/](citations/dai/index.md) |
 | Dalal | 1 | 2 | [citations/dalal/](citations/dalal/index.md) |
+| Dalang | 1 | 1 | [citations/dalang/](citations/dalang/index.md) |
+| Dalcanton | 12 | 20 | [citations/dalcanton/](citations/dalcanton/index.md) |
+| Dalgarno | 2 | 2 | [citations/dalgarno/](citations/dalgarno/index.md) |
+| Dall'Ora | 2 | 20 | [citations/dall'ora/](citations/dall'ora/index.md) |
+| Dam | 6510 | 22484 | [citations/dam/](citations/dam/index.md) |
+| Dan | 6758 | 39401 | [citations/dan/](citations/dan/index.md) |
 | Danhaive | 1 | 2 | [citations/danhaive/](citations/danhaive/index.md) |
-| Paul Davies | 80 | 159 | [citations/davies/](citations/davies/index.md) |
+| Daniel | 100 | 1006 | [citations/daniel/](citations/daniel/index.md) |
+| Dapo | 19 | 76 | [citations/dapo/](citations/dapo/index.md) |
+| Das | 1949 | 119442 | [citations/das/](citations/das/index.md) |
+| David | 1550 | 2085 | [citations/david/](citations/david/index.md) |
+| Davies | 80 | 159 | [citations/davies/](citations/davies/index.md) |
 | Davis | 5 | 6 | [citations/davis/](citations/davis/index.md) |
+| Davoudiasl | 3 | 3 | [citations/davoudiasl/](citations/davoudiasl/index.md) |
 | Deason | 1 | 2 | [citations/deason/](citations/deason/index.md) |
+| Death | 337 | 3313 | [citations/death/](citations/death/index.md) |
+| Debattista | 1 | 1 | [citations/debattista/](citations/debattista/index.md) |
 | Deblok | 1 | 2 | [citations/deblok/](citations/deblok/index.md) |
+| Dec | 14724 | 276913 | [citations/dec/](citations/dec/index.md) |
+| Default | 7615 | 57991 | [citations/default/](citations/default/index.md) |
 | Deffayet | 1 | 2 | [citations/deffayet/](citations/deffayet/index.md) |
+| Deg | 43191 | 134677 | [citations/deg/](citations/deg/index.md) |
+| Dehnen | 1 | 1 | [citations/dehnen/](citations/dehnen/index.md) |
+| Deitmar | 1 | 1 | [citations/deitmar/](citations/deitmar/index.md) |
+| Dekel | 10 | 132 | [citations/dekel/](citations/dekel/index.md) |
+| Delaunay | 30 | 118 | [citations/delaunay/](citations/delaunay/index.md) |
+| Delay | 761 | 3740 | [citations/delay/](citations/delay/index.md) |
+| Delfini | 1 | 1 | [citations/delfini/](citations/delfini/index.md) |
 | Deligne | 1 | 2 | [citations/deligne/](citations/deligne/index.md) |
+| Dell'Antonio | 3 | 9 | [citations/dell'antonio/](citations/dell'antonio/index.md) |
+| Delpopolo | 6 | 18 | [citations/delpopolo/](citations/delpopolo/index.md) |
+| Delta | 34232 | 95870 | [citations/delta/](citations/delta/index.md) |
 | Demeule | 1 | 2 | [citations/demeule/](citations/demeule/index.md) |
 | Democles | 1 | 2 | [citations/democles/](citations/democles/index.md) |
+| Demoura | 1 | 1 | [citations/demoura/](citations/demoura/index.md) |
 | Deng | 2 | 5 | [citations/deng/](citations/deng/index.md) |
-| Stanley Deser | 214 | 436 | [citations/deser/](citations/deser/index.md) |
-| Desi | 37 | 90 | [citations/desi/](citations/desi/index.md) |
-| Willem de Sitter | 0 | 0 | [citations/desitter/](citations/desitter/index.md) |
+| Denton | 4 | 4 | [citations/denton/](citations/denton/index.md) |
+| Derham | 5 | 6 | [citations/derham/](citations/derham/index.md) |
+| Derossi | 3 | 3 | [citations/derossi/](citations/derossi/index.md) |
+| Derue | 1 | 2 | [citations/derue/](citations/derue/index.md) |
+| Des | 52460 | 228174 | [citations/des/](citations/des/index.md) |
+| Deser | 214 | 436 | [citations/deser/](citations/deser/index.md) |
 | Desmond | 3 | 4 | [citations/desmond/](citations/desmond/index.md) |
+| Detal | 9 | 34 | [citations/detal/](citations/detal/index.md) |
+| Devaucouleurs | 2 | 4 | [citations/devaucouleurs/](citations/devaucouleurs/index.md) |
+| Devday | 8 | 24 | [citations/devday/](citations/devday/index.md) |
+| Developments | 34 | 38 | [citations/developments/](citations/developments/index.md) |
 | Devlin | 2 | 4 | [citations/devlin/](citations/devlin/index.md) |
+| Dew | 322 | 2251 | [citations/dew/](citations/dew/index.md) |
 | Diacoumis | 1 | 2 | [citations/diacoumis/](citations/diacoumis/index.md) |
 | Diaferio | 1 | 2 | [citations/diaferio/](citations/diaferio/index.md) |
 | Dicintio | 1 | 2 | [citations/dicintio/](citations/dicintio/index.md) |
 | Dickinson | 1 | 2 | [citations/dickinson/](citations/dickinson/index.md) |
+| Diego Palazuelos | 8 | 9 | [citations/diego-palazuelos/](citations/diego-palazuelos/index.md) |
+| Diemer | 2 | 3 | [citations/diemer/](citations/diemer/index.md) |
+| Diez Tejedor | 8 | 11 | [citations/diez-tejedor/](citations/diez-tejedor/index.md) |
+| Different | 8260 | 19029 | [citations/different/](citations/different/index.md) |
+| Dimanalysis | 1 | 1 | [citations/dimanalysis/](citations/dimanalysis/index.md) |
+| Dinamo | 4 | 8 | [citations/dinamo/](citations/dinamo/index.md) |
+| Dipole | 544 | 2427 | [citations/dipole/](citations/dipole/index.md) |
+| Dirac | 2008 | 12059 | [citations/dirac/](citations/dirac/index.md) |
+| Direct | 11086 | 51618 | [citations/direct/](citations/direct/index.md) |
+| Discovered | 992 | 3231 | [citations/discovered/](citations/discovered/index.md) |
+| Discrete | 1969 | 5436 | [citations/discrete/](citations/discrete/index.md) |
+| Distler Garibaldi | 12 | 36 | [citations/distler-garibaldi/](citations/distler-garibaldi/index.md) |
+| Diteodoro | 2 | 4 | [citations/diteodoro/](citations/diteodoro/index.md) |
+| Dive | 2254 | 6599 | [citations/dive/](citations/dive/index.md) |
+| Dixon | 34 | 43 | [citations/dixon/](citations/dixon/index.md) |
+| Dmsxi | 5 | 8 | [citations/dmsxi/](citations/dmsxi/index.md) |
+| Dobrescu | 11 | 13 | [citations/dobrescu/](citations/dobrescu/index.md) |
+| Document | 3215 | 12178 | [citations/document/](citations/document/index.md) |
+| Dodd | 26 | 45 | [citations/dodd/](citations/dodd/index.md) |
+| Dodelson | 17 | 49 | [citations/dodelson/](citations/dodelson/index.md) |
+| Doenhoff | 2 | 3 | [citations/doenhoff/](citations/doenhoff/index.md) |
+| Dof | 5587 | 27734 | [citations/dof/](citations/dof/index.md) |
+| Dogariu | 3 | 5 | [citations/dogariu/](citations/dogariu/index.md) |
 | Dokkum | 1 | 2 | [citations/dokkum/](citations/dokkum/index.md) |
 | Dolag | 1 | 2 | [citations/dolag/](citations/dolag/index.md) |
 | Donagi | 1 | 2 | [citations/donagi/](citations/donagi/index.md) |
 | Donahue | 1 | 2 | [citations/donahue/](citations/donahue/index.md) |
+| Donato | 23 | 103 | [citations/donato/](citations/donato/index.md) |
+| Donelan | 1 | 1 | [citations/donelan/](citations/donelan/index.md) |
+| Donnan | 7 | 20 | [citations/donnan/](citations/donnan/index.md) |
 | Donnarumma | 1 | 2 | [citations/donnarumma/](citations/donnarumma/index.md) |
+| Donnelly | 6 | 12 | [citations/donnelly/](citations/donnelly/index.md) |
+| Door | 4534 | 13226 | [citations/door/](citations/door/index.md) |
+| Dorian | 37 | 405 | [citations/dorian/](citations/dorian/index.md) |
 | Douglas | 1 | 2 | [citations/douglas/](citations/douglas/index.md) |
-| Drlica-Wagner | 1 | 2 | [citations/drlica-wagner/](citations/drlica-wagner/index.md) |
+| Douwe | 8 | 8 | [citations/douwe/](citations/douwe/index.md) |
+| Drafting | 67 | 112 | [citations/drafting/](citations/drafting/index.md) |
+| Dragonfly | 12 | 27 | [citations/dragonfly/](citations/dragonfly/index.md) |
+| Drahus | 1 | 1 | [citations/drahus/](citations/drahus/index.md) |
+| Draper | 6 | 11 | [citations/draper/](citations/draper/index.md) |
+| Dream | 187 | 657 | [citations/dream/](citations/dream/index.md) |
+| Dressler | 13 | 15 | [citations/dressler/](citations/dressler/index.md) |
+| Drlica Wagner | 1 | 2 | [citations/drlica-wagner/](citations/drlica-wagner/index.md) |
+| Drozdov | 3 | 7 | [citations/drozdov/](citations/drozdov/index.md) |
+| Dssyk | 256 | 1321 | [citations/dssyk/](citations/dssyk/index.md) |
+| Dtensor | 12 | 1080 | [citations/dtensor/](citations/dtensor/index.md) |
 | Duarte | 1 | 2 | [citations/duarte/](citations/duarte/index.md) |
 | Dudahart | 2 | 4 | [citations/dudahart/](citations/dudahart/index.md) |
 | Duffy | 1 | 2 | [citations/duffy/](citations/duffy/index.md) |
-| Robin Dunbar | 60 | 135 | [citations/dunbar/](citations/dunbar/index.md) |
+| Dunbar | 60 | 135 | [citations/dunbar/](citations/dunbar/index.md) |
 | Dune | 2 | 4 | [citations/dune/](citations/dune/index.md) |
+| Dunkerton | 2 | 2 | [citations/dunkerton/](citations/dunkerton/index.md) |
 | Durakovic | 1 | 2 | [citations/durakovic/](citations/durakovic/index.md) |
 | Durante | 2 | 3 | [citations/durante/](citations/durante/index.md) |
+| Durbala | 9 | 19 | [citations/durbala/](citations/durbala/index.md) |
 | Durret | 1 | 2 | [citations/durret/](citations/durret/index.md) |
+| Dutch | 20 | 36 | [citations/dutch/](citations/dutch/index.md) |
 | Dutton | 1 | 2 | [citations/dutton/](citations/dutton/index.md) |
+| Dvali | 25 | 306 | [citations/dvali/](citations/dvali/index.md) |
+| Dvorak | 6 | 10 | [citations/dvorak/](citations/dvorak/index.md) |
 | Dvorkin | 1 | 2 | [citations/dvorkin/](citations/dvorkin/index.md) |
-| Dominique Eckert | 69 | 137 | [citations/eckert/](citations/eckert/index.md) |
-| Arthur Eddington | 71 | 169 | [citations/eddington/](citations/eddington/index.md) |
-| Anna-Christina Eilers | 58 | 139 | [citations/eilers/](citations/eilers/index.md) |
-| Jaan Einasto | 43 | 85 | [citations/einasto/](citations/einasto/index.md) |
-| Albert Einstein | 38 | 115 | [citations/einstein/](citations/einstein/index.md) |
-| Daniel Eisenstein | 56 | 111 | [citations/eisenstein/](citations/eisenstein/index.md) |
-| El-Badry | 1 | 2 | [citations/el-badry/](citations/el-badry/index.md) |
-| John Ellis | 132 | 516 | [citations/ellis/](citations/ellis/index.md) |
+| Dwarf | 1139 | 6501 | [citations/dwarf/](citations/dwarf/index.md) |
+| Dwyer | 7 | 12 | [citations/dwyer/](citations/dwyer/index.md) |
+| Dyson | 16 | 27 | [citations/dyson/](citations/dyson/index.md) |
+| Eadie | 6 | 9 | [citations/eadie/](citations/eadie/index.md) |
+| Earth | 972 | 9969 | [citations/earth/](citations/earth/index.md) |
+| Eastman | 4 | 4 | [citations/eastman/](citations/eastman/index.md) |
+| Ebeling | 1 | 4 | [citations/ebeling/](citations/ebeling/index.md) |
+| Eberhardt | 2 | 2 | [citations/eberhardt/](citations/eberhardt/index.md) |
+| Eckert | 69 | 137 | [citations/eckert/](citations/eckert/index.md) |
+| Eckmiller | 14 | 25 | [citations/eckmiller/](citations/eckmiller/index.md) |
+| Eddington | 71 | 169 | [citations/eddington/](citations/eddington/index.md) |
+| Edelsbrunner | 6 | 16 | [citations/edelsbrunner/](citations/edelsbrunner/index.md) |
+| Edm | 1659 | 321026 | [citations/edm/](citations/edm/index.md) |
+| Edr | 3276 | 28878 | [citations/edr/](citations/edr/index.md) |
+| Edt | 1017 | 16086 | [citations/edt/](citations/edt/index.md) |
+| Efe | 88737 | 357959 | [citations/efe/](citations/efe/index.md) |
+| Effect | 6989 | 34761 | [citations/effect/](citations/effect/index.md) |
+| Efraimidis | 1 | 1 | [citations/efraimidis/](citations/efraimidis/index.md) |
+| Efstathiou | 7 | 11 | [citations/efstathiou/](citations/efstathiou/index.md) |
+| Eichner | 2 | 2 | [citations/eichner/](citations/eichner/index.md) |
+| Eilers | 58 | 139 | [citations/eilers/](citations/eilers/index.md) |
+| Einasto | 43 | 85 | [citations/einasto/](citations/einasto/index.md) |
+| Einstein | 38 | 115 | [citations/einstein/](citations/einstein/index.md) |
+| Eisenstein | 56 | 111 | [citations/eisenstein/](citations/eisenstein/index.md) |
+| El Badry | 1 | 2 | [citations/el-badry/](citations/el-badry/index.md) |
+| Elbadry | 9 | 13 | [citations/elbadry/](citations/elbadry/index.md) |
+| Element | 2733 | 27298 | [citations/element/](citations/element/index.md) |
+| Elizalde | 6 | 6 | [citations/elizalde/](citations/elizalde/index.md) |
+| Elliott | 42 | 79 | [citations/elliott/](citations/elliott/index.md) |
+| Ellipticals | 120 | 238 | [citations/ellipticals/](citations/ellipticals/index.md) |
+| Ellis | 132 | 516 | [citations/ellis/](citations/ellis/index.md) |
+| Elt | 74605 | 89830 | [citations/elt/](citations/elt/index.md) |
 | Emanuel | 2 | 4 | [citations/emanuel/](citations/emanuel/index.md) |
 | Emsellem | 1 | 2 | [citations/emsellem/](citations/emsellem/index.md) |
-| Esposito-Farese | 1 | 2 | [citations/esposito-farese/](citations/esposito-farese/index.md) |
+| England | 11 | 28 | [citations/england/](citations/england/index.md) |
+| English | 237 | 1182 | [citations/english/](citations/english/index.md) |
+| Entanglement | 169 | 748 | [citations/entanglement/](citations/entanglement/index.md) |
+| Entropy | 1516 | 8437 | [citations/entropy/](citations/entropy/index.md) |
+| Env | 13302 | 172934 | [citations/env/](citations/env/index.md) |
+| Epjc | 26 | 41 | [citations/epjc/](citations/epjc/index.md) |
+| Equipartition | 473 | 1644 | [citations/equipartition/](citations/equipartition/index.md) |
+| Era | 71950 | 475212 | [citations/era/](citations/era/index.md) |
+| Eriksen | 8 | 10 | [citations/eriksen/](citations/eriksen/index.md) |
+| Escape | 2440 | 153526 | [citations/escape/](citations/escape/index.md) |
+| Esposito Farese | 1 | 2 | [citations/esposito-farese/](citations/esposito-farese/index.md) |
+| Essn | 1390 | 2072 | [citations/essn/](citations/essn/index.md) |
 | Estabrook | 1 | 2 | [citations/estabrook/](citations/estabrook/index.md) |
+| Esteban | 2 | 2 | [citations/esteban/](citations/esteban/index.md) |
 | Ettori | 1 | 2 | [citations/ettori/](citations/ettori/index.md) |
-| Euclid | 8 | 14 | [citations/euclid/](citations/euclid/index.md) |
+| Eugene | 12 | 14 | [citations/eugene/](citations/eugene/index.md) |
 | Euler | 190 | 444 | [citations/euler/](citations/euler/index.md) |
+| Evans | 48 | 185 | [citations/evans/](citations/evans/index.md) |
 | Everitt | 1 | 2 | [citations/everitt/](citations/everitt/index.md) |
-| Sandra Faber | 116 | 297 | [citations/faber/](citations/faber/index.md) |
+| Evil | 226 | 1488 | [citations/evil/](citations/evil/index.md) |
+| Evrard | 8 | 16 | [citations/evrard/](citations/evrard/index.md) |
+| Exact | 85073 | 183782 | [citations/exact/](citations/exact/index.md) |
+| Experience | 517 | 1191 | [citations/experience/](citations/experience/index.md) |
+| Experiment | 8952 | 83213 | [citations/experiment/](citations/experiment/index.md) |
+| Expired | 746 | 3050 | [citations/expired/](citations/expired/index.md) |
+| Explicit | 5725 | 16257 | [citations/explicit/](citations/explicit/index.md) |
+| Express | 5056 | 24464 | [citations/express/](citations/express/index.md) |
+| Extracted | 796 | 2155 | [citations/extracted/](citations/extracted/index.md) |
+| Ezquiaga | 18 | 34 | [citations/ezquiaga/](citations/ezquiaga/index.md) |
+| Faa | 372 | 22279 | [citations/faa/](citations/faa/index.md) |
+| Faber | 116 | 297 | [citations/faber/](citations/faber/index.md) |
 | Fabian | 1 | 2 | [citations/fabian/](citations/fabian/index.md) |
-| Benoît Famaey | 154 | 306 | [citations/famaey/](citations/famaey/index.md) |
+| Fabrizio | 5 | 16 | [citations/fabrizio/](citations/fabrizio/index.md) |
+| Fairall | 2 | 6 | [citations/fairall/](citations/fairall/index.md) |
+| Fall | 6799 | 33899 | [citations/fall/](citations/fall/index.md) |
+| Faltings | 3 | 4 | [citations/faltings/](citations/faltings/index.md) |
+| Famaey | 154 | 306 | [citations/famaey/](citations/famaey/index.md) |
+| Fan | 734 | 9615 | [citations/fan/](citations/fan/index.md) |
 | Faraggi | 1 | 2 | [citations/faraggi/](citations/faraggi/index.md) |
+| Farguesfontaine | 2 | 2 | [citations/farguesfontaine/](citations/farguesfontaine/index.md) |
+| Farnaby | 1 | 2 | [citations/farnaby/](citations/farnaby/index.md) |
 | Farrar | 1 | 2 | [citations/farrar/](citations/farrar/index.md) |
+| Fasta | 250 | 2133 | [citations/fasta/](citations/fasta/index.md) |
+| Faulkner | 2 | 2 | [citations/faulkner/](citations/faulkner/index.md) |
+| Faxai | 1 | 3 | [citations/faxai/](citations/faxai/index.md) |
+| Fda | 452 | 15896 | [citations/fda/](citations/fda/index.md) |
 | Fearnley | 1 | 2 | [citations/fearnley/](citations/fearnley/index.md) |
+| Feb | 2324 | 5846 | [citations/feb/](citations/feb/index.md) |
+| Fei | 592 | 14273 | [citations/fei/](citations/fei/index.md) |
 | Felts | 1 | 2 | [citations/felts/](citations/felts/index.md) |
+| Felzer | 1 | 1 | [citations/felzer/](citations/felzer/index.md) |
+| Feng | 49 | 317 | [citations/feng/](citations/feng/index.md) |
+| Fensch | 3 | 3 | [citations/fensch/](citations/fensch/index.md) |
+| Fermilab | 43 | 66 | [citations/fermilab/](citations/fermilab/index.md) |
 | Ferreira | 1 | 2 | [citations/ferreira/](citations/ferreira/index.md) |
+| Fessolov | 1 | 1 | [citations/fessolov/](citations/fessolov/index.md) |
+| Fetchcommontype | 4 | 48 | [citations/fetchcommontype/](citations/fetchcommontype/index.md) |
+| Fetchsharedcythonmodule | 4 | 16 | [citations/fetchsharedcythonmodule/](citations/fetchsharedcythonmodule/index.md) |
 | Feynman | 3 | 6 | [citations/feynman/](citations/feynman/index.md) |
 | Fienga | 1 | 2 | [citations/fienga/](citations/fienga/index.md) |
+| Filed | 467 | 951 | [citations/filed/](citations/filed/index.md) |
+| Filestore | 8 | 72 | [citations/filestore/](citations/filestore/index.md) |
+| Fillmore | 11 | 25 | [citations/fillmore/](citations/fillmore/index.md) |
 | Finkelstein | 1 | 2 | [citations/finkelstein/](citations/finkelstein/index.md) |
-| J. Richard Fisher | 204 | 431 | [citations/fisher/](citations/fisher/index.md) |
+| Finner | 4 | 6 | [citations/finner/](citations/finner/index.md) |
+| Fiona | 8 | 286 | [citations/fiona/](citations/fiona/index.md) |
+| Firas | 46 | 103 | [citations/firas/](citations/firas/index.md) |
+| Fischler | 10 | 25 | [citations/fischler/](citations/fischler/index.md) |
+| Fisher | 204 | 431 | [citations/fisher/](citations/fisher/index.md) |
+| Fit | 10921 | 57871 | [citations/fit/](citations/fit/index.md) |
+| Fixed | 6996 | 25644 | [citations/fixed/](citations/fixed/index.md) |
 | Fixsen | 1 | 2 | [citations/fixsen/](citations/fixsen/index.md) |
+| Fixupextensiontype | 4 | 20 | [citations/fixupextensiontype/](citations/fixupextensiontype/index.md) |
+| Flail | 11 | 25 | [citations/flail/](citations/flail/index.md) |
+| Flamholz | 2 | 2 | [citations/flamholz/](citations/flamholz/index.md) |
 | Flanagan | 1 | 2 | [citations/flanagan/](citations/flanagan/index.md) |
+| Flat | 6834 | 62136 | [citations/flat/](citations/flat/index.md) |
+| Flex | 959 | 7669 | [citations/flex/](citations/flex/index.md) |
+| Float | 5685 | 61176 | [citations/float/](citations/float/index.md) |
+| Florence | 29 | 1014 | [citations/florence/](citations/florence/index.md) |
+| Flores | 8 | 9 | [citations/flores/](citations/flores/index.md) |
 | Flynn | 1 | 2 | [citations/flynn/](citations/flynn/index.md) |
 | Foffa | 1 | 2 | [citations/foffa/](citations/foffa/index.md) |
 | Folkner | 2 | 4 | [citations/folkner/](citations/folkner/index.md) |
+| Fontaine | 14 | 72 | [citations/fontaine/](citations/fontaine/index.md) |
 | Forbes | 1 | 2 | [citations/forbes/](citations/forbes/index.md) |
 | Ford | 5 | 55 | [citations/ford/](citations/ford/index.md) |
+| Forecasts | 115 | 364 | [citations/forecasts/](citations/forecasts/index.md) |
+| Foreman Mackey | 2 | 4 | [citations/foreman-mackey/](citations/foreman-mackey/index.md) |
 | Foster | 6 | 13 | [citations/foster/](citations/foster/index.md) |
+| Four | 4548 | 16745 | [citations/four/](citations/four/index.md) |
 | Franck | 1 | 2 | [citations/franck/](citations/franck/index.md) |
 | Frank | 11 | 19 | [citations/frank/](citations/frank/index.md) |
-| Filippo Fraternali | 0 | 0 | [citations/fraternali/](citations/fraternali/index.md) |
+| Fraser | 341 | 740 | [citations/fraser/](citations/fraser/index.md) |
 | Frebel | 1 | 2 | [citations/frebel/](citations/frebel/index.md) |
 | Freedman | 2 | 3 | [citations/freedman/](citations/freedman/index.md) |
 | Freeman | 2 | 4 | [citations/freeman/](citations/freeman/index.md) |
-| Carlos Frenk | 53 | 105 | [citations/frenk/](citations/frenk/index.md) |
+| Frenk | 53 | 105 | [citations/frenk/](citations/frenk/index.md) |
+| Fresh | 2219 | 15228 | [citations/fresh/](citations/fresh/index.md) |
 | Freundlich | 1 | 2 | [citations/freundlich/](citations/freundlich/index.md) |
+| Friden | 1 | 1 | [citations/friden/](citations/friden/index.md) |
+| Friedmann | 1150 | 8159 | [citations/friedmann/](citations/friedmann/index.md) |
+| Froggatt Nielsen | 8 | 14 | [citations/froggatt-nielsen/](citations/froggatt-nielsen/index.md) |
+| Frozen | 5360 | 13481 | [citations/frozen/](citations/frozen/index.md) |
+| Fuente Nunez | 4 | 5 | [citations/fuente-nunez/](citations/fuente-nunez/index.md) |
 | Fukugita | 1 | 2 | [citations/fukugita/](citations/fukugita/index.md) |
-| Stephen Fulling | 0 | 0 | [citations/fulling/](citations/fulling/index.md) |
+| Fund | 4147 | 14927 | [citations/fund/](citations/fund/index.md) |
+| Gabrielse | 1 | 1 | [citations/gabrielse/](citations/gabrielse/index.md) |
 | Gadd | 1 | 2 | [citations/gadd/](citations/gadd/index.md) |
-| Galley-Etal | 6 | 8 | [citations/galley-etal/](citations/galley-etal/index.md) |
+| Gaia | 1202 | 10578 | [citations/gaia/](citations/gaia/index.md) |
+| Galactic | 1695 | 5308 | [citations/galactic/](citations/galactic/index.md) |
+| Galante | 2 | 3 | [citations/galante/](citations/galante/index.md) |
+| Galaxies | 2793 | 14352 | [citations/galaxies/](citations/galaxies/index.md) |
+| Galaxy | 3906 | 24680 | [citations/galaxy/](citations/galaxy/index.md) |
+| Galileo | 109 | 255368 | [citations/galileo/](citations/galileo/index.md) |
+| Galley Etal | 6 | 8 | [citations/galley-etal/](citations/galley-etal/index.md) |
 | Galli | 1 | 2 | [citations/galli/](citations/galli/index.md) |
 | Galvagnion | 1 | 2 | [citations/galvagnion/](citations/galvagnion/index.md) |
+| Gambini | 4 | 7 | [citations/gambini/](citations/gambini/index.md) |
+| Gamma | 6507 | 47979 | [citations/gamma/](citations/gamma/index.md) |
+| Gao | 75 | 230 | [citations/gao/](citations/gao/index.md) |
+| Gardner | 8 | 43 | [citations/gardner/](citations/gardner/index.md) |
+| Garg | 89 | 3360 | [citations/garg/](citations/garg/index.md) |
+| Garibaldi | 18 | 49 | [citations/garibaldi/](citations/garibaldi/index.md) |
+| Garnier | 2 | 2 | [citations/garnier/](citations/garnier/index.md) |
+| Garofalo | 4 | 8 | [citations/garofalo/](citations/garofalo/index.md) |
+| Garriga | 8 | 12 | [citations/garriga/](citations/garriga/index.md) |
 | Garzilli | 1 | 2 | [citations/garzilli/](citations/garzilli/index.md) |
+| Garzon | 1 | 1 | [citations/garzon/](citations/garzon/index.md) |
 | Gastaldello | 1 | 2 | [citations/gastaldello/](citations/gastaldello/index.md) |
+| Gatewayrunner | 380 | 2196 | [citations/gatewayrunner/](citations/gatewayrunner/index.md) |
+| Gauge | 2868 | 23947 | [citations/gauge/](citations/gauge/index.md) |
+| Gauss | 1394 | 5448 | [citations/gauss/](citations/gauss/index.md) |
 | Gavazzi | 2 | 5 | [citations/gavazzi/](citations/gavazzi/index.md) |
 | Gayler | 1 | 2 | [citations/gayler/](citations/gayler/index.md) |
+| Gcvel | 4 | 22 | [citations/gcvel/](citations/gcvel/index.md) |
+| Gebert | 1 | 2 | [citations/gebert/](citations/gebert/index.md) |
+| Gebhardt | 3 | 4 | [citations/gebhardt/](citations/gebhardt/index.md) |
 | Gebru | 3 | 8 | [citations/gebru/](citations/gebru/index.md) |
 | Geha | 1 | 2 | [citations/geha/](citations/geha/index.md) |
 | Geller | 1 | 2 | [citations/geller/](citations/geller/index.md) |
+| Gen | 83560 | 487933 | [citations/gen/](citations/gen/index.md) |
 | Gentile | 1 | 1 | [citations/gentile/](citations/gentile/index.md) |
 | Genzel | 2 | 2 | [citations/genzel/](citations/genzel/index.md) |
+| Geometric | 5369 | 23377 | [citations/geometric/](citations/geometric/index.md) |
+| Geometry | 7869 | 28926 | [citations/geometry/](citations/geometry/index.md) |
+| George | 66 | 629 | [citations/george/](citations/george/index.md) |
+| Georgi | 122 | 196 | [citations/georgi/](citations/georgi/index.md) |
+| Gerda | 16 | 309 | [citations/gerda/](citations/gerda/index.md) |
 | Gerhard | 1 | 2 | [citations/gerhard/](citations/gerhard/index.md) |
 | Geron | 1 | 2 | [citations/geron/](citations/geron/index.md) |
-| Vittorio Ghirardini | 41 | 81 | [citations/ghirardini/](citations/ghirardini/index.md) |
+| Geshnizjani | 25 | 32 | [citations/geshnizjani/](citations/geshnizjani/index.md) |
+| Get | 22334 | 303349 | [citations/get/](citations/get/index.md) |
+| Gev | 1107 | 100495 | [citations/gev/](citations/gev/index.md) |
+| Gguf | 150 | 6834 | [citations/gguf/](citations/gguf/index.md) |
+| Ghari | 4 | 7 | [citations/ghari/](citations/ghari/index.md) |
+| Ghirardini | 41 | 81 | [citations/ghirardini/](citations/ghirardini/index.md) |
 | Gibbons | 2 | 4 | [citations/gibbons/](citations/gibbons/index.md) |
 | Giesen | 1 | 2 | [citations/giesen/](citations/giesen/index.md) |
+| Gilbert | 21 | 168 | [citations/gilbert/](citations/gilbert/index.md) |
 | Giles | 1 | 2 | [citations/giles/](citations/giles/index.md) |
 | Gilkey | 1 | 2 | [citations/gilkey/](citations/gilkey/index.md) |
 | Gilman | 1 | 2 | [citations/gilman/](citations/gilman/index.md) |
 | Gilmore | 1 | 2 | [citations/gilmore/](citations/gilmore/index.md) |
+| Giorello | 2 | 5 | [citations/giorello/](citations/giorello/index.md) |
+| Girardi | 14 | 178 | [citations/girardi/](citations/girardi/index.md) |
+| Giudice | 3 | 3 | [citations/giudice/](citations/giudice/index.md) |
+| Giustina | 1 | 2 | [citations/giustina/](citations/giustina/index.md) |
+| Glamos | 17 | 43 | [citations/glamos/](citations/glamos/index.md) |
 | Glashow | 1 | 2 | [citations/glashow/](citations/glashow/index.md) |
 | Glazebrook | 1 | 2 | [citations/glazebrook/](citations/glazebrook/index.md) |
+| Gleason | 13 | 22 | [citations/gleason/](citations/gleason/index.md) |
+| Gleyzes | 1 | 2 | [citations/gleyzes/](citations/gleyzes/index.md) |
 | Glycosci | 1 | 2 | [citations/glycosci/](citations/glycosci/index.md) |
 | Gnedin | 1 | 2 | [citations/gnedin/](citations/gnedin/index.md) |
+| Gogoi | 2 | 2 | [citations/gogoi/](citations/gogoi/index.md) |
+| Goldberger Wise | 36 | 100 | [citations/goldberger-wise/](citations/goldberger-wise/index.md) |
+| Goldfinger | 3 | 7 | [citations/goldfinger/](citations/goldfinger/index.md) |
+| Goldman | 5 | 5 | [citations/goldman/](citations/goldman/index.md) |
+| Goldreich | 11 | 25 | [citations/goldreich/](citations/goldreich/index.md) |
+| Golini | 1 | 1 | [citations/golini/](citations/golini/index.md) |
+| Gong | 32 | 128 | [citations/gong/](citations/gong/index.md) |
 | Gonzalez | 2 | 4 | [citations/gonzalez/](citations/gonzalez/index.md) |
 | Goodfellow | 2 | 4 | [citations/goodfellow/](citations/goodfellow/index.md) |
 | Goodwin | 1 | 2 | [citations/goodwin/](citations/goodwin/index.md) |
@@ -229,508 +571,1697 @@
 | Governato | 1 | 2 | [citations/governato/](citations/governato/index.md) |
 | Gqumond | 3 | 8 | [citations/gqumond/](citations/gqumond/index.md) |
 | Graaff | 1 | 2 | [citations/graaff/](citations/graaff/index.md) |
+| Graham | 42 | 1931 | [citations/graham/](citations/graham/index.md) |
+| Grall Melville | 12 | 21 | [citations/grall-melville/](citations/grall-melville/index.md) |
+| Granata | 17 | 45 | [citations/granata/](citations/granata/index.md) |
+| Gravity | 5004 | 16449 | [citations/gravity/](citations/gravity/index.md) |
 | Greaves | 1 | 2 | [citations/greaves/](citations/greaves/index.md) |
 | Grebel | 1 | 2 | [citations/grebel/](citations/grebel/index.md) |
+| Greco | 34 | 134 | [citations/greco/](citations/greco/index.md) |
+| Gremer | 2 | 3 | [citations/gremer/](citations/gremer/index.md) |
+| Grenacher | 1 | 2 | [citations/grenacher/](citations/grenacher/index.md) |
+| Grillmair | 6 | 16 | [citations/grillmair/](citations/grillmair/index.md) |
+| Groener | 6 | 17 | [citations/groener/](citations/groener/index.md) |
+| Gross | 1586 | 1876 | [citations/gross/](citations/gross/index.md) |
+| Gruen | 163 | 472 | [citations/gruen/](citations/gruen/index.md) |
+| Grumiller | 2 | 4 | [citations/grumiller/](citations/grumiller/index.md) |
+| Gruzinov | 5 | 7 | [citations/gruzinov/](citations/gruzinov/index.md) |
+| Gso | 380 | 1101 | [citations/gso/](citations/gso/index.md) |
+| Gue | 2518 | 8445 | [citations/gue/](citations/gue/index.md) |
+| Guide | 1455 | 5398 | [citations/guide/](citations/guide/index.md) |
 | Gundlach | 1 | 2 | [citations/gundlach/](citations/gundlach/index.md) |
-| James E. Gunn | 80 | 159 | [citations/gunn/](citations/gunn/index.md) |
+| Gunn | 80 | 159 | [citations/gunn/](citations/gunn/index.md) |
+| Gupta | 28 | 42 | [citations/gupta/](citations/gupta/index.md) |
 | Gurevich | 1 | 2 | [citations/gurevich/](citations/gurevich/index.md) |
 | Gusfield | 2 | 4 | [citations/gusfield/](citations/gusfield/index.md) |
+| Gut | 861 | 5674 | [citations/gut/](citations/gut/index.md) |
+| Guzik | 6 | 6 | [citations/guzik/](citations/guzik/index.md) |
+| Gwosc | 9 | 53 | [citations/gwosc/](citations/gwosc/index.md) |
+| Gyr | 904 | 49464 | [citations/gyr/](citations/gyr/index.md) |
+| Gyuck | 1 | 4 | [citations/gyuck/](citations/gyuck/index.md) |
+| H Bond | 1355 | 5276 | [citations/h-bond/](citations/h-bond/index.md) |
+| Haarsma | 1 | 4 | [citations/haarsma/](citations/haarsma/index.md) |
+| Haba | 44 | 79 | [citations/haba/](citations/haba/index.md) |
+| Haehnelt | 7 | 9 | [citations/haehnelt/](citations/haehnelt/index.md) |
 | Haghi | 1 | 2 | [citations/haghi/](citations/haghi/index.md) |
+| Hagibis | 3 | 7 | [citations/hagibis/](citations/hagibis/index.md) |
+| Hainaut | 1 | 1 | [citations/hainaut/](citations/hainaut/index.md) |
+| Haiyan | 9 | 15 | [citations/haiyan/](citations/haiyan/index.md) |
 | Hales | 1 | 2 | [citations/hales/](citations/hales/index.md) |
 | Halkola | 1 | 2 | [citations/halkola/](citations/halkola/index.md) |
 | Hallenbeck | 1 | 2 | [citations/hallenbeck/](citations/hallenbeck/index.md) |
+| Halofit | 105 | 876 | [citations/halofit/](citations/halofit/index.md) |
+| Halos | 547 | 3609 | [citations/halos/](citations/halos/index.md) |
+| Hamanowicz | 3 | 6 | [citations/hamanowicz/](citations/hamanowicz/index.md) |
 | Hamaus | 1 | 2 | [citations/hamaus/](citations/hamaus/index.md) |
+| Hamed Cheng Luty Mukohyama | 13 | 15 | [citations/hamed-cheng-luty-mukohyama/](citations/hamed-cheng-luty-mukohyama/index.md) |
+| Hamed Dubovsky Nicolis Rattazzi | 4 | 4 | [citations/hamed-dubovsky-nicolis-rattazzi/](citations/hamed-dubovsky-nicolis-rattazzi/index.md) |
+| Hamiltonian | 1471 | 8666 | [citations/hamiltonian/](citations/hamiltonian/index.md) |
+| Hammer | 119 | 193 | [citations/hammer/](citations/hammer/index.md) |
+| Han | 98335 | 421778 | [citations/han/](citations/han/index.md) |
+| Hardy | 70 | 183 | [citations/hardy/](citations/hardy/index.md) |
 | Hargis | 1 | 2 | [citations/hargis/](citations/hargis/index.md) |
+| Harikane | 2 | 2 | [citations/harikane/](citations/harikane/index.md) |
 | Harko | 1 | 2 | [citations/harko/](citations/harko/index.md) |
+| Harmony | 92 | 395 | [citations/harmony/](citations/harmony/index.md) |
+| Haro | 166 | 1616 | [citations/haro/](citations/haro/index.md) |
 | Harper | 7 | 15 | [citations/harper/](citations/harper/index.md) |
 | Harris | 2 | 3 | [citations/harris/](citations/harris/index.md) |
+| Hart | 840 | 3701 | [citations/hart/](citations/hart/index.md) |
 | Harvey | 2 | 4 | [citations/harvey/](citations/harvey/index.md) |
+| Hasegawa | 11 | 15 | [citations/hasegawa/](citations/hasegawa/index.md) |
+| Hasenbusch | 3 | 4 | [citations/hasenbusch/](citations/hasenbusch/index.md) |
 | Haslbauer | 1 | 2 | [citations/haslbauer/](citations/haslbauer/index.md) |
-| Stephen Hawking | 193 | 385 | [citations/hawking/](citations/hawking/index.md) |
+| Hasse | 73 | 223 | [citations/hasse/](citations/hasse/index.md) |
+| Haubner | 6 | 9 | [citations/haubner/](citations/haubner/index.md) |
+| Haugg | 1 | 1 | [citations/haugg/](citations/haugg/index.md) |
+| Hawking | 193 | 385 | [citations/hawking/](citations/hawking/index.md) |
 | Hayashi | 1 | 2 | [citations/hayashi/](citations/hayashi/index.md) |
+| Haydys | 15 | 41 | [citations/haydys/](citations/haydys/index.md) |
 | Haynes | 1 | 2 | [citations/haynes/](citations/haynes/index.md) |
-| Alan Heavens | 19 | 33 | [citations/heavens/](citations/heavens/index.md) |
+| Haystac | 24 | 60 | [citations/haystac/](citations/haystac/index.md) |
+| Hazel | 9 | 312 | [citations/hazel/](citations/hazel/index.md) |
+| Heart | 637 | 13507 | [citations/heart/](citations/heart/index.md) |
+| Heavens | 19 | 33 | [citations/heavens/](citations/heavens/index.md) |
 | Hees | 6 | 12 | [citations/hees/](citations/hees/index.md) |
 | Heintz | 1 | 2 | [citations/heintz/](citations/heintz/index.md) |
+| Heisenberg | 65 | 164 | [citations/heisenberg/](citations/heisenberg/index.md) |
+| Heisler | 3 | 3 | [citations/heisler/](citations/heisler/index.md) |
 | Helene | 4 | 9 | [citations/helene/](citations/helene/index.md) |
 | Henriksson | 1 | 4 | [citations/henriksson/](citations/henriksson/index.md) |
 | Henriques | 1 | 2 | [citations/henriques/](citations/henriques/index.md) |
+| Hensley | 1 | 1 | [citations/hensley/](citations/hensley/index.md) |
 | Herbonnet | 1 | 2 | [citations/herbonnet/](citations/herbonnet/index.md) |
+| Here | 92940 | 260012 | [citations/here/](citations/here/index.md) |
+| Herglotz | 191 | 693 | [citations/herglotz/](citations/herglotz/index.md) |
+| Hermes | 5591 | 126141 | [citations/hermes/](citations/hermes/index.md) |
 | Hernandez | 2 | 3 | [citations/hernandez/](citations/hernandez/index.md) |
-| Lars Hernquist | 85 | 168 | [citations/hernquist/](citations/hernquist/index.md) |
+| Hernquist | 85 | 168 | [citations/hernquist/](citations/hernquist/index.md) |
+| Hertog | 4 | 5 | [citations/hertog/](citations/hertog/index.md) |
+| Hessian | 1185 | 17336 | [citations/hessian/](citations/hessian/index.md) |
+| Hetatm | 3880 | 2005674 | [citations/hetatm/](citations/hetatm/index.md) |
+| Heymans | 9 | 10 | [citations/heymans/](citations/heymans/index.md) |
+| Higgs | 767 | 3782 | [citations/higgs/](citations/higgs/index.md) |
+| Higuchi | 57 | 123 | [citations/higuchi/](citations/higuchi/index.md) |
+| Hilary | 4 | 10 | [citations/hilary/](citations/hilary/index.md) |
+| Hilbert | 653 | 1568 | [citations/hilbert/](citations/hilbert/index.md) |
 | Hilker | 1 | 2 | [citations/hilker/](citations/hilker/index.md) |
 | Hill | 17 | 43 | [citations/hill/](citations/hill/index.md) |
+| Hinsen | 1 | 2 | [citations/hinsen/](citations/hinsen/index.md) |
+| Hint | 2272 | 12560 | [citations/hint/](citations/hint/index.md) |
 | Hirata | 1 | 2 | [citations/hirata/](citations/hirata/index.md) |
 | Hitomi | 3 | 7 | [citations/hitomi/](citations/hitomi/index.md) |
+| Hjorth | 1 | 1 | [citations/hjorth/](citations/hjorth/index.md) |
+| Hmcode | 82 | 2337 | [citations/hmcode/](citations/hmcode/index.md) |
+| Hodge | 111 | 273 | [citations/hodge/](citations/hodge/index.md) |
+| Hodgkin | 17 | 50 | [citations/hodgkin/](citations/hodgkin/index.md) |
+| Hodson | 4 | 11 | [citations/hodson/](citations/hodson/index.md) |
 | Hoekstra | 1 | 2 | [citations/hoekstra/](citations/hoekstra/index.md) |
+| Hoffman | 27 | 118 | [citations/hoffman/](citations/hoffman/index.md) |
 | Hofmann | 1 | 2 | [citations/hofmann/](citations/hofmann/index.md) |
+| Hogan | 11 | 18 | [citations/hogan/](citations/hogan/index.md) |
+| Hogg | 27 | 52 | [citations/hogg/](citations/hogg/index.md) |
+| Hojman Kuchar Teitelboim | 5 | 6 | [citations/hojman-kuchar-teitelboim/](citations/hojman-kuchar-teitelboim/index.md) |
 | Holden | 1 | 2 | [citations/holden/](citations/holden/index.md) |
+| Holland | 37 | 216 | [citations/holland/](citations/holland/index.md) |
 | Hollenbach | 1 | 2 | [citations/hollenbach/](citations/hollenbach/index.md) |
 | Holmberg | 1 | 2 | [citations/holmberg/](citations/holmberg/index.md) |
+| Holographic | 960 | 4463 | [citations/holographic/](citations/holographic/index.md) |
+| Holonomy | 178 | 533 | [citations/holonomy/](citations/holonomy/index.md) |
+| Holtzman | 2 | 5 | [citations/holtzman/](citations/holtzman/index.md) |
+| Homebrew | 272 | 1660 | [citations/homebrew/](citations/homebrew/index.md) |
+| Homma | 5 | 27 | [citations/homma/](citations/homma/index.md) |
+| Honcho | 306 | 7016 | [citations/honcho/](citations/honcho/index.md) |
+| Hooft | 52 | 138 | [citations/hooft/](citations/hooft/index.md) |
 | Hooper | 1 | 2 | [citations/hooper/](citations/hooper/index.md) |
+| Horava | 3043 | 3251 | [citations/horava/](citations/horava/index.md) |
+| Horizon | 2947 | 14220 | [citations/horizon/](citations/horizon/index.md) |
+| Horndeski | 75 | 5734 | [citations/horndeski/](citations/horndeski/index.md) |
+| Horne | 21 | 97 | [citations/horne/](citations/horne/index.md) |
 | Hosotani | 3 | 5 | [citations/hosotani/](citations/hosotani/index.md) |
-| Sabine Hossenfelder | 169 | 658 | [citations/hossenfelder/](citations/hossenfelder/index.md) |
-| Fred Hoyle | 0 | 0 | [citations/hoyle/](citations/hoyle/index.md) |
+| Hossenfelder | 169 | 658 | [citations/hossenfelder/](citations/hossenfelder/index.md) |
+| Hou | 16193 | 72028 | [citations/hou/](citations/hou/index.md) |
 | Hoyt | 1 | 2 | [citations/hoyt/](citations/hoyt/index.md) |
 | Huang | 2 | 5 | [citations/huang/](citations/huang/index.md) |
+| Hubble | 1770 | 7107 | [citations/hubble/](citations/hubble/index.md) |
 | Huber | 2 | 4 | [citations/huber/](citations/huber/index.md) |
 | Huchra | 1 | 2 | [citations/huchra/](citations/huchra/index.md) |
+| Huchtmeier | 6 | 13 | [citations/huchtmeier/](citations/huchtmeier/index.md) |
 | Hudson | 2 | 3 | [citations/hudson/](citations/hudson/index.md) |
-| Deidre Hunter | 62 | 125 | [citations/hunter/](citations/hunter/index.md) |
+| Huffenberger | 1 | 1 | [citations/huffenberger/](citations/huffenberger/index.md) |
+| Hugenholtz | 3 | 4 | [citations/hugenholtz/](citations/hugenholtz/index.md) |
+| Hugging | 478 | 9119 | [citations/hugging/](citations/hugging/index.md) |
+| Hugo | 27 | 215 | [citations/hugo/](citations/hugo/index.md) |
+| Hui | 137 | 2399 | [citations/hui/](citations/hui/index.md) |
+| Hulst | 10 | 20 | [citations/hulst/](citations/hulst/index.md) |
+| Human | 2379 | 65721 | [citations/human/](citations/human/index.md) |
+| Humphrey | 14 | 25 | [citations/humphrey/](citations/humphrey/index.md) |
+| Hunter | 62 | 125 | [citations/hunter/](citations/hunter/index.md) |
+| Hurwitz | 44 | 104 | [citations/hurwitz/](citations/hurwitz/index.md) |
+| Huston | 1 | 1 | [citations/huston/](citations/huston/index.md) |
+| Huterer | 5 | 6 | [citations/huterer/](citations/huterer/index.md) |
 | Huxley | 1 | 2 | [citations/huxley/](citations/huxley/index.md) |
+| Hwang | 25 | 34 | [citations/hwang/](citations/hwang/index.md) |
+| Hwee | 18 | 64 | [citations/hwee/](citations/hwee/index.md) |
+| Hydrogen | 3547 | 10023 | [citations/hydrogen/](citations/hydrogen/index.md) |
+| Hyeonghan | 4 | 4 | [citations/hyeonghan/](citations/hyeonghan/index.md) |
+| Hyper Kamiokande | 22 | 27 | [citations/hyper-kamiokande/](citations/hyper-kamiokande/index.md) |
+| Hyrec | 149 | 2077 | [citations/hyrec/](citations/hyrec/index.md) |
+| Iain | 37 | 259 | [citations/iain/](citations/iain/index.md) |
+| Ian | 64918 | 178246 | [citations/ian/](citations/ian/index.md) |
+| Iapws | 3 | 19 | [citations/iapws/](citations/iapws/index.md) |
+| Iau | 114 | 373 | [citations/iau/](citations/iau/index.md) |
 | Ibanez | 1 | 2 | [citations/ibanez/](citations/ibanez/index.md) |
 | Ibata | 1 | 2 | [citations/ibata/](citations/ibata/index.md) |
+| Iclr | 85 | 798 | [citations/iclr/](citations/iclr/index.md) |
+| Icml | 80 | 1063 | [citations/icml/](citations/icml/index.md) |
+| Ida | 89394 | 270209 | [citations/ida/](citations/ida/index.md) |
+| Identified | 1258 | 7538 | [citations/identified/](citations/identified/index.md) |
+| Ids | 4379 | 32835 | [citations/ids/](citations/ids/index.md) |
 | Iess | 2 | 4 | [citations/iess/](citations/iess/index.md) |
+| Ifs | 351 | 16825 | [citations/ifs/](citations/ifs/index.md) |
+| Igimf | 70 | 487 | [citations/igimf/](citations/igimf/index.md) |
+| Iii | 2754 | 32590 | [citations/iii/](citations/iii/index.md) |
+| Ilgenfritz | 2 | 2 | [citations/ilgenfritz/](citations/ilgenfritz/index.md) |
 | Ilic | 4 | 10 | [citations/ilic/](citations/ilic/index.md) |
+| Importimpl | 4 | 16 | [citations/importimpl/](citations/importimpl/index.md) |
+| Independent | 80970 | 109041 | [citations/independent/](citations/independent/index.md) |
+| Ingredient | 410 | 764 | [citations/ingredient/](citations/ingredient/index.md) |
+| Inhibitors | 334 | 527 | [citations/inhibitors/](citations/inhibitors/index.md) |
+| Ink | 9392 | 88590 | [citations/ink/](citations/ink/index.md) |
+| Inputs | 2688 | 6770 | [citations/inputs/](citations/inputs/index.md) |
+| Instability | 718 | 1872 | [citations/instability/](citations/instability/index.md) |
+| Intellect | 99 | 166 | [citations/intellect/](citations/intellect/index.md) |
+| International | 228 | 341 | [citations/international/](citations/international/index.md) |
+| Investigations | 47 | 62 | [citations/investigations/](citations/investigations/index.md) |
 | Iodice | 1 | 2 | [citations/iodice/](citations/iodice/index.md) |
 | Iorio | 1 | 2 | [citations/iorio/](citations/iorio/index.md) |
+| Iris | 102 | 948 | [citations/iris/](citations/iris/index.md) |
+| Irma | 1064 | 2276 | [citations/irma/](citations/irma/index.md) |
 | Irsic | 1 | 2 | [citations/irsic/](citations/irsic/index.md) |
+| Irwin | 303 | 478 | [citations/irwin/](citations/irwin/index.md) |
+| Ishak | 7 | 22 | [citations/ishak/](citations/ishak/index.md) |
 | Ishiyama | 1 | 2 | [citations/ishiyama/](citations/ishiyama/index.md) |
 | Isobe | 1 | 2 | [citations/isobe/](citations/isobe/index.md) |
 | Israel | 3 | 5 | [citations/israel/](citations/israel/index.md) |
-| Ray Jackson | 0 | 0 | [citations/jackson/](citations/jackson/index.md) |
-| Ted Jacobson | 143 | 284 | [citations/jacobson/](citations/jacobson/index.md) |
+| Issn | 2381 | 4397 | [citations/issn/](citations/issn/index.md) |
+| Iteration | 4585 | 22331 | [citations/iteration/](citations/iteration/index.md) |
+| Ivezic | 1 | 2 | [citations/ivezic/](citations/ivezic/index.md) |
+| Iyer | 25 | 432 | [citations/iyer/](citations/iyer/index.md) |
+| Iyonaga | 13 | 15 | [citations/iyonaga/](citations/iyonaga/index.md) |
+| Jacobson | 143 | 284 | [citations/jacobson/](citations/jacobson/index.md) |
+| Jacoby | 4 | 4 | [citations/jacoby/](citations/jacoby/index.md) |
+| Jades | 110 | 388 | [citations/jades/](citations/jades/index.md) |
+| Jafari | 2 | 3 | [citations/jafari/](citations/jafari/index.md) |
 | Jafferis | 1 | 2 | [citations/jafferis/](citations/jafferis/index.md) |
+| Jain | 34 | 85 | [citations/jain/](citations/jain/index.md) |
+| Jan | 2723 | 6752 | [citations/jan/](citations/jan/index.md) |
+| Jarlskog | 135 | 384 | [citations/jarlskog/](citations/jarlskog/index.md) |
+| Jarrett | 3 | 10 | [citations/jarrett/](citations/jarrett/index.md) |
+| Jason | 19 | 37 | [citations/jason/](citations/jason/index.md) |
 | Jcap | 6 | 9 | [citations/jcap/](citations/jcap/index.md) |
 | Jeanneau | 1 | 2 | [citations/jeanneau/](citations/jeanneau/index.md) |
-| James Jeans | 0 | 0 | [citations/jeans/](citations/jeans/index.md) |
+| Jeffrey | 43 | 55 | [citations/jeffrey/](citations/jeffrey/index.md) |
+| Jensen | 92 | 289 | [citations/jensen/](citations/jensen/index.md) |
+| Jentschura | 1 | 1 | [citations/jentschura/](citations/jentschura/index.md) |
+| Jeon | 34 | 135 | [citations/jeon/](citations/jeon/index.md) |
 | Jerabkova | 1 | 2 | [citations/jerabkova/](citations/jerabkova/index.md) |
+| Jerjen | 2 | 19 | [citations/jerjen/](citations/jerjen/index.md) |
+| Jesus | 33 | 69 | [citations/jesus/](citations/jesus/index.md) |
 | Jetzer | 1 | 2 | [citations/jetzer/](citations/jetzer/index.md) |
 | Jewitt | 1 | 2 | [citations/jewitt/](citations/jewitt/index.md) |
+| Jezza | 16 | 104 | [citations/jezza/](citations/jezza/index.md) |
 | Jhep | 1 | 2 | [citations/jhep/](citations/jhep/index.md) |
+| Ji'S | 24 | 57 | [citations/ji's/](citations/ji's/index.md) |
 | Jiao | 1 | 2 | [citations/jiao/](citations/jiao/index.md) |
+| Jing Shin | 8 | 8 | [citations/jing-shin/](citations/jing-shin/index.md) |
+| Jlab | 16 | 30 | [citations/jlab/](citations/jlab/index.md) |
+| Johan | 54 | 91 | [citations/johan/](citations/johan/index.md) |
+| Johnson | 250 | 361 | [citations/johnson/](citations/johnson/index.md) |
+| Joinable | 12 | 152 | [citations/joinable/](citations/joinable/index.md) |
+| Joinhook | 8 | 64 | [citations/joinhook/](citations/joinhook/index.md) |
+| Jonathan | 17 | 25 | [citations/jonathan/](citations/jonathan/index.md) |
 | Jones | 6 | 16 | [citations/jones/](citations/jones/index.md) |
+| Jong | 72 | 147 | [citations/jong/](citations/jong/index.md) |
+| Jonsson | 5 | 5 | [citations/jonsson/](citations/jonsson/index.md) |
+| Jordan | 65 | 174 | [citations/jordan/](citations/jordan/index.md) |
 | Jordi | 1 | 2 | [citations/jordi/](citations/jordi/index.md) |
+| Jow | 27 | 152 | [citations/jow/](citations/jow/index.md) |
+| Jsonl | 405 | 1862 | [citations/jsonl/](citations/jsonl/index.md) |
+| Juan | 38 | 252 | [citations/juan/](citations/juan/index.md) |
+| Jul | 4235 | 9520 | [citations/jul/](citations/jul/index.md) |
+| Jumper | 7 | 10 | [citations/jumper/](citations/jumper/index.md) |
+| Jun | 2416 | 5564 | [citations/jun/](citations/jun/index.md) |
+| Juric | 5 | 6 | [citations/juric/](citations/juric/index.md) |
+| Jwstbullet | 1 | 2 | [citations/jwstbullet/](citations/jwstbullet/index.md) |
+| Kaasik | 2 | 3 | [citations/kaasik/](citations/kaasik/index.md) |
+| Kachru | 16 | 17 | [citations/kachru/](citations/kachru/index.md) |
+| Kadowaki | 4 | 5 | [citations/kadowaki/](citations/kadowaki/index.md) |
 | Kafle | 1 | 2 | [citations/kafle/](citations/kafle/index.md) |
 | Kagra | 1 | 2 | [citations/kagra/](citations/kagra/index.md) |
+| Kahane | 1 | 2 | [citations/kahane/](citations/kahane/index.md) |
+| Kahneman | 3 | 3 | [citations/kahneman/](citations/kahneman/index.md) |
 | Kahya | 1 | 2 | [citations/kahya/](citations/kahya/index.md) |
+| Kaiser | 39 | 82 | [citations/kaiser/](citations/kaiser/index.md) |
+| Kaisin | 17 | 26 | [citations/kaisin/](citations/kaisin/index.md) |
 | Kallivayalil | 1 | 2 | [citations/kallivayalil/](citations/kallivayalil/index.md) |
+| Kallosh | 21 | 27 | [citations/kallosh/](citations/kallosh/index.md) |
+| Kaloper | 5 | 8 | [citations/kaloper/](citations/kaloper/index.md) |
 | Kaluza | 3 | 6 | [citations/kaluza/](citations/kaluza/index.md) |
 | Kamionkowski | 1 | 2 | [citations/kamionkowski/](citations/kamionkowski/index.md) |
+| Kamland Zen | 19 | 28 | [citations/kamland-zen/](citations/kamland-zen/index.md) |
+| Kamphuis | 2 | 2 | [citations/kamphuis/](citations/kamphuis/index.md) |
 | Kaplan | 4 | 8 | [citations/kaplan/](citations/kaplan/index.md) |
 | Kaplinghat | 1 | 2 | [citations/kaplinghat/](citations/kaplinghat/index.md) |
+| Kapner | 3 | 3 | [citations/kapner/](citations/kapner/index.md) |
 | Karachentsev | 1 | 2 | [citations/karachentsev/](citations/karachentsev/index.md) |
+| Karczmarek | 4 | 7 | [citations/karczmarek/](citations/karczmarek/index.md) |
+| Karen | 10 | 452 | [citations/karen/](citations/karen/index.md) |
+| Karim | 16 | 25 | [citations/karim/](citations/karim/index.md) |
+| Kartaltepe | 2 | 3 | [citations/kartaltepe/](citations/kartaltepe/index.md) |
 | Kashlinsky | 3 | 5 | [citations/kashlinsky/](citations/kashlinsky/index.md) |
+| Kasting | 2 | 2 | [citations/kasting/](citations/kasting/index.md) |
+| Kastritis | 1 | 1 | [citations/kastritis/](citations/kastritis/index.md) |
 | Katrin | 2 | 4 | [citations/katrin/](citations/katrin/index.md) |
-| S. Kauffman | 36 | 71 | [citations/kauffman/](citations/kauffman/index.md) |
+| Kauffman | 36 | 71 | [citations/kauffman/](citations/kauffman/index.md) |
+| Kaufmann | 12 | 14 | [citations/kaufmann/](citations/kaufmann/index.md) |
+| Kawasaki | 6 | 13 | [citations/kawasaki/](citations/kawasaki/index.md) |
+| Kay | 214 | 8948 | [citations/kay/](citations/kay/index.md) |
 | Kearns | 2 | 4 | [citations/kearns/](citations/kearns/index.md) |
 | Keating | 1 | 2 | [citations/keating/](citations/keating/index.md) |
+| Keck | 157 | 636 | [citations/keck/](citations/keck/index.md) |
 | Keenan | 1 | 2 | [citations/keenan/](citations/keenan/index.md) |
 | Keiper | 1 | 2 | [citations/keiper/](citations/keiper/index.md) |
 | Kelleher | 1 | 2 | [citations/kelleher/](citations/kelleher/index.md) |
 | Keller | 1 | 2 | [citations/keller/](citations/keller/index.md) |
 | Kelly | 6 | 9 | [citations/kelly/](citations/kelly/index.md) |
+| Kelson | 2 | 2 | [citations/kelson/](citations/kelson/index.md) |
 | Kennicutt | 1 | 2 | [citations/kennicutt/](citations/kennicutt/index.md) |
+| Kerins | 1 | 4 | [citations/kerins/](citations/kerins/index.md) |
+| Kessler | 18 | 39 | [citations/kessler/](citations/kessler/index.md) |
+| Kettula | 3 | 21 | [citations/kettula/](citations/kettula/index.md) |
 | Khatri | 1 | 2 | [citations/khatri/](citations/khatri/index.md) |
+| Khelashvili | 2 | 4 | [citations/khelashvili/](citations/khelashvili/index.md) |
+| Khosroshahi | 2 | 2 | [citations/khosroshahi/](citations/khosroshahi/index.md) |
 | Khoury | 1 | 2 | [citations/khoury/](citations/khoury/index.md) |
-| Ivan King | 508 | 1183 | [citations/king/](citations/king/index.md) |
+| Khronon | 25626 | 81490 | [citations/khronon/](citations/khronon/index.md) |
+| Kill | 9150 | 379167 | [citations/kill/](citations/kill/index.md) |
+| Kilo | 254 | 1103 | [citations/kilo/](citations/kilo/index.md) |
+| Kim | 792 | 12486 | [citations/kim/](citations/kim/index.md) |
+| Kinemuchi | 3 | 14 | [citations/kinemuchi/](citations/kinemuchi/index.md) |
+| King | 508 | 1183 | [citations/king/](citations/king/index.md) |
+| Kinoshita | 9 | 15 | [citations/kinoshita/](citations/kinoshita/index.md) |
 | Kirby | 1 | 2 | [citations/kirby/](citations/kirby/index.md) |
+| Kiri | 33 | 197 | [citations/kiri/](citations/kiri/index.md) |
+| Kirsten | 6 | 8 | [citations/kirsten/](citations/kirsten/index.md) |
+| Kitty | 79 | 392 | [citations/kitty/](citations/kitty/index.md) |
+| Kitzbichler | 1 | 1 | [citations/kitzbichler/](citations/kitzbichler/index.md) |
 | Klacka | 1 | 2 | [citations/klacka/](citations/klacka/index.md) |
-| Oskar Klein | 26 | 92 | [citations/klein/](citations/klein/index.md) |
+| Klein | 26 | 92 | [citations/klein/](citations/klein/index.md) |
+| Kleyna | 4 | 32 | [citations/kleyna/](citations/kleyna/index.md) |
+| Kling | 109 | 381 | [citations/kling/](citations/kling/index.md) |
 | Klinkhamer | 1 | 2 | [citations/klinkhamer/](citations/klinkhamer/index.md) |
+| Klioner | 4 | 5 | [citations/klioner/](citations/klioner/index.md) |
+| Kluge | 20 | 23 | [citations/kluge/](citations/kluge/index.md) |
+| Kluyver | 7 | 42 | [citations/kluyver/](citations/kluyver/index.md) |
+| Klypin | 8 | 20 | [citations/klypin/](citations/klypin/index.md) |
+| Knaff Zehr Courtney | 2 | 2 | [citations/knaff-zehr-courtney/](citations/knaff-zehr-courtney/index.md) |
+| Knebe | 3 | 4 | [citations/knebe/](citations/knebe/index.md) |
+| Kneib | 4 | 4 | [citations/kneib/](citations/kneib/index.md) |
+| Known | 9840 | 24846 | [citations/known/](citations/known/index.md) |
+| Koch | 71 | 239 | [citations/koch/](citations/koch/index.md) |
 | Kofman | 1 | 2 | [citations/kofman/](citations/kofman/index.md) |
 | Kogut | 1 | 2 | [citations/kogut/](citations/kogut/index.md) |
-| Yoshio Koide | 22 | 67 | [citations/koide/](citations/koide/index.md) |
+| Koide | 22 | 67 | [citations/koide/](citations/koide/index.md) |
 | Komatsu | 1 | 2 | [citations/komatsu/](citations/komatsu/index.md) |
+| Koop | 12 | 18 | [citations/koop/](citations/koop/index.md) |
 | Koposov | 1 | 2 | [citations/koposov/](citations/koposov/index.md) |
 | Kopp | 2 | 5 | [citations/kopp/](citations/kopp/index.md) |
 | Kordower | 1 | 2 | [citations/kordower/](citations/kordower/index.md) |
 | Koribalski | 1 | 2 | [citations/koribalski/](citations/koribalski/index.md) |
+| Kormendy | 12 | 14 | [citations/kormendy/](citations/kormendy/index.md) |
+| Kos | 167 | 626 | [citations/kos/](citations/kos/index.md) |
 | Kourkchi | 1 | 2 | [citations/kourkchi/](citations/kourkchi/index.md) |
+| Kraljic | 8 | 8 | [citations/kraljic/](citations/kraljic/index.md) |
 | Kramer | 1 | 2 | [citations/kramer/](citations/kramer/index.md) |
 | Kravtsov | 1 | 2 | [citations/kravtsov/](citations/kravtsov/index.md) |
-| Pavel Kroupa | 87 | 172 | [citations/kroupa/](citations/kroupa/index.md) |
+| Krolewski | 1 | 2 | [citations/krolewski/](citations/krolewski/index.md) |
+| Krot | 10 | 19 | [citations/krot/](citations/krot/index.md) |
+| Kroupa | 87 | 172 | [citations/kroupa/](citations/kroupa/index.md) |
 | Kubo | 3 | 5 | [citations/kubo/](citations/kubo/index.md) |
+| Kucerka | 2 | 2 | [citations/kucerka/](citations/kucerka/index.md) |
+| Kuehn | 6 | 13 | [citations/kuehn/](citations/kuehn/index.md) |
+| Kugel | 6 | 7 | [citations/kugel/](citations/kugel/index.md) |
+| Kuhn | 47 | 231 | [citations/kuhn/](citations/kuhn/index.md) |
 | Kuijken | 1 | 2 | [citations/kuijken/](citations/kuijken/index.md) |
+| Kulkarni | 2 | 2 | [citations/kulkarni/](citations/kulkarni/index.md) |
 | Kumar | 2 | 6 | [citations/kumar/](citations/kumar/index.md) |
+| Kundu | 3 | 3 | [citations/kundu/](citations/kundu/index.md) |
+| Kunkel | 1 | 3 | [citations/kunkel/](citations/kunkel/index.md) |
+| Kunz | 22 | 37 | [citations/kunz/](citations/kunz/index.md) |
+| Kuo | 35 | 200 | [citations/kuo/](citations/kuo/index.md) |
 | Kurtz | 1 | 2 | [citations/kurtz/](citations/kurtz/index.md) |
+| Kuzmich | 4 | 6 | [citations/kuzmich/](citations/kuzmich/index.md) |
+| Kvernmo | 4 | 27 | [citations/kvernmo/](citations/kvernmo/index.md) |
+| Laakkonen | 2 | 2 | [citations/laakkonen/](citations/laakkonen/index.md) |
+| Laboratory | 212 | 431 | [citations/laboratory/](citations/laboratory/index.md) |
 | Labzowsky | 1 | 2 | [citations/labzowsky/](citations/labzowsky/index.md) |
+| Lacroix | 1 | 1 | [citations/lacroix/](citations/lacroix/index.md) |
 | Lagarias | 1 | 2 | [citations/lagarias/](citations/lagarias/index.md) |
+| Lagrangian | 1190 | 3881 | [citations/lagrangian/](citations/lagrangian/index.md) |
+| Lahav | 7 | 22 | [citations/lahav/](citations/lahav/index.md) |
+| Lam | 13700 | 151796 | [citations/lam/](citations/lam/index.md) |
 | Lancaster | 1 | 2 | [citations/lancaster/](citations/lancaster/index.md) |
+| Land | 4009 | 14000 | [citations/land/](citations/land/index.md) |
+| Lane | 5630 | 19534 | [citations/lane/](citations/lane/index.md) |
+| Lang | 2573 | 12260 | [citations/lang/](citations/lang/index.md) |
+| Laporte | 3 | 3 | [citations/laporte/](citations/laporte/index.md) |
+| Lasserre | 4 | 11 | [citations/lasserre/](citations/lasserre/index.md) |
+| Latest | 4018 | 6143 | [citations/latest/](citations/latest/index.md) |
+| Latex | 455 | 3159 | [citations/latex/](citations/latex/index.md) |
+| Latour | 1 | 2 | [citations/latour/](citations/latour/index.md) |
+| Lattice | 819 | 5051 | [citations/lattice/](citations/lattice/index.md) |
+| Lau | 11571 | 110971 | [citations/lau/](citations/lau/index.md) |
 | Lavaux | 1 | 2 | [citations/lavaux/](citations/lavaux/index.md) |
+| Learning | 621 | 3740 | [citations/learning/](citations/learning/index.md) |
+| Lecar | 2 | 2 | [citations/lecar/](citations/lecar/index.md) |
+| Ledu | 3 | 9 | [citations/ledu/](citations/ledu/index.md) |
+| Lee | 2144 | 98970 | [citations/lee/](citations/lee/index.md) |
 | Lees | 1 | 5 | [citations/lees/](citations/lees/index.md) |
+| Legacy | 1179 | 5068 | [citations/legacy/](citations/legacy/index.md) |
 | Leggett | 2 | 3 | [citations/leggett/](citations/leggett/index.md) |
-| Federico Lelli | 197 | 392 | [citations/lelli/](citations/lelli/index.md) |
+| Legomena | 1883 | 17986 | [citations/legomena/](citations/legomena/index.md) |
+| Leinaas | 3 | 4 | [citations/leinaas/](citations/leinaas/index.md) |
+| Leisman | 34 | 121 | [citations/leisman/](citations/leisman/index.md) |
+| Lejeune | 1 | 3 | [citations/lejeune/](citations/lejeune/index.md) |
+| Lelli | 197 | 392 | [citations/lelli/](citations/lelli/index.md) |
+| Lenses | 319 | 798 | [citations/lenses/](citations/lenses/index.md) |
+| Leong | 1 | 2 | [citations/leong/](citations/leong/index.md) |
+| Lerchster | 2 | 2 | [citations/lerchster/](citations/lerchster/index.md) |
 | Leroy | 1 | 2 | [citations/leroy/](citations/leroy/index.md) |
+| Lesgourgues | 132 | 142 | [citations/lesgourgues/](citations/lesgourgues/index.md) |
 | Lesuer | 1 | 2 | [citations/lesuer/](citations/lesuer/index.md) |
+| Letal | 26 | 160 | [citations/letal/](citations/letal/index.md) |
+| Letaw | 12 | 26 | [citations/letaw/](citations/letaw/index.md) |
 | Levin | 3 | 6 | [citations/levin/](citations/levin/index.md) |
 | Lewis | 3 | 5 | [citations/lewis/](citations/lewis/index.md) |
-| Miao Li | 0 | 0 | [citations/li/](citations/li/index.md) |
+| Liang | 55 | 185 | [citations/liang/](citations/liang/index.md) |
+| Libra | 3611 | 10626 | [citations/libra/](citations/libra/index.md) |
 | Licquia | 1 | 2 | [citations/licquia/](citations/licquia/index.md) |
-| S. Limbach | 54 | 105 | [citations/limbach/](citations/limbach/index.md) |
+| Lie | 48744 | 163718 | [citations/lie/](citations/lie/index.md) |
+| Life | 1568 | 7717 | [citations/life/](citations/life/index.md) |
+| Lilly | 14 | 24 | [citations/lilly/](citations/lilly/index.md) |
+| Lim | 10924 | 66798 | [citations/lim/](citations/lim/index.md) |
+| Limaye | 2 | 2 | [citations/limaye/](citations/limaye/index.md) |
+| Limbach | 54 | 105 | [citations/limbach/](citations/limbach/index.md) |
 | Limousin | 1 | 2 | [citations/limousin/](citations/limousin/index.md) |
+| Lin | 99322 | 628923 | [citations/lin/](citations/lin/index.md) |
+| Lipa | 56 | 580 | [citations/lipa/](citations/lipa/index.md) |
 | Lipinski | 2 | 4 | [citations/lipinski/](citations/lipinski/index.md) |
+| Lisa | 1341 | 5300 | [citations/lisa/](citations/lisa/index.md) |
+| Liske | 9 | 109 | [citations/liske/](citations/liske/index.md) |
+| Lisowski | 1 | 1 | [citations/lisowski/](citations/lisowski/index.md) |
+| List | 12346 | 86436 | [citations/list/](citations/list/index.md) |
+| Lit Verified | 3 | 3 | [citations/lit-verified/](citations/lit-verified/index.md) |
 | Litebird | 4 | 7 | [citations/litebird/](citations/litebird/index.md) |
-| Avi Loeb | 0 | 0 | [citations/loeb/](citations/loeb/index.md) |
+| Liu | 644 | 4257 | [citations/liu/](citations/liu/index.md) |
+| Llama | 763 | 18349 | [citations/llama/](citations/llama/index.md) |
+| Llinares | 14 | 17 | [citations/llinares/](citations/llinares/index.md) |
+| Lo Et Al | 9 | 31 | [citations/lo et al/](citations/lo et al/index.md) |
+| Logan | 94 | 156 | [citations/logan/](citations/logan/index.md) |
 | Lokas | 1 | 2 | [citations/lokas/](citations/lokas/index.md) |
-| Renate Loll | 156 | 638 | [citations/loll/](citations/loll/index.md) |
-| L. Lombardelli | 0 | 0 | [citations/lombardelli/](citations/lombardelli/index.md) |
+| Loll | 156 | 638 | [citations/loll/](citations/loll/index.md) |
+| Lombardi | 16 | 31 | [citations/lombardi/](citations/lombardi/index.md) |
+| Longeard | 4 | 9 | [citations/longeard/](citations/longeard/index.md) |
+| Loparco | 5 | 6 | [citations/loparco/](citations/loparco/index.md) |
 | Lopes | 2 | 4 | [citations/lopes/](citations/lopes/index.md) |
-| Lopez-Sanjuan | 1 | 2 | [citations/lopez-sanjuan/](citations/lopez-sanjuan/index.md) |
-| Edward Lorenz | 80 | 187 | [citations/lorenz/](citations/lorenz/index.md) |
+| Lopez Sanjuan | 1 | 2 | [citations/lopez-sanjuan/](citations/lopez-sanjuan/index.md) |
+| Lorce | 1 | 1 | [citations/lorce/](citations/lorce/index.md) |
+| Lorenz | 80 | 187 | [citations/lorenz/](citations/lorenz/index.md) |
+| Love | 387 | 2724 | [citations/love/](citations/love/index.md) |
 | Lovisari | 3 | 6 | [citations/lovisari/](citations/lovisari/index.md) |
+| Lpo | 212 | 774 | [citations/lpo/](citations/lpo/index.md) |
 | Lucca | 1 | 2 | [citations/lucca/](citations/lucca/index.md) |
+| Lucky | 83 | 489 | [citations/lucky/](citations/lucky/index.md) |
 | Ludlow | 1 | 2 | [citations/ludlow/](citations/ludlow/index.md) |
+| Luhausen | 2 | 2 | [citations/luhausen/](citations/luhausen/index.md) |
+| Luk | 118 | 424 | [citations/luk/](citations/luk/index.md) |
+| Luminet | 4 | 4 | [citations/luminet/](citations/luminet/index.md) |
 | Lund | 2 | 4 | [citations/lund/](citations/lund/index.md) |
+| Luo | 942 | 2814 | [citations/luo/](citations/luo/index.md) |
+| Luque | 5 | 12 | [citations/luque/](citations/luque/index.md) |
 | Luty | 1 | 4 | [citations/luty/](citations/luty/index.md) |
+| Lux | 1666 | 92853 | [citations/lux/](citations/lux/index.md) |
+| Lyman Alpha | 215 | 534 | [citations/lyman-alpha/](citations/lyman-alpha/index.md) |
+| Lynden Bell | 11 | 20 | [citations/lynden-bell/](citations/lynden-bell/index.md) |
+| M Theory | 251 | 1082 | [citations/m-theory/](citations/m-theory/index.md) |
 | Maccio | 1 | 2 | [citations/maccio/](citations/maccio/index.md) |
+| Macdonald | 9 | 13 | [citations/macdonald/](citations/macdonald/index.md) |
 | Macdowell | 2 | 4 | [citations/macdowell/](citations/macdowell/index.md) |
 | Machinelearningi | 2 | 4 | [citations/machinelearningi/](citations/machinelearningi/index.md) |
+| Mack | 116 | 350 | [citations/mack/](citations/mack/index.md) |
 | Macquart | 1 | 2 | [citations/macquart/](citations/macquart/index.md) |
 | Madau | 1 | 2 | [citations/madau/](citations/madau/index.md) |
+| Maddox | 3 | 6 | [citations/maddox/](citations/maddox/index.md) |
+| Madejski | 2 | 2 | [citations/madejski/](citations/madejski/index.md) |
 | Maeder | 1 | 2 | [citations/maeder/](citations/maeder/index.md) |
+| Maggie | 9 | 11 | [citations/maggie/](citations/maggie/index.md) |
+| Maggiore | 20 | 46 | [citations/maggiore/](citations/maggiore/index.md) |
+| Magnetized | 41 | 95 | [citations/magnetized/](citations/magnetized/index.md) |
 | Magoulas | 1 | 2 | [citations/magoulas/](citations/magoulas/index.md) |
+| Magueijo | 13 | 17 | [citations/magueijo/](citations/magueijo/index.md) |
+| Mahler | 7 | 41 | [citations/mahler/](citations/mahler/index.md) |
+| Maiani | 1 | 1 | [citations/maiani/](citations/maiani/index.md) |
+| Maier | 12 | 17 | [citations/maier/](citations/maier/index.md) |
+| Maiolino | 4 | 5 | [citations/maiolino/](citations/maiolino/index.md) |
+| Majewski | 4 | 25 | [citations/majewski/](citations/majewski/index.md) |
 | Makarov | 1 | 2 | [citations/makarov/](citations/makarov/index.md) |
-| Juan Maldacena | 187 | 688 | [citations/maldacena/](citations/maldacena/index.md) |
+| Maldacena | 187 | 688 | [citations/maldacena/](citations/maldacena/index.md) |
 | Malhotra | 1 | 2 | [citations/malhotra/](citations/malhotra/index.md) |
+| Maloney | 4 | 5 | [citations/maloney/](citations/maloney/index.md) |
+| Mamajek | 9 | 899 | [citations/mamajek/](citations/mamajek/index.md) |
 | Mamon | 1 | 2 | [citations/mamon/](citations/mamon/index.md) |
+| Managedserver | 36 | 216 | [citations/managedserver/](citations/managedserver/index.md) |
+| Mandel | 101 | 288 | [citations/mandel/](citations/mandel/index.md) |
+| Mannheim | 15 | 27 | [citations/mannheim/](citations/mannheim/index.md) |
 | Mansouri | 2 | 4 | [citations/mansouri/](citations/mansouri/index.md) |
 | Mantz | 1 | 2 | [citations/mantz/](citations/mantz/index.md) |
-| S. Marongwe | 0 | 0 | [citations/marongwe/](citations/marongwe/index.md) |
+| Mao | 70 | 242 | [citations/mao/](citations/mao/index.md) |
+| Maquet | 1 | 2 | [citations/maquet/](citations/maquet/index.md) |
+| Mar | 90193 | 1603262 | [citations/mar/](citations/mar/index.md) |
 | Marshall | 1 | 5 | [citations/marshall/](citations/marshall/index.md) |
 | Mashhoon | 1 | 2 | [citations/mashhoon/](citations/mashhoon/index.md) |
 | Maskawa | 1 | 2 | [citations/maskawa/](citations/maskawa/index.md) |
+| Massari | 14 | 86 | [citations/massari/](citations/massari/index.md) |
+| Match | 13128 | 78175 | [citations/match/](citations/match/index.md) |
+| Mateo | 6 | 29 | [citations/mateo/](citations/mateo/index.md) |
+| Mathematics | 1188 | 1887 | [citations/mathematics/](citations/mathematics/index.md) |
+| Mathews | 22 | 49 | [citations/mathews/](citations/mathews/index.md) |
+| Mathur | 16 | 37 | [citations/mathur/](citations/mathur/index.md) |
+| Matouschek | 1 | 1 | [citations/matouschek/](citations/matouschek/index.md) |
+| Matrix | 3653 | 46749 | [citations/matrix/](citations/matrix/index.md) |
+| Matter | 28701 | 67379 | [citations/matter/](citations/matter/index.md) |
 | Mattingly | 1 | 2 | [citations/mattingly/](citations/mattingly/index.md) |
+| Mau | 213 | 1715 | [citations/mau/](citations/mau/index.md) |
+| Mazumdar | 14 | 27 | [citations/mazumdar/](citations/mazumdar/index.md) |
 | Mazzeo | 1 | 2 | [citations/mazzeo/](citations/mazzeo/index.md) |
+| Mccarthy | 13 | 24 | [citations/mccarthy/](citations/mccarthy/index.md) |
+| Mcclintock | 3 | 5 | [citations/mcclintock/](citations/mcclintock/index.md) |
 | Mcconnachie | 1 | 2 | [citations/mcconnachie/](citations/mcconnachie/index.md) |
-| Stacy McGaugh | 0 | 0 | [citations/mcgaug/](citations/mcgaug/index.md) |
-| Stacy McGaugh | 15 | 33 | [citations/mcgaugh/](citations/mcgaugh/index.md) |
+| Mcgaugh | 15 | 33 | [citations/mcgaugh/](citations/mcgaugh/index.md) |
 | Mckee | 1 | 2 | [citations/mckee/](citations/mckee/index.md) |
+| Mckinven | 1 | 1 | [citations/mckinven/](citations/mckinven/index.md) |
+| Mclaughlin | 4 | 4 | [citations/mclaughlin/](citations/mclaughlin/index.md) |
 | Mcmillan | 1 | 2 | [citations/mcmillan/](citations/mcmillan/index.md) |
+| Mcphedran | 1 | 2 | [citations/mcphedran/](citations/mcphedran/index.md) |
 | Mead | 3 | 4 | [citations/mead/](citations/mead/index.md) |
+| Measured | 4769 | 29995 | [citations/measured/](citations/measured/index.md) |
+| Measurements | 1240 | 3175 | [citations/measurements/](citations/measurements/index.md) |
+| Mechanism | 79531 | 242490 | [citations/mechanism/](citations/mechanism/index.md) |
+| Medezinski | 2 | 2 | [citations/medezinski/](citations/medezinski/index.md) |
+| Medicine | 108 | 9772 | [citations/medicine/](citations/medicine/index.md) |
+| Medina | 7 | 11 | [citations/medina/](citations/medina/index.md) |
 | Meech | 1 | 2 | [citations/meech/](citations/meech/index.md) |
+| Megaparsec | 63 | 210 | [citations/megaparsec/](citations/megaparsec/index.md) |
+| Mei | 520 | 6385 | [citations/mei/](citations/mei/index.md) |
+| Melmed | 2 | 22 | [citations/melmed/](citations/melmed/index.md) |
+| Melor | 2 | 4 | [citations/melor/](citations/melor/index.md) |
+| Memory | 3350 | 35917 | [citations/memory/](citations/memory/index.md) |
+| Memviewslicevalidateandinit | 4 | 16 | [citations/memviewslicevalidateandinit/](citations/memviewslicevalidateandinit/index.md) |
 | Menanteau | 1 | 2 | [citations/menanteau/](citations/menanteau/index.md) |
+| Menezes | 1 | 1 | [citations/menezes/](citations/menezes/index.md) |
+| Menting | 229 | 303 | [citations/menting/](citations/menting/index.md) |
+| Mercado | 4 | 9 | [citations/mercado/](citations/mercado/index.md) |
+| Mercier | 9 | 12 | [citations/mercier/](citations/mercier/index.md) |
+| Mercury | 361 | 1209 | [citations/mercury/](citations/mercury/index.md) |
+| Merged | 614 | 2507 | [citations/merged/](citations/merged/index.md) |
+| Mergevtables | 4 | 36 | [citations/mergevtables/](citations/mergevtables/index.md) |
+| Merloni | 1 | 2 | [citations/merloni/](citations/merloni/index.md) |
+| Merritt | 9 | 19 | [citations/merritt/](citations/merritt/index.md) |
 | Merten | 1 | 2 | [citations/merten/](citations/merten/index.md) |
+| Mertsch | 1 | 2 | [citations/mertsch/](citations/mertsch/index.md) |
 | Meshcheryakov | 1 | 2 | [citations/meshcheryakov/](citations/meshcheryakov/index.md) |
+| Messagesender | 12 | 80 | [citations/messagesender/](citations/messagesender/index.md) |
+| Messenger | 121 | 217 | [citations/messenger/](citations/messenger/index.md) |
+| Meta | 8738 | 55181 | [citations/meta/](citations/meta/index.md) |
+| Metzger | 2 | 3 | [citations/metzger/](citations/metzger/index.md) |
 | Michael | 8 | 14 | [citations/michael/](citations/michael/index.md) |
 | Micheli | 1 | 2 | [citations/micheli/](citations/micheli/index.md) |
+| Microbiology | 7 | 10 | [citations/microbiology/](citations/microbiology/index.md) |
+| Microsoft | 244 | 1504 | [citations/microsoft/](citations/microsoft/index.md) |
 | Mifflin | 1 | 2 | [citations/mifflin/](citations/mifflin/index.md) |
-| Mordehai Milgrom | 311 | 1158 | [citations/milgrom/](citations/milgrom/index.md) |
-| S. Miller | 60 | 138 | [citations/miller/](citations/miller/index.md) |
+| Milgrom | 311 | 1158 | [citations/milgrom/](citations/milgrom/index.md) |
+| Millan | 8 | 39 | [citations/millan/](citations/millan/index.md) |
+| Miller | 60 | 138 | [citations/miller/](citations/miller/index.md) |
+| Mills | 109 | 225 | [citations/mills/](citations/mills/index.md) |
+| Milone | 2 | 7 | [citations/milone/](citations/milone/index.md) |
+| Milton | 1501 | 8828 | [citations/milton/](citations/milton/index.md) |
+| Mime | 499 | 3255 | [citations/mime/](citations/mime/index.md) |
 | Minami | 1 | 2 | [citations/minami/](citations/minami/index.md) |
 | Minazzoli | 1 | 2 | [citations/minazzoli/](citations/minazzoli/index.md) |
+| Minimax | 447 | 5278 | [citations/minimax/](citations/minimax/index.md) |
+| Minkowski | 380 | 820 | [citations/minkowski/](citations/minkowski/index.md) |
 | Mistele | 2 | 3 | [citations/mistele/](citations/mistele/index.md) |
+| Mistral | 318 | 3230 | [citations/mistral/](citations/mistral/index.md) |
+| Mitch | 71 | 362 | [citations/mitch/](citations/mitch/index.md) |
+| Mivilledeschenes | 2 | 3 | [citations/mivilledeschenes/](citations/mivilledeschenes/index.md) |
+| Mmu | 2222 | 63865 | [citations/mmu/](citations/mmu/index.md) |
+| Mnemosynelake | 126 | 1747 | [citations/mnemosynelake/](citations/mnemosynelake/index.md) |
+| Mocz | 2 | 2 | [citations/mocz/](citations/mocz/index.md) |
+| Modal | 875 | 6781 | [citations/modal/](citations/modal/index.md) |
+| Mode | 52131 | 288861 | [citations/mode/](citations/mode/index.md) |
+| Modified | 3216 | 11646 | [citations/modified/](citations/modified/index.md) |
 | Moffat | 1 | 2 | [citations/moffat/](citations/moffat/index.md) |
 | Moffett | 1 | 2 | [citations/moffett/](citations/moffett/index.md) |
+| Mogul | 3 | 3 | [citations/mogul/](citations/mogul/index.md) |
+| Moiseev | 3 | 3 | [citations/moiseev/](citations/moiseev/index.md) |
+| Mojzsis | 1 | 1 | [citations/mojzsis/](citations/mojzsis/index.md) |
+| Mok | 284 | 834 | [citations/mok/](citations/mok/index.md) |
 | Molikawa | 1 | 2 | [citations/molikawa/](citations/molikawa/index.md) |
+| Monjo | 5 | 13 | [citations/monjo/](citations/monjo/index.md) |
+| Monte | 376 | 966 | [citations/monte/](citations/monte/index.md) |
 | Montgomery | 1 | 2 | [citations/montgomery/](citations/montgomery/index.md) |
+| Moonshot | 258 | 1526 | [citations/moonshot/](citations/moonshot/index.md) |
 | Moore | 2 | 4 | [citations/moore/](citations/moore/index.md) |
+| Morelli | 5 | 8 | [citations/morelli/](citations/morelli/index.md) |
+| Moretti | 3 | 6 | [citations/moretti/](citations/moretti/index.md) |
+| Morgan | 25 | 37 | [citations/morgan/](citations/morgan/index.md) |
 | Morris | 1 | 2 | [citations/morris/](citations/morris/index.md) |
 | Mortlock | 1 | 2 | [citations/mortlock/](citations/mortlock/index.md) |
 | Morton | 1 | 2 | [citations/morton/](citations/morton/index.md) |
+| Moschella | 29 | 55 | [citations/moschella/](citations/moschella/index.md) |
+| Moss | 79 | 137 | [citations/moss/](citations/moss/index.md) |
 | Moster | 1 | 2 | [citations/moster/](citations/moster/index.md) |
+| Mottola | 12 | 46 | [citations/mottola/](citations/mottola/index.md) |
+| Mousa | 14 | 50 | [citations/mousa/](citations/mousa/index.md) |
+| Mroz | 8 | 17 | [citations/mroz/](citations/mroz/index.md) |
+| Msun | 2458 | 17459 | [citations/msun/](citations/msun/index.md) |
+| Mucciarelli | 4 | 7 | [citations/mucciarelli/](citations/mucciarelli/index.md) |
 | Mueller | 1 | 2 | [citations/mueller/](citations/mueller/index.md) |
 | Mukhanov | 1 | 2 | [citations/mukhanov/](citations/mukhanov/index.md) |
 | Mukohyama | 1 | 4 | [citations/mukohyama/](citations/mukohyama/index.md) |
+| Mulchaey | 3 | 5 | [citations/mulchaey/](citations/mulchaey/index.md) |
+| Mulki | 2 | 3 | [citations/mulki/](citations/mulki/index.md) |
 | Muller | 1 | 2 | [citations/muller/](citations/muller/index.md) |
+| Multica | 25 | 49 | [citations/multica/](citations/multica/index.md) |
+| Multiple | 3615 | 8483 | [citations/multiple/](citations/multiple/index.md) |
+| Multiprocessing | 98 | 209 | [citations/multiprocessing/](citations/multiprocessing/index.md) |
+| Munday | 1 | 1 | [citations/munday/](citations/munday/index.md) |
+| Munoz | 9 | 131 | [citations/munoz/](citations/munoz/index.md) |
 | Murgia | 1 | 2 | [citations/murgia/](citations/murgia/index.md) |
+| Murray | 46 | 75 | [citations/murray/](citations/murray/index.md) |
 | Murugeshan | 1 | 2 | [citations/murugeshan/](citations/murugeshan/index.md) |
+| Musacchio | 2 | 3 | [citations/musacchio/](citations/musacchio/index.md) |
+| Muse | 463 | 1916 | [citations/muse/](citations/muse/index.md) |
 | Musedark | 1 | 1 | [citations/musedark/](citations/musedark/index.md) |
+| Mutlu Pakdil | 2 | 4 | [citations/mutlu-pakdil/](citations/mutlu-pakdil/index.md) |
+| Myers | 7 | 25 | [citations/myers/](citations/myers/index.md) |
+| Myr | 362 | 5889 | [citations/myr/](citations/myr/index.md) |
+| N Body | 295 | 803 | [citations/n-body/](citations/n-body/index.md) |
 | Naab | 1 | 2 | [citations/naab/](citations/naab/index.md) |
+| Naacl | 20 | 44 | [citations/naacl/](citations/naacl/index.md) |
+| Naaman | 4 | 4 | [citations/naaman/](citations/naaman/index.md) |
+| Nadathur | 7 | 10 | [citations/nadathur/](citations/nadathur/index.md) |
 | Nadler | 1 | 2 | [citations/nadler/](citations/nadler/index.md) |
+| Naess | 5 | 7 | [citations/naess/](citations/naess/index.md) |
+| Nagai | 51 | 105 | [citations/nagai/](citations/nagai/index.md) |
+| Nagamine | 4 | 4 | [citations/nagamine/](citations/nagamine/index.md) |
 | Nagesh | 1 | 2 | [citations/nagesh/](citations/nagesh/index.md) |
+| Nagib | 2 | 3 | [citations/nagib/](citations/nagib/index.md) |
+| Nagle | 8 | 40 | [citations/nagle/](citations/nagle/index.md) |
 | Naidu | 1 | 2 | [citations/naidu/](citations/naidu/index.md) |
-| Nanograv | 4 | 5 | [citations/nanograv/](citations/nanograv/index.md) |
+| Nakai | 8 | 36 | [citations/nakai/](citations/nakai/index.md) |
+| Nakamura | 40 | 81 | [citations/nakamura/](citations/nakamura/index.md) |
+| Namouni | 3 | 8 | [citations/namouni/](citations/namouni/index.md) |
+| Nanoom | 54 | 54 | [citations/nanoom/](citations/nanoom/index.md) |
+| Napolitano | 2 | 4 | [citations/napolitano/](citations/napolitano/index.md) |
+| Naray | 16 | 43 | [citations/naray/](citations/naray/index.md) |
+| Narnhofer | 72 | 88 | [citations/narnhofer/](citations/narnhofer/index.md) |
 | Narovlansky | 2 | 4 | [citations/narovlansky/](citations/narovlansky/index.md) |
+| Nasa | 163 | 1077 | [citations/nasa/](citations/nasa/index.md) |
+| Nassar | 2 | 3 | [citations/nassar/](citations/nassar/index.md) |
 | Natarajan | 1 | 2 | [citations/natarajan/](citations/natarajan/index.md) |
-| Julio Navarro | 58 | 115 | [citations/navarro/](citations/navarro/index.md) |
+| Navarro | 58 | 115 | [citations/navarro/](citations/navarro/index.md) |
+| Navas | 5 | 224 | [citations/navas/](citations/navas/index.md) |
+| Ncimb | 27 | 312 | [citations/ncimb/](citations/ncimb/index.md) |
+| Nebraska | 2 | 7 | [citations/nebraska/](citations/nebraska/index.md) |
 | Necib | 1 | 2 | [citations/necib/](citations/necib/index.md) |
+| Nedm | 49 | 179 | [citations/nedm/](citations/nedm/index.md) |
+| Neeleman | 1 | 1 | [citations/neeleman/](citations/neeleman/index.md) |
+| Neither | 2414 | 3940 | [citations/neither/](citations/neither/index.md) |
+| Nejm | 8 | 34 | [citations/nejm/](citations/nejm/index.md) |
+| Neklesa | 2 | 2 | [citations/neklesa/](citations/neklesa/index.md) |
 | Nelson | 3 | 6 | [citations/nelson/](citations/nelson/index.md) |
+| Ness | 1 | 1 | [citations/ness/](citations/ness/index.md) |
+| Nestor Shachar | 10 | 18 | [citations/nestor-shachar/](citations/nestor-shachar/index.md) |
+| Nestorshachar | 19 | 22 | [citations/nestorshachar/](citations/nestorshachar/index.md) |
+| Neumann | 120 | 281 | [citations/neumann/](citations/neumann/index.md) |
+| Neurips | 82 | 492 | [citations/neurips/](citations/neurips/index.md) |
+| Neville | 5 | 5 | [citations/neville/](citations/neville/index.md) |
 | Newell | 2 | 4 | [citations/newell/](citations/newell/index.md) |
 | Newman | 1 | 2 | [citations/newman/](citations/newman/index.md) |
+| Newton | 4003 | 18239 | [citations/newton/](citations/newton/index.md) |
 | Nicastro | 1 | 2 | [citations/nicastro/](citations/nicastro/index.md) |
+| Nicolis | 15 | 28 | [citations/nicolis/](citations/nicolis/index.md) |
+| Nielsenninomiya | 1 | 1 | [citations/nielsenninomiya/](citations/nielsenninomiya/index.md) |
 | Nightingale | 1 | 2 | [citations/nightingale/](citations/nightingale/index.md) |
+| Nikolaev | 1 | 4 | [citations/nikolaev/](citations/nikolaev/index.md) |
+| Nils | 144 | 4044 | [citations/nils/](citations/nils/index.md) |
 | Nipoti | 1 | 2 | [citations/nipoti/](citations/nipoti/index.md) |
+| Nissimov | 3 | 4 | [citations/nissimov/](citations/nissimov/index.md) |
+| Nix | 1947 | 4398 | [citations/nix/](citations/nix/index.md) |
+| Noaa | 119 | 694 | [citations/noaa/](citations/noaa/index.md) |
+| Nobel | 62 | 115 | [citations/nobel/](citations/nobel/index.md) |
+| Nolan | 3 | 3 | [citations/nolan/](citations/nolan/index.md) |
 | Noordermeer | 1 | 2 | [citations/noordermeer/](citations/noordermeer/index.md) |
+| Norberg | 2 | 10 | [citations/norberg/](citations/norberg/index.md) |
 | Norman | 2 | 4 | [citations/norman/](citations/norman/index.md) |
+| Norris | 6 | 42 | [citations/norris/](citations/norris/index.md) |
+| Nous | 1511 | 22562 | [citations/nous/](citations/nous/index.md) |
+| Nov | 79995 | 94139 | [citations/nov/](citations/nov/index.md) |
 | Nozawa | 1 | 2 | [citations/nozawa/](citations/nozawa/index.md) |
+| Nrao | 6 | 68 | [citations/nrao/](citations/nrao/index.md) |
+| Nufit | 96 | 308 | [citations/nufit/](citations/nufit/index.md) |
+| Nunes | 3 | 4 | [citations/nunes/](citations/nunes/index.md) |
+| Nuri | 17 | 63 | [citations/nuri/](citations/nuri/index.md) |
+| Nusser | 51 | 81 | [citations/nusser/](citations/nusser/index.md) |
+| Nutrition | 34 | 166 | [citations/nutrition/](citations/nutrition/index.md) |
+| Nvidia | 307 | 2118 | [citations/nvidia/](citations/nvidia/index.md) |
+| Nygaard | 4 | 11 | [citations/nygaard/](citations/nygaard/index.md) |
 | Nyman | 2 | 3 | [citations/nyman/](citations/nyman/index.md) |
+| O Zone | 35 | 188 | [citations/o-zone/](citations/o-zone/index.md) |
+| Oauth | 650 | 10397 | [citations/oauth/](citations/oauth/index.md) |
 | Obes | 4 | 17 | [citations/obes/](citations/obes/index.md) |
 | Obied | 1 | 2 | [citations/obied/](citations/obied/index.md) |
+| Obreschkow | 2 | 5 | [citations/obreschkow/](citations/obreschkow/index.md) |
+| Observation | 2628 | 10962 | [citations/observation/](citations/observation/index.md) |
+| Observatory | 76 | 134 | [citations/observatory/](citations/observatory/index.md) |
+| Oct | 3587 | 10208 | [citations/oct/](citations/oct/index.md) |
+| Oda | 3450 | 17892 | [citations/oda/](citations/oda/index.md) |
 | Odlyzko | 2 | 3 | [citations/odlyzko/](citations/odlyzko/index.md) |
+| Odom | 423 | 1743 | [citations/odom/](citations/odom/index.md) |
+| Oei | 41 | 170 | [citations/oei/](citations/oei/index.md) |
+| Oesch | 8 | 58 | [citations/oesch/](citations/oesch/index.md) |
 | Oguri | 1 | 2 | [citations/oguri/](citations/oguri/index.md) |
 | Okabe | 2 | 4 | [citations/okabe/](citations/okabe/index.md) |
+| Okamoto | 7 | 24 | [citations/okamoto/](citations/okamoto/index.md) |
+| Oke | 6459 | 94945 | [citations/oke/](citations/oke/index.md) |
+| Okuyama | 55 | 172 | [citations/okuyama/](citations/okuyama/index.md) |
+| Olive | 63 | 274 | [citations/olive/](citations/olive/index.md) |
+| Olson | 21 | 40 | [citations/olson/](citations/olson/index.md) |
+| Olympusdaemon | 16 | 27756 | [citations/olympusdaemon/](citations/olympusdaemon/index.md) |
+| Olympusflow | 324 | 2110 | [citations/olympusflow/](citations/olympusflow/index.md) |
 | Oman | 6 | 29 | [citations/oman/](citations/oman/index.md) |
+| Omega | 6911 | 56237 | [citations/omega/](citations/omega/index.md) |
+| Oncol | 64 | 436 | [citations/oncol/](citations/oncol/index.md) |
+| Only | 15535 | 72515 | [citations/only/](citations/only/index.md) |
+| Ontario | 5 | 19 | [citations/ontario/](citations/ontario/index.md) |
 | Oosv | 1 | 2 | [citations/oosv/](citations/oosv/index.md) |
+| Openclaw | 283 | 3464 | [citations/openclaw/](citations/openclaw/index.md) |
+| Opencode | 234 | 2580 | [citations/opencode/](citations/opencode/index.md) |
+| Openstreetmap | 9 | 33 | [citations/openstreetmap/](citations/openstreetmap/index.md) |
+| Operator | 6628 | 114235 | [citations/operator/](citations/operator/index.md) |
+| Opml | 7 | 19 | [citations/opml/](citations/opml/index.md) |
+| Opportunity | 103 | 161 | [citations/opportunity/](citations/opportunity/index.md) |
+| Opt | 12515 | 79944 | [citations/opt/](citations/opt/index.md) |
+| Orbifold | 570 | 3942 | [citations/orbifold/](citations/orbifold/index.md) |
+| Organization | 247 | 1024 | [citations/organization/](citations/organization/index.md) |
+| Orientation | 529 | 1287 | [citations/orientation/](citations/orientation/index.md) |
+| Original | 4052 | 16156 | [citations/original/](citations/original/index.md) |
+| Orionis | 3 | 185 | [citations/orionis/](citations/orionis/index.md) |
+| Orpheus | 18 | 349 | [citations/orpheus/](citations/orpheus/index.md) |
 | Osmond | 1 | 2 | [citations/osmond/](citations/osmond/index.md) |
-| Jeremiah Ostriker | 43 | 85 | [citations/ostriker/](citations/ostriker/index.md) |
+| Ostriker | 43 | 85 | [citations/ostriker/](citations/ostriker/index.md) |
+| Ott | 3061 | 15581 | [citations/ott/](citations/ott/index.md) |
+| Ouriaghli | 2 | 2 | [citations/ouriaghli/](citations/ouriaghli/index.md) |
 | Outmezguine | 1 | 2 | [citations/outmezguine/](citations/outmezguine/index.md) |
+| Outside | 5925 | 9022 | [citations/outside/](citations/outside/index.md) |
+| Owers | 968 | 1806 | [citations/owers/](citations/owers/index.md) |
+| Owneddictnext | 4 | 24 | [citations/owneddictnext/](citations/owneddictnext/index.md) |
 | Oxnard | 1 | 2 | [citations/oxnard/](citations/oxnard/index.md) |
 | Ozel | 2 | 4 | [citations/ozel/](citations/ozel/index.md) |
-| Thanu Padmanabhan | 106 | 211 | [citations/padmanabhan/](citations/padmanabhan/index.md) |
-| Abraham Pais | 0 | 0 | [citations/pais/](citations/pais/index.md) |
+| Pac | 19141 | 167939 | [citations/pac/](citations/pac/index.md) |
+| Padilla | 11 | 20 | [citations/padilla/](citations/padilla/index.md) |
+| Padmanabhan | 106 | 211 | [citations/padmanabhan/](citations/padmanabhan/index.md) |
+| Page | 2712 | 19546 | [citations/page/](citations/page/index.md) |
+| Palik | 7 | 15 | [citations/palik/](citations/palik/index.md) |
+| Pan Starrs | 7 | 12 | [citations/pan-starrs/](citations/pan-starrs/index.md) |
+| Pandhi | 1 | 1 | [citations/pandhi/](citations/pandhi/index.md) |
+| Panja | 2 | 4 | [citations/panja/](citations/panja/index.md) |
+| Pannella | 2 | 2 | [citations/pannella/](citations/pannella/index.md) |
+| Pantheon | 212 | 707 | [citations/pantheon/](citations/pantheon/index.md) |
+| Papalini | 4 | 8 | [citations/papalini/](citations/papalini/index.md) |
 | Papastergis | 1 | 2 | [citations/papastergis/](citations/papastergis/index.md) |
-| C. Park | 51 | 99 | [citations/park/](citations/park/index.md) |
+| Paraficz | 5 | 7 | [citations/paraficz/](citations/paraficz/index.md) |
+| Paranjape | 3 | 5 | [citations/paranjape/](citations/paranjape/index.md) |
+| Park | 51 | 99 | [citations/park/](citations/park/index.md) |
+| Parma | 18 | 47 | [citations/parma/](citations/parma/index.md) |
+| Parodi | 3 | 6 | [citations/parodi/](citations/parodi/index.md) |
 | Parravano | 1 | 2 | [citations/parravano/](citations/parravano/index.md) |
+| Parsekeywordsimpl | 4 | 28 | [citations/parsekeywordsimpl/](citations/parsekeywordsimpl/index.md) |
+| Pat | 69085 | 422629 | [citations/pat/](citations/pat/index.md) |
 | Pauco | 1 | 2 | [citations/pauco/](citations/pauco/index.md) |
-| Marcel Pawlowski | 50 | 98 | [citations/pawlowski/](citations/pawlowski/index.md) |
+| Paulin Henriksson | 2 | 2 | [citations/paulin-henriksson/](citations/paulin-henriksson/index.md) |
+| Pauling | 33 | 139 | [citations/pauling/](citations/pauling/index.md) |
+| Pavlov | 3 | 5 | [citations/pavlov/](citations/pavlov/index.md) |
+| Pawliuk | 1 | 1 | [citations/pawliuk/](citations/pawliuk/index.md) |
+| Pawlowski | 50 | 98 | [citations/pawlowski/](citations/pawlowski/index.md) |
+| Pecaut | 5 | 8 | [citations/pecaut/](citations/pecaut/index.md) |
+| Peccei Quinn | 30 | 44 | [citations/peccei-quinn/](citations/peccei-quinn/index.md) |
 | Peebles | 1 | 2 | [citations/peebles/](citations/peebles/index.md) |
+| Peeples | 2 | 2 | [citations/peeples/](citations/peeples/index.md) |
+| Peg | 2646 | 40796 | [citations/peg/](citations/peg/index.md) |
 | Peiris | 1 | 2 | [citations/peiris/](citations/peiris/index.md) |
+| Pellegrino | 2 | 2 | [citations/pellegrino/](citations/pellegrino/index.md) |
+| Pelliccia | 3 | 5 | [citations/pelliccia/](citations/pelliccia/index.md) |
+| Peloso | 1 | 2 | [citations/peloso/](citations/peloso/index.md) |
 | Penarrubia | 1 | 2 | [citations/penarrubia/](citations/penarrubia/index.md) |
+| Pendleton Ross | 3 | 14 | [citations/pendleton-ross/](citations/pendleton-ross/index.md) |
+| Penedones | 5 | 8 | [citations/penedones/](citations/penedones/index.md) |
 | Peng | 7 | 34 | [citations/peng/](citations/peng/index.md) |
+| Pep | 3183 | 152186 | [citations/pep/](citations/pep/index.md) |
 | Pequignot | 1 | 2 | [citations/pequignot/](citations/pequignot/index.md) |
+| Perlick | 2 | 3 | [citations/perlick/](citations/perlick/index.md) |
 | Perlmutter | 1 | 2 | [citations/perlmutter/](citations/perlmutter/index.md) |
+| Perry | 18 | 66 | [citations/perry/](citations/perry/index.md) |
+| Perside | 31 | 79 | [citations/perside/](citations/perside/index.md) |
 | Pesce | 2 | 3 | [citations/pesce/](citations/pesce/index.md) |
 | Peter | 3 | 7 | [citations/peter/](citations/peter/index.md) |
+| Petigura | 1 | 1 | [citations/petigura/](citations/petigura/index.md) |
+| Petsko | 35 | 84 | [citations/petsko/](citations/petsko/index.md) |
 | Pettini | 1 | 2 | [citations/pettini/](citations/pettini/index.md) |
+| Pfas | 68 | 513 | [citations/pfas/](citations/pfas/index.md) |
+| Pfautsch | 2 | 3 | [citations/pfautsch/](citations/pfautsch/index.md) |
+| Pfeifer | 8 | 12 | [citations/pfeifer/](citations/pfeifer/index.md) |
+| Pfenniger | 1 | 14 | [citations/pfenniger/](citations/pfenniger/index.md) |
+| Phan | 2510 | 14815 | [citations/phan/](citations/phan/index.md) |
+| Phenomenon | 191 | 255 | [citations/phenomenon/](citations/phenomenon/index.md) |
+| Phi | 86347 | 303635 | [citations/phi/](citations/phi/index.md) |
 | Philcox | 1 | 2 | [citations/philcox/](citations/philcox/index.md) |
+| Phys | 14446 | 91819 | [citations/phys/](citations/phys/index.md) |
+| Picciotto | 1 | 1 | [citations/picciotto/](citations/picciotto/index.md) |
+| Pier | 150 | 1193 | [citations/pier/](citations/pier/index.md) |
+| Pietrzynski | 5 | 5 | [citations/pietrzynski/](citations/pietrzynski/index.md) |
 | Piffaretti | 1 | 2 | [citations/piffaretti/](citations/piffaretti/index.md) |
+| Pik | 507 | 42049 | [citations/pik/](citations/pik/index.md) |
+| Pil | 7239 | 30428 | [citations/pil/](citations/pil/index.md) |
+| Pimbblet | 2 | 13 | [citations/pimbblet/](citations/pimbblet/index.md) |
+| Pina | 82 | 452 | [citations/pina/](citations/pina/index.md) |
+| Piotrowska | 1 | 1 | [citations/piotrowska/](citations/piotrowska/index.md) |
+| Piotto | 1 | 4 | [citations/piotto/](citations/piotto/index.md) |
+| Piran | 6 | 11 | [citations/piran/](citations/piran/index.md) |
+| Pisanti | 1 | 1 | [citations/pisanti/](citations/pisanti/index.md) |
+| Piskunov | 2 | 2 | [citations/piskunov/](citations/piskunov/index.md) |
 | Pitjev | 1 | 2 | [citations/pitjev/](citations/pitjev/index.md) |
+| Pitrou | 13 | 55 | [citations/pitrou/](citations/pitrou/index.md) |
 | Pittordis | 1 | 2 | [citations/pittordis/](citations/pittordis/index.md) |
 | Pizzuti | 1 | 2 | [citations/pizzuti/](citations/pizzuti/index.md) |
-| Planck | 67 | 205 | [citations/planck/](citations/planck/index.md) |
 | Planelles | 1 | 2 | [citations/planelles/](citations/planelles/index.md) |
-| H. C. Plummer | 0 | 0 | [citations/plummer/](citations/plummer/index.md) |
+| Plastino | 1 | 2 | [citations/plastino/](citations/plastino/index.md) |
+| Pnas | 362 | 1591 | [citations/pnas/](citations/pnas/index.md) |
 | Pointecouteau | 1 | 2 | [citations/pointecouteau/](citations/pointecouteau/index.md) |
+| Pois | 1389 | 6490 | [citations/pois/](citations/pois/index.md) |
+| Polchinski | 18 | 25 | [citations/polchinski/](citations/polchinski/index.md) |
+| Pole | 2894 | 16707 | [citations/pole/](citations/pole/index.md) |
+| Polnarev | 1 | 2 | [citations/polnarev/](citations/polnarev/index.md) |
 | Polyakov | 1 | 2 | [citations/polyakov/](citations/polyakov/index.md) |
+| Pond | 2354 | 14002 | [citations/pond/](citations/pond/index.md) |
 | Ponman | 1 | 2 | [citations/ponman/](citations/ponman/index.md) |
+| Ponomareva | 9 | 31 | [citations/ponomareva/](citations/ponomareva/index.md) |
 | Pontzen | 1 | 2 | [citations/pontzen/](citations/pontzen/index.md) |
+| Popesso | 13 | 43 | [citations/popesso/](citations/popesso/index.md) |
 | Popolo | 2 | 3 | [citations/popolo/](citations/popolo/index.md) |
 | Popovic | 1 | 2 | [citations/popovic/](citations/popovic/index.md) |
+| Porquet | 1 | 1 | [citations/porquet/](citations/porquet/index.md) |
+| Portal | 360 | 2559 | [citations/portal/](citations/portal/index.md) |
+| Pos | 32569 | 145115 | [citations/pos/](citations/pos/index.md) |
 | Poulin | 1 | 2 | [citations/poulin/](citations/poulin/index.md) |
 | Powell | 2 | 6 | [citations/powell/](citations/powell/index.md) |
+| Powershell | 66 | 443 | [citations/powershell/](citations/powershell/index.md) |
+| Ppo Lite | 8 | 8 | [citations/ppo-lite/](citations/ppo-lite/index.md) |
+| Prad | 48 | 337 | [citations/prad/](citations/prad/index.md) |
+| Prasad | 24 | 31 | [citations/prasad/](citations/prasad/index.md) |
+| Prep | 1764 | 9749 | [citations/prep/](citations/prep/index.md) |
+| Preregistration | 176 | 337 | [citations/preregistration/](citations/preregistration/index.md) |
+| Prex Ii | 5 | 18 | [citations/prex-ii/](citations/prex-ii/index.md) |
+| Price | 3934 | 12275 | [citations/price/](citations/price/index.md) |
+| Primack | 7 | 19 | [citations/primack/](citations/primack/index.md) |
+| Principle | 4566 | 18462 | [citations/principle/](citations/principle/index.md) |
+| Prize | 163 | 295 | [citations/prize/](citations/prize/index.md) |
+| Probiotics | 2 | 2 | [citations/probiotics/](citations/probiotics/index.md) |
 | Prochaska | 1 | 2 | [citations/prochaska/](citations/prochaska/index.md) |
+| Profumo | 3 | 5 | [citations/profumo/](citations/profumo/index.md) |
+| Properties | 1990 | 6445 | [citations/properties/](citations/properties/index.md) |
+| Proposal | 548 | 1362 | [citations/proposal/](citations/proposal/index.md) |
+| Propris | 2 | 4 | [citations/propris/](citations/propris/index.md) |
+| Protocol | 5263 | 8042 | [citations/protocol/](citations/protocol/index.md) |
+| Protsiv | 2 | 3 | [citations/protsiv/](citations/protsiv/index.md) |
+| Proven | 3463 | 6241 | [citations/proven/](citations/proven/index.md) |
+| Provider | 2356 | 73676 | [citations/provider/](citations/provider/index.md) |
+| Prugniel | 5 | 9 | [citations/prugniel/](citations/prugniel/index.md) |
 | Psaltis | 5 | 8 | [citations/psaltis/](citations/psaltis/index.md) |
+| Psi | 10394 | 69844 | [citations/psi/](citations/psi/index.md) |
+| Ptep | 35 | 200 | [citations/ptep/](citations/ptep/index.md) |
+| Public | 2812 | 7200 | [citations/public/](citations/public/index.md) |
+| Published | 3299 | 10780 | [citations/published/](citations/published/index.md) |
 | Puchwein | 1 | 2 | [citations/puchwein/](citations/puchwein/index.md) |
 | Pujolas | 1 | 2 | [citations/pujolas/](citations/pujolas/index.md) |
+| Pulicherla | 1 | 1 | [citations/pulicherla/](citations/pulicherla/index.md) |
+| Pure | 7456 | 14332 | [citations/pure/](citations/pure/index.md) |
+| Pusz | 20 | 44 | [citations/pusz/](citations/pusz/index.md) |
+| Pydantic | 183 | 996 | [citations/pydantic/](citations/pydantic/index.md) |
+| Pyobject | 10 | 38400 | [citations/pyobject/](citations/pyobject/index.md) |
+| Pypi | 146 | 1576 | [citations/pypi/](citations/pypi/index.md) |
+| Pytype | 4 | 1548 | [citations/pytype/](citations/pytype/index.md) |
+| Qed | 554 | 7600 | [citations/qed/](citations/qed/index.md) |
+| Qin | 132 | 5192 | [citations/qin/](citations/qin/index.md) |
+| Qoura | 1 | 1 | [citations/qoura/](citations/qoura/index.md) |
+| Quack | 6 | 6 | [citations/quack/](citations/quack/index.md) |
 | Quadri | 2 | 4 | [citations/quadri/](citations/quadri/index.md) |
+| Quantum | 3454 | 8537 | [citations/quantum/](citations/quantum/index.md) |
 | Quataert | 1 | 2 | [citations/quataert/](citations/quataert/index.md) |
+| Quilis | 2 | 2 | [citations/quilis/](citations/quilis/index.md) |
+| Quinn | 64 | 140 | [citations/quinn/](citations/quinn/index.md) |
+| Quintana | 2 | 3 | [citations/quintana/](citations/quintana/index.md) |
+| Quintin | 7 | 9 | [citations/quintin/](citations/quintin/index.md) |
+| Quiros | 1 | 1 | [citations/quiros/](citations/quiros/index.md) |
 | Raamsdonk | 1 | 2 | [citations/raamsdonk/](citations/raamsdonk/index.md) |
 | Rabinowitz | 1 | 2 | [citations/rabinowitz/](citations/rabinowitz/index.md) |
+| Radziwill | 1 | 2 | [citations/radziwill/](citations/radziwill/index.md) |
+| Raghavan | 6 | 7 | [citations/raghavan/](citations/raghavan/index.md) |
 | Rahman | 2 | 5 | [citations/rahman/](citations/rahman/index.md) |
+| Rahvar | 8 | 9 | [citations/rahvar/](citations/rahvar/index.md) |
+| Raj | 1063 | 5443 | [citations/raj/](citations/raj/index.md) |
+| Ralph | 38 | 46 | [citations/ralph/](citations/ralph/index.md) |
+| Ramachandran | 3196 | 6524 | [citations/ramachandran/](citations/ramachandran/index.md) |
+| Ramalingam | 1 | 1 | [citations/ramalingam/](citations/ramalingam/index.md) |
+| Ramazanov | 1 | 1 | [citations/ramazanov/](citations/ramazanov/index.md) |
+| Randall | 104 | 243 | [citations/randall/](citations/randall/index.md) |
+| Raptor'S | 4 | 8 | [citations/raptor's/](citations/raptor's/index.md) |
 | Rasmussen | 1 | 2 | [citations/rasmussen/](citations/rasmussen/index.md) |
-| Martin Rees | 8 | 34 | [citations/rees/](citations/rees/index.md) |
+| Rasp | 65 | 445 | [citations/rasp/](citations/rasp/index.md) |
+| Rassoul | 1 | 2 | [citations/rassoul/](citations/rassoul/index.md) |
+| Rattazzi | 10 | 16 | [citations/rattazzi/](citations/rattazzi/index.md) |
+| Ray | 38540 | 102870 | [citations/ray/](citations/ray/index.md) |
+| Real | 87127 | 157488 | [citations/real/](citations/real/index.md) |
+| Reasor | 1 | 1 | [citations/reasor/](citations/reasor/index.md) |
+| Reassessment | 46 | 74 | [citations/reassessment/](citations/reassessment/index.md) |
+| Reed | 2526 | 8751 | [citations/reed/](citations/reed/index.md) |
+| Rees | 8 | 34 | [citations/rees/](citations/rees/index.md) |
 | Reffert | 1 | 2 | [citations/reffert/](citations/reffert/index.md) |
+| Refinement | 5947 | 28118 | [citations/refinement/](citations/refinement/index.md) |
+| Reformulation | 74 | 160 | [citations/reformulation/](citations/reformulation/index.md) |
+| Refs | 538 | 2915 | [citations/refs/](citations/refs/index.md) |
 | Reid | 1 | 2 | [citations/reid/](citations/reid/index.md) |
 | Reiprich | 1 | 2 | [citations/reiprich/](citations/reiprich/index.md) |
+| Relativity | 502 | 1303 | [citations/relativity/](citations/relativity/index.md) |
+| Release | 1772 | 8058 | [citations/release/](citations/release/index.md) |
+| Remus | 7 | 11 | [citations/remus/](citations/remus/index.md) |
+| Ren | 23790 | 189880 | [citations/ren/](citations/ren/index.md) |
 | Renou | 1 | 3 | [citations/renou/](citations/renou/index.md) |
+| Research | 5933 | 66329 | [citations/research/](citations/research/index.md) |
+| Resolution | 6374 | 50432 | [citations/resolution/](citations/resolution/index.md) |
+| Resolved | 2775 | 18496 | [citations/resolved/](citations/resolved/index.md) |
+| Resonated | 7 | 9 | [citations/resonated/](citations/resonated/index.md) |
+| Retherford | 2 | 2 | [citations/retherford/](citations/retherford/index.md) |
+| Retracted | 360 | 953 | [citations/retracted/](citations/retracted/index.md) |
+| Retractions | 97 | 247 | [citations/retractions/](citations/retractions/index.md) |
+| Retrieval | 223 | 462 | [citations/retrieval/](citations/retrieval/index.md) |
 | Revaz | 1 | 2 | [citations/revaz/](citations/revaz/index.md) |
+| Revision | 590 | 1351 | [citations/revision/](citations/revision/index.md) |
+| Revival | 24 | 43 | [citations/revival/](citations/revival/index.md) |
+| Reyes | 24 | 86 | [citations/reyes/](citations/reyes/index.md) |
+| Rezchikov | 1 | 2 | [citations/rezchikov/](citations/rezchikov/index.md) |
 | Rhee | 1 | 2 | [citations/rhee/](citations/rhee/index.md) |
 | Richards | 1 | 2 | [citations/richards/](citations/richards/index.md) |
+| Ricotti | 7 | 28 | [citations/ricotti/](citations/ricotti/index.md) |
+| Riele | 12 | 18 | [citations/riele/](citations/riele/index.md) |
 | Riess | 2 | 4 | [citations/riess/](citations/riess/index.md) |
-| Kenneth Rines | 73 | 148 | [citations/rines/](citations/rines/index.md) |
+| Riet | 467 | 874 | [citations/riet/](citations/riet/index.md) |
+| Rigidity | 166 | 431 | [citations/rigidity/](citations/rigidity/index.md) |
+| Rihtarsic | 6 | 8 | [citations/rihtarsic/](citations/rihtarsic/index.md) |
+| Rindler Daller | 1 | 1 | [citations/rindler-daller/](citations/rindler-daller/index.md) |
+| Rines | 73 | 148 | [citations/rines/](citations/rines/index.md) |
+| Rising | 1633 | 5829 | [citations/rising/](citations/rising/index.md) |
+| Rita | 877 | 2883 | [citations/rita/](citations/rita/index.md) |
 | Ritchie | 1 | 2 | [citations/ritchie/](citations/ritchie/index.md) |
+| Rives | 2796 | 4194 | [citations/rives/](citations/rives/index.md) |
+| Rix | 3940 | 52648 | [citations/rix/](citations/rix/index.md) |
+| Rizzi | 6 | 15 | [citations/rizzi/](citations/rizzi/index.md) |
+| Rizzo | 13 | 16 | [citations/rizzo/](citations/rizzo/index.md) |
 | Robbia | 2 | 4 | [citations/robbia/](citations/robbia/index.md) |
+| Robertson | 27 | 38 | [citations/robertson/](citations/robertson/index.md) |
+| Robin | 318 | 145719 | [citations/robin/](citations/robin/index.md) |
 | Robotham | 1 | 2 | [citations/robotham/](citations/robotham/index.md) |
+| Rocha Pinto | 1 | 2 | [citations/rocha-pinto/](citations/rocha-pinto/index.md) |
 | Rockmore | 2 | 4 | [citations/rockmore/](citations/rockmore/index.md) |
+| Rodgers Tao | 5 | 7 | [citations/rodgers-tao/](citations/rodgers-tao/index.md) |
 | Rodrigues | 1 | 2 | [citations/rodrigues/](citations/rodrigues/index.md) |
 | Roeser | 1 | 2 | [citations/roeser/](citations/roeser/index.md) |
 | Rogers | 1 | 2 | [citations/rogers/](citations/rogers/index.md) |
 | Roman | 40 | 101 | [citations/roman/](citations/roman/index.md) |
+| Rood | 7 | 23 | [citations/rood/](citations/rood/index.md) |
+| Roper | 5946 | 17511 | [citations/roper/](citations/roper/index.md) |
+| Rorai | 1 | 1 | [citations/rorai/](citations/rorai/index.md) |
+| Rosetta | 70 | 331 | [citations/rosetta/](citations/rosetta/index.md) |
+| Roshan | 419 | 419 | [citations/roshan/](citations/roshan/index.md) |
+| Roshko | 2 | 3 | [citations/roshko/](citations/roshko/index.md) |
+| Rotation | 3035 | 12759 | [citations/rotation/](citations/rotation/index.md) |
+| Rotmod | 341 | 1322 | [citations/rotmod/](citations/rotmod/index.md) |
 | Rousselle | 1 | 2 | [citations/rousselle/](citations/rousselle/index.md) |
+| Route | 4935 | 31771 | [citations/route/](citations/route/index.md) |
 | Rowland | 1 | 2 | [citations/rowland/](citations/rowland/index.md) |
+| Roy | 816 | 1862 | [citations/roy/](citations/roy/index.md) |
 | Rubin | 2 | 4 | [citations/rubin/](citations/rubin/index.md) |
+| Rudakovskyi | 1 | 1 | [citations/rudakovskyi/](citations/rudakovskyi/index.md) |
 | Rudie | 1 | 2 | [citations/rudie/](citations/rudie/index.md) |
+| Rudnick | 2 | 5 | [citations/rudnick/](citations/rudnick/index.md) |
+| Rule | 3866 | 14475 | [citations/rule/](citations/rule/index.md) |
+| Ruscio | 5 | 7 | [citations/ruscio/](citations/ruscio/index.md) |
+| Russell | 40 | 80 | [citations/russell/](citations/russell/index.md) |
+| Russi | 246 | 336 | [citations/russi/](citations/russi/index.md) |
+| Ruth | 1641 | 15008 | [citations/ruth/](citations/ruth/index.md) |
 | Saad | 2 | 4 | [citations/saad/](citations/saad/index.md) |
+| Saar | 39 | 955 | [citations/saar/](citations/saar/index.md) |
+| Saba | 36 | 200 | [citations/saba/](citations/saba/index.md) |
+| Sackett | 1 | 1 | [citations/sackett/](citations/sackett/index.md) |
+| Sage | 6069 | 127041 | [citations/sage/](citations/sage/index.md) |
+| Sagi | 620 | 3870 | [citations/sagi/](citations/sagi/index.md) |
+| Sah | 331 | 7390 | [citations/sah/](citations/sah/index.md) |
+| Sakagami | 1 | 1 | [citations/sakagami/](citations/sakagami/index.md) |
 | Sakai | 1 | 2 | [citations/sakai/](citations/sakai/index.md) |
-| Edwin Salpeter | 0 | 0 | [citations/salpeter/](citations/salpeter/index.md) |
+| Sakharov | 34 | 72 | [citations/sakharov/](citations/sakharov/index.md) |
+| Salami | 4 | 8 | [citations/salami/](citations/salami/index.md) |
+| Salamon | 1 | 3 | [citations/salamon/](citations/salamon/index.md) |
+| Salas | 12 | 113 | [citations/salas/](citations/salas/index.md) |
+| Salati | 1 | 5 | [citations/salati/](citations/salati/index.md) |
+| Salcedo | 11 | 16 | [citations/salcedo/](citations/salcedo/index.md) |
+| Salo | 18 | 51 | [citations/salo/](citations/salo/index.md) |
 | Saltas | 1 | 2 | [citations/saltas/](citations/saltas/index.md) |
 | Salvio | 1 | 2 | [citations/salvio/](citations/salvio/index.md) |
+| Saminadayar | 1 | 1 | [citations/saminadayar/](citations/saminadayar/index.md) |
+| Samoylova | 2 | 2 | [citations/samoylova/](citations/samoylova/index.md) |
 | Samuel | 2 | 4 | [citations/samuel/](citations/samuel/index.md) |
-| Renzo Sancisi | 30 | 59 | [citations/sancisi/](citations/sancisi/index.md) |
-| Robert H. Sanders | 113 | 225 | [citations/sanders/](citations/sanders/index.md) |
+| Sanchez | 22 | 28 | [citations/sanchez/](citations/sanchez/index.md) |
+| Sancisi | 30 | 59 | [citations/sancisi/](citations/sancisi/index.md) |
+| Sand | 1318 | 7476 | [citations/sand/](citations/sand/index.md) |
+| Sanders | 113 | 225 | [citations/sanders/](citations/sanders/index.md) |
 | Sano | 2 | 3 | [citations/sano/](citations/sano/index.md) |
-| Santos-Santos | 1 | 2 | [citations/santos-santos/](citations/santos-santos/index.md) |
+| Sans | 438 | 3467 | [citations/sans/](citations/sans/index.md) |
+| Santos Santos | 1 | 2 | [citations/santos-santos/](citations/santos-santos/index.md) |
+| Sarkar | 63 | 169 | [citations/sarkar/](citations/sarkar/index.md) |
+| Sartoris | 1 | 1 | [citations/sartoris/](citations/sartoris/index.md) |
+| Satellites | 255 | 891 | [citations/satellites/](citations/satellites/index.md) |
+| Saunders | 9 | 27 | [citations/saunders/](citations/saunders/index.md) |
+| Saveresetexception | 4 | 16 | [citations/saveresetexception/](citations/saveresetexception/index.md) |
+| Savir | 9 | 36 | [citations/savir/](citations/savir/index.md) |
 | Saxena | 5 | 6 | [citations/saxena/](citations/saxena/index.md) |
+| Sazhin | 1 | 4 | [citations/sazhin/](citations/sazhin/index.md) |
+| Scaramella | 1 | 1 | [citations/scaramella/](citations/scaramella/index.md) |
+| Scarlett | 9 | 13 | [citations/scarlett/](citations/scarlett/index.md) |
 | Schaan | 1 | 2 | [citations/schaan/](citations/schaan/index.md) |
+| Schael | 1 | 1 | [citations/schael/](citations/schael/index.md) |
 | Schaye | 1 | 2 | [citations/schaye/](citations/schaye/index.md) |
+| Schecter | 1 | 1 | [citations/schecter/](citations/schecter/index.md) |
 | Schellenberger | 1 | 2 | [citations/schellenberger/](citations/schellenberger/index.md) |
+| Scherrer | 21 | 44 | [citations/scherrer/](citations/scherrer/index.md) |
+| Scherzinger | 1 | 1 | [citations/scherzinger/](citations/scherzinger/index.md) |
+| Schilbach | 4 | 5 | [citations/schilbach/](citations/schilbach/index.md) |
+| Schirmer | 9 | 18 | [citations/schirmer/](citations/schirmer/index.md) |
 | Schlafli | 1 | 2 | [citations/schlafli/](citations/schlafli/index.md) |
+| Schlamminger | 5 | 5 | [citations/schlamminger/](citations/schlamminger/index.md) |
+| Schmidt | 97 | 234 | [citations/schmidt/](citations/schmidt/index.md) |
 | Schneider | 2 | 4 | [citations/schneider/](citations/schneider/index.md) |
-| James Schombert | 145 | 289 | [citations/schombert/](citations/schombert/index.md) |
+| Schober | 3 | 4 | [citations/schober/](citations/schober/index.md) |
+| Schoenmakers | 2 | 14 | [citations/schoenmakers/](citations/schoenmakers/index.md) |
+| Scholarpedia | 16 | 22 | [citations/scholarpedia/](citations/scholarpedia/index.md) |
+| Scholtz | 2 | 2 | [citations/scholtz/](citations/scholtz/index.md) |
+| Scholze | 22 | 103 | [citations/scholze/](citations/scholze/index.md) |
+| Schombert | 145 | 289 | [citations/schombert/](citations/schombert/index.md) |
+| Schon | 7 | 12 | [citations/schon/](citations/schon/index.md) |
 | Schouws | 1 | 2 | [citations/schouws/](citations/schouws/index.md) |
+| Schrabback | 3 | 10 | [citations/schrabback/](citations/schrabback/index.md) |
+| Schreiber | 12 | 18 | [citations/schreiber/](citations/schreiber/index.md) |
 | Schubert | 1 | 2 | [citations/schubert/](citations/schubert/index.md) |
 | Schulz | 1 | 2 | [citations/schulz/](citations/schulz/index.md) |
+| Schwarze | 5 | 8 | [citations/schwarze/](citations/schwarze/index.md) |
+| Schwarzschild | 358 | 1011 | [citations/schwarzschild/](citations/schwarzschild/index.md) |
+| Schwinger | 122 | 288 | [citations/schwinger/](citations/schwinger/index.md) |
+| Sciama | 25 | 44 | [citations/sciama/](citations/sciama/index.md) |
 | Scoccimarro | 1 | 2 | [citations/scoccimarro/](citations/scoccimarro/index.md) |
+| Scorecard | 141 | 290 | [citations/scorecard/](citations/scorecard/index.md) |
 | Scott | 8 | 16 | [citations/scott/](citations/scott/index.md) |
+| Scovil | 1 | 1 | [citations/scovil/](citations/scovil/index.md) |
+| Screenshot | 381 | 2297 | [citations/screenshot/](citations/screenshot/index.md) |
+| Scrollbox | 96 | 340 | [citations/scrollbox/](citations/scrollbox/index.md) |
 | Scutaru | 1 | 2 | [citations/scutaru/](citations/scutaru/index.md) |
 | Seager | 1 | 2 | [citations/seager/](citations/seager/index.md) |
+| Seb | 221 | 1477 | [citations/seb/](citations/seb/index.md) |
+| Sec | 91784 | 373448 | [citations/sec/](citations/sec/index.md) |
 | Seeley | 1 | 2 | [citations/seeley/](citations/seeley/index.md) |
 | Segmental | 3 | 6 | [citations/segmental/](citations/segmental/index.md) |
+| Seikel | 11 | 20 | [citations/seikel/](citations/seikel/index.md) |
+| Sekanina | 1 | 1 | [citations/sekanina/](citations/sekanina/index.md) |
+| Selberg | 55 | 310 | [citations/selberg/](citations/selberg/index.md) |
+| Seligman | 1 | 2 | [citations/seligman/](citations/seligman/index.md) |
+| Sellwood | 4 | 6 | [citations/sellwood/](citations/sellwood/index.md) |
+| Seng | 209 | 1809 | [citations/seng/](citations/seng/index.md) |
 | Sennrich | 1 | 2 | [citations/sennrich/](citations/sennrich/index.md) |
+| Sep | 8604 | 45822 | [citations/sep/](citations/sep/index.md) |
+| Sequist | 1 | 1 | [citations/sequist/](citations/sequist/index.md) |
+| Seraille | 25 | 146 | [citations/seraille/](citations/seraille/index.md) |
 | Sereno | 1 | 2 | [citations/sereno/](citations/sereno/index.md) |
-| José Luis Sérsic | 0 | 0 | [citations/sersic/](citations/sersic/index.md) |
+| Serra | 72 | 326 | [citations/serra/](citations/serra/index.md) |
+| Setal | 43 | 136 | [citations/setal/](citations/setal/index.md) |
+| Sevenster | 1 | 2 | [citations/sevenster/](citations/sevenster/index.md) |
+| Sha | 11772 | 143324 | [citations/sha/](citations/sha/index.md) |
 | Shachar | 1 | 2 | [citations/shachar/](citations/shachar/index.md) |
-| Claude Shannon | 7 | 12 | [citations/shannon/](citations/shannon/index.md) |
+| Shannon | 7 | 12 | [citations/shannon/](citations/shannon/index.md) |
+| Shen | 125 | 695 | [citations/shen/](citations/shen/index.md) |
+| Sheppard | 3 | 10 | [citations/sheppard/](citations/sheppard/index.md) |
+| Sheth | 29 | 55 | [citations/sheth/](citations/sheth/index.md) |
+| Shi | 9077 | 48603 | [citations/shi/](citations/shi/index.md) |
 | Shull | 1 | 2 | [citations/shull/](citations/shull/index.md) |
 | Sibiryakov | 1 | 2 | [citations/sibiryakov/](citations/sibiryakov/index.md) |
 | Siegel | 1 | 2 | [citations/siegel/](citations/siegel/index.md) |
-| Joseph Silk | 21 | 140 | [citations/silk/](citations/silk/index.md) |
-| Joshua Simon | 144 | 295 | [citations/simon/](citations/simon/index.md) |
+| Sierra Townsend | 6 | 10 | [citations/sierra-townsend/](citations/sierra-townsend/index.md) |
+| Sigatm | 9 | 20102 | [citations/sigatm/](citations/sigatm/index.md) |
+| Sigma | 9064 | 96670 | [citations/sigma/](citations/sigma/index.md) |
+| Siguij | 9 | 19385 | [citations/siguij/](citations/siguij/index.md) |
+| Silk | 21 | 140 | [citations/silk/](citations/silk/index.md) |
+| Silva | 35 | 131 | [citations/silva/](citations/silva/index.md) |
+| Simien | 5 | 9 | [citations/simien/](citations/simien/index.md) |
+| Simon | 144 | 295 | [citations/simon/](citations/simon/index.md) |
+| Sims | 88 | 962 | [citations/sims/](citations/sims/index.md) |
 | Singer | 46 | 104 | [citations/singer/](citations/singer/index.md) |
-| T. P. Singh | 104 | 206 | [citations/singh/](citations/singh/index.md) |
+| Singh | 104 | 206 | [citations/singh/](citations/singh/index.md) |
+| Sirianni | 1 | 3 | [citations/sirianni/](citations/sirianni/index.md) |
 | Sirko | 1 | 2 | [citations/sirko/](citations/sirko/index.md) |
-| Constantinos Skordis | 174 | 347 | [citations/skordis/](citations/skordis/index.md) |
+| Site | 19986 | 105634 | [citations/site/](citations/site/index.md) |
+| Sivan | 13 | 25 | [citations/sivan/](citations/sivan/index.md) |
+| Skater | 3 | 8 | [citations/skater/](citations/skater/index.md) |
+| Skill | 2442 | 64954 | [citations/skill/](citations/skill/index.md) |
+| Skordis | 174 | 347 | [citations/skordis/](citations/skordis/index.md) |
+| Skowron | 1 | 1 | [citations/skowron/](citations/skowron/index.md) |
+| Skrutskie | 2 | 6 | [citations/skrutskie/](citations/skrutskie/index.md) |
+| Slac | 701 | 7846 | [citations/slac/](citations/slac/index.md) |
+| Slatyer | 7 | 14 | [citations/slatyer/](citations/slatyer/index.md) |
 | Slepian | 1 | 2 | [citations/slepian/](citations/slepian/index.md) |
 | Slone | 1 | 2 | [citations/slone/](citations/slone/index.md) |
+| Sluis | 3 | 6 | [citations/sluis/](citations/sluis/index.md) |
+| Smarra | 3 | 3 | [citations/smarra/](citations/smarra/index.md) |
+| Sme | 4062 | 24469 | [citations/sme/](citations/sme/index.md) |
+| Smirnov | 26 | 49 | [citations/smirnov/](citations/smirnov/index.md) |
 | Smith | 8 | 17 | [citations/smith/](citations/smith/index.md) |
-| Lee Smolin | 146 | 580 | [citations/smolin/](citations/smolin/index.md) |
+| Smolin | 146 | 580 | [citations/smolin/](citations/smolin/index.md) |
+| Snaith | 5 | 6 | [citations/snaith/](citations/snaith/index.md) |
+| Soda | 39 | 68 | [citations/soda/](citations/soda/index.md) |
 | Soergel | 1 | 2 | [citations/soergel/](citations/soergel/index.md) |
+| Sohn | 52 | 231 | [citations/sohn/](citations/sohn/index.md) |
+| Sommerfeld | 16 | 34 | [citations/sommerfeld/](citations/sommerfeld/index.md) |
+| Son | 1 | 1 | [citations/son/](citations/son/index.md) |
+| Sorbo | 47 | 90 | [citations/sorbo/](citations/sorbo/index.md) |
 | Soria | 2 | 4 | [citations/soria/](citations/soria/index.md) |
+| Soucek | 4 | 8 | [citations/soucek/](citations/soucek/index.md) |
+| Soul | 290 | 1812 | [citations/soul/](citations/soul/index.md) |
+| Soundararajan | 6 | 13 | [citations/soundararajan/](citations/soundararajan/index.md) |
 | Soussa | 1 | 2 | [citations/soussa/](citations/soussa/index.md) |
-| Sparc | 38 | 102 | [citations/sparc/](citations/sparc/index.md) |
+| Sparke | 5 | 5 | [citations/sparke/](citations/sparke/index.md) |
+| Spatial | 50443 | 80974 | [citations/spatial/](citations/spatial/index.md) |
+| Spencer | 23 | 45 | [citations/spencer/](citations/spencer/index.md) |
+| Spergel | 14 | 36 | [citations/spergel/](citations/spergel/index.md) |
+| Sphere | 3669 | 17175 | [citations/sphere/](citations/sphere/index.md) |
+| Spin | 2003 | 13338 | [citations/spin/](citations/spin/index.md) |
+| Spite | 478 | 831 | [citations/spite/](citations/spite/index.md) |
 | Springel | 1 | 2 | [citations/springel/](citations/springel/index.md) |
+| Springer | 14 | 26 | [citations/springer/](citations/springer/index.md) |
+| Sse | 95302 | 503657 | [citations/sse/](citations/sse/index.md) |
+| Stacy | 23 | 34 | [citations/stacy/](citations/stacy/index.md) |
+| Stadinski | 1 | 1 | [citations/stadinski/](citations/stadinski/index.md) |
+| Standard | 84298 | 225206 | [citations/standard/](citations/standard/index.md) |
+| Standing | 1778 | 3762 | [citations/standing/](citations/standing/index.md) |
+| Stanley | 15 | 20 | [citations/stanley/](citations/stanley/index.md) |
+| Starkman | 18 | 20 | [citations/starkman/](citations/starkman/index.md) |
 | Steidel | 1 | 2 | [citations/steidel/](citations/steidel/index.md) |
+| Steinhardt | 20 | 86 | [citations/steinhardt/](citations/steinhardt/index.md) |
 | Steinmetz | 1 | 2 | [citations/steinmetz/](citations/steinmetz/index.md) |
+| Stern | 153 | 613 | [citations/stern/](citations/stern/index.md) |
+| Steven | 101 | 262 | [citations/steven/](citations/steven/index.md) |
+| Stewart | 28 | 76 | [citations/stewart/](citations/stewart/index.md) |
+| Stieltjes | 45 | 126 | [citations/stieltjes/](citations/stieltjes/index.md) |
 | Stierwalt | 2 | 3 | [citations/stierwalt/](citations/stierwalt/index.md) |
+| Stil | 6967 | 24311 | [citations/stil/](citations/stil/index.md) |
 | Stiskalek | 1 | 2 | [citations/stiskalek/](citations/stiskalek/index.md) |
 | Stocke | 1 | 2 | [citations/stocke/](citations/stocke/index.md) |
 | Stoecker | 1 | 2 | [citations/stoecker/](citations/stoecker/index.md) |
 | Stoica | 1 | 2 | [citations/stoica/](citations/stoica/index.md) |
+| Stojkovic | 16 | 26 | [citations/stojkovic/](citations/stojkovic/index.md) |
+| Stolzenburg | 1 | 1 | [citations/stolzenburg/](citations/stolzenburg/index.md) |
+| Stone | 612 | 1513 | [citations/stone/](citations/stone/index.md) |
+| Story | 3258 | 17675 | [citations/story/](citations/story/index.md) |
+| Stoughton | 2 | 3 | [citations/stoughton/](citations/stoughton/index.md) |
+| Straatman | 5 | 6 | [citations/straatman/](citations/straatman/index.md) |
+| Strategies | 352 | 1657 | [citations/strategies/](citations/strategies/index.md) |
+| Strateva | 1 | 2 | [citations/strateva/](citations/strateva/index.md) |
 | Strauss | 2 | 4 | [citations/strauss/](citations/strauss/index.md) |
+| Strick | 9 | 15 | [citations/strick/](citations/strick/index.md) |
+| Stringjoin | 4 | 16 | [citations/stringjoin/](citations/stringjoin/index.md) |
 | Strominger | 1 | 2 | [citations/strominger/](citations/strominger/index.md) |
+| Struble | 2 | 15 | [citations/struble/](citations/struble/index.md) |
+| Strynadka | 3 | 4 | [citations/strynadka/](citations/strynadka/index.md) |
+| Studies | 382 | 584 | [citations/studies/](citations/studies/index.md) |
+| Study | 605 | 1243 | [citations/study/](citations/study/index.md) |
+| Stull | 1 | 1 | [citations/stull/](citations/stull/index.md) |
+| Sudarshan | 3 | 4 | [citations/sudarshan/](citations/sudarshan/index.md) |
+| Sugahara | 8 | 14 | [citations/sugahara/](citations/sugahara/index.md) |
 | Sugiyama | 1 | 2 | [citations/sugiyama/](citations/sugiyama/index.md) |
-| Leonard Susskind | 160 | 572 | [citations/susskind/](citations/susskind/index.md) |
+| Suite | 680 | 2009 | [citations/suite/](citations/suite/index.md) |
+| Sully | 1 | 1 | [citations/sully/](citations/sully/index.md) |
+| Summerfield | 1 | 2 | [citations/summerfield/](citations/summerfield/index.md) |
+| Sun | 4067 | 27965 | [citations/sun/](citations/sun/index.md) |
+| Superman | 7 | 44 | [citations/superman/](citations/superman/index.md) |
+| Suslick | 3 | 4 | [citations/suslick/](citations/suslick/index.md) |
+| Susskind | 160 | 572 | [citations/susskind/](citations/susskind/index.md) |
 | Sutherland | 1 | 2 | [citations/sutherland/](citations/sutherland/index.md) |
 | Suto | 1 | 2 | [citations/suto/](citations/suto/index.md) |
+| Sutter | 2 | 2 | [citations/sutter/](citations/sutter/index.md) |
+| Svartholm | 1 | 1 | [citations/svartholm/](citations/svartholm/index.md) |
+| Swarup | 1 | 1 | [citations/swarup/](citations/swarup/index.md) |
 | Swaters | 1 | 2 | [citations/swaters/](citations/swaters/index.md) |
+| Sweet | 130 | 301 | [citations/sweet/](citations/sweet/index.md) |
 | Syaifudin | 1 | 2 | [citations/syaifudin/](citations/syaifudin/index.md) |
+| Symmetry | 7006 | 35970 | [citations/symmetry/](citations/symmetry/index.md) |
+| Sys | 14888 | 106142 | [citations/sys/](citations/sys/index.md) |
 | Szalay | 1 | 2 | [citations/szalay/](citations/szalay/index.md) |
 | Tacchella | 1 | 2 | [citations/tacchella/](citations/tacchella/index.md) |
 | Tacconi | 1 | 2 | [citations/tacconi/](citations/tacconi/index.md) |
+| Tagirov | 2 | 2 | [citations/tagirov/](citations/tagirov/index.md) |
+| Taibi | 9 | 13 | [citations/taibi/](citations/taibi/index.md) |
 | Takahashi | 2 | 3 | [citations/takahashi/](citations/takahashi/index.md) |
 | Tamosiunas | 1 | 2 | [citations/tamosiunas/](citations/tamosiunas/index.md) |
+| Tan | 44824 | 628866 | [citations/tan/](citations/tan/index.md) |
 | Tang | 23 | 350 | [citations/tang/](citations/tang/index.md) |
+| Target | 13884 | 96665 | [citations/target/](citations/target/index.md) |
 | Taruya | 1 | 2 | [citations/taruya/](citations/taruya/index.md) |
 | Tashiro | 1 | 2 | [citations/tashiro/](citations/tashiro/index.md) |
+| Tassis | 5 | 6 | [citations/tassis/](citations/tassis/index.md) |
+| Taubes | 7 | 18 | [citations/taubes/](citations/taubes/index.md) |
 | Taylor | 11 | 27 | [citations/taylor/](citations/taylor/index.md) |
-| Max Tegmark | 128 | 510 | [citations/tegmark/](citations/tegmark/index.md) |
+| Tegmark | 128 | 510 | [citations/tegmark/](citations/tegmark/index.md) |
 | Teitelboim | 1 | 4 | [citations/teitelboim/](citations/teitelboim/index.md) |
+| Tempel | 12 | 28 | [citations/tempel/](citations/tempel/index.md) |
+| Ten | 67986 | 394781 | [citations/ten/](citations/ten/index.md) |
 | Teodoro | 1 | 2 | [citations/teodoro/](citations/teodoro/index.md) |
+| Ter | 111089 | 1376284 | [citations/ter/](citations/ter/index.md) |
+| Testa | 1779 | 4261 | [citations/testa/](citations/testa/index.md) |
 | Teukolsky | 1 | 2 | [citations/teukolsky/](citations/teukolsky/index.md) |
-| Teves | 5 | 9 | [citations/teves/](citations/teves/index.md) |
-| Pierre Teyssandier | 0 | 0 | [citations/teyssandier/](citations/teyssandier/index.md) |
+| Text | 10855 | 181611 | [citations/text/](citations/text/index.md) |
+| Things | 1089 | 2659 | [citations/things/](citations/things/index.md) |
 | Thirring | 1 | 2 | [citations/thirring/](citations/thirring/index.md) |
 | Thomas | 3 | 7 | [citations/thomas/](citations/thomas/index.md) |
-| Gerard 't Hooft | 170 | 644 | [citations/thooft/](citations/thooft/index.md) |
+| Thompson | 271 | 514 | [citations/thompson/](citations/thompson/index.md) |
+| Thonnard | 1 | 1 | [citations/thonnard/](citations/thonnard/index.md) |
+| Thooft | 170 | 644 | [citations/thooft/](citations/thooft/index.md) |
+| Thorn | 66 | 586 | [citations/thorn/](citations/thorn/index.md) |
+| Thress | 2 | 3 | [citations/thress/](citations/thress/index.md) |
 | Tian | 4 | 8 | [citations/tian/](citations/tian/index.md) |
 | Tiec | 2 | 4 | [citations/tiec/](citations/tiec/index.md) |
 | Tiesinga | 1 | 2 | [citations/tiesinga/](citations/tiesinga/index.md) |
 | Tiley | 1 | 2 | [citations/tiley/](citations/tiley/index.md) |
-| Samuel Ting | 21 | 453 | [citations/ting/](citations/ting/index.md) |
+| Timotheeee | 8 | 8 | [citations/timotheeee/](citations/timotheeee/index.md) |
+| Ting | 21 | 453 | [citations/ting/](citations/ting/index.md) |
+| Tipler | 10 | 13 | [citations/tipler/](citations/tipler/index.md) |
+| Tiret | 12 | 15 | [citations/tiret/](citations/tiret/index.md) |
+| Title | 8643 | 40588 | [citations/title/](citations/title/index.md) |
+| Tno | 1024 | 11713 | [citations/tno/](citations/tno/index.md) |
 | Toloba | 1 | 2 | [citations/toloba/](citations/toloba/index.md) |
+| Tonin | 58 | 140 | [citations/tonin/](citations/tonin/index.md) |
+| Tonks | 1 | 1 | [citations/tonks/](citations/tonks/index.md) |
+| Tools | 4427 | 61363 | [citations/tools/](citations/tools/index.md) |
+| Toomre | 8 | 9 | [citations/toomre/](citations/toomre/index.md) |
+| Topological | 1041 | 4590 | [citations/topological/](citations/topological/index.md) |
+| Topology | 1324 | 5161 | [citations/topology/](citations/topology/index.md) |
+| Tornroth Horsefield | 1 | 1 | [citations/tornroth-horsefield/](citations/tornroth-horsefield/index.md) |
 | Torre | 2 | 5 | [citations/torre/](citations/torre/index.md) |
 | Tortora | 2 | 4 | [citations/tortora/](citations/tortora/index.md) |
 | Touboul | 1 | 2 | [citations/touboul/](citations/touboul/index.md) |
-| Scott Tremaine | 73 | 145 | [citations/tremaine/](citations/tremaine/index.md) |
+| Touchdesigner | 74 | 476 | [citations/touchdesigner/](citations/touchdesigner/index.md) |
+| Towner | 10 | 11 | [citations/towner/](citations/towner/index.md) |
+| Tram | 357 | 1200 | [citations/tram/](citations/tram/index.md) |
+| Transport | 1641 | 13407 | [citations/transport/](citations/transport/index.md) |
+| Tremaine | 73 | 145 | [citations/tremaine/](citations/tremaine/index.md) |
+| Treu | 24 | 100 | [citations/treu/](citations/treu/index.md) |
+| Trial | 665 | 2260 | [citations/trial/](citations/trial/index.md) |
+| Trincherini | 2 | 3 | [citations/trincherini/](citations/trincherini/index.md) |
+| Tristram | 3 | 3 | [citations/tristram/](citations/tristram/index.md) |
+| Trombetta | 31 | 124 | [citations/trombetta/](citations/trombetta/index.md) |
 | Trujillo | 1 | 2 | [citations/trujillo/](citations/trujillo/index.md) |
-| R. Brent Tully | 196 | 478 | [citations/tully/](citations/tully/index.md) |
+| Tui | 1043 | 6904 | [citations/tui/](citations/tui/index.md) |
+| Tully | 196 | 478 | [citations/tully/](citations/tully/index.md) |
+| Tuma | 6 | 8 | [citations/tuma/](citations/tuma/index.md) |
+| Tuning | 1470 | 7338 | [citations/tuning/](citations/tuning/index.md) |
 | Turner | 2 | 3 | [citations/turner/](citations/turner/index.md) |
+| Turok | 23 | 32 | [citations/turok/](citations/turok/index.md) |
+| Turygin | 1 | 2 | [citations/turygin/](citations/turygin/index.md) |
+| Turyshev | 11 | 16 | [citations/turyshev/](citations/turyshev/index.md) |
+| Tversky | 2 | 2 | [citations/tversky/](citations/tversky/index.md) |
+| Twomrs | 1 | 2 | [citations/twomrs/](citations/twomrs/index.md) |
+| Tyr | 4600 | 1368077 | [citations/tyr/](citations/tyr/index.md) |
 | Ubler | 2 | 4 | [citations/ubler/](citations/ubler/index.md) |
-| George Uhlenbeck | 0 | 0 | [citations/uhlenbeck/](citations/uhlenbeck/index.md) |
+| Udalski | 2 | 4 | [citations/udalski/](citations/udalski/index.md) |
+| Udgs | 119 | 438 | [citations/udgs/](citations/udgs/index.md) |
+| Uebler | 7 | 22 | [citations/uebler/](citations/uebler/index.md) |
+| Uetal | 1 | 2 | [citations/uetal/](citations/uetal/index.md) |
+| Ugc | 300 | 19495 | [citations/ugc/](citations/ugc/index.md) |
+| Uglum | 1 | 1 | [citations/uglum/](citations/uglum/index.md) |
 | Umetsu | 1 | 2 | [citations/umetsu/](citations/umetsu/index.md) |
-| William Unruh | 0 | 0 | [citations/unruh/](citations/unruh/index.md) |
+| Uml | 87 | 391 | [citations/uml/](citations/uml/index.md) |
+| Union | 570 | 1922 | [citations/union/](citations/union/index.md) |
+| Units | 3985 | 10022 | [citations/units/](citations/units/index.md) |
+| Universe | 1941 | 7523 | [citations/universe/](citations/universe/index.md) |
+| Unno | 72 | 160 | [citations/unno/](citations/unno/index.md) |
+| Upsilon | 729 | 6803 | [citations/upsilon/](citations/upsilon/index.md) |
+| Uri | 10467 | 37761 | [citations/uri/](citations/uri/index.md) |
+| Url | 5352 | 100914 | [citations/url/](citations/url/index.md) |
+| Ursula | 19 | 46 | [citations/ursula/](citations/ursula/index.md) |
+| Uvlf | 8 | 17 | [citations/uvlf/](citations/uvlf/index.md) |
 | Vafa | 2 | 4 | [citations/vafa/](citations/vafa/index.md) |
-| Pieter van Dokkum | 32 | 63 | [citations/vandokkum/](citations/vandokkum/index.md) |
+| Vainshtein | 88 | 222 | [citations/vainshtein/](citations/vainshtein/index.md) |
+| Valageas | 1 | 1 | [citations/valageas/](citations/valageas/index.md) |
+| Valenzuela | 18 | 34 | [citations/valenzuela/](citations/valenzuela/index.md) |
+| Valluri | 2 | 2 | [citations/valluri/](citations/valluri/index.md) |
+| Vanderburg | 2 | 4 | [citations/vanderburg/](citations/vanderburg/index.md) |
+| Vandokkum | 32 | 63 | [citations/vandokkum/](citations/vandokkum/index.md) |
+| Vaneymeren | 6 | 42 | [citations/vaneymeren/](citations/vaneymeren/index.md) |
 | Varasteanu | 1 | 2 | [citations/varasteanu/](citations/varasteanu/index.md) |
 | Vasiliev | 1 | 2 | [citations/vasiliev/](citations/vasiliev/index.md) |
 | Vaswani | 6 | 8 | [citations/vaswani/](citations/vaswani/index.md) |
+| Vasyunin | 1 | 10 | [citations/vasyunin/](citations/vasyunin/index.md) |
+| Vavilova | 2 | 2 | [citations/vavilova/](citations/vavilova/index.md) |
 | Vecitis | 1 | 2 | [citations/vecitis/](citations/vecitis/index.md) |
+| Vectors | 766 | 2867 | [citations/vectors/](citations/vectors/index.md) |
 | Velten | 1 | 2 | [citations/velten/](citations/velten/index.md) |
-| John Venn | 39 | 186 | [citations/venn/](citations/venn/index.md) |
+| Vendruscolo | 1 | 1 | [citations/vendruscolo/](citations/vendruscolo/index.md) |
+| Veneziano | 6 | 8 | [citations/veneziano/](citations/veneziano/index.md) |
+| Venn | 39 | 186 | [citations/venn/](citations/venn/index.md) |
+| Verdaguer | 20 | 26 | [citations/verdaguer/](citations/verdaguer/index.md) |
+| Verde | 312 | 921 | [citations/verde/](citations/verde/index.md) |
 | Verheijen | 1 | 2 | [citations/verheijen/](citations/verheijen/index.md) |
-| Erik Verlinde | 235 | 885 | [citations/verlinde/](citations/verlinde/index.md) |
+| Verified | 77905 | 84375 | [citations/verified/](citations/verified/index.md) |
+| Verlinde | 235 | 885 | [citations/verlinde/](citations/verlinde/index.md) |
+| Vernizzi | 11 | 26 | [citations/vernizzi/](citations/vernizzi/index.md) |
 | Vernon | 1 | 2 | [citations/vernon/](citations/vernon/index.md) |
 | Verwayen | 1 | 2 | [citations/verwayen/](citations/verwayen/index.md) |
-| Matteo Viel | 3 | 13 | [citations/viel/](citations/viel/index.md) |
+| Viel | 3 | 13 | [citations/viel/](citations/viel/index.md) |
 | Vikhlinin | 1 | 2 | [citations/vikhlinin/](citations/vikhlinin/index.md) |
+| Vikman | 26 | 77 | [citations/vikman/](citations/vikman/index.md) |
+| Villain | 3 | 7 | [citations/villain/](citations/villain/index.md) |
 | Villasenor | 1 | 2 | [citations/villasenor/](citations/villasenor/index.md) |
+| Viola | 1916 | 5788 | [citations/viola/](citations/viola/index.md) |
+| Viridian | 4 | 16 | [citations/viridian/](citations/viridian/index.md) |
+| Vitells | 5 | 8 | [citations/vitells/](citations/vitells/index.md) |
 | Vitral | 1 | 2 | [citations/vitral/](citations/vitral/index.md) |
+| Vivas | 10 | 515 | [citations/vivas/](citations/vivas/index.md) |
+| Vives | 5900 | 8793 | [citations/vives/](citations/vives/index.md) |
+| Vivian | 21 | 27 | [citations/vivian/](citations/vivian/index.md) |
+| Vogel | 17 | 29 | [citations/vogel/](citations/vogel/index.md) |
 | Voges | 1 | 2 | [citations/voges/](citations/voges/index.md) |
+| Voids | 903 | 1930 | [citations/voids/](citations/voids/index.md) |
+| Volovich | 11 | 12 | [citations/volovich/](citations/volovich/index.md) |
+| Voros | 2 | 4 | [citations/voros/](citations/voros/index.md) |
+| Vrot | 84 | 17890 | [citations/vrot/](citations/vrot/index.md) |
+| Wadekar | 1 | 1 | [citations/wadekar/](citations/wadekar/index.md) |
 | Wadsley | 1 | 2 | [citations/wadsley/](citations/wadsley/index.md) |
 | Wagenveld | 1 | 2 | [citations/wagenveld/](citations/wagenveld/index.md) |
-| Arthur Walker | 42 | 96 | [citations/walker/](citations/walker/index.md) |
+| Wagner | 60 | 126 | [citations/wagner/](citations/wagner/index.md) |
+| Wake | 241 | 1223 | [citations/wake/](citations/wake/index.md) |
+| Wald | 92 | 926 | [citations/wald/](citations/wald/index.md) |
+| Wales | 6 | 9 | [citations/wales/](citations/wales/index.md) |
+| Walker | 42 | 96 | [citations/walker/](citations/walker/index.md) |
+| Walmsley | 1 | 6 | [citations/walmsley/](citations/walmsley/index.md) |
+| Walsh | 28 | 108 | [citations/walsh/](citations/walsh/index.md) |
 | Walter | 2 | 3 | [citations/walter/](citations/walter/index.md) |
+| Wandelt | 2 | 2 | [citations/wandelt/](citations/wandelt/index.md) |
+| Wands | 5 | 15 | [citations/wands/](citations/wands/index.md) |
 | Wang | 3 | 10 | [citations/wang/](citations/wang/index.md) |
+| Warmels | 2 | 5 | [citations/warmels/](citations/warmels/index.md) |
+| Warps | 55 | 92 | [citations/warps/](citations/warps/index.md) |
+| Watch | 2406 | 9193 | [citations/watch/](citations/watch/index.md) |
 | Watkins | 1 | 2 | [citations/watkins/](citations/watkins/index.md) |
+| Waves | 551 | 1375 | [citations/waves/](citations/waves/index.md) |
 | Waxman | 1 | 2 | [citations/waxman/](citations/waxman/index.md) |
+| Way | 11731 | 85125 | [citations/way/](citations/way/index.md) |
 | Webb | 1 | 1 | [citations/webb/](citations/webb/index.md) |
 | Wechsler | 2 | 4 | [citations/wechsler/](citations/wechsler/index.md) |
+| Wegorzewska | 1 | 2 | [citations/wegorzewska/](citations/wegorzewska/index.md) |
+| Weibel | 4 | 5 | [citations/weibel/](citations/weibel/index.md) |
 | Weil | 2 | 8 | [citations/weil/](citations/weil/index.md) |
-| Steven Weinberg | 35 | 64 | [citations/weinberg/](citations/weinberg/index.md) |
+| Weinberg | 35 | 64 | [citations/weinberg/](citations/weinberg/index.md) |
 | Weiner | 1 | 2 | [citations/weiner/](citations/weiner/index.md) |
 | Weisberg | 1 | 2 | [citations/weisberg/](citations/weisberg/index.md) |
+| Wel | 4383 | 30374 | [citations/wel/](citations/wel/index.md) |
 | Werk | 3 | 16 | [citations/werk/](citations/werk/index.md) |
 | Westmeier | 1 | 2 | [citations/westmeier/](citations/westmeier/index.md) |
-| Hermann Weyl | 10 | 23 | [citations/weyl/](citations/weyl/index.md) |
+| Wex | 57 | 306 | [citations/wex/](citations/wex/index.md) |
+| Weyl | 10 | 23 | [citations/weyl/](citations/weyl/index.md) |
+| Wheeler | 48 | 107 | [citations/wheeler/](citations/wheeler/index.md) |
+| Whelan | 9 | 18 | [citations/whelan/](citations/whelan/index.md) |
 | Whitbourn | 1 | 2 | [citations/whitbourn/](citations/whitbourn/index.md) |
-| Simon D. M. White | 1103 | 4085 | [citations/white/](citations/white/index.md) |
+| White | 1103 | 4085 | [citations/white/](citations/white/index.md) |
 | Whitmore | 1 | 2 | [citations/whitmore/](citations/whitmore/index.md) |
+| Wick | 394 | 783 | [citations/wick/](citations/wick/index.md) |
+| Widiyantoro | 2 | 3 | [citations/widiyantoro/](citations/widiyantoro/index.md) |
+| Widmark | 1 | 1 | [citations/widmark/](citations/widmark/index.md) |
+| Widnall | 1 | 1 | [citations/widnall/](citations/widnall/index.md) |
+| Widrow | 6 | 15 | [citations/widrow/](citations/widrow/index.md) |
 | Wigner | 7 | 9 | [citations/wigner/](citations/wigner/index.md) |
+| Wikiproject | 4 | 8 | [citations/wikiproject/](citations/wikiproject/index.md) |
+| Wilde | 9 | 36 | [citations/wilde/](citations/wilde/index.md) |
+| Wilkinson | 27 | 63 | [citations/wilkinson/](citations/wilkinson/index.md) |
 | Wilma | 1 | 2 | [citations/wilma/](citations/wilma/index.md) |
 | Wilson | 10 | 21 | [citations/wilson/](citations/wilson/index.md) |
+| Winnink | 1 | 1 | [citations/winnink/](citations/winnink/index.md) |
 | Wintner | 1 | 2 | [citations/wintner/](citations/wintner/index.md) |
-| Edward Witten | 198 | 751 | [citations/witten/](citations/witten/index.md) |
+| Wintrode | 1 | 1 | [citations/wintrode/](citations/wintrode/index.md) |
+| Wisnioski | 8 | 11 | [citations/wisnioski/](citations/wisnioski/index.md) |
+| Withdrawn | 552 | 1353 | [citations/withdrawn/](citations/withdrawn/index.md) |
+| Witten | 198 | 751 | [citations/witten/](citations/witten/index.md) |
+| Wohlfarth | 6 | 8 | [citations/wohlfarth/](citations/wohlfarth/index.md) |
+| Woit | 6 | 9 | [citations/woit/](citations/woit/index.md) |
 | Wojtak | 1 | 2 | [citations/wojtak/](citations/wojtak/index.md) |
 | Wolf | 16 | 35 | [citations/wolf/](citations/wolf/index.md) |
+| Wonder | 74 | 144 | [citations/wonder/](citations/wonder/index.md) |
 | Wong | 2 | 3 | [citations/wong/](citations/wong/index.md) |
+| Wood | 412 | 1972 | [citations/wood/](citations/wood/index.md) |
+| Woolgar | 1 | 2 | [citations/woolgar/](citations/woolgar/index.md) |
+| Work | 20256 | 123158 | [citations/work/](citations/work/index.md) |
 | Workman | 1 | 2 | [citations/workman/](citations/workman/index.md) |
+| Woronowicz | 16 | 37 | [citations/woronowicz/](citations/woronowicz/index.md) |
+| Wrasidlo | 1 | 1 | [citations/wrasidlo/](citations/wrasidlo/index.md) |
 | Wright | 3 | 8 | [citations/wright/](citations/wright/index.md) |
+| Writing | 1314 | 3679 | [citations/writing/](citations/writing/index.md) |
+| Wulandari | 2 | 3 | [citations/wulandari/](citations/wulandari/index.md) |
+| Wuyts | 1 | 2 | [citations/wuyts/](citations/wuyts/index.md) |
 | Wyler | 1 | 2 | [citations/wyler/](citations/wyler/index.md) |
-| Xenonnt | 2 | 3 | [citations/xenonnt/](citations/xenonnt/index.md) |
+| Wynne | 2 | 3 | [citations/wynne/](citations/wynne/index.md) |
+| X Ray | 4321 | 14099 | [citations/x-ray/](citations/x-ray/index.md) |
+| Xie | 3124 | 16741 | [citations/xie/](citations/xie/index.md) |
+| Yacine | 54 | 54 | [citations/yacine/](citations/yacine/index.md) |
+| Yagi | 64 | 1585 | [citations/yagi/](citations/yagi/index.md) |
+| Yahil | 12 | 26 | [citations/yahil/](citations/yahil/index.md) |
 | Yakaboylu | 1 | 2 | [citations/yakaboylu/](citations/yakaboylu/index.md) |
-| Chen-Ning Yang | 7 | 21 | [citations/yang/](citations/yang/index.md) |
+| Yamaguchi | 28 | 54 | [citations/yamaguchi/](citations/yamaguchi/index.md) |
+| Yan | 1438 | 13431 | [citations/yan/](citations/yan/index.md) |
+| Yang | 7 | 21 | [citations/yang/](citations/yang/index.md) |
+| Yao | 96 | 322 | [citations/yao/](citations/yao/index.md) |
+| Yasin | 12 | 59 | [citations/yasin/](citations/yasin/index.md) |
+| Year | 2038 | 10110 | [citations/year/](citations/year/index.md) |
+| Yeomans | 1 | 1 | [citations/yeomans/](citations/yeomans/index.md) |
+| Yin | 10112 | 39650 | [citations/yin/](citations/yin/index.md) |
+| Yokoyama | 28 | 43 | [citations/yokoyama/](citations/yokoyama/index.md) |
+| Yoo | 32 | 193 | [citations/yoo/](citations/yoo/index.md) |
+| York | 345 | 6737 | [citations/york/](citations/york/index.md) |
 | Yoshii | 1 | 2 | [citations/yoshii/](citations/yoshii/index.md) |
+| Yozin | 2 | 4 | [citations/yozin/](citations/yozin/index.md) |
+| Yuanbao | 114 | 1660 | [citations/yuanbao/](citations/yuanbao/index.md) |
+| Yukawa | 552 | 2042 | [citations/yukawa/](citations/yukawa/index.md) |
+| Z Squared | 246 | 1059 | [citations/z-squared/](citations/z-squared/index.md) |
+| Zabludoff | 3 | 7 | [citations/zabludoff/](citations/zabludoff/index.md) |
+| Zacharegkas | 3 | 5 | [citations/zacharegkas/](citations/zacharegkas/index.md) |
+| Zahid | 6 | 6 | [citations/zahid/](citations/zahid/index.md) |
 | Zakamska | 1 | 2 | [citations/zakamska/](citations/zakamska/index.md) |
-| Zconcept | 2 | 6 | [citations/zconcept/](citations/zconcept/index.md) |
+| Zanelli | 3 | 5 | [citations/zanelli/](citations/zanelli/index.md) |
+| Zaninetti | 2 | 4 | [citations/zaninetti/](citations/zaninetti/index.md) |
+| Zaritsky | 9 | 19 | [citations/zaritsky/](citations/zaritsky/index.md) |
 | Zdesi | 1 | 2 | [citations/zdesi/](citations/zdesi/index.md) |
 | Zehavi | 1 | 2 | [citations/zehavi/](citations/zehavi/index.md) |
+| Zeilinger | 7 | 49 | [citations/zeilinger/](citations/zeilinger/index.md) |
+| Zekser | 2 | 2 | [citations/zekser/](citations/zekser/index.md) |
+| Zel'Dovich | 34 | 63 | [citations/zel'dovich/](citations/zel'dovich/index.md) |
+| Zeller | 2 | 2 | [citations/zeller/](citations/zeller/index.md) |
+| Zen | 6544 | 20918 | [citations/zen/](citations/zen/index.md) |
 | Zfte | 1 | 2 | [citations/zfte/](citations/zfte/index.md) |
 | Zhang | 3 | 5 | [citations/zhang/](citations/zhang/index.md) |
-| HongSheng Zhao | 85 | 170 | [citations/zhao/](citations/zhao/index.md) |
+| Zhao | 85 | 170 | [citations/zhao/](citations/zhao/index.md) |
 | Zheng | 6 | 8 | [citations/zheng/](citations/zheng/index.md) |
 | Zhonest | 2 | 7 | [citations/zhonest/](citations/zhonest/index.md) |
 | Zhong | 2 | 5 | [citations/zhong/](citations/zhong/index.md) |
 | Zhou | 2 | 8 | [citations/zhou/](citations/zhou/index.md) |
-| Carl P. Zimmerman | 3547 | 4928336 | [citations/zimmerman/](citations/zimmerman/index.md) |
+| Zibetti | 2 | 5 | [citations/zibetti/](citations/zibetti/index.md) |
+| Zimmerman | 3547 | 4928336 | [citations/zimmerman/](citations/zimmerman/index.md) |
+| Ziour | 2 | 2 | [citations/ziour/](citations/ziour/index.md) |
 | Zitrin | 1 | 2 | [citations/zitrin/](citations/zitrin/index.md) |
+| Zlosnik | 129 | 257 | [citations/zlosnik/](citations/zlosnik/index.md) |
+| Zmnras | 1 | 2 | [citations/zmnras/](citations/zmnras/index.md) |
+| Zonoozi | 1 | 2 | [citations/zonoozi/](citations/zonoozi/index.md) |
+| Zou | 49 | 178 | [citations/zou/](citations/zou/index.md) |
+| Zsigma | 2 | 5 | [citations/zsigma/](citations/zsigma/index.md) |
+| Zuhone | 1 | 1 | [citations/zuhone/](citations/zuhone/index.md) |
+| Zumalacarregui | 17 | 31 | [citations/zumalacarregui/](citations/zumalacarregui/index.md) |
+| Zwaan | 1 | 2 | [citations/zwaan/](citations/zwaan/index.md) |
+| Zwicky | 45 | 237 | [citations/zwicky/](citations/zwicky/index.md) |
+| Zyla | 14 | 29 | [citations/zyla/](citations/zyla/index.md) |
+
+---
+
+## Auto-extracted, NOT-A-PERSON (tools / words / libraries / instruments — kept for completeness)
+
+| Token | Files | Occ | Citation page |
+|---|---|---|---|
+| Aest | 26 | 47 | [citations/aest/](citations/aest/index.md) |
+| Anonymous | 126 | 224 | [citations/anonymous/](citations/anonymous/index.md) |
+| Anthropic | 967 | 6386 | [citations/anthropic/](citations/anthropic/index.md) |
+| Author | 1953 | 8044 | [citations/author/](citations/author/index.md) |
+| Aver | 4 | 39 | [citations/aver/](citations/aver/index.md) |
+| Bicep | 3 | 15 | [citations/bicep/](citations/bicep/index.md) |
+| Bimond | 2 | 2 | [citations/bimond/](citations/bimond/index.md) |
+| Bird | 38 | 344 | [citations/bird/](citations/bird/index.md) |
+| Bond | 270 | 1183 | [citations/bond/](citations/bond/index.md) |
+| Browserbase | 91 | 428 | [citations/browserbase/](citations/browserbase/index.md) |
+| Bufferformatcheck | 4 | 20 | [citations/bufferformatcheck/](citations/bufferformatcheck/index.md) |
+| Buffergetandvalidate | 4 | 16 | [citations/buffergetandvalidate/](citations/buffergetandvalidate/index.md) |
+| Bunch | 18 | 23 | [citations/bunch/](citations/bunch/index.md) |
+| Calculation | 2250 | 5932 | [citations/calculation/](citations/calculation/index.md) |
+| Callunboundcmethod | 4 | 160 | [citations/callunboundcmethod/](citations/callunboundcmethod/index.md) |
+| Cassini | 1218 | 5680 | [citations/cassini/](citations/cassini/index.md) |
+| Catalog | 1465 | 7242 | [citations/catalog/](citations/catalog/index.md) |
+| Child | 1161 | 5171 | [citations/child/](citations/child/index.md) |
+| Chime | 97 | 348 | [citations/chime/](citations/chime/index.md) |
+| Cinttopyunicode | 4 | 44 | [citations/cinttopyunicode/](citations/cinttopyunicode/index.md) |
+| Cite | 477 | 2886 | [citations/cite/](citations/cite/index.md) |
+| Claude | 3043 | 90092 | [citations/claude/](citations/claude/index.md) |
+| Cluster | 2959 | 22577 | [citations/cluster/](citations/cluster/index.md) |
+| Codata | 12 | 17 | [citations/codata/](citations/codata/index.md) |
+| Codex | 782 | 12528 | [citations/codex/](citations/codex/index.md) |
+| Collaboration | 189 | 243 | [citations/collaboration/](citations/collaboration/index.md) |
+| Combined | 1206 | 2570 | [citations/combined/](citations/combined/index.md) |
+| Comfyui | 102 | 1000 | [citations/comfyui/](citations/comfyui/index.md) |
+| Commontypesmetaclass | 4 | 124 | [citations/commontypesmetaclass/](citations/commontypesmetaclass/index.md) |
+| Compact | 1327 | 3099 | [citations/compact/](citations/compact/index.md) |
+| Composio | 10 | 76 | [citations/composio/](citations/composio/index.md) |
+| Conditions | 3213 | 5523 | [citations/conditions/](citations/conditions/index.md) |
+| Conjecture | 316 | 613 | [citations/conjecture/](citations/conjecture/index.md) |
+| Constraints | 2396 | 7485 | [citations/constraints/](citations/constraints/index.md) |
+| Cordinaltopyunicode | 4 | 16 | [citations/cordinaltopyunicode/](citations/cordinaltopyunicode/index.md) |
+| Cpu | 1116 | 5758 | [citations/cpu/](citations/cpu/index.md) |
+| Cresst Iii | 5 | 7 | [citations/cresst-iii/](citations/cresst-iii/index.md) |
+| Criterion | 707 | 1523 | [citations/criterion/](citations/criterion/index.md) |
+| Crossref | 42 | 586 | [citations/crossref/](citations/crossref/index.md) |
+| Cuda | 336 | 4020 | [citations/cuda/](citations/cuda/index.md) |
+| Cuore | 6 | 6 | [citations/cuore/](citations/cuore/index.md) |
+| Current | 6467 | 40071 | [citations/current/](citations/current/index.md) |
+| Cuscuton | 386 | 7313 | [citations/cuscuton/](citations/cuscuton/index.md) |
+| Cython | 40 | 16517 | [citations/cython/](citations/cython/index.md) |
+| Dataset | 1469 | 12115 | [citations/dataset/](citations/dataset/index.md) |
+| Daytona | 214 | 1409 | [citations/daytona/](citations/daytona/index.md) |
+| Deepseek | 737 | 7657 | [citations/deepseek/](citations/deepseek/index.md) |
+| Definition | 4076 | 8639 | [citations/definition/](citations/definition/index.md) |
+| Defw | 2954 | 3037 | [citations/defw/](citations/defw/index.md) |
+| Desi | 37 | 90 | [citations/desi/](citations/desi/index.md) |
+| Detection | 2082 | 4814 | [citations/detection/](citations/detection/index.md) |
+| Dill | 6 | 23 | [citations/dill/](citations/dill/index.md) |
+| Discord | 967 | 13526 | [citations/discord/](citations/discord/index.md) |
+| Discovery | 1483 | 4862 | [citations/discovery/](citations/discovery/index.md) |
+| Dockerfile | 77 | 370 | [citations/dockerfile/](citations/dockerfile/index.md) |
+| Eleuther | 30 | 119 | [citations/eleuther/](citations/eleuther/index.md) |
+| Eling | 6 | 42 | [citations/eling/](citations/eling/index.md) |
+| Entropicmond | 1 | 1 | [citations/entropicmond/](citations/entropicmond/index.md) |
+| Equation | 6430 | 26268 | [citations/equation/](citations/equation/index.md) |
+| Euclid | 8 | 14 | [citations/euclid/](citations/euclid/index.md) |
+| Extension | 1381 | 5660 | [citations/extension/](citations/extension/index.md) |
+| False | 86098 | 587242 | [citations/false/](citations/false/index.md) |
+| Fields | 76032 | 81954 | [citations/fields/](citations/fields/index.md) |
+| Final | 6216 | 31908 | [citations/final/](citations/final/index.md) |
+| Finder | 99 | 308 | [citations/finder/](citations/finder/index.md) |
+| First | 39508 | 82511 | [citations/first/](citations/first/index.md) |
+| Formula | 8307 | 5044603 | [citations/formula/](citations/formula/index.md) |
+| Full | 13052 | 52210 | [citations/full/](citations/full/index.md) |
+| Gemini | 791 | 6939 | [citations/gemini/](citations/gemini/index.md) |
+| Git | 5546 | 117401 | [citations/git/](citations/git/index.md) |
+| Google | 1265 | 9275 | [citations/google/](citations/google/index.md) |
+| Gpu | 639 | 8652 | [citations/gpu/](citations/gpu/index.md) |
+| Green | 809 | 3241 | [citations/green/](citations/green/index.md) |
+| Group | 2741 | 16322 | [citations/group/](citations/group/index.md) |
+| Hand | 1818 | 3720 | [citations/hand/](citations/hand/index.md) |
+| Hiss | 6 | 12 | [citations/hiss/](citations/hiss/index.md) |
+| Hunt | 338 | 636 | [citations/hunt/](citations/hunt/index.md) |
+| Idea | 646 | 1609 | [citations/idea/](citations/idea/index.md) |
+| Index | 4204 | 119959 | [citations/index/](citations/index/index.md) |
+| Insight | 747 | 1790 | [citations/insight/](citations/insight/index.md) |
+| Jack | 6 | 21 | [citations/jack/](citations/jack/index.md) |
+| Key | 16555 | 206048 | [citations/key/](citations/key/index.md) |
+| Kids | 591 | 3915 | [citations/kids/](citations/kids/index.md) |
+| Killing | 218 | 285 | [citations/killing/](citations/killing/index.md) |
+| Large | 6152 | 18835 | [citations/large/](citations/large/index.md) |
+| Last | 4556 | 40835 | [citations/last/](citations/last/index.md) |
+| Law | 5122 | 335664 | [citations/law/](citations/law/index.md) |
+| Lean | 8324 | 48527 | [citations/lean/](citations/lean/index.md) |
+| Lensing | 34520 | 150681 | [citations/lensing/](citations/lensing/index.md) |
+| Ligo | 4179 | 8535 | [citations/ligo/](citations/ligo/index.md) |
+| Limit | 5620 | 19812 | [citations/limit/](citations/limit/index.md) |
+| Little | 454 | 1339 | [citations/little/](citations/little/index.md) |
+| Mary | 2 | 17 | [citations/mary/](citations/mary/index.md) |
+| May | 10210 | 49866 | [citations/may/](citations/may/index.md) |
+| Medium | 2060 | 12555 | [citations/medium/](citations/medium/index.md) |
+| Microscope | 121 | 429 | [citations/microscope/](citations/microscope/index.md) |
+| Mnras | 59 | 265 | [citations/mnras/](citations/mnras/index.md) |
+| Mond | 241 | 918 | [citations/mond/](citations/mond/index.md) |
+| Nanograv | 4 | 5 | [citations/nanograv/](citations/nanograv/index.md) |
+| Nature | 640 | 1079 | [citations/nature/](citations/nature/index.md) |
+| Nist | 44 | 246 | [citations/nist/](citations/nist/index.md) |
+| None | 79349 | 345800 | [citations/none/](citations/none/index.md) |
+| Not | 104836 | 489515 | [citations/not/](citations/not/index.md) |
+| Null | 59067 | 307559 | [citations/null/](citations/null/index.md) |
+| Old | 16287 | 157452 | [citations/old/](citations/old/index.md) |
+| Ollama | 349 | 5170 | [citations/ollama/](citations/ollama/index.md) |
+| Oost | 5 | 17 | [citations/oost/](citations/oost/index.md) |
+| Openai | 1949 | 18177 | [citations/openai/](citations/openai/index.md) |
+| Openrouter | 1069 | 9481 | [citations/openrouter/](citations/openrouter/index.md) |
+| Oria | 8 | 47 | [citations/oria/](citations/oria/index.md) |
+| Paper | 2290 | 42660 | [citations/paper/](citations/paper/index.md) |
+| Parameters | 7021 | 27743 | [citations/parameters/](citations/parameters/index.md) |
+| Part | 11998 | 85212 | [citations/part/](citations/part/index.md) |
+| Performance | 646 | 3728 | [citations/performance/](citations/performance/index.md) |
+| Phase | 5375 | 25536 | [citations/phase/](citations/phase/index.md) |
+| Physics | 5612 | 18104 | [citations/physics/](citations/physics/index.md) |
+| Placeholder | 696 | 1406 | [citations/placeholder/](citations/placeholder/index.md) |
+| Planck | 67 | 205 | [citations/planck/](citations/planck/index.md) |
+| Plate | 95 | 251 | [citations/plate/](citations/plate/index.md) |
+| Point | 6402 | 22921 | [citations/point/](citations/point/index.md) |
+| Prat | 3 | 14 | [citations/prat/](citations/prat/index.md) |
+| Predictions | 2373 | 9305 | [citations/predictions/](citations/predictions/index.md) |
+| Press | 499 | 3264 | [citations/press/](citations/press/index.md) |
+| Problem | 4100 | 13052 | [citations/problem/](citations/problem/index.md) |
+| Profiles | 1198 | 5823 | [citations/profiles/](citations/profiles/index.md) |
+| Proof | 2656 | 8982 | [citations/proof/](citations/proof/index.md) |
+| Python | 11007 | 70714 | [citations/python/](citations/python/index.md) |
+| Pytorch | 212 | 1780 | [citations/pytorch/](citations/pytorch/index.md) |
+| Qumond | 18 | 57 | [citations/qumond/](citations/qumond/index.md) |
+| Qwen | 1969 | 89820 | [citations/qwen/](citations/qwen/index.md) |
+| Range | 11974 | 85831 | [citations/range/](citations/range/index.md) |
+| Rank | 5900 | 29594 | [citations/rank/](citations/rank/index.md) |
+| Rate | 3116 | 20349 | [citations/rate/](citations/rate/index.md) |
+| Ratio | 26323 | 211182 | [citations/ratio/](citations/ratio/index.md) |
+| Recfast | 114 | 1592 | [citations/recfast/](citations/recfast/index.md) |
+| Remyelination | 9 | 18 | [citations/remyelination/](citations/remyelination/index.md) |
+| Repo | 1931 | 7584 | [citations/repo/](citations/repo/index.md) |
+| Review | 2116 | 25814 | [citations/review/](citations/review/index.md) |
+| Rootca | 1 | 17 | [citations/rootca/](citations/rootca/index.md) |
+| Runtimeerror | 1284 | 3404 | [citations/runtimeerror/](citations/runtimeerror/index.md) |
+| Sample | 76967 | 95560 | [citations/sample/](citations/sample/index.md) |
+| Science | 493 | 1438 | [citations/science/](citations/science/index.md) |
+| Setitemontypedict | 4 | 344 | [citations/setitemontypedict/](citations/setitemontypedict/index.md) |
+| Setupreduce | 4 | 16 | [citations/setupreduce/](citations/setupreduce/index.md) |
+| Sglang | 53 | 429 | [citations/sglang/](citations/sglang/index.md) |
+| Sign | 16356 | 107361 | [citations/sign/](citations/sign/index.md) |
+| Simbad | 38 | 14025 | [citations/simbad/](citations/simbad/index.md) |
+| Sne | 646 | 14289 | [citations/sne/](citations/sne/index.md) |
+| Some | 5627 | 15691 | [citations/some/](citations/some/index.md) |
+| Song | 155 | 1109 | [citations/song/](citations/song/index.md) |
+| Sparc | 38 | 102 | [citations/sparc/](citations/sparc/index.md) |
+| Sqlite | 335 | 1909 | [citations/sqlite/](citations/sqlite/index.md) |
+| Stage | 4912 | 169553 | [citations/stage/](citations/stage/index.md) |
+| State | 16257 | 98049 | [citations/state/](citations/state/index.md) |
+| Status | 12763 | 79772 | [citations/status/](citations/status/index.md) |
+| Steel | 58 | 128 | [citations/steel/](citations/steel/index.md) |
+| Step | 7391 | 57722 | [citations/step/](citations/step/index.md) |
+| Super Kamiokande | 16 | 22 | [citations/super-kamiokande/](citations/super-kamiokande/index.md) |
+| Supercdms | 5 | 8 | [citations/supercdms/](citations/supercdms/index.md) |
+| Survey | 912 | 3942 | [citations/survey/](citations/survey/index.md) |
+| Sympy | 4066 | 7779 | [citations/sympy/](citations/sympy/index.md) |
+| System | 4930 | 20841 | [citations/system/](citations/system/index.md) |
+| Telegram | 1147 | 13262 | [citations/telegram/](citations/telegram/index.md) |
+| Testability | 49 | 131 | [citations/testability/](citations/testability/index.md) |
+| Teves | 5 | 9 | [citations/teves/](citations/teves/index.md) |
+| That'S | 913 | 1514 | [citations/that's/](citations/that's/index.md) |
+| Theorem | 4620 | 12861 | [citations/theorem/](citations/theorem/index.md) |
+| Theory | 5173 | 19281 | [citations/theory/](citations/theory/index.md) |
+| Tien | 5 | 30 | [citations/tien/](citations/tien/index.md) |
+| Tinker | 62 | 336 | [citations/tinker/](citations/tinker/index.md) |
+| Transformers | 323 | 1807 | [citations/transformers/](citations/transformers/index.md) |
+| True | 70857 | 345669 | [citations/true/](citations/true/index.md) |
+| Underpowered | 145 | 224 | [citations/underpowered/](citations/underpowered/index.md) |
+| Unicodeequals | 4 | 16 | [citations/unicodeequals/](citations/unicodeequals/index.md) |
+| Uniprot | 268 | 1298 | [citations/uniprot/](citations/uniprot/index.md) |
+| Unpacktuple | 4 | 36 | [citations/unpacktuple/](citations/unpacktuple/index.md) |
+| Unsloth | 68 | 20539 | [citations/unsloth/](citations/unsloth/index.md) |
+| Utils | 967 | 6291 | [citations/utils/](citations/utils/index.md) |
+| Veber | 6 | 12 | [citations/veber/](citations/veber/index.md) |
+| Velocities | 668 | 1582 | [citations/velocities/](citations/velocities/index.md) |
+| Virgo | 176 | 994 | [citations/virgo/](citations/virgo/index.md) |
+| Vizier | 576 | 4377 | [citations/vizier/](citations/vizier/index.md) |
+| Volcengine | 16 | 44 | [citations/volcengine/](citations/volcengine/index.md) |
+| Wall | 1402 | 4242 | [citations/wall/](citations/wall/index.md) |
+| Web | 3056 | 27124 | [citations/web/](citations/web/index.md) |
+| Wecom | 137 | 2241 | [citations/wecom/](citations/wecom/index.md) |
+| Wikipedia | 137 | 642 | [citations/wikipedia/](citations/wikipedia/index.md) |
+| Will | 5124 | 163008 | [citations/will/](citations/will/index.md) |
+| Winter | 31 | 49 | [citations/winter/](citations/winter/index.md) |
+| Wise | 194 | 882 | [citations/wise/](citations/wise/index.md) |
+| Wmap | 8 | 15 | [citations/wmap/](citations/wmap/index.md) |
+| X Cop | 458 | 1817 | [citations/x-cop/](citations/x-cop/index.md) |
+| Xenonnt | 2 | 3 | [citations/xenonnt/](citations/xenonnt/index.md) |
+| Xrism | 146 | 612 | [citations/xrism/](citations/xrism/index.md) |
+| Yaml | 1725 | 13027 | [citations/yaml/](citations/yaml/index.md) |
+| Yarn | 39 | 362 | [citations/yarn/](citations/yarn/index.md) |
+| Youtube | 95 | 485 | [citations/youtube/](citations/youtube/index.md) |
+| Zconcept | 2 | 6 | [citations/zconcept/](citations/zconcept/index.md) |
+| Zcross | 7 | 23 | [citations/zcross/](citations/zcross/index.md) |
+| Zero | 10290 | 101379 | [citations/zero/](citations/zero/index.md) |
 | Zjcap | 1 | 2 | [citations/zjcap/](citations/zjcap/index.md) |
-| Tom Zlosnik | 129 | 257 | [citations/zlosnik/](citations/zlosnik/index.md) |
 | Zmift | 1 | 2 | [citations/zmift/](citations/zmift/index.md) |
 | Znogol | 1 | 2 | [citations/znogol/](citations/znogol/index.md) |
-| Zonoozi | 1 | 2 | [citations/zonoozi/](citations/zonoozi/index.md) |
 | Zprereg | 1 | 2 | [citations/zprereg/](citations/zprereg/index.md) |
-| Zsigma | 2 | 5 | [citations/zsigma/](citations/zsigma/index.md) |
+
+---
 
 ## Organizations, collaborations, instruments
 
 | Name | Used in |
 |---|---|
-| ACT | `act` |
-| AeST (Skordis+Zlosnik) | `aest` |
-| ATLAS3D | `atlas3d` |
-| BICEP | `bicep` |
-| Cassini | `cassini` |
-| CODATA | `codata` |
-| DESI Collaboration | `desi` |
-| DES-Y3 | `desy3` |
-| eROSITA | `erosita` |
-| Euclid | `euclid` |
-| Gaia | `gaia` |
-| GEMS | `gems` |
-| HeCS | `hecs` |
-| JWST | `jwst` |
-| KiDS | `ki ds` |
-| LIGO | `ligo` |
-| LUX-ZEPLIN | `luxzeplin` |
-| MICROSCOPE | `microscope` |
-| MIGHTEE | `mightee` |
-| MNRAS journal | `mnras` |
-| MSA-3D | `msa3d` |
-| NANOGrav | `nanograv` |
-| NIST | `nist` |
-| PANDAX | `pandax` |
-| Planck Collaboration | `planck` |
-| PPTA | `ppta` |
-| QUMOND | `qumond` |
-| SLUGGS | `sluggs` |
-| SO | `so` |
-| SPARC (Lelli+16) | `sparc` |
-| Virgo | `virgo` |
-| WALLABY | `wallaby` |
-| WMAP | `wmap` |
-| XENONnT | `xenonnt` |
-| XRISM | `xrism` |
+| SPARC | RAR data (Lelli+16) |
+| KiDS | lensing RAR (Brouwer+21) |
+| X-COP | clusters (Ghirardini+19) |
+| HeCS | cluster members (Rines+13) |
+| MIGHTEE-HI | deep HI |
+| WALLABY | EFE (ASKAP DR2) |
+| MSA-3D | high-z (JWST) |
+| DES/DES-Y3 | 3x2pt lensing |
+| DESI | growth/BTFR |
+| Planck | cosmology |
+| Gaia | DR4 Dec 2026 |
+| JWST | z~2.5 BTFR |
+| Euclid | eta-test Oct |
+| XRISM | cluster plateau |
+| eROSITA | outer T |
+| ACT/SO | tSZ |
+| NANOGrav/PPTA | PTA |
+| LIGO/Virgo | GW |
+| Cassini | solar quadrupole |
+| MICROSCOPE | WEP |
+| LUX-ZEPLIN/XENONnT/PANDAX | direct detection |
+| ATLAS3D/SLUGGS/GEMS | elliptical line (G162) |
+| LITTLE THINGS/FIGGS | dwarf HI (G114) |
 
 ---
-*Regenerated from full-repo sweep · add new names above the line · never delete.*
+*Regenerated · append-only · add new names above the line · never delete.*

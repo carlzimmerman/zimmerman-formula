@@ -1,3 +1,9 @@
+> ⚠ **NOT-A-PERSON.** This entry is a tool, library, class, word, team, instrument, or placeholder artifact (auto-extracted from the corpus and kept for completeness). It is not an individual. Confirmed individuals are listed first in [CITATIONS.md](../CITATIONS.md).
+>
+> ⚠ **NOT-A-PERSON.** This entry is a tool, library, class, word, team, instrument, or placeholder artifact (auto-extracted from the corpus and kept for completeness). It is not an individual. Confirmed individuals are listed first in [CITATIONS.md](../CITATIONS.md).
+>
+> ⚠ **NOT-A-PERSON.** This entry is a tool, library, class, word, team, instrument, or placeholder artifact (auto-extracted from the corpus and kept for completeness). It is not an individual. Confirmed individuals are listed first in [CITATIONS.md](../CITATIONS.md).
+>
 # System
 
 **Cited in 4930 file(s), 20841 occurrence(s).**

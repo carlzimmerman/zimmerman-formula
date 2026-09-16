@@ -426,9 +426,10 @@ mechanisms inside Python scripts, or as references — is indexed below.
 **Click any name** for its dedicated citation page in [`citations/`](citations/),
 which links to every repo file where that person is cited (GitHub) plus their papers.
 The master growing list lives in [`CITATIONS.md`](CITATIONS.md) (append-only; add
-new names as work lands). Page indexes: **682 individuals indexed to date — full-repo
-corpus sweep (Surname et al. / (Year) / &\ / \cite{} / filename-author patterns),
-every file and occurrence listed (no caps).**
+new names as work lands). Page indexes: **2,012 confirmed individuals indexed to date —
+full-repo corpus sweep (Surname et al. / (Year) / &\ / \cite{} / filename-author patterns),
+every file and occurrence listed (no caps); non-person tokens (tools, words, instruments)
+flagged and listed separately.**
 
 ## Paper citations
 

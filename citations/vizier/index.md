@@ -1,3 +1,9 @@
+> ⚠ **NOT-A-PERSON.** This entry is a tool, library, class, word, team, instrument, or placeholder artifact (auto-extracted from the corpus and kept for completeness). It is not an individual. Confirmed individuals are listed first in [CITATIONS.md](../CITATIONS.md).
+>
+> ⚠ **NOT-A-PERSON.** This entry is a tool, library, class, word, team, instrument, or placeholder artifact (auto-extracted from the corpus and kept for completeness). It is not an individual. Confirmed individuals are listed first in [CITATIONS.md](../CITATIONS.md).
+>
+> ⚠ **NOT-A-PERSON.** This entry is a tool, library, class, word, team, instrument, or placeholder artifact (auto-extracted from the corpus and kept for completeness). It is not an individual. Confirmed individuals are listed first in [CITATIONS.md](../CITATIONS.md).
+>
 # Vizier
 
 **Cited in 576 file(s), 4377 occurrence(s).**
