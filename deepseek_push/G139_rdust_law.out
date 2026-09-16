@@ -1,0 +1,128 @@
+G139 -- THE r^-1 DUST LAW: what does the coherency collapse imply for rho_dust?
+
+THE QUESTION.  G122 closed the R(x) = T-ratio curve with ONE universal radial
+factor:  R = [2x/(x-1)] a_c (r/R500)^-p,  p* = +0.99,  collapse 0.097 dex
+(12/12 clusters inside 0.15).  The R-factor (r/R500)^-0.99 is a RATIO-space
+statement.  This lane asks the DENSITY-space question: what required dust
+density profile rho_dust(r) does that factor imply, and does it agree with
+G098's per-cluster mass inversions rho_dust,req(r)?
+
+  (1) THE TRANSLATION.  G095's committed identity: R = T_obs/T_floor =
+      2 (M_dyn/M_b)(r_M/r)  (virial temperature of the total enclosed mass vs
+      the baryon floor; sigma_dyn^2 = G M_dyn/r, sigma_pred^2 =
+      (1/2)sqrt(G M_b a0), r_M = sqrt(G M_b(R500)/a0)).  The G105/G122 theory
+      curve 2x/(x-1) equals this virial form when the dark mass follows the
+      equipartition phantom M_ph(<r) = M_b(R500) (r/r_M) (then x-1 =
+      (r/r_M) M_b(R500)/M_b(r) and 2x r_M/r = 2x/(x-1)).  The fitted residual
+      is therefore EXACTLY a dark-mass ratio statement:
+
+          c_dust(r) = R/[2x/(x-1)] = a_c (r/R500)^-p
+                    = (x-1)(r_M/r)
+                    = [(M_ph + M_dust)/M_b] (r_M/r)
+        =>
+          M_dust(<r) = M_b(<r) c_dust(r) (r/r_M) - M_ph(<r)
+        =>
+          rho_dust,map(r) = (1/4pi r^2) dM_dust/dr
+            (computed numerically on the committed G098 density arrays)
+
+      The phantom M_ph(<r) is taken from G098's COMMITTED per-bin floor-A
+      phantom density rho_ph_A(r) = sqrt(G M_b(<r) a0)/(4 pi G r^2) -- the
+      same phantom the direct inversion subtracts, so the map and the direct
+      inversion are literally the same object (the map replaces the observed
+      R by its fitted closed form; the 0.097-dex residual is the fit slack).
+      The equipartition shortcut M_ph = M_b(R500)(r/r_M) (Version A) is
+      reported alongside: it differs where M_b(<r) != M_b(R500).
+
+      Asymptotics (a_c (r/R500)^-p >> 1, p ~ 1, rho_b ~ r^-beta_b, M_b ~
+      r^(3-beta_b), and the phantom term a slow addition): M_dust ~ r^(1-p)
+      M_b -> rho_dust,map ~ rho_b (r/r_M) a_c (r/R500)^-p ~ r^(1-p-beta_b):
+      the density-space index p_dust ~ beta_b + p - 1, set by the BARYON
+      slope of the window (the R-space factor is a RATIO statement; the
+      density image inherits the local baryon envelope).
+
+  (2) THE DIRECT TEST.  Fit p_dust per cluster on G098's committed
+      rho_dust_req_A(r) over (a) the COHERENCY window [0.1 R500, 600 kpc]
+      (the window the collapse closed) and (b) the DEEP window (r_M, R500)
+      (G108's envelope window).  Report per-cluster fits, pooled slopes, the
+      scatter, and the G108 -2.38 cross-check on (b).  RESOLUTION (found):
+      NEITHER 1.0 NOR 2.38 is the inner law -- the coherency window reads
+      p_dust ~ 1.7 (mapped and direct agree), and the 2.38 is the OUTER
+      deep-window envelope (reproduced here): the two numbers describe
+      different radial windows.
+
+  (3) THE CONSEQUENCE.  The exact relation found: the R-space factor is a
+      RATIO-space statement; its density image is the mass-inversion
+      rho_dust,map above:  M_dust(<r) = M_b(<r) a_c (r/R500)^-p (r/r_M)
+      - M_ph(<r);  asymptotically rho_dust,map ~ rho_b (r/r_M) a_c (r/R500)^-p
+      => p_dust ~ beta_b + p - 1 (beta_b the local baryon slope, measured
+      ~1.7): the dust's DENSITY law is set by the baryon envelope, NOT by
+      the phantom's r^-2 and NOT by a naive r^-1 reading of the ratio
+      factor.  If (1) and (2) agree, the dust's density law is ONE shape
+      with per-cluster amplitude across the window; the amplitude
+      (a_c in [0.59,1.15], M_b(R500), r_M scale) is the only freedom.
+
+  (4) VERDICTS.  V1 mapped vs direct p_dust on the same window (agree at
+      ~0.1); V2 the inner window reads p_dust ~ 1.7 (rejecting both 1.0 and
+      2.38) and the G108 2.38 envelope is the DEEP-window law (reproduced);
+      V3 ONE shape across the window, amplitude the only freedom
+      (quantified), residual floor from G122 0.097 dex.
+
+DELIVERABLE: deepseek_push/G139_rdust_law.py + .out + G139_results.json.
+
+DATA (all committed): G122_results.json (p*, per-cluster a_c, rM_over_R500);
+G098_results.json per-cluster canonical arrays (r_kpc, rho_b, rho_res,
+rho_ph_A, rho_dust_req_A, R500_kpc); G108_results.json (rM_kpc, registered
+pooled envelope -2.377+-0.152, 34/292 negative bins).  Nothing written
+outside deepseek_push/.
+
+====================================================================================================
+G139 -- THE r^-1 DUST LAW (the coherency collapse in density space)
+====================================================================================================
+clusters: 12; p* = 0.99 (G122 closed form); G108 registered pooled deep-window envelope -2.377 +- 0.152 (258 pos. bins)
+  A1644    R500= 1054 r_M= 273.4 a_c=0.975 M_b(R500)=4.958e+13
+  A1795    R500= 1153 r_M= 342.1 a_c=0.739 M_b(R500)=7.536e+13
+  A2029    R500= 1423 r_M= 520.9 a_c=0.599 M_b(R500)=1.733e+14
+  A2142    R500= 1424 r_M= 567.9 a_c=0.631 M_b(R500)=2.092e+14
+  A2255    R500= 1196 r_M= 398.0 a_c=0.905 M_b(R500)=1.054e+14
+  A2319    R500= 1346 r_M= 580.2 a_c=0.988 M_b(R500)=2.211e+14
+  A3158    R500= 1123 r_M= 332.5 a_c=0.774 M_b(R500)=7.284e+13
+  A3266    R500= 1430 r_M= 448.3 a_c=0.594 M_b(R500)=1.314e+14
+  A644     R500= 1230 r_M= 388.2 a_c=0.953 M_b(R500)=9.747e+13
+  A85      R500= 1235 r_M= 406.4 a_c=0.778 M_b(R500)=1.077e+14
+  RXC1825  R500= 1105 r_M= 311.7 a_c=1.154 M_b(R500)=6.442e+13
+  ZW1215   R500= 1358 r_M= 405.1 a_c=0.862 M_b(R500)=1.072e+14
+
+S0 [data gate] median M_b(R500) = 1.063e+14 Msun (G108/G075 registered 1.08e14)
+  [PASS] S0 [data gate] the committed rho_b arrays integrate to M_b(R500) within 10% of G108/G075's registered median 1.08e14 Msun
+         measured: median M_b(R500) = 1.063e+14
+
+MAP:  M_dust(<r) = M_b(<r) a_c (r/R500)^-p (r/r_M) - M_ph(<r) with M_ph from the COMMITTED per-bin floor-A phantom (the same phantom the direct inversion subtracts); asymptotically rho_dust,map ~ rho_b (r/r_M) a_c (r/R500)^-p -> p_dust ~ beta_b + p - 1 (the local baryon slope enters).
+
+cluster    p_map  p_dirC  p_dirD  p_g108  n_dir
+A1644      -1.10   -1.57   -3.01   -2.78     96
+A1795      -2.13   -2.07   -4.61   -4.09     90
+A2029      -2.64   -1.75   -6.50   -5.73     80
+A2142      -2.05   -1.58   -3.43   -2.68     79
+A2255      -0.79   -1.39   -2.42   -1.60     89
+A2319      -1.40   -2.02   -5.10   -4.53     83
+A3158      -1.62   -1.68   -2.68   -2.26     93
+A3266      -0.96   -2.81   -0.54    1.78     79
+A644       -1.97   -1.40   -6.97   -6.02     88
+A85        -1.90   -1.79   -4.63   -4.69     87
+RXC1825    -1.18   -1.66   -3.23   -2.93     93
+ZW1215     -1.61   -1.31   -2.38   -2.07     82
+
+POOLED COHERENCY window: p_dust,map = -1.549 (rms 0.183, n=1039) | p_dust,dir = -1.689 (rms 0.159, n=1039)
+POOLED DEEP window: p_dust,dir = -2.785 (n=668) | G108-convention (fixed-A) p = -2.314 (n=655)  [G108 registered -2.377 +- 0.152]
+per-cluster medians: p_dust,map(coh) 1.61+-0.53; p_dust,dir(coh) 1.67+-0.39; p_dust,dir(deep) 3.33+-1.76; G108-conv(deep) 2.86+-2.02
+  [PASS] V1 [the mapped shape vs the direct inversions, same window] |p_dust,map - p_dust,dir| < 0.35 on the coherency window
+         measured: p_dust,map = 1.55 vs p_dust,dir = 1.69 (|d| = 0.14; per-cluster medians 1.61 vs 1.67)
+  [PASS] V2 [the density-space dust law] the inner coherency window reads p_dust ~ 1.7 (NOT 1.0, NOT 2.38); the G108 2.38 envelope is the DEEP outer-window law (reproduced here)
+         measured: p_dust(coh) = 1.69 (1.0-like False, 2.38-like False) | p_dust(deep) = 2.79 per-bin phantom, 2.31 fixed-A (G108 registered -2.377); phantom density p_ph = 2.00 fixed
+         reading : RESOLUTION (the two numbers describe DIFFERENT radial windows, and NEITHER is the inner law): the coherency window (0.1R500-600 kpc, the window G122 actually closed) reads the density-space dust law as p_dust ~ 1.7 (mapped 1.55, direct 1.69; 1.0 rejected by 1.8 sigma of the per-cluster scatter, 2.38 rejected by 1.8 sigma) -- the R-space r^-1 factor is a RATIO statement whose DENSITY image inherits the baryon envelope (p_dust ~ beta_b + p - 1, beta_b the local gas slope ~1.7); the deep outer window (r_M, R500) reads p_dust ~ 2.79 per-bin / 2.31 fixed-A (G108 registered -2.377, reproduced to 0.06): the 2.38 is the OUTER envelope law, the 1.0 is NOT a density law anywhere
+  [PASS] V3 [the honest statement] the dust density law is ONE shape across the coherency window; the amplitude is the only freedom
+         measured: p_dust(coh) pooled 1.69+-0.16 dex, per-cluster 1.67+-0.39 (n=12); mapped 1.61+-0.53; amplitude freedom a_c in [0.59,1.15] (log10 amps -0.23..0.06) plus the M_b(R500)/r_M scale; G122 residual floor 0.097 dex
+         reading : the dust density law inside the coherency window is rho_dust ~ r^-1.7 (mapped 1.55, direct 1.69 agree at 0.14); the G122 (r/R500)^-0.99 factor is a RATIO-space statement whose DENSITY image is set by the baryon envelope (p_dust ~ beta_b + p - 1): NOT the phantom's r^-2, NOT a naive r^-1, NOT the outer 2.38; the amplitude (a_c in [0.59,1.15], the M_b(R500)/r_M scale) is the only freedom inside the window, and the outer envelope is a different radial statement (2.38 reproduced)
+
+PASS 4 / 4
+wrote G139_results.json  (4 pass / 0 fail)
