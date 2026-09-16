@@ -1,0 +1,53 @@
+====================================================================================================
+C03 -- NUMERIC GATE: line kinematics (B01) + the Abel cusp (B02)
+====================================================================================================
+
+PART 1  THE LINE KINEMATICS (Lean: line_energy_is_half, doppler_width_identity)
+====================================================================================================
+  E = m/2 = 5.0886/2 = 2.5443 keV   (A05 register 2.5443)
+  [PASS] N1 [E = m/2] the line energy reproduces the A05 register exactly
+         measured: E = 2.5443 keV
+         reading : m = 5.0886 keV (G212 joint peak), E = m/2 = 2.5443 keV exactly.
+  delta-E/E = sigma_d/c = 4.676569e-04
+  sigma_E = E*sigma_d/c = 1.18986 eV
+  [PASS] N2 [the Doppler width identity] sigma_E/E = sigma_v/c holds with the committed registers
+         measured: sigma_E/E = 4.676569e-04 = 140.2/299792.458
+         reading : identity by construction; the certified statement is the Lean field factorization E*(sigma_v/c).
+  [PASS] N3 [the width register] sigma_E = 1.1899 eV in the B01 band [1.18, 1.20]
+         measured: sigma_E = 1.1899 eV
+         reading : B01 C2 register 1.19 eV; the Lean interval theorem num_sigmaE_eV.
+  [PASS] N4 [the ratio register] delta-E/E in the B01 band [4.67e-4, 4.68e-4]
+         measured: delta-E/E = 4.676569e-04
+         reading : B01 C2 register 4.68e-4; the Lean interval theorem num_deltaE_over_E.
+
+PART 2  THE ABEL COLUMN (Lean: arctan_substitution_identity, arctan_pi_over_two)
+        Int_0^oo 1/(b^2+s^2) ds = pi/(2b),  Sigma_p(b) = pi A/b
+====================================================================================================
+  full-LOS quadrature (u-sub, [-inf,inf]): 3.4501954412545462
+  closed form pi*A/b                 : 3.450195441254546
+  rel err = 5.9902e-17   (half-line integral = 1.5707963267948966 vs pi/2)
+  [PASS] N5 [the Abel column] the full-LOS column Sigma_p(b) = A*pi/b reproduced to 1e-10 by direct quadrature
+         measured: rel err 5.9902e-17
+         reading : quadrature of int 1/(1+u^2) du on u in [0,1e10] (geometric subintervals) + the O(1/T^5) tail; the Lean certificate is the arctan substitution identity + the pi/2 evaluation.
+
+  capped (r_break) quadrature: 3.0884766691000439
+  capped closed form 2A/b arctan(L/b): 3.0884766691000443
+  rel err = 1.0323e-16  (B02 C1 register 3.088476669, rel 5.03e-15)
+  [PASS] N6 [the capped column, B02 C1] the r_break-capped column 2A/b*arctan(L/b) reproduces the quadrature to 1e-10
+         measured: rel err 1.0323e-16
+         reading : the finite object of B02 C1; the Lean theorem capped_column_closed_form.
+
+  register check: pi*A/b at b=1kpc = 3.45019544125 in (3.450, 3.451): True
+  [PASS] N7 [the MW register] pi*A/b in (3.450, 3.451) at b = 1 kpc
+         measured: pi*A/b = 3.45019544125
+         reading : the Lean interval theorem num_sigma_phantom_MW.
+
+====================================================================================================
+GATES AND REGISTRATION -- see C03_results.json
+====================================================================================================
+
+  CHECKS: 7/7 PASS
+
+  JSON written: /Users/carlzimmerman/new_physics/zimmerman-formula/deepseek_push/C03_results.json
+  CHECKS 7/7 PASS
+  C03 NUMERIC GATE DONE.
