@@ -1622,6 +1622,86 @@ minority (dust 79-97%) -- the tests discriminate the phantom envelope
 (slope -2 vs NFW -3), not the dust's subhalos; V3 kill criteria registered.
 (B9 the baryon pin, B10 PARTICLE_SECTOR.md: in flight.)
 
+## WAVE 31 (C-series LEAN, 8/8 certified -- the particle-sector spine is now certified algebra)
+C01 THE SQRT-2 SOUND-CROSSING 10 theorems (b6f15c6bb): field-level a^2 =
+b^2/2 -> b^2 = 2a^2; THE sqrt2_ratio lemma (a>0, b>0 -> b/a = Real.sqrt 2
+via the G03G/G227 sqrt_pair technique); response_lag_sqrt2 (the crossing
+time = sqrt 2, r_M cancels); response_lag_defs (v_flat := sqrt(2) sigma);
+the G127 C2 inverse c_s t_ff/r = 1/sqrt(2) exact; the decimal interval
+sqrt 2 in (1.41421356, 1.41421357) by squaring. All exit 0, zero sorry,
+axioms {propext, Classical.choice, Quot.sound}. Numeric: 119.21/(119.21/
+sqrt 2) = sqrt 2 to 0.0.
+C02 ENVIRONMENT-BLINDNESS 8 theorems (2be0e7e6d): the master identity
+(a b/c)(c/a) = b (the ladder fixed point: m = k_B T_0(1+z*)/sigma^2 with
+1+z* = m sigma^2/(k_B T_0) returns m identically); recovered-mass is
+sigma-INDEPENDENT; z* is a function of sigma ONLY (the bijection); the
+1e-12 cross-check: 101,600 (m, sigma) environments -> max |m_rec - m| =
+4.3e-14 keV; B03's 11 committed rungs recover [4.99997, 5.00009] keV at
+0.00012 spread -- the environment-blindness is now CERTIFIED algebra, not
+just a numeric table.
+C03 LINE KINEMATICS + THE ABEL CUSP 13 theorems (14eaff06d): E = m/2
+exact; the Doppler-width factorization (sigma_E = E sigma_v/c -> sigma_E/E
+= sigma_v/c) plus the norm_num intervals (E = 2.5443 keV exact, sigma_E =
+1.18986 eV, delta-E/E = 4.6766e-4); THE ABEL COLUMN: arctan_substitution_
+identity closed by FTC, arctan_pi_over_two, abel_column_half_line
+(int 0..inf 1/(b^2+s^2) ds = pi/2b), sigma_cusp_full_los (2 A pi/2b =
+pi A/b, the b^-1 cusp), the capped-column closed form; FOUR strike-closed
+Mathlib blockers named (Function.comp_def, Filter.atTop, nhds, trailing
+ring); numeric: B02 column to rel 5.99e-17.
+C04 THE PROTON RUNG 7 theorems (086c8140b): the virial field identity
+k_B T = mu m_p sigma^2 with sigma^2 = (1/2)sqrt(G M_b a0) -> T = mu m_p
+sqrt(G M_b a0)/(2 k_B); the mass-free ratio; the INVERSION identity and
+its dual (M_impl(T(M)) = M and T(M_impl(T)) = T, mutual inverses, the
+sqrt closed by positivity); mass_ratio_invariant (the estimator reads only
+the mass-free ratio); proton_rung_ratio (T_phase/T_bary = m/(mu m_p) at
+equal sigma); numeric: 50 B06 rows at rel 0, the estimator MAD = 0.053 dex.
+C05 THE DOUBLE-Z EXPONENT 10 theorems (c53bb658f): exponent_flip
+(1/(k x^-1/2) = x^+1/2/k), sqrt_recip, sqrt_mul_pos, ladder_sqrt_pair
+(the whole flip in one statement), ladder_closed_form (m = (2 k_B T/c)
+sqrt(Z R_dS/(G M_b)) EXACTLY), z_exponent (sqrt(ZR_dS/GM_b) = sqrt Z
+sqrt(R_dS/GM_b)), z_dependence_of_m (m carries Z^+1/2 EXACTLY),
+double_z_scaling (m(2Z)/m(Z) = sqrt 2 EXACTLY), z_squared_exact
+(Z^2 = 32 pi/3); numeric: 1.41421356, the closed form at rel 1.74e-16.
+C06 THE HORIZON-OMEGA CLOSURE 8 theorems (5a7e8b255): germ squaring
+(Z = 2 sqrt(8pi/3) -> Z^2 = 32 pi/3 at the real level); horizon_omega_
+fixed_point (substituting a0 = c^2/(Z R_dS), R_dS = c/(H0 sqrt Omega) into
+Omega = 32 pi a0^2/(3 H0^2 c^2) returns Omega IDENTICALLY -- every
+component cancels, only the germ Z survives); closure_iff_zSq (the closure
+holds IFF Z^2 = 32 pi/3: NO slack); numeric: EXACTLY 0.685 at the
+committed constants (dev 2.2e-16).
+C07 THE GAUSS-CHARGE EXPONENT CHAIN 11 theorems (da5945a9e): the
+linear-in-r identity (M(<r) = 4 pi A r), the shell-flux density constant
+(the r^-2 exponent cancels the r^2 shell measure), the bidirectional
+rho = A/r^2 <-> constant shell flux, the inverse-square acceleration
+(g r = 4 pi G A), the charge recovery (r^2 g/G = M_enc), the Gauss flux
+law, the registered endpoint (equipartition from the amplitude, M_ph(<r_M)
+= M_b to 1.11e-16); the honest flag: 4 pi r^2 g = CONSTANT is disclaimed
+(the flux is linear in r -- the exact theorems assert the true statement).
+C08 THE THERMAL FIXED POINT 9 theorems (1de32c6d4): the field identity
+(T_b = m sqrt(G M_b a0)/(2 k_B)); the half-exponent elasticity at the
+DERIVATIVE level (HasDerivAt: d ln T/d ln M_b = 1/2); the fluctuation
+scale (Delta-T/T = N^-1/2 -> Delta-T_rms = sqrt(G m^3 a0)/(2 k_B), M_b-free
+<-> scale-invariant); numeric: Delta-T_rms in (2.4732, 2.4733)e-36 K
+reproduced to 16 digits.
+C09 THE COMPLETE-THEORY CAPSTONE (e08f8710c): THE_COMPLETE_THEORY.md --
+the 10-link spine from the horizon to the electron-adjacent mass, EVERY
+LINK TAGGED (LEAN / closed-form / measured / IN-FLIGHT), the dated open-end
+ledger (tSZ 2026-10-07, DR4 2026-12-02, z~2.5 BTFR ~2027-2028, kink
+2027-2029), the 'how everything works' one-paragraph: one scalar, one
+boundary, one mass, one scale, two phases, the horizon.
+C10 THE z~2.5 TARGET LIST (2e9465903): ONE PROPOSAL AWAY -- 29 hard
+in-window rotators at 2.3 < z < 3.9 (15 KMOS3D in-repo + 14 named PUB),
+the clean JWST-window set ~18-28 vs the required 26-37 AT PARITY (L42's 26
+met; the 37 at 0.13-dex is a stretch); the 30-target proposal skeleton
+(G235H/F170LP + ALMA Band 3), PI-facing one-pager, expected verdict BOTH.
+LEAN TOTALS: the campaign now carries 17+ certificates / 140+ theorems
+(C01-C08 + G-series + M01), every one exit 0 / zero sorry / axioms
+{propext, Classical.choice, Quot.sound}; the particle sector's spine is
+CERTIFIED ALGEBRA -- the sqrt-2 lag, the environment-blindness fixed
+point, the Abel cusp, the proton rung + its inverse, the Z^+1/2 exponent,
+the horizon-omega fixed point, the Gauss exponent chain, the thermal
+fixed point.
+
 ## SIBLING COORDINATION (for qwen38 / hy4 / other tracks; read this first)
 ## WAVE 26 (landed 10/10 -- THE MASS CONVERGED; the scale final; the dSph boundary explained; the census leans charge)
 G208 DEEP-STAIRCASE ORTHOGONALITY 14/14 -- TWO-LAYER: the top stair is the
