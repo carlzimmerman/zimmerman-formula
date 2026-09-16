@@ -1,0 +1,36 @@
+CHECKS 23/23 PASS
+  PASS FACE G (gravity): a0 = c^2/(Z R_dS) = kappa_dS/Z re-derived, ratio 1.00005 vs a0_DE (Z11)  | a0_H=9.362375e-11 re=9.362375e-11 ratio=1.0000507595885317
+  PASS FACE G certified: C06 the horizon closure -- 8 theorems, exit 0, zero sorry, lean tracked  | thm=8 tracked=True
+  PASS FACE T (thermo): T_X-ray = mu m_p sqrt(G M_b a0)/(2 k_B), 0.053-dex MAD on 50 objects/3 instruments (B6/A02)  | n=50 MAD=0.05305 pstdev=0.10867 benchmark=0.062
+  PASS FACE T certified: C04 the proton rung -- 7 theorems (field_identity, inverse, mass_ratio_invariant), lean tracked  | thm=7 tracked=True
+  PASS FACE T certified: C08 the thermal fixed point -- 9 theorems (T_b = m sqrt(G M_b a0)/(2 k_B), elasticity 1/2, fluct floor)  | thm=9 tracked=True
+  PASS FACE T anchor: E_bind = M_b sigma^2 EXACTLY (D06, rel diff 1.8e-16) -- binding energy per particle IS the equilibrium temperature unit  | E_bind=2.0532e+51 J, 0.835197 meV/particle
+  PASS FACE P (particle): m = k_B T_0(1+z*)/sigma^2, the ladder -- m = 5.089 +- 0.097 keV (5.09 +- 0.10, G212 9/9, A05 11/11)  | peak=5.0886 sigma=0.0969
+  PASS FACE P environment-blind: 11 committed rungs recover m in [4.99997, 5.00009] keV, spread 0.00012 (B03 10/10)  | spread=0.000122
+  PASS FACE P certified: C05 the double-Z -- 10 theorems, m carries Z^(+1/2) EXACTLY, m(2Z)/m(Z) = sqrt(2)  | thm=10 tracked=True
+  PASS THE PRODUCT FACE: m * T_X-ray = mu m_p T_0(1+z*) EXACTLY -- the a0-cancellation identity (one scale in both faces; the product carries NO a0, NO M_b, NO G)  | m*T/(mu m_p T0(1+z*)) = 1.000000
+  PASS MW anchor closure: sigma = 119.21 km/s, m = 5.05 keV, T = 1.03e6 K from the SAME sigma^2(a0) (A05 sigma_link reproduced)  | sigma=119.21 km/s  m=5.0503 keV  T=1.0330e+06 K
+  PASS KILL (a) reg: T-law falsifier on record (B06 f_falsifier): (M_b,T) outside the 0.06-dex band at the horizon footing, or within-sample scatter > ~0.12 dex (2x G109); 3-sig pooled = 0.326 dex  | 3*sig_pooled=0.326 dex  MAD=0.053 vs bench 0.062
+  PASS KILL (a) instrument: the RAR holds at 0.150 dex/55 HI dwarfs (G114) -- the decoupling signature is T off-scale while the SAME environment's rotation stays on the a0 RAR  | rms=0.1497 N=55
+  PASS KILL (b) reg: A05 f_falsifiers -- mass outside [4.60, 5.05] keV (G163/G168) or [3.3, 5.7] keV (G212 triangle) kills the derived mass; G212 3-sigma band = [4.798, 5.379] keV  | 3-sig band=[4.798, 5.379] keV; kill bands [4.60,5.05]/[3.3,5.7]
+  PASS KILL (c) reg: deep RAR needs exponent 1/2 (g^2 = a0 g_N); G114 measured rms 0.150 dex, Theil-Sen slope r vs log M_b = -0.00 (no trend); a deep-end slope != 1/2 (g ~ g_N^0.4) kills the RAR face  | TheilSen(r, log Mb)=-0.0018
+  PASS KILL (c) instrument: Z11 geometric kill -- any well-measured system (z~2.5 JWST BTFR) off c^2/(Z R_dS) by > 3 sigma kills the horizon reading; kill band 1% = [9.2697e-11, 9.4560e-11]  | band=[9.269678421972154e-11, 9.455998958253793e-11]
+  PASS LEAN C04: 7 theorems, exit 0, zero sorry, axioms {propext, Classical.choice, Quot.sound}, file tracked  | thm=7 exit0=True zero_sorry=True tracked=True
+  PASS LEAN C05: 10 theorems, exit 0, zero sorry, axioms {propext, Classical.choice, Quot.sound}, file tracked  | thm=10 exit0=True zero_sorry=True tracked=True
+  PASS LEAN C06: 8 theorems, exit 0, zero sorry, axioms {propext, Classical.choice, Quot.sound}, file tracked  | thm=8 exit0=True zero_sorry=True tracked=True
+  PASS LEAN C08: 9 theorems, exit 0, zero sorry, axioms {propext, Classical.choice, Quot.sound}, file tracked  | thm=9 exit0=True zero_sorry=True tracked=True
+  PASS THE CERTIFIED CORE: 7+10+8+9 = 34 theorems across C04/C05/C06/C08, all exit 0, zero sorry  | total=34
+  PASS SUB-CHAIN a0 -> T-law Lean: C06 (a0, horizon closure) + G03G/G090 (sigma^2 = (1/2) sqrt(G M_b a0)) + C04 (proton rung field identity) + C08 (thermal fixed point T_b) all certified  | C09 spine link 2: sigma^2 = (1/2) sqrt(G M_b a0) LEAN-CERTIFIED (G03G sigma_virial_half)
+  PASS SUB-CHAIN a0 -> m Lean: C06 (a0) + G03G/G090 (sigma^2) + C05 (ladder_closed_form, double_z_scaling, z_exponent) + C02 (environment-blind fixed point) -- the mass relation certified in discrete links  | C05 Theorem list on record
+
+THE THREE FACES:
+  G: a0 = c^2/(Z R_dS) = 9.362375e-11 m/s^2 (ratio 1.000051, C06 fixed point iff Z^2 = 32 pi/3)
+  T: T_X-ray = mu m_p sqrt(G M_b a0)/(2 k_B), MAD 0.0531 dex / 50 objects / 3 instruments (C04, C08)
+  P: m = k_B T_0(1+z*)/sigma^2 = 5.0886 +- 0.0969 keV, env-blind 0.00012-keV spread (C05, C02)
+  m*T = mu m_p T_0(1+z*): ratio 1.000000 -- the a0-cancellation identity (MW: sigma 119.21 km/s, m 5.0503 keV)
+
+KILL CONDITIONS:
+  (a) T-law > 3 sig while RAR holds: 0.326 dex pooled | (b) mass > 3 sig off ladder: [4.798, 5.379] keV | (c) deep-end a2-deviation: exponent != 1/2
+
+LEAN CORE: 34 theorems (7+10+8+9), exit 0, zero sorry; sub-chains a0->T-law and a0->m BOTH Lean
+wrote /Users/carlzimmerman/new_physics/zimmerman-formula/deepseek_push/E03_results.json
