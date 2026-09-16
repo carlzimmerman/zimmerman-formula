@@ -33,6 +33,25 @@ closing condition and an owning lane.
 - Closing condition: beta(r) closed form from the two-regime model
   (core-static + streaming envelope) fit to G209's five bins, not a polynomial.
 - Owner: M02-adjacent lane (beta closed form).
+- **RESOLVED: DISSOLVED by Z02 (commit f98092c76, deepseek_push/Z02_beta_
+  mean_profile.* + Z02_results.json) -- the contradiction was an
+  INTEGRAL/CATEGORY ARTIFACT, not a disagreement.** The committed 2-5 R500
+  window means are log-uniform integrals (proven: G203 0.4340 / G209 E1 0.4500
+  / G206 FIT_A 0.4950 reproduced analytically from the committed two-asymptote
+  forms, |d| < 6e-4); the profile-weighted window mean recomputed from the
+  committed per-bin values (log-uniform over [2,5]) = 0.447 +- 0.009 (E1) /
+  0.417 +- 0.049 (E2) -- it REPRODUCES the committed 0.434 +- 0.015 /
+  0.438 +- 0.014 at |z| <= 0.8: the window mean is the profile's own average,
+  the estimators agree, nothing to reconcile. The -4.4 sigma exclusion is real
+  FOR THE WINDOW AVERAGE (the interior 2-3 bin at 0.26-0.31 dilutes the rising
+  profile; E1's recomputed z vs 0.5 = -5.8) but does not transfer to the
+  envelope: at the 3-5 R500 bin, beta = 0.545-0.560 = 0.5-class, z vs 0.5 =
+  +4.1 (E1) / +0.6 (E2) -- the envelope claim SURVIVES its own bin. Ledger
+  residue kept on the record: the G170 rule AS REGISTERED at the WINDOW level
+  (beta(2-5 R500) > 0.5 at >= 3 sigma) is not met (z = -4.4) -- a real
+  rule-level FAIL at the integration window -- while the envelope-level content
+  is confirmed; the two-regime closed form (M02) remains a separate modeling
+  task, not a contradiction.
 
 ## 3. The ontology contradiction: Noether charge vs Gauss-map charge; charge vs relic
 
