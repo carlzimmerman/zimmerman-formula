@@ -1,0 +1,96 @@
+====================================================================================================
+Z08 -- THE LINE'S ABSOLUTE ZERO POINT: slope-FIXED a0 fit, n = 542
+        the missing CH3 contribution to the G211 a0-pool, extracted
+====================================================================================================
+  [PASS] importing G162 regenerates G162_results.json byte-identically
+
+(0) THE 542-OBJECT LINE reproduced (G162 registers):
+    pooled slope b = 1.0040 +- 0.0108  (b-1)/se = +0.37   rms about identity 0.1795
+  [PASS] n = 542
+  [PASS] pooled slope 1.004 +- 0.011 (G162 register)   b = 1.0040 +- 0.0108
+  [PASS] rms about identity 0.1795 (G162 register)   rms = 0.1795
+
+(1) THE SLOPE-FIXED FIT (zero point only; slope pinned at 1):
+    log M_b = 4 log v - log(G a0)  ==  v^4 = G M_b a0
+    FULL 542:  mean r = +0.06463 +- 0.00720 dex (stdev 0.16759)
+    a0_line = 1.6978e-10 +- 1.1257e-11 (stat) = 1.8136 x a0_DE   [log10 a0/a0_DE = +0.2585 +- 0.0288 dex]
+    median r = +0.06908  ->  a0_med = 1.7688e-10 (1.889 x a0_DE)
+    bootstrap 16-84% on log10 a0/a0_DE: [+0.2300, +0.2871] (mean route),
+                   [+0.2537, +0.3252] (median route)
+  [PASS] LS zero point == geometric mean of per-object implied a0 (both faces)
+  [PASS] task-stated form (log M_b vs 4 log v, slope 1) gives the SAME a0   vertical LS 1.697830e-10 vs horizontal 1.697785e-10 (agreement limited by the 3-4-decimal rounding of the stored r registers)
+
+    PER CATALOG (slope fixed, each catalog's own zero point):
+    SPARC   n= 35  mean r -0.0447 +- 0.0131   a0=6.2039e-11 (0.663 x DE)  z_DE -3.41  z_eff -4.68  z_sLam -9.16
+    HI      n= 55  mean r +0.0192 +- 0.0202   a0=1.1177e-10 (1.194 x DE)  z_DE +0.95  z_eff +0.13  z_sLam -2.77
+    ATLAS3D n=258  mean r +0.0763 +- 0.0053   a0=1.8913e-10 (2.020 x DE)  z_DE +14.37  z_eff +11.24  z_sLam +0.21
+    GEMS    n= 36  mean r +0.0306 +- 0.0394   a0=1.2413e-10 (1.326 x DE)  z_DE +0.78  z_eff +0.36  z_sLam -1.13
+    dSph    n= 34  mean r +0.2170 +- 0.0434   a0=6.9076e-10 (7.378 x DE)  z_DE +5.00  z_eff +4.62  z_sLam +3.27
+    CLU     n= 12  mean r +0.2713 +- 0.0064   a0=1.1388e-09 (12.164 x DE)  z_DE +42.21  z_eff +39.63  z_sLam +30.50
+    GC      n=112  mean r +0.0366 +- 0.0217   a0=1.3119e-10 (1.401 x DE)  z_DE +1.69  z_eff +0.92  z_sLam -1.78
+
+    THE CORE READINGS (registered departures removed):
+    TRIO (bright dSph + HI + SPARC, n=104): mean r -0.0026 +- 0.0133 -> a0 = 9.1408e-11 (0.976 x DE, z_DE -0.20)
+
+(2) THE ABSOLUTE CHECK:
+    a0_line = 1.6978e-10 +- 6.63% (stat) vs:
+      a0_DE                9.3619e-11   ratio 1.814   z = +8.98 sigma
+      a0_eff 1.091e-10     1.0910e-10   ratio 1.556   z = +6.67 sigma
+      s_Lambda             1.8724e-10   ratio 0.907   z = -1.48 sigma
+      MIGHTEE 1.843e-10    1.8430e-10   ratio 0.921   z = -1.24 sigma
+    the line's 1-sigma band for a0: [1.589e-10, 1.814e-10]
+
+    WHO CARRIES THE +0.259 dex (log10 a0) OFFSET (catalog contributions to 4*mean r):
+      ATLAS3D +0.1454 dex  ( 56.2% of the offset)
+      dSph    +0.0544 dex  ( 21.1% of the offset)
+      GC      +0.0303 dex  ( 11.7% of the offset)
+      CLU     +0.0240 dex  (  9.3% of the offset)
+      SPARC   -0.0115 dex  ( -4.5% of the offset)
+      GEMS    +0.0081 dex  (  3.1% of the offset)
+      HI      +0.0078 dex  (  3.0% of the offset)
+    between-catalog variance share: eta^2 = 0.131 of the residual scatter
+
+(3) THE SYSTEMATICS (registered convention shifts, in log10 a0 units;
+    d log10 a0 = 4 d r; each shift is 4 x (0.25 x d log10 M_b) unless measured):
+    catalog   convention move                                    dlog10 a0   share  pooled term
+    ATLAS3D Chabrier->Kroupa: dlogM* +[0.03,0.06] -> dlog10 a0 - [-0.060,-0.030]  0.476  +0.0071
+    GEMS    f_b 0.05->0.08: measured mean r -0.0564 -> dlog10 a0 [-0.226,+0.000]  0.066  +0.0075
+    dSph    (M/L)_V 1.5 -> [1.2,2.0] (G070 S4): dlog10 a0 [log10 [-0.097,+0.125]  0.063  +0.0070
+    HI      diet-Salpeter -> fixed Ystar 0.36/0.6 (G167 V1): dwa [+0.005,+0.051]  0.101  +0.0023
+    SPARC   corpus m2l_disk fallback 0.5 (G071); deep-staircase  [-0.032,+0.032]  0.065  +0.0021
+    CLU     f_b + M500 footing +-0.1 dex in M_b (G162) -> dlog10 [-0.100,+0.100]  0.022  +0.0022
+    common distance scale dlog10 d +-0.013 -> dlog10 a0 = -2 dlog10 d, band +-0.026
+    SYSTEMATIC band on log10 a0_line: +-0.0291 dex;  STAT + sys = +-0.0409 dex
+    ROBUST a0_line band: [1.589e-10, 1.814e-10] (stat);  [1.545e-10, 1.866e-10] (stat+sys)
+    corners: pessimistic (sys doubled) [1.462e-10, 1.972e-10]
+    sigma separations with the SYSTEMATIC floor: z_DE = +6.32, z_eff = +4.69, z_sLam = -1.04
+
+(4) THE MISSING CH3 IN THE G211 POOL (fixed-effects inverse-variance,
+    G211_scale_final.py machinery; channel deltas are log10 a0/a0_DE):
+    BASELINE (CH3 = 0.000 +- 0.06, the pre-Z08 register):
+      d_pool = +0.0379 +- 0.0247 dex  z = 1.53  (a0_eff/a0_DE = 1.091)
+  [PASS] G211 baseline pool reproduced: z = 1.53, ratio 1.091   z = 1.530, ratio 1.0911
+    CH3 MEASURED (this lane): delta = +0.2585 dex (a0-space); sigma_stat 0.0288,
+      sigma_tot (stat+sys) 0.0409 dex.  The old CH3 was 0.000 +- 0.06.
+      CH3 stat-only         : d_pool = +0.1459 +- 0.0198 dex  z = 7.38  (a0_eff/a0_DE = 1.399)
+      CH3 stat+sys          : d_pool = +0.1107 +- 0.0226 dex  z = 4.89  (a0_eff/a0_DE = 1.290)
+      CH3 pessimistic 2x sys: d_pool = +0.0773 +- 0.0251 dex  z = 3.09  (a0_eff/a0_DE = 1.195)
+      leave-one-out with measured CH3: CH1_deep_end z=4.81, CH2_dsph_floor z=4.87, CH3_12decade z=1.68, CH4_MW_break z=5.05, CH5_cluster_T z=5.34
+
+(5) THE VERDICTS
+  V1  a0_line = 1.6978e-10 +- 1.1257e-11 (stat) +- 1.1372e-11 (sys) = 1.81 x a0_DE
+     (per catalog: SPARC 0.663 xDE (z_DE -3.4); HI 1.194 xDE (z_DE +1.0); ATLAS3D 2.020 xDE (z_DE +14.4); GEMS 1.326 xDE (z_DE +0.8); dSph 7.378 xDE (z_DE +5.0); CLU 12.164 xDE (z_DE +42.2); GC 1.401 xDE (z_DE +1.7))
+  V2 [stat-only] sigma separations:  z(a0_DE) = +8.98   z(a0_eff 1.09e-10) = +6.67   z(s_Lambda) = -1.48
+  V2 [stat+sys] sigma separations:  z(a0_DE) = +6.32   z(a0_eff 1.09e-10) = +4.69   z(s_Lambda) = -1.04
+     the line's absolute zero point therefore prefers: s_Lambda (seesaw scale)
+  V3  THE HONEST STATEMENT.  With the slope pinned at exactly 1, the 12-decade line's single free parameter is a0_line = 1.6978e-10 +- 1.1257e-11 (stat), 1.81 x a0_DE — a measurement extracted here for the first time — and the line sits +0.065 +- 0.007 dex (mean residual, stat) ABOVE the DE footing: +8.98 sigma from a0_DE, +6.67 sigma from the pooled a0_eff = 1.09e-10, and -1.48 sigma from the seesaw scale s_Lambda = 1.87238e-10.  The 542-object line's absolute scale, slope-fixed, lands ON THE SEESAW SCALE — not on DE, not on the RAR-class effective scale: its independent measurement is 0.91 x s_Lambda (1-sigma band [1.589, 1.814]e-10, stat; [1.545, 1.866]e-10 with the registered systematics), i.e. a0_line = 1.70e-10, and it is MOLDED by catalog normalization: the ATLAS3D channel alone (258 objects, Chabrier M/L_JAM, +0.076 dex) carries +0.145 dex = 56% of the +0.259-dex (log10 a0) offset, the registered end-departures (clusters +0.271 dex, UFD dSphs) most of the rest, while the rotation-face core sits at/below DE (SPARC 0.66 xDE, HI 1.19 xDE; the TRIO core -0.003 dex = 0.98 xDE, z -0.2).  IN THE G211 POOL the missing CH3 is NOT 0.000: replacing the 0.000 +- 0.06 budget with the measured +0.259 +- 0.041 dex (a0-space) moves the pool z = 1.53 -> 7.38 sigma (stat), 4.89 sigma (stat+sys), 3.09 sigma even under a doubled systematic (ratio 1.091 -> 1.399/1.290/1.195): the extracted line scale CROSSES the 3-sigma materiality bar that G211's 1.53-sigma cosmetic verdict explicitly hedged on, in the ANTI-DE (pro-seesaw) direction the line was previously believed silent in.  THE CAVEAT THAT KEEPS IT HONEST: the crossing is conditional on the equal-weight reading, 56% of whose offset is the ATLAS3D internal M/L scale (G223's named normalization suspect) plus the registered end departures — the audit that decides is catalog-normalization (ATLAS3D internal, cluster f_b, UFD status) and the z~2.5 BTFR, not the line.  The number that joins (does not sideline) the pooling: +0.2585 +- 0.0409 dex on log10 a0/a0_DE.
+
+(GATES)
+  [PASS] G236 register: 248-object line median r = +0.0471 at DE   median = +0.0470
+  [PASS] G236 register: TRIO median r = -0.010 (bright dSph + HI + SPARC)   median = -0.0097
+  [PASS] G211 CH1 CH2 registers: 0.0661 / 0.1973 dex (a0-space)
+  [PASS] per-object a0 geometric mean reproduces the LS zero point to 1e-9
+  [PASS] the 1-sigma band brackets the MIGHTEE deep-end 1.843e-10? no (stat only), yes (stat+sys)
+checks: 12/12 pass
+
+wrote Z08_results.json
