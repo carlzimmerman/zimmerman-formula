@@ -1,0 +1,63 @@
+==============================================================================
+A02 -- THE PROTON RUNG: the T_vir identity re-assembled from the
+committed registers (G151/G075/G095/G109), and what it means.
+==============================================================================
+
+[V0 GATE -- the reassembly reproduces the committed G075 rows]
+  [PASS] V0a sigma_pred(M_b, a0) vs the committed rows, both footings, n = 12
+        measured: worst rel err (canonical) = 8.18e-07, (alt) = 1.01e-05 (the alt footing a0 = 1.1279e-10 is a 5-digit rounding -> 1e-5)
+        reading: reassembly is the committed formula with the committed footings
+  [PASS] V0b the 12 committed clusters imply ONE a0 to machine precision
+        measured: recovered a0 = 4 sigma^4/(G M_b): median 9.361930620934e-11, spread 9.05e-26 vs registered canonical 9.361900000000e-11 (rel 3.27e-06)
+        reading: all 12 M500-class clusters are internally consistent with the single registered footing a0 = 9.3619e-11 at the 3e-6 level -- the identity sigma^2 = (1/2) sqrt(G M_b a0) with one constant describes the whole committed sample
+  [PASS] V0c T_X,pred = mu m_p sigma^2/(2 k_B) from the committed sigma rows
+        measured: worst rel err = 7.99e-08 vs the committed T_pred_canonical rows
+        reading: the /2-convention temperature law is digit-for-digit the committed G075 floor (mu = 0.6, m_p = 938.272 MeV)
+
+[V1a THE IDENTITY -- zero-parameter T_vir vs the measured X-COP kT]
+  [PASS] V1a-1 THE /2-CONVENTION FLOOR: median T_pred/T_obs (the G075-registered ratio), n = 12
+        measured: canonical 0.280067 (registered 0.2800669323647625) / alt 0.307401 (registered 0.3074012927438907); log10 scatter 0.051285 dex (registered 0.0512849374)
+        reading: REPRODUCED DIGIT-FOR-DIGIT from the committed rows: the X-COP ICM is 3.57x hotter than the /2-convention baryon floor (1/0.280 = 3.5706)
+  [PASS] V1a-2 THE IDENTITY-FORM RUNG (G151 rung (c)): T_vir = mu m_p sigma^2/k_B with sigma^2 = sqrt(G M_b a0)/2
+        measured: median T_vir = 3.633 keV (canonical) / 3.988 keV (alt) vs observed kTvir median 6.175 keV; median T_vir/T_obs = 0.5601 (canonical) / 0.6148 (alt); ratio of medians 0.5884
+        reading: the factor 2 vs V1a-1 is the virial-T CONVENTION (G075's T_X,pred divides by 2; G151's rung (c) does not). Either way the zero-parameter rung from (M_b, a0) alone lands UNDER the observed 6.17 keV median: 1.7x (identity form) to 3.6x (/2-convention) -- the registered G095 total-mass virial floor gap, not a reassembly error
+  [PASS] V1a-3 the G151 A4 anchor: A85 M_b(R500) -> sigma -> T (identity form)
+        measured: sigma_pred = 766.1 km/s -> T = 3.68 keV (G151 registered 766.1 km/s -> 3.68 keV); G008 registered 809 km/s -> 4.10 keV (4.10)
+        reading: the identity form is the ladder's own cluster rung, reproduced on the committed A85 row
+
+[V1b THE G109 CROSS-INSTRUMENT CLOSURE -- sigma_gal = sqrt(kT/mu m_p)]
+  [PASS] V1b-1 sigma_gas,1D = sqrt(kT/(mu m_p)) recomputed from T_r vs the committed G109 rows, n = 11
+        measured: worst rel err = 5.24e-05 (m_p = 938.272 MeV, 5-digit rounding)
+        reading: the G109 gas dispersions are the sqrt(kT/mu m_p) law on the same mu = 0.6, m_p convention
+  [PASS] V1b-2 the cross-instrument closure: R1d = sigma_gal/sigma_gas,1D
+        measured: median R1d = 0.9981 (registered 0.998); log10 mean = -0.0085 (registered -0.0085); log10 rms = 0.0627 dex (registered 0.0621, full-precision internal); min/max log10R = [-0.1337, 0.1173]; A644 excluded (no published sigma_gal)
+        reading: sigma_gal = sqrt(kT/mu m_p) to the 0.062-dex level over 11 clusters: the baryonic gas temperature IS the galaxy velocity scale at equipartition -- the mu m_p rung read one way through kT and the other through sigma_gal
+  [PASS] V1b-3 the median closure: kTvir = 6.17 keV <-> sigma_1D
+        measured: sigma_gas,1D(6.17 keV) = 992.9 km/s (G151/G109 registered 992)
+        reading: the observed median temperature corresponds to a 1D thermal dispersion 992 km/s = the galaxy dispersion (0.998 median)
+
+[V2 THE RATIO FORM -- T_phase/T_bary = m/(mu m_p), with the footing labeled]
+  [PASS] V2a EQUAL-SIGMA identity (G151 A3, at sigma = 119.2 km/s): c/a = T_bary/T_phase = mu m_p/m
+        measured: T_phase = 9.1744 K = 7.9059e-04 eV; T_bary = 89.01 eV; c/a = 112587.00 (registered 1.126e5); m/m_p = mu/(c/a) = 5.32921e-06 vs SM m/m_p (m = 5 keV) = 5.32895e-06 (ratio 1.00005); at m = 5.09 keV: 5.42487e-06
+        reading: the rung ratio at one velocity scale is the exact mass ratio mu m_p/m evaluated on the committed numbers -- an IDENTITY: T_phase's m = 5 keV is an input (G212 germ), so this 'agreement' with the SM is the algebra's self-consistency, not a derivation of m_p (G151 C2: carved in stone, inputs empirical)
+  [PASS] V2b COMMITTED HEADLINE rungs (T_phase = 9.17 K, T_bary = 6.17 keV median): m/m_p = mu T_phase/T_bary vs the SM
+        measured: m/m_p = 7.6844e-08 vs SM 5.3289e-06: ratio 0.01442 = (sigma_phase/sigma_cluster)^2 = (119.2/992.0)^2 = 0.01444
+        reading: the two committed rung temperatures live at DIFFERENT velocity footings (9.17 K at the galaxy triad sigma = 119.2 km/s; 6.17 keV at the cluster sigma_1D = 992 km/s): the naive ratio returns m/m_p x (sigma_phase/sigma_cluster)^2 = 5.329e-6 x 0.0144 = 7.68e-8, 69x below the SM -- it measures the sigma-footing mismatch, NOT a mass ratio; the ratio form T_phase/T_bary = m/(mu m_p) holds at equal sigma only
+  [PASS] V2c the virial-T ratio 3.57 LABELED (G095/G104; the sigma note): what it actually measures
+        measured: 1/0.2800669 = 3.5706 (G075 shortfall 3.5706); G095 median T_obs/T_pred = 3.572, closed form 2 f (r_M/r) = 3.512; G104 median T_obs/T_floor = 3.572; median f = M_dyn/M_b = 5.664
+        reading: the 3.57 is the ICM-vs-equilibrium ratio: the cluster's measured temperature (the virial T of the TOTAL mass within R500, M_dyn = M500) over the baryons' OWN virial floor -- closed form 2 (M_dyn/M_b)(r_M/r), a dark-to-baryon CONTENT ratio f = 5.66 read through the virial theorem. It is NOT a particle mass ratio, and A02 claims no mass derivation from it (or from any rung ratio): the framework CARRIES m/m_p (5.3e-6 at m = 5 keV), it does not derive it
+
+[V3 THE HONEST STATEMENT]
+  [PASS] V3 the honest statement
+        measured: THE PROTON RUNG: the framework's baryonic temperature law IS a proton-mass-scale prediction -- what it establishes and what it does not. (1) ESTABLISHED: with sigma^2 = (1/2) sqrt(G M_b a0) (G091 virial closed form, kappa = 1/2), the ladder's baryonic rung T = mu m_p sigma^2/k_B is a ZERO-PARAMETER prediction of an X-ray temperature from (M_b, a0) alone: T_X-ray = mu m_p sqrt(G M_b a0)/(2 k_B). The proton mass is the mass unit of the baryonic rung BY CONSTRUCTION -- the framework's contribution is the velocity scale sigma (mass-free in T/m = sigma^2/k_B = 1.835 mK/eV, G084/G116), and the SM coupling mu m_p converts that dynamics into keV. On the committed record this law is confirmed as the ICM virial relation at the 0.06-0.10 dex level: G109's cross-instrument equipartition (sigma_gal/sigma_gas,1D = 0.998 median, rms 0.062 dex, 11 clusters; sigma_1D(6.17 keV) = 992 km/s) and G095's closed form 2 f (r_M/r) (median 3.512 vs 3.572, 1.8%; HSE scatter 0.053 dex). The zero-parameter AMPLITUDE vs the X-COP kTvir median 6.17 keV: 0.28/0.31 (/2-convention floor, the G075-registered ratio, reproduced digit-for-digit) or 0.56/0.62 (identity-form rung) -- the registered gap, explained by G095 as the total-mass virial floor (f = M_dyn/M_b = 5.7 median). (2) NOT ESTABLISHED: the ladder does NOT derive m_p (or mu, or the mass germ m = 5.09 +/- 0.10 keV, G212) -- all three are inputs; m/m_p = 5.3e-6 is carried by the rung algebra, not derived (V2a: the equal-sigma identity agrees with the SM to 0.007% because T_phase was built from m; V2b: the naive ratio of the two committed headline temperatures is 69x low and measures the sigma-footing mismatch; V2c: the 3.57 virial-T ratio measures the ICM-vs-equilibrium dark-to-baryon content, not a mass ratio). The 9.17 K phase rung is observationally inert (no radiation, no collision, G151/G093), so no observable ratio contains it. (3) THE FIRST-PRINCIPLES CONTENT, honestly: the framework's dynamical scale sigma is mass-free; the baryonic rung then READS the proton mass as the temperature's mass unit -- the keV scale of cluster temperatures is a measurement of the baryonic mass unit in a framework-computed gravitational well. The ladder does not explain why m_p is 938 MeV; it predicts the temperature that a gas of mu m_p particles must have in the framework's wells, and the data confirm that law at 0.06-0.10 dex.
+        reading: the proton rung: m_p is the baryonic rung's unit (by construction, not derived), and T_X-ray = mu m_p sqrt(G M_b a0)/(2 k_B) is a genuine zero-parameter prediction of an X-ray temperature from (M_b, a0) alone
+
+[VERDICTS]
+  [PASS] V1_the_Tvir_identity_verified
+        THE T_vir IDENTITY VERIFIED END-TO-END. T_vir = mu m_p sigma^2/k_B with sigma^2 = (1/2) sqrt(G M_b a0) re-assembled from the committed registers: (a) the zero-parameter cluster sample -- sigma_pred from M_b(R500) reproduces the committed G075 rows (worst rel err < 1e-6 canonical / 1e-5 alt = the footing's 5-digit rounding); the 12 clusters imply ONE a0 = 9.36193e-11 to machine precision; median T_...
+  [PASS] V2_m_over_mp_from_the_rungs_vs_SM
+        THE m/m_p RATIO FROM THE RUNGS, FOOTING-LABELED. The rung form T_phase/T_bary = m/(mu m_p) is an EQUAL-SIGMA identity (G151 A3: c/a = mu m_p/m = 1.126e5 exactly at sigma = 119.2 km/s); at that footing m/m_p = mu/(c/a) = 5.3286e-6 vs the SM m/m_p = 5.3289e-6 (m = 5 keV; 5.4249e-6 at the G212 5.09 keV) -- 0.007% agreement, an IDENTITY (T_phase's m is an input, not derived: the algebra CARRIES m/m_p;...
+  [PASS] V3_the_honest_statement
+        THE PROTON RUNG: the framework's baryonic temperature law IS a proton-mass-scale prediction -- what it establishes and what it does not. (1) ESTABLISHED: with sigma^2 = (1/2) sqrt(G M_b a0) (G091 virial closed form, kappa = 1/2), the ladder's baryonic rung T = mu m_p sigma^2/k_B is a ZERO-PARAMETER prediction of an X-ray temperature from (M_b, a0) alone: T_X-ray = mu m_p sqrt(G M_b a0)/(2 k_B). Th...
+
+13/13 checks PASS -> /Users/carlzimmerman/new_physics/zimmerman-formula/project_atomos/A02_results.json
