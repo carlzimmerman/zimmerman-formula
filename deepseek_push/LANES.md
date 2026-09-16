@@ -11,6 +11,7 @@ carries the four that run the theory's core arithmetic:
 | **G040** — the per-galaxy RAR offset decomposition | `lanes/G040_offset_decomposition.py/.out` | the offset is M/L nuisance, not physics (R²=0.016/0.006) |
 | **G052** — the unified cosmology | `lanes/G052_unified_cosmology.py/.out` | **5/6** — Ω_Λ=0.6857 from a₀ alone (+0.07% of Planck); Ω_dm=0.2650 flatness residual |
 | **G070** — the dSph compendium (the empirical pillar) | `G070_dsph_compendium.py/.out` | **V1 PASS** (median \|log₁₀\|=0.222≤0.30, n=34, zero parameters); **V2 FAIL** (slope +0.159±0.021>0.10 — the honest mass-dependence: UFD regime sits 2× above the line, bright dSphs ON it); V3: 12 violators, all UFDs, one-sided; S1: the 3D reading would fail V1 (+0.24 dex) — the law is LOS |
+| **G118** — the merger-rate registry (the deep-regime close-pair prediction, pre-registered) | `G118_merger_registry.py/.out`, `G118_merger_registry.md`, `G118_results.json` | **q = 1 closed form** from the Roche-class criterion with the 1/r force (r_t = s(M_sat/M_host)^(1/3)-class scaled by η = 1 + r_M/s, linear transfer): f_pair/f_LCDM = (1 + r_M/s)^1 — **2.000 at s = r_M** (G086's factor EXACT), 1.500 at 2 r_M, 3.000 at r_M/2; window 10–40 kpc × 2e10–2e11 M☉ → median excess 1.485; falsifiers F1 (≤ LCDM at s ~ r_M), F2 (wrong slope / q_meas outside [0.5, 1.5]), F3 (concentration instead of M_b), F4 (wrong window); 8/8 checks |
 
 ## Representative verdicts (verbatim from the .out files)
 
