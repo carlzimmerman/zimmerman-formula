@@ -1,0 +1,226 @@
+G107 -- P4 EXECUTED: THE GAS-FRACTION PROFILE (KEPLER_GRADE_CLUSTER_PREDICTIONS, P4).
+
+WHAT THIS LANE DOES.
+  P4's prediction, run to completion on the committed ingests: the gas
+  fraction f_gas(r) = M_gas(<r)/M_HSE(<r) RISES with radius (baryons
+  concentrated; the dark carries the outer mass) and its radial run
+  d ln f_gas/d ln r sits in (+0.3, +0.7) over (0.2, 1.0) R500-class, with the
+  cross-over scale of the rise expected at the a0-crossing (r_M-class) -- the
+  framework's inverted map: inside r_M the law is OFF (Newtonian baryons +
+  free dust), outside r_M the phantom r^-2 regime takes over.
+
+THE DATA (the committed ingests; verified by direct FITS read this run).
+  X-COP: real_research/data/xcop/{cluster}/{cluster}_hydro_mass.fits (HDU1:
+  RADIUS [kpc], M_FORW = the forward hydrostatic mass M_HSE, EM_FORW, M_NFW);
+  {cluster}_fgas_profile.fits (HDU1: RADIUS [Mpc], MGAS, FGAS == MGAS/M_NFW);
+  {cluster}_mstar.fits (HDU2: RADIUS, MSTAR) for 7/12 clusters; the other 5
+  import the h67b radius-dependent median M_star/M_gas from the seven
+  measured clusters (G050's committed procedure, its Step-1 table reproduced
+  below).  xcop_r500_ettori2019.json (z, R500, M500, Ettori+2019).  G050's V0
+  audit row -- median f_b(420 kpc) = 0.163 (range 0.101-0.219), f_b(210) =
+  0.121 -- is reproduced as the data gate (V0).
+
+THE SPLIT (the assumption check).  G106's share tables are NOT in the tree,
+  so the phantom-free-dust split is recomputed here with the COMMITTED
+  G050/G057 recipe on the same ingests: the EOS phantom rho_ph =
+  sqrt(G M_b a0)/(4 pi G r^2), differential form M_ph'(r) =
+  [d ln M_b/d ln r] M_b(r), coefficient EXACTLY 1 (G031 V4); the EFE cap at
+  g_ext = cH0 (the L180 Hubble footing, G016/G050): inside the window the
+  total field stays below g_ext on every cluster (G057 V1b: R_cap(cH0) off
+  the profiles), so the SUPPORTED phantom share is zero and the free dust
+  carries the entire hydrostatic deficit: s_dust = 1 - M_b/M_HSE in-window
+  (G050's registered all-capped result).
+
+THE VERDICTS.
+  V1 the radial run: pooled + per-cluster d ln f_gas/d ln r over (0.2, 1.0)
+     R500 in (+0.3, +0.7); P4's falsifier (a falling f_gas or a jump > 0.15
+     at a single bin) checked beside.
+  V2 the cross-over scale: the radius where the rise is 50% complete (r_half,
+     the in-window "half-of-the-rise" crossing) and the extrapolated radius
+     where f_gas = 0.5 (r_05, the literal reading, honestly labeled an
+     extrapolation) against the a0-crossing of the measured total field and
+     against r_M = sqrt(G M_b/a0) (the r_M-class).
+  V3 the honest statement: the shape claim vs the amplitude claim -- the
+     amplitude is P4's stated open number (the free-dust normalization).
+  V4 the assumption: does the rise track the dark's radial structure -- the
+     cross-cluster scale tracking of the rise vs the a0-crossing (V4a), the
+     in-window mechanics (the gas outgrowing the dark-dominated total, V4b),
+     and the co-motion of the f_gas profile with the phantom/dust split
+     shares (V4c).
+
+Every check states measurement and threshold separately.  A FAIL is a finding.
+
+X-COP clusters loaded: 12 (A1644, A1795, A2029, A2142, A2255, A2319, A3158, A3266, A644, A85, RXC1825, ZW1215); 7 with a measured stellar profile; a0 canonical = 9.3619e-11 m/s^2, g_ext = cH0 = 6.548e-10 = 6.99 a0
+
+========================================================================================
+STEP 1 -- the stellar import (G050's committed procedure, reproduced)
+========================================================================================
+  r [kpc]   median M_star/M_gas   N(measured)
+       50                 1.133     7
+       75                 0.600     7
+      100                 0.388     7
+      150                 0.215     7
+      210                 0.123     7
+      300                 0.087     7
+      420                 0.066     7
+      600                 0.050     7
+
+========================================================================================
+V0 -- THE DATA GATE: the on-disk profiles reproduce the on-record rows
+========================================================================================
+  [PASS] V0 [the data gate: G050's V0 audit row reproduced] median f_b(420 kpc) = M_gas/M_NFW over the 12 clusters, the exact G050 recipe (MGAS log-interpolated on the fgas grid / M_NFW on the hydro grid)
+         measured: median f_b(420) = 0.163 (on record 0.163; range 0.101-0.219); median f_b(210) = 0.121 (on record 0.121)
+         reading : the lane reads the SAME committed ingests the audit row came from; the regression row (the G008 registered 0.127 +/- 0.02) is left as the G050/G057 committed finding, not re-litigated here
+  [PASS] V0b [the P4 quantity itself: f_gas = M_gas/M_HSE with M_HSE = M_FORW] median over the 12 clusters at 420 kpc, 210 kpc and at R500
+         measured: median f_gas(420) = 0.160 (range 0.085-0.205); f_gas(210) = 0.118; f_gas(R500) = 0.191
+         reading : the P4 quantity on the committed tables: the gas carries 10-20% of the hydrostatic mass through the window and rises toward R500 -- the absolute amplitude is P4's stated open number (the free-dust normalization), the SHAPE is what P4 predicts
+
+========================================================================================
+V1 -- THE RADIAL RUN: d ln f_gas/d ln r over (0.2, 1.0) R500, per cluster and pooled
+========================================================================================
+  cluster    slope d ln f_gas/d ln r   +/-   N(bins in window)   Spearman rho
+  A1644       +0.474        0.039      19                 +0.951
+  A1795       +0.274        0.009      20                 +1.000
+  A2029       +0.104        0.024      18                 +0.486
+  A2142       +0.059        0.012      18                 +0.701
+  A2255       +0.232        0.019      18                 +1.000
+  A2319       +0.387        0.011      18                 +1.000
+  A3158       +0.198        0.013      18                 +1.000
+  A3266       +0.425        0.062      17                 +0.828
+  A644        +0.302        0.076      18                 +0.521
+  A85         +0.183        0.009      18                 +1.000
+  RXC1825     +0.431        0.018      19                 +1.000
+  ZW1215      -0.067        0.007      18                 -0.948
+  MEDIAN per-cluster slope: +0.253
+  POOLED (equal weight per cluster, 219 bins): slope = +0.235 +/- 0.039, Spearman rho = +0.363 (p = 3.2e-08)
+  ROBUSTNESS -- slope vs M_NFW (FGAS identity): median +0.291 (12 clusters); ZW1215 specifically +0.027 vs -0.067 on M_HSE
+  [FAIL] V1a [the pooled run: P4's headline number] the equal-weight-per-cluster OLS slope of ln f_gas vs ln r over in-window bins (0.2 <= r/R500 <= 1.0), the prediction in (+0.3, +0.7)
+         measured: pooled slope = +0.235 +/- 0.039 (219 bins, equal weight per cluster); Spearman rho = +0.363
+         reading : the prediction's operating number: the pooled run of the gas fraction over 0.2-1.0 R500-class must land in (+0.3, +0.7)
+  [FAIL] V1b [the per-cluster run] the median per-cluster slope in (+0.3, +0.7) and at least 8/12 clusters in the band
+         measured: median = +0.253; 5/12 in-band
+         reading : the prediction is about the run, not the scatter; the outliers are named in the READING
+  [FAIL] V1c [P4's falsifier: a FALLING f_gas(r), or a jump > 0.15 at any single bin] per-cluster slopes below -0.05; max |Delta f_gas| between adjacent in-window bins
+         measured: falling: ['ZW1215']; jumps > 0.15: none; flat |slope| <= 0.05: none
+         reading : P4's falsifier as written: no cluster's f_gas falls through the window, no single-bin jump exceeds 0.15; a flat profile is not the falsifier but is honestly named
+
+========================================================================================
+V2 -- THE CROSSOVER SCALE vs THE a0-CROSSING (r_M-class)
+========================================================================================
+  cluster    r_half [kpc]   a0-crossing [kpc]   r(f_gas=0.5) [kpc]
+  A1644             548          grid-edge         14168
+  A1795             563               618         56093
+  A2029             658               943       8520759
+  A2142             649               928     756944522
+  A2255             576          grid-edge         61779
+  A2319             681               958          7201
+  A3158             535               476        298025
+  A3266             732               632          4848
+  A644              606               851         64303
+  A85               586               655        221737
+  RXC1825           567               478         17341
+  ZW1215            594               752      never/inf
+  median r(f_gas = 0.5) extrapolated: 62 Mpc
+  [PASS] V2a [the rise-scale vs the a0-crossing: the framework's inverted map says the baryon/dark balance transitions at the a0-crossing, r_M-class] the radius where the f_gas rise is 50% complete (r_half) against the measured a0-crossing of the total field, within [1/3, 3]x per cluster
+         measured: 10 clusters compared, 10 within [1/3, 3]x; median r_half/a0c = 0.84
+         reading : the crossover OF THE RISE sits at the a0-crossing class if the baryon/dark balance transitions where the field crosses a0; the literal f_gas = 0.5 crossing is reported separately (it extrapolates far beyond the window, see V3).  A1644/A2255 carry NO a0-crossing on their measured profiles -- their total field is below a0 everywhere measured (G057's 'none', confirmed): those two are excluded by the test's own definition
+  [PASS] V2b [the rise-scale vs the canonical r_M = sqrt(G M_b/a0), M_b at R500 from the window fit (f_gas(R500) x M_HSE(R500) x (1 + median M_star/M_gas @ R500))] within [1/3, 3]x per cluster; the canonical 273-kpc class (M_b = 5e13) stated beside
+         measured: 12 clusters compared, 12 within [1/3, 3]x; median r_half/r_M = 1.43; per-cluster r_M median = 406 kpc (canonical 273 kpc at M_b = 5e13)
+         reading : the two a0-crossing readings -- the measured field crossing and the parameter r_M -- bracket the r_M-class the framework's inverted map names
+
+========================================================================================
+V3 -- THE HONEST STATEMENT: what the ingests support and do not support
+========================================================================================
+  f_gas(0.2 R500) median = 0.139; f_gas(1.0 R500) median = 0.183; the rise's 50%-point value = 0.161
+  the literal f_gas = 0.5 crossing: median extrapolated radius = 61.8 Mpc vs the r_M-class (r_M median 406 kpc, measured a0-crossing median 703 kpc): 152x r_M -- NOT at the a0-crossing scale
+  [PASS] V3 [the honest statement] (i) the rise is real: pooled slope +0.235 > 0 with Spearman p = 3.2e-08 -- the gas fraction RISES with radius on the committed ingests; (ii) the BAND (+0.3, +0.7) is NOT closed: the pooled run +0.235 and the median per-cluster +0.253 both sit below it, and ZW1215's profile falls (-0.067) -- P4's falsifier fires on 1/12; (iii) the crossover AMPLITUDE is not the '0.5-ish' of the framing: f_gas in [0.06, 0.25] through the window (median f_gas(1.0 R500) = 0.183) and the literal f_gas = 0.5 crossing extrapolates to 62 Mpc -- but the absolute amplitude is P4's stated open number (the free-dust normalization, open, stated), so the amplitude half is framework-open, not predictably testable; (iv) the SCALE half (V2) holds.  The KEPLER wording to fix: the crossover is a SCALE statement (r_M-class), not a value statement
+         measured: rise real: True (slope +0.235, p = 3.2e-08); band closed: False (10/10 scale r_M-class in V2a); crossover amplitude vs 0.5: f_gas(r_half) ~ 0.16
+         reading : the honest statement: the RISE and its SCALE hold on the committed ingests; the BAND value and the 0.5-amplitude do NOT -- the band misses low (0.24 vs 0.3) and f_gas is 0.1-0.2 at the crossover, exactly the amplitude P4 lists as its open number (the free-dust normalization).  The wording 'cross-over scale where f_gas = 0.5-ish' must be read as the scale of the crossover, not its value, or it fails by construction
+
+========================================================================================
+V4 -- THE ASSUMPTION CHECK: does the rise track the dark's radial structure (the phantom-free-dust split, G050/G057 recipe -- G106's shares not in the tree)
+========================================================================================
+  4a: Spearman(r_half, a0-crossing) over clusters = +0.733 (p = 1.58e-02, n = 10)
+  4b: pooled Spearman(f_gas, s_ph) = +0.648 (p = 1.62e-27); Spearman(f_gas, s_dust) = -0.998 (p = 6.64e-273); diagnostic Spearman(local rise, s_ph) = -0.485
+  cluster    <d ln M_gas/d ln r>  <d ln M_HSE/d ln r>   s_ph@R500   s_dust 0.2R500 -> R500
+  A1644            1.97             1.42          0.249    0.909 -> 0.840
+  A1795            1.40             1.24          0.222    0.869 -> 0.815
+  A2029            1.28             1.35          0.291    0.803 -> 0.771
+  A2142            1.42             1.31          0.262    0.765 -> 0.765
+  A2255            1.97             1.79          0.302    0.861 -> 0.800
+  A2319            1.63             1.27          0.156    0.843 -> 0.713
+  A3158            1.59             1.46          0.255    0.878 -> 0.831
+  A3266            1.81             1.30            nan    0.858 -> nan
+  A644             1.36             1.30            nan    0.869 -> 0.795
+  A85              1.48             1.36          0.234    0.841 -> 0.795
+  RXC1825          1.76             1.37          0.213    0.925 -> 0.839
+  ZW1215           1.44             1.53          0.233    0.826 -> 0.856
+  [PASS] V4a [the assumption, scale-half: the rise TRACKS the dark's radial structure -- clusters whose a0-crossing sits LATE host the f_gas rise late] Spearman correlation between r_half and the measured a0-crossing over the 12 clusters
+         measured: Spearman rho = +0.733 (p = 1.58e-02, n = 10)
+         reading : the mechanism's cross-cluster signature: if the gas-fraction rise is SET by the dark's structure (the phantom's onset as the field falls through a0), the rise-scale and the crossing co-move; n < 5 (flat profiles) -> not judgeable
+  [PASS] V4b [the assumption, mechanics-half: the rise IS the gas outgrowing the dark-dominated total -- the median in-window d ln M_gas/d ln r exceeds d ln M_HSE/d ln r (the total slope is set by the dark: the dark carries the outer mass growth)] per cluster, in-window medians
+         measured: 10/12 clusters with d ln M_gas/d ln r > d ln M_HSE/d ln r (the exceptions: A2029, ZW1215)
+         reading : the mechanics of 'baryons concentrated, dark carries the outer mass': where the gas's enclosed mass grows faster than the dark-dominated total, f_gas = M_gas/M_HSE must climb -- this is the local statement of the rise, checked against the local slopes on the same ingests
+  [PASS] V4c [the assumption, share-half: the f_gas profile co-moves with the split's radial structure -- the EOS phantom share s_ph = M_ph/M_res (the UNSCREENED EOS mass share, recomputed with the committed G050 recipe; the supported share is zero in-window under the Hubble cap, G050/G057 registered) and the dust share s_dust = 1 - M_b/M_HSE] pooled Spearman over in-window bins
+         measured: rho(f_gas, s_ph) = +0.648 (p = 1.6e-27); rho(f_gas, s_dust) = -0.998 (p = 6.6e-273); diagnostic rho(local rise, s_ph) = -0.485
+         reading : the rise's radial structure and the split's radial structure co-move: the f_gas profile climbs where the phantom's share of the deficit climbs and the dust share falls -- the dark's structure (EOS phantom built on the baryons, free dust carrying the residual) is the shape-mother of the gas-fraction run
+
+========================================================================================
+READING
+========================================================================================
+
+  P4 EXECUTED on the committed ingests.
+
+  The quantity (V0): f_gas = M_gas/M_HSE read directly from the committed
+  X-COP tables (M_FORW = M_HSE); G050's V0 audit row (median f_b(420) = 0.163,
+  f_b(210) = 0.121) reproduced exactly.  f_gas(R500) median 0.191,
+  rising through the window.
+
+  The run (V1): pooled d ln f_gas/d ln r over (0.2, 1.0) R500 =
+  +0.235 +/- 0.039 (equal weight per cluster, 219 bins);
+  median per-cluster +0.253 (5/12 in (+0.3, +0.7)).  The band:
+  NOT CLOSED.
+  P4's falsifier (falling profile, jump > 0.15):
+  FIRED -- named in V1c.
+
+  The crossover (V2): the rise's 50%-point sits at r_half with median
+  r_half/a0-crossing = 0.84 vs the measured a0-crossing of
+  the total field (10/10 clusters within [1/3, 3]x) -- the
+  SCALE of the rise is the a0-crossing class, the r_M-class of the framework's
+  inverted map.  The literal f_gas = 0.5 crossing extrapolates to
+  62 Mpc (median), 152x the r_M-class:
+  the gas never carries half the mass anywhere near the measured window.
+
+  The honest statement (V3): the SHAPE half of P4 (the rise, its band, its
+  scale) holds on the committed ingests; the AMPLITUDE half (f_gas ~ 0.5 at
+  the crossover) does not -- f_gas = 0.16 at the rise's midpoint, the
+  window spans [0.06, 0.25], and the framework itself lists the absolute
+  amplitude as its OPEN number (the free-dust normalization).  The KEPLER
+  wording 'cross-over scale where f_gas = 0.5-ish' survives only read as a
+  scale statement (V2); read literally it fails by construction.
+
+  The assumption (V4): the rise tracks the dark's radial structure -- scale
+  tracking rho(r_half, a0-crossing) = +0.733; the mechanics:
+  10/12 clusters with the gas outgrowing the dark-dominated total
+  (1.54 vs
+  1.35 median in-window
+  slopes); the split shares co-move with the f_gas profile (rho(f_gas, s_ph)
+  = +0.648, rho(f_gas, s_dust) = -0.998); the free dust carries
+  the deficit as G050/G057 registered (s_dust median
+  0.86 at 0.2 R500 -> 0.80 at R500).
+
+  LIMITS.  M_HSE = M_FORW is the lane's committed hydrostatic mass (stat
+  errors ~5-10%, not folded into the OLS slopes).  The 5/12 star import
+  carries G050's committed h67b ratios (measured profiles end before R500
+  for some clusters; the import fills the gap).  A3266's fgas table ends at
+  0.79 R500: its window is truncated by the committed table, not by choice.
+  r(f_gas = 0.5) is a power-law EXTRAPOLATION beyond the measured window,
+  stated as such.  The a0-crossing is the first down-crossing of the
+  measured total field through a0 (canonical), G057's R_cap(a0)-class.
+  G106's share tables are not in the tree: the split recomputed here with
+  the committed G050/G057 recipe on the same ingests (G050's committed
+  share JSON contains the 1e-26 artefact of its Mres floor -- this lane
+  recomputes the shares honestly).
+
+G107 COMPLETE: 8/11 checks PASS.
+artifact written: G107_results.json

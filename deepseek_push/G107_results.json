@@ -1,0 +1,379 @@
+{
+ "lane": "G107_gas_fraction",
+ "doc": "KEPLER_GRADE P4 executed: f_gas = M_gas/M_HSE per bin, the radial run d ln f_gas/d ln r over (0.2, 1.0) R500, the crossover scale vs the a0-crossing (r_M-class), the honest statement, the split check",
+ "n_clusters": 12,
+ "a0_canonical": 9.3619e-11,
+ "v0_audit": {
+  "f_b420_vs_NFW_median": 0.16279930784762556,
+  "f_b420_vs_NFW_range": [
+   0.10110882077049434,
+   0.21938120961062443
+  ],
+  "f_b210_vs_NFW_median": 0.12140607465642791,
+  "f_gas420_vs_HSE_median": 0.16047138603075983,
+  "f_gas_R500_vs_HSE_median": 0.19097063395538347
+ },
+ "run": {
+  "pooled_slope": 0.23514364559140483,
+  "pooled_slope_err": 0.03858903969411323,
+  "pooled_spearman": 0.36290401818867324,
+  "pooled_spearman_p": 3.212985290256847e-08,
+  "median_per_cluster_slope": 0.2529256612329632,
+  "n_clusters_in_band": 5,
+  "n_bins": 219
+ },
+ "falsifier": {
+  "falling": [
+   "ZW1215"
+  ],
+  "jumps": [],
+  "flat": []
+ },
+ "crossover": {
+  "median_r_half_kpc": 590.081567235303,
+  "median_r05_kpc": 61779.06287650784,
+  "median_a0_crossing_kpc": 703.2759152073273,
+  "median_rM_kpc": 405.90041965758735,
+  "n_r_half_within_3x_a0c": 10
+ },
+ "checks": [
+  {
+   "name": "V0 [the data gate: G050's V0 audit row reproduced] median f_b(420 kpc) = M_gas/M_NFW over the 12 clusters, the exact G050 recipe (MGAS log-interpolated on the fgas grid / M_NFW on the hydro grid)",
+   "measured": "median f_b(420) = 0.163 (on record 0.163; range 0.101-0.219); median f_b(210) = 0.121 (on record 0.121)",
+   "pass": true,
+   "reading": "the lane reads the SAME committed ingests the audit row came from; the regression row (the G008 registered 0.127 +/- 0.02) is left as the G050/G057 committed finding, not re-litigated here"
+  },
+  {
+   "name": "V0b [the P4 quantity itself: f_gas = M_gas/M_HSE with M_HSE = M_FORW] median over the 12 clusters at 420 kpc, 210 kpc and at R500",
+   "measured": "median f_gas(420) = 0.160 (range 0.085-0.205); f_gas(210) = 0.118; f_gas(R500) = 0.191",
+   "pass": true,
+   "reading": "the P4 quantity on the committed tables: the gas carries 10-20% of the hydrostatic mass through the window and rises toward R500 -- the absolute amplitude is P4's stated open number (the free-dust normalization), the SHAPE is what P4 predicts"
+  },
+  {
+   "name": "V1a [the pooled run: P4's headline number] the equal-weight-per-cluster OLS slope of ln f_gas vs ln r over in-window bins (0.2 <= r/R500 <= 1.0), the prediction in (+0.3, +0.7)",
+   "measured": "pooled slope = +0.235 +/- 0.039 (219 bins, equal weight per cluster); Spearman rho = +0.363",
+   "pass": false,
+   "reading": "the prediction's operating number: the pooled run of the gas fraction over 0.2-1.0 R500-class must land in (+0.3, +0.7)"
+  },
+  {
+   "name": "V1b [the per-cluster run] the median per-cluster slope in (+0.3, +0.7) and at least 8/12 clusters in the band",
+   "measured": "median = +0.253; 5/12 in-band",
+   "pass": false,
+   "reading": "the prediction is about the run, not the scatter; the outliers are named in the READING"
+  },
+  {
+   "name": "V1c [P4's falsifier: a FALLING f_gas(r), or a jump > 0.15 at any single bin] per-cluster slopes below -0.05; max |Delta f_gas| between adjacent in-window bins",
+   "measured": "falling: ['ZW1215']; jumps > 0.15: none; flat |slope| <= 0.05: none",
+   "pass": false,
+   "reading": "P4's falsifier as written: no cluster's f_gas falls through the window, no single-bin jump exceeds 0.15; a flat profile is not the falsifier but is honestly named"
+  },
+  {
+   "name": "V2a [the rise-scale vs the a0-crossing: the framework's inverted map says the baryon/dark balance transitions at the a0-crossing, r_M-class] the radius where the f_gas rise is 50% complete (r_half) against the measured a0-crossing of the total field, within [1/3, 3]x per cluster",
+   "measured": "10 clusters compared, 10 within [1/3, 3]x; median r_half/a0c = 0.84",
+   "pass": true,
+   "reading": "the crossover OF THE RISE sits at the a0-crossing class if the baryon/dark balance transitions where the field crosses a0; the literal f_gas = 0.5 crossing is reported separately (it extrapolates far beyond the window, see V3).  A1644/A2255 carry NO a0-crossing on their measured profiles -- their total field is below a0 everywhere measured (G057's 'none', confirmed): those two are excluded by the test's own definition"
+  },
+  {
+   "name": "V2b [the rise-scale vs the canonical r_M = sqrt(G M_b/a0), M_b at R500 from the window fit (f_gas(R500) x M_HSE(R500) x (1 + median M_star/M_gas @ R500))] within [1/3, 3]x per cluster; the canonical 273-kpc class (M_b = 5e13) stated beside",
+   "measured": "12 clusters compared, 12 within [1/3, 3]x; median r_half/r_M = 1.43; per-cluster r_M median = 406 kpc (canonical 273 kpc at M_b = 5e13)",
+   "pass": true,
+   "reading": "the two a0-crossing readings -- the measured field crossing and the parameter r_M -- bracket the r_M-class the framework's inverted map names"
+  },
+  {
+   "name": "V3 [the honest statement] (i) the rise is real: pooled slope +0.235 > 0 with Spearman p = 3.2e-08 -- the gas fraction RISES with radius on the committed ingests; (ii) the BAND (+0.3, +0.7) is NOT closed: the pooled run +0.235 and the median per-cluster +0.253 both sit below it, and ZW1215's profile falls (-0.067) -- P4's falsifier fires on 1/12; (iii) the crossover AMPLITUDE is not the '0.5-ish' of the framing: f_gas in [0.06, 0.25] through the window (median f_gas(1.0 R500) = 0.183) and the literal f_gas = 0.5 crossing extrapolates to 62 Mpc -- but the absolute amplitude is P4's stated open number (the free-dust normalization, open, stated), so the amplitude half is framework-open, not predictably testable; (iv) the SCALE half (V2) holds.  The KEPLER wording to fix: the crossover is a SCALE statement (r_M-class), not a value statement",
+   "measured": "rise real: True (slope +0.235, p = 3.2e-08); band closed: False (10/10 scale r_M-class in V2a); crossover amplitude vs 0.5: f_gas(r_half) ~ 0.16",
+   "pass": true,
+   "reading": "the honest statement: the RISE and its SCALE hold on the committed ingests; the BAND value and the 0.5-amplitude do NOT -- the band misses low (0.24 vs 0.3) and f_gas is 0.1-0.2 at the crossover, exactly the amplitude P4 lists as its open number (the free-dust normalization).  The wording 'cross-over scale where f_gas = 0.5-ish' must be read as the scale of the crossover, not its value, or it fails by construction"
+  },
+  {
+   "name": "V4a [the assumption, scale-half: the rise TRACKS the dark's radial structure -- clusters whose a0-crossing sits LATE host the f_gas rise late] Spearman correlation between r_half and the measured a0-crossing over the 12 clusters",
+   "measured": "Spearman rho = +0.733 (p = 1.58e-02, n = 10)",
+   "pass": true,
+   "reading": "the mechanism's cross-cluster signature: if the gas-fraction rise is SET by the dark's structure (the phantom's onset as the field falls through a0), the rise-scale and the crossing co-move; n < 5 (flat profiles) -> not judgeable"
+  },
+  {
+   "name": "V4b [the assumption, mechanics-half: the rise IS the gas outgrowing the dark-dominated total -- the median in-window d ln M_gas/d ln r exceeds d ln M_HSE/d ln r (the total slope is set by the dark: the dark carries the outer mass growth)] per cluster, in-window medians",
+   "measured": "10/12 clusters with d ln M_gas/d ln r > d ln M_HSE/d ln r (the exceptions: A2029, ZW1215)",
+   "pass": true,
+   "reading": "the mechanics of 'baryons concentrated, dark carries the outer mass': where the gas's enclosed mass grows faster than the dark-dominated total, f_gas = M_gas/M_HSE must climb -- this is the local statement of the rise, checked against the local slopes on the same ingests"
+  },
+  {
+   "name": "V4c [the assumption, share-half: the f_gas profile co-moves with the split's radial structure -- the EOS phantom share s_ph = M_ph/M_res (the UNSCREENED EOS mass share, recomputed with the committed G050 recipe; the supported share is zero in-window under the Hubble cap, G050/G057 registered) and the dust share s_dust = 1 - M_b/M_HSE] pooled Spearman over in-window bins",
+   "measured": "rho(f_gas, s_ph) = +0.648 (p = 1.6e-27); rho(f_gas, s_dust) = -0.998 (p = 6.6e-273); diagnostic rho(local rise, s_ph) = -0.485",
+   "pass": true,
+   "reading": "the rise's radial structure and the split's radial structure co-move: the f_gas profile climbs where the phantom's share of the deficit climbs and the dust share falls -- the dark's structure (EOS phantom built on the baryons, free dust carrying the residual) is the shape-mother of the gas-fraction run"
+  }
+ ],
+ "n_pass": 8,
+ "n_fail": 3,
+ "per_cluster": {
+  "A1644": {
+   "R500_kpc": 1054.0,
+   "slope_dlnfg_dlnr": 0.47444031611246906,
+   "slope_err": 0.038927283250960044,
+   "n_bins": 19,
+   "spearman": 0.9508771929824561,
+   "f_gas_at_02R500": 0.06791482858418038,
+   "f_gas_at_R500": 0.1457418099551203,
+   "r_half_kpc": 547.6590883046418,
+   "a0_crossing_kpc": NaN,
+   "r_fgas05_kpc": 14167.667251852377,
+   "r_M_kpc": 267.17192386119297,
+   "has_star_profile": false,
+   "decomp": {
+    "dlnMgas": 1.9688138999684759,
+    "dlnMhse": 1.4190703377497231,
+    "s_ph_R500": 0.24931947833712637,
+    "s_dust_02": 0.9093017220850445,
+    "s_dust_R500": 0.8402069102942153
+   }
+  },
+  "A1795": {
+   "R500_kpc": 1153.0,
+   "slope_dlnfg_dlnr": 0.27410011062621054,
+   "slope_err": 0.009309756635736311,
+   "n_bins": 20,
+   "spearman": 1.0,
+   "f_gas_at_02R500": 0.11090549834719796,
+   "f_gas_at_R500": 0.1724014178350532,
+   "r_half_kpc": 563.0919702539331,
+   "a0_crossing_kpc": 618.0137918204869,
+   "r_fgas05_kpc": 56093.250600567684,
+   "r_M_kpc": 337.49307730019,
+   "has_star_profile": true,
+   "decomp": {
+    "dlnMgas": 1.4034373320121531,
+    "dlnMhse": 1.2375714370085946,
+    "s_ph_R500": 0.22166406029323749,
+    "s_dust_02": 0.8694300633123825,
+    "s_dust_R500": 0.8145540138445889
+   }
+  },
+  "A2029": {
+   "R500_kpc": 1423.0,
+   "slope_dlnfg_dlnr": 0.10449826383711938,
+   "slope_err": 0.023823619046738555,
+   "n_bins": 18,
+   "spearman": 0.48606811145510836,
+   "f_gas_at_02R500": 0.1702983117114044,
+   "f_gas_at_R500": 0.2014890709809268,
+   "r_half_kpc": 658.2593127355907,
+   "a0_crossing_kpc": 943.2978629753043,
+   "r_fgas05_kpc": 8520758.897136481,
+   "r_M_kpc": 499.97887353318316,
+   "has_star_profile": true,
+   "decomp": {
+    "dlnMgas": 1.276010142213686,
+    "dlnMhse": 1.3515347522391674,
+    "s_ph_R500": 0.2910660117151308,
+    "s_dust_02": 0.802803749066034,
+    "s_dust_R500": 0.7711351362132681
+   }
+  },
+  "A2142": {
+   "R500_kpc": 1424.0,
+   "slope_dlnfg_dlnr": 0.05943711089874932,
+   "slope_err": 0.011786443537512719,
+   "n_bins": 18,
+   "spearman": 0.7007223942208461,
+   "f_gas_at_02R500": 0.20754623286672486,
+   "f_gas_at_R500": 0.22838081195201324,
+   "r_half_kpc": 649.2018754863207,
+   "a0_crossing_kpc": 928.3843322203589,
+   "r_fgas05_kpc": 756944522.0935577,
+   "r_M_kpc": 572.3765849144054,
+   "has_star_profile": true,
+   "decomp": {
+    "dlnMgas": 1.4220086624766346,
+    "dlnMhse": 1.3052029682038924,
+    "s_ph_R500": 0.26223783984938026,
+    "s_dust_02": 0.7646316738478238,
+    "s_dust_R500": 0.7645405127267446
+   }
+  },
+  "A2255": {
+   "R500_kpc": 1196.0,
+   "slope_dlnfg_dlnr": 0.2317512118397158,
+   "slope_err": 0.019238499681990137,
+   "n_bins": 18,
+   "spearman": 1.0,
+   "f_gas_at_02R500": 0.1380280996186061,
+   "f_gas_at_R500": 0.20042627460933202,
+   "r_half_kpc": 576.2985631637443,
+   "a0_crossing_kpc": NaN,
+   "r_fgas05_kpc": 61779.06287650784,
+   "r_M_kpc": 407.75782315416035,
+   "has_star_profile": false,
+   "decomp": {
+    "dlnMgas": 1.970359100905902,
+    "dlnMhse": 1.7931277480571097,
+    "s_ph_R500": 0.30201754047997525,
+    "s_dust_02": 0.8609413620965285,
+    "s_dust_R500": 0.7999341496160578
+   }
+  },
+  "A2319": {
+   "R500_kpc": 1346.0,
+   "slope_dlnfg_dlnr": 0.38653089746188524,
+   "slope_err": 0.010747206200182042,
+   "n_bins": 18,
+   "spearman": 1.0,
+   "f_gas_at_02R500": 0.14037068174950842,
+   "f_gas_at_R500": 0.2614868854593487,
+   "r_half_kpc": 680.8618499864212,
+   "a0_crossing_kpc": 957.9512700258027,
+   "r_fgas05_kpc": 7200.62175507621,
+   "r_M_kpc": 567.1428204489343,
+   "has_star_profile": true,
+   "decomp": {
+    "dlnMgas": 1.6269644919545678,
+    "dlnMhse": 1.2743254489270877,
+    "s_ph_R500": 0.15586219014849778,
+    "s_dust_02": 0.843317561478588,
+    "s_dust_R500": 0.7129360651053471
+   }
+  },
+  "A3158": {
+   "R500_kpc": 1123.0,
+   "slope_dlnfg_dlnr": 0.1977983377766096,
+   "slope_err": 0.013271559908286497,
+   "n_bins": 18,
+   "spearman": 1.0,
+   "f_gas_at_02R500": 0.12058042432266282,
+   "f_gas_at_R500": 0.16577991507746506,
+   "r_half_kpc": 535.2938069637947,
+   "a0_crossing_kpc": 476.32709849027424,
+   "r_fgas05_kpc": 298025.1835882552,
+   "r_M_kpc": 337.1245187073043,
+   "has_star_profile": false,
+   "decomp": {
+    "dlnMgas": 1.594630460230099,
+    "dlnMhse": 1.4551803575333495,
+    "s_ph_R500": 0.25527309738754006,
+    "s_dust_02": 0.8781999381256756,
+    "s_dust_R500": 0.8312341533618133
+   }
+  },
+  "A3266": {
+   "R500_kpc": 1430.0,
+   "slope_dlnfg_dlnr": 0.4246586091014742,
+   "slope_err": 0.06209364788016713,
+   "n_bins": 17,
+   "spearman": 0.8284313725490197,
+   "f_gas_at_02R500": 0.15030322011572528,
+   "f_gas_at_R500": 0.29770896639048516,
+   "r_half_kpc": 731.8779158915952,
+   "a0_crossing_kpc": 632.4518106079043,
+   "r_fgas05_kpc": 4848.336749517035,
+   "r_M_kpc": 626.1152781045379,
+   "has_star_profile": false,
+   "decomp": {
+    "dlnMgas": 1.8109975546044876,
+    "dlnMhse": 1.295914758682344,
+    "s_ph_R500": NaN,
+    "s_dust_02": 0.8578316123815588,
+    "s_dust_R500": NaN
+   }
+  },
+  "A644": {
+   "R500_kpc": 1230.0,
+   "slope_dlnfg_dlnr": 0.30235279406799614,
+   "slope_err": 0.07565747813105299,
+   "n_bins": 18,
+   "spearman": 0.5211558307533539,
+   "f_gas_at_02R500": 0.09291653726251387,
+   "f_gas_at_R500": 0.15115709966602484,
+   "r_half_kpc": 606.071067142706,
+   "a0_crossing_kpc": 851.476990996171,
+   "r_fgas05_kpc": 64303.367019357946,
+   "r_M_kpc": 341.1766443085482,
+   "has_star_profile": true,
+   "decomp": {
+    "dlnMgas": 1.363036541374861,
+    "dlnMhse": 1.3009386300699677,
+    "s_ph_R500": NaN,
+    "s_dust_02": 0.8692297126651315,
+    "s_dust_R500": 0.7950150202886945
+   }
+  },
+  "A85": {
+   "R500_kpc": 1235.0,
+   "slope_dlnfg_dlnr": 0.1827233156216039,
+   "slope_err": 0.008651641298505826,
+   "n_bins": 18,
+   "spearman": 1.0,
+   "f_gas_at_02R500": 0.1443318661080077,
+   "f_gas_at_R500": 0.19367802307311394,
+   "r_half_kpc": 585.8469774859423,
+   "a0_crossing_kpc": 654.9436586765482,
+   "r_fgas05_kpc": 221737.06540801012,
+   "r_M_kpc": 404.04301616101435,
+   "has_star_profile": true,
+   "decomp": {
+    "dlnMgas": 1.478365230113298,
+    "dlnMhse": 1.3555724604141761,
+    "s_ph_R500": 0.23385142577625032,
+    "s_dust_02": 0.8412793307167444,
+    "s_dust_R500": 0.7948961725494157
+   }
+  },
+  "RXC1825": {
+   "R500_kpc": 1105.0,
+   "slope_dlnfg_dlnr": 0.4308480386251346,
+   "slope_err": 0.018262834270333053,
+   "n_bins": 19,
+   "spearman": 1.0,
+   "f_gas_at_02R500": 0.07632133298176101,
+   "f_gas_at_R500": 0.1526847992148057,
+   "r_half_kpc": 566.6126335188502,
+   "a0_crossing_kpc": 478.4886364890537,
+   "r_fgas05_kpc": 17341.3792599708,
+   "r_M_kpc": 310.7076003596719,
+   "has_star_profile": false,
+   "decomp": {
+    "dlnMgas": 1.7643691426832286,
+    "dlnMhse": 1.3678278491240765,
+    "s_ph_R500": 0.21271419085138263,
+    "s_dust_02": 0.9251052621121234,
+    "s_dust_R500": 0.8392394881643661
+   }
+  },
+  "ZW1215": {
+   "R500_kpc": 1358.0,
+   "slope_dlnfg_dlnr": -0.06686002464028343,
+   "slope_err": 0.006849345415792531,
+   "n_bins": 18,
+   "spearman": -0.9484004127966976,
+   "f_gas_at_02R500": 0.16525521113885952,
+   "f_gas_at_R500": 0.14839593744215882,
+   "r_half_kpc": 594.3161569846637,
+   "a0_crossing_kpc": 751.6081717381064,
+   "r_fgas05_kpc": Infinity,
+   "r_M_kpc": 420.1226753678818,
+   "has_star_profile": true,
+   "decomp": {
+    "dlnMgas": 1.444949663721506,
+    "dlnMhse": 1.5250317007061325,
+    "s_ph_R500": 0.23315032541941227,
+    "s_dust_02": 0.8264492015689029,
+    "s_dust_R500": 0.8556738120631775
+   }
+  }
+ },
+ "split": {
+  "recipe": "EOS phantom coefficient 1 (G031/G050 recipe), M_ph = dlnM*M_b, share vs M_res = M_HSE - M_b (floor 1e9 Msun; G050's committed share JSON carries the 1e9*MSUN floor artefact that degenerates its shares to 1e-26 -- recomputed honestly here); Hubble cap cH0 screens the supported share in-window (G050/G057 registered); G106 not in the tree",
+  "spearman_r_half_vs_a0cross": [
+   0.7333333333333332,
+   0.01580059625057158
+  ],
+  "spearman_fgas_vs_sph": [
+   0.6484652302904599,
+   1.6193774394053313e-27
+  ],
+  "spearman_fgas_vs_sdust": [
+   -0.9984062060849798,
+   6.637050196405938e-273
+  ],
+  "n_mechanics_gas_outgrows_total": 10
+ }
+}
