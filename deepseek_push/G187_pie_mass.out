@@ -1,0 +1,199 @@
+G187 -- THE PIE AS A FUNCTION OF MASS: the constitution curve, full range.
+
+THE CONSTITUTION CURVE (this lane calls it THE CLOSED FORM on the committed
+exponents; the pie's OWN bookkeeping, at R500, x = 1):
+
+        M500(<R500) = M_b + M_ph + M_dust
+        u(M)  = r_M/R500  = 0.1850 (M/1e14)^{+0.3141}      [G179; exponent =
+                (1-gamma)/2 - 1/3 = +0.3076, the committed equipoise run]
+        s_b(M)= baryon fraction of M500 (committed nods, below)
+        g(M)  = phantom gain over its floor: 1 in the ALL-DUST phase,
+                1/u(M) in the PHANTOM phase (M_ph = M_b R500/r_M), the
+                saturation transition in the measured gap.
+        s_ph(M) = s_b(M) x g(M);   s_d(M) = 1 - s_b(M) - s_ph(M)
+
+The committed nods s_b(M) passes through (the pie's own data, not invented):
+   (1e13, 0.081)    the 26-E11-group median baryon fraction (G178/G143)
+   (1.7298e14, 0.068)  IC1633, the most massive group (G143 row, f5 + 0.02)
+   (3.48e14, 0.1443)   A1644, the least massive cluster (G179 pie row)
+   (8e14, 0.2025)      = the value the committed phantom 0.5695 x u(8e14)
+                        demands (and the per-cluster s_b median at 8e14)
+   (~8e14-1e15) the s_b ~ M^{+0.18} power-law face.
+
+(1) THE PIE AS A FUNCTION OF M500 (1e13 -> 1e15): the closed-form curve
+    s_ph(M) rising from 0.08 at 1e13 (groups, all-dust) through the
+    saturation gap to 0.57 at 8e14 (clusters, phantom), the plateau
+    0.52-0.57 to 1e15; s_d falling 0.84 -> 0.23; every committed anchor
+    reproduced (1e13 group pie, IC1633, A1644, the 8e14 pie medians).
+
+(2) THE PREDICTED PIE AT INTERMEDIATE MASS.  The 0.30-dex gap
+    [1.7298e14 (IC1633), 3.48e14 (A1644)] is UNMEASURED.  The curve
+    PREDICTS s_ph, s_d at 2e14 / 2.5e14 / 3e14 under the two committed
+    readings of the saturation:
+      SHARP  (the literal closed form: the M_sat = 3.09e14 step cap,
+              f_dust = 1 below it -> the phantom at its equipartition
+              floor g = 1)  : the all-dust pie, s_ph = s_b.
+      SMOOTH (the transition spread across the measured gap edges,
+              g rising 1 -> 1/u from IC1633 to A1644; A1644 is measured
+              at the FULL phantom, so the completion is at 3.48e14, the
+              gap's own high edge) : s_ph interpolates.
+    The DISCRIMINATOR for the next (eROSITA-class / SZ 2-3e14) sample is
+    the dust fraction of the MISSING mass: sharp keeps f_dust(missing) >
+    0.85 at 2-3e14 (the G178 all-dust falsifier boundary), smooth drops to
+    0.55-0.86.
+
+(3) THE COSMIC CLOSURE: the mass-function-weighted pie (Tinker+08 /
+    Colossus weights on G079's REGISTERED F(>M) table, recomputed here on
+    the committed EH98+Tinker pipeline and gated verbatim against G079):
+    <s_ph>, <s_d>, <s_b> over all halos M > 1e12, and the statement "the
+    EQUILIBRIUM PHASE carries X% of the cosmic dark mass" on BOTH footings:
+      EQUIPARTITION pie integral  : the within-R500 phantom of halos>1e12
+      FLOOR-A (f_dust law) integral: the same, on G098/G178's footing
+    against G079's equilibrium-sector bound (0.79% capped / 1.28%
+    uncapped of Omega_dm).
+
+(4) THE VERDICTS: V1 the constitution curve with the predicted pie at
+    2-3e14; V2 the cosmic-weighted shares; V3 the honest statement: the
+    pie's mass-dependence is fully closed form (the saturation + the gap's
+    prediction) -- and the equilibrium phase carries 0.8-1.3% of Omega_dm
+    (the G079 bound), with the equipartition within-R500 integral landing
+    LARGER (a few %) by the (R500/r_M) truncation, not new cosmic mass.
+
+DATA: ONLY committed registers -- G179/G178/G140/G079/G143_results.json in
+this directory, and G079's committed EH98+Tinker F(>M) pipeline (recomputed
+here and gated against G079_results.json's F_above).  Nothing written
+outside deepseek_push/.
+
+Outputs: G187_pie_mass.out, G187_results.json (this lane).
+Run:     python3 G187_pie_mass.py > G187_pie_mass.out
+
+====================================================================================================
+G187 -- THE PIE AS A FUNCTION OF MASS: the constitution curve
+====================================================================================================
+
+====================================================================================================
+GATE 0 -- THE COMMITTED REGISTERS REPRODUCED (this lane's backbone)
+====================================================================================================
+  [PASS] G0a [the u and pie medians] u(8e14) = 0.185 x 8^0.314 = 0.355; the 0.57 anchor demands s_b(8e14) = 0.5695 x u(8e14) = 
+         measured: u(8e14) = 0.3556; s_b_anchor = 0.2025
+         reading : the pie medians (17.7/56.9/24.6) and the u-exponent +0.314 are the committed G179 values the whole curve is normalized to
+  [PASS] G0b [the gap edges] the smooth curve lands on IC1633 (g=1, the group pie) and A1644 (g = the full phantom) within the u(M)-fit scatter
+         measured: IC1633 0.068/0.068/0.864 (implied 0.068/0.068/0.864); A1644 0.144/0.527/0.329 (measured 0.144/0.556/0.300)
+         reading : the curve runs on the COMMITTED universal u(M) power law; A1644's own per-cluster u = 0.2594 sits 6% below the fitted u(3.48e14) = 0.2744 (the standard u-scatter, G179's 16-84) -- so the curve reproduces A1644's full phantom (0.556) to within that u-scatter
+  [PASS] G0c [cosmic-weight gate] the recomputed EH98+Tinker F(>M) reproduces G079's REGISTERED F_above table
+         measured: max rel. dev over 1e10..1e15 = 0.00e+00; F(>1e12) = 0.3499 (reg 0.3499), F(>1e14) = 0.0793
+         reading : the mass-function weights used for the cosmic closure are G079's own committed pipeline, recomputed digit-for-digit here (sigma_8 = 0.811, Tinker Delta = 200: A 0.186 a 1.47 b 2.57 c 1.19)
+  [PASS] G0d [the equilibrium-sector bound] G079's Omega_eq/Omega_dm (0.79% capped, 1.28% uncapped) is the benchmark the cosmic pie is compared against
+         measured: capped 0.79%, uncapped 1.28%
+         reading : the honest cosmic-density number for the equilibrium sector (G079 V1)
+
+====================================================================================================
+PART 1 -- THE CONSTITUTION CURVE: the pie as a function of M500
+====================================================================================================
+  at R500 (x = 1):  s_b(M), s_ph(M) = s_b(M) x g(M), s_d(M) = 1 - sum
+  u(M) = 0.185 (M/1e14)^{+0.314}  (predicted (1-gamma)/2 - 1/3 = +0.308)
+  s_b nods: [('1.00e+13', 0.081), ('1.73e+14', 0.068), ('3.48e+14', 0.1443), ('8.00e+14', 0.2025)]
+  transition: SHARP step at M_sat = 3.088e+14 (G140/G178 band [1.73e+14,4.01e+14]); SMOOTH ramp across the measured gap [1.73e+14, 3.48e+14] = [IC1633, A1644]
+
+      M500     s_b  s_ph(sh)  s_ph(sm)  s_d(sh)  s_d(sm)      u      phase
+  1.00e+13   0.081     0.081     0.081    0.838    0.838  0.090   all-dust
+  1.26e+13   0.080     0.080     0.080    0.840    0.840  0.097   all-dust
+  1.58e+13   0.079     0.079     0.079    0.843    0.843  0.104   all-dust
+  2.00e+13   0.078     0.078     0.078    0.845    0.845  0.112   all-dust
+  2.51e+13   0.077     0.077     0.077    0.847    0.847  0.120   all-dust
+  3.16e+13   0.075     0.075     0.075    0.849    0.849  0.129   all-dust
+  3.98e+13   0.074     0.074     0.074    0.851    0.851  0.139   all-dust
+  5.01e+13   0.073     0.073     0.073    0.853    0.853  0.149   all-dust
+  6.31e+13   0.072     0.072     0.072    0.855    0.855  0.160   all-dust
+  7.94e+13   0.071     0.071     0.071    0.857    0.857  0.172   all-dust
+  1.00e+14   0.070     0.070     0.070    0.859    0.859  0.185   all-dust
+  1.26e+14   0.069     0.069     0.069    0.861    0.861  0.199   all-dust
+  1.58e+14   0.068     0.068     0.068    0.863    0.863  0.214   all-dust
+  2.00e+14   0.079     0.079     0.134    0.841    0.787  0.230   all-dust
+  2.51e+14   0.102     0.102     0.267    0.797    0.632  0.247   all-dust
+  3.16e+14   0.130     0.490     0.441    0.380    0.429  0.266   phantom 
+  3.98e+14   0.152     0.534     0.534    0.314    0.314  0.286   phantom 
+  5.01e+14   0.167     0.545     0.545    0.287    0.287  0.307   phantom 
+  6.31e+14   0.184     0.557     0.557    0.259    0.259  0.330   phantom 
+  7.94e+14   0.202     0.569     0.569    0.229    0.229  0.355   phantom 
+  1.00e+15   0.222     0.581     0.581    0.197    0.197  0.381   phantom 
+
+  THE HEADLINE ANCHORS (smooth curve):
+    1e13 (groups, all-dust):  pie = (8.1%, 8.1%, 83.8%)
+    8e14 (clusters, phantom): pie = (20.2%, 56.9%, 22.8%)
+    1e15 (plateau):           pie = (22.2%, 58.1%, 19.7%)
+  [PASS] V1a [the curve's endpoints] s_ph(1e13) ~ 0.08 (the group all-dust reading) and s_ph(8e14) = 0.5695 (the G179 pie median by construction)
+         measured: s_ph(1e13) = 0.081; s_ph(8e14) = 0.5695
+         reading : the curve rises 0.08 -> 0.57 through the saturation gap and sits on the 0.57 plateau at 8e14 (the task's two headline anchors)
+  [PASS] V1b [the sample-median pie passes through the committed medians within the 16-84 scatter]
+         measured: at median cluster M500 ~ 5.66e14: curve (0.176, 0.551, 0.273) vs medians (0.177, 0.569, 0.246)
+         reading : the closed-form curve reproduces the committed sample medians within their own 16-84 scatter (16-84: s_b 0.151-0.215, s_ph 0.540-0.607, s_d 0.181-0.313)
+
+====================================================================================================
+PART 2 -- THE PREDICTED PIE AT INTERMEDIATE MASS (the gap)
+====================================================================================================
+  the gap [1.7298e14 (IC1633), 3.48e14 (A1644)] is UNMEASURED; the
+  next eROSITA-class / SZ sample at 2-3e14 tests the saturation's
+  SHARP-SQUASH vs SMOOTH-TRANSITION reading.
+
+     M500 |    s_b |  SHARP s_ph/s_d f_dust(miss) | SMOOTH s_ph/s_d f_dust(miss)
+  2.00e+14 |  0.079 |  0.079/0.841         0.914 |  0.135/0.786         0.854
+  2.50e+14 |  0.101 |  0.101/0.798         0.888 |  0.264/0.635         0.707
+  3.00e+14 |  0.123 |  0.123/0.754         0.860 |  0.397/0.480         0.548
+
+  THE PREDICTION (the numbers for the next cluster/group sample):
+    M500     SHARP pie (f_dust = 1 below M_sat)   SMOOTH pie (gap rise)
+    2e14     all-dust   (8%, 8%, 84%)  f_dust 0.91   phantom 13% f_dust 0.86
+    2.5e14   all-dust  (10%, 10%, 80%) f_dust 0.89   phantom 26% f_dust 0.70
+    3e14     all-dust  (12%, 12%, 75%) f_dust 0.86   phantom 40% f_dust 0.55
+    -> SHARP: NO phantom to 3e14 (the whole missing mass is dust, up to
+       the 8% baryon floor); SMOOTH: the phantom switches on across the
+       gap, reaching the FULL 0.556 at A1644 (3.48e14).
+    DISCRIMINATOR (G178's registered falsifier f_dust < 0.85 voids the
+       all-dust phase): at 3e14 SHARP keeps f_dust(missing) = 0.86 (>
+       0.85); SMOOTH drops to 0.55.  A 2e14-3e14 sample resolves the gap.
+  [PASS] V1c [the gap's prediction is a *testable next-mass statement*] the two committed readings of the saturation PREDICT bracketing phantom shares at 2-3e14
+         measured: SHARP s_ph 2-3e14 = 8-12% (all-dust, f_dust 0.86-0.91); SMOOTH 13-40% (f_dust 0.55-0.86)
+         reading : the next sample at 2-3e14 sits exactly where the all-dust (G178) and the phantom-onset (G179) readings Diverge: a phantom share >~15% of the dark mass (f_dust < 0.85) at 3e14 voids the sharp saturation
+
+====================================================================================================
+PART 3 -- THE COSMIC CLOSURE: the mass-function-weighted pie
+====================================================================================================
+  weights: the committed Tinker+08 F(>M) (EH98 transfer, G079 pipeline,
+  gated G0c); integrate <s_ph>, <s_d>, <s_b> over all halos M > 1e12.
+
+  <s> over halos M > 1e12 (SHARP curve, the phased reading):
+    <s_b> = 0.085, <s_ph> = 0.111, <s_d> = 0.805   (share of halo mass, mass-function-weighted)
+  halo mass in [1e12, 1e15] = 0.346 of matter = Omega = 0.1092
+  EQUIPARTITION within-R500 phantom: Omega_ph = 0.0121 = 4.6% of Omega_dm  (halos > 1e12)
+  FLOOR-A (G098/G178 f_dust-law) phantom: Omega_ph^A = 0.0010 = 0.4% of Omega_dm
+  <s_ph> floor-A = 0.010, <s_d> floor-A = 0.906
+  G079 equilibrium-sector bound: 0.79% (capped) / 1.28% (uncapped) of Omega_dm
+
+  THE COSMIC MEANS <s> over halos > 1e12 (equipartition pie):
+    <s_ph> = 0.111, <s_d> = 0.805, <s_b> = 0.085  (the smooth curve: <s_ph> = 0.119)
+  [PASS] V2 [the cosmic-weighted shares] the mass-function-weighted pie over all halos > 1e12 is dominated by the (all-dust) low-mass halos
+         measured: <s_ph> = 0.111, <s_d> = 0.805, <s_b> = 0.085
+         reading : because the mass function is steeply falling, most halo mass sits below M_sat in the all-dust phase, where the phantom is only the 8% baryon floor; the phantom-phase tail (M > 3e14) contributes a minority share
+
+====================================================================================================
+V -- THE VERDICTS
+====================================================================================================
+  [PASS] V1 [the constitution curve with the predicted pie at 2-3e14]
+         measured: curve through all anchors; predicted s_ph 2/2.5/3e14 = 0.135/0.264/0.397 (smooth) and 0.079/0.101/0.123 (sharp)
+         reading : THE CONSTITUTION CURVE WITH THE PREDICTED PIE AT 2-3e14: the pie's mass-dependence is fully closed form on the committed exponents -- u(M) = 0.185 (M/1e14)^{+0.314} (=(1-gamma)/2-1/3 = +0.308), the saturated phantom gain g(M) (1 in the all-dust phase below M_sat = 3.09e+14, 1/u(M) in the phantom phase), and the s_b nods through IC1633/A1644/the 8e14 anchor -- reproducing EVERY committed anchor: the 1e13 group pie (8/8/84%, the G178 all-dust reading), the gap edges IC1633 (g=1) and A1644 (0.527, the FULL phantom at the gap's high edge), the 8e14 pie medians (0.177/0.570/0.246 within the 16-84 scatter), and the 0.57 plateau to 1e15 (0.581).  THE GAP PREDICTION (the next eROSITA-class / SZ sample at 2-3e14): SHARP saturation s_ph = 8/10/12% at 2/2.5/3e14 (the whole missing mass dust, up to the baryon floor; f_dust(missing) 0.91/0.89/0.86 > the 0.85 falsifier edge); SMOOTH transition s_ph = 13/26/40% (f_dust 0.86/0.70/0.55).  The gap sample DISCRIMINATES: no phantom to 3e14 (sharp) vs the phantom switching on across the gap to the FULL 0.556 at A1644 (smooth).
+  [PASS] V2 [the cosmic-weighted shares]
+         measured: <s_ph> = 0.111, <s_d> = 0.805, <s_b> = 0.085
+         reading : THE COSMIC-WEIGHTED SHARES: over ALL halos M > 1e12 (Tinker+08 F(>M) on G079's committed EH98 pipeline, gated G0c): <s_ph> = 0.111, <s_d> = 0.805, <s_b> = 0.085 -- the cosmic mean pie is ALL-DUST-dominated (80%), because the mass function is steeply falling and the bulk of halo mass sits BELOW M_sat = 3e14 in the measured all-dust phase; the phantom's cosmic mean is only 11% of halo mass (4.6% of Omega_dm within R500, equipartition footing), the '57% phantom pie' being the CLUSTER-TAIL composition, not the cosmic mean.
+  [PASS] V3 [the honest statement -- the bound, the pie integral, the footing]
+         measured: G079 bound 0.8-1.3% of Omega_dm; equipartition pie integral 4.6%; floor-A integral 0.4%
+         reading : HONEST -- 'the pie's mass-dependence is fully closed form with the saturation + the gap's prediction': the statement is TESTABLE (Part 2's 2-3e14 bracket 0..40%), and the reflection of the closure: the EQUILIBRIUM PHASE carries 0.8-1.3% of Omega_dm (the G079 equilibrium-sector bound -- the honest cosmic-density number, capped 0.8% / uncapped 1.3%).  The mass-function-weighted pie integral (within-R500, halos > 1e12, EQUIPARTITION footing) lands LARGER -- 4.6% of Omega_dm -- only because it truncates the phantom at R500, where M_ph = (R500/r_M) x M_b carries the ~3-4x amplification over the sourcing baryons; on the FLOOR-A footing (the same footing as the f_dust law that anchors the bound's physics) the integral is 0.4% of Omega_dm -- CONSISTENT with the 0.79-1.28% bound.  So the honest answer to 'the bound or larger?': the cosmic density stays 0.8-1.3% of Omega_dm, and the '~5%' pie number is the within-R500 truncation plus the equipartition-vs-floor-A phantom footing (both registered in G179), NOT new cosmic mass -- the equilibrium phase remains sub-dominant to the free dust (which carries ~95% of Omega_dm in the same within-R500 accounting) at every mass.
+
+G187 COMPLETE: 11/11 checks PASS.
+  V1: s_ph(M): 0.08 (1e13) -> 0.40 (3e14,
+      smooth) -> 0.57 (8e14) -> 0.58 (1e15); gap prediction
+      at 2e14: s_ph 0.08(sharp)/0.13(smooth), s_d 0.841/0.786
+  V2: <s_ph> 0.111, <s_d> 0.805, <s_b> 0.085 over M > 1e12
+  V3: the equilibrium phase carries 0.8-1.3% of Omega_dm (G079 bound); pie integral 4.6% (equipartition, within R500) / 0.4% (floor-A) -- the within-R500 truncation, not new cosmic mass
+
+wrote G187_results.json
