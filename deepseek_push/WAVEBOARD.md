@@ -115,16 +115,66 @@ instruments + X-ray), median anisotropy A = 0.998 (9/11 in (0.9,1.7));
 kT ~= mu m_p sigma_gal^2 within ~10% -- the dark equilibrium temperature
 cross-instrumentally confirmed.  A644 excluded (no published sigma, honest).
 
-## WAVES 4, 6-8 (in flight/landing: G094-G103, G110-G126)
-wave 4 (the cluster audit G094, G095 the 0.53^2 closed form 2f r_M/R500,
-G096 D2 core-slope, G097 chi2, G098 inversion, G103 phase timescale
--- G095/G096/G098 landed; G094/G097/G103 still flying) + wave 6 (G110
-Bullet audit, G111 relaxation spec, G112 DR4 Amendment 12, G113 tSZ, G114
-deep-end HI, G115 low-mass floor) + wave 7 (G116 sector mass, G117 BTFR
-correction, G118 merger registry, G119 the 0.62 attempt, G120 theory
-refresh, G121 pair-merger forecast) + wave 8 (G122 coherency-systematic
-decomposition, G123 the phantom over-demand vs M500, G124 the 1.43
-closed form, G125 group-scale equipartition, G126 ZW1215 case study).
+## WAVE 6 (landed 6/6)
+G110 BULLET AUDIT: the two-phase reading is NEUTRAL (consistent at 0.0-1.7
+sigma WITH the phantom capped and the dust on the galaxies; the UNCAPPED
+reading is a live 5.5 sigma tension -- the 1/r law extrapolated over-demands
+exactly as it does in the clusters); the one derived dark component pushes
+the WRONG way (the phantom lensing peaks ON the gas); H032's D2 CORRECTED
+(the "g/a0 ~ 9" uses M_tot vs the baryonic selector: the bullet sub sits at
+0.62 a0 -- DEEP); 8-sigma verified vs Clowe 06; "genuine success" overstates.
+G111 RELAXATION N-BODY SPEC: COMPLETE and executable (Arm S scalar-mediated
+vs Arm N Newtonian, A1-A4 pre-registered, t_cross = 82 Myr, 100 t_cross =
+8.22 Gyr, N from TG: 1e73-1e75; the decision function: OPEN-strong /
+OPEN-weak / CLOSED; A4 = reproduce G035's kill).  THE FORMATION GATE'S
+EXPERIMENT IS READY TO RUN.
+G112 DR4 AMENDMENT: the vertical structure REGISTERED (funnel z_c(8.2) =
+140.63 pc, the 34.7/140.6/1357 pc sequence, e^{+R/3} flare; the two-scale
+map with the negative layer; falsifiers F1 flareless / F2 single-scale /
+F3 positive 300-560 pc; decision rules D1 6.2 sigma, D2 3.5, D3 5.6;
+numbering collision caught (existing Amdt 12 -> written for ordinal 13);
+the h = 1 vs 13 kpc conflict registered with both sources).
+G113 tSZ P7 11/11: the y-profile ZERO-parameter prediction (the mu/mu_e
+cancellation: P_e needs NO temperature input); y0 median 7.77e-5; THE
+SHAPE: outer slope -1.44 at 2R500 vs -3 classic, the phantom-zone pressure
+signature y/y_classic = 40x at R500, 105x at 2R500, the +1.50 dex window
+over [r_M, 2R500]; angular: theta_M = 4.7', theta_500 = 15.5' (ACT/SO
+resolve inside r_M); steep falloff at theta_500 kills the G095 extension.
+G114 DEEP-END HI 3/3 PASS: the zero-parameter law HOLDS on 55 gas-dominated
+rotating dwarfs (LITTLE THINGS + FIGGS, verbatim primary LaTeX tables):
+rms 0.150 dex (<= 0.20 bar), median |r| = 0.080, zero bias, zero mass
+slope; gas-dominated subset 0.124 dex; the 7 dwarfs at g_N < 0.1 a0 ON the
+line (DDO 154: +0.015); the dichotomy CONFIRMED: rotation-on (0.080) vs
+dispersion-off (0.401, G070's UFDs) -- +0.32-dex contrast (caveat: mass
+ranges don't overlap).  THE DEEP END IS GREEN.
+G115 LOW-MASS FLOOR 17/17: the halo floor ~ 1e6 Msun from TWO independent
+mechanisms (the warmness: lambda_fs = 0.50 Mpc -> WDM half-mode 5e5-5.8e6;
+the equilibrium boundary: M_b,min = 1.05e5-4.2e5, sigma = 4.2-6 km/s AT the
+crossing, the dSph sequence brackets it); V2: the re-closed budget 0.60-0.79
+-- does NOT close to 0.95+: the gap's physics IS the warmness (the free-
+streaming cut erases the sub-1e6 mass); THE FALSIFIABLE PREDICTION: the
+sub-halo mass function INVERTS below the break (CDM 63.1 vs 0.002 at 1e5),
+MW counts 3.2e4 -> 8.6e3 (5.7 keV) / 1.7e3 (3.3 keV) -- deep satellite
+counts and lensing substructure decide.
+
+## THE OVER-DEMAND PATTERN (the live clue -- wave 6 synthesis)
+The UNCAPPED 1/r law over-demands wherever it is extrapolated: the Bullet
+(5.5 sigma), the massive clusters (A2029 rho_ph/residual = 1.47), the P2
+outer bins (34/292 negative).  The CAP is the law's living boundary
+condition; the free-dust normalization is the systematic's name.  Wave 9:
+G127 the cap's physical origin (the fluid's causality: c_s^2 = 0 boundary),
+G128 the pooled deep-end statement, G129 the tSZ observing proposal, G130
+the T_vir(r) outer asymptote (2 T_floor ~= 3.6 keV -- testable on the
+X-COP T(r) data G105 fetched), G131 the 10-decade mass coverage, G132 the
+cap's thermodynamics.
+
+## WAVES 7-9 (in flight/landing: G116-G132)
+wave 7 (G116 sector mass, G117 BTFR correction, G118 merger registry, G119
+the 0.62 attempt, G120 theory refresh, G121 pair-merger forecast) + wave 8
+(G122 coherency-systematic decomposition, G123 phantom over-demand vs M500,
+G124 the 1.43 closed form, G125 group-scale equipartition, G126 ZW1215 case)
++ wave 9 (G127-G132 above).  Waves 4's tail (G094 audit, G097 chi2, G103
+phase timescale) still flying.
 
 ## THE CLUSTER THORN, CURRENT STATE (after wave 5)
 STRUCTURE: the framework's cluster face is mostly CONFIRMED -- the
