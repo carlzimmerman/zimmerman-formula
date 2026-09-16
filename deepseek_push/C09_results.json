@@ -1,0 +1,311 @@
+{
+  "lane": "C09_complete_theory",
+  "title": "THE COMPLETE-THEORY CAPSTONE: the derivation chain from the ONE input (the de Sitter horizon) to every closed sector, with the S-wave and the particle bridge",
+  "date": "2026-09-16",
+  "gate": "README: every number in THE_COMPLETE_THEORY.md re-read from the committed results JSONs (Z11, A02, A03, A05, A08, B01-B04, B06, B09, G131, G162, G212, G213, S05, S07, S09, Z6 commit text); nothing recomputed or re-fitted",
+  "lean_ledger": {
+    "theorems": 126,
+    "certificates": 16,
+    "spine_subset": "79 theorems / 10 certificates",
+    "recount_lane": "G227",
+    "axioms": "{propext, Classical.choice, Quot.sound}",
+    "sorry": 0
+  },
+  "one_input": {
+    "a0": "c^2/(Z R_dS) = kappa_dS/Z",
+    "value": 9.362375206191876e-11,
+    "ratio_vs_a0_DE": 1.000051,
+    "Z": 5.788810036466141,
+    "R_dS_m": 1.6583113217641275e+26,
+    "note": "Z is the one free dimensionless parameter (G089)"
+  },
+  "honest_input_ledger": {
+    "count": "6 core = 4 measured (G, c, Omega_L, f_b) + 1 identity-pinned (a0) + 1 derived (m)",
+    "lane": "S05 (11/11) + B09 (14/14)",
+    "f_b_status": "REMAINS AN INPUT, halo-anchored at 4%"
+  },
+  "spine": [
+    {
+      "link": 1,
+      "node": "a0 = c^2/(Z R_dS) (the horizon)",
+      "value": "9.362375e-11, ratio 1.00005 vs a0_DE",
+      "lane": "Z11 (19/19) + G058 (Lean 6)",
+      "tag": "IDENTITY-PINNED / LEAN-CERTIFIED",
+      "cert": "glm53_push/lean/G058_omega_from_a0.lean (one_constant_closure)"
+    },
+    {
+      "link": 2,
+      "node": "sigma^2 = (1/2) sqrt(G M_b a0)",
+      "value": "kappa = 1/2 exactly; sigma = 119.21 km/s (MW anchor)",
+      "lane": "G084 (8/8) + G091 (12/12) + G03G/G090",
+      "tag": "LEAN-CERTIFIED (entrance E2 CLOSED-FORM)",
+      "cert": "lean/G03G_triad.lean (sigma_virial_half); lean/G090_equivalence.lean (sqrt_pair, equipartition_virial); E2 = C1/C2 IN-FLIGHT"
+    },
+    {
+      "link": 3,
+      "node": "phantom rho = A/r^2 (Gauss-map charge)",
+      "value": "A = sqrt(G M_b a0)/(4 pi G), coeff exactly 1",
+      "lane": "G003/G031/G154/G227/M01",
+      "tag": "LEAN-CERTIFIED",
+      "cert": "lean/EQUILIBRIUM_THEORY.lean (equilibrated_is_phantom, phantom_bracket); lean/G031_fluid_action.lean (phantom_is_isothermal); deepseek_push/lean/G227_gauss_map_prototype.lean (5 thms); deepseek_moa/lean/M01_equipartition.lean"
+    },
+    {
+      "link": 4,
+      "node": "M_ph(<r) = M_b r/r_M",
+      "value": "M_ph(<r_M) = M_b to 2.2e-16",
+      "lane": "G090/G154/G227",
+      "tag": "LEAN-CERTIFIED",
+      "cert": "lean/G090_equivalence.lean (equipartition_virial, equipartition_linear_law); G227 gauss_map_charge; M01"
+    },
+    {
+      "link": 5,
+      "node": "deep RAR g^2 = a0 g_N (g = sqrt(a0 g_N))",
+      "value": "deep end 0.150 dex on 55 HI dwarfs",
+      "lane": "G031/G090/G201 + G114 (3/3)",
+      "tag": "LEAN-CERTIFIED + MEASURED",
+      "cert": "lean/G031_fluid_action.lean (deep_rar); lean/G201_jump_share.lean (deep_limit_sq)"
+    },
+    {
+      "link": 6,
+      "node": "BTFR v^4 = G M_b a0 = G M_b c^2/(Z R_dS)",
+      "value": "horizon form, ratio 1.00005",
+      "lane": "G090 + Z11 (19/19)",
+      "tag": "LEAN-CERTIFIED + CLOSED-FORM (horizon)",
+      "cert": "lean/G090_equivalence.lean (btfr_quartic)"
+    },
+    {
+      "link": 7,
+      "node": "12-decade line at the ONE scale",
+      "value": "b = 1.004 +- 0.011, n = 542, rms 0.180 dex; disk trio 0.9764 x a0_DE, z = -0.20",
+      "lane": "G131 (10/10) + G162 (7/7) + S09 (15/15)",
+      "tag": "MEASURED (+ S09 one-scale zero point)",
+      "cert": "none (empirical line; the shift charge's slope is Lean, the catalogue is not a theorem)"
+    },
+    {
+      "link": 8,
+      "node": "T_X-ray = mu m_p sqrt(G M_b a0)/(2 k_B) (the proton rung)",
+      "value": "0.053-dex MAD, 50 objects/3 instruments; amplitude gap f = 5.66 carried",
+      "lane": "A02 (13/13) + B06 (14/14)",
+      "tag": "CLOSED-FORM identity + MEASURED",
+      "cert": "none needed (equal-sigma identity G151 A3 c/a = mu m_p/m = 1.126e5; m_p is the SM unit by construction)"
+    },
+    {
+      "link": 9,
+      "node": "mass ladder m = 5.09 keV (double-Z, environment-blind)",
+      "value": "m = 5.089 +- 0.097 keV; rungs recover [5.0000, 5.0001] keV, spread 0.0013 sigma",
+      "lane": "A05 (11/11) + A08 (8/8) + G212 (9/9) + B03 (10/10)",
+      "tag": "CLOSED-FORM ladder + MEASURED value; C5 IN-FLIGHT",
+      "cert": "z* inversion certificate (G227 C5 mass_inversion) IN-FLIGHT; ladder algebra closed-form on record"
+    },
+    {
+      "link": 10,
+      "node": "2.55-keV line + 0.558-Mpc cut (the particle face)",
+      "value": "E = m/2 = 2.5443 keV, sigma_E [1.19, 8.08] eV, exact 1/b cusp; lambda_fs = 0.558 Mpc, k_hm = 57.2",
+      "lane": "A05 + B01 (11/11) + B02 (10/10) + G212 + S07 (14/14)",
+      "tag": "CLOSED-FORM relations; profile MEASURED-class; rate PENDING",
+      "cert": "the rate Gamma is not predicted; the P(k) face is the registered G156 decider (k ~ 100-500)"
+    }
+  ],
+  "s_wave_foldin": [
+    "S1 dilute classical gas, not BEC (xi/r_M = 3.1e-28)",
+    "S2 JWST forecast: BOTH, z* = 2.4, ~2027-2028 target-gated",
+    "S3 frozen tilt = ATLAS3D size-mass geometry b = 2(1-s)",
+    "S4 phantom core does not rotate (13.5-sig exclusion)",
+    "S5 honest input count (f_b last undeclared)",
+    "S6 merger offset clock 68-102 Myr, f_ph <= 0.125",
+    "S7 P(k) two faces: charge R=1 + warm dust lambda_fs = 0.558",
+    "S8 WEP/clock crosses null; separators are the dark sector's own observables",
+    "S9 ONE scale = the de Sitter horizon (disk trio 0.9764 x a0_DE, z = -0.20); seesaw dead as a scale",
+    "S10 holographic face sub-bound by ~37 orders"
+  ],
+  "particle_bridge": {
+    "framing": "the bridge is a temperature, not a failed mass (A03: T_dS/Z = Unruh T of a0; null's 38.63 orders rechecked)",
+    "deliverables": [
+      {
+        "d": "m = 5.09 +- 0.10 keV (kill bands 4-6 keV)",
+        "status": "MEASURED (G212 9/9), double-Z (A08 8/8), environment-blind (B03 10/10)"
+      },
+      {
+        "d": "T_X-ray proton rung (mu m_p scale)",
+        "status": "CLOSED-FORM identity + MEASURED (A02 13/13, B06 14/14)"
+      },
+      {
+        "d": "2.55-keV line E = m/2 = 2.5443 keV",
+        "status": "CLOSED-FORM; profile MEASURED-class (B01 11/11); rate PENDING (B02)"
+      },
+      {
+        "d": "varying-constants clamp |p| <= 6e-8, |dm/m| <= 4.14e-18/yr",
+        "status": "CLOSED (A06 11/11)"
+      }
+    ],
+    "electron_adjacent": "m_e/100 = 5.110 keV at +0.221 sig: a pre-existing single coincidence; 3-Z^2 sequence test (B04 5/5) finds exactly one survivor (the hook), zero additional members - no claim"
+  },
+  "open_ends": [
+    {
+      "item": "z ~ 2.5 BTFR zero point (JWST)",
+      "status": "REGISTERED (S02 17/17)",
+      "verdict_date": "~2027-2028, target-discovery-gated",
+      "expected": "BOTH (horizon + break at z* = 2.4)"
+    },
+    {
+      "item": "DR4 ridge + double-map + funnel (9 rows)",
+      "status": "REGISTERED (G165/G088/G092; rule frozen Z3)",
+      "verdict_date": "2026-12-02",
+      "expected": "ridge 11.5-18.4 sigma; STRONG unreachable; WEAK/SPLIT modal"
+    },
+    {
+      "item": "tSZ 3-way verdict",
+      "status": "DATA IN HAND (Z6 4/4)",
+      "verdict_date": "2026-10-07",
+      "expected": "JOINT at the sample level (G220)"
+    },
+    {
+      "item": "baryon fraction f_b = 0.157",
+      "status": "NOT PINNED - REMAINS AN INPUT (S05 11/11, B09 14/14)",
+      "verdict_date": "None (ledger fact)",
+      "expected": "band [0.150, 0.157], envelope [0.139, 0.180]"
+    },
+    {
+      "item": "XRISM plateau",
+      "status": "REGISTERED (G161/G130)",
+      "verdict_date": "eROSITA as eRASS / XRISM GO",
+      "expected": "|dT/dlog r| <= 0.30 keV/dex at 2 T_floor, >= 9/12"
+    },
+    {
+      "item": "sub-1e6 collapsed count (charge vs relic)",
+      "status": "REGISTERED (G156/G215)",
+      "verdict_date": "DESI/Euclid/next-gen forest",
+      "expected": "M_hm in [5e5, 5.8e6] decides; S_meas=1.0 vs relic 0.269 today"
+    },
+    {
+      "item": "MW kink width",
+      "status": "REGISTERED (G191/G217)",
+      "verdict_date": "SIGN 2027-06-30 / STRICT 2029-06-30",
+      "expected": "w90 < 0.3 kpc (step) vs 1-2 kpc (kernel)"
+    }
+  ],
+  "how_everything_works": "one scalar (shift-charge, vacuum = dark energy) / one boundary (r_M, the a0-crossing) / one mass (5.09 keV, two phases: phantom + free dust) / one scale (the de Sitter horizon) / two phases (equilibrated sub-a0 phantom, collisionless super-a0 dust) / the horizon (R_dS = 5.37 Gpc, sets the scale, hosts none of the entropy)",
+  "verdicts": {
+    "V1_chain_complete": {
+      "pass": true,
+      "statement": "10-link spine from a0 = c^2/(Z R_dS) to the 2.55-keV line + 0.558-Mpc cut, every link with its committed value and lane; S-wave and particle bridge folded in; closed sectors ledger; dated open-end statement"
+    },
+    "V2_every_link_tagged": {
+      "pass": true,
+      "statement": "LEAN-CERTIFIED (cert cited) / CLOSED-FORM / MEASURED / PENDING / IN-FLIGHT on every link; C5 mass_inversion marked IN-FLIGHT; E2 entrance (C1/C2) named; empirical zero points never called theorems"
+    },
+    "V3_honest_statement": {
+      "pass": true,
+      "statement": "the chain from the horizon to the electron-adjacent mass: identity-pinned root, 5 Lean-certified spine links, closed-form ladder, measured data faces, rate-unpredicted particle face, single registered coincidence at m_e/100; remaining instrument verdicts dated (tSZ 2026-10-07, DR4 2026-12-02, z~2.5 BTFR ~2027-2028 target-gated; baryon fraction an input with no date)"
+    }
+  },
+  "checks": [
+    {
+      "name": "Z11 identity ratio 1.00005",
+      "pass": true,
+      "detail": "{}"
+    },
+    {
+      "name": "Z = 2 sqrt(8pi/3) = 5.7888",
+      "pass": true,
+      "detail": "Z=5.788810036466141"
+    },
+    {
+      "name": "sigma^2 = v_flat^2/2 registered (kappa = 1/2)",
+      "pass": true,
+      "detail": "G162 law.equilibrium = sigma = v_flat/sqrt(2)"
+    },
+    {
+      "name": "12-decade line b = 1.004, n = 542",
+      "pass": true,
+      "detail": "{\"n\": 542, \"slope\": 1.004, \"se\": 0.0108, \"nu_sigma\": 0.3662975368828828, \"rms_about_identity\": 0.1795, \"rms_about_fit\": 0.1674}"
+    },
+    {
+      "name": "S09 disk trio 0.9764 x a0_DE, z = -0.20",
+      "pass": true,
+      "detail": "{\"slope\": \"FIXED at 1, a0 = a0_DE (zero free parameters; pred at the horizon footing)\", \"n\": 104, \"mean_r\": -0.0025954683277784325, \"se_mean_r\": 0.013294717247563924, \"z\": -0.19522553804248954, \"scatt"
+    },
+    {
+      "name": "G212 m = 5.089 +- 0.097 keV (5.09 +- 0.10)",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "G212 lambda_fs = 0.558 Mpc",
+      "pass": true,
+      "detail": "lambda_fs=0.5584"
+    },
+    {
+      "name": "B03 environment-blind: spread 0.00012 keV = 0.0013 G212 sigma",
+      "pass": true,
+      "detail": "{\"spread_keV\": 0.000122, \"spread_in_G212_sigma\": 0.0013, \"spread_in_round_0p10_band\": 0.0012, \"max_rung_vs_germ_sigma\": 0.928, \"reading\": \"the ladder's frozen rungs agree to ~0.001 sigma of the G212 0.10 keV band and to <= 0.93 sigma with the germ -- the entire recovered ladder sits inside the G212 1-sigma band\"}"
+    },
+    {
+      "name": "B03 recovered band [5.0000, 5.0001] keV",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "B06 50 objects / 0.053-dex MAD / 0.062 benchmark",
+      "pass": true,
+      "detail": "n=50 mad=0.05305 bench=0.062"
+    },
+    {
+      "name": "A08 double-Z: closed form == ladder (rel ~1e-16), Z exponent +1/2",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "A08 8/8 checks",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "B01 line E = m/2 = 2.5443 keV",
+      "pass": true,
+      "detail": "E=2.5443"
+    },
+    {
+      "name": "B01 11/11",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "B02 cosmic line per unit rate 1.065e26 ph/cm2/s/sr/keV",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "B02 10/10",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "A03 T_dS = 2.198e-30 K; T_dS/Z = 3.796e-31 K",
+      "pass": true,
+      "detail": "{\"T_dS_K\": 2.1976961476317274e-30, \"T_dS_over_Z_K\": 3.796455806612271e-31, \"T_phase_K\": 9.339528458267187, \"T_phase_5keV_K\": 9.174389448199594, \"T_phase_band_K\": [9.1729, 9.5205], \"sigma2_galaxy\": 14210896035.40797, \"sigma_galaxy_kms\": 119.20946286016043, \"t_bary_galaxy_eV\": 89.01436618043704, \"t_bary_galaxy_K\": 1032968.8254191761, \"t_bary_cluster_triad_keV\": 3.6767931557549045, \"t_bary_cluster_sigma_kms\": 766.1525978103373, \"t_bary_observed_keV\": 6.17, \"t_bary_observed_K\": 71599876.809964, \"sigma_1d_observed_kms\": 992.4834219620684, \"honest_corrections\": \"the lane brief's '~1e-29 K-class' for T_dS is one dex high; exact value 2.198e-30 K (2e-30 class)\"}"
+    },
+    {
+      "name": "A03 38.63 orders below m_e (null '~38')",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "B09: f_b NOT pinned, 2-rung band [0.150, 0.157], envelope [0.139, 0.180]",
+      "pass": true,
+      "detail": "{\"pass\": true, \"statement\": \"THE DERIVED f_b BAND: under the SAME depletion factor 0.54, the two independent rungs give f_b(rung A, groups) = 0.081/0.54 = 0.150 || {\"pass\": true, \"statement\": \"HONEST -- THE BARYON FRACTION IS NOT PINNED BY THE HALO-DEPLETION CHAIN; IT REMAINS AN INPUT, NOW HALO-ANCHORED.  The chain closes "
+    },
+    {
+      "name": "S05 input count: 4 measured + 1 identity-pinned + 1 derived",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "tSZ verdict date 2026-10-07 on the record",
+      "pass": true,
+      "detail": "Z6: 21 days from 2026-09-16 -> on or before 2026-10-07 (commit text)"
+    }
+  ],
+  "n_pass": 21,
+  "n_total": 21
+}
