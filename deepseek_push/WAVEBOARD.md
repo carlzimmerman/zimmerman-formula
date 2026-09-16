@@ -168,13 +168,139 @@ the T_vir(r) outer asymptote (2 T_floor ~= 3.6 keV -- testable on the
 X-COP T(r) data G105 fetched), G131 the 10-decade mass coverage, G132 the
 cap's thermodynamics.
 
-## WAVES 7-9 (in flight/landing: G116-G132)
+## WAVE 4 (landed 9/9 -- THE CLUSTER WAVE: the evidence audit + the closures)
+G094 THE EVIDENCE AUDIT ("are the numbers right?" -- the user's question,
+answered): every headline re-derived from the committed FITS.  CONFIRMED
+within 5%: the theory slope -1.478; the observed slope CORRECTED -1.53 ->
+-1.44 (certified 75-420 kpc window; gap to theory unchanged ~0.04; shape
+survives); amplitudes ALL CONFIRMED (G012 1.86x/2.21x, G050 0.409x, G075
+dark fractions 4.7/0.21/0.031/0.68); T-ratio 0.28 = 0.53^2 CONFIRMED (1.8%
+apart; per-cluster median dev 7.8%); chi2 711.6 vs NFW 11.9 (11.8985)
+CONFIRMED with two corrections: the split-vs-phantom comparison is
+DEGENERATE (the cap NEVER fired in 50-600 kpc: split and uncapped are the
+SAME prediction, 711.6 = 711.6) and G057b's mu2-MOND rows (741.1/672.4) are
+NOT reproducible (the committed nu_of_mu2 solve is vacuous: x mu2(x) =
+s mu2(s) => x = s => nu = 1; the corrected RAR-kernel MOND row = 663.7
+pooled).  THE BIGGEST CORRECTION: V4's rising-share Spearman =
+rho = -0.298 (p = 3.2e-3, n = 96), NOT -0.926/1.4e-41 -- the registered
+values reproduce ONLY on G050's broken g_tot (the 1e9*MSUN floor made the
+field a function of radius alone; the correlation measured share-vs-radius).
+The SIGN survives and stays significant.  Meta: every headline stands
+except the V4 amplitude and the two degenerate chi2 rows; two conclusions
+downgraded in strength (the slope -1.44 vs -1.53; the V4 at rho -0.30).
+G095 THE 0.53^2 MYSTERY CLOSED: T_obs/T_pred = 2(M_dyn/M_b)(r_M/R500) =
+the closed form -- factors EXACTLY (max residual 9.3e-16).  NOT a clean
+power of f (alpha_i 0.63-1.11, median 0.752 +- 0.115); the law's structural
+alpha = 2/3 EXACTLY (virial +1 from T ~ M_dyn/r, -1/3 from Delta500
+self-similarity R500 ~ M500^{1/3}); 1/2 EXCLUDED at 2.2 sigma; the 0.28
+constancy = the sample's M500-M_b covariance (M_b-independent exactly at
+M500 ~ M_b^{3/4}; fitted beta = 0.634 +- 0.107 = 3/4 at 1.1 sigma).  THE
+MEANING: the T ratio is the virial temperature of the TOTAL mass against
+the baryon floor -- f = (T_obs/T_pred)^{1/alpha} = 5.4-6.8 vs measured 5.66:
+the missing abundance in ONE number; 0.53^2 = 1/2 (M_b/M500)(R500/r_M); its
+0.05-dex scatter IS the HSE scatter (0.053 dex, quantified); nothing
+re-derives the 3.6x amplitude from M_b alone.
+G096 THE D2 CORE-SLOPE FALSIFIER RUN: median inner slope (0.1-0.5 R500) =
+-1.53 +- 0.25; NFW's -1 EXCLUDED at 7.2 sigma; the isothermal -2 (the law's
+own r^-2 profile) EXCLUDED at 6.4 sigma; the theory's ~-1.5 matched at 0.4
+sigma.  Honest twist: cluster-scale NFW (median rs = 0.48 R500) predicts
+-1.68 in this window (its transition regime, not the -1 asymptote) -- so
+NFW-as-model is NOT excluded; the decision lives at r < 0.1 R500 where HSE
+bias (10-25%) contaminates.  D2 NOT TRIGGERED on current data; resolved by
+hydrostatic-free lensing cores (HST/Subaru) or XRISM-class deprojection.
+G097 CHI2 DECOMPOSITION: NFW wins every window (totals 1656 vs floor 94385);
+WITH THE ONE FITTED DUST ABUNDANCE: 1.44x NFW pooled (2392 vs 1656);
+per-cluster-median 119 vs 33 = 3.6x -- the one number buys ~97% of the
+floor's chi2 and reproduces the registered s_dust(420) internally.  The
+irreducible shape residual: required dark slope +0.41 steeper inner (1.88:
+the cuspy core) and -0.72 flatter outer (0.75: the NFW tail) -- the inner
+slope AND the outer envelope are what ONE amplitude cannot buy.  Cap-
+never-fired degeneracy reproduced (the registered 711.6 is one model).
+G098 THE OPEN PARAMETER'S STATE: median required f_dust = 0.674 (per-
+cluster 0.52-0.84); V2 FAIL = the required dust is a PROFILE not one number
+(0/12 flat within the 20% bar; median (max-min)/median 0.91 (floor A)/0.72
+(B)); f_dust 0.75-0.86 inner -> 0.2-0.5 at R500; floor A crosses zero at
+median 897 kpc (the uncapped law overshoots beyond it; censored where
+M_FORW saturates).  G095's closed form reproduced digit-for-digit (3.572/
+3.512, 2.2e-15; alpha_i 0.752; pooled slope 0.2104733 = G104's committed
+value at 2.8e-16); the T-implied MASS ratio agrees with the mass inversion
+within kTvir errors (median |dlog| 0.032 vs 0.057 -- PASS); the dust
+FRACTION from the T-side fails at precision (|df| 0.13 vs 0.02-0.03 -- FAIL,
+stated).  V4: the cluster amplitude is NOT one free-dust fraction in any
+non-degenerate reading -- it IS a radial function fixed by the law's own
+zero-parameter floor; the deficit IS one number (f_dark = 4.7 at R500,
+T-consistent 5.66).
+G099 MIGHTEE-HI 2/3 (V2 FAIL is the finding): the zero-param law rms 0.190
+dex (V1 PASS <= 0.2); scatter 0.132 dex (AT the SPARC benchmark) + a
+systemic offset -0.137 dex; the DEEP end (90% of the 80 rings below 0.2 a0)
+sits -0.151 +- 0.015 dex above the law's committed amplitude (~10 sigma:
+1.4-1.6x high) -- MATCHING the paper's OWN a0 = 1.69e-10 preference (its
+2-sigma tension vs the SPARC-anchored RAR).  Shape (-1/2) confirmed; the
+zero-parameter amplitude at the deep end CONFLICTED -- a real
+systematics-level pressure on the footing (which was 0.754-0.783; MIGHTEE
+pushes HIGHER).  80 rings digitized from the authors' PDF, validated to
+0.036 dex.
+G100 WALLABY-DR2 EFE RECON: e_N max = 0.0966 (gas-only)/0.1931 (bracket);
+count above 0.3 = 0, above 0.5 = 0 -- the registered EFE test STAYS
+REGISTERED (DR2 ~2.6x short of the 0.5-a0 boundary); the environmental
+split NOT ESTABLISHED on both axes (survey-pair -0.207 at the last ring
+but p = 0.083, n = 46 -- fails the frozen G044 bar); the first WALLABY
+gas-RAR built (1725 pts / 236 galaxies); DR3 needs a resolved <=8-15 kpc
+pair point + stellar masses + the BIG-SPARC path.
+G101 DES-Y3 FLOOR 5/5: the floor share at Y3 radii median 88% (339 bins;
+5 lens z-bins x 4 source bins x 20 theta); the TESTABLE WINDOW (10% < share
+< 100%): 179 bins, 178 at S/N >= 2 (theta <= 10'-100', R 0.7-39 Mpc, lens
+bins 1-3); but the RAW release CANNOT verify the law today (the pi/2
+conversion class 0.196 dex + the sqrt(M*) envelope each ~ the share
+itself); the decisive Y3 test comes AFTER a re-analysis (catalog M*,
+Mistele-exact deprojection, boost/RSD, covariance-combined floor+dust fit
+over the 178-bin window).
+G103 PHASE-TIMESCALE 3/4 (V2 FAIL as registered): the free dust CANNOT
+equilibrate at cluster scale within the Hubble time by 70-76 ORDERS OF
+MAGNITUDE (t_relax = 1e73-1e76 x t_Hubble; N_enc 1e77-1e80, ln Lambda 183):
+the dust is collisionless FOREVER -- "free dust" is a timescale fact, not
+an assumption.  V2: t_relax(r_break) ~ Hubble fails by ~72-74 dex for the
+elementary sector; the boundary is FIELD-PINNED (the EFE cap), not
+relaxation-pinned; the phase boundary is STATIC (growth < 0.01 Mpc/Gyr).
+V4: the two-phase cluster reading survives ONLY as the static reading
+(equipartition interior + EFE cap + collisionless dust); dust-attainment
+dead on both counts (G035 mechanism + G103 timescale).
+
+## THE CLUSTER THORN, POST-WAVE-4 (the honest synthesis)
+(1) the evidence is RIGHT within 5% except: the V4 correlation loses its
+amplitude (-0.93 -> -0.30; sign survives, p = 3e-3), the residual slope is
+-1.44 not -1.53 in the certified window, and the split-vs-uncapped chi2
+was degenerate (the cap never fires inside the X-COP window).
+(2) the temperature ratio is UNDERSTOOD: 2f(r_M/R500), structural alpha =
+2/3, 1/2 excluded at 2.2 sigma; the missing abundance in one number
+(f = 5.66); its scatter IS the HSE scatter.
+(3) the core slope EXCLUDES both -1 (7.2 sigma) and -2 (6.4 sigma) and
+sits ON ~-1.5 (0.4 sigma) -- but cannot yet separate -1.5 from the
+window-honest NFW (-1.68); D2 not triggered, lensing cores decide.
+(4) one dust abundance buys 97% of the chi2 (3.6x the NFW chi2 on the
+median convention), but the required abundance is a PROFILE (0.75-0.86
+inner -> 0.2-0.5 outer), and the inner-cusp + outer-tail shape residuals
+are what it cannot buy.
+(5) the phase boundary is STATIC and field-pinned; the two-phase reading
+is dynamically safe as a static state; the dust is collisionless forever.
+(6) NEW TENSION: MIGHTEE-HI's deep end sits 10 sigma above the committed
+a0 (1.4-1.6x high), favoring its own a0 = 1.69e-10 -- a real
+systematics-level pressure on the footing tension.
+(7) WALLABY-DR2 keeps the EFE test registered; DES-Y3's floor is
+testable-windowed (178 bins at S/N >= 2) but only after a re-analysis.
+Wave 10: G133 the MIGHTEE footing fit, G134 the V4 partial-correlation
+recovery, G135 the 2/3 exponent's cross-sample law, G136 the lensing-core
+D2 registry, G137 the free-dust envelope derivation attempt, G138 the
+cap-firing-radius reconciliation.
+
+## WAVES 7-10 (in flight/landing: G116-G138)
 wave 7 (G116 sector mass, G117 BTFR correction, G118 merger registry, G119
 the 0.62 attempt, G120 theory refresh, G121 pair-merger forecast) + wave 8
 (G122 coherency-systematic decomposition, G123 phantom over-demand vs M500,
 G124 the 1.43 closed form, G125 group-scale equipartition, G126 ZW1215 case)
-+ wave 9 (G127-G132 above).  Waves 4's tail (G094 audit, G097 chi2, G103
-phase timescale) still flying.
++ wave 9 (G127 the cap's origin, G128 pooled deep-end, G129 tSZ proposal,
+G130 the T-profile asymptote test, G131 the 10-decade line, G132 the cap's
+thermodynamics) + wave 10 (G133-G138 above).
 
 ## THE CLUSTER THORN, CURRENT STATE (after wave 5)
 STRUCTURE: the framework's cluster face is mostly CONFIRMED -- the
