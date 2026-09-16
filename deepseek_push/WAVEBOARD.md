@@ -1206,6 +1206,90 @@ EFE split (refused, p = 0.114); the resolved non-fires: the saturation
 (alpha = 0.75 vs 2/3 within 1 sigma); the ledger lives in
 FALSIFIER_MATRIX.md -- THE CAMPAIGN'S FALSIFICATION SCORE = zero
 unexplained fires.
+## WAVE 26 (landed 10/10 -- the mass converged, the scale final, the dSph boundary explained)
+G208 THE DEEP-STAIRCASE ORTHOGONALITY 14/14: TWO-LAYER: the top stair is the
+M/L-convention ladder (the MIGHTEE face 1.743x -> 1.005x marched under the
+fixed-Upsilon refit); the z0 2.15x residual is a GENUINE per-galaxy second
+parameter driven within-sample by f_dark (within-SPARC rho(a0e, D) =
++0.663, p = 1e-4); the candidate law a0_eff-deep = 0.229 a0_DE (1-x_eq)^-1.47
+(x_eq = the dust-dominated equilibration fraction; MAD 0.220 -> 0.145);
+BUT the bridge test fails (4.8x short across samples): F is the IN-SAMPLE
+second parameter, not the staircase law; mass/redshift candidates fail; the
+z0 2.15x inter-sample residual stays the open deep-limit structure.
+G209 THE FULL BETA PROFILE 8/8 (c39e36d12): per-bin beta(r) BOTH estimators:
+E2 (free 2D): -0.369 / 0.011 / 0.285 / 0.256 / 0.545; E1: 0.033 / 0.093 /
+0.173 / 0.305 / 0.560 at 0.5-1/1-1.5/1.5-2/2-3/3-5 R500; the SHAPE: the
+G170-class rising two-asymptote WINS the BIC (flat +24.5, falling +36.2);
+the window mean 0.420 reproduces G203's 0.434; THE INTERIOR TWIST:
+beta_inner(0.5-1.5) = -0.10 +- 0.07 -> the isothermal upper edge 0.2
+EXCLUDED at -4.1 sigma: the core reads BELOW isotropic (a mild TANGENTIAL
+drift), and the two estimators part ways only in the innermost bin; THE
+TWO-REGIME KINEMATIC MAP CONFIRMED with the core's tangential twist as the
+new detail (G228 dispatched: the core-vortex reading).
+G210 THE 0.586 MECHANISM 11/11: the full Bondi-Hoyle integral gives
+alpha = 2/3 EXACTLY, NOT 0.586 (the caustic-width M-run = 0); the
+point-mass reading 2.0 EXCLUDED at 9.0 sigma (r_BHL = 38 Mpc truncated by
+the bound stream); q_pred = -0.3333 vs -0.4142 at +0.081 = 0.52 sigma (the
+digit-for-digit test FAILS); THE RESIDUE MECHANISM NAMED: the (1+z)^3
+assembly-time z-fold -- correct sign, alpha_time in [0.019, 0.438] under
+the fully-active R500-tube kernel, but the EdS turnaround-trap kernel
+self-compensates to 1.000: the 0.081 sliver requests PARTIAL activity,
+underdetermined at 0.52 sigma; (c0, q) remain both-derived-within-error.
+G211 THE SCALE'S FINAL WORD 10/10: the Cochrane pool of the five channels:
+delta_pool = +0.038 +- 0.025 dex -> a0_eff/a0_DE = 1.09, z = 1.53 sigma
+(robust [0.26, 2.10]); ch1 deep end +0.066 (1.90), ch2 dSph +0.196 (0.54),
+ch3/ch4 zero, ch5 T-law +0.015 (0.30); 3-SIGMA CROSSING: NO (max 2.10;
+drop ch1 -> z = 0.26); UNANIMOUS DIRECTION, SUB-MATERIALITY: the
+a0_eff = 1.2-1.3x claim stays COSMETIC -- THE EQUILIBRIUM SCALE MAY BE THE
+VACUUM SCALE; the z ~ 2.5 BTFR keeps its decisive role, not sharpened.
+G212 THE MASS TRIANGLE 9/9 -- THE MASS CONVERGED: m = 5.09 +- 0.10 keV
+(posterior peak 5.089 +- 0.097, 1-sigma [4.99, 5.19]); the intersection
+[5.0, 5.2] x [3.3, 5.7] x [4.70, 5.75] = [5.000, 5.200], width 0.20 keV;
+z-scores +0.11 / -0.98 / +0.26, chi2 = 1.04 (p = 0.59); at the measured
+m: lambda_fs = 0.558 Mpc, M_hm = 7.3e5 (sim-fit) / 8.4e6 (window);
+G156's expectation = the RELIC-side SHMF inversion with the cutoff inside
+the pre-registered flip band -- three independent physics, one number.
+G213 THE FREEZE-EPOCH MAP 11/11 -- THE dSph BOUNDARY EXPLAINED: the dSph
+class NEVER froze (z* < 0 for every member: T_b = 3.4 mK-0.088 K <
+T_CMB(0); the freeze floor sigma_min = 65 km/s at 5 keV); THE UFD EXCESS
+CORRELATES WITH THE FREEZE DEPTH: rho(E, z*(sigma_pred)) = -0.691, p =
+6.1e-6 vs the null axis rho(E, z*(sigma_obs)) = -0.036, p = 0.84 (the
+excess scales with the depth of unfrozenness, NOT the observed state);
+THE UFD EXCESS IS THE NOT-YET-FROZEN EQUILIBRIUM: the line holds only
+ABOVE the freeze threshold (z* > -0.9989, sigma_pred >= 2.1 km/s,
+log M* >= 4.5), failing one-sidedly in the unfrozen shell; the decoupling
+temperature is environment-set (9.17 K galaxy, 2e2-6e2 K cluster, NONE
+for the dSph) (G229 dispatched: the threshold prediction registry).
+G214 THE DERIVATION TREE 6/6: LEAN nodes 7 / closed-form 2 / empirical 4 /
+pending 2; certified spine depth 5; VERIFIED FRESH: 79 theorems / 10
+certificates (the LEAN_CERTIFICATES.md '66/7' was stale -- corrected);
+the coverage gap = the virial premise + the max-entropy functional + the
+DE-set temperature origin; the NEXT certificates: virial_rung4,
+maxentropy_phantom, twothirds_law (C1+C2 would make EVERY spine edge Lean).
+G215 THE MW SATELLITE CENSUS 10/10: the census scored: N_obs(>1e5 RAR) =
+15-19, N_obs(>1e6) = 12; the raw counts sit 1e2-2e3x below ALL dark-halo
+rows (occupation, not a test); THE RATIO TEST IS AT POWER AT THE 1e5-CLASS:
+S_meas = 1.0 (no break) vs the relic's 0.269 (3.2 sigma) / 0.053 (4.1);
+LEAN CHARGE AT THE LOWER EDGE -- THE NUMBER: 19 (the count 19 vs the
+relic-predicted 5.1/1.0, 3.2-4.1 sigma); the 1e6-class undecided (needs
+x38); the census is completeness-limited at 0.25.
+G216 THE LENSING-CORE PROJECT 11/11: the protocol: Delta-Sigma in 5 bins
+over [0.03, 0.1] R500, PSF + dilution corrections, SL anchor; the pair
+(-1.5 vs -1) separates at 6.7 sigma Tier-1 / 8.9 all-12 WITH the SL anchor
+(0.5/0.7 without -- the anchor is an 8x improvement); Tier 1 = the 5 with
+verified in-repo shear (A2142, A2029, ZW1215, A85, A1795); 0/12 have a
+VERIFIED HST inner core -- D2 stays UNDECIDED until new deep HST / verified
+archival cores.
+G217 THE KINK-WIDTH SAMPLE DESIGN 16/16: the honest corrections: H3 has
+ZERO in-plane 5-10 kpc stars (|b| > 20 BY DESIGN); ALL THREE streams land
+~0 at the kink (GD-1 peri 13.8, Orphan ~15, Pal-5 debris at 20.6 kpc);
+APOGEE-DR17 = 650k stars / 54,408 thin-disk RC; the MAP: TODAY 0/25 bins
+at sign power; the 1-YEAR path (DR17 pool + Gaia DR3, x3.1, no new time)
+-> sigma_beta 0.030, 7/25; the frontier (SDSS-V/WEAVE/4MOST) -> 0.013,
+22/25 at sign, 14 at strict; THE TIMELINE: SIGN verdict 2027-06-30, STRICT
+2029-06-30 -- the first-order step's signature, dated.
+
+## SIBLING COORDINATION (for qwen38 / hy4 / other tracks; read this first)
 CLAIMED (deepseek, in flight -- do NOT duplicate): G154 static-branch
 charge, G155 sourced equation, G156 dust charge-vs-relic decision,
 G157 slope-floor -2 at 20-100 kpc, G158 n-footing discriminator,
