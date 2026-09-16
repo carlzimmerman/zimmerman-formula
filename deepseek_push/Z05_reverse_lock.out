@@ -1,0 +1,123 @@
+============================================================================================
+Z05 -- THE REVERSE-LOCK ADJUDICATION: the off-by-one settled, the
+       reverse direction's fate decided  (REASSESSMENT seam #6, Z5)
+============================================================================================
+
+(0) THE COMMITTED CONVENTION -- the kernel IS the Lomax CDF (H060/H055/G230)
+    mu_n(u) = 1-(1+u)^-n   |   survival (1+u)^-n   |   PDF n(1+u)^-(n+1)
+      n = 1:  CDF 1-(1+u)^-1, survival (1+u)^-1, PDF 1(1+u)^-2
+      n = 2:  CDF 1-(1+u)^-2, survival (1+u)^-2, PDF 2(1+u)^-3
+      n = 3:  CDF 1-(1+u)^-3, survival (1+u)^-3, PDF 3(1+u)^-4
+    n=2 committed: PDF 2(1+u)^-3 (H060/G230).  The kernel's SHAPE n is the
+    CDF/survival exponent -n; the PDF exponent -(n+1) is one power steeper.
+
+(1) THE DERIVATION -- the MASS-DISTRIBUTION exponent for rho ~ r^-gamma
+    M(<r) ~ r^(3-g);  g = GM(<r)/r^2 ~ r^(1-g);  dM/dg ~ g^(2/(1-g))
+    numeric verification on simulated profiles (shell-summed masses,
+    G230-style finite differences, OLS on log-log):
+      gamma = 1.5:  measured d ln(dM/dg)/d ln g = -4.0000 vs 2/(1-g) = -4.0000   (|d| = 2.9e-08)
+      gamma = 2.0:  measured d ln(dM/dg)/d ln g = -2.0000 vs 2/(1-g) = -2.0000   (|d| = 5.9e-09)
+      gamma = 2.5:  measured d ln(dM/dg)/d ln g = -1.3333 vs 2/(1-g) = -1.3333   (|d| = 2.0e-09)
+  [PASS] V1a numeric: dM/dg ~ g^(2/(1-gamma)) holds to <1e-3 at gamma = 2.0   slope -2.0000 vs -2.0000
+  [PASS] V1b numeric: dM/dg ~ g^(2/(1-gamma)) holds at gamma = 1.5 and 2.5   |d| 2.9e-08 / 2.0e-09
+
+(2) THE PHANTOM IDENTITY -- the adjudicator of the off-by-one
+    Phantom ontology (committed, Lean-certified G227/M01): M_ph(<r) = M_b r/r_M;
+    deep law (H060): g = sqrt(G M_b a0)/r  (g ~ r^-1):
+      dM_ph/dg = (M_b/r_M) * (r/g)  ~  r * r  ~  g^-2    EXACTLY
+      numeric d ln(dM_ph/dg)/d ln g = -2.000000  (expect -2.000000)
+      => the phantom's mass-distribution exponent is -2 = -n at n = 2,
+         NOT -(n+1) = -3.  If -(n+1) governed, the phantom would need
+         M_ph ~ const (no radial growth) -- contradicted by the committed
+         Gauss-map charge M_ph = M_b r/r_M.
+  [PASS] V2 phantom identity: dM_ph/dg ~ g^-2 EXACTLY (exponent -n at n=2, not -(n+1))   slope -2.000000
+
+    the three candidate conventions (gamma(n), n(gamma)):
+      A  gamma = (2+n)/n        (H055): n(2.000) -> gamma = 2.000000
+      B  gamma = (3+n)/(n+1)   (PDF):  n(2.000) -> gamma = 1.666667  = 5/3
+      C  gamma = (1+n)/n        (alt): n(2.000) -> gamma = 1.500000  = 3/2
+    phantom closure vs the MW interior MEASURED gamma = 2.000 exact (G072/G188):
+      A: gamma(2.000) = 2.0000   z vs 2.000 = +0.00
+      B: gamma(2.000) = 1.6667   z vs 2.000 = -16.67
+      C: gamma(2.000) = 1.5000   z vs 2.000 = -25.00
+  [PASS] V3 phantom closure: only convention A returns gamma(2)=2.000 (z=0)   B: 5/3 (z = -16.7 at 0.02), C: 3/2 (z = -25)
+  [PASS] V4 B and C are excluded at >=10 sigma on the MW-inner measurement alone   z_B = -16.7, z_C = -25.0
+
+(3) THE NUMERICAL TEST -- the committed trio (gamma=2.000 exact; n=1.20; n*=3.16)
+    per-convention locked gamma at each measured n, scored vs the measured slope:
+      A  n = 1.200 -> gamma =  2.667   vs MW outer (G157, 20-100 kpc) -2.300 +- 0.40   z = -0.92  [ON]
+      B  n = 1.200 -> gamma =  1.909   vs MW outer (G157, 20-100 kpc) -2.300 +- 0.40   z = +0.98  [ON]
+      C  n = 1.200 -> gamma =  1.833   vs MW outer (G157, 20-100 kpc) -2.300 +- 0.40   z = +1.17  [OFF]
+      A  n = 3.160 -> gamma =  1.633   vs cluster inner (G096, 0.1-0.5 R500) -1.530 +- 0.25   z = -0.41  [ON]
+      B  n = 3.160 -> gamma =  1.481   vs cluster inner (G096, 0.1-0.5 R500) -1.530 +- 0.25   z = +0.20  [ON]
+      C  n = 3.160 -> gamma =  1.317   vs cluster inner (G096, 0.1-0.5 R500) -1.530 +- 0.25   z = +0.85  [ON]
+      A  n = 3.160 -> gamma =  1.633   vs residual (G008, in-situ isothermal) -1.478 +- 0.25   z = -0.62  [ON]
+      B  n = 3.160 -> gamma =  1.481   vs residual (G008, in-situ isothermal) -1.478 +- 0.25   z = -0.01  [ON]
+      C  n = 3.160 -> gamma =  1.317   vs residual (G008, in-situ isothermal) -1.478 +- 0.25   z = +0.65  [ON]
+    dust envelope (G108, pooled r_M->R500, -2.38 +- 0.15) vs the deep-end locks:
+      A  gamma(1.20) = 2.6667   z = -1.91  [OFF]
+      B  gamma(1.20) = 1.9091   z = +3.14  [OFF]
+      C  gamma(1.20) = 1.8333   z = +3.64  [OFF]
+
+    THE PHANTOM CLOSURE (the adjudicator) as a chi2 term per convention:
+      sigma_eff = 0.01:  z_A = +0.0   z_B = -33.3   z_C = -50.0
+      sigma_eff = 0.02:  z_A = +0.0   z_B = -16.7   z_C = -25.0
+      sigma_eff = 0.05:  z_A = +0.0   z_B = -6.7   z_C = -10.0
+      sigma_eff = 0.10:  z_A = +0.0   z_B = -3.3   z_C = -5.0
+
+    CHI2 per convention over the channels [phantom closure + 3 n-windows + dust]:
+      chi2_A =     5.05   (phantom term     0.0 + channel terms   5.05)
+      chi2_B =   288.62   (phantom term   277.8 + channel terms  10.85)
+      chi2_C =   640.79   (phantom term   625.0 + channel terms  15.79)
+      conv A: channels ON 3/4 (n-windows+dust 4 channels, |z|<=1)
+      conv B: channels ON 3/4 (n-windows+dust 4 channels, |z|<=1)
+      conv C: channels ON 2/4 (n-windows+dust 4 channels, |z|<=1)
+  [PASS] V5 the three-measurement consistency: chi2_A << chi2_B, chi2_C   chi2_A 5.0 / chi2_B 288.6 / chi2_C 640.8 (channels-only 5.0 / 10.8 / 15.8)
+
+(4) VERDICTS
+  V1  THE DERIVED EXPONENT: the CDF/mass-distribution exponent -n enters the
+      r^-gamma -> n inversion; gamma = (2+n)/n as committed, n = 2/(gamma-1).
+      The phantom identity pins it: dM_ph/dg ~ g^-2 EXACTLY (measured slope -2.000000 on the committed M_ph = M_b r/r_M + deep law), i.e. the mass-
+      distribution carries -n at n = 2, not -(n+1) = -3.  The PDF exponent
+      n(1+u)^-(n+1) belongs to the kernel's ratio-density and NEVER enters the
+      profile-slope inversion (it would give gamma(2) = 5/3, dead at z = -16.7).
+      THE OFF-BY-ONE IS RESOLVED IN FAVOR OF THE COMMITTED MASS-DISTRIBUTION
+      EXPONENT -n: the suspicion (H060's flagged note) is adjudicated AWAY.
+  V2  THE THREE-MEASUREMENT CONSISTENCY:  chi2_A = 5.0 vs chi2_B = 288.6 vs chi2_C = 640.8.
+      Convention A returns the phantom point EXACTLY (gamma(2.000) = 2.000, z = 0),
+      the deep-window lock gamma(1.20) = 2.667 sits ON the measured MW outer
+      slope (z = -0.92),
+      and the cluster lock gamma(3.16) = 1.633 sits ON the measured cluster inner
+      (z = -0.41) and
+      residual (z = -0.62).
+      B and C are excluded by the phantom point at >= 16.7 sigma (sigma_eff 0.02)
+      and score the galaxy-scale pair on the wrong side (dust z_B +3.14 / z_C +3.65
+      vs z_A -1.91).  The n-window channels do NOT discriminate alone (all three
+      conventions put the cluster locks on the measured cluster slopes) -- the
+      phantom closure is the discriminator, as it must be for an off-by-one at n = 2.
+  V3  THE HONEST STATEMENT: THE REVERSE LOCK SURVIVES, CORRECTED-AND-HOLDING --
+      the committed formula gamma = (2+n)/n (H055) IS the corrected one; the
+      off-by-one suspicion is settled WITH THE NUMBER (the phantom identity and
+      the MW interior gamma = 2.000 exact, z_A = 0 / z_B = -16.7 / z_C = -25 at
+      the realized sigma).  THE FORWARD CHAIN (H060) IS UNAFFECTED: it was always
+      verified forward only (deep limit 2u -> g^2 = a0 g_N -> rho ~ r^-2 -> M ~ r)
+      and never used the reverse step.  G229's PARTIALLY-CONFIRMED is re-scored
+      UPWARD at its anchor: the one clean one-component point -- the phantom
+      n = 2 <-> gamma = 2.000 EXACT realized in the MW interior (G072/G188) -- is
+      the adjudicated core and is now CLOSED; the PARTIAL status survives only
+      through the WEDGE IN n (G158 deep-end 1.20 vs G183 reconciled 3.16), which
+      is a dispute about which n the windows select, NOT about the lock relation.
+      The reverse direction is NOT dead: it lives, formula unchanged, anchor exact.
+  REGISTERED: G230's direct composite dM/dg FAILED its own V1 (pooled p = 3.47 +- 0.20,
+      z = +7.3 vs -2) -- the lock is NOT re-confirmed by the composite dM/dg; the
+      per-halo g^-2 face is the kinematic identity |dM/dg| = v_flat^4/(G g^2) of any
+      near-flat curve; the adjudicating measurement is the MW-inner phantom slope.
+
+--- summary ---
+  chi2 per convention   : A    5.05   B  288.62   C  640.79
+  phantom closure z     : A +0.00   B -16.67   C -25.00
+  derived exponent      : -n (CDF/mass distribution), gamma = (2+n)/n
+  reverse lock          : SURVIVES (corrected-and-holding), forward chain unaffected
+  checks PASS 6/6
+
+written: Z05_results.json
