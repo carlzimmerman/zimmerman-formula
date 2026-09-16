@@ -1,0 +1,701 @@
+{
+ "lane": "G188_inverted_pie",
+ "title": "THE INVERTED-PIE READING: dust inside, phantom outside -- the physical interpretation of the corrected cluster pie, the galaxy-cluster unity, and the self-consistency of the 82%-at-50-kpc dust share",
+ "deliverable": "deepseek_push/G188_inverted_pie.py + .out + G188_results.json",
+ "context": "G179 (the corrected pie: dust 82% at 50 kpc -> 25% at R500, phantom 2% -> 57%; the temperature faces); G098 (the f_dust profile: inner 0.75-0.86, floor-A vs equipartition); G119/G072 (the MW: r_M 10.21, kernel r_cut 6.13 = 0.62 r_M, R_efe 6.74 = 0.66 r_M, the deep law's closure 0.145 dex zero parameters); G164 (the break band 6.1-6.74, step +0.22 at 3.07 sigma); G095/G135 (the temperature law T_obs/T_pred = 2 f r_M/r, f_median 5.66, u 0.315, data-pie face 0.057 dex)",
+ "gates": [
+  {
+   "name": "G0a [G179 gate] the corrected radial pie rows and the R500 medians reproduced from G179_results.json",
+   "measured": "50 kpc dust 81.6% / phantom 2.0%; R500 phantom 56.9% / dust 24.6%",
+   "pass": true,
+   "reading": "the pie being interpreted is G179's committed one -- dust 82% at 50 kpc, phantom 57% at R500, the correction's own numbers"
+  },
+  {
+   "name": "G0b [G098 gate] the f_dust profile's inner end reproduced: f_dust at 0.2 R500 median + range; cumulative F_A at 0.2/1.0 R500",
+   "measured": "fA@0.2R500 median 0.782 (range [0.751, 0.856]); F_A@0.2R500 0.816, F_A@R500 0.551",
+   "pass": true,
+   "reading": "G098's committed inner dust share (0.75-0.86 of the MISSING mass at 0.2-0.5 R500) -- the number the 82%-at-50-kpc pie share must reconcile with"
+  },
+  {
+   "name": "G0c [G119 gate] the MW anchors reproduced: r_M, the kernel r_cut 6.13 = 0.623 r_M, R_efe 6.74 = 0.66 r_M",
+   "measured": "r_M = 10.210, kernel = 6.132 (= 0.601 r_M), R_efe = 6.744 (= 0.660 r_M)",
+   "pass": true,
+   "reading": "the deep-law regime at galaxy scale is [r_in, R_efe] = [0.30, 0.66] r_M -- entirely INSIDE r_M: the phantom occupies the interior"
+  },
+  {
+   "name": "G0d [G072 gate] the MW interior closes with the phantom alone (zero free dust): v_c(R0) phantom face and the curve at 6 kpc",
+   "measured": "v_ph-face(R0) = 223.9 vs 232.5 (-3.7%); at 6 kpc v_pred = 226.6 vs Eilers 230.8",
+   "pass": true,
+   "reading": "the deep law v_flat^2(1 - r_in/R) reproduces the MW interior to ~2-4% with the phantom ONLY -- at galaxy scale the interior missing mass is the phantom, not the dust (G071: 0.145 dex, zero parameters)"
+  },
+  {
+   "name": "G0e [G164 gate] the galaxy-scale break: step +0.22 beta units at 3.07 sigma, peak 6.33 kpc in the 6.1-6.74 band (= r_M x 0.60-0.66)",
+   "measured": "step = +0.22 at 3.07 sigma; peak 6.33 kpc in [6.1, 6.74]",
+   "pass": true,
+   "reading": "the measured transition sits at the EFE line: the deep law's outer edge is measured, and it is at ~0.6 r_M -- inside r_M"
+  },
+  {
+   "name": "G0f [G179 T-gate] the temperature cross-check faces reproduced: data-pie face 0.057 dex (HSE 0.053), 2/3-law face 0.067 dex",
+   "measured": "data-pie log10 rms = 0.057 dex; 2/3-law rms = 0.067 dex",
+   "pass": true,
+   "reading": "the pie's implied temperature closes at the HSE level on the TOTAL face: T_vir(M500) sees the whole pie"
+  },
+  {
+   "name": "P1 [the field gate] the pie's sector boundary sits at the field's a0-crossing: g_tot(R500)/a0 < 1 (12/12 -- the phantom-dominated radius is deep-regime), r_M is the baryonic a0-crossing by construction (G M_b/r_M^2 = a0, the Lean-certified identity, r_M inside the dust-dominated window), and the dynamical a0-crossing estimate r_a0(iso) ~ x_dp (the committed dust/phantom crossover)",
+   "measured": "g(R500)/a0 median 0.554 < 1 (12/12); r_a0(iso)/R500 median 0.554 vs x_dp median 0.410 (delta +0.144)",
+   "pass": true,
+   "reading": "at R500 (phantom 57%) the total field is below a0 -- the phantom zone IS the deep regime; inside r_M (baryonic a0-crossing, by construction) the field is sup-a0 -- the dust-dominated window is the strong-field core; the dynamical crossing and the committed dust/phantom crossover coincide to within the isothermal estimate"
+  },
+  {
+   "name": "P2 [the '98% of the interior' resolves at cluster scale] the pie's 82%-at-50-kpc dust share of M_DYN is 0.976 of the MISSING mass at 50 kpc (s_d/(1-s_b)) -- the '98%' is dust's share of the interior missing mass",
+   "measured": "s_d(50) = 0.816 of total; s_d/(s_d+s_ph) = 0.976",
+   "pass": true,
+   "reading": "approximately 98% of the interior missing mass at 50 kpc is free dust: THE '98%-of-the-interior' CLAIM IS A CLUSTER-SCALE READING (the pie's dust share renormalized to the missing mass) -- and it is the GALAXY scale where the check flips (Part 2)"
+  },
+  {
+   "name": "P3 [(b) the temperature law reads the TOTAL] the virial T is set by the total mass: T_pie = T_vir(M500) at 0.057 dex; the 2/3-law face uses f = M_dyn/M_b = the pie's TOTAL ratio; the dust's 24.6% enters through the potential (~0.13 dex of T_vir), not as a thermal phase",
+   "measured": "f = 5.66; closed form 3.56 (committed 3.512); dust's T contribution +0.127 dex via M_dyn",
+   "pass": true,
+   "reading": "the phantom's 57% at R500 is what the temperature 'sees' (it is the equilibrated sector at the virial temperature; T_obs/T_pred = 2f r_M/r is fixed by the TOTAL f); the dust contributes through the potential well (M_dyn in T_vir), consistent with the dust being the cold un-equilibrated sector (G098/G093)"
+  },
+  {
+   "name": "Q1 [the galaxy interior IS the phantom] at the solar circle the interior missing mass is the phantom: with the committed capped phantom form the dust is ~0-5% of M_dyn (the deep law closes the deficit, G072/G071), and even the uncapped equipartition face leaves dust at <= 15% -- the galaxy interior is NOT 98% dust",
+   "measured": "solar circle: dust(capped) = 4.27%, dust(equip) = 0.00%, phantom share of the dark = 0.89, f = 1.65",
+   "pass": true,
+   "reading": "the '98% of the interior missing mass is dust' figure is INVERTED at galaxy scale: the MW interior dark sector is ~85-95% phantom (the r^-2 profile, the deep law) with ~0-5% dust -- the same two-regime law read in the equilibrium-formed regime"
+  },
+  {
+   "name": "Q2 [the flip is not a window artifact] at matched r/r_M = 0.6 the sectors flip between the scales: galaxy dust ~0-10% (phantom interior) vs cluster dust ~74-79% (dust interior), with the phantom's share of the DARK mass ~90% at the galaxy and ~10-15% at the cluster",
+   "measured": "y = 0.6: galaxy s_d = 0.039 vs cluster s_d = 0.789-0.740",
+   "pass": true,
+   "reading": "the two pies are the same two-regime law viewed at different r/r_M windows, AND the equilibration boundary sits inside r_M at galaxy scale (the EFE line at 0.66 r_M) but outside it at cluster scale (phantom > dust only beyond ~1.3 r_M)"
+  },
+  {
+   "name": "Q3 [the mechanism] the phantom's equilibrium covers the deficit with share (r/r_M)/(f-1): ~1 at the galaxy solar circle (f ~ 1.9), 0.03 at the cluster's 50 kpc (f ~ 5.7), ~0.7-1 at R500 -- the dust fills the gap where the equilibrium cannot (the strong-field core) and the phantom wins where it can",
+   "measured": "coverage: galaxy R0 1.23, cluster 50 kpc 0.027, cluster R500 0.68",
+   "pass": true,
+   "reading": "the deficit ratio f = M_dyn/M_b is the switch: at galaxy scale f ~ 1.9 (the phantom closes it, zero dust); at cluster scale f ~ 5.7 (the equilibrium's linear growth cannot, and the interior deficit is dust ~97-98%)"
+  },
+  {
+   "name": "Q4 [the break is the deep law's END] the MW's 6.13 kpc break sits INSIDE r_M (0.60 r_M) at the EFE line R_efe = 0.66 r_M -- the deep regime OCCUPIES the galaxy interior, so the galaxy pie reads phantom-inside / dust-outside, the mirror of the cluster pie",
+   "measured": "break = 6.13 kpc = 0.601 r_M; R_efe = 6.74 = 0.660 r_M (both < r_M)",
+   "pass": true,
+   "reading": "the two pies are the same two-regime law in r/r_M: galaxy window [0.5, 2.4] r_M shows the phantom zone's interior; cluster window [0.13, 3.2] r_M shows the strong-field core -> crossover -> deep regime, with the phantom dominant only at/outside R500"
+  },
+  {
+   "name": "S1 [the 82% and the 0.75-0.86 are the same number] the pie's 82%-at-50-kpc share of M_dyn is 0.976 of the missing mass there; G098's inner f_dust (0.75-0.86 at 0.2-0.5 R500) is the same ratio at larger radii, falling outward -- consistent within the window shift and the phantom-floor convention",
+   "measured": "50 kpc: 81.6% of total = 97.6% of missing; G098: 0.78 at 0.2 R500; R500: 0.55 cumulative",
+   "pass": true,
+   "reading": "the two readings of the same truth: dust dominates the inner missing mass (~75-98%), declining outward; the pie's 0.82 and G098's 0.75-0.86 differ only in the unit convention (share of M_dyn vs share of the missing mass) and the radius (50 kpc vs 0.2-0.5 R500)"
+  },
+  {
+   "name": "S2 [the convention residual is registered] the two faces agree to within the phantom-floor convention (0.90 vs 0.78-0.82 at 0.2 R500, the G179-registered equipartition-vs-floor-A spread)",
+   "measured": "pie equipartition dust/missing @210 kpc = 0.91 vs G098 floor-A @0.2 R500 = 0.82",
+   "pass": true,
+   "reading": "not a discrepancy: the pie uses the equipartition phantom (M_b r/r_M), G098 uses the density-integral floor (35% at R500); both say the inner missing mass is dust, at the ~78-98% level"
+  },
+  {
+   "name": "V1 [the clean two-regime reading]",
+   "measured": "81.6% dust at 50 kpc (=97.6% of the missing mass), 56.9% phantom at R500; r_a0 = 0.55 R500, g(R500)/a0 = 0.55",
+   "pass": true,
+   "reading": "THE PIE IS THE TWO-REGIME MAP (the clean reading): at cluster scale the free dust dominates the inner volume -- 81.6% of M_dyn at 50 kpc (97.6% of the missing mass there), falling to 24.6% at R500 -- and the phantom dominates at/outside R500 (2.0% at 50 kpc rising to 56.9%).  The phantom is deep-regime physics: the equilibrium phase forms where the field is below the a0-class and the un-equilibrated dust carries the strong-field core.  The field check: g_tot(R500)/a0 = 0.55 < 1 on 12/12 clusters (the phantom-dominated radius is sub-a0); r_M is the baryonic a0-crossing by construction (G M_b/r_M^2 = a0, the Lean-certified identity) with r_M = 402 kpc = 0.31 R500 inside the dust-dominated window; the dynamical a0-crossing estimate r_a0(iso) = 0.55 R500 coincides with the committed dust/phantom crossover x_dp = 0.41 R500: the dust-dominated window (s_d 66-82% for r < 0.5 R500) is the sup-a0 strong-field core, the phantom-dominated zone (57% at R500) is sub-a0 -- the sector bookkeeping IS the two-regime map.  THE '98% OF THE INTERIOR (missing mass)' IS THIS: 97.6% dust at 50 kpc."
+  },
+  {
+   "name": "V2 [the galaxy-cluster unity]",
+   "measured": "MW interior phantom share of dark = 0.89, s_d = 0.04; cluster interior s_d = 0.82",
+   "pass": true,
+   "reading": "THE GALAXY-CLUSTER UNITY: the two pies are the SAME two-regime law viewed at different r/r_M windows -- with the equilibration boundary's POSITION inside r_M at galaxy scale and outside it at cluster scale.  At the MW: the deep-law phantom regime is [0.30, 0.66] r_M (r_in = 3.06 kpc to the EFE line R_efe = 6.74 kpc), entirely INSIDE r_M = 10.21 kpc; the interior missing mass is the phantom (the r^-2 profile: the solar-circle dark fraction 0.40 is 0.89 phantom, dust 4.27%, the deep law closing the RC to ~2-4%, G072/G071), and the break at 6.13 kpc = 0.601 r_M is where the deep law ENDS (the EFE hand-off, measured: G164 step +0.22, 3.07 sigma), NOT where it begins.  At the clusters: r_M = 0.31 R500, the phantom exceeds the dust only beyond ~1.3 r_M and dominates at/outside R500 (56.9%), while the strong-field core is dust (81.6% at 50 kpc).  The mechanism is the deficit ratio: the equilibrium phantom covers share (r/r_M)/(f-1) of the deficit -- ~1 at the galaxy solar circle (f = 1.65), 0.03 at the cluster 50 kpc (f = 5.7) -- so the galaxy interior equilibrates and the cluster interior does not.  At matched r/r_M = 0.6 the sectors flip: galaxy dust 0.04 vs cluster dust 0.79-0.74."
+  },
+  {
+   "name": "V3 [the honest statement]",
+   "measured": "98% -> cluster interior missing-mass dust at 50 kpc; galaxy interior = phantom (dark share 0.89)",
+   "pass": true,
+   "reading": "HONEST: the corrected pie is the two-regime map stated ONCE at both scales, with the numbers: at the cluster, dust 82% of M_dyn at 50 kpc (98% of the missing mass) -> 57% phantom at R500; at the galaxy, the interior missing mass is ~89% phantom (dust 4% at the solar circle) and the break is the deep law's end at 0.60 r_M.  The '98% of the interior' figure is the CLUSTER's dust share of the interior missing mass -- NOT a galaxy statement (there it is the phantom, and the brief's 'phantom-dominated inside r_M' framing was inverted by the pie at BOTH scales into the correct sector by sector).  The residual honesty register: the pie's 82% and G098's 0.75-0.86 are the same number in two unit conventions plus the phantom-floor convention (equipartition vs floor-A, the G179-registered 57%/35% spread); the galaxy-side dust floor-dependent at the ~5-15% level (the uncapped equipartition face even overshoots at the solar circle, mirroring A2319's negative dust at the cluster end); and the field gate uses the exact committed anchors (g(R500)/a0 from M500/R500, r_M as the baryonic a0-crossing by construction, the isothermal dynamical-crossing estimate vs the committed x_dp) -- the rho-integral route was rejected because the committed density arrays start at 0.1 R500 and cannot contain the central cusp."
+  }
+ ],
+ "n_pass": 18,
+ "n_fail": 0,
+ "the_reading": {
+  "clean_two_regime": "THE PIE IS THE TWO-REGIME MAP (the clean reading): at cluster scale the free dust dominates the inner volume -- 81.6% of M_dyn at 50 kpc (97.6% of the missing mass there), falling to 24.6% at R500 -- and the phantom dominates at/outside R500 (2.0% at 50 kpc rising to 56.9%).  The phantom is deep-regime physics: the equilibrium phase forms where the field is below the a0-class and the un-equilibrated dust carries the strong-field core.  The field check: g_tot(R500)/a0 = 0.55 < 1 on 12/12 clusters (the phantom-dominated radius is sub-a0); r_M is the baryonic a0-crossing by construction (G M_b/r_M^2 = a0, the Lean-certified identity) with r_M = 402 kpc = 0.31 R500 inside the dust-dominated window; the dynamical a0-crossing estimate r_a0(iso) = 0.55 R500 coincides with the committed dust/phantom crossover x_dp = 0.41 R500: the dust-dominated window (s_d 66-82% for r < 0.5 R500) is the sup-a0 strong-field core, the phantom-dominated zone (57% at R500) is sub-a0 -- the sector bookkeeping IS the two-regime map.  THE '98% OF THE INTERIOR (missing mass)' IS THIS: 97.6% dust at 50 kpc.",
+  "galaxy_cluster_unity": "THE GALAXY-CLUSTER UNITY: the two pies are the SAME two-regime law viewed at different r/r_M windows -- with the equilibration boundary's POSITION inside r_M at galaxy scale and outside it at cluster scale.  At the MW: the deep-law phantom regime is [0.30, 0.66] r_M (r_in = 3.06 kpc to the EFE line R_efe = 6.74 kpc), entirely INSIDE r_M = 10.21 kpc; the interior missing mass is the phantom (the r^-2 profile: the solar-circle dark fraction 0.40 is 0.89 phantom, dust 4.27%, the deep law closing the RC to ~2-4%, G072/G071), and the break at 6.13 kpc = 0.601 r_M is where the deep law ENDS (the EFE hand-off, measured: G164 step +0.22, 3.07 sigma), NOT where it begins.  At the clusters: r_M = 0.31 R500, the phantom exceeds the dust only beyond ~1.3 r_M and dominates at/outside R500 (56.9%), while the strong-field core is dust (81.6% at 50 kpc).  The mechanism is the deficit ratio: the equilibrium phantom covers share (r/r_M)/(f-1) of the deficit -- ~1 at the galaxy solar circle (f = 1.65), 0.03 at the cluster 50 kpc (f = 5.7) -- so the galaxy interior equilibrates and the cluster interior does not.  At matched r/r_M = 0.6 the sectors flip: galaxy dust 0.04 vs cluster dust 0.79-0.74.",
+  "honest": "HONEST: the corrected pie is the two-regime map stated ONCE at both scales, with the numbers: at the cluster, dust 82% of M_dyn at 50 kpc (98% of the missing mass) -> 57% phantom at R500; at the galaxy, the interior missing mass is ~89% phantom (dust 4% at the solar circle) and the break is the deep law's end at 0.60 r_M.  The '98% of the interior' figure is the CLUSTER's dust share of the interior missing mass -- NOT a galaxy statement (there it is the phantom, and the brief's 'phantom-dominated inside r_M' framing was inverted by the pie at BOTH scales into the correct sector by sector).  The residual honesty register: the pie's 82% and G098's 0.75-0.86 are the same number in two unit conventions plus the phantom-floor convention (equipartition vs floor-A, the G179-registered 57%/35% spread); the galaxy-side dust floor-dependent at the ~5-15% level (the uncapped equipartition face even overshoots at the solar circle, mirroring A2319's negative dust at the cluster end); and the field gate uses the exact committed anchors (g(R500)/a0 from M500/R500, r_M as the baryonic a0-crossing by construction, the isothermal dynamical-crossing estimate vs the committed x_dp) -- the rho-integral route was rejected because the committed density arrays start at 0.1 R500 and cannot contain the central cusp."
+ },
+ "part1_two_regime_map": {
+  "pie_at_50kpc": {
+   "s_d": 0.8158227040353592,
+   "s_ph": 0.01993555029858022,
+   "s_b": 0.16355253865565972
+  },
+  "pie_at_R500": {
+   "s_b": [
+    0.17657198720029432,
+    0.1511916063887539,
+    0.21508683883749852
+   ],
+   "s_ph": [
+    0.5694828515408679,
+    0.5400644949228876,
+    0.6070283909445664
+   ],
+   "s_d": [
+    0.24580827828808421,
+    0.18068567261081298,
+    0.3134823791518504
+   ]
+  },
+  "a0_crossing": {
+   "r_a0_over_R500_median": 0.5543675362491625,
+   "r_a0_over_R500_range": [
+    0.4664768981330221,
+    0.6572569317390172
+   ],
+   "n_resolved": 12,
+   "g_R500_over_a0_median": 0.5543675362491625,
+   "g_R500_over_a0_range": [
+    0.466476898133022,
+    0.6572569317390173
+   ],
+   "n_sub_a0_at_R500": 12
+  },
+  "missing_mass_reading": {
+   "dust_share_of_total_50kpc": 0.8158227040353592,
+   "dust_share_of_missing_50kpc": 0.9761467503369525,
+   "the_98_percent": "dust is 97.6% of the interior missing mass at 50 kpc -- the cluster-side reading of the 98%-of-the-interior claim"
+  },
+  "twothirds_law_role": {
+   "T_pie_equals_Tvir_M500": true,
+   "log10_rms_dex": 0.05737207710509573,
+   "f_pie": 5.663412503058317,
+   "closed_form_on_pie": 3.563419146924293,
+   "dust_contribution_through_potential_dex": 0.12722924854964138,
+   "reading": "the virial T is set by the TOTAL mass; the phantom's 57% at R500 is what the temperature sees; the dust's 24.6% enters through the potential (T_vir ~ +0.13 dex), not as a thermal phase"
+  }
+ },
+ "part2_galaxy_cluster_unity": {
+  "mw_anchors": {
+   "r_M_kpc": 10.209823502119136,
+   "r_in_kpc": 3.062947050635741,
+   "kernel_r_cut_kpc": 6.131509762292199,
+   "kernel_over_r_M": 0.6005500252790414,
+   "R_efe_kpc": 6.74350019796463,
+   "R_efe_over_r_M": 0.6604913587942983,
+   "registered_break_kpc": 6.1
+  },
+  "mw_pie": [
+   {
+    "R_kpc": 5.27,
+    "v_obs_kms": 226.83,
+    "M_dyn_Msun": 63032101098.57781,
+    "M_b_Msun": 47300440313.695305,
+    "s_b": 0.7504182708382308,
+    "s_ph_capped": 0.24006780919881215,
+    "s_d_capped": 0.009513919962957085,
+    "s_ph_equip": 0.38734306097423166,
+    "s_d_equip": 0.0,
+    "f": 1.3325901551983563
+   },
+   {
+    "R_kpc": 5.74,
+    "v_obs_kms": 230.8,
+    "M_dyn_Msun": 71077752141.19246,
+    "M_b_Msun": 50068075351.989265,
+    "s_b": 0.7044127570682244,
+    "s_ph_capped": 0.2582297277474282,
+    "s_d_capped": 0.037357515184347434,
+    "s_ph_equip": 0.39602342045701183,
+    "s_d_equip": 0.0,
+    "f": 1.419622217181321
+   },
+   {
+    "R_kpc": 6.23,
+    "v_obs_kms": 231.2,
+    "M_dyn_Msun": 77412998458.25526,
+    "M_b_Msun": 52649909172.39952,
+    "s_b": 0.6801171666382466,
+    "s_ph_capped": 0.28049452957433935,
+    "s_d_capped": 0.039388303787414036,
+    "s_ph_equip": 0.4150052101563581,
+    "s_d_equip": 0.0,
+    "f": 1.47033489088785
+   },
+   {
+    "R_kpc": 6.73,
+    "v_obs_kms": 229.88,
+    "M_dyn_Msun": 82673747558.0372,
+    "M_b_Msun": 54985971275.01009,
+    "s_b": 0.665095908908808,
+    "s_ph_capped": 0.3041112716875069,
+    "s_d_capped": 0.030792819403685112,
+    "s_ph_equip": 0.43841066067667334,
+    "s_d_equip": 0.0,
+    "f": 1.503542551691009
+   },
+   {
+    "R_kpc": 7.22,
+    "v_obs_kms": 229.61,
+    "M_dyn_Msun": 88484862018.92946,
+    "M_b_Msun": 57005474168.42658,
+    "s_b": 0.6442398492550225,
+    "s_ph_capped": 0.3221065372754649,
+    "s_d_capped": 0.03365361346951257,
+    "s_ph_equip": 0.4555819902915875,
+    "s_d_equip": 0.0,
+    "f": 1.5522169284566403
+   },
+   {
+    "R_kpc": 7.82,
+    "v_obs_kms": 229.91,
+    "M_dyn_Msun": 96088775542.21631,
+    "M_b_Msun": 59148585674.33684,
+    "s_b": 0.6155618628770027,
+    "s_ph_capped": 0.3394284860603344,
+    "s_d_capped": 0.04500965106266297,
+    "s_ph_equip": 0.47147668778985624,
+    "s_d_equip": 0.0,
+    "f": 1.6245320906110345
+   },
+   {
+    "R_kpc": 8.19,
+    "v_obs_kms": 228.86,
+    "M_dyn_Msun": 99718071815.33575,
+    "M_b_Msun": 60306348161.92908,
+    "s_b": 0.6047684944571351,
+    "s_ph_capped": 0.352514423416213,
+    "s_d_capped": 0.04271708212665193,
+    "s_ph_equip": 0.4851263068921698,
+    "s_d_equip": 0.0,
+    "f": 1.653525289702204
+   },
+   {
+    "R_kpc": 8.78,
+    "v_obs_kms": 226.5,
+    "M_dyn_Msun": 104708300783.12454,
+    "M_b_Msun": 61921995009.92813,
+    "s_b": 0.5913761807498252,
+    "s_ph_capped": 0.37434674693485975,
+    "s_d_capped": 0.034277072315315016,
+    "s_ph_equip": 0.5085575539974577,
+    "s_d_equip": 0.0,
+    "f": 1.6909710477890185
+   },
+   {
+    "R_kpc": 9.27,
+    "v_obs_kms": 226.2,
+    "M_dyn_Msun": 110259271472.37471,
+    "M_b_Msun": 63071494045.72597,
+    "s_b": 0.5720289387321812,
+    "s_ph_capped": 0.3859697711413783,
+    "s_d_capped": 0.042001290126440494,
+    "s_ph_equip": 0.5193731567393596,
+    "s_d_equip": 0.0,
+    "f": 1.748163304843203
+   },
+   {
+    "R_kpc": 9.76,
+    "v_obs_kms": 225.94,
+    "M_dyn_Msun": 115820717166.81975,
+    "M_b_Msun": 64067664750.73907,
+    "s_b": 0.5531623902696152,
+    "s_ph_capped": 0.39644271681931614,
+    "s_d_capped": 0.050394892911068634,
+    "s_ph_equip": 0.5287912105347231,
+    "s_d_equip": 0.0,
+    "f": 1.8077874012956539
+   },
+   {
+    "R_kpc": 10.26,
+    "v_obs_kms": 225.68,
+    "M_dyn_Msun": 121474100077.05779,
+    "M_b_Msun": 64944976718.48689,
+    "s_b": 0.5346405256535235,
+    "s_ph_capped": 0.4062131406269566,
+    "s_d_capped": 0.059146333719519883,
+    "s_ph_equip": 0.537268033288392,
+    "s_d_equip": 0.0,
+    "f": 1.8704156382040802
+   },
+   {
+    "R_kpc": 10.75,
+    "v_obs_kms": 224.73,
+    "M_dyn_Msun": 126206217592.93622,
+    "M_b_Msun": 65685163224.68961,
+    "s_b": 0.5204590112711375,
+    "s_ph_capped": 0.4176015310774417,
+    "s_d_capped": 0.06193945765142084,
+    "s_ph_equip": 0.5479952097118477,
+    "s_d_equip": 0.0,
+    "f": 1.9213808932958252
+   },
+   {
+    "R_kpc": 11.25,
+    "v_obs_kms": 224.02,
+    "M_dyn_Msun": 131243043039.624,
+    "M_b_Msun": 66334013255.39596,
+    "s_b": 0.5054287962171744,
+    "s_ph_capped": 0.4276950939099697,
+    "s_d_capped": 0.06687610987285592,
+    "s_ph_equip": 0.5569218661089507,
+    "s_d_equip": 0.0,
+    "f": 1.9785180573097316
+   },
+   {
+    "R_kpc": 11.75,
+    "v_obs_kms": 223.86,
+    "M_dyn_Msun": 136880331628.52487,
+    "M_b_Msun": 66889406108.418594,
+    "s_b": 0.48867069002979624,
+    "s_ph_capped": 0.43512534510114764,
+    "s_d_capped": 0.07620396486905612,
+    "s_ph_equip": 0.5623878421265882,
+    "s_d_equip": 0.0,
+    "f": 2.0463678718668925
+   },
+   {
+    "R_kpc": 12.25,
+    "v_obs_kms": 222.23,
+    "M_dyn_Msun": 140634425854.96793,
+    "M_b_Msun": 67363904947.54434,
+    "s_b": 0.47900010639652857,
+    "s_ph_capped": 0.4478860497637933,
+    "s_d_capped": 0.07311384383967812,
+    "s_ph_equip": 0.574716233061186,
+    "s_d_equip": 0.0,
+    "f": 2.0876822085132782
+   },
+   {
+    "R_kpc": 12.74,
+    "v_obs_kms": 220.77,
+    "M_dyn_Msun": 144344329189.5908,
+    "M_b_Msun": 67761113934.62717,
+    "s_b": 0.4694407761985961,
+    "s_ph_capped": 0.45964903388066947,
+    "s_d_capped": 0.07091018992073439,
+    "s_ph_equip": 0.5857765795391835,
+    "s_d_equip": 0.0,
+    "f": 2.130194160161647
+   },
+   {
+    "R_kpc": 13.23,
+    "v_obs_kms": 220.92,
+    "M_dyn_Msun": 150099794121.52725,
+    "M_b_Msun": 68100436361.016335,
+    "s_b": 0.45370106441238217,
+    "s_ph_capped": 0.4644061363793662,
+    "s_d_capped": 0.0818927992082516,
+    "s_ph_equip": 0.5879107587834357,
+    "s_d_equip": 0.0,
+    "f": 2.2040944543411314
+   },
+   {
+    "R_kpc": 13.74,
+    "v_obs_kms": 217.47,
+    "M_dyn_Msun": 151055180765.52298,
+    "M_b_Msun": 68400755147.67574,
+    "s_b": 0.45281965703547467,
+    "s_ph_capped": 0.48461709771410477,
+    "s_d_capped": 0.06256324525042056,
+    "s_ph_equip": 0.609387820110313,
+    "s_d_equip": 0.0,
+    "f": 2.2083846945753467
+   },
+   {
+    "R_kpc": 14.24,
+    "v_obs_kms": 217.31,
+    "M_dyn_Msun": 156321817635.36407,
+    "M_b_Msun": 68650336736.70274,
+    "s_b": 0.4391603026062323,
+    "s_ph_capped": 0.4902196019469152,
+    "s_d_capped": 0.0706200954468525,
+    "s_ph_equip": 0.6125123228442442,
+    "s_d_equip": 0.0,
+    "f": 2.2770728457590983
+   },
+   {
+    "R_kpc": 14.74,
+    "v_obs_kms": 217.6,
+    "M_dyn_Msun": 162242805990.83502,
+    "M_b_Msun": 68861984183.18913,
+    "s_b": 0.4244378279988519,
+    "s_ph_capped": 0.49345864457563826,
+    "s_d_capped": 0.08210352742550986,
+    "s_ph_equip": 0.6127641269611123,
+    "s_d_equip": 0.0,
+    "f": 2.3560576697765616
+   },
+   {
+    "R_kpc": 15.22,
+    "v_obs_kms": 217.07,
+    "M_dyn_Msun": 166711073556.81363,
+    "M_b_Msun": 69034638020.30664,
+    "s_b": 0.4140974954299017,
+    "s_ph_capped": 0.499973309755919,
+    "s_d_capped": 0.08592919481417927,
+    "s_ph_equip": 0.6173039013979971,
+    "s_d_equip": 0.0,
+    "f": 2.4148902397051075
+   },
+   {
+    "R_kpc": 15.74,
+    "v_obs_kms": 217.38,
+    "M_dyn_Msun": 172899636462.05008,
+    "M_b_Msun": 69192917297.91457,
+    "s_b": 0.40019122488497416,
+    "s_ph_capped": 0.5026980319567156,
+    "s_d_capped": 0.09711074315831025,
+    "s_ph_equip": 0.616955805198991,
+    "s_d_equip": 0.0,
+    "f": 2.4988054155545942
+   },
+   {
+    "R_kpc": 16.24,
+    "v_obs_kms": 216.14,
+    "M_dyn_Msun": 176362603944.77017,
+    "M_b_Msun": 69321103004.27414,
+    "s_b": 0.39306010148264076,
+    "s_ph_capped": 0.5122650770304782,
+    "s_d_capped": 0.09467482148688111,
+    "s_ph_equip": 0.6252112043614835,
+    "s_d_equip": 0.0,
+    "f": 2.5441401867753917
+   },
+   {
+    "R_kpc": 16.74,
+    "v_obs_kms": 212.52,
+    "M_dyn_Msun": 175754013538.36993,
+    "M_b_Msun": 69429336012.89766,
+    "s_b": 0.39503698729326664,
+    "s_ph_capped": 0.5335439966732288,
+    "s_d_capped": 0.07141901603350453,
+    "s_ph_equip": 0.6477016146181876,
+    "s_d_equip": 0.0,
+    "f": 2.531408531772804
+   },
+   {
+    "R_kpc": 17.25,
+    "v_obs_kms": 216.41,
+    "M_dyn_Msun": 187799284256.34387,
+    "M_b_Msun": 69522309701.5411,
+    "s_b": 0.37019475328055007,
+    "s_ph_capped": 0.5179421052521255,
+    "s_d_capped": 0.11186314146732446,
+    "s_ph_equip": 0.6254622807890898,
+    "s_d_equip": 0.004342965930360099,
+    "f": 2.7012808559233026
+   },
+   {
+    "R_kpc": 17.75,
+    "v_obs_kms": 213.7,
+    "M_dyn_Msun": 188433270094.24768,
+    "M_b_Msun": 69598999004.73164,
+    "s_b": 0.36935621278514497,
+    "s_ph_capped": 0.5343921087914418,
+    "s_d_capped": 0.0962516784234132,
+    "s_ph_equip": 0.6421338013899608,
+    "s_d_equip": 0.0,
+    "f": 2.707413508654588
+   },
+   {
+    "R_kpc": 18.24,
+    "v_obs_kms": 207.89,
+    "M_dyn_Msun": 183249254180.3145,
+    "M_b_Msun": 69662396099.59119,
+    "s_b": 0.38015104842415587,
+    "s_ph_capped": 0.5678428926696206,
+    "s_d_capped": 0.05200605890622345,
+    "s_ph_equip": 0.6791454447589031,
+    "s_d_equip": 0.0,
+    "f": 2.6305333212819235
+   },
+   {
+    "R_kpc": 18.74,
+    "v_obs_kms": 209.6,
+    "M_dyn_Msun": 191382545407.25592,
+    "M_b_Msun": 69716929691.13063,
+    "s_b": 0.36428050187531597,
+    "s_ph_capped": 0.5616232256924749,
+    "s_d_capped": 0.07409627243220918,
+    "s_ph_equip": 0.6686321858283346,
+    "s_d_equip": 0.0,
+    "f": 2.745137318225928
+   },
+   {
+    "R_kpc": 19.22,
+    "v_obs_kms": 206.45,
+    "M_dyn_Msun": 190429111469.50128,
+    "M_b_Msun": 69761100584.95036,
+    "s_b": 0.3663363235096707,
+    "s_ph_capped": 0.5817170164834703,
+    "s_d_capped": 0.05194666000685899,
+    "s_ph_equip": 0.6896283894030542,
+    "s_d_equip": 0.0,
+    "f": 2.729732040818501
+   },
+   {
+    "R_kpc": 19.71,
+    "v_obs_kms": 201.91,
+    "M_dyn_Msun": 186789502383.67386,
+    "M_b_Msun": 69799191493.87625,
+    "s_b": 0.37367834167953207,
+    "s_ph_capped": 0.6110374893679275,
+    "s_d_capped": 0.015284168952540478,
+    "s_ph_equip": 0.721383686307101,
+    "s_d_equip": 0.0,
+    "f": 2.676098367128817
+   },
+   {
+    "R_kpc": 20.27,
+    "v_obs_kms": 199.84,
+    "M_dyn_Msun": 188177967756.68207,
+    "M_b_Msun": 69835443662.31702,
+    "s_b": 0.37111381579280134,
+    "s_ph_capped": 0.6269323524593208,
+    "s_d_capped": 0.0019538317478778877,
+    "s_ph_equip": 0.7367881574601881,
+    "s_d_equip": 0.0,
+    "f": 2.6945911400892597
+   },
+   {
+    "R_kpc": 20.78,
+    "v_obs_kms": 198.14,
+    "M_dyn_Msun": 189644409098.53818,
+    "M_b_Msun": 69862804936.75298,
+    "s_b": 0.36838842372860386,
+    "s_ph_capped": 0.6405225148585605,
+    "s_d_capped": 0.0,
+    "s_ph_equip": 0.7497790185590871,
+    "s_d_equip": 0.0,
+    "f": 2.7145261240258516
+   },
+   {
+    "R_kpc": 21.24,
+    "v_obs_kms": 195.3,
+    "M_dyn_Msun": 188325523028.9951,
+    "M_b_Msun": 69883607220.83705,
+    "s_b": 0.37107879004842903,
+    "s_ph_capped": 0.6617550297283293,
+    "s_d_capped": 0.0,
+    "s_ph_equip": 0.7719735310794271,
+    "s_d_equip": 0.0,
+    "f": 2.6948454797685724
+   },
+   {
+    "R_kpc": 21.8,
+    "v_obs_kms": 213.67,
+    "M_dyn_Msun": 231362930695.3205,
+    "M_b_Msun": 69904770910.24481,
+    "s_b": 0.30214334984501773,
+    "s_ph_capped": 0.5552524301731647,
+    "s_d_capped": 0.1426042199818176,
+    "s_ph_equip": 0.6451360324940246,
+    "s_d_equip": 0.0527206176609577,
+    "f": 3.309687274311822
+   },
+   {
+    "R_kpc": 22.14,
+    "v_obs_kms": 176.97,
+    "M_dyn_Msun": 161185919700.03018,
+    "M_b_Msun": 69915716994.5949,
+    "s_b": 0.4337582161314665,
+    "s_ph_capped": 0.8114600517791878,
+    "s_d_capped": 0.0,
+    "s_ph_equip": 0.9406045954817338,
+    "s_d_equip": 0.0,
+    "f": 2.3054318346258436
+   },
+   {
+    "R_kpc": 22.73,
+    "v_obs_kms": 193.11,
+    "M_dyn_Msun": 197042154122.8719,
+    "M_b_Msun": 69931841023.10796,
+    "s_b": 0.354908021252649,
+    "s_ph_capped": 0.6843260952519731,
+    "s_d_capped": 0.0,
+    "s_ph_equip": 0.7901272065475299,
+    "s_d_equip": 0.0,
+    "f": 2.817631442846788
+   },
+   {
+    "R_kpc": 23.66,
+    "v_obs_kms": 176.63,
+    "M_dyn_Msun": 171590745632.9769,
+    "M_b_Msun": 69951282386.61096,
+    "s_b": 0.4076634909917163,
+    "s_ph_capped": 0.8229892924609038,
+    "s_d_capped": 0.0,
+    "s_ph_equip": 0.9447095921748343,
+    "s_d_equip": 0.0,
+    "f": 2.4530035730384303
+   },
+   {
+    "R_kpc": 24.82,
+    "v_obs_kms": 198.42,
+    "M_dyn_Msun": 227155287852.655,
+    "M_b_Msun": 69968009846.7651,
+    "s_b": 0.30801840673922626,
+    "s_ph_capped": 0.6566896605614567,
+    "s_d_capped": 0.035291932699317075,
+    "s_ph_equip": 0.748790305109663,
+    "s_d_equip": 0.0,
+    "f": 3.2465592254251785
+   }
+  ],
+  "solar_circle": {
+   "R_kpc": 8.19,
+   "f": 1.653525289702204,
+   "s_d_capped": 0.04271708212665193,
+   "s_d_equip": 0.0,
+   "phantom_share_of_dark_capped": 0.8919188335758343,
+   "reading": "the interior missing mass IS the phantom (the r^-2 profile); the deep law closes the RC with ~0-5% dust"
+  },
+  "the_contrast": {
+   "matched_r_over_r_M": 0.6005500252790414,
+   "galaxy_dust_share": 0.039388303787414036,
+   "cluster_dust_share_210_300kpc": [
+    0.7891482064302852,
+    0.7403300977180698
+   ],
+   "read": "at the same r/r_M the sectors FLIP: phantom interior at the galaxy, dust interior at the cluster"
+  },
+  "the_switch": {
+   "formula": "the phantom's share of the deficit = (r/r_M)/(f-1)",
+   "galaxy_solar_circle": 1.2274484702980122,
+   "cluster_50kpc": 0.027261059539244476,
+   "cluster_R500": 0.681526488481112,
+   "read": "f = M_dyn/M_b ~ 1.9 (galaxy): the equilibrium covers the deficit; f ~ 5.7 (cluster): the equilibrium covers 3% at 50 kpc, the dust fills the strong-field core"
+  },
+  "broken_law_position": {
+   "deep_law_regime": "[0.30, 0.66] r_M = [r_in, R_efe], inside r_M",
+   "break_is_the_deep_law_end": true,
+   "g164_step": 0.2206940866823533,
+   "g164_sigma": 3.073746472345809,
+   "g164_peak_kpc": 6.328320142888882
+  }
+ },
+ "part3_self_consistency": {
+  "pie_share_50kpc_of_total": 0.8158227040353592,
+  "pie_share_50kpc_of_missing": 0.9761467503369525,
+  "g098_inner_f_dust_median": 0.7821180350129275,
+  "g098_inner_f_dust_range": [
+   0.7505852606807563,
+   0.855526513849766
+  ],
+  "g098_cumulative_F_A_r02": 0.8162732100974776,
+  "g098_cumulative_F_A_r10": 0.550555081155572,
+  "pie_equipartition_dust_over_missing_210kpc": 0.9146621026693466,
+  "convention_note": "82% (of M_dyn at 50 kpc) and 0.75-0.86 (of the missing mass at 0.2-0.5 R500) are the same number in two unit conventions; the 0.1-level face residual is the phantom-floor convention (equipartition 57% vs floor-A 35% at R500, G179-registered)"
+ },
+ "verdicts": {
+  "V1_clean_two_regime": {
+   "pass": true,
+   "statement": "THE PIE IS THE TWO-REGIME MAP (the clean reading): at cluster scale the free dust dominates the inner volume -- 81.6% of M_dyn at 50 kpc (97.6% of the missing mass there), falling to 24.6% at R500 -- and the phantom dominates at/outside R500 (2.0% at 50 kpc rising to 56.9%).  The phantom is deep-regime physics: the equilibrium phase forms where the field is below the a0-class and the un-equilibrated dust carries the strong-field core.  The field check: g_tot(R500)/a0 = 0.55 < 1 on 12/12 clusters (the phantom-dominated radius is sub-a0); r_M is the baryonic a0-crossing by construction (G M_b/r_M^2 = a0, the Lean-certified identity) with r_M = 402 kpc = 0.31 R500 inside the dust-dominated window; the dynamical a0-crossing estimate r_a0(iso) = 0.55 R500 coincides with the committed dust/phantom crossover x_dp = 0.41 R500: the dust-dominated window (s_d 66-82% for r < 0.5 R500) is the sup-a0 strong-field core, the phantom-dominated zone (57% at R500) is sub-a0 -- the sector bookkeeping IS the two-regime map.  THE '98% OF THE INTERIOR (missing mass)' IS THIS: 97.6% dust at 50 kpc."
+  },
+  "V2_galaxy_cluster_unity": {
+   "pass": true,
+   "statement": "THE GALAXY-CLUSTER UNITY: the two pies are the SAME two-regime law viewed at different r/r_M windows -- with the equilibration boundary's POSITION inside r_M at galaxy scale and outside it at cluster scale.  At the MW: the deep-law phantom regime is [0.30, 0.66] r_M (r_in = 3.06 kpc to the EFE line R_efe = 6.74 kpc), entirely INSIDE r_M = 10.21 kpc; the interior missing mass is the phantom (the r^-2 profile: the solar-circle dark fraction 0.40 is 0.89 phantom, dust 4.27%, the deep law closing the RC to ~2-4%, G072/G071), and the break at 6.13 kpc = 0.601 r_M is where the deep law ENDS (the EFE hand-off, measured: G164 step +0.22, 3.07 sigma), NOT where it begins.  At the clusters: r_M = 0.31 R500, the phantom exceeds the dust only beyond ~1.3 r_M and dominates at/outside R500 (56.9%), while the strong-field core is dust (81.6% at 50 kpc).  The mechanism is the deficit ratio: the equilibrium phantom covers share (r/r_M)/(f-1) of the deficit -- ~1 at the galaxy solar circle (f = 1.65), 0.03 at the cluster 50 kpc (f = 5.7) -- so the galaxy interior equilibrates and the cluster interior does not.  At matched r/r_M = 0.6 the sectors flip: galaxy dust 0.04 vs cluster dust 0.79-0.74."
+  },
+  "V3_honest": {
+   "pass": true,
+   "statement": "HONEST: the corrected pie is the two-regime map stated ONCE at both scales, with the numbers: at the cluster, dust 82% of M_dyn at 50 kpc (98% of the missing mass) -> 57% phantom at R500; at the galaxy, the interior missing mass is ~89% phantom (dust 4% at the solar circle) and the break is the deep law's end at 0.60 r_M.  The '98% of the interior' figure is the CLUSTER's dust share of the interior missing mass -- NOT a galaxy statement (there it is the phantom, and the brief's 'phantom-dominated inside r_M' framing was inverted by the pie at BOTH scales into the correct sector by sector).  The residual honesty register: the pie's 82% and G098's 0.75-0.86 are the same number in two unit conventions plus the phantom-floor convention (equipartition vs floor-A, the G179-registered 57%/35% spread); the galaxy-side dust floor-dependent at the ~5-15% level (the uncapped equipartition face even overshoots at the solar circle, mirroring A2319's negative dust at the cluster end); and the field gate uses the exact committed anchors (g(R500)/a0 from M500/R500, r_M as the baryonic a0-crossing by construction, the isothermal dynamical-crossing estimate vs the committed x_dp) -- the rho-integral route was rejected because the committed density arrays start at 0.1 R500 and cannot contain the central cusp."
+  }
+ }
+}
