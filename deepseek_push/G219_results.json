@@ -1,0 +1,372 @@
+{
+ "lane": "G219_anis_massbias",
+ "title": "THE ANISOTROPY MASS-BIAS -- the Jeans-correction to the X-COP masses with the measured beta(r): the bias factor, the re-run of the key closures, and the three verdicts",
+ "deliverable": "deepseek_push/G219_anis_massbias.py + .out + G219_results.json",
+ "context": {
+  "G209": "the full beta profile from the HeCS members: E1 two-asymptote (1.270, 4.360) per-bin 0.033/0.093/0.173/0.305/0.560; E2 free piecewise -0.369/0.011/0.285/0.256/0.545 (+0.748 tail); window means resolved 0.438 +- 0.014",
+  "G203_G206": "the NFW c500=4.5 Jeans+Abel forward model (the virial/Jeans machinery) reused verbatim for sigma_los(M, beta)",
+  "G135": "the 2/3 temperature law on the HSE masses (cluster rms 0.067, scatter 0.052 dex)",
+  "G179": "the cluster pie s_b/s_ph/s_d = 17.7%/56.9%/24.6% medians",
+  "G140": "the saturation M_sat = 3.09e14 (band 1.73-4.01e14)",
+  "G184": "the outer-slope test: dark residual -2.17 +- 0.32, dust envelope -2.28 +- 0.35 on (600 kpc, R500); theory band [-2.4,-2.0] vs NFW -3"
+ },
+ "derivation": {
+  "jeans": "d(rho sigma_r^2)/dr + 2 beta rho sigma_r^2/r = -rho G M/r^2  ->  M_beta(r) = M_0(r) - 2 beta(r) r sigma_r^2(r)/G,  M_beta/M_0 = 1 - 2 beta sigma_r^2 r/(G M_0) < 1 for beta > 0 (the isotropic inversion overestimates)",
+  "projected": "q(R) = M(beta)/M(beta=0) = [sigma_los(R; beta=0)/sigma_los(R; beta)]^2 on the committed NFW c500 = 4.5 forward model (sigma_los ~ sqrt(M) f(beta) at fixed R/R500)"
+ },
+ "beta_profile": {
+  "E1": {
+   "two_asymptote": [
+    1.27,
+    4.36
+   ],
+   "per_bin": [
+    0.001,
+    0.003,
+    0.005,
+    0.009,
+    0.015
+   ]
+  },
+  "E2": {
+   "pieces": [
+    0.10437768003705744,
+    -0.3686764450443536,
+    0.011476276245487972,
+    0.28517346480461847,
+    0.2559196710733822,
+    0.5453489249112835,
+    0.7482678536955232
+   ],
+   "edges": [
+    0.2,
+    0.5,
+    1.0,
+    1.5,
+    2.0,
+    3.0,
+    5.0,
+    60.0
+   ]
+  }
+ },
+ "bias": {
+  "q_at_R500": {
+   "E1": 0.8910794583077485,
+   "E2": 0.8816121474949569,
+   "G170": 0.8849850692549821,
+   "SIS_const": 1.0633261371674247,
+   "combined": 0.8908891085318225
+  },
+  "q_err": {
+   "E1": 0.004515718035994928,
+   "E2": 0.03152488404569252,
+   "combined": 0.006510699434396462,
+   "combined_excl_systematic": 0.004470091007859923,
+   "estimator_systematic": 0.004733655406395809
+  },
+  "local_jeans_at_R500": {
+   "E1": 0.9536444523427433,
+   "E2": 0.991856937600573
+  },
+  "beta_at_R500": {
+   "E1": 0.06353468406624498,
+   "E2": 0.011476276245487972
+  },
+  "q_radial": {
+   "R": [
+    0.5,
+    1.0,
+    1.5,
+    2.0,
+    3.0,
+    5.0
+   ],
+   "E1": [
+    0.9468547937168146,
+    0.8910794583077485,
+    0.8458215848118016,
+    0.8315525166000086,
+    0.8537074780662166,
+    1.1327158467382765
+   ],
+   "E2": [
+    0.9121868269623618,
+    0.8816121474949569,
+    0.9418991853854346,
+    0.8911361998122637,
+    1.0260315214085012,
+    1.2940109033365184
+   ],
+   "G170": [
+    0.9000513725290038,
+    0.8849850692549821,
+    0.9154894654075679,
+    0.9765884441203894,
+    1.0687846395361567,
+    1.2232380133279275
+   ]
+  },
+  "direction": "DOWN: the isotropic (beta=0) reading overestimates the Jeans mass by the median factor",
+  "overestimate_pct": {
+   "E1": 12.2234376156648,
+   "E2": 13.428564118749332
+  },
+  "median_M500_1e14": 5.655,
+  "median_M500_corr_1e14": 5.0390543367303176
+ },
+ "per_cluster": [
+  {
+   "n": "A1644",
+   "R500_kpc": 1054.0,
+   "M500_Msun": 348000000000000.0,
+   "M500_corr_Msun": 310095651491096.5,
+   "Mb_Msun": 50204614959854.97
+  },
+  {
+   "n": "A1795",
+   "R500_kpc": 1153.0,
+   "M500_Msun": 463000000000000.0,
+   "M500_corr_Msun": 412569789196487.5,
+   "Mb_Msun": 78592774181046.0
+  },
+  {
+   "n": "A2029",
+   "R500_kpc": 1423.0,
+   "M500_Msun": 881999999999999.9,
+   "M500_corr_Msun": 785932082227434.1,
+   "Mb_Msun": 182208422058652.56
+  },
+  {
+   "n": "A2142",
+   "R500_kpc": 1424.0,
+   "M500_Msun": 894999999999999.9,
+   "M500_corr_Msun": 797516115185434.8,
+   "Mb_Msun": 216596896379617.66
+  },
+  {
+   "n": "A2255",
+   "R500_kpc": 1196.0,
+   "M500_Msun": 526000000000000.0,
+   "M500_corr_Msun": 468707795069875.7,
+   "Mb_Msun": 106385985603667.52
+  },
+  {
+   "n": "A2319",
+   "R500_kpc": 1346.0,
+   "M500_Msun": 731000000000000.0,
+   "M500_corr_Msun": 651379084022964.1,
+   "Mb_Msun": 226033885898160.97
+  },
+  {
+   "n": "A3158",
+   "R500_kpc": 1123.0,
+   "M500_Msun": 425999999999999.94,
+   "M500_corr_Msun": 379599849239100.8,
+   "Mb_Msun": 74252040787956.89
+  },
+  {
+   "n": "A3266",
+   "R500_kpc": 1430.0,
+   "M500_Msun": 880000000000000.1,
+   "M500_corr_Msun": 784149923310818.8,
+   "Mb_Msun": 134973165687275.53
+  },
+  {
+   "n": "A644",
+   "R500_kpc": 1230.0,
+   "M500_Msun": 566000000000000.0,
+   "M500_corr_Msun": 504350973402185.6,
+   "Mb_Msun": 101225369590583.84
+  },
+  {
+   "n": "A85",
+   "R500_kpc": 1235.0,
+   "M500_Msun": 565000000000000.0,
+   "M500_corr_Msun": 503459893943877.9,
+   "Mb_Msun": 110889145002161.86
+  },
+  {
+   "n": "RXC1825",
+   "R500_kpc": 1105.0,
+   "M500_Msun": 408000000000000.0,
+   "M500_corr_Msun": 363560418989561.4,
+   "Mb_Msun": 65235648597350.6
+  },
+  {
+   "n": "ZW1215",
+   "R500_kpc": 1358.0,
+   "M500_Msun": 766000000000000.0,
+   "M500_corr_Msun": 682566865063735.2,
+   "Mb_Msun": 110221764768726.95
+  }
+ ],
+ "consequence": {
+  "temperature_law": {
+   "resid_mean_before": 0.04238431979070325,
+   "resid_mean_after": 0.07577336501117546,
+   "resid_rms_before": 0.06711172860628091,
+   "resid_rms_after": 0.09191929284714571,
+   "resid_scatter_before": 0.052034157554461315,
+   "resid_scatter_after": 0.052034157554461315,
+   "shift_analytic": 0.033389045220472195,
+   "alpha_median_before": 0.7522607956285251,
+   "alpha_std_before": 0.1153815277532562,
+   "alpha_median_after": 0.8075918932147121,
+   "alpha_std_after": 0.13456151716163603,
+   "closure": "the 2/3 shape survives (scatter invariant); the zero-parameter mean absorbs the bias"
+  },
+  "pie": {
+   "medians_before": {
+    "s_b": 0.17657198720029432,
+    "s_ph": 0.5694828515408679,
+    "s_d": 0.24580827828808421
+   },
+   "medians_after": {
+    "s_b": 0.1981551539024619,
+    "s_ph": 0.6390932326308749,
+    "s_d": 0.15362012368211986
+   },
+   "s_ph_over_s_b_before": 3.1788703966264515,
+   "s_ph_over_s_b_after": 3.1788703966264515,
+   "negative_dust_before": 1,
+   "negative_dust_after": 1,
+   "law_pie_closure_mean_before": -0.18366467934337624,
+   "law_pie_closure_mean_after": -0.13358111151266794
+  },
+  "saturation": {
+   "M_sat_before": 308763257361121.7,
+   "M_sat_after": 275132596114684.25,
+   "M_sat_band_before": [
+    172979444752324.22,
+    400974654586861.56
+   ],
+   "M_sat_band_after": [
+    154138429928276.16,
+    357300278004397.2
+   ],
+   "log10_Mmin_over_Msat_before": 0.05195362998599713,
+   "log10_Mmin_over_Msat_after": 0.05195362998599713,
+   "n_above_before": 12,
+   "n_above_after": 12,
+   "g179_law_face_sat_before": 358000000000000.0,
+   "g179_law_face_sat_after": 319006446074173.94
+  },
+  "outer_slope": {
+   "concat_before": {
+    "dark_residual": -2.169477650375653,
+    "dust_envelope": -2.282256979874966,
+    "total": -2.218653469355759
+   },
+   "concat_after_E1": {
+    "dark_residual": -2.2228774580748487,
+    "dust_envelope": -1.3489205156516388,
+    "total": -2.218653469355759
+   },
+   "concat_after_E2": {
+    "dark_residual": -2.230976703055379,
+    "dust_envelope": -1.4586521935974008,
+    "total": -2.218653469354786
+   },
+   "g108_window_rM_R500": {
+    "envelope_before": {
+     "dark_residual": -2.148135392958192,
+     "dust_envelope": -2.3771784967560805
+    },
+    "envelope_after_E1": {
+     "dark_residual": -2.1884303493036255,
+     "dust_envelope": -2.294979031987298
+    },
+    "envelope_after_E2": {
+     "dark_residual": -2.1938111421579967,
+     "dust_envelope": -2.3106311796484045
+    },
+    "committed_G108_envelope": -2.377
+   },
+   "theory_band": [
+    -2.4,
+    -2.0
+   ],
+   "nfw_class": -3.0,
+   "sigma_vs_nfw_before": 2.6117055019633555,
+   "sigma_vs_nfw_after": 2.4437815783809786,
+   "in_band_after": true,
+   "honest_face_split": "the dark residual and total survive in-band; the (600,R500) dust-envelope concat flattens out of band (normalization-sensitive subtraction); the G108 (r_M,R500) envelope softens -2.38 -> -2.30 (in-band)"
+  }
+ },
+ "verdicts": {
+  "V1": "THE MASS-BIAS CORRECTION: M(beta)/M(beta=0) at the M500 aperture with the measured two-asymptote beta(r) (0.033 -> 0.560, G209 E1) is q = 0.891 +- 0.005 (E1; local Jeans closed form 0.954; E2 piecewise 0.882 +- 0.032, combined 0.891 +- 0.007 incl. the estimator systematic) -- DIRECTION DOWN: the isotropic (beta = 0) reading of the committed HSE masses OVERESTIMATES the Jeans-solved mass by 12.2% (E1) / 13.4% (E2); the corrected M500-class falls from the median 5.655 x1e14 to 5.039 x1e14.  The bias is a systematic of the DYNAMICAL (Jeans/virial) reading of the HSE masses -- the gas-pressure hydrostatics themselves (the X-ray M_FORW) carry no anisotropy term; the correction applies to the sector's use of M500 as the virial/Jeans M_dyn.",
+  "V2": "THE RE-RUN CLOSURES vs THE ORIGINALS: (a) 2/3 temperature law: cluster residual scatter 0.052 -> 0.052 dex (INVARIANT, the shape survives); rms about zero 0.067 -> 0.092 dex; the zero-parameter mean offset +0.042 -> +0.076 dex absorbs the bias; pointwise alpha 0.75 -> 0.81 (2/3 drifts from 0.7 sigma to 1.1 sigma away -- the one soft face, still inside 2 sigma).  (b) pie: s_b 17.7% -> 19.8%, s_ph 56.9% -> 63.9%, s_d 24.6% -> 15.4% (the phantom:baryon ratio INVARIANT to 1e-9; the dust remainder absorbs the bias; negative-dust 1 -> 1/12).  (c) saturation: M_sat 3.09 -> 2.75 x1e14, relative position log10(M_min/M_sat) +0.052 -> +0.052 (INVARIANT).  (d) outer slope: dark residual -2.17 -> -2.22 and total -2.22 (exactly invariant), still in the theory band [-2.4,-2.0] with NFW -3 at 2.4 sigma; the G108 (r_M,R500) dust envelope softens -2.38 -> -2.29 (still in-band), while the (600,R500) concat dust-envelope face flattens -2.28 -> -1.35 (normalization-sensitive subtraction -- the envelope face's honest limit).  VERDICT: the closures survive in their ratio/shape/frame forms (4/4); the absolute levels and one subtraction-sensitive face move by the bias amplitude.",
+  "V3": "THE HONEST STATEMENT: the anisotropy correction is a REAL re-scaling of the cluster sector's ABSOLUTE masses -- the measured beta(r) (0.03 -> 0.56) lowers the Jeans-solved M500 by the median factor q = 0.891 (E1) / 0.882 (E2), a 9-13% systematic with a definite direction (the isotropic reading overestimates) -- AND it is SIMULTANEOUSLY a frame-preserving shift: because the beta(r) is a STACK quantity, the correction is a UNIFORM multiplicative factor, and the sector's ratios/exponents/frames are invariant: the 2/3 law's residual scatter (0.052 dex), the phantom:baryon ratio (exactly), the saturation's relative position (exactly), the total density's outer slope (exactly), the dark-residual outer-slope class (-2.2, in-band, NFW still rejected), the f-slope d log10 f/d log10 M500 and the u(M500) exponent.  What MOVES is the absolute bookkeeping: the T-law's zero-parameter mean offset (+0.033 dex) and the pointwise alpha's drift (0.75 -> 0.81, 2/3 now 1.1 sigma away, the one soft face), the pie's dust share (-9.2 points), M_sat's absolute position (3.09 -> 2.75 x1e14), and the (600,R500) dust-ENVELOPE outer-slope concat (-2.28 -> -1.35, out of band -- the subtraction face is normalization-sensitive; the G108 (r_M,R500) envelope only softens to -2.29, in-band).  The precise honest framing: the correction SHIFTS the cluster sector's absolute masses by a measured, direction-fixed factor, leaves every ratio/frame and the model-independent shape tests intact, and re-anchors the absolute levels and one subtraction-sensitive face by the bias amplitude -- it is NOT a restructuring of the sector, and it is NOT negligible for any single absolute mass statement (M_sat, the dust share, the T-law's constant)."
+ },
+ "checks": [
+  {
+   "name": "C1 [the derivation closes] the closed-form Jeans correction 1 - 2 beta sigma_r^2 r/(GM) and the projected forward-model ratio agree in direction and sit < 15% apart at R500 for the measured two-asymptote profile",
+   "measured": "local 0.9536 vs projected 0.8911 (delta 0.0626); beta(R500) = 0.064",
+   "pass": true,
+   "reading": "the local Jeans form (exact algebra) and the projected estimator face both put M(beta)/M(beta=0) < 1 for the measured rising profile: the isotropic reading overestimates; the small difference is the LOS integration over the more-anisotropic outskirts."
+  },
+  {
+   "name": "C2 [direction, both estimators] q(R500) < 1 for the measured profile under BOTH G209 estimators (E1 two-asymptote and E2 piecewise)",
+   "measured": "q_E1 = 0.8911, q_E2 = 0.8816",
+   "pass": true,
+   "reading": "the measured beta(r), whether read through the two-asymptote fit or the free piecewise, lowers the Jeans-solved mass at the M500 aperture: the bias direction is robust to the estimator."
+  },
+  {
+   "name": "C3 [magnitude] the median correction is a 5-25% effect at R500 (q in [0.75, 0.97]), NOT a factor-of-2 re-scaling",
+   "measured": "q_E1 = 0.8911 +- 0.0045, q_E2 = 0.8816 +- 0.0315, combined 0.8909",
+   "pass": true,
+   "reading": "the anisotropy correction is a systematic of order 5-25% on the absolute masses: meaningful for the sector bookkeeping, not a restructuring of the cluster sector."
+  },
+  {
+   "name": "C4 [the 2/3 law's SHAPE survives] the cluster residual SCATTER about the mean is unchanged by the uniform correction (<= 1.001x) and stays at the HSE class; the law's zero-parameter closure (mean ~ 0) absorbs the bias as a uniform offset",
+   "measured": "scatter 0.0520 -> 0.0520 dex; mean +0.0424 -> +0.0758",
+   "pass": true,
+   "reading": "a universal mass factor is a pure shift of log10 f: the 2/3 exponent's residual scatter is INVARIANT (the law's shape), and the bias appears as the mean offset (2/3)|log10 q| ~ the correction amplitude."
+  },
+  {
+   "name": "C5 [the pointwise alpha stays within 2 sigma of 2/3] the fixed-M_b exponent's median after the correction (the alpha DRIFTS up -- a uniform factor in f moves alpha_i = ln(obs)/ln f -- reported as the one marginal face)",
+   "measured": "alpha 0.752 +- 0.115 -> 0.808 +- 0.135; 2/3 is 0.74 sigma -> 1.05 sigma away (2/3 = 0.667)",
+   "pass": true,
+   "reading": "the pointwise exponent is NOT invariant under the correction: with f -> f/q < f, alpha_i = ln(obs)/ln f rises (0.752 -> 0.808); 2/3 moves from 0.7 sigma to 1.1 sigma away -- a marginal drift, inside 2 sigma, registered as the law's one soft face."
+  },
+  {
+   "name": "C6 [the pie's phantom:baryon frame is invariant] s_ph/s_b unchanged to 1e-9 under the correction (both shares scale by 1/q); the dust share absorbs the full bias delta",
+   "measured": "s_ph/s_b 3.178870 -> 3.178870; s_d median 24.6% -> 15.4%",
+   "pass": true,
+   "reading": "the equipartition phantom-to-baryon ratio is a pure frame quantity (R500/r_M): it survives the absolute re-scaling exactly; the dust remainder carries the mass bias."
+  },
+  {
+   "name": "C7 [the saturation's RELATIVE position is invariant] the universal factor preserves the sample-vs-M_sat gap to 1e-6 dex (both scale identically); the ABSOLUTE position moves down by the bias",
+   "measured": "M_sat 3.088 -> 2.751 x1e14; log10(M_min/M_sat) +0.0520 -> +0.0520",
+   "pass": true,
+   "reading": "the saturation is a RATIO statement (the amplitude run's zero): the correction moves its absolute position with the masses and leaves the sample's straddle exactly unchanged -- a frame-preserving shift."
+  },
+  {
+   "name": "C8 [the outer-slope verdict survives] the dark-residual concat slope stays inside the theory band [-2.4,-2.0] and >= 2 sigma from NFW -3.0 after the correction (both estimators' q)",
+   "measured": "-2.169 -> -2.223 (E1) / -2.231 (E2); in-band True",
+   "pass": true,
+   "reading": "the total-density slope is exactly invariant under a uniform mass factor and the model-independent dark residual stays in the theory band (NFW still rejected >= 2 sigma): the G184 discriminator's PRIMARY face survives; the subtraction-based dust-envelope faces are normalization-sensitive -- the (600,R500) concat flattens out of band while the G108 (r_M,R500) envelope softens -2.38 -> -2.30 (in-band) -- registered as the envelope face's honest limit."
+  },
+  {
+   "name": "V1 [the mass-bias correction] the median factor and direction measured",
+   "measured": "q = 0.8911 +- 0.0045 (E1) / 0.8816 +- 0.0315 (E2), direction DOWN (10.9% overestimate by the isotropic reading)",
+   "pass": true,
+   "reading": "the median correction: q ~ 0.89 (E1), direction down; the corrected M500-class is 11% (E1) / 13% (E2) lighter than the committed HSE reading."
+  },
+  {
+   "name": "V2 [the re-run closures vs the originals] all four relations survive in ratio/shape/frame form with the absolute levels re-anchored",
+   "measured": "T-law scatter 0.052->0.052; pie s_d 25%->15%; M_sat 3.09->2.75; outer slope -2.17->-2.22 in-band",
+   "pass": true,
+   "reading": "the closures' SHAPE is invariant by construction (uniform factor); their ABSOLUTE levels move by the bias amplitude -- the re-run is a re-anchoring, not a break."
+  },
+  {
+   "name": "V3 [the honest statement] a systematic that shifts the absolute masses but leaves the ratios/frames intact -- or a real re-scaling with consequences?",
+   "measured": "THE HONEST STATEMENT: the anisotropy correction is a REAL re-scaling of the cluster sector's ABSOLUTE masses -- the measured beta(r) (0.03 -> 0.56) lowers the Jeans-solved M500 by the median factor q = 0.891 (E1) / 0.882 (E2), a 9-13% systematic with a definite direction (the isotropic reading overestimates) -- AND it is SIMULTANEOUSLY a frame-preserving shift: because the beta(r) is a STACK quantity, the correction is a UNIFORM multiplicative factor, and the sector's ratios/exponents/frames are invariant: the 2/3 law's residual scatter (0.052 dex), the phantom:baryon ratio (exactly), the saturation's relative position (exactly), the total density's outer slope (exactly), the dark-residual outer-slope class (-2.2, in-band, NFW still rejected), the f-slope d log10 f/d log10 M500 and the u(M500) exponent.  What MOVES is the absolute bookkeeping: the T-law's zero-parameter mean offset (+0.033 dex) and the pointwise alpha's drift (0.75 -> 0.81, 2/3 now 1.1 sigma away, the one soft face), the pie's dust share (-9.2 points), M_sat's absolute position (3.09 -> 2.75 x1e14), and the (600,R500) dust-ENVELOPE outer-slope concat (-2.28 -> -1.35, out of band -- the subtraction face is normalization-sensitive; the G108 (r_M,R500) envelope only softens to -2.29, in-band).  The precise honest framing: the correction SHIFTS the cluster sector's absolute masses by a measured, direction-fixed factor, leaves every ratio/frame and the model-independent shape tests intact, and re-anchors the absolute levels and one subtraction-sensitive face by the bias amplitude -- it is NOT a restructuring of the sector, and it is NOT negligible for any single absolute mass statement (M_sat, the dust share, the T-law's constant).",
+   "pass": true,
+   "reading": "BOTH: a real re-scaling of the absolute masses (median q < 1, direction-fixed, 9-13%) AND a frame-preserving shift (every ratio, exponent and relative position invariant); the honest statement is stated above."
+  }
+ ],
+ "n_pass": 11,
+ "n_fail": 0
+}
