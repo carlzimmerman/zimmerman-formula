@@ -1,0 +1,316 @@
+==============================================================================
+H045 -- THE NEGATIVE ENERGY DENSITY: CROSSING, REACHABILITY, VERDICT
+==============================================================================
+  rho_Lambda = 5.8450058e-27 kg/m^3     Lam^4 = 5.2532292e-10 J/m^3
+  a_0 footings: canonical 9.3619e-11, alternative 1.1279e-10 m/s^2
+
+==============================================================================
+PART A -- WHERE DOES rho CROSS ZERO EXACTLY?
+==============================================================================
+
+  f(u) = u^2 - 2 ln(1+u) - 2/(1+u) + 1,    rho/Lam^4 = -f(u)
+  f'(u) = 2u*mu_2(u) > 0 for u > 0   =>   f strictly increasing
+
+  u*      = 1.223856281422084750007817
+  K* = u*^2 = 1.497824197576293106000919
+  residual f(u*) = 0.0
+  rho(u*)/Lam^4  = 0.0
+  [PASS] A1 [ONE CROSSING] f is strictly increasing on u > 0 (f'(u) = 2u mu_2(u)),
+      f(0) = -1 and f -> +inf, so rho = -Lam^4 f crosses zero EXACTLY ONCE
+         measured: df/du > 0 at all 10 sampled u in [1e-6,1e3]: True; f(1e-6)=-1.0, f(1e3)=999987.0
+         threshold: df/du > 0 for every u > 0, and f changes sign
+         The crossing is unique. The vacuum rho = +Lam^4 is a MAXIMUM along the
+         gradient direction, not a minimum -- see Part C.
+
+     sqrt(K)              K           f(K)      rho/Lam^4      c_s^2
+         0.0            0.0           -1.0            1.0        0.5
+        0.01         0.0001     -0.9999987      0.9999987    0.50373
+         0.1           0.01     -0.9988022      0.9988022    0.53596
+         0.5           0.25     -0.8942635      0.8942635    0.65217
+         1.0            1.0     -0.3862944      0.3862944       0.75
+         1.2           1.44    -0.04600563     0.04600563    0.77876
+    1.223856       1.497824    3.627856e-8   -3.627856e-8    0.78188
+         1.3           1.69      0.1546165     -0.1546165    0.79145
+         2.0            4.0       2.136109      -2.136109    0.85714
+        10.0          100.0       96.02239      -96.02239    0.98507
+  [PASS] A2 [THE CROSSING VALUE] rho = 0 at u* = 1.22385628142208 (K* = 1.497824),
+      with rho > 0 below it and rho < 0 above it
+         measured: u* = 1.22385628142208, K* = 1.49782419757629, rho(1.2)/Lam^4 = 0.0460056 > 0, rho(1.3)/Lam^4 = -0.154617 < 0
+         threshold: rho changes sign exactly at u*, once
+         H035's 'about 1.4' was a two-point estimate; the true crossing is 1.2239.
+         c_s^2 stays in (1/2,1) THROUGH the crossing: the zero of rho is
+         not a change of hyperbolicity, it is a change of SIGN of the energy.
+
+==============================================================================
+PART B -- IS IT REACHABLE?  K FOR A GALAXY ON THE PHANTOM SOLUTION
+==============================================================================
+
+  The spherical phantom solution is the algebraic MOND relation
+        mu_2(g/(2a_0)) * g = g_N,      g = |grad phi|,  u = g/(2a_0)
+  i.e.  y(u) := u * mu_2(u) = g_N / (2 a_0)              (exact, spherical)
+  y is strictly increasing, so u is determined by g_N, and u -> inf as g_N -> inf.
+
+
+  --- footing canonical: a_0 = 9.3619e-11 m/s^2, M_b = 6e10 Msun, r_M = 9.45267 kpc
+      crossing radius r* = 6.76438 kpc = 0.715605 r_M   (g_N(r*) = 1.95278 a_0)
+    r[kpc]     g_N/a_0    u=sqrt(K)              K     rho/Lam^4    rho[kg/m3]    rho_phan   |ratio|
+       0.1      8935.3     4467.651     1.99599e+7  -1.995989e+7  -1.16666e-19  3.4194e-18   0.03412
+       0.5     357.412     178.7116       31937.82     -31928.43  -1.86622e-22  1.3678e-19  0.001364
+         1      89.353     44.69791       1997.903     -1991.215  -1.16387e-23  3.4194e-20 0.0003404
+         2     22.3383     11.24413       126.4304      -122.257  -7.14593e-25  8.5486e-21  8.359e-5
+         5     3.57412     2.008951       4.035884     -2.168017  -1.26721e-26  1.3678e-21  9.265e-6
+         8     1.39614    0.9478915      0.8984983     0.4617479   2.69892e-27  5.3428e-22  5.051e-6
+        10     0.89353    0.6882397      0.4736739     0.7583648   4.43265e-27  3.4194e-22  1.296e-5
+        20    0.223383    0.2839287     0.08061548     0.9769527   5.71029e-27  8.5486e-23   6.68e-5
+        50   0.0357412    0.1015811     0.01031872     0.9987465   5.83768e-27  1.3678e-23 0.0004268
+       100   0.0089353   0.04898224     0.00239926     0.9998515   5.84414e-27  3.4194e-24  0.001709
+  [PASS] B1 [PHANTOM SOLUTION] the deep-MOND identity u = r_M/(2r) is the
+      u -> 0 asymptote of the exact solve (footing canonical): the
+      relative deviation shrinks as r grows (it is O(u) ~ 0.74 u)
+         measured: r=50 kpc: u=0.101581 vs 0.0945267, dev=0.07463; r=200 kpc: u=0.0240559 vs 0.0236317, dev=0.01795; r=1000 kpc: u=0.00474313 vs 0.00472634, dev=0.003554
+         threshold: deviation decreasing in r and < 1% at r = 1000 kpc
+         The calibration u = g/(2a_0) and the phantom solution are consistent:
+         u(r_M) = 0.745 and u(2 r_M) = 0.394 -- the RAR transition sits
+         at u ~ 0.4-0.7, comfortably below the crossing u* = 1.2239,
+         which is why the fits never noticed; but u -> inf inward.
+  [PASS] B2 [REACHED IN A GALAXY] rho < 0 somewhere inside the galaxy (footing canonical)
+         measured: rho < 0 at 5/10 sampled radii, out to r = 5 kpc; r* = 6.7644 kpc; rho/Lam^4 = -122.257 at 2 kpc, -1.99599e+7 at 0.1 kpc
+         threshold: at least one sampled radius with rho < 0
+         NOT MARGINAL: the whole inner galaxy is past the crossing. Note also
+         that |rho| stays ~1e-3-1e-4 of the phantom density at 1-10 kpc,
+         which is why this never showed up in the RAR fits -- the static
+         T_00 is dynamically irrelevant IN THE MOND REGIME.
+
+  --- footing alternative: a_0 = 1.1279e-10 m/s^2, M_b = 6e10 Msun, r_M = 8.61195 kpc
+      crossing radius r* = 6.16275 kpc = 0.715605 r_M   (g_N(r*) = 1.95278 a_0)
+    r[kpc]     g_N/a_0    u=sqrt(K)              K     rho/Lam^4    rho[kg/m3]    rho_phan   |ratio|
+       0.1     7416.56     3708.281    1.375135e+7  -1.375133e+7  -8.03766e-20  3.7532e-18   0.02142
+       0.5     296.662     148.3379       22004.13      -21995.1  -1.28561e-22  1.5013e-19 0.0008563
+         1     74.1656     37.10836        1377.03     -1370.697  -8.01173e-24  3.7532e-20 0.0002135
+         2     18.5414     9.357925       87.57077     -83.70218   -4.8924e-25  9.3831e-21  5.214e-5
+         5     2.96662      1.71594       2.944451     -1.209781  -7.07118e-27  1.5013e-21   4.71e-6
+         8     1.15884    0.8271825      0.6842308     0.6159009   3.59994e-27  5.8644e-22  6.139e-6
+        10    0.741656    0.6057584      0.3669432     0.8257665   4.82661e-27  3.7532e-22  1.286e-5
+        20    0.185414    0.2543724     0.06470531     0.9829883   5.74557e-27  9.3831e-23  6.123e-5
+        50   0.0296662   0.09194812    0.008454457     0.9990611   5.83952e-27  1.5013e-23  0.000389
+       100  0.00741656    0.0444832    0.001978755     0.9998882   5.84435e-27  3.7532e-24  0.001557
+  [PASS] B1 [PHANTOM SOLUTION] the deep-MOND identity u = r_M/(2r) is the
+      u -> 0 asymptote of the exact solve (footing alternative): the
+      relative deviation shrinks as r grows (it is O(u) ~ 0.74 u)
+         measured: r=50 kpc: u=0.0919481 vs 0.0861195, dev=0.06768; r=200 kpc: u=0.0218816 vs 0.0215299, dev=0.01634; r=1000 kpc: u=0.00431991 vs 0.00430597, dev=0.003237
+         threshold: deviation decreasing in r and < 1% at r = 1000 kpc
+         The calibration u = g/(2a_0) and the phantom solution are consistent:
+         u(r_M) = 0.745 and u(2 r_M) = 0.394 -- the RAR transition sits
+         at u ~ 0.4-0.7, comfortably below the crossing u* = 1.2239,
+         which is why the fits never noticed; but u -> inf inward.
+  [PASS] B2 [REACHED IN A GALAXY] rho < 0 somewhere inside the galaxy (footing alternative)
+         measured: rho < 0 at 5/10 sampled radii, out to r = 5 kpc; r* = 6.1628 kpc; rho/Lam^4 = -83.7022 at 2 kpc, -1.37513e+7 at 0.1 kpc
+         threshold: at least one sampled radius with rho < 0
+         NOT MARGINAL: the whole inner galaxy is past the crossing. Note also
+         that |rho| stays ~1e-3-1e-4 of the phantom density at 1-10 kpc,
+         which is why this never showed up in the RAR fits -- the static
+         T_00 is dynamically irrelevant IN THE MOND REGIME.
+
+==============================================================================
+PART B2 -- REAL SYSTEMS: u, rho, AND THE ENCLOSED DEFICIT
+==============================================================================
+  Outside a source of mass M and radius R:  g = GM/r^2, so
+      rho_phi ~ -Lam^4 (g/2a_0)^2 = -A/r^4,   A = Lam^4 (GM)^2/(4 a_0^2)
+      M_phi(r) = -4 pi A (1/R - 1/r)   -> a NEGATIVE POINT MASS at r >> R
+
+      system        a_0      u(surf)   rho[surf] kg/m3    M_phi[kg]     M_phi/M
+         Sun      canon  1.46356e+12        -0.0125201 -5.30449e+25   -2.667e-5
+         Sun      alter   1.2148e+12       -0.00862567 -3.65452e+25  -1.8374e-5
+       Earth      canon  5.24465e+10       -1.60775e-5 -5.22457e+16  -8.7484e-9
+       Earth      alter  4.35321e+10       -1.10765e-5 -3.59946e+16  -6.0272e-9
+     Jupiter      canon  1.38426e+11         -0.000112 -4.80912e+20  -2.5338e-7
+     Jupiter      alter  1.14897e+11       -7.71624e-5 -3.31323e+20  -1.7456e-7
+  [PASS] B3 [REACHED, EMPHATICALLY] u exceeds u* by ~12 orders of magnitude in the
+      Solar System -- the negative-rho region is not an exotic corner
+         measured: u(solar surface) = 1.46356e+12 vs u* = 1.2238563; ratio = 1.1959e+12
+         threshold: u(solar surface)/u* > 1e6
+         Any system with g_N >~ 2 a_0 is past the crossing: the inner parts of all
+         galaxies, all stars, all planets.
+
+==============================================================================
+PART C -- IS IT AN INSTABILITY, OR AN ACCEPTABLE FEATURE?
+==============================================================================
+
+  THE DIAGNOSIS.  Write the Lagrangian in the standard k-essence variable
+  X = -(1/2)(dphi)^2/Lam^4*Lam^4  (so K = -X/Lam^4 on the spacelike branch):
+        L = P(X),   P_X = -f'(K) = -mu_2(sqrt K) < 0.
+  A canonical scalar has P_X = +1.  Ours has P_X < 0 for every K > 0.  That is
+  the whole issue, and it shows up in three independent places.
+
+           u    P_X = -mu_2   drho/dK (static)      c_s^2  G^{00} = -fprime
+      1.0e-6   -1.999997e-6       -1.999997e-6        0.5      -1.999997e-6
+         0.1     -0.1735537         -0.1735537    0.53596        -0.1735537
+         0.5     -0.5555556         -0.5555556    0.65217        -0.5555556
+         1.0          -0.75              -0.75       0.75             -0.75
+    1.223856     -0.7977975         -0.7977975    0.78188        -0.7977975
+         2.0     -0.8888889         -0.8888889    0.85714        -0.8888889
+        10.0     -0.9917355         -0.9917355    0.98507        -0.9917355
+   1000000.0           -1.0               -1.0        1.0              -1.0
+  [PASS] C1 [WRONG-SIGN GRADIENT ENERGY] on the branch the framework uses,
+      P_X = -f' = -mu_2 < 0 for EVERY K > 0, so rho falls below the vacuum
+      for any gradient at all -- u* is where it turns NEGATIVE, not where
+      the trouble starts
+         measured: P_X = -0.555556 at u=0.5, -0.019704 at u=0.01; rho(0.5)/Lam^4 = 0.894264 < 1 = rho(0)/Lam^4
+         threshold: P_X < 0 and rho(u) < rho(0) for every u > 0
+         A canonical scalar (f' < 0) has rho RISING with the gradient. Ours falls.
+         The vacuum K = 0 is a MAXIMUM of the static energy, not a minimum:
+         delta^2 E = -int (f'/2)|grad psi|^2 < 0.
+  [PASS] C2 [NO GROUND STATE] rho/Lam^4 -> -inf as K -> inf: the static energy
+      functional is unbounded below, so the theory has no static ground state
+         measured: rho/Lam^4 = -9991.7, -1.0e+8, -1.0e+12, -1.0e+20 at u = 1e2, 1e4, 1e6, 1e10
+         threshold: monotonically decreasing and diverging to -inf
+         This is not fixed by restricting u < u*: it is already true at u = 0.5,
+         which is where all the successful RAR fits live.
+
+  THE PERTURBATION SECTOR (why this is a ghost, not a curiosity).
+    Quadratic action for a perturbation psi around a static background:
+      L2 = (1/2) G^{mu nu} d_mu psi d_nu psi,
+      G^{mu nu} = f' g^{mu nu} + (f''/Lam^4) d^mu phi d^nu phi
+      G^{00} = -f'  (canonical scalar: -g^{mu nu}, i.e. G^{00} = +1)
+      H_psi  = -(1/2) f' psidot^2 - (1/2) G^{ij} d_i psi d_j psi  < 0
+      u=  0.01: G^00 =    -0.019704, G^xx =    0.0391158, H_psi = -0.00985198 psidot^2 -0.0195579 (grad psi)^2
+      u=   0.5: G^00 =    -0.555556, G^xx =     0.851852, H_psi = -0.277778 psidot^2 -0.425926 (grad psi)^2
+      u=   1.0: G^00 =        -0.75, G^xx =          1.0, H_psi = -0.375 psidot^2 -0.5 (grad psi)^2
+      u=   2.0: G^00 =    -0.888889, G^xx =      1.03704, H_psi = -0.444444 psidot^2 -0.518519 (grad psi)^2
+      u=  10.0: G^00 =    -0.991736, G^xx =      1.00676, H_psi = -0.495868 psidot^2 -0.503381 (grad psi)^2
+  [PASS] C3 [GHOST] the perturbations on the static branch have a NEGATIVE-definite
+      Hamiltonian: G^{mu nu} has the OPPOSITE signature to a canonical
+      scalar, while c_s^2 = f'/(f'+2Kf'') stays in (1/2,1)
+         measured: G^00 = -f' < 0 and G^xx = f'+2Kf'' > 0 at every sampled u; c_s^2 in (0.5,1.0)
+         threshold: G^00 < 0 and G^ij > 0 (opposite of canonical)
+         HYPERBOLICITY IS NOT HEALTH. The mode propagates (c_s^2 > 0, so H011's S2
+         is correct) but carries NEGATIVE energy, so the background can decay
+         into graviton + scalar pairs without bound.
+
+  WHY THIS WAS MISSED: H011 check S3 ('no tachyon') differentiated
+    rho = 2Kf' - f, which is the TIMELIKE-branch density. The framework's
+    branch is SPACELIKE, where rho = -f. The two disagree in sign:
+           u     d(2Kfprime-f)/dK         d(-f)/dK
+        0.01           0.03911575      -0.01970395
+         0.5            0.8518519       -0.5555556
+         1.0                  1.0            -0.75
+         2.0             1.037037       -0.8888889
+  [PASS] C4 [H011 S3 USED THE WRONG BRANCH] d rho/dK > 0 is true for the timelike
+      density 2Kf'-f and FALSE for the spacelike density -f that the
+      framework actually uses -- H011's 'no tachyon' pass does not apply
+         measured: signs: timelike +/+/+/+ vs spacelike -/-/-/- at u = 0.01,0.5,1,2
+         threshold: opposite signs for the two branch densities, both computed
+         The static configuration is ANISOTROPIC (p_r = Lam^4(f-2Kf') != p_t = Lam^4 f),
+         so H034's perfect-fluid assignment rho = 2Kf'-f, p = f is not valid
+         on it. H035 got the signs right; H034/H011 did not.
+
+==============================================================================
+PART C5 -- IT GRAVITATES: THE SOLAR SYSTEM TEST
+==============================================================================
+  T^phi_00 = rho_phi enters the Newtonian limit as
+        lap Phi = 4 pi G (rho_b + rho_phi/c^2),
+  so the deficit is a real, repulsive source.  With rho_phi = -A/r^4 outside
+  the source, M_phi(r) = -4 pi A (1/R - 1/r): a constant NEGATIVE point mass
+  (degenerate with GM) plus a NON-DEGENERATE +4 pi A/r term, i.e. an extra
+  radial acceleration  dg = +beta/r^3  with beta = 4 pi G A.
+  A 1/r^3 radial perturbation dg = +beta/r^3 (outward) shifts the perihelion by
+        dw = -pi beta / (GM a (1-e^2))   per orbit   (retrograde).
+       Mercury: d omega =   -90.0491 arcsec/century
+         Earth: d omega =   -8.04278 arcsec/century
+          Mars: d omega =   -2.83209 arcsec/century
+
+      extra radial acceleration at 1 AU (non-degenerate part): 7.36008e-10 m/s^2
+      degenerate part: d(GM)/GM = -2.66702e-5
+      GM variation Earth->Mars (1.0 -> 1.52 AU): 4.26467e-8 fractional
+  [PASS] C5 [FALSIFIED BY THE SOLAR SYSTEM] the framework predicts -90
+      arcsec/century of extra Mercury perihelion precession, against an
+      observed residual of 0 +/- 0.04 arcsec/century after GR
+         measured: d omega(Mercury) = -90.0491 arcsec/century (Earth -8.0428, Mars -2.8321); dg(1 AU) = 7.3601e-10 m/s^2
+         threshold: |d omega| > 1 arcsec/century vs bound 0.04
+         THE MAGNITUDE, NOT THE SIGN, IS THE PROBLEM. Flipping the scalar's kinetic
+         sign (the unique minimal repair, L -> -Lam^4[f(K)+2], which keeps
+         f(0) = -1 and the scalar field equation but gives P_X = +mu_2 > 0)
+         gives +90 arcsec/century -- equally excluded. The framework needs
+         the scalar to SCREEN at high acceleration, and it has no such
+         mechanism: mu_2 -> 1 there, which is the opposite of decoupling.
+
+==============================================================================
+PART D -- IS THERE A DOMAIN RESTRICTION THAT SAVES IT?  (NO)
+==============================================================================
+  The hoped-for escape: physical solutions always have u < u*, so the
+  negative region is unreachable.  That requires the map
+        y(u) = u mu_2(u) = g_N/(2 a_0)
+  to be BOUNDED above by y(u*) on the physical domain.  It is not:
+
+           u   y(u) = u mu_2(u)     y(u) - (u - 1/4)
+         0.0                0.0                 0.25
+         0.5          0.2777778           0.02777778
+         1.0               0.75                  0.0
+    1.223856          0.9763895          0.002533175
+         2.0           1.777778           0.02777778
+        10.0           9.917355            0.1673554
+      1000.0            999.999             0.249002
+   1000000.0          1000000.0             0.249999
+     1.0e+12            1.0e+12                 0.25
+  [PASS] D1 [NO CEILING] y(u) = u mu_2(u) = u - u/(1+u)^2 is strictly increasing on
+      [0,inf) and UNBOUNDED: y(u) >= u - 1/4 (since 4u <= (1+u)^2), so for
+      every target u there is a radius r = sqrt(GM/(2 a_0 y(u))) that
+      realizes it.  NO domain restriction exists.
+         measured: y strictly increasing over u in [0,1e12]: True; y(u) - (u-1/4) >= 0 at all sampled u: True; y(1e12) = 1.0e+12
+         threshold: y strictly increasing AND y(u) >= u - 1/4 for all u >= 0
+         This is the negative of (d): the 'new consistency condition' cannot be
+         established because the set of realized u is ALL of [0,inf).
+         Certified in Lean: `no_domain_restriction`, `y_strictMono`.
+  [PASS] D2 [THE CROSSING IS ORDINARY] the crossing sits at g_N = 1.9528 a_0,
+      i.e. r = 0.7157 r_M -- INSIDE every galaxy, not at its edge
+         measured: y(u*) = 0.9763894561 => g_N = 1.9527789 a_0; r* = 6.76438 kpc for 6e10 Msun (r_M = 9.45267 kpc)
+         threshold: y(u*) < 2, i.e. r* > r_M/sqrt(4) = r_M/2
+         r* is where the RAR is still deep in its transition -- u*(r_M) = 0.74 < u*.
+         So even the 'transition radius' of the framework is below the
+         crossing, and everything interior to it is above.
+
+==============================================================================
+H045 READING:  14 PASS / 0 FAIL
+==============================================================================
+
+THE NEGATIVE ENERGY DENSITY: VERDICT
+------------------------------------
+ (a) CROSSING      u* = 1.223856281422085   (K* = 1.497824197576293)
+                   Unique: f is strictly increasing (f' = 2u mu_2 > 0), so
+                   rho = -Lam^4 f crosses zero once and only once.
+                   H035's "about 1.4" -> 1.2239.
+
+ (b) REACHABLE     YES.  On the phantom solution y(u) = u mu_2(u) = g_N/(2a_0),
+                   so u >= u*  <=>  g_N >= 1.95278 a_0
+                              <=>  r <= 6.7644 kpc
+                   for M_b = 6e10 Msun (0.7157 r_M).  Solar surface: u ~ 1e12.
+                   EVERY galaxy's interior, every star, every planet.
+
+ (c) FATAL         The negative rho is the visible tip of a WRONG-SIGN gradient
+                   energy: P_X = -mu_2 < 0 for every K > 0.  Consequences:
+                     * rho < rho_vacuum for ANY gradient (not just u > u*);
+                     * static energy unbounded below, no ground state;
+                     * perturbations are ghosts (H_psi < 0) although c_s^2 > 0;
+                     * it gravitates: -90 arcsec/century of Mercury perihelion
+                       precession against a 0 +/- 0.04 residual.
+                   H011's S3 "no tachyon" pass used the timelike-branch density
+                   and does not apply to the branch the framework uses.
+                   The action L = +Lam^4 f(K), K = +(1/2)(dphi)^2/Lam^4,
+                   f' = mu_2 > 0  IS FALSIFIED.
+
+ (d) NO ESCAPE     y(u) is a strictly increasing bijection [0,inf) -> [0,inf):
+                   every u is realized.  There is NO domain restriction, hence
+                   no new consistency condition.  (Lean: no_domain_restriction.)
+
+WHAT SURVIVES.  The empirical spine is untouched: a_0, the shape of mu_2, the
+RAR, the r^-2 phantom with coefficient 1, the seesaw -- none of them used the
+static T_00 (the table shows |rho_phi| ~ 1e-3-1e-4 of the phantom density at
+1-10 kpc, which is why it never mattered for the fits; H035 already separated
+the dark mass from the static T_00).  What dies is THIS ACTION.
+The unique minimal repair that keeps f(0) = -1 and the scalar field equation
+(II) is L -> -Lam^4[f(K)+2], giving P_X = +mu_2 > 0 and rho = Lam^4(f+2) > 0.
+It too predicts 90 arcsec/century, so the repair must ALSO add high-acceleration
+SCREENING (K-mouflage / Vainshtein type): the calibration u = g/(2a_0) cannot
+survive to g >> a_0.  That is the concrete next test.
+
+{"pass": 14, "fail": 0}

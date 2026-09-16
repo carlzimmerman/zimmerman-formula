@@ -1,0 +1,152 @@
+{
+  "lane": "H047",
+  "pass": 12,
+  "fail": 0,
+  "results": [
+    {
+      "check": "N1 [NO VELOCITY DISPERSION] a coherent field has exactly one velocity at\n      each event, so its dispersion -- the second central moment, the only\n      thing free-streaming consumes -- vanishes identically",
+      "measured": "sigma^2: WDM(3.5 keV) = 2.0477e+03 m^2/s^2 ; Noether charge = 0.0000e+00 m^2/s^2",
+      "threshold": "sigma^2(charge) < 1e-6 * sigma^2(WDM)",
+      "pass": true
+    },
+    {
+      "check": "N2 [NO FREE-STREAMING LENGTH] lambda_fs = int (sigma/a) dt = 0 for the\n      charge, while WDM of every viable mass has a finite one",
+      "measured": "lambda_fs: WDM(3.5 keV) = 0.6739 Mpc ; Noether charge = 0.0000 Mpc",
+      "threshold": "lambda_fs(charge) < 1e-3 * lambda_fs(WDM 3.5 keV)",
+      "pass": true
+    },
+    {
+      "check": "N3 [HYPERBOLIC, NOT VLASOV] the perturbation equation's characteristic\n      speed is c_s, not a particle velocity; with c_s = 0 the cone\n      collapses and there is no propagation at all",
+      "measured": "characteristic speed = c_s = 0.0000e+00 m/s ; WDM particle speed = 4.5251e+01 m/s",
+      "threshold": "c_s < 1e-3 * c  (i.e. no propagating cone)",
+      "pass": true
+    },
+    {
+      "check": "N4 [NO JEANS SCALE] with c_s = 0 the Jeans length is identically zero,\n      so pressure cannot stabilise any mode on any scale",
+      "measured": "lambda_J = 0.0000e+00 Mpc  (c_s = 0, rho = rho_m(z=0))",
+      "threshold": "lambda_J < 1e-6 * (c/H0)",
+      "pass": true
+    },
+    {
+      "check": "N5 [NO P(k) TURNOVER] the only non-circular scale a0 makes is\n      r_M = sqrt(G M / a_0), which requires a mass: it is a per-object\n      HALO scale, not a k-space turnover",
+      "measured": "r_M spans 3.859 -> 1220.197 kpc as M spans 1e10 -> 1e15 Msun (2.50 decades in r for 5 in M)",
+      "threshold": "r_M must depend on M (span > 1 decade) => no k-independent turnover exists",
+      "pass": true
+    },
+    {
+      "check": "N6 [THE SOUND SPEED IS HEALTHY] c_s^2 of the frozen scalar stays inside\n      (0,1) on the whole physical branch -- the pre-registered falsifier\n      'c_s^2 leaving [0,1] anywhere -> dead' is NOT triggered",
+      "measured": "c_s^2 over u in (0, 20]: min = 0.500000 (at u->0+), max = 0.995690 (at u=20)",
+      "threshold": "0 < c_s^2 < 1 everywhere on u > 0",
+      "pass": true
+    },
+    {
+      "check": "N7 [c_s^2 = 0 IS A SECTOR INPUT, NOT A STATE OF f] the frozen scalar\n      never has c_s^2 = 0: it is >= 1/2 for u >= 0 and strictly positive on\n      the whole domain u > -1. The 'sound speed exactly zero' free dust must\n      come from a sector with rho proportional to the charge, not from f.",
+      "measured": "min c_s^2 on u >= 0 is c_s^2(0) = 0.500000; at the w=0 dust point c_s^2(u*=1.2239) = 0.781883",
+      "threshold": "for c_s^2 = 0 to be a state of f we would need min c_s^2 < 1e-3; measured 0.5 > 1e-3 => the statement 'it is an input' holds",
+      "pass": true
+    },
+    {
+      "check": "N8 [THE SCALAR FLUID IS JEANS-STABLE ON EVERY SUB-HORIZON SCALE]\n      with c_s ~ 0.88 c the Jeans wavenumber exceeds the horizon\n      wavenumber, so no sub-horizon mode of the k-essence fluid can grow",
+      "measured": "k_J/k_horizon = 1.385080 at u* = 1.2239 (c_s = 0.8842 c)",
+      "threshold": "k_J/k_horizon > 1  (all sub-horizon modes stabilised)",
+      "pass": true
+    },
+    {
+      "check": "N9 [GROWTH IS SCALE-FREE] P(k,a)/P(k,a_i) = D(a)^2 is the same number at\n      k = 0.1 and k = 100 h/Mpc: the transfer function is k-independent",
+      "measured": "ratio at k=0.1: 25.000000000000 ; at k=100: 25.000000000000 ; |difference| = 0.000e+00",
+      "threshold": "|difference| < 1e-9",
+      "pass": true
+    },
+    {
+      "check": "N10 [THE KEPLER-GRADE DISCRIMINATOR] the framework predicts R(k) = 1 at\n      EVERY k -- no cutoff, no break -- while a 3.5 keV thermal relic\n      predicts R(100 h/Mpc) of order 1e-4",
+      "measured": "R_framework(100 h/Mpc) = 1.000000 ; R_WDM(3.5 keV, 100 h/Mpc) = 2.904601e-04 ; R_WDM(3.5 keV, 10 h/Mpc) = 0.926623",
+      "threshold": "|R_framework - 1| < 1e-12  AND  R_WDM(3.5 keV, 100) < 1e-2",
+      "pass": true
+    },
+    {
+      "check": "N11 [THE SLOPE] the framework's small-scale slope is exactly the LCDM\n      slope -- n_eff -> n_s - 4 = -3.035 with the log running +2/ln(2.34 q)",
+      "measured": "n_eff: k=1 -> -2.2837 ; k=10 -> -2.6135 ; k=100 -> -2.7498 ; asymptote n_s-4 = -3.0351",
+      "threshold": "|n_eff(k=100) - (n_s - 4 + 2/ln(2.34 q))| < 0.05",
+      "pass": true
+    },
+    {
+      "check": "N12 [NOT CIRCULAR] the prediction R(k) = 1 and its slope do not use the\n      value of a_0 or of Lambda, and the one place a_0 could enter\n      (the turnover scale) is precisely the H029-circular quantity",
+      "measured": "a_0 appears only in: ['part2 (excluded as circular)']; c H_0/a_0 = [6.9947, 5.8058] = the postulate itself",
+      "threshold": "a_0 and Lambda enter the R(k)=1 derivation 0 times, and the only a_0 scale is flagged circular",
+      "pass": true
+    }
+  ],
+  "prediction": "R(k)=P_fw/P_LCDM=1 for all k; n_eff -> n_s-4 = -3.0351",
+  "slope_table": [
+    {
+      "k": 0.1,
+      "n_eff": -1.2242352299535395,
+      "asymptote": 17.525453767520403
+    },
+    {
+      "k": 1.0,
+      "n_eff": -2.2837284999960965,
+      "asymptote": -2.201717614333626
+    },
+    {
+      "k": 10.0,
+      "n_eff": -2.6135129903997947,
+      "asymptote": -2.6097892313758755
+    },
+    {
+      "k": 100.0,
+      "n_eff": -2.749800764750145,
+      "asymptote": -2.749590829114703
+    }
+  ],
+  "wdm_table": [
+    {
+      "k": 0.1,
+      "R_fw": 1.0,
+      "R_wdm_1keV": 0.9999429025710334,
+      "R_wdm_3p5keV": 0.9999974656946357,
+      "R_wdm_5p3keV": 0.9999990967861249
+    },
+    {
+      "k": 1.0,
+      "R_fw": 1.0,
+      "R_wdm_1keV": 0.9901318120223338,
+      "R_wdm_3p5keV": 0.9995596954071505,
+      "R_wdm_5p3keV": 0.999843053036361
+    },
+    {
+      "k": 10.0,
+      "R_fw": 1.0,
+      "R_wdm_1keV": 0.20667588061439504,
+      "R_wdm_3p5keV": 0.9266227596716254,
+      "R_wdm_5p3keV": 0.9731324735649344
+    },
+    {
+      "k": 50.0,
+      "R_fw": 1.0,
+      "R_wdm_1keV": 7.696850802279787e-09,
+      "R_wdm_3p5keV": 0.08653245813306559,
+      "R_wdm_5p3keV": 0.3863793119865051
+    },
+    {
+      "k": 100.0,
+      "R_fw": 1.0,
+      "R_wdm_1keV": 1.830229414425552e-14,
+      "R_wdm_3p5keV": 0.00029046012071467776,
+      "R_wdm_5p3keV": 0.02232035549835917
+    }
+  ],
+  "lambda_fs_Mpc": {
+    "1.0 keV": 2.0519151617278246,
+    "2.0 keV": 1.1108540790150139,
+    "3.5 keV": 0.6738603099153675,
+    "5.3 keV": 0.46408330059425335
+  },
+  "cs2_closed_form": "(u^2+3u+2)/(u^2+3u+4)",
+  "cs2_at_dust_point": 0.7818830547590848,
+  "u_star": 1.2238562814220848,
+  "kJ_over_kHorizon": 1.3850795877060835,
+  "circular": false,
+  "circular_note": "a0 and Lambda absent from (a) and (c); the single a0 scale c^2/a0 equals cH0/a0 = the postulate (H029), excluded",
+  "conditional_on": "the free-dust sector has c_s^2=0 and rho ~ n ~ a^-3; NOT supplied by the frozen-scalar f (c_s^2 >= 1/2 there)"
+}

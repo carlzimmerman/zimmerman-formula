@@ -660,10 +660,17 @@ check("V2a [THE OUTER SLOPE: framework -2 vs NFW -3] the logarithmic slope "
 
 THRESH["V2b"] = ("|measured slope - window-matched NFW| > 3 sigma on both footings "
                  "(i.e. the data DO separate the framework from NFW here)")
+# Only clusters whose outer window genuinely starts at r_M enter the
+# window-matched comparisons: the two clusters with no Newtonian zone start at
+# 60 kpc, where neither model's window prediction is comparable.
+def _rmsel(ft):
+    return [c["name"] for c in CL
+            if SLOPE[ft][c["name"]].get("window_note") == "r_M"]
+
 _dn = {}
 for ft in A0:
-    v = np.array([SLOPE[ft][c["name"]]["a2"] - abs(SLOPE[ft][c["name"]]["g_nfw_win"])
-                  for c in CL], float)
+    v = np.array([SLOPE[ft][n]["a2"] - abs(SLOPE[ft][n]["g_nfw_win"])
+                  for n in _rmsel(ft)], float)
     v = v[np.isfinite(v)]
     _dn[ft] = (float(np.mean(v)), float(np.std(v, ddof=1) / math.sqrt(len(v))))
 check("V2b [THE FAIR CONTROL: NFW does not actually predict -3 in this window, so "
@@ -673,8 +680,8 @@ check("V2b [THE FAIR CONTROL: NFW does not actually predict -3 in this window, s
       "i.e. -1 - 2r/(r+rs)), per cluster, both footings",
       "; ".join(f"{ft}: <a2 - |g_NFW,win|> = {m:+.2f} +/- {s:.2f}" for ft, (m, s) in _dn.items())
       + f"; NFW window predictions span "
-        f"{np.nanmin([SLOPE['canonical'][c['name']]['g_nfw_win'] for c in CL]):.2f} to "
-        f"{np.nanmax([SLOPE['canonical'][c['name']]['g_nfw_win'] for c in CL]):.2f}, not -3",
+        f"{np.nanmin([SLOPE['canonical'][n]['g_nfw_win'] for n in _rmsel('canonical')]):.2f} to "
+        f"{np.nanmax([SLOPE['canonical'][n]['g_nfw_win'] for n in _rmsel('canonical')]):.2f}, not -3",
       all(abs(m) > 3.0 * s for m, s in _dn.values()),
       "the fairness correction the finite window forces: X-COP reaches only "
       "~1.0-1.4 R500, where an NFW halo is still at slope ~-2.2 to -2.6. A "
@@ -686,8 +693,8 @@ THRESH["V2c"] = ("measured slope within 2 sigma of the M_b-growth-corrected "
                  "framework prediction -2 + 0.5 dlnM_b/dlnr on both footings")
 _dfw = {}
 for ft in A0:
-    v = np.array([SLOPE[ft][c["name"]]["a2"] - abs(SLOPE[ft][c["name"]]["g_fw_win"])
-                  for c in CL], float)
+    v = np.array([SLOPE[ft][n]["a2"] - abs(SLOPE[ft][n]["g_fw_win"])
+                  for n in _rmsel(ft)], float)
     v = v[np.isfinite(v)]
     _dfw[ft] = (float(np.mean(v)), float(np.std(v, ddof=1) / math.sqrt(len(v))))
 check("V2c [THE FRAMEWORK'S OWN WINDOW PREDICTION, M_b-growth corrected] the "
@@ -698,8 +705,8 @@ check("V2c [THE FRAMEWORK'S OWN WINDOW PREDICTION, M_b-growth corrected] the "
       "shallower than -2)",
       "; ".join(f"{ft}: <a2 - |g_FW,win|> = {m:+.2f} +/- {s:.2f} "
                 f"(framework window predictions "
-                f"{np.nanmin([SLOPE[ft][c['name']]['g_fw_win'] for c in CL]):.2f} to "
-                f"{np.nanmax([SLOPE[ft][c['name']]['g_fw_win'] for c in CL]):.2f})"
+                f"{np.nanmin([SLOPE[ft][n]['g_fw_win'] for n in _rmsel(ft)]):.2f} to "
+                f"{np.nanmax([SLOPE[ft][n]['g_fw_win'] for n in _rmsel(ft)]):.2f})"
                 for ft, (m, s) in _dfw.items()),
       all(abs(m) <= 2.0 * max(s, 0.05) for m, s in _dfw.values()),
       "a framework-internal refinement, reported because it changes the "

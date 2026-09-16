@@ -1,0 +1,101 @@
+{
+  "lane": "H045",
+  "pass": 14,
+  "fail": 0,
+  "results": [
+    {
+      "check": "A1 [ONE CROSSING] f is strictly increasing on u > 0 (f'(u) = 2u mu_2(u)),\n      f(0) = -1 and f -> +inf, so rho = -Lam^4 f crosses zero EXACTLY ONCE",
+      "measured": "df/du > 0 at all 10 sampled u in [1e-6,1e3]: True; f(1e-6)=-1.0, f(1e3)=999987.0",
+      "threshold": "df/du > 0 for every u > 0, and f changes sign",
+      "pass": true
+    },
+    {
+      "check": "A2 [THE CROSSING VALUE] rho = 0 at u* = 1.22385628142208 (K* = 1.497824),\n      with rho > 0 below it and rho < 0 above it",
+      "measured": "u* = 1.22385628142208, K* = 1.49782419757629, rho(1.2)/Lam^4 = 0.0460056 > 0, rho(1.3)/Lam^4 = -0.154617 < 0",
+      "threshold": "rho changes sign exactly at u*, once",
+      "pass": true
+    },
+    {
+      "check": "B1 [PHANTOM SOLUTION] the deep-MOND identity u = r_M/(2r) is the\n      u -> 0 asymptote of the exact solve (footing canonical): the\n      relative deviation shrinks as r grows (it is O(u) ~ 0.74 u)",
+      "measured": "r=50 kpc: u=0.101581 vs 0.0945267, dev=0.07463; r=200 kpc: u=0.0240559 vs 0.0236317, dev=0.01795; r=1000 kpc: u=0.00474313 vs 0.00472634, dev=0.003554",
+      "threshold": "deviation decreasing in r and < 1% at r = 1000 kpc",
+      "pass": true
+    },
+    {
+      "check": "B2 [REACHED IN A GALAXY] rho < 0 somewhere inside the galaxy (footing canonical)",
+      "measured": "rho < 0 at 5/10 sampled radii, out to r = 5 kpc; r* = 6.7644 kpc; rho/Lam^4 = -122.257 at 2 kpc, -1.99599e+7 at 0.1 kpc",
+      "threshold": "at least one sampled radius with rho < 0",
+      "pass": true
+    },
+    {
+      "check": "B1 [PHANTOM SOLUTION] the deep-MOND identity u = r_M/(2r) is the\n      u -> 0 asymptote of the exact solve (footing alternative): the\n      relative deviation shrinks as r grows (it is O(u) ~ 0.74 u)",
+      "measured": "r=50 kpc: u=0.0919481 vs 0.0861195, dev=0.06768; r=200 kpc: u=0.0218816 vs 0.0215299, dev=0.01634; r=1000 kpc: u=0.00431991 vs 0.00430597, dev=0.003237",
+      "threshold": "deviation decreasing in r and < 1% at r = 1000 kpc",
+      "pass": true
+    },
+    {
+      "check": "B2 [REACHED IN A GALAXY] rho < 0 somewhere inside the galaxy (footing alternative)",
+      "measured": "rho < 0 at 5/10 sampled radii, out to r = 5 kpc; r* = 6.1628 kpc; rho/Lam^4 = -83.7022 at 2 kpc, -1.37513e+7 at 0.1 kpc",
+      "threshold": "at least one sampled radius with rho < 0",
+      "pass": true
+    },
+    {
+      "check": "B3 [REACHED, EMPHATICALLY] u exceeds u* by ~12 orders of magnitude in the\n      Solar System -- the negative-rho region is not an exotic corner",
+      "measured": "u(solar surface) = 1.46356e+12 vs u* = 1.2238563; ratio = 1.1959e+12",
+      "threshold": "u(solar surface)/u* > 1e6",
+      "pass": true
+    },
+    {
+      "check": "C1 [WRONG-SIGN GRADIENT ENERGY] on the branch the framework uses,\n      P_X = -f' = -mu_2 < 0 for EVERY K > 0, so rho falls below the vacuum\n      for any gradient at all -- u* is where it turns NEGATIVE, not where\n      the trouble starts",
+      "measured": "P_X = -0.555556 at u=0.5, -0.019704 at u=0.01; rho(0.5)/Lam^4 = 0.894264 < 1 = rho(0)/Lam^4",
+      "threshold": "P_X < 0 and rho(u) < rho(0) for every u > 0",
+      "pass": true
+    },
+    {
+      "check": "C2 [NO GROUND STATE] rho/Lam^4 -> -inf as K -> inf: the static energy\n      functional is unbounded below, so the theory has no static ground state",
+      "measured": "rho/Lam^4 = -9991.7, -1.0e+8, -1.0e+12, -1.0e+20 at u = 1e2, 1e4, 1e6, 1e10",
+      "threshold": "monotonically decreasing and diverging to -inf",
+      "pass": true
+    },
+    {
+      "check": "C3 [GHOST] the perturbations on the static branch have a NEGATIVE-definite\n      Hamiltonian: G^{mu nu} has the OPPOSITE signature to a canonical\n      scalar, while c_s^2 = f'/(f'+2Kf'') stays in (1/2,1)",
+      "measured": "G^00 = -f' < 0 and G^xx = f'+2Kf'' > 0 at every sampled u; c_s^2 in (0.5,1.0)",
+      "threshold": "G^00 < 0 and G^ij > 0 (opposite of canonical)",
+      "pass": true
+    },
+    {
+      "check": "C4 [H011 S3 USED THE WRONG BRANCH] d rho/dK > 0 is true for the timelike\n      density 2Kf'-f and FALSE for the spacelike density -f that the\n      framework actually uses -- H011's 'no tachyon' pass does not apply",
+      "measured": "signs: timelike +/+/+/+ vs spacelike -/-/-/- at u = 0.01,0.5,1,2",
+      "threshold": "opposite signs for the two branch densities, both computed",
+      "pass": true
+    },
+    {
+      "check": "C5 [FALSIFIED BY THE SOLAR SYSTEM] the framework predicts -90\n      arcsec/century of extra Mercury perihelion precession, against an\n      observed residual of 0 +/- 0.04 arcsec/century after GR",
+      "measured": "d omega(Mercury) = -90.0491 arcsec/century (Earth -8.0428, Mars -2.8321); dg(1 AU) = 7.3601e-10 m/s^2",
+      "threshold": "|d omega| > 1 arcsec/century vs bound 0.04",
+      "pass": true
+    },
+    {
+      "check": "D1 [NO CEILING] y(u) = u mu_2(u) = u - u/(1+u)^2 is strictly increasing on\n      [0,inf) and UNBOUNDED: y(u) >= u - 1/4 (since 4u <= (1+u)^2), so for\n      every target u there is a radius r = sqrt(GM/(2 a_0 y(u))) that\n      realizes it.  NO domain restriction exists.",
+      "measured": "y strictly increasing over u in [0,1e12]: True; y(u) - (u-1/4) >= 0 at all sampled u: True; y(1e12) = 1.0e+12",
+      "threshold": "y strictly increasing AND y(u) >= u - 1/4 for all u >= 0",
+      "pass": true
+    },
+    {
+      "check": "D2 [THE CROSSING IS ORDINARY] the crossing sits at g_N = 1.9528 a_0,\n      i.e. r = 0.7157 r_M -- INSIDE every galaxy, not at its edge",
+      "measured": "y(u*) = 0.9763894561 => g_N = 1.9527789 a_0; r* = 6.76438 kpc for 6e10 Msun (r_M = 9.45267 kpc)",
+      "threshold": "y(u*) < 2, i.e. r* > r_M/sqrt(4) = r_M/2",
+      "pass": true
+    }
+  ],
+  "u_star": "1.22385628142208475",
+  "K_star": "1.497824197576293106",
+  "y_star": "0.97638945613899167605",
+  "gN_at_crossing_over_a0": "1.95277891228",
+  "r_star_over_rM": "0.7156051571",
+  "reachable": true,
+  "falsified": true,
+  "reason": "P_X = -mu_2 < 0 (wrong-sign gradient energy); ghost; solar-system precession -90 arcsec/cy vs 0+/-0.04",
+  "domain_restriction_exists": false,
+  "verdict": "the frozen-scalar action L = +Lam^4 f(K) is falsified; the phenomenology survives and needs a screened parent"
+}

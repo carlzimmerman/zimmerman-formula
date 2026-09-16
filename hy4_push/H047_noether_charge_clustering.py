@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-r"""H037 -- DOES THE NOETHER-CHARGE FREE DUST CLUSTER AT SMALL SCALES?
+r"""H047 -- DOES THE NOETHER-CHARGE FREE DUST CLUSTER AT SMALL SCALES?
 
 THE QUESTION, STATED EXACTLY.
     J^mu = f'(K) d^mu phi,     grad_mu J^mu = 0        (H034: exactly conserved)
@@ -123,7 +123,7 @@ def cs2(u):                    # EXACT k-essence sound speed, derived in Part 4
 
 
 print("=" * 78)
-print("H037 -- DOES THE NOETHER-CHARGE FREE DUST CLUSTER AT SMALL SCALES?")
+print("H047 -- DOES THE NOETHER-CHARGE FREE DUST CLUSTER AT SMALL SCALES?")
 print("=" * 78)
 print(f"  H0 = 67.4 km/s/Mpc, h = {h}, Om = {Om}, OL = {OL}, n_s = {n_s}")
 print(f"  rho_Lambda = {rho_L:.4e} kg/m^3 ; c/H0 = {cH0:.1f} Mpc")
@@ -486,7 +486,7 @@ check("N12 [NOT CIRCULAR] the prediction R(k) = 1 and its slope do not use the\n
 
 # =========================================================================
 print("\n" + "=" * 78)
-print(f"H037 READING:  {NP_} PASS / {NF_} FAIL")
+print(f"H047 READING:  {NP_} PASS / {NF_} FAIL")
 print("=" * 78)
 print(f"""
 THE PREDICTION
@@ -532,7 +532,7 @@ WHAT THIS LANE DOES NOT DO
     small-scale cutoff, not by agreement with LCDM.
 """)
 
-json.dump({"lane": "H037", "pass": NP_, "fail": NF_, "results": RES,
+json.dump({"lane": "H047", "pass": NP_, "fail": NF_, "results": RES,
            "prediction": "R(k)=P_fw/P_LCDM=1 for all k; n_eff -> n_s-4 = -3.0351",
            "slope_table": [{"k": k, "n_eff": n, "asymptote": a} for k, n, a in slopes],
            "wdm_table": [{"k": t[0], "R_fw": t[1], "R_wdm_1keV": t[2],
@@ -546,5 +546,5 @@ json.dump({"lane": "H037", "pass": NP_, "fail": NF_, "results": RES,
                             "scale c^2/a0 equals cH0/a0 = the postulate (H029), excluded",
            "conditional_on": "the free-dust sector has c_s^2=0 and rho ~ n ~ a^-3; "
                              "NOT supplied by the frozen-scalar f (c_s^2 >= 1/2 there)"},
-          open(OUT + "/H037_results.json", "w"), indent=2)
+          open(OUT + "/H047_results.json", "w"), indent=2)
 print(json.dumps({"pass": NP_, "fail": NF_}))
