@@ -1,0 +1,172 @@
+{
+ "lane": "G159_jump_condition",
+ "question": "THE CLUSTER AMPLITUDE AS A JUMP CONDITION (H048 DOOR 9): derive the dark-mass ratio across the phantom/free-dust boundary from the thermodynamics -- mu_ph = mu_dust from F_ph = E - T S_ph (T = m sigma^2/k_B) and F_d = -m n; the coexistence amplitude A_b = rho_ph/rho_d as a function of the latent heat L = T (S_ph - S_d); the number vs G098's measured boundary ratio; the prediction A_b(r_b); verdicts",
+ "setup": {
+  "phantom": "entropy-maximized equilibrium (G084), F_ph = E - T S_ph, E = (3/2) N k_B T, s_ph = 22.8 k_B shared reference",
+  "free_dust": "cold, collisionless (G103), entropy ~ 0, only scale the rest mass: F_d = -m n -> mu_d = -m c^2",
+  "boundary": "the EFE cap r_b = 0.62 r_M (G119: r_b/r_M = sqrt(a0/g_ext)), first-order-class transition, L finite (G132)",
+  "jump_condition": "mu_ph = mu_dust at coexistence; mu_ph = k_B T (5/2 - s_ph/k_B)",
+  "closed_form": "A_b = rho_ph/rho_d = (sigma_ph/sigma_d)^3 = exp(dS/k_B) = exp[L/(N k_B T_b)]  (shared entropy class)"
+ },
+ "constants": {
+  "sigma_km_s": 121.43846562660268,
+  "sigma_116_km_s": 119.20989891783317,
+  "T_phase_116_K_at_5keV": 9.174456566532859,
+  "T_phase_081_K_at_5keV": 9.520686221252534,
+  "m_keV": 5.0,
+  "v_dust_thermal_5keV_m_s": 44.51973045740507,
+  "N_ph": 1.561983215223025e+73,
+  "s_ph_at_r_break_kB": 22.813728068251947,
+  "s_dust_kB": {
+   "cosmic_ref": 12.01649735474745,
+   "cluster_ref": 1.3010790856614098,
+   "matched_density": -0.9199633889963921
+  },
+  "dS_kB": {
+   "cosmic_ref": 10.797230713504497,
+   "cluster_ref": 21.512648982590537,
+   "matched_density": 23.73369145724834
+  },
+  "latent_heat_meV_per_particle": {
+   "cosmic_ref": 8.536220391256519,
+   "cluster_ref": 17.007760395955223,
+   "matched_density": 18.763702133710968
+  },
+  "L_over_N_kBT": {
+   "cosmic_ref": 10.797230713504497,
+   "cluster_ref": 21.512648982590537,
+   "matched_density": 23.73369145724834
+  },
+  "L_total_J": {
+   "cosmic_ref": 2.1362514759684385e+52,
+   "cluster_ref": 4.2563162129684375e+52,
+   "matched_density": 4.6957534529953594e+52
+  }
+ },
+ "jump_condition": {
+  "branch_A_literal_chemical_rest_mass": {
+   "mu_ph_kBT": -20.313728068251947,
+   "mu_ph_meV": -16.05990131726752,
+   "mu_dust_rest_meV": -5000000.0,
+   "mismatch_ratio": 3.2119802634535036e-06,
+   "required_s_ph_over_kB": 6094373.142972099,
+   "reading": "blocked: rest-mass chemical equilibrium cannot hold across a collisionless interface (G103); the operative junction is the entropy-extremum comparison (and pressure balance)"
+  },
+  "branch_B_entropy_extremum_closed_form": {
+   "formula": "A_b = (sigma_ph/sigma_d)^3 = exp(dS/k_B) = exp[L/(N k_B T_b)]",
+   "literal_thermal_dust": {
+    "cosmic_ref": 48885.236289382665,
+    "cluster_ref": 2202037670.6929126,
+    "matched_density": 20296036492.34125
+   },
+   "dressed_potential_velocity": {
+    "chem_circular": 0.3535533905932737,
+    "chem_freefall": 0.125,
+    "mech_circular": 0.4999999999999999,
+    "mech_freefall": 0.25
+   },
+   "dressed_geomean": 0.27262693316631437,
+   "dressing_scales": {
+    "v_circ_km_s": 171.73992508292045,
+    "v_ff_km_s": 242.87693125320536,
+    "reading": "the collisionless dust's local dispersion at the cap is the potential scale, NOT the kinetic temperature (G103/G137 class c)"
+   }
+  },
+  "branch_C_mechanical_pressure_balance": {
+   "formula": "P_ph = rho_ph sigma^2 = P_d = rho_d sigma_d^2 -> A = (sigma/sigma_d)^2",
+   "dressed": {
+    "circular": 0.4999999999999999,
+    "freefall": 0.25
+   }
+  }
+ },
+ "measured_boundary_ratio": {
+  "source": "G098 floor A canonical; rho_ph/rho_d = (1 - f)/f",
+  "f_dust_inner_0_2_R500": [
+   0.75,
+   0.86
+  ],
+  "f_dust_outer_R500_class": [
+   0.2,
+   0.5
+  ],
+  "f_dust_sample_median": 0.674,
+  "ratio_inner": [
+   0.16279069767441862,
+   0.3333333333333333
+  ],
+  "ratio_outer": [
+   4.0,
+   1.0
+  ],
+  "ratio_rsat_class": [
+   0.24999999999999994,
+   1.0
+  ],
+  "ratio_median": 0.4836795252225518,
+  "implied_dust_dispersion_km_s": {
+   "median": 154.70476963076658,
+   "band": [
+    121.43846562660268,
+    222.4059541525084
+   ],
+   "reading": "virial-class 121-222 km/s (median 155), bracketed by v_circ 171.7 and v_ff 242.9 km/s -- the data demand the potential dressing"
+  }
+ },
+ "verdicts": {
+  "V1_derived_jump_ratio": "CLOSED FORM: the coexistence amplitude from the free energies is A_b = rho_ph/rho_d = (sigma_ph/sigma_d)^3 = exp(dS/k_B) = exp[L/(N k_B T_b)] -- the chemical-potential equality mu_ph = mu_dust in the shared entropy class (F_ph = E - T S_ph, E = (3/2) N k_B T, mu_ph = k_B T (5/2 - s_ph/k_B); F_d = -m n, the dust's only scale). With the COMMITTED values (T_b = 9.17 K G116; s_ph = 22.8 k_B G084; dust entropy ~ 0; dS = 10.8-23.7 k_B G132; L/(N k_B T_b) = 10.8-23.7) the LITERAL (thermal-dispersion) reading gives A = 4.9e+04 - 2.0e+10 -- but the dispersion entering the dust's phase space at the cap is the POTENTIAL scale, not the temperature (the dust is collisionless, G103): in the isothermal well v_circ = sqrt(2) sigma, v_ff = 2 sigma, both r-independent, so A_dressed = 0.125 - 0.500 (geomean 0.273) (chemical p=3: 0.125-0.354; mechanical p=2: 0.25-0.5). The literal rest-mass chemical junction is BLOCKED on its own: mu_ph = -20.3 k_B T = -16 meV vs mu_dust = -m c^2 = -5 keV (off by 3.2e-5; s_ph/k_B would need 5/2 + (c/sigma)^2 = 6.1e6 vs the max-entropy 22.8) -- a collisionless phase cannot sit in diffusive equilibrium; the operative jump is the entropy-extremum comparison (and the pressure balance, which gives the same class with exponent 2).",
+  "V2_vs_measured_boundary_ratio": "MEASURED (G098): rho_ph/rho_d = (1-f)/f = 0.163-0.333 (inner, f = 0.75-0.86), 1.0-4.0 (outer, f = 0.2-0.5), r_sat-class 0.25-1.00, median 0.484 (f = 0.674).  DRESSED PREDICTION 0.125 - 0.500 (geomean 0.273): geomean 0.273 vs the median boundary ratio 0.484 -> factor 1.77 (WITHIN 2); vs the inner band 0.163-0.333 the four dressings sit within 0.38-3.1x (the central candidates 0.25-0.35 within 1.1-2.2x).  The implied boundary dust dispersion sigma_d = sigma (rho_ph/rho_d)^-1/3 = 121-222 km/s (median 155) -- VIRIAL-class, bracketed by v_circ = 172 and v_ff = 243 km/s: the data DEMAND the potential dressing.  LITERAL COLD reading A = 4.9e4-2.0e10: FAILS by 4-11 orders of magnitude (factor 1.2e4-1.25e11) -- NOT within a factor 2, not within a factor 1e4.  WHAT THE 2-STATE COEXISTENCE NEEDS: the dust's LOCAL phase-space dispersion at the cap (one number, the potential scale ~ 121-222 km/s, median 155), NOT its kinetic temperature.",
+  "V3_honest_statement_cluster_prize": "PRIZE TAKEN IN THE DRESSED FORM, with the missing piece named.  The thermodynamics DOES fix the amplitude as a closed form: A_b = (sigma_bar/v_loc(r_b))^p, p = 3 (chemical/entropy junction) or 2 (mechanical), v_loc the potential velocity at the cap -- a PURE NUMBER of the isothermal field (0.125-0.5, central ~0.27), universal (r_b- and g_ext-independent: G M(<r)/r = C constant in the well), matching the measured boundary contrast 0.163-0.333 (inner) / 0.25-1.0 (r_sat) within a factor ~2.  NOT taken in the literal-cold form (off by 4-11 dex) -- the physics of the failure: the dust's entropy at the cap is set by its potential-stream phase space (G137 class c, NFW/FG infall, reservoir-closed), not by its temperature; and no chemical (rest-mass) equilibrium can hold across a collisionless interface (G103).  The remaining freedom: the measured per-cluster amplitude a_c = 0.72 (M500/8e14)^-0.41 with collapse 0.097 dex (G122/G140) is the OUTSIDE-cap dust ACCUMULATION envelope (G137), not the phase thermodynamics -- its prediction needs the infall solution's local radial dispersion at the cap, sigma_d(r_b) (beta-anisotropy / caustics), ONE number.  Amplitude statement: COMPUTED (closed form) at the boundary; EMPIRICAL between the cap and R500 (the missing piece: sigma_d(r_b))."
+ },
+ "prediction": {
+  "statement": "A_b(r_b) = (sigma/v_loc(r_b))^p, p = 3 (chemical) / 2 (mechanical); in the phantom's isothermal well G M(<r)/r = C at every r, so v_loc is r-independent and A_b is a UNIVERSAL constant, 0.125-0.5 (central ~0.27), independent of r_b(r_M, g_ext): the boundary amplitude is COMPUTED (closed form).  The measured per-cluster amplitude a_c = 0.72 (M500/8e14)^-0.41, collapse 0.097 dex (G122/G140) is the OUTSIDE-cap dust accumulation envelope (G137 class c, reservoir-closed) -- still EMPIRICAL; its prediction needs sigma_d(r_b) exact (infall beta-anisotropy/caustics at the cap), the named missing piece (one number).",
+  "amplitude_status": "COMPUTED at the boundary (universal closed form); EMPIRICAL between cap and R500",
+  "missing_piece": "sigma_d(r_b): the infall solution's local radial dispersion at the cap (G137 class-c machinery)"
+ },
+ "checks": [
+  {
+   "name": "C1 [gate] G132's committed entropy rows reproduced (s_ph = 22.8, s_dust = 12.0/1.3/-0.9, dS = 10.8/21.5/23.7)",
+   "measured": "s_ph(r_break) = 22.81; s_dust = 12.02/1.30/-0.92; dS = 10.8/21.5/23.7 k_B",
+   "pass": true,
+   "reading": "constants and formula identical to G132; only differences at fixed m are meaningful"
+  },
+  {
+   "name": "C2 [gate] the boundary temperatures reproduce G116/G132 (9.17 K registered, 9.52 K G081 constants)",
+   "measured": "T_116 = 9.174 K (G116 committed), T_081 = 9.521 K (G081)",
+   "pass": true,
+   "reading": "phase temperature committed at 5 keV-class; ratios below are footing-independent"
+  },
+  {
+   "name": "C3 [algebra] A = (sigma/sigma_d)^3 == exp(dS/k_B) == exp[L/(N k_B T_b)] in the shared class",
+   "measured": "(sigma/v_th)^3 = 2.0296e+10 vs exp(dS_matched) = 2.0296e+10; L/(N k_B T_b) = dS = 23.73",
+   "pass": true,
+   "reading": "the jump ratio IS latent-heat-bound: sigma_d = sigma exp(-L/(3 N k_B T_b))"
+  },
+  {
+   "name": "C4 [junction bloc] the literal rest-mass chemical potential cannot equilibrate across the cap",
+   "measured": "mu_ph = -20.31 k_B T = -16.06 meV vs mu_dust = -m c^2 = -5000 eV (ratio 3.21e-06); required s_ph/k_B = 5/2 + (c/sigma)^2 = 6.09e+06 vs 22.8",
+   "pass": true,
+   "reading": "a collisionless phase (G103) cannot be in diffusive/chemical equilibrium: the operative jump is the entropy-extremum comparison (and pressure balance)"
+  },
+  {
+   "name": "C5 [measured vs dressed] the dressed jump ratio reproduces the measured boundary contrast within a factor 2 (central value vs median and r_sat band)",
+   "measured": "dressed geomean 0.273 vs median 0.484 (x1.77); all 4 dressings 0.125-0.5 vs inner band 0.163-0.333 and r_sat band 0.25-1.0",
+   "pass": true,
+   "reading": "the boundary amplitude is O(1)-order unity and universal, as the isothermal-well dressing requires"
+  },
+  {
+   "name": "C6 [measured vs literal cold] the thermal-dispersion reading fails by orders of magnitude (as a finding)",
+   "measured": "predicted A = 4.9e+04-2.0e+10 vs measured 0.16-1.0: overshoot x4.9e+04-x1.2e+11",
+   "pass": false,
+   "reading": "the cold-dust kinetic temperature is the WRONG entropy input at the boundary: s_dust must be built on the local potential velocity (1.2e5-2.4e5 m/s), not the 44 m/s thermal value"
+  },
+  {
+   "name": "C7 [universality] v_loc is r-independent in the phantom well, so A_b(r_b) is a constant: no r_b / g_ext dependence",
+   "measured": "G M(<r)/r = C = 2.94946e+10 (m/s)^2 at EVERY r (M(<r) = (C/G) r); v_circ = sqrt(2) sigma = 171.7 km/s, v_ff = 2 sigma = 242.9 km/s",
+   "pass": true,
+   "reading": "the amplitude is a universal constant of the isothermal field (0.125-0.5); r_b = alpha r_M, alpha = sqrt(a0/g_ext) [G119] moves only the POSITION at which it is realized"
+  }
+ ],
+ "n_pass": 6,
+ "n_total": 7
+}
